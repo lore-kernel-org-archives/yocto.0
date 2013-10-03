@@ -1,22 +1,26 @@
-Return-Path: <wparkermackenzie@live.com>
-Received: from blu0-omc3-s10.blu0.hotmail.com (blu0-omc3-s10.blu0.hotmail.com
-	[65.55.116.85])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 15A31E0166A
-	for <yocto@yoctoproject.org>; Thu,  3 Oct 2013 13:08:59 -0700 (PDT)
-Received: from BLU169-W91 ([65.55.116.72]) by blu0-omc3-s10.blu0.hotmail.com
-	with Microsoft SMTPSVC(6.0.3790.4675); 
-	Thu, 3 Oct 2013 13:08:58 -0700
-X-TMN: [PUXNA6k1bXT1icVNCYvVteL9V8SG0J/s]
-X-Originating-Email: [wparkermackenzie@live.com]
-Message-ID: <BLU169-W9127A348CABC5098CC9ED0B2170@phx.gbl>
-From: Parker Mackenzie <wparkermackenzie@live.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Date: Thu, 3 Oct 2013 16:08:58 -0400
-Importance: Normal
+Return-Path: <Bruce.Ashfield@windriver.com>
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E6157E01654
+	for <yocto@yoctoproject.org>; Thu,  3 Oct 2013 13:29:55 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
+	[147.11.189.40])
+	by mail.windriver.com (8.14.5/8.14.3) with ESMTP id r93KTqVk012300
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
+	Thu, 3 Oct 2013 13:29:52 -0700 (PDT)
+Received: from [128.224.146.67] (128.224.146.67) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server id 14.2.347.0;
+	Thu, 3 Oct 2013 13:29:52 -0700
+Message-ID: <524DD3BC.7080505@windriver.com>
+Date: Thu, 3 Oct 2013 16:29:48 -0400
+From: Bruce Ashfield <bruce.ashfield@windriver.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:24.0) Gecko/20100101 Thunderbird/24.0
 MIME-Version: 1.0
-X-OriginalArrivalTime: 03 Oct 2013 20:08:58.0857 (UTC)
-	FILETIME=[654C6D90:01CEC074]
-Subject: Cross Compile Kernel Modules
+To: Parker Mackenzie <wparkermackenzie@live.com>, "yocto@yoctoproject.org"
+	<yocto@yoctoproject.org>
+References: <BLU169-W9127A348CABC5098CC9ED0B2170@phx.gbl>
+In-Reply-To: <BLU169-W9127A348CABC5098CC9ED0B2170@phx.gbl>
+Subject: Re: Cross Compile Kernel Modules
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -28,56 +32,56 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 03 Oct 2013 20:09:00 -0000
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Thu, 03 Oct 2013 20:29:56 -0000
+Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
+Content-Transfer-Encoding: 7bit
 
-I have been researching a way to build loadable kernel modules outside of Y=
-octo for a while. I was excited to find a presentation from the Yocto Devel=
-oper's Day 2013 which implied I code do this by adding the following line t=
-o my local.conf:=0A=
-IMAGE_INSTALL_append =3D " kernel_dev"=0A=
-=0A=
-However=2C when I ran bitbake for my beagleboard target I get the following=
- error. Any help in understanding what is wrong and how to achieve my goal =
-would be most helpful.=0A=
-=0A=
-Kind Regards=2C=0A=
-Parker Mackenzie=0A=
-=0A=
-=0A=
-=0A=
-[parker@jasper build]$ bitbake core-image-minimal=0A=
-Parsing recipes: 100% |#########################################| Time: 00:=
-03:55=0A=
-Parsing of 814 .bb files complete (0 cached=2C 814 parsed). 1121 targets=2C=
- 43 skipped=2C 0 masked=2C 0 errors.=0A=
-=0A=
-Build Configuration:=0A=
-BB_VERSION =A0 =A0 =A0 =A0=3D "1.18.0"=0A=
-BUILD_SYS =A0 =A0 =A0 =A0 =3D "x86_64-linux"=0A=
-NATIVELSBSTRING =A0 =3D "Fedora-17"=0A=
-TARGET_SYS =A0 =A0 =A0 =A0=3D "arm-poky-linux-gnueabi"=0A=
-MACHINE =A0 =A0 =A0 =A0 =A0 =3D "beagleboard"=0A=
-DISTRO =A0 =A0 =A0 =A0 =A0 =A0=3D "poky"=0A=
-DISTRO_VERSION =A0 =A0=3D "1.4.2"=0A=
-TUNE_FEATURES =A0 =A0 =3D "armv7a vfp neon"=0A=
-TARGET_FPU =A0 =A0 =A0 =A0=3D "vfp-neon"=0A=
-meta =A0 =A0 =A0 =A0 =A0 =A0 =A0=0A=
-meta-yocto =A0 =A0 =A0 =A0=0A=
-meta-yocto-bsp =A0 =A0=3D "<unknown>:<unknown>"=0A=
-=0A=
-NOTE: Resolving any missing task queue dependencies=0A=
-ERROR: Nothing RPROVIDES 'kernel_dev' (but /home/parker/Projects/beagleboar=
-d/yocto/poky-dylan-9.0.2/meta/recipes-core/images/core-image-minimal.bb RDE=
-PENDS on or otherwise requires it)=0A=
-NOTE: Runtime target 'kernel_dev' is unbuildable=2C removing...=0A=
-Missing or unbuildable dependency chain was: ['kernel_dev']=0A=
-ERROR: Required build target 'core-image-minimal' has no buildable provider=
-s.=0A=
-Missing or unbuildable dependency chain was: ['core-image-minimal'=2C 'kern=
-el_dev']=0A=
-=0A=
-Summary: There were 2 ERROR messages shown=2C returning a non-zero exit cod=
-e. 		 	   		  =
+On 13-10-03 04:08 PM, Parker Mackenzie wrote:
+> I have been researching a way to build loadable kernel modules outside of Yocto for a while. I was excited to find a presentation from the Yocto Developer's Day 2013 which implied I code do this by adding the following line to my local.conf:
+> IMAGE_INSTALL_append = " kernel_dev"
+>
+> However, when I ran bitbake for my beagleboard target I get the following error. Any help in understanding what is wrong and how to achieve my goal would be most helpful.
+
+Try "kernel-dev"
+
+Bruce
+
+>
+> Kind Regards,
+> Parker Mackenzie
+>
+>
+>
+> [parker@jasper build]$ bitbake core-image-minimal
+> Parsing recipes: 100% |#########################################| Time: 00:03:55
+> Parsing of 814 .bb files complete (0 cached, 814 parsed). 1121 targets, 43 skipped, 0 masked, 0 errors.
+>
+> Build Configuration:
+> BB_VERSION        = "1.18.0"
+> BUILD_SYS         = "x86_64-linux"
+> NATIVELSBSTRING   = "Fedora-17"
+> TARGET_SYS        = "arm-poky-linux-gnueabi"
+> MACHINE           = "beagleboard"
+> DISTRO            = "poky"
+> DISTRO_VERSION    = "1.4.2"
+> TUNE_FEATURES     = "armv7a vfp neon"
+> TARGET_FPU        = "vfp-neon"
+> meta
+> meta-yocto
+> meta-yocto-bsp    = "<unknown>:<unknown>"
+>
+> NOTE: Resolving any missing task queue dependencies
+> ERROR: Nothing RPROVIDES 'kernel_dev' (but /home/parker/Projects/beagleboard/yocto/poky-dylan-9.0.2/meta/recipes-core/images/core-image-minimal.bb RDEPENDS on or otherwise requires it)
+> NOTE: Runtime target 'kernel_dev' is unbuildable, removing...
+> Missing or unbuildable dependency chain was: ['kernel_dev']
+> ERROR: Required build target 'core-image-minimal' has no buildable providers.
+> Missing or unbuildable dependency chain was: ['core-image-minimal', 'kernel_dev']
+>
+> Summary: There were 2 ERROR messages shown, returning a non-zero exit code. 		 	   		
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
+
 
