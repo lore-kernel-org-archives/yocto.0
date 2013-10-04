@@ -1,36 +1,23 @@
-Return-Path: <diego.sueiro@gmail.com>
-Received: from mail-ie0-f170.google.com (mail-ie0-f170.google.com
-	[209.85.223.170])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 86073E0163D
-	for <yocto@yoctoproject.org>; Fri,  4 Oct 2013 13:26:27 -0700 (PDT)
-Received: by mail-ie0-f170.google.com with SMTP id x13so10672869ief.29
-	for <yocto@yoctoproject.org>; Fri, 04 Oct 2013 13:26:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-type;
-	bh=d69LAekvfmRprPcDZnku/xNXix/FbyzOsBny89/jDzI=;
-	b=o4G9KWKavyD7XJpbg6EqVcpljmIwYv8H3EpDbejt1KtnwZEEb3d7qXIEg+qc2p0CA6
-	sf4siY/NJmrOfA9bUS4ehrRQLE1vDB6xWXp+WuHr0lBgn0GCrQZ61gN66ewtr/QzXZIy
-	FeSlb1cq5ps9dlxJPfGyWxVDAU/NihyvJ8Om8ZvZU5aYoD7h7ZtVxcc0sMm/U7LIpN3N
-	+Berz4y6B3Lb9TpxwbsxM1BtMpiGSlkrl8a3wBHAG7WqaWQKsPSHMUQThLwqmp+l9dGO
-	HpnYDssGYliyz7VD0Oaqf8Q4FK3K7zZ3R6b6GpvwFOSeej3c3q+M2LbJElUNojAj3fQb
-	jvjA==
-X-Received: by 10.50.13.66 with SMTP id f2mr8069675igc.17.1380918386116; Fri,
-	04 Oct 2013 13:26:26 -0700 (PDT)
+Return-Path: <Bruce.Ashfield@windriver.com>
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 08175E0163D;
+	Fri,  4 Oct 2013 14:02:27 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
+	[147.11.189.40])
+	by mail.windriver.com (8.14.5/8.14.3) with ESMTP id r94L2QtF004835
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
+	Fri, 4 Oct 2013 14:02:27 -0700 (PDT)
+Received: from [128.224.146.67] (128.224.146.67) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server id 14.2.347.0;
+	Fri, 4 Oct 2013 14:02:26 -0700
+Message-ID: <524F2CDE.1010805@windriver.com>
+Date: Fri, 4 Oct 2013 17:02:22 -0400
+From: Bruce Ashfield <bruce.ashfield@windriver.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:24.0) Gecko/20100101 Thunderbird/24.0
 MIME-Version: 1.0
-Received: by 10.64.26.233 with HTTP; Fri, 4 Oct 2013 13:26:06 -0700 (PDT)
-In-Reply-To: <CAMCfZKFwMdDdo7R9APFOAesfSW50UxOMQP+qZ+D=1tL4PLg0nA@mail.gmail.com>
-References: <CAMCfZKEZy-+xNxwnoOjt+wonqJq8RNQDpqFrYLdkPQj8ZP2yAw@mail.gmail.com>
-	<524ECE1A.7060409@horus.es>
-	<CAMCfZKGMJ-66GbWcWOJ5YWY5iyw9QSfO_znX3Bdd70jgjLu9Cg@mail.gmail.com>
-	<524ED272.6020008@horus.es>
-	<CAMCfZKFwMdDdo7R9APFOAesfSW50UxOMQP+qZ+D=1tL4PLg0nA@mail.gmail.com>
-From: Diego Sueiro <diego.sueiro@gmail.com>
-Date: Fri, 4 Oct 2013 17:26:06 -0300
-Message-ID: <CAMCfZKG8QZPsWMueduTEant+iGtXQT=ypPcGm9jhLJgb1gaq6Q@mail.gmail.com>
-To: =?ISO-8859-1?Q?Jose_M=AA_Ferreiro?= <jose.ferreiro@horus.es>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: meta-toolchain-qt with Qt Creator
+To: <meta-virtualization@yoctoproject.org>, <yocto@yoctoproject.org>
+Subject: [Announce]: meta-cloud-services and OpenStack integration
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,540 +29,72 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 04 Oct 2013 20:26:27 -0000
-Content-Type: multipart/alternative; boundary=089e0118460ede52d404e7f01d8c
+X-List-Received-Date: Fri, 04 Oct 2013 21:02:28 -0000
+Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
+Content-Transfer-Encoding: 7bit
 
---089e0118460ede52d404e7f01d8c
-Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
+Hi all,
 
-Folks,
+I'd like to share some work that we've been doing at Wind River around
+cloud and clustering, in particular, bringing the OpenStack Grizzly
+release [https://wiki.openstack.org/wiki/ReleaseNotes/Grizzly] to the
+OpenEmbedded and Yocto Project ecosystem.
 
-I've found the issue.
-I was installing the poky toolchain outside the default path
-(/opt/opky/1.4.2).
-After installing on default path, Qt creator was enable to find the right
-QT version. I compiled an example and loaded it on board without any issues=
-.
+All of the major OpenStack Grizzly components (and their dependencies)
+are part of this integration:
 
-I discovered it before seeing an warning message from Qt creator saying
-that it could not find the qmake.conf on
-/opt/opky/1.4.2/<...>/usr/mkspec/default/qmake.conf.
+   - OpenStack Networking (Quantum)
+   - OpenStack Object Storage (Swift)
+   - OpenStack Block Storage (Cinder)
+   - OpenStack Identity (Keystone)
+   - OpenStack Image Service (Glance)
+   - OpenStack Dashboard (Horizon)
 
-Lesson learned: don't change the default toolchain insatallation path,
-otherwise something will not work properly.
+The following layers have been populated on git.yoctoproject.org:
 
-Can someone explain this behavior? Since you can choose a path to install
-the toolchain it must have to work out of the box.
+   git://git.yoctoproject.org/meta-cloud-services
+    |
+    +- meta-openstack
+    +- meta-openstack-compute-deploy
+    +- meta-openstack-controller-deploy
+    +- meta-openstack-qemu
 
+The READMEs in the various layers have details on the build,
+configuration and launch of the reference use case. Improvements
+to the documentation are welcome, since assumptions inevitably sneak
+in when you least expect it.
 
+The reference use case mentioned above is:
 
+   - Separate control and compute node targets
+   - Ability to schedule and launch a guest on the compute node
 
+If you have a powerful enough machine, this reference use case can
+be run completely on a single host from within VMs.
 
+Consider this a baseline that pulls together the great work being done
+in oe-core, meta-oe, meta-realtime and the Yocto Project. What I've
+shared works, but like everything, it needs more eyes, fixes and lots
+of collaboration.
 
+Since this is closely related to virtualization, discussions and
+patch sharing will take place on meta-virtualization@yoctoproject.org.
 
-Abra=E7os,
+We are all looking forward to collaborating and enhancing the
+capabilities of Embedded Cloud computing through the broad range of
+new platforms and applications available via the Yocto Project.
 
---
-*dS
-Diego Sueiro
+Upstream OpenStack minor releases, and major releases will be tracked
+with the layers, including when the imminent OpenStack Havana release
+is stabilized, the recipes will be updated and made available.
 
-Administrador do Embarcados
-www.embarcados.com.br
+ From the Yocto Project point of view, the layers will also be branched
+and tagged in coordination with its normal release milestones.
 
-Engenheiro de Controle e Automa=E7=E3o
-UNIVERSIDADE FEDERAL DE ITAJUB=C0
+Enjoy.
+Bruce
 
-/*long live rock 'n roll*/
+p.s. There are a few recipe updates and patches that are being carried
+in this layer to keep things simple, they'll be sent out to their
+appropriate homes as soon as possible.
 
-
-2013/10/4 Diego Sueiro <diego.sueiro@gmail.com>
-
-> Hello
->> Yocto dylan+ meta-toolchain-qt as Joerg's document says.
->> Best regards
->
->
-> Jose,
->
-> I'm a little bit confused.
-> Did you compiled qt-everywhere-opensource-src-4.8.4 for your host machine
-> and added it's qmake to Qt creator?
-> Then add yocto sysroot, gdb and gcc to Qt creator?
-> Could you please pont me step-by-step how did you get it working?
->
-> If add Yocto's qmake toolchain on Qt Creator I get the version error.
->
-> DIego Sueiro
->
-> 2013/10/4 Jose M=AA Ferreiro <jose.ferreiro@horus.es>
->
->>
->> El 04/10/2013 16:30, Diego Sueiro escribi=F3:
->>
->> 2013/10/4 Jose M=AA Ferreiro <jose.ferreiro@horus.es>
->>
->>>  Hello Diego
->>>
->>> We have had success doing a mix from these documents:
->>>  - install host qt libraries:
->>> http://qt-project.org/doc/qt-4.8/install-x11.html
->>>  - install host qt creator:
->>> http://labs.isee.biz/index.php/How_to_install_Qt_Creator#Configure_Yoct=
-o_SDK
->>>  - yocto steps: https://community.freescale.com/thread/309578 ,
->>>
->>> on a imx6Q Sabe Lite board being the host an Ubuntu 12.04.
->>>
->>> Good luck
->>>
->>
->>  Jose,
->>
->>  Thanks for the info.
->>
->>  Which poky branch/version are you using?
->>  Did you use the meta-toolchain from poky or the arm gcc from Ubuntu?
->>
->>
->> Hello
->>
->> Yocto dylan+ meta-toolchain-qt as Joerg's document says.
->>
->> Best regards
->>
->>     Regards,
->>
->>  --
->> *dS
->> Diego Sueiro
->>
->>
->>
->>>
->>>
->>> El 04/10/2013 14:45, Diego Sueiro escribi=F3:
->>>
->>>  Folks,
->>>
->>>  After a lots of internet search, including this ML threads, i did not
->>> find any solution for this.
->>>
->>>  I'm having issues to integrate meta-toolchain-qt
->>> and meta-toolchain-qte with Qt Creator 2.8.1.
->>> I'm using this environment:
->>>
->>>  Build Configuration:
->>> BB_VERSION        =3D "1.18.0"
->>>  BUILD_SYS         =3D "x86_64-linux"
->>> NATIVELSBSTRING   =3D "Ubuntu-12.10"
->>> TARGET_SYS        =3D "arm-poky-linux-gnueabi"
->>> MACHINE           =3D "beaglebone"
->>> DISTRO            =3D "poky"
->>> DISTRO_VERSION    =3D "1.4.2"
->>> TUNE_FEATURES     =3D "armv7a vfp neon"
->>> TARGET_FPU        =3D "vfp-neon"
->>> meta
->>> meta-yocto
->>> meta-yocto-bsp    =3D "dylan:560fa9ad8dd46f23cff7a2e88a3492c363314b29"
->>> meta-ti           =3D "dylan:24edd661d5e8fce3689bdd2c89e0105af8080152"
->>>
->>>
->>>  When I configure the qmake path on Qt Creator I get the following
->>> message:
->>>
->>> "Qt version is not properly installed please run make install"
->>>
->>>
->>>  I've tried on dylan branch too, but no success.
->>>
->>>  So, I tried to use Angstrom's setup-scripts
->>> on angstrom-v2013.06-yocto1.4 branch. And it came with the issue relate=
-d
->>> with "error while loading shared libraries: __vdso_time: invalid mode
->>> for dlopen(): Invalid argument". So, I switched to Fedora 19 and it has
->>> gone, but the invalid Qt version problem remains.
->>>
->>>  I tried, without success, to compile by myself the qt-everywhere-opens=
-ource-src-4.8
->>> these toolchains:
->>>
->>> angstrom-eglibc-x86_64-cortexa8hf-vfp-neon-toolchain-qte-v2013.06
->>>  poky-eglibc-x86_64-arm-toolchain-qte-1.4.2
->>>
->>>
->>>  If someone could successfully use meta-toolchain-qte with Qt Creator,
->>> please point me the right directions to achieve this.
->>>
->>>  I really need some help to get a qt4-embedded toolchain working.
->>>
->>>  Kind Regards,
->>>
->>>  --
->>> *dS
->>> Diego Sueiro
->>>
->>> /*long live rock 'n roll*/
->>>
->>>
->>>  _______________________________________________
->>> yocto mailing listyocto@yoctoproject.orghttps://lists.yoctoproject.org/=
-listinfo/yocto
->>>
->>>
->>>
->>> _______________________________________________
->>> yocto mailing list
->>> yocto@yoctoproject.org
->>> https://lists.yoctoproject.org/listinfo/yocto
->>>
->>>
->>
->>
->> _______________________________________________
->> yocto mailing list
->> yocto@yoctoproject.org
->> https://lists.yoctoproject.org/listinfo/yocto
->>
->>
->
-
---089e0118460ede52d404e7f01d8c
-Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">Folks,<div><br></div><div style>I&#39;ve found the issue.<=
-/div><div style>I was installing the poky toolchain outside the default pat=
-h (/opt/opky/1.4.2).</div><div style>After installing on default path, Qt c=
-reator was enable to find the right QT version. I compiled an example and l=
-oaded it on board without any issues.</div>
-
-<div style><br></div><div style>I discovered it before seeing an warning me=
-ssage from Qt creator saying that it could not find the qmake.conf on /opt/=
-opky/1.4.2/&lt;...&gt;/usr/mkspec/default/qmake.conf.</div><div style>
-<br>
-</div><div style>Lesson learned: don&#39;t change the default toolchain ins=
-atallation path, otherwise something will not work properly.<br></div><div =
-style><br></div><div style>Can someone explain this=A0behavior? Since you c=
-an choose a path to install the toolchain it must have to work out of the b=
-ox.</div>
-
-<div style><br></div><div style><br></div><div style><br></div><div style><=
-br></div><div style><br></div><div style><br></div><div class=3D"gmail_extr=
-a"><br clear=3D"all"><div><div dir=3D"ltr"><div>Abra=E7os,</div><div><br></=
-div>
-
---<br>*dS<br>Diego Sueiro<br><br>Administrador do Embarcados<br><a href=3D"=
-http://www.embarcados.com.br" target=3D"_blank">www.embarcados.com.br</a><b=
-r><br>Engenheiro de Controle e Automa=E7=E3o<br>UNIVERSIDADE FEDERAL DE ITA=
-JUB=C0<br>
-
-<br>/*long live rock &#39;n roll*/</div></div>
-<br><br><div class=3D"gmail_quote">2013/10/4 Diego Sueiro <span dir=3D"ltr"=
->&lt;<a href=3D"mailto:diego.sueiro@gmail.com" target=3D"_blank">diego.suei=
-ro@gmail.com</a>&gt;</span><br><blockquote class=3D"gmail_quote" style=3D"m=
-argin:0px 0px 0px 0.8ex;border-left-width:1px;border-left-color:rgb(204,204=
-,204);border-left-style:solid;padding-left:1ex">
-
-<div dir=3D"ltr"><div class=3D"im"><blockquote class=3D"gmail_quote" style=
-=3D"margin:0px 0px 0px 0.8ex;border-left-width:1px;border-left-color:rgb(20=
-4,204,204);border-left-style:solid;padding-left:1ex">Hello<br>Yocto dylan+ =
-meta-toolchain-qt as Joerg&#39;s document says.<br>
-
-
-Best regards</blockquote><div><br></div></div><div>Jose,</div><div><br></di=
-v><div>I&#39;m a little bit confused.</div><div>Did you compiled=A0qt-every=
-where-opensource-src-4.8.4 for your host machine and added it&#39;s qmake t=
-o Qt creator?</div>
-
-
-<div>Then add yocto sysroot, gdb and gcc to Qt creator?</div><div>Could you=
- please pont me step-by-step how did you get it working?<br></div><div><br>=
-</div><div>If add Yocto&#39;s qmake toolchain on Qt Creator I get the versi=
-on error.</div>
-
-<span class=3D""><font color=3D"#888888">
-<div><br></div><div>DIego Sueiro</div></font></span><div><div class=3D"h5">=
-<div class=3D"gmail_extra"><br></div><div class=3D"gmail_extra">2013/10/4 J=
-ose M=AA Ferreiro <span dir=3D"ltr">&lt;<a href=3D"mailto:jose.ferreiro@hor=
-us.es" target=3D"_blank">jose.ferreiro@horus.es</a>&gt;</span><br>
-
-
-<div class=3D"gmail_quote"><blockquote class=3D"gmail_quote" style=3D"margi=
-n:0px 0px 0px 0.8ex;border-left-width:1px;border-left-color:rgb(204,204,204=
-);border-left-style:solid;padding-left:1ex">
- =20
-   =20
- =20
-  <div text=3D"#000000" bgcolor=3D"#FFFFFF">
-    <br>
-    <div>El 04/10/2013 16:30, Diego Sueiro
-      escribi=F3:<br>
-    </div><div>
-    <blockquote type=3D"cite">
-      <div dir=3D"ltr">2013/10/4 Jose M=AA Ferreiro <span dir=3D"ltr">&lt;<=
-a href=3D"mailto:jose.ferreiro@horus.es" target=3D"_blank">jose.ferreiro@ho=
-rus.es</a>&gt;</span><br>
-        <div class=3D"gmail_extra">
-          <div class=3D"gmail_quote">
-            <blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0=
-.8ex;border-left-width:1px;border-left-color:rgb(204,204,204);border-left-s=
-tyle:solid;padding-left:1ex">
-              <div text=3D"#000000" bgcolor=3D"#FFFFFF"> Hello Diego<br>
-                <br>
-                We have had success doing a mix from these documents:<br>
-                =A0- install host qt libraries: <a href=3D"http://qt-projec=
-t.org/doc/qt-4.8/install-x11.html" target=3D"_blank">http://qt-project.org/=
-doc/qt-4.8/install-x11.html</a><br>
-                =A0- install host qt creator:
-                <a href=3D"http://labs.isee.biz/index.php/How_to_install_Qt=
-_Creator#Configure_Yocto_SDK" target=3D"_blank">http://labs.isee.biz/index.=
-php/How_to_install_Qt_Creator#Configure_Yocto_SDK</a><br>
-                =A0- yocto steps: <a href=3D"https://community.freescale.co=
-m/thread/309578" target=3D"_blank">https://community.freescale.com/thread/3=
-09578</a>
-                , <br>
-                <br>
-                on a imx6Q Sabe Lite board being the host an Ubuntu
-                12.04.<br>
-                <br>
-                Good luck<br>
-              </div>
-            </blockquote>
-            <div><br>
-            </div>
-            <div>Jose,</div>
-            <div><br>
-            </div>
-            <div>Thanks for the info.</div>
-            <div><br>
-            </div>
-            <div>Which poky branch/version are you using?</div>
-            <div>
-              Did you use the meta-toolchain from poky or the arm gcc
-              from Ubuntu?</div>
-          </div>
-        </div>
-      </div>
-    </blockquote>
-    </div><div dir=3D"ltr">
-      <div class=3D"gmail_extra">
-        <div class=3D"gmail_quote">
-          <div><br>
-            Hello<br>
-            <br>
-            Yocto dylan+ meta-toolchain-qt as Joerg&#39;s document says.<br=
->
-            <br>
-            Best regards<br>
-            <br>
-          </div>
-        </div>
-      </div>
-    </div><div><div>
-    <blockquote type=3D"cite">
-      <div dir=3D"ltr">
-        <div class=3D"gmail_extra">
-          <div class=3D"gmail_quote">
-            <div>Regards,</div>
-            <div><br>
-            </div>
-            <div>--</div>
-            <div>*dS</div>
-            <div>Diego Sueiro</div>
-            <div>
-              <br>
-            </div>
-            <div>=A0</div>
-            <blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0=
-.8ex;border-left-width:1px;border-left-color:rgb(204,204,204);border-left-s=
-tyle:solid;padding-left:1ex">
-              <div text=3D"#000000" bgcolor=3D"#FFFFFF"> <br>
-                <br>
-                <div>El 04/10/2013 14:45, Diego Sueiro escribi=F3:<br>
-                </div>
-                <blockquote type=3D"cite">
-                  <div>
-                    <div>
-                      <div dir=3D"ltr">Folks,
-                        <div><br>
-                        </div>
-                        <div>After a lots of internet search, including
-                          this ML threads, i did not find any solution
-                          for this.</div>
-                        <div><br>
-                        </div>
-                        <div>I&#39;m having issues to integrate
-                          meta-toolchain-qt and=A0meta-toolchain-qte with
-                          Qt Creator 2.8.1.</div>
-                        <div>I&#39;m using this environment:</div>
-                        <div>
-                          <blockquote style=3D"margin:0px 0px 0px 40px;bord=
-er:none;padding:0px">
-                            <div>
-                              <div>Build Configuration:</div>
-                              <div>BB_VERSION =A0 =A0 =A0 =A0=3D &quot;1.18=
-.0&quot;</div>
-                              <div> BUILD_SYS =A0 =A0 =A0 =A0 =3D &quot;x86=
-_64-linux&quot;</div>
-                              <div>NATIVELSBSTRING =A0 =3D &quot;Ubuntu-12.=
-10&quot;</div>
-                              <div>TARGET_SYS =A0 =A0 =A0 =A0=3D
-                                &quot;arm-poky-linux-gnueabi&quot;</div>
-                              <div>MACHINE =A0 =A0 =A0 =A0 =A0 =3D &quot;be=
-aglebone&quot;</div>
-                              <div>DISTRO =A0 =A0 =A0 =A0 =A0 =A0=3D &quot;=
-poky&quot;</div>
-                              <div>DISTRO_VERSION =A0 =A0=3D &quot;1.4.2&qu=
-ot;</div>
-                              <div>TUNE_FEATURES =A0 =A0 =3D &quot;armv7a v=
-fp neon&quot;</div>
-                              <div>TARGET_FPU =A0 =A0 =A0 =A0=3D &quot;vfp-=
-neon&quot;</div>
-                              <div>meta =A0 =A0 =A0 =A0 =A0 =A0 =A0</div>
-                              <div>meta-yocto =A0 =A0 =A0 =A0</div>
-                              <div>meta-yocto-bsp =A0 =A0=3D
-                                &quot;dylan:560fa9ad8dd46f23cff7a2e88a3492c=
-363314b29&quot;</div>
-                              <div>meta-ti =A0 =A0 =A0 =A0 =A0 =3D
-                                &quot;dylan:24edd661d5e8fce3689bdd2c89e0105=
-af8080152&quot;</div>
-                            </div>
-                          </blockquote>
-                        </div>
-                        <div><br>
-                        </div>
-                        <div>When I configure the qmake path on Qt
-                          Creator I get the following message:</div>
-                        <div>
-                          <blockquote style=3D"margin:0px 0px 0px 40px;bord=
-er:none;padding:0px">
-                            <div>&quot;Qt version is not properly installed
-                              please run make install&quot;</div>
-                          </blockquote>
-                        </div>
-                        <div><br>
-                        </div>
-                        <div>I&#39;ve tried on dylan branch too, but no
-                          success.</div>
-                        <div><br>
-                        </div>
-                        <div>So, I tried to use Angstrom&#39;s setup-script=
-s
-                          on=A0angstrom-v2013.06-yocto1.4 branch. And it
-                          came with the issue related with &quot;<span styl=
-e=3D"background-color:rgb(251,251,251);color:rgb(51,51,51);font-family:Helv=
-etica,arial,freesans,clean,sans-serif;font-size:12.727272033691406px;line-h=
-eight:20px">error
-
-                            while loading shared libraries: __vdso_time:
-                            invalid mode for dlopen(): Invalid
-                            argument&quot;. So, I switched to Fedora 19 and
-                            it has gone, but the invalid Qt version
-                            problem remains.</span></div>
-                        <div><span style=3D"background-color:rgb(251,251,25=
-1);color:rgb(51,51,51);font-family:Helvetica,arial,freesans,clean,sans-seri=
-f;font-size:12.727272033691406px;line-height:20px"><br>
-                          </span></div>
-                        <div><span style=3D"background-color:rgb(251,251,25=
-1);color:rgb(51,51,51);font-family:Helvetica,arial,freesans,clean,sans-seri=
-f;font-size:12.727272033691406px;line-height:20px">I
-                            tried, without success, to compile by myself
-                            the=A0</span><font color=3D"#333333" face=3D"He=
-lvetica, arial, freesans, clean,
-                            sans-serif"><span style=3D"line-height:20px">qt=
--everywhere-opensource-src-4.8
-
-                              these toolchains:</span></font></div>
-                        <blockquote style=3D"margin:0px 0px 0px 40px;border=
-:none;padding:0px">
-                          <div><font color=3D"#333333" face=3D"Helvetica,
-                              arial, freesans, clean, sans-serif"><span sty=
-le=3D"line-height:20px">angstrom-eglibc-x86_64-cortexa8hf-vfp-neon-toolchai=
-n-qte-v2013.06</span><br>
-                            </font></div>
-                          <div><span style=3D"line-height:20px;color:rgb(51=
-,51,51);font-family:Helvetica,arial,freesans,clean,sans-serif">poky-eglibc-=
-x86_64-arm-toolchain-qte-1.4.2</span><br>
-                          </div>
-                        </blockquote>
-                        <font color=3D"#333333" face=3D"Helvetica, arial,
-                          freesans, clean, sans-serif"><span style=3D"line-=
-height:20px">
-                            <div> <br>
-                            </div>
-                          </span></font>
-                        <div>If someone could=A0successfully use
-                          meta-toolchain-qte with Qt Creator, please
-                          point me the right directions to achieve
-                          this.=A0</div>
-                        <div><br>
-                        </div>
-                        <div><span style=3D"background-color:rgb(251,251,25=
-1);color:rgb(51,51,51);font-family:Helvetica,arial,freesans,clean,sans-seri=
-f;font-size:12.727272033691406px;line-height:20px">I
-                            really need some help to get a qt4-embedded
-                            toolchain working.</span><br>
-                        </div>
-                        <div><span style=3D"background-color:rgb(251,251,25=
-1);color:rgb(51,51,51);font-family:Helvetica,arial,freesans,clean,sans-seri=
-f;font-size:12.727272033691406px;line-height:20px"><br>
-                          </span></div>
-                        <div>Kind Regards,<br>
-                        </div>
-                        <div>
-                          <div>
-                            <div dir=3D"ltr">
-                              <div><br>
-                              </div>
-                              --<br>
-                              *dS<br>
-                              Diego Sueiro<br>
-                              <br>
-                              /*long live rock &#39;n roll*/<br>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <br>
-                      <fieldset></fieldset>
-                      <br>
-                    </div>
-                  </div>
-                  <pre>_______________________________________________
-yocto mailing list
-<a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yocto@yoctoproj=
-ect.org</a>
-<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" target=3D"_blank"=
->https://lists.yoctoproject.org/listinfo/yocto</a>
-</pre>
-                </blockquote>
-                <br>
-              </div>
-              <br>
-              _______________________________________________<br>
-              yocto mailing list<br>
-              <a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">y=
-octo@yoctoproject.org</a><br>
-              <a href=3D"https://lists.yoctoproject.org/listinfo/yocto" tar=
-get=3D"_blank">https://lists.yoctoproject.org/listinfo/yocto</a><br>
-              <br>
-            </blockquote>
-          </div>
-          <br>
-        </div>
-      </div>
-    </blockquote>
-    <br>
-  </div></div></div>
-
-<br>_______________________________________________<br>
-yocto mailing list<br>
-<a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yocto@yoctoproj=
-ect.org</a><br>
-<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" target=3D"_blank"=
->https://lists.yoctoproject.org/listinfo/yocto</a><br>
-<br></blockquote></div><br></div></div></div></div>
-</blockquote></div><br></div></div>
-
---089e0118460ede52d404e7f01d8c--
