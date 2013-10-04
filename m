@@ -1,32 +1,30 @@
-Return-Path: <flihp@twobit.us>
-Received: from www.twobit.us (www.twobit.us [50.19.210.51])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C2FDFE01654
-	for <yocto@yoctoproject.org>; Thu,  3 Oct 2013 18:49:53 -0700 (PDT)
-Received: from c-76-24-20-220.hsd1.ma.comcast.net ([76.24.20.220]
-	helo=[10.79.148.117])
-	by www.twobit.us with esmtpsa (TLS1.0:RSA_AES_256_CBC_SHA1:32)
-	(Exim 4.72) (envelope-from <flihp@twobit.us>)
-	id 1VRuWd-00059I-Aa; Fri, 04 Oct 2013 01:49:51 +0000
-Message-ID: <524E1EBA.7010605@twobit.us>
-Date: Thu, 03 Oct 2013 21:49:46 -0400
-From: Philip Tricca <flihp@twobit.us>
-User-Agent: Mozilla/5.0 (X11; Linux i686;
-	rv:10.0.12) Gecko/20130116 Icedove/10.0.12
+Return-Path: <corneliux.stoicescu@intel.com>
+Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6F1FDE016B0
+	for <yocto@yoctoproject.org>; Fri,  4 Oct 2013 01:16:01 -0700 (PDT)
+Received: from azsmga002.ch.intel.com ([10.2.17.35])
+	by azsmga101.ch.intel.com with ESMTP; 04 Oct 2013 01:16:00 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.90,1031,1371106800"; 
+	d="scan'208,217";a="303063323"
+Received: from irsmsx102.ger.corp.intel.com ([163.33.3.155])
+	by AZSMGA002.ch.intel.com with ESMTP; 04 Oct 2013 01:15:59 -0700
+Received: from irsmsx103.ger.corp.intel.com ([169.254.3.100]) by
+	IRSMSX102.ger.corp.intel.com ([169.254.2.234]) with mapi id
+	14.03.0123.003; Fri, 4 Oct 2013 09:15:49 +0100
+From: "Stoicescu, CorneliuX" <corneliux.stoicescu@intel.com>
+To: yocto <yocto@yoctoproject.org>
+Thread-Topic: Creating a custom mips64 layer using yocto-bsp
+Thread-Index: Ac7A2LlaJ0If9hvHQ7mEhg7XLp3YiQ==
+Date: Fri, 4 Oct 2013 08:15:48 +0000
+Message-ID: <33115ABC4887814E8A92A08FBC93416B0A196300@IRSMSX103.ger.corp.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [163.33.239.181]
 MIME-Version: 1.0
-To: Joe MacDonald <joe@deserted.net>
-References: <CANBf+V1KsPcfEaJUL8fxyrk_V+bBuZ2HFSHkSy8sYMEkqsrw0A@mail.gmail.com>
-In-Reply-To: <CANBf+V1KsPcfEaJUL8fxyrk_V+bBuZ2HFSHkSy8sYMEkqsrw0A@mail.gmail.com>
-X-Enigmail-Version: 1.4.1
-X-SA-Exim-Connect-IP: 76.24.20.220
-X-SA-Exim-Mail-From: flihp@twobit.us
-X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on www.twobit.us
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=5.0 tests=ALL_TRUSTED,BAYES_00
-	autolearn=ham version=3.3.1
-X-SA-Exim-Version: 4.2.1 (built Mon, 22 Mar 2010 06:26:47 +0000)
-X-SA-Exim-Scanned: Yes (on www.twobit.us)
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: [meta-selinux] Updated meta-selinux -- master (was: master-next)
+Cc: jan alexandru vaduva <vaduva.jan.alexandru@gmail.com>
+Subject: Creating a custom mips64 layer using yocto-bsp
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,84 +36,140 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 04 Oct 2013 01:49:54 -0000
-Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Fri, 04 Oct 2013 08:16:02 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_33115ABC4887814E8A92A08FBC93416B0A196300IRSMSX103gercor_"
 
-Looks good to me.
+--_000_33115ABC4887814E8A92A08FBC93416B0A196300IRSMSX103gercor_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-Thanks,
-- Philip
+Hello,
 
-On 10/02/2013 08:57 PM, Joe MacDonald wrote:
-> Philip / Mark / all,
-> 
-> Earlier today I updated master with a rebased version of what was in
-> master-next.  I apologize for not sending this out earlier.  Today's
-> been a bit turbo.
-> 
-> This update should have been a fast-forward update to master, so if
-> that's not the case, or if the updates cause any unexpected behaviour,
-> please let me know.
-> 
-> The only outstanding issue I'm aware of right now is basically what I
-> related in my earlier mail, but less severe.  The initial boot and
-> auto-relabelling hums along fine.  The second boot produces a few
-> issues about /dev/vcs* and /dev/fb* having their label applications
-> denied due to an invalid context.  Logging in to the system and
-> manually doing a restorecon on those devices as root/secadm_r/secadm_t
-> applies the correct label until the next boot.  Then you're back to
-> the default labels and have to restore them again.
-> 
-> The current state of affairs works around the more serious problem I
-> mentioned previously by not using the udev device cache.  I'd like to
-> fix that, but since it was the approach used in master previously, I
-> didn't think it was worth holding off on the update just for that.
-> 
-> -J.
-> 
-> On Sat, Sep 28, 2013 at 3:46 PM, Philip Tricca <flihp@twobit.us> wrote:
->> On 09/27/2013 03:58 PM, Joe MacDonald wrote:
->>> [[yocto] [meta-selinux] Updated meta-selinux -- master-next] On 13.09.19 (Thu 13:41) Mark Hatle wrote:
->>>
->>>> I have updated meta-selinux, and placed the update into the 'master-next' branch.
->>>>
->>>> This was locally tested with Poky as of commit
->>>> 853bc53cd58a621918f0e5ce662dba263d1befb4.
->>>>
->>>> Note, when building the core-image-selinux, the internal refpolicies
->>>> cause a lot of failures.  I'm not an expert on how this should be
->>>> configured, so I'm looking for help/patches from others.
->>>>
->>>> If you know of any other additional patches that should be applied,
->>>> or are able to help with the refpolicies, please let me know!
->>>>
->>>> Thanks!
->>>> --Mark
->>>
->>> I just pushed a new (non-ff!) update to master-next.  It includes the
->>> following:
->>>
->>>    - Mark Hatle: policycoreutils: avoid shell for checking target-special actions
->>>    - Mark Hatle: setools: Uprev setools
->>>    - Mark Hatle: README: Update status
->>>    - Mark Hatle: libcap-ng: Uprev libcap-ng
->>>    - Mark Hatle: audit: Uprev to audit 2.3.2
->>>    - Mark Hatle: swig: Update to latest swig from meta-openembedded
->>>    - Mark Hatle: python-ipy: Uprev to latest 0.81 version
->>>    - Mark Hatle: distro/*: Update the distro files
->>>    - Christopher Larson: layer.conf: avoid unnecessary early expansion with :=
->>>    - Qiang Chen: selinux: remove reference to locale env files from login
->>>    - Mark Hatle: linux-yocto: Add support for the 3.10 kernel
->>>    - Xin Ouyang: kernel: add BBAPPEND for linux 3.10
->>
->> Can I put in a request to cherry-pick the 3.10 kernel update down to master? This is independent from all of the tools / policy updates and it would be very convenient for those of us building against master oe-core. As of now a build of meta-selinux master against oe-core master results in an image that will panic on boot as linux-yocto builds the 3.10 kernel and the selinux distros don't prefer a kernel with an available selinux config (3.8 is the most recent).
->>
->> Thanks,
->> - Philip
->>
-> 
-> 
-> 
+I am trying to create a custom mips64 layer for a project. I am using the "=
+yocto-bsp" command to make the magic happen. Unfortunately, the tool only s=
+upports creating layers for mips (32 bit) architecture. So I tried a little=
+ magic of my own and I changed a line in meta-my_layer/conf/machine/my_laye=
+r.conf from:
+require conf/machine/include/tune-mips.inc
 
+to
 
+require conf/machine/include/tune-mips64.inc
+
+When building, it fails at linux-yocto task do_package with a lot of errors=
+ like:
+ERROR: QA Issue: Bit size did not match (64 to 32) linux-yocto on /work/mip=
+stest-poky-linux/linux-yocto/3.10.11+gitAUTOINC+dad2b7e1ce_e1aa804148-r0.1/=
+packages-split/kernel-module-sch-codel/lib/modules/3.10.11-yocto-standard/k=
+ernel/net/sched/sch_codel.ko
+
+I believe that means the modules still think they should be 32 bit but are =
+not. Can anyone help me with my issue?
+
+PS: I looked through the Yocto mega-manual and I added the following line t=
+o my_layer.conf file without any luck:
+
+TARGET_ARCH =3D "mips64"
+
+Thank you!
+
+--_000_33115ABC4887814E8A92A08FBC93416B0A196300IRSMSX103gercor_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 14 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:"Courrier New";
+	panose-1:0 0 0 0 0 0 0 0 0 0;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri","sans-serif";
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal">Hello,<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">I am trying to create a custom mips64 layer for a pr=
+oject. I am using the &#8220;yocto-bsp&#8221; command to make the magic hap=
+pen. Unfortunately, the tool only supports creating layers for mips (32 bit=
+) architecture. So I tried a little magic of my
+ own and I changed a line in meta-my_layer/conf/machine/my_layer.conf from:=
+<o:p></o:p></p>
+<p class=3D"MsoNormal"><i>require conf/machine/include/tune-mips.inc<o:p></=
+o:p></i></p>
+<p class=3D"MsoNormal"><i><o:p>&nbsp;</o:p></i></p>
+<p class=3D"MsoNormal"><i>to<o:p></o:p></i></p>
+<p class=3D"MsoNormal"><i><o:p>&nbsp;</o:p></i></p>
+<p class=3D"MsoNormal"><i>require conf/machine/include/tune-mips64.inc<o:p>=
+</o:p></i></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">When building, it fails at linux-yocto task do_packa=
+ge with a lot of errors like:<o:p></o:p></p>
+<p class=3D"MsoNormal" style=3D"text-autospace:none"><span style=3D"font-si=
+ze:9.0pt;font-family:&quot;Courrier New&quot;;color:#7F4040">ERROR</span><s=
+pan style=3D"font-size:9.0pt;font-family:&quot;Courrier New&quot;">:
+<span style=3D"color:#7F3030">QA Issue: Bit size did not match (64 to 32) l=
+inux-yocto on /work/mipstest-poky-linux/linux-yocto/3.10.11&#43;gitAUTOINC&=
+#43;dad2b7e1ce_e1aa804148-r0.1/packages-split/kernel-module-sch-codel/lib/m=
+odules/3.10.11-yocto-standard/kernel/net/sched/sch_codel.ko<o:p></o:p></spa=
+n></span></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">I believe that means the modules still think they sh=
+ould be 32 bit but are not. Can anyone help me with my issue?<o:p></o:p></p=
+>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">PS: I looked through the Yocto mega-manual and I add=
+ed the following line to my_layer.conf file without any luck:<o:p></o:p></p=
+>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal"><i>TARGET_ARCH =3D &quot;mips64&quot;<o:p></o:p></i>=
+</p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Thank you!<o:p></o:p></p>
+</div>
+</body>
+</html>
+
+--_000_33115ABC4887814E8A92A08FBC93416B0A196300IRSMSX103gercor_--
