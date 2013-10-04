@@ -1,28 +1,32 @@
-Return-Path: <Bruce.Ashfield@windriver.com>
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7F3CBE01654
-	for <yocto@yoctoproject.org>; Thu,  3 Oct 2013 17:53:28 -0700 (PDT)
-Received: from ALA-HCB.corp.ad.wrs.com (ala-hcb.corp.ad.wrs.com
-	[147.11.189.41])
-	by mail.windriver.com (8.14.5/8.14.3) with ESMTP id r940rOpV006275
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Thu, 3 Oct 2013 17:53:24 -0700 (PDT)
-Received: from bruce-ashfields-macbook.local (128.224.23.75) by
-	ALA-HCB.corp.ad.wrs.com (147.11.189.41) with Microsoft SMTP Server id
-	14.2.342.3; Thu, 3 Oct 2013 17:53:24 -0700
-Message-ID: <524E1183.6020907@windriver.com>
-Date: Thu, 3 Oct 2013 20:53:23 -0400
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.7;
-	rv:17.0) Gecko/20130801 Thunderbird/17.0.8
+Return-Path: <flihp@twobit.us>
+Received: from www.twobit.us (www.twobit.us [50.19.210.51])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C2FDFE01654
+	for <yocto@yoctoproject.org>; Thu,  3 Oct 2013 18:49:53 -0700 (PDT)
+Received: from c-76-24-20-220.hsd1.ma.comcast.net ([76.24.20.220]
+	helo=[10.79.148.117])
+	by www.twobit.us with esmtpsa (TLS1.0:RSA_AES_256_CBC_SHA1:32)
+	(Exim 4.72) (envelope-from <flihp@twobit.us>)
+	id 1VRuWd-00059I-Aa; Fri, 04 Oct 2013 01:49:51 +0000
+Message-ID: <524E1EBA.7010605@twobit.us>
+Date: Thu, 03 Oct 2013 21:49:46 -0400
+From: Philip Tricca <flihp@twobit.us>
+User-Agent: Mozilla/5.0 (X11; Linux i686;
+	rv:10.0.12) Gecko/20130116 Icedove/10.0.12
 MIME-Version: 1.0
-To: Parker Mackenzie <wparkermackenzie@live.com>
-References: <BLU169-W9127A348CABC5098CC9ED0B2170@phx.gbl>,
-	<524DD3BC.7080505@windriver.com>
-	<BLU169-W86EB6DD276E984A3F87FAFB2100@phx.gbl>
-In-Reply-To: <BLU169-W86EB6DD276E984A3F87FAFB2100@phx.gbl>
+To: Joe MacDonald <joe@deserted.net>
+References: <CANBf+V1KsPcfEaJUL8fxyrk_V+bBuZ2HFSHkSy8sYMEkqsrw0A@mail.gmail.com>
+In-Reply-To: <CANBf+V1KsPcfEaJUL8fxyrk_V+bBuZ2HFSHkSy8sYMEkqsrw0A@mail.gmail.com>
+X-Enigmail-Version: 1.4.1
+X-SA-Exim-Connect-IP: 76.24.20.220
+X-SA-Exim-Mail-From: flihp@twobit.us
+X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on www.twobit.us
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=5.0 tests=ALL_TRUSTED,BAYES_00
+	autolearn=ham version=3.3.1
+X-SA-Exim-Version: 4.2.1 (built Mon, 22 Mar 2010 06:26:47 +0000)
+X-SA-Exim-Scanned: Yes (on www.twobit.us)
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Cross Compile Kernel Modules
+Subject: Re: [meta-selinux] Updated meta-selinux -- master (was: master-next)
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,64 +38,84 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 04 Oct 2013 00:53:30 -0000
-Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
+X-List-Received-Date: Fri, 04 Oct 2013 01:49:54 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 Content-Transfer-Encoding: 7bit
 
-On 13-10-03 8:21 PM, Parker Mackenzie wrote:
-> Thanks Bruce,
->
-> That got me further. I added a comment to the video on YouTube which might help others which stumble across the presentation.
->
-> Now I get the following error
-> ERROR: Function failed: do_rootfs
->
-> Which points me to a log file which indicates the following failed:
->
->
-> Note: adding Smart RPM DB channel
->
-> Note: to be installed: packagegroup-core-tools-debug@beagleboard kernel-dev@beagleboard rpm-postinsts@all packagegroup-core-boot@beagleboard libstdc++6@armv7a_vfp_neon
-> Loading cache...
-> Updating cache... ######################################## [100%]
->
-> Computing transaction...error: Can't install kernel-dev-3.4.43+git0+1bab5bd090948b4cc4c4ed57c834603a3cf9f235_c994390cfa28339cbc1ec3b56eeec83a5fa75bb7-r4.4@beagleboard: no package provides /usr/bin/python
->
-> Saving cache...
->
-> ERROR: Function failed: do_rootfs (see /home/parker/Projects/beagleboard/yocto/poky-dylan-9.0.2/build/tmp/work/beagleboard-poky-linux-gnueabi/core-image-minimal/1.0-r0/temp/log.do_rootfs.61003 for further information)
->
->
-> However :
-> [parker@jasper build]$ which python
-> /usr/bin/python
+Looks good to me.
 
-That would be your build host's python. The kernel module is pulling it
-in as a dependency for the target, so it needs to be part of the rootfs
-packages.
+Thanks,
+- Philip
 
-Check that your have python in your dependencies/image install lists,
-which bitbake -e <your image type> will dump ... among many other
-things :)
-
-Which image type are you building ? core-image-minimal ? Try adding this
-to your local.conf: IMAGE_INSTALL_append = " python"
-
-Cheers,
-
-Bruce
-
->
->
-> I have gone through the documentation; however, feel free to point me at a resource if this is a silly new-guy question. An internet search did bring up the following nugget; patch 2/3 sounds related, however, I am not sure how to proceed.
-> http://comments.gmane.org/gmane.comp.handhelds.openembedded.core/34245
->
-> Thanks in advance,
-> Parker 		 	   		
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
->
+On 10/02/2013 08:57 PM, Joe MacDonald wrote:
+> Philip / Mark / all,
+> 
+> Earlier today I updated master with a rebased version of what was in
+> master-next.  I apologize for not sending this out earlier.  Today's
+> been a bit turbo.
+> 
+> This update should have been a fast-forward update to master, so if
+> that's not the case, or if the updates cause any unexpected behaviour,
+> please let me know.
+> 
+> The only outstanding issue I'm aware of right now is basically what I
+> related in my earlier mail, but less severe.  The initial boot and
+> auto-relabelling hums along fine.  The second boot produces a few
+> issues about /dev/vcs* and /dev/fb* having their label applications
+> denied due to an invalid context.  Logging in to the system and
+> manually doing a restorecon on those devices as root/secadm_r/secadm_t
+> applies the correct label until the next boot.  Then you're back to
+> the default labels and have to restore them again.
+> 
+> The current state of affairs works around the more serious problem I
+> mentioned previously by not using the udev device cache.  I'd like to
+> fix that, but since it was the approach used in master previously, I
+> didn't think it was worth holding off on the update just for that.
+> 
+> -J.
+> 
+> On Sat, Sep 28, 2013 at 3:46 PM, Philip Tricca <flihp@twobit.us> wrote:
+>> On 09/27/2013 03:58 PM, Joe MacDonald wrote:
+>>> [[yocto] [meta-selinux] Updated meta-selinux -- master-next] On 13.09.19 (Thu 13:41) Mark Hatle wrote:
+>>>
+>>>> I have updated meta-selinux, and placed the update into the 'master-next' branch.
+>>>>
+>>>> This was locally tested with Poky as of commit
+>>>> 853bc53cd58a621918f0e5ce662dba263d1befb4.
+>>>>
+>>>> Note, when building the core-image-selinux, the internal refpolicies
+>>>> cause a lot of failures.  I'm not an expert on how this should be
+>>>> configured, so I'm looking for help/patches from others.
+>>>>
+>>>> If you know of any other additional patches that should be applied,
+>>>> or are able to help with the refpolicies, please let me know!
+>>>>
+>>>> Thanks!
+>>>> --Mark
+>>>
+>>> I just pushed a new (non-ff!) update to master-next.  It includes the
+>>> following:
+>>>
+>>>    - Mark Hatle: policycoreutils: avoid shell for checking target-special actions
+>>>    - Mark Hatle: setools: Uprev setools
+>>>    - Mark Hatle: README: Update status
+>>>    - Mark Hatle: libcap-ng: Uprev libcap-ng
+>>>    - Mark Hatle: audit: Uprev to audit 2.3.2
+>>>    - Mark Hatle: swig: Update to latest swig from meta-openembedded
+>>>    - Mark Hatle: python-ipy: Uprev to latest 0.81 version
+>>>    - Mark Hatle: distro/*: Update the distro files
+>>>    - Christopher Larson: layer.conf: avoid unnecessary early expansion with :=
+>>>    - Qiang Chen: selinux: remove reference to locale env files from login
+>>>    - Mark Hatle: linux-yocto: Add support for the 3.10 kernel
+>>>    - Xin Ouyang: kernel: add BBAPPEND for linux 3.10
+>>
+>> Can I put in a request to cherry-pick the 3.10 kernel update down to master? This is independent from all of the tools / policy updates and it would be very convenient for those of us building against master oe-core. As of now a build of meta-selinux master against oe-core master results in an image that will panic on boot as linux-yocto builds the 3.10 kernel and the selinux distros don't prefer a kernel with an available selinux config (3.8 is the most recent).
+>>
+>> Thanks,
+>> - Philip
+>>
+> 
+> 
+> 
 
 
