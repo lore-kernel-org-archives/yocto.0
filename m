@@ -1,37 +1,28 @@
-Return-Path: <Dilip.KumarB@lntinfotech.com>
-Received: from mail1.bemta12.messagelabs.com (mail1.bemta12.messagelabs.com
-	[216.82.251.15])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 03D31E01625
-	for <yocto@yoctoproject.org>; Mon, 30 Sep 2013 23:03:19 -0700 (PDT)
-Received: from [216.82.249.212:39338] by server-15.bemta-12.messagelabs.com id
-	58/26-12782-6A56A425; Tue, 01 Oct 2013 06:03:18 +0000
-X-Env-Sender: Dilip.KumarB@lntinfotech.com
-X-Msg-Ref: server-11.tower-219.messagelabs.com!1380607385!3449445!3
-X-Originating-IP: [203.101.96.8]
-X-StarScan-Received: 
-X-StarScan-Version: 6.9.12; banners=-,-,-
-X-VirusChecked: Checked
-Received: (qmail 17550 invoked from network); 1 Oct 2013 06:03:18 -0000
-Received: from unknown (HELO BLRINMSHTCAS02.bglrodc.lntinfotech.com)
-	(203.101.96.8)
-	by server-11.tower-219.messagelabs.com with AES128-SHA encrypted SMTP;
-	1 Oct 2013 06:03:18 -0000
-Received: from blrinmsmbx01.bglrodc.lntinfotech.com ([169.254.1.229]) by
-	BLRINMSHTCAS02.bglrodc.lntinfotech.com ([172.28.0.83]) with mapi;
-	Tue, 1 Oct 2013 11:33:07 +0530
-From: Dilip KumarB <Dilip.KumarB@lntinfotech.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Date: Tue, 1 Oct 2013 11:33:09 +0530
-Thread-Topic: Creating BSP without using git
-Thread-Index: Ac6+bFynAUfGoZl3TC6kAugPHBniqw==
-Message-ID: <368D4D1DD61B4E4A97BC63E95AC9EB8727005DA762@BLRINMSMBX01.bglrodc.lntinfotech.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-acceptlanguage: en-US
+Return-Path: <soniaverma9727@gmail.com>
+Received: from mail-wg0-f67.google.com (mail-wg0-f67.google.com [74.125.82.67])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 85F78E01621
+	for <yocto@yoctoproject.org>; Fri,  4 Oct 2013 23:39:22 -0700 (PDT)
+Received: by mail-wg0-f67.google.com with SMTP id m15so844097wgh.10
+	for <yocto@yoctoproject.org>; Fri, 04 Oct 2013 23:39:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=FEMSubLqwrWyRA72OyvKomL8F9XVc363YzhBaT3lS5I=;
+	b=JGwYKmnq43FxKBARV+5uL7DJBqMQYZZx/z57LtJL4vrf7qKE96HH5Wqkk6Mwbb1XdR
+	45y1WdiHlYmG3QZ+ineEcDzzKGadEJw9PC8McTDp1I8ftx7Eyq8NxOd7kp6zkbnnvD7p
+	QPiwGUwJvIFMHdn/EH0/jTEr3Rqj8XwZPRkOf/P7lzsLc4WAp/YKgMaG5TuXbcrCvKwG
+	Fds/q6cKDZ1xXqRbea+xBnolJTWLhvl8PhMRYs8ybghFSEU1a/oGyumXwlauFbMiPrgA
+	Wf8c4EOA5H96HmqMloQG9qmn8WQ3rnf02T+wAQ0PRs9bAOcZ9SEYt/fA3iMB5VUSu/9I
+	28iw==
 MIME-Version: 1.0
+X-Received: by 10.180.206.42 with SMTP id ll10mr10456368wic.50.1380955161252; 
+	Fri, 04 Oct 2013 23:39:21 -0700 (PDT)
+Received: by 10.194.25.162 with HTTP; Fri, 4 Oct 2013 23:39:21 -0700 (PDT)
+Date: Sat, 5 Oct 2013 12:09:21 +0530
+Message-ID: <CAJ7VayiUNSvhFLE4iN4ZDnGYDmQK-P-7R7Xh03z4koo-z_=eOQ@mail.gmail.com>
+From: sonia verma <soniaverma9727@gmail.com>
+To: yocto@yoctoproject.org
 X-Mailman-Approved-At: Wed, 09 Oct 2013 07:14:49 -0700
-Subject: Creating BSP without using git
+Subject: java cross compilation
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,201 +34,177 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 01 Oct 2013 06:03:21 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_368D4D1DD61B4E4A97BC63E95AC9EB8727005DA762BLRINMSMBX01b_"
+X-List-Received-Date: Sat, 05 Oct 2013 06:39:24 -0000
+Content-Type: multipart/alternative; boundary=001a11c38462d6561804e7f8adf2
 
---_000_368D4D1DD61B4E4A97BC63E95AC9EB8727005DA762BLRINMSMBX01b_
-Content-Type: text/plain; charset="us-ascii"
+--001a11c38462d6561804e7f8adf2
+Content-Type: text/plain; charset=ISO-8859-1
+
+Hi All,
+
+I need to cross compile openjdk-7-jre in ppc64 platform using Yocto.
+
+After setting the environment i am running "bitbake openjdok-7-jre" command
+but i am getting following error message:
+
+BB_VERSION        = "1.18.0"
+BUILD_SYS         = "i686-linux"
+NATIVELSBSTRING   = "Ubuntu-12.10"
+TARGET_SYS        = "powerpc-fsl_networking-linux"
+MACHINE           = "t4240rdb"
+DISTRO            = "fsl-networking"
+DISTRO_VERSION    = "1.4"
+TUNE_FEATURES     = "m32 fpu-hard e6500 altivec"
+TARGET_FPU        = "hard"
+meta
+meta-yocto
+meta-yocto-bsp    = "sdk-v1.4.x:16bfcaa96c074aac0a1f66d33b45fb33ba559325"
+meta-fsl-ppc      = "sdk-v1.4.x:324b1cb7fadce0bbf145b922ce2e1d9af9ba223b"
+meta-fsl-ppc-toolchain =
+"sdk-v1.4.x:8ec94cec04527cb971c125b1ddd2c5375034d723"
+meta-virtualization = "sdk-v1.4.x:ad6df4f59cd7646f61db29e8fa51f878329d6f93"
+meta-fsl-networking = "(nobranch):77405d17c48607551e4f095fb2f79eb0c09b8430"
+meta-oe
+meta-networking   = "sdk-v1.4.x:7c8dd8f096b64a709175d37a08a4fb02ca263616"
+meta-java         = "master:de06956f93ecd15d8c941a05da47a4425e3d397a"
+
+NOTE: preferred version 03b21-2.1.8 of openjdk-7-jre not available (for
+item openjdk-7-jre)
+NOTE: versions of openjdk-7-jre available: 25b30-2.3.12
+NOTE: Resolving any missing task queue dependencies
+NOTE: preferred version 03b21-2.1.8 of openjdk-7-jre not available (for
+item openjdk-7-common)
+NOTE: versions of openjdk-7-jre available: 25b30-2.3.12
+NOTE: preferred version 03b21-2.1.8 of openjdk-7-jre not available (for
+item openjdk-7-jre)
+NOTE: versions of openjdk-7-jre available: 25b30-2.3.12
+NOTE: preferred version 03b21-2.1.8 of openjdk-7-jre not available (for
+item openjdk-7-java)
+NOTE: versions of openjdk-7-jre available: 25b30-2.3.12
+NOTE: preferred version 03b21-2.1.8 of openjdk-7-jre not available (for
+item java2-runtime)
+NOTE: versions of openjdk-7-jre available: 25b30-2.3.12
+NOTE: preferred version 03b21-2.1.8 of openjdk-7-jre not available (for
+item java2-vm)
+NOTE: versions of openjdk-7-jre available: 25b30-2.3.12
+NOTE: Preparing runqueue
+NOTE: Executing SetScene Tasks
+NOTE: Executing RunQueue Tasks
+WARNING: Failed to fetch URL
+http://archive.apache.org/dist/ant/source/apache-ant-1.8.1-src.tar.gz,
+attempting MIRRORS if available
+ERROR: Fetcher failure: Fetch command failed with exit code 4, no output
+ERROR: Function failed: Fetcher failure for URL: '
+http://archive.apache.org/dist/ant/source/apache-ant-1.8.1-src.tar.gz'.
+Unable to fetch URL from any source.
+ERROR: Logfile of failure stored in:
+/home/anuj/freescale_1.4/QorIQ-SDK-V1.4-20130814-yocto/build_t4240rdb_release/tmp/work/i686-linux/ant-native/1.8.1-r1/temp/log.do_fetch.13403
+
+ERROR: Task 209
+(/home/anuj/freescale_1.4/QorIQ-SDK-V1.4-20130814-yocto/meta-java/recipes-core/ant/
+ant-native_1.8.1.bb, do_fetch) failed with exit code '1'
+NOTE: Tasks Summary: Attempted 1182 tasks of which 902 didn't need to be
+rerun and 1 failed.
+Waiting for 0 running tasks to finish:
+
+Summary: 1 task failed:
+
+/home/anuj/freescale_1.4/QorIQ-SDK-V1.4-20130814-yocto/meta-java/recipes-core/ant/
+ant-native_1.8.1.bb, do_fetch
+Summary: There was 1 WARNING message shown.
+Summary: There were 2 ERROR messages shown, returning a non-zero exit code.
+
+
+Please help me on fixing this issue.
+
+
+Thanks.
+Sonia
+
+--001a11c38462d6561804e7f8adf2
+Content-Type: text/html; charset=ISO-8859-1
 Content-Transfer-Encoding: quoted-printable
 
-Hi,
-            I need to create a local BSP layer using Yocto-bsp create comma=
-nd without the use of Git.
+<div dir=3D"ltr">Hi All,<div><br></div><div>I need to cross compile openjdk=
+-7-jre in ppc64 platform using Yocto.</div><div><br></div><div>After settin=
+g the environment i am running &quot;bitbake openjdok-7-jre&quot; command b=
+ut i am getting following error message:</div>
 
 
-yocto-bsp create mylayers qemu -s
-Which qemu architecture would you like to use? [default: i386]
-            1) i386    (32-bit)
-            2) x86_64  (64-bit)
-            3) ARM     (32-bit)
-            4) PowerPC (32-bit)
-            5) MIPS    (32-bit)
-3
-Would you like to use the default (3.8) kernel? (y/n) [default: y] y
-Do you need a new machine branch for this BSP (the alternative is to re-use=
- an existing branch)? [y/n] [default: y] n
-Getting branches from remote repo git://git.yoctoproject.org/linux-yocto-3.=
-8.git...
+<div><br>BB_VERSION=A0=A0=A0=A0=A0=A0=A0 =3D &quot;1.18.0&quot;
+<br>BUILD_SYS=A0=A0=A0=A0=A0=A0=A0=A0 =3D &quot;i686-linux&quot;
+<br>NATIVELSBSTRING=A0=A0 =3D &quot;Ubuntu-12.10&quot;
+<br>TARGET_SYS=A0=A0=A0=A0=A0=A0=A0 =3D &quot;powerpc-fsl_networking-linux&=
+quot;
+<br>MACHINE=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 =3D &quot;t4240rdb&quot;
+<br>DISTRO=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 =3D &quot;fsl-networking&quot;
+<br>DISTRO_VERSION=A0=A0=A0 =3D &quot;1.4&quot;
+<br>TUNE_FEATURES=A0=A0=A0=A0 =3D &quot;m32 fpu-hard e6500 altivec&quot;
+<br>TARGET_FPU=A0=A0=A0=A0=A0=A0=A0 =3D &quot;hard&quot;
+<br>meta=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0
+<br>meta-yocto=A0=A0=A0=A0=A0=A0=A0=A0
+<br>meta-yocto-bsp=A0=A0=A0 =3D &quot;sdk-v1.4.x:16bfcaa96c074aac0a1f66d33b=
+45fb33ba559325&quot;
+<br>meta-fsl-ppc=A0=A0=A0=A0=A0 =3D &quot;sdk-v1.4.x:324b1cb7fadce0bbf145b9=
+22ce2e1d9af9ba223b&quot;
+<br>meta-fsl-ppc-toolchain =3D &quot;sdk-v1.4.x:8ec94cec04527cb971c125b1ddd=
+2c5375034d723&quot;
+<br>meta-virtualization =3D &quot;sdk-v1.4.x:ad6df4f59cd7646f61db29e8fa51f8=
+78329d6f93&quot;
+<br>meta-fsl-networking =3D &quot;(nobranch):77405d17c48607551e4f095fb2f79e=
+b0c09b8430&quot;
+<br>meta-oe=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0
+<br>meta-networking=A0=A0 =3D &quot;sdk-v1.4.x:7c8dd8f096b64a709175d37a08a4=
+fb02ca263616&quot;
+<br>meta-java=A0=A0=A0=A0=A0=A0=A0=A0 =3D &quot;master:de06956f93ecd15d8c94=
+1a05da47a4425e3d397a&quot;
+<br>=A0<br>NOTE: preferred version 03b21-2.1.8 of openjdk-7-jre not availab=
+le (for item openjdk-7-jre)
+<br>NOTE: versions of openjdk-7-jre available: 25b30-2.3.12
+<br>NOTE: Resolving any missing task queue dependencies
+<br>NOTE: preferred version 03b21-2.1.8 of openjdk-7-jre not available (for=
+ item openjdk-7-common)
+<br>NOTE: versions of openjdk-7-jre available: 25b30-2.3.12
+<br>NOTE: preferred version 03b21-2.1.8 of openjdk-7-jre not available (for=
+ item openjdk-7-jre)
+<br>NOTE: versions of openjdk-7-jre available: 25b30-2.3.12
+<br>NOTE: preferred version 03b21-2.1.8 of openjdk-7-jre not available (for=
+ item openjdk-7-java)
+<br>NOTE: versions of openjdk-7-jre available: 25b30-2.3.12
+<br>NOTE: preferred version 03b21-2.1.8 of openjdk-7-jre not available (for=
+ item java2-runtime)
+<br>NOTE: versions of openjdk-7-jre available: 25b30-2.3.12
+<br>NOTE: preferred version 03b21-2.1.8 of openjdk-7-jre not available (for=
+ item java2-vm)
+<br>NOTE: versions of openjdk-7-jre available: 25b30-2.3.12
+<br>NOTE: Preparing runqueue
+<br>NOTE: Executing SetScene Tasks
+<br>NOTE: Executing RunQueue Tasks
+<br>WARNING: Failed to fetch URL <a href=3D"http://archive.apache.org/dist/=
+ant/source/apache-ant-1.8.1-src.tar.gz">http://archive.apache.org/dist/ant/=
+source/apache-ant-1.8.1-src.tar.gz</a>, attempting MIRRORS if available
+<br>ERROR: Fetcher failure: Fetch command failed with exit code 4, no outpu=
+t
+<br>ERROR: Function failed: Fetcher failure for URL: &#39;<a href=3D"http:/=
+/archive.apache.org/dist/ant/source/apache-ant-1.8.1-src.tar.gz">http://arc=
+hive.apache.org/dist/ant/source/apache-ant-1.8.1-src.tar.gz</a>&#39;. Unabl=
+e to fetch URL from any source.
+<br>ERROR: Logfile of failure stored in: /home/anuj/freescale_1.4/QorIQ-SDK=
+-V1.4-20130814-yocto/build_t4240rdb_release/tmp/work/i686-linux/ant-native/=
+1.8.1-r1/temp/log.do_fetch.13403
+<br>ERROR: Task 209 (/home/anuj/freescale_1.4/QorIQ-SDK-V1.4-20130814-yocto=
+/meta-java/recipes-core/ant/<a href=3D"http://ant-native_1.8.1.bb">ant-nati=
+ve_1.8.1.bb</a>, do_fetch) failed with exit code &#39;1&#39;
+<br>NOTE: Tasks Summary: Attempted 1182 tasks of which 902 didn&#39;t need =
+to be rerun and 1 failed.
+<br>Waiting for 0 running tasks to finish:
+<br>=A0<br>Summary: 1 task failed:
+<br>=A0 /home/anuj/freescale_1.4/QorIQ-SDK-V1.4-20130814-yocto/meta-java/re=
+cipes-core/ant/<a href=3D"http://ant-native_1.8.1.bb">ant-native_1.8.1.bb</=
+a>, do_fetch
+<br>Summary: There was 1 WARNING message shown.
+<br>Summary: There were 2 ERROR messages shown, returning a non-zero exit c=
+ode.<br><br><br></div><div>Please help me on fixing this issue.<br><br><br>=
+</div><div>Thanks.<br></div><div>Sonia<br></div></div>
 
-
-Thanks with Regards
----------------------------------------------------------------------------=
-------------------
-Dilip Kumar B | PES
-L&T Infotech, Plot No. 25-31, EPIP 2nd Phase, KIADB Indl Area, Whitefield, =
-Bangalore - 66
-Off: 91-80-66242053
-Dilip.KumarB@lntinfotech.com
----------------------------------------------------------------------------=
------------------
-
-
-________________________________
-The contents of this e-mail and any attachment(s) may contain confidential =
-or privileged information for the intended recipient(s). Unintended recipie=
-nts are prohibited from taking action on the basis of information in this e=
--mail and using or disseminating the information, and must notify the sende=
-r and delete it from their system. L&T Infotech will not accept responsibil=
-ity or liability for the accuracy or completeness of, or the presence of an=
-y virus or disabling code in this e-mail"
-
---_000_368D4D1DD61B4E4A97BC63E95AC9EB8727005DA762BLRINMSMBX01b_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<meta name=3D"Generator" content=3D"Microsoft Word 14 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-@font-face
-	{font-family:"Trebuchet MS";
-	panose-1:2 11 6 3 2 2 2 2 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri","sans-serif";}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:purple;
-	text-decoration:underline;}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Trebuchet MS","sans-serif";
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-family:"Calibri","sans-serif";}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Tr=
-ebuchet MS&quot;,&quot;sans-serif&quot;">Hi,<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Tr=
-ebuchet MS&quot;,&quot;sans-serif&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; I need to create a local BSP layer using Y=
-octo-bsp create command without the use of Git.<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Tr=
-ebuchet MS&quot;,&quot;sans-serif&quot;"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Tr=
-ebuchet MS&quot;,&quot;sans-serif&quot;"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Tr=
-ebuchet MS&quot;,&quot;sans-serif&quot;">yocto-bsp create mylayers qemu -s<=
-o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Tr=
-ebuchet MS&quot;,&quot;sans-serif&quot;">Which qemu architecture would you =
-like to use? [default: i386]<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Tr=
-ebuchet MS&quot;,&quot;sans-serif&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1) i386&nbsp;&nbsp;&nbsp; (32-bit)<o:p></o=
-:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Tr=
-ebuchet MS&quot;,&quot;sans-serif&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 2) x86_64&nbsp; (64-bit)<o:p></o:p></span>=
-</p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Tr=
-ebuchet MS&quot;,&quot;sans-serif&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 3) ARM&nbsp;&nbsp;&nbsp;&nbsp; (32-bit)<o:=
-p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Tr=
-ebuchet MS&quot;,&quot;sans-serif&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 4) PowerPC (32-bit)<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Tr=
-ebuchet MS&quot;,&quot;sans-serif&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 5) MIPS&nbsp;&nbsp;&nbsp; (32-bit)<o:p></o=
-:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Tr=
-ebuchet MS&quot;,&quot;sans-serif&quot;">3<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Tr=
-ebuchet MS&quot;,&quot;sans-serif&quot;">Would you like to use the default =
-(3.8) kernel? (y/n) [default: y] y<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Tr=
-ebuchet MS&quot;,&quot;sans-serif&quot;">Do you need a new machine branch f=
-or this BSP (the alternative is to re-use an existing branch)? [y/n] [defau=
-lt: y] n<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Tr=
-ebuchet MS&quot;,&quot;sans-serif&quot;">Getting branches from remote repo =
-git://git.yoctoproject.org/linux-yocto-3.8.git...<o:p></o:p></span></p>
-<p class=3D"MsoNormal" style=3D"line-height:12.0pt"><span style=3D"font-siz=
-e:10.0pt;font-family:&quot;Trebuchet MS&quot;,&quot;sans-serif&quot;;color:=
-#C00000"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal" style=3D"line-height:12.0pt"><span style=3D"font-siz=
-e:10.0pt;font-family:&quot;Trebuchet MS&quot;,&quot;sans-serif&quot;;color:=
-#C00000"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal" style=3D"line-height:12.0pt"><span style=3D"font-siz=
-e:10.0pt;font-family:&quot;Trebuchet MS&quot;,&quot;sans-serif&quot;;color:=
-#C00000">Thanks with Regards<o:p></o:p></span></p>
-<p class=3D"MsoNormal" style=3D"line-height:12.0pt"><span style=3D"font-siz=
-e:10.0pt;font-family:&quot;Trebuchet MS&quot;,&quot;sans-serif&quot;;color:=
-#C00000">------------------------------------------------------------------=
----------------------------<br>
-Dilip Kumar B | PES<o:p></o:p></span></p>
-<p class=3D"MsoNormal" style=3D"line-height:12.0pt"><span style=3D"font-siz=
-e:8.0pt;font-family:&quot;Trebuchet MS&quot;,&quot;sans-serif&quot;;color:#=
-595959">L&amp;T Infotech, Plot No. 25-31, EPIP 2nd Phase, KIADB Indl Area, =
-Whitefield, Bangalore - 66<o:p></o:p></span></p>
-<p class=3D"MsoNormal" style=3D"line-height:12.0pt"><span style=3D"font-siz=
-e:8.0pt;font-family:&quot;Trebuchet MS&quot;,&quot;sans-serif&quot;;color:#=
-595959">Off: 91-80-66242053<o:p></o:p></span></p>
-<p class=3D"MsoNormal" style=3D"line-height:12.0pt"><u><span style=3D"font-=
-size:8.0pt;font-family:&quot;Trebuchet MS&quot;,&quot;sans-serif&quot;;colo=
-r:#0070C0">Dilip.KumarB@lntinfotech.com<o:p></o:p></span></u></p>
-<p class=3D"MsoNormal" style=3D"line-height:12.0pt"><span style=3D"font-siz=
-e:10.0pt;font-family:&quot;Trebuchet MS&quot;,&quot;sans-serif&quot;;color:=
-#C00000">------------------------------------------------------------------=
---------------------------<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-</div>
-<br>
-<hr>
-<font face=3D"Arial" color=3D"Black" size=3D"3">The contents of this e-mail=
- and any attachment(s) may contain confidential or privileged information f=
-or the intended recipient(s). Unintended recipients are prohibited from tak=
-ing action on the basis of information
- in this e-mail and using or disseminating the information, and must notify=
- the sender and delete it from their system. L&amp;T Infotech will not acce=
-pt responsibility or liability for the accuracy or completeness of, or the =
-presence of any virus or disabling code
- in this e-mail&quot;<br>
-</font>
-</body>
-</html>
-
---_000_368D4D1DD61B4E4A97BC63E95AC9EB8727005DA762BLRINMSMBX01b_--
+--001a11c38462d6561804e7f8adf2--
