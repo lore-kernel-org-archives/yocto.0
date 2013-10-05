@@ -1,24 +1,27 @@
 Return-Path: <soniaverma9727@gmail.com>
-Received: from mail-wg0-f67.google.com (mail-wg0-f67.google.com [74.125.82.67])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 85F78E01621
-	for <yocto@yoctoproject.org>; Fri,  4 Oct 2013 23:39:22 -0700 (PDT)
-Received: by mail-wg0-f67.google.com with SMTP id m15so844097wgh.10
-	for <yocto@yoctoproject.org>; Fri, 04 Oct 2013 23:39:21 -0700 (PDT)
+Received: from mail-wi0-f196.google.com (mail-wi0-f196.google.com
+	[209.85.212.196])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0E02AE01629
+	for <yocto@yoctoproject.org>; Fri,  4 Oct 2013 23:41:51 -0700 (PDT)
+Received: by mail-wi0-f196.google.com with SMTP id ez12so460632wid.3
+	for <yocto@yoctoproject.org>; Fri, 04 Oct 2013 23:41:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=FEMSubLqwrWyRA72OyvKomL8F9XVc363YzhBaT3lS5I=;
-	b=JGwYKmnq43FxKBARV+5uL7DJBqMQYZZx/z57LtJL4vrf7qKE96HH5Wqkk6Mwbb1XdR
-	45y1WdiHlYmG3QZ+ineEcDzzKGadEJw9PC8McTDp1I8ftx7Eyq8NxOd7kp6zkbnnvD7p
-	QPiwGUwJvIFMHdn/EH0/jTEr3Rqj8XwZPRkOf/P7lzsLc4WAp/YKgMaG5TuXbcrCvKwG
-	Fds/q6cKDZ1xXqRbea+xBnolJTWLhvl8PhMRYs8ybghFSEU1a/oGyumXwlauFbMiPrgA
-	Wf8c4EOA5H96HmqMloQG9qmn8WQ3rnf02T+wAQ0PRs9bAOcZ9SEYt/fA3iMB5VUSu/9I
-	28iw==
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:content-type; bh=7u19OuY3PFvVlkIPFb5ECjTcvZmjNIdz+kq5kr/9Mrk=;
+	b=Lolkl41g6v1Pgs2B7v7AWU90r8vHnohFQmtmtKwhlzENsDlxhr0vTnI15mezA5CghD
+	tbQbUtEHGVQR8tnbs0+qNRU6ET0JcevIGydkOdPkslj9Ps62Qaw7Iwbi6rQOZNQlf7g7
+	M2ZA0ndf/uaGeGjhsiLe5mgZXfZvrwq5WOo40VPKT2X5tygTMN6MsFymw1Lt5H1ZXO2H
+	DQdSC1Ttj6ahPU1Q93xd0TZpt48nwp00nhcTM9ZTe3bamycDavx9sOFq1ozSv5oUGvjn
+	Mch0PTLSFLYc48Hjri2HMx3BwHrFxjKOG43AYC0TnD9iuTye1Hb9O2Fv/o5BATGfs1zM
+	VoWg==
 MIME-Version: 1.0
-X-Received: by 10.180.206.42 with SMTP id ll10mr10456368wic.50.1380955161252; 
-	Fri, 04 Oct 2013 23:39:21 -0700 (PDT)
-Received: by 10.194.25.162 with HTTP; Fri, 4 Oct 2013 23:39:21 -0700 (PDT)
-Date: Sat, 5 Oct 2013 12:09:21 +0530
-Message-ID: <CAJ7VayiUNSvhFLE4iN4ZDnGYDmQK-P-7R7Xh03z4koo-z_=eOQ@mail.gmail.com>
+X-Received: by 10.180.79.200 with SMTP id l8mr10521698wix.44.1380955309772;
+	Fri, 04 Oct 2013 23:41:49 -0700 (PDT)
+Received: by 10.194.25.162 with HTTP; Fri, 4 Oct 2013 23:41:49 -0700 (PDT)
+In-Reply-To: <CAJ7VayiUNSvhFLE4iN4ZDnGYDmQK-P-7R7Xh03z4koo-z_=eOQ@mail.gmail.com>
+References: <CAJ7VayiUNSvhFLE4iN4ZDnGYDmQK-P-7R7Xh03z4koo-z_=eOQ@mail.gmail.com>
+Date: Sat, 5 Oct 2013 12:11:49 +0530
+Message-ID: <CAJ7VaygyR5mxiMWNxaBYLOuphOwz8y04LMAtuvkbSiH_DWWv-Q@mail.gmail.com>
 From: sonia verma <soniaverma9727@gmail.com>
 To: yocto@yoctoproject.org
 X-Mailman-Approved-At: Wed, 09 Oct 2013 07:14:49 -0700
@@ -34,10 +37,10 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 05 Oct 2013 06:39:24 -0000
-Content-Type: multipart/alternative; boundary=001a11c38462d6561804e7f8adf2
+X-List-Received-Date: Sat, 05 Oct 2013 06:41:54 -0000
+Content-Type: multipart/alternative; boundary=f46d043bd776b0c29304e7f8b6a6
 
---001a11c38462d6561804e7f8adf2
+--f46d043bd776b0c29304e7f8b6a6
 Content-Type: text/plain; charset=ISO-8859-1
 
 Hi All,
@@ -121,14 +124,16 @@ Please help me on fixing this issue.
 Thanks.
 Sonia
 
---001a11c38462d6561804e7f8adf2
+--f46d043bd776b0c29304e7f8b6a6
 Content-Type: text/html; charset=ISO-8859-1
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Hi All,<div><br></div><div>I need to cross compile openjdk=
--7-jre in ppc64 platform using Yocto.</div><div><br></div><div>After settin=
-g the environment i am running &quot;bitbake openjdok-7-jre&quot; command b=
-ut i am getting following error message:</div>
+<div dir=3D"ltr"><br><div class=3D"gmail_quote"><span dir=3D"ltr"></span><b=
+r><br><br><div dir=3D"ltr">Hi All,<div><br></div><div>I need to cross compi=
+le openjdk-7-jre in ppc64 platform using Yocto.</div><div><br></div><div>Af=
+ter setting the environment i am running &quot;bitbake openjdok-7-jre&quot;=
+ command but i am getting following error message:</div>
+
 
 
 <div><br>BB_VERSION=A0=A0=A0=A0=A0=A0=A0 =3D &quot;1.18.0&quot;
@@ -181,30 +186,36 @@ le (for item openjdk-7-jre)
 <br>NOTE: Executing SetScene Tasks
 <br>NOTE: Executing RunQueue Tasks
 <br>WARNING: Failed to fetch URL <a href=3D"http://archive.apache.org/dist/=
-ant/source/apache-ant-1.8.1-src.tar.gz">http://archive.apache.org/dist/ant/=
-source/apache-ant-1.8.1-src.tar.gz</a>, attempting MIRRORS if available
+ant/source/apache-ant-1.8.1-src.tar.gz" target=3D"_blank">http://archive.ap=
+ache.org/dist/ant/source/apache-ant-1.8.1-src.tar.gz</a>, attempting MIRROR=
+S if available
 <br>ERROR: Fetcher failure: Fetch command failed with exit code 4, no outpu=
 t
 <br>ERROR: Function failed: Fetcher failure for URL: &#39;<a href=3D"http:/=
-/archive.apache.org/dist/ant/source/apache-ant-1.8.1-src.tar.gz">http://arc=
-hive.apache.org/dist/ant/source/apache-ant-1.8.1-src.tar.gz</a>&#39;. Unabl=
-e to fetch URL from any source.
+/archive.apache.org/dist/ant/source/apache-ant-1.8.1-src.tar.gz" target=3D"=
+_blank">http://archive.apache.org/dist/ant/source/apache-ant-1.8.1-src.tar.=
+gz</a>&#39;. Unable to fetch URL from any source.
 <br>ERROR: Logfile of failure stored in: /home/anuj/freescale_1.4/QorIQ-SDK=
 -V1.4-20130814-yocto/build_t4240rdb_release/tmp/work/i686-linux/ant-native/=
 1.8.1-r1/temp/log.do_fetch.13403
 <br>ERROR: Task 209 (/home/anuj/freescale_1.4/QorIQ-SDK-V1.4-20130814-yocto=
-/meta-java/recipes-core/ant/<a href=3D"http://ant-native_1.8.1.bb">ant-nati=
-ve_1.8.1.bb</a>, do_fetch) failed with exit code &#39;1&#39;
+/meta-java/recipes-core/ant/<a href=3D"http://ant-native_1.8.1.bb" target=
+=3D"_blank">ant-native_1.8.1.bb</a>, do_fetch) failed with exit code &#39;1=
+&#39;
 <br>NOTE: Tasks Summary: Attempted 1182 tasks of which 902 didn&#39;t need =
 to be rerun and 1 failed.
 <br>Waiting for 0 running tasks to finish:
 <br>=A0<br>Summary: 1 task failed:
 <br>=A0 /home/anuj/freescale_1.4/QorIQ-SDK-V1.4-20130814-yocto/meta-java/re=
-cipes-core/ant/<a href=3D"http://ant-native_1.8.1.bb">ant-native_1.8.1.bb</=
-a>, do_fetch
+cipes-core/ant/<a href=3D"http://ant-native_1.8.1.bb" target=3D"_blank">ant=
+-native_1.8.1.bb</a>, do_fetch
 <br>Summary: There was 1 WARNING message shown.
 <br>Summary: There were 2 ERROR messages shown, returning a non-zero exit c=
 ode.<br><br><br></div><div>Please help me on fixing this issue.<br><br><br>=
-</div><div>Thanks.<br></div><div>Sonia<br></div></div>
+</div><div>Thanks.<span class=3D"HOEnZb"><font color=3D"#888888"><br></font=
+></span></div>
+<span class=3D"HOEnZb"><font color=3D"#888888"><div>Sonia<br></div></font><=
+/span></div>
+</div><br></div>
 
---001a11c38462d6561804e7f8adf2--
+--f46d043bd776b0c29304e7f8b6a6--
