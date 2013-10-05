@@ -1,23 +1,28 @@
-Return-Path: <paul.eggleton@linux.intel.com>
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7C745E013D6
-	for <yocto@yoctoproject.org>; Fri,  4 Oct 2013 16:11:04 -0700 (PDT)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga102.fm.intel.com with ESMTP; 04 Oct 2013 16:10:57 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.90,1036,1371106800"; d="scan'208";a="411747441"
-Received: from unknown (HELO helios.ger.corp.intel.com) ([10.252.120.174])
-	by fmsmga002.fm.intel.com with ESMTP; 04 Oct 2013 16:09:23 -0700
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: yocto@yoctoproject.org
-Date: Sat,  5 Oct 2013 00:09:14 +0100
-Message-Id: <079565ceaf83c42e6024140a4ab9a04cf1aeb0df.1380928084.git.paul.eggleton@linux.intel.com>
-X-Mailer: git-send-email 1.8.1.2
-In-Reply-To: <cover.1380928084.git.paul.eggleton@linux.intel.com>
-References: <cover.1380928084.git.paul.eggleton@linux.intel.com>
-In-Reply-To: <cover.1380928084.git.paul.eggleton@linux.intel.com>
-References: <cover.1380928084.git.paul.eggleton@linux.intel.com>
-Subject: [meta-baryon][PATCH 1/6] faad2: remove
+Return-Path: <amansh.sharma5@gmail.com>
+Received: from mail-ie0-f169.google.com (mail-ie0-f169.google.com
+	[209.85.223.169])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 52B11E01661
+	for <yocto@yoctoproject.org>; Fri,  4 Oct 2013 21:34:42 -0700 (PDT)
+Received: by mail-ie0-f169.google.com with SMTP id tp5so11458596ieb.0
+	for <yocto@yoctoproject.org>; Fri, 04 Oct 2013 21:34:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=/Uv0SY4GFwiCqW0NEKfzcYxEbxE2jXca+/GOE73yD5M=;
+	b=XCDyYMGnnoQdeOZhhyhT96QlIUjrMdIMST5zrHSiUy0Z1XLSBbdp+I/vycjLSp9ySg
+	rjmm8slCLEx+ePH/D+oPJ2vFX0FNG2E71SZG7/AsPxv/koHhkGJwiUgF4h22hZOhEkMU
+	5wbCF9ftYEnZLu7umeXUh0SO/uJmM/Tj+Ibpia/ziXRGzRlTl/JL1fmtwYXIlvcyfl21
+	vlde96bmLFMAJW+ieWQwEPtIbvxYpHnTq19tBHPGv5VHM1DztYMOmYhfcO2DNaaC75xV
+	3NRp4ixcD3gyaNyhvhly8+cUMIGYT9b6b1Js/Ze4Irl6yr/rePUiqYEaewCBLhogjb2i
+	eDkA==
+MIME-Version: 1.0
+X-Received: by 10.43.10.198 with SMTP id pb6mr149029icb.40.1380947681579; Fri,
+	04 Oct 2013 21:34:41 -0700 (PDT)
+Received: by 10.64.129.33 with HTTP; Fri, 4 Oct 2013 21:34:41 -0700 (PDT)
+Date: Sat, 5 Oct 2013 10:04:41 +0530
+Message-ID: <CAPMH7-8xAYe1T=xsF4WGxbnWLYy6tejzTbVuxrgqvQXmYcWEAg@mail.gmail.com>
+From: Aman Sharma <amansh.sharma5@gmail.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Error In java cross compilation using Yocto
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -29,51 +34,89 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 04 Oct 2013 23:11:05 -0000
+X-List-Received-Date: Sat, 05 Oct 2013 04:34:45 -0000
+Content-Type: multipart/alternative; boundary=bcaec50e5ce70399ff04e7f6f0e2
 
-No longer needed. The recipe is currently maintained in meta-oe.
+--bcaec50e5ce70399ff04e7f6f0e2
+Content-Type: text/plain; charset=ISO-8859-1
 
-Signed-off-by: Paul Eggleton <paul.eggleton@linux.intel.com>
----
- recipes-multimedia/faad2/faad2_2.7.bb | 28 ----------------------------
- 1 file changed, 28 deletions(-)
- delete mode 100644 recipes-multimedia/faad2/faad2_2.7.bb
+Hi All,
 
-diff --git a/recipes-multimedia/faad2/faad2_2.7.bb b/recipes-multimedia/faad2/faad2_2.7.bb
-deleted file mode 100644
-index 6dc79e2..0000000
---- a/recipes-multimedia/faad2/faad2_2.7.bb
-+++ /dev/null
-@@ -1,28 +0,0 @@
--DESCRIPTION = "Library for reading some sort of media format."
--SECTION = "libs"
--LICENSE = "GPLv2+"
--LIC_FILES_CHKSUM = "file://COPYING;md5=381c8cbe277a7bc1ee2ae6083a04c958 \
--                    file://README;beginline=19;endline=40;md5=79929d64a69b0588ba8445f6eea56913"
--
--PR = "r2"
--
--inherit autotools
--
--SRC_URI = "${SOURCEFORGE_MIRROR}/faac/faad2-src/faad2-${PV}/${PN}-${PV}.tar.bz2;name=faad2 \
--"
--
--SRC_URI[faad2.md5sum] = "4c332fa23febc0e4648064685a3d4332"
--SRC_URI[faad2.sha256sum] = "14561b5d6bc457e825bfd3921ae50a6648f377a9396eaf16d4b057b39a3f63b5"
--
--PACKAGES =+ "libfaad libfaad-dev libfaad-staticdev libmp4ff libmp4ff-dev libmp4ff-staticdev"
--
--FILES_${PN} = "${bindir}/faad"
--
--FILES_libfaad = "${libdir}/libfaad.so.*"
--FILES_libfaad-dev = "${libdir}/libfaad.so ${libdir}/libfaad.la ${includedir}/faad.h"
--FILES_libfaad-staticdev = "${libdir}/libfaad.a"
--
--FILES_libmp4ff = "${libdir}/libmp4ff.so.*"
--FILES_libmp4ff-dev = "${libdir}/libmp4ff.so ${libdir}/libmp4ff.la ${includedir}/mp4ff.h"
--FILES_libmp4ff-staticdev = "${libdir}/libmp4ff.a"
--
--- 
-1.8.1.2
+I need to cross compile openjdk-7-jre in ppc64 platform using Yocto.
+
+After setting the environment i am running "bitbake openjdok-7-jre" command
+but i am getting following error message:
+
+| Checking patches/icedtea-zero-hotspotfix.patch
+| Applying patches/icedtea-zero-hotspotfix.patch
+| patching file openjdk/hotspot/make/linux/makefiles/zeroshark.make
+*| Checking patches/icedtea-jdk-nio-use-host-cc.patch*
+*| 3 out of 6 hunks FAILED -- saving rejects to file
+openjdk/jdk/make/java/nio/Makefile.rej*
+*| 2 out of 2 hunks FAILED -- saving rejects to file
+openjdk/jdk/make/sun/Makefile.rej*
+*| ERROR patch patches/icedtea-jdk-nio-use-host-cc.patch FAILED!*
+*| WARNING make clean-patch before retrying a fix*
+*| make: *** [stamps/patch.stamp] Error 2*
+*| ERROR: oe_runmake failed*
+*| ERROR: Function failed: do_configure (see
+/home/vvdn/yocto_1.4/QorIQ-SDK-V1.4-20130814-yocto/build_t4240rdb_release/tmp/work/ppce6500-fsl_networking-linux/openjdk-7-jre/25b30-2.3.12-r5.1/temp/log.do_configure.19910
+for further information)*
+ERROR: Task 6
+(/home/vvdn/yocto_1.4/QorIQ-SDK-V1.4-20130814-yocto/meta-java/recipes-core/openjdk/
+openjdk-7_25b30-2.3.12.bb, do_configure) failed with exit code '1'
+NOTE: Tasks Summary: Attempted 2674 tasks of which 2664 didn't need to be
+rerun and 1 failed.
+No currently running tasks (2674 of 2684)
+
+Summary: 1 task failed:
+
+/home/vvdn/yocto_1.4/QorIQ-SDK-V1.4-20130814-yocto/meta-java/recipes-core/openjdk/
+openjdk-7_25b30-2.3.12.bb, do_configure
+Summary: There was 1 ERROR message shown, returning a non-zero exit code.
 
 
+Please help me on fixing this issue.
+
+Thanks
+Aman Sharma
+
+--bcaec50e5ce70399ff04e7f6f0e2
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Hi All,<div><br></div><div>I need to cross compile openjdk=
+-7-jre in ppc64 platform using Yocto.</div><div><br></div><div>After settin=
+g the environment i am running &quot;bitbake openjdok-7-jre&quot; command b=
+ut i am getting following error message:</div>
+<div><br></div><div><div>| Checking patches/icedtea-zero-hotspotfix.patch</=
+div><div>| Applying patches/icedtea-zero-hotspotfix.patch</div><div>| patch=
+ing file openjdk/hotspot/make/linux/makefiles/zeroshark.make</div><div>
+<b>| Checking patches/icedtea-jdk-nio-use-host-cc.patch</b></div><div><b>| =
+3 out of 6 hunks FAILED -- saving rejects to file openjdk/jdk/make/java/nio=
+/Makefile.rej</b></div><div><b>| 2 out of 2 hunks FAILED -- saving rejects =
+to file openjdk/jdk/make/sun/Makefile.rej</b></div>
+<div><b>| ERROR patch patches/icedtea-jdk-nio-use-host-cc.patch FAILED!</b>=
+</div><div><b>| WARNING make clean-patch before retrying a fix</b></div><di=
+v><b>| make: *** [stamps/patch.stamp] Error 2</b></div><div><b>| ERROR: oe_=
+runmake failed</b></div>
+<div><b>| ERROR: Function failed: do_configure (see /home/vvdn/yocto_1.4/Qo=
+rIQ-SDK-V1.4-20130814-yocto/build_t4240rdb_release/tmp/work/ppce6500-fsl_ne=
+tworking-linux/openjdk-7-jre/25b30-2.3.12-r5.1/temp/log.do_configure.19910 =
+for further information)</b></div>
+<div>ERROR: Task 6 (/home/vvdn/yocto_1.4/QorIQ-SDK-V1.4-20130814-yocto/meta=
+-java/recipes-core/openjdk/<a href=3D"http://openjdk-7_25b30-2.3.12.bb">ope=
+njdk-7_25b30-2.3.12.bb</a>, do_configure) failed with exit code &#39;1&#39;=
+</div>
+<div>NOTE: Tasks Summary: Attempted 2674 tasks of which 2664 didn&#39;t nee=
+d to be rerun and 1 failed.</div><div>No currently running tasks (2674 of 2=
+684)</div><div><br></div><div>Summary: 1 task failed:</div><div>=A0 /home/v=
+vdn/yocto_1.4/QorIQ-SDK-V1.4-20130814-yocto/meta-java/recipes-core/openjdk/=
+<a href=3D"http://openjdk-7_25b30-2.3.12.bb">openjdk-7_25b30-2.3.12.bb</a>,=
+ do_configure</div>
+<div>Summary: There was 1 ERROR message shown, returning a non-zero exit co=
+de.</div></div><div><br></div><div><br></div><div>Please help me on fixing =
+this issue.</div><div><br></div><div>Thanks</div><div>Aman Sharma</div>
+<div><br></div></div>
+
+--bcaec50e5ce70399ff04e7f6f0e2--
