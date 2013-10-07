@@ -1,29 +1,28 @@
-Return-Path: <amittomer25@gmail.com>
-Received: from mail-qe0-f43.google.com (mail-qe0-f43.google.com
-	[209.85.128.43])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3462EE016BE;
-	Mon,  7 Oct 2013 06:06:19 -0700 (PDT)
-Received: by mail-qe0-f43.google.com with SMTP id nc12so356430qeb.2
-	for <multiple recipients>; Mon, 07 Oct 2013 06:06:18 -0700 (PDT)
+Return-Path: <ashish.dalela@gmail.com>
+Received: from mail-la0-f41.google.com (mail-la0-f41.google.com
+	[209.85.215.41])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CDC81E006EA
+	for <yocto@yoctoproject.org>; Mon,  7 Oct 2013 06:53:22 -0700 (PDT)
+Received: by mail-la0-f41.google.com with SMTP id ec20so5720212lab.0
+	for <yocto@yoctoproject.org>; Mon, 07 Oct 2013 06:53:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=uPG5PXxkX6kjL/Clxq6xFyTfNQvvBrikoLZJHjn7Hho=;
-	b=pgAf0dojHHxFlPDBhsy757ZM4/j+AAPO1CRrYAKgR88lEm48X6TaIAadIzuymmgjDF
-	Kvr13MhlmXiaiv6s+jU2cGQ+7n1fXl2qjejz9Y/GEZMUs41zD7GufPOcQHWJtZUtzja2
-	+7ZYylIRDcsvv+lwCnB9Zn3XJJQohhHPXl7cHcHm8MT4krmTogtHmxw6hz6mq3NUd3Eo
-	1Ji5n4Ywk/1lD50KscvB6QXq9dAuyAgTxVXzm2sSQ5XFyK7VVsYe+cDQKV7LTvJxz0az
-	L6UNi+oakjxsvdpUY4M1pvFQUATBs33wxkVKsHg9zRzXbfX5YKcAcZYP8edMr4WpYlgy
-	fbNw==
+	bh=+O0uENfbULbnsNaDvHPnZiLDkSnAFZd7Ow+H27N9fFE=;
+	b=rsTx8ohzdPwQQQzo3mBQIulXlHebnleDMq7IFBoU7EBXC/BeS+k63C3lKmPAyoPv8N
+	B2HD2pcWu0ZsCpJt8hw7DcXQI4sCk7tuiVQnMXIs/8WUnPKPRoN29kQiJiq0UHksF4Dc
+	UCtggTRXNGMEgVJAvIYACEpAdroybt1cVPe2t2r5y1I+Xtz3B8uXGENM1RiS2C6RPoK2
+	l4Z1dl7KS1urHCcNZAFHef/vjFj1o9cywu5NyO4lv6+ZqM0SoNQVMa2R7dwm47XJyVD2
+	XU6w5hg2BBXqnRMHrUnuTjz1AJ7SvUSd+GLIuwGWJO4StDSzbqXwdu1Z0KPlo1VIMuS2
+	HvQQ==
 MIME-Version: 1.0
-X-Received: by 10.224.80.194 with SMTP id u2mr1211830qak.121.1381151177922;
-	Mon, 07 Oct 2013 06:06:17 -0700 (PDT)
-Received: by 10.49.73.71 with HTTP; Mon, 7 Oct 2013 06:06:17 -0700 (PDT)
-Date: Mon, 7 Oct 2013 18:36:17 +0530
-Message-ID: <CABHD4K9enf8nvhVxmA=s6bH=GfUTCNtfUYCYhwV3YJpsJg4cHw@mail.gmail.com>
-From: Amit Tomer <amittomer25@gmail.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>, 
-	"yocto-request@yoctoproject.org" <yocto-request@yoctoproject.org>
-Subject: WARNING: While compiling Strongswan Package
+X-Received: by 10.152.3.201 with SMTP id e9mr7161561lae.24.1381154000658; Mon,
+	07 Oct 2013 06:53:20 -0700 (PDT)
+Received: by 10.112.11.195 with HTTP; Mon, 7 Oct 2013 06:53:20 -0700 (PDT)
+Date: Mon, 7 Oct 2013 19:23:20 +0530
+Message-ID: <CABhkJRf2=Cw4Cs40+uOpLa1dXsjAxrJC=M47DOCDamegiSa6pQ@mail.gmail.com>
+From: Ashish Dalela <ashish.dalela@gmail.com>
+To: Yocto list discussion <yocto@yoctoproject.org>
+Subject: How to patch sysroots file?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -35,61 +34,76 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 07 Oct 2013 13:06:20 -0000
-Content-Type: multipart/alternative; boundary=001a11c3e3c8575e9f04e82651f1
+X-List-Received-Date: Mon, 07 Oct 2013 13:53:27 -0000
+Content-Type: multipart/alternative; boundary=089e013d14ca96e55604e826f926
 
---001a11c3e3c8575e9f04e82651f1
+--089e013d14ca96e55604e826f926
 Content-Type: text/plain; charset=ISO-8859-1
 
-We have added some new patches for strongswan package but after we are
-seeing some waring message
+I am trying to build bridge-utils. During compilation, I get the error:
 
-WARNING: strongswan: The compile log indicates that host include and/or
-library paths were used.
+/scratch/adalela/yocto/build/tmp/sysroots/qemux86/usr/include/linux/if_bridge.h:172:20:
+error: field 'ip6' has incomplete typeIn file included from
+../libbridge/libbridge.h:24:0
 
-We also tried to add "*EXTRA_OECONF = "--prefix=/any-old-thing"" to .bb
-file of strongswan*
-*
-*
-*But we are still seeing same message*
-*
-*
-*Could anybody tell us where we are doing wrong.*
-*
-*
-*Thanks and Regards,*
-*Amit Singh Tomar.*
-*
-*
+But, I don't see matching file paths in git path and sysroots locations.
 
---001a11c3e3c8575e9f04e82651f1
+In sysroots path:
+.../build/tmp/sysroots/qemux86
+$ find . -name if_bridge.h
+./usr/include/linux/if_bridge.h
+
+In GIT path:
+.../build/tmp/work/qemux86-poky-linux/linux-yocto/3.8.11+git*/linux
+$ find . -name if_bridge.h
+./include/uapi/linux/if_bridge.h
+./include/linux/if_bridge.h
+
+./usr/include/linux/if_bridge.h and ./include/uapi/linux/if_bridge.h are
+almost identical, except of #ifdef.
+
+I can manually patch the files and the compilation is successful. But I
+don't know how to create the patch file for the sysroots file, because the
+GIT path does not have the same file.
+
+So my question is: from where is the sysroots file coming? How should I
+generate the patch file for the sysroots ./usr/include/linux/if_bridge.h?
+
+Thanks
+-Ashish
+
+--089e013d14ca96e55604e826f926
 Content-Type: text/html; charset=ISO-8859-1
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">We have added some new patches for=A0strongswan package bu=
-t after we are seeing some waring message<div><br></div><div><div>WARNING: =
-strongswan: The compile log indicates that host include and/or library path=
-s were used.=A0</div>
-</div><div><br></div><div style>We also tried to add &quot;<i style=3D"colo=
-r:rgb(0,0,0);white-space:pre-wrap">EXTRA_OECONF =3D &quot;--prefix=3D/any-o=
-ld-thing&quot;&quot; to .bb file of strongswan</i></div><div style><i style=
-=3D"color:rgb(0,0,0);white-space:pre-wrap"><br>
-</i></div><div style><font color=3D"#000000" face=3D"verdana, sans-serif"><=
-span style=3D"white-space:pre-wrap"><i>But we are still seeing same message=
-</i></span></font></div><div style><font color=3D"#000000" face=3D"verdana,=
- sans-serif"><span style=3D"white-space:pre-wrap"><i><br>
-</i></span></font></div><div style><font color=3D"#000000" face=3D"verdana,=
- sans-serif"><span style=3D"white-space:pre-wrap"><i>Could anybody tell us =
-where we are doing wrong.</i></span></font></div><div style><font color=3D"=
-#000000" face=3D"verdana, sans-serif"><span style=3D"white-space:pre-wrap">=
-<i><br>
-</i></span></font></div><div style><font color=3D"#000000" face=3D"verdana,=
- sans-serif"><span style=3D"white-space:pre-wrap"><i>Thanks and Regards,</i=
-></span></font></div><div style><font color=3D"#000000" face=3D"verdana, sa=
-ns-serif"><span style=3D"white-space:pre-wrap"><i>Amit Singh Tomar.</i></sp=
-an></font></div>
-<div style><font color=3D"#000000" face=3D"verdana, sans-serif"><span style=
-=3D"white-space:pre-wrap"><i><br></i></span></font></div><div style><br></d=
-iv></div>
+<div dir=3D"ltr"><br><div><font face=3D"courier new, monospace">I am trying=
+ to build bridge-utils. During compilation, I get the error:</font></div><d=
+iv><br></div><div><font face=3D"courier new, monospace">/scratch/adalela/yo=
+cto/build/tmp/sysroots/qemux86/usr/include/linux/if_bridge.h:172:20: error:=
+ field &#39;ip6&#39; has incomplete typeIn file included from ../libbridge/=
+libbridge.h:24:0</font></div>
+<div><font face=3D"courier new, monospace"><br></font></div><div><font face=
+=3D"courier new, monospace">But, I don&#39;t see matching file paths in git=
+ path and sysroots locations.</font></div><div><font face=3D"courier new, m=
+onospace"><br>
+</font></div><div><font face=3D"courier new, monospace">In sysroots path:</=
+font></div><div><font face=3D"courier new, monospace">.../build/tmp/sysroot=
+s/qemux86<br></font></div><div><font face=3D"courier new, monospace"><div>$=
+ find . -name if_bridge.h</div>
+<div>./usr/include/linux/if_bridge.h</div><div><br></div><div>In GIT path:<=
+/div><div><div>.../build/tmp/work/qemux86-poky-linux/linux-yocto/3.8.11+git=
+*/linux</div><div>$ find . -name if_bridge.h</div><div>./include/uapi/linux=
+/if_bridge.h</div>
+<div>./include/linux/if_bridge.h</div></div><div><br></div><div>./usr/inclu=
+de/linux/if_bridge.h and ./include/uapi/linux/if_bridge.h are almost identi=
+cal, except of #ifdef.</div><div><br></div><div>I can manually patch the fi=
+les and the compilation is successful. But I don&#39;t know how to create t=
+he patch file for the sysroots file, because the GIT path does not have the=
+ same file.=A0</div>
+<div><br></div><div>So my question is: from where is the sysroots file comi=
+ng? How should I generate the patch file for the sysroots ./usr/include/lin=
+ux/if_bridge.h?</div><div><br></div></font><font face=3D"courier new, monos=
+pace"><div>
+Thanks</div><div>-Ashish</div></font></div></div>
 
---001a11c3e3c8575e9f04e82651f1--
+--089e013d14ca96e55604e826f926--
