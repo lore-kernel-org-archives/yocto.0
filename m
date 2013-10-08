@@ -1,34 +1,25 @@
-Return-Path: <opensource@keylevel.com>
-Received: from r109.websiteservername.com (r109.websiteservername.com
-	[65.39.128.45])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 06AE9E016A3
-	for <yocto@yoctoproject.org>; Tue,  8 Oct 2013 14:14:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=keylevel.com;
-	s=default; 
-	h=Mime-Version:To:Message-Id:Date:Subject:Content-Transfer-Encoding:Content-Type:From;
-	bh=il0FRtuu5X5M5wcheYmWF6wtvUE8w7eLF0KSYCLbYfI=; 
-	b=romQaNOxziLkOzmTL0zveNFNDruio84unhfJA/9ZpQwObGb6zJCeegEH3YdXpFWD3mqIX6pP3sgOVDE5HI+RqKvde8H1kFKBk+U03XkTzSL2DiCHs/t6Zv+2x0KZeEFyzQWbSHXaApcwbmVI6M+8PS+ph/fPqtPZMKF6tLO0BXQ=;
-Received: from [109.224.129.17] (port=38054
-	helo=macbook-pro.durham.keylevel.com)
-	by r109.websiteservername.com with esmtpa (Exim 4.80.1)
-	(envelope-from <opensource@keylevel.com>) id 1VTecL-001lII-8H
-	for yocto@yoctoproject.org; Tue, 08 Oct 2013 22:14:57 +0100
-From: Chris Tapp <opensource@keylevel.com>
-Date: Tue, 8 Oct 2013 22:14:56 +0100
-Message-Id: <E66D35B0-015A-4D4E-A9E6-52811C237330@keylevel.com>
-To: "yocto@yoctoproject.org Mailing List" <yocto@yoctoproject.org>
-Mime-Version: 1.0 (Apple Message framework v1283)
-X-Mailer: Apple Mail (2.1283)
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - r109.websiteservername.com
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - keylevel.com
-X-Get-Message-Sender-Via: r109.websiteservername.com: authenticated_id:
-	chris.tapp+keylevel.com/only user confirmed/virtual account not
-	confirmed
-Subject: Intel Cedartrail BSP on ASrock DN2800MT v Intel DN2800MT - why won't my system start?
+Return-Path: <dvhart@linux.intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D2062E016A3
+	for <yocto@yoctoproject.org>; Tue,  8 Oct 2013 15:16:31 -0700 (PDT)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga102.jf.intel.com with ESMTP; 08 Oct 2013 15:13:16 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.90,1059,1371106800"; d="scan'208";a="416335187"
+Received: from dvhart-mobl4.jf.intel.com (HELO [10.7.196.54]) ([10.7.196.54])
+	by orsmga002.jf.intel.com with ESMTP; 08 Oct 2013 15:16:21 -0700
+Message-ID: <1381270579.26156.36.camel@dvhart-mobl4.amr.corp.intel.com>
+From: Darren Hart <dvhart@linux.intel.com>
+To: Carlo Caione <carlo.caione@gmail.com>
+Date: Tue, 08 Oct 2013 15:16:19 -0700
+In-Reply-To: <CAOQ7t2bMdc5Wqeb0_b7M+wBCgVv6LtrEHpLfN5YS5Kgk-y=_mw@mail.gmail.com>
+References: <CAOQ7t2bMdc5Wqeb0_b7M+wBCgVv6LtrEHpLfN5YS5Kgk-y=_mw@mail.gmail.com>
+Organization: Intel
+X-Mailer: Evolution 3.8.5 (3.8.5-2.fc19) 
+Mime-Version: 1.0
+Cc: Yocto Project Discussion <yocto@yoctoproject.org>,
+	Paul Eggleton <paul.eggleton@intel.com>
+Subject: Re: do_kernel_configme error with poky-tiny distro
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,33 +31,62 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 08 Oct 2013 21:15:00 -0000
-Content-Type: text/plain; charset=us-ascii
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Tue, 08 Oct 2013 22:16:33 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
-I have been using an image built using the Cedartrail BSP on the Intel =
-DN2800MT board for a while now without any issues, but this board is no =
-longer available.
+On Fri, 2013-09-13 at 17:32 +0200, Carlo Caione wrote:
+> Hi,
+> when I try to compile a poky-tiny distro this is what I get:
+> 
 
-The ASrock DN2800MT is supposed to be a drop-in replacement ands boot =
-from a USB drive using the live image that gets built, provided the =
-LVDS/VGA fix noted in the README added.
+Hi Carlos, thanks for reporting the failure.
 
-However, it doesn't work with the boot process we are using. We use the =
-same initramfs and rootfs images as the live image, but boot from a =
-server using iPXE. It is this boot that now fails, resulting in the =
-system powering off!
+> ERROR: Function failed: do_kernel_configme (see
+> /home/carlo/work/RSR/yocto/build/tmp/work/qemux86-poky-linux/linux-yocto-tiny/3.8.11+gitAUTOINC+8482dcdf68f9f7501118f4c01fdcb8f851882997_dd089cb5ba37ea14e8f90a884bf2a5be64ed817d-r4.1/temp/log.do_kernel_configme.13385
+> for further information)
+> ERROR: Logfile of failure stored in:
+> /home/carlo/work/RSR/yocto/build/tmp/work/qemux86-poky-linux/linux-yocto-tiny/3.8.11+gitAUTOINC+8482dcdf68f9f7501118f4c01fdcb8f851882997_dd089cb5ba37ea14e8f90a884bf2a5be64ed817d-r4.1/temp/log.do_kernel_configme.13385
+> Log data follows:
+> | DEBUG: Executing shell function do_kernel_configme
+> | [INFO] doing kernel configme
+> | [INFO] Configuring target/machine combo: "tiny/qemux86"
+> | [INFO] collecting configs in ./meta/meta-series
+> | mv: cannot stat
+> `/home/carlo/work/RSR/yocto/build/tmp/work/qemux86-poky-linux/linux-yocto-tiny/3.8.11+gitAUTOINC+8482dcdf68f9f7501118f4c01fdcb8f851882997_dd089cb5ba37ea14e8f90a884bf2a5be64ed817d-r4.1/linux-qemux86-tiny-build/.tmp.config*':
+> No such file or directory
+> | creation of pre-processed config data failed
+> | config of "tiny/qemux86" failed
+> | ERROR: Function failed: do_kernel_configme (see
+> /home/carlo/work/RSR/yocto/build/tmp/work/qemux86-poky-linux/linux-yocto-tiny/3.8.11+gitAUTOINC+8482dcdf68f9f7501118f4c01fdcb8f851882997_dd089cb5ba37ea14e8f90a884bf2a5be64ed817d-r4.1/temp/log.do_kernel_configme.13385
+> for further information)
+> ERROR: Task 678
+> (/home/carlo/work/RSR/yocto/meta/recipes-kernel/linux/linux-yocto-tiny_3.8.bb,
+> do_kernel_configme) failed with exit code '1'
+> 
+> Any hint? it seems like the config file for the BSP is missing.
 
-Can anyone give me any pointers to what might be going on? The BIOS is =
-different, and I think the problem may be down to UEFI. I've not had =
-much to do with UEFI, but I've noticed that the live image has a UFI/ =
-directory - do I need to replicate this in some way?
+So:
 
-Chris Tapp
+Yocto Release 1.4?
+MACHINE=qemux86
+DISTRO="poky-tiny"
+target linux-yocto-tiny
 
-opensource@keylevel.com
-www.keylevel.com
+?
 
+I just built this successfully from the dylan branch using the same git
+hashes you have listed above for the meta and machine branches.
+
+Can you provide any additional information about your build environment?
+Maybe share your local.conf and bblayers.conf.
+
+Hate to ask, but did you run out of disk space?
+
+-- 
+Darren Hart
+Intel Open Source Technology Center
+Yocto Project - Linux Kernel
 
 
 
