@@ -1,25 +1,34 @@
-Return-Path: <paul.eggleton@linux.intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 868D3E0169B
-	for <yocto@yoctoproject.org>; Tue,  8 Oct 2013 10:31:05 -0700 (PDT)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga101.jf.intel.com with ESMTP; 08 Oct 2013 10:31:00 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.90,1057,1371106800"; d="scan'208";a="416086988"
-Received: from unknown (HELO helios.localnet) ([10.252.120.174])
-	by orsmga002.jf.intel.com with ESMTP; 08 Oct 2013 10:30:59 -0700
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: Ryan Kirkpatrick <linux@rkirkpat.net>
-Date: Tue, 08 Oct 2013 18:30:58 +0100
-Message-ID: <6281089.irBXZr162j@helios>
-Organization: Intel Corporation
-User-Agent: KMail/4.10.5 (Linux/3.8.0-31-generic; KDE/4.10.5; i686; ; )
-In-Reply-To: <alpine.DEB.2.00.1309261742510.27991@magellan.rkirkpat.net>
-References: <alpine.DEB.2.00.1309201728360.21975@magellan.rkirkpat.net>
-	<alpine.DEB.2.00.1309261742510.27991@magellan.rkirkpat.net>
-MIME-Version: 1.0
-Cc: yocto@yoctoproject.org
-Subject: Re: Mono 2.10.8.1 (meta-mono) Corelib not in sync with runtime...
+Return-Path: <opensource@keylevel.com>
+Received: from r109.websiteservername.com (r109.websiteservername.com
+	[65.39.128.45])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 06AE9E016A3
+	for <yocto@yoctoproject.org>; Tue,  8 Oct 2013 14:14:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=keylevel.com;
+	s=default; 
+	h=Mime-Version:To:Message-Id:Date:Subject:Content-Transfer-Encoding:Content-Type:From;
+	bh=il0FRtuu5X5M5wcheYmWF6wtvUE8w7eLF0KSYCLbYfI=; 
+	b=romQaNOxziLkOzmTL0zveNFNDruio84unhfJA/9ZpQwObGb6zJCeegEH3YdXpFWD3mqIX6pP3sgOVDE5HI+RqKvde8H1kFKBk+U03XkTzSL2DiCHs/t6Zv+2x0KZeEFyzQWbSHXaApcwbmVI6M+8PS+ph/fPqtPZMKF6tLO0BXQ=;
+Received: from [109.224.129.17] (port=38054
+	helo=macbook-pro.durham.keylevel.com)
+	by r109.websiteservername.com with esmtpa (Exim 4.80.1)
+	(envelope-from <opensource@keylevel.com>) id 1VTecL-001lII-8H
+	for yocto@yoctoproject.org; Tue, 08 Oct 2013 22:14:57 +0100
+From: Chris Tapp <opensource@keylevel.com>
+Date: Tue, 8 Oct 2013 22:14:56 +0100
+Message-Id: <E66D35B0-015A-4D4E-A9E6-52811C237330@keylevel.com>
+To: "yocto@yoctoproject.org Mailing List" <yocto@yoctoproject.org>
+Mime-Version: 1.0 (Apple Message framework v1283)
+X-Mailer: Apple Mail (2.1283)
+X-AntiAbuse: This header was added to track abuse,
+	please include it with any abuse report
+X-AntiAbuse: Primary Hostname - r109.websiteservername.com
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - keylevel.com
+X-Get-Message-Sender-Via: r109.websiteservername.com: authenticated_id:
+	chris.tapp+keylevel.com/only user confirmed/virtual account not
+	confirmed
+Subject: Intel Cedartrail BSP on ASrock DN2800MT v Intel DN2800MT - why won't my system start?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -31,58 +40,33 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 08 Oct 2013 17:31:06 -0000
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Tue, 08 Oct 2013 21:15:00 -0000
+Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: quoted-printable
 
-Hi Ryan,
+I have been using an image built using the Cedartrail BSP on the Intel =
+DN2800MT board for a while now without any issues, but this board is no =
+longer available.
 
-On Thursday 26 September 2013 18:04:03 Ryan Kirkpatrick wrote:
-> On Fri, 20 Sep 2013, Ryan Kirkpatrick wrote:
-> > I am trying to get Mono 2.10 working on a core-image-basic running on
-> > qemux86 machine. I am using pokay-dylan-9.0.2 on a Debian 6.0.7 system for
-> > the builds and been able to build and run images without issue. Yet, when
-> > I went to add the meta-mono layer from git.yoctoporject.org, I started
-> > running into problems.
-> > 
-> > Corlib not in sync with this runtime: expected corlib version 96, found
-> > 100. Loaded from: /usr/lib/mono/2.0/mscorlib.dll
-> > Download a newer corlib or a newer runtime at
-> > http://www.go-mono.com/daily.
-> 
-> I dug into the mono build and figured out that I had a version mismatch
-> between 'mono' (builds the runtime for the target) and 'mono-native'
-> (builds a runtime for the build system and uses it to build the corlib).
-> The key was defining both of the following in local.conf, not just the
-> first line which is all I had originally.
-> 
-> PREFERRED_VERSION_mono = "2.10.8.1"
-> PREFERRED_VERSION_mono-native = "2.10.8.1"
-> 
-> Anyway, attached is a patch against meta-mono (from
-> git://git.yoctoproject.org/meta-mono) that makes these changes:
->  - Adds a comment to the README about the two configs above.
->  - Reconfigures mono to be built without X support, skip as desired.
->  - A few packaging tweaks, namely moving the bulky *.mdb (Mono debug
->    databases) to the -dbg package.
->  - Adjustment to QA packaging checks to resolve errors encountered.
->  - Moved the mono-2.10.8.1 folder in meta-mono/recipes/mono to
->    meta-mono/recipes/mono/files so the contents can be found.
->  - Quick fix to mono-xsp recipe to avoid parsing error, probably not the
->    fix to make if mono-xsp was going to be built (but I am not).
-> 
-> Hope that helps some one, it does myself as I can now run Mono apps in my
-> qemux86 target. Next challenge is to do the same with a qemuarm target
-> (actual hardware comes later :)!
+The ASrock DN2800MT is supposed to be a drop-in replacement ands boot =
+from a USB drive using the live image that gets built, provided the =
+LVDS/VGA fix noted in the README added.
 
-Have you sent these fixes to the layer maintainer - Autif Khan 
-(autif.mlist@gmail.com) ? It would be good to get those integrated.
+However, it doesn't work with the boot process we are using. We use the =
+same initramfs and rootfs images as the live image, but boot from a =
+server using iPXE. It is this boot that now fails, resulting in the =
+system powering off!
 
-Cheers,
-Paul
+Can anyone give me any pointers to what might be going on? The BIOS is =
+different, and I think the problem may be down to UEFI. I've not had =
+much to do with UEFI, but I've noticed that the live image has a UFI/ =
+directory - do I need to replicate this in some way?
 
--- 
+Chris Tapp
 
-Paul Eggleton
-Intel Open Source Technology Centre
+opensource@keylevel.com
+www.keylevel.com
+
+
+
 
