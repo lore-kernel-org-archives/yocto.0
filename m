@@ -1,36 +1,28 @@
-Return-Path: <opensource@keylevel.com>
-Received: from r109.websiteservername.com (r109.websiteservername.com
-	[65.39.128.45])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 96B5BE016A3
-	for <yocto@yoctoproject.org>; Tue,  8 Oct 2013 15:20:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=keylevel.com;
-	s=default; 
-	h=To:References:Message-Id:Content-Transfer-Encoding:Date:In-Reply-To:From:Subject:Mime-Version:Content-Type;
-	bh=gTJY2xlljoIvZjB4o3e1DBCIPT4eYDLyRvYA16CzhjM=; 
-	b=Cfaob+dxb+yIqC6uxc73Z+mbHMd0uQI2DtnEBX7AJAxb/iNEMD1di+EHlfaMZLq+xeI9Qi7mdjkSqZ8LlZfv+4CinyWusgpyWjdJ5zzb0b+43VWGD2WULu/g3D4rIeLRUWosAOozosgx7JJpTSWd4Jj0ZLtkbjwmz9HVYGoK2RU=;
-Received: from [109.224.129.17] (port=58693
-	helo=macbook-pro.durham.keylevel.com)
-	by r109.websiteservername.com with esmtpa (Exim 4.80.1)
-	(envelope-from <opensource@keylevel.com>) id 1VTfeB-001uvm-0T
-	for yocto@yoctoproject.org; Tue, 08 Oct 2013 23:20:55 +0100
-Mime-Version: 1.0 (Apple Message framework v1283)
-From: Chris Tapp <opensource@keylevel.com>
-In-Reply-To: <E66D35B0-015A-4D4E-A9E6-52811C237330@keylevel.com>
-Date: Tue, 8 Oct 2013 23:20:53 +0100
-Message-Id: <424F6286-17C0-4138-83AD-719F2E64C9A6@keylevel.com>
-References: <E66D35B0-015A-4D4E-A9E6-52811C237330@keylevel.com>
-To: "yocto@yoctoproject.org Mailing List" <yocto@yoctoproject.org>
-X-Mailer: Apple Mail (2.1283)
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - r109.websiteservername.com
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - keylevel.com
-X-Get-Message-Sender-Via: r109.websiteservername.com: authenticated_id:
-	chris.tapp+keylevel.com/only user confirmed/virtual account not
-	confirmed
-Subject: Re: Intel Cedartrail BSP on ASrock DN2800MT v Intel DN2800MT - why won't my system start?
+Return-Path: <Bruce.Ashfield@windriver.com>
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AF45EE016A3
+	for <yocto@yoctoproject.org>; Tue,  8 Oct 2013 15:32:34 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
+	[147.11.189.40])
+	by mail.windriver.com (8.14.5/8.14.3) with ESMTP id r98MWW5U001300
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
+	Tue, 8 Oct 2013 15:32:32 -0700 (PDT)
+Received: from bruce-ashfields-macbook.local (128.224.23.171) by
+	ALA-HCA.corp.ad.wrs.com (147.11.189.40) with Microsoft SMTP Server id
+	14.2.347.0; Tue, 8 Oct 2013 15:32:32 -0700
+Message-ID: <525487FF.6070608@windriver.com>
+Date: Tue, 8 Oct 2013 18:32:31 -0400
+From: Bruce Ashfield <bruce.ashfield@windriver.com>
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.7;
+	rv:17.0) Gecko/20130801 Thunderbird/17.0.8
+MIME-Version: 1.0
+To: Darren Hart <dvhart@linux.intel.com>
+References: <CAOQ7t2bMdc5Wqeb0_b7M+wBCgVv6LtrEHpLfN5YS5Kgk-y=_mw@mail.gmail.com>
+	<1381270579.26156.36.camel@dvhart-mobl4.amr.corp.intel.com>
+In-Reply-To: <1381270579.26156.36.camel@dvhart-mobl4.amr.corp.intel.com>
+Cc: Yocto Project Discussion <yocto@yoctoproject.org>,
+	Paul Eggleton <paul.eggleton@intel.com>
+Subject: Re: do_kernel_configme error with poky-tiny distro
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,39 +34,79 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 08 Oct 2013 22:20:58 -0000
-Content-Type: text/plain; charset=us-ascii
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Tue, 08 Oct 2013 22:32:37 -0000
+Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On 8 Oct 2013, at 22:14, Chris Tapp wrote:
+On 13-10-08 6:16 PM, Darren Hart wrote:
+> On Fri, 2013-09-13 at 17:32 +0200, Carlo Caione wrote:
+>> Hi,
+>> when I try to compile a poky-tiny distro this is what I get:
+>>
+>
+> Hi Carlos, thanks for reporting the failure.
+>
+>> ERROR: Function failed: do_kernel_configme (see
+>> /home/carlo/work/RSR/yocto/build/tmp/work/qemux86-poky-linux/linux-yocto-tiny/3.8.11+gitAUTOINC+8482dcdf68f9f7501118f4c01fdcb8f851882997_dd089cb5ba37ea14e8f90a884bf2a5be64ed817d-r4.1/temp/log.do_kernel_configme.13385
+>> for further information)
+>> ERROR: Logfile of failure stored in:
+>> /home/carlo/work/RSR/yocto/build/tmp/work/qemux86-poky-linux/linux-yocto-tiny/3.8.11+gitAUTOINC+8482dcdf68f9f7501118f4c01fdcb8f851882997_dd089cb5ba37ea14e8f90a884bf2a5be64ed817d-r4.1/temp/log.do_kernel_configme.13385
+>> Log data follows:
+>> | DEBUG: Executing shell function do_kernel_configme
+>> | [INFO] doing kernel configme
+>> | [INFO] Configuring target/machine combo: "tiny/qemux86"
+>> | [INFO] collecting configs in ./meta/meta-series
+>> | mv: cannot stat
+>> `/home/carlo/work/RSR/yocto/build/tmp/work/qemux86-poky-linux/linux-yocto-tiny/3.8.11+gitAUTOINC+8482dcdf68f9f7501118f4c01fdcb8f851882997_dd089cb5ba37ea14e8f90a884bf2a5be64ed817d-r4.1/linux-qemux86-tiny-build/.tmp.config*':
+>> No such file or directory
+>> | creation of pre-processed config data failed
+>> | config of "tiny/qemux86" failed
+>> | ERROR: Function failed: do_kernel_configme (see
+>> /home/carlo/work/RSR/yocto/build/tmp/work/qemux86-poky-linux/linux-yocto-tiny/3.8.11+gitAUTOINC+8482dcdf68f9f7501118f4c01fdcb8f851882997_dd089cb5ba37ea14e8f90a884bf2a5be64ed817d-r4.1/temp/log.do_kernel_configme.13385
+>> for further information)
+>> ERROR: Task 678
+>> (/home/carlo/work/RSR/yocto/meta/recipes-kernel/linux/linux-yocto-tiny_3.8.bb,
+>> do_kernel_configme) failed with exit code '1'
+>>
+>> Any hint? it seems like the config file for the BSP is missing.
+>
+> So:
+>
+> Yocto Release 1.4?
+> MACHINE=qemux86
+> DISTRO="poky-tiny"
+> target linux-yocto-tiny
+>
+> ?
+>
+> I just built this successfully from the dylan branch using the same git
+> hashes you have listed above for the meta and machine branches.
+>
+> Can you provide any additional information about your build environment?
+> Maybe share your local.conf and bblayers.conf.
 
-> I have been using an image built using the Cedartrail BSP on the Intel =
-DN2800MT board for a while now without any issues, but this board is no =
-longer available.
->=20
-> The ASrock DN2800MT is supposed to be a drop-in replacement ands boot =
-from a USB drive using the live image that gets built, provided the =
-LVDS/VGA fix noted in the README added.
->=20
-> However, it doesn't work with the boot process we are using. We use =
-the same initramfs and rootfs images as the live image, but boot from a =
-server using iPXE. It is this boot that now fails, resulting in the =
-system powering off!
->=20
-> Can anyone give me any pointers to what might be going on? The BIOS is =
-different, and I think the problem may be down to UEFI. I've not had =
-much to do with UEFI, but I've noticed that the live image has a UFI/ =
-directory - do I need to replicate this in some way?
+That's pretty much the only way to reproduce things, since i also built
+all the tiny boards against 3.10 while introducing the support .. so I
+know it works.
 
-Panic over - it was all down to the LVDS/VGA fix. The installer powers =
-off the system when it completes - I just wasn't seeing it do anything =
-because it was using the LVDS output, not the VGA.
+I can say that:
 
-Chris Tapp
+ 
+`/home/carlo/work/RSR/yocto/build/tmp/work/qemux86-poky-linux/linux-yocto-tiny/3.8.11+gitAUTOINC+8482dcdf68f9f7501118f4c01fdcb8f851882997_dd089cb5ba37ea14e8f90a884bf2a5be64ed817d-r4.1/linux-qemux86-tiny-build/.tmp.config*':
+  No such file or directory
 
-opensource@keylevel.com
-www.keylevel.com
+Typically means that there was an error in a config, or the wrong kern-tools
+were used.
+
+I've got a set of changes already queued for 1.6 that would improve the
+error message here, but if we can reproduce this problem, we can fix it.
+
+Bruce
 
 
+
+>
+> Hate to ask, but did you run out of disk space?
+>
 
 
