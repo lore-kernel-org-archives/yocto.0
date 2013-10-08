@@ -1,37 +1,32 @@
-Return-Path: <raj.khem@gmail.com>
-Received: from mail-pa0-f54.google.com (mail-pa0-f54.google.com
-	[209.85.220.54])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 14C12E01620
-	for <yocto@yoctoproject.org>; Mon,  7 Oct 2013 22:22:53 -0700 (PDT)
-Received: by mail-pa0-f54.google.com with SMTP id kx10so8281782pab.13
-	for <yocto@yoctoproject.org>; Mon, 07 Oct 2013 22:22:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=content-type:mime-version:subject:from:in-reply-to:date:cc
-	:content-transfer-encoding:message-id:references:to;
-	bh=oZ2akKTgQ5OcA+URaZHjCO4Sb1tc68st+gfYeM559oQ=;
-	b=rN6107OIbCp7c/kzyTXAuwjm8z3Mo5l3hf3pnf392DwqbnPJau76uktE3dqr1Nz+Kg
-	wZY3OKWRqFaa3BpiwVlyjk/+MOeIKTou8NuVeROnLNy1S0rFEYyznkUZlYvb83Z4dQCR
-	NbHuZ1kANHdPIZMWrWz6MX3CP7gVMU9lZLALXXCXpEqLsFRlwkjluta94uI+be6HHIgh
-	+Mnt/1WOEEHcZ7r7/fLc+mc9LxUlKABAAjjDVwWiC5QoTWNx4HxbsIg8fsni5kJt+5cw
-	U3vzrSIngsh4S9W3kGF/Z7b76MI3GRDv1dGpXNE5JmQetDaXrAiXCaunW2KzZSQjwJAJ
-	nvUQ==
-X-Received: by 10.68.4.197 with SMTP id m5mr34835522pbm.46.1381209773197;
-	Mon, 07 Oct 2013 22:22:53 -0700 (PDT)
-Received: from kraj-sslvpn-nc.jnpr.net (natint3.juniper.net. [66.129.224.36])
-	by mx.google.com with ESMTPSA id
-	iu7sm37250070pbc.45.1969.12.31.16.00.00
-	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
-	Mon, 07 Oct 2013 22:22:52 -0700 (PDT)
-Mime-Version: 1.0 (Mac OS X Mail 6.6 \(1510\))
-From: Khem Raj <raj.khem@gmail.com>
-In-Reply-To: <CABhkJRf2=Cw4Cs40+uOpLa1dXsjAxrJC=M47DOCDamegiSa6pQ@mail.gmail.com>
-Date: Mon, 7 Oct 2013 22:22:50 -0700
-Message-Id: <3D72AD46-B6FC-4113-B124-EB93BECFC845@gmail.com>
-References: <CABhkJRf2=Cw4Cs40+uOpLa1dXsjAxrJC=M47DOCDamegiSa6pQ@mail.gmail.com>
-To: Ashish Dalela <ashish.dalela@gmail.com>
-X-Mailer: Apple Mail (2.1510)
-Cc: Yocto list discussion <yocto@yoctoproject.org>
-Subject: Re: How to patch sysroots file?
+Return-Path: <jawad@emblemtechnologies.com>
+Received: from mail-vc0-f173.google.com (mail-vc0-f173.google.com
+	[209.85.220.173])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F0D2FE0169B
+	for <yocto@yoctoproject.org>; Tue,  8 Oct 2013 06:43:19 -0700 (PDT)
+Received: by mail-vc0-f173.google.com with SMTP id if17so3789248vcb.32
+	for <yocto@yoctoproject.org>; Tue, 08 Oct 2013 06:43:18 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:date:message-id:subject:from:to:cc
+	:content-type;
+	bh=QAorz1hAiLW3ba8AHDCimTw78lh1aZD3GWpEL9sZe6g=;
+	b=CHMWsDeQqL/uHJj8JtFeHv2uvNus6v4MIvWHNAplatszlwOd0KXKGAejQzkq63Bf1y
+	LgfwDt7CC8m0nsED+kxdy1bBgSaDvyBy8ZJeRhPTL1V2tsyisyth6YVd0YNxP0JziZgK
+	Vor7Ukgo00wSc6CmB0rP15gA+lV6Gk9PhwUvMM6s/zwLa2BYCUywwx0K+FhoXXgC/jWd
+	eCM9Q9/aW8MwSx1n4HgXIEjk2ly2OfV9ZvIe89w1fUuTV1C7KmdJkFNH32GOuhNLWhAW
+	b1SvnSj0U1DtemaRfAUojV8wsJzqSJlK52Et6OjsZaRG+7VuG3/Q9B9dUKj3WAPCzAZ+
+	rbyA==
+X-Gm-Message-State: ALoCoQkqU1W4t4Wah+8Rg3HyFTkzXVwT3QZcs5XeWdaq9ZZIjYd8L2Jqk0OR+S88a4avj6I70E0z
+MIME-Version: 1.0
+X-Received: by 10.52.230.102 with SMTP id sx6mr925482vdc.15.1381239798352;
+	Tue, 08 Oct 2013 06:43:18 -0700 (PDT)
+Received: by 10.52.191.33 with HTTP; Tue, 8 Oct 2013 06:43:18 -0700 (PDT)
+X-Originating-IP: [122.129.85.50]
+Date: Tue, 8 Oct 2013 06:43:18 -0700
+Message-ID: <CAPhCmJrN9fEaainDVW70A1NSZA3c+oTb-fsx4_CkDJQ0qqdS-Q@mail.gmail.com>
+From: Jawad Hassan <jawad@emblemtechnologies.com>
+To: yocto@yoctoproject.org
+Subject: TtyUsb Yocto Issue
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,65 +38,86 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 08 Oct 2013 05:22:55 -0000
-Content-Type: text/plain; charset=iso-8859-1
+X-List-Received-Date: Tue, 08 Oct 2013 13:43:22 -0000
+Content-Type: multipart/alternative; boundary=089e0111ae3487dbf204e83af350
+
+--089e0111ae3487dbf204e83af350
+Content-Type: text/plain; charset=ISO-8859-1
+
+Hi,
+
+We're trying to access the USB serial port using rxtx on a java application
+on Yocto. The problem is that we're unable to list out any ports on the
+Nitrogen Lite board, we think this could be a permissions issue, if anyone
+has been able to do this or any resources that can help us in getting this
+done.
+
+-- 
+*Jawad Hassan*
+Software Engineer
+*Emblem Technologies (Pvt) Ltd*
+*Uzair Pte Ltd, Singapore*
+Skype: jawad@emblemtechnologies.com
+
+LinkedIn <http://www.linkedin.com/company/897097?trk=tyah> |
+Twitter<https://twitter.com/emblemtech>
+ | Facebook <https://www.facebook.com/emblem.technologies>
+
+*This message contains confidential information and is intended only for
+the individual named. If you are not the named addressee, you should not
+disseminate, distribute or copy this email. Please notify the sender
+immediately by email if you have received this email by mistake and delete
+this email from your system. Email transmission cannot be guaranteed to be
+secure or error-free, as information could be intercepted, corrupted, lost,
+destroyed, arrive late, incomplete, or contain viruses. The sender,
+therefore, does not accept liability for any errors or omissions in the
+contents of this message which may arise as a result of email transmission.
+If verification is required, please request a hard-copy version.*
+
+--089e0111ae3487dbf204e83af350
+Content-Type: text/html; charset=ISO-8859-1
 Content-Transfer-Encoding: quoted-printable
 
+<div dir=3D"ltr">Hi,<div><br></div><div><div>We&#39;re trying to access the=
+ USB serial port using rxtx on a java application on Yocto. The problem is =
+that we&#39;re unable to list out any ports on the Nitrogen Lite board, we =
+think this could be a permissions issue, if anyone has been able to do this=
+ or any resources that can help us in getting this done.<br>
+</div><div><br></div>-- <br><div dir=3D"ltr"><div><div style=3D"font-size:s=
+mall"><b style=3D"font-size:13px">Jawad Hassan</b><br></div></div>Software =
+Engineer<br><b>Emblem Technologies (Pvt) Ltd</b><div><b>Uzair Pte Ltd, Sing=
+apore</b></div>
+<div>Skype: <a href=3D"mailto:jawad@emblemtechnologies.com" target=3D"_blan=
+k">jawad@emblemtechnologies.com</a></div><div><br></div><div><a href=3D"htt=
+p://www.linkedin.com/company/897097?trk=3Dtyah" style=3D"color:rgb(17,85,20=
+4);font-size:small" target=3D"_blank">LinkedIn</a><span style=3D"font-size:=
+small">=A0|=A0</span><a href=3D"https://twitter.com/emblemtech" style=3D"co=
+lor:rgb(17,85,204);font-size:small" target=3D"_blank">Twitter</a><span styl=
+e=3D"font-size:small">=A0|=A0</span><a href=3D"https://www.facebook.com/emb=
+lem.technologies" style=3D"color:rgb(17,85,204);font-size:small" target=3D"=
+_blank">Facebook</a><br>
+=A0<br><span style=3D"text-indent:0px;letter-spacing:normal;font-variant:no=
+rmal;text-align:-webkit-auto;font-style:normal;font-weight:normal;line-heig=
+ht:normal;border-collapse:separate;text-transform:none;font-size:medium;whi=
+te-space:normal;font-family:Helvetica;word-spacing:0px"><span style=3D"text=
+-indent:0px;letter-spacing:normal;font-variant:normal;text-align:-webkit-au=
+to;font-style:normal;line-height:normal;border-collapse:separate;text-trans=
+form:none;font-size:medium;white-space:normal;font-family:Helvetica;word-sp=
+acing:0px"><span style=3D"border-collapse:collapse;color:rgb(95,95,95);font=
+-family:arial,sans-serif;font-size:11px"><b><span style=3D"color:rgb(64,64,=
+64)"><font face=3D"Arial"><span style=3D"font-weight:normal"><i>This
+ message contains confidential information and is intended only for the=20
+individual named. If you are not the named addressee, you should not=20
+disseminate, distribute or copy this email. Please notify the sender=20
+immediately by email if you have received this email by mistake and=20
+delete this email from your system. Email transmission cannot be=20
+guaranteed to be secure or error-free, as information could be=20
+intercepted, corrupted, lost, destroyed, arrive late, incomplete, or=20
+contain viruses. The sender, therefore, does not accept liability for=20
+any errors or omissions in the contents of this message which may arise=20
+as a result of email transmission. If verification is required, please=20
+request a hard-copy version.</i></span></font></span></b></span></span></sp=
+an><br></div></div>
+</div></div>
 
-On Oct 7, 2013, at 6:53 AM, Ashish Dalela <ashish.dalela@gmail.com> =
-wrote:
-
->=20
-> I am trying to build bridge-utils. During compilation, I get the =
-error:
->=20
-> =
-/scratch/adalela/yocto/build/tmp/sysroots/qemux86/usr/include/linux/if_bri=
-dge.h:172:20: error: field 'ip6' has incomplete typeIn file included =
-from ../libbridge/libbridge.h:24:0
-
-
-if you are using dylan/1.4 branch or master then we use kernel 3.8 for =
-kernel-headers and there was an issue where
-include/uapi/linux/if_bridge.h that uses a struct in6_addr but doesn't =
-define it, you could fix the headers but
-thats not sufficient. At this point I would suggest to patch =
-bridge-utils itself to include netinet/in.h to get
-the definition before including linux/if_bridge.h in file =
-libbridge/libbridge.h that should get you around the issue.
-
-
->=20
-> But, I don't see matching file paths in git path and sysroots =
-locations.
->=20
-> In sysroots path:
-> .../build/tmp/sysroots/qemux86
-> $ find . -name if_bridge.h
-> ./usr/include/linux/if_bridge.h
->=20
-> In GIT path:
-> .../build/tmp/work/qemux86-poky-linux/linux-yocto/3.8.11+git*/linux
-> $ find . -name if_bridge.h
-> ./include/uapi/linux/if_bridge.h
-> ./include/linux/if_bridge.h
->=20
-> ./usr/include/linux/if_bridge.h and ./include/uapi/linux/if_bridge.h =
-are almost identical, except of #ifdef.
->=20
-> I can manually patch the files and the compilation is successful. But =
-I don't know how to create the patch file for the sysroots file, because =
-the GIT path does not have the same file.=20
->=20
-> So my question is: from where is the sysroots file coming? How should =
-I generate the patch file for the sysroots =
-./usr/include/linux/if_bridge.h?
->=20
-> Thanks
-> -Ashish
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
-
-
+--089e0111ae3487dbf204e83af350--
