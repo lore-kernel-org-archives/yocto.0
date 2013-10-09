@@ -1,20 +1,23 @@
-Return-Path: <jose.ferreiro@horus.es>
-Received: from correo.horus.es (correo.horus.es [2.139.157.236])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1B452E0073F
-	for <yocto@yoctoproject.org>; Wed,  9 Oct 2013 09:48:11 -0700 (PDT)
-Received: from [172.30.250.61] (172.30.250.61) by horus27 (Axigen)
-	with (CAMELLIA256-SHA encrypted) ESMTPSA id 2D7CFF;
-	Wed, 9 Oct 2013 18:48:08 +0200
-Message-ID: <525588C9.4080408@horus.es>
-Date: Wed, 09 Oct 2013 18:48:09 +0200
-From: =?ISO-8859-1?Q?Jose_M=AA_Ferreiro?= <jose.ferreiro@horus.es>
-User-Agent: Mozilla/5.0 (Windows NT 5.1; rv:16.0)
-	Gecko/20121005 Thunderbird/16.0
+Return-Path: <linux@rkirkpat.net>
+Received: from saratoga.rkirkpat.net (saratoga.rkirkpat.net [206.196.156.29])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E3C67E011C5
+	for <yocto@yoctoproject.org>; Wed,  9 Oct 2013 12:52:22 -0700 (PDT)
+Received: from magellan.rkirkpat.net (magellan.rkirkpat.net [192.168.7.5])
+	by saratoga.rkirkpat.net (Postfix) with ESMTP
+	id 0E6597175D; Wed,  9 Oct 2013 13:52:21 -0600 (MDT)
+Date: Wed, 9 Oct 2013 13:52:21 -0600 (MDT)
+From: Ryan Kirkpatrick <linux@rkirkpat.net>
+X-X-Sender: rkirkpat@magellan.rkirkpat.net
+To: Paul Eggleton <paul.eggleton@linux.intel.com>
+In-Reply-To: <6281089.irBXZr162j@helios>
+Message-ID: <alpine.DEB.2.00.1310091328540.27991@magellan.rkirkpat.net>
+References: <alpine.DEB.2.00.1309201728360.21975@magellan.rkirkpat.net>
+	<alpine.DEB.2.00.1309261742510.27991@magellan.rkirkpat.net>
+	<6281089.irBXZr162j@helios>
+User-Agent: Alpine 2.00 (DEB 1167 2008-08-23)
 MIME-Version: 1.0
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-X-AxigenVirus-Level: 1
-X-AxigenSpam-Level: 4
-Subject: Qt + phonon + iMX codecs
+Cc: yocto@yoctoproject.org
+Subject: Re: Mono 2.10.8.1 (meta-mono) Corelib not in sync with runtime...
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -26,37 +29,43 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 09 Oct 2013 16:48:13 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 09 Oct 2013 19:52:24 -0000
+Content-Type: TEXT/PLAIN; charset=US-ASCII
 
-Hello
+On Tue, 8 Oct 2013, Paul Eggleton wrote:
 
-Here: iMX6Q Sabre Lite board + yocto - dylan+ linux-imx
+> Have you sent these fixes to the layer maintainer - Autif Khan 
+> (autif.mlist@gmail.com) ? It would be good to get those integrated.
 
-One of our Qt tests is an application with four videos played by phonon. 
-When we tried to make it work, we saw only one video working.
+Yes, I did shortly after my post to the list, but I have not heard any 
+response. 
 
-Looking for a solution we found the file 
-0001-Add-support-for-i.MX-codecs-to-phonon.patch at
-  dylan/sources/meta-fsl-arm/recipes-qt/qt4/qt4 directory. It used only 
-mfw_v4lsink.
+Since then I have run into some issues with Mono v2.10 itself and my 
+company's existing (proprietary) code base. It is an odd issue around 
+events and a complex class hierarchy that I had encountered in the past 
+with Mono v2.4 (but not v2.2). I traced it down to a single change in Mono 
+and backed out that change for the previous product (an embedded server). 
+I did report it to the Mono list at that time, but there was no simple 
+test case I could share.
 
-We changed  "mfw_v4lsink" references to "mfw_isink" (agressive, I know, 
-but I was desperate)  ... and it worked. We had four videos on window.
+Anyway, I did a quick test with Mono v3.2 (from their web site on OS X) 
+and the issues were no longer present. Hence, for the new product that I 
+plan to use Yocto to develop, I am going to use Mono v3.2. Of course the 
+current Mono layer has a lot more than we need (which is only the runtime 
+and corelib, no X, xsp, etc...) but only includes support through v2.11. I 
+am currently considering whether updating the existing meta-mono layer for 
+v3.2 or just writing a quick recipe for just want we need from Mono.
 
-Now, we are testing dora. Theres is another patch but the previous doing 
-does not get the same result. I would say there are allocation memory 
-problems and not all the videos are working. Sometimes one play, 
-sometimes three, never four.
+This is complicated by a quick attempt to build the existing Mono layer 
+for ARM failing. The failure was on the ARM objcopy not knowing what to do 
+with mcs.exe.so as it is .NET assembly wrapped as an i386 shared object. 
+This was during the generation of the debug package files, so looks like 
+that process needs to be tweaked to understand this special case. 
 
-Can you give me any advice about how to add isink codec to phonon 
-backend? or is it  being done now?
+I would welcome any advice on how to proceed with Mono v3.2 recipes and 
+for building on ARM. Thanks!
 
-Thank you and best regards,
-Jose
-
-
-
-
+---------------------------------------------------------------------------
+| Ryan Kirkpatrick | Boulder, CO | rkirkpat.net | twitter.com/rkirkpatnet |
+---------------------------------------------------------------------------
 
