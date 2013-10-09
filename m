@@ -1,34 +1,29 @@
-Return-Path: <elizabeth.flanagan@intel.com>
-Received: from mail-vc0-f171.google.com (mail-vc0-f171.google.com
-	[209.85.220.171])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D92A0E016A8
-	for <yocto@yoctoproject.org>; Tue,  8 Oct 2013 15:36:00 -0700 (PDT)
-Received: by mail-vc0-f171.google.com with SMTP id ks9so1442808vcb.16
-	for <yocto@yoctoproject.org>; Tue, 08 Oct 2013 15:35:59 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:date:message-id:subject:from:to
-	:content-type;
-	bh=9+l8HYkjdyoessOMrLXcjX4Fd3bXqZtxK6LwD9Llxg4=;
-	b=RiP/EGDM+qnYRAYQ4nofgoEDQJVBNX3FR9mEIXTinfiIk37cOKd+nSf8z9sEX1J5HJ
-	STGSJ/ZADJ7vsvcEaQcyB4aGl2A/EkO/R5tBTGAhTEOTaTsaOOQFw4DWiYHsp7skwgRf
-	InLH5K51+hbOqXl/P/PlViEuxFl3S5WCIOJG0Ii4958SM2GrppZMQh97NJLohvJhOzjJ
-	ev6Z3SSaFqWV0W0hjBAJd5dxLfgN0t7dCqKdvnAMJ+Erm6KyKGDdM1FabTUicTcw6iQd
-	jtpjS/Jgf8WxgGYX97CJZXAxt/NYAtPmAF8GIPgdP3Ar7tHnN6ZMBAtmtDoP4glupXfj
-	mkSg==
-X-Gm-Message-State: ALoCoQll2/dxNxHvTV8iIbM1EKyyx/Owe71yUjg1iO0mX00ZVllrgoCzNnxAHR24dLM+gHwMXe/Q
+Return-Path: <amittomer25@gmail.com>
+Received: from mail-wi0-f180.google.com (mail-wi0-f180.google.com
+	[209.85.212.180])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 24F6AE01697;
+	Wed,  9 Oct 2013 01:24:21 -0700 (PDT)
+Received: by mail-wi0-f180.google.com with SMTP id hj8so281249wib.1
+	for <multiple recipients>; Wed, 09 Oct 2013 01:24:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=Y10Ku8s8vYYcvHb9zevAOZUVLg6MlGSE73D1outWJx4=;
+	b=bHyO4Y2bLS5wRf0ZZuhRoaP00sM3WVThADMdT6KrmumsAF9Reo7dROd8srsHCJTveO
+	CEaTWppruWT23C+pI4j3Gt1l/gpVLuM+Z0CodEY2OHgmnc22DQp4lrFiK+6guaxL6gfT
+	6nNUbXqNqTEPXER5rcC4w/MHim3JcV6gAJwo+JjCtyY3ilLmS+20DhNvdNQOzZuMv9Hb
+	6fqiOkGTGjGQUpayBA07aE52B3KaOmiNeCelRjM9CyPT83MN/xGrBfuJleWsaLJnQyea
+	aSeuuV8xyag0/vlZpA0ewqT7QkJa6Jdj2HtR3c2NCz5oz8PwlCvlCJ97X9+Q0YNuRUbG
+	zlMg==
 MIME-Version: 1.0
-X-Received: by 10.52.157.232 with SMTP id wp8mr2420868vdb.4.1381271759425;
-	Tue, 08 Oct 2013 15:35:59 -0700 (PDT)
-Received: by 10.52.147.201 with HTTP; Tue, 8 Oct 2013 15:35:59 -0700 (PDT)
-Date: Tue, 8 Oct 2013 15:35:59 -0700
-Message-ID: <CAPhnLPBDr_LhzOpjs7-sOsf7ujKGDcchxirH45kfHcyqnUaxoA@mail.gmail.com>
-From: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	Otavio Salvador <otavio@ossystems.com.br>, 
-	Zhao Yi <yi.zhao@windriver.com>, 
-	Alexandru C Georgescu <alexandru.c.georgescu@intel.com>
-Subject: Yocto Project 1.5_M5.rc6
+X-Received: by 10.180.84.70 with SMTP id w6mr1676918wiy.2.1381307060558; Wed,
+	09 Oct 2013 01:24:20 -0700 (PDT)
+Received: by 10.227.197.69 with HTTP; Wed, 9 Oct 2013 01:24:20 -0700 (PDT)
+Date: Wed, 9 Oct 2013 13:54:20 +0530
+Message-ID: <CABHD4K92=qtjaCzmvRV9yAMhWk_uZjz60is1UomcoWn0qz5V1A@mail.gmail.com>
+From: Amit Tomer <amittomer25@gmail.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>, 
+	"yocto-request@yoctoproject.org" <yocto-request@yoctoproject.org>
+Subject: Is there anything like FILES_${PN}_append??
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,29 +35,24 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 08 Oct 2013 22:36:01 -0000
+X-List-Received-Date: Wed, 09 Oct 2013 08:24:22 -0000
 Content-Type: text/plain; charset=ISO-8859-1
 
-All,
+I have made some changes in .bb file related to openssh but this openssh
+package is shared among variuos platforms and I want these changes to
+be reflected
+only to specific platform.
 
-The final release candidate for the upcoming Yocto Project 1.5 (dora 10.0.0)
-release is now available for testing at:
+Now for variable SRC_URI ,I can do something like SRC_URI_append_xyz where
+xyz is my platform where changes should be reflected.
 
-http://autobuilder.yoctoproject.org/pub/releases/1.5_M5.rc6
+Now there is one more Variable I added is FILES_${PN ,Now I wanted this variable
+also to be xyz specific
 
-poky 102bf5e0f640fe85068452a42b85077f1c81e0c9
-eclipse-poky-juno 2fa1c58940141a3c547c8790b8a6832167e8eb66
-eclipse-poky-kepler ad74249895f882a8f00bdeef7a0f7c18998cc43e
-meta-fsl-arm d334d3c7388e41d720dd0c8e0cb76fab51a6e46a
-meta-fsl-ppc 25ee629b826a138ef407c113f776830e5d822c01
-meta-intel a1138af21f6ba85e79d1422a3f0a3e0c4f658a90
-meta-minnow ad469d78a1f56abd3b7d5103f1e0344cb10684b1
-meta-qt3 b73552fb998fd30a01dbee5a172e432a16078222
+So is there anything  like FILES_${PN}_append exist in yocto.
 
-Please begin the QA cycle. Thanks!
+Or what other way to make it platform specific.
 
--- 
-Elizabeth Flanagan
-Yocto Project
-Build and Release
+Thanks
+Amit
 
