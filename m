@@ -1,35 +1,20 @@
-Return-Path: <kergoth@gmail.com>
-Received: from mail-la0-f48.google.com (mail-la0-f48.google.com
-	[209.85.215.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B65F0E00718;
-	Wed,  9 Oct 2013 09:24:22 -0700 (PDT)
-Received: by mail-la0-f48.google.com with SMTP id er20so891695lab.7
-	for <multiple recipients>; Wed, 09 Oct 2013 09:24:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:sender:in-reply-to:references:from:date:message-id
-	:subject:to:cc:content-type;
-	bh=qmCfLn+toGXMhOI4gd2Txp0Om60ISgjGpEuu7TY0EzM=;
-	b=DMB+e8lDpkX2RSCV5qERAlW/5KcKFkxmY7hmmQk0qSgBqoABD22Myq8dDtSDqRIWNo
-	AfzOeOt0m/8bw+OMK1yLhjLBS0CKxO82LzfAsevrij/XNOURmtsPaKv7E64Q/ruRp1F9
-	iUIcycDY3ciDz4yavATrQ/zU7JWCpqsyv4zikcq/Pjb8HxLHUfMSKshoFGqH1V5xEUKL
-	4EGtwXseqOtaUtkOcyRutVGEnN4t/1b3BoyVo7SulYjwgnNiXLc0UeirmfJNCRHN451A
-	AwbFbBLkmcX7uLTxO/N1XX9yZjYDXfjS7UKDdSGvoU60JRkOP57gEgvUc3q6SZDfUk6m
-	WWrQ==
-X-Received: by 10.152.120.5 with SMTP id ky5mr7132803lab.18.1381335861868;
-	Wed, 09 Oct 2013 09:24:21 -0700 (PDT)
+Return-Path: <jose.ferreiro@horus.es>
+Received: from correo.horus.es (correo.horus.es [2.139.157.236])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1B452E0073F
+	for <yocto@yoctoproject.org>; Wed,  9 Oct 2013 09:48:11 -0700 (PDT)
+Received: from [172.30.250.61] (172.30.250.61) by horus27 (Axigen)
+	with (CAMELLIA256-SHA encrypted) ESMTPSA id 2D7CFF;
+	Wed, 9 Oct 2013 18:48:08 +0200
+Message-ID: <525588C9.4080408@horus.es>
+Date: Wed, 09 Oct 2013 18:48:09 +0200
+From: =?ISO-8859-1?Q?Jose_M=AA_Ferreiro?= <jose.ferreiro@horus.es>
+User-Agent: Mozilla/5.0 (Windows NT 5.1; rv:16.0)
+	Gecko/20121005 Thunderbird/16.0
 MIME-Version: 1.0
-Sender: kergoth@gmail.com
-Received: by 10.112.53.197 with HTTP; Wed, 9 Oct 2013 09:24:01 -0700 (PDT)
-In-Reply-To: <CABHD4K92=qtjaCzmvRV9yAMhWk_uZjz60is1UomcoWn0qz5V1A@mail.gmail.com>
-References: <CABHD4K92=qtjaCzmvRV9yAMhWk_uZjz60is1UomcoWn0qz5V1A@mail.gmail.com>
-From: Chris Larson <clarson@kergoth.com>
-Date: Wed, 9 Oct 2013 09:24:01 -0700
-X-Google-Sender-Auth: vYZVmIKph4ZUaa2YyolYQ2OpOME
-Message-ID: <CABcZAN=dk1xOtBAm=+z340+ZXLFkMsT8hBXDNhLeqgCKBkSZKA@mail.gmail.com>
-To: Amit Tomer <amittomer25@gmail.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	"yocto-request@yoctoproject.org" <yocto-request@yoctoproject.org>
-Subject: Re: Is there anything like FILES_${PN}_append??
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+X-AxigenVirus-Level: 1
+X-AxigenSpam-Level: 4
+Subject: Qt + phonon + iMX codecs
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,36 +26,37 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 09 Oct 2013 16:24:26 -0000
-Content-Type: multipart/alternative; boundary=089e01227ca45cbcb504e8515136
+X-List-Received-Date: Wed, 09 Oct 2013 16:48:13 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
 
---089e01227ca45cbcb504e8515136
-Content-Type: text/plain; charset=UTF-8
+Hello
 
-On Wed, Oct 9, 2013 at 1:24 AM, Amit Tomer <amittomer25@gmail.com> wrote:
+Here: iMX6Q Sabre Lite board + yocto - dylan+ linux-imx
 
-> Now for variable SRC_URI ,I can do something like SRC_URI_append_xyz where
-> xyz is my platform where changes should be reflected.
->
+One of our Qt tests is an application with four videos played by phonon. 
+When we tried to make it work, we saw only one video working.
 
-This isn't specific to SRC_URI, it's general bitbake syntax that works for
-any variable.
--- 
-Christopher Larson
-clarson at kergoth dot com
-Founder - BitBake, OpenEmbedded, OpenZaurus
-Maintainer - Tslib
-Senior Software Engineer, Mentor Graphics
+Looking for a solution we found the file 
+0001-Add-support-for-i.MX-codecs-to-phonon.patch at
+  dylan/sources/meta-fsl-arm/recipes-qt/qt4/qt4 directory. It used only 
+mfw_v4lsink.
 
---089e01227ca45cbcb504e8515136
-Content-Type: text/html; charset=UTF-8
+We changed  "mfw_v4lsink" references to "mfw_isink" (agressive, I know, 
+but I was desperate)  ... and it worked. We had four videos on window.
 
-<div dir="ltr"><div class="gmail_extra"><br><div class="gmail_quote">On Wed, Oct 9, 2013 at 1:24 AM, Amit Tomer <span dir="ltr">&lt;<a href="mailto:amittomer25@gmail.com" target="_blank">amittomer25@gmail.com</a>&gt;</span> wrote:<br>
+Now, we are testing dora. Theres is another patch but the previous doing 
+does not get the same result. I would say there are allocation memory 
+problems and not all the videos are working. Sometimes one play, 
+sometimes three, never four.
 
-<blockquote class="gmail_quote" style="margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div id=":ez" style="overflow:hidden">Now for variable SRC_URI ,I can do something like SRC_URI_append_xyz where<br>
-xyz is my platform where changes should be reflected.</div></blockquote></div><br>This isn&#39;t specific to SRC_URI, it&#39;s general bitbake syntax that works for any variable.<br>-- <br>Christopher Larson<br>clarson at kergoth dot com<br>
+Can you give me any advice about how to add isink codec to phonon 
+backend? or is it  being done now?
 
-Founder - BitBake, OpenEmbedded, OpenZaurus<br>Maintainer - Tslib<br>Senior Software Engineer, Mentor Graphics
-</div></div>
+Thank you and best regards,
+Jose
 
---089e01227ca45cbcb504e8515136--
+
+
+
+
