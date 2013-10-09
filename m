@@ -1,28 +1,36 @@
-Return-Path: <flihp@longhaul.twobit.us>
-Received: from www.twobit.us (www.twobit.us [50.19.210.51])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F163BE011C5
-	for <yocto@yoctoproject.org>; Tue,  8 Oct 2013 20:02:28 -0700 (PDT)
-Received: from c-76-24-20-220.hsd1.ma.comcast.net ([76.24.20.220]
-	helo=longhaul.twobit.us)
-	by www.twobit.us with esmtpsa (TLS1.0:DHE_RSA_AES_128_CBC_SHA1:16)
-	(Exim 4.72) (envelope-from <flihp@longhaul.twobit.us>)
-	id 1VTk2b-0007bA-QG; Wed, 09 Oct 2013 03:02:26 +0000
-Date: Wed, 9 Oct 2013 03:02:20 +0000
-From: flihp@longhaul.twobit.us
-To: yocto@yoctoproject.org
-Message-ID: <20131009030220.GC6721@longhaul.twobit.us>
+Return-Path: <jicheu@gmail.com>
+Received: from mail-we0-f172.google.com (mail-we0-f172.google.com
+	[74.125.82.172])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1B763E016AC
+	for <yocto@yoctoproject.org>; Wed,  9 Oct 2013 04:48:06 -0700 (PDT)
+Received: by mail-we0-f172.google.com with SMTP id q58so766358wes.17
+	for <yocto@yoctoproject.org>; Wed, 09 Oct 2013 04:48:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=message-id:date:from:user-agent:mime-version:to:subject
+	:content-type:content-transfer-encoding;
+	bh=/5x0pmnoONt015Zc+BfwXbucB1z2R6PSuMwTQuV/lM8=;
+	b=q78J8oDXF0xXSoMuJDiFZXkKsltu6GhkZPm4fByowu8LlAcvwDvb2RwV8jOopbVbyh
+	BhFq208T+YNisrSeIaA2Wfr8fZqVcdwQaNWL6yBOZ9HFOSKIc5Uy9QnfJ5PibRkgjL1k
+	xotTQp8i4jC7axO5l94Epqye5rpzatsCRusE1DrMiL/1bobhqFpUmYRCRjibyQwzPQpC
+	g6Z5cK9w8v38bA7FkpBaGxADVoocVaLfuG0RgtJ2bFaIpOPRhmLQUvL0lALJkw+ZTDW5
+	tJLoU8/ryOGGSb+0IhK5+x1TwlfYQ/VtScj24L28ewCuC4U1q+OpdmFgdLD0OnXW95x8
+	+S4A==
+X-Received: by 10.194.119.106 with SMTP id kt10mr190660wjb.72.1381319285179;
+	Wed, 09 Oct 2013 04:48:05 -0700 (PDT)
+Received: from [192.168.0.50] (aig34-1-88-167-231-94.fbx.proxad.net.
+	[88.167.231.94])
+	by mx.google.com with ESMTPSA id b7sm14636383wiz.8.1969.12.31.16.00.00
+	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
+	Wed, 09 Oct 2013 04:48:03 -0700 (PDT)
+Message-ID: <52554271.70306@gmail.com>
+Date: Wed, 09 Oct 2013 13:48:01 +0200
+From: Jean-Charles <jicheu@gmail.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:24.0) Gecko/20100101 Thunderbird/24.0
 MIME-Version: 1.0
-User-Agent: Mutt/1.5.21 (2010-09-15)
-X-SA-Exim-Connect-IP: 76.24.20.220
-X-SA-Exim-Mail-From: flihp@longhaul.twobit.us
-X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on www.twobit.us
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=5.0 tests=ALL_TRUSTED,BAYES_00
-	autolearn=ham version=3.3.1
-X-SA-Exim-Version: 4.2.1 (built Mon, 22 Mar 2010 06:26:47 +0000)
-X-SA-Exim-Scanned: Yes (on www.twobit.us)
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 X-Mailman-Approved-At: Wed, 09 Oct 2013 07:14:49 -0700
-Subject: [meta-selinux][PATCH 0/5] Remove python dependency from refpol.
+Subject: dleyna not building
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,24 +42,28 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 09 Oct 2013 03:02:29 -0000
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+X-List-Received-Date: Wed, 09 Oct 2013 11:48:07 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
 
-The reference policy package currently pulls in a lot of python stuff
-that isn't strictly necessary to boot an SELinux system and load a
-policy. This is caused by the mix of python and C utilities in
-policycoreutils.
+Hi,
 
-This patch set breaks the policycoreutils recipe up into multiple
-packages, one for each utility. In this way we can have the refpol etc
-pull in only the utilities necessary for normal operation. This happens
-to be only the utilities written in C and thus we can remove python
-completely in a minimal image.
+Anyone tried to build dleyna recently ? The do_configure invariably 
+fails on dylan (with a very long configure log but nothing obvious.. 
+however a simple "bitbake media-service-upnp" will lead to the same error.
 
-I've attempted to localize these changes as much as possible so changes
-in this patchset outside of the policycoreutils recipe are few. An
-example image reicpe is added to demonstrate a minimal image with only
-the utilities required to load a policy and manipulate the policy store
-(add / remove policy modules) at runtime.
+I suspect the package is somewhat outdate as I had to change the MD5 to 
+be able to build it:
+
+-SRC_URI[md5sum] = "9fc4db84b3459bc77232b24bde48b000"
+-SRC_URI[sha256sum] = 
+"9cdee47bbbfa3de5aaa5cf3fc9e208ccd97e5079f6d8fa84a6d1f24a1b760237"
++SRC_URI[md5sum] = "eb7d58a429184180fdc48330bba9bb45"
++SRC_URI[sha256sum] = 
+"979661e4828a23292f05e9b82707d291fe2a63eeddcde0150a2f09c5c060847f"
+
+
+Regards,
+J.
+
 
