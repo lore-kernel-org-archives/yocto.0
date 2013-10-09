@@ -1,35 +1,36 @@
-Return-Path: <ross.burton@intel.com>
-Received: from mail-vc0-f171.google.com (mail-vc0-f171.google.com
-	[209.85.220.171])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CEA3DE0073F
-	for <yocto@yoctoproject.org>; Wed,  9 Oct 2013 08:11:58 -0700 (PDT)
-Received: by mail-vc0-f171.google.com with SMTP id ks9so605459vcb.2
-	for <yocto@yoctoproject.org>; Wed, 09 Oct 2013 08:11:57 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc:content-type;
-	bh=0sYf8+XpJwfkFgG0+MbHh2MsL5kDypcpYL9D3M7THM4=;
-	b=An6VqlkrQ61HL9dyEpa19c2jixjoiDkgGUPY++CI4Cw+oaSMMwABzf14W/Sm0bpjE3
-	3U1GKcvismkDjrCv5eKPBSLQ9xC7d03i0cboPCT7ONOqJC9e131l9Hx0htlqJc6v+mcm
-	5WyO4+p2hZNMw5K5dNlgkkyegMAo8Hxw/MfZjy8Dp4bNiAFHsle1XUxdmVlDAeMGm+0C
-	XOGDGGJTCsjZPQm2xuBuoN//Zz12YBUJO9+YyT4w+XY004Yz6N9DrL7FEB2AIfLXWFW8
-	UtozvB1PSQDaLe0A+Aze/T79uPPZbKygQcQwphv45lTQr5K1ahQF3L6TJ5knl98panjt
-	ydDw==
-X-Gm-Message-State: ALoCoQm/WQqaicqq3R3Vcp01SJH5g36MmZJbc1e6FJvrbPJqTFoQwfU5XwIAxuIJLbVJrx/W0sU4
-X-Received: by 10.52.76.200 with SMTP id m8mr374878vdw.53.1381331517835; Wed,
-	09 Oct 2013 08:11:57 -0700 (PDT)
+Return-Path: <jicheu@gmail.com>
+Received: from mail-wg0-f51.google.com (mail-wg0-f51.google.com [74.125.82.51])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AC12BE0073F
+	for <yocto@yoctoproject.org>; Wed,  9 Oct 2013 08:15:20 -0700 (PDT)
+Received: by mail-wg0-f51.google.com with SMTP id c11so1069873wgh.30
+	for <yocto@yoctoproject.org>; Wed, 09 Oct 2013 08:15:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=message-id:date:from:user-agent:mime-version:to:subject:references
+	:in-reply-to:content-type:content-transfer-encoding;
+	bh=M1zcATOYswlYMfpFjc2KjfSllW1YJH1sPWffQd28ra0=;
+	b=Hf+33cgFMUn/ZVrOjs9KoM0GUbCgf4qOo8tbIaLfLhjG0oINWkKjwPzl8a+TU/o1QD
+	VWl/xsx9NfNlUfx1hJGtg1mAs7x8Jna/y8z6YujBk1xetpYvCc3oF/MtU0P5kz3t5qzv
+	UakL3w+esDdCALD0L7d+RtJFLHG3wx6SWm2E2N8EOupMnmBVm/1EM7RfrPHzEWcWtVcs
+	b7Muse3HSNYbOPvIh6qXPGuvEYVFNDvR5kz/LwuWDpqKexxvlW57+oTXcAojGZH5CJel
+	BqMs1CmNHPDhjF9hkW10qPHMfuTnEeCYNo9VTmdpa2t0E1+U0OVYqgLa8PGao5dJdzm5
+	Q2XQ==
+X-Received: by 10.181.11.163 with SMTP id ej3mr3121252wid.47.1381331719290;
+	Wed, 09 Oct 2013 08:15:19 -0700 (PDT)
+Received: from [192.168.0.50] (aig34-1-88-167-231-94.fbx.proxad.net.
+	[88.167.231.94])
+	by mx.google.com with ESMTPSA id b13sm16167020wic.9.1969.12.31.16.00.00
+	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
+	Wed, 09 Oct 2013 08:15:18 -0700 (PDT)
+Message-ID: <525572FE.1080904@gmail.com>
+Date: Wed, 09 Oct 2013 17:15:10 +0200
+From: Jean-Charles <jicheu@gmail.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:24.0) Gecko/20100101 Thunderbird/24.0
 MIME-Version: 1.0
-Received: by 10.220.71.201 with HTTP; Wed, 9 Oct 2013 08:11:36 -0700 (PDT)
-In-Reply-To: <52557137.3080405@gmail.com>
-References: <52554271.70306@gmail.com>
-	<CAJTo0LbOfVAuzo_XBikdnssxe52OQ-KNbiqq5u1JkBnSJBFZ_Q@mail.gmail.com>
-	<52557137.3080405@gmail.com>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Wed, 9 Oct 2013 16:11:36 +0100
-Message-ID: <CAJTo0LZ3RNiP41XjHk-6V_fG5J94BN7P2i5LBRJPWRLqJauJjw@mail.gmail.com>
-To: Jean-Charles <jicheu@gmail.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+To: yocto@yoctoproject.org
+References: <52554271.70306@gmail.com>	<CAJTo0LbOfVAuzo_XBikdnssxe52OQ-KNbiqq5u1JkBnSJBFZ_Q@mail.gmail.com>	<52557137.3080405@gmail.com>
+	<CAJTo0LZ3RNiP41XjHk-6V_fG5J94BN7P2i5LBRJPWRLqJauJjw@mail.gmail.com>
+In-Reply-To: <CAJTo0LZ3RNiP41XjHk-6V_fG5J94BN7P2i5LBRJPWRLqJauJjw@mail.gmail.com>
 Subject: Re: dleyna not building
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -42,16 +43,14 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 09 Oct 2013 15:11:59 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Wed, 09 Oct 2013 15:15:22 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
 
->>> Requested 'gssdp-1.0 >= 0.13.2' but version of gssdp-1.0 is 0.12.2.1
->
-> There are both recipes on meta-multimedia, why would it take the older one
-> :( ?
+On 09/10/2013 17:11, Burton, Ross wrote:
+> PREFERRED_VERSION_gssdp = "0.13.2"
+I just figured this by checking the two recipes. I'll try again wth this 
+added to my conf
 
-Because 0.13.2 is marked as a development release.  You'll need to set
-PREFERRED_VERSION_gssdp = "0.13.2" (ditto for gupnp, probably).
 
-Ross
 
