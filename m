@@ -1,24 +1,42 @@
-Return-Path: <paul.eggleton@linux.intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D24C3E016AA
-	for <yocto@yoctoproject.org>; Wed,  9 Oct 2013 03:58:52 -0700 (PDT)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga101.jf.intel.com with ESMTP; 09 Oct 2013 03:58:51 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.90,1062,1371106800"; d="scan'208";a="416577756"
-Received: from unknown (HELO helios.localnet) ([10.252.120.216])
-	by orsmga002.jf.intel.com with ESMTP; 09 Oct 2013 03:58:27 -0700
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: "Robert P. J. Day" <rpjday@crashcourse.ca>
-Date: Wed, 09 Oct 2013 11:58:25 +0100
-Message-ID: <2004576.X6Q3phGT91@helios>
-Organization: Intel Corporation
-User-Agent: KMail/4.10.5 (Linux/3.8.0-31-generic; KDE/4.10.5; i686; ; )
-In-Reply-To: <alpine.DEB.2.02.1310090638350.32355@oneiric>
-References: <alpine.DEB.2.02.1310090638350.32355@oneiric>
+Return-Path: <joe@deserted.net>
+Received: from mail-qe0-f42.google.com (mail-qe0-f42.google.com
+	[209.85.128.42])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2D6B0E016C5
+	for <yocto@yoctoproject.org>; Wed,  9 Oct 2013 05:23:24 -0700 (PDT)
+Received: by mail-qe0-f42.google.com with SMTP id gc15so491823qeb.29
+	for <yocto@yoctoproject.org>; Wed, 09 Oct 2013 05:23:23 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+	:mime-version:content-type:content-disposition:in-reply-to
+	:user-agent;
+	bh=0R2HsqQzMw3kytyFFka8KfXgmW/UvmMdotyj0iiBXWQ=;
+	b=mBkZRVm5oVaPUWOaaM/RoA9ZFjSzvJJ8SX23RvA+WvaF6lFJpJZ27DCPOBeABlHAw7
+	iJWOFnNIITNsAXIpuKUW7igkVXWZpZ8YKSbuQ0ack/O34QgCVSv6yjC5pn3FP+ATeJcU
+	w3i3WCu0p4MNcKEt5cefYRqCWBYVcjRB3M0FMp2s6ZIWkUtpIr2AywIBINfKh2IpvRJ8
+	dbUtkTGg4n8bEuI35yA7kxeLZpGdG7WjixoRWSnZbDXoassuB2an7ERS7sezbwpn9L0l
+	OOSgQf2/B2O341j6WA6RzEUkvpsoKpZN6TMkuFEo49akHuIhrks6gT8kSDfXceykJhC3
+	Xv7w==
+X-Gm-Message-State: ALoCoQk80OPXWklYciz7VQNjmVlcVuyvjYUlIF668NOzztqCx1+XeuwJPCO0uibOyFX/3K0Dk+Aw
+X-Received: by 10.224.51.199 with SMTP id e7mr10224722qag.41.1381321402973;
+	Wed, 09 Oct 2013 05:23:22 -0700 (PDT)
+Received: from deserted.net ([128.224.252.2])
+	by mx.google.com with ESMTPSA id a2sm75159923qek.7.1969.12.31.16.00.00
+	(version=TLSv1.2 cipher=RC4-SHA bits=128/128);
+	Wed, 09 Oct 2013 05:23:22 -0700 (PDT)
+Date: Wed, 9 Oct 2013 08:23:19 -0400
+From: Joe MacDonald <joe@deserted.net>
+To: flihp@longhaul.twobit.us
+Message-ID: <20131009122318.GB5541@deserted.net>
+References: <20131009030220.GC6721@longhaul.twobit.us>
 MIME-Version: 1.0
+In-Reply-To: <20131009030220.GC6721@longhaul.twobit.us>
+X-URL: http://github.com/joeythesaint/joe-s-common-environment/tree/master
+X-Configuration: git://github.com/joeythesaint/joe-s-common-environment.git
+X-Editor: Vim-703 http://www.vim.org
+User-Agent: Mutt/1.5.21 (2010-09-15)
 Cc: yocto@yoctoproject.org
-Subject: Re: clarification on what packages are *truly* needed for a yocto build?
+Subject: Re: [meta-selinux][PATCH 0/5] Remove python dependency from refpol.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -30,62 +48,56 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 09 Oct 2013 10:58:52 -0000
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Wed, 09 Oct 2013 12:23:25 -0000
+X-Groupsio-MsgNum: 16420
+Content-Type: multipart/signed; micalg=pgp-sha1;
+	protocol="application/pgp-signature"; boundary="wzJLGUyc3ArbnUjN"
+Content-Disposition: inline
 
-Hi Robert,
+--wzJLGUyc3ArbnUjN
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-On Wednesday 09 October 2013 06:45:36 Robert P. J. Day wrote:
->   (aside: prepping to teach an OE/yocto course in a couple weeks,
-> going thru the docs again, so be prepared for questions, some of them
-> potentially silly but all in aid of clarifying bits of documentation.
-> i'm sure scott rifenbark is currently steeling himself for the
-> experience. :-)
-> 
->   i'm intimately aware of the current doc pages that list how to
-> establish your yocto build environment, such as this:
-> 
-> https://wiki.yoctoproject.org/wiki/Poky/GettingStarted/Dependencies
+[[meta-selinux][PATCH 0/5] Remove python dependency from refpol.] On 13.10.=
+09 (Wed 03:02) flihp@longhaul.twobit.us wrote:
 
-That page is very much unmaintained and out-of-date. We should probably note
-as much on the page (or just delete it). The canonical list of build host
-dependencies can always be found in the Quick Start guide:
+> The reference policy package currently pulls in a lot of python stuff
+> that isn't strictly necessary to boot an SELinux system and load a
+> policy. This is caused by the mix of python and C utilities in
+> policycoreutils.
+>=20
+> This patch set breaks the policycoreutils recipe up into multiple
+> packages, one for each utility. In this way we can have the refpol etc
+> pull in only the utilities necessary for normal operation. This happens
+> to be only the utilities written in C and thus we can remove python
+> completely in a minimal image.
+>=20
+> I've attempted to localize these changes as much as possible so changes
+> in this patchset outside of the policycoreutils recipe are few. An
+> example image reicpe is added to demonstrate a minimal image with only
+> the utilities required to load a policy and manipulate the policy store
+> (add / remove policy modules) at runtime.
 
-http://www.yoctoproject.org/docs/current/yocto-project-qs/yocto-project-qs.html
+Hey Philip,
 
-(substitute "current" in that URL with "1.5" if you'll be training with the
-1.5 release, until the release happens at which point those will be the same
-thing).
+The patches never arrived in my mailbox and I don't see them in
+patchworks.  Can you re-send, please?
 
-> but a question or two.
-> 
->   in some cases, i've seen, say, subversion listed as a prerequisite,
-> even though subversion is clearly built natively. so is it *truly* a
-> user-installable prerequisite? or am i misreading something?
+--=20
+-Joe MacDonald.
+:wq
 
-No, subversion is not needed on the host. git is however (and specifically for
-the 1.5 release onwards, git 1.7.5 or later is required.)
+--wzJLGUyc3ArbnUjN
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: Digital signature
 
->   also, at this point, is there a list of what one can safely add to
-> ASSUME_PROVIDED to cut down build time on a new project? i recall from
-> way back when that, if you use ASSUME_PROVIDED, you're sort of voiding
-> the warranty in terms of what's been quality checked. but if one is
-> willing to take a chance, is there a set of packages that would be
-> considered "safe" to assume are provided? (for example, i would assume
-> that, in any current distro, git would certainly be safe, no?)
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1.4.12 (GNU/Linux)
 
-When we say you're on your own setting this, you really are on your own ;)
-We do not QA setting this variable differently from the default, and so it's a
-bit hard for us to make any guarantees that any particular value that differs
-from the default will be "safe". (FWIW, in dylan/1.4 and later, git-native is
-already in the default value of ASSUME_PROVIDED).
+iEYEARECAAYFAlJVSrYACgkQwFvcllog0XzomQCeLwZld4CNikZbYfgjKosjNP8c
+BfUAoKt7wwNrmVrkdKY66pHdFlFz9FZb
+=qJ4V
+-----END PGP SIGNATURE-----
 
-Cheers,
-Paul
-
--- 
-
-Paul Eggleton
-Intel Open Source Technology Centre
-
+--wzJLGUyc3ArbnUjN--
