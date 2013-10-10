@@ -1,34 +1,34 @@
-Return-Path: <seth.boll@gmail.com>
-Received: from mail-ie0-f172.google.com (mail-ie0-f172.google.com
-	[209.85.223.172])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 35DBEE01426
-	for <yocto@yoctoproject.org>; Wed,  9 Oct 2013 17:16:18 -0700 (PDT)
-Received: by mail-ie0-f172.google.com with SMTP id x13so3617611ief.17
-	for <yocto@yoctoproject.org>; Wed, 09 Oct 2013 17:16:18 -0700 (PDT)
+Return-Path: <amittomer25@gmail.com>
+Received: from mail-we0-f182.google.com (mail-we0-f182.google.com
+	[74.125.82.182])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 92E74E015BA;
+	Wed,  9 Oct 2013 23:32:48 -0700 (PDT)
+Received: by mail-we0-f182.google.com with SMTP id t61so1957420wes.41
+	for <multiple recipients>; Wed, 09 Oct 2013 23:32:47 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=message-id:date:from:user-agent:mime-version:to:subject
-	:content-type:content-transfer-encoding;
-	bh=9++F6Axzs/St/sIqOj61VEN6ndL1D2NNi7e/9+ToKe4=;
-	b=OAz/1wWDyDArguolXX41l3IrH4SQCQcPcjIKh19ZL9g26b69KPbiqnrOqfk2qYiJUW
-	E8l5F1h9Gt/1fa0YJqV3qqN60kX8vYIG4jTk9Puf/s5w2cAVfc87u2tgAz0ECWLdjlTw
-	zWQ4cJvohlTpTGRTpg4zpfLy8GE0GHmcRlqWoRr1GqpTerLnHK+fhmezTzOd5wVsgrtO
-	GjzDKxHPa/3jTx6mpdikKjteoY2Ly5GTmh37jDp3X+QMn1U5jZRkatN+z0fWdvXty5cn
-	btZ/MkXP40N6dQT8Sr9K9lIHcV/K+lsWf8vDgItIohurqDRr86jJqWJFoztn53B57AQR
-	//GQ==
-X-Received: by 10.42.30.143 with SMTP id v15mr6436669icc.24.1381364178004;
-	Wed, 09 Oct 2013 17:16:18 -0700 (PDT)
-Received: from [192.168.1.102] (c-66-41-191-40.hsd1.mn.comcast.net.
-	[66.41.191.40])
-	by mx.google.com with ESMTPSA id ka1sm10238892igb.7.1969.12.31.16.00.00
-	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
-	Wed, 09 Oct 2013 17:16:17 -0700 (PDT)
-Message-ID: <5255F1CF.8020203@gmail.com>
-Date: Wed, 09 Oct 2013 19:16:15 -0500
-From: seth bollinger <seth.boll@gmail.com>
-User-Agent: Postbox 3.0.8 (Macintosh/20130427)
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type;
+	bh=ToTCXFBdBd/A7pIS207Jf0Sd27HIdgzisEu4L02XFhk=;
+	b=Mf1OOLa0ipfT+k60yKh+vdY1V0rbI0DrQBgb86K4IZ0Js4borDJ1/isJeStZGNVWSW
+	fVI/CZYOyCDZqrZGYDUNJW/8Ng2RbdDmAPA2p+sJtNm+m7WFj69D6BKFKHZt2QhnKpHE
+	lTKuJlO3caGzmGFr6uM3ytMN6qZaQao7P4JCvgYwqaxzxDtknzSLz5kyLzdQT5dAJnJb
+	DXMLR2Ez7mopzn+F1ZBy5PlA6FM0w102o1b1enA1nWQn7rJ8KhsK0acfCxVJh8l0eujk
+	YfU7H2+G1HJW6yt7BpDZ9OPa8NFQCS+WprLHzn9JLADZAs7fQi+7tgNBQgz18c7Ap8v+
+	Dv1A==
 MIME-Version: 1.0
-To: yocto@yoctoproject.org
-Subject: Recipes that update a shared file
+X-Received: by 10.180.149.179 with SMTP id ub19mr6052735wib.43.1381386767123; 
+	Wed, 09 Oct 2013 23:32:47 -0700 (PDT)
+Received: by 10.227.197.69 with HTTP; Wed, 9 Oct 2013 23:32:47 -0700 (PDT)
+In-Reply-To: <CABcZAN=dk1xOtBAm=+z340+ZXLFkMsT8hBXDNhLeqgCKBkSZKA@mail.gmail.com>
+References: <CABHD4K92=qtjaCzmvRV9yAMhWk_uZjz60is1UomcoWn0qz5V1A@mail.gmail.com>
+	<CABcZAN=dk1xOtBAm=+z340+ZXLFkMsT8hBXDNhLeqgCKBkSZKA@mail.gmail.com>
+Date: Thu, 10 Oct 2013 12:02:47 +0530
+Message-ID: <CABHD4K-wckj3ciCadCbiUF-SGBSb=gMTYwcyXRPeZEOhUs+Q5Q@mail.gmail.com>
+From: Amit Tomer <amittomer25@gmail.com>
+To: Chris Larson <clarson@kergoth.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
+	"yocto-request@yoctoproject.org" <yocto-request@yoctoproject.org>
+Subject: Re: Is there anything like FILES_${PN}_append??
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,20 +40,28 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 10 Oct 2013 00:16:23 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Thu, 10 Oct 2013 06:32:52 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
-Hello All,
+Thanks Chris for your response
 
-What's the best practice for recipes that need to update a shared file 
-provided by a different recipe?  For example let's say that the 
-widget-watcher recipe creates /etc/ww.conf and the widget1, and widget2 
-recipes need to append a line to the config.  I've searched through the 
-recipes a bit and can't find a good example.  The closest that I've seen 
-is pkg_postinst().  Is that the best method?
+So you mean to say I can apply it to FILES_${PN}
+IS something like FILES_${PN}_append_xyz fine??
 
-Thanks!
-
-Seth
+On Wed, Oct 9, 2013 at 9:54 PM, Chris Larson <clarson@kergoth.com> wrote:
+>
+> On Wed, Oct 9, 2013 at 1:24 AM, Amit Tomer <amittomer25@gmail.com> wrote:
+>>
+>> Now for variable SRC_URI ,I can do something like SRC_URI_append_xyz where
+>> xyz is my platform where changes should be reflected.
+>
+>
+> This isn't specific to SRC_URI, it's general bitbake syntax that works for
+> any variable.
+> --
+> Christopher Larson
+> clarson at kergoth dot com
+> Founder - BitBake, OpenEmbedded, OpenZaurus
+> Maintainer - Tslib
+> Senior Software Engineer, Mentor Graphics
 
