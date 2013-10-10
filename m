@@ -1,38 +1,33 @@
-Return-Path: <jc@vtkloud.com>
-Received: from mail-wi0-f176.google.com (mail-wi0-f176.google.com
-	[209.85.212.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5706BE015ED
-	for <yocto@yoctoproject.org>; Thu, 10 Oct 2013 06:22:50 -0700 (PDT)
-Received: by mail-wi0-f176.google.com with SMTP id l12so2923369wiv.3
-	for <yocto@yoctoproject.org>; Thu, 10 Oct 2013 06:22:49 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:content-type:mime-version:subject:from
-	:in-reply-to:date:cc:content-transfer-encoding:message-id:references
-	:to; bh=GRwFJ6o8g8DWNOxjNbZb22w6l8r8hMsn6RcP8/+CnEU=;
-	b=jzgID/TTZymjuB/I0ZlZxjEsmS1gwGl/aWPfdYCs1qqyAm4R+EvA4wp6sXJv1Yyy1I
-	TWMg2ZIROydN7IF9j+UN6iHNe5HPlBTQUIggp0QixzztO47TPoN9plHMq1Ujkx6xUTQ6
-	zQEycAUSSY3EDsP5vPu/DdSvz+blh4B+F83q58bRCfjEOtqF8VUCW5rGdfRPaR4crx7v
-	1GRDKBvv+Tb0MM9tRgdsF7sGBpkKXhygG/iObmavdoGrsvFSmugY9vPOhYxFuR1Wv9UN
-	CTU1NaO9aqAbCdq9vP6VnkmpUEbVjmjZrIE0R8rzfFVAmiwZFalS9JKpwsWED5l9IxL9
-	DhLw==
-X-Gm-Message-State: ALoCoQkSZXrEhzUzjvu66nc5c4RsIaOJqDFl/SZtvMLcU53QWfDDfaJyrS+efeNWD0wXl/kLv4YX
-X-Received: by 10.180.187.175 with SMTP id ft15mr7873904wic.20.1381411369710; 
-	Thu, 10 Oct 2013 06:22:49 -0700 (PDT)
-Received: from [172.24.63.121] ([94.103.137.126])
-	by mx.google.com with ESMTPSA id jf2sm25604048wic.2.1969.12.31.16.00.00
-	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
-	Thu, 10 Oct 2013 06:22:48 -0700 (PDT)
-Mime-Version: 1.0 (Mac OS X Mail 6.6 \(1510\))
-From: =?iso-8859-1?Q?Jean-Charles_JC_Verdi=E9?= <jc@vtkloud.com>
-In-Reply-To: <2874521.TO6dkNyroi@helios>
-Date: Thu, 10 Oct 2013 15:22:46 +0200
-Message-Id: <236656A9-B1A4-45B2-93DE-C6412F349AC8@vtkloud.com>
-References: <524B4663.1020106@vtkloud.com> <2874521.TO6dkNyroi@helios>
+Return-Path: <seth.boll@gmail.com>
+Received: from mail-we0-f182.google.com (mail-we0-f182.google.com
+	[74.125.82.182])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B89FCE015ED
+	for <yocto@yoctoproject.org>; Thu, 10 Oct 2013 07:36:17 -0700 (PDT)
+Received: by mail-we0-f182.google.com with SMTP id t61so2690336wes.13
+	for <yocto@yoctoproject.org>; Thu, 10 Oct 2013 07:36:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type;
+	bh=+OgDCiqhaZs7OOMZDj0yrxVdkMVu2QQgLihNt5YOpps=;
+	b=QrFacjTJHhPW2yy4mmeA0KLpupQ35yd4YjWuzQmGz0XZMKP0ogyEeeyDLa5MYmzc4E
+	Hz+UyChSFAvyCoDmpPCeCnAKXI+rR/9dhaHhDnun14/8U7/uNN+F0r8/hQxQ9IYf2ZMR
+	9SmaZl6TlNixFAZfJKAiHL7C9zTorgtUkl7ABB+hnMGsHe8rd8NqGdSB6ZYmbr+02FLT
+	+rnaO2cBxxUl9na73rT+ChVt9eCek9IKCvASCavG+PGVLJSNScQS2iiUGiAmhU/sqVgZ
+	jDKAHtHqFIC4f5FBjX8krMloXp52HT5CeiQvJp7Xt0Apr9scJqH1Qn4nixbXZ4uWXfgt
+	yFTA==
+MIME-Version: 1.0
+X-Received: by 10.180.84.70 with SMTP id w6mr8250030wiy.2.1381415775794; Thu,
+	10 Oct 2013 07:36:15 -0700 (PDT)
+Received: by 10.216.59.133 with HTTP; Thu, 10 Oct 2013 07:36:15 -0700 (PDT)
+In-Reply-To: <2034055.AmVRsnPTrY@helios>
+References: <5255F1CF.8020203@gmail.com>
+	<2034055.AmVRsnPTrY@helios>
+Date: Thu, 10 Oct 2013 09:36:15 -0500
+Message-ID: <CA+JN8xPBG_V4MMGxnQv49FC8qC3WJNwgOFKKvkqE73NnnFAWXA@mail.gmail.com>
+From: Seth Bollinger <seth.boll@gmail.com>
 To: Paul Eggleton <paul.eggleton@linux.intel.com>
-X-Mailer: Apple Mail (2.1510)
-Cc: yocto@yoctoproject.org
-Subject: Re: ${libdir} usage
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Recipes that update a shared file
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -44,53 +39,97 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 10 Oct 2013 13:22:51 -0000
-Content-Type: text/plain; charset=us-ascii
+X-List-Received-Date: Thu, 10 Oct 2013 14:36:18 -0000
+Content-Type: multipart/alternative; boundary=f46d044402689a7d9704e863ecd5
+
+--f46d044402689a7d9704e863ecd5
+Content-Type: text/plain; charset=ISO-8859-1
+
+On Thu, Oct 10, 2013 at 4:31 AM, Paul Eggleton <
+paul.eggleton@linux.intel.com> wrote:
+
+> That's really the recommended way to do it. If the software being
+> configured
+> supports it, another way is to set it up to read all configuration files
+> from a
+> directory and then you can simply install a new file into that directory
+> from
+> the other recipe (e.g. Apache is usually configured to read all
+> configuration
+> files in /etc/httpd/conf.d or similar).
+>
+
+Yes, I would have liked to solve the problem that way, but unfortunately
+the software doesn't support it, and we don't want to make changes
+currently. :)
+
+I'm having a lot of trouble getting pkg_postinst() to work.  From what I've
+read, it should happen during rootfs generation, but I'm not see the file
+in the rootfs.
+
+I found an example in the xfce4-session_4.10.0.bb recipe.  It looks like
+/etc/hosts is installed by netbase, so this is very similar to what my
+recipe is doing.
+# protect from frightening message that xfce might not work correctly
+pkg_postinst_${PN} () {
+    echo 127.0.0.1    ${MACHINE} >> /etc/hosts
+}
+
+I've tried this in my recipe, and the file that I expect to be present in
+the rootfs is not there...not sure what I'm doing wrong.
+pkg_postinst_${PN} () {
+    echo test >> /etc/inittest2
+}
+
+Also, the documentation states that this mechanism can be used to do things
+on first boot.  Do I need to add code to make sure that this doesn't happen
+on first boot?
+
+Thanks!
+
+Seth
+
+--f46d044402689a7d9704e863ecd5
+Content-Type: text/html; charset=ISO-8859-1
 Content-Transfer-Encoding: quoted-printable
 
+<div dir=3D"ltr">On Thu, Oct 10, 2013 at 4:31 AM, Paul Eggleton <span dir=
+=3D"ltr">&lt;<a href=3D"mailto:paul.eggleton@linux.intel.com" target=3D"_bl=
+ank">paul.eggleton@linux.intel.com</a>&gt;</span> wrote:<br><div class=3D"g=
+mail_extra">
+<div class=3D"gmail_quote"><blockquote class=3D"gmail_quote" style=3D"margi=
+n:0px 0px 0px 0.8ex;border-left-width:1px;border-left-color:rgb(204,204,204=
+);border-left-style:solid;padding-left:1ex">
+That&#39;s really the recommended way to do it. If the software being confi=
+gured<br>
+supports it, another way is to set it up to read all configuration files fr=
+om a<br>
+directory and then you can simply install a new file into that directory fr=
+om<br>
+the other recipe (e.g. Apache is usually configured to read all configurati=
+on<br>
+files in /etc/httpd/conf.d or similar).<br></blockquote><div><br></div><div=
+>Yes, I would have liked to solve the problem that way, but unfortunately t=
+he software doesn&#39;t support it, and we don&#39;t want to make changes c=
+urrently. :)</div>
+<div><br></div><div>I&#39;m having a lot of trouble getting pkg_postinst() =
+to work. =A0From what I&#39;ve read, it should happen during rootfs generat=
+ion, but I&#39;m not see the file in the rootfs.</div><div><br></div><div>
+I found an example in the=A0<a href=3D"http://xfce4-session_4.10.0.bb">xfce=
+4-session_4.10.0.bb</a> recipe. =A0It looks like /etc/hosts is installed by=
+ netbase, so this is very similar to what my recipe is doing.</div><div><di=
+v>
+# protect from frightening message that xfce might not work correctly</div>=
+<div>pkg_postinst_${PN} () {</div><div>=A0 =A0 echo 127.0.0.1 =A0 =A0${MACH=
+INE} &gt;&gt; /etc/hosts</div><div>}</div></div><div><br></div><div>I&#39;v=
+e tried this in my recipe, and the file that I expect to be present in the =
+rootfs is not there...not sure what I&#39;m doing wrong.<br>
+</div><div><div>pkg_postinst_${PN} () {</div><div>=A0 =A0 echo test &gt;&gt=
+; /etc/inittest2<br></div><div>}</div></div><div><br></div><div>Also, the d=
+ocumentation states that this mechanism can be used to do things on first b=
+oot. =A0Do I need to add code to make sure that this doesn&#39;t happen on =
+first boot?</div>
+<div><br></div><div>Thanks!</div><div><br></div><div>Seth</div><div><br></d=
+iv></div></div></div>
 
-On 10Oct 2013, at 12:01 PM, Paul Eggleton =
-<paul.eggleton@linux.intel.com> wrote:
-
-> Hi Jay,
->=20
-> On Wednesday 02 October 2013 00:02:11 JC wrote:
->> I'm currently putting together a bunch of recipes to install some =
-cpan
->> modules. I had some complaints by bitbake about files being installed
->> but not shipped.
->>=20
->> I figured that I need to populate FILES_{PN} but I'm not clear about
->> what I should do with it: use ${libdir}, use "usr/*" ? Knowing that =
-my
->> image(s) directories mostly contain usr/lib/perl/* and sometimes =
-usr/bin/*
->=20
-> Ultimately it depends on how those files have ended up there. If files =
-have been=20
-> installed in in /usr/lib because they've been installed in ${libdir} =
-(this is=20
-> the default for all autotooled recipes), then you should also use =
-${libdir} to=20
-> match in FILES in case that value changes - some distros do this to =
-flatten out=20
-> /usr altogether for example.
->=20
-
-Thanks !
-
-Actually, I made a mistake and need to install those pm files in /lib =
-not /usr/lib. cpan (instead of cpan-build) did everything ok :)
-
-Regards
-Jay
-
-> Cheers,
-> Paul
->=20
-> --=20
->=20
-> Paul Eggleton
-> Intel Open Source Technology Centre
-
-
+--f46d044402689a7d9704e863ecd5--
