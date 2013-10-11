@@ -1,32 +1,38 @@
-Return-Path: <giannis.damigos@gmail.com>
-Received: from mail-wg0-f47.google.com (mail-wg0-f47.google.com [74.125.82.47])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9A0B8E01610
-	for <yocto@yoctoproject.org>; Fri, 11 Oct 2013 05:09:54 -0700 (PDT)
-Received: by mail-wg0-f47.google.com with SMTP id f12so3996947wgh.26
-	for <yocto@yoctoproject.org>; Fri, 11 Oct 2013 05:09:53 -0700 (PDT)
+Return-Path: <paul.betafive@gmail.com>
+Received: from mail-vb0-f49.google.com (mail-vb0-f49.google.com
+	[209.85.212.49])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 62EBAE011C5
+	for <yocto@yoctoproject.org>; Fri, 11 Oct 2013 08:48:05 -0700 (PDT)
+Received: by mail-vb0-f49.google.com with SMTP id w16so2829887vbb.8
+	for <yocto@yoctoproject.org>; Fri, 11 Oct 2013 08:48:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=date:from:to:subject:message-id:mime-version:content-type
-	:content-disposition:user-agent;
-	bh=1Eh698teWmVBprPLmbVrI7D0h6+ietP9S7A2Vtbt6dc=;
-	b=flJG4ImiGt3cGIHfbV9dnBFW5pd/PE+aDqk0Bw81MzL3lU0vl+LN4+2hY30bULyZc6
-	OltX0bKoM7DPf+WXM4+CiH7o/zNHQgmeJz7akamgk3CW0UDkTfZQiEJEJR+p7xQH21dQ
-	2XkO2mWIUb0OpXuyozmIqEeVMswQhOvff6eFxQt7emL7QSzqm3o/fZWOl+LUvsEG6ABT
-	cTOjXoCDziKafqEvVLVUEHXDwomclqk7oBvVs8q4Ybx002cAwm9VNvAxFUgoDdkI2TNz
-	q8AYCpWjofYcRtmmGCP0DjhRoCKnbdEd43ER5jdgKD+nP6japIqBfWRCZPPmKj1g8ZBB
-	uz7A==
-X-Received: by 10.194.123.227 with SMTP id md3mr16872794wjb.17.1381493393371; 
-	Fri, 11 Oct 2013 05:09:53 -0700 (PDT)
-Received: from localhost (athedsl-17757.home.otenet.gr. [87.202.69.231])
-	by mx.google.com with ESMTPSA id b7sm5122697wiz.8.1969.12.31.16.00.00
-	(version=TLSv1.2 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
-	Fri, 11 Oct 2013 05:09:52 -0700 (PDT)
-Date: Fri, 11 Oct 2013 15:09:49 +0300
-From: Yannis Damigos <giannis.damigos@gmail.com>
-To: yocto@yoctoproject.org
-Message-ID: <20131011120949.GA664@xekarfwtos-lp>
+	h=mime-version:sender:in-reply-to:references:from:date:message-id
+	:subject:to:cc:content-type;
+	bh=hMuO93YxyfwCcVtAEzsvNONH+Yh+UM3jRa9Pa5eTIyQ=;
+	b=uEq2XioAZ8FRXB/lVo57ygg8DxH9jrF+i5W7UKeEYYhACZx9uFmvFI0YQcgn0HKwCC
+	XVlVSiXmR43lSvBFff2CluiIxKvkm3UVGV5HyrYaSTbTSUE1LjYrTIX/ebPnNxoBTuKV
+	gaTnjYe6mtOXQBF0cD+QM9jXgNSnE7VnmADNvYi2QgfZbimQyfPy+iD5uV4PxRTNTBQb
+	qOYzCtdrtJ08R06BxJnMh3bQjEWef/W4iCBI5Qu4D5OADfGzB+YFbNatBRKOF5LnKd3q
+	itHb1wXtsLe9T9wJ1RmKND6yDJ2LiHQJDWDPuAfv1vEwsLMjGPpQ7aBjtnUqRAKAwCd+
+	YHxA==
+X-Received: by 10.52.169.227 with SMTP id ah3mr775885vdc.45.1381506484382;
+	Fri, 11 Oct 2013 08:48:04 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mutt/1.5.21 (2010-09-15)
-Subject: Possible issue when supported distros update their GNU tar package to version 1.27
+Sender: paul.betafive@gmail.com
+Received: by 10.220.49.71 with HTTP; Fri, 11 Oct 2013 08:47:24 -0700 (PDT)
+In-Reply-To: <CAK18fxHeeE5UWPcNhg2pw+QPHeS-PVwkmOugDFsVivCSPe7eow@mail.gmail.com>
+References: <1377018158-2983-1-git-send-email-andrei@gherzan.ro>
+	<1377018158-2983-7-git-send-email-andrei@gherzan.ro>
+	<CANyK_8fT9cf__rs36niVD5mkhXySbioVT16653Zr0tQvwJkh3w@mail.gmail.com>
+	<20130823122632.GD3544@jama>
+	<CAK18fxHeeE5UWPcNhg2pw+QPHeS-PVwkmOugDFsVivCSPe7eow@mail.gmail.com>
+From: Paul Barker <paul@paulbarker.me.uk>
+Date: Fri, 11 Oct 2013 16:47:24 +0100
+X-Google-Sender-Auth: sEyH8Vi7--cPKJ4W0TNalTNwVx8
+Message-ID: <CANyK_8eRQRCS0o3b6=Y0Q=-W6AjEtb2nWyd3NEJMUVZmfQNzaw@mail.gmail.com>
+To: Andrei Gherzan <andrei@gherzan.ro>
+Cc: Yocto discussion list <yocto@yoctoproject.org>
+Subject: Re: [meta-raspberrypi][PATCH 07/11] mesa: Use libgl from mesa for raspberrypi
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,56 +44,28 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 11 Oct 2013 12:09:56 -0000
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+X-List-Received-Date: Fri, 11 Oct 2013 15:48:07 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
-Hi everyone,
+On 24 August 2013 01:02, Andrei Gherzan <andrei@gherzan.ro> wrote:
+> On Fri, Aug 23, 2013 at 3:26 PM, Martin Jansa <martin.jansa@gmail.com>
+> wrote:
+>> On Fri, Aug 23, 2013 at 11:59:10AM +0100, Paul Barker wrote:
+>> >
+>> > This really needs to check whether MACHINE="raspberrypi" before
+>> > changing anything. I keep the same stack of layers and just change
+>> > MACHINE when building for raspberrypi and beagleboard.
+>>
+>
+> That's definitely a good idea. Already merged the patch but will rebase /
+> add a new commit.
+>
 
-I work on Archlinux (64bit) and build a beagleboard image.
-Build Configuration:
-BB_VERSION        = "1.20.0"
-BUILD_SYS         = "x86_64-linux"
-NATIVELSBSTRING   = "Arch-Linux"
-TARGET_SYS        = "arm-poky-linux-gnueabi"
-MACHINE           = "beagleboard"
-DISTRO            = "poky"
-DISTRO_VERSION    = "1.5"
-TUNE_FEATURES     = "armv7a vfp neon"
-TARGET_FPU        = "vfp-neon"
-meta              
-meta-yocto        
-meta-yocto-bsp    = "master:102bf5e0f640fe85068452a42b85077f1c81e0c9"
+Any plans to add an 'if' here? If not, I'll add it to my todo list.
 
-The build process stops at the task "quilt-native_0.60.bb, do_populate_sysroot"
-with the following error:
-    tar: --same-order option cannot be used with -c
-    Try 'tar --help' or 'tar --usage' for more information.
-    tar: This does not look like a tar archive
-    tar: Exiting with failure status due to previous errors
+-- 
+Paul Barker
 
-Searching around I found out that the problem was found at the file
-meta/classes/staging.bbclass at line 16: 
-    tar -cf - -C "$src" -ps . | tar -xf - -C "$dest"
-
-The issue comes up if user's distro is using  GNU tar version 1.27
-Here is a link to the tar patch that causing the problem:
-http://git.savannah.gnu.org/cgit/tar.git/commit/?id=74ce228f6df956e6b7be9fd4f993bada4b7ea645
-
-If I downgrade the tar package to version 1.26, the build ends with success.
-
-Here is a list with all the files that should be updated/patched
-./meta/lib/oe/path.py: cmd = 'tar -cf - -C %s -ps . | tar -xf - -C %s' % (src, dst)
-./meta/lib/oe/path.py: cmd = 'cd %s; find . -type d -print | tar -cf - -C %s -ps --files-from - | tar -xf - -C %s' % (src, src, dst)
-./meta/classes/package.bbclass: cmd = 'tar -cf - -C %s -ps . | tar -xf - -C %s' % (dest, dvar)
-./meta/classes/populate_sdk_deb.bbclass: tar -cf - -C ${STAGING_ETCDIR_NATIVE} -ps apt | tar -xf - -C ${target_rootfs}/etc
-./meta/classes/libc-package.bbclass: tar -cf - -C ${LOCALETREESRC}${datadir} -ps i18n | tar -xf - -C $treedir/${datadir}
-./meta/classes/libc-package.bbclass: tar -cf - -C ${LOCALETREESRC}${base_libdir} -ps . | tar -xf - -C $treedir/${base_libdir}
-./meta/classes/libc-package.bbclass: tar -cf - -C ${STAGING_DIR_NATIVE}/${prefix_native}/${base_libdir} -ps libgcc_s.* | tar -xf - -C $treedir/${base_libdir}
-./meta/classes/libc-package.bbclass: tar -cf - -C $treedir/$parent -ps $(basename ${localedir}) | tar -xf - -C ${PKGD}$parent
-./meta/classes/staging.bbclass: tar -cf - -C "$src" -ps . | tar -xf - -C "$dest"
-./bitbake/lib/bb/fetch2/__init__.py: #cmd = 'tar -cf - -C "%d" -ps . | tar -xf - -C "%s/%s/"' % (file, rootdir, destdir)
-
-Best regards,
-Yannis
+Email: paul@paulbarker.me.uk
+http://www.paulbarker.me.uk
 
