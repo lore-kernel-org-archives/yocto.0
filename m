@@ -1,39 +1,35 @@
-Return-Path: <chgans@googlemail.com>
-Received: from mail-pa0-f46.google.com (mail-pa0-f46.google.com
-	[209.85.220.46])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 64D28E01653
-	for <yocto@yoctoproject.org>; Thu, 10 Oct 2013 19:08:07 -0700 (PDT)
-Received: by mail-pa0-f46.google.com with SMTP id fa1so3636629pad.19
-	for <yocto@yoctoproject.org>; Thu, 10 Oct 2013 19:08:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=googlemail.com; s=20120113;
-	h=sender:message-id:date:from:user-agent:mime-version:to:subject
-	:references:in-reply-to:content-type:content-transfer-encoding;
-	bh=ANp2GGSJvsto8OMk7Ml/aWKpAaiZWsiJqbwSL9n/nBk=;
-	b=hnW+Lm8U7o4qKAeC2YG7c0cjT1c44yUNAz00kRGXOhv1zfAk+OGdUHvRvHSqigf5KC
-	cXGv63IgQFG9hAdoxeUEAmfZyvk2F0Z5FomH584wnW9ojXJ6lVl2+Y2UKK64VoQvLnEl
-	H52sQsWp6590XP8FbNEuT5N8HhDPLVs9bhsvg4M/NmFCq35vUOBM11JyxCQ8zmEVDsdk
-	431Bx1OZJ2mQW0hegvW3QvJE5UhhqVidV1u3Q8N0dViwA7ab1GcRfsvwhhp/CqW/yD0C
-	N3S2SqxsiWrKdbefuCm7ply/2OjFitgsuDdZebpEfFXFqdv7e8F4tN8+PIEh3Q9WZqh0
-	FUgA==
-X-Received: by 10.66.136.131 with SMTP id qa3mr18836767pab.77.1381457287267;
-	Thu, 10 Oct 2013 19:08:07 -0700 (PDT)
-Received: from krys-red.trunet.local ([210.48.94.225])
-	by mx.google.com with ESMTPSA id y5sm56197102pbs.18.1969.12.31.16.00.00
-	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
-	Thu, 10 Oct 2013 19:08:06 -0700 (PDT)
-Sender: Chris Gagneraud <chgans@googlemail.com>
-Message-ID: <52575D83.9010405@gna.org>
-Date: Fri, 11 Oct 2013 15:08:03 +1300
-From: Christian Gagneraud <chgans@gna.org>
-User-Agent: Mozilla/5.0 (X11; Linux i686;
-	rv:24.0) Gecko/20100101 Thunderbird/24.0
+Return-Path: <xertz.yocto@gmail.com>
+Received: from mail-vb0-f51.google.com (mail-vb0-f51.google.com
+	[209.85.212.51])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4BB48E01566
+	for <yocto@yoctoproject.org>; Fri, 11 Oct 2013 02:27:21 -0700 (PDT)
+Received: by mail-vb0-f51.google.com with SMTP id x16so2539305vbf.38
+	for <yocto@yoctoproject.org>; Fri, 11 Oct 2013 02:27:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type;
+	bh=yjTuJpzkM6vaIMTBHChja2C2t8yjEEqr+oQedYMuPDw=;
+	b=GSy76OJLmSNQdEbkTjKbgcaVG5Op/o2YbC7frO2RyK0n/m4n6T6AFYiWou8LiwmCIt
+	IBlp/+23Q00RE0vrrfLQ1uKW9xGqjg+oA6TALREi0fnFfv4M65h/xrFvZu3rDDd1SzHf
+	cdICsmjFkX4TOJAOIrV3yH0wEvax3qL02m3jLwmWPySmm8hCqI3LGdQ3yhx/ujBo1Z/k
+	y5x+uKKb0KD0c4hwwdiONs9vbxdFnMd74kFFlKYsRjQI/y1Gl3MZu5W0a12etAW3GdfL
+	uFzYAzTNzJs8L7/mJVFuWz7832nfQ124gnjB4oZskdYAsCT7PHU2clv3ZIno+IOJOqeb
+	obOg==
 MIME-Version: 1.0
-To: yocto@yoctoproject.org
-References: <CAPhnLPBDr_LhzOpjs7-sOsf7ujKGDcchxirH45kfHcyqnUaxoA@mail.gmail.com>	<52571E27.70308@gna.org>	<CA+YB3raEO5Ek5EdkAuezyW+D3tj5-Aod2k+BRg5UWF_UWUHmtg@mail.gmail.com>	<52572994.4050006@gna.org>	<CAP9ODKoaV71QNHnqfwqnajhORu=1m82YaUiFo41HhcvUn6E-Rg@mail.gmail.com>	<CA+YB3rZOFCTdJ0wtVa_qTt1QRZuT=nE2MZ2EXEqUs55Lyfiruw@mail.gmail.com>	<52575854.6080302@linux.intel.com>
-	<CAP9ODKooi3-gBELD86fsipqc98FCJt_jMPBNjd9gndaZjpefMw@mail.gmail.com>
-In-Reply-To: <CAP9ODKooi3-gBELD86fsipqc98FCJt_jMPBNjd9gndaZjpefMw@mail.gmail.com>
-Subject: Re: Yocto Project 1.5_M5.rc6
+X-Received: by 10.52.170.232 with SMTP id ap8mr406939vdc.40.1381483641240;
+	Fri, 11 Oct 2013 02:27:21 -0700 (PDT)
+Received: by 10.220.69.199 with HTTP; Fri, 11 Oct 2013 02:27:21 -0700 (PDT)
+In-Reply-To: <523FA989.2010700@windriver.com>
+References: <CAEo3mJUri=-cHU7cKdJLspWrb_k2irEFx47+npb2TBRKMLcCPw@mail.gmail.com>
+	<523CA864.7020105@windriver.com>
+	<CAEo3mJVqezmQM5o8+=EozeHbU2O=WM91TGnZ=AJkGWRofbQ7yw@mail.gmail.com>
+	<523FA989.2010700@windriver.com>
+Date: Fri, 11 Oct 2013 10:27:21 +0100
+Message-ID: <CAEo3mJXmr8rdBEhuhfX63+uaqMLM2H70_cP8RGw1uvdX2ZxkMw@mail.gmail.com>
+From: John Doe <xertz.yocto@gmail.com>
+To: Bruce Ashfield <bruce.ashfield@windriver.com>
+Cc: yocto@yoctoproject.org
+Subject: Re: Configuring linux-yocto-custom to build specific kernel modules
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,35 +41,49 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 11 Oct 2013 02:08:10 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Fri, 11 Oct 2013 09:27:22 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
-On 11/10/13 14:55, Otavio Salvador wrote:
-> On Thu, Oct 10, 2013 at 10:45 PM, Saul Wold <sgw@linux.intel.com> wrote:
+Thanks Bruce,
+
+It was exactly as you say, I forgot to enable cfg80211 and mac80211.
+Now I can see all the drivers.
+
+Regards,
+J
+
+On Mon, Sep 23, 2013 at 3:38 AM, Bruce Ashfield
+<bruce.ashfield@windriver.com> wrote:
+> On 13-09-22 12:05 PM, John Doe wrote:
+>>>
+>>> Is your kernel already building from linux-yocto-custom ? Or are you
+>>> using the default linux-yocto kernel and recipes already ?
 >>
->> Sorry for the top post here. The real reason we still have Qt3 is because
->> it's required part of the LSB spec.  OE-Core contains Qt4 and we know that
->> meta-qt5 exists from Otavio and Martin.
 >>
->> I know that Richard and Paul have been watching what's going on with
->> meta-qt5.
+>> I have a project that is using linux-yocto-custom and another project
+>> which is using the default linux-yocto kernel.
+>>
+>>> If you are using one of the standard qemu machines, or a BSP that
+>>> is already working with linux-yocto*, you can simply enable the module
+>>> by creating a configuration fragment, and putting it on the SRC_URI.
+>>
+>>
+>> The problem is that I can not find the driver (rtl8187 under
+>> drivers/net/wireless/rtl818x) in the menuconfig. It seems all device
+>> drivers are missing despite them being in the repository or tarball.
+>>
 >
-> The biggest missing feature at meta-qt5 is the lacking of toolchain
-> support; I am still looking for someone to sponsor me to work on this
-> (as it is not a small task), a critical need from my side for it or
-> someone step on and do it :)
-
-Yes, and ideally it would be nice if this toolchain would be easy to use 
-with QtCreator.
-Some weeks ago, I had a look at writing a Yocto plugin for QtCreator 
-(using Danny/Qt4), and the biggest problem was how you "activate" the 
-toolchain, sourcing the env setup is good when you work in a shell, but 
-it would be better if the toolchain comes with a machine friendly 
-manifest file, this would allow as well to use several yocto toolchains 
-(eg, for different architectures/machines) from within QtCreator.
-
-My 2 cents.
-
-Chris
+> If there's a missing dependency (say for example PCI), or a wrapping
+> Kconfig options that hides the menu, you won't see the drivers offered
+> in menuconfig.
+>
+> Looking at the kernel source and the Kconfig is my next step, since it
+> lists all the dependencies that you need.
+>
+> Bruce
+>
+>> Cheers
+>> J
+>>
+>
 
