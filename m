@@ -1,29 +1,32 @@
-Return-Path: <rpjday@crashcourse.ca>
-Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
-	[64.235.106.9])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B30E7E01566
-	for <yocto@yoctoproject.org>; Fri, 11 Oct 2013 03:21:27 -0700 (PDT)
-Received: from [173.34.6.101] (port=35062 helo=crashcourse.ca)
-	by astoria.ccjclearline.com with esmtpsa (TLSv1:DHE-RSA-AES256-SHA:256)
-	(Exim 4.80) (envelope-from <rpjday@crashcourse.ca>)
-	id 1VUZqY-0001TA-Co; Fri, 11 Oct 2013 06:21:26 -0400
-Date: Fri, 11 Oct 2013 06:21:18 -0400 (EDT)
-From: "Robert P. J. Day" <rpjday@crashcourse.ca>
-X-X-Sender: rpjday@oneiric
-To: Yocto discussion list <yocto@yoctoproject.org>
-Message-ID: <alpine.DEB.2.02.1310110619550.6807@oneiric>
-User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
+Return-Path: <giannis.damigos@gmail.com>
+Received: from mail-wg0-f47.google.com (mail-wg0-f47.google.com [74.125.82.47])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9A0B8E01610
+	for <yocto@yoctoproject.org>; Fri, 11 Oct 2013 05:09:54 -0700 (PDT)
+Received: by mail-wg0-f47.google.com with SMTP id f12so3996947wgh.26
+	for <yocto@yoctoproject.org>; Fri, 11 Oct 2013 05:09:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=date:from:to:subject:message-id:mime-version:content-type
+	:content-disposition:user-agent;
+	bh=1Eh698teWmVBprPLmbVrI7D0h6+ietP9S7A2Vtbt6dc=;
+	b=flJG4ImiGt3cGIHfbV9dnBFW5pd/PE+aDqk0Bw81MzL3lU0vl+LN4+2hY30bULyZc6
+	OltX0bKoM7DPf+WXM4+CiH7o/zNHQgmeJz7akamgk3CW0UDkTfZQiEJEJR+p7xQH21dQ
+	2XkO2mWIUb0OpXuyozmIqEeVMswQhOvff6eFxQt7emL7QSzqm3o/fZWOl+LUvsEG6ABT
+	cTOjXoCDziKafqEvVLVUEHXDwomclqk7oBvVs8q4Ybx002cAwm9VNvAxFUgoDdkI2TNz
+	q8AYCpWjofYcRtmmGCP0DjhRoCKnbdEd43ER5jdgKD+nP6japIqBfWRCZPPmKj1g8ZBB
+	uz7A==
+X-Received: by 10.194.123.227 with SMTP id md3mr16872794wjb.17.1381493393371; 
+	Fri, 11 Oct 2013 05:09:53 -0700 (PDT)
+Received: from localhost (athedsl-17757.home.otenet.gr. [87.202.69.231])
+	by mx.google.com with ESMTPSA id b7sm5122697wiz.8.1969.12.31.16.00.00
+	(version=TLSv1.2 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
+	Fri, 11 Oct 2013 05:09:52 -0700 (PDT)
+Date: Fri, 11 Oct 2013 15:09:49 +0300
+From: Yannis Damigos <giannis.damigos@gmail.com>
+To: yocto@yoctoproject.org
+Message-ID: <20131011120949.GA664@xekarfwtos-lp>
 MIME-Version: 1.0
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - crashcourse.ca
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-Subject: [PATCH] [yocto-docs] Some innocuous fixes to BSP guide.
+User-Agent: Mutt/1.5.21 (2010-09-15)
+Subject: Possible issue when supported distros update their GNU tar package to version 1.27
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -35,67 +38,56 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 11 Oct 2013 10:21:28 -0000
-Content-Type: MULTIPART/MIXED; BOUNDARY="8323329-1381977516-1381486882=:6807"
+X-List-Received-Date: Fri, 11 Oct 2013 12:09:56 -0000
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
---8323329-1381977516-1381486882=:6807
-Content-Type: TEXT/PLAIN; charset=ISO-8859-15
-Content-Transfer-Encoding: 8BIT
+Hi everyone,
 
+I work on Archlinux (64bit) and build a beagleboard image.
+Build Configuration:
+BB_VERSION        = "1.20.0"
+BUILD_SYS         = "x86_64-linux"
+NATIVELSBSTRING   = "Arch-Linux"
+TARGET_SYS        = "arm-poky-linux-gnueabi"
+MACHINE           = "beagleboard"
+DISTRO            = "poky"
+DISTRO_VERSION    = "1.5"
+TUNE_FEATURES     = "armv7a vfp neon"
+TARGET_FPU        = "vfp-neon"
+meta              
+meta-yocto        
+meta-yocto-bsp    = "master:102bf5e0f640fe85068452a42b85077f1c81e0c9"
 
-* A couple grammatical fixes.
-* A couple filename corrections.
+The build process stops at the task "quilt-native_0.60.bb, do_populate_sysroot"
+with the following error:
+    tar: --same-order option cannot be used with -c
+    Try 'tar --help' or 'tar --usage' for more information.
+    tar: This does not look like a tar archive
+    tar: Exiting with failure status due to previous errors
 
-Signed-off-by: Robert P. J. Day <rpjday@crashcourse.ca>
+Searching around I found out that the problem was found at the file
+meta/classes/staging.bbclass at line 16: 
+    tar -cf - -C "$src" -ps . | tar -xf - -C "$dest"
 
----
+The issue comes up if user's distro is using  GNU tar version 1.27
+Here is a link to the tar patch that causing the problem:
+http://git.savannah.gnu.org/cgit/tar.git/commit/?id=74ce228f6df956e6b7be9fd4f993bada4b7ea645
 
-diff --git a/documentation/bsp-guide/bsp.xml b/documentation/bsp-guide/bsp.xml
-index e11eb4f..c85e7e0 100644
---- a/documentation/bsp-guide/bsp.xml
-+++ b/documentation/bsp-guide/bsp.xml
-@@ -394,12 +394,13 @@
+If I downgrade the tar package to version 1.26, the build ends with success.
 
-             <para>
-                 To use an include file, you simply include them in the machine configuration file.
--                For example, the Crown Bay BSP <filename>crownbay.conf</filename> has the
-+                For example, the Crown Bay BSP <filename>crownbay.conf</filename> contains the
-                 following statements:
-                 <literallayout class='monospaced'>
-      require conf/machine/include/tune-atom.inc
-      require conf/machine/include/ia32-base.inc
-      require conf/machine/include/meta-intel.inc
-+     require conf/machine/include/meta-intel-emgd.inc
-                 </literallayout>
-             </para>
-             </section>
-@@ -420,7 +421,7 @@
-                 <filename>formfactor_0.0.bbappend</filename> file, which is an
-                 append file used to augment the recipe that starts the build.
-                 Furthermore, there are machine-specific settings used during the
--                build that are defined by the <filename>machconfig</filename>.
-+                build that are defined by the <filename>machconfig</filename> file.
-                 In the Crown Bay example, two <filename>machconfig</filename> files
-                 exist: one that supports the Intel® Embedded Media and Graphics
-                 Driver (Intel® EMGD) and one that does not:
-@@ -460,7 +461,7 @@
-                 (VESA) graphics):
-                 <literallayout class='monospaced'>
-      meta-crownbay/recipes-graphics/xorg-xserver/xserver-xf86-config_0.1.bbappend
--     meta-crownbay/recipes-graphics/xorg-xserver/xserver-xf86-config/crownbay-noemgd/xorg.conf
-+     meta-crownbay/recipes-graphics/xorg-xserver/xserver-xf86-config/crownbay/xorg.conf
-                 </literallayout>
-             </para>
-             </section>
+Here is a list with all the files that should be updated/patched
+./meta/lib/oe/path.py: cmd = 'tar -cf - -C %s -ps . | tar -xf - -C %s' % (src, dst)
+./meta/lib/oe/path.py: cmd = 'cd %s; find . -type d -print | tar -cf - -C %s -ps --files-from - | tar -xf - -C %s' % (src, src, dst)
+./meta/classes/package.bbclass: cmd = 'tar -cf - -C %s -ps . | tar -xf - -C %s' % (dest, dvar)
+./meta/classes/populate_sdk_deb.bbclass: tar -cf - -C ${STAGING_ETCDIR_NATIVE} -ps apt | tar -xf - -C ${target_rootfs}/etc
+./meta/classes/libc-package.bbclass: tar -cf - -C ${LOCALETREESRC}${datadir} -ps i18n | tar -xf - -C $treedir/${datadir}
+./meta/classes/libc-package.bbclass: tar -cf - -C ${LOCALETREESRC}${base_libdir} -ps . | tar -xf - -C $treedir/${base_libdir}
+./meta/classes/libc-package.bbclass: tar -cf - -C ${STAGING_DIR_NATIVE}/${prefix_native}/${base_libdir} -ps libgcc_s.* | tar -xf - -C $treedir/${base_libdir}
+./meta/classes/libc-package.bbclass: tar -cf - -C $treedir/$parent -ps $(basename ${localedir}) | tar -xf - -C ${PKGD}$parent
+./meta/classes/staging.bbclass: tar -cf - -C "$src" -ps . | tar -xf - -C "$dest"
+./bitbake/lib/bb/fetch2/__init__.py: #cmd = 'tar -cf - -C "%d" -ps . | tar -xf - -C "%s/%s/"' % (file, rootdir, destdir)
 
--- 
+Best regards,
+Yannis
 
-========================================================================
-Robert P. J. Day                                 Ottawa, Ontario, CANADA
-                        http://crashcourse.ca
-
-Twitter:                                       http://twitter.com/rpjday
-LinkedIn:                               http://ca.linkedin.com/in/rpjday
-========================================================================
-
---8323329-1381977516-1381486882=:6807--
