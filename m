@@ -1,26 +1,28 @@
-Return-Path: <bevenson@melinkcorp.com>
-Received: from pluto.melinkcorp.com (rrcs-98-100-91-244.central.biz.rr.com
-	[98.100.91.244])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 47607E011C5
-	for <yocto@yoctoproject.org>; Mon, 14 Oct 2013 08:43:58 -0700 (PDT)
-Received: from pluto.melinkcorp.local ([10.0.2.4]) by pluto.melinkcorp.local
-	([10.0.2.4]) with mapi; Mon, 14 Oct 2013 11:43:50 -0400
-From: Bryan Evenson <bevenson@melinkcorp.com>
-To: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
-Date: Mon, 14 Oct 2013 11:43:49 -0400
-Thread-Topic: [yocto] yocto-autobuilder: Nightly build not building nightly
-Thread-Index: Ac7I7bOCDJSXBO3EQBq9BX6XO9uGWwABPPKA
-Message-ID: <91586D499ADFD74FBCFB8425266A5DE40153B8DD467D@pluto.melinkcorp.local>
-References: <91586D499ADFD74FBCFB8425266A5DE40153B8DD45A1@pluto.melinkcorp.local>
-	<CAPhnLPDG4_iit8TcjGKtOqepdqDmoS15NTjM18DT8gB8rBYDmg@mail.gmail.com>
-In-Reply-To: <CAPhnLPDG4_iit8TcjGKtOqepdqDmoS15NTjM18DT8gB8rBYDmg@mail.gmail.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-acceptlanguage: en-US
+Return-Path: <diego.sueiro@gmail.com>
+Received: from mail-ie0-f177.google.com (mail-ie0-f177.google.com
+	[209.85.223.177])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AC785E011C5
+	for <yocto@yoctoproject.org>; Mon, 14 Oct 2013 09:13:27 -0700 (PDT)
+Received: by mail-ie0-f177.google.com with SMTP id e14so9433493iej.36
+	for <yocto@yoctoproject.org>; Mon, 14 Oct 2013 09:13:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:from:date:message-id:subject:to:content-type;
+	bh=jd7jvvrodgiZoRVVbnFTRmK1GvFR5bgx2DTEId3L9Rc=;
+	b=dImM2J8I0g/8vFhwtnrHATUcsxCNgeJcp+Z3oRrnru0+UFviUa0oxgJBXwO2/xSbEJ
+	egQz7lyCzZRLDovxDpgTKVr1qllj9rzGyeb5b6hDNMdONl6MwXPZHWgsyBQz7QyjvxUE
+	aQBTuNF0KSKg4opOHUUn2WanHdIEH1mYIovxtqBPAF0Xop6AftETsgq3TaMCG6UsLDec
+	TPdsmzFYETjPo4SVFODOny7cfdznXWU7JX+2e3guMmEKWMkvN3UgMo2b+miT8p8NTMWu
+	7wj3IFdIjVdlapBcrmvNw8DvtTDLg0JtQe8wK670nrwPyiZiCN5g+R7JlDR5cUWm4E5q
+	rXIA==
+X-Received: by 10.50.119.4 with SMTP id kq4mr13720457igb.40.1381767206935;
+	Mon, 14 Oct 2013 09:13:26 -0700 (PDT)
 MIME-Version: 1.0
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: yocto-autobuilder: Nightly build not building nightly
+Received: by 10.64.26.233 with HTTP; Mon, 14 Oct 2013 09:13:06 -0700 (PDT)
+From: Diego Sueiro <diego.sueiro@gmail.com>
+Date: Mon, 14 Oct 2013 13:13:06 -0300
+Message-ID: <CAMCfZKG+A7QD+0Fzj+vQqFP5F8r22o1cB6j0F8WWJUkrKGu-HQ@mail.gmail.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: populate_sdk for custom image failed
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,132 +34,78 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 14 Oct 2013 15:43:59 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Mon, 14 Oct 2013 16:13:28 -0000
+Content-Type: multipart/alternative; boundary=089e013c6e4a884d7d04e8b5bf24
+
+--089e013c6e4a884d7d04e8b5bf24
+Content-Type: text/plain; charset=ISO-8859-1
 Content-Transfer-Encoding: quoted-printable
 
-Elizabeth,
+Folks,
 
-> -----Original Message-----
-> From: Flanagan, Elizabeth [mailto:elizabeth.flanagan@intel.com]
-> Sent: Monday, October 14, 2013 10:57 AM
-> To: Bryan Evenson
-> Cc: yocto@yoctoproject.org
-> Subject: Re: [yocto] yocto-autobuilder: Nightly build not building
-> nightly
->=20
-> Bryan,
->=20
-> This is probably because you only have a ForceScheduler implemented
-> which is always on by default. Timed schedulers have to be added. Can
-> you post the rest of your nightly-foo?
->=20
-> You'll need a top level section within that conf that contains:
->=20
-> 'name_of_scheduler':
->                  {'type': 'Nightly'}
->=20
-> See: http://git.yoctoproject.org/cgit.cgi/yocto-
-> autobuilder/tree/README-NEW-AUTOBUILDER
-> for more info on scheduler props
+I have a custom image in which installs mplayer with IMAGE_INSTALL +=3D
+"mplayer".
+When I try to generate it's sdk (bitbake mycustom-image -c populate_sdk)
+I'm getting the following error:
 
-I added the following to my buildset configuration:
+| Collected errors:
+|  * satisfy_dependencies_for: Cannot satisfy the following dependencies
+for mplayer2-dev:
+|  * xpext (=3D 1.0-5-r0.0) *
+|  * opkg_install_cmd: Cannot install package mplayer2-dev.
+| DEBUG: Python function do_populate_sdk finished
 
-scheduler: [{'nightly-scheduler' :
-                {'type':'Nightly',
-                 'hour':'2',
-                 'minute':'0',}}]
+I've already did a cleansstate on both mplayer and xpext, but the issue
+remains.
+I'm using dylan branch.
 
-And I restarted the autobuilder ("./yocto-stop-autobuilder both" and
-  "./yocto-start-autobuilder both" from the command line).  Now when
-I go to the waterfall display for my autobuilder it shows the current
-for my buildset as "waiting next in ~14 hrs 27 min at 2:00".  I'll
-see if the build triggers okay tomorrow, but it looks hopeful.  If
-I get impatient I may change the build time to later today.
+Any hints?
 
-I'll also note that the hour and minute parameter were required for
-the scheduler to work.  If I didn't set these values, the autobuilder
-failed to start.  I'll post a patch to update the documentation to note
-that these values are required.
+Regards,
 
-And for completeness, here is my nightly build config as it stands
-right now:
+--
+*dS
+Diego Sueiro
 
-[nightly-foo]
-builders: 'builder1'
-repos: [{'poky':=20
-            {'repourl':'git://git.yoctoproject.org/poky',=20
-	         'layerversion':{'core':'meta', 'yoctobsp':'meta-yocto-bsp'},=20
-             'branch':'dylan'}},=20
-        {'meta-atmel':=20
-            {'repourl':'git://github.com/evensonbryan/meta-atmel',=20
-             'branch':'master'}},
-        {'meta-openembedded':=20
-            {'repourl':'git://git.openembedded.org/meta-openembedded',=20
-             'branch':'dylan'}}]=20
-steps: [{'SetDest':{}},=20
-        {'CheckOutLayers': {}},=20
-        {'RunPreamble': {}},=20
-        {'GetDistroVersion' : {'distro': 'poky'}},
-        {'CreateAutoConf': {'machine': 'at91sam9x5ek', 'SDKMACHINE' : 'i686=
-', 'distro': 'poky', 'buildhistory': True}},
-        {'CreateBBLayersConf': {'buildprovider' : 'yocto', 'layerdirs':
-            ['meta-atmel', 'meta-openembedded/meta-oe', 'meta-openembedded/=
-meta-networking']}},
-        {'BuildImages': {'images': 'core-image-minimal'}},
-        {'SyncPersistDB' : {'commit' : True, 'distro':'poky'}},
-        {'PublishLayerTarballs':{}},
-        {'PublishArtifacts': {'artifacts': ['at91sam9x5ek', 'ipk']}}]
-scheduler: [{'nightly-scheduler' :
-                {'type':'Nightly',
-                 'hour':'2',
-                 'minute':'0',}}]
+Administrador do Embarcados
+www.embarcados.com.br
 
-Thanks,
-Bryan Evenson
+Engenheiro de Controle e Automa=E7=E3o
+UNIVERSIDADE FEDERAL DE ITAJUB=C0
 
->=20
-> -b
->=20
-> On Mon, Oct 14, 2013 at 6:46 AM, Bryan Evenson
-> <bevenson@melinkcorp.com> wrote:
-> > All,
-> >
-> > I have a local yocto-autobuilder setup (using yocto-autobuilder
-> master) which I can do a build of my own setup.  I created my own
-> nightly-foo.conf file and verified that a forced build of this builds
-> without errors.  However, the nightly builds are not triggering and I'm
-> wondering what I missed.
-> >
-> > I modified yoctoAB.conf to only include my buildset.  So my
-> yoctoAB.conf now looks like this:
-> >
-> > [BuildSets]
-> > Order: ['nightly-foo']
-> >
-> > I set this up near the beginning of October and there has not been a
-> nightly build triggered since my last forced build.  At first I thought
-> it was because the layers I am using have not been updated, as I'm
-> using the Dylan branch for everything.  However, poky/dylan just
-> received some updates a few days ago and my autobuilder has not yet
-> triggered a new nightly build.
-> >
-> > Is there something I need to add to my nightly-foo.conf to get the
-> nightly build to trigger?  Or is there a different configuration file
-> that I need to modify?
-> >
-> > Thanks,
-> > Bryan Evenson
-> > _______________________________________________
-> > yocto mailing list
-> > yocto@yoctoproject.org
-> > https://lists.yoctoproject.org/listinfo/yocto
->=20
->=20
->=20
-> --
-> Elizabeth Flanagan
-> Yocto Project
-> Build and Release
+/*long live rock 'n roll*/
 
+--089e013c6e4a884d7d04e8b5bf24
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div style>Folks,</div><div style><br></div><div style>I h=
+ave a custom image in which installs mplayer with=A0IMAGE_INSTALL +=3D &quo=
+t;mplayer&quot;.</div><div style>When I try to generate it&#39;s sdk (bitba=
+ke mycustom-image -c populate_sdk) I&#39;m getting the following error:</di=
+v>
+
+<div style><blockquote style=3D"margin:0px 0px 0px 40px;border:none;padding=
+:0px"><div style><div>| Collected errors:</div><div>| =A0* satisfy_dependen=
+cies_for: Cannot satisfy the following dependencies for mplayer2-dev:</div>
+
+<div>| =A0* <span class=3D"" style=3D"white-space:pre">	</span>xpext (=3D 1=
+.0-5-r0.0) *</div><div>| =A0* opkg_install_cmd: Cannot install package mpla=
+yer2-dev.</div><div>| DEBUG: Python function do_populate_sdk finished</div>=
+<div>
+<br>
+</div></div></blockquote></div><div style>I&#39;ve already did a cleansstat=
+e on both mplayer and xpext, but the issue remains.</div><div>I&#39;m using=
+ dylan branch.<br></div><div><br></div><div style>Any hints?</div><br clear=
+=3D"all">
+
+<div><div dir=3D"ltr"><div>Regards,</div><div><br></div>--<br>*dS<br>Diego =
+Sueiro<br><br>Administrador do Embarcados<br><a href=3D"http://www.embarcad=
+os.com.br" target=3D"_blank">www.embarcados.com.br</a><br><br>Engenheiro de=
+ Controle e Automa=E7=E3o<br>
+
+UNIVERSIDADE FEDERAL DE ITAJUB=C0<br><br>/*long live rock &#39;n roll*/</di=
+v></div>
+</div>
+
+--089e013c6e4a884d7d04e8b5bf24--
