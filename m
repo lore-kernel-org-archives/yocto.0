@@ -1,36 +1,27 @@
-Return-Path: <carlo.caione@gmail.com>
-Received: from mail-vc0-f176.google.com (mail-vc0-f176.google.com
-	[209.85.220.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 05350E016AB
-	for <yocto@yoctoproject.org>; Mon, 14 Oct 2013 00:20:33 -0700 (PDT)
-Received: by mail-vc0-f176.google.com with SMTP id ik5so2282756vcb.21
-	for <yocto@yoctoproject.org>; Mon, 14 Oct 2013 00:20:32 -0700 (PDT)
+Return-Path: <zafrullahmehdi@gmail.com>
+Received: from mail-wg0-f43.google.com (mail-wg0-f43.google.com [74.125.82.43])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 49812E016AB
+	for <yocto@yoctoproject.org>; Mon, 14 Oct 2013 00:58:29 -0700 (PDT)
+Received: by mail-wg0-f43.google.com with SMTP id b13so2719667wgh.10
+	for <yocto@yoctoproject.org>; Mon, 14 Oct 2013 00:58:28 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type;
-	bh=HYYXIyTnldW7BxjGkeVXwirWstWHdnkDyqVN5wXQbbg=;
-	b=X/Mk05xCgCAH8SYnHdvTX/5sq7MPyQhcXJARd2gVQ77Z7ylK16dH0JVvQjdjRUvb/p
-	Pqbu+UCEFKaxX7pxWJphlvdB2+3Pd20oYW+ALIZ9U+zA/C2ZVP755EKGHem2uM55diqY
-	mpYmzCiGU88DDkDsof4Td9pr9vm9c+qK5pE6rwYHVE1nPcpDYQrvNpXcxMCRbfXQNWqL
-	HDZu7KKNNyS089MZextxjnt4JHE7A4ePD8tORjOOusIm4k3CWFbSXHOgr1FvO7ABqfsL
-	/jeK6il5UDiPmH5G5Ul8mRRazraSG/KgBp2pE+EKDi6QxCPOUotRD6uVqfUXlpqF2iBL
-	Ka2A==
+	h=mime-version:from:date:message-id:subject:to:content-type;
+	bh=CYamvL/G0dMQVqgPVN1X1sm+JjicZ98t7hfWw6HsIi0=;
+	b=tIxRtl/aJjt5CtYGLqQlY+BCdO2cEeNaj1bDB7gmhq0QnmfKSX+7oseG8HxbfsbaOt
+	EwOw4lD9LqOSxYhvi18iLjtKD4bn1taqMBhjoh3LeixTC1sfthIMWJ8/tu2WKlyhBkdG
+	LMdjHU4agtZPnEzF9qAXAn2wNAvF9AbwDqGtvssJE2CYXlTD9ea5bFpZz2HbYc2XCg2Q
+	uaOYdD0tlTofEBVhgcnilKHYPi51o9FAHFUbVOZjPklbq0pLPxlVrt273We9KHK1nK8k
+	nUVh2dIHv4uAY6Q0TygSsCyyjH9MnAey9iY3Sn/IpiUc+ZZPvlfZ2x0J0lVT9wOAnn3s
+	0DuA==
+X-Received: by 10.195.13.164 with SMTP id ez4mr28418806wjd.11.1381737507819;
+	Mon, 14 Oct 2013 00:58:27 -0700 (PDT)
 MIME-Version: 1.0
-X-Received: by 10.58.46.171 with SMTP id w11mr5679712vem.5.1381735232784; Mon,
-	14 Oct 2013 00:20:32 -0700 (PDT)
-Received: by 10.220.58.198 with HTTP; Mon, 14 Oct 2013 00:20:32 -0700 (PDT)
-In-Reply-To: <525487FF.6070608@windriver.com>
-References: <CAOQ7t2bMdc5Wqeb0_b7M+wBCgVv6LtrEHpLfN5YS5Kgk-y=_mw@mail.gmail.com>
-	<1381270579.26156.36.camel@dvhart-mobl4.amr.corp.intel.com>
-	<525487FF.6070608@windriver.com>
-Date: Mon, 14 Oct 2013 09:20:32 +0200
-Message-ID: <CAOQ7t2bCSwAWSNcgXmp5bYnz=EDp-g-aKj8MTERNkFKypCtoaw@mail.gmail.com>
-From: Carlo Caione <carlo.caione@gmail.com>
-To: Bruce Ashfield <bruce.ashfield@windriver.com>
-Cc: Yocto Project Discussion <yocto@yoctoproject.org>,
-	Darren Hart <dvhart@linux.intel.com>,
-	Paul Eggleton <paul.eggleton@intel.com>
-Subject: Re: do_kernel_configme error with poky-tiny distro
+Received: by 10.194.250.69 with HTTP; Mon, 14 Oct 2013 00:58:07 -0700 (PDT)
+From: Zafrullah Syed <zafrullahmehdi@gmail.com>
+Date: Mon, 14 Oct 2013 09:58:07 +0200
+Message-ID: <CAAGt+t189z4W3HPOuYCnPU6Fim7rQ1ZjS1ZWYG2vLj_t7DW+bQ@mail.gmail.com>
+To: yocto <yocto@yoctoproject.org>
+Subject: Libeigen breaks build with packages missing error
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,37 +33,212 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 14 Oct 2013 07:20:37 -0000
+X-List-Received-Date: Mon, 14 Oct 2013 07:58:30 -0000
+Content-Type: multipart/alternative; boundary=047d7bb04f685396fe04e8aed521
+
+--047d7bb04f685396fe04e8aed521
 Content-Type: text/plain; charset=ISO-8859-1
 
-On Wed, Oct 9, 2013 at 12:32 AM, Bruce Ashfield
-<bruce.ashfield@windriver.com> wrote:
->
->
-> That's pretty much the only way to reproduce things, since i also built
-> all the tiny boards against 3.10 while introducing the support .. so I
-> know it works.
->
-> I can say that:
->
->
->
-> `/home/carlo/work/RSR/yocto/build/tmp/work/qemux86-poky-linux/linux-yocto-tiny/3.8.11+gitAUTOINC+8482dcdf68f9f7501118f4c01fdcb8f851882997_dd089cb5ba37ea14e8f90a884bf2a5be64ed817d-r4.1/linux-qemux86-tiny-build/.tmp.config*':
->  No such file or directory
->
-> Typically means that there was an error in a config, or the wrong kern-tools
-> were used.
->
-> I've got a set of changes already queued for 1.6 that would improve the
-> error message here, but if we can reproduce this problem, we can fix it.
+Hi,
 
-Sorry for the late reply. The problem was in my local repo (I was
-experimenting with scripts and such).
+I am unable to add libeigen into my image(gumstix-console-image). do_rootfs
+breaks and some packages were missing.
 
-Sorry again for wasting your time.
+ERROR: Function failed: do_rootfs (see
+/home/siguser/yocto/build/tmp/work/overo-poky-linux-gnueabi/gumstix-console-image-1.0-r0/temp/log.do_rootfs.27927
+for further information)
 
-Best,
+Log data shows this:
 
---
-Carlo Caione
+Log data follows:
+| DEBUG: Executing shell function do_rootfs
+| Generating solve db for /home/siguser/yocto/build/tmp/deploy/rpm/overo...
+| Generating solve db for
+/home/siguser/yocto/build/tmp/deploy/rpm/armv7a_vfp_neon...
+| Generating solve db for /home/siguser/yocto/build/tmp/deploy/rpm/all...
+| Generating solve db for /home/siguser/yocto/build/tmp/deploy/rpm/all...
+| Processing locale-base-en-us...
+| Processing locale-base-en-gb...
+| Processing openssh-ssh...
+| Processing devmem2...
+| Processing gstreamer...
+| Processing tar...
+| Processing linux-firmware-wl12xx...
+| Processing iputils...
+| Processing dosfstools...
+| Processing openssh-sshd-systemd...
+| Processing dbus-1...
+| Processing iw...
+| Processing libeigen...
+| Processing sed...
+| Processing htop...
+| Processing base-files...
+| Processing alsa-utils-alsactl...
+| Processing opencv-apps...
+| Processing rpm...
+| Processing net-tools...
+| Processing cpufrequtils...
+| Processing bash...
+| Processing linux-firmware-rtl8192ce...
+| Processing systemd...
+| Processing util-linux...
+| Processing nano...
+| Processing opencv-samples...
+| Processing alsa-utils-amixer...
+| Processing bzip2...
+| Processing opencv...
+| Processing netbase...
+| Processing which...
+| Processing sudo...
+| Processing systemd-analyze...
+| Processing memtester...
+| Processing linux-firmware-rtl8192su...
+| Processing alsa-utils-alsamixer...
+| Processing evtest...
+| Processing wireless-tools...
+| Processing udisks-systemd...
+| Processing rfkill...
+| Processing update-alternatives-cworth...
+| Processing zypper...
+| Processing systemd-compat-units...
+| Processing openssh-keygen...
+| Processing linux-firmware-rtl8192cu...
+| Processing polkit...
+| Processing avahi-utils...
+| Processing avahi-systemd...
+| Processing wget...
+| Processing shadow...
+| Processing vim...
+| Processing openssh-scp...
+| Processing wpa-supplicant...
+| Processing alsa-utils-aplay...
+| Processing tinylogin...
+| Processing grep...
+| Processing upower...
+| Processing alsa-utils-speakertest...
+| Processing rsyslog-systemd...
+| Processing networkmanager-tests...
+| Processing e2fsprogs...
+| Processing base-passwd...
+| Processing bluez4...
+| Processing coreutils...
+| Processing linux-firmware-sd8686...
+| Processing man...
+| Processing ntp-systemd...
+| Processing gzip...
+| Processing networkmanager...
+| Processing man-pages...
+| Processing udisks...
+| Processing u-boot-mkimage...
+| Processing kernel-modules...
+| Processing zip...
+| Processing findutils...
+| Unable to resolve package libeigen
+| ERROR: some packages were missing
+| ERROR: Function failed: do_rootfs (see
+/home/siguser/yocto/build/tmp/work/overo-poky-linux-gnueabi/gumstix-console-image-1.0-r0/temp/log.do_rootfs.27927
+for further information)
+ERROR: Task 7
+(/home/siguser/yocto/poky/meta-gumstix-extras/recipes-images/gumstix/
+gumstix-console-image.bb, do_rootfs) failed with exit code '1'
 
+
+Any idea where I am doing wrong?
+-- 
+Regards,
+Zafrullah Syed
+
+--047d7bb04f685396fe04e8aed521
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Hi,<div><br></div><div>I am unable to add libeigen into my=
+ image(gumstix-console-image). do_rootfs breaks and some packages were miss=
+ing.</div><div><br></div><div><div>ERROR: Function failed: do_rootfs (see /=
+home/siguser/yocto/build/tmp/work/overo-poky-linux-gnueabi/gumstix-console-=
+image-1.0-r0/temp/log.do_rootfs.27927 for further information)</div>
+
+<div><br></div><div>Log data shows this:</div><div><br></div><div><div>Log =
+data follows:</div><div>| DEBUG: Executing shell function do_rootfs</div><d=
+iv>| Generating solve db for /home/siguser/yocto/build/tmp/deploy/rpm/overo=
+...</div>
+
+<div>| Generating solve db for /home/siguser/yocto/build/tmp/deploy/rpm/arm=
+v7a_vfp_neon...</div><div>| Generating solve db for /home/siguser/yocto/bui=
+ld/tmp/deploy/rpm/all...</div><div>| Generating solve db for /home/siguser/=
+yocto/build/tmp/deploy/rpm/all...</div>
+
+<div>| Processing locale-base-en-us...</div><div>| Processing locale-base-e=
+n-gb...</div><div>| Processing openssh-ssh...</div><div>| Processing devmem=
+2...</div><div>| Processing gstreamer...</div><div>| Processing tar...</div=
+>
+
+<div>| Processing linux-firmware-wl12xx...</div><div>| Processing iputils..=
+.</div><div>| Processing dosfstools...</div><div>| Processing openssh-sshd-=
+systemd...</div><div>| Processing dbus-1...</div><div>| Processing iw...</d=
+iv>
+
+<div>| Processing libeigen...</div><div>| Processing sed...</div><div>| Pro=
+cessing htop...</div><div>| Processing base-files...</div><div>| Processing=
+ alsa-utils-alsactl...</div><div>| Processing opencv-apps...</div><div>
+
+| Processing rpm...</div><div>| Processing net-tools...</div><div>| Process=
+ing cpufrequtils...</div><div>| Processing bash...</div><div>| Processing l=
+inux-firmware-rtl8192ce...</div><div>| Processing systemd...</div><div>
+
+| Processing util-linux...</div><div>| Processing nano...</div><div>| Proce=
+ssing opencv-samples...</div><div>| Processing alsa-utils-amixer...</div><d=
+iv>| Processing bzip2...</div><div>| Processing opencv...</div><div>| Proce=
+ssing netbase...</div>
+
+<div>| Processing which...</div><div>| Processing sudo...</div><div>| Proce=
+ssing systemd-analyze...</div><div>| Processing memtester...</div><div>| Pr=
+ocessing linux-firmware-rtl8192su...</div><div>| Processing alsa-utils-alsa=
+mixer...</div>
+
+<div>| Processing evtest...</div><div>| Processing wireless-tools...</div><=
+div>| Processing udisks-systemd...</div><div>| Processing rfkill...</div><d=
+iv>| Processing update-alternatives-cworth...</div><div>| Processing zypper=
+...</div>
+
+<div>| Processing systemd-compat-units...</div><div>| Processing openssh-ke=
+ygen...</div><div>| Processing linux-firmware-rtl8192cu...</div><div>| Proc=
+essing polkit...</div><div>| Processing avahi-utils...</div><div>| Processi=
+ng avahi-systemd...</div>
+
+<div>| Processing wget...</div><div>| Processing shadow...</div><div>| Proc=
+essing vim...</div><div>| Processing openssh-scp...</div><div>| Processing =
+wpa-supplicant...</div><div>| Processing alsa-utils-aplay...</div><div>
+
+| Processing tinylogin...</div><div>| Processing grep...</div><div>| Proces=
+sing upower...</div><div>| Processing alsa-utils-speakertest...</div><div>|=
+ Processing rsyslog-systemd...</div><div>| Processing networkmanager-tests.=
+..</div>
+
+<div>| Processing e2fsprogs...</div><div>| Processing base-passwd...</div><=
+div>| Processing bluez4...</div><div>| Processing coreutils...</div><div>| =
+Processing linux-firmware-sd8686...</div><div>| Processing man...</div>
+
+<div>| Processing ntp-systemd...</div><div>| Processing gzip...</div><div>|=
+ Processing networkmanager...</div><div>| Processing man-pages...</div><div=
+>| Processing udisks...</div><div>| Processing u-boot-mkimage...</div>
+<div>
+| Processing kernel-modules...</div><div>| Processing zip...</div><div>| Pr=
+ocessing findutils...</div><div>| Unable to resolve package libeigen</div><=
+div>| ERROR: some packages were missing</div><div>| ERROR: Function failed:=
+ do_rootfs (see /home/siguser/yocto/build/tmp/work/overo-poky-linux-gnueabi=
+/gumstix-console-image-1.0-r0/temp/log.do_rootfs.27927 for further informat=
+ion)</div>
+
+<div>ERROR: Task 7 (/home/siguser/yocto/poky/meta-gumstix-extras/recipes-im=
+ages/gumstix/<a href=3D"http://gumstix-console-image.bb">gumstix-console-im=
+age.bb</a>, do_rootfs) failed with exit code &#39;1&#39;</div></div><div>
+
+<br></div><div><br></div><div>Any idea where I am doing wrong?</div><div>--=
+=A0<br></div><span style=3D"font-family:arial,sans-serif;font-size:13px;bor=
+der-collapse:collapse;color:rgb(136,136,136)">Regards,<br>
+Zafrullah Syed</span><div><font color=3D"#888888" face=3D"arial, sans-serif=
+"><span style=3D"border-collapse:collapse"><br></span></font></div>
+</div></div>
+
+--047d7bb04f685396fe04e8aed521--
