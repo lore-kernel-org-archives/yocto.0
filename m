@@ -1,27 +1,30 @@
-Return-Path: <zafrullahmehdi@gmail.com>
-Received: from mail-wg0-f43.google.com (mail-wg0-f43.google.com [74.125.82.43])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 49812E016AB
-	for <yocto@yoctoproject.org>; Mon, 14 Oct 2013 00:58:29 -0700 (PDT)
-Received: by mail-wg0-f43.google.com with SMTP id b13so2719667wgh.10
-	for <yocto@yoctoproject.org>; Mon, 14 Oct 2013 00:58:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:from:date:message-id:subject:to:content-type;
-	bh=CYamvL/G0dMQVqgPVN1X1sm+JjicZ98t7hfWw6HsIi0=;
-	b=tIxRtl/aJjt5CtYGLqQlY+BCdO2cEeNaj1bDB7gmhq0QnmfKSX+7oseG8HxbfsbaOt
-	EwOw4lD9LqOSxYhvi18iLjtKD4bn1taqMBhjoh3LeixTC1sfthIMWJ8/tu2WKlyhBkdG
-	LMdjHU4agtZPnEzF9qAXAn2wNAvF9AbwDqGtvssJE2CYXlTD9ea5bFpZz2HbYc2XCg2Q
-	uaOYdD0tlTofEBVhgcnilKHYPi51o9FAHFUbVOZjPklbq0pLPxlVrt273We9KHK1nK8k
-	nUVh2dIHv4uAY6Q0TygSsCyyjH9MnAey9iY3Sn/IpiUc+ZZPvlfZ2x0J0lVT9wOAnn3s
-	0DuA==
-X-Received: by 10.195.13.164 with SMTP id ez4mr28418806wjd.11.1381737507819;
-	Mon, 14 Oct 2013 00:58:27 -0700 (PDT)
+Return-Path: <rpjday@crashcourse.ca>
+Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
+	[64.235.106.9])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BB850E016BA
+	for <yocto@yoctoproject.org>; Mon, 14 Oct 2013 03:38:38 -0700 (PDT)
+Received: from [173.34.6.101] (port=51798 helo=crashcourse.ca)
+	by astoria.ccjclearline.com with esmtpsa (TLSv1:DHE-RSA-AES256-SHA:256)
+	(Exim 4.80) (envelope-from <rpjday@crashcourse.ca>)
+	id 1VVfXp-0004Bl-DZ
+	for yocto@yoctoproject.org; Mon, 14 Oct 2013 06:38:37 -0400
+Date: Mon, 14 Oct 2013 06:38:26 -0400 (EDT)
+From: "Robert P. J. Day" <rpjday@crashcourse.ca>
+X-X-Sender: rpjday@oneiric
+To: Yocto discussion list <yocto@yoctoproject.org>
+Message-ID: <alpine.DEB.2.02.1310140635060.11179@oneiric>
+User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
 MIME-Version: 1.0
-Received: by 10.194.250.69 with HTTP; Mon, 14 Oct 2013 00:58:07 -0700 (PDT)
-From: Zafrullah Syed <zafrullahmehdi@gmail.com>
-Date: Mon, 14 Oct 2013 09:58:07 +0200
-Message-ID: <CAAGt+t189z4W3HPOuYCnPU6Fim7rQ1ZjS1ZWYG2vLj_t7DW+bQ@mail.gmail.com>
-To: yocto <yocto@yoctoproject.org>
-Subject: Libeigen breaks build with packages missing error
+X-AntiAbuse: This header was added to track abuse,
+	please include it with any abuse report
+X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - crashcourse.ca
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+Subject: is *anyone* using BBVERSIONS?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -33,212 +36,36 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 14 Oct 2013 07:58:30 -0000
-Content-Type: multipart/alternative; boundary=047d7bb04f685396fe04e8aed521
-
---047d7bb04f685396fe04e8aed521
-Content-Type: text/plain; charset=ISO-8859-1
-
-Hi,
-
-I am unable to add libeigen into my image(gumstix-console-image). do_rootfs
-breaks and some packages were missing.
-
-ERROR: Function failed: do_rootfs (see
-/home/siguser/yocto/build/tmp/work/overo-poky-linux-gnueabi/gumstix-console-image-1.0-r0/temp/log.do_rootfs.27927
-for further information)
-
-Log data shows this:
-
-Log data follows:
-| DEBUG: Executing shell function do_rootfs
-| Generating solve db for /home/siguser/yocto/build/tmp/deploy/rpm/overo...
-| Generating solve db for
-/home/siguser/yocto/build/tmp/deploy/rpm/armv7a_vfp_neon...
-| Generating solve db for /home/siguser/yocto/build/tmp/deploy/rpm/all...
-| Generating solve db for /home/siguser/yocto/build/tmp/deploy/rpm/all...
-| Processing locale-base-en-us...
-| Processing locale-base-en-gb...
-| Processing openssh-ssh...
-| Processing devmem2...
-| Processing gstreamer...
-| Processing tar...
-| Processing linux-firmware-wl12xx...
-| Processing iputils...
-| Processing dosfstools...
-| Processing openssh-sshd-systemd...
-| Processing dbus-1...
-| Processing iw...
-| Processing libeigen...
-| Processing sed...
-| Processing htop...
-| Processing base-files...
-| Processing alsa-utils-alsactl...
-| Processing opencv-apps...
-| Processing rpm...
-| Processing net-tools...
-| Processing cpufrequtils...
-| Processing bash...
-| Processing linux-firmware-rtl8192ce...
-| Processing systemd...
-| Processing util-linux...
-| Processing nano...
-| Processing opencv-samples...
-| Processing alsa-utils-amixer...
-| Processing bzip2...
-| Processing opencv...
-| Processing netbase...
-| Processing which...
-| Processing sudo...
-| Processing systemd-analyze...
-| Processing memtester...
-| Processing linux-firmware-rtl8192su...
-| Processing alsa-utils-alsamixer...
-| Processing evtest...
-| Processing wireless-tools...
-| Processing udisks-systemd...
-| Processing rfkill...
-| Processing update-alternatives-cworth...
-| Processing zypper...
-| Processing systemd-compat-units...
-| Processing openssh-keygen...
-| Processing linux-firmware-rtl8192cu...
-| Processing polkit...
-| Processing avahi-utils...
-| Processing avahi-systemd...
-| Processing wget...
-| Processing shadow...
-| Processing vim...
-| Processing openssh-scp...
-| Processing wpa-supplicant...
-| Processing alsa-utils-aplay...
-| Processing tinylogin...
-| Processing grep...
-| Processing upower...
-| Processing alsa-utils-speakertest...
-| Processing rsyslog-systemd...
-| Processing networkmanager-tests...
-| Processing e2fsprogs...
-| Processing base-passwd...
-| Processing bluez4...
-| Processing coreutils...
-| Processing linux-firmware-sd8686...
-| Processing man...
-| Processing ntp-systemd...
-| Processing gzip...
-| Processing networkmanager...
-| Processing man-pages...
-| Processing udisks...
-| Processing u-boot-mkimage...
-| Processing kernel-modules...
-| Processing zip...
-| Processing findutils...
-| Unable to resolve package libeigen
-| ERROR: some packages were missing
-| ERROR: Function failed: do_rootfs (see
-/home/siguser/yocto/build/tmp/work/overo-poky-linux-gnueabi/gumstix-console-image-1.0-r0/temp/log.do_rootfs.27927
-for further information)
-ERROR: Task 7
-(/home/siguser/yocto/poky/meta-gumstix-extras/recipes-images/gumstix/
-gumstix-console-image.bb, do_rootfs) failed with exit code '1'
+X-List-Received-Date: Mon, 14 Oct 2013 10:38:39 -0000
+Content-Type: TEXT/PLAIN; charset=US-ASCII
 
 
-Any idea where I am doing wrong?
+  really more of a bitbake question but ... i'm also zipping through
+the inline user manual that comes with bitbake and in section 2.1.20,
+there is a discussion of Variants that includes:
+
+BBVERSIONS = "1.0 2.0 git"
+SRC_URI_git = "git://someurl/somepath.git"
+
+BBVERSIONS = "1.0.[0-6]:1.0.0+ \
+              1.0.[7-9]:1.0.7+"
+SRC_URI_append_1.0.7+ = "file://some_patch_which_the_new_versions_need.patch;patch=1"
+
+  i have over a dozen layers checked out, and i don't see the use of
+BBVERSIONS in *any* of them -- the only thing a recursive search turns
+up is BBVERSIONS being mentioned in the docs.
+
+  is this feature active? deprecated? just curious.
+
+rday
+
 -- 
-Regards,
-Zafrullah Syed
 
---047d7bb04f685396fe04e8aed521
-Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
+========================================================================
+Robert P. J. Day                                 Ottawa, Ontario, CANADA
+                        http://crashcourse.ca
 
-<div dir=3D"ltr">Hi,<div><br></div><div>I am unable to add libeigen into my=
- image(gumstix-console-image). do_rootfs breaks and some packages were miss=
-ing.</div><div><br></div><div><div>ERROR: Function failed: do_rootfs (see /=
-home/siguser/yocto/build/tmp/work/overo-poky-linux-gnueabi/gumstix-console-=
-image-1.0-r0/temp/log.do_rootfs.27927 for further information)</div>
+Twitter:                                       http://twitter.com/rpjday
+LinkedIn:                               http://ca.linkedin.com/in/rpjday
+========================================================================
 
-<div><br></div><div>Log data shows this:</div><div><br></div><div><div>Log =
-data follows:</div><div>| DEBUG: Executing shell function do_rootfs</div><d=
-iv>| Generating solve db for /home/siguser/yocto/build/tmp/deploy/rpm/overo=
-...</div>
-
-<div>| Generating solve db for /home/siguser/yocto/build/tmp/deploy/rpm/arm=
-v7a_vfp_neon...</div><div>| Generating solve db for /home/siguser/yocto/bui=
-ld/tmp/deploy/rpm/all...</div><div>| Generating solve db for /home/siguser/=
-yocto/build/tmp/deploy/rpm/all...</div>
-
-<div>| Processing locale-base-en-us...</div><div>| Processing locale-base-e=
-n-gb...</div><div>| Processing openssh-ssh...</div><div>| Processing devmem=
-2...</div><div>| Processing gstreamer...</div><div>| Processing tar...</div=
->
-
-<div>| Processing linux-firmware-wl12xx...</div><div>| Processing iputils..=
-.</div><div>| Processing dosfstools...</div><div>| Processing openssh-sshd-=
-systemd...</div><div>| Processing dbus-1...</div><div>| Processing iw...</d=
-iv>
-
-<div>| Processing libeigen...</div><div>| Processing sed...</div><div>| Pro=
-cessing htop...</div><div>| Processing base-files...</div><div>| Processing=
- alsa-utils-alsactl...</div><div>| Processing opencv-apps...</div><div>
-
-| Processing rpm...</div><div>| Processing net-tools...</div><div>| Process=
-ing cpufrequtils...</div><div>| Processing bash...</div><div>| Processing l=
-inux-firmware-rtl8192ce...</div><div>| Processing systemd...</div><div>
-
-| Processing util-linux...</div><div>| Processing nano...</div><div>| Proce=
-ssing opencv-samples...</div><div>| Processing alsa-utils-amixer...</div><d=
-iv>| Processing bzip2...</div><div>| Processing opencv...</div><div>| Proce=
-ssing netbase...</div>
-
-<div>| Processing which...</div><div>| Processing sudo...</div><div>| Proce=
-ssing systemd-analyze...</div><div>| Processing memtester...</div><div>| Pr=
-ocessing linux-firmware-rtl8192su...</div><div>| Processing alsa-utils-alsa=
-mixer...</div>
-
-<div>| Processing evtest...</div><div>| Processing wireless-tools...</div><=
-div>| Processing udisks-systemd...</div><div>| Processing rfkill...</div><d=
-iv>| Processing update-alternatives-cworth...</div><div>| Processing zypper=
-...</div>
-
-<div>| Processing systemd-compat-units...</div><div>| Processing openssh-ke=
-ygen...</div><div>| Processing linux-firmware-rtl8192cu...</div><div>| Proc=
-essing polkit...</div><div>| Processing avahi-utils...</div><div>| Processi=
-ng avahi-systemd...</div>
-
-<div>| Processing wget...</div><div>| Processing shadow...</div><div>| Proc=
-essing vim...</div><div>| Processing openssh-scp...</div><div>| Processing =
-wpa-supplicant...</div><div>| Processing alsa-utils-aplay...</div><div>
-
-| Processing tinylogin...</div><div>| Processing grep...</div><div>| Proces=
-sing upower...</div><div>| Processing alsa-utils-speakertest...</div><div>|=
- Processing rsyslog-systemd...</div><div>| Processing networkmanager-tests.=
-..</div>
-
-<div>| Processing e2fsprogs...</div><div>| Processing base-passwd...</div><=
-div>| Processing bluez4...</div><div>| Processing coreutils...</div><div>| =
-Processing linux-firmware-sd8686...</div><div>| Processing man...</div>
-
-<div>| Processing ntp-systemd...</div><div>| Processing gzip...</div><div>|=
- Processing networkmanager...</div><div>| Processing man-pages...</div><div=
->| Processing udisks...</div><div>| Processing u-boot-mkimage...</div>
-<div>
-| Processing kernel-modules...</div><div>| Processing zip...</div><div>| Pr=
-ocessing findutils...</div><div>| Unable to resolve package libeigen</div><=
-div>| ERROR: some packages were missing</div><div>| ERROR: Function failed:=
- do_rootfs (see /home/siguser/yocto/build/tmp/work/overo-poky-linux-gnueabi=
-/gumstix-console-image-1.0-r0/temp/log.do_rootfs.27927 for further informat=
-ion)</div>
-
-<div>ERROR: Task 7 (/home/siguser/yocto/poky/meta-gumstix-extras/recipes-im=
-ages/gumstix/<a href=3D"http://gumstix-console-image.bb">gumstix-console-im=
-age.bb</a>, do_rootfs) failed with exit code &#39;1&#39;</div></div><div>
-
-<br></div><div><br></div><div>Any idea where I am doing wrong?</div><div>--=
-=A0<br></div><span style=3D"font-family:arial,sans-serif;font-size:13px;bor=
-der-collapse:collapse;color:rgb(136,136,136)">Regards,<br>
-Zafrullah Syed</span><div><font color=3D"#888888" face=3D"arial, sans-serif=
-"><span style=3D"border-collapse:collapse"><br></span></font></div>
-</div></div>
-
---047d7bb04f685396fe04e8aed521--
