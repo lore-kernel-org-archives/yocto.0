@@ -1,22 +1,31 @@
-Return-Path: <paul.eggleton@linux.intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 89983E016C6
-	for <yocto@yoctoproject.org>; Mon, 14 Oct 2013 05:27:24 -0700 (PDT)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga101.jf.intel.com with ESMTP; 14 Oct 2013 05:27:23 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.93,492,1378882800"; d="scan'208";a="418856659"
-Received: from unknown (HELO helios.localnet) ([10.252.120.188])
-	by orsmga002.jf.intel.com with ESMTP; 14 Oct 2013 05:27:22 -0700
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: "Robert P. J. Day" <rpjday@crashcourse.ca>
-Date: Mon, 14 Oct 2013 13:27:21 +0100
-Message-ID: <6459470.uGImPsLe3U@helios>
-Organization: Intel Corporation
-User-Agent: KMail/4.10.5 (Linux/3.8.0-31-generic; KDE/4.10.5; i686; ; )
-In-Reply-To: <alpine.DEB.2.02.1310140740410.13343@oneiric>
+Return-Path: <rpjday@crashcourse.ca>
+Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
+	[64.235.106.9])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B82F8E011B1
+	for <yocto@yoctoproject.org>; Mon, 14 Oct 2013 05:38:16 -0700 (PDT)
+Received: from [173.34.6.101] (port=52996 helo=crashcourse.ca)
+	by astoria.ccjclearline.com with esmtpsa (TLSv1:DHE-RSA-AES256-SHA:256)
+	(Exim 4.80) (envelope-from <rpjday@crashcourse.ca>)
+	id 1VVhPb-0008Dp-0i; Mon, 14 Oct 2013 08:38:15 -0400
+Date: Mon, 14 Oct 2013 08:38:04 -0400 (EDT)
+From: "Robert P. J. Day" <rpjday@crashcourse.ca>
+X-X-Sender: rpjday@oneiric
+To: Paul Eggleton <paul.eggleton@linux.intel.com>
+In-Reply-To: <6459470.uGImPsLe3U@helios>
+Message-ID: <alpine.DEB.2.02.1310140837410.15056@oneiric>
 References: <alpine.DEB.2.02.1310140740410.13343@oneiric>
+	<6459470.uGImPsLe3U@helios>
+User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
 MIME-Version: 1.0
+X-AntiAbuse: This header was added to track abuse,
+	please include it with any abuse report
+X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - crashcourse.ca
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
 Cc: yocto@yoctoproject.org
 Subject: Re: meta-yocto-bsp defines linux-yocto_3.2.bbappend, no match in oe-core
 X-BeenThere: yocto@yoctoproject.org
@@ -30,36 +39,44 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 14 Oct 2013 12:27:24 -0000
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Mon, 14 Oct 2013 12:38:16 -0000
+Content-Type: TEXT/PLAIN; charset=US-ASCII
 
-Hi Robert,
+On Mon, 14 Oct 2013, Paul Eggleton wrote:
 
-On Monday 14 October 2013 07:43:47 Robert P. J. Day wrote:
->   prepared to be told i need sleep after working all night but wanting
-> to build for beagleboard using meta-yocto-bsp and:
-> 
-> ERROR: No recipes available for:
-> 
-> /home/rpjday/oe/dist/layers/meta-yocto/meta-yocto-bsp/recipes-kernel/linux/l
-> inux-yocto_3.2.bbappend ERROR: Command execution failed: Exited with 1
-> 
-> which is apparently correct -- oe-core provides no base
-> linux-yocto_3.2 recipe to match that bbappend file.
-> 
->   am i just being silly?
+> Hi Robert,
+>
+> On Monday 14 October 2013 07:43:47 Robert P. J. Day wrote:
+> >   prepared to be told i need sleep after working all night but wanting
+> > to build for beagleboard using meta-yocto-bsp and:
+> >
+> > ERROR: No recipes available for:
+> >
+> > /home/rpjday/oe/dist/layers/meta-yocto/meta-yocto-bsp/recipes-kernel/linux/l
+> > inux-yocto_3.2.bbappend ERROR: Command execution failed: Exited with 1
+> >
+> > which is apparently correct -- oe-core provides no base
+> > linux-yocto_3.2 recipe to match that bbappend file.
+> >
+> >   am i just being silly?
+>
+> Are you sure you're using the right branch of the meta-yocto
+> repository to match the branch of OE-Core you are using? (I'm
+> assuming you're using OE-Core, because you wouldn't get much out of
+> using meta-yocto separately with poky given that poky includes the
+> contents of the meta-yocto repo).
 
-Are you sure you're using the right branch of the meta-yocto repository to 
-match the branch of OE-Core you are using? (I'm assuming you're using OE-Core, 
-because you wouldn't get much out of using meta-yocto separately with poky 
-given that poky includes the contents of the meta-yocto repo).
+  see? i was just being silly. wrong branch.
 
-Cheers,
-Paul
+rday
 
 -- 
 
-Paul Eggleton
-Intel Open Source Technology Centre
+========================================================================
+Robert P. J. Day                                 Ottawa, Ontario, CANADA
+                        http://crashcourse.ca
+
+Twitter:                                       http://twitter.com/rpjday
+LinkedIn:                               http://ca.linkedin.com/in/rpjday
+========================================================================
 
