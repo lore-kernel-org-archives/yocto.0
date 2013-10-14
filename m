@@ -1,39 +1,26 @@
-Return-Path: <alexandru.c.georgescu@intel.com>
-Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2D6EFE011C5
-	for <yocto@yoctoproject.org>; Mon, 14 Oct 2013 08:37:20 -0700 (PDT)
-Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by azsmga101.ch.intel.com with ESMTP; 14 Oct 2013 08:37:19 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.93,493,1378882800"; d="scan'208";a="374516454"
-Received: from irsmsx103.ger.corp.intel.com ([163.33.3.157])
-	by azsmga001.ch.intel.com with ESMTP; 14 Oct 2013 08:36:26 -0700
-Received: from irsmsx104.ger.corp.intel.com ([169.254.5.69]) by
-	IRSMSX103.ger.corp.intel.com ([163.33.3.157]) with mapi id
-	14.03.0123.003; Mon, 14 Oct 2013 16:36:25 +0100
-From: "Georgescu, Alexandru C" <alexandru.c.georgescu@intel.com>
-To: Christian Gagneraud <chgans@gna.org>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>
-Thread-Topic: [yocto] Yocto Project 1.5_M5.rc6
-Thread-Index: AQHOxHbIskK4La3j10Ch1nQygX7nA5nuaDaAgAAGywCAAAbUAIAAGnaAgAAIgACAABTEAIAAArQAgAADeoCABalL8A==
-Date: Mon, 14 Oct 2013 15:36:25 +0000
-Message-ID: <1FFB62CE8AEB0D4298B51122D8903E9619F8032D@IRSMSX104.ger.corp.intel.com>
-References: <CAPhnLPBDr_LhzOpjs7-sOsf7ujKGDcchxirH45kfHcyqnUaxoA@mail.gmail.com>
-	<52571E27.70308@gna.org>
-	<CA+YB3raEO5Ek5EdkAuezyW+D3tj5-Aod2k+BRg5UWF_UWUHmtg@mail.gmail.com>
-	<52572994.4050006@gna.org>
-	<CAP9ODKoaV71QNHnqfwqnajhORu=1m82YaUiFo41HhcvUn6E-Rg@mail.gmail.com>
-	<CA+YB3rZOFCTdJ0wtVa_qTt1QRZuT=nE2MZ2EXEqUs55Lyfiruw@mail.gmail.com>
-	<52575854.6080302@linux.intel.com>
-	<CAP9ODKooi3-gBELD86fsipqc98FCJt_jMPBNjd9gndaZjpefMw@mail.gmail.com>
-	<52575D83.9010405@gna.org>
-In-Reply-To: <52575D83.9010405@gna.org>
+Return-Path: <bevenson@melinkcorp.com>
+Received: from pluto.melinkcorp.com (rrcs-98-100-91-244.central.biz.rr.com
+	[98.100.91.244])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 47607E011C5
+	for <yocto@yoctoproject.org>; Mon, 14 Oct 2013 08:43:58 -0700 (PDT)
+Received: from pluto.melinkcorp.local ([10.0.2.4]) by pluto.melinkcorp.local
+	([10.0.2.4]) with mapi; Mon, 14 Oct 2013 11:43:50 -0400
+From: Bryan Evenson <bevenson@melinkcorp.com>
+To: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
+Date: Mon, 14 Oct 2013 11:43:49 -0400
+Thread-Topic: [yocto] yocto-autobuilder: Nightly build not building nightly
+Thread-Index: Ac7I7bOCDJSXBO3EQBq9BX6XO9uGWwABPPKA
+Message-ID: <91586D499ADFD74FBCFB8425266A5DE40153B8DD467D@pluto.melinkcorp.local>
+References: <91586D499ADFD74FBCFB8425266A5DE40153B8DD45A1@pluto.melinkcorp.local>
+	<CAPhnLPDG4_iit8TcjGKtOqepdqDmoS15NTjM18DT8gB8rBYDmg@mail.gmail.com>
+In-Reply-To: <CAPhnLPDG4_iit8TcjGKtOqepdqDmoS15NTjM18DT8gB8rBYDmg@mail.gmail.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-x-originating-ip: [163.33.239.182]
+acceptlanguage: en-US
 MIME-Version: 1.0
-Subject: Re: Yocto Project 1.5_M5.rc6
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: yocto-autobuilder: Nightly build not building nightly
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,52 +32,132 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 14 Oct 2013 15:37:22 -0000
+X-List-Received-Date: Mon, 14 Oct 2013 15:43:59 -0000
 Content-Language: en-US
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
------Original Message-----
-From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org=
-] On Behalf Of Christian Gagneraud
-Sent: Friday, October 11, 2013 05:08
-To: yocto@yoctoproject.org
-Subject: Re: [yocto] Yocto Project 1.5_M5.rc6
+Elizabeth,
 
-On 11/10/13 14:55, Otavio Salvador wrote:
-> On Thu, Oct 10, 2013 at 10:45 PM, Saul Wold <sgw@linux.intel.com> wrote:
->>
->> Sorry for the top post here. The real reason we still have Qt3 is=20
->> because it's required part of the LSB spec.  OE-Core contains Qt4 and=20
->> we know that
->> meta-qt5 exists from Otavio and Martin.
->>
->> I know that Richard and Paul have been watching what's going on with=20
->> meta-qt5.
->
-> The biggest missing feature at meta-qt5 is the lacking of toolchain=20
-> support; I am still looking for someone to sponsor me to work on this=20
-> (as it is not a small task), a critical need from my side for it or=20
-> someone step on and do it :)
+> -----Original Message-----
+> From: Flanagan, Elizabeth [mailto:elizabeth.flanagan@intel.com]
+> Sent: Monday, October 14, 2013 10:57 AM
+> To: Bryan Evenson
+> Cc: yocto@yoctoproject.org
+> Subject: Re: [yocto] yocto-autobuilder: Nightly build not building
+> nightly
+>=20
+> Bryan,
+>=20
+> This is probably because you only have a ForceScheduler implemented
+> which is always on by default. Timed schedulers have to be added. Can
+> you post the rest of your nightly-foo?
+>=20
+> You'll need a top level section within that conf that contains:
+>=20
+> 'name_of_scheduler':
+>                  {'type': 'Nightly'}
+>=20
+> See: http://git.yoctoproject.org/cgit.cgi/yocto-
+> autobuilder/tree/README-NEW-AUTOBUILDER
+> for more info on scheduler props
 
-Yes, and ideally it would be nice if this toolchain would be easy to use wi=
-th QtCreator.
-Some weeks ago, I had a look at writing a Yocto plugin for QtCreator (using=
- Danny/Qt4), and the biggest problem was how you "activate" the toolchain, =
-sourcing the env setup is good when you work in a shell, but it would be be=
-tter if the toolchain comes with a machine friendly manifest file, this wou=
-ld allow as well to use several yocto toolchains (eg, for different archite=
-ctures/machines) from within QtCreator.
+I added the following to my buildset configuration:
 
-[Alex] Just an FYI, the current Eclipse Plugin has multiple profile support=
-.
+scheduler: [{'nightly-scheduler' :
+                {'type':'Nightly',
+                 'hour':'2',
+                 'minute':'0',}}]
 
+And I restarted the autobuilder ("./yocto-stop-autobuilder both" and
+  "./yocto-start-autobuilder both" from the command line).  Now when
+I go to the waterfall display for my autobuilder it shows the current
+for my buildset as "waiting next in ~14 hrs 27 min at 2:00".  I'll
+see if the build triggers okay tomorrow, but it looks hopeful.  If
+I get impatient I may change the build time to later today.
 
-My 2 cents.
+I'll also note that the hour and minute parameter were required for
+the scheduler to work.  If I didn't set these values, the autobuilder
+failed to start.  I'll post a patch to update the documentation to note
+that these values are required.
 
-Chris
-_______________________________________________
-yocto mailing list
-yocto@yoctoproject.org
-https://lists.yoctoproject.org/listinfo/yocto
+And for completeness, here is my nightly build config as it stands
+right now:
+
+[nightly-foo]
+builders: 'builder1'
+repos: [{'poky':=20
+            {'repourl':'git://git.yoctoproject.org/poky',=20
+	         'layerversion':{'core':'meta', 'yoctobsp':'meta-yocto-bsp'},=20
+             'branch':'dylan'}},=20
+        {'meta-atmel':=20
+            {'repourl':'git://github.com/evensonbryan/meta-atmel',=20
+             'branch':'master'}},
+        {'meta-openembedded':=20
+            {'repourl':'git://git.openembedded.org/meta-openembedded',=20
+             'branch':'dylan'}}]=20
+steps: [{'SetDest':{}},=20
+        {'CheckOutLayers': {}},=20
+        {'RunPreamble': {}},=20
+        {'GetDistroVersion' : {'distro': 'poky'}},
+        {'CreateAutoConf': {'machine': 'at91sam9x5ek', 'SDKMACHINE' : 'i686=
+', 'distro': 'poky', 'buildhistory': True}},
+        {'CreateBBLayersConf': {'buildprovider' : 'yocto', 'layerdirs':
+            ['meta-atmel', 'meta-openembedded/meta-oe', 'meta-openembedded/=
+meta-networking']}},
+        {'BuildImages': {'images': 'core-image-minimal'}},
+        {'SyncPersistDB' : {'commit' : True, 'distro':'poky'}},
+        {'PublishLayerTarballs':{}},
+        {'PublishArtifacts': {'artifacts': ['at91sam9x5ek', 'ipk']}}]
+scheduler: [{'nightly-scheduler' :
+                {'type':'Nightly',
+                 'hour':'2',
+                 'minute':'0',}}]
+
+Thanks,
+Bryan Evenson
+
+>=20
+> -b
+>=20
+> On Mon, Oct 14, 2013 at 6:46 AM, Bryan Evenson
+> <bevenson@melinkcorp.com> wrote:
+> > All,
+> >
+> > I have a local yocto-autobuilder setup (using yocto-autobuilder
+> master) which I can do a build of my own setup.  I created my own
+> nightly-foo.conf file and verified that a forced build of this builds
+> without errors.  However, the nightly builds are not triggering and I'm
+> wondering what I missed.
+> >
+> > I modified yoctoAB.conf to only include my buildset.  So my
+> yoctoAB.conf now looks like this:
+> >
+> > [BuildSets]
+> > Order: ['nightly-foo']
+> >
+> > I set this up near the beginning of October and there has not been a
+> nightly build triggered since my last forced build.  At first I thought
+> it was because the layers I am using have not been updated, as I'm
+> using the Dylan branch for everything.  However, poky/dylan just
+> received some updates a few days ago and my autobuilder has not yet
+> triggered a new nightly build.
+> >
+> > Is there something I need to add to my nightly-foo.conf to get the
+> nightly build to trigger?  Or is there a different configuration file
+> that I need to modify?
+> >
+> > Thanks,
+> > Bryan Evenson
+> > _______________________________________________
+> > yocto mailing list
+> > yocto@yoctoproject.org
+> > https://lists.yoctoproject.org/listinfo/yocto
+>=20
+>=20
+>=20
+> --
+> Elizabeth Flanagan
+> Yocto Project
+> Build and Release
 
