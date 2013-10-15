@@ -1,29 +1,39 @@
-Return-Path: <katutxakurra@gmail.com>
-Received: from mail-ie0-f176.google.com (mail-ie0-f176.google.com
-	[209.85.223.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 85EE6E01708
-	for <yocto@yoctoproject.org>; Tue, 15 Oct 2013 14:29:55 -0700 (PDT)
-Received: by mail-ie0-f176.google.com with SMTP id u16so8876287iet.35
-	for <yocto@yoctoproject.org>; Tue, 15 Oct 2013 14:29:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+Return-Path: <rstreif@linuxfoundation.org>
+Received: from mail-ea0-f181.google.com (mail-ea0-f181.google.com
+	[209.85.215.181])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9B0D3E01708
+	for <yocto@yoctoproject.org>; Tue, 15 Oct 2013 14:49:18 -0700 (PDT)
+Received: by mail-ea0-f181.google.com with SMTP id d10so4321070eaj.12
+	for <yocto@yoctoproject.org>; Tue, 15 Oct 2013 14:49:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=linuxfoundation.org; s=google;
 	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
 	:cc:content-type;
-	bh=j+ubMPD6svQED9gDlipRi//tlw+Np7qP0kKQtIHDkns=;
-	b=C3Kz58/cgZpM3Xe/ytXx6v61uzRHpWr2tn8qjOH4vYLXs2LOrx416zCA+IOyH/oioQ
-	2ff2oFlZx3pYfiRpLi7IpC+BXeNYw/cczXXfnHrR4dfeghh4fMzrmxbvGR/PFQWRbMpc
-	Wk5wx1UdDM5hJoq6kBPREV6OyfyzDWSP98Arwqq1TDbp07ldzfC2R1NSvMYThl85F6Su
-	g3D4PwtXzTU638mxExD9uQfdL3bJXhkAjlKq6XCfxEYZ2e1ovM/cJ+R7qgzCc8zWjRvw
-	OW0fKayvLDRi0mcGLWcaRv+g1Tgw9sfILpp6xOpgC8GkEVI/kppDCCG1JR0XDi2sUZFz
-	C7/g==
+	bh=E1NN/fhaTeRepONMuDHLRtOfTAqxrZoZw2nWVKAIN3c=;
+	b=AXuFpODrJkJF+gTnMCuU7IRTOk7iJBN6Xte4cB2iuN5JF8lI0KQhxfpdzN5GMZY3Gf
+	EbwEhTBx8cJn5GxAit1+3Z02rrMTxXhalTgKLgXjaNWYyIagGPqWjWMT+NjzEo/zZO95
+	gmvHFf4/ncRjHOzdKsBuOscRNOcH+HdYIzPhQ=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:date
+	:message-id:subject:from:to:cc:content-type;
+	bh=E1NN/fhaTeRepONMuDHLRtOfTAqxrZoZw2nWVKAIN3c=;
+	b=UwyHTl2xeMvwHdtUF3bjXzc11+RN4R7ZqMEb4njKnaOpGWYTh26GI3fuBcA6Iq/bsN
+	4O4DWvKqMavGwmOSk6z+wfdnhVRAQ7V1h/r7cSB6QPbDNXVysjaYBLdzB2wWOBcIltNN
+	UR85XaBsuuxkX+M8hAtSlQ6hobQax65eV8oHdLguhoiGmxixU9CB5EYQM7rWuaVEjm/x
+	hSAYopEv3Cbnf6MVyYkHgRnm3p7thcWS11bFbLDWs9kbvRtlwc+4RKNA078T7/1fahh5
+	H9k5IEcEPutKt5F6id584dWI7PtUDDjpdS7FfxCRGk/guAF9M7OE2L/L70nTe7ZbPSPA
+	Rh2g==
+X-Gm-Message-State: ALoCoQmQ9Ir3yj8GqVKKfBF06xSXUjWUx6i92EM/8cjpn7afTZ/euzDWdEP1JjLTcK4RNpNkPrKo
 MIME-Version: 1.0
-X-Received: by 10.50.153.50 with SMTP id vd18mr18888594igb.6.1381872595207;
-	Tue, 15 Oct 2013 14:29:55 -0700 (PDT)
-Received: by 10.50.231.161 with HTTP; Tue, 15 Oct 2013 14:29:55 -0700 (PDT)
+X-Received: by 10.14.183.2 with SMTP id p2mr3847542eem.44.1381873757534; Tue,
+	15 Oct 2013 14:49:17 -0700 (PDT)
+Received: by 10.223.131.3 with HTTP; Tue, 15 Oct 2013 14:49:17 -0700 (PDT)
 In-Reply-To: <CAMCfZKFBvSiRSMk5wrEpSEiNNiZeHJw18fbHgHzepo__U=UWNA@mail.gmail.com>
 References: <CAMCfZKFBvSiRSMk5wrEpSEiNNiZeHJw18fbHgHzepo__U=UWNA@mail.gmail.com>
-Date: Tue, 15 Oct 2013 22:29:55 +0100
-Message-ID: <CAM1ZcoVTQ0O1go2bN8u20JZCbn8=Lp5rOjVmntmux5z+TYT7gg@mail.gmail.com>
-From: Katu Txakur <katutxakurra@gmail.com>
+Date: Tue, 15 Oct 2013 14:49:17 -0700
+Message-ID: <CA+gsK-o6n24Aqp2dtpOwnmrCBjWE=HDSJvfqyYy2pvJYrHqXmQ@mail.gmail.com>
+From: Rudolf Streif <rstreif@linuxfoundation.org>
 To: Diego Sueiro <diego.sueiro@gmail.com>
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: Custom defconfig is not used
@@ -38,25 +48,38 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 15 Oct 2013 21:29:56 -0000
-Content-Type: multipart/alternative; boundary=089e013a009e298daf04e8ce4998
+X-List-Received-Date: Tue, 15 Oct 2013 21:49:20 -0000
+Content-Type: multipart/alternative; boundary=047d7b343dc471453e04e8ce8eb2
 
---089e013a009e298daf04e8ce4998
+--047d7b343dc471453e04e8ce8eb2
 Content-Type: text/plain; charset=ISO-8859-1
 
-Hi Diego,
+Diego,
 
-I may be wrong here, but I had a similar issue and I gave up. As I
-understand from
-https://www.yoctoproject.org/sites/yoctoproject.org/files/elc2013-kernel-lab.pdf
-if you are not using the linux-yocto kernel you need the whole defconfig.
-Anyway, reading the kernel lab is probably a good idea.
+You are appending a kernel recipe that uses the Linux Yocto tooling. The
+defconfig is essentially comprised of many different pieces from the meta
+branch of the Yocto kernel repository and optional configuration fragments
+that you provide. This tooling will not recognize a defconfig file you
+provide but it does recognize configuration fragments to be added to
+.config.
 
-good luck,
-Katu
+You need to put
+
+CONFIG_WATCHDOG_NOWAYOUT=y
+
+into a file that ends with .cfg eg. watchdog.cfg and then modify your
+bbappend to
+
+FILESEXTRAPATHS_prepend := "${THISDIR}/files:"
+SRC_URI += " file://0019-mine.patch \
+             file://watchdog.cfg \
+             "
+
+Rudi
 
 
-2013/10/15 Diego Sueiro <diego.sueiro@gmail.com>
+
+On Tue, Oct 15, 2013 at 2:07 PM, Diego Sueiro <diego.sueiro@gmail.com>wrote:
 
 > Folks,
 >
@@ -101,27 +124,47 @@ Katu
 >
 >
 
---089e013a009e298daf04e8ce4998
+--047d7b343dc471453e04e8ce8eb2
 Content-Type: text/html; charset=ISO-8859-1
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Hi Diego,<div><br></div><div>I may be wrong here, but I ha=
-d a similar issue and I gave up. As I understand from</div><div><a href=3D"=
-https://www.yoctoproject.org/sites/yoctoproject.org/files/elc2013-kernel-la=
-b.pdf">https://www.yoctoproject.org/sites/yoctoproject.org/files/elc2013-ke=
-rnel-lab.pdf</a><br>
-</div><div>if you are not using the linux-yocto kernel you need the whole d=
-efconfig. Anyway, reading the kernel lab is probably a good idea.</div><div=
-><br></div><div>good luck,</div><div>Katu</div></div><div class=3D"gmail_ex=
-tra">
-<br><br><div class=3D"gmail_quote">2013/10/15 Diego Sueiro <span dir=3D"ltr=
-">&lt;<a href=3D"mailto:diego.sueiro@gmail.com" target=3D"_blank">diego.sue=
-iro@gmail.com</a>&gt;</span><br><blockquote class=3D"gmail_quote" style=3D"=
-margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">
-<div dir=3D"ltr">Folks,<div><br></div><div>I created the following bbapend =
-recipe for <a href=3D"http://linux-mainline_3.8.bb" target=3D"_blank">linux=
--mainline_3.8.bb</a> (from meta-beagleboard on dylan branch) for beaglebone=
-.</div>
+<div dir=3D"ltr">Diego,<div><br></div><div>You are appending a kernel recip=
+e that uses the Linux Yocto tooling. The defconfig is essentially comprised=
+ of many different pieces from the meta branch of the Yocto kernel reposito=
+ry and optional configuration fragments that you provide. This tooling will=
+ not recognize a defconfig file you provide but it does recognize configura=
+tion fragments to be added to .config.</div>
+<div><br></div><div>You need to put=A0</div><div><br></div><div><span style=
+=3D"font-family:arial,sans-serif;font-size:13.333333969116211px">CONFIG_WAT=
+CHDOG_NOWAYOUT=3D</span><span style=3D"font-family:arial,sans-serif;font-si=
+ze:13.333333969116211px">y</span><br>
+</div><div><span style=3D"font-family:arial,sans-serif;font-size:13.3333339=
+69116211px"><br></span></div><div><span style=3D"font-family:arial,sans-ser=
+if;font-size:13.333333969116211px">into a file that ends with .cfg eg. watc=
+hdog.cfg and then modify your bbappend to</span></div>
+<div><span style=3D"font-family:arial,sans-serif;font-size:13.3333339691162=
+11px"><br></span></div><div><div style=3D"font-family:arial,sans-serif;font=
+-size:13.333333969116211px">FILESEXTRAPATHS_prepend :=3D &quot;${THISDIR}/f=
+iles:&quot;</div>
+<div style=3D"font-family:arial,sans-serif;font-size:13.333333969116211px">=
+SRC_URI +=3D &quot; file://0019-mine.patch \<br></div><div style=3D"font-fa=
+mily:arial,sans-serif;font-size:13.333333969116211px">=A0 =A0 =A0 =A0 =A0 =
+=A0 =A0file://watchdog.cfg \</div>
+<div style=3D"font-family:arial,sans-serif;font-size:13.333333969116211px">=
+=A0 =A0 =A0 =A0 =A0 =A0 =A0&quot;</div></div><div><span style=3D"font-famil=
+y:arial,sans-serif;font-size:13.333333969116211px"><br></span></div><div><s=
+pan style=3D"font-family:arial,sans-serif;font-size:13.333333969116211px">R=
+udi</span></div>
+<div><span style=3D"font-family:arial,sans-serif;font-size:13.3333339691162=
+11px"><br></span></div><div class=3D"gmail_extra"><br><br><div class=3D"gma=
+il_quote">On Tue, Oct 15, 2013 at 2:07 PM, Diego Sueiro <span dir=3D"ltr">&=
+lt;<a href=3D"mailto:diego.sueiro@gmail.com" target=3D"_blank">diego.sueiro=
+@gmail.com</a>&gt;</span> wrote:<br>
+<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
+x #ccc solid;padding-left:1ex"><div dir=3D"ltr">Folks,<div><br></div><div>I=
+ created the following bbapend recipe for <a href=3D"http://linux-mainline_=
+3.8.bb" target=3D"_blank">linux-mainline_3.8.bb</a> (from meta-beagleboard =
+on dylan branch) for beaglebone.</div>
 <div>
 
 meta-mine/recipes-kernel/linux/linux-mainline_3.8.bbappend:<br></div><block=
@@ -159,6 +202,11 @@ yocto mailing list<br>
 <a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br>
 <a href=3D"https://lists.yoctoproject.org/listinfo/yocto" target=3D"_blank"=
 >https://lists.yoctoproject.org/listinfo/yocto</a><br>
-<br></blockquote></div><br></div>
+<br></blockquote></div><br><br clear=3D"all"><div><br></div><div dir=3D"ltr=
+"><div><font face=3D"garamond, serif"><span style=3D"border-collapse:collap=
+se;color:rgb(102,102,102);font-family:arial,sans-serif;font-size:13px"><br>=
+</span></font></div>
+</div>
+</div></div>
 
---089e013a009e298daf04e8ce4998--
+--047d7b343dc471453e04e8ce8eb2--
