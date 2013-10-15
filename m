@@ -1,34 +1,44 @@
-Return-Path: <song.liu@intel.com>
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AF8CAE016FD
-	for <yocto@yoctoproject.org>; Tue, 15 Oct 2013 13:42:47 -0700 (PDT)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by fmsmga101.fm.intel.com with ESMTP; 15 Oct 2013 13:42:47 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.93,502,1378882800"; 
-	d="scan'208,217";a="411509638"
-Received: from orsmsx108.amr.corp.intel.com ([10.22.240.6])
-	by fmsmga001.fm.intel.com with ESMTP; 15 Oct 2013 13:42:47 -0700
-Received: from orsmsx157.amr.corp.intel.com (10.22.240.23) by
-	ORSMSX108.amr.corp.intel.com (10.22.240.6) with Microsoft SMTP Server
-	(TLS) id 14.3.123.3; Tue, 15 Oct 2013 13:42:46 -0700
-Received: from orsmsx108.amr.corp.intel.com ([169.254.4.175]) by
-	ORSMSX157.amr.corp.intel.com ([169.254.9.241]) with mapi id
-	14.03.0123.003; Tue, 15 Oct 2013 13:42:46 -0700
-From: "Liu, Song" <song.liu@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Yocto Project 1.5 release readiness review
-Thread-Index: Ac7J5m1S/K3a+5E9Ql2e3LMKgK6V1wAAAABwAAAqFDA=
-Date: Tue, 15 Oct 2013 20:42:46 +0000
-Message-ID: <7E680CB2A76BB8438D08CF13C09FC53A8EF79507@ORSMSX108.amr.corp.intel.com>
-References: <7E680CB2A76BB8438D08CF13C09FC53A8EF794B3@ORSMSX108.amr.corp.intel.com>
-In-Reply-To: <7E680CB2A76BB8438D08CF13C09FC53A8EF794B3@ORSMSX108.amr.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.138]
+Return-Path: <joe@deserted.net>
+Received: from mail-qc0-f173.google.com (mail-qc0-f173.google.com
+	[209.85.216.173])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2B613E016FD
+	for <yocto@yoctoproject.org>; Tue, 15 Oct 2013 13:54:27 -0700 (PDT)
+Received: by mail-qc0-f173.google.com with SMTP id l13so5187776qcy.32
+	for <yocto@yoctoproject.org>; Tue, 15 Oct 2013 13:54:26 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+	:mime-version:content-type:content-disposition:in-reply-to
+	:user-agent;
+	bh=ZnIy8uapNPYqNkjRgja/UDGoEvaTtzvizcAGqRXBlPA=;
+	b=Kh6Qpfj32nSQTXVST/mPRQLfHpXmcrkDApuUZaFL/nfVMT8kYHvKZcfv4oSvIWfwNv
+	tvN5fK9kv33ipDMn9Jx2i311Qg4ss8yIhtKIwPWP/V+cZTzeI07/Ij3xaJntIXsToDFw
+	KQSRAQfjqQnzeUxQFsN1huauHu93CaOWMBvLu/XEnlxzlIxZzEjgH19/pZ9Y7KfuS7gm
+	t+dXB0023WXZnAcySBDm/W2RF/9k94730X/f62+Qm0P5UhkmONqhs5VPfirFauNBqha+
+	+4ilZPn2dBypqOqts2y2c5TsgwcZAD/ZBO52j+TVzefHtrUU3vZwUL4qdUXB1RgCTZFM
+	2m8g==
+X-Gm-Message-State: ALoCoQkjT3o9wfQqqPotJDXN1fw8Dbjg58T9BusvUB1YI3z9ngSVr5NFNXrFcFbq0znYc8diY9ZD
+X-Received: by 10.229.219.199 with SMTP id hv7mr48585406qcb.15.1381870466475; 
+	Tue, 15 Oct 2013 13:54:26 -0700 (PDT)
+Received: from deserted.net (198-84-238-35.cpe.teksavvy.com. [198.84.238.35])
+	by mx.google.com with ESMTPSA id
+	og1sm114117474qeb.3.1969.12.31.16.00.00
+	(version=TLSv1.2 cipher=RC4-SHA bits=128/128);
+	Tue, 15 Oct 2013 13:54:25 -0700 (PDT)
+Date: Tue, 15 Oct 2013 16:54:20 -0400
+From: Joe MacDonald <joe@deserted.net>
+To: Guo Chunrong-B40290 <B40290@freescale.com>
+Message-ID: <20131015205417.GB3719@deserted.net>
+References: <1380165980-24940-1-git-send-email-b40290@freescale.com>
+	<B21730BB6DA1D24B83348D9301EA417E10481EBC@039-SN2MPN1-023.039d.mgd.msft.net>
 MIME-Version: 1.0
-Subject: FW: Yocto Project 1.5 release readiness review
+In-Reply-To: <B21730BB6DA1D24B83348D9301EA417E10481EBC@039-SN2MPN1-023.039d.mgd.msft.net>
+X-URL: http://github.com/joeythesaint/joe-s-common-environment/tree/master
+X-Configuration: git://github.com/joeythesaint/joe-s-common-environment.git
+X-Editor: Vim-703 http://www.vim.org
+User-Agent: Mutt/1.5.21 (2010-09-15)
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>, mulhern@yoctoproject.org
+Subject: Re: [Meta-security][PATCH V3 1/3] snort : add recipe
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,191 +50,853 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 15 Oct 2013 20:42:48 -0000
-X-Groupsio-MsgNum: 16522
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_7E680CB2A76BB8438D08CF13C09FC53A8EF79507ORSMSX108amrcor_"
+X-List-Received-Date: Tue, 15 Oct 2013 20:54:28 -0000
+X-Groupsio-MsgNum: 16523
+Content-Type: multipart/signed; micalg=pgp-sha1;
+	protocol="application/pgp-signature"; boundary="jq0ap7NbKX2Kqbes"
+Content-Disposition: inline
 
---_000_7E680CB2A76BB8438D08CF13C09FC53A8EF79507ORSMSX108amrcor_
-Content-Type: text/plain; charset="iso-8859-1"
+--jq0ap7NbKX2Kqbes
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
+Hi Chunrong,
 
+[Re: [yocto] [Meta-security][PATCH V3 1/3] snort : add recipe] On 13.10.10 =
+(Thu 08:19) Guo Chunrong-B40290 wrote:
 
------Original Appointment-----
-From: Liu, Song
-Sent: Tuesday, October 15, 2013 1:38 PM
-To: 'Anders Darander'; Barros Pena, Belen; Bodke, Kishore K; 'Bruce Ashfiel=
-d'; 'Daniel Cauchy'; 'deVries, Alex'; 'Dixon, Brad'; Dmytriyenko, Denys; Er=
-way, Tracey M; Flanagan, Elizabeth; Hart, Darren; 'Hatle, Mark'; 'Jeremy Pu=
-hlman'; Kridner, Jason; 'Lieu.Ta@windriver.com'; Lock, Joshua; Moeller, Tho=
-rsten; 'Sanjay Raina'; Osier-mixon, Jeffrey; 'Polk, Jeffrey'; Purdie, Richa=
-rd; 'Ranslam, Rob'; Saxena, Rahul; Stewart, David C; Wold, Saul; Zanussi, T=
-om; Zhang, Jessica; Rifenbark, Scott M; 'Hudson, Sean'; Serban, Laurentiu; =
-Petrisor, Ileana; Damian, Alexandru; Burton, Ross; Mueller, Robert; Arce Mo=
-reno, Abraham; 'Ravi Vompolu'; 'Sadiq, Irfan'; Santana Lopez, Mario A; Pate=
-l, Keyur R; 'achaudha@mvista.com'; Popa, Valentin; Moses, Fred; Iorga, Cris=
-tian; Palalau, AlexandruX; 'Butler, Paul'; Mirea, Viorel; Kamble, Nitin A; =
-Szankin, Maciej; Moisan, Radu; Grigoropol, IoanaX; Olivia Salisbury; 'Chris=
- Kaminski'; 'Maupin, Chase'; Georgescu, Alexandru C; Gavaz, Ionut A; Prutea=
-nu, Codrin C; Letnes, Thaddeus C; Ong, Boon Leong; Seow, Chen Yong; Haw, Fo=
-o Chien; steve.long@windriver.com; Stoicescu, CorneliuX; 'Chris Kaminski'; =
-Voicu, Cristiana; Chisanovici, IonutX
-Subject: Yocto Project 1.5 release readiness review
-When: Wednesday, October 16, 2013 7:30 AM-8:00 AM (UTC-08:00) Pacific Time =
-(US & Canada).
-Where: 916-356-2663, 8-356-2663, Bridge: 1, Passcode: 1070690
+> Hello, all
+>  =20
+> Please give me some comments.
 
+The meta-security maintainer and I have discussed this at length and
+we're in agreement that for the time being it's probably appropriate to
+have this in meta-networking rather than meta-security.  I haven't had a
+chance to go back over this but I think somewhere along the way a few of
+the earlier comments was lost (I don't see Khem's suggestion addressed
+in the latest meta-security, for example).
 
-https://wiki.yoctoproject.org/wiki/Yocto_Project_v1.5_Status#Milestone_5.2C=
-_1.5_release<https://wiki.yoctoproject.org/wiki/Yocto_Project_v1.5_Status>
+Can you do another round of this, ensuring you've addressed the comments
+(either by incorporating the suggestions or addressing why you think
+they aren't appropriate here) and send this back for inclusion in
+meta-networking?
 
+I think you'd also had some out-of-band info from the meta-security
+maintainer that the PERL dependencies listed in the recipes may be
+over-zealous, can you take a quick pass at reducing them to a somewhat
+more minimal set before sending a new version?
 
-Wednesday, October 16, 2013, 07:30 AM US Pacific Time
-916-356-2663, 8-356-2663, Bridge: 1, Passcode: 1070690
-Speed dialer: inteldialer://1,1070690 | Learn more<http://it.intel.com/prod=
-ucts/handhelds/speeddial.htm>
+Thanks,
+-Joe.
 
+>=20
+> Thanks
+> chunrong
+>=20
+>=20
+>=20
+> -----Original Message-----
+> From: Guo Chunrong-B40290=20
+> Sent: Thursday, September 26, 2013 11:26 AM
+> To: yocto@yoctoproject.org
+> Cc: Liu Ting-B28495; Luo Zhenhua-B19537; Guo Chunrong-B40290; Guo Chunron=
+g-B40290
+> Subject: [Meta-security][PATCH V3 1/3] snort : add recipe
+>=20
+> From: Chunrong Guo <B40290@freescale.com>
+>=20
+>    *snort - a free lightweight network intrusion detection
+>             system for UNIX and Windows
+>=20
+> Signed-off-by: Chunrong Guo <B40290@freescale.com>
+> ---
+>  recipes-security/snort/files/default               |   42 ++
+>  .../snort/files/disable-dap-address-space-id.patch |   52 +++
+>  .../snort/files/disable-inaddr-none.patch          |   75 ++++
+>  recipes-security/snort/files/logrotate             |   12 +
+>  recipes-security/snort/files/snort.init            |  425 ++++++++++++++=
+++++++
+>  recipes-security/snort/files/volatiles             |    2 +
+>  recipes-security/snort/snort_2.9.4.6.bb            |   83 ++++
+>  7 files changed, 691 insertions(+), 0 deletions(-)  create mode 100644 r=
+ecipes-security/snort/files/default
+>  create mode 100644 recipes-security/snort/files/disable-dap-address-spac=
+e-id.patch
+>  create mode 100644 recipes-security/snort/files/disable-inaddr-none.patch
+>  create mode 100644 recipes-security/snort/files/logrotate
+>  create mode 100755 recipes-security/snort/files/snort.init
+>  create mode 100644 recipes-security/snort/files/volatiles
+>  create mode 100644 recipes-security/snort/snort_2.9.4.6.bb
+>=20
+> diff --git a/recipes-security/snort/files/default b/recipes-security/snor=
+t/files/default
+> new file mode 100644
+> index 0000000..afd3840
+> --- /dev/null
+> +++ b/recipes-security/snort/files/default
+> @@ -0,0 +1,42 @@
+> +# Parameters for the daemon
+> +# Add any additional parameteres here.
+> +PARAMS=3D"-m 027 -D -d "
+> +#
+> +# Snort user
+> +# This user will be used to launch snort. Notice that the # preinst=20
+> +script of the package might do changes to the user # (home directory,=20
+> +User Name) when the package is upgraded or # reinstalled.  So, do *not*=
+=20
+> +change this to 'root' or to any other user # unless you are sure there=
+=20
+> +is no problem with those changes being introduced.
+> +#
+> +SNORTUSER=3D"snort"
+> +#
+> +# Logging directory
+> +# Snort logs will be dropped here and this will be the home # directory=
+=20
+> +for the SNORTUSER. If you change this value you should # change the=20
+> +/etc/logrotate.d/snort definition too, otherwise logs # will not be=20
+> +rotated properly.
+> +#
+> +LOGDIR=3D"/var/log/snort"
+> +#
+> +# Snort group
+> +# This is the group that the snort user will be added to.
+> +#
+> +SNORTGROUP=3D"snort"
+> +#
+> +# Allow Snort's init.d script to work if the configured interfaces #=20
+> +are not available. Set this to yes if you configure Snort with #=20
+> +multiple interfaces but some might not be available on boot # (e.g.=20
+> +wireless interfaces) # # Note: In order for this to work the 'iproute'=
+=20
+> +package needs to # be installed.
+> +ALLOW_UNAVAILABLE=3D"no"
+> +
+> +# Local configs
+> +#
+> +LOCAL_SNORT_STARTUP=3Dboot
+> +LOCAL_SNORT_HOME_NET=3D"192.168.0.0/16"
+> +LOCAL_SNORT_INTERFACE=3D""
+> +LOCAL_SNORT_STATS_RCPT=3D"root"
+> +LOCAL_SNORT_STATS_THRESHOLD=3D"1"
+> diff --git a/recipes-security/snort/files/disable-dap-address-space-id.pa=
+tch b/recipes-security/snort/files/disable-dap-address-space-id.patch
+> new file mode 100644
+> index 0000000..39e5c9c
+> --- /dev/null
+> +++ b/recipes-security/snort/files/disable-dap-address-space-id.patch
+> @@ -0,0 +1,52 @@
+> +Upstream-Status:Inappropriate [embedded specific]
+> +
+> +fix the below error:
+> +checking for dap address space id... configure:=20
+> +configure: error: cannot run test program while cross compiling
+> +
+> +
+> +Signed-off-by: Chunrong Guo <B40290@freescale.com>
+> +
+> +--- a/configure.in	2013-08-23 00:06:37.239361932 -0500
+> ++++ b/configure.in	2013-08-23 00:07:32.860266534 -0500
+> +@@ -679,23 +679,23 @@
+> +=20
+> + AC_CHECK_FUNCS([daq_hup_apply] [daq_acquire_with_meta])
+> +=20
+> +-AC_MSG_CHECKING([for daq address space ID]) -AC_RUN_IFELSE(=20
+> +-[AC_LANG_PROGRAM( -[[ -#include <daq.h> -]], -[[
+> +-   DAQ_PktHdr_t hdr;
+> +-   hdr.address_space_id =3D 0;
+> +-]])],
+> +-[have_daq_address_space_id=3D"yes"],
+> +-[have_daq_address_space_id=3D"no"])
+> +-AC_MSG_RESULT($have_daq_address_space_id)
+> +-if test "x$have_daq_address_space_id" =3D "xyes"; then
+> +-    AC_DEFINE([HAVE_DAQ_ADDRESS_SPACE_ID],[1],
+> +-        [DAQ version supports address space ID in header.])
+> +-fi
+> ++#AC_MSG_CHECKING([for daq address space ID]) #AC_RUN_IFELSE(=20
+> ++#[AC_LANG_PROGRAM( #[[ ##include <daq.h> #]], #[[
+> ++#   DAQ_PktHdr_t hdr;
+> ++#   hdr.address_space_id =3D 0;
+> ++#]])],
+> ++have_daq_address_space_id=3D"yes"
+> ++#[have_daq_address_space_id=3D"no"])
+> ++#AC_MSG_RESULT($have_daq_address_space_id)
+> ++#if test "x$have_daq_address_space_id" =3D "xyes"; then
+> ++#    AC_DEFINE([HAVE_DAQ_ADDRESS_SPACE_ID],[1],
+> ++#        [DAQ version supports address space ID in header.])
+> ++#fi
+> +=20
+> + # any sparc platform has to have this one defined.
+> + AC_MSG_CHECKING(for sparc)
+> diff --git a/recipes-security/snort/files/disable-inaddr-none.patch b/rec=
+ipes-security/snort/files/disable-inaddr-none.patch
+> new file mode 100644
+> index 0000000..9dafe63
+> --- /dev/null
+> +++ b/recipes-security/snort/files/disable-inaddr-none.patch
+> @@ -0,0 +1,75 @@
+> +Upstream-Status: Inappropriate [embedded specific]
+> +
+> +fix the below error:
+> +checking for INADDR_NONE... configure:
+> +configure: error: cannot run test program while cross compiling
+> +
+> +Signed-off-by: Chunrong Guo <B40290@freescale.com>
+> +
+> +
+> +--- a/configure.in	2013-08-21 03:56:17.197414789 -0500
+> ++++ b/configure.in	2013-08-21 23:19:05.298553560 -0500
+> +@@ -281,25 +281,7 @@
+> + AC_CHECK_TYPES([boolean])
+> +=20
+> + # In case INADDR_NONE is not defined (like on Solaris)=20
+> +-have_inaddr_none=3D"no"
+> +-AC_MSG_CHECKING([for INADDR_NONE])
+> +-AC_RUN_IFELSE(
+> +-[AC_LANG_PROGRAM(
+> +-[[
+> +-#include <sys/types.h>
+> +-#include <netinet/in.h>
+> +-#include <arpa/inet.h>
+> +-]],
+> +-[[
+> +-	if (inet_addr("10,5,2") =3D=3D INADDR_NONE);
+> +-    return 0;
+> +-]])],
+> +-[have_inaddr_none=3D"yes"],
+> +-[have_inaddr_none=3D"no"])
+> +-AC_MSG_RESULT($have_inaddr_none)
+> +-if test "x$have_inaddr_none" =3D "xno"; then
+> +-	AC_DEFINE([INADDR_NONE],[-1],[For INADDR_NONE definition])
+> +-fi
+> ++have_inaddr_none=3D"yes"
+> +=20
+> + AC_COMPILE_IFELSE([AC_LANG_PROGRAM([[
+> + #include <stdio.h>
+> +@@ -397,21 +379,21 @@
+> +   fi
+> + fi
+> +=20
+> +-AC_MSG_CHECKING([for pcap_lex_destroy]) -AC_RUN_IFELSE(=20
+> +-[AC_LANG_PROGRAM( -[[ -#include <pcap.h> -]], -[[
+> +-   pcap_lex_destroy();
+> +-]])],
+> +-[have_pcap_lex_destroy=3D"yes"],
+> +-[have_pcap_lex_destroy=3D"no"])
+> +-AC_MSG_RESULT($have_pcap_lex_destroy)
+> +-if test "x$have_pcap_lex_destroy" =3D "xyes"; then
+> +-    AC_DEFINE([HAVE_PCAP_LEX_DESTROY],[1],[Can cleanup lex buffer stack=
+ created by pcap bpf filter])
+> +-fi
+> ++#AC_MSG_CHECKING([for pcap_lex_destroy]) #AC_RUN_IFELSE(=20
+> ++#[AC_LANG_PROGRAM( #[[ ##include <pcap.h> #]], #[[
+> ++#   pcap_lex_destroy();
+> ++#]])],
+> ++have_pcap_lex_destroy=3D"yes"
+> ++#[have_pcap_lex_destroy=3D"no"])
+> ++#AC_MSG_RESULT($have_pcap_lex_destroy)
+> ++#if test "x$have_pcap_lex_destroy" =3D "xyes"; then
+> ++#    AC_DEFINE([HAVE_PCAP_LEX_DESTROY],[1],[Can cleanup lex buffer stac=
+k created by pcap bpf filter])
+> ++#fi
+> +=20
+> + AC_MSG_CHECKING([for pcap_lib_version]) AC_LINK_IFELSE(
+> diff --git a/recipes-security/snort/files/logrotate b/recipes-security/sn=
+ort/files/logrotate
+> new file mode 100644
+> index 0000000..e394e2e
+> --- /dev/null
+> +++ b/recipes-security/snort/files/logrotate
+> @@ -0,0 +1,12 @@
+> +/var/log/snort/*.log /var/log/snort/alert {
+> +    size 1M
+> +    missingok
+> +    compress
+> +    delaycompress
+> +    rotate 10
+> +    sharedscripts
+> +    postrotate
+> +    /etc/init.d/snort restart
+> +    endscript
+> +}
+> +
+> diff --git a/recipes-security/snort/files/snort.init b/recipes-security/s=
+nort/files/snort.init
+> new file mode 100755
+> index 0000000..af66619
+> --- /dev/null
+> +++ b/recipes-security/snort/files/snort.init
+> @@ -0,0 +1,425 @@
+> +#!/bin/sh -e
+> +#
+> +# Init.d script for Snort in OpenEmbedded, based on Debian's script # #=
+=20
+> +Copyright (c) 2009 Roman I Khimov <khimov@altell.ru> # # Copyright (c)=
+=20
+> +2001 Christian Hammers # Copyright (c) 2001-2002 Robert van der Meulen=
+=20
+> +# Copyright (c) 2002-2004 Sander Smeenk <ssmeenk@debian.org> #=20
+> +Copyright (c) 2004-2007 Javier Fernandez-Sanguino <jfs@debian.org> # #=
+=20
+> +This is free software; you may redistribute it and/or modify # it under=
+=20
+> +the terms of the GNU General Public License as # published by the Free=
+=20
+> +Software Foundation; either version 2, # or (at your option) any later=
+=20
+> +version.
+> +#
+> +# This is distributed in the hope that it will be useful, but # WITHOUT=
+=20
+> +ANY WARRANTY; without even the implied warranty of # MERCHANTABILITY or=
+=20
+> +FITNESS FOR A PARTICULAR PURPOSE.  See the # GNU General Public License=
+=20
+> +for more details.
+> +#
+> +# You should have received a copy of the GNU General Public License=20
+> +with # the Debian operating system, in /usr/share/common-licenses/GPL; =
+=20
+> +if # not, write to the Free Software Foundation, Inc., 59 Temple Place,=
+=20
+> +# Suite 330, Boston, MA 02111-1307 USA # ### BEGIN INIT INFO
+> +# Provides:          snort
+> +# Required-Start:    $time $network $local_fs
+> +# Required-Stop:    =20
+> +# Should-Start:      $syslog
+> +# Should-Stop:      =20
+> +# Default-Start:     2 3 4 5
+> +# Default-Stop:      0 1 6
+> +# Short-Description: Lightweight network intrusion detection system
+> +# Description:       Intrusion detection system that will
+> +#                    capture traffic from the network cards and will
+> +#                    match against a set of known attacks.
+> +### END INIT INFO
+> +
+> +PATH=3D/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+> +
+> +test $DEBIAN_SCRIPT_DEBUG && set -v -x
+> +
+> +DAEMON=3D/usr/bin/snort
+> +NAME=3Dsnort
+> +DESC=3D"Network Intrusion Detection System"
+> +
+> +. /etc/default/snort
+> +COMMON=3D"$PARAMS -l $LOGDIR -u $SNORTUSER -g $SNORTGROUP"
+> +
+> +test -x $DAEMON || exit 0
+> +test -z "$LOCAL_SNORT_HOME_NET" && LOCAL_SNORT_HOME_NET=3D"192.168.0.0/1=
+6"
+> +
+> +# to find the lib files
+> +cd /etc/snort
+> +
+> +running()
+> +{
+> +        PIDFILE=3D$1
+> +# No pidfile, probably no daemon present
+> +        [ ! -f "$PIDFILE" ] && return 1
+> +        pid=3D`cat $PIDFILE`
+> +# No pid, probably no daemon present
+> +        [ -z "$pid" ] && return 1
+> +        [ ! -d /proc/$pid ] &&  return 1
+> +        cmd=3D`cat /proc/$pid/cmdline | tr "\000" "\n"|head -n 1 |cut -d=
+=20
+> +: -f 1` # No daemon
+> +        [ "$cmd" !=3D "$DAEMON" ] &&  return 1
+> +        return 0
+> +}
+> +
+> +
+> +check_log_dir() {
+> +# Does the logging directory belong to Snort?
+> +	# If we cannot determine the logdir return without error
+> +	# (we will not check it)
+> +	# This will only be used by people using /etc/default/snort
+> +	[ -n "$LOGDIR" ] || return 0
+> +	[ -n "$SNORTUSER" ] || return 0
+> +	if [ ! -e "$LOGDIR" ] ; then
+> +		echo "ERR: logging directory $LOGDIR does not exist"
+> +		return 1
+> +	elif [ ! -d "$LOGDIR" ] ; then
+> +		echo "ERR: logging directory $LOGDIR does not exist"
+> +		return 1
+> +	else
+> +		# Don't worry, be happy
+> +		true
+> +	fi
+> +	return 0
+> +}
+> +
+> +check_root()  {
+> +    if [ "$(id -u)" !=3D "0" ]; then
+> +        echo "You must be root to start, stop or restart $NAME."
+> +        exit 4
+> +    fi
+> +}
+> +
+> +case "$1" in
+> +  start)
+> +        check_root
+> +	echo "Starting $DESC " "$NAME"
+> +
+> +        if [ -e /etc/snort/db-pending-config ] ; then
+> +		echo "/etc/snort/db-pending-config file found"
+> +		echo "Snort will not start as its database is not yet configured."
+> +		echo "Please configure the database as described in"
+> +		echo "/usr/share/doc/snort-{pgsql,mysql}/README-database.Debian"
+> +		echo "and remove /etc/snort/db-pending-config"
+> +		exit 6
+> +	fi
+> +
+> +        if ! check_log_dir; then
+> +		echo " will not start $DESC!"
+> +		exit 5
+> +	fi
+> +	if [ "$LOCAL_SNORT_STARTUP" =3D "dialup" ]; then
+> +		shift
+> +		set +e
+> +		/etc/ppp/ip-up.d/snort "$@"
+> +		ret=3D$?
+> +                if  [ $ret -eq 0 ] ; then
+> +                  echo 0
+> +                else
+> +                  echo 1
+> +                fi
+> +		exit $ret
+> +	fi
+> +
+> +	# Usually, we start all interfaces
+> +	interfaces=3D"$LOCAL_SNORT_INTERFACE"
+> +
+> +	# If we are requested to start a specific interface...
+> +	test "$2" && interfaces=3D"$2"
+> +
+> +        # If the interfaces list is empty stop (no error)
+> +        if [ -z "$interfaces" ] ; then
+> +            echo "no interfaces configured, will not start"
+> +            echo 0
+> +            exit 0
+> +        fi
+> +
+> +	myret=3D0
+> +	got_instance=3D0
+> +	for interface in $interfaces; do
+> +		got_instance=3D1
+> +		echo "($interface"
+> +
+> +                # Check if the interface is available:
+> +                # - only if iproute is available
+> +                # - the interface exists=20
+> +                # - the interface is up
+> +                if ! [ -x /sbin/ip ] || ( ip link show dev "$interface"=
+=20
+> + >/dev/null 2>&1 && [ -n "`ip link show up "$interface" 2>/dev/null`" ]=
+=20
+> + ) ; then
+> +
+> +		PIDFILE=3D/var/run/snort_$interface.pid
+> +                CONFIGFILE=3D/etc/snort/snort.$interface.conf
+> +
+> +                # Defaults:
+> +		fail=3D"failed (check /var/log/syslog and /var/log/snort)"
+> +                run=3D"yes"
+> +
+> +                if [ -e "$PIDFILE" ] && running $PIDFILE; then
+> +                        run=3D"no"=20
+> +                        # Do not start this instance, it is already runi=
+ng
+> +                fi
+> +
+> +                if [ "$run" =3D "yes" ] ; then
+> +                    if [ ! -e "$CONFIGFILE" ]; then
+> +                        echo "no /etc/snort/snort.$interface.conf found,=
+ defaulting to snort.conf"
+> +                        CONFIGFILE=3D/etc/snort/snort.conf
+> +                    fi
+> +
+> +                    set +e
+> +                    /sbin/start-stop-daemon --start --quiet  \
+> +                        --pidfile "$PIDFILE" \
+> +                        --exec $DAEMON -- $COMMON $LOCAL_SNORT_OPTIONS \
+> +                        -c $CONFIGFILE \
+> +                        -S "HOME_NET=3D[$LOCAL_SNORT_HOME_NET]" \
+> +                        -i $interface >/dev/null
+> +                    ret=3D$?
+> +                    case "$ret" in
+> +			0)
+> +                                echo  "...done)"
+> +				;;
+> +			*)
+> +				echo "...ERROR: $fail)"
+> +				myret=3D$(expr "$myret" + 1)
+> +				;;
+> +                     esac
+> +                     set -e
+> +                else
+> +                        echo "...already running)"
+> +                fi
+> +
+> +                else
+> +                # What to do if the interface is not available
+> +                # or is not up
+> +                        if [ "$ALLOW_UNAVAILABLE" !=3D "no" ] ; then=20
+> +                            echo "...interface not available)"
+> +                        else=20
+> +                            echo "...ERROR: interface not available)"
+> +                            myret=3D$(expr "$myret" + 1)
+> +                        fi
+> +                fi
+> +	done
+> +
+> +	if [ "$got_instance" =3D 0 ] && [ "$ALLOW_UNAVAILABLE" =3D "no" ]; then
+> +		echo "No snort instance found to be started!" >&2
+> +		exit 6
+> +	fi
+> +
+> +        if  [ $myret -eq 0 ] ; then
+> +            echo 0
+> +        else
+> +            echo 1
+> +        fi
+> +	exit $myret
+> +	;;
+> +  stop)
+> +        check_root
+> +        echo "Stopping $DESC " "$NAME"
+> +   =20
+> +	if [ "$LOCAL_SNORT_STARTUP" =3D "dialup" ]; then
+> +		shift
+> +		set +e
+> +		/etc/ppp/ip-down.d/snort "$@"
+> +		ret=3D$?
+> +                if  [ $ret -eq 0 ] ; then
+> +                    echo 0
+> +                else
+> +                  echo 1
+> +                fi
+> +		exit $ret
+> +	fi
+> +
+> +	# Usually, we stop all current running interfaces
+> +	pidpattern=3D/var/run/snort_*.pid
+> +
+> +	# If we are requested to stop a specific interface...
+> +	test "$2" && pidpattern=3D/var/run/snort_"$2".pid
+> +
+> +	got_instance=3D0
+> +        myret=3D0
+> +	for PIDFILE in $pidpattern; do
+> +		# This check is also needed, if the above pattern doesn't match
+> +		test -f "$PIDFILE" || continue
+> +
+> +		got_instance=3D1
+> +		interface=3D$(basename "$PIDFILE" .pid | sed -e 's/^snort_//')
+> +
+> +		echo "($interface"
+> +
+> +		set +e
+> +                if [ ! -e "$PIDFILE" -o -r "$PIDFILE" ] ; then # Change=
+=20
+> +ownership of the pidfile
+> +		    /sbin/start-stop-daemon --stop --retry 5 --quiet --oknodo \
+> +			--pidfile "$PIDFILE" --exec $DAEMON >/dev/null
+> +                    ret=3D$?
+> +                    rm -f "$PIDFILE"
+> +                    rm -f "$PIDFILE.lck"
+> +                else
+> +                     echo "cannot read $PIDFILE"
+> +                     ret=3D4
+> +                fi
+> +		case "$ret" in
+> +			0)
+> +                                echo  "...done)"
+> +				;;
+> +			*)
+> +				echo "...ERROR)"
+> +				myret=3D$(expr "$myret" + 1)
+> +				;;
+> +		esac
+> +                set -e
+> +
+> +	done
+> +
+> +	if [ "$got_instance" =3D 0 ]; then
+> +		log_warning_msg "No running snort instance found"
+> +                exit 0 # LSB demands we don't exit with error here
+> +	fi
+> +        if  [ $myret -eq 0 ] ; then
+> +            echo 0
+> +        else
+> +            echo 1
+> +        fi
+> +	exit $myret
+> +	;;
+> +  restart|force-restart|reload|force-reload)
+> +        check_root
+> +	# Usually, we restart all current running interfaces
+> +	pidpattern=3D/var/run/snort_*.pid
+> +
+> +	# If we are requested to restart a specific interface...
+> +	test "$2" && pidpattern=3D/var/run/snort_"$2".pid
+> +
+> +	got_instance=3D0
+> +	for PIDFILE in $pidpattern; do
+> +		# This check is also needed, if the above pattern doesn't match
+> +		test -f "$PIDFILE" || continue
+> +
+> +		got_instance=3D1
+> +		interface=3D$(basename "$PIDFILE" .pid | sed -e 's/^snort_//')
+> +		$0 stop $interface || true
+> +		$0 start $interface || true
+> +	done
+> +
+> +	if [ "$got_instance" =3D 0 ]; then
+> +		echo "No snort instance found to be stopped!" >&2
+> +                exit 6
+> +	fi
+> +	;;
+> +  status)
+> +# Non-root users can use this (if allowed to)
+> +        echo "Status of snort daemon(s)"
+> +	interfaces=3D"$LOCAL_SNORT_INTERFACE"
+> +	# If we are requested to check for a specific interface...
+> +	test "$2" && interfaces=3D"$2"
+> +        err=3D0
+> +        pid=3D0
+> +	for interface in $interfaces; do
+> +                echo " $interface "
+> +                pidfile=3D/var/run/snort_$interface.pid
+> +                if [ -f  "$pidfile" ] ; then
+> +                        if [ -r "$pidfile" ] ; then
+> +                            pidval=3D`cat $pidfile`
+> +                            pid=3D$(expr "$pid" + 1)
+> +                            if ps -p $pidval | grep -q snort; then
+> +                                echo "OK"
+> +                            else
+> +				echo "ERROR"
+> +				err=3D$(expr "$err" + 1)
+> +			    fi
+> +                         else
+> +	       		     echo "ERROR: cannot read status file"
+> +                             err=3D$(expr "$err" + 1)
+> +                         fi
+> +                 else
+> +                       echo "ERROR"
+> +                       err=3D$(expr "$err" + 1)
+> +                 fi
+> +        done
+> +        if [ $err -ne 0 ] ; then
+> +            if [ $pid -ne 0 ] ; then
+> +# More than one case where pidfile exists but no snort daemon # LSB=20
+> +demands a '1' exit value here
+> +                echo  1
+> +                exit 1
+> +            else
+> +# No pidfiles at all
+> +# LSB demands a '3' exit value here
+> +                echo  3
+> +                exit 3
+> +            fi
+> +        fi
+> +        echo  0
+> +        ;;
+> +  config-check)
+> +        echo "Checking $DESC configuration"=20
+> +	if [ "$LOCAL_SNORT_STARTUP" =3D "dialup" ]; then
+> +		echo "Config-check is currently not supported for snort in Dialup conf=
+iguration"
+> +                echo  3
+> +                exit 3
+> +	fi
+> +
+> +	# usually, we test all interfaces
+> +	interfaces=3D"$LOCAL_SNORT_INTERFACE"
+> +	# if we are requested to test a specific interface...
+> +	test "$2" && interfaces=3D"$2"
+> +
+> +	myret=3D0
+> +	got_instance=3D0
+> +	for interface in $interfaces; do
+> +		got_instance=3D1
+> +		echo "interface $interface"
+> +
+> +		CONFIGFILE=3D/etc/snort/snort.$interface.conf
+> +		if [ ! -e "$CONFIGFILE" ]; then
+> +			CONFIGFILE=3D/etc/snort/snort.conf
+> +		fi
+> +		COMMON=3D`echo $COMMON | sed -e 's/-D//'`
+> +		set +e
+> +                fail=3D"INVALID"
+> +		if [ -r "$CONFIGFILE" ]; then
+> +                    $DAEMON -T $COMMON $LOCAL_SNORT_OPTIONS \
+> +			-c $CONFIGFILE \
+> +			-S "HOME_NET=3D[$LOCAL_SNORT_HOME_NET]" \
+> +			-i $interface >/dev/null 2>&1
+> +                    ret=3D$?
+> +                else
+> +                    fail=3D"cannot read $CONFIGFILE"
+> +                    ret=3D4
+> +                fi
+> +		set -e
+> +
+> +		case "$ret" in
+> +			0)
+> +                                echo "OK"
+> +				;;
+> +			*)
+> +                                echo "$fail"
+> +				myret=3D$(expr "$myret" + 1)
+> +				;;
+> +		esac
+> +	done
+> +	if [ "$got_instance" =3D 0 ]; then
+> +		echo "no snort instance found to be started!" >&2
+> +		exit 6
+> +	fi
+> +
+> +        if  [ $myret -eq 0 ] ; then
+> +            echo 0
+> +        else
+> +            echo 1
+> +        fi
+> +	exit $myret
+> +	;;
+> +  *)
+> +	echo "Usage: $0 {start|stop|restart|force-restart|reload|force-reload|s=
+tatus|config-check}"
+> +	exit 1
+> +	;;
+> +esac
+> +exit 0
+> diff --git a/recipes-security/snort/files/volatiles b/recipes-security/sn=
+ort/files/volatiles
+> new file mode 100644
+> index 0000000..0f22f9b
+> --- /dev/null
+> +++ b/recipes-security/snort/files/volatiles
+> @@ -0,0 +1,2 @@
+> +# <type> <owner> <group> <mode> <path> <linksource> d snort snort 0755=
+=20
+> +/var/log/snort none
+> diff --git a/recipes-security/snort/snort_2.9.4.6.bb b/recipes-security/s=
+nort/snort_2.9.4.6.bb
+> new file mode 100644
+> index 0000000..c72b49b
+> --- /dev/null
+> +++ b/recipes-security/snort/snort_2.9.4.6.bb
+> @@ -0,0 +1,83 @@
+> +DESCRIPTION =3D "snort - a free lightweight network intrusion detection =
+system for UNIX and Windows."
+> +HOMEPAGE =3D "http://www.snort.org/"
+> +LICENSE =3D "GPL-2.0"
+> +LIC_FILES_CHKSUM =3D "file://COPYING;md5=3D78fa8ef966b48fbf9095e13cc9237=
+7c5"
+> +
+> +DEPENDS =3D "libpcap libpcre daq libdnet"
+> +
+> +
+> +SRC_URI =3D " ${GENTOO_MIRROR}/${BP}.tar.gz;name=3Dtarball \
+> +            file://disable-inaddr-none.patch \
+> +            file://disable-dap-address-space-id.patch \=20
+> +            file://snort.init \
+> +            file://default \
+> +            file://logrotate \
+> +            file://volatiles"
+> +
+> +SRC_URI[tarball.md5sum] =3D "4111df01a4f21bd1d328a18b76d625bd"
+> +SRC_URI[tarball.sha256sum] =3D "cfaa5390b1840aaaa68a6c05a7077dd92cb916e6=
+186a014baa451d43cdb0b3bc"
+> +
+> +inherit autotools  gettext
+> +
+> +EXTRA_OECONF =3D " \
+> +	--enable-gre \   =20
+> +	--enable-linux-smp-stats \
+> +	--enable-reload \
+> +	--enable-reload-error-restart \
+> +	--enable-targetbased \
+> +	--disable-static-daq \
+> +	"
+> +
+> +do_install_append() {
+> +	install -d ${D}/${sysconfdir}/snort/rules
+> +	install -d ${D}/${sysconfdir}/snort/preproc_rules
+> +	install -d ${D}/${sysconfdir}/default/volatiles
+> +	mkdir -p ${D}/${sysconfdir}/init.d
+> +	for i in map config conf dtd; do
+> +		cp ${S}/etc/*.$i ${D}/${sysconfdir}/snort/
+> +	done
+> +	cp ${S}/preproc_rules/*.rules ${D}/${sysconfdir}/snort/preproc_rules/
+> +	install -m 0644 ${WORKDIR}/default ${D}/${sysconfdir}/default/snort
+> +	install -m 0644 ${WORKDIR}/volatiles ${D}/${sysconfdir}/default/volatil=
+es/snort
+> +	install -m 0755 ${WORKDIR}/snort.init ${D}/${sysconfdir}/init.d/snort
+> +	mkdir -p ${D}/${localstatedir}/log/snort
+> +	install -d ${D}${sysconfdir}/logrotate.d
+> +	install -m 0644 ${WORKDIR}/logrotate=20
+> +${D}${sysconfdir}/logrotate.d/snort
+> +}
+> +
+> +pkg_postinst_${PN}() {
+> +	${sysconfdir}/init.d/populate-volatile.sh update }
+> +
+> +PACKAGES =3D+ "${PN}-logrotate"
+> +FILES_${PN}-logrotate =3D "${sysconfdir}/logrotate.d/snort"
+> +FILES_${PN} +=3D " \
+> +	${libdir}/snort_dynamicengine/*.so.* \
+> +	${libdir}/snort_dynamicpreprocessor/*.so.* \
+> +	${libdir}/snort_dynamicrules/*.so.* \
+> +	"
+> +FILES_${PN}-dbg +=3D " \
+> +	${libdir}/snort_dynamicengine/.debug \
+> +	${libdir}/snort_dynamicpreprocessor/.debug \
+> +	${libdir}/snort_dynamicrules/.debug \
+> +	"
+> +FILES_${PN}-staticdev +=3D " \
+> +	${libdir}/snort_dynamicengine/*.a \
+> +	${libdir}/snort_dynamicpreprocessor/*.a \
+> +	${libdir}/snort_dynamicrules/*.a \
+> +	${libdir}/snort/dynamic_preproc/*.a \
+> +	${libdir}/snort/dynamic_output/*.a \
+> +	"
+> +FILES_${PN}-dev +=3D " \
+> +	${libdir}/snort_dynamicengine/*.la \
+> +	${libdir}/snort_dynamicpreprocessor/*.la \
+> +	${libdir}/snort_dynamicrules/*.la \
+> +	${libdir}/snort_dynamicengine/*.so \
+> +	${libdir}/snort_dynamicpreprocessor/*.so \
+> +	${libdir}/snort_dynamicrules/*.so \
+> +	${prefix}/src/snort_dynamicsrc \
+> +	"
+> +
+> +RRECOMMENDS_${PN} +=3D "${PN}-logrotate"
+> +RRECOMMENDS_${PN} +=3D "barnyard"
+> +RSUGGESTS_${PN}-logrotate +=3D "logrotate"
+> --
+> 1.7.5.4
+>=20
+>=20
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
---_000_7E680CB2A76BB8438D08CF13C09FC53A8EF79507ORSMSX108amrcor_
-Content-Type: text/html; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+--=20
+-Joe MacDonald.
+:wq
 
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
-1">
-<meta name=3D"Generator" content=3D"Microsoft Exchange Server">
-<!-- converted from rtf -->
-<style><!-- .EmailQuote { margin-left: 1pt; padding-left: 4pt; border-left:=
- #800000 2px solid; } --></style>
-</head>
-<body>
-<font face=3D"Times New Roman" size=3D"2"><span style=3D"font-size:11pt;">
-<div><font color=3D"#1F497D">&nbsp;</font></div>
-<div><font color=3D"#1F497D">&nbsp;</font></div>
-<div><font face=3D"Tahoma" size=3D"2"><span style=3D"font-size:10pt;">-----=
-Original Appointment-----<br>
+--jq0ap7NbKX2Kqbes
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: Digital signature
 
-<b>From:</b> Liu, Song <br>
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1.4.12 (GNU/Linux)
 
-<b>Sent:</b> Tuesday, October 15, 2013 1:38 PM<br>
+iEYEARECAAYFAlJdq2oACgkQwFvcllog0XwKAQCggW2cZFNI54jbD66ESTvRy3Xh
+I5sAnjgOqaNwZNe4xEdK88lVt1RRbx3f
+=Ip0R
+-----END PGP SIGNATURE-----
 
-<b>To:</b> 'Anders Darander'; Barros Pena, Belen; Bodke, Kishore K; 'Bruce =
-Ashfield'; 'Daniel Cauchy'; 'deVries, Alex'; 'Dixon, Brad'; Dmytriyenko, De=
-nys; Erway, Tracey M; Flanagan, Elizabeth; Hart, Darren; 'Hatle, Mark'; 'Je=
-remy Puhlman'; Kridner, Jason; 'Lieu.Ta@windriver.com';
-Lock, Joshua; Moeller, Thorsten; 'Sanjay Raina'; Osier-mixon, Jeffrey; 'Pol=
-k, Jeffrey'; Purdie, Richard; 'Ranslam, Rob'; Saxena, Rahul; Stewart, David=
- C; Wold, Saul; Zanussi, Tom; Zhang, Jessica; Rifenbark, Scott M; 'Hudson, =
-Sean'; Serban, Laurentiu; Petrisor,
-Ileana; Damian, Alexandru; Burton, Ross; Mueller, Robert; Arce Moreno, Abra=
-ham; 'Ravi Vompolu'; 'Sadiq, Irfan'; Santana Lopez, Mario A; Patel, Keyur R=
-; 'achaudha@mvista.com'; Popa, Valentin; Moses, Fred; Iorga, Cristian; Pala=
-lau, AlexandruX; 'Butler, Paul';
-Mirea, Viorel; Kamble, Nitin A; Szankin, Maciej; Moisan, Radu; Grigoropol, =
-IoanaX; Olivia Salisbury; 'Chris Kaminski'; 'Maupin, Chase'; Georgescu, Ale=
-xandru C; Gavaz, Ionut A; Pruteanu, Codrin C; Letnes, Thaddeus C; Ong, Boon=
- Leong; Seow, Chen Yong; Haw, Foo
-Chien; steve.long@windriver.com; Stoicescu, CorneliuX; 'Chris Kaminski'; Vo=
-icu, Cristiana; Chisanovici, IonutX<br>
-
-<b>Subject:</b> Yocto Project 1.5 release readiness review<br>
-
-<b>When:</b> Wednesday, October 16, 2013 7:30 AM-8:00 AM (UTC-08:00) Pacifi=
-c Time (US &amp; Canada).<br>
-
-<b>Where:</b> 916-356-2663, 8-356-2663, Bridge: 1, Passcode: 1070690</span>=
-</font></div>
-<div>&nbsp;</div>
-<div>&nbsp;</div>
-<div><a href=3D"https://wiki.yoctoproject.org/wiki/Yocto_Project_v1.5_Statu=
-s"><font face=3D"Calibri" color=3D"blue"><u>https://wiki.yoctoproject.org/w=
-iki/Yocto_Project_v1.5_Status#Milestone_5.2C_1.5_release</u></font></a></di=
-v>
-<div>&nbsp;</div>
-<div><font color=3D"#444444">&nbsp;</font></div>
-<div><font face=3D"Verdana" size=3D"2" color=3D"#444444"><span style=3D"fon=
-t-size:8.5pt;"><b>Wednesday, October 16, 2013, 07:30 AM US Pacific Time
-<br>
-
-</b>916-356-2663, 8-356-2663, Bridge: 1, Passcode: 1070690<br>
-
-Speed dialer: inteldialer://1,1070690 | <a href=3D"http://it.intel.com/prod=
-ucts/handhelds/speeddial.htm"><font color=3D"blue"><u>Learn more</u></font>=
-</a></span></font></div>
-<div>&nbsp;</div>
-</span></font>
-</body>
-</html>
-
---_000_7E680CB2A76BB8438D08CF13C09FC53A8EF79507ORSMSX108amrcor_
-Content-Type: text/calendar; charset="utf-8"; method=REQUEST
-Content-Transfer-Encoding: base64
-
-QkVHSU46VkNBTEVOREFSDQpNRVRIT0Q6UkVRVUVTVA0KUFJPRElEOk1pY3Jvc29mdCBFeGNoYW5n
-ZSBTZXJ2ZXIgMjAxMA0KVkVSU0lPTjoyLjANCkJFR0lOOlZUSU1FWk9ORQ0KVFpJRDpQYWNpZmlj
-IFN0YW5kYXJkIFRpbWUNCkJFR0lOOlNUQU5EQVJEDQpEVFNUQVJUOjE2MDEwMTAxVDAyMDAwMA0K
-VFpPRkZTRVRGUk9NOi0wNzAwDQpUWk9GRlNFVFRPOi0wODAwDQpSUlVMRTpGUkVRPVlFQVJMWTtJ
-TlRFUlZBTD0xO0JZREFZPTFTVTtCWU1PTlRIPTExDQpFTkQ6U1RBTkRBUkQNCkJFR0lOOkRBWUxJ
-R0hUDQpEVFNUQVJUOjE2MDEwMTAxVDAyMDAwMA0KVFpPRkZTRVRGUk9NOi0wODAwDQpUWk9GRlNF
-VFRPOi0wNzAwDQpSUlVMRTpGUkVRPVlFQVJMWTtJTlRFUlZBTD0xO0JZREFZPTJTVTtCWU1PTlRI
-PTMNCkVORDpEQVlMSUdIVA0KRU5EOlZUSU1FWk9ORQ0KQkVHSU46VkVWRU5UDQpPUkdBTklaRVI7
-Q049IkxpdSwgU29uZyI6TUFJTFRPOnNvbmcubGl1QGludGVsLmNvbQ0KQVRURU5ERUU7Uk9MRT1S
-RVEtUEFSVElDSVBBTlQ7UEFSVFNUQVQ9TkVFRFMtQUNUSU9OO1JTVlA9VFJVRTtDTj15b2N0b0B5
-b2N0DQogb3Byb2plY3Qub3JnOk1BSUxUTzp5b2N0b0B5b2N0b3Byb2plY3Qub3JnDQpERVNDUklQ
-VElPTjtMQU5HVUFHRT1lbi1VUzpcblxuLS0tLS1PcmlnaW5hbCBBcHBvaW50bWVudC0tLS0tXG5G
-cm9tOiBMaXVcLCANCiBTb25nXG5TZW50OiBUdWVzZGF5XCwgT2N0b2JlciAxNVwsIDIwMTMgMToz
-OCBQTVxuVG86ICdBbmRlcnMgRGFyYW5kZXInXDsgQg0KIGFycm9zIFBlbmFcLCBCZWxlblw7IEJv
-ZGtlXCwgS2lzaG9yZSBLXDsgJ0JydWNlIEFzaGZpZWxkJ1w7ICdEYW5pZWwgQ2F1Y2h5DQogJ1w7
-ICdkZVZyaWVzXCwgQWxleCdcOyAnRGl4b25cLCBCcmFkJ1w7IERteXRyaXllbmtvXCwgRGVueXNc
-OyBFcndheVwsIFRyYWMNCiBleSBNXDsgRmxhbmFnYW5cLCBFbGl6YWJldGhcOyBIYXJ0XCwgRGFy
-cmVuXDsgJ0hhdGxlXCwgTWFyaydcOyAnSmVyZW15IFB1aA0KIGxtYW4nXDsgS3JpZG5lclwsIEph
-c29uXDsgJ0xpZXUuVGFAd2luZHJpdmVyLmNvbSdcOyBMb2NrXCwgSm9zaHVhXDsgTW9lbGxlDQog
-clwsIFRob3JzdGVuXDsgJ1NhbmpheSBSYWluYSdcOyBPc2llci1taXhvblwsIEplZmZyZXlcOyAn
-UG9sa1wsIEplZmZyZXknXDsNCiAgUHVyZGllXCwgUmljaGFyZFw7ICdSYW5zbGFtXCwgUm9iJ1w7
-IFNheGVuYVwsIFJhaHVsXDsgU3Rld2FydFwsIERhdmlkIENcOw0KICBXb2xkXCwgU2F1bFw7IFph
-bnVzc2lcLCBUb21cOyBaaGFuZ1wsIEplc3NpY2FcOyBSaWZlbmJhcmtcLCBTY290dCBNXDsgJ0h1
-DQogZHNvblwsIFNlYW4nXDsgU2VyYmFuXCwgTGF1cmVudGl1XDsgUGV0cmlzb3JcLCBJbGVhbmFc
-OyBEYW1pYW5cLCBBbGV4YW5kcnUNCiBcOyBCdXJ0b25cLCBSb3NzXDsgTXVlbGxlclwsIFJvYmVy
-dFw7IEFyY2UgTW9yZW5vXCwgQWJyYWhhbVw7ICdSYXZpIFZvbXBvbA0KIHUnXDsgJ1NhZGlxXCwg
-SXJmYW4nXDsgU2FudGFuYSBMb3BlelwsIE1hcmlvIEFcOyBQYXRlbFwsIEtleXVyIFJcOyAnYWNo
-YXVkDQogaGFAbXZpc3RhLmNvbSdcOyBQb3BhXCwgVmFsZW50aW5cOyBNb3Nlc1wsIEZyZWRcOyBJ
-b3JnYVwsIENyaXN0aWFuXDsgUGFsYWwNCiBhdVwsIEFsZXhhbmRydVhcOyAnQnV0bGVyXCwgUGF1
-bCdcOyBNaXJlYVwsIFZpb3JlbFw7IEthbWJsZVwsIE5pdGluIEFcOyBTeg0KIGFua2luXCwgTWFj
-aWVqXDsgTW9pc2FuXCwgUmFkdVw7IEdyaWdvcm9wb2xcLCBJb2FuYVhcOyBPbGl2aWEgU2FsaXNi
-dXJ5XDsgDQogJ0NocmlzIEthbWluc2tpJ1w7ICdNYXVwaW5cLCBDaGFzZSdcOyBHZW9yZ2VzY3Vc
-LCBBbGV4YW5kcnUgQ1w7IEdhdmF6XCwgSW8NCiBudXQgQVw7IFBydXRlYW51XCwgQ29kcmluIENc
-OyBMZXRuZXNcLCBUaGFkZGV1cyBDXDsgT25nXCwgQm9vbiBMZW9uZ1w7IFNlbw0KIHdcLCBDaGVu
-IFlvbmdcOyBIYXdcLCBGb28gQ2hpZW5cOyBzdGV2ZS5sb25nQHdpbmRyaXZlci5jb21cOyBTdG9p
-Y2VzY3VcLCBDDQogb3JuZWxpdVhcOyAnQ2hyaXMgS2FtaW5za2knXDsgVm9pY3VcLCBDcmlzdGlh
-bmFcOyBDaGlzYW5vdmljaVwsIElvbnV0WFxuU3UNCiBiamVjdDogWW9jdG8gUHJvamVjdCAxLjUg
-cmVsZWFzZSByZWFkaW5lc3MgcmV2aWV3XG5XaGVuOiBXZWRuZXNkYXlcLCBPY3RvYg0KIGVyIDE2
-XCwgMjAxMyA3OjMwIEFNLTg6MDAgQU0gKFVUQy0wODowMCkgUGFjaWZpYyBUaW1lIChVUyAmIENh
-bmFkYSkuXG5XaGVyDQogZTogOTE2LTM1Ni0yNjYzXCwgOC0zNTYtMjY2M1wsIEJyaWRnZTogMVws
-IFBhc3Njb2RlOiAxMDcwNjkwXG5cblxuaHR0cHM6Ly8NCiB3aWtpLnlvY3RvcHJvamVjdC5vcmcv
-d2lraS9Zb2N0b19Qcm9qZWN0X3YxLjVfU3RhdHVzI01pbGVzdG9uZV81LjJDXzEuNV9yZQ0KIGxl
-YXNlPGh0dHBzOi8vd2lraS55b2N0b3Byb2plY3Qub3JnL3dpa2kvWW9jdG9fUHJvamVjdF92MS41
-X1N0YXR1cz5cblxuXG5XDQogZWRuZXNkYXlcLCBPY3RvYmVyIDE2XCwgMjAxM1wsIDA3OjMwIEFN
-IFVTIFBhY2lmaWMgVGltZVxuOTE2LTM1Ni0yNjYzXCwgOC0NCiAzNTYtMjY2M1wsIEJyaWRnZTog
-MVwsIFBhc3Njb2RlOiAxMDcwNjkwXG5TcGVlZCBkaWFsZXI6IGludGVsZGlhbGVyOi8vMVwsMQ0K
-IDA3MDY5MCB8IExlYXJuIG1vcmU8aHR0cDovL2l0LmludGVsLmNvbS9wcm9kdWN0cy9oYW5kaGVs
-ZHMvc3BlZWRkaWFsLmh0bT5cDQogblxuDQpTVU1NQVJZO0xBTkdVQUdFPWVuLVVTOkZXOiBZb2N0
-byBQcm9qZWN0IDEuNSByZWxlYXNlIHJlYWRpbmVzcyByZXZpZXcNCkRUU1RBUlQ7VFpJRD1QYWNp
-ZmljIFN0YW5kYXJkIFRpbWU6MjAxMzEwMTZUMDczMDAwDQpEVEVORDtUWklEPVBhY2lmaWMgU3Rh
-bmRhcmQgVGltZToyMDEzMTAxNlQwODAwMDANClVJRDowNDAwMDAwMDgyMDBFMDAwNzRDNUI3MTAx
-QTgyRTAwODAwMDAwMDAwNDBDNkU5MkJBOUM5Q0UwMTAwMDAwMDAwMDAwMDAwMA0KIDAxMDAwMDAw
-MEU4QzVCNDFEMTFCQkIyNEQ5NEU2Njk0N0I2N0NCNDJBDQpDTEFTUzpQVUJMSUMNClBSSU9SSVRZ
-OjUNCkRUU1RBTVA6MjAxMzEwMTVUMjAzNzU1Wg0KVFJBTlNQOk9QQVFVRQ0KU1RBVFVTOkNPTkZJ
-Uk1FRA0KU0VRVUVOQ0U6MA0KTE9DQVRJT047TEFOR1VBR0U9ZW4tVVM6OTE2LTM1Ni0yNjYzXCwg
-OC0zNTYtMjY2M1wsIEJyaWRnZTogMVwsIFBhc3Njb2RlOiAxDQogMDcwNjkwDQpYLU1JQ1JPU09G
-VC1DRE8tQVBQVC1TRVFVRU5DRTowDQpYLU1JQ1JPU09GVC1DRE8tT1dORVJBUFBUSUQ6MTkxNTcy
-NTc4OQ0KWC1NSUNST1NPRlQtQ0RPLUJVU1lTVEFUVVM6VEVOVEFUSVZFDQpYLU1JQ1JPU09GVC1D
-RE8tSU5URU5ERURTVEFUVVM6QlVTWQ0KWC1NSUNST1NPRlQtQ0RPLUFMTERBWUVWRU5UOkZBTFNF
-DQpYLU1JQ1JPU09GVC1DRE8tSU1QT1JUQU5DRToxDQpYLU1JQ1JPU09GVC1DRE8tSU5TVFRZUEU6
-MA0KWC1NSUNST1NPRlQtRElTQUxMT1ctQ09VTlRFUjpGQUxTRQ0KQkVHSU46VkFMQVJNDQpBQ1RJ
-T046RElTUExBWQ0KREVTQ1JJUFRJT046UkVNSU5ERVINClRSSUdHRVI7UkVMQVRFRD1TVEFSVDot
-UFQxNU0NCkVORDpWQUxBUk0NCkVORDpWRVZFTlQNCkVORDpWQ0FMRU5EQVINCg==
-
---_000_7E680CB2A76BB8438D08CF13C09FC53A8EF79507ORSMSX108amrcor_--
+--jq0ap7NbKX2Kqbes--
