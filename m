@@ -1,25 +1,33 @@
-Return-Path: <paul.eggleton@linux.intel.com>
-Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 841A4E01709
-	for <yocto@yoctoproject.org>; Tue, 15 Oct 2013 14:54:36 -0700 (PDT)
-Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by azsmga101.ch.intel.com with ESMTP; 15 Oct 2013 14:54:36 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.93,502,1378882800"; d="scan'208";a="375215874"
-Received: from unknown (HELO helios.localnet) ([10.252.120.232])
-	by azsmga001.ch.intel.com with ESMTP; 15 Oct 2013 14:54:35 -0700
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: Davide Soldan <davide.soldan@kynetics.it>
-Date: Tue, 15 Oct 2013 22:54:34 +0100
-Message-ID: <5619929.RHDHdia3Vk@helios>
-Organization: Intel Corporation
-User-Agent: KMail/4.10.5 (Linux/3.8.0-31-generic; KDE/4.10.5; i686; ; )
-In-Reply-To: <1425778.v7NdBFTXrz@helios>
-References: <2654026.GvoHhChOvl@fedora-fisso>
-	<2594354.j31pHjW9di@fedora-fisso> <1425778.v7NdBFTXrz@helios>
+Return-Path: <andrea.adami@gmail.com>
+Received: from mail-lb0-f176.google.com (mail-lb0-f176.google.com
+	[209.85.217.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0AE4CE0170D
+	for <yocto@yoctoproject.org>; Tue, 15 Oct 2013 14:55:07 -0700 (PDT)
+Received: by mail-lb0-f176.google.com with SMTP id y6so37047lbh.21
+	for <yocto@yoctoproject.org>; Tue, 15 Oct 2013 14:55:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type;
+	bh=Tc4s+DBKIQ2chMc4QsUH/t8uV0rxTnY9rhsYgr4GKHE=;
+	b=QXZ1+CrE8GbFlVb60XK7yr8xud0V+HAkpxhV4pvEncIsHqnLUMknnxxk62jT0dbjb8
+	0+HpA5l4g8AEtdwu0/f/NlQCVB6OVyjBocFKoQ0FM0Z4N5nl37q5rwWNkVm6lMNdMOSk
+	a/Oh9KnktkcoErO6HXQ4/f+RcDOsGIdbBOWBQj5863klxpWokBnx9M8c7DQP7MzuhId6
+	lsDQoEBwSO63YsNPZmhP/NvA/QZowjsViL4hNHGti6RznGN/wEOkh+MX3lf6UqDizMkC
+	yAIyEhD+iFk3D8tpcWm5nX9yNKoD2zs7KC7Hj4AqMf6N0EqWJg96EdehaNqocmljtUJg
+	J4eQ==
 MIME-Version: 1.0
-Cc: yocto@yoctoproject.org
-Subject: Re: preserving file owners in do_package
+X-Received: by 10.112.51.166 with SMTP id l6mr34658lbo.5.1381874105950; Tue,
+	15 Oct 2013 14:55:05 -0700 (PDT)
+Received: by 10.112.52.74 with HTTP; Tue, 15 Oct 2013 14:55:05 -0700 (PDT)
+In-Reply-To: <CA+gsK-o6n24Aqp2dtpOwnmrCBjWE=HDSJvfqyYy2pvJYrHqXmQ@mail.gmail.com>
+References: <CAMCfZKFBvSiRSMk5wrEpSEiNNiZeHJw18fbHgHzepo__U=UWNA@mail.gmail.com>
+	<CA+gsK-o6n24Aqp2dtpOwnmrCBjWE=HDSJvfqyYy2pvJYrHqXmQ@mail.gmail.com>
+Date: Tue, 15 Oct 2013 23:55:05 +0200
+Message-ID: <CAAQYJAu+wU0ODvVoTrRBFhVOUVh+CdMg3mimfgGkj-pwJh3A1g@mail.gmail.com>
+From: Andrea Adami <andrea.adami@gmail.com>
+To: Rudolf Streif <rstreif@linuxfoundation.org>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Custom defconfig is not used
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -31,108 +39,102 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 15 Oct 2013 21:54:38 -0000
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"
+X-List-Received-Date: Tue, 15 Oct 2013 21:55:08 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
-On Tuesday 15 October 2013 17:18:35 Paul Eggleton wrote:
-> On Tuesday 15 October 2013 18:12:42 Davide Soldan wrote:
-> > In data marted=EC 15 ottobre 2013 11:38:21, Paul Eggleton ha scritt=
-o:
-> > > On Tuesday 15 October 2013 12:02:20 Davide Soldan wrote:
-> > > > in my recipe I want to change owner and permission of a file, s=
-o I
-> > > > wrote:
-> > > >=20
-> > > > do_install() {
-> > > >=20
-> > > >         ls -la ${D}/opt/user
-> > > >         chown -R user ${D}/opt/user
-> > > >         chgrp -R user ${D}/opt/user
-> > > >         ls -la ${D}/opt/user
-> > > >         chmod 754 ${D}/opt/user/user.sh
-> > > >         ls -la ${D}/opt/user
-> > > >=20
-> > > > }
-> > > >=20
-> > > > the output of ls commands is:
-> > > >=20
-> > > > drwxr-xr-x 8 root root   4096 Oct 15 11:13 .
-> > > > drwxr-xr-x 3 root root   4096 Oct 15 11:13 ..
-> > > > -rw-r--r-- 1 *root root*  55753 Aug  2 08:48 user.sh
-> > > >=20
-> > > > drwxr-xr-x 8 user user   4096 Oct 15 11:13 .
-> > > > drwxr-xr-x 3 root     root       4096 Oct 15 11:13 ..
-> > > > -rw-r--r-- 1 *user user*  55753 Aug  2 08:48 user.sh
-> > > >=20
-> > > > drwxr-xr-x 8 user user   4096 Oct 15 11:13 .
-> > > > drwxr-xr-x 3 root     root       4096 Oct 15 11:13 ..
-> > > > *-rwxr-xr--* 1 user user  55753 Aug  2 08:48 user.sh
-> > > >=20
-> > > > So the change of owner and permission works fine in do_install =
-phase.
-> > > > Opening the final rootfs tarball, however, the file user.sh has=
- still
-> > > > 754
-> > > > permission but root as owner...so do_package doesn't preserve o=
-wner
-> > > > change
-> > > > done in do_install? Or maybe I'm doing something wrong in chang=
-ing
-> > > > file
-> > > > owner? Any ideas? Thanks to all!
-> > >=20
-> > > Does your recipe create the specified user via useradd.bbclass?
-> >=20
-> > I solved with a postinstall script (that run at boot):
-> >=20
-> > pkg_postinst_${PN}() {
-> >=20
-> >         #!/bin/sh -e
-> >         if [ x"$D" =3D "x" ]; then
-> >        =20
-> >           chown -R user /opt/user
-> >           chgrp -R user /opt/user
-> >        =20
-> >         else
-> >        =20
-> >           exit 1
-> >        =20
-> >         fi
-> >=20
-> > }
->=20
-> This shouldn't be necessary though. I honestly can't tell you why it =
-doesn't
-> work as specified. I think it might be worth filing a bug for this.
+Hi,
 
-Actually, thinking about it I don't think this is expected to work. Typ=
-ically,=20
-recipes that need a specific user to exist use useradd.bbclass themselv=
-es=20
-rather than depending upon another recipe that does it. However, if you=
- do=20
-need to do it in a separate recipe (e.g. because multiple recipes use t=
-he same=20
-user account), just adding the other recipe to DEPENDS does not guarant=
-ee that=20
-it will be around at runtime - the actual package generated by the othe=
-r=20
-recipe (usually the same name) would need to be added to RDEPENDS_${PN}=
-.=20
-Additionally, if you do this, you should be able to have your postinsta=
-ll=20
-script run at all times; it should not need to be guarded to run only o=
-n the=20
-target (although https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D53=
-18 may=20
-interfere with this if you are using ipk or deb.)
+I guess you're setting a wrong FILESEXTRAPATHS_prepend := "${THISDIR}/files:"
 
-Cheers,
-Paul
+See this example, using simple defconfig for some devices and an
+experimental configuration (WIP ;) fo others using fragments.
 
---=20
+http://cgit.openembedded.org/meta-handheld/tree/recipes-kernel/linux/linux-yocto_3.10.bbappend
 
-Paul Eggleton
-Intel Open Source Technology Centre
+Cheers
+
+Andrea
+
+
+On Tue, Oct 15, 2013 at 11:49 PM, Rudolf Streif
+<rstreif@linuxfoundation.org> wrote:
+> Diego,
+>
+> You are appending a kernel recipe that uses the Linux Yocto tooling. The
+> defconfig is essentially comprised of many different pieces from the meta
+> branch of the Yocto kernel repository and optional configuration fragments
+> that you provide. This tooling will not recognize a defconfig file you
+> provide but it does recognize configuration fragments to be added to
+> .config.
+>
+> You need to put
+>
+> CONFIG_WATCHDOG_NOWAYOUT=y
+>
+> into a file that ends with .cfg eg. watchdog.cfg and then modify your
+> bbappend to
+>
+> FILESEXTRAPATHS_prepend := "${THISDIR}/files:"
+> SRC_URI += " file://0019-mine.patch \
+>              file://watchdog.cfg \
+>              "
+>
+> Rudi
+>
+>
+>
+> On Tue, Oct 15, 2013 at 2:07 PM, Diego Sueiro <diego.sueiro@gmail.com>
+> wrote:
+>>
+>> Folks,
+>>
+>> I created the following bbapend recipe for linux-mainline_3.8.bb (from
+>> meta-beagleboard on dylan branch) for beaglebone.
+>> meta-mine/recipes-kernel/linux/linux-mainline_3.8.bbappend:
+>>
+>> FILESEXTRAPATHS_prepend := "${THISDIR}/files:"
+>> SRC_URI += " file://0019-mine.patch \
+>>              file://defconfig \
+>>              "
+>>
+>> But the defconfig and .config files on ${S} and ${WORKDIR} used are from
+>> meta-beagleboad, not from my bbappend.
+>>
+>> I tried to follow the instructions to add config fragments on the page
+>> below but it did not worked too.
+>>
+>> http://www.yoctoproject.org/docs/current/kernel-dev/kernel-dev.html#changing-the-configuration
+>>
+>> The strange thing is: My patch is applied but my defconfig, or config
+>> fragment is not used.
+>> I just want to add CONFIG_WATCHDOG_NOWAYOUT=y.
+>>
+>> I already did a cleasstate but no success.
+>>
+>> Any hints?
+>>
+>>
+>> Regards,
+>>
+>> --
+>> *dS
+>> Diego Sueiro
+>>
+>> /*long live rock 'n roll*/
+>>
+>> _______________________________________________
+>> yocto mailing list
+>> yocto@yoctoproject.org
+>> https://lists.yoctoproject.org/listinfo/yocto
+>>
+>
+>
+>
+>
+>
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
 
