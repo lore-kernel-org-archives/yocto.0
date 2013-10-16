@@ -1,27 +1,33 @@
-Return-Path: <vidal.develone@gmail.com>
-Received: from mail-ee0-f42.google.com (mail-ee0-f42.google.com [74.125.83.42])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A04CFE01663
-	for <yocto@yoctoproject.org>; Wed, 16 Oct 2013 14:57:59 -0700 (PDT)
-Received: by mail-ee0-f42.google.com with SMTP id b45so671025eek.29
-	for <yocto@yoctoproject.org>; Wed, 16 Oct 2013 14:57:58 -0700 (PDT)
+Return-Path: <gschmottlach@gmail.com>
+Received: from mail-wi0-f176.google.com (mail-wi0-f176.google.com
+	[209.85.212.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 14FB6E01663
+	for <yocto@yoctoproject.org>; Wed, 16 Oct 2013 15:20:00 -0700 (PDT)
+Received: by mail-wi0-f176.google.com with SMTP id l12so7464427wiv.15
+	for <yocto@yoctoproject.org>; Wed, 16 Oct 2013 15:19:59 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=qO/qdvTGith/hdcSgE3hZN3AmurDOl1eCczWS+0Nt+E=;
-	b=ZPpaPKW9Ccx0M5/kYY77yOC8L87zjBED7hAcuTiaA7lzGDXlPrT0B9yf+E/0BBYS50
-	QOou8W6HZvK8m1DpLZZiOyBkeM/2dw10XokuND3WvY7qSqqRfy/1WxBgIR07zpF78SwO
-	KgN1yB3rc0jrw2MwxgKen7cOZUf5uziQI72Tt6JYlqYfnTMRmIZeG5d0R74x14ccDJg8
-	W4NzV3dJBDwlqwK6tjPxs+SXoFnRz0s98Qj57hAv3t7BUwUmBnT9pIuZYD4HT9JD/sSn
-	ti1IutINBdIfFuYkMQihJywMDmqCo9T4qfyFNnTYeuJA51d88NqF2dSkCyCQg+Tn00WX
-	4y9g==
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type;
+	bh=8JqvQNwUi+vvQcSdLENapQlDnOyyCeWmgARLpC+mxgc=;
+	b=EvPt3GGdmK1fd7fByonQjRBquZjPODVV7J16uJBOpT055xNi87HwEct6ou/gZSTnzH
+	BzBWTeZcS/lsdDGf9sUHcwD6/npuSHTHxqtdJeBQyxIgy/m7LmCnQ+VwwTo4OXEU2+d3
+	TJafIJs5V/+jzLwXmbLJjyxAPhp8Rtd9Q3EkPmJFfj6xKZoMUugHqSn3FLm/XpQN8NHU
+	LRcm7PfktWv0cYIDT3fyxuAbJHQLdrKmXBQ5EIk2XJCz18pTyFpPmmlXxDo05agPG4Dv
+	klifo8Hldn/vewv+l0t4blXb3XoGKqS6vnH5rdYmDa7cUAQ1XLP8qN+WA3GME2MyOZwE
+	SprA==
 MIME-Version: 1.0
-X-Received: by 10.14.89.7 with SMTP id b7mr8043581eef.10.1381960678671; Wed,
-	16 Oct 2013 14:57:58 -0700 (PDT)
-Received: by 10.223.97.70 with HTTP; Wed, 16 Oct 2013 14:57:58 -0700 (PDT)
-Date: Wed, 16 Oct 2013 15:57:58 -0600
-Message-ID: <CANwz6nz_dzPR9L2i39BXCSTHgWK+kLGs6ie-y806rBi-VMTcSw@mail.gmail.com>
-From: Edward Vidal <vidal.develone@gmail.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: meta-xilinx
+X-Received: by 10.194.175.66 with SMTP id by2mr21665wjc.59.1381961999664; Wed,
+	16 Oct 2013 15:19:59 -0700 (PDT)
+Received: by 10.216.46.196 with HTTP; Wed, 16 Oct 2013 15:19:59 -0700 (PDT)
+In-Reply-To: <CAP71WjxftsAwVoew6PtO5fWJv6xTPmWpSAaQgMfy4gZbq_KEeQ@mail.gmail.com>
+References: <CAMS2kBFgfdCHF1f3TfDA3PNzL_PGxOpzrmXLOV_GMhkbdTXocA@mail.gmail.com>
+	<CAP71WjxftsAwVoew6PtO5fWJv6xTPmWpSAaQgMfy4gZbq_KEeQ@mail.gmail.com>
+Date: Wed, 16 Oct 2013 18:19:59 -0400
+Message-ID: <CAMS2kBGt8OgC2uL8Yy=xh4U1Cs+tRiN5R8=iH-=eW7nDoa=cWg@mail.gmail.com>
+From: Glenn Schmottlach <gschmottlach@gmail.com>
+To: Nicolas Dechesne <nicolas.dechesne@linaro.org>
+Cc: Yocto list discussion <yocto@yoctoproject.org>
+Subject: Re: OPKG configuration questions
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -33,126 +39,149 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 16 Oct 2013 21:58:04 -0000
-Content-Type: multipart/alternative; boundary=001a11c28634588a4904e8e2cb79
-
---001a11c28634588a4904e8e2cb79
+X-List-Received-Date: Wed, 16 Oct 2013 22:20:04 -0000
 Content-Type: text/plain; charset=ISO-8859-1
 
-Hello,
-I built a zedboard core-image-sato on 09/21/13 with meta-xilinx at that
-time I had the following folders.
+See my feedback/comments below . . .
 
-meta-kc705
-meta-zc702
-meta-zedboard
+Thanks for your help . . .
 
-Build Configuration:
-BB_VERSION        = "1.19.1"
-BUILD_SYS         = "x86_64-linux"
-NATIVELSBSTRING   = "Fedora-18"
-TARGET_SYS        = "arm-poky-linux-gnueabi"
-MACHINE           = "zedboard"
-DISTRO            = "poky"
-DISTRO_VERSION    = "1.4+snapshot-20130921"
-TUNE_FEATURES     = " armv7a vfp neon zynq"
-TARGET_FPU        = "vfp-neon"
-meta
-meta-yocto        = "(nobranch):3dee534f1e25109e0bdb681de0746c336f4b8840"
-meta-xilinx
-meta-kc705
-meta-zc702
-meta-zedboard     = "master:46f4c79d6d55b556a90bb0fd89c2c09acf2aebff"
-meta-yocto-bsp    = "(nobranch):3dee534f1e25109e0bdb681de0746c336f4b8840"
+On Wed, Oct 16, 2013 at 5:10 PM, Nicolas Dechesne
+<nicolas.dechesne@linaro.org> wrote:
+> On Wed, Oct 16, 2013 at 10:17 PM, Glenn Schmottlach
+> <gschmottlach@gmail.com> wrote:
+>> 1) I'm having difficulty getting the /var/lib/opkg directory to be created
+>> and populated with a list of installed packages.
+>
+>  i use that routinely. so there must be something wrong in your config ;-)
+> you didn't mention which release and layer set you are using, btw.
+>
 
-With the dora release I did a new clone of git://
-git.yoctoproject.org/meta-xilinx
-now I do not see
-meta-kc705
-meta-zc702
-meta-zedboard
+]] I'm using Dylan-9.0.0 with several custom layers for an i.MX6
+Nitrogen6x board.
 
-When I execute MACHINE=zedboard bitbake core-image-sato
-ERROR:  OE-core's config sanity checker detected a potential
-misconfiguration.
-    Either fix the cause of this error or at your own risk disable the
-checker (see sanity.conf).
-    Following is the list of potential problems / advisories:
+>>
+>> 2) I can't figure out (e.g. can find no documentation) that describe what
+>> the "lists_dir ext /var/lib/opkg" option in the opkg.conf file does. Does
+>> this point to where the list of installed packages should be found?
+>
+> yes, i think so. so that you can eventually control where they are.
+> e.g. if they need to be on a specific folder/file system. also, note
+> that the 2nd arg is simply ignored, see
+> https://code.google.com/p/opkg/issues/detail?id=73
+>
+>>
+>> 3) What is the best/preferred approach (e.g. patch, *bbappend, new recipe,
+>> etc...) to tailor or modify the opkg.conf file (specifically the opkg source
+>> (src) paths) that are appended to /etc/opkg/opkg.conf file by the
+>> opkg-collatoral.bb recipe.
+>
+> yes. .bbappend and provide 'src' file in your layer.
 
-    Please set a valid MACHINE in your local.conf or environment
 
-ERROR: Execution of event handler 'check_sanity_eventhandler' failed
-In my local.conf I have the following.
+]] That makes the most sense. Thanks for the suggestion,
 
-MACHINE ?= "zedboard"
 
-bblayers.conf
-# LAYER_CONF_VERSION is increased each time build/conf/bblayers.conf
-# changes incompatibly
-LCONF_VERSION = "6"
+>>
+>> This is what I have done to prepare my image to include package management:
+>>
+>> 1) My image recipe inherits from core-image
+>
+> i do that too.
+>
+>>
+>> 2) I've configured ONLINE_PACKAGE_MANAGEMENT = "full" and confirmed that is
+>> it set correctly via "bitbake-env -r image-nitrogen6x
+>> ONLINE_PACKAGE_MANAGEMENT"
+>
+> that's the only thing I don't do... i don't think this is required,
+> looking throughout the sources, that shouldn't be needed, but that
+> shouldn't explain the error you gave neither..
+>
+>>
+>> 3) I've confirmed that IMAGE_FEATURES = "debug-tweaks package-management"
+>
+> did you get that with bitbake -e? also note that IMAGE_FEATURE *must*
+> be set before you inherit core-image, so either in a .conf file
+> (local.conf, distro.conf, ...) or if you do it in your image recipe,
+> you need to do it before.  so even if bitbake -e seems right, it might
+> be wrong...
+>
 
-BBPATH = "${TOPDIR}"
-BBFILES ?= ""
 
-BBLAYERS ?= " \
-  /home/vidal/POKY/build101613_zedboard/poky/meta \
-  /home/vidal/POKY/build101613_zedboard/poky/meta-yocto \
-  /home/vidal/POKY/build101613_zedboard/poky/meta-xilinx \
-  /home/vidal/POKY/build101613_zedboard/poky/meta-yocto-bsp \
-  "
-BBLAYERS_NON_REMOVABLE ?= " \
-  /home/vidal/POKY/build101613_zedboard/poky/meta \
-  /home/vidal/POKY/build101613_zedboard/poky/meta-yocto \
-  "
-Any help will be appreciated.
-Regards
+]] I confirmed that with bitbake -e. It's configured in my local.conf file.
 
---001a11c28634588a4904e8e2cb79
-Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div><div><div><div><div><div>Hello,<br></div>I built a ze=
-dboard core-image-sato on 09/21/13 with meta-xilinx at that time I had the =
-following folders.<br><br>meta-kc705<br>meta-zc702<br>meta-zedboard<br><br>
-Build Configuration:<br>BB_VERSION=A0=A0=A0=A0=A0=A0=A0 =3D &quot;1.19.1&qu=
-ot;<br>BUILD_SYS=A0=A0=A0=A0=A0=A0=A0=A0 =3D &quot;x86_64-linux&quot;<br>NA=
-TIVELSBSTRING=A0=A0 =3D &quot;Fedora-18&quot;<br>TARGET_SYS=A0=A0=A0=A0=A0=
-=A0=A0 =3D &quot;arm-poky-linux-gnueabi&quot;<br>MACHINE=A0=A0=A0=A0=A0=A0=
-=A0=A0=A0=A0 =3D &quot;zedboard&quot;<br>
-DISTRO=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 =3D &quot;poky&quot;<br>DISTRO_VERS=
-ION=A0=A0=A0 =3D &quot;1.4+snapshot-20130921&quot;<br>TUNE_FEATURES=A0=A0=
-=A0=A0 =3D &quot; armv7a vfp neon zynq&quot;<br>TARGET_FPU=A0=A0=A0=A0=A0=
-=A0=A0 =3D &quot;vfp-neon&quot;<br>meta=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=
-=A0 <br>meta-yocto=A0=A0=A0=A0=A0=A0=A0 =3D &quot;(nobranch):3dee534f1e2510=
-9e0bdb681de0746c336f4b8840&quot;<br>
-meta-xilinx=A0=A0=A0=A0=A0=A0 <br>meta-kc705=A0=A0=A0=A0=A0=A0=A0 <br>meta-=
-zc702=A0=A0=A0=A0=A0=A0=A0 <br>meta-zedboard=A0=A0=A0=A0 =3D &quot;master:4=
-6f4c79d6d55b556a90bb0fd89c2c09acf2aebff&quot;<br>meta-yocto-bsp=A0=A0=A0 =
-=3D &quot;(nobranch):3dee534f1e25109e0bdb681de0746c336f4b8840&quot;<br>
-<br></div>With the dora release I did a new clone of git://<a href=3D"http:=
-//git.yoctoproject.org/meta-xilinx">git.yoctoproject.org/meta-xilinx</a><br=
-></div>now I do not see <br>meta-kc705<br>meta-zc702<br>meta-zedboard<br>
-<br>When I execute MACHINE=3Dzedboard bitbake core-image-sato<br>ERROR:=A0 =
-OE-core&#39;s config sanity checker detected a potential misconfiguration.<=
-br>=A0=A0=A0 Either fix the cause of this error or at your own risk disable=
- the checker (see sanity.conf).<br>
-=A0=A0=A0 Following is the list of potential problems / advisories:<br><br>=
-=A0=A0=A0 Please set a valid MACHINE in your local.conf or environment<br><=
-br>ERROR: Execution of event handler &#39;check_sanity_eventhandler&#39; fa=
-iled<br>
-In my local.conf I have the following.<br><br>MACHINE ?=3D &quot;zedboard&q=
-uot;<br><br></div>bblayers.conf<br># LAYER_CONF_VERSION is increased each t=
-ime build/conf/bblayers.conf<br># changes incompatibly<br>LCONF_VERSION =3D=
- &quot;6&quot;<br>
-<br>BBPATH =3D &quot;${TOPDIR}&quot;<br>BBFILES ?=3D &quot;&quot;<br><br>BB=
-LAYERS ?=3D &quot; \<br>=A0 /home/vidal/POKY/build101613_zedboard/poky/meta=
- \<br>=A0 /home/vidal/POKY/build101613_zedboard/poky/meta-yocto \<br>=A0 /h=
-ome/vidal/POKY/build101613_zedboard/poky/meta-xilinx \<br>
-=A0 /home/vidal/POKY/build101613_zedboard/poky/meta-yocto-bsp \<br>=A0 &quo=
-t;<br>BBLAYERS_NON_REMOVABLE ?=3D &quot; \<br>=A0 /home/vidal/POKY/build101=
-613_zedboard/poky/meta \<br>=A0 /home/vidal/POKY/build101613_zedboard/poky/=
-meta-yocto \<br>
-=A0 &quot;<br></div>Any help will be appreciated.<br></div>Regards<br><br><=
-/div>
+> one way to check is to get the value of the following vars:
+>
+> ROOTFS_BOOTSTRAP_INSTALL
+>
+> as it is set in image.bbclass like this:
+>
+> ROOTFS_BOOTSTRAP_INSTALL = "${@base_contains("IMAGE_FEATURES",
+> "package-management", "", "${ROOTFS_PKGMANAGE_BOOTSTRAP}",d)}"
+>
+>
 
---001a11c28634588a4904e8e2cb79--
+]] That variable isn't defined in my environment. All I see is the following:
+
+ bitbake  -e image-nitrogen6x | grep ROOTFS_BOOTSTRAP_INSTALL
+#     "${IMAGE_INSTALL} ${LINGUAS_INSTALL} ${NORMAL_FEATURE_INSTALL}
+${ROOTFS_BOOTSTRAP_INSTALL}"
+#   " ${IMAGE_INSTALL} ${LINGUAS_INSTALL} ${NORMAL_FEATURE_INSTALL}
+${ROOTFS_BOOTSTRAP_INSTALL}"
+# $ROOTFS_BOOTSTRAP_INSTALL
+#     "${IMAGE_INSTALL} ${ROOTFS_BOOTSTRAP_INSTALL} ${FEATURE_INSTALL}"
+#   "${IMAGE_INSTALL} ${ROOTFS_BOOTSTRAP_INSTALL} ${FEATURE_INSTALL}"
+
+]] In my "image" recipe I inherit from core-image. Do I also need to
+also inherit from "image" as well to get this expanded?
+
+>>
+>> 4) PACKAGE_CLASSES = "package_ipk" is configured and I see packages in my
+>> <project>/build/tmp/deploy/ipk directory
+>
+> looks ok.
+>
+>>
+>> The target boots fine and I have the appropriate opkg applications installed
+>> (e.g. opkg, opkg-cl, opkg-key). I also have the default /etc/opkg/opkg.conf
+>> and /etc/opkg/arch.conf installed.
+>>
+>> There is *no* /var/lib/opkg directory and thus "opkg-cl list-installed"
+>> returns with an error because the "opkg" directory is missing. If I manually
+>> create it the program run successfully but doesn't list anything (which is
+>> obvious since it is empty).
+>>
+>> I read this post
+>> https://lists.yoctoproject.org/pipermail/yocto/2013-June/016324.html
+>>
+>> and confirmed that my setting are correct for IMAGE_FEATURES and
+>> ROOT_POSTPROCESS_CMD (= "run_intercept_scriptlets; license_create_manifest;
+>> ssh_allow_empty_password;  rootfs_update_timestamp ;")
+>>
+>> Can anyone offer any suggestions, recommendations, or answers to my
+>> questions above?
+>
+> if you can pastebin the entire content of bibtake -e <your image> , we
+> will get all the variables...
+
+]] Wish I could but it's too large for the non-PRO account. One thing
+that did disturb me a little was that when I look in my
+<project>/build/tmp-eglibc/deploy/ipk is see the following:
+
+  4 drwxr-xr-x 6 gschmottlach gschmottlach   4096 Oct 16 16:38 .
+  4 drwxr-xr-x 8 gschmottlach gschmottlach   4096 Oct  3 05:53 ..
+ 12 drwxr-xr-x 2 gschmottlach gschmottlach  12288 Oct 16 16:38 all
+176 drwxr-xr-x 2 gschmottlach gschmottlach 176128 Oct 16 16:38 armv7a-vfp-neon
+ 24 drwxr-xr-x 2 gschmottlach gschmottlach  24576 Oct 16 16:38 i686-nativesdk
+ 40 drwxr-xr-x 2 gschmottlach gschmottlach  36864 Oct 16 16:38 nitrogen6x
+  0 -rw-rw-r-- 1 gschmottlach gschmottlach      0 Oct 16 16:38 Packages
+  0 -rw-r--r-- 1 gschmottlach gschmottlach      0 Oct  3 00:24 Packages.flock
+  4 -rw-rw-r-- 1 gschmottlach gschmottlach     20 Oct 16 16:38 Packages.gz
+  0 -rw-r--r-- 1 gschmottlach gschmottlach      0 Oct 16 16:38 Packages.stamps
+
+What disturbs me is the the "Packages" and "Packages.gz" files seem
+too small for all the ipkg's I have installed in the directory. Is
+yours like this?
+
