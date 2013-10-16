@@ -1,24 +1,32 @@
-Return-Path: <paul.eggleton@linux.intel.com>
-Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 23336E01682
-	for <yocto@yoctoproject.org>; Wed, 16 Oct 2013 03:33:36 -0700 (PDT)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by azsmga102.ch.intel.com with ESMTP; 16 Oct 2013 03:33:17 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.93,506,1378882800"; d="scan'208";a="411837974"
-Received: from unknown (HELO helios.localnet) ([10.252.121.8])
-	by fmsmga001.fm.intel.com with ESMTP; 16 Oct 2013 03:33:16 -0700
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: Amit Tomer <amittomer25@gmail.com>
-Date: Wed, 16 Oct 2013 11:33:15 +0100
-Message-ID: <2360903.vJkMptqlar@helios>
-Organization: Intel Corporation
-User-Agent: KMail/4.10.5 (Linux/3.8.0-31-generic; KDE/4.10.5; i686; ; )
-In-Reply-To: <1453346.6uHgHqcMcF@fedora-fisso>
-References: <CABHD4K9CTm3f-p66+aNgb-3ba168G4OveAkU8mPqtLruw1CEgQ@mail.gmail.com>
-	<1453346.6uHgHqcMcF@fedora-fisso>
+Return-Path: <amittomer25@gmail.com>
+Received: from mail-we0-f172.google.com (mail-we0-f172.google.com
+	[74.125.82.172])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A9C2CE01682
+	for <yocto@yoctoproject.org>; Wed, 16 Oct 2013 03:57:01 -0700 (PDT)
+Received: by mail-we0-f172.google.com with SMTP id q58so513059wes.31
+	for <yocto@yoctoproject.org>; Wed, 16 Oct 2013 03:57:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type:content-transfer-encoding;
+	bh=mP9kgo45KKFpcdBrif/3hxwxuRX2RgOVh7OJKgk05xg=;
+	b=v8Ve/5E3nIPxb/8jBf3P64joy3Nra5gf69V/iwedjNMd6FwSUVHfeWawOAPa0yW5it
+	8ljkOAeyaTA1utyJf1dGHYwMBiBJrrE+vOTwCG9sKQr5JUS3DWpZ5hjPClHLh8skWUIH
+	YEYWM83IZbr2jBS6H35N+TsonBnSLLHuZalHcUxfgyMLb+qTsb9ScoC4C/OVYNtlKele
+	6AkvdO0AH07SHUUKEil6r/El1qE6tz7YgNrptoIS3LQzHuulBx1LjctxehHd2MycUXrG
+	dDaocFg1JQVTdQQQ1hZJt73Un3XMBt7xzbbmWGHVZ5hRTbSR5D+9LDWKM7vc/E8Sk0mm
+	MHtQ==
 MIME-Version: 1.0
-Cc: yocto@yoctoproject.org
+X-Received: by 10.180.149.179 with SMTP id ub19mr1699672wib.43.1381921020185; 
+	Wed, 16 Oct 2013 03:57:00 -0700 (PDT)
+Received: by 10.227.197.69 with HTTP; Wed, 16 Oct 2013 03:57:00 -0700 (PDT)
+In-Reply-To: <2360903.vJkMptqlar@helios>
+References: <CABHD4K9CTm3f-p66+aNgb-3ba168G4OveAkU8mPqtLruw1CEgQ@mail.gmail.com>
+	<1453346.6uHgHqcMcF@fedora-fisso> <2360903.vJkMptqlar@helios>
+Date: Wed, 16 Oct 2013 16:27:00 +0530
+Message-ID: <CABHD4K_e98i7+u2mDZq4whZWqiGDB74t0spZ1tz9L5zBqH4BVg@mail.gmail.com>
+From: Amit Tomer <amittomer25@gmail.com>
+To: Paul Eggleton <paul.eggleton@linux.intel.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: How /etc/passwd packed into my final image
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -31,53 +39,55 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 16 Oct 2013 10:33:38 -0000
+X-List-Received-Date: Wed, 16 Oct 2013 10:57:03 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"
 
-On Wednesday 16 October 2013 10:20:24 Davide Soldan wrote:
-> In data mercoled=EC 16 ottobre 2013 00:01:13, Amit Tomer ha scritto:
-> > I wanted to modify the content of /etc/passwd but don't know how
-> > /etc/passwd files is packed into final image
-> >=20
-> > After the build process ,passwd file goes to
-> >=20
-> > "tmp/work/k2-poky-linux-gnueabi/image-k2/1.0-r0/rootfs/etc/passwd"
-> >=20
-> > this loaction
-> >=20
-> > Now I see image-k2.bb file but could not find any rule that will pa=
-ck
-> > passwd file to
-> > final image.
-> >=20
-> > Can anybody how it is packed and way to modify it.
-> >=20
-> > Thanks
-> > Amit
-> > _______________________________________________
-> > yocto mailing list
-> > yocto@yoctoproject.org
-> > https://lists.yoctoproject.org/listinfo/yocto
->=20
-> Hi,
-> I think that the recipe that creates passwd file is under
-> poky/meta/recipes-core/base-passwd (I'm on dora branch). Maybe with a=
+Thanks Paul for your suggestion
+Method of modifying in base-passws is somehow not working for us
+Let us try your suggestion.
 
-> bbappend of that recipe you can change the passwd file with yours... =
-Cheers
-
-Rather than modifying it in base-passwd, with master or 1.5 I'd recomme=
-nd=20
-using extrausers.bbclass / EXTRA_USERS_PARAMS (see meta-
-yocto/conf/local.conf.sample.extended for an example of how to use it).=
-
-
-Cheers,
-Paul
-
---=20
-
-Paul Eggleton
-Intel Open Source Technology Centre
+On Wed, Oct 16, 2013 at 4:03 PM, Paul Eggleton
+<paul.eggleton@linux.intel.com> wrote:
+> On Wednesday 16 October 2013 10:20:24 Davide Soldan wrote:
+>> In data mercoled=EC 16 ottobre 2013 00:01:13, Amit Tomer ha scritto:
+>> > I wanted to modify the content of /etc/passwd but don't know how
+>> > /etc/passwd files is packed into final image
+>> >
+>> > After the build process ,passwd file goes to
+>> >
+>> > "tmp/work/k2-poky-linux-gnueabi/image-k2/1.0-r0/rootfs/etc/passwd"
+>> >
+>> > this loaction
+>> >
+>> > Now I see image-k2.bb file but could not find any rule that will pack
+>> > passwd file to
+>> > final image.
+>> >
+>> > Can anybody how it is packed and way to modify it.
+>> >
+>> > Thanks
+>> > Amit
+>> > _______________________________________________
+>> > yocto mailing list
+>> > yocto@yoctoproject.org
+>> > https://lists.yoctoproject.org/listinfo/yocto
+>>
+>> Hi,
+>> I think that the recipe that creates passwd file is under
+>> poky/meta/recipes-core/base-passwd (I'm on dora branch). Maybe with a
+>> bbappend of that recipe you can change the passwd file with yours... Che=
+ers
+>
+> Rather than modifying it in base-passwd, with master or 1.5 I'd recommend
+> using extrausers.bbclass / EXTRA_USERS_PARAMS (see meta-
+> yocto/conf/local.conf.sample.extended for an example of how to use it).
+>
+> Cheers,
+> Paul
+>
+> --
+>
+> Paul Eggleton
+> Intel Open Source Technology Centre
 
