@@ -1,29 +1,28 @@
-Return-Path: <008dilip@gmail.com>
-Received: from mail-ob0-f169.google.com (mail-ob0-f169.google.com
-	[209.85.214.169])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E80FBE01676
-	for <yocto@yoctoproject.org>; Tue, 15 Oct 2013 23:40:49 -0700 (PDT)
-Received: by mail-ob0-f169.google.com with SMTP id wp4so244234obc.0
-	for <yocto@yoctoproject.org>; Tue, 15 Oct 2013 23:40:48 -0700 (PDT)
+Return-Path: <amittomer25@gmail.com>
+Received: from mail-wg0-f45.google.com (mail-wg0-f45.google.com [74.125.82.45])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 080DBE01676;
+	Wed, 16 Oct 2013 00:01:15 -0700 (PDT)
+Received: by mail-wg0-f45.google.com with SMTP id z12so252305wgg.0
+	for <multiple recipients>; Wed, 16 Oct 2013 00:01:13 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=cUTar4x4G+fBpEC6WRsbT7KS85W7zLBSaSSa54kyDeM=;
-	b=UYGXOkTGxyLS7dLz9DO8PcqicY8knViKU63UThVZF6O36rsB+43I1fHdPzL3HXpXjU
-	liUrf4ljDLGRxfAGKwqrvTPo9p/qhBOqCgKooCiEbY0SF9iIkhqM8ZXNr5x8S/qvmKs2
-	PGc/mbigpN4WY6PNi32tVbxzcDY/Zr2TgZkcPyDWLh8EvKhi/e0dG6AvKsP8g47YwFaU
-	ftttaQdE580vxJrTa0vMisg0Q/tbP9X0lg/yhPwxoTn2nvAnNiTbcHpgeIG22jd9qRCX
-	HCgLjvzuL3wG5rPlo4Ac+y3RyAiozJcDs3nPbjFRGP2ftk6YjiaRL5idSsdXwGZtI/Z4
-	O5vA==
+	bh=8vPKpQ/lQzkiQB+fgG/iCmhjmEYJQ7mXAG0kbufqd8Q=;
+	b=JOrGznlhVshOpnE/5/8Aem9sy8vu4IwIXwJewnnueYSNKUWCYbIhY/VBBAsnJcpgMd
+	9hE28wN97sNLSd4tbHWQFBS6YO+ZQbUSUwhrE1egyOhwqIh+FNiXmLFpK7U+6kyfR+IV
+	iIxbdhRma+94CNkYx6Bo48Za4ql/El5tB0cQcdBbYMMy9OI4C9MLrGZzGAU1oGAofJ1v
+	/EFsLVEdpMG+X8sPlgFEvaHnm/mZaefTlDz6flqQT2DeS+QKCSV890vw/zHOPJoiA4hH
+	f4q/ffmxsOhIG6yBj9JhSM6QbbMUs0PeC5H8DYA5BoAmAyADc38hKBjjct1xFRm35vjA
+	gvWA==
 MIME-Version: 1.0
-X-Received: by 10.182.22.5 with SMTP id z5mr1029501obe.42.1381905648705; Tue,
-	15 Oct 2013 23:40:48 -0700 (PDT)
-Received: by 10.76.177.34 with HTTP; Tue, 15 Oct 2013 23:40:48 -0700 (PDT)
-Received: by 10.76.177.34 with HTTP; Tue, 15 Oct 2013 23:40:48 -0700 (PDT)
-Date: Wed, 16 Oct 2013 12:10:48 +0530
-Message-ID: <CABmxB3MQHFmQ=RRUCYyLULPwTZ_EFWrtYMKL+fWisVWnsFQbiw@mail.gmail.com>
-From: Dilip Kumar <008dilip@gmail.com>
-To: yocto@yoctoproject.org
-Subject: Adding external kernel module to qemuarm architecture
+X-Received: by 10.194.219.1 with SMTP id pk1mr979891wjc.36.1381906873620; Wed,
+	16 Oct 2013 00:01:13 -0700 (PDT)
+Received: by 10.227.197.69 with HTTP; Wed, 16 Oct 2013 00:01:13 -0700 (PDT)
+Date: Wed, 16 Oct 2013 00:01:13 -0700
+Message-ID: <CABHD4K9CTm3f-p66+aNgb-3ba168G4OveAkU8mPqtLruw1CEgQ@mail.gmail.com>
+From: Amit Tomer <amittomer25@gmail.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>, 
+	"yocto-request@yoctoproject.org" <yocto-request@yoctoproject.org>
+Subject: How /etc/passwd packed into my final image
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -35,34 +34,24 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 16 Oct 2013 06:40:51 -0000
-Content-Type: multipart/alternative; boundary=001a1133232e4dea6404e8d5fb45
-
---001a1133232e4dea6404e8d5fb45
+X-List-Received-Date: Wed, 16 Oct 2013 07:01:17 -0000
 Content-Type: text/plain; charset=ISO-8859-1
 
-Dear all,
+I wanted to modify the content of /etc/passwd but don't know how
+/etc/passwd files is packed into final image
 
-I was able to build external kernel for qemux86 successfully. Then I
-changed the architecture to qemuarm in local.conf and added qemuarm bsp
-layer in bblayers.conf. if I try to build now it's showing install error in
-makefile. I m using hello-mod example for this. Please help me out.
+After the build process ,passwd file goes to
 
-regards
-dilip kumar b
+"tmp/work/k2-poky-linux-gnueabi/image-k2/1.0-r0/rootfs/etc/passwd"
 
---001a1133232e4dea6404e8d5fb45
-Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
+this loaction
 
-<p dir=3D"ltr">Dear all,</p>
-<p dir=3D"ltr"> I was able to build external kernel for qemux86 successfull=
-y. Then I changed the architecture to qemuarm in local.conf and added qemua=
-rm bsp layer in bblayers.conf. if I try to build now it&#39;s showing insta=
-ll error in makefile. I m using hello-mod example for this. Please help me =
-out.<br>
-</p>
-<p dir=3D"ltr">regards <br>
-dilip kumar b</p>
+Now I see image-k2.bb file but could not find any rule that will pack
+passwd file to
+final image.
 
---001a1133232e4dea6404e8d5fb45--
+Can anybody how it is packed and way to modify it.
+
+Thanks
+Amit
+
