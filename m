@@ -1,24 +1,29 @@
-Return-Path: <paul.eggleton@linux.intel.com>
-Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9F5A3E01708
-	for <yocto@yoctoproject.org>; Tue, 15 Oct 2013 15:34:46 -0700 (PDT)
-Received: from azsmga002.ch.intel.com ([10.2.17.35])
-	by azsmga102.ch.intel.com with ESMTP; 15 Oct 2013 15:34:44 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.93,503,1378882800"; d="scan'208";a="308249860"
-Received: from unknown (HELO helios.localnet) ([10.252.120.232])
-	by AZSMGA002.ch.intel.com with ESMTP; 15 Oct 2013 15:34:40 -0700
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: Katu Txakur <katutxakurra@gmail.com>
-Date: Tue, 15 Oct 2013 23:34:39 +0100
-Message-ID: <1700191.EdxHocCYrr@helios>
-Organization: Intel Corporation
-User-Agent: KMail/4.10.5 (Linux/3.8.0-31-generic; KDE/4.10.5; i686; ; )
-In-Reply-To: <CAM1ZcoXQEO9w+gJKfK8xYft=JegKHoWGn8Q6CF=hBd77o0ezyw@mail.gmail.com>
-References: <CAM1ZcoXQEO9w+gJKfK8xYft=JegKHoWGn8Q6CF=hBd77o0ezyw@mail.gmail.com>
+Return-Path: <008dilip@gmail.com>
+Received: from mail-ob0-f169.google.com (mail-ob0-f169.google.com
+	[209.85.214.169])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E80FBE01676
+	for <yocto@yoctoproject.org>; Tue, 15 Oct 2013 23:40:49 -0700 (PDT)
+Received: by mail-ob0-f169.google.com with SMTP id wp4so244234obc.0
+	for <yocto@yoctoproject.org>; Tue, 15 Oct 2013 23:40:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=cUTar4x4G+fBpEC6WRsbT7KS85W7zLBSaSSa54kyDeM=;
+	b=UYGXOkTGxyLS7dLz9DO8PcqicY8knViKU63UThVZF6O36rsB+43I1fHdPzL3HXpXjU
+	liUrf4ljDLGRxfAGKwqrvTPo9p/qhBOqCgKooCiEbY0SF9iIkhqM8ZXNr5x8S/qvmKs2
+	PGc/mbigpN4WY6PNi32tVbxzcDY/Zr2TgZkcPyDWLh8EvKhi/e0dG6AvKsP8g47YwFaU
+	ftttaQdE580vxJrTa0vMisg0Q/tbP9X0lg/yhPwxoTn2nvAnNiTbcHpgeIG22jd9qRCX
+	HCgLjvzuL3wG5rPlo4Ac+y3RyAiozJcDs3nPbjFRGP2ftk6YjiaRL5idSsdXwGZtI/Z4
+	O5vA==
 MIME-Version: 1.0
-Cc: yocto@yoctoproject.org
-Subject: Re: fetch from perforce
+X-Received: by 10.182.22.5 with SMTP id z5mr1029501obe.42.1381905648705; Tue,
+	15 Oct 2013 23:40:48 -0700 (PDT)
+Received: by 10.76.177.34 with HTTP; Tue, 15 Oct 2013 23:40:48 -0700 (PDT)
+Received: by 10.76.177.34 with HTTP; Tue, 15 Oct 2013 23:40:48 -0700 (PDT)
+Date: Wed, 16 Oct 2013 12:10:48 +0530
+Message-ID: <CABmxB3MQHFmQ=RRUCYyLULPwTZ_EFWrtYMKL+fWisVWnsFQbiw@mail.gmail.com>
+From: Dilip Kumar <008dilip@gmail.com>
+To: yocto@yoctoproject.org
+Subject: Adding external kernel module to qemuarm architecture
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -30,35 +35,34 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 15 Oct 2013 22:34:46 -0000
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Wed, 16 Oct 2013 06:40:51 -0000
+Content-Type: multipart/alternative; boundary=001a1133232e4dea6404e8d5fb45
 
-Hi Katu,
+--001a1133232e4dea6404e8d5fb45
+Content-Type: text/plain; charset=ISO-8859-1
 
-On Tuesday 15 October 2013 20:52:15 Katu Txakur wrote:
-> can someone please give me an example of fetching the code from perforce?
-> I want to map files from perforce and put them in a different tree
-> structure in the workspace before compiling it. I also need to set user and
-> password.
-> I failed to find an example online and I don't understand the perforce
-> script enough to guess the way to call it.
+Dear all,
 
-I have zero experience with perforce or fetching from it with a recipe, but 
-looking at the fetcher code (bitbake/lib/bb/fetch2/perforce.py) it looks like 
-the SRC_URI syntax is:
+I was able to build external kernel for qemux86 successfully. Then I
+changed the architecture to qemuarm in local.conf and added qemuarm bsp
+layer in bblayers.conf. if I try to build now it's showing install error in
+makefile. I m using hello-mod example for this. Please help me out.
 
-p4://user:password:host:port@path
+regards
+dilip kumar b
 
-Unfortunately it looks like you also need to set FETCHCOMMAND_p4 in your 
-configuration as well since there is no default for this. Something like 
-"/usr/bin/env p4" might work.
+--001a1133232e4dea6404e8d5fb45
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
 
-Cheers,
-Paul
+<p dir=3D"ltr">Dear all,</p>
+<p dir=3D"ltr"> I was able to build external kernel for qemux86 successfull=
+y. Then I changed the architecture to qemuarm in local.conf and added qemua=
+rm bsp layer in bblayers.conf. if I try to build now it&#39;s showing insta=
+ll error in makefile. I m using hello-mod example for this. Please help me =
+out.<br>
+</p>
+<p dir=3D"ltr">regards <br>
+dilip kumar b</p>
 
--- 
-
-Paul Eggleton
-Intel Open Source Technology Centre
-
+--001a1133232e4dea6404e8d5fb45--
