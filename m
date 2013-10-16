@@ -1,35 +1,30 @@
 Return-Path: <diego.sueiro@gmail.com>
-Received: from mail-ie0-f170.google.com (mail-ie0-f170.google.com
-	[209.85.223.170])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 99E33E01661
-	for <yocto@yoctoproject.org>; Wed, 16 Oct 2013 10:25:59 -0700 (PDT)
-Received: by mail-ie0-f170.google.com with SMTP id at1so1924629iec.1
-	for <yocto@yoctoproject.org>; Wed, 16 Oct 2013 10:25:58 -0700 (PDT)
+Received: from mail-ie0-f180.google.com (mail-ie0-f180.google.com
+	[209.85.223.180])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 00935E016A0
+	for <yocto@yoctoproject.org>; Wed, 16 Oct 2013 10:30:07 -0700 (PDT)
+Received: by mail-ie0-f180.google.com with SMTP id e14so1843075iej.39
+	for <yocto@yoctoproject.org>; Wed, 16 Oct 2013 10:30:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-type;
-	bh=j2l1bOk0JjZ5Aq/SNkdHjbKIYAGCG1N3uLwtGRinwDo=;
-	b=WxakotJY9OWPEXL7cJrxIGOWtn4kGTbNspwjdOJZ/ii3aTDc1mcpGXu8m8w4iFOKwK
-	d6yP7uCH36Ruu+lHUs75zFoELiHig+5OpL+inpAygx3YgrahxBFERIXluuNEnXkhFdef
-	AgytDff8Hm0lmoKNy5YBRqS5m4NLQ4Yd0wYkiL0efF319Zr2LsK0HMTys8B+zoKU44SP
-	EiqaGZm8dizKwLOg29MxdgjRxkfqOJDow4m1/5sgw8fFqjeSVrkqxSJ4tMIsu0FIBeEJ
-	2XKSrSkqhq5QenJz5M2QjeEpOyXxmpCnJCR7TjJ6t0X/BU+2ZLL/CbMlYCMMUcDpB22g
-	CGdQ==
-X-Received: by 10.50.26.36 with SMTP id i4mr3067273igg.33.1381944358385; Wed,
-	16 Oct 2013 10:25:58 -0700 (PDT)
+	:content-type; bh=Y9S63bAVobjFdsAbatP2V3H8VTB9UGWmzFR6pjSXnkM=;
+	b=Hn9Np1BEQR7Ui8NuIDYIBqyMjBvW3Xk9xM2XcIRNhOCsryWGQpWrXf2NclH7jriLgB
+	qYGhPRrdrlbFCkS6npCNuMhYbmANVSy2D0AcAgUbcFZodP2Es3iOQGSOafU9oEBGG4Hf
+	YzX6uf+BVPYQMzCpWJqm3KOFnCldeZb2Ju3ELW4HBONKr+zCWMFEzgYAc3O9x7ALo8jJ
+	aNIwGENsEfHGpgHULjY8xJshybQvLsZhphRm6+qm211r+Vnsud4eXgHqf5370f2Gr4iY
+	Aw5ykTAYE9SjNWMRezhJ3OfvpGvtNzIRfCRNgvvo2Xq+4Y/Owm+XyMu+f+cWUm2NVe+h
+	0h6Q==
+X-Received: by 10.50.26.36 with SMTP id i4mr3080356igg.33.1381944606181; Wed,
+	16 Oct 2013 10:30:06 -0700 (PDT)
 MIME-Version: 1.0
-Received: by 10.64.26.233 with HTTP; Wed, 16 Oct 2013 10:25:38 -0700 (PDT)
-In-Reply-To: <CAAQYJAu+wU0ODvVoTrRBFhVOUVh+CdMg3mimfgGkj-pwJh3A1g@mail.gmail.com>
-References: <CAMCfZKFBvSiRSMk5wrEpSEiNNiZeHJw18fbHgHzepo__U=UWNA@mail.gmail.com>
-	<CA+gsK-o6n24Aqp2dtpOwnmrCBjWE=HDSJvfqyYy2pvJYrHqXmQ@mail.gmail.com>
-	<CAAQYJAu+wU0ODvVoTrRBFhVOUVh+CdMg3mimfgGkj-pwJh3A1g@mail.gmail.com>
+Received: by 10.64.26.233 with HTTP; Wed, 16 Oct 2013 10:29:46 -0700 (PDT)
+In-Reply-To: <CAMCfZKG+A7QD+0Fzj+vQqFP5F8r22o1cB6j0F8WWJUkrKGu-HQ@mail.gmail.com>
+References: <CAMCfZKG+A7QD+0Fzj+vQqFP5F8r22o1cB6j0F8WWJUkrKGu-HQ@mail.gmail.com>
 From: Diego Sueiro <diego.sueiro@gmail.com>
-Date: Wed, 16 Oct 2013 14:25:38 -0300
-Message-ID: <CAMCfZKF_Rp=uds8tnDPSD9k3GO5dEiHSx9WfYjZ0yPkmh_9YPg@mail.gmail.com>
-To: Andrea Adami <andrea.adami@gmail.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	Rudolf Streif <rstreif@linuxfoundation.org>
-Subject: Re: Custom defconfig is not used
+Date: Wed, 16 Oct 2013 14:29:46 -0300
+Message-ID: <CAMCfZKGQx=dLfdjdX=cUUvovYf_KCwpaGroGB8bofmmA8dnCTA@mail.gmail.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: populate_sdk for custom image failed
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,351 +36,115 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 16 Oct 2013 17:26:00 -0000
-Content-Type: multipart/alternative; boundary=047d7bd76fe094cf9604e8defe5e
+X-List-Received-Date: Wed, 16 Oct 2013 17:30:12 -0000
+Content-Type: multipart/alternative; boundary=047d7bd76fe059d22804e8df0d66
 
---047d7bd76fe094cf9604e8defe5e
-Content-Type: text/plain; charset=UTF-8
+--047d7bd76fe059d22804e8df0d66
+Content-Type: text/plain; charset=ISO-8859-1
 Content-Transfer-Encoding: quoted-printable
 
-Guys,
+Folks,
 
-As I told before, I already tried the config fragment strategy and it did
-not worked too.
+Any thoughts?
 
-Looking at linux-mailine-3.8.bb from meta-beagleboard[1] it just inherits
-kernel and not inherits linux-yocto or requires linux-yocto.inc. So I
-believe that the config fragment will not work. But I can be wrong.
-
-On directory "meta-mine/recipes-kernel/linux/" I have this:
-
-.
-=E2=94=9C=E2=94=80=E2=94=80 files
-=E2=94=82   =E2=94=9C=E2=94=80=E2=94=80 mine.patch
-=E2=94=82   =E2=94=94=E2=94=80=E2=94=80 defconfig
-=E2=94=94=E2=94=80=E2=94=80 linux-mainline_3.8.bbappend
-
-
-And my linux-mainline_3.8.bbappend recipe:
-
-FILESEXTRAPATHS_prepend :=3D "${THISDIR}/files:"
-SRC_URI +=3D " file://mine.patch \
-             file://defconfig \
-             "
-
-The mine.patch is applied but defconfig not.
-
-I've already tried to use another FILESEXTRAPATHS layout like[2],but no
-success too.
-
-How can I have the "bb" command listed on the following link?
-http://www.crashcourse.ca/wiki/index.php/OE_FILESEXTRAPATHS
-
-
-[1] -
- https://github.com/beagleboard/meta-beagleboard/blob/dylan/common-bsp/reci=
-pes-kernel/linux/linux-mainline_3.8.bb
-[2] -
-http://cgit.openembedded.org/meta-handheld/tree/recipes-kernel/linux/linux-=
-yocto_3.10.bbappend
-
-Regards,
+Abra=E7os,
 
 --
 *dS
 Diego Sueiro
 
+Administrador do Embarcados
+www.embarcados.com.br
+
+Engenheiro de Controle e Automa=E7=E3o
+UNIVERSIDADE FEDERAL DE ITAJUB=C0
+
 /*long live rock 'n roll*/
 
 
-2013/10/15 Andrea Adami <andrea.adami@gmail.com>
+2013/10/14 Diego Sueiro <diego.sueiro@gmail.com>
 
-> Hi,
+> Folks,
 >
-> I guess you're setting a wrong FILESEXTRAPATHS_prepend :=3D
-> "${THISDIR}/files:"
+> I have a custom image in which installs mplayer with IMAGE_INSTALL +=3D
+> "mplayer".
+> When I try to generate it's sdk (bitbake mycustom-image -c populate_sdk)
+> I'm getting the following error:
 >
-> See this example, using simple defconfig for some devices and an
-> experimental configuration (WIP ;) fo others using fragments.
+> | Collected errors:
+> |  * satisfy_dependencies_for: Cannot satisfy the following dependencies
+> for mplayer2-dev:
+> |  * xpext (=3D 1.0-5-r0.0) *
+> |  * opkg_install_cmd: Cannot install package mplayer2-dev.
+> | DEBUG: Python function do_populate_sdk finished
 >
+> I've already did a cleansstate on both mplayer and xpext, but the issue
+> remains.
+> I'm using dylan branch.
 >
-> http://cgit.openembedded.org/meta-handheld/tree/recipes-kernel/linux/linu=
-x-yocto_3.10.bbappend
+> Any hints?
 >
-> Cheers
+> Regards,
 >
-> Andrea
+> --
+> *dS
+> Diego Sueiro
 >
+> Administrador do Embarcados
+> www.embarcados.com.br
 >
-> On Tue, Oct 15, 2013 at 11:49 PM, Rudolf Streif
-> <rstreif@linuxfoundation.org> wrote:
-> > Diego,
-> >
-> > You are appending a kernel recipe that uses the Linux Yocto tooling. Th=
-e
-> > defconfig is essentially comprised of many different pieces from the me=
-ta
-> > branch of the Yocto kernel repository and optional configuration
-> fragments
-> > that you provide. This tooling will not recognize a defconfig file you
-> > provide but it does recognize configuration fragments to be added to
-> > .config.
-> >
-> > You need to put
-> >
-> > CONFIG_WATCHDOG_NOWAYOUT=3Dy
-> >
-> > into a file that ends with .cfg eg. watchdog.cfg and then modify your
-> > bbappend to
-> >
-> > FILESEXTRAPATHS_prepend :=3D "${THISDIR}/files:"
-> > SRC_URI +=3D " file://0019-mine.patch \
-> >              file://watchdog.cfg \
-> >              "
-> >
-> > Rudi
-> >
-> >
-> >
-> > On Tue, Oct 15, 2013 at 2:07 PM, Diego Sueiro <diego.sueiro@gmail.com>
-> > wrote:
-> >>
-> >> Folks,
-> >>
-> >> I created the following bbapend recipe for linux-mainline_3.8.bb (from
-> >> meta-beagleboard on dylan branch) for beaglebone.
-> >> meta-mine/recipes-kernel/linux/linux-mainline_3.8.bbappend:
-> >>
-> >> FILESEXTRAPATHS_prepend :=3D "${THISDIR}/files:"
-> >> SRC_URI +=3D " file://0019-mine.patch \
-> >>              file://defconfig \
-> >>              "
-> >>
-> >> But the defconfig and .config files on ${S} and ${WORKDIR} used are fr=
-om
-> >> meta-beagleboad, not from my bbappend.
-> >>
-> >> I tried to follow the instructions to add config fragments on the page
-> >> below but it did not worked too.
-> >>
-> >>
-> http://www.yoctoproject.org/docs/current/kernel-dev/kernel-dev.html#chang=
-ing-the-configuration
-> >>
-> >> The strange thing is: My patch is applied but my defconfig, or config
-> >> fragment is not used.
-> >> I just want to add CONFIG_WATCHDOG_NOWAYOUT=3Dy.
-> >>
-> >> I already did a cleasstate but no success.
-> >>
-> >> Any hints?
-> >>
-> >>
-> >> Regards,
-> >>
-> >> --
-> >> *dS
-> >> Diego Sueiro
-> >>
-> >> /*long live rock 'n roll*/
-> >>
-> >> _______________________________________________
-> >> yocto mailing list
-> >> yocto@yoctoproject.org
-> >> https://lists.yoctoproject.org/listinfo/yocto
-> >>
-> >
-> >
-> >
-> >
-> >
-> > _______________________________________________
-> > yocto mailing list
-> > yocto@yoctoproject.org
-> > https://lists.yoctoproject.org/listinfo/yocto
-> >
+> Engenheiro de Controle e Automa=E7=E3o
+> UNIVERSIDADE FEDERAL DE ITAJUB=C0
+>
+> /*long live rock 'n roll*/
 >
 
---047d7bd76fe094cf9604e8defe5e
-Content-Type: text/html; charset=UTF-8
+--047d7bd76fe059d22804e8df0d66
+Content-Type: text/html; charset=ISO-8859-1
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Guys,<div><br></div><div style>As I told before, I already=
- tried the config fragment strategy and it did not worked too.</div><div st=
-yle><br></div><div style>Looking at <a href=3D"http://linux-mailine-3.8.bb"=
->linux-mailine-3.8.bb</a> from meta-beagleboard[1] it just inherits kernel =
-and not inherits linux-yocto or requires linux-yocto.inc. So I believe that=
- the config fragment will not work. But I can be wrong.</div>
+<div dir=3D"ltr"><div style>Folks,</div><div><br></div>Any thoughts?</div><=
+div class=3D"gmail_extra"><br clear=3D"all"><div><div dir=3D"ltr"><div>Abra=
+=E7os,</div><div><br></div>--<br>*dS<br>Diego Sueiro<br><br>Administrador d=
+o Embarcados<br>
 
-<div style><br></div><div style>On directory &quot;meta-mine/recipes-kernel=
-/linux/&quot; I have this:</div><div style><blockquote style=3D"margin:0px =
-0px 0px 40px;border:none;padding:0px"><div style><div>.</div><div>=E2=94=9C=
-=E2=94=80=E2=94=80 files</div>
+<a href=3D"http://www.embarcados.com.br" target=3D"_blank">www.embarcados.c=
+om.br</a><br><br>Engenheiro de Controle e Automa=E7=E3o<br>UNIVERSIDADE FED=
+ERAL DE ITAJUB=C0<br><br>/*long live rock &#39;n roll*/</div></div>
+<br><br><div class=3D"gmail_quote">2013/10/14 Diego Sueiro <span dir=3D"ltr=
+">&lt;<a href=3D"mailto:diego.sueiro@gmail.com" target=3D"_blank">diego.sue=
+iro@gmail.com</a>&gt;</span><br><blockquote class=3D"gmail_quote" style=3D"=
+margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">
 
-<div>=E2=94=82 =C2=A0 =E2=94=9C=E2=94=80=E2=94=80 mine.patch</div><div>=E2=
-=94=82 =C2=A0 =E2=94=94=E2=94=80=E2=94=80 defconfig</div><div>=E2=94=94=E2=
-=94=80=E2=94=80 linux-mainline_3.8.bbappend<br></div></div></blockquote><di=
-v style><br></div>And my=C2=A0linux-mainline_3.8.bbappend recipe:</div><div=
- style><blockquote style=3D"margin:0px 0px 0px 40px;border:none;padding:0px=
-">
-
-<div style><div>FILESEXTRAPATHS_prepend :=3D &quot;${THISDIR}/files:&quot;<=
-/div><div>SRC_URI +=3D &quot; file://mine.patch \<br></div><div>=C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0file://defconfig \</div><div>=C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&quot;</div></div></blockquote>
-
-The mine.patch is applied but defconfig not.</div><div style><br></div><div=
- style>I&#39;ve already tried to use another FILESEXTRAPATHS layout like[2]=
-,but no success too.</div><div style><br></div><div style>How can I have th=
-e &quot;bb&quot; command listed on the following link?</div>
-
-<div style><a href=3D"http://www.crashcourse.ca/wiki/index.php/OE_FILESEXTR=
-APATHS">http://www.crashcourse.ca/wiki/index.php/OE_FILESEXTRAPATHS</a><br>=
-</div><div style><br></div><div class=3D"gmail_extra"><br clear=3D"all"><di=
-v>
-
-<div dir=3D"ltr"><div>[1] -<a href=3D"=C2=A0https://github.com/beagleboard/=
-meta-beagleboard/blob/dylan/common-bsp/recipes-kernel/linux/linux-mainline_=
-3.8.bb">=C2=A0https://github.com/beagleboard/meta-beagleboard/blob/dylan/co=
-mmon-bsp/recipes-kernel/linux/linux-mainline_3.8.bb</a></div>
-
-<div>[2] -=C2=A0<a href=3D"http://cgit.openembedded.org/meta-handheld/tree/=
-recipes-kernel/linux/linux-yocto_3.10.bbappend">http://cgit.openembedded.or=
-g/meta-handheld/tree/recipes-kernel/linux/linux-yocto_3.10.bbappend</a></di=
-v>
-<div>
-<br></div><div>Regards,</div><div><br></div>--<br>*dS<br>Diego Sueiro<br><b=
-r>/*long live rock &#39;n roll*/<br></div></div>
-<br><br><div class=3D"gmail_quote">2013/10/15 Andrea Adami <span dir=3D"ltr=
-">&lt;<a href=3D"mailto:andrea.adami@gmail.com" target=3D"_blank">andrea.ad=
-ami@gmail.com</a>&gt;</span><br><blockquote class=3D"gmail_quote" style=3D"=
-margin:0px 0px 0px 0.8ex;border-left-width:1px;border-left-color:rgb(204,20=
-4,204);border-left-style:solid;padding-left:1ex">
-
-Hi,<br>
-<br>
-I guess you&#39;re setting a wrong FILESEXTRAPATHS_prepend :=3D &quot;${THI=
-SDIR}/files:&quot;<br>
-<br>
-See this example, using simple defconfig for some devices and an<br>
-experimental configuration (WIP ;) fo others using fragments.<br>
-<br>
-<a href=3D"http://cgit.openembedded.org/meta-handheld/tree/recipes-kernel/l=
-inux/linux-yocto_3.10.bbappend" target=3D"_blank">http://cgit.openembedded.=
-org/meta-handheld/tree/recipes-kernel/linux/linux-yocto_3.10.bbappend</a><b=
-r>
+<div dir=3D"ltr"><div>Folks,</div><div><br></div><div>I have a custom image=
+ in which installs mplayer with=A0IMAGE_INSTALL +=3D &quot;mplayer&quot;.</=
+div><div>When I try to generate it&#39;s sdk (bitbake mycustom-image -c pop=
+ulate_sdk) I&#39;m getting the following error:</div>
 
 
-<br>
-Cheers<br>
-<span class=3D""><font color=3D"#888888"><br>
-Andrea<br>
-</font></span><div class=3D""><div class=3D"h5"><br>
-<br>
-On Tue, Oct 15, 2013 at 11:49 PM, Rudolf Streif<br>
-&lt;<a href=3D"mailto:rstreif@linuxfoundation.org">rstreif@linuxfoundation.=
-org</a>&gt; wrote:<br>
-&gt; Diego,<br>
-&gt;<br>
-&gt; You are appending a kernel recipe that uses the Linux Yocto tooling. T=
-he<br>
-&gt; defconfig is essentially comprised of many different pieces from the m=
-eta<br>
-&gt; branch of the Yocto kernel repository and optional configuration fragm=
-ents<br>
-&gt; that you provide. This tooling will not recognize a defconfig file you=
-<br>
-&gt; provide but it does recognize configuration fragments to be added to<b=
-r>
-&gt; .config.<br>
-&gt;<br>
-&gt; You need to put<br>
-&gt;<br>
-&gt; CONFIG_WATCHDOG_NOWAYOUT=3Dy<br>
-&gt;<br>
-&gt; into a file that ends with .cfg eg. watchdog.cfg and then modify your<=
+<div><blockquote style=3D"margin:0px 0px 0px 40px;border:none;padding:0px">=
+<div><div>| Collected errors:</div><div>| =A0* satisfy_dependencies_for: Ca=
+nnot satisfy the following dependencies for mplayer2-dev:</div>
+<div>| =A0* <span style=3D"white-space:pre-wrap">	</span>xpext (=3D 1.0-5-r=
+0.0) *</div><div>| =A0* opkg_install_cmd: Cannot install package mplayer2-d=
+ev.</div><div>| DEBUG: Python function do_populate_sdk finished</div><div><=
 br>
-&gt; bbappend to<br>
-&gt;<br>
-&gt; FILESEXTRAPATHS_prepend :=3D &quot;${THISDIR}/files:&quot;<br>
-&gt; SRC_URI +=3D &quot; file://0019-mine.patch \<br>
-&gt; =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0file://watchdog.cfg \<=
-br>
-&gt; =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&quot;<br>
-&gt;<br>
-&gt; Rudi<br>
-&gt;<br>
-&gt;<br>
-&gt;<br>
-&gt; On Tue, Oct 15, 2013 at 2:07 PM, Diego Sueiro &lt;<a href=3D"mailto:di=
-ego.sueiro@gmail.com">diego.sueiro@gmail.com</a>&gt;<br>
-&gt; wrote:<br>
-&gt;&gt;<br>
-&gt;&gt; Folks,<br>
-&gt;&gt;<br>
-&gt;&gt; I created the following bbapend recipe for <a href=3D"http://linux=
--mainline_3.8.bb" target=3D"_blank">linux-mainline_3.8.bb</a> (from<br>
-&gt;&gt; meta-beagleboard on dylan branch) for beaglebone.<br>
-&gt;&gt; meta-mine/recipes-kernel/linux/linux-mainline_3.8.bbappend:<br>
-&gt;&gt;<br>
-&gt;&gt; FILESEXTRAPATHS_prepend :=3D &quot;${THISDIR}/files:&quot;<br>
-&gt;&gt; SRC_URI +=3D &quot; file://0019-mine.patch \<br>
-&gt;&gt; =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0file://defconfig \=
-<br>
-&gt;&gt; =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0&quot;<br>
-&gt;&gt;<br>
-&gt;&gt; But the defconfig and .config files on ${S} and ${WORKDIR} used ar=
-e from<br>
-&gt;&gt; meta-beagleboad, not from my bbappend.<br>
-&gt;&gt;<br>
-&gt;&gt; I tried to follow the instructions to add config fragments on the =
-page<br>
-&gt;&gt; below but it did not worked too.<br>
-&gt;&gt;<br>
-&gt;&gt; <a href=3D"http://www.yoctoproject.org/docs/current/kernel-dev/ker=
-nel-dev.html#changing-the-configuration" target=3D"_blank">http://www.yocto=
-project.org/docs/current/kernel-dev/kernel-dev.html#changing-the-configurat=
-ion</a><br>
 
 
-&gt;&gt;<br>
-&gt;&gt; The strange thing is: My patch is applied but my defconfig, or con=
-fig<br>
-&gt;&gt; fragment is not used.<br>
-&gt;&gt; I just want to add CONFIG_WATCHDOG_NOWAYOUT=3Dy.<br>
-&gt;&gt;<br>
-&gt;&gt; I already did a cleasstate but no success.<br>
-&gt;&gt;<br>
-&gt;&gt; Any hints?<br>
-&gt;&gt;<br>
-&gt;&gt;<br>
-&gt;&gt; Regards,<br>
-&gt;&gt;<br>
-&gt;&gt; --<br>
-&gt;&gt; *dS<br>
-&gt;&gt; Diego Sueiro<br>
-&gt;&gt;<br>
-&gt;&gt; /*long live rock &#39;n roll*/<br>
-&gt;&gt;<br>
-&gt;&gt; _______________________________________________<br>
-&gt;&gt; yocto mailing list<br>
-&gt;&gt; <a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</=
-a><br>
-&gt;&gt; <a href=3D"https://lists.yoctoproject.org/listinfo/yocto" target=
-=3D"_blank">https://lists.yoctoproject.org/listinfo/yocto</a><br>
-&gt;&gt;<br>
-&gt;<br>
-&gt;<br>
-&gt;<br>
-&gt;<br>
-&gt;<br>
-&gt; _______________________________________________<br>
-&gt; yocto mailing list<br>
-&gt; <a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><b=
-r>
-&gt; <a href=3D"https://lists.yoctoproject.org/listinfo/yocto" target=3D"_b=
-lank">https://lists.yoctoproject.org/listinfo/yocto</a><br>
-&gt;<br>
-</div></div></blockquote></div><br></div></div>
+</div></div></blockquote></div><div>I&#39;ve already did a cleansstate on b=
+oth mplayer and xpext, but the issue remains.</div><div>I&#39;m using dylan=
+ branch.<br></div><div><br></div><div>Any hints?</div><br clear=3D"all">
 
---047d7bd76fe094cf9604e8defe5e--
+
+<div><div dir=3D"ltr"><div>Regards,</div><div><br></div>--<br>*dS<br>Diego =
+Sueiro<br><br>Administrador do Embarcados<br><a href=3D"http://www.embarcad=
+os.com.br" target=3D"_blank">www.embarcados.com.br</a><br><br>Engenheiro de=
+ Controle e Automa=E7=E3o<br>
+
+
+UNIVERSIDADE FEDERAL DE ITAJUB=C0<br><br>/*long live rock &#39;n roll*/</di=
+v></div>
+</div>
+</blockquote></div><br></div>
+
+--047d7bd76fe059d22804e8df0d66--
