@@ -1,32 +1,29 @@
-Return-Path: <diego.sueiro@gmail.com>
-Received: from mail-ie0-f181.google.com (mail-ie0-f181.google.com
-	[209.85.223.181])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 87B03E016C4
-	for <yocto@yoctoproject.org>; Thu, 17 Oct 2013 05:15:58 -0700 (PDT)
-Received: by mail-ie0-f181.google.com with SMTP id ar20so3583541iec.26
-	for <yocto@yoctoproject.org>; Thu, 17 Oct 2013 05:15:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-type;
-	bh=mbPR3+9xkPy1IzoV33Z3fbLMaDcBizBCLsEurszuSr4=;
-	b=WwOC6cQMKBNJwMkYLdYXgE7VZPW0yiRzZXaPFXna7V89J3XVC3Lm8TFkJujy5XyL0m
-	YqgBrAbVuVya8+wBpvm48V7dV9eLNKhWGcUFaMxpJ6lqQn6rpE/f7xIbMxyU9OFRcadt
-	5+O30vWlywdOqvH/5Q+9yokQfz31YlceHo6XsoOJEKsCW2DQBhGMs0hTkKrdvh7Ble/P
-	Oc/zNTo7Wma+K5PyDLQOqaWj2nyc9tuZEUvcrVAqdULQRGt71W3BBkLfA9LSLb0nwP9r
-	Fim5D3iho3Zbz5y9AyjHgE6EMVQyJyiQVaQNASUS4gOmU2voti0HgstD/89ioB2eILkE
-	a1eQ==
-X-Received: by 10.50.26.36 with SMTP id i4mr6105581igg.33.1382012156921; Thu,
-	17 Oct 2013 05:15:56 -0700 (PDT)
+Return-Path: <Bruce.Ashfield@windriver.com>
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 17179E016C4
+	for <yocto@yoctoproject.org>; Thu, 17 Oct 2013 05:50:31 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
+	[147.11.189.40])
+	by mail.windriver.com (8.14.5/8.14.3) with ESMTP id r9HCoQYi004902
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
+	Thu, 17 Oct 2013 05:50:26 -0700 (PDT)
+Received: from [128.224.146.67] (128.224.146.67) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server id 14.2.347.0;
+	Thu, 17 Oct 2013 05:50:25 -0700
+Message-ID: <525FDD08.90400@windriver.com>
+Date: Thu, 17 Oct 2013 08:50:16 -0400
+From: Bruce Ashfield <bruce.ashfield@windriver.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:24.0) Gecko/20100101 Thunderbird/24.0
 MIME-Version: 1.0
-Received: by 10.64.26.233 with HTTP; Thu, 17 Oct 2013 05:15:36 -0700 (PDT)
-In-Reply-To: <1VWQfo-0003JL-Ch@wolf.netmodule.com>
-References: <1VWQfo-0003JL-Ch@wolf.netmodule.com>
-From: Diego Sueiro <diego.sueiro@gmail.com>
-Date: Thu, 17 Oct 2013 09:15:36 -0300
-Message-ID: <CAMCfZKHiX3G4f9NhgzPA=RPvcqW9WKiMagy6eP42rT3ojPL65A@mail.gmail.com>
-To: David Andrey <David.Andrey@netmodule.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: default root password
+To: Diego Sueiro <diego.sueiro@gmail.com>, Bruce Ashfield
+	<bruce.ashfield@gmail.com>
+References: <CAMCfZKFBvSiRSMk5wrEpSEiNNiZeHJw18fbHgHzepo__U=UWNA@mail.gmail.com>	<CA+gsK-o6n24Aqp2dtpOwnmrCBjWE=HDSJvfqyYy2pvJYrHqXmQ@mail.gmail.com>	<CAAQYJAu+wU0ODvVoTrRBFhVOUVh+CdMg3mimfgGkj-pwJh3A1g@mail.gmail.com>	<CAMCfZKF_Rp=uds8tnDPSD9k3GO5dEiHSx9WfYjZ0yPkmh_9YPg@mail.gmail.com>	<CAMCfZKFh8iJH4655mzFveFYfz8ebLXkGftSa-MR5mEcMEFV8Vw@mail.gmail.com>	<CADkTA4MgxmiOofDLynbOLR=hV-KQ1ic+Eagjm0yetYOtB6FJzw@mail.gmail.com>
+	<CAMCfZKF3aHG4wFMRx2XcdroJJ6ga5v6KHF5DbBTWV7jXOGNX-g@mail.gmail.com>
+In-Reply-To: <CAMCfZKF3aHG4wFMRx2XcdroJJ6ga5v6KHF5DbBTWV7jXOGNX-g@mail.gmail.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
+	Rudolf Streif <rstreif@linuxfoundation.org>
+Subject: Re: Custom defconfig is not used
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,85 +35,108 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 17 Oct 2013 12:15:58 -0000
-Content-Type: multipart/alternative; boundary=047d7bd76fe0b055b504e8eec7ca
+X-List-Received-Date: Thu, 17 Oct 2013 12:50:32 -0000
+Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
+Content-Transfer-Encoding: 7bit
 
---047d7bd76fe0b055b504e8eec7ca
-Content-Type: text/plain; charset=ISO-8859-1
-
-2013/10/16 David Andrey <David.Andrey@netmodule.com>
-
-> Hi,
+On 13-10-17 06:39 AM, Diego Sueiro wrote:
 >
-> There are lot of threads floating around, and a FAQ without answer.
-> https://wiki.yoctoproject.org/wiki/FAQ:How_do_I_set_or_change_the_root_p
-> assword
 >
-> So what is the official way to set a default root password ?
-> Using a sed command on /etc/passwd through ROOTFS_POSTPROCESS_COMMAND or
-> is there any other built-in solution ?
 >
-> regards
-> David
+> 2013/10/17 Bruce Ashfield <bruce.ashfield@gmail.com
+> <mailto:bruce.ashfield@gmail.com>>
 >
+>     On Wed, Oct 16, 2013 at 2:19 PM, Diego Sueiro
+>     <diego.sueiro@gmail.com <mailto:diego.sueiro@gmail.com>> wrote:
+>      > Folks,
+>      >
+>      > Looking at log.do_unpack it shows:
+>      >
+>      > ...
+>      > NOTE: Unpacking
+>      >
+>     <...>/meta-beagleboard/common-bsp/recipes-kernel/linux/linux-mainline-3.8/beaglebone/defconfig
+>      > to
+>      >
+>     <...>/build/tmp-angstrom_v2013_06-eglibc/work/beaglebone-angstrom-linux-gnueabi/linux-mainline/3.8.13-r23a/
+>      > ...
+>      >
+>      > NOTE: Unpacking
+>      > <...>/meta-mine/recipes-kernel/linux/linux-mainline-3.8/mine.patch to
+>      >
+>     <...>/build/tmp-angstrom_v2013_06-eglibc/work/beaglebone-angstrom-linux-gnueabi/linux-mainline/3.8.13-r23a/
+>      > NOTE: Unpacking
+>      >
+>     <...>/meta-beagleboard/common-bsp/recipes-kernel/linux/linux-mainline-3.8/beaglebone/defconfig
+>      > to
+>      >
+>     <...>/build/tmp-angstrom_v2013_06-eglibc/work/beaglebone-angstrom-linux-gnueabi/linux-mainline/3.8.13-r23a/
+>      >
+>      >
+>      > Note that it copies defconfig from meta-beagleboard and in the
+>     end, instead
+>      > copying mine, it is copying from meta-beagleboard again.
+>      >
+>      > My layer has the priority higher than meta-beagleboard.
+>
+>     I can't get at my machines to test this myself (technically I'm still
+>     on vacation), but when you
+>     dump the bitbake environment, how many defconfig's show up in the
+>     SRC_URI ? It would be
+>     easy enough in your bbapend to simply call your defconfig something
+>     else (i.e. defconfig-mine)
+>     and override/append to kernel_do_configure() to simply copy yours over
+>     top of the .config,
+>     regardless of what the fetcher is doing with the SRC_URI.
+>
+>     Bruce
+>
+>
+> Bruce,
+>
+> Putting the following in my recipe did the trick:
+>
+>     do_configure_prepend() {
+>                  cp ${WORKDIR}/defconfig-mine ${WORKDIR}/defconfig
+>     }
+>
+>
+> Now the .config is the same as my custom defconfig.
+>
+> But, this is a workaround, right?
 
-David,
+I could be. Until we root cause the issue, I can't say for sure.
 
-Did you find another way to achieve this?
+> I expected to get this working "out-of-box".
 
---
-*dS
-Diego Sueiro
+Did you do a  "bitbake -e <your kernel recipe>" ? and then look at
+the SRC_URI ? That will tell us if for some reason the beagle layer's
+defconfig is on there twice.
 
-/*long live rock 'n roll*/
+> Why config fragments did not worked too?
 
+recipes must inherit linux-yocto to get that support, since it is
+optional and not something we force on all kernel recipes. So if you
+want fragment support, creating your own kernel recipe, based on the
+one in the layers you are using, which inherits linux-yocto is one
+route to take.
 
+Bruce
+
+>
+>
+>
+> --
+> *dS
+> Diego Sueiro
+>
+> /*long live rock 'n roll*/
+>
+>
 > _______________________________________________
 > yocto mailing list
 > yocto@yoctoproject.org
 > https://lists.yoctoproject.org/listinfo/yocto
 >
 
---047d7bd76fe0b055b504e8eec7ca
-Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">2013/10/16 David Andrey <span dir=3D"ltr">&lt;<a href=3D"m=
-ailto:David.Andrey@netmodule.com" target=3D"_blank">David.Andrey@netmodule.=
-com</a>&gt;</span><br><div class=3D"gmail_extra"><div class=3D"gmail_quote"=
-><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border=
--left-width:1px;border-left-color:rgb(204,204,204);border-left-style:solid;=
-padding-left:1ex">
-
-Hi,<br>
-<br>
-There are lot of threads floating around, and a FAQ without answer.<br>
-<a href=3D"https://wiki.yoctoproject.org/wiki/FAQ:How_do_I_set_or_change_th=
-e_root_p" target=3D"_blank">https://wiki.yoctoproject.org/wiki/FAQ:How_do_I=
-_set_or_change_the_root_p</a><br>
-assword<br>
-<br>
-So what is the official way to set a default root password ?<br>
-Using a sed command on /etc/passwd through ROOTFS_POSTPROCESS_COMMAND or<br=
->
-is there any other built-in solution ?<br>
-<br>
-regards<br>
-David<br></blockquote><div><br></div><div style>David,</div><div style><br>=
-</div><div style>Did you find another way to achieve this?</div><div><br></=
-div><div>--<br>*dS<br>Diego Sueiro<br><br>/*long live rock &#39;n roll*/<br=
->
-
-</div><div>=A0</div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0=
-px 0px 0.8ex;border-left-width:1px;border-left-color:rgb(204,204,204);borde=
-r-left-style:solid;padding-left:1ex">______________________________________=
-_________<br>
-
-
-yocto mailing list<br>
-<a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br>
-<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" target=3D"_blank"=
->https://lists.yoctoproject.org/listinfo/yocto</a><br>
-</blockquote></div><br></div></div>
-
---047d7bd76fe0b055b504e8eec7ca--
