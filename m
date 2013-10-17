@@ -1,34 +1,34 @@
 Return-Path: <elizabeth.flanagan@intel.com>
-Received: from mail-ve0-f182.google.com (mail-ve0-f182.google.com
-	[209.85.128.182])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C2EF9E016B3
-	for <yocto@yoctoproject.org>; Thu, 17 Oct 2013 12:52:52 -0700 (PDT)
-Received: by mail-ve0-f182.google.com with SMTP id oy12so1524649veb.13
-	for <yocto@yoctoproject.org>; Thu, 17 Oct 2013 12:52:51 -0700 (PDT)
+Received: from mail-vb0-f52.google.com (mail-vb0-f52.google.com
+	[209.85.212.52])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BF029E016B3
+	for <yocto@yoctoproject.org>; Thu, 17 Oct 2013 12:54:18 -0700 (PDT)
+Received: by mail-vb0-f52.google.com with SMTP id f12so1350597vbg.39
+	for <yocto@yoctoproject.org>; Thu, 17 Oct 2013 12:54:17 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
 	h=x-gm-message-state:mime-version:in-reply-to:references:date
 	:message-id:subject:from:to:cc:content-type;
-	bh=bHWYc9x+DdqL+8MiMAhfTYYs9IcYGZ9ap26IiHvmtos=;
-	b=JBsU/K/Xoj30jGqJhX8eXHDnhP2dPka6Rt3vu5V4VuvDoVP4I9GMUJTkXo2Ru1Ne8x
-	IpKVbvXlbm5dSpOyK49u9CiOly4InVadXwg9sV548Du+qw0Gn1NshNnHipNgm4Ov5cTt
-	hMQMvhpT9kqfBl4TLBv4w4hVirv0Kzkg9Gvp4kW3RN2eSf/o92yiuDlxi8Jn/UrO7290
-	5AIOVMl/CwnTRTnR3Dw369c6avnVGXYtrqk0vo1HI+askL9T8HXt8sdt3jgkfr5zckBX
-	j6aMf3kZ7iD3h+M7m/wn3+rb7SR5842PE2K+w6M0lC5qjGOyuEWseX+CXY4kVY+HWHKi
-	ZZxw==
-X-Gm-Message-State: ALoCoQlomDssn4ILx4lCiFRUb8h9DRz3k1HpeWA86E2fXG7A4088GbXer/szh/acK5JO6LRUItDJ
+	bh=7argcrB6CZ0sJ4XDsByzGzpAc1wB5J2FWmvCqN0iaT8=;
+	b=JW3kH0fjhEOgLKiHU5trqReDcfrwIyeoUDGJNP/JERjEede0eXmK8zX1akNLPknSJJ
+	qDAedprdbuiyQj+o1gkHXqr5hObwVpsehRZD8IDlutYehThfJNb8tkeE1lQU7GbRu+kT
+	NKJPG2d9wfu1HJkLZzNfp7zXKzEzOdG6yt+sUGwXdXcMemwfkkZ0+6w/dxUGpcuGRtJK
+	i2MMl7keUwBPxdtn/hFa/tYq6OuREVnh5P8dpFM8WAonTk6e8e7q/w5e2CvH9WAGr4EL
+	u/QMTTFgAdZMXT+Cke7SSfkoX0qJ5BbmFctcdU9BOmjv2j78XM2iYi7d7Mh7bgOm/H2T
+	msEg==
+X-Gm-Message-State: ALoCoQkgfPo/FGAqbk5dTAhEi2HxXjpJ++rYFt3PYfhiaeYUdLNLcNNwEl4NpOunUQcyrmNm/xu2
 MIME-Version: 1.0
-X-Received: by 10.220.196.66 with SMTP id ef2mr8303805vcb.7.1382039571461;
-	Thu, 17 Oct 2013 12:52:51 -0700 (PDT)
-Received: by 10.52.147.201 with HTTP; Thu, 17 Oct 2013 12:52:51 -0700 (PDT)
-In-Reply-To: <1381411082-14579-1-git-send-email-stefanx.stanacar@intel.com>
-References: <1381411082-14579-1-git-send-email-stefanx.stanacar@intel.com>
-Date: Thu, 17 Oct 2013 12:52:51 -0700
-Message-ID: <CAPhnLPCvoiEXbL_22DsUWi+KuVj3RbXmS0rU0iaJ0gD9yAqFfQ@mail.gmail.com>
+X-Received: by 10.220.78.18 with SMTP id i18mr8141411vck.3.1382039657550; Thu,
+	17 Oct 2013 12:54:17 -0700 (PDT)
+Received: by 10.52.147.201 with HTTP; Thu, 17 Oct 2013 12:54:17 -0700 (PDT)
+In-Reply-To: <1381774266-7522-1-git-send-email-bevenson@melinkcorp.com>
+References: <1381774266-7522-1-git-send-email-bevenson@melinkcorp.com>
+Date: Thu, 17 Oct 2013 12:54:17 -0700
+Message-ID: <CAPhnLPC=_gb1u=7mOPvuVzCqS7tdhZ2YFHthaS1eJRckVOaPKA@mail.gmail.com>
 From: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
-To: Stefan Stanacar <stefanx.stanacar@intel.com>
+To: Bryan Evenson <bevenson@melinkcorp.com>
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: [yocto-autobuilder][PATCH] buildsteps/CheckOutLayers: use a commit object for git rev-parse
+Subject: Re: [yocto-autobuilder] [PATCH 1/1] README-NEW-AUTOBUILDER: Add to scheduler documentation
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,50 +40,48 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 17 Oct 2013 19:52:53 -0000
+X-List-Received-Date: Thu, 17 Oct 2013 19:54:19 -0000
 Content-Type: text/plain; charset=ISO-8859-1
 
-Stefan,
-
-I'm pulling this patch, as this is part of our override of
-parseGotRevision in buildbot/steps/source/git.py, but I'd also suggest
-that this get suggested to the buildbot project for the original
-parseGotRevision.
+Pulled into master. Thanks!
 
 -b
 
-On Thu, Oct 10, 2013 at 6:18 AM, Stefan Stanacar
-<stefanx.stanacar@intel.com> wrote:
-> When the object passed to git rev-parse is a tag, we need to dereference
-> the tag until a commit id is found or the object cannot be dereferenced
-> anymore hence add ^0. (<rev>^0 is a short-hand for <rev>^{commit})
+On Mon, Oct 14, 2013 at 11:11 AM, Bryan Evenson <bevenson@melinkcorp.com> wrote:
+> Adds detail on the Nightly scheduler properties that are
+> available.  Notes default settings where appropriate and
+> notes which values must be set by the user.
 >
-> This avoids confusing tarballs like
-> http://autobuilder.yoctoproject.org/pub/releases/dora-10.0.0/poky-319e24a8b1e100e950b07bbcad5fc81c42396845.tar.bz2
-> which have the SHA-1 hash of the tag instead of the commit.
-> It was first mentioned here
-> https://lists.yoctoproject.org/pipermail/yocto/2013-October/018607.html
->
-> Signed-off-by: Stefan Stanacar <stefanx.stanacar@intel.com>
+> Signed-off-by: Bryan Evenson <bevenson@melinkcorp.com>
 > ---
->  lib/python2.7/site-packages/autobuilder/buildsteps/CheckOutLayers.py | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+>  README-NEW-AUTOBUILDER |   12 ++++++++----
+>  1 file changed, 8 insertions(+), 4 deletions(-)
 >
-> diff --git a/lib/python2.7/site-packages/autobuilder/buildsteps/CheckOutLayers.py b/lib/python2.7/site-packages/autobuilder/buildsteps/CheckOutLayers.py
-> index f7b7d6e..46f9b25 100644
-> --- a/lib/python2.7/site-packages/autobuilder/buildsteps/CheckOutLayers.py
-> +++ b/lib/python2.7/site-packages/autobuilder/buildsteps/CheckOutLayers.py
-> @@ -128,7 +128,7 @@ class CheckOutLayers(Git):
+> diff --git a/README-NEW-AUTOBUILDER b/README-NEW-AUTOBUILDER
+> index 27f892f..430e2a3 100644
+> --- a/README-NEW-AUTOBUILDER
+> +++ b/README-NEW-AUTOBUILDER
+> @@ -145,10 +145,14 @@ scheduler: A list of dicts. Each item defines a scheduler associated with this
+>         are type-specific:
 >
->      @defer.inlineCallbacks
->      def parseGotRevision(self, _=None):
-> -        stdout = yield self._dovccmd(['rev-parse', self.commit], collectStdout=True)
-> +        stdout = yield self._dovccmd(['rev-parse', self.commit + "^0"], collectStdout=True)
->          revision = stdout.strip()
->          if len(revision) != 40:
->              raise buildstep.BuildStepFailed()
+>            Nightly scheduler properties:
+> -               month
+> -               dayOfWeek
+> -              hour
+> -              minute
+> +               month: The month in which to start the build, with January = 1.
+> +                    This defaults to '*', meaning every month.
+> +               dayOfWeek: The day of the week in which to start the build, with
+> +                    Monday = 1.  This defaults to '*', meaning every day.
+> +              hour: The hour of the day in which to start the build, with
+> +                    12:00 AM = 0.  This must be set by the user.
+> +              minute: The minute of the hour in which to start the build, with
+> +                    0 to 59 as valid values.  This must be set by the user.
+>
+>           SingleBranchScheduler properties:
+>                 repository: the repository to attach the scheduler to; this
 > --
-> 1.8.3.1
+> 1.7.9.5
 >
 
 
