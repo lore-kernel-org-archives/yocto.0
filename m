@@ -1,31 +1,34 @@
-Return-Path: <flihp@twobit.us>
-Received: from www.twobit.us (www.twobit.us [50.19.210.51])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7219AE016D4
-	for <yocto@yoctoproject.org>; Thu, 17 Oct 2013 12:06:24 -0700 (PDT)
-Received: from c-76-24-20-220.hsd1.ma.comcast.net ([76.24.20.220]
-	helo=longhaul.twobit.us)
-	by www.twobit.us with esmtpsa (TLS1.0:DHE_RSA_AES_128_CBC_SHA1:16)
-	(Exim 4.72) (envelope-from <flihp@twobit.us>)
-	id 1VWstp-0004tz-Bf; Thu, 17 Oct 2013 19:06:24 +0000
-Received: from flihp by longhaul.twobit.us with local (Exim 4.80)
-	(envelope-from <flihp@longhaul.twobit.us>)
-	id 1VWsti-0007xG-R3; Thu, 17 Oct 2013 19:06:14 +0000
-From: Philip Tricca <flihp@twobit.us>
-To: yocto@yoctoproject.org
-Date: Thu, 17 Oct 2013 19:06:10 +0000
-Message-Id: <1382036771-30531-5-git-send-email-flihp@twobit.us>
-X-Mailer: git-send-email 1.7.10.4
-In-Reply-To: <1382036771-30531-1-git-send-email-flihp@twobit.us>
-References: <1382036771-30531-1-git-send-email-flihp@twobit.us>
-X-SA-Exim-Connect-IP: 76.24.20.220
-X-SA-Exim-Mail-From: flihp@twobit.us
-X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on www.twobit.us
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=5.0 tests=ALL_TRUSTED,BAYES_00
-	autolearn=ham version=3.3.1
-X-SA-Exim-Version: 4.2.1 (built Mon, 22 Mar 2010 06:26:47 +0000)
-X-SA-Exim-Scanned: Yes (on www.twobit.us)
-Subject: [meta-selinux][PATCH 4/5] Add packagegroup and image recipe for minimal SELinux image.
+Return-Path: <nicolas.dechesne@linaro.org>
+Received: from mail-ob0-f174.google.com (mail-ob0-f174.google.com
+	[209.85.214.174])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A19C7E01684
+	for <yocto@yoctoproject.org>; Thu, 17 Oct 2013 12:49:46 -0700 (PDT)
+Received: by mail-ob0-f174.google.com with SMTP id wm4so2263156obc.5
+	for <yocto@yoctoproject.org>; Thu, 17 Oct 2013 12:49:45 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc:content-type;
+	bh=pWt4/lak0VxHfzIpiS8CTaIwSQETXqB7IWFGrJbfFoY=;
+	b=juKvRreHqL7joUFduAmSDVAKaPbz53nmGqKKXNhka3DYn33bK6tVH2w4BnKywjw4qM
+	dtI3RXhicXO9nvz/U6U/SEDwwqNISMcn80K6m0DReNJr8ZB4ocwOTHU54SUBbWfqghKu
+	j9p/z+kh1sJu8SE8sJIJ3wJy6qL2Dkxe5Yr4k70Kf0AWX2g7UWHPyJIIsNgEsrBeYfSy
+	oSttdyRcxpPtWg594ZV0r/7sdoLv8z1slHx0aiUJHbUTBxLQMuWT8ZO62ckSN8dYOxQ6
+	cPAkS7F0a7O8FlQQxrFxFOaJOm++XUKpCpxlv1YWExzj1+lh+uJOhcEAV5h2ozIny7gp
+	325g==
+X-Gm-Message-State: ALoCoQkBqsOPAXKE3o7nzyB1QI/BX4sWcNkXIpFq04UHP5ckmdj+/2BaFoYtJfBwjP5bUzbScoht
+X-Received: by 10.182.121.137 with SMTP id lk9mr16633847obb.32.1382039385413; 
+	Thu, 17 Oct 2013 12:49:45 -0700 (PDT)
+MIME-Version: 1.0
+Received: by 10.76.156.40 with HTTP; Thu, 17 Oct 2013 12:49:25 -0700 (PDT)
+In-Reply-To: <525FEB23.6050907@mlbassoc.com>
+References: <525FEB23.6050907@mlbassoc.com>
+From: Nicolas Dechesne <nicolas.dechesne@linaro.org>
+Date: Thu, 17 Oct 2013 21:49:25 +0200
+Message-ID: <CAP71WjwidN0f1K6m1SfQqCbObqRKD7f4_RbmftrWkE9iOF7_OA@mail.gmail.com>
+To: Gary Thomas <gary@mlbassoc.com>
+Cc: Yocto list discussion <yocto@yoctoproject.org>
+Subject: Re: Busybox configuration example?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,72 +40,29 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 17 Oct 2013 19:06:28 -0000
+X-List-Received-Date: Thu, 17 Oct 2013 19:49:50 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
-This is intended to demonstrate the minimal set packages necessary
-to boot and load a system with SELinux enabled. Specifically we
-don't need any of the packages that depend on python.
----
- .../images/core-image-selinux-minimal.bb           |   15 +++++++++++
- .../packagegroups/packagegroup-selinux-minimal.bb  |   26 ++++++++++++++++++++
- 2 files changed, 41 insertions(+)
- create mode 100644 recipes-security/images/core-image-selinux-minimal.bb
- create mode 100644 recipes-security/packagegroups/packagegroup-selinux-minimal.bb
+On Thu, Oct 17, 2013 at 3:50 PM, Gary Thomas <gary@mlbassoc.com> wrote:
+> Can someone explain how I might control my busybox builds?
+> For example, I routinely add this to busybox*.bbappend:
+>
+>   #
+>   # Force 'ifup' to wait longer for really slow links...
+>   #
+>   do_prepare_config_append () {
+>     sed -i 's/CONFIG_IFUPDOWN_UDHCPC_CMD_OPTIONS="-R
+> -n"/CONFIG_IFUPDOWN_UDHCPC_CMD_OPTIONS="-R -n -T 1 -t 20"/' ${S}/.config
+>   }
+>
+> which is just editing the confguration file to match my preferences.
+> Is there a way to do this using the "configuration fragments" mentioned
+> above?
 
-diff --git a/recipes-security/images/core-image-selinux-minimal.bb b/recipes-security/images/core-image-selinux-minimal.bb
-new file mode 100644
-index 0000000..45cd847
---- /dev/null
-+++ b/recipes-security/images/core-image-selinux-minimal.bb
-@@ -0,0 +1,15 @@
-+DESCRIPTION = "Minimal image with SELinux support (no python)"
-+
-+IMAGE_FEATURES += "splash ssh-server-openssh"
-+
-+LICENSE = "MIT"
-+
-+IMAGE_INSTALL = "\
-+	${CORE_IMAGE_BASE_INSTALL} \
-+	bash \
-+	util-linux-agetty \
-+	packagegroup-core-boot \
-+	packagegroup-selinux-minimal \
-+"
-+
-+inherit core-image
-diff --git a/recipes-security/packagegroups/packagegroup-selinux-minimal.bb b/recipes-security/packagegroups/packagegroup-selinux-minimal.bb
-new file mode 100644
-index 0000000..16f6bae
---- /dev/null
-+++ b/recipes-security/packagegroups/packagegroup-selinux-minimal.bb
-@@ -0,0 +1,26 @@
-+DESCRIPTION = "SELinux packagegroup with only packages required for basic operations"
-+LICENSE = "MIT"
-+LIC_FILES_CHKSUM = "file://${COREBASE}/LICENSE;md5=3f40d7994397109285ec7b81fdeb3b58 \
-+                    file://${COREBASE}/meta/COPYING.MIT;md5=3da9cfbcb788c80a0384361b4de20420"
-+PR = "r0"
-+
-+PACKAGES = "\
-+	${PN} \
-+	"
-+
-+ALLOW_EMPTY_${PN} = "1"
-+
-+RDEPENDS_${PN} = " \
-+	coreutils \
-+	libsepol \
-+	libselinux \
-+	libselinux-bin \
-+	libsemanage \
-+	policycoreutils-fixfiles \
-+	policycoreutils-secon \
-+	policycoreutils-semodule \
-+	policycoreutils-sestatus \
-+	policycoreutils-setfiles \
-+	selinux-config \
-+	refpolicy-mls \
-+	"
--- 
-1.7.10.4
+here is an example of busybox config fragment, that we use
 
+https://git.linaro.org/gitweb?p=openembedded/meta-linaro.git;a=tree;f=meta-linaro/recipes-core/busybox;h=2c4a6b6b8b542b2eef04561d95a802d855ae7573;hb=master
+
+i don't know if the config fragment would work for what you are
+doing.. let us know ;-)
 
