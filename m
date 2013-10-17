@@ -1,32 +1,36 @@
-Return-Path: <vidal.develone@gmail.com>
-Received: from mail-ee0-f52.google.com (mail-ee0-f52.google.com [74.125.83.52])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 69F5CE01663
-	for <yocto@yoctoproject.org>; Wed, 16 Oct 2013 16:06:29 -0700 (PDT)
-Received: by mail-ee0-f52.google.com with SMTP id c41so697773eek.11
-	for <yocto@yoctoproject.org>; Wed, 16 Oct 2013 16:06:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type;
-	bh=ARivW3i4zOF68OypRqqJu8ildUeJtVk7pOBQNgoNW6Q=;
-	b=f5ZKMrzLYGHvGWp7Cv++XbX1InAUvBqjoVxWTzTZK1xTrAPCNrhG1qwoseJNiu7mRz
-	q90Izhj5DWzbvC6mGgpGFABGz+41OPlCMyylbLs9h+UZtDTWOCXwt6wXRe70h9mVwj4V
-	wEJDh6+LIymV8i8QiNjPS7CvwGSvhamgWEEbnfN0gZM4Vhe61DLCN+15ZzGwa6jy1n5h
-	63lO2XimliybXG5apvXgQs/ugF34ysLVPqz9SrHng29FSnZ63JlTXyLCHa8ih9PlAGiR
-	3T8ez2r9NdGexqtYKNofuci1nLIxV+0Mn1Oo78zbqFZS9Jv3Mm5dQVGbXDZl2OxemC48
-	azpw==
+Return-Path: <trevor.woerner@linaro.org>
+Received: from mail-ea0-f176.google.com (mail-ea0-f176.google.com
+	[209.85.215.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9B076E016B2
+	for <yocto@yoctoproject.org>; Wed, 16 Oct 2013 18:47:39 -0700 (PDT)
+Received: by mail-ea0-f176.google.com with SMTP id q16so723637ead.7
+	for <yocto@yoctoproject.org>; Wed, 16 Oct 2013 18:47:39 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:date
+	:message-id:subject:from:to:cc:content-type;
+	bh=TvroLwAJDbso9hEJkHoQuCIKuOeNFvMlDBLkqyLn9d4=;
+	b=YJBHLwhRWrXegQ56GgiwP63GMVDAjuSR+ziGWclDvBjd6NBLvQUwiEl+CnOkT3cNER
+	Cgsxc3v+4CbMCh7XeDqgBGhEiR2DwTm1RszEGJp9rvUuIn5kn0TPrRBglNZe4d5RCNg3
+	8FBgdk3APnuxN+EPBhupik1qdOYpJ/WC5VdQrFZUPTIfC0/damOrdQ3jzrdqtITtHTYP
+	G2p/ib6A/+n0XD7wkNOWiFg2NjcvGVBUFK36djF16rdc/Aaa83PKhT4EGTRHpxNa2PSr
+	dDUFiXRG9+qPTia83W1EOTL9uLTfABFv2Stm1f9RpwzHxDkce7zGAXSvsqg9fjg0bqTZ
+	dn0Q==
+X-Gm-Message-State: ALoCoQliYt5WZwcX3OuYvP1XJQCdmAVOVIhhsYZzcCkVWTU8llT/zBR97YztJnN+Vgd4P7HYgjD1
 MIME-Version: 1.0
-X-Received: by 10.14.172.133 with SMTP id t5mr8236512eel.35.1381964788199;
-	Wed, 16 Oct 2013 16:06:28 -0700 (PDT)
-Received: by 10.223.97.70 with HTTP; Wed, 16 Oct 2013 16:06:28 -0700 (PDT)
-In-Reply-To: <6C2F2091-CD52-4D83-AE39-80B5B5E32C62@gmail.com>
-References: <CANwz6nz_dzPR9L2i39BXCSTHgWK+kLGs6ie-y806rBi-VMTcSw@mail.gmail.com>
-	<6C2F2091-CD52-4D83-AE39-80B5B5E32C62@gmail.com>
-Date: Wed, 16 Oct 2013 17:06:28 -0600
-Message-ID: <CANwz6nztSJxx5NmTqy_D2jSDgKeFRT0y7Jj4Z6QjenCjTbvZug@mail.gmail.com>
-From: Edward Vidal <vidal.develone@gmail.com>
-To: Khem Raj <raj.khem@gmail.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: meta-xilinx
+X-Received: by 10.15.74.197 with SMTP id j45mr9049450eey.40.1381974458952;
+	Wed, 16 Oct 2013 18:47:38 -0700 (PDT)
+Received: by 10.14.117.67 with HTTP; Wed, 16 Oct 2013 18:47:38 -0700 (PDT)
+In-Reply-To: <CAMS2kBGt8OgC2uL8Yy=xh4U1Cs+tRiN5R8=iH-=eW7nDoa=cWg@mail.gmail.com>
+References: <CAMS2kBFgfdCHF1f3TfDA3PNzL_PGxOpzrmXLOV_GMhkbdTXocA@mail.gmail.com>
+	<CAP71WjxftsAwVoew6PtO5fWJv6xTPmWpSAaQgMfy4gZbq_KEeQ@mail.gmail.com>
+	<CAMS2kBGt8OgC2uL8Yy=xh4U1Cs+tRiN5R8=iH-=eW7nDoa=cWg@mail.gmail.com>
+Date: Wed, 16 Oct 2013 21:47:38 -0400
+Message-ID: <CALmOhgk_wEaBCN8vBFRrNHD7t1UUWAGGk+JEvk3FHg+MCcUE-g@mail.gmail.com>
+From: Trevor Woerner <trevor.woerner@linaro.org>
+To: Glenn Schmottlach <gschmottlach@gmail.com>
+Cc: Yocto list discussion <yocto@yoctoproject.org>
+Subject: Re: OPKG configuration questions
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,242 +42,124 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 16 Oct 2013 23:06:30 -0000
-Content-Type: multipart/alternative; boundary=047d7b603dcc4af2f504e8e3c08f
+X-List-Received-Date: Thu, 17 Oct 2013 01:47:44 -0000
+Content-Type: multipart/alternative; boundary=001a11c39808b7017604e8e60076
 
---047d7b603dcc4af2f504e8e3c08f
+--001a11c39808b7017604e8e60076
 Content-Type: text/plain; charset=ISO-8859-1
 
-Hello Khem,
-Thanks for the help after modifying my local.conf
-MACHINE ?= "zedboard-zynq7"
-My build "MACHINE=zedboard-zynq7 bitbake core-image-sato" is in the process
-now 295 of 5076 tasks
-should take a short time to complete.
-regards
+On 16 October 2013 18:19, Glenn Schmottlach <gschmottlach@gmail.com> wrote:
+> One thing
+> that did disturb me a little was that when I look in my
+> <project>/build/tmp-eglibc/deploy/ipk is see the following:
+>
+>   4 drwxr-xr-x 6 gschmottlach gschmottlach   4096 Oct 16 16:38 .
+>   4 drwxr-xr-x 8 gschmottlach gschmottlach   4096 Oct  3 05:53 ..
+>  12 drwxr-xr-x 2 gschmottlach gschmottlach  12288 Oct 16 16:38 all
+> 176 drwxr-xr-x 2 gschmottlach gschmottlach 176128 Oct 16 16:38
+armv7a-vfp-neon
+>  24 drwxr-xr-x 2 gschmottlach gschmottlach  24576 Oct 16 16:38
+i686-nativesdk
+>  40 drwxr-xr-x 2 gschmottlach gschmottlach  36864 Oct 16 16:38 nitrogen6x
+>   0 -rw-rw-r-- 1 gschmottlach gschmottlach      0 Oct 16 16:38 Packages
+>   0 -rw-r--r-- 1 gschmottlach gschmottlach      0 Oct  3 00:24
+Packages.flock
+>   4 -rw-rw-r-- 1 gschmottlach gschmottlach     20 Oct 16 16:38 Packages.gz
+>   0 -rw-r--r-- 1 gschmottlach gschmottlach      0 Oct 16 16:38
+Packages.stamps
 
+Yes, I'm seeing that too.
 
+What happens if you run (on your build machine, from your
+build location) (replace stuff in <> as required):
 
-On Wed, Oct 16, 2013 at 4:45 PM, Khem Raj <raj.khem@gmail.com> wrote:
+$ <tmpdir>/sysroots/<build arch>/usr/bin/opkg-cl -o <tmpdir>/work/<target
+machine>/<image>/<version>/rootfs list
 
->
-> On Oct 16, 2013, at 2:57 PM, Edward Vidal <vidal.develone@gmail.com>
-> wrote:
->
-> > Hello,
-> > I built a zedboard core-image-sato on 09/21/13 with meta-xilinx at that
-> time I had the following folders.
-> >
-> > meta-kc705
-> > meta-zc702
-> > meta-zedboard
-> >
-> > Build Configuration:
-> > BB_VERSION        = "1.19.1"
-> > BUILD_SYS         = "x86_64-linux"
-> > NATIVELSBSTRING   = "Fedora-18"
-> > TARGET_SYS        = "arm-poky-linux-gnueabi"
-> > MACHINE           = "zedboard"
-> > DISTRO            = "poky"
-> > DISTRO_VERSION    = "1.4+snapshot-20130921"
-> > TUNE_FEATURES     = " armv7a vfp neon zynq"
-> > TARGET_FPU        = "vfp-neon"
-> > meta
-> > meta-yocto        = "(nobranch):3dee534f1e25109e0bdb681de0746c336f4b8840"
-> > meta-xilinx
-> > meta-kc705
-> > meta-zc702
-> > meta-zedboard     = "master:46f4c79d6d55b556a90bb0fd89c2c09acf2aebff"
-> > meta-yocto-bsp    = "(nobranch):3dee534f1e25109e0bdb681de0746c336f4b8840"
-> >
-> > With the dora release I did a new clone of git://
-> git.yoctoproject.org/meta-xilinx
-> > now I do not see
-> > meta-kc705
-> > meta-zc702
-> > meta-zedboard
-> >
-> > When I execute MACHINE=zedboard bitbake core-image-sato
-> > ERROR:  OE-core's config sanity checker detected a potential
-> misconfiguration.
-> >     Either fix the cause of this error or at your own risk disable the
-> checker (see sanity.conf).
-> >     Following is the list of potential problems / advisories:
-> >
-> >     Please set a valid MACHINE in your local.conf or environment
-> >
-> > ERROR: Execution of event handler 'check_sanity_eventhandler' failed
-> > In my local.conf I have the following.
-> >
-> > MACHINE ?= "zedboard"
-> >
-> > bblayers.conf
-> > # LAYER_CONF_VERSION is increased each time build/conf/bblayers.conf
-> > # changes incompatibly
-> > LCONF_VERSION = "6"
-> >
-> > BBPATH = "${TOPDIR}"
-> > BBFILES ?= ""
-> >
-> > BBLAYERS ?= " \
-> >   /home/vidal/POKY/build101613_zedboard/poky/meta \
-> >   /home/vidal/POKY/build101613_zedboard/poky/meta-yocto \
-> >   /home/vidal/POKY/build101613_zedboard/poky/meta-xilinx \
-> >   /home/vidal/POKY/build101613_zedboard/poky/meta-yocto-bsp \
-> >   "
-> > BBLAYERS_NON_REMOVABLE ?= " \
-> >   /home/vidal/POKY/build101613_zedboard/poky/meta \
-> >   /home/vidal/POKY/build101613_zedboard/poky/meta-yocto \
-> >   "
-> > Any help will be appreciated.
-> > Regards
->
-> it seems like layer went thru some restructuring e.g. see
-> commit d9617006376d73e37f1db17857ee06c24e6b7c03
-> Author: Nathan Rossi <nathan.rossi@xilinx.com>
-> Date:   Fri Aug 2 12:41:14 2013 +1000
->
->     meta-*: Remove deprecated sublayers
->
->     * The machines supported in the sublayer BSPs are now supported in the
-> base
->       meta-xilinx layer, these sublayers are no longer required.
->     * Relevant documentation has also been relocated into
-> meta-xilinx/docs/*.
->
->
->
-> So may be zedboard -> zedboard-zynq7
->
->
-> >
-> > _______________________________________________
-> > yocto mailing list
-> > yocto@yoctoproject.org
-> > https://lists.yoctoproject.org/listinfo/yocto
->
->
+For example:
 
---047d7b603dcc4af2f504e8e3c08f
+$ tmp-qemuarm/sysroots/x86_64-linux/usr/bin/opkg-cl -o
+tmp-qemuarm/work/qemuarm-poky-linux-gnueabi/core-image-minimal/1.0-r0/rootfs
+list
+
+Does that print you a list of all the packages in your image?
+
+Just out of curiosity, is it possible that you added "package-management"
+to IMAGE_FEATURES after you already had a successful full build? Or is
+it possible that you had already done a full build with "package_rpm" or
+"_deb" before switching to "package_ipk"?
+
+The reason I ask is (although I never confirmed this definitively but) when
+I was playing with this stuff a while back I was sure that this package
+stuff
+would only get generated after adjusting these configurations when a full,
+clean build was performed (i.e. removing <tmpdir> and <sstate-cache>).
+
+If you are making changes to your build which might affect your packages
+you'll need to perform:
+
+$ bitbake package-index
+
+Have you had a look at:
+http://www.yoctoproject.org/docs/1.5/mega-manual/mega-manual.html#using-runtime-package-management
+
+Maybe something in there might help? But it certainly sounds like you're
+doing everything correctly.
+
+--001a11c39808b7017604e8e60076
 Content-Type: text/html; charset=ISO-8859-1
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div><div><div>Hello Khem,<br></div>Thanks for the help af=
-ter modifying my local.conf <br>MACHINE ?=3D &quot;zedboard-zynq7&quot;<br>=
-</div>My build &quot;MACHINE=3Dzedboard-zynq7 bitbake core-image-sato&quot;=
- is in the process now 295 of 5076 tasks<br>
-</div>should take a short time to complete.<br>regards <br><div><div><div><=
-br></div></div></div></div><div class=3D"gmail_extra"><br><br><div class=3D=
-"gmail_quote">On Wed, Oct 16, 2013 at 4:45 PM, Khem Raj <span dir=3D"ltr">&=
-lt;<a href=3D"mailto:raj.khem@gmail.com" target=3D"_blank">raj.khem@gmail.c=
-om</a>&gt;</span> wrote:<br>
-<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
-x #ccc solid;padding-left:1ex"><div class=3D"HOEnZb"><div class=3D"h5"><br>
-On Oct 16, 2013, at 2:57 PM, Edward Vidal &lt;<a href=3D"mailto:vidal.devel=
-one@gmail.com">vidal.develone@gmail.com</a>&gt; wrote:<br>
-<br>
-&gt; Hello,<br>
-&gt; I built a zedboard core-image-sato on 09/21/13 with meta-xilinx at tha=
-t time I had the following folders.<br>
-&gt;<br>
-&gt; meta-kc705<br>
-&gt; meta-zc702<br>
-&gt; meta-zedboard<br>
-&gt;<br>
-&gt; Build Configuration:<br>
-&gt; BB_VERSION =A0 =A0 =A0 =A0=3D &quot;1.19.1&quot;<br>
-&gt; BUILD_SYS =A0 =A0 =A0 =A0 =3D &quot;x86_64-linux&quot;<br>
-&gt; NATIVELSBSTRING =A0 =3D &quot;Fedora-18&quot;<br>
-&gt; TARGET_SYS =A0 =A0 =A0 =A0=3D &quot;arm-poky-linux-gnueabi&quot;<br>
-&gt; MACHINE =A0 =A0 =A0 =A0 =A0 =3D &quot;zedboard&quot;<br>
-&gt; DISTRO =A0 =A0 =A0 =A0 =A0 =A0=3D &quot;poky&quot;<br>
-&gt; DISTRO_VERSION =A0 =A0=3D &quot;1.4+snapshot-20130921&quot;<br>
-&gt; TUNE_FEATURES =A0 =A0 =3D &quot; armv7a vfp neon zynq&quot;<br>
-&gt; TARGET_FPU =A0 =A0 =A0 =A0=3D &quot;vfp-neon&quot;<br>
-&gt; meta<br>
-&gt; meta-yocto =A0 =A0 =A0 =A0=3D &quot;(nobranch):3dee534f1e25109e0bdb681=
-de0746c336f4b8840&quot;<br>
-&gt; meta-xilinx<br>
-&gt; meta-kc705<br>
-&gt; meta-zc702<br>
-&gt; meta-zedboard =A0 =A0 =3D &quot;master:46f4c79d6d55b556a90bb0fd89c2c09=
-acf2aebff&quot;<br>
-&gt; meta-yocto-bsp =A0 =A0=3D &quot;(nobranch):3dee534f1e25109e0bdb681de07=
-46c336f4b8840&quot;<br>
-&gt;<br>
-&gt; With the dora release I did a new clone of git://<a href=3D"http://git=
-.yoctoproject.org/meta-xilinx" target=3D"_blank">git.yoctoproject.org/meta-=
-xilinx</a><br>
-&gt; now I do not see<br>
-&gt; meta-kc705<br>
-&gt; meta-zc702<br>
-&gt; meta-zedboard<br>
-&gt;<br>
-&gt; When I execute MACHINE=3Dzedboard bitbake core-image-sato<br>
-&gt; ERROR: =A0OE-core&#39;s config sanity checker detected a potential mis=
-configuration.<br>
-&gt; =A0 =A0 Either fix the cause of this error or at your own risk disable=
- the checker (see sanity.conf).<br>
-&gt; =A0 =A0 Following is the list of potential problems / advisories:<br>
-&gt;<br>
-&gt; =A0 =A0 Please set a valid MACHINE in your local.conf or environment<b=
-r>
-&gt;<br>
-&gt; ERROR: Execution of event handler &#39;check_sanity_eventhandler&#39; =
-failed<br>
-&gt; In my local.conf I have the following.<br>
-&gt;<br>
-&gt; MACHINE ?=3D &quot;zedboard&quot;<br>
-&gt;<br>
-&gt; bblayers.conf<br>
-&gt; # LAYER_CONF_VERSION is increased each time build/conf/bblayers.conf<b=
-r>
-&gt; # changes incompatibly<br>
-&gt; LCONF_VERSION =3D &quot;6&quot;<br>
-&gt;<br>
-&gt; BBPATH =3D &quot;${TOPDIR}&quot;<br>
-&gt; BBFILES ?=3D &quot;&quot;<br>
-&gt;<br>
-&gt; BBLAYERS ?=3D &quot; \<br>
-&gt; =A0 /home/vidal/POKY/build101613_zedboard/poky/meta \<br>
-&gt; =A0 /home/vidal/POKY/build101613_zedboard/poky/meta-yocto \<br>
-&gt; =A0 /home/vidal/POKY/build101613_zedboard/poky/meta-xilinx \<br>
-&gt; =A0 /home/vidal/POKY/build101613_zedboard/poky/meta-yocto-bsp \<br>
-&gt; =A0 &quot;<br>
-&gt; BBLAYERS_NON_REMOVABLE ?=3D &quot; \<br>
-&gt; =A0 /home/vidal/POKY/build101613_zedboard/poky/meta \<br>
-&gt; =A0 /home/vidal/POKY/build101613_zedboard/poky/meta-yocto \<br>
-&gt; =A0 &quot;<br>
-&gt; Any help will be appreciated.<br>
-&gt; Regards<br>
-<br>
-</div></div>it seems like layer went thru some restructuring e.g. see<br>
-commit d9617006376d73e37f1db17857ee06c24e6b7c03<br>
-Author: Nathan Rossi &lt;<a href=3D"mailto:nathan.rossi@xilinx.com">nathan.=
-rossi@xilinx.com</a>&gt;<br>
-Date: =A0 Fri Aug 2 12:41:14 2013 +1000<br>
-<br>
-=A0 =A0 meta-*: Remove deprecated sublayers<br>
-<br>
-=A0 =A0 * The machines supported in the sublayer BSPs are now supported in =
-the base<br>
-=A0 =A0 =A0 meta-xilinx layer, these sublayers are no longer required.<br>
-=A0 =A0 * Relevant documentation has also been relocated into meta-xilinx/d=
-ocs/*.<br>
-<br>
-<br>
-<br>
-So may be zedboard -&gt; zedboard-zynq7<br>
-<br>
-<br>
-&gt;<br>
-&gt; _______________________________________________<br>
-&gt; yocto mailing list<br>
-&gt; <a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><b=
-r>
-&gt; <a href=3D"https://lists.yoctoproject.org/listinfo/yocto" target=3D"_b=
-lank">https://lists.yoctoproject.org/listinfo/yocto</a><br>
-<br>
-</blockquote></div><br></div>
+<div dir=3D"ltr"><div><div><div>On 16 October 2013 18:19, Glenn Schmottlach=
+ &lt;<a href=3D"mailto:gschmottlach@gmail.com">gschmottlach@gmail.com</a>&g=
+t; wrote:<br>&gt; One thing<br>&gt; that did disturb me a little was that w=
+hen I look in my<br>
+&gt; &lt;project&gt;/build/tmp-eglibc/deploy/ipk is see the following:<br>&=
+gt;<br>&gt; =A0 4 drwxr-xr-x 6 gschmottlach gschmottlach =A0 4096 Oct 16 16=
+:38 .<br>&gt; =A0 4 drwxr-xr-x 8 gschmottlach gschmottlach =A0 4096 Oct =A0=
+3 05:53 ..<br>
+&gt; =A012 drwxr-xr-x 2 gschmottlach gschmottlach =A012288 Oct 16 16:38 all=
+<br>&gt; 176 drwxr-xr-x 2 gschmottlach gschmottlach 176128 Oct 16 16:38 arm=
+v7a-vfp-neon<br>&gt; =A024 drwxr-xr-x 2 gschmottlach gschmottlach =A024576 =
+Oct 16 16:38 i686-nativesdk<br>
+&gt; =A040 drwxr-xr-x 2 gschmottlach gschmottlach =A036864 Oct 16 16:38 nit=
+rogen6x<br>&gt; =A0 0 -rw-rw-r-- 1 gschmottlach gschmottlach =A0 =A0 =A00 O=
+ct 16 16:38 Packages<br>&gt; =A0 0 -rw-r--r-- 1 gschmottlach gschmottlach =
+=A0 =A0 =A00 Oct =A03 00:24 Packages.flock<br>
+&gt; =A0 4 -rw-rw-r-- 1 gschmottlach gschmottlach =A0 =A0 20 Oct 16 16:38 P=
+ackages.gz<br>&gt; =A0 0 -rw-r--r-- 1 gschmottlach gschmottlach =A0 =A0 =A0=
+0 Oct 16 16:38 Packages.stamps<br><br>Yes, I&#39;m seeing that too.<br><br>=
+What happens if you run (on your build machine, from your<br>
+build location) (replace stuff in &lt;&gt; as required):<br><br><div style=
+=3D"margin-left:40px"><span style=3D"font-family:courier new,monospace">$ &=
+lt;tmpdir&gt;/sysroots/&lt;build arch&gt;/usr/bin/opkg-cl -o &lt;tmpdir&gt;=
+/work/&lt;target machine&gt;/&lt;image&gt;/&lt;version&gt;/rootfs list</spa=
+n><br>
+</div><br>For example:<br><br><div style=3D"margin-left:40px"><span style=
+=3D"font-family:courier new,monospace">$ tmp-qemuarm/sysroots/x86_64-linux/=
+usr/bin/opkg-cl -o tmp-qemuarm/work/qemuarm-poky-linux-gnueabi/core-image-m=
+inimal/1.0-r0/rootfs list</span><br>
+</div><br></div>Does that print you a list of all the packages in your imag=
+e?<br><br></div>Just out of curiosity, is it possible that you added &quot;=
+package-management&quot;<br>to IMAGE_FEATURES after you already had a succe=
+ssful full build? Or is<br>
+it possible that you <span class=3D""></span><span class=3D""></span>had al=
+ready done a full build with &quot;package_rpm&quot; or<br>&quot;_deb&quot;=
+ before switching to &quot;package_ipk&quot;?<br><br>The reason I ask is (a=
+lthough I never confirmed this definitively but) when<br>
+I was playing with this stuff a while back I was sure that this package stu=
+ff<br>would only get generated after adjusting these configurations when a =
+full,<br>clean build was performed (i.e. removing &lt;tmpdir&gt; and &lt;ss=
+tate-cache&gt;).<br>
+<br></div><div>If you are making changes to your build which might affect y=
+our packages<br>you&#39;ll need to perform:<br><br><div style=3D"margin-lef=
+t:40px"><span style=3D"font-family:courier new,monospace">$ bitbake package=
+-index</span></div>
+</div><div><br></div><div>Have you had a look at:<br><a href=3D"http://www.=
+yoctoproject.org/docs/1.5/mega-manual/mega-manual.html#using-runtime-packag=
+e-management">http://www.yoctoproject.org/docs/1.5/mega-manual/mega-manual.=
+html#using-runtime-package-management</a><br>
+<br></div><div>Maybe something in there might help? But it certainly sounds=
+ like you&#39;re<br>doing everything correctly.<br></div></div>
 
---047d7b603dcc4af2f504e8e3c08f--
+--001a11c39808b7017604e8e60076--
