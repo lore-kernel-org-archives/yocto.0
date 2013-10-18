@@ -1,27 +1,34 @@
-Return-Path: <gary@mlbassoc.com>
-Received: from mail.chez-thomas.org (mail.mlbassoc.com [65.100.170.105])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 83D3BE016E2
-	for <yocto@yoctoproject.org>; Fri, 18 Oct 2013 06:09:13 -0700 (PDT)
-Received: by mail.chez-thomas.org (Postfix, from userid 1998)
-	id D29CAF811E1; Fri, 18 Oct 2013 07:09:12 -0600 (MDT)
-X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on
-	hermes.chez-thomas.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=4.0 tests=ALL_TRUSTED,BAYES_00
-	autolearn=unavailable version=3.3.2
-Received: from [192.168.1.114] (zeus [192.168.1.114])
-	by mail.chez-thomas.org (Postfix) with ESMTP id D3457F81188;
-	Fri, 18 Oct 2013 07:09:11 -0600 (MDT)
-Message-ID: <526132FB.3090202@mlbassoc.com>
-Date: Fri, 18 Oct 2013 07:09:15 -0600
-From: Gary Thomas <gary@mlbassoc.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:24.0) Gecko/20100101 Thunderbird/24.0
+Return-Path: <nicolas.dechesne@linaro.org>
+Received: from mail-ob0-f182.google.com (mail-ob0-f182.google.com
+	[209.85.214.182])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 96D0FE016E4
+	for <yocto@yoctoproject.org>; Fri, 18 Oct 2013 06:16:00 -0700 (PDT)
+Received: by mail-ob0-f182.google.com with SMTP id va2so3075636obc.13
+	for <yocto@yoctoproject.org>; Fri, 18 Oct 2013 06:16:00 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc:content-type;
+	bh=PDbOOHTSN2Jlk5sarv9Aqim1sUBl4uqUd0It+wDUfoc=;
+	b=Gykg436b5nPqF1XCFppabbfNF94A8ssA6hlp35JZGKa4EaFj1EUqLRqGzr02NQ2XCc
+	TLfoIvMt6g6yfbTxgR7BV8+QfdSBjxtTAwIDtK06HSLfHFGoVfMIunhnoe/mvzjmELCU
+	8XKGEjsOy4BNASDIVKa2v2N8F6sjoPdEsCZGY4jBwfLhSfjPQ2oZkJw8fpxF4/eIrHDy
+	y9yyOaLvHh8KNDYAPBiAVTT7bHgknndbv5C6UINT//a334T1c+glwt+Cd0rSh07s38Yq
+	i88F2T5uYxI8tmUrEgpK09V/pYiWt9O47qGwWSEoxs78AyVyRGymbVrrct2XLFveVGgC
+	OkOQ==
+X-Gm-Message-State: ALoCoQkRMLkypwe/bPeZO00Le6E7+qjxXYjL9oPKXkBZ3QAtM/V/sdeJSV4E0oL+j39+wonlZEYq
+X-Received: by 10.182.246.39 with SMTP id xt7mr4691574obc.16.1382102160050;
+	Fri, 18 Oct 2013 06:16:00 -0700 (PDT)
 MIME-Version: 1.0
-To: Nicolas Dechesne <nicolas.dechesne@linaro.org>
+Received: by 10.76.156.40 with HTTP; Fri, 18 Oct 2013 06:15:39 -0700 (PDT)
+In-Reply-To: <526132FB.3090202@mlbassoc.com>
 References: <525FEB23.6050907@mlbassoc.com>
 	<CAP71WjwidN0f1K6m1SfQqCbObqRKD7f4_RbmftrWkE9iOF7_OA@mail.gmail.com>
-In-Reply-To: <CAP71WjwidN0f1K6m1SfQqCbObqRKD7f4_RbmftrWkE9iOF7_OA@mail.gmail.com>
+	<526132FB.3090202@mlbassoc.com>
+From: Nicolas Dechesne <nicolas.dechesne@linaro.org>
+Date: Fri, 18 Oct 2013 15:15:39 +0200
+Message-ID: <CAP71WjyFCLaNa18OF26GYMu_oT1FQUH7nEBn0hjRcaS=SXC5CA@mail.gmail.com>
+To: Gary Thomas <gary@mlbassoc.com>
 Cc: Yocto list discussion <yocto@yoctoproject.org>
 Subject: Re: Busybox configuration example?
 X-BeenThere: yocto@yoctoproject.org
@@ -35,43 +42,17 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 18 Oct 2013 13:09:13 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Fri, 18 Oct 2013 13:16:03 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
-On 2013-10-17 13:49, Nicolas Dechesne wrote:
-> On Thu, Oct 17, 2013 at 3:50 PM, Gary Thomas <gary@mlbassoc.com> wrote:
->> Can someone explain how I might control my busybox builds?
->> For example, I routinely add this to busybox*.bbappend:
->>
->>    #
->>    # Force 'ifup' to wait longer for really slow links...
->>    #
->>    do_prepare_config_append () {
->>      sed -i 's/CONFIG_IFUPDOWN_UDHCPC_CMD_OPTIONS="-R
->> -n"/CONFIG_IFUPDOWN_UDHCPC_CMD_OPTIONS="-R -n -T 1 -t 20"/' ${S}/.config
->>    }
->>
->> which is just editing the confguration file to match my preferences.
->> Is there a way to do this using the "configuration fragments" mentioned
->> above?
+On Fri, Oct 18, 2013 at 3:09 PM, Gary Thomas <gary@mlbassoc.com> wrote:
+> Thanks for the example.  I added this simple config fragment and it works
+> fine.
 >
-> here is an example of busybox config fragment, that we use
->
-> https://git.linaro.org/gitweb?p=openembedded/meta-linaro.git;a=tree;f=meta-linaro/recipes-core/busybox;h=2c4a6b6b8b542b2eef04561d95a802d855ae7573;hb=master
->
-> i don't know if the config fragment would work for what you are
-> doing.. let us know ;-)
+>   # Force 'ifup' to wait longer for really slow links...
+>   CONFIG_IFUPDOWN_UDHCPC_CMD_OPTIONS="-R -n -T 1 -t 20"
+> Of course, the comment is stripped in the final configuration file, but it
+> documents the purpose of the fragment.
 
-Thanks for the example.  I added this simple config fragment and it works fine.
-   # Force 'ifup' to wait longer for really slow links...
-   CONFIG_IFUPDOWN_UDHCPC_CMD_OPTIONS="-R -n -T 1 -t 20"
-Of course, the comment is stripped in the final configuration file, but it
-documents the purpose of the fragment.
-
--- 
-------------------------------------------------------------
-Gary Thomas                 |  Consulting for the
-MLB Associates              |    Embedded world
-------------------------------------------------------------
+thanks for the follow up!
 
