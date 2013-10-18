@@ -1,37 +1,61 @@
-Return-Path: <Bruce.Ashfield@windriver.com>
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 81041E016D7
-	for <yocto@yoctoproject.org>; Thu, 17 Oct 2013 21:48:45 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail.windriver.com (8.14.5/8.14.3) with ESMTP id r9I4mdFr005169
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Thu, 17 Oct 2013 21:48:40 -0700 (PDT)
-Received: from bruce-ashfields-macbook.local (128.224.23.237) by
-	ALA-HCA.corp.ad.wrs.com (147.11.189.40) with Microsoft SMTP Server id
-	14.2.347.0; Thu, 17 Oct 2013 21:48:39 -0700
-Message-ID: <5260BDA6.4020807@windriver.com>
-Date: Fri, 18 Oct 2013 00:48:38 -0400
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.7;
-	rv:17.0) Gecko/20130801 Thunderbird/17.0.8
+Return-Path: <DineshKumar.Varadarajan@lntinfotech.com>
+Received: from mail1.bemta8.messagelabs.com (mail1.bemta8.messagelabs.com
+	[216.82.243.202])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2B1ECE016D7
+	for <yocto@yoctoproject.org>; Thu, 17 Oct 2013 22:19:17 -0700 (PDT)
+Received: from [216.82.241.100:39577] by server-10.bemta-8.messagelabs.com id
+	51/82-29437-5D4C0625; Fri, 18 Oct 2013 05:19:17 +0000
+X-Env-Sender: DineshKumar.Varadarajan@lntinfotech.com
+X-Msg-Ref: server-7.tower-220.messagelabs.com!1382073553!1705671!1
+X-Originating-IP: [202.54.134.175]
+X-StarScan-Received: 
+X-StarScan-Version: 6.9.12; banners=-,-,-
+X-VirusChecked: Checked
+Received: (qmail 13237 invoked from network); 18 Oct 2013 05:19:16 -0000
+Received: from unknown (HELO chninmsedge01.chennaiodc.lntinfotech.com)
+	(202.54.134.175)
+	by server-7.tower-220.messagelabs.com with AES128-SHA encrypted SMTP;
+	18 Oct 2013 05:19:16 -0000
+Received: from chninmsedge01.chennaiodc.lntinfotech.com (172.29.23.55) by
+	chninmsedge01.chennaiodc.lntinfotech.com (172.29.23.10) with Microsoft
+	SMTP Server id 8.2.176.0; Fri, 18 Oct 2013 10:47:32 +0530
+Received: from CHNDSSMGR.chennaiodc.lntinfotech.com ([127.0.0.1]) by
+	chninmsedge01.chennaiodc.lntinfotech.com with Microsoft
+	SMTPSVC(6.0.3790.4675);	 Fri, 18 Oct 2013 10:49:13 +0530
+Received: from chninmshtcas02.chennaiodc.lntinfotech.com ([172.29.23.4]) by
+	CHNDSSMGR.chennaiodc.lntinfotech.com with Microsoft
+	SMTPSVC(6.0.3790.4675); Fri, 18 Oct 2013 10:49:13 +0530
+Received: from PUNINMSSCRDR.puneodc.lntinfotech.com (172.29.23.20) by
+	chninmshtcas02.chennaiodc.lntinfotech.com (172.29.23.3) with Microsoft
+	SMTP Server (TLS) id 8.2.176.0; Fri, 18 Oct 2013 10:49:12 +0530
+Received: from CHNINMSMBX01.chennaiodc.lntinfotech.com ([169.254.2.18]) by
+	PUNINMSSCRDR.puneodc.lntinfotech.com ([172.29.23.20]) with mapi;
+	Fri, 18 Oct 2013 10:49:12 +0530
+From: DineshKumar Varadarajan <DineshKumar.Varadarajan@lntinfotech.com>
+To: <yocto@yoctoproject.org>
+Date: Fri, 18 Oct 2013 10:49:05 +0530
+Thread-Topic: Add kernel path in *.bb file and Arm based board BSP
+Thread-Index: Ac7LwZCQHzxTSvjVQb6WBCHNpPGhgA==
+Message-ID: <7860E55F3F8366479EE1138A626B688D0700D74F15@CHNINMSMBX01.chennaiodc.lntinfotech.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-cr-hashedpuzzle: pOY= A3yB CYqy C1t5 C5q2 DZZi FDw2 FR8F F2Uk GDhd GFSG IbD9
+	Jh8S J4i8 KETZ K1YR; 1;
+	eQBvAGMAdABvAEAAeQBvAGMAdABvAHAAcgBvAGoAZQBjAHQALgBvAHIAZwA=;
+	Sosha1_v1; 7; {90F5BE11-E52B-4FCE-9924-EBA49D5F093D};
+	ZABpAG4AZQBzAGgAawB1AG0AYQByAC4AdgBhAHIAYQBkAGEAcgBhAGoAYQBuAEAAbABuAHQAaQBuAGYAbwB0AGUAYwBoAC4AYwBvAG0A;
+	Fri, 18 Oct 2013 05:19:05 GMT;
+	QQBkAGQAIABrAGUAcgBuAGUAbAAgAHAAYQB0AGgAIABpAG4AIAAqAC4AYgBiACAAZgBpAGwAZQAgAGEAbgBkACAAQQByAG0AIABiAGEAcwBlAGQAIABiAG8AYQByAGQAIABCAFMAUAA=
+x-cr-puzzleid: {90F5BE11-E52B-4FCE-9924-EBA49D5F093D}
+acceptlanguage: en-US
+Importance: normal
+Priority: normal
+X-MimeOLE: Produced By Microsoft MimeOLE V6.00.3790.4913
 MIME-Version: 1.0
-To: Diego Sueiro <diego.sueiro@gmail.com>
-References: <CAMCfZKFBvSiRSMk5wrEpSEiNNiZeHJw18fbHgHzepo__U=UWNA@mail.gmail.com>
-	<CA+gsK-o6n24Aqp2dtpOwnmrCBjWE=HDSJvfqyYy2pvJYrHqXmQ@mail.gmail.com>
-	<CAAQYJAu+wU0ODvVoTrRBFhVOUVh+CdMg3mimfgGkj-pwJh3A1g@mail.gmail.com>
-	<CAMCfZKF_Rp=uds8tnDPSD9k3GO5dEiHSx9WfYjZ0yPkmh_9YPg@mail.gmail.com>
-	<CAMCfZKFh8iJH4655mzFveFYfz8ebLXkGftSa-MR5mEcMEFV8Vw@mail.gmail.com>
-	<CADkTA4MgxmiOofDLynbOLR=hV-KQ1ic+Eagjm0yetYOtB6FJzw@mail.gmail.com>
-	<CAMCfZKF3aHG4wFMRx2XcdroJJ6ga5v6KHF5DbBTWV7jXOGNX-g@mail.gmail.com>
-	<525FDD08.90400@windriver.com>
-	<CAMCfZKHz82sPsHXjqxbFDJjFNi7ck+BS=_OtyGmb2FYDAxoe1A@mail.gmail.com>
-	<525FE3C9.3070003@windriver.com>
-	<CAMCfZKGUYAcO5FtOKC9iP_XZjRxJ_Xq12ERN=BL_JHA7FJW51w@mail.gmail.com>
-In-Reply-To: <CAMCfZKGUYAcO5FtOKC9iP_XZjRxJ_Xq12ERN=BL_JHA7FJW51w@mail.gmail.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	Rudolf Streif <rstreif@linuxfoundation.org>
-Subject: Re: Custom defconfig is not used
+X-OriginalArrivalTime: 18 Oct 2013 05:19:13.0115 (UTC)
+	FILETIME=[951CEAB0:01CECBC1]
+Subject: Add kernel path in *.bb file and Arm based board BSP
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,116 +67,438 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 18 Oct 2013 04:48:46 -0000
-Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
+X-List-Received-Date: Fri, 18 Oct 2013 05:19:21 -0000
 Content-Transfer-Encoding: 7bit
+Content-Language: en-US
+Content-Class: urn:content-classes:message
+Content-Type: multipart/alternative;
+	boundary="_000_7860E55F3F8366479EE1138A626B688D0700D74F15CHNINMSMBX01c_"
 
-On 13-10-17 11:47 AM, Diego Sueiro wrote:
->
-> 2013/10/17 Bruce Ashfield <bruce.ashfield@windriver.com
-> <mailto:bruce.ashfield@windriver.com>>
->
->     Look at oe-core/meta-skeleton for the custom kernel recipe example.
->     It has the inherit/include combinations that you need to follow.
->
->
->         My concern is: if doing this to just have the config fragment
->         feature,
->         I'll possibly mess up the kernel build.
->
->
->     It shouldn't. It only adds to existing phases, and doesn't make
->     any changes. I've tested it in many combinations and it should
->     work fine.
->
->     If something breaks, I'd like to know, so we can fix it.
->
->
-> Bruce,
->
-> I didn't change linux-mainline_3.8.bb <http://linux-mainline_3.8.bb>.
-> My linux-mainline_3.8.bbappend is:
->
->     FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}-3.8:"
->     inherit kernel
->     require recipes-kernel/linux/linux-yocto.inc
->     COMPATIBLE_MACHINE_beaglebone = "(beaglebone)"
->     SRC_URI += " file://mine.patch \
->                   file://config-addons.cfg \
->                   "
->
-> My config-addons.cfg:
->
->     CONFIG_WATCHDOG_NOWAYOUT=y
->     CONFIG_NTFS_FS=y
->     CONFIG_NTFS_RW=y
->
-> After a cleansstate the build got stucked on do_patch task.
-> Here is the content of log.do_patch:
->
->     DEBUG: Executing shell function do_patch
->     WARNING: no meta data branch found ...
->     Switched to branch 'linux-3.8.y'
+--_000_7860E55F3F8366479EE1138A626B688D0700D74F15CHNINMSMBX01c_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
 
-I fell behind today .. i had 2300 unread email to start this morning :)
-Is there a way that I can get a copy of your recipes and layers ? If
-I can do a build myself, I can easily debug and fix this .. otherwise, we'll
-go back and forth many times debugging.
-
-Cheers,
-
-Bruce
-
->
->
-> Running with bitbake -v I got the following:
->
->     ...
->     + configme --reconfig --output
->     <...>/build/tmp-angstrom_v2013_06-eglibc/work/beaglebone-angstrom-linux-gnueabi/linux-mainline/3.8.13-r23a/linux-beaglebone-standard-build
->     standard beaglebone
->     [INFO] Configuring target/machine combo: "standard/beaglebone"
->
->     [INFO] Configuring target/machine combo: "standard/beaglebone"
->     [INFO] collecting configs in ./meta/meta-series
->
->     [INFO] collecting configs in ./meta/meta-series
->     cat: meta/cfg/standard/beaglebone/config_frag.txt: No such file or
->     directory
->
->     cat: meta/cfg/standard/beaglebone/config_frag.txt: No such file or
->     directory
->     cat: meta/cfg/standard/beaglebone/config_frag.txt: No such file or
->     directory
->
->     cat: meta/cfg/standard/beaglebone/config_frag.txt: No such file or
->     directory
->     mv: target `3.8.13' is not a directory
->
->     mv: target `3.8.13' is not a directory
->     creation of pre-processed config data failed
->     config of "standard/beaglebone" failed
->
->     creation of pre-processed config data failed
->     config of "standard/beaglebone" failed
->     ERROR: Function failed: do_kernel_configme (see
->     <...>/build/tmp-angstrom_v2013_06-eglibc/work/beaglebone-angstrom-linux-gnueabi/linux-mainline/3.8.13-r23a/temp/log.do_kernel_configme15450.
->     for further information)
->     ERROR: Task 7
->     (<...>/setup-scripts/sources/meta-beagleboard/common-bsp/recipes-kernel/linux/linux-mainline_3.8.bb
->     <http://linux-mainline_3.8.bb>, do_kernel_configme) failed with exit
->     code '1'
->
->
->
->
->
-> Regards,
->
-> --
-> *dS
-> Diego Sueiro
->
-> /*long live rock 'n roll*/
+Hi  All,
 
 
+        I want to create a New BSP for ARM CorteXA9 based board . I have =
+downloaded the poky 9.0.2 and create the new BSP with the following =
+commands as mentioned in the Manual.
+
+
+               "yocto-bsp create myarm arm" command and selected the =
+"linux-Yocto_3.4" as my kernel.I have modified the bblayeres
+
+                                    LCONF_VERSION =3D "6"
+
+                                    BBPATH =3D "${TOPDIR}"
+                                    BBFILES ?=3D ""
+
+                                    BBLAYERS ?=3D " \
+                                    =
+/home/murali/src/dinesh/yocto/poky/meta \
+                                    =
+/home/murali/src/dinesh/yocto/poky/meta-yocto \
+                                    =
+/home/murali/src/dinesh/yocto/poky/meta-yocto-bsp \
+                                    =
+/home/murali/src/dinesh/yocto/poky/meta-myarm \
+                                    "
+                                    BBLAYERS_NON_REMOVABLE ?=3D " \
+                                                =
+/home/murali/src/dinesh/yocto/poky/meta \
+                                                =
+/home/murali/src/dinesh/yocto/poky/meta-yocto \
+                                                            "
+
+
+       1. my question is where i hAve to add the kernel PATH (git path) =
+in SRC_URI.
+
+                Whether i have add inside the  =
+mete-myarm/kernel_recipes/linux/linux-yocto_3.4.bbappend. or some where =
+else.
+
+
+      2. when i entered the "bitbake core-image-minimal" command its =
+start executing tasks , but after some time ,its try to "do_fetch" the =
+linux-yocto_3.8.git kernel as per the *.bb in the below path
+                        =
+"/home/murali/src/dinesh/yocto/poky/meta/recipes-kernel/linux_3.8.bb"
+
+
+          My question is why 3.8 kernel is doing "do_fetch" , my aim is =
+build the 3.4 kernel for my board.
+
+
+          can some one help me out ?? or point some examples
+
+
+Regards,
+Dinesh kumar.v
+
+
+
+
+
+
+
+
+
+
+
+
+
+________________________________
+The contents of this e-mail and any attachment(s) may contain =
+confidential or privileged information for the intended recipient(s). =
+Unintended recipients are prohibited from taking action on the basis of =
+information in this e-mail and using or disseminating the information, =
+and must notify the sender and delete it from their system. L&T Infotech =
+will not accept responsibility or liability for the accuracy or =
+completeness of, or the presence of any virus or disabling code in this =
+e-mail"
+*************************************************************************=
+=0D
+ This email and attachments have been scanned for=0D
+ potential proprietary or sensitive information leakage.=0D
+ Websense Data Security, Protecting Your Information from the Inside =
+Out.=0D
+ www.websense.com=0D
+ =
+*************************************************************************=
+
+
+--_000_7860E55F3F8366479EE1138A626B688D0700D74F15CHNINMSMBX01c_
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
+xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
+xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
+xmlns=3D"http://www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; =
+charset=3Dutf-8">
+<meta name=3D"Generator" content=3D"Microsoft Word 12 (filtered =
+medium)">
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:"Trebuchet MS";
+	panose-1:2 11 6 3 2 2 2 2 2 4;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Trebuchet MS","sans-serif";
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;}
+@page Section1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.Section1
+	{page:Section1;}
+-->
+</style><!--[if gte mso 9]><xml>
+ <o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <o:shapelayout v:ext=3D"edit">
+  <o:idmap v:ext=3D"edit" data=3D"1" />
+ </o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
+<div class=3D"Section1">
+<p class=3D"MsoNormal"><span =
+style=3D"font-size:10.0pt;font-family:&quot;Trebuchet =
+MS&quot;,&quot;sans-serif&quot;">Hi &nbsp;All,<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span =
+style=3D"font-size:10.0pt;font-family:&quot;Trebuchet =
+MS&quot;,&quot;sans-serif&quot;"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span =
+style=3D"font-size:10.0pt;font-family:&quot;Trebuchet =
+MS&quot;,&quot;sans-serif&quot;"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span =
+style=3D"font-size:10.0pt;font-family:&quot;Trebuchet =
+MS&quot;,&quot;sans-serif&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p; I want to create a New BSP for ARM CorteXA9 based board . I have =
+downloaded the poky 9.0.2 and create the new BSP with the following =
+commands as mentioned in
+ the Manual.<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span =
+style=3D"font-size:10.0pt;font-family:&quot;Trebuchet =
+MS&quot;,&quot;sans-serif&quot;"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span =
+style=3D"font-size:10.0pt;font-family:&quot;Trebuchet =
+MS&quot;,&quot;sans-serif&quot;"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span =
+style=3D"font-size:10.0pt;font-family:&quot;Trebuchet =
+MS&quot;,&quot;sans-serif&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &quot;yocto-bsp create =
+myarm arm&quot; command and selected the &quot;linux-Yocto_3.4&quot; as =
+my kernel.I have modified the bblayeres<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span =
+style=3D"font-size:10.0pt;font-family:&quot;Trebuchet =
+MS&quot;,&quot;sans-serif&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;
+<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span =
+style=3D"font-size:10.0pt;font-family:&quot;Trebuchet =
+MS&quot;,&quot;sans-serif&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp; LCONF_VERSION =3D =
+&quot;6&quot;<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span =
+style=3D"font-size:10.0pt;font-family:&quot;Trebuchet =
+MS&quot;,&quot;sans-serif&quot;"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span =
+style=3D"font-size:10.0pt;font-family:&quot;Trebuchet =
+MS&quot;,&quot;sans-serif&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp; BBPATH =3D =
+&quot;${TOPDIR}&quot;<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span =
+style=3D"font-size:10.0pt;font-family:&quot;Trebuchet =
+MS&quot;,&quot;sans-serif&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp; BBFILES ?=3D &quot;&quot;<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span =
+style=3D"font-size:10.0pt;font-family:&quot;Trebuchet =
+MS&quot;,&quot;sans-serif&quot;"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span =
+style=3D"font-size:10.0pt;font-family:&quot;Trebuchet =
+MS&quot;,&quot;sans-serif&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp; BBLAYERS ?=3D &quot; \<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span =
+style=3D"font-size:10.0pt;font-family:&quot;Trebuchet =
+MS&quot;,&quot;sans-serif&quot;">&nbsp; =
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =
+/home/murali/src/dinesh/yocto/poky/meta \<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span =
+style=3D"font-size:10.0pt;font-family:&quot;Trebuchet =
+MS&quot;,&quot;sans-serif&quot;">&nbsp; =
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =
+/home/murali/src/dinesh/yocto/poky/meta-yocto \<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span =
+style=3D"font-size:10.0pt;font-family:&quot;Trebuchet =
+MS&quot;,&quot;sans-serif&quot;">&nbsp; =
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =
+/home/murali/src/dinesh/yocto/poky/meta-yocto-bsp =
+\<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span =
+style=3D"font-size:10.0pt;font-family:&quot;Trebuchet =
+MS&quot;,&quot;sans-serif&quot;">&nbsp; =
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =
+/home/murali/src/dinesh/yocto/poky/meta-myarm \<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span =
+style=3D"font-size:10.0pt;font-family:&quot;Trebuchet =
+MS&quot;,&quot;sans-serif&quot;">&nbsp; =
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =
+&quot;<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span =
+style=3D"font-size:10.0pt;font-family:&quot;Trebuchet =
+MS&quot;,&quot;sans-serif&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp; =
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =
+BBLAYERS_NON_REMOVABLE ?=3D &quot; \<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span =
+style=3D"font-size:10.0pt;font-family:&quot;Trebuchet =
+MS&quot;,&quot;sans-serif&quot;">&nbsp; =
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =
+/home/murali/src/dinesh/yocto/poky/meta \<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span =
+style=3D"font-size:10.0pt;font-family:&quot;Trebuchet =
+MS&quot;,&quot;sans-serif&quot;">&nbsp; =
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =
+/home/murali/src/dinesh/yocto/poky/meta-yocto \<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span =
+style=3D"font-size:10.0pt;font-family:&quot;Trebuchet =
+MS&quot;,&quot;sans-serif&quot;">&nbsp; =
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =
+&quot;<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span =
+style=3D"font-size:10.0pt;font-family:&quot;Trebuchet =
+MS&quot;,&quot;sans-serif&quot;"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span =
+style=3D"font-size:10.0pt;font-family:&quot;Trebuchet =
+MS&quot;,&quot;sans-serif&quot;"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span =
+style=3D"font-size:10.0pt;font-family:&quot;Trebuchet =
+MS&quot;,&quot;sans-serif&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1. =
+my question is where i hAve to add the kernel PATH (git path) in =
+SRC_URI.<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span =
+style=3D"font-size:10.0pt;font-family:&quot;Trebuchet =
+MS&quot;,&quot;sans-serif&quot;"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span =
+style=3D"font-size:10.0pt;font-family:&quot;Trebuchet =
+MS&quot;,&quot;sans-serif&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Whether i have add =
+inside the&nbsp; =
+mete-myarm/kernel_recipes/linux/linux-yocto_3.4.bbappend. or some where =
+else.<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span =
+style=3D"font-size:10.0pt;font-family:&quot;Trebuchet =
+MS&quot;,&quot;sans-serif&quot;"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span =
+style=3D"font-size:10.0pt;font-family:&quot;Trebuchet =
+MS&quot;,&quot;sans-serif&quot;"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span =
+style=3D"font-size:10.0pt;font-family:&quot;Trebuchet =
+MS&quot;,&quot;sans-serif&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 2. when =
+i entered the &quot;bitbake core-image-minimal&quot; command its start =
+executing tasks , but after some time ,its try to &quot;do_fetch&quot; =
+the linux-yocto_3.8.git kernel
+ as per the *.bb in the below path<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span =
+style=3D"font-size:10.0pt;font-family:&quot;Trebuchet =
+MS&quot;,&quot;sans-serif&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp; =
+&quot;/home/murali/src/dinesh/yocto/poky/meta/recipes-kernel/linux_3.8.bb=
+&quot;<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span =
+style=3D"font-size:10.0pt;font-family:&quot;Trebuchet =
+MS&quot;,&quot;sans-serif&quot;"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span =
+style=3D"font-size:10.0pt;font-family:&quot;Trebuchet =
+MS&quot;,&quot;sans-serif&quot;"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span =
+style=3D"font-size:10.0pt;font-family:&quot;Trebuchet =
+MS&quot;,&quot;sans-serif&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp; My question is why 3.8 kernel is doing =
+&quot;do_fetch&quot; , my aim is build the 3.4 kernel for my =
+board.<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span =
+style=3D"font-size:10.0pt;font-family:&quot;Trebuchet =
+MS&quot;,&quot;sans-serif&quot;"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span =
+style=3D"font-size:10.0pt;font-family:&quot;Trebuchet =
+MS&quot;,&quot;sans-serif&quot;"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span =
+style=3D"font-size:10.0pt;font-family:&quot;Trebuchet =
+MS&quot;,&quot;sans-serif&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp; can some one help me out ?? or point some =
+examples<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span =
+style=3D"font-size:10.0pt;font-family:&quot;Trebuchet =
+MS&quot;,&quot;sans-serif&quot;"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span =
+style=3D"font-size:10.0pt;font-family:&quot;Trebuchet =
+MS&quot;,&quot;sans-serif&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span =
+style=3D"font-size:10.0pt;font-family:&quot;Trebuchet =
+MS&quot;,&quot;sans-serif&quot;">Regards,<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span =
+style=3D"font-size:10.0pt;font-family:&quot;Trebuchet =
+MS&quot;,&quot;sans-serif&quot;">Dinesh kumar.v<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span =
+style=3D"font-size:10.0pt;font-family:&quot;Trebuchet =
+MS&quot;,&quot;sans-serif&quot;"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span =
+style=3D"font-size:10.0pt;font-family:&quot;Trebuchet =
+MS&quot;,&quot;sans-serif&quot;"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span =
+style=3D"font-size:10.0pt;font-family:&quot;Trebuchet =
+MS&quot;,&quot;sans-serif&quot;"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span =
+style=3D"font-size:10.0pt;font-family:&quot;Trebuchet =
+MS&quot;,&quot;sans-serif&quot;"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span =
+style=3D"font-size:10.0pt;font-family:&quot;Trebuchet =
+MS&quot;,&quot;sans-serif&quot;"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span =
+style=3D"font-size:10.0pt;font-family:&quot;Trebuchet =
+MS&quot;,&quot;sans-serif&quot;"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span =
+style=3D"font-size:10.0pt;font-family:&quot;Trebuchet =
+MS&quot;,&quot;sans-serif&quot;"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span =
+style=3D"font-size:10.0pt;font-family:&quot;Trebuchet =
+MS&quot;,&quot;sans-serif&quot;"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span =
+style=3D"font-size:10.0pt;font-family:&quot;Trebuchet =
+MS&quot;,&quot;sans-serif&quot;"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span =
+style=3D"font-size:10.0pt;font-family:&quot;Trebuchet =
+MS&quot;,&quot;sans-serif&quot;"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span =
+style=3D"font-size:10.0pt;font-family:&quot;Trebuchet =
+MS&quot;,&quot;sans-serif&quot;"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span =
+style=3D"font-size:10.0pt;font-family:&quot;Trebuchet =
+MS&quot;,&quot;sans-serif&quot;"><o:p>&nbsp;</o:p></span></p>
+</div>
+<br>
+<hr>
+<font face=3D"Arial" color=3D"Black" size=3D"3">The contents of this =
+e-mail and any attachment(s) may contain confidential or privileged =
+information for the intended recipient(s). Unintended recipients are =
+prohibited from taking action on the basis of information
+ in this e-mail and using or disseminating the information, and must =
+notify the sender and delete it from their system. L&amp;T Infotech will =
+not accept responsibility or liability for the accuracy or completeness =
+of, or the presence of any virus or disabling code
+ in this e-mail&quot;<br>
+</font>
+</body>
+</html>
+<PRE>********************************************************************=
+*****=0D
+ This email and attachments have been scanned for=0D
+ potential proprietary or sensitive information leakage.=0D
+ Websense Data Security, Protecting Your Information from the Inside =
+Out.=0D
+ www.websense.com=0D
+ =
+*************************************************************************=
+
+</PRE>
+
+--_000_7860E55F3F8366479EE1138A626B688D0700D74F15CHNINMSMBX01c_--
