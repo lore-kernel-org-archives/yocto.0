@@ -1,32 +1,29 @@
-Return-Path: <gmshastri@gmail.com>
-Received: from mail-la0-f43.google.com (mail-la0-f43.google.com
-	[209.85.215.43])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 64D91E016DE
-	for <yocto@yoctoproject.org>; Fri, 18 Oct 2013 02:20:52 -0700 (PDT)
-Received: by mail-la0-f43.google.com with SMTP id el20so375689lab.16
-	for <yocto@yoctoproject.org>; Fri, 18 Oct 2013 02:20:51 -0700 (PDT)
+Return-Path: <amittomer25@gmail.com>
+Received: from mail-we0-f181.google.com (mail-we0-f181.google.com
+	[74.125.82.181])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7AFB0E016DD;
+	Fri, 18 Oct 2013 02:51:39 -0700 (PDT)
+Received: by mail-we0-f181.google.com with SMTP id t60so3445769wes.40
+	for <multiple recipients>; Fri, 18 Oct 2013 02:51:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type;
-	bh=AxHNzs98H/gab+f7OaBse75m0/DyAqmdHJQyMApzYco=;
-	b=SuSuzr+QpWIev/JZlquikGMv7MbPMaFfhTMslZX+KmhEE69Q2C7Ioq503EfUZvvHz9
-	PnnXj/vR0vsbpL+gRyee1wOvP6iHt6CrLRCAXxlG0UyBTtG7EUVDPC3SYK7QyFO1LW9M
-	cTw9qttXXxyNTRZaL1OadbgkLlrwEpSXgiJ66R7B6DkthcT6XAV5eLOXnUI2AQL4SZVA
-	XfA5AakmeTLfbUyZhsS+zl8CxnT3zp4/+w4nIeOxMaCaP5i1EyATaJouJnqz40ELRrbR
-	Fy2KQkNkaSuefJeXKkk9lamsCcf6KzQyEEhw8kNf5wJ7mm4bpquG1ErPt6ef680bbN4o
-	pTow==
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=/2wMLUGt2OKi4dBLZjnFJ2CC6a3jWYMsJJo6iwu2n8Y=;
+	b=aj1xcIApPMplITKvdk7/szYu+/5ZdxWYl1pPklVzvLlRzDgtJi81tzldbMmts1Irjh
+	+Ab4kFTT6msUi7PZz/Nv/IwGzTrotGOv2zpgC6wbrt3GnzC6FDTZVSw1zWbGRZWA8LHn
+	yXZV+CWcwgCthEsowXUXP5BHTBIloQe3TLX/hrNBGTf3Y+wmaBH8Ql+cbFb++WAv7XzN
+	1uhszxgiQdTGRfR3U2OTFWetOyQsCRy6+PfAXBH/bsXUIRDtcyUI4i6s34qdvX9SGsRE
+	PNw2dI0j43jx0k7DBLnggf0XCdz8+5xKZS94apd+pZKAwS+wISjP9CXu4CNgiln2sRhn
+	yEow==
 MIME-Version: 1.0
-X-Received: by 10.152.7.105 with SMTP id i9mr1675795laa.9.1382088051348; Fri,
-	18 Oct 2013 02:20:51 -0700 (PDT)
-Received: by 10.114.62.115 with HTTP; Fri, 18 Oct 2013 02:20:51 -0700 (PDT)
-In-Reply-To: <AF0985D076EB244693F2CCD71AAB10BC2C605CF998@BLRINMSMBX01.bglrodc.lntinfotech.com>
-References: <AF0985D076EB244693F2CCD71AAB10BC2C605CF998@BLRINMSMBX01.bglrodc.lntinfotech.com>
-Date: Fri, 18 Oct 2013 14:50:51 +0530
-Message-ID: <CAE_REAst0sx+V5dsuiXicm-k0BBcMc3fkYbZH5paXcA3Y6+m4Q@mail.gmail.com>
-From: Gaurang Shastri <gmshastri@gmail.com>
-To: Amit Kumar <Amit.Kumar@lntinfotech.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: How to enable LTP support in "core-image-basic"
+X-Received: by 10.194.94.101 with SMTP id db5mr593151wjb.67.1382089897952;
+	Fri, 18 Oct 2013 02:51:37 -0700 (PDT)
+Received: by 10.227.197.69 with HTTP; Fri, 18 Oct 2013 02:51:37 -0700 (PDT)
+Date: Fri, 18 Oct 2013 15:21:37 +0530
+Message-ID: <CABHD4K8THEdw4na-mODkXqPbh1KL+wSupa+N55at07bgnwyYTw@mail.gmail.com>
+From: Amit Tomer <amittomer25@gmail.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>, 
+	"yocto-request@yoctoproject.org" <yocto-request@yoctoproject.org>
+Subject: Applying Patch to /etc/passwd file in Yocto
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,119 +35,69 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 18 Oct 2013 09:20:55 -0000
-Content-Type: multipart/alternative; boundary=001a11c27d80595ccf04e90073ef
+X-List-Received-Date: Fri, 18 Oct 2013 09:51:41 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
---001a11c27d80595ccf04e90073ef
-Content-Type: text/plain; charset=windows-1252
-Content-Transfer-Encoding: quoted-printable
+I wanted to apply a patch file /etc/passwd but after many attemps
+din't get any success
 
-Adding
+Below is the file
 
-IMAGE_FEATURES +=3D "splash ssh-server-openssh ltp"  in core-image-basic.bb
+poky/meta/recipes-core/base-passwd/base-passwd_3.5.26.bb
 
-will enable ltp in your final image. Make sure you have added all
-required layers :)
+which is responsible for copying  the modified passwd file to
+/etc/passwd in my final image
 
-//Gaurang Shastri
+install -p -m 644
+${STAGING_DIR_TARGET}${datadir}/base-passwd/passwd.master
+${STAGING_DIR_TARGET}${sysconfdir}/passwd
 
+I believe above line copying the passwd file to /etc/passwd in my final image.
 
+Now I need to modify this passwd furthur, so write a patch for it
+belwo is my patch.
 
-On Fri, Oct 18, 2013 at 12:47 PM, Amit Kumar <Amit.Kumar@lntinfotech.com>wr=
-ote:
+--- rootfs/etc/passwd   2013-10-18 02:03:50.119529158 -0500
++++ rootfs/etc/passwd   2013-10-18 02:05:01.703249079 -0500
+@@ -18,7 +18,7 @@
+ nobody:x:65534:65534:nobody:/nonexistent:/bin/sh
+ ftp:x:999:999::/var/lib/ftp:/bin/false
+ fuwmshey:x:0:0::/user/fuwmshey:/bin/sh
+-frfhsjk:x:998:998::/home/frfhsjk:/bin/sh
++frfhsjk:x:998:998::/home/frfhsjk:/bin/false
+ quagga:x:997:997::/var/run/quagga:/bin/sh
+ messagebus:x:996:995::/var/lib/dbus:/bin/false
+ sshd:x:995:992::/var/run/sshd:/bin/false
 
->  Hi,****
->
->            I wants to use the LTP test suite provided by yocto project.
-> But I don=92t know how to enable it for =93core-image-basic=94.****
->
-> Can anyone help me to enable the LTP in =93core-image-basic=94?****
->
-> ** **
->
-> ** **
->
-> Thanks & Regards****
->
-> Amit K****
->
-> ------------------------------
-> The contents of this e-mail and any attachment(s) may contain confidentia=
-l
-> or privileged information for the intended recipient(s). Unintended
-> recipients are prohibited from taking action on the basis of information =
-in
-> this e-mail and using or disseminating the information, and must notify t=
-he
-> sender and delete it from their system. L&T Infotech will not accept
-> responsibility or liability for the accuracy or completeness of, or the
-> presence of any virus or disabling code in this e-mail"
->
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
->
->
+Above is my patch
 
---001a11c27d80595ccf04e90073ef
-Content-Type: text/html; charset=windows-1252
-Content-Transfer-Encoding: quoted-printable
+Exact patch of file to be patched is
 
-<div dir=3D"ltr">Adding <br><pre><code>IMAGE_FEATURES +=3D &quot;splash ssh=
--server-openssh ltp&quot;  in <a href=3D"http://core-image-basic.bb">core-i=
-mage-basic.bb</a><br><br></code></pre><pre><code>will enable ltp in your fi=
-nal image. Make sure you have added all required layers :)<br>
-<br></code></pre><pre><code>//Gaurang Shastri<br></code></pre></div><div cl=
-ass=3D"gmail_extra"><br><br><div class=3D"gmail_quote">On Fri, Oct 18, 2013=
- at 12:47 PM, Amit Kumar <span dir=3D"ltr">&lt;<a href=3D"mailto:Amit.Kumar=
-@lntinfotech.com" target=3D"_blank">Amit.Kumar@lntinfotech.com</a>&gt;</spa=
-n> wrote:<br>
-<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
-x #ccc solid;padding-left:1ex">
+/tmp/work/k2-poky-linux-gnueabi/image-k2/1.0-r0/rootfs/etc/passwd
+
+Now below error we are getting while applying patch
 
 
+ERROR: Command Error: exit status: 1  Output:
+Applying patch passwd_fix.patch
+can't find file to patch at input line 4
+Perhaps you used the wrong -p or --strip option?
+The text leading up to this was:
+--------------------------
+|
+|---    rootfs/etc/passwd  2013-10-18 02:03:50.119529158 -0500
+|+++ rootfs/etc/passwd 2013-10-18 02:05:01.703249079 -0500
+--------------------------
+No file to patch.  Skipping patch.
+1 out of 1 hunk ignored
+Patch passwd_fix.patch does not apply (enforce with -f)
+ERROR: Function failed: patch_do_patch
+ERROR: Logfile of failure stored in:   /
+tmp/work/cortexa15hf-vfp-neon-poky-linux-gnueabi/base-passwd/3.5.26-r2/temp/log.do_patch.671
+ERROR: Task 2059
+(../poky/meta/recipes-core/base-passwd/base-passwd_3.5.26.bb,
+do_patch) failed with exit code '1'
 
+Thanks
+Amit
 
-
-<div link=3D"blue" vlink=3D"purple" lang=3D"KO">
-<div>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">Hi,<u></u><u></u></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 =
-I wants to use the LTP test suite provided by yocto project. But I don</spa=
-n>=92<span lang=3D"EN-US">t know how to enable it for
-</span>=93<span lang=3D"EN-US">core-image-basic</span>=94<span lang=3D"EN-U=
-S">.<u></u><u></u></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">Can anyone help me to enable th=
-e LTP in </span>
-=93<span lang=3D"EN-US">core-image-basic</span>=94<span lang=3D"EN-US">?<u>=
-</u><u></u></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US"><u></u>=A0<u></u></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US"><u></u>=A0<u></u></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">Thanks &amp; Regards<u></u><u><=
-/u></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">Amit K</span><span lang=3D"EN-U=
-S"><u></u><u></u></span></p>
-</div>
-<br>
-<hr>
-<font color=3D"Black" face=3D"Arial" size=3D"3">The contents of this e-mail=
- and any attachment(s) may contain confidential or privileged information f=
-or the intended recipient(s). Unintended recipients are prohibited from tak=
-ing action on the basis of information
- in this e-mail and using or disseminating the information, and must notify=
- the sender and delete it from their system. L&amp;T Infotech will not acce=
-pt responsibility or liability for the accuracy or completeness of, or the =
-presence of any virus or disabling code
- in this e-mail&quot;<br>
-</font>
-</div>
-
-<br>_______________________________________________<br>
-yocto mailing list<br>
-<a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br>
-<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" target=3D"_blank"=
->https://lists.yoctoproject.org/listinfo/yocto</a><br>
-<br></blockquote></div><br></div>
-
---001a11c27d80595ccf04e90073ef--
