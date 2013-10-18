@@ -1,44 +1,32 @@
-Return-Path: <diego.sueiro@gmail.com>
-Received: from mail-ie0-f172.google.com (mail-ie0-f172.google.com
-	[209.85.223.172])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0B944E016DD
-	for <yocto@yoctoproject.org>; Fri, 18 Oct 2013 02:17:59 -0700 (PDT)
-Received: by mail-ie0-f172.google.com with SMTP id tp5so6213218ieb.17
-	for <yocto@yoctoproject.org>; Fri, 18 Oct 2013 02:17:59 -0700 (PDT)
+Return-Path: <gmshastri@gmail.com>
+Received: from mail-la0-f43.google.com (mail-la0-f43.google.com
+	[209.85.215.43])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 64D91E016DE
+	for <yocto@yoctoproject.org>; Fri, 18 Oct 2013 02:20:52 -0700 (PDT)
+Received: by mail-la0-f43.google.com with SMTP id el20so375689lab.16
+	for <yocto@yoctoproject.org>; Fri, 18 Oct 2013 02:20:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
 	:cc:content-type;
-	bh=5N6D6eBXofOu5ZNviW6Xg6vq+KIbMbAzRHbeuJCdUkk=;
-	b=HN+ttOI3JWHCY0Qv/vos4UpvkNg7TJlZYUThCJPTXOf/xW/j8KRbxZA2ATRKnNiJOC
-	cwuFrCNxyfJfOZ6AjurvGdB5UNkcBoiEEEiDBmRH24E0eBf6CUOgkAFs8rfRk+8Hfb88
-	CGdp6QkUmCcRpTOfCu5v13B2I17JiBJJDXoAKQpZv6qFSqXleppsSbS8uOiscXUiUVG4
-	7AZH6qcUdy4vme7Y0DIDBHbjN1x4XF1SD/Py7xxvI4N80c8NFD0nDMvQX3//at1L1PKM
-	ccwDzXt+DaD8+lygXmfz9ropSI7nWxG+SatYTGyYIJr+gghIseU252G/1V9TzTVzePA5
-	eGAw==
-X-Received: by 10.43.178.135 with SMTP id ow7mr1063571icc.43.1382087878882;
-	Fri, 18 Oct 2013 02:17:58 -0700 (PDT)
+	bh=AxHNzs98H/gab+f7OaBse75m0/DyAqmdHJQyMApzYco=;
+	b=SuSuzr+QpWIev/JZlquikGMv7MbPMaFfhTMslZX+KmhEE69Q2C7Ioq503EfUZvvHz9
+	PnnXj/vR0vsbpL+gRyee1wOvP6iHt6CrLRCAXxlG0UyBTtG7EUVDPC3SYK7QyFO1LW9M
+	cTw9qttXXxyNTRZaL1OadbgkLlrwEpSXgiJ66R7B6DkthcT6XAV5eLOXnUI2AQL4SZVA
+	XfA5AakmeTLfbUyZhsS+zl8CxnT3zp4/+w4nIeOxMaCaP5i1EyATaJouJnqz40ELRrbR
+	Fy2KQkNkaSuefJeXKkk9lamsCcf6KzQyEEhw8kNf5wJ7mm4bpquG1ErPt6ef680bbN4o
+	pTow==
 MIME-Version: 1.0
-Received: by 10.64.26.233 with HTTP; Fri, 18 Oct 2013 02:17:38 -0700 (PDT)
-In-Reply-To: <5260BDA6.4020807@windriver.com>
-References: <CAMCfZKFBvSiRSMk5wrEpSEiNNiZeHJw18fbHgHzepo__U=UWNA@mail.gmail.com>
-	<CA+gsK-o6n24Aqp2dtpOwnmrCBjWE=HDSJvfqyYy2pvJYrHqXmQ@mail.gmail.com>
-	<CAAQYJAu+wU0ODvVoTrRBFhVOUVh+CdMg3mimfgGkj-pwJh3A1g@mail.gmail.com>
-	<CAMCfZKF_Rp=uds8tnDPSD9k3GO5dEiHSx9WfYjZ0yPkmh_9YPg@mail.gmail.com>
-	<CAMCfZKFh8iJH4655mzFveFYfz8ebLXkGftSa-MR5mEcMEFV8Vw@mail.gmail.com>
-	<CADkTA4MgxmiOofDLynbOLR=hV-KQ1ic+Eagjm0yetYOtB6FJzw@mail.gmail.com>
-	<CAMCfZKF3aHG4wFMRx2XcdroJJ6ga5v6KHF5DbBTWV7jXOGNX-g@mail.gmail.com>
-	<525FDD08.90400@windriver.com>
-	<CAMCfZKHz82sPsHXjqxbFDJjFNi7ck+BS=_OtyGmb2FYDAxoe1A@mail.gmail.com>
-	<525FE3C9.3070003@windriver.com>
-	<CAMCfZKGUYAcO5FtOKC9iP_XZjRxJ_Xq12ERN=BL_JHA7FJW51w@mail.gmail.com>
-	<5260BDA6.4020807@windriver.com>
-From: Diego Sueiro <diego.sueiro@gmail.com>
-Date: Fri, 18 Oct 2013 06:17:38 -0300
-Message-ID: <CAMCfZKFf3iJCyjMgGQ=y6ng6Kh3_MeEMymgZTE=bTnLpBGN9Mg@mail.gmail.com>
-To: Bruce Ashfield <bruce.ashfield@windriver.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	Rudolf Streif <rstreif@linuxfoundation.org>
-Subject: Re: Custom defconfig is not used
+X-Received: by 10.152.7.105 with SMTP id i9mr1675795laa.9.1382088051348; Fri,
+	18 Oct 2013 02:20:51 -0700 (PDT)
+Received: by 10.114.62.115 with HTTP; Fri, 18 Oct 2013 02:20:51 -0700 (PDT)
+In-Reply-To: <AF0985D076EB244693F2CCD71AAB10BC2C605CF998@BLRINMSMBX01.bglrodc.lntinfotech.com>
+References: <AF0985D076EB244693F2CCD71AAB10BC2C605CF998@BLRINMSMBX01.bglrodc.lntinfotech.com>
+Date: Fri, 18 Oct 2013 14:50:51 +0530
+Message-ID: <CAE_REAst0sx+V5dsuiXicm-k0BBcMc3fkYbZH5paXcA3Y6+m4Q@mail.gmail.com>
+From: Gaurang Shastri <gmshastri@gmail.com>
+To: Amit Kumar <Amit.Kumar@lntinfotech.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: How to enable LTP support in "core-image-basic"
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -50,183 +38,119 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 18 Oct 2013 09:18:03 -0000
-Content-Type: multipart/alternative; boundary=001a11c30bec11c07804e900697c
+X-List-Received-Date: Fri, 18 Oct 2013 09:20:55 -0000
+Content-Type: multipart/alternative; boundary=001a11c27d80595ccf04e90073ef
 
---001a11c30bec11c07804e900697c
-Content-Type: text/plain; charset=ISO-8859-1
-
-2013/10/18 Bruce Ashfield <bruce.ashfield@windriver.com>
-
-> I fell behind today .. i had 2300 unread email to start this morning :)
-> Is there a way that I can get a copy of your recipes and layers ? If
-> I can do a build myself, I can easily debug and fix this .. otherwise,
-> we'll
-> go back and forth many times debugging.
->
-> Cheers,
->
-> Bruce
->
-
-I'm using the environment provided by Angstrom from it's github setup
-scripts.
-If you want to exactly reproduce it you need to:
-
-git clone https://github.com/Angstrom-distribution/setup-scripts.git
-cd setup-scripts
-git checkout angstrom-v2013.06-yocto1.4
-MACHINE=beaglebone ./oebb.sh config beaglebone
-
-Here is the setup and files for meta-mine:
-
-bblayers.conf:
-
-BBLAYERS = \"
-
-...
-${TOPDIR}/sources/meta-mine \
-"
-
-meta-mine/conf/layer.conf:
-
-# We have a conf and classes directory, append to BBPATH
-BBPATH .= ":${LAYERDIR}"
-# We have a recipes directory, add to BBFILES
-BBFILES += "${LAYERDIR}/recipes*/*/*.bb ${LAYERDIR}/recipes*/*/*.bbappend"
-BBFILE_COLLECTIONS += "mine-layer"
-BBFILE_PATTERN_mine-layer := "^${LAYERDIR}/"
-BBFILE_PRIORITY_mine-layer = "10"
-LAYERDEPENDS_mine-layer = "angstrom-layer"
-
-meta-mine/recipes-kernel/linux/linux-mainline_3.8.bbappend:
-
-FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}-3.8:"
-inherit kernel
-require recipes-kernel/linux/linux-yocto.inc
-COMPATIBLE_MACHINE_beaglebone = "(beaglebone)"
-SRC_URI += " file://config-addons.cfg "
-
-meta-mine/recipes-kernel/linux/linux-mainline-3.8/config-addons.cfg:
-
-CONFIG_WATCHDOG_NOWAYOUT=y
-CONFIG_NTFS_FS=y
-CONFIG_NTFS_RW=y
-
-
-
-But I think that instead of using the whole Angstrom you can just use poky
-and meta-beagleboard/common-bsp on dylan branch.
-
-
-Regards,
-
---
-*dS
-Diego Sueiro
-
-/*long live rock 'n roll*/
-
---001a11c30bec11c07804e900697c
-Content-Type: text/html; charset=ISO-8859-1
+--001a11c27d80595ccf04e90073ef
+Content-Type: text/plain; charset=windows-1252
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
-2013/10/18 Bruce Ashfield <span dir=3D"ltr">&lt;<a href=3D"mailto:bruce.ash=
-field@windriver.com" target=3D"_blank">bruce.ashfield@windriver.com</a>&gt;=
-</span><br>
+Adding
 
-<blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-=
-left-width:1px;border-left-color:rgb(204,204,204);border-left-style:solid;p=
-adding-left:1ex"><div id=3D":10a" style=3D"overflow:hidden">I fell behind t=
-oday .. i had 2300 unread email to start this morning :)<br>
+IMAGE_FEATURES +=3D "splash ssh-server-openssh ltp"  in core-image-basic.bb
+
+will enable ltp in your final image. Make sure you have added all
+required layers :)
+
+//Gaurang Shastri
 
 
-Is there a way that I can get a copy of your recipes and layers ? If<br>
-I can do a build myself, I can easily debug and fix this .. otherwise, we&#=
-39;ll<br>
-go back and forth many times debugging.<br>
+
+On Fri, Oct 18, 2013 at 12:47 PM, Amit Kumar <Amit.Kumar@lntinfotech.com>wr=
+ote:
+
+>  Hi,****
+>
+>            I wants to use the LTP test suite provided by yocto project.
+> But I don=92t know how to enable it for =93core-image-basic=94.****
+>
+> Can anyone help me to enable the LTP in =93core-image-basic=94?****
+>
+> ** **
+>
+> ** **
+>
+> Thanks & Regards****
+>
+> Amit K****
+>
+> ------------------------------
+> The contents of this e-mail and any attachment(s) may contain confidentia=
+l
+> or privileged information for the intended recipient(s). Unintended
+> recipients are prohibited from taking action on the basis of information =
+in
+> this e-mail and using or disseminating the information, and must notify t=
+he
+> sender and delete it from their system. L&T Infotech will not accept
+> responsibility or liability for the accuracy or completeness of, or the
+> presence of any virus or disabling code in this e-mail"
+>
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
+>
+
+--001a11c27d80595ccf04e90073ef
+Content-Type: text/html; charset=windows-1252
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Adding <br><pre><code>IMAGE_FEATURES +=3D &quot;splash ssh=
+-server-openssh ltp&quot;  in <a href=3D"http://core-image-basic.bb">core-i=
+mage-basic.bb</a><br><br></code></pre><pre><code>will enable ltp in your fi=
+nal image. Make sure you have added all required layers :)<br>
+<br></code></pre><pre><code>//Gaurang Shastri<br></code></pre></div><div cl=
+ass=3D"gmail_extra"><br><br><div class=3D"gmail_quote">On Fri, Oct 18, 2013=
+ at 12:47 PM, Amit Kumar <span dir=3D"ltr">&lt;<a href=3D"mailto:Amit.Kumar=
+@lntinfotech.com" target=3D"_blank">Amit.Kumar@lntinfotech.com</a>&gt;</spa=
+n> wrote:<br>
+<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
+x #ccc solid;padding-left:1ex">
+
+
+
+
+
+<div link=3D"blue" vlink=3D"purple" lang=3D"KO">
+<div>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">Hi,<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 =
+I wants to use the LTP test suite provided by yocto project. But I don</spa=
+n>=92<span lang=3D"EN-US">t know how to enable it for
+</span>=93<span lang=3D"EN-US">core-image-basic</span>=94<span lang=3D"EN-U=
+S">.<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">Can anyone help me to enable th=
+e LTP in </span>
+=93<span lang=3D"EN-US">core-image-basic</span>=94<span lang=3D"EN-US">?<u>=
+</u><u></u></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><u></u>=A0<u></u></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><u></u>=A0<u></u></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">Thanks &amp; Regards<u></u><u><=
+/u></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">Amit K</span><span lang=3D"EN-U=
+S"><u></u><u></u></span></p>
+</div>
 <br>
-Cheers,<br>
-<br>
-Bruce</div></blockquote></div><br>I&#39;m using the environment provided by=
- Angstrom from it&#39;s github setup scripts.</div><div class=3D"gmail_extr=
-a">If you want to exactly reproduce it you need to:</div><div class=3D"gmai=
-l_extra">
-
-<blockquote style=3D"margin:0px 0px 0px 40px;border:none;padding:0px"><div =
-class=3D"gmail_extra" style><div class=3D"gmail_extra">git clone <a href=3D=
-"https://github.com/Angstrom-distribution/setup-scripts.git">https://github=
-.com/Angstrom-distribution/setup-scripts.git</a></div>
-
-<div class=3D"gmail_extra">cd setup-scripts</div><div class=3D"gmail_extra"=
->git checkout angstrom-v2013.06-yocto1.4</div><div class=3D"gmail_extra">MA=
-CHINE=3Dbeaglebone ./oebb.sh config beaglebone</div><div><br></div></div></=
-blockquote>
-
-Here is the setup and files for meta-mine:</div><div class=3D"gmail_extra" =
-style><br></div>bblayers.conf:<br><blockquote style=3D"margin:0px 0px 0px 4=
-0px;border:none;padding:0px"><div class=3D"gmail_extra" style>BBLAYERS =3D =
-\&quot;<br>
-
-</div></blockquote><blockquote style=3D"margin:0px 0px 0px 40px;border:none=
-;padding:0px"><div class=3D"gmail_extra"><blockquote style=3D"margin:0px 0p=
-x 0px 40px;border:none;padding:0px"><div class=3D"gmail_extra" style>...</d=
-iv>
-<div class=3D"gmail_extra" style>
-${TOPDIR}/sources/meta-mine \<br></div><div class=3D"gmail_extra" style>&qu=
-ot;</div></blockquote></div></blockquote><div class=3D"gmail_extra">meta-mi=
-ne/conf/layer.conf:</div><div class=3D"gmail_extra"><blockquote style=3D"ma=
-rgin:0px 0px 0px 40px;border:none;padding:0px">
-
-<div class=3D"gmail_extra" style><div class=3D"gmail_extra"># We have a con=
-f and classes directory, append to BBPATH</div><div class=3D"gmail_extra">B=
-BPATH .=3D &quot;:${LAYERDIR}&quot;</div><div class=3D"gmail_extra"># We ha=
-ve a recipes directory, add to BBFILES<br>
-
-</div><div class=3D"gmail_extra">BBFILES +=3D &quot;${LAYERDIR}/recipes*/*/=
-*.bb ${LAYERDIR}/recipes*/*/*.bbappend&quot;</div><div class=3D"gmail_extra=
-">BBFILE_COLLECTIONS +=3D &quot;mine-layer&quot;<br></div><div class=3D"gma=
-il_extra">
-
-BBFILE_PATTERN_mine-layer :=3D &quot;^${LAYERDIR}/&quot;</div><div class=3D=
-"gmail_extra">BBFILE_PRIORITY_mine-layer =3D &quot;10&quot;</div><div class=
-=3D"gmail_extra">LAYERDEPENDS_mine-layer =3D &quot;angstrom-layer&quot;<br>=
+<hr>
+<font color=3D"Black" face=3D"Arial" size=3D"3">The contents of this e-mail=
+ and any attachment(s) may contain confidential or privileged information f=
+or the intended recipient(s). Unintended recipients are prohibited from tak=
+ing action on the basis of information
+ in this e-mail and using or disseminating the information, and must notify=
+ the sender and delete it from their system. L&amp;T Infotech will not acce=
+pt responsibility or liability for the accuracy or completeness of, or the =
+presence of any virus or disabling code
+ in this e-mail&quot;<br>
+</font>
 </div>
 
-<div><br></div></div></blockquote>meta-mine/recipes-kernel/linux/linux-main=
-line_3.8.bbappend:</div><div class=3D"gmail_extra"><blockquote style=3D"mar=
-gin:0px 0px 0px 40px;border:none;padding:0px"><div class=3D"gmail_extra" st=
-yle>
+<br>_______________________________________________<br>
+yocto mailing list<br>
+<a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br>
+<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" target=3D"_blank"=
+>https://lists.yoctoproject.org/listinfo/yocto</a><br>
+<br></blockquote></div><br></div>
 
-<div class=3D"gmail_extra">FILESEXTRAPATHS_prepend :=3D &quot;${THISDIR}/${=
-PN}-3.8:&quot;</div><div class=3D"gmail_extra"><div class=3D"gmail_extra">i=
-nherit kernel</div><div class=3D"gmail_extra">require recipes-kernel/linux/=
-linux-yocto.inc</div>
-
-<div class=3D"gmail_extra">COMPATIBLE_MACHINE_beaglebone =3D &quot;(beagleb=
-one)&quot;<br></div></div><div class=3D"gmail_extra">SRC_URI +=3D &quot; fi=
-le://config-addons.cfg=A0&quot;</div><div class=3D"gmail_extra"><br></div><=
-/div></blockquote>
-
-<div class=3D"gmail_extra">meta-mine/recipes-kernel/linux/linux-mainline-3.=
-8/config-addons.cfg:<br></div></div><blockquote style=3D"margin:0px 0px 0px=
- 40px;border:none;padding:0px"><div class=3D"gmail_extra"><div class=3D"gma=
-il_extra" style>
-
-<div class=3D"gmail_extra">CONFIG_WATCHDOG_NOWAYOUT=3Dy</div><div class=3D"=
-gmail_extra">CONFIG_NTFS_FS=3Dy</div><div class=3D"gmail_extra">CONFIG_NTFS=
-_RW=3Dy</div></div></div></blockquote><div class=3D"gmail_extra"><div class=
-=3D"gmail_extra">
-
-<br></div><div class=3D"gmail_extra"><br></div><div class=3D"gmail_extra" s=
-tyle>But I think that instead of using the whole Angstrom you can just use =
-poky and meta-beagleboard/common-bsp on dylan branch.</div><div class=3D"gm=
-ail_extra">
-
-<br></div><br clear=3D"all"><div><div dir=3D"ltr"><div>Regards,</div><div><=
-br></div>--<br>*dS<br>Diego Sueiro<br><br>/*long live rock &#39;n roll*/<br=
-></div></div>
-</div></div>
-
---001a11c30bec11c07804e900697c--
+--001a11c27d80595ccf04e90073ef--
