@@ -1,36 +1,37 @@
-Return-Path: <Amit.Kumar@lntinfotech.com>
-Received: from mail1.bemta8.messagelabs.com (mail1.bemta8.messagelabs.com
-	[216.82.243.202])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AE3ABE016DB
-	for <yocto@yoctoproject.org>; Thu, 17 Oct 2013 19:23:39 -0700 (PDT)
-Received: from [216.82.241.100:2689] by server-10.bemta-8.messagelabs.com id
-	08/44-29437-9AB90625; Fri, 18 Oct 2013 02:23:37 +0000
-X-Env-Sender: Amit.Kumar@lntinfotech.com
-X-Msg-Ref: server-7.tower-220.messagelabs.com!1382063013!1685381!1
-X-Originating-IP: [203.101.96.8]
-X-StarScan-Received: 
-X-StarScan-Version: 6.9.12; banners=-,-,-
-X-VirusChecked: Checked
-Received: (qmail 16342 invoked from network); 18 Oct 2013 02:23:36 -0000
-Received: from unknown (HELO BLRINMSHTCAS02.bglrodc.lntinfotech.com)
-	(203.101.96.8)
-	by server-7.tower-220.messagelabs.com with AES128-SHA encrypted SMTP;
-	18 Oct 2013 02:23:36 -0000
-Received: from blrinmsmbx01.bglrodc.lntinfotech.com ([169.254.1.229]) by
-	BLRINMSHTCAS02.bglrodc.lntinfotech.com ([172.28.0.83]) with mapi;
-	Fri, 18 Oct 2013 07:53:33 +0530
-From: Amit Kumar <Amit.Kumar@lntinfotech.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Date: Fri, 18 Oct 2013 07:53:27 +0530
-Thread-Topic: how to enable the LTP in core-image-basic
-Thread-Index: Ac7LqQeP0HU3ETX0Q+Sf0B/LdGoIHQ==
-Message-ID: <AF0985D076EB244693F2CCD71AAB10BC2C605CF861@BLRINMSMBX01.bglrodc.lntinfotech.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-acceptlanguage: en-US
+Return-Path: <Bruce.Ashfield@windriver.com>
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 81041E016D7
+	for <yocto@yoctoproject.org>; Thu, 17 Oct 2013 21:48:45 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
+	[147.11.189.40])
+	by mail.windriver.com (8.14.5/8.14.3) with ESMTP id r9I4mdFr005169
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
+	Thu, 17 Oct 2013 21:48:40 -0700 (PDT)
+Received: from bruce-ashfields-macbook.local (128.224.23.237) by
+	ALA-HCA.corp.ad.wrs.com (147.11.189.40) with Microsoft SMTP Server id
+	14.2.347.0; Thu, 17 Oct 2013 21:48:39 -0700
+Message-ID: <5260BDA6.4020807@windriver.com>
+Date: Fri, 18 Oct 2013 00:48:38 -0400
+From: Bruce Ashfield <bruce.ashfield@windriver.com>
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.7;
+	rv:17.0) Gecko/20130801 Thunderbird/17.0.8
 MIME-Version: 1.0
-Subject: how to enable the LTP in core-image-basic
+To: Diego Sueiro <diego.sueiro@gmail.com>
+References: <CAMCfZKFBvSiRSMk5wrEpSEiNNiZeHJw18fbHgHzepo__U=UWNA@mail.gmail.com>
+	<CA+gsK-o6n24Aqp2dtpOwnmrCBjWE=HDSJvfqyYy2pvJYrHqXmQ@mail.gmail.com>
+	<CAAQYJAu+wU0ODvVoTrRBFhVOUVh+CdMg3mimfgGkj-pwJh3A1g@mail.gmail.com>
+	<CAMCfZKF_Rp=uds8tnDPSD9k3GO5dEiHSx9WfYjZ0yPkmh_9YPg@mail.gmail.com>
+	<CAMCfZKFh8iJH4655mzFveFYfz8ebLXkGftSa-MR5mEcMEFV8Vw@mail.gmail.com>
+	<CADkTA4MgxmiOofDLynbOLR=hV-KQ1ic+Eagjm0yetYOtB6FJzw@mail.gmail.com>
+	<CAMCfZKF3aHG4wFMRx2XcdroJJ6ga5v6KHF5DbBTWV7jXOGNX-g@mail.gmail.com>
+	<525FDD08.90400@windriver.com>
+	<CAMCfZKHz82sPsHXjqxbFDJjFNi7ck+BS=_OtyGmb2FYDAxoe1A@mail.gmail.com>
+	<525FE3C9.3070003@windriver.com>
+	<CAMCfZKGUYAcO5FtOKC9iP_XZjRxJ_Xq12ERN=BL_JHA7FJW51w@mail.gmail.com>
+In-Reply-To: <CAMCfZKGUYAcO5FtOKC9iP_XZjRxJ_Xq12ERN=BL_JHA7FJW51w@mail.gmail.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
+	Rudolf Streif <rstreif@linuxfoundation.org>
+Subject: Re: Custom defconfig is not used
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,124 +43,116 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 18 Oct 2013 02:23:40 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_AF0985D076EB244693F2CCD71AAB10BC2C605CF861BLRINMSMBX01b_"
+X-List-Received-Date: Fri, 18 Oct 2013 04:48:46 -0000
+Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
+Content-Transfer-Encoding: 7bit
 
---_000_AF0985D076EB244693F2CCD71AAB10BC2C605CF861BLRINMSMBX01b_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-Hi,
-           I wants to use the LTP test suite provided by yocto project. But=
- I don't know how to enable it for "core-image-basic".
-Can anyone help me to enable the LTP in "core-image-basic"?
-
-
-Thanks & Regards
-Amit K
-
-________________________________
-The contents of this e-mail and any attachment(s) may contain confidential =
-or privileged information for the intended recipient(s). Unintended recipie=
-nts are prohibited from taking action on the basis of information in this e=
--mail and using or disseminating the information, and must notify the sende=
-r and delete it from their system. L&T Infotech will not accept responsibil=
-ity or liability for the accuracy or completeness of, or the presence of an=
-y virus or disabling code in this e-mail"
-
---_000_AF0985D076EB244693F2CCD71AAB10BC2C605CF861BLRINMSMBX01b_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+On 13-10-17 11:47 AM, Diego Sueiro wrote:
 >
-<meta name=3D"Generator" content=3D"Microsoft Word 12 (filtered medium)">
-<style>
-<!--
- /* Font Definitions */
- @font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:"Malgun Gothic";
-	panose-1:2 11 5 3 2 0 0 2 0 4;}
-@font-face
-	{font-family:"Malgun Gothic";
-	panose-1:2 11 5 3 2 0 0 2 0 4;}
- /* Style Definitions */
- p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0cm;
-	margin-bottom:.0001pt;
-	text-align:justify;
-	text-justify:inter-ideograph;
-	text-autospace:none;
-	word-break:break-hangul;
-	font-size:10.0pt;
-	font-family:"Malgun Gothic";}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:purple;
-	text-decoration:underline;}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Malgun Gothic";
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;}
- /* Page Definitions */
- @page Section1
-	{size:612.0pt 792.0pt;
-	margin:3.0cm 72.0pt 72.0pt 72.0pt;}
-div.Section1
-	{page:Section1;}
--->
-</style><!--[if gte mso 9]><xml>
- <o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
- <o:shapelayout v:ext=3D"edit">
-  <o:idmap v:ext=3D"edit" data=3D"1" />
- </o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"KO" link=3D"blue" vlink=3D"purple">
-<div class=3D"Section1">
-<p class=3D"MsoNormal"><span lang=3D"EN-US">Hi,<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp; I wants to use the LTP test suite provided by=
- yocto project. But I don&#8217;t know how to enable it for &#8220;core-ima=
-ge-basic&#8221;.<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">Can anyone help me to enable th=
-e LTP in &#8220;core-image-basic&#8221;?<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">Thanks &amp; Regards<o:p></o:p>=
-</span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">Amit K &nbsp;<o:p></o:p></span>=
-</p>
-</div>
-<br>
-<hr>
-<font face=3D"Arial" color=3D"Black" size=3D"3">The contents of this e-mail=
- and any attachment(s) may contain confidential or privileged information f=
-or the intended recipient(s). Unintended recipients are prohibited from tak=
-ing action on the basis of information
- in this e-mail and using or disseminating the information, and must notify=
- the sender and delete it from their system. L&amp;T Infotech will not acce=
-pt responsibility or liability for the accuracy or completeness of, or the =
-presence of any virus or disabling code
- in this e-mail&quot;<br>
-</font>
-</body>
-</html>
+> 2013/10/17 Bruce Ashfield <bruce.ashfield@windriver.com
+> <mailto:bruce.ashfield@windriver.com>>
+>
+>     Look at oe-core/meta-skeleton for the custom kernel recipe example.
+>     It has the inherit/include combinations that you need to follow.
+>
+>
+>         My concern is: if doing this to just have the config fragment
+>         feature,
+>         I'll possibly mess up the kernel build.
+>
+>
+>     It shouldn't. It only adds to existing phases, and doesn't make
+>     any changes. I've tested it in many combinations and it should
+>     work fine.
+>
+>     If something breaks, I'd like to know, so we can fix it.
+>
+>
+> Bruce,
+>
+> I didn't change linux-mainline_3.8.bb <http://linux-mainline_3.8.bb>.
+> My linux-mainline_3.8.bbappend is:
+>
+>     FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}-3.8:"
+>     inherit kernel
+>     require recipes-kernel/linux/linux-yocto.inc
+>     COMPATIBLE_MACHINE_beaglebone = "(beaglebone)"
+>     SRC_URI += " file://mine.patch \
+>                   file://config-addons.cfg \
+>                   "
+>
+> My config-addons.cfg:
+>
+>     CONFIG_WATCHDOG_NOWAYOUT=y
+>     CONFIG_NTFS_FS=y
+>     CONFIG_NTFS_RW=y
+>
+> After a cleansstate the build got stucked on do_patch task.
+> Here is the content of log.do_patch:
+>
+>     DEBUG: Executing shell function do_patch
+>     WARNING: no meta data branch found ...
+>     Switched to branch 'linux-3.8.y'
 
---_000_AF0985D076EB244693F2CCD71AAB10BC2C605CF861BLRINMSMBX01b_--
+I fell behind today .. i had 2300 unread email to start this morning :)
+Is there a way that I can get a copy of your recipes and layers ? If
+I can do a build myself, I can easily debug and fix this .. otherwise, we'll
+go back and forth many times debugging.
+
+Cheers,
+
+Bruce
+
+>
+>
+> Running with bitbake -v I got the following:
+>
+>     ...
+>     + configme --reconfig --output
+>     <...>/build/tmp-angstrom_v2013_06-eglibc/work/beaglebone-angstrom-linux-gnueabi/linux-mainline/3.8.13-r23a/linux-beaglebone-standard-build
+>     standard beaglebone
+>     [INFO] Configuring target/machine combo: "standard/beaglebone"
+>
+>     [INFO] Configuring target/machine combo: "standard/beaglebone"
+>     [INFO] collecting configs in ./meta/meta-series
+>
+>     [INFO] collecting configs in ./meta/meta-series
+>     cat: meta/cfg/standard/beaglebone/config_frag.txt: No such file or
+>     directory
+>
+>     cat: meta/cfg/standard/beaglebone/config_frag.txt: No such file or
+>     directory
+>     cat: meta/cfg/standard/beaglebone/config_frag.txt: No such file or
+>     directory
+>
+>     cat: meta/cfg/standard/beaglebone/config_frag.txt: No such file or
+>     directory
+>     mv: target `3.8.13' is not a directory
+>
+>     mv: target `3.8.13' is not a directory
+>     creation of pre-processed config data failed
+>     config of "standard/beaglebone" failed
+>
+>     creation of pre-processed config data failed
+>     config of "standard/beaglebone" failed
+>     ERROR: Function failed: do_kernel_configme (see
+>     <...>/build/tmp-angstrom_v2013_06-eglibc/work/beaglebone-angstrom-linux-gnueabi/linux-mainline/3.8.13-r23a/temp/log.do_kernel_configme15450.
+>     for further information)
+>     ERROR: Task 7
+>     (<...>/setup-scripts/sources/meta-beagleboard/common-bsp/recipes-kernel/linux/linux-mainline_3.8.bb
+>     <http://linux-mainline_3.8.bb>, do_kernel_configme) failed with exit
+>     code '1'
+>
+>
+>
+>
+>
+> Regards,
+>
+> --
+> *dS
+> Diego Sueiro
+>
+> /*long live rock 'n roll*/
+
+
