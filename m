@@ -1,36 +1,28 @@
-Return-Path: <gschmottlach@gmail.com>
-Received: from mail-wi0-f176.google.com (mail-wi0-f176.google.com
-	[209.85.212.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DE9E4E016E2
-	for <yocto@yoctoproject.org>; Fri, 18 Oct 2013 05:04:55 -0700 (PDT)
-Received: by mail-wi0-f176.google.com with SMTP id l12so851319wiv.9
-	for <yocto@yoctoproject.org>; Fri, 18 Oct 2013 05:04:54 -0700 (PDT)
+Return-Path: <vaduva.jan.alexandru@gmail.com>
+Received: from mail-pd0-f172.google.com (mail-pd0-f172.google.com
+	[209.85.192.172])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1971CE016E4
+	for <yocto@yoctoproject.org>; Fri, 18 Oct 2013 05:19:57 -0700 (PDT)
+Received: by mail-pd0-f172.google.com with SMTP id z10so4590093pdj.3
+	for <yocto@yoctoproject.org>; Fri, 18 Oct 2013 05:19:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:content-type; bh=mcsSS2SLbAOPzejApwi+W//GInwgcW0N4dmBa3L8umE=;
-	b=LfsO1XLSzcl/rr0T8/KxtdxKP3CfdLbM+mLx92z8fBBUfUe99QqA6acxGGDCNBL1Qq
-	ai9oCLhKd2c9me6if5Z3+14MglYCq57x2Md26V+2tWViNKqW7d/xxpsfj8/8FqLRjLCh
-	TjtYkFx3ZC2mxmNL6E18QcUZx9buZkV6fo5e6kHukzHSC8HIRjF4PN1eSxfE0wgO/EVm
-	kW6ngzXnUsWyeolVcruxpmN5Iw4vX9WbTsWj28TLT7ieB5YirpwfH7OXtuu5JVF0Rsn9
-	YemvVDFwLOOYKQrTYke7pxjeaQrMELFBBs22pwL1/uuYF8STCt92jEEG3xFFqVqpwUNY
-	KyUw==
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=Rxix3rCa1Bl0PWT9V3Lsyg79dHqViMJoCcRN/vcOZBM=;
+	b=QCyWJOhMdJykbKoM0Yx2gPlZPnfrmvy3nvvqf3OVjJl/NSCfrqZ5aCPp26VDghFrZ7
+	1gIRC9OiBMUbUgdtcfDk+VT1dzwRYXPVzP26RBC1QrDRnoKoSjUx61vRTKXiMkxWECP9
+	gcfR/rsBXs18mjqmDnulFwyQNW2OgV/rTPBtlpVrEwIOVB6E9hKX97lbmeaoguEFcLfg
+	VTc3tG+fTBACcuak6evWYhzcFSoVkaIQWV3Xykfe5Ht4Lc2drCAeHL9972P2Tsr0z9yn
+	cW8itSSmRt/dcr56IKwFQnD3PfkkkPP2O8Ah9eqGUCLPppXi0/CJ0oP5cluLZ5F4G3pK
+	Ugaw==
 MIME-Version: 1.0
-X-Received: by 10.180.219.33 with SMTP id pl1mr2153589wic.49.1382097893918;
-	Fri, 18 Oct 2013 05:04:53 -0700 (PDT)
-Received: by 10.216.46.196 with HTTP; Fri, 18 Oct 2013 05:04:53 -0700 (PDT)
-In-Reply-To: <CALmOhgk=xWywLTTVQar6z1FfXqqGkMWXmYtZd8E=Xqj2pn2yQw@mail.gmail.com>
-References: <CAMS2kBFgfdCHF1f3TfDA3PNzL_PGxOpzrmXLOV_GMhkbdTXocA@mail.gmail.com>
-	<CAP71WjxftsAwVoew6PtO5fWJv6xTPmWpSAaQgMfy4gZbq_KEeQ@mail.gmail.com>
-	<CAMS2kBGt8OgC2uL8Yy=xh4U1Cs+tRiN5R8=iH-=eW7nDoa=cWg@mail.gmail.com>
-	<CALmOhgk_wEaBCN8vBFRrNHD7t1UUWAGGk+JEvk3FHg+MCcUE-g@mail.gmail.com>
-	<CAMS2kBHwr8aE+OB+xaUr4Eh_5npMGxavVq1xxB+zpoFB1+keyA@mail.gmail.com>
-	<CALmOhgk=xWywLTTVQar6z1FfXqqGkMWXmYtZd8E=Xqj2pn2yQw@mail.gmail.com>
-Date: Fri, 18 Oct 2013 08:04:53 -0400
-Message-ID: <CAMS2kBH_XbKvZgG6LxJQ_5gF_rrEgsZNOisyURqcK6ii_wtGFA@mail.gmail.com>
-From: Glenn Schmottlach <gschmottlach@gmail.com>
-To: Trevor Woerner <trevor.woerner@linaro.org>, 
-	Yocto list discussion <yocto@yoctoproject.org>
-Subject: Re: OPKG configuration questions
+X-Received: by 10.68.201.103 with SMTP id jz7mr2760865pbc.95.1382098797233;
+	Fri, 18 Oct 2013 05:19:57 -0700 (PDT)
+Received: by 10.68.72.2 with HTTP; Fri, 18 Oct 2013 05:19:57 -0700 (PDT)
+Date: Fri, 18 Oct 2013 15:19:57 +0300
+Message-ID: <CABwVrCoYn7Yju7Mw4NHYzEkJQaBS5_p0ENeV4adMBpmoUA+C5Q@mail.gmail.com>
+From: jan alexandru vaduva <vaduva.jan.alexandru@gmail.com>
+To: yocto@yoctoproject.org
+Subject: external variable
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,59 +34,33 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 18 Oct 2013 12:05:00 -0000
+X-List-Received-Date: Fri, 18 Oct 2013 12:19:59 -0000
+Content-Type: multipart/alternative; boundary=047d7b15a963da8bae04e902f30e
+
+--047d7b15a963da8bae04e902f30e
 Content-Type: text/plain; charset=ISO-8859-1
 
->
-> On 17 October 2013 11:20, Glenn Schmottlach <gschmottlach@gmail.com> wrote:
->> > Just out of curiosity, is it possible that you added "package-management"
->> > to IMAGE_FEATURES after you already had a successful full build? Or is
->> > it possible that you had already done a full build with "package_rpm" or
->> > "_deb" before switching to "package_ipk"?
->> >
->>
->> I added "package-management" after a successful build.
->
-> In that case, if you have the time, I would delete your tmp,
-> sstate-cache, and cache directories, as well as your bitbake.lock and
-> pseudodone files and rebuild. Does that make any difference?
->
+Hello everyone,
 
-Unbeknownst to me, the "init" script on the target platform was
-mounting a tmpfs (ramdisk) filesystem over the top of "/var" thereby
-hiding the fact that the opkg database had indeed been installed. So,
-once I realized this it was clear why I wasn't see these files when
-the target booted.
+Is there any way of defining a variable into a recipe and use it in another.
+I tried: export VAR="value" but when I tested it`s existence in devshell it
+did not exist(echo $VAR).
 
->> > The reason I ask is (although I never confirmed this definitively but) when
->> > I was playing with this stuff a while back I was sure that this package
->> > stuff
->> > would only get generated after adjusting these configurations when a full,
->> > clean build was performed (i.e. removing <tmpdir> and <sstate-cache>).
->
->> After manually copying the /var/lib/opkg to my target the opkg-cl
->> command now seems to "work". Unfortunately I'm running into difficulty
->> specifying a a new ipkg repo that is mounted via NFS from my
->> development machine. How would I make it scan there as well?
->
-> I've never tried that before. But maybe if you created a file (on the
-> target) called, for example, /etc/opkg/nfs.conf which contained:
->
->     src/gz nfs /path/to/nfs
->
-> maybe that would work? Don't forget to perform an "# opkg update"
-> after creating that file.
->
-
-After some trial-and-error (and remembering to call opkg-cl update as
-you suggested) I was able to get my alternative feed to work. So at
-this point, I *think* I have it all figured out ;-)
-
-Thanks to those on the list who offered their suggestions!
+Defining this variable in local.conf is not a viable solution.
 
 
-> There's also a remote chance adding this new repository doesn't appear
-> to work because your target filesystem is full. I've noticed that in
-> the past, and opkg doesn't provide much in the way of feedback if/when
-> this happens.
+Thank you,
+Alex
 
+--047d7b15a963da8bae04e902f30e
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div><div><div><div>Hello everyone,<br></div><div><br>Is t=
+here any way of defining a variable into a recipe and use it in another.<br=
+></div>I tried: export VAR=3D&quot;value&quot; but when I tested it`s exist=
+ence in devshell it did not exist(echo $VAR).<br>
+<br></div>Defining this variable in local.conf is not a viable solution.<br=
+><br><br></div>Thank you,<br></div>Alex =A0 <br></div>
+
+--047d7b15a963da8bae04e902f30e--
