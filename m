@@ -1,28 +1,29 @@
-Return-Path: <vaduva.jan.alexandru@gmail.com>
-Received: from mail-pd0-f172.google.com (mail-pd0-f172.google.com
-	[209.85.192.172])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1971CE016E4
-	for <yocto@yoctoproject.org>; Fri, 18 Oct 2013 05:19:57 -0700 (PDT)
-Received: by mail-pd0-f172.google.com with SMTP id z10so4590093pdj.3
-	for <yocto@yoctoproject.org>; Fri, 18 Oct 2013 05:19:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=Rxix3rCa1Bl0PWT9V3Lsyg79dHqViMJoCcRN/vcOZBM=;
-	b=QCyWJOhMdJykbKoM0Yx2gPlZPnfrmvy3nvvqf3OVjJl/NSCfrqZ5aCPp26VDghFrZ7
-	1gIRC9OiBMUbUgdtcfDk+VT1dzwRYXPVzP26RBC1QrDRnoKoSjUx61vRTKXiMkxWECP9
-	gcfR/rsBXs18mjqmDnulFwyQNW2OgV/rTPBtlpVrEwIOVB6E9hKX97lbmeaoguEFcLfg
-	VTc3tG+fTBACcuak6evWYhzcFSoVkaIQWV3Xykfe5Ht4Lc2drCAeHL9972P2Tsr0z9yn
-	cW8itSSmRt/dcr56IKwFQnD3PfkkkPP2O8Ah9eqGUCLPppXi0/CJ0oP5cluLZ5F4G3pK
-	Ugaw==
+Return-Path: <gary@mlbassoc.com>
+Received: from mail.chez-thomas.org (mail.mlbassoc.com [65.100.170.105])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 83D3BE016E2
+	for <yocto@yoctoproject.org>; Fri, 18 Oct 2013 06:09:13 -0700 (PDT)
+Received: by mail.chez-thomas.org (Postfix, from userid 1998)
+	id D29CAF811E1; Fri, 18 Oct 2013 07:09:12 -0600 (MDT)
+X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on
+	hermes.chez-thomas.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=4.0 tests=ALL_TRUSTED,BAYES_00
+	autolearn=unavailable version=3.3.2
+Received: from [192.168.1.114] (zeus [192.168.1.114])
+	by mail.chez-thomas.org (Postfix) with ESMTP id D3457F81188;
+	Fri, 18 Oct 2013 07:09:11 -0600 (MDT)
+Message-ID: <526132FB.3090202@mlbassoc.com>
+Date: Fri, 18 Oct 2013 07:09:15 -0600
+From: Gary Thomas <gary@mlbassoc.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:24.0) Gecko/20100101 Thunderbird/24.0
 MIME-Version: 1.0
-X-Received: by 10.68.201.103 with SMTP id jz7mr2760865pbc.95.1382098797233;
-	Fri, 18 Oct 2013 05:19:57 -0700 (PDT)
-Received: by 10.68.72.2 with HTTP; Fri, 18 Oct 2013 05:19:57 -0700 (PDT)
-Date: Fri, 18 Oct 2013 15:19:57 +0300
-Message-ID: <CABwVrCoYn7Yju7Mw4NHYzEkJQaBS5_p0ENeV4adMBpmoUA+C5Q@mail.gmail.com>
-From: jan alexandru vaduva <vaduva.jan.alexandru@gmail.com>
-To: yocto@yoctoproject.org
-Subject: external variable
+To: Nicolas Dechesne <nicolas.dechesne@linaro.org>
+References: <525FEB23.6050907@mlbassoc.com>
+	<CAP71WjwidN0f1K6m1SfQqCbObqRKD7f4_RbmftrWkE9iOF7_OA@mail.gmail.com>
+In-Reply-To: <CAP71WjwidN0f1K6m1SfQqCbObqRKD7f4_RbmftrWkE9iOF7_OA@mail.gmail.com>
+Cc: Yocto list discussion <yocto@yoctoproject.org>
+Subject: Re: Busybox configuration example?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,33 +35,43 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 18 Oct 2013 12:19:59 -0000
-Content-Type: multipart/alternative; boundary=047d7b15a963da8bae04e902f30e
+X-List-Received-Date: Fri, 18 Oct 2013 13:09:13 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
 
---047d7b15a963da8bae04e902f30e
-Content-Type: text/plain; charset=ISO-8859-1
+On 2013-10-17 13:49, Nicolas Dechesne wrote:
+> On Thu, Oct 17, 2013 at 3:50 PM, Gary Thomas <gary@mlbassoc.com> wrote:
+>> Can someone explain how I might control my busybox builds?
+>> For example, I routinely add this to busybox*.bbappend:
+>>
+>>    #
+>>    # Force 'ifup' to wait longer for really slow links...
+>>    #
+>>    do_prepare_config_append () {
+>>      sed -i 's/CONFIG_IFUPDOWN_UDHCPC_CMD_OPTIONS="-R
+>> -n"/CONFIG_IFUPDOWN_UDHCPC_CMD_OPTIONS="-R -n -T 1 -t 20"/' ${S}/.config
+>>    }
+>>
+>> which is just editing the confguration file to match my preferences.
+>> Is there a way to do this using the "configuration fragments" mentioned
+>> above?
+>
+> here is an example of busybox config fragment, that we use
+>
+> https://git.linaro.org/gitweb?p=openembedded/meta-linaro.git;a=tree;f=meta-linaro/recipes-core/busybox;h=2c4a6b6b8b542b2eef04561d95a802d855ae7573;hb=master
+>
+> i don't know if the config fragment would work for what you are
+> doing.. let us know ;-)
 
-Hello everyone,
+Thanks for the example.  I added this simple config fragment and it works fine.
+   # Force 'ifup' to wait longer for really slow links...
+   CONFIG_IFUPDOWN_UDHCPC_CMD_OPTIONS="-R -n -T 1 -t 20"
+Of course, the comment is stripped in the final configuration file, but it
+documents the purpose of the fragment.
 
-Is there any way of defining a variable into a recipe and use it in another.
-I tried: export VAR="value" but when I tested it`s existence in devshell it
-did not exist(echo $VAR).
+-- 
+------------------------------------------------------------
+Gary Thomas                 |  Consulting for the
+MLB Associates              |    Embedded world
+------------------------------------------------------------
 
-Defining this variable in local.conf is not a viable solution.
-
-
-Thank you,
-Alex
-
---047d7b15a963da8bae04e902f30e
-Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div><div><div><div>Hello everyone,<br></div><div><br>Is t=
-here any way of defining a variable into a recipe and use it in another.<br=
-></div>I tried: export VAR=3D&quot;value&quot; but when I tested it`s exist=
-ence in devshell it did not exist(echo $VAR).<br>
-<br></div>Defining this variable in local.conf is not a viable solution.<br=
-><br><br></div>Thank you,<br></div>Alex =A0 <br></div>
-
---047d7b15a963da8bae04e902f30e--
