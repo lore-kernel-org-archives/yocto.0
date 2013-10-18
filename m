@@ -1,26 +1,36 @@
-Return-Path: <David.Andrey@netmodule.com>
-Received: from wolf.netmodule.com (wolf.netmodule.com [194.29.26.243])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9D8B6E016D7
-	for <yocto@yoctoproject.org>; Fri, 18 Oct 2013 00:14:38 -0700 (PDT)
-Received: from 194-29-26-246.static.cablecom.ch ([194.29.26.246]
-	helo=gila.netmodule.intranet)
-	by wolf.netmodule.com with esmtp id 1VX4GY-0001k9-Ty;
-	Fri, 18 Oct 2013 09:14:34 +0200
-X-MimeOLE: Produced By Microsoft Exchange V6.5
-MIME-Version: 1.0
-Date: Fri, 18 Oct 2013 09:14:30 +0200
-In-Reply-To: <91586D499ADFD74FBCFB8425266A5DE40153B8DD503B@pluto.melinkcorp.local>
+Return-Path: <Amit.Kumar@lntinfotech.com>
+Received: from mail1.bemta7.messagelabs.com (mail1.bemta7.messagelabs.com
+	[216.82.254.113])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D7A1BE016D7
+	for <yocto@yoctoproject.org>; Fri, 18 Oct 2013 00:17:51 -0700 (PDT)
+Received: from [216.82.254.20:43696] by server-17.bemta-7.messagelabs.com id
+	C0/6F-23055-D90E0625; Fri, 18 Oct 2013 07:17:49 +0000
+X-Env-Sender: Amit.Kumar@lntinfotech.com
+X-Msg-Ref: server-8.tower-47.messagelabs.com!1382080575!2811670!3
+X-Originating-IP: [203.101.96.7]
+X-StarScan-Received: 
+X-StarScan-Version: 6.9.12; banners=-,-,-
+X-VirusChecked: Checked
+Received: (qmail 1702 invoked from network); 18 Oct 2013 07:17:48 -0000
+Received: from unknown (HELO BLRINMSHTCAS01.bglrodc.lntinfotech.com)
+	(203.101.96.7)
+	by server-8.tower-47.messagelabs.com with AES128-SHA encrypted SMTP;
+	18 Oct 2013 07:17:48 -0000
+Received: from blrinmsmbx01.bglrodc.lntinfotech.com ([169.254.1.229]) by
+	BLRINMSHTCAS01.bglrodc.lntinfotech.com ([172.28.0.81]) with mapi;
+	Fri, 18 Oct 2013 12:47:05 +0530
+From: Amit Kumar <Amit.Kumar@lntinfotech.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Date: Fri, 18 Oct 2013 12:47:02 +0530
+Thread-Topic: How to enable LTP support in "core-image-basic"
+Thread-Index: Ac7L0gsRFFE1LhcAS46r8kkkkyfgjw==
+Message-ID: <AF0985D076EB244693F2CCD71AAB10BC2C605CF998@BLRINMSMBX01.bglrodc.lntinfotech.com>
+Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-Thread-Topic: default root password
-Thread-Index: Ac7Kb1TizN6hUBudQ++daBgOUauCWwAxngqwACbdGOA=
-References: <1VWQfo-0003JL-Ch@wolf.netmodule.com>
-	<91586D499ADFD74FBCFB8425266A5DE40153B8DD503B@pluto.melinkcorp.local>
-From: "David Andrey" <David.Andrey@netmodule.com>
-To: "Bryan Evenson" <bevenson@melinkcorp.com>,
-	<yocto@yoctoproject.org>
-Message-Id: <1VX4GY-0001k9-Ty@wolf.netmodule.com>
-Subject: Re: default root password
+acceptlanguage: en-US
+MIME-Version: 1.0
+Subject: How to enable LTP support in "core-image-basic"
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,106 +42,128 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 18 Oct 2013 07:14:41 -0000
-Content-class: urn:content-classes:message
-Content-Type: text/plain;
-	charset="US-ASCII"
+X-List-Received-Date: Fri, 18 Oct 2013 07:17:56 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_AF0985D076EB244693F2CCD71AAB10BC2C605CF998BLRINMSMBX01b_"
+
+--_000_AF0985D076EB244693F2CCD71AAB10BC2C605CF998BLRINMSMBX01b_
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-Hi Bryan,
+Hi,
+           I wants to use the LTP test suite provided by yocto project. But=
+ I don't know how to enable it for "core-image-basic".
+Can anyone help me to enable the LTP in "core-image-basic"?
 
-Solved this using the ROOTFS_POSTPROCESS_COMMAND, but without the
-patches series for > 8 characters password. Thanks for that input :-)
 
-Using danny in this particular case.
+Thanks & Regards
+Amit K
 
-Hope someone will update the FAQ !
+________________________________
+The contents of this e-mail and any attachment(s) may contain confidential =
+or privileged information for the intended recipient(s). Unintended recipie=
+nts are prohibited from taking action on the basis of information in this e=
+-mail and using or disseminating the information, and must notify the sende=
+r and delete it from their system. L&T Infotech will not accept responsibil=
+ity or liability for the accuracy or completeness of, or the presence of an=
+y virus or disabling code in this e-mail"
 
-Thanks
-David
+--_000_AF0985D076EB244693F2CCD71AAB10BC2C605CF998BLRINMSMBX01b_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
------Original Message-----
-From: Bryan Evenson [mailto:bevenson@melinkcorp.com]=20
-Sent: jeudi 17 octobre 2013 15:23
-To: David Andrey; yocto@yoctoproject.org
-Subject: RE: default root password
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 12 (filtered medium)">
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:"\B9D1\C740 \ACE0\B515";
+	panose-1:2 11 5 3 2 0 0 2 0 4;}
+@font-face
+	{font-family:"\@\B9D1\C740 \ACE0\B515";
+	panose-1:2 11 5 3 2 0 0 2 0 4;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	text-align:justify;
+	text-justify:inter-ideograph;
+	text-autospace:none;
+	word-break:break-hangul;
+	font-size:10.0pt;
+	font-family:"\B9D1\C740 \ACE0\B515";}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"\B9D1\C740 \ACE0\B515";
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;}
+ /* Page Definitions */
+ @page Section1
+	{size:612.0pt 792.0pt;
+	margin:3.0cm 72.0pt 72.0pt 72.0pt;}
+div.Section1
+	{page:Section1;}
+-->
+</style><!--[if gte mso 9]><xml>
+ <o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <o:shapelayout v:ext=3D"edit">
+  <o:idmap v:ext=3D"edit" data=3D"1" />
+ </o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"KO" link=3D"blue" vlink=3D"purple">
+<div class=3D"Section1">
+<p class=3D"MsoNormal"><span lang=3D"EN-US">Hi,<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp; I wants to use the LTP test suite provided by=
+ yocto project. But I don</span>&#8217;<span lang=3D"EN-US">t know how to e=
+nable it for
+</span>&#8220;<span lang=3D"EN-US">core-image-basic</span>&#8221;<span lang=
+=3D"EN-US">.<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">Can anyone help me to enable th=
+e LTP in </span>
+&#8220;<span lang=3D"EN-US">core-image-basic</span>&#8221;<span lang=3D"EN-=
+US">?<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">Thanks &amp; Regards<o:p></o:p>=
+</span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">Amit K</span><span lang=3D"EN-U=
+S"><o:p></o:p></span></p>
+</div>
+<br>
+<hr>
+<font face=3D"Arial" color=3D"Black" size=3D"3">The contents of this e-mail=
+ and any attachment(s) may contain confidential or privileged information f=
+or the intended recipient(s). Unintended recipients are prohibited from tak=
+ing action on the basis of information
+ in this e-mail and using or disseminating the information, and must notify=
+ the sender and delete it from their system. L&amp;T Infotech will not acce=
+pt responsibility or liability for the accuracy or completeness of, or the =
+presence of any virus or disabling code
+ in this e-mail&quot;<br>
+</font>
+</body>
+</html>
 
-David,
-
-I've had similar issues, and this is what I've done to get the root
-password set properly in my image.  I am using poky/Dylan-9.0.1 for a
-starting point.
-
-1. In my case, I want a root password that is longer than 8 characters.
-With poky/dylan, it is using tinylogin for password management which has
-an issue with passwords longer than 8 characters; it looks like it is
-using them, but it only pays attention to the first 8 characters.  If
-you want to use a root password that is longer than 8 characters, there
-is a 10 patch series under poky/master submitted by Chen Qi on
-2013-06-25.  Cherry-pick these 10 patches and apply them to your local
-poky repository.  Rebuild your image with "debug-tweaks" set in
-local.conf.
-2. Boot up your newly built image with the default blank password (or
-some other password you know what it is).  Then, change the root
-password using the passwd command.  If you want a root password that is
-longer than 8 characters, use "passwd -m".
-3. Look at the contents of /etc/shadow.  Everything between the first
-two colons on root's line is its password.  For example, if it looked
-like this:
-	root:$QAGQ$%Y#QTRAG%^J#$#QR$@:15924:0:99999:7:::
-then $QAGQ$%Y#QTRAG%^J#$#QR$@ would be root's encrypted password.  Copy
-that text.
-4. Add the following to the end of your image recipe:
-
-ROOTFS_POSTPROCESS_COMMAND +=3D "\
-    sed 's%^root:[^:]*:%root:<encrypted_password_goes_here>:%' \
-        < ${IMAGE_ROOTFS}/etc/shadow \
-        > ${IMAGE_ROOTFS}/etc/shadow.new;\
-    mv ${IMAGE_ROOTFS}/etc/shadow.new ${IMAGE_ROOTFS}/etc/shadow ;"
-
-and that will change root's password in your image.
-
-I know there is the EXTRA_USER_PARAMS feature for adding users and
-modifying a user's password, but I couldn't get it to work for root.  I
-tried adding:
-
-INHERIT +=3D "extrausers"
-EXTRA_USERS_PARAMS =3D "\
-    usermod -p '<encrypted_password_goes_here>' root; \
-    "
-
-and I would get errors when building the image.  I can't remember the
-errors I got, but I couldn't get the build to complete when I tried to
-modify the root password in this manner.  The other way worked so I went
-with that.
-
-Hope that helps.
-
--Bryan Evenson
-
-> -----Original Message-----
-> From: yocto-bounces@yoctoproject.org [mailto:yocto-=20
-> bounces@yoctoproject.org] On Behalf Of David Andrey
-> Sent: Wednesday, October 16, 2013 8:58 AM
-> To: yocto@yoctoproject.org
-> Subject: [yocto] default root password
->=20
-> Hi,
->=20
-> There are lot of threads floating around, and a FAQ without answer.
-> https://wiki.yoctoproject.org/wiki/FAQ:How_do_I_set_or_change_the_root
-> _
-> p
-> assword
->=20
-> So what is the official way to set a default root password ?
-> Using a sed command on /etc/passwd through ROOTFS_POSTPROCESS_COMMAND=20
-> or is there any other built-in solution ?
->=20
-> regards
-> David
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
-
+--_000_AF0985D076EB244693F2CCD71AAB10BC2C605CF998BLRINMSMBX01b_--
