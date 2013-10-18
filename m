@@ -1,32 +1,36 @@
-Return-Path: <amittomer25@gmail.com>
-Received: from mail-we0-f172.google.com (mail-we0-f172.google.com
-	[74.125.82.172])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 03F72E016DD
-	for <yocto@yoctoproject.org>; Fri, 18 Oct 2013 03:25:46 -0700 (PDT)
-Received: by mail-we0-f172.google.com with SMTP id q58so3551631wes.3
-	for <yocto@yoctoproject.org>; Fri, 18 Oct 2013 03:25:44 -0700 (PDT)
+Return-Path: <gschmottlach@gmail.com>
+Received: from mail-wi0-f176.google.com (mail-wi0-f176.google.com
+	[209.85.212.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DE9E4E016E2
+	for <yocto@yoctoproject.org>; Fri, 18 Oct 2013 05:04:55 -0700 (PDT)
+Received: by mail-wi0-f176.google.com with SMTP id l12so851319wiv.9
+	for <yocto@yoctoproject.org>; Fri, 18 Oct 2013 05:04:54 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:content-type; bh=qLhCipvecqjFB9htJ1EAvl/YnFlr6fh2ZI0OzqSWQg4=;
-	b=UQP8SlzgwH4/lGcOFa8NdOes0Zbd/SwEurZ58/1Xxgj2YgkVaA7e0JMmqMkpWt50SW
-	Akll8gFnEVmsaiodQLkI9KgSbCgme0+rk8TpGKt7s3UApOj96C1YU4aPOvB5IBbETXRv
-	TliNr2ongoJ7Amr7RM0EmYzLTEE+8lsAtB7YG1sSmU3cmRmA6rUFtlodAMxy94FHUGhy
-	r7tojwgI17PqY1kNi7Ye/e2CWJgZOE2ja5neIp3liTBIl4s69XXXZh8FgNgDfbsVsuaB
-	kKPIZ/xzgH6BRaY0STyd0jCfNfN/57wnpPQhwN1Xi6inoF/Gar5KoBM+R688ud5BERI1
-	4L0Q==
+	:content-type; bh=mcsSS2SLbAOPzejApwi+W//GInwgcW0N4dmBa3L8umE=;
+	b=LfsO1XLSzcl/rr0T8/KxtdxKP3CfdLbM+mLx92z8fBBUfUe99QqA6acxGGDCNBL1Qq
+	ai9oCLhKd2c9me6if5Z3+14MglYCq57x2Md26V+2tWViNKqW7d/xxpsfj8/8FqLRjLCh
+	TjtYkFx3ZC2mxmNL6E18QcUZx9buZkV6fo5e6kHukzHSC8HIRjF4PN1eSxfE0wgO/EVm
+	kW6ngzXnUsWyeolVcruxpmN5Iw4vX9WbTsWj28TLT7ieB5YirpwfH7OXtuu5JVF0Rsn9
+	YemvVDFwLOOYKQrTYke7pxjeaQrMELFBBs22pwL1/uuYF8STCt92jEEG3xFFqVqpwUNY
+	KyUw==
 MIME-Version: 1.0
-X-Received: by 10.194.175.66 with SMTP id by2mr969695wjc.59.1382091944742;
-	Fri, 18 Oct 2013 03:25:44 -0700 (PDT)
-Received: by 10.227.197.69 with HTTP; Fri, 18 Oct 2013 03:25:44 -0700 (PDT)
-In-Reply-To: <3658977.emNrkgtHjm@helios>
-References: <CABHD4K8THEdw4na-mODkXqPbh1KL+wSupa+N55at07bgnwyYTw@mail.gmail.com>
-	<3658977.emNrkgtHjm@helios>
-Date: Fri, 18 Oct 2013 15:55:44 +0530
-Message-ID: <CABHD4K8RB-d4uYJjt-Yphopm7qfH8eDuiu4EUVZ-ZXP=KC9PHw@mail.gmail.com>
-From: Amit Tomer <amittomer25@gmail.com>
-To: Paul Eggleton <paul.eggleton@linux.intel.com>, 
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Applying Patch to /etc/passwd file in Yocto
+X-Received: by 10.180.219.33 with SMTP id pl1mr2153589wic.49.1382097893918;
+	Fri, 18 Oct 2013 05:04:53 -0700 (PDT)
+Received: by 10.216.46.196 with HTTP; Fri, 18 Oct 2013 05:04:53 -0700 (PDT)
+In-Reply-To: <CALmOhgk=xWywLTTVQar6z1FfXqqGkMWXmYtZd8E=Xqj2pn2yQw@mail.gmail.com>
+References: <CAMS2kBFgfdCHF1f3TfDA3PNzL_PGxOpzrmXLOV_GMhkbdTXocA@mail.gmail.com>
+	<CAP71WjxftsAwVoew6PtO5fWJv6xTPmWpSAaQgMfy4gZbq_KEeQ@mail.gmail.com>
+	<CAMS2kBGt8OgC2uL8Yy=xh4U1Cs+tRiN5R8=iH-=eW7nDoa=cWg@mail.gmail.com>
+	<CALmOhgk_wEaBCN8vBFRrNHD7t1UUWAGGk+JEvk3FHg+MCcUE-g@mail.gmail.com>
+	<CAMS2kBHwr8aE+OB+xaUr4Eh_5npMGxavVq1xxB+zpoFB1+keyA@mail.gmail.com>
+	<CALmOhgk=xWywLTTVQar6z1FfXqqGkMWXmYtZd8E=Xqj2pn2yQw@mail.gmail.com>
+Date: Fri, 18 Oct 2013 08:04:53 -0400
+Message-ID: <CAMS2kBH_XbKvZgG6LxJQ_5gF_rrEgsZNOisyURqcK6ii_wtGFA@mail.gmail.com>
+From: Glenn Schmottlach <gschmottlach@gmail.com>
+To: Trevor Woerner <trevor.woerner@linaro.org>, 
+	Yocto list discussion <yocto@yoctoproject.org>
+Subject: Re: OPKG configuration questions
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,92 +42,59 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 18 Oct 2013 10:25:51 -0000
+X-List-Received-Date: Fri, 18 Oct 2013 12:05:00 -0000
 Content-Type: text/plain; charset=ISO-8859-1
 
-Thanks Paul for your reply
-
-Yes frfhsjk is added inside the
-poky/meta/recipes-core/base-passwd/base-passwd_3.5.26.bb using sed
-command
-
-Now how do I achieve you need to change it in the place where the user
-is actually
-being added.
-
-Though I am able to get desired changes using below
-
-SRC_URI += "file://passwd"
-
-do_install_append() {
-install -d ${D}${sysconfdir}/base-passwd ${D}${sysconfdir}
-passwd/passwd${STAGING_DIR_TARGET}${sysconfdir}/passwd
-
-                    install -m 0644 ${WORKDIR}/passwd ${D}${sysconfdir}/passwd
-}
-
-But still wanted to do it from patch file.
-
-Thanks
-
-On Fri, Oct 18, 2013 at 3:46 PM, Paul Eggleton
-<paul.eggleton@linux.intel.com> wrote:
-> Hi Amit,
 >
-> On Friday 18 October 2013 15:21:37 Amit Tomer wrote:
->> I wanted to apply a patch file /etc/passwd but after many attemps
->> din't get any success
+> On 17 October 2013 11:20, Glenn Schmottlach <gschmottlach@gmail.com> wrote:
+>> > Just out of curiosity, is it possible that you added "package-management"
+>> > to IMAGE_FEATURES after you already had a successful full build? Or is
+>> > it possible that you had already done a full build with "package_rpm" or
+>> > "_deb" before switching to "package_ipk"?
+>> >
 >>
->> Below is the file
->>
->> poky/meta/recipes-core/base-passwd/base-passwd_3.5.26.bb
->>
->> which is responsible for copying  the modified passwd file to
->> /etc/passwd in my final image
->>
->> install -p -m 644
->> ${STAGING_DIR_TARGET}${datadir}/base-passwd/passwd.master
->> ${STAGING_DIR_TARGET}${sysconfdir}/passwd
->>
->> I believe above line copying the passwd file to /etc/passwd in my final
->> image.
->>
->> Now I need to modify this passwd furthur, so write a patch for it
->> belwo is my patch.
->>
->> --- rootfs/etc/passwd   2013-10-18 02:03:50.119529158 -0500
->> +++ rootfs/etc/passwd   2013-10-18 02:05:01.703249079 -0500
->> @@ -18,7 +18,7 @@
->>  nobody:x:65534:65534:nobody:/nonexistent:/bin/sh
->>  ftp:x:999:999::/var/lib/ftp:/bin/false
->>  fuwmshey:x:0:0::/user/fuwmshey:/bin/sh
->> -frfhsjk:x:998:998::/home/frfhsjk:/bin/sh
->> +frfhsjk:x:998:998::/home/frfhsjk:/bin/false
->>  quagga:x:997:997::/var/run/quagga:/bin/sh
->>  messagebus:x:996:995::/var/lib/dbus:/bin/false
->>  sshd:x:995:992::/var/run/sshd:/bin/false
->>
->> Above is my patch
->>
->> Exact patch of file to be patched is
->>
->> /tmp/work/k2-poky-linux-gnueabi/image-k2/1.0-r0/rootfs/etc/passwd
+>> I added "package-management" after a successful build.
 >
-> How is this "frfhsjk" user getting into the passwd file in the first place? The
-> reason you're getting the error is this line you are modifying is not even in
-> the default passwd file you are attempting to patch; it presumably is added
-> later on. Patching this file is not the correct way to modify it in the final
-> root filesystem - you need to change it in the place where the user is actually
-> being added.
+> In that case, if you have the time, I would delete your tmp,
+> sstate-cache, and cache directories, as well as your bitbake.lock and
+> pseudodone files and rebuild. Does that make any difference?
 >
-> Cheers,
-> Paul
+
+Unbeknownst to me, the "init" script on the target platform was
+mounting a tmpfs (ramdisk) filesystem over the top of "/var" thereby
+hiding the fact that the opkg database had indeed been installed. So,
+once I realized this it was clear why I wasn't see these files when
+the target booted.
+
+>> > The reason I ask is (although I never confirmed this definitively but) when
+>> > I was playing with this stuff a while back I was sure that this package
+>> > stuff
+>> > would only get generated after adjusting these configurations when a full,
+>> > clean build was performed (i.e. removing <tmpdir> and <sstate-cache>).
 >
-> PS: you should not send your mailing list postings also to yocto-request@,
-> just yocto@.
+>> After manually copying the /var/lib/opkg to my target the opkg-cl
+>> command now seems to "work". Unfortunately I'm running into difficulty
+>> specifying a a new ipkg repo that is mounted via NFS from my
+>> development machine. How would I make it scan there as well?
 >
-> --
+> I've never tried that before. But maybe if you created a file (on the
+> target) called, for example, /etc/opkg/nfs.conf which contained:
 >
-> Paul Eggleton
-> Intel Open Source Technology Centre
+>     src/gz nfs /path/to/nfs
+>
+> maybe that would work? Don't forget to perform an "# opkg update"
+> after creating that file.
+>
+
+After some trial-and-error (and remembering to call opkg-cl update as
+you suggested) I was able to get my alternative feed to work. So at
+this point, I *think* I have it all figured out ;-)
+
+Thanks to those on the list who offered their suggestions!
+
+
+> There's also a remote chance adding this new repository doesn't appear
+> to work because your target filesystem is full. I've noticed that in
+> the past, and opkg doesn't provide much in the way of feedback if/when
+> this happens.
 
