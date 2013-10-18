@@ -1,35 +1,37 @@
-Return-Path: <vidal.develone@gmail.com>
-Received: from mail-qc0-f173.google.com (mail-qc0-f173.google.com
-	[209.85.216.173])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7B60BE0162F
-	for <yocto@yoctoproject.org>; Fri, 18 Oct 2013 08:45:43 -0700 (PDT)
-Received: by mail-qc0-f173.google.com with SMTP id l13so2768217qcy.18
-	for <yocto@yoctoproject.org>; Fri, 18 Oct 2013 08:45:43 -0700 (PDT)
+Return-Path: <raj.khem@gmail.com>
+Received: from mail-pb0-f49.google.com (mail-pb0-f49.google.com
+	[209.85.160.49])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BF24FE0167D
+	for <yocto@yoctoproject.org>; Fri, 18 Oct 2013 09:27:57 -0700 (PDT)
+Received: by mail-pb0-f49.google.com with SMTP id xb12so4040723pbc.36
+	for <yocto@yoctoproject.org>; Fri, 18 Oct 2013 09:27:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:content-type; bh=kCIEMhmuFP+Gbugx9I0CZBjwFceAxf4vlrPbxC1bb+c=;
-	b=HlOps+w/CB9MRHKaoKUji6d+BrJA8/476KGZeg15+sw9Zzts3rsj2Rf9uM+bmcdV5o
-	m2pvR0WBbQBeNAfuHxc7HXkhwcJmOuBnOLPvR9TGxocsOs6jyQ37ZkYoAP19Cxv4sXYR
-	TGRPS1A0f/5c3kA0kvcfdrJgtBCdvQoUUekfpiG9lzS8Hx/9gOoLwED978t0LcOOWZu1
-	cUwOwLkiuEIsjt8XcJPItRvbgt6cR2IPMUBqEPzkdWDHGElojI09MxnRoXWW2fJR7ux2
-	8tgOKTaKZ9In+lmZFyoUDYrOH8xejwfqwTCCO2jz/YTt9wKUq2IcGTKbkRpJ2bBtcH9M
-	/HYw==
-MIME-Version: 1.0
-X-Received: by 10.224.32.66 with SMTP id b2mr5665807qad.80.1382111143068; Fri,
-	18 Oct 2013 08:45:43 -0700 (PDT)
-Received: by 10.96.26.37 with HTTP; Fri, 18 Oct 2013 08:45:43 -0700 (PDT)
-In-Reply-To: <alpine.DEB.2.02.1310181143280.20578@oneiric>
-References: <CANwz6nzWhGoeO8RsfokpmvbUV1VCotW77JwK_5yVCkmbgZJ5JA@mail.gmail.com>
-	<alpine.DEB.2.02.1310181106180.11380@oneiric>
-	<CANwz6nzPRmP8oV_ipYtg1rRkBF8uGKtpfz5HxV21yMJx=Yuuug@mail.gmail.com>
-	<alpine.DEB.2.02.1310181117430.13073@oneiric>
-	<CANwz6nxNV66HHVc1BK83_ojK=F_TgdumALYrgmmvDZ0CM3xu5g@mail.gmail.com>
-	<alpine.DEB.2.02.1310181143280.20578@oneiric>
-Date: Fri, 18 Oct 2013 09:45:43 -0600
-Message-ID: <CANwz6nz_3p=AuBX80L0oq8QgT_3VVG8KvDUp9D6genQVTgFOcg@mail.gmail.com>
-From: Edward Vidal <vidal.develone@gmail.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: uImage instead of zImage
+	h=content-type:mime-version:subject:from:in-reply-to:date:cc
+	:content-transfer-encoding:message-id:references:to;
+	bh=NhwsA1XRohvtPNc8rHTnG0Eijnoa1tynR12P6rSsAxs=;
+	b=Es6zxZl+fbTuxYQvB0o0dTFsh2KlCrXZ2vy60Xarjfhzz1M8eTiAhVgclW+CGs1c3t
+	8d7IaHQCeUdylvYE5vJ/bzf0PrhiuQLpD1qt7W9a3dxs7wkxqjhnK7eWFW2n3rdcMqh2
+	gXC0Bn+OExdPFZM+0f/UiIlPCS6Ds1wVJ4Zy+ORKLYLIo7Yl6IvY+dud+3AahSYmdK4H
+	gOKbd9RrbdSXPpR1dOTI8qp8dEezGK+MaYKtMf0ERNiLW8MSCaGSeVQwLKivfrIHUoS1
+	72uFozdcSrlADVh5tghIZ3dq3x8Y3I61U+gzhAhaMPj+177NA+FLvGFN/fIRfQfY2NRD
+	8xxw==
+X-Received: by 10.68.178.36 with SMTP id cv4mr3816499pbc.39.1382113676927;
+	Fri, 18 Oct 2013 09:27:56 -0700 (PDT)
+Received: from kraj-sslvpn-nc.jnpr.net (natint3.juniper.net. [66.129.224.36])
+	by mx.google.com with ESMTPSA id
+	gf5sm3356515pbc.22.2013.10.18.09.27.55 for <multiple recipients>
+	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
+	Fri, 18 Oct 2013 09:27:56 -0700 (PDT)
+Mime-Version: 1.0 (Mac OS X Mail 6.6 \(1510\))
+From: Khem Raj <raj.khem@gmail.com>
+In-Reply-To: <AF0985D076EB244693F2CCD71AAB10BC2C605CF998@BLRINMSMBX01.bglrodc.lntinfotech.com>
+Date: Fri, 18 Oct 2013 09:27:56 -0700
+Message-Id: <FA049645-E75B-4FA9-B807-89B35CCFA36B@gmail.com>
+References: <AF0985D076EB244693F2CCD71AAB10BC2C605CF998@BLRINMSMBX01.bglrodc.lntinfotech.com>
+To: Amit Kumar <Amit.Kumar@lntinfotech.com>
+X-Mailer: Apple Mail (2.1510)
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: How to enable LTP support in "core-image-basic"
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,63 +43,43 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 18 Oct 2013 15:45:44 -0000
-Content-Type: multipart/alternative; boundary=001a11c2c2fcb9091b04e905d3e9
-
---001a11c2c2fcb9091b04e905d3e9
-Content-Type: text/plain; charset=ISO-8859-1
-
----------- Forwarded message ----------
-From: Robert P. J. Day <rpjday@crashcourse.ca>
-Date: Fri, Oct 18, 2013 at 9:44 AM
-Subject: Re: [yocto] uImage instead of zImage
-To: Edward Vidal <vidal.develone@gmail.com>
-
-
-On Fri, 18 Oct 2013, Edward Vidal wrote:
-
-> Hello
-> When I changed the uEnv.txt file I get the same error.
-> I also have a zImage-omap3-beagle-xm.dtb which is new with this build is
-this the correct name.
-> MLO u-boot.img zImage uEnv.txt and zImage-omap3-beagle-xm.dtb are the
-files on my DOS partition.
-> Thanks
-
-  you should not be emailing to me directly, you should respond to
-this on the mailing list so that others can benefit from the
-discussion.
-
-rday
-
---001a11c2c2fcb9091b04e905d3e9
-Content-Type: text/html; charset=ISO-8859-1
+X-List-Received-Date: Fri, 18 Oct 2013 16:27:57 -0000
+Content-Type: text/plain; charset=windows-1252
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><br><br><div class=3D"gmail_quote">---------- Forwarded me=
-ssage ----------<br>From: <b class=3D"gmail_sendername">Robert P. J. Day</b=
-> <span dir=3D"ltr">&lt;<a href=3D"mailto:rpjday@crashcourse.ca">rpjday@cra=
-shcourse.ca</a>&gt;</span><br>
-Date: Fri, Oct 18, 2013 at 9:44 AM<br>Subject: Re: [yocto] uImage instead o=
-f zImage<br>To: Edward Vidal &lt;<a href=3D"mailto:vidal.develone@gmail.com=
-">vidal.develone@gmail.com</a>&gt;<br><br><br><div class=3D"im">On Fri, 18 =
-Oct 2013, Edward Vidal wrote:<br>
 
-<br>
-</div><div class=3D"im">&gt; Hello<br>
-&gt; When I changed the uEnv.txt file I get the same error.<br>
-&gt; I also have a zImage-omap3-beagle-xm.dtb which is new with this build =
-is this the correct name.<br>
-&gt; MLO u-boot.img zImage uEnv.txt and zImage-omap3-beagle-xm.dtb are the =
-files on my DOS partition.<br>
-&gt; Thanks<br>
-<br>
-</div>=A0 you should not be emailing to me directly, you should respond to<=
-br>
-this on the mailing list so that others can benefit from the<br>
-discussion.<br>
-<br>
-rday<br>
-</div><br></div>
+On Oct 18, 2013, at 12:17 AM, Amit Kumar <Amit.Kumar@lntinfotech.com> =
+wrote:
 
---001a11c2c2fcb9091b04e905d3e9--
+> Hi,
+>            I wants to use the LTP test suite provided by yocto =
+project. But I don=92t know how to enable it for =93core-image-basic=94.
+> Can anyone help me to enable the LTP in =93core-image-basic=94?
+
+Several ways to do it. In your local.conf you could add=20
+
+CORE_IMAGE_EXTRA_INSTALL +=3D "ltp"
+
+You can also modify image recipe itself and add it to RDEPENDS
+or write a bbappend to the image recipe in your layer and then
+add RDEPEND_${PN} +=3D "ltp" to it.
+
+> =20
+> =20
+> Thanks & Regards
+> Amit K
+>=20
+> The contents of this e-mail and any attachment(s) may contain =
+confidential or privileged information for the intended recipient(s). =
+Unintended recipients are prohibited from taking action on the basis of =
+information in this e-mail and using or disseminating the information, =
+and must notify the sender and delete it from their system. L&T Infotech =
+will not accept responsibility or liability for the accuracy or =
+completeness of, or the presence of any virus or disabling code in this =
+e-mail"
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+
+
