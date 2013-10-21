@@ -1,33 +1,42 @@
-Return-Path: <vidal.develone@gmail.com>
-Received: from mail-qe0-f47.google.com (mail-qe0-f47.google.com
-	[209.85.128.47])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6D1FCE0172F
-	for <yocto@yoctoproject.org>; Mon, 21 Oct 2013 06:09:25 -0700 (PDT)
-Received: by mail-qe0-f47.google.com with SMTP id b4so3696232qen.6
-	for <yocto@yoctoproject.org>; Mon, 21 Oct 2013 06:09:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type;
-	bh=M9mC8U1MXPIQ/0qaAPN4envzuy6VVS5pyRqJJqNQqmQ=;
-	b=cATcq/D8lq+Jm0lQ04+W6c0Qo79dIYCwqEl8euGbjdgPGVXa1m/KnggHDyrYCsacLv
-	JKDtErR9mQiRKhkp5d45zgItleUHt7/X8HcfwjYgCp8M84qrSWB9V/qIgLsJ25pQLwU/
-	89zIALZCqA6RxiJ0FOfriqcIpEk+uLq9PqbLeIgBQeH0ccQL9yHX4UpEpAUVEbRjUw33
-	Aag28Ir1JoIGRvEyDeuRYmbqIokyzkzCyoElBpz3MhylyvYTZFOv34zouxa8cfeEHe1O
-	vg5mmGbdk4NIdtWVnh90hBpQUyry/iBBGT3NFdqBc+h5FEZSGmgPxdDYKI+bqeSv2PQ4
-	RpTw==
+Return-Path: <joe@deserted.net>
+Received: from mail-ea0-f178.google.com (mail-ea0-f178.google.com
+	[209.85.215.178])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BF2C3E01664
+	for <yocto@yoctoproject.org>; Mon, 21 Oct 2013 07:57:15 -0700 (PDT)
+Received: by mail-ea0-f178.google.com with SMTP id a15so3505627eae.23
+	for <yocto@yoctoproject.org>; Mon, 21 Oct 2013 07:57:14 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+	:mime-version:content-type:content-disposition:in-reply-to
+	:user-agent;
+	bh=Qck4j1PkRFuyIw2ek6eiZb/8JVyuXkBZTeTA+KCu7dg=;
+	b=brxmJEfehf4C5qXkCDsIW8iB1AyZbbRFBtxskRU94KaDQ/ac12DgpNRejkqAbmgyvT
+	WIXorCv1IfQQ6q+xblf6WqHMXvH4o9ASnyRoeEpNAjFTJmRx64QBcT5mBpshm0PBAfBy
+	hghnNw4fOWZlpIcpX5KRskVNImjeVno70n2eV5SxJtAOzdJIUEcNlB3PIAvZfERSi82A
+	+bCMlfSTAY4X1TerRV6UpVAlx8ybbgShkusngqeNquGvpfIWP1cnoRtbzqJKrRRw2q+X
+	gWeFFbX4fRmPGOoj8p4dSkxMWxd6do/ovzqNdyOEzsvjjH/VYvFAB9HKD+qcY9yQDzvM
+	B5xg==
+X-Gm-Message-State: ALoCoQlorxRi4aimBtp8GIjLp2jVTJTCTapp68aOq4FId5WYPs816lYvEl0cI8ziPWjx+zEb4dBz
+X-Received: by 10.15.32.7 with SMTP id z7mr357073eeu.78.1382367434592;
+	Mon, 21 Oct 2013 07:57:14 -0700 (PDT)
+Received: from deserted.net ([128.224.252.2])
+	by mx.google.com with ESMTPSA id i1sm44755396eeg.0.2013.10.21.07.57.12
+	for <multiple recipients>
+	(version=TLSv1.2 cipher=RC4-SHA bits=128/128);
+	Mon, 21 Oct 2013 07:57:13 -0700 (PDT)
+Date: Mon, 21 Oct 2013 10:57:09 -0400
+From: Joe MacDonald <joe@deserted.net>
+To: yocto@yoctoproject.org
+Message-ID: <20131021145706.GA7162@deserted.net>
+References: <1382036771-30531-1-git-send-email-flihp@twobit.us>
 MIME-Version: 1.0
-X-Received: by 10.49.116.19 with SMTP id js19mr22615342qeb.34.1382360964714;
-	Mon, 21 Oct 2013 06:09:24 -0700 (PDT)
-Received: by 10.96.26.37 with HTTP; Mon, 21 Oct 2013 06:09:24 -0700 (PDT)
-In-Reply-To: <5263DD06.1050309@balister.org>
-References: <CANwz6nzVxrMqvM19MfT8AFD0NvWCuYDitSQTJon-YHMZ_8d01Q@mail.gmail.com>
-	<5263DD06.1050309@balister.org>
-Date: Mon, 21 Oct 2013 07:09:24 -0600
-Message-ID: <CANwz6nw=OvJHiXb6cf8bGCwZ0+4VyZSXFV0nmMOttdMhXBaxQg@mail.gmail.com>
-From: Edward Vidal <vidal.develone@gmail.com>
-To: Philip Balister <philip@balister.org>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: threads set in local.conf
+In-Reply-To: <1382036771-30531-1-git-send-email-flihp@twobit.us>
+X-URL: http://github.com/joeythesaint/joe-s-common-environment/tree/master
+X-Configuration: git://github.com/joeythesaint/joe-s-common-environment.git
+X-Editor: Vim-703 http://www.vim.org
+User-Agent: Mutt/1.5.21 (2010-09-15)
+Subject: Re: [meta-selinux][PATCH 0/5] Resend: Remove python dependency from refpol.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,128 +48,87 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 21 Oct 2013 13:09:26 -0000
-Content-Type: multipart/alternative; boundary=047d7b62221a40f36d04e93ffe40
+X-List-Received-Date: Mon, 21 Oct 2013 14:57:17 -0000
+X-Groupsio-MsgNum: 16627
+Content-Type: multipart/signed; micalg=pgp-sha1;
+	protocol="application/pgp-signature"; boundary="a8Wt8u1KmwUX3Y2C"
+Content-Disposition: inline
 
---047d7b62221a40f36d04e93ffe40
-Content-Type: text/plain; charset=ISO-8859-1
-
-Hello All,
-As Philip suggested adding more RAM helps
-The system model name: AMD Phenom(tm) II X6 1090T Processor w/16GB of RAM.
-In 1 hour it ran 4391 of 8016 tasks or 54% This was a
-core-image-sato-sdk-ex (my receipe) with gnuplot, gsl, boost,
-qt-mobility-x11, java, and gnuradio.The full build  was taking close to 4
-hours with 6 threads and 8GB of RAM.
-Regards
-
-
-On Sun, Oct 20, 2013 at 7:39 AM, Philip Balister <philip@balister.org>wrote:
-
-> On 10/19/2013 08:59 AM, Edward Vidal wrote:
-> > Hello all,
-> > Is this loading what others on a similar system are experiencing (see
-> > below)?
-> >
-> > I first was setting my threads to 6 on a AMD 6 core system.
-> > In the mega-manual i found
-> > 5.4. Configuring the local.conf File
-> >
-> > Briefly, set BB_NUMBER_THREADS and PARALLEL_MAKE to twice your host
-> > processor's number of cores.
-> >
-> > I am creating an image with 8017 tasks for the beagleboard.
-> > I set threads to 12 and now the build is proceeding much more rapid than
-> > when threads were set to 6.  In 30 minutes the build has completed 2435
-> > tasks or about 25%.
-> > I am seeing a fairly high load 35. 30. 24 and the fan is been at high
-> speed
-> > since the build  started.  The system has 8G of memory and now it is
-> using
-> > and it was using about  13800 of swap space.
-> >
-> > Any and all help will be appreciated.
->
-> I'm not sure what problem you are trying to solve here.
->
-> I'd suggest adding more RAM though, that will ease the disk usage.
->
-> Philip
->
->
-> > Thanks
-> >
-> >
-> >
-> > _______________________________________________
-> > yocto mailing list
-> > yocto@yoctoproject.org
-> > https://lists.yoctoproject.org/listinfo/yocto
-> >
->
-
---047d7b62221a40f36d04e93ffe40
-Content-Type: text/html; charset=ISO-8859-1
+--a8Wt8u1KmwUX3Y2C
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div><div><div><div>Hello All,<br></div>As Philip suggeste=
-d adding more RAM helps <br></div>The system model name: AMD Phenom(tm) II =
-X6 1090T Processor w/16GB of RAM.<br></div>In 1 hour it ran 4391 of 8016 ta=
-sks or 54% This was a core-image-sato-sdk-ex (my receipe) with gnuplot, gsl=
-, boost, qt-mobility-x11, java, and gnuradio.The full build=A0 was taking c=
-lose to 4 hours with 6 threads and 8GB of RAM.<br>
-</div>Regards<br></div><div class=3D"gmail_extra"><br><br><div class=3D"gma=
-il_quote">On Sun, Oct 20, 2013 at 7:39 AM, Philip Balister <span dir=3D"ltr=
-">&lt;<a href=3D"mailto:philip@balister.org" target=3D"_blank">philip@balis=
-ter.org</a>&gt;</span> wrote:<br>
-<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
-x #ccc solid;padding-left:1ex"><div class=3D"HOEnZb"><div class=3D"h5">On 1=
-0/19/2013 08:59 AM, Edward Vidal wrote:<br>
-&gt; Hello all,<br>
-&gt; Is this loading what others on a similar system are experiencing (see<=
-br>
-&gt; below)?<br>
-&gt;<br>
-&gt; I first was setting my threads to 6 on a AMD 6 core system.<br>
-&gt; In the mega-manual i found<br>
-&gt; 5.4. Configuring the local.conf File<br>
-&gt;<br>
-&gt; Briefly, set BB_NUMBER_THREADS and PARALLEL_MAKE to twice your host<br=
->
-&gt; processor&#39;s number of cores.<br>
-&gt;<br>
-&gt; I am creating an image with 8017 tasks for the beagleboard.<br>
-&gt; I set threads to 12 and now the build is proceeding much more rapid th=
-an<br>
-&gt; when threads were set to 6. =A0In 30 minutes the build has completed 2=
-435<br>
-&gt; tasks or about 25%.<br>
-&gt; I am seeing a fairly high load 35. 30. 24 and the fan is been at high =
-speed<br>
-&gt; since the build =A0started. =A0The system has 8G of memory and now it =
-is using<br>
-&gt; and it was using about =A013800 of swap space.<br>
-&gt;<br>
-&gt; Any and all help will be appreciated.<br>
-<br>
-</div></div>I&#39;m not sure what problem you are trying to solve here.<br>
-<br>
-I&#39;d suggest adding more RAM though, that will ease the disk usage.<br>
-<br>
-Philip<br>
-<br>
-<br>
-&gt; Thanks<br>
-&gt;<br>
-&gt;<br>
-&gt;<br>
-&gt; _______________________________________________<br>
-&gt; yocto mailing list<br>
-&gt; <a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><b=
-r>
-&gt; <a href=3D"https://lists.yoctoproject.org/listinfo/yocto" target=3D"_b=
-lank">https://lists.yoctoproject.org/listinfo/yocto</a><br>
-&gt;<br>
-</blockquote></div><br></div>
+Thought I'd best (finally) follow up to the list on this.  I've been
+talking to Philip offline.  These are in the queue for integration but
+some surprising things have cropped up along the way and the integration
+is being delayed a bit.
 
---047d7b62221a40f36d04e93ffe40--
+I'll be grabbing the other meta-selinux update at the same time.
+
+-J.
+
+[[yocto] [meta-selinux][PATCH 0/5] Resend: Remove python dependency from re=
+fpol.] On 13.10.17 (Thu 19:06) Philip Tricca wrote:
+
+> This is a resend of an earlier patch set that never made it to the list
+> AFAIK.
+>=20
+> The reference policy package currently pulls in a lot of python stuff
+> that isn't strictly necessary to boot an SELinux system and load a
+> policy. AFAIK this is caused by the mix of python and C utilities in
+> policycoreutils.
+>=20
+> This patch set breaks the policycoreutils recipe up into multiple
+> packages, one for each utility. In this way we can have the refpol etc
+> pull in only the utilities necessary for normal operation. This happens
+> to be only the utilities written in C and thus we can remove python
+> completely in a minimal image.
+>=20
+> I've attempted to localize these changes as much as possible so this
+> patch set should have minimal impact on recipes outside of the
+> policycoreutils. An example image reicpe is added to demonstrate a
+> minimal image with only the utilities required to load a policy and
+> manipulate the policy store (add / remove policy modules) at runtime.
+>=20
+> Regards,
+> - Philip
+>=20
+> Philip Tricca (5):
+>  Break policycoreutils out into separate
+>  Remove unnecessary RDEPENDS_${BPN}.
+>  Remove runtime dependency on
+>  Add packagegroup and image recipe for
+>  Add packagegroup for policycoreutils
+>=20
+>  .../images/core-image-selinux-minimal.bb           |   15 ++
+>  .../packagegroups/packagegroup-core-selinux.bb     |    4 +-
+>  .../packagegroups/packagegroup-selinux-minimal.bb  |   26 +++
+>  .../packagegroup-selinux-policycoreutils.bb        |   36 ++++
+>  recipes-security/refpolicy/refpolicy_common.inc    |    2 +-
+>  recipes-security/selinux/policycoreutils.inc       |  179 ++++++++++++++=
++++--
+>  6 files changed, 245 insertions(+), 17 deletions(-)
+>=20
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+
+--=20
+-Joe MacDonald.
+:wq
+
+--a8Wt8u1KmwUX3Y2C
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: Digital signature
+
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1.4.12 (GNU/Linux)
+
+iEYEARECAAYFAlJlQLkACgkQwFvcllog0Xxn9QCfZkijCzHUaQV4XQF0jxoV7Jnt
+0mQAnigPT67EM+AboVAI0qYLNHyN+Btd
+=4DUr
+-----END PGP SIGNATURE-----
+
+--a8Wt8u1KmwUX3Y2C--
