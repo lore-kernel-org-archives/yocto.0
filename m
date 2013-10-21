@@ -1,42 +1,28 @@
-Return-Path: <joe@deserted.net>
-Received: from mail-ee0-f52.google.com (mail-ee0-f52.google.com [74.125.83.52])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 29088E0170E
-	for <yocto@yoctoproject.org>; Mon, 21 Oct 2013 13:15:18 -0700 (PDT)
-Received: by mail-ee0-f52.google.com with SMTP id d51so1655498eek.25
-	for <yocto@yoctoproject.org>; Mon, 21 Oct 2013 13:15:17 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-	:mime-version:content-type:content-disposition:in-reply-to
-	:user-agent;
-	bh=c7MDTl6TLXp/oq2EU0Lg5aKzSYiwPx7vkv2Nf4SWY9U=;
-	b=HYpmRhf3lUd4r8XAWS6ujP2BVMWgYf2o9tSgTzRn/NlYEcv7FxPbYNAqHA0Xu0UAzv
-	aGxr6ejtJn29oTisMjaSkEUfwyHg/Sv5UdYjINrSE6SXNMC/v92u69H8VfH++eghrD1g
-	K27Yhp+QvA/g0W8NxsY6L/nYcP21hPJCBjNgVhwrtA8BKj611PXeyOxPVkSGzljfGfo6
-	famQ4FjUDAKtBzSABiW9jVQAjQ74UTXI66xXcojpvD+70LcEmKzEcXa/Gi4tYtF+FUGA
-	xxVQJlu2I85N7AlTVRmvCg5r4DVjA+IhW4hEckZJP9YfLB/D9FGmVhzOZlab87r8HmzL
-	vSxQ==
-X-Gm-Message-State: ALoCoQnulYpC2dKNBAGGchUL2TeKCvFqIyaVCWT684qF+Pk11qcMbxCYpuXiAPdHwArgUCrB60aC
-X-Received: by 10.15.111.202 with SMTP id cj50mr4071220eeb.71.1382386517627;
-	Mon, 21 Oct 2013 13:15:17 -0700 (PDT)
-Received: from deserted.net ([128.224.252.2])
-	by mx.google.com with ESMTPSA id h45sm47751309eeg.5.2013.10.21.13.15.15
-	for <multiple recipients>
-	(version=TLSv1.2 cipher=RC4-SHA bits=128/128);
-	Mon, 21 Oct 2013 13:15:16 -0700 (PDT)
-Date: Mon, 21 Oct 2013 16:15:12 -0400
-From: Joe MacDonald <joe@deserted.net>
-To: Philip Tricca <flihp@twobit.us>
-Message-ID: <20131021201510.GB27412@deserted.net>
-References: <1382378812-6742-1-git-send-email-flihp@twobit.us>
+Return-Path: <grsandeep85@gmail.com>
+Received: from mail-ob0-f173.google.com (mail-ob0-f173.google.com
+	[209.85.214.173])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 18F74E01722
+	for <yocto@yoctoproject.org>; Mon, 21 Oct 2013 16:06:49 -0700 (PDT)
+Received: by mail-ob0-f173.google.com with SMTP id gq1so2614554obb.4
+	for <yocto@yoctoproject.org>; Mon, 21 Oct 2013 16:06:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=Od8swXo8Voh7kkN4mXeJp8tKP9whceTa1tX6pUdfL78=;
+	b=oOVzvAO4JUWTvtHNrxqkMQ7z7Mw4CUQpgtvXGtpOeJLzSC6DWDc91WozBStCTEXFrI
+	1UChenyAamXlME3S0A/4IHfwTBysQZEt4Oemc9dB2FtGgE2pMirqbjPJr9LfZ+CWLRxs
+	GuL37OGItCwMHP4LO2T/5n4ALTCqoWaNI5a3llwlSgAxneDprCdGkhQhW8M6DiEw/DSG
+	hYp7ft+2I3OTK5gfDPx+F5BkfbHU6JLy+4P29JRb0XLfQrlwmWWhPDQCQfiuY+8GZeBC
+	Ml95fJobsIuc5CXxkUptXdXZ8SPAMuKEaJmJLFetv6L/gKLZDKay8Wm0xaVt4TP91EcA
+	pkEA==
 MIME-Version: 1.0
-In-Reply-To: <1382378812-6742-1-git-send-email-flihp@twobit.us>
-X-URL: http://github.com/joeythesaint/joe-s-common-environment/tree/master
-X-Configuration: git://github.com/joeythesaint/joe-s-common-environment.git
-X-Editor: Vim-703 http://www.vim.org
-User-Agent: Mutt/1.5.21 (2010-09-15)
-Cc: yocto@yoctoproject.org
-Subject: Re: [meta-selinux][PATCH] bzip SELinux policy modules in ${datadir}
+X-Received: by 10.182.98.162 with SMTP id ej2mr4207406obb.61.1382396809014;
+	Mon, 21 Oct 2013 16:06:49 -0700 (PDT)
+Received: by 10.76.20.102 with HTTP; Mon, 21 Oct 2013 16:06:48 -0700 (PDT)
+Date: Mon, 21 Oct 2013 17:06:48 -0600
+Message-ID: <CAKP9-SgzGG8bLJsu1X1qTDyELnXZCb0B-Xj+rdJvi7Bzg=ATsA@mail.gmail.com>
+From: "Sandeep G.R" <grsandeep85@gmail.com>
+To: yocto@yoctoproject.org
+Subject: How to bring up "apt and dpkg" packages on yocto
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -48,92 +34,48 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 21 Oct 2013 20:15:23 -0000
-X-Groupsio-MsgNum: 16631
-Content-Type: multipart/signed; micalg=pgp-sha1;
-	protocol="application/pgp-signature"; boundary="4SFOXa2GPu3tIq4H"
-Content-Disposition: inline
+X-List-Received-Date: Mon, 21 Oct 2013 23:06:52 -0000
+Content-Type: multipart/alternative; boundary=047d7b2e46f0bd76a204e9485609
 
---4SFOXa2GPu3tIq4H
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+--047d7b2e46f0bd76a204e9485609
+Content-Type: text/plain; charset=ISO-8859-1
+
+Hi All,
+
+I have ported Embedded Linux using yocto opensource for Freescale QorIQ
+T4240QDS processor. I need to bring up "apt and dpkg" on T4240QDS using
+yocto.
+
+For this i need to modify in some .conf or .bb files. Can you please let me
+know in which files i need to do these changes in order to bring up "apt
+and dpkg" on T4240QDS using yocto.
+
+-- 
+*Thanks & Regards,*
+*Sandeep G R*
+
+--047d7b2e46f0bd76a204e9485609
+Content-Type: text/html; charset=ISO-8859-1
 Content-Transfer-Encoding: quoted-printable
 
-[[meta-selinux][PATCH] bzip SELinux policy modules in ${datadir}] On 13.10.=
-21 (Mon 18:06) Philip Tricca wrote:
+<div dir=3D"ltr"><div class=3D"gmail_default" style=3D"font-family:&#39;tre=
+buchet ms&#39;,sans-serif;color:rgb(7,55,99)"><div class=3D"gmail_default" =
+style=3D"font-size:13px">Hi All,</div><div class=3D"gmail_default" style=3D=
+"font-size:13px">
+<br></div><div class=3D"gmail_default" style=3D"font-size:13px">I have port=
+ed Embedded Linux using yocto opensource for Freescale QorIQ T4240QDS proce=
+ssor. I need to bring up=A0&quot;apt and dpkg&quot; on=A0T4240QDS using yoc=
+to.</div>
+<div class=3D"gmail_default" style=3D"font-size:13px"><br></div><div class=
+=3D"gmail_default" style=3D"font-size:13px">For this i need to modify in so=
+me .conf or .bb files. Can you please let me know in which files i need to =
+do these changes in order to bring up &quot;apt and dpkg&quot; on T4240QDS =
+using yocto.</div>
+</div><div><br></div>-- <br><div dir=3D"ltr"><font face=3D"trebuchet ms, sa=
+ns-serif" color=3D"#073763"><b>Thanks &amp; Regards,</b></font><div><font f=
+ace=3D"trebuchet ms, sans-serif" color=3D"#073763"><b>Sandeep G R</b></font=
+><br><br>
+</div></div>
+</div>
 
-> The 'semodule' utility can operate on compresed modules so the only
-> cost of this change is a slower module load time when invoking
-> 'semodule -i' on a running system (increased CPU load due to bzip2).
-> That said my tests show more than 100M reduction in ext3 image size
-> of core-image-selinux. This last metric is a bit skewed as the image
-> includes two policies. Still, a reduction in the size of the refpolicy
-> package by 1/2 is significant.
-
-This is included in the batch of updates I've merged and are currently
-staging in my tree.  FWIW, on my build I saw a similar reduction in size
-to what you've reported, ~110MB, with a minor hit at load time.  As
-expected there's also an increase in memory requirements at load time,
-so I'm poking around a bit to see what this does to the lower-end
-configurations I've got kicking around.  It'd be really nice if this was
-an option rather than an on/off thing.
-
--J.
-
->=20
-> Signed-off-by: Philip Tricca <flihp@twobit.us>
-> ---
->  recipes-security/refpolicy/refpolicy_common.inc |    9 +++++----
->  1 file changed, 5 insertions(+), 4 deletions(-)
->=20
-> diff --git a/recipes-security/refpolicy/refpolicy_common.inc b/recipes-se=
-curity/refpolicy/refpolicy_common.inc
-> index 873d887..0ca0b9d 100644
-> --- a/recipes-security/refpolicy/refpolicy_common.inc
-> +++ b/recipes-security/refpolicy/refpolicy_common.inc
-> @@ -12,7 +12,7 @@ SRC_URI +=3D "file://customizable_types \
->  S =3D "${WORKDIR}/refpolicy"
-> =20
->  FILES_${PN} =3D "${sysconfdir}/selinux/${POLICY_NAME}/ \
-> -	${datadir}/selinux/${POLICY_NAME}/*.pp"
-> +	${datadir}/selinux/${POLICY_NAME}/*.pp.bz2"
->  FILES_${PN}-dev =3D+ "${datadir}/selinux/${POLICY_NAME}/include/"
-> =20
->  DEPENDS +=3D "checkpolicy-native policycoreutils-native m4-native"
-> @@ -67,11 +67,12 @@ EOF
->  	mkdir -p ${D}${sysconfdir}/selinux/${POLICY_NAME}/modules/active/modules
->  	mkdir -p ${D}${sysconfdir}/selinux/${POLICY_NAME}/contexts/files
->  	touch ${D}${sysconfdir}/selinux/${POLICY_NAME}/contexts/files/file_cont=
-exts.local
-> -	bzip2 -c ${D}${datadir}/selinux/${POLICY_NAME}/base.pp  > \
-> -		${D}${sysconfdir}/selinux/${POLICY_NAME}/modules/active/base.pp
->  	for i in ${D}${datadir}/selinux/${POLICY_NAME}/*.pp; do
-> +		bzip2 $i
->  		if [ "`basename $i`" !=3D "base.pp" ]; then
-> -			bzip2 -c $i > ${D}${sysconfdir}/selinux/${POLICY_NAME}/modules/active=
-/modules/`basename $i`;
-> +			cp ${i}.bz2 ${D}${sysconfdir}/selinux/${POLICY_NAME}/modules/active/m=
-odules/`basename $i`
-> +		else
-> +			cp ${i}.bz2 ${D}${sysconfdir}/selinux/${POLICY_NAME}/modules/active/`=
-basename $i`
->  		fi
->  	done
-> =20
---=20
--Joe MacDonald.
-:wq
-
---4SFOXa2GPu3tIq4H
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: Digital signature
-
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v1.4.12 (GNU/Linux)
-
-iEYEARECAAYFAlJli04ACgkQwFvcllog0XxSogCfXBpbDAYffn9jNwQQzBprGv/X
-42AAn1vrP5L6f8FZ/jCeRVRPFD1qfw6M
-=arQT
------END PGP SIGNATURE-----
-
---4SFOXa2GPu3tIq4H--
+--047d7b2e46f0bd76a204e9485609--
