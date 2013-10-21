@@ -1,34 +1,29 @@
-Return-Path: <bart.houkes@sogeti.nl>
-Received: from barracuda1.sogeti.nl (barracuda1.sogeti.nl [194.151.67.71])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A69E7E0169B
-	for <yocto@yoctoproject.org>; Mon, 21 Oct 2013 09:31:41 -0700 (PDT)
-X-ASG-Debug-ID: 1382373099-03c2540c6311759d0001-yzSStA
-Received: from HOPPER.SGTI.NL ([10.234.192.73]) by barracuda1.sogeti.nl with
-	ESMTP id FAK2np4A2jAsLMeH for <yocto@yoctoproject.org>;
-	Mon, 21 Oct 2013 18:31:39 +0200 (CEST)
-X-Barracuda-Envelope-From: bart.houkes@sogeti.nl
-X-ASG-Whitelist: Client
-Received: from Sogmb1.SGTI.NL ([fe80::4c8:63ab:e438:d2e5]) by HOPPER.SGTI.NL
-	([10.234.192.73]) with mapi; Mon, 21 Oct 2013 18:31:38 +0200
-From: "Houkes, Bart" <bart.houkes@sogeti.nl>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Date: Mon, 21 Oct 2013 18:31:37 +0200
-Thread-Topic: Remote debugging with Yocto
-X-ASG-Orig-Subj: Remote debugging with Yocto
-Thread-Index: AQHOznsDEdbtYJI/qUGyUKTab6ciRQ==
-Message-ID: <FBA0FF4F0EC22C4AAFF3D9FD07EF2E383A5C6DAE5C@SOGMB1.SGTI.NL>
-Accept-Language: en-US, nl-NL
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-acceptlanguage: en-US, nl-NL
-MIME-Version: 1.0
-X-Barracuda-Connect: UNKNOWN[10.234.192.73]
-X-Barracuda-Start-Time: 1382373099
-X-Barracuda-URL: http://10.234.200.14:8000/cgi-mod/mark.cgi
-X-Virus-Scanned: by bsmtpd at sogeti.nl
-X-Barracuda-BRTS-Status: 1
-X-Mailman-Approved-At: Mon, 21 Oct 2013 09:35:09 -0700
-Subject: Remote debugging with Yocto
+Return-Path: <flihp@twobit.us>
+Received: from www.twobit.us (www.twobit.us [50.19.210.51])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 10F87E013B7
+	for <yocto@yoctoproject.org>; Mon, 21 Oct 2013 11:07:00 -0700 (PDT)
+Received: from c-76-24-20-220.hsd1.ma.comcast.net ([76.24.20.220]
+	helo=localhost)
+	by www.twobit.us with esmtpsa (TLS1.0:DHE_RSA_AES_128_CBC_SHA1:16)
+	(Exim 4.72) (envelope-from <flihp@twobit.us>)
+	id 1VYJsZ-0003ii-2E; Mon, 21 Oct 2013 18:06:59 +0000
+Received: from flihp by localhost with local (Exim 4.80)
+	(envelope-from <flihp@longhaul.twobit.us>)
+	id 1VYJsT-0001lG-He; Mon, 21 Oct 2013 18:06:53 +0000
+From: Philip Tricca <flihp@twobit.us>
+To: yocto@yoctoproject.org
+Date: Mon, 21 Oct 2013 18:06:52 +0000
+Message-Id: <1382378812-6742-1-git-send-email-flihp@twobit.us>
+X-Mailer: git-send-email 1.7.10.4
+X-SA-Exim-Connect-IP: 76.24.20.220
+X-SA-Exim-Mail-From: flihp@twobit.us
+X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on www.twobit.us
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=5.0 tests=ALL_TRUSTED,BAYES_00
+	autolearn=ham version=3.3.1
+X-SA-Exim-Version: 4.2.1 (built Mon, 22 Mar 2010 06:26:47 +0000)
+X-SA-Exim-Scanned: Yes (on www.twobit.us)
+Subject: [meta-selinux][PATCH] bzip SELinux policy modules in ${datadir}
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,38 +35,51 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 21 Oct 2013 16:31:41 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Mon, 21 Oct 2013 18:07:02 -0000
 
-Hi,
+The 'semodule' utility can operate on compresed modules so the only
+cost of this change is a slower module load time when invoking
+'semodule -i' on a running system (increased CPU load due to bzip2).
+That said my tests show more than 100M reduction in ext3 image size
+of core-image-selinux. This last metric is a bit skewed as the image
+includes two policies. Still, a reduction in the size of the refpolicy
+package by 1/2 is significant.
 
-2 issues are blocking for my development:
+Signed-off-by: Philip Tricca <flihp@twobit.us>
+---
+ recipes-security/refpolicy/refpolicy_common.inc |    9 +++++----
+ 1 file changed, 5 insertions(+), 4 deletions(-)
 
-last few weeks I was able to download my own kernel on the ARM board with S=
-AMA5d3S.=20
+diff --git a/recipes-security/refpolicy/refpolicy_common.inc b/recipes-security/refpolicy/refpolicy_common.inc
+index 873d887..0ca0b9d 100644
+--- a/recipes-security/refpolicy/refpolicy_common.inc
++++ b/recipes-security/refpolicy/refpolicy_common.inc
+@@ -12,7 +12,7 @@ SRC_URI += "file://customizable_types \
+ S = "${WORKDIR}/refpolicy"
+ 
+ FILES_${PN} = "${sysconfdir}/selinux/${POLICY_NAME}/ \
+-	${datadir}/selinux/${POLICY_NAME}/*.pp"
++	${datadir}/selinux/${POLICY_NAME}/*.pp.bz2"
+ FILES_${PN}-dev =+ "${datadir}/selinux/${POLICY_NAME}/include/"
+ 
+ DEPENDS += "checkpolicy-native policycoreutils-native m4-native"
+@@ -67,11 +67,12 @@ EOF
+ 	mkdir -p ${D}${sysconfdir}/selinux/${POLICY_NAME}/modules/active/modules
+ 	mkdir -p ${D}${sysconfdir}/selinux/${POLICY_NAME}/contexts/files
+ 	touch ${D}${sysconfdir}/selinux/${POLICY_NAME}/contexts/files/file_contexts.local
+-	bzip2 -c ${D}${datadir}/selinux/${POLICY_NAME}/base.pp  > \
+-		${D}${sysconfdir}/selinux/${POLICY_NAME}/modules/active/base.pp
+ 	for i in ${D}${datadir}/selinux/${POLICY_NAME}/*.pp; do
++		bzip2 $i
+ 		if [ "`basename $i`" != "base.pp" ]; then
+-			bzip2 -c $i > ${D}${sysconfdir}/selinux/${POLICY_NAME}/modules/active/modules/`basename $i`;
++			cp ${i}.bz2 ${D}${sysconfdir}/selinux/${POLICY_NAME}/modules/active/modules/`basename $i`
++		else
++			cp ${i}.bz2 ${D}${sysconfdir}/selinux/${POLICY_NAME}/modules/active/`basename $i`
+ 		fi
+ 	done
+ 
+-- 
+1.7.10.4
 
-However, with HOB I cannot add TCF-agent or any other project.. HOB will gi=
-ve some error, becomes red and stops. I cannot compile anymore.
-
-I need TCF-agent to do remote debugging.=20
-
-Another:
-
-There are some presentations about standard projects. How about kernel driv=
-ers with cross compilers or Video 4 Linux. How to start those projects?
-
-greetings,
-Bart
-bart.houkes@sogeti.nl
-
-Disclaimer:=0D
-This message contains information that may be privileged or confidential an=
-d is the property of Sogeti Nederland B.V. or its Group members. It is inte=
-nded only for the person to whom it is addressed. If you are not the intend=
-ed recipient, you are not authorized to read, print, retain, copy, dissemin=
-ate, distribute, or use this message or any part thereof. If you receive th=
-is message in error, please notify the sender immediately and delete all co=
-pies of this message.
 
