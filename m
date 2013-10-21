@@ -1,33 +1,17 @@
-Return-Path: <vidal.develone@gmail.com>
-Received: from mail-qa0-f45.google.com (mail-qa0-f45.google.com
-	[209.85.216.45])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A59F3E0074B
-	for <yocto@yoctoproject.org>; Sun, 20 Oct 2013 10:27:43 -0700 (PDT)
-Received: by mail-qa0-f45.google.com with SMTP id ii20so1941939qab.4
-	for <yocto@yoctoproject.org>; Sun, 20 Oct 2013 10:27:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type;
-	bh=omwND3NhmBhTQOS9KCynLFX71q0XBgKX2oUwhLu+dKA=;
-	b=FmafoGWgUaXEcQuQ454SYU1KXAduQZUcYbDfndp3bTIseRc9rJVc5Nj4t855DSm04H
-	MI1ov2lBYsxKx1+pL4FFOUHCv4izwQXw8KP76WZaB435SMQSLpupGb5fPrg5CFmK5kRR
-	F2mFn3k50P7LtlXAIcxxlGOhspWGDZk+ZurhKYljUKTvhpC/lOAt1hxwHpS9JrmGkoSU
-	P24afrX3s+ILtlD0kTnJfID+abAUSAOXX3h+/7JGHIiLv8TirbhGvdMdRX9EYKwPbYk4
-	JVD2AeGdh+9RtZwhoXyqNID6UConla6K890csjXkSYqTd4xyGUlLgGKbu3HmnZPnGQ13
-	Bw5w==
+Return-Path: <packages@autobuilder.yoctoproject.org>
+Received: from autobuilder.yoctoproject.org (ab-master.i.yoctoproject.org
+	[10.0.10.111])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8C08BE01723
+	for <yocto@yoctoproject.org>; Sun, 20 Oct 2013 19:00:33 -0700 (PDT)
+Received: by autobuilder.yoctoproject.org (Postfix, from userid 802)
+	id 8A5F64197D; Mon, 21 Oct 2013 02:00:33 +0000 (UTC)
+Date: Mon, 21 Oct 2013 02:00:33 +0000
+From: Yocto Project Package Report System <package-reporting@yoctoproject.org>
+To: yocto@yoctoproject.org
+Message-ID: <20131021020033.GA25416@ab01.i.yoctoproject.org>
 MIME-Version: 1.0
-X-Received: by 10.49.84.6 with SMTP id u6mr17406327qey.79.1382290063229; Sun,
-	20 Oct 2013 10:27:43 -0700 (PDT)
-Received: by 10.96.26.37 with HTTP; Sun, 20 Oct 2013 10:27:43 -0700 (PDT)
-In-Reply-To: <CA+gsK-oYDGkcCiPxKUP3rVbD2qGRr_8EUNqGO7JNKmZJfU9WEw@mail.gmail.com>
-References: <CANwz6nznDfo=40RJ4aZh6BESHbYT3d+CcoTpB+wyaU5qXZ57fA@mail.gmail.com>
-	<CA+gsK-oYDGkcCiPxKUP3rVbD2qGRr_8EUNqGO7JNKmZJfU9WEw@mail.gmail.com>
-Date: Sun, 20 Oct 2013 11:27:43 -0600
-Message-ID: <CANwz6nyNupYz25HvywgLfqMEU0dM8d3EvWjzZYa5uMqKU0YMCA@mail.gmail.com>
-From: Edward Vidal <vidal.develone@gmail.com>
-To: Rudolf Streif <rstreif@linuxfoundation.org>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: uimage instead of zImage
+User-Agent: Mutt/1.5.20 (2009-12-10)
+Subject: [Package Report System]Upgrade recipes name list
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,349 +23,190 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 20 Oct 2013 17:27:46 -0000
-Content-Type: multipart/alternative; boundary=047d7bdc0934320a5c04e92f7cc6
+X-List-Received-Date: Mon, 21 Oct 2013 02:00:33 -0000
+X-Groupsio-MsgNum: 16622
+Content-Type: multipart/mixed; boundary="EVF5PPMfhYS0aIcm"
+Content-Disposition: inline
 
---047d7bdc0934320a5c04e92f7cc6
-Content-Type: text/plain; charset=ISO-8859-1
+--EVF5PPMfhYS0aIcm
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-Hello,
-I see some values when I do printenv
-
-These are the files on my dos partition
-MLO  u-boot.img  uEnv.txt    zImage  zImage-omap3-beagle-xm.dtb
-
-This is what I have in the uEnv.txt file
-
-
-bootcmd=""
-bootfile="zImage"
-ethact=""
-loadaddr=""
-nandboot=""
-nandroot=""
-nandrootfstype=""
-nandargs=""
-loaduimage=""
-loaduimagefat=""
-nandboot=""
-mpurate="auto"
-bootcmd="mmc rescan ; fatload mmc 0:1 0x80300000 zImage; bootz 0x80300000"
-dvimode="hd720 omapfb.vram=0:8M,1:4M,2:4M"
-optargs="consoleblank=0"
-console="ttyO2 console=tty0,115200n8"
-vram=16M
-saveenv
-printenv
-
-It appears that some of variable get written with other data ie vram I am
-setting to 16M but sometimes I see it set to 12M see at the end
-I have tried setting the variables manually and executing saveenv
-All the ones I don't want set setenv name and then saveenv
-still see the same values
-when I was using uImage and no
-this is what I used for my uEnv.txt
-mpurate=auto
-
-bootcmd="mmc rescan 0; fatload mmc 0:1 0x80300000 uImage; bootm 0x80300000"
-dvimode="hd720 omapfb.vram=0:8M,1:4M,2:4M"
-vram=16M
-optargs="consoleblank=0"
-console="ttyO2 console=tty0,115200n8"
-These were the file on the dos partition
-MLO  u-boot.img  uEnv.txt    uImage
-This was on a build on 09/21/13
-Any and all help will be appreciated.
-Thanks
-
-U-Boot SPL 2013.07 (Oct 19 2013 - 09:14:36)
-OMAP SD/MMC: 0
-reading u-boot.img
-reading u-boot.img
+This mail was sent out by Package Report System.
+This message list those recipes which need to be upgraded. If maintainers believe some of them needn't to upgrade this time, they can fill in RECIPE_NO_UPDATE_REASON_pn-"xxx" in upstream_tracking files to ignore this recipe remainder until newer upstream version was detected.
+Example:
+RECIPE_NO_UPDATE_REASON_pn-"xxx" = "Not upgrade to 2.0 because the new version is unstable"
+You can check the detail information at http://packages.yoctoproject.org/upgradepkgname
 
 
-U-Boot 2013.07 (Oct 19 2013 - 09:14:36)
+PackageName                   Version                       UpVersion                     Maintainer                                        NoUpgradeReason               
+gnome-common                  3.7.4                         3.10.0                        Valentin Popa <valentin.popa@intel.com>           
+puzzles                       r9765                         10035                         Valentin Popa <valentin.popa@intel.com>           
+gtk+                          2.24.20                       3.10.0                        Valentin Popa <valentin.popa@intel.com>           Do not upgrade to version: 2....
+libpam                        1.1.6                         1.1.8                         Valentin Popa <valentin.popa@intel.com>           
+mesa                          9.1.6                         9.2                           Valentin Popa <valentin.popa@intel.com>           
+libx11                        1.6.1                         1.6.2                         Valentin Popa <valentin.popa@intel.com>           
+libsoup-2.4                   2.42.1                        2.44.0                        Valentin Popa <valentin.popa@intel.com>           
+gtk-update-icon-cache-native  3.4.4                         3.8.2                         Valentin Popa <valentin.popa@intel.com>           
+gnome-desktop                 2.32.1                        3.10.0                        Valentin Popa <valentin.popa@intel.com>           waiting for the sato gtk3 port
+gnome-icon-theme              2.31.0                        3.10.0                        Valentin Popa <valentin.popa@intel.com>           waiting for the sato gtk3 port
+liberation-fonts              1.04                          1.05.2.20091019               Valentin Popa <valentin.popa@intel.com>           2.00.0 - fontforge package re...
+xdg-utils                     1.1.0-rc1                     1.0.2                         Valentin Popa <valentin.popa@intel.com>           only release candidates avail...
+matchbox-panel-2              2.0+gitAUTOINC+26a3a67b41     2.0+gitAUTOINC+bd69c21        Valentin Popa <valentin.popa@intel.com>           
+pcmanfm                       1.1.0                         1.1.2                         Valentin Popa <valentin.popa@intel.com>           
+webkit-gtk                    1.8.3                         2.1.92                        Valentin Popa <valentin.popa@intel.com>           >= 1.10.2 needs ruby          
+matchbox-desktop              2.0+gitAUTOINC+71e3e6e042     2.0+gitAUTOINC+09170f4        Valentin Popa <valentin.popa@intel.com>           
+libxv                         1.0.9                         1.0.10                        Valentin Popa <valentin.popa@intel.com>           
+libfm                         1.1.0                         1.1.2                         Valentin Popa <valentin.popa@intel.com>           
+matchbox-keyboard             0.0+gitAUTOINC+b38f24036c     0.0+gitAUTOINC+a17b113        Valentin Popa <valentin.popa@intel.com>           
+blktrace                      1.0.5+gitAUTOINC+d6918c8      1.0.5+gitAUTOINC+0a915aa      Tom Zanussi <tom.zanussi@intel.com>               
+systemtap-uprobes             2.3+gitAUTOINC+e58138572e     2.3+gitAUTOINC+42c2d1e        Tom Zanussi <tom.zanussi@intel.com>               
+sysprof                       1.2.0+gitAUTOINC+cd44ee6      1.2.0+gitAUTOINC+6901897      Tom Zanussi <tom.zanussi@intel.com>               
+util-macros                   1.17                          1.17.1                        Saul Wold <sgw@linux.intel.com>                   
+lsbinitscripts                9.48                          9.50                          Saul Wold <sgw@linux.intel.com>                   
+acl                           2.2.51                        2.2.52                        Saul Wold <sgw@linux.intel.com>                   
+mkelfimage                    4.0+gitAUTOINC+686a48a339     4.0+gitAUTOINC+dd6c4ec        Saul Wold <sgw@linux.intel.com>                   
+kbd                           1.15.2                        2.0.0                         Saul Wold <sgw@linux.intel.com>                   
+cups                          1.6.3                         1.6.4                         Saul Wold <sgw@linux.intel.com>                   
+kconfig-frontends             3.10.0.0                      3.11.0.0                      Saul Wold <sgw@linux.intel.com>                   PRS Reports Incorrectly       
+glib-networking               2.36.2                        2.38.0                        Saul Wold <sgw@linux.intel.com>                   Pending Glib-2.0 Update       
+vte                           0.28.2                        0.34.8                        Saul Wold <sgw@linux.intel.com>                   Pending Glib-2.0 Update       
+sysstat                       10.1.6                        10.1.7                        Saul Wold <sgw@linux.intel.com>                   
+tzcode-native                 2013d                         2013e                         Saul Wold <sgw@linux.intel.com>                   
+desktop-file-utils-native     0.21                          0.22                          Saul Wold <sgw@linux.intel.com>                   
+man-pages                     3.53                          3.54                          Saul Wold <sgw@linux.intel.com>                   
+mx-1.0                        1.4.7+gitAUTOINC+9b1db6b      1.99.4+gitAUTOINC+63da1f2     Saul Wold <sgw@linux.intel.com>                   PRS 1.99 is dev version       
+attr                          2.4.46                        2.4.47                        Saul Wold <sgw@linux.intel.com>                   
+file                          5.14                          5.15                          Saul Wold <sgw@linux.intel.com>                   
+base-passwd                   3.5.26                        3.5.28                        Saul Wold <sgw@linux.intel.com>                   
+libxrandr                     1.4.1                         1.4.2                         Ross Burton <ross.burton@intel.com>               
+librsvg                       2.32.1                        2.39.0                        Ross Burton <ross.burton@intel.com>               
+gdk-pixbuf                    2.28.2                        2.30.0                        Ross Burton <ross.burton@intel.com>               2.27.2 is unstable            
+libsm                         1.2.1                         1.2.2                         Ross Burton <ross.burton@intel.com>               
+libxpm                        3.5.10                        3.5.11                        Ross Burton <ross.burton@intel.com>               
+freetype                      2.4.12                        2.5.0                         Ross Burton <ross.burton@intel.com>               
+libxmu                        1.1.1                         1.1.2                         Ross Burton <ross.burton@intel.com>               
+clutter-gst-1.0               1.6.0                         2.0.8                         Ross Burton <ross.burton@intel.com>               
+wayland                       1.1.0                         1.2.91                        Ross Burton <ross.burton@intel.com>               
+clutter-gtk-1.0               1.4.2                         1.4.4                         Ross Burton <ross.burton@intel.com>               
+cairo                         1.12.14                       1.12.16                       Ross Burton <ross.burton@intel.com>               
+mtdev                         1.1.2                         1.1.4                         Ross Burton <ross.burton@intel.com>               
+weston                        1.1.0                         1.2.91                        Ross Burton <ross.burton@intel.com>               
+json-glib                     0.16.0                        0.16.2                        Ross Burton <ross.burton@intel.com>               
+libav                         0.8.8                         9.9                           Paul Eggleton <paul.eggleton@linux.intel.com>     
+openjade-native               1.3.2                         1.3.3                         Paul Eggleton <paul.eggleton@linux.intel.com>     
+openssh                       6.2p2                         6.3p1                         Paul Eggleton <paul.eggleton@linux.intel.com>     
+x264                          r2265+gitAUTOINC+585324f      r2265+gitAUTOINC+9e941d1      Paul Eggleton <paul.eggleton@linux.intel.com>     
+ethtool                       3.10                          3.11                          Paul Eggleton <paul.eggleton@linux.intel.com>     
+createrepo                    0.4.11                        0.9.9                         Paul Eggleton <paul.eggleton@linux.intel.com>     Versions after 0.9.* use YUM,...
+vala                          0.16.0                        0.22.0                        No Maintainer info                                
+clutter-1.0                   1.14.4                        1.16.0                        No Maintainer info                                
+cogl-1.0                      1.14.0                        1.16.0                        No Maintainer info                                
+bluez5                        5.7                           5.9                           No Maintainer info                                
+gsettings-desktop-schemas     3.7.3                         3.10.0                        No Maintainer info                                
+libnotify                     0.6.0                         0.7.6                         No Maintainer info                                
+at-spi2-core                  2.8.0                         2.10.0                        No Maintainer info                                
+libbsd                        0.5.2                         0.6.0                         No Maintainer info                                
+at-spi2-atk                   2.8.1                         2.10.0                        No Maintainer info                                
+xinput-calibrator             0.7.5+gitAUTOINC+c01c5af      0.7.5+gitAUTOINC+c8ba270      No Maintainer info                                
+ltp                           20130503                      20130904                      Mihai Lindner <mihaix.lindner@linux.intel.com>    
+rpm                           5.4.9                         5.4.13-0.20130819             Mark Hatle <mark.hatle@windriver.com>             
+xserver-xorg                  1.14.0                        1.14.99.1                     Laurentiu Palcu <laurentiu.palcu@intel.com>       
+xset                          1.2.2                         1.2.3                         Laurentiu Palcu <laurentiu.palcu@intel.com>       
+lttng-modules                 2.2.1+gitAUTOINC+10fe4e3      2.3.1+gitAUTOINC+9998f52      Laurentiu Palcu <laurentiu.palcu@intel.com>       
+xf86-video-intel              2.21.13                       2.99.902                      Laurentiu Palcu <laurentiu.palcu@intel.com>       
+m4                            1.4.16                        1.4.17                        Laurentiu Palcu <laurentiu.palcu@intel.com>       
+tcl                           8.6.0                         8.6.1                         Laurentiu Palcu <laurentiu.palcu@intel.com>       
+python                        2.7.3                         3.4.0a2                       Laurentiu Palcu <laurentiu.palcu@intel.com>       
+gdb                           7.6                           7.6.1                         Laurentiu Palcu <laurentiu.palcu@intel.com>       
+xinput                        1.6.0                         1.6.1                         Laurentiu Palcu <laurentiu.palcu@intel.com>       
+xmodmap                       1.0.7                         1.0.8                         Laurentiu Palcu <laurentiu.palcu@intel.com>       
+xf86-video-fbdev              0.4.3                         0.4.4                         Laurentiu Palcu <laurentiu.palcu@intel.com>       
+xprop                         1.2.1                         1.2.2                         Laurentiu Palcu <laurentiu.palcu@intel.com>       
+xinit                         1.3.2                         1.3.3                         Laurentiu Palcu <laurentiu.palcu@intel.com>       
+tcf-agent                     0.4.0+gitAUTOINC+4ef94ec      8.0+gitAUTOINC+57adad8        Laurentiu Palcu <laurentiu.palcu@intel.com>       
+fontconfig                    2.10.2                        2.10.95                       Laurentiu Palcu <laurentiu.palcu@intel.com>       
+mdadm                         3.2.6                         3.3                           Laurentiu Palcu <laurentiu.palcu@intel.com>       
+autogen-native                5.17.4                        5.17.4-5                      Laurentiu Palcu <laurentiu.palcu@intel.com>       
+bison                         2.7.1                         3.0                           Laurentiu Palcu <laurentiu.palcu@intel.com>       
+xf86-video-omap               0.4.2+gitrAUTOINC+ae0394      0.4.3+gitrAUTOINC+d48d09c     Laurentiu Palcu <laurentiu.palcu@intel.com>       
+python-pygobject              2.27.91                       3.10.0                        Laurentiu Palcu <laurentiu.palcu@intel.com>       Newer versions of python-pygo...
+subversion                    1.7.10                        1.8.3                         Laurentiu Palcu <laurentiu.palcu@intel.com>       
+xf86-video-vesa               2.3.2                         2.3.3                         Laurentiu Palcu <laurentiu.palcu@intel.com>       
+automake                      1.12.6                        1.14                          Laurentiu Palcu <laurentiu.palcu@intel.com>       
+git                           1.8.3.4                       1.8.4                         Laurentiu Palcu <laurentiu.palcu@intel.com>       
+oprofile                      0.9.8                         0.9.9                         Laurentiu Palcu <laurentiu.palcu@intel.com>       
+ghostscript                   9.07                          9.10                          Kai Kang <kai.kang@windriver.com>                 
+bind                          9.8.1                         9.9.4                         Kai Kang <kai.kang@windriver.com>                 
+libarchive                    2.8.5                         3.1.2                         Kai Kang <kai.kang@windriver.com>                 
+libsdl                        1.2.15                        1.2.15-1                      Kai Kang <kai.kang@windriver.com>                 
+qmmp                          0.6.6                         0.7.2                         Kai Kang <kai.kang@windriver.com>                 
+alsa-tools                    1.0.26.1                      1.0.27                        Kai Kang <kai.kang@windriver.com>                 
+libx11-diet                   1.6.1                         1.6.2                         Kai Kang <kai.kang@windriver.com>                 
+directfb-examples             1.6.0                         1.7.0                         Kai Kang <kai.kang@windriver.com>                 
+adt-installer                 0.1.8+svnr596                 0.1.8+svnr709                 Jessica Zhang <jessica.zhang@intel.com>           
+lsb                           4.1                           1.4                           Hongxu Jia <hongxu.jia@windriver.com>             
+trace-cmd                     1.2+gitAUTOINC+7055ffd37b     2.2.1+gitAUTOINC+0f2c2fb      Darren Hart <dvhart@linux.intel.com>              
+kernelshark                   1.2+gitAUTOINC+7055ffd37b     2.2.1+gitAUTOINC+0f2c2fb      Darren Hart <dvhart@linux.intel.com>              0.2 is the latest version.    
+elfutils                      0.148                         1.7.4                         Cristiana Voicu <cristiana.voicu@intel.com>       
+apt                           0.9.9.4                       0.9.11.4                      Cristiana Voicu <cristiana.voicu@intel.com>       
+tzdata                        2013d                         2013e                         Cristiana Voicu <cristiana.voicu@intel.com>       
+pango                         1.32.5                        1.36.0                        Cristiana Voicu <cristiana.voicu@intel.com>       Version 1.35.2 requires fontc...
+opkg                          0.1.8+svnr653                 0.1.8+svnr709                 Cristiana Voicu <cristiana.voicu@intel.com>       
+u-boot-fw-utils               2011.06                       2013.07                       Cristiana Voicu <cristiana.voicu@intel.com>       
+atk                           2.8.0                         2.10.0                        Cristiana Voicu <cristiana.voicu@intel.com>       
+imake                         1.0.5                         1.0.6                         Cristiana Voicu <cristiana.voicu@intel.com>       
+kmod                          14+gitAUTOINC+3b38c7fcb5      15+gitAUTOINC+8f67ab5         Cristiana Voicu <cristiana.voicu@intel.com>       
+systemtap                     2.3+gitAUTOINC+e58138572e     2.3+gitAUTOINC+42c2d1e        Cristiana Voicu <cristiana.voicu@intel.com>       
+libunique                     1.1.6                         3.0.2                         Cristiana Voicu <cristiana.voicu@intel.com>       Do not upgrade to version: 2....
+liburcu                       0.7.7                         0.8.0                         Cristiana Voicu <cristiana.voicu@intel.com>       
+babeltrace                    1.1+gitAUTOINC+a386e24609     1.1.1+gitAUTOINC+8b8dcf9      Cristiana Voicu <cristiana.voicu@intel.com>       
+shadow                        4.1.4.3                       4.1.5.1                       Cristiana Voicu <cristiana.voicu@intel.com>       
+at                            3.1.13                        3.1.14                        Cristiana Voicu <cristiana.voicu@intel.com>       
+mobile-broadband-provider-info20120614+gitrAUTOINC+4ed      20120614+gitrAUTOINC+c37      Cristiana Voicu <cristiana.voicu@intel.com>       
+transfig-native               3.2.5d                        3.2.5e                        Cristiana Voicu <cristiana.voicu@intel.com>       
+telepathy-mission-control     5.15.0                        5.15.1                        Cristian Iorga <cristian.iorga@intel.com>         
+gstreamer1.0-plugins-good     1.0.9                         1.2.0                         Cristian Iorga <cristian.iorga@intel.com>         
+telepathy-idle                0.1.16                        0.1.17                        Cristian Iorga <cristian.iorga@intel.com>         
+gstreamer1.0-libav            1.0.9                         1.2.0                         Cristian Iorga <cristian.iorga@intel.com>         
+tremor                        20120314                      18906                         Cristian Iorga <cristian.iorga@intel.com>         Same revision on different SV...
+qemu                          1.5.0                         1.6.0                         Cristian Iorga <cristian.iorga@intel.com>         
+bluez4                        4.101                         5.9                           Cristian Iorga <cristian.iorga@intel.com>         BlueZ 5.x is not backward-com...
+neard                         0.10+gitAUTOINC+eb486bf3      0.13+gitAUTOINC+f7694d8       Cristian Iorga <cristian.iorga@intel.com>         
+gstreamer1.0-plugins-bad      1.0.9                         1.2.0                         Cristian Iorga <cristian.iorga@intel.com>         
+dbus                          1.6.10                        1.7.4                         Cristian Iorga <cristian.iorga@intel.com>         D-BUS 1.7.x is the developmen...
+connman                       1.17                          1.18                          Cristian Iorga <cristian.iorga@intel.com>         
+harfbuzz                      0.9.19                        0.9.21                        Cristian Iorga <cristian.iorga@intel.com>         
+glib-2.0                      2.36.4                        2.38.0                        Cristian Iorga <cristian.iorga@intel.com>         2.35.8 is unstable            
+telepathy-glib                0.20.4                        0.99.1                        Cristian Iorga <cristian.iorga@intel.com>         
+iproute2                      3.10.0                        3.11.0                        Cristian Iorga <cristian.iorga@intel.com>         
+gstreamer1.0                  1.0.9                         1.2.0                         Cristian Iorga <cristian.iorga@intel.com>         
+gstreamer1.0-plugins-base     1.0.9                         1.2.0                         Cristian Iorga <cristian.iorga@intel.com>         
+db                            5.3.21                        6.0.20                        Cristian Iorga <cristian.iorga@intel.com>         API compatibility issue       
+gst-plugin-bluetooth          4.101                         5.9                           Cristian Iorga <cristian.iorga@intel.com>         
+rpcbind                       0.2.0                         0.2.1                         Cristian Iorga <cristian.iorga@intel.com>         
+gst-fluendo-mp3               0.10.19                       0.10.23                       Cristian Iorga <cristian.iorga@intel.com>         
+js                            1.7.0+1.8.0rc1                185-1.0.0                     Cristian Iorga <cristian.iorga@intel.com>         
+gstreamer1.0-plugins-ugly     1.0.9                         1.2.0                         Cristian Iorga <cristian.iorga@intel.com>         
+linux-firmware                0.0+gitAUTOINC+600caefd83     0.0+gitAUTOINC+3fe01af        Cristian Iorga <cristian.iorga@intel.com>         
+dbus-ptest                    1.6.10                        1.7.4                         Cristian Iorga <cristian.iorga@intel.com>         
+linux-libc-headers-yocto      3.4+git-AUTOINC+a1cdb607      3.4.59+git-AUTOINC+7eb5f      Bruce Ashfield <bruce.ashfield@windriver.com>     
+linux-libc-headers            3.10                          3.11.1                        Bruce Ashfield <bruce.ashfield@windriver.com>     
+kern-tools-native             0.2+gitAUTOINC+9bbdd79086     0.2+gitAUTOINC+a42509b        Bruce Ashfield <bruce.ashfield@windriver.com>     
+Upgradable Count: 132
+Upgrade Total Count: 153
+The based commit merge time is:
+Fri Oct 18 16:03:39 2013 +0100
+The based commit is:
+commit 505114c13d29799a25379f7ce720d632616d8776
+Author: Tom Zanussi <tom.zanussi@linux.intel.com>
+Date:   Wed Oct 16 15:25:41 2013 -0500
+Any problem, please contact Saul Wold <sgw@linux.intel.com> 
 
-OMAP3630/3730-GP ES1.2, CPU-OPP2, L3-165MHz, Max CPU Clock 1 Ghz
-OMAP3 Beagle board + LPDDR/NAND
-I2C:   ready
-DRAM:  512 MiB
-NAND:  0 MiB
-MMC:   OMAP SD/MMC: 0
-*** Warning - readenv() failed, using default environment
+--EVF5PPMfhYS0aIcm
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: attachment; filename="potential_format_problem.log"
 
-In:    serial
-Out:   serial
-Err:   serial
-Beagle xM Rev C
-No EEPROM on expansion board
-Die ID #158000029ff800000160a7450b02602d
-musb-hdrc: ConfigData=0xde (UTMI-8, dyn FIFOs, bulk combine, bulk split,
-HB-ISO
-Rx, HB-ISO Tx, SoftConn)
-musb-hdrc: MHDRC RTL version 1.800
-musb-hdrc: setup fifo_mode 4
-musb-hdrc: 28/31 max ep, 16384/16384 memory
-USB Peripheral mode controller at 480ab000 using PIO, IRQ 0
-Net:   usb_ether
-Hit any key to stop autoboot:  3  2  1  0
-OMAP3 beagleboard.org # l printenv
-baudrate=115200
-beaglerev=xMC
-bootcmd=mmc dev ${mmcdev}; if mmc rescan; then if run userbutton; then
-setenv bo
-otenv uEnv.txt;else setenv bootenv user.txt;fi;echo SD/MMC found on device
-${mmc
-dev};if run loadbootenv; then echo Loaded environment from ${bootenv};run
-import
-bootenv;fi;if test -n $uenvcmd; then echo Running uenvcmd ...;run
-uenvcmd;fi;if
-run loaduimage; then run mmcboot;fi;fi;run nandboot;
-bootdelay=3
-bootenv=uEnv.txt
-bootfile=uImage.beagle
-buddy=none
-camera=none
-console=ttyO2,115200n8
-defaultdisplay=dvi
-dieid#=158000029ff800000160a7450b02602d
-dvimode=640x480MR-16@60
-ethact=usb_ether
-importbootenv=echo Importing environment from mmc ...; env import -t
-$loadaddr $
-filesize
-loadaddr=0x80200000
-loadbootenv=fatload mmc ${mmcdev} ${loadaddr} ${bootenv}
-loadramdisk=fatload mmc ${mmcdev} ${rdaddr} ramdisk.gz
-loaduimage=ext2load mmc ${mmcdev}:2 ${loadaddr} /boot/uImage
-loaduimagefat=fatload mmc ${mmcdev} ${loadaddr} uImage
-mmcargs=setenv bootargs console=${console} ${optargs} mpurate=${mpurate}
-buddy=$
-{buddy} camera=${camera} vram=${vram} omapfb.mode=dvi:${dvimode}
-omapdss.def_dis
-p=${defaultdisplay} root=${mmcroot} rootfstype=${mmcrootfstype}
-mmcboot=echo Booting from mmc ...; run mmcargs; bootm ${loadaddr}
-mmcdev=0
-mmcroot=/dev/mmcblk0p2 rw
-mmcrootfstype=ext3 rootwait
-mpurate=auto
-nandargs=setenv bootargs console=${console} ${optargs} mpurate=${mpurate}
-buddy=
-${buddy} camera=${camera} vram=${vram} omapfb.mode=dvi:${dvimode}
-omapdss.def_di
-sp=${defaultdisplay} root=${nandroot} rootfstype=${nandrootfstype}
-nandboot=echo Booting from nand ...; run nandargs; nand read ${loadaddr}
-280000
-400000; bootm ${loadaddr}
-nandroot=ubi0:rootfs ubi.mtd=4
-nandrootfstype=ubifs
-ramargs=setenv bootargs console=${console} ${optargs} mpurate=${mpurate}
-buddy=$
-{buddy} vram=${vram} omapfb.mode=dvi:${dvimode}
-omapdss.def_disp=${defaultdispla
-y} root=${ramroot} rootfstype=${ramrootfstype}
-ramboot=echo Booting from ramdisk ...; run ramargs; bootm ${loadaddr}
-ramroot=/dev/ram0 rw ramdisk_size=65536 initrd=0x81000000,64M
-ramrootfstype=ext2
-rdaddr=0x81000000
-stderr=serial
-stdin=serial
-stdout=serial
-usbtty=cdc_acm
-userbutton=if gpio input 173; then run userbutton_xm; else run
-userbutton_nonxm;
- fi;
-userbutton_nonxm=gpio input 7;
-userbutton_xm=gpio input 4;
-vram=12M
+recipe_color.inc/17: RECIPE_COLOR = "green"
 
-Environment size: 2359/131068 bytes
-OMAP3 beagleboard.org #
-* - * Qodem 0.1.2 Capture Generated Sun, 20 Oct 2013 10:59:54 -0600 END * -
-*
-
-
-On Sat, Oct 19, 2013 at 1:09 PM, Rudolf Streif
-<rstreif@linuxfoundation.org>wrote:
-
-> Edward,
->
-> Your zImage is booting fine. The kernel starts and then tries to mount the
-> root file system. But it cannot find it. It's looking for a UBIFS but
-> cannot find it:
->
->
-> .
->> VFS: Cannot open root device "ubi0:rootfs" or unknown-block(0,0): error
->> -19
->> Please append a correct "root=" boot option; here are the available
->> partitions:
->> VFS: Unable to mount root fs on unknown-block(0,0)
->> User configuration error - no valid root filesystem found
->> Kernel panic - not syncing: Invalid configuration from end user prevents
->> continu
->> ing
->>
->
->  You may have had additional error messages before the ones above that you
-> copied into your e-mail such as:
->
-> UBIFS error (pid 1): ubifs_check_node: bad CRC: calculated 0xdfca80ed,
-> read 0x7b7c0f6b
-> UBIFS error (pid 1): ubifs_check_node: bad node at LEB 0:0
-> UBIFS error (pid 1): ubifs_read_node: expected node type 6
->
-> That would be an indicator that the UBIFS root file system was not created
-> correctly on your flash device. How did you create it?
->
-> Rudi
->
-
---047d7bdc0934320a5c04e92f7cc6
-Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div><div>Hello,<br></div>I see some values when I do prin=
-tenv<br><br>These are the files on my dos partition<br>MLO=A0 u-boot.img=A0=
- uEnv.txt=A0=A0=A0 zImage=A0 zImage-omap3-beagle-xm.dtb<br><br>This is what=
- I have in the uEnv.txt file <br>
-</div><br><div><br>bootcmd=3D&quot;&quot;<br>bootfile=3D&quot;zImage&quot;<=
-br>ethact=3D&quot;&quot;<br>loadaddr=3D&quot;&quot;<br>nandboot=3D&quot;&qu=
-ot;<br>nandroot=3D&quot;&quot;<br>nandrootfstype=3D&quot;&quot;<br>nandargs=
-=3D&quot;&quot;<br>
-loaduimage=3D&quot;&quot;<br>loaduimagefat=3D&quot;&quot;<br>nandboot=3D&qu=
-ot;&quot;<br>mpurate=3D&quot;auto&quot;<br>bootcmd=3D&quot;mmc rescan ; fat=
-load mmc 0:1 0x80300000 zImage; bootz 0x80300000&quot;<br>dvimode=3D&quot;h=
-d720 omapfb.vram=3D0:8M,1:4M,2:4M&quot;<br>
-optargs=3D&quot;consoleblank=3D0&quot;<br>console=3D&quot;ttyO2 console=3Dt=
-ty0,115200n8&quot;<br>vram=3D16M<br>saveenv<br>printenv<br><br>It appears t=
-hat some of variable get written with other data ie vram I am setting to 16=
-M but sometimes I see it set to 12M see at the end<br>
-I have tried setting the variables manually and executing saveenv<br>All th=
-e ones I don&#39;t want set setenv name and then saveenv<br>still see the s=
-ame values<br>when I was using uImage and no <br>this is what I used for my=
- uEnv.txt<br>
-mpurate=3Dauto<br><br>bootcmd=3D&quot;mmc rescan 0; fatload mmc 0:1 0x80300=
-000 uImage; bootm 0x80300000&quot;<br>dvimode=3D&quot;hd720 omapfb.vram=3D0=
-:8M,1:4M,2:4M&quot;<br>vram=3D16M<br>optargs=3D&quot;consoleblank=3D0&quot;=
-<br>console=3D&quot;ttyO2 console=3Dtty0,115200n8&quot;<br>
-These were the file on the dos partition<br>MLO=A0 u-boot.img=A0 uEnv.txt=
-=A0=A0=A0 uImage <br>This was on a build on 09/21/13<br></div><div>Any and =
-all help will be appreciated.<br></div><div>Thanks<br></div><div><br>U-Boot=
- SPL 2013.07 (Oct 19 2013 - 09:14:36)<br>
-OMAP SD/MMC: 0<br>reading u-boot.img<br>reading u-boot.img<br><br><br>U-Boo=
-t 2013.07 (Oct 19 2013 - 09:14:36)<br><br>OMAP3630/3730-GP ES1.2, CPU-OPP2,=
- L3-165MHz, Max CPU Clock 1 Ghz<br>OMAP3 Beagle board + LPDDR/NAND<br>I2C:=
-=A0=A0 ready<br>
-DRAM:=A0 512 MiB<br>NAND:=A0 0 MiB<br>MMC:=A0=A0 OMAP SD/MMC: 0<br>*** Warn=
-ing - readenv() failed, using default environment<br><br>In:=A0=A0=A0 seria=
-l<br>Out:=A0=A0 serial<br>Err:=A0=A0 serial<br>Beagle xM Rev C<br>No EEPROM=
- on expansion board<br>
-Die ID #158000029ff800000160a7450b02602d<br>musb-hdrc: ConfigData=3D0xde (U=
-TMI-8, dyn FIFOs, bulk combine, bulk split, HB-ISO <br>Rx, HB-ISO Tx, SoftC=
-onn)<br>musb-hdrc: MHDRC RTL version 1.800 <br>musb-hdrc: setup fifo_mode 4=
-<br>
-musb-hdrc: 28/31 max ep, 16384/16384 memory<br>USB Peripheral mode controll=
-er at 480ab000 using PIO, IRQ 0<br>Net:=A0=A0 usb_ether<br>Hit any key to s=
-top autoboot:=A0 3=A0 2=A0 1=A0 0 <br>OMAP3 <a href=3D"http://beagleboard.o=
-rg">beagleboard.org</a> # l printenv<br>
-baudrate=3D115200<br>beaglerev=3DxMC<br>bootcmd=3Dmmc dev ${mmcdev}; if mmc=
- rescan; then if run userbutton; then setenv bo<br>otenv uEnv.txt;else sete=
-nv bootenv user.txt;fi;echo SD/MMC found on device ${mmc<br>dev};if run loa=
-dbootenv; then echo Loaded environment from ${bootenv};run import<br>
-bootenv;fi;if test -n $uenvcmd; then echo Running uenvcmd ...;run uenvcmd;f=
-i;if <br>run loaduimage; then run mmcboot;fi;fi;run nandboot;<br>bootdelay=
-=3D3<br>bootenv=3DuEnv.txt<br>bootfile=3DuImage.beagle<br>buddy=3Dnone<br>c=
-amera=3Dnone<br>
-console=3DttyO2,115200n8<br>defaultdisplay=3Ddvi<br>dieid#=3D158000029ff800=
-000160a7450b02602d<br>dvimode=3D640x480MR-16@60<br>ethact=3Dusb_ether<br>im=
-portbootenv=3Decho Importing environment from mmc ...; env import -t $loada=
-ddr $<br>
-filesize<br>loadaddr=3D0x80200000<br>loadbootenv=3Dfatload mmc ${mmcdev} ${=
-loadaddr} ${bootenv}<br>loadramdisk=3Dfatload mmc ${mmcdev} ${rdaddr} ramdi=
-sk.gz<br>loaduimage=3Dext2load mmc ${mmcdev}:2 ${loadaddr} /boot/uImage<br>=
-loaduimagefat=3Dfatload mmc ${mmcdev} ${loadaddr} uImage<br>
-mmcargs=3Dsetenv bootargs console=3D${console} ${optargs} mpurate=3D${mpura=
-te} buddy=3D$<br>{buddy} camera=3D${camera} vram=3D${vram} omapfb.mode=3Ddv=
-i:${dvimode} omapdss.def_dis<br>p=3D${defaultdisplay} root=3D${mmcroot} roo=
-tfstype=3D${mmcrootfstype}<br>
-mmcboot=3Decho Booting from mmc ...; run mmcargs; bootm ${loadaddr}<br>mmcd=
-ev=3D0<br>mmcroot=3D/dev/mmcblk0p2 rw<br>mmcrootfstype=3Dext3 rootwait<br>m=
-purate=3Dauto<br>nandargs=3Dsetenv bootargs console=3D${console} ${optargs}=
- mpurate=3D${mpurate} buddy=3D<br>
-${buddy} camera=3D${camera} vram=3D${vram} omapfb.mode=3Ddvi:${dvimode} oma=
-pdss.def_di<br>sp=3D${defaultdisplay} root=3D${nandroot} rootfstype=3D${nan=
-drootfstype}<br>nandboot=3Decho Booting from nand ...; run nandargs; nand r=
-ead ${loadaddr} 280000 <br>
-400000; bootm ${loadaddr}<br>nandroot=3Dubi0:rootfs ubi.mtd=3D4<br>nandroot=
-fstype=3Dubifs<br>ramargs=3Dsetenv bootargs console=3D${console} ${optargs}=
- mpurate=3D${mpurate} buddy=3D$<br>{buddy} vram=3D${vram} omapfb.mode=3Ddvi=
-:${dvimode} omapdss.def_disp=3D${defaultdispla<br>
-y} root=3D${ramroot} rootfstype=3D${ramrootfstype}<br>ramboot=3Decho Bootin=
-g from ramdisk ...; run ramargs; bootm ${loadaddr}<br>ramroot=3D/dev/ram0 r=
-w ramdisk_size=3D65536 initrd=3D0x81000000,64M<br>ramrootfstype=3Dext2<br>r=
-daddr=3D0x81000000<br>
-stderr=3Dserial<br>stdin=3Dserial<br>stdout=3Dserial<br>usbtty=3Dcdc_acm<br=
->userbutton=3Dif gpio input 173; then run userbutton_xm; else run userbutto=
-n_nonxm;<br>=A0fi;<br>userbutton_nonxm=3Dgpio input 7;<br>userbutton_xm=3Dg=
-pio input 4;<br>
-vram=3D12M<br><br>Environment size: 2359/131068 bytes<br>OMAP3 <a href=3D"h=
-ttp://beagleboard.org">beagleboard.org</a> # <br>* - * Qodem 0.1.2 Capture =
-Generated Sun, 20 Oct 2013 10:59:54 -0600 END * - *<br></div></div><div cla=
-ss=3D"gmail_extra">
-<br><br><div class=3D"gmail_quote">On Sat, Oct 19, 2013 at 1:09 PM, Rudolf =
-Streif <span dir=3D"ltr">&lt;<a href=3D"mailto:rstreif@linuxfoundation.org"=
- target=3D"_blank">rstreif@linuxfoundation.org</a>&gt;</span> wrote:<br><bl=
-ockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #=
-ccc solid;padding-left:1ex">
-<div dir=3D"ltr">Edward,<div><br></div><div>Your zImage is booting fine. Th=
-e kernel starts and then tries to mount the root file system. But it cannot=
- find it. It&#39;s looking for a UBIFS but cannot find it:</div><div class=
-=3D"gmail_extra">
-
-<br><br><div class=3D"gmail_quote"><div class=3D"im"><blockquote class=3D"g=
-mail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left-width:1px;border-=
-left-color:rgb(204,204,204);border-left-style:solid;padding-left:1ex"><div =
-dir=3D"ltr">
-<div><div>
-.<br>
-VFS: Cannot open root device &quot;ubi0:rootfs&quot; or unknown-block(0,0):=
- error -19<br>Please append a correct &quot;root=3D&quot; boot option; here=
- are the available partitions:<br>VFS: Unable to mount root fs on unknown-b=
-lock(0,0)<br>
-
-
-User configuration error - no valid root filesystem found<br>Kernel panic -=
- not syncing: Invalid configuration from end user prevents continu<br>ing<b=
-r></div></div></div></blockquote><div><br></div></div><div>=A0You may have =
-had additional error messages before the ones above that you copied into yo=
-ur e-mail such as:</div>
-
-<div><br></div><div><span style=3D"color:rgb(51,51,51);font-family:Arial;fo=
-nt-size:12px;line-height:18px">UBIFS error (pid 1): ubifs_check_node: bad C=
-RC: calculated 0xdfca80ed, read 0x7b7c0f6b</span><br style=3D"color:rgb(51,=
-51,51);font-family:Arial;font-size:12px;line-height:18px">
-
-<span style=3D"color:rgb(51,51,51);font-family:Arial;font-size:12px;line-he=
-ight:18px">UBIFS error (pid 1): ubifs_check_node: bad node at LEB 0:0</span=
-><br style=3D"color:rgb(51,51,51);font-family:Arial;font-size:12px;line-hei=
-ght:18px">
-
-<span style=3D"color:rgb(51,51,51);font-family:Arial;font-size:12px;line-he=
-ight:18px">UBIFS error (pid 1): ubifs_read_node: expected node type 6</span=
-><br style=3D"color:rgb(51,51,51);font-family:Arial;font-size:12px;line-hei=
-ght:18px">
-
-</div><div><span style=3D"color:rgb(51,51,51);font-family:Arial;font-size:1=
-2px;line-height:18px"><br></span></div><div><span style=3D"color:rgb(51,51,=
-51);font-family:Arial;font-size:12px;line-height:18px">That would be an ind=
-icator that the UBIFS root file system was not created correctly on your fl=
-ash device. How did you create it?</span></div>
-
-<div><span style=3D"color:rgb(51,51,51);font-family:Arial;font-size:12px;li=
-ne-height:18px"><br></span></div><div><span style=3D"color:rgb(51,51,51);fo=
-nt-family:Arial;font-size:12px;line-height:18px">Rudi</span></div></div>
-</div></div>
-</blockquote></div><br></div>
-
---047d7bdc0934320a5c04e92f7cc6--
+--EVF5PPMfhYS0aIcm--
