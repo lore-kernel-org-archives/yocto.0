@@ -1,41 +1,42 @@
 Return-Path: <joe@deserted.net>
-Received: from mail-ee0-f54.google.com (mail-ee0-f54.google.com [74.125.83.54])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B31C6E0170E
-	for <yocto@yoctoproject.org>; Mon, 21 Oct 2013 13:02:02 -0700 (PDT)
-Received: by mail-ee0-f54.google.com with SMTP id e53so3941332eek.13
-	for <yocto@yoctoproject.org>; Mon, 21 Oct 2013 13:02:02 -0700 (PDT)
+Received: from mail-ee0-f52.google.com (mail-ee0-f52.google.com [74.125.83.52])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 29088E0170E
+	for <yocto@yoctoproject.org>; Mon, 21 Oct 2013 13:15:18 -0700 (PDT)
+Received: by mail-ee0-f52.google.com with SMTP id d51so1655498eek.25
+	for <yocto@yoctoproject.org>; Mon, 21 Oct 2013 13:15:17 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
 	h=x-gm-message-state:date:from:to:cc:subject:message-id:references
 	:mime-version:content-type:content-disposition:in-reply-to
 	:user-agent;
-	bh=8rY0TaZHZ4z09sbKTCNM4UkP8Q7etb2x2rCstpZ/4MA=;
-	b=ka5fA0QYfN8ZSv/BlxEfOt+yY2W/PgTMIePfyrSZ5ChkWQsV1RBpY08ZqunrkZMA5k
-	uQo+mnWGxz/JXqzOocuj5QVADBttMVz/NQ0vQy2x8YEOpZOaPF6pGlzRbe7Mdbsg9ss5
-	6X2ZOezU3h81AX7wS6M6BsxK9lfNh2OBhoikA0jzbjLJ4pWcl/6Is2FDvAFRFv2UO1vU
-	sDnzv4smwP8Aw6E+QjTfzUnI/Re+V9DXRRa/r3ox9ZXRW3tE7OXTvNY+iaoPnraYjp1F
-	0ngOF54U4SOG5ig0HdDfN3y9yk48bixoCe+n0nbRf2ci0d6A5IMfdVAe/hKc2b4e7WdY
-	bx6A==
-X-Gm-Message-State: ALoCoQn2+Eq52fpmFgN3Q9bxlJHwZY6Rd1K0fxUzDpQyCUaMJDbE2U1UPhn2/xzWZ5F4O/2lHh6u
-X-Received: by 10.14.89.7 with SMTP id b7mr24795724eef.10.1382385721910;
-	Mon, 21 Oct 2013 13:02:01 -0700 (PDT)
-Received: from deserted.net ([128.224.252.2]) by mx.google.com with ESMTPSA id
-	r48sm47555262eev.14.2013.10.21.13.01.59 for <multiple recipients>
+	bh=c7MDTl6TLXp/oq2EU0Lg5aKzSYiwPx7vkv2Nf4SWY9U=;
+	b=HYpmRhf3lUd4r8XAWS6ujP2BVMWgYf2o9tSgTzRn/NlYEcv7FxPbYNAqHA0Xu0UAzv
+	aGxr6ejtJn29oTisMjaSkEUfwyHg/Sv5UdYjINrSE6SXNMC/v92u69H8VfH++eghrD1g
+	K27Yhp+QvA/g0W8NxsY6L/nYcP21hPJCBjNgVhwrtA8BKj611PXeyOxPVkSGzljfGfo6
+	famQ4FjUDAKtBzSABiW9jVQAjQ74UTXI66xXcojpvD+70LcEmKzEcXa/Gi4tYtF+FUGA
+	xxVQJlu2I85N7AlTVRmvCg5r4DVjA+IhW4hEckZJP9YfLB/D9FGmVhzOZlab87r8HmzL
+	vSxQ==
+X-Gm-Message-State: ALoCoQnulYpC2dKNBAGGchUL2TeKCvFqIyaVCWT684qF+Pk11qcMbxCYpuXiAPdHwArgUCrB60aC
+X-Received: by 10.15.111.202 with SMTP id cj50mr4071220eeb.71.1382386517627;
+	Mon, 21 Oct 2013 13:15:17 -0700 (PDT)
+Received: from deserted.net ([128.224.252.2])
+	by mx.google.com with ESMTPSA id h45sm47751309eeg.5.2013.10.21.13.15.15
+	for <multiple recipients>
 	(version=TLSv1.2 cipher=RC4-SHA bits=128/128);
-	Mon, 21 Oct 2013 13:02:01 -0700 (PDT)
-Date: Mon, 21 Oct 2013 16:01:55 -0400
+	Mon, 21 Oct 2013 13:15:16 -0700 (PDT)
+Date: Mon, 21 Oct 2013 16:15:12 -0400
 From: Joe MacDonald <joe@deserted.net>
-To: yocto@yoctoproject.org, Philip Tricca <flihp@twobit.us>
-Message-ID: <20131021200152.GA27412@deserted.net>
-References: <1382036771-30531-1-git-send-email-flihp@twobit.us>
-	<20131021145706.GA7162@deserted.net>
+To: Philip Tricca <flihp@twobit.us>
+Message-ID: <20131021201510.GB27412@deserted.net>
+References: <1382378812-6742-1-git-send-email-flihp@twobit.us>
 MIME-Version: 1.0
-In-Reply-To: <20131021145706.GA7162@deserted.net>
+In-Reply-To: <1382378812-6742-1-git-send-email-flihp@twobit.us>
 X-URL: http://github.com/joeythesaint/joe-s-common-environment/tree/master
 X-Configuration: git://github.com/joeythesaint/joe-s-common-environment.git
 X-Editor: Vim-703 http://www.vim.org
 User-Agent: Mutt/1.5.21 (2010-09-15)
-Subject: Re: [meta-selinux][PATCH 0/5] Resend: Remove python dependency from refpol.
+Cc: yocto@yoctoproject.org
+Subject: Re: [meta-selinux][PATCH] bzip SELinux policy modules in ${datadir}
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -47,104 +48,92 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 21 Oct 2013 20:02:04 -0000
-X-Groupsio-MsgNum: 16630
+X-List-Received-Date: Mon, 21 Oct 2013 20:15:23 -0000
+X-Groupsio-MsgNum: 16631
 Content-Type: multipart/signed; micalg=pgp-sha1;
-	protocol="application/pgp-signature"; boundary="jRHKVT23PllUwdXP"
+	protocol="application/pgp-signature"; boundary="4SFOXa2GPu3tIq4H"
 Content-Disposition: inline
 
---jRHKVT23PllUwdXP
+--4SFOXa2GPu3tIq4H
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-[Re: [yocto] [meta-selinux][PATCH 0/5] Resend: Remove python dependency fro=
-m refpol.] On 13.10.21 (Mon 10:57) Joe MacDonald wrote:
+[[meta-selinux][PATCH] bzip SELinux policy modules in ${datadir}] On 13.10.=
+21 (Mon 18:06) Philip Tricca wrote:
 
-> Thought I'd best (finally) follow up to the list on this.  I've been
-> talking to Philip offline.  These are in the queue for integration but
-> some surprising things have cropped up along the way and the integration
-> is being delayed a bit.
->=20
-> I'll be grabbing the other meta-selinux update at the same time.
+> The 'semodule' utility can operate on compresed modules so the only
+> cost of this change is a slower module load time when invoking
+> 'semodule -i' on a running system (increased CPU load due to bzip2).
+> That said my tests show more than 100M reduction in ext3 image size
+> of core-image-selinux. This last metric is a bit skewed as the image
+> includes two policies. Still, a reduction in the size of the refpolicy
+> package by 1/2 is significant.
 
-Further to this, I've finished the merge of this batch and the two other
-submissions I've seen for meta-selinux today.  I haven't yet pushed them
-to meta-selinux on git.yoctoproject.org.  I'm going to let it cool off
-until at least tomorrow since this one proved to be much more
-problematic than I think it should have been.  In the meantime, I've
-pushed the pending changes to my github project:
-
-   https://github.com/joeythesaint/meta-selinux.git
-
-on the contrib/joeythesaint branch.
+This is included in the batch of updates I've merged and are currently
+staging in my tree.  FWIW, on my build I saw a similar reduction in size
+to what you've reported, ~110MB, with a minor hit at load time.  As
+expected there's also an increase in memory requirements at load time,
+so I'm poking around a bit to see what this does to the lower-end
+configurations I've got kicking around.  It'd be really nice if this was
+an option rather than an on/off thing.
 
 -J.
 
 >=20
-> -J.
+> Signed-off-by: Philip Tricca <flihp@twobit.us>
+> ---
+>  recipes-security/refpolicy/refpolicy_common.inc |    9 +++++----
+>  1 file changed, 5 insertions(+), 4 deletions(-)
 >=20
-> [[yocto] [meta-selinux][PATCH 0/5] Resend: Remove python dependency from =
-refpol.] On 13.10.17 (Thu 19:06) Philip Tricca wrote:
->=20
-> > This is a resend of an earlier patch set that never made it to the list
-> > AFAIK.
-> >=20
-> > The reference policy package currently pulls in a lot of python stuff
-> > that isn't strictly necessary to boot an SELinux system and load a
-> > policy. AFAIK this is caused by the mix of python and C utilities in
-> > policycoreutils.
-> >=20
-> > This patch set breaks the policycoreutils recipe up into multiple
-> > packages, one for each utility. In this way we can have the refpol etc
-> > pull in only the utilities necessary for normal operation. This happens
-> > to be only the utilities written in C and thus we can remove python
-> > completely in a minimal image.
-> >=20
-> > I've attempted to localize these changes as much as possible so this
-> > patch set should have minimal impact on recipes outside of the
-> > policycoreutils. An example image reicpe is added to demonstrate a
-> > minimal image with only the utilities required to load a policy and
-> > manipulate the policy store (add / remove policy modules) at runtime.
-> >=20
-> > Regards,
-> > - Philip
-> >=20
-> > Philip Tricca (5):
-> >  Break policycoreutils out into separate
-> >  Remove unnecessary RDEPENDS_${BPN}.
-> >  Remove runtime dependency on
-> >  Add packagegroup and image recipe for
-> >  Add packagegroup for policycoreutils
-> >=20
-> >  .../images/core-image-selinux-minimal.bb           |   15 ++
-> >  .../packagegroups/packagegroup-core-selinux.bb     |    4 +-
-> >  .../packagegroups/packagegroup-selinux-minimal.bb  |   26 +++
-> >  .../packagegroup-selinux-policycoreutils.bb        |   36 ++++
-> >  recipes-security/refpolicy/refpolicy_common.inc    |    2 +-
-> >  recipes-security/selinux/policycoreutils.inc       |  179 ++++++++++++=
-+++++--
-> >  6 files changed, 245 insertions(+), 17 deletions(-)
-> >=20
-> > _______________________________________________
-> > yocto mailing list
-> > yocto@yoctoproject.org
-> > https://lists.yoctoproject.org/listinfo/yocto
->=20
+> diff --git a/recipes-security/refpolicy/refpolicy_common.inc b/recipes-se=
+curity/refpolicy/refpolicy_common.inc
+> index 873d887..0ca0b9d 100644
+> --- a/recipes-security/refpolicy/refpolicy_common.inc
+> +++ b/recipes-security/refpolicy/refpolicy_common.inc
+> @@ -12,7 +12,7 @@ SRC_URI +=3D "file://customizable_types \
+>  S =3D "${WORKDIR}/refpolicy"
+> =20
+>  FILES_${PN} =3D "${sysconfdir}/selinux/${POLICY_NAME}/ \
+> -	${datadir}/selinux/${POLICY_NAME}/*.pp"
+> +	${datadir}/selinux/${POLICY_NAME}/*.pp.bz2"
+>  FILES_${PN}-dev =3D+ "${datadir}/selinux/${POLICY_NAME}/include/"
+> =20
+>  DEPENDS +=3D "checkpolicy-native policycoreutils-native m4-native"
+> @@ -67,11 +67,12 @@ EOF
+>  	mkdir -p ${D}${sysconfdir}/selinux/${POLICY_NAME}/modules/active/modules
+>  	mkdir -p ${D}${sysconfdir}/selinux/${POLICY_NAME}/contexts/files
+>  	touch ${D}${sysconfdir}/selinux/${POLICY_NAME}/contexts/files/file_cont=
+exts.local
+> -	bzip2 -c ${D}${datadir}/selinux/${POLICY_NAME}/base.pp  > \
+> -		${D}${sysconfdir}/selinux/${POLICY_NAME}/modules/active/base.pp
+>  	for i in ${D}${datadir}/selinux/${POLICY_NAME}/*.pp; do
+> +		bzip2 $i
+>  		if [ "`basename $i`" !=3D "base.pp" ]; then
+> -			bzip2 -c $i > ${D}${sysconfdir}/selinux/${POLICY_NAME}/modules/active=
+/modules/`basename $i`;
+> +			cp ${i}.bz2 ${D}${sysconfdir}/selinux/${POLICY_NAME}/modules/active/m=
+odules/`basename $i`
+> +		else
+> +			cp ${i}.bz2 ${D}${sysconfdir}/selinux/${POLICY_NAME}/modules/active/`=
+basename $i`
+>  		fi
+>  	done
+> =20
 --=20
 -Joe MacDonald.
 :wq
 
---jRHKVT23PllUwdXP
+--4SFOXa2GPu3tIq4H
 Content-Type: application/pgp-signature; name="signature.asc"
 Content-Description: Digital signature
 
 -----BEGIN PGP SIGNATURE-----
 Version: GnuPG v1.4.12 (GNU/Linux)
 
-iEYEARECAAYFAlJliDAACgkQwFvcllog0XyPzgCdGdYEFM52nLvTX9a0ocEz81Kn
-6xoAn2LJqV2cBti4UngelIAUk/0rav2/
-=Owuq
+iEYEARECAAYFAlJli04ACgkQwFvcllog0XxSogCfXBpbDAYffn9jNwQQzBprGv/X
+42AAn1vrP5L6f8FZ/jCeRVRPFD1qfw6M
+=arQT
 -----END PGP SIGNATURE-----
 
---jRHKVT23PllUwdXP--
+--4SFOXa2GPu3tIq4H--
