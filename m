@@ -1,28 +1,22 @@
-Return-Path: <katutxakurra@gmail.com>
-Received: from mail-ie0-f177.google.com (mail-ie0-f177.google.com
-	[209.85.223.177])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7B8A5E01715
-	for <yocto@yoctoproject.org>; Mon, 21 Oct 2013 00:43:00 -0700 (PDT)
-Received: by mail-ie0-f177.google.com with SMTP id e14so10891398iej.36
-	for <yocto@yoctoproject.org>; Mon, 21 Oct 2013 00:42:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=MSGtUCubv+/uPt4IBLVaGA03zFXDfQwjOVhV2syBOlI=;
-	b=XcapCqtBEylL5fC8m0nJhcQzGHv/wxuN7dC2d60h5ZVCRr+owmviYDuZXy5mBCFeZS
-	tW8zTR3KRAJMrniXW1wx4cJieiDVpzIt+FOv33Pr/vH2kjOpk89pauawC+Wvi5/gV8Qk
-	O1L9nbpJ65/UQ7b7J7ym5KDCr1kAIZ6mZ12LS2Df2zs0U36kPIAQu/KaiV+r8A68xq9H
-	OhFBGuVGMoSb78Fz3MoIyArXuzsFRrYztlZibJVKjJDYcMuD+hJ5eOcW4Bm8LorUOYqf
-	bXnEI+K8Rivs2YAbO14A2znfq7HIcqUe4nq5ex1nG3E6lp3XmWISBrHsK9K8q2eosGp/
-	cvBg==
+Return-Path: <Maxin.John@enea.com>
+Received: from mx-3.enea.com (sestofw01.enea.se [192.36.1.252])
+	by yocto-www.yoctoproject.org (Postfix) with SMTP id 4CA2CE01724
+	for <yocto@yoctoproject.org>; Mon, 21 Oct 2013 02:21:21 -0700 (PDT)
+Received: from sestofb10.enea.se (172.21.3.145) by smtp.enea.com
+	(172.21.1.209) with Microsoft SMTP Server id 14.2.318.1;
+	Mon, 21 Oct 2013 11:21:16 +0200
+Received: by sestofb10.enea.se (Postfix, from userid 4454)	id C861A28C6F4;
+	Mon, 21 Oct 2013 11:21:16 +0200 (CEST)
+From: <maxin.john@enea.com>
+To: <scott.m.rifenbark@intel.com>
+Date: Mon, 21 Oct 2013 11:21:15 +0200
+Message-ID: <1382347275-39633-1-git-send-email-maxin.john@enea.com>
+X-Mailer: git-send-email 1.7.10.4
 MIME-Version: 1.0
-X-Received: by 10.50.153.50 with SMTP id vd18mr8363756igb.6.1382341378901;
-	Mon, 21 Oct 2013 00:42:58 -0700 (PDT)
-Received: by 10.50.231.161 with HTTP; Mon, 21 Oct 2013 00:42:58 -0700 (PDT)
-Date: Mon, 21 Oct 2013 08:42:58 +0100
-Message-ID: <CAM1ZcoXu8kWs2ZuQ=n8wvdtw2kjRuSTR6B0=M58oDaiVHd2djQ@mail.gmail.com>
-From: Katu Txakur <katutxakurra@gmail.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Makefile based package with Makefile in a subdir
+Received-SPF: None (SESTOEX03.enea.se: maxin.john@enea.com does not
+	designate permitted sender hosts)
+Cc: yocto@yoctoproject.org
+Subject: [PATCH] adt-manual: Added note for static binary build.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,43 +28,40 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 21 Oct 2013 07:43:06 -0000
-Content-Type: multipart/alternative; boundary=089e013a009ed9127504e93b6e7a
+X-List-Received-Date: Mon, 21 Oct 2013 09:21:24 -0000
+Content-Type: text/plain
 
---089e013a009ed9127504e93b6e7a
-Content-Type: text/plain; charset=ISO-8859-1
+From: "Maxin B. John" <maxin.john@enea.com>
 
-Hi,
+Fixes [YOCTO #5347]
 
-I have a recipe that fetches the code from git. I want to run the makefile
-located in a subdir of the the repo with the flags and options defined in
-it.
-Bitbake cannot find the makefile. I've tried adding
+SDK created using the "-c populate_sdk" will not support static
+binary build without proper staticdev library packages. I have
+added a note to inform the user about this limitation.
 
-EXTRA_OEMAKE += "-I${S}/include -C${MAKEFILE_FOLDER}"
+Signed-off-by: Maxin B. John <maxin.john@enea.com>
+---
+ documentation/adt-manual/adt-prepare.xml |    6 ++++++
+ 1 file changed, 6 insertions(+)
 
-but I'm still getting
+diff --git a/documentation/adt-manual/adt-prepare.xml b/documentation/adt-manual/adt-prepare.xml
+index 3c50cf9..3333cc4 100644
+--- a/documentation/adt-manual/adt-prepare.xml
++++ b/documentation/adt-manual/adt-prepare.xml
+@@ -573,6 +573,12 @@
+          When the BitBake command completes, the toolchain installer will be in
+          <filename>tmp/deploy/sdk</filename> in the Build Directory.
+      </para>
++     <para>
++	Please note that we can't build static binaries with this toolchain.
++	To do that, include the suitable staticdev libraries to the image. eg:
++	<filename>IMAGE_INSTALL_append = " eglibc-staticdev"</filename>
++	in the <filename>local.conf</filename> file.
++     </para>
+ </section>
+ 
+ </chapter>
+-- 
+1.7.10.4
 
-make: *** No targets specified and no makefile found.  Stop.
 
-What am I doing wrong?
-
-Thanks,
-Katu
-
---089e013a009ed9127504e93b6e7a
-Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div><div><div><div><div><div>Hi,<br><br></div>I have a re=
-cipe that fetches the code from git. I want to run the makefile located in =
-a subdir of the the repo with the flags and options defined in it. <br></di=
-v>
-Bitbake cannot find the makefile. I&#39;ve tried adding<br><br>EXTRA_OEMAKE=
- +=3D &quot;-I${S}/include -C${MAKEFILE_FOLDER}&quot;<br><br></div>but I&#3=
-9;m still getting<br><br>make: *** No targets specified and no makefile fou=
-nd.=A0 Stop.<br>
-<br></div>What am I doing wrong?<br><br></div>Thanks,<br></div>Katu<br></di=
-v>
-
---089e013a009ed9127504e93b6e7a--
