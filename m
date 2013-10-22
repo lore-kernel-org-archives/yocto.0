@@ -1,41 +1,26 @@
-Return-Path: <rohit.borse@einfochips.com>
-Received: from out03.sjc.mx.trendmicro.com (out03.sjc.mx.trendmicro.com
-	[216.99.131.7])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2A919E0163E
-	for <yocto@yoctoproject.org>; Tue, 22 Oct 2013 07:00:59 -0700 (PDT)
-Received: from relay09.sjc.mx.trendmicro.com (unknown [10.30.239.9])
-	by out03.sjc.mx.trendmicro.com (Postfix) with ESMTP id D6AF3211450
-	for <yocto@yoctoproject.org>; Tue, 22 Oct 2013 14:00:41 +0000 (UTC)
-Received: from pune.einfochips.com (unknown [121.241.186.85])
-	by relay09.sjc.mx.trendmicro.com (Postfix) with ESMTP id 224C598043B
-	for <yocto@yoctoproject.org>; Tue, 22 Oct 2013 14:00:41 +0000 (UTC)
-Received: from localhost (localhost.localdomain [127.0.0.1])
-	by pune.einfochips.com (Postfix) with ESMTP id 73DA34DE0002
-	for <yocto@yoctoproject.org>; Tue, 22 Oct 2013 19:45:43 +0530 (IST)
-X-Virus-Scanned: amavisd-new at pune.einfochips.com
-Received: from pune.einfochips.com ([127.0.0.1])
-	by localhost (pune.einfochips.com [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id JYA5qaTPw874 for <yocto@yoctoproject.org>;
-	Tue, 22 Oct 2013 19:45:43 +0530 (IST)
-Received: from [10.110.2.106] (unknown [10.110.2.106])
-	by pune.einfochips.com (Postfix) with ESMTPSA id 4FD304DE0001
-	for <yocto@yoctoproject.org>; Tue, 22 Oct 2013 19:45:43 +0530 (IST)
-Message-ID: <5266850B.7060005@einfochips.com>
-Date: Tue, 22 Oct 2013 19:30:43 +0530
-From: Rohit Borse <rohit.borse@einfochips.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:17.0) Gecko/20130623 Thunderbird/17.0.7
+Return-Path: <bevenson@melinkcorp.com>
+Received: from pluto.melinkcorp.com (rrcs-98-100-91-244.central.biz.rr.com
+	[98.100.91.244])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F371FE01638
+	for <yocto@yoctoproject.org>; Tue, 22 Oct 2013 07:03:29 -0700 (PDT)
+Received: from pluto.melinkcorp.local ([10.0.2.4]) by pluto.melinkcorp.local
+	([10.0.2.4]) with mapi; Tue, 22 Oct 2013 10:03:29 -0400
+From: Bryan Evenson <bevenson@melinkcorp.com>
+To: "Burton, Ross" <ross.burton@intel.com>
+Date: Tue, 22 Oct 2013 10:00:30 -0400
+Thread-Topic: [yocto] Can't get DEPENDS to trigger glib-2.0 or util-linux build
+Thread-Index: Ac7PLZ+2pARRnOwLQWG6GU8wBx2toAAASJKw
+Message-ID: <91586D499ADFD74FBCFB8425266A5DE40153B8ED02F8@pluto.melinkcorp.local>
+References: <91586D499ADFD74FBCFB8425266A5DE40153B8ED02D3@pluto.melinkcorp.local>
+	<CAJTo0LY3HKpg9WTQTva5McVRVY57Zov+ifVbEO+FBQ7_Z9C=qQ@mail.gmail.com>
+In-Reply-To: <CAJTo0LY3HKpg9WTQTva5McVRVY57Zov+ifVbEO+FBQ7_Z9C=qQ@mail.gmail.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+acceptlanguage: en-US
 MIME-Version: 1.0
-To: yocto <yocto@yoctoproject.org>
-X-TM-AS-Product-Ver: IMHS-1.0.0.1427-7.0.0.1014-20234.007
-X-TM-AS-Result: No--4.9501-5.0-31-10
-X-TM-AS-Result-Detail: Spam:No-Score:-4.9501-Baseline:ModeratelyHigh-Other:Lowest
-X-TMASE-MatchedRID: 2UwwcHKl5CEV3w3L8QuNEGYNYtsE5knDnF8rflXuiRUCsxyhR8y7CQJa
-	2Xd8YTV/xx1xwhF6KWqGEieI401D3TfO5GuBbEYYEzQnFLEeMUkE5D6PipCVdPoLR4+zsDTtjoc
-	zmuoPCq1zlmdijqMbB/8CAU/4n3zicO89iAS5C+R1htABp5144az01pew6gJ4iQFwYYAcN3wS5F
-	0/KLibAuIZDQFWoeJtD4qI7hld8XiwFMlIPaIBbQ==
-X-TM-Deliver-Signature: d6da8ae2097dbcd831b6a4817b8ded0d
-Subject: Customizing u-boot,kernel and rootfs
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Can't get DEPENDS to trigger glib-2.0 or util-linux build
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -47,23 +32,19 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 22 Oct 2013 14:01:02 -0000
-Content-Type: text/plain;
-	charset="ISO-8859-1";
-	format="flowed"
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Tue, 22 Oct 2013 14:03:30 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-Hi,
-      I need to customize u-boot, kernel and root file system for my 
-Bluegiga-APx4 board using bitbake platform. Does yocto has any 
-documentation or steps to configure and build customized BSP using 
-bitbake for Bluegiga-APx4 module?
-
-Regards,
-Rohit Borse
-
----------------------------------------------------------------------------------------------
-Notice: 
-This message has been scanned by Trend Micro Mail Security scanner and is believed to be clean
----------------------------------------------------------------------------------------------
+Um9zcywNCg0KPiAtLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KPiBGcm9tOiBCdXJ0b24sIFJv
+c3MgW21haWx0bzpyb3NzLmJ1cnRvbkBpbnRlbC5jb21dDQo+IFNlbnQ6IFR1ZXNkYXksIE9jdG9i
+ZXIgMjIsIDIwMTMgOTo1MCBBTQ0KPiBUbzogQnJ5YW4gRXZlbnNvbg0KPiBDYzogeW9jdG9AeW9j
+dG9wcm9qZWN0Lm9yZw0KPiBTdWJqZWN0OiBSZTogW3lvY3RvXSBDYW4ndCBnZXQgREVQRU5EUyB0
+byB0cmlnZ2VyIGdsaWItMi4wIG9yIHV0aWwtDQo+IGxpbnV4IGJ1aWxkDQo+IA0KPiBPbiAyMiBP
+Y3RvYmVyIDIwMTMgMTQ6NDQsIEJyeWFuIEV2ZW5zb24gPGJldmVuc29uQG1lbGlua2NvcnAuY29t
+Pg0KPiB3cm90ZToNCj4gPiBERVBFTkRTXyR7UE59ID0gInZpcnR1YWwva2VybmVsIGdsaWItMi4w
+IHV0aWwtbGludXgiDQo+IA0KPiBCdWlsZCBkZXBlbmRlbmNpZXMgYXJlIG5vdCBwYWNrYWdlLXNw
+ZWNpZmljLCBzbyBqdXN0IHVzZSBERVBFTkRTID0NCj4gIi4uLiIuDQo+IA0KPiBSb3NzDQoNCkFo
+LCB0aGF0IHdvcmtzIGEgbG90IGJldHRlciENCg0KVGhhbmtzLA0KQnJ5YW4NCg==
 
