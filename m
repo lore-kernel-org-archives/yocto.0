@@ -1,27 +1,27 @@
 Return-Path: <scott.m.rifenbark@intel.com>
-Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B6D58E01688
-	for <yocto@yoctoproject.org>; Tue, 22 Oct 2013 08:45:16 -0700 (PDT)
-Received: from azsmga002.ch.intel.com ([10.2.17.35])
-	by azsmga102.ch.intel.com with ESMTP; 22 Oct 2013 08:45:15 -0700
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A96F7E0172B
+	for <yocto@yoctoproject.org>; Tue, 22 Oct 2013 09:18:52 -0700 (PDT)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga101.jf.intel.com with ESMTP; 22 Oct 2013 09:18:52 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.93,535,1378882800"; d="scan'208";a="311149436"
-Received: from orsmsx109.amr.corp.intel.com ([10.22.240.7])
-	by AZSMGA002.ch.intel.com with ESMTP; 22 Oct 2013 08:45:15 -0700
-Received: from orsmsx116.amr.corp.intel.com (10.22.240.14) by
-	ORSMSX109.amr.corp.intel.com (10.22.240.7) with Microsoft SMTP Server
-	(TLS) id 14.3.123.3; Tue, 22 Oct 2013 08:45:15 -0700
+X-IronPort-AV: E=Sophos;i="4.93,535,1378882800"; d="scan'208";a="396831455"
+Received: from orsmsx107.amr.corp.intel.com ([10.22.240.5])
+	by orsmga001.jf.intel.com with ESMTP; 22 Oct 2013 09:18:52 -0700
+Received: from orsmsx158.amr.corp.intel.com (10.22.240.20) by
+	ORSMSX107.amr.corp.intel.com (10.22.240.5) with Microsoft SMTP Server
+	(TLS) id 14.3.123.3; Tue, 22 Oct 2013 09:18:51 -0700
 Received: from orsmsx101.amr.corp.intel.com ([169.254.8.126]) by
-	ORSMSX116.amr.corp.intel.com ([10.22.240.14]) with mapi id
-	14.03.0123.003; Tue, 22 Oct 2013 08:45:14 -0700
+	ORSMSX158.amr.corp.intel.com ([169.254.10.67]) with mapi id
+	14.03.0123.003; Tue, 22 Oct 2013 09:18:51 -0700
 From: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
 To: "Robert P. J. Day" <rpjday@crashcourse.ca>, Yocto discussion list
 	<yocto@yoctoproject.org>
 Thread-Topic: missing reference to "-ptest" packages for packagegroups in
 	dev manual?
-Thread-Index: AQHOzMXBBcA/lj8/O0i9MwyUqKm1F5oA4bsA
-Date: Tue, 22 Oct 2013 15:45:14 +0000
-Message-ID: <41DEA4B02DBDEF40A0F3B6D0DDB1237983F406C1@ORSMSX101.amr.corp.intel.com>
+Thread-Index: AQHOzMXBBcA/lj8/O0i9MwyUqKm1F5oA6czA
+Date: Tue, 22 Oct 2013 16:18:51 +0000
+Message-ID: <41DEA4B02DBDEF40A0F3B6D0DDB1237983F406E4@ORSMSX101.amr.corp.intel.com>
 References: <alpine.DEB.2.02.1310190818360.23665@oneiric>
 In-Reply-To: <alpine.DEB.2.02.1310190818360.23665@oneiric>
 Accept-Language: en-US
@@ -41,12 +41,15 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 22 Oct 2013 15:45:17 -0000
+X-List-Received-Date: Tue, 22 Oct 2013 16:18:53 -0000
 Content-Language: en-US
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-Looks that way.  Thanks Robert.
+This issue is fixed for future versions of the dev-manual.=20
+
+Thanks,=20
+Scott
 
 >-----Original Message-----
 >From: Robert P. J. Day [mailto:rpjday@crashcourse.ca]
