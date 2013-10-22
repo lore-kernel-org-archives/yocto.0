@@ -1,35 +1,42 @@
-Return-Path: <scott.m.rifenbark@intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A96F7E0172B
-	for <yocto@yoctoproject.org>; Tue, 22 Oct 2013 09:18:52 -0700 (PDT)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga101.jf.intel.com with ESMTP; 22 Oct 2013 09:18:52 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.93,535,1378882800"; d="scan'208";a="396831455"
-Received: from orsmsx107.amr.corp.intel.com ([10.22.240.5])
-	by orsmga001.jf.intel.com with ESMTP; 22 Oct 2013 09:18:52 -0700
-Received: from orsmsx158.amr.corp.intel.com (10.22.240.20) by
-	ORSMSX107.amr.corp.intel.com (10.22.240.5) with Microsoft SMTP Server
-	(TLS) id 14.3.123.3; Tue, 22 Oct 2013 09:18:51 -0700
-Received: from orsmsx101.amr.corp.intel.com ([169.254.8.126]) by
-	ORSMSX158.amr.corp.intel.com ([169.254.10.67]) with mapi id
-	14.03.0123.003; Tue, 22 Oct 2013 09:18:51 -0700
-From: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
-To: "Robert P. J. Day" <rpjday@crashcourse.ca>, Yocto discussion list
-	<yocto@yoctoproject.org>
-Thread-Topic: missing reference to "-ptest" packages for packagegroups in
-	dev manual?
-Thread-Index: AQHOzMXBBcA/lj8/O0i9MwyUqKm1F5oA6czA
-Date: Tue, 22 Oct 2013 16:18:51 +0000
-Message-ID: <41DEA4B02DBDEF40A0F3B6D0DDB1237983F406E4@ORSMSX101.amr.corp.intel.com>
-References: <alpine.DEB.2.02.1310190818360.23665@oneiric>
-In-Reply-To: <alpine.DEB.2.02.1310190818360.23665@oneiric>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.139]
+Return-Path: <mikelewis@alphalem.com>
+Received: from oproxy7-pub.mail.unifiedlayer.com
+	(oproxy7-pub.mail.unifiedlayer.com [67.222.55.9])
+	by yocto-www.yoctoproject.org (Postfix) with SMTP id AD865E0173E
+	for <yocto@yoctoproject.org>; Tue, 22 Oct 2013 09:23:03 -0700 (PDT)
+Received: (qmail 26598 invoked by uid 0); 22 Oct 2013 16:23:02 -0000
+Received: from unknown (HELO box891.bluehost.com) (69.195.124.91)
+	by oproxy7.mail.unifiedlayer.com with SMTP; 22 Oct 2013 16:23:02 -0000
+Received: from [24.130.51.221] (port=50591 helo=[10.0.0.10])
+	by box891.bluehost.com with esmtpsa (TLSv1:CAMELLIA256-SHA:256)
+	(Exim 4.80) (envelope-from <mikelewis@alphalem.com>)
+	id 1VYejV-0006vn-V0; Tue, 22 Oct 2013 10:23:02 -0600
+Message-ID: <5266A665.8030303@alphalem.com>
+Date: Tue, 22 Oct 2013 09:23:01 -0700
+From: Mike Lewis <mikelewis@alphalem.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:17.0) Gecko/20130827 Icedove/17.0.8
 MIME-Version: 1.0
-Subject: Re: missing reference to "-ptest" packages for packagegroups in dev manual?
+To: bruce.ashfield@windriver.com
+References: <CAMCfZKFBvSiRSMk5wrEpSEiNNiZeHJw18fbHgHzepo__U=UWNA@mail.gmail.com>
+	<CA+gsK-o6n24Aqp2dtpOwnmrCBjWE=HDSJvfqyYy2pvJYrHqXmQ@mail.gmail.com>
+	<CAAQYJAu+wU0ODvVoTrRBFhVOUVh+CdMg3mimfgGkj-pwJh3A1g@mail.gmail.com>
+	<CAMCfZKF_Rp=uds8tnDPSD9k3GO5dEiHSx9WfYjZ0yPkmh_9YPg@mail.gmail.com>
+	<CAMCfZKFh8iJH4655mzFveFYfz8ebLXkGftSa-MR5mEcMEFV8Vw@mail.gmail.com>
+	<CADkTA4MgxmiOofDLynbOLR=hV-KQ1ic+Eagjm0yetYOtB6FJzw@mail.gmail.com>
+	<CAMCfZKF3aHG4wFMRx2XcdroJJ6ga5v6KHF5DbBTWV7jXOGNX-g@mail.gmail.com>
+	<525FDD08.90400@windriver.com>
+	<CAMCfZKHz82sPsHXjqxbFDJjFNi7ck+BS=_OtyGmb2FYDAxoe1A@mail.gmail.com>
+	<525FE3C9.3070003@windriver.com>
+	<CAMCfZKGUYAcO5FtOKC9iP_XZjRxJ_Xq12ERN=BL_JHA7FJW51w@mail.gmail.com>
+	<5260BDA6.4020807@windriver.com>
+	<CAMCfZKFf3iJCyjMgGQ=y6ng6Kh3_MeEMymgZTE=bTnLpBGN9Mg@mail.gmail.com>
+	<5261974C.7010202@windriver.com>
+In-Reply-To: <5261974C.7010202@windriver.com>
+X-Identified-User: {2749:box891.bluehost.com:alphalem:alphalem.com}
+	{sentby:smtp auth 24.130.51.221 authed with
+	mikelewis+alphalem.com}
+Cc: yocto@yoctoproject.org
+Subject: Re: Custom defconfig is not used
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,57 +48,104 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 22 Oct 2013 16:18:53 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Tue, 22 Oct 2013 16:23:03 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
 
-This issue is fixed for future versions of the dev-manual.=20
+Hi Bruce,
 
-Thanks,=20
-Scott
+I'm trying to accomplish the nearly the same thing (i.e. adding config 
+fragment) and I'm having the same issue at the do_patch step. Were you 
+able to reproduce this on your end?
 
->-----Original Message-----
->From: Robert P. J. Day [mailto:rpjday@crashcourse.ca]
->Sent: Saturday, October 19, 2013 5:21 AM
->To: Yocto discussion list
->Cc: Rifenbark, Scott M
->Subject: missing reference to "-ptest" packages for packagegroups in dev
->manual?
+Thanks,
+Mike
+
+On 10/18/2013 01:17 PM, Bruce Ashfield wrote:
+> On 13-10-18 05:17 AM, Diego Sueiro wrote:
+>>
+>> 2013/10/18 Bruce Ashfield <bruce.ashfield@windriver.com
+>> <mailto:bruce.ashfield@windriver.com>>
+>>
+>>     I fell behind today .. i had 2300 unread email to start this 
+>> morning :)
+>>     Is there a way that I can get a copy of your recipes and layers ? If
+>>     I can do a build myself, I can easily debug and fix this ..
+>>     otherwise, we'll
+>>     go back and forth many times debugging.
+>>
+>>     Cheers,
+>>
+>>     Bruce
+>>
+>>
+>> I'm using the environment provided by Angstrom from it's github setup
+>> scripts.
+>> If you want to exactly reproduce it you need to:
+>>
+>>     git clone https://github.com/Angstrom-distribution/setup-scripts.git
+>>     cd setup-scripts
+>>     git checkout angstrom-v2013.06-yocto1.4
+>>     MACHINE=beaglebone ./oebb.sh config beaglebone
+>>
+>> Here is the setup and files for meta-mine:
+>>
+>> bblayers.conf:
+>>
+>>     BBLAYERS = \"
+>>
+>>         ...
+>>         ${TOPDIR}/sources/meta-mine \
+>>         "
+>>
+>> meta-mine/conf/layer.conf:
+>>
+>>     # We have a conf and classes directory, append to BBPATH
+>>     BBPATH .= ":${LAYERDIR}"
+>>     # We have a recipes directory, add to BBFILES
+>>     BBFILES += "${LAYERDIR}/recipes*/*/*.bb
+>>     ${LAYERDIR}/recipes*/*/*.bbappend"
+>>     BBFILE_COLLECTIONS += "mine-layer"
+>>     BBFILE_PATTERN_mine-layer := "^${LAYERDIR}/"
+>>     BBFILE_PRIORITY_mine-layer = "10"
+>>     LAYERDEPENDS_mine-layer = "angstrom-layer"
+>>
+>> meta-mine/recipes-kernel/linux/linux-mainline_3.8.bbappend:
+>>
+>>     FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}-3.8:"
+>>     inherit kernel
+>>     require recipes-kernel/linux/linux-yocto.inc
+>>     COMPATIBLE_MACHINE_beaglebone = "(beaglebone)"
+>>     SRC_URI += " file://config-addons.cfg "
+>>
+>> meta-mine/recipes-kernel/linux/linux-mainline-3.8/config-addons.cfg:
+>>
+>>     CONFIG_WATCHDOG_NOWAYOUT=y
+>>     CONFIG_NTFS_FS=y
+>>     CONFIG_NTFS_RW=y
+>>
+>>
+>>
+>> But I think that instead of using the whole Angstrom you can just use
+>> poky and meta-beagleboard/common-bsp on dylan branch.
 >
+> Great. I'll launch some test builds and see what breaks (or works) :)
 >
->  section 5.2.2 in current yocto dev manual reads:
+> Bruce
 >
->"inherit packagegroup sets appropriate default values and automatically ad=
-ds
->-dev and -dbg complementary packages for every package specified in
->PACKAGES."
+>>
+>>
+>> Regards,
+>>
+>> -- 
+>> *dS
+>> Diego Sueiro
+>>
+>> /*long live rock 'n roll*/
 >
->  but oe core's packagegroup.bbclass contains the snippet:
->
->        for postfix in ['-dbg', '-dev', '-ptest']:
->            genpackages.append(pkg+postfix)
->
->so should that explanation also not mention the "-ptest" complementary
->package being added as well?
->
->rday
->
->--
->
->=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
->=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
->Robert P. J. Day                                 Ottawa, Ontario, CANADA
->                        http://crashcourse.ca
->
->Twitter:                                       http://twitter.com/rpjday
->LinkedIn:                               http://ca.linkedin.com/in/rpjday
->=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
->=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
->
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
 
