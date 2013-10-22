@@ -1,24 +1,22 @@
-Return-Path: <prvs=0005833aa=Richard.Leitner@skidata.com>
-Received: from mail1.skidata.com (mail1.skidata.com [91.230.2.99])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 459B6E01736
-	for <yocto@yoctoproject.org>; Tue, 22 Oct 2013 04:55:52 -0700 (PDT)
-X-IronPort-Anti-Spam-Filtered: true
-X-IronPort-Anti-Spam-Result: AqIEADFnZlKsEApK/2dsb2JhbABZgz9UvkiBPHSCJQEBAQQBAQE3NBcEAgEIDQQEAQELFAkHHwgBChQJCAEBBBMIiAMIuwMEjXsBgRk4BoMZgQoDjlOGaYkvjkmBaEI
-From: Richard Leitner - SKIDATA <Richard.Leitner@skidata.com>
-To: "Yocto Project Discussion ML (yocto@yoctoproject.org)"
-	<yocto@yoctoproject.org>
-Thread-Topic: [psplash][PATCH] Add option to read message from file
-Thread-Index: Ac6+pHIymGSUvZ+1TVuSvsCdsMelrwQeIzcg
-Date: Tue, 22 Oct 2013 11:55:48 +0000
-Message-ID: <F7680723A1CA6840825A59020FA77064FB43D1@sdexmbx1srv.skidata.net>
-References: <F7680723A1CA6840825A59020FA77064FAEF32@sdexmbx1srv.skidata.net>
-In-Reply-To: <F7680723A1CA6840825A59020FA77064FAEF32@sdexmbx1srv.skidata.net>
-Accept-Language: en-US, de-AT
+Return-Path: <bevenson@melinkcorp.com>
+Received: from pluto.melinkcorp.com (rrcs-98-100-91-244.central.biz.rr.com
+	[98.100.91.244])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C6B17E01638
+	for <yocto@yoctoproject.org>; Tue, 22 Oct 2013 06:47:05 -0700 (PDT)
+Received: from pluto.melinkcorp.local ([10.0.2.4]) by pluto.melinkcorp.local
+	([10.0.2.4]) with mapi; Tue, 22 Oct 2013 09:47:04 -0400
+From: Bryan Evenson <bevenson@melinkcorp.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Date: Tue, 22 Oct 2013 09:44:06 -0400
+Thread-Topic: Can't get DEPENDS to trigger glib-2.0 or util-linux build
+Thread-Index: Ac7PLMbW+y9tmpKPRBCyL/9z9n94pg==
+Message-ID: <91586D499ADFD74FBCFB8425266A5DE40153B8ED02D3@pluto.melinkcorp.local>
+Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-x-originating-ip: [172.16.112.215]
+acceptlanguage: en-US
 MIME-Version: 1.0
-Subject: Re: [psplash][PATCH] Add option to read message from file
+Subject: Can't get DEPENDS to trigger glib-2.0 or util-linux build
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -30,124 +28,64 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 22 Oct 2013 11:55:55 -0000
-Content-Language: de-DE
+X-List-Received-Date: Tue, 22 Oct 2013 13:47:06 -0000
+Content-Language: en-US
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-Hi everybody,
-a few weeks ago I sent this patch for psplash to add the ability to read th=
-e displayed message from a file.
-Due to the fact there was no response I think there are no objections again=
-st it, or was the message just ignored?
+All,
 
-If the patch is fine I'd be happy if it gets applied :-)
+I am on poky/dylan-9.0.1 (also have a yocto-autobuilder setup to use poky/d=
+ylan latest) and I have an application that I am writing that makes use of =
+the GLib dynamic libraries and the uuid library built by util-linux.  When =
+setting up the yocto-autobuilder, I discovered an issue with my recipe in t=
+hat it is not forcing the glib-2.0 or util-linux to be built before it gets=
+ built.  I figured I had an issue with the DEPENDS or RDEPENDS settings for=
+ my recipe, but so far adjusting these recipe settings has not fixed the is=
+sue and I'm wondering what I am doing wrong.
 
-Thanks and best regards,
-Richard Leitner
+As of now, my recipe has the following settings:
 
-> -----Original Message-----
-> From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.o=
-rg] On
-> Behalf Of Richard Leitner - SKIDATA
-> Sent: Tuesday, October 01, 2013 2:51 PM
-> To: Yocto Project Discussion ML (yocto@yoctoproject.org)
-> Subject: [yocto] [psplash][PATCH] Add option to read message from file
->=20
-> Add an option to read the displayed message from a file.
-> Additionally the maximum length for the read string can be defined.
-> The string will then be cut after the given number of chars.
-> It is also possible to define a prefix which is displayed in front of the=
- read file content.
->=20
-> If no file is defined a hardcoded message (using MSG like before) can be =
-displayed.
->=20
-> For these changes the following defines were introduced:
-> MSG_FILE_PATH ...... path to the file
-> MSG_FILE_MAX_LEN ... number of chars read from file MSG_FILE_PREFIX .... =
-text
-> displayed in front of the file content
->=20
-> Signed-off-by: Richard Leitner <richard.leitner@skidata.com>
-> ---
->  psplash.c |   41 ++++++++++++++++++++++++++++++++++++++++-
->  1 file changed, 40 insertions(+), 1 deletion(-)
->=20
-> diff --git a/psplash.c b/psplash.c
-> index 09cf0d0..093a99a 100644
-> --- a/psplash.c
-> +++ b/psplash.c
-> @@ -23,6 +23,20 @@
->  #include "psplash-bar-img.h"
->  #include "radeon-font.h"
->=20
-> +/* Here you can define a message which will be displayed above the
-> + * progress bar.
-> + * The message can be either read from a file:
-> + *    Set MSG_FILE_PATH (and if needed MSG_FILE_{MAX_LEN,PREFIX})
-> + *    to display the first MSG_FILE_MAX_LEN characters
-> + *    of the first line from MSG_FILE_PATH as message.
-> + *    Additionally the content of MSG_FILE_PREFIX will be displayed
-> + *    before the read message. */
-> +#define MSG_FILE_PATH ""
-> +#define MSG_FILE_MAX_LEN 32
-> +#define MSG_FILE_PREFIX ""
-> +/* Or a fixed string can be used:
-> + *    If MSG_FILE is not set or not readable
-> + *    the content of MSG will be used as message. */
->  #define MSG ""
->=20
->  void
-> @@ -204,6 +218,8 @@ main (int argc, char** argv)
->    int        pipe_fd, i =3D 0, angle =3D 0, ret =3D 0;
->    PSplashFB *fb;
->    bool       disable_console_switch =3D FALSE;
-> +  FILE      *fd_msg;
-> +  char      *str_msg;
->=20
->    signal(SIGHUP, psplash_exit);
->    signal(SIGINT, psplash_exit);
-> @@ -287,7 +303,30 @@ main (int argc, char** argv)
->=20
->    psplash_draw_progress (fb, 0);
->=20
-> -  psplash_draw_msg (fb, MSG);
-> +  /* Draw message from file or defined MSG */
-> +  fd_msg =3D fopen (MSG_FILE_PATH, "r");
-> +  if (fd_msg=3D=3DNULL) {
-> +    psplash_draw_msg (fb, MSG);
-> +  } else {
-> +    str_msg =3D (char*) malloc (
-> +              (MSG_FILE_MAX_LEN + strlen(MSG_FILE_PREFIX) + 1)*sizeof(ch=
-ar));
-> +    if (str_msg !=3D NULL && fgets (str_msg, MSG_FILE_MAX_LEN, fd_msg)!=
-=3DNULL) {
-> +      if (strlen (MSG_FILE_PREFIX) > 0) {
-> +        /* if MSG_FILE_PREFIX is set, prepend it to str_msg */
-> +        memmove (str_msg + strlen(MSG_FILE_PREFIX) + 1, str_msg,
-> strlen(str_msg));
-> +        strcpy (str_msg, MSG_FILE_PREFIX);
-> +		/* replace \0 after MSG_FILE_PREFIX with a space */
-> +        str_msg[strlen(MSG_FILE_PREFIX)] =3D ' ';
-> +      }
-> +      psplash_draw_msg (fb, str_msg);
-> +      free (str_msg);
-> +    } else {
-> +      /* MSG_FILE_PATH is empty (or malloc failed)
-> +	   *    so display MSG_FILE_PREFIX only */
-> +      psplash_draw_msg (fb, MSG_FILE_PREFIX);
-> +    }
-> +    fclose (fd_msg);
-> +  }
->=20
->    psplash_main (fb, pipe_fd, 0);
->=20
-> --
-> 1.7.10.4
->=20
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+DEPENDS_${PN} =3D "virtual/kernel glib-2.0 util-linux"
+RDEPENDS_${PN} =3D "tar php dosfstools libpam"
+inherit autotools siteinfo update-rc.d
+
+If I bitbake -c clean glib-2.0, util-linux and my recipe and then bitbake m=
+y recipe, the system does not attempt to build either glib-2.0 or util-linu=
+x before trying to configure my application.  As a result the configure ste=
+p fails because it can't find the glib-2.0 or uuid libraries.  I also tried=
+ doing a cleansstate on glib-2.0, util-linux and my recipe before buidling =
+my recipe and received the same results.  Here is some applicable output fr=
+om the do_configure step of my recipe:
+
+...
+
+checking for arm-poky-linux-gnueabi-pkg-config... no
+checking for pkg-config... /media/sda3/yocto-autobuilder/yocto-slave/nightl=
+y-foo/build/build/tmp/sysroots/i686-linux/usr/bin/pkg-config
+configure: WARNING: using cross tools not prefixed with host triplet
+checking pkg-config is at least version 0.9.0... yes
+checking for GLIB... no
+configure: error: Package requirements (glib-2.0) were not met:
+
+No package 'glib-2.0' found
+
+Consider adjusting the PKG_CONFIG_PATH environment variable if you
+installed software in a non-standard prefix.
+
+Alternatively, you may set the environment variables GLIB_CFLAGS
+and GLIB_LIBS to avoid the need to call pkg-config.
+See the pkg-config man page for more details.
+
+...
+
+If I go ahead and call "bitbake glib-2.0 util-linux" before building my rec=
+ipe, then my application builds without issue.  What did I forget to add to=
+ my recipe so the system builds the dependent packages first?
+
+Thanks,
+Bryan Evenson
+
+
+
 
