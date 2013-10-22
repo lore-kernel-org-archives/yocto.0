@@ -1,35 +1,28 @@
-Return-Path: <flihp@twobit.us>
-Received: from www.twobit.us (www.twobit.us [50.19.210.51])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D0A3EE0172B
-	for <yocto@yoctoproject.org>; Tue, 22 Oct 2013 09:51:14 -0700 (PDT)
-Received: from ip-77-221-165-98.dsl.twang.net ([77.221.165.98]
-	helo=[172.16.1.10])
-	by www.twobit.us with esmtpsa (TLS1.0:RSA_AES_256_CBC_SHA1:32)
-	(Exim 4.72) (envelope-from <flihp@twobit.us>)
-	id 1VYfAd-0004yv-QF; Tue, 22 Oct 2013 16:51:10 +0000
-Message-ID: <5266ACE9.8040309@twobit.us>
-Date: Tue, 22 Oct 2013 12:50:49 -0400
-From: Philip Tricca <flihp@twobit.us>
-User-Agent: Mozilla/5.0 (X11; Linux i686;
-	rv:17.0) Gecko/20130922 Icedove/17.0.9
+Return-Path: <billmartin544@gmail.com>
+Received: from mail-ie0-f178.google.com (mail-ie0-f178.google.com
+	[209.85.223.178])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D21C4E0166B
+	for <yocto@yoctoproject.org>; Tue, 22 Oct 2013 11:23:34 -0700 (PDT)
+Received: by mail-ie0-f178.google.com with SMTP id x13so1462920ief.9
+	for <yocto@yoctoproject.org>; Tue, 22 Oct 2013 11:23:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=zPw8uAvF+4My31IAKfniP+qZ+JtxbY1b8tHbq3zhw8c=;
+	b=Xe1E4Lnt87EjGR7aAwPg281pFv5CpvjaEvj7VujKia7bM6EebAkQ1oHKTpZ8v/g/l0
+	6Hy8xpWS5BaIcsKrPy+/9neIOJdD8OwNaxL309l6WSgQ6b1vPy3nphe5C4coEwYy0SwN
+	/cawzTDV7I5CM3HooeAkcWKMyIaaoTCpTruhEfx4rhCtcg5bj1qmVIIvg2de2RBsTzkV
+	h+AXGkSvJGWmxsrgOyuE06A12mG3/YgKrK25HzDzY5S+liLJ0afNmdoXpu69drekORMj
+	/rUsYtYpcWbVJpvlHQy2qs6mLc3SqkBCnoI1CHRcUBIVhnPLl39l7vEaZ7PnEZ+zcwpd
+	iKqQ==
 MIME-Version: 1.0
-To: Joe MacDonald <joe@deserted.net>
-References: <1382036771-30531-1-git-send-email-flihp@twobit.us>
-	<20131021145706.GA7162@deserted.net>
-	<20131021200152.GA27412@deserted.net>
-	<20131022153754.GE3728@deserted.net>
-In-Reply-To: <20131022153754.GE3728@deserted.net>
-X-Enigmail-Version: 1.5.1
-X-SA-Exim-Connect-IP: 77.221.165.98
-X-SA-Exim-Mail-From: flihp@twobit.us
-X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on www.twobit.us
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=5.0 tests=ALL_TRUSTED,BAYES_00
-	autolearn=ham version=3.3.1
-X-SA-Exim-Version: 4.2.1 (built Mon, 22 Mar 2010 06:26:47 +0000)
-X-SA-Exim-Scanned: Yes (on www.twobit.us)
-Cc: yocto@yoctoproject.org
-Subject: Re: [meta-selinux][PATCH 0/5] Resend: Remove python dependency from refpol.
+X-Received: by 10.50.49.65 with SMTP id s1mr14430745ign.43.1382466213712; Tue,
+	22 Oct 2013 11:23:33 -0700 (PDT)
+Received: by 10.64.228.199 with HTTP; Tue, 22 Oct 2013 11:23:33 -0700 (PDT)
+Date: Tue, 22 Oct 2013 11:23:33 -0700
+Message-ID: <CAJGS5=HTuyPuqropAOjys6oiz-Adx=K9b1dci+zC0d4FPbMQ9w@mail.gmail.com>
+From: Bill Martin <billmartin544@gmail.com>
+To: yocto@yoctoproject.org
+Subject: Re: how to add a new bb(xerces-c)?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,124 +34,312 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 22 Oct 2013 16:51:15 -0000
+X-List-Received-Date: Tue, 22 Oct 2013 18:23:40 -0000
+Content-Type: multipart/alternative; boundary=e89a8f5038e29565d304e9587f0c
+
+--e89a8f5038e29565d304e9587f0c
 Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: 7bit
 
------BEGIN PGP SIGNED MESSAGE-----
-Hash: SHA512
+I have been tasked to add xerces-c too. There is an OE recipe already for
+this (you can google it).
 
-On 10/22/2013 11:37 AM, Joe MacDonald wrote:
-> [Re: [yocto] [meta-selinux][PATCH 0/5] Resend: Remove python 
-> dependency from refpol.] On 13.10.21 (Mon 16:01) Joe MacDonald 
-> wrote:
-> 
->> [Re: [yocto] [meta-selinux][PATCH 0/5] Resend: Remove python 
->> dependency from refpol.] On 13.10.21 (Mon 10:57) Joe MacDonald 
->> wrote:
->> 
->>> Thought I'd best (finally) follow up to the list on this.
->>> I've been talking to Philip offline.  These are in the queue
->>> for integration but some surprising things have cropped up
->>> along the way and the integration is being delayed a bit.
->>> 
->>> I'll be grabbing the other meta-selinux update at the same 
->>> time.
->> 
->> Further to this, I've finished the merge of this batch and the 
->> two other submissions I've seen for meta-selinux today.  I 
->> haven't yet pushed them to meta-selinux on git.yoctoproject.org. 
->> I'm going to let it cool off until at least tomorrow since this 
->> one proved to be much more problematic than I think it should 
->> have been.  In the meantime, I've pushed the pending changes to 
->> my github project:
->> 
->> https://github.com/joeythesaint/meta-selinux.git
->> 
->> on the contrib/joeythesaint branch.
-> 
-> Six of the seven commits that were on that branch are now in the 
-> official meta-selinux master branch.  The last is the 
-> bzip-compressed policy update.
-> 
-> Thanks Philip.
+However your recipe seems to run into the same problem that I get. The
+solution is not just to look at config.log and log.do_config. They display
+the symptoms. The one who responded to your post implies the fix is in the
+recipe by just adding extra config flags to point to the correct libraries.
 
-Sure thing Joe. Thanks for spending the time to get these integrated.
+I can run ./configure outside of yocto and send in the libraries I want.
+But the OEEXTRACONFS I added in my recipe had no effect on the libraries.
+Note that the auto tools is forcing the enable-poison-system directories,
+as it should. But the cause is further up the "food chain" so to speak.
 
-- - Philip
+The problem seems to be with a bug in lib tools that Hans Beckerus found.
 
-> 
-> -J.
-> 
->> 
->> -J.
->> 
->>> 
->>> -J.
->>> 
->>> [[yocto] [meta-selinux][PATCH 0/5] Resend: Remove python 
->>> dependency from refpol.] On 13.10.17 (Thu 19:06) Philip Tricca 
->>> wrote:
->>> 
->>>> This is a resend of an earlier patch set that never made it 
->>>> to the list AFAIK.
->>>> 
->>>> The reference policy package currently pulls in a lot of 
->>>> python stuff that isn't strictly necessary to boot an
->>>> SELinux system and load a policy. AFAIK this is caused by the
->>>> mix of python and C utilities in policycoreutils.
->>>> 
->>>> This patch set breaks the policycoreutils recipe up into 
->>>> multiple packages, one for each utility. In this way we can 
->>>> have the refpol etc pull in only the utilities necessary for 
->>>> normal operation. This happens to be only the utilities 
->>>> written in C and thus we can remove python completely in a 
->>>> minimal image.
->>>> 
->>>> I've attempted to localize these changes as much as possible 
->>>> so this patch set should have minimal impact on recipes 
->>>> outside of the policycoreutils. An example image reicpe is 
->>>> added to demonstrate a minimal image with only the utilities 
->>>> required to load a policy and manipulate the policy store 
->>>> (add / remove policy modules) at runtime.
->>>> 
->>>> Regards, - Philip
->>>> 
->>>> Philip Tricca (5): Break policycoreutils out into separate 
->>>> Remove unnecessary RDEPENDS_${BPN}. Remove runtime
->>>> dependency on Add packagegroup and image recipe for Add
->>>> packagegroup for policycoreutils
->>>> 
->>>> .../images/core-image-selinux-minimal.bb           |   15 ++
->>>>  .../packagegroups/packagegroup-core-selinux.bb     |    4 +-
->>>>  .../packagegroups/packagegroup-selinux-minimal.bb  |   26 
->>>> +++ .../packagegroup-selinux-policycoreutils.bb        |
->>>> 36 ++++ recipes-security/refpolicy/refpolicy_common.inc    | 
->>>> 2 +- recipes-security/selinux/policycoreutils.inc       | 179
->>>> +++++++++++++++++-- 6 files changed, 245 insertions(+), 17
->>>> deletions(-)
->>>> 
->>>> _______________________________________________ yocto
->>>> mailing list yocto@yoctoproject.org 
->>>> https://lists.yoctoproject.org/listinfo/yocto
->>> 
+http://www.mail-archive.com/yocto@yoctoproject.org/msg15325.html
 
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v1.4.12 (GNU/Linux)
-Comment: Using GnuPG with Icedove - http://www.enigmail.net/
+Essentially it's to do with the with-libtool-sysroot usage in the libtool.
+I have not tried Hans' solution yet but will today.  Hopefully this info is
+enough to get you started so you can make your own fix and use xerces-c.
 
-iQIcBAEBCgAGBQJSZqzpAAoJEDL3fnXC4dO6Z6UP/0UoTumQK0wIlyk4YviqsTKr
-E0F62JvgzCgf9BLadGmbBSEvgS9Zg50fGr+wM4p0wc7TW2egNnQrPQRa70Y2ycjL
-jEQhBRuW6HFTSNZYTsrrt20IjE7nTQEDQnvSZW18lDMKbSyWHdrLGL9lgqWKjiRC
-mf0g6cyO4CNnhxdYIZvWTNWoDdbDTQRpyzWhO2S4YkM7Vkh7lvg3IPadGwTAd6MM
-nGS6iLKaaaUcqw/i5axOwd8xH2C0/MGDPPYkRwcxAjU7nuH4uOS5uaq5k0dGiuLF
-IRp374YwCOypcPtmZT0w3C80CmJSC6e2fxHeH8xQNWBnsFSweG3sT/9DGhVYeZky
-HuvkFFFKmsbSfZHFuTQsH5AiV3YaHQTOgWCefQ22xCDEB03t52E6IPY0rAzlxXIi
-apL8fhtHjlQ0GaY5yoV7n6+KyfqlQm7WpHXAqowfWEYS3P/pVPJe4pTq+PrzadF2
-o5DpGVR5Du2QzLBsFZetFIrLg3kKYkq9011RHwBFl9frsVxTYAdBm58GvceBJL1K
-wecuveTH30KhYjiDzMZTNL3Tm/vMJLL/CzIWF5NdrMwCUt8+TwFGJvB7a2QEssS0
-14SMdPKjtvbGutlAkOT/9T/1HrpIZhoZtkwEnyKgdXEk469+Vp6aBHjf52JPHyFn
-5JJhKda01naDs+KA9G6p
-=uocy
------END PGP SIGNATURE-----
+thanks
 
+Bill
+
+
+
+
+Message: 2
+Date: Fri, 27 Sep 2013 13:35:55 +0800 (CST)
+From: ??? <czyhit@126.com>
+To: yocto@yoctoproject.org
+Subject: [yocto] how to add a new bb(xerces-c)?
+Message-ID: <bfe9b2.4f09.1415dea90ad.Coremail.czyhit@126.com>
+Content-Type: text/plain; charset="gbk"
+
+Hello, everyone!
+I try to add a new bb(xerces-c) to my image, bb is as followings:
+
+
+DESCRIPTION = "Xerces-C++ is a validating XML parser written in a portable
+subset of C++."
+HOMEPAGE = "http://xerces.apache.org/xerces-c/"
+LICENSE = "Apache"
+LIC_FILES_CHKSUM = "file://src/xercesc/dom/DOM.hpp;endline=22;md5=
+9986d741cab88a8b7bc4a19d3c1b8106 \
+file://src/xercesc/parsers/XercesDOMParser.hpp;endline=21;md5=
+85be7b6e587aa51e4f30c262f1cd695e \
+file://src/xercesc/xinclude/XIncludeDOMDocumentProcessor.hpp;endline=23;md5=
+4236d3c0f2537b3df547a97d60f93dc0"
+
+
+PR = "r1"
+
+
+DEPENDS = "curl icu"
+
+
+SRC_URI = "http://mirror.bit.edu.cn/apache//xerces/c/3/sources/xerces
+-c-${PV}.tar.gz"
+
+
+SRC_URI[md5sum] = "6a8ec45d83c8cfb1584c5a5345cb51ae"
+SRC_URI[sha256sum] = "a42785f71e0b91d5fd273831c87410
+ce60a73ccfdd207de1b805d26d44968736"
+
+
+inherit autotools
+
+
+S = "${WORKDIR}/xerces-c-${PV}/"
+
+
+EXTRA_OECONF = "\
+--enable-netaccessor-curl \
+--enable-transcoder-icu \
+--enable-msgloader-icu \
+"
+
+
+but when configure come into the error:
+ERROR: This autoconf log indicates errors, it looked at host include and/or
+library paths while determining system capabilities.
+Rerun configure task after fixing this. The path was '/home/caozhiyan/fsl-
+community-bsp/build-hc1200/tmp/work/armv7a-vfp-neon-poky-linux-gnueabi/
+xerces-c/3.1.1-r1/xerces-c-3.1.1'
+ERROR: Function failed: do_qa_configure
+ERROR: Logfile of failure stored in: /home/caozhiyan/fsl-community-
+bsp/build-hc1200/tmp/work/armv7a-vfp-neon-poky-linux-gnueabi/xerces
+-c/3.1.1-r1/temp/log.do_configure.19932
+ERROR: Task 5 (/home/caozhiyan/fsl-community-bsp/sources/meta-
+fsl-hc1200/recipes-hc1200/xerces-c/xerces-c_3.1.1.bb, do_configure) failed
+with exit code '1'
+
+
+who can show me how to port the autotools-based project? Thanks.
+
+--e89a8f5038e29565d304e9587f0c
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div><br></div><div style>I have been tasked to add xerces=
+-c too. There is an OE recipe already for this (you can google it).</div><d=
+iv style><br></div><div style>However your recipe seems to run into the sam=
+e problem that I get. The solution is not just to look at config.log and lo=
+g.do_config. They display the symptoms. The one who responded to your post =
+implies the fix is in the recipe by just adding extra config flags to point=
+ to the correct libraries.</div>
+<div style><br></div><div style>I can run ./configure outside of yocto and =
+send in the libraries I want. But the OEEXTRACONFS I added in my recipe had=
+ no effect on the libraries. Note that the auto tools is forcing the enable=
+-poison-system directories, as it should. But the cause is further up the &=
+quot;food chain&quot; so to speak.</div>
+<div style><br></div><div style>The problem seems to be with a bug in lib t=
+ools that Hans Beckerus found.</div><div style><br></div><div style><a href=
+=3D"http://www.mail-archive.com/yocto@yoctoproject.org/msg15325.html">http:=
+//www.mail-archive.com/yocto@yoctoproject.org/msg15325.html</a><br>
+</div><div style><br></div><div style>Essentially it&#39;s to do with the w=
+ith-libtool-sysroot usage in the libtool. I have not tried Hans&#39; soluti=
+on yet but will today. =A0Hopefully this info is enough to get you started =
+so you can make your own fix and use xerces-c.</div>
+<div style><br></div><div style>thanks</div><div style><br></div><div style=
+>Bill</div><div style><br></div><div style><br></div><div style><br></div><=
+div style><br></div><div><span style=3D"font-family:arial,sans-serif;font-s=
+ize:13px">Message: 2</span><br style=3D"font-family:arial,sans-serif;font-s=
+ize:13px">
+<span style=3D"font-family:arial,sans-serif;font-size:13px">Date: Fri, 27 S=
+ep 2013 13:35:55 +0800 (CST)</span><br style=3D"font-family:arial,sans-seri=
+f;font-size:13px"><span style=3D"font-family:arial,sans-serif;font-size:13p=
+x">From: ??? &lt;</span><a href=3D"mailto:czyhit@126.com" style=3D"font-fam=
+ily:arial,sans-serif;font-size:13px">czyhit@126.com</a><span style=3D"font-=
+family:arial,sans-serif;font-size:13px">&gt;</span><br style=3D"font-family=
+:arial,sans-serif;font-size:13px">
+<span style=3D"font-family:arial,sans-serif;font-size:13px">To:=A0</span><a=
+ href=3D"mailto:yocto@yoctoproject.org" style=3D"font-family:arial,sans-ser=
+if;font-size:13px">yocto@yoctoproject.org</a><br style=3D"font-family:arial=
+,sans-serif;font-size:13px">
+<span style=3D"font-family:arial,sans-serif;font-size:13px">Subject: [yocto=
+] how to add a new bb(</span><span class=3D"" style=3D"background-color:rgb=
+(255,255,204);font-family:arial,sans-serif;font-size:13px">xerces</span><sp=
+an style=3D"font-family:arial,sans-serif;font-size:13px">-c)?</span><br sty=
+le=3D"font-family:arial,sans-serif;font-size:13px">
+<span style=3D"font-family:arial,sans-serif;font-size:13px">Message-ID: &lt=
+;</span><a href=3D"mailto:bfe9b2.4f09.1415dea90ad.Coremail.czyhit@126.com" =
+style=3D"font-family:arial,sans-serif;font-size:13px">bfe9b2.4f09.1415dea90=
+ad.Coremail.czyhit@126.com</a><span style=3D"font-family:arial,sans-serif;f=
+ont-size:13px">&gt;</span><br style=3D"font-family:arial,sans-serif;font-si=
+ze:13px">
+<span style=3D"font-family:arial,sans-serif;font-size:13px">Content-Type: t=
+ext/plain; charset=3D&quot;gbk&quot;</span><br style=3D"font-family:arial,s=
+ans-serif;font-size:13px"><br style=3D"font-family:arial,sans-serif;font-si=
+ze:13px">
+<span style=3D"font-family:arial,sans-serif;font-size:13px">Hello, everyone=
+!</span><br style=3D"font-family:arial,sans-serif;font-size:13px"><span sty=
+le=3D"font-family:arial,sans-serif;font-size:13px">I try to add a new bb(</=
+span><span class=3D"" style=3D"background-color:rgb(255,255,204);font-famil=
+y:arial,sans-serif;font-size:13px">xerces</span><span style=3D"font-family:=
+arial,sans-serif;font-size:13px">-c) to my image, bb is as followings:</spa=
+n><br style=3D"font-family:arial,sans-serif;font-size:13px">
+<br style=3D"font-family:arial,sans-serif;font-size:13px"><br style=3D"font=
+-family:arial,sans-serif;font-size:13px"><span style=3D"font-family:arial,s=
+ans-serif;font-size:13px">DESCRIPTION =3D &quot;</span><span class=3D"" sty=
+le=3D"background-color:rgb(255,255,204);font-family:arial,sans-serif;font-s=
+ize:13px">Xerces</span><span style=3D"font-family:arial,sans-serif;font-siz=
+e:13px">-C++ is a validating XML parser written in a portable subset of C++=
+.&quot;</span><br style=3D"font-family:arial,sans-serif;font-size:13px">
+<span style=3D"font-family:arial,sans-serif;font-size:13px">HOMEPAGE =3D &q=
+uot;</span><a href=3D"http://xerces.apache.org/xerces-c/" target=3D"_blank"=
+ style=3D"font-family:arial,sans-serif;font-size:13px">http://<span class=
+=3D"" style=3D"background-color:rgb(255,255,204);color:rgb(34,34,34)">xerce=
+s</span>.apache.org/<span class=3D"" style=3D"background-color:rgb(255,255,=
+204);color:rgb(34,34,34)">xerces</span>-c/</a><span style=3D"font-family:ar=
+ial,sans-serif;font-size:13px">&quot;</span><br style=3D"font-family:arial,=
+sans-serif;font-size:13px">
+<span style=3D"font-family:arial,sans-serif;font-size:13px">LICENSE =3D &qu=
+ot;Apache&quot;</span><br style=3D"font-family:arial,sans-serif;font-size:1=
+3px"><span style=3D"font-family:arial,sans-serif;font-size:13px">LIC_FILES_=
+CHKSUM =3D &quot;file://src/xercesc/dom/DOM.</span><span style=3D"font-fami=
+ly:arial,sans-serif;font-size:13px">hpp;endline=3D22;md5=3D</span><span sty=
+le=3D"font-family:arial,sans-serif;font-size:13px">9986d741cab88a8b7bc4a19d=
+3c1b81</span><span style=3D"font-family:arial,sans-serif;font-size:13px">06=
+ \</span><br style=3D"font-family:arial,sans-serif;font-size:13px">
+<span style=3D"font-family:arial,sans-serif;font-size:13px">file://src/xerc=
+esc/parsers/</span><span style=3D"font-family:arial,sans-serif;font-size:13=
+px">XercesDOMParser.hpp;endline=3D</span><span style=3D"font-family:arial,s=
+ans-serif;font-size:13px">21;md5=3D</span><span style=3D"font-family:arial,=
+sans-serif;font-size:13px">85be7b6e587aa51e4f30c262f1cd69</span><span style=
+=3D"font-family:arial,sans-serif;font-size:13px">5e \</span><br style=3D"fo=
+nt-family:arial,sans-serif;font-size:13px">
+<span style=3D"font-family:arial,sans-serif;font-size:13px">file://src/xerc=
+esc/xinclude/</span><span style=3D"font-family:arial,sans-serif;font-size:1=
+3px">XIncludeDOMDocumentProcessor.</span><span style=3D"font-family:arial,s=
+ans-serif;font-size:13px">hpp;endline=3D23;md5=3D</span><span style=3D"font=
+-family:arial,sans-serif;font-size:13px">4236d3c0f2537b3df547a97d60f93d</sp=
+an><span style=3D"font-family:arial,sans-serif;font-size:13px">c0&quot;</sp=
+an><br style=3D"font-family:arial,sans-serif;font-size:13px">
+<br style=3D"font-family:arial,sans-serif;font-size:13px"><br style=3D"font=
+-family:arial,sans-serif;font-size:13px"><span style=3D"font-family:arial,s=
+ans-serif;font-size:13px">PR =3D &quot;r1&quot;</span><br style=3D"font-fam=
+ily:arial,sans-serif;font-size:13px">
+<br style=3D"font-family:arial,sans-serif;font-size:13px"><br style=3D"font=
+-family:arial,sans-serif;font-size:13px"><span style=3D"font-family:arial,s=
+ans-serif;font-size:13px">DEPENDS =3D &quot;curl icu&quot;</span><br style=
+=3D"font-family:arial,sans-serif;font-size:13px">
+<br style=3D"font-family:arial,sans-serif;font-size:13px"><br style=3D"font=
+-family:arial,sans-serif;font-size:13px"><span style=3D"font-family:arial,s=
+ans-serif;font-size:13px">SRC_URI =3D &quot;</span><a href=3D"http://mirror=
+.bit.edu.cn/apache//xerces/c/3/sources/xerces-c-${PV}.tar.gz" target=3D"_bl=
+ank" style=3D"font-family:arial,sans-serif;font-size:13px">http://mirror.bi=
+t.edu.cn/apache//<span class=3D"" style=3D"background-color:rgb(255,255,204=
+);color:rgb(34,34,34)">xerces</span>/c/3/sources/<span class=3D"" style=3D"=
+background-color:rgb(255,255,204);color:rgb(34,34,34)">xerces</span>-c-${PV=
+}.tar.gz</a><span style=3D"font-family:arial,sans-serif;font-size:13px">&qu=
+ot;</span><br style=3D"font-family:arial,sans-serif;font-size:13px">
+<br style=3D"font-family:arial,sans-serif;font-size:13px"><br style=3D"font=
+-family:arial,sans-serif;font-size:13px"><span style=3D"font-family:arial,s=
+ans-serif;font-size:13px">SRC_URI[md5sum] =3D &quot;</span><span style=3D"f=
+ont-family:arial,sans-serif;font-size:13px">6a8ec45d83c8cfb1584c5a5345cb51<=
+/span><span style=3D"font-family:arial,sans-serif;font-size:13px">ae&quot;<=
+/span><br style=3D"font-family:arial,sans-serif;font-size:13px">
+<span style=3D"font-family:arial,sans-serif;font-size:13px">SRC_URI[sha256s=
+um] =3D &quot;</span><span style=3D"font-family:arial,sans-serif;font-size:=
+13px">a42785f71e0b91d5fd273831c87410</span><span style=3D"font-family:arial=
+,sans-serif;font-size:13px">ce60a73ccfdd207de1b805d26d4496</span><span styl=
+e=3D"font-family:arial,sans-serif;font-size:13px">8736&quot;</span><br styl=
+e=3D"font-family:arial,sans-serif;font-size:13px">
+<br style=3D"font-family:arial,sans-serif;font-size:13px"><br style=3D"font=
+-family:arial,sans-serif;font-size:13px"><span style=3D"font-family:arial,s=
+ans-serif;font-size:13px">inherit autotools</span><br style=3D"font-family:=
+arial,sans-serif;font-size:13px">
+<br style=3D"font-family:arial,sans-serif;font-size:13px"><br style=3D"font=
+-family:arial,sans-serif;font-size:13px"><span style=3D"font-family:arial,s=
+ans-serif;font-size:13px">S =3D &quot;${WORKDIR}/</span><span class=3D"" st=
+yle=3D"background-color:rgb(255,255,204);font-family:arial,sans-serif;font-=
+size:13px">xerces</span><span style=3D"font-family:arial,sans-serif;font-si=
+ze:13px">-c-${PV}/&quot;</span><br style=3D"font-family:arial,sans-serif;fo=
+nt-size:13px">
+<br style=3D"font-family:arial,sans-serif;font-size:13px"><br style=3D"font=
+-family:arial,sans-serif;font-size:13px"><span style=3D"font-family:arial,s=
+ans-serif;font-size:13px">EXTRA_OECONF =3D &quot;\</span><br style=3D"font-=
+family:arial,sans-serif;font-size:13px">
+<span style=3D"font-family:arial,sans-serif;font-size:13px">--enable-netacc=
+essor-curl \</span><br style=3D"font-family:arial,sans-serif;font-size:13px=
+"><span style=3D"font-family:arial,sans-serif;font-size:13px">--enable-tran=
+scoder-icu \</span><br style=3D"font-family:arial,sans-serif;font-size:13px=
+">
+<span style=3D"font-family:arial,sans-serif;font-size:13px">--enable-msgloa=
+der-icu \</span><br style=3D"font-family:arial,sans-serif;font-size:13px"><=
+span style=3D"font-family:arial,sans-serif;font-size:13px">&quot;</span><br=
+ style=3D"font-family:arial,sans-serif;font-size:13px">
+<br style=3D"font-family:arial,sans-serif;font-size:13px"><br style=3D"font=
+-family:arial,sans-serif;font-size:13px"><span style=3D"font-family:arial,s=
+ans-serif;font-size:13px">but when configure come into the error:</span><br=
+ style=3D"font-family:arial,sans-serif;font-size:13px">
+<span style=3D"font-family:arial,sans-serif;font-size:13px">ERROR: This aut=
+oconf log indicates errors, it looked at host include and/or library paths =
+while determining system capabilities.</span><br style=3D"font-family:arial=
+,sans-serif;font-size:13px">
+<span style=3D"font-family:arial,sans-serif;font-size:13px">Rerun configure=
+ task after fixing this. The path was &#39;/home/caozhiyan/fsl-</span><span=
+ style=3D"font-family:arial,sans-serif;font-size:13px">community-bsp/build-=
+hc1200/</span><span style=3D"font-family:arial,sans-serif;font-size:13px">t=
+mp/work/armv7a-vfp-neon-poky-</span><span style=3D"font-family:arial,sans-s=
+erif;font-size:13px">linux-gnueabi/</span><span class=3D"" style=3D"backgro=
+und-color:rgb(255,255,204);font-family:arial,sans-serif;font-size:13px">xer=
+ces</span><span style=3D"font-family:arial,sans-serif;font-size:13px">-c/3.=
+1.1-</span><span style=3D"font-family:arial,sans-serif;font-size:13px">r1/<=
+/span><span class=3D"" style=3D"background-color:rgb(255,255,204);font-fami=
+ly:arial,sans-serif;font-size:13px">xerces</span><span style=3D"font-family=
+:arial,sans-serif;font-size:13px">-c-3.1.1&#39;</span><br style=3D"font-fam=
+ily:arial,sans-serif;font-size:13px">
+<span style=3D"font-family:arial,sans-serif;font-size:13px">ERROR: Function=
+ failed: do_qa_configure</span><br style=3D"font-family:arial,sans-serif;fo=
+nt-size:13px"><span style=3D"font-family:arial,sans-serif;font-size:13px">E=
+RROR: Logfile of failure stored in: /home/caozhiyan/fsl-community-</span><s=
+pan style=3D"font-family:arial,sans-serif;font-size:13px">bsp/build-hc1200/=
+tmp/work/</span><span style=3D"font-family:arial,sans-serif;font-size:13px"=
+>armv7a-vfp-neon-poky-linux-</span><span style=3D"font-family:arial,sans-se=
+rif;font-size:13px">gnueabi/</span><span class=3D"" style=3D"background-col=
+or:rgb(255,255,204);font-family:arial,sans-serif;font-size:13px">xerces</sp=
+an><span style=3D"font-family:arial,sans-serif;font-size:13px">-c/3.1.1-r1/=
+</span><span style=3D"font-family:arial,sans-serif;font-size:13px">temp/log=
+.do_configure.19932</span><br style=3D"font-family:arial,sans-serif;font-si=
+ze:13px">
+<span style=3D"font-family:arial,sans-serif;font-size:13px">ERROR: Task 5 (=
+/home/caozhiyan/fsl-</span><span style=3D"font-family:arial,sans-serif;font=
+-size:13px">community-bsp/sources/meta-</span><span style=3D"font-family:ar=
+ial,sans-serif;font-size:13px">fsl-hc1200/recipes-hc1200/</span><span class=
+=3D"" style=3D"background-color:rgb(255,255,204);font-family:arial,sans-ser=
+if;font-size:13px">xerces</span><span style=3D"font-family:arial,sans-serif=
+;font-size:13px">-c/</span><a href=3D"http://xerces-c_3.1.1.bb/" target=3D"=
+_blank" style=3D"font-family:arial,sans-serif;font-size:13px"><span class=
+=3D"" style=3D"background-color:rgb(255,255,204);color:rgb(34,34,34)">xerce=
+s</span>-c_3.1.1.bb</a><span style=3D"font-family:arial,sans-serif;font-siz=
+e:13px">, do_configure) failed with exit code &#39;1&#39;</span><br style=
+=3D"font-family:arial,sans-serif;font-size:13px">
+<br style=3D"font-family:arial,sans-serif;font-size:13px"><br style=3D"font=
+-family:arial,sans-serif;font-size:13px"><span style=3D"font-family:arial,s=
+ans-serif;font-size:13px">who can show me how to port the autotools-based p=
+roject? Thanks.</span><br>
+</div></div>
+
+--e89a8f5038e29565d304e9587f0c--
