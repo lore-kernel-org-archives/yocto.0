@@ -1,33 +1,43 @@
-Return-Path: <cristiana.voicu@intel.com>
-Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0970DE0163E
-	for <yocto@yoctoproject.org>; Tue, 22 Oct 2013 07:14:19 -0700 (PDT)
-Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by azsmga101.ch.intel.com with ESMTP; 22 Oct 2013 07:14:18 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.93,535,1378882800"; d="scan'208";a="378316292"
-Received: from irsmsx104.ger.corp.intel.com ([163.33.3.159])
-	by azsmga001.ch.intel.com with ESMTP; 22 Oct 2013 07:14:17 -0700
-Received: from irsmsx105.ger.corp.intel.com ([169.254.7.75]) by
-	IRSMSX104.ger.corp.intel.com ([169.254.5.89]) with mapi id
-	14.03.0123.003; Tue, 22 Oct 2013 15:12:16 +0100
-From: "Voicu, Cristiana" <cristiana.voicu@intel.com>
-To: "Houkes, Bart" <bart.houkes@sogeti.nl>
-Thread-Topic: [yocto] Remote debugging with Yocto
-Thread-Index: AQHOznsDEdbtYJI/qUGyUKTab6ciRZoAqbeA///47gCAACCYMA==
-Date: Tue, 22 Oct 2013 14:12:17 +0000
-Message-ID: <BE68E9C8E0850C43B0F0B0B7D57FA5AE2E88F651@IRSMSX105.ger.corp.intel.com>
-References: <FBA0FF4F0EC22C4AAFF3D9FD07EF2E383A5C6DAE5C@SOGMB1.SGTI.NL>,
-	<52665531.2010205@intel.com>
-	<FBA0FF4F0EC22C4AAFF3D9FD07EF2E383A5C6DAE60@SOGMB1.SGTI.NL>
-In-Reply-To: <FBA0FF4F0EC22C4AAFF3D9FD07EF2E383A5C6DAE60@SOGMB1.SGTI.NL>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [163.33.239.181]
+Return-Path: <joe@deserted.net>
+Received: from mail-ea0-f169.google.com (mail-ea0-f169.google.com
+	[209.85.215.169])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 508D0E01688
+	for <yocto@yoctoproject.org>; Tue, 22 Oct 2013 08:38:03 -0700 (PDT)
+Received: by mail-ea0-f169.google.com with SMTP id k11so4339223eaj.14
+	for <yocto@yoctoproject.org>; Tue, 22 Oct 2013 08:38:02 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+	:mime-version:content-type:content-disposition:in-reply-to
+	:user-agent;
+	bh=JEpRp6Pjm7bSJQ7lWrMTxVb7VivjgZgPBCz+DN+J1+s=;
+	b=ImIkvwumpYGSyLA/C3n7kZqoX6KMb2qNUUG00bEqBtKK8dfPAJ/CPf1ZBXanCQQ9VQ
+	bAf3u3XTp+4hrSj6AUGQdccyA3lwZHtP2a6xsF+PnliqGYxGBVt5DkNO/SXzwkuu/gOO
+	9eNxw/eYEcgKGIeRuGRWxZY5mrHM6DzEYzd0qvku8Uj0IUCCzClZ1EQmelHmQdIsMRYk
+	PrrgF3Fme2xMjzdVADYGxKoZVoipHIGqiyoGEEkl2SALlJb1G8rUq+hUp0JGYXc6M4l2
+	2g+sPtmvkHnG3P8zWD/ZZF91Cbs+YkRGrUkgCjzFZ9J8ZBKT+L7gZObjNkI5ED02oaDj
+	BQWQ==
+X-Gm-Message-State: ALoCoQnzVGr7lO05vqvXmAerzv4cArzpcIMMKVetRS088TcwdKjLa6lvwPOmgB3Lc4vz2qqBov06
+X-Received: by 10.14.180.73 with SMTP id i49mr9370027eem.55.1382456282026;
+	Tue, 22 Oct 2013 08:38:02 -0700 (PDT)
+Received: from deserted.net ([128.224.252.2]) by mx.google.com with ESMTPSA id
+	u46sm58120218eep.17.2013.10.22.08.37.59 for <multiple recipients>
+	(version=TLSv1.2 cipher=RC4-SHA bits=128/128);
+	Tue, 22 Oct 2013 08:38:00 -0700 (PDT)
+Date: Tue, 22 Oct 2013 11:37:55 -0400
+From: Joe MacDonald <joe@deserted.net>
+To: yocto@yoctoproject.org, Philip Tricca <flihp@twobit.us>
+Message-ID: <20131022153754.GE3728@deserted.net>
+References: <1382036771-30531-1-git-send-email-flihp@twobit.us>
+	<20131021145706.GA7162@deserted.net>
+	<20131021200152.GA27412@deserted.net>
 MIME-Version: 1.0
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Remote debugging with Yocto
+In-Reply-To: <20131021200152.GA27412@deserted.net>
+X-URL: http://github.com/joeythesaint/joe-s-common-environment/tree/master
+X-Configuration: git://github.com/joeythesaint/joe-s-common-environment.git
+X-Editor: Vim-703 http://www.vim.org
+User-Agent: Mutt/1.5.21 (2010-09-15)
+Subject: Re: [meta-selinux][PATCH 0/5] Resend: Remove python dependency from refpol.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,130 +49,118 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 22 Oct 2013 14:14:22 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Tue, 22 Oct 2013 15:38:04 -0000
+X-Groupsio-MsgNum: 16652
+Content-Type: multipart/signed; micalg=pgp-sha1;
+	protocol="application/pgp-signature"; boundary="o0ZfoUVt4BxPQnbU"
+Content-Disposition: inline
+
+--o0ZfoUVt4BxPQnbU
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-Hi Bart,
+[Re: [yocto] [meta-selinux][PATCH 0/5] Resend: Remove python dependency fro=
+m refpol.] On 13.10.21 (Mon 16:01) Joe MacDonald wrote:
 
-It seems that tcf-agent was moved to eclipse-debug package group. So, inste=
-ad of adding tools-debug to image features, you should add eclipse-debug.
-I think that the documentation for tcf-agent is not updated. Scott, can you=
- please update this?
-Thank you,
-Cristiana
+> [Re: [yocto] [meta-selinux][PATCH 0/5] Resend: Remove python dependency f=
+rom refpol.] On 13.10.21 (Mon 10:57) Joe MacDonald wrote:
+>=20
+> > Thought I'd best (finally) follow up to the list on this.  I've been
+> > talking to Philip offline.  These are in the queue for integration but
+> > some surprising things have cropped up along the way and the integration
+> > is being delayed a bit.
+> >=20
+> > I'll be grabbing the other meta-selinux update at the same time.
+>=20
+> Further to this, I've finished the merge of this batch and the two other
+> submissions I've seen for meta-selinux today.  I haven't yet pushed them
+> to meta-selinux on git.yoctoproject.org.  I'm going to let it cool off
+> until at least tomorrow since this one proved to be much more
+> problematic than I think it should have been.  In the meantime, I've
+> pushed the pending changes to my github project:
+>=20
+>    https://github.com/joeythesaint/meta-selinux.git
+>=20
+> on the contrib/joeythesaint branch.
 
------Original Message-----
-From: Houkes, Bart [mailto:bart.houkes@sogeti.nl]=20
-Sent: Tuesday, October 22, 2013 4:11 PM
-To: Voicu, Cristiana
-Subject: RE: [yocto] Remote debugging with Yocto
+Six of the seven commits that were on that branch are now in the
+official meta-selinux master branch.  The last is the bzip-compressed
+policy update.
 
-Hi Cristiana,
+Thanks Philip.
 
-I did step 2 from http://www.yoctoproject.org/docs/latest/mega-manual/mega-=
-manual.html#getting-the-images, and changed the makefile a lot. I copied th=
-e file stubs-hard.h to stubs-soft.h, but in the end I miss a dependency lss=
-l, which I can't find yet.
+-J.
 
-When I try to do the same with hob and add tcf-agent, it becomes red and ho=
-b stops without any result. Maybe I should hire the young girl from Yocto's=
- movie, for her it is simple.
-I added tools-debug to my local-conf and start bitbake again. For HOB, I ge=
-t the RPM file which is useless... I need the sama5d34.dtb,  uImage (kernel=
- binary) and a core-image[a-z]*.tar.gz
+>=20
+> -J.
+>=20
+> >=20
+> > -J.
+> >=20
+> > [[yocto] [meta-selinux][PATCH 0/5] Resend: Remove python dependency fro=
+m refpol.] On 13.10.17 (Thu 19:06) Philip Tricca wrote:
+> >=20
+> > > This is a resend of an earlier patch set that never made it to the li=
+st
+> > > AFAIK.
+> > >=20
+> > > The reference policy package currently pulls in a lot of python stuff
+> > > that isn't strictly necessary to boot an SELinux system and load a
+> > > policy. AFAIK this is caused by the mix of python and C utilities in
+> > > policycoreutils.
+> > >=20
+> > > This patch set breaks the policycoreutils recipe up into multiple
+> > > packages, one for each utility. In this way we can have the refpol etc
+> > > pull in only the utilities necessary for normal operation. This happe=
+ns
+> > > to be only the utilities written in C and thus we can remove python
+> > > completely in a minimal image.
+> > >=20
+> > > I've attempted to localize these changes as much as possible so this
+> > > patch set should have minimal impact on recipes outside of the
+> > > policycoreutils. An example image reicpe is added to demonstrate a
+> > > minimal image with only the utilities required to load a policy and
+> > > manipulate the policy store (add / remove policy modules) at runtime.
+> > >=20
+> > > Regards,
+> > > - Philip
+> > >=20
+> > > Philip Tricca (5):
+> > >  Break policycoreutils out into separate
+> > >  Remove unnecessary RDEPENDS_${BPN}.
+> > >  Remove runtime dependency on
+> > >  Add packagegroup and image recipe for
+> > >  Add packagegroup for policycoreutils
+> > >=20
+> > >  .../images/core-image-selinux-minimal.bb           |   15 ++
+> > >  .../packagegroups/packagegroup-core-selinux.bb     |    4 +-
+> > >  .../packagegroups/packagegroup-selinux-minimal.bb  |   26 +++
+> > >  .../packagegroup-selinux-policycoreutils.bb        |   36 ++++
+> > >  recipes-security/refpolicy/refpolicy_common.inc    |    2 +-
+> > >  recipes-security/selinux/policycoreutils.inc       |  179 ++++++++++=
++++++++--
+> > >  6 files changed, 245 insertions(+), 17 deletions(-)
+> > >=20
+> > > _______________________________________________
+> > > yocto mailing list
+> > > yocto@yoctoproject.org
+> > > https://lists.yoctoproject.org/listinfo/yocto
+> >=20
+--=20
+-Joe MacDonald.
+:wq
 
-My local.conf has following:
-BB_NUMBER_THREADS =3D "4"
-PARALLEL_MAKE =3D "-j 4"
-MACHINE ??=3D "sama5d3xek"
-DL_DIR ?=3D "/home/mensfort/workspace_poky/downloads"
-DISTRO ?=3D "poky"
-EXTRA_IMAGE_FEATURES =3D "debug-tweaks tools-debug"    <=3D=3D=3D Just adde=
-d tools-debug.
-USER_CLASSES ?=3D "buildstats image-mklibs image-prelink"
-PATCHRESOLVE =3D "noop"
-BB_DISKMON_DIRS =3D "\
-    STOPTASKS,${TMPDIR},1G,100K \
-    STOPTASKS,${DL_DIR},1G,100K \
-    STOPTASKS,${SSTATE_DIR},1G,100K \
-    ABORT,${TMPDIR},100M,1K \
-    ABORT,${DL_DIR},100M,1K \
-    ABORT,${SSTATE_DIR},100M,1K"
-CONF_VERSION =3D "1"
-SSTATE_MIRRORS =3D ""
-PACKAGE_CLASSES =3D "package_rpm package_ipk"
+--o0ZfoUVt4BxPQnbU
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: Digital signature
 
-I get following output from bitbake, no working output anymore.=20
-| Error: packagegroup-core-boot not found in the base feeds (sama5d3xek cor=
-texa9t2hf-vfp cortexa9hf-vfp armv7at2hf-vfp armv7ahf-vfp armv6thf-vfp armv6=
-hf-vfp armv5tehf-vfp armv5ehf-vfp armv5thf-vfp armv5hf-vfp noarch any all).
-| ERROR: Function failed: do_rootfs (see=20
-| /home/mensfort/workspace_poky/poky/build-atmel/tmp/work/sama5d3xek-pok
-| y-linux-gnueabi/core-image-minimal/1.0-r0/temp/log.do_rootfs.28222 for=20
-| further information)
-ERROR: Task 7 (/home/mensfort/workspace_poky/poky/meta/recipes-core/images/=
-core-image-minimal.bb, do_rootfs) failed with exit code '1'
-Currently 1 running tasks (1864 of 1870):
-0: perl-5.14.3-r1 do_package_write_ipk (pid 28220)
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1.4.12 (GNU/Linux)
 
-Next time to try HOB, I will make a screenshot.
-Maybe I am using the 'old' version 1.4.1. How to change to 1.4.2 or 1.5 ?
+iEYEARECAAYFAlJmm9IACgkQwFvcllog0XwwcQCgmKmsHlDCDc5SfsoggBgDZwFO
+hk0AoIbSy9JLU7k6fFGuvluLrPcjSuB8
+=wc8+
+-----END PGP SIGNATURE-----
 
-greetings,
-Bart
-
-Hi Bart,
-On 10/21/2013 07:31 PM, Houkes, Bart wrote:
-> Hi,
->
-> 2 issues are blocking for my development:
->
-> last few weeks I was able to download my own kernel on the ARM board with=
- SAMA5d3S.
->
-> However, with HOB I cannot add TCF-agent or any other project.. HOB will =
-give some error, becomes red and stops. I cannot compile anymore.
->
-> I need TCF-agent to do remote debugging.
-Regarding tcf-agent, you can find documentation at http://www.yoctoproject.=
-org/docs/latest/mega-manual/mega-manual.html#getting-the-images.
-If you already have tools-debug as extra feature in local.conf, and you rec=
-eive an error in Hob, can you please provide a screenshot with it?
-
-Cristiana
->
-> Another:
->
-> There are some presentations about standard projects. How about kernel dr=
-ivers with cross compilers or Video 4 Linux. How to start those projects?
->
-> greetings,
-> Bart
-> bart.houkes@sogeti.nl
->
-> Disclaimer:
-> This message contains information that may be privileged or confidential =
-and is the property of Sogeti Nederland B.V. or its Group members. It is in=
-tended only for the person to whom it is addressed. If you are not the inte=
-nded recipient, you are not authorized to read, print, retain, copy, dissem=
-inate, distribute, or use this message or any part thereof. If you receive =
-this message in error, please notify the sender immediately and delete all =
-copies of this message.
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
-
-
-
-
-Disclaimer: This message contains information that may be privileged or con=
-fidential and is the property of Sogeti Nederland B.V. or its Group members=
-. It is intended only for the person to whom it is addressed. If you are no=
-t the intended recipient, you are not authorized to read, print, retain, co=
-py, disseminate, distribute, or use this message or any part thereof. If yo=
-u receive this message in error, please notify the sender immediately and d=
-elete all copies of this message.
-
+--o0ZfoUVt4BxPQnbU--
