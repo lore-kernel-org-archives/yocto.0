@@ -1,25 +1,24 @@
-Return-Path: <cristiana.voicu@intel.com>
-Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 64BE6E01730
-	for <yocto@yoctoproject.org>; Tue, 22 Oct 2013 03:31:49 -0700 (PDT)
-Received: from azsmga002.ch.intel.com ([10.2.17.35])
-	by azsmga101.ch.intel.com with ESMTP; 22 Oct 2013 03:31:48 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.93,535,1378882800"; d="scan'208";a="311019859"
-Received: from cvoicu-vostro-460.rb.intel.com (HELO [10.237.105.65])
-	([10.237.105.65])
-	by AZSMGA002.ch.intel.com with ESMTP; 22 Oct 2013 03:31:47 -0700
-Message-ID: <52665531.2010205@intel.com>
-Date: Tue, 22 Oct 2013 13:36:33 +0300
-From: "cristiana.voicu" <cristiana.voicu@intel.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:17.0) Gecko/20130804 Thunderbird/17.0.8
+Return-Path: <prvs=0005833aa=Richard.Leitner@skidata.com>
+Received: from mail1.skidata.com (mail1.skidata.com [91.230.2.99])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 459B6E01736
+	for <yocto@yoctoproject.org>; Tue, 22 Oct 2013 04:55:52 -0700 (PDT)
+X-IronPort-Anti-Spam-Filtered: true
+X-IronPort-Anti-Spam-Result: AqIEADFnZlKsEApK/2dsb2JhbABZgz9UvkiBPHSCJQEBAQQBAQE3NBcEAgEIDQQEAQELFAkHHwgBChQJCAEBBBMIiAMIuwMEjXsBgRk4BoMZgQoDjlOGaYkvjkmBaEI
+From: Richard Leitner - SKIDATA <Richard.Leitner@skidata.com>
+To: "Yocto Project Discussion ML (yocto@yoctoproject.org)"
+	<yocto@yoctoproject.org>
+Thread-Topic: [psplash][PATCH] Add option to read message from file
+Thread-Index: Ac6+pHIymGSUvZ+1TVuSvsCdsMelrwQeIzcg
+Date: Tue, 22 Oct 2013 11:55:48 +0000
+Message-ID: <F7680723A1CA6840825A59020FA77064FB43D1@sdexmbx1srv.skidata.net>
+References: <F7680723A1CA6840825A59020FA77064FAEF32@sdexmbx1srv.skidata.net>
+In-Reply-To: <F7680723A1CA6840825A59020FA77064FAEF32@sdexmbx1srv.skidata.net>
+Accept-Language: en-US, de-AT
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [172.16.112.215]
 MIME-Version: 1.0
-To: "Houkes, Bart" <bart.houkes@sogeti.nl>
-References: <FBA0FF4F0EC22C4AAFF3D9FD07EF2E383A5C6DAE5C@SOGMB1.SGTI.NL>
-In-Reply-To: <FBA0FF4F0EC22C4AAFF3D9FD07EF2E383A5C6DAE5C@SOGMB1.SGTI.NL>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Remote debugging with Yocto
+Subject: Re: [psplash][PATCH] Add option to read message from file
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -31,43 +30,124 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 22 Oct 2013 10:31:53 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Tue, 22 Oct 2013 11:55:55 -0000
+Content-Language: de-DE
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Bart,
-On 10/21/2013 07:31 PM, Houkes, Bart wrote:
-> Hi,
->
-> 2 issues are blocking for my development:
->
-> last few weeks I was able to download my own kernel on the ARM board with SAMA5d3S.
->
-> However, with HOB I cannot add TCF-agent or any other project.. HOB will give some error, becomes red and stops. I cannot compile anymore.
->
-> I need TCF-agent to do remote debugging.
-Regarding tcf-agent, you can find documentation at 
-http://www.yoctoproject.org/docs/latest/mega-manual/mega-manual.html#getting-the-images.
-If you already have tools-debug as extra feature in local.conf, and you 
-receive an error in Hob, can you please provide a screenshot with it?
+Hi everybody,
+a few weeks ago I sent this patch for psplash to add the ability to read th=
+e displayed message from a file.
+Due to the fact there was no response I think there are no objections again=
+st it, or was the message just ignored?
 
-Cristiana
->
-> Another:
->
-> There are some presentations about standard projects. How about kernel drivers with cross compilers or Video 4 Linux. How to start those projects?
->
-> greetings,
-> Bart
-> bart.houkes@sogeti.nl
->
-> Disclaimer:
-> This message contains information that may be privileged or confidential and is the property of Sogeti Nederland B.V. or its Group members. It is intended only for the person to whom it is addressed. If you are not the intended recipient, you are not authorized to read, print, retain, copy, disseminate, distribute, or use this message or any part thereof. If you receive this message in error, please notify the sender immediately and delete all copies of this message.
+If the patch is fine I'd be happy if it gets applied :-)
+
+Thanks and best regards,
+Richard Leitner
+
+> -----Original Message-----
+> From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.o=
+rg] On
+> Behalf Of Richard Leitner - SKIDATA
+> Sent: Tuesday, October 01, 2013 2:51 PM
+> To: Yocto Project Discussion ML (yocto@yoctoproject.org)
+> Subject: [yocto] [psplash][PATCH] Add option to read message from file
+>=20
+> Add an option to read the displayed message from a file.
+> Additionally the maximum length for the read string can be defined.
+> The string will then be cut after the given number of chars.
+> It is also possible to define a prefix which is displayed in front of the=
+ read file content.
+>=20
+> If no file is defined a hardcoded message (using MSG like before) can be =
+displayed.
+>=20
+> For these changes the following defines were introduced:
+> MSG_FILE_PATH ...... path to the file
+> MSG_FILE_MAX_LEN ... number of chars read from file MSG_FILE_PREFIX .... =
+text
+> displayed in front of the file content
+>=20
+> Signed-off-by: Richard Leitner <richard.leitner@skidata.com>
+> ---
+>  psplash.c |   41 ++++++++++++++++++++++++++++++++++++++++-
+>  1 file changed, 40 insertions(+), 1 deletion(-)
+>=20
+> diff --git a/psplash.c b/psplash.c
+> index 09cf0d0..093a99a 100644
+> --- a/psplash.c
+> +++ b/psplash.c
+> @@ -23,6 +23,20 @@
+>  #include "psplash-bar-img.h"
+>  #include "radeon-font.h"
+>=20
+> +/* Here you can define a message which will be displayed above the
+> + * progress bar.
+> + * The message can be either read from a file:
+> + *    Set MSG_FILE_PATH (and if needed MSG_FILE_{MAX_LEN,PREFIX})
+> + *    to display the first MSG_FILE_MAX_LEN characters
+> + *    of the first line from MSG_FILE_PATH as message.
+> + *    Additionally the content of MSG_FILE_PREFIX will be displayed
+> + *    before the read message. */
+> +#define MSG_FILE_PATH ""
+> +#define MSG_FILE_MAX_LEN 32
+> +#define MSG_FILE_PREFIX ""
+> +/* Or a fixed string can be used:
+> + *    If MSG_FILE is not set or not readable
+> + *    the content of MSG will be used as message. */
+>  #define MSG ""
+>=20
+>  void
+> @@ -204,6 +218,8 @@ main (int argc, char** argv)
+>    int        pipe_fd, i =3D 0, angle =3D 0, ret =3D 0;
+>    PSplashFB *fb;
+>    bool       disable_console_switch =3D FALSE;
+> +  FILE      *fd_msg;
+> +  char      *str_msg;
+>=20
+>    signal(SIGHUP, psplash_exit);
+>    signal(SIGINT, psplash_exit);
+> @@ -287,7 +303,30 @@ main (int argc, char** argv)
+>=20
+>    psplash_draw_progress (fb, 0);
+>=20
+> -  psplash_draw_msg (fb, MSG);
+> +  /* Draw message from file or defined MSG */
+> +  fd_msg =3D fopen (MSG_FILE_PATH, "r");
+> +  if (fd_msg=3D=3DNULL) {
+> +    psplash_draw_msg (fb, MSG);
+> +  } else {
+> +    str_msg =3D (char*) malloc (
+> +              (MSG_FILE_MAX_LEN + strlen(MSG_FILE_PREFIX) + 1)*sizeof(ch=
+ar));
+> +    if (str_msg !=3D NULL && fgets (str_msg, MSG_FILE_MAX_LEN, fd_msg)!=
+=3DNULL) {
+> +      if (strlen (MSG_FILE_PREFIX) > 0) {
+> +        /* if MSG_FILE_PREFIX is set, prepend it to str_msg */
+> +        memmove (str_msg + strlen(MSG_FILE_PREFIX) + 1, str_msg,
+> strlen(str_msg));
+> +        strcpy (str_msg, MSG_FILE_PREFIX);
+> +		/* replace \0 after MSG_FILE_PREFIX with a space */
+> +        str_msg[strlen(MSG_FILE_PREFIX)] =3D ' ';
+> +      }
+> +      psplash_draw_msg (fb, str_msg);
+> +      free (str_msg);
+> +    } else {
+> +      /* MSG_FILE_PATH is empty (or malloc failed)
+> +	   *    so display MSG_FILE_PREFIX only */
+> +      psplash_draw_msg (fb, MSG_FILE_PREFIX);
+> +    }
+> +    fclose (fd_msg);
+> +  }
+>=20
+>    psplash_main (fb, pipe_fd, 0);
+>=20
+> --
+> 1.7.10.4
+>=20
 > _______________________________________________
 > yocto mailing list
 > yocto@yoctoproject.org
 > https://lists.yoctoproject.org/listinfo/yocto
-
-
-
 
