@@ -1,22 +1,30 @@
-Return-Path: <bevenson@melinkcorp.com>
-Received: from pluto.melinkcorp.com (rrcs-98-100-91-244.central.biz.rr.com
-	[98.100.91.244])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C6B17E01638
-	for <yocto@yoctoproject.org>; Tue, 22 Oct 2013 06:47:05 -0700 (PDT)
-Received: from pluto.melinkcorp.local ([10.0.2.4]) by pluto.melinkcorp.local
-	([10.0.2.4]) with mapi; Tue, 22 Oct 2013 09:47:04 -0400
-From: Bryan Evenson <bevenson@melinkcorp.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Date: Tue, 22 Oct 2013 09:44:06 -0400
-Thread-Topic: Can't get DEPENDS to trigger glib-2.0 or util-linux build
-Thread-Index: Ac7PLMbW+y9tmpKPRBCyL/9z9n94pg==
-Message-ID: <91586D499ADFD74FBCFB8425266A5DE40153B8ED02D3@pluto.melinkcorp.local>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-acceptlanguage: en-US
+Return-Path: <p.patat@gmail.com>
+Received: from mail-wi0-f181.google.com (mail-wi0-f181.google.com
+	[209.85.212.181])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9590AE0163E
+	for <yocto@yoctoproject.org>; Tue, 22 Oct 2013 06:48:47 -0700 (PDT)
+Received: by mail-wi0-f181.google.com with SMTP id l12so5754535wiv.14
+	for <yocto@yoctoproject.org>; Tue, 22 Oct 2013 06:48:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:sender:from:date:message-id:subject:to:content-type;
+	bh=zTQLLowTaXMpPLXwToJO3XhpnQ46CO0Za37c6NGm+bs=;
+	b=KaDa4s1wkTVmHarKOaeMFSaJC1Dhe4SZX4Hf4TPN1CtOSQhIYtK3jKFCX1hMN/KYtO
+	DtPNgVdvFmOs1SpLVQZBdHHmTuXEZWQx3KFD8mWW7ugCFf7u5sxAXqwDGljH0/JRCPxB
+	UdUMQSMAkAe+J2YsI3YR6DMd7fpCK1UHLL6a8aKAVZk906UMCd5j9x3A/zersQfBzjw8
+	97pdlW8ZllZqzOAvYna85zWbWbErj52VlCAqrH64LStDRwzGtRGnephEIRBC8KaiRmkW
+	MVstyT/4zsXzOGEODqZZZ6Q1HKpgAyKDqK6Z8+Ru8YAXCISpu6kRKg2FNw9AEbFue+MF
+	dDcA==
+X-Received: by 10.194.118.169 with SMTP id kn9mr1914994wjb.71.1382449726135;
+	Tue, 22 Oct 2013 06:48:46 -0700 (PDT)
 MIME-Version: 1.0
-Subject: Can't get DEPENDS to trigger glib-2.0 or util-linux build
+Sender: p.patat@gmail.com
+Received: by 10.194.19.225 with HTTP; Tue, 22 Oct 2013 06:48:26 -0700 (PDT)
+From: patrick patat <patrick.patat@innotis.org>
+Date: Tue, 22 Oct 2013 15:48:26 +0200
+X-Google-Sender-Auth: -otU1OLRQYBcRKbun9T2BtlUkrI
+Message-ID: <CAF+NyK5UinxiRecimtV3fpFrGuKsu9jQ60nyskfgR60tTYdJ_A@mail.gmail.com>
+To: yocto <yocto@yoctoproject.org>
+Subject: perl module Crypt-OpenSSL-RSA
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -28,64 +36,65 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 22 Oct 2013 13:47:06 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Tue, 22 Oct 2013 13:48:47 -0000
+Content-Type: multipart/alternative; boundary=089e01176463d8a25104e954a8ba
 
-All,
+--089e01176463d8a25104e954a8ba
+Content-Type: text/plain; charset=ISO-8859-1
 
-I am on poky/dylan-9.0.1 (also have a yocto-autobuilder setup to use poky/d=
-ylan latest) and I have an application that I am writing that makes use of =
-the GLib dynamic libraries and the uuid library built by util-linux.  When =
-setting up the yocto-autobuilder, I discovered an issue with my recipe in t=
-hat it is not forcing the glib-2.0 or util-linux to be built before it gets=
- built.  I figured I had an issue with the DEPENDS or RDEPENDS settings for=
- my recipe, but so far adjusting these recipe settings has not fixed the is=
-sue and I'm wondering what I am doing wrong.
+Hello,
 
-As of now, my recipe has the following settings:
+I'm trying to create a recipe for perl module Crypt-OpenSSL-RSA, I'm using
+inherit cpan to do it. Build and install is working but at run time I have
+the following error:
 
-DEPENDS_${PN} =3D "virtual/kernel glib-2.0 util-linux"
-RDEPENDS_${PN} =3D "tar php dosfstools libpam"
-inherit autotools siteinfo update-rc.d
+Can't load
+'/usr/lib/perl/vendor_perl/5.14.3//auto/Crypt/OpenSSL/RSA/RSA.so' for
+module Crypt::OpenSSL::RSA:
+/usr/lib/perl/vendor_perl/5.14.3//auto/Crypt/OpenSSL/RSA/RSA.so: undefined
+symbol: RSA_public_encrypt at /usr/lib/perl/5.14.3//.
 
-If I bitbake -c clean glib-2.0, util-linux and my recipe and then bitbake m=
-y recipe, the system does not attempt to build either glib-2.0 or util-linu=
-x before trying to configure my application.  As a result the configure ste=
-p fails because it can't find the glib-2.0 or uuid libraries.  I also tried=
- doing a cleansstate on glib-2.0, util-linux and my recipe before buidling =
-my recipe and received the same results.  Here is some applicable output fr=
-om the do_configure step of my recipe:
+After some research I found this in configure log :
+Note (probably harmless): No library found for -lcrypto
 
-...
+Because of this -lcrypto as been remove in Makefile, if I manually edit
+Makefile to add -lcrypto and rebuild I don't have undefined symbol error.
 
-checking for arm-poky-linux-gnueabi-pkg-config... no
-checking for pkg-config... /media/sda3/yocto-autobuilder/yocto-slave/nightl=
-y-foo/build/build/tmp/sysroots/i686-linux/usr/bin/pkg-config
-configure: WARNING: using cross tools not prefixed with host triplet
-checking pkg-config is at least version 0.9.0... yes
-checking for GLIB... no
-configure: error: Package requirements (glib-2.0) were not met:
+Does anybody know if there is a better way than a sed in Makefile to fix
+the problem?
 
-No package 'glib-2.0' found
-
-Consider adjusting the PKG_CONFIG_PATH environment variable if you
-installed software in a non-standard prefix.
-
-Alternatively, you may set the environment variables GLIB_CFLAGS
-and GLIB_LIBS to avoid the need to call pkg-config.
-See the pkg-config man page for more details.
-
-...
-
-If I go ahead and call "bitbake glib-2.0 util-linux" before building my rec=
-ipe, then my application builds without issue.  What did I forget to add to=
- my recipe so the system builds the dependent packages first?
+you can find the recipe here http://pastebin.com/u2fd9MJq
 
 Thanks,
-Bryan Evenson
 
+Pat
 
+--089e01176463d8a25104e954a8ba
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
 
+<div dir=3D"ltr"><span style=3D"font-family:arial,sans-serif;font-size:13px=
+">Hello,</span><div style=3D"font-family:arial,sans-serif;font-size:13px"><=
+br><div>I&#39;m trying to create a recipe for perl module=A0Crypt-OpenSSL-R=
+SA, I&#39;m using inherit cpan to do it. Build and install is working but a=
+t run time I have the following error:</div>
 
+<div><br></div><div>Can&#39;t load &#39;/usr/lib/perl/vendor_perl/5.14.3//a=
+uto/Crypt/OpenSSL/RSA/RSA.so&#39; for module Crypt::OpenSSL::RSA: /usr/lib/=
+perl/vendor_perl/5.14.3//auto/Crypt/OpenSSL/RSA/RSA.so: undefined symbol: R=
+SA_public_encrypt at /usr/lib/perl/5.14.3//.<br>
+
+</div><div><br></div><div>After some research I found this in configure log=
+ :=A0</div><div>Note (probably harmless): No library found for -lcrypto<br>=
+</div><div><br></div><div>Because of this -lcrypto as been remove in Makefi=
+le, if I manually edit Makefile to add -lcrypto and rebuild I don&#39;t hav=
+e undefined symbol error.</div>
+
+<div><br></div><div>Does anybody know if there is a better way than a sed i=
+n Makefile to fix the problem?</div><div><br></div><div>you can find the re=
+cipe here=A0<a href=3D"http://pastebin.com/u2fd9MJq" target=3D"_blank">http=
+://pastebin.com/u2fd9MJq</a></div>
+
+<div><br></div><div>Thanks,</div><div><br></div><div>Pat</div></div></div>
+
+--089e01176463d8a25104e954a8ba--
