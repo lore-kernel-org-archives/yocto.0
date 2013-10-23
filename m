@@ -1,36 +1,33 @@
-Return-Path: <rohit2.jindal@aricent.com>
-Received: from jaguar.aricent.com (jaguar.aricent.com [180.151.2.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B6710E016B6
-	for <yocto@yoctoproject.org>; Wed, 23 Oct 2013 02:01:23 -0700 (PDT)
-Received: from jaguar.aricent.com (localhost [127.0.0.1])
-	by postfix.imss71 (Postfix) with ESMTP id D16EB36B91;
-	Wed, 23 Oct 2013 14:31:02 +0530 (IST)
-Received: from GUREXHT01.ASIAN.AD.ARICENT.COM (gurexht01.asian.ad.aricent.com
-	[10.203.171.136])
-	by jaguar.aricent.com (Postfix) with ESMTP id C453E36B8C;
-	Wed, 23 Oct 2013 14:31:02 +0530 (IST)
-Received: from GUREXMB01.asian.ad.aricent.com ([10.203.171.134]) by
-	GUREXHT01.ASIAN.AD.ARICENT.COM ([10.203.171.136]) with mapi;
-	Wed, 23 Oct 2013 14:31:02 +0530
-From: Rohit2 Jindal <rohit2.jindal@aricent.com>
-To: Paul Eggleton <paul.eggleton@linux.intel.com>
-Date: Wed, 23 Oct 2013 14:31:01 +0530
-Thread-Topic: Yocto toolchain compilation Issues 
-Thread-Index: Ac7AGB8OizUUWEJCRz2XWHXiuXb9ugPtQBiA
-Message-ID: <17797116383D4341B029FDF34C22BF6A5D7FBA7B68@GUREXMB01.ASIAN.AD.ARICENT.COM>
-References: <mailman.7042.1376600669.19864.yocto@yoctoproject.org>
-	<229904476.ZkVfXfKkUW@helios>
-	<17797116383D4341B029FDF34C22BF6A5D7F9676DD@GUREXMB01.ASIAN.AD.ARICENT.COM>
-	<5732112.ULB9IMbfHf@helios>
-In-Reply-To: <5732112.ULB9IMbfHf@helios>
-Accept-Language: en-US
-X-MS-Has-Attach: yes
-X-MS-TNEF-Correlator: 
-acceptlanguage: en-US
+Return-Path: <p.patat@gmail.com>
+Received: from mail-wi0-f173.google.com (mail-wi0-f173.google.com
+	[209.85.212.173])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 28DB7E016B6
+	for <yocto@yoctoproject.org>; Wed, 23 Oct 2013 02:12:53 -0700 (PDT)
+Received: by mail-wi0-f173.google.com with SMTP id ey11so6999048wid.12
+	for <yocto@yoctoproject.org>; Wed, 23 Oct 2013 02:12:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:sender:in-reply-to:references:from:date:message-id
+	:subject:to:content-type;
+	bh=A4H8Otz5Cme77VxcSk930/exvxtEUa8O+EIPHs3Uefo=;
+	b=raElEkoFEISNVC3LGU9O7/R70FmhiqCC9EMdliknM6NAsSYkru6Ayf7vuYwKBKAYai
+	BTH2IpQOk6nUfKxc7RsWbi2oJeLpWwPMnr84FOTuwvz08OpMsRNNy9N8K5fmmI/Vaxwv
+	y13NtQR6XfrDvWeG73XGmAhWZoEaKckROtARA8sdiLPxeo3cPG0WqbIc2gxInoic4xiK
+	CgDjTvxkoaV8DW4v3ia+w3RJ/60e7amq3wEoxfY7sa2fDq7WL+F3V5oNbuGRj9smy49E
+	CTJWD0cql8zm0XgVHFYRQ/04W6uDakdqsJD4FyLSt8uK7puNFAe4h5tcftqaNYJJf+El
+	j1Ow==
+X-Received: by 10.180.108.131 with SMTP id hk3mr1190072wib.10.1382519572324;
+	Wed, 23 Oct 2013 02:12:52 -0700 (PDT)
 MIME-Version: 1.0
-X-TM-AS-MML: No
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Yocto toolchain compilation Issues
+Sender: p.patat@gmail.com
+Received: by 10.194.19.225 with HTTP; Wed, 23 Oct 2013 02:12:32 -0700 (PDT)
+In-Reply-To: <CAF+NyK5UinxiRecimtV3fpFrGuKsu9jQ60nyskfgR60tTYdJ_A@mail.gmail.com>
+References: <CAF+NyK5UinxiRecimtV3fpFrGuKsu9jQ60nyskfgR60tTYdJ_A@mail.gmail.com>
+From: patrick patat <patrick.patat@innotis.org>
+Date: Wed, 23 Oct 2013 11:12:32 +0200
+X-Google-Sender-Auth: 9dEg4GGAbu6P_RcgPpEJfBFrSOI
+Message-ID: <CAF+NyK4AwYazpXtYHYjeb99HMkJ_FRpozStLYVQ4OwY-TZkhDA@mail.gmail.com>
+To: yocto <yocto@yoctoproject.org>
+Subject: Re: perl module Crypt-OpenSSL-RSA
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,230 +39,112 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 23 Oct 2013 09:01:27 -0000
-X-Groupsio-MsgNum: 16663
-Content-Language: en-US
-Content-Type: multipart/mixed;
-	boundary="_002_17797116383D4341B029FDF34C22BF6A5D7FBA7B68GUREXMB01ASIA_"
+X-List-Received-Date: Wed, 23 Oct 2013 09:12:54 -0000
+Content-Type: multipart/alternative; boundary=e89a8f3ba34b00ea2804e964ec18
 
---_002_17797116383D4341B029FDF34C22BF6A5D7FBA7B68GUREXMB01ASIA_
-Content-Type: text/plain; charset="us-ascii"
+--e89a8f3ba34b00ea2804e964ec18
+Content-Type: text/plain; charset=ISO-8859-1
+
+Hello,
+
+I found that the problem could be related to libcrypto path which is in
+${base_libdir} instead of ${libdir}.
+So if I use this EXTRA_CPANFLAGS = "LIBS='
+-L${STAGING_DIR_TARGET}${base_libdir} -lssl -lcrypto'"
+instead of my ugly sed it's compiling with libcrypto but then I have the
+following error:
+QA Issue: package Crypt-OpenSSL-RSA contains bad RPATH pathtosysroot/lib in
+file
+pathtobuilddir/Crypt-OpenSSL-RSA/0.28-r0/packages-split/Crypt-OpenSSL-RSA/usr/lib/perl/vendor_perl/5.14.3/auto/Crypt/OpenSSL/RSA/RSA.so
+
+How can I fix this rpath issue?
+
+Thanks,
+
+Pat
+
+
+
+On Tue, Oct 22, 2013 at 3:48 PM, patrick patat <patrick.patat@innotis.org>wrote:
+
+> Hello,
+>
+> I'm trying to create a recipe for perl module Crypt-OpenSSL-RSA, I'm using
+> inherit cpan to do it. Build and install is working but at run time I have
+> the following error:
+>
+> Can't load
+> '/usr/lib/perl/vendor_perl/5.14.3//auto/Crypt/OpenSSL/RSA/RSA.so' for
+> module Crypt::OpenSSL::RSA:
+> /usr/lib/perl/vendor_perl/5.14.3//auto/Crypt/OpenSSL/RSA/RSA.so: undefined
+> symbol: RSA_public_encrypt at /usr/lib/perl/5.14.3//.
+>
+> After some research I found this in configure log :
+> Note (probably harmless): No library found for -lcrypto
+>
+> Because of this -lcrypto as been remove in Makefile, if I manually edit
+> Makefile to add -lcrypto and rebuild I don't have undefined symbol error.
+>
+> Does anybody know if there is a better way than a sed in Makefile to fix
+> the problem?
+>
+> you can find the recipe here http://pastebin.com/u2fd9MJq
+>
+> Thanks,
+>
+> Pat
+>
+
+--e89a8f3ba34b00ea2804e964ec18
+Content-Type: text/html; charset=ISO-8859-1
 Content-Transfer-Encoding: quoted-printable
 
-Hi ,
+<div dir=3D"ltr">Hello,<div><br></div><div>I found that the problem could b=
+e related to libcrypto path which is in ${base_libdir} instead of ${libdir}=
+.</div><div>So if I use this EXTRA_CPANFLAGS =3D &quot;LIBS=3D&#39; -L${STA=
+GING_DIR_TARGET}${base_libdir} -lssl -lcrypto&#39;&quot;</div>
 
-Actually I am trying to compile our own toolchain by applying our board spe=
-cific patches to it in yocto . But getting error (attached error log) while=
- running gcc-cross-initial for 4.6.3 toolchain .
+<div>instead of my ugly sed it&#39;s compiling with libcrypto but then I ha=
+ve the following error:</div><div>QA Issue: package Crypt-OpenSSL-RSA conta=
+ins bad RPATH pathtosysroot/lib in file pathtobuilddir/Crypt-OpenSSL-RSA/0.=
+28-r0/packages-split/Crypt-OpenSSL-RSA/usr/lib/perl/vendor_perl/5.14.3/auto=
+/Crypt/OpenSSL/RSA/RSA.so</div>
 
-I have removed some patches to make it compatible for my own required toolc=
-hain patch versions.
+<div><br></div><div>How can I fix this rpath issue?</div><div><br></div><di=
+v>Thanks,</div><div><br></div><div>Pat</div><div><br></div></div><div class=
+=3D"gmail_extra"><br><br><div class=3D"gmail_quote">On Tue, Oct 22, 2013 at=
+ 3:48 PM, patrick patat <span dir=3D"ltr">&lt;<a href=3D"mailto:patrick.pat=
+at@innotis.org" target=3D"_blank">patrick.patat@innotis.org</a>&gt;</span> =
+wrote:<br>
 
+<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
+x #ccc solid;padding-left:1ex"><div dir=3D"ltr"><span style=3D"font-family:=
+arial,sans-serif;font-size:13px">Hello,</span><div style=3D"font-family:ari=
+al,sans-serif;font-size:13px">
 
-I have changed SRC_URI to download toolchain 4.6.3 tar and removed some pat=
-ches applicable for 4.7.2 version of toolchain and added my own board speci=
-fic
-Toolchain patch. Its applying properly but at the compilation time gcc-cros=
-s-initial fails I am not able to understand the reason.
-
-I have downloaded binutils 2.22 version for specific to our toolchain patch=
- of binutils_222.patch and removed some patches compatible to 2.23.1 versio=
-n of binutils .
-Bitbake binutils-cross works fine removing some patches
-
-
-But when I compile bitbake gcc-cross-initial do_compile failed .
-
-
-1 I am not getting if I want to compile and install my own board specific t=
-oolchain I have to run only
-
-Bitbake gcc-cross-initial
-Bitbake gcc-runtime
-Bitbake gcc-cross
-
-2Please tell whether the above three bitbake commands all are mandatory to =
-compile and install my specific toolchain or which command can be skipped.
-
-3Please tell its dependency on newlib eglibc uclibc etc I am confused on al=
-l these things
-
-4And please tell the mandatory changes to made for elf toolchain and linux =
-toolchain respectively.
-
-Thanks in advance!!
+<br><div>I&#39;m trying to create a recipe for perl module=A0Crypt-OpenSSL-=
+RSA, I&#39;m using inherit cpan to do it. Build and install is working but =
+at run time I have the following error:</div>
+<div><br></div><div>Can&#39;t load &#39;/usr/lib/perl/vendor_perl/5.14.3//a=
+uto/Crypt/OpenSSL/RSA/RSA.so&#39; for module Crypt::OpenSSL::RSA: /usr/lib/=
+perl/vendor_perl/5.14.3//auto/Crypt/OpenSSL/RSA/RSA.so: undefined symbol: R=
+SA_public_encrypt at /usr/lib/perl/5.14.3//.<br>
 
 
-Regards,
-Rohit Jindal
+</div><div><br></div><div>After some research I found this in configure log=
+ :=A0</div><div>Note (probably harmless): No library found for -lcrypto<br>=
+</div><div><br></div><div>Because of this -lcrypto as been remove in Makefi=
+le, if I manually edit Makefile to add -lcrypto and rebuild I don&#39;t hav=
+e undefined symbol error.</div>
 
 
+<div><br></div><div>Does anybody know if there is a better way than a sed i=
+n Makefile to fix the problem?</div><div><br></div><div>you can find the re=
+cipe here=A0<a href=3D"http://pastebin.com/u2fd9MJq" target=3D"_blank">http=
+://pastebin.com/u2fd9MJq</a></div>
 
 
+<div><br></div><div>Thanks,</div><div><br></div><div>Pat</div></div></div>
+</blockquote></div><br></div>
 
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D
-Please refer to http://www.aricent.com/legal/email_disclaimer.html
-for important disclosures regarding this electronic communication.
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D
-
---_002_17797116383D4341B029FDF34C22BF6A5D7FBA7B68GUREXMB01ASIA_
-Content-Type: application/octet-stream; name="Toolchain_463compilation log"
-Content-Description: Toolchain_463compilation log
-Content-Disposition: attachment; filename="Toolchain_463compilation log";
-	size=8240; creation-date="Wed, 23 Oct 2013 07:12:51 GMT";
-	modification-date="Wed, 23 Oct 2013 07:13:56 GMT"
-Content-Transfer-Encoding: base64
-
-L2hvbWUvbmV0bG9naWMveW9jdG8vcG9reS9tZXRhL3JlY2lwZXMtZGV2dG9vbHMvZ2NjL2djYy1j
-cm9zcy1pbml0aWFsXzQuNy5iYiwgZG9fY29tcGlsZSkNCk5PVEU6IHJlY2lwZSBnY2MtY3Jvc3Mt
-aW5pdGlhbC00LjYuMy1yMTk6IHRhc2sgZG9fY29tcGlsZTogU3RhcnRlZA0KRVJST1I6IEZ1bmN0
-aW9uIGZhaWxlZDogZG9fY29tcGlsZSAoc2VlIC9ob21lL25ldGxvZ2ljL3lvY3RvL3Bva3kvYnVp
-bGQvdG1wL3dvcmsvbWlwczY0LXBva3ktbGludXgtdWNsaWJjL2djYy1jcm9zcy1pbml0aWFsLzQu
-Ni4zLXIxOS90ZW1wL2xvZy5kb19jb21waWxlLjc2MDYgZm9yIGZ1cnRoZXIgaW5mb3JtYXRpb24p
-DQpFUlJPUjogTG9nZmlsZSBvZiBmYWlsdXJlIHN0b3JlZCBpbjogL2hvbWUvbmV0bG9naWMveW9j
-dG8vcG9reS9idWlsZC90bXAvd29yay9taXBzNjQtcG9reS1saW51eC11Y2xpYmMvZ2NjLWNyb3Nz
-LWluaXRpYWwvNC42LjMtcjE5L3RlbXAvbG9nLmRvX2NvbXBpbGUuNzYwNg0KTG9nIGRhdGEgZm9s
-bG93czoNCnwgREVCVUc6IFNJVEUgZmlsZXMgWydlbmRpYW4tbGl0dGxlJywgJ2NvbW1vbi1saW51
-eCcsICdjb21tb24tZ2xpYmMnLCAnYml0LTY0JywgJ3g4Nl82NC1saW51eCcsICdjb21tb24nXQ0K
-fCBERUJVRzogRXhlY3V0aW5nIHNoZWxsIGZ1bmN0aW9uIGRvX2NvbXBpbGUNCnwgTk9URTogbWFr
-ZSAtaiA4IEFSQ0hfRkxBR1NfRk9SX1RBUkdFVD0gLW1lYiAgIC1tYWJpPTY0IC1taGFyZC1mbG9h
-dCAtaXN5c3RlbS9ob21lL25ldGxvZ2ljL3lvY3RvL3Bva3kvYnVpbGQvdG1wL3N5c3Jvb3RzL3hs
-cDN4eC91c3IvaW5jbHVkZSBhbGwtZ2NjIGFsbC10YXJnZXQtbGliZ2NjDQp8IG1ha2VbMV06IEVu
-dGVyaW5nIGRpcmVjdG9yeSBgL2hvbWUvbmV0bG9naWMveW9jdG8vcG9reS9idWlsZC90bXAvd29y
-ay9taXBzNjQtcG9reS1saW51eC11Y2xpYmMvZ2NjLWNyb3NzLWluaXRpYWwvNC42LjMtcjE5L2dj
-Yy00LjYuMy9idWlsZC54ODZfNjQtbGludXgubWlwczY0LXBva3ktbGludXgtdWNsaWJjL2xpYmli
-ZXJ0eScNCnwgbWFrZVsyXTogRW50ZXJpbmcgZGlyZWN0b3J5IGAvaG9tZS9uZXRsb2dpYy95b2N0
-by9wb2t5L2J1aWxkL3RtcC93b3JrL21pcHM2NC1wb2t5LWxpbnV4LXVjbGliYy9nY2MtY3Jvc3Mt
-aW5pdGlhbC80LjYuMy1yMTkvZ2NjLTQuNi4zL2J1aWxkLng4Nl82NC1saW51eC5taXBzNjQtcG9r
-eS1saW51eC11Y2xpYmMvbGliaWJlcnR5L3Rlc3RzdWl0ZScNCnwgbWFrZVsyXTogTm90aGluZyB0
-byBiZSBkb25lIGZvciBgYWxsJy4NCnwgbWFrZVsyXTogTGVhdmluZyBkaXJlY3RvcnkgYC9ob21l
-L25ldGxvZ2ljL3lvY3RvL3Bva3kvYnVpbGQvdG1wL3dvcmsvbWlwczY0LXBva3ktbGludXgtdWNs
-aWJjL2djYy1jcm9zcy1pbml0aWFsLzQuNi4zLXIxOS9nY2MtNC42LjMvYnVpbGQueDg2XzY0LWxp
-bnV4Lm1pcHM2NC1wb2t5LWxpbnV4LXVjbGliYy9saWJpYmVydHkvdGVzdHN1aXRlJw0KfCBtYWtl
-WzFdOiBFbnRlcmluZyBkaXJlY3RvcnkgYC9ob21lL25ldGxvZ2ljL3lvY3RvL3Bva3kvYnVpbGQv
-dG1wL3dvcmsvbWlwczY0LXBva3ktbGludXgtdWNsaWJjL2djYy1jcm9zcy1pbml0aWFsLzQuNi4z
-LXIxOS9nY2MtNC42LjMvYnVpbGQueDg2XzY0LWxpbnV4Lm1pcHM2NC1wb2t5LWxpbnV4LXVjbGli
-Yy9saWJkZWNudW1iZXInDQp8IG1ha2VbMV06IE5vdGhpbmcgdG8gYmUgZG9uZSBmb3IgYGFsbCcu
-DQp8IG1ha2VbMV06IExlYXZpbmcgZGlyZWN0b3J5IGAvaG9tZS9uZXRsb2dpYy95b2N0by9wb2t5
-L2J1aWxkL3RtcC93b3JrL21pcHM2NC1wb2t5LWxpbnV4LXVjbGliYy9nY2MtY3Jvc3MtaW5pdGlh
-bC80LjYuMy1yMTkvZ2NjLTQuNi4zL2J1aWxkLng4Nl82NC1saW51eC5taXBzNjQtcG9reS1saW51
-eC11Y2xpYmMvbGliZGVjbnVtYmVyJw0KfCBtYWtlWzFdOiBMZWF2aW5nIGRpcmVjdG9yeSBgL2hv
-bWUvbmV0bG9naWMveW9jdG8vcG9reS9idWlsZC90bXAvd29yay9taXBzNjQtcG9reS1saW51eC11
-Y2xpYmMvZ2NjLWNyb3NzLWluaXRpYWwvNC42LjMtcjE5L2djYy00LjYuMy9idWlsZC54ODZfNjQt
-bGludXgubWlwczY0LXBva3ktbGludXgtdWNsaWJjL2xpYmliZXJ0eScNCnwgbWFrZVsxXTogRW50
-ZXJpbmcgZGlyZWN0b3J5IGAvaG9tZS9uZXRsb2dpYy95b2N0by9wb2t5L2J1aWxkL3RtcC93b3Jr
-L21pcHM2NC1wb2t5LWxpbnV4LXVjbGliYy9nY2MtY3Jvc3MtaW5pdGlhbC80LjYuMy1yMTkvZ2Nj
-LTQuNi4zL2J1aWxkLng4Nl82NC1saW51eC5taXBzNjQtcG9reS1saW51eC11Y2xpYmMvYnVpbGQt
-eDg2XzY0LWxpbnV4L2xpYmliZXJ0eScNCnwgbWFrZVsxXTogRW50ZXJpbmcgZGlyZWN0b3J5IGAv
-aG9tZS9uZXRsb2dpYy95b2N0by9wb2t5L2J1aWxkL3RtcC93b3JrL21pcHM2NC1wb2t5LWxpbnV4
-LXVjbGliYy9nY2MtY3Jvc3MtaW5pdGlhbC80LjYuMy1yMTkvZ2NjLTQuNi4zL2J1aWxkLng4Nl82
-NC1saW51eC5taXBzNjQtcG9reS1saW51eC11Y2xpYmMvaW50bCcNCnwgbWFrZVsxXTogTm90aGlu
-ZyB0byBiZSBkb25lIGZvciBgYWxsJy4NCnwgbWFrZVsxXTogTGVhdmluZyBkaXJlY3RvcnkgYC9o
-b21lL25ldGxvZ2ljL3lvY3RvL3Bva3kvYnVpbGQvdG1wL3dvcmsvbWlwczY0LXBva3ktbGludXgt
-dWNsaWJjL2djYy1jcm9zcy1pbml0aWFsLzQuNi4zLXIxOS9nY2MtNC42LjMvYnVpbGQueDg2XzY0
-LWxpbnV4Lm1pcHM2NC1wb2t5LWxpbnV4LXVjbGliYy9pbnRsJw0KfCBtYWtlWzJdOiBFbnRlcmlu
-ZyBkaXJlY3RvcnkgYC9ob21lL25ldGxvZ2ljL3lvY3RvL3Bva3kvYnVpbGQvdG1wL3dvcmsvbWlw
-czY0LXBva3ktbGludXgtdWNsaWJjL2djYy1jcm9zcy1pbml0aWFsLzQuNi4zLXIxOS9nY2MtNC42
-LjMvYnVpbGQueDg2XzY0LWxpbnV4Lm1pcHM2NC1wb2t5LWxpbnV4LXVjbGliYy9idWlsZC14ODZf
-NjQtbGludXgvbGliaWJlcnR5L3Rlc3RzdWl0ZScNCnwgbWFrZVsyXTogTm90aGluZyB0byBiZSBk
-b25lIGZvciBgYWxsJy4NCnwgbWFrZVsyXTogTGVhdmluZyBkaXJlY3RvcnkgYC9ob21lL25ldGxv
-Z2ljL3lvY3RvL3Bva3kvYnVpbGQvdG1wL3dvcmsvbWlwczY0LXBva3ktbGludXgtdWNsaWJjL2dj
-Yy1jcm9zcy1pbml0aWFsLzQuNi4zLXIxOS9nY2MtNC42LjMvYnVpbGQueDg2XzY0LWxpbnV4Lm1p
-cHM2NC1wb2t5LWxpbnV4LXVjbGliYy9idWlsZC14ODZfNjQtbGludXgvbGliaWJlcnR5L3Rlc3Rz
-dWl0ZScNCnwgbWFrZVsxXTogRW50ZXJpbmcgZGlyZWN0b3J5IGAvaG9tZS9uZXRsb2dpYy95b2N0
-by9wb2t5L2J1aWxkL3RtcC93b3JrL21pcHM2NC1wb2t5LWxpbnV4LXVjbGliYy9nY2MtY3Jvc3Mt
-aW5pdGlhbC80LjYuMy1yMTkvZ2NjLTQuNi4zL2J1aWxkLng4Nl82NC1saW51eC5taXBzNjQtcG9r
-eS1saW51eC11Y2xpYmMvZml4aW5jbHVkZXMnDQp8IG1ha2VbMV06IE5vdGhpbmcgdG8gYmUgZG9u
-ZSBmb3IgYGFsbCcuDQp8IG1ha2VbMV06IExlYXZpbmcgZGlyZWN0b3J5IGAvaG9tZS9uZXRsb2dp
-Yy95b2N0by9wb2t5L2J1aWxkL3RtcC93b3JrL21pcHM2NC1wb2t5LWxpbnV4LXVjbGliYy9nY2Mt
-Y3Jvc3MtaW5pdGlhbC80LjYuMy1yMTkvZ2NjLTQuNi4zL2J1aWxkLng4Nl82NC1saW51eC5taXBz
-NjQtcG9reS1saW51eC11Y2xpYmMvZml4aW5jbHVkZXMnDQp8IG1ha2VbMV06IExlYXZpbmcgZGly
-ZWN0b3J5IGAvaG9tZS9uZXRsb2dpYy95b2N0by9wb2t5L2J1aWxkL3RtcC93b3JrL21pcHM2NC1w
-b2t5LWxpbnV4LXVjbGliYy9nY2MtY3Jvc3MtaW5pdGlhbC80LjYuMy1yMTkvZ2NjLTQuNi4zL2J1
-aWxkLng4Nl82NC1saW51eC5taXBzNjQtcG9reS1saW51eC11Y2xpYmMvYnVpbGQteDg2XzY0LWxp
-bnV4L2xpYmliZXJ0eScNCnwgbWFrZVsxXTogRW50ZXJpbmcgZGlyZWN0b3J5IGAvaG9tZS9uZXRs
-b2dpYy95b2N0by9wb2t5L2J1aWxkL3RtcC93b3JrL21pcHM2NC1wb2t5LWxpbnV4LXVjbGliYy9n
-Y2MtY3Jvc3MtaW5pdGlhbC80LjYuMy1yMTkvZ2NjLTQuNi4zL2J1aWxkLng4Nl82NC1saW51eC5t
-aXBzNjQtcG9reS1saW51eC11Y2xpYmMvbGliY3BwJw0KfCBtYWtlWzFdOiBOb3RoaW5nIHRvIGJl
-IGRvbmUgZm9yIGBhbGwnLg0KfCBtYWtlWzFdOiBMZWF2aW5nIGRpcmVjdG9yeSBgL2hvbWUvbmV0
-bG9naWMveW9jdG8vcG9reS9idWlsZC90bXAvd29yay9taXBzNjQtcG9reS1saW51eC11Y2xpYmMv
-Z2NjLWNyb3NzLWluaXRpYWwvNC42LjMtcjE5L2djYy00LjYuMy9idWlsZC54ODZfNjQtbGludXgu
-bWlwczY0LXBva3ktbGludXgtdWNsaWJjL2xpYmNwcCcNCnwgbWFrZVsxXTogRW50ZXJpbmcgZGly
-ZWN0b3J5IGAvaG9tZS9uZXRsb2dpYy95b2N0by9wb2t5L2J1aWxkL3RtcC93b3JrL21pcHM2NC1w
-b2t5LWxpbnV4LXVjbGliYy9nY2MtY3Jvc3MtaW5pdGlhbC80LjYuMy1yMTkvZ2NjLTQuNi4zL2J1
-aWxkLng4Nl82NC1saW51eC5taXBzNjQtcG9reS1saW51eC11Y2xpYmMvYnVpbGQteDg2XzY0LWxp
-bnV4L2ZpeGluY2x1ZGVzJw0KfCBtYWtlWzFdOiBOb3RoaW5nIHRvIGJlIGRvbmUgZm9yIGBhbGwn
-Lg0KfCBtYWtlWzFdOiBMZWF2aW5nIGRpcmVjdG9yeSBgL2hvbWUvbmV0bG9naWMveW9jdG8vcG9r
-eS9idWlsZC90bXAvd29yay9taXBzNjQtcG9reS1saW51eC11Y2xpYmMvZ2NjLWNyb3NzLWluaXRp
-YWwvNC42LjMtcjE5L2djYy00LjYuMy9idWlsZC54ODZfNjQtbGludXgubWlwczY0LXBva3ktbGlu
-dXgtdWNsaWJjL2J1aWxkLXg4Nl82NC1saW51eC9maXhpbmNsdWRlcycNCnwgbWFrZVsxXTogRW50
-ZXJpbmcgZGlyZWN0b3J5IGAvaG9tZS9uZXRsb2dpYy95b2N0by9wb2t5L2J1aWxkL3RtcC93b3Jr
-L21pcHM2NC1wb2t5LWxpbnV4LXVjbGliYy9nY2MtY3Jvc3MtaW5pdGlhbC80LjYuMy1yMTkvZ2Nj
-LTQuNi4zL2J1aWxkLng4Nl82NC1saW51eC5taXBzNjQtcG9reS1saW51eC11Y2xpYmMvZ2NjJw0K
-fCBtYWtlWzFdOiBMZWF2aW5nIGRpcmVjdG9yeSBgL2hvbWUvbmV0bG9naWMveW9jdG8vcG9reS9i
-dWlsZC90bXAvd29yay9taXBzNjQtcG9reS1saW51eC11Y2xpYmMvZ2NjLWNyb3NzLWluaXRpYWwv
-NC42LjMtcjE5L2djYy00LjYuMy9idWlsZC54ODZfNjQtbGludXgubWlwczY0LXBva3ktbGludXgt
-dWNsaWJjL2djYycNCnwgQ2hlY2tpbmcgbXVsdGlsaWIgY29uZmlndXJhdGlvbiBmb3IgbGliZ2Nj
-Li4uDQp8IENvbmZpZ3VyaW5nIGluIG1pcHM2NC1wb2t5LWxpbnV4LXVjbGliYy9saWJnY2MNCnwg
-Y29uZmlndXJlOiBsb2FkaW5nIGNhY2hlIC4vY29uZmlnLmNhY2hlDQp8IGNoZWNraW5nIGZvciAt
-LWVuYWJsZS12ZXJzaW9uLXNwZWNpZmljLXJ1bnRpbWUtbGlicy4uLiBubw0KfCBjaGVja2luZyBm
-b3IgYSBCU0QtY29tcGF0aWJsZSBpbnN0YWxsLi4uIC91c3IvYmluL2luc3RhbGwgLWMNCnwgY2hl
-Y2tpbmcgZm9yIGdhd2suLi4gZ2F3aw0KfCBjaGVja2luZyBidWlsZCBzeXN0ZW0gdHlwZS4uLiB4
-ODZfNjQtcGMtbGludXgtZ251DQp8IGNoZWNraW5nIGhvc3Qgc3lzdGVtIHR5cGUuLi4gbWlwczY0
-LXBva3ktbGludXgtdWNsaWJjDQp8IGNoZWNraW5nIGZvciBtaXBzNjQtcG9reS1saW51eC11Y2xp
-YmMtYXIuLi4gbWlwczY0LXBva3ktbGludXgtdWNsaWJjLWFyDQp8IGNoZWNraW5nIGZvciBtaXBz
-NjQtcG9reS1saW51eC11Y2xpYmMtbGlwby4uLiBtaXBzNjQtcG9reS1saW51eC11Y2xpYmMtbGlw
-bw0KfCBjaGVja2luZyBmb3IgbWlwczY0LXBva3ktbGludXgtdWNsaWJjLW5tLi4uIC9ob21lL25l
-dGxvZ2ljL3lvY3RvL3Bva3kvYnVpbGQvdG1wL3dvcmsvbWlwczY0LXBva3ktbGludXgtdWNsaWJj
-L2djYy1jcm9zcy1pbml0aWFsLzQuNi4zLXIxOS9nY2MtNC42LjMvYnVpbGQueDg2XzY0LWxpbnV4
-Lm1pcHM2NC1wb2t5LWxpbnV4LXVjbGliYy8uL2djYy9ubQ0KfCBjaGVja2luZyBmb3IgbWlwczY0
-LXBva3ktbGludXgtdWNsaWJjLXJhbmxpYi4uLiBtaXBzNjQtcG9reS1saW51eC11Y2xpYmMtcmFu
-bGliDQp8IGNoZWNraW5nIGZvciBtaXBzNjQtcG9reS1saW51eC11Y2xpYmMtc3RyaXAuLi4gbWlw
-czY0LXBva3ktbGludXgtdWNsaWJjLXN0cmlwDQp8IGNoZWNraW5nIHdoZXRoZXIgbG4gLXMgd29y
-a3MuLi4geWVzDQp8IGNoZWNraW5nIGZvciBtaXBzNjQtcG9reS1saW51eC11Y2xpYmMtZ2NjLi4u
-ICAvaG9tZS9uZXRsb2dpYy95b2N0by9wb2t5L2J1aWxkL3RtcC93b3JrL21pcHM2NC1wb2t5LWxp
-bnV4LXVjbGliYy9nY2MtY3Jvc3MtaW5pdGlhbC80LjYuMy1yMTkvZ2NjLTQuNi4zL2J1aWxkLng4
-Nl82NC1saW51eC5taXBzNjQtcG9reS1saW51eC11Y2xpYmMvLi9nY2MveGdjYyAtQi9ob21lL25l
-dGxvZ2ljL3lvY3RvL3Bva3kvYnVpbGQvdG1wL3dvcmsvbWlwczY0LXBva3ktbGludXgtdWNsaWJj
-L2djYy1jcm9zcy1pbml0aWFsLzQuNi4zLXIxOS9nY2MtNC42LjMvYnVpbGQueDg2XzY0LWxpbnV4
-Lm1pcHM2NC1wb2t5LWxpbnV4LXVjbGliYy8uL2djYy8gLW1lYiAgIC1tYWJpPTY0IC1taGFyZC1m
-bG9hdCAtaXN5c3RlbS9ob21lL25ldGxvZ2ljL3lvY3RvL3Bva3kvYnVpbGQvdG1wL3N5c3Jvb3Rz
-L3hscDN4eC91c3IvaW5jbHVkZSAtQi9ob21lL25ldGxvZ2ljL3lvY3RvL3Bva3kvYnVpbGQvdG1w
-L3N5c3Jvb3RzL3g4Nl82NC1saW51eC91c3IvbWlwczY0LXBva3ktbGludXgtdWNsaWJjL2Jpbi8g
-LUIvaG9tZS9uZXRsb2dpYy95b2N0by9wb2t5L2J1aWxkL3RtcC9zeXNyb290cy94ODZfNjQtbGlu
-dXgvdXNyL21pcHM2NC1wb2t5LWxpbnV4LXVjbGliYy9saWIvIC1pc3lzdGVtIC9ob21lL25ldGxv
-Z2ljL3lvY3RvL3Bva3kvYnVpbGQvdG1wL3N5c3Jvb3RzL3g4Nl82NC1saW51eC91c3IvbWlwczY0
-LXBva3ktbGludXgtdWNsaWJjL2luY2x1ZGUgLWlzeXN0ZW0gL2hvbWUvbmV0bG9naWMveW9jdG8v
-cG9reS9idWlsZC90bXAvc3lzcm9vdHMveDg2XzY0LWxpbnV4L3Vzci9taXBzNjQtcG9reS1saW51
-eC11Y2xpYmMvc3lzLWluY2x1ZGUgLS1zeXNyb290PS9ob21lL25ldGxvZ2ljL3lvY3RvL3Bva3kv
-YnVpbGQvdG1wL3dvcmsvbWlwczY0LXBva3ktbGludXgtdWNsaWJjL2djYy1jcm9zcy1pbml0aWFs
-LzQuNi4zLXIxOS9nY2MtNC42LjMvYnVpbGQueDg2XzY0LWxpbnV4Lm1pcHM2NC1wb2t5LWxpbnV4
-LXVjbGliYy90bXBzeXNyb290DQp8IGNoZWNraW5nIGZvciBzdWZmaXggb2Ygb2JqZWN0IGZpbGVz
-Li4uIGNvbmZpZ3VyZTogZXJyb3I6IGluIGAvaG9tZS9uZXRsb2dpYy95b2N0by9wb2t5L2J1aWxk
-L3RtcC93b3JrL21pcHM2NC1wb2t5LWxpbnV4LXVjbGliYy9nY2MtY3Jvc3MtaW5pdGlhbC80LjYu
-My1yMTkvZ2NjLTQuNi4zL2J1aWxkLng4Nl82NC1saW51eC5taXBzNjQtcG9reS1saW51eC11Y2xp
-YmMvbWlwczY0LXBva3ktbGludXgtdWNsaWJjL2xpYmdjYyc6DQp8IGNvbmZpZ3VyZTogZXJyb3I6
-IGNhbm5vdCBjb21wdXRlIHN1ZmZpeCBvZiBvYmplY3QgZmlsZXM6IGNhbm5vdCBjb21waWxlDQp8
-IFNlZSBgY29uZmlnLmxvZycgZm9yIG1vcmUgZGV0YWlscy4NCnwgbWFrZTogKioqIFtjb25maWd1
-cmUtdGFyZ2V0LWxpYmdjY10gRXJyb3IgMQ0KfCBFUlJPUjogb2VfcnVubWFrZSBmYWlsZWQNCnwg
-RVJST1I6IEZ1bmN0aW9uIGZhaWxlZDogZG9fY29tcGlsZSAoc2VlIC9ob21lL25ldGxvZ2ljL3lv
-Y3RvL3Bva3kvYnVpbGQvdG1wL3dvcmsvbWlwczY0LXBva3ktbGludXgtdWNsaWJjL2djYy1jcm9z
-cy1pbml0aWFsLzQuNi4zLXIxOS90ZW1wL2xvZy5kb19jb21waWxlLjc2MDYgZm9yIGZ1cnRoZXIg
-aW5mb3JtYXRpb24pDQpOT1RFOiByZWNpcGUgZ2NjLWNyb3NzLWluaXRpYWwtNC42LjMtcjE5OiB0
-YXNrIGRvX2NvbXBpbGU6IEZhaWxlZA0KRVJST1I6IFRhc2sgNiAoL2hvbWUvbmV0bG9naWMveW9j
-dG8vcG9reS9tZXRhL3JlY2lwZXMtZGV2dG9vbHMvZ2NjL2djYy1jcm9zcy1pbml0aWFsXzQuNy5i
-YiwgZG9fY29tcGlsZSkgZmFpbGVkIHdpdGggZXhpdCBjb2RlICcxJw0KTk9URTogVGFza3MgU3Vt
-bWFyeTogQXR0ZW1wdGVkIDEwNCB0YXNrcyBvZiB3aGljaCAxMDMgZGlkbid0IG5lZWQgdG8gYmUg
-cmVydW4gYW5kIDEgZmFpbGVkLg0KDQpTdW1tYXJ5OiAxIHRhc2sgZmFpbGVkOg0KICAvaG9tZS9u
-ZXRsb2dpYy95b2N0by9wb2t5L21ldGEvcmVjaXBlcy1kZXZ0b29scy9nY2MvZ2NjLWNyb3NzLWlu
-aXRpYWxfNC43LmJiLCBkb19jb21waWxlDQpTdW1tYXJ5OiBUaGVyZSB3YXMgMSBXQVJOSU5HIG1l
-c3NhZ2Ugc2hvd24uDQpTdW1tYXJ5OiBUaGVyZSB3YXMgMSBFUlJPUiBtZXNzYWdlIHNob3duLCBy
-ZXR1cm5pbmcgYSBub24temVybyBleGl0IGNvZGUuDQo=
-
---_002_17797116383D4341B029FDF34C22BF6A5D7FBA7B68GUREXMB01ASIA_--
+--e89a8f3ba34b00ea2804e964ec18--
