@@ -1,28 +1,38 @@
-Return-Path: <vaduva.jan.alexandru@gmail.com>
-Received: from mail-pa0-f53.google.com (mail-pa0-f53.google.com
-	[209.85.220.53])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B2C98E016B6
-	for <yocto@yoctoproject.org>; Wed, 23 Oct 2013 06:19:18 -0700 (PDT)
-Received: by mail-pa0-f53.google.com with SMTP id kq14so1167722pab.40
-	for <yocto@yoctoproject.org>; Wed, 23 Oct 2013 06:19:18 -0700 (PDT)
+Return-Path: <david.c.nystrom@gmail.com>
+Received: from mail-wg0-f49.google.com (mail-wg0-f49.google.com [74.125.82.49])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 45E16E016CB
+	for <yocto@yoctoproject.org>; Wed, 23 Oct 2013 08:35:59 -0700 (PDT)
+Received: by mail-wg0-f49.google.com with SMTP id x12so1026161wgg.16
+	for <yocto@yoctoproject.org>; Wed, 23 Oct 2013 08:35:58 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=VT4FD/85pfV1Mb2n41OHqAvAax8a8bKwpnyGLdbgOXA=;
-	b=mCywX58hfKNAzeDAtO1ciNW98h55DOKqTV63fAueZ6ZetBvLz3s9Qr4RCj56de1Oxj
-	G4T7giSii/w4dFb3/xmYLHCNRqOdMBL11VihG6v2Lje2MSSyq0YsecXwpqnHxbOjTfj+
-	6qLOVoxGPvCX5oOhGstH9sFSOBZCyn+2ar0O7+pDKhYIvxqr4RjEemynX16u/5EeyLCt
-	VTBCRhvlY8Z/Jo8F+3zr1WfbC1C3/L1neDQazv1ms2k1fCyG5Lc5L1JryZY0hjP7Ltls
-	cCK219LVpBWeN4vojIqqGoDDgFuDaXwFDD357VhCfHxiudKa1NmTqsDR4EKOFJ1rpaH+
-	Gbmw==
+	h=from:to:cc:subject:date:message-id:in-reply-to:references
+	:mime-version:content-type:content-transfer-encoding;
+	bh=uZDgAbg6adJNq6LcE040ALG7Uti3MukHS6sJOCZ15rw=;
+	b=XhqZ9PFrR6X5LGYSvw+2ogm7sXNRLFKibCPsyAvlBSfV0Exk1HCXy6iKCbsX3Cr629
+	0i+6RVpYzoF1ByjbjhxQ69tjm4irqsHtf6Kux7bn1m2PIBMWSGCens3/4Zqw9fRHtcxv
+	djK2EqPCQZ5Qgg8Ox4GtHaDNTJOdhCB4Cs5PdUTsxS5lNPh9QQuvrdPSy+PTmklouunl
+	rgBVFLfB4FaPnerWrENC7wYWEuvp4V4AkLvGLYiobcjSoGQxgU40kFGZYYnS2l5PDbys
+	NZ58bEQbhUmPa8ymXKvv4nFmWfN3vydmK/YkyYhT2CVrBqv9I52k4KXbjddYhZ+zRpVy
+	86nw==
+X-Received: by 10.180.89.225 with SMTP id br1mr2129791wib.50.1382542558532;
+	Wed, 23 Oct 2013 08:35:58 -0700 (PDT)
+Received: from nysan (ed03490-ge-0-0-0.mgdfwr.lumison.net. [212.20.242.100])
+	by mx.google.com with ESMTPSA id y20sm18049440wib.0.2013.10.23.08.35.57
+	for <multiple recipients>
+	(version=TLSv1.1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
+	Wed, 23 Oct 2013 08:35:58 -0700 (PDT)
+Received: by nysan (Postfix, from userid 1000)
+	id 1748D40060D; Wed, 23 Oct 2013 16:35:57 +0100 (BST)
+From: "=?UTF-8?q?David=20Nystr=C3=B6m?=" <david.c.nystrom@gmail.com>
+To: openembedded-core@lists.openembedded.org,
+	yocto@yoctoproject.org
+Date: Wed, 23 Oct 2013 16:35:55 +0100
+Message-Id: <1382542555-12171-2-git-send-email-david.nystrom@enea.com>
+X-Mailer: git-send-email 1.8.3.2
+In-Reply-To: <1382542555-12171-1-git-send-email-david.nystrom@enea.com>
+References: <1382542555-12171-1-git-send-email-david.nystrom@enea.com>
 MIME-Version: 1.0
-X-Received: by 10.68.232.74 with SMTP id tm10mr1688912pbc.64.1382534357901;
-	Wed, 23 Oct 2013 06:19:17 -0700 (PDT)
-Received: by 10.68.104.133 with HTTP; Wed, 23 Oct 2013 06:19:17 -0700 (PDT)
-Date: Wed, 23 Oct 2013 16:19:17 +0300
-Message-ID: <CABwVrCqDxfdPQW4Nn+ZZi96Z8Wu8HYyGcQAcG_2KSEdpDMgACw@mail.gmail.com>
-From: jan alexandru vaduva <vaduva.jan.alexandru@gmail.com>
-To: yocto@yoctoproject.org
-Subject: Yocto toolchain build question
+Subject: [OE-core][PATCHv2] nativesdk-packagegroup-sdk-host: Add new DISTRO_FEATURE, sdk-pms
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,34 +44,35 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 23 Oct 2013 13:19:21 -0000
-Content-Type: multipart/alternative; boundary=047d7b33d9804ae61904e9685d8e
+X-List-Received-Date: Wed, 23 Oct 2013 15:36:00 -0000
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
---047d7b33d9804ae61904e9685d8e
-Content-Type: text/plain; charset=ISO-8859-1
+Added a new distro feature called sdk-pms, since smartpm rdepends
+on the python runtime.
+This to avoid bloating the SDK tarball for those who does not
+want it.
 
-Hello,
+Signed-off-by: David Nyström <david.nystrom@enea.com>
+---
+ meta/recipes-core/packagegroups/nativesdk-packagegroup-sdk-host.bb | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
-I have a curiosity:
-Take a toolchain that builds for a 32-bits architecture, but breaks for a
-64-bits one.
-Is there a way to ensure that when builded with Yocto that toolchain will
-be generated and used to build target specific recipes.
+diff --git a/meta/recipes-core/packagegroups/nativesdk-packagegroup-sdk-host.bb b/meta/recipes-core/packagegroups/nativesdk-packagegroup-sdk-host.bb
+index e298ff4..1f45c4c 100644
+--- a/meta/recipes-core/packagegroups/nativesdk-packagegroup-sdk-host.bb
++++ b/meta/recipes-core/packagegroups/nativesdk-packagegroup-sdk-host.bb
+@@ -16,7 +16,8 @@ RDEPENDS_${PN} = "\
+     nativesdk-qemu-helper \
+     nativesdk-pseudo \
+     nativesdk-unfs-server \
+-    nativesdk-opkg \
++    ${@base_contains('DISTRO_FEATURES', 'sdk-pms', 'nativesdk-opkg','', d)} \
++    ${@base_contains('DISTRO_FEATURES', 'sdk-pms', 'nativesdk-smartpm','', d)} \
+     nativesdk-libtool \
+     nativesdk-autoconf \
+     nativesdk-automake \
+-- 
+1.8.3.2
 
 
-
-Thanks,
-Alex
-
---047d7b33d9804ae61904e9685d8e
-Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div><div><div><div>Hello,<br><br></div>I have a curiosity=
-:<br></div>Take a toolchain that builds for a 32-bits architecture, but bre=
-aks for a 64-bits one.<br></div>Is there a way to ensure that when builded =
-with Yocto that toolchain will be generated and used to build target specif=
-ic recipes.<br>
-<br><br><br></div><div>Thanks, <br></div><div>Alex<br></div></div>
-
---047d7b33d9804ae61904e9685d8e--
