@@ -1,22 +1,29 @@
-Return-Path: <bevenson@melinkcorp.com>
-Received: from pluto.melinkcorp.com (rrcs-98-100-91-244.central.biz.rr.com
-	[98.100.91.244])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4F80DE01750
-	for <yocto@yoctoproject.org>; Wed, 23 Oct 2013 09:34:26 -0700 (PDT)
-Received: from pluto.melinkcorp.local ([10.0.2.4]) by pluto.melinkcorp.local
-	([10.0.2.4]) with mapi; Wed, 23 Oct 2013 12:34:25 -0400
-From: Bryan Evenson <bevenson@melinkcorp.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Date: Wed, 23 Oct 2013 12:31:26 -0400
-Thread-Topic: How to prevent building -dbg and -doc packages?
-Thread-Index: Ac7QDVF7ANTXjm8NRhW2Wv/rU2Fakg==
-Message-ID: <91586D499ADFD74FBCFB8425266A5DE40153B8ED06FE@pluto.melinkcorp.local>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-acceptlanguage: en-US
+Return-Path: <amittomer25@gmail.com>
+Received: from mail-we0-f182.google.com (mail-we0-f182.google.com
+	[74.125.82.182])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0FFD6E01754
+	for <yocto@yoctoproject.org>; Wed, 23 Oct 2013 10:44:31 -0700 (PDT)
+Received: by mail-we0-f182.google.com with SMTP id t61so1164875wes.41
+	for <yocto@yoctoproject.org>; Wed, 23 Oct 2013 10:44:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=lBYX5KvlM2cm3XCcanDLzIc8gB53QZpRZ8Gd/oGGIYA=;
+	b=wL51jJnc9a8mzpYLw6qjnfk04cFSLF/22STG7gTQz1z870SNKAODM7o6FqAOdUawmM
+	2T2q2z7AQSonxBAee6tQOd1BFqt+kabbf8teehOyb5QcwxCS8ASLTAJmWrMykoc5HF0X
+	8wszQ/88344OQQ/tzL0OITTo9dGC2RuZ/YDJK5fb6281WIqw7f/qlAQmZP661sRsx534
+	j8PBUELrtKSXWdmEtZ0veMtwIB13n5LatzGMSrJAUMG+sb4zrzvmeLYxMY6tyQMdz4Li
+	+TtwC0bwcpsUQw4uWdHlKc7hfvfTkm1VT/pn5wA4Yfzf7w820+BtwlFWfslFeYIoGQHM
+	b8jA==
 MIME-Version: 1.0
-Subject: How to prevent building -dbg and -doc packages?
+X-Received: by 10.194.21.131 with SMTP id v3mr2726594wje.44.1382550270023;
+	Wed, 23 Oct 2013 10:44:30 -0700 (PDT)
+Received: by 10.227.197.69 with HTTP; Wed, 23 Oct 2013 10:44:29 -0700 (PDT)
+Date: Wed, 23 Oct 2013 23:14:29 +0530
+Message-ID: <CABHD4K9zMKu6kxJqNOo9-WfMaENEg_dRg=CuajJDiRDPpEJ8=w@mail.gmail.com>
+From: Amit Tomer <amittomer25@gmail.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
+	=?ISO-8859-1?Q?Hans_Beck=E9rus?= <hans.beckerus@gmail.com>
+Subject: How to recreate or modify already existing usres in /etc/passwd in Yocto
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -28,107 +35,92 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 23 Oct 2013 16:34:27 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Wed, 23 Oct 2013 17:44:33 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
-I'm on poky/dylan-9.0.1.  I'm not using any of the -dbg and the -doc packag=
-es and I'd like to clean things up for my build by not building these packa=
-ges in the first place across the entire system.  I see references in the d=
-ocumentation to these package types, but I haven't found anything about how=
- to keep the system from generating them.
+I have a requirement where I have to modify the already existing users
+in /etc/passwd file.
+I have tried doing this with below method and changes are reflected to
+rootfs/etc/passwd .
+But when I code load my image to target board ,and login as root
+,prompt ask for password(Didn't make any changes related to root user
+in /etc/passwd).
 
-I tried going into meta/conf/bitbake.conf and modifying the PACKAGES variab=
-le to look as follows:
+Earlier with older image login as root doesn't ask for any password
 
-PACKAGES =3D "${PN}-staticdev ${PN}-dev ${PN}-locale ${PACKAGE_BEFORE_PN} $=
-{PN}"
+Below is the method which I used to modify the /etc/passwd
 
-This caused a bunch of packages to get rebuilt and seemed to be working unt=
-il it got to the libpam package.  Then I got the following errors:
+SRC_URI += "file://passwd"
 
-ERROR: QA Issue: non debug package contains .debug directory: libpam-xtests=
- path /work/arm926ejste-poky-linux-gnueabi/libpam/1.1.6-r2/packages-split/l=
-ibpam-xtests/usr/share/Linux-PAM/xtests/.debug/tst-pam_dispatch2
-ERROR: QA Issue: non debug package contains .debug directory: libpam-xtests=
- path /work/arm926ejste-poky-linux-gnueabi/libpam/1.1.6-r2/packages-split/l=
-ibpam-xtests/usr/share/Linux-PAM/xtests/.debug/tst-pam_pwhistory1
-ERROR: QA Issue: non debug package contains .debug directory: libpam-xtests=
- path /work/arm926ejste-poky-linux-gnueabi/libpam/1.1.6-r2/packages-split/l=
-ibpam-xtests/usr/share/Linux-PAM/xtests/.debug/tst-pam_access3
-ERROR: QA Issue: non debug package contains .debug directory: libpam-xtests=
- path /work/arm926ejste-poky-linux-gnueabi/libpam/1.1.6-r2/packages-split/l=
-ibpam-xtests/usr/share/Linux-PAM/xtests/.debug/tst-pam_unix2
-ERROR: QA Issue: non debug package contains .debug directory: libpam-xtests=
- path /work/arm926ejste-poky-linux-gnueabi/libpam/1.1.6-r2/packages-split/l=
-ibpam-xtests/usr/share/Linux-PAM/xtests/.debug/tst-pam_succeed_if1
-ERROR: QA Issue: non debug package contains .debug directory: libpam-xtests=
- path /work/arm926ejste-poky-linux-gnueabi/libpam/1.1.6-r2/packages-split/l=
-ibpam-xtests/usr/share/Linux-PAM/xtests/.debug/tst-pam_authsucceed
-ERROR: QA Issue: non debug package contains .debug directory: libpam-xtests=
- path /work/arm926ejste-poky-linux-gnueabi/libpam/1.1.6-r2/packages-split/l=
-ibpam-xtests/usr/share/Linux-PAM/xtests/.debug/tst-pam_dispatch4
-ERROR: QA Issue: non debug package contains .debug directory: libpam-xtests=
- path /work/arm926ejste-poky-linux-gnueabi/libpam/1.1.6-r2/packages-split/l=
-ibpam-xtests/usr/share/Linux-PAM/xtests/.debug/tst-pam_access1
-ERROR: QA Issue: non debug package contains .debug directory: libpam-xtests=
- path /work/arm926ejste-poky-linux-gnueabi/libpam/1.1.6-r2/packages-split/l=
-ibpam-xtests/usr/share/Linux-PAM/xtests/.debug/tst-pam_time1
-ERROR: QA Issue: non debug package contains .debug directory: libpam-xtests=
- path /work/arm926ejste-poky-linux-gnueabi/libpam/1.1.6-r2/packages-split/l=
-ibpam-xtests/usr/share/Linux-PAM/xtests/.debug/tst-pam_unix3
-ERROR: QA Issue: non debug package contains .debug directory: libpam-xtests=
- path /work/arm926ejste-poky-linux-gnueabi/libpam/1.1.6-r2/packages-split/l=
-ibpam-xtests/usr/share/Linux-PAM/xtests/.debug/tst-pam_authfail
-ERROR: QA Issue: non debug package contains .debug directory: libpam-xtests=
- path /work/arm926ejste-poky-linux-gnueabi/libpam/1.1.6-r2/packages-split/l=
-ibpam-xtests/usr/share/Linux-PAM/xtests/.debug/tst-pam_cracklib1
-ERROR: QA Issue: non debug package contains .debug directory: libpam-xtests=
- path /work/arm926ejste-poky-linux-gnueabi/libpam/1.1.6-r2/packages-split/l=
-ibpam-xtests/usr/share/Linux-PAM/xtests/.debug/tst-pam_access2
-ERROR: QA Issue: non debug package contains .debug directory: libpam-xtests=
- path /work/arm926ejste-poky-linux-gnueabi/libpam/1.1.6-r2/packages-split/l=
-ibpam-xtests/usr/share/Linux-PAM/xtests/.debug/tst-pam_cracklib2
-ERROR: QA Issue: non debug package contains .debug directory: libpam-xtests=
- path /work/arm926ejste-poky-linux-gnueabi/libpam/1.1.6-r2/packages-split/l=
-ibpam-xtests/usr/share/Linux-PAM/xtests/.debug/tst-pam_dispatch1
-ERROR: QA Issue: non debug package contains .debug directory: libpam-xtests=
- path /work/arm926ejste-poky-linux-gnueabi/libpam/1.1.6-r2/packages-split/l=
-ibpam-xtests/usr/share/Linux-PAM/xtests/.debug/tst-pam_dispatch5
-ERROR: QA Issue: non debug package contains .debug directory: libpam-xtests=
- path /work/arm926ejste-poky-linux-gnueabi/libpam/1.1.6-r2/packages-split/l=
-ibpam-xtests/usr/share/Linux-PAM/xtests/.debug/tst-pam_limits1
-ERROR: QA Issue: non debug package contains .debug directory: libpam-xtests=
- path /work/arm926ejste-poky-linux-gnueabi/libpam/1.1.6-r2/packages-split/l=
-ibpam-xtests/usr/share/Linux-PAM/xtests/.debug/tst-pam_dispatch3
-ERROR: QA Issue: non debug package contains .debug directory: libpam-xtests=
- path /work/arm926ejste-poky-linux-gnueabi/libpam/1.1.6-r2/packages-split/l=
-ibpam-xtests/usr/share/Linux-PAM/xtests/.debug/tst-pam_group1
-ERROR: QA Issue: non debug package contains .debug directory: libpam-xtests=
- path /work/arm926ejste-poky-linux-gnueabi/libpam/1.1.6-r2/packages-split/l=
-ibpam-xtests/usr/share/Linux-PAM/xtests/.debug/tst-pam_unix4
-ERROR: QA Issue: non debug package contains .debug directory: libpam-xtests=
- path /work/arm926ejste-poky-linux-gnueabi/libpam/1.1.6-r2/packages-split/l=
-ibpam-xtests/usr/share/Linux-PAM/xtests/.debug/tst-pam_access4
-ERROR: QA Issue: non debug package contains .debug directory: libpam-xtests=
- path /work/arm926ejste-poky-linux-gnueabi/libpam/1.1.6-r2/packages-split/l=
-ibpam-xtests/usr/share/Linux-PAM/xtests/.debug/tst-pam_unix1
-ERROR: QA run found fatal errors. Please consider fixing them.
-ERROR: Function failed: do_package_qa
-ERROR: Logfile of failure stored in: /media/sda3/poky/poky-build/tmp/work/a=
-rm926ejste-poky-linux-gnueabi/libpam/1.1.6-r2/temp/log.do_package.8163
-ERROR: Task 362 (/media/sda3/poky/meta/recipes-extended/pam/libpam_1.1.6.bb=
-, do_package) failed with exit code '1'
+do_install_append() {
+install -d ${D}${sysconfdir}/base-passwd ${D}${sysconfdir}
+install -m 0644 ${WORKDIR}/passwd ${D}${sysconfdir}/passwd
+}
 
-So either I didn't remove enough from bitbake.conf or there is a better way=
- to do this.  Does anyone know of a good way to avoid building all the -dbg=
- and -doc packages?
+Content of origin/earlier file is
 
-Thanks,
-Bryan
+root:x:0:0:root:/home/root:/bin/sh
+daemon:x:1:1:daemon:/usr/sbin:/bin/sh
+bin:x:2:2:bin:/bin:/bin/sh
+sys:x:3:3:sys:/dev:/bin/sh
+sync:x:4:65534:sync:/bin:/bin/sync
+games:x:5:60:games:/usr/games:/bin/sh
+man:x:6:12:man:/var/cache/man:/bin/sh
+lp:x:7:7:lp:/var/spool/lpd:/bin/sh
+mail:x:8:8:mail:/var/mail:/bin/sh
+news:x:9:9:news:/var/spool/news:/bin/sh
+uucp:x:10:10:uucp:/var/spool/uucp:/bin/sh
+proxy:x:13:13:proxy:/bin:/bin/sh
+www-data:x:33:33:www-data:/var/www:/bin/sh
+backup:x:34:34:backup:/var/backups:/bin/sh
+list:x:38:38:Mailing List Manager:/var/list:/bin/sh
+irc:x:39:39:ircd:/var/run/ircd:/bin/sh
+gnats:x:41:41:Gnats Bug-Reporting System (admin):/var/lib/gnats:/bin/sh
+nobody:x:65534:65534:nobody:/nonexistent:/bin/sh
+fuwmshey:x:0:0::/user/fuwmshey:/bin/sh
+frfhsjk:x:999:999::/home/frfhsjk:/bin/sh
+ftp:x:998:998::/var/lib/ftp:/bin/sh
+messagebus:x:997:996::/var/lib/dbus:/bin/sh
+quagga:x:996:995::/var/run/quagga:/bin/sh
+sshd:x:995:992::/var/run/sshd:/bin/sh
+
+Above file we have downloaded from base-passwd_3.5.26.tar.gz and added
+some new users like frfhsjk and quaqqa using USERADD_PARAM_${PN}.
 
 
+Content of modified file
 
 
+root:x:0:0:root:/home/root:/bin/sh
+daemon:x:1:1:daemon:/usr/sbin:/bin/flase
+bin:x:2:2:bin:/bin:/bin/false
+sys:x:3:3:sys:/dev:/bin/false
+sync:x:4:65534:sync:/bin:/bin/flase
+games:x:5:60:games:/usr/games:/bin/false
+man:x:6:12:man:/var/cache/man:/bin/false
+lp:x:7:7:lp:/var/spool/lpd:/bin/false
+mail:x:8:8:mail:/var/mail:/bin/false
+news:x:9:9:news:/var/spool/news:/bin/false
+uucp:x:10:10:uucp:/var/spool/uucp:/bin/flase
+proxy:x:13:13:proxy:/bin:/bin/false
+www-data:x:33:33:www-data:/var/www:/bin/false
+backup:x:34:34:backup:/var/backups:/bin/false
+list:x:38:38:Mailing List Manager:/var/list:/bin/false
+irc:x:39:39:ircd:/var/run/ircd:/bin/false
+gnats:x:41:41:Gnats Bug-Reporting System (admin):/var/lib/gnats:/bin/false
+nobody:x:65534:65534:nobody:/nonexistent:/bin/false
+fuwmshey:x:0:0::/user/fuwmshey:/bin/sh
+frfhsjk:x:999:999::/home/frfhsjk:/bin/false
+ftp:x:998:998::/var/lib/ftp:/bin/false
+messagebus:x:997:996::/var/lib/dbus:/bin/false
+quagga:x:996:995::/var/run/quagga:/bin/false
+sshd:x:995:992::/var/run/sshd:/bin/false
+
+We changed the command /bin/sh to /bin/false for every user except
+root and tor4nsn.
+
+I wanted to know what are ways to modify already existing members in /etc/passwd
+
+Thanks ,
+Amit
 
