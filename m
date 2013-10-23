@@ -1,38 +1,37 @@
 Return-Path: <david.c.nystrom@gmail.com>
-Received: from mail-wg0-f49.google.com (mail-wg0-f49.google.com [74.125.82.49])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 45E16E016CB
+Received: from mail-we0-f170.google.com (mail-we0-f170.google.com
+	[74.125.82.170])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 47FBDE016E9
 	for <yocto@yoctoproject.org>; Wed, 23 Oct 2013 08:35:59 -0700 (PDT)
-Received: by mail-wg0-f49.google.com with SMTP id x12so1026161wgg.16
+Received: by mail-we0-f170.google.com with SMTP id u57so1010773wes.15
 	for <yocto@yoctoproject.org>; Wed, 23 Oct 2013 08:35:58 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=from:to:cc:subject:date:message-id:in-reply-to:references
-	:mime-version:content-type:content-transfer-encoding;
-	bh=uZDgAbg6adJNq6LcE040ALG7Uti3MukHS6sJOCZ15rw=;
-	b=XhqZ9PFrR6X5LGYSvw+2ogm7sXNRLFKibCPsyAvlBSfV0Exk1HCXy6iKCbsX3Cr629
-	0i+6RVpYzoF1ByjbjhxQ69tjm4irqsHtf6Kux7bn1m2PIBMWSGCens3/4Zqw9fRHtcxv
-	djK2EqPCQZ5Qgg8Ox4GtHaDNTJOdhCB4Cs5PdUTsxS5lNPh9QQuvrdPSy+PTmklouunl
-	rgBVFLfB4FaPnerWrENC7wYWEuvp4V4AkLvGLYiobcjSoGQxgU40kFGZYYnS2l5PDbys
-	NZ58bEQbhUmPa8ymXKvv4nFmWfN3vydmK/YkyYhT2CVrBqv9I52k4KXbjddYhZ+zRpVy
-	86nw==
-X-Received: by 10.180.89.225 with SMTP id br1mr2129791wib.50.1382542558532;
+	h=from:to:cc:subject:date:message-id:mime-version:content-type
+	:content-transfer-encoding;
+	bh=sDt86OUhCidpJF9VacnoO0zUN3GEGJKAxWqnfTjkWnY=;
+	b=y2hqhEPTyPhNFIN/roOSXSGE0S1xs1KFIcptcXyShxKfBDdZNb3fc6aKse2CX2pok3
+	PQ6YQYqx/Z9dPRiNVqjLkIfbDd/NqjsQkpG8+di2KbXFpMNPitiEerKL2AkRhiZVVfHT
+	DUuxFVAuU7/ZegsfhzChcqO9MaMJpFrwCUisW8xtjf2zNQI+2SA2Rafn8fez3YOnamMy
+	AmF4Yim7cRL+jDf2WUCVfmk+6hRaGgszA0GhEK0bCH1CgZr3/0A0a86BA1YJeJLghZG+
+	rsQeOI6mLuqbYobo2uGSvAhFXR1H1IN0U9Ynog99Czz16usrB+74GWsTm9xLh5iojIcJ
+	nMaQ==
+X-Received: by 10.180.13.174 with SMTP id i14mr2666012wic.49.1382542558701;
 	Wed, 23 Oct 2013 08:35:58 -0700 (PDT)
 Received: from nysan (ed03490-ge-0-0-0.mgdfwr.lumison.net. [212.20.242.100])
-	by mx.google.com with ESMTPSA id y20sm18049440wib.0.2013.10.23.08.35.57
+	by mx.google.com with ESMTPSA id b7sm18109601wiz.8.2013.10.23.08.35.57
 	for <multiple recipients>
 	(version=TLSv1.1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
 	Wed, 23 Oct 2013 08:35:58 -0700 (PDT)
 Received: by nysan (Postfix, from userid 1000)
-	id 1748D40060D; Wed, 23 Oct 2013 16:35:57 +0100 (BST)
+	id 12D8440068D; Wed, 23 Oct 2013 16:35:57 +0100 (BST)
 From: "=?UTF-8?q?David=20Nystr=C3=B6m?=" <david.c.nystrom@gmail.com>
 To: openembedded-core@lists.openembedded.org,
 	yocto@yoctoproject.org
-Date: Wed, 23 Oct 2013 16:35:55 +0100
-Message-Id: <1382542555-12171-2-git-send-email-david.nystrom@enea.com>
+Date: Wed, 23 Oct 2013 16:35:54 +0100
+Message-Id: <1382542555-12171-1-git-send-email-david.nystrom@enea.com>
 X-Mailer: git-send-email 1.8.3.2
-In-Reply-To: <1382542555-12171-1-git-send-email-david.nystrom@enea.com>
-References: <1382542555-12171-1-git-send-email-david.nystrom@enea.com>
 MIME-Version: 1.0
-Subject: [OE-core][PATCHv2] nativesdk-packagegroup-sdk-host: Add new DISTRO_FEATURE, sdk-pms
+Subject: [yocto-docs][PATCH] ref-manual: Added description of sdk-pms DISTRO_FEATURE
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -48,30 +47,28 @@ X-List-Received-Date: Wed, 23 Oct 2013 15:36:00 -0000
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-Added a new distro feature called sdk-pms, since smartpm rdepends
-on the python runtime.
-This to avoid bloating the SDK tarball for those who does not
-want it.
+Added description of DISTRO_FEATURE sdk-pms in the Yocto reference manual.
 
 Signed-off-by: David Nyström <david.nystrom@enea.com>
 ---
- meta/recipes-core/packagegroups/nativesdk-packagegroup-sdk-host.bb | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+ documentation/ref-manual/ref-features.xml | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-diff --git a/meta/recipes-core/packagegroups/nativesdk-packagegroup-sdk-host.bb b/meta/recipes-core/packagegroups/nativesdk-packagegroup-sdk-host.bb
-index e298ff4..1f45c4c 100644
---- a/meta/recipes-core/packagegroups/nativesdk-packagegroup-sdk-host.bb
-+++ b/meta/recipes-core/packagegroups/nativesdk-packagegroup-sdk-host.bb
-@@ -16,7 +16,8 @@ RDEPENDS_${PN} = "\
-     nativesdk-qemu-helper \
-     nativesdk-pseudo \
-     nativesdk-unfs-server \
--    nativesdk-opkg \
-+    ${@base_contains('DISTRO_FEATURES', 'sdk-pms', 'nativesdk-opkg','', d)} \
-+    ${@base_contains('DISTRO_FEATURES', 'sdk-pms', 'nativesdk-smartpm','', d)} \
-     nativesdk-libtool \
-     nativesdk-autoconf \
-     nativesdk-automake \
+diff --git a/documentation/ref-manual/ref-features.xml b/documentation/ref-manual/ref-features.xml
+index 92c5e8a..f042bba 100644
+--- a/documentation/ref-manual/ref-features.xml
++++ b/documentation/ref-manual/ref-features.xml
+@@ -115,6 +115,10 @@
+                     supports it.</para></listitem>
+                 <listitem><para><emphasis>wifi:</emphasis> Include WiFi support
+                     (integrated only).</para></listitem>
++		<listitem><para><emphasis>sdk-pms:</emphasis> Include Package 
++		    Management Tools in the nativesdk toolchain tarball,
++                    This to allow easy sandboxing of rootfs creation when using 
++		    the SDK tarball.</para></listitem>
+             </itemizedlist>
+         </para>
+     </section>
 -- 
 1.8.3.2
 
