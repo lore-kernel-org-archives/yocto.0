@@ -1,27 +1,28 @@
-Return-Path: <philip@balister.org>
-Received: from sanddollar.geekisp.com (sanddollar.geekisp.com
-	[216.168.135.167])
-	by yocto-www.yoctoproject.org (Postfix) with SMTP id 066D8E016B6
-	for <yocto@yoctoproject.org>; Wed, 23 Oct 2013 05:35:25 -0700 (PDT)
-Received: (qmail 9739 invoked by uid 1003); 23 Oct 2013 12:35:24 -0000
-Received: from unknown (HELO ?172.22.85.2?) (philip@opensdr.com@212.20.242.100)
-	by mail.geekisp.com with (DHE-RSA-AES256-SHA encrypted) SMTP;
-	23 Oct 2013 12:35:24 -0000
-Message-ID: <5267C28A.7040803@balister.org>
-Date: Wed, 23 Oct 2013 13:35:22 +0100
-From: Philip Balister <philip@balister.org>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:17.0) Gecko/20130625 Thunderbird/17.0.7
+Return-Path: <vaduva.jan.alexandru@gmail.com>
+Received: from mail-pa0-f53.google.com (mail-pa0-f53.google.com
+	[209.85.220.53])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B2C98E016B6
+	for <yocto@yoctoproject.org>; Wed, 23 Oct 2013 06:19:18 -0700 (PDT)
+Received: by mail-pa0-f53.google.com with SMTP id kq14so1167722pab.40
+	for <yocto@yoctoproject.org>; Wed, 23 Oct 2013 06:19:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=VT4FD/85pfV1Mb2n41OHqAvAax8a8bKwpnyGLdbgOXA=;
+	b=mCywX58hfKNAzeDAtO1ciNW98h55DOKqTV63fAueZ6ZetBvLz3s9Qr4RCj56de1Oxj
+	G4T7giSii/w4dFb3/xmYLHCNRqOdMBL11VihG6v2Lje2MSSyq0YsecXwpqnHxbOjTfj+
+	6qLOVoxGPvCX5oOhGstH9sFSOBZCyn+2ar0O7+pDKhYIvxqr4RjEemynX16u/5EeyLCt
+	VTBCRhvlY8Z/Jo8F+3zr1WfbC1C3/L1neDQazv1ms2k1fCyG5Lc5L1JryZY0hjP7Ltls
+	cCK219LVpBWeN4vojIqqGoDDgFuDaXwFDD357VhCfHxiudKa1NmTqsDR4EKOFJ1rpaH+
+	Gbmw==
 MIME-Version: 1.0
-To: "openembedded-devel@lists.openembedded.org"
-	<openembedded-devel@lists.openembedded.org>, 
-	openembedded-core <openembedded-core@lists.openembedded.org>, 
-	Yocto Project <yocto@yoctoproject.org>
-References: <5267B64B.9080701@gmail.com>
-In-Reply-To: <5267B64B.9080701@gmail.com>
-X-Enigmail-Version: 1.5.2
-X-Forwarded-Message-Id: <5267B64B.9080701@gmail.com>
-Subject: [devroom-managers] [CFP] Embedded and mobile devroom
+X-Received: by 10.68.232.74 with SMTP id tm10mr1688912pbc.64.1382534357901;
+	Wed, 23 Oct 2013 06:19:17 -0700 (PDT)
+Received: by 10.68.104.133 with HTTP; Wed, 23 Oct 2013 06:19:17 -0700 (PDT)
+Date: Wed, 23 Oct 2013 16:19:17 +0300
+Message-ID: <CABwVrCqDxfdPQW4Nn+ZZi96Z8Wu8HYyGcQAcG_2KSEdpDMgACw@mail.gmail.com>
+From: jan alexandru vaduva <vaduva.jan.alexandru@gmail.com>
+To: yocto@yoctoproject.org
+Subject: Yocto toolchain build question
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -33,68 +34,34 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 23 Oct 2013 12:35:27 -0000
+X-List-Received-Date: Wed, 23 Oct 2013 13:19:21 -0000
+Content-Type: multipart/alternative; boundary=047d7b33d9804ae61904e9685d8e
+
+--047d7b33d9804ae61904e9685d8e
 Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: 7bit
+
+Hello,
+
+I have a curiosity:
+Take a toolchain that builds for a 32-bits architecture, but breaks for a
+64-bits one.
+Is there a way to ensure that when builded with Yocto that toolchain will
+be generated and used to build target specific recipes.
 
 
 
+Thanks,
+Alex
 
--------- Original Message --------
-Subject: [devroom-managers] [CFP] Embedded and mobile devroom
-Date: Wed, 23 Oct 2013 14:43:07 +0300
-From: Philippe De Swert <philippedeswert@gmail.com>
-To: devroom-managers@lists.fosdem.org, fosdem@lists.fosdem.org
+--047d7b33d9804ae61904e9685d8e
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
 
-Every year there is a special dedicated track for embedded and mobile
-projects at Fosdem (see: www.fosdem.org ). If you are interested to
-give a talk about your project read further for the details.
+<div dir=3D"ltr"><div><div><div><div>Hello,<br><br></div>I have a curiosity=
+:<br></div>Take a toolchain that builds for a 32-bits architecture, but bre=
+aks for a 64-bits one.<br></div>Is there a way to ensure that when builded =
+with Yocto that toolchain will be generated and used to build target specif=
+ic recipes.<br>
+<br><br><br></div><div>Thanks, <br></div><div>Alex<br></div></div>
 
-FOSDEM will be held the 1st and 2nd of February 2014 in Brussels,
-Belgium.
-
-For this years program we are looking for people who would like to do
-a presentation about their own or some community's project in this area.
-These projects must be Free Software or Open Source.
-
-Example of topics of interest:
-
- * Embedded Linux in general
- * Linux kernel development for embedded devices
- * Build systems and embedded/mobile operating systems
- * Multimedia and graphics
- * Embedded systems optimization (boot time, memory consumption, power
-   consumption, etc.)
- * Filesystem and storage
- * Real-time
- * Non-Linux embedded, such as Arduino
- * Hardware platforms, such as BeagleBone, RaspberryPi
- * Open source/free software for or related to Android
- * ...
-
-We are also interested in short tutorials, project overviews,
-achievements, ports to new hardware and hardware hacking, real life
-deployments, ... all are welcome and all submissions will be reviewed
-by our panel.
-
-Submissions require a small abstract and short speaker presentation
-and should be submitted to fosdem.embedded@gmail.com or through
-https://penta.fosdem.org/submission/ before the 10th
-of December 2013. You can apply for a full length (~45 min) or a shorter
-(~20min) talk.
-
-The panel consists of:
-
-Philippe De Swert
-Peter De Schrijver
-Geert Uytterhoeven
-Thomas Petazzoni
-_______________________________________________
-devroom-managers mailing list
-devroom-managers@lists.fosdem.org
-https://lists.fosdem.org/listinfo/devroom-managers
-
-
-
-
-
+--047d7b33d9804ae61904e9685d8e--
