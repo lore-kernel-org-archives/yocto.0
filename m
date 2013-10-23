@@ -1,28 +1,32 @@
-Return-Path: <billmartin544@gmail.com>
-Received: from mail-ie0-f169.google.com (mail-ie0-f169.google.com
-	[209.85.223.169])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B09CDE0167D
-	for <yocto@yoctoproject.org>; Wed, 23 Oct 2013 13:44:34 -0700 (PDT)
-Received: by mail-ie0-f169.google.com with SMTP id ar20so2368205iec.0
-	for <yocto@yoctoproject.org>; Wed, 23 Oct 2013 13:44:33 -0700 (PDT)
+Return-Path: <martin.jansa@gmail.com>
+Received: from mail-we0-f171.google.com (mail-we0-f171.google.com
+	[74.125.82.171])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 05FC5E01756
+	for <yocto@yoctoproject.org>; Wed, 23 Oct 2013 15:11:57 -0700 (PDT)
+Received: by mail-we0-f171.google.com with SMTP id t60so1497365wes.30
+	for <yocto@yoctoproject.org>; Wed, 23 Oct 2013 15:11:56 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=VJINOgmZF9uILSk0ocLzssG4kM7A0EqlfA+lZQCrFMY=;
-	b=zQ5B4Mz587rUw2v9dU4nnpwlGXW/yGRNtwtsaDhXE5bDSOcByGinXTCiypKO49JvYT
-	WGK37BMkC2rwY5eW/1YkJ0gMaB/Lk/yjSTJjvvcD50Byn3unnQ27BuG4kzdZLwE0J/1o
-	nIKNMdOsSdjHuX5Aokt70He8jp0XLvwAqPGYaG3kJYShBysoV8sjq7atHMaX6E9LHBG1
-	U5vGDFryKrG8asahHhG9SlwzD+IMI9wI7LAJMuIkA27a+tTOdBxlqZdngN8oHFo2yyqk
-	VRphkk5BKPNwcXJddqPUOQySy3aA1PLdjR2PCsTZ2iC+SLnou4L2I/UMMn0IjYR9Nm2C
-	WqQQ==
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type;
+	bh=sh2cZKAaYO/Lk+REjszMmGbrKyDLqTUx1pDm8R7AHhs=;
+	b=LZvi65SV5bPeEs3AP75PVGq8Z07Fw8zay20J9zcA570fmHwOU+akGhwtQI8Uvqz9KJ
+	sRDF25LJPhnun8i/iqPURRK9z9RIGrj5hY6DFqYbp0b96EsCG3BOoRpJArR9FkBRefUb
+	D0wXS0M2rI54Lfr2Ce0XzTQqcZs999DQ7aPYJCpHCXdsD8W/MDD+yV982iBtvaDK4TMS
+	k326uy4ZLEQg61IeuaitGsUBFnYkxq557B9WEv0y6977MZqx7jrYBMyQ3dN6U8wylC/0
+	mY1TE/AhjA148Rrjm5Vnzdao+2JZr04PA0y9StJhuw2rjBtv0c3YOOFXycKkSdL3awMv
+	XCSw==
 MIME-Version: 1.0
-X-Received: by 10.50.61.35 with SMTP id m3mr1882246igr.56.1382561073103; Wed,
-	23 Oct 2013 13:44:33 -0700 (PDT)
-Received: by 10.64.228.199 with HTTP; Wed, 23 Oct 2013 13:44:33 -0700 (PDT)
-Date: Wed, 23 Oct 2013 13:44:33 -0700
-Message-ID: <CAJGS5=GVa1XOhvchcSjnhDM3eR-yKmxyDr8F3xf9yuRcqRBspw@mail.gmail.com>
-From: Bill Martin <billmartin544@gmail.com>
-To: yocto@yoctoproject.org
-Subject: Re: how to add a new bb(xerces-c)
+X-Received: by 10.180.211.237 with SMTP id nf13mr3862787wic.55.1382566316068; 
+	Wed, 23 Oct 2013 15:11:56 -0700 (PDT)
+Received: by 10.194.179.198 with HTTP; Wed, 23 Oct 2013 15:11:56 -0700 (PDT)
+In-Reply-To: <91586D499ADFD74FBCFB8425266A5DE40153B8ED06FE@pluto.melinkcorp.local>
+References: <91586D499ADFD74FBCFB8425266A5DE40153B8ED06FE@pluto.melinkcorp.local>
+Date: Thu, 24 Oct 2013 00:11:56 +0200
+Message-ID: <CA+chaQcLnZvUXN=4qWuWgavOJ2FdfVT6uVA3NHmDr3P-XE6PEw@mail.gmail.com>
+From: Martin Jansa <martin.jansa@gmail.com>
+To: Bryan Evenson <bevenson@melinkcorp.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: How to prevent building -dbg and -doc packages?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,311 +38,242 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 23 Oct 2013 20:44:34 -0000
-Content-Type: multipart/alternative; boundary=001a1134b62ca488b604e96e9514
+X-List-Received-Date: Wed, 23 Oct 2013 22:11:58 -0000
+Content-Type: multipart/alternative; boundary=001a11c25f4225da3c04e96fcee0
 
---001a1134b62ca488b604e96e9514
-Content-Type: text/plain; charset=ISO-8859-1
+--001a11c25f4225da3c04e96fcee0
+Content-Type: text/plain; charset=UTF-8
 
-Okay I dug further and got much further to pass do_install
-
-I noticed in my Yocto 9.0.2 Dylan release I have an ICU package. Just in
-case, I added the extra installs of icu and xerces-c to my local.conf
-
-then in your xerces-c bitbake recipe you need to add
---with-icu=${STAGING_DIR_HOST} to your EXTRA_OECONF
-
-My EXTRA_OECONF is
-
-EXTRA_OECONF= "--with-icu=${STAGING_DIR_HOST} ICU_FLAGS=-I${STAGING_INCDIR}
-LDFLAGS=-L${STAGING_BASELIBDIR} --build=x86_64-linux --host=i586-poky-linux"
-
-To be safe I also added ICU_FLAGS=${STAGING_DIR_HOST} but I probably do not
-need it. In fact that's what I tried first and it had no effect. grepping
-through my config.log I traced to where ICU_FLAGS kept being set stubbornly
-to -I/usr/include. I will clean this up and get rid of my LDFLAGS which I
-don't need. Also the ICU_FLAGS.
-
-The problem (and Hans Beckerus pointed out to me) was the poisonous header
-files from the build machine in /usr/include. Note that icu is staged - you
-can find its libraries in the usr/lib subfolder in your host staging
-directory. All the pieces to the puzzle are there.
-
-Thanks
-
-Bill
+Why do you want to disable them? All the files are already there, so
+packaging them in right package doesn't cost much (if your reason was build
+time).
 
 
-Original post was
+On Wed, Oct 23, 2013 at 6:31 PM, Bryan Evenson <bevenson@melinkcorp.com>wrote:
 
-Date: Fri, 27 Sep 2013 13:35:55 +0800 (CST)
-From: ??? <czyhit@126.com>
-To: yocto@yoctoproject.org
-Subject: [yocto] how to add a new bb(xerces-c)?
-Message-ID: <bfe9b2.4f09.1415dea90ad.Coremail.czyhit@126.com>
-Content-Type: text/plain; charset="gbk"
+> I'm on poky/dylan-9.0.1.  I'm not using any of the -dbg and the -doc
+> packages and I'd like to clean things up for my build by not building these
+> packages in the first place across the entire system.  I see references in
+> the documentation to these package types, but I haven't found anything
+> about how to keep the system from generating them.
+>
+> I tried going into meta/conf/bitbake.conf and modifying the PACKAGES
+> variable to look as follows:
+>
+> PACKAGES = "${PN}-staticdev ${PN}-dev ${PN}-locale ${PACKAGE_BEFORE_PN}
+> ${PN}"
+>
+> This caused a bunch of packages to get rebuilt and seemed to be working
+> until it got to the libpam package.  Then I got the following errors:
+>
+> ERROR: QA Issue: non debug package contains .debug directory:
+> libpam-xtests path
+> /work/arm926ejste-poky-linux-gnueabi/libpam/1.1.6-r2/packages-split/libpam-xtests/usr/share/Linux-PAM/xtests/.debug/tst-pam_dispatch2
+> ERROR: QA Issue: non debug package contains .debug directory:
+> libpam-xtests path
+> /work/arm926ejste-poky-linux-gnueabi/libpam/1.1.6-r2/packages-split/libpam-xtests/usr/share/Linux-PAM/xtests/.debug/tst-pam_pwhistory1
+> ERROR: QA Issue: non debug package contains .debug directory:
+> libpam-xtests path
+> /work/arm926ejste-poky-linux-gnueabi/libpam/1.1.6-r2/packages-split/libpam-xtests/usr/share/Linux-PAM/xtests/.debug/tst-pam_access3
+> ERROR: QA Issue: non debug package contains .debug directory:
+> libpam-xtests path
+> /work/arm926ejste-poky-linux-gnueabi/libpam/1.1.6-r2/packages-split/libpam-xtests/usr/share/Linux-PAM/xtests/.debug/tst-pam_unix2
+> ERROR: QA Issue: non debug package contains .debug directory:
+> libpam-xtests path
+> /work/arm926ejste-poky-linux-gnueabi/libpam/1.1.6-r2/packages-split/libpam-xtests/usr/share/Linux-PAM/xtests/.debug/tst-pam_succeed_if1
+> ERROR: QA Issue: non debug package contains .debug directory:
+> libpam-xtests path
+> /work/arm926ejste-poky-linux-gnueabi/libpam/1.1.6-r2/packages-split/libpam-xtests/usr/share/Linux-PAM/xtests/.debug/tst-pam_authsucceed
+> ERROR: QA Issue: non debug package contains .debug directory:
+> libpam-xtests path
+> /work/arm926ejste-poky-linux-gnueabi/libpam/1.1.6-r2/packages-split/libpam-xtests/usr/share/Linux-PAM/xtests/.debug/tst-pam_dispatch4
+> ERROR: QA Issue: non debug package contains .debug directory:
+> libpam-xtests path
+> /work/arm926ejste-poky-linux-gnueabi/libpam/1.1.6-r2/packages-split/libpam-xtests/usr/share/Linux-PAM/xtests/.debug/tst-pam_access1
+> ERROR: QA Issue: non debug package contains .debug directory:
+> libpam-xtests path
+> /work/arm926ejste-poky-linux-gnueabi/libpam/1.1.6-r2/packages-split/libpam-xtests/usr/share/Linux-PAM/xtests/.debug/tst-pam_time1
+> ERROR: QA Issue: non debug package contains .debug directory:
+> libpam-xtests path
+> /work/arm926ejste-poky-linux-gnueabi/libpam/1.1.6-r2/packages-split/libpam-xtests/usr/share/Linux-PAM/xtests/.debug/tst-pam_unix3
+> ERROR: QA Issue: non debug package contains .debug directory:
+> libpam-xtests path
+> /work/arm926ejste-poky-linux-gnueabi/libpam/1.1.6-r2/packages-split/libpam-xtests/usr/share/Linux-PAM/xtests/.debug/tst-pam_authfail
+> ERROR: QA Issue: non debug package contains .debug directory:
+> libpam-xtests path
+> /work/arm926ejste-poky-linux-gnueabi/libpam/1.1.6-r2/packages-split/libpam-xtests/usr/share/Linux-PAM/xtests/.debug/tst-pam_cracklib1
+> ERROR: QA Issue: non debug package contains .debug directory:
+> libpam-xtests path
+> /work/arm926ejste-poky-linux-gnueabi/libpam/1.1.6-r2/packages-split/libpam-xtests/usr/share/Linux-PAM/xtests/.debug/tst-pam_access2
+> ERROR: QA Issue: non debug package contains .debug directory:
+> libpam-xtests path
+> /work/arm926ejste-poky-linux-gnueabi/libpam/1.1.6-r2/packages-split/libpam-xtests/usr/share/Linux-PAM/xtests/.debug/tst-pam_cracklib2
+> ERROR: QA Issue: non debug package contains .debug directory:
+> libpam-xtests path
+> /work/arm926ejste-poky-linux-gnueabi/libpam/1.1.6-r2/packages-split/libpam-xtests/usr/share/Linux-PAM/xtests/.debug/tst-pam_dispatch1
+> ERROR: QA Issue: non debug package contains .debug directory:
+> libpam-xtests path
+> /work/arm926ejste-poky-linux-gnueabi/libpam/1.1.6-r2/packages-split/libpam-xtests/usr/share/Linux-PAM/xtests/.debug/tst-pam_dispatch5
+> ERROR: QA Issue: non debug package contains .debug directory:
+> libpam-xtests path
+> /work/arm926ejste-poky-linux-gnueabi/libpam/1.1.6-r2/packages-split/libpam-xtests/usr/share/Linux-PAM/xtests/.debug/tst-pam_limits1
+> ERROR: QA Issue: non debug package contains .debug directory:
+> libpam-xtests path
+> /work/arm926ejste-poky-linux-gnueabi/libpam/1.1.6-r2/packages-split/libpam-xtests/usr/share/Linux-PAM/xtests/.debug/tst-pam_dispatch3
+> ERROR: QA Issue: non debug package contains .debug directory:
+> libpam-xtests path
+> /work/arm926ejste-poky-linux-gnueabi/libpam/1.1.6-r2/packages-split/libpam-xtests/usr/share/Linux-PAM/xtests/.debug/tst-pam_group1
+> ERROR: QA Issue: non debug package contains .debug directory:
+> libpam-xtests path
+> /work/arm926ejste-poky-linux-gnueabi/libpam/1.1.6-r2/packages-split/libpam-xtests/usr/share/Linux-PAM/xtests/.debug/tst-pam_unix4
+> ERROR: QA Issue: non debug package contains .debug directory:
+> libpam-xtests path
+> /work/arm926ejste-poky-linux-gnueabi/libpam/1.1.6-r2/packages-split/libpam-xtests/usr/share/Linux-PAM/xtests/.debug/tst-pam_access4
+> ERROR: QA Issue: non debug package contains .debug directory:
+> libpam-xtests path
+> /work/arm926ejste-poky-linux-gnueabi/libpam/1.1.6-r2/packages-split/libpam-xtests/usr/share/Linux-PAM/xtests/.debug/tst-pam_unix1
+> ERROR: QA run found fatal errors. Please consider fixing them.
+> ERROR: Function failed: do_package_qa
+> ERROR: Logfile of failure stored in:
+> /media/sda3/poky/poky-build/tmp/work/arm926ejste-poky-linux-gnueabi/libpam/1.1.6-r2/temp/log.do_package.8163
+> ERROR: Task 362 (/media/sda3/poky/meta/recipes-extended/pam/
+> libpam_1.1.6.bb, do_package) failed with exit code '1'
+>
+> So either I didn't remove enough from bitbake.conf or there is a better
+> way to do this.  Does anyone know of a good way to avoid building all the
+> -dbg and -doc packages?
+>
+> Thanks,
+> Bryan
+>
+>
+>
+>
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
 
-Hello, everyone!
-I try to add a new bb(xerces-c) to my image, bb is as followings:
-
-
-DESCRIPTION = "Xerces-C++ is a validating XML parser written in a portable
-subset of C++."
-HOMEPAGE = "http://xerces.apache.org/xerces-c/"
-LICENSE = "Apache"
-LIC_FILES_CHKSUM = "file://src/xercesc/dom/DOM.hpp;endline=22;md5=
-9986d741cab88a8b7bc4a19d3c1b8106 \
-file://src/xercesc/parsers/XercesDOMParser.hpp;endline=21;md5=
-85be7b6e587aa51e4f30c262f1cd695e \
-file://src/xercesc/xinclude/XIncludeDOMDocumentProcessor.hpp;endline=23;md5=
-4236d3c0f2537b3df547a97d60f93dc0"
-
-
-PR = "r1"
-
-
-DEPENDS = "curl icu"
-
-
-SRC_URI = "http://mirror.bit.edu.cn/apache//xerces/c/3/sources/xerces
--c-${PV}.tar.gz"
-
-
-SRC_URI[md5sum] = "6a8ec45d83c8cfb1584c5a5345cb51ae"
-SRC_URI[sha256sum] = "a42785f71e0b91d5fd273831c87410
-ce60a73ccfdd207de1b805d26d44968736"
-
-
-inherit autotools
-
-
-S = "${WORKDIR}/xerces-c-${PV}/"
-
-
-EXTRA_OECONF = "\
---enable-netaccessor-curl \
---enable-transcoder-icu \
---enable-msgloader-icu \
-"
-
-
-but when configure come into the error:
-ERROR: This autoconf log indicates errors, it looked at host include and/or
-library paths while determining system capabilities.
-Rerun configure task after fixing this. The path was '/home/caozhiyan/fsl-
-community-bsp/build-hc1200/tmp/work/armv7a-vfp-neon-poky-linux-gnueabi/
-xerces-c/3.1.1-r1/xerces-c-3.1.1'
-ERROR: Function failed: do_qa_configure
-ERROR: Logfile of failure stored in: /home/caozhiyan/fsl-community-
-bsp/build-hc1200/tmp/work/armv7a-vfp-neon-poky-linux-gnueabi/xerces
--c/3.1.1-r1/temp/log.do_configure.19932
-ERROR: Task 5 (/home/caozhiyan/fsl-community-bsp/sources/meta-
-fsl-hc1200/recipes-hc1200/xerces-c/xerces-c_3.1.1.bb, do_configure) failed
-with exit code '1'
-
-
-who can show me how to port the autotools-based project? Thanks.
-
---001a1134b62ca488b604e96e9514
-Content-Type: text/html; charset=ISO-8859-1
+--001a11c25f4225da3c04e96fcee0
+Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Okay I dug further and got much further to pass do_install=
-<div><br></div><div>I noticed in my Yocto 9.0.2 Dylan release I have an ICU=
- package. Just in case, I added the extra installs of icu and xerces-c to m=
-y local.conf</div>
-<div><br></div><div>then in your xerces-c bitbake recipe you need to add --=
-with-icu=3D${STAGING_DIR_HOST} to your EXTRA_OECONF</div><div><br></div><di=
-v style>My EXTRA_OECONF is=A0</div><div style><br></div><div style>EXTRA_OE=
-CONF=3D &quot;--with-icu=3D${STAGING_DIR_HOST} ICU_FLAGS=3D-I${STAGING_INCD=
-IR} LDFLAGS=3D-L${STAGING_BASELIBDIR} --build=3Dx86_64-linux --host=3Di586-=
-poky-linux&quot;<br>
-</div><div><br></div><div>To be safe I also added ICU_FLAGS=3D${STAGING_DIR=
-_HOST} but I probably do not need it. In fact that&#39;s what I tried first=
- and it had no effect. grepping through my config.log I traced to where ICU=
-_FLAGS kept being set stubbornly to -I/usr/include. I will clean this up an=
-d get rid of my LDFLAGS which I don&#39;t need. Also the ICU_FLAGS.</div>
-<div><br></div><div>The problem (and Hans Beckerus pointed out to me) was t=
-he poisonous header files from the build machine in /usr/include. Note that=
- icu is staged - you can find its libraries in the usr/lib subfolder in you=
-r host staging directory. All the pieces to the puzzle are there.=A0</div>
-<div><br></div><div style>Thanks</div><div style><br></div><div style>Bill<=
-/div><div><br><div><br></div><div style>Original post was</div><div style><=
-br></div><div style><span style=3D"font-family:arial,sans-serif;font-size:1=
-3px">Date: Fri, 27 Sep 2013 13:35:55 +0800 (CST)</span><br style=3D"font-fa=
-mily:arial,sans-serif;font-size:13px">
-<span style=3D"font-family:arial,sans-serif;font-size:13px">From: ??? &lt;<=
-/span><a href=3D"mailto:czyhit@126.com" style=3D"font-family:arial,sans-ser=
-if;font-size:13px">czyhit@126.com</a><span style=3D"font-family:arial,sans-=
-serif;font-size:13px">&gt;</span><br style=3D"font-family:arial,sans-serif;=
-font-size:13px">
-<span style=3D"font-family:arial,sans-serif;font-size:13px">To:=A0</span><a=
- href=3D"mailto:yocto@yoctoproject.org" style=3D"font-family:arial,sans-ser=
-if;font-size:13px">yocto@yoctoproject.org</a><br style=3D"font-family:arial=
-,sans-serif;font-size:13px">
-<span style=3D"font-family:arial,sans-serif;font-size:13px">Subject: [yocto=
-] how to add a new bb(</span><span class=3D"" style=3D"background-color:rgb=
-(255,255,204);font-family:arial,sans-serif;font-size:13px">xerces</span><sp=
-an style=3D"font-family:arial,sans-serif;font-size:13px">-c)?</span><br sty=
-le=3D"font-family:arial,sans-serif;font-size:13px">
-<span style=3D"font-family:arial,sans-serif;font-size:13px">Message-ID: &lt=
-;</span><a href=3D"mailto:bfe9b2.4f09.1415dea90ad.Coremail.czyhit@126.com" =
-style=3D"font-family:arial,sans-serif;font-size:13px">bfe9b2.4f09.1415dea90=
-ad.Coremail.czyhit@126.com</a><span style=3D"font-family:arial,sans-serif;f=
-ont-size:13px">&gt;</span><br style=3D"font-family:arial,sans-serif;font-si=
-ze:13px">
-<span style=3D"font-family:arial,sans-serif;font-size:13px">Content-Type: t=
-ext/plain; charset=3D&quot;gbk&quot;</span><br style=3D"font-family:arial,s=
-ans-serif;font-size:13px"><br style=3D"font-family:arial,sans-serif;font-si=
-ze:13px">
-<span style=3D"font-family:arial,sans-serif;font-size:13px">Hello, everyone=
-!</span><br style=3D"font-family:arial,sans-serif;font-size:13px"><span sty=
-le=3D"font-family:arial,sans-serif;font-size:13px">I try to add a new bb(</=
-span><span class=3D"" style=3D"background-color:rgb(255,255,204);font-famil=
-y:arial,sans-serif;font-size:13px">xerces</span><span style=3D"font-family:=
-arial,sans-serif;font-size:13px">-c) to my image, bb is as followings:</spa=
-n><br style=3D"font-family:arial,sans-serif;font-size:13px">
-<br style=3D"font-family:arial,sans-serif;font-size:13px"><br style=3D"font=
--family:arial,sans-serif;font-size:13px"><span style=3D"font-family:arial,s=
-ans-serif;font-size:13px">DESCRIPTION =3D &quot;</span><span class=3D"" sty=
-le=3D"background-color:rgb(255,255,204);font-family:arial,sans-serif;font-s=
-ize:13px">Xerces</span><span style=3D"font-family:arial,sans-serif;font-siz=
-e:13px">-C++ is a validating XML parser written in a portable subset of C++=
-.&quot;</span><br style=3D"font-family:arial,sans-serif;font-size:13px">
-<span style=3D"font-family:arial,sans-serif;font-size:13px">HOMEPAGE =3D &q=
-uot;</span><a href=3D"http://xerces.apache.org/xerces-c/" target=3D"_blank"=
- style=3D"font-family:arial,sans-serif;font-size:13px">http://<span class=
-=3D"" style=3D"background-color:rgb(255,255,204);color:rgb(34,34,34)">xerce=
-s</span>.apache.org/<span class=3D"" style=3D"background-color:rgb(255,255,=
-204);color:rgb(34,34,34)">xerces</span>-c/</a><span style=3D"font-family:ar=
-ial,sans-serif;font-size:13px">&quot;</span><br style=3D"font-family:arial,=
-sans-serif;font-size:13px">
-<span style=3D"font-family:arial,sans-serif;font-size:13px">LICENSE =3D &qu=
-ot;Apache&quot;</span><br style=3D"font-family:arial,sans-serif;font-size:1=
-3px"><span style=3D"font-family:arial,sans-serif;font-size:13px">LIC_FILES_=
-CHKSUM =3D &quot;file://src/xercesc/dom/DOM.</span><span style=3D"font-fami=
-ly:arial,sans-serif;font-size:13px">hpp;endline=3D22;md5=3D</span><span sty=
-le=3D"font-family:arial,sans-serif;font-size:13px">9986d741cab88a8b7bc4a19d=
-3c1b81</span><span style=3D"font-family:arial,sans-serif;font-size:13px">06=
- \</span><br style=3D"font-family:arial,sans-serif;font-size:13px">
-<span style=3D"font-family:arial,sans-serif;font-size:13px">file://src/xerc=
-esc/parsers/</span><span style=3D"font-family:arial,sans-serif;font-size:13=
-px">XercesDOMParser.hpp;endline=3D</span><span style=3D"font-family:arial,s=
-ans-serif;font-size:13px">21;md5=3D</span><span style=3D"font-family:arial,=
-sans-serif;font-size:13px">85be7b6e587aa51e4f30c262f1cd69</span><span style=
-=3D"font-family:arial,sans-serif;font-size:13px">5e \</span><br style=3D"fo=
-nt-family:arial,sans-serif;font-size:13px">
-<span style=3D"font-family:arial,sans-serif;font-size:13px">file://src/xerc=
-esc/xinclude/</span><span style=3D"font-family:arial,sans-serif;font-size:1=
-3px">XIncludeDOMDocumentProcessor.</span><span style=3D"font-family:arial,s=
-ans-serif;font-size:13px">hpp;endline=3D23;md5=3D</span><span style=3D"font=
--family:arial,sans-serif;font-size:13px">4236d3c0f2537b3df547a97d60f93d</sp=
-an><span style=3D"font-family:arial,sans-serif;font-size:13px">c0&quot;</sp=
-an><br style=3D"font-family:arial,sans-serif;font-size:13px">
-<br style=3D"font-family:arial,sans-serif;font-size:13px"><br style=3D"font=
--family:arial,sans-serif;font-size:13px"><span style=3D"font-family:arial,s=
-ans-serif;font-size:13px">PR =3D &quot;r1&quot;</span><br style=3D"font-fam=
-ily:arial,sans-serif;font-size:13px">
-<br style=3D"font-family:arial,sans-serif;font-size:13px"><br style=3D"font=
--family:arial,sans-serif;font-size:13px"><span style=3D"font-family:arial,s=
-ans-serif;font-size:13px">DEPENDS =3D &quot;curl icu&quot;</span><br style=
-=3D"font-family:arial,sans-serif;font-size:13px">
-<br style=3D"font-family:arial,sans-serif;font-size:13px"><br style=3D"font=
--family:arial,sans-serif;font-size:13px"><span style=3D"font-family:arial,s=
-ans-serif;font-size:13px">SRC_URI =3D &quot;</span><a href=3D"http://mirror=
-.bit.edu.cn/apache//xerces/c/3/sources/xerces-c-${PV}.tar.gz" target=3D"_bl=
-ank" style=3D"font-family:arial,sans-serif;font-size:13px">http://mirror.bi=
-t.edu.cn/apache//<span class=3D"" style=3D"background-color:rgb(255,255,204=
-);color:rgb(34,34,34)">xerces</span>/c/3/sources/<span class=3D"" style=3D"=
-background-color:rgb(255,255,204);color:rgb(34,34,34)">xerces</span>-c-${PV=
-}.tar.gz</a><span style=3D"font-family:arial,sans-serif;font-size:13px">&qu=
-ot;</span><br style=3D"font-family:arial,sans-serif;font-size:13px">
-<br style=3D"font-family:arial,sans-serif;font-size:13px"><br style=3D"font=
--family:arial,sans-serif;font-size:13px"><span style=3D"font-family:arial,s=
-ans-serif;font-size:13px">SRC_URI[md5sum] =3D &quot;</span><span style=3D"f=
-ont-family:arial,sans-serif;font-size:13px">6a8ec45d83c8cfb1584c5a5345cb51<=
-/span><span style=3D"font-family:arial,sans-serif;font-size:13px">ae&quot;<=
-/span><br style=3D"font-family:arial,sans-serif;font-size:13px">
-<span style=3D"font-family:arial,sans-serif;font-size:13px">SRC_URI[sha256s=
-um] =3D &quot;</span><span style=3D"font-family:arial,sans-serif;font-size:=
-13px">a42785f71e0b91d5fd273831c87410</span><span style=3D"font-family:arial=
-,sans-serif;font-size:13px">ce60a73ccfdd207de1b805d26d4496</span><span styl=
-e=3D"font-family:arial,sans-serif;font-size:13px">8736&quot;</span><br styl=
-e=3D"font-family:arial,sans-serif;font-size:13px">
-<br style=3D"font-family:arial,sans-serif;font-size:13px"><br style=3D"font=
--family:arial,sans-serif;font-size:13px"><span style=3D"font-family:arial,s=
-ans-serif;font-size:13px">inherit autotools</span><br style=3D"font-family:=
-arial,sans-serif;font-size:13px">
-<br style=3D"font-family:arial,sans-serif;font-size:13px"><br style=3D"font=
--family:arial,sans-serif;font-size:13px"><span style=3D"font-family:arial,s=
-ans-serif;font-size:13px">S =3D &quot;${WORKDIR}/</span><span class=3D"" st=
-yle=3D"background-color:rgb(255,255,204);font-family:arial,sans-serif;font-=
-size:13px">xerces</span><span style=3D"font-family:arial,sans-serif;font-si=
-ze:13px">-c-${PV}/&quot;</span><br style=3D"font-family:arial,sans-serif;fo=
-nt-size:13px">
-<br style=3D"font-family:arial,sans-serif;font-size:13px"><br style=3D"font=
--family:arial,sans-serif;font-size:13px"><span style=3D"font-family:arial,s=
-ans-serif;font-size:13px">EXTRA_OECONF =3D &quot;\</span><br style=3D"font-=
-family:arial,sans-serif;font-size:13px">
-<span style=3D"font-family:arial,sans-serif;font-size:13px">--enable-netacc=
-essor-curl \</span><br style=3D"font-family:arial,sans-serif;font-size:13px=
-"><span style=3D"font-family:arial,sans-serif;font-size:13px">--enable-tran=
-scoder-icu \</span><br style=3D"font-family:arial,sans-serif;font-size:13px=
-">
-<span style=3D"font-family:arial,sans-serif;font-size:13px">--enable-msgloa=
-der-icu \</span><br style=3D"font-family:arial,sans-serif;font-size:13px"><=
-span style=3D"font-family:arial,sans-serif;font-size:13px">&quot;</span><br=
- style=3D"font-family:arial,sans-serif;font-size:13px">
-<br style=3D"font-family:arial,sans-serif;font-size:13px"><br style=3D"font=
--family:arial,sans-serif;font-size:13px"><span style=3D"font-family:arial,s=
-ans-serif;font-size:13px">but when configure come into the error:</span><br=
- style=3D"font-family:arial,sans-serif;font-size:13px">
-<span style=3D"font-family:arial,sans-serif;font-size:13px">ERROR: This aut=
-oconf log indicates errors, it looked at host include and/or library paths =
-while determining system capabilities.</span><br style=3D"font-family:arial=
-,sans-serif;font-size:13px">
-<span style=3D"font-family:arial,sans-serif;font-size:13px">Rerun configure=
- task after fixing this. The path was &#39;/home/caozhiyan/fsl-</span><span=
- style=3D"font-family:arial,sans-serif;font-size:13px">community-bsp/build-=
-hc1200/</span><span style=3D"font-family:arial,sans-serif;font-size:13px">t=
-mp/work/armv7a-vfp-neon-poky-</span><span style=3D"font-family:arial,sans-s=
-erif;font-size:13px">linux-gnueabi/</span><span class=3D"" style=3D"backgro=
-und-color:rgb(255,255,204);font-family:arial,sans-serif;font-size:13px">xer=
-ces</span><span style=3D"font-family:arial,sans-serif;font-size:13px">-c/3.=
-1.1-</span><span style=3D"font-family:arial,sans-serif;font-size:13px">r1/<=
-/span><span class=3D"" style=3D"background-color:rgb(255,255,204);font-fami=
-ly:arial,sans-serif;font-size:13px">xerces</span><span style=3D"font-family=
-:arial,sans-serif;font-size:13px">-c-3.1.1&#39;</span><br style=3D"font-fam=
-ily:arial,sans-serif;font-size:13px">
-<span style=3D"font-family:arial,sans-serif;font-size:13px">ERROR: Function=
- failed: do_qa_configure</span><br style=3D"font-family:arial,sans-serif;fo=
-nt-size:13px"><span style=3D"font-family:arial,sans-serif;font-size:13px">E=
-RROR: Logfile of failure stored in: /home/caozhiyan/fsl-community-</span><s=
-pan style=3D"font-family:arial,sans-serif;font-size:13px">bsp/build-hc1200/=
-tmp/work/</span><span style=3D"font-family:arial,sans-serif;font-size:13px"=
->armv7a-vfp-neon-poky-linux-</span><span style=3D"font-family:arial,sans-se=
-rif;font-size:13px">gnueabi/</span><span class=3D"" style=3D"background-col=
-or:rgb(255,255,204);font-family:arial,sans-serif;font-size:13px">xerces</sp=
-an><span style=3D"font-family:arial,sans-serif;font-size:13px">-c/3.1.1-r1/=
-</span><span style=3D"font-family:arial,sans-serif;font-size:13px">temp/log=
-.do_configure.19932</span><br style=3D"font-family:arial,sans-serif;font-si=
-ze:13px">
-<span style=3D"font-family:arial,sans-serif;font-size:13px">ERROR: Task 5 (=
-/home/caozhiyan/fsl-</span><span style=3D"font-family:arial,sans-serif;font=
--size:13px">community-bsp/sources/meta-</span><span style=3D"font-family:ar=
-ial,sans-serif;font-size:13px">fsl-hc1200/recipes-hc1200/</span><span class=
-=3D"" style=3D"background-color:rgb(255,255,204);font-family:arial,sans-ser=
-if;font-size:13px">xerces</span><span style=3D"font-family:arial,sans-serif=
-;font-size:13px">-c/</span><a href=3D"http://xerces-c_3.1.1.bb/" target=3D"=
-_blank" style=3D"font-family:arial,sans-serif;font-size:13px"><span class=
-=3D"" style=3D"background-color:rgb(255,255,204);color:rgb(34,34,34)">xerce=
-s</span>-c_3.1.1.bb</a><span style=3D"font-family:arial,sans-serif;font-siz=
-e:13px">, do_configure) failed with exit code &#39;1&#39;</span><br style=
-=3D"font-family:arial,sans-serif;font-size:13px">
-<br style=3D"font-family:arial,sans-serif;font-size:13px"><br style=3D"font=
--family:arial,sans-serif;font-size:13px"><span style=3D"font-family:arial,s=
-ans-serif;font-size:13px">who can show me how to port the autotools-based p=
-roject? Thanks.</span><br>
-</div></div></div>
+<div dir=3D"ltr">Why do you want to disable them? All the files are already=
+ there, so packaging them in right package doesn&#39;t cost much (if your r=
+eason was build time).<br></div><div class=3D"gmail_extra"><br><br><div cla=
+ss=3D"gmail_quote">
+On Wed, Oct 23, 2013 at 6:31 PM, Bryan Evenson <span dir=3D"ltr">&lt;<a hre=
+f=3D"mailto:bevenson@melinkcorp.com" target=3D"_blank">bevenson@melinkcorp.=
+com</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"mar=
+gin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">
+I&#39;m on poky/dylan-9.0.1. =C2=A0I&#39;m not using any of the -dbg and th=
+e -doc packages and I&#39;d like to clean things up for my build by not bui=
+lding these packages in the first place across the entire system. =C2=A0I s=
+ee references in the documentation to these package types, but I haven&#39;=
+t found anything about how to keep the system from generating them.<br>
 
---001a1134b62ca488b604e96e9514--
+<br>
+I tried going into meta/conf/bitbake.conf and modifying the PACKAGES variab=
+le to look as follows:<br>
+<br>
+PACKAGES =3D &quot;${PN}-staticdev ${PN}-dev ${PN}-locale ${PACKAGE_BEFORE_=
+PN} ${PN}&quot;<br>
+<br>
+This caused a bunch of packages to get rebuilt and seemed to be working unt=
+il it got to the libpam package. =C2=A0Then I got the following errors:<br>
+<br>
+ERROR: QA Issue: non debug package contains .debug directory: libpam-xtests=
+ path /work/arm926ejste-poky-linux-gnueabi/libpam/1.1.6-r2/packages-split/l=
+ibpam-xtests/usr/share/Linux-PAM/xtests/.debug/tst-pam_dispatch2<br>
+ERROR: QA Issue: non debug package contains .debug directory: libpam-xtests=
+ path /work/arm926ejste-poky-linux-gnueabi/libpam/1.1.6-r2/packages-split/l=
+ibpam-xtests/usr/share/Linux-PAM/xtests/.debug/tst-pam_pwhistory1<br>
+ERROR: QA Issue: non debug package contains .debug directory: libpam-xtests=
+ path /work/arm926ejste-poky-linux-gnueabi/libpam/1.1.6-r2/packages-split/l=
+ibpam-xtests/usr/share/Linux-PAM/xtests/.debug/tst-pam_access3<br>
+ERROR: QA Issue: non debug package contains .debug directory: libpam-xtests=
+ path /work/arm926ejste-poky-linux-gnueabi/libpam/1.1.6-r2/packages-split/l=
+ibpam-xtests/usr/share/Linux-PAM/xtests/.debug/tst-pam_unix2<br>
+ERROR: QA Issue: non debug package contains .debug directory: libpam-xtests=
+ path /work/arm926ejste-poky-linux-gnueabi/libpam/1.1.6-r2/packages-split/l=
+ibpam-xtests/usr/share/Linux-PAM/xtests/.debug/tst-pam_succeed_if1<br>
+
+ERROR: QA Issue: non debug package contains .debug directory: libpam-xtests=
+ path /work/arm926ejste-poky-linux-gnueabi/libpam/1.1.6-r2/packages-split/l=
+ibpam-xtests/usr/share/Linux-PAM/xtests/.debug/tst-pam_authsucceed<br>
+
+ERROR: QA Issue: non debug package contains .debug directory: libpam-xtests=
+ path /work/arm926ejste-poky-linux-gnueabi/libpam/1.1.6-r2/packages-split/l=
+ibpam-xtests/usr/share/Linux-PAM/xtests/.debug/tst-pam_dispatch4<br>
+ERROR: QA Issue: non debug package contains .debug directory: libpam-xtests=
+ path /work/arm926ejste-poky-linux-gnueabi/libpam/1.1.6-r2/packages-split/l=
+ibpam-xtests/usr/share/Linux-PAM/xtests/.debug/tst-pam_access1<br>
+ERROR: QA Issue: non debug package contains .debug directory: libpam-xtests=
+ path /work/arm926ejste-poky-linux-gnueabi/libpam/1.1.6-r2/packages-split/l=
+ibpam-xtests/usr/share/Linux-PAM/xtests/.debug/tst-pam_time1<br>
+ERROR: QA Issue: non debug package contains .debug directory: libpam-xtests=
+ path /work/arm926ejste-poky-linux-gnueabi/libpam/1.1.6-r2/packages-split/l=
+ibpam-xtests/usr/share/Linux-PAM/xtests/.debug/tst-pam_unix3<br>
+ERROR: QA Issue: non debug package contains .debug directory: libpam-xtests=
+ path /work/arm926ejste-poky-linux-gnueabi/libpam/1.1.6-r2/packages-split/l=
+ibpam-xtests/usr/share/Linux-PAM/xtests/.debug/tst-pam_authfail<br>
+ERROR: QA Issue: non debug package contains .debug directory: libpam-xtests=
+ path /work/arm926ejste-poky-linux-gnueabi/libpam/1.1.6-r2/packages-split/l=
+ibpam-xtests/usr/share/Linux-PAM/xtests/.debug/tst-pam_cracklib1<br>
+ERROR: QA Issue: non debug package contains .debug directory: libpam-xtests=
+ path /work/arm926ejste-poky-linux-gnueabi/libpam/1.1.6-r2/packages-split/l=
+ibpam-xtests/usr/share/Linux-PAM/xtests/.debug/tst-pam_access2<br>
+ERROR: QA Issue: non debug package contains .debug directory: libpam-xtests=
+ path /work/arm926ejste-poky-linux-gnueabi/libpam/1.1.6-r2/packages-split/l=
+ibpam-xtests/usr/share/Linux-PAM/xtests/.debug/tst-pam_cracklib2<br>
+ERROR: QA Issue: non debug package contains .debug directory: libpam-xtests=
+ path /work/arm926ejste-poky-linux-gnueabi/libpam/1.1.6-r2/packages-split/l=
+ibpam-xtests/usr/share/Linux-PAM/xtests/.debug/tst-pam_dispatch1<br>
+ERROR: QA Issue: non debug package contains .debug directory: libpam-xtests=
+ path /work/arm926ejste-poky-linux-gnueabi/libpam/1.1.6-r2/packages-split/l=
+ibpam-xtests/usr/share/Linux-PAM/xtests/.debug/tst-pam_dispatch5<br>
+ERROR: QA Issue: non debug package contains .debug directory: libpam-xtests=
+ path /work/arm926ejste-poky-linux-gnueabi/libpam/1.1.6-r2/packages-split/l=
+ibpam-xtests/usr/share/Linux-PAM/xtests/.debug/tst-pam_limits1<br>
+ERROR: QA Issue: non debug package contains .debug directory: libpam-xtests=
+ path /work/arm926ejste-poky-linux-gnueabi/libpam/1.1.6-r2/packages-split/l=
+ibpam-xtests/usr/share/Linux-PAM/xtests/.debug/tst-pam_dispatch3<br>
+ERROR: QA Issue: non debug package contains .debug directory: libpam-xtests=
+ path /work/arm926ejste-poky-linux-gnueabi/libpam/1.1.6-r2/packages-split/l=
+ibpam-xtests/usr/share/Linux-PAM/xtests/.debug/tst-pam_group1<br>
+ERROR: QA Issue: non debug package contains .debug directory: libpam-xtests=
+ path /work/arm926ejste-poky-linux-gnueabi/libpam/1.1.6-r2/packages-split/l=
+ibpam-xtests/usr/share/Linux-PAM/xtests/.debug/tst-pam_unix4<br>
+ERROR: QA Issue: non debug package contains .debug directory: libpam-xtests=
+ path /work/arm926ejste-poky-linux-gnueabi/libpam/1.1.6-r2/packages-split/l=
+ibpam-xtests/usr/share/Linux-PAM/xtests/.debug/tst-pam_access4<br>
+ERROR: QA Issue: non debug package contains .debug directory: libpam-xtests=
+ path /work/arm926ejste-poky-linux-gnueabi/libpam/1.1.6-r2/packages-split/l=
+ibpam-xtests/usr/share/Linux-PAM/xtests/.debug/tst-pam_unix1<br>
+ERROR: QA run found fatal errors. Please consider fixing them.<br>
+ERROR: Function failed: do_package_qa<br>
+ERROR: Logfile of failure stored in: /media/sda3/poky/poky-build/tmp/work/a=
+rm926ejste-poky-linux-gnueabi/libpam/1.1.6-r2/temp/log.do_package.8163<br>
+ERROR: Task 362 (/media/sda3/poky/meta/recipes-extended/pam/<a href=3D"http=
+://libpam_1.1.6.bb" target=3D"_blank">libpam_1.1.6.bb</a>, do_package) fail=
+ed with exit code &#39;1&#39;<br>
+<br>
+So either I didn&#39;t remove enough from bitbake.conf or there is a better=
+ way to do this. =C2=A0Does anyone know of a good way to avoid building all=
+ the -dbg and -doc packages?<br>
+<br>
+Thanks,<br>
+Bryan<br>
+<br>
+<br>
+<br>
+<br>
+_______________________________________________<br>
+yocto mailing list<br>
+<a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br>
+<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" target=3D"_blank"=
+>https://lists.yoctoproject.org/listinfo/yocto</a><br>
+</blockquote></div><br></div>
+
+--001a11c25f4225da3c04e96fcee0--
