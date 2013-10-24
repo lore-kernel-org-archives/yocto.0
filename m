@@ -1,25 +1,30 @@
-Return-Path: <gary@mlbassoc.com>
-Received: from mail.chez-thomas.org (mail.mlbassoc.com [65.100.170.105])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 573D9E01768
-	for <yocto@yoctoproject.org>; Thu, 24 Oct 2013 08:24:57 -0700 (PDT)
-Received: by mail.chez-thomas.org (Postfix, from userid 1998)
-	id 10642F8121E; Thu, 24 Oct 2013 09:24:57 -0600 (MDT)
-X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on
-	hermes.chez-thomas.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=4.0 tests=ALL_TRUSTED,BAYES_00
-	autolearn=ham version=3.3.2
-Received: from [192.168.1.114] (zeus [192.168.1.114])
-	by mail.chez-thomas.org (Postfix) with ESMTP id DC6B5F8121C;
-	Thu, 24 Oct 2013 09:24:55 -0600 (MDT)
-Message-ID: <52693BCC.100@mlbassoc.com>
-Date: Thu, 24 Oct 2013 09:25:00 -0600
-From: Gary Thomas <gary@mlbassoc.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:24.0) Gecko/20100101 Thunderbird/24.0
+Return-Path: <rpjday@crashcourse.ca>
+Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
+	[64.235.106.9])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 032F7E01768
+	for <yocto@yoctoproject.org>; Thu, 24 Oct 2013 08:27:31 -0700 (PDT)
+Received: from [128.107.17.87] (port=59872 helo=crashcourse.ca)
+	by astoria.ccjclearline.com with esmtpsa (TLSv1:DHE-RSA-AES256-SHA:256)
+	(Exim 4.80) (envelope-from <rpjday@crashcourse.ca>)
+	id 1VZMor-0007Qf-KY
+	for yocto@yoctoproject.org; Thu, 24 Oct 2013 11:27:29 -0400
+Date: Thu, 24 Oct 2013 08:27:21 -0700 (PDT)
+From: "Robert P. J. Day" <rpjday@crashcourse.ca>
+X-X-Sender: rpjday@oneiric
+To: Yocto discussion list <yocto@yoctoproject.org>
+Message-ID: <alpine.DEB.2.02.1310240824020.5368@oneiric>
+User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
 MIME-Version: 1.0
-To: Yocto Project <yocto@yoctoproject.org>
-Subject: Testing wayland/weston
+X-AntiAbuse: This header was added to track abuse,
+	please include it with any abuse report
+X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - crashcourse.ca
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+Subject: undocumented/inconsistent use of KERNEL_DEVICETREE variable
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -31,36 +36,43 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 24 Oct 2013 15:24:58 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Thu, 24 Oct 2013 15:27:32 -0000
+Content-Type: TEXT/PLAIN; charset=US-ASCII
 
-I'd like to try testing wayland/weston on my BeagleBoard (clone).
-I've built core-image-weston, but it fails to start up with this error:
 
-[15:07:01.465] weston 1.1.0
-                http://wayland.freedesktop.org/
-                Bug reports to: https://bugs.freedesktop.org/enter_bug.cgi?product=Wayland&comp0
-                Build:
-[15:07:01.466] OS: Linux, 3.3.0, #1 Mon Oct 21 14:35:36 MDT 2013, armv7l
-couldn't open //.config/weston.ini
-[15:07:01.472] Loading module '/usr/lib/weston/drm-backend.so'
-couldn't open //.config/weston.ini
-[15:07:01.484] initializing drm backend
-couldn't open //.config/weston.ini
-couldn't open //.config/weston.ini
-[15:07:01.492] compositor: using new vt /dev/tty1
-[15:07:01.511] no drm device found
-[15:07:01.511] failed to drop master: Invalid argument
-[15:07:01.557] fatal: failed to create compositor
+  simple observation -- the KERNEL_DEVICETREE variable is not
+mentioned in the ref manual variable glossary.
 
-What would I need to add/change to get this basic setup to work?
+  more weirdly, though, i've always been used to seeing it used this
+way, like in the meta-yocto-bsp layer (that is, referring to the .dts
+*source* files):
 
-Thanks
+beagleboard.conf:KERNEL_DEVICETREE =
+"${S}/arch/arm/boot/dts/omap3-beagle.dts
+${S}/arch/arm/boot/dts/omap3-beagle-xm.dts"
+mpc8315e-rdb.conf:KERNEL_DEVICETREE =
+"${S}/arch/powerpc/boot/dts/mpc8315erdb.dts"
+
+  but i just noticed this in the meta-fsl-asm layer:
+
+meta-fsl-arm/conf/machine/imx23evk.conf:KERNEL_DEVICETREE = "imx23-evk.dtb"
+meta-fsl-arm/conf/machine/imx6dlsabresd.conf:KERNEL_DEVICETREE = "imx6dl-sabresd.dtb"
+meta-fsl-arm/conf/machine/imx6dlsabreauto.conf:KERNEL_DEVICETREE = "imx6dl-sabreauto.dtb"
+meta-fsl-arm/conf/machine/imx6qsabresd.conf:KERNEL_DEVICETREE = "imx6q-sabresd.dtb"
+
+where the variable contains references to the .dtb *blob* files.
+
+  is there a standard? recommended? either way fine?
+
+rday
 
 -- 
-------------------------------------------------------------
-Gary Thomas                 |  Consulting for the
-MLB Associates              |    Embedded world
-------------------------------------------------------------
+
+========================================================================
+Robert P. J. Day                                 Ottawa, Ontario, CANADA
+                        http://crashcourse.ca
+
+Twitter:                                       http://twitter.com/rpjday
+LinkedIn:                               http://ca.linkedin.com/in/rpjday
+========================================================================
 
