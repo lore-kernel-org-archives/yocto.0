@@ -1,34 +1,31 @@
-Return-Path: <martin.jansa@gmail.com>
-Received: from mail-wi0-f171.google.com (mail-wi0-f171.google.com
-	[209.85.212.171])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4C97BE0175F
-	for <yocto@yoctoproject.org>; Thu, 24 Oct 2013 06:05:51 -0700 (PDT)
-Received: by mail-wi0-f171.google.com with SMTP id h11so8958241wiv.4
-	for <yocto@yoctoproject.org>; Thu, 24 Oct 2013 06:05:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type;
-	bh=7gaPCSR6IuqJv3tb5N1CVCjl/R/e8cS7u2UDcf65Q4E=;
-	b=XltHmWa721dJluTYBZMWBtn7klrDVnX2XoEl1OFwHyhOs98dMXziBBTLeHElLmH1ma
-	qZAtkRA+iTZbC+G1I5mFORhVqDVfnyJkxVF+me/PgGmOOazaLY2aMzvFWZ3yCDvaomhU
-	01F3TZv+doTDvLbhdv5Du2zmiXx38p8UKesELXE4DW0MCfjTtLTJW+xkfr/kDwN1wuCF
-	nbbczq0CtUpOZUdBf+rm+t2fyuf6Nqy/ZjvkYY40IxSqxWMwGT3oR0f3CggrBAEiUIvu
-	dnzMexUczqmp0hT+om+uH3ImsnKbYF32kZrMTG4YK9uJGc+SBZU8gwC3kLOt76tFNtGU
-	Y7oQ==
+Return-Path: <akini@synapticon.com>
+Received: from mail-la0-f54.google.com (mail-la0-f54.google.com
+	[209.85.215.54])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3AD10E0175F
+	for <yocto@yoctoproject.org>; Thu, 24 Oct 2013 06:07:14 -0700 (PDT)
+Received: by mail-la0-f54.google.com with SMTP id gx14so1890783lab.27
+	for <yocto@yoctoproject.org>; Thu, 24 Oct 2013 06:07:13 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:date:message-id:subject:from:to
+	:content-type;
+	bh=g+YLM6s0fQlJoOh9OHFcDh3h2cmCwd/nWmFPojA5q+0=;
+	b=cD0C2KsV9oyOnP7ChaNfM5UrAAbTpvNeykPIvgBx+ZvaiNd6+OFgcF0nmvIC9DPBTe
+	1KBynk/e6rTTBO94HfmYrXwYQ2a0vnVAvtfjbf5nMB/OEujzCGBOUDIoGr13ELPHZulI
+	dc5Oty8PEt3CVW/ox4yx/R5KcF4udHny8Z/ZsM52n7fidpVNBzROGDhLplhymme3JYkl
+	TW4RzfNj3DiZeMYkukzdTFJzpFx6GsgfqXKv2n4Kof5wrBpAASdVOeE08cy7IgarNxsy
+	lrKvwR6bGoFI4MvVxMNc0BN70/I0gXihIWDgY6F1vi3EApBulyJNJkUSmsF0elHu0MVC
+	NqPw==
+X-Gm-Message-State: ALoCoQkHPJORK4DJnSTX2XbkX1rJhEwJaSW1QFRv8au4j5KALtNMOp1L2Z+Y/M8dlPNAyanZ9jiN
 MIME-Version: 1.0
-X-Received: by 10.180.211.7 with SMTP id my7mr2147888wic.17.1382619949847;
-	Thu, 24 Oct 2013 06:05:49 -0700 (PDT)
-Received: by 10.194.179.198 with HTTP; Thu, 24 Oct 2013 06:05:49 -0700 (PDT)
-In-Reply-To: <91586D499ADFD74FBCFB8425266A5DE40153B8F8B240@pluto.melinkcorp.local>
-References: <91586D499ADFD74FBCFB8425266A5DE40153B8ED06FE@pluto.melinkcorp.local>
-	<CA+chaQcLnZvUXN=4qWuWgavOJ2FdfVT6uVA3NHmDr3P-XE6PEw@mail.gmail.com>
-	<91586D499ADFD74FBCFB8425266A5DE40153B8F8B240@pluto.melinkcorp.local>
-Date: Thu, 24 Oct 2013 15:05:49 +0200
-Message-ID: <CA+chaQeRS6+fBt7Qh3be90shAga4ndiSnxkjJDGPB9A91vLMDg@mail.gmail.com>
-From: Martin Jansa <martin.jansa@gmail.com>
-To: Bryan Evenson <bevenson@melinkcorp.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: How to prevent building -dbg and -doc packages?
+X-Received: by 10.112.149.197 with SMTP id uc5mr1836140lbb.19.1382620033698;
+	Thu, 24 Oct 2013 06:07:13 -0700 (PDT)
+Received: by 10.114.3.8 with HTTP; Thu, 24 Oct 2013 06:07:13 -0700 (PDT)
+Date: Thu, 24 Oct 2013 15:07:13 +0200
+Message-ID: <CAKS01om711126d3NV4t9qVJ_H7oXF=hsjBjm=yZ5wP2awC4Vgg@mail.gmail.com>
+From: Anup Kini <akini@synapticon.com>
+To: yocto@yoctoproject.org
+Subject: core-image-minimal-dev - linker error : cannot find -lc
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,401 +37,198 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 24 Oct 2013 13:05:54 -0000
-Content-Type: multipart/alternative; boundary=001a11c259f0f859e904e97c4ac4
+X-List-Received-Date: Thu, 24 Oct 2013 13:07:15 -0000
+Content-Type: multipart/alternative; boundary=047d7b343cd2f7e3c704e97c4f30
 
---001a11c259f0f859e904e97c4ac4
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+--047d7b343cd2f7e3c704e97c4f30
+Content-Type: text/plain; charset=ISO-8859-1
 
-If you want to really strip down the deploy/ipk directory size to minimum
-set of .ipks really installed in your rootfs, you can easily use
-installed-package.txt report from buildhistory to copy only installed .ipk
-files from deploy/ipk. Don't forget to re-execute package-index
-(opkg-make-install) in stripped feed
+Hi All,
 
-Advantage of keeping both enabled and then just creating stripped feed for
-on device upgrade would be to allow internal developers to access internal
-feed e.g. to install -dbg package matching end-user feed and debug
-something.
+I am trying to compile a c program on core-image-minimal-dev but en up with
+the following error.
+Kindly let me know if i need to include any additional packages in order to
+be able to compile c programs on the image.
+
+/usr/lib/gcc/arm-poky-linux-gnueabi/4.8.1/../../../../arm-poky-linux-gnueabi/bin/ld:
+cannot find -lc
+collect2: error: ld returned 1 exit status
+make: *** [all] Error 1
 
 
-On Thu, Oct 24, 2013 at 2:20 PM, Bryan Evenson <bevenson@melinkcorp.com>wro=
-te:
+Build Configuration:
+BB_VERSION           = "1.20.0"
+BUILD_SYS               = "x86_64-linux"
+NATIVELSBSTRING  = "Ubuntu-12.04"
+TARGET_SYS           = "arm-poky-linux-gnueabi"
+MACHINE                  = "zc702-zynq7"
+DISTRO                     = "poky"
+DISTRO_VERSION    = "1.5"
+TUNE_FEATURES     = " armv7a vfp neon zynq"
+TARGET_FPU           = "vfp-neon"
+meta
+meta-yocto
+meta-yocto-bsp    = "origin/dylan:e7a20238dc73bb449f15feaf0dead51daf796184"
+meta-oe           = "origin/dylan:8aafddccb03f54923927e9d1c8c80223baf581de"
+meta-xilinx       =
+"remotes/origin/dylan:21c3cd3f058d736742ebc23a7a954f23456fbea5"
+meta-java         = "master:de06956f93ecd15d8c941a05da47a4425e3d397a"
 
-> Martin,****
->
-> ** **
->
-> Good question and several reasons.  Build time isn=E2=80=99t as much of a=
- factor
-> as most of the packages that create the =E2=80=93dbg and =E2=80=93doc pac=
-kages are core
-> packages that don=E2=80=99t get rebuilt very often.  The big reason is th=
-at I=E2=80=99m
-> using a copy of the tmp/deploy/ipk/ directory for firmware upgrade for ou=
-r
-> devices and trying to reduce the clutter.  By just going through and
-> deleting all the =E2=80=93dbg and =E2=80=93doc packages from the ipk/ dir=
-ectory I reduced
-> its size from about 300 MB to about 150 MB (side note: the 300 MB ipk/
-> directory size was after some additional cleanup.  I recently reset my tm=
-p/
-> directory as the ipk/ directory had grown to 700 MB with different stuff =
-I
-> have tried).  Since one method of firmware upgrade for us is through a US=
-B
-> stick, the smaller that directory gets the easier it is to transfer to a
-> USB stick.  So my thought was that if I=E2=80=99m building the packages f=
-or a
-> production setup in which the =E2=80=93dbg and =E2=80=93doc packages will=
- never be used,
-> why bother even generating them in the first place?****
->
-> ** **
->
-> My overall goal, which this is part of, is to reduce the resulting ipk/
-> directory to only the packages that are actually used by the image I
-> built.  Based on my final image size, if I only include the packages that
-> are used for the image I believe I could get the ipk/ directory to under =
-50
-> MB.  Making it that small would make some options, such as providing a
-> download from our company=E2=80=99s website for our customers, more reaso=
-nable.***
-> *
->
-> ** **
->
-> Thanks,****
->
-> Bryan****
->
-> ** **
->
-> *From:* Martin Jansa [mailto:martin.jansa@gmail.com]
-> *Sent:* Wednesday, October 23, 2013 6:12 PM
-> *To:* Bryan Evenson
-> *Cc:* yocto@yoctoproject.org
-> *Subject:* Re: [yocto] How to prevent building -dbg and -doc packages?***=
+
+
+-- 
+
+*Anup Kini
+*Systems Engineer****
 *
->
-> ** **
->
-> Why do you want to disable them? All the files are already there, so
-> packaging them in right package doesn't cost much (if your reason was bui=
-ld
-> time).****
->
-> ** **
->
-> On Wed, Oct 23, 2013 at 6:31 PM, Bryan Evenson <bevenson@melinkcorp.com>
-> wrote:****
->
-> I'm on poky/dylan-9.0.1.  I'm not using any of the -dbg and the -doc
-> packages and I'd like to clean things up for my build by not building the=
-se
-> packages in the first place across the entire system.  I see references i=
-n
-> the documentation to these package types, but I haven't found anything
-> about how to keep the system from generating them.
->
-> I tried going into meta/conf/bitbake.conf and modifying the PACKAGES
-> variable to look as follows:
->
-> PACKAGES =3D "${PN}-staticdev ${PN}-dev ${PN}-locale ${PACKAGE_BEFORE_PN}
-> ${PN}"
->
-> This caused a bunch of packages to get rebuilt and seemed to be working
-> until it got to the libpam package.  Then I got the following errors:
->
-> ERROR: QA Issue: non debug package contains .debug directory:
-> libpam-xtests path
-> /work/arm926ejste-poky-linux-gnueabi/libpam/1.1.6-r2/packages-split/libpa=
-m-xtests/usr/share/Linux-PAM/xtests/.debug/tst-pam_dispatch2
-> ERROR: QA Issue: non debug package contains .debug directory:
-> libpam-xtests path
-> /work/arm926ejste-poky-linux-gnueabi/libpam/1.1.6-r2/packages-split/libpa=
-m-xtests/usr/share/Linux-PAM/xtests/.debug/tst-pam_pwhistory1
-> ERROR: QA Issue: non debug package contains .debug directory:
-> libpam-xtests path
-> /work/arm926ejste-poky-linux-gnueabi/libpam/1.1.6-r2/packages-split/libpa=
-m-xtests/usr/share/Linux-PAM/xtests/.debug/tst-pam_access3
-> ERROR: QA Issue: non debug package contains .debug directory:
-> libpam-xtests path
-> /work/arm926ejste-poky-linux-gnueabi/libpam/1.1.6-r2/packages-split/libpa=
-m-xtests/usr/share/Linux-PAM/xtests/.debug/tst-pam_unix2
-> ERROR: QA Issue: non debug package contains .debug directory:
-> libpam-xtests path
-> /work/arm926ejste-poky-linux-gnueabi/libpam/1.1.6-r2/packages-split/libpa=
-m-xtests/usr/share/Linux-PAM/xtests/.debug/tst-pam_succeed_if1
-> ERROR: QA Issue: non debug package contains .debug directory:
-> libpam-xtests path
-> /work/arm926ejste-poky-linux-gnueabi/libpam/1.1.6-r2/packages-split/libpa=
-m-xtests/usr/share/Linux-PAM/xtests/.debug/tst-pam_authsucceed
-> ERROR: QA Issue: non debug package contains .debug directory:
-> libpam-xtests path
-> /work/arm926ejste-poky-linux-gnueabi/libpam/1.1.6-r2/packages-split/libpa=
-m-xtests/usr/share/Linux-PAM/xtests/.debug/tst-pam_dispatch4
-> ERROR: QA Issue: non debug package contains .debug directory:
-> libpam-xtests path
-> /work/arm926ejste-poky-linux-gnueabi/libpam/1.1.6-r2/packages-split/libpa=
-m-xtests/usr/share/Linux-PAM/xtests/.debug/tst-pam_access1
-> ERROR: QA Issue: non debug package contains .debug directory:
-> libpam-xtests path
-> /work/arm926ejste-poky-linux-gnueabi/libpam/1.1.6-r2/packages-split/libpa=
-m-xtests/usr/share/Linux-PAM/xtests/.debug/tst-pam_time1
-> ERROR: QA Issue: non debug package contains .debug directory:
-> libpam-xtests path
-> /work/arm926ejste-poky-linux-gnueabi/libpam/1.1.6-r2/packages-split/libpa=
-m-xtests/usr/share/Linux-PAM/xtests/.debug/tst-pam_unix3
-> ERROR: QA Issue: non debug package contains .debug directory:
-> libpam-xtests path
-> /work/arm926ejste-poky-linux-gnueabi/libpam/1.1.6-r2/packages-split/libpa=
-m-xtests/usr/share/Linux-PAM/xtests/.debug/tst-pam_authfail
-> ERROR: QA Issue: non debug package contains .debug directory:
-> libpam-xtests path
-> /work/arm926ejste-poky-linux-gnueabi/libpam/1.1.6-r2/packages-split/libpa=
-m-xtests/usr/share/Linux-PAM/xtests/.debug/tst-pam_cracklib1
-> ERROR: QA Issue: non debug package contains .debug directory:
-> libpam-xtests path
-> /work/arm926ejste-poky-linux-gnueabi/libpam/1.1.6-r2/packages-split/libpa=
-m-xtests/usr/share/Linux-PAM/xtests/.debug/tst-pam_access2
-> ERROR: QA Issue: non debug package contains .debug directory:
-> libpam-xtests path
-> /work/arm926ejste-poky-linux-gnueabi/libpam/1.1.6-r2/packages-split/libpa=
-m-xtests/usr/share/Linux-PAM/xtests/.debug/tst-pam_cracklib2
-> ERROR: QA Issue: non debug package contains .debug directory:
-> libpam-xtests path
-> /work/arm926ejste-poky-linux-gnueabi/libpam/1.1.6-r2/packages-split/libpa=
-m-xtests/usr/share/Linux-PAM/xtests/.debug/tst-pam_dispatch1
-> ERROR: QA Issue: non debug package contains .debug directory:
-> libpam-xtests path
-> /work/arm926ejste-poky-linux-gnueabi/libpam/1.1.6-r2/packages-split/libpa=
-m-xtests/usr/share/Linux-PAM/xtests/.debug/tst-pam_dispatch5
-> ERROR: QA Issue: non debug package contains .debug directory:
-> libpam-xtests path
-> /work/arm926ejste-poky-linux-gnueabi/libpam/1.1.6-r2/packages-split/libpa=
-m-xtests/usr/share/Linux-PAM/xtests/.debug/tst-pam_limits1
-> ERROR: QA Issue: non debug package contains .debug directory:
-> libpam-xtests path
-> /work/arm926ejste-poky-linux-gnueabi/libpam/1.1.6-r2/packages-split/libpa=
-m-xtests/usr/share/Linux-PAM/xtests/.debug/tst-pam_dispatch3
-> ERROR: QA Issue: non debug package contains .debug directory:
-> libpam-xtests path
-> /work/arm926ejste-poky-linux-gnueabi/libpam/1.1.6-r2/packages-split/libpa=
-m-xtests/usr/share/Linux-PAM/xtests/.debug/tst-pam_group1
-> ERROR: QA Issue: non debug package contains .debug directory:
-> libpam-xtests path
-> /work/arm926ejste-poky-linux-gnueabi/libpam/1.1.6-r2/packages-split/libpa=
-m-xtests/usr/share/Linux-PAM/xtests/.debug/tst-pam_unix4
-> ERROR: QA Issue: non debug package contains .debug directory:
-> libpam-xtests path
-> /work/arm926ejste-poky-linux-gnueabi/libpam/1.1.6-r2/packages-split/libpa=
-m-xtests/usr/share/Linux-PAM/xtests/.debug/tst-pam_access4
-> ERROR: QA Issue: non debug package contains .debug directory:
-> libpam-xtests path
-> /work/arm926ejste-poky-linux-gnueabi/libpam/1.1.6-r2/packages-split/libpa=
-m-xtests/usr/share/Linux-PAM/xtests/.debug/tst-pam_unix1
-> ERROR: QA run found fatal errors. Please consider fixing them.
-> ERROR: Function failed: do_package_qa
-> ERROR: Logfile of failure stored in:
-> /media/sda3/poky/poky-build/tmp/work/arm926ejste-poky-linux-gnueabi/libpa=
-m/1.1.6-r2/temp/log.do_package.8163
-> ERROR: Task 362 (/media/sda3/poky/meta/recipes-extended/pam/
-> libpam_1.1.6.bb, do_package) failed with exit code '1'
->
-> So either I didn't remove enough from bitbake.conf or there is a better
-> way to do this.  Does anyone know of a good way to avoid building all the
-> -dbg and -doc packages?
->
-> Thanks,
-> Bryan
->
->
->
->
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto****
->
-> ** **
->
+------------------------------
+*
 
---001a11c259f0f859e904e97c4ac4
-Content-Type: text/html; charset=UTF-8
+*Synapticon** * |  Cyber-Physical System Solutions ****
+
+Mobile:
+
+Direct:
+
++49 151 / 638 646 73
+
++49 7335 / 186 999 21
+
+Fax:****
++49 7335 / 186 999 1
+
+
+ **
+
+ ****
+
+synapticon.com <http://www.synapticon.com/>  |
+@synapticon_co<https://twitter.com/#!/synapticon_co>
+****
+
+Synapticon GmbH  |  Hohlbachweg 2  |  73344 Gruibingen, DE
+Secretary +49 7335 / 186 999 0  |  General Manager: Nikolai Ensslen
+Registry Court Ulm HRB 725114  |  USt-ID DE271647127****
+
+This message and any files transmitted with it are confidential and
+intended
+solely for the use of the individual or entity to whom they are addressed.
+Please notify the sender immediately if you have received this e-mail by
+mistake and delete it from your system.
+
+--047d7b343cd2f7e3c704e97c4f30
+Content-Type: text/html; charset=ISO-8859-1
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div>If you want to really strip down the deploy/ipk direc=
-tory size to minimum set of .ipks really installed in your rootfs, you can =
-easily use installed-package.txt report from buildhistory to copy only inst=
-alled .ipk files from deploy/ipk. Don&#39;t forget to re-execute package-in=
-dex (opkg-make-install) in stripped feed<br>
-<br></div>Advantage of keeping both enabled and then just creating stripped=
- feed for on device upgrade would be to allow internal developers to access=
- internal feed e.g. to install -dbg package matching end-user feed and debu=
-g something.<br>
-</div><div class=3D"gmail_extra"><br><br><div class=3D"gmail_quote">On Thu,=
- Oct 24, 2013 at 2:20 PM, Bryan Evenson <span dir=3D"ltr">&lt;<a href=3D"ma=
-ilto:bevenson@melinkcorp.com" target=3D"_blank">bevenson@melinkcorp.com</a>=
-&gt;</span> wrote:<br>
-<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
-x #ccc solid;padding-left:1ex"><div link=3D"blue" vlink=3D"purple" lang=3D"=
-EN-US"><div><p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-fam=
-ily:&quot;Calibri&quot;,&quot;sans-serif&quot;;color:#1f497d">Martin,<u></u=
+<div dir=3D"ltr">Hi All,<div><br></div><div>I am trying to compile a c prog=
+ram on core-image-minimal-dev but en up with the following error.</div><div=
+>Kindly let me know if i need to include any additional packages in order t=
+o be able to compile c programs on the image.</div>
+<div><div><br></div><div>/usr/lib/gcc/arm-poky-linux-gnueabi/4.8.1/../../..=
+/../arm-poky-linux-gnueabi/bin/ld: cannot find -lc</div><div>collect2: erro=
+r: ld returned 1 exit status</div><div>make: *** [all] Error 1</div><div>
+<br></div><div><br></div><div><div>Build Configuration:</div><div>BB_VERSIO=
+N =A0 =A0 =A0 =A0 =A0 =3D &quot;1.20.0&quot;</div><div>BUILD_SYS =A0 =A0 =
+=A0 =A0 =A0 =A0 =A0 =3D &quot;x86_64-linux&quot;</div><div>NATIVELSBSTRING =
+=A0=3D &quot;Ubuntu-12.04&quot;</div>
+<div>TARGET_SYS =A0 =A0 =A0 =A0 =A0 =3D &quot;arm-poky-linux-gnueabi&quot;<=
+/div><div>MACHINE =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0=3D &quot;zc702-zynq7&=
+quot;</div><div>DISTRO =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =3D &quot;po=
+ky&quot;</div><div>DISTRO_VERSION =A0 =A0=3D &quot;1.5&quot;</div>
+<div>TUNE_FEATURES =A0 =A0 =3D &quot; armv7a vfp neon zynq&quot;</div><div>=
+TARGET_FPU =A0 =A0 =A0 =A0 =A0 =3D &quot;vfp-neon&quot;</div><div>meta =A0 =
+=A0 =A0 =A0 =A0 =A0 =A0</div><div>meta-yocto =A0 =A0 =A0 =A0</div><div>meta=
+-yocto-bsp =A0 =A0=3D &quot;origin/dylan:e7a20238dc73bb449f15feaf0dead51daf=
+796184&quot;</div>
+<div>meta-oe =A0 =A0 =A0 =A0 =A0 =3D &quot;origin/dylan:8aafddccb03f5492392=
+7e9d1c8c80223baf581de&quot;</div><div>meta-xilinx =A0 =A0 =A0 =3D &quot;rem=
+otes/origin/dylan:21c3cd3f058d736742ebc23a7a954f23456fbea5&quot;</div><div>=
+meta-java =A0 =A0 =A0 =A0 =3D &quot;master:de06956f93ecd15d8c941a05da47a442=
+5e3d397a&quot;</div>
+<div><br></div></div><div><br clear=3D"all"><div><br></div>-- <br><div dir=
+=3D"ltr"><p style=3D"margin:0px;color:rgb(34,34,34);font-family:arial,sans-=
+serif;font-size:13px;background-color:rgb(255,255,255)"><b><span style=3D"f=
+ont-size:10pt;font-family:Arial,sans-serif" lang=3D"EN-US">Anup Kini<br>
+</span></b><span style=3D"font-size:10pt;font-family:Arial,sans-serif" lang=
+=3D"EN-US">Systems Engineer</span><span lang=3D"EN-US"><u></u><u></u></span=
+></p><div style=3D"margin:0px;color:rgb(34,34,34);font-family:arial,sans-se=
+rif;font-size:13px;background-color:rgb(255,255,255);text-align:center" ali=
+gn=3D"center">
+<b><span style=3D"font-size:12pt;font-family:Arial,sans-serif" lang=3D"EN-U=
+S"><hr align=3D"center" size=3D"2" width=3D"100%"></span></b></div><p style=
+=3D"margin:0px 0px 8pt;color:rgb(34,34,34);font-family:arial,sans-serif;fon=
+t-size:13px;background-color:rgb(255,255,255)">
+<b><span style=3D"font-size:12pt;font-family:Arial,sans-serif" lang=3D"EN-U=
+S">Synapticon</span></b><b><span style=3D"font-size:12pt;font-family:&#39;T=
+imes New Roman&#39;,serif" lang=3D"EN-US">=A0</span></b><span style=3D"font=
+-size:12pt;font-family:Arial,sans-serif" lang=3D"EN-US">=A0|=A0=A0</span><s=
+pan style=3D"font-size:10pt;font-family:Arial,sans-serif" lang=3D"EN-US">Cy=
+ber-Physical System Solutions</span><span style=3D"font-size:10pt;font-fami=
+ly:Verdana,sans-serif" lang=3D"EN-US">=A0</span><span lang=3D"EN-US"><u></u=
 ><u></u></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1f497d"><u></u>=C2=A0<u></u></spa=
-n></p><p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&q=
-uot;Calibri&quot;,&quot;sans-serif&quot;;color:#1f497d">Good question and s=
-everal reasons.=C2=A0 Build time isn=E2=80=99t as much of a factor as most =
-of the packages that create the =E2=80=93dbg and =E2=80=93doc packages are =
-core packages that don=E2=80=99t get rebuilt very often.=C2=A0 The big reas=
-on is that I=E2=80=99m using a copy of the tmp/deploy/ipk/ directory for fi=
-rmware upgrade for our devices and trying to reduce the clutter. =C2=A0By j=
-ust going through and deleting all the =E2=80=93dbg and =E2=80=93doc packag=
-es from the ipk/ directory I reduced its size from about 300 MB to about 15=
-0 MB (side note: the 300 MB ipk/ directory size was after some additional c=
-leanup.=C2=A0 I recently reset my tmp/ directory as the ipk/ directory had =
-grown to 700 MB with different stuff I have tried).=C2=A0 Since one method =
-of firmware upgrade for us is through a USB stick, the smaller that directo=
-ry gets the easier it is to transfer to a USB stick.=C2=A0 So my thought wa=
-s that if I=E2=80=99m building the packages for a production setup in which=
- the =E2=80=93dbg and =E2=80=93doc packages will never be used, why bother =
-even generating them in the first place?<u></u><u></u></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1f497d"><u></u>=C2=A0<u></u></spa=
-n></p><p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&q=
-uot;Calibri&quot;,&quot;sans-serif&quot;;color:#1f497d">My overall goal, wh=
-ich this is part of, is to reduce the resulting ipk/ directory to only the =
-packages that are actually used by the image I built.=C2=A0 Based on my fin=
-al image size, if I only include the packages that are used for the image I=
- believe I could get the ipk/ directory to under 50 MB.=C2=A0 Making it tha=
-t small would make some options, such as providing a download from our comp=
-any=E2=80=99s website for our customers, more reasonable.<u></u><u></u></sp=
-an></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1f497d"><u></u>=C2=A0<u></u></spa=
-n></p><p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&q=
-uot;Calibri&quot;,&quot;sans-serif&quot;;color:#1f497d">Thanks,<u></u><u></=
-u></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1f497d">Bryan<u></u><u></u></span=
-></p><p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&qu=
-ot;Calibri&quot;,&quot;sans-serif&quot;;color:#1f497d"><u></u>=C2=A0<u></u>=
-</span></p>
-<div style=3D"border:none;border-left:solid blue 1.5pt;padding:0in 0in 0in =
-4.0pt"><div><div style=3D"border:none;border-top:solid #b5c4df 1.0pt;paddin=
-g:3.0pt 0in 0in 0in"><p class=3D"MsoNormal"><b><span style=3D"font-size:10.=
-0pt;font-family:&quot;Tahoma&quot;,&quot;sans-serif&quot;">From:</span></b>=
-<span style=3D"font-size:10.0pt;font-family:&quot;Tahoma&quot;,&quot;sans-s=
-erif&quot;"> Martin Jansa [mailto:<a href=3D"mailto:martin.jansa@gmail.com"=
- target=3D"_blank">martin.jansa@gmail.com</a>] <br>
-<b>Sent:</b> Wednesday, October 23, 2013 6:12 PM<br><b>To:</b> Bryan Evenso=
-n<br><b>Cc:</b> <a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank"=
->yocto@yoctoproject.org</a><br><b>Subject:</b> Re: [yocto] How to prevent b=
-uilding -dbg and -doc packages?<u></u><u></u></span></p>
-</div></div><div><div class=3D"h5"><p class=3D"MsoNormal"><u></u>=C2=A0<u><=
-/u></p><div><p class=3D"MsoNormal">Why do you want to disable them? All the=
- files are already there, so packaging them in right package doesn&#39;t co=
-st much (if your reason was build time).<u></u><u></u></p>
-</div><div><p class=3D"MsoNormal" style=3D"margin-bottom:12.0pt"><u></u>=C2=
-=A0<u></u></p><div><p class=3D"MsoNormal">On Wed, Oct 23, 2013 at 6:31 PM, =
-Bryan Evenson &lt;<a href=3D"mailto:bevenson@melinkcorp.com" target=3D"_bla=
-nk">bevenson@melinkcorp.com</a>&gt; wrote:<u></u><u></u></p>
-<p class=3D"MsoNormal">I&#39;m on poky/dylan-9.0.1. =C2=A0I&#39;m not using=
- any of the -dbg and the -doc packages and I&#39;d like to clean things up =
-for my build by not building these packages in the first place across the e=
-ntire system. =C2=A0I see references in the documentation to these package =
-types, but I haven&#39;t found anything about how to keep the system from g=
-enerating them.<br>
-<br>I tried going into meta/conf/bitbake.conf and modifying the PACKAGES va=
-riable to look as follows:<br><br>PACKAGES =3D &quot;${PN}-staticdev ${PN}-=
-dev ${PN}-locale ${PACKAGE_BEFORE_PN} ${PN}&quot;<br><br>This caused a bunc=
-h of packages to get rebuilt and seemed to be working until it got to the l=
-ibpam package. =C2=A0Then I got the following errors:<br>
-<br>ERROR: QA Issue: non debug package contains .debug directory: libpam-xt=
-ests path /work/arm926ejste-poky-linux-gnueabi/libpam/1.1.6-r2/packages-spl=
-it/libpam-xtests/usr/share/Linux-PAM/xtests/.debug/tst-pam_dispatch2<br>
-ERROR: QA Issue: non debug package contains .debug directory: libpam-xtests=
- path /work/arm926ejste-poky-linux-gnueabi/libpam/1.1.6-r2/packages-split/l=
-ibpam-xtests/usr/share/Linux-PAM/xtests/.debug/tst-pam_pwhistory1<br>ERROR:=
- QA Issue: non debug package contains .debug directory: libpam-xtests path =
-/work/arm926ejste-poky-linux-gnueabi/libpam/1.1.6-r2/packages-split/libpam-=
-xtests/usr/share/Linux-PAM/xtests/.debug/tst-pam_access3<br>
-ERROR: QA Issue: non debug package contains .debug directory: libpam-xtests=
- path /work/arm926ejste-poky-linux-gnueabi/libpam/1.1.6-r2/packages-split/l=
-ibpam-xtests/usr/share/Linux-PAM/xtests/.debug/tst-pam_unix2<br>ERROR: QA I=
-ssue: non debug package contains .debug directory: libpam-xtests path /work=
-/arm926ejste-poky-linux-gnueabi/libpam/1.1.6-r2/packages-split/libpam-xtest=
-s/usr/share/Linux-PAM/xtests/.debug/tst-pam_succeed_if1<br>
-ERROR: QA Issue: non debug package contains .debug directory: libpam-xtests=
- path /work/arm926ejste-poky-linux-gnueabi/libpam/1.1.6-r2/packages-split/l=
-ibpam-xtests/usr/share/Linux-PAM/xtests/.debug/tst-pam_authsucceed<br>ERROR=
-: QA Issue: non debug package contains .debug directory: libpam-xtests path=
- /work/arm926ejste-poky-linux-gnueabi/libpam/1.1.6-r2/packages-split/libpam=
--xtests/usr/share/Linux-PAM/xtests/.debug/tst-pam_dispatch4<br>
-ERROR: QA Issue: non debug package contains .debug directory: libpam-xtests=
- path /work/arm926ejste-poky-linux-gnueabi/libpam/1.1.6-r2/packages-split/l=
-ibpam-xtests/usr/share/Linux-PAM/xtests/.debug/tst-pam_access1<br>ERROR: QA=
- Issue: non debug package contains .debug directory: libpam-xtests path /wo=
-rk/arm926ejste-poky-linux-gnueabi/libpam/1.1.6-r2/packages-split/libpam-xte=
-sts/usr/share/Linux-PAM/xtests/.debug/tst-pam_time1<br>
-ERROR: QA Issue: non debug package contains .debug directory: libpam-xtests=
- path /work/arm926ejste-poky-linux-gnueabi/libpam/1.1.6-r2/packages-split/l=
-ibpam-xtests/usr/share/Linux-PAM/xtests/.debug/tst-pam_unix3<br>ERROR: QA I=
-ssue: non debug package contains .debug directory: libpam-xtests path /work=
-/arm926ejste-poky-linux-gnueabi/libpam/1.1.6-r2/packages-split/libpam-xtest=
-s/usr/share/Linux-PAM/xtests/.debug/tst-pam_authfail<br>
-ERROR: QA Issue: non debug package contains .debug directory: libpam-xtests=
- path /work/arm926ejste-poky-linux-gnueabi/libpam/1.1.6-r2/packages-split/l=
-ibpam-xtests/usr/share/Linux-PAM/xtests/.debug/tst-pam_cracklib1<br>ERROR: =
-QA Issue: non debug package contains .debug directory: libpam-xtests path /=
-work/arm926ejste-poky-linux-gnueabi/libpam/1.1.6-r2/packages-split/libpam-x=
-tests/usr/share/Linux-PAM/xtests/.debug/tst-pam_access2<br>
-ERROR: QA Issue: non debug package contains .debug directory: libpam-xtests=
- path /work/arm926ejste-poky-linux-gnueabi/libpam/1.1.6-r2/packages-split/l=
-ibpam-xtests/usr/share/Linux-PAM/xtests/.debug/tst-pam_cracklib2<br>ERROR: =
-QA Issue: non debug package contains .debug directory: libpam-xtests path /=
-work/arm926ejste-poky-linux-gnueabi/libpam/1.1.6-r2/packages-split/libpam-x=
-tests/usr/share/Linux-PAM/xtests/.debug/tst-pam_dispatch1<br>
-ERROR: QA Issue: non debug package contains .debug directory: libpam-xtests=
- path /work/arm926ejste-poky-linux-gnueabi/libpam/1.1.6-r2/packages-split/l=
-ibpam-xtests/usr/share/Linux-PAM/xtests/.debug/tst-pam_dispatch5<br>ERROR: =
-QA Issue: non debug package contains .debug directory: libpam-xtests path /=
-work/arm926ejste-poky-linux-gnueabi/libpam/1.1.6-r2/packages-split/libpam-x=
-tests/usr/share/Linux-PAM/xtests/.debug/tst-pam_limits1<br>
-ERROR: QA Issue: non debug package contains .debug directory: libpam-xtests=
- path /work/arm926ejste-poky-linux-gnueabi/libpam/1.1.6-r2/packages-split/l=
-ibpam-xtests/usr/share/Linux-PAM/xtests/.debug/tst-pam_dispatch3<br>ERROR: =
-QA Issue: non debug package contains .debug directory: libpam-xtests path /=
-work/arm926ejste-poky-linux-gnueabi/libpam/1.1.6-r2/packages-split/libpam-x=
-tests/usr/share/Linux-PAM/xtests/.debug/tst-pam_group1<br>
-ERROR: QA Issue: non debug package contains .debug directory: libpam-xtests=
- path /work/arm926ejste-poky-linux-gnueabi/libpam/1.1.6-r2/packages-split/l=
-ibpam-xtests/usr/share/Linux-PAM/xtests/.debug/tst-pam_unix4<br>ERROR: QA I=
-ssue: non debug package contains .debug directory: libpam-xtests path /work=
-/arm926ejste-poky-linux-gnueabi/libpam/1.1.6-r2/packages-split/libpam-xtest=
-s/usr/share/Linux-PAM/xtests/.debug/tst-pam_access4<br>
-ERROR: QA Issue: non debug package contains .debug directory: libpam-xtests=
- path /work/arm926ejste-poky-linux-gnueabi/libpam/1.1.6-r2/packages-split/l=
-ibpam-xtests/usr/share/Linux-PAM/xtests/.debug/tst-pam_unix1<br>ERROR: QA r=
-un found fatal errors. Please consider fixing them.<br>
-ERROR: Function failed: do_package_qa<br>ERROR: Logfile of failure stored i=
-n: /media/sda3/poky/poky-build/tmp/work/arm926ejste-poky-linux-gnueabi/libp=
-am/1.1.6-r2/temp/log.do_package.8163<br>ERROR: Task 362 (/media/sda3/poky/m=
-eta/recipes-extended/pam/<a href=3D"http://libpam_1.1.6.bb" target=3D"_blan=
-k">libpam_1.1.6.bb</a>, do_package) failed with exit code &#39;1&#39;<br>
-<br>So either I didn&#39;t remove enough from bitbake.conf or there is a be=
-tter way to do this. =C2=A0Does anyone know of a good way to avoid building=
- all the -dbg and -doc packages?<br><br>Thanks,<br>Bryan<br><br><br><br><br=
->
-_______________________________________________<br>yocto mailing list<br><a=
- href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yocto@yoctoprojec=
-t.org</a><br><a href=3D"https://lists.yoctoproject.org/listinfo/yocto" targ=
-et=3D"_blank">https://lists.yoctoproject.org/listinfo/yocto</a><u></u><u></=
-u></p>
-</div><p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p></div></div></div></di=
-v></div></div></blockquote></div><br></div>
+<table style=3D"color:rgb(34,34,34);font-family:arial,sans-serif;font-size:=
+13px;text-align:start;background-color:rgb(255,255,255);border-collapse:col=
+lapse" border=3D"0" cellpadding=3D"0" cellspacing=3D"0"><tbody><tr><td styl=
+e=3D"margin:0px;width:42.55pt;padding:0cm 5.4pt 0cm 0cm" valign=3D"top" wid=
+th=3D"57">
+<p style=3D"margin:0px"><span style=3D"font-size:10pt;font-family:Arial,san=
+s-serif" lang=3D"EN-US">Mobile:</span></p><p style=3D"margin:0px"><span sty=
+le=3D"font-size:10pt;font-family:Arial,sans-serif" lang=3D"EN-US">Direct:</=
+span></p>
+</td><td style=3D"margin:0px;width:6cm;padding:0cm 5.4pt 0cm 0cm" valign=3D=
+"top" width=3D"227"><p style=3D"margin:0px"><span style=3D"font-size:10pt;f=
+ont-family:Arial,sans-serif" lang=3D"EN-US"><a value=3D"+49733518699917" st=
+yle=3D"color:rgb(17,85,204)">+49 151 / 638 646 73</a></span></p>
+<p style=3D"margin:0px"><span style=3D"font-size:10pt;font-family:Arial,san=
+s-serif" lang=3D"EN-US"><a value=3D"+49733518699917" style=3D"color:rgb(17,=
+85,204)">+49 7335 / 186 999 21<br></a></span></p></td></tr><tr><td style=3D=
+"margin:0px;width:42.55pt;padding:0cm 5.4pt 0cm 0cm" valign=3D"top" width=
+=3D"57">
+<p style=3D"margin:0px"><span style=3D"font-size:10pt;font-family:Arial,san=
+s-serif" lang=3D"EN-US">Fax:</span><span lang=3D"EN-US"><u></u><u></u></spa=
+n></p></td><td style=3D"margin:0px;width:6cm;padding:0cm 5.4pt 0cm 0cm" val=
+ign=3D"top" width=3D"227">
+<a value=3D"+4973351869991" style=3D"color:rgb(17,85,204)">+49 7335 / 186 9=
+99 1</a></td></tr><tr><td style=3D"margin:0px;width:42.55pt;padding:0cm 5.4=
+pt 0cm 0cm" valign=3D"top" width=3D"57"><p style=3D"margin:0px"><span style=
+=3D"font-size:6pt;font-family:Arial,sans-serif" lang=3D"EN-US"><br>
+</span></p><p style=3D"margin:0px"><span style=3D"font-size:6pt;font-family=
+:Arial,sans-serif" lang=3D"EN-US">=A0</span><u></u></p></td><td style=3D"ma=
+rgin:0px;width:6cm;padding:0cm 5.4pt 0cm 0cm" valign=3D"top" width=3D"227">=
+<p style=3D"margin:0px">
+<span style=3D"font-size:6pt;font-family:Arial,sans-serif" lang=3D"EN-US">=
+=A0</span><u></u><u></u></p></td></tr></tbody></table><p style=3D"margin:0p=
+x 0px 8pt;color:rgb(34,34,34);font-family:arial,sans-serif;font-size:13px;b=
+ackground-color:rgb(255,255,255)">
+<span style=3D"font-size:10pt;font-family:Arial,sans-serif"><a href=3D"http=
+://www.synapticon.com/" style=3D"color:rgb(17,85,204)" target=3D"_blank">sy=
+napticon.com</a>=A0=A0| =A0<a href=3D"https://twitter.com/#!/synapticon_co"=
+ style=3D"color:rgb(17,85,204)" target=3D"_blank">@synapticon_co</a></span>=
+<u></u><u></u></p>
+<p style=3D"margin:0px 0px 8pt;color:rgb(34,34,34);font-family:arial,sans-s=
+erif;font-size:13px;background-color:rgb(255,255,255)"><span style=3D"font-=
+size:10pt;font-family:Arial,sans-serif;color:rgb(127,127,127)">Synapticon G=
+mbH =A0|=A0 Hohlbachweg 2=A0 | =A073344 Gruibingen, DE<br>
+Secretary=A0<a value=3D"+4973351869990" style=3D"color:rgb(17,85,204)">+49 =
+7335 / 186 999 0</a>=A0 |=A0 General Manager: Nikolai Ensslen=A0<br>Registr=
+y Court Ulm HRB 725114=A0 |=A0 USt-ID DE271647127</span><u></u><u></u></p><=
+p style=3D"margin:0px 0px 8pt;color:rgb(34,34,34);font-family:arial,sans-se=
+rif;font-size:13px;background-color:rgb(255,255,255)">
+<span style=3D"font-size:8pt;font-family:Arial,sans-serif;color:rgb(127,127=
+,127)" lang=3D"EN-US">This message and any files transmitted with it are co=
+nfidential and intended=A0</span><span style=3D"font-size:8pt;font-family:V=
+erdana,sans-serif;color:rgb(127,127,127)" lang=3D"EN-US"><br>
+</span><span style=3D"font-size:8pt;font-family:Arial,sans-serif;color:rgb(=
+127,127,127)" lang=3D"EN-US">solely for the use of the individual or entity=
+ to whom they are addressed.=A0</span><span style=3D"font-size:8pt;font-fam=
+ily:Verdana,sans-serif;color:rgb(127,127,127)" lang=3D"EN-US"><br>
+</span><span style=3D"font-size:8pt;font-family:Arial,sans-serif;color:rgb(=
+127,127,127)" lang=3D"EN-US">Please notify the sender immediately if you ha=
+ve received this e-mail by=A0</span><span style=3D"font-size:8pt;font-famil=
+y:Verdana,sans-serif;color:rgb(127,127,127)" lang=3D"EN-US"><br>
+</span><span style=3D"font-size:8pt;font-family:Arial,sans-serif;color:rgb(=
+127,127,127)" lang=3D"EN-US">mistake and delete it from your system.=A0</sp=
+an></p></div>
+</div></div></div>
 
---001a11c259f0f859e904e97c4ac4--
+--047d7b343cd2f7e3c704e97c4f30--
