@@ -1,18 +1,20 @@
 Return-Path: <rpjday@crashcourse.ca>
 Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
 	[64.235.106.9])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C0690E0176F
-	for <yocto@yoctoproject.org>; Thu, 24 Oct 2013 08:39:35 -0700 (PDT)
-Received: from [128.107.17.87] (port=59899 helo=crashcourse.ca)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C63EEE01768
+	for <yocto@yoctoproject.org>; Thu, 24 Oct 2013 08:46:11 -0700 (PDT)
+Received: from [128.107.17.87] (port=59911 helo=crashcourse.ca)
 	by astoria.ccjclearline.com with esmtpsa (TLSv1:DHE-RSA-AES256-SHA:256)
 	(Exim 4.80) (envelope-from <rpjday@crashcourse.ca>)
-	id 1VZN0Y-000816-VD
-	for yocto@yoctoproject.org; Thu, 24 Oct 2013 11:39:35 -0400
-Date: Thu, 24 Oct 2013 08:39:32 -0700 (PDT)
+	id 1VZN6w-0008IM-EB; Thu, 24 Oct 2013 11:46:10 -0400
+Date: Thu, 24 Oct 2013 08:46:06 -0700 (PDT)
 From: "Robert P. J. Day" <rpjday@crashcourse.ca>
 X-X-Sender: rpjday@oneiric
-To: Yocto discussion list <yocto@yoctoproject.org>
-Message-ID: <alpine.DEB.2.02.1310240832580.5411@oneiric>
+To: Chris Larson <clarson@kergoth.com>
+In-Reply-To: <CABcZANkTp8E5-dGsLmkEW=XQ8-cu=iSiZ5dbxaXRxNmpu=SFqQ@mail.gmail.com>
+Message-ID: <alpine.DEB.2.02.1310240842390.5465@oneiric>
+References: <alpine.DEB.2.02.1310240824020.5368@oneiric>
+	<CABcZANkTp8E5-dGsLmkEW=XQ8-cu=iSiZ5dbxaXRxNmpu=SFqQ@mail.gmail.com>
 User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
 MIME-Version: 1.0
 X-AntiAbuse: This header was added to track abuse,
@@ -24,7 +26,8 @@ X-AntiAbuse: Sender Address Domain - crashcourse.ca
 X-Source: 
 X-Source-Args: 
 X-Source-Dir: 
-Subject: filling in the "missing" entries in the ref manual variable glossary
+Cc: Yocto discussion list <yocto@yoctoproject.org>
+Subject: Re: undocumented/inconsistent use of KERNEL_DEVICETREE variable
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -36,33 +39,75 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 24 Oct 2013 15:39:36 -0000
-Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-List-Received-Date: Thu, 24 Oct 2013 15:46:12 -0000
+Content-Type: MULTIPART/MIXED; BOUNDARY="8323329-775314755-1382629570=:5465"
 
+--8323329-775314755-1382629570=:5465
+Content-Type: TEXT/PLAIN; charset=UTF-8
+Content-Transfer-Encoding: 8BIT
 
-  expecting the standard reaction to be, "hey, feel free to submit a
-patch :-)", i've noticed that there are (unsurprisingly) quite a
-number of variables missing from the variable glossary in the ref
-manual.
+On Thu, 24 Oct 2013, Chris Larson wrote:
 
-  just related to u-boot (which i've been messing with this morning),
-here's the current situation:
+>
+> On Thu, Oct 24, 2013 at 8:27 AM, Robert P. J. Day <rpjday@crashcourse.ca>
+> wrote:
+>         simple observation -- the KERNEL_DEVICETREE variable is not
+>       mentioned in the ref manual variable glossary.
+>
+>         more weirdly, though, i've always been used to seeing it used
+>       this
+>       way, like in the meta-yocto-bsp layer (that is, referring to the
+>       .dts
+>       *source* files):
+>
+>       beagleboard.conf:KERNEL_DEVICETREE =
+>       "${S}/arch/arm/boot/dts/omap3-beagle.dts
+>       ${S}/arch/arm/boot/dts/omap3-beagle-xm.dts"
+>       mpc8315e-rdb.conf:KERNEL_DEVICETREE =
+>       "${S}/arch/powerpc/boot/dts/mpc8315erdb.dts"
+>
+>         but i just noticed this in the meta-fsl-asm layer:
+>
+>       meta-fsl-arm/conf/machine/imx23evk.conf:KERNEL_DEVICETREE =
+>       "imx23-evk.dtb"
+>       meta-fsl-arm/conf/machine/imx6dlsabresd.conf:KERNEL_DEVICETREE =
+>       "imx6dl-sabresd.dtb"
+>       meta-fsl-arm/conf/machine/imx6dlsabreauto.conf:KERNEL_DEVICETREE
+>       = "imx6dl-sabreauto.dtb"
+>       meta-fsl-arm/conf/machine/imx6qsabresd.conf:KERNEL_DEVICETREE =
+>       "imx6q-sabresd.dtb"
+>
+>       where the variable contains references to the .dtb *blob* files.
+>
+>         is there a standard? recommended? either way fine?
+>
+>
+> The behavior changed a couple months back.
+> See 03b3e4b62f22a8ef435252c0401c5369defabe71 in poky, aka “linux-dtb: Use
+> kernel build system to generate the dtb files”. The new style is the dtb
+> filename, the others likely need updating, unless those bsp layers override
+> the default linux-dtb behavior, afaik.
 
-http://www.yoctoproject.org/docs/latest/ref-manual/ref-manual.html#var-U
+  ok, then -- as you suggest -- those entries in meta-yocto-bsp should
+probably be updated unless there's something non-standard happening
+there.
 
-and what seems to be missing is:
+  amusingly, even though the meta-fsl-arm layer uses .dtb references,
+it also supplies "image_types_fsl.bbclass", which contains the
+processing loop:
 
-  * UBOOT_ARCH
-  * UBOOT_SUFFIX
-  * UBOOT_BINARY
-  * UBOOT_IMAGE
-  * UBOOT_MAKE_TARGET
-  * UBOOT_SYMLINK
+  # Copy device tree file
+  if test -n "${KERNEL_DEVICETREE}"; then
+          for DTS_FILE in ${KERNEL_DEVICETREE}; do
+                  DTS_BASE_NAME=`basename ${DTS_FILE} | awk -F "." '{print $1}'`
+                  if [ -e "${KERNEL_IMAGETYPE}-${DTS_BASE_NAME}.dtb" ]; then
+                  ... snip ...
 
-short of submitting full patches for things like this, is there at
-least a list we can keep track of this stuff on? i'm not sure i have
-the time to submit full explanatory patches for everything i run
-across, but i can at least report what's missing if that's useful.
+which is kind of misleading since the loop assigns to the variable
+DTS_FILE what are clearly .dtb filenames. minor, yes, but the kind of
+thing that has the potential for confusion when reading code.
+
+</pedantry>
 
 rday
 
@@ -76,3 +121,4 @@ Twitter:                                       http://twitter.com/rpjday
 LinkedIn:                               http://ca.linkedin.com/in/rpjday
 ========================================================================
 
+--8323329-775314755-1382629570=:5465--
