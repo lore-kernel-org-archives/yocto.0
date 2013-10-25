@@ -1,47 +1,22 @@
-Return-Path: <bruce.ashfield@gmail.com>
-Received: from mail-la0-f48.google.com (mail-la0-f48.google.com
-	[209.85.215.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A966FE01773
-	for <yocto@yoctoproject.org>; Fri, 25 Oct 2013 11:44:30 -0700 (PDT)
-Received: by mail-la0-f48.google.com with SMTP id ev20so3342691lab.21
-	for <yocto@yoctoproject.org>; Fri, 25 Oct 2013 11:44:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type;
-	bh=7BMyYHoZHg3k+gnTQWK7NMF7mZd5sVbV5yCjxF7wz9E=;
-	b=Eoz9346W45bc2mSxMjIrf3C3f6fGXXmjpi2tRTfQ6bDebO9g8HPO2OFec1EgmdFfft
-	BHi465U/KrRBHukLB3trHYNOzX3w/W5dAvn3dhYjqu/M/cHIb5DKqZ1kDeV4/YFx+I9t
-	OkS3YJAEaJYLhGpghr2ysgKeW9xCiZbQHdYzXxt6hpF5j6bveu16Vcda5wqwY97OoNNS
-	zC3JxGKMY6lpJAGVAC17f7VCYlFutMwgUGaQvcZmzlH9lF2SRikRowVustqmfqSiA02X
-	b+f1XEWPuBVdORR0+yXqnAxGZTm2oAwZqgrxvdZjD6G38bKGZ1D/lCbzYjqPJhxj6lxB
-	7WuQ==
+Return-Path: <Yang.Shi@windriver.com>
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 394D7E01774
+	for <yocto@yoctoproject.org>; Fri, 25 Oct 2013 12:23:09 -0700 (PDT)
+Received: from ALA-HCB.corp.ad.wrs.com (ala-hcb.corp.ad.wrs.com
+	[147.11.189.41])
+	by mail.windriver.com (8.14.5/8.14.3) with ESMTP id r9PJN8Qn008614
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL)
+	for <yocto@yoctoproject.org>; Fri, 25 Oct 2013 12:23:08 -0700 (PDT)
+Received: from localhost.localdomain (147.11.152.86) by
+	ALA-HCB.corp.ad.wrs.com (147.11.189.41) with Microsoft SMTP Server id
+	14.2.342.3; Fri, 25 Oct 2013 12:23:08 -0700
+From: Yang Shi <yang.shi@windriver.com>
+To: <bruce.ashfield@windriver.com>, <yocto@yoctoproject.org>
+Date: Fri, 25 Oct 2013 12:17:50 -0700
+Message-ID: <1382728670-8235-1-git-send-email-yang.shi@windriver.com>
+X-Mailer: git-send-email 1.7.5.4
 MIME-Version: 1.0
-X-Received: by 10.152.23.5 with SMTP id i5mr5997020laf.8.1382726668086; Fri,
-	25 Oct 2013 11:44:28 -0700 (PDT)
-Received: by 10.112.14.200 with HTTP; Fri, 25 Oct 2013 11:44:28 -0700 (PDT)
-In-Reply-To: <CAMCfZKG1A_c-oy6KLZuctX4Nmca7f1ryBKRaR-sqFVVqNwuSrA@mail.gmail.com>
-References: <CAMCfZKFBvSiRSMk5wrEpSEiNNiZeHJw18fbHgHzepo__U=UWNA@mail.gmail.com>
-	<CA+gsK-o6n24Aqp2dtpOwnmrCBjWE=HDSJvfqyYy2pvJYrHqXmQ@mail.gmail.com>
-	<CAAQYJAu+wU0ODvVoTrRBFhVOUVh+CdMg3mimfgGkj-pwJh3A1g@mail.gmail.com>
-	<CAMCfZKF_Rp=uds8tnDPSD9k3GO5dEiHSx9WfYjZ0yPkmh_9YPg@mail.gmail.com>
-	<CAMCfZKFh8iJH4655mzFveFYfz8ebLXkGftSa-MR5mEcMEFV8Vw@mail.gmail.com>
-	<CADkTA4MgxmiOofDLynbOLR=hV-KQ1ic+Eagjm0yetYOtB6FJzw@mail.gmail.com>
-	<CAMCfZKF3aHG4wFMRx2XcdroJJ6ga5v6KHF5DbBTWV7jXOGNX-g@mail.gmail.com>
-	<525FDD08.90400@windriver.com>
-	<CAMCfZKHz82sPsHXjqxbFDJjFNi7ck+BS=_OtyGmb2FYDAxoe1A@mail.gmail.com>
-	<525FE3C9.3070003@windriver.com>
-	<CAMCfZKGUYAcO5FtOKC9iP_XZjRxJ_Xq12ERN=BL_JHA7FJW51w@mail.gmail.com>
-	<5260BDA6.4020807@windriver.com>
-	<CAMCfZKFf3iJCyjMgGQ=y6ng6Kh3_MeEMymgZTE=bTnLpBGN9Mg@mail.gmail.com>
-	<5261974C.7010202@windriver.com> <5266A665.8030303@alphalem.com>
-	<52686723.4080305@windriver.com>
-	<CAMCfZKG1A_c-oy6KLZuctX4Nmca7f1ryBKRaR-sqFVVqNwuSrA@mail.gmail.com>
-Date: Fri, 25 Oct 2013 14:44:28 -0400
-Message-ID: <CADkTA4OWiOmDYDskpe6=uCX+XEE8R0C2aUxjCph+tAjdX=Ae2Q@mail.gmail.com>
-From: Bruce Ashfield <bruce.ashfield@gmail.com>
-To: Diego Sueiro <diego.sueiro@gmail.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Custom defconfig is not used
+Subject: [PATCH] perf: mips64: Convert __u64 to unsigned long long
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -53,172 +28,101 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 25 Oct 2013 18:44:31 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Fri, 25 Oct 2013 19:23:10 -0000
+Content-Type: text/plain
 
-On Fri, Oct 25, 2013 at 7:43 AM, Diego Sueiro <diego.sueiro@gmail.com> wrote:
-> Bruce,
->
-> Regarding the defconfig not used, I've found this thread on Angstrom devel
-> ML:
-> http://www.mail-archive.com/angstrom-distro-devel@linuxtogo.org/msg06721.html
->
-> I've replaced "FILESEXTRAPATHS_prepend" with "FILESPATH_prepend" and removed
-> the custom "do_configure_prepend" function and bitbake is now using my
-> defconfig.
-> So, it seems that there is an issue with FILESEXTRAPATHS variable.
->
+On MIPS64, "__u64" is "unsigned long" type, so the "%llu" specifier will cause
+build error on MIPS64.
 
-Aha. That does make sense.
+Convert __u64 to unsigned long long in those sprintf calls to avoid the build
+error.
 
-Mike: does that same change fix your issues ?
+Signed-off-by: Yang Shi <yang.shi@windriver.com>
+---
+ tools/perf/tests/attr.c               |   20 ++++++++++----------
+ tools/perf/tests/bp_signal.c          |    2 +-
+ tools/perf/tests/bp_signal_overflow.c |    2 +-
+ 3 files changed, 12 insertions(+), 12 deletions(-)
 
-Bruce
-
-> Regards,
->
-> --
-> *dS
-> Diego Sueiro
->
-> /*long live rock 'n roll*/
->
->
-> 2013/10/23 Bruce Ashfield <bruce.ashfield@windriver.com>
->>
->> On 13-10-22 12:23 PM, Mike Lewis wrote:
->>>
->>> Hi Bruce,
->>>
->>> I'm trying to accomplish the nearly the same thing (i.e. adding config
->>> fragment) and I'm having the same issue at the do_patch step. Were you
->>> able to reproduce this on your end?
->>
->>
->> Mike,
->>
->> Is you config/layer somewhere than I can have a look at it ? I was trying
->> some builds here, and my tests are working. But I'd like to try it
->> with your config as well.
->>
->> Bruce
->>
->>
->>>
->>> Thanks,
->>> Mike
->>>
->>> On 10/18/2013 01:17 PM, Bruce Ashfield wrote:
->>>>
->>>> On 13-10-18 05:17 AM, Diego Sueiro wrote:
->>>>>
->>>>>
->>>>> 2013/10/18 Bruce Ashfield <bruce.ashfield@windriver.com
->>>>> <mailto:bruce.ashfield@windriver.com>>
->>>>>
->>>>>     I fell behind today .. i had 2300 unread email to start this
->>>>> morning :)
->>>>>     Is there a way that I can get a copy of your recipes and layers ?
->>>>> If
->>>>>     I can do a build myself, I can easily debug and fix this ..
->>>>>     otherwise, we'll
->>>>>     go back and forth many times debugging.
->>>>>
->>>>>     Cheers,
->>>>>
->>>>>     Bruce
->>>>>
->>>>>
->>>>> I'm using the environment provided by Angstrom from it's github setup
->>>>> scripts.
->>>>> If you want to exactly reproduce it you need to:
->>>>>
->>>>>     git clone
->>>>> https://github.com/Angstrom-distribution/setup-scripts.git
->>>>>     cd setup-scripts
->>>>>     git checkout angstrom-v2013.06-yocto1.4
->>>>>     MACHINE=beaglebone ./oebb.sh config beaglebone
->>>>>
->>>>> Here is the setup and files for meta-mine:
->>>>>
->>>>> bblayers.conf:
->>>>>
->>>>>     BBLAYERS = \"
->>>>>
->>>>>         ...
->>>>>         ${TOPDIR}/sources/meta-mine \
->>>>>         "
->>>>>
->>>>> meta-mine/conf/layer.conf:
->>>>>
->>>>>     # We have a conf and classes directory, append to BBPATH
->>>>>     BBPATH .= ":${LAYERDIR}"
->>>>>     # We have a recipes directory, add to BBFILES
->>>>>     BBFILES += "${LAYERDIR}/recipes*/*/*.bb
->>>>>     ${LAYERDIR}/recipes*/*/*.bbappend"
->>>>>     BBFILE_COLLECTIONS += "mine-layer"
->>>>>     BBFILE_PATTERN_mine-layer := "^${LAYERDIR}/"
->>>>>     BBFILE_PRIORITY_mine-layer = "10"
->>>>>     LAYERDEPENDS_mine-layer = "angstrom-layer"
->>>>>
->>>>> meta-mine/recipes-kernel/linux/linux-mainline_3.8.bbappend:
->>>>>
->>>>>     FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}-3.8:"
->>>>>     inherit kernel
->>>>>     require recipes-kernel/linux/linux-yocto.inc
->>>>>     COMPATIBLE_MACHINE_beaglebone = "(beaglebone)"
->>>>>     SRC_URI += " file://config-addons.cfg "
->>>>>
->>>>> meta-mine/recipes-kernel/linux/linux-mainline-3.8/config-addons.cfg:
->>>>>
->>>>>     CONFIG_WATCHDOG_NOWAYOUT=y
->>>>>     CONFIG_NTFS_FS=y
->>>>>     CONFIG_NTFS_RW=y
->>>>>
->>>>>
->>>>>
->>>>> But I think that instead of using the whole Angstrom you can just use
->>>>> poky and meta-beagleboard/common-bsp on dylan branch.
->>>>
->>>>
->>>> Great. I'll launch some test builds and see what breaks (or works) :)
->>>>
->>>> Bruce
->>>>
->>>>>
->>>>>
->>>>> Regards,
->>>>>
->>>>> --
->>>>> *dS
->>>>> Diego Sueiro
->>>>>
->>>>> /*long live rock 'n roll*/
->>>>
->>>>
->>>> _______________________________________________
->>>> yocto mailing list
->>>> yocto@yoctoproject.org
->>>> https://lists.yoctoproject.org/listinfo/yocto
->>>
->>>
->>
->> _______________________________________________
->> yocto mailing list
->> yocto@yoctoproject.org
->> https://lists.yoctoproject.org/listinfo/yocto
->
->
->
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
->
-
-
-
+diff --git a/tools/perf/tests/attr.c b/tools/perf/tests/attr.c
+index 00218f5..f045c2c 100644
+--- a/tools/perf/tests/attr.c
++++ b/tools/perf/tests/attr.c
+@@ -71,7 +71,7 @@ static int store_event(struct perf_event_attr *attr, pid_t pid, int cpu,
+ 	char path[PATH_MAX];
+ 
+ 	snprintf(path, PATH_MAX, "%s/event-%d-%llu-%d", dir,
+-		 attr->type, attr->config, fd);
++		 attr->type, (unsigned long long)attr->config, fd);
+ 
+ 	file = fopen(path, "w+");
+ 	if (!file) {
+@@ -80,7 +80,7 @@ static int store_event(struct perf_event_attr *attr, pid_t pid, int cpu,
+ 	}
+ 
+ 	if (fprintf(file, "[event-%d-%llu-%d]\n",
+-		    attr->type, attr->config, fd) < 0) {
++		    attr->type, (unsigned long long)attr->config, fd) < 0) {
+ 		perror("test attr - failed to write event file");
+ 		fclose(file);
+ 		return -1;
+@@ -96,10 +96,10 @@ static int store_event(struct perf_event_attr *attr, pid_t pid, int cpu,
+ 	/* struct perf_event_attr */
+ 	WRITE_ASS(type,   PRIu32);
+ 	WRITE_ASS(size,   PRIu32);
+-	WRITE_ASS(config,  "llu");
+-	WRITE_ASS(sample_period, "llu");
+-	WRITE_ASS(sample_type,   "llu");
+-	WRITE_ASS(read_format,   "llu");
++	__WRITE_ASS(config,        "llu", (unsigned long long)attr->config);
++	__WRITE_ASS(sample_period, "llu", (unsigned long long)attr->sample_period);
++	__WRITE_ASS(sample_type,   "llu", (unsigned long long)attr->sample_type);
++	__WRITE_ASS(read_format,   "llu", (unsigned long long)attr->read_format);
+ 	WRITE_ASS(disabled,       "d");
+ 	WRITE_ASS(inherit,        "d");
+ 	WRITE_ASS(pinned,         "d");
+@@ -124,10 +124,10 @@ static int store_event(struct perf_event_attr *attr, pid_t pid, int cpu,
+ 	WRITE_ASS(exclude_callchain_user, "d");
+ 	WRITE_ASS(wakeup_events, PRIu32);
+ 	WRITE_ASS(bp_type, PRIu32);
+-	WRITE_ASS(config1, "llu");
+-	WRITE_ASS(config2, "llu");
+-	WRITE_ASS(branch_sample_type, "llu");
+-	WRITE_ASS(sample_regs_user,   "llu");
++	__WRITE_ASS(config1,            "llu", (unsigned long long)attr->config1);
++	__WRITE_ASS(config2,            "llu", (unsigned long long)attr->config2);
++	__WRITE_ASS(branch_sample_type, "llu", (unsigned long long)attr->branch_sample_type);
++	__WRITE_ASS(sample_regs_user,   "llu", (unsigned long long)attr->sample_regs_user);
+ 	WRITE_ASS(sample_stack_user,  PRIu32);
+ 
+ 	fclose(file);
+diff --git a/tools/perf/tests/bp_signal.c b/tools/perf/tests/bp_signal.c
+index 68daa28..bf3a094 100644
+--- a/tools/perf/tests/bp_signal.c
++++ b/tools/perf/tests/bp_signal.c
+@@ -74,7 +74,7 @@ static int bp_event(void *fn, int setup_signal)
+ 
+ 	fd = sys_perf_event_open(&pe, 0, -1, -1, 0);
+ 	if (fd < 0) {
+-		pr_debug("failed opening event %llx\n", pe.config);
++		pr_debug("failed opening event %llx\n", (unsigned long long)pe.config);
+ 		return TEST_FAIL;
+ 	}
+ 
+diff --git a/tools/perf/tests/bp_signal_overflow.c b/tools/perf/tests/bp_signal_overflow.c
+index fe7ed28..3662b15 100644
+--- a/tools/perf/tests/bp_signal_overflow.c
++++ b/tools/perf/tests/bp_signal_overflow.c
+@@ -87,7 +87,7 @@ int test__bp_signal_overflow(void)
+ 
+ 	fd = sys_perf_event_open(&pe, 0, -1, -1, 0);
+ 	if (fd < 0) {
+-		pr_debug("failed opening event %llx\n", pe.config);
++		pr_debug("failed opening event %llx\n", (unsigned long long)pe.config);
+ 		return TEST_FAIL;
+ 	}
+ 
 -- 
-"Thou shalt not follow the NULL pointer, for chaos and madness await
-thee at its end"
+1.7.5.4
+
 
