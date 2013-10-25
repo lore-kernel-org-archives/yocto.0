@@ -1,46 +1,38 @@
-Return-Path: <diego.sueiro@gmail.com>
-Received: from mail-ie0-f173.google.com (mail-ie0-f173.google.com
-	[209.85.223.173])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CD99FE0176E
-	for <yocto@yoctoproject.org>; Fri, 25 Oct 2013 04:44:01 -0700 (PDT)
-Received: by mail-ie0-f173.google.com with SMTP id u16so6013623iet.4
-	for <yocto@yoctoproject.org>; Fri, 25 Oct 2013 04:44:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-type;
-	bh=+Dhqn2RAlG48pBmB+hs4TgDZHz+FrN4l4R0nFKhWHao=;
-	b=PB3U1B4kx1Gp5X4+ue+myfqUg6L9a6rY/0CYeR0BiGIjBIN6YOGSmxqqRPjRL0MiQn
-	G7voSap9iyoPD2KhRRPJibK81T8ybkmmrAMb4Ptyzwxy27nUW7+KB6gFoD9hLaSJbJXc
-	Dkug9mwJcuJg8/1A8+6kSJq9Uh1b4kU2C6v1w2hB3jv2SwxLGac/FUt1QkoOW//mO2t8
-	w1WrXSfK1jcKWDriReMz2fAPd/VntQIgFmr/wrYg7XIEBB+Duta3fD0R88XnS4RpF5Sm
-	0luk4umglgtwGQ+7AgxS5f8xi+tlLk2mhgRIMP/RyhmzWfof9KlxpKPtlE4Ge/moEQ/T
-	ZXLw==
-X-Received: by 10.42.149.130 with SMTP id w2mr560014icv.64.1382701440708; Fri,
-	25 Oct 2013 04:44:00 -0700 (PDT)
+Return-Path: <bart.houkes@sogeti.nl>
+Received: from barracuda1.sogeti.nl (barracuda1.sogeti.nl [194.151.67.71])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C045EE0176D
+	for <yocto@yoctoproject.org>; Fri, 25 Oct 2013 05:47:07 -0700 (PDT)
+X-ASG-Debug-ID: 1382705225-03c2540c641210630001-yzSStA
+Received: from HOPPER.SGTI.NL ([10.234.192.73]) by barracuda1.sogeti.nl with
+	ESMTP id F867J8ZNNBiUGwUK; Fri, 25 Oct 2013 14:47:05 +0200 (CEST)
+X-Barracuda-Envelope-From: bart.houkes@sogeti.nl
+X-ASG-Whitelist: Client
+Received: from Sogmb1.SGTI.NL ([fe80::4c8:63ab:e438:d2e5]) by HOPPER.SGTI.NL
+	([10.234.192.73]) with mapi; Fri, 25 Oct 2013 14:47:05 +0200
+From: "Houkes, Bart" <bart.houkes@sogeti.nl>
+To: "Voicu, Cristiana" <cristiana.voicu@intel.com>
+Date: Fri, 25 Oct 2013 14:47:05 +0200
+Thread-Topic: [yocto] Remote debugging with Yocto
+X-ASG-Orig-Subj: RE: [yocto] Remote debugging with Yocto
+Thread-Index: AQHOznsDEdbtYJI/qUGyUKTab6ciRZoAqbeA///47gCAACCYMIABlsBq
+Message-ID: <FBA0FF4F0EC22C4AAFF3D9FD07EF2E383A5C6DAE63@SOGMB1.SGTI.NL>
+References: <FBA0FF4F0EC22C4AAFF3D9FD07EF2E383A5C6DAE5C@SOGMB1.SGTI.NL>,
+	<52665531.2010205@intel.com>
+	<FBA0FF4F0EC22C4AAFF3D9FD07EF2E383A5C6DAE60@SOGMB1.SGTI.NL>,
+	<BE68E9C8E0850C43B0F0B0B7D57FA5AE2E88F651@IRSMSX105.ger.corp.intel.com>
+In-Reply-To: <BE68E9C8E0850C43B0F0B0B7D57FA5AE2E88F651@IRSMSX105.ger.corp.intel.com>
+Accept-Language: en-US, nl-NL
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+acceptlanguage: en-US, nl-NL
 MIME-Version: 1.0
-Received: by 10.64.26.233 with HTTP; Fri, 25 Oct 2013 04:43:40 -0700 (PDT)
-In-Reply-To: <52686723.4080305@windriver.com>
-References: <CAMCfZKFBvSiRSMk5wrEpSEiNNiZeHJw18fbHgHzepo__U=UWNA@mail.gmail.com>
-	<CA+gsK-o6n24Aqp2dtpOwnmrCBjWE=HDSJvfqyYy2pvJYrHqXmQ@mail.gmail.com>
-	<CAAQYJAu+wU0ODvVoTrRBFhVOUVh+CdMg3mimfgGkj-pwJh3A1g@mail.gmail.com>
-	<CAMCfZKF_Rp=uds8tnDPSD9k3GO5dEiHSx9WfYjZ0yPkmh_9YPg@mail.gmail.com>
-	<CAMCfZKFh8iJH4655mzFveFYfz8ebLXkGftSa-MR5mEcMEFV8Vw@mail.gmail.com>
-	<CADkTA4MgxmiOofDLynbOLR=hV-KQ1ic+Eagjm0yetYOtB6FJzw@mail.gmail.com>
-	<CAMCfZKF3aHG4wFMRx2XcdroJJ6ga5v6KHF5DbBTWV7jXOGNX-g@mail.gmail.com>
-	<525FDD08.90400@windriver.com>
-	<CAMCfZKHz82sPsHXjqxbFDJjFNi7ck+BS=_OtyGmb2FYDAxoe1A@mail.gmail.com>
-	<525FE3C9.3070003@windriver.com>
-	<CAMCfZKGUYAcO5FtOKC9iP_XZjRxJ_Xq12ERN=BL_JHA7FJW51w@mail.gmail.com>
-	<5260BDA6.4020807@windriver.com>
-	<CAMCfZKFf3iJCyjMgGQ=y6ng6Kh3_MeEMymgZTE=bTnLpBGN9Mg@mail.gmail.com>
-	<5261974C.7010202@windriver.com> <5266A665.8030303@alphalem.com>
-	<52686723.4080305@windriver.com>
-From: Diego Sueiro <diego.sueiro@gmail.com>
-Date: Fri, 25 Oct 2013 09:43:40 -0200
-Message-ID: <CAMCfZKG1A_c-oy6KLZuctX4Nmca7f1ryBKRaR-sqFVVqNwuSrA@mail.gmail.com>
-To: Bruce Ashfield <bruce.ashfield@windriver.com>
+X-Barracuda-Connect: UNKNOWN[10.234.192.73]
+X-Barracuda-Start-Time: 1382705225
+X-Barracuda-URL: http://10.234.200.14:8000/cgi-mod/mark.cgi
+X-Virus-Scanned: by bsmtpd at sogeti.nl
+X-Barracuda-BRTS-Status: 1
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Custom defconfig is not used
+Subject: Re: Remote debugging with Yocto
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -52,333 +44,179 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 25 Oct 2013 11:44:02 -0000
-Content-Type: multipart/alternative; boundary=90e6ba1efbf034523104e98f445c
-
---90e6ba1efbf034523104e98f445c
-Content-Type: text/plain; charset=ISO-8859-1
-
-Bruce,
-
-Regarding the defconfig not used, I've found this thread on Angstrom devel
-ML:
-http://www.mail-archive.com/angstrom-distro-devel@linuxtogo.org/msg06721.html
-
-I've replaced "FILESEXTRAPATHS_prepend" with "FILESPATH_prepend" and
-removed the custom "do_configure_prepend" function and bitbake is now using
-my defconfig.
-So, it seems that there is an issue with FILESEXTRAPATHS variable.
-
-Regards,
-
---
-*dS
-Diego Sueiro
-
-/*long live rock 'n roll*/
-
-
-2013/10/23 Bruce Ashfield <bruce.ashfield@windriver.com>
-
-> On 13-10-22 12:23 PM, Mike Lewis wrote:
->
->> Hi Bruce,
->>
->> I'm trying to accomplish the nearly the same thing (i.e. adding config
->> fragment) and I'm having the same issue at the do_patch step. Were you
->> able to reproduce this on your end?
->>
->
-> Mike,
->
-> Is you config/layer somewhere than I can have a look at it ? I was trying
-> some builds here, and my tests are working. But I'd like to try it
-> with your config as well.
->
-> Bruce
->
->
->
->> Thanks,
->> Mike
->>
->> On 10/18/2013 01:17 PM, Bruce Ashfield wrote:
->>
->>> On 13-10-18 05:17 AM, Diego Sueiro wrote:
->>>
->>>>
->>>> 2013/10/18 Bruce Ashfield <bruce.ashfield@windriver.com
->>>> <mailto:bruce.ashfield@**windriver.com <bruce.ashfield@windriver.com>>>
->>>>
->>>>     I fell behind today .. i had 2300 unread email to start this
->>>> morning :)
->>>>     Is there a way that I can get a copy of your recipes and layers ? If
->>>>     I can do a build myself, I can easily debug and fix this ..
->>>>     otherwise, we'll
->>>>     go back and forth many times debugging.
->>>>
->>>>     Cheers,
->>>>
->>>>     Bruce
->>>>
->>>>
->>>> I'm using the environment provided by Angstrom from it's github setup
->>>> scripts.
->>>> If you want to exactly reproduce it you need to:
->>>>
->>>>     git clone https://github.com/Angstrom-**
->>>> distribution/setup-scripts.git<https://github.com/Angstrom-distribution/setup-scripts.git>
->>>>     cd setup-scripts
->>>>     git checkout angstrom-v2013.06-yocto1.4
->>>>     MACHINE=beaglebone ./oebb.sh config beaglebone
->>>>
->>>> Here is the setup and files for meta-mine:
->>>>
->>>> bblayers.conf:
->>>>
->>>>     BBLAYERS = \"
->>>>
->>>>         ...
->>>>         ${TOPDIR}/sources/meta-mine \
->>>>         "
->>>>
->>>> meta-mine/conf/layer.conf:
->>>>
->>>>     # We have a conf and classes directory, append to BBPATH
->>>>     BBPATH .= ":${LAYERDIR}"
->>>>     # We have a recipes directory, add to BBFILES
->>>>     BBFILES += "${LAYERDIR}/recipes*/*/*.bb
->>>>     ${LAYERDIR}/recipes*/*/*.**bbappend"
->>>>     BBFILE_COLLECTIONS += "mine-layer"
->>>>     BBFILE_PATTERN_mine-layer := "^${LAYERDIR}/"
->>>>     BBFILE_PRIORITY_mine-layer = "10"
->>>>     LAYERDEPENDS_mine-layer = "angstrom-layer"
->>>>
->>>> meta-mine/recipes-kernel/**linux/linux-mainline_3.8.**bbappend:
->>>>
->>>>     FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}-3.8:"
->>>>     inherit kernel
->>>>     require recipes-kernel/linux/linux-**yocto.inc
->>>>     COMPATIBLE_MACHINE_beaglebone = "(beaglebone)"
->>>>     SRC_URI += " file://config-addons.cfg "
->>>>
->>>> meta-mine/recipes-kernel/**linux/linux-mainline-3.8/**
->>>> config-addons.cfg:
->>>>
->>>>     CONFIG_WATCHDOG_NOWAYOUT=y
->>>>     CONFIG_NTFS_FS=y
->>>>     CONFIG_NTFS_RW=y
->>>>
->>>>
->>>>
->>>> But I think that instead of using the whole Angstrom you can just use
->>>> poky and meta-beagleboard/common-bsp on dylan branch.
->>>>
->>>
->>> Great. I'll launch some test builds and see what breaks (or works) :)
->>>
->>> Bruce
->>>
->>>
->>>>
->>>> Regards,
->>>>
->>>> --
->>>> *dS
->>>> Diego Sueiro
->>>>
->>>> /*long live rock 'n roll*/
->>>>
->>>
->>> ______________________________**_________________
->>> yocto mailing list
->>> yocto@yoctoproject.org
->>> https://lists.yoctoproject.**org/listinfo/yocto<https://lists.yoctoproject.org/listinfo/yocto>
->>>
->>
->>
-> ______________________________**_________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.**org/listinfo/yocto<https://lists.yoctoproject.org/listinfo/yocto>
->
-
---90e6ba1efbf034523104e98f445c
-Content-Type: text/html; charset=ISO-8859-1
+X-List-Received-Date: Fri, 25 Oct 2013 12:47:09 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Bruce,<div><br></div><div style>Regarding the defconfig no=
-t used, I&#39;ve found this thread on Angstrom devel ML:</div><div style><a=
- href=3D"http://www.mail-archive.com/angstrom-distro-devel@linuxtogo.org/ms=
-g06721.html">http://www.mail-archive.com/angstrom-distro-devel@linuxtogo.or=
-g/msg06721.html</a><br>
+Hi Yocto,
 
-</div><div style><br></div><div style>I&#39;ve replaced &quot;FILESEXTRAPAT=
-HS_prepend&quot; with &quot;FILESPATH_prepend&quot; and removed the custom =
-&quot;do_configure_prepend&quot; function and bitbake is now using my defco=
-nfig.</div>
+Thanks for all the support. I'm just working 2 weeks on Yocto and still no =
+expert. Adding extra features is working great when I want to do remote-deb=
+ug:
+EXTRA_IMAGE_FEATURES =3D "debug-tweaks tools-debug eclipse-debug"
 
-<div style>So, it seems that there is an issue with FILESEXTRAPATHS variabl=
-e.</div><div class=3D"gmail_extra"><br clear=3D"all"><div><div dir=3D"ltr">=
-<div>Regards,</div><div><br></div>--<br>*dS<br>Diego Sueiro<br><br>/*long l=
-ive rock &#39;n roll*/</div>
+Next problem I have is related to the 5150 evaluation board from TI. I have=
+ soldered the BT.656 cable.=20
+There are several ways to add this to my project:
+1. Add in the program and call the I2C driver... but that's really ugly.
+2. Add a kernel module for this chip. Following things I can do:
+   A) Create a new Board Support Layer:=20
+              yocto-bsp list karch
+              yocto-bsp create sogeti arm
+        After doing this, I am completely lost. It is using kernel 3.8, but=
+ the ATMEL Sama5d3s is using 3.6.9, so this will not work...=20
+   B) Create a kernel driver in Eclipse.
+        But I can create a project, but not a kernel project... strange?
+   C) Use the C file, create a Makefile and cross compile.=20
+        I can compile a kernel-module and use insmod, but never done this w=
+ith Yocto... how to do this in the Yocto environment.
+        After doing this, I still have no idea if I should add this file to=
+ a BB file or BBapend?=20
+   D) Some websites tell this driver is inside omap3-isp. Where to add this=
+ in Yocto?=20
+=20
+What do you think is the fastest/decent solution?
 
-</div>
-<br><br><div class=3D"gmail_quote">2013/10/23 Bruce Ashfield <span dir=3D"l=
-tr">&lt;<a href=3D"mailto:bruce.ashfield@windriver.com" target=3D"_blank">b=
-ruce.ashfield@windriver.com</a>&gt;</span><br><blockquote class=3D"gmail_qu=
-ote" style=3D"margin:0px 0px 0px 0.8ex;border-left-width:1px;border-left-co=
-lor:rgb(204,204,204);border-left-style:solid;padding-left:1ex">
+greetings from Holland,
+Bart
 
-<div class=3D"im">On <a href=3D"tel:13-10-22%2012" value=3D"+13102212" targ=
-et=3D"_blank">13-10-22 12</a>:23 PM, Mike Lewis wrote:<br>
-</div><div class=3D"im"><blockquote class=3D"gmail_quote" style=3D"margin:0=
-px 0px 0px 0.8ex;border-left-width:1px;border-left-color:rgb(204,204,204);b=
-order-left-style:solid;padding-left:1ex">
-Hi Bruce,<br>
-<br>
-I&#39;m trying to accomplish the nearly the same thing (i.e. adding config<=
-br>
-fragment) and I&#39;m having the same issue at the do_patch step. Were you<=
-br>
-able to reproduce this on your end?<br>
-</blockquote>
-<br></div>
-Mike,<br>
-<br>
-Is you config/layer somewhere than I can have a look at it ? I was trying<b=
-r>
-some builds here, and my tests are working. But I&#39;d like to try it<br>
-with your config as well.<span class=3D""><font color=3D"#888888"><br>
-<br>
-Bruce</font></span><div class=3D""><div class=3D"h5"><br>
-<br>
-<blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-=
-left-width:1px;border-left-color:rgb(204,204,204);border-left-style:solid;p=
-adding-left:1ex">
-<br>
-Thanks,<br>
-Mike<br>
-<br>
-On 10/18/2013 01:17 PM, Bruce Ashfield wrote:<br>
-<blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-=
-left-width:1px;border-left-color:rgb(204,204,204);border-left-style:solid;p=
-adding-left:1ex">
-On <a href=3D"tel:13-10-18%2005" value=3D"+13101805" target=3D"_blank">13-1=
-0-18 05</a>:17 AM, Diego Sueiro wrote:<br>
-<blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-=
-left-width:1px;border-left-color:rgb(204,204,204);border-left-style:solid;p=
-adding-left:1ex">
-<br>
-2013/10/18 Bruce Ashfield &lt;<a href=3D"mailto:bruce.ashfield@windriver.co=
-m" target=3D"_blank">bruce.ashfield@windriver.com</a><br>
-&lt;mailto:<a href=3D"mailto:bruce.ashfield@windriver.com" target=3D"_blank=
-">bruce.ashfield@<u></u>windriver.com</a>&gt;&gt;<br>
-<br>
-=A0 =A0 I fell behind today .. i had 2300 unread email to start this<br>
-morning :)<br>
-=A0 =A0 Is there a way that I can get a copy of your recipes and layers ? I=
-f<br>
-=A0 =A0 I can do a build myself, I can easily debug and fix this ..<br>
-=A0 =A0 otherwise, we&#39;ll<br>
-=A0 =A0 go back and forth many times debugging.<br>
-<br>
-=A0 =A0 Cheers,<br>
-<br>
-=A0 =A0 Bruce<br>
-<br>
-<br>
-I&#39;m using the environment provided by Angstrom from it&#39;s github set=
-up<br>
-scripts.<br>
-If you want to exactly reproduce it you need to:<br>
-<br>
-=A0 =A0 git clone <a href=3D"https://github.com/Angstrom-distribution/setup=
--scripts.git" target=3D"_blank">https://github.com/Angstrom-<u></u>distribu=
-tion/setup-scripts.git</a><br>
-=A0 =A0 cd setup-scripts<br>
-=A0 =A0 git checkout angstrom-v2013.06-yocto1.4<br>
-=A0 =A0 MACHINE=3Dbeaglebone ./oebb.sh config beaglebone<br>
-<br>
-Here is the setup and files for meta-mine:<br>
-<br>
-bblayers.conf:<br>
-<br>
-=A0 =A0 BBLAYERS =3D \&quot;<br>
-<br>
-=A0 =A0 =A0 =A0 ...<br>
-=A0 =A0 =A0 =A0 ${TOPDIR}/sources/meta-mine \<br>
-=A0 =A0 =A0 =A0 &quot;<br>
-<br>
-meta-mine/conf/layer.conf:<br>
-<br>
-=A0 =A0 # We have a conf and classes directory, append to BBPATH<br>
-=A0 =A0 BBPATH .=3D &quot;:${LAYERDIR}&quot;<br>
-=A0 =A0 # We have a recipes directory, add to BBFILES<br>
-=A0 =A0 BBFILES +=3D &quot;${LAYERDIR}/recipes*/*/*.bb<br>
-=A0 =A0 ${LAYERDIR}/recipes*/*/*.<u></u>bbappend&quot;<br>
-=A0 =A0 BBFILE_COLLECTIONS +=3D &quot;mine-layer&quot;<br>
-=A0 =A0 BBFILE_PATTERN_mine-layer :=3D &quot;^${LAYERDIR}/&quot;<br>
-=A0 =A0 BBFILE_PRIORITY_mine-layer =3D &quot;10&quot;<br>
-=A0 =A0 LAYERDEPENDS_mine-layer =3D &quot;angstrom-layer&quot;<br>
-<br>
-meta-mine/recipes-kernel/<u></u>linux/linux-mainline_3.8.<u></u>bbappend:<b=
-r>
-<br>
-=A0 =A0 FILESEXTRAPATHS_prepend :=3D &quot;${THISDIR}/${PN}-3.8:&quot;<br>
-=A0 =A0 inherit kernel<br>
-=A0 =A0 require recipes-kernel/linux/linux-<u></u>yocto.inc<br>
-=A0 =A0 COMPATIBLE_MACHINE_beaglebone =3D &quot;(beaglebone)&quot;<br>
-=A0 =A0 SRC_URI +=3D &quot; file://config-addons.cfg &quot;<br>
-<br>
-meta-mine/recipes-kernel/<u></u>linux/linux-mainline-3.8/<u></u>config-addo=
-ns.cfg:<br>
-<br>
-=A0 =A0 CONFIG_WATCHDOG_NOWAYOUT=3Dy<br>
-=A0 =A0 CONFIG_NTFS_FS=3Dy<br>
-=A0 =A0 CONFIG_NTFS_RW=3Dy<br>
-<br>
-<br>
-<br>
-But I think that instead of using the whole Angstrom you can just use<br>
-poky and meta-beagleboard/common-bsp on dylan branch.<br>
-</blockquote>
-<br>
-Great. I&#39;ll launch some test builds and see what breaks (or works) :)<b=
-r>
-<br>
-Bruce<br>
-<br>
-<blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-=
-left-width:1px;border-left-color:rgb(204,204,204);border-left-style:solid;p=
-adding-left:1ex">
-<br>
-<br>
-Regards,<br>
-<br>
---<br>
-*dS<br>
-Diego Sueiro<br>
-<br>
-/*long live rock &#39;n roll*/<br>
-</blockquote>
-<br>
-______________________________<u></u>_________________<br>
-yocto mailing list<br>
-<a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yocto@yoctoproj=
-ect.org</a><br>
-<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" target=3D"_blank"=
->https://lists.yoctoproject.<u></u>org/listinfo/yocto</a><br>
-</blockquote>
-<br>
-</blockquote>
-<br>
-______________________________<u></u>_________________<br>
-yocto mailing list<br>
-<a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yocto@yoctoproj=
-ect.org</a><br>
-<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" target=3D"_blank"=
->https://lists.yoctoproject.<u></u>org/listinfo/yocto</a><br>
-</div></div></blockquote></div><br></div></div>
 
---90e6ba1efbf034523104e98f445c--
+________________________________________
+From: Voicu, Cristiana [cristiana.voicu@intel.com]
+Sent: Tuesday, October 22, 2013 4:12 PM
+To: Houkes, Bart
+Cc: yocto@yoctoproject.org; Rifenbark, Scott M
+Subject: RE: [yocto] Remote debugging with Yocto
+
+Hi Bart,
+
+It seems that tcf-agent was moved to eclipse-debug package group. So, inste=
+ad of adding tools-debug to image features, you should add eclipse-debug.
+I think that the documentation for tcf-agent is not updated. Scott, can you=
+ please update this?
+Thank you,
+Cristiana
+
+-----Original Message-----
+From: Houkes, Bart [mailto:bart.houkes@sogeti.nl]
+Sent: Tuesday, October 22, 2013 4:11 PM
+To: Voicu, Cristiana
+Subject: RE: [yocto] Remote debugging with Yocto
+
+Hi Cristiana,
+
+I did step 2 from http://www.yoctoproject.org/docs/latest/mega-manual/mega-=
+manual.html#getting-the-images, and changed the makefile a lot. I copied th=
+e file stubs-hard.h to stubs-soft.h, but in the end I miss a dependency lss=
+l, which I can't find yet.
+
+When I try to do the same with hob and add tcf-agent, it becomes red and ho=
+b stops without any result. Maybe I should hire the young girl from Yocto's=
+ movie, for her it is simple.
+I added tools-debug to my local-conf and start bitbake again. For HOB, I ge=
+t the RPM file which is useless... I need the sama5d34.dtb,  uImage (kernel=
+ binary) and a core-image[a-z]*.tar.gz
+
+My local.conf has following:
+BB_NUMBER_THREADS =3D "4"
+PARALLEL_MAKE =3D "-j 4"
+MACHINE ??=3D "sama5d3xek"
+DL_DIR ?=3D "/home/mensfort/workspace_poky/downloads"
+DISTRO ?=3D "poky"
+EXTRA_IMAGE_FEATURES =3D "debug-tweaks tools-debug"    <=3D=3D=3D Just adde=
+d tools-debug.
+USER_CLASSES ?=3D "buildstats image-mklibs image-prelink"
+PATCHRESOLVE =3D "noop"
+BB_DISKMON_DIRS =3D "\
+    STOPTASKS,${TMPDIR},1G,100K \
+    STOPTASKS,${DL_DIR},1G,100K \
+    STOPTASKS,${SSTATE_DIR},1G,100K \
+    ABORT,${TMPDIR},100M,1K \
+    ABORT,${DL_DIR},100M,1K \
+    ABORT,${SSTATE_DIR},100M,1K"
+CONF_VERSION =3D "1"
+SSTATE_MIRRORS =3D ""
+PACKAGE_CLASSES =3D "package_rpm package_ipk"
+
+I get following output from bitbake, no working output anymore.
+| Error: packagegroup-core-boot not found in the base feeds (sama5d3xek cor=
+texa9t2hf-vfp cortexa9hf-vfp armv7at2hf-vfp armv7ahf-vfp armv6thf-vfp armv6=
+hf-vfp armv5tehf-vfp armv5ehf-vfp armv5thf-vfp armv5hf-vfp noarch any all).
+| ERROR: Function failed: do_rootfs (see
+| /home/mensfort/workspace_poky/poky/build-atmel/tmp/work/sama5d3xek-pok
+| y-linux-gnueabi/core-image-minimal/1.0-r0/temp/log.do_rootfs.28222 for
+| further information)
+ERROR: Task 7 (/home/mensfort/workspace_poky/poky/meta/recipes-core/images/=
+core-image-minimal.bb, do_rootfs) failed with exit code '1'
+Currently 1 running tasks (1864 of 1870):
+0: perl-5.14.3-r1 do_package_write_ipk (pid 28220)
+
+Next time to try HOB, I will make a screenshot.
+Maybe I am using the 'old' version 1.4.1. How to change to 1.4.2 or 1.5 ?
+
+greetings,
+Bart
+
+Hi Bart,
+On 10/21/2013 07:31 PM, Houkes, Bart wrote:
+> Hi,
+>
+> 2 issues are blocking for my development:
+>
+> last few weeks I was able to download my own kernel on the ARM board with=
+ SAMA5d3S.
+>
+> However, with HOB I cannot add TCF-agent or any other project.. HOB will =
+give some error, becomes red and stops. I cannot compile anymore.
+>
+> I need TCF-agent to do remote debugging.
+Regarding tcf-agent, you can find documentation at http://www.yoctoproject.=
+org/docs/latest/mega-manual/mega-manual.html#getting-the-images.
+If you already have tools-debug as extra feature in local.conf, and you rec=
+eive an error in Hob, can you please provide a screenshot with it?
+
+Cristiana
+>
+> Another:
+>
+> There are some presentations about standard projects. How about kernel dr=
+ivers with cross compilers or Video 4 Linux. How to start those projects?
+>
+> greetings,
+> Bart
+> bart.houkes@sogeti.nl
+>
+> Disclaimer:
+> This message contains information that may be privileged or confidential =
+and is the property of Sogeti Nederland B.V. or its Group members. It is in=
+tended only for the person to whom it is addressed. If you are not the inte=
+nded recipient, you are not authorized to read, print, retain, copy, dissem=
+inate, distribute, or use this message or any part thereof. If you receive =
+this message in error, please notify the sender immediately and delete all =
+copies of this message.
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+
+
+
+
+Disclaimer: This message contains information that may be privileged or con=
+fidential and is the property of Sogeti Nederland B.V. or its Group members=
+. It is intended only for the person to whom it is addressed. If you are no=
+t the intended recipient, you are not authorized to read, print, retain, co=
+py, disseminate, distribute, or use this message or any part thereof. If yo=
+u receive this message in error, please notify the sender immediately and d=
+elete all copies of this message.
+
+Disclaimer:=0D
+This message contains information that may be privileged or confidential an=
+d is the property of Sogeti Nederland B.V. or its Group members. It is inte=
+nded only for the person to whom it is addressed. If you are not the intend=
+ed recipient, you are not authorized to read, print, retain, copy, dissemin=
+ate, distribute, or use this message or any part thereof. If you receive th=
+is message in error, please notify the sender immediately and delete all co=
+pies of this message.
+
