@@ -1,38 +1,27 @@
-Return-Path: <bart.houkes@sogeti.nl>
-Received: from barracuda1.sogeti.nl (barracuda1.sogeti.nl [194.151.67.71])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C045EE0176D
-	for <yocto@yoctoproject.org>; Fri, 25 Oct 2013 05:47:07 -0700 (PDT)
-X-ASG-Debug-ID: 1382705225-03c2540c641210630001-yzSStA
-Received: from HOPPER.SGTI.NL ([10.234.192.73]) by barracuda1.sogeti.nl with
-	ESMTP id F867J8ZNNBiUGwUK; Fri, 25 Oct 2013 14:47:05 +0200 (CEST)
-X-Barracuda-Envelope-From: bart.houkes@sogeti.nl
-X-ASG-Whitelist: Client
-Received: from Sogmb1.SGTI.NL ([fe80::4c8:63ab:e438:d2e5]) by HOPPER.SGTI.NL
-	([10.234.192.73]) with mapi; Fri, 25 Oct 2013 14:47:05 +0200
-From: "Houkes, Bart" <bart.houkes@sogeti.nl>
-To: "Voicu, Cristiana" <cristiana.voicu@intel.com>
-Date: Fri, 25 Oct 2013 14:47:05 +0200
-Thread-Topic: [yocto] Remote debugging with Yocto
-X-ASG-Orig-Subj: RE: [yocto] Remote debugging with Yocto
-Thread-Index: AQHOznsDEdbtYJI/qUGyUKTab6ciRZoAqbeA///47gCAACCYMIABlsBq
-Message-ID: <FBA0FF4F0EC22C4AAFF3D9FD07EF2E383A5C6DAE63@SOGMB1.SGTI.NL>
-References: <FBA0FF4F0EC22C4AAFF3D9FD07EF2E383A5C6DAE5C@SOGMB1.SGTI.NL>,
-	<52665531.2010205@intel.com>
-	<FBA0FF4F0EC22C4AAFF3D9FD07EF2E383A5C6DAE60@SOGMB1.SGTI.NL>,
-	<BE68E9C8E0850C43B0F0B0B7D57FA5AE2E88F651@IRSMSX105.ger.corp.intel.com>
-In-Reply-To: <BE68E9C8E0850C43B0F0B0B7D57FA5AE2E88F651@IRSMSX105.ger.corp.intel.com>
-Accept-Language: en-US, nl-NL
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-acceptlanguage: en-US, nl-NL
+Return-Path: <joaohf@gmail.com>
+Received: from mail-wg0-f50.google.com (mail-wg0-f50.google.com [74.125.82.50])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AAE3EE0176D
+	for <yocto@yoctoproject.org>; Fri, 25 Oct 2013 06:16:16 -0700 (PDT)
+Received: by mail-wg0-f50.google.com with SMTP id n12so3810544wgh.17
+	for <yocto@yoctoproject.org>; Fri, 25 Oct 2013 06:16:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=0rZM68GtlOPWRWn977BOXjAQTFtyKIgYRjOM/gXiaSs=;
+	b=dj5jshZsHUgAVS3Mt2krp3HKWp9MjtJZU+4Y23Q02X5fQbmsXnIb1hnzm8mXk3jNqc
+	UW8NW3uoDsR7QQc0ZtJxi8QkiHb1a2pmqNwV3zmW788Vm7ojDz66FaqqPpxZGsjFtRGZ
+	WEhNy7UsauiH6oadmKpHkpAPxM3VifX2uvcnYpFDDzm6hHU9VKa7cxqEgmhc7rH8oMPf
+	fYjTbDSV1kCwMNVO8LAYK/XU2pf4is1tnxJiXk95hBcO+5uzNGDIGukjuKn1mRmiJAzE
+	Edvhmn4SyG7WGFutJA+3PoLVMltKkHUQpcGTEv0xlXxguVzNo1ii+F8nex+gxGLWGn0I
+	9Zsw==
 MIME-Version: 1.0
-X-Barracuda-Connect: UNKNOWN[10.234.192.73]
-X-Barracuda-Start-Time: 1382705225
-X-Barracuda-URL: http://10.234.200.14:8000/cgi-mod/mark.cgi
-X-Virus-Scanned: by bsmtpd at sogeti.nl
-X-Barracuda-BRTS-Status: 1
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Remote debugging with Yocto
+X-Received: by 10.180.36.105 with SMTP id p9mr2604026wij.2.1382706974704; Fri,
+	25 Oct 2013 06:16:14 -0700 (PDT)
+Received: by 10.216.90.132 with HTTP; Fri, 25 Oct 2013 06:16:14 -0700 (PDT)
+Date: Fri, 25 Oct 2013 11:16:14 -0200
+Message-ID: <CANFVK7-RGLuL9=wYagjNmScMt7gi_1nUOM=V8DiWJiTfRCahGw@mail.gmail.com>
+From: =?UTF-8?Q?Jo=C3=A3o_Henrique_Freitas?= <joaohf@gmail.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: yocto-dora problems building python
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -44,179 +33,116 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 25 Oct 2013 12:47:09 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Fri, 25 Oct 2013 13:16:20 -0000
+Content-Type: multipart/alternative; boundary=e89a8f5035620e497404e9908e94
+
+--e89a8f5035620e497404e9908e94
+Content-Type: text/plain; charset=UTF-8
+
+Hello,
+
+I got this QA error when build python:
+
+ERROR: QA Issue: python: The compile log indicates that host include and/or
+library paths were used.
+
+Any hint?
+
+----
+Build Configuration:
+BB_VERSION        = "1.20.0"
+BUILD_SYS         = "x86_64-linux"
+NATIVELSBSTRING   = "Ubuntu-13.04"
+TARGET_SYS        = "i586-poky-linux"
+MACHINE           = "qemux86"
+DISTRO            = "poky"
+DISTRO_VERSION    = "1.5"
+TUNE_FEATURES     = "m32 i586"
+TARGET_FPU        = ""
+meta              = "dora:faf8f8660fae26a14578738b642fdeb08bcb9d54"
+meta-oe
+meta-systemd      = "dora:513e7ca20ddd0a5c3b649bf292a67c3e0473d3a8"
+meta-yocto        = "dora:faf8f8660fae26a14578738b642fdeb08bcb9d54"
+meta-padtec
+meta-otns         = "master:b2db43d21f303e4e02956cc9f2e9ad2bf547dd95"
+meta-intel
+meta-crownbay     = "custom:fa3b568222f87fc557f01bb5acb5d362e6bde301"
+
+NOTE: Preparing runqueue
+NOTE: Executing SetScene Tasks
+NOTE: Executing RunQueue Tasks
+ERROR: QA Issue: python: The compile log indicates that host include and/or
+library paths were used.
+         Please check the log
+'/srv/build/yocto/build/work/i586-poky-linux/python/2.7.3-r0.3/temp/log.do_compile'
+for more information.
+ERROR: QA run found fatal errors. Please consider fixing them.
+ERROR: Function failed: do_package_qa
+ERROR: Logfile of failure stored in:
+/srv/build/yocto/build/work/i586-poky-linux/python/2.7.3-r0.3/temp/log.do_package.29112
+ERROR: Task 12 (/home/jfreitas/yocto/poky/meta/recipes-devtools/python/
+python_2.7.3.bb, do_package) failed with exit code '1'
+NOTE: Tasks Summary: Attempted 872 tasks of which 540 didn't need to be
+rerun and 1 failed.
+NOTE: Writing buildhistory
+No currently running tasks (872 of 876)
+
+Summary: 1 task failed:
+  /home/jfreitas/yocto/poky/meta/recipes-devtools/python/python_2.7.3.bb,
+do_package
+Summary: There were 3 ERROR messages shown, returning a non-zero exit code.
+
+
+Thanks.
+
+--e89a8f5035620e497404e9908e94
+Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-Hi Yocto,
+<div dir=3D"ltr"><div><div><div><br></div>Hello,<br><br></div>I got this QA=
+ error when build python:<br><br>ERROR: QA Issue: python: The compile log i=
+ndicates that host include and/or library paths were used.<br><br></div>Any=
+ hint?<br>
+<div><div><div><br>----<br>Build Configuration:<br>BB_VERSION=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =3D &quot;1.20.0&quot;<br>BUILD_SYS=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =3D &quot;x86_64-linux&quot;<br>NAT=
+IVELSBSTRING=C2=A0=C2=A0 =3D &quot;Ubuntu-13.04&quot;<br>TARGET_SYS=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =3D &quot;i586-poky-linux&quot;<br>
+MACHINE=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =3D &qu=
+ot;qemux86&quot;<br>DISTRO=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0 =3D &quot;poky&quot;<br>DISTRO_VERSION=C2=A0=C2=A0=C2=A0=
+ =3D &quot;1.5&quot;<br>TUNE_FEATURES=C2=A0=C2=A0=C2=A0=C2=A0 =3D &quot;m32=
+ i586&quot;<br>TARGET_FPU=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =3D &qu=
+ot;&quot;<br>meta=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0 =3D &quot;dora:faf8f8660fae26a14578738b642fdeb08bcb9d=
+54&quot;<br>
+meta-oe=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 <br>met=
+a-systemd=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =3D &quot;dora:513e7ca20ddd0a5c3b64=
+9bf292a67c3e0473d3a8&quot;<br>meta-yocto=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0 =3D &quot;dora:faf8f8660fae26a14578738b642fdeb08bcb9d54&quot;<br>=
+meta-padtec=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 <br>meta-otns=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =3D &quot;master:b2db43d21f303e4e02956=
+cc9f2e9ad2bf547dd95&quot;<br>
+meta-intel=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 <br>meta-crownbay=C2=
+=A0=C2=A0=C2=A0=C2=A0 =3D &quot;custom:fa3b568222f87fc557f01bb5acb5d362e6bd=
+e301&quot;<br><br>NOTE: Preparing runqueue<br>NOTE: Executing SetScene Task=
+s<br>NOTE: Executing RunQueue Tasks<br>ERROR: QA Issue: python: The compile=
+ log indicates that host include and/or library paths were used.<br>
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Please check the log &#39;=
+/srv/build/yocto/build/work/i586-poky-linux/python/2.7.3-r0.3/temp/log.do_c=
+ompile&#39; for more information.<br>ERROR: QA run found fatal errors. Plea=
+se consider fixing them.<br>ERROR: Function failed: do_package_qa<br>
+ERROR: Logfile of failure stored in: /srv/build/yocto/build/work/i586-poky-=
+linux/python/2.7.3-r0.3/temp/log.do_package.29112<br>ERROR: Task 12 (/home/=
+jfreitas/yocto/poky/meta/recipes-devtools/python/<a href=3D"http://python_2=
+.7.3.bb">python_2.7.3.bb</a>, do_package) failed with exit code &#39;1&#39;=
+<br>
+NOTE: Tasks Summary: Attempted 872 tasks of which 540 didn&#39;t need to be=
+ rerun and 1 failed.<br>NOTE: Writing buildhistory<br>No currently running =
+tasks (872 of 876)<br><br>Summary: 1 task failed:<br>=C2=A0 /home/jfreitas/=
+yocto/poky/meta/recipes-devtools/python/<a href=3D"http://python_2.7.3.bb">=
+python_2.7.3.bb</a>, do_package<br>
+Summary: There were 3 ERROR messages shown, returning a non-zero exit code.=
+<br><br><br></div><div>Thanks.</div></div></div></div>
 
-Thanks for all the support. I'm just working 2 weeks on Yocto and still no =
-expert. Adding extra features is working great when I want to do remote-deb=
-ug:
-EXTRA_IMAGE_FEATURES =3D "debug-tweaks tools-debug eclipse-debug"
-
-Next problem I have is related to the 5150 evaluation board from TI. I have=
- soldered the BT.656 cable.=20
-There are several ways to add this to my project:
-1. Add in the program and call the I2C driver... but that's really ugly.
-2. Add a kernel module for this chip. Following things I can do:
-   A) Create a new Board Support Layer:=20
-              yocto-bsp list karch
-              yocto-bsp create sogeti arm
-        After doing this, I am completely lost. It is using kernel 3.8, but=
- the ATMEL Sama5d3s is using 3.6.9, so this will not work...=20
-   B) Create a kernel driver in Eclipse.
-        But I can create a project, but not a kernel project... strange?
-   C) Use the C file, create a Makefile and cross compile.=20
-        I can compile a kernel-module and use insmod, but never done this w=
-ith Yocto... how to do this in the Yocto environment.
-        After doing this, I still have no idea if I should add this file to=
- a BB file or BBapend?=20
-   D) Some websites tell this driver is inside omap3-isp. Where to add this=
- in Yocto?=20
-=20
-What do you think is the fastest/decent solution?
-
-greetings from Holland,
-Bart
-
-
-________________________________________
-From: Voicu, Cristiana [cristiana.voicu@intel.com]
-Sent: Tuesday, October 22, 2013 4:12 PM
-To: Houkes, Bart
-Cc: yocto@yoctoproject.org; Rifenbark, Scott M
-Subject: RE: [yocto] Remote debugging with Yocto
-
-Hi Bart,
-
-It seems that tcf-agent was moved to eclipse-debug package group. So, inste=
-ad of adding tools-debug to image features, you should add eclipse-debug.
-I think that the documentation for tcf-agent is not updated. Scott, can you=
- please update this?
-Thank you,
-Cristiana
-
------Original Message-----
-From: Houkes, Bart [mailto:bart.houkes@sogeti.nl]
-Sent: Tuesday, October 22, 2013 4:11 PM
-To: Voicu, Cristiana
-Subject: RE: [yocto] Remote debugging with Yocto
-
-Hi Cristiana,
-
-I did step 2 from http://www.yoctoproject.org/docs/latest/mega-manual/mega-=
-manual.html#getting-the-images, and changed the makefile a lot. I copied th=
-e file stubs-hard.h to stubs-soft.h, but in the end I miss a dependency lss=
-l, which I can't find yet.
-
-When I try to do the same with hob and add tcf-agent, it becomes red and ho=
-b stops without any result. Maybe I should hire the young girl from Yocto's=
- movie, for her it is simple.
-I added tools-debug to my local-conf and start bitbake again. For HOB, I ge=
-t the RPM file which is useless... I need the sama5d34.dtb,  uImage (kernel=
- binary) and a core-image[a-z]*.tar.gz
-
-My local.conf has following:
-BB_NUMBER_THREADS =3D "4"
-PARALLEL_MAKE =3D "-j 4"
-MACHINE ??=3D "sama5d3xek"
-DL_DIR ?=3D "/home/mensfort/workspace_poky/downloads"
-DISTRO ?=3D "poky"
-EXTRA_IMAGE_FEATURES =3D "debug-tweaks tools-debug"    <=3D=3D=3D Just adde=
-d tools-debug.
-USER_CLASSES ?=3D "buildstats image-mklibs image-prelink"
-PATCHRESOLVE =3D "noop"
-BB_DISKMON_DIRS =3D "\
-    STOPTASKS,${TMPDIR},1G,100K \
-    STOPTASKS,${DL_DIR},1G,100K \
-    STOPTASKS,${SSTATE_DIR},1G,100K \
-    ABORT,${TMPDIR},100M,1K \
-    ABORT,${DL_DIR},100M,1K \
-    ABORT,${SSTATE_DIR},100M,1K"
-CONF_VERSION =3D "1"
-SSTATE_MIRRORS =3D ""
-PACKAGE_CLASSES =3D "package_rpm package_ipk"
-
-I get following output from bitbake, no working output anymore.
-| Error: packagegroup-core-boot not found in the base feeds (sama5d3xek cor=
-texa9t2hf-vfp cortexa9hf-vfp armv7at2hf-vfp armv7ahf-vfp armv6thf-vfp armv6=
-hf-vfp armv5tehf-vfp armv5ehf-vfp armv5thf-vfp armv5hf-vfp noarch any all).
-| ERROR: Function failed: do_rootfs (see
-| /home/mensfort/workspace_poky/poky/build-atmel/tmp/work/sama5d3xek-pok
-| y-linux-gnueabi/core-image-minimal/1.0-r0/temp/log.do_rootfs.28222 for
-| further information)
-ERROR: Task 7 (/home/mensfort/workspace_poky/poky/meta/recipes-core/images/=
-core-image-minimal.bb, do_rootfs) failed with exit code '1'
-Currently 1 running tasks (1864 of 1870):
-0: perl-5.14.3-r1 do_package_write_ipk (pid 28220)
-
-Next time to try HOB, I will make a screenshot.
-Maybe I am using the 'old' version 1.4.1. How to change to 1.4.2 or 1.5 ?
-
-greetings,
-Bart
-
-Hi Bart,
-On 10/21/2013 07:31 PM, Houkes, Bart wrote:
-> Hi,
->
-> 2 issues are blocking for my development:
->
-> last few weeks I was able to download my own kernel on the ARM board with=
- SAMA5d3S.
->
-> However, with HOB I cannot add TCF-agent or any other project.. HOB will =
-give some error, becomes red and stops. I cannot compile anymore.
->
-> I need TCF-agent to do remote debugging.
-Regarding tcf-agent, you can find documentation at http://www.yoctoproject.=
-org/docs/latest/mega-manual/mega-manual.html#getting-the-images.
-If you already have tools-debug as extra feature in local.conf, and you rec=
-eive an error in Hob, can you please provide a screenshot with it?
-
-Cristiana
->
-> Another:
->
-> There are some presentations about standard projects. How about kernel dr=
-ivers with cross compilers or Video 4 Linux. How to start those projects?
->
-> greetings,
-> Bart
-> bart.houkes@sogeti.nl
->
-> Disclaimer:
-> This message contains information that may be privileged or confidential =
-and is the property of Sogeti Nederland B.V. or its Group members. It is in=
-tended only for the person to whom it is addressed. If you are not the inte=
-nded recipient, you are not authorized to read, print, retain, copy, dissem=
-inate, distribute, or use this message or any part thereof. If you receive =
-this message in error, please notify the sender immediately and delete all =
-copies of this message.
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
-
-
-
-
-Disclaimer: This message contains information that may be privileged or con=
-fidential and is the property of Sogeti Nederland B.V. or its Group members=
-. It is intended only for the person to whom it is addressed. If you are no=
-t the intended recipient, you are not authorized to read, print, retain, co=
-py, disseminate, distribute, or use this message or any part thereof. If yo=
-u receive this message in error, please notify the sender immediately and d=
-elete all copies of this message.
-
-Disclaimer:=0D
-This message contains information that may be privileged or confidential an=
-d is the property of Sogeti Nederland B.V. or its Group members. It is inte=
-nded only for the person to whom it is addressed. If you are not the intend=
-ed recipient, you are not authorized to read, print, retain, copy, dissemin=
-ate, distribute, or use this message or any part thereof. If you receive th=
-is message in error, please notify the sender immediately and delete all co=
-pies of this message.
-
+--e89a8f5035620e497404e9908e94--
