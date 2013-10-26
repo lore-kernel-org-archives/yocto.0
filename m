@@ -1,34 +1,34 @@
-Return-Path: <martin.jansa@gmail.com>
-Received: from mail-wi0-f182.google.com (mail-wi0-f182.google.com
-	[209.85.212.182])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 08FEFE0177C
-	for <yocto@yoctoproject.org>; Sat, 26 Oct 2013 10:26:18 -0700 (PDT)
-Received: by mail-wi0-f182.google.com with SMTP id ez12so2374393wid.3
-	for <yocto@yoctoproject.org>; Sat, 26 Oct 2013 10:26:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type;
-	bh=+e1ihDWJV2ddsRX+gD52XYv49oIcFGsawPG0Ow6CHuA=;
-	b=TGPcuOgs5hrWoTUcoDftcCpWizyQb10etVEsLZkDV0cWPO3FRctnyK4pqfhuSOI6B9
-	mRWZ0a189yDoK+Rkd1F5PihPZwB6OvDL9hNRHIufZE05f0gUDvXhqHYwuB86lOwyiuOu
-	VlmtA44wxp+wVD8Zn9qGvRH6FEumg2UpaGKABwkcJWiPE3cS5jZloyxx5sL4dULq/v5U
-	UYrIF3NnwOgbcn5q/wn+nQOFcxmNYMAHi2qcm5PLui8goes42Nh/jMzbOaWx3RjuHZrc
-	Jl3q/zX27GZHUdMANb28L9xL6t4wlchWZX1TmJXp8mbJBh9fObrLLFG3PPZQTcWhXeCn
-	lIPA==
+Return-Path: <bart.houkes@sogeti.nl>
+Received: from barracuda1.sogeti.nl (barracuda1.sogeti.nl [194.151.67.71])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4B933E0177D
+	for <yocto@yoctoproject.org>; Sat, 26 Oct 2013 10:28:37 -0700 (PDT)
+X-ASG-Debug-ID: 1382808515-03c2540c631230e50001-yzSStA
+Received: from Heafitz.SGTI.NL ([10.234.192.94]) by barracuda1.sogeti.nl with
+	ESMTP id b59ExGDntt3XMboy for <yocto@yoctoproject.org>;
+	Sat, 26 Oct 2013 19:28:35 +0200 (CEST)
+X-Barracuda-Envelope-From: bart.houkes@sogeti.nl
+X-ASG-Whitelist: Client
+Received: from Sogmb1.SGTI.NL ([fe80::4c8:63ab:e438:d2e5]) by Heafitz.SGTI.NL
+	([fe80::4cd:e589:1805:7a82%11]) with mapi;
+	Sat, 26 Oct 2013 19:28:37 +0200
+From: "Houkes, Bart" <bart.houkes@sogeti.nl>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Date: Sat, 26 Oct 2013 19:28:14 +0200
+Thread-Topic: yocto-kernel issue.
+X-ASG-Orig-Subj: yocto-kernel issue.
+Thread-Index: AQHO0nDCu9UhN6ZR20y/cxktxjZ1Pw==
+Message-ID: <FBA0FF4F0EC22C4AAFF3D9FD07EF2E383A5C6DAE68@SOGMB1.SGTI.NL>
+Accept-Language: en-US, nl-NL
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+acceptlanguage: en-US, nl-NL
 MIME-Version: 1.0
-X-Received: by 10.180.211.7 with SMTP id my7mr2932884wic.17.1382808376792;
-	Sat, 26 Oct 2013 10:26:16 -0700 (PDT)
-Received: by 10.194.179.198 with HTTP; Sat, 26 Oct 2013 10:26:16 -0700 (PDT)
-In-Reply-To: <CAMCfZKFKjEV-oqUOAFVP7gmAzPCBE0LiNry5YPOPMd=jxcBMMQ@mail.gmail.com>
-References: <CAMCfZKHWyKwJ3BquFk=hpRx7nrJN_rzbCRZvTeAFTj5FU6X7zA@mail.gmail.com>
-	<CA+chaQd1GEzyBfOSOfmxdy8qh6a5EJ+J-Yero9sKpV0DfhF1sg@mail.gmail.com>
-	<CAMCfZKFKjEV-oqUOAFVP7gmAzPCBE0LiNry5YPOPMd=jxcBMMQ@mail.gmail.com>
-Date: Sat, 26 Oct 2013 19:26:16 +0200
-Message-ID: <CA+chaQfG7QeJd17-4KFteybX3uuzhMuM9xraORKQBGyqM0ymvg@mail.gmail.com>
-From: Martin Jansa <martin.jansa@gmail.com>
-To: Diego Sueiro <diego.sueiro@gmail.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: BAD_RECOMMENDATIONS / BAD_RECOMMENDS not working
+X-Barracuda-Connect: UNKNOWN[10.234.192.94]
+X-Barracuda-Start-Time: 1382808515
+X-Barracuda-URL: http://10.234.200.14:8000/cgi-mod/mark.cgi
+X-Virus-Scanned: by bsmtpd at sogeti.nl
+X-Barracuda-BRTS-Status: 1
+Subject: yocto-kernel issue.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,88 +40,58 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 26 Oct 2013 17:26:22 -0000
-Content-Type: multipart/alternative; boundary=001a11c259f0175f2304e9a82ae8
-
---001a11c259f0175f2304e9a82ae8
-Content-Type: text/plain; charset=UTF-8
-
-Add .bbappend for packagegroup-core-qt4e and remove qt-demo-init from
-RDEPENDS_${PN} there.
-
-
-On Fri, Oct 25, 2013 at 5:38 PM, Diego Sueiro <diego.sueiro@gmail.com>wrote:
-
->
-> 2013/10/25 Martin Jansa <martin.jansa@gmail.com>
->
->> BAD_RECOMMENDATIONS work only for packages which are installed because
->> something has them in RRECOMMENDS, if your custom image has qt-demo-init in
->> IMAGE_INSTALL or pulled by RDEPENDS in some variable, than it won't be
->> removed (and shouldn't be).
->>
->
-> Thanks Martin,
->
-> qt-demo-init is listed as RDEPENDS on packagegroup-core-qt4e.
-> As soon as my image recipe have a IMAGE_INSTALL =
-> "packagegroup-core-qt4e", I'll have to remove the init script with ROOTFS_POSTPROCESS_COMMAND.
-> That is it?
->
-> The renaming question is: packagegroup-core-qt4e should include
-> qt-demo-init with RRECOMENDS instead of RDEPENDS?
->
-> Regards,
->
-> --
-> *dS
-> Diego Sueiro
->
-> /*long live rock 'n roll*/
->
-
---001a11c259f0175f2304e9a82ae8
-Content-Type: text/html; charset=UTF-8
+X-List-Received-Date: Sat, 26 Oct 2013 17:28:40 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Add .bbappend for packagegroup-core-qt4e and remove qt-dem=
-o-init from RDEPENDS_${PN} there.<br></div><div class=3D"gmail_extra"><br><=
-br><div class=3D"gmail_quote">On Fri, Oct 25, 2013 at 5:38 PM, Diego Sueiro=
- <span dir=3D"ltr">&lt;<a href=3D"mailto:diego.sueiro@gmail.com" target=3D"=
-_blank">diego.sueiro@gmail.com</a>&gt;</span> wrote:<br>
-<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
-x #ccc solid;padding-left:1ex"><div dir=3D"ltr"><div class=3D"gmail_extra">=
-<div class=3D"im"><br><div class=3D"gmail_quote">2013/10/25 Martin Jansa <s=
-pan dir=3D"ltr">&lt;<a href=3D"mailto:martin.jansa@gmail.com" target=3D"_bl=
-ank">martin.jansa@gmail.com</a>&gt;</span><br>
-<blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-=
-left-width:1px;border-left-color:rgb(204,204,204);border-left-style:solid;p=
-adding-left:1ex">
+Hi friends,
 
-<div>BAD_RECOMMENDATIONS work only for packages which are installed because=
- something has them in RRECOMMENDS, if your custom image has qt-demo-init i=
-n IMAGE_INSTALL or pulled by RDEPENDS in some variable, than it won&#39;t b=
-e removed (and shouldn&#39;t be).<br>
+Currently I enabled the TVP5150 device driver in the kernel by using:
+ bitbake -c menuconfig virtual/kernel
+switch on  <*> Texas Instruments TVP5150 video decoder=20
+and rebuild a kernel with > bitbake core-image-minimal=20
 
+I want to see if this device is correct in the new kernel and want to see w=
+here it is inserted. i suspect virtual/kernel may be the wrong name.=20
+For checking modules I want to use   yocto-kernel feature list  build-atmel
 
-</div></blockquote></div><br></div>Thanks Martin,</div><div class=3D"gmail_=
-extra"><br></div><div class=3D"gmail_extra">qt-demo-init is listed as RDEPE=
-NDS on=C2=A0packagegroup-core-qt4e.</div><div class=3D"gmail_extra">As soon=
- as my image recipe have a IMAGE_INSTALL =3D &quot;packagegroup-core-qt4e&q=
-uot;, I&#39;ll have to remove the init script with=C2=A0<span style=3D"font=
--family:arial,sans-serif;font-size:13px">ROOTFS_POSTPROCESS_COMMAND. That i=
-s it?</span></div>
+But this crashes... actually most commands with yocto-kernel are crashing. =
+I tried also to add the path to the BSP.=20
 
+I get following errors:
+> yocto-kernel feature list  build-atmel
+Unable to find the BSP layer for machine build-atmel.
+Please make sure it is listed in bblayers.conf
 
-<div class=3D"gmail_extra"><br clear=3D"all"><div><div dir=3D"ltr"><div>The=
-=C2=A0renaming=C2=A0question is: packagegroup-core-qt4e should include qt-d=
-emo-init with RRECOMENDS instead of RDEPENDS?</div><div class=3D"im"><div><=
-br></div><div>
-Regards,</div>
+or i get:
+>  yocto-kernel feature list /home/mensfort/workspace_poky/poky/build-atmel
+Traceback (most recent call last):
+  File "/home/mensfort/workspace_poky/poky/scripts/yocto-kernel", line 394,=
+ in <module>
+    ret =3D main()
+  File "/home/mensfort/workspace_poky/poky/scripts/yocto-kernel", line 389,=
+ in main
+    invoke_subcommand(args, parser, yocto_kernel_help_usage, subcommands)
+  File "/home/mensfort/workspace_poky/poky/scripts/lib/bsp/help.py", line 7=
+3, in invoke_subcommand
+    subcommands.get(args[0], subcommand_error)[0](args[1:], usage)
+  File "/home/mensfort/workspace_poky/poky/scripts/yocto-kernel", line 182,=
+ in yocto_kernel_feature_list_subcommand
+    yocto_kernel_feature_list(scripts_path, args[0])
+  File "/home/mensfort/workspace_poky/poky/scripts/lib/bsp/kernel.py", line=
+ 594, in yocto_kernel_feature_list
+    features =3D read_features(scripts_path, machine)
+AttributeError: 'NoneType' object has no attribute 'readlines'
 
-<div><br></div>--<br>*dS<br>Diego Sueiro<br><br>/*long live rock &#39;n rol=
-l*/<br></div></div></div>
-</div></div>
-</blockquote></div><br></div>
+Who has a clue?  thanks ahead.
 
---001a11c259f0175f2304e9a82ae8--
+Disclaimer:=0D
+This message contains information that may be privileged or confidential an=
+d is the property of Sogeti Nederland B.V. or its Group members. It is inte=
+nded only for the person to whom it is addressed. If you are not the intend=
+ed recipient, you are not authorized to read, print, retain, copy, dissemin=
+ate, distribute, or use this message or any part thereof. If you receive th=
+is message in error, please notify the sender immediately and delete all co=
+pies of this message.
+
