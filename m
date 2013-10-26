@@ -1,44 +1,36 @@
-Return-Path: <mikelewis@alphalem.com>
-Received: from oproxy4-pub.mail.unifiedlayer.com
-	(oproxy4-pub.mail.unifiedlayer.com [74.220.216.66])
-	by yocto-www.yoctoproject.org (Postfix) with SMTP id 74450E01776
-	for <yocto@yoctoproject.org>; Fri, 25 Oct 2013 18:19:57 -0700 (PDT)
-Received: (qmail 32291 invoked by uid 0); 26 Oct 2013 01:19:56 -0000
-Received: from unknown (HELO box891.bluehost.com) (69.195.124.91)
-	by oproxy4.mail.unifiedlayer.com with SMTP; 26 Oct 2013 01:19:56 -0000
-Received: from [24.130.51.221] (port=36830 helo=[10.0.0.10])
-	by box891.bluehost.com with esmtpsa (TLSv1:CAMELLIA256-SHA:256)
-	(Exim 4.80) (envelope-from <mikelewis@alphalem.com>)
-	id 1VZsXk-0005qw-Pp; Fri, 25 Oct 2013 19:19:56 -0600
-Message-ID: <526B18BC.5050302@alphalem.com>
-Date: Fri, 25 Oct 2013 18:19:56 -0700
-From: Mike Lewis <mikelewis@alphalem.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:17.0) Gecko/20130827 Icedove/17.0.8
+Return-Path: <Amit.Kumar@lntinfotech.com>
+Received: from mail1.bemta7.messagelabs.com (mail1.bemta7.messagelabs.com
+	[216.82.254.113])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 29E49E01776
+	for <yocto@yoctoproject.org>; Fri, 25 Oct 2013 22:17:27 -0700 (PDT)
+Received: from [216.82.254.20:46030] by server-17.bemta-7.messagelabs.com id
+	B2/46-23055-5605B625; Sat, 26 Oct 2013 05:17:25 +0000
+X-Env-Sender: Amit.Kumar@lntinfotech.com
+X-Msg-Ref: server-9.tower-47.messagelabs.com!1382764642!2038978!1
+X-Originating-IP: [203.101.96.7]
+X-StarScan-Received: 
+X-StarScan-Version: 6.9.12; banners=-,-,-
+X-VirusChecked: Checked
+Received: (qmail 19077 invoked from network); 26 Oct 2013 05:17:24 -0000
+Received: from unknown (HELO BLRINMSHTCAS01.bglrodc.lntinfotech.com)
+	(203.101.96.7)
+	by server-9.tower-47.messagelabs.com with AES128-SHA encrypted SMTP;
+	26 Oct 2013 05:17:24 -0000
+Received: from blrinmsmbx01.bglrodc.lntinfotech.com ([169.254.1.229]) by
+	BLRINMSHTCAS01.bglrodc.lntinfotech.com ([172.28.0.81]) with mapi;
+	Sat, 26 Oct 2013 10:47:21 +0530
+From: Amit Kumar <Amit.Kumar@lntinfotech.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Date: Sat, 26 Oct 2013 10:47:20 +0530
+Thread-Topic: telnetd is not running with "core-image-basic"
+Thread-Index: AQHO0gqlJnyRWrdaqEKYEZdjjkDF0w==
+Message-ID: <AF0985D076EB244693F2CCD71AAB10BC2C5FD52282@BLRINMSMBX01.bglrodc.lntinfotech.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+acceptlanguage: en-US
 MIME-Version: 1.0
-To: Bruce Ashfield <bruce.ashfield@gmail.com>
-References: <CAMCfZKFBvSiRSMk5wrEpSEiNNiZeHJw18fbHgHzepo__U=UWNA@mail.gmail.com>
-	<CAAQYJAu+wU0ODvVoTrRBFhVOUVh+CdMg3mimfgGkj-pwJh3A1g@mail.gmail.com>
-	<CAMCfZKF_Rp=uds8tnDPSD9k3GO5dEiHSx9WfYjZ0yPkmh_9YPg@mail.gmail.com>
-	<CAMCfZKFh8iJH4655mzFveFYfz8ebLXkGftSa-MR5mEcMEFV8Vw@mail.gmail.com>
-	<CADkTA4MgxmiOofDLynbOLR=hV-KQ1ic+Eagjm0yetYOtB6FJzw@mail.gmail.com>
-	<CAMCfZKF3aHG4wFMRx2XcdroJJ6ga5v6KHF5DbBTWV7jXOGNX-g@mail.gmail.com>
-	<525FDD08.90400@windriver.com>
-	<CAMCfZKHz82sPsHXjqxbFDJjFNi7ck+BS=_OtyGmb2FYDAxoe1A@mail.gmail.com>
-	<525FE3C9.3070003@windriver.com>
-	<CAMCfZKGUYAcO5FtOKC9iP_XZjRxJ_Xq12ERN=BL_JHA7FJW51w@mail.gmail.com>
-	<5260BDA6.4020807@windriver.com>
-	<CAMCfZKFf3iJCyjMgGQ=y6ng6Kh3_MeEMymgZTE=bTnLpBGN9Mg@mail.gmail.com>
-	<5261974C.7010202@windriver.com> <5266A665.8030303@alphalem.com>
-	<52686723.4080305@windriver.com>
-	<CAMCfZKG1A_c-oy6KLZuctX4Nmca7f1ryBKRaR-sqFVVqNwuSrA@mail.gmail.com>
-	<CADkTA4OWiOmDYDskpe6=uCX+XEE8R0C2aUxjCph+tAjdX=Ae2Q@mail.gmail.com>
-In-Reply-To: <CADkTA4OWiOmDYDskpe6=uCX+XEE8R0C2aUxjCph+tAjdX=Ae2Q@mail.gmail.com>
-X-Identified-User: {2749:box891.bluehost.com:alphalem:alphalem.com}
-	{sentby:smtp auth 24.130.51.221 authed with
-	mikelewis+alphalem.com}
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Custom defconfig is not used
+Subject: telnetd is not running with "core-image-basic"
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -50,164 +42,39 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 26 Oct 2013 01:19:58 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Sat, 26 Oct 2013 05:17:29 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-Bruce: yep, fixed my issue. Sorry for the bother!
+Hi,
+     I tried to run the telnetd with "core-image-basic". I follow up the fo=
+llowing step to enable the telnetd support in my layer.
+I have build the latest inetutils recipe with my layer, the latest version =
+of inteutils is "intetutils_1.9.1". I have build the packages successful.
+But the telnetd is not available in my "core-image-basic". When i run the t=
+he image under QEMU, there is no telnetd under "/usr/sbin/" or "/usr/bin".
+It's not present at all.
 
-Diego: thanks for the solution!
+I have also tried to add the "initscript-telnetd" refer from meta-arago. Bu=
+t not succeed.
 
-- Mike
+Please guild me- how can i will get it with my core-image-basic image. Am i=
+ missing any step here for that?
 
-On 10/25/2013 11:44 AM, Bruce Ashfield wrote:
-> On Fri, Oct 25, 2013 at 7:43 AM, Diego Sueiro <diego.sueiro@gmail.com> wrote:
->> Bruce,
->>
->> Regarding the defconfig not used, I've found this thread on Angstrom devel
->> ML:
->> http://www.mail-archive.com/angstrom-distro-devel@linuxtogo.org/msg06721.html
->>
->> I've replaced "FILESEXTRAPATHS_prepend" with "FILESPATH_prepend" and removed
->> the custom "do_configure_prepend" function and bitbake is now using my
->> defconfig.
->> So, it seems that there is an issue with FILESEXTRAPATHS variable.
->>
-> Aha. That does make sense.
->
-> Mike: does that same change fix your issues ?
->
-> Bruce
->
->> Regards,
->>
->> --
->> *dS
->> Diego Sueiro
->>
->> /*long live rock 'n roll*/
->>
->>
->> 2013/10/23 Bruce Ashfield <bruce.ashfield@windriver.com>
->>> On 13-10-22 12:23 PM, Mike Lewis wrote:
->>>> Hi Bruce,
->>>>
->>>> I'm trying to accomplish the nearly the same thing (i.e. adding config
->>>> fragment) and I'm having the same issue at the do_patch step. Were you
->>>> able to reproduce this on your end?
->>>
->>> Mike,
->>>
->>> Is you config/layer somewhere than I can have a look at it ? I was trying
->>> some builds here, and my tests are working. But I'd like to try it
->>> with your config as well.
->>>
->>> Bruce
->>>
->>>
->>>> Thanks,
->>>> Mike
->>>>
->>>> On 10/18/2013 01:17 PM, Bruce Ashfield wrote:
->>>>> On 13-10-18 05:17 AM, Diego Sueiro wrote:
->>>>>>
->>>>>> 2013/10/18 Bruce Ashfield <bruce.ashfield@windriver.com
->>>>>> <mailto:bruce.ashfield@windriver.com>>
->>>>>>
->>>>>>      I fell behind today .. i had 2300 unread email to start this
->>>>>> morning :)
->>>>>>      Is there a way that I can get a copy of your recipes and layers ?
->>>>>> If
->>>>>>      I can do a build myself, I can easily debug and fix this ..
->>>>>>      otherwise, we'll
->>>>>>      go back and forth many times debugging.
->>>>>>
->>>>>>      Cheers,
->>>>>>
->>>>>>      Bruce
->>>>>>
->>>>>>
->>>>>> I'm using the environment provided by Angstrom from it's github setup
->>>>>> scripts.
->>>>>> If you want to exactly reproduce it you need to:
->>>>>>
->>>>>>      git clone
->>>>>> https://github.com/Angstrom-distribution/setup-scripts.git
->>>>>>      cd setup-scripts
->>>>>>      git checkout angstrom-v2013.06-yocto1.4
->>>>>>      MACHINE=beaglebone ./oebb.sh config beaglebone
->>>>>>
->>>>>> Here is the setup and files for meta-mine:
->>>>>>
->>>>>> bblayers.conf:
->>>>>>
->>>>>>      BBLAYERS = \"
->>>>>>
->>>>>>          ...
->>>>>>          ${TOPDIR}/sources/meta-mine \
->>>>>>          "
->>>>>>
->>>>>> meta-mine/conf/layer.conf:
->>>>>>
->>>>>>      # We have a conf and classes directory, append to BBPATH
->>>>>>      BBPATH .= ":${LAYERDIR}"
->>>>>>      # We have a recipes directory, add to BBFILES
->>>>>>      BBFILES += "${LAYERDIR}/recipes*/*/*.bb
->>>>>>      ${LAYERDIR}/recipes*/*/*.bbappend"
->>>>>>      BBFILE_COLLECTIONS += "mine-layer"
->>>>>>      BBFILE_PATTERN_mine-layer := "^${LAYERDIR}/"
->>>>>>      BBFILE_PRIORITY_mine-layer = "10"
->>>>>>      LAYERDEPENDS_mine-layer = "angstrom-layer"
->>>>>>
->>>>>> meta-mine/recipes-kernel/linux/linux-mainline_3.8.bbappend:
->>>>>>
->>>>>>      FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}-3.8:"
->>>>>>      inherit kernel
->>>>>>      require recipes-kernel/linux/linux-yocto.inc
->>>>>>      COMPATIBLE_MACHINE_beaglebone = "(beaglebone)"
->>>>>>      SRC_URI += " file://config-addons.cfg "
->>>>>>
->>>>>> meta-mine/recipes-kernel/linux/linux-mainline-3.8/config-addons.cfg:
->>>>>>
->>>>>>      CONFIG_WATCHDOG_NOWAYOUT=y
->>>>>>      CONFIG_NTFS_FS=y
->>>>>>      CONFIG_NTFS_RW=y
->>>>>>
->>>>>>
->>>>>>
->>>>>> But I think that instead of using the whole Angstrom you can just use
->>>>>> poky and meta-beagleboard/common-bsp on dylan branch.
->>>>>
->>>>> Great. I'll launch some test builds and see what breaks (or works) :)
->>>>>
->>>>> Bruce
->>>>>
->>>>>>
->>>>>> Regards,
->>>>>>
->>>>>> --
->>>>>> *dS
->>>>>> Diego Sueiro
->>>>>>
->>>>>> /*long live rock 'n roll*/
->>>>>
->>>>> _______________________________________________
->>>>> yocto mailing list
->>>>> yocto@yoctoproject.org
->>>>> https://lists.yoctoproject.org/listinfo/yocto
->>>>
->>> _______________________________________________
->>> yocto mailing list
->>> yocto@yoctoproject.org
->>> https://lists.yoctoproject.org/listinfo/yocto
->>
->>
->> _______________________________________________
->> yocto mailing list
->> yocto@yoctoproject.org
->> https://lists.yoctoproject.org/listinfo/yocto
->>
->
->
 
+
+
+Thanks & Regards
+Amit K
+
+
+
+The contents of this e-mail and any attachment(s) may contain confidential =
+or privileged information for the intended recipient(s). Unintended recipie=
+nts are prohibited from taking action on the basis of information in this e=
+-mail and  using or disseminating the information,  and must notify the sen=
+der and delete it from their system. L&T Infotech will not accept responsib=
+ility or liability for the accuracy or completeness of, or the presence of =
+any virus or disabling code in this e-mail"
 
