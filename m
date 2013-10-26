@@ -1,30 +1,34 @@
-Return-Path: <amittomer25@gmail.com>
-Received: from mail-wg0-f52.google.com (mail-wg0-f52.google.com [74.125.82.52])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6B0FAE01664
-	for <yocto@yoctoproject.org>; Sat, 26 Oct 2013 10:15:55 -0700 (PDT)
-Received: by mail-wg0-f52.google.com with SMTP id k14so251182wgh.31
-	for <yocto@yoctoproject.org>; Sat, 26 Oct 2013 10:15:54 -0700 (PDT)
+Return-Path: <martin.jansa@gmail.com>
+Received: from mail-wi0-f182.google.com (mail-wi0-f182.google.com
+	[209.85.212.182])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 08FEFE0177C
+	for <yocto@yoctoproject.org>; Sat, 26 Oct 2013 10:26:18 -0700 (PDT)
+Received: by mail-wi0-f182.google.com with SMTP id ez12so2374393wid.3
+	for <yocto@yoctoproject.org>; Sat, 26 Oct 2013 10:26:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:content-type:content-transfer-encoding;
-	bh=ZsAY4hOP0Y7cn4EdWdvEJh/nTmxtw3IewD3ziU/sfgE=;
-	b=Db+r0zwH57EcxZ0BUDeN3UtNejmKxUM7KKQ+bzTU6a8vPuBIgEZpNG3vrKMc0U8Vr6
-	zAmKBImSOKpqzjIQGQz9QA4WYWgPYs7mLvzkB7T61zgsnYN9ujHjWriKDVFgef1GWaXf
-	cQyEx3vUGlsGh7Wx3uh2df9Z2T7OG02CKCCHcx1aqL18jdasiL3QjJqurESObCeEWz6G
-	krsi+y45EQ1XqzXH5BdttJaRDbCmnopSGAeSEa1jDRHvCXSGc36IrcSY+TGD624oIAyw
-	BUl8CtzJqXJn/RSntGcJ7Yz76haHTWYoEYpO2OOUhD2LEmZlMyNNrRfiAWwYCPtZWxeU
-	h5PQ==
+	:cc:content-type;
+	bh=+e1ihDWJV2ddsRX+gD52XYv49oIcFGsawPG0Ow6CHuA=;
+	b=TGPcuOgs5hrWoTUcoDftcCpWizyQb10etVEsLZkDV0cWPO3FRctnyK4pqfhuSOI6B9
+	mRWZ0a189yDoK+Rkd1F5PihPZwB6OvDL9hNRHIufZE05f0gUDvXhqHYwuB86lOwyiuOu
+	VlmtA44wxp+wVD8Zn9qGvRH6FEumg2UpaGKABwkcJWiPE3cS5jZloyxx5sL4dULq/v5U
+	UYrIF3NnwOgbcn5q/wn+nQOFcxmNYMAHi2qcm5PLui8goes42Nh/jMzbOaWx3RjuHZrc
+	Jl3q/zX27GZHUdMANb28L9xL6t4wlchWZX1TmJXp8mbJBh9fObrLLFG3PPZQTcWhXeCn
+	lIPA==
 MIME-Version: 1.0
-X-Received: by 10.180.79.227 with SMTP id m3mr3063827wix.2.1382807754327; Sat,
-	26 Oct 2013 10:15:54 -0700 (PDT)
-Received: by 10.227.197.69 with HTTP; Sat, 26 Oct 2013 10:15:54 -0700 (PDT)
-In-Reply-To: <CABHD4K9zMKu6kxJqNOo9-WfMaENEg_dRg=CuajJDiRDPpEJ8=w@mail.gmail.com>
-References: <CABHD4K9zMKu6kxJqNOo9-WfMaENEg_dRg=CuajJDiRDPpEJ8=w@mail.gmail.com>
-Date: Sat, 26 Oct 2013 22:45:54 +0530
-Message-ID: <CABHD4K-WnaT3z5hGmbrfwy+=-d2rukK3+89L9m2feu8nHEZDsA@mail.gmail.com>
-From: Amit Tomer <amittomer25@gmail.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: How to recreate or modify already existing usres in /etc/passwd in Yocto
+X-Received: by 10.180.211.7 with SMTP id my7mr2932884wic.17.1382808376792;
+	Sat, 26 Oct 2013 10:26:16 -0700 (PDT)
+Received: by 10.194.179.198 with HTTP; Sat, 26 Oct 2013 10:26:16 -0700 (PDT)
+In-Reply-To: <CAMCfZKFKjEV-oqUOAFVP7gmAzPCBE0LiNry5YPOPMd=jxcBMMQ@mail.gmail.com>
+References: <CAMCfZKHWyKwJ3BquFk=hpRx7nrJN_rzbCRZvTeAFTj5FU6X7zA@mail.gmail.com>
+	<CA+chaQd1GEzyBfOSOfmxdy8qh6a5EJ+J-Yero9sKpV0DfhF1sg@mail.gmail.com>
+	<CAMCfZKFKjEV-oqUOAFVP7gmAzPCBE0LiNry5YPOPMd=jxcBMMQ@mail.gmail.com>
+Date: Sat, 26 Oct 2013 19:26:16 +0200
+Message-ID: <CA+chaQfG7QeJd17-4KFteybX3uuzhMuM9xraORKQBGyqM0ymvg@mail.gmail.com>
+From: Martin Jansa <martin.jansa@gmail.com>
+To: Diego Sueiro <diego.sueiro@gmail.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: BAD_RECOMMENDATIONS / BAD_RECOMMENDS not working
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -36,107 +40,88 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 26 Oct 2013 17:15:56 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Sat, 26 Oct 2013 17:26:22 -0000
+Content-Type: multipart/alternative; boundary=001a11c259f0175f2304e9a82ae8
+
+--001a11c259f0175f2304e9a82ae8
+Content-Type: text/plain; charset=UTF-8
+
+Add .bbappend for packagegroup-core-qt4e and remove qt-demo-init from
+RDEPENDS_${PN} there.
+
+
+On Fri, Oct 25, 2013 at 5:38 PM, Diego Sueiro <diego.sueiro@gmail.com>wrote:
+
+>
+> 2013/10/25 Martin Jansa <martin.jansa@gmail.com>
+>
+>> BAD_RECOMMENDATIONS work only for packages which are installed because
+>> something has them in RRECOMMENDS, if your custom image has qt-demo-init in
+>> IMAGE_INSTALL or pulled by RDEPENDS in some variable, than it won't be
+>> removed (and shouldn't be).
+>>
+>
+> Thanks Martin,
+>
+> qt-demo-init is listed as RDEPENDS on packagegroup-core-qt4e.
+> As soon as my image recipe have a IMAGE_INSTALL =
+> "packagegroup-core-qt4e", I'll have to remove the init script with ROOTFS_POSTPROCESS_COMMAND.
+> That is it?
+>
+> The renaming question is: packagegroup-core-qt4e should include
+> qt-demo-init with RRECOMENDS instead of RDEPENDS?
+>
+> Regards,
+>
+> --
+> *dS
+> Diego Sueiro
+>
+> /*long live rock 'n roll*/
+>
+
+--001a11c259f0175f2304e9a82ae8
+Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-Running out of ideas
+<div dir=3D"ltr">Add .bbappend for packagegroup-core-qt4e and remove qt-dem=
+o-init from RDEPENDS_${PN} there.<br></div><div class=3D"gmail_extra"><br><=
+br><div class=3D"gmail_quote">On Fri, Oct 25, 2013 at 5:38 PM, Diego Sueiro=
+ <span dir=3D"ltr">&lt;<a href=3D"mailto:diego.sueiro@gmail.com" target=3D"=
+_blank">diego.sueiro@gmail.com</a>&gt;</span> wrote:<br>
+<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
+x #ccc solid;padding-left:1ex"><div dir=3D"ltr"><div class=3D"gmail_extra">=
+<div class=3D"im"><br><div class=3D"gmail_quote">2013/10/25 Martin Jansa <s=
+pan dir=3D"ltr">&lt;<a href=3D"mailto:martin.jansa@gmail.com" target=3D"_bl=
+ank">martin.jansa@gmail.com</a>&gt;</span><br>
+<blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-=
+left-width:1px;border-left-color:rgb(204,204,204);border-left-style:solid;p=
+adding-left:1ex">
 
-Can I get some fresh ideas for this issue
-
----------- Forwarded message ----------
-From: Amit Tomer <amittomer25@gmail.com>
-Date: Wed, Oct 23, 2013 at 11:14 PM
-Subject: How to recreate or modify already existing usres in
-/etc/passwd in Yocto
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>, Hans Beck=E9rus
-<hans.beckerus@gmail.com>
-
-
-I have a requirement where I have to modify the already existing users
-in /etc/passwd file.
-I have tried doing this with below method and changes are reflected to
-rootfs/etc/passwd .
-But when I code load my image to target board ,and login as root
-,prompt ask for password(Didn't make any changes related to root user
-in /etc/passwd).
-
-Earlier with older image login as root doesn't ask for any password
-
-Below is the method which I used to modify the /etc/passwd
-
-SRC_URI +=3D "file://passwd"
-
-do_install_append() {
-install -d ${D}${sysconfdir}/base-passwd ${D}${sysconfdir}
-install -m 0644 ${WORKDIR}/passwd ${D}${sysconfdir}/passwd
-}
-
-Content of origin/earlier file is
-
-root:x:0:0:root:/home/root:/bin/sh
-daemon:x:1:1:daemon:/usr/sbin:/bin/sh
-bin:x:2:2:bin:/bin:/bin/sh
-sys:x:3:3:sys:/dev:/bin/sh
-sync:x:4:65534:sync:/bin:/bin/sync
-games:x:5:60:games:/usr/games:/bin/sh
-man:x:6:12:man:/var/cache/man:/bin/sh
-lp:x:7:7:lp:/var/spool/lpd:/bin/sh
-mail:x:8:8:mail:/var/mail:/bin/sh
-news:x:9:9:news:/var/spool/news:/bin/sh
-uucp:x:10:10:uucp:/var/spool/uucp:/bin/sh
-proxy:x:13:13:proxy:/bin:/bin/sh
-www-data:x:33:33:www-data:/var/www:/bin/sh
-backup:x:34:34:backup:/var/backups:/bin/sh
-list:x:38:38:Mailing List Manager:/var/list:/bin/sh
-irc:x:39:39:ircd:/var/run/ircd:/bin/sh
-gnats:x:41:41:Gnats Bug-Reporting System (admin):/var/lib/gnats:/bin/sh
-nobody:x:65534:65534:nobody:/nonexistent:/bin/sh
-fuwmshey:x:0:0::/user/fuwmshey:/bin/sh
-frfhsjk:x:999:999::/home/frfhsjk:/bin/sh
-ftp:x:998:998::/var/lib/ftp:/bin/sh
-messagebus:x:997:996::/var/lib/dbus:/bin/sh
-quagga:x:996:995::/var/run/quagga:/bin/sh
-sshd:x:995:992::/var/run/sshd:/bin/sh
-
-Above file we have downloaded from base-passwd_3.5.26.tar.gz and added
-some new users like frfhsjk and quaqqa using USERADD_PARAM_${PN}.
+<div>BAD_RECOMMENDATIONS work only for packages which are installed because=
+ something has them in RRECOMMENDS, if your custom image has qt-demo-init i=
+n IMAGE_INSTALL or pulled by RDEPENDS in some variable, than it won&#39;t b=
+e removed (and shouldn&#39;t be).<br>
 
 
-Content of modified file
+</div></blockquote></div><br></div>Thanks Martin,</div><div class=3D"gmail_=
+extra"><br></div><div class=3D"gmail_extra">qt-demo-init is listed as RDEPE=
+NDS on=C2=A0packagegroup-core-qt4e.</div><div class=3D"gmail_extra">As soon=
+ as my image recipe have a IMAGE_INSTALL =3D &quot;packagegroup-core-qt4e&q=
+uot;, I&#39;ll have to remove the init script with=C2=A0<span style=3D"font=
+-family:arial,sans-serif;font-size:13px">ROOTFS_POSTPROCESS_COMMAND. That i=
+s it?</span></div>
 
 
-root:x:0:0:root:/home/root:/bin/sh
-daemon:x:1:1:daemon:/usr/sbin:/bin/flase
-bin:x:2:2:bin:/bin:/bin/false
-sys:x:3:3:sys:/dev:/bin/false
-sync:x:4:65534:sync:/bin:/bin/flase
-games:x:5:60:games:/usr/games:/bin/false
-man:x:6:12:man:/var/cache/man:/bin/false
-lp:x:7:7:lp:/var/spool/lpd:/bin/false
-mail:x:8:8:mail:/var/mail:/bin/false
-news:x:9:9:news:/var/spool/news:/bin/false
-uucp:x:10:10:uucp:/var/spool/uucp:/bin/flase
-proxy:x:13:13:proxy:/bin:/bin/false
-www-data:x:33:33:www-data:/var/www:/bin/false
-backup:x:34:34:backup:/var/backups:/bin/false
-list:x:38:38:Mailing List Manager:/var/list:/bin/false
-irc:x:39:39:ircd:/var/run/ircd:/bin/false
-gnats:x:41:41:Gnats Bug-Reporting System (admin):/var/lib/gnats:/bin/false
-nobody:x:65534:65534:nobody:/nonexistent:/bin/false
-fuwmshey:x:0:0::/user/fuwmshey:/bin/sh
-frfhsjk:x:999:999::/home/frfhsjk:/bin/false
-ftp:x:998:998::/var/lib/ftp:/bin/false
-messagebus:x:997:996::/var/lib/dbus:/bin/false
-quagga:x:996:995::/var/run/quagga:/bin/false
-sshd:x:995:992::/var/run/sshd:/bin/false
+<div class=3D"gmail_extra"><br clear=3D"all"><div><div dir=3D"ltr"><div>The=
+=C2=A0renaming=C2=A0question is: packagegroup-core-qt4e should include qt-d=
+emo-init with RRECOMENDS instead of RDEPENDS?</div><div class=3D"im"><div><=
+br></div><div>
+Regards,</div>
 
-We changed the command /bin/sh to /bin/false for every user except
-root and tor4nsn.
+<div><br></div>--<br>*dS<br>Diego Sueiro<br><br>/*long live rock &#39;n rol=
+l*/<br></div></div></div>
+</div></div>
+</blockquote></div><br></div>
 
-I wanted to know what are ways to modify already existing members in /etc/p=
-asswd
-
-Thanks ,
-Amit
-
+--001a11c259f0175f2304e9a82ae8--
