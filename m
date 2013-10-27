@@ -1,27 +1,30 @@
-Return-Path: <gary@mlbassoc.com>
-Received: from mail.chez-thomas.org (mail.mlbassoc.com [65.100.170.105])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7FFD4E01783
-	for <yocto@yoctoproject.org>; Sun, 27 Oct 2013 06:28:56 -0700 (PDT)
-Received: by mail.chez-thomas.org (Postfix, from userid 1998)
-	id BB079F811ED; Sun, 27 Oct 2013 07:28:55 -0600 (MDT)
-X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on
-	hermes.chez-thomas.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=4.0 tests=ALL_TRUSTED,BAYES_00
-	autolearn=unavailable version=3.3.2
-Received: from [192.168.1.114] (zeus [192.168.1.114])
-	by mail.chez-thomas.org (Postfix) with ESMTP id CE79BF811EB;
-	Sun, 27 Oct 2013 07:28:54 -0600 (MDT)
-Message-ID: <526D151F.2080403@mlbassoc.com>
-Date: Sun, 27 Oct 2013 07:29:03 -0600
-From: Gary Thomas <gary@mlbassoc.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:24.0) Gecko/20100101 Thunderbird/24.0
+Return-Path: <amittomer25@gmail.com>
+Received: from mail-we0-f181.google.com (mail-we0-f181.google.com
+	[74.125.82.181])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 060BCE01734
+	for <yocto@yoctoproject.org>; Sun, 27 Oct 2013 09:16:54 -0700 (PDT)
+Received: by mail-we0-f181.google.com with SMTP id t60so5718609wes.12
+	for <yocto@yoctoproject.org>; Sun, 27 Oct 2013 09:16:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:content-type; bh=JEMSyQUCFtu3Kb2ajhbBGq81lk27FfhpUVfWI6Z/PG8=;
+	b=r8UWsuvpi1jSQn7KYo7ByUQdOjik7LTbuTIxWtockhGoYx4sbxl+aYlpQWGdjRb8v6
+	D0wfaWxxn1Yy2CTnVRHXmioD9r5fbhbCxGB9kLQ6D2ypkAdB7qmA0UAItmdfrfeFxT86
+	cYMytot7t6ZJxp7EDvXETV9wBV+u++z8I55LQJxWBICgkU5xk3ot3ncZPXVr1PEHANXd
+	ePXm7Qo/TzmxcoeS4quXXZN90lCPRNOO17Goc9m9/+bw8Fe6qMXrHTdtcjwkl38ei28j
+	N7dO6YOwJ/jo/ZmhliUV000ENMPv/HgLH1Cd6BMQ2shlrXm4RhLS25ZIQOoUjP+Y0Y+U
+	7EFg==
 MIME-Version: 1.0
-To: yocto@yoctoproject.org
-References: <AF0985D076EB244693F2CCD71AAB10BC2C5FD52282@BLRINMSMBX01.bglrodc.lntinfotech.com>
-In-Reply-To: <AF0985D076EB244693F2CCD71AAB10BC2C5FD52282@BLRINMSMBX01.bglrodc.lntinfotech.com>
-Subject: Re: telnetd is not running with "core-image-basic"
+X-Received: by 10.180.79.227 with SMTP id m3mr5892620wix.2.1382890612797; Sun,
+	27 Oct 2013 09:16:52 -0700 (PDT)
+Received: by 10.227.197.69 with HTTP; Sun, 27 Oct 2013 09:16:52 -0700 (PDT)
+In-Reply-To: <CABHD4K9zMKu6kxJqNOo9-WfMaENEg_dRg=CuajJDiRDPpEJ8=w@mail.gmail.com>
+References: <CABHD4K9zMKu6kxJqNOo9-WfMaENEg_dRg=CuajJDiRDPpEJ8=w@mail.gmail.com>
+Date: Sun, 27 Oct 2013 21:46:52 +0530
+Message-ID: <CABHD4K-Z3P8fsK=dzN3N5bL1BG=f8ULLPt_UpKNDzaz_x_-NrA@mail.gmail.com>
+From: Amit Tomer <amittomer25@gmail.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: How to recreate or modify already existing usres in /etc/passwd in Yocto
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -33,30 +36,100 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 27 Oct 2013 13:29:00 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Sun, 27 Oct 2013 16:16:55 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
-On 2013-10-25 23:17, Amit Kumar wrote:
-> Hi,
->       I tried to run the telnetd with "core-image-basic". I follow up the following step to enable the telnetd support in my layer.
-> I have build the latest inetutils recipe with my layer, the latest version of inteutils is "intetutils_1.9.1". I have build the packages successful.
-> But the telnetd is not available in my "core-image-basic". When i run the the image under QEMU, there is no telnetd under "/usr/sbin/" or "/usr/bin".
-> It's not present at all.
+We have fixed this issue by patching the passwd.master file .
+So ,if someone wanted to modify the alreay existing usres in /etc/paswd file
+one way is to patch the master file rather than pathcing passwd file.
+
+Thanks
+Amit.
+
+On Wed, Oct 23, 2013 at 11:14 PM, Amit Tomer <amittomer25@gmail.com> wrote:
+> I have a requirement where I have to modify the already existing users
+> in /etc/passwd file.
+> I have tried doing this with below method and changes are reflected to
+> rootfs/etc/passwd .
+> But when I code load my image to target board ,and login as root
+> ,prompt ask for password(Didn't make any changes related to root user
+> in /etc/passwd).
 >
-> I have also tried to add the "initscript-telnetd" refer from meta-arago. But not succeed.
+> Earlier with older image login as root doesn't ask for any password
 >
-> Please guild me- how can i will get it with my core-image-basic image. Am i missing any step here for that?
-
-Building the package is not enough by itself.  You need to get it added to the
-image that you are using.  This can be done either at build time or at run time.
-
-To add the package at build time, simply add this to your local.conf:
-   CORE_IMAGE_EXTRA_INSTALL += "inetutils inetutils-telnetd"
-
--- 
-------------------------------------------------------------
-Gary Thomas                 |  Consulting for the
-MLB Associates              |    Embedded world
-------------------------------------------------------------
+> Below is the method which I used to modify the /etc/passwd
+>
+> SRC_URI += "file://passwd"
+>
+> do_install_append() {
+> install -d ${D}${sysconfdir}/base-passwd ${D}${sysconfdir}
+> install -m 0644 ${WORKDIR}/passwd ${D}${sysconfdir}/passwd
+> }
+>
+> Content of origin/earlier file is
+>
+> root:x:0:0:root:/home/root:/bin/sh
+> daemon:x:1:1:daemon:/usr/sbin:/bin/sh
+> bin:x:2:2:bin:/bin:/bin/sh
+> sys:x:3:3:sys:/dev:/bin/sh
+> sync:x:4:65534:sync:/bin:/bin/sync
+> games:x:5:60:games:/usr/games:/bin/sh
+> man:x:6:12:man:/var/cache/man:/bin/sh
+> lp:x:7:7:lp:/var/spool/lpd:/bin/sh
+> mail:x:8:8:mail:/var/mail:/bin/sh
+> news:x:9:9:news:/var/spool/news:/bin/sh
+> uucp:x:10:10:uucp:/var/spool/uucp:/bin/sh
+> proxy:x:13:13:proxy:/bin:/bin/sh
+> www-data:x:33:33:www-data:/var/www:/bin/sh
+> backup:x:34:34:backup:/var/backups:/bin/sh
+> list:x:38:38:Mailing List Manager:/var/list:/bin/sh
+> irc:x:39:39:ircd:/var/run/ircd:/bin/sh
+> gnats:x:41:41:Gnats Bug-Reporting System (admin):/var/lib/gnats:/bin/sh
+> nobody:x:65534:65534:nobody:/nonexistent:/bin/sh
+> fuwmshey:x:0:0::/user/fuwmshey:/bin/sh
+> frfhsjk:x:999:999::/home/frfhsjk:/bin/sh
+> ftp:x:998:998::/var/lib/ftp:/bin/sh
+> messagebus:x:997:996::/var/lib/dbus:/bin/sh
+> quagga:x:996:995::/var/run/quagga:/bin/sh
+> sshd:x:995:992::/var/run/sshd:/bin/sh
+>
+> Above file we have downloaded from base-passwd_3.5.26.tar.gz and added
+> some new users like frfhsjk and quaqqa using USERADD_PARAM_${PN}.
+>
+>
+> Content of modified file
+>
+>
+> root:x:0:0:root:/home/root:/bin/sh
+> daemon:x:1:1:daemon:/usr/sbin:/bin/flase
+> bin:x:2:2:bin:/bin:/bin/false
+> sys:x:3:3:sys:/dev:/bin/false
+> sync:x:4:65534:sync:/bin:/bin/flase
+> games:x:5:60:games:/usr/games:/bin/false
+> man:x:6:12:man:/var/cache/man:/bin/false
+> lp:x:7:7:lp:/var/spool/lpd:/bin/false
+> mail:x:8:8:mail:/var/mail:/bin/false
+> news:x:9:9:news:/var/spool/news:/bin/false
+> uucp:x:10:10:uucp:/var/spool/uucp:/bin/flase
+> proxy:x:13:13:proxy:/bin:/bin/false
+> www-data:x:33:33:www-data:/var/www:/bin/false
+> backup:x:34:34:backup:/var/backups:/bin/false
+> list:x:38:38:Mailing List Manager:/var/list:/bin/false
+> irc:x:39:39:ircd:/var/run/ircd:/bin/false
+> gnats:x:41:41:Gnats Bug-Reporting System (admin):/var/lib/gnats:/bin/false
+> nobody:x:65534:65534:nobody:/nonexistent:/bin/false
+> fuwmshey:x:0:0::/user/fuwmshey:/bin/sh
+> frfhsjk:x:999:999::/home/frfhsjk:/bin/false
+> ftp:x:998:998::/var/lib/ftp:/bin/false
+> messagebus:x:997:996::/var/lib/dbus:/bin/false
+> quagga:x:996:995::/var/run/quagga:/bin/false
+> sshd:x:995:992::/var/run/sshd:/bin/false
+>
+> We changed the command /bin/sh to /bin/false for every user except
+> root and tor4nsn.
+>
+> I wanted to know what are ways to modify already existing members in /etc/passwd
+>
+> Thanks ,
+> Amit
 
