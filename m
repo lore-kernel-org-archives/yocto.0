@@ -1,40 +1,27 @@
-Return-Path: <wd@denx.de>
-Received: from mail-out.m-online.net (mail-out.m-online.net [212.18.0.9])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2D4B0E0172A
-	for <yocto@yoctoproject.org>; Sun, 27 Oct 2013 01:39:35 -0700 (PDT)
-Received: from frontend1.mail.m-online.net (unknown [192.168.8.180])
-	by mail-out.m-online.net (Postfix) with ESMTP id 3d6stY3NXdz4KK4F;
-	Sun, 27 Oct 2013 09:39:33 +0100 (CET)
-Received: from localhost (dynscan1.mnet-online.de [192.168.6.68])
-	by mail.m-online.net (Postfix) with ESMTP id 3d6stY3DK0zbbhS;
-	Sun, 27 Oct 2013 09:39:33 +0100 (CET)
-X-Virus-Scanned: amavisd-new at mnet-online.de
-Received: from smtp-auth.mnet-online.de ([192.168.8.180])
-	by localhost (dynscan1.mail.m-online.net [192.168.6.68]) (amavisd-new,
-	port 10024)
-	with ESMTP id rT4wiQ78TdmM; Sun, 27 Oct 2013 09:39:32 +0100 (CET)
-X-Auth-Info: SyM8RL+8RKfCtwMHpvRD7T9aYgJBhCVbvivaFlOsvKM=
-Received: from diddl.denx.de (host-80-81-18-216.customer.m-online.net
-	[80.81.18.216]) by smtp-auth.mnet-online.de (Postfix) with ESMTPA;
-	Sun, 27 Oct 2013 09:39:32 +0100 (CET)
-Received: from gemini.denx.de (gemini.denx.de [10.0.0.2])
-	by diddl.denx.de (Postfix) with ESMTP id 3E25C1A4FA3;
-	Sun, 27 Oct 2013 09:39:32 +0100 (CET)
-Received: from gemini.denx.de (localhost [IPv6:::1])
-	by gemini.denx.de (Postfix) with ESMTP id 049CB380495;
-	Sun, 27 Oct 2013 09:39:32 +0100 (MET)
-To: Edward Vidal <vidal.develone@gmail.com>
-From: Wolfgang Denk <wd@denx.de>
+Return-Path: <gary@mlbassoc.com>
+Received: from mail.chez-thomas.org (mail.mlbassoc.com [65.100.170.105])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7FFD4E01783
+	for <yocto@yoctoproject.org>; Sun, 27 Oct 2013 06:28:56 -0700 (PDT)
+Received: by mail.chez-thomas.org (Postfix, from userid 1998)
+	id BB079F811ED; Sun, 27 Oct 2013 07:28:55 -0600 (MDT)
+X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on
+	hermes.chez-thomas.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=4.0 tests=ALL_TRUSTED,BAYES_00
+	autolearn=unavailable version=3.3.2
+Received: from [192.168.1.114] (zeus [192.168.1.114])
+	by mail.chez-thomas.org (Postfix) with ESMTP id CE79BF811EB;
+	Sun, 27 Oct 2013 07:28:54 -0600 (MDT)
+Message-ID: <526D151F.2080403@mlbassoc.com>
+Date: Sun, 27 Oct 2013 07:29:03 -0600
+From: Gary Thomas <gary@mlbassoc.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:24.0) Gecko/20100101 Thunderbird/24.0
 MIME-Version: 1.0
-In-reply-to: <CANwz6nzQq8a1RnqL3Ety2tJ-CkTOnOObQtiEVXu6+TOhve5LAA@mail.gmail.com>
-References: <CANwz6nzQq8a1RnqL3Ety2tJ-CkTOnOObQtiEVXu6+TOhve5LAA@mail.gmail.com>
-Comments: In-reply-to Edward Vidal <vidal.develone@gmail.com>
-	message dated "Wed, 23 Oct 2013 10:09:45 -0600."
-Date: Sun, 27 Oct 2013 09:39:31 +0100
-Message-Id: <20131027083932.049CB380495@gemini.denx.de>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	Rudolf Streif <rstreif@linuxfoundation.org>
-Subject: Re: uimage instead of zImage
+To: yocto@yoctoproject.org
+References: <AF0985D076EB244693F2CCD71AAB10BC2C5FD52282@BLRINMSMBX01.bglrodc.lntinfotech.com>
+In-Reply-To: <AF0985D076EB244693F2CCD71AAB10BC2C5FD52282@BLRINMSMBX01.bglrodc.lntinfotech.com>
+Subject: Re: telnetd is not running with "core-image-basic"
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -46,40 +33,30 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 27 Oct 2013 08:39:41 -0000
-Content-type: text/plain; charset=UTF-8
-Content-transfer-encoding: 8bit
+X-List-Received-Date: Sun, 27 Oct 2013 13:29:00 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Dear Edward,
+On 2013-10-25 23:17, Amit Kumar wrote:
+> Hi,
+>       I tried to run the telnetd with "core-image-basic". I follow up the following step to enable the telnetd support in my layer.
+> I have build the latest inetutils recipe with my layer, the latest version of inteutils is "intetutils_1.9.1". I have build the packages successful.
+> But the telnetd is not available in my "core-image-basic". When i run the the image under QEMU, there is no telnetd under "/usr/sbin/" or "/usr/bin".
+> It's not present at all.
+>
+> I have also tried to add the "initscript-telnetd" refer from meta-arago. But not succeed.
+>
+> Please guild me- how can i will get it with my core-image-basic image. Am i missing any step here for that?
 
-In message <CANwz6nzQq8a1RnqL3Ety2tJ-CkTOnOObQtiEVXu6+TOhve5LAA@mail.gmail.com> you wrote:
-> 
-> A uImage file is a kernel with a modified header for u-boot. A tool called
+Building the package is not enough by itself.  You need to get it added to the
+image that you are using.  This can be done either at build time or at run time.
 
-No header gets modified.  Instead, a new header gets prepended.
-
-> mkimage is used to convert a zImage (regular kernel compressed image) to a
-
-Actually it's pretty stupid to use a zImage inside an uImage.  It is
-much better to use normal (uncompressed) kernel image, compress it
-using just gzip, and use this as poayload for mkimage.  This way
-U-Boot does the uncompresiong instead of including yet another
-uncompressor with each kernel image.
-
-> uImage file. And No, zImage files, as they are, are not compatible with
-> U-Boot. You must convert them
-
-You can boot zImage files directly with U-Boot.  That's what the
-"bootz" command is for.
-
-
-Best regards,
-
-Wolfgang Denk
+To add the package at build time, simply add this to your local.conf:
+   CORE_IMAGE_EXTRA_INSTALL += "inetutils inetutils-telnetd"
 
 -- 
-DENX Software Engineering GmbH,     MD: Wolfgang Denk & Detlev Zundel
-HRB 165235 Munich, Office: Kirchenstr.5, D-82194 Groebenzell, Germany
-Phone: (+49)-8142-66989-10 Fax: (+49)-8142-66989-80 Email: wd@denx.de
-Hacking's just another word for nothing left to kludge.
+------------------------------------------------------------
+Gary Thomas                 |  Consulting for the
+MLB Associates              |    Embedded world
+------------------------------------------------------------
 
