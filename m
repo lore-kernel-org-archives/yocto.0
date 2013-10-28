@@ -1,36 +1,27 @@
-Return-Path: <amittomer25@gmail.com>
-Received: from mail-wi0-f180.google.com (mail-wi0-f180.google.com
-	[209.85.212.180])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 731EAE011B9
-	for <yocto@yoctoproject.org>; Mon, 28 Oct 2013 03:41:12 -0700 (PDT)
-Received: by mail-wi0-f180.google.com with SMTP id ey11so3720750wid.1
-	for <yocto@yoctoproject.org>; Mon, 28 Oct 2013 03:41:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type;
-	bh=z1PKVgbH2Xp0pwF+bcJgtjl0Z7kvKnbXwnbvvUDZt5E=;
-	b=u/6S7n5s6hjmuM5fY3Rh09H51bI/HRGG6FecJ4C+ozi0x1y8nCk9qfTIbBNUmmdo1T
-	pUh6fJ2FOxdojjpZaqNEFq9yOECOZe6MR8G1PjM3FvJuxZxWIzYLv/4wjmdanwbA1Aw6
-	/2FVu6raIdD0QIcJNPzSiQ4knbREXw8F2/XhlbHS7G3YIaoKORVkx+zAu27BaqTrOGQK
-	XrgAnfz8zfh7/5vOUXbxoZoGgOgfq2pC1HVsTIOGzUgu0ve1hbRQbVDpp+BGPgWzQ9FQ
-	wIwELRKdkGi5TdOtVGOjbnlE4NP4VYKcOjh08u+usuaN3WWyAS/8Oe1pJTwshbcmRFeZ
-	hiCA==
+Return-Path: <paul.eggleton@linux.intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 00FADE011B9
+	for <yocto@yoctoproject.org>; Mon, 28 Oct 2013 04:05:57 -0700 (PDT)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga102.jf.intel.com with ESMTP; 28 Oct 2013 04:02:30 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.93,535,1378882800"; d="scan'208";a="425884471"
+Received: from mmckenna-mobl1.ger.corp.intel.com (HELO helios.localnet)
+	([10.252.120.252])
+	by orsmga002.jf.intel.com with ESMTP; 28 Oct 2013 04:05:52 -0700
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: "Sandeep G.R" <grsandeep85@gmail.com>
+Date: Mon, 28 Oct 2013 11:05:51 +0000
+Message-ID: <1385671.jQL6qvobNp@helios>
+Organization: Intel Corporation
+User-Agent: KMail/4.10.5 (Linux/3.8.0-31-generic; KDE/4.10.5; i686; ; )
+In-Reply-To: <CAKP9-Siz-+PmGtvc+BG6bNq3M8uPMG_qxGx+s75wD=T81hUxzA@mail.gmail.com>
+References: <CAKP9-SgzGG8bLJsu1X1qTDyELnXZCb0B-Xj+rdJvi7Bzg=ATsA@mail.gmail.com>
+	<CAE_REAucf4Epi1v=xfEGYhLvc1bG_cDDTrUfzxrYJX1jjPyHMQ@mail.gmail.com>
+	<CAKP9-Siz-+PmGtvc+BG6bNq3M8uPMG_qxGx+s75wD=T81hUxzA@mail.gmail.com>
 MIME-Version: 1.0
-X-Received: by 10.194.83.6 with SMTP id m6mr232674wjy.83.1382956871880; Mon,
-	28 Oct 2013 03:41:11 -0700 (PDT)
-Received: by 10.227.197.69 with HTTP; Mon, 28 Oct 2013 03:41:11 -0700 (PDT)
-In-Reply-To: <526E3842.1080707@linux.intel.com>
-References: <CABHD4K9zMKu6kxJqNOo9-WfMaENEg_dRg=CuajJDiRDPpEJ8=w@mail.gmail.com>
-	<CABHD4K-WnaT3z5hGmbrfwy+=-d2rukK3+89L9m2feu8nHEZDsA@mail.gmail.com>
-	<526E24E2.1050006@linux.intel.com>
-	<CABHD4K_-LX4eFn=wh886xKYvEDg8mQQmsbhbiBfHdZGZqruHPg@mail.gmail.com>
-	<526E3842.1080707@linux.intel.com>
-Date: Mon, 28 Oct 2013 16:11:11 +0530
-Message-ID: <CABHD4K_6HoLqGEPYvtKduPOhzzxQCBGWAjyBmcN5sWTLW+suKA@mail.gmail.com>
-From: Amit Tomer <amittomer25@gmail.com>
-To: Jukka Rissanen <jukka.rissanen@linux.intel.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: How to recreate or modify already existing usres in /etc/passwd in Yocto
+Cc: yocto@yoctoproject.org
+Subject: Re: How to bring up "apt and dpkg" packages on yocto
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,34 +33,24 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 28 Oct 2013 10:41:13 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Mon, 28 Oct 2013 11:05:58 -0000
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-Fine Jukka ,I got your point.
+On Tuesday 22 October 2013 08:10:15 Sandeep G.R wrote:
+>       I have selected PACKAGE_CLASSES ?= "package_rpm package_deb" and
+> IMAGE_FSTYPE is tar.gz
 
-The way we changed shell of a user of the /etc/passwd fie is by
-patching the passwd.master file(orignator of /etc/passwd).
+"package_deb" must be listed first in PACKAGE_CLASSES if you wish to use it for 
+constructing your image. You will also need to have "package-management" in 
+IMAGE_FEATURES if you want apt/dpkg and the package manager data to be 
+installed into the image itself.
 
-How Do you review this method of modifying  shell of a user?
+Cheers,
+Paul
 
-Thanks
-Amit
+-- 
 
-On Mon, Oct 28, 2013 at 3:41 PM, Jukka Rissanen
-<jukka.rissanen@linux.intel.com> wrote:
-> On 28.10.2013 12:07, Amit Tomer wrote:
->>
->> Thanks Jukka for the response
->>
->> EXTRA_USERS_PARAMS="usermod -s /bin/false foobar;" where did you
->> define user(Is  foobar is usre here??).
->
->
-> Yes, foobar is the username in this example. See manual page of usermod for
-> details.
->
->
-> --
-> Cheers,
-> Jukka
+Paul Eggleton
+Intel Open Source Technology Centre
 
