@@ -1,27 +1,33 @@
-Return-Path: <paul.eggleton@linux.intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8BC11E011B9
-	for <yocto@yoctoproject.org>; Mon, 28 Oct 2013 02:48:58 -0700 (PDT)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga102.jf.intel.com with ESMTP; 28 Oct 2013 02:45:34 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.93,535,1378882800"; d="scan'208";a="399771631"
-Received: from mmckenna-mobl1.ger.corp.intel.com (HELO helios.localnet)
-	([10.252.120.252])
-	by orsmga001.jf.intel.com with ESMTP; 28 Oct 2013 02:48:56 -0700
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: "Robert P. J. Day" <rpjday@crashcourse.ca>
-Date: Mon, 28 Oct 2013 09:48:55 +0000
-Message-ID: <5887622.7qFugRoNWl@helios>
-Organization: Intel Corporation
-User-Agent: KMail/4.10.5 (Linux/3.8.0-31-generic; KDE/4.10.5; i686; ; )
-In-Reply-To: <alpine.DEB.2.02.1310280537490.6411@oneiric>
-References: <CAM1ZcoXQEO9w+gJKfK8xYft=JegKHoWGn8Q6CF=hBd77o0ezyw@mail.gmail.com>
-	<17076206.HsEGNRlfMJ@helios>
-	<alpine.DEB.2.02.1310280537490.6411@oneiric>
+Return-Path: <amittomer25@gmail.com>
+Received: from mail-wg0-f51.google.com (mail-wg0-f51.google.com [74.125.82.51])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8ED3AE011B9
+	for <yocto@yoctoproject.org>; Mon, 28 Oct 2013 03:07:06 -0700 (PDT)
+Received: by mail-wg0-f51.google.com with SMTP id l18so6183948wgh.18
+	for <yocto@yoctoproject.org>; Mon, 28 Oct 2013 03:07:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type;
+	bh=WqFdbNpFZPS5kj5v9kWTDdX1RJK1PAWKmvalPrMHdto=;
+	b=nL2NJbdybSRaQSpuG+pqdGShoPcO4vsFbubT/rih4ENu3Cogy7VToxf6SVZBH+zchk
+	zlOQXbxfBC7eNmkUGu9SWOZaP9OECJCrG4g7d6mszKgT+BGLoZdEV29gRJjN9es6uuUv
+	tehAHpXirsxJDgoqm3s3+Uelk2/oVXR9DJu7svOMjn1cXdFLyJY93JCI01ONdLsta0N1
+	UgQfSHGurB8eeDC/XBQ0QE9h5fJ6xRJzdGInhqOq37en4A8eYPoju043GwYpUhode/Eu
+	Y4tngsoQDA9IJJDiZfP//MZuMMQNJi7LVC855jcXTfFurjigmVQ2DgXedLff7Kzx5xMO
+	WpFQ==
 MIME-Version: 1.0
-Cc: yocto@yoctoproject.org
-Subject: Re: fetch from perforce
+X-Received: by 10.180.36.80 with SMTP id o16mr8391268wij.1.1382954825253; Mon,
+	28 Oct 2013 03:07:05 -0700 (PDT)
+Received: by 10.227.197.69 with HTTP; Mon, 28 Oct 2013 03:07:05 -0700 (PDT)
+In-Reply-To: <526E24E2.1050006@linux.intel.com>
+References: <CABHD4K9zMKu6kxJqNOo9-WfMaENEg_dRg=CuajJDiRDPpEJ8=w@mail.gmail.com>
+	<CABHD4K-WnaT3z5hGmbrfwy+=-d2rukK3+89L9m2feu8nHEZDsA@mail.gmail.com>
+	<526E24E2.1050006@linux.intel.com>
+Date: Mon, 28 Oct 2013 15:37:05 +0530
+Message-ID: <CABHD4K_-LX4eFn=wh886xKYvEDg8mQQmsbhbiBfHdZGZqruHPg@mail.gmail.com>
+From: Amit Tomer <amittomer25@gmail.com>
+To: Jukka Rissanen <jukka.rissanen@linux.intel.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: How to recreate or modify already existing usres in /etc/passwd in Yocto
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -33,30 +39,37 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 28 Oct 2013 09:49:01 -0000
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Mon, 28 Oct 2013 10:07:07 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
-Hi Robert,
+Thanks Jukka for the response
 
-On Monday 28 October 2013 05:38:49 Robert P. J. Day wrote:
-> > We should really get a default value for FETCHCOMMAND_p4 defined in
-> > OE-Core
-> > (and perhaps also the default bitbake.conf bundled with bitbake itself).
-> 
->   IIRC, richard purdie once suggested that the "FETCHCOMMAND_"
-> versions of the variables were deprecated, and that "FETCHCMD_" was
-> the correct usage. can someone clarify this?
+EXTRA_USERS_PARAMS="usermod -s /bin/false foobar;" where did you
+define user(Is  foobar is usre here??).
 
-They are, however we're talking about the perforce fetcher here and that still 
-reads FETCHCOMMAND, so that would need to be changed before we could expect to 
-use the new variable here.
+Thanks,
+Amit.
 
-Cheers,
-Paul
-
--- 
-
-Paul Eggleton
-Intel Open Source Technology Centre
+On Mon, Oct 28, 2013 at 2:18 PM, Jukka Rissanen
+<jukka.rissanen@linux.intel.com> wrote:
+> On 26.10.2013 20:15, Amit Tomer wrote:
+>>
+>> Running out of ideas
+>>
+>> Can I get some fresh ideas for this issue
+>>
+>
+> I am using this in my distro conf file
+> (http://git.yoctoproject.org/cgit/cgit.cgi/meta-eca/tree/meta-eca/conf/distro/eca.conf)
+> to change the root default password
+>
+> INHERIT += "extrausers"
+> EXTRA_USERS_PARAMS = "usermod -p 'enrcrypted-password' root;"
+>
+> So if you want to change the shell of a user, the command could look
+> something like EXTRA_USERS_PARAMS="usermod -s /bin/false foobar;"
+>
+> --
+> Cheers,
+> Jukka
 
