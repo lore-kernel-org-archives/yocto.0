@@ -1,21 +1,25 @@
-Return-Path: <sgh@sgh.dk>
-Received: from mx-aarh-3.stofanet.dk (mx-aarh-3.stofanet.dk [212.10.10.13])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AA9CFE011B9
-	for <yocto@yoctoproject.org>; Sun, 27 Oct 2013 23:26:18 -0700 (PDT)
-Received: from 5634f347.rev.stofanet.dk ([86.52.243.71] helo=asrock)
-	by mx-aarh-3.stofanet.dk (envelope-from <sgh@sgh.dk>)
-	with esmtp id 1VagHI-0003BW-1s
-	for yocto@yoctoproject.org; Mon, 28 Oct 2013 07:26:16 +0100
-Received: from koontz.localnet (localhost [127.0.0.1])
-	by asrock (Postfix) with ESMTPS id 62B7A7ED6D
-	for <yocto@yoctoproject.org>; Mon, 28 Oct 2013 07:26:16 +0100 (CET)
-From: =?ISO-8859-1?Q?S=F8ren?= Holm <sgh@sgh.dk>
-To: yocto@yoctoproject.org
-Date: Mon, 28 Oct 2013 07:26:16 +0100
-Message-ID: <1489979.YGJBfpbiDO@koontz>
-User-Agent: KMail/4.11.2 (Linux/3.11.0-11-lowlatency; KDE/4.11.2; i686; ; )
+Return-Path: <jukka.rissanen@linux.intel.com>
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C3018E011B9
+	for <yocto@yoctoproject.org>; Mon, 28 Oct 2013 01:48:37 -0700 (PDT)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga102.fm.intel.com with ESMTP; 28 Oct 2013 01:48:36 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.93,584,1378882800"; d="scan'208";a="423842220"
+Received: from sorvi.fi.intel.com (HELO [10.237.72.152]) ([10.237.72.152])
+	by fmsmga002.fm.intel.com with ESMTP; 28 Oct 2013 01:48:35 -0700
+Message-ID: <526E24E2.1050006@linux.intel.com>
+Date: Mon, 28 Oct 2013 10:48:34 +0200
+From: Jukka Rissanen <jukka.rissanen@linux.intel.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:17.0) Gecko/20130625 Thunderbird/17.0.7
 MIME-Version: 1.0
-Subject: Trouble packaging files containing space
+To: Amit Tomer <amittomer25@gmail.com>
+References: <CABHD4K9zMKu6kxJqNOo9-WfMaENEg_dRg=CuajJDiRDPpEJ8=w@mail.gmail.com>
+	<CABHD4K-WnaT3z5hGmbrfwy+=-d2rukK3+89L9m2feu8nHEZDsA@mail.gmail.com>
+In-Reply-To: <CABHD4K-WnaT3z5hGmbrfwy+=-d2rukK3+89L9m2feu8nHEZDsA@mail.gmail.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: How to recreate or modify already existing usres in /etc/passwd in Yocto
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -27,24 +31,27 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 28 Oct 2013 06:26:18 -0000
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"
+X-List-Received-Date: Mon, 28 Oct 2013 08:48:39 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Hi
+On 26.10.2013 20:15, Amit Tomer wrote:
+> Running out of ideas
+>
+> Can I get some fresh ideas for this issue
+>
 
-I have a package containing files that includes spaces in their same.
+I am using this in my distro conf file 
+(http://git.yoctoproject.org/cgit/cgit.cgi/meta-eca/tree/meta-eca/conf/distro/eca.conf) 
+to change the root default password
 
-The files are located in the same directory without a space in their na=
-me is=20
-packages just find.
+INHERIT += "extrausers"
+EXTRA_USERS_PARAMS = "usermod -p 'enrcrypted-password' root;"
 
-I specify FILES_$[PN} like this
+So if you want to change the shell of a user, the command could look 
+something like EXTRA_USERS_PARAMS="usermod -s /bin/false foobar;"
 
-FILES_${PN} =3D "${prefix}/local/Mikrofyn"
-
-What might be wrong?
-
---=20
-S=F8ren Holm
+-- 
+Cheers,
+Jukka
 
