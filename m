@@ -1,23 +1,22 @@
 Return-Path: <sgh@sgh.dk>
 Received: from mx-aarh-3.stofanet.dk (mx-aarh-3.stofanet.dk [212.10.10.13])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9BF6FE01796
-	for <yocto@yoctoproject.org>; Mon, 28 Oct 2013 16:15:23 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 859DCE0179A
+	for <yocto@yoctoproject.org>; Mon, 28 Oct 2013 16:16:50 -0700 (PDT)
 Received: from 5634f347.rev.stofanet.dk ([86.52.243.71] helo=asrock)
 	by mx-aarh-3.stofanet.dk (envelope-from <sgh@sgh.dk>)
-	with esmtp id 1Vaw1q-00087k-1K
-	for yocto@yoctoproject.org; Tue, 29 Oct 2013 00:15:22 +0100
-Received: from koontz.localnet (localhost [127.0.0.1])
-	by asrock (Postfix) with ESMTPS id 352E47EC32
-	for <yocto@yoctoproject.org>; Tue, 29 Oct 2013 00:15:22 +0100 (CET)
-From: =?ISO-8859-1?Q?S=F8ren?= Holm <sgh@sgh.dk>
+	with esmtp id 1Vaw3F-0000Qo-2i
+	for yocto@yoctoproject.org; Tue, 29 Oct 2013 00:16:49 +0100
+Received: from koontz.sgh.dk (unknown [192.168.0.31])
+	by asrock (Postfix) with ESMTP id AF62C7EC32
+	for <yocto@yoctoproject.org>; Tue, 29 Oct 2013 00:16:49 +0100 (CET)
+From: =?UTF-8?q?S=C3=B8ren=20Holm?= <sgh@sgh.dk>
 To: yocto@yoctoproject.org
-Date: Tue, 29 Oct 2013 00:15:21 +0100
-Message-ID: <2255020.JhpWy0r2ff@koontz>
-User-Agent: KMail/4.11.2 (Linux/3.11.0-11-lowlatency; KDE/4.11.2; i686; ; )
-In-Reply-To: <1383001864-4366-1-git-send-email-sgh@sgh.dk>
-References: <1383001864-4366-1-git-send-email-sgh@sgh.dk>
-MIME-Version: 1.0
-Subject: Re: [PATCH] e2fsprogs: Escape filenames in populate-extfs.sh
+Date: Tue, 29 Oct 2013 00:16:49 +0100
+Message-Id: <1383002209-7522-1-git-send-email-sgh@sgh.dk>
+X-Mailer: git-send-email 1.8.3.2
+In-Reply-To: <2255020.JhpWy0r2ff@koontz>
+References: <2255020.JhpWy0r2ff@koontz>
+Subject: [PATCH] e2fsprogs: Escape filenames in populate-extfs.sh
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -29,18 +28,72 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 28 Oct 2013 23:15:27 -0000
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"
+X-List-Received-Date: Mon, 28 Oct 2013 23:16:50 -0000
 
-Hi
+Without this patch filenames containing spaces do not get into the final
+ext2/3/4 filsystem.
 
-I'm reposting my patch as a response tot this message. I forgot adding =
-some=20
-actual description of why the change is necessary. Sorry.
+[YOCTO #5401]
+---
+ .../e2fsprogs/e2fsprogs-1.42.8/populate-extfs.sh     | 20 ++++++++++----------
+ 1 file changed, 10 insertions(+), 10 deletions(-)
 
-I would like the change to go into dora if possible.
+diff --git a/meta/recipes-devtools/e2fsprogs/e2fsprogs-1.42.8/populate-extfs.sh b/meta/recipes-devtools/e2fsprogs/e2fsprogs-1.42.8/populate-extfs.sh
+index 9eff030..7de720b 100644
+--- a/meta/recipes-devtools/e2fsprogs/e2fsprogs-1.42.8/populate-extfs.sh
++++ b/meta/recipes-devtools/e2fsprogs/e2fsprogs-1.42.8/populate-extfs.sh
+@@ -35,7 +35,7 @@ DEBUGFS="debugfs"
+ 		fi
+ 
+ 		# Only stat once since stat is a time consuming command
+-		STAT=$(stat -c "TYPE=\"%F\";DEVNO=\"0x%t 0x%T\";MODE=\"%f\";U=\"%u\";G=\"%g\"" $FILE)
++		STAT=$(stat -c "TYPE=\"%F\";DEVNO=\"0x%t 0x%T\";MODE=\"%f\";U=\"%u\";G=\"%g\"" "$FILE")
+ 		eval $STAT
+ 
+ 		case $TYPE in
+@@ -43,20 +43,20 @@ DEBUGFS="debugfs"
+ 			echo "mkdir $TGT"
+ 			;;
+ 		"regular file" | "regular empty file")
+-			echo "write $FILE $TGT"
++			echo "write \"$FILE\" \"$TGT\""
+ 			;;
+ 		"symbolic link")
+-			LINK_TGT=$(readlink $FILE)
+-			echo "symlink $TGT $LINK_TGT"
++			LINK_TGT=$(readlink "$FILE")
++			echo "symlink \"$TGT\" \"$LINK_TGT\""
+ 			;;
+ 		"block special file")
+-			echo "mknod $TGT b $DEVNO"
++			echo "mknod \"$TGT\" b $DEVNO"
+ 			;;
+ 		"character special file")
+-			echo "mknod $TGT c $DEVNO"
++			echo "mknod \"$TGT\" c $DEVNO"
+ 			;;
+ 		"fifo")
+-			echo "mknod $TGT p"
++			echo "mknod \"$TGT\" p"
+ 			;;
+ 		*)
+ 			echo "Unknown/unhandled file type '$TYPE' file: $FILE" 1>&2
+@@ -64,11 +64,11 @@ DEBUGFS="debugfs"
+ 		esac
+ 
+ 		# Set the file mode
+-		echo "sif $TGT mode 0x$MODE"
++		echo "sif \"$TGT\" mode 0x$MODE"
+ 
+ 		# Set uid and gid
+-		echo "sif $TGT uid $U"
+-		echo "sif $TGT gid $G"
++		echo "sif \"$TGT\" uid $U"
++		echo "sif \"$TGT\" gid $G"
+ 	done
+ 
+ 	# Handle the hard links.
+-- 
+1.8.3.2
 
---=20
-S=F8ren Holm
 
