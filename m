@@ -1,37 +1,27 @@
-Return-Path: <karl@hiramoto.org>
-Received: from homiemail-a77.g.dreamhost.com (caiajhbdccac.dreamhost.com
-	[208.97.132.202])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6FE9DE011B9
-	for <yocto@yoctoproject.org>; Mon, 28 Oct 2013 02:15:30 -0700 (PDT)
-Received: from homiemail-a77.g.dreamhost.com (localhost [127.0.0.1])
-	by homiemail-a77.g.dreamhost.com (Postfix) with ESMTP id 05B3E94059
-	for <yocto@yoctoproject.org>; Mon, 28 Oct 2013 02:15:30 -0700 (PDT)
-DomainKey-Signature: a=rsa-sha1; c=nofws; d=hiramoto.org; h=message-id:date
-	:from:mime-version:to:subject:content-type; q=dns; s=
-	hiramoto.org; b=ViGqp+QP03sMI47ibJGyJ8PE/WItZlmzCMnXSFtHQjfZvopQ
-	FyHuVUibBzdCscSjpuBsmD/198lVFUh2kTFZUrPgDzMMTbFzdGAv/8X05IzSU4FJ
-	QAE1ZGI0ubR16WdubbWMZYnIsnSIz5Z38eJUblXbt8kgQxaXXrp1ZmXxsD0=
-DKIM-Signature: v=1; a=rsa-sha1; c=relaxed; d=hiramoto.org; h=message-id
-	:date:from:mime-version:to:subject:content-type; s=hiramoto.org;
-	bh=3L+WBQy4UasBE3q7MJbe2cBGAOY=; b=bnw69wdp1tKWiTL8VIBnR0AygNq3
-	n7VE3Ib3sACjxwW7/JeWB3NzUfaSq9n+km6/U/S+hB6fmMpiQeAoJnp11L7Q9cWq
-	17oxzrfl9QUeRWi8CYCxpyCE3klA2AnBtVs4p4oQ9CJinQchqu9uYAweBfKjhuLb
-	p/VPc4/xbj6w9/I=
-Received: from [10.64.1.2] (139.Red-83-61-237.dynamicIP.rima-tde.net
-	[83.61.237.139])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	(Authenticated sender: karl@hiramoto.org)
-	by homiemail-a77.g.dreamhost.com (Postfix) with ESMTPSA id 6363E9405E
-	for <yocto@yoctoproject.org>; Mon, 28 Oct 2013 02:15:29 -0700 (PDT)
-Message-ID: <526E2B2D.8090904@hiramoto.org>
-Date: Mon, 28 Oct 2013 10:15:25 +0100
-From: Karl Hiramoto <karl@hiramoto.org>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:17.0) Gecko/20130921 Thunderbird/17.0.9
+Return-Path: <paul.eggleton@linux.intel.com>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8CE77E011B9
+	for <yocto@yoctoproject.org>; Mon, 28 Oct 2013 02:35:54 -0700 (PDT)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga101.jf.intel.com with ESMTP; 28 Oct 2013 02:35:53 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.93,535,1378882800"; d="scan'208";a="425845098"
+Received: from mmckenna-mobl1.ger.corp.intel.com (HELO helios.localnet)
+	([10.252.120.252])
+	by orsmga002.jf.intel.com with ESMTP; 28 Oct 2013 02:35:52 -0700
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: Katu Txakur <katutxakurra@gmail.com>
+Date: Mon, 28 Oct 2013 09:35:50 +0000
+Message-ID: <17076206.HsEGNRlfMJ@helios>
+Organization: Intel Corporation
+User-Agent: KMail/4.10.5 (Linux/3.8.0-31-generic; KDE/4.10.5; i686; ; )
+In-Reply-To: <CAM1ZcoW7b8t-TFtUyZb=-PWDJNTPxbJuKA4CKBqc1izh+P7GUw@mail.gmail.com>
+References: <CAM1ZcoXQEO9w+gJKfK8xYft=JegKHoWGn8Q6CF=hBd77o0ezyw@mail.gmail.com>
+	<1700191.EdxHocCYrr@helios>
+	<CAM1ZcoW7b8t-TFtUyZb=-PWDJNTPxbJuKA4CKBqc1izh+P7GUw@mail.gmail.com>
 MIME-Version: 1.0
-To: yocto@yoctoproject.org
-Subject: different EXTRA_OECONF per package based on image recipe
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: fetch from perforce
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,63 +33,60 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 28 Oct 2013 09:15:32 -0000
-Content-Type: multipart/alternative;
-	boundary="------------080408020204050906000200"
+X-List-Received-Date: Mon, 28 Oct 2013 09:35:56 -0000
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
---------------080408020204050906000200
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+Hi Katu,
 
+On Thursday 24 October 2013 10:09:50 Katu Txakur wrote:
+> it took me longer than I thought because I couldn't find any documentation
+> or comments in the code, but I finally got this working. The sintax to call
+> it was, (there are actually 2 options, I took this one because I don't need
+> user/passwd):
+> 
+> 
+> P4PORT = "yourhost:yourportnumber"
 
-Hi,
+Is this not able to be specified in the SRC_URI?
 
-In my overlay i have different Machines with different images that are 
-built.    In a couple of packages i need different autoconf configure 
-args based on the  machine or image.
+> FETCHCOMMAND_p4 = "p4"
 
-Is the best way to do this via PACKAGECONFIG, create multiple overlays 
-for machine1, machine2, machine3, and common?     Is there a better way?
+We should really get a default value for FETCHCOMMAND_p4 defined in OE-Core 
+(and perhaps also the default bitbake.conf bundled with bitbake itself).
+ 
+> SRC_URI = " \
+> p4://depot/myproject...;module=destinationfolderInWORKDIR/destinationsubfold
+> er;changeslist=9952 \
+> "
+> 
+> I used the perforce.py in the latest yocto distribution, 1.5-dora. The
+> subfolders where being renamed wrongly, deleting the first 3 characters. I
+> solved it using this patch:
+> 
+> diff --git poky/bitbake/lib/bb/fetch2/perforce.py_dora
+> poky/bitbake/lib/bb/fetch2/perforce.py
+> index fc4074d..d2ecccc 100644
+> --- poky/bitbake/lib/bb/fetch2/perforce.py_dora
+> +++ poky/bitbake/lib/bb/fetch2/perforce.py
+> @@ -112,7 +112,7 @@ class Perforce(FetchMethod):
+>          base = path
+>          which = path.find('/...')
+>          if which != -1:
+> -            base = path[:which]
+> +            base = path[:which-1]
+> 
+>          base = self._strip_leading_slashes(base)
+> 
+> I hope this helps to anyone trying to use this.
 
+I see you've opened up a bug for this, thanks.
 
-Is there an example somewhere of different package configurations for 
-different images?
+Cheers,
+Paul
 
-thanks
+-- 
 
-Karl
+Paul Eggleton
+Intel Open Source Technology Centre
 
---------------080408020204050906000200
-Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: 7bit
-
-<html>
-  <head>
-
-    <meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
-  </head>
-  <body bgcolor="#FFFFFF" text="#000000">
-    <br>
-    Hi,<br>
-    <br>
-    In my overlay i have different Machines with different images that
-    are built.&nbsp;&nbsp;&nbsp; In a couple of packages i need different autoconf
-    configure args based on the&nbsp; machine or image. <br>
-    <br>
-    Is the best way to do this via
-    <meta http-equiv="content-type" content="text/html;
-      charset=ISO-8859-1">
-    PACKAGECONFIG, create multiple overlays for machine1, machine2,
-    machine3, and common?&nbsp;&nbsp;&nbsp;&nbsp; Is there a better way?<br>
-    <br>
-    <br>
-    Is there an example somewhere of different package configurations
-    for different images?&nbsp;&nbsp; <br>
-    <br>
-    thanks<br>
-    <br>
-    Karl<br>
-  </body>
-</html>
-
---------------080408020204050906000200--
