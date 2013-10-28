@@ -1,32 +1,20 @@
-Return-Path: <mikelewis@alphalem.com>
-Received: from oproxy13-pub.mail.unifiedlayer.com
-	(oproxy13-pub.mail.unifiedlayer.com [69.89.16.30])
-	by yocto-www.yoctoproject.org (Postfix) with SMTP id A3DC4E01796
-	for <yocto@yoctoproject.org>; Mon, 28 Oct 2013 14:41:16 -0700 (PDT)
-Received: (qmail 28407 invoked by uid 0); 28 Oct 2013 21:41:15 -0000
-Received: from unknown (HELO box891.bluehost.com) (69.195.124.91)
-	by oproxy13.mail.unifiedlayer.com with SMTP; 28 Oct 2013 21:41:15 -0000
-Received: from [24.130.51.221] (port=49595 helo=[10.0.0.10])
-	by box891.bluehost.com with esmtpsa (TLSv1:CAMELLIA256-SHA:256)
-	(Exim 4.80) (envelope-from <mikelewis@alphalem.com>)
-	id 1VauYl-0005OE-KI; Mon, 28 Oct 2013 15:41:15 -0600
-Message-ID: <526ED9FB.3060208@alphalem.com>
-Date: Mon, 28 Oct 2013 14:41:15 -0700
-From: Mike Lewis <mikelewis@alphalem.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:17.0) Gecko/20130827 Icedove/17.0.8
-MIME-Version: 1.0
-To: Bruce Ashfield <bruce.ashfield@windriver.com>
-References: <CAMCfZKFBvSiRSMk5wrEpSEiNNiZeHJw18fbHgHzepo__U=UWNA@mail.gmail.com>	<CAMCfZKFh8iJH4655mzFveFYfz8ebLXkGftSa-MR5mEcMEFV8Vw@mail.gmail.com>	<CADkTA4MgxmiOofDLynbOLR=hV-KQ1ic+Eagjm0yetYOtB6FJzw@mail.gmail.com>	<CAMCfZKF3aHG4wFMRx2XcdroJJ6ga5v6KHF5DbBTWV7jXOGNX-g@mail.gmail.com>	<525FDD08.90400@windriver.com>	<CAMCfZKHz82sPsHXjqxbFDJjFNi7ck+BS=_OtyGmb2FYDAxoe1A@mail.gmail.com>	<525FE3C9.3070003@windriver.com>	<CAMCfZKGUYAcO5FtOKC9iP_XZjRxJ_Xq12ERN=BL_JHA7FJW51w@mail.gmail.com>	<5260BDA6.4020807@windriver.com>	<CAMCfZKFf3iJCyjMgGQ=y6ng6Kh3_MeEMymgZTE=bTnLpBGN9Mg@mail.gmail.com>	<5261974C.7010202@windriver.com>
-	<5266A665.8030303@alphalem.com>	<52686723.4080305@windriver.com>	<CAMCfZKG1A_c-oy6KLZuctX4Nmca7f1ryBKRaR-sqFVVqNwuSrA@mail.gmail.com>	<CADkTA4OWiOmDYDskpe6=uCX+XEE8R0C2aUxjCph+tAjdX=Ae2Q@mail.gmail.com>	<526B18BC.5050302@alphalem.com>
-	<CAMCfZKHuH4egX=Sid-fSaEscGBr_mX-3PC492syD1hD3+fY+rQ@mail.gm!
-	ail.com> <526ECFF3.4060207@windriver.com>
-In-Reply-To: <526ECFF3.4060207@windriver.com>
-X-Identified-User: {2749:box891.bluehost.com:alphalem:alphalem.com}
-	{sentby:smtp auth 24.130.51.221 authed with
-	mikelewis+alphalem.com}
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Custom defconfig is not used
+Return-Path: <sgh@sgh.dk>
+Received: from mx-aarh-2.stofanet.dk (mx-aarh-2.stofanet.dk [212.10.10.12])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9BE31E01796
+	for <yocto@yoctoproject.org>; Mon, 28 Oct 2013 16:11:07 -0700 (PDT)
+Received: from 5634f347.rev.stofanet.dk ([86.52.243.71] helo=asrock)
+	by mx-aarh-2.stofanet.dk (envelope-from <sgh@sgh.dk>)
+	with esmtp id 1Vavxh-00015I-34
+	for yocto@yoctoproject.org; Tue, 29 Oct 2013 00:11:05 +0100
+Received: from koontz.sgh.dk (unknown [192.168.0.31])
+	by asrock (Postfix) with ESMTP id 2775B7EC32
+	for <yocto@yoctoproject.org>; Tue, 29 Oct 2013 00:11:05 +0100 (CET)
+From: =?UTF-8?q?S=C3=B8ren=20Holm?= <sgh@sgh.dk>
+To: yocto@yoctoproject.org
+Date: Tue, 29 Oct 2013 00:11:04 +0100
+Message-Id: <1383001864-4366-1-git-send-email-sgh@sgh.dk>
+X-Mailer: git-send-email 1.8.3.2
+Subject: [PATCH] e2fsprogs: Escape filenames in populate-extfs.sh
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,343 +26,69 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 28 Oct 2013 21:41:16 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Mon, 28 Oct 2013 23:11:08 -0000
 
-Bruce,
+[YOCTO #5401]
+---
+ .../e2fsprogs/e2fsprogs-1.42.8/populate-extfs.sh     | 20 ++++++++++----------
+ 1 file changed, 10 insertions(+), 10 deletions(-)
 
-Thanks for running the tests. I was seeing neither my full defconfig 
-(additions included) nor a .cfg with only my additions making it into 
-the final config. Just the default beagleboard defconfig from meta-ti.
-
-I wasn't using yocto at the time I was experiencing the issue, so I'll 
-add that back in and try to replicate your success. I thought that 
-things would be simpler with fewer layers, but maybe that was the cause 
-of the problem.
-
-- Mike
-
-On 10/28/2013 01:58 PM, Bruce Ashfield wrote:
-> On 13-10-26 06:57 AM, Diego Sueiro wrote:
->> Bruce,
->>
->> We have two scenarios here:
->>
->>  1. bbapend with full defconfig replacement
->>  2. bbapend with config fragments
->>
->> The first scenario just worked when using FILESPATH_prepend. For me it
->> does not make sense, since on YP manual says that
->> FILESEXTRAPATHS_prepend must be use [1].
->>
->> The second scenario did not worked even changing to FILESPATH_prepend.
->
-> I ran tests today, using the layers Mike indicated, since it was
-> a bit easier for me to set up on top of my existing builds.
->
-> I'm using dylan for my yocto checkout (not oe-core standalone, since
-> this is a yocto list/question),
->
-> My build shows:
->
-> meta
-> meta-yocto
-> meta-yocto-bsp    = "dylan:3dc4505f0e744177ae4ddff1e1ce8b31b95dfaa6"
-> meta-ti           = "master:c14c386946e1ea341faeea292580e37d538d645d"
-> meta-alphalem     = "master:a5c0e8ff51297a4090cd47d669b4fc9c94696908"
-> meta-alphalem-bsp = "master:56086e4dc618e975c9a46491793041f0d18e47a2"
->
-> Mike indicated that he was using dylan for meta-ti, but that doesn't
-> make a difference either, since for our purposed. It's kernel.bbclass
-> and the yocto kernel processing that matters.
->
-> In meta-alphalem-bsp, I have linux-mainline_3.2.bbappend, with the
-> following content:
->
-> > cat linux-mainline_3.2.bbappend
-> FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}-3.2:"
->
-> inherit kernel
-> require recipes-kernel/linux/linux-yocto.inc
->
-> COMPATIBLE_MACHINE = "(beagleboard)"
->
-> SRC_URI_append = " file://defconfig"
-> SRC_URI_append = " file://my_frag.cfg"
->
-> And I added a fragment which has:
->
-> > cat my_frag.cfg
-> CONFIG_WATCHDOG_NOWAYOUT=y
-> CONFIG_NTFS_FS=y
-> CONFIG_NTFS_RW=y
->
-> When both are applied to the kernel build, we should see CONFIG_NTFS_FS
-> transition from =m to =y:
->
-> > grep CONFIG_NTFS_FS *
-> defconfig:CONFIG_NTFS_FS=m
-> my_frag.cfg:CONFIG_NTFS_FS=y
->
-> After invoking linux-mainline's configure task, I see the following:
->
-> > grep CONFIG_NTFS_FS linux-beagleboard-standard-build/.config
-> CONFIG_NTFS_FS=y
->
-> And other elements of the defconfig and fragment are properly applied
-> to the configuration phase.
->
-> I'm also seeing good results on master, which means that I'm at a
-> standstill to reproduce any problems.
->
-> Diego: can you confirm for me what triggers you are seeing that shows
-> the defconfig and fragment are not used. I assume the config options
-> are not present, but I just want to be sure.
->
-> Mike: what were you initially seeing that was different from my results ?
->
-> Cheers,
->
-> Bruce
->
->>
->>
->> [1] -
->> http://www.yoctoproject.org/docs/current/mega-manual/mega-manual.html#var-FILESEXTRAPATHS 
->>
->>
->>
->>
->> Regards,
->>
->> -- 
->> *dS
->> Diego Sueiro
->>
->> /*long live rock 'n roll*/
->>
->>
->> 2013/10/25 Mike Lewis <mikelewis@alphalem.com
->> <mailto:mikelewis@alphalem.com>>
->>
->>     Bruce: yep, fixed my issue. Sorry for the bother!
->>
->>     Diego: thanks for the solution!
->>
->>     - Mike
->>
->>
->>     On 10/25/2013 11:44 AM, Bruce Ashfield wrote:
->>
->>         On Fri, Oct 25, 2013 at 7:43 AM, Diego Sueiro
->>         <diego.sueiro@gmail.com <mailto:diego.sueiro@gmail.com>> wrote:
->>
->>             Bruce,
->>
->>             Regarding the defconfig not used, I've found this thread on
->>             Angstrom devel
->>             ML:
->> http://www.mail-archive.com/__angstrom-distro-devel@__linuxtogo.org/msg06721.html
->> <http://www.mail-archive.com/angstrom-distro-devel@linuxtogo.org/msg06721.html>
->>
->>             I've replaced "FILESEXTRAPATHS_prepend" with
->>             "FILESPATH_prepend" and removed
->>             the custom "do_configure_prepend" function and bitbake is
->>             now using my
->>             defconfig.
->>             So, it seems that there is an issue with FILESEXTRAPATHS
->>             variable.
->>
->>         Aha. That does make sense.
->>
->>         Mike: does that same change fix your issues ?
->>
->>         Bruce
->>
->>             Regards,
->>
->>             --
->>             *dS
->>             Diego Sueiro
->>
->>             /*long live rock 'n roll*/
->>
->>
->>             2013/10/23 Bruce Ashfield <bruce.ashfield@windriver.com
->>             <mailto:bruce.ashfield@windriver.com>>
->>
->>                 On 13-10-22 12 <tel:13-10-22%2012>:23 PM, Mike Lewis 
->> wrote:
->>
->>                     Hi Bruce,
->>
->>                     I'm trying to accomplish the nearly the same thing
->>                     (i.e. adding config
->>                     fragment) and I'm having the same issue at the
->>                     do_patch step. Were you
->>                     able to reproduce this on your end?
->>
->>
->>                 Mike,
->>
->>                 Is you config/layer somewhere than I can have a look at
->>                 it ? I was trying
->>                 some builds here, and my tests are working. But I'd like
->>                 to try it
->>                 with your config as well.
->>
->>                 Bruce
->>
->>
->>                     Thanks,
->>                     Mike
->>
->>                     On 10/18/2013 01:17 PM, Bruce Ashfield wrote:
->>
->>                         On 13-10-18 05 <tel:13-10-18%2005>:17 AM, Diego
->>                         Sueiro wrote:
->>
->>
->>                             2013/10/18 Bruce Ashfield
->>                             <bruce.ashfield@windriver.com
->> <mailto:bruce.ashfield@windriver.com>
->> <mailto:bruce.ashfield@__windriver.com
->> <mailto:bruce.ashfield@windriver.com>>>
->>
->>                                   I fell behind today .. i had 2300
->>                             unread email to start this
->>                             morning :)
->>                                   Is there a way that I can get a copy
->>                             of your recipes and layers ?
->>                             If
->>                                   I can do a build myself, I can easily
->>                             debug and fix this ..
->>                                   otherwise, we'll
->>                                   go back and forth many times 
->> debugging.
->>
->>                                   Cheers,
->>
->>                                   Bruce
->>
->>
->>                             I'm using the environment provided by
->>                             Angstrom from it's github setup
->>                             scripts.
->>                             If you want to exactly reproduce it you 
->> need to:
->>
->>                                   git clone
->> https://github.com/Angstrom-__distribution/setup-scripts.git
->> <https://github.com/Angstrom-distribution/setup-scripts.git>
->>                                   cd setup-scripts
->>                                   git checkout 
->> angstrom-v2013.06-yocto1.4
->>                                   MACHINE=beaglebone ./oebb.sh config
->>                             beaglebone
->>
->>                             Here is the setup and files for meta-mine:
->>
->>                             bblayers.conf:
->>
->>                                   BBLAYERS = \"
->>
->>                                       ...
->> ${TOPDIR}/sources/meta-mine \
->>                                       "
->>
->>                             meta-mine/conf/layer.conf:
->>
->>                                   # We have a conf and classes
->>                             directory, append to BBPATH
->>                                   BBPATH .= ":${LAYERDIR}"
->>                                   # We have a recipes directory, add to
->>                             BBFILES
->>                                   BBFILES += 
->> "${LAYERDIR}/recipes*/*/*.bb
->> ${LAYERDIR}/recipes*/*/*.__bbappend"
->>                                   BBFILE_COLLECTIONS += "mine-layer"
->>                                   BBFILE_PATTERN_mine-layer :=
->>                             "^${LAYERDIR}/"
->>                                   BBFILE_PRIORITY_mine-layer = "10"
->>                                   LAYERDEPENDS_mine-layer = 
->> "angstrom-layer"
->>
->> meta-mine/recipes-kernel/__linux/linux-mainline_3.8.__bbappend:
->>
->>                                   FILESEXTRAPATHS_prepend :=
->>                             "${THISDIR}/${PN}-3.8:"
->>                                   inherit kernel
->>                                   require
->> recipes-kernel/linux/linux-__yocto.inc
->>                                   COMPATIBLE_MACHINE_beaglebone =
->>                             "(beaglebone)"
->>                                   SRC_URI += " 
->> file://config-addons.cfg "
->>
->> meta-mine/recipes-kernel/__linux/linux-mainline-3.8/__config-addons.cfg:
->>
->>                                   CONFIG_WATCHDOG_NOWAYOUT=y
->>                                   CONFIG_NTFS_FS=y
->>                                   CONFIG_NTFS_RW=y
->>
->>
->>
->>                             But I think that instead of using the whole
->>                             Angstrom you can just use
->>                             poky and meta-beagleboard/common-bsp on
->>                             dylan branch.
->>
->>
->>                         Great. I'll launch some test builds and see what
->>                         breaks (or works) :)
->>
->>                         Bruce
->>
->>
->>                             Regards,
->>
->>                             --
->>                             *dS
->>                             Diego Sueiro
->>
->>                             /*long live rock 'n roll*/
->>
->>
->> _________________________________________________
->>                         yocto mailing list
->>                         yocto@yoctoproject.org
->>                         <mailto:yocto@yoctoproject.org>
->> https://lists.yoctoproject.__org/listinfo/yocto
->> <https://lists.yoctoproject.org/listinfo/yocto>
->>
->>
->> _________________________________________________
->>                 yocto mailing list
->>                 yocto@yoctoproject.org <mailto:yocto@yoctoproject.org>
->>                 https://lists.yoctoproject.__org/listinfo/yocto
->> <https://lists.yoctoproject.org/listinfo/yocto>
->>
->>
->>
->>             _________________________________________________
->>             yocto mailing list
->>             yocto@yoctoproject.org <mailto:yocto@yoctoproject.org>
->>             https://lists.yoctoproject.__org/listinfo/yocto
->> <https://lists.yoctoproject.org/listinfo/yocto>
->>
->>
->>
->>
->>
->>
->>
->> _______________________________________________
->> yocto mailing list
->> yocto@yoctoproject.org
->> https://lists.yoctoproject.org/listinfo/yocto
->>
->
+diff --git a/meta/recipes-devtools/e2fsprogs/e2fsprogs-1.42.8/populate-extfs.sh b/meta/recipes-devtools/e2fsprogs/e2fsprogs-1.42.8/populate-extfs.sh
+index 9eff030..7de720b 100644
+--- a/meta/recipes-devtools/e2fsprogs/e2fsprogs-1.42.8/populate-extfs.sh
++++ b/meta/recipes-devtools/e2fsprogs/e2fsprogs-1.42.8/populate-extfs.sh
+@@ -35,7 +35,7 @@ DEBUGFS="debugfs"
+ 		fi
+ 
+ 		# Only stat once since stat is a time consuming command
+-		STAT=$(stat -c "TYPE=\"%F\";DEVNO=\"0x%t 0x%T\";MODE=\"%f\";U=\"%u\";G=\"%g\"" $FILE)
++		STAT=$(stat -c "TYPE=\"%F\";DEVNO=\"0x%t 0x%T\";MODE=\"%f\";U=\"%u\";G=\"%g\"" "$FILE")
+ 		eval $STAT
+ 
+ 		case $TYPE in
+@@ -43,20 +43,20 @@ DEBUGFS="debugfs"
+ 			echo "mkdir $TGT"
+ 			;;
+ 		"regular file" | "regular empty file")
+-			echo "write $FILE $TGT"
++			echo "write \"$FILE\" \"$TGT\""
+ 			;;
+ 		"symbolic link")
+-			LINK_TGT=$(readlink $FILE)
+-			echo "symlink $TGT $LINK_TGT"
++			LINK_TGT=$(readlink "$FILE")
++			echo "symlink \"$TGT\" \"$LINK_TGT\""
+ 			;;
+ 		"block special file")
+-			echo "mknod $TGT b $DEVNO"
++			echo "mknod \"$TGT\" b $DEVNO"
+ 			;;
+ 		"character special file")
+-			echo "mknod $TGT c $DEVNO"
++			echo "mknod \"$TGT\" c $DEVNO"
+ 			;;
+ 		"fifo")
+-			echo "mknod $TGT p"
++			echo "mknod \"$TGT\" p"
+ 			;;
+ 		*)
+ 			echo "Unknown/unhandled file type '$TYPE' file: $FILE" 1>&2
+@@ -64,11 +64,11 @@ DEBUGFS="debugfs"
+ 		esac
+ 
+ 		# Set the file mode
+-		echo "sif $TGT mode 0x$MODE"
++		echo "sif \"$TGT\" mode 0x$MODE"
+ 
+ 		# Set uid and gid
+-		echo "sif $TGT uid $U"
+-		echo "sif $TGT gid $G"
++		echo "sif \"$TGT\" uid $U"
++		echo "sif \"$TGT\" gid $G"
+ 	done
+ 
+ 	# Handle the hard links.
+-- 
+1.8.3.2
 
 
