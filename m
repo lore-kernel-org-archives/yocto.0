@@ -1,33 +1,29 @@
-Return-Path: <raj.khem@gmail.com>
-Received: from mail-ie0-f176.google.com (mail-ie0-f176.google.com
-	[209.85.223.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8F001E01792
-	for <yocto@yoctoproject.org>; Tue, 29 Oct 2013 16:14:43 -0700 (PDT)
-Received: by mail-ie0-f176.google.com with SMTP id u16so952764iet.7
-	for <yocto@yoctoproject.org>; Tue, 29 Oct 2013 16:14:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-type;
-	bh=kwb6Z8bD/tEQ0fLJSS5BoGQO+XGIQA4m0YghhlgljJk=;
-	b=DhbU5xpOG59dAQL3u4GeEOADS8vuI6IjQGrmaE/+HZZGJ+U4tpcqzUEjM/sBNrm9vF
-	kvm6fgiAT+7e9phHZ2M9oOFgQExiYjjDCmGgB01OJCEvD8BO67kf5sjCE1cotU53Hbfm
-	Siov5H13oVcxytdjMXF7XudENSVfLGN42RBcXdrbvU/k5yOUbR4ypyBBdFin9IsUa5pH
-	VkkZ6pR5C4icVt7RFDbRgZSOANsM+3Vc18N2qEuKfmHjAPlXG74dY0s11b7SVOzKjq6R
-	YZ3JnSQ/q1ZZlfG6Mpdu98Fi9S/tGJFGy13UdXe84dvirP1+OaFFdPq5jpI+1H+jyxFd
-	HqMA==
-X-Received: by 10.42.208.211 with SMTP id gd19mr1331325icb.15.1383088482519;
-	Tue, 29 Oct 2013 16:14:42 -0700 (PDT)
-MIME-Version: 1.0
-Received: by 10.50.219.195 with HTTP; Tue, 29 Oct 2013 16:14:12 -0700 (PDT)
-In-Reply-To: <CAFZh4h-ULci3FhdeNJDE1zEFRqAQpwVJyLY95-PVW0z2sQFGHQ@mail.gmail.com>
-References: <CAFZh4h8aKoop0wdU7THaBD6+5FnEgfPKW0zM_-wqpOOcLgXdsg@mail.gmail.com>
-	<CAFZh4h-ULci3FhdeNJDE1zEFRqAQpwVJyLY95-PVW0z2sQFGHQ@mail.gmail.com>
-From: Khem Raj <raj.khem@gmail.com>
-Date: Tue, 29 Oct 2013 16:14:12 -0700
-Message-ID: <CAMKF1soqUNb4oGd83_=TOmqgepvBRiZdMLV3iUL3uD5BCMaK-Q@mail.gmail.com>
-To: Brian Hutchinson <b.hutchman@gmail.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Getting a relocate_sdk.py issue when installing a sdk on Centos
+Return-Path: <flihp@twobit.us>
+Received: from smtp.twobit.us (unknown [38.83.192.235])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 36E1BE0179A
+	for <yocto@yoctoproject.org>; Tue, 29 Oct 2013 16:44:18 -0700 (PDT)
+Received: from c-76-24-20-220.hsd1.ma.comcast.net ([76.24.20.220]
+	helo=localhost)
+	by smtp.twobit.us with esmtpsa (TLS1.2:DHE_RSA_AES_128_CBC_SHA1:128)
+	(Exim 4.80) (envelope-from <flihp@twobit.us>)
+	id 1VbIxJ-0005vi-79; Tue, 29 Oct 2013 23:44:15 +0000
+Received: from flihp by localhost with local (Exim 4.80)
+	(envelope-from <flihp@longhaul.twobit.us>)
+	id 1VbIxS-0001xi-Uf; Tue, 29 Oct 2013 23:44:22 +0000
+From: Philip Tricca <flihp@twobit.us>
+To: yocto@yoctoproject.org
+Date: Tue, 29 Oct 2013 23:44:22 +0000
+Message-Id: <1383090262-7512-1-git-send-email-flihp@twobit.us>
+X-Mailer: git-send-email 1.7.10.4
+X-SA-Exim-Connect-IP: 76.24.20.220
+X-SA-Exim-Mail-From: flihp@twobit.us
+X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on smtp.twobit.us
+X-Spam-Level: 
+X-Spam-Status: No, score=0.3 required=5.0 tests=ALL_TRUSTED,URI_HEX
+	autolearn=no version=3.3.2
+X-SA-Exim-Version: 4.2.1 (built Mon, 26 Dec 2011 16:24:06 +0000)
+X-SA-Exim-Scanned: Yes (on smtp.twobit.us)
+Subject: [meta-selinux][PATCH] Add recipe to build the MCS refpolicy.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,77 +35,47 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 29 Oct 2013 23:14:43 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Tue, 29 Oct 2013 23:44:19 -0000
 
-On Tue, Oct 29, 2013 at 2:21 PM, Brian Hutchinson <b.hutchman@gmail.com> wrote:
-> On Tue, Oct 29, 2013 at 5:04 PM, Brian Hutchinson <b.hutchman@gmail.com>
-> wrote:
->>
->> Hi,
->>
->> I tried to research this issue I'm seeing but hit a bunch of noise.  I
->> generated a Yocto 1.5 sdk with my image and -c populate_sdk for i686.  When
->> a collegue tries to install the sdk on his Centos box with Python 2.6.7, he
->> gets:
->>
->> sudo ./poky-eglibc-i686-core-image-wcs-armv7a-vfp-neon-toolchain-1.5.sh
->>
->> Enter target directory for SDK (default: /opt/poky/1.5):
->>
->> The directory "/opt/poky/1.5" already contains a SDK for this
->> architecture.
->>
->> If you continue, existing files will be overwritten! Proceed[y/N]?y
->>
->> Extracting SDK...done
->>
->> Setting it up...  File "/opt/poky/1.5/relocate_sdk.py", line 34
->>
->>     old_prefix = re.compile(b"/opt/poky/1\.5")
->>
->>                                             ^
->>
->> SyntaxError: invalid syntax
->>
->> SDK could not be set up. Relocate script failed. Abort!
->>
->>
->> So I'm kind of scratching my head.  Then I think hey this is a 64 bit
->> machine, maybe the x86_64 SDK will work so then I crank one of those out and
->> after blowing away the stuff in /opt/poky/1.5 and running the install script
->> with the 64bit SDK version we see the same error.
->>
->> One post I did see was Jason Wessel & Richard talking about some
->> chicken/egg problem with certain versions of Python
->> http://git.yoctoproject.org/cgit.cgi/poky/commit/?id=c160a982551f5d6186081daa8fa20682fd7fae17
->> but the version mentioned was 2.4.x and my collegue has 2.6.7.
->>
->> Is there some base set of packages that a machine needs to use the SDK
->> generated by -c populate_sdk?
->>
->> I'm kind of at a loss as to why this works on some machines but not
->> others.
->>
->> Regards,
->>
->>
->
-> Just some more information .... I can install this same sdk on my Ubuntu
-> 12.04 box (32bit) just fine and it is running Python 2.7.3 in case any of
-> that matters.
+This is the default policy type used by most (all?) distros that
+support SELinux.
 
-yeah so get python 2.7 on the other box as well and you will be happier.
+Signed-off-by: Philip Tricca <flihp@twobit.us>
+---
+ .../refpolicy/refpolicy-mcs_2.20130424.bb          |   23 ++++++++++++++++++++
+ 1 file changed, 23 insertions(+)
+ create mode 100644 recipes-security/refpolicy/refpolicy-mcs_2.20130424.bb
 
->
-> Regards,
->
-> Brian
->
->
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
->
+diff --git a/recipes-security/refpolicy/refpolicy-mcs_2.20130424.bb b/recipes-security/refpolicy/refpolicy-mcs_2.20130424.bb
+new file mode 100644
+index 0000000..38b78f1
+--- /dev/null
++++ b/recipes-security/refpolicy/refpolicy-mcs_2.20130424.bb
+@@ -0,0 +1,23 @@
++SUMMARY = "MCS (Multi Category Security) variant of the SELinux policy"
++DESCRIPTION = "\
++This is the reference policy for SE Linux built with MCS support. \
++An MCS policy is the same as an MLS policy but with only one sensitivity \
++level. This is useful on systems where a hierarchical policy (MLS) isn't \
++needed (pretty much all systems) but the non-hierarchical categories are. \
++"
++
++PR = "r0"
++
++POLICY_NAME = "mcs"
++POLICY_TYPE = "mcs"
++POLICY_DISTRO = "redhat"
++POLICY_UBAC = "n"
++POLICY_UNK_PERMS = "allow"
++POLICY_DIRECT_INITRC = "n"
++POLICY_MONOLITHIC = "n"
++POLICY_CUSTOM_BUILDOPT = ""
++POLICY_QUIET = "y"
++
++POLICY_MCS_CATS = "1024"
++
++include refpolicy_${PV}.inc
+-- 
+1.7.10.4
+
 
