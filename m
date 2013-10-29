@@ -1,28 +1,28 @@
-Return-Path: <soniaverma9727@gmail.com>
-Received: from mail-wi0-f179.google.com (mail-wi0-f179.google.com
-	[209.85.212.179])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0E366E0175D
-	for <yocto@yoctoproject.org>; Tue, 29 Oct 2013 00:03:06 -0700 (PDT)
-Received: by mail-wi0-f179.google.com with SMTP id hm4so4865157wib.12
-	for <yocto@yoctoproject.org>; Tue, 29 Oct 2013 00:03:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=3xAv8xw9szOXRJucmZECV2Eq+LMAzR8tcvUUP6tFiWc=;
-	b=JYYhdbcO/9+Cr7xq89ZzEraA7q3OvluxpvFmUKLoLFsaHucNZbMmggqZEkfV9gjb1K
-	IUgvHHvbaQgwYq56NPS8GoQ+IQGWs3elviOfkXEf+TlYGkP2c4f7/cKc2egP/JrJcyCg
-	ym8dqtAa2zT3oDXtTI6JOPOMf/1F3nh0pt8O+Rh2wJ+9Wl//bZLd6/Ps7s5pRw8LsRHY
-	9vjwAZKhKqlWJY8Itey2u/x/mcPmMnVDWFONQEf9JC+yExbYtBD2iit8/rddS7C9ARdy
-	jaA71PiFkP9QH/SFfY/LIqomPOlz4JbSqDu7jvc62jVLxbOJXTcXl9yg3qAxLkdqCdTF
-	mqZA==
+Return-Path: <V.Vogelhuber@DigitalEndoscopy.de>
+Received: from SRV-MSX01.digitendos.local
+	(host-80-81-19-29.customer.m-online.net [80.81.19.29])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 81AC8E0179B
+	for <yocto@yoctoproject.org>; Tue, 29 Oct 2013 01:43:26 -0700 (PDT)
+Received: from [192.168.10.111] (192.168.10.111) by SRV-MSX01.digitendos.local
+	(192.168.10.14) with Microsoft SMTP Server (TLS) id 14.2.347.0;
+	Tue, 29 Oct 2013 09:43:23 +0100
+Message-ID: <526F752A.1080103@digitalendoscopy.de>
+Date: Tue, 29 Oct 2013 09:43:22 +0100
+From: Volker Vogelhuber <v.vogelhuber@digitalendoscopy.de>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:24.0) Gecko/20100101 Thunderbird/24.0
 MIME-Version: 1.0
-X-Received: by 10.180.90.46 with SMTP id bt14mr459418wib.50.1383030184887;
-	Tue, 29 Oct 2013 00:03:04 -0700 (PDT)
-Received: by 10.194.9.193 with HTTP; Tue, 29 Oct 2013 00:03:04 -0700 (PDT)
-Date: Tue, 29 Oct 2013 12:33:04 +0530
-Message-ID: <CAJ7VayhLzFEDns3=buP+gpi3jPHXju=B856Sg6uQksAdzDvoDw@mail.gmail.com>
-From: sonia verma <soniaverma9727@gmail.com>
-To: yocto@yoctoproject.org
-Subject: Openvswitch integration in yocto
+To: Trevor Woerner <trevor.woerner@linaro.org>
+References: <526E3AED.8010501@digitalendoscopy.de>
+	<CALmOhgnRbmmN=vtYG4WVYCRgMZr4LgUJKwxs+ZK1HvtPV=fy8w@mail.gmail.com>
+In-Reply-To: <CALmOhgnRbmmN=vtYG4WVYCRgMZr4LgUJKwxs+ZK1HvtPV=fy8w@mail.gmail.com>
+X-Originating-IP: [192.168.10.111]
+X-TM-AS-Product-Ver: SMEX-10.1.0.2244-7.000.1014-20254.005
+X-TM-AS-Result: No--6.057700-0.000000-31
+X-TM-AS-User-Approved-Sender: Yes
+X-TM-AS-User-Blocked-Sender: No
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Out of tree build yocto dylan
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,57 +34,25 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 29 Oct 2013 07:03:10 -0000
-Content-Type: multipart/alternative; boundary=f46d043c81dee24a9804e9dbce17
+X-List-Received-Date: Tue, 29 Oct 2013 08:43:30 -0000
+Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
+Content-Transfer-Encoding: 7bit
 
---f46d043c81dee24a9804e9dbce17
-Content-Type: text/plain; charset=ISO-8859-1
+On 28.10.2013 19:46, Trevor Woerner wrote:
+> On 28 October 2013 03:22, Volker Vogelhuber
+> <v.vogelhuber@digitalendoscopy.de> wrote:
+>> I'm currently trying to have the TMPDIR moved out of the normal repository path under dylan.
+>> If I set it to
+>> TMPDIR = "${TOPDIR}/../../build/tmp"
+>
+> Does it work better if you use an absolute path (you can use the same
+> TMPDIR location, just specify it absolutely, instead of relatively)?
+Sure it would work too, but I don't want to specify the path in an 
+absolute way because
+we have the toolchain in a mercurial repository, and other developers 
+may have checked out
+the toolchain in another path, so specifying it in an absolute way is no 
+way to go.
 
-Hi All,
 
-i am new to yocto environment. i want to build openvswitch in yocto_1.4.
 
-The openvswitch is path :
-*QorIQ-SDK-V1.4-20130814-yocto/meta-virtualization/recipes-networking/openvswitch.
-
-*
-
-For compiling openvswitch i perform following steps:-
-
-   1.  bitbake -f -c compile openvswitch.
-   2.  bitbake openvswitch.
-   3.  bitbake fsl-image-core.
-
-but when i get fsl-image-core-t4240rdb-20131028123337.rootfs.ext2.gz.u-boot
- & boot the board with uImage & above file system i did not find any
-openvswitch utilities. can you please guide me to how to integrate
-openvswitch in yocto.
-
-looking for the positive response
-
--------
-Regards
-Sonia
-
---f46d043c81dee24a9804e9dbce17
-Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div><div><div class=3D""><img class=3D"" id=3D":9q" src=
-=3D"https://mail.google.com/mail/images/cleardot.gif" alt=3D""></div><div><=
-div><div><div><div><div>Hi All,<br><br></div>i am new to yocto environment.=
- i want to build openvswitch in yocto_1.4.<br>
-<br></div>The openvswitch is path : <b>QorIQ-SDK-V1.4-20130814-yocto/meta-v=
-irtualization/recipes-networking/openvswitch. <br>
-</b></div><br></div>For compiling openvswitch i perform following steps:-<b=
-r></div><ol><li>=A0bitbake -f -c compile openvswitch.</li><li>=A0bitbake op=
-envswitch.</li><li>=A0bitbake fsl-image-core.</li></ol></div><div>but when =
-i get fsl-image-core-t4240rdb-20131028123337.rootfs.ext2.gz.u-boot<br>
-
-</div><div>=A0&amp; boot the board with uImage &amp; above file system i=20
-did not find any openvswitch utilities. can you please guide me to how=20
-to integrate openvswitch in yocto.<br><br></div>looking for the positive re=
-sponse<br>
-<br>-------<br></div>Regards<br></div>Sonia<br></div>
-
---f46d043c81dee24a9804e9dbce17--
