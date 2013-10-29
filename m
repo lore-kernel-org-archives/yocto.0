@@ -1,37 +1,28 @@
-Return-Path: <raj.khem@gmail.com>
-Received: from mail-ie0-f171.google.com (mail-ie0-f171.google.com
-	[209.85.223.171])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0AB86E0179C
-	for <yocto@yoctoproject.org>; Mon, 28 Oct 2013 21:02:39 -0700 (PDT)
-Received: by mail-ie0-f171.google.com with SMTP id tp5so13358308ieb.30
-	for <yocto@yoctoproject.org>; Mon, 28 Oct 2013 21:02:39 -0700 (PDT)
+Return-Path: <soniaverma9727@gmail.com>
+Received: from mail-wi0-f179.google.com (mail-wi0-f179.google.com
+	[209.85.212.179])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0E366E0175D
+	for <yocto@yoctoproject.org>; Tue, 29 Oct 2013 00:03:06 -0700 (PDT)
+Received: by mail-wi0-f179.google.com with SMTP id hm4so4865157wib.12
+	for <yocto@yoctoproject.org>; Tue, 29 Oct 2013 00:03:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-type;
-	bh=xH/CRXWvCvx8A0c1yUQ9w4QahsJK4rtgXJUO+rFFRic=;
-	b=HVw9SOYBQvhI3TR2us2X+613xvrstDN9P26rFZmfpWIVYeHXBIdI0EDYGJK31tT7TO
-	Kcda37YY9sMJUVuWD/I373WmtPmr4q0U/3DRk0HUkHeGz16q8dgQz0cI+hNnHPqqG5rR
-	zP2U60M9wFAyTMBi/xgtzgJ3BRTXaKYapLMV0VKDkuY9YmppGb9WhOmNl49hAn8HP7kx
-	fA2IwTCXnuBUb8y4HN0hNaRGEI083Q4hx2uP4Pha4bQcZZsyYdm3AJ3C8JBcS9MI+jr8
-	Ba3vkhq5l+bmFmvwGtQV86IllnzuGiiQSR9FxJrPeRMswHMfUizsEuks9rihKY8T1tSw
-	bOsA==
-X-Received: by 10.42.208.211 with SMTP id gd19mr15557440icb.15.1383019359177; 
-	Mon, 28 Oct 2013 21:02:39 -0700 (PDT)
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=3xAv8xw9szOXRJucmZECV2Eq+LMAzR8tcvUUP6tFiWc=;
+	b=JYYhdbcO/9+Cr7xq89ZzEraA7q3OvluxpvFmUKLoLFsaHucNZbMmggqZEkfV9gjb1K
+	IUgvHHvbaQgwYq56NPS8GoQ+IQGWs3elviOfkXEf+TlYGkP2c4f7/cKc2egP/JrJcyCg
+	ym8dqtAa2zT3oDXtTI6JOPOMf/1F3nh0pt8O+Rh2wJ+9Wl//bZLd6/Ps7s5pRw8LsRHY
+	9vjwAZKhKqlWJY8Itey2u/x/mcPmMnVDWFONQEf9JC+yExbYtBD2iit8/rddS7C9ARdy
+	jaA71PiFkP9QH/SFfY/LIqomPOlz4JbSqDu7jvc62jVLxbOJXTcXl9yg3qAxLkdqCdTF
+	mqZA==
 MIME-Version: 1.0
-Received: by 10.50.219.195 with HTTP; Mon, 28 Oct 2013 21:02:09 -0700 (PDT)
-In-Reply-To: <17797116383D4341B029FDF34C22BF6A5D7FBA7B68@GUREXMB01.ASIAN.AD.ARICENT.COM>
-References: <mailman.7042.1376600669.19864.yocto@yoctoproject.org>
-	<229904476.ZkVfXfKkUW@helios>
-	<17797116383D4341B029FDF34C22BF6A5D7F9676DD@GUREXMB01.ASIAN.AD.ARICENT.COM>
-	<5732112.ULB9IMbfHf@helios>
-	<17797116383D4341B029FDF34C22BF6A5D7FBA7B68@GUREXMB01.ASIAN.AD.ARICENT.COM>
-From: Khem Raj <raj.khem@gmail.com>
-Date: Mon, 28 Oct 2013 21:02:09 -0700
-Message-ID: <CAMKF1spGfu11zQ+8NvA_WHm=Q7mhDZVbGJAvm1+s0SqsZr_1JQ@mail.gmail.com>
-To: Rohit2 Jindal <rohit2.jindal@aricent.com>
-Cc: Paul Eggleton <paul.eggleton@linux.intel.com>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Yocto toolchain compilation Issues
+X-Received: by 10.180.90.46 with SMTP id bt14mr459418wib.50.1383030184887;
+	Tue, 29 Oct 2013 00:03:04 -0700 (PDT)
+Received: by 10.194.9.193 with HTTP; Tue, 29 Oct 2013 00:03:04 -0700 (PDT)
+Date: Tue, 29 Oct 2013 12:33:04 +0530
+Message-ID: <CAJ7VayhLzFEDns3=buP+gpi3jPHXju=B856Sg6uQksAdzDvoDw@mail.gmail.com>
+From: sonia verma <soniaverma9727@gmail.com>
+To: yocto@yoctoproject.org
+Subject: Openvswitch integration in yocto
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,65 +34,57 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 29 Oct 2013 04:02:45 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Tue, 29 Oct 2013 07:03:10 -0000
+Content-Type: multipart/alternative; boundary=f46d043c81dee24a9804e9dbce17
 
-On Wed, Oct 23, 2013 at 2:01 AM, Rohit2 Jindal
-<rohit2.jindal@aricent.com> wrote:
-> Hi ,
->
-> Actually I am trying to compile our own toolchain by applying our board specific patches to it in yocto . But getting error (attached error log) while running gcc-cross-initial for 4.6.3 toolchain .
->
-> I have removed some patches to make it compatible for my own required toolchain patch versions.
->
+--f46d043c81dee24a9804e9dbce17
+Content-Type: text/plain; charset=ISO-8859-1
 
-what are you trying to achieve ? and what version of yocto are you
-using. There has been changes in build sequence and it depends on
-which version of compiler. So you cant retrofit any version of
-compiler with any version of Yocto project with out
-major rework
+Hi All,
 
->
-> I have changed SRC_URI to download toolchain 4.6.3 tar and removed some patches applicable for 4.7.2 version of toolchain and added my own board specific
-> Toolchain patch. Its applying properly but at the compilation time gcc-cross-initial fails I am not able to understand the reason.
->
-> I have downloaded binutils 2.22 version for specific to our toolchain patch of binutils_222.patch and removed some patches compatible to 2.23.1 version of binutils .
-> Bitbake binutils-cross works fine removing some patches
->
->
-> But when I compile bitbake gcc-cross-initial do_compile failed .
->
->
-> 1 I am not getting if I want to compile and install my own board specific toolchain I have to run only
->
-> Bitbake gcc-cross-initial
-> Bitbake gcc-runtime
-> Bitbake gcc-cross
->
-> 2Please tell whether the above three bitbake commands all are mandatory to compile and install my specific toolchain or which command can be skipped.
->
-> 3Please tell its dependency on newlib eglibc uclibc etc I am confused on all these things
->
-> 4And please tell the mandatory changes to made for elf toolchain and linux toolchain respectively.
->
-> Thanks in advance!!
->
->
-> Regards,
-> Rohit Jindal
->
->
->
->
->
-> ===============================================================================
-> Please refer to http://www.aricent.com/legal/email_disclaimer.html
-> for important disclosures regarding this electronic communication.
-> ===============================================================================
->
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
->
+i am new to yocto environment. i want to build openvswitch in yocto_1.4.
 
+The openvswitch is path :
+*QorIQ-SDK-V1.4-20130814-yocto/meta-virtualization/recipes-networking/openvswitch.
+
+*
+
+For compiling openvswitch i perform following steps:-
+
+   1.  bitbake -f -c compile openvswitch.
+   2.  bitbake openvswitch.
+   3.  bitbake fsl-image-core.
+
+but when i get fsl-image-core-t4240rdb-20131028123337.rootfs.ext2.gz.u-boot
+ & boot the board with uImage & above file system i did not find any
+openvswitch utilities. can you please guide me to how to integrate
+openvswitch in yocto.
+
+looking for the positive response
+
+-------
+Regards
+Sonia
+
+--f46d043c81dee24a9804e9dbce17
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div><div><div class=3D""><img class=3D"" id=3D":9q" src=
+=3D"https://mail.google.com/mail/images/cleardot.gif" alt=3D""></div><div><=
+div><div><div><div><div>Hi All,<br><br></div>i am new to yocto environment.=
+ i want to build openvswitch in yocto_1.4.<br>
+<br></div>The openvswitch is path : <b>QorIQ-SDK-V1.4-20130814-yocto/meta-v=
+irtualization/recipes-networking/openvswitch. <br>
+</b></div><br></div>For compiling openvswitch i perform following steps:-<b=
+r></div><ol><li>=A0bitbake -f -c compile openvswitch.</li><li>=A0bitbake op=
+envswitch.</li><li>=A0bitbake fsl-image-core.</li></ol></div><div>but when =
+i get fsl-image-core-t4240rdb-20131028123337.rootfs.ext2.gz.u-boot<br>
+
+</div><div>=A0&amp; boot the board with uImage &amp; above file system i=20
+did not find any openvswitch utilities. can you please guide me to how=20
+to integrate openvswitch in yocto.<br><br></div>looking for the positive re=
+sponse<br>
+<br>-------<br></div>Regards<br></div>Sonia<br></div>
+
+--f46d043c81dee24a9804e9dbce17--
