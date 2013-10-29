@@ -1,17 +1,28 @@
-Return-Path: <packages@autobuilder.yoctoproject.org>
-Received: from autobuilder.yoctoproject.org (ab01.i.yoctoproject.org
-	[10.0.10.111])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BDBABE0179A
-	for <yocto@yoctoproject.org>; Tue, 29 Oct 2013 10:45:37 -0700 (PDT)
-Received: by autobuilder.yoctoproject.org (Postfix, from userid 802)
-	id BA34E4197F; Tue, 29 Oct 2013 17:45:37 +0000 (UTC)
-Date: Tue, 29 Oct 2013 17:45:37 +0000
-From: Yocto Project Package Report System <package-reporting@yoctoproject.org>
-To: yocto@yoctoproject.org
-Message-ID: <20131029174537.GA906@ab01.i.yoctoproject.org>
+Return-Path: <gary@mlbassoc.com>
+Received: from mail.chez-thomas.org (mail.mlbassoc.com [65.100.170.105])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 829E2E01756
+	for <yocto@yoctoproject.org>; Tue, 29 Oct 2013 13:24:29 -0700 (PDT)
+Received: by mail.chez-thomas.org (Postfix, from userid 1998)
+	id 57A33F81209; Tue, 29 Oct 2013 14:24:29 -0600 (MDT)
+X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on
+	hermes.chez-thomas.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=4.0 tests=ALL_TRUSTED,BAYES_00
+	autolearn=ham version=3.3.2
+Received: from [192.168.1.114] (zeus [192.168.1.114])
+	by mail.chez-thomas.org (Postfix) with ESMTP id 2753AF8120A;
+	Tue, 29 Oct 2013 14:24:28 -0600 (MDT)
+Message-ID: <52701989.4010700@mlbassoc.com>
+Date: Tue, 29 Oct 2013 14:24:41 -0600
+From: Gary Thomas <gary@mlbassoc.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:24.0) Gecko/20100101 Thunderbird/24.0
 MIME-Version: 1.0
-User-Agent: Mutt/1.5.20 (2009-12-10)
-Subject: [Package Report System]Manual check recipes name list
+To: yocto@yoctoproject.org
+References: <CAJ7VayhLzFEDns3=buP+gpi3jPHXju=B856Sg6uQksAdzDvoDw@mail.gmail.com>	<9540873.ngNT0uahPc@helios>
+	<CAKP9-SjPgGtMXPvBTiARu6hcUubLhEdjB5NGsR+AsMai6KR83A@mail.gmail.com>
+In-Reply-To: <CAKP9-SjPgGtMXPvBTiARu6hcUubLhEdjB5NGsR+AsMai6KR83A@mail.gmail.com>
+Subject: Re: Openvswitch integration in yocto
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -23,22 +34,78 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 29 Oct 2013 17:45:37 -0000
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+X-List-Received-Date: Tue, 29 Oct 2013 20:24:30 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
 
-This mail was sent out by Package Report System.
-It will list all the recipes which can't check upstream version by script, and will show how long it is since their last mannual version check.
-You can check the detail information at http://packages.yoctoproject.org/manuallychkinfo
+On 2013-10-29 11:31, Sandeep G.R wrote:
+> Hi Sonia,
+>
+>          Add this line IMAGE_INSTALL_append += "openvswitch" to*QorIQ-SDK-V1.4-20130814-yocto/meta-fsl-networking/images/fsl-image-core.bb <http://fsl-image-core.bb>.*
 
+It's not necessary (and indeed, poor practice) to make a change to the main recipes like this.
 
-PackageName              Version             LastChkVersion      LastChkTime              Maintainer                              NoUpgradeReason               
-libpng12                 1.2.50              1.2.50              69 days                  Valentin Popa <valentin.popa@...        No data                       
-sqlite3                  3071700             3.7.17              69 days                  Saul Wold <sgw@linux.intel.co...        No data                       
-python-docutils          0.11                N/A                 41574 d                  No Maintainer info                      No data                       
-atk                      2.8.0               N/A                 41574 d                  Cristiana Voicu <cristiana.vo...        No data                       
-minicom                  2.6.2               2.6.2               141 day                  Cristian Iorga <cristian.iorg...        No data                       
-Manual Check Count: 5
-Manual Need Check Count: 5
-Any problem, please contact Saul Wold <sgw@linux.intel.com> 
+Much better would be to add that line to "local.conf" and leave the main recipes untouched.
+Of course, you still have to rebuild the image (step 3) for this to have any affect.
+
+> *
+> *
+> And do step 3 and openvswitch will be on T4240QDS.
+>
+>
+> On Tue, Oct 29, 2013 at 4:11 AM, Paul Eggleton <paul.eggleton@linux.intel.com <mailto:paul.eggleton@linux.intel.com>> wrote:
+>
+>     Hi Sonia,
+>
+>     On Tuesday 29 October 2013 12:33:04 sonia verma wrote:
+>     > For compiling openvswitch i perform following steps:-
+>     >
+>     >    1.  bitbake -f -c compile openvswitch.
+>     >    2.  bitbake openvswitch.
+>     >    3.  bitbake fsl-image-core.
+>     >
+>     > but when i get fsl-image-core-t4240rdb-20131028123337.rootfs.ext2.gz.u-boot
+>     >  & boot the board with uImage & above file system i did not find any
+>     > openvswitch utilities. can you please guide me to how to integrate
+>     > openvswitch in yocto.
+>
+>     If you wish openvswitch to be included in your image you will need to add it
+>     explicitly - see this section of the manual:
+>
+>     http://www.yoctoproject.org/docs/current/dev-manual/dev-manual.html#usingpoky-extend-customimage
+>
+>     Once you have done this, steps 1 and 2 are no longer necessary.
+>
+>     Cheers,
+>     Paul
+>
+>     --
+>
+>     Paul Eggleton
+>     Intel Open Source Technology Centre
+>     _______________________________________________
+>     yocto mailing list
+>     yocto@yoctoproject.org <mailto:yocto@yoctoproject.org>
+>     https://lists.yoctoproject.org/listinfo/yocto
+>
+>
+>
+>
+> --
+> *Thanks & Regards,*
+> *Sandeep G R*
+>
+>
+>
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
+
+-- 
+------------------------------------------------------------
+Gary Thomas                 |  Consulting for the
+MLB Associates              |    Embedded world
+------------------------------------------------------------
 
