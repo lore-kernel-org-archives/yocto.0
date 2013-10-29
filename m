@@ -1,28 +1,30 @@
 Return-Path: <b.hutchman@gmail.com>
-Received: from mail-ea0-f180.google.com (mail-ea0-f180.google.com
-	[209.85.215.180])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AF55DE01756
-	for <yocto@yoctoproject.org>; Tue, 29 Oct 2013 14:04:11 -0700 (PDT)
-Received: by mail-ea0-f180.google.com with SMTP id l9so170433eaj.39
-	for <yocto@yoctoproject.org>; Tue, 29 Oct 2013 14:04:10 -0700 (PDT)
+Received: from mail-ea0-f181.google.com (mail-ea0-f181.google.com
+	[209.85.215.181])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3189DE01756
+	for <yocto@yoctoproject.org>; Tue, 29 Oct 2013 14:21:54 -0700 (PDT)
+Received: by mail-ea0-f181.google.com with SMTP id d10so213714eaj.12
+	for <yocto@yoctoproject.org>; Tue, 29 Oct 2013 14:21:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=d5t6CRy3Q0BemqWcH2ZfKerPmrhYt5WVqJat8OCIXLg=;
-	b=ppjPKQx6L5C9g/zF/ZriOBQZoF91MwhI+0PxzOmLWs8T/dJxmqr8m4ojxyDz8VAVjo
-	3tFM1FyOVb4vmoRixRpLpgNzLLOF8OLjRXzGs9x9OnyVkehCl0GiyZi1WWAfXmyWgAI0
-	lflyZUSjG7Pjpnu8v5YTZBt006ZGGzuiGmPaUGwYF4ZV+yP6HcB2QUSUxY/0npbfcRZQ
-	BHJDVo6JrmsMahPMpSgcam+jzennuCtkbNOlhChDiRlLxuFjaPoNlc/26fGoTPkkwfgV
-	OXymW/fwshBhB1TcWL0Lg11OL1tbTHQAyBGih41FoIYtSWcZ4SnXkk/vxglOa+qHJXTH
-	JqVQ==
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:content-type; bh=iYTwCg45kLLhHMJ0/xaZNdFqVUjGPACyCzv+HzW6q9g=;
+	b=ykMgh7mlPdJJZbZBdR8sZk5ujC+YRxmXXBqbPzDebwSOF2qFWInTHTa9cxaGR2c8r7
+	IcfB9QjuqMO9mByjuJrNhIf9SWY0V+esYjq4HVizrmT7keXyQRqOJjvmSaizI3EWMzYf
+	gk45cocH77pLfU5PHz416rrDGHybiwRAP0rlg/QQQylso+U2JU28Xw9yfi9KpQLBO7BK
+	9mlSmwNyY++XrNn9xw+ksnHZ3LXnDR+Zu4st0IByptgPTIu/9R2HY0+r37YDRCLjNCXa
+	k8zvuD4i4E3YDLldW50oPNTVKKA7hPfIneTj6hfrkYDN6a3Ywvpzjsu16hYZwcnMW7AB
+	NB0w==
 MIME-Version: 1.0
-X-Received: by 10.15.24.142 with SMTP id j14mr1366563eeu.103.1383080650640;
-	Tue, 29 Oct 2013 14:04:10 -0700 (PDT)
-Received: by 10.223.170.195 with HTTP; Tue, 29 Oct 2013 14:04:10 -0700 (PDT)
-Date: Tue, 29 Oct 2013 17:04:10 -0400
-Message-ID: <CAFZh4h8aKoop0wdU7THaBD6+5FnEgfPKW0zM_-wqpOOcLgXdsg@mail.gmail.com>
+X-Received: by 10.15.75.73 with SMTP id k49mr1647432eey.36.1383081713258; Tue,
+	29 Oct 2013 14:21:53 -0700 (PDT)
+Received: by 10.223.170.195 with HTTP; Tue, 29 Oct 2013 14:21:53 -0700 (PDT)
+In-Reply-To: <CAFZh4h8aKoop0wdU7THaBD6+5FnEgfPKW0zM_-wqpOOcLgXdsg@mail.gmail.com>
+References: <CAFZh4h8aKoop0wdU7THaBD6+5FnEgfPKW0zM_-wqpOOcLgXdsg@mail.gmail.com>
+Date: Tue, 29 Oct 2013 17:21:53 -0400
+Message-ID: <CAFZh4h-ULci3FhdeNJDE1zEFRqAQpwVJyLY95-PVW0z2sQFGHQ@mail.gmail.com>
 From: Brian Hutchinson <b.hutchman@gmail.com>
 To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Getting a relocate_sdk.py issue when installing a sdk on Centos
+Subject: Re: Getting a relocate_sdk.py issue when installing a sdk on Centos
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,119 +36,136 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 29 Oct 2013 21:04:17 -0000
-Content-Type: multipart/alternative; boundary=089e0160cddee090f504e9e78ee1
+X-List-Received-Date: Tue, 29 Oct 2013 21:21:55 -0000
+Content-Type: multipart/alternative; boundary=001a11c1af4c36d80b04e9e7ceca
 
---089e0160cddee090f504e9e78ee1
+--001a11c1af4c36d80b04e9e7ceca
 Content-Type: text/plain; charset=ISO-8859-1
 
-Hi,
+On Tue, Oct 29, 2013 at 5:04 PM, Brian Hutchinson <b.hutchman@gmail.com>wrote:
 
-I tried to research this issue I'm seeing but hit a bunch of noise.  I
-generated a Yocto 1.5 sdk with my image and -c populate_sdk for i686.  When
-a collegue tries to install the sdk on his Centos box with Python 2.6.7, he
-gets:
-
-sudo ./poky-eglibc-i686-core-image-wcs-armv7a-vfp-neon-toolchain-1.5.sh
-
-Enter target directory for SDK (default: /opt/poky/1.5):
-
-The directory "/opt/poky/1.5" already contains a SDK for this architecture.
-
-If you continue, existing files will be overwritten! Proceed[y/N]?y
-
-Extracting SDK...done
-
-Setting it up...  File "/opt/poky/1.5/relocate_sdk.py", line 34
-
-    old_prefix = re.compile(b"/opt/poky/1\.5")
-
-                                            ^
-
-SyntaxError: invalid syntax
-
-SDK could not be set up. Relocate script failed. Abort!
-
-
-So I'm kind of scratching my head.  Then I think hey this is a 64 bit
-machine, maybe the x86_64 SDK will work so then I crank one of those out
-and after blowing away the stuff in /opt/poky/1.5 and running the install
-script with the 64bit SDK version we see the same error.
-
-One post I did see was Jason Wessel & Richard talking about some
-chicken/egg problem with certain versions of Python
-http://git.yoctoproject.org/cgit.cgi/poky/commit/?id=c160a982551f5d6186081daa8fa20682fd7fae17but
-the version mentioned was 2.4.x and my collegue has 2.6.7.
-
-Is there some base set of packages that a machine needs to use the SDK
-generated by -c populate_sdk?
-
-I'm kind of at a loss as to why this works on some machines but not others.
+> Hi,
+>
+> I tried to research this issue I'm seeing but hit a bunch of noise.  I
+> generated a Yocto 1.5 sdk with my image and -c populate_sdk for i686.  When
+> a collegue tries to install the sdk on his Centos box with Python 2.6.7, he
+> gets:
+>
+> sudo ./poky-eglibc-i686-core-image-wcs-armv7a-vfp-neon-toolchain-1.5.sh
+>
+> Enter target directory for SDK (default: /opt/poky/1.5):
+>
+> The directory "/opt/poky/1.5" already contains a SDK for this architecture.
+>
+> If you continue, existing files will be overwritten! Proceed[y/N]?y
+>
+> Extracting SDK...done
+>
+> Setting it up...  File "/opt/poky/1.5/relocate_sdk.py", line 34
+>
+>     old_prefix = re.compile(b"/opt/poky/1\.5")
+>
+>                                             ^
+>
+> SyntaxError: invalid syntax
+>
+> SDK could not be set up. Relocate script failed. Abort!
+>
+>
+> So I'm kind of scratching my head.  Then I think hey this is a 64 bit
+> machine, maybe the x86_64 SDK will work so then I crank one of those out
+> and after blowing away the stuff in /opt/poky/1.5 and running the install
+> script with the 64bit SDK version we see the same error.
+>
+> One post I did see was Jason Wessel & Richard talking about some
+> chicken/egg problem with certain versions of Python
+> http://git.yoctoproject.org/cgit.cgi/poky/commit/?id=c160a982551f5d6186081daa8fa20682fd7fae17but the version mentioned was 2.4.x and my collegue has 2.6.7.
+>
+> Is there some base set of packages that a machine needs to use the SDK
+> generated by -c populate_sdk?
+>
+> I'm kind of at a loss as to why this works on some machines but not others.
+>
+> Regards,
+>
+>
+Just some more information .... I can install this same sdk on my Ubuntu
+12.04 box (32bit) just fine and it is running Python 2.7.3 in case any of
+that matters.
 
 Regards,
 
-
 Brian
 
---089e0160cddee090f504e9e78ee1
+--001a11c1af4c36d80b04e9e7ceca
 Content-Type: text/html; charset=ISO-8859-1
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div>Hi,<br><br></div>I tried to research this issue I&#39=
-;m seeing but hit a bunch of noise.=A0 I generated a Yocto 1.5 sdk with my =
-image and -c populate_sdk for i686.=A0 When a collegue tries to install the=
- sdk on his Centos box with Python 2.6.7, he gets:<br>
-<span style=3D"font-family:&quot;Courier New&quot;"><br>sudo ./<a href=3D"h=
-ttp://poky-eglibc-i686-core-image-wcs-armv7a-vfp-neon-toolchain-1.5.sh">pok=
-y-eglibc-i686-core-image-wcs-armv7a-vfp-neon-toolchain-1.5.sh</a>
-</span>
-<p class=3D"" style=3D"text-autospace:none"><span style=3D"font-family:&quo=
-t;Courier New&quot;">Enter target directory for SDK (default: /opt/poky/1.5=
-):
-</span></p>
-<p class=3D"" style=3D"text-autospace:none"><span style=3D"font-family:&quo=
-t;Courier New&quot;">The directory &quot;/opt/poky/1.5&quot; already contai=
-ns a SDK for this architecture.</span></p>
-<p class=3D"" style=3D"text-autospace:none"><span style=3D"font-family:&quo=
-t;Courier New&quot;">If you continue, existing files will be overwritten! P=
-roceed[y/N]?y</span></p>
-<p class=3D"" style=3D"text-autospace:none"><span style=3D"font-family:&quo=
-t;Courier New&quot;">Extracting SDK...done</span></p>
-<p class=3D"" style=3D"text-autospace:none"><span style=3D"font-family:&quo=
-t;Courier New&quot;">Setting it up...=A0 File &quot;/opt/poky/1.5/relocate_=
-sdk.py&quot;, line 34</span></p>
-<p class=3D"" style=3D"text-autospace:none"><span style=3D"font-family:&quo=
-t;Courier New&quot;">=A0=A0=A0 old_prefix =3D re.compile(b&quot;/opt/poky/1=
-\.5&quot;)</span></p>
-<p class=3D"" style=3D"text-autospace:none"><span style=3D"font-family:&quo=
-t;Courier New&quot;">=A0=A0=A0 =A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=
-=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=
-=A0^</span></p>
-<p class=3D"" style=3D"text-autospace:none"><span style=3D"font-family:&quo=
-t;Courier New&quot;">SyntaxError: invalid syntax</span></p>
-<p class=3D"" style=3D"text-autospace:none"><span style=3D"font-family:&quo=
-t;Courier New&quot;">SDK could not be set up. Relocate script failed. Abort=
-!</span></p><p class=3D"" style=3D"text-autospace:none"><br><span style=3D"=
-font-family:&quot;Courier New&quot;"></span></p>
-<p class=3D"" style><span style=3D"font-family:&quot;Courier New&quot;">So =
-I&#39;m kind of scratching my head.=A0 Then I think hey this is a 64 bit ma=
-chine, maybe the x86_64 SDK will work so then I crank one of those out and =
-after blowing away the stuff in /opt/poky/1.5 and running the install scrip=
-t with the 64bit SDK version we see the same error.</span></p>
-<p class=3D"" style>One post I did see was Jason Wessel &amp; Richard talki=
-ng about some chicken/egg problem with certain versions of Python <a href=
-=3D"http://git.yoctoproject.org/cgit.cgi/poky/commit/?id=3Dc160a982551f5d61=
-86081daa8fa20682fd7fae17">http://git.yoctoproject.org/cgit.cgi/poky/commit/=
-?id=3Dc160a982551f5d6186081daa8fa20682fd7fae17</a> but the version mentione=
-d was 2.4.x and my collegue has 2.6.7.</p>
-<p class=3D"" style>Is there some base set of packages that a machine needs=
- to use the SDK generated by -c populate_sdk?</p><p class=3D"" style>I&#39;=
-m kind of at a loss as to why this works on some machines but not others.</=
-p>
-<p class=3D"" style>Regards,</p><p class=3D"" style><br></p><p class=3D"" s=
-tyle>Brian</p><p class=3D"" style><br></p><p class=3D"" style><span style=
-=3D"font-family:&quot;Courier New&quot;"></span></p><p class=3D"" style><br=
-><span style=3D"font-family:&quot;Courier New&quot;"></span></p>
-<p class=3D"" style><br></p><br></div>
+<div dir=3D"ltr"><div class=3D"gmail_extra"><div class=3D"gmail_quote">On T=
+ue, Oct 29, 2013 at 5:04 PM, Brian Hutchinson <span dir=3D"ltr">&lt;<a href=
+=3D"mailto:b.hutchman@gmail.com" target=3D"_blank">b.hutchman@gmail.com</a>=
+&gt;</span> wrote:<br>
+<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
+x #ccc solid;padding-left:1ex"><div dir=3D"ltr"><div>Hi,<br><br></div>I tri=
+ed to research this issue I&#39;m seeing but hit a bunch of noise.=A0 I gen=
+erated a Yocto 1.5 sdk with my image and -c populate_sdk for i686.=A0 When =
+a collegue tries to install the sdk on his Centos box with Python 2.6.7, he=
+ gets:<br>
 
---089e0160cddee090f504e9e78ee1--
+<span style=3D"font-family:&quot;Courier New&quot;"><br>sudo ./<a href=3D"h=
+ttp://poky-eglibc-i686-core-image-wcs-armv7a-vfp-neon-toolchain-1.5.sh" tar=
+get=3D"_blank">poky-eglibc-i686-core-image-wcs-armv7a-vfp-neon-toolchain-1.=
+5.sh</a>
+</span>
+<p style=3D"text-autospace:none"><span style=3D"font-family:&quot;Courier N=
+ew&quot;">Enter target directory for SDK (default: /opt/poky/1.5):
+</span></p>
+<p style=3D"text-autospace:none"><span style=3D"font-family:&quot;Courier N=
+ew&quot;">The directory &quot;/opt/poky/1.5&quot; already contains a SDK fo=
+r this architecture.</span></p>
+<p style=3D"text-autospace:none"><span style=3D"font-family:&quot;Courier N=
+ew&quot;">If you continue, existing files will be overwritten! Proceed[y/N]=
+?y</span></p>
+<p style=3D"text-autospace:none"><span style=3D"font-family:&quot;Courier N=
+ew&quot;">Extracting SDK...done</span></p>
+<p style=3D"text-autospace:none"><span style=3D"font-family:&quot;Courier N=
+ew&quot;">Setting it up...=A0 File &quot;/opt/poky/1.5/relocate_sdk.py&quot=
+;, line 34</span></p>
+<p style=3D"text-autospace:none"><span style=3D"font-family:&quot;Courier N=
+ew&quot;">=A0=A0=A0 old_prefix =3D re.compile(b&quot;/opt/poky/1\.5&quot;)<=
+/span></p>
+<p style=3D"text-autospace:none"><span style=3D"font-family:&quot;Courier N=
+ew&quot;">=A0=A0=A0 =A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=
+=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0^</span><=
+/p>
+<p style=3D"text-autospace:none"><span style=3D"font-family:&quot;Courier N=
+ew&quot;">SyntaxError: invalid syntax</span></p>
+<p style=3D"text-autospace:none"><span style=3D"font-family:&quot;Courier N=
+ew&quot;">SDK could not be set up. Relocate script failed. Abort!</span></p=
+><p style=3D"text-autospace:none"><br><span style=3D"font-family:&quot;Cour=
+ier New&quot;"></span></p>
+
+<p><span style=3D"font-family:&quot;Courier New&quot;">So I&#39;m kind of s=
+cratching my head.=A0 Then I think hey this is a 64 bit machine, maybe the =
+x86_64 SDK will work so then I crank one of those out and after blowing awa=
+y the stuff in /opt/poky/1.5 and running the install script with the 64bit =
+SDK version we see the same error.</span></p>
+
+<p>One post I did see was Jason Wessel &amp; Richard talking about some chi=
+cken/egg problem with certain versions of Python <a href=3D"http://git.yoct=
+oproject.org/cgit.cgi/poky/commit/?id=3Dc160a982551f5d6186081daa8fa20682fd7=
+fae17" target=3D"_blank">http://git.yoctoproject.org/cgit.cgi/poky/commit/?=
+id=3Dc160a982551f5d6186081daa8fa20682fd7fae17</a> but the version mentioned=
+ was 2.4.x and my collegue has 2.6.7.</p>
+
+<p>Is there some base set of packages that a machine needs to use the SDK g=
+enerated by -c populate_sdk?</p><p>I&#39;m kind of at a loss as to why this=
+ works on some machines but not others.</p>
+<p>Regards,</p><br></div></blockquote></div><br></div><div class=3D"gmail_e=
+xtra">Just some more information .... I can install this same sdk on my Ubu=
+ntu 12.04 box (32bit) just fine and it is running Python 2.7.3 in case any =
+of that matters.<br>
+<br></div><div class=3D"gmail_extra">Regards,<br><br></div><div class=3D"gm=
+ail_extra">Brian<br><br></div></div>
+
+--001a11c1af4c36d80b04e9e7ceca--
