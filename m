@@ -1,35 +1,27 @@
-Return-Path: <hans.beckerus@gmail.com>
-Received: from mail-oa0-f44.google.com (mail-oa0-f44.google.com
-	[209.85.219.44])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B0F6BE016FF
-	for <yocto@yoctoproject.org>; Tue, 29 Oct 2013 07:20:07 -0700 (PDT)
-Received: by mail-oa0-f44.google.com with SMTP id l20so5257179oag.31
-	for <yocto@yoctoproject.org>; Tue, 29 Oct 2013 07:20:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type:content-transfer-encoding;
-	bh=F04kFwawEtMo7B5VJXR61Q/cMRht6FRBtNT2MMZXBTU=;
-	b=L+v6bwlfsa8Vzv4iV4KNMqSJp+81K6UtavmxqW7AOivQ9OU7+xi4/wWdcca8BXOcQk
-	TlJuOVyAwRPme1i90mp/MNq4g0lJqm3KPWO8i+t1cWIFT5Q19jhoCchWw5dY2A/bt878
-	sdX0muDGM9si47GD8kxg8KK2h4vo53xosL2pXdYKovXfl/JWs8MLHI6Do+0p5VAU6b7D
-	Kq7VNMZsGJpBsdh8z+RAqDsHBQ60CMz25t5Znw2CceP1mA6u1rX0ejnpuaGhVd393kw+
-	hFTNg3BnNhbX0eqNGuKMcAZ0m3USHrxHUHIiL4Fbp3OTet97dc1oAw4AXOXRi7GBGAKP
-	WmuQ==
+Return-Path: <Yang.Shi@windriver.com>
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 038EDE01735
+	for <yocto@yoctoproject.org>; Tue, 29 Oct 2013 07:48:07 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
+	[147.11.189.40])
+	by mail.windriver.com (8.14.5/8.14.3) with ESMTP id r9TEm5qV013755
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
+	Tue, 29 Oct 2013 07:48:05 -0700 (PDT)
+Received: from [147.11.152.84] (147.11.152.84) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server id 14.2.347.0;
+	Tue, 29 Oct 2013 07:48:04 -0700
+Message-ID: <526FCAA4.3080207@windriver.com>
+Date: Tue, 29 Oct 2013 07:48:04 -0700
+From: Yang Shi <yang.shi@windriver.com>
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64;
+	rv:24.0) Gecko/20100101 Thunderbird/24.0.1
 MIME-Version: 1.0
-X-Received: by 10.60.36.195 with SMTP id s3mr37455oej.104.1383056407120; Tue,
-	29 Oct 2013 07:20:07 -0700 (PDT)
-Received: by 10.182.44.8 with HTTP; Tue, 29 Oct 2013 07:20:07 -0700 (PDT)
-In-Reply-To: <20131029134236.GI3697@jama>
-References: <CAFyqS9qh4GgseGVMVjYTo5jK5SURWVgDR5NdgoGv_Pw7q72kmg@mail.gmail.com>
-	<20131029110034.GF3697@jama>
-	<CAFyqS9q2aC38neoGDL5s_f3ywV0p8+j0689Xh_DHoHkBwNy0rg@mail.gmail.com>
-	<20131029134236.GI3697@jama>
-Date: Tue, 29 Oct 2013 15:20:07 +0100
-Message-ID: <CAFyqS9qNqHxwGu4d2vAqKORNk+-3SoeRtfOghpvSxV6OibL2tQ@mail.gmail.com>
-From: =?ISO-8859-1?Q?Hans_Beck=E9rus?= <hans.beckerus@gmail.com>
-To: Martin Jansa <martin.jansa@gmail.com>
+To: Khem Raj <raj.khem@gmail.com>
+References: <1382728670-8235-1-git-send-email-yang.shi@windriver.com>
+	<CAMKF1srcebkiq+NgLFZORMJcDRKNif4vR3Djrpf9QctyeLcjDA@mail.gmail.com>
+In-Reply-To: <CAMKF1srcebkiq+NgLFZORMJcDRKNif4vR3Djrpf9QctyeLcjDA@mail.gmail.com>
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: SRCREV how is it supposed to work?
+Subject: Re: [PATCH] perf: mips64: Convert __u64 to unsigned long long
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,86 +33,124 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 29 Oct 2013 14:20:10 -0000
-Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Tue, 29 Oct 2013 14:48:08 -0000
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Tue, Oct 29, 2013 at 2:42 PM, Martin Jansa <martin.jansa@gmail.com> wrot=
-e:
-> On Tue, Oct 29, 2013 at 02:27:30PM +0100, Hans Beck=E9rus wrote:
->> On Tue, Oct 29, 2013 at 12:00 PM, Martin Jansa <martin.jansa@gmail.com> =
-wrote:
->> > On Tue, Oct 29, 2013 at 12:46:18PM +0100, Hans Beck=E9rus wrote:
->> >> Hi. I am wondering if we are using SRCREV wrong somehow.
->> >> Is it expected that if we use SRCREV =3D "${AUTOREV}", that any chang=
-es
->> >> to the remote should be automatically detected and downloaded/fetched=
-?
->> >> I can no see that this is actually what happens. Any changes made to
->> >> the remote still need to be manually fetched or indirectly by steppin=
-g
->> >> the recipe revision.
->> >> Are we using SRCREV wrong or is this actually the way it is supposed
->> >> to work? Also, is there some way to force a download to me made every
->> >> single time by a recipe,
->> >> irrespective of if the remote changed or not?
->> >
->> > It's supposed to run git ls-remote while parsing to get latest revisio=
-n
->> > in remote repo and then rebuild the package because of SRCPV change in
->> > PV, are you using something like:
->> >
->> > PV =3D "1.0+git${SRCPV}"
->> >
->> > ?
->> >
->> Nope. I did not know we had to use PV. Sounds like we need to in the
->> general case. But in this case,
+On 10/28/2013 5:38 PM, Khem Raj wrote:
+> On Fri, Oct 25, 2013 at 12:17 PM, Yang Shi <yang.shi@windriver.com> wrote:
+>> On MIPS64, "__u64" is "unsigned long" type, so the "%llu" specifier will cause
+>> build error on MIPS64.
+>>
+>> Convert __u64 to unsigned long long in those sprintf calls to avoid the build
+>> error.
+>>
+>> Signed-off-by: Yang Shi <yang.shi@windriver.com>
+>> ---
+>>   tools/perf/tests/attr.c               |   20 ++++++++++----------
+>>   tools/perf/tests/bp_signal.c          |    2 +-
+>>   tools/perf/tests/bp_signal_overflow.c |    2 +-
+>>   3 files changed, 12 insertions(+), 12 deletions(-)
+>>
+>> diff --git a/tools/perf/tests/attr.c b/tools/perf/tests/attr.c
+>> index 00218f5..f045c2c 100644
+>> --- a/tools/perf/tests/attr.c
+>> +++ b/tools/perf/tests/attr.c
+>> @@ -71,7 +71,7 @@ static int store_event(struct perf_event_attr *attr, pid_t pid, int cpu,
+>>          char path[PATH_MAX];
+>>
+>>          snprintf(path, PATH_MAX, "%s/event-%d-%llu-%d", dir,
+>> -                attr->type, attr->config, fd);
+>> +                attr->type, (unsigned long long)attr->config, fd);
+>>
+> hmm may be you can convert %llu into PRIu64
 >
-> You need to reference it somewhere, if you were using multiple git repos
-> in SRC_URI you probably need to define SRCREV_foo =3D "${AUTOREV}" for al=
-l
-> of them (where foo is from name=3Dfoo param for each repo).
+> e.g.
 >
-Sure.
+> printf(  "%" PRIu64 "\n", val);
 
->> we actually do not have versions on the package itself since it is
->> simply a container for several other binary packages merged into one
->> binary file.
->> So our "package" is downloading packages from several git repos,
->
-> "package" -> "recipe"
->
-Yea, yea! :)
+I already tried this. It works on some arches, like MIPS64, but failed 
+for x86_64 build.
 
->> stored in different folders using 'destsuffix'.
->> Would it be ok to simply set PV =3D "${SRCPV}" ? I guess this will
->
-> SRCPV is sortable and consistent only with shared persistent PR server is=
- used
-> across all builders - if that's not the case it's safer to prefix SRCPV
-> with some manually maintained version.
->
-No problem. That is doable.
+Thanks,
+Yang
 
->> result in a new target folder for each changed remote? And will this
->> work when referring to several git repos in SRC_URI?
 >
-> You'll need to define SRCREV_FORMAT and name parameter for each repo in
-> SRC_URI.
 >
-Now I am not following you :( name I understand, but what is SRCREV_FORMAT?
+>
+>>          file = fopen(path, "w+");
+>>          if (!file) {
+>> @@ -80,7 +80,7 @@ static int store_event(struct perf_event_attr *attr, pid_t pid, int cpu,
+>>          }
+>>
+>>          if (fprintf(file, "[event-%d-%llu-%d]\n",
+>> -                   attr->type, attr->config, fd) < 0) {
+>> +                   attr->type, (unsigned long long)attr->config, fd) < 0) {
+>>                  perror("test attr - failed to write event file");
+>>                  fclose(file);
+>>                  return -1;
+>> @@ -96,10 +96,10 @@ static int store_event(struct perf_event_attr *attr, pid_t pid, int cpu,
+>>          /* struct perf_event_attr */
+>>          WRITE_ASS(type,   PRIu32);
+>>          WRITE_ASS(size,   PRIu32);
+>> -       WRITE_ASS(config,  "llu");
+>> -       WRITE_ASS(sample_period, "llu");
+>> -       WRITE_ASS(sample_type,   "llu");
+>> -       WRITE_ASS(read_format,   "llu");
+>> +       __WRITE_ASS(config,        "llu", (unsigned long long)attr->config);
+>> +       __WRITE_ASS(sample_period, "llu", (unsigned long long)attr->sample_period);
+>> +       __WRITE_ASS(sample_type,   "llu", (unsigned long long)attr->sample_type);
+>> +       __WRITE_ASS(read_format,   "llu", (unsigned long long)attr->read_format);
+>>          WRITE_ASS(disabled,       "d");
+>>          WRITE_ASS(inherit,        "d");
+>>          WRITE_ASS(pinned,         "d");
+>> @@ -124,10 +124,10 @@ static int store_event(struct perf_event_attr *attr, pid_t pid, int cpu,
+>>          WRITE_ASS(exclude_callchain_user, "d");
+>>          WRITE_ASS(wakeup_events, PRIu32);
+>>          WRITE_ASS(bp_type, PRIu32);
+>> -       WRITE_ASS(config1, "llu");
+>> -       WRITE_ASS(config2, "llu");
+>> -       WRITE_ASS(branch_sample_type, "llu");
+>> -       WRITE_ASS(sample_regs_user,   "llu");
+>> +       __WRITE_ASS(config1,            "llu", (unsigned long long)attr->config1);
+>> +       __WRITE_ASS(config2,            "llu", (unsigned long long)attr->config2);
+>> +       __WRITE_ASS(branch_sample_type, "llu", (unsigned long long)attr->branch_sample_type);
+>> +       __WRITE_ASS(sample_regs_user,   "llu", (unsigned long long)attr->sample_regs_user);
+>>          WRITE_ASS(sample_stack_user,  PRIu32);
+>>
+>>          fclose(file);
+>> diff --git a/tools/perf/tests/bp_signal.c b/tools/perf/tests/bp_signal.c
+>> index 68daa28..bf3a094 100644
+>> --- a/tools/perf/tests/bp_signal.c
+>> +++ b/tools/perf/tests/bp_signal.c
+>> @@ -74,7 +74,7 @@ static int bp_event(void *fn, int setup_signal)
+>>
+>>          fd = sys_perf_event_open(&pe, 0, -1, -1, 0);
+>>          if (fd < 0) {
+>> -               pr_debug("failed opening event %llx\n", pe.config);
+>> +               pr_debug("failed opening event %llx\n", (unsigned long long)pe.config);
+>>                  return TEST_FAIL;
+>>          }
+>>
+>> diff --git a/tools/perf/tests/bp_signal_overflow.c b/tools/perf/tests/bp_signal_overflow.c
+>> index fe7ed28..3662b15 100644
+>> --- a/tools/perf/tests/bp_signal_overflow.c
+>> +++ b/tools/perf/tests/bp_signal_overflow.c
+>> @@ -87,7 +87,7 @@ int test__bp_signal_overflow(void)
+>>
+>>          fd = sys_perf_event_open(&pe, 0, -1, -1, 0);
+>>          if (fd < 0) {
+>> -               pr_debug("failed opening event %llx\n", pe.config);
+>> +               pr_debug("failed opening event %llx\n", (unsigned long long)pe.config);
+>>                  return TEST_FAIL;
+>>          }
+>>
+>> --
+>> 1.7.5.4
+>>
+>> _______________________________________________
+>> yocto mailing list
+>> yocto@yoctoproject.org
+>> https://lists.yoctoproject.org/listinfo/yocto
 
->> Since changes are expected to happen frequently some sort of
->> garbage-collection function is needed to get rid of all the obsolete
->> package trees. IIRC was there not an option for this somewhere?
->
-> Maybe you're talking about rm_work, but I'm not sure what you mean by
-> package trees.
->
-Maybe it was rm_work, by "package trees" I mean whatever is unpacked
-from the fetch.
-
-> --
-> Martin 'JaMa' Jansa     jabber: Martin.Jansa@gmail.com
 
