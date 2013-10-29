@@ -1,24 +1,34 @@
-Return-Path: <V.Vogelhuber@DigitalEndoscopy.de>
-Received: from SRV-MSX01.digitendos.local
-	(host-80-81-19-29.customer.m-online.net [80.81.19.29])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 35866E017A6
-	for <yocto@yoctoproject.org>; Tue, 29 Oct 2013 09:02:03 -0700 (PDT)
-Received: from [192.168.10.111] (192.168.10.111) by SRV-MSX01.digitendos.local
-	(192.168.10.14) with Microsoft SMTP Server (TLS) id 14.2.347.0;
-	Tue, 29 Oct 2013 17:01:59 +0100
-Message-ID: <526FDBF6.7040904@digitalendoscopy.de>
-Date: Tue, 29 Oct 2013 17:01:58 +0100
-From: Volker Vogelhuber <v.vogelhuber@digitalendoscopy.de>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:24.0) Gecko/20100101 Thunderbird/24.0
+Return-Path: <grsandeep85@gmail.com>
+Received: from mail-ob0-f170.google.com (mail-ob0-f170.google.com
+	[209.85.214.170])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AAC48E0174F
+	for <yocto@yoctoproject.org>; Tue, 29 Oct 2013 10:31:04 -0700 (PDT)
+Received: by mail-ob0-f170.google.com with SMTP id wp18so213644obc.29
+	for <yocto@yoctoproject.org>; Tue, 29 Oct 2013 10:31:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type;
+	bh=EAGw7hK5Dqa6I+ZVEz/D9mikoTVB1Z1EnmquxmMbGLc=;
+	b=d98vPMYkT8IhUdLgJYqUMb3m60icxk5nZQeZePNHVKWEYF1e1e7KJlhpGN0xJaQEUw
+	83ABXugjLB3F3sJN3jEscovuat5Wr+aX/ezxCfdgXizRVLrrQs9WJ9BrTOBnoTEuwr3X
+	ig5v42CTW1ryKczvato5737wPOLOm/NMeTzk+KdcQ0D+TDonCH7kYgmIKU4EEJvIQd/i
+	h+wRDJdQbRtUqWEyBGfMt4Kny/EMts3Eu2cWeBpHnYiuIN2g14b1+FLJbC6xxWYJEXgy
+	24GLGcN3bmCK/e89MTWM6BnVHaA2izsLTU1OJKC8vlEz4DjtItj65M5e71vQ7X7W7jmI
+	REAg==
 MIME-Version: 1.0
-To: "y >> \"yocto@yoctoproject.org\"" <yocto@yoctoproject.org>
-X-Originating-IP: [192.168.10.111]
-X-TM-AS-Product-Ver: SMEX-10.1.0.2244-7.000.1014-20254.006
-X-TM-AS-Result: No--15.080200-0.000000-31
-X-TM-AS-User-Approved-Sender: Yes
-X-TM-AS-User-Blocked-Sender: No
-Subject: HG Fetch with username and password in url
+X-Received: by 10.60.141.225 with SMTP id rr1mr439529oeb.55.1383067863433;
+	Tue, 29 Oct 2013 10:31:03 -0700 (PDT)
+Received: by 10.76.20.102 with HTTP; Tue, 29 Oct 2013 10:31:03 -0700 (PDT)
+In-Reply-To: <9540873.ngNT0uahPc@helios>
+References: <CAJ7VayhLzFEDns3=buP+gpi3jPHXju=B856Sg6uQksAdzDvoDw@mail.gmail.com>
+	<9540873.ngNT0uahPc@helios>
+Date: Tue, 29 Oct 2013 11:31:03 -0600
+Message-ID: <CAKP9-SjPgGtMXPvBTiARu6hcUubLhEdjB5NGsR+AsMai6KR83A@mail.gmail.com>
+From: "Sandeep G.R" <grsandeep85@gmail.com>
+To: Paul Eggleton <paul.eggleton@linux.intel.com>
+Cc: sonia verma <soniaverma9727@gmail.com>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Openvswitch integration in yocto
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -30,208 +40,135 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 29 Oct 2013 16:02:08 -0000
-X-Groupsio-MsgNum: 16779
-Content-Type: multipart/mixed; boundary="------------070406060707070509080402"
+X-List-Received-Date: Tue, 29 Oct 2013 17:31:04 -0000
+Content-Type: multipart/alternative; boundary=047d7b472a40b346b604e9e4946d
 
---------------070406060707070509080402
-Content-Type: multipart/alternative;
-	boundary="------------000101080503060303020202"
+--047d7b472a40b346b604e9e4946d
+Content-Type: text/plain; charset=ISO-8859-1
 
---------------000101080503060303020202
-Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
-Content-Transfer-Encoding: 8bit
+Hi Sonia,
 
-We currently use an company internal mercurial server with username and 
-password authentication
-that will be accessed during the build of a firmware image from within a 
-custom recipe.
-The only way to access it from within the yocto toolchain seems to have 
-the username and password
-stored within the URL of the SRC_URI variable.
+        Add this line IMAGE_INSTALL_append += "openvswitch" to *
+QorIQ-SDK-V1.4-20130814-yocto/meta-fsl-networking/images/fsl-image-core.bb.*
+*
+*
+And do step 3 and openvswitch will be on T4240QDS.
 
-But the current hg.py fetcher does not completely support this. Attached 
-is a patch that fixes the missing parts.
+
+On Tue, Oct 29, 2013 at 4:11 AM, Paul Eggleton <
+paul.eggleton@linux.intel.com> wrote:
+
+> Hi Sonia,
+>
+> On Tuesday 29 October 2013 12:33:04 sonia verma wrote:
+> > For compiling openvswitch i perform following steps:-
+> >
+> >    1.  bitbake -f -c compile openvswitch.
+> >    2.  bitbake openvswitch.
+> >    3.  bitbake fsl-image-core.
+> >
+> > but when i get
+> fsl-image-core-t4240rdb-20131028123337.rootfs.ext2.gz.u-boot
+> >  & boot the board with uImage & above file system i did not find any
+> > openvswitch utilities. can you please guide me to how to integrate
+> > openvswitch in yocto.
+>
+> If you wish openvswitch to be included in your image you will need to add
+> it
+> explicitly - see this section of the manual:
+>
+>
+> http://www.yoctoproject.org/docs/current/dev-manual/dev-manual.html#usingpoky-extend-customimage
+>
+> Once you have done this, steps 1 and 2 are no longer necessary.
+>
+> Cheers,
+> Paul
+>
+> --
+>
+> Paul Eggleton
+> Intel Open Source Technology Centre
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
+
 
 
 -- 
+*Thanks & Regards,*
+*Sandeep G R*
 
-*Volker Vogelhuber*| Softwareentwickler
+--047d7b472a40b346b604e9e4946d
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
 
-*PENTAX**MEDICA**L
-*/Excellence in Focus//^TM /
+<div dir=3D"ltr"><div class=3D"gmail_default" style=3D"font-family:&#39;tre=
+buchet ms&#39;,sans-serif;color:rgb(7,55,99)">Hi Sonia,</div><div class=3D"=
+gmail_default" style=3D"font-family:&#39;trebuchet ms&#39;,sans-serif;color=
+:rgb(7,55,99)">
+<br></div><div class=3D"gmail_default"><span style=3D"color:rgb(7,55,99);fo=
+nt-family:&#39;trebuchet ms&#39;,sans-serif">=A0 =A0 =A0 =A0 Add this line =
+IMAGE_INSTALL_append +=3D &quot;openvswitch&quot; to</span><font face=3D"tr=
+ebuchet ms, sans-serif" color=3D"#073763"> <b style=3D"font-size:13px">QorI=
+Q-SDK-V1.4-20130814-yocto/meta-fsl-networking/images/<a href=3D"http://fsl-=
+image-core.bb">fsl-image-core.bb</a>.</b></font></div>
+<div class=3D"gmail_default"><font face=3D"trebuchet ms, sans-serif" color=
+=3D"#073763"><b style=3D"font-size:13px"><br></b></font></div><div class=3D=
+"gmail_default"><font color=3D"#073763" face=3D"trebuchet ms, sans-serif">A=
+nd do step 3 and openvswitch will be on T4240QDS.</font></div>
+</div><div class=3D"gmail_extra"><br><br><div class=3D"gmail_quote">On Tue,=
+ Oct 29, 2013 at 4:11 AM, Paul Eggleton <span dir=3D"ltr">&lt;<a href=3D"ma=
+ilto:paul.eggleton@linux.intel.com" target=3D"_blank">paul.eggleton@linux.i=
+ntel.com</a>&gt;</span> wrote:<br>
+<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
+x #ccc solid;padding-left:1ex">Hi Sonia,<br>
+<div class=3D"im"><br>
+On Tuesday 29 October 2013 12:33:04 sonia verma wrote:<br>
+&gt; For compiling openvswitch i perform following steps:-<br>
+&gt;<br>
+</div>&gt; =A0 =A01. =A0bitbake -f -c compile openvswitch.<br>
+&gt; =A0 =A02. =A0bitbake openvswitch.<br>
+&gt; =A0 =A03. =A0bitbake fsl-image-core.<br>
+<div class=3D"im">&gt;<br>
+&gt; but when i get fsl-image-core-t4240rdb-20131028123337.rootfs.ext2.gz.u=
+-boot<br>
+&gt; =A0&amp; boot the board with uImage &amp; above file system i did not =
+find any<br>
+&gt; openvswitch utilities. can you please guide me to how to integrate<br>
+&gt; openvswitch in yocto.<br>
+<br>
+</div>If you wish openvswitch to be included in your image you will need to=
+ add it<br>
+explicitly - see this section of the manual:<br>
+<br>
+<a href=3D"http://www.yoctoproject.org/docs/current/dev-manual/dev-manual.h=
+tml#usingpoky-extend-customimage" target=3D"_blank">http://www.yoctoproject=
+.org/docs/current/dev-manual/dev-manual.html#usingpoky-extend-customimage</=
+a><br>
 
-Tel: +49(0)821-650566-18
-v.vogelhuber@DigitalEndoscopy.de <mailto:v.vogelhuber@DigitalEndoscopy.de>
+<br>
+Once you have done this, steps 1 and 2 are no longer necessary.<br>
+<br>
+Cheers,<br>
+Paul<br>
+<span class=3D"HOEnZb"><font color=3D"#888888"><br>
+--<br>
+<br>
+Paul Eggleton<br>
+Intel Open Source Technology Centre<br>
+_______________________________________________<br>
+yocto mailing list<br>
+<a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br>
+<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" target=3D"_blank"=
+>https://lists.yoctoproject.org/listinfo/yocto</a><br>
+</font></span></blockquote></div><br><br clear=3D"all"><div><br></div>-- <b=
+r><div dir=3D"ltr"><font face=3D"trebuchet ms, sans-serif" color=3D"#073763=
+"><b>Thanks &amp; Regards,</b></font><div><font face=3D"trebuchet ms, sans-=
+serif" color=3D"#073763"><b>Sandeep G R</b></font><br>
+<br></div></div>
+</div>
 
-Hoya Corporation - Pentax Medical Division
-*Digital**Endoscopy GmbH*
-Paul-Lenz-Str. 5
-86316 Friedberg - Germany
-pentaxmedical.com
-Handelsregister HRB 27226
-Amtsgericht Augsburg
-Geschäftsführer: Michael Drexel, Marc Henzler
-Sitz: Paul-Lenz-Str. 5, 86316 Friedberg, Germany
-
-_____________________________________
-
-Diese E-Mail enthält vertrauliche und/oder rechtlich geschützte 
-Informationen. Wenn Sie nicht der richtige Adressat sind oder diese 
-E-Mail irrtümlich erhalten haben, informieren Sie bitte sofort den 
-Absender und vernichten Sie diese Mail. Das unerlaubte Kopieren sowie 
-die unbefugte Weitergabe dieser Mail ist nicht gestattet.
-This e-mail may contain confidential and/or privileged information. If 
-you are not the intended recipient (or have received this e-mail in 
-error) please notify the sender immediately and destroy this e-mail. Any 
-unauthorized copying, disclosure or distribution of the material in this 
-e-mail is strictly forbidden.
-
-
---------------000101080503060303020202
-Content-Type: text/html; charset="ISO-8859-1"
-Content-Transfer-Encoding: 7bit
-
-<html>
-  <head>
-
-    <meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
-  </head>
-  <body text="#000000" bgcolor="#FFFFFF">
-    We currently use an company internal mercurial server with username
-    and password authentication<br>
-    that will be accessed during the build of a firmware image from
-    within a custom recipe.<br>
-    The only way to access it from within the yocto toolchain seems to
-    have the username and password<br>
-    stored within the URL of the SRC_URI variable. <br>
-    <br>
-    But the current hg.py fetcher does not completely support this.
-    Attached is a patch that fixes the missing parts.<br>
-    <br>
-    <br>
-    <div class="moz-signature">-- <br>
-      <!-- <head> -->
-      <!--   <meta content="text/html; " http-equiv="content-type"> -->
-      <!--   <title></title> -->
-      <!-- </head> -->
-      <p class="MsoNormal"><b><span
-style="font-size:10.0pt;font-family:'Arial','sans-serif';color:#404040;mso-fareast-language:DE"
-            lang="DE">Volker Vogelhuber</span></b><span
-style="font-size:10.0pt;font-family:'Arial','sans-serif';color:#404040;mso-fareast-language:DE"
-          lang="DE"> | Softwareentwickler</span></p>
-      <p class="MsoNormal"><b><span
-            style="font-size:12.0pt;font-family:'serif';color:#DA291C"
-            lang="DE">PENTAX</span></b><b><span
-            style="font-size:12.0pt;font-family:'serif';color:#53565A"
-            lang="DE"> MEDICA</span></b><b><span
-            style="font-family:'serif';color:#53565A;font-size:12.0pt;">L<br>
-          </span></b><i><span
-            style="font-size:12.0pt;font-family:'serif';color:#53565A">Excellence
-
-            in Focus</span></i><i><sup><span
-              style="font-size:8.0pt;font-family:'serif';color:#53565A">TM</span></sup></i><span
-style="font-size:7.0pt;font-family:'Arial','sans-serif';color:#1F497D;mso-fareast-language:DE"
-          lang="EN-GB"><o:p></o:p></span></p>
-      <p class="MsoNormal"><span
-style="font-size:9.0pt;font-family:'Arial','sans-serif';color:red;mso-fareast-language:DE"
-          lang="EN-GB">Tel:&nbsp; </span><span
-style="font-size:9.0pt;font-family:'Arial','sans-serif';color:#404040;mso-fareast-language:DE"
-          lang="EN-GB">+49(0)821-650566-</span><span
-style="font-size:9.0pt;font-family:'Arial','sans-serif';color:#1F497D;mso-fareast-language:DE"
-          lang="EN-GB">18</span><span
-style="font-size:12.0pt;font-family:'serif';color:#404040;mso-fareast-language:DE"
-          lang="EN-GB"><o:p></o:p></span><br>
-        <span
-style="font-size:9.0pt;font-family:'Arial','sans-serif';color:#404040;mso-fareast-language:DE"
-          lang="EN-GB"><a href="mailto:v.vogelhuber@DigitalEndoscopy.de"><span
-              style="color:#404040;text-decoration:none" lang="EN-US">v.vogelhuber@DigitalEndoscopy.de</span></a><o:p></o:p></span></p>
-      <p class="MsoNormal"><span
-style="font-size:10.0pt;font-family:'Arial','sans-serif';color:#404040;mso-fareast-language:DE"
-          lang="EN-GB">Hoya Corporation - Pentax Medical Division</span><br>
-        <b><span
-style="font-size:10.0pt;font-family:'Arial','sans-serif';color:#404040;mso-fareast-language:DE"
-            lang="EN-GB">Digital</span></b><b><span
-style="font-size:10.0pt;font-family:'Arial','sans-serif';color:#404040;mso-fareast-language:DE"
-            lang="EN-GB"> Endoscopy GmbH<o:p></o:p></span></b><span
-style="font-size:9.0pt;font-family:'Arial','sans-serif';color:#404040;mso-fareast-language:DE"
-          lang="EN-GB"><br>
-          Paul-Lenz-Str. 5<o:p></o:p><br>
-          86316 Friedberg - Germany<o:p></o:p></span><span
-          style="font-family:'serif';color:#E70600;mso-fareast-language:JA"><br>
-          pentax</span><span
-          style="font-family:'serif';color:#0D2531;mso-fareast-language:JA">medical.com</span><span
-style="font-size:5.0pt;font-family:'Arial','sans-serif';color:#1F497D;mso-fareast-language:DE"><o:p></o:p></span><span
-style="font-size:8.0pt;font-family:'Arial','sans-serif';color:#404040;mso-fareast-language:DE"
-          lang="DE"><br>
-          Handelsregister HRB 27226<o:p></o:p><br>
-          Amtsgericht Augsburg<o:p></o:p><br>
-          Gesch&auml;ftsf&uuml;hrer: Michael Drexel, Marc Henzler<o:p></o:p><br>
-          Sitz: Paul-Lenz-Str. 5, 86316 Friedberg, Germany</span><span
-style="font-size:8.0pt;font-family:'Arial','sans-serif';color:#1F497D;mso-fareast-language:DE"
-          lang="DE"><o:p></o:p></span> </p>
-      <p class="MsoNormal"><span
-style="font-size:8.0pt;font-family:'Arial','sans-serif';color:#404040;mso-fareast-language:DE"
-          lang="DE"><o:p>&nbsp;</o:p></span><span
-style="font-size:10.0pt;font-family:'Arial','sans-serif';color:#404040;mso-fareast-language:DE"
-          lang="DE">_____________________________________<o:p></o:p></span><span
-style="font-size:8.0pt;font-family:'Arial','sans-serif';color:#404040;mso-fareast-language:DE"
-          lang="DE"><o:p>&nbsp;</o:p></span> </p>
-      <p class="MsoNormal"><span
-style="font-size:8.0pt;font-family:'Arial','sans-serif';color:#404040;mso-fareast-language:DE"
-          lang="EN-GB">Diese E-Mail enth&auml;lt vertrauliche und/oder
-          rechtlich gesch&uuml;tzte Informationen. Wenn Sie nicht der
-          richtige Adressat sind oder diese E-Mail irrt&uuml;mlich erhalten
-          haben, informieren Sie bitte sofort den Absender und
-          vernichten Sie diese Mail. Das unerlaubte Kopieren sowie die
-          unbefugte Weitergabe dieser Mail ist nicht gestattet.<br>
-          This e-mail may contain confidential and/or privileged
-          information. If you are not the intended recipient (or have
-          received this e-mail in error) please notify the sender
-          immediately and destroy this e-mail. Any unauthorized copying,
-          disclosure or distribution of the material in this e-mail is
-          strictly forbidden.</span><span
-          style="color:#404040;mso-fareast-language:DE" lang="EN-GB"><o:p></o:p></span></p>
-      <p class="MsoNormal"><o:p>&nbsp;</o:p></p>
-    </div>
-  </body>
-</html>
-
---------------000101080503060303020202--
-
---------------070406060707070509080402
-Content-Type: text/x-patch; name="hg_with_user_name_and_passwd.patch"
-Content-Transfer-Encoding: 7bit
-Content-Disposition: attachment;
-	filename="hg_with_user_name_and_passwd.patch"
-
-diff --git a/bitbake/lib/bb/fetch2/hg.py b/bitbake/lib/bb/fetch2/hg.py
-index b1c8675..cf21481 100644
---- a/bitbake/lib/bb/fetch2/hg.py
-+++ b/bitbake/lib/bb/fetch2/hg.py
-@@ -92,7 +92,10 @@ class Hg(FetchMethod):
-         if not ud.user:
-             hgroot = host + ud.path
-         else:
--            hgroot = ud.user + "@" + host + ud.path
-+            if ud.pswd:
-+                hgroot = ud.user + ":" + ud.pswd + "@" + host + ud.path
-+            else:
-+                hgroot = ud.user + "@" + host + ud.path
- 
-         if command == "info":
-             return "%s identify -i %s://%s/%s" % (basecmd, proto, hgroot, ud.module)
-@@ -112,7 +115,10 @@ class Hg(FetchMethod):
-             # do not pass options list; limiting pull to rev causes the local
-             # repo not to contain it and immediately following "update" command
-             # will crash
--            cmd = "%s pull" % (basecmd)
-+            if ud.user and ud.pswd:
-+                cmd = "%s --config auth.default.prefix=* --config auth.default.username=%s --config auth.default.password=%s --config \"auth.default.schemes=%s\" pull" % (basecmd, ud.user, ud.pswd, proto)
-+            else:
-+                cmd = "%s pull" % (basecmd)
-         elif command == "update":
-             cmd = "%s update -C %s" % (basecmd, " ".join(options))
-         else:
-
---------------070406060707070509080402--
+--047d7b472a40b346b604e9e4946d--
