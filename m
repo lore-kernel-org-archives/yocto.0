@@ -1,28 +1,24 @@
-Return-Path: <gary@mlbassoc.com>
-Received: from mail.chez-thomas.org (mail.mlbassoc.com [65.100.170.105])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 973B0E017AE
-	for <yocto@yoctoproject.org>; Tue, 29 Oct 2013 08:31:51 -0700 (PDT)
-Received: by mail.chez-thomas.org (Postfix, from userid 1998)
-	id EF338F81207; Tue, 29 Oct 2013 09:31:50 -0600 (MDT)
-X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on
-	hermes.chez-thomas.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=4.0 tests=ALL_TRUSTED,BAYES_00
-	autolearn=unavailable version=3.3.2
-Received: from [192.168.1.114] (zeus [192.168.1.114])
-	by mail.chez-thomas.org (Postfix) with ESMTP id A636FF81206;
-	Tue, 29 Oct 2013 09:31:49 -0600 (MDT)
-Message-ID: <526FD4F2.3080207@mlbassoc.com>
-Date: Tue, 29 Oct 2013 09:32:02 -0600
-From: Gary Thomas <gary@mlbassoc.com>
+Return-Path: <V.Vogelhuber@DigitalEndoscopy.de>
+Received: from SRV-MSX01.digitendos.local
+	(host-80-81-19-29.customer.m-online.net [80.81.19.29])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 35866E017A6
+	for <yocto@yoctoproject.org>; Tue, 29 Oct 2013 09:02:03 -0700 (PDT)
+Received: from [192.168.10.111] (192.168.10.111) by SRV-MSX01.digitendos.local
+	(192.168.10.14) with Microsoft SMTP Server (TLS) id 14.2.347.0;
+	Tue, 29 Oct 2013 17:01:59 +0100
+Message-ID: <526FDBF6.7040904@digitalendoscopy.de>
+Date: Tue, 29 Oct 2013 17:01:58 +0100
+From: Volker Vogelhuber <v.vogelhuber@digitalendoscopy.de>
 User-Agent: Mozilla/5.0 (X11; Linux x86_64;
 	rv:24.0) Gecko/20100101 Thunderbird/24.0
 MIME-Version: 1.0
-To: Paul Eggleton <paul.eggleton@linux.intel.com>
-References: <526FCF51.1000701@mlbassoc.com> <1773539.ulxCIGh1xn@helios>
-In-Reply-To: <1773539.ulxCIGh1xn@helios>
-Cc: yocto@yoctoproject.org
-Subject: Re: Can't build any images
+To: "y >> \"yocto@yoctoproject.org\"" <yocto@yoctoproject.org>
+X-Originating-IP: [192.168.10.111]
+X-TM-AS-Product-Ver: SMEX-10.1.0.2244-7.000.1014-20254.006
+X-TM-AS-Result: No--15.080200-0.000000-31
+X-TM-AS-User-Approved-Sender: Yes
+X-TM-AS-User-Blocked-Sender: No
+Subject: HG Fetch with username and password in url
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,57 +30,208 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 29 Oct 2013 15:31:54 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Tue, 29 Oct 2013 16:02:08 -0000
+X-Groupsio-MsgNum: 16779
+Content-Type: multipart/mixed; boundary="------------070406060707070509080402"
 
-On 2013-10-29 09:15, Paul Eggleton wrote:
-> On Tuesday 29 October 2013 09:08:01 Gary Thomas wrote:
->> Since this commit:
->>     commit 8b42409dca729b7abbbdac04f533e161de86a3ef
->>     Author: Paul Eggleton <paul.eggleton@linux.intel.com>
->>     Date:   Fri Oct 18 15:19:58 2013 +0100
->>
->>       scripts/oe-pkgdata-util: improve help text and command line parsing
->>
->>       * Use optparse to parse command line
->>       * Make help text actually helpful by describing what each command does
->>       * Drop comment at the top listing the commands which is now superfluous
->>
->>       (From OE-Core rev: feb317513fff638ad7abdba8ab34b8413f0ab055)
->>
->>       Signed-off-by: Paul Eggleton <paul.eggleton@linux.intel.com>
->>       Signed-off-by: Richard Purdie <richard.purdie@linuxfoundation.org>
->>
->> I get these errors for any image I try to create:
->>     | Traceback (most recent call last):
->>     |   File "/local/poky-cutting-edge/scripts/oe-pkgdata-util", line 334, in
->>     |   <module>   |
->>     |     main()
->>     |
->>     |   File "/local/poky-cutting-edge/scripts/oe-pkgdata-util", line 319, in
->>     |   main
->>     |
->>     |     glob(args[1:], parser.print_help)
->>     |
->>     |   File "/local/poky-cutting-edge/scripts/oe-pkgdata-util", line 143, in
->>     |   glob
->>     |
->>     |     if debug:
->>     | NameError: global name 'debug' is not defined
->>
->> The attached patch fixes the problem, but I'm not sure if it is 100%
->> correct.
->
-> Oops. I'm working on a proper fix now, sorry for the hassle...
+--------------070406060707070509080402
+Content-Type: multipart/alternative;
+	boundary="------------000101080503060303020202"
 
-I just tested the patch you send to the OE-core list & it works great.
+--------------000101080503060303020202
+Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
+Content-Transfer-Encoding: 8bit
 
-Thanks
+We currently use an company internal mercurial server with username and 
+password authentication
+that will be accessed during the build of a firmware image from within a 
+custom recipe.
+The only way to access it from within the yocto toolchain seems to have 
+the username and password
+stored within the URL of the SRC_URI variable.
+
+But the current hg.py fetcher does not completely support this. Attached 
+is a patch that fixes the missing parts.
+
 
 -- 
-------------------------------------------------------------
-Gary Thomas                 |  Consulting for the
-MLB Associates              |    Embedded world
-------------------------------------------------------------
 
+*Volker Vogelhuber*| Softwareentwickler
+
+*PENTAX**MEDICA**L
+*/Excellence in Focus//^TM /
+
+Tel: +49(0)821-650566-18
+v.vogelhuber@DigitalEndoscopy.de <mailto:v.vogelhuber@DigitalEndoscopy.de>
+
+Hoya Corporation - Pentax Medical Division
+*Digital**Endoscopy GmbH*
+Paul-Lenz-Str. 5
+86316 Friedberg - Germany
+pentaxmedical.com
+Handelsregister HRB 27226
+Amtsgericht Augsburg
+Geschäftsführer: Michael Drexel, Marc Henzler
+Sitz: Paul-Lenz-Str. 5, 86316 Friedberg, Germany
+
+_____________________________________
+
+Diese E-Mail enthält vertrauliche und/oder rechtlich geschützte 
+Informationen. Wenn Sie nicht der richtige Adressat sind oder diese 
+E-Mail irrtümlich erhalten haben, informieren Sie bitte sofort den 
+Absender und vernichten Sie diese Mail. Das unerlaubte Kopieren sowie 
+die unbefugte Weitergabe dieser Mail ist nicht gestattet.
+This e-mail may contain confidential and/or privileged information. If 
+you are not the intended recipient (or have received this e-mail in 
+error) please notify the sender immediately and destroy this e-mail. Any 
+unauthorized copying, disclosure or distribution of the material in this 
+e-mail is strictly forbidden.
+
+
+--------------000101080503060303020202
+Content-Type: text/html; charset="ISO-8859-1"
+Content-Transfer-Encoding: 7bit
+
+<html>
+  <head>
+
+    <meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+  </head>
+  <body text="#000000" bgcolor="#FFFFFF">
+    We currently use an company internal mercurial server with username
+    and password authentication<br>
+    that will be accessed during the build of a firmware image from
+    within a custom recipe.<br>
+    The only way to access it from within the yocto toolchain seems to
+    have the username and password<br>
+    stored within the URL of the SRC_URI variable. <br>
+    <br>
+    But the current hg.py fetcher does not completely support this.
+    Attached is a patch that fixes the missing parts.<br>
+    <br>
+    <br>
+    <div class="moz-signature">-- <br>
+      <!-- <head> -->
+      <!--   <meta content="text/html; " http-equiv="content-type"> -->
+      <!--   <title></title> -->
+      <!-- </head> -->
+      <p class="MsoNormal"><b><span
+style="font-size:10.0pt;font-family:'Arial','sans-serif';color:#404040;mso-fareast-language:DE"
+            lang="DE">Volker Vogelhuber</span></b><span
+style="font-size:10.0pt;font-family:'Arial','sans-serif';color:#404040;mso-fareast-language:DE"
+          lang="DE"> | Softwareentwickler</span></p>
+      <p class="MsoNormal"><b><span
+            style="font-size:12.0pt;font-family:'serif';color:#DA291C"
+            lang="DE">PENTAX</span></b><b><span
+            style="font-size:12.0pt;font-family:'serif';color:#53565A"
+            lang="DE"> MEDICA</span></b><b><span
+            style="font-family:'serif';color:#53565A;font-size:12.0pt;">L<br>
+          </span></b><i><span
+            style="font-size:12.0pt;font-family:'serif';color:#53565A">Excellence
+
+            in Focus</span></i><i><sup><span
+              style="font-size:8.0pt;font-family:'serif';color:#53565A">TM</span></sup></i><span
+style="font-size:7.0pt;font-family:'Arial','sans-serif';color:#1F497D;mso-fareast-language:DE"
+          lang="EN-GB"><o:p></o:p></span></p>
+      <p class="MsoNormal"><span
+style="font-size:9.0pt;font-family:'Arial','sans-serif';color:red;mso-fareast-language:DE"
+          lang="EN-GB">Tel:&nbsp; </span><span
+style="font-size:9.0pt;font-family:'Arial','sans-serif';color:#404040;mso-fareast-language:DE"
+          lang="EN-GB">+49(0)821-650566-</span><span
+style="font-size:9.0pt;font-family:'Arial','sans-serif';color:#1F497D;mso-fareast-language:DE"
+          lang="EN-GB">18</span><span
+style="font-size:12.0pt;font-family:'serif';color:#404040;mso-fareast-language:DE"
+          lang="EN-GB"><o:p></o:p></span><br>
+        <span
+style="font-size:9.0pt;font-family:'Arial','sans-serif';color:#404040;mso-fareast-language:DE"
+          lang="EN-GB"><a href="mailto:v.vogelhuber@DigitalEndoscopy.de"><span
+              style="color:#404040;text-decoration:none" lang="EN-US">v.vogelhuber@DigitalEndoscopy.de</span></a><o:p></o:p></span></p>
+      <p class="MsoNormal"><span
+style="font-size:10.0pt;font-family:'Arial','sans-serif';color:#404040;mso-fareast-language:DE"
+          lang="EN-GB">Hoya Corporation - Pentax Medical Division</span><br>
+        <b><span
+style="font-size:10.0pt;font-family:'Arial','sans-serif';color:#404040;mso-fareast-language:DE"
+            lang="EN-GB">Digital</span></b><b><span
+style="font-size:10.0pt;font-family:'Arial','sans-serif';color:#404040;mso-fareast-language:DE"
+            lang="EN-GB"> Endoscopy GmbH<o:p></o:p></span></b><span
+style="font-size:9.0pt;font-family:'Arial','sans-serif';color:#404040;mso-fareast-language:DE"
+          lang="EN-GB"><br>
+          Paul-Lenz-Str. 5<o:p></o:p><br>
+          86316 Friedberg - Germany<o:p></o:p></span><span
+          style="font-family:'serif';color:#E70600;mso-fareast-language:JA"><br>
+          pentax</span><span
+          style="font-family:'serif';color:#0D2531;mso-fareast-language:JA">medical.com</span><span
+style="font-size:5.0pt;font-family:'Arial','sans-serif';color:#1F497D;mso-fareast-language:DE"><o:p></o:p></span><span
+style="font-size:8.0pt;font-family:'Arial','sans-serif';color:#404040;mso-fareast-language:DE"
+          lang="DE"><br>
+          Handelsregister HRB 27226<o:p></o:p><br>
+          Amtsgericht Augsburg<o:p></o:p><br>
+          Gesch&auml;ftsf&uuml;hrer: Michael Drexel, Marc Henzler<o:p></o:p><br>
+          Sitz: Paul-Lenz-Str. 5, 86316 Friedberg, Germany</span><span
+style="font-size:8.0pt;font-family:'Arial','sans-serif';color:#1F497D;mso-fareast-language:DE"
+          lang="DE"><o:p></o:p></span> </p>
+      <p class="MsoNormal"><span
+style="font-size:8.0pt;font-family:'Arial','sans-serif';color:#404040;mso-fareast-language:DE"
+          lang="DE"><o:p>&nbsp;</o:p></span><span
+style="font-size:10.0pt;font-family:'Arial','sans-serif';color:#404040;mso-fareast-language:DE"
+          lang="DE">_____________________________________<o:p></o:p></span><span
+style="font-size:8.0pt;font-family:'Arial','sans-serif';color:#404040;mso-fareast-language:DE"
+          lang="DE"><o:p>&nbsp;</o:p></span> </p>
+      <p class="MsoNormal"><span
+style="font-size:8.0pt;font-family:'Arial','sans-serif';color:#404040;mso-fareast-language:DE"
+          lang="EN-GB">Diese E-Mail enth&auml;lt vertrauliche und/oder
+          rechtlich gesch&uuml;tzte Informationen. Wenn Sie nicht der
+          richtige Adressat sind oder diese E-Mail irrt&uuml;mlich erhalten
+          haben, informieren Sie bitte sofort den Absender und
+          vernichten Sie diese Mail. Das unerlaubte Kopieren sowie die
+          unbefugte Weitergabe dieser Mail ist nicht gestattet.<br>
+          This e-mail may contain confidential and/or privileged
+          information. If you are not the intended recipient (or have
+          received this e-mail in error) please notify the sender
+          immediately and destroy this e-mail. Any unauthorized copying,
+          disclosure or distribution of the material in this e-mail is
+          strictly forbidden.</span><span
+          style="color:#404040;mso-fareast-language:DE" lang="EN-GB"><o:p></o:p></span></p>
+      <p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+    </div>
+  </body>
+</html>
+
+--------------000101080503060303020202--
+
+--------------070406060707070509080402
+Content-Type: text/x-patch; name="hg_with_user_name_and_passwd.patch"
+Content-Transfer-Encoding: 7bit
+Content-Disposition: attachment;
+	filename="hg_with_user_name_and_passwd.patch"
+
+diff --git a/bitbake/lib/bb/fetch2/hg.py b/bitbake/lib/bb/fetch2/hg.py
+index b1c8675..cf21481 100644
+--- a/bitbake/lib/bb/fetch2/hg.py
++++ b/bitbake/lib/bb/fetch2/hg.py
+@@ -92,7 +92,10 @@ class Hg(FetchMethod):
+         if not ud.user:
+             hgroot = host + ud.path
+         else:
+-            hgroot = ud.user + "@" + host + ud.path
++            if ud.pswd:
++                hgroot = ud.user + ":" + ud.pswd + "@" + host + ud.path
++            else:
++                hgroot = ud.user + "@" + host + ud.path
+ 
+         if command == "info":
+             return "%s identify -i %s://%s/%s" % (basecmd, proto, hgroot, ud.module)
+@@ -112,7 +115,10 @@ class Hg(FetchMethod):
+             # do not pass options list; limiting pull to rev causes the local
+             # repo not to contain it and immediately following "update" command
+             # will crash
+-            cmd = "%s pull" % (basecmd)
++            if ud.user and ud.pswd:
++                cmd = "%s --config auth.default.prefix=* --config auth.default.username=%s --config auth.default.password=%s --config \"auth.default.schemes=%s\" pull" % (basecmd, ud.user, ud.pswd, proto)
++            else:
++                cmd = "%s pull" % (basecmd)
+         elif command == "update":
+             cmd = "%s update -C %s" % (basecmd, " ".join(options))
+         else:
+
+--------------070406060707070509080402--
