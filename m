@@ -1,32 +1,28 @@
 Return-Path: <b.hutchman@gmail.com>
-Received: from mail-ea0-f170.google.com (mail-ea0-f170.google.com
-	[209.85.215.170])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0E616E01756
-	for <yocto@yoctoproject.org>; Tue, 29 Oct 2013 13:47:27 -0700 (PDT)
-Received: by mail-ea0-f170.google.com with SMTP id q10so164519eaj.15
-	for <yocto@yoctoproject.org>; Tue, 29 Oct 2013 13:47:26 -0700 (PDT)
+Received: from mail-ea0-f180.google.com (mail-ea0-f180.google.com
+	[209.85.215.180])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AF55DE01756
+	for <yocto@yoctoproject.org>; Tue, 29 Oct 2013 14:04:11 -0700 (PDT)
+Received: by mail-ea0-f180.google.com with SMTP id l9so170433eaj.39
+	for <yocto@yoctoproject.org>; Tue, 29 Oct 2013 14:04:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:cc
-	:content-type; bh=3EzeBLqsLsXlp9QGQfAWslx4/L0MCvf+1vRQxHtF/gc=;
-	b=Q4bqAxUrMQ+J/LKCOqiEgys9ba+94IKhI0ny7LVhEXLuhd/f8CFhcDxmOsFDaKTKMp
-	GpLG8v/gEZrPo6aHYBtcPVXokK/rI8DAYQXydCiNI7/Ib6yaJAxYHCb8AwUZCSinw4E2
-	OYzs6qC7TTCCGFo/lcAcxtt43o+FQDNDHBecoWZEll3hyI2aQA9HqLj9yTZiL024V5ZC
-	16vns7gYkgN5NXkU8F921G/HEze/VKGE9k+NSE/iyhdcjmVv7VWaHTZ4q+DwGCdcwEpR
-	GMFncbBvON+0JYXO8G9pHennmW64/c20Xxvhl5jJEKtyUU2bYLIk/YCmfnrWJz29Z0BY
-	rCpA==
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=d5t6CRy3Q0BemqWcH2ZfKerPmrhYt5WVqJat8OCIXLg=;
+	b=ppjPKQx6L5C9g/zF/ZriOBQZoF91MwhI+0PxzOmLWs8T/dJxmqr8m4ojxyDz8VAVjo
+	3tFM1FyOVb4vmoRixRpLpgNzLLOF8OLjRXzGs9x9OnyVkehCl0GiyZi1WWAfXmyWgAI0
+	lflyZUSjG7Pjpnu8v5YTZBt006ZGGzuiGmPaUGwYF4ZV+yP6HcB2QUSUxY/0npbfcRZQ
+	BHJDVo6JrmsMahPMpSgcam+jzennuCtkbNOlhChDiRlLxuFjaPoNlc/26fGoTPkkwfgV
+	OXymW/fwshBhB1TcWL0Lg11OL1tbTHQAyBGih41FoIYtSWcZ4SnXkk/vxglOa+qHJXTH
+	JqVQ==
 MIME-Version: 1.0
-X-Received: by 10.14.108.9 with SMTP id p9mr1605341eeg.8.1383079646002; Tue,
-	29 Oct 2013 13:47:26 -0700 (PDT)
-Received: by 10.223.170.195 with HTTP; Tue, 29 Oct 2013 13:47:25 -0700 (PDT)
-In-Reply-To: <51EEFD4B.1090009@gna.org>
-References: <CAFZh4h9-+XQBWxHh22zQ+jwQBYiaUwifzcdpLPF2kU+kn5Pg9A@mail.gmail.com>
-	<1503447.VStvRngV5W@helios> <20130723153440.GC21440@denix.org>
-	<51EEFD4B.1090009@gna.org>
-Date: Tue, 29 Oct 2013 16:47:25 -0400
-Message-ID: <CAFZh4h8BLL3no2zh7zCf4prL_isP76pfrN2eYkYxt1yS6Mb=Vg@mail.gmail.com>
+X-Received: by 10.15.24.142 with SMTP id j14mr1366563eeu.103.1383080650640;
+	Tue, 29 Oct 2013 14:04:10 -0700 (PDT)
+Received: by 10.223.170.195 with HTTP; Tue, 29 Oct 2013 14:04:10 -0700 (PDT)
+Date: Tue, 29 Oct 2013 17:04:10 -0400
+Message-ID: <CAFZh4h8aKoop0wdU7THaBD6+5FnEgfPKW0zM_-wqpOOcLgXdsg@mail.gmail.com>
 From: Brian Hutchinson <b.hutchman@gmail.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Should I be worried about this nativesdk-packagegroup-sdk-host warning while building meta-toolchain
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Getting a relocate_sdk.py issue when installing a sdk on Centos
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,175 +34,119 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 29 Oct 2013 20:47:28 -0000
-Content-Type: multipart/alternative; boundary=001a11c28d34ff04c404e9e7524a
+X-List-Received-Date: Tue, 29 Oct 2013 21:04:17 -0000
+Content-Type: multipart/alternative; boundary=089e0160cddee090f504e9e78ee1
 
---001a11c28d34ff04c404e9e7524a
+--089e0160cddee090f504e9e78ee1
 Content-Type: text/plain; charset=ISO-8859-1
 
-On Tue, Jul 23, 2013 at 6:01 PM, Christian Gagneraud <chgans@gna.org> wrote:
-
->
-> I got these ones as well (using poky, meta-oe, meta-ti and meta-qt5 all on
-> Dylan), good to hear they are harmless.
->
-> Thanks,
-> Chris
->
->
->
 Hi,
 
-I hate to revive an old thread but I still see the same kind of thing with
-Yocto 1.5.  I built my sdk with -c populate_sdk for i686 first and then
-went back and changed SDKMACHINE to x86_x64.  When I ran -c populate_sdk
-with the x86_64 setting I observed these messages:
+I tried to research this issue I'm seeing but hit a bunch of noise.  I
+generated a Yocto 1.5 sdk with my image and -c populate_sdk for i686.  When
+a collegue tries to install the sdk on his Centos box with Python 2.6.7, he
+gets:
 
-hutch@neo:~/yocto_master_wcs_10_4_2013/poky/build$ bitbake core-image-wcs
--c populate_sdk
-Parsing recipes: 100%
-|##################################################################################################################################################|
-Time: 00:00:24
-Parsing of 1407 .bb files complete (0 cached, 1407 parsed). 1796 targets,
-81 skipped, 7 masked, 0 errors.
-NOTE: Resolving any missing task queue dependencies
-NOTE: multiple providers are available for jpeg (jpeg, libjpeg-turbo)
-NOTE: consider defining a PREFERRED_PROVIDER entry to match jpeg
+sudo ./poky-eglibc-i686-core-image-wcs-armv7a-vfp-neon-toolchain-1.5.sh
 
-Build Configuration:
-BB_VERSION        = "1.20.0"
-BUILD_SYS         = "x86_64-linux"
-NATIVELSBSTRING   = "Debian-7.1"
-TARGET_SYS        = "arm-poky-linux-gnueabi"
-MACHINE           = "beaglebone"
-DISTRO            = "poky"
-DISTRO_VERSION    = "1.5"
-TUNE_FEATURES     = "armv7a vfp neon"
-TARGET_FPU        = "vfp-neon"
-meta
-meta-yocto
-meta-yocto-bsp    = "master:104166c804e9068d85ccdaa887a33df72c8aeb85"
-meta-ti           = "master:9c36e6c7573c3e68c5816dd04f3dd43f485b0550"
-meta-oe
-meta-networking
-meta-webserver    = "master:8aafddccb03f54923927e9d1c8c80223baf581de"
+Enter target directory for SDK (default: /opt/poky/1.5):
 
-NOTE: Preparing runqueue
-NOTE: Executing SetScene Tasks
-NOTE: Executing RunQueue Tasks
-WARNING: QA Issue: gcc-cross-canadian-arm: found library in wrong location:
-/opt/poky/1.5/sysroots/x86_64-pokysdk-linux/usr/libexec/armv7a-vfp-neon-poky-linux-gnueabi/gcc/arm-poky-linux-gnueabi/4.8.1/liblto_plugin.so.0.0.0
-gcc-cross-canadian-arm: found library in wrong location:
-/opt/poky/1.5/sysroots/x86_64-pokysdk-linux/usr/libexec/armv7a-vfp-neon-poky-linux-gnueabi/gcc/arm-poky-linux-gnueabi/4.8.1/liblto_plugin.so
-gcc-cross-canadian-arm: found library in wrong location:
-/opt/poky/1.5/sysroots/x86_64-pokysdk-linux/usr/libexec/armv7a-vfp-neon-poky-linux-gnueabi/gcc/arm-poky-linux-gnueabi/4.8.1/liblto_plugin.so.0
-WARNING: The recipe packagegroup-cross-canadian-beaglebone is trying to
-install files into a shared area when those files already exist. Those
-files and their manifest location are:
+The directory "/opt/poky/1.5" already contains a SDK for this architecture.
 
-/home/hutch/yocto_master_wcs_10_4_2013/poky/build/tmp/deploy/ipk/all/packagegroup-cross-canadian-beaglebone_1.0-r0_all.ipk
-   Matched in
-manifest-i686_all-packagegroup-cross-canadian-beaglebone.deploy-ipk
-Please verify which package should provide the above files.
-WARNING: The recipe nativesdk-packagegroup-sdk-host is trying to install
-files into a shared area when those files already exist. Those files and
-their manifest location are:
+If you continue, existing files will be overwritten! Proceed[y/N]?y
 
-/home/hutch/yocto_master_wcs_10_4_2013/poky/build/tmp/deploy/ipk/all/nativesdk-packagegroup-sdk-host_1.0-r11_all.ipk
-   Matched in manifest-i686-nativesdk-packagegroup-sdk-host.deploy-ipk
-Please verify which package should provide the above files.
-NOTE: Tasks Summary: Attempted 3172 tasks of which 2449 didn't need to be
-rerun and all succeeded.
+Extracting SDK...done
 
-Summary: There were 3 WARNING messages shown.
+Setting it up...  File "/opt/poky/1.5/relocate_sdk.py", line 34
+
+    old_prefix = re.compile(b"/opt/poky/1\.5")
+
+                                            ^
+
+SyntaxError: invalid syntax
+
+SDK could not be set up. Relocate script failed. Abort!
 
 
-Can I specify i686 and x86_64 at the same time (haven't tried that before,
-I wonder if that would maybe prevent these messages)?  Anyway, I'm still
-seeing these scary messages ... but hey, it is almost Halloween :)
+So I'm kind of scratching my head.  Then I think hey this is a 64 bit
+machine, maybe the x86_64 SDK will work so then I crank one of those out
+and after blowing away the stuff in /opt/poky/1.5 and running the install
+script with the 64bit SDK version we see the same error.
+
+One post I did see was Jason Wessel & Richard talking about some
+chicken/egg problem with certain versions of Python
+http://git.yoctoproject.org/cgit.cgi/poky/commit/?id=c160a982551f5d6186081daa8fa20682fd7fae17but
+the version mentioned was 2.4.x and my collegue has 2.6.7.
+
+Is there some base set of packages that a machine needs to use the SDK
+generated by -c populate_sdk?
+
+I'm kind of at a loss as to why this works on some machines but not others.
 
 Regards,
 
+
 Brian
 
---001a11c28d34ff04c404e9e7524a
+--089e0160cddee090f504e9e78ee1
 Content-Type: text/html; charset=ISO-8859-1
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div class=3D"gmail_extra"><div class=3D"gmail_quote">On T=
-ue, Jul 23, 2013 at 6:01 PM, Christian Gagneraud <span dir=3D"ltr">&lt;<a h=
-ref=3D"mailto:chgans@gna.org" target=3D"_blank">chgans@gna.org</a>&gt;</spa=
-n> wrote:<br>
-<blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-=
-left:1px solid rgb(204,204,204);padding-left:1ex"><div class=3D"im"><br></d=
-iv>
-I got these ones as well (using poky, meta-oe, meta-ti and meta-qt5 all on =
-Dylan), good to hear they are harmless.<br>
-<br>
-Thanks,<br>
-Chris<div><div class=3D"h5"><br>
-</div></div><br></blockquote><div><br></div><div>Hi,<br><br>I hate to reviv=
-e an old thread but I still see the same kind of thing with Yocto 1.5.=A0 I=
- built my sdk with -c populate_sdk for i686 first and then went back and ch=
-anged SDKMACHINE to x86_x64.=A0 When I ran -c populate_sdk with the x86_64 =
-setting I observed these messages:<br>
-<br>hutch@neo:~/yocto_master_wcs_10_4_2013/poky/build$ bitbake core-image-w=
-cs -c populate_sdk<br>Parsing recipes: 100% |##############################=
-###########################################################################=
-#########################################| Time: 00:00:24<br>
-Parsing of 1407 .bb files complete (0 cached, 1407 parsed). 1796 targets, 8=
-1 skipped, 7 masked, 0 errors.<br>NOTE: Resolving any missing task queue de=
-pendencies<br>NOTE: multiple providers are available for jpeg (jpeg, libjpe=
-g-turbo)<br>
-NOTE: consider defining a PREFERRED_PROVIDER entry to match jpeg<br><br>Bui=
-ld Configuration:<br>BB_VERSION=A0=A0=A0=A0=A0=A0=A0 =3D &quot;1.20.0&quot;=
-<br>BUILD_SYS=A0=A0=A0=A0=A0=A0=A0=A0 =3D &quot;x86_64-linux&quot;<br>NATIV=
-ELSBSTRING=A0=A0 =3D &quot;Debian-7.1&quot;<br>
-TARGET_SYS=A0=A0=A0=A0=A0=A0=A0 =3D &quot;arm-poky-linux-gnueabi&quot;<br>M=
-ACHINE=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 =3D &quot;beaglebone&quot;<br>DISTRO=
-=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 =3D &quot;poky&quot;<br>DISTRO_VERSION=A0=
-=A0=A0 =3D &quot;1.5&quot;<br>TUNE_FEATURES=A0=A0=A0=A0 =3D &quot;armv7a vf=
-p neon&quot;<br>
-TARGET_FPU=A0=A0=A0=A0=A0=A0=A0 =3D &quot;vfp-neon&quot;<br>meta=A0=A0=A0=
-=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 <br>meta-yocto=A0=A0=A0=A0=A0=A0=A0 <br>meta=
--yocto-bsp=A0=A0=A0 =3D &quot;master:104166c804e9068d85ccdaa887a33df72c8aeb=
-85&quot;<br>meta-ti=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 =3D &quot;master:9c36e6c7=
-573c3e68c5816dd04f3dd43f485b0550&quot;<br>
-meta-oe=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 <br>meta-networking=A0=A0 <br>meta-we=
-bserver=A0=A0=A0 =3D &quot;master:8aafddccb03f54923927e9d1c8c80223baf581de&=
-quot;<br><br>NOTE: Preparing runqueue<br>NOTE: Executing SetScene Tasks<br>=
-NOTE: Executing RunQueue Tasks<br>
-WARNING: QA Issue: gcc-cross-canadian-arm: found library in wrong location:=
- /opt/poky/1.5/sysroots/x86_64-pokysdk-linux/usr/libexec/armv7a-vfp-neon-po=
-ky-linux-gnueabi/gcc/arm-poky-linux-gnueabi/4.8.1/liblto_plugin.so.0.0.0<br=
->
-gcc-cross-canadian-arm: found library in wrong location: /opt/poky/1.5/sysr=
-oots/x86_64-pokysdk-linux/usr/libexec/armv7a-vfp-neon-poky-linux-gnueabi/gc=
-c/arm-poky-linux-gnueabi/4.8.1/liblto_plugin.so<br>gcc-cross-canadian-arm: =
-found library in wrong location: /opt/poky/1.5/sysroots/x86_64-pokysdk-linu=
-x/usr/libexec/armv7a-vfp-neon-poky-linux-gnueabi/gcc/arm-poky-linux-gnueabi=
-/4.8.1/liblto_plugin.so.0<br>
-WARNING: The recipe packagegroup-cross-canadian-beaglebone is trying to ins=
-tall files into a shared area when those files already exist. Those files a=
-nd their manifest location are:<br>=A0=A0 /home/hutch/yocto_master_wcs_10_4=
-_2013/poky/build/tmp/deploy/ipk/all/packagegroup-cross-canadian-beaglebone_=
-1.0-r0_all.ipk<br>
-=A0=A0 Matched in manifest-i686_all-packagegroup-cross-canadian-beaglebone.=
-deploy-ipk<br>Please verify which package should provide the above files.<b=
-r>WARNING: The recipe nativesdk-packagegroup-sdk-host is trying to install =
-files into a shared area when those files already exist. Those files and th=
-eir manifest location are:<br>
-=A0=A0 /home/hutch/yocto_master_wcs_10_4_2013/poky/build/tmp/deploy/ipk/all=
-/nativesdk-packagegroup-sdk-host_1.0-r11_all.ipk<br>=A0=A0 Matched in manif=
-est-i686-nativesdk-packagegroup-sdk-host.deploy-ipk<br>Please verify which =
-package should provide the above files.<br>
-NOTE: Tasks Summary: Attempted 3172 tasks of which 2449 didn&#39;t need to =
-be rerun and all succeeded.<br><br>Summary: There were 3 WARNING messages s=
-hown.<br><br><br></div><div>Can I specify i686 and x86_64 at the same time =
-(haven&#39;t tried that before, I wonder if that would maybe prevent these =
-messages)?=A0 Anyway, I&#39;m still seeing these scary messages ... but hey=
-, it is almost Halloween :)<br>
-<br>Regards,<br><br>Brian<br><br></div><div><br>=A0</div></div><br></div></=
-div>
+<div dir=3D"ltr"><div>Hi,<br><br></div>I tried to research this issue I&#39=
+;m seeing but hit a bunch of noise.=A0 I generated a Yocto 1.5 sdk with my =
+image and -c populate_sdk for i686.=A0 When a collegue tries to install the=
+ sdk on his Centos box with Python 2.6.7, he gets:<br>
+<span style=3D"font-family:&quot;Courier New&quot;"><br>sudo ./<a href=3D"h=
+ttp://poky-eglibc-i686-core-image-wcs-armv7a-vfp-neon-toolchain-1.5.sh">pok=
+y-eglibc-i686-core-image-wcs-armv7a-vfp-neon-toolchain-1.5.sh</a>
+</span>
+<p class=3D"" style=3D"text-autospace:none"><span style=3D"font-family:&quo=
+t;Courier New&quot;">Enter target directory for SDK (default: /opt/poky/1.5=
+):
+</span></p>
+<p class=3D"" style=3D"text-autospace:none"><span style=3D"font-family:&quo=
+t;Courier New&quot;">The directory &quot;/opt/poky/1.5&quot; already contai=
+ns a SDK for this architecture.</span></p>
+<p class=3D"" style=3D"text-autospace:none"><span style=3D"font-family:&quo=
+t;Courier New&quot;">If you continue, existing files will be overwritten! P=
+roceed[y/N]?y</span></p>
+<p class=3D"" style=3D"text-autospace:none"><span style=3D"font-family:&quo=
+t;Courier New&quot;">Extracting SDK...done</span></p>
+<p class=3D"" style=3D"text-autospace:none"><span style=3D"font-family:&quo=
+t;Courier New&quot;">Setting it up...=A0 File &quot;/opt/poky/1.5/relocate_=
+sdk.py&quot;, line 34</span></p>
+<p class=3D"" style=3D"text-autospace:none"><span style=3D"font-family:&quo=
+t;Courier New&quot;">=A0=A0=A0 old_prefix =3D re.compile(b&quot;/opt/poky/1=
+\.5&quot;)</span></p>
+<p class=3D"" style=3D"text-autospace:none"><span style=3D"font-family:&quo=
+t;Courier New&quot;">=A0=A0=A0 =A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=
+=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=
+=A0^</span></p>
+<p class=3D"" style=3D"text-autospace:none"><span style=3D"font-family:&quo=
+t;Courier New&quot;">SyntaxError: invalid syntax</span></p>
+<p class=3D"" style=3D"text-autospace:none"><span style=3D"font-family:&quo=
+t;Courier New&quot;">SDK could not be set up. Relocate script failed. Abort=
+!</span></p><p class=3D"" style=3D"text-autospace:none"><br><span style=3D"=
+font-family:&quot;Courier New&quot;"></span></p>
+<p class=3D"" style><span style=3D"font-family:&quot;Courier New&quot;">So =
+I&#39;m kind of scratching my head.=A0 Then I think hey this is a 64 bit ma=
+chine, maybe the x86_64 SDK will work so then I crank one of those out and =
+after blowing away the stuff in /opt/poky/1.5 and running the install scrip=
+t with the 64bit SDK version we see the same error.</span></p>
+<p class=3D"" style>One post I did see was Jason Wessel &amp; Richard talki=
+ng about some chicken/egg problem with certain versions of Python <a href=
+=3D"http://git.yoctoproject.org/cgit.cgi/poky/commit/?id=3Dc160a982551f5d61=
+86081daa8fa20682fd7fae17">http://git.yoctoproject.org/cgit.cgi/poky/commit/=
+?id=3Dc160a982551f5d6186081daa8fa20682fd7fae17</a> but the version mentione=
+d was 2.4.x and my collegue has 2.6.7.</p>
+<p class=3D"" style>Is there some base set of packages that a machine needs=
+ to use the SDK generated by -c populate_sdk?</p><p class=3D"" style>I&#39;=
+m kind of at a loss as to why this works on some machines but not others.</=
+p>
+<p class=3D"" style>Regards,</p><p class=3D"" style><br></p><p class=3D"" s=
+tyle>Brian</p><p class=3D"" style><br></p><p class=3D"" style><span style=
+=3D"font-family:&quot;Courier New&quot;"></span></p><p class=3D"" style><br=
+><span style=3D"font-family:&quot;Courier New&quot;"></span></p>
+<p class=3D"" style><br></p><br></div>
 
---001a11c28d34ff04c404e9e7524a--
+--089e0160cddee090f504e9e78ee1--
