@@ -1,32 +1,33 @@
 Return-Path: <raj.khem@gmail.com>
-Received: from mail-ie0-f182.google.com (mail-ie0-f182.google.com
-	[209.85.223.182])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 09A10E01756
-	for <yocto@yoctoproject.org>; Tue, 29 Oct 2013 16:11:35 -0700 (PDT)
-Received: by mail-ie0-f182.google.com with SMTP id as1so982462iec.27
-	for <yocto@yoctoproject.org>; Tue, 29 Oct 2013 16:11:34 -0700 (PDT)
+Received: from mail-ie0-f176.google.com (mail-ie0-f176.google.com
+	[209.85.223.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8F001E01792
+	for <yocto@yoctoproject.org>; Tue, 29 Oct 2013 16:14:43 -0700 (PDT)
+Received: by mail-ie0-f176.google.com with SMTP id u16so952764iet.7
+	for <yocto@yoctoproject.org>; Tue, 29 Oct 2013 16:14:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
 	:cc:content-type;
-	bh=tiW+PItZf8DyRJigx4PE4nISWHAtk4mkzakA06JqbTI=;
-	b=KWqbJ69sVO4c0AyyikWvXzLLXIxnC3nco1SdXKnSShP3vo9cs1KjPBGyVfl1oWgBBa
-	DBRBa6vTssz/x9fBdGRz1rJMWXJMdIhGF+X+UXyP5uak9x8oNOGQ3Qu4XpF6pCEPFjbX
-	xfVzY3JzN4dma+ya/JYgRvAeIuBKYLbLuiu21N37xSUwsS/3+KW5Fww3Ut8zWoX+RZ3p
-	ovrEvW5imJC+0R2gDWVC3U5jI7VfxA19OUzyVMUbw1Tt/KJqKdJ917KfMKJIjFG+MEZn
-	5yLrjqH86i585inYPqb1sWjVn8NLtmDmOwXtLwdMmRyNv6VOjGXQS8vxOc544oh/ny/X
-	EMgg==
-X-Received: by 10.50.23.103 with SMTP id l7mr156267igf.3.1383088294747; Tue,
-	29 Oct 2013 16:11:34 -0700 (PDT)
+	bh=kwb6Z8bD/tEQ0fLJSS5BoGQO+XGIQA4m0YghhlgljJk=;
+	b=DhbU5xpOG59dAQL3u4GeEOADS8vuI6IjQGrmaE/+HZZGJ+U4tpcqzUEjM/sBNrm9vF
+	kvm6fgiAT+7e9phHZ2M9oOFgQExiYjjDCmGgB01OJCEvD8BO67kf5sjCE1cotU53Hbfm
+	Siov5H13oVcxytdjMXF7XudENSVfLGN42RBcXdrbvU/k5yOUbR4ypyBBdFin9IsUa5pH
+	VkkZ6pR5C4icVt7RFDbRgZSOANsM+3Vc18N2qEuKfmHjAPlXG74dY0s11b7SVOzKjq6R
+	YZ3JnSQ/q1ZZlfG6Mpdu98Fi9S/tGJFGy13UdXe84dvirP1+OaFFdPq5jpI+1H+jyxFd
+	HqMA==
+X-Received: by 10.42.208.211 with SMTP id gd19mr1331325icb.15.1383088482519;
+	Tue, 29 Oct 2013 16:14:42 -0700 (PDT)
 MIME-Version: 1.0
-Received: by 10.50.219.195 with HTTP; Tue, 29 Oct 2013 16:11:04 -0700 (PDT)
-In-Reply-To: <52703CE8.9020306@aeonyx.ca>
-References: <52702B41.1040504@aeonyx.ca> <52703CE8.9020306@aeonyx.ca>
+Received: by 10.50.219.195 with HTTP; Tue, 29 Oct 2013 16:14:12 -0700 (PDT)
+In-Reply-To: <CAFZh4h-ULci3FhdeNJDE1zEFRqAQpwVJyLY95-PVW0z2sQFGHQ@mail.gmail.com>
+References: <CAFZh4h8aKoop0wdU7THaBD6+5FnEgfPKW0zM_-wqpOOcLgXdsg@mail.gmail.com>
+	<CAFZh4h-ULci3FhdeNJDE1zEFRqAQpwVJyLY95-PVW0z2sQFGHQ@mail.gmail.com>
 From: Khem Raj <raj.khem@gmail.com>
-Date: Tue, 29 Oct 2013 16:11:04 -0700
-Message-ID: <CAMKF1spWtCmptujJk_N3AUz3v961+T+JibJtbFpZmF7ZEB3VFA@mail.gmail.com>
-To: Markus Svilans <msvilans@aeonyx.ca>
+Date: Tue, 29 Oct 2013 16:14:12 -0700
+Message-ID: <CAMKF1soqUNb4oGd83_=TOmqgepvBRiZdMLV3iUL3uD5BCMaK-Q@mail.gmail.com>
+To: Brian Hutchinson <b.hutchman@gmail.com>
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Fail to build core-image-minimal when MACHINE=genericx86-64
+Subject: Re: Getting a relocate_sdk.py issue when installing a sdk on Centos
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,89 +39,72 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 29 Oct 2013 23:11:36 -0000
+X-List-Received-Date: Tue, 29 Oct 2013 23:14:43 -0000
 Content-Type: text/plain; charset=UTF-8
 
-On Tue, Oct 29, 2013 at 3:55 PM, Markus Svilans <msvilans@aeonyx.ca> wrote:
-> Dear list,
+On Tue, Oct 29, 2013 at 2:21 PM, Brian Hutchinson <b.hutchman@gmail.com> wrote:
+> On Tue, Oct 29, 2013 at 5:04 PM, Brian Hutchinson <b.hutchman@gmail.com>
+> wrote:
+>>
+>> Hi,
+>>
+>> I tried to research this issue I'm seeing but hit a bunch of noise.  I
+>> generated a Yocto 1.5 sdk with my image and -c populate_sdk for i686.  When
+>> a collegue tries to install the sdk on his Centos box with Python 2.6.7, he
+>> gets:
+>>
+>> sudo ./poky-eglibc-i686-core-image-wcs-armv7a-vfp-neon-toolchain-1.5.sh
+>>
+>> Enter target directory for SDK (default: /opt/poky/1.5):
+>>
+>> The directory "/opt/poky/1.5" already contains a SDK for this
+>> architecture.
+>>
+>> If you continue, existing files will be overwritten! Proceed[y/N]?y
+>>
+>> Extracting SDK...done
+>>
+>> Setting it up...  File "/opt/poky/1.5/relocate_sdk.py", line 34
+>>
+>>     old_prefix = re.compile(b"/opt/poky/1\.5")
+>>
+>>                                             ^
+>>
+>> SyntaxError: invalid syntax
+>>
+>> SDK could not be set up. Relocate script failed. Abort!
+>>
+>>
+>> So I'm kind of scratching my head.  Then I think hey this is a 64 bit
+>> machine, maybe the x86_64 SDK will work so then I crank one of those out and
+>> after blowing away the stuff in /opt/poky/1.5 and running the install script
+>> with the 64bit SDK version we see the same error.
+>>
+>> One post I did see was Jason Wessel & Richard talking about some
+>> chicken/egg problem with certain versions of Python
+>> http://git.yoctoproject.org/cgit.cgi/poky/commit/?id=c160a982551f5d6186081daa8fa20682fd7fae17
+>> but the version mentioned was 2.4.x and my collegue has 2.6.7.
+>>
+>> Is there some base set of packages that a machine needs to use the SDK
+>> generated by -c populate_sdk?
+>>
+>> I'm kind of at a loss as to why this works on some machines but not
+>> others.
+>>
+>> Regards,
+>>
+>>
 >
-> A quick update:
->
-> - The same build failure occurred when I tried "bitbake core-image-minimal"
-> using a fresh poky 1.5 downloaded from the Yocto web site, with MACHINE set
-> to genericx86-64.
-> - The same build failure occurred when I manually created a recipe for
-> syslinux 6.02 and tried to build it directly "bitbake syslinux"
->
-> Any assistance would be greatly appreciated.
+> Just some more information .... I can install this same sdk on my Ubuntu
+> 12.04 box (32bit) just fine and it is running Python 2.7.3 in case any of
+> that matters.
 
-its failing while building syslinux-native package and as it seems
-from errors, its not building com32 bits by passing -m32
-flags to compiler. Seems like you need to hack syslinux build and add
--m32 when building com32/ subdir or alternatively
-remove it from build
-
-sed -e 's,com32/\S*,,g' -i Makefile
-
-but that may not be best thing to do.
-
+yeah so get python 2.7 on the other box as well and you will be happier.
 
 >
-> Thanks very much
-> Markus
+> Regards,
 >
->
->
-> On 10/29/2013 05:40 PM, Markus Svilans wrote:
->
-> Dear list,
->
-> I'm trying to build a core-image-minimal recipe using MACHINE=genericx86-64
-> but it always fails at syslinux-native-6.01 recipe. I've tried deleting my
-> tmp and build folders several times, but it will not build. I am using the
-> genericx86-64 BSP package downloaded from the Yocto website, located at:
->
-> https://www.yoctoproject.org/download/intel-x86-64-based-pcs-and-devices-genericx86-64
->
-> File: genericx86-64-dora-10.0.0.tar.bz2
->
-> I extracted it to:
-> /home/markus/yocto/genericx86-64-dora-10.0.0
->
-> Then ran the "oe-init-build-env" script and editted local.conf to enable
-> parallel make, and changed MACHINE to genericx86-64. (I've attached a copy
-> of my local.conf file.)
->
-> After that, I ran the command "bitbake core-image-minimal" and sat back,
-> waiting for it to build.
->
-> The build always fails at syslinux-native.
->
-> I tried several things:
-> - deleted tmp directory, re-try build = failure
-> - deleted build directory, re-try build = failure
-> - deleted build directory, build only syslinux = failure
-> - deleted build directory, build only syslinux-native = failure
->
-> I think I may be doing something wrong, because about an hour of Google
-> searching did not turn up anybody having a similar issue.
->
-> I am running Kubuntu 13.10 64-bit.
->
-> Can anyone please offer any advice, so that I can successfully build x86-64
-> images?
->
-> Thanks very much
-> Markus
->
->
->
->
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
->
+> Brian
 >
 >
 > _______________________________________________
