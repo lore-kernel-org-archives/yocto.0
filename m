@@ -1,30 +1,28 @@
-Return-Path: <paul.betafive@gmail.com>
-Received: from mail-vb0-f49.google.com (mail-vb0-f49.google.com
-	[209.85.212.49])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4FACCE017B6
-	for <yocto@yoctoproject.org>; Wed, 30 Oct 2013 11:48:23 -0700 (PDT)
-Received: by mail-vb0-f49.google.com with SMTP id w20so1167319vbb.8
-	for <yocto@yoctoproject.org>; Wed, 30 Oct 2013 11:48:22 -0700 (PDT)
+Return-Path: <vidal.develone@gmail.com>
+Received: from mail-qe0-f52.google.com (mail-qe0-f52.google.com
+	[209.85.128.52])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BD512E01775
+	for <yocto@yoctoproject.org>; Wed, 30 Oct 2013 13:51:14 -0700 (PDT)
+Received: by mail-qe0-f52.google.com with SMTP id w7so1181020qeb.25
+	for <yocto@yoctoproject.org>; Wed, 30 Oct 2013 13:51:13 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:sender:from:date:message-id:subject:to:content-type;
-	bh=+mctG78fTzwnLIYmgNeBYI5DMQiNHcekPP/XD0bSpsE=;
-	b=QvDOZI39q5zhSyV3xNy21s+sJ1gMoObdSHLJ85aTyDqPTiBqx+me2wMu45vK1DTNuV
-	HrfbqPNPqp3MCGWzDl2WiZ55OnGQeNf9+zlG1b6oGQBMXloy2jvfoxDIVUY04bkh2vy7
-	JuHRVp5Bek0KZJj1DnpxwiO6qOuqDmGhmg1iaCUhYyh5c+AsyLeAbtxx3lA+YvK9w14K
-	dDXXxVI0kNoSLmfo+i5knLp9p9bRJEMM/sGyscqYntlcPLY20aBMD9XQuGOCtHo4b0nN
-	+XQ3LzHmB6vZxbUm2FLQ92gOl08HvjsdXwC1+r7xflVgRKaKx5gkZyO57Co5BVRl1QWX
-	3vFg==
-X-Received: by 10.220.144.80 with SMTP id y16mr4007618vcu.4.1383158902574;
-	Wed, 30 Oct 2013 11:48:22 -0700 (PDT)
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=xXBhaaYhKUOd9NY816/qNNNfllkXVtFrO4W/vVAiGF8=;
+	b=mdouZPzV6DOuDTGxTYrHflCTSnF8gts6wSyXJqzDY7brav3u2iSZ42HkPP8+jfHj6e
+	1o5hJIgijs0t6NqATloNiG0zC+S+cnm34Lgtf9JLlzlyKnVQ5OlNYZ6/iYZxE0o/yCUP
+	wLdgPVgGGVhff+GQ//ZT3GDkholvUUjpoPRDRLUbeatYIS8Xk6tf9Ala9pg6YDVPRg2I
+	B5GPHjm1kbZRJlHKRRo/jnuhb2CHB8gT4n9eqWlCp+8yNRi+0ULAj8kRt4sZSPDAqhq0
+	17pF+NKeT2Aj6LZuIJYdiMpL5nggD9CPq940DfVDeuvPBTY/s98mzksEmqWJUHrjMC+f
+	JE+A==
 MIME-Version: 1.0
-Sender: paul.betafive@gmail.com
-Received: by 10.220.49.71 with HTTP; Wed, 30 Oct 2013 11:47:42 -0700 (PDT)
-From: Paul Barker <paul@paulbarker.me.uk>
-Date: Wed, 30 Oct 2013 18:47:42 +0000
-X-Google-Sender-Auth: fMF2a4nFAgrUsRsq9qEOgy1y6uo
-Message-ID: <CANyK_8eA1t1nkN61jbaB5hf3bym3wxGhJA3tKCu3NBqDEWO-jw@mail.gmail.com>
-To: Yocto discussion list <yocto@yoctoproject.org>
-Subject: opkg git and download hosting
+X-Received: by 10.224.44.1 with SMTP id y1mr469708qae.35.1383166273427; Wed,
+	30 Oct 2013 13:51:13 -0700 (PDT)
+Received: by 10.96.26.37 with HTTP; Wed, 30 Oct 2013 13:51:13 -0700 (PDT)
+Date: Wed, 30 Oct 2013 14:51:13 -0600
+Message-ID: <CANwz6nxT34jJGydYGe=snHHijwMdMOKdOgnxQWCp0KGkBN4OHw@mail.gmail.com>
+From: Edward Vidal <vidal.develone@gmail.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: adding a udev entry for a camera
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -36,24 +34,71 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 30 Oct 2013 18:48:24 -0000
+X-List-Received-Date: Wed, 30 Oct 2013 20:51:15 -0000
+Content-Type: multipart/alternative; boundary=047d7bdc96be64a1ee04e9fb7e5e
+
+--047d7bdc96be64a1ee04e9fb7e5e
 Content-Type: text/plain; charset=ISO-8859-1
 
-Hi all,
+Hello,
+I am trying to add a c920 camera to my systems.  I am not getting a
+/dev/video0.
+lsusb --verbose shows the HD Pro Webcam C920
+Bus 001 Device 007: ID 046d:082d Logitech, Inc.
+Device Descriptor:
+  bLength                18
+  bDescriptorType         1
+  bcdUSB               2.00
+  bDeviceClass          239 Miscellaneous Device
+  bDeviceSubClass         2 ?
+  bDeviceProtocol         1 Interface Association
+  bMaxPacketSize0        64
+  idVendor           0x046d Logitech, Inc.
+  idProduct          0x082d
+  bcdDevice            0.11
+  iManufacturer           0
+  iProduct                2 HD Pro Webcam C920
+  iSerial                 1 211EF9AF
+  bNumConfigurations      1
+plus much more information
 
-I'm looking at moving opkg away from Subversion hosted on Google Code
-to Git hosted elsewhere. Google Code is also closing the downloads
-service to new files after January so we'll need somewhere else to put
-tarballs of opkg releases. It's previously been mentioned that The
-Yocto Project may be able to help us with this. I've got a few
-questions on how this would work if we can do it. Is there anyone in
-particular I need to talk to or should we just discuss this on list?
+I created /etc/udev/rules.d/10-c920.rules
+SUBSYSTEM=="video4linux", BUS=="usb", ATTRS{idvendor}=="0x046d",
+ATTRS{idProduct}=="0x082d", NAME="video0", MODE:="0660"
 
-Thanks,
+mknod /dev/video0 c 81 0
 
--- 
-Paul Barker
+when I v4l2-ctl --all error no /dev/video0
+Any and all help will be appreciated.
+Thanks
 
-Email: paul@paulbarker.me.uk
-http://www.paulbarker.me.uk
+--047d7bdc96be64a1ee04e9fb7e5e
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
 
+<div dir=3D"ltr"><div><div><div><div><div><div>Hello,<br></div>I am trying =
+to add a c920 camera to my systems.=A0 I am not getting a /dev/video0.<br><=
+/div>lsusb --verbose shows the HD Pro Webcam C920<br>Bus 001 Device 007: ID=
+ 046d:082d Logitech, Inc. <br>
+Device Descriptor:<br>=A0 bLength=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=
+=A0 18<br>=A0 bDescriptorType=A0=A0=A0=A0=A0=A0=A0=A0 1<br>=A0 bcdUSB=A0=A0=
+=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 2.00<br>=A0 bDeviceClass=A0=A0=A0=A0=
+=A0=A0=A0=A0=A0 239 Miscellaneous Device<br>=A0 bDeviceSubClass=A0=A0=A0=A0=
+=A0=A0=A0=A0 2 ?<br>=A0 bDeviceProtocol=A0=A0=A0=A0=A0=A0=A0=A0 1 Interface=
+ Association<br>
+=A0 bMaxPacketSize0=A0=A0=A0=A0=A0=A0=A0 64<br>=A0 idVendor=A0=A0=A0=A0=A0=
+=A0=A0=A0=A0=A0 0x046d Logitech, Inc.<br>=A0 idProduct=A0=A0=A0=A0=A0=A0=A0=
+=A0=A0 0x082d <br>=A0 bcdDevice=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 0.11<br>=
+=A0 iManufacturer=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 0 <br>=A0 iProduct=A0=A0=A0=
+=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 2 HD Pro Webcam C920<br>
+=A0 iSerial=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 1 211EF9AF<br>=
+=A0 bNumConfigurations=A0=A0=A0=A0=A0 1<br></div>plus much more information=
+ <br><br>I created /etc/udev/rules.d/10-c920.rules<br>SUBSYSTEM=3D=3D&quot;=
+video4linux&quot;, BUS=3D=3D&quot;usb&quot;, ATTRS{idvendor}=3D=3D&quot;0x0=
+46d&quot;, ATTRS{idProduct}=3D=3D&quot;0x082d&quot;, NAME=3D&quot;video0&qu=
+ot;, MODE:=3D&quot;0660&quot;<br>
+<br>mknod /dev/video0 c 81 0<br><br></div>when I v4l2-ctl --all error no /d=
+ev/video0<br></div>Any and all help will be appreciated.<br></div>Thanks<br=
+><br></div>
+
+--047d7bdc96be64a1ee04e9fb7e5e--
