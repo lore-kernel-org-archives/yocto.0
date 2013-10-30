@@ -1,28 +1,40 @@
-Return-Path: <vidal.develone@gmail.com>
-Received: from mail-qe0-f52.google.com (mail-qe0-f52.google.com
-	[209.85.128.52])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BD512E01775
-	for <yocto@yoctoproject.org>; Wed, 30 Oct 2013 13:51:14 -0700 (PDT)
-Received: by mail-qe0-f52.google.com with SMTP id w7so1181020qeb.25
-	for <yocto@yoctoproject.org>; Wed, 30 Oct 2013 13:51:13 -0700 (PDT)
+Return-Path: <b.hutchman@gmail.com>
+Received: from mail-ea0-f179.google.com (mail-ea0-f179.google.com
+	[209.85.215.179])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A05C4E01775
+	for <yocto@yoctoproject.org>; Wed, 30 Oct 2013 14:26:54 -0700 (PDT)
+Received: by mail-ea0-f179.google.com with SMTP id b10so947603eae.24
+	for <yocto@yoctoproject.org>; Wed, 30 Oct 2013 14:26:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=xXBhaaYhKUOd9NY816/qNNNfllkXVtFrO4W/vVAiGF8=;
-	b=mdouZPzV6DOuDTGxTYrHflCTSnF8gts6wSyXJqzDY7brav3u2iSZ42HkPP8+jfHj6e
-	1o5hJIgijs0t6NqATloNiG0zC+S+cnm34Lgtf9JLlzlyKnVQ5OlNYZ6/iYZxE0o/yCUP
-	wLdgPVgGGVhff+GQ//ZT3GDkholvUUjpoPRDRLUbeatYIS8Xk6tf9Ala9pg6YDVPRg2I
-	B5GPHjm1kbZRJlHKRRo/jnuhb2CHB8gT4n9eqWlCp+8yNRi+0ULAj8kRt4sZSPDAqhq0
-	17pF+NKeT2Aj6LZuIJYdiMpL5nggD9CPq940DfVDeuvPBTY/s98mzksEmqWJUHrjMC+f
-	JE+A==
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type;
+	bh=h2KGwsGgUxdoFCBSNgTXI14Ak17chIdmJC8qXJp9P9A=;
+	b=H6bltbZ0jQlPECohy5sD3gOF1YlKsHLRl33eJghVJ+y3yl96eBdNrdyGwW7qRUCJwj
+	ZcP+htjRaJ1M+icUfq8jKufwylHhIPU/j6HPRck7xs96GquyupITtPoMq7W5b6PyrJau
+	A3PWyd8i/mRweMZIZfhamM9+ZNURCUAfYiXNKsDLwUCY7G6sUpRqv9jPCIuq2ZLm+E5j
+	2FjZEifN2TPUrlOXdPZlGZExl2zJedTT4cOD/y1v1YPq26XZ+upanjCKrPbVPPuM/Nnw
+	QQkOa5rZbZdPCgbNrV+cy9ZDvC2cE+YoWtiVBJIsqOjd7t870Z//UmEccgCPVIy6BGVV
+	zrpQ==
 MIME-Version: 1.0
-X-Received: by 10.224.44.1 with SMTP id y1mr469708qae.35.1383166273427; Wed,
-	30 Oct 2013 13:51:13 -0700 (PDT)
-Received: by 10.96.26.37 with HTTP; Wed, 30 Oct 2013 13:51:13 -0700 (PDT)
-Date: Wed, 30 Oct 2013 14:51:13 -0600
-Message-ID: <CANwz6nxT34jJGydYGe=snHHijwMdMOKdOgnxQWCp0KGkBN4OHw@mail.gmail.com>
-From: Edward Vidal <vidal.develone@gmail.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: adding a udev entry for a camera
+X-Received: by 10.15.23.1 with SMTP id g1mr4347564eeu.63.1383168413686; Wed,
+	30 Oct 2013 14:26:53 -0700 (PDT)
+Received: by 10.223.170.195 with HTTP; Wed, 30 Oct 2013 14:26:53 -0700 (PDT)
+Received: by 10.223.170.195 with HTTP; Wed, 30 Oct 2013 14:26:53 -0700 (PDT)
+In-Reply-To: <CAFZh4h8G1MAbr45-gU1cs=FgrgJdyiGDAYzCU5AsprNFqeE6hw@mail.gmail.com>
+References: <CAFZh4h8aKoop0wdU7THaBD6+5FnEgfPKW0zM_-wqpOOcLgXdsg@mail.gmail.com>
+	<CAFZh4h-ULci3FhdeNJDE1zEFRqAQpwVJyLY95-PVW0z2sQFGHQ@mail.gmail.com>
+	<20131030054112.GA23839@lpalcu-linux>
+	<CAFZh4h_oN02R_Z2ymVd6Df0RRnyWichQAD0dtvarUefd4k_eSQ@mail.gmail.com>
+	<20131030133451.GA25490@lpalcu-linux>
+	<CAFZh4h_fdSXqN5KoacQn9FfTjLNAC4UijS3eM2HPd+eHXMXdew@mail.gmail.com>
+	<20131030144108.GA1061@lpalcu-linux>
+	<CAFZh4h8G1MAbr45-gU1cs=FgrgJdyiGDAYzCU5AsprNFqeE6hw@mail.gmail.com>
+Date: Wed, 30 Oct 2013 17:26:53 -0400
+Message-ID: <CAFZh4h9puvv_hvxOtyrx6F+ohsQYb-GbN-DxgncQZ0yacH88Ug@mail.gmail.com>
+From: Brian Hutchinson <b.hutchman@gmail.com>
+To: Laurentiu Palcu <laurentiu.palcu@intel.com>
+Cc: yocto@yoctoproject.org
+Subject: Re: Getting a relocate_sdk.py issue when installing a sdk on Centos
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,71 +46,86 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 30 Oct 2013 20:51:15 -0000
-Content-Type: multipart/alternative; boundary=047d7bdc96be64a1ee04e9fb7e5e
+X-List-Received-Date: Wed, 30 Oct 2013 21:26:56 -0000
+Content-Type: multipart/alternative; boundary=089e01681db0f6662404e9fbfd48
 
---047d7bdc96be64a1ee04e9fb7e5e
+--089e01681db0f6662404e9fbfd48
 Content-Type: text/plain; charset=ISO-8859-1
 
-Hello,
-I am trying to add a c920 camera to my systems.  I am not getting a
-/dev/video0.
-lsusb --verbose shows the HD Pro Webcam C920
-Bus 001 Device 007: ID 046d:082d Logitech, Inc.
-Device Descriptor:
-  bLength                18
-  bDescriptorType         1
-  bcdUSB               2.00
-  bDeviceClass          239 Miscellaneous Device
-  bDeviceSubClass         2 ?
-  bDeviceProtocol         1 Interface Association
-  bMaxPacketSize0        64
-  idVendor           0x046d Logitech, Inc.
-  idProduct          0x082d
-  bcdDevice            0.11
-  iManufacturer           0
-  iProduct                2 HD Pro Webcam C920
-  iSerial                 1 211EF9AF
-  bNumConfigurations      1
-plus much more information
+On Oct 30, 2013 10:45 AM, "Brian Hutchinson" <b.hutchman@gmail.com> wrote:
+>
+> On Wed, Oct 30, 2013 at 10:41 AM, Laurentiu Palcu <
+laurentiu.palcu@intel.com> wrote:
+>>
+>>
+>> > Helps to read the release notes ... I wonder if I shouldn't also make
+folks
+>> > with these older Centos boxes also install buildtools-tarball so
+everyone has
+>> > the same rev of Python etc.  That might make the SDK install go better
+too.
+>> If those folks are just users of the SDK then I don't think this is
+>> necessary, provided that the one that generated the SDK tarball had the
+fix
+>> installed.
+>>
+>
+> Yes, they are just using the generated SDK.
+>
+> Thanks for putting me onto this patch, I'm looking at it now.
+>
+> Regards,
+>
+> Brian
+>
+>
 
-I created /etc/udev/rules.d/10-c920.rules
-SUBSYSTEM=="video4linux", BUS=="usb", ATTRS{idvendor}=="0x046d",
-ATTRS{idProduct}=="0x082d", NAME="video0", MODE:="0660"
+Thanks!  That patch fixed both the i686 and x86_64 versions of my SDK!
 
-mknod /dev/video0 c 81 0
+You are the man!
 
-when I v4l2-ctl --all error no /dev/video0
-Any and all help will be appreciated.
-Thanks
+Regards,
 
---047d7bdc96be64a1ee04e9fb7e5e
+Brian
+
+--089e01681db0f6662404e9fbfd48
 Content-Type: text/html; charset=ISO-8859-1
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div><div><div><div><div><div>Hello,<br></div>I am trying =
-to add a c920 camera to my systems.=A0 I am not getting a /dev/video0.<br><=
-/div>lsusb --verbose shows the HD Pro Webcam C920<br>Bus 001 Device 007: ID=
- 046d:082d Logitech, Inc. <br>
-Device Descriptor:<br>=A0 bLength=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=
-=A0 18<br>=A0 bDescriptorType=A0=A0=A0=A0=A0=A0=A0=A0 1<br>=A0 bcdUSB=A0=A0=
-=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 2.00<br>=A0 bDeviceClass=A0=A0=A0=A0=
-=A0=A0=A0=A0=A0 239 Miscellaneous Device<br>=A0 bDeviceSubClass=A0=A0=A0=A0=
-=A0=A0=A0=A0 2 ?<br>=A0 bDeviceProtocol=A0=A0=A0=A0=A0=A0=A0=A0 1 Interface=
- Association<br>
-=A0 bMaxPacketSize0=A0=A0=A0=A0=A0=A0=A0 64<br>=A0 idVendor=A0=A0=A0=A0=A0=
-=A0=A0=A0=A0=A0 0x046d Logitech, Inc.<br>=A0 idProduct=A0=A0=A0=A0=A0=A0=A0=
-=A0=A0 0x082d <br>=A0 bcdDevice=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 0.11<br>=
-=A0 iManufacturer=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 0 <br>=A0 iProduct=A0=A0=A0=
-=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 2 HD Pro Webcam C920<br>
-=A0 iSerial=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 1 211EF9AF<br>=
-=A0 bNumConfigurations=A0=A0=A0=A0=A0 1<br></div>plus much more information=
- <br><br>I created /etc/udev/rules.d/10-c920.rules<br>SUBSYSTEM=3D=3D&quot;=
-video4linux&quot;, BUS=3D=3D&quot;usb&quot;, ATTRS{idvendor}=3D=3D&quot;0x0=
-46d&quot;, ATTRS{idProduct}=3D=3D&quot;0x082d&quot;, NAME=3D&quot;video0&qu=
-ot;, MODE:=3D&quot;0660&quot;<br>
-<br>mknod /dev/video0 c 81 0<br><br></div>when I v4l2-ctl --all error no /d=
-ev/video0<br></div>Any and all help will be appreciated.<br></div>Thanks<br=
-><br></div>
+<p dir=3D"ltr"><br>
+On Oct 30, 2013 10:45 AM, &quot;Brian Hutchinson&quot; &lt;<a href=3D"mailt=
+o:b.hutchman@gmail.com">b.hutchman@gmail.com</a>&gt; wrote:<br>
+&gt;<br>
+&gt; On Wed, Oct 30, 2013 at 10:41 AM, Laurentiu Palcu &lt;<a href=3D"mailt=
+o:laurentiu.palcu@intel.com">laurentiu.palcu@intel.com</a>&gt; wrote:<br>
+&gt;&gt;<br>
+&gt;&gt;<br>
+&gt;&gt; &gt; Helps to read the release notes ... I wonder if I shouldn&#39=
+;t also make folks<br>
+&gt;&gt; &gt; with these older Centos boxes also install buildtools-tarball=
+ so everyone has<br>
+&gt;&gt; &gt; the same rev of Python etc. =A0That might make the SDK instal=
+l go better too.<br>
+&gt;&gt; If those folks are just users of the SDK then I don&#39;t think th=
+is is<br>
+&gt;&gt; necessary, provided that the one that generated the SDK tarball ha=
+d the fix<br>
+&gt;&gt; installed.<br>
+&gt;&gt;<br>
+&gt;<br>
+&gt; Yes, they are just using the generated SDK.<br>
+&gt;<br>
+&gt; Thanks for putting me onto this patch, I&#39;m looking at it now.<br>
+&gt;<br>
+&gt; Regards,<br>
+&gt;<br>
+&gt; Brian<br>
+&gt; =A0<br>
+&gt;</p>
+<p dir=3D"ltr">Thanks!=A0 That patch fixed both the i686 and x86_64 version=
+s of my SDK!</p>
+<p dir=3D"ltr">You are the man!</p>
+<p dir=3D"ltr">Regards,</p>
+<p dir=3D"ltr">Brian</p>
 
---047d7bdc96be64a1ee04e9fb7e5e--
+--089e01681db0f6662404e9fbfd48--
