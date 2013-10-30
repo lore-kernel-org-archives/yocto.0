@@ -1,38 +1,34 @@
-Return-Path: <b.hutchman@gmail.com>
-Received: from mail-ea0-f173.google.com (mail-ea0-f173.google.com
-	[209.85.215.173])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C5A90E0175F
-	for <yocto@yoctoproject.org>; Wed, 30 Oct 2013 07:45:22 -0700 (PDT)
-Received: by mail-ea0-f173.google.com with SMTP id g10so715869eak.4
-	for <yocto@yoctoproject.org>; Wed, 30 Oct 2013 07:45:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type;
-	bh=LgGOJfOmKF0odHslUUK2gt6z/+yHwkYItyX5mGwuNBY=;
-	b=qulAibgqu2xk5sDqC5p8+sWNClfNR6vlhPzdEmcub0eXs+1DADyQ7ao9LhIZXGbGof
-	vmTLUGH+VfxhcQcSLp8+ksI2UeIT5XKEcoV4pLvSUyu3KcZSXGEr1ZqIidpG+rcJ99wo
-	xFSd8GSiDsEyVJIjSXwf69bcf/GHy3fOCczLz3WQiBJTPt/dhFLFSZ8dwh3ORBAa7qb6
-	oAESU/qef+rRSVveo8XKInoDY/WhNdk57/uHQRhPT0oIpLMKM5XGNhnjd2un2mS5YxSA
-	EdBRwJlRdd4hnVMYenRacsBQy/Dbv38PadR6LBXwnHkge0xBP2phPhGxMNcnF2T5HqxE
-	gO5g==
+Return-Path: <flihp@twobit.us>
+Received: from smtp.twobit.us (unknown [38.83.192.235])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C3196E0175F
+	for <yocto@yoctoproject.org>; Wed, 30 Oct 2013 07:50:04 -0700 (PDT)
+Received: from [216.57.91.130] (helo=[10.204.207.200])
+	by smtp.twobit.us with esmtpsa
+	(TLS1.0:DHE_RSA_CAMELLIA_256_CBC_SHA1:256) (Exim 4.80)
+	(envelope-from <flihp@twobit.us>)
+	id 1VbX5r-0006cH-Fl; Wed, 30 Oct 2013 14:50:00 +0000
+Message-ID: <52711C8F.3080802@twobit.us>
+Date: Wed, 30 Oct 2013 10:49:51 -0400
+From: Philip Tricca <flihp@twobit.us>
+User-Agent: Mozilla/5.0 (X11; Linux i686;
+	rv:17.0) Gecko/20130922 Icedove/17.0.9
 MIME-Version: 1.0
-X-Received: by 10.14.203.70 with SMTP id e46mr5397511eeo.33.1383144320972;
-	Wed, 30 Oct 2013 07:45:20 -0700 (PDT)
-Received: by 10.223.170.195 with HTTP; Wed, 30 Oct 2013 07:45:20 -0700 (PDT)
-In-Reply-To: <20131030144108.GA1061@lpalcu-linux>
-References: <CAFZh4h8aKoop0wdU7THaBD6+5FnEgfPKW0zM_-wqpOOcLgXdsg@mail.gmail.com>
-	<CAFZh4h-ULci3FhdeNJDE1zEFRqAQpwVJyLY95-PVW0z2sQFGHQ@mail.gmail.com>
-	<20131030054112.GA23839@lpalcu-linux>
-	<CAFZh4h_oN02R_Z2ymVd6Df0RRnyWichQAD0dtvarUefd4k_eSQ@mail.gmail.com>
-	<20131030133451.GA25490@lpalcu-linux>
-	<CAFZh4h_fdSXqN5KoacQn9FfTjLNAC4UijS3eM2HPd+eHXMXdew@mail.gmail.com>
-	<20131030144108.GA1061@lpalcu-linux>
-Date: Wed, 30 Oct 2013 10:45:20 -0400
-Message-ID: <CAFZh4h8G1MAbr45-gU1cs=FgrgJdyiGDAYzCU5AsprNFqeE6hw@mail.gmail.com>
-From: Brian Hutchinson <b.hutchman@gmail.com>
-To: Laurentiu Palcu <laurentiu.palcu@intel.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Getting a relocate_sdk.py issue when installing a sdk on Centos
+To: Joe MacDonald <joe@deserted.net>
+References: <1383095496-6487-1-git-send-email-flihp@twobit.us>
+	<1383095496-6487-2-git-send-email-flihp@twobit.us>
+	<20131030142207.GE3716@deserted.net>
+In-Reply-To: <20131030142207.GE3716@deserted.net>
+X-Enigmail-Version: 1.5.1
+X-SA-Exim-Connect-IP: 216.57.91.130
+X-SA-Exim-Mail-From: flihp@twobit.us
+X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on smtp.twobit.us
+X-Spam-Level: 
+X-Spam-Status: No, score=-1.0 required=5.0 tests=ALL_TRUSTED autolearn=ham
+	version=3.3.2
+X-SA-Exim-Version: 4.2.1 (built Mon, 26 Dec 2011 16:24:06 +0000)
+X-SA-Exim-Scanned: Yes (on smtp.twobit.us)
+Cc: yocto@yoctoproject.org
+Subject: Re: [meta-selinux][PATCH 1/4] Move common POLICY_* variables to refpolicy_common.inc
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -44,58 +40,70 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 30 Oct 2013 14:45:23 -0000
-Content-Type: multipart/alternative; boundary=047d7b3440f4ecbb6b04e9f66158
-
---047d7b3440f4ecbb6b04e9f66158
+X-List-Received-Date: Wed, 30 Oct 2013 14:50:04 -0000
 Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: 7bit
 
-On Wed, Oct 30, 2013 at 10:41 AM, Laurentiu Palcu <laurentiu.palcu@intel.com
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA512
+
+On 10/30/2013 10:22 AM, Joe MacDonald wrote:
+> [[yocto] [meta-selinux][PATCH 1/4] Move common POLICY_* variables
+> to refpolicy_common.inc] On 13.10.30 (Wed 01:11) Philip Tricca
 > wrote:
+> 
+>> Use default assignment to allow variables to be overriden by
+>> recipes that include refpolicy_common.inc
+>> 
+>> Signed-off-by: Philip Tricca <flihp@twobit.us> --- 
+>> recipes-security/refpolicy/refpolicy_common.inc |   12
+>> ++++++++++++ 1 file changed, 12 insertions(+)
+>> 
+>> diff --git a/recipes-security/refpolicy/refpolicy_common.inc
+>> b/recipes-security/refpolicy/refpolicy_common.inc index
+>> 0ca0b9d..65d679b 100644 ---
+>> a/recipes-security/refpolicy/refpolicy_common.inc +++
+>> b/recipes-security/refpolicy/refpolicy_common.inc @@ -24,6 +24,18
+>> @@ inherit autotools pythonnative
+>> 
+>> PARALLEL_MAKE = ""
+>> 
+>> +POLICY_NAME ?= "${POLICY_TYPE}" +POLICY_DISTRO ?= "redhat" 
+>> +POLICY_UBAC ?= "n" +POLICY_UNK_PERMS ?= "allow" 
+>> +POLICY_DIRECT_INITRC ?= "n" +POLICY_MONOLITHIC ?= "n" 
+>> +POLICY_CUSTOM_BUILDOPT ?= "" +POLICY_QUIET ?= "y" 
+>> +POLICY_MLS_SENS = "16" +POLICY_MLS_CATS = "1024" 
+>> +POLICY_MCS_CATS = "1024"
+> 
+> Any reason not to make these last three soft assignments as well? 
+> They're unlikely to change and putting them here makes sense, but I
+> can also imagine someone wanting to use this as a base for creating
+> a simplified policy.
 
->
-> > Helps to read the release notes ... I wonder if I shouldn't also make
-> folks
-> > with these older Centos boxes also install buildtools-tarball so
-> everyone has
-> > the same rev of Python etc.  That might make the SDK install go better
-> too.
-> If those folks are just users of the SDK then I don't think this is
-> necessary, provided that the one that generated the SDK tarball had the fix
-> installed.
->
->
-Yes, they are just using the generated SDK.
+Agree these should be default assignment as well. This was just an
+oversight on my part. Good catch & thanks.
 
-Thanks for putting me onto this patch, I'm looking at it now.
+- - Philip
 
-Regards,
+>> + EXTRA_OEMAKE += "NAME=${POLICY_NAME} \ TYPE=${POLICY_TYPE} \ 
+>> DISTRO=${POLICY_DISTRO} \
 
-Brian
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1.4.12 (GNU/Linux)
+Comment: Using GnuPG with Icedove - http://www.enigmail.net/
 
---047d7b3440f4ecbb6b04e9f66158
-Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
+iQIcBAEBCgAGBQJScRyPAAoJEDL3fnXC4dO6jhsP/RN8oRzJM2Hv2EYBFBQD8lB3
+diOfg13xNye7shlmWUmhHppdR41eiTRQS7ozpzrZz7XsI1RFhB7Zeav9R/uRuqZa
++UkXMg0SF979Qpd1MjjFMl9itlUVFvtZsLdXQCB/OmXQB2Z/YL559UTvR/rD+RUd
+qqOpRCgZrwo87O9qn4gVMktd4eG+ETyxgzaDO+BNTAmSLqO8kcxDqd3+UsBT8z/9
+4P4UsAGStJNPNDpk4lUoZSZDQUtQNQjGgX3iA0mhzfO1MQ4k6zLq6cAT8Bdov8r+
+4nRTHFF8WlrI6cjvjy07ffw7QrIu6Gg9m6krdXYapMYThOf7WEVU1g5uFQr4nget
+VEC9Zcz6s3oRppGLDYR28scTCaNqiKyiA5CzQ3GsmhgtZVXBw0k2RBW9vNqrwdgi
+rYkq523tKX7sj6WM2+leDp6GtgB6qwNqMlHT4UWMeoDdLvXc6blxZbtWhLqdEp7L
+Escohx5biH7zLHrgoDHRmkvobQ4g1pP9k8MRgZIKWQ56vmPVrmvN7O3Uj9jenIk6
+RcbFQhlwVhXBdRCJxCbejRRIZ1yvWFTGI/yEJ0UgHlYgE0eBFbOnyxDK/f835Ybs
+pPhQCoRbetfcB1GkB9T+wxj2IP+RmXVQI7rm2SAs9IjFy3TDndKds/A9z1LJkXCa
+QtMLQtTkd+o1cOTg7HLK
+=QCzZ
+-----END PGP SIGNATURE-----
 
-<div dir=3D"ltr"><div class=3D"gmail_extra"><div class=3D"gmail_quote">On W=
-ed, Oct 30, 2013 at 10:41 AM, Laurentiu Palcu <span dir=3D"ltr">&lt;<a href=
-=3D"mailto:laurentiu.palcu@intel.com" target=3D"_blank">laurentiu.palcu@int=
-el.com</a>&gt;</span> wrote:<br>
-<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
-x #ccc solid;padding-left:1ex"><div class=3D"HOEnZb"><div class=3D"h5"><br>
-&gt; Helps to read the release notes ... I wonder if I shouldn&#39;t also m=
-ake folks<br>
-&gt; with these older Centos boxes also install buildtools-tarball so every=
-one has<br>
-&gt; the same rev of Python etc. =A0That might make the SDK install go bett=
-er too.<br>
-</div></div>If those folks are just users of the SDK then I don&#39;t think=
- this is<br>
-necessary, provided that the one that generated the SDK tarball had the fix=
-<br>
-installed.<br>
-<br></blockquote><div><br></div><div>Yes, they are just using the generated=
- SDK.<br><br>Thanks for putting me onto this patch, I&#39;m looking at it n=
-ow.<br><br>Regards,<br><br>Brian<br>=A0<br></div></div><br></div></div>
-
---047d7b3440f4ecbb6b04e9f66158--
