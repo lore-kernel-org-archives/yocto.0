@@ -1,24 +1,24 @@
-Return-Path: <laurentiu.palcu@intel.com>
-Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EFD04E0179A
-	for <yocto@yoctoproject.org>; Tue, 29 Oct 2013 22:41:15 -0700 (PDT)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by azsmga101.ch.intel.com with ESMTP; 29 Oct 2013 22:41:14 -0700
+Return-Path: <jukka.rissanen@linux.intel.com>
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 58427E0179A
+	for <yocto@yoctoproject.org>; Wed, 30 Oct 2013 00:57:37 -0700 (PDT)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga102.fm.intel.com with ESMTP; 30 Oct 2013 00:57:26 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.93,599,1378882800"; d="scan'208";a="419522240"
-Received: from lpalcu-linux.rb.intel.com (HELO lpalcu-linux) ([10.237.105.41])
-	by fmsmga001.fm.intel.com with ESMTP; 29 Oct 2013 22:41:13 -0700
-Date: Wed, 30 Oct 2013 07:41:12 +0200
-From: Laurentiu Palcu <laurentiu.palcu@intel.com>
-To: Brian Hutchinson <b.hutchman@gmail.com>
-Message-ID: <20131030054112.GA23839@lpalcu-linux>
-References: <CAFZh4h8aKoop0wdU7THaBD6+5FnEgfPKW0zM_-wqpOOcLgXdsg@mail.gmail.com>
-	<CAFZh4h-ULci3FhdeNJDE1zEFRqAQpwVJyLY95-PVW0z2sQFGHQ@mail.gmail.com>
+X-IronPort-AV: E=Sophos;i="4.93,599,1378882800"; d="scan'208";a="425010345"
+Received: from sorvi.fi.intel.com (HELO [10.237.72.152]) ([10.237.72.152])
+	by fmsmga002.fm.intel.com with ESMTP; 30 Oct 2013 00:57:22 -0700
+Message-ID: <5270BBDF.8040905@linux.intel.com>
+Date: Wed, 30 Oct 2013 09:57:19 +0200
+From: Jukka Rissanen <jukka.rissanen@linux.intel.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:17.0) Gecko/20130625 Thunderbird/17.0.7
 MIME-Version: 1.0
-In-Reply-To: <CAFZh4h-ULci3FhdeNJDE1zEFRqAQpwVJyLY95-PVW0z2sQFGHQ@mail.gmail.com>
-User-Agent: Mutt/1.5.21 (2010-09-15)
+To: Diego Sueiro <diego.sueiro@gmail.com>
+References: <CAMCfZKFBvSiRSMk5wrEpSEiNNiZeHJw18fbHgHzepo__U=UWNA@mail.gmail.com>
+In-Reply-To: <CAMCfZKFBvSiRSMk5wrEpSEiNNiZeHJw18fbHgHzepo__U=UWNA@mail.gmail.com>
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Getting a relocate_sdk.py issue when installing a sdk on Centos
+Subject: Re: Custom defconfig is not used
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -30,87 +30,51 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 30 Oct 2013 05:41:18 -0000
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+X-List-Received-Date: Wed, 30 Oct 2013 07:57:41 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Hi Brian,
+Hi Diego,
 
-On Tue, Oct 29, 2013 at 05:21:53PM -0400, Brian Hutchinson wrote:
-> On Tue, Oct 29, 2013 at 5:04 PM, Brian Hutchinson <b.hutchman@gmail.com> wrote:
-> 
->     Hi,
-> 
->     I tried to research this issue I'm seeing but hit a bunch of noise.  I
->     generated a Yocto 1.5 sdk with my image and -c populate_sdk for i686.  When
->     a collegue tries to install the sdk on his Centos box with Python 2.6.7, he
->     gets:
->    
->     sudo ./poky-eglibc-i686-core-image-wcs-armv7a-vfp-neon-toolchain-1.5.sh
-> 
->     Enter target directory for SDK (default: /opt/poky/1.5):
-> 
->     The directory "/opt/poky/1.5" already contains a SDK for this architecture.
-> 
->     If you continue, existing files will be overwritten! Proceed[y/N]?y
-> 
->     Extracting SDK...done
-> 
->     Setting it up...  File "/opt/poky/1.5/relocate_sdk.py", line 34
-> 
->         old_prefix = re.compile(b"/opt/poky/1\.5")
-> 
->                                                 ^
-This commit:
+On 16.10.2013 00:07, Diego Sueiro wrote:
+> Folks,
+>
+> I created the following bbapend recipe for linux-mainline_3.8.bb
+> <http://linux-mainline_3.8.bb> (from meta-beagleboard on dylan branch)
+> for beaglebone.
+> meta-mine/recipes-kernel/linux/linux-mainline_3.8.bbappend:
+>
+>     FILESEXTRAPATHS_prepend := "${THISDIR}/files:"
+>     SRC_URI += " file://0019-mine.patch \
+>                   file://defconfig \
+>                   "
+>
+> But the defconfig and .config files on ${S} and ${WORKDIR} used are from
+> meta-beagleboad, not from my bbappend.
 
-commit 39356f622d3d2226f12c4930beeaf4b392d90ca5
-Author: Konrad Scherer <Konrad.Scherer@windriver.com>
-Date:   Thu Oct 17 10:17:20 2013 -0400
+I did this like this in 
+http://git.yoctoproject.org/cgit/cgit.cgi/meta-eca/tree/meta-eca-bsp/recipes-kernel/linux/linux-mainline_3.8.bbappend
 
-    relocate_sdk.py: Allow script to work with Python 2.4 and 3.
 
-should fix your issue.
+FILESEXTRAPATHS_append := ":${THISDIR}/${PN}"
 
-Thanks,
-Laurentiu
-> 
->     SyntaxError: invalid syntax
-> 
->     SDK could not be set up. Relocate script failed. Abort!
-> 
-> 
->     So I'm kind of scratching my head.  Then I think hey this is a 64 bit
->     machine, maybe the x86_64 SDK will work so then I crank one of those out
->     and after blowing away the stuff in /opt/poky/1.5 and running the install
->     script with the 64bit SDK version we see the same error.
-> 
->     One post I did see was Jason Wessel & Richard talking about some chicken/
->     egg problem with certain versions of Python http://git.yoctoproject.org/
->     cgit.cgi/poky/commit/?id=c160a982551f5d6186081daa8fa20682fd7fae17 but the
->     version mentioned was 2.4.x and my collegue has 2.6.7.
-> 
->     Is there some base set of packages that a machine needs to use the SDK
->     generated by -c populate_sdk?
-> 
->     I'm kind of at a loss as to why this works on some machines but not others.
-> 
->     Regards,
-> 
-> 
-> 
-> 
-> Just some more information .... I can install this same sdk on my Ubuntu 12.04
-> box (32bit) just fine and it is running Python 2.7.3 in case any of that
-> matters.
-> 
-> Regards,
-> 
-> Brian
-> 
+# netfilter stuff is missing from beaglebone kernel
+SRC_URI_append_beaglebone += "file://netfilter.cfg"
 
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+do_configure_append_beaglebone () {
+	for i in ${S}/../*.cfg; do
+		echo "Adding ${i} to ${S}/.config"
+		cat ${i} >> ${S}/.config
+	done
 
+	yes '' | oe_runmake oldconfig
+}
+
+
+Seems to work just fine for me.
+
+
+-- 
+Cheers,
+Jukka
 
