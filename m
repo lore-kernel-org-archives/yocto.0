@@ -1,26 +1,30 @@
-Return-Path: <philip@balister.org>
-Received: from sanddollar.geekisp.com (sanddollar.geekisp.com
-	[216.168.135.167])
-	by yocto-www.yoctoproject.org (Postfix) with SMTP id 90194E017D5
-	for <yocto@yoctoproject.org>; Thu, 31 Oct 2013 12:43:39 -0700 (PDT)
-Received: (qmail 23879 invoked by uid 1003); 31 Oct 2013 19:43:38 -0000
-Received: from unknown (HELO ?10.8.0.10?) (philip@opensdr.com@108.44.82.190)
-	by mail.geekisp.com with (DHE-RSA-AES256-SHA encrypted) SMTP;
-	31 Oct 2013 19:43:37 -0000
-Message-ID: <5272B2E7.9080002@balister.org>
-Date: Thu, 31 Oct 2013 12:43:35 -0700
-From: Philip Balister <philip@balister.org>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:17.0) Gecko/20130625 Thunderbird/17.0.7
+Return-Path: <lschwab@xeralux.com>
+Received: from mail-ee0-f54.google.com (mail-ee0-f54.google.com [74.125.83.54])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2D551E017D5
+	for <yocto@yoctoproject.org>; Thu, 31 Oct 2013 13:28:29 -0700 (PDT)
+Received: by mail-ee0-f54.google.com with SMTP id c50so970005eek.41
+	for <yocto@yoctoproject.org>; Thu, 31 Oct 2013 13:28:28 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:date:message-id:subject:from:to
+	:content-type;
+	bh=2LH/srZvDJLNOErv8uMFfLjSdvpsqGBX/7V7Hj2cWnk=;
+	b=HqWD7fvjumTN49SQkpXsceLDP+O7tNdJEnY21UVKyZwpqWWKstL1OTSSqi8tdHQKMg
+	h39LBR1SpbbnVhQyBycl2uOYQ6vNXP/RTK16wOua5Bgwq7ahaU+1G4+gp6YjLGb+AO3H
+	sH1C0cARm+ry0wP6xnd+3UA5vmgtZMY80F8qHCfDoVMP+WPq8gaN2/1Ob0XvS6boQ69/
+	VkLkbG6LvanhYI9syYk8s5o4IW7Fa7Xj9UPM4uS/wDxgj5+knBV6bUEOzei2FFYBnB5e
+	rZ8M9UHVFqlzWv5OxS/oY7uS9pWaHwHbBUSgQrwZZMUSVf315zqKmEphRNdPwk7XvqZH
+	6Xtg==
+X-Gm-Message-State: ALoCoQltNpE+bfLbnCgBUQ3+eelu9WM1/m1Hes1dB2E2NBeX9iPUr6Hsr3nEZq/yluvSXtkmD2/t
 MIME-Version: 1.0
-To: Saul Wold <sgw@linux.intel.com>
-References: <CANyK_8eA1t1nkN61jbaB5hf3bym3wxGhJA3tKCu3NBqDEWO-jw@mail.gmail.com>
-	<CALmOhgnF7NGUFQZ-QXZJg=tmimEw96zX_skeMv4ufpQmXw2N-A@mail.gmail.com>
-	<52729F26.8080509@linux.intel.com>
-In-Reply-To: <52729F26.8080509@linux.intel.com>
-X-Enigmail-Version: 1.6
-Cc: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: opkg git and download hosting
+X-Received: by 10.15.24.68 with SMTP id i44mr1881004eeu.87.1383251307819; Thu,
+	31 Oct 2013 13:28:27 -0700 (PDT)
+Received: by 10.14.104.8 with HTTP; Thu, 31 Oct 2013 13:28:27 -0700 (PDT)
+Date: Thu, 31 Oct 2013 13:28:27 -0700
+Message-ID: <CALb2248JBMiWJJ8ppDBhV+D15rArsg5VxTnW7OAjwUi76U9VgA@mail.gmail.com>
+From: Leo Schwab <lschwab@sensity.com>
+To: yocto <yocto@yoctoproject.org>
+Subject: Adding Custom Files to Build
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,44 +36,28 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 31 Oct 2013 19:43:39 -0000
-Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Thu, 31 Oct 2013 20:28:30 -0000
+Content-Type: text/plain; charset=UTF-8
 
-On 10/31/2013 11:19 AM, Saul Wold wrote:
-> On 10/31/2013 10:59 AM, Trevor Woerner wrote:
->> On 30 October 2013 11:47, Paul Barker <paul@paulbarker.me.uk> wrote:
->>> I'm looking at moving opkg away from Subversion hosted on Google Code
->>> to Git hosted elsewhere.
->>
->>> It's previously been mentioned that The
->>> Yocto Project may be able to help us with this.
->>
->> Does opkg (as a project) fall under the Yocto umbrella?
-> 
+This may seem rather basic, but something that I haven't been able to
+find any clear discussion on is how to add or modify files in the
+final rootfs image.
 
-I like the use of the word "umbrella".
+We have customized versions of /etc/network/interfaces and
+/etc/wpa_supplicant.conf, with more to come.  Right now I've been
+adding them by hand to the SD cards, but I would prefer they were
+added to the rootfs and the .sdcard images as part of the build.
 
-Philip
+I briefly considered creating a .bbappend file to modify the build for
+the wpa_supplicant.bb recipe, but it turns out that
+/etc/wpa_supplicant.conf itself comes from a custom file inside the
+recipe, and it wasn't at all clear how to hook in or override that.
 
-> I don't see why not.
-> 
-> Paul:  Please check with Michael Halstead, I think he might be able to
-> help answer your direct quesions, other issues can be discussed on the
-> list.
-> 
-> Sau!
-> 
->> _______________________________________________
->> yocto mailing list
->> yocto@yoctoproject.org
->> https://lists.yoctoproject.org/listinfo/yocto
->>
->>
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
-> 
-> 
+I also get the impression that writing a recipe that simply copies
+stuff to final image will get me yelled at by the build system, since
+I'm overwriting files already provided by another recipe.
+
+Can anyone point me in the right direction?
+
+Schwab
 
