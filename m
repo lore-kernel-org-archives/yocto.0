@@ -1,24 +1,32 @@
-Return-Path: <Maxin.John@enea.com>
-Received: from mx-3.enea.com (sestofw01.enea.se [192.36.1.252])
-	by yocto-www.yoctoproject.org (Postfix) with SMTP id 1F028E0174D
-	for <yocto@yoctoproject.org>; Thu, 31 Oct 2013 07:30:43 -0700 (PDT)
-Received: from sestofb10.enea.se (172.21.3.145) by smtp.enea.com
-	(172.21.1.208) with Microsoft SMTP Server id 14.2.318.1;
-	Thu, 31 Oct 2013 15:30:40 +0100
-Received: by sestofb10.enea.se (Postfix, from userid 4454)	id 8B2C5289004;
-	Thu, 31 Oct 2013 15:30:40 +0100 (CET)
-Date: Thu, 31 Oct 2013 15:30:40 +0100
-From: "Maxin B. John" <maxin.john@enea.com>
-To: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
-Message-ID: <20131031143040.GA63418@sestofb10.enea.se>
+Return-Path: <scott.m.rifenbark@intel.com>
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BA848E0176D
+	for <yocto@yoctoproject.org>; Thu, 31 Oct 2013 07:34:04 -0700 (PDT)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga102.fm.intel.com with ESMTP; 31 Oct 2013 07:34:03 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.93,609,1378882800"; d="scan'208";a="425886320"
+Received: from orsmsx107.amr.corp.intel.com ([10.22.240.5])
+	by fmsmga002.fm.intel.com with ESMTP; 31 Oct 2013 07:34:03 -0700
+Received: from orsmsx101.amr.corp.intel.com ([169.254.8.126]) by
+	ORSMSX107.amr.corp.intel.com ([169.254.1.35]) with mapi id
+	14.03.0123.003; Thu, 31 Oct 2013 07:34:02 -0700
+From: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
+To: "Maxin B. John" <maxin.john@enea.com>
+Thread-Topic: [yocto] [PATCH] adt-manual: Added note for static binary build.
+Thread-Index: AQHO1kI/munCKSuIRUurNIWD0wurhpoO26XAgAB4ugD//4tl8A==
+Date: Thu, 31 Oct 2013 14:34:03 +0000
+Message-ID: <41DEA4B02DBDEF40A0F3B6D0DDB1237983F4378F@ORSMSX101.amr.corp.intel.com>
 References: <1382347275-39633-1-git-send-email-maxin.john@enea.com>
 	<20131031140508.GA23080@sestofb10.enea.se>
 	<41DEA4B02DBDEF40A0F3B6D0DDB1237983F4376C@ORSMSX101.amr.corp.intel.com>
+	<20131031143040.GA63418@sestofb10.enea.se>
+In-Reply-To: <20131031143040.GA63418@sestofb10.enea.se>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.139]
 MIME-Version: 1.0
-In-Reply-To: <41DEA4B02DBDEF40A0F3B6D0DDB1237983F4376C@ORSMSX101.amr.corp.intel.com>
-User-Agent: Mutt/1.5.21 (2010-09-15)
-Received-SPF: None (SESTOEX08.enea.se: maxin.john@enea.com does not
-	designate permitted sender hosts)
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: [PATCH] adt-manual: Added note for static binary build.
 X-BeenThere: yocto@yoctoproject.org
@@ -32,54 +40,71 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 31 Oct 2013 14:30:44 -0000
+X-List-Received-Date: Thu, 31 Oct 2013 14:34:04 -0000
+Content-Language: en-US
 Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Hi,
+John,=20
 
-On Thu, Oct 31, 2013 at 02:21:16PM +0000, Rifenbark, Scott M wrote:
-> Where are the insertions for this patch?
+Thanks for steering me in the direction of the note.  I am going to hand-ap=
+ply this fix and update the entry in Bugzilla for review.
 
-I have attached the same patch in the Yocto bugzilla as well:
-https://bugzilla.yoctoproject.org/attachment.cgi?id=1571
+Scott
 
-Best Regards,
-Maxin
- 
-> >-----Original Message-----
-> >From: Maxin B. John [mailto:maxin.john@enea.com]
-> >Sent: Thursday, October 31, 2013 7:05 AM
-> >To: Rifenbark, Scott M
-> >Cc: yocto@yoctoproject.org
-> >Subject: Re: [yocto] [PATCH] adt-manual: Added note for static binary build.
-> >
-> >On Mon, Oct 21, 2013 at 11:21 AM, <maxin.john@enea.com> wrote:
-> >>    From: "Maxin B. John" <maxin.john@enea.com>
-> >>
-> >>    Fixes [YOCTO #5347]
-> >>
-> >>    SDK created using the "-c populate_sdk" will not support static
-> >>    binary build without proper staticdev library packages. I have
-> >>    added a note to inform the user about this limitation.
-> >>
-> >>    Signed-off-by: Maxin B. John <maxin.john@enea.com>
-> >>    ---
-> >>     documentation/adt-manual/adt-prepare.xml |    6 ++++++
-> >>     1 file changed, 6 insertions(+)
-> >>
-> >>    diff --git a/documentation/adt-manual/adt-prepare.xml
-> >>b/documentation/adt-manual/adt-prepare.xml
-> >>    index 3c50cf9..3333cc4 100644
-> >>    --- a/documentation/adt-manual/adt-prepare.xml
-> >>    +++ b/documentation/adt-manual/adt-prepare.xml
-> >>    @@ -573,6 +573,12 @@
-> >>              When the BitBake command completes, the toolchain
-> >>installer will be in
-> >>              <filename>tmp/deploy/sdk</filename> in the Build
-> >>Directory.
-> >>          </para>
-> >
-> >ping.
-> >
+>-----Original Message-----
+>From: Maxin B. John [mailto:maxin.john@enea.com]
+>Sent: Thursday, October 31, 2013 7:31 AM
+>To: Rifenbark, Scott M
+>Cc: yocto@yoctoproject.org
+>Subject: Re: [yocto] [PATCH] adt-manual: Added note for static binary buil=
+d.
+>
+>Hi,
+>
+>On Thu, Oct 31, 2013 at 02:21:16PM +0000, Rifenbark, Scott M wrote:
+>> Where are the insertions for this patch?
+>
+>I have attached the same patch in the Yocto bugzilla as well:
+>https://bugzilla.yoctoproject.org/attachment.cgi?id=3D1571
+>
+>Best Regards,
+>Maxin
+>
+>> >-----Original Message-----
+>> >From: Maxin B. John [mailto:maxin.john@enea.com]
+>> >Sent: Thursday, October 31, 2013 7:05 AM
+>> >To: Rifenbark, Scott M
+>> >Cc: yocto@yoctoproject.org
+>> >Subject: Re: [yocto] [PATCH] adt-manual: Added note for static binary
+>build.
+>> >
+>> >On Mon, Oct 21, 2013 at 11:21 AM, <maxin.john@enea.com> wrote:
+>> >>    From: "Maxin B. John" <maxin.john@enea.com>
+>> >>
+>> >>    Fixes [YOCTO #5347]
+>> >>
+>> >>    SDK created using the "-c populate_sdk" will not support static
+>> >>    binary build without proper staticdev library packages. I have
+>> >>    added a note to inform the user about this limitation.
+>> >>
+>> >>    Signed-off-by: Maxin B. John <maxin.john@enea.com>
+>> >>    ---
+>> >>     documentation/adt-manual/adt-prepare.xml |    6 ++++++
+>> >>     1 file changed, 6 insertions(+)
+>> >>
+>> >>    diff --git a/documentation/adt-manual/adt-prepare.xml
+>> >>b/documentation/adt-manual/adt-prepare.xml
+>> >>    index 3c50cf9..3333cc4 100644
+>> >>    --- a/documentation/adt-manual/adt-prepare.xml
+>> >>    +++ b/documentation/adt-manual/adt-prepare.xml
+>> >>    @@ -573,6 +573,12 @@
+>> >>              When the BitBake command completes, the toolchain
+>> >>installer will be in
+>> >>              <filename>tmp/deploy/sdk</filename> in the Build
+>> >>Directory.
+>> >>          </para>
+>> >
+>> >ping.
+>> >
 
