@@ -1,32 +1,31 @@
-Return-Path: <raj.khem@gmail.com>
-Received: from mail-ie0-f172.google.com (mail-ie0-f172.google.com
-	[209.85.223.172])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8C76BE017B9
-	for <yocto@yoctoproject.org>; Wed, 30 Oct 2013 16:59:09 -0700 (PDT)
-Received: by mail-ie0-f172.google.com with SMTP id tp5so3635544ieb.31
-	for <yocto@yoctoproject.org>; Wed, 30 Oct 2013 16:59:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-type;
-	bh=t9oEtbdM+pvPph/b22bkgMAL7W535SUjIG0xGTzB5cA=;
-	b=0RQO72Mfrc7Ga463KizuqY1d/XF87cDj0yHq2w4A0txgmcVSBS4lYewOjIOtiyNej7
-	BtGFH4qslXOvxwdTfmAmUNX8Jz9Ur+DWnuLHfWtCd1eZUrg3W5+gXZD7+uvMY14unon6
-	RJOdvERoIKW1QEoNsGjmZ5Q8iIVQuFnbjejkblQDqgAAV8xTa2g1Y8kNCPIfR3Boes7s
-	s0zO8nWAwhzVYYaLkSoDu30tQVQwJ+mF+b9pUHH6Xv9WQe3xdbusnxuplzltj5FP6Mzo
-	OLt63beSLdDJ55SBWISLgFp7A3NO6P/Atq8CAT3M9belXl3gbeKpUTZjgwUMeAuVc6/z
-	rnGw==
-X-Received: by 10.50.17.9 with SMTP id k9mr188368igd.3.1383177549511; Wed, 30
-	Oct 2013 16:59:09 -0700 (PDT)
-MIME-Version: 1.0
-Received: by 10.50.219.195 with HTTP; Wed, 30 Oct 2013 16:58:39 -0700 (PDT)
-In-Reply-To: <CANwz6nxT34jJGydYGe=snHHijwMdMOKdOgnxQWCp0KGkBN4OHw@mail.gmail.com>
-References: <CANwz6nxT34jJGydYGe=snHHijwMdMOKdOgnxQWCp0KGkBN4OHw@mail.gmail.com>
-From: Khem Raj <raj.khem@gmail.com>
-Date: Wed, 30 Oct 2013 16:58:39 -0700
-Message-ID: <CAMKF1spw=Kr99nmVHjAw8PELK6E768RBpgxLCZFMcdMyConSEg@mail.gmail.com>
-To: Edward Vidal <vidal.develone@gmail.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: adding a udev entry for a camera
+Return-Path: <flihp@twobit.us>
+Received: from smtp.twobit.us (unknown [38.83.192.235])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9F8A6E017BB
+	for <yocto@yoctoproject.org>; Wed, 30 Oct 2013 17:33:28 -0700 (PDT)
+Received: from c-76-24-20-220.hsd1.ma.comcast.net ([76.24.20.220]
+	helo=localhost)
+	by smtp.twobit.us with esmtpsa (TLS1.2:DHE_RSA_AES_128_CBC_SHA1:128)
+	(Exim 4.80) (envelope-from <flihp@twobit.us>)
+	id 1VbgCQ-0006wn-B1; Thu, 31 Oct 2013 00:33:25 +0000
+Received: from flihp by localhost with local (Exim 4.80)
+	(envelope-from <flihp@longhaul.twobit.us>)
+	id 1VbgCc-0000eP-F3; Thu, 31 Oct 2013 00:33:34 +0000
+From: Philip Tricca <flihp@twobit.us>
+To: yocto@yoctoproject.org
+Date: Thu, 31 Oct 2013 00:33:34 +0000
+Message-Id: <1383179614-2457-4-git-send-email-flihp@twobit.us>
+X-Mailer: git-send-email 1.7.10.4
+In-Reply-To: <1383179614-2457-1-git-send-email-flihp@twobit.us>
+References: <1383179614-2457-1-git-send-email-flihp@twobit.us>
+X-SA-Exim-Connect-IP: 76.24.20.220
+X-SA-Exim-Mail-From: flihp@twobit.us
+X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on smtp.twobit.us
+X-Spam-Level: 
+X-Spam-Status: No, score=-1.0 required=5.0 tests=ALL_TRUSTED autolearn=ham
+	version=3.3.2
+X-SA-Exim-Version: 4.2.1 (built Mon, 26 Dec 2011 16:24:06 +0000)
+X-SA-Exim-Scanned: Yes (on smtp.twobit.us)
+Subject: [meta-selinux][PATCH 3/3] Remove unnecessary packages from packagegroup-core-selinux.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,49 +37,35 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 30 Oct 2013 23:59:12 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Thu, 31 Oct 2013 00:33:31 -0000
 
-On Wed, Oct 30, 2013 at 1:51 PM, Edward Vidal <vidal.develone@gmail.com> wrote:
-> Hello,
-> I am trying to add a c920 camera to my systems.  I am not getting a
-> /dev/video0.
-> lsusb --verbose shows the HD Pro Webcam C920
-> Bus 001 Device 007: ID 046d:082d Logitech, Inc.
-> Device Descriptor:
->   bLength                18
->   bDescriptorType         1
->   bcdUSB               2.00
->   bDeviceClass          239 Miscellaneous Device
->   bDeviceSubClass         2 ?
->   bDeviceProtocol         1 Interface Association
->   bMaxPacketSize0        64
->   idVendor           0x046d Logitech, Inc.
->   idProduct          0x082d
->   bcdDevice            0.11
->   iManufacturer           0
->   iProduct                2 HD Pro Webcam C920
->   iSerial                 1 211EF9AF
->   bNumConfigurations      1
-> plus much more information
->
-> I created /etc/udev/rules.d/10-c920.rules
-> SUBSYSTEM=="video4linux", BUS=="usb", ATTRS{idvendor}=="0x046d",
-> ATTRS{idProduct}=="0x082d", NAME="video0", MODE:="0660"
->
-> mknod /dev/video0 c 81 0
->
-> when I v4l2-ctl --all error no /dev/video0
-> Any and all help will be appreciated.
+The libraries are pulled in by dependencies and it doesn't make much
+sense to have the compiler in an image.
 
-you can check if udev rule is infact kicking in. use udevadm monitor/test
+Signed-off-by: Philip Tricca <flihp@twobit.us>
+---
+ recipes-security/packagegroups/packagegroup-core-selinux.bb |    7 -------
+ 1 file changed, 7 deletions(-)
 
-> Thanks
->
->
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
->
+diff --git a/recipes-security/packagegroups/packagegroup-core-selinux.bb b/recipes-security/packagegroups/packagegroup-core-selinux.bb
+index 76863b0..6f01af9 100644
+--- a/recipes-security/packagegroups/packagegroup-core-selinux.bb
++++ b/recipes-security/packagegroups/packagegroup-core-selinux.bb
+@@ -11,13 +11,6 @@ PACKAGES = "\
+ ALLOW_EMPTY_${PN} = "1"
+ 
+ RDEPENDS_${PN} = " \
+-	ustr \
+-	libsepol \
+-	libsepol-bin \
+-	libselinux \
+-	libselinux-bin \
+-	libsemanage \
+-	checkpolicy \
+ 	sepolgen \
+ 	packagegroup-selinux-policycoreutils \
+ 	setools \
+-- 
+1.7.10.4
+
 
