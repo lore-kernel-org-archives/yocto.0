@@ -1,32 +1,28 @@
-Return-Path: <raj.khem@gmail.com>
-Received: from mail-ie0-f169.google.com (mail-ie0-f169.google.com
-	[209.85.223.169])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E26D9E017BD
-	for <yocto@yoctoproject.org>; Wed, 30 Oct 2013 21:11:08 -0700 (PDT)
-Received: by mail-ie0-f169.google.com with SMTP id ar20so4072309iec.0
-	for <yocto@yoctoproject.org>; Wed, 30 Oct 2013 21:11:04 -0700 (PDT)
+Return-Path: <soniaverma9727@gmail.com>
+Received: from mail-we0-f178.google.com (mail-we0-f178.google.com
+	[74.125.82.178])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9E6FBE017BB
+	for <yocto@yoctoproject.org>; Thu, 31 Oct 2013 00:26:18 -0700 (PDT)
+Received: by mail-we0-f178.google.com with SMTP id q59so2270384wes.37
+	for <yocto@yoctoproject.org>; Thu, 31 Oct 2013 00:26:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-type;
-	bh=8lIUEUPdz03XrxjD15oKmF/h0BHPitFiYiuptwOh/xY=;
-	b=ie28tPunxeDFfyldGmZ7hwn5U5EFs2OJUKn2fjLBxxmsdtHSB9TTIebqgQZx6Uc2+6
-	Cf9A+9GTMjY5/Cx1RkwTcdrx+CJBxM8g6dtVtkLwrKvLbjV2OqS0kWcMPUlyA3sQqPqA
-	3w/eJbq/y96fmKrts6cXoX2++q5LkMtEEIABAMR1rmv47fwoEXndm5gDAotuTI1Sls/B
-	HIEHKGlZJCJ5ydSMMpRb/D7Va0W0U9N+Z4Cz8rgddpVNDv8QMOBDQzOD6MBvg3iIlmHL
-	diu4mrJq7A1Ky7HitxabA8fcSRq4fJtk03/CiOFRNpUqnx2jmGPmAiovCqBJ3P+BSkEM
-	R1Mg==
-X-Received: by 10.42.50.209 with SMTP id b17mr63024icg.112.1383192664693; Wed,
-	30 Oct 2013 21:11:04 -0700 (PDT)
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=xN4TyRylsGzt8OF+wI2ha8pn8gEK1XiLL4R3A7skExY=;
+	b=WARoKYrfuWnvNTzkvLO4aRA++53v/lzoxtAL5JUZeEO/l0ZU43GYc9d/QyzsUUmYM8
+	osEoQleNMS14nIbQhw6900tZ8bMOdZ1qLFYNdCZbm0GSaSIhtcRXbIXwfJsCD5TDTbS8
+	aFgpUphID3Gzph+tpzKTFMB+hGFHLqUxU9tUnH8EghbeMiNepHizWaAySw7cc4h1lIRJ
+	u0H5/LJkHVRqusXKreOgBnR1kBJAM621gsLuk7oSfGEzZ15ac7TpIKYR9lImGR+ZMcUs
+	RwtWkIUsQWg05JlrjT9LyRTBRWH2nc1k1E7Q0gprhTK43HcNevGDg6uPF+vXxwSzOxt/
+	NmgQ==
 MIME-Version: 1.0
-Received: by 10.50.219.195 with HTTP; Wed, 30 Oct 2013 21:10:34 -0700 (PDT)
-In-Reply-To: <5266850B.7060005@einfochips.com>
-References: <5266850B.7060005@einfochips.com>
-From: Khem Raj <raj.khem@gmail.com>
-Date: Wed, 30 Oct 2013 21:10:34 -0700
-Message-ID: <CAMKF1sqfgirkHsgkQL_SX4EbvwM3dcZHE6mqvVUhiWc_OvkuOQ@mail.gmail.com>
-To: Rohit Borse <rohit.borse@einfochips.com>
-Cc: yocto <yocto@yoctoproject.org>
-Subject: Re: Customizing u-boot,kernel and rootfs
+X-Received: by 10.194.84.10 with SMTP id u10mr78656wjy.94.1383204377327; Thu,
+	31 Oct 2013 00:26:17 -0700 (PDT)
+Received: by 10.194.9.193 with HTTP; Thu, 31 Oct 2013 00:26:17 -0700 (PDT)
+Date: Thu, 31 Oct 2013 12:56:17 +0530
+Message-ID: <CAJ7VayhzG+mPtZU_jehnXLPzjJGQ2kbWEdg=OKtrGzAJCoajxA@mail.gmail.com>
+From: sonia verma <soniaverma9727@gmail.com>
+To: yocto@yoctoproject.org
+Subject: JAVA integration issue
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,30 +34,54 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 31 Oct 2013 04:11:15 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Thu, 31 Oct 2013 07:26:21 -0000
+Content-Type: multipart/alternative; boundary=047d7bb04a068ffad904ea045d37
 
-On Tue, Oct 22, 2013 at 7:00 AM, Rohit Borse <rohit.borse@einfochips.com> wrote:
-> Hi,
->      I need to customize u-boot, kernel and root file system for my
-> Bluegiga-APx4 board using bitbake platform. Does yocto has any documentation
-> or steps to configure and build customized BSP using bitbake for
-> Bluegiga-APx4 module?
+--047d7bb04a068ffad904ea045d37
+Content-Type: text/plain; charset=ISO-8859-1
 
-there is lot of information on creating BSPs you can look through the
-manual and also wiki and other resources. However if you are looking
-preexisting support for your board that may be harder to find.
+Hi All,
 
+I have integrated JAVA i.e. Openjdk-7, by coping meta-java in yocto and
+using IMAGE_INSTALL_append = " openjdk-7-jre command in local.conf
+successfully.
+
+But java -version on board shows it is running in interpreted mode.
+java version "1.7.0_25"
+OpenJDK Runtime Environment (IcedTea 2.3.12) (25b30-2.3.12)
+*OpenJDK Zero VM (build 23.7-b01, interpreted mode)*
+
+I want java with mixed mode, so that my application performance will be
+good.
+
+Can any one please help me regarding this. Thanks in advance.
+
+--
+Regards
+
+Sonia Verma
+
+--047d7bb04a068ffad904ea045d37
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Hi All,<div><br></div><div>I have integrated JAVA i.e. Ope=
+njdk-7, by coping meta-java in yocto and using=A0IMAGE_INSTALL_append =3D &=
+quot; openjdk-7-jre command in local.conf successfully.</div><div><br></div=
+><div>
+But java -version on board shows it is running in interpreted mode.</div><d=
+iv><span style=3D"font-family:arial,sans-serif;font-size:13px">java version=
+ &quot;1.7.0_25&quot;</span><br style=3D"font-family:arial,sans-serif;font-=
+size:13px">
+<span style=3D"font-family:arial,sans-serif;font-size:13px">OpenJDK Runtime=
+ Environment (IcedTea 2.3.12) (25b30-2.3.12)</span><br style=3D"font-family=
+:arial,sans-serif;font-size:13px"><span style=3D"font-family:arial,sans-ser=
+if;font-size:13px"><b>OpenJDK Zero VM (build 23.7-b01, interpreted mode)</b=
+></span><br style=3D"font-family:arial,sans-serif;font-size:13px">
+</div><div><br></div><div>I want java with mixed mode, so that my applicati=
+on performance will be good.</div><div><br></div><div>Can any one please he=
+lp me regarding this. Thanks in advance.</div><div><br></div><div>--</div>
+<div>Regards</div><div><br></div><div>Sonia Verma</div><div><br></div></div=
 >
-> Regards,
-> Rohit Borse
->
-> ---------------------------------------------------------------------------------------------
-> Notice: This message has been scanned by Trend Micro Mail Security scanner
-> and is believed to be clean
-> ---------------------------------------------------------------------------------------------
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
 
+--047d7bb04a068ffad904ea045d37--
