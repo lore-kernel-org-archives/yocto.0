@@ -1,28 +1,29 @@
 Return-Path: <soniaverma9727@gmail.com>
-Received: from mail-we0-f180.google.com (mail-we0-f180.google.com
-	[74.125.82.180])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 65FE4E0176D
-	for <yocto@yoctoproject.org>; Thu, 31 Oct 2013 08:08:44 -0700 (PDT)
-Received: by mail-we0-f180.google.com with SMTP id q59so2859997wes.11
-	for <yocto@yoctoproject.org>; Thu, 31 Oct 2013 08:08:43 -0700 (PDT)
+Received: from mail-wg0-f47.google.com (mail-wg0-f47.google.com [74.125.82.47])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6C892E0176D
+	for <yocto@yoctoproject.org>; Thu, 31 Oct 2013 08:10:17 -0700 (PDT)
+Received: by mail-wg0-f47.google.com with SMTP id c11so2834804wgh.26
+	for <yocto@yoctoproject.org>; Thu, 31 Oct 2013 08:10:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=LW7PkRIHsNwUPiHl7MgRTE3jWvMHjTrUMbkMGD80FgI=;
-	b=0laS/F/3q680Ob/JLsH1al8GHYFgTjOpRjSZfIFvzevpeI6Sckbi6jO9OcAMBzhiFz
-	t/d/3viunZTxAOilhPxNELzNA8raHnN/inuqj2qdfZUothFkw+TINHDLt6ddx+ynx7a9
-	drchcHtWBpiPJp24GsGZPE/zz1R0GQZpnBANWS1cpIWJCQQSsF9fgiABpXXwHRib5EzU
-	L0dN5jIjYZ+YYNT+V8b2hdPOn6CWh6+3fU/KLzfeMY3dOBjK06DzFSWwniILoJTM2yqw
-	zUA9CCaNV8cnoaGcCRLcdcFZ1H4/U1Wi4ldW7g7NL/RUyulj/hgd1kQipY2R8/TiYCSF
-	OEug==
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:content-type; bh=QFJtgtHOXj9Okfmt8tqjn+HnGB2FPztBQyYdBQHq9CE=;
+	b=XNMygOnloyWJ9D1Qd79lSHitDCRGhHXIbDpGXn5x+Kj4tF4LeEdCD4yQ5sBF3lYGLT
+	Z5I7IjVbmwbbSzNTHnKzjjTPnrMfAAiXYSXB0Px92RDaYbbjOyTxpuoeegpYLUB0Ga2T
+	qeMc53nIjuhOcUXFTGAfWWkv4be+5pvJ3yqUiiYX2h9vm6lDDnZ7PZlGI5kkI6P6WUlp
+	uDhnWKi4NWd7+BCJVTi5nokGDNsaXMKSEYJtSt4xuMYI/tk4Z7vZvv8Z6tHXnosWgNkj
+	rKk8KtV0wwSsCNEhwQnr6blfOA/BvEPkHmbfUkEziok7OJYmZFAyek9SBvYYTYCaDPv/
+	5C4g==
 MIME-Version: 1.0
-X-Received: by 10.180.100.194 with SMTP id fa2mr3180931wib.44.1383232123506;
-	Thu, 31 Oct 2013 08:08:43 -0700 (PDT)
-Received: by 10.194.9.193 with HTTP; Thu, 31 Oct 2013 08:08:43 -0700 (PDT)
-Date: Thu, 31 Oct 2013 20:38:43 +0530
-Message-ID: <CAJ7Vayh_TRCh8fCzafG9vbkD8Wu9rF_a0A-L=bV39tA2hv_8-w@mail.gmail.com>
+X-Received: by 10.180.90.46 with SMTP id bt14mr7208150wib.50.1383232216748;
+	Thu, 31 Oct 2013 08:10:16 -0700 (PDT)
+Received: by 10.194.9.193 with HTTP; Thu, 31 Oct 2013 08:10:16 -0700 (PDT)
+In-Reply-To: <CAJ7Vayh_TRCh8fCzafG9vbkD8Wu9rF_a0A-L=bV39tA2hv_8-w@mail.gmail.com>
+References: <CAJ7Vayh_TRCh8fCzafG9vbkD8Wu9rF_a0A-L=bV39tA2hv_8-w@mail.gmail.com>
+Date: Thu, 31 Oct 2013 20:40:16 +0530
+Message-ID: <CAJ7VayhvsG8r0odzYiwYTXQ12J+kfewJz5K5GMs8kkM-+hvFfQ@mail.gmail.com>
 From: sonia verma <soniaverma9727@gmail.com>
-To: yocto@yoctoproject.org
-Subject: enable Shark support in JAVA
+To: yocto@yoctoproject.org, zero-dev@openjdk.java.net
+Subject: Re: enable Shark support in JAVA
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,36 +35,53 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 31 Oct 2013 15:08:45 -0000
-Content-Type: multipart/alternative; boundary=f46d0444ed395d13ed04ea0ad3e3
+X-List-Received-Date: Thu, 31 Oct 2013 15:10:20 -0000
+Content-Type: multipart/alternative; boundary=f46d043c81deebdf6204ea0ad84e
 
---f46d0444ed395d13ed04ea0ad3e3
+--f46d043c81deebdf6204ea0ad84e
 Content-Type: text/plain; charset=ISO-8859-1
 
-Hi ALL,
+adding zero-dev in loop.
 
-I have integrated Java in one of the board having Powerpc architecture
-using meta-java. By default it cam with Zero port support which only works
-in interpreter mode.
 
-I need to enable Shark support in that. Can any one please help me with the
-procedure to compile JAVA with Shark support.
+On Thu, Oct 31, 2013 at 8:38 PM, sonia verma <soniaverma9727@gmail.com>wrote:
 
---
-Regards
+> Hi ALL,
+>
+> I have integrated Java in one of the board having Powerpc architecture
+> using meta-java. By default it cam with Zero port support which only works
+> in interpreter mode.
+>
+> I need to enable Shark support in that. Can any one please help me with
+> the procedure to compile JAVA with Shark support.
+>
+> --
+> Regards
+>
+> Sonia Verma
+>
+>
 
-Sonia Verma
-
---f46d0444ed395d13ed04ea0ad3e3
+--f46d043c81deebdf6204ea0ad84e
 Content-Type: text/html; charset=ISO-8859-1
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div><div><div><div>Hi ALL,<br><br></div>I have integrated=
- Java in one of the board having Powerpc architecture using meta-java. By d=
-efault it cam with Zero port support which only works in interpreter mode.<=
-br>
+<div dir=3D"ltr">adding zero-dev in loop.<br></div><div class=3D"gmail_extr=
+a"><br><br><div class=3D"gmail_quote">On Thu, Oct 31, 2013 at 8:38 PM, soni=
+a verma <span dir=3D"ltr">&lt;<a href=3D"mailto:soniaverma9727@gmail.com" t=
+arget=3D"_blank">soniaverma9727@gmail.com</a>&gt;</span> wrote:<br>
+<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
+x #ccc solid;padding-left:1ex"><div dir=3D"ltr"><div><div><div><div>Hi ALL,=
+<br><br></div>I have integrated Java in one of the board having Powerpc arc=
+hitecture using meta-java. By default it cam with Zero port support which o=
+nly works in interpreter mode.<br>
+
 <br></div>I need to enable Shark support in that. Can any one please help m=
 e with the procedure to compile JAVA with Shark support.<br><br>--<br></div=
->Regards<br><br></div>Sonia Verma<br>=A0 <br></div>
+>Regards<span class=3D"HOEnZb"><font color=3D"#888888"><br><br></font></spa=
+n></div>
+<span class=3D"HOEnZb"><font color=3D"#888888">Sonia Verma<br>=A0 <br></fon=
+t></span></div>
+</blockquote></div><br></div>
 
---f46d0444ed395d13ed04ea0ad3e3--
+--f46d043c81deebdf6204ea0ad84e--
