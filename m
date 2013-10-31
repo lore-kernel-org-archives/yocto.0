@@ -1,34 +1,26 @@
-Return-Path: <gary@mlbassoc.com>
-Received: from mail.chez-thomas.org (mail.mlbassoc.com [65.100.170.105])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1BC7DE017D2
-	for <yocto@yoctoproject.org>; Thu, 31 Oct 2013 09:35:03 -0700 (PDT)
-Received: by mail.chez-thomas.org (Postfix, from userid 1998)
-	id C2AC1F811DF; Thu, 31 Oct 2013 10:35:02 -0600 (MDT)
-X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on
-	hermes.chez-thomas.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=4.0 tests=ALL_TRUSTED,BAYES_00
-	autolearn=unavailable version=3.3.2
-Received: from [192.168.1.114] (zeus [192.168.1.114])
-	by mail.chez-thomas.org (Postfix) with ESMTP id 7E2A5F811DE;
-	Thu, 31 Oct 2013 10:34:55 -0600 (MDT)
-Message-ID: <527286AF.10802@mlbassoc.com>
-Date: Thu, 31 Oct 2013 10:34:55 -0600
-From: Gary Thomas <gary@mlbassoc.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+Return-Path: <ajlennon@dynamicdevices.co.uk>
+Received: from www.dynamicdevices.co.uk (www.dynamicdevices.co.uk
+	[89.200.136.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 457FDE017D2
+	for <yocto@yoctoproject.org>; Thu, 31 Oct 2013 09:44:39 -0700 (PDT)
+Received: from [127.0.0.1] (cpc16-live22-2-0-cust180.know.cable.virginm.net
+	[82.42.220.181])
+	(using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by www.dynamicdevices.co.uk (Postfix) with ESMTPSA id B08C686044;
+	Thu, 31 Oct 2013 16:44:36 +0000 (UTC)
+Message-ID: <527288F2.70607@dynamicdevices.co.uk>
+Date: Thu, 31 Oct 2013 16:44:34 +0000
+From: Alex J Lennon <ajlennon@dynamicdevices.co.uk>
+User-Agent: Mozilla/5.0 (Windows NT 6.3; WOW64;
 	rv:24.0) Gecko/20100101 Thunderbird/24.1.0
 MIME-Version: 1.0
-To: Khem Raj <raj.khem@gmail.com>
-References: <CANwz6nxT34jJGydYGe=snHHijwMdMOKdOgnxQWCp0KGkBN4OHw@mail.gmail.com>
-	<CAMKF1spw=Kr99nmVHjAw8PELK6E768RBpgxLCZFMcdMyConSEg@mail.gmail.com>
-	<CANwz6nyYTVxmNfxK2kK0Z54uDw+Yq=RRTzmpXvJz19MDCB47MA@mail.gmail.com>
-	<CAMKF1spP+BYrodrAoWzO=ZCfDqhpN=1-BnmDMr80-_f+pupdtQ@mail.gmail.com>
-	<CANwz6nzjixVwB1Q=nJ6JCQCJOw-uJe7edmC4gn+FVZ9mK8_-6A@mail.gmail.com>
-	<52727D75.5050207@mlbassoc.com>
-	<CAMKF1spmKAm7JmxLqT1JDGn14aRi7DaC2T2jtUErrXT4P7=OGQ@mail.gmail.com>
-In-Reply-To: <CAMKF1spmKAm7JmxLqT1JDGn14aRi7DaC2T2jtUErrXT4P7=OGQ@mail.gmail.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: adding a udev entry for a camera
+To: linux@rkirkpat.net
+References: <alpine.DEB.2.00.1309201728360.21975@magellan.rkirkpat.net>	<alpine.DEB.2.00.1309261742510.27991@magellan.rkirkpat.net>	<6281089.irBXZr162j@helios>
+	<alpine.DEB.2.00.1310091328540.27991@magellan.rkirkpat.net>
+In-Reply-To: <alpine.DEB.2.00.1310091328540.27991@magellan.rkirkpat.net>
+Cc: yocto@yoctoproject.org, paul.eggleton@linux.intel.com
+Subject: Re: Mono 2.10.8.1 (meta-mono) Corelib not in sync with runtime...
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,278 +32,367 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 31 Oct 2013 16:35:04 -0000
-Content-Type: text/plain; charset=UTF-8; format=flowed
+X-List-Received-Date: Thu, 31 Oct 2013 16:44:41 -0000
+X-Groupsio-MsgNum: 16856
+Content-Type: multipart/alternative;
+	boundary="------------010402030100040509040508"
+
+--------------010402030100040509040508
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 2013-10-31 10:20, Khem Raj wrote:
-> On Thu, Oct 31, 2013 at 8:55 AM, Gary Thomas <gary@mlbassoc.com> wrote:
->> On 2013-10-31 09:45, Edward Vidal wrote:
->>>
->>> Hello all,
->>> less /etc/udev/rules.d/10-c920.rules
->>> WARNING: terminal is not fully functional
->>> SUBSYSTEM=="video4linux", BUS=="usb", ATTRS{idvendor}=="0x046d",
->>> ATTRS{idProduct
->>> }=="0x082d", NAME="video0", MODE:="0660"
->>> It appears the key BUS is not correct based on the tests below.
->>> My mknod is /bin/mknod.
->>> find / -name sysfs
->>> /usr/include/sysfs
->>> /usr/src/kernel/fs/sysfs
->>
->>
->> Note: chasing this udev behaviour is a waste of time if the kernel doesn't
->> recognize
->> and support your device.
->
-> Look at the first post. Its recognised and displayed ok with lsusb.
 
-That doesn't mean it has a driver which hooks it into the video subsystem
-(which is what will evoke the creation of /dev/video*)
-
+On 09/10/2013 20:52, Ryan Kirkpatrick wrote:
+> On Tue, 8 Oct 2013, Paul Eggleton wrote:
 >
->>
->> Have you even looked to see if this camera is supported in your kernel?  I
->> could
->> not find a driver for it when I looked, even in the latest mainline kernel.
->>
->> What kernel are you trying to use?
->>
->>>
->>> udevadm test --action=add /usr/include/sysfs or udevadm test --action=add
->>> /usr/src/kernel/fs/sysfs unable to open device
->>> '/sys/usr/src/kernel/fs/sysfs'
->>> run_command: calling: test
->>> adm_test: version 182
->>> This program is for debugging only, it does not run any program,
->>> specified by a RUN key. It may show incorrect results, because
->>> some values may be different, or not available at a simulation run.
->>>
->>> builtin_kmod_init: load module index
->>> add_matching_files: unable to open '/var/run/udev/rules.d': No such file
->>> or directory
->>> parse_file: reading '/etc/udev/rules.d/10-c920.rules' as rules file
->>> add_rule: unknown key 'BUS' in /etc/udev/rules.d/10-c920.rules:1
->>> add_rule: invalid rule '/etc/udev/rules.d/10-c920.rules:1'
->>>
->>> lots of output
->>>
->>> udev_rules_new: rules use 18408 bytes tokens (1534 * 12 bytes), 12756
->>> bytes buffer
->>> udev_rules_new: temporary index used 12800 bytes (640 * 20 bytes)
->>> unable to open device '/sys/usr/include/sysfs'
->>> builtin_kmod_exit: unload module index
->>>
->>> Do I add RUN+="/bin/mknod /dev/video0 c 81 0" see below new version of
->>> 1--c920.rules
->>> cat 10-c920.rules
->>> SUBSYSTEM=="video4linux", BUS=="usb", ATTRS{idvendor}=="0x046d",
->>> ATTRS{idProduct}=="0x082d", NAME="video0", MODE:="0660", RUN+="/bin/mknod
->>> /dev/video0 c 81 0"
->>> udevadm test --action=add /usr/src/kernel/fs/sysfs
->>> run_command: calling: test
->>> adm_test: version 182
->>> This program is for debugging only, it does not run any program,
->>> specified by a RUN key. It may show incorrect results, because
->>> some values may be different, or not available at a simulation run.
->>>
->>> builtin_kmod_init: load module index
->>> add_matching_files: unable to open '/var/run/udev/rules.d': No such file
->>> or directory
->>> parse_file: reading '/etc/udev/rules.d/10-c920.rules' as rules file
->>> add_rule: unknown key 'BUS' in /etc/udev/rules.d/10-c920.rules:1
->>> add_rule: invalid rule '/etc/udev/rules.d/10-c920.rules:1'
->>>
->>> Where do you find information for working with rules other than just some
->>> examples?
->>>
->>> Thanks
->>>
->>>
->>> On Thu, Oct 31, 2013 at 8:41 AM, Khem Raj <raj.khem@gmail.com
->>> <mailto:raj.khem@gmail.com>> wrote:
->>>
->>>
->>>      On Wed, Oct 30, 2013 at 6:12 PM, Edward Vidal
->>> <vidal.develone@gmail.com <mailto:vidal.develone@gmail.com>> wrote:
->>>      > Hello,
->>>      > This is when I connect the camera
->>>      > udevadm monitor test
->>>      > monitor will print the received events for:
->>>      > UDEV - the event which udev sends out after rule processing
->>>      > KERNEL - the kernel uevent
->>>      >
->>>      > KERNEL[803.263336] add
->>>      > /devices/platform/usbhs_omap/ehci-omap.0/usb1/1-2/1-2.3/1-2.3.4
->>> (usb)
->>>      > KERNEL[803.267456] add
->>>      >
->>> /devices/platform/usbhs_omap/ehci-omap.0/usb1/1-2/1-2.3/1-2.3.4/1-2.3.4:1.0
->>>      > (usb)
->>>      > KERNEL[803.269287] add
->>>      >
->>> /devices/platform/usbhs_omap/ehci-omap.0/usb1/1-2/1-2.3/1-2.3.4/1-2.3.4:1.1
->>>      > (usb)
->>>      > KERNEL[803.269958] add
->>>      >
->>> /devices/platform/usbhs_omap/ehci-omap.0/usb1/1-2/1-2.3/1-2.3.4/1-2.3.4:1.2
->>>      > (usb)
->>>      > KERNEL[803.270721] add
->>>      >
->>> /devices/platform/usbhs_omap/ehci-omap.0/usb1/1-2/1-2.3/1-2.3.4/1-2.3.4:1.3
->>>      > (usb)
->>>      > KERNEL[803.276214] add
->>>      >
->>> /devices/platform/usbhs_omap/ehci-omap.0/usb1/1-2/1-2.3/1-2.3.4/usb_device/usbdev1.15
->>>      > (usb_device)**********
->>>      > UDEV  [803.277191] add
->>>      > /devices/platform/usbhs_omap/ehci-omap.0/usb1/1-2/1-2.3/1-2.3.4
->>> (usb)
->>>      > UDEV  [803.306091] add
->>>      >
->>> /devices/platform/usbhs_omap/ehci-omap.0/usb1/1-2/1-2.3/1-2.3.4/usb_device/usbdev1.15
->>>      > (usb_device)
->>>      > UDEV  [803.318603] add
->>>      >
->>> /devices/platform/usbhs_omap/ehci-omap.0/usb1/1-2/1-2.3/1-2.3.4/1-2.3.4:1.2
->>>      > (usb)
->>>      > UDEV  [803.324249] add
->>>      >
->>> /devices/platform/usbhs_omap/ehci-omap.0/usb1/1-2/1-2.3/1-2.3.4/1-2.3.4:1.1
->>>      > (usb)
->>>      > UDEV  [803.329712] add
->>>      >
->>> /devices/platform/usbhs_omap/ehci-omap.0/usb1/1-2/1-2.3/1-2.3.4/1-2.3.4:1.0
->>>      > (usb)
->>>      > UDEV  [803.333160] add
->>>      >
->>> /devices/platform/usbhs_omap/ehci-omap.0/usb1/1-2/1-2.3/1-2.3.4/1-2.3.4:1.3
->>>      > (usb)
->>>      >
->>>      > still no /dev/video0
->>>      > ls -la /dev/v*
->>>      > crw-rw---- 1 root tty 7,   0 Jan  1  2000 /dev/vcs
->>>      > crw-rw---- 1 root tty 7,   1 Jan  1  2000 /dev/vcs1
->>>      > crw-rw---- 1 root tty 7,   2 Jan  1  2000 /dev/vcs2
->>>      > crw-rw---- 1 root tty 7,   3 Oct 29 13:51 /dev/vcs3
->>>      > crw-rw---- 1 root tty 7, 128 Jan  1  2000 /dev/vcsa
->>>      > crw-rw---- 1 root tty 7, 129 Jan  1  2000 /dev/vcsa1
->>>      > crw-rw---- 1 root tty 7, 130 Jan  1  2000 /dev/vcsa2
->>>      > crw-rw---- 1 root tty 7, 131 Oct 29 13:51 /dev/vcsa3
->>>      > root@beagleboard:~# lsusb
->>>      > Bus 001 Device 002: ID 0424:9514 Standard Microsystems Corp.
->>>      > Bus 001 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
->>>      > Bus 002 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
->>>      > Bus 001 Device 003: ID 0424:ec00 Standard Microsystems Corp.
->>>      > Bus 001 Device 004: ID 0409:0059 NEC Corp. HighSpeed Hub
->>>      > Bus 001 Device 005: ID 413c:2005 Dell Computer Corp. RT7D50 Keyboard
->>>      > Bus 001 Device 006: ID 046d:c001 Logitech, Inc. N48/M-BB48
->>> [FirstMouse Plus]
->>>      > Bus 001 Device 015: ID 046d:082d Logitech, Inc.
->>>      >
->>> ***********************************************************************************
->>>      >
->>>      >
->>>      > udevadm monitor --udev
->>>      > monitor will print the received events for:
->>>      > UDEV - the event which udev sends out after rule processing
->>>      > camera removed*****************************************************
->>>      > UDEV  [1325.916811] remove
->>>      >
->>> /devices/platform/usbhs_omap/ehci-omap.0/usb1/1-2/1-2.3/1-2.3.4/1-2.3.4:1.1
->>>      > (usb)
->>>      > UDEV  [1325.918489] remove
->>>      >
->>> /devices/platform/usbhs_omap/ehci-omap.0/usb1/1-2/1-2.3/1-2.3.4/1-2.3.4:1.0
->>>      > (usb)
->>>      > UDEV  [1325.919282] remove
->>>      >
->>> /devices/platform/usbhs_omap/ehci-omap.0/usb1/1-2/1-2.3/1-2.3.4/1-2.3.4:1.2
->>>      > (usb)
->>>      > UDEV  [1325.923005] remove
->>>      >
->>> /devices/platform/usbhs_omap/ehci-omap.0/usb1/1-2/1-2.3/1-2.3.4/1-2.3.4:1.3
->>>      > (usb)
->>>      > UDEV  [1325.928437] remove
->>>      >
->>> /devices/platform/usbhs_omap/ehci-omap.0/usb1/1-2/1-2.3/1-2.3.4/usb_device/usbdev1.15
->>>      > (usb_device)
->>>      > UDEV  [1325.932709] remove
->>>      > /devices/platform/usbhs_omap/ehci-omap.0/usb1/1-2/1-2.3/1-2.3.4
->>> (usb)
->>>      > camera added
->>>      >
->>> ***************************************************************************
->>>      > UDEV  [1329.344727] add
->>>      > /devices/platform/usbhs_omap/ehci-omap.0/usb1/1-2/1-2.3/1-2.3.4
->>> (usb)
->>>      > UDEV  [1329.376313] add
->>>      >
->>> /devices/platform/usbhs_omap/ehci-omap.0/usb1/1-2/1-2.3/1-2.3.4/usb_device/usbdev1.16
->>>      > (usb_device)
->>>      > UDEV  [1329.389008] add
->>>      >
->>> /devices/platform/usbhs_omap/ehci-omap.0/usb1/1-2/1-2.3/1-2.3.4/1-2.3.4:1.2
->>>      > (usb)
->>>      > UDEV  [1329.396241] add
->>>      >
->>> /devices/platform/usbhs_omap/ehci-omap.0/usb1/1-2/1-2.3/1-2.3.4/1-2.3.4:1.1
->>>      > (usb)
->>>      > UDEV  [1329.401795] add
->>>      >
->>> /devices/platform/usbhs_omap/ehci-omap.0/usb1/1-2/1-2.3/1-2.3.4/1-2.3.4:1.0
->>>      > (usb)
->>>      > UDEV  [1329.406739] add
->>>      >
->>> /devices/platform/usbhs_omap/ehci-omap.0/usb1/1-2/1-2.3/1-2.3.4/1-2.3.4:1.3
->>>      > (usb)
->>>      >
->>>      > This is what I get in /var/log/messages
->>>      > Oct 29 14:17:28 beagleboarduser.info <http://user.info> kernel: usb
->>> 1-2.3.4: USB disconnect,
->>>      > device number 16
->>>      > Oct 29 14:17:31 beagleboarduser.info <http://user.info> kernel: usb
->>> 1-2.3.4: new high-speed
->>>
->>>      > USB device number 17 using ehci-omap
->>>      > Is there anything else that I can test  / provide
->>>
->>>      OK another thing to try is
->>>
->>>      udevadm test --action=add /sys/....
->>>
->>>      where /sys/... is path to your device in sysfs
->>>
->>>      this should give enough reason to what udev is doing when its getting
->>> an add
->>>      event for this device.
->>>
->>>      Secondly in your udev rule refer mknod with absolute path like
->>>      /sbin/mknod or /bin/mknod where ever it is
->>>
->>>
->>>
->>>
->>> _______________________________________________
->>> yocto mailing list
->>> yocto@yoctoproject.org
->>> https://lists.yoctoproject.org/listinfo/yocto
->>>
->>
->> --
->> ------------------------------------------------------------
->> Gary Thomas                 |  Consulting for the
->> MLB Associates              |    Embedded world
->> ------------------------------------------------------------
->> _______________________________________________
->> yocto mailing list
->> yocto@yoctoproject.org
->> https://lists.yoctoproject.org/listinfo/yocto
+>> Have you sent these fixes to the layer maintainer - Autif Khan
+>> (autif.mlist@gmail.com) ? It would be good to get those integrated.
+> Yes, I did shortly after my post to the list, but I have not heard any
+> response.
+>
+> Since then I have run into some issues with Mono v2.10 itself and my
+> company's existing (proprietary) code base. It is an odd issue around
+> events and a complex class hierarchy that I had encountered in the past
+> with Mono v2.4 (but not v2.2). I traced it down to a single change in Mono
+> and backed out that change for the previous product (an embedded server).
+> I did report it to the Mono list at that time, but there was no simple
+> test case I could share.
+>
+> Anyway, I did a quick test with Mono v3.2 (from their web site on OS X)
+> and the issues were no longer present. Hence, for the new product that I
+> plan to use Yocto to develop, I am going to use Mono v3.2. Of course the
+> current Mono layer has a lot more than we need (which is only the runtime
+> and corelib, no X, xsp, etc...) but only includes support through v2.11. I
+> am currently considering whether updating the existing meta-mono layer for
+> v3.2 or just writing a quick recipe for just want we need from Mono.
+>
+> This is complicated by a quick attempt to build the existing Mono layer
+> for ARM failing. The failure was on the ARM objcopy not knowing what to do
+> with mcs.exe.so as it is .NET assembly wrapped as an i386 shared object.
+> This was during the generation of the debug package files, so looks like
+> that process needs to be tweaked to understand this special case.
+
+Hi Ryan - I've built Mono out of meta-mono for a couple of different 
+targets in the past
+and am revisiting now for a mesh edge gateway we're working on here.
+
+I see that Mono no longer seems to be building against Yocto head / 
+qemux86 (for me
+at least) and am considering looking at a recipe to build the current 
+release of Mono
+whilst I dig into why this is.
+
+I wondered if you'd made any progress with this at all in the past few 
+weeks?
+
+Thanks / Best Regards,
+
+Alex
+
+> I would welcome any advice on how to proceed with Mono v3.2 recipes and
+> for building on ARM. Thanks!
+>
+> ---------------------------------------------------------------------------
+> | Ryan Kirkpatrick | Boulder, CO | rkirkpat.net | twitter.com/rkirkpatnet |
+> ---------------------------------------------------------------------------
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
 
 -- 
-------------------------------------------------------------
-Gary Thomas                 |  Consulting for the
-MLB Associates              |    Embedded world
-------------------------------------------------------------
 
+Dynamic Devices Ltd <http://www.dynamicdevices.co.uk/>
+
+Alex J Lennon / Director
+1 Queensway, Liverpool L22 4RA
+
+mobile: +44 (0)7956 668178
+
+Linkedin <http://www.linkedin.com/in/alexjlennon> Skype 
+<skype:alexjlennon?add>
+
+This e-mail message may contain confidential or legally privileged 
+information and is intended only for the use of the intended 
+recipient(s). Any unauthorized disclosure, dissemination, distribution, 
+copying or the taking of any action in reliance on the information 
+herein is prohibited. E-mails are not secure and cannot be guaranteed to 
+be error free as they can be intercepted, amended, or contain viruses. 
+Anyone who communicates with us by e-mail is deemed to have accepted 
+these risks. Company Name is not responsible for errors or omissions in 
+this message and denies any responsibility for any damage arising from 
+the use of e-mail. Any opinion and other statement contained in this 
+message and any attachment are solely those of the author and do not 
+necessarily represent those of the company.
+
+
+--------------010402030100040509040508
+Content-Type: multipart/related;
+ boundary="------------060104000108090104000309"
+
+--------------060104000108090104000309
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: 7bit
+
+<html>
+  <head>
+    <meta content="text/html; charset=ISO-8859-1"
+      http-equiv="Content-Type">
+  </head>
+  <body text="#000000" bgcolor="#FFFFFF">
+    <br>
+    <div class="moz-cite-prefix">On 09/10/2013 20:52, Ryan Kirkpatrick
+      wrote:<br>
+    </div>
+    <blockquote
+      cite="mid:alpine.DEB.2.00.1310091328540.27991@magellan.rkirkpat.net"
+      type="cite">
+      <pre wrap="">On Tue, 8 Oct 2013, Paul Eggleton wrote:
+
+</pre>
+      <blockquote type="cite">
+        <pre wrap="">Have you sent these fixes to the layer maintainer - Autif Khan 
+(<a class="moz-txt-link-abbreviated" href="mailto:autif.mlist@gmail.com">autif.mlist@gmail.com</a>) ? It would be good to get those integrated.
+</pre>
+      </blockquote>
+      <pre wrap="">
+Yes, I did shortly after my post to the list, but I have not heard any 
+response. 
+
+Since then I have run into some issues with Mono v2.10 itself and my 
+company's existing (proprietary) code base. It is an odd issue around 
+events and a complex class hierarchy that I had encountered in the past 
+with Mono v2.4 (but not v2.2). I traced it down to a single change in Mono 
+and backed out that change for the previous product (an embedded server). 
+I did report it to the Mono list at that time, but there was no simple 
+test case I could share.
+
+Anyway, I did a quick test with Mono v3.2 (from their web site on OS X) 
+and the issues were no longer present. Hence, for the new product that I 
+plan to use Yocto to develop, I am going to use Mono v3.2. Of course the 
+current Mono layer has a lot more than we need (which is only the runtime 
+and corelib, no X, xsp, etc...) but only includes support through v2.11. I 
+am currently considering whether updating the existing meta-mono layer for 
+v3.2 or just writing a quick recipe for just want we need from Mono.
+
+This is complicated by a quick attempt to build the existing Mono layer 
+for ARM failing. The failure was on the ARM objcopy not knowing what to do 
+with mcs.exe.so as it is .NET assembly wrapped as an i386 shared object. 
+This was during the generation of the debug package files, so looks like 
+that process needs to be tweaked to understand this special case. 
+</pre>
+    </blockquote>
+    <br>
+    Hi Ryan - I've built Mono out of meta-mono for a couple of different
+    targets in the past <br>
+    and am revisiting now for a mesh edge gateway we're working on here.<br>
+    <br>
+    I see that Mono no longer seems to be building against Yocto head /
+    qemux86 (for me <br>
+    at least) and am considering looking at a recipe to build the
+    current release of Mono <br>
+    whilst I dig into why this is. <br>
+    <br>
+    I wondered if you'd made any progress with this at all in the past
+    few weeks?<br>
+    <br>
+    Thanks / Best Regards,<br>
+    <br>
+    Alex<br>
+    &nbsp;&nbsp;&nbsp; <br>
+    <blockquote
+      cite="mid:alpine.DEB.2.00.1310091328540.27991@magellan.rkirkpat.net"
+      type="cite">
+      <pre wrap="">
+I would welcome any advice on how to proceed with Mono v3.2 recipes and 
+for building on ARM. Thanks!
+
+---------------------------------------------------------------------------
+| Ryan Kirkpatrick | Boulder, CO | rkirkpat.net | twitter.com/rkirkpatnet |
+---------------------------------------------------------------------------
+_______________________________________________
+yocto mailing list
+<a class="moz-txt-link-abbreviated" href="mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a>
+<a class="moz-txt-link-freetext" href="https://lists.yoctoproject.org/listinfo/yocto">https://lists.yoctoproject.org/listinfo/yocto</a>
+
+</pre>
+    </blockquote>
+    <br>
+    <div class="moz-signature">-- <br>
+      <div class="preview">
+        <p style="font-family: Helvetica, Arial, sans-serif; font-size:
+          10px; line-height: 12px;"><a
+            href="http://www.dynamicdevices.co.uk/" class="clink"><img
+              src="cid:part1.07030007.06000206@dynamicdevices.co.uk"
+              alt="Dynamic Devices Ltd" id="sig-logo" border="0"></a></p>
+        <p style="font-family: Helvetica, Arial, sans-serif; font-size:
+          10px; line-height: 12px; color: rgb(153, 153, 153);"><span
+            id="name-input" style="font-weight: bold;" class="txt">Alex
+            J Lennon</span> <span id="title-sep">/</span> <span
+            id="title-input" style="color: #999;" class="txt">Director</span><br>
+          <span id="address-input" style="color: #999;" class="txt">1
+            Queensway, Liverpool L22 4RA</span> </p>
+        <p style="font-family: Helvetica, Arial, sans-serif; font-size:
+          10px; line-height: 12px;"> <span id="mobile-input"
+            style="color: #999;" class="txt">mobile: +44 (0)7956 668178</span>
+          <br>
+          <br>
+        </p>
+        <p style="font-size: 10px; line-height: 12px; font-family:
+          Helvetica, Arial, sans-serif"> <a id="linkedin-input"
+            class="social" href="http://www.linkedin.com/in/alexjlennon"><img
+              src="cid:part3.02020500.07080401@dynamicdevices.co.uk"
+              alt="Linkedin"></a> <a id="skype-input" class="social"
+            href="skype:alexjlennon?add"><img
+              src="cid:part5.01030300.09090904@dynamicdevices.co.uk"
+              alt="Skype"></a></p>
+        <p id="disclaimer-input" style="font-family: Helvetica, Arial,
+          sans-serif; color: rgb(153, 153, 153); font-size: 9px;
+          line-height: 12px;width: 25%" class="txt">This e-mail message
+          may contain confidential or legally privileged information and
+          is intended only for the use of the intended recipient(s). Any
+          unauthorized disclosure, dissemination, distribution, copying
+          or the taking of any action in reliance on the information
+          herein is prohibited. E-mails are not secure and cannot be
+          guaranteed to be error free as they can be intercepted,
+          amended, or contain viruses. Anyone who communicates with us
+          by e-mail is deemed to have accepted these risks. Company Name
+          is not responsible for errors or omissions in this message and
+          denies any responsibility for any damage arising from the use
+          of e-mail. Any opinion and other statement contained in this
+          message and any attachment are solely those of the author and
+          do not necessarily represent those of the company.</p>
+      </div>
+    </div>
+  </body>
+</html>
+
+--------------060104000108090104000309
+Content-Type: image/png;
+ name="ddlogo-4.png"
+Content-Transfer-Encoding: base64
+Content-ID: <part1.07030007.06000206@dynamicdevices.co.uk>
+Content-Disposition: inline;
+ filename="ddlogo-4.png"
+
+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
+RU5ErkJggg==
+
+--------------060104000108090104000309
+Content-Type: image/png;
+ name="linkedin.png"
+Content-Transfer-Encoding: base64
+Content-ID: <part3.02020500.07080401@dynamicdevices.co.uk>
+Content-Disposition: inline;
+ filename="linkedin.png"
+
+iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAACXBIWXMAAAsTAAALEwEAmpwYAAAA
+GXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAgRJREFUeNqUUs9r1EAU/jKZ7I+2
+abBZVikKoYhCsbB/gXcFwV7Eu3jwInjyogdBj3oSPHm14KGhBwuC/gkKUqtVSglYarduKutu2c1m
+MuO82dqk1YX6YJL35r3vez/mWbWbCw3fd0PfnwjciQqOI51uH3HcjeK4M8+nToyHd640gnP1SViW
+dSwCpRS+7vwKniy9D7k3WQl2+xYWv7Sx2epgxmMmaKMtcbrmjiSZrjL4U+MBr5RsfGwlEJr1jGvh
+8dXzJuD24hqa3cFIgt09C1zn4kJk6KViWBovlgmk2jdKUn0IyykoSYeBbzbbuPXyk9GXVluoudVD
+INtmqHtjOvNwVoTlmf5k+5mo+2fXZo3+4u5bbD24aPSVrQ7mpl20ewL3ltfxORaGhHCMylBCakNC
+SfXPcglM4lU5Hl4+i+bPPYMhLJNCoKQbNkQqJ2CFF1149x33X60fkIhMGgxhGZXBiUDPwS5kHXPy
+iT56HSH88COfhT6EMViZZXCMIeEUFsktOQe6c2TByCYMYfmAWPRlov92kaCcV2AfISCbvIRlqWYp
+QaGv+5KFxp1yXgHdF32kE4awVv3Gc3XpwizWegp6e1Fy7L9eYbC/J398tO0zXGJ5ZVW3kKTRt53t
+YO7kKXCnPGLvnEOWSBNsNLeRDkRkedefNsBYqN8twP+IVBGknP8twABFyPH3kUzF5AAAAABJRU5E
+rkJggg==
+
+--------------060104000108090104000309
+Content-Type: image/png;
+ name="skype.png"
+Content-Transfer-Encoding: base64
+Content-ID: <part5.01030300.09090904@dynamicdevices.co.uk>
+Content-Disposition: inline;
+ filename="skype.png"
+
+iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAACXBIWXMAAAsTAAALEwEAmpwYAAAA
+GXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAq1JREFUeNqMk0trE1EUx/935s4k
+k1czbVpfWEctRaFiKZiCUCjqooggxZ0KfgC/QcVF1/oRBLsRXQjxgSu7qAsFpYuWoliLTaSNUJvQ
+vJvceVzPndBSF0KHOTPD5fz+55z/vcNmXi2OZuKRHIWTiho4zFVruyg1OwWKaW7HzNz1kUEnk4pD
+0xh2fQm6keDsvwJBIFGqNZ23K79yPBWNOJJH8K3q4VPVhfABjwQCSuSMQUiJXkNDNsVhHxDlxNgx
+y+GmYaDuMbwvd9Ck0gpOcg2Xeo3wW0Wx7ePhzxZuDZgYT/JQgJG4ruvgLrXzmxL24ITOMHM+jpj+
+7wg3jkVwb6kOUM5YQg/XFKu5gfroVhL0nsjwEF4stzA1v447Hzew0XIxHNcxngKebAnsMSo0EQSw
+qFggyUBaGDBl1yh6nemz8aXOcHm+gNmv23i52cAmVVmqtMmrAIrlqqpqNkqPbaKerlcw1hdDNtMN
+wMbrYh0vim209Cg6lL/ZEhhOmGHHmppDVeuQ221aWG4ZmFrIYy6/g4raErpunkjiebYfV9OgHImK
+1ENm34OAYItcVQKTGQN3HRsPVko4+S6PoTc/sLDVCIXuD0ZD8ENdhoxiudpnNfVZk+FzQ+IKmTh5
+JIGRnggerdWxQ1lpo+t6peOFB2SruUuMFZ4RrlSUgElx0fDx+HsNo7YVxrOstb+NapzZVeokiIJJ
+P2S6HVBPUs1Dj3MWx05TwzVyfaKXI22qygwVypwreqgYSWgywAUuQkaxXPg+dl0POtMgKMb7e3Cq
+WsdaTWBV7EKQwLLQ0NFMpDpVjBgebp8+GjLC82gEVxTWyjVnqC8F2+oe0+NWGmMHTqFH+91oC3A9
+gUTERItgYuB6boEHnjtd+FPK5ctVR2r6oX5nRmMwTxSY707/FWAAwixkevHIXSQAAAAASUVORK5C
+YII=
+
+--------------060104000108090104000309--
+
+--------------010402030100040509040508--
