@@ -1,36 +1,33 @@
-Return-Path: <ross.burton@intel.com>
-Received: from mail-vc0-f172.google.com (mail-vc0-f172.google.com
-	[209.85.220.172])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5CAA9E017DC
-	for <yocto@yoctoproject.org>; Fri,  1 Nov 2013 04:58:04 -0700 (PDT)
-Received: by mail-vc0-f172.google.com with SMTP id ks9so2842202vcb.31
-	for <yocto@yoctoproject.org>; Fri, 01 Nov 2013 04:58:04 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc:content-type:content-transfer-encoding;
-	bh=P2Zod3q3anAy5dfwFtpBIySz4JFmco50nAIHQ5TaCA8=;
-	b=b/ntMvQxKt0HHQv82QrfNDo7Mc+P9qsNOn6HIm30txqn91iF9fcdWazspKD3Xh+VIQ
-	IAtj2x7GoL+jGsPQzxpma/3wnOr9Jl+vm5FTk0664omlRR1CAzwkPJAkhlxxJFqQ4K/g
-	NmIW/3FfGl8SoUPWfcCEMeovSNhIhn9AG2I2W6gIHepQBsE4zRp8GxCz/211lCsqnVhh
-	AEsqx3Nzg0NQOtslSx0qh71fWgdaeNsfhhGfsWPZwO55ZfBzsvqbP6pOJNnv0gw4Fib3
-	L4GhP34a0kRdyOs+wyGIkYowMQRCiL0vgBS+Mrqz2uBKaEtTsXMrr5Pm8ikZF3KGoCAQ
-	afWw==
-X-Gm-Message-State: ALoCoQnNKFR9XdDPhf5fYeS5MS1fu+csSlQcc56dL+JMJBiaG5v64vvzqZ9tNQMd6KaS+H6cYPrB
-X-Received: by 10.52.22.110 with SMTP id c14mr1385791vdf.28.1383307083983;
-	Fri, 01 Nov 2013 04:58:03 -0700 (PDT)
+Return-Path: <rpjday@crashcourse.ca>
+Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
+	[64.235.106.9])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 60271E0160E
+	for <yocto@yoctoproject.org>; Fri,  1 Nov 2013 06:46:11 -0700 (PDT)
+Received: from [173.34.6.101] (port=48734 helo=crashcourse.ca)
+	by astoria.ccjclearline.com with esmtpsa (TLSv1:DHE-RSA-AES256-SHA:256)
+	(Exim 4.80) (envelope-from <rpjday@crashcourse.ca>)
+	id 1VcF3C-0006Cy-0K; Fri, 01 Nov 2013 09:46:10 -0400
+Date: Fri, 1 Nov 2013 09:46:06 -0400 (EDT)
+From: "Robert P. J. Day" <rpjday@crashcourse.ca>
+X-X-Sender: rpjday@oneiric
+To: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
+In-Reply-To: <41DEA4B02DBDEF40A0F3B6D0DDB1237983F40DF2@ORSMSX101.amr.corp.intel.com>
+Message-ID: <alpine.DEB.2.02.1311010933420.12378@oneiric>
+References: <alpine.DEB.2.02.1310240832580.5411@oneiric>
+	<41DEA4B02DBDEF40A0F3B6D0DDB1237983F40DF2@ORSMSX101.amr.corp.intel.com>
+User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
 MIME-Version: 1.0
-Received: by 10.220.71.201 with HTTP; Fri, 1 Nov 2013 04:57:43 -0700 (PDT)
-In-Reply-To: <3213177.CW78GHyWDt@koontz>
-References: <1383001864-4366-1-git-send-email-sgh@sgh.dk>
-	<CAJTo0LZDy=OMicnNi6J5ax8A01X4mEtrRjdHPk-QavCSCRDYVQ@mail.gmail.com>
-	<3213177.CW78GHyWDt@koontz>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Fri, 1 Nov 2013 11:57:43 +0000
-Message-ID: <CAJTo0LYhiNi_sR2NF4P31LwxhB4cWB-Sij92+gCLABVACmi6EA@mail.gmail.com>
-To: =?UTF-8?Q?S=C3=B8ren_Holm?= <sgh@sgh.dk>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: [PATCH] e2fsprogs: Escape filenames in populate-extfs.sh
+X-AntiAbuse: This header was added to track abuse,
+	please include it with any abuse report
+X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - crashcourse.ca
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+Cc: Yocto discussion list <yocto@yoctoproject.org>
+Subject: Re: filling in the "missing" entries in the ref manual variable glossary
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,23 +39,70 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 01 Nov 2013 11:58:05 -0000
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Fri, 01 Nov 2013 13:46:13 -0000
+Content-Type: TEXT/PLAIN; charset=US-ASCII
 
-openembedded-core@lists.openembedded.org only. yocto@ is for community
-announcements and user support.
+On Thu, 24 Oct 2013, Rifenbark, Scott M wrote:
 
-Ross
-
-On 1 November 2013 11:14, S=C3=B8ren Holm <sgh@sgh.dk> wrote:
-> Fredag den 1. november 2013 11:11:52 skrev Burton, Ross:
->> Please sent patches to oe-core@.
->>
+> Hey Robert,
 >
-> Should patches be sent to oe-core only or should they also be sent to yoc=
-to?
+> You don't need to submit full patches and explanations for these.
+> Noting that they are missing and need documenting is perfect.  If
+> you do have time when you point out a missing variable, providing a
+> brief explanation would help.  And... reporting what is missing is
+> extremely useful.  It has been (and will continue to be) an ongoing
+> process of fully documenting variables in the reference manual.
 >
-> --
-> S=C3=B8ren Holm
+> Thanks,
+> Scott
+
+  for better or worse, here's what i've decided to do. for my own
+teaching purposes so i can quickly refer to all the variables related
+to a single subject in front of a class, i started a wiki page which
+will be an OE variable glossary broken into sections and grouping
+related variables. here's the initial result for nothing more than
+variables related to u-boot:
+
+http://www.crashcourse.ca/wiki/index.php/OE_variable_glossary#U-Boot_variables
+
+that entire section took about 10 minutes to write and i now have what
+i *think* is a list of every OE variable related to u-boot in the
+following format:
+
+ * if a variable is already documented in the ref manual, i just link
+to it and leave it at that
+ * if a variable isn't documented, i add it to the list but
+(obviously) without a link
+
+ and since i also want to see the usage of these things, i do a quick
+"grep" for each one, which showed me that nothing seems to be using
+the documented "UBOOT_TARGET" variable, but it seems that what
+*should* be documented is "UBOOT_MAKE_TARGET" instead. and also, none
+of the SPL-related variables are mentioned in the reference manual so
+i list them as well. as i said, that section took all of about 10
+minutes to write so it's not all that time-consuming.
+
+ this is what i'm going to be working on over the next several days,
+so if scott (or anyone else) wants to play along, that page will
+certainly point out what variables are missing from the ref manual, as
+well as any oddities i run across and someone else can submit patches
+for the ref manual -- there's just no way i have the time to create
+all the patches, but i can certainly at least point out what needs
+patching.
+
+ thoughts?
+
+rday
+
+-- 
+
+========================================================================
+Robert P. J. Day                                 Ottawa, Ontario, CANADA
+                        http://crashcourse.ca
+
+Twitter:                                       http://twitter.com/rpjday
+LinkedIn:                               http://ca.linkedin.com/in/rpjday
+========================================================================
+
+
 
