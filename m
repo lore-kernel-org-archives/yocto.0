@@ -1,34 +1,34 @@
-Return-Path: <lschwab@xeralux.com>
-Received: from mail-ee0-f46.google.com (mail-ee0-f46.google.com [74.125.83.46])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E6D10E017D5
-	for <yocto@yoctoproject.org>; Thu, 31 Oct 2013 17:54:03 -0700 (PDT)
-Received: by mail-ee0-f46.google.com with SMTP id c1so1703696eek.19
-	for <yocto@yoctoproject.org>; Thu, 31 Oct 2013 17:54:02 -0700 (PDT)
+Return-Path: <nicolas.dechesne@linaro.org>
+Received: from mail-oa0-f48.google.com (mail-oa0-f48.google.com
+	[209.85.219.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 80DB9E017D5
+	for <yocto@yoctoproject.org>; Thu, 31 Oct 2013 18:01:55 -0700 (PDT)
+Received: by mail-oa0-f48.google.com with SMTP id m17so3887773oag.7
+	for <yocto@yoctoproject.org>; Thu, 31 Oct 2013 18:01:55 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:date
-	:message-id:subject:from:to:cc:content-type;
-	bh=y+wDeOwRZ1SiHo/zZNN5qkO33S+ui8g/lqfToIav56M=;
-	b=NFp9R/pyvzYEYeHjL85GQ5wulyd8+ofRmmVCfNnDh+TTPx2ncPoj5bWZpf0OuJjxqm
-	824ilcxtbmmuB+P+rbqIubSWplWPtRDepU2crrtEsv+nLdo8J7RP9l1jLjWl1JIwq2+L
-	IKZ/SmTI1AP8Tq+BPL+SNGCylV2SsB65ba/0c83HhqjEeJo2RG9sVt6BHdleTbxgpU+o
-	Q7xjnitEi+Kt0hRizqQekvcszm8Pip4ebuqgnjRs6Q2QIdK+xS94geCRJMkAgugzWx29
-	E2wcJYgQt9SHndyjjlBWmfQhZ4KkJoFE7Mq0x9VDm1dKBi6AR4o/WyfdfYcx0+/MMCmh
-	CC8g==
-X-Gm-Message-State: ALoCoQnZ55YJtSxTMFY74Wev1ByCvFpWDmRqE0z1AEahp72AP6y77q4EIGP5qS7D9Zbb7stoQYHQ
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc:content-type:content-transfer-encoding;
+	bh=bENuU8XumYBJBG/gkl3Pb7pPd63NrwiBQQ4nz9w6P+g=;
+	b=cTVkrPn6Bbe7prZQSfh2LaVlOTN4rqm+V5qtjXliBdRg8cxfoxOYnd0gO93mZT+uXg
+	v90IVmbz153pbPdyJ0frCcLDgnilO3pp7EgDY9J0yy6dHbRk18YYFLuQyXjLZYfYrm/J
+	KuKnp8td0VlRs+FRMs7LCuSuTcA//F58w19VGZ+je8phGOdmLU2hXdL/lIeXsArGoWW3
+	dcjuQfOh/QRZGME90E33kwu4Z2U9kRwZW+kcPqh+Py9hBT53bs/rfRu5Tpx92eLO/BLl
+	vgls3np791DfcUDu7L9f83D8iLuz1niacfeRLupl3dbYhvEw5iMfYD9Jc9pw7wQElEek
+	6prQ==
+X-Gm-Message-State: ALoCoQnY2v9xyMAO8pM/viDOJkZxK0VcurMvXFU8AyRPljydcwtmQ4hVyPg4aKElMzmbd1YBEThD
+X-Received: by 10.60.230.197 with SMTP id ta5mr425982oec.16.1383267715285;
+	Thu, 31 Oct 2013 18:01:55 -0700 (PDT)
 MIME-Version: 1.0
-X-Received: by 10.15.110.75 with SMTP id cg51mr343873eeb.42.1383267242303;
-	Thu, 31 Oct 2013 17:54:02 -0700 (PDT)
-Received: by 10.14.104.8 with HTTP; Thu, 31 Oct 2013 17:54:02 -0700 (PDT)
-In-Reply-To: <20131031203257.GK32015@jama>
-References: <CALb2248JBMiWJJ8ppDBhV+D15rArsg5VxTnW7OAjwUi76U9VgA@mail.gmail.com>
-	<20131031203257.GK32015@jama>
-Date: Thu, 31 Oct 2013 17:54:02 -0700
-Message-ID: <CALb224_fmjANwkRRfQEU9gF9diuuAVcXiLpqzvgfy01NCnXrXg@mail.gmail.com>
-From: Leo Schwab <lschwab@sensity.com>
-To: Martin Jansa <martin.jansa@gmail.com>
-Cc: yocto <yocto@yoctoproject.org>
-Subject: Re: Adding Custom Files to Build
+Received: by 10.76.156.40 with HTTP; Thu, 31 Oct 2013 18:01:35 -0700 (PDT)
+In-Reply-To: <CEE454E0AA856348B2B4179B5CF987140C6E4044CE@BLRINMSMBX01.bglrodc.lntinfotech.com>
+References: <CEE454E0AA856348B2B4179B5CF987140C6E4044CE@BLRINMSMBX01.bglrodc.lntinfotech.com>
+From: Nicolas Dechesne <nicolas.dechesne@linaro.org>
+Date: Thu, 31 Oct 2013 18:01:35 -0700
+Message-ID: <CAP71Wjyh00GGjBZKBB_Czqe2OrSmd-=HZ9EVF3E_ap7zwhZsbA@mail.gmail.com>
+To: Amit Kumar <Amit.Kumar@lntinfotech.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: build stripped rootfs
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,16 +40,23 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 01 Nov 2013 00:54:05 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Fri, 01 Nov 2013 01:01:56 -0000
+Content-Type: text/plain; charset=windows-1252
+Content-Transfer-Encoding: quoted-printable
 
-On Thu, Oct 31, 2013 at 1:32 PM, Martin Jansa <martin.jansa@gmail.com> wrote:
-> Creating .bbappends is the right direction, you just need to read a bit
-> more docs (hint: FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:")
+On Thu, Oct 31, 2013 at 3:32 AM, Amit Kumar <Amit.Kumar@lntinfotech.com> wr=
+ote:
+>            I have quarry =96 How to build the stripped rootfs? Is the yoc=
+to
+> build rootfs image has all the stripped packages or do we need to do
+> something else for that?
 >
-That helped!  I've got my customized files injected into the build now.
+> Please help me out how to create the stripped rootfs image. I am using th=
+e
+> poky-9.0.1 .
 
-Thank you very kindly.
-
-Schwab
+all executable files in any binary packages are stripped before being
+packaged (and thus installed in the image), the unstripped version is
+added in the -dbg package, unless if you set INHIBIT_PACKAGE_STRIP to
+true in any configuration file.
 
