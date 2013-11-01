@@ -1,34 +1,32 @@
-Return-Path: <msvilans@aeonyx.ca>
-Received: from homiemail-a70.g.dreamhost.com (caiajhbdcaid.dreamhost.com
-	[208.97.132.83])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 31C37E016DC
-	for <yocto@yoctoproject.org>; Fri,  1 Nov 2013 13:18:59 -0700 (PDT)
-Received: from homiemail-a70.g.dreamhost.com (localhost [127.0.0.1])
-	by homiemail-a70.g.dreamhost.com (Postfix) with ESMTP id 53D0C76805C;
-	Fri,  1 Nov 2013 13:18:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha1; c=relaxed; d=aeonyx.ca; h=message-id
-	:date:from:mime-version:to:subject:references:in-reply-to
-	:content-type:content-transfer-encoding; s=aeonyx.ca; bh=nc8adbF
-	qTTrVE7XxzbPXzmZbk9g=; b=jZAMokisj899BpMEpWjVXYqnXxpm6/dv4I3qAUh
-	QPQHUvUM66ZlgcjNsdv8g67RkLGMKPzdNBEABjHFHLa0exaWbMxHWJ+uo0kwQ4Vr
-	73aPq8jPfcjvFLMkAAfPd3GUK9/l3GqdtTpJfZ1IysAVRHdvfcoJ9w4gM0eKFfng
-	NWNE=
-Received: from [192.168.1.127] (216-167-250-35.eastlink.ca [216.167.250.35])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	(Authenticated sender: msvilans@aeonyx.ca)
-	by homiemail-a70.g.dreamhost.com (Postfix) with ESMTPSA id EAFB3768059; 
-	Fri,  1 Nov 2013 13:18:58 -0700 (PDT)
-Message-ID: <52740CB1.8090509@aeonyx.ca>
-Date: Fri, 01 Nov 2013 16:18:57 -0400
-From: Markus Svilans <msvilans@aeonyx.ca>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:24.0) Gecko/20100101 Thunderbird/24.1.0
+Return-Path: <amittomer25@gmail.com>
+Received: from mail-wg0-f44.google.com (mail-wg0-f44.google.com [74.125.82.44])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id ECA52E01706
+	for <yocto@yoctoproject.org>; Fri,  1 Nov 2013 13:19:36 -0700 (PDT)
+Received: by mail-wg0-f44.google.com with SMTP id n12so10401wgh.35
+	for <yocto@yoctoproject.org>; Fri, 01 Nov 2013 13:19:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type;
+	bh=sVweDpQ/v63Ias+vJW/6QV41ZT5aoSGNNQL7sB6Fyj0=;
+	b=JCVp0cmdQRErT7cX1MxmoFJkZyeXcZHoc7YiScpL8AREyETL2ocwTP6Ydd+gaZEcV/
+	LBM9Bdy3hjX2WsUTk7t8NVslucf31YNzPJVkgokk5mh6ad26nI6tAQfE2V5ex6ZoVAom
+	qFqVyN0NxTTxQVm1K1YZfIKEY3iWq0EsBCUVIuMfIcRZHpxYUTKP0CgvtP+Ue5BlBa5M
+	L4tG2jOigq10i2LNM2IpfLpbuhThUpGU8sCqa6PMn6Ij2TS7bN+6hVoz/ie6hHmtI92R
+	Cq8BXpZgJ/Ps/iN2byQBiQWjF8R3shdcXIUEEk3inl2xLCfKbjHaY3l1XlIGqFt+wLZJ
+	7Phg==
 MIME-Version: 1.0
-To: =?ISO-8859-1?Q?S=F8ren_Holm?= <sgh@sgh.dk>, yocto@yoctoproject.org
-References: <52740457.5020101@aeonyx.ca> <92224899.YSeEgxkEdL@koontz>
-In-Reply-To: <92224899.YSeEgxkEdL@koontz>
-Subject: Re: bbappend files and "ERROR: no recipes available for"
+X-Received: by 10.194.23.73 with SMTP id k9mr3889598wjf.24.1383337174623; Fri,
+	01 Nov 2013 13:19:34 -0700 (PDT)
+Received: by 10.227.197.69 with HTTP; Fri, 1 Nov 2013 13:19:34 -0700 (PDT)
+In-Reply-To: <5273F871.9090206@windriver.com>
+References: <CABHD4K9q7=RK_3B2HUPR9J0RoLZPBQ5-qwY3qjYeRLajs-gnhQ@mail.gmail.com>
+	<5273F871.9090206@windriver.com>
+Date: Sat, 2 Nov 2013 01:49:34 +0530
+Message-ID: <CABHD4K_Y7yg69Ep-TLwNAd4n0chG+m6_FiW7QdL_Qo36XTftDA@mail.gmail.com>
+From: Amit Tomer <amittomer25@gmail.com>
+To: Bruce Ashfield <bruce.ashfield@windriver.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: How to Set up Perf tool
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,103 +38,63 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 01 Nov 2013 20:19:00 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Fri, 01 Nov 2013 20:19:37 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
-Hi S=F8ren,
+Thanks Brauce
 
-Thanks very much for the suggestion. It worked.
+We worked it out and Perf recipe as you said perf.bb is there in
+poky/meta/recipe-kernel.
+Also,we installed it our rootfs and it working good.
+
+Thanks
+Amit
 
 
-On the subject, I noticed you have to be careful when using "+=3D" and=20
-"=3D+" to append to variables in bb files. Here is my bbappend file, with=
-=20
-the proper operator after the PACKAGES variable:
-
-> # Cherrypick the firmware files that we need:
+On Sat, Nov 2, 2013 at 12:22 AM, Bruce Ashfield
+<bruce.ashfield@windriver.com> wrote:
+> On 13-11-01 12:40 PM, Amit Tomer wrote:
+>>
+>> We have a requirement here to set up the perf tool through our Yocto
+>> frame work.
+>>
+>> As Perf source comes with linux kernel under tools/perf ,so it should be
+>> compiled with kernel recipe itself.
+>>
+>> But after bitbake of our kernel recipe,we couldn't find any binary
+>> related to perf.
+>> we made sure that below variable should be set in kernel config file
+>>
+>> CONFIG_HAVE_PERF_EVENTS=y
+>> CONFIG_PERF_EVENTS=y
+>>
+>> Do we need to make any change to our kernel recipe file as well??
+>>
+>> Can anyone let us know how we should set Perf tool.
 >
-> PACKAGES =3D+ " ${PN}-rtl8168d-1"
 >
-> FILES_${PN}-rtl8168d-1 =3D " \
->   /lib/firmware/rtl_nic/rtl8168d-1.fw \
-> "
-
-
-Previously I had "+=3D", and my custom rtl8168 package file was not being=
-=20
-generated.
-
-Regards,
-Markus
-
-
-
-On 11/01/2013 03:48 PM, S=F8ren Holm wrote:
-> Hi
+> It depends on the version of the the project and the kernel you are
+> using, but there's a separate perf recipe, and has been for quite a
+> while.
 >
-> Rename your bbappend-file to the exact name of the original recipe.
+> That perf builds out of the staged kernel source, which is put
+> in place as part of the kernel build.
 >
-> 1.5 (dora) contains linux-firmware_git.bb in which case the bbappend sh=
-ould be
-> named linux-firmware_git.bbappend.
+> Try an old fashioned: bitbake perf
 >
-> Fredag den 1. november 2013 15:43:19 skrev Markus Svilans:
->> Dear list,
+> And see what you get. If you want it to be built and installed into
+> your rootfs, you'll need to arrange to get it into your image's
+> installed package list.
+>
+> Bruce
+>
+>
 >>
->> I am working on a compact filesystem image, that contains firmware onl=
-y
->> for the network hardware on the motherboard.
->>
->> Therefore, I created a linux-firmware.bbappend file, with the followin=
-g
->>
->> contents:
->>> # Cherrypick the firmware files that we need for our hardware
->>>
->>> #FILESEXTRAPATHS_prepend :=3D "${THISDIR}/${PN}:"
->>>
->>> PACKAGES +=3D "${PN}-rtl8168d-1"
->>>
->>> FILES_${PN}-rtl8168d-1 =3D " \
->>>
->>>    /lib/firmware/rtl_nic/rtl8168d-1.fw \
->>>
->>> "
->> However, running "bitbake linux-firmware" fails with this bbappend fil=
-e
->>
->> present:
->>> ERROR: No recipes available for:
->>> /home/markus/yocto/genericx86-64-dora-10.0.0/meta-markus/recipes-kern=
-el/li
->>> nux-firmware/linux-firmware.bbappend ERROR: Command execution failed:
->>> Exited with 1
->> Other bbappend files, such as for custom kernel config for linux-yocto=
-,
->> worked without complaints.
->>
->> So far, I was following the instructions for using bbappend files here=
-:
->> http://www.yoctoproject.org/docs/1.5/dev-manual/dev-manual.html#using-=
-bbappe
->> nd-files http://www.yoctoproject.org/docs/current/kernel-dev/kernel-de=
-v.html
->>
->>
->>   From what I can see, I am setting up my linux-firmware.bbappend file
->> consistently with the instructions.
->>
->> What am I doing wrong here?
->>
->> Thanks very much
->> Markus
->>
->>
->>
+>> Thanks
 >> _______________________________________________
 >> yocto mailing list
 >> yocto@yoctoproject.org
 >> https://lists.yoctoproject.org/listinfo/yocto
-
+>>
+>
 
