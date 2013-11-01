@@ -1,32 +1,20 @@
-Return-Path: <amittomer25@gmail.com>
-Received: from mail-wg0-f44.google.com (mail-wg0-f44.google.com [74.125.82.44])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id ECA52E01706
-	for <yocto@yoctoproject.org>; Fri,  1 Nov 2013 13:19:36 -0700 (PDT)
-Received: by mail-wg0-f44.google.com with SMTP id n12so10401wgh.35
-	for <yocto@yoctoproject.org>; Fri, 01 Nov 2013 13:19:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type;
-	bh=sVweDpQ/v63Ias+vJW/6QV41ZT5aoSGNNQL7sB6Fyj0=;
-	b=JCVp0cmdQRErT7cX1MxmoFJkZyeXcZHoc7YiScpL8AREyETL2ocwTP6Ydd+gaZEcV/
-	LBM9Bdy3hjX2WsUTk7t8NVslucf31YNzPJVkgokk5mh6ad26nI6tAQfE2V5ex6ZoVAom
-	qFqVyN0NxTTxQVm1K1YZfIKEY3iWq0EsBCUVIuMfIcRZHpxYUTKP0CgvtP+Ue5BlBa5M
-	L4tG2jOigq10i2LNM2IpfLpbuhThUpGU8sCqa6PMn6Ij2TS7bN+6hVoz/ie6hHmtI92R
-	Cq8BXpZgJ/Ps/iN2byQBiQWjF8R3shdcXIUEEk3inl2xLCfKbjHaY3l1XlIGqFt+wLZJ
-	7Phg==
-MIME-Version: 1.0
-X-Received: by 10.194.23.73 with SMTP id k9mr3889598wjf.24.1383337174623; Fri,
-	01 Nov 2013 13:19:34 -0700 (PDT)
-Received: by 10.227.197.69 with HTTP; Fri, 1 Nov 2013 13:19:34 -0700 (PDT)
-In-Reply-To: <5273F871.9090206@windriver.com>
-References: <CABHD4K9q7=RK_3B2HUPR9J0RoLZPBQ5-qwY3qjYeRLajs-gnhQ@mail.gmail.com>
-	<5273F871.9090206@windriver.com>
-Date: Sat, 2 Nov 2013 01:49:34 +0530
-Message-ID: <CABHD4K_Y7yg69Ep-TLwNAd4n0chG+m6_FiW7QdL_Qo36XTftDA@mail.gmail.com>
-From: Amit Tomer <amittomer25@gmail.com>
-To: Bruce Ashfield <bruce.ashfield@windriver.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: How to Set up Perf tool
+Return-Path: <sgw@linux.intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DA727E0166B
+	for <yocto@yoctoproject.org>; Fri,  1 Nov 2013 15:02:34 -0700 (PDT)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga102.jf.intel.com with ESMTP; 01 Nov 2013 14:59:08 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.93,535,1378882800"; d="scan'208";a="402364566"
+Received: from unknown (HELO swold-linux.bigsur.com) ([10.255.15.12])
+	by orsmga001.jf.intel.com with ESMTP; 01 Nov 2013 15:02:33 -0700
+From: Saul Wold <sgw@linux.intel.com>
+To: yocto@yoctoproject.org,
+	flihp@twobit.us
+Date: Fri,  1 Nov 2013 15:02:26 -0700
+Message-Id: <1383343353-23232-1-git-send-email-sgw@linux.intel.com>
+X-Mailer: git-send-email 1.8.3.1
+Subject: [meta-measured][PATCH 0/7] Update to latest oe-core/Poky
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,63 +26,32 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 01 Nov 2013 20:19:37 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Fri, 01 Nov 2013 22:02:35 -0000
 
-Thanks Brauce
+This patch set updates to use the latest 3.10 kernel and adds the needed
+support, including switching form unionfs to aufs for the initramfs.  
 
-We worked it out and Perf recipe as you said perf.bb is there in
-poky/meta/recipe-kernel.
-Also,we installed it our rootfs and it working good.
+Saul Wold (7):
+  trousers: Add libgcc as Runtime dependency
+  linux-yocto: Update to 3.10 and set as default
+  measured-image-bootimg: imstall mboot.c32 for iso
+  measured-image-bootimg: add libcom32
+  pcr-calc: Use site-packages instead of dist-packages
+  init-boot-tpm.sh: Use aufs instead of unionfs for 3.10 kernel
+  core-image-tpm: add kmod and udev-extraconf
 
-Thanks
-Amit
+ conf/distro/oe-measured.conf                                           | 2 +-
+ .../linux/{linux-yocto_3.8.bbappend => linux-yocto_3.10.bbappend}      | 0
+ recipes-tpm/images/core-image-tpm-initramfs.bb                         | 2 ++
+ recipes-tpm/images/core-image-tpm.inc                                  | 3 ++-
+ recipes-tpm/initrdscripts/files/init-boot-tpm.sh                       | 2 +-
+ recipes-tpm/trousers/trousers_0.3.10.bb                                | 2 ++
+ recipes-txt/images/measured-image-bootimg.inc                          | 2 ++
+ recipes-txt/pcr-calc/pcr-calc_git.bb                                   | 2 +-
+ 8 files changed, 11 insertions(+), 4 deletions(-)
+ rename recipes-kernel/linux/{linux-yocto_3.8.bbappend => linux-yocto_3.10.bbappend} (100%)
 
+-- 
+1.8.3.1
 
-On Sat, Nov 2, 2013 at 12:22 AM, Bruce Ashfield
-<bruce.ashfield@windriver.com> wrote:
-> On 13-11-01 12:40 PM, Amit Tomer wrote:
->>
->> We have a requirement here to set up the perf tool through our Yocto
->> frame work.
->>
->> As Perf source comes with linux kernel under tools/perf ,so it should be
->> compiled with kernel recipe itself.
->>
->> But after bitbake of our kernel recipe,we couldn't find any binary
->> related to perf.
->> we made sure that below variable should be set in kernel config file
->>
->> CONFIG_HAVE_PERF_EVENTS=y
->> CONFIG_PERF_EVENTS=y
->>
->> Do we need to make any change to our kernel recipe file as well??
->>
->> Can anyone let us know how we should set Perf tool.
->
->
-> It depends on the version of the the project and the kernel you are
-> using, but there's a separate perf recipe, and has been for quite a
-> while.
->
-> That perf builds out of the staged kernel source, which is put
-> in place as part of the kernel build.
->
-> Try an old fashioned: bitbake perf
->
-> And see what you get. If you want it to be built and installed into
-> your rootfs, you'll need to arrange to get it into your image's
-> installed package list.
->
-> Bruce
->
->
->>
->> Thanks
->> _______________________________________________
->> yocto mailing list
->> yocto@yoctoproject.org
->> https://lists.yoctoproject.org/listinfo/yocto
->>
->
 
