@@ -1,30 +1,22 @@
-Return-Path: <sleepylight@jive-turkey.net>
-Received: from mail-ee0-f45.google.com (mail-ee0-f45.google.com [74.125.83.45])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7910FE01621
-	for <yocto@yoctoproject.org>; Fri,  1 Nov 2013 08:21:40 -0700 (PDT)
-Received: by mail-ee0-f45.google.com with SMTP id e50so2067496eek.4
-	for <yocto@yoctoproject.org>; Fri, 01 Nov 2013 08:21:39 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:date:message-id:subject:from:to
-	:content-type;
-	bh=x3JB3xzv3uB2ll6rBNIyP/IMaC83KdH6U7xNUEhzSKE=;
-	b=LTqUbOYTl0b61U1Q/GJ7RyUIG1QFWzHcI9WLgdyBHXg7AZulpPcB92oFCRCyE5dZVJ
-	66GZ4MnzVzInsmLHPBl64YLRlPonfzQZBgvAczOLLAPicMc+kd93T6lD5u4JNz/uyD6r
-	AHmw9JTp/Y7DqcMJHRDCE0qdwtvnIVDRQuB23NIJv5mBMKsAuFBX4OH+JuoMd/PNCzs8
-	mC1bWGCcPFHlwG9E+UwxmSd1SdDPS65XBg8MPYAnwVkA6UZnsKu3CHohWT6BwHeZebk7
-	9sdUMBD8kK9TLe1zQxRohhkcAc2fA4Iv+BkxVC2SZFpo7mJiaxdq8079JH1fVU/v4EMH
-	pipg==
-X-Gm-Message-State: ALoCoQlkMixE7hPU3u/sEWROp4EP1EWvnYq8eFbRgNV4RR9n/e+NmHLqE4eGp3FpS+zqoLFf6ja9
-MIME-Version: 1.0
-X-Received: by 10.15.33.198 with SMTP id c46mr312221eev.115.1383319299332;
-	Fri, 01 Nov 2013 08:21:39 -0700 (PDT)
-Received: by 10.223.153.67 with HTTP; Fri, 1 Nov 2013 08:21:39 -0700 (PDT)
-Date: Fri, 1 Nov 2013 11:21:39 -0400
-Message-ID: <CADi-vsyk+mZ3qnYKVW13dQoFzQpGokSNBT5WitOvqBsGJMx+Dw@mail.gmail.com>
-From: Maxwell Bottiger <sleepylight@jive-turkey.net>
+Return-Path: <sgh@sgh.dk>
+Received: from mx-aarh-2.stofanet.dk (mx-aarh-2.stofanet.dk [212.10.10.12])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E54D8E016DB
+	for <yocto@yoctoproject.org>; Fri,  1 Nov 2013 08:29:29 -0700 (PDT)
+Received: from 5634f347.rev.stofanet.dk ([86.52.243.71] helo=asrock)
+	by mx-aarh-2.stofanet.dk (envelope-from <sgh@sgh.dk>)
+	with esmtp id 1VcGf9-00078l-1H; Fri, 01 Nov 2013 16:29:27 +0100
+Received: from koontz.localnet (localhost [127.0.0.1])
+	by asrock (Postfix) with ESMTPS id 418227ED86;
+	Fri,  1 Nov 2013 16:29:27 +0100 (CET)
+From: =?ISO-8859-1?Q?S=F8ren?= Holm <sgh@sgh.dk>
 To: yocto@yoctoproject.org
-Subject: 2.6.39 kernel and poky
+Date: Fri, 01 Nov 2013 16:29:26 +0100
+Message-ID: <3504622.JF20vPhCR2@koontz>
+User-Agent: KMail/4.11.2 (Linux/3.11.0-11-lowlatency; KDE/4.11.2; i686; ; )
+In-Reply-To: <CADi-vsyk+mZ3qnYKVW13dQoFzQpGokSNBT5WitOvqBsGJMx+Dw@mail.gmail.com>
+References: <CADi-vsyk+mZ3qnYKVW13dQoFzQpGokSNBT5WitOvqBsGJMx+Dw@mail.gmail.com>
+MIME-Version: 1.0
+Subject: Re: 2.6.39 kernel and poky
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -36,37 +28,37 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 01 Nov 2013 15:21:41 -0000
-Content-Type: multipart/alternative; boundary=089e0168126a72abd804ea1f1f60
-
---089e0168126a72abd804ea1f1f60
-Content-Type: text/plain; charset=ISO-8859-1
-
-I have a custom kernel and drivers I built for an Atmel AT91SAM9x5ek system
-on a chip, and I'd like to use them with yocto to build a distribution.
-
-The original documentation, support CD, etc are all based around an open
-embedded build from 2011, which doesn't seem to work any longer.  Yocto
-looks like a great alternative, but wants to build the 3.10 kernel, which I
-don't think supports this SoC any longer.  So, is there a straight forward
-method of building a standard Poky root filesystem, but with a custom
-recipe for the 2.6.39 kernel instead of the stock one?
-
-Thanks for your help.
-
---089e0168126a72abd804ea1f1f60
-Content-Type: text/html; charset=ISO-8859-1
+X-List-Received-Date: Fri, 01 Nov 2013 15:29:30 -0000
 Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="iso-8859-1"
 
-<div dir=3D"ltr"><div><div>I have a custom kernel and drivers I built for a=
-n Atmel AT91SAM9x5ek system on a chip, and I&#39;d like to use them with yo=
-cto to build a distribution.<br><br></div>The original documentation, suppo=
-rt CD, etc are all based around an open embedded build from 2011, which doe=
-sn&#39;t seem to work any longer.=A0 Yocto looks like a great alternative, =
-but wants to build the 3.10 kernel, which I don&#39;t think supports this S=
-oC any longer.=A0 So, is there a straight forward method of building a stan=
-dard Poky root filesystem, but with a custom recipe for the 2.6.39 kernel i=
-nstead of the stock one?<br>
-<br></div>Thanks for your help.<br></div>
 
---089e0168126a72abd804ea1f1f60--
+You could try to copy the 3.10 recipe and just fixc the revision to poi=
+nt to=20
+the old version. the kernels buildsystem have not changes dramatically =
+since=20
+then I think/hope :)
+
+Fredag den 1. november 2013 11:21:39 skrev Maxwell Bottiger:
+> I have a custom kernel and drivers I built for an Atmel AT91SAM9x5ek =
+system
+> on a chip, and I'd like to use them with yocto to build a distributio=
+n.
+>=20
+> The original documentation, support CD, etc are all based around an o=
+pen
+> embedded build from 2011, which doesn't seem to work any longer.  Yoc=
+to
+> looks like a great alternative, but wants to build the 3.10 kernel, w=
+hich I
+> don't think supports this SoC any longer.  So, is there a straight fo=
+rward
+> method of building a standard Poky root filesystem, but with a custom=
+
+> recipe for the 2.6.39 kernel instead of the stock one?
+>=20
+> Thanks for your help.
+
+--=20
+S=F8ren Holm
+
