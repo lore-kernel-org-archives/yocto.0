@@ -1,34 +1,36 @@
 Return-Path: <raj.khem@gmail.com>
-Received: from mail-pb0-f45.google.com (mail-pb0-f45.google.com
-	[209.85.160.45])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 97FA8E0178A
+Received: from mail-pa0-f46.google.com (mail-pa0-f46.google.com
+	[209.85.220.46])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0900CE017E9
 	for <yocto@yoctoproject.org>; Sun,  3 Nov 2013 14:48:43 -0800 (PST)
-Received: by mail-pb0-f45.google.com with SMTP id ma3so6416970pbc.18
-	for <yocto@yoctoproject.org>; Sun, 03 Nov 2013 14:48:42 -0800 (PST)
+Received: by mail-pa0-f46.google.com with SMTP id rd3so6231123pab.33
+	for <yocto@yoctoproject.org>; Sun, 03 Nov 2013 14:48:43 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=from:to:cc:subject:date:message-id;
-	bh=Aq9aNRx5h6NTnhPyjXTZ0PSmJYm7Uags6569CasCeAo=;
-	b=G7OseXFeIc6c7xAln0F2NbiKEeH5Sj1jSrlrQTXeIYYjYkoJdQhp7LMvCFZGlz1Q16
-	eF3mk4EQofEDbwu+ioLeSi6Fjw7/LSs7XUFgiwTgX7lnNFU/bWRbjzExNf4ZVGbyI4SP
-	OFmtl15kShbH1Xa9H5uR49agWyux5HXBrC08XDBQySbCQLVF81WTPv+0rnjxCLvmJvHA
-	Jcp9MG+f7pX5NvFL10qZasKBqFZJbnmR79SumK13oaG+YeGI7uKzr+wCncwAflpqIzZ9
-	e76scUtiFnEC5TPEjEbIBYtP4gVHoxRmK1Z3thgFkHLF7KbN/WyI3BXD5/kjp0XWHI98
-	j0Kg==
-X-Received: by 10.66.231.105 with SMTP id tf9mr7605452pac.59.1383518922479;
-	Sun, 03 Nov 2013 14:48:42 -0800 (PST)
+	h=from:to:cc:subject:date:message-id:in-reply-to:references;
+	bh=tDKteAhSWD4Ykbnjyq7/Xm9rekdSO9RS2eKNlcgpni8=;
+	b=TEzbHeHNd3iwAKMwdfeY2Y60JfAid+SYmVAQfXFJUoLirkn6K80ECRAkyH/Rel5A+7
+	3dVOsrc++1R2izRvaIs2tQh8KnKYrQaDeOHZ4AT8/xBX6jcDTn/LQztbhUIh3scNL293
+	4R4rs2gJWGIMTBn8KZmy6sKETT3NugKaziZ5P1Outx44zZN/JjhVGkxGqkR+PVy7vfin
+	nBoIj69+d/PzQ55l9+9OOL2HdkMtC6YPVzIeh3x1G9+UibHfd3ueRVgTzzR91OUybpwH
+	M84y5kMD6Pi+aB0fMmq90/BdWRBSdiRO0sSodzxZ2AQdK2p/CpSgm/o9bprXu0Bpvd0V
+	7uQg==
+X-Received: by 10.68.232.74 with SMTP id tm10mr14841837pbc.64.1383518923579;
+	Sun, 03 Nov 2013 14:48:43 -0800 (PST)
 Received: from haswell.gateway.2wire.net
 	(99-57-140-209.lightspeed.sntcca.sbcglobal.net. [99.57.140.209])
 	by mx.google.com with ESMTPSA id
-	sg1sm24195713pbb.16.2013.11.03.14.48.41 for <multiple recipients>
+	sg1sm24195713pbb.16.2013.11.03.14.48.42 for <multiple recipients>
 	(version=TLSv1.1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
-	Sun, 03 Nov 2013 14:48:41 -0800 (PST)
+	Sun, 03 Nov 2013 14:48:43 -0800 (PST)
 From: Khem Raj <raj.khem@gmail.com>
 To: autif.mlist@gmail.com,
 	yocto@yoctoproject.org
-Date: Sun,  3 Nov 2013 14:47:54 -0800
-Message-Id: <1383518875-32046-1-git-send-email-raj.khem@gmail.com>
+Date: Sun,  3 Nov 2013 14:47:55 -0800
+Message-Id: <1383518875-32046-2-git-send-email-raj.khem@gmail.com>
 X-Mailer: git-send-email 1.8.3.2
-Subject: [meta-mono][PATCH 1/2] mono: Fix the recipes for patch paths
+In-Reply-To: <1383518875-32046-1-git-send-email-raj.khem@gmail.com>
+References: <1383518875-32046-1-git-send-email-raj.khem@gmail.com>
+Subject: [meta-mono][PATCH 2/2] mono-xsp: Fix parse warnings
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,253 +42,73 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 03 Nov 2013 22:48:43 -0000
+X-List-Received-Date: Sun, 03 Nov 2013 22:48:45 -0000
 
-Remove redundant patches, use PV where possible and
-remove hardcoding
-
-Reorganise the patch directories
-
-Fixes parse warnings like
-
-WARNING: Unable to get checksum for mono SRC_URI entry Makefile.am.diff:
-file could not be found
-WARNING: Unable to get checksum for mono-native SRC_URI entry
-Makefile.am.diff: file could not be found
-WARNING: Unable to get checksum for mono SRC_URI entry config.in.diff:
-file could not be found
-WARNING: Unable to get checksum for mono-native SRC_URI entry
-config.in.diff: file could not be found
-WARNING: Unable to get checksum for mono-native SRC_URI entry
-Makefile.diff: file could not be found
-WARNING: Unable to get checksum for mono SRC_URI entry Makefile.diff:
-file could not be found
-done.
+WARNING: Variable key FILES_${PN}-dev (${includedir} ${FILES_SOLIBSDEV}
+${libdir}/*.la ${libdir}/*.o ${libdir}/pkgconfig ${datadir}/pkgconfig
+${datadir}/aclocal ${base_libdir}/*.o ${libdir}/${BPN}/*.la
+${base_libdir}/*.la) replaces original key FILES_mono-xsp-dev (
+/usr/lib/pkgconfig/xsp.pc       /usr/lib/pkgconfig/xsp-2.pc     ).
 
 Signed-off-by: Khem Raj <raj.khem@gmail.com>
 ---
- .../files/patch-mono-native-atomic-armv6.patch     | 66 ----------------------
- recipes-mono/mono/mono-2.10.8.1.inc                |  6 +-
- recipes-mono/mono/mono-2.11.inc                    |  6 +-
- .../mono/{files => }/mono-2.11/Makefile.am.diff    |  0
- .../mono/{files => }/mono-2.11/data/config.in.diff |  0
- .../patch-mono-atomic-armv6.patch                  |  0
- recipes-mono/mono/mono-native_2.10.8.1.bb          | 10 ++--
- recipes-mono/mono/mono-native_2.11.bb              | 15 ++---
- recipes-mono/mono/mono_2.10.8.1.bb                 |  2 +-
- recipes-mono/mono/mono_2.11.bb                     |  8 +--
- 10 files changed, 21 insertions(+), 92 deletions(-)
- delete mode 100644 recipes-mono/mono/files/patch-mono-native-atomic-armv6.patch
- rename recipes-mono/mono/{files => }/mono-2.11/Makefile.am.diff (100%)
- rename recipes-mono/mono/{files => }/mono-2.11/data/config.in.diff (100%)
- rename recipes-mono/mono/{files => mono-2.11}/patch-mono-atomic-armv6.patch (100%)
+ recipes-mono/mono-xsp/mono-xsp_1.2.5.bb | 15 +++++----------
+ 1 file changed, 5 insertions(+), 10 deletions(-)
 
-diff --git a/recipes-mono/mono/files/patch-mono-native-atomic-armv6.patch b/recipes-mono/mono/files/patch-mono-native-atomic-armv6.patch
-deleted file mode 100644
-index a825d68..0000000
---- a/recipes-mono/mono/files/patch-mono-native-atomic-armv6.patch
-+++ /dev/null
-@@ -1,66 +0,0 @@
--diff -ru mono-2.11.org/mono/io-layer/atomic.h mono-2.11/mono/io-layer/atomic.h
----- mono-2.11.org/mono/io-layer/atomic.h	2012-12-23 18:06:38.924514678 +0000
--+++ mono-2.11/mono/io-layer/atomic.h	2012-12-23 18:08:03.864516082 +0000
--@@ -752,7 +752,7 @@
-- 
-- static inline gint32 InterlockedCompareExchange(volatile gint32 *dest, gint32 exch, gint32 comp)
-- {
---#if defined(__ARM_ARCH_6__) || defined(__ARM_ARCH_7A__) || defined(__ARM_ARCH_7__)
--+#if defined(__ARM_ARCH_7A__) || defined(__ARM_ARCH_7__)
-- 	gint32 ret, tmp;
-- 	__asm__ __volatile__ (	"1:\n"
-- 				"dmb\n"
--@@ -792,7 +792,7 @@
-- 
-- static inline gpointer InterlockedCompareExchangePointer(volatile gpointer *dest, gpointer exch, gpointer comp)
-- {
---#if defined(__ARM_ARCH_6__) || defined(__ARM_ARCH_7A__) || defined(__ARM_ARCH_7__)
--+#if defined(__ARM_ARCH_7A__) || defined(__ARM_ARCH_7__)
-- 	gpointer ret, tmp;
-- 	__asm__ __volatile__ (
-- 				"dmb\n"
--@@ -833,7 +833,7 @@
-- 
-- static inline gint32 InterlockedIncrement(volatile gint32 *dest)
-- {
---#if defined(__ARM_ARCH_6__) || defined(__ARM_ARCH_7A__) || defined(__ARM_ARCH_7__)
--+#if defined(__ARM_ARCH_7A__) || defined(__ARM_ARCH_7__)
-- 	gint32 ret, flag;
-- 	__asm__ __volatile__ (
-- 				"dmb\n"
--@@ -869,7 +869,7 @@
-- 
-- static inline gint32 InterlockedDecrement(volatile gint32 *dest)
-- {
---#if defined(__ARM_ARCH_6__) || defined(__ARM_ARCH_7A__) || defined(__ARM_ARCH_7__)
--+#if defined(__ARM_ARCH_7A__) || defined(__ARM_ARCH_7__)
-- 	gint32 ret, flag;
-- 	__asm__ __volatile__ (
-- 				"dmb\n"
--@@ -905,7 +905,7 @@
-- 
-- static inline gint32 InterlockedExchange(volatile gint32 *dest, gint32 exch)
-- {
---#if defined(__ARM_ARCH_6__) || defined(__ARM_ARCH_7A__) || defined(__ARM_ARCH_7__)
--+#if defined(__ARM_ARCH_7A__) || defined(__ARM_ARCH_7__)
-- 	gint32 ret, flag;
-- 	__asm__ __volatile__ (
-- 				  "dmb\n"
--@@ -932,7 +932,7 @@
-- 
-- static inline gpointer InterlockedExchangePointer(volatile gpointer *dest, gpointer exch)
-- {
---#if defined(__ARM_ARCH_6__) || defined(__ARM_ARCH_7A__) || defined(__ARM_ARCH_7__)
--+#if defined(__ARM_ARCH_7A__) || defined(__ARM_ARCH_7__)
-- 	gpointer ret, flag;
-- 	__asm__ __volatile__ (
-- 				  "dmb\n"
--@@ -959,7 +959,7 @@
-- 
-- static inline gint32 InterlockedExchangeAdd(volatile gint32 *dest, gint32 add)
-- {
---#if defined(__ARM_ARCH_6__) || defined(__ARM_ARCH_7A__) || defined(__ARM_ARCH_7__)
--+#if defined(__ARM_ARCH_7A__) || defined(__ARM_ARCH_7__)
-- 	gint32 ret, tmp, flag;
-- 	__asm__ __volatile__ (
-- 				"dmb\n"
-diff --git a/recipes-mono/mono/mono-2.10.8.1.inc b/recipes-mono/mono/mono-2.10.8.1.inc
-index 79f1b3e..ad481fd 100644
---- a/recipes-mono/mono/mono-2.10.8.1.inc
-+++ b/recipes-mono/mono/mono-2.10.8.1.inc
-@@ -7,9 +7,9 @@ LICENSE = "GPLv2"
- LIC_FILES_CHKSUM = "file://COPYING.LIB;md5=80862f3fd0e11a5fa0318070c54461ce"
+diff --git a/recipes-mono/mono-xsp/mono-xsp_1.2.5.bb b/recipes-mono/mono-xsp/mono-xsp_1.2.5.bb
+index b27e74e..648477a 100644
+--- a/recipes-mono/mono-xsp/mono-xsp_1.2.5.bb
++++ b/recipes-mono/mono-xsp/mono-xsp_1.2.5.bb
+@@ -7,7 +7,6 @@ SECTION = "devel/mono"
+ #  - scripts in /usr/bin contain the wrong paths
+ #
  
- SRC_URI = "http://download.mono-project.com/sources/mono/mono-${PV}.tar.gz \
--           file://mono-2.10.8.1/Makefile.am.diff \
--           file://mono-2.10.8.1/data/config.in.diff \
--           file://mono-2.10.8.1/mcs/class/Makefile.diff"
-+           file://Makefile.am.diff \
-+           file://data/config.in.diff \
-+           file://mcs/class/Makefile.diff"
- 
- SRC_URI[md5sum] = "c7fd34d59f67e2a13e5421ba2441bc9d"
- SRC_URI[sha256sum] = "1dfc666f8b6e90079d9b290d7f9cf63c15bdbce23f0223cad3163c9c926c9040"
-diff --git a/recipes-mono/mono/mono-2.11.inc b/recipes-mono/mono/mono-2.11.inc
-index 6d7578c..a618fa6 100644
---- a/recipes-mono/mono/mono-2.11.inc
-+++ b/recipes-mono/mono/mono-2.11.inc
-@@ -7,8 +7,10 @@ LICENSE = "GPLv2"
- LIC_FILES_CHKSUM = "file://COPYING.LIB;md5=80862f3fd0e11a5fa0318070c54461ce"
- 
- SRC_URI = "http://download.mono-project.com/sources/mono/mono-${PV}.0.tar.bz2 \
--           file://mono-2.11/Makefile.am.diff \
--           file://mono-2.11/data/config.in.diff"
-+           file://Makefile.am.diff \
-+           file://patch-mono-atomic-armv6.patch \
-+           file://data/config.in.diff \
-+	   "
- 
- SRC_URI[md5sum] = "8f31f366da9f7e4b69ee23e8bf5b6b3d"
- SRC_URI[sha256sum] = "de6515a4e1f73229711eaa5557009ec59a676554f8d48c45fc88944afd720f85"
-diff --git a/recipes-mono/mono/files/mono-2.11/Makefile.am.diff b/recipes-mono/mono/mono-2.11/Makefile.am.diff
-similarity index 100%
-rename from recipes-mono/mono/files/mono-2.11/Makefile.am.diff
-rename to recipes-mono/mono/mono-2.11/Makefile.am.diff
-diff --git a/recipes-mono/mono/files/mono-2.11/data/config.in.diff b/recipes-mono/mono/mono-2.11/data/config.in.diff
-similarity index 100%
-rename from recipes-mono/mono/files/mono-2.11/data/config.in.diff
-rename to recipes-mono/mono/mono-2.11/data/config.in.diff
-diff --git a/recipes-mono/mono/files/patch-mono-atomic-armv6.patch b/recipes-mono/mono/mono-2.11/patch-mono-atomic-armv6.patch
-similarity index 100%
-rename from recipes-mono/mono/files/patch-mono-atomic-armv6.patch
-rename to recipes-mono/mono/mono-2.11/patch-mono-atomic-armv6.patch
-diff --git a/recipes-mono/mono/mono-native_2.10.8.1.bb b/recipes-mono/mono/mono-native_2.10.8.1.bb
-index a73152f..f0c8df7 100644
---- a/recipes-mono/mono/mono-native_2.10.8.1.bb
-+++ b/recipes-mono/mono/mono-native_2.10.8.1.bb
-@@ -1,15 +1,17 @@
--require mono-2.10.8.1.inc
-+require mono-${PV}.inc
- 
- inherit native autotools
- 
-+FILESPATH =. "${FILE_DIRNAME}/mono-${PV}:"
-+
- PR = "r1"
- 
- EXTRA_OECONF += "mono_cv_uscore=no --with-tls=pthread --with-sigaltstack=no --with-mcs-docs=no"
- 
- do_configure_prepend() {
--    autoreconf -Wcross --verbose --install --force || bbnote "mono-native failed to autoreconf"
--    sed -e "s/libtool/${BUILD_SYS}-libtool/" -i runtime/monodis-wrapper.in
--    sed -e "s/libtool/${BUILD_SYS}-libtool/" -i runtime/mono-wrapper.in
-+	autoreconf -Wcross --verbose --install --force || bbnote "mono-native failed to autoreconf"
-+	sed -e "s/libtool/${BUILD_SYS}-libtool/" -i runtime/monodis-wrapper.in
-+	sed -e "s/libtool/${BUILD_SYS}-libtool/" -i runtime/mono-wrapper.in
- 	sed -e "s/slash\}libtool/slash\}${HOST_SYS}-libtool/" -i acinclude.m4
- 	sed -e "s/slash\}libtool/slash\}${HOST_SYS}-libtool/" -i libgc/acinclude.m4
- 	sed -e "s/slash\}libtool/slash\}${HOST_SYS}-libtool/" -i eglib/acinclude.m4
-diff --git a/recipes-mono/mono/mono-native_2.11.bb b/recipes-mono/mono/mono-native_2.11.bb
-index 8b4f9f6..a64f9f8 100644
---- a/recipes-mono/mono/mono-native_2.11.bb
-+++ b/recipes-mono/mono/mono-native_2.11.bb
-@@ -1,21 +1,18 @@
--require mono-2.11.inc
-+require mono-${PV}.inc
- 
- inherit native autotools
- 
-+FILESPATH =. "${FILE_DIRNAME}/mono-${PV}:"
-+
- PR = "r1"
- 
- EXTRA_OECONF += "mono_cv_uscore=no --with-tls=pthread --with-sigaltstack=no --with-mcs-docs=no"
- 
- do_configure_prepend() {
--    autoreconf -Wcross --verbose --install --force || bbnote "mono-native failed to autoreconf"
--    sed -e "s/libtool/${BUILD_SYS}-libtool/" -i runtime/monodis-wrapper.in
--    sed -e "s/libtool/${BUILD_SYS}-libtool/" -i runtime/mono-wrapper.in
-+	autoreconf -Wcross --verbose --install --force || bbnote "mono-native failed to autoreconf"
-+	sed -e "s/libtool/${BUILD_SYS}-libtool/" -i runtime/monodis-wrapper.in
-+	sed -e "s/libtool/${BUILD_SYS}-libtool/" -i runtime/mono-wrapper.in
- 	sed -e "s/slash\}libtool/slash\}${HOST_SYS}-libtool/" -i acinclude.m4
- 	sed -e "s/slash\}libtool/slash\}${HOST_SYS}-libtool/" -i libgc/acinclude.m4
- 	sed -e "s/slash\}libtool/slash\}${HOST_SYS}-libtool/" -i eglib/acinclude.m4
- }
 -
--#
--# Add patch to remove armv6 define() in atomic.h (breaks compiler for armv6)
--#
--SRC_URI += "file://patch-mono-native-atomic-armv6.patch"
-diff --git a/recipes-mono/mono/mono_2.10.8.1.bb b/recipes-mono/mono/mono_2.10.8.1.bb
-index 394d9ff..59c1048 100644
---- a/recipes-mono/mono/mono_2.10.8.1.bb
-+++ b/recipes-mono/mono/mono_2.10.8.1.bb
-@@ -1,4 +1,4 @@
--require mono-2.10.8.1.inc
-+require mono-${PV}.inc
+ PR = "r5"
  
- inherit autotools pkgconfig
+ DEPENDS = "mono"
+@@ -21,16 +20,14 @@ SRC_URI = "http://go-mono.com/sources/xsp/xsp-${PV}.tar.bz2"
  
-diff --git a/recipes-mono/mono/mono_2.11.bb b/recipes-mono/mono/mono_2.11.bb
-index fa55e1b..a5fdbcf 100644
---- a/recipes-mono/mono/mono_2.11.bb
-+++ b/recipes-mono/mono/mono_2.11.bb
-@@ -1,4 +1,4 @@
--require mono-2.11.inc
-+require mono-${PV}.inc
+ S = "${WORKDIR}/xsp-${PV}"
  
- inherit autotools pkgconfig
+-PACKAGES = "${PN}-dbg \
++PACKAGES += "\
+ 	libmono-webserver1.0-cil \
+ 	libmono-webserver2.0-cil \
+ 	mono-xsp \
+-	mono-xsp2 \
+-	mono-xsp-test \
++	${PN}2 \
++	${PN}-test \
+ 	mono-mod-mono-server \
+ 	mono-mod-mono-server2 \
+-	mono-xsp-doc \
+-	mono-xsp-dev \
+ 	"
  
-@@ -29,9 +29,3 @@ FILES_${PN} += "${libdir}/libMonoPosixHelper.so"
- FILES_${PN} += "${libdir}/libMonoSupportW.so"
+ FILES_libmono-webserver1.0-cil-dbg += " \
+@@ -91,11 +88,11 @@ FILES_mono-mod-mono-server2 = "\
+ 	/usr/lib/mono/2.0/mod-mono-server2.exe \
+ 	/usr/bin/mod-mono-server2 \
+ 	"
+-FILES_mono-xsp-dev = "\
++FILES_${PN}-dev = "\
+ 	/usr/lib/pkgconfig/xsp.pc \
+ 	/usr/lib/pkgconfig/xsp-2.pc \
+ 	"
+-FILES_mono-xsp-test = " \
++FILES_${PN}-test = " \
+ 	/usr/lib/xsp/test/1.1/authtest/index.aspx \
+ 	/usr/lib/xsp/test/1.1/authtest/login.aspx \
+ 	/usr/lib/xsp/test/1.1/authtest/web.config \
+@@ -228,7 +225,5 @@ FILES_mono-xsp-test = " \
+ 	/usr/lib/xsp/test/2.0/masterpages/content2.aspx \
+ 	"
  
- INSANE_SKIP_${PN} = "arch dev-so debug-files"
 -
--#
--# Add patch to remove armv6 define() in atomic.h (breaks compiler for armv6)
--#
--SRC_URI += " file://patch-mono-atomic-armv6.patch"
 -
+ SRC_URI[md5sum] = "adb7871e5ebeefcf8ed959523442c0fb"
+ SRC_URI[sha256sum] = "25c246b7ed3e82a5f3562c2c15db551332830de4c238a53e3260ab7d40cd015a"
 -- 
 1.8.3.2
 
