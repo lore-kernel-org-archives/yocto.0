@@ -1,28 +1,37 @@
-Return-Path: <bmentink@gmail.com>
-Received: from mail-ie0-f171.google.com (mail-ie0-f171.google.com
-	[209.85.223.171])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4BD4AE016E3
-	for <yocto@yoctoproject.org>; Mon,  4 Nov 2013 13:42:27 -0800 (PST)
-Received: by mail-ie0-f171.google.com with SMTP id tp5so13166457ieb.2
-	for <yocto@yoctoproject.org>; Mon, 04 Nov 2013 13:42:26 -0800 (PST)
+Return-Path: <martin.jansa@gmail.com>
+Received: from mail-ee0-f50.google.com (mail-ee0-f50.google.com [74.125.83.50])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 93F37E016E3
+	for <yocto@yoctoproject.org>; Mon,  4 Nov 2013 14:06:30 -0800 (PST)
+Received: by mail-ee0-f50.google.com with SMTP id b45so651816eek.37
+	for <yocto@yoctoproject.org>; Mon, 04 Nov 2013 14:06:29 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=ng+ZoXX+JAJ72AChPpoh0hxmWHM8idPEscqFf4f4Nhk=;
-	b=SJVHmn62ssVbIn7msEud/GQz5mrPvNJIWfEKDCclJ6rjM2hkXxQnzhELaY4wVHUoAT
-	Z6sA0ws3xV+41AFxrD2AZRtmScPRsAeDLv0gYjEfadng96kj5sKb+7rxFGLvzUNYCDfQ
-	HPLbOfAQ9e0BRyrCjq3eu5hx8vYEM/gNt0pzMcnVBZSB8MQ1Xn7J4ALPogG+sJZys7nM
-	fXCqxiGmG9q6lV7SWjb7lAzMmJIy+XgTugvKIHQxhfFEOxbBF/x39XeS4DXFJCdBkBAj
-	JTkiPwfV4n80K6aGlJm20vcRz+/AIwSU6ohE9pEwuiZOEVuHV0Ieo9ic2CIndluJzPjZ
-	RSog==
+	h=date:from:to:cc:subject:message-id:references:mime-version
+	:content-type:content-disposition:in-reply-to:user-agent;
+	bh=qNObiO3l4WfY9HQ+a0a+mEix/HN29xyAz3PwP452++4=;
+	b=QSVaIp7oWY7nvVD1hh7GI+rJMLK/QOMoQHVeya5Jdu0KkOhaHMB51RYIzKshUnWmx/
+	yB+7z3DVNezbv/HKmQosIdarfRvPDpWLPi0t2zQqg6je7B0J4lN6s0Ny3JzcUCOMrVlk
+	7PJGtrwxFlcVOXYSUn8aOhOQFsVk3cSl+yxcxHDgo5iU8Xion7qLt6m5RfWCE8XwlVDl
+	y38gBT4GIEzbm2PZEqNy5Jw/Cp/Qi+Y0KKps3dapzbQTBFUFpV4f4bfHjrXI9nMEBppX
+	PVSZbaZquvaBPhlzqOTu6/oZ17NAKmbJ8RVz9cP6ShakY18nKgxLfrKrmfwv8B783Cul
+	W68g==
+X-Received: by 10.14.174.131 with SMTP id x3mr20723078eel.25.1383602789636;
+	Mon, 04 Nov 2013 14:06:29 -0800 (PST)
+Received: from localhost (ip-89-176-104-107.net.upcbroadband.cz.
+	[89.176.104.107])
+	by mx.google.com with ESMTPSA id z1sm26022254eeo.14.2013.11.04.14.06.27
+	for <multiple recipients>
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Mon, 04 Nov 2013 14:06:28 -0800 (PST)
+Date: Mon, 4 Nov 2013 23:06:36 +0100
+From: Martin Jansa <martin.jansa@gmail.com>
+To: Bernard Mentink <bmentink@gmail.com>
+Message-ID: <20131104220636.GH3684@jama>
+References: <CALEed8Y_1TgNgF05H+YvJKnMDWhbeOVEb0vTCCdH+LECGzZM9w@mail.gmail.com>
 MIME-Version: 1.0
-X-Received: by 10.50.118.41 with SMTP id kj9mr13482706igb.9.1383601346829;
-	Mon, 04 Nov 2013 13:42:26 -0800 (PST)
-Received: by 10.43.83.9 with HTTP; Mon, 4 Nov 2013 13:42:26 -0800 (PST)
-Date: Tue, 5 Nov 2013 10:42:26 +1300
-Message-ID: <CALEed8Y_1TgNgF05H+YvJKnMDWhbeOVEb0vTCCdH+LECGzZM9w@mail.gmail.com>
-From: Bernard Mentink <bmentink@gmail.com>
-To: yocto@yoctoproject.org
-Subject: Module loading issue
+In-Reply-To: <CALEed8Y_1TgNgF05H+YvJKnMDWhbeOVEb0vTCCdH+LECGzZM9w@mail.gmail.com>
+User-Agent: Mutt/1.5.22 (2013-10-16)
+Cc: yocto@yoctoproject.org
+Subject: Re: Module loading issue
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,43 +43,65 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 04 Nov 2013 21:42:30 -0000
-Content-Type: multipart/alternative; boundary=089e011769a3ca03f904ea60caa2
+X-List-Received-Date: Mon, 04 Nov 2013 22:06:32 -0000
+X-Groupsio-MsgNum: 16959
+Content-Type: multipart/signed; micalg=pgp-sha1;
+	protocol="application/pgp-signature"; boundary="Hlh2aiwFLCZwGcpw"
+Content-Disposition: inline
 
---089e011769a3ca03f904ea60caa2
-Content-Type: text/plain; charset=ISO-8859-1
+--Hlh2aiwFLCZwGcpw
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Hi Guys,
+On Tue, Nov 05, 2013 at 10:42:26AM +1300, Bernard Mentink wrote:
+> Hi Guys,
+>=20
+> I am having trouble loading some kernel CAN modules so that they go in my
+> image.
+>=20
+> I have the following lines in my layers .conf file:
+>=20
+> MACHINE_ESSENTIAL_EXTRA_RRECOMMENDS +=3D "kernel-module-can-dev"
+> MACHINE_ESSENTIAL_EXTRA_RRECOMMENDS +=3D "kernel-module-c_can"
+> MACHINE_ESSENTIAL_EXTRA_RRECOMMENDS +=3D "kernel-module-c_can_platform"
 
-I am having trouble loading some kernel CAN modules so that they go in my
-image.
+Try:
+s/_/-/g
 
-I have the following lines in my layers .conf file:
+> MACHINE_ESSENTIAL_EXTRA_RRECOMMENDS +=3D "kernel-module-can"
+> MACHINE_ESSENTIAL_EXTRA_RRECOMMENDS +=3D "kernel-module-can-raw"
+> MACHINE_ESSENTIAL_EXTRA_RRECOMMENDS +=3D "kernel-module-mcp2515"
+>=20
+> all the modules end up in the rootfs except c_can and c_can_platform.
+> All modules are built as modules.
+>=20
+> They end up in the deply/images/modules* tarball, but not in the rootfs ..
+>=20
+> Hopefully someone can suggest a solution.
+>=20
+> Cheers,
+> Bernie
 
-MACHINE_ESSENTIAL_EXTRA_RRECOMMENDS += "kernel-module-can-dev"
-MACHINE_ESSENTIAL_EXTRA_RRECOMMENDS += "kernel-module-c_can"
-MACHINE_ESSENTIAL_EXTRA_RRECOMMENDS += "kernel-module-c_can_platform"
-MACHINE_ESSENTIAL_EXTRA_RRECOMMENDS += "kernel-module-can"
-MACHINE_ESSENTIAL_EXTRA_RRECOMMENDS += "kernel-module-can-raw"
-MACHINE_ESSENTIAL_EXTRA_RRECOMMENDS += "kernel-module-mcp2515"
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
-all the modules end up in the rootfs except c_can and c_can_platform.
-All modules are built as modules.
 
-They end up in the deply/images/modules* tarball, but not in the rootfs ..
+--=20
+Martin 'JaMa' Jansa     jabber: Martin.Jansa@gmail.com
 
-Hopefully someone can suggest a solution.
+--Hlh2aiwFLCZwGcpw
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: Digital signature
 
-Cheers,
-Bernie
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v2.0.22 (GNU/Linux)
 
---089e011769a3ca03f904ea60caa2
-Content-Type: text/html; charset=ISO-8859-1
+iEYEARECAAYFAlJ4GmwACgkQN1Ujt2V2gBw/ugCgj0KbC5ZHzjxekkGwzBLmePst
+jNQAnAzHnCw5R6mm4y5mRAhc8EN/jzK7
+=4227
+-----END PGP SIGNATURE-----
 
-<div dir="ltr">Hi Guys,<div><br></div><div>I am having trouble loading some kernel CAN modules so that they go in my image.</div><div><br></div><div>I have the following lines in my layers .conf file:</div><div><br></div><div>
-<div>MACHINE_ESSENTIAL_EXTRA_RRECOMMENDS += &quot;kernel-module-can-dev&quot;</div><div>MACHINE_ESSENTIAL_EXTRA_RRECOMMENDS += &quot;kernel-module-c_can&quot;</div><div>MACHINE_ESSENTIAL_EXTRA_RRECOMMENDS += &quot;kernel-module-c_can_platform&quot;</div>
-<div>MACHINE_ESSENTIAL_EXTRA_RRECOMMENDS += &quot;kernel-module-can&quot;</div><div>MACHINE_ESSENTIAL_EXTRA_RRECOMMENDS += &quot;kernel-module-can-raw&quot;</div><div>MACHINE_ESSENTIAL_EXTRA_RRECOMMENDS += &quot;kernel-module-mcp2515&quot;</div>
-</div><div><br></div><div>all the modules end up in the rootfs except c_can and c_can_platform.</div><div>All modules are built as modules.</div><div><br></div><div>They end up in the deply/images/modules* tarball, but not in the rootfs ..</div>
-<div><br></div><div>Hopefully someone can suggest a solution.</div><div><br></div><div>Cheers,</div><div>Bernie</div></div>
-
---089e011769a3ca03f904ea60caa2--
+--Hlh2aiwFLCZwGcpw--
