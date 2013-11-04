@@ -1,24 +1,25 @@
 Return-Path: <paul.eggleton@linux.intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BD020E017AB
-	for <yocto@yoctoproject.org>; Mon,  4 Nov 2013 03:29:29 -0800 (PST)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga102.jf.intel.com with ESMTP; 04 Nov 2013 03:26:02 -0800
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 97380E017AB
+	for <yocto@yoctoproject.org>; Mon,  4 Nov 2013 05:51:47 -0800 (PST)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga101.jf.intel.com with ESMTP; 04 Nov 2013 05:51:47 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.93,535,1378882800"; d="scan'208";a="403272160"
+X-IronPort-AV: E=Sophos;i="4.93,535,1378882800"; d="scan'208";a="429506518"
 Received: from pauljbro-mobl.ger.corp.intel.com (HELO helios.localnet)
 	([10.252.121.96])
-	by orsmga001.jf.intel.com with ESMTP; 04 Nov 2013 03:29:28 -0800
+	by orsmga002.jf.intel.com with ESMTP; 04 Nov 2013 05:51:45 -0800
 From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: yocto@yoctoproject.org
-Date: Mon, 04 Nov 2013 11:29:27 +0000
-Message-ID: <3111944.mOI84hoDJY@helios>
+To: "Robert P. J. Day" <rpjday@crashcourse.ca>
+Date: Mon, 04 Nov 2013 13:51:45 +0000
+Message-ID: <1450063.buI5QxrpXB@helios>
 Organization: Intel Corporation
 User-Agent: KMail/4.10.5 (Linux/3.8.0-31-generic; KDE/4.10.5; i686; ; )
-In-Reply-To: <alpine.DEB.2.02.1311020507080.20522@oneiric>
-References: <alpine.DEB.2.02.1311020507080.20522@oneiric>
+In-Reply-To: <alpine.DEB.2.02.1311030529100.31130@oneiric>
+References: <alpine.DEB.2.02.1311030529100.31130@oneiric>
 MIME-Version: 1.0
-Subject: Re: coding style: hardcoding package names instead of using PN/BPN/etc
+Cc: yocto@yoctoproject.org, Scott Rifenbark <srifenbark@gmail.com>
+Subject: Re: numerous questions about some ref manual variable glossary entries
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -30,40 +31,59 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 04 Nov 2013 11:29:30 -0000
+X-List-Received-Date: Mon, 04 Nov 2013 13:51:55 -0000
 Content-Transfer-Encoding: 7Bit
 Content-Type: text/plain; charset="us-ascii"
 
-On Saturday 02 November 2013 05:14:10 Robert P. J. Day wrote:
->   i figure the answer is obvious but i'll ask it anyway -- is it
-> reasonable to encourage new developers to use the general packagename
-> variables such as PN and BPN rather than hardcoding packagenames in
-> their recipe files?
+Hi Robert,
 
-Generally yes, but see below.
+On Sunday 03 November 2013 05:53:54 Robert P. J. Day wrote:
+>   wasn't sure what to do about some of these so i'd appreciate some
+> clarification. and away we go, mostly in alphabetical order ...
+> 
+> http://www.yoctoproject.org/docs/latest/ref-manual/ref-manual.html#var-BBLAY
+> ERS_NON_REMOVABLE
+> 
+>   that entry *really* implies you need the meta-yocto and
+> meta-yocto-bsp layers for a successful build, which clearly isn't true
+> as lots of layers work with simply oe-core. can/should that
+> explanation be reworded to not be quite so emphatic?
+
+Yes, agreed. The entry should mention that this variable is only actually used 
+by Hob as well.
+
+> http://www.yoctoproject.org/docs/latest/ref-manual/ref-manual.html#var-INITS
+> CRIPT_NAME
+>
+>   reference to ${etcdir} ... how exactly does that differ from
+> ${sysconfdir}? i've always understood that developers should use
+> ${sysconfdir} in their recipe files.
+
+I don't know where this came from but it is wrong. It should say ${sysconfdir} 
+instead.
  
->   typically, you see things like this in recipe files:
+> http://www.yoctoproject.org/docs/latest/ref-manual/ref-manual.html#var-NO_RE
+> COMMENDATIONS
+> http://www.yoctoproject.org/docs/latest/ref-manual/ref-manual.html#var-PACK
+> AGE_EXCLUDE
 > 
-> ALLOW_EMPTY_${PN} = "1"
-> ALLOW_EMPTY_${PN}-staticdev = "1"
-> 
-> and so on. but, occasionally, someone decides to (unnecessarily?)
-> hardcode the package name, as in:
-> 
-> gst-va-intel.bb:ALLOW_EMPTY_gst-va-intel = "1"
-> gst-va-intel.bb:ALLOW_EMPTY_gst-va-intel-general = "1"
-> gst-va-intel.bb:ALLOW_EMPTY_gst-va-intel-video = "1"
-> gst-va-intel.bb:ALLOW_EMPTY_gst-va-intel-vaapi = "1"
-> 
-> i'm *assuming* the above could have been written more concisely by
-> using ${PN}, correct? is there a coding style preference that users
-> should be *encouraged* to use? is there a general coding style guide
-> anywhere?
+>   both of those claim no support for DEB packaging, is that still
+> true? i still don't know enough python to check the actual code but
+> i'm getting there.
 
-Whatever you put here it really needs to match up with what goes into PACKAGES 
-- i.e. if you're putting explicit names in PACKAGES then use those here, if 
-using ${PN} then use that here. If they don't match up, you'll get odd things  
-happening if the recipe is renamed or when you use multilib / BBCLASSEXTEND.
+Yes, these were only introduced recently and AFAIK this is still the case.
+
+> http://www.yoctoproject.org/docs/latest/ref-manual/ref-manual.html#var-RPROV
+> IDES
+> 
+>   claims that a package's own name is already implicitly provided in
+> its RPROVIDES list. doesn't seem that way -- it's true for PROVIDES,
+> but doesn't seem true for RPROVIDES. thoughts?
+
+It was me who got Scott to add this - I did so after seeing a number of people 
+trying to do RPROVIDES_${PN} = "recipename" in the hope of fixing some problem 
+they were having; but this won't do anything. What makes you think it isn't 
+the case?
 
 Cheers,
 Paul
