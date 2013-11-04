@@ -1,36 +1,38 @@
-Return-Path: <raj.khem@gmail.com>
-Received: from mail-pa0-f46.google.com (mail-pa0-f46.google.com
-	[209.85.220.46])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0900CE017E9
-	for <yocto@yoctoproject.org>; Sun,  3 Nov 2013 14:48:43 -0800 (PST)
-Received: by mail-pa0-f46.google.com with SMTP id rd3so6231123pab.33
-	for <yocto@yoctoproject.org>; Sun, 03 Nov 2013 14:48:43 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=from:to:cc:subject:date:message-id:in-reply-to:references;
-	bh=tDKteAhSWD4Ykbnjyq7/Xm9rekdSO9RS2eKNlcgpni8=;
-	b=TEzbHeHNd3iwAKMwdfeY2Y60JfAid+SYmVAQfXFJUoLirkn6K80ECRAkyH/Rel5A+7
-	3dVOsrc++1R2izRvaIs2tQh8KnKYrQaDeOHZ4AT8/xBX6jcDTn/LQztbhUIh3scNL293
-	4R4rs2gJWGIMTBn8KZmy6sKETT3NugKaziZ5P1Outx44zZN/JjhVGkxGqkR+PVy7vfin
-	nBoIj69+d/PzQ55l9+9OOL2HdkMtC6YPVzIeh3x1G9+UibHfd3ueRVgTzzR91OUybpwH
-	M84y5kMD6Pi+aB0fMmq90/BdWRBSdiRO0sSodzxZ2AQdK2p/CpSgm/o9bprXu0Bpvd0V
-	7uQg==
-X-Received: by 10.68.232.74 with SMTP id tm10mr14841837pbc.64.1383518923579;
-	Sun, 03 Nov 2013 14:48:43 -0800 (PST)
-Received: from haswell.gateway.2wire.net
-	(99-57-140-209.lightspeed.sntcca.sbcglobal.net. [99.57.140.209])
-	by mx.google.com with ESMTPSA id
-	sg1sm24195713pbb.16.2013.11.03.14.48.42 for <multiple recipients>
-	(version=TLSv1.1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
-	Sun, 03 Nov 2013 14:48:43 -0800 (PST)
-From: Khem Raj <raj.khem@gmail.com>
-To: autif.mlist@gmail.com,
-	yocto@yoctoproject.org
-Date: Sun,  3 Nov 2013 14:47:55 -0800
-Message-Id: <1383518875-32046-2-git-send-email-raj.khem@gmail.com>
-X-Mailer: git-send-email 1.8.3.2
-In-Reply-To: <1383518875-32046-1-git-send-email-raj.khem@gmail.com>
-References: <1383518875-32046-1-git-send-email-raj.khem@gmail.com>
-Subject: [meta-mono][PATCH 2/2] mono-xsp: Fix parse warnings
+Return-Path: <msvilans@aeonyx.ca>
+Received: from homiemail-a86.g.dreamhost.com (caiajhbdcaib.dreamhost.com
+	[208.97.132.81])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 558D9E016E3
+	for <yocto@yoctoproject.org>; Sun,  3 Nov 2013 16:43:28 -0800 (PST)
+Received: from homiemail-a86.g.dreamhost.com (localhost [127.0.0.1])
+	by homiemail-a86.g.dreamhost.com (Postfix) with ESMTP id 2438C36006D;
+	Sun,  3 Nov 2013 16:43:28 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha1; c=relaxed; d=aeonyx.ca; h=message-id
+	:date:from:mime-version:to:cc:subject:references:in-reply-to
+	:content-type:content-transfer-encoding; s=aeonyx.ca; bh=P32Zo/e
+	seU83vtFAZP3M/prfOOI=; b=P7S/WZzzyE39+tUJUJXZ+uYpocMDcpvupr+Hii2
+	0PeMEkErH0RCT5N7zCCeW0/VJ5frBz28abxc4eYHFM9sMcnGZktehb5uuekYfhwB
+	F6Cmy9aWrcrJAlj0TH1FFTeuQ0UHvAdcqy5D0ow0JQteXi9irwcl5w+X5A+mlz/M
+	pZlY=
+Received: from [192.168.1.127] (216-167-250-35.eastlink.ca [216.167.250.35])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	(Authenticated sender: msvilans@aeonyx.ca)
+	by homiemail-a86.g.dreamhost.com (Postfix) with ESMTPSA id B49C836006B; 
+	Sun,  3 Nov 2013 16:43:27 -0800 (PST)
+Message-ID: <5276EDAE.4000106@aeonyx.ca>
+Date: Sun, 03 Nov 2013 19:43:26 -0500
+From: Markus Svilans <msvilans@aeonyx.ca>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:24.0) Gecko/20100101 Thunderbird/24.1.0
+MIME-Version: 1.0
+To: Khem Raj <raj.khem@gmail.com>
+References: <52702B41.1040504@aeonyx.ca> <52703CE8.9020306@aeonyx.ca>
+	<CAMKF1spWtCmptujJk_N3AUz3v961+T+JibJtbFpZmF7ZEB3VFA@mail.gmail.com>
+	<52706EC2.1020409@aeonyx.ca> <5272DE46.7080005@aeonyx.ca>
+	<CAMKF1soYjrHyP1dJ12nkc_9NQswwpzT2xW9mgGzeghO=K8yyTQ@mail.gmail.com>
+In-Reply-To: <CAMKF1soYjrHyP1dJ12nkc_9NQswwpzT2xW9mgGzeghO=K8yyTQ@mail.gmail.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Fail to build core-image-minimal when MACHINE=genericx86-64
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,74 +44,53 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 03 Nov 2013 22:48:45 -0000
+X-List-Received-Date: Mon, 04 Nov 2013 00:43:30 -0000
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-WARNING: Variable key FILES_${PN}-dev (${includedir} ${FILES_SOLIBSDEV}
-${libdir}/*.la ${libdir}/*.o ${libdir}/pkgconfig ${datadir}/pkgconfig
-${datadir}/aclocal ${base_libdir}/*.o ${libdir}/${BPN}/*.la
-${base_libdir}/*.la) replaces original key FILES_mono-xsp-dev (
-/usr/lib/pkgconfig/xsp.pc       /usr/lib/pkgconfig/xsp-2.pc     ).
+Hi Khem,
 
-Signed-off-by: Khem Raj <raj.khem@gmail.com>
----
- recipes-mono/mono-xsp/mono-xsp_1.2.5.bb | 15 +++++----------
- 1 file changed, 5 insertions(+), 10 deletions(-)
+Per your suggestion, I installed gcc-multilib and was able to build 
+syslinux and core-image-minimal. Wonderful!
 
-diff --git a/recipes-mono/mono-xsp/mono-xsp_1.2.5.bb b/recipes-mono/mono-xsp/mono-xsp_1.2.5.bb
-index b27e74e..648477a 100644
---- a/recipes-mono/mono-xsp/mono-xsp_1.2.5.bb
-+++ b/recipes-mono/mono-xsp/mono-xsp_1.2.5.bb
-@@ -7,7 +7,6 @@ SECTION = "devel/mono"
- #  - scripts in /usr/bin contain the wrong paths
- #
- 
--
- PR = "r5"
- 
- DEPENDS = "mono"
-@@ -21,16 +20,14 @@ SRC_URI = "http://go-mono.com/sources/xsp/xsp-${PV}.tar.bz2"
- 
- S = "${WORKDIR}/xsp-${PV}"
- 
--PACKAGES = "${PN}-dbg \
-+PACKAGES += "\
- 	libmono-webserver1.0-cil \
- 	libmono-webserver2.0-cil \
- 	mono-xsp \
--	mono-xsp2 \
--	mono-xsp-test \
-+	${PN}2 \
-+	${PN}-test \
- 	mono-mod-mono-server \
- 	mono-mod-mono-server2 \
--	mono-xsp-doc \
--	mono-xsp-dev \
- 	"
- 
- FILES_libmono-webserver1.0-cil-dbg += " \
-@@ -91,11 +88,11 @@ FILES_mono-mod-mono-server2 = "\
- 	/usr/lib/mono/2.0/mod-mono-server2.exe \
- 	/usr/bin/mod-mono-server2 \
- 	"
--FILES_mono-xsp-dev = "\
-+FILES_${PN}-dev = "\
- 	/usr/lib/pkgconfig/xsp.pc \
- 	/usr/lib/pkgconfig/xsp-2.pc \
- 	"
--FILES_mono-xsp-test = " \
-+FILES_${PN}-test = " \
- 	/usr/lib/xsp/test/1.1/authtest/index.aspx \
- 	/usr/lib/xsp/test/1.1/authtest/login.aspx \
- 	/usr/lib/xsp/test/1.1/authtest/web.config \
-@@ -228,7 +225,5 @@ FILES_mono-xsp-test = " \
- 	/usr/lib/xsp/test/2.0/masterpages/content2.aspx \
- 	"
- 
--
--
- SRC_URI[md5sum] = "adb7871e5ebeefcf8ed959523442c0fb"
- SRC_URI[sha256sum] = "25c246b7ed3e82a5f3562c2c15db551332830de4c238a53e3260ab7d40cd015a"
--- 
-1.8.3.2
+Thank you for having a look at this problem and finding the fix.
+
+May I suggest that the Ubuntu/Debian section in Yocto Quick Start 
+documentation 
+(https://www.yoctoproject.org/docs/current/yocto-project-qs/yocto-project-qs.html) 
+be updated with this new information? Should I file a bug report to help 
+this happen?
+
+Best regards,
+Markus
+
+
+
+On 11/03/2013 03:37 PM, Khem Raj wrote:
+> On Thu, Oct 31, 2013 at 3:48 PM, Markus Svilans <msvilans@aeonyx.ca> wrote:
+>> With the help of a friend, have confirmed that 'core-image-minimal' cannot
+>> be built with Ubuntu 13.10 64-bit when MACHINE=genericx86-64. Attempted the
+>> build on a different machine in a different city, same results (failure to
+>> build).
+>>
+>> Confirmed that 'core-image-minimal' can be successfully built under an lxc
+>> and a chroot running Debian Wheezy, on Ubuntu 13.10 64-bit, with
+>> MACHINE=genericx86-64.
+>>
+>> Filed bug 5440 on Yocto Bugzilla.
+>> https://bugzilla.yoctoproject.org/show_bug.cgi?id=5440
+>>
+> accidentally I was able to reproduce it. So it seems that syslinux
+> depends on compiler supporting 32bit+64bit mix
+> and it has probes to enquire the compiler for supporting the above.
+> Now if you have standard install of ubuntu you
+> do not have gcc-multilib installed and hence the problem.
+>
+> So, I would say the fix is to install gcc-multilib package on
+> debian-like systems and something similar for other distros
+>
+> sudo apt-get install gcc-multilib
+>
+> and then clean build syslinux-native should get you going
 
 
