@@ -1,25 +1,28 @@
-Return-Path: <paul.eggleton@linux.intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 97380E017AB
-	for <yocto@yoctoproject.org>; Mon,  4 Nov 2013 05:51:47 -0800 (PST)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga101.jf.intel.com with ESMTP; 04 Nov 2013 05:51:47 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.93,535,1378882800"; d="scan'208";a="429506518"
-Received: from pauljbro-mobl.ger.corp.intel.com (HELO helios.localnet)
-	([10.252.121.96])
-	by orsmga002.jf.intel.com with ESMTP; 04 Nov 2013 05:51:45 -0800
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: "Robert P. J. Day" <rpjday@crashcourse.ca>
-Date: Mon, 04 Nov 2013 13:51:45 +0000
-Message-ID: <1450063.buI5QxrpXB@helios>
-Organization: Intel Corporation
-User-Agent: KMail/4.10.5 (Linux/3.8.0-31-generic; KDE/4.10.5; i686; ; )
-In-Reply-To: <alpine.DEB.2.02.1311030529100.31130@oneiric>
-References: <alpine.DEB.2.02.1311030529100.31130@oneiric>
+Return-Path: <hans.beckerus@gmail.com>
+Received: from mail-ob0-f170.google.com (mail-ob0-f170.google.com
+	[209.85.214.170])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9B85FE01351
+	for <yocto@yoctoproject.org>; Mon,  4 Nov 2013 06:50:26 -0800 (PST)
+Received: by mail-ob0-f170.google.com with SMTP id wp18so7208406obc.1
+	for <yocto@yoctoproject.org>; Mon, 04 Nov 2013 06:50:25 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=MqWzaxDN51RzmkWikpvNoXyAbRXXG7OvE76E3NmB94o=;
+	b=bOFseKxZMVHdQ/DZxu3bGwNsXRewSkMuakJla18e5TMkwUfgjqfxeM+V2HOTMKky7S
+	AQ4e7AMDEaxZMXiohe4buSCxqpVkF09zc+dct7w9laRpYkgZj1ToA97x8+PnQUKXZl86
+	KwTMEjT+lymA+oPQS41M8OWSaDgkYfwc4YdVL4SlgyHcU1d67wTf+gdH7xejWcECGhmQ
+	ebjqSe5CloNvPDXHiDEFsCjw/tshc6K0IKQF8Mwmq39iCQaN1bzVfW8c4UKSKvjR+T6e
+	nywQqHd1SPJoa15PbKpb/ed+XTX+MuC5LuCrnTx4QDEonBNdy/eNU8TP45P0HzvfmRTZ
+	AuMQ==
 MIME-Version: 1.0
-Cc: yocto@yoctoproject.org, Scott Rifenbark <srifenbark@gmail.com>
-Subject: Re: numerous questions about some ref manual variable glossary entries
+X-Received: by 10.60.142.8 with SMTP id rs8mr6108371oeb.34.1383576624831; Mon,
+	04 Nov 2013 06:50:24 -0800 (PST)
+Received: by 10.182.44.8 with HTTP; Mon, 4 Nov 2013 06:50:24 -0800 (PST)
+Date: Mon, 4 Nov 2013 15:50:24 +0100
+Message-ID: <CAFyqS9pZg6sAQ3ucvq9YJ9dce43DK2uWcP9vqyFWcAndnMr8dQ@mail.gmail.com>
+From: =?ISO-8859-1?Q?Hans_Beck=E9rus?= <hans.beckerus@gmail.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Yocto 1.5: busybox instead of tinylogin, need some help
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -31,65 +34,33 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 04 Nov 2013 13:51:55 -0000
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Mon, 04 Nov 2013 14:50:27 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
-Hi Robert,
+Hello. I am currently working on moving from Yocto 1.4 to 1.5 and
+instantly stumbled into a few minor problems (this being one of them).
+In 1.5 tinylogin is replaced by busybox. What we had before in our
+distro conf (it require poky.conf) was:
 
-On Sunday 03 November 2013 05:53:54 Robert P. J. Day wrote:
->   wasn't sure what to do about some of these so i'd appreciate some
-> clarification. and away we go, mostly in alphabetical order ...
-> 
-> http://www.yoctoproject.org/docs/latest/ref-manual/ref-manual.html#var-BBLAY
-> ERS_NON_REMOVABLE
-> 
->   that entry *really* implies you need the meta-yocto and
-> meta-yocto-bsp layers for a successful build, which clearly isn't true
-> as lots of layers work with simply oe-core. can/should that
-> explanation be reworded to not be quite so emphatic?
+# Use tmpdevfs and the busybox runtime services
+VIRTUAL-RUNTIME_dev_manager = ""
+VIRTUAL-RUNTIME_login_manager = "tinylogin"
+#VIRTUAL-RUNTIME_init_manager = ""
+VIRTUAL-RUNTIME_keymaps = ""
 
-Yes, agreed. The entry should mention that this variable is only actually used 
-by Hob as well.
+Obviously this does no longer work. Is it as easy as simply commenting
+out VIRTUAL-RUNTIME_login_manager and leave it at the default from
+packagegroup-core-boot?
+Will our old init-manager also be compatible? I believe we used
+tiny-init before?
+Another thing, since this will require a new set of busybox options to
+be enabled, and we need to modify it slightly, is there some concept
+similar to configuration fragments also available for busybox? Was
+thinking about how clumsy it is right now since our .bbappend for
+busybox basically copied the config from the poky base meta. Using
+configuration fragments would make it easier for us to migrate in the
+future.
 
-> http://www.yoctoproject.org/docs/latest/ref-manual/ref-manual.html#var-INITS
-> CRIPT_NAME
->
->   reference to ${etcdir} ... how exactly does that differ from
-> ${sysconfdir}? i've always understood that developers should use
-> ${sysconfdir} in their recipe files.
-
-I don't know where this came from but it is wrong. It should say ${sysconfdir} 
-instead.
- 
-> http://www.yoctoproject.org/docs/latest/ref-manual/ref-manual.html#var-NO_RE
-> COMMENDATIONS
-> http://www.yoctoproject.org/docs/latest/ref-manual/ref-manual.html#var-PACK
-> AGE_EXCLUDE
-> 
->   both of those claim no support for DEB packaging, is that still
-> true? i still don't know enough python to check the actual code but
-> i'm getting there.
-
-Yes, these were only introduced recently and AFAIK this is still the case.
-
-> http://www.yoctoproject.org/docs/latest/ref-manual/ref-manual.html#var-RPROV
-> IDES
-> 
->   claims that a package's own name is already implicitly provided in
-> its RPROVIDES list. doesn't seem that way -- it's true for PROVIDES,
-> but doesn't seem true for RPROVIDES. thoughts?
-
-It was me who got Scott to add this - I did so after seeing a number of people 
-trying to do RPROVIDES_${PN} = "recipename" in the hope of fixing some problem 
-they were having; but this won't do anything. What makes you think it isn't 
-the case?
-
-Cheers,
-Paul
-
--- 
-
-Paul Eggleton
-Intel Open Source Technology Centre
+Thanks.
+Hans
 
