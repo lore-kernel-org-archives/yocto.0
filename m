@@ -1,27 +1,31 @@
-Return-Path: <paul.eggleton@linux.intel.com>
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B02F7E01351
-	for <yocto@yoctoproject.org>; Mon,  4 Nov 2013 07:46:55 -0800 (PST)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga102.fm.intel.com with ESMTP; 04 Nov 2013 07:46:54 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.93,633,1378882800"; d="scan'208";a="427689219"
-Received: from pauljbro-mobl.ger.corp.intel.com (HELO helios.localnet)
-	([10.252.121.96])
-	by fmsmga002.fm.intel.com with ESMTP; 04 Nov 2013 07:46:23 -0800
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: "Robert P. J. Day" <rpjday@crashcourse.ca>
-Date: Mon, 04 Nov 2013 15:46:19 +0000
-Message-ID: <1536713.Ltcx6Vs6S8@helios>
-Organization: Intel Corporation
-User-Agent: KMail/4.10.5 (Linux/3.8.0-31-generic; KDE/4.10.5; i686; ; )
-In-Reply-To: <alpine.DEB.2.02.1311041033001.11558@oneiric>
-References: <alpine.DEB.2.02.1311030529100.31130@oneiric>
-	<1450063.buI5QxrpXB@helios>
-	<alpine.DEB.2.02.1311041033001.11558@oneiric>
+Return-Path: <hans.beckerus@gmail.com>
+Received: from mail-ob0-f181.google.com (mail-ob0-f181.google.com
+	[209.85.214.181])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 13CB4E0174E
+	for <yocto@yoctoproject.org>; Mon,  4 Nov 2013 07:51:10 -0800 (PST)
+Received: by mail-ob0-f181.google.com with SMTP id wp4so7121508obc.26
+	for <yocto@yoctoproject.org>; Mon, 04 Nov 2013 07:51:09 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:content-type:content-transfer-encoding;
+	bh=jOcMr77fd/18mVMzwqPNVZS5CVWArfDY0smnBVLToZY=;
+	b=MsodUbhZxawx516axw8l0FZuZzNWK+9XReu68lsFzarRa6sI6tP/63W2/D/aZ2q3Td
+	ydTZMzf8/HiBso093GuWXIOPgRSeMSc1gjdqJCazk03KdcPXcbCC5Y/8n14rXZwJqYrY
+	yEGo6COEyWeGewvA0gQxaqqvHH5FZc46Oaj+DpwZ7D/w38vdgn8NIEOwSQV13QiLTn9y
+	pp5wB+500/QMmqW4yp69k2hJ2jDx7rOo95n0E0XafiMlI4/EY4etFgq4ufVJ2gghbjjO
+	eyH/t7zLlJIb/ILYcnq3Se4tiYqqVh5vaHiwFlwwT/f01gsZA786OUXrhTN4wqW8CZgb
+	AjMw==
 MIME-Version: 1.0
-Cc: yocto@yoctoproject.org, Scott Rifenbark <srifenbark@gmail.com>
-Subject: Re: numerous questions about some ref manual variable glossary entries
+X-Received: by 10.60.144.230 with SMTP id sp6mr14885880oeb.29.1383580269577;
+	Mon, 04 Nov 2013 07:51:09 -0800 (PST)
+Received: by 10.182.44.8 with HTTP; Mon, 4 Nov 2013 07:51:09 -0800 (PST)
+In-Reply-To: <CAFyqS9pZg6sAQ3ucvq9YJ9dce43DK2uWcP9vqyFWcAndnMr8dQ@mail.gmail.com>
+References: <CAFyqS9pZg6sAQ3ucvq9YJ9dce43DK2uWcP9vqyFWcAndnMr8dQ@mail.gmail.com>
+Date: Mon, 4 Nov 2013 16:51:09 +0100
+Message-ID: <CAFyqS9pKewyq=bV9MrPgh5HU7gjW7QGD=XRP=Z9OvPJKLcfEJw@mail.gmail.com>
+From: =?ISO-8859-1?Q?Hans_Beck=E9rus?= <hans.beckerus@gmail.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Yocto 1.5: busybox instead of tinylogin, need some help
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -33,101 +37,40 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 04 Nov 2013 15:46:57 -0000
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Mon, 04 Nov 2013 15:51:11 -0000
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
 
-On Monday 04 November 2013 10:40:45 Robert P. J. Day wrote:
-> On Mon, 4 Nov 2013, Paul Eggleton wrote:
-> > On Sunday 03 November 2013 05:53:54 Robert P. J. Day wrote:
-> > > http://www.yoctoproject.org/docs/latest/ref-manual/ref-manual.html#var-I
-> > > NITS CRIPT_NAME
-> > > 
-> > >   reference to ${etcdir} ... how exactly does that differ from
-> > > ${sysconfdir}? i've always understood that developers should use
-> > > ${sysconfdir} in their recipe files.
-> > 
-> > I don't know where this came from but it is wrong. It should say
-> > ${sysconfdir} instead.
-> 
->   there's more to it than that -- there are a *number* of references
-> to "etcdir" scattered across a number of layers:
-> 
-> meta-angstrom/recipes-angstrom/angstrom/angstrom-feed-configs.bb:    etcdir
-> = bb.data.expand('${sysconfdir}/opkg', d)
-> meta-angstrom/recipes-angstrom/angstrom/angstrom-feed-configs.bb:   
-> do_split_packages(d, etcdir, '^locale-(.*)\.conf$',
-> 'angstrom-locale-%s-config', 'Angstrom feed config for the %s locale',
-> extra_depends='', allow_links=True)
-> meta-openembedded/meta-oe/recipes-extended/zsh/zsh.inc:   
-> --enable-etcdir=${sysconfdir} \
-> oe-core/meta/conf/documentation.conf:INITSCRIPT_NAME[doc] = "The filename
-> of the initscript as installed to ${etcdir}/init.d. The variable is
-> mandatory and is used in recipes when using update-rc.d.bbclass."
-> oe-core/meta/recipes-devtools/quilt/quilt/install.patch:-etcdir :=	$(subst
-> /usr/etc,/etc,$(prefix)/etc)
-> oe-core/meta/recipes-devtools/quilt/quilt/install.patch:+etcdir
-> :=	@sysconfdir@ oe-core/meta/recipes-bsp/pcmciautils/pcmciautils.inc:export
-> etcdir = "${sysconfdir}" oe-core/scripts/lib/mic/bootstrap.py:           
-> etcdir = _path('/etc') oe-core/scripts/lib/mic/bootstrap.py:            if
-> not os.path.exists(etcdir): oe-core/scripts/lib/mic/bootstrap.py:          
->      os.makedirs(etcdir)
-> openembedded-core-contrib/meta/recipes-devtools/quilt/quilt/install.patch:-
-> etcdir :=	$(subst /usr/etc,/etc,$(prefix)/etc)
-> openembedded-core-contrib/meta/recipes-devtools/quilt/quilt/install.patch:+
-> etcdir :=	@sysconfdir@
-> openembedded-core-contrib/meta/recipes-bsp/pcmciautils/pcmciautils.inc:expo
-> rt etcdir = "${sysconfdir}"
-> yocto-docs/documentation/ref-manual/ref-variables.xml:                   
-> The filename of the initscript as installed to
-> <filename>${etcdir}/init.d</filename>.
-> 
-> so it's not like that's an isolated occurrence. i have no idea *what*
-> to make of the above. is it all correct other than that single
-> reference above?
+On Mon, Nov 4, 2013 at 3:50 PM, Hans Beck=E9rus <hans.beckerus@gmail.com> w=
+rote:
+> Hello. I am currently working on moving from Yocto 1.4 to 1.5 and
+> instantly stumbled into a few minor problems (this being one of them).
+> In 1.5 tinylogin is replaced by busybox. What we had before in our
+> distro conf (it require poky.conf) was:
+>
+> # Use tmpdevfs and the busybox runtime services
+> VIRTUAL-RUNTIME_dev_manager =3D ""
+> VIRTUAL-RUNTIME_login_manager =3D "tinylogin"
+> #VIRTUAL-RUNTIME_init_manager =3D ""
+> VIRTUAL-RUNTIME_keymaps =3D ""
+>
+> Obviously this does no longer work. Is it as easy as simply commenting
+> out VIRTUAL-RUNTIME_login_manager and leave it at the default from
+> packagegroup-core-boot?
+> Will our old init-manager also be compatible? I believe we used
+> tiny-init before?
+> Another thing, since this will require a new set of busybox options to
+> be enabled, and we need to modify it slightly, is there some concept
+> similar to configuration fragments also available for busybox? Was
+> thinking about how clumsy it is right now since our .bbappend for
+> busybox basically copied the config from the poky base meta. Using
+> configuration fragments would make it easier for us to migrate in the
+> future.
+>
+Ignore the last question. I just found the .cfg file residing in the
+busybox recipe folder. From that I can tell that configuration
+fragments are supported also for busybox :)
 
-None of those are trying to access an "etcdir" variable defined system-wide. 
-There is no such variable, and most of the examples are unrelated to 
-eachother.
-
-> > > http://www.yoctoproject.org/docs/latest/ref-manual/ref-manual.html#var-R
-> > > PROV IDES
-> > > 
-> > >   claims that a package's own name is already implicitly provided in
-> > > 
-> > > its RPROVIDES list. doesn't seem that way -- it's true for PROVIDES,
-> > > but doesn't seem true for RPROVIDES. thoughts?
-> > 
-> > It was me who got Scott to add this - I did so after seeing a number
-> > of people trying to do RPROVIDES_${PN} = "recipename" in the hope of
-> > fixing some problem they were having; but this won't do anything.
-> > What makes you think it isn't the case?
-> 
->   i played with "bb show" to get the following (for the
-> arbitrarily-chosen recipe zlib):
-> 
-> $ bb show -r zlib PROVIDES
-> Parsing recipes..done.
-> # PROVIDES=${PN}
-> PROVIDES="zlib "
-> $ bb show -r zlib RPROVIDES
-> Parsing recipes..done.
-> RPROVIDES=""
-> $
-> 
-> where you can see that, for the example zlib recipe, PROVIDES contains
-> the recipe name but RPROVIDES does not, so i assumed RPROVIDES didn't
-> automatically provide the package's own name. am i misreading what i'm
-> seeing above?
-
-This is what I meant by "implicit". That doesn't mean printing out the 
-variable will show that it explicitly contains the value.
-
-Cheers,
-Paul
-
--- 
-
-Paul Eggleton
-Intel Open Source Technology Centre
+> Thanks.
+> Hans
 
