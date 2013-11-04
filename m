@@ -1,38 +1,30 @@
-Return-Path: <msvilans@aeonyx.ca>
-Received: from homiemail-a86.g.dreamhost.com (caiajhbdcaib.dreamhost.com
-	[208.97.132.81])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 558D9E016E3
-	for <yocto@yoctoproject.org>; Sun,  3 Nov 2013 16:43:28 -0800 (PST)
-Received: from homiemail-a86.g.dreamhost.com (localhost [127.0.0.1])
-	by homiemail-a86.g.dreamhost.com (Postfix) with ESMTP id 2438C36006D;
-	Sun,  3 Nov 2013 16:43:28 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha1; c=relaxed; d=aeonyx.ca; h=message-id
-	:date:from:mime-version:to:cc:subject:references:in-reply-to
-	:content-type:content-transfer-encoding; s=aeonyx.ca; bh=P32Zo/e
-	seU83vtFAZP3M/prfOOI=; b=P7S/WZzzyE39+tUJUJXZ+uYpocMDcpvupr+Hii2
-	0PeMEkErH0RCT5N7zCCeW0/VJ5frBz28abxc4eYHFM9sMcnGZktehb5uuekYfhwB
-	F6Cmy9aWrcrJAlj0TH1FFTeuQ0UHvAdcqy5D0ow0JQteXi9irwcl5w+X5A+mlz/M
-	pZlY=
-Received: from [192.168.1.127] (216-167-250-35.eastlink.ca [216.167.250.35])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	(Authenticated sender: msvilans@aeonyx.ca)
-	by homiemail-a86.g.dreamhost.com (Postfix) with ESMTPSA id B49C836006B; 
-	Sun,  3 Nov 2013 16:43:27 -0800 (PST)
-Message-ID: <5276EDAE.4000106@aeonyx.ca>
-Date: Sun, 03 Nov 2013 19:43:26 -0500
-From: Markus Svilans <msvilans@aeonyx.ca>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:24.0) Gecko/20100101 Thunderbird/24.1.0
+Return-Path: <agikling@lasx.com>
+Received: from omx.cbeyond.com (omx.cbeyond.com [50.20.30.10])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BBAE7E016E3
+	for <yocto@yoctoproject.org>; Sun,  3 Nov 2013 17:04:21 -0800 (PST)
+X-SBRS: 5.2
+X-HAT: Sender Group CBEYOND_SYSTEMS, Policy $CBEYOND_RELAY applied.
+X-Hostname: omx02bay.sys.cbeyond.net
+X-IronPort-Anti-Spam-Filtered: true
+X-IronPort-Anti-Spam-Result: AhQCANzxdlIyFB4LmGdsb2JhbABZgkMjWVO/T4EwDgEBAQEBCAkNBxQhB4InBS1eAQweViYBBBuHeQEEnEWhCo8ng1iBDgOtOYIq
+X-IronPort-AV: E=Sophos;i="4.93,628,1378872000"; d="scan'208,217";a="72637155"
+Received: from mts.cbeyond.com (HELO EXHUB101.mmeprod.cbeyond) ([50.20.30.11])
+	by omx.cbeyond.com with ESMTP; 03 Nov 2013 20:04:20 -0500
+Received: from EXMBX203A.mmeprod.cbeyond ([fe80::5407:bff7:b5c8:4633]) by
+	EXHUB101.mmeprod.cbeyond ([::1]) with mapi id 14.03.0123.003;
+	Sun, 3 Nov 2013 20:04:20 -0500
+From: Andy Gikling <agikling@lasx.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: FR2 BSP Documentation On Website Error
+Thread-Index: Ac7Y+Z2jmjnhrP+TRM2k+7KPy9czdg==
+Date: Mon, 4 Nov 2013 01:04:19 +0000
+Message-ID: <4C79E62053892D47A6419B29F941677A6E61A994@EXMBX203A.mmeprod.cbeyond>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [24.131.134.98]
 MIME-Version: 1.0
-To: Khem Raj <raj.khem@gmail.com>
-References: <52702B41.1040504@aeonyx.ca> <52703CE8.9020306@aeonyx.ca>
-	<CAMKF1spWtCmptujJk_N3AUz3v961+T+JibJtbFpZmF7ZEB3VFA@mail.gmail.com>
-	<52706EC2.1020409@aeonyx.ca> <5272DE46.7080005@aeonyx.ca>
-	<CAMKF1soYjrHyP1dJ12nkc_9NQswwpzT2xW9mgGzeghO=K8yyTQ@mail.gmail.com>
-In-Reply-To: <CAMKF1soYjrHyP1dJ12nkc_9NQswwpzT2xW9mgGzeghO=K8yyTQ@mail.gmail.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Fail to build core-image-minimal when MACHINE=genericx86-64
+Subject: FR2 BSP Documentation On Website Error
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -44,53 +36,111 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 04 Nov 2013 00:43:30 -0000
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Mon, 04 Nov 2013 01:04:25 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_4C79E62053892D47A6419B29F941677A6E61A994EXMBX203Ammepro_"
 
-Hi Khem,
+--_000_4C79E62053892D47A6419B29F941677A6E61A994EXMBX203Ammepro_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-Per your suggestion, I installed gcc-multilib and was able to build 
-syslinux and core-image-minimal. Wonderful!
+The Fish River Island 2 documentation on the Yocto Project website has an e=
+rror (BSP version 9.0.0 "Dylan").
 
-Thank you for having a look at this problem and finding the fix.
+Specifically, the first section "Building the meta-fri2 BSP layer" describe=
+s a step where you are to add a LICENSE_FLAGS_WHITELIST entry to your local=
+.conf when trying to enable the EMGD graphics driver.
 
-May I suggest that the Ubuntu/Debian section in Yocto Quick Start 
-documentation 
-(https://www.yoctoproject.org/docs/current/yocto-project-qs/yocto-project-qs.html) 
-be updated with this new information? Should I file a bug report to help 
-this happen?
+The website says to add:
+LICENSE_FLAGS_WHITELIST =3D "license_emgd-driver-bin_1.10"
+But in the README found in the download it says to use:
+LICENSE_FLAGS_WHITELIST =3D "license_emgd-driver-bin"
 
-Best regards,
-Markus
+The latter is correct.  This burned me for about 2 hours.  If this could be=
+ fixed I'd appreciate it!
 
+Thanks,
 
+~Andy Gikling
 
-On 11/03/2013 03:37 PM, Khem Raj wrote:
-> On Thu, Oct 31, 2013 at 3:48 PM, Markus Svilans <msvilans@aeonyx.ca> wrote:
->> With the help of a friend, have confirmed that 'core-image-minimal' cannot
->> be built with Ubuntu 13.10 64-bit when MACHINE=genericx86-64. Attempted the
->> build on a different machine in a different city, same results (failure to
->> build).
->>
->> Confirmed that 'core-image-minimal' can be successfully built under an lxc
->> and a chroot running Debian Wheezy, on Ubuntu 13.10 64-bit, with
->> MACHINE=genericx86-64.
->>
->> Filed bug 5440 on Yocto Bugzilla.
->> https://bugzilla.yoctoproject.org/show_bug.cgi?id=5440
->>
-> accidentally I was able to reproduce it. So it seems that syslinux
-> depends on compiler supporting 32bit+64bit mix
-> and it has probes to enquire the compiler for supporting the above.
-> Now if you have standard install of ubuntu you
-> do not have gcc-multilib installed and hence the problem.
+--_000_4C79E62053892D47A6419B29F941677A6E61A994EXMBX203Ammepro_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
 >
-> So, I would say the fix is to install gcc-multilib package on
-> debian-like systems and something similar for other distros
->
-> sudo apt-get install gcc-multilib
->
-> and then clean build syslinux-native should get you going
+<meta name=3D"Generator" content=3D"Microsoft Word 14 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri","sans-serif";
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal">The Fish River Island 2 documentation on the Yocto P=
+roject website has an error (BSP version 9.0.0 &#8220;Dylan&#8221;).<o:p></=
+o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Specifically, the first section &#8220;Building the =
+meta-fri2 BSP layer&#8221; describes a step where you are to add a LICENSE_=
+FLAGS_WHITELIST entry to your local.conf when trying to enable the EMGD gra=
+phics driver.<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">The website says to add:<o:p></o:p></p>
+<p class=3D"MsoNormal">LICENSE_FLAGS_WHITELIST =3D &quot;license_emgd-drive=
+r-bin_1.10&quot;<o:p></o:p></p>
+<p class=3D"MsoNormal">But in the README found in the download it says to u=
+se:<o:p></o:p></p>
+<p class=3D"MsoNormal">LICENSE_FLAGS_WHITELIST =3D &quot;license_emgd-drive=
+r-bin&quot;<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">The latter is correct.&nbsp; This burned me for abou=
+t 2 hours.&nbsp; If this could be fixed I&#8217;d appreciate it!<o:p></o:p>=
+</p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Thanks,<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">~Andy Gikling<o:p></o:p></p>
+</div>
+</body>
+</html>
 
-
+--_000_4C79E62053892D47A6419B29F941677A6E61A994EXMBX203Ammepro_--
