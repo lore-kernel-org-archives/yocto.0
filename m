@@ -1,26 +1,35 @@
-Return-Path: <Bruce.Ashfield@windriver.com>
-Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 914A9E01757
-	for <yocto@yoctoproject.org>; Mon,  4 Nov 2013 20:28:27 -0800 (PST)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail1.windriver.com (8.14.5/8.14.3) with ESMTP id rA54SOjp018069
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Mon, 4 Nov 2013 20:28:24 -0800 (PST)
-Received: from bruce-ashfields-macbook.local (128.224.21.17) by
-	ALA-HCA.corp.ad.wrs.com (147.11.189.40) with Microsoft SMTP Server id
-	14.2.347.0; Mon, 4 Nov 2013 20:28:24 -0800
-Message-ID: <527873E7.8000103@windriver.com>
-Date: Mon, 4 Nov 2013 23:28:23 -0500
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.7;
-	rv:24.0) Gecko/20100101 Thunderbird/24.1.0
+Return-Path: <rpjday@crashcourse.ca>
+Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
+	[64.235.106.9])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D5B0FE01716
+	for <yocto@yoctoproject.org>; Mon,  4 Nov 2013 22:35:03 -0800 (PST)
+Received: from [173.34.6.101] (port=52559 helo=crashcourse.ca)
+	by astoria.ccjclearline.com with esmtpsa (TLSv1:DHE-RSA-AES256-SHA:256)
+	(Exim 4.80) (envelope-from <rpjday@crashcourse.ca>)
+	id 1VdaE9-0002Dj-Qo; Tue, 05 Nov 2013 01:35:01 -0500
+Date: Tue, 5 Nov 2013 01:34:56 -0500 (EST)
+From: "Robert P. J. Day" <rpjday@crashcourse.ca>
+X-X-Sender: rpjday@oneiric
+To: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
+In-Reply-To: <41DEA4B02DBDEF40A0F3B6D0DDB1237983F44288@ORSMSX101.amr.corp.intel.com>
+Message-ID: <alpine.DEB.2.02.1311050130310.15390@oneiric>
+References: <alpine.DEB.2.02.1310240832580.5411@oneiric>
+	<41DEA4B02DBDEF40A0F3B6D0DDB1237983F40DF2@ORSMSX101.amr.corp.intel.com>
+	<alpine.DEB.2.02.1311010933420.12378@oneiric>
+	<41DEA4B02DBDEF40A0F3B6D0DDB1237983F44288@ORSMSX101.amr.corp.intel.com>
+User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
 MIME-Version: 1.0
-To: Maxwell Bottiger <sleepylight@jive-turkey.net>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>
-References: <CADi-vsxH-E=StkCnZtw9-U7RLSC6cn-RFw684GXfANEhhMAe7Q@mail.gmail.com>
-In-Reply-To: <CADi-vsxH-E=StkCnZtw9-U7RLSC6cn-RFw684GXfANEhhMAe7Q@mail.gmail.com>
-Subject: Re: architecture mismatch during kernel build (40 to 3)
+X-AntiAbuse: This header was added to track abuse,
+	please include it with any abuse report
+X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - crashcourse.ca
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+Cc: Yocto discussion list <yocto@yoctoproject.org>
+Subject: Re: filling in the "missing" entries in the ref manual variable glossary
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,64 +41,39 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 05 Nov 2013 04:28:29 -0000
-Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Tue, 05 Nov 2013 06:35:06 -0000
+Content-Type: TEXT/PLAIN; charset=US-ASCII
 
-On 13-11-04 8:41 PM, Maxwell Bottiger wrote:
-> I'm building a custom kernel, and I think I'm nearly there.  I'm seeing
-> an error when running mkimage.  bitbake is complaining about an
-> architecure mismatch, but I don't know which files it is comparing, or
-> if the mismatch really matters (32bit x86 vs 64bit x86 or whatever)
->
-> Here's the error string:
->
-> WARNING: File '/usr/src/kernel/mkimage' from linux-yocto-custom was
-> already stripped, this will prevent future debugging!
->
-> ERROR: QA Issue: Architecture did not match (40 to 3) on
-> /work/at91sam9x5ek-poky-linux-gnueabi/linux-yocto-custom/2.6.39-r1/packages-split/kernel-dev/usr/src/kernel/mkimage
+On Mon, 4 Nov 2013, Rifenbark, Scott M wrote:
 
-The obvious answer is .. it is mkimage that it is complaining about. You
-are packaging mkimage (which is likely an x86 elf file) into your
-kernel-dev package (which is your target arch, likely powerpc or ARM). 
-Hence the QA error.
+> This will be useful for me... thanks Robert.
 
-In your kernel recipe, you can remove the file before packaging
-(i.e. in the do_install_append) or inhibit the QA check for your recipe.
+  i'm about halfway through the categorized variable glossary:
 
-What exactly does your kernel recipe look like ? What is building mkimage
-and then getting it installed into /usr/src/kernel ?
+http://www.crashcourse.ca/wiki/index.php/OE_variable_glossary
 
-My suggestion is to track that down, versus inhibiting the QA check.
+and a few variables that caught my eye:
 
-Bruce
+ * BUGTRACKER (not mentioned)
+ * TUNE_ARCH (not mentioned)
+ * TUNE_FEATURES (not mentioned)
+ * CLASSOVERRIDE (not mentioned)
+ * UBOOT_TARGET (mentioned, but replaced by UBOOT_MAKE_TARGET?)
 
->
-> ERROR: QA run found fatal errors. Please consider fixing them.
->
-> ERROR: Function failed: do_package_qa
->
-> ERROR: Logfile of failure stored in:
-> /home/sleepylight/workspace/yocto/poky/build-atmel/tmp/work/at91sam9x5ek-poky-linux-gnueabi/linux-yocto-custom/2.6.39-r1/temp/log.do_package.11527
->
-> ERROR: Task 18
-> (/home/sleepylight/workspace/yocto/poky/meta-atmel/recipes-kernel/linux/linux-yocto-custom_2.6.39.bb
-> <http://linux-yocto-custom_2.6.39.bb>, do_package) failed with exit code '1'
->
->
-> I'm building on a 64 bit linux platform, I don't know if that makes a
-> difference.
->
-> Thanks all.  I'm nearly there!
->
-> -Max
->
->
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
->
+and a number of UBOOT-related variables aren't mentioned. not clear if
+any of these *should* be added -- there's obviously a limit to how
+many variables you should explain -- but you can decide if any should
+be added to the ref manual.
 
+rday
+
+-- 
+
+========================================================================
+Robert P. J. Day                                 Ottawa, Ontario, CANADA
+                        http://crashcourse.ca
+
+Twitter:                                       http://twitter.com/rpjday
+LinkedIn:                               http://ca.linkedin.com/in/rpjday
+========================================================================
 
