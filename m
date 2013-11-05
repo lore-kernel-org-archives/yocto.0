@@ -1,17 +1,18 @@
 Return-Path: <rpjday@crashcourse.ca>
 Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
 	[64.235.106.9])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B2958E01757
-	for <yocto@yoctoproject.org>; Tue,  5 Nov 2013 00:00:59 -0800 (PST)
-Received: from [173.34.6.101] (port=58463 helo=crashcourse.ca)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E6EB0E01757
+	for <yocto@yoctoproject.org>; Tue,  5 Nov 2013 01:04:54 -0800 (PST)
+Received: from [173.34.6.101] (port=60011 helo=crashcourse.ca)
 	by astoria.ccjclearline.com with esmtpsa (TLSv1:DHE-RSA-AES256-SHA:256)
 	(Exim 4.80) (envelope-from <rpjday@crashcourse.ca>)
-	id 1VdbZJ-0004Xd-Kb; Tue, 05 Nov 2013 03:00:57 -0500
-Date: Tue, 5 Nov 2013 03:00:52 -0500 (EST)
+	id 1VdcZA-0006PX-2i
+	for yocto@yoctoproject.org; Tue, 05 Nov 2013 04:04:52 -0500
+Date: Tue, 5 Nov 2013 04:04:41 -0500 (EST)
 From: "Robert P. J. Day" <rpjday@crashcourse.ca>
 X-X-Sender: rpjday@oneiric
 To: Yocto discussion list <yocto@yoctoproject.org>
-Message-ID: <alpine.DEB.2.02.1311050258400.29057@oneiric>
+Message-ID: <alpine.DEB.2.02.1311050359160.8486@oneiric>
 User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
 MIME-Version: 1.0
 X-AntiAbuse: This header was added to track abuse,
@@ -23,7 +24,7 @@ X-AntiAbuse: Sender Address Domain - crashcourse.ca
 X-Source: 
 X-Source-Args: 
 X-Source-Dir: 
-Subject: [PATCH] Documentation: Small number of minor fixes to Ch 1, ref manual
+Subject: ref manual, sections 2.3.[67], ambiguity with "-b" option to bitbake
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -35,55 +36,31 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 05 Nov 2013 08:01:11 -0000
+X-List-Received-Date: Tue, 05 Nov 2013 09:04:55 -0000
 Content-Type: TEXT/PLAIN; charset=US-ASCII
 
 
- * couple grammar/typo fixes
- * "OpenSUSE" -> "openSUSE"
+  section 2.3.6 of ref manual explains that bitbake "-b" option refers
+specifically to a recipe *file*:
 
-Signed-off-by: Robert P. J. Day <rpjday@crashcourse.ca>
+"If you really want to build a specific .bb file, you can use the
+command form bitbake -b <somepath/somefile.bb>."
 
----
+but the very next section uses "-b" in the context of a simple recipe
+*name* when combining it with "-e":
 
-diff --git a/documentation/ref-manual/introduction.xml b/documentation/ref-manual/introduction.xml
-index 3977d73..023e863 100644
---- a/documentation/ref-manual/introduction.xml
-+++ b/documentation/ref-manual/introduction.xml
-@@ -124,7 +124,7 @@
-                     Refer to
-                     <ulink url='&OE_HOME_URL;/index.php?title=OEandYourDistro'>OE and Your Distro</ulink> and
-                     <ulink url='&OE_HOME_URL;/index.php?title=Required_software'>Required Software</ulink>
--                    for information for information about dependencies and
-+                    for information about dependencies and
-                     requirements.
-                     If you encounter problems, please go to
-                     <ulink url='&YOCTO_BUGZILLA_URL;'>Yocto Project Bugzilla</ulink>
-@@ -251,11 +251,11 @@
-         </section>
+"You can use the -e BitBake option to display the resulting
+environment for a configuration when you do not specify a package or
+for a specific package when you do specify the package. If you want to
+show the environment resulting from parsing a single recipe, use the
+-b recipename form."
 
-         <section id='opensuse-packages'>
--            <title>OpenSUSE Packages</title>
-+            <title>openSUSE Packages</title>
+  that suggests i could run something like:
 
-             <para>
-                 The following list shows the required packages by function
--                given a supported OpenSUSE Linux distribution:
-+                given a supported openSUSE Linux distribution:
-                 <itemizedlist>
-                     <listitem><para><emphasis>Essentials:</emphasis>
-                         Packages needed to build an image for a headless
-@@ -346,8 +346,8 @@
-             you can resolve this by either downloading a pre-built tarball
-             containing these tools, or building such a tarball on another
-             system.
--            Regardless of the method, once you have the tarball you simply
--            install it somewhere on you system, such as a directory in your
-+            Regardless of the method, once you have the tarball, you simply
-+            install it somewhere on your system, such as a directory in your
-             home directory, and then source the environment script provided,
-             which adds the tools into <filename>PATH</filename> and sets
-             any other environment variables required to run the tools.
+$ bitbake -e -b zlib
+
+which seems to work. clarification? is "-b" meant to refer to a simple
+recipe *name* when used in the context of "-e"?
 
 rday
 
