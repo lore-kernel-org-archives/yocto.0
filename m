@@ -1,22 +1,17 @@
 Return-Path: <rpjday@crashcourse.ca>
 Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
 	[64.235.106.9])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D5B0FE01716
-	for <yocto@yoctoproject.org>; Mon,  4 Nov 2013 22:35:03 -0800 (PST)
-Received: from [173.34.6.101] (port=52559 helo=crashcourse.ca)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B2958E01757
+	for <yocto@yoctoproject.org>; Tue,  5 Nov 2013 00:00:59 -0800 (PST)
+Received: from [173.34.6.101] (port=58463 helo=crashcourse.ca)
 	by astoria.ccjclearline.com with esmtpsa (TLSv1:DHE-RSA-AES256-SHA:256)
 	(Exim 4.80) (envelope-from <rpjday@crashcourse.ca>)
-	id 1VdaE9-0002Dj-Qo; Tue, 05 Nov 2013 01:35:01 -0500
-Date: Tue, 5 Nov 2013 01:34:56 -0500 (EST)
+	id 1VdbZJ-0004Xd-Kb; Tue, 05 Nov 2013 03:00:57 -0500
+Date: Tue, 5 Nov 2013 03:00:52 -0500 (EST)
 From: "Robert P. J. Day" <rpjday@crashcourse.ca>
 X-X-Sender: rpjday@oneiric
-To: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
-In-Reply-To: <41DEA4B02DBDEF40A0F3B6D0DDB1237983F44288@ORSMSX101.amr.corp.intel.com>
-Message-ID: <alpine.DEB.2.02.1311050130310.15390@oneiric>
-References: <alpine.DEB.2.02.1310240832580.5411@oneiric>
-	<41DEA4B02DBDEF40A0F3B6D0DDB1237983F40DF2@ORSMSX101.amr.corp.intel.com>
-	<alpine.DEB.2.02.1311010933420.12378@oneiric>
-	<41DEA4B02DBDEF40A0F3B6D0DDB1237983F44288@ORSMSX101.amr.corp.intel.com>
+To: Yocto discussion list <yocto@yoctoproject.org>
+Message-ID: <alpine.DEB.2.02.1311050258400.29057@oneiric>
 User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
 MIME-Version: 1.0
 X-AntiAbuse: This header was added to track abuse,
@@ -28,8 +23,7 @@ X-AntiAbuse: Sender Address Domain - crashcourse.ca
 X-Source: 
 X-Source-Args: 
 X-Source-Dir: 
-Cc: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: filling in the "missing" entries in the ref manual variable glossary
+Subject: [PATCH] Documentation: Small number of minor fixes to Ch 1, ref manual
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,29 +35,55 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 05 Nov 2013 06:35:06 -0000
+X-List-Received-Date: Tue, 05 Nov 2013 08:01:11 -0000
 Content-Type: TEXT/PLAIN; charset=US-ASCII
 
-On Mon, 4 Nov 2013, Rifenbark, Scott M wrote:
 
-> This will be useful for me... thanks Robert.
+ * couple grammar/typo fixes
+ * "OpenSUSE" -> "openSUSE"
 
-  i'm about halfway through the categorized variable glossary:
+Signed-off-by: Robert P. J. Day <rpjday@crashcourse.ca>
 
-http://www.crashcourse.ca/wiki/index.php/OE_variable_glossary
+---
 
-and a few variables that caught my eye:
+diff --git a/documentation/ref-manual/introduction.xml b/documentation/ref-manual/introduction.xml
+index 3977d73..023e863 100644
+--- a/documentation/ref-manual/introduction.xml
++++ b/documentation/ref-manual/introduction.xml
+@@ -124,7 +124,7 @@
+                     Refer to
+                     <ulink url='&OE_HOME_URL;/index.php?title=OEandYourDistro'>OE and Your Distro</ulink> and
+                     <ulink url='&OE_HOME_URL;/index.php?title=Required_software'>Required Software</ulink>
+-                    for information for information about dependencies and
++                    for information about dependencies and
+                     requirements.
+                     If you encounter problems, please go to
+                     <ulink url='&YOCTO_BUGZILLA_URL;'>Yocto Project Bugzilla</ulink>
+@@ -251,11 +251,11 @@
+         </section>
 
- * BUGTRACKER (not mentioned)
- * TUNE_ARCH (not mentioned)
- * TUNE_FEATURES (not mentioned)
- * CLASSOVERRIDE (not mentioned)
- * UBOOT_TARGET (mentioned, but replaced by UBOOT_MAKE_TARGET?)
+         <section id='opensuse-packages'>
+-            <title>OpenSUSE Packages</title>
++            <title>openSUSE Packages</title>
 
-and a number of UBOOT-related variables aren't mentioned. not clear if
-any of these *should* be added -- there's obviously a limit to how
-many variables you should explain -- but you can decide if any should
-be added to the ref manual.
+             <para>
+                 The following list shows the required packages by function
+-                given a supported OpenSUSE Linux distribution:
++                given a supported openSUSE Linux distribution:
+                 <itemizedlist>
+                     <listitem><para><emphasis>Essentials:</emphasis>
+                         Packages needed to build an image for a headless
+@@ -346,8 +346,8 @@
+             you can resolve this by either downloading a pre-built tarball
+             containing these tools, or building such a tarball on another
+             system.
+-            Regardless of the method, once you have the tarball you simply
+-            install it somewhere on you system, such as a directory in your
++            Regardless of the method, once you have the tarball, you simply
++            install it somewhere on your system, such as a directory in your
+             home directory, and then source the environment script provided,
+             which adds the tools into <filename>PATH</filename> and sets
+             any other environment variables required to run the tools.
 
 rday
 
