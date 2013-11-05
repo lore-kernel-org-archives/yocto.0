@@ -1,32 +1,52 @@
-Return-Path: <scott.m.rifenbark@intel.com>
-Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B0ACBE01716
-	for <yocto@yoctoproject.org>; Tue,  5 Nov 2013 10:44:58 -0800 (PST)
-Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by azsmga102.ch.intel.com with ESMTP; 05 Nov 2013 10:44:58 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.93,535,1378882800"; d="scan'208";a="385035473"
-Received: from orsmsx106.amr.corp.intel.com ([10.22.225.133])
-	by azsmga001.ch.intel.com with ESMTP; 05 Nov 2013 10:44:57 -0800
-Received: from orsmsx101.amr.corp.intel.com ([169.254.8.126]) by
-	ORSMSX106.amr.corp.intel.com ([169.254.5.158]) with mapi id
-	14.03.0123.003; Tue, 5 Nov 2013 10:44:57 -0800
-From: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
-To: "Robert P. J. Day" <rpjday@crashcourse.ca>, Yocto discussion list
-	<yocto@yoctoproject.org>
-Thread-Topic: [PATCH] Documentation: Small number of minor fixes to Ch 1,
-	ref manual
-Thread-Index: AQHO2f0xNZOSdNUeMUeKWfhu8lDBQJoW+hug
-Date: Tue, 5 Nov 2013 18:44:56 +0000
-Message-ID: <41DEA4B02DBDEF40A0F3B6D0DDB1237983F446B8@ORSMSX101.amr.corp.intel.com>
-References: <alpine.DEB.2.02.1311050258400.29057@oneiric>
-In-Reply-To: <alpine.DEB.2.02.1311050258400.29057@oneiric>
+Return-Path: <rcalhoun@shotspotter.com>
+Received: from tx2outboundpool.messaging.microsoft.com
+	(tx2ehsobe004.messaging.microsoft.com [65.55.88.14])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F17DAE01716
+	for <yocto@yoctoproject.org>; Tue,  5 Nov 2013 14:10:39 -0800 (PST)
+Received: from mail56-tx2-R.bigfish.com (10.9.14.231) by
+	TX2EHSOBE013.bigfish.com (10.9.40.33) with Microsoft SMTP Server id
+	14.1.225.22; Tue, 5 Nov 2013 22:10:38 +0000
+Received: from mail56-tx2 (localhost [127.0.0.1])	by mail56-tx2-R.bigfish.com
+	(Postfix) with ESMTP id 131B03C004C;
+	Tue,  5 Nov 2013 22:10:38 +0000 (UTC)
+X-Forefront-Antispam-Report: CIP:157.56.240.85; KIP:(null); UIP:(null); IPV:NLI;
+	H:BL2PRD0410HT002.namprd04.prod.outlook.com; RD:none; EFVD:NLI
+X-SpamScore: -8
+X-BigFish: PS-8(zzd772h542I1432I444eM1521Izz1f42h2148h208ch1ee6h1de0h1fdah2073h2146h1202h1e76h1d1ah1d2ah1fc6hzz1de098h8275bh8275dh1de097h186068hz2fh109h2a8h839h947he5bhf0ah1288h12a5h12a9h12bdh137ah13b6h1441h1504h1537h153bh162dh1631h1758h18e1h1946h19b5h1ad9h1b0ah224fh1d0ch1d2eh1d3fh1dc1h1dfeh1dffh1e1dh1fe8h1ff5h209eh2216h1155h)
+Received-SPF: pass (mail56-tx2: domain of shotspotter.com designates
+	157.56.240.85 as permitted sender) client-ip=157.56.240.85;
+	envelope-from=rcalhoun@shotspotter.com;
+	helo=BL2PRD0410HT002.namprd04.prod.outlook.com ; .outlook.com ; 
+Received: from mail56-tx2 (localhost.localdomain [127.0.0.1]) by mail56-tx2
+	(MessageSwitch) id 1383689435761627_20861;
+	Tue,  5 Nov 2013 22:10:35 +0000 (UTC)
+Received: from TX2EHSMHS042.bigfish.com (unknown [10.9.14.243])	by
+	mail56-tx2.bigfish.com (Postfix) with ESMTP id B4EBF1200E9;
+	Tue,  5 Nov 2013 22:10:35 +0000 (UTC)
+Received: from BL2PRD0410HT002.namprd04.prod.outlook.com (157.56.240.85) by
+	TX2EHSMHS042.bigfish.com (10.9.99.142) with Microsoft SMTP Server (TLS)
+	id 14.16.227.3; Tue, 5 Nov 2013 22:10:35 +0000
+Received: from BL2PRD0410MB349.namprd04.prod.outlook.com ([169.254.9.227]) by
+	BL2PRD0410HT002.namprd04.prod.outlook.com ([10.255.99.37]) with mapi
+	id 14.16.0371.000; Tue, 5 Nov 2013 22:10:35 +0000
+From: Robert Calhoun <rcalhoun@shotspotter.com>
+To: Paul Eggleton <paul.eggleton@linux.intel.com>,
+	=?iso-8859-1?Q?Hans_Beck=E9rus?= <hans.beckerus@gmail.com>
+Thread-Topic: [yocto] SRCREV how is it supposed to work?
+Thread-Index: AQHO1Jy3a5OKoMihjUa3S/HxMgW1cpoLgvUAgAApDQCAAAQ4AIAACnuAgAqt+gCAABf1AIAAafwA
+Date: Tue, 5 Nov 2013 22:10:34 +0000
+Message-ID: <CE9EC8E7.1E1933%rcalhoun@shotspotter.com>
+In-Reply-To: <1589538.2ShOaANikJ@helios>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.139]
+user-agent: Microsoft-MacOutlook/14.3.8.130913
+x-originating-ip: [10.255.99.4]
 MIME-Version: 1.0
-Subject: Re: [PATCH] Documentation: Small number of minor fixes to Ch 1, ref manual
+X-OriginatorOrg: shotspotter.com
+X-FOPE-CONNECTOR: Id%0$Dn%*$RO%0$TLS%0$FQDN%$TlsDn%
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: SRCREV how is it supposed to work?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,102 +58,129 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 05 Nov 2013 18:45:01 -0000
+X-List-Received-Date: Tue, 05 Nov 2013 22:10:43 -0000
 Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset="iso-8859-1"
+Content-ID: <5FF86C77DE98054EB29F3CE13E4E4B27@namprd04.prod.outlook.com>
 Content-Transfer-Encoding: quoted-printable
 
-Robert,=20
+-----Original Message-----
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+>
+>AFAIK, there are two recommended values for SRCREV assuming you are
+>fetching=20
+>from an SCM at all:
+>
+>A) A specific revision (SHA1 hash when fetching from git)
+>
+>or
+>
+>B) "${AUTOREV}" if you want to always build the latest version available
+>at=20
+>time of building. If you want to build the latest version from a branch,
+>specify it in branch=3D in the SRC_URI entry.
+>
+>Anything else isn't really a good idea. Sometimes I wonder if we ought to
+>just=20
+>tighten this up so that only settings that make sense can be set.
 
-Patch applied. =20
+The current behavior is a little non-intuitive, since using SRCREV =3D
+"${AUTOREV}"=20
+alone will not force the package to be rebuilt when SRCREV changes. Unless
+I am
+mistaken, $PV needs to be modified also. But modifying $PV causes its own
+headaches with patching, so I've ended up using recipes based on the model
+below.
 
-Thanks,
-Scott
+Another challenge is that bitbake's fetch2 is not very well documented. I
+don't
+think the "user" and "pswd" fields for the svn fetcher are documented
+anywhere
+outside of the source code.
 
->-----Original Message-----
->From: Robert P. J. Day [mailto:rpjday@crashcourse.ca]
->Sent: Tuesday, November 05, 2013 12:01 AM
->To: Yocto discussion list
->Cc: Rifenbark, Scott M
->Subject: [PATCH] Documentation: Small number of minor fixes to Ch 1, ref
->manual
->
->
-> * couple grammar/typo fixes
-> * "OpenSUSE" -> "openSUSE"
->
->Signed-off-by: Robert P. J. Day <rpjday@crashcourse.ca>
->
->---
->
->diff --git a/documentation/ref-manual/introduction.xml
->b/documentation/ref-manual/introduction.xml
->index 3977d73..023e863 100644
->--- a/documentation/ref-manual/introduction.xml
->+++ b/documentation/ref-manual/introduction.xml
->@@ -124,7 +124,7 @@
->                     Refer to
->                     <ulink
->url=3D'&OE_HOME_URL;/index.php?title=3DOEandYourDistro'>OE and Your
->Distro</ulink> and
->                     <ulink
->url=3D'&OE_HOME_URL;/index.php?title=3DRequired_software'>Required
->Software</ulink>
->-                    for information for information about dependencies an=
-d
->+                    for information about dependencies and
->                     requirements.
->                     If you encounter problems, please go to
->                     <ulink url=3D'&YOCTO_BUGZILLA_URL;'>Yocto Project
->Bugzilla</ulink> @@ -251,11 +251,11 @@
->         </section>
->
->         <section id=3D'opensuse-packages'>
->-            <title>OpenSUSE Packages</title>
->+            <title>openSUSE Packages</title>
->
->             <para>
->                 The following list shows the required packages by functio=
-n
->-                given a supported OpenSUSE Linux distribution:
->+                given a supported openSUSE Linux distribution:
->                 <itemizedlist>
->                     <listitem><para><emphasis>Essentials:</emphasis>
->                         Packages needed to build an image for a headless =
-@@ -346,8
->+346,8 @@
->             you can resolve this by either downloading a pre-built tarbal=
-l
->             containing these tools, or building such a tarball on another
->             system.
->-            Regardless of the method, once you have the tarball you simpl=
-y
->-            install it somewhere on you system, such as a directory in yo=
-ur
->+            Regardless of the method, once you have the tarball, you simp=
-ly
->+            install it somewhere on your system, such as a directory in
->+ your
->             home directory, and then source the environment script provid=
-ed,
->             which adds the tools into <filename>PATH</filename> and sets
->             any other environment variables required to run the tools.
->
->rday
->
->--
->
->=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
->=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
->Robert P. J. Day                                 Ottawa, Ontario, CANADA
->                        http://crashcourse.ca
->
->Twitter:                                       http://twitter.com/rpjday
->LinkedIn:                               http://ca.linkedin.com/in/rpjday
->=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
->=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+I'd love to help address this, but I'm not sure where I should submit
+updated documentation. Is this the right place?
+
+git://git.yoctoproject.org/yocto-docs
+
+
+Hans, below is a model recipe for building current head-of-line from a
+subversion repository:
+
+-Rob Calhoun
+SST Inc
+=20
+
+
+
+######################
+
+DESCRIPTION =3D "example_1.0.bb, autorevving checkout example"
+
+# This says look for LICENSE in the root of the directory being checked
+out. Fix
+# license filename and md5sum as required.
+LIC_FILES_CHKSUM =3D "file://LICENSE;md5=3Dabc123"
+
+# this is the rev of your recipe. Bumping it will toss the cache and redo
+everything
+PR =3D "r1"
+
+# pick up latest svn rev for this module. Note this a deferred evaluation!
+SRCREV =3D "${AUTOREV}"
+
+# ${PV} is pulled from the recipe filename, e.g. helloworld_2.7.bb ->
+${PV} expands to "2.7".
+# We use immediate evaluation to define a new var PVBASE holding the
+original value of ${PV}.
+PVBASE :=3D "${PV}"
+
+# We need to tell bitbake about our current directory structure or we
+won't be able to find patches after we mess with ${PV}
+FILESEXTRAPATHS_prepend :=3D "${THISDIR}/${PN}-${PVBASE}:"
+
+# Then redefine PV to tack the svn rev onto the base version. This is
+evaluated at fetch time.
+# Then the package will get rebuilt any time the relevant part of the
+source tree changes.
+PV =3D "${PVBASE}.${SRCPV}"
+
+# Now we format the source code URI.
+# There is nothing special about "module"; it is just the final directory
+of the svn checkout.
+# SRC_URI below is equivalent to the svn command:
+# "svn checkout --username=3Dpoky --password=3Dxyzzy
+https://svn.example.com/repo/trunk/example"
+#
+SRC_URI=3D=20
+"svn://svn.example.com/repo/trunk;module=3Dexample;protocol=3Dhttps;user=3D=
+poky;p
+swd=3Dxyzzy"
+
+# build will fail without this; it specifies where in the workdir to find
+the source. The
+# name must be the same as the "module" name in SRC_URI.
+S =3D "${WORKDIR}/example"
+
+# BELOW NOT PART OF RECIPE; IT SHOWS WHAT THE WORK DIR LOOKS LIKE WITH
+THIS RECIPE.
+# By setting PV, the cache is invalidated and new code checked out each
+time the=20
+# relevant part oF the svn repo gets updated because I've made the svn
+revision look
+# like a package version number to bitbake.
+#
+# Here is a directory listing of the work dir:
+#
+#=20
+poky@build:/poky/build/tmp/work/armv7a-vfp-neon-poky-linux-gnueabi/example$
+ ls -l
+#drwxrwxr-x 12 poky poky 4096 Oct 30 10:17 1.0.57400-r1
+#drwxrwxr-x 12 poky poky 4096 Oct 30 11:52 1.0.57401-r1
+#drwxrwxr-x 12 poky poky 4096 Oct 31 12:37 1.0.57408-r1
+#drwxrwxr-x 12 poky poky 4096 Nov  1 07:56 1.0.57412-r1
+
+
+
+
 
