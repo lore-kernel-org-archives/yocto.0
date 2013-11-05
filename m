@@ -1,36 +1,26 @@
-Return-Path: <Amit.Kumar@lntinfotech.com>
-Received: from mail1.bemta8.messagelabs.com (mail1.bemta8.messagelabs.com
-	[216.82.243.196])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8195EE01716
-	for <yocto@yoctoproject.org>; Mon,  4 Nov 2013 18:45:51 -0800 (PST)
-Received: from [216.82.241.100:25537] by server-4.bemta-8.messagelabs.com id
-	A7/BC-14511-CDB58725; Tue, 05 Nov 2013 02:45:48 +0000
-X-Env-Sender: Amit.Kumar@lntinfotech.com
-X-Msg-Ref: server-15.tower-220.messagelabs.com!1383619544!1291333!1
-X-Originating-IP: [203.101.96.8]
-X-StarScan-Received: 
-X-StarScan-Version: 6.9.12; banners=-,-,-
-X-VirusChecked: Checked
-Received: (qmail 8679 invoked from network); 5 Nov 2013 02:45:47 -0000
-Received: from unknown (HELO BLRINMSHTCAS02.bglrodc.lntinfotech.com)
-	(203.101.96.8)
-	by server-15.tower-220.messagelabs.com with AES128-SHA encrypted SMTP;
-	5 Nov 2013 02:45:47 -0000
-Received: from blrinmsmbx01.bglrodc.lntinfotech.com ([169.254.1.229]) by
-	BLRINMSHTCAS02.bglrodc.lntinfotech.com ([172.28.0.83]) with mapi;
-	Tue, 5 Nov 2013 08:15:44 +0530
-From: Amit Kumar <Amit.Kumar@lntinfotech.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Date: Tue, 5 Nov 2013 08:15:40 +0530
-Thread-Topic: kernel config required for rt-kernel
-Thread-Index: Ac7Z0R0TyWBY1YB6R0eKO5Oj0XQIrA==
-Message-ID: <CEE454E0AA856348B2B4179B5CF987140C6E40473A@BLRINMSMBX01.bglrodc.lntinfotech.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-acceptlanguage: en-US
+Return-Path: <Bruce.Ashfield@windriver.com>
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D64B6E01757
+	for <yocto@yoctoproject.org>; Mon,  4 Nov 2013 20:17:35 -0800 (PST)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
+	[147.11.189.40])
+	by mail.windriver.com (8.14.5/8.14.3) with ESMTP id rA54HVud028911
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
+	Mon, 4 Nov 2013 20:17:32 -0800 (PST)
+Received: from bruce-ashfields-macbook.local (128.224.21.17) by
+	ALA-HCA.corp.ad.wrs.com (147.11.189.40) with Microsoft SMTP Server id
+	14.2.347.0; Mon, 4 Nov 2013 20:17:31 -0800
+Message-ID: <5278715A.9060901@windriver.com>
+Date: Mon, 4 Nov 2013 23:17:30 -0500
+From: Bruce Ashfield <bruce.ashfield@windriver.com>
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.7;
+	rv:24.0) Gecko/20100101 Thunderbird/24.1.0
 MIME-Version: 1.0
-Subject: kernel config required for rt-kernel
+To: Amit Kumar <Amit.Kumar@lntinfotech.com>, "yocto@yoctoproject.org"
+	<yocto@yoctoproject.org>
+References: <CEE454E0AA856348B2B4179B5CF987140C6E40473A@BLRINMSMBX01.bglrodc.lntinfotech.com>
+In-Reply-To: <CEE454E0AA856348B2B4179B5CF987140C6E40473A@BLRINMSMBX01.bglrodc.lntinfotech.com>
+Subject: Re: kernel config required for rt-kernel
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,124 +32,52 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 05 Nov 2013 02:45:54 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_CEE454E0AA856348B2B4179B5CF987140C6E40473ABLRINMSMBX01b_"
+X-List-Received-Date: Tue, 05 Nov 2013 04:17:36 -0000
+Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
+Content-Transfer-Encoding: 7bit
 
---_000_CEE454E0AA856348B2B4179B5CF987140C6E40473ABLRINMSMBX01b_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-Hi,
-           I need help to build a rt-kernel. Is anyone knows about the real=
--time kernel configurations? How can I build a real-time kernel?
-What all are the kernel configuration need to be enable for rt-kernel?
-
-
-Thanks & Regards
-Amit K
-
-________________________________
-The contents of this e-mail and any attachment(s) may contain confidential =
-or privileged information for the intended recipient(s). Unintended recipie=
-nts are prohibited from taking action on the basis of information in this e=
--mail and using or disseminating the information, and must notify the sende=
-r and delete it from their system. L&T Infotech will not accept responsibil=
-ity or liability for the accuracy or completeness of, or the presence of an=
-y virus or disabling code in this e-mail"
-
---_000_CEE454E0AA856348B2B4179B5CF987140C6E40473ABLRINMSMBX01b_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+On 13-11-04 9:45 PM, Amit Kumar wrote:
+> Hi,
 >
-<meta name=3D"Generator" content=3D"Microsoft Word 12 (filtered medium)">
-<style>
-<!--
- /* Font Definitions */
- @font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:"\B9D1\C740 \ACE0\B515";
-	panose-1:2 11 5 3 2 0 0 2 0 4;}
-@font-face
-	{font-family:"\@\B9D1\C740 \ACE0\B515";
-	panose-1:2 11 5 3 2 0 0 2 0 4;}
- /* Style Definitions */
- p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0cm;
-	margin-bottom:.0001pt;
-	text-align:justify;
-	text-justify:inter-ideograph;
-	text-autospace:none;
-	word-break:break-hangul;
-	font-size:10.0pt;
-	font-family:"\B9D1\C740 \ACE0\B515";}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:purple;
-	text-decoration:underline;}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"\B9D1\C740 \ACE0\B515";
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;}
- /* Page Definitions */
- @page Section1
-	{size:612.0pt 792.0pt;
-	margin:3.0cm 72.0pt 72.0pt 72.0pt;}
-div.Section1
-	{page:Section1;}
--->
-</style><!--[if gte mso 9]><xml>
- <o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
- <o:shapelayout v:ext=3D"edit">
-  <o:idmap v:ext=3D"edit" data=3D"1" />
- </o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"KO" link=3D"blue" vlink=3D"purple">
-<div class=3D"Section1">
-<p class=3D"MsoNormal"><span lang=3D"EN-US">Hi,<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp; I need help to build a rt-kernel. Is anyone k=
-nows about the real-time kernel configurations? How can I build a real-time=
- kernel?
-<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">What all are the kernel configu=
-ration need to be enable for rt-kernel?<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">Thanks &amp; Regards<o:p></o:p>=
-</span></p>
-<p class=3D"MsoNormal"><span lang=3D"EN-US">Amit K<o:p></o:p></span></p>
-</div>
-<br>
-<hr>
-<font face=3D"Arial" color=3D"Black" size=3D"3">The contents of this e-mail=
- and any attachment(s) may contain confidential or privileged information f=
-or the intended recipient(s). Unintended recipients are prohibited from tak=
-ing action on the basis of information
- in this e-mail and using or disseminating the information, and must notify=
- the sender and delete it from their system. L&amp;T Infotech will not acce=
-pt responsibility or liability for the accuracy or completeness of, or the =
-presence of any virus or disabling code
- in this e-mail&quot;<br>
-</font>
-</body>
-</html>
+>             I need help to build a rt-kernel. Is anyone knows about the
+> real-time kernel configurations? How can I build a real-time kernel?
+>
+> What all are the kernel configuration need to be enable for rt-kernel?
 
---_000_CEE454E0AA856348B2B4179B5CF987140C6E40473ABLRINMSMBX01b_--
+If you use the linux-yocto-rt recipe, you'll always get a baseline set
+of known good -rt config values.
+
+Adding your BSPs config values on top of that baseline is all that is
+required to get started working with the integrated -rt kernel. (you
+of course also need to make sure that typical kernel recipe elements
+are done, like making your board compatible with the recipe and setting
+an appropriate KBRANCH).
+
+Cheers,
+
+Bruce
+
+>
+> Thanks & Regards
+>
+> Amit K
+>
+>
+> ------------------------------------------------------------------------
+> The contents of this e-mail and any attachment(s) may contain
+> confidential or privileged information for the intended recipient(s).
+> Unintended recipients are prohibited from taking action on the basis of
+> information in this e-mail and using or disseminating the information,
+> and must notify the sender and delete it from their system. L&T Infotech
+> will not accept responsibility or liability for the accuracy or
+> completeness of, or the presence of any virus or disabling code in this
+> e-mail"
+>
+>
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
+
+
