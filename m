@@ -1,30 +1,36 @@
-Return-Path: <sleepylight@jive-turkey.net>
-Received: from mail-ee0-f44.google.com (mail-ee0-f44.google.com [74.125.83.44])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 64FB6E01716
-	for <yocto@yoctoproject.org>; Mon,  4 Nov 2013 17:41:20 -0800 (PST)
-Received: by mail-ee0-f44.google.com with SMTP id d41so1320247eek.17
-	for <yocto@yoctoproject.org>; Mon, 04 Nov 2013 17:41:19 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:date:message-id:subject:from:to
-	:content-type;
-	bh=IMcaBboNffiALPqImtwibeRWElJh98Qr46ww+Jin37w=;
-	b=TcDlc7cbPBwHiV+yoRi3Shtqa6RXLWQ6k6LivVwA4JgfFHACU94EfTmuqlXFcCr4q/
-	EoDFuOt1IKE+EeVMNg8cyaXjj1gl/yXk4eTfkmCkYgWQ2xcf7ehgC6oRgmHKz3AMn5yT
-	1QBS+AKia+QWJ2/5I4Ia59GhJ8PqZPpzjEJvZNPK/Sv+KcPDDO1FhjfC84sEsH4aW8sw
-	ngbF/oGyZSYxtuQ7L36QYXOqWJrtOYTcFNHgvBtzf6Lb2fUXh53d32SKQLxa+PyluQAD
-	Kmrc2uJgydnFx1jxLXTn7IZymzDEjMzEqvj0Ox0/JWh8FerpTbt3inQRQePLA/SCx0x9
-	1gDg==
-X-Gm-Message-State: ALoCoQkIuBXBTGj2F9mL3xdBlh2/HM9ozxwrJi0FCFfEyxY+BZzjUOBQXoLVGPJ+Lt9leO3uU1e2
-MIME-Version: 1.0
-X-Received: by 10.14.38.194 with SMTP id a42mr14661564eeb.12.1383615679462;
-	Mon, 04 Nov 2013 17:41:19 -0800 (PST)
-Received: by 10.223.132.7 with HTTP; Mon, 4 Nov 2013 17:41:19 -0800 (PST)
-Date: Mon, 4 Nov 2013 20:41:19 -0500
-Message-ID: <CADi-vsxH-E=StkCnZtw9-U7RLSC6cn-RFw684GXfANEhhMAe7Q@mail.gmail.com>
-From: Maxwell Bottiger <sleepylight@jive-turkey.net>
+Return-Path: <Amit.Kumar@lntinfotech.com>
+Received: from mail1.bemta8.messagelabs.com (mail1.bemta8.messagelabs.com
+	[216.82.243.196])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8195EE01716
+	for <yocto@yoctoproject.org>; Mon,  4 Nov 2013 18:45:51 -0800 (PST)
+Received: from [216.82.241.100:25537] by server-4.bemta-8.messagelabs.com id
+	A7/BC-14511-CDB58725; Tue, 05 Nov 2013 02:45:48 +0000
+X-Env-Sender: Amit.Kumar@lntinfotech.com
+X-Msg-Ref: server-15.tower-220.messagelabs.com!1383619544!1291333!1
+X-Originating-IP: [203.101.96.8]
+X-StarScan-Received: 
+X-StarScan-Version: 6.9.12; banners=-,-,-
+X-VirusChecked: Checked
+Received: (qmail 8679 invoked from network); 5 Nov 2013 02:45:47 -0000
+Received: from unknown (HELO BLRINMSHTCAS02.bglrodc.lntinfotech.com)
+	(203.101.96.8)
+	by server-15.tower-220.messagelabs.com with AES128-SHA encrypted SMTP;
+	5 Nov 2013 02:45:47 -0000
+Received: from blrinmsmbx01.bglrodc.lntinfotech.com ([169.254.1.229]) by
+	BLRINMSHTCAS02.bglrodc.lntinfotech.com ([172.28.0.83]) with mapi;
+	Tue, 5 Nov 2013 08:15:44 +0530
+From: Amit Kumar <Amit.Kumar@lntinfotech.com>
 To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: architecture mismatch during kernel build (40 to 3)
+Date: Tue, 5 Nov 2013 08:15:40 +0530
+Thread-Topic: kernel config required for rt-kernel
+Thread-Index: Ac7Z0R0TyWBY1YB6R0eKO5Oj0XQIrA==
+Message-ID: <CEE454E0AA856348B2B4179B5CF987140C6E40473A@BLRINMSMBX01.bglrodc.lntinfotech.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+acceptlanguage: en-US
+MIME-Version: 1.0
+Subject: kernel config required for rt-kernel
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -36,69 +42,124 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 05 Nov 2013 01:41:21 -0000
-Content-Type: multipart/alternative; boundary=089e016816ec1492e004ea6421f2
+X-List-Received-Date: Tue, 05 Nov 2013 02:45:54 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_CEE454E0AA856348B2B4179B5CF987140C6E40473ABLRINMSMBX01b_"
 
---089e016816ec1492e004ea6421f2
-Content-Type: text/plain; charset=ISO-8859-1
-
-I'm building a custom kernel, and I think I'm nearly there.  I'm seeing an
-error when running mkimage.  bitbake is complaining about an architecure
-mismatch, but I don't know which files it is comparing, or if the mismatch
-really matters (32bit x86 vs 64bit x86 or whatever)
-
-Here's the error string:
-
-WARNING: File '/usr/src/kernel/mkimage' from linux-yocto-custom was already
-stripped, this will prevent future debugging!
-
-ERROR: QA Issue: Architecture did not match (40 to 3) on
-/work/at91sam9x5ek-poky-linux-gnueabi/linux-yocto-custom/2.6.39-r1/packages-split/kernel-dev/usr/src/kernel/mkimage
-
-ERROR: QA run found fatal errors. Please consider fixing them.
-
-ERROR: Function failed: do_package_qa
-
-ERROR: Logfile of failure stored in:
-/home/sleepylight/workspace/yocto/poky/build-atmel/tmp/work/at91sam9x5ek-poky-linux-gnueabi/linux-yocto-custom/2.6.39-r1/temp/log.do_package.11527
-
-ERROR: Task 18
-(/home/sleepylight/workspace/yocto/poky/meta-atmel/recipes-kernel/linux/
-linux-yocto-custom_2.6.39.bb, do_package) failed with exit code '1'
-
-
-I'm building on a 64 bit linux platform, I don't know if that makes a
-difference.
-
-Thanks all.  I'm nearly there!
-
--Max
-
---089e016816ec1492e004ea6421f2
-Content-Type: text/html; charset=ISO-8859-1
+--_000_CEE454E0AA856348B2B4179B5CF987140C6E40473ABLRINMSMBX01b_
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div><div><div>I&#39;m building a custom kernel, and I thi=
-nk I&#39;m nearly there.=A0 I&#39;m seeing an error when running mkimage.=
-=A0 bitbake is complaining about an architecure mismatch, but I don&#39;t k=
-now which files it is comparing, or if the mismatch really matters (32bit x=
-86 vs 64bit x86 or whatever)<br>
-<br>Here&#39;s the error string:<br><br>WARNING: File &#39;/usr/src/kernel/=
-mkimage&#39; from linux-yocto-custom was already stripped, this will preven=
-t future debugging!<br><br>ERROR: QA Issue: Architecture did not match (40 =
-to 3) on /work/at91sam9x5ek-poky-linux-gnueabi/linux-yocto-custom/2.6.39-r1=
-/packages-split/kernel-dev/usr/src/kernel/mkimage<br>
-<br>ERROR: QA run found fatal errors. Please consider fixing them.<br><br>E=
-RROR: Function failed: do_package_qa<br><br>ERROR: Logfile of failure store=
-d in: /home/sleepylight/workspace/yocto/poky/build-atmel/tmp/work/at91sam9x=
-5ek-poky-linux-gnueabi/linux-yocto-custom/2.6.39-r1/temp/log.do_package.115=
-27<br>
-<br>ERROR: Task 18 (/home/sleepylight/workspace/yocto/poky/meta-atmel/recip=
-es-kernel/linux/<a href=3D"http://linux-yocto-custom_2.6.39.bb">linux-yocto=
--custom_2.6.39.bb</a>, do_package) failed with exit code &#39;1&#39;<br><br=
->
-<br></div>I&#39;m building on a 64 bit linux platform, I don&#39;t know if =
-that makes a difference.<br><br></div>Thanks all.=A0 I&#39;m nearly there!<=
-br><br></div>-Max<br></div>
+Hi,
+           I need help to build a rt-kernel. Is anyone knows about the real=
+-time kernel configurations? How can I build a real-time kernel?
+What all are the kernel configuration need to be enable for rt-kernel?
 
---089e016816ec1492e004ea6421f2--
+
+Thanks & Regards
+Amit K
+
+________________________________
+The contents of this e-mail and any attachment(s) may contain confidential =
+or privileged information for the intended recipient(s). Unintended recipie=
+nts are prohibited from taking action on the basis of information in this e=
+-mail and using or disseminating the information, and must notify the sende=
+r and delete it from their system. L&T Infotech will not accept responsibil=
+ity or liability for the accuracy or completeness of, or the presence of an=
+y virus or disabling code in this e-mail"
+
+--_000_CEE454E0AA856348B2B4179B5CF987140C6E40473ABLRINMSMBX01b_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 12 (filtered medium)">
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:"\B9D1\C740 \ACE0\B515";
+	panose-1:2 11 5 3 2 0 0 2 0 4;}
+@font-face
+	{font-family:"\@\B9D1\C740 \ACE0\B515";
+	panose-1:2 11 5 3 2 0 0 2 0 4;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	text-align:justify;
+	text-justify:inter-ideograph;
+	text-autospace:none;
+	word-break:break-hangul;
+	font-size:10.0pt;
+	font-family:"\B9D1\C740 \ACE0\B515";}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"\B9D1\C740 \ACE0\B515";
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;}
+ /* Page Definitions */
+ @page Section1
+	{size:612.0pt 792.0pt;
+	margin:3.0cm 72.0pt 72.0pt 72.0pt;}
+div.Section1
+	{page:Section1;}
+-->
+</style><!--[if gte mso 9]><xml>
+ <o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <o:shapelayout v:ext=3D"edit">
+  <o:idmap v:ext=3D"edit" data=3D"1" />
+ </o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"KO" link=3D"blue" vlink=3D"purple">
+<div class=3D"Section1">
+<p class=3D"MsoNormal"><span lang=3D"EN-US">Hi,<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp; I need help to build a rt-kernel. Is anyone k=
+nows about the real-time kernel configurations? How can I build a real-time=
+ kernel?
+<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">What all are the kernel configu=
+ration need to be enable for rt-kernel?<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">Thanks &amp; Regards<o:p></o:p>=
+</span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US">Amit K<o:p></o:p></span></p>
+</div>
+<br>
+<hr>
+<font face=3D"Arial" color=3D"Black" size=3D"3">The contents of this e-mail=
+ and any attachment(s) may contain confidential or privileged information f=
+or the intended recipient(s). Unintended recipients are prohibited from tak=
+ing action on the basis of information
+ in this e-mail and using or disseminating the information, and must notify=
+ the sender and delete it from their system. L&amp;T Infotech will not acce=
+pt responsibility or liability for the accuracy or completeness of, or the =
+presence of any virus or disabling code
+ in this e-mail&quot;<br>
+</font>
+</body>
+</html>
+
+--_000_CEE454E0AA856348B2B4179B5CF987140C6E40473ABLRINMSMBX01b_--
