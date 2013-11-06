@@ -1,44 +1,35 @@
-Return-Path: <joe@deserted.net>
-Received: from mail-qe0-f50.google.com (mail-qe0-f50.google.com
-	[209.85.128.50])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E82A7E01770
-	for <yocto@yoctoproject.org>; Wed,  6 Nov 2013 07:49:51 -0800 (PST)
-Received: by mail-qe0-f50.google.com with SMTP id 1so6378048qee.37
-	for <yocto@yoctoproject.org>; Wed, 06 Nov 2013 07:49:51 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-	:mime-version:content-type:content-disposition:in-reply-to
-	:user-agent;
-	bh=if4fu1rJ7tRe35KCgC7B9svSAOMmYcyVucxVqd/j2xc=;
-	b=l32+X9wSS9uVs/mqLhu98ecPRJYjhpfqADtdK0V80AvB/l82hGhU13gAxzIcCck0Je
-	pp/jm7TrGAdOzLBoBD9uTid8NB1oIEWpCMIg9T9JE1AyW6YSZV5l3qbG4+w6LBk84l4a
-	talPaUm4av1L/hJ7fEiSxa+3FnCahLyeuM56DFHZLGt1g6JCYMt7Kx0QNDvnP5naeOpb
-	6lu4ZohVS7T7YUTHdRdNMviYTjQLxmwh/9v7TGZlpWL73MQw0u4Kx7lsm+ijkYlH0rhs
-	llWCHSJNysTsL/xauNKG4ZOtlOSLOm0rmlPCJYMNZRT56JK8RsNoQZ+5a/5pVO1BGQVq
-	vF0A==
-X-Gm-Message-State: ALoCoQmNmMt1YcQZWrMdiaNMya2NSPz9YZUiG+AemZXvJ7gVY+T55elPN5xBYr6nkJ3SWAjBedYD
-X-Received: by 10.224.167.84 with SMTP id p20mr6485420qay.97.1383752990900;
-	Wed, 06 Nov 2013 07:49:50 -0800 (PST)
-Received: from deserted.net ([128.224.252.2])
-	by mx.google.com with ESMTPSA id jw9sm70697035qeb.2.2013.11.06.07.49.49
-	for <multiple recipients>
-	(version=TLSv1.2 cipher=RC4-SHA bits=128/128);
-	Wed, 06 Nov 2013 07:49:50 -0800 (PST)
-Date: Wed, 6 Nov 2013 10:49:47 -0500
-From: Joe MacDonald <joe@deserted.net>
-To: Philip Tricca <flihp@twobit.us>
-Message-ID: <20131106154945.GB3791@deserted.net>
-References: <1383179614-2457-1-git-send-email-flihp@twobit.us>
-	<527A62BC.9060104@twobit.us>
+Return-Path: <scott.m.rifenbark@intel.com>
+Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 302CCE017A2
+	for <yocto@yoctoproject.org>; Wed,  6 Nov 2013 09:15:20 -0800 (PST)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by azsmga102.ch.intel.com with ESMTP; 06 Nov 2013 09:15:18 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.93,647,1378882800"; d="scan'208";a="423254638"
+Received: from orsmsx107.amr.corp.intel.com ([10.22.240.5])
+	by fmsmga001.fm.intel.com with ESMTP; 06 Nov 2013 09:12:25 -0800
+Received: from orsmsx115.amr.corp.intel.com (10.22.240.11) by
+	ORSMSX107.amr.corp.intel.com (10.22.240.5) with Microsoft SMTP Server
+	(TLS) id 14.3.123.3; Wed, 6 Nov 2013 09:12:25 -0800
+Received: from orsmsx101.amr.corp.intel.com ([169.254.8.126]) by
+	ORSMSX115.amr.corp.intel.com ([10.22.240.11]) with mapi id
+	14.03.0123.003; Wed, 6 Nov 2013 09:12:25 -0800
+From: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
+To: "Robert P. J. Day" <rpjday@crashcourse.ca>, Yocto discussion list
+	<yocto@yoctoproject.org>
+Thread-Topic: [PATCH] Documentation: Couple innocuous tweaks to ref manual
+	migration chapter.
+Thread-Index: AQHO2tR+WHQulTdC6UC7CTjSRf4CLJoYcPeQ
+Date: Wed, 6 Nov 2013 17:12:24 +0000
+Message-ID: <41DEA4B02DBDEF40A0F3B6D0DDB1237983F44B9F@ORSMSX101.amr.corp.intel.com>
+References: <alpine.DEB.2.02.1311060441050.20296@oneiric>
+In-Reply-To: <alpine.DEB.2.02.1311060441050.20296@oneiric>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.138]
 MIME-Version: 1.0
-In-Reply-To: <527A62BC.9060104@twobit.us>
-X-URL: http://github.com/joeythesaint/joe-s-common-environment/tree/master
-X-Configuration: git://github.com/joeythesaint/joe-s-common-environment.git
-X-Editor: Vim-703 http://www.vim.org
-User-Agent: Mutt/1.5.21 (2010-09-15)
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: [meta-selinux][PATCH 0/3] Small dependency clean up.
+Subject: Re: [PATCH] Documentation: Couple innocuous tweaks to ref manual migration chapter.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -50,70 +41,76 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 06 Nov 2013 15:49:52 -0000
-X-Groupsio-MsgNum: 17002
-Content-Type: multipart/signed; micalg=pgp-sha1;
-	protocol="application/pgp-signature"; boundary="hHWLQfXTYDoKhP50"
-Content-Disposition: inline
-
---hHWLQfXTYDoKhP50
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+X-List-Received-Date: Wed, 06 Nov 2013 17:15:21 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-Hey Phil,
+Patch applied.
 
-[Re: [meta-selinux][PATCH 0/3] Small dependency clean up.] On 13.11.06 (Wed=
- 10:39) Philip Tricca wrote:
+Thanks,
+Scott
 
-> Hey Joe,
->=20
-> Have you had a chance to look at this one yet?
+>-----Original Message-----
+>From: Robert P. J. Day [mailto:rpjday@crashcourse.ca]
+>Sent: Wednesday, November 06, 2013 1:42 AM
+>To: Yocto discussion list
+>Cc: Rifenbark, Scott M
+>Subject: [PATCH] Documentation: Couple innocuous tweaks to ref manual
+>migration chapter.
+>
+>
+>Signed-off-by: Robert P. J. Day <rpjday@crashcourse.ca>
+>
+>---
+>
+>diff --git a/documentation/ref-manual/migration.xml b/documentation/ref-
+>manual/migration.xml
+>index bb62039..a3a3e88 100644
+>--- a/documentation/ref-manual/migration.xml
+>+++ b/documentation/ref-manual/migration.xml
+>@@ -34,7 +34,7 @@
+>             <para>
+>                 The shared state cache (sstate-cache), as pointed to by
+>                 <link linkend=3D'var-
+>SSTATE_DIR'><filename>SSTATE_DIR</filename></link>, by default
+>-                now has two-character subdirectories to prevent issues ri=
+sing
+>+                now has two-character subdirectories to prevent issues ar=
+ising
+>                 from too many files in the same directory.
+>                 Also, native sstate-cache packages will go into a subdire=
+ctory named
+>using
+>                 the distro ID string.
+>@@ -755,7 +755,7 @@
+>                     <ulink url=3D'&YOCTO_DOCS_DEV_URL;#build-directory'>B=
+uild
+>Directory</ulink>
+>                     rather than
+>                     <link linkend=3D'var-
+>TMPDIR'><filename>TMPDIR</filename></link>.
+>-                    Doing so makes it a easier to delete
+>+                    Doing so makes it easier to delete
+>                     <filename>TMPDIR</filename> and preserve the build hi=
+story.
+>                     Additionally, data for produced SDKs is now split by
+>                     <link linkend=3D'var-
+>IMAGE_NAME'><filename>IMAGE_NAME</filename></link>.
+>
+>--
+>
+>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+>Robert P. J. Day                                 Ottawa, Ontario, CANADA
+>                        http://crashcourse.ca
+>
+>Twitter:                                       http://twitter.com/rpjday
+>LinkedIn:                               http://ca.linkedin.com/in/rpjday
+>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
 
-Not yet, no.  I'm just getting through the backlog of meta-selinux and
-meta-networking stuff now.
-
--J.
-
->=20
-> Thanks,
-> - Philip
->=20
-> On 10/30/2013 08:33 PM, Philip Tricca wrote:
-> > This series adds the necessary run-time dependencies to the
-> > selinux-config package. Some clean up follows removing the selinux
-> > lib* packages from the packagegroups as they get pulled in by the
-> > utilities anyways.
-> >=20
-> > Philip Tricca (3):
-> >   Add RDEPENDS to selinux-config recipe.
-> >   Remove unnecessary dependencies from minimal packagegroup.
-> >   Remove unnecessary packages from packagegroup-core-selinux.
-> >=20
-> >  recipes-security/packagegroups/packagegroup-core-selinux.bb    |    7 =
--------
-> >  recipes-security/packagegroups/packagegroup-selinux-minimal.bb |    8 =
---------
-> >  recipes-security/selinux/selinux-config_0.1.bb                 |    8 =
-++++++++
-> >  3 files changed, 8 insertions(+), 15 deletions(-)
-> >=20
->=20
-
---=20
--Joe MacDonald.
-:wq
-
---hHWLQfXTYDoKhP50
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: Digital signature
-
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v1.4.12 (GNU/Linux)
-
-iEYEARECAAYFAlJ6ZRkACgkQwFvcllog0XxXEQCeLpoA8vlbtRe8WL+cVnCpxHSp
-cygAn2kY9ziCu7SOYl1KiGadpZJn7J8v
-=0+Qv
------END PGP SIGNATURE-----
-
---hHWLQfXTYDoKhP50--
