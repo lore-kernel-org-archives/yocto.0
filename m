@@ -1,28 +1,33 @@
-Return-Path: <brduffy@gmail.com>
-Received: from mail-vb0-f45.google.com (mail-vb0-f45.google.com
-	[209.85.212.45])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 97EB8E01793
-	for <yocto@yoctoproject.org>; Wed,  6 Nov 2013 13:34:16 -0800 (PST)
-Received: by mail-vb0-f45.google.com with SMTP id p6so74052vbe.4
-	for <yocto@yoctoproject.org>; Wed, 06 Nov 2013 13:34:16 -0800 (PST)
+Return-Path: <arigead@gmail.com>
+Received: from mail-wg0-f51.google.com (mail-wg0-f51.google.com [74.125.82.51])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E3D7BE017CA
+	for <yocto@yoctoproject.org>; Wed,  6 Nov 2013 13:41:25 -0800 (PST)
+Received: by mail-wg0-f51.google.com with SMTP id l18so105132wgh.6
+	for <yocto@yoctoproject.org>; Wed, 06 Nov 2013 13:41:24 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=MiH44ACZpvi2jUP3Ymvh95EEe8AuGY5X1BS2vpFwdwI=;
-	b=udr+cHDY+GXalskIy2GgnYqNj2vadNYR2GjSZlVHjhiYYMFCu+wMADLAPq8xYDu7Of
-	RFXOKdo4SzaH3AsL1qhNil/Twgm8Z6aKfLj73mSytS2jF8MnKv/dIvHkgmh8SKtqb8tA
-	E60X3otLqPzCCH0vse/t5isgGMtFXLHo26w3N5DObAhTXYu8QSrOWeK7jh/yiNLv9vq4
-	f4elsEnCW7v+VUiHLlQ6CnjSbf2L/GvKtXP4DTYCen3HvnBSP1HZ9ZvO1BRbVyM5kdo5
-	EMauIy/86UHqBVUSqLqLlDPuZbyKNZbr+TSp2E9QfK65esL9GWYLYqMy7GO2IFNplfXP
-	/fZA==
+	h=date:from:to:subject:message-id:mime-version:content-type
+	:content-disposition:content-transfer-encoding:user-agent;
+	bh=gPYJjLP7fSu7zI0GSpk+YfwoFwBOLPdDzOHHpnD+dLw=;
+	b=0bAjb4OA0h5rKv4KgBpAwFSaZfMCX7uKBc3d/RA7cdeobEWHE0gXCoxYHKTiGPh/0f
+	KB5DGeh0YnavZE1QQOnR8ysJ8p+VXp+/5tkyPbFWgvHBGGcpGEahnZOcRA93bTb8EnO3
+	mqL41fNf9zHMeJnKvxanTw9Z39GvGGAlGyzzA0HpHLafpjAqoponZd/XO1WrEWHWzN2t
+	CKQx6KJm04q1pKCm6hm++9cq3qDESmtTHvZHMHGI2fjBlViVT5zTtX5aRezhQGrX9lbO
+	RKsYdHZh9ZqEsy4Ow7stpCaTtwOUtrSkizignfcIJbKfPzrIzOnhj1i8kq2IGQ5EThrq
+	BGzg==
+X-Received: by 10.194.89.233 with SMTP id br9mr4335180wjb.15.1383774084660;
+	Wed, 06 Nov 2013 13:41:24 -0800 (PST)
+Received: from griso.site ([109.77.237.105])
+	by mx.google.com with ESMTPSA id ey4sm438742wic.11.2013.11.06.13.41.22
+	for <yocto@yoctoproject.org>
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Wed, 06 Nov 2013 13:41:23 -0800 (PST)
+Date: Wed, 6 Nov 2013 21:40:41 +0000
+From: John Whitmore <arigead@gmail.com>
+To: yocto@yoctoproject.org
+Message-ID: <20131106214039.GA16472@griso.site>
 MIME-Version: 1.0
-X-Received: by 10.58.255.71 with SMTP id ao7mr4112982ved.16.1383773656050;
-	Wed, 06 Nov 2013 13:34:16 -0800 (PST)
-Received: by 10.220.203.200 with HTTP; Wed, 6 Nov 2013 13:34:16 -0800 (PST)
-Date: Wed, 6 Nov 2013 16:34:16 -0500
-Message-ID: <CAHrDPkoYpQw1UZ-aK5Jg33LrtCXoz9C3tF6H5if32Vgh_iKVgQ@mail.gmail.com>
-From: Brian Duffy <brduffy@gmail.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: My first Yocto Project
+User-Agent: Mutt/1.5.21 (2010-09-15)
+Subject: Changing Config for linux-raspberrypi
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,39 +39,59 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 06 Nov 2013 21:34:19 -0000
-Content-Type: multipart/alternative; boundary=047d7bf0d1b437f43504ea88e928
+X-List-Received-Date: Wed, 06 Nov 2013 21:41:29 -0000
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
 
---047d7bf0d1b437f43504ea88e928
-Content-Type: text/plain; charset=ISO-8859-1
+Was struggling with the documentation on making chages to the config file used
+by the raspberrypi linux kernel. I'd got my own layer with a two line append file:
 
-I would like to get my feet wet with this thing. I am thinking of
-purchasing this nuc ...
+FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}"
+KERNEL_DEFCONFIG = "defconfig"
 
-http://www.intel.com/content/www/us/en/nuc/nuc-kit-d34010wyk.html
+I'd got my defconfig config file into the directory structure under my layer. 
 
-Can I use the the standard x86-64 BSP to get it working? What about the
-infrared sensor etc. Does that require further customization to get working?
+.
+├── conf
+│   └── layer.conf
+└── recipes-kernel
+    └── linux
+        ├── linux-raspberrypi
+        │   └── defconfig
+        └── linux-raspberrypi_3.6.11.bbappend.jfw
 
-thnx
 
-Brian
+So all looked good to me thankfully "<kergoth>" on the #yocto IRC Channel
+pointed me to bitbake -e linux-raspberrypi and I was able to check stuff
+out. Took me a while but I eventually found the problem.
 
--- 
-Duff
+The origional recipe "linux-raspberrypi_3.6.11.bb" contains the lines:
 
---047d7bf0d1b437f43504ea88e928
-Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
+do_configure_prepend() {
+	install -m 0644 ${S}/arch/${ARCH}/configs/${KERNEL_DEFCONFIG} ${WORKDIR}/defconfig || die "No default configuration for ${MACHINE} / ${KERNEL_DEFCONFIG} available."
+}
 
-<div dir=3D"ltr">I would like to get my feet wet with this thing. I am thin=
-king of purchasing this nuc ...<div><br></div><div><a href=3D"http://www.in=
-tel.com/content/www/us/en/nuc/nuc-kit-d34010wyk.html">http://www.intel.com/=
-content/www/us/en/nuc/nuc-kit-d34010wyk.html</a></div>
-<div><br></div><div>Can I use the the standard x86-64 BSP to get it working=
-? What about the infrared sensor etc. Does that require further customizati=
-on to get working?</div><div><br></div><div>thnx</div><div><br></div><div>
-Brian<br clear=3D"all"><div><br></div>-- <br>Duff
-</div></div>
+So even though my append is changing the FILESEXTRAPATHS and KERNEL_DEFCONFIG
+values it makes no difference at all. Well luckily I did manage to change the
+name of KERNEL_DEFCONFIG so when the above "install" command was executed it
+produced errors all over the place. If that hadn't happened I'd have got a
+kernel with none of my changes and there'd have been naughty words.
 
---047d7bf0d1b437f43504ea88e928--
+So given that the text book approach to making changes to the kernel, outlined
+in section "2.2.1. Creating the Append File" of the Linux Kernel Development
+Manual has been subverted. How do I change the kernel config?
+
+Can I do my own do_configure_prepend() in my bbappend to prepend the recipe's do_configure_prepend()
+and get my config file into the place it's going to install from? That sounds
+really messy to me but I'm new.
+
+That seems the only alternative short of re-writing the linux-raspberrypi
+recipe which doesn't sound too good either.
+
+If somebody could point me in the right direction on how to make changes to
+the kernel in this case I'd be very grateful.
+
+Thanks a million for any advice. 
+
+
