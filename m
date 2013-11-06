@@ -1,35 +1,33 @@
-Return-Path: <scott.m.rifenbark@intel.com>
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D414DE017C8
-	for <yocto@yoctoproject.org>; Wed,  6 Nov 2013 06:35:24 -0800 (PST)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by fmsmga101.fm.intel.com with ESMTP; 06 Nov 2013 06:35:24 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.93,647,1378882800"; d="scan'208";a="423162294"
-Received: from orsmsx107.amr.corp.intel.com ([10.22.240.5])
-	by fmsmga001.fm.intel.com with ESMTP; 06 Nov 2013 06:35:21 -0800
-Received: from orsmsx115.amr.corp.intel.com (10.22.240.11) by
-	ORSMSX107.amr.corp.intel.com (10.22.240.5) with Microsoft SMTP Server
-	(TLS) id 14.3.123.3; Wed, 6 Nov 2013 06:35:21 -0800
-Received: from orsmsx101.amr.corp.intel.com ([169.254.8.126]) by
-	ORSMSX115.amr.corp.intel.com ([10.22.240.11]) with mapi id
-	14.03.0123.003; Wed, 6 Nov 2013 06:35:21 -0800
-From: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
-To: "Robert P. J. Day" <rpjday@crashcourse.ca>, Yocto discussion list
-	<yocto@yoctoproject.org>
-Thread-Topic: [yocto] ref manual, sections 2.3.[67], ambiguity with "-b"
-	option to bitbake
-Thread-Index: AQHO2gY8tt2vgiuYbE+ZrlXh1g3tDZoYRbcg
-Date: Wed, 6 Nov 2013 14:35:20 +0000
-Message-ID: <41DEA4B02DBDEF40A0F3B6D0DDB1237983F44A97@ORSMSX101.amr.corp.intel.com>
-References: <alpine.DEB.2.02.1311050359160.8486@oneiric>
-In-Reply-To: <alpine.DEB.2.02.1311050359160.8486@oneiric>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.138]
+Return-Path: <raj.khem@gmail.com>
+Received: from mail-ie0-f175.google.com (mail-ie0-f175.google.com
+	[209.85.223.175])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 16952E017C8
+	for <yocto@yoctoproject.org>; Wed,  6 Nov 2013 06:46:36 -0800 (PST)
+Received: by mail-ie0-f175.google.com with SMTP id aq17so17132067iec.20
+	for <yocto@yoctoproject.org>; Wed, 06 Nov 2013 06:46:35 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type;
+	bh=DGJ/RXapazmdoRgRPEH70K++6sjxJBLC56Ag1QkR5AI=;
+	b=eQlON22jNWbO6AyLICclkKwVBSH+hJo9J6sGQnaKf5zZvx3PMhbkWBbl+0AN/D/bUv
+	qw7Tt0phG8PoqeO/TvtQbtJRjBXl8b9bcxRsbBZ1MCPYO0TKz3rM3tujTgJisqy+ONYH
+	u/AzNVt2xYYosWp0W2ZYtAJNhUE5FDPPhpgUyjS5G3h1JivVyqn703r2LJj9M6qYznF7
+	NgSiYvPOx+jcqHEBsYfE+HmGe3VztwKFVjAlF8bgmQilksdiqX6QwdeMqWrXQ/vB/7Yb
+	6s7P+NpLiu8pv39/iBb5hvwD9eOhpaRNCtjiEvg8wRutRgIdQGuU8fM/pCCfz6YIq1yr
+	9ghA==
 MIME-Version: 1.0
-Subject: Re: ref manual, sections 2.3.[67], ambiguity with "-b" option to bitbake
+X-Received: by 10.42.202.145 with SMTP id fe17mr143524icb.92.1383749195794;
+	Wed, 06 Nov 2013 06:46:35 -0800 (PST)
+Received: by 10.50.79.167 with HTTP; Wed, 6 Nov 2013 06:46:35 -0800 (PST)
+In-Reply-To: <17797116383D4341B029FDF34C22BF6A6C4D106C98@GUREXMB01.ASIAN.AD.ARICENT.COM>
+References: <17797116383D4341B029FDF34C22BF6A6C4D106C98@GUREXMB01.ASIAN.AD.ARICENT.COM>
+Date: Wed, 6 Nov 2013 06:46:35 -0800
+Message-ID: <CAMKF1sobjAsKwF55Rt2DpVdXvFrisEFNMmsLW-K75rHVZgP68g@mail.gmail.com>
+From: Khem Raj <raj.khem@gmail.com>
+To: Rohit2 Jindal <rohit2.jindal@aricent.com>
+Cc: Paul Eggleton <paul.eggleton@linux.intel.com>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Issue in toolchain compilation for mips platform
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,75 +39,179 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 06 Nov 2013 14:35:26 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Wed, 06 Nov 2013 14:46:39 -0000
+Content-Type: multipart/alternative; boundary=20cf301af979467c6e04ea833771
+
+--20cf301af979467c6e04ea833771
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-Robert,=20
+On Wednesday, November 6, 2013, Rohit2 Jindal wrote:
 
-I think section 2.3.7 cut corners when it said "If you want to show the env=
-ironment resulting from parsing a single recipe, use the -b reciename form.=
-"  My guess is that it should say ".... use the -b <somepath/somefile.bb>."
+>  Humble reminder!!!
+>
+>
+>
+> *From:* Rohit2 Jindal
+> *Sent:* Wednesday, October 30, 2013 2:45 PM
+> *To:* 'Paul Eggleton'; 'Khem Raj'
+> *Cc:* yocto@yoctoproject.org <javascript:_e({}, 'cvml',
+> 'yocto@yoctoproject.org');>
+> *Subject:* Issue in toolchain compilation for mips platform
+>
+>
+>
+> Hi,
+>
+>
+>
+> I am trying to compile my own toolchain using Yocto Platform. I wrote my
+> own recipes for the same bypassing the existing toolchain compilation
+> recipes. I build environment ready for routerstationpro tune32 and starte=
+d
+> compiling my own recipes there .
+>
+>
+>
+>     Version information: GCC Version 4.6.3, GLIBC Version (2.13), Binutil=
+s
+> Version (2.22), Newlib Version (1.20)
+>
+>
+>
+>
+>
+> Observations in tune32 , I am able to create binutils for mips but when I
+> try to compile gcc-4.6.3 for the gcc compiler for my board , it fails in
+> between giving error
+>
+> =E2=80=9Cconfigure: error: cannot compute suffix of object files: cannot
+> compile=E2=80=9D.  Attached error logs  for compilation and config.log is=
+ attached
+> herewith.
+>
 
-Someone on the maillist correct me if this is a bad assumption.
+You need to show config log for libgcc
+And I would like to understand why are you needing to replace toolchain
 
-Scott
 
->-----Original Message-----
->From: yocto-bounces@yoctoproject.org [mailto:yocto-
->bounces@yoctoproject.org] On Behalf Of Robert P. J. Day
->Sent: Tuesday, November 05, 2013 1:05 AM
->To: Yocto discussion list
->Subject: [yocto] ref manual, sections 2.3.[67], ambiguity with "-b" option=
- to
->bitbake
+
+> Please help me out in the issue I am facing .
 >
 >
->  section 2.3.6 of ref manual explains that bitbake "-b" option refers spe=
-cifically
->to a recipe *file*:
 >
->"If you really want to build a specific .bb file, you can use the command =
-form
->bitbake -b <somepath/somefile.bb>."
+> Thanks in advance
 >
->but the very next section uses "-b" in the context of a simple recipe
->*name* when combining it with "-e":
 >
->"You can use the -e BitBake option to display the resulting environment fo=
-r a
->configuration when you do not specify a package or for a specific package
->when you do specify the package. If you want to show the environment
->resulting from parsing a single recipe, use the -b recipename form."
 >
->  that suggests i could run something like:
+> Regards,
 >
->$ bitbake -e -b zlib
+> Rohit Jindal
 >
->which seems to work. clarification? is "-b" meant to refer to a simple rec=
-ipe
->*name* when used in the context of "-e"?
 >
->rday
 >
->--
 >
->=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+>
+> =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
 =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
->=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
->Robert P. J. Day                                 Ottawa, Ontario, CANADA
->                        http://crashcourse.ca
->
->Twitter:                                       http://twitter.com/rpjday
->LinkedIn:                               http://ca.linkedin.com/in/rpjday
->=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
 =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
->=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
->_______________________________________________
->yocto mailing list
->yocto@yoctoproject.org
->https://lists.yoctoproject.org/listinfo/yocto
+=3D=3D=3D=3D=3D
+> Please refer to http://www.aricent.com/legal/email_disclaimer.html
+> for important disclosures regarding this electronic communication.
+>
+> =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D
+>
 
+--20cf301af979467c6e04ea833771
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<br><br>On Wednesday, November 6, 2013, Rohit2 Jindal  wrote:<br><blockquot=
+e class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc sol=
+id;padding-left:1ex">
+
+
+
+
+
+<div lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
+<div>
+<p class=3D"MsoNormal"><span style=3D"color:#1f497d">Humble reminder!!!<u><=
+/u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1f497d"><u></u>=C2=A0<u></u></=
+span></p>
+<div>
+<div style=3D"border:none;border-top:solid #b5c4df 1.0pt;padding:3.0pt 0in =
+0in 0in">
+<p class=3D"MsoNormal"><b><span style=3D"font-size:10.0pt;font-family:&quot=
+;Tahoma&quot;,&quot;sans-serif&quot;">From:</span></b><span style=3D"font-s=
+ize:10.0pt;font-family:&quot;Tahoma&quot;,&quot;sans-serif&quot;"> Rohit2 J=
+indal
+<br>
+<b>Sent:</b> Wednesday, October 30, 2013 2:45 PM<br>
+<b>To:</b> &#39;Paul Eggleton&#39;; &#39;Khem Raj&#39;<br>
+<b>Cc:</b> <a href=3D"javascript:_e({}, &#39;cvml&#39;, &#39;yocto@yoctopro=
+ject.org&#39;);" target=3D"_blank">yocto@yoctoproject.org</a><br>
+<b>Subject:</b> Issue in toolchain compilation for mips platform<u></u><u><=
+/u></span></p>
+</div>
+</div>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<p class=3D"MsoNormal">Hi,<u></u><u></u></p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<p class=3D"MsoNormal">I am trying to compile my own toolchain using Yocto =
+Platform. I wrote my own recipes for the same bypassing the existing toolch=
+ain compilation recipes. I build environment ready for routerstationpro tun=
+e32 and started compiling my own recipes
+ there .=C2=A0 <u></u><u></u></p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<p class=3D"MsoNormal"><span style=3D"color:#c00000">=C2=A0=C2=A0=C2=A0 Ver=
+sion information: GCC Version 4.6.3, GLIBC Version (2.13), Binutils Version=
+ (2.22), Newlib Version (1.20)<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<p class=3D"MsoNormal">Observations in tune32 , I am able to create binutil=
+s for mips but when I try to compile gcc-4.6.3 for the gcc compiler for my =
+board , it fails in between giving error<u></u><u></u></p>
+<p class=3D"MsoNormal">=E2=80=9Cconfigure: error: cannot compute suffix of =
+object files: cannot compile=E2=80=9D.=C2=A0 Attached error logs =C2=A0for =
+compilation and config.log is attached herewith.<u></u><u></u></p></div></d=
+iv></blockquote><div><br>
+</div><div>You need to show config log for libgcc</div><div>And I would lik=
+e to understand why are you needing to replace toolchain</div><div><br></di=
+v><div>=C2=A0</div><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 =
+.8ex;border-left:1px #ccc solid;padding-left:1ex">
+<div lang=3D"EN-US" link=3D"blue" vlink=3D"purple"><div>
+<p class=3D"MsoNormal">Please help me out in the issue I am facing .<u></u>=
+<u></u></p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<p class=3D"MsoNormal">Thanks in advance<u></u><u></u></p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<p class=3D"MsoNormal">Regards,<u></u><u></u></p>
+<p class=3D"MsoNormal">Rohit Jindal<u></u><u></u></p>
+</div>
+<br>
+<font face=3D"Arial" color=3D"Gray"><br>
+<br>
+<br>
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D<br>
+Please refer to <a href=3D"http://www.aricent.com/legal/email_disclaimer.ht=
+ml" target=3D"_blank">http://www.aricent.com/legal/email_disclaimer.html</a=
+><br>
+for important disclosures regarding this electronic communication.<br>
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D<br>
+</font>
+</div>
+
+</blockquote>
+
+--20cf301af979467c6e04ea833771--
