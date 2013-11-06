@@ -1,30 +1,32 @@
-Return-Path: <scott.m.rifenbark@intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1BFE3E017C8
-	for <yocto@yoctoproject.org>; Wed,  6 Nov 2013 06:47:41 -0800 (PST)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga101.jf.intel.com with ESMTP; 06 Nov 2013 06:47:41 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.93,535,1378882800"; d="scan'208";a="430723358"
-Received: from orsmsx105.amr.corp.intel.com ([10.22.225.132])
-	by orsmga002.jf.intel.com with ESMTP; 06 Nov 2013 06:47:41 -0800
-Received: from orsmsx101.amr.corp.intel.com ([169.254.8.126]) by
-	ORSMSX105.amr.corp.intel.com ([169.254.4.25]) with mapi id
-	14.03.0123.003; Wed, 6 Nov 2013 06:47:40 -0800
-From: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
-To: "Robert P. J. Day" <rpjday@crashcourse.ca>, Yocto discussion list
-	<yocto@yoctoproject.org>
-Thread-Topic: [yocto] ref manual: what means "package_deploy-rpm"?
-Thread-Index: AQHO2sJ6+1j25NO3UkSS3Yfl87v9A5oYSKVQ
-Date: Wed, 6 Nov 2013 14:47:40 +0000
-Message-ID: <41DEA4B02DBDEF40A0F3B6D0DDB1237983F44AB8@ORSMSX101.amr.corp.intel.com>
+Return-Path: <rpjday@crashcourse.ca>
+Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
+	[64.235.106.9])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0553AE01770
+	for <yocto@yoctoproject.org>; Wed,  6 Nov 2013 06:53:57 -0800 (PST)
+Received: from [173.34.6.101] (port=60299 helo=crashcourse.ca)
+	by astoria.ccjclearline.com with esmtpsa (TLSv1:DHE-RSA-AES256-SHA:256)
+	(Exim 4.80) (envelope-from <rpjday@crashcourse.ca>)
+	id 1Ve4UV-0002BL-Vj; Wed, 06 Nov 2013 09:53:56 -0500
+Date: Wed, 6 Nov 2013 09:53:47 -0500 (EST)
+From: "Robert P. J. Day" <rpjday@crashcourse.ca>
+X-X-Sender: rpjday@oneiric
+To: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
+In-Reply-To: <41DEA4B02DBDEF40A0F3B6D0DDB1237983F44AB8@ORSMSX101.amr.corp.intel.com>
+Message-ID: <alpine.DEB.2.02.1311060951530.23263@oneiric>
 References: <alpine.DEB.2.02.1311060229130.18511@oneiric>
-In-Reply-To: <alpine.DEB.2.02.1311060229130.18511@oneiric>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.138]
+	<41DEA4B02DBDEF40A0F3B6D0DDB1237983F44AB8@ORSMSX101.amr.corp.intel.com>
+User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
 MIME-Version: 1.0
+X-AntiAbuse: This header was added to track abuse,
+	please include it with any abuse report
+X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - crashcourse.ca
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+Cc: Yocto discussion list <yocto@yoctoproject.org>
 Subject: Re: ref manual: what means "package_deploy-rpm"?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -37,50 +39,26 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 06 Nov 2013 14:47:44 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Wed, 06 Nov 2013 14:53:58 -0000
+Content-Type: TEXT/PLAIN; charset=US-ASCII
 
-Probably a typo... "pakage_deploy_rpm" is likely what it is supposed to be.
+On Wed, 6 Nov 2013, Rifenbark, Scott M wrote:
 
->-----Original Message-----
->From: yocto-bounces@yoctoproject.org [mailto:yocto-
->bounces@yoctoproject.org] On Behalf Of Robert P. J. Day
->Sent: Tuesday, November 05, 2013 11:32 PM
->To: Yocto discussion list
->Subject: [yocto] ref manual: what means "package_deploy-rpm"?
->
->
->  too tired to go track this down so i'll beg for an explanation -- sectio=
-n 4.3.4.2
->in ref manual:
->
->"The result of the change should be that all the package, package_write_rp=
-m,
->and package_deploy-rpm shared state cache items would become invalid."
->
->  "package_deploy-rpm"?
->
->rday
->
->--
->
->=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
->=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
->Robert P. J. Day                                 Ottawa, Ontario, CANADA
->                        http://crashcourse.ca
->
->Twitter:                                       http://twitter.com/rpjday
->LinkedIn:                               http://ca.linkedin.com/in/rpjday
->=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
->=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
->_______________________________________________
->yocto mailing list
->yocto@yoctoproject.org
->https://lists.yoctoproject.org/listinfo/yocto
+> Probably a typo... "pakage_deploy_rpm" is likely what it is supposed
+> to be.
+
+  i looked for that first thing but see no reference to it -- i see no
+reference to anything of the form "package_deploy*" anywhere.
+
+rday
+
+-- 
+
+========================================================================
+Robert P. J. Day                                 Ottawa, Ontario, CANADA
+                        http://crashcourse.ca
+
+Twitter:                                       http://twitter.com/rpjday
+LinkedIn:                               http://ca.linkedin.com/in/rpjday
+========================================================================
 
