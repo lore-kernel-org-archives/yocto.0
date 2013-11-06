@@ -1,33 +1,32 @@
-Return-Path: <scott.m.rifenbark@intel.com>
-Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E6A6EE017A4
-	for <yocto@yoctoproject.org>; Wed,  6 Nov 2013 07:34:42 -0800 (PST)
-Received: from azsmga002.ch.intel.com ([10.2.17.35])
-	by azsmga102.ch.intel.com with ESMTP; 06 Nov 2013 07:34:17 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.93,535,1378882800"; d="scan'208";a="317768420"
-Received: from orsmsx107.amr.corp.intel.com ([10.22.240.5])
-	by AZSMGA002.ch.intel.com with ESMTP; 06 Nov 2013 07:34:17 -0800
-Received: from orsmsx101.amr.corp.intel.com ([169.254.8.126]) by
-	ORSMSX107.amr.corp.intel.com ([169.254.1.35]) with mapi id
-	14.03.0123.003; Wed, 6 Nov 2013 07:34:17 -0800
-From: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
-To: "Robert P. J. Day" <rpjday@crashcourse.ca>
-Thread-Topic: [yocto] ref manual: what means "package_deploy-rpm"?
-Thread-Index: AQHO2sJ6+1j25NO3UkSS3Yfl87v9A5oYSKVQgACH8ID//4T+IA==
-Date: Wed, 6 Nov 2013 15:34:16 +0000
-Message-ID: <41DEA4B02DBDEF40A0F3B6D0DDB1237983F44AE6@ORSMSX101.amr.corp.intel.com>
-References: <alpine.DEB.2.02.1311060229130.18511@oneiric>
-	<41DEA4B02DBDEF40A0F3B6D0DDB1237983F44AB8@ORSMSX101.amr.corp.intel.com>
-	<alpine.DEB.2.02.1311060951530.23263@oneiric>
-In-Reply-To: <alpine.DEB.2.02.1311060951530.23263@oneiric>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.138]
+Return-Path: <flihp@twobit.us>
+Received: from smtp.twobit.us (unknown [38.83.192.235])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E6C93E017A2
+	for <yocto@yoctoproject.org>; Wed,  6 Nov 2013 07:39:43 -0800 (PST)
+Received: from [216.57.91.130] (helo=[10.204.207.200])
+	by smtp.twobit.us with esmtpsa
+	(TLS1.0:DHE_RSA_CAMELLIA_256_CBC_SHA1:256) (Exim 4.80)
+	(envelope-from <flihp@twobit.us>)
+	id 1Ve5Ce-0002cA-8e; Wed, 06 Nov 2013 15:39:32 +0000
+Message-ID: <527A62BC.9060104@twobit.us>
+Date: Wed, 06 Nov 2013 10:39:40 -0500
+From: Philip Tricca <flihp@twobit.us>
+User-Agent: Mozilla/5.0 (X11; Linux i686;
+	rv:17.0) Gecko/20130922 Icedove/17.0.9
 MIME-Version: 1.0
-Cc: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: ref manual: what means "package_deploy-rpm"?
+To: Joe MacDonald <joe@deserted.net>
+References: <1383179614-2457-1-git-send-email-flihp@twobit.us>
+In-Reply-To: <1383179614-2457-1-git-send-email-flihp@twobit.us>
+X-Enigmail-Version: 1.5.1
+X-SA-Exim-Connect-IP: 216.57.91.130
+X-SA-Exim-Mail-From: flihp@twobit.us
+X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on smtp.twobit.us
+X-Spam-Level: 
+X-Spam-Status: No, score=-1.0 required=5.0 tests=ALL_TRUSTED autolearn=ham
+	version=3.3.2
+X-SA-Exim-Version: 4.2.1 (built Mon, 26 Dec 2011 16:24:06 +0000)
+X-SA-Exim-Scanned: Yes (on smtp.twobit.us)
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: [meta-selinux][PATCH 0/3] Small dependency clean up.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,48 +38,32 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 06 Nov 2013 15:34:46 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Wed, 06 Nov 2013 15:39:53 -0000
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: 7bit
 
-I have been investigating this and the entire package_deploy_rpm thing is b=
-ogus.  I am working on a re-write for that section and will provide a link =
-when I get it done.
+Hey Joe,
 
-Scott
+Have you had a chance to look at this one yet?
 
->-----Original Message-----
->From: Robert P. J. Day [mailto:rpjday@crashcourse.ca]
->Sent: Wednesday, November 06, 2013 6:54 AM
->To: Rifenbark, Scott M
->Cc: Yocto discussion list
->Subject: RE: [yocto] ref manual: what means "package_deploy-rpm"?
->
->On Wed, 6 Nov 2013, Rifenbark, Scott M wrote:
->
->> Probably a typo... "pakage_deploy_rpm" is likely what it is supposed
->> to be.
->
->  i looked for that first thing but see no reference to it -- i see no ref=
-erence to
->anything of the form "package_deploy*" anywhere.
->
->rday
->
->--
->
->=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
->=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
->Robert P. J. Day                                 Ottawa, Ontario, CANADA
->                        http://crashcourse.ca
->
->Twitter:                                       http://twitter.com/rpjday
->LinkedIn:                               http://ca.linkedin.com/in/rpjday
->=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
->=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+Thanks,
+- Philip
+
+On 10/30/2013 08:33 PM, Philip Tricca wrote:
+> This series adds the necessary run-time dependencies to the
+> selinux-config package. Some clean up follows removing the selinux
+> lib* packages from the packagegroups as they get pulled in by the
+> utilities anyways.
+> 
+> Philip Tricca (3):
+>   Add RDEPENDS to selinux-config recipe.
+>   Remove unnecessary dependencies from minimal packagegroup.
+>   Remove unnecessary packages from packagegroup-core-selinux.
+> 
+>  recipes-security/packagegroups/packagegroup-core-selinux.bb    |    7 -------
+>  recipes-security/packagegroups/packagegroup-selinux-minimal.bb |    8 --------
+>  recipes-security/selinux/selinux-config_0.1.bb                 |    8 ++++++++
+>  3 files changed, 8 insertions(+), 15 deletions(-)
+> 
+
 
