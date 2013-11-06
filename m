@@ -1,33 +1,30 @@
-Return-Path: <scott.m.rifenbark@intel.com>
-Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8ABD0E017BB
-	for <yocto@yoctoproject.org>; Wed,  6 Nov 2013 11:11:59 -0800 (PST)
-Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by azsmga101.ch.intel.com with ESMTP; 06 Nov 2013 11:11:58 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.93,535,1378882800"; d="scan'208";a="385602295"
-Received: from orsmsx108.amr.corp.intel.com ([10.22.240.6])
-	by azsmga001.ch.intel.com with ESMTP; 06 Nov 2013 11:11:58 -0800
-Received: from orsmsx112.amr.corp.intel.com (10.22.240.13) by
-	ORSMSX108.amr.corp.intel.com (10.22.240.6) with Microsoft SMTP Server
-	(TLS) id 14.3.123.3; Wed, 6 Nov 2013 11:11:57 -0800
-Received: from orsmsx101.amr.corp.intel.com ([169.254.8.126]) by
-	ORSMSX112.amr.corp.intel.com ([169.254.12.221]) with mapi id
-	14.03.0123.003; Wed, 6 Nov 2013 11:11:58 -0800
-From: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
+Return-Path: <rpjday@crashcourse.ca>
+Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
+	[64.235.106.9])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BB54CE017BB
+	for <yocto@yoctoproject.org>; Wed,  6 Nov 2013 11:12:26 -0800 (PST)
+Received: from [173.34.6.101] (port=35770 helo=crashcourse.ca)
+	by astoria.ccjclearline.com with esmtpsa (TLSv1:DHE-RSA-AES256-SHA:256)
+	(Exim 4.80) (envelope-from <rpjday@crashcourse.ca>)
+	id 1Ve8We-0007go-KJ
+	for yocto@yoctoproject.org; Wed, 06 Nov 2013 14:12:24 -0500
+Date: Wed, 6 Nov 2013 14:12:17 -0500 (EST)
+From: "Robert P. J. Day" <rpjday@crashcourse.ca>
+X-X-Sender: rpjday@oneiric
 To: Yocto discussion list <yocto@yoctoproject.org>
-Thread-Topic: curious about ref manual, sec 6.1.11, oe-init-build-env-memres
-Thread-Index: AQHO2yDAnNULuC+NxkqDVDORcZa5k5oYkbhA
-Date: Wed, 6 Nov 2013 19:11:57 +0000
-Message-ID: <41DEA4B02DBDEF40A0F3B6D0DDB1237983F44CAE@ORSMSX101.amr.corp.intel.com>
-References: <alpine.DEB.2.02.1311061346180.25975@oneiric>
-In-Reply-To: <alpine.DEB.2.02.1311061346180.25975@oneiric>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.138]
+Message-ID: <alpine.DEB.2.02.1311061409480.2880@oneiric>
+User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
 MIME-Version: 1.0
-Subject: FW: curious about ref manual, sec 6.1.11, oe-init-build-env-memres
+X-AntiAbuse: This header was added to track abuse,
+	please include it with any abuse report
+X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - crashcourse.ca
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+Subject: should yocto filename references start with a leading slash?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,28 +36,27 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 06 Nov 2013 19:12:00 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Wed, 06 Nov 2013 19:12:28 -0000
+Content-Type: TEXT/PLAIN; charset=US-ASCII
 
-Anyone know this?
 
->-----Original Message-----
->From: Robert P. J. Day [mailto:rpjday@crashcourse.ca]
->Sent: Wednesday, November 06, 2013 10:48 AM
->To: Rifenbark, Scott M
->Subject: curious about ref manual, sec 6.1.11, oe-init-build-env-memres
->
->
->  i've never used that memory-resident version of bitbake -- it's not clea=
-r from
->that section whether you need to start bitbake running before you run that
->script.
->
->  that is, it's not really *explicitly* explained whether running that scr=
-ipt with a
->port number *starts* the bitbake server. does it?
->
->rday
+  currently reading ref manual, section 6, and i'm seeing filename
+references of the form /meta-yocto/conf, /scripts/oe-setup-builddir,
+and so on.
+
+  is it really appropriate for those filenames to begin with a leading
+slash? it seems unnecessary, and possibly a bit misleading. is there a
+reason for those leading slashes?
+
+rday
+
+-- 
+
+========================================================================
+Robert P. J. Day                                 Ottawa, Ontario, CANADA
+                        http://crashcourse.ca
+
+Twitter:                                       http://twitter.com/rpjday
+LinkedIn:                               http://ca.linkedin.com/in/rpjday
+========================================================================
 
