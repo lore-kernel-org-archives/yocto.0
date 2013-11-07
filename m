@@ -1,28 +1,37 @@
-Return-Path: <vidal.develone@gmail.com>
-Received: from mail-qa0-f50.google.com (mail-qa0-f50.google.com
-	[209.85.216.50])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9AD4DE01757
-	for <yocto@yoctoproject.org>; Thu,  7 Nov 2013 11:37:12 -0800 (PST)
-Received: by mail-qa0-f50.google.com with SMTP id f11so853565qae.9
-	for <yocto@yoctoproject.org>; Thu, 07 Nov 2013 11:37:12 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=Bf7IGMyEC+Roa0vvphAMPICf6++aJIIAuYbFveawhto=;
-	b=lTqHD1l36ijJM9674xbGjxvkoMHpmSIWbYBDFb0YThXvJCu26TdR9q7fGFqDGgSY+i
-	aSYKwjGkGvZjJ5w6d6gibXUvNwnX1QTvB/Igu+OCxfTjSH7tdGz/FbH+yNzoON8c4Qgl
-	ojhp9WClSnXT6yLuBydYNzAyv5zMD9JpFtmqGMOgvbD14BmHW3XyErYvlc+6aqe2CeHK
-	C6Tz+8011i5kaaV7QM15CX2z7ocRiTBIfwdpexMqyPW+k3L/z7MLszqj/KtVrUU6847Z
-	paQTJgJw+4EMj3VXu9sBenXITJDIM5WjhQQ+dwtISw/9cxoepweRFnP4fGNVwrBO/TFM
-	4syg==
+Return-Path: <scott.m.rifenbark@intel.com>
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 087DEE01822
+	for <yocto@yoctoproject.org>; Thu,  7 Nov 2013 14:29:29 -0800 (PST)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga101.fm.intel.com with ESMTP; 07 Nov 2013 14:29:29 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.93,654,1378882800"; d="scan'208";a="429693716"
+Received: from orsmsx102.amr.corp.intel.com ([10.22.225.129])
+	by fmsmga002.fm.intel.com with ESMTP; 07 Nov 2013 14:29:28 -0800
+Received: from orsmsx158.amr.corp.intel.com (10.22.240.20) by
+	ORSMSX102.amr.corp.intel.com (10.22.225.129) with Microsoft SMTP Server
+	(TLS) id 14.3.123.3; Thu, 7 Nov 2013 14:29:28 -0800
+Received: from orsmsx101.amr.corp.intel.com ([169.254.8.126]) by
+	ORSMSX158.amr.corp.intel.com ([169.254.10.67]) with mapi id
+	14.03.0123.003; Thu, 7 Nov 2013 14:29:27 -0800
+From: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
+To: Paul Eggleton <paul.eggleton@linux.intel.com>, "Robert P. J. Day"
+	<rpjday@crashcourse.ca>, Scott Rifenbark <srifenbark@gmail.com>
+Thread-Topic: [yocto] should yocto filename references start with a leading
+	slash?
+Thread-Index: AQHO26caKnrzpubPxk6kuwIqjFHMqZoaWeLg
+Date: Thu, 7 Nov 2013 22:29:26 +0000
+Message-ID: <41DEA4B02DBDEF40A0F3B6D0DDB1237983F45204@ORSMSX101.amr.corp.intel.com>
+References: <alpine.DEB.2.02.1311061409480.2880@oneiric>
+	<2732208.eD41GxcQ8I@helios>
+In-Reply-To: <2732208.eD41GxcQ8I@helios>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.139]
 MIME-Version: 1.0
-X-Received: by 10.49.82.52 with SMTP id f20mr15802733qey.73.1383853032017;
-	Thu, 07 Nov 2013 11:37:12 -0800 (PST)
-Received: by 10.140.37.81 with HTTP; Thu, 7 Nov 2013 11:37:11 -0800 (PST)
-Date: Thu, 7 Nov 2013 12:37:11 -0700
-Message-ID: <CANwz6nz1t9TVPBdP2afosdkV3k-erwsJFe4C_d21UwdV0ZZ4yg@mail.gmail.com>
-From: Edward Vidal <vidal.develone@gmail.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: zImage MLO u-boot.
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: should yocto filename references start with a leading	slash?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,133 +43,50 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 07 Nov 2013 19:37:15 -0000
-Content-Type: multipart/alternative; boundary=047d7b5dbf4c65168a04ea9b647c
-
---047d7b5dbf4c65168a04ea9b647c
-Content-Type: text/plain; charset=ISO-8859-1
-
-hello,
-What is the relation between MLO u-boot.bin & u-boot.img and uimage.&zImage?
-I have been try to get the module uvcvideo.ko
-meta-beagleboard is used in Angstrom. I had built previously.
-
-. /opt/poky/1.4.1/environment-setup-armv7a-vfp-neon-poky-linux-gnueabi
-
-was getting errors with these LDFLAGS
-
-LDFLAGS=-Wl,-O1 -Wl,--hash-style=gnu -Wl,--as-needed
-
-set LDFLAGS with the following command export LDFLAGS=''
-
-make ARCH=arm CROSS_COMPILE=arm-poky-linux-gnueabi- menuconfig
-
- CONFIG_VIDEO_V4L2_COMMON=m
-
-USB Video Class (UVC) a module.
-
-find . -name uvcvideo.ko
-./drivers/media/video/uvc/uvcvideo.ko
-
-[vidal@sim4 git]$ find . -name uImage
-[vidal@sim4 git]$ find . -name zImage
-./arch/arm/boot/zImage
-
-I believe u-boot does not support zImage until
-
-U-Boot 2013.07 (Oct 31 2013 - 23:25:55)
-
-This is uEnv.txt I used to boot to boot zImage 3.10.11.
-
-dvimode=hd720 omapfb.vram=0:8M,1:4M,2:4M
-loaduimage=run mmcargs;mmc rescan ; fatload mmc 0:1 0x80300000 zImage
-vram=16M
-mpurate=1000
-mmcboot=echo Booting from mmc ...;  bootz 0x80300000
-
-Any and all help is appreciated.
-
-Thanks
-
---047d7b5dbf4c65168a04ea9b647c
-Content-Type: text/html; charset=ISO-8859-1
+X-List-Received-Date: Thu, 07 Nov 2013 22:29:30 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div><div>hello,<br></div>What is the relation between MLO=
- u-boot.bin &amp; u-boot.img and uimage.&amp;zImage?<br></div><div>I have b=
-een try to get the module uvcvideo.ko<br></div><div>meta-beagleboard is use=
-d in Angstrom. I had built previously.<br>
+I searched through the YP doc set and removed as many leading slash charact=
+ers that were being used in pathnames as possible.  There are a few "~" cha=
+racters in some of the very specific examples that I left.  But for the mos=
+t part, directory name usage is consistent now.
 
+Scott
 
+>-----Original Message-----
+>From: yocto-bounces@yoctoproject.org [mailto:yocto-
+>bounces@yoctoproject.org] On Behalf Of Paul Eggleton
+>Sent: Thursday, November 07, 2013 2:49 AM
+>To: Robert P. J. Day; Scott Rifenbark
+>Cc: yocto@yoctoproject.org
+>Subject: Re: [yocto] should yocto filename references start with a leading
+>slash?
+>
+>On Wednesday 06 November 2013 14:12:17 Robert P. J. Day wrote:
+>>   currently reading ref manual, section 6, and i'm seeing filename
+>> references of the form /meta-yocto/conf, /scripts/oe-setup-builddir,
+>> and so on.
+>>
+>>   is it really appropriate for those filenames to begin with a leading
+>> slash? it seems unnecessary, and possibly a bit misleading. is there a
+>> reason for those leading slashes?
+>
+>I'd have to agree, there should not be a leading slash. I see there are so=
+me
+>paths in the reference manual where we use $HOME/poky/ as a prefix, those
+>should probably also be removed.
+>
+>Cheers,
+>Paul
+>
+>--
+>
+>Paul Eggleton
+>Intel Open Source Technology Centre
+>_______________________________________________
+>yocto mailing list
+>yocto@yoctoproject.org
+>https://lists.yoctoproject.org/listinfo/yocto
 
-=09
-=09
-=09
-	<style type=3D"text/css">P { margin-bottom: 0.08in; direction: ltr; color:=
- rgb(0, 0, 0); }P.western { font-family: "Liberation Serif","Times New Roma=
-n",serif; font-size: 12pt; }P.cjk { font-family: "WenQuanYi Zen Hei Sharp";=
- font-size: 12pt; }P.ctl { font-family: "DejaVu Sans"; font-size: 12pt; }</=
-style>
-
-
-<p class=3D"" style=3D"margin-bottom:0in">.
-/opt/poky/1.4.1/environment-setup-armv7a-vfp-neon-poky-linux-gnueabi</p><p =
-class=3D"" style=3D"margin-bottom:0in">was getting errors with these LDFLAG=
-S<br></p>
-<p class=3D"" style=3D"margin-bottom:0in">LDFLAGS=3D-Wl,-O1
--Wl,--hash-style=3Dgnu -Wl,--as-needed</p><p class=3D"" style=3D"margin-bot=
-tom:0in">set LDFLAGS with the following command export LDFLAGS=3D&#39;&#39;
-</p><p class=3D"" style=3D"margin-bottom:0in">make ARCH=3Darm
-CROSS_COMPILE=3Darm-poky-linux-gnueabi- menuconfig</p><p class=3D"" style=
-=3D"margin-bottom:0in">
-
-
-=09
-=09
-=09
-	<style type=3D"text/css">P { margin-bottom: 0.08in; direction: ltr; color:=
- rgb(0, 0, 0); }P.western { font-family: "Liberation Serif","Times New Roma=
-n",serif; font-size: 12pt; }P.cjk { font-family: "WenQuanYi Zen Hei Sharp";=
- font-size: 12pt; }P.ctl { font-family: "DejaVu Sans"; font-size: 12pt; }</=
-style>
-
-
-</p><p class=3D"" style=3D"margin-bottom:0in">CONFIG_VIDEO_V4L2_COMMON=3Dm<=
-/p>
-
-
-
-</div>
-
-
-=09
-=09
-=09
-	<style type=3D"text/css">P { margin-bottom: 0.08in; direction: ltr; color:=
- rgb(0, 0, 0); }P.western { font-family: "Liberation Serif","Times New Roma=
-n",serif; font-size: 12pt; }P.cjk { font-family: "WenQuanYi Zen Hei Sharp";=
- font-size: 12pt; }P.ctl { font-family: "DejaVu Sans"; font-size: 12pt; }</=
-style>
-
-
-<p class=3D"" style=3D"margin-bottom:0in">USB Video Class (UVC) a module.</=
-p><p class=3D"" style=3D"margin-bottom:0in">find . -name uvcvideo.ko<br>./d=
-rivers/media/video/uvc/uvcvideo.ko</p><p class=3D"" style=3D"margin-bottom:=
-0in">[vidal@sim4 git]$ find . -name uImage<br>
-[vidal@sim4 git]$ find . -name zImage<br>./arch/arm/boot/zImage</p><p class=
-=3D"" style=3D"margin-bottom:0in">I believe u-boot does not support zImage =
-until=A0</p><p class=3D"" style=3D"margin-bottom:0in">U-Boot 2013.07 (Oct 3=
-1 2013 - 23:25:55)</p>
-<p class=3D"" style=3D"margin-bottom:0in">This is uEnv.txt I used to boot t=
-o boot zImage 3.10.11.</p><p class=3D"" style=3D"margin-bottom:0in"> dvimod=
-e=3Dhd720 omapfb.vram=3D0:8M,1:4M,2:4M<br>loaduimage=3Drun mmcargs;mmc resc=
-an ; fatload mmc 0:1 0x80300000 zImage<br>
-vram=3D16M<br>mpurate=3D1000<br>mmcboot=3Decho Booting from mmc ...;=A0 boo=
-tz 0x80300000</p><p class=3D"" style=3D"margin-bottom:0in">Any and all help=
- is appreciated.</p><p class=3D"" style=3D"margin-bottom:0in">Thanks<br></p=
-><p class=3D"" style=3D"margin-bottom:0in">
-<br></p>
-
-</div>
-
---047d7b5dbf4c65168a04ea9b647c--
