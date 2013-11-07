@@ -1,38 +1,28 @@
-Return-Path: <scott.m.rifenbark@intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 50219E00283
-	for <yocto@yoctoproject.org>; Thu,  7 Nov 2013 07:35:48 -0800 (PST)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga101.jf.intel.com with ESMTP; 07 Nov 2013 07:35:48 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.93,535,1378882800"; d="scan'208";a="431374797"
-Received: from orsmsx101.amr.corp.intel.com ([10.22.225.128])
-	by orsmga002.jf.intel.com with ESMTP; 07 Nov 2013 07:35:43 -0800
-Received: from orsmsx158.amr.corp.intel.com (10.22.240.20) by
-	ORSMSX101.amr.corp.intel.com (10.22.225.128) with Microsoft SMTP Server
-	(TLS) id 14.3.123.3; Thu, 7 Nov 2013 07:35:43 -0800
-Received: from orsmsx101.amr.corp.intel.com ([169.254.8.126]) by
-	ORSMSX158.amr.corp.intel.com ([169.254.10.67]) with mapi id
-	14.03.0123.003; Thu, 7 Nov 2013 07:35:42 -0800
-From: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
-To: "Robert P. J. Day" <rpjday@crashcourse.ca>, Saul Wold <sgw@linux.intel.com>
-Thread-Topic: [yocto] FW: curious about ref manual, sec 6.1.11,
-	oe-init-build-env-memres
-Thread-Index: AQHO2yDAnNULuC+NxkqDVDORcZa5k5oYkbhAgACeXICAAADKAIAAttQQ
-Date: Thu, 7 Nov 2013 15:35:42 +0000
-Message-ID: <41DEA4B02DBDEF40A0F3B6D0DDB1237983F44FF5@ORSMSX101.amr.corp.intel.com>
-References: <alpine.DEB.2.02.1311061346180.25975@oneiric>
-	<41DEA4B02DBDEF40A0F3B6D0DDB1237983F44CAE@ORSMSX101.amr.corp.intel.com>
-	<527AA8B5.8060603@linux.intel.com>
-	<alpine.DEB.2.02.1311061540140.23267@oneiric>
-In-Reply-To: <alpine.DEB.2.02.1311061540140.23267@oneiric>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.138]
+Return-Path: <brduffy@gmail.com>
+Received: from mail-vb0-f46.google.com (mail-vb0-f46.google.com
+	[209.85.212.46])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 74945E00283
+	for <yocto@yoctoproject.org>; Thu,  7 Nov 2013 08:02:21 -0800 (PST)
+Received: by mail-vb0-f46.google.com with SMTP id 10so498626vbe.33
+	for <yocto@yoctoproject.org>; Thu, 07 Nov 2013 08:02:21 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=4Rvwqwaa6mc/9iqU1jMz7W6XkyAuBqmnJh+WL6ZJNFA=;
+	b=09V5zGkio+HKrjObAsG20pRq6HEP/i5uEot5ooAqdNSgLywfUIxUP+wobeJQh4b4rL
+	M3zCN3vPCC+KWeHM+noCHaK1rpczjf4WTWhV+RbaRuM44PKaeHdID3qQQ1wrGtlBYR8w
+	3Eaf88qurvyZ1dB1aszcuY9cq/JENm/LUjoZq3pNfM6Mthqxp+w39ckVFpkFtMAEw5Gi
+	fTXKTOwj//A2MuzWqfo4+TmtCP7TBh+uhW28wE+bNmm0PRrWZtSzbXsfHokgPa8oaXWh
+	dG0lpCWxpS49alng8gWVwxFQJ44RHOewVqmp5KsRyktIVXD13GkFBxY80VRK21NrHFmj
+	WhMw==
 MIME-Version: 1.0
-Cc: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: FW: curious about ref manual, sec 6.1.11, oe-init-build-env-memres
+X-Received: by 10.52.35.136 with SMTP id h8mr5931060vdj.6.1383840141051; Thu,
+	07 Nov 2013 08:02:21 -0800 (PST)
+Received: by 10.220.203.200 with HTTP; Thu, 7 Nov 2013 08:02:20 -0800 (PST)
+Date: Thu, 7 Nov 2013 11:02:20 -0500
+Message-ID: <CAHrDPkrar8C82+n2JgB2sFVaxoAAYcr=SRBB_Th+JVwZmeU2Aw@mail.gmail.com>
+From: Brian Duffy <brduffy@gmail.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: What to do with a new image
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -44,61 +34,36 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 07 Nov 2013 15:35:51 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Thu, 07 Nov 2013 16:02:22 -0000
+Content-Type: multipart/alternative; boundary=20cf3079bfa208a73904ea9864f4
+
+--20cf3079bfa208a73904ea9864f4
+Content-Type: text/plain; charset=ISO-8859-1
+
+Hi,
+
+Sorry for the simple question here, just getting started with this. I have
+been reading up on documentation a little and figuring out how to create
+the image I am interested in for my NUC. Question ... Once I create the
+image, how do I install it on the hard drive of my NUC? I see that the
+image is suitable for booting from a usb drive, but I'm not sure how to go
+from there to booting it right from the hard drive.
+
+-- 
+Duff
+
+--20cf3079bfa208a73904ea9864f4
+Content-Type: text/html; charset=ISO-8859-1
 Content-Transfer-Encoding: quoted-printable
 
-I will look at the wording
+<div dir=3D"ltr">Hi,<div><br></div><div>Sorry for the simple question here,=
+ just getting started with this. I have been reading up on documentation a =
+little and figuring out how to create the image I am interested in for my N=
+UC. Question ... Once I create the image, how do I install it on the hard d=
+rive of my NUC? I see that the image is suitable for booting from a usb dri=
+ve, but I&#39;m not sure how to go from there to booting it right from the =
+hard drive.=A0<br clear=3D"all">
+<div><br></div>-- <br>Duff
+</div></div>
 
->-----Original Message-----
->From: Robert P. J. Day [mailto:rpjday@crashcourse.ca]
->Sent: Wednesday, November 06, 2013 12:41 PM
->To: Saul Wold
->Cc: Rifenbark, Scott M; Yocto discussion list
->Subject: Re: [yocto] FW: curious about ref manual, sec 6.1.11, oe-init-bui=
-ld-
->env-memres
->
->On Wed, 6 Nov 2013, Saul Wold wrote:
->
->> On 11/06/2013 11:11 AM, Rifenbark, Scott M wrote:
->> > Anyone know this?
->> >
->> > > -----Original Message-----
->> > > From: Robert P. J. Day [mailto:rpjday@crashcourse.ca]
->> > > Sent: Wednesday, November 06, 2013 10:48 AM
->> > > To: Rifenbark, Scott M
->> > > Subject: curious about ref manual, sec 6.1.11,
->> > > oe-init-build-env-memres
->> > >
->> > >
->> > >   i've never used that memory-resident version of bitbake -- it's
->> > > not clear from that section whether you need to start bitbake
->> > > running before you run that script.
->> > >
->> Running that scripts will start the server at the default port of
->> 12345 and setup the default "build" directory.
->
->  i suspected as much, but the way that section is worded, that isn't clea=
-r.
->thanks.
->
->rday
->
->--
->
->=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
->=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
->Robert P. J. Day                                 Ottawa, Ontario, CANADA
->                        http://crashcourse.ca
->
->Twitter:                                       http://twitter.com/rpjday
->LinkedIn:                               http://ca.linkedin.com/in/rpjday
->=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
->=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-
+--20cf3079bfa208a73904ea9864f4--
