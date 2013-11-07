@@ -1,28 +1,25 @@
-Return-Path: <brduffy@gmail.com>
-Received: from mail-ve0-f181.google.com (mail-ve0-f181.google.com
-	[209.85.128.181])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0991BE01389
-	for <yocto@yoctoproject.org>; Thu,  7 Nov 2013 10:08:45 -0800 (PST)
-Received: by mail-ve0-f181.google.com with SMTP id jz11so662146veb.26
-	for <yocto@yoctoproject.org>; Thu, 07 Nov 2013 10:08:44 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=ys3vRTUjk3b/zPxB4r0l8G6oFToBpVeMqrQjMuLGNHU=;
-	b=kIQy9hBbQMmr3/8AzZIUzVT1iZng9zmRe5n8rY9hWyVvt2yYNHrH0UTYICtRhlxnTv
-	97FhmZlWDBr3yWEKriD72Kx4s3HFwGJBH/yIn10NRKNtQ4CAoolzy7mGZcZ5/YbDqrdz
-	Japnf49YFbYb5hJ3RtSKhFMsWclT0Rg1gAv+JS6CU3CTesOGi2HqWG+V64r8c3Vw1Ifn
-	QYr/Y5EfJ773/sojqNfTiPjOEqJvWobhm+S0gZIxpbXrVQEgSlgcW+CP2D7MIyXtndeV
-	yxiHfXom7149a1TFVnwaho+wHCDRHvLTq8bhkT0dCvip+N7DHufkRtB2mrpKmYHkHmta
-	3c+g==
-MIME-Version: 1.0
-X-Received: by 10.58.46.171 with SMTP id w11mr7746646vem.5.1383847724666; Thu,
-	07 Nov 2013 10:08:44 -0800 (PST)
-Received: by 10.220.203.200 with HTTP; Thu, 7 Nov 2013 10:08:44 -0800 (PST)
-Date: Thu, 7 Nov 2013 13:08:44 -0500
-Message-ID: <CAHrDPkpkD9XkXpm5pzoM01wePh8GpAAJRfHT1fSKQKR7q22OhQ@mail.gmail.com>
-From: Brian Duffy <brduffy@gmail.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Writing image to disk ...
+Return-Path: <dvhart@linux.intel.com>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 57989E01757
+	for <yocto@yoctoproject.org>; Thu,  7 Nov 2013 10:45:36 -0800 (PST)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga101.jf.intel.com with ESMTP; 07 Nov 2013 10:45:36 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.93,535,1378882800"; d="scan'208";a="431473753"
+Received: from dvhart-mobl3.amr.corp.intel.com (HELO [10.7.196.57])
+	([10.7.196.57])
+	by orsmga002.jf.intel.com with ESMTP; 07 Nov 2013 10:45:36 -0800
+Message-ID: <1383849935.5378.51.camel@dvhart-mobl4.amr.corp.intel.com>
+From: Darren Hart <dvhart@linux.intel.com>
+To: Markus Svilans <msvilans@aeonyx.ca>
+Date: Thu, 07 Nov 2013 10:45:35 -0800
+In-Reply-To: <5277EE4D.2080303@aeonyx.ca>
+References: <5277EE4D.2080303@aeonyx.ca>
+Organization: Intel
+X-Mailer: Evolution 3.8.5 (3.8.5-2.fc19) 
+Mime-Version: 1.0
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Deploying Yocto built images on x86
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,26 +31,75 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 07 Nov 2013 18:08:46 -0000
-Content-Type: multipart/alternative; boundary=089e013cbdf20d55d404ea9a28bf
+X-List-Received-Date: Thu, 07 Nov 2013 18:45:37 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
---089e013cbdf20d55d404ea9a28bf
-Content-Type: text/plain; charset=ISO-8859-1
+On Mon, 2013-11-04 at 13:58 -0500, Markus Svilans wrote:
+> Dear list,
+> 
+> What do people do for deploying Yocto built images to actual x86
+> hardware?
 
-Oh, is this how I do it? Take the usb image that is automatically generated
-and do this ...
+That is a very open ended question :-) There is x86 hardware ranging
+from booting from SPI, to SD Cards, all the way up to desktops and
+servers...
 
- dd if=generated_image.hddimg of=/dev/sdb
+> I am researching how to build an appliance type Linux box on x86
+> hardware, but I am unclear on what are the generally accepted methods
+> for doing that. The box would need to have a read-only rootfs, mounted
+> in RAM, with one or more partitions for storing persistent files.
 
+Where are you storing the image? SPI, SD, USB, SATA? Assuming SATA as
+you are speaking in highly general x86 terms, which typically means "PC"
+rather than deeply embedded.
+
+> 
+> I am looking for some method, where I could bitbake a recipe, that
+> will:
+>       * build a FAT image for syslinux and initramfs files
+
+All the core images do that with the hddimg fs type.
+
+>       * build one or more small ext3/4 partitions for persistent
+>         storage (config files, log files, etc.)
+
+Core images currently do a single partition of that type.
+
+>       * generate a single binary image, that can be easily installed
+>         to a hard drive (via dd or other tool), and will automatically
+>         handle the various partitions, boot record, etc. on the target
+>         hard drive
+
+The mkefidisk.sh script does this now for EFI images and the WIC tool
+(recently added to the 1.5 release) can do this for EFI and PCBIOS type
+images.
+
+> 
+> 
+> The following presentation from 2006 mentions the mkimg and imgloader
+> tools, that appear to do just that:
+> http://elinux.org/images/1/1b/Jordan_crouse_celf_2006.pdf
+> 
+> 
+> But there seems to be no mention of the mkimg / imgloader tools
+> anywhere online. What happened to them? Are they proprietary AMD
+> tools?
+> 
+> 
+> 
+> Any insights or links to good literature would be much appreciated.
+> 
+
+OK, so the tool you are looking for is wic. Search the mailing list for
+specifics on the tool, and Cc Tom Zanussi (Cc'd) on questions about wic
+to the list (oe-core is probably the best list since the tool has been
+integrated there).
 
 -- 
-Duff
+Darren Hart
+Intel Open Source Technology Center
+Yocto Project - Linux Kernel
 
---089e013cbdf20d55d404ea9a28bf
-Content-Type: text/html; charset=ISO-8859-1
 
-<div dir="ltr">Oh, is this how I do it? Take the usb image that is automatically generated and do this ...<div><br></div><div><pre style="padding:0px;margin-top:0px;margin-bottom:0px;color:rgb(255,255,255);font-size:13px;background-color:rgb(51,51,51)">
-<code> dd if=generated_image.hddimg of=/dev/sdb</code></pre><div><br></div>-- <br>Duff
-</div></div>
 
---089e013cbdf20d55d404ea9a28bf--
