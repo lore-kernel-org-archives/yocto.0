@@ -1,37 +1,33 @@
-Return-Path: <scott.m.rifenbark@intel.com>
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 087DEE01822
-	for <yocto@yoctoproject.org>; Thu,  7 Nov 2013 14:29:29 -0800 (PST)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga101.fm.intel.com with ESMTP; 07 Nov 2013 14:29:29 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.93,654,1378882800"; d="scan'208";a="429693716"
-Received: from orsmsx102.amr.corp.intel.com ([10.22.225.129])
-	by fmsmga002.fm.intel.com with ESMTP; 07 Nov 2013 14:29:28 -0800
-Received: from orsmsx158.amr.corp.intel.com (10.22.240.20) by
-	ORSMSX102.amr.corp.intel.com (10.22.225.129) with Microsoft SMTP Server
-	(TLS) id 14.3.123.3; Thu, 7 Nov 2013 14:29:28 -0800
-Received: from orsmsx101.amr.corp.intel.com ([169.254.8.126]) by
-	ORSMSX158.amr.corp.intel.com ([169.254.10.67]) with mapi id
-	14.03.0123.003; Thu, 7 Nov 2013 14:29:27 -0800
-From: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
-To: Paul Eggleton <paul.eggleton@linux.intel.com>, "Robert P. J. Day"
-	<rpjday@crashcourse.ca>, Scott Rifenbark <srifenbark@gmail.com>
-Thread-Topic: [yocto] should yocto filename references start with a leading
-	slash?
-Thread-Index: AQHO26caKnrzpubPxk6kuwIqjFHMqZoaWeLg
-Date: Thu, 7 Nov 2013 22:29:26 +0000
-Message-ID: <41DEA4B02DBDEF40A0F3B6D0DDB1237983F45204@ORSMSX101.amr.corp.intel.com>
-References: <alpine.DEB.2.02.1311061409480.2880@oneiric>
-	<2732208.eD41GxcQ8I@helios>
-In-Reply-To: <2732208.eD41GxcQ8I@helios>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.139]
+Return-Path: <flihp@twobit.us>
+Received: from smtp.twobit.us (unknown [38.83.192.235])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5C565E01828
+	for <yocto@yoctoproject.org>; Thu,  7 Nov 2013 14:30:03 -0800 (PST)
+Received: from [50.146.25.14] (helo=[172.16.1.10])
+	by smtp.twobit.us with esmtpsa
+	(TLS1.0:DHE_RSA_CAMELLIA_256_CBC_SHA1:256) (Exim 4.80)
+	(envelope-from <flihp@twobit.us>)
+	id 1VeY5G-0003x6-Q3; Thu, 07 Nov 2013 22:29:51 +0000
+Message-ID: <527C145F.7050407@twobit.us>
+Date: Thu, 07 Nov 2013 17:29:51 -0500
+From: Philip Tricca <flihp@twobit.us>
+User-Agent: Mozilla/5.0 (X11; Linux i686;
+	rv:17.0) Gecko/20130922 Icedove/17.0.9
 MIME-Version: 1.0
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: should yocto filename references start with a leading	slash?
+To: Saul Wold <sgw@linux.intel.com>
+References: <1383343353-23232-1-git-send-email-sgw@linux.intel.com>
+	<1383343353-23232-2-git-send-email-sgw@linux.intel.com>
+In-Reply-To: <1383343353-23232-2-git-send-email-sgw@linux.intel.com>
+X-Enigmail-Version: 1.5.1
+X-SA-Exim-Connect-IP: 50.146.25.14
+X-SA-Exim-Mail-From: flihp@twobit.us
+X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on smtp.twobit.us
+X-Spam-Level: 
+X-Spam-Status: No, score=-1.0 required=5.0 tests=ALL_TRUSTED autolearn=ham
+	version=3.3.2
+X-SA-Exim-Version: 4.2.1 (built Mon, 26 Dec 2011 16:24:06 +0000)
+X-SA-Exim-Scanned: Yes (on smtp.twobit.us)
+Cc: yocto@yoctoproject.org
+Subject: Re: [meta-measured][PATCH 1/7] trousers: Add libgcc as Runtime dependency
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,50 +39,39 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 07 Nov 2013 22:29:30 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Thu, 07 Nov 2013 22:30:04 -0000
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: 7bit
 
-I searched through the YP doc set and removed as many leading slash charact=
-ers that were being used in pathnames as possible.  There are a few "~" cha=
-racters in some of the very specific examples that I left.  But for the mos=
-t part, directory name usage is consistent now.
+Saul,
 
-Scott
+Awesome patch set. This is the only one I can't figure out. Does tcsd
+really need libgcc? 'ldd' doesn't say anything about dependencies. I'm
+sure it's just that I'm not looking in the right place. Mind pointing it
+out for me?
 
->-----Original Message-----
->From: yocto-bounces@yoctoproject.org [mailto:yocto-
->bounces@yoctoproject.org] On Behalf Of Paul Eggleton
->Sent: Thursday, November 07, 2013 2:49 AM
->To: Robert P. J. Day; Scott Rifenbark
->Cc: yocto@yoctoproject.org
->Subject: Re: [yocto] should yocto filename references start with a leading
->slash?
->
->On Wednesday 06 November 2013 14:12:17 Robert P. J. Day wrote:
->>   currently reading ref manual, section 6, and i'm seeing filename
->> references of the form /meta-yocto/conf, /scripts/oe-setup-builddir,
->> and so on.
->>
->>   is it really appropriate for those filenames to begin with a leading
->> slash? it seems unnecessary, and possibly a bit misleading. is there a
->> reason for those leading slashes?
->
->I'd have to agree, there should not be a leading slash. I see there are so=
-me
->paths in the reference manual where we use $HOME/poky/ as a prefix, those
->should probably also be removed.
->
->Cheers,
->Paul
->
->--
->
->Paul Eggleton
->Intel Open Source Technology Centre
->_______________________________________________
->yocto mailing list
->yocto@yoctoproject.org
->https://lists.yoctoproject.org/listinfo/yocto
+Thanks,
+- Philip
+
+On 11/01/2013 06:02 PM, Saul Wold wrote:
+> Signed-off-by: Saul Wold <sgw@linux.intel.com>
+> ---
+>  recipes-tpm/trousers/trousers_0.3.10.bb | 2 ++
+>  1 file changed, 2 insertions(+)
+> 
+> diff --git a/recipes-tpm/trousers/trousers_0.3.10.bb b/recipes-tpm/trousers/trousers_0.3.10.bb
+> index 33b2816..28594d2 100644
+> --- a/recipes-tpm/trousers/trousers_0.3.10.bb
+> +++ b/recipes-tpm/trousers/trousers_0.3.10.bb
+> @@ -71,6 +71,8 @@ FILES_${PN}-doc = " \
+>  	${mandir}/man8 \
+>  	"
+>  
+> +RDEPENDS_${PN} = "libgcc"
+> +
+>  inherit autotools useradd
+>  
+>  EXTRA_OECONF="--with-gui=none"
+> 
+
 
