@@ -1,35 +1,28 @@
-Return-Path: <scott.m.rifenbark@intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CBF65E01389
-	for <yocto@yoctoproject.org>; Thu,  7 Nov 2013 08:37:52 -0800 (PST)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga101.jf.intel.com with ESMTP; 07 Nov 2013 08:37:51 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.93,535,1378882800"; d="scan'208";a="431407552"
-Received: from orsmsx102.amr.corp.intel.com ([10.22.225.129])
-	by orsmga002.jf.intel.com with ESMTP; 07 Nov 2013 08:37:47 -0800
-Received: from orsmsx101.amr.corp.intel.com ([169.254.8.126]) by
-	ORSMSX102.amr.corp.intel.com ([169.254.1.203]) with mapi id
-	14.03.0123.003; Thu, 7 Nov 2013 08:37:47 -0800
-From: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
-To: "Robert P. J. Day" <rpjday@crashcourse.ca>, Saul Wold <sgw@linux.intel.com>
-Thread-Topic: [yocto] FW: curious about ref manual, sec 6.1.11,
-	oe-init-build-env-memres
-Thread-Index: AQHO2yDAnNULuC+NxkqDVDORcZa5k5oYkbhAgACeXICAAADKAIAAx/hw
-Date: Thu, 7 Nov 2013 16:37:45 +0000
-Message-ID: <41DEA4B02DBDEF40A0F3B6D0DDB1237983F4503C@ORSMSX101.amr.corp.intel.com>
-References: <alpine.DEB.2.02.1311061346180.25975@oneiric>
-	<41DEA4B02DBDEF40A0F3B6D0DDB1237983F44CAE@ORSMSX101.amr.corp.intel.com>
-	<527AA8B5.8060603@linux.intel.com>
-	<alpine.DEB.2.02.1311061540140.23267@oneiric>
-In-Reply-To: <alpine.DEB.2.02.1311061540140.23267@oneiric>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.138]
+Return-Path: <brduffy@gmail.com>
+Received: from mail-ve0-f181.google.com (mail-ve0-f181.google.com
+	[209.85.128.181])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0991BE01389
+	for <yocto@yoctoproject.org>; Thu,  7 Nov 2013 10:08:45 -0800 (PST)
+Received: by mail-ve0-f181.google.com with SMTP id jz11so662146veb.26
+	for <yocto@yoctoproject.org>; Thu, 07 Nov 2013 10:08:44 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=ys3vRTUjk3b/zPxB4r0l8G6oFToBpVeMqrQjMuLGNHU=;
+	b=kIQy9hBbQMmr3/8AzZIUzVT1iZng9zmRe5n8rY9hWyVvt2yYNHrH0UTYICtRhlxnTv
+	97FhmZlWDBr3yWEKriD72Kx4s3HFwGJBH/yIn10NRKNtQ4CAoolzy7mGZcZ5/YbDqrdz
+	Japnf49YFbYb5hJ3RtSKhFMsWclT0Rg1gAv+JS6CU3CTesOGi2HqWG+V64r8c3Vw1Ifn
+	QYr/Y5EfJ773/sojqNfTiPjOEqJvWobhm+S0gZIxpbXrVQEgSlgcW+CP2D7MIyXtndeV
+	yxiHfXom7149a1TFVnwaho+wHCDRHvLTq8bhkT0dCvip+N7DHufkRtB2mrpKmYHkHmta
+	3c+g==
 MIME-Version: 1.0
-Cc: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: FW: curious about ref manual, sec 6.1.11, oe-init-build-env-memres
+X-Received: by 10.58.46.171 with SMTP id w11mr7746646vem.5.1383847724666; Thu,
+	07 Nov 2013 10:08:44 -0800 (PST)
+Received: by 10.220.203.200 with HTTP; Thu, 7 Nov 2013 10:08:44 -0800 (PST)
+Date: Thu, 7 Nov 2013 13:08:44 -0500
+Message-ID: <CAHrDPkpkD9XkXpm5pzoM01wePh8GpAAJRfHT1fSKQKR7q22OhQ@mail.gmail.com>
+From: Brian Duffy <brduffy@gmail.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Writing image to disk ...
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,64 +34,26 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 07 Nov 2013 16:37:56 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Thu, 07 Nov 2013 18:08:46 -0000
+Content-Type: multipart/alternative; boundary=089e013cbdf20d55d404ea9a28bf
 
-I updated the section.  See if that is better.=20
+--089e013cbdf20d55d404ea9a28bf
+Content-Type: text/plain; charset=ISO-8859-1
 
-Thanks=20
-Scott
+Oh, is this how I do it? Take the usb image that is automatically generated
+and do this ...
 
->-----Original Message-----
->From: Robert P. J. Day [mailto:rpjday@crashcourse.ca]
->Sent: Wednesday, November 06, 2013 12:41 PM
->To: Saul Wold
->Cc: Rifenbark, Scott M; Yocto discussion list
->Subject: Re: [yocto] FW: curious about ref manual, sec 6.1.11, oe-init-bui=
-ld-
->env-memres
->
->On Wed, 6 Nov 2013, Saul Wold wrote:
->
->> On 11/06/2013 11:11 AM, Rifenbark, Scott M wrote:
->> > Anyone know this?
->> >
->> > > -----Original Message-----
->> > > From: Robert P. J. Day [mailto:rpjday@crashcourse.ca]
->> > > Sent: Wednesday, November 06, 2013 10:48 AM
->> > > To: Rifenbark, Scott M
->> > > Subject: curious about ref manual, sec 6.1.11,
->> > > oe-init-build-env-memres
->> > >
->> > >
->> > >   i've never used that memory-resident version of bitbake -- it's
->> > > not clear from that section whether you need to start bitbake
->> > > running before you run that script.
->> > >
->> Running that scripts will start the server at the default port of
->> 12345 and setup the default "build" directory.
->
->  i suspected as much, but the way that section is worded, that isn't clea=
-r.
->thanks.
->
->rday
->
->--
->
->=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
->=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
->Robert P. J. Day                                 Ottawa, Ontario, CANADA
->                        http://crashcourse.ca
->
->Twitter:                                       http://twitter.com/rpjday
->LinkedIn:                               http://ca.linkedin.com/in/rpjday
->=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
->=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+ dd if=generated_image.hddimg of=/dev/sdb
 
+
+-- 
+Duff
+
+--089e013cbdf20d55d404ea9a28bf
+Content-Type: text/html; charset=ISO-8859-1
+
+<div dir="ltr">Oh, is this how I do it? Take the usb image that is automatically generated and do this ...<div><br></div><div><pre style="padding:0px;margin-top:0px;margin-bottom:0px;color:rgb(255,255,255);font-size:13px;background-color:rgb(51,51,51)">
+<code> dd if=generated_image.hddimg of=/dev/sdb</code></pre><div><br></div>-- <br>Duff
+</div></div>
+
+--089e013cbdf20d55d404ea9a28bf--
