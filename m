@@ -1,30 +1,28 @@
-Return-Path: <sleepylight@jive-turkey.net>
-Received: from mail-ee0-f46.google.com (mail-ee0-f46.google.com [74.125.83.46])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 78A5AE01798
-	for <yocto@yoctoproject.org>; Thu,  7 Nov 2013 18:20:05 -0800 (PST)
-Received: by mail-ee0-f46.google.com with SMTP id b57so699078eek.5
-	for <yocto@yoctoproject.org>; Thu, 07 Nov 2013 18:20:04 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:date:message-id:subject:from:to
-	:content-type;
-	bh=Uvts2ih7PNjlhgPx+RknCxn47RQAhK3zVs190j8ywD0=;
-	b=R3PMo1K4EaAq7/cDb1k/M1SlsdxbEbqpUn4bgcAedmuD2pCx1y1A8ZeDUd8AUnMC11
-	FWlmH9Tnn8DBE3YW8Ou4wWgcWHEREutp/d2HZfOfjzeASmFB+BrqrJ2ImMnpoM1tiSE1
-	siFYMoJ4uIOZim53spfCDGCbyFI1nAuey+YgGkW08E8k059oS9gc4QHpW8prgWkhH3Rk
-	MrJ1Fq5Df4bxwfDBg91/ymQKAlNER5eznULdX5XPrsO5gqh6H86+xmk3HCgmNfR6upAV
-	apbhJLQ/G+R6KVQALpNsvBHMWd6DMXV0fwtOx9OPb4VR7iJQHvDS25FIxs9xth+dWusd
-	UWbg==
-X-Gm-Message-State: ALoCoQmxawC1s3CcvmC9sycTJ5vJQjqVlHHtUXxlO0JEgYwv5cVa+GFqZAfJVvPbvGcLHjS1QU1Q
+Return-Path: <billmartin544@gmail.com>
+Received: from mail-ie0-f181.google.com (mail-ie0-f181.google.com
+	[209.85.223.181])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EF752E01828
+	for <yocto@yoctoproject.org>; Thu,  7 Nov 2013 19:34:24 -0800 (PST)
+Received: by mail-ie0-f181.google.com with SMTP id ar20so2335552iec.40
+	for <yocto@yoctoproject.org>; Thu, 07 Nov 2013 19:34:23 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=WJUBQrfB7OVN1Xj0dg+ETyKOkN3CxHi03088VUcXlrg=;
+	b=gKiGYEn5qbPGcT/p/jmhfUV3PhKnpQlFTC5qZeL/uigIwH5MjIZhGMyPV8z/c+nGAE
+	HKSBsgjiBaEDVjnp6U0tAyf38J+WUqEsUKk9t8muk4Xk0Il22Qvvh0uxj6/iXzX1s+Ay
+	nPzFXRVn8ovuf+fNzJMWt7MCe3brI8ibsF8UXAK0lSPtaZfF0oGXgv86ohORPa7juRJr
+	I4cWOMZAFdCiTv7+LFo2bcLmI8FWLWee6EioD3cBbc/CRmbe9pWTKlwN8VkX+PLcUXVH
+	fqW32GAg2hdpOqE2Sk8PU2TmsKXwAjuo76xoQtcVkzFQ21TXPZfVN3oX3+EWkk3M/HMs
+	2lWg==
 MIME-Version: 1.0
-X-Received: by 10.14.110.5 with SMTP id t5mr95916eeg.73.1383877204418; Thu, 07
-	Nov 2013 18:20:04 -0800 (PST)
-Received: by 10.223.132.7 with HTTP; Thu, 7 Nov 2013 18:20:04 -0800 (PST)
-Date: Thu, 7 Nov 2013 21:20:04 -0500
-Message-ID: <CADi-vsyV-PevxgvM6Nh56rBMVmah_bj1HC4QZr0FPiFNpydLOA@mail.gmail.com>
-From: Maxwell Bottiger <sleepylight@jive-turkey.net>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: determining ubi build parameters
+X-Received: by 10.50.87.36 with SMTP id u4mr615402igz.40.1383881663582; Thu,
+	07 Nov 2013 19:34:23 -0800 (PST)
+Received: by 10.64.228.199 with HTTP; Thu, 7 Nov 2013 19:34:23 -0800 (PST)
+Date: Thu, 7 Nov 2013 19:34:23 -0800
+Message-ID: <CAJGS5=F0VpnqdRX3YwQ+JScws5EGO6ASQT-L9k4D+8c77EFUCw@mail.gmail.com>
+From: Bill Martin <billmartin544@gmail.com>
+To: yocto@yoctoproject.org
+Subject: how do you use core-image-minimal-initramfs in grub?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -36,104 +34,71 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 08 Nov 2013 02:20:08 -0000
-Content-Type: multipart/alternative; boundary=089e0160c1a22eb2e504eaa1058e
+X-List-Received-Date: Fri, 08 Nov 2013 03:34:25 -0000
+Content-Type: multipart/alternative; boundary=089e0111d0d8f861bd04eaa20e2e
 
---089e0160c1a22eb2e504eaa1058e
+--089e0111d0d8f861bd04eaa20e2e
 Content-Type: text/plain; charset=ISO-8859-1
 
-I have a UBI JFFS file system I just built and flashed onto my at91sam9x5ek
-board.  I think everything built correctly, but I get the following error
-when booting the device:
+I need to have an initramfs to run special commands prior to the rootfs
+being installed. My application must decrypt the rootfs. So I cannot use
+tpm-luks to open the rootfs LUKS device.
 
-Scanning device for bad blocks
-Bad eraseblock 1101 at 0x0000089a0000
-Bad eraseblock 1309 at 0x00000a3a0000
-2 cmdlinepart partitions found on MTD device atmel_nand
-Creating 2 MTD partitions on "atmel_nand":
-0x000000000000-0x000000800000 : "bootstrap/uboot/kernel"
-0x000000800000-0x000010000000 : "rootfs"
-UBI: attaching mtd1 to ubi0
-UBI: physical eraseblock size:   131072 bytes (128 KiB)
-UBI: logical eraseblock size:    126976 bytes
-UBI: smallest flash I/O unit:    2048
-UBI: VID header offset:          2048 (aligned 2048)
-UBI: data offset:                4096
-UBI error: process_eb: bad image sequence number 1334101648 in PEB 1921,
-expected 1211504389
+I found the core-image-minimal-initramfs's rootfs shows my
+IMAGE_INSTALL_append packages I specified in local.conf are in the
+installed list for the initramfs. So my tpm-luks scripts and my trousers
+binaries should be available if I call them from init.
 
-[snip]
+First things first. I have grub 0.97 (I have to because I need to use
+TrustedGRUB, which is only based on the old grub). My grub command lines are
 
-VFS: Cannot open root device "ubi0:rootfs" or unknown-block(0,0)
-Please append a correct "root=" boot option; here are the available
-partitions:
-1f00            8192 mtdblock0  (driver?)
-1f01          253952 mtdblock1  (driver?)
-Kernel panic - not syncing: VFS: Unable to mount root fs on
-unknown-block(0,0)
+root (hd0,0)
+kernel /boot/bzImage root=/dev/sda1
+initrd /boot/core-image-minimal-initramfs<target>.cpio.gz
+boot
 
-My best guess is that the UBI layout generated by yocto is different than
-the one u-boot is passing to the kernel.  So, either I need to create a
-layout which is the same as the u-boot parameters, or I need to change
-u-boot to match the generated layout.  Either way, I need to figure out
-what parameters Yocto is using, and I'm not sure how to do that.
+Well without the initrd this boots up nicely. But with initrd n grub the
+boot stops with the message "EXT3-fs: mounted filesystem with ordered data."
 
-My u-boot vairables:
+Without the initrd I see that same message, followed by one that says the
+rootfs is installed (or mounted, I forget).
 
-U-Boot> printenv
-bootargs=mem=128M console=ttyS0,115200
-mtdparts=atmel_nand:8M(bootstrap/uboot/kernel)ro,-(rootfs)
-root=/dev/mtdblock1 rw rootfstype=ubifs ubi.mtd=1 root=ubi0:rootfs
-bootcmd=nand read.jffs2 0x22000000 0x200000 0x250000; bootm 0x22000000
-bootdelay=1
-baudrate=115200
-ethact=macb0
+I am wondering if my grub initrd command is right, but if somehow the init
+file that initrd it trying to use does not know where to put rootfs? I did
+not touch the init file in the recipe for it.
 
-Can anyone point me to where the UBI parameters are decided, or let me know
-if I'm totally on the wrong track?  As always, I appreciate the help.
+Anyone out there see this problem? I'm pretty new to Linux still.
 
--Max
+regards
 
---089e0160c1a22eb2e504eaa1058e
+Bill
+
+--089e0111d0d8f861bd04eaa20e2e
 Content-Type: text/html; charset=ISO-8859-1
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div><div>I have a UBI JFFS file system I just built and f=
-lashed onto my at91sam9x5ek board.=A0 I think everything built correctly, b=
-ut I get the following error when booting the device:<br><br>Scanning devic=
-e for bad blocks<br>
-Bad eraseblock 1101 at 0x0000089a0000<br>Bad eraseblock 1309 at 0x00000a3a0=
-000<br>2 cmdlinepart partitions found on MTD device atmel_nand<br>Creating =
-2 MTD partitions on &quot;atmel_nand&quot;:<br>0x000000000000-0x00000080000=
-0 : &quot;bootstrap/uboot/kernel&quot;<br>
-0x000000800000-0x000010000000 : &quot;rootfs&quot;<br>UBI: attaching mtd1 t=
-o ubi0<br>UBI: physical eraseblock size:=A0=A0 131072 bytes (128 KiB)<br>UB=
-I: logical eraseblock size:=A0=A0=A0 126976 bytes<br>UBI: smallest flash I/=
-O unit:=A0=A0=A0 2048<br>
-UBI: VID header offset:=A0=A0=A0=A0=A0=A0=A0=A0=A0 2048 (aligned 2048)<br>U=
-BI: data offset:=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 4096<br>UBI e=
-rror: process_eb: bad image sequence number 1334101648 in PEB 1921, expecte=
-d 1211504389<br><br></div>[snip]<br><br>VFS: Cannot open root device &quot;=
-ubi0:rootfs&quot; or unknown-block(0,0)<br>
-Please append a correct &quot;root=3D&quot; boot option; here are the avail=
-able partitions:<br>1f00=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 8192 mtdblock0=A0=
- (driver?)<br>1f01=A0=A0=A0=A0=A0=A0=A0=A0=A0 253952 mtdblock1=A0 (driver?)=
-<br>Kernel panic - not syncing: VFS: Unable to mount root fs on unknown-blo=
-ck(0,0)<br>
-<br></div>My best guess is that the UBI layout generated by yocto is differ=
-ent than the one u-boot is passing to the kernel.=A0 So, either I need to c=
-reate a layout which is the same as the u-boot parameters, or I need to cha=
-nge u-boot to match the generated layout.=A0 Either way, I need to figure o=
-ut what parameters Yocto is using, and I&#39;m not sure how to do that.<br>
-<div><br></div><div>My u-boot vairables:<br><br>U-Boot&gt; printenv<br>boot=
-args=3Dmem=3D128M console=3DttyS0,115200=20
-mtdparts=3Datmel_nand:8M(bootstrap/uboot/kernel)ro,-(rootfs)=20
-root=3D/dev/mtdblock1 rw rootfstype=3Dubifs ubi.mtd=3D1 root=3Dubi0:rootfs<=
-br>bootcmd=3Dnand read.jffs2 0x22000000 0x200000 0x250000; bootm 0x22000000=
-<br>bootdelay=3D1<br>baudrate=3D115200<br>ethact=3Dmacb0<br></div><div><br>=
-</div><div>
-Can anyone point me to where the UBI parameters are decided, or let me know=
- if I&#39;m totally on the wrong track?=A0 As always, I appreciate the help=
-.<br><br></div><div>-Max<br></div></div>
+<div dir=3D"ltr"><div><div><div><div><div><div><div><div><div><div>I need t=
+o have an initramfs to run special commands prior to the rootfs being insta=
+lled. My application must decrypt the rootfs. So I cannot use tpm-luks to o=
+pen the rootfs LUKS device. <br>
+<br></div>I found the core-image-minimal-initramfs&#39;s rootfs shows my IM=
+AGE_INSTALL_append packages I specified in local.conf are in the installed =
+list for the initramfs. So my tpm-luks scripts and my trousers binaries sho=
+uld be available if I call them from init.<br>
+<br>First things first. I have grub 0.97 (I have to because I need to use T=
+rustedGRUB, which is only based on the old grub). My grub command lines are=
+<br></div><br></div>root (hd0,0)<br></div>kernel /boot/bzImage root=3D/dev/=
+sda1<br>
+</div>initrd /boot/core-image-minimal-initramfs&lt;target&gt;.cpio.gz<br></=
+div><div>boot<br></div><div><br></div>Well without the initrd this boots up=
+ nicely. But with initrd n grub the boot stops with the message &quot;EXT3-=
+fs: mounted filesystem with ordered data.&quot;<br>
+<br></div>Without the initrd I see that same message, followed by one that =
+says the rootfs is installed (or mounted, I forget).<br><br></div>I am wond=
+ering if my grub initrd command is right, but if somehow the init file that=
+ initrd it trying to use does not know where to put rootfs? I did not touch=
+ the init file in the recipe for it.<br>
+<br></div>Anyone out there see this problem? I&#39;m pretty new to Linux st=
+ill.<br><br></div>regards<br><br>Bill<br></div>
 
---089e0160c1a22eb2e504eaa1058e--
+--089e0111d0d8f861bd04eaa20e2e--
