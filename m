@@ -1,37 +1,30 @@
-Return-Path: <arigead@gmail.com>
-Received: from mail-wg0-f44.google.com (mail-wg0-f44.google.com [74.125.82.44])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3C699E0178E
-	for <yocto@yoctoproject.org>; Thu,  7 Nov 2013 17:04:59 -0800 (PST)
-Received: by mail-wg0-f44.google.com with SMTP id n12so1285271wgh.11
-	for <yocto@yoctoproject.org>; Thu, 07 Nov 2013 17:04:58 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=date:from:to:cc:subject:message-id:references:mime-version
-	:content-type:content-disposition:content-transfer-encoding
-	:in-reply-to:user-agent;
-	bh=ce/IdMYEoK6Pr+CYfXzDBdAB8K7FvRP3EpIaYyfhSm8=;
-	b=ljEq9aJKGHyXuY7UqxsmPVPmFYOitEyp92RKjglv+cr9aYXl4JXGrmhqnQtN8Gf73j
-	HrbVB+ovh0tDVQIyzVzi+JI/FPtsr/P71xgoAUxIR3jaV25vgejJdqVidSJ/aCPl6wgu
-	u7RTVM+J5Eun+ElMy0NSPBtgEqJYNW8AM1R7VVXDje+hnnfjVXwXas9AWFZ4vrZF9hGQ
-	kzJs8071PeUMYsppMfIYHKK63KYLS7OjNNBaKDq1k0VUyusZ1PTPsUxqcV/YoRK/1Zv7
-	t8b6koe/VAXNLGNQaPhu08wg2xGqm1vRMeSCsCKGtJUd29IxvwLF4JbgmTGtqQouBpz5
-	1KaA==
-X-Received: by 10.194.240.197 with SMTP id wc5mr10112065wjc.23.1383872697879; 
-	Thu, 07 Nov 2013 17:04:57 -0800 (PST)
-Received: from griso.site ([109.79.145.97])
-	by mx.google.com with ESMTPSA id mw9sm1680541wib.0.2013.11.07.17.04.56
-	for <multiple recipients>
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Thu, 07 Nov 2013 17:04:57 -0800 (PST)
-Date: Fri, 8 Nov 2013 01:04:15 +0000
-From: John Whitmore <arigead@gmail.com>
-To: Bruce Ashfield <bruce.ashfield@windriver.com>
-Message-ID: <20131108010411.GB29643@griso.site>
-References: <20131106214039.GA16472@griso.site> <527AFEA2.40204@windriver.com>
+Return-Path: <sleepylight@jive-turkey.net>
+Received: from mail-ee0-f46.google.com (mail-ee0-f46.google.com [74.125.83.46])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 78A5AE01798
+	for <yocto@yoctoproject.org>; Thu,  7 Nov 2013 18:20:05 -0800 (PST)
+Received: by mail-ee0-f46.google.com with SMTP id b57so699078eek.5
+	for <yocto@yoctoproject.org>; Thu, 07 Nov 2013 18:20:04 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:date:message-id:subject:from:to
+	:content-type;
+	bh=Uvts2ih7PNjlhgPx+RknCxn47RQAhK3zVs190j8ywD0=;
+	b=R3PMo1K4EaAq7/cDb1k/M1SlsdxbEbqpUn4bgcAedmuD2pCx1y1A8ZeDUd8AUnMC11
+	FWlmH9Tnn8DBE3YW8Ou4wWgcWHEREutp/d2HZfOfjzeASmFB+BrqrJ2ImMnpoM1tiSE1
+	siFYMoJ4uIOZim53spfCDGCbyFI1nAuey+YgGkW08E8k059oS9gc4QHpW8prgWkhH3Rk
+	MrJ1Fq5Df4bxwfDBg91/ymQKAlNER5eznULdX5XPrsO5gqh6H86+xmk3HCgmNfR6upAV
+	apbhJLQ/G+R6KVQALpNsvBHMWd6DMXV0fwtOx9OPb4VR7iJQHvDS25FIxs9xth+dWusd
+	UWbg==
+X-Gm-Message-State: ALoCoQmxawC1s3CcvmC9sycTJ5vJQjqVlHHtUXxlO0JEgYwv5cVa+GFqZAfJVvPbvGcLHjS1QU1Q
 MIME-Version: 1.0
-In-Reply-To: <527AFEA2.40204@windriver.com>
-User-Agent: Mutt/1.5.21 (2010-09-15)
-Cc: yocto@yoctoproject.org
-Subject: Re: Changing Config for linux-raspberrypi
+X-Received: by 10.14.110.5 with SMTP id t5mr95916eeg.73.1383877204418; Thu, 07
+	Nov 2013 18:20:04 -0800 (PST)
+Received: by 10.223.132.7 with HTTP; Thu, 7 Nov 2013 18:20:04 -0800 (PST)
+Date: Thu, 7 Nov 2013 21:20:04 -0500
+Message-ID: <CADi-vsyV-PevxgvM6Nh56rBMVmah_bj1HC4QZr0FPiFNpydLOA@mail.gmail.com>
+From: Maxwell Bottiger <sleepylight@jive-turkey.net>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: determining ubi build parameters
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,177 +36,104 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 08 Nov 2013 01:05:00 -0000
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Fri, 08 Nov 2013 02:20:08 -0000
+Content-Type: multipart/alternative; boundary=089e0160c1a22eb2e504eaa1058e
 
-On Wed, Nov 06, 2013 at 09:44:50PM -0500, Bruce Ashfield wrote:
-> On 11/6/2013, 4:40 PM, John Whitmore wrote:
-> >Was struggling with the documentation on making chages to the config file used
-> >by the raspberrypi linux kernel. I'd got my own layer with a two line append file:
-> >
-> >FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}"
-> >KERNEL_DEFCONFIG = "defconfig"
-> >
-> >I'd got my defconfig config file into the directory structure under my layer.
-> >
-> >.
-> >├── conf
-> >│   └── layer.conf
-> >└── recipes-kernel
-> >     └── linux
-> >         ├── linux-raspberrypi
-> >         │   └── defconfig
-> >         └── linux-raspberrypi_3.6.11.bbappend.jfw
-> >
-> >
-> >So all looked good to me thankfully "<kergoth>" on the #yocto IRC Channel
-> >pointed me to bitbake -e linux-raspberrypi and I was able to check stuff
-> >out. Took me a while but I eventually found the problem.
-> >
-> >The origional recipe "linux-raspberrypi_3.6.11.bb" contains the lines:
-> >
-> >do_configure_prepend() {
-> >	install -m 0644 ${S}/arch/${ARCH}/configs/${KERNEL_DEFCONFIG} ${WORKDIR}/defconfig || die "No default configuration for ${MACHINE} / ${KERNEL_DEFCONFIG} available."
-> >}
-> >
-> >So even though my append is changing the FILESEXTRAPATHS and KERNEL_DEFCONFIG
-> >values it makes no difference at all. Well luckily I did manage to change the
-> >name of KERNEL_DEFCONFIG so when the above "install" command was executed it
-> >produced errors all over the place. If that hadn't happened I'd have got a
-> >kernel with none of my changes and there'd have been naughty words.
-> >
-> >So given that the text book approach to making changes to the kernel, outlined
-> >in section "2.2.1. Creating the Append File" of the Linux Kernel Development
-> >Manual has been subverted. How do I change the kernel config?
-> >
-> >Can I do my own do_configure_prepend() in my bbappend to prepend the recipe's do_configure_prepend()
-> >and get my config file into the place it's going to install from? That sounds
-> >really messy to me but I'm new.
-> >
-> >That seems the only alternative short of re-writing the linux-raspberrypi
-> >recipe which doesn't sound too good either.
-> >
-> >If somebody could point me in the right direction on how to make changes to
-> >the kernel in this case I'd be very grateful.
-> 
-> Why not use use the defconfig in the SRC_URI ?
-> 
-> The variable and rules you are trying to work with are specific to the
-> raspberrypi, so you aren't likely to find much help in the typical
-> documentation places (outside of understanding ordering, how variables
-> are assigned, etc).
-> 
-> If you check out some of the other kernel recipes in the various layers,
-> you'll see use of:
-> 
->   file://defconfig
-> 
-> And the defconfig in the layer, in the typical location ${PN}/defconfig.
-> The fetcher takes care of propagating that file to ${WORKDIR} (just like
-> you are seeing with the raspberry pi recipe) and then the kernel.bbclass's
-> configure will take the defconfig and copy it to .config (if one hasn't
-> already been generated).
-> 
-> But chances are you are simply seeing both layer precedence and SRC_URI
-> evaluation order issues that is preventing your defconfig from being
-> picked up
-> that would be the same regardless of the recipe.
-> 
-> I could also suggest using some of the linux-yocto features like the
-> configuration fragments, but they are applied after defconfig processing
-> (if a defconfig is supplied at all), so that's a secondary avenue, control
-> the defconfig order first .. and then worry about something like this.
-> 
-> Cheers,
-> 
-> Bruce
+--089e0160c1a22eb2e504eaa1058e
+Content-Type: text/plain; charset=ISO-8859-1
 
-Thanks for that. I'm new to this so still getting to grips with the varibales
-which control the build system. I decided I'd forget about my append file for
-the moment and see if I could ammed the linux-raspberrypi recipe to use a more
-typical defconfig rather then hard wiring it into:
+I have a UBI JFFS file system I just built and flashed onto my at91sam9x5ek
+board.  I think everything built correctly, but I get the following error
+when booting the device:
 
-do_configure_prepend() {
-	install -m 0644 ${S}/arch/${ARCH}/configs/${KERNEL_DEFCONFIG} ${WORKDIR}/defconfig || die "No default configuration for ${MACHINE} / ${KERNEL_DEFCONFIG} available."
-}
+Scanning device for bad blocks
+Bad eraseblock 1101 at 0x0000089a0000
+Bad eraseblock 1309 at 0x00000a3a0000
+2 cmdlinepart partitions found on MTD device atmel_nand
+Creating 2 MTD partitions on "atmel_nand":
+0x000000000000-0x000000800000 : "bootstrap/uboot/kernel"
+0x000000800000-0x000010000000 : "rootfs"
+UBI: attaching mtd1 to ubi0
+UBI: physical eraseblock size:   131072 bytes (128 KiB)
+UBI: logical eraseblock size:    126976 bytes
+UBI: smallest flash I/O unit:    2048
+UBI: VID header offset:          2048 (aligned 2048)
+UBI: data offset:                4096
+UBI error: process_eb: bad image sequence number 1334101648 in PEB 1921,
+expected 1211504389
 
-If I can get the base recipe using the proper variable then I can appent
-it. Well that would be the hope. First off I tried to mimic what the above do_configure_prepend() is doing by
-setting the KERNEL_DEFCONFIG to that location where it's installing from:
+[snip]
 
-KERNEL_DEFCONFIG = "${S}/arch/arm/configs/bcmrpi_defconfig"
+VFS: Cannot open root device "ubi0:rootfs" or unknown-block(0,0)
+Please append a correct "root=" boot option; here are the available
+partitions:
+1f00            8192 mtdblock0  (driver?)
+1f01          253952 mtdblock1  (driver?)
+Kernel panic - not syncing: VFS: Unable to mount root fs on
+unknown-block(0,0)
 
-I did comment out the above do_configure_prepend() That strikes me as hard wiring.
+My best guess is that the UBI layout generated by yocto is different than
+the one u-boot is passing to the kernel.  So, either I need to create a
+layout which is the same as the u-boot parameters, or I need to change
+u-boot to match the generated layout.  Either way, I need to figure out
+what parameters Yocto is using, and I'm not sure how to do that.
 
-That gives me an error when building the kernel:
+My u-boot vairables:
 
-build/tmp/work/raspberrypi-poky-linux-gnueabi/linux-raspberrypi/3.6.11+git63b69a8806ce1890711ff55280c90673ea415933-r7/defconfig: No such file or directory
+U-Boot> printenv
+bootargs=mem=128M console=ttyS0,115200
+mtdparts=atmel_nand:8M(bootstrap/uboot/kernel)ro,-(rootfs)
+root=/dev/mtdblock1 rw rootfstype=ubifs ubi.mtd=1 root=ubi0:rootfs
+bootcmd=nand read.jffs2 0x22000000 0x200000 0x250000; bootm 0x22000000
+bootdelay=1
+baudrate=115200
+ethact=macb0
 
-So I'm not sure what KERNEL_DEFCONFIG does but it seems to be ignored. Bitbake
--e tells me:
+Can anyone point me to where the UBI parameters are decided, or let me know
+if I'm totally on the wrong track?  As always, I appreciate the help.
 
-# $KERNEL_DEFCONFIG
-#   set /home/john/raspberrypi/poky/meta-raspberrypi/recipes-kernel/linux/linux-raspberrypi_3.6.11.bb:17
-#     "${S}/arch/arm/configs/bcmrpi_defconfig"
-KERNEL_DEFCONFIG="/home/john/raspberrypi/poky/build/tmp/work/raspberrypi-poky-linux-gnueabi/linux-raspberrypi/3.6.11+git63b69a8806ce1890711ff55280c90673ea415933-r7/git/arch/arm/configs/bcmrpi_defconfig"
+-Max
 
-So the variable is getting set correctly.
+--089e0160c1a22eb2e504eaa1058e
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
 
+<div dir=3D"ltr"><div><div>I have a UBI JFFS file system I just built and f=
+lashed onto my at91sam9x5ek board.=A0 I think everything built correctly, b=
+ut I get the following error when booting the device:<br><br>Scanning devic=
+e for bad blocks<br>
+Bad eraseblock 1101 at 0x0000089a0000<br>Bad eraseblock 1309 at 0x00000a3a0=
+000<br>2 cmdlinepart partitions found on MTD device atmel_nand<br>Creating =
+2 MTD partitions on &quot;atmel_nand&quot;:<br>0x000000000000-0x00000080000=
+0 : &quot;bootstrap/uboot/kernel&quot;<br>
+0x000000800000-0x000010000000 : &quot;rootfs&quot;<br>UBI: attaching mtd1 t=
+o ubi0<br>UBI: physical eraseblock size:=A0=A0 131072 bytes (128 KiB)<br>UB=
+I: logical eraseblock size:=A0=A0=A0 126976 bytes<br>UBI: smallest flash I/=
+O unit:=A0=A0=A0 2048<br>
+UBI: VID header offset:=A0=A0=A0=A0=A0=A0=A0=A0=A0 2048 (aligned 2048)<br>U=
+BI: data offset:=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 4096<br>UBI e=
+rror: process_eb: bad image sequence number 1334101648 in PEB 1921, expecte=
+d 1211504389<br><br></div>[snip]<br><br>VFS: Cannot open root device &quot;=
+ubi0:rootfs&quot; or unknown-block(0,0)<br>
+Please append a correct &quot;root=3D&quot; boot option; here are the avail=
+able partitions:<br>1f00=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 8192 mtdblock0=A0=
+ (driver?)<br>1f01=A0=A0=A0=A0=A0=A0=A0=A0=A0 253952 mtdblock1=A0 (driver?)=
+<br>Kernel panic - not syncing: VFS: Unable to mount root fs on unknown-blo=
+ck(0,0)<br>
+<br></div>My best guess is that the UBI layout generated by yocto is differ=
+ent than the one u-boot is passing to the kernel.=A0 So, either I need to c=
+reate a layout which is the same as the u-boot parameters, or I need to cha=
+nge u-boot to match the generated layout.=A0 Either way, I need to figure o=
+ut what parameters Yocto is using, and I&#39;m not sure how to do that.<br>
+<div><br></div><div>My u-boot vairables:<br><br>U-Boot&gt; printenv<br>boot=
+args=3Dmem=3D128M console=3DttyS0,115200=20
+mtdparts=3Datmel_nand:8M(bootstrap/uboot/kernel)ro,-(rootfs)=20
+root=3D/dev/mtdblock1 rw rootfstype=3Dubifs ubi.mtd=3D1 root=3Dubi0:rootfs<=
+br>bootcmd=3Dnand read.jffs2 0x22000000 0x200000 0x250000; bootm 0x22000000=
+<br>bootdelay=3D1<br>baudrate=3D115200<br>ethact=3Dmacb0<br></div><div><br>=
+</div><div>
+Can anyone point me to where the UBI parameters are decided, or let me know=
+ if I&#39;m totally on the wrong track?=A0 As always, I appreciate the help=
+.<br><br></div><div>-Max<br></div></div>
 
-
-Bruce mentioned that the more typical method is to store the default
-configuration in ${PN}/defconfig. It makes sense to me that the build should
-do the typical way so that perhaps then I can bbappend it. So pull the config
-into the layer and:
-
-KERNEL_DEFCONFIG="${PN}/defconfig"
-
-Same Erorr:
-
-/home/john/raspberrypi/poky/build/tmp/work/raspberrypi-poky-linux-gnueabi/linux-raspberrypi/3.6.11+git63b69a8806ce1890711ff55280c90673ea415933-r7/defconfig: No such file or directory
-
-I know this is getting old already but obviously something is forcing the
-above line to happen and ignore all KERNEL_DEFCONFIG settings. Further
-searching found yet another do_configure_prepend() in a linux.inc file in the
-raspberrypi layer. This function contained the line:
-
-	# Keep this the last line
-	# Remove all modified configs and add the rest to .config
-	sed -e "${CONF_SED_SCRIPT}" < '${WORKDIR}/defconfig' >> '${S}/.config'
-
-When I commented out this line the kernel built. I'm not sure what that
-kernel's configuration would be as the linux.inc file contains a lot of
-"kernel_configure_variable" directives. Which would suggest that the kernel
-configuraiton of the raspberrypi is cobbled together from a number of differnet places.
-
-Anyhow even though the kernel did build I'm afraid it did not package up, generating
-yet another error:
-
-DEBUG: Executing python function split_kernel_module_packages
-depmod: ERROR: could not open directory /home/john/raspberrypi/poky/build/tmp/work/raspberrypi-poky-linux-gnueabi/linux-raspberrypi/3.6.11+git63b69a8806ce1890711ff55280c90673ea415933-r7/package/lib/modules/3.6.11: No such file or directory
-depmod: FATAL: could not search modules: No such file or directory
-
-
-I'm giving up for now. I'm new to this so I'm not seeing it with expierenced
-eyes but man this is convoluted. It appears that the Raspberrypi kernel
-configuration is the way it is and that's it. There will be no changes.
-
-Eight hours for a kernel build on the actual raspberrypi would be far
-easier. I'm hoping to connect daughter board to the RPi and write drivers but
-the board might only be good for python work.
-
-> 
-> 
-> 
-> >
-> >Thanks a million for any advice.
-> >
-> >_______________________________________________
-> >yocto mailing list
-> >yocto@yoctoproject.org
-> >https://lists.yoctoproject.org/listinfo/yocto
-> >
-> 
-
+--089e0160c1a22eb2e504eaa1058e--
