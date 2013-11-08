@@ -1,24 +1,24 @@
-Return-Path: <Maxin.John@enea.com>
-Received: from mx-3.enea.com (sestofw01.enea.se [192.36.1.252])
-	by yocto-www.yoctoproject.org (Postfix) with SMTP id 91E37E01830
-	for <yocto@yoctoproject.org>; Fri,  8 Nov 2013 01:39:57 -0800 (PST)
-Received: from sestofb10.enea.se (172.21.3.145) by smtp.enea.com
-	(172.21.1.209) with Microsoft SMTP Server id 14.2.347.0; Fri, 8 Nov 2013
-	10:39:52 +0100
-Received: by sestofb10.enea.se (Postfix, from userid 4454)	id 05A19289A1E;
-	Fri,  8 Nov 2013 10:39:52 +0100 (CET)
-Date: Fri, 8 Nov 2013 10:39:51 +0100
-From: "Maxin B. John" <maxin.john@enea.com>
-To: Maxwell Bottiger <sleepylight@jive-turkey.net>
-Message-ID: <20131108093951.GA44381@sestofb10.enea.se>
-References: <CADi-vsyV-PevxgvM6Nh56rBMVmah_bj1HC4QZr0FPiFNpydLOA@mail.gmail.com>
+Return-Path: <paul.eggleton@linux.intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 86FFAE01830
+	for <yocto@yoctoproject.org>; Fri,  8 Nov 2013 02:26:53 -0800 (PST)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga102.jf.intel.com with ESMTP; 08 Nov 2013 02:23:23 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.93,535,1378882800"; d="scan'208";a="405524349"
+Received: from unknown (HELO helios.localnet) ([10.252.121.71])
+	by orsmga001.jf.intel.com with ESMTP; 08 Nov 2013 02:26:51 -0800
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: Dilip Kumar <008dilip@gmail.com>
+Date: Fri, 08 Nov 2013 10:26:50 +0000
+Message-ID: <3266718.IQu0dQtgCC@helios>
+Organization: Intel Corporation
+User-Agent: KMail/4.10.5 (Linux/3.8.0-31-generic; KDE/4.10.5; i686; ; )
+In-Reply-To: <CABmxB3ME=E5FzYqs-fW5k8Bx3VT_Jk8wLi_kzoGzSCUe3dhnng@mail.gmail.com>
+References: <CABmxB3ME=E5FzYqs-fW5k8Bx3VT_Jk8wLi_kzoGzSCUe3dhnng@mail.gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <CADi-vsyV-PevxgvM6Nh56rBMVmah_bj1HC4QZr0FPiFNpydLOA@mail.gmail.com>
-User-Agent: Mutt/1.5.21 (2010-09-15)
-Received-SPF: None (SESTOEX03.enea.se: maxin.john@enea.com does not
-	designate permitted sender hosts)
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: determining ubi build parameters
+Cc: yocto@yoctoproject.org
+Subject: Re: Yocto test tools for performance and stability
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -30,38 +30,46 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 08 Nov 2013 09:39:59 -0000
+X-List-Received-Date: Fri, 08 Nov 2013 10:26:53 -0000
+Content-Transfer-Encoding: 7Bit
 Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
 
-Hi Max,
+Hi Dilip,
 
-On Thu, Nov 07, 2013 at 09:20:04PM -0500, Maxwell Bottiger wrote:
-> I have a UBI JFFS file system I just built and flashed onto my at91sam9x5ek
-> board.  I think everything built correctly, but I get the following error when
-> booting the device:
-<snip>
-> 
-> U-Boot> printenv
-> bootargs=mem=128M console=ttyS0,115200 mtdparts=atmel_nand:8M(bootstrap/uboot/
-> kernel)ro,-(rootfs) root=/dev/mtdblock1 rw rootfstype=ubifs ubi.mtd=1 root=
-> ubi0:rootfs
-> bootcmd=nand read.jffs2 0x22000000 0x200000 0x250000; bootm 0x22000000
-> bootdelay=1
-> baudrate=115200
-> ethact=macb0
-> 
-> Can anyone point me to where the UBI parameters are decided, or let me know if
-> I'm totally on the wrong track?  As always, I appreciate the help.
+On Thursday 07 November 2013 11:22:22 Dilip Kumar wrote:
+> May I know the list of Yocto provided test tools for performance and
+> stability and how enable and use the test tools
 
-UBI Parameters will generally be present in the machine conf file. In
-this case: "meta-atmel/conf/machine/at91sam9x5ek.conf" 
+For the 1.5 (dora) release we have added automated runtime testing (on
+top of QEMU only for now):
 
-In the build directory, you can find "ubinize.cfg". You
-can see the various parameters related to ubifs build in that file
-also.
+ http://www.yoctoproject.org/docs/current/dev-manual/dev-manual.html#performing-automated-runtime-testing
 
-> -Max
-Best Regards,
-Maxin
+We have a number of planned enhancements in this area. There are enhancement
+bugs open for each one:
+
+ https://bugzilla.yoctoproject.org/buglist.cgi?product=Automated%20Runtime%20Testing&component=automated-runtime-testing&resolution=---&list_id=125679
+
+We are also planning to extend testing of the build system itself:
+
+ https://bugzilla.yoctoproject.org/buglist.cgi?product=Automated%20Build%20Testing&component=automated-build-testing&resolution=---&list_id=125677
+
+We currently track build performance by running a script on a regular basis,
+see here for details:
+
+ https://wiki.yoctoproject.org/wiki/Performance_Test
+
+We don't currently track runtime performance, but there are enhancement bugs
+open for that:
+
+ https://bugzilla.yoctoproject.org/show_bug.cgi?id=4144
+ https://bugzilla.yoctoproject.org/show_bug.cgi?id=4528
+
+Cheers,
+Paul
+
+-- 
+
+Paul Eggleton
+Intel Open Source Technology Centre
 
