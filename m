@@ -1,23 +1,28 @@
-Return-Path: <philip@balister.org>
-Received: from starfish.geekisp.com (starfish.geekisp.com [216.168.135.166])
-	by yocto-www.yoctoproject.org (Postfix) with SMTP id 7CF92E01798
-	for <yocto@yoctoproject.org>; Fri,  8 Nov 2013 10:43:40 -0800 (PST)
-Received: (qmail 23331 invoked by uid 1003); 8 Nov 2013 18:43:39 -0000
-Received: from unknown (HELO ?10.16.32.54?) (philip@opensdr.com@64.186.172.226)
-	by mail.geekisp.com with (DHE-RSA-AES256-SHA encrypted) SMTP;
-	8 Nov 2013 18:43:39 -0000
-Message-ID: <527D30D3.6010205@balister.org>
-Date: Fri, 08 Nov 2013 10:43:31 -0800
-From: Philip Balister <philip@balister.org>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:17.0) Gecko/20130625 Thunderbird/17.0.7
+Return-Path: <billmartin544@gmail.com>
+Received: from mail-ie0-f175.google.com (mail-ie0-f175.google.com
+	[209.85.223.175])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E0C38E01885
+	for <yocto@yoctoproject.org>; Fri,  8 Nov 2013 15:13:21 -0800 (PST)
+Received: by mail-ie0-f175.google.com with SMTP id u16so1063478iet.6
+	for <yocto@yoctoproject.org>; Fri, 08 Nov 2013 15:13:20 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=VG/g5IJNhj5xPrhFpdsLJR9xV6Sop5vR+kcp+TYvkko=;
+	b=mKNsBpVh8FmBdxI9ctgsCd3sANo5i8p22G6H0Xb0yk3bIuoj2xbbqZTUlexFoKrmSr
+	vCwpr/kOIDJ9C1ehz2MOUVFfyzs4B8hcZUF4reJo/iB9l4b5EYfTzyVyYSmmGiVbZAXb
+	tuGVu/R0EJKwOj7eqcpLfVlh98D+ittjyf9xNhKySfnkmvgRfU0x2fHaVPphPumad/up
+	Ysjj4KkdWGm17HQrqbhvN4RDe5X44yA+bW19H3+gQMlsu0B/AEhhkAgC3/IPDj+cyRbU
+	Il6IIU+eM5m+uDHyCYfhkbAEguyUprK4dfb9CKIvhaPiQhb5Bx54kKoqA8I5YTQZp2pc
+	vCyg==
 MIME-Version: 1.0
-To: Yocto Project <yocto@yoctoproject.org>
-References: <20131108173935.GR11443@kiwi.coupleofllamas.com>
-In-Reply-To: <20131108173935.GR11443@kiwi.coupleofllamas.com>
-X-Enigmail-Version: 1.6
-X-Forwarded-Message-Id: <20131108173935.GR11443@kiwi.coupleofllamas.com>
-Subject: [devroom-managers] [CFP] Testing and Automation Devroom
+X-Received: by 10.50.61.35 with SMTP id m3mr4248220igr.56.1383952400178; Fri,
+	08 Nov 2013 15:13:20 -0800 (PST)
+Received: by 10.64.228.199 with HTTP; Fri, 8 Nov 2013 15:13:20 -0800 (PST)
+Date: Fri, 8 Nov 2013 15:13:20 -0800
+Message-ID: <CAJGS5=FCOtjyx8wEgLLWAFWqCTRnZsbnywYBo9WB56-XEEyQ3g@mail.gmail.com>
+From: Bill Martin <billmartin544@gmail.com>
+To: yocto@yoctoproject.org
+Subject: Core-image-minimal-initramfs (Second ping)
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -29,135 +34,110 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 08 Nov 2013 18:43:44 -0000
-X-Groupsio-MsgNum: 17066
-Content-Type: multipart/signed; micalg=pgp-sha1;
-	protocol="application/pgp-signature";
-	boundary="X2iwTMvLsKMIiRlBlkLuGNAvl8EbDssex"
+X-List-Received-Date: Fri, 08 Nov 2013 23:13:23 -0000
+Content-Type: multipart/alternative; boundary=001a1134b62c332f4004eab287db
 
---X2iwTMvLsKMIiRlBlkLuGNAvl8EbDssex
-Content-Type: multipart/mixed;
- boundary="------------030502050705000100090608"
-
---------------030502050705000100090608
+--001a1134b62c332f4004eab287db
 Content-Type: text/plain; charset=ISO-8859-1
+
+Please refer to my question in Volume 8 issue 35. I am very desperate in
+wanting to use the initramfs in m yoctobuild for an embedded x86 target
+architecture. I am using Yocto Dylan 9.0.2 for crown bay.
+
+The root directory for my boot is in /dev/sda1
+
+After normal boot, the root directory is presumably at /dev/sda. Hence my
+grub has "root (hd0,0)"
+
+My grub 0.97 initrd command looks good
+
+My dmesg spits out information and stops at the line
+
+XT3-fs: mounted filesystem with ordered data
+
+
+And that's where it ends up. No panic.
+
+I noticed in meta/recipes-core/images the
+core-image-minimal-initramfs.bbhas its IMAGE_ROOT size set to 8192. Is
+that too small?
+
+I found absolutely no help in the Yocto documentation on this initramfs
+stuff.
+
+I found a CONFIG_INITRAMFS_SOURCE and read that this tells the kernel where
+the initramfs is. I am not sure if I need to set it. Again, no
+Yocto documentation on how to use one of its builds!!!!!
+
+I presume my grub stage 1 and stage 2 completed and by the time my dmesg
+command dumps out messages, init is running. In fact I did see a familiar
+message that is in the init file.
+
+I googled all day on what this problem could be. Unfortunately a variety of
+different causes. I don't know where to begin.
+
+I did see a question in May 2012 from a guy wanting to see if Yocto
+supports INITRAMFS. The responder was referring to Grub 2.0 and said in the
+kernel command initrd=config-image-minimal<target>.cpio.gz /dev/ram0
+
+Is there someone out there, especially from Yocto, who at least tested the
+capability of Core-image-minimal-initramfs? And not on the simulator but in
+a real boot?
+
+thanks
+
+Bill
+
+--001a1134b62c332f4004eab287db
+Content-Type: text/html; charset=ISO-8859-1
 Content-Transfer-Encoding: quoted-printable
 
-This track might be interesting for some people.
+<div dir=3D"ltr">Please refer to my question in Volume 8 issue 35. I am ver=
+y desperate in wanting to use the initramfs in m yoctobuild for an embedded=
+ x86 target architecture. I am using Yocto Dylan 9.0.2 for crown bay.<div>
+<br></div><div>The root directory for my boot is in /dev/sda1</div><div><br=
+></div><div>After normal boot, the root directory is presumably at /dev/sda=
+. Hence my grub has &quot;root (hd0,0)&quot;<br><div><br></div><div>My grub=
+ 0.97 initrd command looks good<br>
+<div><br></div><div>My dmesg spits out information and stops at the line</d=
+iv><div><br></div><div><span style=3D"font-family:arial,sans-serif;font-siz=
+e:13px">XT3-fs: mounted filesystem with ordered data</span><br></div><div>
+<span style=3D"font-family:arial,sans-serif;font-size:13px"><br></span></di=
+v><div><span style=3D"font-family:arial,sans-serif;font-size:13px"><br></sp=
+an></div><div><font face=3D"arial, sans-serif">And that&#39;s where it ends=
+ up. No panic.=A0</font></div>
+</div><div><font face=3D"arial, sans-serif"><br></font></div><div><font fac=
+e=3D"arial, sans-serif">I noticed in meta/recipes-core/images the <a href=
+=3D"http://core-image-minimal-initramfs.bb">core-image-minimal-initramfs.bb=
+</a> has its IMAGE_ROOT size set to 8192. Is=A0that too small?</font></div>
+<div><font face=3D"arial, sans-serif"><br></font></div><div><font face=3D"a=
+rial, sans-serif">I found absolutely no help in the Yocto documentation on =
+this initramfs stuff.=A0</font></div><div><font face=3D"arial, sans-serif">=
+<br>
+</font></div><div><font face=3D"arial, sans-serif">I found a CONFIG_INITRAM=
+FS_SOURCE and read that this tells the kernel where the initramfs is. I am =
+not sure if I need to set it. Again, no Yocto=A0documentation on how to use=
+ one of its builds!!!!!</font></div>
+<div><font face=3D"arial, sans-serif"><br></font></div><div><font face=3D"a=
+rial, sans-serif">I presume my grub stage 1 and stage 2 completed and by th=
+e time my dmesg command dumps out messages, init is=A0running. In fact I di=
+d see a familiar message that is in the init file.</font></div>
+<div><font face=3D"arial, sans-serif"><br></font></div><div><font face=3D"a=
+rial, sans-serif">I googled all day on what this problem could be. Unfortun=
+ately a variety of different causes. I don&#39;t know where to begin.</font=
+></div>
+</div><div><font face=3D"arial, sans-serif"><br></font></div><div><font fac=
+e=3D"arial, sans-serif">I did see a question in May 2012 from a guy wanting=
+ to see if Yocto supports INITRAMFS. The responder was referring to Grub 2.=
+0 and said in the kernel command initrd=3Dconfig-image-minimal&lt;target&gt=
+;.cpio.gz /dev/ram0</font></div>
+<div><font face=3D"arial, sans-serif"><br></font></div><div><font face=3D"a=
+rial, sans-serif">Is there someone out there, especially from Yocto, who at=
+ least tested the capability of Core-image-minimal-initramfs? And not on th=
+e simulator but in a real boot?</font></div>
+<div><font face=3D"arial, sans-serif"><br></font></div><div><font face=3D"a=
+rial, sans-serif">thanks</font></div><div><font face=3D"arial, sans-serif">=
+<br></font></div><div><font face=3D"arial, sans-serif">Bill</font></div></d=
+iv>
 
-Philip
-
-
--------- Original Message --------
-Subject: [devroom-managers] [CFP] Testing and Automation Devroom
-Date: Fri, 8 Nov 2013 09:39:35 -0800
-From: R. Tyler Croy <tyler@monkeypox.org>
-To: devroom-managers@lists.fosdem.org, fosdem@lists.fosdem.org
-
-Full marked up version here:
-<http://fosdem-devroom.org/wiki/Testing_and_Automation_(2014)>
-
-
-Members of the Jenkins, Selenium and others will be hosting a devroom
-focused
-on testing and automation on Sunday February 2nd, 2014.
-
-We invite members of the broader open source community to submit one (or
-more)
-30-40 minute talk proposal(s) OR one (or more) 10 minute lightning talk
-proposal(s) by 23:59 UTC on November 30th 2013.  We will notify all those=
-
-submitting proposals about their acceptance by December 10th 2013.
-
----
-
-This is the second year for the Testing/Automation dev room at FOSDEM. Th=
-is
-room is about creating better software through a focus on testing and
-automation at all layers of the stack. From creating libraries and end-us=
-er
-applications all the way down to packaging, distribution and deployment.
-Testing and automation is not isolated to a single toolchain, language or=
-
-platform, there is much to learn and share regardless of background!
-
----
-
-Since this is the second year we're hosting the Testing and Automation de=
-v
-room, here are some ideas of what we would like to see, and what worked l=
-ast
-year, they're just ideas though!
-
-* Testing in the real, open source world
-  * How has your open source project has gone from not-so-good to
-    absolutely-great by applying testing best practices (TDD, BDD, ATDD,
-etc)
-  * How to test and develop for open source projects (e.g. test-driving
-    operating systems, big projects, ensuring quality of Linux distros, e=
-tc)
-  * Talk about how your project is automated to make contributors' lives
-better
-    (and/or on-boarding new contributors)
-* Cool Tools (good candidates for lightning talks)
-  * Explain/demo how your open source tool made developing quality softwa=
-re
-    better
-  * Combining projects/plugins/tools to build amazing things "Not enough
-    people in the open source community know how to use $X, but here's a
-tutorial
-    on how to use $X to make your project better."
-
-To submit a talk proposal (you can submit multiple proposals if you'd lik=
-e)
-with Pentabarf (https://penta.fosdem.org/submission/FOSDEM14), the
-FOSDEM paper
-submission system.
-
-
-We look forward to seeing you there!
-
-
-Cheers
-- R. Tyler Croy
---------------------------------------
-    Code: https://github.com/rtyler
- Chatter: https://twitter.com/agentdero
-          rtyler@jabber.org
-
-
-
-
---------------030502050705000100090608
-Content-Type: text/plain; charset=UTF-8;
- name="Attached Message Part"
-Content-Transfer-Encoding: quoted-printable
-Content-Disposition: attachment;
- filename="Attached Message Part"
-
-_______________________________________________
-devroom-managers mailing list
-devroom-managers@lists.fosdem.org
-https://lists.fosdem.org/listinfo/devroom-managers
-
---------------030502050705000100090608--
-
---X2iwTMvLsKMIiRlBlkLuGNAvl8EbDssex
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: OpenPGP digital signature
-Content-Disposition: attachment; filename="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v1.4.13 (GNU/Linux)
-Comment: Using GnuPG with Thunderbird - http://www.enigmail.net/
-
-iQEcBAEBAgAGBQJSfTDaAAoJEMDJd4rr0merpvMH/3F0I+5CjkSdSJvMBCk1ufVX
-Au9gxmdqku7MPNx0rRFHlftypk89TDHMg+OOAEEIKXsOIuOeiKcYJJ4LanH/K/rd
-ttHTWvVqhmUE4kJeE1+sUjA9c5QOpTWQUQlQU4JpWX/gnPostuNQiDJQ3+Zaknje
-EO+7MsjZ9bK0fq9LKoOG8FWeYg77aumhSmdoPEBZt4bMFfkVHGM97We51OuYqfob
-mSJHf63Yy6Np73cwdcrNwm7QbJXZFo4l7jLX82ak+T4PWsuBilbTocK4CL47xY9I
-IMrR2hU8YfTxLhMyPDkmNs6I6QoDCAhet7pQALQoy9YlcWtyRkqvNCaT4pHbzhQ=
-=tIul
------END PGP SIGNATURE-----
-
---X2iwTMvLsKMIiRlBlkLuGNAvl8EbDssex--
+--001a1134b62c332f4004eab287db--
