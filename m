@@ -1,28 +1,27 @@
-Return-Path: <billmartin544@gmail.com>
-Received: from mail-ie0-f181.google.com (mail-ie0-f181.google.com
-	[209.85.223.181])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EF752E01828
-	for <yocto@yoctoproject.org>; Thu,  7 Nov 2013 19:34:24 -0800 (PST)
-Received: by mail-ie0-f181.google.com with SMTP id ar20so2335552iec.40
-	for <yocto@yoctoproject.org>; Thu, 07 Nov 2013 19:34:23 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=WJUBQrfB7OVN1Xj0dg+ETyKOkN3CxHi03088VUcXlrg=;
-	b=gKiGYEn5qbPGcT/p/jmhfUV3PhKnpQlFTC5qZeL/uigIwH5MjIZhGMyPV8z/c+nGAE
-	HKSBsgjiBaEDVjnp6U0tAyf38J+WUqEsUKk9t8muk4Xk0Il22Qvvh0uxj6/iXzX1s+Ay
-	nPzFXRVn8ovuf+fNzJMWt7MCe3brI8ibsF8UXAK0lSPtaZfF0oGXgv86ohORPa7juRJr
-	I4cWOMZAFdCiTv7+LFo2bcLmI8FWLWee6EioD3cBbc/CRmbe9pWTKlwN8VkX+PLcUXVH
-	fqW32GAg2hdpOqE2Sk8PU2TmsKXwAjuo76xoQtcVkzFQ21TXPZfVN3oX3+EWkk3M/HMs
-	2lWg==
+Return-Path: <Bruce.Ashfield@windriver.com>
+Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3E124E01828
+	for <yocto@yoctoproject.org>; Thu,  7 Nov 2013 20:34:08 -0800 (PST)
+Received: from ALA-HCB.corp.ad.wrs.com (ala-hcb.corp.ad.wrs.com
+	[147.11.189.41])
+	by mail1.windriver.com (8.14.5/8.14.3) with ESMTP id rA84XeFj000785
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
+	Thu, 7 Nov 2013 20:33:40 -0800 (PST)
+Received: from server.local (147.11.118.133) by ALA-HCB.corp.ad.wrs.com
+	(147.11.189.41) with Microsoft SMTP Server id 14.2.347.0;
+	Thu, 7 Nov 2013 20:33:40 -0800
+Message-ID: <527C69A7.1020002@windriver.com>
+Date: Thu, 7 Nov 2013 23:33:43 -0500
+From: Bruce Ashfield <bruce.ashfield@windriver.com>
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.9;
+	rv:24.0) Gecko/20100101 Thunderbird/24.1.0
 MIME-Version: 1.0
-X-Received: by 10.50.87.36 with SMTP id u4mr615402igz.40.1383881663582; Thu,
-	07 Nov 2013 19:34:23 -0800 (PST)
-Received: by 10.64.228.199 with HTTP; Thu, 7 Nov 2013 19:34:23 -0800 (PST)
-Date: Thu, 7 Nov 2013 19:34:23 -0800
-Message-ID: <CAJGS5=F0VpnqdRX3YwQ+JScws5EGO6ASQT-L9k4D+8c77EFUCw@mail.gmail.com>
-From: Bill Martin <billmartin544@gmail.com>
-To: yocto@yoctoproject.org
-Subject: how do you use core-image-minimal-initramfs in grub?
+To: John Whitmore <arigead@gmail.com>
+References: <20131106214039.GA16472@griso.site> <527AFEA2.40204@windriver.com>
+	<20131108010411.GB29643@griso.site>
+In-Reply-To: <20131108010411.GB29643@griso.site>
+Cc: yocto@yoctoproject.org
+Subject: Re: Changing Config for linux-raspberrypi
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,71 +33,225 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 08 Nov 2013 03:34:25 -0000
-Content-Type: multipart/alternative; boundary=089e0111d0d8f861bd04eaa20e2e
+X-List-Received-Date: Fri, 08 Nov 2013 04:34:09 -0000
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
 
---089e0111d0d8f861bd04eaa20e2e
-Content-Type: text/plain; charset=ISO-8859-1
+On 11/7/2013, 8:04 PM, John Whitmore wrote:
+> On Wed, Nov 06, 2013 at 09:44:50PM -0500, Bruce Ashfield wrote:
+>> On 11/6/2013, 4:40 PM, John Whitmore wrote:
+>>> Was struggling with the documentation on making chages to the config file used
+>>> by the raspberrypi linux kernel. I'd got my own layer with a two line append file:
+>>>
+>>> FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}"
+>>> KERNEL_DEFCONFIG = "defconfig"
+>>>
+>>> I'd got my defconfig config file into the directory structure under my layer.
+>>>
+>>> .
+>>> ├── conf
+>>> │   └── layer.conf
+>>> └── recipes-kernel
+>>>      └── linux
+>>>          ├── linux-raspberrypi
+>>>          │   └── defconfig
+>>>          └── linux-raspberrypi_3.6.11.bbappend.jfw
+>>>
+>>>
+>>> So all looked good to me thankfully "<kergoth>" on the #yocto IRC Channel
+>>> pointed me to bitbake -e linux-raspberrypi and I was able to check stuff
+>>> out. Took me a while but I eventually found the problem.
+>>>
+>>> The origional recipe "linux-raspberrypi_3.6.11.bb" contains the lines:
+>>>
+>>> do_configure_prepend() {
+>>> 	install -m 0644 ${S}/arch/${ARCH}/configs/${KERNEL_DEFCONFIG} ${WORKDIR}/defconfig || die "No default configuration for ${MACHINE} / ${KERNEL_DEFCONFIG} available."
+>>> }
+>>>
+>>> So even though my append is changing the FILESEXTRAPATHS and KERNEL_DEFCONFIG
+>>> values it makes no difference at all. Well luckily I did manage to change the
+>>> name of KERNEL_DEFCONFIG so when the above "install" command was executed it
+>>> produced errors all over the place. If that hadn't happened I'd have got a
+>>> kernel with none of my changes and there'd have been naughty words.
+>>>
+>>> So given that the text book approach to making changes to the kernel, outlined
+>>> in section "2.2.1. Creating the Append File" of the Linux Kernel Development
+>>> Manual has been subverted. How do I change the kernel config?
+>>>
+>>> Can I do my own do_configure_prepend() in my bbappend to prepend the recipe's do_configure_prepend()
+>>> and get my config file into the place it's going to install from? That sounds
+>>> really messy to me but I'm new.
+>>>
+>>> That seems the only alternative short of re-writing the linux-raspberrypi
+>>> recipe which doesn't sound too good either.
+>>>
+>>> If somebody could point me in the right direction on how to make changes to
+>>> the kernel in this case I'd be very grateful.
+>>
+>> Why not use use the defconfig in the SRC_URI ?
+>>
+>> The variable and rules you are trying to work with are specific to the
+>> raspberrypi, so you aren't likely to find much help in the typical
+>> documentation places (outside of understanding ordering, how variables
+>> are assigned, etc).
+>>
+>> If you check out some of the other kernel recipes in the various layers,
+>> you'll see use of:
+>>
+>>    file://defconfig
+>>
+>> And the defconfig in the layer, in the typical location ${PN}/defconfig.
+>> The fetcher takes care of propagating that file to ${WORKDIR} (just like
+>> you are seeing with the raspberry pi recipe) and then the kernel.bbclass's
+>> configure will take the defconfig and copy it to .config (if one hasn't
+>> already been generated).
+>>
+>> But chances are you are simply seeing both layer precedence and SRC_URI
+>> evaluation order issues that is preventing your defconfig from being
+>> picked up
+>> that would be the same regardless of the recipe.
+>>
+>> I could also suggest using some of the linux-yocto features like the
+>> configuration fragments, but they are applied after defconfig processing
+>> (if a defconfig is supplied at all), so that's a secondary avenue, control
+>> the defconfig order first .. and then worry about something like this.
+>>
+>> Cheers,
+>>
+>> Bruce
+>
+> Thanks for that. I'm new to this so still getting to grips with the varibales
+> which control the build system. I decided I'd forget about my append file for
+> the moment and see if I could ammed the linux-raspberrypi recipe to use a more
+> typical defconfig rather then hard wiring it into:
+>
+> do_configure_prepend() {
+> 	install -m 0644 ${S}/arch/${ARCH}/configs/${KERNEL_DEFCONFIG} ${WORKDIR}/defconfig || die "No default configuration for ${MACHINE} / ${KERNEL_DEFCONFIG} available."
+> }
+>
+> If I can get the base recipe using the proper variable then I can appent
+> it. Well that would be the hope. First off I tried to mimic what the above do_configure_prepend() is doing by
+> setting the KERNEL_DEFCONFIG to that location where it's installing from:
+>
+> KERNEL_DEFCONFIG = "${S}/arch/arm/configs/bcmrpi_defconfig"
+>
+> I did comment out the above do_configure_prepend() That strikes me as hard wiring.
+>
+> That gives me an error when building the kernel:
+>
+> build/tmp/work/raspberrypi-poky-linux-gnueabi/linux-raspberrypi/3.6.11+git63b69a8806ce1890711ff55280c90673ea415933-r7/defconfig: No such file or directory
+>
 
-I need to have an initramfs to run special commands prior to the rootfs
-being installed. My application must decrypt the rootfs. So I cannot use
-tpm-luks to open the rootfs LUKS device.
+The command that you are modifying is attempting to yank a defconfig out
+of the kernel source dir and put it in workdir. presumably to allow the
+standard kernel.bbclass processing to pick it up.
 
-I found the core-image-minimal-initramfs's rootfs shows my
-IMAGE_INSTALL_append packages I specified in local.conf are in the
-installed list for the initramfs. So my tpm-luks scripts and my trousers
-binaries should be available if I call them from init.
+If your defconfig isn't in the kernel tree you are building (is it?) or
+patched into the kernel tree, the command is going to error like you
+have above.
 
-First things first. I have grub 0.97 (I have to because I need to use
-TrustedGRUB, which is only based on the old grub). My grub command lines are
+> So I'm not sure what KERNEL_DEFCONFIG does but it seems to be ignored. Bitbake
+> -e tells me:
+>
+> # $KERNEL_DEFCONFIG
+> #   set /home/john/raspberrypi/poky/meta-raspberrypi/recipes-kernel/linux/linux-raspberrypi_3.6.11.bb:17
+> #     "${S}/arch/arm/configs/bcmrpi_defconfig"
+> KERNEL_DEFCONFIG="/home/john/raspberrypi/poky/build/tmp/work/raspberrypi-poky-linux-gnueabi/linux-raspberrypi/3.6.11+git63b69a8806ce1890711ff55280c90673ea415933-r7/git/arch/arm/configs/bcmrpi_defconfig"
+>
+> So the variable is getting set correctly.
+>
+>
+>
+> Bruce mentioned that the more typical method is to store the default
+> configuration in ${PN}/defconfig. It makes sense to me that the build should
+> do the typical way so that perhaps then I can bbappend it. So pull the config
+> into the layer and:
+>
+> KERNEL_DEFCONFIG="${PN}/defconfig"
+>
+> Same Erorr:
+>
+> /home/john/raspberrypi/poky/build/tmp/work/raspberrypi-poky-linux-gnueabi/linux-raspberrypi/3.6.11+git63b69a8806ce1890711ff55280c90673ea415933-r7/defconfig: No such file or directory
+>
 
-root (hd0,0)
-kernel /boot/bzImage root=/dev/sda1
-initrd /boot/core-image-minimal-initramfs<target>.cpio.gz
-boot
+I actually meant to not use the KERNEL_DECONFIG variable at all and just
+go straight to the SRC_URI. But that won't work, since the rsp kernel
+recipe will overwrite it in its do_configure_prepend()
 
-Well without the initrd this boots up nicely. But with initrd n grub the
-boot stops with the message "EXT3-fs: mounted filesystem with ordered data."
+> I know this is getting old already but obviously something is forcing the
+> above line to happen and ignore all KERNEL_DEFCONFIG settings. Further
+> searching found yet another do_configure_prepend() in a linux.inc file in the
+> raspberrypi layer. This function contained the line:
+>
+> 	# Keep this the last line
+> 	# Remove all modified configs and add the rest to .config
+> 	sed -e "${CONF_SED_SCRIPT}" < '${WORKDIR}/defconfig' >> '${S}/.config'
+>
+> When I commented out this line the kernel built. I'm not sure what that
+> kernel's configuration would be as the linux.inc file contains a lot of
+> "kernel_configure_variable" directives. Which would suggest that the kernel
+> configuraiton of the raspberrypi is cobbled together from a number of differnet places.
 
-Without the initrd I see that same message, followed by one that says the
-rootfs is installed (or mounted, I forget).
+Yep. Regardless of what you do in your deconfig, if left in place those
+routines will modify the configuration and potentially overwrite
+settings that you are changing.
 
-I am wondering if my grub initrd command is right, but if somehow the init
-file that initrd it trying to use does not know where to put rootfs? I did
-not touch the init file in the recipe for it.
+i.e. it is enforcing a policy, which isn't a bad thing, and I can see
+the logic in it. Since I don't have the background, suffice it to say
+that you might be wanting to do something that isn't envisioned in the
+use model. Or maybe it is .. and it is just being overlooked.
 
-Anyone out there see this problem? I'm pretty new to Linux still.
+I'd try a build myself, but I'm getting git timeouts from 
+git.yoctoproject.org
+and can only browse via cgit at the moment.
 
-regards
+>
+> Anyhow even though the kernel did build I'm afraid it did not package up, generating
+> yet another error:
+>
+> DEBUG: Executing python function split_kernel_module_packages
+> depmod: ERROR: could not open directory /home/john/raspberrypi/poky/build/tmp/work/raspberrypi-poky-linux-gnueabi/linux-raspberrypi/3.6.11+git63b69a8806ce1890711ff55280c90673ea415933-r7/package/lib/modules/3.6.11: No such file or directory
+> depmod: FATAL: could not search modules: No such file or directory
+>
+>
+> I'm giving up for now. I'm new to this so I'm not seeing it with expierenced
+> eyes but man this is convoluted. It appears that the Raspberrypi kernel
+> configuration is the way it is and that's it. There will be no changes.
+>
 
-Bill
+I'll avoid preaching to the choir, but what you are trying to do is
+actually what the kernel tools and yocto packaging are supposed to 
+provide. You set a baseline configuration and policy, allow it to be
+augmented and changed via configuration fragments (or *gasp*
+defconfigs), and then audit the results.
 
---089e0111d0d8f861bd04eaa20e2e
-Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
+Not that the tools and techniques don't have their own problems, but
+it's an option to look into.
 
-<div dir=3D"ltr"><div><div><div><div><div><div><div><div><div><div>I need t=
-o have an initramfs to run special commands prior to the rootfs being insta=
-lled. My application must decrypt the rootfs. So I cannot use tpm-luks to o=
-pen the rootfs LUKS device. <br>
-<br></div>I found the core-image-minimal-initramfs&#39;s rootfs shows my IM=
-AGE_INSTALL_append packages I specified in local.conf are in the installed =
-list for the initramfs. So my tpm-luks scripts and my trousers binaries sho=
-uld be available if I call them from init.<br>
-<br>First things first. I have grub 0.97 (I have to because I need to use T=
-rustedGRUB, which is only based on the old grub). My grub command lines are=
-<br></div><br></div>root (hd0,0)<br></div>kernel /boot/bzImage root=3D/dev/=
-sda1<br>
-</div>initrd /boot/core-image-minimal-initramfs&lt;target&gt;.cpio.gz<br></=
-div><div>boot<br></div><div><br></div>Well without the initrd this boots up=
- nicely. But with initrd n grub the boot stops with the message &quot;EXT3-=
-fs: mounted filesystem with ordered data.&quot;<br>
-<br></div>Without the initrd I see that same message, followed by one that =
-says the rootfs is installed (or mounted, I forget).<br><br></div>I am wond=
-ering if my grub initrd command is right, but if somehow the init file that=
- initrd it trying to use does not know where to put rootfs? I did not touch=
- the init file in the recipe for it.<br>
-<br></div>Anyone out there see this problem? I&#39;m pretty new to Linux st=
-ill.<br><br></div>regards<br><br>Bill<br></div>
+> Eight hours for a kernel build on the actual raspberrypi would be far
+> easier. I'm hoping to connect daughter board to the RPi and write drivers but
+> the board might only be good for python work.
 
---089e0111d0d8f861bd04eaa20e2e--
+Alternatively, you can still use the rsp upstream kernel tree and
+patches, and create your own recipe that has a configuration that
+meets your needs.
+
+Cheers,
+
+Bruce
+
+>
+>>
+>>
+>>
+>>>
+>>> Thanks a million for any advice.
+>>>
+>>> _______________________________________________
+>>> yocto mailing list
+>>> yocto@yoctoproject.org
+>>> https://lists.yoctoproject.org/listinfo/yocto
+>>>
+>>
+
+
