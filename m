@@ -1,28 +1,27 @@
-Return-Path: <seth.boll@gmail.com>
-Received: from mail-ob0-f169.google.com (mail-ob0-f169.google.com
-	[209.85.214.169])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7578EE0178A
-	for <yocto@yoctoproject.org>; Sat,  9 Nov 2013 05:42:25 -0800 (PST)
-Received: by mail-ob0-f169.google.com with SMTP id wn1so2048250obc.28
-	for <yocto@yoctoproject.org>; Sat, 09 Nov 2013 05:42:25 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=Fd2YumsS4uio9ledjjtH7gyBBAruNTs/QXvt78QHCbM=;
-	b=pqM6U9denKFLFAOQpPRKG+FYlhTfYNBzHNrSKakTha+7rrHdM+9VBEeCsSyACY2ynb
-	iYNRpivgnueM/aTyTVlEmo8dU/opWsJ1eEyne3wPuGCdvxTqxPO4xk37aa5cJb6GklfU
-	/xZZNe1Zjgzz2tCAEVZNFccPCZdFjYqNpA+CPzJtGpImuegUl4aYGKvSIYP0QyJJTft8
-	oiEQ1xNNyXaI3OqIYAfxbXQ9GCminYxDYf/PokpQKcWr8r7T2QabsLhAFZY6F9QGRwMO
-	8JM9p9pqLmR4oDKXYlo36rmYamkMLDKYo3fwowximg3UUu4PtmPLWwzUW50ZyzWSuxA4
-	gRWQ==
+Return-Path: <gary@mlbassoc.com>
+Received: from mail.chez-thomas.org (mail.mlbassoc.com [65.100.170.105])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F3F09E00473
+	for <yocto@yoctoproject.org>; Sat,  9 Nov 2013 06:57:29 -0800 (PST)
+Received: by mail.chez-thomas.org (Postfix, from userid 1998)
+	id AD0B5F811F4; Sat,  9 Nov 2013 07:57:28 -0700 (MST)
+X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on
+	hermes.chez-thomas.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=4.0 tests=ALL_TRUSTED,BAYES_00
+	autolearn=unavailable version=3.3.2
+Received: from [192.168.1.114] (zeus [192.168.1.114])
+	by mail.chez-thomas.org (Postfix) with ESMTP id 6525EF811F3;
+	Sat,  9 Nov 2013 07:57:27 -0700 (MST)
+Message-ID: <527E4D67.20507@mlbassoc.com>
+Date: Sat, 09 Nov 2013 07:57:43 -0700
+From: Gary Thomas <gary@mlbassoc.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:24.0) Gecko/20100101 Thunderbird/24.1.0
 MIME-Version: 1.0
-X-Received: by 10.60.63.244 with SMTP id j20mr7401433oes.24.1384004545095;
-	Sat, 09 Nov 2013 05:42:25 -0800 (PST)
-Received: by 10.60.94.241 with HTTP; Sat, 9 Nov 2013 05:42:25 -0800 (PST)
-Date: Sat, 9 Nov 2013 07:42:25 -0600
-Message-ID: <CA+JN8xM_BVwtfu2RkZ324DWvSkxr3uAm+RU6tX6smSoV3ppqRg@mail.gmail.com>
-From: Seth Bollinger <seth.boll@gmail.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: ldd
+To: yocto@yoctoproject.org
+References: <CA+JN8xM_BVwtfu2RkZ324DWvSkxr3uAm+RU6tX6smSoV3ppqRg@mail.gmail.com>
+In-Reply-To: <CA+JN8xM_BVwtfu2RkZ324DWvSkxr3uAm+RU6tX6smSoV3ppqRg@mail.gmail.com>
+Subject: Re: ldd
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,27 +33,20 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 09 Nov 2013 13:42:27 -0000
-Content-Type: multipart/alternative; boundary=001a11c25292472dff04eabeabed
+X-List-Received-Date: Sat, 09 Nov 2013 14:57:33 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
 
---001a11c25292472dff04eabeabed
-Content-Type: text/plain; charset=ISO-8859-1
+On 2013-11-09 06:42, Seth Bollinger wrote:
+> Hello All,
+>
+> I don't see that ldd is part of the cross toolchain build anywhere.  Am I missing something?
 
-Hello All,
+It's built with the eglibc recipe and is packaged separately.
 
-I don't see that ldd is part of the cross toolchain build anywhere.  Am I
-missing something?
+-- 
+------------------------------------------------------------
+Gary Thomas                 |  Consulting for the
+MLB Associates              |    Embedded world
+------------------------------------------------------------
 
-Thanks,
-
-Seth
-
---001a11c25292472dff04eabeabed
-Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">Hello All,<div><br></div><div>I don&#39;t see that ldd is =
-part of the cross toolchain build anywhere. =A0Am I missing something?</div=
-><div><br></div><div>Thanks,</div><div><br></div><div>Seth</div></div>
-
---001a11c25292472dff04eabeabed--
