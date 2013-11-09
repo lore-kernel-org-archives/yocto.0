@@ -1,18 +1,18 @@
 Return-Path: <rpjday@crashcourse.ca>
 Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
 	[64.235.106.9])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id ED72FE0178A
-	for <yocto@yoctoproject.org>; Sat,  9 Nov 2013 01:15:50 -0800 (PST)
-Received: from [173.34.6.101] (port=55999 helo=crashcourse.ca)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 59ABCE0178A
+	for <yocto@yoctoproject.org>; Sat,  9 Nov 2013 01:23:30 -0800 (PST)
+Received: from [173.34.6.101] (port=56027 helo=crashcourse.ca)
 	by astoria.ccjclearline.com with esmtpsa (TLSv1:DHE-RSA-AES256-SHA:256)
 	(Exim 4.80) (envelope-from <rpjday@crashcourse.ca>)
-	id 1Vf4dv-0007CI-JY
-	for yocto@yoctoproject.org; Sat, 09 Nov 2013 04:15:47 -0500
-Date: Sat, 9 Nov 2013 04:15:41 -0500 (EST)
+	id 1Vf4lN-0007Mt-NL
+	for yocto@yoctoproject.org; Sat, 09 Nov 2013 04:23:29 -0500
+Date: Sat, 9 Nov 2013 04:23:24 -0500 (EST)
 From: "Robert P. J. Day" <rpjday@crashcourse.ca>
 X-X-Sender: rpjday@oneiric
 To: Yocto discussion list <yocto@yoctoproject.org>
-Message-ID: <alpine.DEB.2.02.1311090412110.17116@oneiric>
+Message-ID: <alpine.DEB.2.02.1311090421080.17171@oneiric>
 User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
 MIME-Version: 1.0
 X-AntiAbuse: This header was added to track abuse,
@@ -24,7 +24,7 @@ X-AntiAbuse: Sender Address Domain - crashcourse.ca
 X-Source: 
 X-Source-Args: 
 X-Source-Dir: 
-Subject: the current dev manual seems to overly emphasize the importance of meta-intel
+Subject: does anything still use "meta-yocto-kernel-extras"?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -36,26 +36,19 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 09 Nov 2013 09:15:52 -0000
+X-List-Received-Date: Sat, 09 Nov 2013 09:23:31 -0000
 Content-Type: TEXT/PLAIN; charset=US-ASCII
 
 
-  perusing the current dev manual and it reads:
+  still in dev manual (where i'll be all day, i suspect), section 2.2
+refers to the layer meta-yocto-kernel-extras, but i don't recall
+seeing *anything* that uses that layer (anymore?).
 
-"Supported Board Support Packages (BSPs): The Yocto Project provides a
-layer called meta-intel and it is maintained in its own separate Git
-repository..."
+  i just grepped through all of the layers i have checked out and
+found not a single instance of the string "meta-yocto-kernel-extras",
+other than in the documentation that mentions it.
 
-  this wording *seems* to suggest there is something magical about the
-meta-intel layer as compared to the numerous other layers. in
-particular, this statement further down just adds to that impression:
-
-"To get started with the BSPs, you need to use Git to create a local
-clone of the upstream repository."
-
-  i see no problem with using the meta-intel layer as an *example* but
-that section should be reworded to not make the reader think that
-meta-intel is unique in some weird sense. just my $0.02.
+  is it still valid? still used somewhere?
 
 rday
 
