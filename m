@@ -1,17 +1,34 @@
-Return-Path: <packages@autobuilder.yoctoproject.org>
-Received: from autobuilder.yoctoproject.org (ab01.i.yoctoproject.org
-	[10.0.10.111])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 180B2E017BE
-	for <yocto@yoctoproject.org>; Sun, 10 Nov 2013 18:00:34 -0800 (PST)
-Received: by autobuilder.yoctoproject.org (Postfix, from userid 802)
-	id 16F814197D; Mon, 11 Nov 2013 02:00:34 +0000 (UTC)
-Date: Mon, 11 Nov 2013 02:00:34 +0000
-From: Yocto Project Package Report System <package-reporting@yoctoproject.org>
+Return-Path: <andrei@gherzan.ro>
+Received: from mail-qa0-f54.google.com (mail-qa0-f54.google.com
+	[209.85.216.54])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DCDDCE017B1
+	for <yocto@yoctoproject.org>; Mon, 11 Nov 2013 02:02:13 -0800 (PST)
+Received: by mail-qa0-f54.google.com with SMTP id j7so1630183qaq.6
+	for <yocto@yoctoproject.org>; Mon, 11 Nov 2013 02:02:12 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:from:to:cc:subject:date:message-id;
+	bh=KO7zag5iYmaXK/Rr021duqxU7rG/pLM1INCduyT5FEw=;
+	b=V/bIE6yUqnuMJs1Lf6TEpo9oJoST6koS/O/W8EHhk4zQjXBxge5Ml12bKAEaUmPCvd
+	DfVPZEZOlGIz8LWCL2ws5kBF3RoCx3ppdrXlcw9digwljllYU1gjgTtJzlillm6ILVDR
+	LliOHllRf4MchQQtM6joqPKhghITHkYaKB/lsk7+f2HKELOqzrGu8tO7ArEpgnG+rl9R
+	Ng4C968dhnZlahYc5o3dJY3YLM/eqA9HJU9Nw7HlY5rB9og9fGuj6D9TIrCWgbfpinmY
+	pu/bJcz08mJ8Xuxijl2iN9Esss8uxUsSsZXSJVm84IcAtH/tHsclc1XQcDERISVWBDD/
+	xa7A==
+X-Gm-Message-State: ALoCoQle2VsJAxINb3iWj8MSUe8YXMRw7CfnB5JKzw2y/iOr6gRa05VyjuDQOpOSETBUhyGyrvgx
+X-Received: by 10.229.79.70 with SMTP id o6mr45812075qck.21.1384164132299;
+	Mon, 11 Nov 2013 02:02:12 -0800 (PST)
+Received: from otp-agherzan-l1.corp.ad.wrs.com ([89.121.200.106])
+	by mx.google.com with ESMTPSA id h9sm56613780qaq.9.2013.11.11.02.02.10
+	for <multiple recipients>
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Mon, 11 Nov 2013 02:02:11 -0800 (PST)
+From: Andrei Gherzan <andrei@gherzan.ro>
 To: yocto@yoctoproject.org
-Message-ID: <20131111020034.GA1597@ab01.i.yoctoproject.org>
-MIME-Version: 1.0
-User-Agent: Mutt/1.5.20 (2009-12-10)
-Subject: [Package Report System]Manual check recipes name list
+Date: Mon, 11 Nov 2013 12:02:02 +0200
+Message-Id: <1384164122-11926-1-git-send-email-andrei@gherzan.ro>
+X-Mailer: git-send-email 1.8.1.4
+Subject: [meta-raspberrypi][PATCH 1/1] mesa: Modify version to match the one from oe-core
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -23,21 +40,19 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 11 Nov 2013 02:00:34 -0000
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+X-List-Received-Date: Mon, 11 Nov 2013 10:02:16 -0000
 
-This mail was sent out by Package Report System.
-It will list all the recipes which can't check upstream version by script, and will show how long it is since their last mannual version check.
-You can check the detail information at http://packages.yoctoproject.org/manuallychkinfo
+Signed-off-by: Andrei Gherzan <andrei@gherzan.ro>
+---
+ recipes-graphics/mesa/{mesa_9.1.6.bbappend => mesa_9.2.2.bbappend} | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ rename recipes-graphics/mesa/{mesa_9.1.6.bbappend => mesa_9.2.2.bbappend} (100%)
 
+diff --git a/recipes-graphics/mesa/mesa_9.1.6.bbappend b/recipes-graphics/mesa/mesa_9.2.2.bbappend
+similarity index 100%
+rename from recipes-graphics/mesa/mesa_9.1.6.bbappend
+rename to recipes-graphics/mesa/mesa_9.2.2.bbappend
+-- 
+1.8.1.4
 
-PackageName              Version             LastChkVersion      LastChkTime              Maintainer                              NoUpgradeReason               
-libpng12                 1.2.50              1.2.50              40 days                  Valentin Popa <valentin.popa@...        No data                       
-sqlite3                  3080002             3.8.0.2             40 days                  Saul Wold <sgw@linux.intel.co...        No data                       
-atk                      2.10.0              N/A                 41587 d                  Cristiana Voicu <cristiana.vo...        No data                       
-minicom                  2.6.2               2.6.2               20 days                  Cristian Iorga <cristian.iorg...        No data                       
-Manual Check Count: 4
-Manual Need Check Count: 3
-Any problem, please contact Saul Wold <sgw@linux.intel.com> 
 
