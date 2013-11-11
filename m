@@ -1,33 +1,35 @@
 Return-Path: <andrei@gherzan.ro>
-Received: from mail-wg0-f46.google.com (mail-wg0-f46.google.com [74.125.82.46])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 418CFE017C5
-	for <yocto@yoctoproject.org>; Mon, 11 Nov 2013 02:03:21 -0800 (PST)
-Received: by mail-wg0-f46.google.com with SMTP id m15so4221360wgh.1
-	for <yocto@yoctoproject.org>; Mon, 11 Nov 2013 02:03:20 -0800 (PST)
+Received: from mail-wi0-f178.google.com (mail-wi0-f178.google.com
+	[209.85.212.178])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2D78CE017C5
+	for <yocto@yoctoproject.org>; Mon, 11 Nov 2013 02:05:19 -0800 (PST)
+Received: by mail-wi0-f178.google.com with SMTP id hn9so1916424wib.17
+	for <yocto@yoctoproject.org>; Mon, 11 Nov 2013 02:05:18 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
 	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
 	:message-id:subject:to:cc:content-type;
-	bh=O28nwaor8Ytlxq7dQIdr1iDIKn7jlBFK4JSeBYUojlk=;
-	b=H2r6jVRgG+8DYa4iiNAxolPI0tEeMQkXCw4fw8Fo5cSlU5MJr6lF53/t68e+xWZja2
-	b41qlLnn7Td0wBDD3EvmsPMQ4fTA+MgYkUhNgzSN5N25sBNl3xZ/ECqYzGWmqpHHzCDm
-	OmQj/CSeKzngNp0e2RBYhjxfPwnHXxXGEDEST9eWVgjH0IK5O2eL54Sm+fKT2yossWUc
-	fu5YawhOW1ac9U+uDTfRpSLnG7ip7/j240fb2PQlZPU6l19ng3uKB9N0dyRJLhI97bo4
-	37vq/d/FA1KcDWRUMn1tJe8CCrcGJoC6J7h9Uwd9xhm/tWQVdcHj8QZNM9dtG96h4Nwn
-	nWdQ==
-X-Gm-Message-State: ALoCoQnyHva56lu7v1dcwTQGJuFOk8Fl6f0qXvgc7AZmod+u5GtVeouKld4GmwYpp6pp6AtM2xkq
-X-Received: by 10.194.3.78 with SMTP id a14mr10452wja.77.1384164200492; Mon,
-	11 Nov 2013 02:03:20 -0800 (PST)
+	bh=z3K79satw5aa2AqWBcm/eOOjxhGZv7bn9+SRGdsud9I=;
+	b=WJ0hfmY0gG/b0zyKOGmEV5kXpvRdzHjbO1ELuLSQF83dJC8/P1+L+dolRMRkPTQFkv
+	WBvzK8nUwEpHXyPicXEEH0upc9KZQCUTdNVG9eR3vc76PW8TfD8FMi7sattTcjbV0sJV
+	SZjJ8mCDp2jCFtH0KmZYqYkUHRC5LhgadKPvPJUneisi+BSNmFTcIRpfTzyFnXUk7Lhm
+	KUokrqChnaFtV78yVad9szi7tgRaSmRyeae/+UYCq6waq9HwW/fd53TJs9/X4hZ5c8/y
+	X57ngX1MiyjHzzC3j9swqH2ndsYq/GP5gHTGI5MCy+/iLBLC5FWe0rkkMEijqSXrAfhC
+	KoeA==
+X-Gm-Message-State: ALoCoQnzef7v+ayFQ3aS7vEw+iylOTC6uh7kXOfic9GE77E6AeNZbUepNubFx3ze1fsbcNR1l4Rj
+X-Received: by 10.180.188.49 with SMTP id fx17mr11570600wic.33.1384164318924; 
+	Mon, 11 Nov 2013 02:05:18 -0800 (PST)
 MIME-Version: 1.0
-Received: by 10.217.91.202 with HTTP; Mon, 11 Nov 2013 02:03:00 -0800 (PST)
+Received: by 10.217.91.202 with HTTP; Mon, 11 Nov 2013 02:04:58 -0800 (PST)
 X-Originating-IP: [89.121.200.106]
-In-Reply-To: <1384164122-11926-1-git-send-email-andrei@gherzan.ro>
-References: <1384164122-11926-1-git-send-email-andrei@gherzan.ro>
+In-Reply-To: <CAHyyKNnzt8N5xC310TePNpjDE7vUyb0jWN+7P4xWmMF5a2owyw@mail.gmail.com>
+References: <CAHyyKNnzt8N5xC310TePNpjDE7vUyb0jWN+7P4xWmMF5a2owyw@mail.gmail.com>
 From: Andrei Gherzan <andrei@gherzan.ro>
-Date: Mon, 11 Nov 2013 12:03:00 +0200
-Message-ID: <CAK18fxG2_stn-4pbb32dKfKZ_O1akGBJFN5tntPOR6i56vGw4Q@mail.gmail.com>
-To: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: [meta-raspberrypi][PATCH 1/1] mesa: Modify version to match the one from oe-core
+Date: Mon, 11 Nov 2013 12:04:58 +0200
+Message-ID: <CAK18fxEQ+B41Na8O+Ytj7mP-sxH9smkHQZ9+Pg8TGmw7NjPHrQ@mail.gmail.com>
+To: Alex M <0xf777@gmail.com>
+Cc: Yocto Project <yocto@yoctoproject.org>
+Subject: Re: can't build meta-raspberrypi with latest Yocto or oe-core
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,63 +41,57 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 11 Nov 2013 10:03:26 -0000
-Content-Type: multipart/alternative; boundary=047d7b343d6a7b48e504eae3d747
+X-List-Received-Date: Mon, 11 Nov 2013 10:05:23 -0000
+Content-Type: multipart/alternative; boundary=001a11c25bda8a5d8f04eae3de4c
 
---047d7b343d6a7b48e504eae3d747
+--001a11c25bda8a5d8f04eae3de4c
 Content-Type: text/plain; charset=ISO-8859-1
 
-On Mon, Nov 11, 2013 at 12:02 PM, Andrei Gherzan <andrei@gherzan.ro> wrote:
+On Sun, Nov 10, 2013 at 11:01 AM, Alex M <0xf777@gmail.com> wrote:
 
-> Signed-off-by: Andrei Gherzan <andrei@gherzan.ro>
-> ---
->  recipes-graphics/mesa/{mesa_9.1.6.bbappend => mesa_9.2.2.bbappend} | 0
->  1 file changed, 0 insertions(+), 0 deletions(-)
->  rename recipes-graphics/mesa/{mesa_9.1.6.bbappend => mesa_9.2.2.bbappend}
-> (100%)
+> Hello!
+> I'm using latest https://github.com/djwillis/meta-raspberrypi
+> repository for raspberry-pi layer.
+> Can't build any of two basic images, bitbake reports the following error:
 >
-> diff --git a/recipes-graphics/mesa/mesa_9.1.6.bbappend
-> b/recipes-graphics/mesa/mesa_9.2.2.bbappend
-> similarity index 100%
-> rename from recipes-graphics/mesa/mesa_9.1.6.bbappend
-> rename to recipes-graphics/mesa/mesa_9.2.2.bbappend
-> --
-> 1.8.1.4
+> ERROR: No recipes available for:
 >
+> /media/usb_yocto/yocto/meta-raspberrypi/recipes-graphics/mesa/mesa_9.1.6.bbappend
+> ERROR: Command execution failed: Exited with 1
 >
-Merged.
+> I tried with latest Yocto git, and latest oe-core from
+> openembedded.org - results the same. Possibly mesa_9.1.6.bb is removed
+> from both repositories.
+>
+> Please, could you fix this problem, or how I can overcome this error,
+> which actions I should do to fix that?
+>
 
+Fix merged in master.
+
+Thanks,
 ag
 
---047d7b343d6a7b48e504eae3d747
+--001a11c25bda8a5d8f04eae3de4c
 Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div class=3D"gmail_extra"><br><br><div class=3D"gmail_quo=
-te">On Mon, Nov 11, 2013 at 12:02 PM, Andrei Gherzan <span dir=3D"ltr">&lt;=
-<a href=3D"mailto:andrei@gherzan.ro" target=3D"_blank">andrei@gherzan.ro</a=
->&gt;</span> wrote:<br>
+<div dir="ltr"><br><div class="gmail_extra"><br><br><div class="gmail_quote">On Sun, Nov 10, 2013 at 11:01 AM, Alex M <span dir="ltr">&lt;<a href="mailto:0xf777@gmail.com" target="_blank">0xf777@gmail.com</a>&gt;</span> wrote:<br>
 
-<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
-x #ccc solid;padding-left:1ex">Signed-off-by: Andrei Gherzan &lt;<a href=3D=
-"mailto:andrei@gherzan.ro">andrei@gherzan.ro</a>&gt;<br>
----<br>
-=A0recipes-graphics/mesa/{mesa_9.1.6.bbappend =3D&gt; mesa_9.2.2.bbappend} =
-| 0<br>
-=A01 file changed, 0 insertions(+), 0 deletions(-)<br>
-=A0rename recipes-graphics/mesa/{mesa_9.1.6.bbappend =3D&gt; mesa_9.2.2.bba=
-ppend} (100%)<br>
+<blockquote class="gmail_quote" style="margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">Hello!<br>
+I&#39;m using latest <a href="https://github.com/djwillis/meta-raspberrypi" target="_blank">https://github.com/djwillis/meta-raspberrypi</a><br>
+repository for raspberry-pi layer.<br>
+Can&#39;t build any of two basic images, bitbake reports the following error:<br>
 <br>
-diff --git a/recipes-graphics/mesa/mesa_9.1.6.bbappend b/recipes-graphics/m=
-esa/mesa_9.2.2.bbappend<br>
-similarity index 100%<br>
-rename from recipes-graphics/mesa/mesa_9.1.6.bbappend<br>
-rename to recipes-graphics/mesa/mesa_9.2.2.bbappend<br>
-<span class=3D"HOEnZb"><font color=3D"#888888">--<br>
-1.8.1.4<br>
+ERROR: No recipes available for:<br>
+/media/usb_yocto/yocto/meta-raspberrypi/recipes-graphics/mesa/mesa_9.1.6.bbappend<br>
+ERROR: Command execution failed: Exited with 1<br>
 <br>
-</font></span></blockquote></div><br>Merged.</div><div class=3D"gmail_extra=
-"><br></div><div class=3D"gmail_extra">ag
-</div></div>
+I tried with latest Yocto git, and latest oe-core from<br>
+<a href="http://openembedded.org" target="_blank">openembedded.org</a> - results the same. Possibly <a href="http://mesa_9.1.6.bb" target="_blank">mesa_9.1.6.bb</a> is removed<br>
+from both repositories.<br>
+<br>
+Please, could you fix this problem, or how I can overcome this error,<br>
+which actions I should do to fix that?<br>
+</blockquote></div><br>Fix merged in master.</div><div class="gmail_extra"><br></div><div class="gmail_extra">Thanks,</div><div class="gmail_extra">ag</div></div>
 
---047d7b343d6a7b48e504eae3d747--
+--001a11c25bda8a5d8f04eae3de4c--
