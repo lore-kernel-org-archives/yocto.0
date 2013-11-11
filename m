@@ -1,30 +1,33 @@
-Return-Path: <rpjday@crashcourse.ca>
-Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
-	[64.235.106.9])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C1170E017C4
-	for <yocto@yoctoproject.org>; Mon, 11 Nov 2013 03:30:58 -0800 (PST)
-Received: from [173.34.6.101] (port=33669 helo=crashcourse.ca)
-	by astoria.ccjclearline.com with esmtpsa (TLSv1:DHE-RSA-AES256-SHA:256)
-	(Exim 4.80) (envelope-from <rpjday@crashcourse.ca>)
-	id 1Vfpho-0004yi-K8
-	for yocto@yoctoproject.org; Mon, 11 Nov 2013 06:30:56 -0500
-Date: Mon, 11 Nov 2013 06:30:46 -0500 (EST)
-From: "Robert P. J. Day" <rpjday@crashcourse.ca>
-X-X-Sender: rpjday@oneiric
-To: Yocto discussion list <yocto@yoctoproject.org>
-Message-ID: <alpine.DEB.2.02.1311110627260.10782@oneiric>
-User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
+Return-Path: <challinan@gmail.com>
+Received: from mail-we0-f169.google.com (mail-we0-f169.google.com
+	[74.125.82.169])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AE268E01897
+	for <yocto@yoctoproject.org>; Mon, 11 Nov 2013 05:25:10 -0800 (PST)
+Received: by mail-we0-f169.google.com with SMTP id q58so4662759wes.0
+	for <yocto@yoctoproject.org>; Mon, 11 Nov 2013 05:25:08 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type;
+	bh=NbWrdn5DIIuav+oLG+m2c1P1eV38TaZoN2Xyxkd60FU=;
+	b=XYr9SVTy5Qu21OXLtcms4rKCnGRDcD/2cjbrRXpa2HQLI1zoQtOvxz+r0dOJlg9w5m
+	HUT279tHzxMtLqPoS2+QdoxBPXC/TJ2LwRq0y4IFxESO542VcLMmq8T7tRhDMp+UtwQD
+	1ziTFD5MxfK5M8swfMtyrpZJNHHAUzG3T/Sk1CddU75kJUJU0YoCl9QbTFqebakEuxb3
+	FgfCBtl25hESyZN2A1ZjYctiZ10JkKpZt+i/AJZeg9h/A5yHh2IdrlSjgQ68tuzgurU2
+	G+OAL51y8A0ONso2O+QuipjDMyzVLeCKJLuiFQX+xyh3fi1e+QqZLosmFqAHpUikeaI5
+	Krmw==
 MIME-Version: 1.0
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - crashcourse.ca
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-Subject: do any yocto docs clearly distinguish between "+=" and "_append"?
+X-Received: by 10.180.75.39 with SMTP id z7mr12383624wiv.9.1384176308662; Mon,
+	11 Nov 2013 05:25:08 -0800 (PST)
+Received: by 10.217.126.9 with HTTP; Mon, 11 Nov 2013 05:25:08 -0800 (PST)
+In-Reply-To: <527E4D67.20507@mlbassoc.com>
+References: <CA+JN8xM_BVwtfu2RkZ324DWvSkxr3uAm+RU6tX6smSoV3ppqRg@mail.gmail.com>
+	<527E4D67.20507@mlbassoc.com>
+Date: Mon, 11 Nov 2013 08:25:08 -0500
+Message-ID: <CAME0jBTaLgXBUfer+0Wfm3kTkY50mR2WfyO2zeK6wo_gsywcUw@mail.gmail.com>
+From: Chris Hallinan <challinan@gmail.com>
+To: Gary Thomas <gary@mlbassoc.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: ldd
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -36,36 +39,65 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 11 Nov 2013 11:31:01 -0000
-Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-List-Received-Date: Mon, 11 Nov 2013 13:25:12 -0000
+Content-Type: multipart/alternative; boundary=f46d043c06c630757904eae6a90c
 
+--f46d043c06c630757904eae6a90c
+Content-Type: text/plain; charset=ISO-8859-1
 
-  still slogging my way through the dev manual, and here:
+On Sat, Nov 9, 2013 at 9:57 AM, Gary Thomas <gary@mlbassoc.com> wrote:
 
-http://www.yoctoproject.org/docs/latest/dev-manual/dev-manual.html#usingpoky-extend-customimage
+> On 2013-11-09 06:42, Seth Bollinger wrote:
+>
+>> Hello All,
+>>
+>> I don't see that ldd is part of the cross toolchain build anywhere.  Am I
+>> missing something?
+>>
+>
+> It's built with the eglibc recipe and is packaged separately.
+>
+>
+Gosh, I though ldd, originally a hard-to-maintain script, was obsoleted a
+long time ago. This command:
 
-section 5.2.1 recommends that recipe files use:
+$ readelf --dynamic <binary>
 
-IMAGE_INSTALL += "strace"
+provides the same information, and readelf can be found in every cross
+toolchain.
 
-while, further down in section 5.2.4, developers are encouraged to add
-to their personal local.conf:
-
-IMAGE_INSTALL_append = " strace"
-
-  is there somewhere in a yocto doc a clear explanation of the proper
-usage of "+=" versus "_append"? because, in my experience, that's a
-point of serious confusion for new users.
-
-rday
+-Chris
 
 -- 
+Life is like Linux - it never stands still.
 
-========================================================================
-Robert P. J. Day                                 Ottawa, Ontario, CANADA
-                        http://crashcourse.ca
+--f46d043c06c630757904eae6a90c
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
 
-Twitter:                                       http://twitter.com/rpjday
-LinkedIn:                               http://ca.linkedin.com/in/rpjday
-========================================================================
+<div dir=3D"ltr"><div class=3D"gmail_extra">On Sat, Nov 9, 2013 at 9:57 AM,=
+ Gary Thomas <span dir=3D"ltr">&lt;<a href=3D"mailto:gary@mlbassoc.com" tar=
+get=3D"_blank">gary@mlbassoc.com</a>&gt;</span> wrote:<br><div class=3D"gma=
+il_quote">
+<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
+x #ccc solid;padding-left:1ex"><div class=3D"im">On 2013-11-09 06:42, Seth =
+Bollinger wrote:<br>
+<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
+x #ccc solid;padding-left:1ex">
+Hello All,<br>
+<br>
+I don&#39;t see that ldd is part of the cross toolchain build anywhere. =A0=
+Am I missing something?<br>
+</blockquote>
+<br></div>
+It&#39;s built with the eglibc recipe and is packaged separately.<span clas=
+s=3D"HOEnZb"><font color=3D"#888888"><br>
+<br></font></span></blockquote><div><br></div><div>Gosh, I though ldd, orig=
+inally a hard-to-maintain script, was obsoleted a long time ago. This comma=
+nd:</div><div><br></div><div>$ readelf --dynamic &lt;binary&gt;=A0</div>
+<div><br></div><div>provides the same information, and readelf can be found=
+ in every cross toolchain.</div><div><br></div><div>-Chris</div></div><div>=
+<br></div>-- <br>Life is like Linux - it never stands still.<br><br>
+</div></div>
 
+--f46d043c06c630757904eae6a90c--
