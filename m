@@ -1,30 +1,26 @@
-Return-Path: <scott.m.rifenbark@intel.com>
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 79808E017F8
-	for <yocto@yoctoproject.org>; Mon, 11 Nov 2013 07:55:54 -0800 (PST)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga101.fm.intel.com with ESMTP; 11 Nov 2013 07:55:53 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.93,678,1378882800"; d="scan'208";a="431392267"
-Received: from orsmsx110.amr.corp.intel.com ([10.22.240.8])
-	by fmsmga002.fm.intel.com with ESMTP; 11 Nov 2013 07:55:46 -0800
-Received: from orsmsx101.amr.corp.intel.com ([169.254.8.126]) by
-	ORSMSX110.amr.corp.intel.com ([169.254.3.222]) with mapi id
-	14.03.0123.003; Mon, 11 Nov 2013 07:55:46 -0800
-From: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
-To: "Robert P. J. Day" <rpjday@crashcourse.ca>, Yocto discussion list
-	<yocto@yoctoproject.org>
-Thread-Topic: [yocto] does anything still use "meta-yocto-kernel-extras"?
-Thread-Index: AQHO3S1kMLImGSC+rUqb2iH/9aWldJogMnBA
-Date: Mon, 11 Nov 2013 15:55:44 +0000
-Message-ID: <41DEA4B02DBDEF40A0F3B6D0DDB1237983F45998@ORSMSX101.amr.corp.intel.com>
-References: <alpine.DEB.2.02.1311090421080.17171@oneiric>
-In-Reply-To: <alpine.DEB.2.02.1311090421080.17171@oneiric>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.140]
+Return-Path: <Bruce.Ashfield@windriver.com>
+Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 823AAE0172C
+	for <yocto@yoctoproject.org>; Mon, 11 Nov 2013 07:58:31 -0800 (PST)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
+	[147.11.189.40])
+	by mail1.windriver.com (8.14.5/8.14.3) with ESMTP id rABFw2Hv029039
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
+	Mon, 11 Nov 2013 07:58:02 -0800 (PST)
+Received: from [0.0.0.0] (147.11.178.22) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server id 14.2.347.0;
+	Mon, 11 Nov 2013 07:58:02 -0800
+Message-ID: <5280FE87.2030908@windriver.com>
+Date: Mon, 11 Nov 2013 10:57:59 -0500
+From: Bruce Ashfield <bruce.ashfield@windriver.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:24.0) Gecko/20100101 Thunderbird/24.1.0
 MIME-Version: 1.0
+To: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>, "Robert P. J. Day"
+	<rpjday@crashcourse.ca>, Yocto discussion list <yocto@yoctoproject.org>
+References: <alpine.DEB.2.02.1311090421080.17171@oneiric>
+	<41DEA4B02DBDEF40A0F3B6D0DDB1237983F45998@ORSMSX101.amr.corp.intel.com>
+In-Reply-To: <41DEA4B02DBDEF40A0F3B6D0DDB1237983F45998@ORSMSX101.amr.corp.intel.com>
 Cc: "Hart, Darren" <darren.hart@intel.com>
 Subject: Re: does anything still use "meta-yocto-kernel-extras"?
 X-BeenThere: yocto@yoctoproject.org
@@ -38,56 +34,61 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 11 Nov 2013 15:55:54 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Mon, 11 Nov 2013 15:58:31 -0000
+Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Darren?  Any insight on this?
+On 13-11-11 10:55 AM, Rifenbark, Scott M wrote:
+> Darren?  Any insight on this?
 
-Scott
+It is used by developers .. such as me :) I have some pending updates
+to it as well. But generally speaking we are migrating the useful
+parts to meta-skeleton and the other more 'mainstream' layers.
 
->-----Original Message-----
->From: yocto-bounces@yoctoproject.org [mailto:yocto-
->bounces@yoctoproject.org] On Behalf Of Robert P. J. Day
->Sent: Saturday, November 09, 2013 1:23 AM
->To: Yocto discussion list
->Subject: [yocto] does anything still use "meta-yocto-kernel-extras"?
+Bruce
+
 >
+> Scott
 >
->  still in dev manual (where i'll be all day, i suspect), section 2.2 refe=
-rs to the
->layer meta-yocto-kernel-extras, but i don't recall seeing *anything* that =
-uses
->that layer (anymore?).
+>> -----Original Message-----
+>> From: yocto-bounces@yoctoproject.org [mailto:yocto-
+>> bounces@yoctoproject.org] On Behalf Of Robert P. J. Day
+>> Sent: Saturday, November 09, 2013 1:23 AM
+>> To: Yocto discussion list
+>> Subject: [yocto] does anything still use "meta-yocto-kernel-extras"?
+>>
+>>
+>>   still in dev manual (where i'll be all day, i suspect), section 2.2 refers to the
+>> layer meta-yocto-kernel-extras, but i don't recall seeing *anything* that uses
+>> that layer (anymore?).
+>>
+>>   i just grepped through all of the layers i have checked out and found not a
+>> single instance of the string "meta-yocto-kernel-extras", other than in the
+>> documentation that mentions it.
+>>
+>>   is it still valid? still used somewhere?
+>>
+>> rday
+>>
+>> --
+>>
+>> ===========================================================
+>> =============
+>> Robert P. J. Day                                 Ottawa, Ontario, CANADA
+>>                         http://crashcourse.ca
+>>
+>> Twitter:                                       http://twitter.com/rpjday
+>> LinkedIn:                               http://ca.linkedin.com/in/rpjday
+>> ===========================================================
+>> =============
+>> _______________________________________________
+>> yocto mailing list
+>> yocto@yoctoproject.org
+>> https://lists.yoctoproject.org/listinfo/yocto
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 >
->  i just grepped through all of the layers i have checked out and found no=
-t a
->single instance of the string "meta-yocto-kernel-extras", other than in th=
-e
->documentation that mentions it.
->
->  is it still valid? still used somewhere?
->
->rday
->
->--
->
->=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
->=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
->Robert P. J. Day                                 Ottawa, Ontario, CANADA
->                        http://crashcourse.ca
->
->Twitter:                                       http://twitter.com/rpjday
->LinkedIn:                               http://ca.linkedin.com/in/rpjday
->=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
->=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
->_______________________________________________
->yocto mailing list
->yocto@yoctoproject.org
->https://lists.yoctoproject.org/listinfo/yocto
+
 
