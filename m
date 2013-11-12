@@ -1,35 +1,29 @@
-Return-Path: <andrei@gherzan.ro>
-Received: from mail-qe0-f41.google.com (mail-qe0-f41.google.com
-	[209.85.128.41])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0A747E017BE
-	for <yocto@yoctoproject.org>; Tue, 12 Nov 2013 08:43:08 -0800 (PST)
-Received: by mail-qe0-f41.google.com with SMTP id x7so5849295qeu.0
-	for <yocto@yoctoproject.org>; Tue, 12 Nov 2013 08:43:07 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:from:to:cc:subject:date:message-id;
-	bh=kD3VjdX0FvnbnS6Iiwlec2cK0qrM4PjvMCUzTkH7aQE=;
-	b=F5XBtR7phQh5Gh0GJZYj3hR+56gC6ldyNuP9JHGwbvf1y1WYqv2C2Ylch1XFjuCThL
-	rl6Wt2uUML/YE6J2PEdP4oqqBOWum+Y6RmIt+4Fmx1KkJcsQ27L+lbk7p5cRxAG3i6Bp
-	KCeqvxjY98o4b2XoHxfjBOFhKKekcA3g0gS2YlypefeBw+ZMSPUW38iL9RR6GmxOp1xq
-	7K4OeipUkgQOjOIyjIuGZh+s2Av2ewx+I7JdLkEmYO1agQW4A7yYGZ2deQeMmyr7gBc1
-	yP0PaK/PYWAkEEmmo4MzomaJ7WK46ie36qhqz1DWQsjHmH5x9tvMlVBNNibWX9cUN7UA
-	ZHiw==
-X-Gm-Message-State: ALoCoQmzPllXoP43MQCfCerbyx0BrHPElkClQrVNGDK00joUliMFmpepUnALIm/4B/MDxALUKv7J
-X-Received: by 10.49.17.137 with SMTP id o9mr58636573qed.72.1384274587776;
-	Tue, 12 Nov 2013 08:43:07 -0800 (PST)
-Received: from otp-agherzan-l1.corp.ad.wrs.com ([89.121.200.106])
-	by mx.google.com with ESMTPSA id 4sm72252580qak.11.2013.11.12.08.43.05
-	for <multiple recipients>
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Tue, 12 Nov 2013 08:43:07 -0800 (PST)
-From: Andrei Gherzan <andrei@gherzan.ro>
-To: yocto@yoctoproject.org
-Date: Tue, 12 Nov 2013 18:42:57 +0200
-Message-Id: <1384274577-16770-1-git-send-email-andrei@gherzan.ro>
-X-Mailer: git-send-email 1.8.1.4
-Cc: Dan McGregor <dan.mcgregor@usask.ca>
-Subject: [meta-raspberrypi][PATCH 1/1] raspberrypi.conf: is not a usb gadget
+Return-Path: <rpjday@crashcourse.ca>
+Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
+	[64.235.106.9])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1269EE017BE
+	for <yocto@yoctoproject.org>; Tue, 12 Nov 2013 11:54:33 -0800 (PST)
+Received: from [173.34.6.101] (port=35141 helo=crashcourse.ca)
+	by astoria.ccjclearline.com with esmtpsa (TLSv1:DHE-RSA-AES256-SHA:256)
+	(Exim 4.80) (envelope-from <rpjday@crashcourse.ca>)
+	id 1VgK2g-0000SS-Pt; Tue, 12 Nov 2013 14:54:30 -0500
+Date: Tue, 12 Nov 2013 14:54:27 -0500 (EST)
+From: "Robert P. J. Day" <rpjday@crashcourse.ca>
+X-X-Sender: rpjday@oneiric
+To: Yocto discussion list <yocto@yoctoproject.org>
+Message-ID: <alpine.DEB.2.02.1311121453100.28253@oneiric>
+User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
+MIME-Version: 1.0
+X-AntiAbuse: This header was added to track abuse,
+	please include it with any abuse report
+X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - crashcourse.ca
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+Subject: [PATCH] Documentation: More minor tweaks to development manual.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,30 +35,53 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 12 Nov 2013 16:43:11 -0000
+X-List-Received-Date: Tue, 12 Nov 2013 19:54:34 -0000
+Content-Type: TEXT/PLAIN; charset=US-ASCII
 
-From: Dan McGregor <dan.mcgregor@usask.ca>
 
-Change-Id: I93ed1832905e4fdfc5f5d387c37933b60a50f4c5
-Signed-off-by: Andrei Gherzan <andrei@gherzan.ro>
+Signed-off-by: Robert P. J. Day <rpjday@crashcourse.ca>
+
 ---
- conf/machine/raspberrypi.conf | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/conf/machine/raspberrypi.conf b/conf/machine/raspberrypi.conf
-index e25b59a..1e619a7 100644
---- a/conf/machine/raspberrypi.conf
-+++ b/conf/machine/raspberrypi.conf
-@@ -24,7 +24,7 @@ XSERVER = " \
- 
- KERNEL_IMAGETYPE = "Image"
- 
--MACHINE_FEATURES = "kernel26 apm usbgadget usbhost keyboard vfat ext2 screen touchscreen alsa bluetooth wifi sdio"
-+MACHINE_FEATURES = "kernel26 apm usbhost keyboard vfat ext2 screen touchscreen alsa bluetooth wifi sdio"
- 
- #RaspberryPi has no hardware clock
- MACHINE_FEATURES_BACKFILL_CONSIDERED = "rtc"
+diff --git a/documentation/dev-manual/dev-manual-common-tasks.xml b/documentation/dev-manual/dev-manual-common-tasks.xml
+index 0ee7775..4801198 100644
+--- a/documentation/dev-manual/dev-manual-common-tasks.xml
++++ b/documentation/dev-manual/dev-manual-common-tasks.xml
+@@ -253,7 +253,7 @@
+                     configuration.
+                     In other words, do not copy an entire recipe into your
+                     layer and then modify it.
+-                    Rather, use <filename>.bbappend</filename> files to override the
++                    Rather, use <filename>.bbappend</filename> files to override
+                     only those parts of the original recipe you need to modify.
+                 </para>
+             </section>
+@@ -1509,7 +1509,7 @@
+                 You might also need these variables:
+                 <itemizedlist>
+                     <listitem><para><filename><ulink url='&YOCTO_DOCS_REF_URL;#var-SERIAL_CONSOLES'>SERIAL_CONSOLES</ulink></filename>
+-                        (e.g. "115200 ttyS0")</para></listitem>
++                        (e.g. "115200;ttyS0 115200;ttyS1")</para></listitem>
+                     <listitem><para><filename><ulink url='&YOCTO_DOCS_REF_URL;#var-KERNEL_IMAGETYPE'>KERNEL_IMAGETYPE</ulink></filename>
+                         (e.g. "zImage")</para></listitem>
+                     <listitem><para><filename><ulink url='&YOCTO_DOCS_REF_URL;#var-IMAGE_FSTYPES'>IMAGE_FSTYPES</ulink></filename>
+@@ -1549,7 +1549,7 @@
+                 <filename>make oldconfig</filename>.
+                 By making use of <filename>inherit kernel</filename> and potentially some of the
+                 <filename>linux-*.inc</filename> files, most other functionality is
+-                centralized and the the defaults of the class normally work well.
++                centralized and the defaults of the class normally work well.
+             </para>
+
+             <para>
+
 -- 
-1.8.1.4
 
+========================================================================
+Robert P. J. Day                                 Ottawa, Ontario, CANADA
+                        http://crashcourse.ca
+
+Twitter:                                       http://twitter.com/rpjday
+LinkedIn:                               http://ca.linkedin.com/in/rpjday
+========================================================================
 
