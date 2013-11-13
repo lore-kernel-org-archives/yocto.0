@@ -1,36 +1,29 @@
-Return-Path: <alexandru.c.georgescu@intel.com>
-Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E0C28E0182C
-	for <yocto@yoctoproject.org>; Wed, 13 Nov 2013 03:31:02 -0800 (PST)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by azsmga102.ch.intel.com with ESMTP; 13 Nov 2013 03:31:01 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.93,691,1378882800"; d="scan'208";a="426821981"
-Received: from irsmsx103.ger.corp.intel.com ([163.33.3.157])
-	by fmsmga001.fm.intel.com with ESMTP; 13 Nov 2013 03:31:00 -0800
-Received: from irsmsx105.ger.corp.intel.com (163.33.3.28) by
-	IRSMSX103.ger.corp.intel.com (163.33.3.157) with Microsoft SMTP Server
-	(TLS) id 14.3.123.3; Wed, 13 Nov 2013 11:30:59 +0000
-Received: from irsmsx104.ger.corp.intel.com ([169.254.5.89]) by
-	IRSMSX105.ger.corp.intel.com ([169.254.7.75]) with mapi id
-	14.03.0123.003; Wed, 13 Nov 2013 11:30:58 +0000
-From: "Georgescu, Alexandru C" <alexandru.c.georgescu@intel.com>
-To: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>, Zhao Yi
-	<yi.zhao@windriver.com>, Otavio Salvador <otavio@ossystems.com.br>
-Thread-Topic: Weekly build available.
-Thread-Index: AQHO4Fj7wQ4CAmEl9UCyO9k03lDb5Zoi9T2AgAARq8A=
-Date: Wed, 13 Nov 2013 11:30:57 +0000
-Message-ID: <1FFB62CE8AEB0D4298B51122D8903E9619F95085@IRSMSX104.ger.corp.intel.com>
-References: <CAPhnLPB2G4LQdOxY6HW=EP1=Htnz+H9L7vpkwB9v+QmFEk90dw@mail.gmail.com>
-	<CAPhnLPAS=2o-+x3uEa86rUn10PzjevEQPzaDM-orCxOVB_eYfQ@mail.gmail.com>
-In-Reply-To: <CAPhnLPAS=2o-+x3uEa86rUn10PzjevEQPzaDM-orCxOVB_eYfQ@mail.gmail.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [163.33.239.182]
+Return-Path: <rpjday@crashcourse.ca>
+Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
+	[64.235.106.9])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7F03AE0182C
+	for <yocto@yoctoproject.org>; Wed, 13 Nov 2013 04:02:42 -0800 (PST)
+Received: from [173.34.6.101] (port=44653 helo=crashcourse.ca)
+	by astoria.ccjclearline.com with esmtpsa (TLSv1:DHE-RSA-AES256-SHA:256)
+	(Exim 4.80) (envelope-from <rpjday@crashcourse.ca>)
+	id 1VgZ9c-0005vj-P2; Wed, 13 Nov 2013 07:02:40 -0500
+Date: Wed, 13 Nov 2013 07:02:34 -0500 (EST)
+From: "Robert P. J. Day" <rpjday@crashcourse.ca>
+X-X-Sender: rpjday@oneiric
+To: Yocto discussion list <yocto@yoctoproject.org>
+Message-ID: <alpine.DEB.2.02.1311130700360.6820@oneiric>
+User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
 MIME-Version: 1.0
-Subject: Re: Weekly build available.
+X-AntiAbuse: This header was added to track abuse,
+	please include it with any abuse report
+X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - crashcourse.ca
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+Subject: [PATCH] Documentation: Grammar/typo tweaks to perf chapter, profiling manual.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,71 +35,126 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 13 Nov 2013 11:31:03 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-Hi Beth,
-According to the last PDT, QA will begin testing starting next week's build=
-.
-
-Thanks,
---
-Alexandru Georgescu
+X-List-Received-Date: Wed, 13 Nov 2013 12:02:43 -0000
+Content-Type: TEXT/PLAIN; charset=US-ASCII
 
 
------Original Message-----
-From: Flanagan, Elizabeth [mailto:elizabeth.flanagan@intel.com]=20
-Sent: Wednesday, November 13, 2013 12:28
-To: yocto@yoctoproject.org; Georgescu, Alexandru C; Zhao Yi; Otavio Salvado=
-r
-Subject: Re: Weekly build available.
+Signed-off-by: Robert P. J. Day <rpjday@crashcourse.ca>
 
-Correction:
+---
 
-http://autobuilder.yoctoproject.org/pub/nightly/20131112-2
+  given the length of the tools sections in the profiling manual, i'm
+doing each tool separately so that patches come in manageable chunks.
 
-bitbake     e054c1e7c8581f66082fcdfb89769401ca6e78a3
-eclipse-poky-juno     7b50b0cee840092b4a575c239ddf11ba50d78327
-eclipse-poky-kepler     84c1361ee96b781666a23f068244d4f1252be712
-meta-fsl-arm     a51c848e9d1274a71d77f6c3b3404703c4364602
-meta-fsl-ppc     768c6ef13546e0f977847bc1fbb5957571fbf724
-meta-intel     b74b419f08a040b5170addda5d17026e8c50290f
-meta-minnow     57459d0753d3b6e25b3ac431496eafa5e668d6fa
-meta-qt3     b73552fb998fd30a01dbee5a172e432a16078222
-oecore     616354f13732d13c17434d5b60b166f691c25761
-poky     ea92671d9823e3667d6ced7ac2af20f991da404d
+diff --git a/documentation/profile-manual/profile-manual-usage.xml b/documentation/profile-manual/profile-manual-usage.xml
+index 9116d5b..c1ceb58 100644
+--- a/documentation/profile-manual/profile-manual-usage.xml
++++ b/documentation/profile-manual/profile-manual-usage.xml
+@@ -22,7 +22,7 @@
+     <para>
+         Don't let the fact that it's part of the kernel fool you into thinking
+         that it's only for tracing and profiling the kernel - you can indeed
+-        use it to trace and profile just the kernel , but you can also use it
++        use it to trace and profile just the kernel, but you can also use it
+         to profile specific applications separately (with or without kernel
+         context), and you can also use it to trace and profile the kernel
+         and all applications on the system simultaneously to gain a system-wide
+@@ -30,10 +30,10 @@
+     </para>
 
-On Wed, Nov 13, 2013 at 10:12 AM, Flanagan, Elizabeth <elizabeth.flanagan@i=
-ntel.com> wrote:
-> All,
->
-> The most current build of master for 1.6 is now available for testing.
->
-> http://autobuilder.yoctoproject.org/pub/nightly/20131113-1
->
-> bitbake     e054c1e7c8581f66082fcdfb89769401ca6e78a3
-> eclipse-poky-juno     7b50b0cee840092b4a575c239ddf11ba50d78327
-> eclipse-poky-kepler     84c1361ee96b781666a23f068244d4f1252be712
-> meta-fsl-arm     a51c848e9d1274a71d77f6c3b3404703c4364602
-> meta-fsl-ppc     768c6ef13546e0f977847bc1fbb5957571fbf724
-> meta-intel     b74b419f08a040b5170addda5d17026e8c50290f
-> meta-minnow     57459d0753d3b6e25b3ac431496eafa5e668d6fa
-> meta-qt3     b73552fb998fd30a01dbee5a172e432a16078222
-> oecore     616354f13732d13c17434d5b60b166f691c25761
-> poky     090924e7c74d3cbcef6b287f4ae88968e696856f
->
->
-> --
-> Elizabeth Flanagan
-> Yocto Project
-> Build and Release
+     <para>
+-        In many ways, it aims to be a superset of all the tracing and profiling
++        In many ways, perf aims to be a superset of all the tracing and profiling
+         tools available in Linux today, including all the other tools covered
+         in this HOWTO. The past couple of years have seen perf subsume a lot
+-        of the functionality of those other tools, and at the same time those
++        of the functionality of those other tools and, at the same time, those
+         other tools have removed large portions of their previous functionality
+         and replaced it with calls to the equivalent functionality now
+         implemented by the perf subsystem. Extrapolation suggests that at
+@@ -126,7 +126,7 @@
+      wget <ulink url='http://downloads.yoctoproject.org/mirror/sources/linux-2.6.19.2.tar.bz2'>http://downloads.yoctoproject.org/mirror/sources/linux-2.6.19.2.tar.bz2</ulink>
+                 </literallayout>
+                 The quickest and easiest way to get some basic overall data about
+-                what's going on for a particular workload it to profile it using
++                what's going on for a particular workload is to profile it using
+                 'perf stat'. 'perf stat' basically profiles using a few default
+                 counters and displays the summed counts at the end of the run:
+                 <literallayout class='monospaced'>
+@@ -201,7 +201,7 @@
+                 As our first attempt at profiling this workload, we'll simply
+                 run 'perf record', handing it the workload we want to profile
+                 (everything after 'perf record' and any perf options we hand
+-                it - here none - will be executedin a new shell). perf collects
++                it - here none - will be executed in a new shell). perf collects
+                 samples until the process exits and records them in a file named
+                 'perf.data' in the current working directory.
+                 <literallayout class='monospaced'>
+@@ -241,7 +241,7 @@
+                 Notice also that the above report shows an entry for 'busybox',
+                 which is the executable that implements 'wget' in Yocto, but that
+                 instead of a useful function name in that entry, it displays
+-                an not-so-friendly hex value instead. The steps below will show
++                a not-so-friendly hex value instead. The steps below will show
+                 how to fix that problem.
+             </para>
 
+@@ -308,7 +308,7 @@
+             </para>
 
+             <para>
+-                Notice also that here there's also a case where the a hex value
++                Notice also that here there's also a case where the hex value
+                 is displayed in the callstack, here in the expanded
+                 sys_clock_gettime() function. Later we'll see it resolve to a
+                 userspace function call in busybox.
+@@ -367,7 +367,7 @@
 
---
-Elizabeth Flanagan
-Yocto Project
-Build and Release
+             <para>
+                 To generate the debug info for the packages in the image, we can
+-                to add dbg-pkgs to EXTRA_IMAGE_FEATURES in local.conf. For example:
++                add dbg-pkgs to EXTRA_IMAGE_FEATURES in local.conf. For example:
+                 <literallayout class='monospaced'>
+      EXTRA_IMAGE_FEATURES = "debug-tweaks tools-profile dbg-pkgs"
+                 </literallayout>
+@@ -462,7 +462,7 @@
+                 The tracing and profiling infrastructure in Linux has become
+                 unified in a way that allows us to use the same tool with a
+                 completely different set of counters, not just the standard
+-                hardware counters that traditionally tools have had to restrict
++                hardware counters that traditional tools have had to restrict
+                 themselves to (of course the traditional tools can also make use
+                 of the expanded possibilities now available to them, and in some
+                 cases have, as mentioned previously).
+@@ -828,7 +828,7 @@
+             </para>
+
+             <para>
+-                Luckily, there is general-purpose way to handle such needs,
++                Luckily, there is a general-purpose way to handle such needs,
+                 called 'programming languages'. Making programming languages
+                 easily available to apply to such problems given the specific
+                 format of data is called a 'programming language binding' for
+@@ -925,9 +925,9 @@
+                 </literallayout>
+                 Each event handler function in the generated code is modified
+                 to do this. For convenience, we define a common function called
+-                inc_counts() that each handler calls; inc_counts simply tallies
++                inc_counts() that each handler calls; inc_counts() simply tallies
+                 a count for each event using the 'counts' hash, which is a
+-                specialized has function that does Perl-like autovivification, a
++                specialized hash function that does Perl-like autovivification, a
+                 capability that's extremely useful for kinds of multi-level
+                 aggregation commonly used in processing traces (see perf's
+                 documentation on the Python language binding for details):
+
+-- 
+
+========================================================================
+Robert P. J. Day                                 Ottawa, Ontario, CANADA
+                        http://crashcourse.ca
+
+Twitter:                                       http://twitter.com/rpjday
+LinkedIn:                               http://ca.linkedin.com/in/rpjday
+========================================================================
 
