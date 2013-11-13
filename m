@@ -1,35 +1,34 @@
 Return-Path: <andrei@gherzan.ro>
-Received: from mail-wg0-f51.google.com (mail-wg0-f51.google.com [74.125.82.51])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A1A7CE01732
-	for <yocto@yoctoproject.org>; Wed, 13 Nov 2013 07:39:41 -0800 (PST)
-Received: by mail-wg0-f51.google.com with SMTP id m15so585137wgh.6
-	for <yocto@yoctoproject.org>; Wed, 13 Nov 2013 07:39:40 -0800 (PST)
+Received: from mail-qc0-f180.google.com (mail-qc0-f180.google.com
+	[209.85.216.180])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 610D5E01732
+	for <yocto@yoctoproject.org>; Wed, 13 Nov 2013 07:47:42 -0800 (PST)
+Received: by mail-qc0-f180.google.com with SMTP id e9so337907qcy.11
+	for <yocto@yoctoproject.org>; Wed, 13 Nov 2013 07:47:42 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc:content-type;
-	bh=YXxT1EWOrJhpDERn4AiO4AL6I5PJenIStPZpKPOT6DI=;
-	b=iU+rySxrssGHKmsza9iO5UTeWjsY+jzXU5jYV7v2UY1ZOsABtIy/yq9pAWEpH4SHhn
-	JNy98cHEnPs8uaLsSZO9iKgqyZWd+KzdAenexIvXuY5tZlD8ZQ5zJdHshi5naesqR0K9
-	FJj3/OoOg2spYHcaW5oPQLUwPC+P76QuXesitpISitk6wICi7Pypv+Cb9mD5oHMJAkyp
-	g8KwFNIPwyxqNv6410XkAuJkngvcaCkle3UarJRRVJzFSbVqxRCdrqh8ufaeVqoIdSQT
-	U70SL68nG+QIjzYiplrLsHDRT3/+wsfSftJEMzr1UkYwexvckYC1CDGusnSQ4fxGaNDH
-	fa9w==
-X-Gm-Message-State: ALoCoQkJHJTruCg7owRPi0GX3yEIjoWI7leBK6ZyLDl+vzIgjYheDj1IKKMG/O3FbU6tO+WsZZSW
-X-Received: by 10.180.188.49 with SMTP id fx17mr21071702wic.33.1384357180341; 
-	Wed, 13 Nov 2013 07:39:40 -0800 (PST)
-MIME-Version: 1.0
-Received: by 10.217.91.202 with HTTP; Wed, 13 Nov 2013 07:39:20 -0800 (PST)
-X-Originating-IP: [89.121.200.106]
-In-Reply-To: <CANyK_8exuMtxWqU1_RkjWw0GoCZg0L6xJ+6GftjGFmqhYkOPQA@mail.gmail.com>
-References: <1378152710-10291-1-git-send-email-paul@paulbarker.me.uk>
-	<CANyK_8exuMtxWqU1_RkjWw0GoCZg0L6xJ+6GftjGFmqhYkOPQA@mail.gmail.com>
+	h=x-gm-message-state:from:to:cc:subject:date:message-id;
+	bh=9YVWqciLCuF/C/YKRcL6jp39dfknPqnQIu7Kchti5g8=;
+	b=CcN6fhKEDBBURSq6POd9V6l5rp57xeiQMwzpnsqWXrpqgTXGCMDV57iW/CuG3DU5+5
+	1UC4oZqvyAAMakV2jTz6CORBi2cIDqCr30kbZtH46Feym0CvVmBtos7jlwEOLZPPAKrW
+	4DW7QRtJZIHbbDMV4zsAOVpImDwscC+r2z3x+EOGDwdlHLU1MGkQHzmXeYlnZNgRQ9Yc
+	2+qhu2vy+t8NB2rF4N4cYOPKcfkuEpNzpqiuabs5rIth2d8uDCQOnJisOCmqSIN26jwC
+	OGkHubmkwaLVAIjnnRj/4bEZpqX3GXkQWPR71wkgf7NwemvTD5RxzO46KPRWzqFpxeSG
+	HjmA==
+X-Gm-Message-State: ALoCoQk7ATSSahJVtNLRk8ZPYwttmgYPgZsuvO6yQK6Z1mgwZTC9f4s2+QRWjPdkLNqqQvFb9V9V
+X-Received: by 10.49.86.35 with SMTP id m3mr66852223qez.7.1384357662074;
+	Wed, 13 Nov 2013 07:47:42 -0800 (PST)
+Received: from otp-agherzan-l1.corp.ad.wrs.com ([89.121.200.106])
+	by mx.google.com with ESMTPSA id j15sm10643621qaa.6.2013.11.13.07.47.39
+	for <multiple recipients>
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Wed, 13 Nov 2013 07:47:41 -0800 (PST)
 From: Andrei Gherzan <andrei@gherzan.ro>
-Date: Wed, 13 Nov 2013 17:39:20 +0200
-Message-ID: <CAK18fxH8Y8Yb8t7XK2NW1oZOCvk5nyNpPed7gAb5ciaqX2c9Hw@mail.gmail.com>
-To: Paul Barker <paul@paulbarker.me.uk>
-Cc: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: [meta-raspberrypi][PATCH v2 0/2] rpi-sdimg compression
+To: yocto@yoctoproject.org
+Date: Wed, 13 Nov 2013 17:47:26 +0200
+Message-Id: <1384357651-26684-1-git-send-email-andrei@gherzan.ro>
+X-Mailer: git-send-email 1.8.1.4
+Subject: [meta-raspberrypi][PATCH 1/6] linux-raspberrypi: Move patch in inc file
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,91 +40,83 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 13 Nov 2013 15:39:44 -0000
-Content-Type: multipart/alternative; boundary=001a11c25bdafa061204eb10c5f0
+X-List-Received-Date: Wed, 13 Nov 2013 15:47:45 -0000
 
---001a11c25bdafa061204eb10c5f0
-Content-Type: text/plain; charset=ISO-8859-1
+In order to avoid duplicated code, move sl030raspberrypii2ckernel.patch
+in linux-raspberrypi.inc.
 
-On Fri, Oct 11, 2013 at 6:49 PM, Paul Barker <paul@paulbarker.me.uk> wrote:
+Change-Id: I8c3e7a70224672a8def6518baecd4ef86bbb15c4
+Signed-off-by: Andrei Gherzan <andrei@gherzan.ro>
+---
+ recipes-kernel/linux/linux-raspberrypi.inc       | 2 ++
+ recipes-kernel/linux/linux-raspberrypi_3.11.0.bb | 4 +---
+ recipes-kernel/linux/linux-raspberrypi_3.2.27.bb | 4 +---
+ recipes-kernel/linux/linux-raspberrypi_3.6.11.bb | 4 +---
+ recipes-kernel/linux/linux-raspberrypi_3.8.13.bb | 4 +---
+ 5 files changed, 6 insertions(+), 12 deletions(-)
 
-> On 2 September 2013 21:11, Paul Barker <paul@paulbarker.me.uk> wrote:
-> > I've incorporated the changes recommended by Andrei against the first
-> version of
-> > the patch. Whilst editing the README file I noticed that the
-> IMAGE_FSTYPES
-> > example didn't make sense (or include a closing double-quote) so I've
-> fixed this
-> > as well.
-> >
-> > Currently running a build test with a 3.8.y series kernel - I'll post
-> the patch
-> > to add that recipe once it's confirmed working.
-> >
-> > Paul Barker (2):
-> >   sdcard_image-rpi.bbclass: Allow optional compression
-> >   README: Fix IMAGE_FSTYPES example
-> >
-> >  README                           |  4 +++-
-> >  classes/sdcard_image-rpi.bbclass | 20 ++++++++++++++++++++
-> >  2 files changed, 23 insertions(+), 1 deletion(-)
-> >
-> > --
-> > 1.8.4
-> >
->
-> Ping.
->
->
-Merged.
+diff --git a/recipes-kernel/linux/linux-raspberrypi.inc b/recipes-kernel/linux/linux-raspberrypi.inc
+index e756b57..3397bcb 100644
+--- a/recipes-kernel/linux/linux-raspberrypi.inc
++++ b/recipes-kernel/linux/linux-raspberrypi.inc
+@@ -11,6 +11,8 @@ PV_append = "+git${SRCREV}"
+ 
+ S = "${WORKDIR}/git"
+ 
++SRC_URI += "file://sl030raspberrypii2ckernel.patch"
++
+ # NOTE: For now we pull in the default config from the RPi kernel GIT tree.
+ KERNEL_DEFCONFIG = "bcmrpi_defconfig"
+ 
+diff --git a/recipes-kernel/linux/linux-raspberrypi_3.11.0.bb b/recipes-kernel/linux/linux-raspberrypi_3.11.0.bb
+index 1ae39b2..b197289 100644
+--- a/recipes-kernel/linux/linux-raspberrypi_3.11.0.bb
++++ b/recipes-kernel/linux/linux-raspberrypi_3.11.0.bb
+@@ -1,6 +1,4 @@
+ SRCREV = "d7474694bdc9836af17f4b4d839509f9aad7ffa7"
+-SRC_URI = "git://github.com/raspberrypi/linux.git;protocol=git;branch=rpi-3.11.y \
+-           file://sl030raspberrypii2ckernel.patch \
+-          "
++SRC_URI = "git://github.com/raspberrypi/linux.git;protocol=git;branch=rpi-3.11.y"
+ 
+ require linux-raspberrypi.inc
+diff --git a/recipes-kernel/linux/linux-raspberrypi_3.2.27.bb b/recipes-kernel/linux/linux-raspberrypi_3.2.27.bb
+index cc4ee38..7c593a8 100644
+--- a/recipes-kernel/linux/linux-raspberrypi_3.2.27.bb
++++ b/recipes-kernel/linux/linux-raspberrypi_3.2.27.bb
+@@ -1,6 +1,4 @@
+ SRCREV = "ada8b4415ff44d535d63e4291a0eca733bc2ad0f"
+-SRC_URI = "git://github.com/raspberrypi/linux.git;protocol=git;branch=rpi-3.2.27 \
+-           file://sl030raspberrypii2ckernel.patch \
+-          "
++SRC_URI = "git://github.com/raspberrypi/linux.git;protocol=git;branch=rpi-3.2.27"
+ 
+ require linux-raspberrypi.inc
+diff --git a/recipes-kernel/linux/linux-raspberrypi_3.6.11.bb b/recipes-kernel/linux/linux-raspberrypi_3.6.11.bb
+index 5314f5d..5f173f9 100644
+--- a/recipes-kernel/linux/linux-raspberrypi_3.6.11.bb
++++ b/recipes-kernel/linux/linux-raspberrypi_3.6.11.bb
+@@ -1,6 +1,4 @@
+ SRCREV = "cbd6672e7e1b2dc5026f5dc7929a13a9a68f2a62"
+-SRC_URI = "git://github.com/raspberrypi/linux.git;protocol=git;branch=rpi-3.6.y \
+-           file://sl030raspberrypii2ckernel.patch \
+-          "
++SRC_URI = "git://github.com/raspberrypi/linux.git;protocol=git;branch=rpi-3.6.y"
+ 
+ require linux-raspberrypi.inc
+diff --git a/recipes-kernel/linux/linux-raspberrypi_3.8.13.bb b/recipes-kernel/linux/linux-raspberrypi_3.8.13.bb
+index dc8cf0a..613c172 100644
+--- a/recipes-kernel/linux/linux-raspberrypi_3.8.13.bb
++++ b/recipes-kernel/linux/linux-raspberrypi_3.8.13.bb
+@@ -1,6 +1,4 @@
+ SRCREV = "d996a1b91b2bf3dc06f4f4f822a56f4496457aa1"
+-SRC_URI = "git://github.com/raspberrypi/linux.git;protocol=git;branch=rpi-3.8.y \
+-           file://sl030raspberrypii2ckernel.patch \
+-          "
++SRC_URI = "git://github.com/raspberrypi/linux.git;protocol=git;branch=rpi-3.8.y"
+ 
+ require linux-raspberrypi.inc
+-- 
+1.8.1.4
 
-Thanks,
-ag
 
---001a11c25bdafa061204eb10c5f0
-Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><br><div class=3D"gmail_extra"><br><br><div class=3D"gmail=
-_quote">On Fri, Oct 11, 2013 at 6:49 PM, Paul Barker <span dir=3D"ltr">&lt;=
-<a href=3D"mailto:paul@paulbarker.me.uk" target=3D"_blank">paul@paulbarker.=
-me.uk</a>&gt;</span> wrote:<br>
-
-<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
-x #ccc solid;padding-left:1ex"><div class=3D"im">On 2 September 2013 21:11,=
- Paul Barker &lt;<a href=3D"mailto:paul@paulbarker.me.uk">paul@paulbarker.m=
-e.uk</a>&gt; wrote:<br>
-
-
-&gt; I&#39;ve incorporated the changes recommended by Andrei against the fi=
-rst version of<br>
-&gt; the patch. Whilst editing the README file I noticed that the IMAGE_FST=
-YPES<br>
-&gt; example didn&#39;t make sense (or include a closing double-quote) so I=
-&#39;ve fixed this<br>
-&gt; as well.<br>
-&gt;<br>
-&gt; Currently running a build test with a 3.8.y series kernel - I&#39;ll p=
-ost the patch<br>
-&gt; to add that recipe once it&#39;s confirmed working.<br>
-&gt;<br>
-&gt; Paul Barker (2):<br>
-&gt; =A0 sdcard_image-rpi.bbclass: Allow optional compression<br>
-&gt; =A0 README: Fix IMAGE_FSTYPES example<br>
-&gt;<br>
-&gt; =A0README =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 | =A04 +=
-++-<br>
-&gt; =A0classes/sdcard_image-rpi.bbclass | 20 ++++++++++++++++++++<br>
-&gt; =A02 files changed, 23 insertions(+), 1 deletion(-)<br>
-&gt;<br>
-&gt; --<br>
-&gt; 1.8.4<br>
-&gt;<br>
-<br>
-</div>Ping.<br>
-<span class=3D"HOEnZb"><font color=3D"#888888"><br></font></span></blockquo=
-te><div><br></div><div>Merged.</div><div><br></div><div>Thanks,</div><div>a=
-g=A0</div></div>
-</div></div>
-
---001a11c25bdafa061204eb10c5f0--
