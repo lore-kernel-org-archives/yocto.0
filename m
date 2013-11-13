@@ -1,35 +1,31 @@
-Return-Path: <andrei@gherzan.ro>
-Received: from mail-wi0-f174.google.com (mail-wi0-f174.google.com
-	[209.85.212.174])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5DDCAE01389
-	for <yocto@yoctoproject.org>; Wed, 13 Nov 2013 08:26:36 -0800 (PST)
-Received: by mail-wi0-f174.google.com with SMTP id hi5so254465wib.1
-	for <yocto@yoctoproject.org>; Wed, 13 Nov 2013 08:26:35 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc:content-type;
-	bh=X/d7oQS1WXnhK1QP8wXF/fITnUBr0vG0Zp0XA+rk6uc=;
-	b=g9npP+u+tLYfu6bjTzS9jfxiPvDAzv0cXsedrb4p6wdg3jcop7X2sbUs08yNPMIddW
-	w9tX9aN7a7QSpPznbnK+1PqApgFUfjwi4t5e8ehlUbJMPOJNe8yCMrgtc/zX+WaY+x8x
-	6wVsEyH6HftigmECYSq7kPMY/tL3oBuoYWuPTlHWLMM5JP+vxmbefZnKGZGZTD0+24vk
-	2Zeu27kAkmCCKt0epk1qGm4Wpac2NGIGrf+wCzwixQo7phrGaHBm8odKYU4MdM8SvbqV
-	9ff05LUks+/bqJ3nqLkAh0N/bTUoclE/yOYQrpGSknhz6zjbDcIJAszjHyilJluQm/8x
-	ibtg==
-X-Gm-Message-State: ALoCoQm/i5TvssOL/m80fnGnI3phFYdW9X7DNyC5K31LqoHtI8nqyf/iRI5WwCzFFr5nLFuvqO0S
-X-Received: by 10.194.89.105 with SMTP id bn9mr25011wjb.82.1384359995795; Wed,
-	13 Nov 2013 08:26:35 -0800 (PST)
+Return-Path: <flihp@twobit.us>
+Received: from smtp.twobit.us (smtp.twobit.us [38.83.192.235])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 10658E01389
+	for <yocto@yoctoproject.org>; Wed, 13 Nov 2013 09:23:03 -0800 (PST)
+Received: from [216.57.91.130] (helo=[10.204.207.200])
+	by smtp.twobit.us with esmtpsa
+	(TLS1.0:DHE_RSA_CAMELLIA_256_CBC_SHA1:256) (Exim 4.80)
+	(envelope-from <flihp@twobit.us>)
+	id 1Vge9N-0008Vl-Ic; Wed, 13 Nov 2013 17:22:46 +0000
+Message-ID: <5283B56B.4040305@twobit.us>
+Date: Wed, 13 Nov 2013 12:22:51 -0500
+From: Philip Tricca <flihp@twobit.us>
+User-Agent: Mozilla/5.0 (X11; Linux i686;
+	rv:17.0) Gecko/20130922 Icedove/17.0.9
 MIME-Version: 1.0
-Received: by 10.217.91.202 with HTTP; Wed, 13 Nov 2013 08:26:14 -0800 (PST)
-X-Originating-IP: [89.121.200.106]
-In-Reply-To: <1384359566-32315-3-git-send-email-andrei@gherzan.ro>
-References: <1384359566-32315-1-git-send-email-andrei@gherzan.ro>
-	<1384359566-32315-3-git-send-email-andrei@gherzan.ro>
-From: Andrei Gherzan <andrei@gherzan.ro>
-Date: Wed, 13 Nov 2013 18:26:14 +0200
-Message-ID: <CAK18fxHAL=kuzgo0xDbaV5XBhqqK-reS=VG-U0zxf12uqE7A9w@mail.gmail.com>
-To: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: [meta-raspberrypi][PATCH V2 3/6] linux-raspberrypi: Add version 3.10.18 and 3.12.0
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+References: <1384320159-1000-1-git-send-email-flihp@twobit.us>
+In-Reply-To: <1384320159-1000-1-git-send-email-flihp@twobit.us>
+X-Enigmail-Version: 1.5.1
+X-SA-Exim-Connect-IP: 216.57.91.130
+X-SA-Exim-Mail-From: flihp@twobit.us
+X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on smtp.twobit.us
+X-Spam-Level: 
+X-Spam-Status: No, score=0.3 required=5.0 tests=ALL_TRUSTED,URI_HEX
+	autolearn=no version=3.3.2
+X-SA-Exim-Version: 4.2.1 (built Mon, 26 Dec 2011 16:24:06 +0000)
+X-SA-Exim-Scanned: Yes (on smtp.twobit.us)
+Subject: Re: [meta-selinux][RFC] refpolicy: Add generic refpolicy recipe with configurable policy type.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,126 +37,89 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 13 Nov 2013 16:26:37 -0000
-Content-Type: multipart/alternative; boundary=047d7bf10acaca8db804eb116d29
-
---047d7bf10acaca8db804eb116d29
+X-List-Received-Date: Wed, 13 Nov 2013 17:23:04 -0000
 Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: 7bit
 
-On Wed, Nov 13, 2013 at 6:19 PM, Andrei Gherzan <andrei@gherzan.ro> wrote:
+This requires a few tweaks before it will work as advertised. I had a
+variable set in a distro.conf that interfered. I'll send out a v2 in a bit.
 
-> Change-Id: Idd59fed4f2ab975c50b3727e436b4a0caeb0ab16
-> Signed-off-by: Andrei Gherzan <andrei@gherzan.ro>
+- Philip
+
+On 11/13/2013 12:22 AM, Philip Tricca wrote:
+> This RFC is a significant departure from the way the policy packages are
+> currently set up. The noteworthy differences are:
+> 1) the POLICY_TYPE variable can be set as configuration outside the policy recipe
+> 2) a single refpolicy recipe can be used to build all 3 policy types
+> 3) DEFAULT_POLICY from selinux-config can be set outside the config recipe
+> 4) refpolicy depends on the config and sets the DEFAULT_POLICY accordingly
+> 
+> This approach was taken to allow the use of a policy type beyond MLS. I've
+> left the other refpolicy-* recipes in tact but if this approach is acceptable
+> they could be removed if we're willing to accept the limitation that only
+> one policy may be installed on a given image. If this limitation isn't \
+> acceptable then they can be left as is.
+> 
+> Comments and input would be appreciated.
+> 
+> Cheers,
+> - Philip
+> 
+> Signed-off-by: Philip Tricca <flihp@twobit.us>
 > ---
->  recipes-kernel/linux/linux-raspberrypi_3.10.18.bb | 4 ++++
->  recipes-kernel/linux/linux-raspberrypi_3.12.0.bb  | 4 ++++
->  2 files changed, 8 insertions(+)
->  create mode 100644 recipes-kernel/linux/linux-raspberrypi_3.10.18.bb
->  create mode 100644 recipes-kernel/linux/linux-raspberrypi_3.12.0.bb
->
-> diff --git a/recipes-kernel/linux/linux-raspberrypi_3.10.18.bbb/recipes-kernel/linux/
-> linux-raspberrypi_3.10.18.bb
+>  .../packagegroups/packagegroup-selinux-minimal.bb   |    3 +--
+>  recipes-security/refpolicy/refpolicy_2.20130424.bb  |   19 +++++++++++++++++++
+>  recipes-security/selinux/selinux-config_0.1.bb      |    2 +-
+>  3 files changed, 21 insertions(+), 3 deletions(-)
+>  create mode 100644 recipes-security/refpolicy/refpolicy_2.20130424.bb
+> 
+> diff --git a/recipes-security/packagegroups/packagegroup-selinux-minimal.bb b/recipes-security/packagegroups/packagegroup-selinux-minimal.bb
+> index 072320d..af29da1 100644
+> --- a/recipes-security/packagegroups/packagegroup-selinux-minimal.bb
+> +++ b/recipes-security/packagegroups/packagegroup-selinux-minimal.bb
+> @@ -13,6 +13,5 @@ ALLOW_EMPTY_${PN} = "1"
+>  RDEPENDS_${PN} = "\
+>  	policycoreutils-semodule \
+>  	policycoreutils-sestatus \
+> -	selinux-config \
+> -	refpolicy-mls \
+> +	refpolicy \
+>  "
+> diff --git a/recipes-security/refpolicy/refpolicy_2.20130424.bb b/recipes-security/refpolicy/refpolicy_2.20130424.bb
 > new file mode 100644
-> index 0000000..399a978
+> index 0000000..c00aca3
 > --- /dev/null
-> +++ b/recipes-kernel/linux/linux-raspberrypi_3.10.18.bb
-> @@ -0,0 +1,4 @@
-> +SRCREV = "ae937f99fee8a37f2ddd7270f6bcc0e497e8c903"
-> +SRC_URI = "git://
-> github.com/raspberrypi/linux.git;protocol=git;branch=rpi-3.10.y"
+> +++ b/recipes-security/refpolicy/refpolicy_2.20130424.bb
+> @@ -0,0 +1,19 @@
+> +SUMMARY = "The SELinux reference policy."
+> +DESCRIPTION = "\
+> +This is the reference policy for the SELinux mandatory access control \
+> +system. There are 3 supported policy types: standard, MCS and MLS. The \
+> +standard policy is the most simple of the three providing the standard \
+> +type enforcement policy. The MCS policy adds an additional element to the \
+> +SELinux label called a category. Finally the MLS variant allows giving data \
+> +labels such as \"Top Secret\" and preventing such data from leaking to \
+> +processes or files with lower classification. \
+> +"
 > +
-> +require linux-raspberrypi.inc
-> diff --git a/recipes-kernel/linux/linux-raspberrypi_3.12.0.bbb/recipes-kernel/linux/
-> linux-raspberrypi_3.12.0.bb
-> new file mode 100644
-> index 0000000..25877fe
-> --- /dev/null
-> +++ b/recipes-kernel/linux/linux-raspberrypi_3.12.0.bb
-> @@ -0,0 +1,4 @@
-> +SRCREV = "839f349b6ed2a63a2bff0b5f0d718a7b07ca2316"
-> +SRC_URI = "git://
-> github.com/raspberrypi/linux.git;protocol=git;branch=rpi-3.12.y"
+> +PR = "r0"
 > +
-> +require linux-raspberrypi.inc
-> --
-> 1.8.1.4
->
->
-Added a new patchset which adds file://sl030raspberrypii2ckernel.patch to
-these kernel versions too: https://review.gherzan.ro:8443/#/c/14/
-
-ag
-
---047d7bf10acaca8db804eb116d29
-Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><br><div class=3D"gmail_extra"><br><br><div class=3D"gmail=
-_quote">On Wed, Nov 13, 2013 at 6:19 PM, Andrei Gherzan <span dir=3D"ltr">&=
-lt;<a href=3D"mailto:andrei@gherzan.ro" target=3D"_blank">andrei@gherzan.ro=
-</a>&gt;</span> wrote:<br>
-
-<blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-=
-left-width:1px;border-left-color:rgb(204,204,204);border-left-style:solid;p=
-adding-left:1ex">Change-Id: Idd59fed4f2ab975c50b3727e436b4a0caeb0ab16<br>
-Signed-off-by: Andrei Gherzan &lt;<a href=3D"mailto:andrei@gherzan.ro">andr=
-ei@gherzan.ro</a>&gt;<br>
----<br>
-=A0recipes-kernel/linux/<a href=3D"http://linux-raspberrypi_3.10.18.bb" tar=
-get=3D"_blank">linux-raspberrypi_3.10.18.bb</a> | 4 ++++<br>
-=A0recipes-kernel/linux/<a href=3D"http://linux-raspberrypi_3.12.0.bb" targ=
-et=3D"_blank">linux-raspberrypi_3.12.0.bb</a> =A0| 4 ++++<br>
-=A02 files changed, 8 insertions(+)<br>
-=A0create mode 100644 recipes-kernel/linux/<a href=3D"http://linux-raspberr=
-ypi_3.10.18.bb" target=3D"_blank">linux-raspberrypi_3.10.18.bb</a><br>
-=A0create mode 100644 recipes-kernel/linux/<a href=3D"http://linux-raspberr=
-ypi_3.12.0.bb" target=3D"_blank">linux-raspberrypi_3.12.0.bb</a><br>
-<br>
-diff --git a/recipes-kernel/linux/<a href=3D"http://linux-raspberrypi_3.10.=
-18.bb" target=3D"_blank">linux-raspberrypi_3.10.18.bb</a> b/recipes-kernel/=
-linux/<a href=3D"http://linux-raspberrypi_3.10.18.bb" target=3D"_blank">lin=
-ux-raspberrypi_3.10.18.bb</a><br>
+> +POLICY_TYPE ??= "mls"
+> +DEFAULT_POLICY = "${POLICY_TYPE}"
+> +
+> +RDEPENDS_${PN} = "selinux-config"
+> +
+> +include refpolicy_${PV}.inc
+> diff --git a/recipes-security/selinux/selinux-config_0.1.bb b/recipes-security/selinux/selinux-config_0.1.bb
+> index 27d9995..293218e 100644
+> --- a/recipes-security/selinux/selinux-config_0.1.bb
+> +++ b/recipes-security/selinux/selinux-config_0.1.bb
+> @@ -1,4 +1,4 @@
+> -DEFAULT_POLICY = "mls"
+> +DEFAULT_POLICY ??= "mls"
+>  
+>  SUMMARY = "SELinux configuration"
+>  DESCRIPTION = "\
+> 
 
 
-new file mode 100644<br>
-index 0000000..399a978<br>
---- /dev/null<br>
-+++ b/recipes-kernel/linux/<a href=3D"http://linux-raspberrypi_3.10.18.bb" =
-target=3D"_blank">linux-raspberrypi_3.10.18.bb</a><br>
-@@ -0,0 +1,4 @@<br>
-+SRCREV =3D &quot;ae937f99fee8a37f2ddd7270f6bcc0e497e8c903&quot;<br>
-+SRC_URI =3D &quot;git://<a href=3D"http://github.com/raspberrypi/linux.git=
-;protocol=3Dgit;branch=3Drpi-3.10.y" target=3D"_blank">github.com/raspberry=
-pi/linux.git;protocol=3Dgit;branch=3Drpi-3.10.y</a>&quot;<br>
-+<br>
-+require linux-raspberrypi.inc<br>
-diff --git a/recipes-kernel/linux/<a href=3D"http://linux-raspberrypi_3.12.=
-0.bb" target=3D"_blank">linux-raspberrypi_3.12.0.bb</a> b/recipes-kernel/li=
-nux/<a href=3D"http://linux-raspberrypi_3.12.0.bb" target=3D"_blank">linux-=
-raspberrypi_3.12.0.bb</a><br>
-
-
-new file mode 100644<br>
-index 0000000..25877fe<br>
---- /dev/null<br>
-+++ b/recipes-kernel/linux/<a href=3D"http://linux-raspberrypi_3.12.0.bb" t=
-arget=3D"_blank">linux-raspberrypi_3.12.0.bb</a><br>
-@@ -0,0 +1,4 @@<br>
-+SRCREV =3D &quot;839f349b6ed2a63a2bff0b5f0d718a7b07ca2316&quot;<br>
-+SRC_URI =3D &quot;git://<a href=3D"http://github.com/raspberrypi/linux.git=
-;protocol=3Dgit;branch=3Drpi-3.12.y" target=3D"_blank">github.com/raspberry=
-pi/linux.git;protocol=3Dgit;branch=3Drpi-3.12.y</a>&quot;<br>
-+<br>
-+require linux-raspberrypi.inc<br>
-<span class=3D""><font color=3D"#888888">--<br>
-1.8.1.4<br>
-<br>
-</font></span></blockquote></div><br>Added a new patchset which adds=A0file=
-://sl030raspberrypii2ckernel.patch to these kernel versions too:=A0<a href=
-=3D"https://review.gherzan.ro:8443/#/c/14/">https://review.gherzan.ro:8443/=
-#/c/14/</a></div>
-
-<div class=3D"gmail_extra"><br></div><div class=3D"gmail_extra">ag</div></d=
-iv>
-
---047d7bf10acaca8db804eb116d29--
