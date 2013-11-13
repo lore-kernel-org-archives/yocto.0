@@ -1,37 +1,35 @@
-Return-Path: <andrei@gherzan.ro>
-Received: from mail-qc0-f181.google.com (mail-qc0-f181.google.com
-	[209.85.216.181])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4063EE01885
-	for <yocto@yoctoproject.org>; Wed, 13 Nov 2013 07:47:52 -0800 (PST)
-Received: by mail-qc0-f181.google.com with SMTP id w4so327176qcr.40
-	for <yocto@yoctoproject.org>; Wed, 13 Nov 2013 07:47:52 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-	:references;
-	bh=1XwkBYcJIuNOC2YL7e96mzvtJS6LdkSdjFDfAFGquPg=;
-	b=K9V73Gsc1hOM37bKssMxX5GmzYI7rWSHeBpEmMx3MV6AkJGlSUrx+xkfxEC6vlFxTV
-	R5COByFEfp+nGsbQthxhzIRCaSrg5At9o/i0Zhpo1wddxrqwVghuiQPLzgAkoMf+jJhj
-	F6R1JAwg0hJhsNkD1/422DyJQY952FqMEK1gP7HCYLwK4RLykaP9KH8/3OTozDErMRTZ
-	zDNd9yrbC2nMg/WxSwTC/tltpdGmZTBD4o/oLGY1Gcr2riwFvuCEHvnZpL+sJAlefh3y
-	KVgI+nwdXK5HTOxhIE5B+BCyw3D4t0vZGocTe3ErBsHCIyfa8G2guwanuWJQrerg+zn4
-	0pjA==
-X-Gm-Message-State: ALoCoQkq4WfMMQrencP71Xg+pqZcjus2ssLZvEf+YchWFexAmHghCeLfbSpfFCyb+txpyw3risib
-X-Received: by 10.49.127.2 with SMTP id nc2mr20868908qeb.71.1384357672340;
-	Wed, 13 Nov 2013 07:47:52 -0800 (PST)
-Received: from otp-agherzan-l1.corp.ad.wrs.com ([89.121.200.106])
-	by mx.google.com with ESMTPSA id j15sm10643621qaa.6.2013.11.13.07.47.50
-	for <multiple recipients>
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Wed, 13 Nov 2013 07:47:51 -0800 (PST)
-From: Andrei Gherzan <andrei@gherzan.ro>
+Return-Path: <lists@philipp-wagner.com>
+Received: from turboconrad.planet-school.de (turboconrad.planet-school.de
+	[194.116.187.108])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 225ECE01732
+	for <yocto@yoctoproject.org>; Wed, 13 Nov 2013 07:52:04 -0800 (PST)
+Received: from turboconrad.planet-school.de (srv004.service.ps-server.net
+	[194.116.186.79])
+	by turboconrad.planet-school.de (Postfix) with ESMTP id 0945DB6A0FC
+	for <yocto@yoctoproject.org>; Wed, 13 Nov 2013 16:52:00 +0100 (CET)
+X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on
+	srv004.service.ps-server.net
+X-Spam-Level: 
+X-Spam-Status: No, score=-101.3 required=5.0 tests=ALL_TRUSTED,AWL,
+	LOCAL_USER_RULE autolearn=unavailable version=3.3.2
+Received: from [129.187.155.160] (philipp.lis.ei.tum.de [129.187.155.160])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	(Authenticated sender: lists@philipp-wagner.com)
+	by turboconrad.planet-school.de (Postfix) with ESMTPSA id 98456B6A0EF
+	for <yocto@yoctoproject.org>; Wed, 13 Nov 2013 16:52:00 +0100 (CET)
+Message-ID: <5283A01E.30000@philipp-wagner.com>
+Date: Wed, 13 Nov 2013 16:51:58 +0100
+From: Philipp Wagner <lists@philipp-wagner.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:24.0) Gecko/20100101 Thunderbird/24.1.0
+MIME-Version: 1.0
 To: yocto@yoctoproject.org
-Date: Wed, 13 Nov 2013 17:47:31 +0200
-Message-Id: <1384357651-26684-6-git-send-email-andrei@gherzan.ro>
-X-Mailer: git-send-email 1.8.1.4
-In-Reply-To: <1384357651-26684-1-git-send-email-andrei@gherzan.ro>
 References: <1384357651-26684-1-git-send-email-andrei@gherzan.ro>
-Subject: [meta-raspberrypi][PATCH 6/6] userland: Update to HEAD on 2013-11-13
+	<1384357651-26684-3-git-send-email-andrei@gherzan.ro>
+In-Reply-To: <1384357651-26684-3-git-send-email-andrei@gherzan.ro>
+X-Virus-Scanned: ClamAV using ClamSMTP
+Subject: Re: [meta-raspberrypi][PATCH 3/6] linux-raspberrypi: Add version 3.10.18 and 3.12
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,35 +41,42 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 13 Nov 2013 15:47:53 -0000
+X-List-Received-Date: Wed, 13 Nov 2013 15:52:05 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Change-Id: Ic618f8bc5365b9f787a230a2a3e0ccb92c17738a
-Signed-off-by: Andrei Gherzan <andrei@gherzan.ro>
----
- recipes-graphics/userland/userland_git.bb | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+Am 13.11.2013 16:47, schrieb Andrei Gherzan:
+> Change-Id: Idd59fed4f2ab975c50b3727e436b4a0caeb0ab16
+> Signed-off-by: Andrei Gherzan <andrei@gherzan.ro>
+> ---
+>   recipes-kernel/linux/linux-raspberrypi_3.10.18.bb | 4 ++++
+>   recipes-kernel/linux/linux-raspberrypi_3.12.bb    | 4 ++++
+>   2 files changed, 8 insertions(+)
+>   create mode 100644 recipes-kernel/linux/linux-raspberrypi_3.10.18.bb
+>   create mode 100644 recipes-kernel/linux/linux-raspberrypi_3.12.bb
+                                                            ^^^^^^^^^^^^^
+Make this 3.12.0 or whatever it is?
 
-diff --git a/recipes-graphics/userland/userland_git.bb b/recipes-graphics/userland/userland_git.bb
-index c7ea522..18c74fa 100644
---- a/recipes-graphics/userland/userland_git.bb
-+++ b/recipes-graphics/userland/userland_git.bb
-@@ -5,13 +5,13 @@ vcos, openmaxil, vchiq_arm, bcm_host, WFC, OpenVG."
- LICENSE = "Broadcom"
- LIC_FILES_CHKSUM = "file://LICENCE;md5=957f6640d5e2d2acfce73a36a56cb32f"
- 
--PR = "r2"
-+PR = "r3"
- 
- PROVIDES = "virtual/libgles2 \
-             virtual/egl"
- COMPATIBLE_MACHINE = "raspberrypi"
- 
--SRCREV = "23baee63495aa685e7693467b7a5469ff5ca4481"
-+SRCREV = "628498eb6cf501554c98a5e6c7ea3855574fa43e"
- SRC_URI = "git://github.com/raspberrypi/userland.git;protocol=git;branch=master \
-           "
- S = "${WORKDIR}/git"
--- 
-1.8.1.4
-
+>
+> diff --git a/recipes-kernel/linux/linux-raspberrypi_3.10.18.bb b/recipes-kernel/linux/linux-raspberrypi_3.10.18.bb
+> new file mode 100644
+> index 0000000..399a978
+> --- /dev/null
+> +++ b/recipes-kernel/linux/linux-raspberrypi_3.10.18.bb
+> @@ -0,0 +1,4 @@
+> +SRCREV = "ae937f99fee8a37f2ddd7270f6bcc0e497e8c903"
+> +SRC_URI = "git://github.com/raspberrypi/linux.git;protocol=git;branch=rpi-3.10.y"
+> +
+> +require linux-raspberrypi.inc
+> diff --git a/recipes-kernel/linux/linux-raspberrypi_3.12.bb b/recipes-kernel/linux/linux-raspberrypi_3.12.bb
+> new file mode 100644
+> index 0000000..25877fe
+> --- /dev/null
+> +++ b/recipes-kernel/linux/linux-raspberrypi_3.12.bb
+> @@ -0,0 +1,4 @@
+> +SRCREV = "839f349b6ed2a63a2bff0b5f0d718a7b07ca2316"
+> +SRC_URI = "git://github.com/raspberrypi/linux.git;protocol=git;branch=rpi-3.12.y"
+> +
+> +require linux-raspberrypi.inc
+>
 
