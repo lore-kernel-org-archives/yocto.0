@@ -1,31 +1,35 @@
-Return-Path: <flihp@twobit.us>
-Received: from smtp.twobit.us (smtp.twobit.us [38.83.192.235])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 10658E01389
-	for <yocto@yoctoproject.org>; Wed, 13 Nov 2013 09:23:03 -0800 (PST)
-Received: from [216.57.91.130] (helo=[10.204.207.200])
-	by smtp.twobit.us with esmtpsa
-	(TLS1.0:DHE_RSA_CAMELLIA_256_CBC_SHA1:256) (Exim 4.80)
-	(envelope-from <flihp@twobit.us>)
-	id 1Vge9N-0008Vl-Ic; Wed, 13 Nov 2013 17:22:46 +0000
-Message-ID: <5283B56B.4040305@twobit.us>
-Date: Wed, 13 Nov 2013 12:22:51 -0500
-From: Philip Tricca <flihp@twobit.us>
-User-Agent: Mozilla/5.0 (X11; Linux i686;
-	rv:17.0) Gecko/20130922 Icedove/17.0.9
+Return-Path: <alexandru.c.georgescu@intel.com>
+Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 317F7E01732
+	for <yocto@yoctoproject.org>; Wed, 13 Nov 2013 10:45:08 -0800 (PST)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by azsmga101.ch.intel.com with ESMTP; 13 Nov 2013 10:45:07 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.93,693,1378882800"; 
+	d="scan'208,217";a="427080346"
+Received: from irsmsx104.ger.corp.intel.com ([163.33.3.159])
+	by fmsmga001.fm.intel.com with ESMTP; 13 Nov 2013 10:44:51 -0800
+Received: from irsmsx106.ger.corp.intel.com (163.33.3.31) by
+	IRSMSX104.ger.corp.intel.com (163.33.3.159) with Microsoft SMTP Server
+	(TLS) id 14.3.123.3; Wed, 13 Nov 2013 18:44:50 +0000
+Received: from irsmsx104.ger.corp.intel.com ([169.254.5.89]) by
+	IRSMSX106.ger.corp.intel.com ([169.254.8.197]) with mapi id
+	14.03.0123.003; Wed, 13 Nov 2013 18:44:32 +0000
+From: "Georgescu, Alexandru C" <alexandru.c.georgescu@intel.com>
+To: Dilip Kumar <008dilip@gmail.com>, "yocto@yoctoproject.org"
+	<yocto@yoctoproject.org>
+Thread-Topic: [yocto] QA Tests in Yocto development environment block diagram
+Thread-Index: AQHO4CjI2DYSlaVkwUOZhCqQQQ+nSZojf0hg
+Date: Wed, 13 Nov 2013 18:44:28 +0000
+Message-ID: <1FFB62CE8AEB0D4298B51122D8903E9619F95667@IRSMSX104.ger.corp.intel.com>
+References: <CABmxB3MGuNu-AppvDGujjgQFU9X5NAu9J2W269DGEK36B8wAeg@mail.gmail.com>
+In-Reply-To: <CABmxB3MGuNu-AppvDGujjgQFU9X5NAu9J2W269DGEK36B8wAeg@mail.gmail.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [163.33.239.182]
 MIME-Version: 1.0
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-References: <1384320159-1000-1-git-send-email-flihp@twobit.us>
-In-Reply-To: <1384320159-1000-1-git-send-email-flihp@twobit.us>
-X-Enigmail-Version: 1.5.1
-X-SA-Exim-Connect-IP: 216.57.91.130
-X-SA-Exim-Mail-From: flihp@twobit.us
-X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on smtp.twobit.us
-X-Spam-Level: 
-X-Spam-Status: No, score=0.3 required=5.0 tests=ALL_TRUSTED,URI_HEX
-	autolearn=no version=3.3.2
-X-SA-Exim-Version: 4.2.1 (built Mon, 26 Dec 2011 16:24:06 +0000)
-X-SA-Exim-Scanned: Yes (on smtp.twobit.us)
-Subject: Re: [meta-selinux][RFC] refpolicy: Add generic refpolicy recipe with configurable policy type.
+Subject: Re: QA Tests in Yocto development environment block diagram
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,89 +41,162 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 13 Nov 2013 17:23:04 -0000
-Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 13 Nov 2013 18:45:11 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_1FFB62CE8AEB0D4298B51122D8903E9619F95667IRSMSX104gercor_"
 
-This requires a few tweaks before it will work as advertised. I had a
-variable set in a distro.conf that interfered. I'll send out a v2 in a bit.
+--_000_1FFB62CE8AEB0D4298B51122D8903E9619F95667IRSMSX104gercor_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-- Philip
+Hi,
+Our overall testing plan is available here: https://wiki.yoctoproject.org/w=
+iki/Yocto_1.6_Overall_Test_Plan. Since we are in the last phase of planning=
+ for 1.6, this is not the final version yet.
 
-On 11/13/2013 12:22 AM, Philip Tricca wrote:
-> This RFC is a significant departure from the way the policy packages are
-> currently set up. The noteworthy differences are:
-> 1) the POLICY_TYPE variable can be set as configuration outside the policy recipe
-> 2) a single refpolicy recipe can be used to build all 3 policy types
-> 3) DEFAULT_POLICY from selinux-config can be set outside the config recipe
-> 4) refpolicy depends on the config and sets the DEFAULT_POLICY accordingly
-> 
-> This approach was taken to allow the use of a policy type beyond MLS. I've
-> left the other refpolicy-* recipes in tact but if this approach is acceptable
-> they could be removed if we're willing to accept the limitation that only
-> one policy may be installed on a given image. If this limitation isn't \
-> acceptable then they can be left as is.
-> 
-> Comments and input would be appreciated.
-> 
-> Cheers,
-> - Philip
-> 
-> Signed-off-by: Philip Tricca <flihp@twobit.us>
-> ---
->  .../packagegroups/packagegroup-selinux-minimal.bb   |    3 +--
->  recipes-security/refpolicy/refpolicy_2.20130424.bb  |   19 +++++++++++++++++++
->  recipes-security/selinux/selinux-config_0.1.bb      |    2 +-
->  3 files changed, 21 insertions(+), 3 deletions(-)
->  create mode 100644 recipes-security/refpolicy/refpolicy_2.20130424.bb
-> 
-> diff --git a/recipes-security/packagegroups/packagegroup-selinux-minimal.bb b/recipes-security/packagegroups/packagegroup-selinux-minimal.bb
-> index 072320d..af29da1 100644
-> --- a/recipes-security/packagegroups/packagegroup-selinux-minimal.bb
-> +++ b/recipes-security/packagegroups/packagegroup-selinux-minimal.bb
-> @@ -13,6 +13,5 @@ ALLOW_EMPTY_${PN} = "1"
->  RDEPENDS_${PN} = "\
->  	policycoreutils-semodule \
->  	policycoreutils-sestatus \
-> -	selinux-config \
-> -	refpolicy-mls \
-> +	refpolicy \
->  "
-> diff --git a/recipes-security/refpolicy/refpolicy_2.20130424.bb b/recipes-security/refpolicy/refpolicy_2.20130424.bb
-> new file mode 100644
-> index 0000000..c00aca3
-> --- /dev/null
-> +++ b/recipes-security/refpolicy/refpolicy_2.20130424.bb
-> @@ -0,0 +1,19 @@
-> +SUMMARY = "The SELinux reference policy."
-> +DESCRIPTION = "\
-> +This is the reference policy for the SELinux mandatory access control \
-> +system. There are 3 supported policy types: standard, MCS and MLS. The \
-> +standard policy is the most simple of the three providing the standard \
-> +type enforcement policy. The MCS policy adds an additional element to the \
-> +SELinux label called a category. Finally the MLS variant allows giving data \
-> +labels such as \"Top Secret\" and preventing such data from leaking to \
-> +processes or files with lower classification. \
-> +"
-> +
-> +PR = "r0"
-> +
-> +POLICY_TYPE ??= "mls"
-> +DEFAULT_POLICY = "${POLICY_TYPE}"
-> +
-> +RDEPENDS_${PN} = "selinux-config"
-> +
-> +include refpolicy_${PV}.inc
-> diff --git a/recipes-security/selinux/selinux-config_0.1.bb b/recipes-security/selinux/selinux-config_0.1.bb
-> index 27d9995..293218e 100644
-> --- a/recipes-security/selinux/selinux-config_0.1.bb
-> +++ b/recipes-security/selinux/selinux-config_0.1.bb
-> @@ -1,4 +1,4 @@
-> -DEFAULT_POLICY = "mls"
-> +DEFAULT_POLICY ??= "mls"
->  
->  SUMMARY = "SELinux configuration"
->  DESCRIPTION = "\
-> 
+Regarding the test cases, all you have to do is to have an account in our b=
+ug tracking website https://bugzilla.yoctoproject.org/ and follow the instr=
+uctions in the Testopia wiki, our test case platform management system: htt=
+ps://wiki.yoctoproject.org/wiki/Testopia. There you can find the tests perf=
+ormed against the Yocto Project components.
+
+Regards,
+--
+Alexandru Georgescu
+
+From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org=
+] On Behalf Of Dilip Kumar
+Sent: Wednesday, November 13, 2013 06:27
+To: yocto@yoctoproject.org
+Subject: [yocto] QA Tests in Yocto development environment block diagram
 
 
+Dear all,
+
+I need know what is QA tests and what all the tests it will do and need to =
+know more information about QA please help me out in this.
+
+regards
+dilip kumar b
+
+--_000_1FFB62CE8AEB0D4298B51122D8903E9619F95667IRSMSX104gercor_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 14 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:Tahoma;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:12.0pt;
+	font-family:"Times New Roman","serif";}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;}
+p
+	{mso-style-priority:99;
+	mso-margin-top-alt:auto;
+	margin-right:0in;
+	mso-margin-bottom-alt:auto;
+	margin-left:0in;
+	font-size:12.0pt;
+	font-family:"Times New Roman","serif";}
+span.EmailStyle18
+	{mso-style-type:personal-reply;
+	font-family:"Calibri","sans-serif";
+	color:#1F497D;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri","sans-serif";}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1F497D">Hi,<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1F497D">Our overall testing plan =
+is available here:
+<a href=3D"https://wiki.yoctoproject.org/wiki/Yocto_1.6_Overall_Test_Plan">=
+https://wiki.yoctoproject.org/wiki/Yocto_1.6_Overall_Test_Plan</a>. Since w=
+e are in the last phase of planning for 1.6, this is not the final version =
+yet.<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1F497D"><o:p>&nbsp;</o:p></span><=
+/p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1F497D">Regarding the test cases,=
+ all you have to do is to have an account in our bug tracking website
+<a href=3D"https://bugzilla.yoctoproject.org/">https://bugzilla.yoctoprojec=
+t.org/</a> and follow the instructions in the Testopia wiki, our test case =
+platform management system:
+<a href=3D"https://wiki.yoctoproject.org/wiki/Testopia">https://wiki.yoctop=
+roject.org/wiki/Testopia</a>. There you can find the tests performed agains=
+t the Yocto Project components.<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1F497D"><o:p>&nbsp;</o:p></span><=
+/p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1F497D">Regards,<o:p></o:p></span=
+></p>
+<p class=3D"MsoNormal"><b><span style=3D"font-size:8.0pt;font-family:&quot;=
+Calibri&quot;,&quot;sans-serif&quot;;color:#7F7F7F">--<o:p></o:p></span></b=
+></p>
+<p class=3D"MsoNormal"><b><span style=3D"font-size:8.0pt;font-family:&quot;=
+Calibri&quot;,&quot;sans-serif&quot;;color:#7F7F7F">Alexandru Georgescu<o:p=
+></o:p></span></b></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1F497D"><o:p>&nbsp;</o:p></span><=
+/p>
+<p class=3D"MsoNormal"><b><span style=3D"font-size:10.0pt;font-family:&quot=
+;Tahoma&quot;,&quot;sans-serif&quot;">From:</span></b><span style=3D"font-s=
+ize:10.0pt;font-family:&quot;Tahoma&quot;,&quot;sans-serif&quot;"> yocto-bo=
+unces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org]
+<b>On Behalf Of </b>Dilip Kumar<br>
+<b>Sent:</b> Wednesday, November 13, 2013 06:27<br>
+<b>To:</b> yocto@yoctoproject.org<br>
+<b>Subject:</b> [yocto] QA Tests in Yocto development environment block dia=
+gram<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p>Dear all,<o:p></o:p></p>
+<p>I need know what is QA tests and what all the tests it will do and need =
+to know more information about QA please help me out in this.<o:p></o:p></p=
+>
+<p>regards <br>
+dilip kumar b<o:p></o:p></p>
+</div>
+</body>
+</html>
+
+--_000_1FFB62CE8AEB0D4298B51122D8903E9619F95667IRSMSX104gercor_--
