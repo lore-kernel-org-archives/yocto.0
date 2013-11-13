@@ -1,34 +1,37 @@
 Return-Path: <andrei@gherzan.ro>
-Received: from mail-qe0-f51.google.com (mail-qe0-f51.google.com
-	[209.85.128.51])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A76DDE01732
-	for <yocto@yoctoproject.org>; Wed, 13 Nov 2013 08:19:38 -0800 (PST)
-Received: by mail-qe0-f51.google.com with SMTP id t7so387413qeb.24
-	for <yocto@yoctoproject.org>; Wed, 13 Nov 2013 08:19:37 -0800 (PST)
+Received: from mail-qe0-f46.google.com (mail-qe0-f46.google.com
+	[209.85.128.46])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B2210E0178C
+	for <yocto@yoctoproject.org>; Wed, 13 Nov 2013 08:19:39 -0800 (PST)
+Received: by mail-qe0-f46.google.com with SMTP id s14so391205qeb.19
+	for <yocto@yoctoproject.org>; Wed, 13 Nov 2013 08:19:39 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
-	h=x-gm-message-state:from:to:cc:subject:date:message-id;
-	bh=LO0ew2ag2Wsv8efHtZmYBKdSuvX76KHCtVtIC+UWUjo=;
-	b=FJqH/dthOMH3FdafDrGznPV5Sufi5K3amXzLxisDIrKTiRSTaFT7edtdGZWj84SpMM
-	nm4SqgfKZPMtklgOm7ooEpn4xlwNE9RAZ6G2tbv9F3OQ8e6mynKD0C7iOBJINDR9xL8M
-	xq/qSzDUz6l6v1jTL/MaytcUxdxtwFJ6X51LdaA+95k5BHsyaecv+o1bww9dixeVBUtt
-	Z6oCADkg0hBMvBSabwka0jfJ/2WvtBVctwdUtRX/sTiOg2Wi0AQU7mqxsGDVUru8CWvf
-	47pB9nYP2wIEBRQuHsSmIeOnvHfO/gO8PYiP35QG65hEbjv0NGxl7Pjn1Vm3bKzMaNGO
-	k8aQ==
-X-Gm-Message-State: ALoCoQnX51VqPBEFodj5ADzGUGuXcgaFq/yOXaiqm2AqfGEjDJFJKkZJyRkVpZ2gUCL0wTlbDymE
-X-Received: by 10.49.59.193 with SMTP id b1mr4123628qer.36.1384359577434;
-	Wed, 13 Nov 2013 08:19:37 -0800 (PST)
+	h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+	:references;
+	bh=NemXoEtdE+nv7RV2UWr54Uv6tQx+MmMImb4SBHMSvjg=;
+	b=G/0RxxMP3wPCxasLvJz6DFkNhuodg5FclMYEob9/p8vf3HurDR5BG/k7rnHYRv0+IP
+	cKv2CHuQWhrSMGbTNstdKtwrgheEkr23JufptgZrnSBEUEUbm6y+8CzSUq1siwQf+QtQ
+	yLNe6aG+j7bvG1tSEUyPpgXmC/XWs6ozZLIVmFG1XoWfjHkYSF6JEW8EMG+JhMRWlK8U
+	apIht89xwzY5NFHbOIRxABF1yxXc8OVRWHwHKFZYZTtRq/jNthVHurPKbKlavpiAVvfW
+	nU8Pw4ogdTeCDQ5F6vx66ULmLHjg4RWLl4cCGTXVv5vQqJehz42tFnACaJwwBwPpYKR3
+	iWhA==
+X-Gm-Message-State: ALoCoQnCGJ3QHP2lq3Zso7LU/8dsVDhnzel67Q4WqwVucuKDJ1k5PjVCrCLNWiL83hkosSofBaUo
+X-Received: by 10.229.101.74 with SMTP id b10mr57304661qco.8.1384359579419;
+	Wed, 13 Nov 2013 08:19:39 -0800 (PST)
 Received: from otp-agherzan-l1.corp.ad.wrs.com ([89.121.200.106])
-	by mx.google.com with ESMTPSA id p17sm77086894qak.4.2013.11.13.08.19.35
+	by mx.google.com with ESMTPSA id p17sm77086894qak.4.2013.11.13.08.19.37
 	for <multiple recipients>
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Wed, 13 Nov 2013 08:19:36 -0800 (PST)
+	Wed, 13 Nov 2013 08:19:38 -0800 (PST)
 From: Andrei Gherzan <andrei@gherzan.ro>
 To: yocto@yoctoproject.org
-Date: Wed, 13 Nov 2013 18:19:21 +0200
-Message-Id: <1384359566-32315-1-git-send-email-andrei@gherzan.ro>
+Date: Wed, 13 Nov 2013 18:19:22 +0200
+Message-Id: <1384359566-32315-2-git-send-email-andrei@gherzan.ro>
 X-Mailer: git-send-email 1.8.1.4
-Subject: [meta-raspberrypi][PATCH V2 1/6] bcm2835: Update to version 1.32
+In-Reply-To: <1384359566-32315-1-git-send-email-andrei@gherzan.ro>
+References: <1384359566-32315-1-git-send-email-andrei@gherzan.ro>
+Subject: [meta-raspberrypi][PATCH V2 2/6] linux-raspberrypi: Update available versions to HEAD
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,114 +45,53 @@ List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
 X-List-Received-Date: Wed, 13 Nov 2013 16:19:40 -0000
 
-From: Alexandru Niculita <alexnick87@gmail.com>
+Update 3.11.0 to 3.11.7 HEAD.
+Update 3.6.11 to HEAD.
 
-Change-Id: I68721f30c9551b392d2851a96d9819524a088faf
-Signed-off-by: Alexandru Niculita <alexnick87@gmail.com>
+Change-Id: Iacd8f78b418b0bd6d8513b97ce57ce0108057850
+Signed-off-by: Andrei Gherzan <andrei@gherzan.ro>
 ---
- recipes-bcm/bcm2835/bcm2835_1.32.bb | 42 ++++++++++++++++++++++++++++++++++++
- recipes-bcm/bcm2835/bcm2835_1.9.bb  | 43 -------------------------------------
- 2 files changed, 42 insertions(+), 43 deletions(-)
- create mode 100644 recipes-bcm/bcm2835/bcm2835_1.32.bb
- delete mode 100644 recipes-bcm/bcm2835/bcm2835_1.9.bb
+ recipes-kernel/linux/linux-raspberrypi_3.11.0.bb | 6 ------
+ recipes-kernel/linux/linux-raspberrypi_3.11.7.bb | 6 ++++++
+ recipes-kernel/linux/linux-raspberrypi_3.6.11.bb | 2 +-
+ 3 files changed, 7 insertions(+), 7 deletions(-)
+ delete mode 100644 recipes-kernel/linux/linux-raspberrypi_3.11.0.bb
+ create mode 100644 recipes-kernel/linux/linux-raspberrypi_3.11.7.bb
 
-diff --git a/recipes-bcm/bcm2835/bcm2835_1.32.bb b/recipes-bcm/bcm2835/bcm2835_1.32.bb
-new file mode 100644
-index 0000000..2dc5b22
---- /dev/null
-+++ b/recipes-bcm/bcm2835/bcm2835_1.32.bb
-@@ -0,0 +1,42 @@
-+DESCRIPTION = "Package that provides access to GPIO and other IO\
-+functions on the Broadcom BCM 2835 chip, allowing access to the\
-+GPIO pins on the 26 pin IDE plug on the RPi board"
-+SECTION = "base"
-+HOMEPAGE = "http://www.open.com.au/mikem/bcm2835"
-+AUTHOR = "Mike McCauley (mikem@open.com.au)"
-+
-+LICENSE = "GPLv2"
-+LIC_FILES_CHKSUM = "file://COPYING;md5=b234ee4d69f5fce4486a80fdaf4a4263"
-+
-+
-+COMPATIBLE_MACHINE = "raspberrypi"
-+
-+SRC_URI = "http://www.open.com.au/mikem/bcm2835/bcm2835-${PV}.tar.gz"
-+
-+SRC_URI[md5sum] = "085239569554de5ee6649fe8bb123379"
-+SRC_URI[sha256sum] = "97e8aece4ff45b1779212473aa3b1d3f43cc9a8427afa3be718f690949e0ec20"
-+
-+
-+PACKAGES += "${PN}-tests"
-+
-+FILES_${PN} = ""
-+FILES_${PN}-tests = "${libdir}/${BPN}"
-+FILES_${PN}-dbg += "${libdir}/${BPN}/.debug"
-+
-+inherit autotools
-+
-+do_compile_append() {
-+    #Now compiling the examples provided by the package
-+    for file in examples/*
-+    do
-+        ${CC} ${file}/${file##*/}.c -o ${file}/${file##*/} -Bstatic -L${S}/src -lbcm2835 -I${S}/src
-+    done
-+}
-+
-+do_install_append() {
-+    install -d ${D}/${libdir}/${BPN}
-+    for file in examples/*
-+    do
-+        install -m 0755 ${file}/${file##*/} ${D}/${libdir}/${BPN}
-+    done
-+}
-diff --git a/recipes-bcm/bcm2835/bcm2835_1.9.bb b/recipes-bcm/bcm2835/bcm2835_1.9.bb
+diff --git a/recipes-kernel/linux/linux-raspberrypi_3.11.0.bb b/recipes-kernel/linux/linux-raspberrypi_3.11.0.bb
 deleted file mode 100644
-index d6858f4..0000000
---- a/recipes-bcm/bcm2835/bcm2835_1.9.bb
+index 1ae39b2..0000000
+--- a/recipes-kernel/linux/linux-raspberrypi_3.11.0.bb
 +++ /dev/null
-@@ -1,43 +0,0 @@
--DESCRIPTION = "Package that provides access to GPIO and other IO\
--functions on the Broadcom BCM 2835 chip, allowing access to the\
--GPIO pins on the 26 pin IDE plug on the RPi board"
--SECTION = "base"
--HOMEPAGE = "http://www.open.com.au/mikem/bcm2835"
--AUTHOR = "Mike McCauley (mikem@open.com.au)"
+@@ -1,6 +0,0 @@
+-SRCREV = "d7474694bdc9836af17f4b4d839509f9aad7ffa7"
+-SRC_URI = "git://github.com/raspberrypi/linux.git;protocol=git;branch=rpi-3.11.y \
+-           file://sl030raspberrypii2ckernel.patch \
+-          "
 -
--LICENSE = "GPLv2"
--LIC_FILES_CHKSUM = "file://COPYING;md5=b234ee4d69f5fce4486a80fdaf4a4263"
--
--PR = "r0"
--
--COMPATIBLE_MACHINE = "raspberrypi"
--
--SRC_URI = "http://www.open.com.au/mikem/bcm2835/bcm2835-1.9.tar.gz"
--
--SRC_URI[md5sum] = "c102938afe9f0cfa930a0255c422f792"
--SRC_URI[sha256sum] = "0dc6ee5a261e76b103a04534c1b8ebc20dce8921dec2452785100812f978c883"
--
--
--PACKAGES += "${PN}-tests"
--
--FILES_${PN} = ""
--FILES_${PN}-tests = "${libdir}/${BPN}"
--FILES_${PN}-dbg += "${libdir}/${BPN}/.debug"
--
--inherit autotools
--
--do_compile_append() {
--    #Now compiling the examples provided by the package
--    for file in examples/*
--    do
--        ${CC} ${file}/${file##*/}.c -o ${file}/${file##*/} -Bstatic -L${S}/src -lbcm2835 -I${S}/src
--    done
--}
--
--do_install_append() {
--    install -d ${D}/${libdir}/${BPN}
--    for file in examples/*
--    do
--        install -m 0755 ${file}/${file##*/} ${D}/${libdir}/${BPN}
--    done
--}
+-require linux-raspberrypi.inc
+diff --git a/recipes-kernel/linux/linux-raspberrypi_3.11.7.bb b/recipes-kernel/linux/linux-raspberrypi_3.11.7.bb
+new file mode 100644
+index 0000000..68c890c
+--- /dev/null
++++ b/recipes-kernel/linux/linux-raspberrypi_3.11.7.bb
+@@ -0,0 +1,6 @@
++SRCREV = "b975d0aab6816dd1dc4ff938a0c95bc551831163"
++SRC_URI = "git://github.com/raspberrypi/linux.git;protocol=git;branch=rpi-3.11.y \
++           file://sl030raspberrypii2ckernel.patch \
++          "
++
++require linux-raspberrypi.inc
+diff --git a/recipes-kernel/linux/linux-raspberrypi_3.6.11.bb b/recipes-kernel/linux/linux-raspberrypi_3.6.11.bb
+index 5314f5d..ba2c704 100644
+--- a/recipes-kernel/linux/linux-raspberrypi_3.6.11.bb
++++ b/recipes-kernel/linux/linux-raspberrypi_3.6.11.bb
+@@ -1,4 +1,4 @@
+-SRCREV = "cbd6672e7e1b2dc5026f5dc7929a13a9a68f2a62"
++SRCREV = "10bc58289a7ebf6b1ab724636e0a16116278e339"
+ SRC_URI = "git://github.com/raspberrypi/linux.git;protocol=git;branch=rpi-3.6.y \
+            file://sl030raspberrypii2ckernel.patch \
+           "
 -- 
 1.8.1.4
 
