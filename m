@@ -1,34 +1,35 @@
 Return-Path: <andrei@gherzan.ro>
-Received: from mail-wg0-f45.google.com (mail-wg0-f45.google.com [74.125.82.45])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C3871E01850
-	for <yocto@yoctoproject.org>; Thu, 14 Nov 2013 07:18:09 -0800 (PST)
-Received: by mail-wg0-f45.google.com with SMTP id a1so2114308wgh.0
-	for <yocto@yoctoproject.org>; Thu, 14 Nov 2013 07:18:08 -0800 (PST)
+Received: from mail-wi0-f180.google.com (mail-wi0-f180.google.com
+	[209.85.212.180])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 20DD5E017DD
+	for <yocto@yoctoproject.org>; Thu, 14 Nov 2013 07:18:59 -0800 (PST)
+Received: by mail-wi0-f180.google.com with SMTP id ey16so986837wid.1
+	for <yocto@yoctoproject.org>; Thu, 14 Nov 2013 07:18:58 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
 	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
 	:message-id:subject:to:cc:content-type;
-	bh=ZRluepbyz0lB3F0smh2gPwv28SELaqnlWvMGo0w8wdc=;
-	b=jhgIu2Gv/xMbJxPB5Vb8SzFq9TckBLfhTCOwfS61hUUO9Cw4B0ewAOSXhIQu5QAnuO
-	xHzChQ4w1s3n1u/gtSb7Y1Jeq+G+f2q2lEpi5d4ANqDKBRLmKA6RIYCnA0gIacdrEcAj
-	xzv0J0D+rwwRaxTeKeprtSy7+2aM32ruEzmLKmF197A2Uzvtd4RkTxr99OmD0eNswYZu
-	dfH7kveZyCE8bMNDp/XGueiUramZWIFBQfWkbpOwVeAhLZPX80MzHLwnxAp9tXcMKuSd
-	3wGxjraEC2KLSAED1X6ijVUoZQhOl97d/wBp8ypTYYv7z+DGNiJk0E8YPXP1slsHE9Uq
-	skvw==
-X-Gm-Message-State: ALoCoQn68FC+IoeUxcsoF/JsdXlhKOLcCKfRqybvLLCQz4sfW0x+QDiVnsHVTkWnf5gqTUlVJqGr
-X-Received: by 10.180.187.41 with SMTP id fp9mr3262086wic.33.1384442288101;
-	Thu, 14 Nov 2013 07:18:08 -0800 (PST)
+	bh=tByn3ir2XnYWPN3mhpxx0prn1tWy2F/qdtmAVyXO0qw=;
+	b=mIG0NClxdgrAlvi1nQnnui7QGtiUtP3YI2x5CtDoeIObOuCXwK98qRLcZNwoZJHulL
+	MA8EmLtbhYI2I4ZAu8XZXQW92KnjIwSdGtF6jI7K82Fn/evwKB48wUmFw0vbttx6eakc
+	nvymqRUU5wQczyDSum5bpHdGdmqiTvJOtMOqV7z7FPaRAvSTFJZD2zhkNpGl+SzQQ8Vp
+	aBoV3CXJNNKk79BDeaiMYmmDj/yOCNkSS8+6EgT1JjgZm1mqTEL92xyKvA2y3h/5iM3n
+	5f2X0MhcQzq/c1kBKqw8Gu4P0e7bhVxgEdloG7ZphIAGWS7oKq2QGBtcaQWPKnatcG5e
+	ZgPw==
+X-Gm-Message-State: ALoCoQlfj9KfurGz/xYAegcKyAodJQdAhFOifGRGIW6QC7DYlkhfmonY6IhozM1r5pQwi+W9L5zw
+X-Received: by 10.180.11.37 with SMTP id n5mr3257321wib.25.1384442338632; Thu,
+	14 Nov 2013 07:18:58 -0800 (PST)
 MIME-Version: 1.0
-Received: by 10.217.91.202 with HTTP; Thu, 14 Nov 2013 07:17:48 -0800 (PST)
+Received: by 10.217.91.202 with HTTP; Thu, 14 Nov 2013 07:18:38 -0800 (PST)
 X-Originating-IP: [89.121.200.106]
-In-Reply-To: <1384359566-32315-6-git-send-email-andrei@gherzan.ro>
+In-Reply-To: <1384359566-32315-5-git-send-email-andrei@gherzan.ro>
 References: <1384359566-32315-1-git-send-email-andrei@gherzan.ro>
-	<1384359566-32315-6-git-send-email-andrei@gherzan.ro>
+	<1384359566-32315-5-git-send-email-andrei@gherzan.ro>
 From: Andrei Gherzan <andrei@gherzan.ro>
-Date: Thu, 14 Nov 2013 17:17:48 +0200
-Message-ID: <CAK18fxEwLzs=sVkNBnSMVokRXrSjHTOOPiYe_0RESW8++qOweA@mail.gmail.com>
+Date: Thu, 14 Nov 2013 17:18:38 +0200
+Message-ID: <CAK18fxEkV=yUiYvSNOFbpZ-UDb8eo9rOQsXcODiJ76OeaPRSgA@mail.gmail.com>
 To: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: [meta-raspberrypi][PATCH V2 6/6] userland: Update to HEAD on 2013-11-13
+Subject: Re: [meta-raspberrypi][PATCH V2 5/6] firmware.inc: Update to HEAD on 2013-11-13
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,52 +41,44 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 14 Nov 2013 15:18:10 -0000
-Content-Type: multipart/alternative; boundary=001a11c3844ccb615704eb249621
+X-List-Received-Date: Thu, 14 Nov 2013 15:19:00 -0000
+Content-Type: multipart/alternative; boundary=001a11c25b48ce6d6504eb249982
 
---001a11c3844ccb615704eb249621
+--001a11c25b48ce6d6504eb249982
 Content-Type: text/plain; charset=ISO-8859-1
 
 On Wed, Nov 13, 2013 at 6:19 PM, Andrei Gherzan <andrei@gherzan.ro> wrote:
 
-> Change-Id: Ic618f8bc5365b9f787a230a2a3e0ccb92c17738a
+> Change-Id: I00ace3f8575015612ae09dfb99e2a33d87ddc4cb
 > Signed-off-by: Andrei Gherzan <andrei@gherzan.ro>
 > ---
->  recipes-graphics/userland/userland_git.bb | 4 ++--
+>  recipes-bcm/common/firmware.inc | 4 ++--
 >  1 file changed, 2 insertions(+), 2 deletions(-)
 >
-> diff --git a/recipes-graphics/userland/userland_git.bbb/recipes-graphics/userland/
-> userland_git.bb
-> index c7ea522..18c74fa 100644
-> --- a/recipes-graphics/userland/userland_git.bb
-> +++ b/recipes-graphics/userland/userland_git.bb
-> @@ -5,13 +5,13 @@ vcos, openmaxil, vchiq_arm, bcm_host, WFC, OpenVG."
->  LICENSE = "Broadcom"
->  LIC_FILES_CHKSUM = "file://LICENCE;md5=957f6640d5e2d2acfce73a36a56cb32f"
+> diff --git a/recipes-bcm/common/firmware.inc
+> b/recipes-bcm/common/firmware.inc
+> index 5bad182..c780e63 100644
+> --- a/recipes-bcm/common/firmware.inc
+> +++ b/recipes-bcm/common/firmware.inc
+> @@ -1,6 +1,6 @@
+>  # 19/08/2013 firmware; this can be overridden from distro config
+> -RPIFW_SRCREV ?= "5b37b2a7f357236210eef1a438becaa2a57148f2"
+> -RPIFW_DATE ?= "20130819"
+> +RPIFW_SRCREV ?= "3e92add424c3c2617d5df65caa307c808017a9ea"
+> +RPIFW_DATE ?= "20131113"
+>  RPIFW_SRC_URI ?= "git://
+> github.com/raspberrypi/firmware.git;protocol=git;branch=master"
+>  RPIFW_S ?= "${WORKDIR}/git"
 >
-> -PR = "r2"
-> +PR = "r3"
->
->  PROVIDES = "virtual/libgles2 \
->              virtual/egl"
->  COMPATIBLE_MACHINE = "raspberrypi"
->
-> -SRCREV = "23baee63495aa685e7693467b7a5469ff5ca4481"
-> +SRCREV = "628498eb6cf501554c98a5e6c7ea3855574fa43e"
->  SRC_URI = "git://
-> github.com/raspberrypi/userland.git;protocol=git;branch=master \
->            "
->  S = "${WORKDIR}/git"
 > --
 > 1.8.1.4
 >
 >
-
 Merged.
 
 ag
 
---001a11c3844ccb615704eb249621
+--001a11c25b48ce6d6504eb249982
 Content-Type: text/html; charset=ISO-8859-1
 Content-Transfer-Encoding: quoted-printable
 
@@ -96,51 +89,37 @@ lt;<a href=3D"mailto:andrei@gherzan.ro" target=3D"_blank">andrei@gherzan.ro=
 
 <blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-=
 left-width:1px;border-left-color:rgb(204,204,204);border-left-style:solid;p=
-adding-left:1ex"><div class=3D""><div class=3D"h5">Change-Id: Ic618f8bc5365=
-b9f787a230a2a3e0ccb92c17738a<br>
+adding-left:1ex"><div class=3D""><div class=3D"h5">Change-Id: I00ace3f85750=
+15612ae09dfb99e2a33d87ddc4cb<br>
 
 
 Signed-off-by: Andrei Gherzan &lt;<a href=3D"mailto:andrei@gherzan.ro">andr=
 ei@gherzan.ro</a>&gt;<br>
 ---<br>
-=A0recipes-graphics/userland/<a href=3D"http://userland_git.bb" target=3D"_=
-blank">userland_git.bb</a> | 4 ++--<br>
+=A0recipes-bcm/common/firmware.inc | 4 ++--<br>
 =A01 file changed, 2 insertions(+), 2 deletions(-)<br>
 <br>
-diff --git a/recipes-graphics/userland/<a href=3D"http://userland_git.bb" t=
-arget=3D"_blank">userland_git.bb</a> b/recipes-graphics/userland/<a href=3D=
-"http://userland_git.bb" target=3D"_blank">userland_git.bb</a><br>
-index c7ea522..18c74fa 100644<br>
---- a/recipes-graphics/userland/<a href=3D"http://userland_git.bb" target=
-=3D"_blank">userland_git.bb</a><br>
-+++ b/recipes-graphics/userland/<a href=3D"http://userland_git.bb" target=
-=3D"_blank">userland_git.bb</a><br>
-@@ -5,13 +5,13 @@ vcos, openmaxil, vchiq_arm, bcm_host, WFC, OpenVG.&quot;<=
-br>
-=A0LICENSE =3D &quot;Broadcom&quot;<br>
-=A0LIC_FILES_CHKSUM =3D &quot;file://LICENCE;md5=3D957f6640d5e2d2acfce73a36=
-a56cb32f&quot;<br>
+diff --git a/recipes-bcm/common/firmware.inc b/recipes-bcm/common/firmware.=
+inc<br>
+index 5bad182..c780e63 100644<br>
+--- a/recipes-bcm/common/firmware.inc<br>
++++ b/recipes-bcm/common/firmware.inc<br>
+@@ -1,6 +1,6 @@<br>
+=A0# 19/08/2013 firmware; this can be overridden from distro config<br>
+-RPIFW_SRCREV ?=3D &quot;5b37b2a7f357236210eef1a438becaa2a57148f2&quot;<br>
+-RPIFW_DATE ?=3D &quot;20130819&quot;<br>
++RPIFW_SRCREV ?=3D &quot;3e92add424c3c2617d5df65caa307c808017a9ea&quot;<br>
++RPIFW_DATE ?=3D &quot;20131113&quot;<br>
+=A0RPIFW_SRC_URI ?=3D &quot;git://<a href=3D"http://github.com/raspberrypi/=
+firmware.git;protocol=3Dgit;branch=3Dmaster" target=3D"_blank">github.com/r=
+aspberrypi/firmware.git;protocol=3Dgit;branch=3Dmaster</a>&quot;<br>
+=A0RPIFW_S ?=3D &quot;${WORKDIR}/git&quot;<br>
 <br>
--PR =3D &quot;r2&quot;<br>
-+PR =3D &quot;r3&quot;<br>
-<br>
-=A0PROVIDES =3D &quot;virtual/libgles2 \<br>
-=A0 =A0 =A0 =A0 =A0 =A0 =A0virtual/egl&quot;<br>
-=A0COMPATIBLE_MACHINE =3D &quot;raspberrypi&quot;<br>
-<br>
--SRCREV =3D &quot;23baee63495aa685e7693467b7a5469ff5ca4481&quot;<br>
-+SRCREV =3D &quot;628498eb6cf501554c98a5e6c7ea3855574fa43e&quot;<br>
-=A0SRC_URI =3D &quot;git://<a href=3D"http://github.com/raspberrypi/userlan=
-d.git;protocol=3Dgit;branch=3Dmaster" target=3D"_blank">github.com/raspberr=
-ypi/userland.git;protocol=3Dgit;branch=3Dmaster</a> \<br>
-=A0 =A0 =A0 =A0 =A0 =A0&quot;<br>
-=A0S =3D &quot;${WORKDIR}/git&quot;<br>
 --<br>
 1.8.1.4<br>
 <br>
-</div></div></blockquote></div><br><br clear=3D"all"><div><div class=3D"gma=
-il_extra">Merged.</div><div class=3D"gmail_extra"><br></div><div class=3D"g=
-mail_extra">ag</div></div>
+</div></div></blockquote></div><br><div class=3D"gmail_extra">Merged.</div>=
+<div class=3D"gmail_extra"><br></div><div class=3D"gmail_extra">ag</div>
 </div></div>
 
---001a11c3844ccb615704eb249621--
+--001a11c25b48ce6d6504eb249982--
