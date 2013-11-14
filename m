@@ -1,37 +1,29 @@
-Return-Path: <raj.khem@gmail.com>
-Received: from mail-pb0-f47.google.com (mail-pb0-f47.google.com
-	[209.85.160.47])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A88ADE01575
-	for <yocto@yoctoproject.org>; Wed, 13 Nov 2013 22:59:52 -0800 (PST)
-Received: by mail-pb0-f47.google.com with SMTP id rr4so140906pbb.6
-	for <yocto@yoctoproject.org>; Wed, 13 Nov 2013 22:59:51 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=content-type:mime-version:subject:from:in-reply-to:date:cc
-	:content-transfer-encoding:message-id:references:to;
-	bh=tMdLDclP+4ZFD8WfxlM1MQEZUX5TNWCgMydF8Rd6wnQ=;
-	b=c+xv+KN2bFgEKhu2Qqt6VkgNp/dHP7CQnaSG9qndbGw8edxph0+25J7S9KJUNJtq7a
-	CWKM2Dopw1chf3ZeOghEy91xBHNILsoBV9hwwMsqQ56Tj9dtOqhR4FRTW8s3NsnCo1qe
-	X05cHo7mi099MgZlcoEuOkssPE9DclwsVupRg5mLUYFJ9GrLrVi9QXWpABplgpZK1Vl/
-	EzxC766OSgW8KZ0okQxKa0MxoAbpLwP3OoFwip+NZsFyhhxLjno/Xeqb49cIT7HRazVI
-	n8CQh/Wxux8NYwZdqigNdPuWPKZ4/MC2MZDEoUHcSrRGqlpyG6OBhw7Q9nUWaXzNXw6r
-	k86A==
-X-Received: by 10.66.248.202 with SMTP id yo10mr5977478pac.177.1384412391520; 
-	Wed, 13 Nov 2013 22:59:51 -0800 (PST)
-Received: from kraj-sslvpn-nc.jnpr.net ([66.129.239.14])
-	by mx.google.com with ESMTPSA id
-	sd3sm49168643pbb.42.2013.11.13.22.59.50 for <multiple recipients>
-	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
-	Wed, 13 Nov 2013 22:59:50 -0800 (PST)
-Mime-Version: 1.0 (Mac OS X Mail 7.0 \(1822\))
-From: Khem Raj <raj.khem@gmail.com>
-In-Reply-To: <52845CCD.6040901@benjammin.net>
-Date: Wed, 13 Nov 2013 22:59:48 -0800
-Message-Id: <CCE692CB-5E6D-49F6-8742-7FCBB8FCC843@gmail.com>
-References: <52845CCD.6040901@benjammin.net>
-To: ben <ben@benjammin.net>
-X-Mailer: Apple Mail (2.1822)
-Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: Stalled with setting up Yocto 1.5 on CentOS 6.4 with Python 2.7.3
+Return-Path: <rpjday@crashcourse.ca>
+Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
+	[64.235.106.9])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6EFA3E0044D
+	for <yocto@yoctoproject.org>; Thu, 14 Nov 2013 00:02:10 -0800 (PST)
+Received: from [173.34.6.101] (port=36835 helo=crashcourse.ca)
+	by astoria.ccjclearline.com with esmtpsa (TLSv1:DHE-RSA-AES256-SHA:256)
+	(Exim 4.80) (envelope-from <rpjday@crashcourse.ca>)
+	id 1VgrsO-0005VC-8T; Thu, 14 Nov 2013 03:02:08 -0500
+Date: Thu, 14 Nov 2013 03:02:03 -0500 (EST)
+From: "Robert P. J. Day" <rpjday@crashcourse.ca>
+X-X-Sender: rpjday@oneiric
+To: Yocto discussion list <yocto@yoctoproject.org>
+Message-ID: <alpine.DEB.2.02.1311140301190.19023@oneiric>
+User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
+MIME-Version: 1.0
+X-AntiAbuse: This header was added to track abuse,
+	please include it with any abuse report
+X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - crashcourse.ca
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+Subject: [PATCH] Documentation: Single typo in ref manual, entire structure chapter.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,44 +35,35 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 14 Nov 2013 06:59:53 -0000
-Content-Type: text/plain; charset=windows-1252
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Thu, 14 Nov 2013 08:02:10 -0000
+Content-Type: TEXT/PLAIN; charset=US-ASCII
 
 
-On Nov 13, 2013, at 9:17 PM, ben <ben@benjammin.net> wrote:
+Signed-off-by: Robert P. J. Day <rpjday@crashcourse.ca>
 
-> Hi all,
->=20
-> This is my first foray into embedded linux Yocto-Style.
->=20
-> I've got an RPM for Python2.7 installed that doesn't trash my system =
-(which needs 2.6.6).
+---
 
-which one is default o system when you call just 'python'
-
->=20
-> But the initial 'source oe-init-build-env' doesn't work=85
-
-
-be explicit about errors, and attach them to your post so folks can get =
-a better idea
-to help you.
+diff --git a/documentation/ref-manual/ref-structure.xml b/documentation/ref-manual/ref-structure.xml
+index 66e58f2..60f547d 100644
+--- a/documentation/ref-manual/ref-structure.xml
++++ b/documentation/ref-manual/ref-structure.xml
+@@ -779,7 +779,7 @@
+             This directory contains common license files and several text files
+             used by the build system.
+             The text files contain minimal device information and
+-            lists of files and directories with knows permissions.
++            lists of files and directories with known permissions.
+         </para>
+     </section>
 
 
->=20
-> Google is not helping me find a definitive page to instruct getting =
-around this (looked on wiki too).
->=20
-> Little help?
->=20
-> Thanks
->=20
-> --=20
-> ben@benjammin.net
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+-- 
 
+========================================================================
+Robert P. J. Day                                 Ottawa, Ontario, CANADA
+                        http://crashcourse.ca
+
+Twitter:                                       http://twitter.com/rpjday
+LinkedIn:                               http://ca.linkedin.com/in/rpjday
+========================================================================
 
