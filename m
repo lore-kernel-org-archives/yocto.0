@@ -1,32 +1,27 @@
-Return-Path: <rpjday@crashcourse.ca>
-Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
-	[64.235.106.9])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1E896E0044D
-	for <yocto@yoctoproject.org>; Thu, 14 Nov 2013 17:23:04 -0800 (PST)
-Received: from [173.34.6.101] (port=58677 helo=crashcourse.ca)
-	by astoria.ccjclearline.com with esmtpsa (TLSv1:DHE-RSA-AES256-SHA:256)
-	(Exim 4.80) (envelope-from <rpjday@crashcourse.ca>)
-	id 1Vh87i-0003sU-A5; Thu, 14 Nov 2013 20:23:02 -0500
-Date: Thu, 14 Nov 2013 20:22:56 -0500 (EST)
-From: "Robert P. J. Day" <rpjday@crashcourse.ca>
-X-X-Sender: rpjday@oneiric
-To: Jeff Osier-Mixon <jefro@jefro.net>
-In-Reply-To: <CA+YB3rYsddJ2St94FVBmUvNyv7hvRm3=gmvZTyEdu66gfGPD-w@mail.gmail.com>
-Message-ID: <alpine.DEB.2.02.1311142022090.27630@oneiric>
-References: <CA+YB3rYsddJ2St94FVBmUvNyv7hvRm3=gmvZTyEdu66gfGPD-w@mail.gmail.com>
-User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
+Return-Path: <Qi.Chen@windriver.com>
+Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9DB3BE0167C
+	for <yocto@yoctoproject.org>; Thu, 14 Nov 2013 19:02:54 -0800 (PST)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
+	[147.11.189.40])
+	by mail1.windriver.com (8.14.5/8.14.5) with ESMTP id rAF32rQQ008291
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL)
+	for <yocto@yoctoproject.org>; Thu, 14 Nov 2013 19:02:53 -0800 (PST)
+Received: from [128.224.162.213] (128.224.162.213) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server (TLS) id 14.2.347.0;
+	Thu, 14 Nov 2013 19:02:53 -0800
+Message-ID: <52858EE7.8030509@windriver.com>
+Date: Fri, 15 Nov 2013 11:03:03 +0800
+From: ChenQi <Qi.Chen@windriver.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:17.0) Gecko/20130804 Thunderbird/17.0.8
 MIME-Version: 1.0
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - crashcourse.ca
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: Happy Birthday, Yocto Project
+To: <yocto@yoctoproject.org>
+References: <CAFyqS9rjCskZBJypK9AO-f5GLDEnkSFfhsfrMK8c5cKYdp_4nQ@mail.gmail.com>
+	<CAFyqS9pY0S_Qs+GF9k-w5KCKhhgG+CGK5Y95m5d42-BYAKUOdA@mail.gmail.com>
+In-Reply-To: <CAFyqS9pY0S_Qs+GF9k-w5KCKhhgG+CGK5Y95m5d42-BYAKUOdA@mail.gmail.com>
+X-Originating-IP: [128.224.162.213]
+Subject: Re: /var/log/dmesg: should it not be created?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,26 +33,38 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 15 Nov 2013 01:23:05 -0000
-Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-List-Received-Date: Fri, 15 Nov 2013 03:02:57 -0000
+Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
+Content-Transfer-Encoding: 8bit
 
-On Thu, 14 Nov 2013, Jeff Osier-Mixon wrote:
+On 11/14/2013 11:19 PM, Hans Beckérus wrote:
+> On Wed, Nov 13, 2013 at 5:08 PM, Hans Beckérus <hans.beckerus@gmail.com> wrote:
+>> Hi. I can see that in ./recipes-core/initscripts/initscripts_1.0.bb,
+>> the dmesg.sh script is installed in /etc/init.d. But I can not see
+>> that it is being added to any run-levels, not even single-user mode.
+>> Is there some reason for only installing the init script but not
+>> actually activating it? Not that I really need it, but some
+>> clarification to why it works as it does would be appreciated :)
+>>
+> No one? I think it is obvious that initscripts_1.0.bb is missing
+> adding dmesg.sh to any run-level.
+> But I do not wish to take this further unless I understand why it was
+> left out; deliberately or by mistake.
+>
 
-> Happy birthday, Yocto Project!
+I think it was left out by mistake. It should be added to runlevel S.
+Could you please make a patch to fix it? And please send the patch to 
+the oe-core mailing list (openembedded-core@lists.openembedded.org).
 
-  what's a birthday without cake?
+Best Regards,
+Chen Qi
 
-http://www.instructables.com/id/Brain-Cake/
+>> Thanks.
+>> Hans
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
 
-rday
-
--- 
-
-========================================================================
-Robert P. J. Day                                 Ottawa, Ontario, CANADA
-                        http://crashcourse.ca
-
-Twitter:                                       http://twitter.com/rpjday
-LinkedIn:                               http://ca.linkedin.com/in/rpjday
-========================================================================
 
