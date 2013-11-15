@@ -1,32 +1,36 @@
-Return-Path: <flihp@twobit.us>
-Received: from smtp.twobit.us (smtp.twobit.us [38.83.192.235])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E98D1E016AD
-	for <yocto@yoctoproject.org>; Fri, 15 Nov 2013 08:06:47 -0800 (PST)
-Received: from [216.57.91.130] (helo=[10.204.207.200])
-	by smtp.twobit.us with esmtpsa
-	(TLS1.0:DHE_RSA_CAMELLIA_256_CBC_SHA1:256) (Exim 4.80)
-	(envelope-from <flihp@twobit.us>)
-	id 1VhLua-0001fF-LR; Fri, 15 Nov 2013 16:06:27 +0000
-Message-ID: <5286468E.1090209@twobit.us>
-Date: Fri, 15 Nov 2013 11:06:38 -0500
-From: Philip Tricca <flihp@twobit.us>
-User-Agent: Mozilla/5.0 (X11; Linux i686;
-	rv:17.0) Gecko/20130922 Icedove/17.0.9
+Return-Path: <scott.m.rifenbark@intel.com>
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 63381E01596
+	for <yocto@yoctoproject.org>; Fri, 15 Nov 2013 09:25:13 -0800 (PST)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga102.fm.intel.com with ESMTP; 15 Nov 2013 09:25:12 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.93,709,1378882800"; 
+	d="scan'208,217";a="434162968"
+Received: from orsmsx103.amr.corp.intel.com ([10.22.225.130])
+	by fmsmga002.fm.intel.com with ESMTP; 15 Nov 2013 09:25:11 -0800
+Received: from orsmsx158.amr.corp.intel.com (10.22.240.20) by
+	ORSMSX103.amr.corp.intel.com (10.22.225.130) with Microsoft SMTP Server
+	(TLS) id 14.3.123.3; Fri, 15 Nov 2013 09:25:10 -0800
+Received: from orsmsx101.amr.corp.intel.com ([169.254.8.94]) by
+	ORSMSX158.amr.corp.intel.com ([169.254.10.67]) with mapi id
+	14.03.0123.003; Fri, 15 Nov 2013 09:25:10 -0800
+From: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
+To: Andy Gikling <agikling@lasx.com>, "yocto@yoctoproject.org"
+	<yocto@yoctoproject.org>
+Thread-Topic: FR2 BSP Documentation On Website Error
+Thread-Index: Ac7Y+Z2jmjnhrP+TRM2k+7KPy9czdgJLeUNw
+Date: Fri, 15 Nov 2013 17:25:10 +0000
+Message-ID: <41DEA4B02DBDEF40A0F3B6D0DDB1237983F4F474@ORSMSX101.amr.corp.intel.com>
+References: <4C79E62053892D47A6419B29F941677A6E61A994@EXMBX203A.mmeprod.cbeyond>
+In-Reply-To: <4C79E62053892D47A6419B29F941677A6E61A994@EXMBX203A.mmeprod.cbeyond>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.140]
 MIME-Version: 1.0
-To: Philip Tricca <flihp@twobit.us>
-References: <1384487599-13222-1-git-send-email-flihp@twobit.us>
-In-Reply-To: <1384487599-13222-1-git-send-email-flihp@twobit.us>
-X-Enigmail-Version: 1.5.1
-X-SA-Exim-Connect-IP: 216.57.91.130
-X-SA-Exim-Mail-From: flihp@twobit.us
-X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on smtp.twobit.us
-X-Spam-Level: 
-X-Spam-Status: No, score=-1.0 required=5.0 tests=ALL_TRUSTED autolearn=ham
-	version=3.3.2
-X-SA-Exim-Version: 4.2.1 (built Mon, 26 Dec 2011 16:24:06 +0000)
-X-SA-Exim-Scanned: Yes (on smtp.twobit.us)
-Cc: yocto@yoctoproject.org
-Subject: Re: [meta-selinux][PATCH] Bump versions to catch up with master in oe-core.
+Cc: "Osier-mixon, Jeffrey" <jeffrey.osier-mixon@intel.com>
+Subject: Re: FR2 BSP Documentation On Website Error
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,614 +42,166 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 15 Nov 2013 16:06:49 -0000
-Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Fri, 15 Nov 2013 17:25:17 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_41DEA4B02DBDEF40A0F3B6D0DDB1237983F4F474ORSMSX101amrcor_"
 
-I missed the significant change in tar w/r to xattrs and acls. Fixing
-that up now.
+--_000_41DEA4B02DBDEF40A0F3B6D0DDB1237983F4F474ORSMSX101amrcor_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-- Philip
+Hi Andy,
 
-On 11/14/2013 10:53 PM, Philip Tricca wrote:
->   openssh 6.2p2 -> 6.4p1
->   glib-2.0 2.38.0 -> 2.38.1
->   at 3.1.13 -> 3.1.14
->   sudo 1.8.7 -> 1.8.8
->   tar 1.26 -> 1.27
->   mesa 9.1.6 -> 9.2.2
->   gnupg 2.0.21 -> 2.0.22
-> 
-> Signed-off-by: Philip Tricca <flihp@twobit.us>
-> ---
->  .../openssh/openssh_6.2p2.bbappend                 |   13 --
->  .../openssh/openssh_6.4p1.bbappend                 |   13 ++
->  recipes-core/glib-2.0/glib-2.0_2.38.0.bbappend     |    1 -
->  recipes-core/glib-2.0/glib-2.0_2.38.1.bbappend     |    1 +
->  recipes-extended/at/at/at-3.1.13-selinux.patch     |  184 --------------------
->  recipes-extended/at/at/at-3.1.14-selinux.patch     |  184 ++++++++++++++++++++
->  recipes-extended/at/at_3.1.13.bbappend             |    7 -
->  recipes-extended/at/at_3.1.14.bbappend             |    7 +
->  recipes-extended/sudo/sudo_1.8.7.bbappend          |    3 -
->  recipes-extended/sudo/sudo_1.8.8.bbappend          |    3 +
->  recipes-extended/tar/tar_1.26.bbappend             |   15 --
->  recipes-extended/tar/tar_1.27.bbappend             |   15 ++
->  recipes-graphics/mesa/mesa_9.1.6.bbappend          |    1 -
->  recipes-graphics/mesa/mesa_9.2.2.bbappend          |    1 +
->  recipes-support/gnupg/gnupg_2.0.21.bbappend        |    5 -
->  recipes-support/gnupg/gnupg_2.0.22.bbappend        |    5 +
->  16 files changed, 229 insertions(+), 229 deletions(-)
->  delete mode 100644 recipes-connectivity/openssh/openssh_6.2p2.bbappend
->  create mode 100644 recipes-connectivity/openssh/openssh_6.4p1.bbappend
->  delete mode 100644 recipes-core/glib-2.0/glib-2.0_2.38.0.bbappend
->  create mode 100644 recipes-core/glib-2.0/glib-2.0_2.38.1.bbappend
->  delete mode 100644 recipes-extended/at/at/at-3.1.13-selinux.patch
->  create mode 100644 recipes-extended/at/at/at-3.1.14-selinux.patch
->  delete mode 100644 recipes-extended/at/at_3.1.13.bbappend
->  create mode 100644 recipes-extended/at/at_3.1.14.bbappend
->  delete mode 100644 recipes-extended/sudo/sudo_1.8.7.bbappend
->  create mode 100644 recipes-extended/sudo/sudo_1.8.8.bbappend
->  delete mode 100644 recipes-extended/tar/tar_1.26.bbappend
->  create mode 100644 recipes-extended/tar/tar_1.27.bbappend
->  delete mode 100644 recipes-graphics/mesa/mesa_9.1.6.bbappend
->  create mode 100644 recipes-graphics/mesa/mesa_9.2.2.bbappend
->  delete mode 100644 recipes-support/gnupg/gnupg_2.0.21.bbappend
->  create mode 100644 recipes-support/gnupg/gnupg_2.0.22.bbappend
-> 
-> diff --git a/recipes-connectivity/openssh/openssh_6.2p2.bbappend b/recipes-connectivity/openssh/openssh_6.2p2.bbappend
-> deleted file mode 100644
-> index 223b8cf..0000000
-> --- a/recipes-connectivity/openssh/openssh_6.2p2.bbappend
-> +++ /dev/null
-> @@ -1,13 +0,0 @@
-> -PR .= ".5"
-> -
-> -inherit with-selinux
-> -
-> -FILESEXTRAPATHS_prepend := "${@target_selinux(d, '${THISDIR}/files:')}"
-> -
-> -# There is no distro feature just for audit.  If we want it,
-> -# uncomment the following.
-> -#
-> -#PACKAGECONFIG += "${@target_selinux(d, 'audit')}"
-> -
-> -PACKAGECONFIG[audit] = "--with-audit=linux,--without-audit,audit,"
-> -
-> diff --git a/recipes-connectivity/openssh/openssh_6.4p1.bbappend b/recipes-connectivity/openssh/openssh_6.4p1.bbappend
-> new file mode 100644
-> index 0000000..223b8cf
-> --- /dev/null
-> +++ b/recipes-connectivity/openssh/openssh_6.4p1.bbappend
-> @@ -0,0 +1,13 @@
-> +PR .= ".5"
-> +
-> +inherit with-selinux
-> +
-> +FILESEXTRAPATHS_prepend := "${@target_selinux(d, '${THISDIR}/files:')}"
-> +
-> +# There is no distro feature just for audit.  If we want it,
-> +# uncomment the following.
-> +#
-> +#PACKAGECONFIG += "${@target_selinux(d, 'audit')}"
-> +
-> +PACKAGECONFIG[audit] = "--with-audit=linux,--without-audit,audit,"
-> +
-> diff --git a/recipes-core/glib-2.0/glib-2.0_2.38.0.bbappend b/recipes-core/glib-2.0/glib-2.0_2.38.0.bbappend
-> deleted file mode 100644
-> index 8c11cac..0000000
-> --- a/recipes-core/glib-2.0/glib-2.0_2.38.0.bbappend
-> +++ /dev/null
-> @@ -1 +0,0 @@
-> -inherit enable-selinux
-> diff --git a/recipes-core/glib-2.0/glib-2.0_2.38.1.bbappend b/recipes-core/glib-2.0/glib-2.0_2.38.1.bbappend
-> new file mode 100644
-> index 0000000..8c11cac
-> --- /dev/null
-> +++ b/recipes-core/glib-2.0/glib-2.0_2.38.1.bbappend
-> @@ -0,0 +1 @@
-> +inherit enable-selinux
-> diff --git a/recipes-extended/at/at/at-3.1.13-selinux.patch b/recipes-extended/at/at/at-3.1.13-selinux.patch
-> deleted file mode 100644
-> index 5a08a43..0000000
-> --- a/recipes-extended/at/at/at-3.1.13-selinux.patch
-> +++ /dev/null
-> @@ -1,184 +0,0 @@
-> -From: Xin Ouyang <Xin.Ouyang@windriver.com>
-> -Date: Wed, 13 Jun 2012 14:47:54 +0800
-> -Subject: [PATCH] at: atd add SELinux support.
-> -
-> -Upstream-Status: Inappropriate [configuration]
-> -
-> -Signed-off-by: Xin Ouyang <Xin.Ouyang@windriver.com>
-> ----
-> - Makefile.in  |    1 +
-> - atd.c        |   83 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-> - config.h.in  |    3 ++
-> - configure.ac |    8 +++++
-> - 4 files changed, 95 insertions(+), 0 deletions(-)
-> -
-> -diff --git a/Makefile.in b/Makefile.in
-> -index 10e7ed2..35792cd 100644
-> ---- a/Makefile.in
-> -+++ b/Makefile.in
-> -@@ -39,6 +39,7 @@ LIBS		= @LIBS@
-> - LIBOBJS		= @LIBOBJS@
-> - INSTALL		= @INSTALL@
-> - PAMLIB          = @PAMLIB@
-> -+SELINUXLIB      = @SELINUXLIB@
-> - 
-> - CLONES		= atq atrm
-> - ATOBJECTS	= at.o panic.o perm.o posixtm.o y.tab.o lex.yy.o
-> -@@ -72,7 +72,7 @@ at: $(ATOBJECTS)
-> -	$(LN_S) -f at atrm
-> - 
-> - atd: $(RUNOBJECTS)
-> --	$(CC) $(CFLAGS) -o atd $(RUNOBJECTS) $(LIBS) $(PAMLIB) $(LDFLAGS)
-> -+	$(CC) $(CFLAGS) -o atd $(RUNOBJECTS) $(LIBS) $(PAMLIB) $(SELINUXLIB) $(LDFLAGS)
-> - 
-> - y.tab.c y.tab.h: parsetime.y
-> -	$(YACC) -d parsetime.y
-> -diff --git a/atd.c b/atd.c
-> -index af3e577..463124f 100644
-> ---- a/atd.c
-> -+++ b/atd.c
-> -@@ -83,6 +83,14 @@
-> - #include "getloadavg.h"
-> - #endif
-> - 
-> -+#ifdef WITH_SELINUX
-> -+#include <selinux/selinux.h>
-> -+#include <selinux/get_context_list.h>
-> -+int selinux_enabled = 0;
-> -+#include <selinux/flask.h>
-> -+#include <selinux/av_permissions.h>
-> -+#endif
-> -+
-> - /* Macros */
-> - 
-> - #define BATCH_INTERVAL_DEFAULT 60
-> -@@ -195,6 +203,70 @@ myfork()
-> - #define fork myfork
-> - #endif
-> - 
-> -+#ifdef WITH_SELINUX
-> -+static int
-> -+set_selinux_context(const char *name, const char *filename)
-> -+{
-> -+    security_context_t user_context=NULL;
-> -+    security_context_t  file_context=NULL;
-> -+    struct av_decision avd;
-> -+    int retval=-1;
-> -+    char *seuser=NULL;
-> -+    char *level=NULL;
-> -+
-> -+    if (getseuserbyname(name, &seuser, &level) == 0) {
-> -+	retval=get_default_context_with_level(seuser, level, NULL, &user_context);
-> -+	free(seuser);
-> -+	free(level);
-> -+	if (retval) {
-> -+	    if (security_getenforce()==1) {
-> -+		perr("execle: couldn't get security context for user %s\n", name);
-> -+	    } else {
-> -+		syslog(LOG_ERR, "execle: couldn't get security context for user %s\n", name);
-> -+		return -1;
-> -+	    }
-> -+	}
-> -+    }
-> -+
-> -+    /*
-> -+    * Since crontab files are not directly executed,
-> -+    * crond must ensure that the crontab file has
-> -+    * a context that is appropriate for the context of
-> -+    * the user cron job.  It performs an entrypoint
-> -+    * permission check for this purpose.
-> -+    */
-> -+    if (fgetfilecon(STDIN_FILENO, &file_context) < 0)
-> -+	perr("fgetfilecon FAILED %s", filename);
-> -+
-> -+    retval = security_compute_av(user_context,
-> -+			file_context,
-> -+			SECCLASS_FILE,
-> -+			FILE__ENTRYPOINT,
-> -+			&avd);
-> -+    freecon(file_context);
-> -+    if (retval || ((FILE__ENTRYPOINT & avd.allowed) != FILE__ENTRYPOINT)) {
-> -+	if (security_getenforce()==1) {
-> -+	    perr("Not allowed to set exec context to %s for user  %s\n", user_context,name);
-> -+	} else {
-> -+	    syslog(LOG_ERR, "Not allowed to set exec context to %s for user  %s\n", user_context,name);
-> -+	    retval = -1;
-> -+	    goto err;
-> -+	}
-> -+    }
-> -+    if (setexeccon(user_context) < 0) {
-> -+	if (security_getenforce()==1) {
-> -+	    perr("Could not set exec context to %s for user  %s\n", user_context,name);
-> -+	    retval = -1;
-> -+	} else {
-> -+	    syslog(LOG_ERR, "Could not set exec context to %s for user  %s\n", user_context,name);
-> -+	}
-> -+    }
-> -+err:
-> -+    freecon(user_context);
-> -+    return 0;
-> -+}
-> -+#endif
-> -+
-> - static void
-> - run_file(const char *filename, uid_t uid, gid_t gid)
-> - {
-> -@@ -435,6 +507,13 @@ run_file(const char *filename, uid_t uid, gid_t gid)
-> - 
-> - 	    chdir("/");
-> - 
-> -+#ifdef WITH_SELINUX
-> -+	    if (selinux_enabled > 0) {
-> -+		if (set_selinux_context(pentry->pw_name, filename) < 0)
-> -+		    perr("SELinux Failed to set context\n");
-> -+	    }
-> -+#endif
-> -+
-> - 	    if (execle("/bin/sh", "sh", (char *) NULL, nenvp) != 0)
-> - 		perr("Exec failed for /bin/sh");
-> - 
-> -@@ -707,6 +786,10 @@ main(int argc, char *argv[])
-> -     struct passwd *pwe;
-> -     struct group *ge;
-> - 
-> -+#ifdef WITH_SELINUX
-> -+    selinux_enabled = is_selinux_enabled();
-> -+#endif
-> -+
-> - /* We don't need root privileges all the time; running under uid and gid
-> -  * daemon is fine.
-> -  */
-> -diff --git a/configure.ac b/configure.ac
-> -index 2db7b65..5ecc35a 100644
-> ---- a/configure.ac
-> -+++ b/configure.ac
-> -@@ -94,6 +94,18 @@ AC_CHECK_HEADERS(security/pam_appl.h, [
-> -    fi])
-> - fi
-> - 
-> -+AC_ARG_WITH([selinux],
-> -+  [AS_HELP_STRING([--without-selinux], [without SELinux support])])
-> -+
-> -+if test "x$with_selinux" != xno; then
-> -+AC_CHECK_HEADERS(selinux/selinux.h, [
-> -+  SELINUXLIB="-lselinux"
-> -+  AC_DEFINE(WITH_SELINUX, 1, [Define to 1 for SELinux support])],
-> -+   [if test "x$with_selinux" = xyes; then
-> -+   AC_MSG_ERROR([SELinux selected but selinux/selinux.h not found])
-> -+   fi])
-> -+fi
-> -+
-> - dnl Checking for programs
-> - 
-> - AC_PATH_PROG(SENDMAIL, sendmail, , $PATH:/usr/lib:/usr/sbin )
-> -@@ -104,6 +116,7 @@ fi
-> - 
-> - AC_SUBST(MAIL_CMD)
-> - AC_SUBST(PAMLIB)
-> -+AC_SUBST(SELINUXLIB)
-> - 
-> - AC_MSG_CHECKING(etcdir)
-> - AC_ARG_WITH(etcdir,
-> --- 
-> -1.7.5.4
-> -
-> diff --git a/recipes-extended/at/at/at-3.1.14-selinux.patch b/recipes-extended/at/at/at-3.1.14-selinux.patch
-> new file mode 100644
-> index 0000000..4e5e18c
-> --- /dev/null
-> +++ b/recipes-extended/at/at/at-3.1.14-selinux.patch
-> @@ -0,0 +1,184 @@
-> +From: Xin Ouyang <Xin.Ouyang@windriver.com>
-> +Date: Wed, 13 Jun 2012 14:47:54 +0800
-> +Subject: [PATCH] at: atd add SELinux support.
-> +
-> +Upstream-Status: Inappropriate [configuration]
-> +
-> +Signed-off-by: Xin Ouyang <Xin.Ouyang@windriver.com>
-> +---
-> + Makefile.in  |    1 +
-> + atd.c        |   83 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-> + config.h.in  |    3 ++
-> + configure.ac |    8 +++++
-> + 4 files changed, 95 insertions(+), 0 deletions(-)
-> +
-> +diff --git a/Makefile.in b/Makefile.in
-> +index 10e7ed2..35792cd 100644
-> +--- a/Makefile.in
-> ++++ b/Makefile.in
-> +@@ -39,6 +39,7 @@ LIBS		= @LIBS@
-> + LIBOBJS		= @LIBOBJS@
-> + INSTALL		= @INSTALL@
-> + PAMLIB          = @PAMLIB@
-> ++SELINUXLIB      = @SELINUXLIB@
-> + 
-> + CLONES		= atq atrm
-> + ATOBJECTS	= at.o panic.o perm.o posixtm.o y.tab.o lex.yy.o
-> +@@ -72,7 +72,7 @@ at: $(ATOBJECTS)
-> +	$(LN_S) -f at atrm
-> + 
-> + atd: $(RUNOBJECTS)
-> +-	$(CC) $(LDFLAGS) -o atd $(RUNOBJECTS) $(LIBS) $(PAMLIB)
-> ++	$(CC) $(LDFLAGS) -o atd $(RUNOBJECTS) $(LIBS) $(PAMLIB) $(SELINUXLIB)
-> + 
-> + y.tab.c y.tab.h: parsetime.y
-> +	$(YACC) -d parsetime.y
-> +diff --git a/atd.c b/atd.c
-> +index af3e577..463124f 100644
-> +--- a/atd.c
-> ++++ b/atd.c
-> +@@ -83,6 +83,14 @@
-> + #include "getloadavg.h"
-> + #endif
-> + 
-> ++#ifdef WITH_SELINUX
-> ++#include <selinux/selinux.h>
-> ++#include <selinux/get_context_list.h>
-> ++int selinux_enabled = 0;
-> ++#include <selinux/flask.h>
-> ++#include <selinux/av_permissions.h>
-> ++#endif
-> ++
-> + /* Macros */
-> + 
-> + #define BATCH_INTERVAL_DEFAULT 60
-> +@@ -195,6 +203,70 @@ myfork()
-> + #define fork myfork
-> + #endif
-> + 
-> ++#ifdef WITH_SELINUX
-> ++static int
-> ++set_selinux_context(const char *name, const char *filename)
-> ++{
-> ++    security_context_t user_context=NULL;
-> ++    security_context_t  file_context=NULL;
-> ++    struct av_decision avd;
-> ++    int retval=-1;
-> ++    char *seuser=NULL;
-> ++    char *level=NULL;
-> ++
-> ++    if (getseuserbyname(name, &seuser, &level) == 0) {
-> ++	retval=get_default_context_with_level(seuser, level, NULL, &user_context);
-> ++	free(seuser);
-> ++	free(level);
-> ++	if (retval) {
-> ++	    if (security_getenforce()==1) {
-> ++		perr("execle: couldn't get security context for user %s\n", name);
-> ++	    } else {
-> ++		syslog(LOG_ERR, "execle: couldn't get security context for user %s\n", name);
-> ++		return -1;
-> ++	    }
-> ++	}
-> ++    }
-> ++
-> ++    /*
-> ++    * Since crontab files are not directly executed,
-> ++    * crond must ensure that the crontab file has
-> ++    * a context that is appropriate for the context of
-> ++    * the user cron job.  It performs an entrypoint
-> ++    * permission check for this purpose.
-> ++    */
-> ++    if (fgetfilecon(STDIN_FILENO, &file_context) < 0)
-> ++	perr("fgetfilecon FAILED %s", filename);
-> ++
-> ++    retval = security_compute_av(user_context,
-> ++			file_context,
-> ++			SECCLASS_FILE,
-> ++			FILE__ENTRYPOINT,
-> ++			&avd);
-> ++    freecon(file_context);
-> ++    if (retval || ((FILE__ENTRYPOINT & avd.allowed) != FILE__ENTRYPOINT)) {
-> ++	if (security_getenforce()==1) {
-> ++	    perr("Not allowed to set exec context to %s for user  %s\n", user_context,name);
-> ++	} else {
-> ++	    syslog(LOG_ERR, "Not allowed to set exec context to %s for user  %s\n", user_context,name);
-> ++	    retval = -1;
-> ++	    goto err;
-> ++	}
-> ++    }
-> ++    if (setexeccon(user_context) < 0) {
-> ++	if (security_getenforce()==1) {
-> ++	    perr("Could not set exec context to %s for user  %s\n", user_context,name);
-> ++	    retval = -1;
-> ++	} else {
-> ++	    syslog(LOG_ERR, "Could not set exec context to %s for user  %s\n", user_context,name);
-> ++	}
-> ++    }
-> ++err:
-> ++    freecon(user_context);
-> ++    return 0;
-> ++}
-> ++#endif
-> ++
-> + static void
-> + run_file(const char *filename, uid_t uid, gid_t gid)
-> + {
-> +@@ -435,6 +507,13 @@ run_file(const char *filename, uid_t uid, gid_t gid)
-> + 
-> + 	    chdir("/");
-> + 
-> ++#ifdef WITH_SELINUX
-> ++	    if (selinux_enabled > 0) {
-> ++		if (set_selinux_context(pentry->pw_name, filename) < 0)
-> ++		    perr("SELinux Failed to set context\n");
-> ++	    }
-> ++#endif
-> ++
-> + 	    if (execle("/bin/sh", "sh", (char *) NULL, nenvp) != 0)
-> + 		perr("Exec failed for /bin/sh");
-> + 
-> +@@ -707,6 +786,10 @@ main(int argc, char *argv[])
-> +     struct passwd *pwe;
-> +     struct group *ge;
-> + 
-> ++#ifdef WITH_SELINUX
-> ++    selinux_enabled = is_selinux_enabled();
-> ++#endif
-> ++
-> + /* We don't need root privileges all the time; running under uid and gid
-> +  * daemon is fine.
-> +  */
-> +diff --git a/configure.ac b/configure.ac
-> +index 2db7b65..5ecc35a 100644
-> +--- a/configure.ac
-> ++++ b/configure.ac
-> +@@ -94,6 +94,18 @@ AC_CHECK_HEADERS(security/pam_appl.h, [
-> +    fi])
-> + fi
-> + 
-> ++AC_ARG_WITH([selinux],
-> ++  [AS_HELP_STRING([--without-selinux], [without SELinux support])])
-> ++
-> ++if test "x$with_selinux" != xno; then
-> ++AC_CHECK_HEADERS(selinux/selinux.h, [
-> ++  SELINUXLIB="-lselinux"
-> ++  AC_DEFINE(WITH_SELINUX, 1, [Define to 1 for SELinux support])],
-> ++   [if test "x$with_selinux" = xyes; then
-> ++   AC_MSG_ERROR([SELinux selected but selinux/selinux.h not found])
-> ++   fi])
-> ++fi
-> ++
-> + dnl Checking for programs
-> + 
-> + AC_PATH_PROG(SENDMAIL, sendmail, , $PATH:/usr/lib:/usr/sbin )
-> +@@ -104,6 +116,7 @@ fi
-> + 
-> + AC_SUBST(MAIL_CMD)
-> + AC_SUBST(PAMLIB)
-> ++AC_SUBST(SELINUXLIB)
-> + 
-> + AC_MSG_CHECKING(etcdir)
-> + AC_ARG_WITH(etcdir,
-> +-- 
-> +1.7.5.4
-> +
-> diff --git a/recipes-extended/at/at_3.1.13.bbappend b/recipes-extended/at/at_3.1.13.bbappend
-> deleted file mode 100644
-> index f30abab..0000000
-> --- a/recipes-extended/at/at_3.1.13.bbappend
-> +++ /dev/null
-> @@ -1,7 +0,0 @@
-> -PR .= ".2"
-> -
-> -FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
-> -
-> -SRC_URI += "file://at-3.1.13-selinux.patch"
-> -
-> -inherit with-selinux
-> diff --git a/recipes-extended/at/at_3.1.14.bbappend b/recipes-extended/at/at_3.1.14.bbappend
-> new file mode 100644
-> index 0000000..a7ecbc2
-> --- /dev/null
-> +++ b/recipes-extended/at/at_3.1.14.bbappend
-> @@ -0,0 +1,7 @@
-> +PR .= ".2"
-> +
-> +FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
-> +
-> +SRC_URI += "file://at-3.1.14-selinux.patch"
-> +
-> +inherit with-selinux
-> diff --git a/recipes-extended/sudo/sudo_1.8.7.bbappend b/recipes-extended/sudo/sudo_1.8.7.bbappend
-> deleted file mode 100644
-> index 5ad8973..0000000
-> --- a/recipes-extended/sudo/sudo_1.8.7.bbappend
-> +++ /dev/null
-> @@ -1,3 +0,0 @@
-> -PR .= ".2"
-> -
-> -inherit with-selinux
-> diff --git a/recipes-extended/sudo/sudo_1.8.8.bbappend b/recipes-extended/sudo/sudo_1.8.8.bbappend
-> new file mode 100644
-> index 0000000..5ad8973
-> --- /dev/null
-> +++ b/recipes-extended/sudo/sudo_1.8.8.bbappend
-> @@ -0,0 +1,3 @@
-> +PR .= ".2"
-> +
-> +inherit with-selinux
-> diff --git a/recipes-extended/tar/tar_1.26.bbappend b/recipes-extended/tar/tar_1.26.bbappend
-> deleted file mode 100644
-> index 2aad7a5..0000000
-> --- a/recipes-extended/tar/tar_1.26.bbappend
-> +++ /dev/null
-> @@ -1,15 +0,0 @@
-> -PR .= ".3"
-> -
-> -FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
-> -
-> -SRC_URI += "file://tar-1.24-xattrs.patch"
-> -
-> -inherit enable-selinux
-> -
-> -
-> -PACKAGECONFIG += "${@base_contains('DISTRO_FEATURES', 'acl', 'acl', '', d)}"
-> -
-> -# configure has no acl enable/disable options!
-> -#
-> -PACKAGECONFIG[acl] = ",,acl,"
-> -
-> diff --git a/recipes-extended/tar/tar_1.27.bbappend b/recipes-extended/tar/tar_1.27.bbappend
-> new file mode 100644
-> index 0000000..2aad7a5
-> --- /dev/null
-> +++ b/recipes-extended/tar/tar_1.27.bbappend
-> @@ -0,0 +1,15 @@
-> +PR .= ".3"
-> +
-> +FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
-> +
-> +SRC_URI += "file://tar-1.24-xattrs.patch"
-> +
-> +inherit enable-selinux
-> +
-> +
-> +PACKAGECONFIG += "${@base_contains('DISTRO_FEATURES', 'acl', 'acl', '', d)}"
-> +
-> +# configure has no acl enable/disable options!
-> +#
-> +PACKAGECONFIG[acl] = ",,acl,"
-> +
-> diff --git a/recipes-graphics/mesa/mesa_9.1.6.bbappend b/recipes-graphics/mesa/mesa_9.1.6.bbappend
-> deleted file mode 100644
-> index 8c11cac..0000000
-> --- a/recipes-graphics/mesa/mesa_9.1.6.bbappend
-> +++ /dev/null
-> @@ -1 +0,0 @@
-> -inherit enable-selinux
-> diff --git a/recipes-graphics/mesa/mesa_9.2.2.bbappend b/recipes-graphics/mesa/mesa_9.2.2.bbappend
-> new file mode 100644
-> index 0000000..8c11cac
-> --- /dev/null
-> +++ b/recipes-graphics/mesa/mesa_9.2.2.bbappend
-> @@ -0,0 +1 @@
-> +inherit enable-selinux
-> diff --git a/recipes-support/gnupg/gnupg_2.0.21.bbappend b/recipes-support/gnupg/gnupg_2.0.21.bbappend
-> deleted file mode 100644
-> index dddd945..0000000
-> --- a/recipes-support/gnupg/gnupg_2.0.21.bbappend
-> +++ /dev/null
-> @@ -1,5 +0,0 @@
-> -PR .= ".1"
-> -
-> -inherit enable-selinux
-> -# gnupg will not build with libselinux, so remove the depend
-> -PACKAGECONFIG[selinux] = "--enable-selinux-support,--disable-selinux-support,,"
-> diff --git a/recipes-support/gnupg/gnupg_2.0.22.bbappend b/recipes-support/gnupg/gnupg_2.0.22.bbappend
-> new file mode 100644
-> index 0000000..dddd945
-> --- /dev/null
-> +++ b/recipes-support/gnupg/gnupg_2.0.22.bbappend
-> @@ -0,0 +1,5 @@
-> +PR .= ".1"
-> +
-> +inherit enable-selinux
-> +# gnupg will not build with libselinux, so remove the depend
-> +PACKAGECONFIG[selinux] = "--enable-selinux-support,--disable-selinux-support,,"
-> 
+The website has been changed.  Jeff took care of it.  Thanks for noting the=
+ issue.
 
+Best,
+Scott
 
+From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org=
+] On Behalf Of Andy Gikling
+Sent: Sunday, November 03, 2013 5:04 PM
+To: yocto@yoctoproject.org
+Subject: [yocto] FR2 BSP Documentation On Website Error
+
+The Fish River Island 2 documentation on the Yocto Project website has an e=
+rror (BSP version 9.0.0 "Dylan").
+
+Specifically, the first section "Building the meta-fri2 BSP layer" describe=
+s a step where you are to add a LICENSE_FLAGS_WHITELIST entry to your local=
+.conf when trying to enable the EMGD graphics driver.
+
+The website says to add:
+LICENSE_FLAGS_WHITELIST =3D "license_emgd-driver-bin_1.10"
+But in the README found in the download it says to use:
+LICENSE_FLAGS_WHITELIST =3D "license_emgd-driver-bin"
+
+The latter is correct.  This burned me for about 2 hours.  If this could be=
+ fixed I'd appreciate it!
+
+Thanks,
+
+~Andy Gikling
+
+--_000_41DEA4B02DBDEF40A0F3B6D0DDB1237983F4F474ORSMSX101amrcor_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 14 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:Tahoma;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;}
+span.EmailStyle17
+	{mso-style-type:personal;
+	font-family:"Calibri","sans-serif";
+	color:windowtext;}
+span.EmailStyle18
+	{mso-style-type:personal-reply;
+	font-family:"Calibri","sans-serif";
+	color:#1F497D;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">Hi Andy, <o:p></o:p></=
+span></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
+n></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">The website has been c=
+hanged.&nbsp; Jeff took care of it.&nbsp; Thanks for noting the issue.
+<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
+n></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">Best, <o:p></o:p></spa=
+n></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">Scott<o:p></o:p></span=
+></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
+n></p>
+<div style=3D"border:none;border-left:solid blue 1.5pt;padding:0in 0in 0in =
+4.0pt">
+<div>
+<div style=3D"border:none;border-top:solid #B5C4DF 1.0pt;padding:3.0pt 0in =
+0in 0in">
+<p class=3D"MsoNormal"><b><span style=3D"font-size:10.0pt;font-family:&quot=
+;Tahoma&quot;,&quot;sans-serif&quot;">From:</span></b><span style=3D"font-s=
+ize:10.0pt;font-family:&quot;Tahoma&quot;,&quot;sans-serif&quot;"> yocto-bo=
+unces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org]
+<b>On Behalf Of </b>Andy Gikling<br>
+<b>Sent:</b> Sunday, November 03, 2013 5:04 PM<br>
+<b>To:</b> yocto@yoctoproject.org<br>
+<b>Subject:</b> [yocto] FR2 BSP Documentation On Website Error<o:p></o:p></=
+span></p>
+</div>
+</div>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">The Fish River Island 2 documentation on the Yocto P=
+roject website has an error (BSP version 9.0.0 &#8220;Dylan&#8221;).<o:p></=
+o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Specifically, the first section &#8220;Building the =
+meta-fri2 BSP layer&#8221; describes a step where you are to add a LICENSE_=
+FLAGS_WHITELIST entry to your local.conf when trying to enable the EMGD gra=
+phics driver.<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">The website says to add:<o:p></o:p></p>
+<p class=3D"MsoNormal">LICENSE_FLAGS_WHITELIST =3D &quot;license_emgd-drive=
+r-bin_1.10&quot;<o:p></o:p></p>
+<p class=3D"MsoNormal">But in the README found in the download it says to u=
+se:<o:p></o:p></p>
+<p class=3D"MsoNormal">LICENSE_FLAGS_WHITELIST =3D &quot;license_emgd-drive=
+r-bin&quot;<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">The latter is correct.&nbsp; This burned me for abou=
+t 2 hours.&nbsp; If this could be fixed I&#8217;d appreciate it!<o:p></o:p>=
+</p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Thanks,<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">~Andy Gikling<o:p></o:p></p>
+</div>
+</div>
+</body>
+</html>
+
+--_000_41DEA4B02DBDEF40A0F3B6D0DDB1237983F4F474ORSMSX101amrcor_--
