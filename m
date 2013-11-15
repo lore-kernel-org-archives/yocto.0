@@ -1,29 +1,29 @@
-Return-Path: <David.Nystrom@enea.com>
-Received: from mx-3.enea.com (sestofw01.enea.se [192.36.1.252])
-	by yocto-www.yoctoproject.org (Postfix) with SMTP id B84A8E0160B
-	for <yocto@yoctoproject.org>; Fri, 15 Nov 2013 11:33:45 -0800 (PST)
-Received: from SESTOEX09.enea.se ([fe80::cc12:dcdc:d521:97f8]) by
-	SESTOEX08.enea.se ([fe80::1c3:4003:dc47:23c0%11]) with mapi id
-	14.03.0158.001; Fri, 15 Nov 2013 20:33:39 +0100
-From: =?iso-8859-1?Q?David_Nystr=F6m?= <David.Nystrom@enea.com>
-To: "paul.eggleton@linux.intel.com" <paul.eggleton@linux.intel.com>,
-	"rpjday@crashcourse.ca" <rpjday@crashcourse.ca>,
-	"richard.purdie@linuxfoundation.org" <richard.purdie@linuxfoundation.org>
-Thread-Topic: [yocto] is the ref manual DISTRO_FEATURES list meant to be
-	exhaustive?
-Thread-Index: AQHO4e1/Zj1Z8R9SfUKs1eH9UnFj1pomr0/c
-Date: Fri, 15 Nov 2013 19:33:38 +0000
-Message-ID: <88701C38B5D07249817D428430999C9128D9D16C@sestoex09.enea.se>
-References: <alpine.DEB.2.02.1311140901570.24348@oneiric>
-	<1733345.i7ehKFuPNv@helios>,
-	<alpine.DEB.2.02.1311150505090.30443@oneiric>
-In-Reply-To: <alpine.DEB.2.02.1311150505090.30443@oneiric>
-Accept-Language: en-US, sv-SE
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
+Return-Path: <rpjday@crashcourse.ca>
+Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
+	[64.235.106.9])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B1E6CE0160B
+	for <yocto@yoctoproject.org>; Fri, 15 Nov 2013 11:36:33 -0800 (PST)
+Received: from [173.34.6.101] (port=49709 helo=crashcourse.ca)
+	by astoria.ccjclearline.com with esmtpsa (TLSv1:DHE-RSA-AES256-SHA:256)
+	(Exim 4.80) (envelope-from <rpjday@crashcourse.ca>)
+	id 1VhPBv-0006by-E4; Fri, 15 Nov 2013 14:36:31 -0500
+Date: Fri, 15 Nov 2013 14:36:22 -0500 (EST)
+From: "Robert P. J. Day" <rpjday@crashcourse.ca>
+X-X-Sender: rpjday@oneiric
+To: Yocto discussion list <yocto@yoctoproject.org>
+Message-ID: <alpine.DEB.2.02.1311151433300.3146@oneiric>
+User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
 MIME-Version: 1.0
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: is the ref manual DISTRO_FEATURES list meant to be exhaustive?
+X-AntiAbuse: This header was added to track abuse,
+	please include it with any abuse report
+X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - crashcourse.ca
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+Subject: [PATCH] Documentation: Remove apparently non-existent DISTRO_FEATURES from ref manual.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -35,104 +35,70 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 15 Nov 2013 19:33:47 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
-
-Hi,
-
-I sent the sdk-pms patch/es, it seems to have been merged to poky-docs but =
-not in oe-core.
-Richard, how do you want this fixed ?
-
-//DD
+X-List-Received-Date: Fri, 15 Nov 2013 19:36:33 -0000
+Content-Type: TEXT/PLAIN; charset=US-ASCII
 
 
-Sent from my Android phone using TouchDown (www.nitrodesk.com)
+The following can apparently be removed from the list of valid
+DISTRO_FEATURES values as they appear not to exist:
 
+* ext2
+* irda
+* keyboard
+* sdk-pms
 
------Original Message-----
-From: Robert P. J. Day [rpjday@crashcourse.ca]
-Received: Friday, 15 Nov 2013, 11:29
-To: Paul Eggleton [paul.eggleton@linux.intel.com]
-CC: yocto@yoctoproject.org [yocto@yoctoproject.org]
-Subject: Re: [yocto] is the ref manual DISTRO_FEATURES list meant to be exh=
-austive?
+Signed-off-by: Robert P. J. Day <rpjday@crashcourse.ca>
 
+---
 
-On Thu, 14 Nov 2013, Paul Eggleton wrote:
+  if anyone has contradictory info on any of the above, let me know;
+otherwise, these entries appear to be removable.
 
-> Hi Robert,
->
-> On Thursday 14 November 2013 09:05:09 Robert P. J. Day wrote:
-> >   just noticed that the list of DISTRO_FEATURES values listed here:
-> >
-> > http://www.yoctoproject.org/docs/latest/ref-manual/ref-manual.html#ref-=
-featu
-> > res-distro
-> >
-> > is somewhat incomplete. is that deliberate? just from poking
-> > around the dora release, i can see tests for DISTRO_FEATURES
-> > values of ptest, directfb, pam, zeroconf, acl, xattr, sysvinit and
-> > more. should those values also be part of that list, or is the ref
-> > manual only attempting to present a subset?
->
-> It's meant to be complete. I think as new values have been
-> introduced we have neglected to add them to the list, but they
-> should be added.
+diff --git a/documentation/ref-manual/ref-features.xml b/documentation/ref-manual/ref-features.xml
+index dedcf67..3ee0aaf 100644
+--- a/documentation/ref-manual/ref-features.xml
++++ b/documentation/ref-manual/ref-features.xml
+@@ -67,19 +67,10 @@
+                     bluetooth support (integrated BT only).</para></listitem>
+                 <listitem><para><emphasis>cramfs:</emphasis> Include CramFS
+                     support.</para></listitem>
+-                <listitem><para><emphasis>ext2:</emphasis> Include tools for
+-                    supporting for devices with internal HDD/Microdrive for
+-                    storing files (instead of Flash only devices).
+-                    </para></listitem>
+                 <listitem><para><emphasis>ipsec:</emphasis> Include IPSec
+                     support.</para></listitem>
+                 <listitem><para><emphasis>ipv6:</emphasis> Include IPv6 support.
+                     </para></listitem>
+-                <listitem><para><emphasis>irda:</emphasis> Include Irda support.
+-                    </para></listitem>
+-                <listitem><para><emphasis>keyboard:</emphasis> Include keyboard
+-                    support (e.g. keymaps will be loaded during boot).
+-                    </para></listitem>
+                 <listitem><para><emphasis>nfs:</emphasis> Include NFS client
+                     support (for mounting NFS exports on device).
+                     </para></listitem>
+@@ -115,12 +106,6 @@
+                     supports it.</para></listitem>
+                 <listitem><para><emphasis>wifi:</emphasis> Include WiFi support
+                     (integrated only).</para></listitem>
+-                <listitem><para><emphasis>sdk-pms:</emphasis> Include Package
+-                    Management Tools in the
+-                    <filename>nativesdk</filename> toolchain tarball.
+-                    Including these tools allows for easy sandbox use when
+-                    creating the root filesystem while using the SDK tarball.
+-                    </para></listitem>
+             </itemizedlist>
+         </para>
+     </section>
 
-  in case this is helpful, here's the full list i came up with using a
-simple grep search looking through the dora 10.0 source tree for
-DISTRO_FEATURES tests of values that aren't listed in section 10.1 of
-the ref manual:
+-- 
 
- 3g
- acl
- directfb
- ipv4
- largefile
- libc-posix-clang-wchar
- ld-is-gold
- multiarch
- nfc
- openvg
- pam
- pie
- pulseaudio
- ptest
- sysvinit
- x11
- xattr
- zeroconf
-
-conversely, there *are* a few values listed in section 10.1 of the ref
-manual that don't appear to be tested for anywhere (typo? obsolete?)
-
- ext2
- irda (this is a MACHINE feature but not a DISTRO feature)
- sdk-pms
-
-for what it's worth. i'm about to do the same scan for
-MACHINE_FEATURES.
-
-rday
-
---
-
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+========================================================================
 Robert P. J. Day                                 Ottawa, Ontario, CANADA
                         http://crashcourse.ca
 
 Twitter:                                       http://twitter.com/rpjday
 LinkedIn:                               http://ca.linkedin.com/in/rpjday
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-_______________________________________________
-yocto mailing list
-yocto@yoctoproject.org
-https://lists.yoctoproject.org/listinfo/yocto
+========================================================================
 
