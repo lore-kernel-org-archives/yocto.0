@@ -1,38 +1,33 @@
-Return-Path: <martin.jansa@gmail.com>
-Received: from mail-ea0-f177.google.com (mail-ea0-f177.google.com
-	[209.85.215.177])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 04DC7E015F6
-	for <yocto@yoctoproject.org>; Fri, 15 Nov 2013 15:17:10 -0800 (PST)
-Received: by mail-ea0-f177.google.com with SMTP id f15so1559477eak.36
-	for <yocto@yoctoproject.org>; Fri, 15 Nov 2013 15:17:09 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=date:from:to:cc:subject:message-id:references:mime-version
-	:content-type:content-disposition:in-reply-to:user-agent;
-	bh=rfQ28/2Az+tQVg+QeorARhYKRGUzoA4ahFtSs7aGgvw=;
-	b=tn6xUA45R6rFRnE29w9UHMz4hKHiS6kXtwH6vr3OUgdyq0e6rtnAScNfWC6Mw+fd3S
-	SmfxkjQRmdexsg6egPkDiDF9p60RnsuhR26KS1qAvCQw6vu72EtcAik3CKXXbkAYjRY2
-	feTK9ryFSBu77COR3pr43uT//Ah/PVd+lMzOiLKmyqziOVz7VsQyIPl7yU4YhBUBRPRp
-	tAAwKuWjQKzYFZ0nwDlFcxfSdjovzVRYsfYF7kG2jGjIulH6/v1NDmrhwkSoc6nZ8xdc
-	34OR05F7At5aGGT1ow48UPHIhaanoplscCe8Ryb0wZ9GxffGHgO0QAbmsl12FVREMfYg
-	t8Eg==
-X-Received: by 10.14.216.68 with SMTP id f44mr5368287eep.6.1384557429586;
-	Fri, 15 Nov 2013 15:17:09 -0800 (PST)
-Received: from localhost (ip-89-176-104-107.net.upcbroadband.cz.
-	[89.176.104.107])
-	by mx.google.com with ESMTPSA id h8sm10769376eew.16.2013.11.15.15.17.08
-	for <multiple recipients>
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Fri, 15 Nov 2013 15:17:08 -0800 (PST)
-Date: Sat, 16 Nov 2013 00:17:34 +0100
-From: Martin Jansa <martin.jansa@gmail.com>
-To: Leo Schwab <lschwab@sensity.com>
-Message-ID: <20131115231734.GG31430@jama>
-References: <CALb2249ae4iDYnv3RG9aQJdVEJCMWP5AH4vOR4jgg_TxuF+BJg@mail.gmail.com>
+Return-Path: <rpjday@crashcourse.ca>
+Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
+	[64.235.106.9])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 48990E015EF
+	for <yocto@yoctoproject.org>; Sat, 16 Nov 2013 00:19:46 -0800 (PST)
+Received: from [173.34.6.101] (port=52727 helo=crashcourse.ca)
+	by astoria.ccjclearline.com with esmtpsa (TLSv1:DHE-RSA-AES256-SHA:256)
+	(Exim 4.80) (envelope-from <rpjday@crashcourse.ca>)
+	id 1Vhb6X-0001HN-5g; Sat, 16 Nov 2013 03:19:45 -0500
+Date: Sat, 16 Nov 2013 03:19:35 -0500 (EST)
+From: "Robert P. J. Day" <rpjday@crashcourse.ca>
+X-X-Sender: rpjday@oneiric
+To: "Burton, Ross" <ross.burton@intel.com>
+In-Reply-To: <CAJTo0LbYcXDDguCiVtun5qMUAgL=VxqhoHVjHKhRCdu8t4M2gw@mail.gmail.com>
+Message-ID: <alpine.DEB.2.02.1311160309110.6616@oneiric>
+References: <alpine.DEB.2.02.1311150538110.30641@oneiric>
+	<CAJTo0LbYcXDDguCiVtun5qMUAgL=VxqhoHVjHKhRCdu8t4M2gw@mail.gmail.com>
+User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
 MIME-Version: 1.0
-In-Reply-To: <CALb2249ae4iDYnv3RG9aQJdVEJCMWP5AH4vOR4jgg_TxuF+BJg@mail.gmail.com>
-User-Agent: Mutt/1.5.22 (2013-10-16)
-Cc: yocto <yocto@yoctoproject.org>
-Subject: Re: FILESPATH Search Order Changed?
+X-AntiAbuse: This header was added to track abuse,
+	please include it with any abuse report
+X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - crashcourse.ca
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+Cc: Yocto discussion list <yocto@yoctoproject.org>
+Subject: Re: undocumented MACHINE_FEATURES, and what makes something a MACHINE feature?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -44,171 +39,61 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 15 Nov 2013 23:17:16 -0000
-X-Groupsio-MsgNum: 17190
-Content-Type: multipart/signed; micalg=pgp-sha1;
-	protocol="application/pgp-signature"; boundary="MP5ln1Rcf9Bvi+ZW"
-Content-Disposition: inline
+X-List-Received-Date: Sat, 16 Nov 2013 08:19:49 -0000
+Content-Type: TEXT/PLAIN; charset=US-ASCII
 
---MP5ln1Rcf9Bvi+ZW
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On Fri, 15 Nov 2013, Burton, Ross wrote:
 
-On Fri, Nov 15, 2013 at 02:52:27PM -0800, Leo Schwab wrote:
-> I'm working on transitioning from 'dylan' to the 'dora' branch for our
-> Freescale-based project, and suddenly my kernel is building with the
-> wrong config.  I've isolated it to a change in (what I presume is) the
-> FILESPATH search order, and shows up very plainly when looking at the
-> log.do_unpack file.
+> On 15 November 2013 10:49, Robert P. J. Day <rpjday@crashcourse.ca> wrote:
+> >   as you can see, the only tests for 'wifi' involve either
+> > DISTRO_FEATURES or COMBINED_FEATURES, *not* MACHINE_FEATURES
+> > individually. under the circumstances, then, can 'wifi' be considered
+> > a legitimate MACHINE feature if it's never being tested in that
+> > context? (the same can be said for 'bluetooth', by the way.)
+>
+> COMBINED_FEATURES is a union of MACHINE_ and DISTRO_FEATURES, ...
 
-Yes it was changed just before dora release
-http://git.openembedded.org/openembedded-core/commit/?h=3Ddora&id=3D92cbf7e=
-eea553bfa24c7081473fa8bc4ebc1f552
+  i understand that part, but i'm still not convinced by the rest of
+your argument, so let me walk through an example if i might. (it could
+be that i'm massively overthinking this, but i've never been scared
+about making an idiot of myself in the past so ...)
 
-You're not alone fighting with it..
+> so it does make sense for them to be listed as MACHINE_FEATURES as
+> otherwise they can't be combined...  No point building wifi in the
+> distro if the machine doesn't support it, and the machine supporting
+> wifi isn't a reason to enable it in the distro.
 
->=20
-> My defconfig is located in
-> /..paths../sources/meta-belis3/recipes-kernel/linux/files/defconfig.
-> Under 'dylan', it does this, and gets picked up correctly:
->=20
-> ----
-> DEBUG: Searching for defconfig in paths:
-> /..paths../sources/meta-belis3/recipes-kernel/linux/files/arm
-> /..paths../sources/meta-belis3/recipes-kernel/linux/files/armv7a
-> /..paths../sources/meta-belis3/recipes-kernel/linux/files/mx6
-> /..paths../sources/meta-belis3/recipes-kernel/linux/files/mx6dl
-> /..paths../sources/meta-belis3/recipes-kernel/linux/files/medianode
-> /..paths../sources/meta-belis3/recipes-kernel/linux/files/poky
-> /..paths../sources/meta-belis3/recipes-kernel/linux/files/
-> /..paths../sources/meta-fsl-arm-extra/recipes-kernel/linux/linux-imx-3.0.=
-35/arm
-> /..paths../sources/meta-fsl-arm-extra/recipes-kernel/linux/linux-imx-3.0.=
-35/armv7a
-> /..paths../sources/meta-fsl-arm-extra/recipes-kernel/linux/linux-imx-3.0.=
-35/mx6
-> /..paths../sources/meta-fsl-arm-extra/recipes-kernel/linux/linux-imx-3.0.=
-35/mx6dl
-> /..paths../sources/meta-fsl-arm-extra/recipes-kernel/linux/linux-imx-3.0.=
-35/medianode
-> /..paths../sources/meta-fsl-arm-extra/recipes-kernel/linux/linux-imx-3.0.=
-35/poky
-> /..paths../sources/meta-fsl-arm-extra/recipes-kernel/linux/linux-imx-3.0.=
-35/
-> /..paths../sources/meta-fsl-arm/recipes-kernel/linux/linux-imx-3.0.35/arm
-> /..paths../sources/meta-fsl-arm/recipes-kernel/linux/linux-imx-3.0.35/arm=
-v7a
-> /..paths../sources/meta-fsl-arm/recipes-kernel/linux/linux-imx-3.0.35/mx6
-> /..paths../sources/meta-fsl-arm/recipes-kernel/linux/linux-imx-3.0.35/mx6=
-dl
-> /..paths../sources/meta-fsl-arm/recipes-kernel/linux/linux-imx-3.0.35/med=
-ianode
-> /..paths../sources/meta-fsl-arm/recipes-kernel/linux/linux-imx-3.0.35/poky
-> /..paths../sources/meta-fsl-arm/recipes-kernel/linux/linux-imx-3.0.35/
-> /..paths../sources/meta-fsl-arm/recipes-kernel/linux/linux-imx/arm
-> /..paths../sources/meta-fsl-arm/recipes-kernel/linux/linux-imx/armv7a
-> /..paths../sources/meta-fsl-arm/recipes-kernel/linux/linux-imx/mx6
-> /..paths../sources/meta-fsl-arm/recipes-kernel/linux/linux-imx/mx6dl
-> /..paths../sources/meta-fsl-arm/recipes-kernel/linux/linux-imx/medianode
-> /..paths../sources/meta-fsl-arm/recipes-kernel/linux/linux-imx/poky
-> /..paths../sources/meta-fsl-arm/recipes-kernel/linux/linux-imx/
-> /..paths../sources/meta-fsl-arm/recipes-kernel/linux/files/arm
-> /..paths../sources/meta-fsl-arm/recipes-kernel/linux/files/armv7a
-> /..paths../sources/meta-fsl-arm/recipes-kernel/linux/files/mx6
-> /..paths../sources/meta-fsl-arm/recipes-kernel/linux/files/mx6dl
-> /..paths../sources/meta-fsl-arm/recipes-kernel/linux/files/medianode
-> /..paths../sources/meta-fsl-arm/recipes-kernel/linux/files/poky
-> /..paths../sources/meta-fsl-arm/recipes-kernel/linux/files/
-> NOTE: Unpacking
-> /..paths../sources/meta-belis3/recipes-kernel/linux/files/defconfig to
-> /..paths../build/tmp/work/medianode-poky-linux-gnueabi/linux-imx/3.0.35-r=
-39.14/
-> ----
->=20
-> But under 'dora', it does this:
->=20
-> ----
-> DEBUG: Searching for defconfig in paths:
-> /..paths../sources/meta-belis3/recipes-kernel/linux/files/poky
-> /..paths../sources/meta-fsl-arm-extra/recipes-kernel/linux/linux-imx-3.0.=
-35/poky
-> /..paths../sources/meta-fsl-arm/recipes-kernel/linux/linux-imx-3.0.35/poky
-> /..paths../sources/meta-fsl-arm/recipes-kernel/linux/linux-imx/poky
-> /..paths../sources/meta-fsl-arm/recipes-kernel/linux/files/poky
-> /..paths../sources/meta-belis3/recipes-kernel/linux/files/medianode
-> /..paths../sources/meta-fsl-arm-extra/recipes-kernel/linux/linux-imx-3.0.=
-35/medianode
-> /..paths../sources/meta-fsl-arm/recipes-kernel/linux/linux-imx-3.0.35/med=
-ianode
-> /..paths../sources/meta-fsl-arm/recipes-kernel/linux/linux-imx/medianode
-> /..paths../sources/meta-fsl-arm/recipes-kernel/linux/files/medianode
-> /..paths../sources/meta-belis3/recipes-kernel/linux/files/mx6dl
-> /..paths../sources/meta-fsl-arm-extra/recipes-kernel/linux/linux-imx-3.0.=
-35/mx6dl
-> /..paths../sources/meta-fsl-arm/recipes-kernel/linux/linux-imx-3.0.35/mx6=
-dl
-> /..paths../sources/meta-fsl-arm/recipes-kernel/linux/linux-imx/mx6dl
-> /..paths../sources/meta-fsl-arm/recipes-kernel/linux/files/mx6dl
-> /..paths../sources/meta-belis3/recipes-kernel/linux/files/mx6
-> /..paths../sources/meta-fsl-arm-extra/recipes-kernel/linux/linux-imx-3.0.=
-35/mx6
-> /..paths../sources/meta-fsl-arm/recipes-kernel/linux/linux-imx-3.0.35/mx6
-> /..paths../sources/meta-fsl-arm/recipes-kernel/linux/linux-imx/mx6
-> /..paths../sources/meta-fsl-arm/recipes-kernel/linux/files/mx6
-> /..paths../sources/meta-belis3/recipes-kernel/linux/files/armv7a
-> /..paths../sources/meta-fsl-arm-extra/recipes-kernel/linux/linux-imx-3.0.=
-35/armv7a
-> /..paths../sources/meta-fsl-arm/recipes-kernel/linux/linux-imx-3.0.35/arm=
-v7a
-> /..paths../sources/meta-fsl-arm/recipes-kernel/linux/linux-imx/armv7a
-> /..paths../sources/meta-fsl-arm/recipes-kernel/linux/files/armv7a
-> /..paths../sources/meta-belis3/recipes-kernel/linux/files/arm
-> /..paths../sources/meta-fsl-arm-extra/recipes-kernel/linux/linux-imx-3.0.=
-35/arm
-> /..paths../sources/meta-fsl-arm/recipes-kernel/linux/linux-imx-3.0.35/arm
-> /..paths../sources/meta-fsl-arm/recipes-kernel/linux/linux-imx/arm
-> /..paths../sources/meta-fsl-arm/recipes-kernel/linux/files/arm
-> /..paths../sources/meta-belis3/recipes-kernel/linux/files/
-> /..paths../sources/meta-fsl-arm-extra/recipes-kernel/linux/linux-imx-3.0.=
-35/
-> /..paths../sources/meta-fsl-arm/recipes-kernel/linux/linux-imx-3.0.35/
-> /..paths../sources/meta-fsl-arm/recipes-kernel/linux/linux-imx/
-> /..paths../sources/meta-fsl-arm/recipes-kernel/linux/files/
-> NOTE: Unpacking
-> /..paths../sources/meta-fsl-arm/recipes-kernel/linux/linux-imx-3.0.35/mx6=
-dl/defconfig
-> to /..paths../build/tmp/work/medianode-poky-linux-gnueabi/linux-imx/3.0.3=
-5-r39.14/
-> ----
->=20
-> As a consequence, it picks up a default Freescale-supplied 'defconfig'
-> rather than mine.
->=20
-> The "obvious" solution is to move my 'defconfig' under a directory
-> named 'medianode' or 'poky'.  What's less clear is what I should have
-> been doing in the first place and why, so that I can avoid getting
-> bitten by this kind of thing again.
->=20
-> Schwab
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+  i (sort of) see your point, so let me use bluetooth as an example.
+the ref manual currently lists bluetooth as both a valid DISTRO
+feature and MACHINE feature so, AIUI, those two settings mean two
+different things:
 
---=20
-Martin 'JaMa' Jansa     jabber: Martin.Jansa@gmail.com
+* MACHINE_FEATURES including bluetooth means that that machine has
+actual integrated bluetooth, while
+* DISTRO_FEATURES including bluetooth specifies that you *wish* to
+include bluetooth software support in that distro
 
---MP5ln1Rcf9Bvi+ZW
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: Digital signature
+  so far, so good. but if i scan the entire dora source tree, the only
+tests i see for the bluetooth "feature" are either checking
+DISTRO_FEATURES or COMBINED_FEATURES, *none* checking MACHINE_FEATURES
+specifically, and this strikes me as odd. i'm puzzled by the idea of
+something being a valid MACHINE feature if nothing ever checks for
+that.
 
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v2.0.22 (GNU/Linux)
+  it seems like that leaves open the possibility of someone selecting
+a DISTRO_FEATURES of bluetooth for a machine that doesn't even have
+it. is that possible? does it make sense? am i just missing something
+fundamental here?
 
-iEYEARECAAYFAlKGq44ACgkQN1Ujt2V2gBx4ogCglpqTcWcIdQIghN3KpDLmGJGF
-xOQAoIkhmJW3frdjTr0qzDxAJXtSLhwE
-=IbmY
------END PGP SIGNATURE-----
+rday
 
---MP5ln1Rcf9Bvi+ZW--
+-- 
+
+========================================================================
+Robert P. J. Day                                 Ottawa, Ontario, CANADA
+                        http://crashcourse.ca
+
+Twitter:                                       http://twitter.com/rpjday
+LinkedIn:                               http://ca.linkedin.com/in/rpjday
+========================================================================
+
