@@ -1,29 +1,31 @@
-Return-Path: <gley-yocto@m.gmane.org>
-Received: from plane.gmane.org (plane.gmane.org [80.91.229.3])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 74853E0162E
-	for <yocto@yoctoproject.org>; Sat, 16 Nov 2013 09:50:12 -0800 (PST)
-Received: from list by plane.gmane.org with local (Exim 4.69)
-	(envelope-from <gley-yocto@m.gmane.org>) id 1Vhk0R-00061G-C8
-	for yocto@yoctoproject.org; Sat, 16 Nov 2013 18:50:03 +0100
-Received: from 212.50.246.122 ([212.50.246.122])
-	by main.gmane.org with esmtp (Gmexim 0.1 (Debian))
-	id 1AlnuQ-0007hv-00
-	for <yocto@yoctoproject.org>; Sat, 16 Nov 2013 18:50:03 +0100
-Received: from lemonjack05 by 212.50.246.122 with local (Gmexim 0.1 (Debian))
-	id 1AlnuQ-0007hv-00
-	for <yocto@yoctoproject.org>; Sat, 16 Nov 2013 18:50:03 +0100
-X-Injected-Via-Gmane: http://gmane.org/
+Return-Path: <flihp@twobit.us>
+Received: from smtp.twobit.us (smtp.twobit.us [38.83.192.235])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 781C2E017E4
+	for <yocto@yoctoproject.org>; Sat, 16 Nov 2013 11:04:18 -0800 (PST)
+Received: from c-76-24-20-220.hsd1.ma.comcast.net ([76.24.20.220]
+	helo=localhost)
+	by smtp.twobit.us with esmtpsa (TLS1.2:DHE_RSA_AES_128_CBC_SHA1:128)
+	(Exim 4.80) (envelope-from <flihp@twobit.us>)
+	id 1Vhl9w-0002Is-IU; Sat, 16 Nov 2013 19:03:58 +0000
+Received: from flihp by localhost with local (Exim 4.80)
+	(envelope-from <flihp@longhaul.twobit.us>)
+	id 1VhlAA-0003vE-7E; Sat, 16 Nov 2013 19:04:10 +0000
+From: Philip Tricca <flihp@twobit.us>
 To: yocto@yoctoproject.org
-From: Jack lemon <lemonjack05@gmail.com>
-Date: Sat, 16 Nov 2013 15:24:57 +0000 (UTC)
-Message-ID: <loom.20131116T135512-692@post.gmane.org>
-Mime-Version: 1.0
-X-Complaints-To: usenet@ger.gmane.org
-X-Gmane-NNTP-Posting-Host: sea.gmane.org
-User-Agent: Loom/3.14 (http://gmane.org/)
-X-Loom-IP: 212.50.246.122 (Mozilla/5.0 (X11; Ubuntu; Linux x86_64;
-	rv:21.0) Gecko/20100101 Firefox/21.0)
-Subject: How to modify u-boot in Root File System rootfs.ext2.gz.u-boot ?
+Date: Sat, 16 Nov 2013 19:04:06 +0000
+Message-Id: <1384628650-15034-4-git-send-email-flihp@twobit.us>
+X-Mailer: git-send-email 1.7.10.4
+In-Reply-To: <1384628650-15034-1-git-send-email-flihp@twobit.us>
+References: <1384628650-15034-1-git-send-email-flihp@twobit.us>
+X-SA-Exim-Connect-IP: 76.24.20.220
+X-SA-Exim-Mail-From: flihp@twobit.us
+X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on smtp.twobit.us
+X-Spam-Level: 
+X-Spam-Status: No, score=-1.0 required=5.0 tests=ALL_TRUSTED autolearn=ham
+	version=3.3.2
+X-SA-Exim-Version: 4.2.1 (built Mon, 26 Dec 2011 16:24:06 +0000)
+X-SA-Exim-Scanned: Yes (on smtp.twobit.us)
+Subject: [meta-selinux][PATCH v2 3/6] gnupg: rename bbappend from 2.0.21 to 2.0.22
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -35,19 +37,40 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 16 Nov 2013 17:50:13 -0000
-Content-Type: text/plain; charset=us-ascii
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Sat, 16 Nov 2013 19:04:20 -0000
 
-Hi everybody,
 
-I worked with P1022DS-PB and then designed my custom board according to its
-documents. For sd card I adjust u-boot to 115200 baud rate and compile it
-with ELDK independently. However in Nor-flash we haven't u-boot.bin
-independently. For Nor-Flash I need to adjust baud rate in .ext2.gz.u-boot
-image, because for Nor-Flash only kernel,rootfs,dtb files are needed.
-How can I modify u-boot in fsl-image-minimal-p1022ds.ext2.gz.u-boot for
-adjusting baud rate to 115200?
+Signed-off-by: Philip Tricca <flihp@twobit.us>
+---
+ recipes-support/gnupg/gnupg_2.0.21.bbappend |    5 -----
+ recipes-support/gnupg/gnupg_2.0.22.bbappend |    5 +++++
+ 2 files changed, 5 insertions(+), 5 deletions(-)
+ delete mode 100644 recipes-support/gnupg/gnupg_2.0.21.bbappend
+ create mode 100644 recipes-support/gnupg/gnupg_2.0.22.bbappend
 
+diff --git a/recipes-support/gnupg/gnupg_2.0.21.bbappend b/recipes-support/gnupg/gnupg_2.0.21.bbappend
+deleted file mode 100644
+index dddd945..0000000
+--- a/recipes-support/gnupg/gnupg_2.0.21.bbappend
++++ /dev/null
+@@ -1,5 +0,0 @@
+-PR .= ".1"
+-
+-inherit enable-selinux
+-# gnupg will not build with libselinux, so remove the depend
+-PACKAGECONFIG[selinux] = "--enable-selinux-support,--disable-selinux-support,,"
+diff --git a/recipes-support/gnupg/gnupg_2.0.22.bbappend b/recipes-support/gnupg/gnupg_2.0.22.bbappend
+new file mode 100644
+index 0000000..dddd945
+--- /dev/null
++++ b/recipes-support/gnupg/gnupg_2.0.22.bbappend
+@@ -0,0 +1,5 @@
++PR .= ".1"
++
++inherit enable-selinux
++# gnupg will not build with libselinux, so remove the depend
++PACKAGECONFIG[selinux] = "--enable-selinux-support,--disable-selinux-support,,"
+-- 
+1.7.10.4
 
 
