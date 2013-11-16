@@ -1,19 +1,19 @@
 Return-Path: <flihp@twobit.us>
 Received: from smtp.twobit.us (smtp.twobit.us [38.83.192.235])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7A829E017E9
-	for <yocto@yoctoproject.org>; Sat, 16 Nov 2013 11:04:17 -0800 (PST)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7BC18E017EA
+	for <yocto@yoctoproject.org>; Sat, 16 Nov 2013 11:04:18 -0800 (PST)
 Received: from c-76-24-20-220.hsd1.ma.comcast.net ([76.24.20.220]
 	helo=localhost)
 	by smtp.twobit.us with esmtpsa (TLS1.2:DHE_RSA_AES_128_CBC_SHA1:128)
 	(Exim 4.80) (envelope-from <flihp@twobit.us>)
-	id 1Vhl9w-0002Ir-BS; Sat, 16 Nov 2013 19:03:57 +0000
+	id 1Vhl9w-0002Iu-Ip; Sat, 16 Nov 2013 19:03:58 +0000
 Received: from flihp by localhost with local (Exim 4.80)
 	(envelope-from <flihp@longhaul.twobit.us>)
-	id 1VhlAA-0003v9-5j; Sat, 16 Nov 2013 19:04:10 +0000
+	id 1VhlAA-0003vP-AH; Sat, 16 Nov 2013 19:04:10 +0000
 From: Philip Tricca <flihp@twobit.us>
 To: yocto@yoctoproject.org
-Date: Sat, 16 Nov 2013 19:04:05 +0000
-Message-Id: <1384628650-15034-3-git-send-email-flihp@twobit.us>
+Date: Sat, 16 Nov 2013 19:04:08 +0000
+Message-Id: <1384628650-15034-6-git-send-email-flihp@twobit.us>
 X-Mailer: git-send-email 1.7.10.4
 In-Reply-To: <1384628650-15034-1-git-send-email-flihp@twobit.us>
 References: <1384628650-15034-1-git-send-email-flihp@twobit.us>
@@ -25,7 +25,7 @@ X-Spam-Status: No, score=-1.0 required=5.0 tests=ALL_TRUSTED autolearn=ham
 	version=3.3.2
 X-SA-Exim-Version: 4.2.1 (built Mon, 26 Dec 2011 16:24:06 +0000)
 X-SA-Exim-Scanned: Yes (on smtp.twobit.us)
-Subject: [meta-selinux][PATCH v2 2/6] mesa: rename bbappend from 9.1.6 to 9.2.2
+Subject: [meta-selinux][PATCH v2 5/6] sudo: rename bbappend from 1.8.7 to 1.8.8
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,26 +42,30 @@ X-List-Received-Date: Sat, 16 Nov 2013 19:04:20 -0000
 
 Signed-off-by: Philip Tricca <flihp@twobit.us>
 ---
- recipes-graphics/mesa/mesa_9.1.6.bbappend |    1 -
- recipes-graphics/mesa/mesa_9.2.2.bbappend |    1 +
- 2 files changed, 1 insertion(+), 1 deletion(-)
- delete mode 100644 recipes-graphics/mesa/mesa_9.1.6.bbappend
- create mode 100644 recipes-graphics/mesa/mesa_9.2.2.bbappend
+ recipes-extended/sudo/sudo_1.8.7.bbappend |    3 ---
+ recipes-extended/sudo/sudo_1.8.8.bbappend |    3 +++
+ 2 files changed, 3 insertions(+), 3 deletions(-)
+ delete mode 100644 recipes-extended/sudo/sudo_1.8.7.bbappend
+ create mode 100644 recipes-extended/sudo/sudo_1.8.8.bbappend
 
-diff --git a/recipes-graphics/mesa/mesa_9.1.6.bbappend b/recipes-graphics/mesa/mesa_9.1.6.bbappend
+diff --git a/recipes-extended/sudo/sudo_1.8.7.bbappend b/recipes-extended/sudo/sudo_1.8.7.bbappend
 deleted file mode 100644
-index 8c11cac..0000000
---- a/recipes-graphics/mesa/mesa_9.1.6.bbappend
+index 5ad8973..0000000
+--- a/recipes-extended/sudo/sudo_1.8.7.bbappend
 +++ /dev/null
-@@ -1 +0,0 @@
--inherit enable-selinux
-diff --git a/recipes-graphics/mesa/mesa_9.2.2.bbappend b/recipes-graphics/mesa/mesa_9.2.2.bbappend
+@@ -1,3 +0,0 @@
+-PR .= ".2"
+-
+-inherit with-selinux
+diff --git a/recipes-extended/sudo/sudo_1.8.8.bbappend b/recipes-extended/sudo/sudo_1.8.8.bbappend
 new file mode 100644
-index 0000000..8c11cac
+index 0000000..5ad8973
 --- /dev/null
-+++ b/recipes-graphics/mesa/mesa_9.2.2.bbappend
-@@ -0,0 +1 @@
-+inherit enable-selinux
++++ b/recipes-extended/sudo/sudo_1.8.8.bbappend
+@@ -0,0 +1,3 @@
++PR .= ".2"
++
++inherit with-selinux
 -- 
 1.7.10.4
 
