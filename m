@@ -1,18 +1,18 @@
 Return-Path: <rpjday@crashcourse.ca>
 Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
 	[64.235.106.9])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 48990E015EF
-	for <yocto@yoctoproject.org>; Sat, 16 Nov 2013 00:19:46 -0800 (PST)
-Received: from [173.34.6.101] (port=52727 helo=crashcourse.ca)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2127DE01479
+	for <yocto@yoctoproject.org>; Sat, 16 Nov 2013 00:52:40 -0800 (PST)
+Received: from [173.34.6.101] (port=53298 helo=crashcourse.ca)
 	by astoria.ccjclearline.com with esmtpsa (TLSv1:DHE-RSA-AES256-SHA:256)
 	(Exim 4.80) (envelope-from <rpjday@crashcourse.ca>)
-	id 1Vhb6X-0001HN-5g; Sat, 16 Nov 2013 03:19:45 -0500
-Date: Sat, 16 Nov 2013 03:19:35 -0500 (EST)
+	id 1VhbcM-0002Bh-TK; Sat, 16 Nov 2013 03:52:38 -0500
+Date: Sat, 16 Nov 2013 03:52:29 -0500 (EST)
 From: "Robert P. J. Day" <rpjday@crashcourse.ca>
 X-X-Sender: rpjday@oneiric
 To: "Burton, Ross" <ross.burton@intel.com>
 In-Reply-To: <CAJTo0LbYcXDDguCiVtun5qMUAgL=VxqhoHVjHKhRCdu8t4M2gw@mail.gmail.com>
-Message-ID: <alpine.DEB.2.02.1311160309110.6616@oneiric>
+Message-ID: <alpine.DEB.2.02.1311160341590.7043@oneiric>
 References: <alpine.DEB.2.02.1311150538110.30641@oneiric>
 	<CAJTo0LbYcXDDguCiVtun5qMUAgL=VxqhoHVjHKhRCdu8t4M2gw@mail.gmail.com>
 User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
@@ -39,7 +39,7 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 16 Nov 2013 08:19:49 -0000
+X-List-Received-Date: Sat, 16 Nov 2013 08:52:41 -0000
 Content-Type: TEXT/PLAIN; charset=US-ASCII
 
 On Fri, 15 Nov 2013, Burton, Ross wrote:
@@ -51,39 +51,31 @@ On Fri, 15 Nov 2013, Burton, Ross wrote:
 > > a legitimate MACHINE feature if it's never being tested in that
 > > context? (the same can be said for 'bluetooth', by the way.)
 >
-> COMBINED_FEATURES is a union of MACHINE_ and DISTRO_FEATURES, ...
-
-  i understand that part, but i'm still not convinced by the rest of
-your argument, so let me walk through an example if i might. (it could
-be that i'm massively overthinking this, but i've never been scared
-about making an idiot of myself in the past so ...)
-
-> so it does make sense for them to be listed as MACHINE_FEATURES as
+> COMBINED_FEATURES is a union of MACHINE_ and DISTRO_FEATURES, so it
+> does make sense for them to be listed as MACHINE_FEATURES as
 > otherwise they can't be combined...  No point building wifi in the
 > distro if the machine doesn't support it, and the machine supporting
 > wifi isn't a reason to enable it in the distro.
 
-  i (sort of) see your point, so let me use bluetooth as an example.
-the ref manual currently lists bluetooth as both a valid DISTRO
-feature and MACHINE feature so, AIUI, those two settings mean two
-different things:
+  oh, wait, i think i see what's happening here. COMBINED_FEATURES is
+*not*, as you claim, a simple union of MACHINE_ and DISTRO_FEATURES,
+it's much more specific:
 
-* MACHINE_FEATURES including bluetooth means that that machine has
-actual integrated bluetooth, while
-* DISTRO_FEATURES including bluetooth specifies that you *wish* to
-include bluetooth software support in that distro
+COMBINED_FEATURES = "\
+    ${@base_both_contain("DISTRO_FEATURES", "MACHINE_FEATURES", "alsa", d)} \
+    ${@base_both_contain("DISTRO_FEATURES", "MACHINE_FEATURES", "bluetooth", d)} \
+    ${@base_both_contain("DISTRO_FEATURES", "MACHINE_FEATURES", "ext2", d)} \
+    ${@base_both_contain("DISTRO_FEATURES", "MACHINE_FEATURES", "vfat", d)} \
+    ${@base_both_contain("DISTRO_FEATURES", "MACHINE_FEATURES", "irda", d)} \
+    ${@base_both_contain("DISTRO_FEATURES", "MACHINE_FEATURES", "pcmcia", d)} \
+    ${@base_both_contain("DISTRO_FEATURES", "MACHINE_FEATURES", "pci", d)} \
+    ${@base_both_contain("DISTRO_FEATURES", "MACHINE_FEATURES", "usbgadget", d)} \
+    ${@base_both_contain("DISTRO_FEATURES", "MACHINE_FEATURES", "usbhost", d)} \
+    ${@base_both_contain("DISTRO_FEATURES", "MACHINE_FEATURES", "wifi", d)}"
 
-  so far, so good. but if i scan the entire dora source tree, the only
-tests i see for the bluetooth "feature" are either checking
-DISTRO_FEATURES or COMBINED_FEATURES, *none* checking MACHINE_FEATURES
-specifically, and this strikes me as odd. i'm puzzled by the idea of
-something being a valid MACHINE feature if nothing ever checks for
-that.
-
-  it seems like that leaves open the possibility of someone selecting
-a DISTRO_FEATURES of bluetooth for a machine that doesn't even have
-it. is that possible? does it make sense? am i just missing something
-fundamental here?
+and *now* it makes sense -- that's the missing test of
+MACHINE_FEATURES i was looking for. more in a bit while i tease
+through more files ...
 
 rday
 
