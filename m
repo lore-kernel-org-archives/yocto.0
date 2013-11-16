@@ -1,33 +1,30 @@
-Return-Path: <rpjday@crashcourse.ca>
-Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
-	[64.235.106.9])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4BDA8E01575
-	for <yocto@yoctoproject.org>; Sat, 16 Nov 2013 01:46:24 -0800 (PST)
-Received: from [173.34.6.101] (port=53828 helo=crashcourse.ca)
-	by astoria.ccjclearline.com with esmtpsa (TLSv1:DHE-RSA-AES256-SHA:256)
-	(Exim 4.80) (envelope-from <rpjday@crashcourse.ca>)
-	id 1VhcSM-0004HJ-NT; Sat, 16 Nov 2013 04:46:22 -0500
-Date: Sat, 16 Nov 2013 04:46:13 -0500 (EST)
-From: "Robert P. J. Day" <rpjday@crashcourse.ca>
-X-X-Sender: rpjday@oneiric
-To: "Burton, Ross" <ross.burton@intel.com>
-In-Reply-To: <CAJTo0LbYcXDDguCiVtun5qMUAgL=VxqhoHVjHKhRCdu8t4M2gw@mail.gmail.com>
-Message-ID: <alpine.DEB.2.02.1311160410010.8101@oneiric>
-References: <alpine.DEB.2.02.1311150538110.30641@oneiric>
-	<CAJTo0LbYcXDDguCiVtun5qMUAgL=VxqhoHVjHKhRCdu8t4M2gw@mail.gmail.com>
-User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
+Return-Path: <philip@balister.org>
+Received: from sanddollar.geekisp.com (sanddollar.geekisp.com
+	[216.168.135.167])
+	by yocto-www.yoctoproject.org (Postfix) with SMTP id B8593E015DE
+	for <yocto@yoctoproject.org>; Sat, 16 Nov 2013 06:42:30 -0800 (PST)
+Received: (qmail 5654 invoked by uid 1003); 16 Nov 2013 14:42:29 -0000
+Received: from unknown (HELO ?192.168.1.113?)
+	(philip@opensdr.com@108.44.82.190)
+	by mail.geekisp.com with (DHE-RSA-AES256-SHA encrypted) SMTP;
+	16 Nov 2013 14:42:29 -0000
+Message-ID: <52878453.2080809@balister.org>
+Date: Sat, 16 Nov 2013 09:42:27 -0500
+From: Philip Balister <philip@balister.org>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:17.0) Gecko/20130625 Thunderbird/17.0.7
 MIME-Version: 1.0
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - crashcourse.ca
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-Cc: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: undocumented MACHINE_FEATURES, and what makes something a MACHINE feature?
+To: Chris Larson <clarson@kergoth.com>
+References: <CA+YB3rYsddJ2St94FVBmUvNyv7hvRm3=gmvZTyEdu66gfGPD-w@mail.gmail.com>
+	<alpine.DEB.2.02.1311142022090.27630@oneiric>
+	<52859082.1030805@balister.org>
+	<CA+YB3rYGAFtyN-6naAL2JOsv5h7MdKO=5Xk2v_ATmO8uennEvw@mail.gmail.com>
+	<52867BDF.2090705@windriver.com> <52867EEE.8050604@windriver.com>
+	<CABcZANmR5QOrrCRJqSde7SDrt6nx1bPHR_wBoT86pWiBQekB4A@mail.gmail.com>
+In-Reply-To: <CABcZANmR5QOrrCRJqSde7SDrt6nx1bPHR_wBoT86pWiBQekB4A@mail.gmail.com>
+X-Enigmail-Version: 1.6
+Cc: Yocto Project <yocto@yoctoproject.org>
+Subject: Re: Happy Birthday, Yocto Project
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,156 +36,135 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 16 Nov 2013 09:46:25 -0000
-Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-List-Received-Date: Sat, 16 Nov 2013 14:42:31 -0000
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-On Fri, 15 Nov 2013, Burton, Ross wrote:
+On 11/15/2013 03:44 PM, Chris Larson wrote:
+> On Fri, Nov 15, 2013 at 1:07 PM, Mark Hatle <mark.hatle@windriver.com>wrote:
+> 
+>> On 11/15/13, 1:54 PM, Mark Hatle wrote:
+>>
+>>> On 11/14/13, 9:58 PM, Jeff Osier-Mixon wrote:
+>>>
+>>>> Hm, a day that will live in infamy indeed
+>>>>
+>>>> On Fri, Nov 15, 2013 at 3:09 AM, Philip Balister <philip@balister.org>
+>>>> wrote:
+>>>>
+>>>>> On 11/14/2013 08:22 PM, Robert P. J. Day wrote:
+>>>>>
+>>>>>> On Thu, 14 Nov 2013, Jeff Osier-Mixon wrote:
+>>>>>>
+>>>>>>  Happy birthday, Yocto Project!
+>>>>>>>
+>>>>>>
+>>>>>>     what's a birthday without cake?
+>>>>>>
+>>>>>> http://www.instructables.com/id/Brain-Cake/
+>>>>>>
+>>>>>> rday
+>>>>>>
+>>>>>>
+>>>>> Berlios suggests bitbake was born on Dec 7, 2004. So in a few weeks we
+>>>>> will celebrate the 9'th birthday of the OpenEmbedded build system.
+>>>>>
+>>>>
+>>> I found a presentation that seems to have a bit more history in it.
+>>>
+>>> OpenEmbedded & BitBake - Denx.
+>>> www.denx.de/wiki/pub/ELDKHistory/.../OpenEmbeddedv1.ppt‎
+>>> December 2004: OpenEmbedded is split up into the BitBake build system and
+>>> the
+>>> OpenEmbedded metadata. OpenZaurus. OpenEmbedded is the successor to  ..
+>>>
+>>> http://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&
+>>> cd=6&ved=0CE0QFjAF&url=http%3A%2F%2Fwww.denx.de%2Fwiki%
+>>> 2Fpub%2FELDKHistory%2FDocumentationLinks%2FOpenEmbeddedv1.ppt&ei=
+>>> n3eGUseFHKyh4APFs4CgBQ&usg=AFQjCNGZtQsaGso-YaqLYSlOJaJfhDiaug&sig2=
+>>> JzdEhA4q-4bhBDhE1NOxMQ&bvm=bv.56643336,d.dmg
+>>>
+>>> 2001: Sharp introducestheSL-5000 PDA running Linux
+>>>
+>>> 2002: Chris Larson finds out that the SharpROM sucks and starts hacking
+>>> on a
+>>> build system for a customized Linux distribution called "OpenZaurus”
+>>>
+>>> 2002-2003: The OpenZaurus build system is getting stretched (beyond
+>>> belief) by
+>>> adding support for many more packages and target devices
+>>>
+>>> January 2003: Brainstorming towards a new distribution and device
+>>> independent
+>>> build system
+>>>
+>>> February 2003: Holger Schurig creates the OpenEmbedded repository and
+>>> starts
+>>> hacking on the first version
+>>>
+>>> May 2003: Chris Larson adds major functionality to the OpenEmbedded core
+>>> and
+>>> starts converting packages from the OpenZaurus build system
+>>>
+>>> December 2003: Michael Lauer releases OpenZaurus3.3.5, abandons the
+>>> OpenZaurus
+>>> build system, and converts100s of packages to OpenEmbedded
+>>>
+>>> December 2004: OpenEmbedded is split up into the BitBake build system and
+>>> the
+>>> OpenEmbedded metadata
+>>>
+>>> So the magic Dec 7 2004 date is the split of OpenEmbedded into bitbake
+>>> and the
+>>> 'metadata'.  the actual work was almost 20 months prior.
+>>>
+>>> The sourceforge openembedded project was registerd 2003-01-21:
+>>>
+>>> http://sourceforge.net/projects/openembedded/
+>>>
+>>> Also I found a repository that appears it may contain the original
+>>> OpenEmbedded..  first commit is:
+>>>
+>>> Author: Chris Larson <clarson@kergoth.com>
+>>> Date:   Mon Jun 2 21:19:02 2003 +0000
+>>>
+>>>       Initial repository create
+>>>
+>>>       BKrev: 3edbbf46Zm7UJzG9iGisj7ELSsUuZQ
+>>>
+>>
+>> Never thought to look at the Bitbake repository.. first commit:
+>>
+>> commit af645b03b585a9c92dc111188756b8f6badfec5f
+>> Author: Chris Larson <clarson@kergoth.com>
+>>
+>> Date:   Fri Feb 21 04:03:45 2003 +0000
+>>
+>>      .oe file parser function
+>>
+>> So I think that Jives with the Approx Feb 2003 timeframe..  and I'd say
+>> the code birthday then would be Feb 21 2003 -- so in 3 months we're looking
+>> at the 12th anniversary of Bitbake/OE.
+> 
+> 
+> https://docs.google.com/spreadsheet/ccc?key=0AjCkwYM6wjBQdGx6Umt2cjBETjNsS09CUFNxRUwzVEE
+> has
+> some dates I started to gather years ago, in case it’s at all of use.
 
-> On 15 November 2013 10:49, Robert P. J. Day <rpjday@crashcourse.ca> wrote:
-> >   as you can see, the only tests for 'wifi' involve either
-> > DISTRO_FEATURES or COMBINED_FEATURES, *not* MACHINE_FEATURES
-> > individually. under the circumstances, then, can 'wifi' be
-> > considered a legitimate MACHINE feature if it's never being tested
-> > in that context? (the same can be said for 'bluetooth', by the
-> > way.)
->
-> COMBINED_FEATURES is a union of MACHINE_ and DISTRO_FEATURES, so it
-> does make sense for them to be listed as MACHINE_FEATURES as
-> otherwise they can't be combined...  No point building wifi in the
-> distro if the machine doesn't support it, and the machine supporting
-> wifi isn't a reason to enable it in the distro.
+Thanks Chris!
 
-  ok, let me take a shot at clarifying DISTRO_FEATURES versus
-MACHINE_FEATURES since i think there might be some errors in how
-things are being defined, but i'm always delighted to be proven wrong.
+So should we use 1/22/2003 as the founding, or maybe 2/23/2003?
 
-  first, MACHINE_FEATURES. as i read it (and how it's explained in
-section 10.2 of the ref manual), this variable defines simply the
-features for which there is hardware support for any given machine,
-yes? the value of MACHINE_FEATURES says nothing about whether you
-might want to *select* support for that particular feature, it simply
-states the H/W features that are subsequently selectable, is that
-about right?
+We can arrange a celebration of the 11'th birthday at any rate.
 
-  because of this, it would *seem* that there's little point in a user
-manipulating the value of this variable outside of the context of an
-actual machine definition file, yes? i mean, if you claim to be
-building for machine "foo", the machine definition file for "foo"
-should set MACHINE_FEATURES properly and that's what you get to work
-with in terms of building your image. so far, so good?
+Philip
 
-  OTOH, the DISTRO_FEATURES variable allows you to dictate what
-software support you want included in your image, yes? and here's
-where you deal with two cases of selection.
-
-  in the simpler case, you can select DISTRO features that are
-independent of machine characteristics -- things like ipsec or nfs
-or smbfs. the second case, however, is trickier. the second case deals
-with selectable DISTRO features that require the underlying MACHINE
-feature; otherwise, it wouldn't make any sense(?).
-
-  example (as before): bluetooth. it makes no sense to select a DISTRO
-feature of bluetooth unless there is underlying hardware for it, and
-that's where this snippet of bitbake.conf comes in:
-
-COMBINED_FEATURES = "\
-    ${@base_both_contain("DISTRO_FEATURES", "MACHINE_FEATURES", "alsa", d)} \
-    ${@base_both_contain("DISTRO_FEATURES", "MACHINE_FEATURES", "bluetooth", d)} \
-    ${@base_both_contain("DISTRO_FEATURES", "MACHINE_FEATURES", "ext2", d)} \
-    ${@base_both_contain("DISTRO_FEATURES", "MACHINE_FEATURES", "vfat", d)} \
-    ${@base_both_contain("DISTRO_FEATURES", "MACHINE_FEATURES", "irda", d)} \
-    ${@base_both_contain("DISTRO_FEATURES", "MACHINE_FEATURES", "pcmcia", d)} \
-    ${@base_both_contain("DISTRO_FEATURES", "MACHINE_FEATURES", "pci", d)} \
-    ${@base_both_contain("DISTRO_FEATURES", "MACHINE_FEATURES", "usbgadget", d)} \
-    ${@base_both_contain("DISTRO_FEATURES", "MACHINE_FEATURES", "usbhost", d)} \
-    ${@base_both_contain("DISTRO_FEATURES", "MACHINE_FEATURES", "wifi", d)}"
-COMBINED_FEATURES[vardeps] += "DISTRO_FEATURES MACHINE_FEATURES"
-
-and that's the part i was missing before -- the fact that there is an
-*explicit* list of features for which *both* selections need to be
-true for it to make any sense. so the COMBINED feature of "bluetooth"
-is based on it being both supported in hardware *and* selected as a
-DISTRO feature. (so COMBINED_FEATURES is *not* simply a "union" of
-those other two variables.) and here are some of the apparent
-consequences and oddities i see.
-
-  first, it would seem that any image definition shouldn't care about
-the setting of MACHINE_FEATURES, should it? as i see it, an image
-should consult only the values of DISTRO_FEATURES and
-COMBINED_FEATURES to see what needs to be included. as ross himself
-wrote:
-
-"... the machine supporting wifi isn't a reason to enable it in the
-distro."
-
-  but if i look at, say, oe-core's packagegroup-base.bb recipe file, i
-can see:
-
-RDEPENDS_packagegroup-base = "\
-    packagegroup-distro-base \
-    packagegroup-machine-base \
-    \
-    sysfsutils \
-    module-init-tools \
-    ${@base_contains('MACHINE_FEATURES', 'apm', 'packagegroup-base-apm', '',d)} \
-    ${@base_contains('MACHINE_FEATURES', 'acpi', 'packagegroup-base-acpi', '',d)} \
-    ${@base_contains('MACHINE_FEATURES', 'keyboard', 'packagegroup-base-keyboard', '',d)} \
-    ${@base_contains('MACHINE_FEATURES', 'phone', 'packagegroup-base-phone', '',d)} \
-    ... snip ...
-
-why are those features being included in the image if they are simply
-defined in MACHINE_FEATURES? that just seems ... wrong somehow.
-
-  also, right below that in that same recipe file, we have the
-explicit tests for the COMBINED_FEATURES:
-
-    ${@base_contains('COMBINED_FEATURES', 'alsa', 'packagegroup-base-alsa', '',d)} \
-    ${@base_contains('COMBINED_FEATURES', 'ext2', 'packagegroup-base-ext2', '',d)} \
-    ${@base_contains('COMBINED_FEATURES', 'vfat', 'packagegroup-base-vfat', '',d)} \
-    ${@base_contains('COMBINED_FEATURES', 'irda', 'packagegroup-base-irda', '',d)} \
-    ${@base_contains('COMBINED_FEATURES', 'pci', 'packagegroup-base-pci', '',d)} \
-    ${@base_contains('COMBINED_FEATURES', 'pcmcia', 'packagegroup-base-pcmcia', '',d)} \
-    ${@base_contains('COMBINED_FEATURES', 'usbgadget', 'packagegroup-base-usbgadget', '',d)} \
-    ${@base_contains('COMBINED_FEATURES', 'usbhost', 'packagegroup-base-usbhost', '',d)} \
-    ${@base_contains('COMBINED_FEATURES', 'bluetooth', 'packagegroup-base-bluetooth', '',d)} \
-    ${@base_contains('COMBINED_FEATURES', 'wifi', 'packagegroup-base-wifi', '',d)} \
-    ${@base_contains('COMBINED_FEATURES', '3g', 'packagegroup-base-3g', '',d)} \
-    ${@base_contains('COMBINED_FEATURES', 'nfc', 'packagegroup-base-nfc', '',d)} \
-
-but if you look in oe-core's bitbake.conf file, you see:
-
-COMBINED_FEATURES = "\
-    ${@base_both_contain("DISTRO_FEATURES", "MACHINE_FEATURES", "alsa", d)} \
-    ${@base_both_contain("DISTRO_FEATURES", "MACHINE_FEATURES", "bluetooth", d)} \
-    ${@base_both_contain("DISTRO_FEATURES", "MACHINE_FEATURES", "ext2", d)} \
-    ${@base_both_contain("DISTRO_FEATURES", "MACHINE_FEATURES", "vfat", d)} \
-    ${@base_both_contain("DISTRO_FEATURES", "MACHINE_FEATURES", "irda", d)} \
-    ${@base_both_contain("DISTRO_FEATURES", "MACHINE_FEATURES", "pcmcia", d)} \
-    ${@base_both_contain("DISTRO_FEATURES", "MACHINE_FEATURES", "pci", d)} \
-    ${@base_both_contain("DISTRO_FEATURES", "MACHINE_FEATURES", "usbgadget", d)} \
-    ${@base_both_contain("DISTRO_FEATURES", "MACHINE_FEATURES", "usbhost", d)} \
-    ${@base_both_contain("DISTRO_FEATURES", "MACHINE_FEATURES", "wifi", d)}"
-
-there are no entries for either "3g" or "nfc", which seems
-inconsistent.
-
-  oh, gack, i just read further down in packagegroup-base.bb where i
-can see explicit tests for things like:
-
-  if "3g" in distro_features and not "3g" in machine_features ...
-
-*sigh*.  apparently, i have more reading to do. all of this has the
-potential for confusion.
-
-rday
-
--- 
-
-========================================================================
-Robert P. J. Day                                 Ottawa, Ontario, CANADA
-                        http://crashcourse.ca
-
-Twitter:                                       http://twitter.com/rpjday
-LinkedIn:                               http://ca.linkedin.com/in/rpjday
-========================================================================
+> 
+> 
+> 
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+> 
 
