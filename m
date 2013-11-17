@@ -1,26 +1,33 @@
-Return-Path: <paul.eggleton@linux.intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5CA13E00308
-	for <yocto@yoctoproject.org>; Sun, 17 Nov 2013 03:30:07 -0800 (PST)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga101.jf.intel.com with ESMTP; 17 Nov 2013 03:30:07 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.93,535,1378882800"; d="scan'208";a="436616702"
-Received: from akagikob-mobl.ger.corp.intel.com (HELO helios.localnet)
-	([10.252.121.140])
-	by orsmga002.jf.intel.com with ESMTP; 17 Nov 2013 03:30:06 -0800
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: Martin Jansa <martin.jansa@gmail.com>
-Date: Sun, 17 Nov 2013 11:30:05 +0000
-Message-ID: <6659736.OPPKFAYCfn@helios>
-Organization: Intel Corporation
-User-Agent: KMail/4.10.5 (Linux/3.8.0-31-generic; KDE/4.10.5; i686; ; )
-In-Reply-To: <20131115231734.GG31430@jama>
-References: <CALb2249ae4iDYnv3RG9aQJdVEJCMWP5AH4vOR4jgg_TxuF+BJg@mail.gmail.com>
-	<20131115231734.GG31430@jama>
+Return-Path: <rpjday@crashcourse.ca>
+Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
+	[64.235.106.9])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 751E1E0030A
+	for <yocto@yoctoproject.org>; Sun, 17 Nov 2013 03:30:14 -0800 (PST)
+Received: from [173.34.6.101] (port=53202 helo=crashcourse.ca)
+	by astoria.ccjclearline.com with esmtpsa (TLSv1:DHE-RSA-AES256-SHA:256)
+	(Exim 4.80) (envelope-from <rpjday@crashcourse.ca>)
+	id 1Vi0YO-0000g4-WD; Sun, 17 Nov 2013 06:30:13 -0500
+Date: Sun, 17 Nov 2013 06:30:01 -0500 (EST)
+From: "Robert P. J. Day" <rpjday@crashcourse.ca>
+X-X-Sender: rpjday@oneiric
+To: Paul Eggleton <paul.eggleton@linux.intel.com>
+In-Reply-To: <1530936.srmMeFasFY@helios>
+Message-ID: <alpine.DEB.2.02.1311170626370.18680@oneiric>
+References: <alpine.DEB.2.02.1311170415270.16236@oneiric>
+	<1530936.srmMeFasFY@helios>
+User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
 MIME-Version: 1.0
-Cc: yocto@yoctoproject.org, Leo Schwab <lschwab@sensity.com>
-Subject: Re: FILESPATH Search Order Changed?
+X-AntiAbuse: This header was added to track abuse,
+	please include it with any abuse report
+X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - crashcourse.ca
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+Cc: yocto@yoctoproject.org
+Subject: Re: why is "package-management" defined as a PACKAGE_GROUP?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,30 +39,60 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 17 Nov 2013 11:30:10 -0000
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Sun, 17 Nov 2013 11:30:17 -0000
+Content-Type: TEXT/PLAIN; charset=US-ASCII
 
-On Saturday 16 November 2013 00:17:34 Martin Jansa wrote:
-> On Fri, Nov 15, 2013 at 02:52:27PM -0800, Leo Schwab wrote:
-> > I'm working on transitioning from 'dylan' to the 'dora' branch for our
-> > Freescale-based project, and suddenly my kernel is building with the
-> > wrong config.  I've isolated it to a change in (what I presume is) the
-> > FILESPATH search order, and shows up very plainly when looking at the
-> > log.do_unpack file.
-> 
-> Yes it was changed just before dora release
-> http://git.openembedded.org/openembedded-core/commit/?h=dora&id=92cbf7eeea55
-> 3bfa24c7081473fa8bc4ebc1f552
+On Sun, 17 Nov 2013, Paul Eggleton wrote:
 
-Problems aside, to be completely correct it was merged into the dora branch 
-*after* the release.
+> Hi Robert,
+>
+> On Sunday 17 November 2013 04:19:19 Robert P. J. Day wrote:
+> >   think i may have asked this once upon a time, but why, in
+> > core-image.bbclass, is there the line:
+> >
+> >   PACKAGE_GROUP_package-management = "${ROOTFS_PKGMANAGE}"
+> >
+> > as i read it, package-management doesn't represent an actual
+> > package group, but rather represents one of a number of
+> > IMAGE_FEATURES that are processed explicitly in a .bbclass file,
+> > like "debug-tweaks" or "read-only-rootfs". so what does the above
+> > line mean?
+>
+> It's not a package group, but then neither are any of the things
+> defined by PACKAGE_GROUP - that variable just specifies one or more
+> packages to be installed when the specified item appears in
+> IMAGE_FEATURES. Perhaps we should just rename the variable; it's a
+> little more internal than some of the other variables we've renamed
+> in the past.
 
-Cheers,
-Paul
+  oh, i realize it's not a package group, my point was that that line
+seems entirely superfluous since, as with things like "debug-tweaks"
+and "read-only-rootfs", that "image feature" is processed explicitly
+within image.bbclass:
+
+# IMAGE_FEATURES may contain any available package group
+IMAGE_FEATURES ?= ""
+IMAGE_FEATURES[type] = "list"
+IMAGE_FEATURES[validitems] += "debug-tweaks read-only-rootfs package-management"
+
+# rootfs bootstrap install
+ROOTFS_BOOTSTRAP_INSTALL = "${@base_contains("IMAGE_FEATURES", "package-management", "", "${ROOTFS_PKGMANAGE_BOOTSTRAP}",d)}"
+
+  the simple solution would seem to be to just delete the line:
+
+PACKAGE_GROUP_package-management = "${ROOTFS_PKGMANAGE}"
+
+from core-image.bbclass since it's both unnecessary and misleading.
+
+rday
 
 -- 
 
-Paul Eggleton
-Intel Open Source Technology Centre
+========================================================================
+Robert P. J. Day                                 Ottawa, Ontario, CANADA
+                        http://crashcourse.ca
+
+Twitter:                                       http://twitter.com/rpjday
+LinkedIn:                               http://ca.linkedin.com/in/rpjday
+========================================================================
 
