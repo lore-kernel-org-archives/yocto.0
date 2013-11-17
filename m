@@ -1,18 +1,18 @@
 Return-Path: <rpjday@crashcourse.ca>
 Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
 	[64.235.106.9])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7EF89E002AC
-	for <yocto@yoctoproject.org>; Sun, 17 Nov 2013 07:28:45 -0800 (PST)
-Received: from [173.34.6.101] (port=57798 helo=crashcourse.ca)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EFB57E0030A
+	for <yocto@yoctoproject.org>; Sun, 17 Nov 2013 08:17:27 -0800 (PST)
+Received: from [173.34.6.101] (port=60015 helo=crashcourse.ca)
 	by astoria.ccjclearline.com with esmtpsa (TLSv1:DHE-RSA-AES256-SHA:256)
 	(Exim 4.80) (envelope-from <rpjday@crashcourse.ca>)
-	id 1Vi4HD-0002Fz-VP; Sun, 17 Nov 2013 10:28:44 -0500
-Date: Sun, 17 Nov 2013 10:28:31 -0500 (EST)
+	id 1Vi52L-00045I-Mh; Sun, 17 Nov 2013 11:17:25 -0500
+Date: Sun, 17 Nov 2013 11:17:13 -0500 (EST)
 From: "Robert P. J. Day" <rpjday@crashcourse.ca>
 X-X-Sender: rpjday@oneiric
 To: Chris Larson <clarson@kergoth.com>
 In-Reply-To: <CABcZANkx+EgeVp2h-enLxSZGh7XV1607fRdVFidoJhkRnqbnjA@mail.gmail.com>
-Message-ID: <alpine.DEB.2.02.1311171027550.22723@oneiric>
+Message-ID: <alpine.DEB.2.02.1311171105010.23270@oneiric>
 References: <alpine.DEB.2.02.1311170415270.16236@oneiric>
 	<1530936.srmMeFasFY@helios>
 	<alpine.DEB.2.02.1311170626370.18680@oneiric>
@@ -44,88 +44,61 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 17 Nov 2013 15:28:46 -0000
-Content-Type: MULTIPART/MIXED; BOUNDARY="8323329-842780829-1384702114=:22723"
+X-List-Received-Date: Sun, 17 Nov 2013 16:17:28 -0000
+Content-Type: MULTIPART/MIXED; BOUNDARY="8323329-182535960-1384705036=:23270"
 
---8323329-842780829-1384702114=:22723
+--8323329-182535960-1384705036=:23270
 Content-Type: TEXT/PLAIN; charset=UTF-8
 Content-Transfer-Encoding: 8BIT
 
 On Sun, 17 Nov 2013, Chris Larson wrote:
 
->
-> On Sun, Nov 17, 2013 at 5:45 AM, Robert P. J. Day <rpjday@crashcourse.ca> wrote:
->         leaving aside the bug report, i am now hopelessly confused. are you
->       saying this line:
->
->       PACKAGE_GROUP_package-management = "${ROOTFS_PKGMANAGE}"
->
->       from core-image.bbclass is currently *necessary* to properly support
->       the image feature of "package-management" in core images? i don't see
->       how or why. using that logic, you'd also need lines of that form for
->       "read-only-rootfs" and "debug-tweaks", which certainly don't exist.
->
->         are you sure you're answering the question i'm asking?
->
->       rday
->
->       p.s.  i just don't see how that line has any value based on a few
->       simple tests i ran. using dora to build for a beagle xm, i can display
->       some variables:
->
->       $ bb show -r core-image-base IMAGE_FEATURES
->       Parsing recipes..done.
->       IMAGE_FEATURES="debug-tweaks splash"
->       $ bb show -r core-image-base
->       EXTRA_IMAGE_FEATURES
->       Parsing recipes..done.
->       EXTRA_IMAGE_FEATURES="debug-tweaks"
->       $
->
->       which looks correct. now let's edit my local.conf and change:
->
->       EXTRA_IMAGE_FEATURES = "debug-tweaks"
->
->       to
->
->       EXTRA_IMAGE_FEATURES = "debug-tweaks package-management"
->
->       save, exit and verify:
->
->       $ bb show -r core-image-base IMAGE_FEATURES
->       Parsing recipes..done.
->       IMAGE_FEATURES="debug-tweaks splash package-management"
->       $ bb show -r core-image-base
->       EXTRA_IMAGE_FEATURES
->       Parsing recipes..done.
->       EXTRA_IMAGE_FEATURES="debug-tweaks package-management"
->
->       good. and now, let's edit core-image.bbclass and remove the line:
->
->       PACKAGE_GROUP_package-management = "${ROOTFS_PKGMANAGE}"
->
->       save, exit and test:
->
->       $ bb show -r core-image-base IMAGE_FEATURES
->       Parsing recipes..done.
->       IMAGE_FEATURES="debug-tweaks splash package-management"
->       $ bb show -r core-image-base
->       EXTRA_IMAGE_FEATURES
->       Parsing recipes..done.
->       EXTRA_IMAGE_FEATURES="debug-tweaks package-management"
->       $
->
->         seems like the "package-management" image feature is being picked up
->       just fine.
->
->
+... huge snip that i hope won't be necessary ...
+
 > This test you did makes no sense. Of course it’s in IMAGE_FEATURES,
 > you put it there. What you didn’t check is whether
 > ${ROOTFS_PKGMANAGE} ended up being installed in the image, which it
 > won’t be.
 
-  ah, i think i see my misunderstanding, i will experiment further and
-clarify it for myself, thanks.
+  i think i see my basic and fatal misunderstanding, and if you can
+tolerate one more post, i want to make sure i know what i did wrong as
+i want to write this up and i want to be accurate.
+
+  as i understood it (apparently incorrectly), IMAGE_FEATURES fell
+into two categories:
+
+  1) actual package groups, as defined in core-image.bbclass, as in:
+
+PACKAGE_GROUP_x11 = "packagegroup-core-x11"
+PACKAGE_GROUP_x11-base = "packagegroup-core-x11-base"
+PACKAGE_GROUP_x11-sato = "packagegroup-core-x11-sato"
+
+  2) non-package group values that were processed independently by
+code in image.bbclass, such as "read-only-rootfs" or "debug-tweaks"
+
+  what i *thought* was that each setting had to be one *or* the other,
+but not both. so when i saw code in image.bbclass that was handling
+the "package-management" IMAGE_FEATURE, i immediately assumed that
+meant it couldn't *also* represent an actual package group. is that
+where i went wrong?
+
+  so, in this one case for the IMAGE FEATURE "package-management",
+there is an actual package group defined as:
+
+PACKAGE_GROUP_package-management = "${ROOTFS_PKGMANAGE}"
+
+which represents the packages:
+
+$ bb show -r core-image-base ROOTFS_PKGMANAGE
+Parsing recipes..done.
+# ROOTFS_PKGMANAGE=opkg opkg-collateral ${EXTRAOPKGCONFIG}
+ROOTFS_PKGMANAGE="opkg opkg-collateral poky-feed-config-opkg"
+$
+
+but that feature *also* pulls in additional processing as it's defined
+in image.bbclass.
+
+  have i finally got it right?
 
 rday
 
@@ -139,4 +112,4 @@ Twitter:                                       http://twitter.com/rpjday
 LinkedIn:                               http://ca.linkedin.com/in/rpjday
 ========================================================================
 
---8323329-842780829-1384702114=:22723--
+--8323329-182535960-1384705036=:23270--
