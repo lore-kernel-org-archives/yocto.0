@@ -1,27 +1,26 @@
-Return-Path: <gary@mlbassoc.com>
-Received: from mail.chez-thomas.org (mail.mlbassoc.com [65.100.170.105])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D9026E002AC
-	for <yocto@yoctoproject.org>; Mon, 18 Nov 2013 03:51:13 -0800 (PST)
-Received: by mail.chez-thomas.org (Postfix, from userid 1998)
-	id 5A872F811E8; Mon, 18 Nov 2013 04:51:13 -0700 (MST)
-X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on
-	hermes.chez-thomas.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=4.0 tests=ALL_TRUSTED,BAYES_00
-	autolearn=unavailable version=3.3.2
-Received: from [192.168.1.114] (zeus [192.168.1.114])
-	by mail.chez-thomas.org (Postfix) with ESMTP id 43166F811E7;
-	Mon, 18 Nov 2013 04:51:12 -0700 (MST)
-Message-ID: <5289FF3A.7020600@mlbassoc.com>
-Date: Mon, 18 Nov 2013 04:51:22 -0700
-From: Gary Thomas <gary@mlbassoc.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:24.0) Gecko/20100101 Thunderbird/24.1.0
+Return-Path: <paul.eggleton@linux.intel.com>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5F962E00561
+	for <yocto@yoctoproject.org>; Mon, 18 Nov 2013 03:57:13 -0800 (PST)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga101.jf.intel.com with ESMTP; 18 Nov 2013 03:57:13 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.93,535,1378882800"; d="scan'208";a="410509740"
+Received: from unknown (HELO helios.localnet) ([10.252.121.158])
+	by orsmga001.jf.intel.com with ESMTP; 18 Nov 2013 03:57:12 -0800
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: "Robert P. J. Day" <rpjday@crashcourse.ca>
+Date: Mon, 18 Nov 2013 11:57:11 +0000
+Message-ID: <3135869.AjjxWFArVx@helios>
+Organization: Intel Corporation
+User-Agent: KMail/4.10.5 (Linux/3.8.0-31-generic; KDE/4.10.5; i686; ; )
+In-Reply-To: <alpine.DEB.2.02.1311160410010.8101@oneiric>
+References: <alpine.DEB.2.02.1311150538110.30641@oneiric>
+	<CAJTo0LbYcXDDguCiVtun5qMUAgL=VxqhoHVjHKhRCdu8t4M2gw@mail.gmail.com>
+	<alpine.DEB.2.02.1311160410010.8101@oneiric>
 MIME-Version: 1.0
-To: yocto@yoctoproject.org
-References: <CANwz6nykaRgLf+4TUDUe3WGpfPpn35d-kO2O5XidzM5nYquQpg@mail.gmail.com>
-In-Reply-To: <CANwz6nykaRgLf+4TUDUe3WGpfPpn35d-kO2O5XidzM5nYquQpg@mail.gmail.com>
-Subject: Re: wrong version of busybox after adding new layers.
+Cc: yocto@yoctoproject.org
+Subject: Re: undocumented MACHINE_FEATURES, and what makes something a MACHINE feature?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -33,78 +32,180 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 18 Nov 2013 11:51:18 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Mon, 18 Nov 2013 11:57:16 -0000
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-On 2013-11-17 17:17, Edward Vidal wrote:
-> Hello,
-> MACHINE=zedboard bitbake core-image-sato builds okay.
->
-> Build Configuration:
-> BB_VERSION        = "1.19.1"
-> BUILD_SYS         = "x86_64-linux"
-> NATIVELSBSTRING   = "Fedora-18"
-> TARGET_SYS        = "arm-poky-linux-gnueabi"
-> MACHINE           = "zedboard"
-> DISTRO            = "poky"
-> DISTRO_VERSION    = "1.4+snapshot-20131117"
-> TUNE_FEATURES     = " armv7a vfp neon zynq"
-> TARGET_FPU        = "vfp-neon"
-> meta
-> meta-yocto        = "wkg:3dee534f1e25109e0bdb681de0746c336f4b8840"
-> meta-xilinx
-> meta-kc705
-> meta-zc702
-> meta-zedboard     = "wkg:46f4c79d6d55b556a90bb0fd89c2c09acf2aebff"
-> meta-yocto-bsp    = "wkg:3dee534f1e25109e0bdb681de0746c336f4b8840"
->
-> NOTE: Running noexec task 5589 of 5595 (ID: 3428, /home/vidal/POKY/build111613_zedboard/poky/meta/recipes-multimedia/gstreamer/gst-meta-base_0.10.bb <http://gst-meta-base_0.10.bb>,
-> do_build)
-> NOTE: Running noexec task 5590 of 5595 (ID: 3103, /home/vidal/POKY/build111613_zedboard/poky/meta/recipes-multimedia/gstreamer/gst-plugins-good_0.10.31.bb
-> <http://gst-plugins-good_0.10.31.bb>, do_build)
-> NOTE: Running noexec task 5591 of 5595 (ID: 2804, /home/vidal/POKY/build111613_zedboard/poky/meta/recipes-sato/owl-video-widget/libowl-av_git.bb <http://libowl-av_git.bb>, do_build)
-> NOTE: Running noexec task 5592 of 5595 (ID: 1583, /home/vidal/POKY/build111613_zedboard/poky/meta/recipes-sato/gaku/gaku_git.bb <http://gaku_git.bb>, do_build)
-> NOTE: Running noexec task 5593 of 5595 (ID: 313, /home/vidal/POKY/build111613_zedboard/poky/meta/recipes-sato/packagegroups/packagegroup-core-x11-sato.bb
-> <http://packagegroup-core-x11-sato.bb>, do_build)
-> NOTE: Running task 5594 of 5595 (ID: 7, /home/vidal/POKY/build111613_zedboard/poky/meta/recipes-sato/images/core-image-sato.bb <http://core-image-sato.bb>, do_rootfs)
-> NOTE: recipe core-image-sato-1.0-r0: task do_rootfs: Started
-> NOTE: recipe core-image-sato-1.0-r0: task do_rootfs: Succeeded
-> NOTE: Running noexec task 5595 of 5595 (ID: 12, /home/vidal/POKY/build111613_zedboard/poky/meta/recipes-sato/images/core-image-sato.bb <http://core-image-sato.bb>, do_build)
-> NOTE: Tasks Summary: Attempted 5595 tasks of which 404 didn't need to be rerun and all succeeded.
->
-> busybox:
->    meta                 1.21.1
-> was used.
->
-> After adding these 2 lines to bblayers.conf
->    /home/vidal/POKY/build111613_zedboard/poky/meta-oe/meta-oe \
->    /home/vidal/POKY/build111613_zedboard/poky/meta-oe/meta-multimedia \
->
-> bitbake-layers show-layers
-> layer                 path                                      priority
-> ==========================================================================
-> meta                  /home/vidal/POKY/build111613_zedboard/poky/meta  5
-> meta-yocto            /home/vidal/POKY/build111613_zedboard/poky/meta-yocto  5
-> meta-oe               /home/vidal/POKY/build111613_zedboard/poky/meta-oe/meta-oe  6
-> meta-multimedia       /home/vidal/POKY/build111613_zedboard/poky/meta-oe/meta-multimedia  6
-> meta-xilinx           /home/vidal/POKY/build111613_zedboard/poky/meta-xilinx  8
-> meta-kc705            /home/vidal/POKY/build111613_zedboard/poky/meta-xilinx/meta-kc705  8
-> meta-zc702            /home/vidal/POKY/build111613_zedboard/poky/meta-xilinx/meta-zc702  8
-> meta-zedboard         /home/vidal/POKY/build111613_zedboard/poky/meta-xilinx/meta-zedboard  8
-> meta-yocto-bsp        /home/vidal/POKY/build111613_zedboard/poky/meta-yocto-bsp  5
-> [vidal@ws009 build]$ bitbake-layers show-recipes
-> Parsing recipes..ERROR: No recipes available for:
->    /home/vidal/POKY/build111613_zedboard/poky/meta-oe/meta-oe/recipes-core/busybox/busybox_1.20.2.bbappend
-> What is the procedure to us busybox_1.20.2 with the new layers?
-> Any and all help is appreciated.
-> Thanks
+Hi Robert,
 
-Refresh your meta-oe layer - this recipe has been updated to match oe-core.
+On Saturday 16 November 2013 04:46:13 Robert P. J. Day wrote:
+> On Fri, 15 Nov 2013, Burton, Ross wrote:
+> > On 15 November 2013 10:49, Robert P. J. Day <rpjday@crashcourse.ca> wrote:
+> > >   as you can see, the only tests for 'wifi' involve either
+> > > 
+> > > DISTRO_FEATURES or COMBINED_FEATURES, *not* MACHINE_FEATURES
+> > > individually. under the circumstances, then, can 'wifi' be
+> > > considered a legitimate MACHINE feature if it's never being tested
+> > > in that context? (the same can be said for 'bluetooth', by the
+> > > way.)
+> > 
+> > COMBINED_FEATURES is a union of MACHINE_ and DISTRO_FEATURES, so it
+> > does make sense for them to be listed as MACHINE_FEATURES as
+> > otherwise they can't be combined...  No point building wifi in the
+> > distro if the machine doesn't support it, and the machine supporting
+> > wifi isn't a reason to enable it in the distro.
+> 
+>   ok, let me take a shot at clarifying DISTRO_FEATURES versus
+> MACHINE_FEATURES since i think there might be some errors in how
+> things are being defined, but i'm always delighted to be proven wrong.
+> 
+>   first, MACHINE_FEATURES. as i read it (and how it's explained in
+> section 10.2 of the ref manual), this variable defines simply the
+> features for which there is hardware support for any given machine,
+> yes? the value of MACHINE_FEATURES says nothing about whether you
+> might want to *select* support for that particular feature, it simply
+> states the H/W features that are subsequently selectable, is that
+> about right?
+
+Yes.
+
+>   because of this, it would *seem* that there's little point in a user
+> manipulating the value of this variable outside of the context of an
+> actual machine definition file, yes? i mean, if you claim to be
+> building for machine "foo", the machine definition file for "foo"
+> should set MACHINE_FEATURES properly and that's what you get to work
+> with in terms of building your image. so far, so good?
+
+Correct.
+
+>   OTOH, the DISTRO_FEATURES variable allows you to dictate what
+> software support you want included in your image, yes? and here's
+> where you deal with two cases of selection.
+> 
+>   in the simpler case, you can select DISTRO features that are
+> independent of machine characteristics -- things like ipsec or nfs
+> or smbfs. the second case, however, is trickier. the second case deals
+> with selectable DISTRO features that require the underlying MACHINE
+> feature; otherwise, it wouldn't make any sense(?).
+
+Right.
+ 
+>   example (as before): bluetooth. it makes no sense to select a DISTRO
+> feature of bluetooth unless there is underlying hardware for it, and
+> that's where this snippet of bitbake.conf comes in:
+> 
+> COMBINED_FEATURES = "\
+>     ${@base_both_contain("DISTRO_FEATURES", "MACHINE_FEATURES", "alsa", d)}
+> \ ${@base_both_contain("DISTRO_FEATURES", "MACHINE_FEATURES", "bluetooth",
+> d)} \ ${@base_both_contain("DISTRO_FEATURES", "MACHINE_FEATURES", "ext2",
+> d)} \ ${@base_both_contain("DISTRO_FEATURES", "MACHINE_FEATURES", "vfat",
+> d)} \ ${@base_both_contain("DISTRO_FEATURES", "MACHINE_FEATURES", "irda",
+> d)} \ ${@base_both_contain("DISTRO_FEATURES", "MACHINE_FEATURES", "pcmcia",
+> d)} \ ${@base_both_contain("DISTRO_FEATURES", "MACHINE_FEATURES", "pci",
+> d)} \ ${@base_both_contain("DISTRO_FEATURES", "MACHINE_FEATURES",
+> "usbgadget", d)} \ ${@base_both_contain("DISTRO_FEATURES",
+> "MACHINE_FEATURES", "usbhost", d)} \
+> ${@base_both_contain("DISTRO_FEATURES", "MACHINE_FEATURES", "wifi", d)}"
+> COMBINED_FEATURES[vardeps] += "DISTRO_FEATURES MACHINE_FEATURES"
+> 
+> and that's the part i was missing before -- the fact that there is an
+> *explicit* list of features for which *both* selections need to be
+> true for it to make any sense. so the COMBINED feature of "bluetooth"
+> is based on it being both supported in hardware *and* selected as a
+> DISTRO feature. (so COMBINED_FEATURES is *not* simply a "union" of
+> those other two variables.) and here are some of the apparent
+> consequences and oddities i see.
+> 
+>   first, it would seem that any image definition shouldn't care about
+> the setting of MACHINE_FEATURES, should it? as i see it, an image
+> should consult only the values of DISTRO_FEATURES and
+> COMBINED_FEATURES to see what needs to be included. as ross himself
+> wrote:
+> 
+> "... the machine supporting wifi isn't a reason to enable it in the
+> distro."
+> 
+>   but if i look at, say, oe-core's packagegroup-base.bb recipe file, i
+> can see:
+> 
+> RDEPENDS_packagegroup-base = "\
+>     packagegroup-distro-base \
+>     packagegroup-machine-base \
+>     \
+>     sysfsutils \
+>     module-init-tools \
+>     ${@base_contains('MACHINE_FEATURES', 'apm', 'packagegroup-base-apm',
+> '',d)} \ ${@base_contains('MACHINE_FEATURES', 'acpi',
+> 'packagegroup-base-acpi', '',d)} \ ${@base_contains('MACHINE_FEATURES',
+> 'keyboard', 'packagegroup-base-keyboard', '',d)} \
+> ${@base_contains('MACHINE_FEATURES', 'phone', 'packagegroup-base-phone',
+> '',d)} \ ... snip ...
+> 
+> why are those features being included in the image if they are simply
+> defined in MACHINE_FEATURES? that just seems ... wrong somehow.
+
+I suspect rather than having a hard-and-fast rule that all features should be 
+accessed via COMBINED_FEATURES, the features that are accessible there have 
+been added on a case-by-case basis. This is probably sensible since not all 
+MACHINE_FEATURES should be optional - e.g. if your machine supports ACPI it's 
+unlikely that you'd want to opt out of the software that supports that, not in 
+packagegroup-base at least. I doubt that much active maintenance of the 
+COMBINED_FEATURES list has gone on since it was introduced, though.
+
+>   also, right below that in that same recipe file, we have the
+> explicit tests for the COMBINED_FEATURES:
+> 
+>     ${@base_contains('COMBINED_FEATURES', 'alsa', 'packagegroup-base-alsa',
+> '',d)} \ ${@base_contains('COMBINED_FEATURES', 'ext2',
+> 'packagegroup-base-ext2', '',d)} \ ${@base_contains('COMBINED_FEATURES',
+> 'vfat', 'packagegroup-base-vfat', '',d)} \
+> ${@base_contains('COMBINED_FEATURES', 'irda', 'packagegroup-base-irda',
+> '',d)} \ ${@base_contains('COMBINED_FEATURES', 'pci',
+> 'packagegroup-base-pci', '',d)} \ ${@base_contains('COMBINED_FEATURES',
+> 'pcmcia', 'packagegroup-base-pcmcia', '',d)} \
+> ${@base_contains('COMBINED_FEATURES', 'usbgadget',
+> 'packagegroup-base-usbgadget', '',d)} \
+> ${@base_contains('COMBINED_FEATURES', 'usbhost',
+> 'packagegroup-base-usbhost', '',d)} \ ${@base_contains('COMBINED_FEATURES',
+> 'bluetooth', 'packagegroup-base-bluetooth', '',d)} \
+> ${@base_contains('COMBINED_FEATURES', 'wifi', 'packagegroup-base-wifi',
+> '',d)} \ ${@base_contains('COMBINED_FEATURES', '3g',
+> 'packagegroup-base-3g', '',d)} \ ${@base_contains('COMBINED_FEATURES',
+> 'nfc', 'packagegroup-base-nfc', '',d)} \
+> 
+> but if you look in oe-core's bitbake.conf file, you see:
+> 
+> COMBINED_FEATURES = "\
+>     ${@base_both_contain("DISTRO_FEATURES", "MACHINE_FEATURES", "alsa", d)}
+> \ ${@base_both_contain("DISTRO_FEATURES", "MACHINE_FEATURES", "bluetooth",
+> d)} \ ${@base_both_contain("DISTRO_FEATURES", "MACHINE_FEATURES", "ext2",
+> d)} \ ${@base_both_contain("DISTRO_FEATURES", "MACHINE_FEATURES", "vfat",
+> d)} \ ${@base_both_contain("DISTRO_FEATURES", "MACHINE_FEATURES", "irda",
+> d)} \ ${@base_both_contain("DISTRO_FEATURES", "MACHINE_FEATURES", "pcmcia",
+> d)} \ ${@base_both_contain("DISTRO_FEATURES", "MACHINE_FEATURES", "pci",
+> d)} \ ${@base_both_contain("DISTRO_FEATURES", "MACHINE_FEATURES",
+> "usbgadget", d)} \ ${@base_both_contain("DISTRO_FEATURES",
+> "MACHINE_FEATURES", "usbhost", d)} \
+> ${@base_both_contain("DISTRO_FEATURES", "MACHINE_FEATURES", "wifi", d)}"
+> 
+> there are no entries for either "3g" or "nfc", which seems
+> inconsistent.
+> 
+>   oh, gack, i just read further down in packagegroup-base.bb where i
+> can see explicit tests for things like:
+> 
+>   if "3g" in distro_features and not "3g" in machine_features ...
+> 
+> *sigh*.  apparently, i have more reading to do. all of this has the
+> potential for confusion.
+
+I agree. Patches welcome...
+
+Cheers,
+Paul
 
 -- 
-------------------------------------------------------------
-Gary Thomas                 |  Consulting for the
-MLB Associates              |    Embedded world
-------------------------------------------------------------
+
+Paul Eggleton
+Intel Open Source Technology Centre
 
