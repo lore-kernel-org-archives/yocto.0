@@ -1,35 +1,27 @@
-Return-Path: <rpjday@crashcourse.ca>
-Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
-	[64.235.106.9])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F361FE00530
-	for <yocto@yoctoproject.org>; Mon, 18 Nov 2013 03:23:48 -0800 (PST)
-Received: from [69.196.158.250] (port=48814 helo=crashcourse.ca)
-	by astoria.ccjclearline.com with esmtpsa (TLSv1:DHE-RSA-AES256-SHA:256)
-	(Exim 4.80) (envelope-from <rpjday@crashcourse.ca>)
-	id 1ViMvh-0007Gn-W1; Mon, 18 Nov 2013 06:23:46 -0500
-Date: Mon, 18 Nov 2013 06:23:43 -0500 (EST)
-From: "Robert P. J. Day" <rpjday@crashcourse.ca>
-X-X-Sender: rpjday@oneiric
-To: Paul Eggleton <paul.eggleton@linux.intel.com>
-In-Reply-To: <3439049.gDsLHNyZCo@helios>
-Message-ID: <alpine.DEB.2.02.1311180616510.4910@oneiric>
-References: <alpine.DEB.2.02.1311170415270.16236@oneiric>
-	<CABcZANkx+EgeVp2h-enLxSZGh7XV1607fRdVFidoJhkRnqbnjA@mail.gmail.com>
-	<alpine.DEB.2.02.1311171105010.23270@oneiric>
-	<3439049.gDsLHNyZCo@helios>
-User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
+Return-Path: <gary@mlbassoc.com>
+Received: from mail.chez-thomas.org (mail.mlbassoc.com [65.100.170.105])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D9026E002AC
+	for <yocto@yoctoproject.org>; Mon, 18 Nov 2013 03:51:13 -0800 (PST)
+Received: by mail.chez-thomas.org (Postfix, from userid 1998)
+	id 5A872F811E8; Mon, 18 Nov 2013 04:51:13 -0700 (MST)
+X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on
+	hermes.chez-thomas.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=4.0 tests=ALL_TRUSTED,BAYES_00
+	autolearn=unavailable version=3.3.2
+Received: from [192.168.1.114] (zeus [192.168.1.114])
+	by mail.chez-thomas.org (Postfix) with ESMTP id 43166F811E7;
+	Mon, 18 Nov 2013 04:51:12 -0700 (MST)
+Message-ID: <5289FF3A.7020600@mlbassoc.com>
+Date: Mon, 18 Nov 2013 04:51:22 -0700
+From: Gary Thomas <gary@mlbassoc.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:24.0) Gecko/20100101 Thunderbird/24.1.0
 MIME-Version: 1.0
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - crashcourse.ca
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-Cc: yocto@yoctoproject.org, Chris Larson <clarson@kergoth.com>
-Subject: Re: why is "package-management" defined as a PACKAGE_GROUP?
+To: yocto@yoctoproject.org
+References: <CANwz6nykaRgLf+4TUDUe3WGpfPpn35d-kO2O5XidzM5nYquQpg@mail.gmail.com>
+In-Reply-To: <CANwz6nykaRgLf+4TUDUe3WGpfPpn35d-kO2O5XidzM5nYquQpg@mail.gmail.com>
+Subject: Re: wrong version of busybox after adding new layers.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,67 +33,78 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 18 Nov 2013 11:23:50 -0000
-Content-Type: MULTIPART/MIXED; BOUNDARY="8323329-153870013-1384773825=:4910"
+X-List-Received-Date: Mon, 18 Nov 2013 11:51:18 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
 
---8323329-153870013-1384773825=:4910
-Content-Type: TEXT/PLAIN; charset=utf-8
-Content-Transfer-Encoding: 8BIT
-
-On Mon, 18 Nov 2013, Paul Eggleton wrote:
-
-> Hi Robert,
+On 2013-11-17 17:17, Edward Vidal wrote:
+> Hello,
+> MACHINE=zedboard bitbake core-image-sato builds okay.
 >
-> On Sunday 17 November 2013 11:17:13 Robert P. J. Day wrote:
-> > On Sun, 17 Nov 2013, Chris Larson wrote:
-> >
-> > ... huge snip that i hope won't be necessary ...
-> >
-> > > This test you did makes no sense. Of course it’s in IMAGE_FEATURES,
-> > > you put it there. What you didn’t check is whether
-> > > ${ROOTFS_PKGMANAGE} ended up being installed in the image, which it
-> > > won’t be.
-> >
-> >   i think i see my basic and fatal misunderstanding, and if you can
-> > tolerate one more post, i want to make sure i know what i did wrong as
-> > i want to write this up and i want to be accurate.
-> >
-> >   as i understood it (apparently incorrectly), IMAGE_FEATURES fell
-> > into two categories:
-> >
-> >   1) actual package groups, as defined in core-image.bbclass, as in:
-> >
-> > PACKAGE_GROUP_x11 = "packagegroup-core-x11"
-> > PACKAGE_GROUP_x11-base = "packagegroup-core-x11-base"
-> > PACKAGE_GROUP_x11-sato = "packagegroup-core-x11-sato"
+> Build Configuration:
+> BB_VERSION        = "1.19.1"
+> BUILD_SYS         = "x86_64-linux"
+> NATIVELSBSTRING   = "Fedora-18"
+> TARGET_SYS        = "arm-poky-linux-gnueabi"
+> MACHINE           = "zedboard"
+> DISTRO            = "poky"
+> DISTRO_VERSION    = "1.4+snapshot-20131117"
+> TUNE_FEATURES     = " armv7a vfp neon zynq"
+> TARGET_FPU        = "vfp-neon"
+> meta
+> meta-yocto        = "wkg:3dee534f1e25109e0bdb681de0746c336f4b8840"
+> meta-xilinx
+> meta-kc705
+> meta-zc702
+> meta-zedboard     = "wkg:46f4c79d6d55b556a90bb0fd89c2c09acf2aebff"
+> meta-yocto-bsp    = "wkg:3dee534f1e25109e0bdb681de0746c336f4b8840"
 >
-> As I keep saying, these aren't package groups despite the name of
-> the variable. Please stop calling them that. All they say is that if
-> "x11" is present in IMAGE_FEATURES, bring in packagegroup-core-x11.
-> The fact that these *do* point to actual package groups as packages
-> is pretty much incidental.
+> NOTE: Running noexec task 5589 of 5595 (ID: 3428, /home/vidal/POKY/build111613_zedboard/poky/meta/recipes-multimedia/gstreamer/gst-meta-base_0.10.bb <http://gst-meta-base_0.10.bb>,
+> do_build)
+> NOTE: Running noexec task 5590 of 5595 (ID: 3103, /home/vidal/POKY/build111613_zedboard/poky/meta/recipes-multimedia/gstreamer/gst-plugins-good_0.10.31.bb
+> <http://gst-plugins-good_0.10.31.bb>, do_build)
+> NOTE: Running noexec task 5591 of 5595 (ID: 2804, /home/vidal/POKY/build111613_zedboard/poky/meta/recipes-sato/owl-video-widget/libowl-av_git.bb <http://libowl-av_git.bb>, do_build)
+> NOTE: Running noexec task 5592 of 5595 (ID: 1583, /home/vidal/POKY/build111613_zedboard/poky/meta/recipes-sato/gaku/gaku_git.bb <http://gaku_git.bb>, do_build)
+> NOTE: Running noexec task 5593 of 5595 (ID: 313, /home/vidal/POKY/build111613_zedboard/poky/meta/recipes-sato/packagegroups/packagegroup-core-x11-sato.bb
+> <http://packagegroup-core-x11-sato.bb>, do_build)
+> NOTE: Running task 5594 of 5595 (ID: 7, /home/vidal/POKY/build111613_zedboard/poky/meta/recipes-sato/images/core-image-sato.bb <http://core-image-sato.bb>, do_rootfs)
+> NOTE: recipe core-image-sato-1.0-r0: task do_rootfs: Started
+> NOTE: recipe core-image-sato-1.0-r0: task do_rootfs: Succeeded
+> NOTE: Running noexec task 5595 of 5595 (ID: 12, /home/vidal/POKY/build111613_zedboard/poky/meta/recipes-sato/images/core-image-sato.bb <http://core-image-sato.bb>, do_build)
+> NOTE: Tasks Summary: Attempted 5595 tasks of which 404 didn't need to be rerun and all succeeded.
+>
+> busybox:
+>    meta                 1.21.1
+> was used.
+>
+> After adding these 2 lines to bblayers.conf
+>    /home/vidal/POKY/build111613_zedboard/poky/meta-oe/meta-oe \
+>    /home/vidal/POKY/build111613_zedboard/poky/meta-oe/meta-multimedia \
+>
+> bitbake-layers show-layers
+> layer                 path                                      priority
+> ==========================================================================
+> meta                  /home/vidal/POKY/build111613_zedboard/poky/meta  5
+> meta-yocto            /home/vidal/POKY/build111613_zedboard/poky/meta-yocto  5
+> meta-oe               /home/vidal/POKY/build111613_zedboard/poky/meta-oe/meta-oe  6
+> meta-multimedia       /home/vidal/POKY/build111613_zedboard/poky/meta-oe/meta-multimedia  6
+> meta-xilinx           /home/vidal/POKY/build111613_zedboard/poky/meta-xilinx  8
+> meta-kc705            /home/vidal/POKY/build111613_zedboard/poky/meta-xilinx/meta-kc705  8
+> meta-zc702            /home/vidal/POKY/build111613_zedboard/poky/meta-xilinx/meta-zc702  8
+> meta-zedboard         /home/vidal/POKY/build111613_zedboard/poky/meta-xilinx/meta-zedboard  8
+> meta-yocto-bsp        /home/vidal/POKY/build111613_zedboard/poky/meta-yocto-bsp  5
+> [vidal@ws009 build]$ bitbake-layers show-recipes
+> Parsing recipes..ERROR: No recipes available for:
+>    /home/vidal/POKY/build111613_zedboard/poky/meta-oe/meta-oe/recipes-core/busybox/busybox_1.20.2.bbappend
+> What is the procedure to us busybox_1.20.2 with the new layers?
+> Any and all help is appreciated.
+> Thanks
 
-  yes, i think i finally figured it out, and it was that variable name
-prefix "PACKAGE_GROUP" that kept throwing me. in fact, it might have
-been clearer if the terminology used had been:
-
-IMAGE_FEATURE_x11 = "... package list for feature x11 ..."
-IMAGE_FEATURE_x11-base = "... package list for feature x11-base ..."
-
-etc, etc. so it's finally sunk in that, no, there's nothing magic
-about a "packagegroup", it's just a way of abbreviating a package list
-corresponding to a value in IMAGE_FEATURES.
-
-rday
+Refresh your meta-oe layer - this recipe has been updated to match oe-core.
 
 -- 
+------------------------------------------------------------
+Gary Thomas                 |  Consulting for the
+MLB Associates              |    Embedded world
+------------------------------------------------------------
 
-========================================================================
-Robert P. J. Day                                 Ottawa, Ontario, CANADA
-                        http://crashcourse.ca
-
-Twitter:                                       http://twitter.com/rpjday
-LinkedIn:                               http://ca.linkedin.com/in/rpjday
-========================================================================
-
---8323329-153870013-1384773825=:4910--
