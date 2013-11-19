@@ -1,35 +1,26 @@
-Return-Path: <sbabic@denx.de>
-Received: from mail-out.m-online.net (mail-out.m-online.net [212.18.0.10])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 82185E00510
-	for <yocto@yoctoproject.org>; Tue, 19 Nov 2013 04:10:23 -0800 (PST)
-Received: from frontend1.mail.m-online.net (frontend1.mail.intern.m-online.net
-	[192.168.8.180])
-	by mail-out.m-online.net (Postfix) with ESMTP id 3dP5T928J0z3hj8q;
-	Tue, 19 Nov 2013 13:10:21 +0100 (CET)
-Received: from localhost (dynscan1.mnet-online.de [192.168.6.68])
-	by mail.m-online.net (Postfix) with ESMTP id 3dP5T91wqLzbbfr;
-	Tue, 19 Nov 2013 13:10:21 +0100 (CET)
-X-Virus-Scanned: amavisd-new at mnet-online.de
-Received: from mail.mnet-online.de ([192.168.8.180])
-	by localhost (dynscan1.mail.m-online.net [192.168.6.68]) (amavisd-new,
-	port 10024)
-	with ESMTP id ZYznhwoy_DTU; Tue, 19 Nov 2013 13:10:17 +0100 (CET)
-X-Auth-Info: r/9IY8CdzaiimlAR+1NhY3STkHuE5VIfgTA8WwztDwI=
-Received: from [192.168.2.247] (88-149-182-160.v4.ngi.it [88.149.182.160])
-	by smtp-auth.mnet-online.de (Postfix) with ESMTPA;
-	Tue, 19 Nov 2013 13:10:17 +0100 (CET)
-Message-ID: <528B5529.5090807@denx.de>
-Date: Tue, 19 Nov 2013 13:10:17 +0100
-From: Stefano Babic <sbabic@denx.de>
+Return-Path: <Bruce.Ashfield@windriver.com>
+Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7CE56E00510
+	for <yocto@yoctoproject.org>; Tue, 19 Nov 2013 05:29:41 -0800 (PST)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
+	[147.11.189.40])
+	by mail1.windriver.com (8.14.5/8.14.5) with ESMTP id rAJDTZ4f009507
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
+	Tue, 19 Nov 2013 05:29:36 -0800 (PST)
+Received: from [128.224.146.67] (128.224.146.67) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server id 14.2.347.0;
+	Tue, 19 Nov 2013 05:29:35 -0800
+Message-ID: <528B67B9.8030505@windriver.com>
+Date: Tue, 19 Nov 2013 08:29:29 -0500
+From: Bruce Ashfield <bruce.ashfield@windriver.com>
 User-Agent: Mozilla/5.0 (X11; Linux x86_64;
 	rv:24.0) Gecko/20100101 Thunderbird/24.1.0
 MIME-Version: 1.0
-To: Jack <lemonjack05@gmail.com>, yocto@yoctoproject.org
-References: <loom.20131116T135512-692@post.gmane.org>	<528B27C0.5060901@denx.de>	<loom.20131119T105032-516@post.gmane.org>	<528B390E.4000401@denx.de>
-	<loom.20131119T121506-919@post.gmane.org>
-In-Reply-To: <loom.20131119T121506-919@post.gmane.org>
-X-Enigmail-Version: 1.5.2
-Subject: Re: How to modify u-boot in Root File System rootfs.ext2.gz.u-boot ?
+To: Zhenhua Luo <zhenhua.luo@freescale.com>, <yocto@yoctoproject.org>
+References: <1384856869-10658-1-git-send-email-zhenhua.luo@freescale.com>
+In-Reply-To: <1384856869-10658-1-git-send-email-zhenhua.luo@freescale.com>
+Cc: b40290@freescale.com, b40527@freescale.com
+Subject: Re: [meta-cloud-services][PATCH] erlang: skip the host library path check to fix cross-compile issue
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,54 +32,82 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 19 Nov 2013 12:10:24 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Tue, 19 Nov 2013 13:29:42 -0000
+Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
 Content-Transfer-Encoding: 7bit
 
-Hi Jack,
+Thanks for the patch!
 
-On 19/11/2013 12:25, Jack wrote:
+A couple of requests.
 
-> For Nor-Flash we have only three files(kernel,rootfs,dtb). Where is u-boot?
-> I think it is inside the fsl-image-minimal-p1022ds.ext2.gz.u-boot rootfs
-> file. Is it true? 
+Can you list the compile issue here ? i.e. just a bit of the error
+message showing it clearly. Someone else searching for a problem will
+find it very useful!
 
-I do not think so, but you are the best to answer this question: unzip
-the file and check inside.
+On 13-11-19 05:27 AM, Zhenhua Luo wrote:
+> Signed-off-by: Zhenhua Luo <zhenhua.luo@freescale.com>
+> ---
+>   .../erlang/erlang-fix-build-issue-in-Yocto.patch   | 25 ++++++++++++++++++++++
+>   .../recipes-devtools/erlang/erlang_R15B.bb         |  2 ++
+>   2 files changed, 27 insertions(+)
+>   create mode 100644 meta-openstack/recipes-devtools/erlang/erlang/erlang-fix-build-issue-in-Yocto.patch
+>
+> diff --git a/meta-openstack/recipes-devtools/erlang/erlang/erlang-fix-build-issue-in-Yocto.patch b/meta-openstack/recipes-devtools/erlang/erlang/erlang-fix-build-issue-in-Yocto.patch
+> new file mode 100644
+> index 0000000..2d4b7b5
+> --- /dev/null
+> +++ b/meta-openstack/recipes-devtools/erlang/erlang/erlang-fix-build-issue-in-Yocto.patch
+> @@ -0,0 +1,25 @@
+> +Upstream-Status: Inappropriate [The fix is specific to Yocto build env]
+> +
+> +Skip host library path check to fix following Yocto insane check issue:
+> +ERROR: This autoconf log indicates errors, it looked at host include and/or library paths while determining system capabilities.
+> +Rerun configure task after fixing this.
+> +
+> +Signed-off-by: Zhenhua Luo <zhenhua.luo@freescale.com>
+> +
+> +--- otp_src_R15B/erts/configure.in.orig	2011-12-14 04:22:11.000000000 -0600
+> ++++ otp_src_R15B/erts/configure.in	2013-11-19 04:15:33.694334610 -0600
+> +@@ -1469,10 +1469,10 @@
+> + 	# ln -s libdlpi.so.1 $try_dlpi_lib/libdlpi.so
+> + 	])
+> +    fi
+> +-   LDFLAGS="-L$try_dlpi_lib -R$try_dlpi_lib $LDFLAGS"
+> +-   unset -v try_dlpi_lib
+> +-   AC_MSG_NOTICE([Extending the search to include /lib])
+> +-   AC_CHECK_LIB(dlpi, dlpi_open)
+> ++#   LDFLAGS="-L$try_dlpi_lib -R$try_dlpi_lib $LDFLAGS"
+> ++#   unset -v try_dlpi_lib
+> ++#   AC_MSG_NOTICE([Extending the search to include /lib])
+> ++#   AC_CHECK_LIB(dlpi, dlpi_open)
+> +    if test x"$ac_cv_lib_dlpi_dlpi_open" = x"no"; then
+> +       LDFLAGS="$save_ldflags"
+> +    fi
+> diff --git a/meta-openstack/recipes-devtools/erlang/erlang_R15B.bb b/meta-openstack/recipes-devtools/erlang/erlang_R15B.bb
+> index 68d144b..8d8e28b 100644
+> --- a/meta-openstack/recipes-devtools/erlang/erlang_R15B.bb
+> +++ b/meta-openstack/recipes-devtools/erlang/erlang_R15B.bb
+> @@ -9,6 +9,7 @@ EXTRA_OEMAKE = "BUILD_CC='${BUILD_CC}'"
+>
+>   EXTRA_OECONF = "--with-ssl=${STAGING_DIR_HOST}${layout_exec_prefix}"
+>
+> +EXTRA_OECONF_append_powerpc = " --disable-smp-support --disable-hipe"
 
-However, even if it contains a u-boot.bin or whatever is your u-boot
-file, you have to extract it to write the bootloader at the right address.
+This should be a separate patch. Can you split the commit and send
+this as a two part series ?
 
-In most cases, you will see a separate image for u-boot in
-tmp/deploy/images diurectory.
+Bruce
 
-> 
-> So, for modifying u-boot to adujst serial boaudrate,
+>   EXTRA_OECONF_append_arm = " --disable-smp-support --disable-hipe"
+>   EXTRA_OECONF_append_armeb = " --disable-smp-support --disable-hipe"
+>   EXTRA_OECONF_append_mipsel = " --disable-smp-support --disable-hipe"
+> @@ -55,5 +56,6 @@ FILES_${PN}-staticdev += "${libdir}/*/*/*/*.a ${libdir}/*/*/*/*/*.a ${libdir}/*/
+>
+>   FILES_${PN}-libs-dbg += " ${libdir}/erlang/*/.debug ${libdir}/erlang/*/*/.debug ${libdir}/erlang/*/*/*/.debug ${libdir}/erlang/*/*/*/*/.debug ${libdir}/erlang/*/*/*/*/*/.debug "
+>
+> +SRC_URI += "file://erlang-fix-build-issue-in-Yocto.patch"
+>   SRC_URI[md5sum] = "dd6c2a4807551b4a8a536067bde31d73"
+>   SRC_URI[sha256sum] = "5bc34fc34fc890f84bae7ff1f7c81fbec2c9aa28a0ef51a57d7a8192204d8aa2"
+>
 
-No. To modify the serial console under linux.
-
-> I understand that I can
-> add SERIAL_CONSOLE = "115200 ttyS0" to my local.conf according to your reply
-
-See Robert reply. SERIAL_CONSOLE is deprecated, uses SERIAL_CONSOLES
-instead.
-
-> and it doesnt need to modify u-boot source code.
-> 
-> Am I in the right place?
-
-Mmmhh..there is something missing. Usually you have a separate file for
-u-boot. Of course, if u-boot is part of the filesystem, you cannot use
-for a first installation because u-boot must be copied at a specific
-address.
-
-Best regards,
-Stefano Babic
-
--- 
-=====================================================================
-DENX Software Engineering GmbH,     MD: Wolfgang Denk & Detlev Zundel
-HRB 165235 Munich, Office: Kirchenstr.5, D-82194 Groebenzell, Germany
-Phone: +49-8142-66989-53 Fax: +49-8142-66989-80 Email: sbabic@denx.de
-=====================================================================
 
