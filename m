@@ -1,33 +1,28 @@
-Return-Path: <elizabeth.flanagan@intel.com>
-Received: from mail-ve0-f169.google.com (mail-ve0-f169.google.com
-	[209.85.128.169])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 93ED2E0053F
-	for <yocto@yoctoproject.org>; Tue, 19 Nov 2013 11:32:24 -0800 (PST)
-Received: by mail-ve0-f169.google.com with SMTP id pa12so6533728veb.14
-	for <yocto@yoctoproject.org>; Tue, 19 Nov 2013 11:32:24 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:date:message-id:subject:from:to
-	:content-type;
-	bh=KEOLBeS/40h/Bdw6NY9/WBNWMtxpGRVbzOHhiBtPOyU=;
-	b=QzPBo/spHxw/ARNxJOvm02okreeBCs27Upy+BiV+NJrgrsi4FRp9CTDa4sYVBaA5S6
-	HYtOtDBXlSKqTpD8Yb5DlhwYhmVKHMaji2Ge4aoNNDk60ZIuUhFOrMQS9yRsLHnLHtlg
-	MiTHspTzFvRS9fcdOIWBVVZzQNUtHGx8XQERLnSaAtnH3eD6kG6Srv+D9HR7o9weuzn8
-	EvxUDVNq7CccUcunGmpaOsUV/xLJyXTyegoBOeav5Y93U2fkc/w8kscReM5mn/7VaMZC
-	sgVx3gK4fPxvQzvsSeA+hRG/W8P1mDVgPvzMPU379uaszBbM/5eLZtPlMQOz8pS8dUFM
-	hcnQ==
-X-Gm-Message-State: ALoCoQl+qgN2RW8y5tV6WHWFntzPZaUtZrMqDqzE0Bfq719UxpSyqHfWzcr6ER7pObxV2+Hq0CTs
+Return-Path: <bmentink@gmail.com>
+Received: from mail-pd0-f176.google.com (mail-pd0-f176.google.com
+	[209.85.192.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 75B15E00507
+	for <yocto@yoctoproject.org>; Tue, 19 Nov 2013 12:52:39 -0800 (PST)
+Received: by mail-pd0-f176.google.com with SMTP id w10so6464624pde.21
+	for <yocto@yoctoproject.org>; Tue, 19 Nov 2013 12:52:39 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=guKTR22aDm0QQ6xDzp3bYnRN2m4M5W85ntntmxihU58=;
+	b=DcjZLqzP0riXKWAg1D4PfE5ZDbVLh3z+RloxuXsbugnoUlL4YfpUpZBsfcK9ZeEqVn
+	Crq001zRZXoigyWc28cljP4tY6kGtYw2cA+zaaVfFGUjeeRbclrzKCtqo90IS50y+SCp
+	QOQyncz+aE2tTi4Ej3rgfuT3I1zXPcIBvajEeX1Su5jmYipS2a9875m9emZ6Ig3EZCk5
+	DShUqdz6hRk5KMy0FFhLmLmuG5ZrF2fQ1MbwYMN1TGPNanS/c+oEKkhxmVT2LWlQW+Qz
+	O0zByuxBhi6LyNk2qBxRyhoscH2VelH63X83zYCsC58z/6ka585s4SXZXKDYtwdIFYhl
+	5fKg==
 MIME-Version: 1.0
-X-Received: by 10.52.120.78 with SMTP id la14mr19317561vdb.9.1384889544308;
-	Tue, 19 Nov 2013 11:32:24 -0800 (PST)
-Received: by 10.52.161.7 with HTTP; Tue, 19 Nov 2013 11:32:24 -0800 (PST)
-Date: Tue, 19 Nov 2013 19:32:24 +0000
-Message-ID: <CAPhnLPDG4BJTrPw127B84igkEu+PnHpMnNgiJRqQQp6-Jb6H_g@mail.gmail.com>
-From: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>, 
-	Alexandru C Georgescu <alexandru.c.georgescu@intel.com>,
-	Zhao Yi <yi.zhao@windriver.com>, Otavio Salvador <otavio@ossystems.com.br>
-Subject: Weekly build availability
+X-Received: by 10.68.106.98 with SMTP id gt2mr20467384pbb.61.1384894359231;
+	Tue, 19 Nov 2013 12:52:39 -0800 (PST)
+Received: by 10.70.44.231 with HTTP; Tue, 19 Nov 2013 12:52:39 -0800 (PST)
+Date: Wed, 20 Nov 2013 09:52:39 +1300
+Message-ID: <CALEed8ZZ2dT7sZ+hd=DLzEAhXm9LK_RWsWgVZApc-7KimfqKKg@mail.gmail.com>
+From: Bernard Mentink <bmentink@gmail.com>
+To: yocto@yoctoproject.org
+Subject: connman
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,32 +34,37 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 19 Nov 2013 19:32:25 -0000
+X-List-Received-Date: Tue, 19 Nov 2013 20:52:40 -0000
+Content-Type: multipart/alternative; boundary=047d7b6d933e55643304eb8dd897
+
+--047d7b6d933e55643304eb8dd897
 Content-Type: text/plain; charset=ISO-8859-1
 
-All,
+Hi All,
 
-The next weekly build will be available in a few hours at:
+Can anyone help with wifi not being enabled with connman?
 
-http://autobuilder.yoctoproject.org/pub/nightly/20131119-7
+I have to use "ifup wlan0" to start my wifi interface, connman refuses to
+bring it up on start, even though I have the ethernet cable un-plugged.
 
-poky     215dab864e7cf74394840621ad0754db593708f1
-bitbake     a66ee0994645aa5658b2f5ea134ed17d89f8751a
-eclipse-poky-juno     7b50b0cee840092b4a575c239ddf11ba50d78327
-eclipse-poky-kepler     84c1361ee96b781666a23f068244d4f1252be712
-meta-fsl-arm     987115d6d099a5e87d9d5b3c4e6567a5e6309fd0
-meta-fsl-ppc     768c6ef13546e0f977847bc1fbb5957571fbf724
-meta-intel     f5c2786e7ca190308523379706130e0c2be793c9
-meta-minnow     91cff9475081a5625c1c0bb49c17c6f3130ec503
-meta-qt3     b73552fb998fd30a01dbee5a172e432a16078222
-oecore     0eb947454e1c92467283e6f1adeca67c7c57698b
+I have enabled wifi in the settings file and have a wifi.conf that is used
+because when I manually bring it up, it connects to the network specified
+in there.
 
-Please begin scheduled testing when it completes.
+Thanks,
+Bernie
 
--b
+--047d7b6d933e55643304eb8dd897
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
 
--- 
-Elizabeth Flanagan
-Yocto Project
-Build and Release
+<div dir=3D"ltr">Hi All,<div><br></div><div>Can anyone help with wifi not b=
+eing enabled with connman?</div><div><br></div><div>I have to use &quot;ifu=
+p wlan0&quot; to start my wifi interface, connman refuses to bring it up on=
+ start, even though I have the ethernet cable un-plugged.</div>
+<div><br></div><div>I have enabled wifi in the settings file and have a wif=
+i.conf that is used because when I manually bring it up, it connects to the=
+ network specified in there.</div><div><br></div><div>Thanks,</div><div>
+Bernie</div></div>
 
+--047d7b6d933e55643304eb8dd897--
