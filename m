@@ -1,29 +1,33 @@
-Return-Path: <gley-yocto@m.gmane.org>
-Received: from plane.gmane.org (plane.gmane.org [80.91.229.3])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 29BD1E002AC
-	for <yocto@yoctoproject.org>; Mon, 18 Nov 2013 23:33:00 -0800 (PST)
-Received: from list by plane.gmane.org with local (Exim 4.69)
-	(envelope-from <gley-yocto@m.gmane.org>) id 1Vifnr-0003qZ-QN
-	for yocto@yoctoproject.org; Tue, 19 Nov 2013 08:32:55 +0100
-Received: from 78.157.37.205 ([78.157.37.205])
-	by main.gmane.org with esmtp (Gmexim 0.1 (Debian))
-	id 1AlnuQ-0007hv-00
-	for <yocto@yoctoproject.org>; Tue, 19 Nov 2013 08:32:55 +0100
-Received: from lemonjack05 by 78.157.37.205 with local (Gmexim 0.1 (Debian))
-	id 1AlnuQ-0007hv-00
-	for <yocto@yoctoproject.org>; Tue, 19 Nov 2013 08:32:55 +0100
-X-Injected-Via-Gmane: http://gmane.org/
-To: yocto@yoctoproject.org
-From: Jack Lemon <lemonjack05@gmail.com>
-Date: Tue, 19 Nov 2013 07:32:32 +0000 (UTC)
-Message-ID: <loom.20131119T082953-519@post.gmane.org>
+Return-Path: <sbabic@denx.de>
+Received: from mail-out.m-online.net (mail-out.m-online.net [212.18.0.10])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EFFE3E002AC
+	for <yocto@yoctoproject.org>; Tue, 19 Nov 2013 00:56:36 -0800 (PST)
+Received: from frontend1.mail.m-online.net (frontend1.mail.intern.m-online.net
+	[192.168.8.180])
+	by mail-out.m-online.net (Postfix) with ESMTP id 3dP19Z2kJ1z3hj1C;
+	Tue, 19 Nov 2013 09:56:34 +0100 (CET)
+Received: from localhost (dynscan1.mnet-online.de [192.168.6.68])
+	by mail.m-online.net (Postfix) with ESMTP id 3dP19Z2WC5zbbgf;
+	Tue, 19 Nov 2013 09:56:34 +0100 (CET)
+X-Virus-Scanned: amavisd-new at mnet-online.de
+Received: from mail.mnet-online.de ([192.168.8.180])
+	by localhost (dynscan1.mail.m-online.net [192.168.6.68]) (amavisd-new,
+	port 10024)
+	with ESMTP id l9fLD_A-SxDU; Tue, 19 Nov 2013 09:56:33 +0100 (CET)
+X-Auth-Info: 2goKtUOufnZKNUko19OLZVjxeMZybP+1zOVTUHP2OOY=
+Received: from [192.168.2.247] (88-149-182-160.v4.ngi.it [88.149.182.160])
+	by smtp-auth.mnet-online.de (Postfix) with ESMTPA;
+	Tue, 19 Nov 2013 09:56:32 +0100 (CET)
+Message-ID: <528B27C0.5060901@denx.de>
+Date: Tue, 19 Nov 2013 09:56:32 +0100
+From: Stefano Babic <sbabic@denx.de>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:24.0) Gecko/20100101 Thunderbird/24.1.0
+MIME-Version: 1.0
+To: Jack lemon <lemonjack05@gmail.com>, yocto@yoctoproject.org
 References: <loom.20131116T135512-692@post.gmane.org>
-Mime-Version: 1.0
-X-Complaints-To: usenet@ger.gmane.org
-X-Gmane-NNTP-Posting-Host: sea.gmane.org
-User-Agent: Loom/3.14 (http://gmane.org/)
-X-Loom-IP: 78.157.37.205 (Mozilla/5.0 (Windows NT 5.1;
-	rv:25.0) Gecko/20100101 Firefox/25.0)
+In-Reply-To: <loom.20131116T135512-692@post.gmane.org>
+X-Enigmail-Version: 1.5.2
 Subject: Re: How to modify u-boot in Root File System rootfs.ext2.gz.u-boot ?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -36,11 +40,31 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 19 Nov 2013 07:33:02 -0000
-Content-Type: text/plain; charset=us-ascii
+X-List-Received-Date: Tue, 19 Nov 2013 08:56:42 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 Content-Transfer-Encoding: 7bit
 
-It wasn't any help??!! really??!!
+On 16/11/2013 16:24, Jack lemon wrote:
+> Hi everybody,
+> 
+> I worked with P1022DS-PB and then designed my custom board according to its
+> documents. For sd card I adjust u-boot to 115200 baud rate and compile it
+> with ELDK independently. However in Nor-flash we haven't u-boot.bin
+> independently. For Nor-Flash I need to adjust baud rate in .ext2.gz.u-boot
+> image, because for Nor-Flash only kernel,rootfs,dtb files are needed.
+> How can I modify u-boot in fsl-image-minimal-p1022ds.ext2.gz.u-boot for
+> adjusting baud rate to 115200?
 
+Is it not enough to add SERIAL_CONSOLE = "115200 ttyS0" (or which serial
+you use as console) to your machine conf ?
 
+Best regards,
+Stefano Babic
+
+-- 
+=====================================================================
+DENX Software Engineering GmbH,     MD: Wolfgang Denk & Detlev Zundel
+HRB 165235 Munich, Office: Kirchenstr.5, D-82194 Groebenzell, Germany
+Phone: +49-8142-66989-53 Fax: +49-8142-66989-80 Email: sbabic@denx.de
+=====================================================================
 
