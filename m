@@ -1,33 +1,31 @@
-Return-Path: <rpjday@crashcourse.ca>
-Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
-	[64.235.106.9])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A5A2EE004E5
-	for <yocto@yoctoproject.org>; Tue, 19 Nov 2013 02:13:41 -0800 (PST)
-Received: from [173.34.6.101] (port=36768 helo=crashcourse.ca)
-	by astoria.ccjclearline.com with esmtpsa (TLSv1:DHE-RSA-AES256-SHA:256)
-	(Exim 4.80) (envelope-from <rpjday@crashcourse.ca>)
-	id 1ViiJQ-0003tR-G5; Tue, 19 Nov 2013 05:13:40 -0500
-Date: Tue, 19 Nov 2013 05:13:36 -0500 (EST)
-From: "Robert P. J. Day" <rpjday@crashcourse.ca>
-X-X-Sender: rpjday@oneiric
-To: Jack Lemon <lemonjack05@gmail.com>
-In-Reply-To: <loom.20131119T105032-516@post.gmane.org>
-Message-ID: <alpine.DEB.2.02.1311190512120.7474@oneiric>
-References: <loom.20131116T135512-692@post.gmane.org>
-	<528B27C0.5060901@denx.de>
+Return-Path: <gley-yocto@m.gmane.org>
+Received: from plane.gmane.org (plane.gmane.org [80.91.229.3])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 784F8E00510
+	for <yocto@yoctoproject.org>; Tue, 19 Nov 2013 03:25:57 -0800 (PST)
+Received: from list by plane.gmane.org with local (Exim 4.69)
+	(envelope-from <gley-yocto@m.gmane.org>) id 1VijRL-0001rl-Ge
+	for yocto@yoctoproject.org; Tue, 19 Nov 2013 12:25:55 +0100
+Received: from 78.157.37.205 ([78.157.37.205])
+	by main.gmane.org with esmtp (Gmexim 0.1 (Debian))
+	id 1AlnuQ-0007hv-00
+	for <yocto@yoctoproject.org>; Tue, 19 Nov 2013 12:25:55 +0100
+Received: from lemonjack05 by 78.157.37.205 with local (Gmexim 0.1 (Debian))
+	id 1AlnuQ-0007hv-00
+	for <yocto@yoctoproject.org>; Tue, 19 Nov 2013 12:25:55 +0100
+X-Injected-Via-Gmane: http://gmane.org/
+To: yocto@yoctoproject.org
+From: Jack <lemonjack05@gmail.com>
+Date: Tue, 19 Nov 2013 11:25:34 +0000 (UTC)
+Message-ID: <loom.20131119T121506-919@post.gmane.org>
+References: <loom.20131116T135512-692@post.gmane.org>	<528B27C0.5060901@denx.de>
 	<loom.20131119T105032-516@post.gmane.org>
-User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
-MIME-Version: 1.0
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - crashcourse.ca
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-Cc: yocto@yoctoproject.org
+	<528B390E.4000401@denx.de>
+Mime-Version: 1.0
+X-Complaints-To: usenet@ger.gmane.org
+X-Gmane-NNTP-Posting-Host: sea.gmane.org
+User-Agent: Loom/3.14 (http://gmane.org/)
+X-Loom-IP: 78.157.37.205 (Mozilla/5.0 (Windows NT 5.1;
+	rv:25.0) Gecko/20100101 Firefox/25.0)
 Subject: Re: How to modify u-boot in Root File System rootfs.ext2.gz.u-boot ?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -40,39 +38,50 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 19 Nov 2013 10:13:44 -0000
-Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-List-Received-Date: Tue, 19 Nov 2013 11:25:57 -0000
+Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: 7bit
 
-On Tue, 19 Nov 2013, Jack Lemon wrote:
+Stefano Babic <sbabic@...> writes:
 
-> Stefano Babic <sbabic@...> writes:
->
->
-> > Is it not enough to add SERIAL_CONSOLE = "115200 ttyS0" (or which serial
-> > you use as console) to your machine conf ?
-> >
-> > Best regards,
-> > Stefano Babic
-> >
->
-> Thank you Stefano for your reply.
-> Does it not any need to edit u-boot source code? just adding SERIAL_CONSOLE
-> = "115200 ttyS0" to local.conf?
+> 
+> On 19/11/2013 10:59, Jack Lemon wrote:
+> > Stefano Babic <sbabic <at> ...> writes:
+> > 
+> > 
+> >> Is it not enough to add SERIAL_CONSOLE = "115200 ttyS0" (or which serial
+> >> you use as console) to your machine conf ?
+> >>
+> >> Best regards,
+> >> Stefano Babic
+> >>
+> > 
+> > Thank you Stefano for your reply.
+> > Does it not any need to edit u-boot source code? just adding SERIAL_CONSOLE
+> > = "115200 ttyS0" to local.conf?
+> 
+> You asked to change your rootfs (initrd, I presume)
+> fsl-image-minimal-p1022ds.ext2.gz.u-boot, and setting SERIAL_CONSOLE
+> adjusts the parameters for inittab.
+> 
+> If you want to change u-boot as well (but this is outside
+> fsl-image-minimal-*) and you do not want to compile it outside Yocto,
+> you have to put the patch you already have in your bsp directory and
+> adjust your u-boot receipe.
+> 
+> Best regards
+> Stefano Babic
+> 
 
-  the current documentation states that SERIAL_CONSOLE has been
-deprecated in favour of the newer SERIAL_CONSOLES:
+For Nor-Flash we have only three files(kernel,rootfs,dtb). Where is u-boot?
+I think it is inside the fsl-image-minimal-p1022ds.ext2.gz.u-boot rootfs
+file. Is it true? 
 
-http://www.yoctoproject.org/docs/latest/ref-manual/ref-manual.html#var-SERIAL_CONSOLE
+So, for modifying u-boot to adujst serial boaudrate, I understand that I can
+add SERIAL_CONSOLE = "115200 ttyS0" to my local.conf according to your reply
+and it doesnt need to modify u-boot source code.
 
-rday
+Am I in the right place?
 
--- 
 
-========================================================================
-Robert P. J. Day                                 Ottawa, Ontario, CANADA
-                        http://crashcourse.ca
-
-Twitter:                                       http://twitter.com/rpjday
-LinkedIn:                               http://ca.linkedin.com/in/rpjday
-========================================================================
 
