@@ -1,43 +1,35 @@
-Return-Path: <zhenhua.luo@freescale.com>
-Received: from co9outboundpool.messaging.microsoft.com
-	(co9ehsobe005.messaging.microsoft.com [207.46.163.28])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 00444E0055C
-	for <yocto@yoctoproject.org>; Wed, 20 Nov 2013 02:40:36 -0800 (PST)
-Received: from mail150-co9-R.bigfish.com (10.236.132.244) by
-	CO9EHSOBE034.bigfish.com (10.236.130.97) with Microsoft SMTP Server id
-	14.1.225.22; Wed, 20 Nov 2013 10:40:36 +0000
-Received: from mail150-co9 (localhost [127.0.0.1])	by
-	mail150-co9-R.bigfish.com (Postfix) with ESMTP id 931A2200103;
-	Wed, 20 Nov 2013 10:40:34 +0000 (UTC)
-X-Forefront-Antispam-Report: CIP:70.37.183.190; KIP:(null); UIP:(null); IPV:NLI;
-	H:mail.freescale.net; RD:none; EFVD:NLI
-X-SpamScore: -1
-X-BigFish: VS-1(zz936eIzz1f42h2148h208ch1ee6h1de0h1fdah2073h2146h1202h1e76h1d1ah1d2ah1fc6hzz1de098h8275bh1de097hz2dh2a8h839hd24he5bhf0ah1288h12a5h12a9h12bdh12e5h1354h137ah139eh13b6h1441h1504h1537h162dh1631h1758h1898h18e1h1946h19b5h1ad9h1b0ah1b2fh2222h224fh1fb3h1d0ch1d2eh1d3fh1dc1h1dfeh1dffh1e23h1fe8h1ff5h2218h2216h226dh22d0h1155h)
-Received: from mail150-co9 (localhost.localdomain [127.0.0.1]) by mail150-co9
-	(MessageSwitch) id 138494403390613_24670;
-	Wed, 20 Nov 2013 10:40:33 +0000 (UTC)
-Received: from CO9EHSMHS025.bigfish.com (unknown [10.236.132.238])	by
-	mail150-co9.bigfish.com (Postfix) with ESMTP id E39426008A;
-	Wed, 20 Nov 2013 10:40:32 +0000 (UTC)
-Received: from mail.freescale.net (70.37.183.190) by CO9EHSMHS025.bigfish.com
-	(10.236.130.35) with Microsoft SMTP Server (TLS) id 14.16.227.3;
-	Wed, 20 Nov 2013 10:40:32 +0000
-Received: from az84smr01.freescale.net (10.64.34.197) by
-	039-SN1MMR1-001.039d.mgd.msft.net (10.84.1.13) with Microsoft SMTP
-	Server (TLS) id 14.3.158.2; Wed, 20 Nov 2013 10:40:30 +0000
-Received: from localhost.localdomain (B19537-03.ap.freescale.net
-	[10.192.208.102])	by az84smr01.freescale.net (8.14.3/8.14.0) with ESMTP
-	id rAKAeRDh017518;	Wed, 20 Nov 2013 03:40:28 -0700
-From: Zhenhua Luo <zhenhua.luo@freescale.com>
-To: <yocto@yoctoproject.org>
-Date: Wed, 20 Nov 2013 18:38:35 +0800
-Message-ID: <1384943915-4695-1-git-send-email-zhenhua.luo@freescale.com>
-X-Mailer: git-send-email 1.8.3.1
+Return-Path: <paul.betafive@gmail.com>
+Received: from mail-vc0-f182.google.com (mail-vc0-f182.google.com
+	[209.85.220.182])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D5EE3E00543
+	for <yocto@yoctoproject.org>; Wed, 20 Nov 2013 03:50:15 -0800 (PST)
+Received: by mail-vc0-f182.google.com with SMTP id lc6so178589vcb.13
+	for <yocto@yoctoproject.org>; Wed, 20 Nov 2013 03:50:15 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:sender:in-reply-to:references:from:date:message-id
+	:subject:to:cc:content-type;
+	bh=1ZERwJUUH7EmdVNuJfeJcL6BOaefqFOR8NnTKN/Lmg8=;
+	b=DbhXCLyPQUErUzztxi+RQR6Agxzxl/p4d+UQV0xYGxB7VwrUE3YvMI0Vhr6wB1qebv
+	dCHIXL+NNhmidM8zl62Lv9arhVM0bxFtXnitxX6j8E+xfjPNMRB3MwRnaCxzrCBPDB7l
+	xg0KsCqupbYZCSWCaq1+9MrSe5Mr87oEWW+L6d0pL0PzZUTsZg+0mvEDidEve99fCFVQ
+	N0GHGY/irYNjqTfMieDeTuUu3jK166J73gL/uaDtWc1jyB+0xx3Umq390btVJK7lRPjD
+	uYFwN20eP7RtyrcRBjJwhA/6oCRdOKSM2QSF2rc48sxRXeb+lbB5dvOxQrZ+iGphmi6l
+	zjCw==
+X-Received: by 10.221.53.74 with SMTP id vp10mr106955vcb.54.1384948215029;
+	Wed, 20 Nov 2013 03:50:15 -0800 (PST)
 MIME-Version: 1.0
-X-OriginatorOrg: freescale.com
-X-FOPE-CONNECTOR: Id%0$Dn%*$RO%0$TLS%0$FQDN%$TlsDn%
-Cc: b40290@freescale.com, b40527@freescale.com
-Subject: [meta-cloud-services][PATCH v2] erlang: skip the host library path check to fix cross-compile issue
+Sender: paul.betafive@gmail.com
+Received: by 10.220.49.71 with HTTP; Wed, 20 Nov 2013 03:49:34 -0800 (PST)
+In-Reply-To: <1578881.eGB3JKVbzz@helios>
+References: <1578881.eGB3JKVbzz@helios>
+From: Paul Barker <paul@paulbarker.me.uk>
+Date: Wed, 20 Nov 2013 11:49:34 +0000
+X-Google-Sender-Auth: GJefMGvk3pO70lawUIQb3iiO-VY
+Message-ID: <CANyK_8cMf+SodPNjtuavseZHMTd13T33c0sLJpNnhe45ixdTXg@mail.gmail.com>
+To: Paul Eggleton <paul.eggleton@linux.intel.com>
+Cc: Yocto discussion list <yocto@yoctoproject.org>,
+	openembedded-core <openembedded-core@lists.openembedded.org>
+Subject: Re: FOSDEM 2014 Embedded dev room CFP
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -49,64 +41,36 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 20 Nov 2013 10:40:37 -0000
-Content-Type: text/plain
+X-List-Received-Date: Wed, 20 Nov 2013 11:50:18 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
-Below is the error message:
-ERROR: This autoconf log indicates errors, it looked at host include and/or library paths while determining system capabilities.
-Rerun configure task after fixing this.
+On 7 November 2013 10:11, Paul Eggleton <paul.eggleton@linux.intel.com> wrote:
+> Hi all,
+>
+> I didn't notice if it was already announced here, but the CFP for the FOSDEM
+> Embedded dev room in 2014 is open:
+>
+> https://lists.fosdem.org/pipermail/fosdem/2013-October/001870.html
+>
+> It would be great to have some folks give OpenEmbedded/Yocto Project-related
+> presentation(s) this year - we usually manage at least one for FOSDEM. It
+> could be about a new feature you've worked on, a success story, a proposal for
+> a new direction, a related project etc.
+>
 
-Signed-off-by: Zhenhua Luo <zhenhua.luo@freescale.com>
----
- .../erlang/erlang-fix-build-issue-in-Yocto.patch   | 25 ++++++++++++++++++++++
- .../recipes-devtools/erlang/erlang_R15B.bb         |  1 +
- 2 files changed, 26 insertions(+)
- create mode 100644 meta-openstack/recipes-devtools/erlang/erlang/erlang-fix-build-issue-in-Yocto.patch
+I'm planning to attend FOSDEM 2014 and could look at giving a talk on
+how I've used OpenEmbedded in developing an underwater noise
+monitoring platform and how I've gone from there to contributing to OE
+and maintaining opkg. I'll throw together an abstract and see if it
+gets accepted.
 
-diff --git a/meta-openstack/recipes-devtools/erlang/erlang/erlang-fix-build-issue-in-Yocto.patch b/meta-openstack/recipes-devtools/erlang/erlang/erlang-fix-build-issue-in-Yocto.patch
-new file mode 100644
-index 0000000..2d4b7b5
---- /dev/null
-+++ b/meta-openstack/recipes-devtools/erlang/erlang/erlang-fix-build-issue-in-Yocto.patch
-@@ -0,0 +1,25 @@
-+Upstream-Status: Inappropriate [The fix is specific to Yocto build env]
-+
-+Skip host library path check to fix following Yocto insane check issue: 
-+ERROR: This autoconf log indicates errors, it looked at host include and/or library paths while determining system capabilities.
-+Rerun configure task after fixing this.
-+
-+Signed-off-by: Zhenhua Luo <zhenhua.luo@freescale.com>
-+
-+--- otp_src_R15B/erts/configure.in.orig	2011-12-14 04:22:11.000000000 -0600
-++++ otp_src_R15B/erts/configure.in	2013-11-19 04:15:33.694334610 -0600
-+@@ -1469,10 +1469,10 @@
-+ 	# ln -s libdlpi.so.1 $try_dlpi_lib/libdlpi.so
-+ 	])
-+    fi
-+-   LDFLAGS="-L$try_dlpi_lib -R$try_dlpi_lib $LDFLAGS"
-+-   unset -v try_dlpi_lib
-+-   AC_MSG_NOTICE([Extending the search to include /lib])
-+-   AC_CHECK_LIB(dlpi, dlpi_open)
-++#   LDFLAGS="-L$try_dlpi_lib -R$try_dlpi_lib $LDFLAGS"
-++#   unset -v try_dlpi_lib
-++#   AC_MSG_NOTICE([Extending the search to include /lib])
-++#   AC_CHECK_LIB(dlpi, dlpi_open)
-+    if test x"$ac_cv_lib_dlpi_dlpi_open" = x"no"; then
-+       LDFLAGS="$save_ldflags"
-+    fi
-diff --git a/meta-openstack/recipes-devtools/erlang/erlang_R15B.bb b/meta-openstack/recipes-devtools/erlang/erlang_R15B.bb
-index 68d144b..d7fd310 100644
---- a/meta-openstack/recipes-devtools/erlang/erlang_R15B.bb
-+++ b/meta-openstack/recipes-devtools/erlang/erlang_R15B.bb
-@@ -55,5 +55,6 @@ FILES_${PN}-staticdev += "${libdir}/*/*/*/*.a ${libdir}/*/*/*/*/*.a ${libdir}/*/
- 
- FILES_${PN}-libs-dbg += " ${libdir}/erlang/*/.debug ${libdir}/erlang/*/*/.debug ${libdir}/erlang/*/*/*/.debug ${libdir}/erlang/*/*/*/*/.debug ${libdir}/erlang/*/*/*/*/*/.debug "
- 
-+SRC_URI += "file://erlang-fix-build-issue-in-Yocto.patch"
- SRC_URI[md5sum] = "dd6c2a4807551b4a8a536067bde31d73"
- SRC_URI[sha256sum] = "5bc34fc34fc890f84bae7ff1f7c81fbec2c9aa28a0ef51a57d7a8192204d8aa2"
+It should be good to meet a couple of other OpenEmbedded developers as well!
+
+Thanks,
+
 -- 
-1.8.3.1
+Paul Barker
 
-
+Email: paul@paulbarker.me.uk
+http://www.paulbarker.me.uk
 
