@@ -1,27 +1,35 @@
-Return-Path: <philip@balister.org>
-Received: from starfish.geekisp.com (starfish.geekisp.com [216.168.135.166])
-	by yocto-www.yoctoproject.org (Postfix) with SMTP id E6025E00543
-	for <yocto@yoctoproject.org>; Wed, 20 Nov 2013 04:35:07 -0800 (PST)
-Received: (qmail 12275 invoked by uid 1003); 20 Nov 2013 12:35:06 -0000
-Received: from unknown (HELO ?192.168.1.113?)
-	(philip@opensdr.com@108.44.82.190)
-	by mail.geekisp.com with (DHE-RSA-AES256-SHA encrypted) SMTP;
-	20 Nov 2013 12:35:06 -0000
-Message-ID: <528CAC79.3060709@balister.org>
-Date: Wed, 20 Nov 2013 07:35:05 -0500
-From: Philip Balister <philip@balister.org>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:17.0) Gecko/20130625 Thunderbird/17.0.7
+Return-Path: <rpjday@crashcourse.ca>
+Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
+	[64.235.106.9])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 87935E0055C
+	for <yocto@yoctoproject.org>; Wed, 20 Nov 2013 05:09:58 -0800 (PST)
+Received: from [69.196.158.250] (port=44593 helo=crashcourse.ca)
+	by astoria.ccjclearline.com with esmtpsa (TLSv1:DHE-RSA-AES256-SHA:256)
+	(Exim 4.80) (envelope-from <rpjday@crashcourse.ca>)
+	id 1Vj7XY-0007DL-MR; Wed, 20 Nov 2013 08:09:56 -0500
+Date: Wed, 20 Nov 2013 08:09:53 -0500 (EST)
+From: "Robert P. J. Day" <rpjday@crashcourse.ca>
+X-X-Sender: rpjday@oneiric
+To: Paul Eggleton <paul.eggleton@linux.intel.com>
+In-Reply-To: <3135869.AjjxWFArVx@helios>
+Message-ID: <alpine.DEB.2.02.1311200802560.5855@oneiric>
+References: <alpine.DEB.2.02.1311150538110.30641@oneiric>
+	<CAJTo0LbYcXDDguCiVtun5qMUAgL=VxqhoHVjHKhRCdu8t4M2gw@mail.gmail.com>
+	<alpine.DEB.2.02.1311160410010.8101@oneiric>
+	<3135869.AjjxWFArVx@helios>
+User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
 MIME-Version: 1.0
-To: Paul Barker <paul@paulbarker.me.uk>
-References: <1578881.eGB3JKVbzz@helios>
-	<CANyK_8cMf+SodPNjtuavseZHMTd13T33c0sLJpNnhe45ixdTXg@mail.gmail.com>
-In-Reply-To: <CANyK_8cMf+SodPNjtuavseZHMTd13T33c0sLJpNnhe45ixdTXg@mail.gmail.com>
-X-Enigmail-Version: 1.6
-Cc: Paul Eggleton <paul.eggleton@linux.intel.com>,
-	openembedded-core <openembedded-core@lists.openembedded.org>,
-	Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: FOSDEM 2014 Embedded dev room CFP
+X-AntiAbuse: This header was added to track abuse,
+	please include it with any abuse report
+X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - crashcourse.ca
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+Cc: yocto@yoctoproject.org
+Subject: Re: undocumented MACHINE_FEATURES, and what makes something a MACHINE feature?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -33,42 +41,61 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 20 Nov 2013 12:35:10 -0000
-Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 20 Nov 2013 13:09:59 -0000
+Content-Type: TEXT/PLAIN; charset=US-ASCII
 
-On 11/20/2013 06:49 AM, Paul Barker wrote:
-> On 7 November 2013 10:11, Paul Eggleton <paul.eggleton@linux.intel.com> wrote:
->> Hi all,
->>
->> I didn't notice if it was already announced here, but the CFP for the FOSDEM
->> Embedded dev room in 2014 is open:
->>
->> https://lists.fosdem.org/pipermail/fosdem/2013-October/001870.html
->>
->> It would be great to have some folks give OpenEmbedded/Yocto Project-related
->> presentation(s) this year - we usually manage at least one for FOSDEM. It
->> could be about a new feature you've worked on, a success story, a proposal for
->> a new direction, a related project etc.
->>
-> 
-> I'm planning to attend FOSDEM 2014 and could look at giving a talk on
-> how I've used OpenEmbedded in developing an underwater noise
-> monitoring platform and how I've gone from there to contributing to OE
-> and maintaining opkg. I'll throw together an abstract and see if it
-> gets accepted.
-> 
-> It should be good to meet a couple of other OpenEmbedded developers as well!
 
-This is an excellent abstract. Build system talks tend to be pretty
-dull, and only interesting to other build system people :) Talks about
-cool things a build system lets you do are way more interesting.
+... big snip ...
 
-Please submit an abstract.
+  finally have time to read paul's post on this so i'll go over this
+again, but it seems that at the very least, what's needed is, in the
+current reference manual, Chapter 10. Reference:Features:
 
-Philip
+http://www.yoctoproject.org/docs/latest/ref-manual/ref-manual.html#ref-features
 
-> 
-> Thanks,
-> 
+there should be an explanation of COMBINED_FEATURES and how that
+plays into possible configuration changes. there's absolutely no
+mention of COMBINED_FEATURES anywhere in the reference manual except
+in the variable glossary:
+
+http://www.yoctoproject.org/docs/latest/ref-manual/ref-manual.html#var-COMBINED_FEATURES
+
+and that explanation seems somewhat inadequate:
+
+"A set of features common between MACHINE_FEATURES and
+DISTRO_FEATURES. See the glossary descriptions for these variables for
+more information."
+
+  as i mentioned, that variable is defined *very* explicitly for a
+*chosen* set of FEATURES in bitbake.conf:
+
+COMBINED_FEATURES = "\
+    ${@base_both_contain("DISTRO_FEATURES", "MACHINE_FEATURES", "alsa", d)} \
+    ${@base_both_contain("DISTRO_FEATURES", "MACHINE_FEATURES", "bluetooth", d)} \
+    ${@base_both_contain("DISTRO_FEATURES", "MACHINE_FEATURES", "ext2", d)} \
+    ${@base_both_contain("DISTRO_FEATURES", "MACHINE_FEATURES", "vfat", d)} \
+    ${@base_both_contain("DISTRO_FEATURES", "MACHINE_FEATURES", "irda", d)} \
+    ${@base_both_contain("DISTRO_FEATURES", "MACHINE_FEATURES", "pcmcia", d)} \
+    ${@base_both_contain("DISTRO_FEATURES", "MACHINE_FEATURES", "pci", d)} \
+    ${@base_both_contain("DISTRO_FEATURES", "MACHINE_FEATURES", "usbgadget", d)} \
+    ${@base_both_contain("DISTRO_FEATURES", "MACHINE_FEATURES", "usbhost", d)} \
+    ${@base_both_contain("DISTRO_FEATURES", "MACHINE_FEATURES", "wifi", d)}"
+COMBINED_FEATURES[vardeps] += "DISTRO_FEATURES MACHINE_FEATURES"
+
+and i think that needs to be pointed out so people (like me :-) don't
+get the wrong idea of what it represents.
+
+  thoughts?
+
+rday
+
+-- 
+
+========================================================================
+Robert P. J. Day                                 Ottawa, Ontario, CANADA
+                        http://crashcourse.ca
+
+Twitter:                                       http://twitter.com/rpjday
+LinkedIn:                               http://ca.linkedin.com/in/rpjday
+========================================================================
 
