@@ -1,31 +1,36 @@
-Return-Path: <scott.m.rifenbark@intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6257EE0059E
-	for <yocto@yoctoproject.org>; Thu, 21 Nov 2013 10:36:15 -0800 (PST)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga102.jf.intel.com with ESMTP; 21 Nov 2013 10:32:39 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.93,746,1378882800"; d="scan'208";a="412567412"
-Received: from orsmsx103.amr.corp.intel.com ([10.22.225.130])
-	by orsmga001.jf.intel.com with ESMTP; 21 Nov 2013 10:35:40 -0800
-Received: from orsmsx101.amr.corp.intel.com ([169.254.8.94]) by
-	ORSMSX103.amr.corp.intel.com ([169.254.2.165]) with mapi id
-	14.03.0123.003; Thu, 21 Nov 2013 10:35:40 -0800
-From: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
-To: Yocto discussion list <yocto@yoctoproject.org>
-Thread-Topic: strange explanation of how to add a package to an existing recipe
-Thread-Index: AQHO5ugJO4ALuwN/Gkip19/ZsXmAwZowAuxQ
-Date: Thu, 21 Nov 2013 18:35:40 +0000
-Message-ID: <41DEA4B02DBDEF40A0F3B6D0DDB1237983F50894@ORSMSX101.amr.corp.intel.com>
-References: <alpine.DEB.2.02.1311211327360.10963@oneiric>
-In-Reply-To: <alpine.DEB.2.02.1311211327360.10963@oneiric>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.138]
+Return-Path: <sbabic@denx.de>
+Received: from mail-out.m-online.net (mail-out.m-online.net [212.18.0.9])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0065CE002F9
+	for <yocto@yoctoproject.org>; Thu, 21 Nov 2013 10:49:43 -0800 (PST)
+Received: from frontend1.mail.m-online.net (unknown [192.168.8.180])
+	by mail-out.m-online.net (Postfix) with ESMTP id 3dQVF16k3rz4KK6j;
+	Thu, 21 Nov 2013 19:49:41 +0100 (CET)
+Received: from localhost (dynscan1.mnet-online.de [192.168.6.68])
+	by mail.m-online.net (Postfix) with ESMTP id 3dQVF16Vp2zbbgx;
+	Thu, 21 Nov 2013 19:49:41 +0100 (CET)
+X-Virus-Scanned: amavisd-new at mnet-online.de
+Received: from mail.mnet-online.de ([192.168.8.180])
+	by localhost (dynscan1.mail.m-online.net [192.168.6.68]) (amavisd-new,
+	port 10024)
+	with ESMTP id IZ2Q7BhKXgs6; Thu, 21 Nov 2013 19:49:40 +0100 (CET)
+X-Auth-Info: m/51lQgTRWGfYZG5aajuiebCvHyL0Y588lQT/CEU6aU=
+Received: from [192.168.2.247] (88-149-182-160.v4.ngi.it [88.149.182.160])
+	by smtp-auth.mnet-online.de (Postfix) with ESMTPA;
+	Thu, 21 Nov 2013 19:49:40 +0100 (CET)
+Message-ID: <528E55C4.3040805@denx.de>
+Date: Thu, 21 Nov 2013 19:49:40 +0100
+From: Stefano Babic <sbabic@denx.de>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:24.0) Gecko/20100101 Thunderbird/24.1.0
 MIME-Version: 1.0
-Cc: "Eggleton, Paul" <paul.eggleton@intel.com>
-Subject: FW: strange explanation of how to add a package to an existing recipe
+To: Michael_E_Brown@Dell.com, diego.sueiro@gmail.com, sbabic@denx.de
+References: <528DF846.9050306@denx.de>
+	<CAMCfZKE1fv=ZGB=HMe-4BmG-XRKMb_kaOADESwe-6mD1wp_hDw@mail.gmail.com>
+	<DB6E482E89290547898851B8CC9D8110012FAE31A0@AUSX7MCPS302.AMER.DELL.COM>
+In-Reply-To: <DB6E482E89290547898851B8CC9D8110012FAE31A0@AUSX7MCPS302.AMER.DELL.COM>
+X-Enigmail-Version: 1.5.2
+Cc: yocto@yoctoproject.org
+Subject: Re: Deploying Yocto build images
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,57 +42,63 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 21 Nov 2013 18:36:16 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Thu, 21 Nov 2013 18:49:44 -0000
+Content-Type: text/plain; charset=windows-1252
+Content-Transfer-Encoding: 8bit
 
-Robert,=20
+Hi Michael,
 
-Moving this to the discussion group as there is likely issues involved here=
- beyond me.=20
+On 21/11/2013 19:20, Michael_E_Brown@Dell.com wrote:
+> Thanks for posting this. It’s very timely for a project I am in the
+> initial stages of designing. I have looked over the docs and some of the
+> code, and am interested in using this.
+> 
+>  
+> 
+> I would make a couple suggestions:
+> 
 
-Scott
+Thanks !
 
->-----Original Message-----
->From: Robert P. J. Day [mailto:rpjday@crashcourse.ca]
->Sent: Thursday, November 21, 2013 10:32 AM
->To: Rifenbark, Scott M
->Subject: strange explanation of how to add a package to an existing recipe
->
->
->  dev manual here:
->
->http://www.yoctoproject.org/docs/latest/dev-manual/dev-
->manual.html#usingpoky-extend-customimage-custombb
->
->suggests that, to customize an image, you should copy the existing .bb fil=
-e for
->that image to another name and add a line like:
->
->  IMAGE_INSTALL +=3D "strace"
->
->but rather than *copy* the entire image file, isn't it easier to use what'=
-s
->already being used; that is, just "include" or "require" the existing .bb =
-file.
->example: core-image-minimal-mtdutils.bb contains:
->
->
->
->require core-image-minimal.bb
->
->DESCRIPTION =3D "Small image capable of booting a device with support for =
-the
->\ Minimal MTD Utilities, which let the user interact with the MTD subsyste=
-m in
->\ the kernel to perform operations on flash devices."
->
->IMAGE_INSTALL +=3D "mtd-utils"
->
->
->no copying involved -- just "require" the existing image file, and add a
->package. or am i misreading something?
->
->rday
+> 1)      As you mention, documentation is important. Unless this is very
+> well documented, it’s difficult for other people to take up and use
+> effectively, or to advocate for its use in a group
+
+I know, and I am understand there are a lot of things that I have not
+explained. Documentation is first priority.
+
+> 2)      Progress indications: it’s going to be fairly important to build
+> in some way to notify other process about the state of the update.
+> A
+> flexible framework for sharing progress would be very much appreciated.
+
+There is an interface using Unix Domain Socket to communicate with the
+installer. There is only a couple of implemented messages (start
+installer - get status). It is quite rudimentary, but it can be extended.
+
+This interface is also used by the AJAX interface (see in ./www) to
+report the current status to the operator's browser when a downloaded is
+started from network. Another use case is to output the status on a LCD:
+a separate process can ask the installer and render the output for the
+operator.
+
+> There are a couple scenarios I have, but the main one is a network
+> notification where one device is being updated by another. The updated
+> device should be able to signal update progress to the updater device in
+> a flexible fashion. I haven’t looked at the code hard enough to see how
+> difficult this would be to add.
+
+I think it is should be not very difficult. As I said, there is already
+an interface that can be easy extended.
+
+Regards,
+Stefano
+
+
+-- 
+=====================================================================
+DENX Software Engineering GmbH,     MD: Wolfgang Denk & Detlev Zundel
+HRB 165235 Munich, Office: Kirchenstr.5, D-82194 Groebenzell, Germany
+Phone: +49-8142-66989-53 Fax: +49-8142-66989-80 Email: sbabic@denx.de
+=====================================================================
 
