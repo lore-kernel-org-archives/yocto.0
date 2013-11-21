@@ -1,28 +1,35 @@
-Return-Path: <gary@mlbassoc.com>
-Received: from mail.chez-thomas.org (mail.mlbassoc.com [65.100.170.105])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 71B2BE00576
-	for <yocto@yoctoproject.org>; Thu, 21 Nov 2013 08:09:11 -0800 (PST)
-Received: by mail.chez-thomas.org (Postfix, from userid 1998)
-	id 1B230F811F0; Thu, 21 Nov 2013 09:09:11 -0700 (MST)
-X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on
-	hermes.chez-thomas.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=4.0 tests=ALL_TRUSTED,BAYES_00
-	autolearn=unavailable version=3.3.2
-Received: from [192.168.1.114] (zeus [192.168.1.114])
-	by mail.chez-thomas.org (Postfix) with ESMTP id 5CBEAF811EF;
-	Thu, 21 Nov 2013 09:09:09 -0700 (MST)
-Message-ID: <528E3035.9040100@mlbassoc.com>
-Date: Thu, 21 Nov 2013 09:09:25 -0700
-From: Gary Thomas <gary@mlbassoc.com>
+Return-Path: <sbabic@denx.de>
+Received: from mail-out.m-online.net (mail-out.m-online.net [212.18.0.9])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D960EE00282
+	for <yocto@yoctoproject.org>; Thu, 21 Nov 2013 09:08:28 -0800 (PST)
+Received: from frontend1.mail.m-online.net (unknown [192.168.8.180])
+	by mail-out.m-online.net (Postfix) with ESMTP id 3dQS0B5mQwz4KK5n;
+	Thu, 21 Nov 2013 18:08:26 +0100 (CET)
+Received: from localhost (dynscan1.mnet-online.de [192.168.6.68])
+	by mail.m-online.net (Postfix) with ESMTP id 3dQS0B5Xkfzbbfx;
+	Thu, 21 Nov 2013 18:08:26 +0100 (CET)
+X-Virus-Scanned: amavisd-new at mnet-online.de
+Received: from mail.mnet-online.de ([192.168.8.180])
+	by localhost (dynscan1.mail.m-online.net [192.168.6.68]) (amavisd-new,
+	port 10024)
+	with ESMTP id 4oZal-6LRVzf; Thu, 21 Nov 2013 18:08:25 +0100 (CET)
+X-Auth-Info: 9XJAtnoH9MoWgWykyBc0c8UkcrHuOJYOgQW1GBcGawk=
+Received: from [192.168.2.247] (88-149-182-160.v4.ngi.it [88.149.182.160])
+	by smtp-auth.mnet-online.de (Postfix) with ESMTPA;
+	Thu, 21 Nov 2013 18:08:25 +0100 (CET)
+Message-ID: <528E3E09.8010701@denx.de>
+Date: Thu, 21 Nov 2013 18:08:25 +0100
+From: Stefano Babic <sbabic@denx.de>
 User-Agent: Mozilla/5.0 (X11; Linux x86_64;
 	rv:24.0) Gecko/20100101 Thunderbird/24.1.0
 MIME-Version: 1.0
-To: yocto@yoctoproject.org
-References: <CAFyqS9o5dBnO5C9yvy6UvUxbsHKhBAqNSiiRXsBhgd6w8qgurg@mail.gmail.com>
-	<528E2DDE.1080602@gmail.com>
-In-Reply-To: <528E2DDE.1080602@gmail.com>
-Subject: Re: init-ifupdown: is this missing a RDEPEND to procps?
+To: Bryan Evenson <bevenson@melinkcorp.com>, Stefano Babic <sbabic@denx.de>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+References: <528DF846.9050306@denx.de>
+	<91586D499ADFD74FBCFB8425266A5DE40153BB535322@pluto.melinkcorp.local>
+In-Reply-To: <91586D499ADFD74FBCFB8425266A5DE40153BB535322@pluto.melinkcorp.local>
+X-Enigmail-Version: 1.5.2
+Subject: Re: Deploying Yocto build images
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,32 +41,80 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 21 Nov 2013 16:09:14 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Thu, 21 Nov 2013 17:08:31 -0000
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: 7bit
 
-On 2013-11-21 08:59, Hans Beckerus wrote:
-> On 2013-11-20 4:15, Hans Beckérus wrote:
->> The /etc/init.d/networking script is using sysctl to grab some
->> parameters from /etc/sysctl.conf. This file does not exists unless
->> procps is also installed.
->> I can not see that init-ifupdown RDEPENDS procps. Should it not? Or is
->> there a reason for not having it like that?
-> No one? Should I route this question to OE-core instead?
+Hi Bryan,
 
-Probably since this recipe is in OE-core.
+On 21/11/2013 16:48, Bryan Evenson wrote:
+> Stefano,
+> 
+> Looks interesting.  I have a question that I didn't see covered in
+> the documentation (yet).
 
-IMO, there should not be a dependency on procps since that's pretty
-heavy and not really needed for smaller systems.  The single use
-of /etc/sysctl.conf in the ifupdown script seems to be trying to make
-sure local settings are applied before bringing up the network devices.
-The script simply ignores the failure if the file is missing which is
-OK, plus it does allow for local customization providing /etc/sysctl.conf
-without the overhead of procps.
+I know, this is my fault. Writing documentation is a task that is always
+postponed ;-)
+
+> I can see the benefit to having a single image firmware upgrade, but
+> how does swupdate handle configuration differences?  I can see cases
+> in which the majority of the software will be the same but there will
+> be configuration file differences from device to device.  I like the
+> idea of a single image upgrade, but not at the cost of wiping the
+> device-specific configuration.
+
+I explain how it was done in a real project. The scope was to have a
+single image, containing update for multiple devices. Let's say this is
+an update of version Y for a whole family of products, but each product
+has its own parts (mostly kernel differs, but not only).
+
+In that case, an external parser was used. The sw-description is written
+as XML, with a syntax like this:
+
+<?xml version="1.0" encoding="UTF-8"?>
+<software version="1.0">
+  <name>Update Image</name>
+  <version>1.0.0</version>
+   <description>Firmware for XXXXX Project</description>
+
+   <images>
+   <image device="firstdevice" version="0.9">
+     <stream name="dev1-uImage" type="ubivol" volume="kernel" />
+     <stream name="dev1.dtb" type="ubivol" volume="dtb" />
+     <stream name="dev1-rootfs.ubifs" type="ubivol" volume="rootfs"/>
+     <stream name="dev1-uboot-env" type="uboot" />
+     <stream name="raw_vfat" type="raw" dest="/dev/mmcblk0p4" />
+     <stream name="sdcard.lua" type="lua" />
+   </image>
+
+   <image device="seconddevice" version="0.9">
+     <stream name="dev2.dtb" rev="0.9" type="dtb" />
+     <stream name="dev2-uImage" rev="0.9" type="kernel" />
+......
+
+That is: there is a single description, that describes the components
+for all devices. Each device must recognized where it is running - this
+was done with a configuration file or reading directly from hardware
+(GPIOs, SPI EPROM).
+
+When the image is downloaded, the description is parsed and only the
+significant parts are extracted - the rest is discarded.
+Of course, the image can be significantly bigger - it contains the
+software for many devices. In my real project, this was not an issue -
+the scope was really to have a single image for a product family.
+
+Note: this is only an example how the tool was used. But this shows also
+that the syntax of the sw-description is open. I could also add the LUA
+script/XML parser to the repository, it is at the moment not stored - I
+have thought at it as a custom specific requirement.
+
+Best regards,
+Stefano
 
 -- 
-------------------------------------------------------------
-Gary Thomas                 |  Consulting for the
-MLB Associates              |    Embedded world
-------------------------------------------------------------
+=====================================================================
+DENX Software Engineering GmbH,     MD: Wolfgang Denk & Detlev Zundel
+HRB 165235 Munich, Office: Kirchenstr.5, D-82194 Groebenzell, Germany
+Phone: +49-8142-66989-53 Fax: +49-8142-66989-80 Email: sbabic@denx.de
+=====================================================================
 
