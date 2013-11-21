@@ -1,35 +1,29 @@
-Return-Path: <sbabic@denx.de>
-Received: from mail-out.m-online.net (mail-out.m-online.net [212.18.0.9])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 32238E005A2
-	for <yocto@yoctoproject.org>; Thu, 21 Nov 2013 05:15:30 -0800 (PST)
-Received: from frontend1.mail.m-online.net (unknown [192.168.8.180])
-	by mail-out.m-online.net (Postfix) with ESMTP id 3dQLqN6LGBz4KK2k;
-	Thu, 21 Nov 2013 14:15:28 +0100 (CET)
-Received: from localhost (dynscan1.mnet-online.de [192.168.6.68])
-	by mail.m-online.net (Postfix) with ESMTP id 3dQLqN6214zbbh7;
-	Thu, 21 Nov 2013 14:15:28 +0100 (CET)
-X-Virus-Scanned: amavisd-new at mnet-online.de
-Received: from mail.mnet-online.de ([192.168.8.180])
-	by localhost (dynscan1.mail.m-online.net [192.168.6.68]) (amavisd-new,
-	port 10024)
-	with ESMTP id IQrLARGrSP4t; Thu, 21 Nov 2013 14:15:27 +0100 (CET)
-X-Auth-Info: mE7mEfUOBuwXJFPmqjAtRB/cRz+PMwvQPqLSC5GGwi0=
-Received: from [192.168.2.247] (88-149-182-160.v4.ngi.it [88.149.182.160])
-	by smtp-auth.mnet-online.de (Postfix) with ESMTPA;
-	Thu, 21 Nov 2013 14:15:26 +0100 (CET)
-Message-ID: <528E076F.6060307@denx.de>
-Date: Thu, 21 Nov 2013 14:15:27 +0100
-From: Stefano Babic <sbabic@denx.de>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:24.0) Gecko/20100101 Thunderbird/24.1.0
+Return-Path: <rpjday@crashcourse.ca>
+Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
+	[64.235.106.9])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0B169E005B1
+	for <yocto@yoctoproject.org>; Thu, 21 Nov 2013 05:44:31 -0800 (PST)
+Received: from [69.196.158.250] (port=59144 helo=crashcourse.ca)
+	by astoria.ccjclearline.com with esmtpsa (TLSv1:DHE-RSA-AES256-SHA:256)
+	(Exim 4.80) (envelope-from <rpjday@crashcourse.ca>)
+	id 1VjUYX-0006Mu-3T; Thu, 21 Nov 2013 08:44:29 -0500
+Date: Thu, 21 Nov 2013 08:44:26 -0500 (EST)
+From: "Robert P. J. Day" <rpjday@crashcourse.ca>
+X-X-Sender: rpjday@oneiric
+To: Yocto discussion list <yocto@yoctoproject.org>
+Message-ID: <alpine.DEB.2.02.1311210843360.7713@oneiric>
+User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
 MIME-Version: 1.0
-To: Diego Sueiro <diego.sueiro@gmail.com>, Stefano Babic <sbabic@denx.de>
-References: <528DF846.9050306@denx.de>
-	<CAMCfZKE1fv=ZGB=HMe-4BmG-XRKMb_kaOADESwe-6mD1wp_hDw@mail.gmail.com>
-In-Reply-To: <CAMCfZKE1fv=ZGB=HMe-4BmG-XRKMb_kaOADESwe-6mD1wp_hDw@mail.gmail.com>
-X-Enigmail-Version: 1.5.2
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Deploying Yocto build images
+X-AntiAbuse: This header was added to track abuse,
+	please include it with any abuse report
+X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - crashcourse.ca
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+Subject: [PATCH] Documentation: Ch 1, ref manual, fix "the the"
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,51 +35,35 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 21 Nov 2013 13:15:33 -0000
-Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: 7bit
-
-Hi Diego,
-
-On 21/11/2013 13:34, Diego Sueiro wrote:
-> Stefano,
-> 
-> This is a really great tool. I'm always developing a new software update
-> tool for each new project, since there are different requirements.
-
-That is right. I did the same in the past, until I recognize that I
-waste a lot of effort.
-
-> As I can see you are dealing with different scenarios, and this is
-> really amazing.
-> 
-
-Sure. I hope that the tool remains general enough to allow to include
-scenarios that I was not able to foresee.
-
-> I'm already cloning meta-swupdate to test it.
-> Looking at recipes I realized that swupdate is initialized in an
-> sysVinit environment.
-> Did you plan to use systemd too?
-> Maybe I can contribute to this.
-
-Let's say that how the tool is started is open and can be easy
-customized. Updating to systemd is surely nice.
-
-One use of case I have is to not use neither sysVinit not systemd at
-all. The tool is put into a initrd and it is the only task running, that
-is I modified rcS to start only the tool and to speed up the booting
-process. But as I said, this is only a use case.
-
-Best regards,
-Stefano
+X-List-Received-Date: Thu, 21 Nov 2013 13:44:32 -0000
+Content-Type: TEXT/PLAIN; charset=US-ASCII
 
 
+Signed-off-by: Robert P. J. Day <rpjday@crashcourse.ca>
+
+---
+
+diff --git a/documentation/ref-manual/introduction.xml b/documentation/ref-manual/introduction.xml
+index 19a1fcc..bedef6f 100644
+--- a/documentation/ref-manual/introduction.xml
++++ b/documentation/ref-manual/introduction.xml
+@@ -366,7 +366,7 @@
+                 variable determines whether you build tools for a 32-bit
+                 or 64-bit system.
+             </note>
+-            Once the build completes, you can find the file that installs the
++            Once the build completes, you can find the file that installs
+             the tools in the <filename>tmp/deploy/sdk</filename> subdirectory
+             of the
+             <ulink url='&YOCTO_DOCS_DEV_URL;#build-directory'>Build Directory</ulink>.
 
 -- 
-=====================================================================
-DENX Software Engineering GmbH,     MD: Wolfgang Denk & Detlev Zundel
-HRB 165235 Munich, Office: Kirchenstr.5, D-82194 Groebenzell, Germany
-Phone: +49-8142-66989-53 Fax: +49-8142-66989-80 Email: sbabic@denx.de
-=====================================================================
+
+========================================================================
+Robert P. J. Day                                 Ottawa, Ontario, CANADA
+                        http://crashcourse.ca
+
+Twitter:                                       http://twitter.com/rpjday
+LinkedIn:                               http://ca.linkedin.com/in/rpjday
+========================================================================
 
