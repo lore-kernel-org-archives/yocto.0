@@ -1,36 +1,27 @@
-Return-Path: <hans.beckerus@gmail.com>
-Received: from mail-lb0-f171.google.com (mail-lb0-f171.google.com
-	[209.85.217.171])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 38268E005A9
-	for <yocto@yoctoproject.org>; Thu, 21 Nov 2013 07:59:35 -0800 (PST)
-Received: by mail-lb0-f171.google.com with SMTP id q8so7582805lbi.30
-	for <yocto@yoctoproject.org>; Thu, 21 Nov 2013 07:59:30 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=message-id:date:from:user-agent:mime-version:to:subject:references
-	:in-reply-to:content-type:content-transfer-encoding;
-	bh=MexbsgO0wlUN4ARQxBcoVetov5goiQlnztF9wnWrqQs=;
-	b=Ridl3zwmVXVawFrM3wemKQ1cJ0EuIBgttYRie1j3I7aVSkMJPM9fn7IA5LmSzXyJ+9
-	j9aoA9BtVLqtUX2Ljkhn7TmPjeABBUJ3z5ZIswhwLqg8TrQZx7Lr5MOQyYDY8qlY9/Kb
-	qYAtFGrw5xiwvnxmgYeI7AP448z0FnPP2ka87bY82QqaOiubCTvqEuplKEPTifg2TIBq
-	wDFn+2NlasMiVpNu5kFxlq1e9T+V0bxAHLKHB/LQVsppLhTbdtABGxKlup311aIoXduq
-	9Nc+gkBad+r5CXT6BEbgcdxA0WSThCXtAsnOHhvahwY8K1fI3lmsP8SA0gwKIq394AQB
-	O+Tw==
-X-Received: by 10.152.143.6 with SMTP id sa6mr5508862lab.20.1385049569923;
-	Thu, 21 Nov 2013 07:59:29 -0800 (PST)
-Received: from [192.168.0.10] (h135n8-rny-a12.ias.bredband.telia.com.
-	[217.209.54.135]) by mx.google.com with ESMTPSA id
-	di11sm30547669lac.0.2013.11.21.07.59.28 for <yocto@yoctoproject.org>
-	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
-	Thu, 21 Nov 2013 07:59:29 -0800 (PST)
-Message-ID: <528E2DDE.1080602@gmail.com>
-Date: Thu, 21 Nov 2013 16:59:26 +0100
-From: Hans Beckerus <hans.beckerus@gmail.com>
-User-Agent: Mozilla/5.0 (Windows NT 6.2;
-	rv:24.0) Gecko/20100101 Thunderbird/24.1.1
+Return-Path: <gary@mlbassoc.com>
+Received: from mail.chez-thomas.org (mail.mlbassoc.com [65.100.170.105])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 71B2BE00576
+	for <yocto@yoctoproject.org>; Thu, 21 Nov 2013 08:09:11 -0800 (PST)
+Received: by mail.chez-thomas.org (Postfix, from userid 1998)
+	id 1B230F811F0; Thu, 21 Nov 2013 09:09:11 -0700 (MST)
+X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on
+	hermes.chez-thomas.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=4.0 tests=ALL_TRUSTED,BAYES_00
+	autolearn=unavailable version=3.3.2
+Received: from [192.168.1.114] (zeus [192.168.1.114])
+	by mail.chez-thomas.org (Postfix) with ESMTP id 5CBEAF811EF;
+	Thu, 21 Nov 2013 09:09:09 -0700 (MST)
+Message-ID: <528E3035.9040100@mlbassoc.com>
+Date: Thu, 21 Nov 2013 09:09:25 -0700
+From: Gary Thomas <gary@mlbassoc.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:24.0) Gecko/20100101 Thunderbird/24.1.0
 MIME-Version: 1.0
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+To: yocto@yoctoproject.org
 References: <CAFyqS9o5dBnO5C9yvy6UvUxbsHKhBAqNSiiRXsBhgd6w8qgurg@mail.gmail.com>
-In-Reply-To: <CAFyqS9o5dBnO5C9yvy6UvUxbsHKhBAqNSiiRXsBhgd6w8qgurg@mail.gmail.com>
+	<528E2DDE.1080602@gmail.com>
+In-Reply-To: <528E2DDE.1080602@gmail.com>
 Subject: Re: init-ifupdown: is this missing a RDEPEND to procps?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -43,19 +34,32 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 21 Nov 2013 15:59:36 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Thu, 21 Nov 2013 16:09:14 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
 Content-Transfer-Encoding: 8bit
 
-On 2013-11-20 4:15, Hans Beckérus wrote:
-> The /etc/init.d/networking script is using sysctl to grab some
-> parameters from /etc/sysctl.conf. This file does not exists unless
-> procps is also installed.
-> I can not see that init-ifupdown RDEPENDS procps. Should it not? Or is
-> there a reason for not having it like that?
-No one? Should I route this question to OE-core instead?
+On 2013-11-21 08:59, Hans Beckerus wrote:
+> On 2013-11-20 4:15, Hans Beckérus wrote:
+>> The /etc/init.d/networking script is using sysctl to grab some
+>> parameters from /etc/sysctl.conf. This file does not exists unless
+>> procps is also installed.
+>> I can not see that init-ifupdown RDEPENDS procps. Should it not? Or is
+>> there a reason for not having it like that?
+> No one? Should I route this question to OE-core instead?
 
-> Thanks.
-> Hans
+Probably since this recipe is in OE-core.
 
+IMO, there should not be a dependency on procps since that's pretty
+heavy and not really needed for smaller systems.  The single use
+of /etc/sysctl.conf in the ifupdown script seems to be trying to make
+sure local settings are applied before bringing up the network devices.
+The script simply ignores the failure if the file is missing which is
+OK, plus it does allow for local customization providing /etc/sysctl.conf
+without the overhead of procps.
+
+-- 
+------------------------------------------------------------
+Gary Thomas                 |  Consulting for the
+MLB Associates              |    Embedded world
+------------------------------------------------------------
 
