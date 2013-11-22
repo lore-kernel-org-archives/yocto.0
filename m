@@ -1,28 +1,46 @@
-Return-Path: <paul.eggleton@intel.com>
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 30EE4E006BE
-	for <yocto@yoctoproject.org>; Fri, 22 Nov 2013 03:21:48 -0800 (PST)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga102.fm.intel.com with ESMTP; 22 Nov 2013 03:21:47 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.93,751,1378882800"; d="scan'208";a="437930583"
-Received: from pauljbro-mobl.ger.corp.intel.com (HELO helios.localnet)
-	([10.252.121.218])
-	by fmsmga002.fm.intel.com with ESMTP; 22 Nov 2013 03:21:01 -0800
-From: Paul Eggleton <paul.eggleton@intel.com>
-To: "Robert P. J. Day" <rpjday@crashcourse.ca>
-Date: Fri, 22 Nov 2013 11:21:01 +0000
-Message-ID: <1423409.HTN22GAagW@helios>
-Organization: Intel Corporation
-User-Agent: KMail/4.10.5 (Linux/3.8.0-31-generic; KDE/4.10.5; i686; ; )
-In-Reply-To: <alpine.DEB.2.02.1311220548170.5474@oneiric>
-References: <alpine.DEB.2.02.1311211327360.10963@oneiric>
-	<CAP71WjyfTp3RvhQFrg937dOdREsaO8PUPq7GmaY6m=a=47wJmg@mail.gmail.com>
-	<alpine.DEB.2.02.1311220548170.5474@oneiric>
+Return-Path: <zhenhua.luo@freescale.com>
+Received: from db8outboundpool.messaging.microsoft.com
+	(mail-db8lp0188.outbound.messaging.microsoft.com [213.199.154.188])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4C51AE006CA
+	for <yocto@yoctoproject.org>; Fri, 22 Nov 2013 05:33:14 -0800 (PST)
+Received: from mail6-db8-R.bigfish.com (10.174.8.247) by
+	DB8EHSOBE017.bigfish.com (10.174.4.80) with Microsoft SMTP Server id
+	14.1.225.22; Fri, 22 Nov 2013 13:33:13 +0000
+Received: from mail6-db8 (localhost [127.0.0.1])	by mail6-db8-R.bigfish.com
+	(Postfix) with ESMTP id CF999D80790	for <yocto@yoctoproject.org>;
+	Fri, 22 Nov 2013 13:33:12 +0000 (UTC)
+X-Forefront-Antispam-Report: CIP:70.37.183.190; KIP:(null); UIP:(null); IPV:NLI;
+	H:mail.freescale.net; RD:none; EFVD:NLI
+X-SpamScore: -3
+X-BigFish: VS-3(zz9371I542I1432I14ffIzz1f42h2148h208ch1ee6h1de0h1fdah2073h2146h1202h1e76h1d1ah1d2ah1fc6hzz1de098h8275dh1de097hz2dh109h2a8h839h8e2h8e3h944hd25hf0ah1220h1288h12a5h12a9h12bdh137ah13b6h1441h1504h1537h153bh15d0h162dh1631h1758h18e1h1946h19b5h1ad9h1b0ah1b2fh2222h224fh1fb3h1d0ch1d2eh1d3fh1dfeh1dffh1e1dh1fe8h1ff5h2184h21a6h2216h22d0hbe9i1155h)
+Received: from mail6-db8 (localhost.localdomain [127.0.0.1]) by mail6-db8
+	(MessageSwitch) id 1385127176795953_23831;
+	Fri, 22 Nov 2013 13:32:56 +0000 (UTC)
+Received: from DB8EHSMHS027.bigfish.com (unknown [10.174.8.227])	by
+	mail6-db8.bigfish.com (Postfix) with ESMTP id 3969A800070	for
+	<yocto@yoctoproject.org>; Fri, 22 Nov 2013 13:32:52 +0000 (UTC)
+Received: from mail.freescale.net (70.37.183.190) by DB8EHSMHS027.bigfish.com
+	(10.174.4.37) with Microsoft SMTP Server (TLS) id 14.16.227.3;
+	Fri, 22 Nov 2013 13:32:51 +0000
+Received: from 039-SN2MPN1-021.039d.mgd.msft.net ([169.254.1.28]) by
+	039-SN1MMR1-004.039d.mgd.msft.net ([::1]) with mapi id 14.03.0158.002;
+	Fri, 22 Nov 2013 13:32:50 +0000
+From: Zhenhua Luo <zhenhua.luo@freescale.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: Yocto branches policy for concurrent SDK releases
+Thread-Index: Ac7nb754wRnh+qMzR5uPbZBHD585iAAF3tBA
+Date: Fri, 22 Nov 2013 13:32:49 +0000
+Message-ID: <CA452391058F6D4E9715FB2C29D9312A0181277E@039-SN2MPN1-021.039d.mgd.msft.net>
+References: <11.22.2013-mgd.freescale.com-31-6352068864395453777460-5604@freescale.com>
+In-Reply-To: <11.22.2013-mgd.freescale.com-31-6352068864395453777460-5604@freescale.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.192.185.143]
 MIME-Version: 1.0
-X-Mailman-Approved-At: Fri, 22 Nov 2013 05:11:59 -0800
-Cc: yocto@yoctoproject.org
-Subject: Re: FW: strange explanation of how to add a package to an existing recipe
+X-OriginatorOrg: freescale.com
+X-FOPE-CONNECTOR: Id%0$Dn%*$RO%0$TLS%0$FQDN%$TlsDn%
+Subject: Re: Yocto branches policy for concurrent SDK releases
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,74 +52,56 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 22 Nov 2013 11:21:49 -0000
+X-List-Received-Date: Fri, 22 Nov 2013 13:33:15 -0000
+Content-Language: en-US
 Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Robert,
+Please ignore, sorry for the noise.=20
 
-On Friday 22 November 2013 05:50:39 Robert P. J. Day wrote:
-> On Thu, 21 Nov 2013, Nicolas Dechesne wrote:
-> > On Thu, Nov 21, 2013 at 7:35 PM, Rifenbark, Scott M 
-<scott.m.rifenbark@intel.com> wrote:
-> >       >suggests that, to customize an image, you should copy the existing
-> >       >.bb file for>       >
-> >       >that image to another name and add a line like:
-> >       >  IMAGE_INSTALL += "strace"
-> >       >
-> >       >but rather than *copy* the entire image file, isn't it easier to
-> >       >use what's
-> >       >already being used; that is, just "include" or "require" the
-> >       >existing .bb file.> 
-> >       >example: core-image-minimal-mtdutils.bb contains:
-> > i would agree with the doc. while it is tempting to include/require
-> > a 'minimal' image, and it is simpler at first sight, eventually you
-> > will need to have full control of all your image. especially when
-> > your 'image' is your 'product' that gets deployed. In such
-> > circumstances I believe it is more appropriate to not rely on an
-> > external recipe. e.g. if the minimal image you include change, all
-> > your derived images change too... 
-> > 
-> > it's kind of a 'taste' choice, and you might want to choose to do
-> > differently, but still the best recommendation to me is to own your
-> > image recipes completely...
-> 
->   your logic is sound; however, it's also reasonable to suspect that
-> if someone is going to create a new, initial image over which they
-> want full control, they may very well want to create some subtle
-> variants of that image (as is done with all those core images).
-> 
->   so perhaps both approaches should be documented with the appropriate
-> caveats?
 
-Maybe, but this is really no different than any other type of recipe. I'd much 
-rather us have some documentation on how to share commonality between recipes 
-(where we discuss the usage and relative merits of include/require and bbclass 
-files, for example) and just note in the image recipe section that image 
-recipes are recipes and point to that generic documentation.
+Best Regards,
 
-I had a hand in writing this section so I'm completely biased, but I agree 
-with Nicolas - including any of the core-image-* in your own recipe isn't 
-giving you much of an advantage and may in fact cause unexpected changes when 
-you come to upgrade. Image recipes tend to be fairly trivial, so it's simplest 
-to just have your own discrete recipe (although if you want to have variants 
-of that recipe that you also control, by all means use includes or classes to 
-share the common parts.)
+Zhenhua
 
-Cheers,
-Paul
+> -----Original Message-----
+> From: Luo Zhenhua-B19537
+> Sent: Friday, November 22, 2013 6:44 PM
+> To: Software Development Power Arch Multicore
+> Cc: yocto@yoctoproject.org
+> Subject: [mcswdev] Yocto branches policy for concurrent SDK releases
+> Importance: High
+>=20
+> Hi all,
+>=20
+> Currently concurrent SDKs are on-going(e.g. SDK 1.5, T1040/T2080, LS1,
+> etc), the same Yocto branch is used for multiple releases, there is
+> conflict of Yocto recipes for different SDKs.
+>=20
+> To resolve above issue, following branch mechanism will be used:
+>=20
+> 1. For those layers without conflict(poky, meta-oe, meta-virtualization
+> and layers reused from community), same branch will be used and no extra
+> branches need to be created, change for those layer should be upstreamed
+> synchronously.
+>=20
+> 2. For those layers with conflict, the branch specific to SDK are created=
+,
+> currently meta-fsl-ppc and meta-fsl-networking have conflict for
+> different SDKs. Following branches will co-exist for such layers.
+>    a. Yocto release branch: dylan, dora. the common changes for all SDKs
+> should be submitted against this branch and cherry-picked to SDK specific
+> branches. The changes should be upstreamed synchronously.
+>    b. SDK specific branch: dylan-sdk1.5, dylan-t1_t2, etc. The SDK
+> specific change should be submitted against SDK branch, when SDK is
+> formally released, the changes will be upstreamed.
+>=20
+> Please let me know if any comment.
+>=20
+>=20
+> Best Regards,
+>=20
+> Zhenhua
 
-Cheers,
-Paul
-
----------------------------------------------------------------------
-Intel Corporation (UK) Limited
-Registered No. 1134945 (England)
-Registered Office: Pipers Way, Swindon SN3 1RJ
-VAT No: 860 2173 47
-
-This e-mail and any attachments may contain confidential material for
-the sole use of the intended recipient(s). Any review or distribution
-by others is strictly prohibited. If you are not the intended
-recipient, please contact the sender and delete all copies.
 
 
