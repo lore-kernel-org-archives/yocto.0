@@ -1,30 +1,28 @@
-Return-Path: <rpjday@crashcourse.ca>
-Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
-	[64.235.106.9])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 245C5E006E7
-	for <yocto@yoctoproject.org>; Fri, 22 Nov 2013 09:35:54 -0800 (PST)
-Received: from [173.34.6.101] (port=51287 helo=crashcourse.ca)
-	by astoria.ccjclearline.com with esmtpsa (TLSv1:DHE-RSA-AES256-SHA:256)
-	(Exim 4.80) (envelope-from <rpjday@crashcourse.ca>)
-	id 1Vjue0-0002G7-N6
-	for yocto@yoctoproject.org; Fri, 22 Nov 2013 12:35:52 -0500
-Date: Fri, 22 Nov 2013 12:35:49 -0500 (EST)
-From: "Robert P. J. Day" <rpjday@crashcourse.ca>
-X-X-Sender: rpjday@oneiric
-To: Yocto discussion list <yocto@yoctoproject.org>
-Message-ID: <alpine.DEB.2.02.1311221224360.4181@oneiric>
-User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
+Return-Path: <vidal.develone@gmail.com>
+Received: from mail-qa0-f51.google.com (mail-qa0-f51.google.com
+	[209.85.216.51])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BC489E006E6
+	for <yocto@yoctoproject.org>; Fri, 22 Nov 2013 10:00:45 -0800 (PST)
+Received: by mail-qa0-f51.google.com with SMTP id o15so5061933qap.17
+	for <yocto@yoctoproject.org>; Fri, 22 Nov 2013 10:00:44 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=6fkULO4M2/E64P1TQIep89t4j1jP2FLRSe/DxkVSzKo=;
+	b=YtySwRjoz8aAfkugGJi420Gu9O/VKNFu11Mt3qnvXmtrRPWqkY+0sjKDpSqth2ai+/
+	LfPKoELwaEpWckoPhwKlHMIRVqhw48Hn6TrXy1TyTUNLtiwB94ChsB4bGZrXCL+j8whH
+	5689Sxuu8Md6Z34tZRi7ZdoxWXU9EDgY9nOvPqe5yYL/0y0te2tnR/UpGGyuc97WTWQr
+	g+i1cqK/qJnFnspbiMtxLDtkvYGlJL3HT1zB9LXV96t895SRoe/K7TFHaHRfG3tboR5b
+	qGfy5+JW5jO7EWvdA/TJLMKnGtuykYuxhxHkZ2H9/0Uo6JXzAGZLFrJ7Utg6gXYIDZ72
+	VK9A==
 MIME-Version: 1.0
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - crashcourse.ca
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-Subject: any OE/yocto-interested folks in boston up for socializing sometime dec 2-6?
+X-Received: by 10.49.108.165 with SMTP id hl5mr24006778qeb.24.1385143244290;
+	Fri, 22 Nov 2013 10:00:44 -0800 (PST)
+Received: by 10.140.37.81 with HTTP; Fri, 22 Nov 2013 10:00:44 -0800 (PST)
+Date: Fri, 22 Nov 2013 11:00:44 -0700
+Message-ID: <CANwz6nzTqH+-zA0B8YodrpEW_kVwGp-FF2zi3jDdQE6L+5od8A@mail.gmail.com>
+From: Edward Vidal <vidal.develone@gmail.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: chkconfig
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -36,37 +34,41 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 22 Nov 2013 17:35:56 -0000
-Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-List-Received-Date: Fri, 22 Nov 2013 18:00:49 -0000
+Content-Type: multipart/alternative; boundary=047d7bdc0d120a03e204ebc7cb00
 
+--047d7bdc0d120a03e204ebc7cb00
+Content-Type: text/plain; charset=ISO-8859-1
 
-  there's a fair-to-middling chance i'll be in boston for a good part
-of the week of dec 2-6 and mostly being a tourist, so i'll have plenty
-of free time -- anyone there interested in some kind of yocto-related
-socializing during that week, perhaps food or beer? i'd be staying in
-cambridge but i've heard the subway system works just fine so i can
-tool around on that if need be.
+Hello all,
+Is chkconfig part of any image?
+Also to force what is the best procedure?
+In my /etc/network/interfaces I have tried the following
+auto eth0
+iface eth0 inet static
+        address 192.168.0.29
+        hwaddress ether 00:0A:35:00:00:00
+        netmask 255.255.255.0
+        network 192.168.0.0
+        gateway 192.168.0.1
+Since I have a router on my network I get an IP using dhcp,
+if I ifdown eth0 and ifup eth0 then the 192.168.0.29 get setup.
+Thanks
 
-  i'd be particularly keen on getting together with other
-OE/yocto/embedded linux trainers/consultants and trading stories and
-ideas.  and if there's any interest in a short seminar of some kind,
-i'm sure i can be talked into giving a 1-hour talk on yocto or
-something like that at a LUG or brown bag seminar or what have you.
+--047d7bdc0d120a03e204ebc7cb00
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
 
-  anyway, let me know if there's anything happening in boston that
-week i'd be interested in, or if anyone wants me to give a free talk
-on, say, introduction to yocto project somewhere.
+<div dir=3D"ltr"><div><div><div><div><div>Hello all,<br></div>Is chkconfig =
+part of any image?<br></div>Also to force what is the best procedure?<br>In=
+ my /etc/network/interfaces I have tried the following<br>auto eth0<br>ifac=
+e eth0 inet static<br>
+=A0=A0=A0=A0=A0=A0=A0 address 192.168.0.29<br>=A0=A0=A0=A0=A0=A0=A0 hwaddre=
+ss ether 00:0A:35:00:00:00<br>=A0=A0=A0=A0=A0=A0=A0 netmask 255.255.255.0<b=
+r>=A0=A0=A0=A0=A0=A0=A0 network 192.168.0.0<br>=A0=A0=A0=A0=A0=A0=A0 gatewa=
+y 192.168.0.1<br></div>Since I have a router on my network I get an IP usin=
+g dhcp,<br>
+</div>if I ifdown eth0 and ifup eth0 then the 192.168.0.29 get setup.<br></=
+div>Thanks<br><div><div><div><br></div></div></div></div>
 
-rday
-
--- 
-
-========================================================================
-Robert P. J. Day                                 Ottawa, Ontario, CANADA
-                        http://crashcourse.ca
-
-Twitter:                                       http://twitter.com/rpjday
-LinkedIn:                               http://ca.linkedin.com/in/rpjday
-========================================================================
-
-
+--047d7bdc0d120a03e204ebc7cb00--
