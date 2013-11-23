@@ -1,30 +1,28 @@
-Return-Path: <rpjday@crashcourse.ca>
-Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
-	[64.235.106.9])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1D937E006F7
-	for <yocto@yoctoproject.org>; Sat, 23 Nov 2013 02:59:07 -0800 (PST)
-Received: from [173.34.6.101] (port=52420 helo=crashcourse.ca)
-	by astoria.ccjclearline.com with esmtpsa (TLSv1:DHE-RSA-AES256-SHA:256)
-	(Exim 4.80) (envelope-from <rpjday@crashcourse.ca>)
-	id 1VkAva-0007lp-BL
-	for yocto@yoctoproject.org; Sat, 23 Nov 2013 05:59:06 -0500
-Date: Sat, 23 Nov 2013 05:59:02 -0500 (EST)
-From: "Robert P. J. Day" <rpjday@crashcourse.ca>
-X-X-Sender: rpjday@oneiric
-To: Yocto discussion list <yocto@yoctoproject.org>
-Message-ID: <alpine.DEB.2.02.1311230555380.9634@oneiric>
-User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
+Return-Path: <rajanpatha34@gmail.com>
+Received: from mail-ve0-f193.google.com (mail-ve0-f193.google.com
+	[209.85.128.193])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 80CB1E006F8
+	for <yocto@yoctoproject.org>; Sat, 23 Nov 2013 05:14:20 -0800 (PST)
+Received: by mail-ve0-f193.google.com with SMTP id oy12so216470veb.8
+	for <yocto@yoctoproject.org>; Sat, 23 Nov 2013 05:14:19 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=UtJMiJzUBq9crV2tujU5j9TTVJmJhiKTdqAte4OCRRY=;
+	b=Ztg2Cw0CpJodmNcxsjbvHWOzrjavA0eFfpfC8Zmuv98IcRATa8miAxZtiug6W3HIox
+	5I0vCMznRXusNEZEFCO3GKoOucfe8vCQC381Wsv8fK55Jb5hb+Z93EE1YzbMgHFon37L
+	BCmhoVXIvDxwbP3KslVsSVIpVwblz1s4twCULsVxsgp/GaKpFP3wb/kGHNd2g8jZa2HV
+	R8dp3eQF3bWkERqh6PqckIYJn9CaZw3BW3Li1iI2sY25zySPv5dEGALCv8gH23tgNkzw
+	CoedyysSrSohz5EKiuuXpVeRqzxZ1HoLLBS7pK5LL3HLcu7ScDsKn8UGnC+LWIo8cU+y
+	1aTA==
 MIME-Version: 1.0
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - crashcourse.ca
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-Subject: ksize.py and dirsize.py scripts not in dora tarball, is that deliberate?
+X-Received: by 10.58.208.130 with SMTP id me2mr16491527vec.13.1385212459420;
+	Sat, 23 Nov 2013 05:14:19 -0800 (PST)
+Received: by 10.220.77.5 with HTTP; Sat, 23 Nov 2013 05:14:19 -0800 (PST)
+Date: Sat, 23 Nov 2013 18:44:19 +0530
+Message-ID: <CACXtFMicMSJZ=H1+UMgOrcKZnoKK=9VmUbPbEbnWF8Mk1hQv7A@mail.gmail.com>
+From: rajan pathak <rajanpatha34@gmail.com>
+To: yocto@yoctoproject.org
+Subject: Changing /etc/shadow file
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -36,37 +34,29 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 23 Nov 2013 10:59:09 -0000
-Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-List-Received-Date: Sat, 23 Nov 2013 13:14:20 -0000
+Content-Type: multipart/alternative; boundary=047d7bdc192c9512fe04ebd7e8de
 
+--047d7bdc192c9512fe04ebd7e8de
+Content-Type: text/plain; charset=ISO-8859-1
 
-  current dev manual:
+I have to make some changes to my /etc/shadow file,
 
-http://www.yoctoproject.org/docs/latest/dev-manual/dev-manual.html#understand-what-gives-your-image-size
+I Can see shadow  file is from poky/meta/recipe-extended,so to change this
+file
+do I have to apply patch or what?
 
-claims:
+Thanks
+Rajan
 
-"To help you see where you currently are with kernel and root
-filesystem sizes, you can use two tools found in the Source Directory
-in the scripts directory:
+--047d7bdc192c9512fe04ebd7e8de
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
 
-ksize.py: Reports component sizes for the kernel build objects.
+<div dir=3D"ltr"><div><div><div><div>I have to make some changes to my /etc=
+/shadow file,<br><br></div>I Can see shadow=A0 file is from poky/meta/recip=
+e-extended,so to change this file<br></div>do I have to apply patch or what=
+?<br>
+<br></div>Thanks<br></div>Rajan<br></div>
 
-dirsize.py: Reports component sizes for the root filesystem."
-
-  however, the current dora tarball doesn't contain these scripts,
-while oe-core contains them more specifically under the scripts/tiny/
-subdirectory. thoughts?
-
-rday
-
--- 
-
-========================================================================
-Robert P. J. Day                                 Ottawa, Ontario, CANADA
-                        http://crashcourse.ca
-
-Twitter:                                       http://twitter.com/rpjday
-LinkedIn:                               http://ca.linkedin.com/in/rpjday
-========================================================================
-
+--047d7bdc192c9512fe04ebd7e8de--
