@@ -1,35 +1,22 @@
-Return-Path: <rpjday@crashcourse.ca>
-Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
-	[64.235.106.9])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 74F0EE006AD
-	for <yocto@yoctoproject.org>; Mon, 25 Nov 2013 11:05:33 -0800 (PST)
-Received: from [67.210.172.157] (port=56875 helo=crashcourse.ca)
-	by astoria.ccjclearline.com with esmtpsa (TLSv1:DHE-RSA-AES256-SHA:256)
-	(Exim 4.80) (envelope-from <rpjday@crashcourse.ca>)
-	id 1Vl1TP-0008Vz-WE; Mon, 25 Nov 2013 14:05:32 -0500
-Date: Mon, 25 Nov 2013 14:05:29 -0500 (EST)
-From: "Robert P. J. Day" <rpjday@crashcourse.ca>
-X-X-Sender: rpjday@oneiric
-To: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
-In-Reply-To: <41DEA4B02DBDEF40A0F3B6D0DDB1237983F51390@ORSMSX101.amr.corp.intel.com>
-Message-ID: <alpine.DEB.2.02.1311251404500.7556@oneiric>
-References: <alpine.DEB.2.02.1311240615540.543@oneiric>
-	<3067877.hygbnmzJEU@helios>
-	<41DEA4B02DBDEF40A0F3B6D0DDB1237983F51390@ORSMSX101.amr.corp.intel.com>
-User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
+Return-Path: <Michael_E_Brown@Dell.com>
+Received: from ausc60ps301.us.dell.com (ausc60ps301.us.dell.com
+	[143.166.148.206])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 98247E006AD
+	for <yocto@yoctoproject.org>; Mon, 25 Nov 2013 13:32:45 -0800 (PST)
+X-LoopCount0: from 10.175.216.251
+X-IronPort-AV: E=Sophos;i="4.93,769,1378875600"; d="scan'208";a="340666669"
+From: <Michael_E_Brown@Dell.com>
+To: <yocto@yoctoproject.org>
+Date: Mon, 25 Nov 2013 15:32:37 -0600
+Thread-Topic: Git clone over http broken on git.yoctoproject.org
+Thread-Index: AQHO6iXcLE9jcOEQCk+oLwZ91g7oMg==
+Message-ID: <DB6E482E89290547898851B8CC9D8110012F80E185@AUSX7MCPS302.AMER.DELL.COM>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+acceptlanguage: en-US
 MIME-Version: 1.0
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - crashcourse.ca
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-Cc: Paul Eggleton <paul.eggleton@linux.intel.com>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: [PATCH] Documentation: dev manual, add a reference to poky-bleeding distro
+Subject: Git clone over http broken on git.yoctoproject.org
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,25 +28,37 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 25 Nov 2013 19:05:38 -0000
-Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-List-Received-Date: Mon, 25 Nov 2013 21:32:46 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-On Mon, 25 Nov 2013, Rifenbark, Scott M wrote:
+Several repositories have broken git pulls over http on git.yoctoproject.or=
+g.
 
-> I can add a caution box after applying the patch.
+Working:
 
-  sure, i'm good with that, i just wanted readers to see actual
-examples of AUTOREV in action.
+$ git clone --mirror http://git.yoctoproject.org/git/yocto-kernel-tools
+Initialized empty Git repository in /home/michael_e_brown/f10/sources/f/yoc=
+to-kernel-tools.git/
+remote: Counting objects: 1067, done.
+remote: Compressing objects: 100% (462/462), done.
+remote: Total 1067 (delta 711), reused 958 (delta 603)
+Receiving objects: 100% (1067/1067), 273.41 KiB | 251 KiB/s, done.
+Resolving deltas: 100% (711/711), done.
 
-rday
 
--- 
+Broken:
 
-========================================================================
-Robert P. J. Day                                 Ottawa, Ontario, CANADA
-                        http://crashcourse.ca
+$ git clone --mirror http://git.yoctoproject.org/git/linux-yocto-3.10
+Initialized empty Git repository in /home/michael_e_brown/f10/sources/f/lin=
+ux-yocto-3.10.git/
+error: RPC failed; result=3D52, HTTP code =3D 100
 
-Twitter:                                       http://twitter.com/rpjday
-LinkedIn:                               http://ca.linkedin.com/in/rpjday
-========================================================================
+All of the kernel pulls appear to be broken in the same way (3.10, 3.8, etc=
+)
+
+URLs taken directly from the cgit HTTP url listed.
+--
+Michael=
 
