@@ -1,27 +1,25 @@
 Return-Path: <paul.eggleton@linux.intel.com>
 Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5BF90E00476
-	for <yocto@yoctoproject.org>; Mon, 25 Nov 2013 02:17:54 -0800 (PST)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga101.jf.intel.com with ESMTP; 25 Nov 2013 02:17:53 -0800
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CD6C0E0071C
+	for <yocto@yoctoproject.org>; Mon, 25 Nov 2013 02:19:01 -0800 (PST)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga101.jf.intel.com with ESMTP; 25 Nov 2013 02:19:01 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.93,766,1378882800"; d="scan'208";a="414148544"
+X-IronPort-AV: E=Sophos;i="4.93,766,1378882800"; d="scan'208";a="441126785"
 Received: from akagikob-mobl.ger.corp.intel.com (HELO helios.localnet)
 	([10.252.121.166])
-	by orsmga001.jf.intel.com with ESMTP; 25 Nov 2013 02:17:03 -0800
+	by orsmga002.jf.intel.com with ESMTP; 25 Nov 2013 02:18:40 -0800
 From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: Nick D'Ademo <nickdademo@gmail.com>
-Date: Mon, 25 Nov 2013 10:17:02 +0000
-Message-ID: <1692310.DXcMCOQJZA@helios>
+To: "Robert P. J. Day" <rpjday@crashcourse.ca>
+Date: Mon, 25 Nov 2013 10:18:40 +0000
+Message-ID: <3123042.c7urxisuWc@helios>
 Organization: Intel Corporation
 User-Agent: KMail/4.10.5 (Linux/3.8.0-31-generic; KDE/4.10.5; i686; ; )
-In-Reply-To: <CANR6C56G+sT0h3iXemO41Yf-knp4X9M96qv-CQK+oPN5VUtyPw@mail.gmail.com>
-References: <CANR6C56jHhErDpNceMYwCrP6c+LUeck0WOPdX55uAeLr103gTA@mail.gmail.com>
-	<CANR6C55TONoWageb9=HEVMLrHbYKpL96zB+x805xgXYGuPw-EQ@mail.gmail.com>
-	<CANR6C56G+sT0h3iXemO41Yf-knp4X9M96qv-CQK+oPN5VUtyPw@mail.gmail.com>
+In-Reply-To: <alpine.DEB.2.02.1311230555380.9634@oneiric>
+References: <alpine.DEB.2.02.1311230555380.9634@oneiric>
 MIME-Version: 1.0
 Cc: yocto@yoctoproject.org
-Subject: Re: MULTILIB builds with Yocto: Status?
+Subject: Re: ksize.py and dirsize.py scripts not in dora tarball, is that deliberate?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -33,38 +31,33 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 25 Nov 2013 10:17:57 -0000
+X-List-Received-Date: Mon, 25 Nov 2013 10:19:01 -0000
 Content-Transfer-Encoding: 7Bit
 Content-Type: text/plain; charset="us-ascii"
 
-Hi Nick,
-
-On Monday 25 November 2013 01:43:32 Nick D'Ademo wrote:
-> Found the fix for these issues:
+On Saturday 23 November 2013 05:59:02 Robert P. J. Day wrote:
+>   current dev manual:
 > 
-> *The two offending Poky recipes are:*
-> recipes-multimedia/x264
-> recipes-multimedia/libav
+> http://www.yoctoproject.org/docs/latest/dev-manual/dev-manual.html#understan
+> d-what-gives-your-image-size
 > 
-> *Files which need to be modified:*
-> x264_git.bb -> Add --libdir=${libdir} to EXTRA_OECONF variable
-> libav.inc -> Add --libdir=${libdir} AND --shlibdir=${libdir} to
-> EXTRA_OECONF variable
+> claims:
 > 
-> As you can see from the above fixes, the issue was that the configure step
-> was passing "usr/lib" instead of "usr/lib64" which ultimately caused the
-> "installed but not shipped" errors.
+> "To help you see where you currently are with kernel and root
+> filesystem sizes, you can use two tools found in the Source Directory
+> in the scripts directory:
 > 
-> Are these actually bugs which should be patched in the recipes?
+> ksize.py: Reports component sizes for the kernel build objects.
+> 
+> dirsize.py: Reports component sizes for the root filesystem."
+> 
+>   however, the current dora tarball doesn't contain these scripts,
+> while oe-core contains them more specifically under the scripts/tiny/
+> subdirectory. thoughts?
 
-These two recipes have their own custom (non-autotools) configure scripts and 
-thus we compose our own configure command line to match; so yes we should fix 
-these. Would you be able to send a patch on top of OE-Core to add the options 
-to each recipe? There's a guide here if you need it:
+I guess they were added after the dora release.
 
-http://www.openembedded.org/wiki/How_to_submit_a_patch_to_OpenEmbedded
-
-Thanks,
+Cheers,
 Paul
 
 -- 
