@@ -1,27 +1,26 @@
 Return-Path: <bevenson@melinkcorp.com>
 Received: from pluto.melinkcorp.com (rrcs-98-100-91-244.central.biz.rr.com
 	[98.100.91.244])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 17C95E00510
-	for <yocto@yoctoproject.org>; Mon, 25 Nov 2013 07:59:35 -0800 (PST)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 54146E00510
+	for <yocto@yoctoproject.org>; Mon, 25 Nov 2013 08:39:03 -0800 (PST)
 Received: from pluto.melinkcorp.local ([10.0.2.4]) by pluto.melinkcorp.local
-	([10.0.2.4]) with mapi; Mon, 25 Nov 2013 10:59:34 -0500
+	([10.0.2.4]) with mapi; Mon, 25 Nov 2013 11:39:03 -0500
 From: Bryan Evenson <bevenson@melinkcorp.com>
-To: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>, "Robert P. J. Day"
-	<rpjday@crashcourse.ca>
-Date: Mon, 25 Nov 2013 10:56:17 -0500
-Thread-Topic: stupid question about post-installation scripts
-Thread-Index: AQHO6QEijnn9qoGtOECZtPlRt2hplZo2EeeAgAAIVkA=
-Message-ID: <91586D499ADFD74FBCFB8425266A5DE40153C1156096@pluto.melinkcorp.local>
-References: <alpine.DEB.2.02.1311240533220.32547@oneiric>
-	<41DEA4B02DBDEF40A0F3B6D0DDB1237983F511F7@ORSMSX101.amr.corp.intel.com>
-In-Reply-To: <41DEA4B02DBDEF40A0F3B6D0DDB1237983F511F7@ORSMSX101.amr.corp.intel.com>
+To: Bryan Evenson <bevenson@melinkcorp.com>, "yocto@yoctoproject.org"
+	<yocto@yoctoproject.org>
+Date: Mon, 25 Nov 2013 11:35:47 -0500
+Thread-Topic: [yocto] Unable to upgrade kernel;	package for kernel name
+	includes version
+Thread-Index: Ac7p7Ql1DnAWGplISYiWbscF7THRXAADOgVQ
+Message-ID: <91586D499ADFD74FBCFB8425266A5DE40153C11560E0@pluto.melinkcorp.local>
+References: <91586D499ADFD74FBCFB8425266A5DE40153C1156010@pluto.melinkcorp.local>
+In-Reply-To: <91586D499ADFD74FBCFB8425266A5DE40153C1156010@pluto.melinkcorp.local>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
 acceptlanguage: en-US
 MIME-Version: 1.0
-Cc: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: stupid question about post-installation scripts
+Subject: Re: Unable to upgrade kernel; package for kernel name includes version
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -33,60 +32,74 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 25 Nov 2013 15:59:38 -0000
+X-List-Received-Date: Mon, 25 Nov 2013 16:39:04 -0000
 Content-Language: en-US
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-Robert,
-
-That's how it works in my experience.  I have some packages for my system t=
-hat have a postinst piece that needs to run during image creation, and othe=
-r pieces that need to run only on a package upgrade.  By checking whether "=
-x${D}" =3D "${D}", I am filtering out whether the postinst script is runnin=
-g during image creation or on the actual hardware.  Been working great so f=
-ar.
-
--Bryan
+All,
 
 > -----Original Message-----
 > From: yocto-bounces@yoctoproject.org [mailto:yocto-
-> bounces@yoctoproject.org] On Behalf Of Rifenbark, Scott M
-> Sent: Monday, November 25, 2013 10:22 AM
-> To: Robert P. J. Day
-> Cc: Yocto discussion list
-> Subject: [yocto] FW: stupid question about post-installation scripts
+> bounces@yoctoproject.org] On Behalf Of Bryan Evenson
+> Sent: Monday, November 25, 2013 9:46 AM
+> To: yocto@yoctoproject.org
+> Subject: [yocto] Unable to upgrade kernel; package for kernel name
+> includes version
 >=20
-> Robert,
+> I'm on poky/dylan-9.0.1 I am upgrading the Linux kernel for my device's
+> image from a custom 3.6.9 kernel to a custom 3.10 kernel.  I'm using
+> this layer: https://github.com/evensonbryan/meta-atmel as a basis for
+> the custom kernel recipe (there is a recipe for the 3.10 kernel that I
+> haven't yet deployed to Github in case anyone is wondering).  I'm
+> attempting to do a firmware upgrade with my built packages (using opkg
+> for package management) and I've discovered an issue with the kernel
+> naming.  On my pre-upgraded device, a list of installed packages
+> includes:
 >=20
-> I don't know... I am forwarding to the discussion list.
+> kernel-devicetree
+> kernel-image-3.6.9-yocto-standard
 >=20
-> Scott
+> So when I build my updated Linux kernel, the kernel image is now named
+> "kernel-image-3.10.0-yocto-standard".  So when I attempt to do an
+> upgrade, the kernel-devicetree is upgraded just fine but the kernel
+> image is not; kernel-image-3.10.0-yocto-standard is not the same
+> package as kernel-image-3.6.9-yocto-standard, so opkg does not see this
+> as an upgrade.
 >=20
-> >-----Original Message-----
-> >From: Robert P. J. Day [mailto:rpjday@crashcourse.ca]
-> >Sent: Sunday, November 24, 2013 2:37 AM
-> >To: Rifenbark, Scott M
-> >Subject: stupid question about post-installation scripts
-> >
-> >
-> >  when one defines pkg_postinst scripts, are those scripts invoked at
-> >*both* root filesystem creation time and first boot time? so that one
-> >needs to manually check the value of ${D} to decide whether to run
-> >them, say, at first boot time?
-> >
-> >  i'm reading the section here:
-> >
-> >http://www.yoctoproject.org/docs/latest/dev-manual/dev-
-> >manual.html#post-installation-scripts
-> >
-> >and i know i've seen elsewhere scripts explicitly checking the value
-> of
-> >the ${D} prefix to determine when they're being invoked. it *seems*
-> >like that's what's happening, but if that's the case, it can probably
-> be said much more clearly.
-> >
-> >rday
+> How do I force the packaging system to recognize that the new kernel is
+> an upgrade of the old kernel, even though the packages have different
+> names?  And for the future, how do I change the package name so that it
+> doesn't include the version?
+
+I have a partial solution, but I'm still curious as to if there is a cleane=
+r method than what I've found so far.  I have a package that is an image ve=
+rsion so that way I can easily tell the overall distribution version.  In t=
+hat package, I added the line:
+
+RDEPENDS_${PN} =3D "kernel-image (>=3D 3.10)"
+
+When I did this, upgrading my image version package caused kernel-image-3.1=
+0.0-yocto-standard to be installed.  However, opkg still claims that kernel=
+-image-3.6.9-yocto-standard is still installed; it'd be nice to remove this=
+ package also.  Would adding:
+
+RCONFLICTS_${PN} =3D "kernel-image-3.6.9-yocto-standard"
+RREPLACES_${PN} =3D "kernel-image-3.6.9-yocto-standard"
+
+to the 3.10 kernel recipe fix the issue?  And if so, moving forward would I=
+ then need to append the list with each kernel version that is created, in =
+case I have an old system that has never been upgraded?  I think this will =
+work, but it seems messy.
+
+Thanks,
+Bryan
+>=20
+> Thanks,
+> Bryan
+>=20
+>=20
+>=20
 > _______________________________________________
 > yocto mailing list
 > yocto@yoctoproject.org
