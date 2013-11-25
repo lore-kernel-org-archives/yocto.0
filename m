@@ -1,35 +1,30 @@
-Return-Path: <trevor.woerner@linaro.org>
-Received: from mail-ie0-f169.google.com (mail-ie0-f169.google.com
-	[209.85.223.169])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9BFDCE0050E
-	for <yocto@yoctoproject.org>; Sun, 24 Nov 2013 14:19:57 -0800 (PST)
-Received: by mail-ie0-f169.google.com with SMTP id e14so5661359iej.14
-	for <yocto@yoctoproject.org>; Sun, 24 Nov 2013 14:19:56 -0800 (PST)
+Return-Path: <mgloff@emacinc.com>
+Received: from mail-wg0-f49.google.com (mail-wg0-f49.google.com [74.125.82.49])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3929AE0074F
+	for <yocto@yoctoproject.org>; Sun, 24 Nov 2013 16:28:42 -0800 (PST)
+Received: by mail-wg0-f49.google.com with SMTP id x12so3237477wgg.16
+	for <yocto@yoctoproject.org>; Sun, 24 Nov 2013 16:28:41 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
-	h=x-gm-message-state:from:to:cc:subject:date:message-id;
-	bh=UDVsXFnscw97PbH46I+9m/UiawfLSdGUFisZMwCY8KM=;
-	b=L4mw22Y/daINsD6Hhi0WDK1lJRrMGggn0Snlu4ToetyGssw3qKNFGFiCJpLOdGw/vr
-	TdmNDjJIsvmUBP2ONJYHiIxlGnYtakbPCeb3VyBKgCqkmPnC0dLrYRFlBpaSqXqb/PHC
-	UaJONcdLi1z9hsQsxP6wRjnEUTM43R0onl8nJqvEsAuimDJ9dAVuCggFpNNx86JdFHnh
-	oV/F6M4N3dZu64Loql4sbzi4uFx6lNvI8XeMGK43K8xGiMbV806mZcnNAlV++eybZB1o
-	08h95gUXMi7/JdYcFKPMqXd1OfuLTPOU3XM+x+7vaioXm/2E715R04w0bRbGMpNvwjyo
-	VW5g==
-X-Gm-Message-State: ALoCoQmqm7oKHFX39UTqn81QJP1PN3PtAibHhLWfkqVNy1+hdyUuc9u2Mv4hVbi3c0HohobNyqbu
-X-Received: by 10.42.204.4 with SMTP id fk4mr14966534icb.31.1385331596733;
-	Sun, 24 Nov 2013 14:19:56 -0800 (PST)
-Received: from suse64-i7.site (dsl-67-55-9-50.acanac.net. [67.55.9.50])
-	by mx.google.com with ESMTPSA id x5sm22831918iga.6.2013.11.24.14.19.54
-	for <multiple recipients>
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Sun, 24 Nov 2013 14:19:55 -0800 (PST)
-From: Trevor Woerner <trevor.woerner@linaro.org>
-To: yocto@yoctoproject.org
-Date: Sun, 24 Nov 2013 17:19:30 -0500
-Message-Id: <1385331570-22164-1-git-send-email-trevor.woerner@linaro.org>
-X-Mailer: git-send-email 1.8.4.474.g128a96c
-Cc: patches@linaro.org
-Subject: [yocto-docs][PATCH] ref-manual: add usage NOTE to IMAGE_FSTYPES
+	h=x-gm-message-state:mime-version:date:message-id:subject:from:to
+	:content-type;
+	bh=2267KzMWXZpYRPyxP9AkGf9o1ZhVnNjtKdzs8ZPmjt8=;
+	b=FoNzRYvZMv3bWy19jqQTZdQ4+tmtYfgvfDTupLmlzyna24O2miFHWJ2w+1uuIG19Sw
+	SXxhXA59+eOOxaomXnQ+O/Cwy9G/MJKzlmbBFlyfWkzFX/8K+eSqkweQ//vrPStT9FT/
+	e4rD4EVrHdjGROrX7hVsRPISdT62iZ+oBvzzmqL7AyojYRXona4wWx/CabfmfM8UXFlu
+	ITDCoTKRXL5szMNif9SGBfkk+LCn97haON9Uw5e2bqpGctrH99TrDOYPeUOAFVUObtwM
+	i877j+nRnddsgJN+HcFbjUljOQHTK1WqCtYmpRo2LkFqQQepJp5h56t72t359oUTvlKo
+	03TA==
+X-Gm-Message-State: ALoCoQm+OUEDIil5SsXQX5BDX+SN89x0iyyGVREjLLh4myu0HroVHLkxA4tjKdmiWcTsEODpfEZN
+MIME-Version: 1.0
+X-Received: by 10.180.94.100 with SMTP id db4mr11499446wib.14.1385339320744;
+	Sun, 24 Nov 2013 16:28:40 -0800 (PST)
+Received: by 10.216.41.137 with HTTP; Sun, 24 Nov 2013 16:28:40 -0800 (PST)
+Date: Sun, 24 Nov 2013 18:28:40 -0600
+Message-ID: <CALXw4G5YLnDW2Ys8kbrJv0sqYUuSAdsQRhu=aSO32gNJJYPe8w@mail.gmail.com>
+From: Michael Gloff <mgloff@emacinc.com>
+To: Yocto discussion list <yocto@yoctoproject.org>
+Subject: Boot loader/boot times
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,38 +36,35 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 24 Nov 2013 22:20:00 -0000
+X-List-Received-Date: Mon, 25 Nov 2013 00:28:43 -0000
+Content-Type: multipart/alternative; boundary=f46d04426bbc1b507304ebf57265
 
-Due to the way in which IMAGE_FSTYPES is processed, it is not possible to
-modify it using _append or _prepend. Therefore add a note to the manual to
-warn users in case they stumble on this issue.
+--f46d04426bbc1b507304ebf57265
+Content-Type: text/plain; charset=ISO-8859-1
 
-Signed-off-by: Trevor Woerner <trevor.woerner@linaro.org>
----
- documentation/ref-manual/ref-variables.xml | 9 +++++++++
- 1 file changed, 9 insertions(+)
+What bootloaders are most people here using (x86)? I'm using lilo and it
+seems slow. Even skipping the data check it sits for about 5-8 secs on a
+D525 Atom board. Total boot is about 20-25 secs, but I would like to
+minimize it as much as possible. I know where the other delays are, but
+Ubuntu on the same machine gives a login in about 5 sec total.
+Thanks,
 
-diff --git a/documentation/ref-manual/ref-variables.xml b/documentation/ref-manual/ref-variables.xml
-index fb33791..67ea422 100644
---- a/documentation/ref-manual/ref-variables.xml
-+++ b/documentation/ref-manual/ref-variables.xml
-@@ -2199,6 +2199,15 @@
-                     you can choose, see
-                     <link linkend='var-IMAGE_TYPES'><filename>IMAGE_TYPES</filename></link>.
-                 </para>
-+
-+                <note>
-+                    Due to the way this variable is processed, it is not
-+                    possible to update its contents using
-+                    <filename>_append</filename> or
-+                    <filename>_prepend</filename>. To add one or more
-+                    additional options to this variable the
-+                    <filename>+=</filename> operator must be used.
-+                </note>
-             </glossdef>
-         </glossentry>
- 
 -- 
-1.8.4.474.g128a96c
+Michael Gloff
 
+--f46d04426bbc1b507304ebf57265
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
 
+<div dir=3D"ltr"><div>What bootloaders are most people here using (x86)? I&=
+#39;m using lilo and it seems slow. Even skipping the data check it sits fo=
+r about 5-8 secs on a D525 Atom board. Total boot is about 20-25 secs, but =
+I would like to minimize it as much as possible. I know where the other del=
+ays are, but Ubuntu on the same machine gives a login in about 5 sec total.=
+<br>
+</div>Thanks,<br clear=3D"all"><div><div><br>-- <br><div dir=3D"ltr"><div>M=
+ichael Gloff<br></div><span style=3D"font-family:Arial,sans-serif;font-size=
+:13.3333px"></span></div>
+</div></div></div>
+
+--f46d04426bbc1b507304ebf57265--
