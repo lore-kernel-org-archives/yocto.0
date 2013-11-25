@@ -1,23 +1,35 @@
-Return-Path: <bevenson@melinkcorp.com>
-Received: from pluto.melinkcorp.com (rrcs-98-100-91-244.central.biz.rr.com
-	[98.100.91.244])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4E1E7E006AD
-	for <yocto@yoctoproject.org>; Mon, 25 Nov 2013 06:49:08 -0800 (PST)
-Received: from pluto.melinkcorp.local ([10.0.2.4]) by pluto.melinkcorp.local
-	([10.0.2.4]) with mapi; Mon, 25 Nov 2013 09:49:08 -0500
-From: Bryan Evenson <bevenson@melinkcorp.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Date: Mon, 25 Nov 2013 09:45:51 -0500
-Thread-Topic: Unable to upgrade kernel; package for kernel name includes
-	version
-Thread-Index: Ac7p7Ql1DnAWGplISYiWbscF7THRXA==
-Message-ID: <91586D499ADFD74FBCFB8425266A5DE40153C1156010@pluto.melinkcorp.local>
+Return-Path: <scott.m.rifenbark@intel.com>
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B0616E006AD
+	for <yocto@yoctoproject.org>; Mon, 25 Nov 2013 06:52:01 -0800 (PST)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by fmsmga102.fm.intel.com with ESMTP; 25 Nov 2013 06:52:01 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.93,768,1378882800"; d="scan'208";a="433484896"
+Received: from orsmsx106.amr.corp.intel.com ([10.22.225.133])
+	by fmsmga001.fm.intel.com with ESMTP; 25 Nov 2013 06:52:01 -0800
+Received: from orsmsx112.amr.corp.intel.com (10.22.240.13) by
+	ORSMSX106.amr.corp.intel.com (10.22.225.133) with Microsoft SMTP Server
+	(TLS) id 14.3.123.3; Mon, 25 Nov 2013 06:52:00 -0800
+Received: from orsmsx101.amr.corp.intel.com ([169.254.8.94]) by
+	ORSMSX112.amr.corp.intel.com ([169.254.12.221]) with mapi id
+	14.03.0123.003; Mon, 25 Nov 2013 06:52:01 -0800
+From: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
+To: "Robert P. J. Day" <rpjday@crashcourse.ca>, Yocto discussion list
+	<yocto@yoctoproject.org>
+Thread-Topic: [yocto] ksize.py and dirsize.py scripts not in dora tarball,
+	is that deliberate?
+Thread-Index: AQHO6DtGvhPR+4j6CUaC5CvO30bIApo2Cwrw
+Date: Mon, 25 Nov 2013 14:52:00 +0000
+Message-ID: <41DEA4B02DBDEF40A0F3B6D0DDB1237983F51186@ORSMSX101.amr.corp.intel.com>
+References: <alpine.DEB.2.02.1311230555380.9634@oneiric>
+In-Reply-To: <alpine.DEB.2.02.1311230555380.9634@oneiric>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-acceptlanguage: en-US
+x-originating-ip: [10.22.254.138]
 MIME-Version: 1.0
-Subject: Unable to upgrade kernel; package for kernel name includes version
+Subject: Re: ksize.py and dirsize.py scripts not in dora tarball, is that deliberate?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -29,37 +41,64 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 25 Nov 2013 14:49:11 -0000
+X-List-Received-Date: Mon, 25 Nov 2013 14:52:05 -0000
 Content-Language: en-US
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-I'm on poky/dylan-9.0.1 I am upgrading the Linux kernel for my device's ima=
-ge from a custom 3.6.9 kernel to a custom 3.10 kernel.  I'm using this laye=
-r: https://github.com/evensonbryan/meta-atmel as a basis for the custom ker=
-nel recipe (there is a recipe for the 3.10 kernel that I haven't yet deploy=
-ed to Github in case anyone is wondering).  I'm attempting to do a firmware=
- upgrade with my built packages (using opkg for package management) and I'v=
-e discovered an issue with the kernel naming.  On my pre-upgraded device, a=
- list of installed packages includes:
+Hmm... did these not get included in poky during the release?
 
-kernel-devicetree
-kernel-image-3.6.9-yocto-standard
+Scott
 
-So when I build my updated Linux kernel, the kernel image is now named "ker=
-nel-image-3.10.0-yocto-standard".  So when I attempt to do an upgrade, the =
-kernel-devicetree is upgraded just fine but the kernel image is not; kernel=
--image-3.10.0-yocto-standard is not the same package as kernel-image-3.6.9-=
-yocto-standard, so opkg does not see this as an upgrade.
-
-How do I force the packaging system to recognize that the new kernel is an =
-upgrade of the old kernel, even though the packages have different names?  =
-And for the future, how do I change the package name so that it doesn't inc=
-lude the version?
-
-Thanks,
-Bryan
-
-
-
+>-----Original Message-----
+>From: yocto-bounces@yoctoproject.org [mailto:yocto-
+>bounces@yoctoproject.org] On Behalf Of Robert P. J. Day
+>Sent: Saturday, November 23, 2013 2:59 AM
+>To: Yocto discussion list
+>Subject: [yocto] ksize.py and dirsize.py scripts not in dora tarball, is t=
+hat
+>deliberate?
+>
+>
+>  current dev manual:
+>
+>http://www.yoctoproject.org/docs/latest/dev-manual/dev-
+>manual.html#understand-what-gives-your-image-size
+>
+>claims:
+>
+>"To help you see where you currently are with kernel and root filesystem
+>sizes, you can use two tools found in the Source Directory in the scripts
+>directory:
+>
+>ksize.py: Reports component sizes for the kernel build objects.
+>
+>dirsize.py: Reports component sizes for the root filesystem."
+>
+>  however, the current dora tarball doesn't contain these scripts, while o=
+e-
+>core contains them more specifically under the scripts/tiny/ subdirectory.
+>thoughts?
+>
+>rday
+>
+>--
+>
+>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+>Robert P. J. Day                                 Ottawa, Ontario, CANADA
+>                        http://crashcourse.ca
+>
+>Twitter:                                       http://twitter.com/rpjday
+>LinkedIn:                               http://ca.linkedin.com/in/rpjday
+>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+>_______________________________________________
+>yocto mailing list
+>yocto@yoctoproject.org
+>https://lists.yoctoproject.org/listinfo/yocto
 
