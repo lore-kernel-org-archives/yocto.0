@@ -1,32 +1,45 @@
-Return-Path: <soniaverma9727@gmail.com>
-Received: from mail-wi0-f175.google.com (mail-wi0-f175.google.com
-	[209.85.212.175])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7A107E0071E
-	for <yocto@yoctoproject.org>; Mon, 25 Nov 2013 06:23:43 -0800 (PST)
-Received: by mail-wi0-f175.google.com with SMTP id hi5so3630384wib.14
-	for <yocto@yoctoproject.org>; Mon, 25 Nov 2013 06:23:42 -0800 (PST)
+Return-Path: <marc.ferland@gmail.com>
+Received: from mail-qe0-f41.google.com (mail-qe0-f41.google.com
+	[209.85.128.41])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 27D4AE0076F
+	for <yocto@yoctoproject.org>; Mon, 25 Nov 2013 06:29:52 -0800 (PST)
+Received: by mail-qe0-f41.google.com with SMTP id gh4so1381152qeb.28
+	for <yocto@yoctoproject.org>; Mon, 25 Nov 2013 06:29:51 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=u9ek0DFIE8L5XTh06AR+XtYp5xjjr9R6xtAM5LAzpEU=;
-	b=zLdNjecprh8p5IAd7cMr45+IjWb2ukQdUeLnog9SxtBNjRvzmznY4EHsp+H5ttFTM2
-	dCn416lTi9toVQD3uY3fOoes0n1Iqubcs/oDKVOlZbXO5WHCNJO2uPvx/jKFUnu066vp
-	ieQxreXMnBfoYwxyvopiaw8xHA30F/H6HaTQJqfGzdIh4OaFNa7A3maC4I0raBrJUDGq
-	kVZxofWHBoVk+ZoP98mtYkDl+SsegZ9jIoPg61Mwhijio9U/UmemUdKP/l5Q8JlR6dzT
-	7y0eREH5ooDgbL/aPZYKYXNurlGM5JurztYMHG97DfTxM8Wfm0K+rDx5jc55cijuz9Ma
-	1xoQ==
+	h=sender:date:from:to:cc:subject:message-id:reply-to:references
+	:mime-version:content-type:content-disposition:in-reply-to
+	:user-agent; bh=gJqUvu5Mz5yFGXD7eq1XY5iFUzVlccSt1yCc+eTQcIE=;
+	b=1EfRtQiIN7SIcngujLIFH0lL0CwkwSiqX/54sHv3i5rQlMLIlddiCEQGAsXW3W9Qqm
+	2S8gIcB++rnIqm7qRurpYRb0i9qpvTyLkK0WUAe/OQA/oRCrRMo0TAr3uRFoe3qdelh6
+	MIJVXbG83mR54CAlM3EWJfdU13qhJgJHO/nSEvSBmXZJ0gftKyeWVJESydEGa2kqvaWk
+	4IkzRjF/C41DPdEOO7Be3fo4PU2s19N4BtQHVqjSN23/b30mHYOLn/a2ThX+22e1TKSJ
+	OZCjIkUqFn/CJbWTc4q4BAi83QItWvN9G2KIlY6398Z5wVuB1NYvfhPWbYH99ymE08yf
+	Z/mQ==
+X-Received: by 10.49.116.141 with SMTP id jw13mr45962864qeb.2.1385389791389;
+	Mon, 25 Nov 2013 06:29:51 -0800 (PST)
+Received: from ferlandm@sonatest.com
+	(modemcable066.15-37-24.static.videotron.ca. [24.37.15.66])
+	by mx.google.com with ESMTPSA id u17sm39645614qeb.4.2013.11.25.06.29.48
+	for <multiple recipients>
+	(version=TLSv1 cipher=RC4-SHA bits=128/128);
+	Mon, 25 Nov 2013 06:29:50 -0800 (PST)
+Sender: Marc Ferland <marc.ferland@gmail.com>
+Received: by ferlandm@sonatest.com (sSMTP sendmail emulation);
+	Mon, 25 Nov 2013 09:30:01 -0500
+Date: Mon, 25 Nov 2013 09:30:01 -0500
+From: Marc Ferland <ferlandm@sonatest.com>
+To: Michael Gloff <mgloff@emacinc.com>
+Message-ID: <20131125143001.GF9177@marc-desktop>
+References: <CALXw4G5YLnDW2Ys8kbrJv0sqYUuSAdsQRhu=aSO32gNJJYPe8w@mail.gmail.com>
 MIME-Version: 1.0
-X-Received: by 10.180.107.193 with SMTP id he1mr13962910wib.50.1385389422631; 
-	Mon, 25 Nov 2013 06:23:42 -0800 (PST)
-Received: by 10.194.9.193 with HTTP; Mon, 25 Nov 2013 06:23:42 -0800 (PST)
-Date: Mon, 25 Nov 2013 19:53:42 +0530
-Message-ID: <CAJ7Vayh+052MR7EJ0PyoMke4o+9CzRegNweK5ot-LeLGG4JC-A@mail.gmail.com>
-From: sonia verma <soniaverma9727@gmail.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	Khem Raj <raj.khem@gmail.com>
-Subject: JAVA Cross Compilation error
+In-Reply-To: <CALXw4G5YLnDW2Ys8kbrJv0sqYUuSAdsQRhu=aSO32gNJJYPe8w@mail.gmail.com>
+User-Agent: Mutt/1.5.21 (2010-09-15)
+Cc: Yocto discussion list <yocto@yoctoproject.org>
+Subject: Re: Boot loader/boot times
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
+Reply-To: ferlandm@sonatest.com
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -35,83 +48,22 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 25 Nov 2013 14:23:47 -0000
-Content-Type: multipart/alternative; boundary=e89a8f234c0369623904ec011caa
+X-List-Received-Date: Mon, 25 Nov 2013 14:29:53 -0000
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
---e89a8f234c0369623904ec011caa
-Content-Type: text/plain; charset=ISO-8859-1
+On Sun, Nov 24, 2013 at 06:28:40PM -0600, Michael Gloff wrote:
+>    What bootloaders are most people here using (x86)? I'm using lilo and
+>    it seems slow. Even skipping the data check it sits for about 5-8 secs
+>    on a D525 Atom board. Total boot is about 20-25 secs, but I would like
+>    to minimize it as much as possible. I know where the other delays are,
+>    but Ubuntu on the same machine gives a login in about 5 sec total.
 
-Hi all,
+I think the default bootloader for x86 machines on yocto is
+syslinux.
 
-I need to cross compile openjdk-7-jre in ppc64 platform using Yocto.
+To reduce the bootloader time try reducing your kernel/initrd sizes,
+also check if there isn't any default timeout value configured in.
 
-After setting the environment i am running "bitbake openjdok-7-jre" command
-but i am getting following error message:
+Marc
 
- echo ERROR patch ${all_patches_ok} FAILED! ; \
-|       echo WARNING make clean-patch before retrying a fix ; \
-|       exit 2; \
-|     fi ; \
-|     mv stamps/patch.stamp.tmp stamps/patch.stamp
-| Checking patches/revert-7017193.patch
-| 1 out of 1 hunk FAILED -- saving rejects to file
-openjdk/hotspot/src/os/linux/vm/os_linux.cpp.rej
-| 1 out of 1 hunk FAILED -- saving rejects to file
-openjdk/hotspot/src/share/vm/runtime/os.cpp.rej
-| 1 out of 1 hunk FAILED -- saving rejects to file
-openjdk/hotspot/src/share/vm/runtime/os.hpp.rej
-| ERROR patch patches/revert-7017193.patch FAILED!
-| WARNING make clean-patch before retrying a fix
-| make: *** [stamps/patch.stamp] Error 2
-| ERROR: oe_runmake failed
-| ERROR: Function failed: do_configure (see
-/home/vvdn/1.4_yocto/QorIQ-SDK-V1.4-20130814-yocto/build_t4240rdb_release/tmp/work/ppce6500-fsl_networking-linux/openjdk-7-jre/25b30-2.3.12-r5.1/temp/log.do_configure.15849
-for further information)
-ERROR: Task 798
-(/home/vvdn/1.4_yocto/QorIQ-SDK-V1.4-20130814-yocto/meta-java/recipes-core/openjdk/
-openjdk-7_25b30-2.3.12.bb, do_configure) failed with exit code '1'
-NOTE: Tasks Summary: Attempted 4711 tasks of which 4663 didn't need to be
-rerun and 1 failed.
-No currently running tasks (4711 of 4721)
-
-Summary: 1 task failed:
-
-Please help regarding this..
-
-Thanks..
-
---e89a8f234c0369623904ec011caa
-Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">Hi all,<br><br><div>I need to cross compile openjdk-7-jre =
-in ppc64 platform using Yocto.</div><div><br></div><div>After setting the e=
-nvironment i am running &quot;bitbake openjdok-7-jre&quot; command but i am=
- getting following error message:</div>
-
-
-<div><br>=A0echo ERROR patch ${all_patches_ok} FAILED! ; \<br>| =A0=A0=A0 =
-=A0 echo WARNING make clean-patch before retrying a fix ; \<br>| =A0=A0=A0 =
-=A0 exit 2; \<br>| =A0=A0=A0 fi ; \<br>| =A0=A0=A0 mv stamps/patch.stamp.tm=
-p stamps/patch.stamp<br>| Checking patches/revert-7017193.patch<br>
-| 1 out of 1 hunk FAILED -- saving rejects to file openjdk/hotspot/src/os/l=
-inux/vm/os_linux.cpp.rej<br>| 1 out of 1 hunk FAILED -- saving rejects to f=
-ile openjdk/hotspot/src/share/vm/runtime/os.cpp.rej<br>| 1 out of 1 hunk FA=
-ILED -- saving rejects to file openjdk/hotspot/src/share/vm/runtime/os.hpp.=
-rej<br>
-| ERROR patch patches/revert-7017193.patch FAILED!<br>| WARNING make clean-=
-patch before retrying a fix<br>| make: *** [stamps/patch.stamp] Error 2<br>=
-| ERROR: oe_runmake failed<br>| ERROR: Function failed: do_configure (see /=
-home/vvdn/1.4_yocto/QorIQ-SDK-V1.4-20130814-yocto/build_t4240rdb_release/tm=
-p/work/ppce6500-fsl_networking-linux/openjdk-7-jre/25b30-2.3.12-r5.1/temp/l=
-og.do_configure.15849 for further information)<br>
-ERROR: Task 798 (/home/vvdn/1.4_yocto/QorIQ-SDK-V1.4-20130814-yocto/meta-ja=
-va/recipes-core/openjdk/<a href=3D"http://openjdk-7_25b30-2.3.12.bb">openjd=
-k-7_25b30-2.3.12.bb</a>, do_configure) failed with exit code &#39;1&#39;<br=
->
-NOTE: Tasks Summary: Attempted 4711 tasks of which 4663 didn&#39;t need to =
-be rerun and 1 failed.<br>No currently running tasks (4711 of 4721)<br><br>=
-Summary: 1 task failed:<br><br></div><div>Please help regarding this..<br>
-<br></div><div>Thanks..<br></div><div><br><br></div><br></div>
-
---e89a8f234c0369623904ec011caa--
