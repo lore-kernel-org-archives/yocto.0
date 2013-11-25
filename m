@@ -1,30 +1,35 @@
-Return-Path: <denys@ti.com>
-Received: from bear.ext.ti.com (bear.ext.ti.com [192.94.94.41])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CAF71E00510
-	for <yocto@yoctoproject.org>; Mon, 25 Nov 2013 10:24:55 -0800 (PST)
-Received: from dflxv15.itg.ti.com ([128.247.5.124])
-	by bear.ext.ti.com (8.13.7/8.13.7) with ESMTP id rAPIOsLu019228;
-	Mon, 25 Nov 2013 12:24:54 -0600
-Received: from DLEE70.ent.ti.com (dlee70.ent.ti.com [157.170.170.113])
-	by dflxv15.itg.ti.com (8.14.3/8.13.8) with ESMTP id rAPIOrhm029120;
-	Mon, 25 Nov 2013 12:24:54 -0600
-Received: from dflp32.itg.ti.com (10.64.6.15) by DLEE70.ent.ti.com
-	(157.170.170.113) with Microsoft SMTP Server id 14.2.342.3;
-	Mon, 25 Nov 2013 12:24:53 -0600
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])	by
-	dflp32.itg.ti.com (8.14.3/8.13.8) with ESMTP id rAPIOrwI024895;
-	Mon, 25 Nov 2013 12:24:53 -0600
-Date: Mon, 25 Nov 2013 13:24:52 -0500
-From: Denys Dmytriyenko <denys@ti.com>
-To: William Mills <wmills@ti.com>
-Message-ID: <20131125182452.GN690@edge>
-References: <41DEA4B02DBDEF40A0F3B6D0DDB1237983F510DC@ORSMSX101.amr.corp.intel.com>
-	<529390BB.3020005@ti.com>
+Return-Path: <rpjday@crashcourse.ca>
+Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
+	[64.235.106.9])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 74F0EE006AD
+	for <yocto@yoctoproject.org>; Mon, 25 Nov 2013 11:05:33 -0800 (PST)
+Received: from [67.210.172.157] (port=56875 helo=crashcourse.ca)
+	by astoria.ccjclearline.com with esmtpsa (TLSv1:DHE-RSA-AES256-SHA:256)
+	(Exim 4.80) (envelope-from <rpjday@crashcourse.ca>)
+	id 1Vl1TP-0008Vz-WE; Mon, 25 Nov 2013 14:05:32 -0500
+Date: Mon, 25 Nov 2013 14:05:29 -0500 (EST)
+From: "Robert P. J. Day" <rpjday@crashcourse.ca>
+X-X-Sender: rpjday@oneiric
+To: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
+In-Reply-To: <41DEA4B02DBDEF40A0F3B6D0DDB1237983F51390@ORSMSX101.amr.corp.intel.com>
+Message-ID: <alpine.DEB.2.02.1311251404500.7556@oneiric>
+References: <alpine.DEB.2.02.1311240615540.543@oneiric>
+	<3067877.hygbnmzJEU@helios>
+	<41DEA4B02DBDEF40A0F3B6D0DDB1237983F51390@ORSMSX101.amr.corp.intel.com>
+User-Agent: Alpine 2.02 (DEB 1266 2009-07-14)
 MIME-Version: 1.0
-In-Reply-To: <529390BB.3020005@ti.com>
-User-Agent: Mutt/1.5.20 (2009-06-14)
-Cc: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: SPL_IMAGE, SPL_BINARY, and SPL_SYMLINK definitions
+X-AntiAbuse: This header was added to track abuse,
+	please include it with any abuse report
+X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - crashcourse.ca
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+Cc: Paul Eggleton <paul.eggleton@linux.intel.com>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: [PATCH] Documentation: dev manual, add a reference to poky-bleeding distro
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -36,41 +41,25 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 25 Nov 2013 18:24:57 -0000
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
+X-List-Received-Date: Mon, 25 Nov 2013 19:05:38 -0000
+Content-Type: TEXT/PLAIN; charset=US-ASCII
 
-On Mon, Nov 25, 2013 at 01:02:35PM -0500, William Mills wrote:
-> On 11/25/2013 09:06 AM, Rifenbark, Scott M wrote:
-> >Anyone have descriptions for these three variables?  I would like to 
-> >document them and am wondering if anyone has used them or knows how they 
-> >work.
+On Mon, 25 Nov 2013, Rifenbark, Scott M wrote:
 
-git blame u-boot.inc would have shown the commit 2965aa2f that added those 
-vars into the main u-boot.inc. The commit log does provide some explanation. 
-Although, that is the commit that unified SPL_* vars into a common .inc file, 
-previously we used to add them into specific u-boot_*.bb recipes along with 
-the necessary do_install_append() and do_deploy_append()...
+> I can add a caution box after applying the patch.
 
+  sure, i'm good with that, i just wanted readers to see actual
+examples of AUTOREV in action.
 
-> SPL is the preloader for U-boot required on some platforms.
+rday
 
-And it stands for Secondary Program Loader:
-http://git.denx.de/?p=u-boot.git;a=blob;f=doc/README.SPL;hb=HEAD
+-- 
 
+========================================================================
+Robert P. J. Day                                 Ottawa, Ontario, CANADA
+                        http://crashcourse.ca
 
-> The base include for u-boot defines the SPL_IMAGE and SPL_SYMLINK
-> http://git.yoctoproject.org/cgit/cgit.cgi/poky/tree/meta/recipes-bsp/u-boot/u-boot.inc
-> 
-> One example of use of SPL_BINARY is here:
-> http://git.yoctoproject.org/cgit/cgit.cgi/meta-ti/tree/recipes-bsp/u-boot/u-boot_2011.12.bb
-> 
-> So the SPL_BINARY defines the name of the file in the filesystem image.
-> The SPL_IMAGE and SPL_SYMLINK appear to specific the long version
-> specific image file produced by the build and the somewhat shorter
-> symlink that points to it.  These will be in a machine specific dir
-> on the build machine; the same place the kernel is found.
-> (The kernel also gets a very long name and a symlink  you can reuse
-> wording from the description if you have that already.)
-> 
+Twitter:                                       http://twitter.com/rpjday
+LinkedIn:                               http://ca.linkedin.com/in/rpjday
+========================================================================
 
