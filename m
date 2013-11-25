@@ -1,28 +1,27 @@
-Return-Path: <paul.eggleton@linux.intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DF051E002A7
-	for <yocto@yoctoproject.org>; Mon, 25 Nov 2013 05:21:34 -0800 (PST)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga102.jf.intel.com with ESMTP; 25 Nov 2013 05:17:54 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.93,768,1378882800"; d="scan'208";a="441256885"
-Received: from akagikob-mobl.ger.corp.intel.com (HELO helios.localnet)
-	([10.252.121.166])
-	by orsmga002.jf.intel.com with ESMTP; 25 Nov 2013 05:21:30 -0800
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: Nicolas Dechesne <nicolas.dechesne@linaro.org>,
-	Todd Stellanova <tstellanova@gmail.com>
-Date: Mon, 25 Nov 2013 13:21:29 +0000
-Message-ID: <2925583.ItqHBfeJuJ@helios>
-Organization: Intel Corporation
-User-Agent: KMail/4.10.5 (Linux/3.8.0-31-generic; KDE/4.10.5; i686; ; )
-In-Reply-To: <CAP71Wjwim0JxpX01Zw+EXknG1cLC0xqVcf8ZwK=2=i2Bfswegg@mail.gmail.com>
-References: <CACRzEudEBj6ZfdTyzCtBWCorDdPgPHHpWovbR5VJB5GuRVu8dA@mail.gmail.com>
-	<CACRzEue6532CCMbAo=a43Hb1ycPmaTg60LfOH273Y4CW93kemQ@mail.gmail.com>
-	<CAP71Wjwim0JxpX01Zw+EXknG1cLC0xqVcf8ZwK=2=i2Bfswegg@mail.gmail.com>
+Return-Path: <andreas2025@gmail.com>
+Received: from mail-wg0-f54.google.com (mail-wg0-f54.google.com [74.125.82.54])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A8243E006AD
+	for <yocto@yoctoproject.org>; Mon, 25 Nov 2013 05:29:29 -0800 (PST)
+Received: by mail-wg0-f54.google.com with SMTP id n12so2717969wgh.21
+	for <yocto@yoctoproject.org>; Mon, 25 Nov 2013 05:29:28 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=Yddm6X1vXNmMJbbN/KkIZEtMt1LMrZ7pAuLLmd4U9dM=;
+	b=q+vQTQZueDgedfYWFd7Fz6cY74kDudSFPML9fifIuff95kqIgIXcIASYkHdqp2//gl
+	wOF8AC7iyXEhfkGX8atZ8I/2MAovhcQUNFkoApzAncrKDVEAA6kQSerB5eRRluzb5EuK
+	xcmN1BxdILqZwQUW+pd09whrGi36akENVy11OALjL7VcaIgy8SeXDSN5dkSrxL8HffEL
+	bCpwuFIyqs/XXyrpb/ivfMriyBFet9n3vNs5p3l11RDBDR+hFrmps7o/ZP0vkdYUV0UG
+	IVy9K40dq57q3QZtBhPMwMGY6GaNgkZufggno5GhU6POv9ox9wKwOY+uNLYRtfZSjcab
+	G5Lg==
 MIME-Version: 1.0
-Cc: yocto@yoctoproject.org
-Subject: Re: unbootable image produced with PACKAGE_CLASSES ?= "package_ipk", /etc missing
+X-Received: by 10.180.149.175 with SMTP id ub15mr13735330wib.10.1385386168369; 
+	Mon, 25 Nov 2013 05:29:28 -0800 (PST)
+Received: by 10.216.15.4 with HTTP; Mon, 25 Nov 2013 05:29:28 -0800 (PST)
+Date: Mon, 25 Nov 2013 13:29:28 +0000
+Message-ID: <CAAVaN8zkRU-dfasC-Dbyr2Y1+RoYmx6CAn1h1Ox5m=y2=xCPEw@mail.gmail.com>
+From: Andy Ng <andreas2025@gmail.com>
+To: yocto@yoctoproject.org
+Subject: How to integrate QT Embedded toolchain in the final SDK.sh image
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,40 +33,51 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 25 Nov 2013 13:21:35 -0000
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Mon, 25 Nov 2013 13:29:31 -0000
+Content-Type: multipart/alternative; boundary=001a11c381187145ac04ec005a5c
 
-Hi Nicolas / Todd,
+--001a11c381187145ac04ec005a5c
+Content-Type: text/plain; charset=ISO-8859-1
 
-On Monday 25 November 2013 11:31:42 Nicolas Dechesne wrote:
-> On Sun, Nov 24, 2013 at 3:51 AM, Todd Stellanova
-> <tstellanova@gmail.com>wrote:
-> > It appears that copying the files to the ext3 / sdcard image is failing in
-> > *populate-extfs.sh*
-> > I see a series of these errors:
-> > 
-> > *copy_file: Could not allocate block in ext2 filesystem*
-> > 
-> > Any idea what might cause this?  I've verified that the initial .tar
-> > archive and the bz2 contain the right files.
-> 
-> can you try to create a new <build> folder (do not remove the current one
-> for now) and reuse the downloads and sstate folder? i am wondering if there
-> is a bug when trying to change PACKAGE_CLASSES in an existing <build>
-> folder.
+Hi
 
-I do this not infrequently and never hit a problem like this, so I doubt this 
-is the case.
+I try to produce some SDK that the environment has QT embedded support plus
+Boost.
 
-Either there is a problem in how the filesystem is being set up (block sizes, 
-etc.) or there is some kind of corruption occurring.
+As far as I know the command to produce sdk is
 
-Cheers,
-Paul
+bitbake foo-image  -c populate_sdk
 
--- 
+Despite the fact that the "foo-image" builds the QT, Boost, and the
+application, the -c populate_sdk command  does not put QT environment and
+its environment variables to the environment file of the SDK! Is this a bug?
 
-Paul Eggleton
-Intel Open Source Technology Centre
+How do you produce the combined SDK?
 
+The bitbake meta-toolchin-qte, it produces an SDK with just the toolchain,
+and the QT libs.
+
+How do I produce a rich super-set of QT SDK and  the Image SDK?
+
+Best regards,
+Andreas
+
+--001a11c381187145ac04ec005a5c
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div><div><div><div>Hi<br><br></div>I try to produce some =
+SDK that the environment has QT embedded support plus Boost. <br><br></div>=
+As far as I know the command to produce sdk is<br><br></div>bitbake foo-ima=
+ge=A0 -c populate_sdk<br>
+<br></div><div>Despite the fact that the &quot;foo-image&quot; builds the Q=
+T, Boost, and the application, the -c populate_sdk command=A0 does not put =
+QT environment and its environment variables to the environment file of the=
+ SDK! Is this a bug?<br>
+<br></div><div>How do you produce the combined SDK?<br><br></div><div>The b=
+itbake meta-toolchin-qte, it produces an SDK with just the toolchain, and t=
+he QT libs.<br><br></div><div>How do I produce a rich super-set of QT SDK a=
+nd=A0 the Image SDK?<br>
+<br></div><div>Best regards,<br>Andreas<br></div></div>
+
+--001a11c381187145ac04ec005a5c--
