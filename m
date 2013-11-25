@@ -1,31 +1,27 @@
-Return-Path: <scott.m.rifenbark@intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 07D79E00511
-	for <yocto@yoctoproject.org>; Mon, 25 Nov 2013 07:22:14 -0800 (PST)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga101.jf.intel.com with ESMTP; 25 Nov 2013 07:22:13 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.93,768,1378882800"; d="scan'208";a="414349305"
-Received: from orsmsx108.amr.corp.intel.com ([10.22.240.6])
-	by orsmga001.jf.intel.com with ESMTP; 25 Nov 2013 07:21:41 -0800
-Received: from orsmsx101.amr.corp.intel.com ([169.254.8.94]) by
-	ORSMSX108.amr.corp.intel.com ([169.254.4.165]) with mapi id
-	14.03.0123.003; Mon, 25 Nov 2013 07:21:41 -0800
-From: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
-To: "Robert P. J. Day" <rpjday@crashcourse.ca>
+Return-Path: <bevenson@melinkcorp.com>
+Received: from pluto.melinkcorp.com (rrcs-98-100-91-244.central.biz.rr.com
+	[98.100.91.244])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 17C95E00510
+	for <yocto@yoctoproject.org>; Mon, 25 Nov 2013 07:59:35 -0800 (PST)
+Received: from pluto.melinkcorp.local ([10.0.2.4]) by pluto.melinkcorp.local
+	([10.0.2.4]) with mapi; Mon, 25 Nov 2013 10:59:34 -0500
+From: Bryan Evenson <bevenson@melinkcorp.com>
+To: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>, "Robert P. J. Day"
+	<rpjday@crashcourse.ca>
+Date: Mon, 25 Nov 2013 10:56:17 -0500
 Thread-Topic: stupid question about post-installation scripts
-Thread-Index: AQHO6QEijnn9qoGtOECZtPlRt2hplZo2EeeA
-Date: Mon, 25 Nov 2013 15:21:41 +0000
-Message-ID: <41DEA4B02DBDEF40A0F3B6D0DDB1237983F511F7@ORSMSX101.amr.corp.intel.com>
+Thread-Index: AQHO6QEijnn9qoGtOECZtPlRt2hplZo2EeeAgAAIVkA=
+Message-ID: <91586D499ADFD74FBCFB8425266A5DE40153C1156096@pluto.melinkcorp.local>
 References: <alpine.DEB.2.02.1311240533220.32547@oneiric>
-In-Reply-To: <alpine.DEB.2.02.1311240533220.32547@oneiric>
+	<41DEA4B02DBDEF40A0F3B6D0DDB1237983F511F7@ORSMSX101.amr.corp.intel.com>
+In-Reply-To: <41DEA4B02DBDEF40A0F3B6D0DDB1237983F511F7@ORSMSX101.amr.corp.intel.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.138]
+acceptlanguage: en-US
 MIME-Version: 1.0
 Cc: Yocto discussion list <yocto@yoctoproject.org>
-Subject: FW: stupid question about post-installation scripts
+Subject: Re: stupid question about post-installation scripts
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,42 +33,62 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 25 Nov 2013 15:22:16 -0000
+X-List-Received-Date: Mon, 25 Nov 2013 15:59:38 -0000
 Content-Language: en-US
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-Robert,=20
+Robert,
 
-I don't know... I am forwarding to the discussion list.
+That's how it works in my experience.  I have some packages for my system t=
+hat have a postinst piece that needs to run during image creation, and othe=
+r pieces that need to run only on a package upgrade.  By checking whether "=
+x${D}" =3D "${D}", I am filtering out whether the postinst script is runnin=
+g during image creation or on the actual hardware.  Been working great so f=
+ar.
 
-Scott
+-Bryan
 
->-----Original Message-----
->From: Robert P. J. Day [mailto:rpjday@crashcourse.ca]
->Sent: Sunday, November 24, 2013 2:37 AM
->To: Rifenbark, Scott M
->Subject: stupid question about post-installation scripts
->
->
->  when one defines pkg_postinst scripts, are those scripts invoked at
->*both* root filesystem creation time and first boot time? so that one need=
-s to
->manually check the value of ${D} to decide whether to run them, say, at fi=
-rst
->boot time?
->
->  i'm reading the section here:
->
->http://www.yoctoproject.org/docs/latest/dev-manual/dev-
->manual.html#post-installation-scripts
->
->and i know i've seen elsewhere scripts explicitly checking the value of th=
-e ${D}
->prefix to determine when they're being invoked. it *seems* like that's wha=
-t's
->happening, but if that's the case, it can probably be said much more clear=
-ly.
->
->rday
+> -----Original Message-----
+> From: yocto-bounces@yoctoproject.org [mailto:yocto-
+> bounces@yoctoproject.org] On Behalf Of Rifenbark, Scott M
+> Sent: Monday, November 25, 2013 10:22 AM
+> To: Robert P. J. Day
+> Cc: Yocto discussion list
+> Subject: [yocto] FW: stupid question about post-installation scripts
+>=20
+> Robert,
+>=20
+> I don't know... I am forwarding to the discussion list.
+>=20
+> Scott
+>=20
+> >-----Original Message-----
+> >From: Robert P. J. Day [mailto:rpjday@crashcourse.ca]
+> >Sent: Sunday, November 24, 2013 2:37 AM
+> >To: Rifenbark, Scott M
+> >Subject: stupid question about post-installation scripts
+> >
+> >
+> >  when one defines pkg_postinst scripts, are those scripts invoked at
+> >*both* root filesystem creation time and first boot time? so that one
+> >needs to manually check the value of ${D} to decide whether to run
+> >them, say, at first boot time?
+> >
+> >  i'm reading the section here:
+> >
+> >http://www.yoctoproject.org/docs/latest/dev-manual/dev-
+> >manual.html#post-installation-scripts
+> >
+> >and i know i've seen elsewhere scripts explicitly checking the value
+> of
+> >the ${D} prefix to determine when they're being invoked. it *seems*
+> >like that's what's happening, but if that's the case, it can probably
+> be said much more clearly.
+> >
+> >rday
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
