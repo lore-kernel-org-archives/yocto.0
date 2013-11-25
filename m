@@ -1,35 +1,33 @@
 Return-Path: <scott.m.rifenbark@intel.com>
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 534E1E006AD
-	for <yocto@yoctoproject.org>; Mon, 25 Nov 2013 13:48:22 -0800 (PST)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga102.fm.intel.com with ESMTP; 25 Nov 2013 13:48:22 -0800
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1D9EFE0077F
+	for <yocto@yoctoproject.org>; Mon, 25 Nov 2013 13:48:36 -0800 (PST)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga102.jf.intel.com with ESMTP; 25 Nov 2013 13:44:59 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.93,769,1378882800"; d="scan'208";a="439672245"
-Received: from orsmsx106.amr.corp.intel.com ([10.22.225.133])
-	by fmsmga002.fm.intel.com with ESMTP; 25 Nov 2013 13:47:57 -0800
-Received: from orsmsx160.amr.corp.intel.com (10.22.226.43) by
-	ORSMSX106.amr.corp.intel.com (10.22.225.133) with Microsoft SMTP Server
-	(TLS) id 14.3.123.3; Mon, 25 Nov 2013 13:47:56 -0800
+X-IronPort-AV: E=Sophos;i="4.93,769,1378882800"; d="scan'208";a="414628771"
+Received: from orsmsx104.amr.corp.intel.com ([10.22.225.131])
+	by orsmga001.jf.intel.com with ESMTP; 25 Nov 2013 13:48:24 -0800
 Received: from orsmsx101.amr.corp.intel.com ([169.254.8.94]) by
-	ORSMSX160.amr.corp.intel.com ([169.254.13.17]) with mapi id
-	14.03.0123.003; Mon, 25 Nov 2013 13:47:56 -0800
+	ORSMSX104.amr.corp.intel.com ([169.254.3.6]) with mapi id
+	14.03.0123.003; Mon, 25 Nov 2013 13:48:24 -0800
 From: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
-To: "Robert P. J. Day" <rpjday@crashcourse.ca>, Yocto discussion list
+To: Trevor Woerner <trevor.woerner@linaro.org>, "yocto@yoctoproject.org"
 	<yocto@yoctoproject.org>
-Thread-Topic: [yocto] [PATCH] Documentation: dev manual, add a reference to
-	poky-bleeding distro
-Thread-Index: AQHO6Qcp/zQKIYsWmkOJsaSaIVsGnZo2feHw
-Date: Mon, 25 Nov 2013 21:47:56 +0000
-Message-ID: <41DEA4B02DBDEF40A0F3B6D0DDB1237983F51444@ORSMSX101.amr.corp.intel.com>
-References: <alpine.DEB.2.02.1311240615540.543@oneiric>
-In-Reply-To: <alpine.DEB.2.02.1311240615540.543@oneiric>
+Thread-Topic: [yocto] [yocto-docs][PATCH] ref-manual: add usage NOTE to
+	IMAGE_FSTYPES
+Thread-Index: AQHO6WN0mR+zzJ3FSEy2tbNxmwSQlJo2fUYw
+Date: Mon, 25 Nov 2013 21:48:23 +0000
+Message-ID: <41DEA4B02DBDEF40A0F3B6D0DDB1237983F5144C@ORSMSX101.amr.corp.intel.com>
+References: <1385331570-22164-1-git-send-email-trevor.woerner@linaro.org>
+In-Reply-To: <1385331570-22164-1-git-send-email-trevor.woerner@linaro.org>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
 x-originating-ip: [10.22.254.140]
 MIME-Version: 1.0
-Subject: Re: [PATCH] Documentation: dev manual, add a reference to poky-bleeding distro
+Cc: "patches@linaro.org" <patches@linaro.org>
+Subject: Re: [yocto-docs][PATCH] ref-manual: add usage NOTE to	IMAGE_FSTYPES
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,93 +39,58 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 25 Nov 2013 21:48:23 -0000
+X-List-Received-Date: Mon, 25 Nov 2013 21:48:40 -0000
 Content-Language: en-US
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-Applied with some tweaks.
+Applied Trevor...thanks.
+
+Scott
 
 >-----Original Message-----
 >From: yocto-bounces@yoctoproject.org [mailto:yocto-
->bounces@yoctoproject.org] On Behalf Of Robert P. J. Day
->Sent: Sunday, November 24, 2013 3:19 AM
->To: Yocto discussion list
->Subject: [yocto] [PATCH] Documentation: dev manual, add a reference to
->poky-bleeding distro
+>bounces@yoctoproject.org] On Behalf Of Trevor Woerner
+>Sent: Sunday, November 24, 2013 2:20 PM
+>To: yocto@yoctoproject.org
+>Cc: patches@linaro.org
+>Subject: [yocto] [yocto-docs][PATCH] ref-manual: add usage NOTE to
+>IMAGE_FSTYPES
 >
+>Due to the way in which IMAGE_FSTYPES is processed, it is not possible to
+>modify it using _append or _prepend. Therefore add a note to the manual to
+>warn users in case they stumble on this issue.
 >
->As an actual example of using AUTOREV, refer the reader to the Yocto-
->supplied poky-bleeding distribution.
->
->Signed-off-by: Robert P. J. Day <rpjday@crashcourse.ca>
->
+>Signed-off-by: Trevor Woerner <trevor.woerner@linaro.org>
 >---
+> documentation/ref-manual/ref-variables.xml | 9 +++++++++
+> 1 file changed, 9 insertions(+)
 >
->diff --git a/documentation/dev-manual/dev-manual-common-tasks.xml
->b/documentation/dev-manual/dev-manual-common-tasks.xml
->index 6b60445..fba2484 100644
->--- a/documentation/dev-manual/dev-manual-common-tasks.xml
->+++ b/documentation/dev-manual/dev-manual-common-tasks.xml
->@@ -4405,6 +4405,36 @@
->             is the name of the recipe for which you want to enable automa=
-tic
->source
->             revision updating.
->         </para>
+>diff --git a/documentation/ref-manual/ref-variables.xml
+>b/documentation/ref-manual/ref-variables.xml
+>index fb33791..67ea422 100644
+>--- a/documentation/ref-manual/ref-variables.xml
+>+++ b/documentation/ref-manual/ref-variables.xml
+>@@ -2199,6 +2199,15 @@
+>                     you can choose, see
+>                     <link linkend=3D'var-
+>IMAGE_TYPES'><filename>IMAGE_TYPES</filename></link>.
+>                 </para>
 >+
->+        <para>
->+            In fact, the Yocto Project provides a distribution named
->+            <filename>poky-bleeding</filename>, whose configuration file
->contains
->+            the line:
->+            <literallayout class=3D'monospaced'>
->+     require conf/distro/include/poky-floating-revisions.inc
->+            </literallayout>
->+            which pulls in the listed include file that contains numerous=
- lines of
->+            exactly that form:
->+            <literallayout class=3D'monospaced'>
->+     SRCREV_pn-gconf-dbus ?=3D "${AUTOREV}"
->+     SRCREV_pn-matchbox-common ?=3D "${AUTOREV}"
->+     SRCREV_pn-matchbox-config-gtk ?=3D "${AUTOREV}"
->+     SRCREV_pn-matchbox-desktop ?=3D "${AUTOREV}"
->+     SRCREV_pn-matchbox-keyboard ?=3D "${AUTOREV}"
->+     SRCREV_pn-matchbox-panel ?=3D "${AUTOREV}"
->+     SRCREV_pn-matchbox-panel-2 ?=3D "${AUTOREV}"
->+     SRCREV_pn-matchbox-themes-extra ?=3D "${AUTOREV}"
->+     SRCREV_pn-matchbox-terminal ?=3D "${AUTOREV}"
->+     SRCREV_pn-matchbox-wm ?=3D "${AUTOREV}"
->+     SRCREV_pn-matchbox-wm-2 ?=3D "${AUTOREV}"
->+     SRCREV_pn-settings-daemon ?=3D "${AUTOREV}"
->+     SRCREV_pn-screenshot ?=3D "${AUTOREV}"
->+     SRCREV_pn-libfakekey ?=3D "${AUTOREV}"
->+     SRCREV_pn-oprofileui ?=3D "${AUTOREV}"
->+            </literallayout>
->+            and so on, allowing the developer to experiment with building=
- a
->distribution that
->+            tracks the latest development source for numerous packages.
->+            </para>
->     </section>
->
->     <section id=3D'creating-a-read-only-root-filesystem'>
+>+                <note>
+>+                    Due to the way this variable is processed, it is not
+>+                    possible to update its contents using
+>+                    <filename>_append</filename> or
+>+                    <filename>_prepend</filename>. To add one or more
+>+                    additional options to this variable the
+>+                    <filename>+=3D</filename> operator must be used.
+>+                </note>
+>             </glossdef>
+>         </glossentry>
 >
 >--
+>1.8.4.474.g128a96c
 >
->=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
->=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
->Robert P. J. Day                                 Ottawa, Ontario, CANADA
->                        http://crashcourse.ca
->
->Twitter:                                       http://twitter.com/rpjday
->LinkedIn:                               http://ca.linkedin.com/in/rpjday
->=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
->=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
 >_______________________________________________
 >yocto mailing list
 >yocto@yoctoproject.org
