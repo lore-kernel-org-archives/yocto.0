@@ -1,35 +1,22 @@
-Return-Path: <andrei@gherzan.ro>
-Received: from mail-we0-f177.google.com (mail-we0-f177.google.com
-	[74.125.82.177])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 36FFCE0077F
-	for <yocto@yoctoproject.org>; Tue, 26 Nov 2013 03:13:40 -0800 (PST)
-Received: by mail-we0-f177.google.com with SMTP id p61so5026386wes.8
-	for <yocto@yoctoproject.org>; Tue, 26 Nov 2013 03:13:39 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc:content-type;
-	bh=4dcuaEHkkrakmv48cB88rSk8KrFU+3EJnUy0HdOLHWU=;
-	b=Cy34SElNgEEuOlgKJl7zSk/wy5e++gF36HCb0GCY1OKuuKcDvd56fw+hiv7Kv3I1FC
-	kdOHWYjzzrKVUYHfvZXJi5t2x54NM2qhbCLOK2MjCQk/2dT9ErrOXeZJ2u0XOS9vHBKz
-	DtNj2lRthKzrnxH9WrQd30G3tGA4tjj5+Yx7rsIlBR1siVtcGpCgYNjzC3KDaQC4kXbU
-	f/Ssr7tad587a0MYxtXAnnSl615fXk7b0tfrMU9LALny7l+4YPLPq7RumseM4lfd/05P
-	LLFzlKzHoQiaAeoHLtet0KLQenbsN0+ZAChPQKEaf1YzZxVihYUYB9uppPNpOMeSyegE
-	dIzg==
-X-Gm-Message-State: ALoCoQneIAtaHbuReoZwOhfAKHQ0M9y5SBbgJNYexus/3EC3Yl4mmmG1EdihctZzOYyGjPBb3E1n
-X-Received: by 10.180.187.41 with SMTP id fp9mr17587274wic.33.1385464419167;
-	Tue, 26 Nov 2013 03:13:39 -0800 (PST)
+Return-Path: <prvs=03561d1a7=Andreas.Kaufmann@jenoptik.com>
+Received: from mailgw1.jenoptik.com (mailgw1.jenoptik.com [213.248.109.129])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0A794E00783
+	for <yocto@yoctoproject.org>; Tue, 26 Nov 2013 06:17:59 -0800 (PST)
+X-IronPort-AV: E=Sophos;i="4.93,775,1378850400"; d="scan'208,217";a="28461032"
+Received: from unknown (HELO as-lhub-01.jenoptik.corp) ([10.110.0.80])
+	by ap-rzp-c360-int.mgmt.jenoptik.corp with ESMTP;
+	26 Nov 2013 15:17:58 +0100
+X-KeepSent: C8813F46:47CD7474-C1257C2F:004DA067;
+ type=4; name=$KeepSent
+To: yocto@yoctoproject.org
+X-Mailer: Lotus Notes Release 8.5.2 August 10, 2010
+Message-ID: <OFC8813F46.47CD7474-ONC1257C2F.004DA067-C1257C2F.004E71DD@jenoptik.com>
+From: Andreas.Kaufmann@jenoptik.com
+Date: Tue, 26 Nov 2013 15:17:55 +0100
+X-MIMETrack: Serialize by Router on AS-LHUB-01/SRV/Jenoptik at 26.11.2013
+	15:17:57
 MIME-Version: 1.0
-Received: by 10.217.150.199 with HTTP; Tue, 26 Nov 2013 03:13:19 -0800 (PST)
-X-Originating-IP: [89.121.200.106]
-In-Reply-To: <1384443387-16320-1-git-send-email-alexnick87@gmail.com>
-References: <1384443387-16320-1-git-send-email-alexnick87@gmail.com>
-From: Andrei Gherzan <andrei@gherzan.ro>
-Date: Tue, 26 Nov 2013 13:13:19 +0200
-Message-ID: <CAK18fxHbhQDUwVP92M4knJ3vtfS3YDYdU5gZ95W9fFw4AOq_zg@mail.gmail.com>
-To: Alexandru Niculita <alexnick87@gmail.com>
-Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: [meta-raspberrypi][PATCH 1/1] omxplayer: Updated package to the latest version from git
+Subject: Is it possible to include a "SDK host" gcc/g++ in SDK
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,49 +28,83 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 26 Nov 2013 11:13:43 -0000
-Content-Type: multipart/alternative; boundary=001a11c3844c8dca9604ec1292b9
+X-List-Received-Date: Tue, 26 Nov 2013 14:18:02 -0000
+Content-type: multipart/alternative; 
+	Boundary="0__=4EBBF6BCDFDE26F78f9e8a93df938690918c4EBBF6BCDFDE26F7"
+Content-Disposition: inline
 
---001a11c3844c8dca9604ec1292b9
-Content-Type: text/plain; charset=ISO-8859-1
-
-On Thu, Nov 14, 2013 at 5:36 PM, Alexandru Niculita <alexnick87@gmail.com>wrote:
-
-> Changed the active development repository to git://
-> github.com/popcornmix/omxplayer.git
-> Added dbus package as a dependency.
-> Installed fonts directory in the default location needed by omxplayer
->
-> Change-Id: Ie2e1ae73656d3c9a5cbefbf87d0792b10fcd9430
-> Signed-off-by: Alexandru Niculita <alexnick87@gmail.com>
->
-
-Thank you Alex. Patch was merged.
-
-ag
-
---001a11c3844c8dca9604ec1292b9
-Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div class=3D"gmail_extra"><div class=3D"gmail_quote">On T=
-hu, Nov 14, 2013 at 5:36 PM, Alexandru Niculita <span dir=3D"ltr">&lt;<a hr=
-ef=3D"mailto:alexnick87@gmail.com" target=3D"_blank">alexnick87@gmail.com</=
-a>&gt;</span> wrote:<br>
-
-<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
-x #ccc solid;padding-left:1ex">Changed the active development repository to=
- git://<a href=3D"http://github.com/popcornmix/omxplayer.git" target=3D"_bl=
-ank">github.com/popcornmix/omxplayer.git</a><br>
+--0__=4EBBF6BCDFDE26F78f9e8a93df938690918c4EBBF6BCDFDE26F7
+Content-type: text/plain; charset=ISO-8859-1
+Content-transfer-encoding: quoted-printable
 
 
-Added dbus package as a dependency.<br>
-Installed fonts directory in the default location needed by omxplayer<br>
+
+Hi,
+
+for an embedded project employing an SDK generated by "-c populate_sdk"=
+ we
+need to include a "host" compiler for the host running the SDK. The
+background here is that the package/software to be built with the SDK i=
+s
+building it's own generators at the beginning running them on the SDK h=
+ost.
+I already know that a possible solution would be to build the generator=
+s on
+it's own in the "nativesdk" variant and deploy them alongside the SDK. =
+But
+for a lot of reasons i would prefer to avoid this. I would rather prefe=
+r to
+include 2 compilers in the SDK, the target compiler for the embedded de=
+vice
+as well as a host compiler able to build executables for the host runni=
+ng
+the SDK. Is this possible? If so any pointers to examples or code insid=
+e
+Yocto/poky would be appreciated.
+
+Kind Regards,
+
+Andreas Kaufmann
+
+JENOPTIK =A0l =A0Traffic Solutions
+JENOPTIK Robot GmbH
+Lerchenkamp 11
+31137 Hildesheim, Germany
+E-mail: andreas.kaufmann@jenoptik.com=
+
+--0__=4EBBF6BCDFDE26F78f9e8a93df938690918c4EBBF6BCDFDE26F7
+Content-type: text/html; charset=ISO-8859-1
+Content-Disposition: inline
+Content-transfer-encoding: quoted-printable
+
+<html><body>
+<p><font size=3D"2" face=3D"sans-serif">Hi,</font><br>
 <br>
-Change-Id: Ie2e1ae73656d3c9a5cbefbf87d0792b10fcd9430<br>
-Signed-off-by: Alexandru Niculita &lt;<a href=3D"mailto:alexnick87@gmail.co=
-m">alexnick87@gmail.com</a>&gt;<br></blockquote><div><br></div><div>Thank y=
-ou Alex. Patch was merged.</div><div><br></div><div>ag=A0</div></div>
-</div></div>
+<font size=3D"2" face=3D"sans-serif">for an embedded project employing =
+an SDK generated by &quot;-c populate_sdk&quot; we need to include a &q=
+uot;host&quot; compiler for the host running the SDK. The background he=
+re is that the package/software to be built with the SDK is building it=
+'s own generators at the beginning running them on the SDK host. I alre=
+ady know that a possible solution would be to build the generators on i=
+t's own in the &quot;nativesdk&quot; variant and deploy them alongside =
+the SDK. But for a lot of reasons i would prefer to avoid this. I would=
+ rather prefer to include 2 compilers in the SDK, the target compiler f=
+or the embedded device as well as a host compiler able to build executa=
+bles for the host running the SDK. Is this possible? If so any pointers=
+ to examples or code inside Yocto/poky would be appreciated.</font><br>=
 
---001a11c3844c8dca9604ec1292b9--
+<br>
+<font size=3D"2" face=3D"sans-serif">Kind Regards,</font><br>
+<br>
+<font size=3D"2" face=3D"sans-serif">Andreas Kaufmann</font><br>
+<br>
+<font size=3D"2" color=3D"#0060A0" face=3D"sans-serif">JENOPTIK =A0l =A0=
+Traffic Solutions</font><br>
+<font size=3D"2" face=3D"sans-serif">JENOPTIK Robot GmbH</font><br>
+<font size=3D"2" face=3D"sans-serif">Lerchenkamp 11</font><br>
+<font size=3D"2" face=3D"sans-serif">31137 Hildesheim, Germany</font><b=
+r>
+<font size=3D"2" face=3D"sans-serif">E-mail: andreas.kaufmann@jenoptik.=
+com</font></body></html>=
+
+--0__=4EBBF6BCDFDE26F78f9e8a93df938690918c4EBBF6BCDFDE26F7--
