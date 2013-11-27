@@ -1,29 +1,35 @@
-Return-Path: <PStath@Axxcelera.com>
-Received: from RIC-MS02.MWSG.int (static-96-253-69-114.rcmdva.fios.verizon.net
-	[96.253.69.114])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D9B50E005B9
-	for <yocto@yoctoproject.org>; Wed, 27 Nov 2013 08:40:28 -0800 (PST)
-Received: from RIC-MS02.MWSG.int ([fe80::169:5447:c281:e845]) by
-	RIC-MS02.MWSG.int ([fe80::169:5447:c281:e845%10]) with mapi id
-	14.03.0123.003; Wed, 27 Nov 2013 11:40:24 -0500
-From: "Stath, Paul" <PStath@Axxcelera.com>
-To: Richard Leitner - SKIDATA <Richard.Leitner@skidata.com>
-Thread-Topic: Errors with update-rc.d: /etc/init.d/XXX exists during rc.d
-	purge (use -f to force)
-Thread-Index: Ac7riB/iN8kVuR9nQV2la7Le6ji4swAADzjwAACwME0=
-Date: Wed, 27 Nov 2013 16:40:23 +0000
-Message-ID: <5B5D636C5F0AA747B37D0EFC72B563C422293F86@RIC-MS02.MWSG.int>
-References: <5B5D636C5F0AA747B37D0EFC72B563C422292F1E@RIC-MS02.MWSG.int>,
-	<F7680723A1CA6840825A59020FA77064FCDE02@sdexmbx1srv.skidata.net>
-In-Reply-To: <F7680723A1CA6840825A59020FA77064FCDE02@sdexmbx1srv.skidata.net>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.10.10.129]
+Return-Path: <elizabeth.flanagan@intel.com>
+Received: from mail-vb0-f53.google.com (mail-vb0-f53.google.com
+	[209.85.212.53])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 15525E005B9
+	for <yocto@yoctoproject.org>; Wed, 27 Nov 2013 08:45:35 -0800 (PST)
+Received: by mail-vb0-f53.google.com with SMTP id g10so4990948vbg.40
+	for <yocto@yoctoproject.org>; Wed, 27 Nov 2013 08:45:34 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:date
+	:message-id:subject:from:to:content-type;
+	bh=2P9ye8DdWRLeSFeYXvIpjN13Em3EvdUvUiWp1RyG1oI=;
+	b=LH9rTIzXZ3b4Er0B6wobKNXFeaPdjEo/EPd9y9vjB5LViMiVkg9UZoOYCNqzU1kNCt
+	3Cdqa507BxVzd71qqVNXYtfP9LPeWQnnWOHpXi0pPT3wqHktbDEKR/8TgUF5PbGC4jTU
+	KvFOxZudtKH3JJEp9PvgX8BKwNoUymX8L9FXG96+2WpBPp6OK78RKvCkYLBZz7oPOuxF
+	Wfr+ljb/PusEruHrtIy91V2R7AjI0OcXwTqEOKLBcDKcrREmlAAR510pZrP1Q0rOb+Hu
+	UU/M+JK/hmp2w+J0bBem/OLFIm3VQsuRWfsqfRiA/FTEn5UoUOFnoK3auyW48lBwb4UC
+	q9/A==
+X-Gm-Message-State: ALoCoQnATT8cQdAPmCLE1uoKyYioGfpOHDhldNuZ3LkBbraubzbwJxeC27MNLb+hFvyGOrdDJaPh
 MIME-Version: 1.0
-Cc: "Yocto Project Discussion ML \(yocto@yoctoproject.org\)"
-	<yocto@yoctoproject.org>
-Subject: Re: Errors with update-rc.d: /etc/init.d/XXX exists during rc.d purge (use -f to force)
+X-Received: by 10.220.84.65 with SMTP id i1mr61418vcl.51.1385570734564; Wed,
+	27 Nov 2013 08:45:34 -0800 (PST)
+Received: by 10.52.161.7 with HTTP; Wed, 27 Nov 2013 08:45:34 -0800 (PST)
+In-Reply-To: <CAPhnLPBfePCSFK8ptNDRh8vT2_4LdSzYU4vNfcB0ZiPCz92R_g@mail.gmail.com>
+References: <CAPhnLPBfePCSFK8ptNDRh8vT2_4LdSzYU4vNfcB0ZiPCz92R_g@mail.gmail.com>
+Date: Wed, 27 Nov 2013 16:45:34 +0000
+Message-ID: <CAPhnLPBL+cPmGKpdEJmBmNbZAV-phRcNVqtuyDGc2yTKB3S1HA@mail.gmail.com>
+From: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>, 
+	Alexandru C Georgescu <alexandru.c.georgescu@intel.com>,
+	Zhao Yi <yi.zhao@windriver.com>, Otavio Salvador <otavio@ossystems.com.br>
+Subject: Re: Weekly Build Available
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -35,93 +41,45 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 27 Nov 2013 16:40:29 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Wed, 27 Nov 2013 16:45:38 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
-Richard --=0A=
-=0A=
-My "workaround" was a little less drastic than yours.  (grin)=0A=
-=0A=
-Before upgrading to the new package via 'dpkg -i', I would edit the postrm =
-script in /var/lib/dpkg/info/<pkg-name>,postrm, adding the "-f" argument to=
- "force" the symlink removal, as suggested by the error message.=0A=
-=0A=
-Then the upgrade install works correctly.  (With only a warning from the po=
-strm script of the previous package.)=0A=
-=0A=
-I believe that the issue is that when installing a package over an earlier =
-release, dpkg performs the following steps:=0A=
-=0A=
-1) Extract control files of new package=0A=
-2) Execute "prerm" script of previous package if applicable.=0A=
-3) Execute "preinst" script of new package.=0A=
-4) Unpack new files and backup old files.=0A=
-5) Execute "postrm" script of previous package if applicable.=0A=
-6) Configure the package=0A=
-=0A=
-When installing a newer version of the package, the "postrm" in step 5 fail=
-s, because the initscript from the new package is extracted in step 4, and =
-update-rc.d w/o the "-f" argument exits with a non-zero return code.=0A=
-=0A=
-I would argue that the "updatercd_postrm()" stanza in the update-rc.d.bbcla=
-ss should include the "-f" flag.=0A=
-(Anyone on the list want to chime in on this?)=0A=
-=0A=
-In the meantime, I have added my own "updatercd_postrm()" stanza in the .bb=
-append file for the package I'm having issues with, which overrides the one=
- provided by update-rc.d.bbclass.=0A=
-=0A=
-updatercd_postrm() {=0A=
-       update-rc.d $D -f ${INITSCRIPT_NAME} remove=0A=
-}=0A=
-=0A=
---=0A=
-Paul Stath=0A=
-Axxcelera Broadband Wireless=0A=
-=0A=
->From: Richard Leitner - SKIDATA [Richard.Leitner@skidata.com]=0A=
->Sent: Wednesday, November 27, 2013 11:02 AM=0A=
->To: Stath, Paul=0A=
->Cc: Yocto Project Discussion ML (yocto@yoctoproject.org)=0A=
->Subject: RE: Errors with update-rc.d: /etc/init.d/XXX exists during rc.d p=
-urge (use -f to force)=0A=
->=0A=
->Hi Paul,=0A=
->good to hear I'm not the only one suffering from this issue...=0A=
->No, I've received no response on the mailing list yet, but maybe someone h=
-as a hint for us now?=0A=
-> =0A=
->The only "workaround" I found is to purge the package and afterwards insta=
-ll the new version.=0A=
->I know this is a really dirty workaround, but it's the only "solution" I f=
-ound.=0A=
->=0A=
->Have you discovered any other workarounds, Paul?=0A=
->=0A=
->regards=0A=
->Richard=0A=
->=0A=
->>-----Original Message-----=0A=
->>From: Stath, Paul [mailto:PStath@Axxcelera.com]=0A=
->>Sent: Wednesday, November 27, 2013 4:49 PM=0A=
->>To: Richard Leitner - SKIDATA=0A=
->>Subject: RE: Errors with update-rc.d: /etc/init.d/XXX exists during rc.d =
-purge (use -f to force)=0A=
->>=0A=
->>Richard --=0A=
->>=0A=
->>I am also getting the "update-rc.d: /etc/init.d/XXX exists during rc.d pu=
-rge"=A0 error when I attempt to install a newer version of one of my packag=
-es.=0A=
->>=0A=
->>It doesn't look like you received any response to your post to the yocto =
-mailing list.=0A=
->>=0A=
->>Did you get any response, or did you discover a workaround?=0A=
->>=0A=
->>--=0A=
->>Paul Stath=0A=
->>Axxcelera Broadband Wireless=0A=
+Folks,
+
+There seems to be autobuilder related issues with this build. I'm
+going to abort it, roll back the autobuilder config to the last good
+state and reroll.
+
+-b
+
+On Wed, Nov 27, 2013 at 3:11 PM, Flanagan, Elizabeth
+<elizabeth.flanagan@intel.com> wrote:
+> The weekly build is about the be available at:
+>
+> http://autobuilder.yoctoproject.org/pub/nightly/20131127-1
+>
+> Please begin scheduled testing.
+>
+> bitbake 347b2ead091f00ee60703f6f3d17cfdd9075ac07
+> eclipse-poky-juno e8342d27db60a9d1b627ddb9f8ae2f5512bfc0c9
+> eclipse-poky-kepler 3dd620d9f89e297ee9e22d5ba9fe741a5f40ac82
+> meta-fsl-arm 987115d6d099a5e87d9d5b3c4e6567a5e6309fd0
+> meta-fsl-ppc 768c6ef13546e0f977847bc1fbb5957571fbf724
+> meta-intel a649e92498d234f2d0d52f3da5a85bdc87296c23
+> meta-minnow 91cff9475081a5625c1c0bb49c17c6f3130ec503
+> meta-qt3 b73552fb998fd30a01dbee5a172e432a16078222
+> oecore f991d2d60b74f5ebd990f77aecd3324b1a4533e9
+> poky 32adaac34a614d106e6dd3e9f1130f4e94ff39ae
+>
+> --
+> Elizabeth Flanagan
+> Yocto Project
+> Build and Release
+
+
+
+-- 
+Elizabeth Flanagan
+Yocto Project
+Build and Release
 
