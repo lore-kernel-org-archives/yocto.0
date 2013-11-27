@@ -1,28 +1,29 @@
-Return-Path: <gary@mlbassoc.com>
-Received: from mail.chez-thomas.org (mail.mlbassoc.com [65.100.170.105])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7B67FE006D2
-	for <yocto@yoctoproject.org>; Mon,  2 Dec 2013 07:00:02 -0800 (PST)
-Received: by mail.chez-thomas.org (Postfix, from userid 1998)
-	id A9DFDF811E5; Mon,  2 Dec 2013 08:00:01 -0700 (MST)
-X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on
-	hermes.chez-thomas.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=4.0 tests=ALL_TRUSTED,BAYES_00
-	autolearn=unavailable version=3.3.2
-Received: from [192.168.1.114] (zeus [192.168.1.114])
-	by mail.chez-thomas.org (Postfix) with ESMTP id 00F08F811D9;
-	Mon,  2 Dec 2013 07:59:59 -0700 (MST)
-Message-ID: <529CA093.3080406@mlbassoc.com>
-Date: Mon, 02 Dec 2013 08:00:35 -0700
-From: Gary Thomas <gary@mlbassoc.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:24.0) Gecko/20100101 Thunderbird/24.1.1
+Return-Path: <Stefan.Kostial@gmx.de>
+Received: from mout.gmx.net (mout.gmx.net [212.227.15.18])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CA16CE0055C
+	for <yocto@yoctoproject.org>; Wed, 27 Nov 2013 00:16:20 -0800 (PST)
+Received: from 3capp-gmx-bs20.server.lan ([172.19.170.72]) by
+	mrigmx.server.lan (mrigmx002) with ESMTP (Nemesis) id
+	0Lmhpd-1VCWWY1Uw7-00aBXG for <yocto@yoctoproject.org>; Wed, 27 Nov 2013
+	09:16:17 +0100
+Received: from [212.20.172.90] by 3capp-gmx-bs20.server.lan with HTTP; Wed
+	Nov 27 09:16:17 CET 2013
 MIME-Version: 1.0
+Message-ID: <trinity-102b2577-2f25-419e-8571-daa5c841d972-1385540177234@3capp-gmx-bs20>
+From: "Stefan Kostial" <Stefan.Kostial@gmx.de>
 To: yocto@yoctoproject.org
-References: <529B4140.2040801@mlbassoc.com>	<CAP71Wjw=Zaf9n_yiXG1-=Fp5rNSPYV9xEsEN6HEwO841xwWneA@mail.gmail.com>	<529B4CC6.8090501@mlbassoc.com>	<CAP71Wjz9zTEczjEwyy-gpTo6YA3oju-LBVxvxXSx9aNyN+-wkw@mail.gmail.com>	<529B53AC.3050309@mlbassoc.com>
-	<285d7595-af9a-41b3-9e4f-f7f083ae4be2@CO1EHSMHS031.ehs.local>
-In-Reply-To: <285d7595-af9a-41b3-9e4f-f7f083ae4be2@CO1EHSMHS031.ehs.local>
-Subject: Re: Very strange append issue
+Date: Wed, 27 Nov 2013 09:16:17 +0100 (CET)
+Importance: normal
+Sensitivity: Normal
+X-Priority: 3
+X-Provags-ID: V03:K0:TeqBJpi7ZTabi9twfz2aIssK0giYNgvSIKw1DcjYVFs
+	5JHXchP1u/Rfbid83b7lB2Dvo0w1IGgUynb59aHohKs8Nlafd7
+	5MSCPuwSxkD8jOcDJtQwtYCdB0wFmNWgEDbObw/H26aSBcnomf
+	/QPU19RXwZFz9Ky1uwgH14newHQYwgx+ay6S7DRNL/71GUHn0c
+	eIdfAu5h4rGkx+KjBGeKAcW5WtcckscEMcgXCcPLsI6MvuLCdk
+	HJQIKBQj7S3JKGsQH0VX3oDDLl4zYbnq88lAHxdVB57uPZOvNY FUQiqI=
+X-Mailman-Approved-At: Mon, 02 Dec 2013 08:28:16 -0800
+Subject: Problem with RAM partitioning
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,74 +35,53 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 02 Dec 2013 15:00:12 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 27 Nov 2013 08:16:22 -0000
+Content-Type: text/html; charset=UTF-8
 
-On 2013-12-01 18:02, Nathan Rossi wrote:
-> Hi Gary,
->
-> Just a heads up. This issue should now be resolved in the current master of poky. A patch went into bitbake to fix up the double appending of bbappends.
->
-> http://git.yoctoproject.org/cgit/cgit.cgi/poky/commit/?id=f91a3f46a1ee586e330be0868e8fbc4d2e78d361
+<html><head></head><body><div style="font-family: Verdana;font-size: 12.0px;"><div>
+<div>Hello everyone,</div>
 
-Confirmed - the problem is fixed in master fabdf2f57a8e0ebe8ab7e82f92f3b298e113fcc0
-(presumably by the mentioned change)
+<div>I&#39;m sorry if this is not the 100% right place for my problem, but all other ways haven&#39;t lead to a solution.</div>
 
-Thanks
+<div>&nbsp;</div>
 
->> -----Original Message-----
->> From: yocto-bounces@yoctoproject.org [mailto:yocto-
->> bounces@yoctoproject.org] On Behalf Of Gary Thomas
->> Sent: Monday, December 02, 2013 1:20 AM
->> To: Nicolas Dechesne
->> Cc: Yocto Project
->> Subject: Re: [yocto] Very strange append issue
->>
->> On 2013-12-01 07:59, Nicolas Dechesne wrote:
->>>
->>> On Sun, Dec 1, 2013 at 3:50 PM, Gary Thomas <gary@mlbassoc.com
->> <mailto:gary@mlbassoc.com>> wrote:
->>>
->>>      Yes, I am using master: 937663bdeca6d6479e0db2a9578588__b1aa20222c
->>>
->>>      At least I am not hallucinating!
->>>
->>>
->>> can you try to revert the same commit as in the other thread?
->>>
->>> commit 381d5920188398bc53b2454843054c8690bca243
->>> Author: Saul Wold <s...@linux.intel.com <mailto:s...@linux.intel.com>>
->>> Date:   Thu Nov 21 09:50:41 2013 -0800
->>>
->>>       bitbake: cooker: add support for using % as a wildcard in bbappend
->> filename
->>>
->>
->> Reverting that change does eliminate my problem.
->>
->> Thanks
->>
->> --
->> ------------------------------------------------------------
->> Gary Thomas                 |  Consulting for the
->> MLB Associates              |    Embedded world
->> ------------------------------------------------------------
->> _______________________________________________
->> yocto mailing list
->> yocto@yoctoproject.org
->> https://lists.yoctoproject.org/listinfo/yocto
->
->
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
->
+<div>I&#39;m working with an &quot;Altera Cyclone V FPGA&quot; which has a hardprocessor system with (poky-) linux running on it.<br/>
+There is also a 1GB DDR3 RAM connected to the system.</div>
 
--- 
-------------------------------------------------------------
-Gary Thomas                 |  Consulting for the
-MLB Associates              |    Embedded world
-------------------------------------------------------------
+<div>&nbsp;</div>
+
+<div>My target is to devide the available 1GB into 3 partitions:<br/>
+Partition 1: used only by Linux<br/>
+Partition 2: used only by the FPGA<br/>
+Partition 3: &quot;swap&quot; partition for exchanging data between the FPGA and Linux</div>
+
+<div>&nbsp;</div>
+
+<div>For this purpose there is a controller on the FPGA called &quot;SDRAM controller subsystem&quot; in which registers<br/>
+you can define up to 20 rules for memory access protection - I think this is exactly what I need... but I can&#39;t get it running.</div>
+
+<div>&nbsp;</div>
+
+<div>My first problem is that I don&#39;t know __when__ to set this registers. Someone recommended setting this registers in linux,<br/>
+but this doesn&#39;t work and has no effect (after setting the registers, linux everytime has full access to the whole RAM and after rebooting all registers are set back.)<br/>
+I think that setting the registers must be done __before__ the linux boots, e.g. in the preloader or the bootloader (U-Boot)?!</div>
+
+<div>&nbsp;</div>
+
+<div>I&#39;m searching for 2 weeks for a solution - no example projects are provided by Altera, and the documentation is very rare.</div>
+
+<div>Please, does anyone has a hint for me?!<br/>
+Slowly I&#39;m going nuts on this topic.</div>
+
+<div>Many thanks in advance!!!</div>
+
+<div>&nbsp;</div>
+
+<div>Cheers<br/>
+Stefan Kostial</div>
+
+<div>&nbsp;</div>
+
+<div>P.S.:&nbsp; If wished, I can provide more detailed info - at this moment I&#39;m just searching for someone who has some experience...</div>
+</div></div></body></html>
 
