@@ -1,33 +1,27 @@
-Return-Path: <elizabeth.flanagan@intel.com>
-Received: from mail-vc0-f177.google.com (mail-vc0-f177.google.com
-	[209.85.220.177])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DBA33E0053A
-	for <yocto@yoctoproject.org>; Wed, 27 Nov 2013 07:11:41 -0800 (PST)
-Received: by mail-vc0-f177.google.com with SMTP id hv10so4895399vcb.36
-	for <yocto@yoctoproject.org>; Wed, 27 Nov 2013 07:11:40 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:date:message-id:subject:from:to
-	:content-type;
-	bh=0V8DgHQGyJcnS5OSQdw2S1hyZ1y4ygTZ72PFbBSvHFs=;
-	b=ikPmAQbYqiwn1jvCyuNMSdB0L4WTpoNlFlV6YuStxNe4kTYAdpmNUxx8psWigCiOcU
-	ewWQqD8PosInfbZ9w6xfU63HENmY8Vqu7DRK6cwixM5NF30Vkdu6q3upK8duMWgYiYcg
-	l4bUnl3pr8Onb/lUkaRf+yytj/NW3TEFPHnxi3qmJkFlhlumBXKDpV3Kr1kzAi3/0o2i
-	WCGIis1nDg+T8bVAAgmxMz+PrZYL6/GEnQxvKJH5pZwNBfYYn/mZfgj7/k9qxjR7ze1Q
-	QE9TtBelSrq06z3J5c6RoAbkX0pMFNW8RDXoU3c8gYGQylVkN+OFgw/+E6/d5JKSlm1M
-	5/Cw==
-X-Gm-Message-State: ALoCoQnX6OhTzO0W+3Jd83D2kiVvpedpu42AhIs1/6LP1GGvtejem3tpK8P1wzu4iLzzyAQl34Zc
+Return-Path: <prvs=0364f9318=Richard.Leitner@skidata.com>
+Received: from mail1.skidata.com (mail1.skidata.com [91.230.2.99])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 58CF6E0053B
+	for <yocto@yoctoproject.org>; Wed, 27 Nov 2013 08:02:42 -0800 (PST)
+X-IronPort-Anti-Spam-Filtered: true
+X-IronPort-Anti-Spam-Result: AhUKAA0XllKsEApK/2dsb2JhbABZhBKUP6RVgTR0giUBAQEEbgsMBAIBCA0EBAEBCx0HHxMUCQgBAQQOBQgTh2vAMheOUTEHBoMagRMDiQqFTJAqjRKBPoIq
+X-IPAS-Result: AhUKAA0XllKsEApK/2dsb2JhbABZhBKUP6RVgTR0giUBAQEEbgsMBAIBCA0EBAEBCx0HHxMUCQgBAQQOBQgTh2vAMheOUTEHBoMagRMDiQqFTJAqjRKBPoIq
+From: Richard Leitner - SKIDATA <Richard.Leitner@skidata.com>
+To: "Stath, Paul" <PStath@Axxcelera.com>
+Thread-Topic: Errors with update-rc.d: /etc/init.d/XXX exists during rc.d
+	purge (use -f to force)
+Thread-Index: Ac7riB/iN8kVuR9nQV2la7Le6ji4swAADzjw
+Date: Wed, 27 Nov 2013 16:02:38 +0000
+Message-ID: <F7680723A1CA6840825A59020FA77064FCDE02@sdexmbx1srv.skidata.net>
+References: <5B5D636C5F0AA747B37D0EFC72B563C422292F1E@RIC-MS02.MWSG.int>
+In-Reply-To: <5B5D636C5F0AA747B37D0EFC72B563C422292F1E@RIC-MS02.MWSG.int>
+Accept-Language: en-US, de-AT
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [172.16.112.215]
 MIME-Version: 1.0
-X-Received: by 10.220.145.75 with SMTP id c11mr808130vcv.30.1385565099889;
-	Wed, 27 Nov 2013 07:11:39 -0800 (PST)
-Received: by 10.52.161.7 with HTTP; Wed, 27 Nov 2013 07:11:39 -0800 (PST)
-Date: Wed, 27 Nov 2013 15:11:39 +0000
-Message-ID: <CAPhnLPBfePCSFK8ptNDRh8vT2_4LdSzYU4vNfcB0ZiPCz92R_g@mail.gmail.com>
-From: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>, 
-	Alexandru C Georgescu <alexandru.c.georgescu@intel.com>,
-	Zhao Yi <yi.zhao@windriver.com>, Otavio Salvador <otavio@ossystems.com.br>
-Subject: Weekly Build Available
+Cc: "Yocto Project Discussion ML \(yocto@yoctoproject.org\)"
+	<yocto@yoctoproject.org>
+Subject: Re: Errors with update-rc.d: /etc/init.d/XXX exists during rc.d purge (use -f to force)
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,28 +33,45 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 27 Nov 2013 15:11:42 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Wed, 27 Nov 2013 16:02:46 -0000
+Content-Language: de-DE
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 
-The weekly build is about the be available at:
+Hi Paul,
+good to hear I'm not the only one suffering from this issue...
+No, I've received no response on the mailing list yet, but maybe someone ha=
+s a hint for us now?
 
-http://autobuilder.yoctoproject.org/pub/nightly/20131127-1
+The only "workaround" I found is to purge the package and afterwards instal=
+l the new version.
+I know this is a really dirty workaround, but it's the only "solution" I fo=
+und.
 
-Please begin scheduled testing.
+Have you discovered any other workarounds, Paul?
 
-bitbake 347b2ead091f00ee60703f6f3d17cfdd9075ac07
-eclipse-poky-juno e8342d27db60a9d1b627ddb9f8ae2f5512bfc0c9
-eclipse-poky-kepler 3dd620d9f89e297ee9e22d5ba9fe741a5f40ac82
-meta-fsl-arm 987115d6d099a5e87d9d5b3c4e6567a5e6309fd0
-meta-fsl-ppc 768c6ef13546e0f977847bc1fbb5957571fbf724
-meta-intel a649e92498d234f2d0d52f3da5a85bdc87296c23
-meta-minnow 91cff9475081a5625c1c0bb49c17c6f3130ec503
-meta-qt3 b73552fb998fd30a01dbee5a172e432a16078222
-oecore f991d2d60b74f5ebd990f77aecd3324b1a4533e9
-poky 32adaac34a614d106e6dd3e9f1130f4e94ff39ae
+regards
+Richard
 
--- 
-Elizabeth Flanagan
-Yocto Project
-Build and Release
+>-----Original Message-----
+>From: Stath, Paul [mailto:PStath@Axxcelera.com]=20
+>Sent: Wednesday, November 27, 2013 4:49 PM
+>To: Richard Leitner - SKIDATA
+>Subject: RE: Errors with update-rc.d: /etc/init.d/XXX exists during rc.d p=
+urge (use -f to force)
+>
+>Richard --
+>
+>I am also getting the "update-rc.d: /etc/init.d/XXX exists during rc.d pur=
+ge"=A0 error when I attempt to install a newer version of one of my package=
+s.
+>
+>It doesn't look like you received any response to your post to the yocto m=
+ailing list.
+>
+>Did you get any response, or did you discover a workaround?
+>
+>--
+>Paul Stath
+>Axxcelera Broadband Wireless
 
