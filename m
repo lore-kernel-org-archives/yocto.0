@@ -1,32 +1,29 @@
-Return-Path: <christopher.a.thornburg@intel.com>
-Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6A4FEE00794
-	for <yocto@yoctoproject.org>; Wed, 27 Nov 2013 15:02:45 -0800 (PST)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by azsmga101.ch.intel.com with ESMTP; 27 Nov 2013 15:02:44 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.93,785,1378882800"; 
-	d="scan'208,217";a="435358191"
-Received: from fmsmsx108.amr.corp.intel.com ([10.19.9.228])
-	by fmsmga001.fm.intel.com with ESMTP; 27 Nov 2013 15:02:44 -0800
-Received: from fmsmsx155.amr.corp.intel.com (10.18.116.71) by
-	FMSMSX108.amr.corp.intel.com (10.19.9.228) with Microsoft SMTP Server
-	(TLS) id 14.3.123.3; Wed, 27 Nov 2013 15:02:43 -0800
-Received: from fmsmsx105.amr.corp.intel.com ([169.254.5.121]) by
-	FMSMSX155.amr.corp.intel.com ([169.254.5.40]) with mapi id
-	14.03.0123.003; Wed, 27 Nov 2013 15:02:44 -0800
-From: "Thornburg, Christopher A" <christopher.a.thornburg@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: How to use pre-built external Yocto toolchain
-Thread-Index: Ac7rxCahqeowCsC6SiWV/+np8kniCQ==
-Date: Wed, 27 Nov 2013 23:02:43 +0000
-Message-ID: <752F65977A748344A01D69BF22DCDBAE4FDDDA9B@FMSMSX105.amr.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.1.200.106]
+Return-Path: <Yi.Zhao@windriver.com>
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 31456E00798
+	for <yocto@yoctoproject.org>; Wed, 27 Nov 2013 18:13:16 -0800 (PST)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
+	[147.11.189.40])
+	by mail.windriver.com (8.14.5/8.14.5) with ESMTP id rAS2DFhS007361
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
+	Wed, 27 Nov 2013 18:13:15 -0800 (PST)
+Received: from [128.224.158.249] (128.224.158.249) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server (TLS) id 14.2.347.0;
+	Wed, 27 Nov 2013 18:13:14 -0800
+Message-ID: <5296A6B7.3070504@windriver.com>
+Date: Thu, 28 Nov 2013 10:13:11 +0800
+From: Yi Zhao <yi.zhao@windriver.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:24.0) Gecko/20100101 Thunderbird/24.1.0
 MIME-Version: 1.0
-Subject: How to use pre-built external Yocto toolchain
+To: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>, "Georgescu,
+	Alexandru C" <alexandru.c.georgescu@intel.com>, "yocto@yoctoproject.org"
+	<yocto@yoctoproject.org>
+References: <CAPhnLPBfePCSFK8ptNDRh8vT2_4LdSzYU4vNfcB0ZiPCz92R_g@mail.gmail.com>	<CAPhnLPBL+cPmGKpdEJmBmNbZAV-phRcNVqtuyDGc2yTKB3S1HA@mail.gmail.com>	<1FFB62CE8AEB0D4298B51122D8903E9619FA6E63@IRSMSX104.ger.corp.intel.com>
+	<CAPhnLPDOdEzUHznKdu_Wo+6JFRDQHapeuFCVdcXX8Vc5Tfe7Tg@mail.gmail.com>
+In-Reply-To: <CAPhnLPDOdEzUHznKdu_Wo+6JFRDQHapeuFCVdcXX8Vc5Tfe7Tg@mail.gmail.com>
+X-Originating-IP: [128.224.158.249]
+Subject: Re: FW: Weekly Build Available
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,107 +35,38 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 27 Nov 2013 23:02:48 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_752F65977A748344A01D69BF22DCDBAE4FDDDA9BFMSMSX105amrcor_"
+X-List-Received-Date: Thu, 28 Nov 2013 02:13:17 -0000
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
 
---_000_752F65977A748344A01D69BF22DCDBAE4FDDDA9BFMSMSX105amrcor_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Hi Beth,
 
-I must be missing something obvious. It's easy for me to build and install =
-a toolchain package using
-bitbake meta-toolchain
-The resulting toolchain package shows up at...
-./tmp/deploy/sdk/poky-eglibc-i686-meta-toolchain-core2-toolchain-1.5.sh
-...which is easy to install.
+I can not access 20131127-3 directory because it doesn't exist. There is 
+only 20131127-4 directory
+Would you please confirm it ?
 
-It seems the proper way to use such an external toolchain would be to set T=
-CMODE, but TCMODE only seems to support 'default' (i.e. build an internal t=
-oolchain) and 'external-sourcery' (i.e. use an external sourcery toolchain)=
-. :S
-
-How do I use an external toolchain built as above?
-
-Thanks!
+Thanks,
+Yi
 
 
---_000_752F65977A748344A01D69BF22DCDBAE4FDDDA9BFMSMSX105amrcor_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+于 2013年11月28日 01:32, Flanagan, Elizabeth 写道:
+> Folks,
 >
-<meta name=3D"Generator" content=3D"Microsoft Word 14 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri","sans-serif";}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:purple;
-	text-decoration:underline;}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri","sans-serif";
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-family:"Calibri","sans-serif";}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal">I must be missing something obvious. It&#8217;s easy=
- for me to build and install a toolchain package using
-<o:p></o:p></p>
-<p class=3D"MsoNormal" style=3D"text-indent:.5in">bitbake meta-toolchain<o:=
-p></o:p></p>
-<p class=3D"MsoNormal">The resulting toolchain package shows up at&#8230;<o=
-:p></o:p></p>
-<p class=3D"MsoNormal" style=3D"text-indent:.5in">./tmp/deploy/sdk/poky-egl=
-ibc-i686-meta-toolchain-core2-toolchain-1.5.sh<o:p></o:p></p>
-<p class=3D"MsoNormal">&#8230;which is easy to install.<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">It seems the proper way to use such an external tool=
-chain would be to set TCMODE, but TCMODE only seems to support &#8216;defau=
-lt&#8217; (i.e. build an internal toolchain) and &#8216;external-sourcery&#=
-8217; (i.e. use an external sourcery toolchain). :S<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">How do I use an external toolchain built as above?<o=
-:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Thanks!<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-</div>
-</body>
-</html>
+> We're respinning right now. The new build will be available in a few hours at:
+>
+> http://autobuilder.yoctoproject.org/pub/nightly/20131127-3
+>
+> bitbake     347b2ead091f00ee60703f6f3d17cfdd9075ac07
+> eclipse-poky-juno     e8342d27db60a9d1b627ddb9f8ae2f5512bfc0c9
+> eclipse-poky-kepler     3dd620d9f89e297ee9e22d5ba9fe741a5f40ac82
+> meta-fsl-arm     987115d6d099a5e87d9d5b3c4e6567a5e6309fd0
+> meta-fsl-ppc     768c6ef13546e0f977847bc1fbb5957571fbf724
+> meta-intel     a649e92498d234f2d0d52f3da5a85bdc87296c23
+> meta-minnow     91cff9475081a5625c1c0bb49c17c6f3130ec503
+> meta-qt3     b73552fb998fd30a01dbee5a172e432a16078222
+> oecore     f991d2d60b74f5ebd990f77aecd3324b1a4533e9
+> poky     32adaac34a614d106e6dd3e9f1130f4e94ff39ae
+>
+>
 
---_000_752F65977A748344A01D69BF22DCDBAE4FDDDA9BFMSMSX105amrcor_--
+
