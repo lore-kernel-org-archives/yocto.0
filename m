@@ -1,32 +1,24 @@
-Return-Path: <nicolas.dechesne@linaro.org>
-Received: from mail-ob0-f175.google.com (mail-ob0-f175.google.com
-	[209.85.214.175])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A64EBE0053E
-	for <yocto@yoctoproject.org>; Fri, 29 Nov 2013 08:32:02 -0800 (PST)
-Received: by mail-ob0-f175.google.com with SMTP id uz6so10201749obc.20
-	for <yocto@yoctoproject.org>; Fri, 29 Nov 2013 08:32:01 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc:content-type;
-	bh=z0NvlYffVaWd5vaIX+naGXzVHlLaksxQ2HJmEZ2O2m0=;
-	b=EV/4HxKqShDtpg8U8gD8pFT3BqABQURAAhlOyXiab2wjBnWGHV9s0FFnwoSU+oy/9e
-	dIceVjM94BgV+NXcFSmxvSed6WwPFIDIF5eNkTE4njIL5Lg1J0mdbLfYe5aB1XoHhQaO
-	OdB8Rdtk3vh07Zr8KWZyKb8Psa7m6iGy1UrRuFDuDhcJJL9wBqdqt2qDIu8hkFo15PB+
-	4nJhXlD8g6T5rpN7615pJu2S2ibUbM//7ZcCD4uGhU1IYq8NvPK262UhVXyFg1qMWlYl
-	Tzwpp5SmpMRlLuC+I3U8HBUNHKcT9OFZUQCZi1/vmXRml22hwUjIj7mh2HEztHT/P4D6
-	tDPw==
-X-Gm-Message-State: ALoCoQl+LST4WDZ+aEYJJlNG3S1h4EiCiJs+ylO9VSgd9vlfj39GgORnFs6YtCUsHhPmiZcp+XWS
-X-Received: by 10.60.134.14 with SMTP id pg14mr2388610oeb.66.1385742721117;
-	Fri, 29 Nov 2013 08:32:01 -0800 (PST)
-MIME-Version: 1.0
-Received: by 10.76.0.50 with HTTP; Fri, 29 Nov 2013 08:31:40 -0800 (PST)
-In-Reply-To: <2455395.bHzIGNWoWP@helios>
+Return-Path: <paul.eggleton@linux.intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3C09AE0053E
+	for <yocto@yoctoproject.org>; Fri, 29 Nov 2013 10:03:21 -0800 (PST)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga102.jf.intel.com with ESMTP; 29 Nov 2013 09:59:41 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.93,798,1378882800"; d="scan'208";a="417006729"
+Received: from pmcgurk-mobl.ger.corp.intel.com (HELO helios.localnet)
+	([10.252.121.192])
+	by orsmga001.jf.intel.com with ESMTP; 29 Nov 2013 10:03:17 -0800
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: Nicolas Dechesne <nicolas.dechesne@linaro.org>
+Date: Fri, 29 Nov 2013 18:03:16 +0000
+Message-ID: <153974778.HzVWmOegEz@helios>
+Organization: Intel Corporation
+User-Agent: KMail/4.10.5 (Linux/3.8.0-31-generic; KDE/4.10.5; i686; ; )
+In-Reply-To: <CAP71Wjy9-8pkU0bLKsn5L-SFDFeidW56ZEuLV25geN1_7ykgHA@mail.gmail.com>
 References: <2455395.bHzIGNWoWP@helios>
-From: Nicolas Dechesne <nicolas.dechesne@linaro.org>
-Date: Fri, 29 Nov 2013 17:31:40 +0100
-Message-ID: <CAP71Wjy9-8pkU0bLKsn5L-SFDFeidW56ZEuLV25geN1_7ykgHA@mail.gmail.com>
-To: Paul Eggleton <paul.eggleton@linux.intel.com>
+	<CAP71Wjy9-8pkU0bLKsn5L-SFDFeidW56ZEuLV25geN1_7ykgHA@mail.gmail.com>
+MIME-Version: 1.0
 Cc: Yocto list discussion <yocto@yoctoproject.org>,
 	Patches and discussions about the oe-core layer
 	<openembedded-core@lists.openembedded.org>
@@ -42,225 +34,97 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 29 Nov 2013 16:32:03 -0000
-Content-Type: multipart/alternative; boundary=047d7b472868a481db04ec535e11
+X-List-Received-Date: Fri, 29 Nov 2013 18:03:23 -0000
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
---047d7b472868a481db04ec535e11
-Content-Type: text/plain; charset=ISO-8859-1
+Hi Nicolas,
 
-Paul,
+On Friday 29 November 2013 17:31:40 Nicolas Dechesne wrote:
+> On Fri, Nov 29, 2013 at 4:58 PM, Paul Eggleton <
+> paul.eggleton@linux.intel.com> wrote:
+> > * It requires root to run, since it mounts the images temporarily and
+> > modifies the contents. We've done quite a lot to avoid having to run as
+> > root in OE, so this is a hard sell.
+> 
+> i have forwarded this email to the relevant people in Linaro working on
+> LAVA. I hope to be able to bring more information about that, as I am not
+> involved with LAVA, just a 'user' of it. 
 
+OK, thanks. I'm certainly happy to have a wider discussion on this.
 
-On Fri, Nov 29, 2013 at 4:58 PM, Paul Eggleton <
-paul.eggleton@linux.intel.com> wrote:
+> By 'root' here, you mean on the server side, e.g. the LAVA instance, which
+> will typically not be the 'builder', or do you want to couple build and test
+> on the same 'server'?
 
-> LAVA
-> -----
->
-> A number of people had suggested I look at LAVA [1]. It is split into
-> different
-> components for each function, some of which should be usable independently
-> so
-> you don't have to use the entire framework. Many of the components could be
-> useful assuming they are independent, but in terms of being able to
-> actually
-> run our tests, the one that stands out as being most relevant is lava-
-> dispatcher. This is the component that deploys images, and boots the
-> hardware
-> in order to run the tests.
->
-> I've looked at lava-dispatcher a couple of times; firstly at the code, and
-> yesterday I looked at actually running it. Initially it looked very
-> promising
-> - reasonably licensed, written in Python, has some rudimentary support for
-> OE
-> images. However while looking at it I found the following:
->
-> * It requires root to run, since it mounts the images temporarily and
-> modifies
-> the contents. We've done quite a lot to avoid having to run as root in OE,
-> so
-> this is a hard sell.
->
+That's what I've been looking at - just using lava-dispatcher rather than the 
+full LAVA framework. That said, if all it requires root for is mounting the 
+image, modifying it and then unmounting it, to test our images I don't think 
+we even want this; but there appears to be no way to disable it. I then found 
+a launchpad bug where the root requirement was discussed and the accepted 
+solution there was for the dispatcher to just check and error out if not 
+running as root.
 
-i have forwarded this email to the relevant people in Linaro working on
-LAVA. I hope to be able to bring more information about that, as I am not
-involved with LAVA, just a 'user' of it. By 'root' here, you mean on the
-server side, e.g. the LAVA instance, which will typically not be the
-'builder', or do you want to couple build and test on the same 'server'?
-LAVA jobs are generally submitted by a CI instance (Jenkins in our case).
+> LAVA jobs are generally submitted by a CI instance (Jenkins in our case).
 
+Our test code currently queries configuration/image information from the build 
+system, which means that the build system has to be involved in the dispatch 
+process. Our CI solution (the autobuilder) of course runs the build system 
+though. One of the work items in my email is to be able to export the tests, 
+thus decoupling them from this; the build system would still need to be in 
+charge of exporting the tests, but it would allow a test server to manage the 
+deployment, execution and results collection.
+ 
+> > * It expects images to be created by linaro-media-create, which in turn
+> > requires an "hwpack" [2]. The hwpack concept seems primarily geared to
+> > Ubuntu and distributions like it where you'd have a generic base image
+> > upon which you'd install some board-specific packages in order to make it
+> > work on the board. OE doesn't work that way - we just build images specific
+> > to the board, which makes this mechanism completely superfluous for our
+> > usage; but the tool appears to require it.
+> 
+> that is no longer the case. we do have support for 'native' OE images, and
+> we've had that for a while. That is what I am using for my project at
+> Linaro. None of our projects/jobs deliverable are 'public' at the moment,
+> so you won't find them, but i can confirm that what we deploy for our jobs
+> is the output of OE (e.g. what is in the deploy/image folder). hwpack was
+> something mostly meant to make it simpler to work with Ubuntu and Android
+> root FS, and is not suited for OE.
 
-> * It expects images to be created by linaro-media-create, which in turn
-> requires an "hwpack" [2]. The hwpack concept seems primarily geared to
-> Ubuntu
-> and distributions like it where you'd have a generic base image upon which
-> you'd install some board-specific packages in order to make it work on the
-> board. OE doesn't work that way - we just build images specific to the
-> board,
-> which makes this mechanism completely superfluous for our usage; but the
-> tool
-> appears to require it.
->
+OK, fair enough - I guess the trouble here is it's hard to find any 
+documentation talking about this functionality; everything I could find that 
+talks about preparing an image refers to needing an hwpack and using linaro-
+media-create. Even mailing list posts that I found (admittedly from last year) 
+referred to these in the context of booting OE images; there are also hwpacks 
+offered for download under "openembedded" directories on releases.linaro.org. 
+Given these I hope you can understand my confusion.
 
-that is no longer the case. we do have support for 'native' OE images, and
-we've had that for a while. That is what I am using for my project at
-Linaro. None of our projects/jobs deliverable are 'public' at the moment,
-so you won't find them, but i can confirm that what we deploy for our jobs
-is the output of OE (e.g. what is in the deploy/image folder). hwpack was
-something mostly meant to make it simpler to work with Ubuntu and Android
-root FS, and is not suited for OE.
+Generally, if someone with experience of doing so successfully could document 
+how LAVA can be set up to test OE images I think that would be very helpful. I 
+did struggle a bit with the documentation - there are still quite a lot of 
+broken links to the old documentation on readthedocs.org.
 
+> > * It's not clear to me how well it will work across different host
+> > distributions that we want to support; the main LAVA installer quits if it
+> > isn't run on Ubuntu. For convenience I happened to be using an Ubuntu VM,
+> > and I wasn't running the full installer so I avoided this check
+> > altogether. It just concerns me that such a check would even be there.
+> 
+> I agree that this is a problem and we should fix. Our IT infrastructure is
+> largely based on Ubuntu servers, but that should not affect what we create
+> that much.
 
->
-> * There is a general lack of abstraction and far too much hardcoding. For
-> example, even at the most abstract level, the "Target" class (which is the
-> base class for defining what to do for different types of targets) has
-> hardcoded
-> deploy_linaro / deploy_android functions:
->
->
-> https://git.linaro.org/gitweb?p=lava/lava-dispatcher.git;a=blob;f=lava_dispatcher/device/target.py
->
-> * It's not clear to me how well it will work across different host
-> distributions that we want to support; the main LAVA installer quits if it
-> isn't run on Ubuntu. For convenience I happened to be using an Ubuntu VM,
-> and
-> I wasn't running the full installer so I avoided this check altogether. It
-> just concerns me that such a check would even be there.
->
+Right. FWIW, as you probably know, the way we handle "unsupported" host 
+distros is to allow running on them, but warn the user that they may 
+experience problems (well, in our case we provide this host distro check 
+functionality, it's on in Poky and off in OE-Core by default, not sure if 
+others are using it).
 
-I agree that this is a problem and we should fix. Our IT infrastructure is
-largely based on Ubuntu servers, but that should not affect what we create
-that much.
+Cheers,
+Paul
 
+-- 
 
->
-> Of course, none of these problems are impossible to overcome, if we're
-> prepared to put a significant amount of engineering into resolving them. In
-> terms of enabling the Yocto Project QA team to test images on real
-> hardware in
-> the 1.6 development cycle however, I don't believe this is going to be
-> deliverable.
->
+Paul Eggleton
+Intel Open Source Technology Centre
 
---047d7b472868a481db04ec535e11
-Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div class=3D"gmail_extra"><div class=3D"gmail_extra">Paul=
-,=A0</div><div class=3D"gmail_extra"><br></div><div><br></div><div class=3D=
-"gmail_quote">On Fri, Nov 29, 2013 at 4:58 PM, Paul Eggleton <span dir=3D"l=
-tr">&lt;<a href=3D"mailto:paul.eggleton@linux.intel.com" target=3D"_blank">=
-paul.eggleton@linux.intel.com</a>&gt;</span> wrote:<br>
-
-<blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-=
-left-width:1px;border-left-color:rgb(204,204,204);border-left-style:solid;p=
-adding-left:1ex"><div id=3D":1hk" style=3D"overflow:hidden">LAVA<br>
------<br>
-<br>
-A number of people had suggested I look at LAVA [1]. It is split into diffe=
-rent<br>
-components for each function, some of which should be usable independently =
-so<br>
-you don&#39;t have to use the entire framework. Many of the components coul=
-d be<br>
-useful assuming they are independent, but in terms of being able to actuall=
-y<br>
-run our tests, the one that stands out as being most relevant is lava-<br>
-dispatcher. This is the component that deploys images, and boots the hardwa=
-re<br>
-in order to run the tests.<br>
-<br>
-I&#39;ve looked at lava-dispatcher a couple of times; firstly at the code, =
-and<br>
-yesterday I looked at actually running it. Initially it looked very promisi=
-ng<br>
-- reasonably licensed, written in Python, has some rudimentary support for =
-OE<br>
-images. However while looking at it I found the following:<br>
-<br>
-* It requires root to run, since it mounts the images temporarily and modif=
-ies<br>
-the contents. We&#39;ve done quite a lot to avoid having to run as root in =
-OE, so<br>
-this is a hard sell.<br></div></blockquote><div><br></div><div>i have forwa=
-rded this email to the relevant people in Linaro working on LAVA. I hope to=
- be able to bring more information about that, as I am not involved with LA=
-VA, just a &#39;user&#39; of it. By &#39;root&#39; here, you mean on the se=
-rver side, e.g. the LAVA instance, which will typically not be the &#39;bui=
-lder&#39;, or do you want to couple build and test on the same &#39;server&=
-#39;? LAVA jobs are generally submitted by a CI instance (Jenkins in our ca=
-se).=A0</div>
-
-<div><br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0p=
-x 0.8ex;border-left-width:1px;border-left-color:rgb(204,204,204);border-lef=
-t-style:solid;padding-left:1ex"><div id=3D":1hk" style=3D"overflow:hidden">
-<br>
-* It expects images to be created by linaro-media-create, which in turn<br>
-requires an &quot;hwpack&quot; [2]. The hwpack concept seems primarily gear=
-ed to Ubuntu<br>
-and distributions like it where you&#39;d have a generic base image upon wh=
-ich<br>
-you&#39;d install some board-specific packages in order to make it work on =
-the<br>
-board. OE doesn&#39;t work that way - we just build images specific to the =
-board,<br>
-which makes this mechanism completely superfluous for our usage; but the to=
-ol<br>
-appears to require it.<br></div></blockquote><div><br></div><div>that is no=
- longer the case. we do have support for &#39;native&#39; OE images, and we=
-&#39;ve had that for a while. That is what I am using for my project at Lin=
-aro. None of our projects/jobs deliverable are &#39;public&#39; at the mome=
-nt, so you won&#39;t find them, but i can confirm that what we deploy for o=
-ur jobs is the output of OE (e.g. what is in the deploy/image folder). hwpa=
-ck was something mostly meant to make it simpler to work with Ubuntu and An=
-droid root FS, and is not suited for OE.</div>
-
-<div>=A0</div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px=
- 0.8ex;border-left-width:1px;border-left-color:rgb(204,204,204);border-left=
--style:solid;padding-left:1ex"><div id=3D":1hk" style=3D"overflow:hidden">
-<br>
-* There is a general lack of abstraction and far too much hardcoding. For<b=
-r>
-example, even at the most abstract level, the &quot;Target&quot; class (whi=
-ch is the<br>
-base class for defining what to do for different types of targets) has hard=
-coded<br>
-deploy_linaro / deploy_android functions:<br>
-<br>
-<a href=3D"https://git.linaro.org/gitweb?p=3Dlava/lava-dispatcher.git;a=3Db=
-lob;f=3Dlava_dispatcher/device/target.py" target=3D"_blank">https://git.lin=
-aro.org/gitweb?p=3Dlava/lava-dispatcher.git;a=3Dblob;f=3Dlava_dispatcher/de=
-vice/target.py</a><br>
-
-
-<br>
-* It&#39;s not clear to me how well it will work across different host<br>
-distributions that we want to support; the main LAVA installer quits if it<=
-br>
-isn&#39;t run on Ubuntu. For convenience I happened to be using an Ubuntu V=
-M, and<br>
-I wasn&#39;t running the full installer so I avoided this check altogether.=
- It<br>
-just concerns me that such a check would even be there.<br></div></blockquo=
-te><div><br></div><div>I agree that this is a problem and we should fix. Ou=
-r IT infrastructure is largely based on Ubuntu servers, but that should not=
- affect what we create that much.</div>
-
-<div>=A0</div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px=
- 0.8ex;border-left-width:1px;border-left-color:rgb(204,204,204);border-left=
--style:solid;padding-left:1ex"><div id=3D":1hk" style=3D"overflow:hidden">
-<br>
-Of course, none of these problems are impossible to overcome, if we&#39;re<=
-br>
-prepared to put a significant amount of engineering into resolving them. In=
-<br>
-terms of enabling the Yocto Project QA team to test images on real hardware=
- in<br>
-the 1.6 development cycle however, I don&#39;t believe this is going to be<=
-br>
-deliverable.</div></blockquote></div><br></div><div class=3D"gmail_extra"><=
-br></div></div>
-
---047d7b472868a481db04ec535e11--
