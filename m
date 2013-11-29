@@ -1,28 +1,27 @@
-Return-Path: <Liezhi.Yang@windriver.com>
-Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 86355E0079D
-	for <yocto@yoctoproject.org>; Thu, 28 Nov 2013 23:29:04 -0800 (PST)
+Return-Path: <Robert.Guenzel@windriver.com>
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 44C7BE0079F
+	for <yocto@yoctoproject.org>; Fri, 29 Nov 2013 01:02:48 -0800 (PST)
 Received: from ALA-HCB.corp.ad.wrs.com (ala-hcb.corp.ad.wrs.com
 	[147.11.189.41])
-	by mail1.windriver.com (8.14.5/8.14.5) with ESMTP id rAT7T2F7018169
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Thu, 28 Nov 2013 23:29:02 -0800 (PST)
-Received: from [128.224.162.242] (128.224.162.242) by ALA-HCB.corp.ad.wrs.com
-	(147.11.189.41) with Microsoft SMTP Server id 14.2.347.0;
-	Thu, 28 Nov 2013 23:29:01 -0800
-Message-ID: <5298421C.4090708@windriver.com>
-Date: Fri, 29 Nov 2013 15:28:28 +0800
-From: Robert Yang <liezhi.yang@windriver.com>
-User-Agent: Mozilla/5.0 (X11; Linux i686;
-	rv:24.0) Gecko/20100101 Thunderbird/24.0
+	by mail.windriver.com (8.14.5/8.14.5) with ESMTP id rAT92lek019736
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL)
+	for <yocto@yoctoproject.org>; Fri, 29 Nov 2013 01:02:47 -0800 (PST)
+Received: from ALA-MBA.corp.ad.wrs.com ([169.254.2.188]) by
+	ALA-HCB.corp.ad.wrs.com ([147.11.189.41]) with mapi id 14.02.0347.000;
+	Fri, 29 Nov 2013 01:02:47 -0800
+From: "Guenzel, Robert" <Robert.Guenzel@windriver.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: Documentation on WORKDIR
+Thread-Index: Ac7s4HNy4jJ7fjB1THK3QUE6Xas74g==
+Date: Fri, 29 Nov 2013 09:02:47 +0000
+Message-ID: <D6170FF7C32A6B4A895BCD8D281C7934A6D74693@ALA-MBA.corp.ad.wrs.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [147.11.116.40]
 MIME-Version: 1.0
-To: Todd Stellanova <tstellanova@gmail.com>
-References: <CACRzEudEBj6ZfdTyzCtBWCorDdPgPHHpWovbR5VJB5GuRVu8dA@mail.gmail.com>	<CACRzEue6532CCMbAo=a43Hb1ycPmaTg60LfOH273Y4CW93kemQ@mail.gmail.com>	<CAP71Wjwim0JxpX01Zw+EXknG1cLC0xqVcf8ZwK=2=i2Bfswegg@mail.gmail.com>	<2925583.ItqHBfeJuJ@helios>	<FDC4F28A-69CB-406F-95EA-0A5D2AB800BC@gmail.com>	<CACRzEucp69jwmpR1KzYcOMfy-RdNym_NAPsQtYNdiFNkbNMbtQ@mail.gmail.com>	<52973B8D.9010806@windriver.com>
-	<CACRzEuePgg7=72gtoN+k76XkvD2Q_H3QYO47ByJdnEN9Bfq0TQ@mail.gmail.com>
-In-Reply-To: <CACRzEuePgg7=72gtoN+k76XkvD2Q_H3QYO47ByJdnEN9Bfq0TQ@mail.gmail.com>
-Cc: Paul Eggleton <paul.eggleton@linux.intel.com>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: unbootable image produced with PACKAGE_CLASSES ?= "package_ipk", /etc missing
+Subject: Documentation on WORKDIR
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,209 +33,168 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 29 Nov 2013 07:29:05 -0000
-Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Fri, 29 Nov 2013 09:02:52 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_D6170FF7C32A6B4A895BCD8D281C7934A6D74693ALAMBAcorpadwrs_"
+
+--_000_D6170FF7C32A6B4A895BCD8D281C7934A6D74693ALAMBAcorpadwrs_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+Hello,
+
+I am currently starting to work with Yocto and I am having a bit of a hard =
+time to figure out how the two documented versions of WORKDIR come into exi=
+stence.
+
+The doc states:
+"""
+For packages that are not dependent on a particular machine, WORKDIR is def=
+ined as follows:
+   ${TMPDIR}/work/${PACKAGE_ARCH}-poky-${TARGET_OS}/${PN}/${PV}-${PR}
+[...]
+For packages that are dependent on a particular machine, WORKDIR is defined=
+ slightly different:
+  ${TMPDIR}/work/${MACHINE}-poky-${TARGET_OS}/${PN}/${PV}-${PR}
+"""
+
+Now I tried to figure out how a package becomes machine dependent, and I co=
+uld not find this.
+After poking around in already existing layers and recipes, I think that th=
+e doc is misleading.
+
+It appears to me that only one version exists, which is:
+  ${TMPDIR}/work/${PACKAGE_ARCH}-poky-${TARGET_OS}/${PN}/${PV}-${PR}
+
+And in case a package is machine specific, one overrides the default PACKAG=
+E_ARCH with (the undocumented)
+variable MACHINE_ARCH like this:
+  PACKAGE_ARCH=3D"${MACHINE_ARCH}"
+(where I believe that MACHINE_ARCH is equal to MACHINE??)
+
+Which will then lead to a WORKDIR that looks like ${TMPDIR}/work/${MACHINE}=
+-poky-${TARGET_OS}/${PN}/${PV}-${PR}
+(but still is ${TMPDIR}/work/${PACKAGE_ARCH}-poky-${TARGET_OS}/${PN}/${PV}-=
+${PR}).
+
+(there are some bbclasses that do this, and there are some recipes that do =
+it).
+
+Being pretty new to Yocto, I have the feeling that I simply got it all wron=
+g, so before posting bugs or something, I'd wanted to know
+if anybody could shed light on this.
+
+thanks and best regards
+  Robert
 
 
-Hi Todd,
+--_000_D6170FF7C32A6B4A895BCD8D281C7934A6D74693ALAMBAcorpadwrs_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-I can reproduce the similar problem now, I think that it should be a
-bug of e2fsprogs, it seems the debugfs can't know the free space
-correctly, and thus it appears no free blocks, I'm sorry to say that
-I can't fix it in a short while, but I will fix it in one or two weeks,
-maybe you can set this in the local.conf as a workaround:
-
-IMAGE_ROOTFS_EXTRA_SPACE = "51200"
-
-If 51200 is not enough, it can be higher, the unit is Kbytes.
-
-
-And the todd-new-wandboard-dual.tar.bz2 works well is because it doesn't
-generated by debugfs.
-
-// Robert
-
-On 11/29/2013 12:02 AM, Todd Stellanova wrote:
-> Thanks for taking a look at this Robert!
-> Below is the ls output: fsck output and bb are attached.
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
 >
-> I should note that if I manually copy the bz2 output of bitbake to an
-> sdcard, like:
-> sudo tar xjvf
-> tmp/deploy/images/wandboard-dual/todd-new-wandboard-dual.tar.bz2 -C
-> /media/rootfs
-> the image boots fine and contains all the packages I expect.
->
-> todd@ubuntu:~/proj/wandboard/fsl-community-bsp/build$ ls -stlh
-> tmp/deploy/images/wandboard-dual/*.ext3
-> 572M -rw-r--r-- 1 todd todd 572M Nov 27 17:05
-> tmp/deploy/images/wandboard-dual/todd-new-wandboard-dual-20131128005017.rootfs.ext3
->     0 lrwxrwxrwx 1 todd todd   50 Nov 27 17:05
-> tmp/deploy/images/wandboard-dual/todd-new-wandboard-dual.ext3 ->
-> todd-new-wandboard-dual-20131128005017.rootfs.ext3
-> 435M -rw-r--r-- 1 todd todd 436M Nov 26 16:17
-> tmp/deploy/images/wandboard-dual/todd-new-wandboard-dual-20131127001137.rootfs.ext3
-> 435M -rw-r--r-- 1 todd todd 436M Nov 26 15:55
-> tmp/deploy/images/wandboard-dual/todd-new-wandboard-dual-20131126234958.rootfs.ext3
-> 435M -rw-r--r-- 1 todd todd 436M Nov 26 15:36
-> tmp/deploy/images/wandboard-dual/todd-new-wandboard-dual-20131126232014.rootfs.ext3
-> 435M -rw-r--r-- 1 todd todd 436M Nov 26 14:03
-> tmp/deploy/images/wandboard-dual/todd-new-wandboard-dual-20131126161048.rootfs.ext3
->
->
->
->
-> On Thu, Nov 28, 2013 at 4:48 AM, Robert Yang <liezhi.yang@windriver.com>wrote:
->
->>
->> Hi Todd,
->>
->> I can't reproduce the problem, the rpm has more space than ipk is because
->> of the IMAGE_ROOTFS_EXTRA_SPACE, which is 50M * 1.3 by default.
->>
->> Would you please try the following commands:
->>
->> 1) $ ls -stlh tmp/deploy/images/wandboard-dual/core-image-minimal-dev-
->> wandboard-dual-*.ext3
->>
->> 2) $ fsck.ext4 -fn /path/to/image.ext3
->>
->> And can you show the bb file if possible ?
->>
->> // Robert
->>
->>
->> On 11/27/2013 09:27 AM, Todd Stellanova wrote:
->>
->>> Tried creating a fresh build folder and giving the vm more ram but the
->>> results are basically the same:
->>>
->>> Allocated inode: 15264
->>> copy_file: Could not allocate block in ext2 filesystem
->>> debugfs: sif "libgio-2.0.so.0.3800.1" mode 0x81ed
->>>
->>> It appears that using package_rpm successfully allocates something like
->>> 15968 inodes. When calculating the ROOTFS_SIZE it looks like package_rpm
->>> and package_ipk are using very different values:
->>>
->>> package_rpm:
->>>
->>> ++ du -ks
->>> /fsl-community-bsp/build/tmp/work/wandboard_dual-poky-
->>> linux-gnueabi/todd-new/1.0-r0/rootfs
->>> ++ awk '{base_size = $1 * 1.3; base_size = ((base_size > 8192 ? base_size
->>> :
->>> 8192) + 0 + *51200*); if (base_size != int(base_size)) base_size =
->>>
->>> int(base_size + 1); base_size = base_size + 4096 - 1; base_size -=
->>> base_size % 4096; print base_size }'
->>>
->>> + ROOTFS_SIZE=*458752*
->>>
->>>
->>> package_ipk:
->>>
->>> ++ du -ks
->>> /fsl-community-bsp/build/tmp/work/wandboard_dual-poky-
->>> linux-gnueabi/todd-new/1.0-r0/rootfs
->>> ++ awk '{base_size = $1 * 1.3; base_size = ((base_size > 8192 ? base_size
->>> :
->>> 8192) + 0); if (base_size != int(base_size)) base_size = int(base_size +
->>> 1); base_size = base_size + 4096 - 1; base_size -= base_size % 4096; print
->>> base_size }'
->>>
->>> + ROOTFS_SIZE=*376832*
->>>
->>>
->>> I'm just guessing here, but it seems like package_ipk is underestimating
->>> ROOTFS_SIZE and subsequently populate-extfs.sh fails trying to add files
->>> to
->>> the ext fs.  Any ideas what might cause this?
->>>
->>> Thanks for any help!
->>>
->>>
->>>
->>>
->>>
->>>
->>> On Mon, Nov 25, 2013 at 7:03 AM, Todd Stellanova <tstellanova@gmail.com
->>>> wrote:
->>>
->>>   Thanks for the ideas. I'll try creating a new build folder. If that still
->>>> shows the problem, I'm thinking this has something to do with the fact
->>>> that
->>>> I'm running the build inside a vm (inside an Ubuntu vm running on a Mac).
->>>> It looks like the build is using debugfs...maybe it's running out of ram
->>>> at
->>>> some point and not obtaining more in the vm properly?
->>>>
->>>>   On Nov 25, 2013, at 5:21 AM, Paul Eggleton <
->>>>>
->>>> paul.eggleton@linux.intel.com> wrote:
->>>>
->>>>>
->>>>> Hi Nicolas / Todd,
->>>>>
->>>>>   On Monday 25 November 2013 11:31:42 Nicolas Dechesne wrote:
->>>>>> On Sun, Nov 24, 2013 at 3:51 AM, Todd Stellanova
->>>>>> <tstellanova@gmail.com>wrote:
->>>>>>
->>>>>>> It appears that copying the files to the ext3 / sdcard image is
->>>>>>>
->>>>>> failing in
->>>>
->>>>> *populate-extfs.sh*
->>>>>>> I see a series of these errors:
->>>>>>>
->>>>>>> *copy_file: Could not allocate block in ext2 filesystem*
->>>>>>>
->>>>>>> Any idea what might cause this?  I've verified that the initial .tar
->>>>>>> archive and the bz2 contain the right files.
->>>>>>>
->>>>>>
->>>>>> can you try to create a new <build> folder (do not remove the current
->>>>>>
->>>>> one
->>>>
->>>>> for now) and reuse the downloads and sstate folder? i am wondering if
->>>>>>
->>>>> there
->>>>
->>>>> is a bug when trying to change PACKAGE_CLASSES in an existing <build>
->>>>>> folder.
->>>>>>
->>>>>
->>>>> I do this not infrequently and never hit a problem like this, so I doubt
->>>>>
->>>> this
->>>>
->>>>> is the case.
->>>>>
->>>>> Either there is a problem in how the filesystem is being set up (block
->>>>>
->>>> sizes,
->>>>
->>>>> etc.) or there is some kind of corruption occurring.
->>>>>
->>>>> Cheers,
->>>>> Paul
->>>>>
->>>>> --
->>>>>
->>>>> Paul Eggleton
->>>>> Intel Open Source Technology Centre
->>>>>
->>>>
->>>>
->>>
->>>
->>> _______________________________________________
->>> yocto mailing list
->>> yocto@yoctoproject.org
->>> https://lists.yoctoproject.org/listinfo/yocto
->>>
->>>
->
+<meta name=3D"Generator" content=3D"Microsoft Word 14 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri","sans-serif";
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;}
+@page WordSection1
+	{size:612.0pt 792.0pt;
+	margin:72.0pt 72.0pt 72.0pt 72.0pt;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal">Hello,<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">I am currently starting to work with Yocto and I am =
+having a bit of a hard time to figure out how the two documented versions o=
+f WORKDIR come into existence.<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">The doc states:<o:p></o:p></p>
+<p class=3D"MsoNormal">&#8220;&#8221;&#8221;<o:p></o:p></p>
+<p class=3D"MsoNormal">For packages that are not dependent on a particular =
+machine, WORKDIR is defined as follows:<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp; ${TMPDIR}/work/${PACKAGE_ARCH}-poky-${T=
+ARGET_OS}/${PN}/${PV}-${PR}<o:p></o:p></p>
+<p class=3D"MsoNormal">[...]<o:p></o:p></p>
+<p class=3D"MsoNormal">For packages that are dependent on a particular mach=
+ine, WORKDIR is defined slightly different:<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp; ${TMPDIR}/work/${MACHINE}-poky-${TARGET_OS}/$=
+{PN}/${PV}-${PR}<o:p></o:p></p>
+<p class=3D"MsoNormal">&#8220;&#8221;&#8221;<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Now I tried to figure out how a package becomes mach=
+ine dependent, and I could not find this.<o:p></o:p></p>
+<p class=3D"MsoNormal">After poking around in already existing layers and r=
+ecipes, I think that the doc is misleading.<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">It appears to me that only one version exists, which=
+ is:<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp; ${TMPDIR}/work/${PACKAGE_ARCH}-poky-${TARGET_=
+OS}/${PN}/${PV}-${PR}<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">And in case a package is machine specific, one overr=
+ides the default PACKAGE_ARCH with (the undocumented)<o:p></o:p></p>
+<p class=3D"MsoNormal">variable MACHINE_ARCH like this:<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp; PACKAGE_ARCH=3D&#8221;${MACHINE_ARCH}&#8221;<=
+o:p></o:p></p>
+<p class=3D"MsoNormal">(where I believe that MACHINE_ARCH is equal to MACHI=
+NE??)<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Which will then lead to a WORKDIR that looks like ${=
+TMPDIR}/work/${MACHINE}-poky-${TARGET_OS}/${PN}/${PV}-${PR}<o:p></o:p></p>
+<p class=3D"MsoNormal">(but still is ${TMPDIR}/work/${PACKAGE_ARCH}-poky-${=
+TARGET_OS}/${PN}/${PV}-${PR}).<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">(there are some bbclasses that do this, and there ar=
+e some recipes that do it).<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Being pretty new to Yocto, I have the feeling that I=
+ simply got it all wrong, so before posting bugs or something, I&#8217;d wa=
+nted to know<o:p></o:p></p>
+<p class=3D"MsoNormal">if anybody could shed light on this.<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">thanks and best regards<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp; Robert<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+</body>
+</html>
 
+--_000_D6170FF7C32A6B4A895BCD8D281C7934A6D74693ALAMBAcorpadwrs_--
