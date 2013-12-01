@@ -1,29 +1,25 @@
-Return-Path: <philip@balister.org>
-Received: from sanddollar.geekisp.com (sanddollar.geekisp.com
-	[216.168.135.167])
-	by yocto-www.yoctoproject.org (Postfix) with SMTP id D59A2E00563
-	for <yocto@yoctoproject.org>; Sat, 30 Nov 2013 07:02:33 -0800 (PST)
-Received: (qmail 19598 invoked by uid 1003); 30 Nov 2013 15:02:33 -0000
-Received: from unknown (HELO ?192.168.1.113?)
-	(philip@opensdr.com@108.44.82.190)
-	by mail.geekisp.com with (DHE-RSA-AES256-SHA encrypted) SMTP;
-	30 Nov 2013 15:02:32 -0000
-Message-ID: <5299FE05.7020408@balister.org>
-Date: Sat, 30 Nov 2013 10:02:29 -0500
-From: Philip Balister <philip@balister.org>
+Return-Path: <gary@mlbassoc.com>
+Received: from mail.chez-thomas.org (mail.mlbassoc.com [65.100.170.105])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3712CE006CA
+	for <yocto@yoctoproject.org>; Sun,  1 Dec 2013 06:01:06 -0800 (PST)
+Received: by mail.chez-thomas.org (Postfix, from userid 1998)
+	id E4CDCF811EC; Sun,  1 Dec 2013 07:01:03 -0700 (MST)
+X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on
+	hermes.chez-thomas.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=4.0 tests=ALL_TRUSTED,BAYES_00
+	autolearn=ham version=3.3.2
+Received: from [192.168.1.114] (zeus [192.168.1.114])
+	by mail.chez-thomas.org (Postfix) with ESMTP id 9408EF811E5;
+	Sun,  1 Dec 2013 07:01:02 -0700 (MST)
+Message-ID: <529B4140.2040801@mlbassoc.com>
+Date: Sun, 01 Dec 2013 07:01:36 -0700
+From: Gary Thomas <gary@mlbassoc.com>
 User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:17.0) Gecko/20130625 Thunderbird/17.0.7
+	rv:24.0) Gecko/20100101 Thunderbird/24.1.1
 MIME-Version: 1.0
-To: Paul Eggleton <paul.eggleton@linux.intel.com>
-References: <2455395.bHzIGNWoWP@helios>
-	<CAP71Wjy9-8pkU0bLKsn5L-SFDFeidW56ZEuLV25geN1_7ykgHA@mail.gmail.com>
-	<153974778.HzVWmOegEz@helios>
-In-Reply-To: <153974778.HzVWmOegEz@helios>
-X-Enigmail-Version: 1.6
-Cc: Yocto list discussion <yocto@yoctoproject.org>,
-	Patches and discussions about the oe-core layer
-	<openembedded-core@lists.openembedded.org>
-Subject: Re: [OE-core] Automated testing on real hardware
+To: Yocto Project <yocto@yoctoproject.org>
+Subject: Very strange append issue
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -35,110 +31,128 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 30 Nov 2013 15:02:35 -0000
-Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Sun, 01 Dec 2013 14:01:13 -0000
+X-Groupsio-MsgNum: 17396
+Content-Type: multipart/mixed; boundary="------------080502040700070001010800"
 
-On 11/29/2013 01:03 PM, Paul Eggleton wrote:
-> Hi Nicolas,
-> 
-> On Friday 29 November 2013 17:31:40 Nicolas Dechesne wrote:
->> On Fri, Nov 29, 2013 at 4:58 PM, Paul Eggleton <
->> paul.eggleton@linux.intel.com> wrote:
->>> * It requires root to run, since it mounts the images temporarily and
->>> modifies the contents. We've done quite a lot to avoid having to run as
->>> root in OE, so this is a hard sell.
->>
->> i have forwarded this email to the relevant people in Linaro working on
->> LAVA. I hope to be able to bring more information about that, as I am not
->> involved with LAVA, just a 'user' of it. 
-> 
-> OK, thanks. I'm certainly happy to have a wider discussion on this.
+--------------080502040700070001010800
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-Part of the discussion should be identify issues with projects like LAVA
-and see if the LAVA developers agree with our perceptions and work out
-if there is a way we can work together to remove the issues. I certainly
-see a lot of promise in LAVA, but the comments Paul has are big problems
-for the OpenEmbedded Community.
+I'm having a very strange behaviour in one of my recipes.  I have two
+recipes which are tightly coupled.  In one, the 'disk-installer', I'd
+like to reuse a source file from another 'installer' so that I only need
+to make changes in a single place (good practice).  To this end, I have
+a structure like this (the 'installer' recipe is in another layer):
 
-Part of the point of the Yocto Project is to try and focus people's
-efforts on improving the embedded process, either by identifying
-promising projects and working together to improve them, or by
-developing new technology as needed. But before developing something
-new, we nee to make sure we are not creating fragmentation in the
-embedded space.
+meta-mytarget/packages/misc/
+├── disk-installer_0.0.bb
+├── installer
+│   └── mytarget
+│       ├── 6x_bootscript.txt -> ../../../../recipes-bsp/u-boot/u-boot-script-boundary/6x_bootscript.txt
+│       ├── do_install.defaults
+│       ├── do_install.post
+├── installer_0.0.bbappend
 
-Philip
+In the 'disk-installer' recipe, I have:
+   FILESEXTRAPATHS_prepend := "${THISDIR}/installer:"
+so that 'disk-installer' can pick up (share) 'do_install.defaults'
+That part works fine.  The problem is that there is a 'do_install_append()'
+fragment in 'installer_0.0.bbappend' that is being attached to the
+'do_install()' of 'disk-installer_0.0.bb'!
 
-> 
->> By 'root' here, you mean on the server side, e.g. the LAVA instance, which
->> will typically not be the 'builder', or do you want to couple build and test
->> on the same 'server'?
-> 
-> That's what I've been looking at - just using lava-dispatcher rather than the 
-> full LAVA framework. That said, if all it requires root for is mounting the 
-> image, modifying it and then unmounting it, to test our images I don't think 
-> we even want this; but there appears to be no way to disable it. I then found 
-> a launchpad bug where the root requirement was discussed and the accepted 
-> solution there was for the dispatcher to just check and error out if not 
-> running as root.
-> 
->> LAVA jobs are generally submitted by a CI instance (Jenkins in our case).
-> 
-> Our test code currently queries configuration/image information from the build 
-> system, which means that the build system has to be involved in the dispatch 
-> process. Our CI solution (the autobuilder) of course runs the build system 
-> though. One of the work items in my email is to be able to export the tests, 
-> thus decoupling them from this; the build system would still need to be in 
-> charge of exporting the tests, but it would allow a test server to manage the 
-> deployment, execution and results collection.
->  
->>> * It expects images to be created by linaro-media-create, which in turn
->>> requires an "hwpack" [2]. The hwpack concept seems primarily geared to
->>> Ubuntu and distributions like it where you'd have a generic base image
->>> upon which you'd install some board-specific packages in order to make it
->>> work on the board. OE doesn't work that way - we just build images specific
->>> to the board, which makes this mechanism completely superfluous for our
->>> usage; but the tool appears to require it.
->>
->> that is no longer the case. we do have support for 'native' OE images, and
->> we've had that for a while. That is what I am using for my project at
->> Linaro. None of our projects/jobs deliverable are 'public' at the moment,
->> so you won't find them, but i can confirm that what we deploy for our jobs
->> is the output of OE (e.g. what is in the deploy/image folder). hwpack was
->> something mostly meant to make it simpler to work with Ubuntu and Android
->> root FS, and is not suited for OE.
-> 
-> OK, fair enough - I guess the trouble here is it's hard to find any 
-> documentation talking about this functionality; everything I could find that 
-> talks about preparing an image refers to needing an hwpack and using linaro-
-> media-create. Even mailing list posts that I found (admittedly from last year) 
-> referred to these in the context of booting OE images; there are also hwpacks 
-> offered for download under "openembedded" directories on releases.linaro.org. 
-> Given these I hope you can understand my confusion.
-> 
-> Generally, if someone with experience of doing so successfully could document 
-> how LAVA can be set up to test OE images I think that would be very helpful. I 
-> did struggle a bit with the documentation - there are still quite a lot of 
-> broken links to the old documentation on readthedocs.org.
-> 
->>> * It's not clear to me how well it will work across different host
->>> distributions that we want to support; the main LAVA installer quits if it
->>> isn't run on Ubuntu. For convenience I happened to be using an Ubuntu VM,
->>> and I wasn't running the full installer so I avoided this check
->>> altogether. It just concerns me that such a check would even be there.
->>
->> I agree that this is a problem and we should fix. Our IT infrastructure is
->> largely based on Ubuntu servers, but that should not affect what we create
->> that much.
-> 
-> Right. FWIW, as you probably know, the way we handle "unsupported" host 
-> distros is to allow running on them, but warn the user that they may 
-> experience problems (well, in our case we provide this host distro check 
-> functionality, it's on in Poky and off in OE-Core by default, not sure if 
-> others are using it).
-> 
-> Cheers,
-> Paul
-> 
+Here's what I mean - from 'disk-installer_0.0.bb':
+do_install() {
+     # Copy images for fully recoverable image
+     MAC_ADDR=ignored . ${WORKDIR}/do_install.defaults
+     for f in ${KERNEL} ${ROOTFS} ${UBOOT}; do
+       if [ -e ${DEPLOY_DIR_IMAGE}/`basename $f` ]; then
+         install -d ${D}/`dirname $f`
+         cp -L ${DEPLOY_DIR_IMAGE}/`basename $f` ${D}/`dirname $f`
+       fi
+     done
+}
 
+and from 'installer_0.0.bbappend':
+do_install_append() {
+     # Additional installation steps
+     install -m 0755 ${WORKDIR}/do_install.post ${D}/etc/do_install.post
+     mkimage -A arm -O linux -T script -C none -a 0 -e 0 -n "U-Boot script" -d ${WORKDIR}/6x_bootscript.txt ${D}/etc/6x_bootscript
+}
+
+The 'installer' bit makes no sense for the 'disk-installer' recipe
+and yet when this package is built, I get this in 'run.do_install':
+do_install() {
+     # Copy images for fully recoverable image
+     MAC_ADDR=ignored . /local/p8301_new/tmp/work/mytarget-amltd-linux-gnueabi/disk-installer/0.0-r0/do_install.defaults
+     for f in ${KERNEL} ${ROOTFS} ${UBOOT}; do
+       if [ -e /local/p8301_new/tmp/deploy/images/mytarget/`basename $f` ]; then
+         install -d /local/p8301_new/tmp/work/mytarget-amltd-linux-gnueabi/disk-installer/0.0-r0/image/`dirname $f`
+         cp -L /local/p8301_new/tmp/deploy/images/mytarget/`basename $f` /local/p8301_new/tmp/work/mytarget-amltd-linux-gnueabi/disk-installer/0.0-r0/image/`dirname $f`
+       fi
+     done
+     # Additional installation steps
+     install -m 0755 /local/p8301_new/tmp/work/mytarget-amltd-linux-gnueabi/disk-installer/0.0-r0/do_install.post 
+/local/p8301_new/tmp/work/mytarget-amltd-linux-gnueabi/disk-installer/0.0-r0/image/etc/do_install.post
+     mkimage -A arm -O linux -T script -C none -a 0 -e 0 -n "U-Boot script" -d /local/p8301_new/tmp/work/mytarget-amltd-linux-gnueabi/disk-installer/0.0-r0/6x_bootscript.txt 
+/local/p8301_new/tmp/work/mytarget-amltd-linux-gnueabi/disk-installer/0.0-r0/image/etc/6x_bootscript
+
+}
+
+I can see by the copied comment (#) lines that this fragment
+is coming exactly from 'installer_0.0.bbappend'
+
+This looks totally wrong to me.  Am I missing something (and
+it should work this way)??
+
+The complete recipes and fragments are attached in case my explanation
+is a bit confusing.
+
+-- 
+------------------------------------------------------------
+Gary Thomas                 |  Consulting for the
+MLB Associates              |    Embedded world
+------------------------------------------------------------
+
+--------------080502040700070001010800
+Content-Type: text/plain; charset=UTF-8;
+ name="disk-installer_0.0.bb"
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment;
+ filename="disk-installer_0.0.bb"
+
+REVTQ1JJUFRJT04gPSAiQWRkaXRpb25hbCBzZXR1cCBmb3Igc2VsZi1jb250YWluZWQgZGlzayBi
+YXNlZCBpbnN0YWxsZXIiClNFQ1RJT04gPSAiYmFzZSIKTElDRU5TRSA9ICJNSVQiCkxJQ19GSUxF
+U19DSEtTVU0gPSAiZmlsZTovLyR7Q09SRUJBU0V9L0xJQ0VOU0U7bWQ1PTNmNDBkNzk5NDM5NzEw
+OTI4NWVjN2I4MWZkZWIzYjU4ICIKRklMRVNFWFRSQVBBVEhTX3ByZXBlbmQgOj0gIiR7VEhJU0RJ
+Un0vaW5zdGFsbGVyOiIKCiMgVGhlc2UgZmlsZXMgZ2V0IGRyYWdnZWQgaW4gYnkgdGhpcyBwcm9j
+ZXNzCkRFUEVORFMgKz0gImFtbHRkLWNvbnNvbGUtaW1hZ2UgbGludXgtYm91bmRhcnkgdS1ib290
+LWZzbGMiCgojIFBpY2sgdXAgZGVmYXVsdHMgdXNlZCBieSBuZXR3b3JrIGluc3RhbGxlcgpTUkNf
+VVJJICs9ICIgXAogICAgICAgICAgICBmaWxlOi8vZG9faW5zdGFsbC5kZWZhdWx0cyBcCiIKClMg
+PSAiJHtXT1JLRElSfSIKClBBQ0tBR0VfQVJDSCA9ICIke01BQ0hJTkVfQVJDSH0iCgpkb19pbnN0
+YWxsKCkgewogICAgIyBDb3B5IGltYWdlcyBmb3IgZnVsbHkgcmVjb3ZlcmFibGUgaW1hZ2UKICAg
+IE1BQ19BRERSPWlnbm9yZWQgLiAke1dPUktESVJ9L2RvX2luc3RhbGwuZGVmYXVsdHMKICAgIGZv
+ciBmIGluICR7S0VSTkVMfSAke1JPT1RGU30gJHtVQk9PVH07IGRvCiAgICAgIGlmIFsgLWUgJHtE
+RVBMT1lfRElSX0lNQUdFfS9gYmFzZW5hbWUgJGZgIF07IHRoZW4KICAgICAgICBpbnN0YWxsIC1k
+ICR7RH0vYGRpcm5hbWUgJGZgCiAgICAgICAgY3AgLUwgJHtERVBMT1lfRElSX0lNQUdFfS9gYmFz
+ZW5hbWUgJGZgICR7RH0vYGRpcm5hbWUgJGZgCiAgICAgIGZpCiAgICBkb25lCn0KCkZJTEVTXyR7
+UE59ICs9ICIvbG9jYWwiCg==
+
+--------------080502040700070001010800
+Content-Type: text/plain; charset=UTF-8;
+ name="installer_0.0.bbappend"
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment;
+ filename="installer_0.0.bbappend"
+
+IwojIEp1c3QgdGVsbCBCaXRCYWtlIHdoZXJlIHRvIGZpbmQgbXkgY29tcG9uZW50IGZpbGVzCiMK
+RklMRVNFWFRSQVBBVEhTX3ByZXBlbmQgOj0gIiR7VEhJU0RJUn0vaW5zdGFsbGVyOiIKClNSQ19V
+UkkgKz0gIiBcCiAgICAgICAgICAgIGZpbGU6Ly9kb19pbnN0YWxsLnBvc3QgXAoJICAgIGZpbGU6
+Ly82eF9ib290c2NyaXB0LnR4dCBcCiIKCkNPTVBBVElCTEVfTUFDSElORSA9ICIke01BQ0hJTkV9
+IgoKZG9faW5zdGFsbF9hcHBlbmQoKSB7CiAgICAjIEFkZGl0aW9uYWwgaW5zdGFsbGF0aW9uIHN0
+ZXBzCiAgICBpbnN0YWxsIC1tIDA3NTUgJHtXT1JLRElSfS9kb19pbnN0YWxsLnBvc3QgJHtEfS9l
+dGMvZG9faW5zdGFsbC5wb3N0ICAgICAgICAgICAgCiAgICBta2ltYWdlIC1BIGFybSAtTyBsaW51
+eCAtVCBzY3JpcHQgLUMgbm9uZSAtYSAwIC1lIDAgLW4gIlUtQm9vdCBzY3JpcHQiIC1kICR7V09S
+S0RJUn0vNnhfYm9vdHNjcmlwdC50eHQgJHtEfS9ldGMvNnhfYm9vdHNjcmlwdAp9CgoK
+
+--------------080502040700070001010800--
