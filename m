@@ -1,25 +1,34 @@
-Return-Path: <gary@mlbassoc.com>
-Received: from mail.chez-thomas.org (mail.mlbassoc.com [65.100.170.105])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3712CE006CA
-	for <yocto@yoctoproject.org>; Sun,  1 Dec 2013 06:01:06 -0800 (PST)
-Received: by mail.chez-thomas.org (Postfix, from userid 1998)
-	id E4CDCF811EC; Sun,  1 Dec 2013 07:01:03 -0700 (MST)
-X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on
-	hermes.chez-thomas.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=4.0 tests=ALL_TRUSTED,BAYES_00
-	autolearn=ham version=3.3.2
-Received: from [192.168.1.114] (zeus [192.168.1.114])
-	by mail.chez-thomas.org (Postfix) with ESMTP id 9408EF811E5;
-	Sun,  1 Dec 2013 07:01:02 -0700 (MST)
-Message-ID: <529B4140.2040801@mlbassoc.com>
-Date: Sun, 01 Dec 2013 07:01:36 -0700
-From: Gary Thomas <gary@mlbassoc.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:24.0) Gecko/20100101 Thunderbird/24.1.1
+Return-Path: <nicolas.dechesne@linaro.org>
+Received: from mail-ob0-f173.google.com (mail-ob0-f173.google.com
+	[209.85.214.173])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 965F8E006CA
+	for <yocto@yoctoproject.org>; Sun,  1 Dec 2013 06:38:16 -0800 (PST)
+Received: by mail-ob0-f173.google.com with SMTP id gq1so11698104obb.18
+	for <yocto@yoctoproject.org>; Sun, 01 Dec 2013 06:38:15 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc:content-type;
+	bh=B5XddEIahto5j5pcNuJwSVea9WZK4yPo3veDRIIhp4A=;
+	b=dTznke5MPMaG8onk+VKcRQr2QX8UnN6NiAkoPOqD+Wpir/OsXgm3AsTIMS7OMpuEIA
+	MsztSn6bOOn6XpduKmZKmkIoP+PEsaCM9rzu51+UpOcRsugLUoBddS9c8oCxu8YVsri3
+	+0dr/Yd6G/zKMCqd7QccenRvolEfN1+UjIfiOdTVIgirCwKsBuBasjDgj4kJ740piVuo
+	jZ4MPoqD6IwSS/nzS8/oUaEX/8sOdXmR2fIsE9FwNM/qsFpWxl229vyaLGZlocGdHtbf
+	xM6cHA/WYLcqGFLGvtNw8B9aXY5c3VYf+Cupyu5wPAa1wIqZAjN2pUQPC1NJAP++s515
+	amPw==
+X-Gm-Message-State: ALoCoQngY0EktQM30GhJG9uSeJBrt3Tt2A65qv06hLG7Xy9DVDGWiPGbkotHQjQScFVw7mAGxaZQ
+X-Received: by 10.182.135.194 with SMTP id pu2mr1429854obb.38.1385908695661;
+	Sun, 01 Dec 2013 06:38:15 -0800 (PST)
 MIME-Version: 1.0
-To: Yocto Project <yocto@yoctoproject.org>
-Subject: Very strange append issue
+Received: by 10.76.0.50 with HTTP; Sun, 1 Dec 2013 06:37:54 -0800 (PST)
+In-Reply-To: <529B4140.2040801@mlbassoc.com>
+References: <529B4140.2040801@mlbassoc.com>
+From: Nicolas Dechesne <nicolas.dechesne@linaro.org>
+Date: Sun, 1 Dec 2013 15:37:54 +0100
+Message-ID: <CAP71Wjw=Zaf9n_yiXG1-=Fp5rNSPYV9xEsEN6HEwO841xwWneA@mail.gmail.com>
+To: Gary Thomas <gary@mlbassoc.com>
+Cc: Yocto Project <yocto@yoctoproject.org>
+Subject: Re: Very strange append issue
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -31,128 +40,53 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 01 Dec 2013 14:01:13 -0000
-X-Groupsio-MsgNum: 17396
-Content-Type: multipart/mixed; boundary="------------080502040700070001010800"
+X-List-Received-Date: Sun, 01 Dec 2013 14:38:17 -0000
+Content-Type: multipart/alternative; boundary=089e0122a6c07f1bdb04ec7a03af
 
---------------080502040700070001010800
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+--089e0122a6c07f1bdb04ec7a03af
+Content-Type: text/plain; charset=ISO-8859-1
 
-I'm having a very strange behaviour in one of my recipes.  I have two
-recipes which are tightly coupled.  In one, the 'disk-installer', I'd
-like to reuse a source file from another 'installer' so that I only need
-to make changes in a single place (good practice).  To this end, I have
-a structure like this (the 'installer' recipe is in another layer):
+On Sun, Dec 1, 2013 at 3:01 PM, Gary Thomas <gary@mlbassoc.com> wrote:
 
-meta-mytarget/packages/misc/
-├── disk-installer_0.0.bb
-├── installer
-│   └── mytarget
-│       ├── 6x_bootscript.txt -> ../../../../recipes-bsp/u-boot/u-boot-script-boundary/6x_bootscript.txt
-│       ├── do_install.defaults
-│       ├── do_install.post
-├── installer_0.0.bbappend
+> I can see by the copied comment (#) lines that this fragment
+> is coming exactly from 'installer_0.0.bbappend'
+>
+> This looks totally wrong to me.  Am I missing something (and
+> it should work this way)??
+>
 
-In the 'disk-installer' recipe, I have:
-   FILESEXTRAPATHS_prepend := "${THISDIR}/installer:"
-so that 'disk-installer' can pick up (share) 'do_install.defaults'
-That part works fine.  The problem is that there is a 'do_install_append()'
-fragment in 'installer_0.0.bbappend' that is being attached to the
-'do_install()' of 'disk-installer_0.0.bb'!
+are you on master? a 'somehow' similar issue (e.g. problems with
+.bbappends) was reported on the list earlier this week:
 
-Here's what I mean - from 'disk-installer_0.0.bb':
-do_install() {
-     # Copy images for fully recoverable image
-     MAC_ADDR=ignored . ${WORKDIR}/do_install.defaults
-     for f in ${KERNEL} ${ROOTFS} ${UBOOT}; do
-       if [ -e ${DEPLOY_DIR_IMAGE}/`basename $f` ]; then
-         install -d ${D}/`dirname $f`
-         cp -L ${DEPLOY_DIR_IMAGE}/`basename $f` ${D}/`dirname $f`
-       fi
-     done
-}
+http://www.mail-archive.com/yocto@yoctoproject.org/msg16836.html
 
-and from 'installer_0.0.bbappend':
-do_install_append() {
-     # Additional installation steps
-     install -m 0755 ${WORKDIR}/do_install.post ${D}/etc/do_install.post
-     mkimage -A arm -O linux -T script -C none -a 0 -e 0 -n "U-Boot script" -d ${WORKDIR}/6x_bootscript.txt ${D}/etc/6x_bootscript
-}
+--089e0122a6c07f1bdb04ec7a03af
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
 
-The 'installer' bit makes no sense for the 'disk-installer' recipe
-and yet when this package is built, I get this in 'run.do_install':
-do_install() {
-     # Copy images for fully recoverable image
-     MAC_ADDR=ignored . /local/p8301_new/tmp/work/mytarget-amltd-linux-gnueabi/disk-installer/0.0-r0/do_install.defaults
-     for f in ${KERNEL} ${ROOTFS} ${UBOOT}; do
-       if [ -e /local/p8301_new/tmp/deploy/images/mytarget/`basename $f` ]; then
-         install -d /local/p8301_new/tmp/work/mytarget-amltd-linux-gnueabi/disk-installer/0.0-r0/image/`dirname $f`
-         cp -L /local/p8301_new/tmp/deploy/images/mytarget/`basename $f` /local/p8301_new/tmp/work/mytarget-amltd-linux-gnueabi/disk-installer/0.0-r0/image/`dirname $f`
-       fi
-     done
-     # Additional installation steps
-     install -m 0755 /local/p8301_new/tmp/work/mytarget-amltd-linux-gnueabi/disk-installer/0.0-r0/do_install.post 
-/local/p8301_new/tmp/work/mytarget-amltd-linux-gnueabi/disk-installer/0.0-r0/image/etc/do_install.post
-     mkimage -A arm -O linux -T script -C none -a 0 -e 0 -n "U-Boot script" -d /local/p8301_new/tmp/work/mytarget-amltd-linux-gnueabi/disk-installer/0.0-r0/6x_bootscript.txt 
-/local/p8301_new/tmp/work/mytarget-amltd-linux-gnueabi/disk-installer/0.0-r0/image/etc/6x_bootscript
+<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
+On Sun, Dec 1, 2013 at 3:01 PM, Gary Thomas <span dir=3D"ltr">&lt;<a href=
+=3D"mailto:gary@mlbassoc.com" target=3D"_blank">gary@mlbassoc.com</a>&gt;</=
+span> wrote:<br>
 
-}
+<blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-=
+left-width:1px;border-left-color:rgb(204,204,204);border-left-style:solid;p=
+adding-left:1ex"><div id=3D":z6" style=3D"overflow:hidden">I can see by the=
+ copied comment (#) lines that this fragment<br>
 
-I can see by the copied comment (#) lines that this fragment
-is coming exactly from 'installer_0.0.bbappend'
 
-This looks totally wrong to me.  Am I missing something (and
-it should work this way)??
+is coming exactly from &#39;installer_0.0.bbappend&#39;<br>
+<br>
+This looks totally wrong to me. =A0Am I missing something (and<br>
+it should work this way)??<br></div></blockquote></div><br>are you on maste=
+r? a &#39;somehow&#39; similar issue (e.g. problems with .bbappends) was re=
+ported on the list earlier this week:</div><div class=3D"gmail_extra"><br>
 
-The complete recipes and fragments are attached in case my explanation
-is a bit confusing.
+</div><div class=3D"gmail_extra"><a href=3D"http://www.mail-archive.com/yoc=
+to@yoctoproject.org/msg16836.html">http://www.mail-archive.com/yocto@yoctop=
+roject.org/msg16836.html</a><br></div><div class=3D"gmail_extra"><br></div>=
+<div class=3D"gmail_extra">
 
--- 
-------------------------------------------------------------
-Gary Thomas                 |  Consulting for the
-MLB Associates              |    Embedded world
-------------------------------------------------------------
+<br></div></div>
 
---------------080502040700070001010800
-Content-Type: text/plain; charset=UTF-8;
- name="disk-installer_0.0.bb"
-Content-Transfer-Encoding: base64
-Content-Disposition: attachment;
- filename="disk-installer_0.0.bb"
-
-REVTQ1JJUFRJT04gPSAiQWRkaXRpb25hbCBzZXR1cCBmb3Igc2VsZi1jb250YWluZWQgZGlzayBi
-YXNlZCBpbnN0YWxsZXIiClNFQ1RJT04gPSAiYmFzZSIKTElDRU5TRSA9ICJNSVQiCkxJQ19GSUxF
-U19DSEtTVU0gPSAiZmlsZTovLyR7Q09SRUJBU0V9L0xJQ0VOU0U7bWQ1PTNmNDBkNzk5NDM5NzEw
-OTI4NWVjN2I4MWZkZWIzYjU4ICIKRklMRVNFWFRSQVBBVEhTX3ByZXBlbmQgOj0gIiR7VEhJU0RJ
-Un0vaW5zdGFsbGVyOiIKCiMgVGhlc2UgZmlsZXMgZ2V0IGRyYWdnZWQgaW4gYnkgdGhpcyBwcm9j
-ZXNzCkRFUEVORFMgKz0gImFtbHRkLWNvbnNvbGUtaW1hZ2UgbGludXgtYm91bmRhcnkgdS1ib290
-LWZzbGMiCgojIFBpY2sgdXAgZGVmYXVsdHMgdXNlZCBieSBuZXR3b3JrIGluc3RhbGxlcgpTUkNf
-VVJJICs9ICIgXAogICAgICAgICAgICBmaWxlOi8vZG9faW5zdGFsbC5kZWZhdWx0cyBcCiIKClMg
-PSAiJHtXT1JLRElSfSIKClBBQ0tBR0VfQVJDSCA9ICIke01BQ0hJTkVfQVJDSH0iCgpkb19pbnN0
-YWxsKCkgewogICAgIyBDb3B5IGltYWdlcyBmb3IgZnVsbHkgcmVjb3ZlcmFibGUgaW1hZ2UKICAg
-IE1BQ19BRERSPWlnbm9yZWQgLiAke1dPUktESVJ9L2RvX2luc3RhbGwuZGVmYXVsdHMKICAgIGZv
-ciBmIGluICR7S0VSTkVMfSAke1JPT1RGU30gJHtVQk9PVH07IGRvCiAgICAgIGlmIFsgLWUgJHtE
-RVBMT1lfRElSX0lNQUdFfS9gYmFzZW5hbWUgJGZgIF07IHRoZW4KICAgICAgICBpbnN0YWxsIC1k
-ICR7RH0vYGRpcm5hbWUgJGZgCiAgICAgICAgY3AgLUwgJHtERVBMT1lfRElSX0lNQUdFfS9gYmFz
-ZW5hbWUgJGZgICR7RH0vYGRpcm5hbWUgJGZgCiAgICAgIGZpCiAgICBkb25lCn0KCkZJTEVTXyR7
-UE59ICs9ICIvbG9jYWwiCg==
-
---------------080502040700070001010800
-Content-Type: text/plain; charset=UTF-8;
- name="installer_0.0.bbappend"
-Content-Transfer-Encoding: base64
-Content-Disposition: attachment;
- filename="installer_0.0.bbappend"
-
-IwojIEp1c3QgdGVsbCBCaXRCYWtlIHdoZXJlIHRvIGZpbmQgbXkgY29tcG9uZW50IGZpbGVzCiMK
-RklMRVNFWFRSQVBBVEhTX3ByZXBlbmQgOj0gIiR7VEhJU0RJUn0vaW5zdGFsbGVyOiIKClNSQ19V
-UkkgKz0gIiBcCiAgICAgICAgICAgIGZpbGU6Ly9kb19pbnN0YWxsLnBvc3QgXAoJICAgIGZpbGU6
-Ly82eF9ib290c2NyaXB0LnR4dCBcCiIKCkNPTVBBVElCTEVfTUFDSElORSA9ICIke01BQ0hJTkV9
-IgoKZG9faW5zdGFsbF9hcHBlbmQoKSB7CiAgICAjIEFkZGl0aW9uYWwgaW5zdGFsbGF0aW9uIHN0
-ZXBzCiAgICBpbnN0YWxsIC1tIDA3NTUgJHtXT1JLRElSfS9kb19pbnN0YWxsLnBvc3QgJHtEfS9l
-dGMvZG9faW5zdGFsbC5wb3N0ICAgICAgICAgICAgCiAgICBta2ltYWdlIC1BIGFybSAtTyBsaW51
-eCAtVCBzY3JpcHQgLUMgbm9uZSAtYSAwIC1lIDAgLW4gIlUtQm9vdCBzY3JpcHQiIC1kICR7V09S
-S0RJUn0vNnhfYm9vdHNjcmlwdC50eHQgJHtEfS9ldGMvNnhfYm9vdHNjcmlwdAp9CgoK
-
---------------080502040700070001010800--
+--089e0122a6c07f1bdb04ec7a03af--
