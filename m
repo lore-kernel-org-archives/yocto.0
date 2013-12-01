@@ -1,32 +1,27 @@
-Return-Path: <nicolas.dechesne@linaro.org>
-Received: from mail-ob0-f173.google.com (mail-ob0-f173.google.com
-	[209.85.214.173])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 965F8E006CA
-	for <yocto@yoctoproject.org>; Sun,  1 Dec 2013 06:38:16 -0800 (PST)
-Received: by mail-ob0-f173.google.com with SMTP id gq1so11698104obb.18
-	for <yocto@yoctoproject.org>; Sun, 01 Dec 2013 06:38:15 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc:content-type;
-	bh=B5XddEIahto5j5pcNuJwSVea9WZK4yPo3veDRIIhp4A=;
-	b=dTznke5MPMaG8onk+VKcRQr2QX8UnN6NiAkoPOqD+Wpir/OsXgm3AsTIMS7OMpuEIA
-	MsztSn6bOOn6XpduKmZKmkIoP+PEsaCM9rzu51+UpOcRsugLUoBddS9c8oCxu8YVsri3
-	+0dr/Yd6G/zKMCqd7QccenRvolEfN1+UjIfiOdTVIgirCwKsBuBasjDgj4kJ740piVuo
-	jZ4MPoqD6IwSS/nzS8/oUaEX/8sOdXmR2fIsE9FwNM/qsFpWxl229vyaLGZlocGdHtbf
-	xM6cHA/WYLcqGFLGvtNw8B9aXY5c3VYf+Cupyu5wPAa1wIqZAjN2pUQPC1NJAP++s515
-	amPw==
-X-Gm-Message-State: ALoCoQngY0EktQM30GhJG9uSeJBrt3Tt2A65qv06hLG7Xy9DVDGWiPGbkotHQjQScFVw7mAGxaZQ
-X-Received: by 10.182.135.194 with SMTP id pu2mr1429854obb.38.1385908695661;
-	Sun, 01 Dec 2013 06:38:15 -0800 (PST)
+Return-Path: <gary@mlbassoc.com>
+Received: from mail.chez-thomas.org (mail.mlbassoc.com [65.100.170.105])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id ADB09E006B6
+	for <yocto@yoctoproject.org>; Sun,  1 Dec 2013 06:50:14 -0800 (PST)
+Received: by mail.chez-thomas.org (Postfix, from userid 1998)
+	id D10CDF811ED; Sun,  1 Dec 2013 07:50:13 -0700 (MST)
+X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on
+	hermes.chez-thomas.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=4.0 tests=ALL_TRUSTED,BAYES_00
+	autolearn=unavailable version=3.3.2
+Received: from [192.168.1.114] (zeus [192.168.1.114])
+	by mail.chez-thomas.org (Postfix) with ESMTP id 009A6F811E5;
+	Sun,  1 Dec 2013 07:50:12 -0700 (MST)
+Message-ID: <529B4CC6.8090501@mlbassoc.com>
+Date: Sun, 01 Dec 2013 07:50:46 -0700
+From: Gary Thomas <gary@mlbassoc.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:24.0) Gecko/20100101 Thunderbird/24.1.1
 MIME-Version: 1.0
-Received: by 10.76.0.50 with HTTP; Sun, 1 Dec 2013 06:37:54 -0800 (PST)
-In-Reply-To: <529B4140.2040801@mlbassoc.com>
+To: Nicolas Dechesne <nicolas.dechesne@linaro.org>
 References: <529B4140.2040801@mlbassoc.com>
-From: Nicolas Dechesne <nicolas.dechesne@linaro.org>
-Date: Sun, 1 Dec 2013 15:37:54 +0100
-Message-ID: <CAP71Wjw=Zaf9n_yiXG1-=Fp5rNSPYV9xEsEN6HEwO841xwWneA@mail.gmail.com>
-To: Gary Thomas <gary@mlbassoc.com>
+	<CAP71Wjw=Zaf9n_yiXG1-=Fp5rNSPYV9xEsEN6HEwO841xwWneA@mail.gmail.com>
+In-Reply-To: <CAP71Wjw=Zaf9n_yiXG1-=Fp5rNSPYV9xEsEN6HEwO841xwWneA@mail.gmail.com>
 Cc: Yocto Project <yocto@yoctoproject.org>
 Subject: Re: Very strange append issue
 X-BeenThere: yocto@yoctoproject.org
@@ -40,53 +35,32 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 01 Dec 2013 14:38:17 -0000
-Content-Type: multipart/alternative; boundary=089e0122a6c07f1bdb04ec7a03af
+X-List-Received-Date: Sun, 01 Dec 2013 14:50:18 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
 
---089e0122a6c07f1bdb04ec7a03af
-Content-Type: text/plain; charset=ISO-8859-1
-
-On Sun, Dec 1, 2013 at 3:01 PM, Gary Thomas <gary@mlbassoc.com> wrote:
-
-> I can see by the copied comment (#) lines that this fragment
-> is coming exactly from 'installer_0.0.bbappend'
+On 2013-12-01 07:37, Nicolas Dechesne wrote:
 >
-> This looks totally wrong to me.  Am I missing something (and
-> it should work this way)??
+> On Sun, Dec 1, 2013 at 3:01 PM, Gary Thomas <gary@mlbassoc.com <mailto:gary@mlbassoc.com>> wrote:
 >
+>     I can see by the copied comment (#) lines that this fragment
+>     is coming exactly from 'installer_0.0.bbappend'
+>
+>     This looks totally wrong to me.  Am I missing something (and
+>     it should work this way)??
+>
+>
+> are you on master? a 'somehow' similar issue (e.g. problems with .bbappends) was reported on the list earlier this week:
+>
+> http://www.mail-archive.com/yocto@yoctoproject.org/msg16836.html
 
-are you on master? a 'somehow' similar issue (e.g. problems with
-.bbappends) was reported on the list earlier this week:
+Yes, I am using master: 937663bdeca6d6479e0db2a9578588b1aa20222c
 
-http://www.mail-archive.com/yocto@yoctoproject.org/msg16836.html
+At least I am not hallucinating!
 
---089e0122a6c07f1bdb04ec7a03af
-Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
+-- 
+------------------------------------------------------------
+Gary Thomas                 |  Consulting for the
+MLB Associates              |    Embedded world
+------------------------------------------------------------
 
-<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
-On Sun, Dec 1, 2013 at 3:01 PM, Gary Thomas <span dir=3D"ltr">&lt;<a href=
-=3D"mailto:gary@mlbassoc.com" target=3D"_blank">gary@mlbassoc.com</a>&gt;</=
-span> wrote:<br>
-
-<blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-=
-left-width:1px;border-left-color:rgb(204,204,204);border-left-style:solid;p=
-adding-left:1ex"><div id=3D":z6" style=3D"overflow:hidden">I can see by the=
- copied comment (#) lines that this fragment<br>
-
-
-is coming exactly from &#39;installer_0.0.bbappend&#39;<br>
-<br>
-This looks totally wrong to me. =A0Am I missing something (and<br>
-it should work this way)??<br></div></blockquote></div><br>are you on maste=
-r? a &#39;somehow&#39; similar issue (e.g. problems with .bbappends) was re=
-ported on the list earlier this week:</div><div class=3D"gmail_extra"><br>
-
-</div><div class=3D"gmail_extra"><a href=3D"http://www.mail-archive.com/yoc=
-to@yoctoproject.org/msg16836.html">http://www.mail-archive.com/yocto@yoctop=
-roject.org/msg16836.html</a><br></div><div class=3D"gmail_extra"><br></div>=
-<div class=3D"gmail_extra">
-
-<br></div></div>
-
---089e0122a6c07f1bdb04ec7a03af--
