@@ -1,16 +1,38 @@
-Return-Path: <packages@autobuilder.yoctoproject.org>
-Received: from autobuilder.yoctoproject.org (ab01 [10.0.10.101])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 906BAE007B0
-	for <yocto@yoctoproject.org>; Sun,  1 Dec 2013 18:00:26 -0800 (PST)
-Received: by autobuilder.yoctoproject.org (Postfix, from userid 802)
-	id 8DAB04AEC2; Mon,  2 Dec 2013 02:00:26 +0000 (UTC)
-Date: Mon, 2 Dec 2013 02:00:26 +0000
-From: Yocto Project Package Report System <package-reporting@yoctoproject.org>
-To: yocto@yoctoproject.org
-Message-ID: <20131202020026.GA5776@ab01.i.yoctoproject.org>
+Return-Path: <fathi.boudra@linaro.org>
+Received: from mail-vb0-f44.google.com (mail-vb0-f44.google.com
+	[209.85.212.44])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CFC3CE007AC
+	for <yocto@yoctoproject.org>; Mon,  2 Dec 2013 02:11:20 -0800 (PST)
+Received: by mail-vb0-f44.google.com with SMTP id w20so8411995vbb.31
+	for <yocto@yoctoproject.org>; Mon, 02 Dec 2013 02:11:20 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:date
+	:message-id:subject:from:to:cc:content-type;
+	bh=vvhpHLF322PtK87FiMoi8ZRK75OqWAHQ/+ZQ1nNwl4A=;
+	b=VND3Gsmrzb6fNGkz1hwSp61OLRhTGXfJzQennCagbXdhHGX+NNzeDWFY+bJg6BVlh4
+	sWW77nc8hp3u+rOALGGzUHuHEBopyi16aU3jCsZTg5JTWM3CfCZTValAJyf1n/9wrXUW
+	g+IYcL94txIZpMGA4X5WUBg9vWlj4irWka+mnK1t7X/KGOjbt0yN6flVyFYVUz0qMPe+
+	kccc7ti5E8JhzyKdQHDTtoRCb5K61XDa20sgiInqE59iJ7pBsngzMzv2OrrtBEnPi1hd
+	NjwYufEzAdUrWInuPRD+ONWtRqmMzNnkSmQpEcqXjQIRltF9TcwbBtoWTfUEwLkkMam1
+	L5XA==
+X-Gm-Message-State: ALoCoQlrbwNcKic+HkHgTiZ7yzOAJ9yG1D072/y3IhZ7fqplDrwLrmlwH9ZhKt7hHvc9m3jayIX0
 MIME-Version: 1.0
-User-Agent: Mutt/1.5.20 (2009-12-10)
-Subject: [Package Report System]Manual check recipes name list
+X-Received: by 10.220.58.1 with SMTP id e1mr52251945vch.0.1385979080072; Mon,
+	02 Dec 2013 02:11:20 -0800 (PST)
+Received: by 10.220.8.12 with HTTP; Mon, 2 Dec 2013 02:11:20 -0800 (PST)
+In-Reply-To: <CAP71Wjy9-8pkU0bLKsn5L-SFDFeidW56ZEuLV25geN1_7ykgHA@mail.gmail.com>
+References: <2455395.bHzIGNWoWP@helios>
+	<CAP71Wjy9-8pkU0bLKsn5L-SFDFeidW56ZEuLV25geN1_7ykgHA@mail.gmail.com>
+Date: Mon, 2 Dec 2013 12:11:20 +0200
+Message-ID: <CAGNsrLCxpsQm=MB4Qa+CxkD8qFniBcM1tU_YweaPxyVzJisuNg@mail.gmail.com>
+From: Fathi Boudra <fathi.boudra@linaro.org>
+To: Nicolas Dechesne <nicolas.dechesne@linaro.org>
+Cc: Paul Eggleton <paul.eggleton@linux.intel.com>,
+	Patches and discussions about the oe-core layer
+	<openembedded-core@lists.openembedded.org>,
+	Yocto list discussion <yocto@yoctoproject.org>
+Subject: Re: [OE-core] Automated testing on real hardware
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -22,21 +44,131 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 02 Dec 2013 02:00:26 -0000
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+X-List-Received-Date: Mon, 02 Dec 2013 10:11:27 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
-This mail was sent out by Package Report System.
-It will list all the recipes which can't check upstream version by script, and will show how long it is since their last mannual version check.
-You can check the detail information at http://packages.yoctoproject.org/manuallychkinfo
+Hi,
 
+On 29 November 2013 18:31, Nicolas Dechesne <nicolas.dechesne@linaro.org> wrote:
+> Paul,
+>
+> On Fri, Nov 29, 2013 at 4:58 PM, Paul Eggleton
+> <paul.eggleton@linux.intel.com> wrote:
+>>
+>> LAVA
+>> -----
+>>
+>> A number of people had suggested I look at LAVA [1]. It is split into
+>> different
+>> components for each function, some of which should be usable independently
+>> so
+>> you don't have to use the entire framework. Many of the components could
+>> be
+>> useful assuming they are independent, but in terms of being able to
+>> actually
+>> run our tests, the one that stands out as being most relevant is lava-
+>> dispatcher. This is the component that deploys images, and boots the
+>> hardware
+>> in order to run the tests.
+>>
+>> I've looked at lava-dispatcher a couple of times; firstly at the code, and
+>> yesterday I looked at actually running it. Initially it looked very
+>> promising
+>> - reasonably licensed, written in Python, has some rudimentary support for
+>> OE
+>> images. However while looking at it I found the following:
+>>
+>> * It requires root to run, since it mounts the images temporarily and
+>> modifies
+>> the contents. We've done quite a lot to avoid having to run as root in OE,
+>> so
+>> this is a hard sell.
+>
+>
+> i have forwarded this email to the relevant people in Linaro working on
+> LAVA. I hope to be able to bring more information about that, as I am not
+> involved with LAVA, just a 'user' of it. By 'root' here, you mean on the
+> server side, e.g. the LAVA instance, which will typically not be the
+> 'builder', or do you want to couple build and test on the same 'server'?
+> LAVA jobs are generally submitted by a CI instance (Jenkins in our case).
+>
+>>
+>> * It expects images to be created by linaro-media-create, which in turn
+>> requires an "hwpack" [2]. The hwpack concept seems primarily geared to
+>> Ubuntu
+>> and distributions like it where you'd have a generic base image upon which
+>> you'd install some board-specific packages in order to make it work on the
+>> board. OE doesn't work that way - we just build images specific to the
+>> board,
+>> which makes this mechanism completely superfluous for our usage; but the
+>> tool
+>> appears to require it.
+>
+> that is no longer the case. we do have support for 'native' OE images, and
+> we've had that for a while.
 
-PackageName              Version             LastChkVersion      LastChkTime              Maintainer                              NoUpgradeReason               
-libpng12                 1.2.50              1.2.50              61 days                  Valentin Popa <valentin.popa@...        No data                       
-sqlite3                  3080002             3.8.0.2             61 days                  Saul Wold <sgw@linux.intel.co...        No data                       
-atk                      2.10.0              N/A                 41608 d                  Cristiana Voicu <cristiana.vo...        No data                       
-minicom                  2.6.2               2.6.2               41 days                  Cristian Iorga <cristian.iorg...        No data                       
-Manual Check Count: 4
-Manual Need Check Count: 4
-Any problem, please contact Saul Wold <sgw@linux.intel.com> 
+Well, it has never been the case... We had deploy_linaro_image to
+deploy images since day 1, supporting hwpack + rootfs image or
+pre-built image.
+Support for 'native' OE images as you call it, fall into the pre-built
+image method.
+It has some assumption since we use our own baked images, but I'm
+pretty sure we can fix it if more people are using it for OE testing.
+
+Some other deployment methods have been added like
+deploy_linaro_kernel, for network boot:
+http://validation.linaro.org/static/docs/dispatcher-actions.html
+
+> That is what I am using for my project at
+> Linaro. None of our projects/jobs deliverable are 'public' at the moment, so
+> you won't find them, but i can confirm that what we deploy for our jobs is
+> the output of OE (e.g. what is in the deploy/image folder). hwpack was
+> something mostly meant to make it simpler to work with Ubuntu and Android
+> root FS, and is not suited for OE.
+
+It isn't suited for OE is a personal opinion. As a matter of fact,
+there's use cases where we need only the rootfs and don't want to
+rebuild everything just to change the kernel.
+
+>>
+>>
+>> * There is a general lack of abstraction and far too much hardcoding. For
+>> example, even at the most abstract level, the "Target" class (which is the
+>> base class for defining what to do for different types of targets) has
+>> hardcoded
+>> deploy_linaro / deploy_android functions:
+>>
+>> https://git.linaro.org/gitweb?p=lava/lava-dispatcher.git;a=blob;f=lava_dispatcher/device/target.py
+>>
+>> * It's not clear to me how well it will work across different host
+>> distributions that we want to support; the main LAVA installer quits if it
+>> isn't run on Ubuntu. For convenience I happened to be using an Ubuntu VM,
+>> and
+>> I wasn't running the full installer so I avoided this check altogether. It
+>> just concerns me that such a check would even be there.
+>
+>
+> I agree that this is a problem and we should fix. Our IT infrastructure is
+> largely based on Ubuntu servers, but that should not affect what we create
+> that much.
+
+There's a work in progress on LAVA deployment. It has been
+re-organized to make it easier to package for distributions. LAVA does
+work on Debian/Ubuntu/Fedora and packages will be available for those
+distro.
+
+>>
+>> Of course, none of these problems are impossible to overcome, if we're
+>> prepared to put a significant amount of engineering into resolving them.
+>> In
+>> terms of enabling the Yocto Project QA team to test images on real
+>> hardware in
+>> the 1.6 development cycle however, I don't believe this is going to be
+>> deliverable.
+
+afaict, the non-root requirement is the blocker.
+The other issues reported will be resolved as part of our roadmap.
+
+Cheers,
+Fathi
 
