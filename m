@@ -1,26 +1,28 @@
-Return-Path: <paul.eggleton@linux.intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A78A0E007B3
-	for <yocto@yoctoproject.org>; Mon,  2 Dec 2013 04:11:33 -0800 (PST)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga102.jf.intel.com with ESMTP; 02 Dec 2013 04:07:52 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.93,810,1378882800"; d="scan'208";a="417897229"
-Received: from pmcgurk-mobl.ger.corp.intel.com (HELO helios.localnet)
-	([10.252.121.184])
-	by orsmga001.jf.intel.com with ESMTP; 02 Dec 2013 04:11:32 -0800
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: =?ISO-8859-1?Q?S=F8ren?= Holm <sgh@sgh.dk>
-Date: Mon, 02 Dec 2013 12:11:31 +0000
-Message-ID: <1971535.rBCaI2xdmC@helios>
-Organization: Intel Corporation
-User-Agent: KMail/4.10.5 (Linux/3.8.0-31-generic; KDE/4.10.5; i686; ; )
-In-Reply-To: <8575983.IvbszYPS8i@koontz>
-References: <22354788.5R15oKMmSW@koontz> <11848834.gRVeh0UGRN@helios>
-	<8575983.IvbszYPS8i@koontz>
+Return-Path: <gary@mlbassoc.com>
+Received: from mail.chez-thomas.org (mail.mlbassoc.com [65.100.170.105])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7B67FE006D2
+	for <yocto@yoctoproject.org>; Mon,  2 Dec 2013 07:00:02 -0800 (PST)
+Received: by mail.chez-thomas.org (Postfix, from userid 1998)
+	id A9DFDF811E5; Mon,  2 Dec 2013 08:00:01 -0700 (MST)
+X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on
+	hermes.chez-thomas.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=4.0 tests=ALL_TRUSTED,BAYES_00
+	autolearn=unavailable version=3.3.2
+Received: from [192.168.1.114] (zeus [192.168.1.114])
+	by mail.chez-thomas.org (Postfix) with ESMTP id 00F08F811D9;
+	Mon,  2 Dec 2013 07:59:59 -0700 (MST)
+Message-ID: <529CA093.3080406@mlbassoc.com>
+Date: Mon, 02 Dec 2013 08:00:35 -0700
+From: Gary Thomas <gary@mlbassoc.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:24.0) Gecko/20100101 Thunderbird/24.1.1
 MIME-Version: 1.0
-Cc: yocto@yoctoproject.org
-Subject: Re: Yocto .gitignore
+To: yocto@yoctoproject.org
+References: <529B4140.2040801@mlbassoc.com>	<CAP71Wjw=Zaf9n_yiXG1-=Fp5rNSPYV9xEsEN6HEwO841xwWneA@mail.gmail.com>	<529B4CC6.8090501@mlbassoc.com>	<CAP71Wjz9zTEczjEwyy-gpTo6YA3oju-LBVxvxXSx9aNyN+-wkw@mail.gmail.com>	<529B53AC.3050309@mlbassoc.com>
+	<285d7595-af9a-41b3-9e4f-f7f083ae4be2@CO1EHSMHS031.ehs.local>
+In-Reply-To: <285d7595-af9a-41b3-9e4f-f7f083ae4be2@CO1EHSMHS031.ehs.local>
+Subject: Re: Very strange append issue
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,53 +34,74 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 02 Dec 2013 12:11:35 -0000
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"
+X-List-Received-Date: Mon, 02 Dec 2013 15:00:12 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Monday 02 December 2013 13:02:21 S=F8ren Holm wrote:
-> Mandag den 2. december 2013 11:57:35 skrev Paul Eggleton:
-> > I presume you mean the .gitignore in the poky repository. Any addit=
-ional
-> > custom layers shouldn't be part of the poky repository, they should=
- be in
-> > separate repositories.
->=20
-> That's right. But how would you put "build/*" and my own "meta-*" in =
-a
-> seperate repo. Pulling them in as submodules seems painfull and havin=
-g the
-> yocto-repo included as a submodule in another repo seems backwards to=
-o.
->=20
-> Do you have a proposed "best-practice"-way of maintaining own layers?=
+On 2013-12-01 18:02, Nathan Rossi wrote:
+> Hi Gary,
+>
+> Just a heads up. This issue should now be resolved in the current master of poky. A patch went into bitbake to fix up the double appending of bbappends.
+>
+> http://git.yoctoproject.org/cgit/cgit.cgi/poky/commit/?id=f91a3f46a1ee586e330be0868e8fbc4d2e78d361
 
+Confirmed - the problem is fixed in master fabdf2f57a8e0ebe8ab7e82f92f3b298e113fcc0
+(presumably by the mentioned change)
 
-There are a number of different options:
+Thanks
 
-* submodules
-* repo [1]
-* combo-layer [2] (what we use for Poky)
-* or, just keep the repositories separate
+>> -----Original Message-----
+>> From: yocto-bounces@yoctoproject.org [mailto:yocto-
+>> bounces@yoctoproject.org] On Behalf Of Gary Thomas
+>> Sent: Monday, December 02, 2013 1:20 AM
+>> To: Nicolas Dechesne
+>> Cc: Yocto Project
+>> Subject: Re: [yocto] Very strange append issue
+>>
+>> On 2013-12-01 07:59, Nicolas Dechesne wrote:
+>>>
+>>> On Sun, Dec 1, 2013 at 3:50 PM, Gary Thomas <gary@mlbassoc.com
+>> <mailto:gary@mlbassoc.com>> wrote:
+>>>
+>>>      Yes, I am using master: 937663bdeca6d6479e0db2a9578588__b1aa20222c
+>>>
+>>>      At least I am not hallucinating!
+>>>
+>>>
+>>> can you try to revert the same commit as in the other thread?
+>>>
+>>> commit 381d5920188398bc53b2454843054c8690bca243
+>>> Author: Saul Wold <s...@linux.intel.com <mailto:s...@linux.intel.com>>
+>>> Date:   Thu Nov 21 09:50:41 2013 -0800
+>>>
+>>>       bitbake: cooker: add support for using % as a wildcard in bbappend
+>> filename
+>>>
+>>
+>> Reverting that change does eliminate my problem.
+>>
+>> Thanks
+>>
+>> --
+>> ------------------------------------------------------------
+>> Gary Thomas                 |  Consulting for the
+>> MLB Associates              |    Embedded world
+>> ------------------------------------------------------------
+>> _______________________________________________
+>> yocto mailing list
+>> yocto@yoctoproject.org
+>> https://lists.yoctoproject.org/listinfo/yocto
+>
+>
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
 
-Re build/, you shouldn't need to keep that under version control. If yo=
-u are
-setting a large number of variables in local.conf that you want to pres=
-erve,
-that is a sign that you should move these to a custom distro configurat=
-ion file
-[3].
-
-Cheers,
-Paul
-
-[1] http://code.google.com/p/git-repo/
-[2] https://wiki.yoctoproject.org/wiki/Combo-layer
-[3] http://www.yoctoproject.org/docs/current/dev-manual/dev-manual.html=
-#creating-your-own-distribution
-
---=20
-
-Paul Eggleton
-Intel Open Source Technology Centre
+-- 
+------------------------------------------------------------
+Gary Thomas                 |  Consulting for the
+MLB Associates              |    Embedded world
+------------------------------------------------------------
 
