@@ -1,34 +1,38 @@
-Return-Path: <andrei@gherzan.ro>
-Received: from mail-ea0-f182.google.com (mail-ea0-f182.google.com
-	[209.85.215.182])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BE259E0071A
-	for <yocto@yoctoproject.org>; Tue,  3 Dec 2013 13:21:05 -0800 (PST)
-Received: by mail-ea0-f182.google.com with SMTP id o10so13702356eaj.13
-	for <yocto@yoctoproject.org>; Tue, 03 Dec 2013 13:21:04 -0800 (PST)
+Return-Path: <joe@deserted.net>
+Received: from mail-qe0-f50.google.com (mail-qe0-f50.google.com
+	[209.85.128.50])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 56C6AE00563
+	for <yocto@yoctoproject.org>; Tue,  3 Dec 2013 13:35:45 -0800 (PST)
+Received: by mail-qe0-f50.google.com with SMTP id 1so13623113qec.9
+	for <yocto@yoctoproject.org>; Tue, 03 Dec 2013 13:35:45 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
-	h=x-gm-message-state:from:to:cc:subject:date:message-id;
-	bh=QBPrzVobw2UAyeC7/p2Et3Kboqz7gIUTNNB8bQtnH1M=;
-	b=U8/h4eLO/aeaZnx2P55JH4jxsPMExWoMTCxVXYWZBFu13gpqFcuT/K6TUH+U95HZ+a
-	6zjtEZcYFbKo0K8qjaCR//PoLDIs4uUqN42hiiuU40nMSL7bAdPdQ1M2D09whw8iUuOv
-	GYwBoyiAfCeKv9yMf/SrC35HpVTPrix2RE7Hk0COlIkGdBJbml5WPLn9xohb4BrjmS+a
-	PRTFwZa6J7ZA61uKLfKMiWAuZ3VgUO5LSWwuD4ir2Rpr3XD+kvL3HgOVabadadcnJm/Q
-	WEA/85ELMydmZE4gCs+BfYilb25DQFgj6VfULwJWhCNwPMOEc9dKcik5LPwcXxDyfZdV
-	MM7w==
-X-Gm-Message-State: ALoCoQki86TnpThMZ5iGAFfMb+A9pmed6j8Tc+VIKln3Yc+p1C71ICxpFWeTW0Vpz+/xy/G/Y9es
-X-Received: by 10.14.194.195 with SMTP id m43mr72919974een.13.1386105664559;
-	Tue, 03 Dec 2013 13:21:04 -0800 (PST)
-Received: from localhost.localdomain (5-13-147-220.residential.rdsnet.ro.
-	[5.13.147.220]) by mx.google.com with ESMTPSA id
-	b41sm63491633eef.16.2013.12.03.13.21.03 for <multiple recipients>
+	h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+	:references;
+	bh=GJdA7kTLWlmgGbqu6YVCIPtOXAFDgXbGj6MdwjjtC7Y=;
+	b=VEkjn9iLnO2fUuUOA+PFfFoYEu25X9RyY2LWstPmrnR4jRwWxOXrew2YPIxWCeSkn1
+	QDYV8AG/VPTOLOIG6LuhbactsCa1A0vCXXTuGalXOUXklcoBqP8VFA/OmYNnizK46Ilk
+	e6gffK/4qzgr+xMPtaTYd4BU5itZKbhDBi8mKEKjsr3NDQ4ZjkWXTHeXXcTXo07x2J+E
+	qEv2aXFMQXjPc1GRWqZi4imY7Y9dQsMUZagzCASIraL04rEaLq2gir1x5u1g0EM+GA4t
+	vVbO+Vj81QatFkN+FQN9N9//fTidbv3v5kuhCMxIQYwYDSOgGj/0mxM1eT+u7KfQVuNd
+	2vTA==
+X-Gm-Message-State: ALoCoQkzsE2a8sMxU+mF65jtoHoXuwBJ9o3HxGZK+5oP0TnEDoEDSPa7MqZU+Pv5zl+K2gw/IPQt
+X-Received: by 10.224.56.5 with SMTP id w5mr128773733qag.60.1386106545181;
+	Tue, 03 Dec 2013 13:35:45 -0800 (PST)
+Received: from yow-asskicker.wrs.com ([128.224.252.2])
+	by mx.google.com with ESMTPSA id w5sm40696231qat.10.2013.12.03.13.35.43
+	for <multiple recipients>
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Tue, 03 Dec 2013 13:21:04 -0800 (PST)
-From: Andrei Gherzan <andrei@gherzan.ro>
-To: yocto@yoctoproject.org
-Date: Tue,  3 Dec 2013 23:20:57 +0200
-Message-Id: <1386105657-4166-1-git-send-email-andrei@gherzan.ro>
-X-Mailer: git-send-email 1.8.1.4
-Subject: [meta-raspberrypi][PATCH 1/1] linux-raspberrypi_3.10.18: Fix commit SHA
+	Tue, 03 Dec 2013 13:35:44 -0800 (PST)
+From: Joe MacDonald <joe@deserted.net>
+To: flihp@twobit.us
+Date: Tue,  3 Dec 2013 16:35:39 -0500
+Message-Id: <1386106541-28801-1-git-send-email-joe@deserted.net>
+X-Mailer: git-send-email 1.7.10.4
+In-Reply-To: <20131021201510.GB27412@deserted.net>
+References: <20131021201510.GB27412@deserted.net>
+Cc: yocto@yoctoproject.org
+Subject: Re: [meta-selinux][PATCH] bzip SELinux policy modules in ${datadir}
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,35 +44,47 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 03 Dec 2013 21:21:10 -0000
+X-List-Received-Date: Tue, 03 Dec 2013 21:35:46 -0000
 
-The remote SHA used is no longer available in github. Move to a
-usable one.
+(resending, this time including the list ...)
 
-Fixies this build error:
-fatal: reference is not a tree: ae937f99fee8a37f2ddd7270f6bcc0e497e8c903
-on raspberry 3.10 kernel:
-raspberrypi-poky-linux-gnueabi/linux-raspberrypi/3.10.18+gitae937f99fee8a37f2ddd7270f6bcc0e497e8c903-r0
+[Re: [meta-selinux][PATCH] bzip SELinux policy modules in ${datadir}] On
+13.10.21 (Mon 16:15) Joe MacDonald wrote:
 
-More info: https://trello.com/c/tQ7l8ftd
+> [[meta-selinux][PATCH] bzip SELinux policy modules in ${datadir}] On 13.10.21
+> (Mon 18:06) Philip Tricca wrote:
+>
+> > The 'semodule' utility can operate on compresed modules so the only
+> > cost of this change is a slower module load time when invoking
+> > 'semodule -i' on a running system (increased CPU load due to bzip2).
+> > That said my tests show more than 100M reduction in ext3 image size
+> > of core-image-selinux. This last metric is a bit skewed as the image
+> > includes two policies. Still, a reduction in the size of the refpolicy
+> > package by 1/2 is significant.
+>
+> This is included in the batch of updates I've merged and are currently
+> staging in my tree.  FWIW, on my build I saw a similar reduction in size
+> to what you've reported, ~110MB, with a minor hit at load time.  As
+> expected there's also an increase in memory requirements at load time,
+> so I'm poking around a bit to see what this does to the lower-end
+> configurations I've got kicking around.  It'd be really nice if this was
+> an option rather than an on/off thing.
 
-Change-Id: I9fcc571622cbe4adb8ed99b11e5d6889e791d555
-Signed-off-by: Andrei Gherzan <andrei@gherzan.ro>
----
- recipes-kernel/linux/linux-raspberrypi_3.10.18.bb | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+This took rather longer than I'd hoped.  :-/
 
-diff --git a/recipes-kernel/linux/linux-raspberrypi_3.10.18.bb b/recipes-kernel/linux/linux-raspberrypi_3.10.18.bb
-index 84d6fce..83bf253 100644
---- a/recipes-kernel/linux/linux-raspberrypi_3.10.18.bb
-+++ b/recipes-kernel/linux/linux-raspberrypi_3.10.18.bb
-@@ -1,4 +1,4 @@
--SRCREV = "ae937f99fee8a37f2ddd7270f6bcc0e497e8c903"
-+SRCREV = "b49aafd02fa7572d387acd34550beea5b4c3d239"
- SRC_URI = "git://github.com/raspberrypi/linux.git;protocol=git;branch=rpi-3.10.y \
-            file://sl030raspberrypii2ckernel.patch \
-           "
+Anyway, I tried a bunch of different configurations and didn't find a huge hit
+on memory requirements by doing this, though I still think there's an advantage
+to making this an option that can be turned off for folks where storage is cheap
+and memory and processing power is at a premium.  That, and the discussion on
+the SELinux mailing list along the same line where the general feeling was that
+smaller policies are better achieved by actually having less policy rather than
+compressing it, led me to this idea.
+
+A DISTRO_FEATURE that is on by default and incorporates your patch.  What do you
+think, Phil?
+
 -- 
-1.8.1.4
+-Joe MacDonald.
+:wq
 
 
