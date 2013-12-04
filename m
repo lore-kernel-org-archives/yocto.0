@@ -1,39 +1,29 @@
-Return-Path: <david.c.nystrom@gmail.com>
-Received: from mail-la0-f53.google.com (mail-la0-f53.google.com
-	[209.85.215.53])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CF22FE006C7
-	for <yocto@yoctoproject.org>; Mon,  9 Dec 2013 07:15:17 -0800 (PST)
-Received: by mail-la0-f53.google.com with SMTP id mc6so1418720lab.40
-	for <yocto@yoctoproject.org>; Mon, 09 Dec 2013 07:15:15 -0800 (PST)
+Return-Path: <aranzazumuelas@gmail.com>
+Received: from mail-qc0-f178.google.com (mail-qc0-f178.google.com
+	[209.85.216.178])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CF43EE00779
+	for <yocto@yoctoproject.org>; Wed,  4 Dec 2013 07:50:47 -0800 (PST)
+Received: by mail-qc0-f178.google.com with SMTP id i17so3702060qcy.9
+	for <yocto@yoctoproject.org>; Wed, 04 Dec 2013 07:50:47 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=message-id:date:from:user-agent:mime-version:to:cc:subject
-	:references:in-reply-to:content-type:content-transfer-encoding;
-	bh=U/R/mfLGMb9MVddErid46CpWilRYm6SHf79rAZy2eTw=;
-	b=QQBbmJQpISmNPZnyq2VjhS9yY8mK3MabrIrhjvrgR7xHc7ZdP4aWGqWnUtYAzlY5jW
-	92LJ46rR2gIvI8FxdlXVvTj91eX2EXB92Q+IOiJoOHn+/DRBrfh3KJiuEi1T1hV5z9bf
-	AEW0jARE4Ygdvo55GV+gGljJ6eb0vg6yabhFsGu/MyoIMR9DH7fGvlc5gv9rV8wWdSA+
-	05wxr6ftBS84m4BxOgV6NDT1D4jVu9nokd1937pXmjng+Je4TEcEN4QXQppqUA0yjfl1
-	fEfRTa3WT534VJIjbaxHk3LZPbVBJcMgPWNfuqijgt6KRHPgInuU+HhEkTByaM5Hqkkk
-	U1FA==
-X-Received: by 10.152.183.194 with SMTP id eo2mr344684lac.81.1386602115661;
-	Mon, 09 Dec 2013 07:15:15 -0800 (PST)
-Received: from [172.16.141.147] (sestofw01.enea.se. [192.36.1.252])
-	by mx.google.com with ESMTPSA id e10sm15145721laa.6.2013.12.09.07.15.13
-	for <multiple recipients>
-	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
-	Mon, 09 Dec 2013 07:15:14 -0800 (PST)
-Message-ID: <52A5DE80.9070602@gmail.com>
-Date: Mon, 09 Dec 2013 16:15:12 +0100
-From: David <david.c.nystrom@gmail.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:24.0) Gecko/20100101 Thunderbird/24.1.1
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=FFKhfLZ8nSI0wKNg7k9Y7e4ZDSLzkpLaxYoEu5ypcOE=;
+	b=d9cu0yGBDVDksWhQYrYtxrzg7ky4OfawQEFbBUsXUIyNoO7JZ9RMThJiRzQNfAStUH
+	lsfeIBygMzxHrsQaINWJe9++lLVKZHRcZkDmIdARtl5UcYsFpZVew7489uKw3beuVhOn
+	QHbCL1p42vJm56agFJCqkaWnJ5/bfd3Cj9MX9GmqFjzV5sYeF0Egt54AHrBKtvhrCmfF
+	T5S/4O02lrLAileRZEekTpRSBW19tGDNr0HUqCGd3lblohl5MAQi4tLHYVB9XiAfOkIl
+	i0ull8wzgn5/85+DrrsOHpP6BtoEDBKkPecvK/i4yWHq+PB1d1Zs8zSQd4KQSy+r+sJK
+	rtAQ==
 MIME-Version: 1.0
-To: "Rifenbark, Scott M" <scott.m.rifenbark@linux.intel.com>
-References: <1386254684-26972-1-git-send-email-david.nystrom@enea.com>
-	<52A1CDEA.5050303@linux.intel.com>
-In-Reply-To: <52A1CDEA.5050303@linux.intel.com>
-Cc: yocto@yoctoproject.org
-Subject: Re: [yocto-docs][PATCH] Revert "ref-manual: Added sdk-pms to Distro Feature list."
+X-Received: by 10.49.2.132 with SMTP id 4mr92644036qeu.15.1386172247011; Wed,
+	04 Dec 2013 07:50:47 -0800 (PST)
+Received: by 10.229.138.69 with HTTP; Wed, 4 Dec 2013 07:50:46 -0800 (PST)
+Date: Wed, 4 Dec 2013 16:50:46 +0100
+Message-ID: <CAKVO3PXf2a4fPPhvbz5zLaNQ5tPuw=h+LzUpFd-9fX93v_J2Ng@mail.gmail.com>
+From: Arancha Muelas Ruiz <aranzazumuelas@gmail.com>
+To: yocto@yoctoproject.org
+X-Mailman-Approved-At: Mon, 09 Dec 2013 08:09:18 -0800
+Subject: FxOS on Rpi
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,35 +35,74 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 09 Dec 2013 15:15:19 -0000
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Wed, 04 Dec 2013 15:50:50 -0000
+Content-Type: multipart/alternative; boundary=047d7b6d99b061a19004ecb76007
 
-On fre  6 dec 2013 14:15:22, Rifenbark, Scott M wrote:
-> David,
->
-> This patch did not format well when I sent to my Linux box.  I cannot
-> apply it.  I can apply it by hand or you can try and form the patch
-> again and re-send it to the yocto@yoctoproject.org mailing group.
->
-> Thanks,
-> Scott
+--047d7b6d99b061a19004ecb76007
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
 
-Hi Scott,
+Hello;
+I=B4m tryingo to port FxOS on Raspberry pi with that manual:
+http://www.philipp-wagner.com/ffos-for-rpi/manual/
 
-Hmm, I don't see anything wrong with this patch, I double-checked by 
-saving it from the ML
-and it applies cleanly to with "git am" to both poky/master and 
-yocto-docs/master
+>>>src/poky/rpi-build$ bitbake -v rpi-b2g-image
 
-This patch is a clean revert, and would be the same as issuing
-git revert f8076f1916cc52647b129922c1b1646ad6df8ff9 in yocto-docs.
+ERROR: 'debug-tools' in IMAGE_FEATURES is not a valid image feature. Valid
+features: dbg-pkgs debug-tweaks dev-pkgs doc-pkgs eclipse-debug hwcodecs
+nfs-server package-management package-management ptest-pkgs qt4-pkgs
+read-only-rootfs splash ssh-server-dropbear ssh-server-openssh
+staticdev-pkgs tools-debug tools-profile tools-sdk tools-testapps x11
+x11-base x11-sato
+ERROR: Unable to parse /media/9697426f-bc6f-437d-
+bb62-4272fef1d0a0/src/poky/meta-b2g/recipes-core/images/rpi-b2g-image.bb:
+Exited with "1"
+ERROR: 'debug-tools' in IMAGE_FEATURES is not a valid image feature. Valid
+features: dbg-pkgs debug-tweaks dev-pkgs doc-pkgs eclipse-debug hwcodecs
+nfs-server package-management package-management ptest-pkgs qt4-pkgs
+read-only-rootfs splash ssh-server-dropbear ssh-server-openssh
+staticdev-pkgs tools-debug tools-profile tools-sdk tools-testapps x11
+x11-base x11-sato
 
-Br,
-David
+Summary: There were 3 ERROR messages shown, returning a non-zero exit code.
 
->
-> On 12/5/2013 6:44 AM, David Nyström wrote:
->> This reverts commit f8076f1916cc52647b129922c1b1646ad6df8ff9.
+I dont know what happen :-(
 
+Any help? please.
 
+Best,A.
+
+--047d7b6d99b061a19004ecb76007
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div>Hello;<br>I=B4m tryingo to port FxOS on Raspberry pi =
+with that manual: <br><a href=3D"http://www.philipp-wagner.com/ffos-for-rpi=
+/manual/" target=3D"_blank">http://www.philipp-wagner.com/ffos-for-rpi/manu=
+al/</a><br>
+<br>&gt;&gt;&gt;src/poky/rpi-build$ bitbake -v rpi-b2g-image<br><br>
+ERROR: &#39;debug-tools&#39; in IMAGE_FEATURES is not a valid image feature=
+.=20
+Valid features: dbg-pkgs debug-tweaks dev-pkgs doc-pkgs eclipse-debug=20
+hwcodecs nfs-server package-management package-management ptest-pkgs=20
+qt4-pkgs read-only-rootfs splash ssh-server-dropbear ssh-server-openssh=20
+staticdev-pkgs tools-debug tools-profile tools-sdk tools-testapps x11=20
+x11-base x11-sato<br>
+ERROR: Unable to parse /media/9697426f-bc6f-437d-<div>bb62-4272fef1d0a0/src=
+/poky/meta-b2g/recipes-core/images/<a href=3D"http://rpi-b2g-image.bb" targ=
+et=3D"_blank">rpi-b2g-image.bb</a>: Exited with &quot;1&quot;<br>ERROR:
+ &#39;debug-tools&#39; in IMAGE_FEATURES is not a valid image feature. Vali=
+d=20
+features: dbg-pkgs debug-tweaks dev-pkgs doc-pkgs eclipse-debug hwcodecs
+ nfs-server package-management package-management ptest-pkgs qt4-pkgs=20
+read-only-rootfs splash ssh-server-dropbear ssh-server-openssh=20
+staticdev-pkgs tools-debug tools-profile tools-sdk tools-testapps x11=20
+x11-base x11-sato<br>
+<br>Summary: There were 3 ERROR messages shown, returning a non-zero exit c=
+ode.<br><br></div>I dont know what happen :-(<br><br></div>Any help? please=
+.<br><div><br>Best,A.<div class=3D""><div id=3D":1qo" class=3D"" tabindex=
+=3D"0">
+<img class=3D"" src=3D"https://mail.google.com/mail/u/0/images/cleardot.gif=
+"></div></div></div></div>
+
+--047d7b6d99b061a19004ecb76007--
