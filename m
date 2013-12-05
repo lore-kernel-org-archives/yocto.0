@@ -1,33 +1,35 @@
-Return-Path: <flihp@twobit.us>
-Received: from smtp.twobit.us (smtp.twobit.us [38.83.192.235])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C882BE00784
-	for <yocto@yoctoproject.org>; Wed,  4 Dec 2013 17:37:18 -0800 (PST)
-Received: from c-76-24-20-220.hsd1.ma.comcast.net ([76.24.20.220]
-	helo=[10.79.148.145]) by smtp.twobit.us with esmtpsa
-	(TLS1.0:DHE_RSA_CAMELLIA_256_CBC_SHA1:256) (Exim 4.80)
-	(envelope-from <flihp@twobit.us>)
-	id 1VoNrr-0002Ra-LQ; Thu, 05 Dec 2013 01:36:40 +0000
-Message-ID: <529FD8C6.9040808@twobit.us>
-Date: Wed, 04 Dec 2013 20:37:10 -0500
-From: Philip Tricca <flihp@twobit.us>
-User-Agent: Mozilla/5.0 (X11; Linux i686;
-	rv:17.0) Gecko/20130922 Icedove/17.0.9
+Return-Path: <b.hutchman@gmail.com>
+Received: from mail-ob0-f171.google.com (mail-ob0-f171.google.com
+	[209.85.214.171])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 49BFFE007AE
+	for <yocto@yoctoproject.org>; Thu,  5 Dec 2013 05:42:22 -0800 (PST)
+Received: by mail-ob0-f171.google.com with SMTP id wp18so17680274obc.2
+	for <yocto@yoctoproject.org>; Thu, 05 Dec 2013 05:42:22 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type;
+	bh=C2gH3ZlN4QWsMieE+hIqsJOPIQ8tcmGfJF5wsPo6S8E=;
+	b=qLpP4rGwi8huloORanK0HWIqeAutCi670qYbUasSqvK8JiiMvpj8FHkduRZBtGnBzr
+	R7KKtpAFRwgWzmsk+kxjeBpy1Fhy3kcZ7hZ8limz15keDsqaUQlC0c63o0S1ES5ZdxQF
+	IyXRHp6ClKC7S4oW3j9PtTkr2mrRRGLgRUKmFPzqHzp/tiOqWIoo6sD/4hTT/XLQgFMG
+	kr15oocRww62PDu/vNSWdKdEpErYp33dcURggm+vs1JPUgOCwuWcRh8DgFISGHxbShAT
+	3e8p26FBM4/1tJaHH4im2j8l7udCHimF2hzWERR1vJGc2D0uXLAutSjJQDBtkOQM+NyR
+	uEdA==
 MIME-Version: 1.0
-To: Joe MacDonald <joe@deserted.net>
-References: <1384373153-17622-1-git-send-email-flihp@twobit.us>
-	<20131204154049.GD5677@deserted.net>
-In-Reply-To: <20131204154049.GD5677@deserted.net>
-X-Enigmail-Version: 1.5.1
-X-SA-Exim-Connect-IP: 76.24.20.220
-X-SA-Exim-Mail-From: flihp@twobit.us
-X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on smtp.twobit.us
-X-Spam-Level: 
-X-Spam-Status: No, score=0.3 required=5.0 tests=ALL_TRUSTED,URI_HEX
-	autolearn=no version=3.3.2
-X-SA-Exim-Version: 4.2.1 (built Mon, 26 Dec 2011 16:24:06 +0000)
-X-SA-Exim-Scanned: Yes (on smtp.twobit.us)
-Cc: yocto@yoctoproject.org
-Subject: Re: [meta-selinux][RFC v2] refpolicy: Add generic refpolicy recipe and make policy type configurable.
+X-Received: by 10.182.42.105 with SMTP id n9mr64459246obl.33.1386250942297;
+	Thu, 05 Dec 2013 05:42:22 -0800 (PST)
+Received: by 10.60.142.41 with HTTP; Thu, 5 Dec 2013 05:42:22 -0800 (PST)
+In-Reply-To: <CABcZANn82u8KXw0kUi-NryqoCbXdV1CDDjUL2ZCZJLk9GCw7xg@mail.gmail.com>
+References: <CAFZh4h-YYSJoaZEM95QO9O0BKpGA3tJ+-GbpDN=yfeLNePUnJQ@mail.gmail.com>
+	<CABcZAN=OntXko8XormAbrBsfU24ZS9_MuixNdhqSScm24O_pGg@mail.gmail.com>
+	<CAFZh4h91WJ1hbKw95k4f-XuQY-WJxFGwQUQpzCYwOQoqLfEf5w@mail.gmail.com>
+	<CABcZANn82u8KXw0kUi-NryqoCbXdV1CDDjUL2ZCZJLk9GCw7xg@mail.gmail.com>
+Date: Thu, 5 Dec 2013 08:42:22 -0500
+Message-ID: <CAFZh4h8gNAfjE0OX3vsfJPzvvFT8PE1-ctMm8oTZdRfVBdRskA@mail.gmail.com>
+From: Brian Hutchinson <b.hutchman@gmail.com>
+To: Chris Larson <clarson@kergoth.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Trying to build a non-autotools package that contains only a lib. Getting empty archive - package is not generated
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,132 +41,134 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 05 Dec 2013 01:37:18 -0000
-Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Thu, 05 Dec 2013 13:42:24 -0000
+Content-Type: multipart/alternative; boundary=14dae939981ffc3b9704ecc9b27a
 
------BEGIN PGP SIGNED MESSAGE-----
-Hash: SHA512
+--14dae939981ffc3b9704ecc9b27a
+Content-Type: text/plain; charset=windows-1252
+Content-Transfer-Encoding: quoted-printable
 
-Hi Joe,
+On Wed, Dec 4, 2013 at 5:38 PM, Chris Larson <clarson@kergoth.com> wrote:
 
-On 12/04/2013 10:40 AM, Joe MacDonald wrote:
-> Hey Phil,
-> 
-> [[meta-selinux][RFC v2] refpolicy: Add generic refpolicy recipe and make policy type configurable.] On 13.11.13 (Wed 20:05) Philip Tricca wrote:
-> 
->> This is a fix up for my previous RFC. I've cleaned up an error with some \
->> variable use. The intent remains the same:
+>
+> On Wed, Dec 4, 2013 at 3:29 PM, Brian Hutchinson <b.hutchman@gmail.com>wr=
+ote:
+>
+>> On Wed, Dec 4, 2013 at 5:10 PM, Chris Larson <clarson@kergoth.com> wrote=
+:
 >>
->> This RFC is a significant departure from the way the policy packages are
->> currently set up. The noteworthy differences are:
->> 1) the POLICY_TYPE variable can be set as configuration outside the policy recipe
->> 2) a single refpolicy recipe can be used to build all 3 policy types
->> 3) DEFAULT_POLICY from selinux-config has been changed to be the same POLICY_TYPE variable as the policy
->> 4) refpolicy depends on the config and sets the POLICY_TYPE accordingly
+>>>
+>>> do_install is the task that installs. If your makefile has an install
+>>> target, you=92d define a do_install that runs it. But not all makefiles
+>>> provide an equivalent to automake=92s DESTDIR, which is why we don=92t =
+provide
+>>> a do_install for non-autotools make-based buildsystems. Either manually
+>>> install the library where it belongs in your do_install, e.g. with the
+>>> =91install=92 or =91cp=92 commands, or define one which runs the approp=
+riate make
+>>> command to install the files into ${D}.
+>>>  --
+>>>
+>>> Thanks Chris.
 >>
->> This approach was taken to allow the use of a policy type beyond the default
->>  MLS. I've left the other refpolicy-* recipes in tact but if this approach is
->> acceptable they could be removed if we're willing to accept the limitation
->> that only one policy may be installed on a given image. If this limitation
->> isn't acceptable then they can be left as is.
+>> I do have a do_install that is copying stuff to ${D}/usr/lib which puts
+>> things in my sysroot ... but what target do I use to get stuff into the
+>> package which is used by my IMAGE_INSTALL line?  When I tar tvf my
+>> core-image.tar and grep for my .so it currently isn't there ... but it a=
+nd
+>> the headers are in the sysroot.
 >>
->> After thinking about this a bit I've realized that the same effect can likely
->> be achieved using the virtual provider mechanism. If this approach would be
->> preferred I'm happy to whip up a prototype.
->>
->> Comments and input would be appreciated.
-> 
-> I've been playing with this for a bit and I quite like both the idea.
-> I'd like to see this taken to the logical conclusion you mention above,
-> hit all the policy recipes.  Meaning I think it makes the most sense to
-> actually approach this as a virtual provider problem.  If you're still
-> willing to put together a prototype for this, I'm able to take a look at
-> it in pretty short order.
+>
+> do_install. The contents of ${D} are where the FILES globs are matched. W=
+e
+> don=92t include the raw libfoo.so, since that=92s supposed to be a symlin=
+k. If
+> your lib is missing an SONAME, it=92d be named incorrectly and be missing=
+ a
+> symlink, and the lib would end up in the -dev package instead of the main
+> package.
+> --
+>
+> The lib that the makefile generates is just a soname  like libfoo.so.  So
+you're telling me it will not pick that file up?  I guess I need to find
+the class that handles this and study it as I'm probably not picking up all
+you're telling me.  Like I said, this used to work and now it doesn't so
+I'm still at a loss as to what I need to do.  It is making it into the
+sysroot but not the package and the rootfs image is built from all the
+IMAGE_INSTALL package names so it isn't making it into the rootfs.
 
-I'll give it a go and see what I can come up with.
+Do I just cheat and make my do_install copy my .so file to
+packages-split/mypackage/usr/lib?
 
 Regards,
-Philip
 
->> Signed-off-by: Philip Tricca <flihp@twobit.us>
->> ---
->>  .../packagegroups/packagegroup-selinux-minimal.bb      |    3 +--
->>  recipes-security/refpolicy/refpolicy_2.20130424.bb     |   16 ++++++++++++++++
->>  recipes-security/selinux/selinux-config_0.1.bb         |    4 ++--
->>  3 files changed, 19 insertions(+), 4 deletions(-)
->>  create mode 100644 recipes-security/refpolicy/refpolicy_2.20130424.bb
->>
->> diff --git a/recipes-security/packagegroups/packagegroup-selinux-minimal.bb b/recipes-security/packagegroups/packagegroup-selinux-minimal.bb
->> index 072320d..af29da1 100644
->> --- a/recipes-security/packagegroups/packagegroup-selinux-minimal.bb
->> +++ b/recipes-security/packagegroups/packagegroup-selinux-minimal.bb
->> @@ -13,6 +13,5 @@ ALLOW_EMPTY_${PN} = "1"
->>  RDEPENDS_${PN} = "\
->>  	policycoreutils-semodule \
->>  	policycoreutils-sestatus \
->> -	selinux-config \
->> -	refpolicy-mls \
->> +	refpolicy \
->>  "
->> diff --git a/recipes-security/refpolicy/refpolicy_2.20130424.bb b/recipes-security/refpolicy/refpolicy_2.20130424.bb
->> new file mode 100644
->> index 0000000..f1fa2f8
->> --- /dev/null
->> +++ b/recipes-security/refpolicy/refpolicy_2.20130424.bb
->> @@ -0,0 +1,16 @@
->> +SUMMARY = "The SELinux reference policy."
->> +DESCRIPTION = "\
->> +This is the reference policy for the SELinux mandatory access control \
->> +system. There are 3 supported policy types: standard, MCS and MLS. The \
->> +standard policy is the most simple of the three providing the standard \
->> +type enforcement policy. The MCS policy adds an additional element to the \
->> +SELinux label called a category. Finally the MLS variant allows giving data \
->> +labels such as \"Top Secret\" and preventing such data from leaking to \
->> +processes or files with lower classification. \
->> +"
->> +
->> +PR = "r0"
->> +POLICY_TYPE ??= "mls"
->> +RDEPENDS_${PN} = "selinux-config"
->> +
->> +include refpolicy_${PV}.inc
->> diff --git a/recipes-security/selinux/selinux-config_0.1.bb b/recipes-security/selinux/selinux-config_0.1.bb
->> index 27d9995..066581e 100644
->> --- a/recipes-security/selinux/selinux-config_0.1.bb
->> +++ b/recipes-security/selinux/selinux-config_0.1.bb
->> @@ -1,4 +1,4 @@
->> -DEFAULT_POLICY = "mls"
->> +POLICY_TYPE ??= "mls"
->>  
->>  SUMMARY = "SELinux configuration"
->>  DESCRIPTION = "\
->> @@ -45,7 +45,7 @@ SELINUX=enforcing
->>  # SELINUXTYPE= can take one of these two values:
->>  #     standard - Standard Security protection.
->>  #     mls - Multi Level Security protection.
->> -SELINUXTYPE=${DEFAULT_POLICY}
->> +SELINUXTYPE=${POLICY_TYPE}
->>  " > ${WORKDIR}/config
->>  	install -d ${D}/${sysconfdir}/selinux
->>  	install -m 0644 ${WORKDIR}/config ${D}/${sysconfdir}/selinux/
+Brian
 
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v1.4.12 (GNU/Linux)
-Comment: Using GnuPG with Icedove - http://www.enigmail.net/
+--14dae939981ffc3b9704ecc9b27a
+Content-Type: text/html; charset=windows-1252
+Content-Transfer-Encoding: quoted-printable
 
-iQIcBAEBCgAGBQJSn9jGAAoJEDL3fnXC4dO6qjUP/RyPTggJI552r2dIBxcp23vj
-T+ZyA2onJAtGEz/dnVDMcZWMx/KbGYYGi1L3s2xJ9+/d00nCfqUnD9kc5vdis8TI
-UgC3+k6+CfqzM/loLxax+hT/I2d51BaHXWNSMod3UUSyQowfOo+FerKUHU1/Z4e0
-xcOb13vwVCo9ITh0b2N4MLkWDJuyT5+pHXmOLjD3LlF10fpcMHhTIwNI3Iir9iGR
-THKxf7N0vnpV69ZdHqu59QaHTIZYLXSjv5A9BvHqSbDU6J0fsHNEwNLJmN4buGwx
-ed1d6uqiuCNdakaYBFi4d7OU8Y3la7NAul7ETqrA3JKpXnlhHgIVj2hA1hAAJUGs
-DziXBxCy18YfTFH7SYmlfuf5UVSb/H2IneQZw3NAXZmY/1hNJFsKpfuOUOHOFY2R
-33lRvZUqN3hWj/VSy6hAi8qCrmUS9qgUUWcI0sqZvcDF2HucklgrSnD2QHPdXWbW
-+YhSdtz78v6Tzo+Z2I5bj+FRHNG3CvZHeBDgYmTfNNEQ3ceV+/aHFuJHLQxTpRpK
-f9viqhZag0jqT0X8Tc7Uu5t998/qd+e1/8GD/COkm5baHxlec+iT8KOW0w6NCarc
-/UfsNk8xIdkmZyWmWpTtkA3NoBBMF5Oa1ggTcirMtU6uxNzzIvgXGt3AF1pfia40
-bQCmQcUqfL27GHcHicSH
-=GhjN
------END PGP SIGNATURE-----
+<div dir=3D"ltr"><div class=3D"gmail_extra"><div class=3D"gmail_quote">On W=
+ed, Dec 4, 2013 at 5:38 PM, Chris Larson <span dir=3D"ltr">&lt;<a href=3D"m=
+ailto:clarson@kergoth.com" target=3D"_blank">clarson@kergoth.com</a>&gt;</s=
+pan> wrote:<br>
+<blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-=
+left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr"><div cla=
+ss=3D"gmail_extra"><br><div class=3D"gmail_quote"><div class=3D"im">On Wed,=
+ Dec 4, 2013 at 3:29 PM, Brian Hutchinson <span dir=3D"ltr">&lt;<a href=3D"=
+mailto:b.hutchman@gmail.com" target=3D"_blank">b.hutchman@gmail.com</a>&gt;=
+</span> wrote:<br>
 
+
+<blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-=
+left:1px solid rgb(204,204,204);padding-left:1ex"><div class=3D"gmail_extra=
+"><div class=3D"gmail_quote"><div>On Wed, Dec 4, 2013 at 5:10 PM, Chris Lar=
+son <span dir=3D"ltr">&lt;<a href=3D"mailto:clarson@kergoth.com" target=3D"=
+_blank">clarson@kergoth.com</a>&gt;</span> wrote:<br>
+
+
+
+<blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-=
+left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr"><div cla=
+ss=3D"gmail_extra"><div><div><br></div></div>do_install is the task that in=
+stalls. If your makefile has an install target, you=92d define a do_install=
+ that runs it. But not all makefiles provide an equivalent to automake=92s =
+DESTDIR, which is why we don=92t provide a do_install for non-autotools mak=
+e-based buildsystems. Either manually install the library where it belongs =
+in your do_install, e.g. with the =91install=92 or =91cp=92 commands, or de=
+fine one which runs the appropriate make command to install the files into =
+${D}.</div>
+
+
+
+<span><font color=3D"#888888">
+
+<div class=3D"gmail_extra">-- <br><br></div></font></span></div></blockquot=
+e></div><div>Thanks Chris.<br><br>I do have a do_install that is copying st=
+uff to ${D}/usr/lib which puts things in my sysroot ... but what target do =
+I use to get stuff into the package which is used by my IMAGE_INSTALL line?=
+=A0 When I tar tvf my core-image.tar and grep for my .so it currently isn&#=
+39;t there ... but it and the headers are in the sysroot.=A0</div>
+
+
+</div></div></blockquote><div><br></div></div><div>do_install. The contents=
+ of ${D} are where the FILES globs are matched. We don=92t include the raw =
+libfoo.so, since that=92s supposed to be a symlink. If your lib is missing =
+an SONAME, it=92d be named incorrectly and be missing a symlink, and the li=
+b would end up in the -dev package instead of the main package.</div>
+
+
+</div><div class=3D"im">-- <br><br></div></div></div></blockquote><div>The =
+lib that the makefile generates is just a soname=A0 like libfoo.so.=A0 So y=
+ou&#39;re telling me it will not pick that file up?=A0 I guess I need to fi=
+nd the class that handles this and study it as I&#39;m probably not picking=
+ up all you&#39;re telling me.=A0 Like I said, this used to work and now it=
+ doesn&#39;t so I&#39;m still at a loss as to what I need to do.=A0 It is m=
+aking it into the sysroot but not the package and the rootfs image is built=
+ from all the IMAGE_INSTALL package names so it isn&#39;t making it into th=
+e rootfs.<br>
+<br></div><div>Do I just cheat and make my do_install copy my .so file to p=
+ackages-split/mypackage/usr/lib?</div><div><br></div><div>Regards,<br><br>B=
+rian <br></div></div><br></div></div>
+
+--14dae939981ffc3b9704ecc9b27a--
