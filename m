@@ -1,36 +1,21 @@
-Return-Path: <david.c.nystrom@gmail.com>
-Received: from mail-la0-f53.google.com (mail-la0-f53.google.com
-	[209.85.215.53])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 05824E007AE
-	for <yocto@yoctoproject.org>; Thu,  5 Dec 2013 06:45:01 -0800 (PST)
-Received: by mail-la0-f53.google.com with SMTP id ea20so10552297lab.12
-	for <yocto@yoctoproject.org>; Thu, 05 Dec 2013 06:45:00 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=from:to:cc:subject:date:message-id:mime-version:content-type
-	:content-transfer-encoding;
-	bh=NLU8sboKCSJZPtPYj/td3rHbMQ9nck25E/l1IjkJWeM=;
-	b=nOCmxO8SESElL1SQrbvNgSiU+M9x2b4Wln/frB55V5M3uV6B58RYj0VjiVc0owih2j
-	XUA91S3a60NsZgN2iWPNgtqkUxEzTqjZAYf01YcBmNbSMiiDZYFmKzoW/laSdA1FgP7W
-	2tanCgOKlCbNN6xDw7tw2aqOtIXtCON4XhgVJQEIuPXMUmesqA5ygW7IlBD/y4gfSNn+
-	0hv0e8SjEjjtQz4gnUICYBtGDAsc48pshCSAFuonihQxbjrWV2YJSDRX0eqoSZ7X7XOT
-	hJl8AZcvvAY6dJiPoBucKYmmkYNYROdeUw1N3dP5HmX89RmEHotGF1H0mG3UTP82K3sX
-	YG3g==
-X-Received: by 10.152.184.35 with SMTP id er3mr7456883lac.23.1386254700222;
-	Thu, 05 Dec 2013 06:45:00 -0800 (PST)
-Received: from nysan (sestofw01.enea.se. [192.36.1.252])
-	by mx.google.com with ESMTPSA id
-	np10sm50580641lbb.7.2013.12.05.06.44.58 for <multiple recipients>
-	(version=TLSv1.1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
-	Thu, 05 Dec 2013 06:44:59 -0800 (PST)
-Received: by nysan (Postfix, from userid 1000)
-	id 242381C5E70; Thu,  5 Dec 2013 15:44:57 +0100 (CET)
-From: "=?UTF-8?q?David=20Nystr=C3=B6m?=" <david.c.nystrom@gmail.com>
-To: yocto@yoctoproject.org
-Date: Thu,  5 Dec 2013 15:44:44 +0100
-Message-Id: <1386254684-26972-1-git-send-email-david.nystrom@enea.com>
-X-Mailer: git-send-email 1.8.3.2
+Return-Path: <stefan.roese@gmail.com>
+Received: from mo-p05-ob.rzone.de (mo-p05-ob.rzone.de [81.169.146.180])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 097ECE0077E
+	for <yocto@yoctoproject.org>; Thu,  5 Dec 2013 08:02:25 -0800 (PST)
+X-RZG-AUTH: :IW0NeWC7b/q2i6W/qstXb1SBUuFnrGoheedClaTaNdBkW0QEactrHijJzVWB2B/o4fkZ
+X-RZG-CLASS-ID: mo05
+Received: from [10.0.0.152] (pD9FF8293.dip0.t-ipconnect.de [217.255.130.147])
+	by smtp.strato.de (RZmta 32.17 DYNA|AUTH)
+	with ESMTPA id R04cf2pB5G2MdNB for <yocto@yoctoproject.org>;
+	Thu, 5 Dec 2013 17:02:22 +0100 (CET)
+Message-ID: <52A0A38E.7020903@gmail.com>
+Date: Thu, 05 Dec 2013 17:02:22 +0100
+From: Stefan Roese <stefan.roese@gmail.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:24.0) Gecko/20100101 Thunderbird/24.1.1
 MIME-Version: 1.0
-Subject: [yocto-docs][PATCH] Revert "ref-manual: Added sdk-pms to Distro Feature list."
+To: yocto@yoctoproject.org
+Subject: Board specific bbappend file
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,42 +27,35 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 05 Dec 2013 14:45:04 -0000
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Thu, 05 Dec 2013 16:02:27 -0000
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: 7bit
 
-This reverts commit f8076f1916cc52647b129922c1b1646ad6df8ff9.
+Dear List!
 
-sdk-pms is always included, with commit:
-Module: openembedded-core.git
-Branch: master-next
-Commit: 80a8ecf91181f2fbec1a45231615b12949327970
-URL:    http://git.openembedded.org/?p=openembedded-core.git&a=commit;h=80a8ecf91181f2fbec1a45231615b12949327970
+I'm trying to add a board specific *.bbappend file to a recipe. To add
+board specific informations/settings to this recipe but without changing
+the common (generic) recipe (*.bb) file. Something like this:
 
+recipe:
+linux-xyz_3.12.bb
 
-Signed-off-by: David Nyström <david.nystrom@enea.com>
----
- documentation/ref-manual/ref-features.xml | 6 ------
- 1 file changed, 6 deletions(-)
+board-specific append file:
+linux-xyz-board-foo_3.12.bbappend
 
-diff --git a/documentation/ref-manual/ref-features.xml b/documentation/ref-manual/ref-features.xml
-index 11e3731..f5641c6 100644
---- a/documentation/ref-manual/ref-features.xml
-+++ b/documentation/ref-manual/ref-features.xml
-@@ -177,12 +177,6 @@
-                     supports it.</para></listitem>
-                 <listitem><para><emphasis>wifi:</emphasis> Include WiFi support
-                     (integrated only).</para></listitem>
--                <listitem><para><emphasis>sdk-pms:</emphasis> Include Package
--                    Management Tools in the
--                    <filename>nativesdk</filename> toolchain tarball.
--                    Including these tools allows for easy sandbox use when
--                    creating the root filesystem while using the SDK tarball.
--                    </para></listitem>
-             </itemizedlist>
-         </para>
-     </section>
--- 
-1.8.3.2
+From the documentation I read:
+"
+Append files must have the same root names as their corresponding
+recipes. For example, the append file someapp_1.5.1.bbappend must apply
+to someapp_1.5.1.bb.
+"
 
+So it seems impossible to "encrypt" the board name into the bbappend
+file name. Or am I missing something?
+
+If not, is there another way to add such board-specific stuff to a
+recipe without changing the generic recipe?
+
+Thanks,
+Stefan
 
