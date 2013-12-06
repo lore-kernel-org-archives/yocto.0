@@ -1,29 +1,28 @@
-Return-Path: <gary@mlbassoc.com>
-Received: from mail.chez-thomas.org (mail.mlbassoc.com [65.100.170.105])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4559DE00799
-	for <yocto@yoctoproject.org>; Fri,  6 Dec 2013 07:17:49 -0800 (PST)
-Received: by mail.chez-thomas.org (Postfix, from userid 1998)
-	id A1FC3F811FA; Fri,  6 Dec 2013 08:17:49 -0700 (MST)
-X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on
-	hermes.chez-thomas.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=4.0 tests=ALL_TRUSTED,BAYES_00
-	autolearn=unavailable version=3.3.2
-Received: from [192.168.1.114] (zeus [192.168.1.114])
-	by mail.chez-thomas.org (Postfix) with ESMTP id AF810F811F9;
-	Fri,  6 Dec 2013 08:17:48 -0700 (MST)
-Message-ID: <52A1EAC7.6080803@mlbassoc.com>
-Date: Fri, 06 Dec 2013 08:18:31 -0700
-From: Gary Thomas <gary@mlbassoc.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:24.0) Gecko/20100101 Thunderbird/24.1.1
+Return-Path: <r10kindsofpeople@gmail.com>
+Received: from mail-ob0-f175.google.com (mail-ob0-f175.google.com
+	[209.85.214.175])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5D2F5E007C1
+	for <yocto@yoctoproject.org>; Fri,  6 Dec 2013 11:08:29 -0800 (PST)
+Received: by mail-ob0-f175.google.com with SMTP id uz6so1200374obc.20
+	for <yocto@yoctoproject.org>; Fri, 06 Dec 2013 11:08:29 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=YpH5W07AGtKMh+clHUaDQ+e6FeoUJmiw2lq6lqIAlKQ=;
+	b=gh/satWp5Cze1hc8C1jmLpcE5KoElgaf8/jq8x4x2BCHFipC6bldqqC+D+yDO9rAGz
+	Zhm2Rno1zI/vtaCrP3G/5a/M8r6cTd7nmXXEMhVrod+F90fH8KVUfiaWd8jVCvxgHjkU
+	hzjVor/EB7x9BQ/MJYdRl3Cpc6iRpi8LvoIHWd4wNRmb4EheZoNrJ0JVZSzQcJUJWlsk
+	CXBmUoOBw3EonqvQAM5xnFOn1dZAbeJD20AtQCvgIIg5IOq370wIGUC+I1uz8uM1Pkc9
+	R3LShofBknx9OpXsyrWtza5SKXC4tL1EKhq/dD/ZWZcxIlVyyhXM/JNPgqAb7fOaNAb5
+	Lr2w==
 MIME-Version: 1.0
-To: Chris Larson <clarson@kergoth.com>
-References: <52A1E867.40604@mlbassoc.com>
-	<CABcZANmvO-f5MVmHcHUWvEoD4sz5vziJcvVCX-XVM3uvefrf4Q@mail.gmail.com>
-In-Reply-To: <CABcZANmvO-f5MVmHcHUWvEoD4sz5vziJcvVCX-XVM3uvefrf4Q@mail.gmail.com>
-Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: Dealing with new git fetcher
+X-Received: by 10.182.44.167 with SMTP id f7mr3647075obm.3.1386356909238; Fri,
+	06 Dec 2013 11:08:29 -0800 (PST)
+Received: by 10.76.23.136 with HTTP; Fri, 6 Dec 2013 11:08:29 -0800 (PST)
+Date: Fri, 6 Dec 2013 14:08:29 -0500
+Message-ID: <CAE8H0+XtcT9ZriW31mN28xjDzASAp7AASxOOg=fE9LvepTatRA@mail.gmail.com>
+From: r10kindsofpeople <r10kindsofpeople@gmail.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: poky-tiny breaks at ncurses and perl (Dylan 9.0.1)
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -35,50 +34,38 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 06 Dec 2013 15:17:50 -0000
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Fri, 06 Dec 2013 19:08:31 -0000
+Content-Type: multipart/alternative; boundary=001a11c1d7e01b6f1c04ece25f49
 
-On 2013-12-06 08:15, Chris Larson wrote:
->
-> On Fri, Dec 6, 2013 at 8:08 AM, Gary Thomas <gary@mlbassoc.com <mailto:gary@mlbassoc.com>> wrote:
->
->     The 'git' fetcher was recently changed to expect/need the branch
->     name for the desired revision.  Many recipes don't have this and
->     the revision is not on the master branch, hence leading to errors
->     like this:
->        ERROR: Fetcher failure: Unable to find revision f89bc066db0569008418fac1a0408a__9a57f2232f in branch master even from upstream
->        ERROR: Function failed: Fetcher failure for URL: 'git://github.com/__boundarydevices/u-boot-imx6.__git <http://github.com/boundarydevices/u-boot-imx6.git>'. Unable to fetch
->     URL from any source.
->        ERROR: Logfile of failure stored in:
->     /local/imx6_new/tmp/work/__sabrelite-amltd-linux-gnueabi/__u-boot-script-boundary/v2013.__01+gitAUTOINC+f89bc066db-r0/__temp/log.do_fetch.25272
->        ERROR: Task 144 (/local/poky-multi/meta-fsl-__arm-extra/recipes-bsp/u-boot/u__-boot-script-boundary_git.bb <http://u-boot-script-boundary_git.bb>, do_fetch) failed with exit
->     code '1'
->
->     So the problem becomes how to identify the branch?  In the case
->     above, I have a checked out copy of this repository and when I
->     try to find the branch, I come up empty:
->        $ git branch --contains f89bc066db0569008418fac1a0408a__9a57f2232f
->        $ git log f89bc066db0569008418fac1a0408a__9a57f2232f
->        commit f89bc066db0569008418fac1a0408a__9a57f2232f
->        Author: Eric Nelson <eric.nelson@boundarydevices.__com <mailto:eric.nelson@boundarydevices.com>>
->        Date:   Mon Aug 26 17:36:35 2013 -0700
->            i.MX6: nitrogen6x: Add Yocto boot script
->
->     So I see that the commit is present, but when I ask what branch, I
->     get nothing...
->
->
-> You asked git only about local branches.
->
-> $ git branch -a --contains f89bc066db0569008418fac1a0408a9a57f2232f
->    remotes/origin/production-before-20131107
+--001a11c1d7e01b6f1c04ece25f49
+Content-Type: text/plain; charset=ISO-8859-1
 
-Perfect (I should have known!)
+After some success building my system (crownbay), I'm now trying to
+optimize boot time, so I read up on poky-tiny, created a new layer and am
+trying to build.  I think I've pulled most of my system changes out so that
+I can at least bitbake core-image-minimal, but I'm still not able to get
+past ncurses config and perl.  (ncurses reports autoconf errors in widec,
+perl has undefined references to gcvt, I'm also getting complaints about
+multiple providers for the kernel, etc.)
 
--- 
-------------------------------------------------------------
-Gary Thomas                 |  Consulting for the
-MLB Associates              |    Embedded world
-------------------------------------------------------------
+Is poky-tiny still active and tested?  What are the odds of this being
+resolved in Dora versus the odds of running into other migration issues?
 
+John
+
+--001a11c1d7e01b6f1c04ece25f49
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">After some success building my system (crownbay), I&#39;m =
+now trying to optimize boot time, so I read up on poky-tiny, created a new =
+layer and am trying to build. =A0I think I&#39;ve pulled most of my system =
+changes out so that I can at least bitbake core-image-minimal, but I&#39;m =
+still not able to get past ncurses config and perl. =A0(ncurses reports aut=
+oconf errors in widec, perl has undefined references to gcvt, I&#39;m also =
+getting complaints about multiple providers for the kernel, etc.)<div>
+<br></div><div>Is poky-tiny still active and tested? =A0What are the odds o=
+f this being resolved in Dora versus the odds of running into other migrati=
+on issues? =A0</div><div><br></div><div>John</div></div>
+
+--001a11c1d7e01b6f1c04ece25f49--
