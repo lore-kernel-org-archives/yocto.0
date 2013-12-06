@@ -1,38 +1,26 @@
-Return-Path: <bmentink@gmail.com>
-Received: from mail-pb0-f49.google.com (mail-pb0-f49.google.com
-	[209.85.160.49])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2814EE007C4
-	for <yocto@yoctoproject.org>; Fri,  6 Dec 2013 11:10:09 -0800 (PST)
-Received: by mail-pb0-f49.google.com with SMTP id jt11so1588594pbb.22
-	for <yocto@yoctoproject.org>; Fri, 06 Dec 2013 11:10:09 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=date:subject:message-id:importance:from:to:cc:reply-to:mime-version
-	:content-type; bh=Lm4koAyPSJypHbaSSbOTnic0QWQKqvFKY7Kxw0dUj1s=;
-	b=MzeFGFHJtKROLSFtDbf/3xnxmU5/Pd/FqzmgvHYlqA/BPYIBY/EMsLbTMoW2liL4DI
-	tPRX0/jR2cVddn365EHxi2vuA815Yb4st0jzkOnO/kQ/9TTOv6vQhWW4PCWB4hZcPlXu
-	DmP39MqWwFvMGNW7ZlChLPXDNZdm55BqAwB5TqDZbQbACTRWTVhstPEcMNC5TQ4rlQpf
-	xjITo2nURfTCEaFV+NKySfAmT1OSxuRXUkBDr+DZozl54HAj3Cn+yuoj/DRWdi58bgN6
-	KSmaPs2ThGEUwNPKldXMdELjaYUqMN3pGeY6kNAwG73psTbu7qv2gKkIVf1JUijnyXe8
-	NakQ==
-X-Received: by 10.68.6.99 with SMTP id z3mr5947536pbz.114.1386357009136;
-	Fri, 06 Dec 2013 11:10:09 -0800 (PST)
-Received: from [192.168.1.72] (155.250.69.111.dynamic.snap.net.nz.
-	[111.69.250.155]) by mx.google.com with ESMTPSA id
-	pa1sm86505878pac.17.2013.12.06.11.10.06 for <multiple recipients>
-	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
-	Fri, 06 Dec 2013 11:10:08 -0800 (PST)
-Date: Sat, 07 Dec 2013 08:04:26 +1300
-Message-ID: <yu0jvox0i9cnvx8whumspakp.1386356523122@email.android.com>
-Importance: normal
-From: bmentink <bmentink@gmail.com>
-To: Gaurang Shastri <gmshastri@gmail.com>
-MIME-Version: 1.0
+Return-Path: <tom.zanussi@intel.com>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 67CAEE007C1
+	for <yocto@yoctoproject.org>; Fri,  6 Dec 2013 12:08:58 -0800 (PST)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga101.jf.intel.com with ESMTP; 06 Dec 2013 12:08:54 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.93,842,1378882800"; d="scan'208";a="420637119"
+Received: from unknown (HELO [10.255.15.158]) ([10.255.15.158])
+	by orsmga001.jf.intel.com with ESMTP; 06 Dec 2013 12:08:53 -0800
+Message-ID: <1386360528.3028.62.camel@empanada>
+From: Tom Zanussi <tom.zanussi@intel.com>
+To: r10kindsofpeople <r10kindsofpeople@gmail.com>
+Date: Fri, 06 Dec 2013 14:08:48 -0600
+In-Reply-To: <CAE8H0+XtcT9ZriW31mN28xjDzASAp7AASxOOg=fE9LvepTatRA@mail.gmail.com>
+References: <CAE8H0+XtcT9ZriW31mN28xjDzASAp7AASxOOg=fE9LvepTatRA@mail.gmail.com>
+X-Mailer: Evolution 3.8.5 (3.8.5-2.fc19) 
+Mime-Version: 1.0
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Network Manager
+Subject: Re: poky-tiny breaks at ncurses and perl (Dylan 9.0.1)
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
-Reply-To: bmentink <bmentink@gmail.com>
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -41,86 +29,42 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 06 Dec 2013 19:10:10 -0000
-Content-Type: multipart/alternative;
-	boundary="--_com.android.email_15461332917658550"
+X-List-Received-Date: Fri, 06 Dec 2013 20:08:59 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
-----_com.android.email_15461332917658550
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: base64
+On Fri, 2013-12-06 at 14:08 -0500, r10kindsofpeople wrote:
+> After some success building my system (crownbay), I'm now trying to
+> optimize boot time, so I read up on poky-tiny, created a new layer and
+> am trying to build.  I think I've pulled most of my system changes out
+> so that I can at least bitbake core-image-minimal, but I'm still not
+> able to get past ncurses config and perl.  (ncurses reports autoconf
+> errors in widec, perl has undefined references to gcvt, I'm also
+> getting complaints about multiple providers for the kernel, etc.)
+> 
+> 
+> Is poky-tiny still active and tested?  What are the odds of this being
+> resolved in Dora versus the odds of running into other migration
+> issues?  
+> 
 
-SXQgc2VlbXMgd2VpcmQgdGhhdCB5b3UgY2FuIGZ1bGx5IHNldHVwIHdpZmkgd2l0aCBubWNsaSwg
-YnV0IHlvdSBjYW4ndCBzZXQgdXAgYSBiYXNpYyBzdGF0aWMgd2lyZWQgbmV0d29yaywgeW91IGhh
-dmUgdG8gZG8gaXQKdGhlIG9sZCB3YXkgd2l0aCBuZXR3b3JrL2ludGVyZmFjZXMgLi4uIHdoZXJl
-IGlzIHRoZSBjb25zaXN0ZW5jeT/CoAoKCgoKU2VudCBmcm9tIFNhbXN1bmcgdGFibGV0CgotLS0t
-LS0tLSBPcmlnaW5hbCBtZXNzYWdlIC0tLS0tLS0tCkZyb206IEdhdXJhbmcgU2hhc3RyaSA8Z21z
-aGFzdHJpQGdtYWlsLmNvbT4gCkRhdGU6IDA2LzEyLzIwMTMgIDg6NDUgUE0gIChHTVQrMTI6MDAp
-IApUbzogQmVybmFyZCBNZW50aW5rIDxibWVudGlua0BnbWFpbC5jb20+IApDYzogeW9jdG9AeW9j
-dG9wcm9qZWN0Lm9yZyAKU3ViamVjdDogUmU6IFt5b2N0b10gTmV0d29yayBNYW5hZ2VyIAogCkhp
-LAoKSSBkb24ndCBrbm93IHlvdSBjYW4gc2V0dXAgc3RhdGljIElQIGZvciBldGgwIHVzaW5nIG5t
-Y2xpLCB3aGF0IEkgcmVtZW1iZXIgaXMgeW91IGNhbiBzZWUgdGhlIHN0YXR1cyBvZiB2YXJpb3Vz
-IGNvbm5lY3Rpb25zIHVzaW5nIG5tY2xpLi4uCnt7ewpubWNsaSBubSBoZWxwClVzYWdlOiBubWNs
-aSBubSB7IENPTU1BTkQgfCBoZWxwIH0KCiBDT01NQU5EwqA6PSB7IHN0YXR1cyB8IHNsZWVwIHwg
-d2FrZXVwIHwgd2lmaSB8IHd3YW4gfQp9fX0KCklmIHlvdSB3YW50IHRvIHNldHVwIHN0YXRpYyBJ
-UCBhdCBzdGFydHVwLCB5b3UgbmVlZCB0byBwbGF5IHdpdGggL2V0Yy9uZXR3b3JrL2ludGVyZmFj
-ZXMgZmlsZS4gRm9yIG1vcmUgaW5mb3JtYXRpb24sIHlvdSBjYW4gc2VlICJtYW4gaW50ZXJmYWNl
-cyIuIChPZiBjb3Vyc2Ugb24gVWJ1bnR1KS4KCi8vR2F1cmFuZyBTaGFzdHJpCgoKCk9uIEZyaSwg
-RGVjIDYsIDIwMTMgYXQgNjoyMSBBTSwgQmVybmFyZCBNZW50aW5rIDxibWVudGlua0BnbWFpbC5j
-b20+IHdyb3RlOgpIaSBHdXlzLAoKQW55b25lIGtub3cgaG93IHRvIHVzZSB0aGUgbGF0ZXN0IHZl
-cnNpb24gb2YgTmV0d29yayBNYW5hZ2VyICgwLjkuOCkgdG8gdXNlIG5tY2xpIHRvIHNldHVwIGEg
-c3RhdGljIElQIGZvciBldGgwPwoKSSB3YW50IHRoZSBuZXR3b3JrIHRvIGJvb3QgdXAgd2l0aCBz
-dGF0aWMgLi4KClRoYW5rcywKQmVybmllCgpfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fXwp5b2N0byBtYWlsaW5nIGxpc3QKeW9jdG9AeW9jdG9wcm9qZWN0Lm9y
-ZwpodHRwczovL2xpc3RzLnlvY3RvcHJvamVjdC5vcmcvbGlzdGluZm8veW9jdG8KCgo=
+I haven't tried poky-tiny with dylan, but I have with dora and didn't
+run into any build problems - the build errors you're running into
+aren't things I've seen either.
 
-----_com.android.email_15461332917658550
-Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: base64
+So maybe you can try with dora and see what happens - if you still run
+into problems, please provide some more details on your setup.
 
-PGh0bWw+PGhlYWQ+PG1ldGEgaHR0cC1lcXVpdj0iQ29udGVudC1UeXBlIiBjb250ZW50PSJ0ZXh0
-L2h0bWw7IGNoYXJzZXQ9VVRGLTgiPjwvaGVhZD48Ym9keSA+PGRpdj5JdCBzZWVtcyB3ZWlyZCB0
-aGF0IHlvdSBjYW4gZnVsbHkgc2V0dXAgd2lmaSB3aXRoIG5tY2xpLCBidXQgeW91IGNhbid0IHNl
-dCB1cCBhIGJhc2ljIHN0YXRpYyB3aXJlZCBuZXR3b3JrLCB5b3UgaGF2ZSB0byBkbyBpdDwvZGl2
-PjxkaXY+dGhlIG9sZCB3YXkgd2l0aCBuZXR3b3JrL2ludGVyZmFjZXMgLi4uIHdoZXJlIGlzIHRo
-ZSBjb25zaXN0ZW5jeT8mbmJzcDs8L2Rpdj48ZGl2Pjxicj48L2Rpdj48ZGl2Pjxicj48L2Rpdj48
-ZGl2Pjxicj48L2Rpdj48ZGl2Pjxicj48L2Rpdj48ZGl2PjxkaXYgc3R5bGU9ImZvbnQtc2l6ZTox
-MDAlIj5TZW50IGZyb20gU2Ftc3VuZyB0YWJsZXQ8L2Rpdj48L2Rpdj4gPGJyPjxicj48YnI+LS0t
-LS0tLS0gT3JpZ2luYWwgbWVzc2FnZSAtLS0tLS0tLTxicj5Gcm9tOiBHYXVyYW5nIFNoYXN0cmkg
-Jmx0O2dtc2hhc3RyaUBnbWFpbC5jb20mZ3Q7IDxicj5EYXRlOiAwNi8xMi8yMDEzICA4OjQ1IFBN
-ICAoR01UKzEyOjAwKSA8YnI+VG86IEJlcm5hcmQgTWVudGluayAmbHQ7Ym1lbnRpbmtAZ21haWwu
-Y29tJmd0OyA8YnI+Q2M6IHlvY3RvQHlvY3RvcHJvamVjdC5vcmcgPGJyPlN1YmplY3Q6IFJlOiBb
-eW9jdG9dIE5ldHdvcmsgTWFuYWdlciA8YnI+IDxicj48YnI+PGRpdiBkaXI9Imx0ciI+PGRpdj48
-ZGl2PkhpLDxicj48YnI+SSBkb24ndCBrbm93IHlvdSBjYW4gc2V0dXAgc3RhdGljIElQIGZvciBl
-dGgwIHVzaW5nIG5tY2xpLCB3aGF0IEkgcmVtZW1iZXIgaXMgeW91IGNhbiBzZWUgdGhlIHN0YXR1
-cyBvZiB2YXJpb3VzIGNvbm5lY3Rpb25zIHVzaW5nIG5tY2xpLi4uPGJyPnt7ezxicj48cHJlIHN0
-eWxlPSJtYXJnaW46MC41ZXggMHB4IDEuNWV4O3BhZGRpbmc6MWVtO2ZvbnQtc2l6ZToyLjZleDtv
-dmVyZmxvdzphdXRvO2JvcmRlcjoxcHggZGFzaGVkIHJnYig0NywxMTEsMTcxKTtjb2xvcjpyZ2Io
-MCwwLDApO2JhY2tncm91bmQtY29sb3I6cmdiKDI0OSwyNDksMjQ5KTtsaW5lLWhlaWdodDoxLjFl
-bTtmb250LXN0eWxlOm5vcm1hbDtmb250LXZhcmlhbnQ6bm9ybWFsO2ZvbnQtd2VpZ2h0Om5vcm1h
-bDtsZXR0ZXItc3BhY2luZzpub3JtYWw7dGV4dC1hbGlnbjpzdGFydDt0ZXh0LWluZGVudDowcHg7
-dGV4dC10cmFuc2Zvcm06bm9uZTt3b3JkLXNwYWNpbmc6MHB4Ij5ubWNsaSBubSBoZWxwClVzYWdl
-OiBubWNsaSBubSB7IENPTU1BTkQgfCBoZWxwIH0KCiBDT01NQU5EJm5ic3A7Oj0geyBzdGF0dXMg
-fCBzbGVlcCB8IHdha2V1cCB8IHdpZmkgfCB3d2FuIH0KPC9wcmU+fX19PGJyPjxicj48L2Rpdj5J
-ZiB5b3Ugd2FudCB0byBzZXR1cCBzdGF0aWMgSVAgYXQgc3RhcnR1cCwgeW91IG5lZWQgdG8gcGxh
-eSB3aXRoIC9ldGMvbmV0d29yay9pbnRlcmZhY2VzIGZpbGUuIEZvciBtb3JlIGluZm9ybWF0aW9u
-LCB5b3UgY2FuIHNlZSAibWFuIGludGVyZmFjZXMiLiAoT2YgY291cnNlIG9uIFVidW50dSkuPGJy
-Pjxicj48L2Rpdj4vL0dhdXJhbmcgU2hhc3RyaTxiciBjbGFzcz0iIj4KPGRpdj48ZGl2Pjxicj48
-L2Rpdj48L2Rpdj48L2Rpdj48ZGl2IGNsYXNzPSJnbWFpbF9leHRyYSI+PGJyPjxicj48ZGl2IGNs
-YXNzPSJnbWFpbF9xdW90ZSI+T24gRnJpLCBEZWMgNiwgMjAxMyBhdCA2OjIxIEFNLCBCZXJuYXJk
-IE1lbnRpbmsgPHNwYW4gZGlyPSJsdHIiPiZsdDs8YSBocmVmPSJtYWlsdG86Ym1lbnRpbmtAZ21h
-aWwuY29tIiB0YXJnZXQ9Il9ibGFuayI+Ym1lbnRpbmtAZ21haWwuY29tPC9hPiZndDs8L3NwYW4+
-IHdyb3RlOjxicj4KPGJsb2NrcXVvdGUgY2xhc3M9ImdtYWlsX3F1b3RlIiBzdHlsZT0ibWFyZ2lu
-OjAgMCAwIC44ZXg7Ym9yZGVyLWxlZnQ6MXB4ICNjY2Mgc29saWQ7cGFkZGluZy1sZWZ0OjFleCI+
-PGRpdiBkaXI9Imx0ciI+SGkgR3V5cyw8ZGl2Pjxicj48L2Rpdj48ZGl2PkFueW9uZSBrbm93IGhv
-dyB0byB1c2UgdGhlIGxhdGVzdCB2ZXJzaW9uIG9mIE5ldHdvcmsgTWFuYWdlciAoMC45LjgpIHRv
-IHVzZSBubWNsaSB0byBzZXR1cCBhIHN0YXRpYyBJUCBmb3IgZXRoMD88L2Rpdj4KPGRpdj48YnI+
-PC9kaXY+PGRpdj5JIHdhbnQgdGhlIG5ldHdvcmsgdG8gYm9vdCB1cCB3aXRoIHN0YXRpYyAuLjwv
-ZGl2Pgo8ZGl2Pjxicj48L2Rpdj48ZGl2PlRoYW5rcyw8L2Rpdj48ZGl2PkJlcm5pZTwvZGl2Pjwv
-ZGl2Pgo8YnI+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX188
-YnI+CnlvY3RvIG1haWxpbmcgbGlzdDxicj4KPGEgaHJlZj0ibWFpbHRvOnlvY3RvQHlvY3RvcHJv
-amVjdC5vcmciPnlvY3RvQHlvY3RvcHJvamVjdC5vcmc8L2E+PGJyPgo8YSBocmVmPSJodHRwczov
-L2xpc3RzLnlvY3RvcHJvamVjdC5vcmcvbGlzdGluZm8veW9jdG8iIHRhcmdldD0iX2JsYW5rIj5o
-dHRwczovL2xpc3RzLnlvY3RvcHJvamVjdC5vcmcvbGlzdGluZm8veW9jdG88L2E+PGJyPgo8YnI+
-PC9ibG9ja3F1b3RlPjwvZGl2Pjxicj48L2Rpdj4KPC9ib2R5Pg==
+Thanks,
 
-----_com.android.email_15461332917658550--
+Tom
+
+> 
+> John
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+
+
+
