@@ -1,23 +1,28 @@
-Return-Path: <tom.zanussi@intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 67CAEE007C1
-	for <yocto@yoctoproject.org>; Fri,  6 Dec 2013 12:08:58 -0800 (PST)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga101.jf.intel.com with ESMTP; 06 Dec 2013 12:08:54 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.93,842,1378882800"; d="scan'208";a="420637119"
-Received: from unknown (HELO [10.255.15.158]) ([10.255.15.158])
-	by orsmga001.jf.intel.com with ESMTP; 06 Dec 2013 12:08:53 -0800
-Message-ID: <1386360528.3028.62.camel@empanada>
-From: Tom Zanussi <tom.zanussi@intel.com>
-To: r10kindsofpeople <r10kindsofpeople@gmail.com>
-Date: Fri, 06 Dec 2013 14:08:48 -0600
-In-Reply-To: <CAE8H0+XtcT9ZriW31mN28xjDzASAp7AASxOOg=fE9LvepTatRA@mail.gmail.com>
-References: <CAE8H0+XtcT9ZriW31mN28xjDzASAp7AASxOOg=fE9LvepTatRA@mail.gmail.com>
-X-Mailer: Evolution 3.8.5 (3.8.5-2.fc19) 
-Mime-Version: 1.0
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: poky-tiny breaks at ncurses and perl (Dylan 9.0.1)
+Return-Path: <rajanpatha34@gmail.com>
+Received: from mail-pd0-f175.google.com (mail-pd0-f175.google.com
+	[209.85.192.175])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BDAE6E007C6
+	for <yocto@yoctoproject.org>; Sat,  7 Dec 2013 02:43:58 -0800 (PST)
+Received: by mail-pd0-f175.google.com with SMTP id w10so2401316pde.34
+	for <yocto@yoctoproject.org>; Sat, 07 Dec 2013 02:43:58 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=KJVcIOARCydb/umgDL+mWHfsB0bWDctB8/W7dSuKAEU=;
+	b=BLm7QxTNMVFgUnTlCoGZZup5NNZ1TBb2OIF4jlcrbIDRscWYWQZUMf4EdU+HIYoqV9
+	apn0MUMleZLO42qfsVDdHRJWGwXBDbWT5aXIuxWsVqpsQHKK9fd+nUKMYCBXBNpWsCDP
+	k292ZRK2mqQV3TGLDYbFhzWZzuVaO7FW8F+dMdDh0Amh16lBafNuxz32hRd5C9UMtP+F
+	GADLhXIhKRnUXndZQUpY2f5hWfJQNv192EnOLCx5XoFNyTxunE6J4n0lWF9XzyPsfvuv
+	rXBlC66rcVsS7NccimwrL9U2kkz6jwKF0oxgCovIYzGSRQe+nSy76Cm/fHggSVzQlSlv
+	cRtA==
+MIME-Version: 1.0
+X-Received: by 10.68.242.163 with SMTP id wr3mr9602509pbc.84.1386413038081;
+	Sat, 07 Dec 2013 02:43:58 -0800 (PST)
+Received: by 10.68.146.106 with HTTP; Sat, 7 Dec 2013 02:43:58 -0800 (PST)
+Date: Sat, 7 Dec 2013 16:13:58 +0530
+Message-ID: <CACXtFMgc9KG=qRr=_KwtAftPw7F9Ob14cHnFTni7CAwjTUooeA@mail.gmail.com>
+From: rajan pathak <rajanpatha34@gmail.com>
+To: yocto@yoctoproject.org
+Subject: How to Customize do_fetch to extract two files from tarball
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -29,42 +34,80 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 06 Dec 2013 20:08:59 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Sat, 07 Dec 2013 10:44:01 -0000
+Content-Type: multipart/alternative; boundary=047d7b339d41a59a4904ecef70ec
 
-On Fri, 2013-12-06 at 14:08 -0500, r10kindsofpeople wrote:
-> After some success building my system (crownbay), I'm now trying to
-> optimize boot time, so I read up on poky-tiny, created a new layer and
-> am trying to build.  I think I've pulled most of my system changes out
-> so that I can at least bitbake core-image-minimal, but I'm still not
-> able to get past ncurses config and perl.  (ncurses reports autoconf
-> errors in widec, perl has undefined references to gcvt, I'm also
-> getting complaints about multiple providers for the kernel, etc.)
-> 
-> 
-> Is poky-tiny still active and tested?  What are the odds of this being
-> resolved in Dora versus the odds of running into other migration
-> issues?  
-> 
+--047d7b339d41a59a4904ecef70ec
+Content-Type: text/plain; charset=ISO-8859-1
 
-I haven't tried poky-tiny with dylan, but I have with dora and didn't
-run into any build problems - the build errors you're running into
-aren't things I've seen either.
+I wanted to extract couple of files from tarball which is located SVN
+repo,This is a huge
+repo and it takes almost hour to get fetched .
 
-So maybe you can try with dora and see what happens - if you still run
-into problems, please provide some more details on your setup.
+I don't want to waste that much of time only to get two files from that
+tarball repo
 
-Thanks,
+I have got with me python code that will do svn cat but not sure how to put
+it in my recipe file.
 
-Tom
+import tarfilefrom subprocess import Popen, PIPE# Capture the tar file
+from subversion
+p = Popen(["svn", "cat", "svn+ssh://url/some.tar"], stdout=PIPE)
+tmp='/home/me/tempfile.tar'
+open(tmp, 'wb').write(p.stdout.read())# Extract the file we want,
+saving to current directory
+tarfile.open(tmp).extract('dir1/fname.ext', path='dir2'
 
-> 
-> John
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+Can any body point me out how to merger this code in recipe file.
 
+Thanks
 
+Rajan
 
+--047d7b339d41a59a4904ecef70ec
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div><div><div>I wanted to extract couple of files from ta=
+rball which is located SVN repo,This is a huge<br></div>repo and it takes a=
+lmost hour to get fetched .<br><br></div>I don&#39;t want to waste that muc=
+h of time only to get two files from that tarball repo<br>
+<br></div>I have got with me python code that will do svn cat but not sure =
+how to put it in my recipe file.<br><br><pre style class=3D""><code><span c=
+lass=3D"">import</span><span class=3D""> tarfile
+</span><span class=3D"">from</span><span class=3D""> subprocess </span><spa=
+n class=3D"">import</span><span class=3D""> </span><span class=3D"">Popen</=
+span><span class=3D"">,</span><span class=3D""> PIPE
+</span><span class=3D""># Capture the tar file from subversion</span><span =
+class=3D"">
+p </span><span class=3D"">=3D</span><span class=3D""> </span><span class=3D=
+"">Popen</span><span class=3D"">([</span><span class=3D"">&quot;svn&quot;</=
+span><span class=3D"">,</span><span class=3D""> </span><span class=3D"">&qu=
+ot;cat&quot;</span><span class=3D"">,</span><span class=3D""> </span><span =
+class=3D"">&quot;svn+ssh://url/some.tar&quot;</span><span class=3D"">],</sp=
+an><span class=3D""> stdout</span><span class=3D"">=3D</span><span class=3D=
+"">PIPE</span><span class=3D"">)</span><span class=3D"">
+tmp</span><span class=3D"">=3D</span><span class=3D"">&#39;/home/me/tempfil=
+e.tar&#39;</span><span class=3D"">
+open</span><span class=3D"">(</span><span class=3D"">tmp</span><span class=
+=3D"">,</span><span class=3D""> </span><span class=3D"">&#39;wb&#39;</span>=
+<span class=3D"">).</span><span class=3D"">write</span><span class=3D"">(</=
+span><span class=3D"">p</span><span class=3D"">.</span><span class=3D"">std=
+out</span><span class=3D"">.</span><span class=3D"">read</span><span class=
+=3D"">())</span><span class=3D"">
+</span><span class=3D""># Extract the file we want, saving to current direc=
+tory</span><span class=3D"">
+tarfile</span><span class=3D"">.</span><span class=3D"">open</span><span cl=
+ass=3D"">(</span><span class=3D"">tmp</span><span class=3D"">).</span><span=
+ class=3D"">extract</span><span class=3D"">(</span><span class=3D"">&#39;di=
+r1/fname.ext&#39;</span><span class=3D"">,</span><span class=3D""> path</sp=
+an><span class=3D"">=3D</span><span class=3D"">&#39;dir2&#39;</span><span c=
+lass=3D""><br>
+<br></span></code></pre><pre style class=3D""><code><span class=3D"">Can an=
+y body point me out how to merger this code in recipe file.<br><br></span><=
+/code></pre><pre style class=3D""><code><span class=3D"">Thanks <br></span>=
+</code></pre>
+<pre style class=3D""><code><span class=3D"">Rajan <br></span></code></pre>=
+<br></div>
+
+--047d7b339d41a59a4904ecef70ec--
