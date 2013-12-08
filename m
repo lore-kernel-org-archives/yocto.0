@@ -1,28 +1,32 @@
-Return-Path: <rajanpatha34@gmail.com>
-Received: from mail-pd0-f175.google.com (mail-pd0-f175.google.com
-	[209.85.192.175])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BDAE6E007C6
-	for <yocto@yoctoproject.org>; Sat,  7 Dec 2013 02:43:58 -0800 (PST)
-Received: by mail-pd0-f175.google.com with SMTP id w10so2401316pde.34
-	for <yocto@yoctoproject.org>; Sat, 07 Dec 2013 02:43:58 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=KJVcIOARCydb/umgDL+mWHfsB0bWDctB8/W7dSuKAEU=;
-	b=BLm7QxTNMVFgUnTlCoGZZup5NNZ1TBb2OIF4jlcrbIDRscWYWQZUMf4EdU+HIYoqV9
-	apn0MUMleZLO42qfsVDdHRJWGwXBDbWT5aXIuxWsVqpsQHKK9fd+nUKMYCBXBNpWsCDP
-	k292ZRK2mqQV3TGLDYbFhzWZzuVaO7FW8F+dMdDh0Amh16lBafNuxz32hRd5C9UMtP+F
-	GADLhXIhKRnUXndZQUpY2f5hWfJQNv192EnOLCx5XoFNyTxunE6J4n0lWF9XzyPsfvuv
-	rXBlC66rcVsS7NccimwrL9U2kkz6jwKF0oxgCovIYzGSRQe+nSy76Cm/fHggSVzQlSlv
-	cRtA==
-MIME-Version: 1.0
-X-Received: by 10.68.242.163 with SMTP id wr3mr9602509pbc.84.1386413038081;
-	Sat, 07 Dec 2013 02:43:58 -0800 (PST)
-Received: by 10.68.146.106 with HTTP; Sat, 7 Dec 2013 02:43:58 -0800 (PST)
-Date: Sat, 7 Dec 2013 16:13:58 +0530
-Message-ID: <CACXtFMgc9KG=qRr=_KwtAftPw7F9Ob14cHnFTni7CAwjTUooeA@mail.gmail.com>
-From: rajan pathak <rajanpatha34@gmail.com>
+Return-Path: <lists@philipp-wagner.com>
+Received: from turboconrad.planet-school.de (turboconrad.planet-school.de
+	[194.116.187.108])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 230B0E00782
+	for <yocto@yoctoproject.org>; Sun,  8 Dec 2013 04:18:03 -0800 (PST)
+Received: from turboconrad.planet-school.de (srv004.service.ps-server.net
+	[194.116.186.79])
+	by turboconrad.planet-school.de (Postfix) with ESMTP id 22F0CB6A144;
+	Sun,  8 Dec 2013 13:18:01 +0100 (CET)
+X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on
+	srv004.service.ps-server.net
+X-Spam-Level: 
+X-Spam-Status: No, score=-100.8 required=5.0 tests=ALL_TRUSTED,AWL,
+	LOCAL_USER_RULE autolearn=unavailable version=3.3.2
+Received: from poweramy.fritz.box (ppp-93-104-167-6.dynamic.mnet-online.de
+	[93.104.167.6])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	(Authenticated sender: lists@philipp-wagner.com)
+	by turboconrad.planet-school.de (Postfix) with ESMTPSA id B9F90B6A13D; 
+	Sun,  8 Dec 2013 13:18:00 +0100 (CET)
+From: lists@philipp-wagner.com
 To: yocto@yoctoproject.org
-Subject: How to Customize do_fetch to extract two files from tarball
+Date: Sun,  8 Dec 2013 13:17:42 +0100
+Message-Id: <1386505062-7542-1-git-send-email-lists@philipp-wagner.com>
+X-Mailer: git-send-email 1.8.4
+X-Virus-Scanned: ClamAV using ClamSMTP
+Cc: Philipp Wagner <mail@philipp-wagner.com>
+Subject: [meta-raspberrypi][PATCH] linux: Update to 3.12.3 (latest RPI upstream)
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,80 +38,42 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 07 Dec 2013 10:44:01 -0000
-Content-Type: multipart/alternative; boundary=047d7b339d41a59a4904ecef70ec
+X-List-Received-Date: Sun, 08 Dec 2013 12:18:06 -0000
 
---047d7b339d41a59a4904ecef70ec
-Content-Type: text/plain; charset=ISO-8859-1
+From: Philipp Wagner <mail@philipp-wagner.com>
 
-I wanted to extract couple of files from tarball which is located SVN
-repo,This is a huge
-repo and it takes almost hour to get fetched .
+Signed-off-by: Philipp Wagner <mail@philipp-wagner.com>
+---
+ recipes-kernel/linux/linux-raspberrypi_3.12.0.bb | 6 ------
+ recipes-kernel/linux/linux-raspberrypi_3.12.3.bb | 6 ++++++
+ 2 files changed, 6 insertions(+), 6 deletions(-)
+ delete mode 100644 recipes-kernel/linux/linux-raspberrypi_3.12.0.bb
+ create mode 100644 recipes-kernel/linux/linux-raspberrypi_3.12.3.bb
 
-I don't want to waste that much of time only to get two files from that
-tarball repo
+diff --git a/recipes-kernel/linux/linux-raspberrypi_3.12.0.bb b/recipes-kernel/linux/linux-raspberrypi_3.12.0.bb
+deleted file mode 100644
+index 3631da5..0000000
+--- a/recipes-kernel/linux/linux-raspberrypi_3.12.0.bb
++++ /dev/null
+@@ -1,6 +0,0 @@
+-SRCREV = "839f349b6ed2a63a2bff0b5f0d718a7b07ca2316"
+-SRC_URI = "git://github.com/raspberrypi/linux.git;protocol=git;branch=rpi-3.12.y \
+-           file://sl030raspberrypii2ckernel.patch \
+-          "
+-
+-require linux-raspberrypi.inc
+diff --git a/recipes-kernel/linux/linux-raspberrypi_3.12.3.bb b/recipes-kernel/linux/linux-raspberrypi_3.12.3.bb
+new file mode 100644
+index 0000000..304c1ad
+--- /dev/null
++++ b/recipes-kernel/linux/linux-raspberrypi_3.12.3.bb
+@@ -0,0 +1,6 @@
++SRCREV = "7dac37b9865ab51f7a68b7703bf6792b698fee1b"
++SRC_URI = "git://github.com/raspberrypi/linux.git;protocol=git;branch=rpi-3.12.y \
++           file://sl030raspberrypii2ckernel.patch \
++          "
++
++require linux-raspberrypi.inc
+-- 
+1.8.4
 
-I have got with me python code that will do svn cat but not sure how to put
-it in my recipe file.
-
-import tarfilefrom subprocess import Popen, PIPE# Capture the tar file
-from subversion
-p = Popen(["svn", "cat", "svn+ssh://url/some.tar"], stdout=PIPE)
-tmp='/home/me/tempfile.tar'
-open(tmp, 'wb').write(p.stdout.read())# Extract the file we want,
-saving to current directory
-tarfile.open(tmp).extract('dir1/fname.ext', path='dir2'
-
-Can any body point me out how to merger this code in recipe file.
-
-Thanks
-
-Rajan
-
---047d7b339d41a59a4904ecef70ec
-Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div><div><div>I wanted to extract couple of files from ta=
-rball which is located SVN repo,This is a huge<br></div>repo and it takes a=
-lmost hour to get fetched .<br><br></div>I don&#39;t want to waste that muc=
-h of time only to get two files from that tarball repo<br>
-<br></div>I have got with me python code that will do svn cat but not sure =
-how to put it in my recipe file.<br><br><pre style class=3D""><code><span c=
-lass=3D"">import</span><span class=3D""> tarfile
-</span><span class=3D"">from</span><span class=3D""> subprocess </span><spa=
-n class=3D"">import</span><span class=3D""> </span><span class=3D"">Popen</=
-span><span class=3D"">,</span><span class=3D""> PIPE
-</span><span class=3D""># Capture the tar file from subversion</span><span =
-class=3D"">
-p </span><span class=3D"">=3D</span><span class=3D""> </span><span class=3D=
-"">Popen</span><span class=3D"">([</span><span class=3D"">&quot;svn&quot;</=
-span><span class=3D"">,</span><span class=3D""> </span><span class=3D"">&qu=
-ot;cat&quot;</span><span class=3D"">,</span><span class=3D""> </span><span =
-class=3D"">&quot;svn+ssh://url/some.tar&quot;</span><span class=3D"">],</sp=
-an><span class=3D""> stdout</span><span class=3D"">=3D</span><span class=3D=
-"">PIPE</span><span class=3D"">)</span><span class=3D"">
-tmp</span><span class=3D"">=3D</span><span class=3D"">&#39;/home/me/tempfil=
-e.tar&#39;</span><span class=3D"">
-open</span><span class=3D"">(</span><span class=3D"">tmp</span><span class=
-=3D"">,</span><span class=3D""> </span><span class=3D"">&#39;wb&#39;</span>=
-<span class=3D"">).</span><span class=3D"">write</span><span class=3D"">(</=
-span><span class=3D"">p</span><span class=3D"">.</span><span class=3D"">std=
-out</span><span class=3D"">.</span><span class=3D"">read</span><span class=
-=3D"">())</span><span class=3D"">
-</span><span class=3D""># Extract the file we want, saving to current direc=
-tory</span><span class=3D"">
-tarfile</span><span class=3D"">.</span><span class=3D"">open</span><span cl=
-ass=3D"">(</span><span class=3D"">tmp</span><span class=3D"">).</span><span=
- class=3D"">extract</span><span class=3D"">(</span><span class=3D"">&#39;di=
-r1/fname.ext&#39;</span><span class=3D"">,</span><span class=3D""> path</sp=
-an><span class=3D"">=3D</span><span class=3D"">&#39;dir2&#39;</span><span c=
-lass=3D""><br>
-<br></span></code></pre><pre style class=3D""><code><span class=3D"">Can an=
-y body point me out how to merger this code in recipe file.<br><br></span><=
-/code></pre><pre style class=3D""><code><span class=3D"">Thanks <br></span>=
-</code></pre>
-<pre style class=3D""><code><span class=3D"">Rajan <br></span></code></pre>=
-<br></div>
-
---047d7b339d41a59a4904ecef70ec--
