@@ -1,27 +1,34 @@
-Return-Path: <tom.zanussi@intel.com>
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 41B34E005B1
-	for <yocto@yoctoproject.org>; Mon,  9 Dec 2013 14:11:29 -0800 (PST)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga101.fm.intel.com with ESMTP; 09 Dec 2013 14:11:29 -0800
+Return-Path: <song.liu@intel.com>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9C277E005B1
+	for <yocto@yoctoproject.org>; Mon,  9 Dec 2013 15:15:33 -0800 (PST)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by orsmga101.jf.intel.com with ESMTP; 09 Dec 2013 15:15:32 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.93,860,1378882800"; d="scan'208";a="447247738"
-Received: from unknown (HELO [10.255.15.119]) ([10.255.15.119])
-	by fmsmga002.fm.intel.com with ESMTP; 09 Dec 2013 14:11:28 -0800
-Message-ID: <1386627087.17252.14.camel@empanada>
-From: Tom Zanussi <tom.zanussi@intel.com>
-To: r10kindsofpeople <r10kindsofpeople@gmail.com>
-Date: Mon, 09 Dec 2013 16:11:27 -0600
-In-Reply-To: <CAE8H0+W5uDM4PKpHzNymY9pNCheMqke7OT8ycoRAG-FgrfDaqA@mail.gmail.com>
-References: <CAE8H0+XtcT9ZriW31mN28xjDzASAp7AASxOOg=fE9LvepTatRA@mail.gmail.com>
-	<1386360528.3028.62.camel@empanada>
-	<CAE8H0+U_XmpsS=iVrGbWp6um6nMUXxDb+fighV7KruBuFRGWFw@mail.gmail.com>
-	<52A634FF.8020705@linux.intel.com>
-	<CAE8H0+W5uDM4PKpHzNymY9pNCheMqke7OT8ycoRAG-FgrfDaqA@mail.gmail.com>
-X-Mailer: Evolution 3.8.5 (3.8.5-2.fc19) 
-Mime-Version: 1.0
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: poky-tiny breaks at ncurses and perl (Dylan 9.0.1)
+X-IronPort-AV: E=Sophos;i="4.93,860,1378882800"; 
+	d="scan'208,217";a="441316926"
+Received: from orsmsx105.amr.corp.intel.com ([10.22.225.132])
+	by fmsmga001.fm.intel.com with ESMTP; 09 Dec 2013 15:15:31 -0800
+Received: from orsmsx160.amr.corp.intel.com (10.22.226.43) by
+	ORSMSX105.amr.corp.intel.com (10.22.225.132) with Microsoft SMTP Server
+	(TLS) id 14.3.123.3; Mon, 9 Dec 2013 15:15:31 -0800
+Received: from orsmsx108.amr.corp.intel.com ([169.254.4.59]) by
+	ORSMSX160.amr.corp.intel.com ([169.254.13.17]) with mapi id
+	14.03.0123.003; Mon, 9 Dec 2013 15:15:30 -0800
+From: "Liu, Song" <song.liu@intel.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: Agenda: Yocto Project Technical Team Meeting - Tuesday,
+	December 10,
+	2013 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada).
+Thread-Index: Ac71NH+3S1XFXanJRhmfYuvEbtm75AAAAR2Q
+Date: Mon, 9 Dec 2013 23:15:29 +0000
+Message-ID: <7E680CB2A76BB8438D08CF13C09FC53A8EFCA4E7@ORSMSX108.amr.corp.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.139]
+MIME-Version: 1.0
+Subject: Agenda: Yocto Project Technical Team Meeting - Tuesday, December 10, 2013 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada).
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -33,115 +40,554 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 09 Dec 2013 22:11:30 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Mon, 09 Dec 2013 23:15:35 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_7E680CB2A76BB8438D08CF13C09FC53A8EFCA4E7ORSMSX108amrcor_"
 
-On Mon, 2013-12-09 at 16:45 -0500, r10kindsofpeople wrote:
-> On Mon, Dec 9, 2013 at 4:24 PM, Saul Wold <sgw@linux.intel.com> wrote:
->         On 12/09/2013 11:51 AM, r10kindsofpeople wrote:
->                 On Fri, Dec 6, 2013 at 3:08 PM, Tom Zanussi
->                 <tom.zanussi@intel.com
->                 <mailto:tom.zanussi@intel.com>> wrote:
->                 
->                     On Fri, 2013-12-06 at 14:08 -0500,
->                 r10kindsofpeople wrote:
->                      > After some success building my system
->                 (crownbay), I'm now trying to
->                      > optimize boot time, so I read up on poky-tiny,
->                 created a new
->                     layer and
->                      > am trying to build.  I think I've pulled most
->                 of my system
->                     changes out
->                      > so that I can at least bitbake
->                 core-image-minimal, but I'm still not
->                      > able to get past ncurses config and perl.
->                  (ncurses reports autoconf
->                      > errors in widec, perl has undefined references
->                 to gcvt, I'm also
->                      > getting complaints about multiple providers for
->                 the kernel, etc.)
->                      >
->                      >
->                      > Is poky-tiny still active and tested?  What are
->                 the odds of this
->                     being
->                      > resolved in Dora versus the odds of running
->                 into other migration
->                      > issues?
->                      >
->                 
->                     I haven't tried poky-tiny with dylan, but I have
->                 with dora and didn't
->                     run into any build problems - the build errors
->                 you're running into
->                     aren't things I've seen either.
->                 
->                     So maybe you can try with dora and see what
->                 happens - if you still run
->                     into problems, please provide some more details on
->                 your setup.
->                 
->                 
->                 Thanks, Tom...using Dora, I was able to get the basic
->                 system to build.
->                 
->                 Adding some features (dhcp-server, for instance) still
->                 breaks the build,
->                 but I suspect that's just a consequence of -tiny doing
->                 it's thing.
->                 
->         John, that's probably correct, the tiny configuration uses
->         uclibc and if you see bug number 5431
->         (https://bugzilla.yoctoproject.org/show_bug.cgi?id=5431),
->         there are a number of recipes that will not build correctly
->         with the full uclibc, but that was with a full uclibc, where
->         as the tiny configuration cuts down ulibc to just support the
->         bare minimum.
->         
->         Hope that helps with your efforts.
->         
->         Sau!
->         
->         
-> Thanks, Saul, I'll take a look.
-> 
-> 
-> A "FWIW" for any and all...to get qemu to work with the tiny image, I
-> had to do a menuconfig for busybox and add "setsid" and "cttyhack",
-> otherwise I was getting "not found" and "error 127" loops on startup.
->  
-> 
-> 
-> (hints on how to do this without menuconfig are welcome...I tried
-> creating my own recipe and adding package ${PN}-setsid or including my
-> own (edited) defconfig, but neither seemed to work. 
+--_000_7E680CB2A76BB8438D08CF13C09FC53A8EFCA4E7ORSMSX108amrcor_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-I also ran into that problem and sent an initial fix for it:
+Agenda:
 
-https://lists.yoctoproject.org/pipermail/poky/2013-November/009378.html
-
-I still need to 'fix' the fix but it works in any case..
-
-Tom
+* Opens collection - 5 min (Song)
+* Yocto 1.6 status - 10 min (Song/team)
+  https://wiki.yoctoproject.org/wiki/Yocto_Project_v1.6_Status
+  https://wiki.yoctoproject.org/wiki/Yocto_1.6_Features
+* SWAT team rotation: Cristian Iorga -> Cristiana Voicu
+* Opens - 10 min
+* Team Sharing - 20 min
 
 
->                 John
->                 
->                 
->                 
->                 _______________________________________________
->                 yocto mailing list
->                 yocto@yoctoproject.org
->                 https://lists.yoctoproject.org/listinfo/yocto
->                 
-> 
-> 
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+-----Original Appointment-----
+
+We encourage people attending the meeting to logon the Yocto IRC chancel du=
+ring the meeting (optional):
+
+Yocto IRC: http://webchat.freenode.net/?channels=3D#yocto
+IRC Tutorial: http://www.irchelp.org/irchelp/irctutorial.html
+
+Conference details
+Conference name:        Yocto Project Technical Team
+Conference date/start time:     Tue Jun 25, 2013 at 11:00 AM Eastern Daylig=
+ht Time (GMT-0400)
+Participants:   30
+Duration:       60 minutes
+Participant passcode:   42001078
+Dial-in number: 1.972.995.7777
+US Toll Free number:    1.877.561.6828
+BlackBerry users, click this link to join your conference as a participant:=
+     1.972.995.7777x42001078#
+        Depending on where you are dialing from, either your BlackBerry wil=
+l pause and enter the passcode automatically or you will be prompted to cli=
+ck again to dial the passcode.
+
+
+Local and Global Access Numbers
 
 
 
+
+Country
+Dial-in number
+
+Australia:
+1800 636 843
+
+Czech Republic:
+242 430 350
+
+China (Beijing):
+From office dial 8-9957777 or 8784277
+Beijing Out of Office dial 5878 4277
+
+China (Shanghai):
+From office dial 8-9957777 or 3073322
+Shanghai Out of Office dial 2307 3322
+
+China (Shenzen):
+From office dial 8-9957777 or 6007877
+Shenzen Out of Office dial 2600 7877
+
+China (Other Cities):
+From IP phone dial 8-9957777
+Other cities - Non IP phone dial 021-23073322
+
+Denmark:
+8060 1400
+
+Finland:
+09 41333477
+
+France:
+0497 275888
+
+Germany:
+08161 803232
+
+Holland:
+030 2417490
+
+India:
+BSNL subscribers use 1800 425 9996 (Toll Free)
+Airtel subscribers use 0008 009 861 212 (Toll Free)
+From TI Campus use 89957777
+Others use 2509 9555 (Landline within Bangalore) or
+80 2509 9555 (Outside Bangalore)
+
+Israel:
+09 790 6715
+
+Italy:
+039 69061234 (039 is local city code not country code)
+
+Japan:
+From TI Campus use 8 995 7777
+Outside TI use 03 4331 3777
+
+Malaysia:
+From IP phone dial 2643799
+From Kuala Lumpur dial 4264 3799
+Outside Kuala Lumpur dial (03)4264 3799
+
+Norway:
+2 295 8744
+
+Philippines:
+From Baguio City use 4471177
+From Metro Manila area use 8702477
+
+Singapore:
+From IP phone dial 3894777
+Outside TI use 6389 4777
+
+South Korea:
+From IP phone dial 5606998
+From Seoul dial 5606998
+Outside Seoul dial (02)5606998
+
+Sweden:
+08 58755577
+
+Taiwan:
+From IP phone dial 1363
+From Taipei dial 2241 1363
+Outside Taipei dial (02)2241 1363
+
+Turkey:
+Landline Only dial 0811 288 0001
+then enter 877 633 1123
+
+UK:
+01908 355599
+
+US:
+972 995 7777 or 1877 561 6828
+
+
+Recurring conferences
+First scheduled conference:     Tue Jun 25, 2013
+Recurrence frequency:   Weekly - Every 1 week(s) on Tuesday
+Recurrence ends:        End after 52 occurrences
+
+
+
+--_000_7E680CB2A76BB8438D08CF13C09FC53A8EFCA4E7ORSMSX108amrcor_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Exchange Server">
+<!-- converted from rtf -->
+<style><!-- .EmailQuote { margin-left: 1pt; padding-left: 4pt; border-left:=
+ #800000 2px solid; } --></style>
+</head>
+<body>
+<font face=3D"Consolas" size=3D"2"><span style=3D"font-size:11pt;">
+<div>Agenda:</div>
+<div>&nbsp;</div>
+<div>* Opens collection - 5 min (Song)</div>
+<div>* Yocto 1.6 status - 10 min (Song/team)</div>
+<div>&nbsp; <a href=3D"https://wiki.yoctoproject.org/wiki/Yocto_Project_v1.=
+6_Status"><font face=3D"Calibri" color=3D"blue"><u>https://wiki.yoctoprojec=
+t.org/wiki/Yocto_Project_v1.6_Status</u></font></a></div>
+<div>&nbsp; <a href=3D"https://wiki.yoctoproject.org/wiki/Yocto_1.6_Feature=
+s"><font face=3D"Calibri" color=3D"blue"><u>https://wiki.yoctoproject.org/w=
+iki/Yocto_1.6_Features</u></font></a></div>
+<div>* SWAT team rotation: Cristian Iorga -&gt; Cristiana Voicu</div>
+<div>* Opens - 10 min </div>
+<div>* Team Sharing - 20 min</div>
+<div><font face=3D"Times New Roman" color=3D"#1F497D">&nbsp;</font></div>
+<div><font face=3D"Times New Roman" color=3D"#1F497D">&nbsp;</font></div>
+<div><font face=3D"Tahoma" size=3D"2"><span style=3D"font-size:10pt;">-----=
+Original Appointment-----</span></font></div>
+<div><font face=3D"Times New Roman">&nbsp;</font></div>
+<div><font size=3D"2"><span style=3D"font-size:10.5pt;">We encourage people=
+ attending the meeting to logon the Yocto IRC chancel during the meeting (o=
+ptional):</span></font></div>
+<div><font size=3D"2"><span style=3D"font-size:10.5pt;">&nbsp;</span></font=
+></div>
+<div><font size=3D"2"><span style=3D"font-size:10.5pt;">Yocto IRC: <a href=
+=3D"http://webchat.freenode.net/?channels=3D#yocto"><font color=3D"blue"><u=
+>http://webchat.freenode.net/?channels=3D#yocto</u></font></a></span></font=
+></div>
+<div><font size=3D"2"><span style=3D"font-size:10.5pt;">IRC Tutorial: <a hr=
+ef=3D"http://www.irchelp.org/irchelp/irctutorial.html"><font color=3D"blue"=
+><u>http://www.irchelp.org/irchelp/irctutorial.html</u></font></a> </span><=
+/font></div>
+<div><font face=3D"Times New Roman">&nbsp;</font></div>
+<table width=3D"725" style=3D"width:435pt;margin-left:0.2pt;">
+<col width=3D"725" style=3D"width:435pt;">
+<tr>
+<td style=3D"background-color:#E8E8E8;"><font face=3D"Verdana" size=3D"2"><=
+span style=3D"font-size:8.5pt;background-color:#E8E8E8;"><b>Conference deta=
+ils</b></span></font></td>
+</tr>
+</table>
+<table width=3D"725" style=3D"width:435pt;margin-left:0.2pt;">
+<col width=3D"217" style=3D"width:130.4pt;">
+<col width=3D"507" style=3D"width:304.6pt;">
+<tr>
+<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
+-size:8.5pt;">Conference name:</span></font></td>
+<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
+-size:8.5pt;"><b>Yocto Project Technical Team</b></span></font></td>
+</tr>
+<tr>
+<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
+-size:8.5pt;">Conference date/start time:</span></font></td>
+<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
+-size:8.5pt;"><b>Tue Jun 25, 2013 at 11:00 AM Eastern Daylight Time (GMT-04=
+00)</b></span></font></td>
+</tr>
+<tr>
+<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
+-size:8.5pt;">Participants:</span></font></td>
+<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
+-size:8.5pt;"><b>30</b></span></font></td>
+</tr>
+<tr>
+<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
+-size:8.5pt;">Duration:</span></font></td>
+<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
+-size:8.5pt;"><b>60 minutes</b></span></font></td>
+</tr>
+<tr>
+<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
+-size:8.5pt;">Participant passcode:</span></font></td>
+<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
+-size:8.5pt;"><b>42001078</b></span></font></td>
+</tr>
+<tr>
+<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
+-size:8.5pt;">Dial-in number:</span></font></td>
+<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
+-size:8.5pt;"><b>1.972.995.7777</b></span></font></td>
+</tr>
+<tr>
+<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
+-size:8.5pt;">US Toll Free number:</span></font></td>
+<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
+-size:8.5pt;"><b>1.877.561.6828</b></span></font></td>
+</tr>
+<tr>
+<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
+-size:8.5pt;">BlackBerry users, click this link to join your conference as =
+a&nbsp;<b>participant</b>:</span></font></td>
+<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
+-size:8.5pt;"><b>1.972.995.7777x42001078#</b></span></font></td>
+</tr>
+<tr>
+<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
+-size:8.5pt;">&nbsp;</span></font></td>
+<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
+-size:8.5pt;">Depending on where you are dialing from, either your BlackBer=
+ry will pause and enter the passcode automatically or you will be prompted =
+to click again to dial the passcode.</span></font></td>
+</tr>
+<tr>
+<td colspan=3D"2">
+<table width=3D"273" style=3D"width:164.25pt;margin-left:5.55pt;">
+<col width=3D"273" style=3D"width:164.25pt;">
+<tr>
+<td><font face=3D"Times New Roman"></font></td>
+</tr>
+<tr>
+<td style=3D"background-color:#428CC6;"><font face=3D"Verdana" size=3D"2" c=
+olor=3D"#CFCFCF"><span style=3D"font-size:8.5pt;background-color:#428CC6;">=
+<b>Local and Global Access Numbers</b></span></font></td>
+</tr>
+</table>
+<div><font face=3D"Times New Roman" color=3D"#666666">&nbsp;</font></div>
+<table width=3D"576" style=3D"width:345.6pt;margin-left:5.55pt;">
+<col width=3D"172" style=3D"width:103.4pt;">
+<col width=3D"403" style=3D"width:242.2pt;">
+<tr>
+<td><font face=3D"Times New Roman"></font></td>
+</tr>
+<tr>
+<td><font face=3D"Verdana" size=3D"2"><span style=3D"font-size:8.5pt;"><b>C=
+ountry</b></span></font></td>
+<td><font face=3D"Verdana" size=3D"2"><span style=3D"font-size:8.5pt;"><b>D=
+ial-in number</b></span></font></td>
+</tr>
+<tr>
+<td style=3D"background-color:#EBEBEB;"><font face=3D"Verdana" size=3D"2" c=
+olor=3D"#666666"><span style=3D"font-size:8.5pt;background-color:#EBEBEB;">=
+<b>Australia:</b></span></font></td>
+<td style=3D"background-color:#EBEBEB;"><font face=3D"Verdana" size=3D"2" c=
+olor=3D"#666666"><span style=3D"font-size:8.5pt;background-color:#EBEBEB;">=
+1800 636 843</span></font></td>
+</tr>
+<tr>
+<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
+-size:8.5pt;"><b>Czech Republic:</b></span></font></td>
+<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
+-size:8.5pt;">242 430 350</span></font></td>
+</tr>
+<tr>
+<td style=3D"background-color:#EBEBEB;"><font face=3D"Verdana" size=3D"2" c=
+olor=3D"#666666"><span style=3D"font-size:8.5pt;background-color:#EBEBEB;">=
+<b>China (Beijing):</b></span></font></td>
+<td style=3D"background-color:#EBEBEB;"><font face=3D"Verdana" size=3D"2" c=
+olor=3D"#666666"><span style=3D"font-size:8.5pt;background-color:#EBEBEB;">=
+From office dial 8-9957777 or 8784277&nbsp;<br>
+
+Beijing Out of Office dial 5878 4277</span></font></td>
+</tr>
+<tr>
+<td style=3D"background-color:#EBEBEB;"><font face=3D"Verdana" size=3D"2" c=
+olor=3D"#666666"><span style=3D"font-size:8.5pt;background-color:#EBEBEB;">=
+<b>China (Shanghai):</b></span></font></td>
+<td style=3D"background-color:#EBEBEB;"><font face=3D"Verdana" size=3D"2" c=
+olor=3D"#666666"><span style=3D"font-size:8.5pt;background-color:#EBEBEB;">=
+From office dial 8-9957777 or 3073322&nbsp;<br>
+
+Shanghai Out of Office dial 2307 3322</span></font></td>
+</tr>
+<tr>
+<td style=3D"background-color:#EBEBEB;"><font face=3D"Verdana" size=3D"2" c=
+olor=3D"#666666"><span style=3D"font-size:8.5pt;background-color:#EBEBEB;">=
+<b>China (Shenzen):</b></span></font></td>
+<td style=3D"background-color:#EBEBEB;"><font face=3D"Verdana" size=3D"2" c=
+olor=3D"#666666"><span style=3D"font-size:8.5pt;background-color:#EBEBEB;">=
+From office dial 8-9957777 or 6007877&nbsp;<br>
+
+Shenzen Out of Office dial 2600 7877</span></font></td>
+</tr>
+<tr>
+<td style=3D"background-color:#EBEBEB;"><font face=3D"Verdana" size=3D"2" c=
+olor=3D"#666666"><span style=3D"font-size:8.5pt;background-color:#EBEBEB;">=
+<b>China (Other Cities):</b></span></font></td>
+<td style=3D"background-color:#EBEBEB;"><font face=3D"Verdana" size=3D"2" c=
+olor=3D"#666666"><span style=3D"font-size:8.5pt;background-color:#EBEBEB;">=
+From IP phone dial 8-9957777&nbsp;<br>
+
+Other cities - Non IP phone dial 021-23073322</span></font></td>
+</tr>
+<tr>
+<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
+-size:8.5pt;"><b>Denmark:</b></span></font></td>
+<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
+-size:8.5pt;">8060 1400</span></font></td>
+</tr>
+<tr>
+<td style=3D"background-color:#EBEBEB;"><font face=3D"Verdana" size=3D"2" c=
+olor=3D"#666666"><span style=3D"font-size:8.5pt;background-color:#EBEBEB;">=
+<b>Finland:</b></span></font></td>
+<td style=3D"background-color:#EBEBEB;"><font face=3D"Verdana" size=3D"2" c=
+olor=3D"#666666"><span style=3D"font-size:8.5pt;background-color:#EBEBEB;">=
+09 41333477</span></font></td>
+</tr>
+<tr>
+<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
+-size:8.5pt;"><b>France:</b></span></font></td>
+<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
+-size:8.5pt;">0497 275888</span></font></td>
+</tr>
+<tr>
+<td style=3D"background-color:#EBEBEB;"><font face=3D"Verdana" size=3D"2" c=
+olor=3D"#666666"><span style=3D"font-size:8.5pt;background-color:#EBEBEB;">=
+<b>Germany:</b></span></font></td>
+<td style=3D"background-color:#EBEBEB;"><font face=3D"Verdana" size=3D"2" c=
+olor=3D"#666666"><span style=3D"font-size:8.5pt;background-color:#EBEBEB;">=
+08161 803232</span></font></td>
+</tr>
+<tr>
+<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
+-size:8.5pt;"><b>Holland:</b></span></font></td>
+<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
+-size:8.5pt;">030 2417490</span></font></td>
+</tr>
+<tr>
+<td style=3D"background-color:#EBEBEB;"><font face=3D"Verdana" size=3D"2" c=
+olor=3D"#666666"><span style=3D"font-size:8.5pt;background-color:#EBEBEB;">=
+<b>India:</b></span></font></td>
+<td style=3D"background-color:#EBEBEB;"><font face=3D"Verdana" size=3D"2" c=
+olor=3D"#666666"><span style=3D"font-size:8.5pt;background-color:#EBEBEB;">=
+BSNL subscribers use 1800 425 9996 (Toll Free)<br>
+
+Airtel subscribers use 0008 009 861 212 (Toll Free)<br>
+
+From TI Campus use 89957777<br>
+
+Others use 2509 9555 (Landline within Bangalore) or<br>
+
+80 2509 9555 (Outside Bangalore)</span></font></td>
+</tr>
+<tr>
+<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
+-size:8.5pt;"><b>Israel:</b></span></font></td>
+<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
+-size:8.5pt;">09 790 6715</span></font></td>
+</tr>
+<tr>
+<td style=3D"background-color:#EBEBEB;"><font face=3D"Verdana" size=3D"2" c=
+olor=3D"#666666"><span style=3D"font-size:8.5pt;background-color:#EBEBEB;">=
+<b>Italy:</b></span></font></td>
+<td style=3D"background-color:#EBEBEB;"><font face=3D"Verdana" size=3D"2" c=
+olor=3D"#666666"><span style=3D"font-size:8.5pt;background-color:#EBEBEB;">=
+039 69061234 (039 is local city code not country code)</span></font></td>
+</tr>
+<tr>
+<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
+-size:8.5pt;"><b>Japan:</b></span></font></td>
+<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
+-size:8.5pt;">From TI Campus use 8 995 7777&nbsp;<br>
+
+Outside TI use 03 4331 3777</span></font></td>
+</tr>
+<tr>
+<td style=3D"background-color:#EBEBEB;"><font face=3D"Verdana" size=3D"2" c=
+olor=3D"#666666"><span style=3D"font-size:8.5pt;background-color:#EBEBEB;">=
+<b>Malaysia:</b></span></font></td>
+<td style=3D"background-color:#EBEBEB;"><font face=3D"Verdana" size=3D"2" c=
+olor=3D"#666666"><span style=3D"font-size:8.5pt;background-color:#EBEBEB;">=
+From IP phone dial 2643799&nbsp;<br>
+
+From Kuala Lumpur dial 4264 3799&nbsp;<br>
+
+Outside Kuala Lumpur dial (03)4264 3799</span></font></td>
+</tr>
+<tr>
+<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
+-size:8.5pt;"><b>Norway:</b></span></font></td>
+<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
+-size:8.5pt;">2 295 8744</span></font></td>
+</tr>
+<tr>
+<td style=3D"background-color:#EBEBEB;"><font face=3D"Verdana" size=3D"2" c=
+olor=3D"#666666"><span style=3D"font-size:8.5pt;background-color:#EBEBEB;">=
+<b>Philippines:</b></span></font></td>
+<td style=3D"background-color:#EBEBEB;"><font face=3D"Verdana" size=3D"2" c=
+olor=3D"#666666"><span style=3D"font-size:8.5pt;background-color:#EBEBEB;">=
+From Baguio City use 4471177&nbsp;<br>
+
+From Metro Manila area use 8702477</span></font></td>
+</tr>
+<tr>
+<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
+-size:8.5pt;"><b>Singapore:</b></span></font></td>
+<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
+-size:8.5pt;">From IP phone dial 3894777&nbsp;<br>
+
+Outside TI use 6389 4777</span></font></td>
+</tr>
+<tr>
+<td style=3D"background-color:#EBEBEB;"><font face=3D"Verdana" size=3D"2" c=
+olor=3D"#666666"><span style=3D"font-size:8.5pt;background-color:#EBEBEB;">=
+<b>South Korea:</b></span></font></td>
+<td style=3D"background-color:#EBEBEB;"><font face=3D"Verdana" size=3D"2" c=
+olor=3D"#666666"><span style=3D"font-size:8.5pt;background-color:#EBEBEB;">=
+From IP phone dial 5606998&nbsp;<br>
+
+From Seoul dial 5606998&nbsp;<br>
+
+Outside Seoul dial (02)5606998</span></font></td>
+</tr>
+<tr>
+<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
+-size:8.5pt;"><b>Sweden:</b></span></font></td>
+<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
+-size:8.5pt;">08 58755577</span></font></td>
+</tr>
+<tr>
+<td style=3D"background-color:#EBEBEB;"><font face=3D"Verdana" size=3D"2" c=
+olor=3D"#666666"><span style=3D"font-size:8.5pt;background-color:#EBEBEB;">=
+<b>Taiwan:</b></span></font></td>
+<td style=3D"background-color:#EBEBEB;"><font face=3D"Verdana" size=3D"2" c=
+olor=3D"#666666"><span style=3D"font-size:8.5pt;background-color:#EBEBEB;">=
+From IP phone dial 1363&nbsp;<br>
+
+From Taipei dial 2241 1363&nbsp;<br>
+
+Outside Taipei dial (02)2241 1363</span></font></td>
+</tr>
+<tr>
+<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
+-size:8.5pt;"><b>Turkey:</b></span></font></td>
+<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
+-size:8.5pt;"><b>Landline Only</b>&nbsp;dial 0811 288 0001&nbsp;<br>
+
+then enter 877 633 1123</span></font></td>
+</tr>
+<tr>
+<td style=3D"background-color:#EBEBEB;"><font face=3D"Verdana" size=3D"2" c=
+olor=3D"#666666"><span style=3D"font-size:8.5pt;background-color:#EBEBEB;">=
+<b>UK:</b></span></font></td>
+<td style=3D"background-color:#EBEBEB;"><font face=3D"Verdana" size=3D"2" c=
+olor=3D"#666666"><span style=3D"font-size:8.5pt;background-color:#EBEBEB;">=
+01908 355599</span></font></td>
+</tr>
+<tr>
+<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
+-size:8.5pt;"><b>US:</b></span></font></td>
+<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
+-size:8.5pt;">972 995 7777 or 1877 561 6828</span></font></td>
+</tr>
+</table>
+<div><font face=3D"Times New Roman" color=3D"#666666">&nbsp;</font></div>
+</td>
+</tr>
+</table>
+<table width=3D"725" style=3D"width:435pt;margin-left:0.2pt;">
+<col width=3D"725" style=3D"width:435pt;">
+<tr>
+<td style=3D"background-color:#E8E8E8;"><font face=3D"Verdana" size=3D"2"><=
+span style=3D"font-size:8.5pt;background-color:#E8E8E8;"><b>Recurring confe=
+rences</b></span></font></td>
+</tr>
+</table>
+<table width=3D"725" style=3D"width:435pt;margin-left:0.2pt;">
+<col width=3D"217" style=3D"width:130.4pt;">
+<col width=3D"507" style=3D"width:304.6pt;">
+<tr>
+<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
+-size:8.5pt;">First scheduled conference:</span></font></td>
+<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
+-size:8.5pt;"><b>Tue Jun 25, 2013</b></span></font></td>
+</tr>
+<tr>
+<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
+-size:8.5pt;">Recurrence frequency:</span></font></td>
+<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
+-size:8.5pt;"><b>Weekly - Every 1 week(s) on Tuesday</b></span></font></td>
+</tr>
+<tr>
+<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
+-size:8.5pt;">Recurrence ends:</span></font></td>
+<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
+-size:8.5pt;"><b>End after 52 occurrences</b></span></font></td>
+</tr>
+</table>
+<div><font face=3D"Times New Roman">&nbsp;</font></div>
+<div><font face=3D"Times New Roman">&nbsp;</font></div>
+</span></font>
+</body>
+</html>
+
+--_000_7E680CB2A76BB8438D08CF13C09FC53A8EFCA4E7ORSMSX108amrcor_--
