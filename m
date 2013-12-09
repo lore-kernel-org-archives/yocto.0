@@ -1,29 +1,37 @@
-Return-Path: <aranzazumuelas@gmail.com>
-Received: from mail-qc0-f178.google.com (mail-qc0-f178.google.com
-	[209.85.216.178])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CF43EE00779
-	for <yocto@yoctoproject.org>; Wed,  4 Dec 2013 07:50:47 -0800 (PST)
-Received: by mail-qc0-f178.google.com with SMTP id i17so3702060qcy.9
-	for <yocto@yoctoproject.org>; Wed, 04 Dec 2013 07:50:47 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=FFKhfLZ8nSI0wKNg7k9Y7e4ZDSLzkpLaxYoEu5ypcOE=;
-	b=d9cu0yGBDVDksWhQYrYtxrzg7ky4OfawQEFbBUsXUIyNoO7JZ9RMThJiRzQNfAStUH
-	lsfeIBygMzxHrsQaINWJe9++lLVKZHRcZkDmIdARtl5UcYsFpZVew7489uKw3beuVhOn
-	QHbCL1p42vJm56agFJCqkaWnJ5/bfd3Cj9MX9GmqFjzV5sYeF0Egt54AHrBKtvhrCmfF
-	T5S/4O02lrLAileRZEekTpRSBW19tGDNr0HUqCGd3lblohl5MAQi4tLHYVB9XiAfOkIl
-	i0ull8wzgn5/85+DrrsOHpP6BtoEDBKkPecvK/i4yWHq+PB1d1Zs8zSQd4KQSy+r+sJK
-	rtAQ==
+Return-Path: <scott.m.rifenbark@intel.com>
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5DDE0E005B1
+	for <yocto@yoctoproject.org>; Mon,  9 Dec 2013 10:51:04 -0800 (PST)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga102.fm.intel.com with ESMTP; 09 Dec 2013 10:51:04 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.93,859,1378882800"; d="scan'208";a="447139697"
+Received: from orsmsx107.amr.corp.intel.com ([10.22.240.5])
+	by fmsmga002.fm.intel.com with ESMTP; 09 Dec 2013 10:51:04 -0800
+Received: from orsmsx115.amr.corp.intel.com (10.22.240.11) by
+	ORSMSX107.amr.corp.intel.com (10.22.240.5) with Microsoft SMTP Server
+	(TLS) id 14.3.123.3; Mon, 9 Dec 2013 10:51:03 -0800
+Received: from orsmsx101.amr.corp.intel.com ([169.254.8.94]) by
+	ORSMSX115.amr.corp.intel.com ([10.22.240.11]) with mapi id
+	14.03.0123.003; Mon, 9 Dec 2013 10:51:03 -0800
+From: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
+To: David <david.c.nystrom@gmail.com>, "Rifenbark, Scott M"
+	<scott.m.rifenbark@linux.intel.com>
+Thread-Topic: [yocto] [yocto-docs][PATCH] Revert "ref-manual: Added sdk-pms
+	to Distro Feature list."
+Thread-Index: AQHO8oV3FsBLPSJMq0aauaZ8LiGbTZpMg/oA//+12sA=
+Date: Mon, 9 Dec 2013 18:51:02 +0000
+Message-ID: <41DEA4B02DBDEF40A0F3B6D0DDB1237983F534F0@ORSMSX101.amr.corp.intel.com>
+References: <1386254684-26972-1-git-send-email-david.nystrom@enea.com>
+	<52A1CDEA.5050303@linux.intel.com> <52A5DE80.9070602@gmail.com>
+In-Reply-To: <52A5DE80.9070602@gmail.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.138]
 MIME-Version: 1.0
-X-Received: by 10.49.2.132 with SMTP id 4mr92644036qeu.15.1386172247011; Wed,
-	04 Dec 2013 07:50:47 -0800 (PST)
-Received: by 10.229.138.69 with HTTP; Wed, 4 Dec 2013 07:50:46 -0800 (PST)
-Date: Wed, 4 Dec 2013 16:50:46 +0100
-Message-ID: <CAKVO3PXf2a4fPPhvbz5zLaNQ5tPuw=h+LzUpFd-9fX93v_J2Ng@mail.gmail.com>
-From: Arancha Muelas Ruiz <aranzazumuelas@gmail.com>
-To: yocto@yoctoproject.org
-X-Mailman-Approved-At: Mon, 09 Dec 2013 08:09:18 -0800
-Subject: FxOS on Rpi
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: [yocto-docs][PATCH] Revert "ref-manual: Added sdk-pms to Distro Feature list."
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -35,74 +43,37 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 04 Dec 2013 15:50:50 -0000
-Content-Type: multipart/alternative; boundary=047d7b6d99b061a19004ecb76007
+X-List-Received-Date: Mon, 09 Dec 2013 18:51:05 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
---047d7b6d99b061a19004ecb76007
-Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
+SSB3aWxsIGxvb2sgYXQgaXQgYWdhaW4uLi4gTXkgd29ya2Zsb3cgZm9yIHBhdGNoZXMgcmVxdWly
+ZXMgbWUgdG8gc2F2ZSB0aGUgcGF0Y2ggZnJvbSBteSBUaHVuZGVyYmlyZCBhY2NvdW50IG9uIG15
+IFdpbmRvd3MgbWFjaGluZSBhcyBhbiAuZW1sIGZpbGUgYW5kIHRoZW4gbWFpbCBpdCB0byBteSBn
+bWFpbCBhY2NvdW50IG9uIG15IExpbnV4IGJveC4gIFdoZW4gSSBkaWQgdGhpcyB3aXRoIHRoZSBw
+cmV2aW91cyBvbmUgaXQgd2FzIGp1c3QgYSBsb25nIHN0cmluZyBvZiBiaXRzLiAgDQoNClNjb3R0
+DQoNCj4tLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KPkZyb206IHlvY3RvLWJvdW5jZXNAeW9j
+dG9wcm9qZWN0Lm9yZyBbbWFpbHRvOnlvY3RvLQ0KPmJvdW5jZXNAeW9jdG9wcm9qZWN0Lm9yZ10g
+T24gQmVoYWxmIE9mIERhdmlkDQo+U2VudDogTW9uZGF5LCBEZWNlbWJlciAwOSwgMjAxMyA3OjE1
+IEFNDQo+VG86IFJpZmVuYmFyaywgU2NvdHQgTQ0KPkNjOiB5b2N0b0B5b2N0b3Byb2plY3Qub3Jn
+DQo+U3ViamVjdDogUmU6IFt5b2N0b10gW3lvY3RvLWRvY3NdW1BBVENIXSBSZXZlcnQgInJlZi1t
+YW51YWw6IEFkZGVkIHNkay1wbXMNCj50byBEaXN0cm8gRmVhdHVyZSBsaXN0LiINCj4NCj5PbiBm
+cmUgIDYgZGVjIDIwMTMgMTQ6MTU6MjIsIFJpZmVuYmFyaywgU2NvdHQgTSB3cm90ZToNCj4+IERh
+dmlkLA0KPj4NCj4+IFRoaXMgcGF0Y2ggZGlkIG5vdCBmb3JtYXQgd2VsbCB3aGVuIEkgc2VudCB0
+byBteSBMaW51eCBib3guICBJIGNhbm5vdA0KPj4gYXBwbHkgaXQuICBJIGNhbiBhcHBseSBpdCBi
+eSBoYW5kIG9yIHlvdSBjYW4gdHJ5IGFuZCBmb3JtIHRoZSBwYXRjaA0KPj4gYWdhaW4gYW5kIHJl
+LXNlbmQgaXQgdG8gdGhlIHlvY3RvQHlvY3RvcHJvamVjdC5vcmcgbWFpbGluZyBncm91cC4NCj4+
+DQo+PiBUaGFua3MsDQo+PiBTY290dA0KPg0KPkhpIFNjb3R0LA0KPg0KPkhtbSwgSSBkb24ndCBz
+ZWUgYW55dGhpbmcgd3Jvbmcgd2l0aCB0aGlzIHBhdGNoLCBJIGRvdWJsZS1jaGVja2VkIGJ5IHNh
+dmluZw0KPml0IGZyb20gdGhlIE1MIGFuZCBpdCBhcHBsaWVzIGNsZWFubHkgdG8gd2l0aCAiZ2l0
+IGFtIiB0byBib3RoIHBva3kvbWFzdGVyIGFuZA0KPnlvY3RvLWRvY3MvbWFzdGVyDQo+DQo+VGhp
+cyBwYXRjaCBpcyBhIGNsZWFuIHJldmVydCwgYW5kIHdvdWxkIGJlIHRoZSBzYW1lIGFzIGlzc3Vp
+bmcgZ2l0IHJldmVydA0KPmY4MDc2ZjE5MTZjYzUyNjQ3YjEyOTkyMmMxYjE2NDZhZDZkZjhmZjkg
+aW4geW9jdG8tZG9jcy4NCj4NCj5CciwNCj5EYXZpZA0KPg0KPj4NCj4+IE9uIDEyLzUvMjAxMyA2
+OjQ0IEFNLCBEYXZpZCBOeXN0csO2bSB3cm90ZToNCj4+PiBUaGlzIHJldmVydHMgY29tbWl0IGY4
+MDc2ZjE5MTZjYzUyNjQ3YjEyOTkyMmMxYjE2NDZhZDZkZjhmZjkuDQo+DQo+X19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18NCj55b2N0byBtYWlsaW5nIGxpc3QN
+Cj55b2N0b0B5b2N0b3Byb2plY3Qub3JnDQo+aHR0cHM6Ly9saXN0cy55b2N0b3Byb2plY3Qub3Jn
+L2xpc3RpbmZvL3lvY3RvDQo=
 
-Hello;
-I=B4m tryingo to port FxOS on Raspberry pi with that manual:
-http://www.philipp-wagner.com/ffos-for-rpi/manual/
-
->>>src/poky/rpi-build$ bitbake -v rpi-b2g-image
-
-ERROR: 'debug-tools' in IMAGE_FEATURES is not a valid image feature. Valid
-features: dbg-pkgs debug-tweaks dev-pkgs doc-pkgs eclipse-debug hwcodecs
-nfs-server package-management package-management ptest-pkgs qt4-pkgs
-read-only-rootfs splash ssh-server-dropbear ssh-server-openssh
-staticdev-pkgs tools-debug tools-profile tools-sdk tools-testapps x11
-x11-base x11-sato
-ERROR: Unable to parse /media/9697426f-bc6f-437d-
-bb62-4272fef1d0a0/src/poky/meta-b2g/recipes-core/images/rpi-b2g-image.bb:
-Exited with "1"
-ERROR: 'debug-tools' in IMAGE_FEATURES is not a valid image feature. Valid
-features: dbg-pkgs debug-tweaks dev-pkgs doc-pkgs eclipse-debug hwcodecs
-nfs-server package-management package-management ptest-pkgs qt4-pkgs
-read-only-rootfs splash ssh-server-dropbear ssh-server-openssh
-staticdev-pkgs tools-debug tools-profile tools-sdk tools-testapps x11
-x11-base x11-sato
-
-Summary: There were 3 ERROR messages shown, returning a non-zero exit code.
-
-I dont know what happen :-(
-
-Any help? please.
-
-Best,A.
-
---047d7b6d99b061a19004ecb76007
-Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div>Hello;<br>I=B4m tryingo to port FxOS on Raspberry pi =
-with that manual: <br><a href=3D"http://www.philipp-wagner.com/ffos-for-rpi=
-/manual/" target=3D"_blank">http://www.philipp-wagner.com/ffos-for-rpi/manu=
-al/</a><br>
-<br>&gt;&gt;&gt;src/poky/rpi-build$ bitbake -v rpi-b2g-image<br><br>
-ERROR: &#39;debug-tools&#39; in IMAGE_FEATURES is not a valid image feature=
-.=20
-Valid features: dbg-pkgs debug-tweaks dev-pkgs doc-pkgs eclipse-debug=20
-hwcodecs nfs-server package-management package-management ptest-pkgs=20
-qt4-pkgs read-only-rootfs splash ssh-server-dropbear ssh-server-openssh=20
-staticdev-pkgs tools-debug tools-profile tools-sdk tools-testapps x11=20
-x11-base x11-sato<br>
-ERROR: Unable to parse /media/9697426f-bc6f-437d-<div>bb62-4272fef1d0a0/src=
-/poky/meta-b2g/recipes-core/images/<a href=3D"http://rpi-b2g-image.bb" targ=
-et=3D"_blank">rpi-b2g-image.bb</a>: Exited with &quot;1&quot;<br>ERROR:
- &#39;debug-tools&#39; in IMAGE_FEATURES is not a valid image feature. Vali=
-d=20
-features: dbg-pkgs debug-tweaks dev-pkgs doc-pkgs eclipse-debug hwcodecs
- nfs-server package-management package-management ptest-pkgs qt4-pkgs=20
-read-only-rootfs splash ssh-server-dropbear ssh-server-openssh=20
-staticdev-pkgs tools-debug tools-profile tools-sdk tools-testapps x11=20
-x11-base x11-sato<br>
-<br>Summary: There were 3 ERROR messages shown, returning a non-zero exit c=
-ode.<br><br></div>I dont know what happen :-(<br><br></div>Any help? please=
-.<br><div><br>Best,A.<div class=3D""><div id=3D":1qo" class=3D"" tabindex=
-=3D"0">
-<img class=3D"" src=3D"https://mail.google.com/mail/u/0/images/cleardot.gif=
-"></div></div></div></div>
-
---047d7b6d99b061a19004ecb76007--
