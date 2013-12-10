@@ -1,28 +1,39 @@
-Return-Path: <diego.sueiro@gmail.com>
-Received: from mail-ie0-f182.google.com (mail-ie0-f182.google.com
-	[209.85.223.182])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 17862E0076A
-	for <yocto@yoctoproject.org>; Tue, 10 Dec 2013 04:22:49 -0800 (PST)
-Received: by mail-ie0-f182.google.com with SMTP id as1so8470366iec.27
-	for <yocto@yoctoproject.org>; Tue, 10 Dec 2013 04:22:49 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:from:date:message-id:subject:to:content-type;
-	bh=dLJRRjAg/DxTP72Ha0/gVQQT1fpN9r9R7XK7K4Lphvw=;
-	b=UBvcTTcnyNj3uq8EamEhg1Sxjy19bOzMLfvOdSwzRaBXpt0xDKCOwREtvc4FVmEo6J
-	jj742wG0dO2gtXwaR66nRfFb1VtW/TLI0AkA9Yf34uzAIomUToz9lxBJiae2zKf9UG8E
-	JuXNpHI3hZU50qT92gZ8IGgjR2128/YIws0UysIqSQzmcPEco+iL+mnSR10auncW2Uhz
-	qZ5UKDkQYn40JhV7yI+msJccK3ct0uD2gKsweo5ook4qCCpu9KJNlvEhY1Ib2UGAY9kh
-	/IjISUclI3HSZBHoVWyCx5H30SZ35cbdYbDuJuIGa78TMm/K3J5ldP2Z2pFfx54xrnUG
-	gtjg==
-X-Received: by 10.50.87.33 with SMTP id u1mr19548680igz.42.1386678169015; Tue,
-	10 Dec 2013 04:22:49 -0800 (PST)
+Return-Path: <olof.johansson@axis.com>
+Received: from ra.se.axis.com (ra.se.axis.com [195.60.68.13])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DD6F1E00785
+	for <yocto@yoctoproject.org>; Tue, 10 Dec 2013 07:53:35 -0800 (PST)
+Received: from localhost (localhost [127.0.0.1])
+	by ra.se.axis.com (Postfix) with ESMTP id 6011C3F20F3;
+	Tue, 10 Dec 2013 16:53:34 +0100 (CET)
+X-Virus-Scanned: Debian amavisd-new at ra.se.axis.com
+Received: from ra.se.axis.com ([127.0.0.1])
+	by localhost (ra.se.axis.com [127.0.0.1]) (amavisd-new, port 10024)
+	with LMTP id aFaOp8dl1XdZ; Tue, 10 Dec 2013 16:53:34 +0100 (CET)
+Received: from boulder.se.axis.com (boulder.se.axis.com [10.0.2.104])
+	by ra.se.axis.com (Postfix) with ESMTP id 2C06A3F20E9;
+	Tue, 10 Dec 2013 16:53:28 +0100 (CET)
+Received: from boulder.se.axis.com (localhost [127.0.0.1])
+	by postfix.imss71 (Postfix) with ESMTP id 160FB9F2;
+	Tue, 10 Dec 2013 16:53:28 +0100 (CET)
+Received: from thoth.se.axis.com (thoth.se.axis.com [10.0.2.173])
+	by boulder.se.axis.com (Postfix) with ESMTP id 0AFB5355;
+	Tue, 10 Dec 2013 16:53:28 +0100 (CET)
+Received: from xmail2.se.axis.com (xmail2.se.axis.com [10.0.5.74])
+	by thoth.se.axis.com (Postfix) with ESMTP id 0950B3404E;
+	Tue, 10 Dec 2013 16:53:28 +0100 (CET)
+Received: from axis.com (10.92.17.1) by xmail2.se.axis.com (10.0.5.74) with
+	Microsoft SMTP Server (TLS) id 8.2.255.0;
+	Tue, 10 Dec 2013 16:53:27 +0100
+Date: Tue, 10 Dec 2013 16:53:26 +0100
+From: Olof Johansson <olof.johansson@axis.com>
+To: Diego Sueiro <diego.sueiro@gmail.com>
+Message-ID: <20131210155326.GV31548@axis.com>
+References: <CAMCfZKHWGAQJ95K=T-0xpQRoO+RKvgvx9AWKMP9SUPMjAnTUDQ@mail.gmail.com>
 MIME-Version: 1.0
-Received: by 10.64.26.233 with HTTP; Tue, 10 Dec 2013 04:22:28 -0800 (PST)
-From: Diego Sueiro <diego.sueiro@gmail.com>
-Date: Tue, 10 Dec 2013 10:22:28 -0200
-Message-ID: <CAMCfZKHWGAQJ95K=T-0xpQRoO+RKvgvx9AWKMP9SUPMjAnTUDQ@mail.gmail.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: busybox 1.21 ash bug?
+In-Reply-To: <CAMCfZKHWGAQJ95K=T-0xpQRoO+RKvgvx9AWKMP9SUPMjAnTUDQ@mail.gmail.com>
+User-Agent: Mutt/1.5.22 (2013-10-16)
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: busybox 1.21 ash bug?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,84 +45,54 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 10 Dec 2013 12:22:50 -0000
-Content-Type: multipart/alternative; boundary=089e0111b33aaea11104ed2d2b67
+X-List-Received-Date: Tue, 10 Dec 2013 15:53:37 -0000
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
 
---089e0111b33aaea11104ed2d2b67
-Content-Type: text/plain; charset=ISO-8859-1
+Hi,
 
-Folks,
+[Sorry for duplicate replies, apparently I wasn't subscribed
+ with the right email address.]
 
-Recently I switched to dora branch which builds busybox 1.21.
-I was using dylan branch with busybox 1.20 and the some shell scripts
-stopped working.
-There is a problem related with "for" statements.
+On 13-12-10 13:22 +0100, Diego Sueiro wrote:
+> Recently I switched to dora branch which builds busybox 1.21.
+> I was using dylan branch with busybox 1.20 and the some shell
+> scripts stopped working.  There is a problem related with "for"
+> statements.
+> 
+> For example, on script below, it runs nice on busybox 1.20 but
+> on 1.21 fails with the output: "./script.sh: line 3: syntax
+> error: bad for loop variable".
+> 
+> #!/bin/sh
+> 
+> for (( i=1; i <= 5; i++ ))
+> do
+>  echo "Random number $i: $RANDOM"
+> done
 
-For example, on script below, it runs nice on busybox 1.20 but on 1.21
-fails with the output:"./script.sh: line 3: syntax error: bad for loop
-variable".
+That type of for loop is a bashism; as far as I know and can
+tell, busybox ash does not support it (even with ASH_BASH_COMPAT=y).
 
-#!/bin/sh
+The code that is executed when the parser finds a "for" token:
 
-for (( i=1; i <= 5; i++ ))
-do
- echo "Random number $i: $RANDOM"
-done
+ash.c: parse_command(void)
+    ...
+    switch (readtoken()) {
+    ...
+    case TFOR:
+        if (readtoken() != TWORD || quoteflag || !goodname(wordtext))
+            raise_error_syntax("bad for loop variable");
 
-
-I've searched on busybox bug tracking but did not found nothing related
-with this.
-
-Maybe I'm missing something, I really don't know.
-
-I appreciate any help with this, and I'm sorry if this is not the
-appropriate list to discuss this kind of subject.
+Are you sure it's using busybox ash when it actually works? I can
+reproduce the error message your are seeing in both busybox 1.20
+and 1.21.
 
 
+RANDOM is also an extension, but one that is supported by busybox
+(or rather, can be). The default defconfig in oe-core does not
+enable it, see ASH_RANDOM_SUPPORT.
 
-Regards,
+-- 
+olofjn
 
---
-*dS
-Diego Sueiro
-
-/*long live rock 'n roll*/
-
---089e0111b33aaea11104ed2d2b67
-Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div><div style>Folks,</div><div style><br></div><div styl=
-e>Recently I switched to dora branch which builds busybox 1.21.<br></div><d=
-iv style>I was using dylan branch with busybox 1.20 and the some shell scri=
-pts stopped working.</div>
-
-<div style>There is a problem related with &quot;for&quot; statements.</div=
-><div style><br></div><div style>For example, on script below, it runs nice=
- on busybox 1.20 but on 1.21 fails with the output:&quot;./script.sh: line =
-3: syntax error: bad for loop variable&quot;.</div>
-
-<div style><br></div></div><blockquote style=3D"margin:0px 0px 0px 40px;bor=
-der:none;padding:0px"><div style><div style><div style>#!/bin/sh</div></div=
-></div><div style><div style><div style><br></div></div></div><div style>
-
-<div style><div style>for (( i=3D1; i &lt;=3D 5; i++ ))</div></div></div><d=
-iv style><div style><div style>do =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =
-=A0 =A0</div></div></div><div style><div style><div style>=A0echo &quot;Ran=
-dom number $i: $RANDOM&quot;</div>
-
-</div></div><div style><div style><div style>done</div></div></div></blockq=
-uote><div><div style><br></div><div style>I&#39;ve searched on busybox bug =
-tracking but did not found nothing related with this.<br></div><div style>
-
-<br></div><div style>Maybe I&#39;m missing something, I really don&#39;t kn=
-ow.<br></div><div style><br></div><div style>I appreciate any help with thi=
-s, and I&#39;m sorry if this is not the appropriate list to discuss this ki=
-nd of subject.</div>
-
-<div style><br></div><div style><br></div><div dir=3D"ltr"><br></div><div d=
-ir=3D"ltr">Regards,<br><div><br></div>--<br>*dS<br>Diego Sueiro<br><br>/*lo=
-ng live rock &#39;n roll*/</div></div>
-</div>
-
---089e0111b33aaea11104ed2d2b67--
