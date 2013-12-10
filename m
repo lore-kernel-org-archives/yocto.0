@@ -1,35 +1,28 @@
-Return-Path: <diego.sueiro@gmail.com>
-Received: from mail-ie0-f178.google.com (mail-ie0-f178.google.com
-	[209.85.223.178])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 36E79E00785
-	for <yocto@yoctoproject.org>; Tue, 10 Dec 2013 09:47:00 -0800 (PST)
-Received: by mail-ie0-f178.google.com with SMTP id lx4so9283933iec.9
-	for <yocto@yoctoproject.org>; Tue, 10 Dec 2013 09:47:00 -0800 (PST)
+Return-Path: <vidal.develone@gmail.com>
+Received: from mail-qc0-f169.google.com (mail-qc0-f169.google.com
+	[209.85.216.169])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 82F67E005B1
+	for <yocto@yoctoproject.org>; Tue, 10 Dec 2013 12:38:04 -0800 (PST)
+Received: by mail-qc0-f169.google.com with SMTP id r5so4291438qcx.14
+	for <yocto@yoctoproject.org>; Tue, 10 Dec 2013 12:38:03 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-type;
-	bh=eg9jabE4WitgMDPwdGF6TmuqJ3fUrlDOjdTJRbeSCwk=;
-	b=yLREgxl+oHjGEginQKgUuam6rqyafV1q6XqRCVw4KsXoOQS8oI1SYh1JD9nLZ1oNmV
-	l3ZHbFbkOUWlm53hsgdXwi66P0k0iolaYm1vSwUFfTCcFWHaVgGedHE0YRWNOrzWfNsI
-	NoHxJl0eO9nUbJRwyWZVniFIuB1AfUy+OgYq0t/bHGyl1JEpyb7MjiASPJ5J6VECI+r0
-	ZaD39gSMc8TpOgYta6rqL00SgrsWPmaTtkpr0V4FTR8945QSA/Y3CI44o/linBu2Qxek
-	OT7yjkc+p45IZaZ5m0AP6CzWmS3Dgb9tdV9Ow/JspIUKCoJX6zq/5+JqONES2WZrw+1O
-	Loqg==
-X-Received: by 10.50.13.9 with SMTP id d9mr21167084igc.25.1386697620269; Tue,
-	10 Dec 2013 09:47:00 -0800 (PST)
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=qAXX9KAewixtAChZMrnw1CjxtMz4pAflaQxN6LMSMUM=;
+	b=HpCWtmdMMU52XkazUmvsrZCREyzPDaaliKWHIXJA1y07PVzfKmxmi+sMdouattUoac
+	UN1IPmBX51xtOcSYtNvIEYpqFFogGdXk1QdpltC9Pj+KG0xW9VhRTU/Sg5gZZJijTFJ9
+	kLesi+1w+MExYA7SsMPKVu9LPtRdHdbODIXPVthPe6shGSGus7mfoVu2uBBJ/MicD9+E
+	ZQc47k8PL4Fz5A2Mn0Ls1kXRmXLC7SGoxy1IMUwlV/ju6y8Dj54T6TmvJdQ0zwpwFNFK
+	TDI02irNxE4MSdqV3sWP8uyjZvSQqj/VIgDVoW1hidw1tV3mOeyr3VS1TiLEQLwY5Ybg
+	xFbg==
 MIME-Version: 1.0
-Received: by 10.64.26.233 with HTTP; Tue, 10 Dec 2013 09:46:40 -0800 (PST)
-In-Reply-To: <1679390.Ppl8UCuaCK@helios>
-References: <CAMCfZKHWGAQJ95K=T-0xpQRoO+RKvgvx9AWKMP9SUPMjAnTUDQ@mail.gmail.com>
-	<20131210154634.GU31548@axis.com>
-	<CAMCfZKGk2=hoKa48fRkDE-9bgiY424UT0_AZ5VmnjNDKfDY-Sg@mail.gmail.com>
-	<1679390.Ppl8UCuaCK@helios>
-From: Diego Sueiro <diego.sueiro@gmail.com>
-Date: Tue, 10 Dec 2013 15:46:40 -0200
-Message-ID: <CAMCfZKG2hNMEt6088Ln88DanFZ4pJYOTtzfz3a-cPOU0gcARdg@mail.gmail.com>
-To: Paul Eggleton <paul.eggleton@linux.intel.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: busybox 1.21 ash bug?
+X-Received: by 10.224.167.15 with SMTP id o15mr48232730qay.96.1386707883168;
+	Tue, 10 Dec 2013 12:38:03 -0800 (PST)
+Received: by 10.140.37.49 with HTTP; Tue, 10 Dec 2013 12:38:03 -0800 (PST)
+Date: Tue, 10 Dec 2013 13:38:03 -0700
+Message-ID: <CANwz6nwwHW9ja1zXiYjpQdF1A5isxb=3=4eCvk01-3-_t3PP6Q@mail.gmail.com>
+From: Edward Vidal <vidal.develone@gmail.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: poky tree
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,46 +34,32 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 10 Dec 2013 17:47:04 -0000
-Content-Type: multipart/alternative; boundary=089e013c68e21130fd04ed31b3fb
+X-List-Received-Date: Tue, 10 Dec 2013 20:38:04 -0000
+Content-Type: multipart/alternative; boundary=089e01294f64c89b6604ed34168b
 
---089e013c68e21130fd04ed31b3fb
+--089e01294f64c89b6604ed34168b
 Content-Type: text/plain; charset=ISO-8859-1
 
-On Tue, Dec 10, 2013 at 3:25 PM, Paul Eggleton <
-paul.eggleton@linux.intel.com> wrote:
+Hello,
+I have a poky tree that I have used for several builds.
+What is the command to clean out the poky/build/tmp area.
+I am on the dylan branch.  My conf files are configured and my custom-image
+are okay.
+I want to pull meta-oe, meta-broswer, and meta-xiiinx, and poky with a
+clean work area.
+Can I just delete poky/build or poky/build/tmp?
+Thanks
 
-> Assuming that wasn't a deliberate change, it's likely that something that
-> depended on bash was bringing it in before and either that something is no
-> longer in the image, or it no longer depends on bash. (You can of course
-> explicitly add bash to the image if that's what you want.)
->
-
-Thanks Paul,
-
-I added bash on my image.
-
-Rgs,
-
---
-*dS
-Diego Sueiro
-
-/*long live rock 'n roll*/
-
---089e013c68e21130fd04ed31b3fb
+--089e01294f64c89b6604ed34168b
 Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
 
-<div dir="ltr"><div class="gmail_extra"><br><div class="gmail_quote">On Tue, Dec 10, 2013 at 3:25 PM, Paul Eggleton <span dir="ltr">&lt;<a href="mailto:paul.eggleton@linux.intel.com" target="_blank">paul.eggleton@linux.intel.com</a>&gt;</span> wrote:<br>
+<div dir=3D"ltr"><div><div><div><div><div><div>Hello,<br></div>I have a pok=
+y tree that I have used for several builds.<br></div>What is the command to=
+ clean out the poky/build/tmp area.<br></div>I am on the dylan branch.=A0 M=
+y conf files are configured and my custom-image are okay.<br>
+</div>I want to pull meta-oe, meta-broswer, and meta-xiiinx, and poky with =
+a clean work area.<br></div>Can I just delete poky/build or poky/build/tmp?=
+<br></div>Thanks<br></div>
 
-<blockquote class="gmail_quote" style="margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div id=":6ui" style="overflow:hidden">Assuming that wasn&#39;t a deliberate change, it&#39;s likely that something that<br>
-
-
-depended on bash was bringing it in before and either that something is no<br>
-longer in the image, or it no longer depends on bash. (You can of course<br>
-explicitly add bash to the image if that&#39;s what you want.)</div></blockquote></div><br>Thanks Paul,</div><div class="gmail_extra"><br></div><div class="gmail_extra">I added bash on my image.<br><br clear="all"><div><div dir="ltr">
-
-<div>Rgs,</div><div><br></div>--<br>*dS<br>Diego Sueiro<br><br>/*long live rock &#39;n roll*/<br></div></div>
-</div></div>
-
---089e013c68e21130fd04ed31b3fb--
+--089e01294f64c89b6604ed34168b--
