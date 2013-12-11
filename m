@@ -1,31 +1,33 @@
-Return-Path: <gary@mlbassoc.com>
-Received: from mail.chez-thomas.org (mail.mlbassoc.com [65.100.170.105])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 05C57E007D9
-	for <yocto@yoctoproject.org>; Wed, 11 Dec 2013 10:44:42 -0800 (PST)
-Received: by mail.chez-thomas.org (Postfix, from userid 1998)
-	id F2DC7F811ED; Wed, 11 Dec 2013 11:44:41 -0700 (MST)
-X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on
-	hermes.chez-thomas.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=4.0 tests=ALL_TRUSTED,BAYES_00,
-	WEIRD_PORT autolearn=unavailable version=3.3.2
-Received: from [192.168.1.114] (zeus [192.168.1.114])
-	by mail.chez-thomas.org (Postfix) with ESMTP id 52FEFF811EB;
-	Wed, 11 Dec 2013 11:44:40 -0700 (MST)
-Message-ID: <52A8B299.3000704@mlbassoc.com>
-Date: Wed, 11 Dec 2013 11:44:41 -0700
-From: Gary Thomas <gary@mlbassoc.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:24.0) Gecko/20100101 Thunderbird/24.2.0
+Return-Path: <elizabeth.flanagan@intel.com>
+Received: from mail-ve0-f182.google.com (mail-ve0-f182.google.com
+	[209.85.128.182])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D3166E007D9
+	for <yocto@yoctoproject.org>; Wed, 11 Dec 2013 11:11:27 -0800 (PST)
+Received: by mail-ve0-f182.google.com with SMTP id jy13so6257706veb.41
+	for <yocto@yoctoproject.org>; Wed, 11 Dec 2013 11:11:27 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:date:message-id:subject:from:to
+	:content-type;
+	bh=hcHtQEkjp1PiNVtp67oPgVf6zboIw/H51p3LR5Vz76E=;
+	b=kk5lhNujb5cV8jEq7eVP79zk254lBqJUCuY7AuWOSmyTvs8XwOLngyMt/JTT908O6p
+	oUnsaPbESXykQLAAoi8wZ92ZPbIbn0loqdTUqDc4Wkzcdtl1kFUMqNXZzJTU6MeZ06Qy
+	4+A9VssXTmaCNTEpG5Ho+ow48sGKR/E5aNHe9oHv1Btp15SGVb+Ps+m52k7iPfeRE4UP
+	aqBw6hQYMuYm7iBM4drjsIpcaCPPHwRf1gHyTUhbrSqVovIC6Ji22xtavKoJE9StxLkB
+	HUWK1Bs1ZXtAV6e/xP7cPtdIgOLcRv3+1tEIQUTt+eH/S4DT0X+PpFO7uVSjjt+lweJR
+	pgqw==
+X-Gm-Message-State: ALoCoQl7luBQRSvkVUqDx9jTMLYx5SpvWihFRk/tEoWqspxQEymV8lV+zAibqZ2HmTrrPV2gWuvw
 MIME-Version: 1.0
-To: Andrei Gherzan <andrei@gherzan.ro>
-References: <1386505062-7542-1-git-send-email-lists@philipp-wagner.com>
-	<CAK18fxE+VpnV_qnCSpOsWH9H3fo630WbRVmbibPfKmz+3=yazA@mail.gmail.com>
-	<52A8AB88.8000107@mlbassoc.com>
-	<CAK18fxEFcHRCdtKTggES7Tkhx58+B4iYVkGtaAwMCWRV9h-5wQ@mail.gmail.com>
-In-Reply-To: <CAK18fxEFcHRCdtKTggES7Tkhx58+B4iYVkGtaAwMCWRV9h-5wQ@mail.gmail.com>
-Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: [meta-raspberrypi][PATCH] linux: Update to 3.12.3 (latest RPI upstream)
+X-Received: by 10.52.164.203 with SMTP id ys11mr1021221vdb.37.1386789086981;
+	Wed, 11 Dec 2013 11:11:26 -0800 (PST)
+Received: by 10.52.161.7 with HTTP; Wed, 11 Dec 2013 11:11:26 -0800 (PST)
+Date: Wed, 11 Dec 2013 19:11:26 +0000
+Message-ID: <CAPhnLPA1ce6ghLLjZxZZ6jo4votE=K=AwyxvWmToiOaFyWQuGA@mail.gmail.com>
+From: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>, 
+	Alexandru C Georgescu <alexandru.c.georgescu@intel.com>,
+	Zhao Yi <yi.zhao@windriver.com>, Otavio Salvador <otavio@ossystems.com.br>
+Subject: Weekly build availability
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,90 +39,26 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 11 Dec 2013 18:44:45 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 11 Dec 2013 19:11:29 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
-On 2013-12-11 11:23, Andrei Gherzan wrote:
->
->
->
-> On Wed, Dec 11, 2013 at 8:14 PM, Gary Thomas <gary@mlbassoc.com <mailto:gary@mlbassoc.com>> wrote:
->
->     On 2013-12-11 11:08, Andrei Gherzan wrote:
->
->
->
->
->         On Sun, Dec 8, 2013 at 2:17 PM, <lists@philipp-wagner.com <mailto:lists@philipp-wagner.com> <mailto:lists@philipp-wagner.__com <mailto:lists@philipp-wagner.com>>> wrote:
->
->              From: Philipp Wagner <mail@philipp-wagner.com <mailto:mail@philipp-wagner.com> <mailto:mail@philipp-wagner.__com <mailto:mail@philipp-wagner.com>>>
->
->              Signed-off-by: Philipp Wagner <mail@philipp-wagner.com <mailto:mail@philipp-wagner.com> <mailto:mail@philipp-wagner.__com <mailto:mail@philipp-wagner.com>>>
->              ---
->                recipes-kernel/linux/linux-__raspberrypi_3.12.0.bb <http://linux-raspberrypi_3.12.0.bb> <http://linux-raspberrypi_3.__12.0.bb <http://linux-raspberrypi_3.12.0.bb>> |
->         6 ------
->                recipes-kernel/linux/linux-__raspberrypi_3.12.3.bb <http://linux-raspberrypi_3.12.3.bb> <http://linux-raspberrypi_3.__12.3.bb <http://linux-raspberrypi_3.12.3.bb>> |
->         6 ++++++
->
->                2 files changed, 6 insertions(+), 6 deletions(-)
->                delete mode 100644 recipes-kernel/linux/linux-__raspberrypi_3.12.0.bb <http://linux-raspberrypi_3.12.0.bb> <http://linux-raspberrypi_3.__12.0.bb
->         <http://linux-raspberrypi_3.12.0.bb>>
->                create mode 100644 recipes-kernel/linux/linux-__raspberrypi_3.12.3.bb <http://linux-raspberrypi_3.12.3.bb> <http://linux-raspberrypi_3.__12.3.bb
->         <http://linux-raspberrypi_3.12.3.bb>>
->
->              diff --git a/recipes-kernel/linux/linux-__raspberrypi_3.12.0.bb <http://linux-raspberrypi_3.12.0.bb> <http://linux-raspberrypi_3.__12.0.bb
->         <http://linux-raspberrypi_3.12.0.bb>> b/recipes-kernel/linux/linux-__raspberrypi_3.12.0.bb <http://linux-raspberrypi_3.12.0.bb>
->              <http://linux-raspberrypi_3.__12.0.bb <http://linux-raspberrypi_3.12.0.bb>>
->
->              deleted file mode 100644
->              index 3631da5..0000000
->              --- a/recipes-kernel/linux/linux-__raspberrypi_3.12.0.bb <http://linux-raspberrypi_3.12.0.bb> <http://linux-raspberrypi_3.__12.0.bb <http://linux-raspberrypi_3.12.0.bb>>
->
->              +++ /dev/null
->              @@ -1,6 +0,0 @@
->              -SRCREV = "__839f349b6ed2a63a2bff0b5f0d718a__7b07ca2316"
->              -SRC_URI = "git://github.com/raspberrypi/__linux.git;protocol=git;branch=__rpi-3.12.y <http://github.com/raspberrypi/linux.git;protocol=git;branch=rpi-3.12.y>
->         <http://github.com/__raspberrypi/linux.git;__protocol=git;branch=rpi-3.12.y <http://github.com/raspberrypi/linux.git;protocol=git;branch=rpi-3.12.y>__> \
->
->              -           file://__sl030raspberrypii2ckernel.__patch \
->              -          "
->              -
->              -require linux-raspberrypi.inc
->              diff --git a/recipes-kernel/linux/linux-__raspberrypi_3.12.3.bb <http://linux-raspberrypi_3.12.3.bb> <http://linux-raspberrypi_3.__12.3.bb
->         <http://linux-raspberrypi_3.12.3.bb>> b/recipes-kernel/linux/linux-__raspberrypi_3.12.3.bb <http://linux-raspberrypi_3.12.3.bb>
->              <http://linux-raspberrypi_3.__12.3.bb <http://linux-raspberrypi_3.12.3.bb>>
->
->              new file mode 100644
->              index 0000000..304c1ad
->              --- /dev/null
->              +++ b/recipes-kernel/linux/linux-__raspberrypi_3.12.3.bb <http://linux-raspberrypi_3.12.3.bb> <http://linux-raspberrypi_3.__12.3.bb <http://linux-raspberrypi_3.12.3.bb>>
->
->              @@ -0,0 +1,6 @@
->              +SRCREV = "__7dac37b9865ab51f7a68b7703bf679__2b698fee1b"
->
->
->
->         As pointed in https://review.gherzan.ro:__8443/#/c/27/ <https://review.gherzan.ro:8443/#/c/27/>, it seems this SRCREV is invalid.
->
->
->     Since that note has little detail, are you sure that this is not
->     just a case where the desired SRCREV is on a branch other than 'master'?
->     With the latest bitbake master, you have to explicitly specify the branch
->     if the desired revision is on a different branch.
->
->
-> I know. But the branch is already specified in SRC_URI. So most probably upstream sqashed the repo?
+The weekly build will soon be available at:
 
-Indeed, I just checked the repo and it's not there.
+http://autobuilder.yoctoproject.org/pub/nightly/20131211-3
 
-Looks like the correct rev might be 9fbb114990c409406ae20c56871727ff8d4fa6ca
-I may give this a go as it has V4L2 drivers for my camera which I'm anxious
-to get going with Yocto :-)
+bitbake     5223ffb5b6a46d8b3f6ac3362bd2672e2edf2691
+eclipse-poky-juno     e8342d27db60a9d1b627ddb9f8ae2f5512bfc0c9
+eclipse-poky-kepler     3dd620d9f89e297ee9e22d5ba9fe741a5f40ac82
+meta-fsl-arm     c9284f1668f33d5c6a9b2bcc7fc869642a0e4b92
+meta-fsl-ppc     2335375752024972b11efe32d94f6413caaa6bfa
+meta-intel     a649e92498d234f2d0d52f3da5a85bdc87296c23
+meta-minnow     2be99cb63753a19648f37c3785f51cef0857dcb7
+meta-qt3     4772424ab69908d4e3b9d6d4717ca889468e6acd
+oecore     8505f0fa48cc79d51616b923c6e2c778c4b46a44
+poky     bfec6b1947b472d6f1c9c7f297e66ede5e921069
 
 -- 
-------------------------------------------------------------
-Gary Thomas                 |  Consulting for the
-MLB Associates              |    Embedded world
-------------------------------------------------------------
+Elizabeth Flanagan
+Yocto Project
+Build and Release
 
