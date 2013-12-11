@@ -1,29 +1,29 @@
-Return-Path: <song.liu@intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8BAA2E007DA
-	for <yocto@yoctoproject.org>; Wed, 11 Dec 2013 11:51:34 -0800 (PST)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga102.jf.intel.com with ESMTP; 11 Dec 2013 11:47:48 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.93,873,1378882800"; 
-	d="scan'208,217";a="423118139"
-Received: from orsmsx105.amr.corp.intel.com ([10.22.225.132])
-	by orsmga001.jf.intel.com with ESMTP; 11 Dec 2013 11:51:33 -0800
-Received: from orsmsx108.amr.corp.intel.com ([169.254.4.59]) by
-	ORSMSX105.amr.corp.intel.com ([169.254.4.51]) with mapi id
-	14.03.0123.003; Wed, 11 Dec 2013 11:51:33 -0800
-From: "Liu, Song" <song.liu@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Yocto Project 1.6 M1 release readiness review
-Thread-Index: Ac72qmQJELmPx5RTRHu5yE56N6uCvgAAAAiA
-Date: Wed, 11 Dec 2013 19:51:32 +0000
-Message-ID: <7E680CB2A76BB8438D08CF13C09FC53A8EFCD7A8@ORSMSX108.amr.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.138]
+Return-Path: <Bruce.Ashfield@windriver.com>
+Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8AFD7E00796
+	for <yocto@yoctoproject.org>; Wed, 11 Dec 2013 13:10:18 -0800 (PST)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
+	[147.11.189.40])
+	by mail1.windriver.com (8.14.5/8.14.5) with ESMTP id rBBLA7kR003275
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
+	Wed, 11 Dec 2013 13:10:07 -0800 (PST)
+Received: from [128.224.146.67] (128.224.146.67) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server id 14.2.347.0;
+	Wed, 11 Dec 2013 13:10:06 -0800
+Message-ID: <52A8D4A7.5000807@windriver.com>
+Date: Wed, 11 Dec 2013 16:09:59 -0500
+From: Bruce Ashfield <bruce.ashfield@windriver.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:24.0) Gecko/20100101 Thunderbird/24.1.1
 MIME-Version: 1.0
-Subject: Yocto Project 1.6 M1 release readiness review
+To: Sudhangathan B S <sudhangathan@gmail.com>, "Gumstix users."
+	<gumstix-users@lists.sourceforge.net>
+References: <CAGX3a99HP8-gseen9mzKB_g2hSGCeLGt0oFe4t6MDOazqSaGdQ@mail.gmail.com>
+	<52A8109A.50705@windriver.com>
+	<CAGX3a9-Nn+FYRbz4o_MrtV7-uBDxshaTTX6Kvyi4bp10mkhyYQ@mail.gmail.com>
+In-Reply-To: <CAGX3a9-Nn+FYRbz4o_MrtV7-uBDxshaTTX6Kvyi4bp10mkhyYQ@mail.gmail.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Compiling kernel from external source in Yocto
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -35,94 +35,176 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 11 Dec 2013 19:51:37 -0000
-X-Groupsio-MsgNum: 17516
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_7E680CB2A76BB8438D08CF13C09FC53A8EFCD7A8ORSMSX108amrcor_"
+X-List-Received-Date: Wed, 11 Dec 2013 21:10:18 -0000
+Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
+Content-Transfer-Encoding: 7bit
 
---_000_7E680CB2A76BB8438D08CF13C09FC53A8EFCD7A8ORSMSX108amrcor_
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+On 13-12-11 06:30 AM, Sudhangathan B S wrote:
+> Thanks Bruce, I now understood a little more..!
+>
+> So if I put the defconfig file in the place it is looking for (kindly
+> note, it is looking for defconfig within yocto folders, it is is not
+> looking for defconfig in my external src directory), it then throws this
+> error:
+>
+> NOTE: Executing RunQueue Tasks
+> ERROR: Function failed: do_configure (see
+> /home/desen555/yocto/build/tmp/work/overo-poky-linux-gnueabi/linux-omap-khilmanpm/3.5-r0/temp/log.do_configure.683
+> for further information)
+> ERROR: Logfile of failure stored in:
+> /home/desen555/yocto/build/tmp/work/overo-poky-linux-gnueabi/linux-omap-khilmanpm/3.5-r0/temp/log.do_configure.683
+> Log data follows:
+> | DEBUG: Executing python function sysroot_cleansstate
+> | DEBUG: Python function sysroot_cleansstate finished
+> | DEBUG: Executing shell function do_configure
+> | NOTE: make oldconfig
+> | make: *** No rule to make target `oldconfig'.  Stop.
+> | ERROR: oe_runmake failed
+> | ERROR: Function failed: do_configure (see
+> /home/desen555/yocto/build/tmp/work/overo-poky-linux-gnueabi/linux-omap-khilmanpm/3.5-r0/temp/log.do_configure.683
+> for further information)
+> ERROR: Task 2
+> (/home/desen555/yocto/poky/meta-dese_iisc/recipes-kernel/linux/linux-omap-khilmanpm_3.5.bb
+> <http://linux-omap-khilmanpm_3.5.bb>, do_configure) failed with exit
+> code '1'
+> NOTE: Tasks Summary: Attempted 545 tasks of which 544 didn't need to be
+> rerun and 1 failed.
+> No currently running tasks (264 of 559)
+>
+> Summary: 1 task failed:
+>
+> /home/desen555/yocto/poky/meta-dese_iisc/recipes-kernel/linux/linux-omap-khilmanpm_3.5.bb
+> <http://linux-omap-khilmanpm_3.5.bb>, do_configure
+> Summary: There was 1 ERROR message shown, returning a non-zero exit code.
+> desen555@Xeon-S5000XVN:~/yocto/build$
+>
+> Now I hope you have more information...!!
+> My external src directory has got the .config file.
 
-https://wiki.yoctoproject.org/wiki/Yocto_Project_v1.6_Status#Milestone_1<ht=
-tps://wiki.yoctoproject.org/wiki/Yocto_Project_v1.6_Status>
+I need to launch a test build to see if there's been some breakage
+recently.
 
-Friday, December 13, 2013, 08:00 AM US Pacific Time
-916-356-2663, 8-356-2663, Bridge: 1, Passcode: 6645668
-Speed dialer: inteldialer://1,6645668 | Learn more<http://it.intel.com/prod=
-ucts/handhelds/speeddial.htm>
+I didn't quite get to that today .. but will have a go at it ASAP.
+
+Bruce
+
+>
+> ---------------------------------
+> Sudhangathan BS
+> Ph:(+91) 9731-905-205 <tel:%28%2B91%29%209731-905-205>
+> ---------------------------------
+>
+>
+> On Wed, Dec 11, 2013 at 12:43 PM, Bruce Ashfield
+> <bruce.ashfield@windriver.com <mailto:bruce.ashfield@windriver.com>> wrote:
+>
+>     On 12/11/2013, 2:00 AM, Sudhangathan B S wrote:
+>
+>         Hi, I'm having this issue, I'm not able to compile a kernel
+>         source which
+>         I have in my system, locally.
+>
+>         This is my recipe, after following instructions at
+>         http://www.yoctoproject.org/__docs/1.4/dev-manual/dev-__manual.html#building-software-__from-an-external-source
+>         <http://www.yoctoproject.org/docs/1.4/dev-manual/dev-manual.html#building-software-from-an-external-source>
+>
+>         require linux.inc
+>         #THIS TEMPLATE COPIED FROM linux-sakoman_3.5.bb
+>         <http://linux-sakoman_3.5.bb>
+>         <http://linux-sakoman_3.5.bb>
+>
+>         DESCRIPTION = "Linux kernel for OMAP processors"
+>         LIC_FILES_CHKSUM =
+>         "file://COPYING;md5=__d7810fab7487fb0aad327b76f1be7c__d7"
+>         KERNEL_IMAGETYPE = "uImage"
+>         COMPATIBLE_MACHINE = "overo"
+>         FILESEXTRAPATHS_prepend := "${THISDIR}/linux-omap-__khilmanpm:"
+>         PV = "3.5"
+>         inherit externalsrc
+>         S =
+>         "/home/desen555/suan_work/__kernel_work/khilman35-src-__mods/linux-omap-khilmanpm"
+>         B = "${WORKDIR}/git"
+>         SRC_URI = "file://defconfig \
+>                      file://omap2plus_defconfig \
+>                      file://usb_off.patch \
+>                      "
+>
+>         As you can see the kernel source directory is in S variable.
+>
+>         When the command "bitbake virtual/kernel" is run, i get this output
+>
+>         ERROR: Function failed: do_configure (see
+>         /home/desen555/yocto/build/__tmp/work/overo-poky-linux-__gnueabi/linux-omap-khilmanpm/__3.5-r0/temp/log.do_configure.__28505
+>         for further information)
+>         ERROR: Logfile of failure stored in:
+>         /home/desen555/yocto/build/__tmp/work/overo-poky-linux-__gnueabi/linux-omap-khilmanpm/__3.5-r0/temp/log.do_configure.__28505
+>         Log data follows:
+>         | DEBUG: Executing python function sysroot_cleansstate
+>         | DEBUG: Python function sysroot_cleansstate finished
+>         | DEBUG: Executing shell function do_configure
+>         | sed: can't read
+>         /home/desen555/yocto/build/__tmp/work/overo-poky-linux-__gnueabi/linux-omap-khilmanpm/__3.5-r0/*defconfig:
+>         No such file or directory*
+>
+>         | ERROR: Function failed: do_configure (see
+>         /home/desen555/yocto/build/__tmp/work/overo-poky-linux-__gnueabi/linux-omap-khilmanpm/__3.5-r0/temp/log.do_configure.__28505
+>         for further information)
+>         ERROR: Task 2
+>         (/home/desen555/yocto/poky/__meta-dese_iisc/recipes-kernel/__linux/linux-omap-khilmanpm_3.__5.bb
+>         <http://linux-omap-khilmanpm_3.5.bb>
+>         <http://linux-omap-khilmanpm___3.5.bb
+>         <http://linux-omap-khilmanpm_3.5.bb>>, do_configure) failed with
+>         exit
+>
+>         code '1'
+>         NOTE: Tasks Summary: Attempted 545 tasks of which 543 didn't
+>         need to be
+>         rerun and 1 failed.
+>         Waiting for 0 running tasks to finish:
+>
+>         Summary: 1 task failed:
+>
+>         /home/desen555/yocto/poky/__meta-dese_iisc/recipes-kernel/__linux/linux-omap-khilmanpm_3.__5.bb
+>         <http://linux-omap-khilmanpm_3.5.bb>
+>         <http://linux-omap-khilmanpm___3.5.bb
+>         <http://linux-omap-khilmanpm_3.5.bb>>, do_configure
+>
+>         Summary: There was 1 ERROR message shown, returning a non-zero
+>         exit code.
+>
+>         If at all I put my defconfig file in the place it is looking
+>         for, then
+>         it throws other errors, so I guess that is not the right way..
+>
+>
+>     What other errors ? You are on the right track. When using externalsrc,
+>     you need to ensure the kernel is configured before the build starts,
+>     since the actual build skips steps to not modify your source tree.
+>
+>     If you ensure that a full .config is in your kernel's build
+>     directory, and that defconfig is in place, what errors do you get then ?
+>
+>     Also note: you can have tasks skipped by adding them to
+>     SRCTREECOVEREDTASKS
+>     in your recipe.
+>
+>     Bruce
+>
+>
+>         Anybody compiled kernel as an external source in yocto..??
+>         ------------------------------__---
+>         *Sudhangathan BS*
+>         Ph:(+91) 9731-905-205 <tel:%28%2B91%29%209731-905-205>
+>         ------------------------------__---
+>
+>
+>         _________________________________________________
+>         yocto mailing list
+>         yocto@yoctoproject.org <mailto:yocto@yoctoproject.org>
+>         https://lists.yoctoproject.__org/listinfo/yocto
+>         <https://lists.yoctoproject.org/listinfo/yocto>
+>
+>
+>
 
 
---_000_7E680CB2A76BB8438D08CF13C09FC53A8EFCD7A8ORSMSX108amrcor_
-Content-Type: text/html; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
-1">
-<meta name=3D"Generator" content=3D"Microsoft Exchange Server">
-<!-- converted from rtf -->
-<style><!-- .EmailQuote { margin-left: 1pt; padding-left: 4pt; border-left:=
- #800000 2px solid; } --></style>
-</head>
-<body>
-<font face=3D"Times New Roman" size=3D"2"><span style=3D"font-size:11pt;">
-<div><a href=3D"https://wiki.yoctoproject.org/wiki/Yocto_Project_v1.6_Statu=
-s"><font face=3D"Calibri" color=3D"blue"><u>https://wiki.yoctoproject.org/w=
-iki/Yocto_Project_v1.6_Status#Milestone_1</u></font></a></div>
-<div><font color=3D"#444444">&nbsp;</font></div>
-<div><font face=3D"Verdana" size=3D"2" color=3D"#444444"><span style=3D"fon=
-t-size:8.5pt;"><b>Friday, December 13, 2013, 08:00 AM US Pacific Time
-<br>
-
-</b>916-356-2663, 8-356-2663, Bridge: 1, Passcode: 6645668<br>
-
-Speed dialer: inteldialer://1,6645668 | <a href=3D"http://it.intel.com/prod=
-ucts/handhelds/speeddial.htm"><font color=3D"blue"><u>Learn more</u></font>=
-</a></span></font></div>
-<div>&nbsp;</div>
-</span></font>
-</body>
-</html>
-
---_000_7E680CB2A76BB8438D08CF13C09FC53A8EFCD7A8ORSMSX108amrcor_
-Content-Type: text/calendar; charset="utf-8"; method=REQUEST
-Content-Transfer-Encoding: base64
-
-QkVHSU46VkNBTEVOREFSDQpNRVRIT0Q6UkVRVUVTVA0KUFJPRElEOk1pY3Jvc29mdCBFeGNoYW5n
-ZSBTZXJ2ZXIgMjAxMA0KVkVSU0lPTjoyLjANCkJFR0lOOlZUSU1FWk9ORQ0KVFpJRDpQYWNpZmlj
-IFN0YW5kYXJkIFRpbWUNCkJFR0lOOlNUQU5EQVJEDQpEVFNUQVJUOjE2MDEwMTAxVDAyMDAwMA0K
-VFpPRkZTRVRGUk9NOi0wNzAwDQpUWk9GRlNFVFRPOi0wODAwDQpSUlVMRTpGUkVRPVlFQVJMWTtJ
-TlRFUlZBTD0xO0JZREFZPTFTVTtCWU1PTlRIPTExDQpFTkQ6U1RBTkRBUkQNCkJFR0lOOkRBWUxJ
-R0hUDQpEVFNUQVJUOjE2MDEwMTAxVDAyMDAwMA0KVFpPRkZTRVRGUk9NOi0wODAwDQpUWk9GRlNF
-VFRPOi0wNzAwDQpSUlVMRTpGUkVRPVlFQVJMWTtJTlRFUlZBTD0xO0JZREFZPTJTVTtCWU1PTlRI
-PTMNCkVORDpEQVlMSUdIVA0KRU5EOlZUSU1FWk9ORQ0KQkVHSU46VkVWRU5UDQpPUkdBTklaRVI7
-Q049IkxpdSwgU29uZyI6TUFJTFRPOnNvbmcubGl1QGludGVsLmNvbQ0KQVRURU5ERUU7Uk9MRT1S
-RVEtUEFSVElDSVBBTlQ7UEFSVFNUQVQ9TkVFRFMtQUNUSU9OO1JTVlA9VFJVRTtDTj15b2N0b0B5
-b2N0DQogb3Byb2plY3Qub3JnOk1BSUxUTzp5b2N0b0B5b2N0b3Byb2plY3Qub3JnDQpERVNDUklQ
-VElPTjtMQU5HVUFHRT1lbi1VUzpodHRwczovL3dpa2kueW9jdG9wcm9qZWN0Lm9yZy93aWtpL1lv
-Y3RvX1Byb2plY3QNCiBfdjEuNl9TdGF0dXMjTWlsZXN0b25lXzE8aHR0cHM6Ly93aWtpLnlvY3Rv
-cHJvamVjdC5vcmcvd2lraS9Zb2N0b19Qcm9qZWN0Xw0KIHYxLjZfU3RhdHVzPlxuXG5GcmlkYXlc
-LCBEZWNlbWJlciAxM1wsIDIwMTNcLCAwODowMCBBTSBVUyBQYWNpZmljIFRpbWVcbjkxDQogNi0z
-NTYtMjY2M1wsIDgtMzU2LTI2NjNcLCBCcmlkZ2U6IDFcLCBQYXNzY29kZTogNjY0NTY2OFxuU3Bl
-ZWQgZGlhbGVyOiBpbnQNCiBlbGRpYWxlcjovLzFcLDY2NDU2NjggfCBMZWFybiBtb3JlPGh0dHA6
-Ly9pdC5pbnRlbC5jb20vcHJvZHVjdHMvaGFuZGhlbGRzLw0KIHNwZWVkZGlhbC5odG0+XG5cbg0K
-U1VNTUFSWTtMQU5HVUFHRT1lbi1VUzpZb2N0byBQcm9qZWN0IDEuNiBNMSByZWxlYXNlIHJlYWRp
-bmVzcyByZXZpZXcNCkRUU1RBUlQ7VFpJRD1QYWNpZmljIFN0YW5kYXJkIFRpbWU6MjAxMzEyMTNU
-MDgwMDAwDQpEVEVORDtUWklEPVBhY2lmaWMgU3RhbmRhcmQgVGltZToyMDEzMTIxM1QwODMwMDAN
-ClVJRDowNDAwMDAwMDgyMDBFMDAwNzRDNUI3MTAxQTgyRTAwODAwMDAwMDAwNDA1OTgwRUM2NEY2
-Q0UwMTAwMDAwMDAwMDAwMDAwMA0KIDAxMDAwMDAwMDRDRjY2NTFBQjg1Q0NBNDFBNDY3Qzc0MjQ2
-Q0I0Q0NEDQpDTEFTUzpQVUJMSUMNClBSSU9SSVRZOjUNCkRUU1RBTVA6MjAxMzEyMTFUMTk1MTMy
-Wg0KVFJBTlNQOk9QQVFVRQ0KU1RBVFVTOkNPTkZJUk1FRA0KU0VRVUVOQ0U6MA0KTE9DQVRJT047
-TEFOR1VBR0U9ZW4tVVM6QnJpZGdlIGluZm8gRW5jbG9zZWQNClgtTUlDUk9TT0ZULUNETy1BUFBU
-LVNFUVVFTkNFOjANClgtTUlDUk9TT0ZULUNETy1PV05FUkFQUFRJRDoyMDI4NzE4MDQ1DQpYLU1J
-Q1JPU09GVC1DRE8tQlVTWVNUQVRVUzpURU5UQVRJVkUNClgtTUlDUk9TT0ZULUNETy1JTlRFTkRF
-RFNUQVRVUzpCVVNZDQpYLU1JQ1JPU09GVC1DRE8tQUxMREFZRVZFTlQ6RkFMU0UNClgtTUlDUk9T
-T0ZULUNETy1JTVBPUlRBTkNFOjENClgtTUlDUk9TT0ZULUNETy1JTlNUVFlQRTowDQpYLU1JQ1JP
-U09GVC1ESVNBTExPVy1DT1VOVEVSOkZBTFNFDQpCRUdJTjpWQUxBUk0NCkFDVElPTjpESVNQTEFZ
-DQpERVNDUklQVElPTjpSRU1JTkRFUg0KVFJJR0dFUjtSRUxBVEVEPVNUQVJUOi1QVDE1TQ0KRU5E
-OlZBTEFSTQ0KRU5EOlZFVkVOVA0KRU5EOlZDQUxFTkRBUg0K
-
---_000_7E680CB2A76BB8438D08CF13C09FC53A8EFCD7A8ORSMSX108amrcor_--
