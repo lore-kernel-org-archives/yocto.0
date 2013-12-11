@@ -1,34 +1,30 @@
-Return-Path: <song.liu@intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8CE99E00785
-	for <yocto@yoctoproject.org>; Tue, 10 Dec 2013 16:29:07 -0800 (PST)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga102.jf.intel.com with ESMTP; 10 Dec 2013 16:25:22 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.93,867,1378882800"; 
-	d="scan'208,217";a="450204150"
-Received: from orsmsx109.amr.corp.intel.com ([10.22.240.7])
-	by orsmga002.jf.intel.com with ESMTP; 10 Dec 2013 16:29:06 -0800
-Received: from orsmsx115.amr.corp.intel.com (10.22.240.11) by
-	ORSMSX109.amr.corp.intel.com (10.22.240.7) with Microsoft SMTP Server
-	(TLS) id 14.3.123.3; Tue, 10 Dec 2013 16:29:06 -0800
-Received: from orsmsx108.amr.corp.intel.com ([169.254.4.59]) by
-	ORSMSX115.amr.corp.intel.com ([10.22.240.11]) with mapi id
-	14.03.0123.003; Tue, 10 Dec 2013 16:29:06 -0800
-From: "Liu, Song" <song.liu@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Minutes: Yocto Project Technical Team Meeting - Tuesday,
-	December 10,
-	2013 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada).
-Thread-Index: Ac72B+Pq28099m+fQLOhGZYtvgFrmgAABOAA
-Date: Wed, 11 Dec 2013 00:29:05 +0000
-Message-ID: <7E680CB2A76BB8438D08CF13C09FC53A8EFCCAD7@ORSMSX108.amr.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.139]
+Return-Path: <insop.song@gmail.com>
+Received: from mail-wi0-f180.google.com (mail-wi0-f180.google.com
+	[209.85.212.180])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A8EF2E007C1
+	for <yocto@yoctoproject.org>; Tue, 10 Dec 2013 21:30:10 -0800 (PST)
+Received: by mail-wi0-f180.google.com with SMTP id hn9so323867wib.13
+	for <yocto@yoctoproject.org>; Tue, 10 Dec 2013 21:30:09 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:from:date:message-id:subject:to:cc:content-type;
+	bh=D29lSnJ6UrHw8HPj2IRSSm7nnHY6M9Y9Jf7ENSpMi70=;
+	b=Y22XpGPyDkSaUp095ILRPwlk74yPOxwFyITh0uZtEgNrMHlFMMld9ERrXEgp17TpI3
+	ur1/l6jn51TfOZj7eaEQuu+v/l3phjImx7zpjRhbvlI/Gnhp3uRJTfzaJQCxIaZ8T0HR
+	5Bzob/aZyGvhJNX7BcWD7St96MftOkZfaewNuczlYdzExohravnTAB2MgITxOFv1DFQ7
+	OwqH6NJqq5N3MNavL9ssp+aPQEXLjzAjwx0wEFzubaTa9scQlEILEYRfIPffAlc51ZbZ
+	/R3ncXJ0lcUUSGfEayZTHypH5ZqNo3Lu1BtsvANpm9hT8uMH99gOEZE2WcB/TO7kqDdz
+	9l2Q==
+X-Received: by 10.180.160.166 with SMTP id xl6mr1069984wib.43.1386739809555;
+	Tue, 10 Dec 2013 21:30:09 -0800 (PST)
 MIME-Version: 1.0
-Subject: Minutes: Yocto Project Technical Team Meeting - Tuesday, December 10, 2013 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada).
+Received: by 10.194.24.170 with HTTP; Tue, 10 Dec 2013 21:29:49 -0800 (PST)
+From: Insop Song <insop.song@gmail.com>
+Date: Tue, 10 Dec 2013 21:29:49 -0800
+Message-ID: <CACzyEJ-gZmh4hDmCiaNUZzFcx6H2edtMfh0AFvq7HMCVC-+XTg@mail.gmail.com>
+To: Yocto Project Discussion <yocto@yoctoproject.org>,
+	Khem Raj <raj.khem@gmail.com>, paul.eggleton@linux.intel.com
+Cc: Mingkai.Hu@freescale.com, yorksun@freescale.com
+Subject: package_deb creation issue in powerpc (kernel 64bit, userspace 32bit)
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,112 +36,110 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 11 Dec 2013 00:29:09 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_7E680CB2A76BB8438D08CF13C09FC53A8EFCCAD7ORSMSX108amrcor_"
+X-List-Received-Date: Wed, 11 Dec 2013 05:30:16 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
---_000_7E680CB2A76BB8438D08CF13C09FC53A8EFCCAD7ORSMSX108amrcor_
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Hi Khem and Paul,
 
-Attendees:
-Saul, Matthew, ScottR, Paul, Beth, Belen, Ross, Richard, Jessica, Nitin, Da=
-rren, Niklas, Cristian, Corneliu, LaurentiuP, Bj=F6rn, Tom, AlexG, Bruce, J=
-effP, Michael, AlexD, Song
+I have an issue of creating deb packages.
 
-Agenda:
+I am using Freescale version of yocto, which is based on dylan
+- http://git.freescale.com/git/cgit.cgi/ppc/sdk/poky.git/
 
-* Opens collection - 5 min (Song)
-* Yocto 1.6 status - 10 min (Song/team)
-  https://wiki.yoctoproject.org/wiki/Yocto_Project_v1.6_Status
-  https://wiki.yoctoproject.org/wiki/Yocto_1.6_Features
-  - WDD went up a little. Expected due to M1 testing. The team needs to put=
- more focus on bug fixing. If you have bugs, especially medium+, please do =
-give more priority on them.
-  - Beagle board long standing bug: Bruce: working on new mips bsp and Beag=
-le Bone. Month of Jan. we will have the boards.
-  - many bugs filed for Toaster. QA started testing Toaster last week.
-  - Beth/build: two additional builders added. Opensuse server has some han=
-gs. All other Abs are running ok.
-  - RP: 1.6: lots of features, patches going in. Lots of regressions, perfo=
-rmance degradation. Genuinely worried. We may have to shut down master and =
-focus on bug fixing if this continues to happen.
-   - Saul: 1.5.1 Robert is the maintainer. Posted a set of patches. Please =
-take a look. Sent to Bitbake, oe-core, poky list. In the next couple of day=
-s, we will try a build. ScottR: remember the doc changes
-   - 1.4.3: 2 outstanding patches, other than that, we are ready. If 1.5.1 =
-is not ready this week, will go for a build and QA full pass.
-* SWAT team rotation: Cristian Iorga -> Laurentiu P
-* Opens - 10 min
-  - Beth: Poky contrib branch cleanup
-    . Send out an RFC last week. Moving stuff (anything 2012 and before) to=
- poky contrib archive. Make them happen today if you want to keep yours.
-* Team Sharing - 20 min
+I've put the following in
+- PACKAGE_CLASSES ?= "package_deb"
+- IMAGE_FEATURES += "package-management"
+
+I've tested opkg, and it runs fine as you suggested in other thread
+- https://lists.yoctoproject.org/pipermail/yocto/2013-October/016887.html
+
+Our target is:
+- RFS and application: 32bit
+- Kernel: 64 bit
+- ARCH: powerpc
 
 
+Here is the error message I got:
 
---_000_7E680CB2A76BB8438D08CF13C09FC53A8EFCCAD7ORSMSX108amrcor_
-Content-Type: text/html; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+"
+insop@neon /opt/build-fsl-yocto-1.4 $ bitbake fsl-image-g100
+Parsing recipes: 100%
+|###########################################################################################|
+Time: 00:01:30
+Parsing of 1376 .bb files complete (0 cached, 1376 parsed). 3147
+targets, 132 skipped, 0 masked, 0 errors.
+Build Configuration:
+BB_VERSION        = "1.18.0"
+BUILD_SYS         = "x86_64-linux"
+NATIVELSBSTRING   = "Ubuntu-12.04"
+TARGET_SYS        = "powerpc-fsl_networking-linux"
+MACHINE           = "b4860qds"
+DISTRO            = "fsl-networking"
+DISTRO_VERSION    = "1.4.1"
+TUNE_FEATURES     = "m32 fpu-hard e6500 altivec"
+TARGET_FPU        = "hard"
+meta
+meta-yocto
+meta-yocto-bsp    = "feature/CH-1449:97b5f9e64fb64aa1c883eedc03e6cb6765291179"
+meta-fsl-ppc      = "feature/CH-1449:d686f3162481ccb942a3d896a10a86d93d12e455"
+meta-fsl-ppc-toolchain = "sdk-v1.4.x:8ec94cec04527cb971c125b1ddd2c5375034d723"
+meta-virtualization = "sdk-v1.4.x:ad6df4f59cd7646f61db29e8fa51f878329d6f93"
+meta-fsl-networking = "develop:08bb6c1a78838bbff79befa3f15e49ca642d479e"
+meta-oe
+meta-networking   = "sdk-v1.4.x:7c8dd8f096b64a709175d37a08a4fb02ca263616"
+NOTE: Resolving any missing task queue dependencies
+NOTE: Preparing runqueue
+NOTE: Executing SetScene Tasks
+NOTE: Executing RunQueue Tasks
+ERROR: Function failed: do_rootfs (see
+/opt/build-fsl-yocto-1.4/tmp/work/b4860qds-fsl_networking-linux/fsl-image-g100/1.0-r20/temp/log.do_rootfs.8847
+for further information)
+ERROR: Logfile of failure stored in:
+/opt/build-fsl-yocto-1.4/tmp/work/b4860qds-fsl_networking-linux/fsl-image-g100/1.0-r20/temp/log.do_rootfs.8847
+Log data follows:
+| DEBUG: Executing shell function do_rootfs
+| dpkg-scanpackages.real: info: Wrote 6 entries to output Packages file.
+| dpkg-scanpackages.real: info: Wrote 2037 entries to output Packages file.
+| dpkg-scanpackages.real: info: Wrote 68 entries to output Packages file.
+| dpkg-scanpackages.real: info: Wrote 6 entries to output Packages file.
+| Ign file: ./ InRelease
+| Ign file: ./ InRelease
+| Ign file: ./ InRelease
+| Ign file: ./ Release.gpg
+| Ign file: ./ Release.gpg
+| Ign file: ./ Release.gpg
+| Get:1 file: ./ Release [16 B]
+| Get:2 file: ./ Release [16 B]
+| Get:3 file: ./ Release [11 B]
+| Ign file: ./ Translation-en
+| Ign file: ./ Translation-en
+| Ign file: ./ Translation-en
+| Reading package lists...
+| W: Ignoring Provides line with DepCompareOp for package
+pkgconfig__pkg-config__
+| W: You may want to run apt-get update to correct these problems
+| Reading package lists...
+| Building dependency tree...
+| W: Ignoring Provides line with DepCompareOp for package
+pkgconfig__pkg-config__
+| W: You may want to run apt-get update to correct these problems
+| E: Unable to locate package lib64-hypervisor
+| E: Unable to locate package lib64-hypervisor-partman
+| ERROR: Function failed: do_rootfs (see
+/opt/build-fsl-yocto-1.4/tmp/work/b4860qds-fsl_networking-linux/fsl-image-g100/1.0-r20/temp/log.do_rootfs.8847
+for further information)
+ERROR: Task 7 (/home/insop/Projects/fsl-yocto-1.4/meta-fsl-networking/images/fsl-image-g100.bb,
+do_rootfs) failed with exit code '1'
+NOTE: Tasks Summary: Attempted 3527 tasks of which 2782 didn't need to
+be rerun and 1 failed.
+No currently running tasks (3527 of 3528)
+Summary: 1 task failed:
+  /home/insop/Projects/fsl-yocto-1.4/meta-fsl-networking/images/fsl-image-g100.bb,
+do_rootfs
+Summary: There was 1 ERROR message shown, returning a non-zero exit code.
+"
 
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
-1">
-<meta name=3D"Generator" content=3D"Microsoft Exchange Server">
-<!-- converted from rtf -->
-<style><!-- .EmailQuote { margin-left: 1pt; padding-left: 4pt; border-left:=
- #800000 2px solid; } --></style>
-</head>
-<body>
-<font face=3D"Consolas" size=3D"2"><span style=3D"font-size:11pt;">
-<div>Attendees:</div>
-<div>Saul, Matthew, ScottR, Paul, Beth, Belen, Ross, Richard, Jessica, Niti=
-n, Darren, Niklas, Cristian, Corneliu, LaurentiuP, <font size=3D"2"><span s=
-tyle=3D"font-size:10pt;">Bj=F6rn, </span></font>Tom, AlexG, Bruce, JeffP, M=
-ichael, AlexD, Song</div>
-<div>&nbsp;</div>
-<div>Agenda:</div>
-<div>&nbsp;</div>
-<div>* Opens collection - 5 min (Song)</div>
-<div>* Yocto 1.6 status - 10 min (Song/team)</div>
-<div>&nbsp; <a href=3D"https://wiki.yoctoproject.org/wiki/Yocto_Project_v1.=
-6_Status"><font face=3D"Calibri" color=3D"blue"><u>https://wiki.yoctoprojec=
-t.org/wiki/Yocto_Project_v1.6_Status</u></font></a></div>
-<div>&nbsp; <a href=3D"https://wiki.yoctoproject.org/wiki/Yocto_1.6_Feature=
-s"><font face=3D"Calibri" color=3D"blue"><u>https://wiki.yoctoproject.org/w=
-iki/Yocto_1.6_Features</u></font></a></div>
-<div>&nbsp; - WDD went up a little. Expected due to M1 testing. The team ne=
-eds to put more focus on bug fixing. If you have bugs, especially medium&#4=
-3;, please do give more priority on them.</div>
-<div>&nbsp; - Beagle board long standing bug: Bruce: working on new mips bs=
-p and Beagle Bone. Month of Jan. we will have the boards.</div>
-<div>&nbsp; - many bugs filed for Toaster. QA started testing Toaster last =
-week.</div>
-<div>&nbsp; - Beth/build: two additional builders added. Opensuse server ha=
-s some hangs. All other Abs are running ok.</div>
-<div>&nbsp; - RP: 1.6: lots of features, patches going in. Lots of regressi=
-ons, performance degradation. Genuinely worried. We may have to shut down m=
-aster and focus on bug fixing if this continues to happen.</div>
-<div>&nbsp;&nbsp; - Saul: 1.5.1 Robert is the maintainer. Posted a set of p=
-atches. Please take a look. Sent to Bitbake, oe-core, poky list. In the nex=
-t couple of days, we will try a build. ScottR: remember the doc changes </d=
-iv>
-<div>&nbsp;&nbsp; - 1.4.3: 2 outstanding patches, other than that, we are r=
-eady. If 1.5.1 is not ready this week, will go for a build and QA full pass=
-.</div>
-<div>* SWAT team rotation: Cristian Iorga -&gt; Laurentiu P</div>
-<div>* Opens - 10 min </div>
-<div>&nbsp; - Beth: Poky contrib branch cleanup</div>
-<div>&nbsp;&nbsp;&nbsp; . Send out an RFC last week. Moving stuff (anything=
- 2012 and before) to poky contrib archive. Make them happen today if you wa=
-nt to keep yours.</div>
-<div>* Team Sharing - 20 min</div>
-<div><font face=3D"Times New Roman" color=3D"#1F497D">&nbsp;</font></div>
-<div><font face=3D"Times New Roman">&nbsp;</font></div>
-</span></font>
-</body>
-</html>
+Thank you,
 
---_000_7E680CB2A76BB8438D08CF13C09FC53A8EFCCAD7ORSMSX108amrcor_--
+Insop
+
