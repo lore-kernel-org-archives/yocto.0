@@ -1,29 +1,36 @@
-Return-Path: <gary@mlbassoc.com>
-Received: from mail.chez-thomas.org (mail.mlbassoc.com [65.100.170.105])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 59415E007B8
-	for <yocto@yoctoproject.org>; Thu, 12 Dec 2013 08:31:12 -0800 (PST)
-Received: by mail.chez-thomas.org (Postfix, from userid 1998)
-	id CDECEF8122E; Thu, 12 Dec 2013 09:31:11 -0700 (MST)
-X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on
-	hermes.chez-thomas.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=4.0 tests=ALL_TRUSTED,BAYES_00
-	autolearn=unavailable version=3.3.2
-Received: from [192.168.1.114] (zeus [192.168.1.114])
-	by mail.chez-thomas.org (Postfix) with ESMTP id B125EF81207;
-	Thu, 12 Dec 2013 09:31:10 -0700 (MST)
-Message-ID: <52A9E4CE.1060000@mlbassoc.com>
-Date: Thu, 12 Dec 2013 09:31:10 -0700
-From: Gary Thomas <gary@mlbassoc.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:24.0) Gecko/20100101 Thunderbird/24.2.0
+Return-Path: <ross.burton@intel.com>
+Received: from mail-ve0-f179.google.com (mail-ve0-f179.google.com
+	[209.85.128.179])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C1A62E007B8
+	for <yocto@yoctoproject.org>; Thu, 12 Dec 2013 08:35:57 -0800 (PST)
+Received: by mail-ve0-f179.google.com with SMTP id jw12so504007veb.10
+	for <yocto@yoctoproject.org>; Thu, 12 Dec 2013 08:35:56 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc:content-type;
+	bh=JVp8ow97TxwvDTNzVQFRIYUH4hsjxu9yqg786KJnjaA=;
+	b=Hi8mYKMoi/9vtbjQDkWlnMb5xTYK9pNI6B/INtQsC4tXVdayI1+W1C9ouGapQGSyRE
+	gnAdMmXcggUM3/7e9565tN9xwicS5bu2pjyPnlsClcUthv+DfqeMt+gEcahryI5ghOcv
+	aEjGj6gkaST1lG2OYbiB7oLyYZzc494QMdK3C9cSfatT+AKi9sR4O4wzThtDNiM6L2XP
+	L2dthD2jGeWYbDyL8z5TnhyShnMWPrJrciNKTbtYs7QsdTfiN1zNH4bDhZoEjXCWk0Uh
+	PORiugCgDDWLcs6hOKLHxnef1Y4drZLx3nRjQI0FOIKFVoM3S8+VhZR02HETxQrwHrkk
+	icTQ==
+X-Gm-Message-State: ALoCoQnX4Cpaa/g4yFiT+vPvCK/PUl3+Rk/7cMhzpJ/mVUeMZ2/kWfwK+Fsfso+ULFGueRUKtoKJ
+X-Received: by 10.58.54.69 with SMTP id h5mr4293964vep.25.1386866156834; Thu,
+	12 Dec 2013 08:35:56 -0800 (PST)
 MIME-Version: 1.0
-To: Paul Eggleton <paul.eggleton@linux.intel.com>
-References: <52A9D0F7.7050501@mlbassoc.com> <3017575.Mc510FLHbh@helios>
-	<52A9E41A.8010601@mlbassoc.com>
-In-Reply-To: <52A9E41A.8010601@mlbassoc.com>
-Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: How to force the use of git-native?
+Received: by 10.220.71.201 with HTTP; Thu, 12 Dec 2013 08:35:35 -0800 (PST)
+In-Reply-To: <CANwz6nxBCmk6ZW8freK+s07+8QAQjexEgUmHuqJD0dEkORVfvQ@mail.gmail.com>
+References: <CANwz6nwwHW9ja1zXiYjpQdF1A5isxb=3=4eCvk01-3-_t3PP6Q@mail.gmail.com>
+	<CAJTo0LZU+kU_B4bfwuzZ0tYOfaRs8U00QnpcxodEoJDF9mEGhQ@mail.gmail.com>
+	<CANwz6nxBCmk6ZW8freK+s07+8QAQjexEgUmHuqJD0dEkORVfvQ@mail.gmail.com>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Thu, 12 Dec 2013 16:35:35 +0000
+Message-ID: <CAJTo0LbV3V=dB2OQwB+XYLqf422Ux54JETbucF4Q=9j3jtHA9w@mail.gmail.com>
+To: Edward Vidal <vidal.develone@gmail.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: poky tree
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -35,57 +42,22 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 12 Dec 2013 16:31:12 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Thu, 12 Dec 2013 16:35:58 -0000
+Content-Type: text/plain; charset=UTF-8
 
-On 2013-12-12 09:28, Gary Thomas wrote:
-> On 2013-12-12 09:20, Paul Eggleton wrote:
->> Hi Gary,
->>
->> On Thursday 12 December 2013 08:06:31 Gary Thomas wrote:
->>> I've found that the latest bitbake fetcher changes (require
->>> the use of branch names) fails with older versions of git.
->>> I have a Fedora 13 machine which I routinely use to build
->>> my Yocto projects that has git version 1.7.7.6.  On that machine,
->>> all git fetches fail, no matter what.  On my Ubuntu builder
->>> which has git 1.7.9.4, all is OK.
->>>
->>> I see that there is a git recipe in OE-core.  How can I force
->>> it to be built and used where the host's native git is inadequate?
->>
->> The solution we provide for this kind of situation is buildtools-tarball, as
->> described here (linked from the QS guide as well):
->>
->> http://www.yoctoproject.org/docs/current/ref-manual/ref-manual.html#required-git-tar-and-python-versions
->
-> Thanks, I'll give this a go.
+On 12 December 2013 16:27, Edward Vidal <vidal.develone@gmail.com> wrote:
+> Thanks for the information.  When I removed poky/build/tmp everything worked
+> okay.  My build was quick and I did not need to recompile.  My question is
+> what relation between poky/build/tmp/work and poky/build/tmp/sysroot?
 
-Oops, looks like I have a circular dependency problem since trying to make
-the buildtools-tarball actually needs a working version of git??
+http://www.yoctoproject.org/docs/current/ref-manual/ref-manual.html#structure-build
 
-ERROR: Fetcher failure: Unable to find revision 757a1664a440c60e8126443bf984e4bdf374c327 in branch master even from upstream
-ERROR: Function failed: Fetcher failure for URL: 'git://git.yoctoproject.org/opkg-utils'. Unable to fetch URL from any source.
-ERROR: Logfile of failure stored in: /home/local/rpi_2013-12-12/tmp/work/i686-linux/opkg-utils-native/0.1.8+gitAUTOINC+757a1664a4-r0/temp/log.do_fetch.15416
-ERROR: Task 85 (virtual:native:/home/local/poky-multi/meta/recipes-devtools/opkg-utils/opkg-utils_git.bb, do_fetch) failed with exit code '1'
-ERROR: Fetcher failure: Unable to find revision 6822ec76aa95f278195aeae59d4868ef224d7e4d in branch cross_prelink even from upstream
-ERROR: Function failed: Fetcher failure for URL: 'git://git.yoctoproject.org/prelink-cross.git;branch=cross_prelink'. Unable to fetch URL from any source.
-ERROR: Logfile of failure stored in: /home/local/rpi_2013-12-12/tmp/work/i686-linux/prelink-native/1.0+gitAUTOINC+6822ec76aa-r0/temp/log.do_fetch.15406
-ERROR: Task 244 (virtual:native:/home/local/poky-multi/meta/recipes-devtools/prelink/prelink_git.bb, do_fetch) failed with exit code '1'
+work/ is where packages are build.
 
->>
->> Interesting that git 1.7.7.6 is still not adequate though, that may be a
->> prompt to either fix the check to work with older versions of git or
->> increase our version number requirement.
->
-> If you have ideas how I can investigate why this fails, I'd be glad
-> to help out (to see if it can be made to work with 1.7.7.6 or if we
-> just need a newer version period)
->
+sysroot/ is where the headers and libraries that you're building to
+into, so when you cross-compile an application it can find the right
+headers to include and libraries to link against.  It's effectively a
+subset of the target filesystem for compilation purposes.
 
--- 
-------------------------------------------------------------
-Gary Thomas                 |  Consulting for the
-MLB Associates              |    Embedded world
-------------------------------------------------------------
+Ross
 
