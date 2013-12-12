@@ -1,33 +1,28 @@
-Return-Path: <vidal.develone@gmail.com>
-Received: from mail-qe0-f42.google.com (mail-qe0-f42.google.com
-	[209.85.128.42])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4B667E00796
-	for <yocto@yoctoproject.org>; Thu, 12 Dec 2013 08:27:57 -0800 (PST)
-Received: by mail-qe0-f42.google.com with SMTP id b4so531624qen.29
-	for <yocto@yoctoproject.org>; Thu, 12 Dec 2013 08:27:56 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type;
-	bh=oNUFEKVycPt/DJhKrWLf/CvlMaHFMm2/HHOvZmn9C0g=;
-	b=gyAc3noIyy6oN9Znwm5j0A9zPXBd3G0OPBPrc5gdE6F+Wu7eoJTB3Ew3wowEtPYk2C
-	XPM51zTQ/7gqZcFg3Ez87ojsyMLijnb5imWV7jLZiBGQmCYT6jUH0Wc9LvCQim6VUOCc
-	KMzuk9LXHhc2Sgxdsuk2XWKK43VFIrYxDAhS28GS75JFhtnjvGe3heWQEuXUVvQZv5i3
-	QsY3DKQs0gtqLMzOtgjB6ROH2tJpZCOAZfwVILHKeH71BN3UtHqojys3+U+4X3Pmvn6B
-	mBOXcVKCI1oOQoZGVtg+9EZEPkD9piooco6d9mJemF822iPI2g4MXHVIMW4DA2sksjUJ
-	HAxA==
+Return-Path: <gary@mlbassoc.com>
+Received: from mail.chez-thomas.org (mail.mlbassoc.com [65.100.170.105])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9D41CE007D4
+	for <yocto@yoctoproject.org>; Thu, 12 Dec 2013 08:28:11 -0800 (PST)
+Received: by mail.chez-thomas.org (Postfix, from userid 1998)
+	id 392EDF8122E; Thu, 12 Dec 2013 09:28:11 -0700 (MST)
+X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on
+	hermes.chez-thomas.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=4.0 tests=ALL_TRUSTED,BAYES_00
+	autolearn=unavailable version=3.3.2
+Received: from [192.168.1.114] (zeus [192.168.1.114])
+	by mail.chez-thomas.org (Postfix) with ESMTP id 33EF5F81207;
+	Thu, 12 Dec 2013 09:28:10 -0700 (MST)
+Message-ID: <52A9E41A.8010601@mlbassoc.com>
+Date: Thu, 12 Dec 2013 09:28:10 -0700
+From: Gary Thomas <gary@mlbassoc.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:24.0) Gecko/20100101 Thunderbird/24.2.0
 MIME-Version: 1.0
-X-Received: by 10.49.17.232 with SMTP id r8mr15044468qed.74.1386865676436;
-	Thu, 12 Dec 2013 08:27:56 -0800 (PST)
-Received: by 10.140.37.49 with HTTP; Thu, 12 Dec 2013 08:27:56 -0800 (PST)
-In-Reply-To: <CAJTo0LZU+kU_B4bfwuzZ0tYOfaRs8U00QnpcxodEoJDF9mEGhQ@mail.gmail.com>
-References: <CANwz6nwwHW9ja1zXiYjpQdF1A5isxb=3=4eCvk01-3-_t3PP6Q@mail.gmail.com>
-	<CAJTo0LZU+kU_B4bfwuzZ0tYOfaRs8U00QnpcxodEoJDF9mEGhQ@mail.gmail.com>
-Date: Thu, 12 Dec 2013 09:27:56 -0700
-Message-ID: <CANwz6nxBCmk6ZW8freK+s07+8QAQjexEgUmHuqJD0dEkORVfvQ@mail.gmail.com>
-From: Edward Vidal <vidal.develone@gmail.com>
-To: "Burton, Ross" <ross.burton@intel.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: poky tree
+To: Paul Eggleton <paul.eggleton@linux.intel.com>
+References: <52A9D0F7.7050501@mlbassoc.com> <3017575.Mc510FLHbh@helios>
+In-Reply-To: <3017575.Mc510FLHbh@helios>
+Cc: yocto@yoctoproject.org
+Subject: Re: How to force the use of git-native?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,80 +34,43 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 12 Dec 2013 16:27:59 -0000
-Content-Type: multipart/alternative; boundary=047d7bea3be4feccb504ed58d39a
+X-List-Received-Date: Thu, 12 Dec 2013 16:28:13 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
 
---047d7bea3be4feccb504ed58d39a
-Content-Type: text/plain; charset=ISO-8859-1
-
-Thanks for the information.  When I removed poky/build/tmp everything
-worked okay.  My build was quick and I did not need to recompile.  My
-question is what relation between poky/build/tmp/work and
-poky/build/tmp/sysroot?
-Thanks for all the great work
-
-
-
-On Tue, Dec 10, 2013 at 2:18 PM, Burton, Ross <ross.burton@intel.com> wrote:
-
-> On 10 December 2013 20:38, Edward Vidal <vidal.develone@gmail.com> wrote:
-> > Hello,
-> > I have a poky tree that I have used for several builds.
-> > What is the command to clean out the poky/build/tmp area.
-> > I am on the dylan branch.  My conf files are configured and my
-> custom-image
-> > are okay.
-> > I want to pull meta-oe, meta-broswer, and meta-xiiinx, and poky with a
-> clean
-> > work area.
-> > Can I just delete poky/build or poky/build/tmp?
+On 2013-12-12 09:20, Paul Eggleton wrote:
+> Hi Gary,
 >
-> Deleting poky/build/tmp is safe assuming that you've copied out
-> everything you want to keep (images, etc).  By default sstate-cache is
-> next to tmp not underneath it, so the first build after wiping tmp
-> will be reconstructed from sstate instead of needing to recompile
-> anything.
+> On Thursday 12 December 2013 08:06:31 Gary Thomas wrote:
+>> I've found that the latest bitbake fetcher changes (require
+>> the use of branch names) fails with older versions of git.
+>> I have a Fedora 13 machine which I routinely use to build
+>> my Yocto projects that has git version 1.7.7.6.  On that machine,
+>> all git fetches fail, no matter what.  On my Ubuntu builder
+>> which has git 1.7.9.4, all is OK.
+>>
+>> I see that there is a git recipe in OE-core.  How can I force
+>> it to be built and used where the host's native git is inadequate?
 >
-> Ross
+> The solution we provide for this kind of situation is buildtools-tarball, as
+> described here (linked from the QS guide as well):
 >
+> http://www.yoctoproject.org/docs/current/ref-manual/ref-manual.html#required-git-tar-and-python-versions
 
---047d7bea3be4feccb504ed58d39a
-Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
+Thanks, I'll give this a go.
 
-<div dir=3D"ltr"><div>Thanks for the information.=A0 When I removed poky/bu=
-ild/tmp everything worked okay.=A0 My build was quick and I did not need to=
- recompile.=A0 My question is what relation between poky/build/tmp/work and=
- poky/build/tmp/sysroot?<br>
-</div>Thanks for all the great work<br>=A0<br></div><div class=3D"gmail_ext=
-ra"><br><br><div class=3D"gmail_quote">On Tue, Dec 10, 2013 at 2:18 PM, Bur=
-ton, Ross <span dir=3D"ltr">&lt;<a href=3D"mailto:ross.burton@intel.com" ta=
-rget=3D"_blank">ross.burton@intel.com</a>&gt;</span> wrote:<br>
-<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
-x #ccc solid;padding-left:1ex"><div class=3D"HOEnZb"><div class=3D"h5">On 1=
-0 December 2013 20:38, Edward Vidal &lt;<a href=3D"mailto:vidal.develone@gm=
-ail.com">vidal.develone@gmail.com</a>&gt; wrote:<br>
-
-&gt; Hello,<br>
-&gt; I have a poky tree that I have used for several builds.<br>
-&gt; What is the command to clean out the poky/build/tmp area.<br>
-&gt; I am on the dylan branch. =A0My conf files are configured and my custo=
-m-image<br>
-&gt; are okay.<br>
-&gt; I want to pull meta-oe, meta-broswer, and meta-xiiinx, and poky with a=
- clean<br>
-&gt; work area.<br>
-&gt; Can I just delete poky/build or poky/build/tmp?<br>
-<br>
-</div></div>Deleting poky/build/tmp is safe assuming that you&#39;ve copied=
- out<br>
-everything you want to keep (images, etc). =A0By default sstate-cache is<br=
 >
-next to tmp not underneath it, so the first build after wiping tmp<br>
-will be reconstructed from sstate instead of needing to recompile<br>
-anything.<br>
-<span class=3D"HOEnZb"><font color=3D"#888888"><br>
-Ross<br>
-</font></span></blockquote></div><br></div>
+> Interesting that git 1.7.7.6 is still not adequate though, that may be a
+> prompt to either fix the check to work with older versions of git or
+> increase our version number requirement.
 
---047d7bea3be4feccb504ed58d39a--
+If you have ideas how I can investigate why this fails, I'd be glad
+to help out (to see if it can be made to work with 1.7.7.6 or if we
+just need a newer version period)
+
+-- 
+------------------------------------------------------------
+Gary Thomas                 |  Consulting for the
+MLB Associates              |    Embedded world
+------------------------------------------------------------
+
