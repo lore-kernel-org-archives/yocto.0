@@ -1,28 +1,35 @@
-Return-Path: <0xf777@gmail.com>
-Received: from mail-la0-f48.google.com (mail-la0-f48.google.com
-	[209.85.215.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 741B3E00796
-	for <yocto@yoctoproject.org>; Thu, 12 Dec 2013 05:38:21 -0800 (PST)
-Received: by mail-la0-f48.google.com with SMTP id n7so308730lam.7
-	for <yocto@yoctoproject.org>; Thu, 12 Dec 2013 05:38:19 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=fa/4LvQpeoTo+6DYUb0R1Z4FzUJ/2wBykkGMcCscX+Y=;
-	b=q7LQ/2nNglySs6aIufPBEDugpzAJ1hQ5pRXN9Dp7hdM/E5sx9QSgrHXdnyaKXoXbFS
-	a6xSn9+YrO6+4fe+UJK5TseeI9lUqF9Rf3Xor3Tb+p6F+oXzK9NfuftijLb1W3IJOF2Q
-	JrRRtrOK+qVkahHGQyTiEercKNnov3hIDezdgob3TVDUWChv2MmsD4v40Yi7uMOE9QkG
-	LBs6EHQtvJl3nS07zymX5MrpbMMELiOzaQD+K0Vwt9QA7egkxEyYYsyp2zW2hKHe1OxN
-	xT3LfWMYsHxE8PGkDL8Vcgw7kFGF+6fHjKkbqmdcOiPsLyt5TN3NFIWGO4vM2dYn+MJ3
-	SsiA==
+Return-Path: <scott.m.rifenbark@intel.com>
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9BCB6E00796
+	for <yocto@yoctoproject.org>; Thu, 12 Dec 2013 06:14:19 -0800 (PST)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga101.fm.intel.com with ESMTP; 12 Dec 2013 06:14:19 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.93,878,1378882800"; d="scan'208";a="448957110"
+Received: from orsmsx102.amr.corp.intel.com ([10.22.225.129])
+	by fmsmga002.fm.intel.com with ESMTP; 12 Dec 2013 06:14:18 -0800
+Received: from orsmsx153.amr.corp.intel.com (10.22.226.247) by
+	ORSMSX102.amr.corp.intel.com (10.22.225.129) with Microsoft SMTP Server
+	(TLS) id 14.3.123.3; Thu, 12 Dec 2013 06:14:18 -0800
+Received: from orsmsx101.amr.corp.intel.com ([169.254.8.94]) by
+	ORSMSX153.amr.corp.intel.com ([169.254.12.2]) with mapi id
+	14.03.0123.003; Thu, 12 Dec 2013 06:14:18 -0800
+From: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
+To: =?utf-8?B?RGF2aWQgTnlzdHLDtm0=?= <david.c.nystrom@gmail.com>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: [yocto] [yocto-docs][PATCH] Revert "ref-manual: Added sdk-pms
+	to	Distro Feature list."
+Thread-Index: AQHO8crWEbp2wvEVF0mnSroiS+9DnJpQpQSQ
+Date: Thu, 12 Dec 2013 14:14:17 +0000
+Message-ID: <41DEA4B02DBDEF40A0F3B6D0DDB1237983F53F27@ORSMSX101.amr.corp.intel.com>
+References: <1386254684-26972-1-git-send-email-david.nystrom@enea.com>
+In-Reply-To: <1386254684-26972-1-git-send-email-david.nystrom@enea.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.138]
 MIME-Version: 1.0
-X-Received: by 10.152.143.101 with SMTP id sd5mr3808675lab.26.1386855499016;
-	Thu, 12 Dec 2013 05:38:19 -0800 (PST)
-Received: by 10.152.121.72 with HTTP; Thu, 12 Dec 2013 05:38:18 -0800 (PST)
-Date: Thu, 12 Dec 2013 17:38:18 +0400
-Message-ID: <CAHyyKNnM+ZEsVZuQnb+duYyU6BosJ2XBN7QPtvxEW6dZoCt4UA@mail.gmail.com>
-From: Alex M <0xf777@gmail.com>
-To: yocto@yoctoproject.org
-Subject: Start custom Qt-program instead of xterm
+Subject: Re: [yocto-docs][PATCH] Revert "ref-manual: Added sdk-pms to	Distro Feature list."
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,53 +41,44 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 12 Dec 2013 13:38:22 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Thu, 12 Dec 2013 14:14:20 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-Hello!
-I spent several days of searching over the internet, learned many
-graphical images recipes, but still don't understand how to specify
-for X11 server to launch my custom Qt program at startup (actually
-it's bash script which runs Qt app, I'm able to start it in xterm
-manually).
-
-Which attempts I did:
-1) modify /etc/X11/xinit/xinitrc: comment all last lines where twm and
-xterm and wrote my app launch script name here (it's accessible from
-any place because lives in /usr/bin) - no luck. When I type startx -
-it works! But how about startup? This not works.
-2) tried to modify startx itself in "defaultclient=" line - also out of luck.
-3) then I tried to add "openbox" to my image, this action added all
-OpenBox's files to image, also I specified my script name in
-/etc/xdg/openbox/autostart and... no result. Moreover when I type
-openbox in nasty xterm I see error: "Openbox-Message: A windows
-manager is already running on screen 0". Actually, I don't see any
-signs that OpenBox is running... My application won't start
-automatically =(
-
-Question: How to start up custom app in X11-based images?
-
-P.S.
-
-DESCRIPTION = "My custom image"
-IMAGE_INSTALL = "packagegroup-core-boot ${ROOTFS_PKGMANAGE_BOOTSTRAP}
-${CORE_IMAGE_EXTRA_INSTALL}"
-IMAGE_FEATURES += "splash package-management x11-base"
-IMAGE_LINGUAS = " "
-LICENSE = "MIT"
-inherit core-image distro_features_check
-REQUIRED_DISTRO_FEATURES = "x11"
-IMAGE_ROOTFS_SIZE = "65536"
-ROOTFS_POSTPROCESS_COMMAND += "remove_packaging_data_files ; "
-IMAGE_FSTYPES += " cpio.gz "
-IMAGE_INSTALL += " openbox mysoft ldd mesa-demos quicky mc dropbear
-htop pciutils usbutils bash "
-IMAGE_INSTALL += " qt4-plugin-phonon-backend-gstreamer libav "
-IMAGE_INSTALL += " gst-plugins-good-avi gst-fluendo-mp3
-gst-fluendo-mpegdemux gst-plugins-gl gst-meta-base gstreamer
-gst-ffmpeg gst-plugins-base gst-plugins-good gst-plugins-bad
-gst-plugins-ugly "
-
-where "mysoft" is my app, which is running fine when manually typing
-it's name in xterm.
+RGF2aWQsIA0KDQpJIGFwcGxpZWQgdGhpcyBieSBoYW5kLiANCg0KVGhhbmtzLCANClNjb3R0DQoN
+Cj4tLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KPkZyb206IHlvY3RvLWJvdW5jZXNAeW9jdG9w
+cm9qZWN0Lm9yZyBbbWFpbHRvOnlvY3RvLQ0KPmJvdW5jZXNAeW9jdG9wcm9qZWN0Lm9yZ10gT24g
+QmVoYWxmIE9mIERhdmlkIE55c3Ryw7ZtDQo+U2VudDogVGh1cnNkYXksIERlY2VtYmVyIDA1LCAy
+MDEzIDY6NDUgQU0NCj5UbzogeW9jdG9AeW9jdG9wcm9qZWN0Lm9yZw0KPlN1YmplY3Q6IFt5b2N0
+b10gW3lvY3RvLWRvY3NdW1BBVENIXSBSZXZlcnQgInJlZi1tYW51YWw6IEFkZGVkIHNkay1wbXMg
+dG8NCj5EaXN0cm8gRmVhdHVyZSBsaXN0LiINCj4NCj5UaGlzIHJldmVydHMgY29tbWl0IGY4MDc2
+ZjE5MTZjYzUyNjQ3YjEyOTkyMmMxYjE2NDZhZDZkZjhmZjkuDQo+DQo+c2RrLXBtcyBpcyBhbHdh
+eXMgaW5jbHVkZWQsIHdpdGggY29tbWl0Og0KPk1vZHVsZTogb3BlbmVtYmVkZGVkLWNvcmUuZ2l0
+DQo+QnJhbmNoOiBtYXN0ZXItbmV4dA0KPkNvbW1pdDogODBhOGVjZjkxMTgxZjJmYmVjMWE0NTIz
+MTYxNWIxMjk0OTMyNzk3MA0KPlVSTDogICAgaHR0cDovL2dpdC5vcGVuZW1iZWRkZWQub3JnLz9w
+PW9wZW5lbWJlZGRlZC0NCj5jb3JlLmdpdCZhPWNvbW1pdDtoPTgwYThlY2Y5MTE4MWYyZmJlYzFh
+NDUyMzE2MTViMTI5NDkzMjc5NzANCj4NCj4NCj5TaWduZWQtb2ZmLWJ5OiBEYXZpZCBOeXN0csO2
+bSA8ZGF2aWQubnlzdHJvbUBlbmVhLmNvbT4NCj4tLS0NCj4gZG9jdW1lbnRhdGlvbi9yZWYtbWFu
+dWFsL3JlZi1mZWF0dXJlcy54bWwgfCA2IC0tLS0tLQ0KPiAxIGZpbGUgY2hhbmdlZCwgNiBkZWxl
+dGlvbnMoLSkNCj4NCj5kaWZmIC0tZ2l0IGEvZG9jdW1lbnRhdGlvbi9yZWYtbWFudWFsL3JlZi1m
+ZWF0dXJlcy54bWwNCj5iL2RvY3VtZW50YXRpb24vcmVmLW1hbnVhbC9yZWYtZmVhdHVyZXMueG1s
+DQo+aW5kZXggMTFlMzczMS4uZjU2NDFjNiAxMDA2NDQNCj4tLS0gYS9kb2N1bWVudGF0aW9uL3Jl
+Zi1tYW51YWwvcmVmLWZlYXR1cmVzLnhtbA0KPisrKyBiL2RvY3VtZW50YXRpb24vcmVmLW1hbnVh
+bC9yZWYtZmVhdHVyZXMueG1sDQo+QEAgLTE3NywxMiArMTc3LDYgQEANCj4gICAgICAgICAgICAg
+ICAgICAgICBzdXBwb3J0cyBpdC48L3BhcmE+PC9saXN0aXRlbT4NCj4gICAgICAgICAgICAgICAg
+IDxsaXN0aXRlbT48cGFyYT48ZW1waGFzaXM+d2lmaTo8L2VtcGhhc2lzPiBJbmNsdWRlIFdpRmkg
+c3VwcG9ydA0KPiAgICAgICAgICAgICAgICAgICAgIChpbnRlZ3JhdGVkIG9ubHkpLjwvcGFyYT48
+L2xpc3RpdGVtPg0KPi0gICAgICAgICAgICAgICAgPGxpc3RpdGVtPjxwYXJhPjxlbXBoYXNpcz5z
+ZGstcG1zOjwvZW1waGFzaXM+IEluY2x1ZGUgUGFja2FnZQ0KPi0gICAgICAgICAgICAgICAgICAg
+IE1hbmFnZW1lbnQgVG9vbHMgaW4gdGhlDQo+LSAgICAgICAgICAgICAgICAgICAgPGZpbGVuYW1l
+Pm5hdGl2ZXNkazwvZmlsZW5hbWU+IHRvb2xjaGFpbiB0YXJiYWxsLg0KPi0gICAgICAgICAgICAg
+ICAgICAgIEluY2x1ZGluZyB0aGVzZSB0b29scyBhbGxvd3MgZm9yIGVhc3kgc2FuZGJveCB1c2Ug
+d2hlbg0KPi0gICAgICAgICAgICAgICAgICAgIGNyZWF0aW5nIHRoZSByb290IGZpbGVzeXN0ZW0g
+d2hpbGUgdXNpbmcgdGhlIFNESyB0YXJiYWxsLg0KPi0gICAgICAgICAgICAgICAgICAgIDwvcGFy
+YT48L2xpc3RpdGVtPg0KPiAgICAgICAgICAgICA8L2l0ZW1pemVkbGlzdD4NCj4gICAgICAgICA8
+L3BhcmE+DQo+ICAgICA8L3NlY3Rpb24+DQo+LS0NCj4xLjguMy4yDQo+DQo+X19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18NCj55b2N0byBtYWlsaW5nIGxpc3QN
+Cj55b2N0b0B5b2N0b3Byb2plY3Qub3JnDQo+aHR0cHM6Ly9saXN0cy55b2N0b3Byb2plY3Qub3Jn
+L2xpc3RpbmZvL3lvY3RvDQo=
 
