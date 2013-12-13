@@ -1,34 +1,32 @@
-Return-Path: <nicolas.dechesne@linaro.org>
-Received: from mail-ob0-f181.google.com (mail-ob0-f181.google.com
-	[209.85.214.181])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DFCC7E00796
-	for <yocto@yoctoproject.org>; Fri, 13 Dec 2013 09:13:05 -0800 (PST)
-Received: by mail-ob0-f181.google.com with SMTP id uy5so2259804obc.40
-	for <yocto@yoctoproject.org>; Fri, 13 Dec 2013 09:13:04 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc:content-type;
-	bh=eNn5emz3YDGJWuJx9dj7QZY7Fp3OTlqhxUzNotgI+mI=;
-	b=kJXYjeGvpinoozyMZIETCTw04y+N6R92Rvhjgx1O3flvhTwdOedj8tjbMxon/QW6mu
-	qPF62Zdnrad3mlfgC8Ftj4vuwpWh3nAIDB4dpRacL3jghWcC68VCLgODws6wdki2Ka5m
-	TeUV9sRuYIDiDam36SbgVMDBslCpHQ2NNojL/BGISpjG7tLzItYLwXcWvxgtfBGWajhV
-	T9D2rhf85AA6vvIjg/d052Th7KIqs3TzBFNXeNbDG6T7LJmGAWfqWqRxivf871qD4NIx
-	PN9B5bSSMJqStvWh0ohZlsXQHHCmtq9LfFU6Dh9vlxA0ka8H1mUOfxcNSxa7qy+205Qi
-	Qwjw==
-X-Gm-Message-State: ALoCoQlBEevFrxRLpk5C2xUGK1n7xL5ijozfTtM6e/3YTh6kAcflTNj8361Xszc5gFV7/sxUv6uh
-X-Received: by 10.60.52.177 with SMTP id u17mr2494335oeo.24.1386954784669;
-	Fri, 13 Dec 2013 09:13:04 -0800 (PST)
+Return-Path: <alexandru.c.georgescu@intel.com>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C671DE00796
+	for <yocto@yoctoproject.org>; Fri, 13 Dec 2013 09:16:05 -0800 (PST)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga101.jf.intel.com with ESMTP; 13 Dec 2013 09:16:04 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.95,480,1384329600"; d="scan'208";a="451944204"
+Received: from irsmsx102.ger.corp.intel.com ([163.33.3.155])
+	by orsmga002.jf.intel.com with ESMTP; 13 Dec 2013 09:16:01 -0800
+Received: from irsmsx104.ger.corp.intel.com ([169.254.5.135]) by
+	IRSMSX102.ger.corp.intel.com ([169.254.2.114]) with mapi id
+	14.03.0123.003; Fri, 13 Dec 2013 17:15:59 +0000
+From: "Georgescu, Alexandru C" <alexandru.c.georgescu@intel.com>
+To: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>, Zhao Yi
+	<yi.zhao@windriver.com>, Otavio Salvador <otavio@ossystems.com.br>
+Thread-Topic: Status of dylan and dora point releases
+Thread-Index: AQHO+Asq9/HnuiKvGU2oSb+Rj5ObDJpSXY+A
+Date: Fri, 13 Dec 2013 17:15:58 +0000
+Message-ID: <1FFB62CE8AEB0D4298B51122D8903E9619FB4B41@IRSMSX104.ger.corp.intel.com>
+References: <CAPhnLPA93Ca1UkiFDgaYt+4zaqna0qsLsG3eiv6eu_cob3tkpA@mail.gmail.com>
+In-Reply-To: <CAPhnLPA93Ca1UkiFDgaYt+4zaqna0qsLsG3eiv6eu_cob3tkpA@mail.gmail.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [163.33.239.180]
 MIME-Version: 1.0
-Received: by 10.76.122.81 with HTTP; Fri, 13 Dec 2013 09:12:44 -0800 (PST)
-In-Reply-To: <1386953101.37035.YahooMailNeo@web121102.mail.ne1.yahoo.com>
-References: <1386953101.37035.YahooMailNeo@web121102.mail.ne1.yahoo.com>
-From: Nicolas Dechesne <nicolas.dechesne@linaro.org>
-Date: Fri, 13 Dec 2013 18:12:44 +0100
-Message-ID: <CAP71WjxiffLeG1isMFnKb85MSWYW7kZcsZDNZ0muH4iSXKiGmg@mail.gmail.com>
-To: J Uhl <juhl_iphone@yahoo.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: e2fsprogs with core-image-minimal
+Subject: Re: Status of dylan and dora point releases
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,60 +38,48 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 13 Dec 2013 17:13:06 -0000
-Content-Type: multipart/alternative; boundary=001a1133056a429f7004ed6d9381
-
---001a1133056a429f7004ed6d9381
-Content-Type: text/plain; charset=windows-1252
+X-List-Received-Date: Fri, 13 Dec 2013 17:16:09 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-On Fri, Dec 13, 2013 at 5:45 PM, J Uhl <juhl_iphone@yahoo.com> wrote:
+There will be some changes coming in, so please hold testing until next wee=
+k when a new build will arrive.
 
-> How do I get mkfs.ext3 binary over to my rootfs image.  I added
->
-> IMAGE_INSTALL +=3D =93util-linux e2fsprogs=94
->
-> To core-image-minimal but I seem to be missing something.  Mkfs does work
-> but no mkfs.ext3.
->
+Thanks,
+Alex.
 
-you need to install "e2fsprogs-mke2fs" into your image
+-----Original Message-----
+From: Flanagan, Elizabeth [mailto:elizabeth.flanagan@intel.com]=20
+Sent: Friday, December 13, 2013 3:56 PM
+To: Georgescu, Alexandru C; yocto@yoctoproject.org; Zhao Yi; Otavio Salvado=
+r
+Subject: Status of dylan and dora point releases
 
---001a1133056a429f7004ed6d9381
-Content-Type: text/html; charset=windows-1252
-Content-Transfer-Encoding: quoted-printable
+All,
 
-<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
-On Fri, Dec 13, 2013 at 5:45 PM, J Uhl <span dir=3D"ltr">&lt;<a href=3D"mai=
-lto:juhl_iphone@yahoo.com" target=3D"_blank">juhl_iphone@yahoo.com</a>&gt;<=
-/span> wrote:<br>
+With the failures we saw last night on the dylan point release, we're going=
+ to ask folks to switch QA efforts to the dora point release which should b=
+e finished building shortly. The build appliance will be built out of band =
+in order to fix some autobuilder build issues on it and then added to the r=
+c2 area.
 
-<blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-=
-left-width:1px;border-left-color:rgb(204,204,204);border-left-style:solid;p=
-adding-left:1ex"><div style=3D"margin:0in 0in 0pt"><font face=3D"Calibri">H=
-ow do I get mkfs.ext3 binary over to my rootfs image.<span>=A0 </span>I add=
-ed </font></div>
+http://autobuilder.yoctoproject.org/pub/releases/dora-10.0.1.rc2
 
-<div><font face=3D"Times New Roman">
+bitbake     1484905373ad717cedcaef37a0addd
+e034ebdc60
+eclipse-poky-juno     2fa1c58940141a3c547c8790b8a6832167e8eb66
+eclipse-poky-kepler     ad74249895f882a8f00bdeef7a0f7c18998cc43e
+meta-fsl-arm     c7cc5d5f451c9d12df9f11314f4a58ecc347b1f5
+meta-fsl-ppc     b5732aeadc9eb0de933f52d0949412e12f8486bd
+meta-intel     c86e39dd06571458c7dee6cf289d5b470c98f4bd
+meta-minnow     edf75553643face7a0dd5b16085d59a90eb4af8d
+meta-qt3     4772424ab69908d4e3b9d6d4717ca889468e6acd
+oecore     d68c267f3387d7fe221d3c5653a66db8b1f78fd8
+poky     7a0033cc4e1f590c5a936671f351a1b251e16726
 
-</font></div><div style=3D"margin:0in 0in 0pt"><font face=3D"Calibri">=A0</=
-font></div><div><font face=3D"Times New Roman">
+--
+Elizabeth Flanagan
+Yocto Project
+Build and Release
 
-</font></div><div style=3D"margin:0in 0in 0pt"><font face=3D"Calibri">IMAGE=
-_INSTALL +=3D =93util-linux e2fsprogs=94</font></div><div><font face=3D"Tim=
-es New Roman">
-
-</font></div><div style=3D"margin:0in 0in 0pt"><font face=3D"Calibri">=A0</=
-font></div><div><font face=3D"Times New Roman">
-
-</font></div><div style=3D"margin:0in 0in 0pt"><font face=3D"Calibri">To co=
-re-image-minimal but I seem to be missing something.=A0 Mkfs does work but =
-no mkfs.ext3.</font></div><div><font face=3D"Times New Roman">
-
-</font></div><div style=3D"margin:0in 0in 0pt"></div></blockquote></div><br=
->you need to install &quot;e2fsprogs-mke2fs&quot; into your image</div><div=
- class=3D"gmail_extra"><br></div><div class=3D"gmail_extra"><br></div></div=
->
-
-
---001a1133056a429f7004ed6d9381--
