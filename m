@@ -1,52 +1,37 @@
-Return-Path: <juhl_iphone@yahoo.com>
-Received: from nm32.bullet.mail.ne1.yahoo.com (nm32.bullet.mail.ne1.yahoo.com
-	[98.138.229.25])
-	by yocto-www.yoctoproject.org (Postfix) with SMTP id 10915E007B0
-	for <yocto@yoctoproject.org>; Fri, 13 Dec 2013 08:47:52 -0800 (PST)
-Received: from [127.0.0.1] by nm32.bullet.mail.ne1.yahoo.com with NNFMP;
-	13 Dec 2013 16:47:51 -0000
-Received: from [98.138.100.113] by nm32.bullet.mail.ne1.yahoo.com with NNFMP;
-	13 Dec 2013 16:45:02 -0000
-Received: from [98.138.89.169] by tm104.bullet.mail.ne1.yahoo.com with NNFMP;
-	13 Dec 2013 16:45:01 -0000
-Received: from [127.0.0.1] by omp1025.mail.ne1.yahoo.com with NNFMP;
-	13 Dec 2013 16:45:01 -0000
-X-Yahoo-Newman-Property: ymail-4
-X-Yahoo-Newman-Id: 891667.24300.bm@omp1025.mail.ne1.yahoo.com
-Received: (qmail 76745 invoked by uid 60001); 13 Dec 2013 16:45:01 -0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s1024;
-	t=1386953101; bh=t3kHf9mG5useszD/y6hZKN+LBJx7Hp2GBkL8Z2OOZBk=;
-	h=X-YMail-OSG:Received:X-Rocket-MIMEInfo:X-Mailer:Message-ID:Date:From:Reply-To:Subject:To:MIME-Version:Content-Type;
-	b=a3cNt+Q1gu5xznhKCxk59ZuR7VjCDC8UcRCk2nPbx3Eb3bOiYsKy+oiTilaMHDVKasMn70uD24n5h1gy+BiDVni8eaNM9X0Wd/cfblLE8pHGi7nnbyaKDAkpEowlPbSt1n8YmbISC9FIWkgD2te78M9WpSqMGUlN+nVRHkQyEVY=
-DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws; s=s1024; d=yahoo.com;
-	h=X-YMail-OSG:Received:X-Rocket-MIMEInfo:X-Mailer:Message-ID:Date:From:Reply-To:Subject:To:MIME-Version:Content-Type;
-	b=pJKJUYoGFv9uWERihrF2gWcJI4DaZ0p1WEcrgdXpLnJ0s5dWFhscKxUq/JAU3fEx+GSDs2UOy2x8J48ht4qWwl9fadNruABmjO1gXxSx/6vgk/CH6hjEPWz9vLh9fIH4p68syzxnYTFZTZKQtqa/Huk9uyrcBfHMrdyVrHIElBw=;
-X-YMail-OSG: TGW2TWMVM1kbpr50iW15KKvMMsLpu8wdfJgPs.7E4Prx.L9
-	3tlaWOkmKm5_x1QkJSGh.9AKlavOP6KBoBCbhYl7xWoQXvCO0FdepFez2skM
-	i62lH2bFEaGNbjhQNc.PkBV1QffPC1gVdf1lJM5EQJyPmDTRtkKDfY07ToTC
-	eL9ezHXcbsvJL0.8sT4suOKIehgE1vAt9jl3FG2uSmgZnEvU95jrQdhzrJ46
-	oBUbK3CCK44ipDC14zrtNr591ZOCambrQjSEJrC4Gm6mQDXUzk9dU3roq3Mg
-	K59T3E63PscPvbn90nnY2Ys93vHnSRTKE9U05UDXf4Hud73XXf1udzfrWZOf
-	Nd0wGKzUX_TpX621cMjHoXLk_YgFCldiPmymCty6VTT0jQknX_j6wsDpHlE5
-	WU.IRxzBCiMR8yGZ8g66YeWglG79j9jYEnd.LOqBzlltbe5u94gwpt9f8fGk
-	VlMYNEz1mkwp77x4gDQxTDSqe65RCPeT637Gxbg0YDUIU3H_wqwcFX.Noyi6
-	01jy4kFIqsFXq8OCZ.17CLl1QG3bV8lTktXTgQ89s
-Received: from [208.99.241.169] by web121102.mail.ne1.yahoo.com via HTTP;
-	Fri, 13 Dec 2013 08:45:01 PST
-X-Rocket-MIMEInfo: 002.001,
-	SGVsbG8sCsKgCkhvdyBkbyBJIGdldCBta2ZzLmV4dDMgYmluYXJ5IG92ZXIgdG8gbXkgcm9vdGZzIGltYWdlLsKgIEkgYWRkZWQgCsKgCklNQUdFX0lOU1RBTEwgKz0g4oCcdXRpbC1saW51eCBlMmZzcHJvZ3PigJ0KwqAKVG8gY29yZS1pbWFnZS1taW5pbWFsIGJ1dCBJIHNlZW0gdG8gYmUgbWlzc2luZyBzb21ldGhpbmcuwqAgTWtmcyBkb2VzIHdvcmsgYnV0IG5vIG1rZnMuZXh0My4KwqAKVGhhbmtzIQoBMAEBAQE-
-X-Mailer: YahooMailWebService/0.8.169.609
-Message-ID: <1386953101.37035.YahooMailNeo@web121102.mail.ne1.yahoo.com>
-Date: Fri, 13 Dec 2013 08:45:01 -0800 (PST)
-From: J Uhl <juhl_iphone@yahoo.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Return-Path: <nicolas.dechesne@linaro.org>
+Received: from mail-ob0-f181.google.com (mail-ob0-f181.google.com
+	[209.85.214.181])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DFCC7E00796
+	for <yocto@yoctoproject.org>; Fri, 13 Dec 2013 09:13:05 -0800 (PST)
+Received: by mail-ob0-f181.google.com with SMTP id uy5so2259804obc.40
+	for <yocto@yoctoproject.org>; Fri, 13 Dec 2013 09:13:04 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc:content-type;
+	bh=eNn5emz3YDGJWuJx9dj7QZY7Fp3OTlqhxUzNotgI+mI=;
+	b=kJXYjeGvpinoozyMZIETCTw04y+N6R92Rvhjgx1O3flvhTwdOedj8tjbMxon/QW6mu
+	qPF62Zdnrad3mlfgC8Ftj4vuwpWh3nAIDB4dpRacL3jghWcC68VCLgODws6wdki2Ka5m
+	TeUV9sRuYIDiDam36SbgVMDBslCpHQ2NNojL/BGISpjG7tLzItYLwXcWvxgtfBGWajhV
+	T9D2rhf85AA6vvIjg/d052Th7KIqs3TzBFNXeNbDG6T7LJmGAWfqWqRxivf871qD4NIx
+	PN9B5bSSMJqStvWh0ohZlsXQHHCmtq9LfFU6Dh9vlxA0ka8H1mUOfxcNSxa7qy+205Qi
+	Qwjw==
+X-Gm-Message-State: ALoCoQlBEevFrxRLpk5C2xUGK1n7xL5ijozfTtM6e/3YTh6kAcflTNj8361Xszc5gFV7/sxUv6uh
+X-Received: by 10.60.52.177 with SMTP id u17mr2494335oeo.24.1386954784669;
+	Fri, 13 Dec 2013 09:13:04 -0800 (PST)
 MIME-Version: 1.0
-X-Mailman-Approved-At: Fri, 13 Dec 2013 09:07:28 -0800
-Subject: e2fsprogs with core-image-minimal
+Received: by 10.76.122.81 with HTTP; Fri, 13 Dec 2013 09:12:44 -0800 (PST)
+In-Reply-To: <1386953101.37035.YahooMailNeo@web121102.mail.ne1.yahoo.com>
+References: <1386953101.37035.YahooMailNeo@web121102.mail.ne1.yahoo.com>
+From: Nicolas Dechesne <nicolas.dechesne@linaro.org>
+Date: Fri, 13 Dec 2013 18:12:44 +0100
+Message-ID: <CAP71WjxiffLeG1isMFnKb85MSWYW7kZcsZDNZ0muH4iSXKiGmg@mail.gmail.com>
+To: J Uhl <juhl_iphone@yahoo.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: e2fsprogs with core-image-minimal
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
-Reply-To: J Uhl <juhl_iphone@yahoo.com>
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -55,47 +40,60 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 13 Dec 2013 16:47:53 -0000
-Content-Type: multipart/alternative;
-	boundary="691502144-642550192-1386953101=:37035"
+X-List-Received-Date: Fri, 13 Dec 2013 17:13:06 -0000
+Content-Type: multipart/alternative; boundary=001a1133056a429f7004ed6d9381
 
---691502144-642550192-1386953101=:37035
-Content-Type: text/plain; charset=utf-8
+--001a1133056a429f7004ed6d9381
+Content-Type: text/plain; charset=windows-1252
 Content-Transfer-Encoding: quoted-printable
 
-Hello,=0A=C2=A0=0AHow do I get mkfs.ext3 binary over to my rootfs image.=C2=
-=A0 I added =0A=C2=A0=0AIMAGE_INSTALL +=3D =E2=80=9Cutil-linux e2fsprogs=E2=
-=80=9D=0A=C2=A0=0ATo core-image-minimal but I seem to be missing something.=
-=C2=A0 Mkfs does work but no mkfs.ext3.=0A=C2=A0=0AThanks!=0A
+On Fri, Dec 13, 2013 at 5:45 PM, J Uhl <juhl_iphone@yahoo.com> wrote:
 
---691502144-642550192-1386953101=:37035
-Content-Type: text/html; charset=utf-8
+> How do I get mkfs.ext3 binary over to my rootfs image.  I added
+>
+> IMAGE_INSTALL +=3D =93util-linux e2fsprogs=94
+>
+> To core-image-minimal but I seem to be missing something.  Mkfs does work
+> but no mkfs.ext3.
+>
+
+you need to install "e2fsprogs-mke2fs" into your image
+
+--001a1133056a429f7004ed6d9381
+Content-Type: text/html; charset=windows-1252
 Content-Transfer-Encoding: quoted-printable
 
-<html><body><div style=3D"color:#000; background-color:#fff; font-family:He=
-lveticaNeue, Helvetica Neue, Helvetica, Arial, Lucida Grande, sans-serif;fo=
-nt-size:12pt"><div><font face=3D"Times New Roman">=0A=0A</font></div><div s=
-tyle=3D"margin: 0in 0in 0pt;"><font face=3D"Calibri">Hello,</font></div><di=
-v><font face=3D"Times New Roman">=0A=0A</font></div><div style=3D"margin: 0=
-in 0in 0pt;"><font face=3D"Calibri">&nbsp;</font></div><div><font face=3D"T=
-imes New Roman">=0A=0A</font></div><div style=3D"margin: 0in 0in 0pt;"><fon=
-t face=3D"Calibri">How do I get mkfs.ext3 binary over to my rootfs image.<s=
-pan style=3D"mso-spacerun: yes;">&nbsp; </span>I added </font></div><div><f=
-ont face=3D"Times New Roman">=0A=0A</font></div><div style=3D"margin: 0in 0=
-in 0pt;"><font face=3D"Calibri">&nbsp;</font></div><div><font face=3D"Times=
- New Roman">=0A=0A</font></div><div style=3D"margin: 0in 0in 0pt;"><font fa=
-ce=3D"Calibri">IMAGE_INSTALL +=3D =E2=80=9Cutil-linux e2fsprogs=E2=80=9D</f=
-ont></div><div><font face=3D"Times New Roman">=0A=0A</font></div><div style=
-=3D"margin: 0in 0in 0pt;"><font face=3D"Calibri">&nbsp;</font></div><div><f=
-ont face=3D"Times New Roman">=0A=0A</font></div><div style=3D"margin: 0in 0=
-in 0pt;"><font face=3D"Calibri">To core-image-minimal but I seem to be miss=
-ing something.&nbsp; Mkfs does work but no mkfs.ext3.</font></div><div><fon=
-t face=3D"Times New Roman">=0A=0A</font></div><div style=3D"margin: 0in 0in=
- 0pt;"><font face=3D"Calibri">&nbsp;</font></div><div><font face=3D"Times N=
-ew Roman">=0A=0A</font></div><div style=3D"margin: 0in 0in 0pt;"><span styl=
-e=3D'font-family: "Times New Roman","serif"; mso-fareast-font-family: "Time=
-s New Roman"; mso-fareast-theme-font: minor-fareast; mso-no-proof: yes;'><f=
-ont color=3D"#000000">Thanks!</font></span></div><div><font face=3D"Times N=
-ew Roman">=0A=0A</font><br></div></div></body></html>
+<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
+On Fri, Dec 13, 2013 at 5:45 PM, J Uhl <span dir=3D"ltr">&lt;<a href=3D"mai=
+lto:juhl_iphone@yahoo.com" target=3D"_blank">juhl_iphone@yahoo.com</a>&gt;<=
+/span> wrote:<br>
 
---691502144-642550192-1386953101=:37035--
+<blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-=
+left-width:1px;border-left-color:rgb(204,204,204);border-left-style:solid;p=
+adding-left:1ex"><div style=3D"margin:0in 0in 0pt"><font face=3D"Calibri">H=
+ow do I get mkfs.ext3 binary over to my rootfs image.<span>=A0 </span>I add=
+ed </font></div>
+
+<div><font face=3D"Times New Roman">
+
+</font></div><div style=3D"margin:0in 0in 0pt"><font face=3D"Calibri">=A0</=
+font></div><div><font face=3D"Times New Roman">
+
+</font></div><div style=3D"margin:0in 0in 0pt"><font face=3D"Calibri">IMAGE=
+_INSTALL +=3D =93util-linux e2fsprogs=94</font></div><div><font face=3D"Tim=
+es New Roman">
+
+</font></div><div style=3D"margin:0in 0in 0pt"><font face=3D"Calibri">=A0</=
+font></div><div><font face=3D"Times New Roman">
+
+</font></div><div style=3D"margin:0in 0in 0pt"><font face=3D"Calibri">To co=
+re-image-minimal but I seem to be missing something.=A0 Mkfs does work but =
+no mkfs.ext3.</font></div><div><font face=3D"Times New Roman">
+
+</font></div><div style=3D"margin:0in 0in 0pt"></div></blockquote></div><br=
+>you need to install &quot;e2fsprogs-mke2fs&quot; into your image</div><div=
+ class=3D"gmail_extra"><br></div><div class=3D"gmail_extra"><br></div></div=
+>
+
+
+--001a1133056a429f7004ed6d9381--
