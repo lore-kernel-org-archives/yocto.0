@@ -1,32 +1,25 @@
-Return-Path: <alexandru.c.georgescu@intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C671DE00796
-	for <yocto@yoctoproject.org>; Fri, 13 Dec 2013 09:16:05 -0800 (PST)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga101.jf.intel.com with ESMTP; 13 Dec 2013 09:16:04 -0800
+Return-Path: <paul.eggleton@linux.intel.com>
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 12D68E00796
+	for <yocto@yoctoproject.org>; Fri, 13 Dec 2013 09:21:29 -0800 (PST)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga102.fm.intel.com with ESMTP; 13 Dec 2013 09:21:28 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.95,480,1384329600"; d="scan'208";a="451944204"
-Received: from irsmsx102.ger.corp.intel.com ([163.33.3.155])
-	by orsmga002.jf.intel.com with ESMTP; 13 Dec 2013 09:16:01 -0800
-Received: from irsmsx104.ger.corp.intel.com ([169.254.5.135]) by
-	IRSMSX102.ger.corp.intel.com ([169.254.2.114]) with mapi id
-	14.03.0123.003; Fri, 13 Dec 2013 17:15:59 +0000
-From: "Georgescu, Alexandru C" <alexandru.c.georgescu@intel.com>
-To: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>, Zhao Yi
-	<yi.zhao@windriver.com>, Otavio Salvador <otavio@ossystems.com.br>
-Thread-Topic: Status of dylan and dora point releases
-Thread-Index: AQHO+Asq9/HnuiKvGU2oSb+Rj5ObDJpSXY+A
-Date: Fri, 13 Dec 2013 17:15:58 +0000
-Message-ID: <1FFB62CE8AEB0D4298B51122D8903E9619FB4B41@IRSMSX104.ger.corp.intel.com>
-References: <CAPhnLPA93Ca1UkiFDgaYt+4zaqna0qsLsG3eiv6eu_cob3tkpA@mail.gmail.com>
-In-Reply-To: <CAPhnLPA93Ca1UkiFDgaYt+4zaqna0qsLsG3eiv6eu_cob3tkpA@mail.gmail.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [163.33.239.180]
+X-IronPort-AV: E=Sophos;i="4.95,480,1384329600"; d="scan'208";a="449689790"
+Received: from junemccl-mobl.ger.corp.intel.com (HELO helios.localnet)
+	([10.252.122.17])
+	by fmsmga002.fm.intel.com with ESMTP; 13 Dec 2013 09:21:14 -0800
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: Alex M <0xf777@gmail.com>
+Date: Fri, 13 Dec 2013 17:21:13 +0000
+Message-ID: <1386957928.P8ieWOzyec@helios>
+Organization: Intel Corporation
+User-Agent: KMail/4.10.5 (Linux/3.8.0-34-generic; KDE/4.10.5; i686; ; )
+In-Reply-To: <CAHyyKNnM+ZEsVZuQnb+duYyU6BosJ2XBN7QPtvxEW6dZoCt4UA@mail.gmail.com>
+References: <CAHyyKNnM+ZEsVZuQnb+duYyU6BosJ2XBN7QPtvxEW6dZoCt4UA@mail.gmail.com>
 MIME-Version: 1.0
-Subject: Re: Status of dylan and dora point releases
+Cc: yocto@yoctoproject.org
+Subject: Re: Start custom Qt-program instead of xterm
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,48 +31,68 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 13 Dec 2013 17:16:09 -0000
-Content-Language: en-US
+X-List-Received-Date: Fri, 13 Dec 2013 17:21:32 -0000
+Content-Transfer-Encoding: 7Bit
 Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
 
-There will be some changes coming in, so please hold testing until next wee=
-k when a new build will arrive.
+Hi Alex,
 
-Thanks,
-Alex.
+On Thursday 12 December 2013 17:38:18 Alex M wrote:
+> I spent several days of searching over the internet, learned many
+> graphical images recipes, but still don't understand how to specify
+> for X11 server to launch my custom Qt program at startup (actually
+> it's bash script which runs Qt app, I'm able to start it in xterm
+> manually).
+> 
+> Which attempts I did:
+> 1) modify /etc/X11/xinit/xinitrc: comment all last lines where twm and
+> xterm and wrote my app launch script name here (it's accessible from
+> any place because lives in /usr/bin) - no luck. When I type startx -
+> it works! But how about startup? This not works.
+> 2) tried to modify startx itself in "defaultclient=" line - also out of
+> luck. 3) then I tried to add "openbox" to my image, this action added all
+> OpenBox's files to image, also I specified my script name in
+> /etc/xdg/openbox/autostart and... no result. Moreover when I type
+> openbox in nasty xterm I see error: "Openbox-Message: A windows
+> manager is already running on screen 0". Actually, I don't see any
+> signs that OpenBox is running... My application won't start
+> automatically =(
+> 
+> Question: How to start up custom app in X11-based images?
+> 
+> P.S.
+> 
+> DESCRIPTION = "My custom image"
+> IMAGE_INSTALL = "packagegroup-core-boot ${ROOTFS_PKGMANAGE_BOOTSTRAP}
+> ${CORE_IMAGE_EXTRA_INSTALL}"
+> IMAGE_FEATURES += "splash package-management x11-base"
+> IMAGE_LINGUAS = " "
+> LICENSE = "MIT"
+> inherit core-image distro_features_check
+> REQUIRED_DISTRO_FEATURES = "x11"
+> IMAGE_ROOTFS_SIZE = "65536"
+> ROOTFS_POSTPROCESS_COMMAND += "remove_packaging_data_files ; "
+> IMAGE_FSTYPES += " cpio.gz "
+> IMAGE_INSTALL += " openbox mysoft ldd mesa-demos quicky mc dropbear
+> htop pciutils usbutils bash "
+> IMAGE_INSTALL += " qt4-plugin-phonon-backend-gstreamer libav "
+> IMAGE_INSTALL += " gst-plugins-good-avi gst-fluendo-mp3
+> gst-fluendo-mpegdemux gst-plugins-gl gst-meta-base gstreamer
+> gst-ffmpeg gst-plugins-base gst-plugins-good gst-plugins-bad
+> gst-plugins-ugly "
+> 
+> where "mysoft" is my app, which is running fine when manually typing
+> it's name in xterm.
 
------Original Message-----
-From: Flanagan, Elizabeth [mailto:elizabeth.flanagan@intel.com]=20
-Sent: Friday, December 13, 2013 3:56 PM
-To: Georgescu, Alexandru C; yocto@yoctoproject.org; Zhao Yi; Otavio Salvado=
-r
-Subject: Status of dylan and dora point releases
+One example we have of doing this is in the "build appliance". We have a 
+"builder" recipe that among other things starts the Hob UI on startup - have a 
+look at meta/recipes-graphics/builder/builder_0.1.bb to see how it works.
 
-All,
+Cheers,
+Paul
 
-With the failures we saw last night on the dylan point release, we're going=
- to ask folks to switch QA efforts to the dora point release which should b=
-e finished building shortly. The build appliance will be built out of band =
-in order to fix some autobuilder build issues on it and then added to the r=
-c2 area.
+-- 
 
-http://autobuilder.yoctoproject.org/pub/releases/dora-10.0.1.rc2
-
-bitbake     1484905373ad717cedcaef37a0addd
-e034ebdc60
-eclipse-poky-juno     2fa1c58940141a3c547c8790b8a6832167e8eb66
-eclipse-poky-kepler     ad74249895f882a8f00bdeef7a0f7c18998cc43e
-meta-fsl-arm     c7cc5d5f451c9d12df9f11314f4a58ecc347b1f5
-meta-fsl-ppc     b5732aeadc9eb0de933f52d0949412e12f8486bd
-meta-intel     c86e39dd06571458c7dee6cf289d5b470c98f4bd
-meta-minnow     edf75553643face7a0dd5b16085d59a90eb4af8d
-meta-qt3     4772424ab69908d4e3b9d6d4717ca889468e6acd
-oecore     d68c267f3387d7fe221d3c5653a66db8b1f78fd8
-poky     7a0033cc4e1f590c5a936671f351a1b251e16726
-
---
-Elizabeth Flanagan
-Yocto Project
-Build and Release
+Paul Eggleton
+Intel Open Source Technology Centre
 
