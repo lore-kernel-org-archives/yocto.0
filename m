@@ -1,27 +1,29 @@
-Return-Path: <sgw@linux.intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9D06CE007B0
-	for <yocto@yoctoproject.org>; Fri, 13 Dec 2013 12:10:09 -0800 (PST)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga102.jf.intel.com with ESMTP; 13 Dec 2013 12:06:23 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.95,481,1384329600"; d="scan'208";a="424394157"
-Received: from unknown (HELO [10.255.12.47]) ([10.255.12.47])
-	by orsmga001.jf.intel.com with ESMTP; 13 Dec 2013 12:10:08 -0800
-Message-ID: <52AB699F.7060909@linux.intel.com>
-Date: Fri, 13 Dec 2013 12:10:07 -0800
-From: Saul Wold <sgw@linux.intel.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:24.0) Gecko/20100101 Thunderbird/24.1.0
+Return-Path: <visgupta07@gmail.com>
+Received: from mail-pa0-f68.google.com (mail-pa0-f68.google.com
+	[209.85.220.68])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9E3CFE007F8
+	for <yocto@yoctoproject.org>; Fri, 13 Dec 2013 23:17:44 -0800 (PST)
+Received: by mail-pa0-f68.google.com with SMTP id kl14so490342pab.11
+	for <yocto@yoctoproject.org>; Fri, 13 Dec 2013 23:17:43 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to:cc:content-type;
+	bh=8R/rAUM2jTH6p3guAVxC3pUJlBw8TPyN10iTo/mvRWE=;
+	b=PUz18XueOmIdl3PUq0pWElbGclERsGhNbSSjL8iCV0V/n44cZVKxpImgur/5B/vUgl
+	dOxKPJ0fQm99ptHV/AsdJk6qDfiCl6aEMUEQ/btvq84CvuaQnGNyYHmH9ETPPoPo2Y5u
+	CrXfIZqhLoq/16U/VBXQuv5MX9g6iErzczHDutRWjEk4vftMWdLSQ+0uy77DyT9IIaJz
+	oWL5/caHfFIZ1tSBgz/WDFS+cE4XiBVSnL52ZA9CIDKlnx9htI2WgDkZ5SCFOXfIPNWb
+	3l1z9NAFhaAd5969yGnypbTMIUg0tVrWH9YXxM/8IFIz3NSwJtNZ2M+h+VRfgfX02lj6
+	N6Dg==
 MIME-Version: 1.0
-To: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>, 
-	"Georgescu, Alexandru C" <alexandru.c.georgescu@intel.com>
-References: <CAPhnLPA93Ca1UkiFDgaYt+4zaqna0qsLsG3eiv6eu_cob3tkpA@mail.gmail.com>	<1FFB62CE8AEB0D4298B51122D8903E9619FB4B41@IRSMSX104.ger.corp.intel.com>
-	<CAPhnLPC1ZzR3=ZHG5pQ_kffsBptSKUY5uro51c7DhdPGE+6utw@mail.gmail.com>
-In-Reply-To: <CAPhnLPC1ZzR3=ZHG5pQ_kffsBptSKUY5uro51c7DhdPGE+6utw@mail.gmail.com>
-Cc: Yocto Project Discussion <yocto@yoctoproject.org>,
-	Otavio Salvador <otavio@ossystems.com.br>
-Subject: Re: Status of dylan and dora point releases
+X-Received: by 10.68.130.130 with SMTP id oe2mr7882347pbb.135.1387005463788;
+	Fri, 13 Dec 2013 23:17:43 -0800 (PST)
+Received: by 10.67.14.169 with HTTP; Fri, 13 Dec 2013 23:17:43 -0800 (PST)
+Date: Sat, 14 Dec 2013 12:47:43 +0530
+Message-ID: <CAMGfQQrxmk9seHii6OH0bDXWpZgJD_zHnkfn6S_fbnm-TXG8uw@mail.gmail.com>
+From: vishal gupta <visgupta07@gmail.com>
+To: koen@dominion.thruhere.net
+Cc: yocto@yoctoproject.org, openembedded-devel@lists.openembedded.org
+Subject: Compiling the kernel source from Angstrom distribution & building an OS console-image.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -33,64 +35,102 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 13 Dec 2013 20:10:15 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Sat, 14 Dec 2013 07:17:44 -0000
+Content-Type: multipart/alternative; boundary=047d7b15ad97f89d6d04ed795faa
 
-On 12/13/2013 09:27 AM, Flanagan, Elizabeth wrote:
-> All,
->
-> Yes, DISTRO_VERSION didn't get flipped before the main build and as
-> folks won't be starting QA until monday, this gives us a chance to
-> rebuild with the right DISTRO_VERSION and a corrected build-appliance
-> build (SRCREV for it will be flipped post build and is not required
-> for it to be built).
->
+--047d7b15ad97f89d6d04ed795faa
+Content-Type: text/plain; charset=ISO-8859-1
 
-Please try to complete the build before Sunday your time, so that the 
-folks in Asia can start testing on their Monday Morning.
+Thank you Koen for the reply.
 
-Thanks
-	Sau!
+I made the local changes so that i can include some features in my kernel.
+The features are:
+1.The camera driver mt9t112 for LI-LBCM3M1 from leopard imaging.
+2.The camera driver mt9v113 for LI-LBCMVGA from leopard imaging.
 
-> -b
->
-> On Fri, Dec 13, 2013 at 5:15 PM, Georgescu, Alexandru C
-> <alexandru.c.georgescu@intel.com> wrote:
->> There will be some changes coming in, so please hold testing until next week when a new build will arrive.
->>
->> Thanks,
->> Alex.
->>
->> -----Original Message-----
->> From: Flanagan, Elizabeth [mailto:elizabeth.flanagan@intel.com]
->> Sent: Friday, December 13, 2013 3:56 PM
->> To: Georgescu, Alexandru C; yocto@yoctoproject.org; Zhao Yi; Otavio Salvador
->> Subject: Status of dylan and dora point releases
->>
->> All,
->>
->> With the failures we saw last night on the dylan point release, we're going to ask folks to switch QA efforts to the dora point release which should be finished building shortly. The build appliance will be built out of band in order to fix some autobuilder build issues on it and then added to the rc2 area.
->>
->> http://autobuilder.yoctoproject.org/pub/releases/dora-10.0.1.rc2
->>
->> bitbake     1484905373ad717cedcaef37a0addd
->> e034ebdc60
->> eclipse-poky-juno     2fa1c58940141a3c547c8790b8a6832167e8eb66
->> eclipse-poky-kepler     ad74249895f882a8f00bdeef7a0f7c18998cc43e
->> meta-fsl-arm     c7cc5d5f451c9d12df9f11314f4a58ecc347b1f5
->> meta-fsl-ppc     b5732aeadc9eb0de933f52d0949412e12f8486bd
->> meta-intel     c86e39dd06571458c7dee6cf289d5b470c98f4bd
->> meta-minnow     edf75553643face7a0dd5b16085d59a90eb4af8d
->> meta-qt3     4772424ab69908d4e3b9d6d4717ca889468e6acd
->> oecore     d68c267f3387d7fe221d3c5653a66db8b1f78fd8
->> poky     7a0033cc4e1f590c5a936671f351a1b251e16726
->>
->> --
->> Elizabeth Flanagan
->> Yocto Project
->> Build and Release
->
->
->
+As per a small test carried out by me i found that both the above camera
+modules work fine with the pre-build image with Kernel  Version 2.6.32 from
+Narccissus Image Builder.
 
+So i downloaded the source of this Narccissus image from Angstrom
+Distribution (https://github.com/Angstrom-distribution/meta-angstrom) and i
+went for making the below listed local changes to change the default kernel
+version which is 3.2.28 to the kernel version 2.6.32.
+
+In the beagleboard.conf file present in the meta-ti layer i made the
+following changes.
+""
+#PREFERRED_PROVIDER_virtual/kernel = "linux-mainline"
+PREFERRED_PROVIDER_virtual/kernel = "linux-omap-psp"
+
+""
+
+& adding an smc.patch to resolve  another error which i got when i compiled
+above changed ,below is the error what i got.
+""
+/tmp/ccWRvvsG.s:309: Error: selected processor does not support ARM mode
+`smc #0'
+""
+
+This error was resolved as i added the smc.patch.
+
+But encountered with the error when command "MACHINE=beagleboard bitbake
+console-image" is run  i got the error as presented in previous mail and
+below again :
+"
+cp: cannot stat `include/generated/bounds.h': No such file or directory
+ERROR: Function failed: do_compileconfigs (see
+/home/vishal/oe-nad/setup-scripts/build/tmp-angstrom_v2012_12-eglibc/work/beagleboard-angstrom-linux-gnueabi/linux-omap-psp-2.6.32-r122c+gitr5fc29e7b2a76a64a739f857858ef0b98294aa155/temp/log.do_compileconfigs.22554
+for further information)
+"
+
+Now I hope you have more information...!!
+Sorry that i was not clear in explanation in my previous mail.
+
+Please guide me to debug this "Function failed: do_compileconfigs" issue..
+
+Vishal
+
+--047d7b15ad97f89d6d04ed795faa
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div><div><div><div><div><div>Thank you Koen for the reply=
+.<br></div><div><br></div>I made the local changes so that i can include so=
+me features in my kernel.<br></div>The features are:<br>1.The camera driver=
+ mt9t112 for LI-LBCM3M1 from leopard imaging.<br>
+</div>2.The camera driver mt9v113 for LI-LBCMVGA from leopard imaging.<br><=
+/div><br>As per a small test carried out by me i found that both the above =
+camera modules work fine with the pre-build image with Kernel=A0 Version 2.=
+6.32 from Narccissus Image Builder.<br>
+<br></div><div>So i downloaded the source of this Narccissus image from Ang=
+strom Distribution (<a href=3D"https://github.com/Angstrom-distribution/met=
+a-angstrom">https://github.com/Angstrom-distribution/meta-angstrom</a>) and=
+ i went for making the below listed local changes to change the default ker=
+nel version which is 3.2.28 to the kernel version 2.6.32.<br>
+</div></div><div><br></div><div>In the beagleboard.conf file present in the=
+ meta-ti layer i made the following changes.<br>&quot;&quot;<br>#PREFERRED_=
+PROVIDER_virtual/kernel =3D &quot;linux-mainline&quot;<br>PREFERRED_PROVIDE=
+R_virtual/kernel =3D &quot;linux-omap-psp&quot;<br>
+<br></div><div>&quot;&quot;<br><br></div><div>&amp; adding an smc.patch to =
+resolve=A0 another error which i got when i compiled above changed ,below i=
+s the error what i got.<br>&quot;&quot;<br>/tmp/ccWRvvsG.s:309: Error: sele=
+cted processor does not support ARM mode `smc #0&#39;<br>
+&quot;&quot;<br><br></div><div>This error was resolved as i added the smc.p=
+atch.<br></div><div><br></div><div>But encountered with the error when comm=
+and &quot;MACHINE=3Dbeagleboard bitbake console-image&quot; is run=A0 i got=
+ the error as presented in previous mail and below again :<br>
+&quot;<br>cp: cannot stat `include/generated/bounds.h&#39;: No such file or=
+ directory<br>ERROR: Function failed: do_compileconfigs (see /home/vishal/o=
+e-nad/setup-scripts/build/tmp-angstrom_v2012_12-eglibc/work/beagleboard-ang=
+strom-linux-gnueabi/linux-omap-psp-2.6.32-r122c+gitr5fc29e7b2a76a64a739f857=
+858ef0b98294aa155/temp/log.do_compileconfigs.22554 for further information)=
+<br>
+</div><div>&quot;<br><br></div><div>Now I hope you have more information...=
+!!<br></div><div>Sorry that i was not clear in explanation in my previous m=
+ail.<br></div><div><br></div><div>Please guide me to debug this &quot;Funct=
+ion failed: do_compileconfigs&quot; issue..<br>
+<br></div><div>Vishal<br></div><div><br></div><div><div><div><br><br></div>=
+</div></div></div>
+
+--047d7b15ad97f89d6d04ed795faa--
