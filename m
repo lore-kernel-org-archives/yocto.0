@@ -1,29 +1,33 @@
-Return-Path: <visgupta07@gmail.com>
-Received: from mail-pa0-f68.google.com (mail-pa0-f68.google.com
-	[209.85.220.68])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9E3CFE007F8
-	for <yocto@yoctoproject.org>; Fri, 13 Dec 2013 23:17:44 -0800 (PST)
-Received: by mail-pa0-f68.google.com with SMTP id kl14so490342pab.11
-	for <yocto@yoctoproject.org>; Fri, 13 Dec 2013 23:17:43 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:cc:content-type;
-	bh=8R/rAUM2jTH6p3guAVxC3pUJlBw8TPyN10iTo/mvRWE=;
-	b=PUz18XueOmIdl3PUq0pWElbGclERsGhNbSSjL8iCV0V/n44cZVKxpImgur/5B/vUgl
-	dOxKPJ0fQm99ptHV/AsdJk6qDfiCl6aEMUEQ/btvq84CvuaQnGNyYHmH9ETPPoPo2Y5u
-	CrXfIZqhLoq/16U/VBXQuv5MX9g6iErzczHDutRWjEk4vftMWdLSQ+0uy77DyT9IIaJz
-	oWL5/caHfFIZ1tSBgz/WDFS+cE4XiBVSnL52ZA9CIDKlnx9htI2WgDkZ5SCFOXfIPNWb
-	3l1z9NAFhaAd5969yGnypbTMIUg0tVrWH9YXxM/8IFIz3NSwJtNZ2M+h+VRfgfX02lj6
-	N6Dg==
+Return-Path: <elizabeth.flanagan@intel.com>
+Received: from mail-vc0-f180.google.com (mail-vc0-f180.google.com
+	[209.85.220.180])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8C767E00498
+	for <yocto@yoctoproject.org>; Sat, 14 Dec 2013 14:23:26 -0800 (PST)
+Received: by mail-vc0-f180.google.com with SMTP id if17so2237443vcb.39
+	for <yocto@yoctoproject.org>; Sat, 14 Dec 2013 14:23:26 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:date:message-id:subject:from:to
+	:content-type;
+	bh=T2tbGfEPeX3jKg/8FxRexJO8bR849EK3DmGxl2IKCDY=;
+	b=HntV4YXAAfpBc392ek+0Ry0r0spaPV1xGrnHKu6mZyFFeKXEjDW/gfyWduywGHSlW7
+	F7ckX0IVKavW2zqiX4erluUOuNtUwQ0SkfZkw/8k4fwyi6XRBT8duUcZGJV9IUk7BZvk
+	UWG/boMuxJS8MLB8NAHYLM5AN5VKW8CUihsVVn7QeCMmAyUWVbhI3FYquhBrza0xll0l
+	i86GKZxVf8C6lo0s4E5BNt2K2rFhHu8oinHHj8Q85tBgCVhGJQAI3Jz2znRuaWBxNimj
+	My17Aqdo7sWlM+eX924lJ/Fgfbg1DLzzRNLS90ISLaO6Ek/DGoTHB2Zl1rexdTZXQ6CC
+	bA4g==
+X-Gm-Message-State: ALoCoQlRL7izHB+28DOBiS/pbPlHsKYeYbKZxdi6ijTdOA0Gtb0nAak++4+lqO/C0DQmgFFO3DRT
 MIME-Version: 1.0
-X-Received: by 10.68.130.130 with SMTP id oe2mr7882347pbb.135.1387005463788;
-	Fri, 13 Dec 2013 23:17:43 -0800 (PST)
-Received: by 10.67.14.169 with HTTP; Fri, 13 Dec 2013 23:17:43 -0800 (PST)
-Date: Sat, 14 Dec 2013 12:47:43 +0530
-Message-ID: <CAMGfQQrxmk9seHii6OH0bDXWpZgJD_zHnkfn6S_fbnm-TXG8uw@mail.gmail.com>
-From: vishal gupta <visgupta07@gmail.com>
-To: koen@dominion.thruhere.net
-Cc: yocto@yoctoproject.org, openembedded-devel@lists.openembedded.org
-Subject: Compiling the kernel source from Angstrom distribution & building an OS console-image.
+X-Received: by 10.52.230.202 with SMTP id ta10mr416282vdc.41.1387059806013;
+	Sat, 14 Dec 2013 14:23:26 -0800 (PST)
+Received: by 10.52.161.7 with HTTP; Sat, 14 Dec 2013 14:23:25 -0800 (PST)
+Date: Sat, 14 Dec 2013 22:23:25 +0000
+Message-ID: <CAPhnLPBWLDFNiwS+KrQLA0mtoneyp6-iyRc-_TydXkv3Fj82Xg@mail.gmail.com>
+From: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>, 
+	Alexandru C Georgescu <alexandru.c.georgescu@intel.com>,
+	Zhao Yi <yi.zhao@windriver.com>, Otavio Salvador <otavio@ossystems.com.br>
+Subject: dora-10.0.1.rc2 available for testing.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -35,102 +39,28 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 14 Dec 2013 07:17:44 -0000
-Content-Type: multipart/alternative; boundary=047d7b15ad97f89d6d04ed795faa
-
---047d7b15ad97f89d6d04ed795faa
+X-List-Received-Date: Sat, 14 Dec 2013 22:23:28 -0000
 Content-Type: text/plain; charset=ISO-8859-1
 
-Thank you Koen for the reply.
+We've got a build for dora-10.0.1.rc2, ready for QA. Please begin the
+QA process.
 
-I made the local changes so that i can include some features in my kernel.
-The features are:
-1.The camera driver mt9t112 for LI-LBCM3M1 from leopard imaging.
-2.The camera driver mt9v113 for LI-LBCMVGA from leopard imaging.
+http://autobuilder.yoctoproject.org/pub/releases/dora-10.0.1.rc2
 
-As per a small test carried out by me i found that both the above camera
-modules work fine with the pre-build image with Kernel  Version 2.6.32 from
-Narccissus Image Builder.
+bitbake 1484905373ad717cedcaef37a0addde034ebdc60
+eclipse-poky-juno 2fa1c58940141a3c547c8790b8a6832167e8eb66
+eclipse-poky-kepler ad74249895f882a8f00bdeef7a0f7c18998cc43e
+meta-fsl-arm c7cc5d5f451c9d12df9f11314f4a58ecc347b1f5
+meta-fsl-ppc b5732aeadc9eb0de933f52d0949412e12f8486bd
+meta-intel c86e39dd06571458c7dee6cf289d5b470c98f4bd
+meta-minnow edf75553643face7a0dd5b16085d59a90eb4af8d
+meta-qt3 4772424ab69908d4e3b9d6d4717ca889468e6acd
+oecore 2e9df12e67b3e56ed3c056559aa8eced6444ec93
+poky 8e410e9e46e3335458a7747cdd32e05f5c19ccbb
 
-So i downloaded the source of this Narccissus image from Angstrom
-Distribution (https://github.com/Angstrom-distribution/meta-angstrom) and i
-went for making the below listed local changes to change the default kernel
-version which is 3.2.28 to the kernel version 2.6.32.
 
-In the beagleboard.conf file present in the meta-ti layer i made the
-following changes.
-""
-#PREFERRED_PROVIDER_virtual/kernel = "linux-mainline"
-PREFERRED_PROVIDER_virtual/kernel = "linux-omap-psp"
+-- 
+Elizabeth Flanagan
+Yocto Project
+Build and Release
 
-""
-
-& adding an smc.patch to resolve  another error which i got when i compiled
-above changed ,below is the error what i got.
-""
-/tmp/ccWRvvsG.s:309: Error: selected processor does not support ARM mode
-`smc #0'
-""
-
-This error was resolved as i added the smc.patch.
-
-But encountered with the error when command "MACHINE=beagleboard bitbake
-console-image" is run  i got the error as presented in previous mail and
-below again :
-"
-cp: cannot stat `include/generated/bounds.h': No such file or directory
-ERROR: Function failed: do_compileconfigs (see
-/home/vishal/oe-nad/setup-scripts/build/tmp-angstrom_v2012_12-eglibc/work/beagleboard-angstrom-linux-gnueabi/linux-omap-psp-2.6.32-r122c+gitr5fc29e7b2a76a64a739f857858ef0b98294aa155/temp/log.do_compileconfigs.22554
-for further information)
-"
-
-Now I hope you have more information...!!
-Sorry that i was not clear in explanation in my previous mail.
-
-Please guide me to debug this "Function failed: do_compileconfigs" issue..
-
-Vishal
-
---047d7b15ad97f89d6d04ed795faa
-Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div><div><div><div><div><div>Thank you Koen for the reply=
-.<br></div><div><br></div>I made the local changes so that i can include so=
-me features in my kernel.<br></div>The features are:<br>1.The camera driver=
- mt9t112 for LI-LBCM3M1 from leopard imaging.<br>
-</div>2.The camera driver mt9v113 for LI-LBCMVGA from leopard imaging.<br><=
-/div><br>As per a small test carried out by me i found that both the above =
-camera modules work fine with the pre-build image with Kernel=A0 Version 2.=
-6.32 from Narccissus Image Builder.<br>
-<br></div><div>So i downloaded the source of this Narccissus image from Ang=
-strom Distribution (<a href=3D"https://github.com/Angstrom-distribution/met=
-a-angstrom">https://github.com/Angstrom-distribution/meta-angstrom</a>) and=
- i went for making the below listed local changes to change the default ker=
-nel version which is 3.2.28 to the kernel version 2.6.32.<br>
-</div></div><div><br></div><div>In the beagleboard.conf file present in the=
- meta-ti layer i made the following changes.<br>&quot;&quot;<br>#PREFERRED_=
-PROVIDER_virtual/kernel =3D &quot;linux-mainline&quot;<br>PREFERRED_PROVIDE=
-R_virtual/kernel =3D &quot;linux-omap-psp&quot;<br>
-<br></div><div>&quot;&quot;<br><br></div><div>&amp; adding an smc.patch to =
-resolve=A0 another error which i got when i compiled above changed ,below i=
-s the error what i got.<br>&quot;&quot;<br>/tmp/ccWRvvsG.s:309: Error: sele=
-cted processor does not support ARM mode `smc #0&#39;<br>
-&quot;&quot;<br><br></div><div>This error was resolved as i added the smc.p=
-atch.<br></div><div><br></div><div>But encountered with the error when comm=
-and &quot;MACHINE=3Dbeagleboard bitbake console-image&quot; is run=A0 i got=
- the error as presented in previous mail and below again :<br>
-&quot;<br>cp: cannot stat `include/generated/bounds.h&#39;: No such file or=
- directory<br>ERROR: Function failed: do_compileconfigs (see /home/vishal/o=
-e-nad/setup-scripts/build/tmp-angstrom_v2012_12-eglibc/work/beagleboard-ang=
-strom-linux-gnueabi/linux-omap-psp-2.6.32-r122c+gitr5fc29e7b2a76a64a739f857=
-858ef0b98294aa155/temp/log.do_compileconfigs.22554 for further information)=
-<br>
-</div><div>&quot;<br><br></div><div>Now I hope you have more information...=
-!!<br></div><div>Sorry that i was not clear in explanation in my previous m=
-ail.<br></div><div><br></div><div>Please guide me to debug this &quot;Funct=
-ion failed: do_compileconfigs&quot; issue..<br>
-<br></div><div>Vishal<br></div><div><br></div><div><div><div><br><br></div>=
-</div></div></div>
-
---047d7b15ad97f89d6d04ed795faa--
