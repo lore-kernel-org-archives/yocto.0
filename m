@@ -1,33 +1,35 @@
-Return-Path: <elizabeth.flanagan@intel.com>
-Received: from mail-vc0-f180.google.com (mail-vc0-f180.google.com
-	[209.85.220.180])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8C767E00498
-	for <yocto@yoctoproject.org>; Sat, 14 Dec 2013 14:23:26 -0800 (PST)
-Received: by mail-vc0-f180.google.com with SMTP id if17so2237443vcb.39
-	for <yocto@yoctoproject.org>; Sat, 14 Dec 2013 14:23:26 -0800 (PST)
+Return-Path: <andrei@gherzan.ro>
+Received: from mail-we0-f173.google.com (mail-we0-f173.google.com
+	[74.125.82.173])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A95DBE0049A
+	for <yocto@yoctoproject.org>; Sun, 15 Dec 2013 05:48:14 -0800 (PST)
+Received: by mail-we0-f173.google.com with SMTP id u57so3677560wes.32
+	for <yocto@yoctoproject.org>; Sun, 15 Dec 2013 05:48:12 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:date:message-id:subject:from:to
-	:content-type;
-	bh=T2tbGfEPeX3jKg/8FxRexJO8bR849EK3DmGxl2IKCDY=;
-	b=HntV4YXAAfpBc392ek+0Ry0r0spaPV1xGrnHKu6mZyFFeKXEjDW/gfyWduywGHSlW7
-	F7ckX0IVKavW2zqiX4erluUOuNtUwQ0SkfZkw/8k4fwyi6XRBT8duUcZGJV9IUk7BZvk
-	UWG/boMuxJS8MLB8NAHYLM5AN5VKW8CUihsVVn7QeCMmAyUWVbhI3FYquhBrza0xll0l
-	i86GKZxVf8C6lo0s4E5BNt2K2rFhHu8oinHHj8Q85tBgCVhGJQAI3Jz2znRuaWBxNimj
-	My17Aqdo7sWlM+eX924lJ/Fgfbg1DLzzRNLS90ISLaO6Ek/DGoTHB2Zl1rexdTZXQ6CC
-	bA4g==
-X-Gm-Message-State: ALoCoQlRL7izHB+28DOBiS/pbPlHsKYeYbKZxdi6ijTdOA0Gtb0nAak++4+lqO/C0DQmgFFO3DRT
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc:content-type;
+	bh=yS9jK5W35MeC9IY6BC1HpfB3UXSL39pVVGRJy8XCudE=;
+	b=kzJigotPJYfvx9c3UtYRRyRxmvgY2MglCyquy5/KFRGGrEi5f11QxWlCElxQ89n1pM
+	jO2SymwXZt/P1Pv1RPwOmeqL/UGe1e4mqtNR73XxBxt9EDvtK3T2aXiN4yiNrxYPefhX
+	gqu9GfLi30O1Ak16ShwI5wsUY0Ft3sXk0L82g3PHj9m848gqU+pBYWF2juS97SSa0g1r
+	0reAFjUT1eDxVCMqqJxgS3ykBPFUrW6TC++QCRkfxxmozznjuvK31jvx824sgRtxhSQT
+	PgtDip1ujKBOR72BKMJqjez93M6InfSXdAqm02jpaY0tDSJmgoyUaSvbjWRwnrfYVAmR
+	GPUQ==
+X-Gm-Message-State: ALoCoQle4rp53dByNq0Wp9yuuZ7QAjXNDfgPy/qBgnbjVaCiaV/fQlri0hD7qJhU07Wda0/6xUz1
+X-Received: by 10.180.160.239 with SMTP id xn15mr9626885wib.17.1387115292709; 
+	Sun, 15 Dec 2013 05:48:12 -0800 (PST)
 MIME-Version: 1.0
-X-Received: by 10.52.230.202 with SMTP id ta10mr416282vdc.41.1387059806013;
-	Sat, 14 Dec 2013 14:23:26 -0800 (PST)
-Received: by 10.52.161.7 with HTTP; Sat, 14 Dec 2013 14:23:25 -0800 (PST)
-Date: Sat, 14 Dec 2013 22:23:25 +0000
-Message-ID: <CAPhnLPBWLDFNiwS+KrQLA0mtoneyp6-iyRc-_TydXkv3Fj82Xg@mail.gmail.com>
-From: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>, 
-	Alexandru C Georgescu <alexandru.c.georgescu@intel.com>,
-	Zhao Yi <yi.zhao@windriver.com>, Otavio Salvador <otavio@ossystems.com.br>
-Subject: dora-10.0.1.rc2 available for testing.
+Received: by 10.217.150.199 with HTTP; Sun, 15 Dec 2013 05:47:52 -0800 (PST)
+X-Originating-IP: [5.13.221.193]
+In-Reply-To: <1384274279-16413-1-git-send-email-andrei@gherzan.ro>
+References: <1384274279-16413-1-git-send-email-andrei@gherzan.ro>
+From: Andrei Gherzan <andrei@gherzan.ro>
+Date: Sun, 15 Dec 2013 15:47:52 +0200
+Message-ID: <CAK18fxH_WtgWLzgRAJn+5=1nzUcnmnyX6S=bqegzgxHZu6koAA@mail.gmail.com>
+To: Yocto Project <yocto@yoctoproject.org>
+Cc: Dan McGregor <dan.mcgregor@usask.ca>
+Subject: Re: [meta-raspberrypi][PATCH 1/1] wiringpi: Add new package
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,28 +41,75 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 14 Dec 2013 22:23:28 -0000
+X-List-Received-Date: Sun, 15 Dec 2013 13:48:16 -0000
+Content-Type: multipart/alternative; boundary=047d7b62427848ea4004ed92f2ff
+
+--047d7b62427848ea4004ed92f2ff
 Content-Type: text/plain; charset=ISO-8859-1
 
-We've got a build for dora-10.0.1.rc2, ready for QA. Please begin the
-QA process.
+On Tue, Nov 12, 2013 at 6:37 PM, Andrei Gherzan <andrei@gherzan.ro> wrote:
 
-http://autobuilder.yoctoproject.org/pub/releases/dora-10.0.1.rc2
+> From: Dan McGregor <dan.mcgregor@usask.ca>
+>
+> Commit created from merging:
+>
+> https://github.com/SaskatoonTechworks/meta-raspberrypi/commit/c8046050db1f0026c1f10e41d95619d86ac7a822
+>
+> https://github.com/SaskatoonTechworks/meta-raspberrypi/commit/fe2467c0e82ff3d243993bdffde6a24754c3a7f6
+>
+> https://github.com/SaskatoonTechworks/meta-raspberrypi/commit/72f7705cbac99b834654894b545d5fa431a13b51
+>
+> Added some minor changes:
+> * remove PR
+> * remove tabs
+>
 
-bitbake 1484905373ad717cedcaef37a0addde034ebdc60
-eclipse-poky-juno 2fa1c58940141a3c547c8790b8a6832167e8eb66
-eclipse-poky-kepler ad74249895f882a8f00bdeef7a0f7c18998cc43e
-meta-fsl-arm c7cc5d5f451c9d12df9f11314f4a58ecc347b1f5
-meta-fsl-ppc b5732aeadc9eb0de933f52d0949412e12f8486bd
-meta-intel c86e39dd06571458c7dee6cf289d5b470c98f4bd
-meta-minnow edf75553643face7a0dd5b16085d59a90eb4af8d
-meta-qt3 4772424ab69908d4e3b9d6d4717ca889468e6acd
-oecore 2e9df12e67b3e56ed3c056559aa8eced6444ec93
-poky 8e410e9e46e3335458a7747cdd32e05f5c19ccbb
-
+Merged.
 
 -- 
-Elizabeth Flanagan
-Yocto Project
-Build and Release
+*ag*
 
+--047d7b62427848ea4004ed92f2ff
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><br><div class=3D"gmail_extra"><br><br><div class=3D"gmail=
+_quote">On Tue, Nov 12, 2013 at 6:37 PM, Andrei Gherzan <span dir=3D"ltr">&=
+lt;<a href=3D"mailto:andrei@gherzan.ro" target=3D"_blank">andrei@gherzan.ro=
+</a>&gt;</span> wrote:<br>
+
+<blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-=
+left-width:1px;border-left-color:rgb(204,204,204);border-left-style:solid;p=
+adding-left:1ex">From: Dan McGregor &lt;<a href=3D"mailto:dan.mcgregor@usas=
+k.ca">dan.mcgregor@usask.ca</a>&gt;<br>
+
+
+<br>
+Commit created from merging:<br>
+<a href=3D"https://github.com/SaskatoonTechworks/meta-raspberrypi/commit/c8=
+046050db1f0026c1f10e41d95619d86ac7a822" target=3D"_blank">https://github.co=
+m/SaskatoonTechworks/meta-raspberrypi/commit/c8046050db1f0026c1f10e41d95619=
+d86ac7a822</a><br>
+
+
+<a href=3D"https://github.com/SaskatoonTechworks/meta-raspberrypi/commit/fe=
+2467c0e82ff3d243993bdffde6a24754c3a7f6" target=3D"_blank">https://github.co=
+m/SaskatoonTechworks/meta-raspberrypi/commit/fe2467c0e82ff3d243993bdffde6a2=
+4754c3a7f6</a><br>
+
+
+<a href=3D"https://github.com/SaskatoonTechworks/meta-raspberrypi/commit/72=
+f7705cbac99b834654894b545d5fa431a13b51" target=3D"_blank">https://github.co=
+m/SaskatoonTechworks/meta-raspberrypi/commit/72f7705cbac99b834654894b545d5f=
+a431a13b51</a><br>
+
+
+<br>
+Added some minor changes:<br>
+* remove PR<br>
+* remove tabs<br></blockquote><div><br></div><div>Merged.</div><div><br></d=
+iv><div>--=A0</div><div><b style=3D"color:rgb(51,51,51);font-family:Arial;t=
+ext-align:center">ag</b></div></div>
+</div></div>
+
+--047d7b62427848ea4004ed92f2ff--
