@@ -1,37 +1,32 @@
-Return-Path: <martin.jansa@gmail.com>
-Received: from mail-ee0-f41.google.com (mail-ee0-f41.google.com [74.125.83.41])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3DABBE006C7
-	for <yocto@yoctoproject.org>; Tue, 17 Dec 2013 06:01:32 -0800 (PST)
-Received: by mail-ee0-f41.google.com with SMTP id t10so2927898eei.0
-	for <yocto@yoctoproject.org>; Tue, 17 Dec 2013 06:01:31 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=date:from:to:cc:subject:message-id:references:mime-version
-	:content-type:content-disposition:in-reply-to:user-agent;
-	bh=+G/WpPCkR8Hxav5fDYDwyJbfL6NiyTCzV9auYh0h7I4=;
-	b=iL+EuSYaCp/7XuDADiaYWLw9N8e6xwSbB+aAT6YvGH/KVBgNbElywGdSixwsaF2OJR
-	pawP6pXYBkp/MhwAMPmQd+HHoLhgyeLMG53/DNxbuoow8pE6AqR40UPap9W1qRrNBteM
-	Mj1oYWviidm/LsbAwaquMwYhZ8DgpUl0kBPZs+kn5IMXZ/mHo5m7svwm8h++yyi3ivc6
-	2lD9QMbM3x13sLHYkysMynF0u1ekz0O2D9SXiP5NJrgcU/4RNzNC66YHDsEQ/jWDxKR+
-	/JKXaEtleQty95KI2pSZu6YY1GQXXotEkpQO7Xd5Qw5cBboLb0Bj2jGyYTC131r1Pt7h
-	svQQ==
-X-Received: by 10.15.54.72 with SMTP id s48mr22839137eew.3.1387288891062;
-	Tue, 17 Dec 2013 06:01:31 -0800 (PST)
-Received: from localhost (ip-89-176-104-107.net.upcbroadband.cz.
-	[89.176.104.107])
-	by mx.google.com with ESMTPSA id e3sm53305352eeg.11.2013.12.17.06.01.27
-	for <multiple recipients>
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Tue, 17 Dec 2013 06:01:28 -0800 (PST)
-Date: Tue, 17 Dec 2013 15:01:59 +0100
-From: Martin Jansa <martin.jansa@gmail.com>
-To: Brad Litterell <brad@evidence.com>
-Message-ID: <20131217140159.GG3706@jama>
-References: <E51394554A503C4E852F9BEE46B03E8D019AC4B3@TI-THOR.tasernet.com>
+Return-Path: <elizabeth.flanagan@intel.com>
+Received: from mail-vc0-f169.google.com (mail-vc0-f169.google.com
+	[209.85.220.169])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 54FB5E007B6
+	for <yocto@yoctoproject.org>; Tue, 17 Dec 2013 07:30:54 -0800 (PST)
+Received: by mail-vc0-f169.google.com with SMTP id hu19so4246972vcb.14
+	for <yocto@yoctoproject.org>; Tue, 17 Dec 2013 07:30:54 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:date:message-id:subject:from:to
+	:content-type;
+	bh=DeISM/sf9q33HJ/DlQPRPaglGC3x/j9QSgy7LRvyOI0=;
+	b=TBWOkDYhqnFaZFNLlEFF/ZX2iXLbrFednUEHZuYzW4n/HFOFRH48SdMUmDrYV3i81K
+	ughNfs0h9ci8OFtyU5hIExe7JaXG3T+6BEeweAm6bWVsQ6ljEC62EAspTd9HRkIo233p
+	o2XDI7bznOE6SqU6lxG2ta0rQ5KoSxWxXrMCIpbXQbZkGf8kQY1h9z9P2P0gLvvj4FZc
+	55e/XMg4qWE4jkcIJ31+o6utm5LLDW/RpMRIEz6uU1e1dUIqghLg+mGUk7dd+bnNtztp
+	hgg0xBRMr1oJfFlDP9bvGb9P2NLnTzJ4VF4IV/Lf4tIqh+93JEOnUDPNz39YTckM4+iY
+	P68A==
+X-Gm-Message-State: ALoCoQlCdAjSX93Aw5hTrQeEfZ867SG2JoUSCo+RI4NrixmCdGY+UleeM1D9eC77LOEjdPAk9LkS
 MIME-Version: 1.0
-In-Reply-To: <E51394554A503C4E852F9BEE46B03E8D019AC4B3@TI-THOR.tasernet.com>
-User-Agent: Mutt/1.5.22 (2013-10-16)
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Setting PV dynamically in a recipe
+X-Received: by 10.58.187.51 with SMTP id fp19mr1555478vec.47.1387294254107;
+	Tue, 17 Dec 2013 07:30:54 -0800 (PST)
+Received: by 10.52.161.7 with HTTP; Tue, 17 Dec 2013 07:30:54 -0800 (PST)
+Date: Tue, 17 Dec 2013 15:30:54 +0000
+Message-ID: <CAPhnLPA6ySb6aJ7jUG4i-GcgBEXhAsv05GpeJ=xWP8K_6poU1g@mail.gmail.com>
+From: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
+	yocto-announce@yoctoproject.org
+Subject: [ANNOUNCEMENT] Yocto Project 1.6_M1 now available
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,50 +38,75 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 17 Dec 2013 14:01:34 -0000
-X-Groupsio-MsgNum: 17568
-Content-Type: multipart/signed; micalg=pgp-sha1;
-	protocol="application/pgp-signature"; boundary="SUk9VBj82R8Xhb8H"
-Content-Disposition: inline
+X-List-Received-Date: Tue, 17 Dec 2013 15:30:56 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
---SUk9VBj82R8Xhb8H
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+All,
 
-On Tue, Dec 17, 2013 at 08:16:40AM +0000, Brad Litterell wrote:
-> Hi,
->=20
-> I have a few recipes in my image that represent my own custom code.  I wo=
-uld like to generate PV dynamically from my source code, but since the reci=
-pe is parsed before the code is extracted from the tarball, that's not easy=
- to do.
->=20
-> The Poky reference manual implies this is possible:
-> PV is generally not overridden within a recipe unless it is building an u=
-nstable (i.e. development) version from a source code repository (e.g. Git =
-or Subversion).
->=20
-> However, I have not found an actual example. Is there a recommended way t=
-o do this?
+The first milestone release of the upcoming Yocto Project's 1.6
+release is now available for download at:
 
-Do you really need to change PV? Check PKGV,
-meta-openembedded/meta-oe/classes/gitpkgv.bbclass could be interesting
-example for you.
+http://downloads.yoctoproject.org/releases/yocto/milestones/1.6_M1.rc1/poky-c51730aaa91066cfb51ad6ec2920fb4f9d9ea94c.tar.bz2
 
---=20
-Martin 'JaMa' Jansa     jabber: Martin.Jansa@gmail.com
+Main Feature List:
 
---SUk9VBj82R8Xhb8H
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: Digital signature
+* oe-selftest prototype merged. It's a framework to run unit tests on oe.
+* Toaster alpha release, which mainly includes support infrastructure
+for Toaster in bitbake.
+* distro_features change now will only trigger related parts to be
+rebuilt instead of a full build.
+* Build history tool improvement.
+* 142 package updates and many bug fixes.
 
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v2.0.22 (GNU/Linux)
+Known Issue List:
 
-iEYEARECAAYFAlKwWVYACgkQN1Ujt2V2gBz5JwCggUMHFpkEd9i4P0ofj5keHqGh
-N4MAn1sYobRXqmvh3+dl/3Gb/xevc4du
-=mhxk
------END PGP SIGNATURE-----
+* Bug 5182 - [Beagleboard xM]X can not startup with 3.10 kernel
+* Bug 5403 - crosstap doesn't work on qemuppc and qemumips
+* Bug 5636 - No IP address for eth0 on qemu at the first boot
 
---SUk9VBj82R8Xhb8H--
+
+Release Name: poky-1.6_M1
+Branch:  master
+Tag:  1.6_M1
+Hash:  c51730aaa91066cfb51ad6ec2920fb4f9d9ea94c
+md5: 9a6bdc4b4549fce3d4c69a83a1e01525
+Download Locations:
+     http://downloads.yoctoproject.org/releases/yocto/milestones/1.6_M1.rc1/poky-c51730aaa91066cfb51ad6ec2920fb4f9d9ea94c.tar.bz2
+
+Release Name: meta-intel-1.6_M1
+Branch:  master
+Tag:  1.6_M1
+Hash:  a649e92498d234f2d0d52f3da5a85bdc87296c23
+md5: fd52862f923d619b334be7a52d517f7a
+Download Locations:
+     http://downloads.yoctoproject.org/releases/yocto/milestones/1.6_M1.rc1/meta-intel-a649e92498d234f2d0d52f3da5a85bdc87296c23.tar.bz2
+
+Release Name: eclipse-poky-juno-1.6_M1
+Branch:  master
+Tag:  1.6_M1
+Hash:  e8342d27db60a9d1b627ddb9f8ae2f5512bfc0c9
+md5: 91a5add5ae10c5db9c24a82a490f7f76
+Download Locations:
+     http://downloads.yoctoproject.org/releases/yocto/milestones/1.6_M1.rc1/eclipse-poky-juno-e8342d27db60a9d1b627ddb9f8ae2f5512bfc0c9.tar.bz2
+
+Release Name: eclipse-poky-kepler-1.6_M1
+Branch:  master
+Tag:  1.6_M1
+Hash:  3dd620d9f89e297ee9e22d5ba9fe741a5f40ac82
+md5: d593b8e7d31cf196174a3d43ca75d6e1
+Download Locations:
+     http://downloads.yoctoproject.org/releases/yocto/milestones/1.6_M1.rc1/eclipse-poky-kepler-3dd620d9f89e297ee9e22d5ba9fe741a5f40ac82.tar.bz2
+
+Release Name: meta-qt3-1.6_M1
+Branch:  master
+Tag:  1.6_M1
+Hash:  b73552fb998fd30a01dbee5a172e432a16078222
+md5: ba41e080634589040713d688369a4576
+Download Locations:
+     http://downloads.yoctoproject.org/releases/yocto/milestones/1.6_M1.rc1/meta-qt3-b73552fb998fd30a01dbee5a172e432a16078222.tar.bz2
+
+-- 
+Elizabeth Flanagan
+Yocto Project
+Build and Release
+
