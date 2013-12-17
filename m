@@ -1,34 +1,35 @@
-Return-Path: <zhenhua.luo@freescale.com>
-Received: from na01-bn1-obe.outbound.protection.outlook.com
-	(mail-bn1lp0156.outbound.protection.outlook.com [207.46.163.156])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CDA1FE00288
-	for <yocto@yoctoproject.org>; Tue, 17 Dec 2013 01:41:38 -0800 (PST)
-Received: from DM2PR03MB399.namprd03.prod.outlook.com (10.141.84.148) by
-	DM2PR03MB398.namprd03.prod.outlook.com (10.141.84.140) with Microsoft
-	SMTP Server (TLS) id 15.0.842.7; Tue, 17 Dec 2013 09:41:34 +0000
-Received: from DM2PR03MB399.namprd03.prod.outlook.com ([10.141.84.148]) by
-	DM2PR03MB399.namprd03.prod.outlook.com ([10.141.84.148]) with mapi id
-	15.00.0842.003; Tue, 17 Dec 2013 09:41:34 +0000
-From: "zhenhua.luo@freescale.com" <zhenhua.luo@freescale.com>
+Return-Path: <martin.jansa@gmail.com>
+Received: from mail-ee0-f41.google.com (mail-ee0-f41.google.com [74.125.83.41])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3DABBE006C7
+	for <yocto@yoctoproject.org>; Tue, 17 Dec 2013 06:01:32 -0800 (PST)
+Received: by mail-ee0-f41.google.com with SMTP id t10so2927898eei.0
+	for <yocto@yoctoproject.org>; Tue, 17 Dec 2013 06:01:31 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=date:from:to:cc:subject:message-id:references:mime-version
+	:content-type:content-disposition:in-reply-to:user-agent;
+	bh=+G/WpPCkR8Hxav5fDYDwyJbfL6NiyTCzV9auYh0h7I4=;
+	b=iL+EuSYaCp/7XuDADiaYWLw9N8e6xwSbB+aAT6YvGH/KVBgNbElywGdSixwsaF2OJR
+	pawP6pXYBkp/MhwAMPmQd+HHoLhgyeLMG53/DNxbuoow8pE6AqR40UPap9W1qRrNBteM
+	Mj1oYWviidm/LsbAwaquMwYhZ8DgpUl0kBPZs+kn5IMXZ/mHo5m7svwm8h++yyi3ivc6
+	2lD9QMbM3x13sLHYkysMynF0u1ekz0O2D9SXiP5NJrgcU/4RNzNC66YHDsEQ/jWDxKR+
+	/JKXaEtleQty95KI2pSZu6YY1GQXXotEkpQO7Xd5Qw5cBboLb0Bj2jGyYTC131r1Pt7h
+	svQQ==
+X-Received: by 10.15.54.72 with SMTP id s48mr22839137eew.3.1387288891062;
+	Tue, 17 Dec 2013 06:01:31 -0800 (PST)
+Received: from localhost (ip-89-176-104-107.net.upcbroadband.cz.
+	[89.176.104.107])
+	by mx.google.com with ESMTPSA id e3sm53305352eeg.11.2013.12.17.06.01.27
+	for <multiple recipients>
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Tue, 17 Dec 2013 06:01:28 -0800 (PST)
+Date: Tue, 17 Dec 2013 15:01:59 +0100
+From: Martin Jansa <martin.jansa@gmail.com>
 To: Brad Litterell <brad@evidence.com>
-Thread-Topic: Setting PV dynamically in a recipe
-Thread-Index: Ac77ABx4gKdRGDzAQM+tn2QPKyJSdwADABHA
-Date: Tue, 17 Dec 2013 09:41:33 +0000
-Message-ID: <ad9adfd66f224dd98d4ec05596eaaa8e@DM2PR03MB399.namprd03.prod.outlook.com>
+Message-ID: <20131217140159.GG3706@jama>
 References: <E51394554A503C4E852F9BEE46B03E8D019AC4B3@TI-THOR.tasernet.com>
-In-Reply-To: <E51394554A503C4E852F9BEE46B03E8D019AC4B3@TI-THOR.tasernet.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [192.88.158.215]
-x-forefront-prvs: 006339698F
-x-forefront-antispam-report: SFV:NSPM;
-	SFS:(10009001)(51704005)(13464003)(377454003)(199002)(189002)(164054003)(19580395003)(63696002)(81816001)(47976001)(19580405001)(83322001)(50986001)(51856001)(76482001)(90146001)(85306002)(56816005)(80976001)(79102001)(83072002)(2656002)(47736001)(81686001)(49866001)(4396001)(53806001)(74316001)(69226001)(54356001)(46102001)(59766001)(87936001)(85852003)(56776001)(87266001)(54316002)(65816001)(77982001)(66066001)(76786001)(74366001)(15975445006)(76576001)(80022001)(74662001)(81542001)(31966008)(74502001)(47446002)(81342001)(15202345003)(74706001)(76796001)(33646001)(74876001)(24736002);
-	DIR:OUT; SFP:1101; SCL:1; SRVR:DM2PR03MB398;
-	H:DM2PR03MB399.namprd03.prod.outlook.com; CLIP:192.88.158.215;
-	FPR:; RD:InfoNoRecords; A:1; MX:1; LANG:en; 
 MIME-Version: 1.0
-X-OriginatorOrg: freescale.com
+In-Reply-To: <E51394554A503C4E852F9BEE46B03E8D019AC4B3@TI-THOR.tasernet.com>
+User-Agent: Mutt/1.5.22 (2013-10-16)
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: Setting PV dynamically in a recipe
 X-BeenThere: yocto@yoctoproject.org
@@ -42,49 +43,50 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 17 Dec 2013 09:41:39 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Tue, 17 Dec 2013 14:01:34 -0000
+X-Groupsio-MsgNum: 17568
+Content-Type: multipart/signed; micalg=pgp-sha1;
+	protocol="application/pgp-signature"; boundary="SUk9VBj82R8Xhb8H"
+Content-Disposition: inline
+
+--SUk9VBj82R8Xhb8H
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-AUTOREV might be what you are looking for.
-
-http://www.yoctoproject.org/docs/current/ref-manual/ref-manual.html#var-AUT=
-OREV
-
-
-Best Regards,
-
-Zhenhua
-
-> -----Original Message-----
-> From: yocto-bounces@yoctoproject.org [mailto:yocto-
-> bounces@yoctoproject.org] On Behalf Of Brad Litterell
-> Sent: Tuesday, December 17, 2013 4:17 PM
-> To: yocto@yoctoproject.org
-> Subject: [yocto] Setting PV dynamically in a recipe
->=20
+On Tue, Dec 17, 2013 at 08:16:40AM +0000, Brad Litterell wrote:
 > Hi,
 >=20
-> I have a few recipes in my image that represent my own custom code.  I
-> would like to generate PV dynamically from my source code, but since the
-> recipe is parsed before the code is extracted from the tarball, that's
-> not easy to do.
+> I have a few recipes in my image that represent my own custom code.  I wo=
+uld like to generate PV dynamically from my source code, but since the reci=
+pe is parsed before the code is extracted from the tarball, that's not easy=
+ to do.
 >=20
 > The Poky reference manual implies this is possible:
-> PV is generally not overridden within a recipe unless it is building an
-> unstable (i.e. development) version from a source code repository (e.g.
-> Git or Subversion).
+> PV is generally not overridden within a recipe unless it is building an u=
+nstable (i.e. development) version from a source code repository (e.g. Git =
+or Subversion).
 >=20
-> However, I have not found an actual example. Is there a recommended way
-> to do this?
->=20
-> Thanks,
-> Brad
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
->=20
+> However, I have not found an actual example. Is there a recommended way t=
+o do this?
 
+Do you really need to change PV? Check PKGV,
+meta-openembedded/meta-oe/classes/gitpkgv.bbclass could be interesting
+example for you.
 
+--=20
+Martin 'JaMa' Jansa     jabber: Martin.Jansa@gmail.com
+
+--SUk9VBj82R8Xhb8H
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: Digital signature
+
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v2.0.22 (GNU/Linux)
+
+iEYEARECAAYFAlKwWVYACgkQN1Ujt2V2gBz5JwCggUMHFpkEd9i4P0ofj5keHqGh
+N4MAn1sYobRXqmvh3+dl/3Gb/xevc4du
+=mhxk
+-----END PGP SIGNATURE-----
+
+--SUk9VBj82R8Xhb8H--
