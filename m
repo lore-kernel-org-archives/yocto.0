@@ -1,25 +1,47 @@
-Return-Path: <sgh@sgh.dk>
-Received: from mx-aarh-3.stofanet.dk (mx-aarh-3.stofanet.dk [212.10.10.13])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C7AFDE007F1
-	for <yocto@yoctoproject.org>; Mon, 16 Dec 2013 23:33:31 -0800 (PST)
-Received: from 5634f347.rev.stofanet.dk ([86.52.243.71] helo=asrock)
-	by mx-aarh-3.stofanet.dk (envelope-from <sgh@sgh.dk>)
-	with esmtp id 1Vsp9h-0007E9-1D; Tue, 17 Dec 2013 08:33:25 +0100
-Received: from koontz.localnet (localhost [127.0.0.1])
-	by asrock (Postfix) with ESMTPS id 11BF77EC6C;
-	Tue, 17 Dec 2013 08:33:25 +0100 (CET)
-From: =?ISO-8859-1?Q?S=F8ren?= Holm <sgh@sgh.dk>
-To: yocto@yoctoproject.org
-Date: Tue, 17 Dec 2013 08:33:25 +0100
-Message-ID: <1491937.Jvio6PXcTZ@koontz>
-User-Agent: KMail/4.11.2 (Linux/3.11.0-14-lowlatency; KDE/4.11.2; i686; ; )
-In-Reply-To: <52AF395D.8020506@mlbassoc.com>
-References: <52A9D0F7.7050501@mlbassoc.com>
-	<CAPhnLPAEpU-B0b6zU_XSL7DgOmCnfwjjZcRq2xkffHmU0PMHyQ@mail.gmail.com>
-	<52AF395D.8020506@mlbassoc.com>
+Return-Path: <brad@evidence.com>
+Received: from email.taser.com (email.taser.com [74.206.119.92])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 08AF6E007F1
+	for <yocto@yoctoproject.org>; Tue, 17 Dec 2013 00:16:44 -0800 (PST)
+X-ASG-Debug-ID: 1387268203-0499bf7ce2407600001-yzSStA
+Received: from MAGNI.atmoss (magni.atmoss [10.10.20.112]) by email.taser.com
+	with ESMTP id Y89DRSqzbUNqguFI for <yocto@yoctoproject.org>;
+	Tue, 17 Dec 2013 01:16:43 -0700 (MST)
+X-Barracuda-Envelope-From: brad@evidence.com
+X-Barracuda-RBL-Trusted-Forwarder: 10.10.20.112
+Received: from TI-ODIN.tasernet.com (172.16.1.112) by email.taser.com
+	(10.10.20.112) with Microsoft SMTP Server (TLS) id 14.2.347.0;
+	Tue, 17 Dec 2013 01:16:42 -0700
+Received: from TI-THOR.tasernet.com ([fe80::7c49:ae21:6650:2789]) by
+	TI-ODIN.tasernet.com ([fe80::64ff:7320:e6e7:27c8%20]) with mapi id
+	14.02.0347.000; Tue, 17 Dec 2013 01:16:42 -0700
+X-Barracuda-RBL-Trusted-Forwarder: 10.10.20.112
+From: Brad Litterell <brad@evidence.com>
+X-Barracuda-BWL-IP: fe80::7c49:ae21:6650:2789
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: Setting PV dynamically in a recipe
+X-ASG-Orig-Subj: Setting PV dynamically in a recipe
+Thread-Index: Ac77ABx4gKdRGDzAQM+tn2QPKyJSdw==
+Date: Tue, 17 Dec 2013 08:16:40 +0000
+Message-ID: <E51394554A503C4E852F9BEE46B03E8D019AC4B3@TI-THOR.tasernet.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [172.16.1.103]
 MIME-Version: 1.0
-Cc: Gary Thomas <gary@mlbassoc.com>
-Subject: Re: How to force the use of git-native?
+X-Barracuda-Connect: magni.atmoss[10.10.20.112]
+X-Barracuda-Start-Time: 1387268203
+X-Barracuda-URL: http://10.10.20.59:8000/cgi-mod/mark.cgi
+X-Virus-Scanned: by bsmtpd at taser.com
+X-Barracuda-BRTS-Status: 1
+X-Barracuda-Spam-Score: 0.00
+X-Barracuda-Spam-Status: No, SCORE=0.00 using global scores of TAG_LEVEL=1000.0
+	QUARANTINE_LEVEL=1000.0 KILL_LEVEL=1000.0 tests=
+X-Barracuda-Spam-Report: Code version 3.2, rules version 3.2.2.143164
+	Rule breakdown below
+	pts rule name              description
+	---- ----------------------
+	--------------------------------------------------
+Subject: Setting PV dynamically in a recipe
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -31,33 +53,26 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 17 Dec 2013 07:33:35 -0000
+X-List-Received-Date: Tue, 17 Dec 2013 08:16:45 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"
 
-Hi
-
-Should'nt it be enough to remove git-native from ASSUME_PROVIDED ?
-
-
-Mandag den 16. december 2013 10:33:17 skrev Gary Thomas:
-> On 2013-12-16 08:10, Flanagan, Elizabeth wrote:
-> > Gary:
-> >=20
-> > This should help.
-> > http://autobuilder.yoctoproject.org/pub/buildtools/20131216-2/build=
-tools/p
-> > oky-eglibc-i686-buildtools-tarball-i586-buildtools-nativesdk-standa=
-lone-1.
-> > 5.sh
-> >=20
-> > I haven't tested this out yet, but it is based off of the dora 10.0=
-.0
-> > release, so please, let me know if you have problems with it.
->=20
-> Seems to work fine on my Fedora 13 box.
->=20
-
---=20
-S=F8ren Holm
+Hi,=0A=
+=0A=
+I have a few recipes in my image that represent my own custom code.  I woul=
+d like to generate PV dynamically from my source code, but since the recipe=
+ is parsed before the code is extracted from the tarball, that's not easy t=
+o do.=0A=
+=0A=
+The Poky reference manual implies this is possible:=0A=
+PV is generally not overridden within a recipe unless it is building an uns=
+table (i.e. development) version from a source code repository (e.g. Git or=
+ Subversion).=0A=
+=0A=
+However, I have not found an actual example. Is there a recommended way to =
+do this?=0A=
+=0A=
+Thanks,=0A=
+Brad=
 
