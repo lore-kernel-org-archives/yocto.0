@@ -1,29 +1,26 @@
 Return-Path: <gary@mlbassoc.com>
 Received: from mail.chez-thomas.org (mail.mlbassoc.com [65.100.170.105])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 180B5E007BA
-	for <yocto@yoctoproject.org>; Tue, 17 Dec 2013 08:15:14 -0800 (PST)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 16E0FE007B6
+	for <yocto@yoctoproject.org>; Tue, 17 Dec 2013 08:59:51 -0800 (PST)
 Received: by mail.chez-thomas.org (Postfix, from userid 1998)
-	id 93B06F811EA; Tue, 17 Dec 2013 09:15:13 -0700 (MST)
+	id 31826F811EA; Tue, 17 Dec 2013 09:59:50 -0700 (MST)
 X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on
 	hermes.chez-thomas.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=4.0 tests=ALL_TRUSTED,BAYES_00,
-	WEIRD_PORT autolearn=unavailable version=3.3.2
-Received: from [192.168.1.114] (zeus [192.168.1.114])
-	by mail.chez-thomas.org (Postfix) with ESMTP id A9221F811D8;
-	Tue, 17 Dec 2013 09:15:12 -0700 (MST)
-Message-ID: <52B07899.7090601@mlbassoc.com>
-Date: Tue, 17 Dec 2013 09:15:21 -0700
+X-Spam-Status: No, score=-2.9 required=4.0 tests=ALL_TRUSTED,BAYES_00
+	autolearn=unavailable version=3.3.2
+Received: from zeus.chez-thomas.org (zeus [192.168.1.114])
+	by mail.chez-thomas.org (Postfix) with ESMTP id 5A12FF811E9;
+	Tue, 17 Dec 2013 09:59:47 -0700 (MST)
 From: Gary Thomas <gary@mlbassoc.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:24.0) Gecko/20100101 Thunderbird/24.2.0
-MIME-Version: 1.0
-To: Andrei Gherzan <andrei@gherzan.ro>
-References: <1387221202-1702-1-git-send-email-gary@mlbassoc.com>
-	<CAK18fxHXN4UdfeTHkpQOptzvddexJfDmj6Q0A+gQLA7WEfeL4A@mail.gmail.com>
-In-Reply-To: <CAK18fxHXN4UdfeTHkpQOptzvddexJfDmj6Q0A+gQLA7WEfeL4A@mail.gmail.com>
-Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: [meta-raspberrypi][PATCH] linux-raspberrypi: Add version 3.12.4+
+To: yocto@yoctoproject.org
+Date: Tue, 17 Dec 2013 09:59:50 -0700
+Message-Id: <1387299591-29254-2-git-send-email-gary@mlbassoc.com>
+X-Mailer: git-send-email 1.7.9.5
+In-Reply-To: <1387299591-29254-1-git-send-email-gary@mlbassoc.com>
+References: <1387299591-29254-1-git-send-email-gary@mlbassoc.com>
+Cc: Gary Thomas <gary@mlbassoc.com>
+Subject: [meta-raspberrypi][PATCH 1/2] README: Add video camera control
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -35,31 +32,32 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 17 Dec 2013 16:15:17 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Tue, 17 Dec 2013 16:59:52 -0000
 
-On 2013-12-17 09:09, Andrei Gherzan wrote:
-> On Mon, Dec 16, 2013 at 9:13 PM, Gary Thomas <gary@mlbassoc.com <mailto:gary@mlbassoc.com>> wrote:
->
->     This kernel enables camera video via the new 'bcm2835-v4l2' module.
->     Just add 'start_x=1' to your boot config.txt
->
->
-> Would you please add this info in README? I think it would make sense to centralize these kind of knowledge there.
+Add optional 'VIDEO_CAMERA' setting to enable video
+camera at boot time.
 
-I already have a patchset which explains this in the README,
-along with automatic updating of the config.txt file, similar
-to other settings.  I'll send that shortly.
+Signed-off-by: Gary Thomas <gary@mlbassoc.com>
+---
+ README |    4 ++++
+ 1 file changed, 4 insertions(+)
 
->
-> FYI: https://review.gherzan.ro:8443/#/c/34/
-> --
-> *ag*
-
+diff --git a/README b/README
+index c1321a3..c4be792 100644
+--- a/README
++++ b/README
+@@ -158,6 +158,10 @@ CORE_FREQ = "500"
+ SDRAM_FREQ = "500"
+ OVER_VOLTAGE = "6"
+ 
++2.F. Optional - Video camera support with V4L2 drivers
++Set this variable to enable support for the video camera (Linux 3.12.4+ required)
++VIDEO_CAMERA = "1"
++
+ 
+ 3. Extra apps
+ =============
 -- 
-------------------------------------------------------------
-Gary Thomas                 |  Consulting for the
-MLB Associates              |    Embedded world
-------------------------------------------------------------
+1.7.9.5
+
 
