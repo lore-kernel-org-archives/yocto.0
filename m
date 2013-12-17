@@ -1,32 +1,34 @@
-Return-Path: <elizabeth.flanagan@intel.com>
-Received: from mail-vc0-f169.google.com (mail-vc0-f169.google.com
-	[209.85.220.169])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 54FB5E007B6
-	for <yocto@yoctoproject.org>; Tue, 17 Dec 2013 07:30:54 -0800 (PST)
-Received: by mail-vc0-f169.google.com with SMTP id hu19so4246972vcb.14
-	for <yocto@yoctoproject.org>; Tue, 17 Dec 2013 07:30:54 -0800 (PST)
+Return-Path: <andrei@gherzan.ro>
+Received: from mail-qc0-f170.google.com (mail-qc0-f170.google.com
+	[209.85.216.170])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8DF9BE007B6
+	for <yocto@yoctoproject.org>; Tue, 17 Dec 2013 07:59:33 -0800 (PST)
+Received: by mail-qc0-f170.google.com with SMTP id x13so5150328qcv.1
+	for <yocto@yoctoproject.org>; Tue, 17 Dec 2013 07:59:33 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:date:message-id:subject:from:to
-	:content-type;
-	bh=DeISM/sf9q33HJ/DlQPRPaglGC3x/j9QSgy7LRvyOI0=;
-	b=TBWOkDYhqnFaZFNLlEFF/ZX2iXLbrFednUEHZuYzW4n/HFOFRH48SdMUmDrYV3i81K
-	ughNfs0h9ci8OFtyU5hIExe7JaXG3T+6BEeweAm6bWVsQ6ljEC62EAspTd9HRkIo233p
-	o2XDI7bznOE6SqU6lxG2ta0rQ5KoSxWxXrMCIpbXQbZkGf8kQY1h9z9P2P0gLvvj4FZc
-	55e/XMg4qWE4jkcIJ31+o6utm5LLDW/RpMRIEz6uU1e1dUIqghLg+mGUk7dd+bnNtztp
-	hgg0xBRMr1oJfFlDP9bvGb9P2NLnTzJ4VF4IV/Lf4tIqh+93JEOnUDPNz39YTckM4+iY
-	P68A==
-X-Gm-Message-State: ALoCoQlCdAjSX93Aw5hTrQeEfZ867SG2JoUSCo+RI4NrixmCdGY+UleeM1D9eC77LOEjdPAk9LkS
-MIME-Version: 1.0
-X-Received: by 10.58.187.51 with SMTP id fp19mr1555478vec.47.1387294254107;
-	Tue, 17 Dec 2013 07:30:54 -0800 (PST)
-Received: by 10.52.161.7 with HTTP; Tue, 17 Dec 2013 07:30:54 -0800 (PST)
-Date: Tue, 17 Dec 2013 15:30:54 +0000
-Message-ID: <CAPhnLPA6ySb6aJ7jUG4i-GcgBEXhAsv05GpeJ=xWP8K_6poU1g@mail.gmail.com>
-From: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	yocto-announce@yoctoproject.org
-Subject: [ANNOUNCEMENT] Yocto Project 1.6_M1 now available
+	h=x-gm-message-state:from:to:cc:subject:date:message-id;
+	bh=zKpULL8W+YQEaCuRIguOU/vKSeIhYrqX1+GGnuwxBF0=;
+	b=hO2gHLgUcRElGJjRqLG+iFczdPQ+QmOeYFoAFBYq4nOhdpQu8Vp40LzQ/cmdLWjV+5
+	lM8JboVqQG9/z2OGJDfoTOxrEphRE24gyvPQiHPLAxVUAbMmw0Lb8HmI3Lke7wScLCmF
+	5opOjZZP/H89gaRz+Up6U89OXHbJfWGVbNKqwvcuuSqCmgFdoeF5czphRQZz1J+82v+j
+	g6T3P1kFo5xS2mLDrogep02QGRxphYoLGJlqFOrymYBat1mQ1pXvZZn31jk+a/WFr74e
+	vL1PAqchXIUKBCYtvx3LQkSal3utB7eYa3i0bXmPoQp4ZMkfxZQQRjiMs2mXIzoaug75
+	LBJA==
+X-Gm-Message-State: ALoCoQmKn2OGBL4A4QUkL2HbtNMOuh5yq5MgbhghvixmwVCtwWWSvfU/uolvVM9VKjLH3lUL4JXH
+X-Received: by 10.229.29.1 with SMTP id o1mr37746375qcc.14.1387295973020;
+	Tue, 17 Dec 2013 07:59:33 -0800 (PST)
+Received: from localhost.localdomain ([89.121.200.106])
+	by mx.google.com with ESMTPSA id 4sm57745643qak.11.2013.12.17.07.59.27
+	for <multiple recipients>
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Tue, 17 Dec 2013 07:59:31 -0800 (PST)
+From: Andrei Gherzan <andrei@gherzan.ro>
+To: yocto@yoctoproject.org
+Date: Tue, 17 Dec 2013 17:59:11 +0200
+Message-Id: <1387295956-24899-1-git-send-email-andrei@gherzan.ro>
+X-Mailer: git-send-email 1.8.1.4
+Subject: [meta-raspberrypi][PATCH 1/6] linux-raspberrypi: Update v3.10.18 to v3.10.24
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,75 +40,42 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 17 Dec 2013 15:30:56 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Tue, 17 Dec 2013 15:59:36 -0000
 
-All,
+Change-Id: Icf95ec58d39eb187c0cf0fe31fd1822f81f3f038
+Signed-off-by: Andrei Gherzan <andrei@gherzan.ro>
+---
+ recipes-kernel/linux/linux-raspberrypi_3.10.18.bb | 6 ------
+ recipes-kernel/linux/linux-raspberrypi_3.10.24.bb | 6 ++++++
+ 2 files changed, 6 insertions(+), 6 deletions(-)
+ delete mode 100644 recipes-kernel/linux/linux-raspberrypi_3.10.18.bb
+ create mode 100644 recipes-kernel/linux/linux-raspberrypi_3.10.24.bb
 
-The first milestone release of the upcoming Yocto Project's 1.6
-release is now available for download at:
-
-http://downloads.yoctoproject.org/releases/yocto/milestones/1.6_M1.rc1/poky-c51730aaa91066cfb51ad6ec2920fb4f9d9ea94c.tar.bz2
-
-Main Feature List:
-
-* oe-selftest prototype merged. It's a framework to run unit tests on oe.
-* Toaster alpha release, which mainly includes support infrastructure
-for Toaster in bitbake.
-* distro_features change now will only trigger related parts to be
-rebuilt instead of a full build.
-* Build history tool improvement.
-* 142 package updates and many bug fixes.
-
-Known Issue List:
-
-* Bug 5182 - [Beagleboard xM]X can not startup with 3.10 kernel
-* Bug 5403 - crosstap doesn't work on qemuppc and qemumips
-* Bug 5636 - No IP address for eth0 on qemu at the first boot
-
-
-Release Name: poky-1.6_M1
-Branch:  master
-Tag:  1.6_M1
-Hash:  c51730aaa91066cfb51ad6ec2920fb4f9d9ea94c
-md5: 9a6bdc4b4549fce3d4c69a83a1e01525
-Download Locations:
-     http://downloads.yoctoproject.org/releases/yocto/milestones/1.6_M1.rc1/poky-c51730aaa91066cfb51ad6ec2920fb4f9d9ea94c.tar.bz2
-
-Release Name: meta-intel-1.6_M1
-Branch:  master
-Tag:  1.6_M1
-Hash:  a649e92498d234f2d0d52f3da5a85bdc87296c23
-md5: fd52862f923d619b334be7a52d517f7a
-Download Locations:
-     http://downloads.yoctoproject.org/releases/yocto/milestones/1.6_M1.rc1/meta-intel-a649e92498d234f2d0d52f3da5a85bdc87296c23.tar.bz2
-
-Release Name: eclipse-poky-juno-1.6_M1
-Branch:  master
-Tag:  1.6_M1
-Hash:  e8342d27db60a9d1b627ddb9f8ae2f5512bfc0c9
-md5: 91a5add5ae10c5db9c24a82a490f7f76
-Download Locations:
-     http://downloads.yoctoproject.org/releases/yocto/milestones/1.6_M1.rc1/eclipse-poky-juno-e8342d27db60a9d1b627ddb9f8ae2f5512bfc0c9.tar.bz2
-
-Release Name: eclipse-poky-kepler-1.6_M1
-Branch:  master
-Tag:  1.6_M1
-Hash:  3dd620d9f89e297ee9e22d5ba9fe741a5f40ac82
-md5: d593b8e7d31cf196174a3d43ca75d6e1
-Download Locations:
-     http://downloads.yoctoproject.org/releases/yocto/milestones/1.6_M1.rc1/eclipse-poky-kepler-3dd620d9f89e297ee9e22d5ba9fe741a5f40ac82.tar.bz2
-
-Release Name: meta-qt3-1.6_M1
-Branch:  master
-Tag:  1.6_M1
-Hash:  b73552fb998fd30a01dbee5a172e432a16078222
-md5: ba41e080634589040713d688369a4576
-Download Locations:
-     http://downloads.yoctoproject.org/releases/yocto/milestones/1.6_M1.rc1/meta-qt3-b73552fb998fd30a01dbee5a172e432a16078222.tar.bz2
-
+diff --git a/recipes-kernel/linux/linux-raspberrypi_3.10.18.bb b/recipes-kernel/linux/linux-raspberrypi_3.10.18.bb
+deleted file mode 100644
+index 83bf253..0000000
+--- a/recipes-kernel/linux/linux-raspberrypi_3.10.18.bb
++++ /dev/null
+@@ -1,6 +0,0 @@
+-SRCREV = "b49aafd02fa7572d387acd34550beea5b4c3d239"
+-SRC_URI = "git://github.com/raspberrypi/linux.git;protocol=git;branch=rpi-3.10.y \
+-           file://sl030raspberrypii2ckernel.patch \
+-          "
+-
+-require linux-raspberrypi.inc
+diff --git a/recipes-kernel/linux/linux-raspberrypi_3.10.24.bb b/recipes-kernel/linux/linux-raspberrypi_3.10.24.bb
+new file mode 100644
+index 0000000..2adf7aa
+--- /dev/null
++++ b/recipes-kernel/linux/linux-raspberrypi_3.10.24.bb
+@@ -0,0 +1,6 @@
++SRCREV = "ff9f6d87957877265086ab8368bdabf27d35f491"
++SRC_URI = "git://github.com/raspberrypi/linux.git;protocol=git;branch=rpi-3.10.y \
++           file://sl030raspberrypii2ckernel.patch \
++          "
++
++require linux-raspberrypi.inc
 -- 
-Elizabeth Flanagan
-Yocto Project
-Build and Release
+1.8.1.4
+
 
