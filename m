@@ -1,19 +1,28 @@
-Return-Path: <sgw@linux.intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C2F22E00803
-	for <yocto@yoctoproject.org>; Wed, 18 Dec 2013 15:46:24 -0800 (PST)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga102.jf.intel.com with ESMTP; 18 Dec 2013 15:42:30 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.95,510,1384329600"; d="scan'208";a="426917800"
-Received: from unknown (HELO swold-linux.bigsur.com) ([10.255.15.128])
-	by orsmga001.jf.intel.com with ESMTP; 18 Dec 2013 15:46:18 -0800
-From: Saul Wold <sgw@linux.intel.com>
+Return-Path: <billmartin544@gmail.com>
+Received: from mail-ie0-f170.google.com (mail-ie0-f170.google.com
+	[209.85.223.170])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7055DE00803
+	for <yocto@yoctoproject.org>; Wed, 18 Dec 2013 15:54:20 -0800 (PST)
+Received: by mail-ie0-f170.google.com with SMTP id qd12so517694ieb.1
+	for <yocto@yoctoproject.org>; Wed, 18 Dec 2013 15:54:19 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=rFT15P6VCKJ6UFQqOQeFsxFihWi8HCg64kHPYiMNkxE=;
+	b=RVw6dheLkzhfxZuK/XGCL+DtQTRXsdby1nyAnkZhOCeWUqzJp6bkDRepyGdEwDJQ61
+	nb8pBgdGrSjpjoECCLS27dpVDUkPwgKwNJwnrDxjoQkWBP1bS5RrbSLOCZll2SOT4v/D
+	SsOsDlrWtRBrvgnhNiy9GP7n63kVEp9kyexZlExO1ndcGFM7boSWTT9A7YtS3cXyYBDY
+	208AWhCtu+TqHJBGMw3Vgxl+6OrUek7XbEIMvdDxGDuOfztY7urq0ReWHq7MqJEVmwFk
+	gU7aX/Pw2OfezyEQXqKZw6c8+acKXuAWE8MP54SmsLxPzh8rzRTZ1720T4cVbK/cbH1s
+	7rXw==
+MIME-Version: 1.0
+X-Received: by 10.50.126.74 with SMTP id mw10mr249854igb.24.1387410859657;
+	Wed, 18 Dec 2013 15:54:19 -0800 (PST)
+Received: by 10.64.228.199 with HTTP; Wed, 18 Dec 2013 15:54:19 -0800 (PST)
+Date: Wed, 18 Dec 2013 15:54:19 -0800
+Message-ID: <CAJGS5=HtGV8Fs08F3NQMmHbxUOqcGrH7OveP5CvOg9EPZj4GoA@mail.gmail.com>
+From: Bill Martin <billmartin544@gmail.com>
 To: yocto@yoctoproject.org
-Date: Wed, 18 Dec 2013 15:46:18 -0800
-Message-Id: <1387410378-32122-1-git-send-email-sgw@linux.intel.com>
-X-Mailer: git-send-email 1.8.3.1
-Subject: [DOCS][PATCH] profile-manual-usage: remove meta-toolchain-sdk references
+Subject: Kontron CONFIG_I2C_KEMPLD support in Fish River Island 2? Or Crownbay?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -25,28 +34,38 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 18 Dec 2013 23:46:24 -0000
+X-List-Received-Date: Wed, 18 Dec 2013 23:54:28 -0000
+Content-Type: multipart/alternative; boundary=047d7b4141767299c504edd7c3c2
 
-[YOCTO #5676]
+--047d7b4141767299c504edd7c3c2
+Content-Type: text/plain; charset=ISO-8859-1
 
-Signed-off-by: Saul Wold <sgw@linux.intel.com>
----
- documentation/profile-manual/profile-manual-usage.xml | 1 -
- 1 file changed, 1 deletion(-)
+We are in need of enabling the CONFIG_I2C_KEMPLD  for a build for our
+Kontron (architecture is x86).
 
-diff --git a/documentation/profile-manual/profile-manual-usage.xml b/documentation/profile-manual/profile-manual-usage.xml
-index 5279730..e1b4250 100644
---- a/documentation/profile-manual/profile-manual-usage.xml
-+++ b/documentation/profile-manual/profile-manual-usage.xml
-@@ -2175,7 +2175,6 @@
-         core-image-minimal
-         core-image-sato
-         meta-toolchain
--        meta-toolchain-sdk
-         adt-installer
-         meta-ide-support
- 
--- 
-1.8.3.1
+We have been using the Crownbay BSP. But of course I did a google search
+and found patches in the Linux kernel for allowing i2c_kempld. Also these
+patches were associated with Fish River Island II.
 
+I was under the impression that these names "Crownbay," "Fish River Island
+II" and such were all part of Yocto. The patches I encountered were dated
+earlier this year and I was assuming the Fish River Island II BSP for our
+Dylan (9.0.2) build would support I2C
 
+--047d7b4141767299c504edd7c3c2
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">We are in need of enabling the CONFIG_I2C_KEMPLD =A0for a =
+build for our Kontron (architecture is x86).=A0<div><br></div><div>We have =
+been using the Crownbay BSP. But of course I did a google search and found =
+patches in the Linux kernel for allowing i2c_kempld. Also these patches wer=
+e associated with Fish River Island II.</div>
+<div><br></div><div>I was under the impression that these names &quot;Crown=
+bay,&quot; &quot;Fish River Island II&quot; and such were all part of Yocto=
+. The patches I encountered were dated earlier this year and I was assuming=
+ the Fish River Island II BSP for our Dylan (9.0.2) build would support I2C=
+=A0</div>
+</div>
+
+--047d7b4141767299c504edd7c3c2--
