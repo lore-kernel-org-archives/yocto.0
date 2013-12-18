@@ -1,43 +1,34 @@
-Return-Path: <martin.jansa@gmail.com>
-Received: from mail-ea0-f176.google.com (mail-ea0-f176.google.com
-	[209.85.215.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EE26EE006BC
-	for <yocto@yoctoproject.org>; Wed, 18 Dec 2013 01:35:54 -0800 (PST)
-Received: by mail-ea0-f176.google.com with SMTP id h14so3365254eaj.21
-	for <yocto@yoctoproject.org>; Wed, 18 Dec 2013 01:35:53 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=date:from:to:cc:subject:message-id:references:mime-version
-	:content-type:content-disposition:in-reply-to:user-agent;
-	bh=IuH7qlEWFf37ImjwDPuWJohV7sCt0gOe1oOjg7S873U=;
-	b=HbWBaqLOFzg4XtLM3xlPdTUnzmGftOLKOQokGU+ngfAq9SN+rvDC84fyq0EG+/rksI
-	YJpldM6X5xyskm5tTsRCLm0XYoTj97BF41mvemyLjWnaLAatISqr7pKqE6poYMEzfWka
-	cwsEsVnUQyntQMX0YpXr8xo1k3Gi2+hOWI2wBN0NT+SRFX1M0C/Yhwmzl0dawhz4yV8Q
-	+zO/25STkLgvi5CG9FpcrE1YhM3YXvDSmjDKntLrty35UljBk9KBDCVF7cH5Eqt9S9JG
-	r2K12P6475QSSSihs1g/cQFvsqfCd8y7yqB8viWsroYqPxFg+gaoLQelkq+NPFgpnrR5
-	YirQ==
-X-Received: by 10.14.204.70 with SMTP id g46mr27993055eeo.84.1387359353581;
-	Wed, 18 Dec 2013 01:35:53 -0800 (PST)
-Received: from localhost (ip-89-176-104-107.net.upcbroadband.cz.
-	[89.176.104.107])
-	by mx.google.com with ESMTPSA id h3sm60760984eem.15.2013.12.18.01.35.52
-	for <multiple recipients>
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Wed, 18 Dec 2013 01:35:52 -0800 (PST)
-Date: Wed, 18 Dec 2013 10:36:24 +0100
-From: Martin Jansa <martin.jansa@gmail.com>
-To: Brad Litterell <brad@evidence.com>
-Message-ID: <20131218093624.GK3706@jama>
-References: <E51394554A503C4E852F9BEE46B03E8D019AC4B3@TI-THOR.tasernet.com>
-	<ad9adfd66f224dd98d4ec05596eaaa8e@DM2PR03MB399.namprd03.prod.outlook.com>
-	<E51394554A503C4E852F9BEE46B03E8D019AC7CA@TI-THOR.tasernet.com>
-	<14453943.1Qpn4azGq8@helios>
-	<E51394554A503C4E852F9BEE46B03E8D019AC9AE@TI-THOR.tasernet.com>
+Return-Path: <ross.burton@intel.com>
+Received: from mail-qc0-f182.google.com (mail-qc0-f182.google.com
+	[209.85.216.182])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BF194E00288
+	for <yocto@yoctoproject.org>; Wed, 18 Dec 2013 01:42:31 -0800 (PST)
+Received: by mail-qc0-f182.google.com with SMTP id e16so5816200qcx.41
+	for <yocto@yoctoproject.org>; Wed, 18 Dec 2013 01:42:30 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc:content-type;
+	bh=lsqg02K7Q716aYnQJpPNNXyj9HiFTmuRJXRUZ+la2N4=;
+	b=QverEVWEncI13PkFMp93MNvepLRJ4IwEjy6k8169MyFu7AdYsoZmrJxwN6wpIIZOKr
+	xpFwXDtnJLqjf4dVfRFsCLWYRlY1W/GjR9qWdW4NBnperbDSUe5agRZuMQWmtCCWdNo1
+	0NFihPQnT6gUq/V3DqA8zP2XT/Wleb1oaKumHHvTS4UzVbrUzIEb0x3NiNBGyrZNe8vb
+	x8x7zdZn+JEEZ4iDZgDLxVGXul2ex+h/Zv3xBmJYMpEJKLbXnpexq8fo7nww+zXLyDXd
+	h5e69UMHozPOwAInnNz20syIPNii3QBzBZRX+PfgPtofCCi6KFdeGBsVaYz+2NF9Laja
+	xUOg==
+X-Gm-Message-State: ALoCoQlRM6vnjEZAvPfEnRYBc6fjNZMUY0Ym5k9gpqYngB6IuBctX1xzY/3uN63v3gglkCh3NGca
+X-Received: by 10.49.15.227 with SMTP id a3mr51715827qed.66.1387359750449;
+	Wed, 18 Dec 2013 01:42:30 -0800 (PST)
 MIME-Version: 1.0
-In-Reply-To: <E51394554A503C4E852F9BEE46B03E8D019AC9AE@TI-THOR.tasernet.com>
-User-Agent: Mutt/1.5.22 (2013-10-16)
-Cc: Paul Eggleton <paul.eggleton@linux.intel.com>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Setting PV dynamically in a recipe
+Received: by 10.96.179.105 with HTTP; Wed, 18 Dec 2013 01:42:10 -0800 (PST)
+In-Reply-To: <CAOJdAdUOjV56ZBDAp6YhKU2x4cVrmLz=7Ku76WHcu33Oc3g3Mw@mail.gmail.com>
+References: <CAOJdAdUOjV56ZBDAp6YhKU2x4cVrmLz=7Ku76WHcu33Oc3g3Mw@mail.gmail.com>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Wed, 18 Dec 2013 09:42:10 +0000
+Message-ID: <CAJTo0LYy9NGjGckfGZN4KN7MhriKtSdzxJTVPU8e0j7m+f-SzQ@mail.gmail.com>
+To: wuteng wu <wutengss@gmail.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: libxml2 error
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -49,120 +40,21 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 18 Dec 2013 09:35:58 -0000
-X-Groupsio-MsgNum: 17588
-Content-Type: multipart/signed; micalg=pgp-sha1;
-	protocol="application/pgp-signature"; boundary="TdMwOTenGjBWB1uY"
-Content-Disposition: inline
+X-List-Received-Date: Wed, 18 Dec 2013 09:42:34 -0000
+Content-Type: text/plain; charset=UTF-8
 
---TdMwOTenGjBWB1uY
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On 18 December 2013 07:50, wuteng wu <wutengss@gmail.com> wrote:
+> I built the Yocto 1.5 project for my SAMA5D34-EK board, i add the libxml2 by
+> IMAGE_INSTALL_append = " libxml2", i got the image and programmed it into
+> NAND Flash of the board, but when i type python -c "import libxml2" from the
+> hyper Terminal , it gave out the message: "Traceback (most recent call
+> last): File "", line 1, in ImportError: No module named libxml2"
+>
+> I can find libxml2.so.2.9 under the usr/lib dir, i'm wondering where does
+> the error comes from, could anyone help me to solve the problem ? Thx.
 
-On Wed, Dec 18, 2013 at 01:29:25AM +0000, Brad Litterell wrote:
-> Hi Paul,
->=20
-> Thanks for that tip.  For my private packages I don't build directly from=
- git, but from a tarball (in turn created from my working directory) becaus=
-e I want to be able to build the source I'm working on without committing i=
-t to git. =20
->=20
-> In an ideal world, I'd like to to be able to build in two modes: dev & re=
-lease.  Release mode would use the git-based solution (and enforce building=
- from git), and in the dev mode, build from something like externalsrc.  (T=
-he reason I don't use externalsrc directly is because it didn't detect chan=
-ges in the underlying external source, so I created a script that does and =
-updates the tarball.)
->=20
-> What is the best way to switch recipes between dev & test modes like that=
-=2E  It appears debug-tweaks is only used in image recipes, so I don't know=
- whether I should (or could) use something like this in a package recipe:
->=20
-> SRC_URI +=3D '${@base_contains("EXTRA_IMAGE_FEATURES", "debug-tweaks", ".=
-=2E.tarball...", "...git..."}'
->=20
-> or whether something like that is asking for trouble.  My current solutio=
-n is manual - edit the recipe, but that feels kinda lame.
->=20
-> It seems like most of the yocto build tools assume building directly from=
- git (or with external-src but without dependency checking).
->=20
-> Any suggestions?
+Our libxml2 is built without Python, you'll need to remove the
+--disable-python options from the recipe.
 
-Don't use *IMAGE_FEATURES* to in recipe conditionals.
+Ross
 
-When you're building some package you don't know in which image it will
-be included so you cannot know with which *IMAGE_FEATURES* it should be
-built.
-
-It's true that EXTRA_IMAGE_FEATURES are often set in DISTRO config, but
-still it's unsafe to assume they are "global". With improved
-base_contains and sstate interaction, using some flag in DISTRO_FEATURES
-shouldn't cause so many packages to rebuild, so it could be usable for
-"debug-build" flag.
-
-> ________________________________________
-> From: Paul Eggleton [paul.eggleton@linux.intel.com]
-> Sent: Tuesday, December 17, 2013 12:24 PM
-> To: Brad Litterell
-> Cc: zhenhua.luo@freescale.com; yocto@yoctoproject.org
-> Subject: Re: [yocto] Setting PV dynamically in a recipe
->=20
-> Hi Brad,
->=20
-> On Tuesday 17 December 2013 19:46:11 Brad Litterell wrote:
-> > Thank you for the reply.  However, That's not what I'm looking for.  I
-> > already get the latest version of the source code.
-> >
-> > What I'm really after is the ability to generate output packages that h=
-ave
-> > increasing version numbers so I can use the package manager to update t=
-hem.
-> >
-> > I think Martin's subsequent reply is the secret to use PKGV.  I didn't =
-know
-> > about that variable.
->=20
-> You don't need to use any special classes to get this behaviour. Put this=
- in
-> your recipe (replacing 1.2.3 with the appropriate base version you are
-> building):
->=20
-> PV =3D "1.2.3+git${SRCPV}"
->=20
-> and enable the PR service, which will ensure SRCREV changes always increm=
-ent
-> the version properly:
->=20
-> http://www.yoctoproject.org/docs/current/dev-manual/dev-manual.html#worki=
-ng-with-a-pr-service
->=20
-> Cheers,
-> Paul
->=20
-> --
->=20
-> Paul Eggleton
-> Intel Open Source Technology Centre
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
-
---=20
-Martin 'JaMa' Jansa     jabber: Martin.Jansa@gmail.com
-
---TdMwOTenGjBWB1uY
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: Digital signature
-
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v2.0.22 (GNU/Linux)
-
-iEYEARECAAYFAlKxbJgACgkQN1Ujt2V2gBzprQCeM2Pvns61RQ/6aAHWYl9kPD/T
-cekAn3Jp1wUkF2kK9s4bjT4xWeP4r6qP
-=HVTa
------END PGP SIGNATURE-----
-
---TdMwOTenGjBWB1uY--
