@@ -1,30 +1,28 @@
-Return-Path: <billmartin544@gmail.com>
-Received: from mail-ie0-f171.google.com (mail-ie0-f171.google.com
-	[209.85.223.171])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 42436E00803
-	for <yocto@yoctoproject.org>; Wed, 18 Dec 2013 15:56:39 -0800 (PST)
-Received: by mail-ie0-f171.google.com with SMTP id ar20so515598iec.2
-	for <yocto@yoctoproject.org>; Wed, 18 Dec 2013 15:56:39 -0800 (PST)
+Return-Path: <vidal.develone@gmail.com>
+Received: from mail-qa0-f45.google.com (mail-qa0-f45.google.com
+	[209.85.216.45])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4098CE00802
+	for <yocto@yoctoproject.org>; Wed, 18 Dec 2013 16:04:57 -0800 (PST)
+Received: by mail-qa0-f45.google.com with SMTP id o15so4268806qap.18
+	for <yocto@yoctoproject.org>; Wed, 18 Dec 2013 16:04:56 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:content-type; bh=/NC4iwcpqTUYASwDgxxmnhqjE0RY2vZXS2PA0Y1bgnQ=;
-	b=Zbw38QLtjoeupAt+1cpjCDgORI2es9H38DTjD4Ppq2xZakE33WpGONHGNhxoCtBlC0
-	5DOSZujqQJJUnE05mkhokeY5REGJbZ83Z9xNWeoIgL8wafURe6y3YKuq2Xqu7vZIrfJ6
-	TLSZO+9kcmpg2XUls8qHJCgX2CVRtTXmZ7L+oh1eHDY3XN9WMhwAsqlXNn4fKfrtmwWO
-	KnXNwk61F98MNB0QRe/FThcFqK6a88rMi5jziCjbWnOpZ+R3hRrywOltv5PIMp9Xt6zE
-	AzmiNwOuV9riGMBWFuR0pIHhl2AGC3xPmXU76eWCDZqmWT108+a+AuN8dtwyu/xSkM27
-	nVPQ==
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=N+4MpeMB8kEvkwBkgD6Kv52BvftUN97yVQ9EIVeFVQs=;
+	b=VuIv5jOlY3YdeUKK77YZIGOPPVpgj9tDD1/WjLH93/KBTGfun+WgUT52qucR+IdD6g
+	HiX7a05Xsl1a5JJng18tKN7USqHljkyuAKgGYalhv1Dffm5917vvt1geh+zxL0Beuj8X
+	G//OReVSIAGvP2DFzNCwao+Qf+xfh3Tvbo052Pj53nPiCyjXTi6/Y/LreXoubBMQGDEc
+	ckW4VvxH58aYDBB5T2wtDAlZSEPf+oQ5Nlz4608GhKjXYOSvI5N9CyJVr7vxcN6hz6Lp
+	vhImGsvTg2/PAfF4y0c1hzyJjXAn49TgZUSWJgoXK1U6t5dd3fANQfdD3oJHLbIOv7HI
+	u24w==
 MIME-Version: 1.0
-X-Received: by 10.50.66.195 with SMTP id h3mr153358igt.41.1387410999358; Wed,
-	18 Dec 2013 15:56:39 -0800 (PST)
-Received: by 10.64.228.199 with HTTP; Wed, 18 Dec 2013 15:56:39 -0800 (PST)
-In-Reply-To: <CAJGS5=HtGV8Fs08F3NQMmHbxUOqcGrH7OveP5CvOg9EPZj4GoA@mail.gmail.com>
-References: <CAJGS5=HtGV8Fs08F3NQMmHbxUOqcGrH7OveP5CvOg9EPZj4GoA@mail.gmail.com>
-Date: Wed, 18 Dec 2013 15:56:39 -0800
-Message-ID: <CAJGS5=H3_JFrkXt5knk7cz5m4L-L5FcZsz6Sz=MeQn_74Ez6dQ@mail.gmail.com>
-From: Bill Martin <billmartin544@gmail.com>
-To: yocto@yoctoproject.org
-Subject: Kontron CONFIG_I2C_KEMPLD support in Fish River Island 2? Or Crownbay?
+X-Received: by 10.224.120.10 with SMTP id b10mr58300044qar.64.1387411496459;
+	Wed, 18 Dec 2013 16:04:56 -0800 (PST)
+Received: by 10.140.37.49 with HTTP; Wed, 18 Dec 2013 16:04:56 -0800 (PST)
+Date: Wed, 18 Dec 2013 17:04:56 -0700
+Message-ID: <CANwz6nzZYk4dTgHaETSQX_7G3zi9opJ=RoV8OqVi9BxqQ18cfQ@mail.gmail.com>
+From: Edward Vidal <vidal.develone@gmail.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: deploy/images
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -36,67 +34,72 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 18 Dec 2013 23:56:40 -0000
-Content-Type: multipart/alternative; boundary=047d7bdc10f2c63bc904edd7cb62
+X-List-Received-Date: Thu, 19 Dec 2013 00:04:58 -0000
+Content-Type: multipart/alternative; boundary=001a11c2ff706c38d504edd7e99d
 
---047d7bdc10f2c63bc904edd7cb62
+--001a11c2ff706c38d504edd7e99d
 Content-Type: text/plain; charset=ISO-8859-1
 
-Hit the send too early. My questions are: What kernel versions and what
-BSPs of Yocto support the CONFIG_I2C_KEMPLD? We are using Linux Kernel
-3.8.4 but we found a link saying KEMPLD is supported in a Linux kernel
-version as high as 3.1.2.
+Hello all,
+I have a few questions about the files in deploy/images.
+When working with beagleboard I would see MLO u-boot and uImage. I would
+copy these to DOS partition.
+Now Working with ZedBoard I have been using the BOOT.bin, devicetree.dtb
+and zImage.  The BOOT.bin was created with xilinx FSBL and system.bit using
+the Xilinx tools.   The zImage and devicetree.dtb were created with a
+kernel that was modified from linux-digilent .
+https://github.com/Digilent/linux-digilent.git.  Yocto item that I have
+been using is custom-image-zedboard-20131214212545.rootfs.ext2.
+What tools do I need to use The files in deploy/images
+custom-image-zedboard-20131214212545.rootfs.cpio
+custom-image-zedboard-20131214212545.rootfs.ext2
+custom-image-zedboard-20131214212545.rootfs.ext2.gz
+custom-image-zedboard-20131214212545.rootfs.ext2.gz.u-boot
+custom-image-zedboard.cpio
+custom-image-zedboard.ext2
+custom-image-zedboard.ext2.gz
+custom-image-zedboard.ext2.gz.u-boot
+modules--3.8-xilinx+git0+6a0bedad60e2bca8d9b50bf81b9895e29e31a6d7-r1-zedboard-20131214164131.tgz
+README_-_DO_NOT_DELETE_FILES_IN_THIS_DIRECTORY.txt
+uImage
+uImage--3.8-xilinx+git0+6a0bedad60e2bca8d9b50bf81b9895e29e31a6d7-r1-zedboard-20131214164131.bin
+uImage--3.8-xilinx+git0+6a0bedad60e2bca8d9b50bf81b9895e29e31a6d7-r1-zynq-zed-20131214164131.dtb
+uImage-zedboard.bin
+uImage-zynq-zed.dtb
+Is uImage-zedboard.bin a u-boot type file?
+Which manual should I read about transferring these files to the mmc.
+Any and all help will be appreciated.
+Thanks
 
-Anyone out there know about this? (see below for first part)
-
----------- Forwarded message ----------
-From: Bill Martin <billmartin544@gmail.com>
-Date: Wed, Dec 18, 2013 at 3:54 PM
-Subject: Kontron CONFIG_I2C_KEMPLD support in Fish River Island 2? Or
-Crownbay?
-To: yocto@yoctoproject.org
-
-
-We are in need of enabling the CONFIG_I2C_KEMPLD  for a build for our
-Kontron (architecture is x86).
-
-We have been using the Crownbay BSP. But of course I did a google search
-and found patches in the Linux kernel for allowing i2c_kempld. Also these
-patches were associated with Fish River Island II.
-
-I was under the impression that these names "Crownbay," "Fish River Island
-II" and such were all part of Yocto. The patches I encountered were dated
-earlier this year and I was assuming the Fish River Island II BSP for our
-Dylan (9.0.2) build would support I2C
-
---047d7bdc10f2c63bc904edd7cb62
+--001a11c2ff706c38d504edd7e99d
 Content-Type: text/html; charset=ISO-8859-1
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Hit the send too early. My questions are: What kernel vers=
-ions and what BSPs of Yocto support the CONFIG_I2C_KEMPLD? We are using Lin=
-ux Kernel 3.8.4 but we found a link saying KEMPLD is supported in a Linux k=
-ernel version as high as 3.1.2.<div>
-<br></div><div>Anyone out there know about this? (see below for first part)=
-<br><br><div class=3D"gmail_quote">---------- Forwarded message ----------<=
-br>From: <b class=3D"gmail_sendername">Bill Martin</b> <span dir=3D"ltr">&l=
-t;<a href=3D"mailto:billmartin544@gmail.com">billmartin544@gmail.com</a>&gt=
-;</span><br>
-Date: Wed, Dec 18, 2013 at 3:54 PM<br>Subject: Kontron CONFIG_I2C_KEMPLD su=
-pport in Fish River Island 2? Or Crownbay?<br>To: <a href=3D"mailto:yocto@y=
-octoproject.org">yocto@yoctoproject.org</a><br><br><br><div dir=3D"ltr">We =
-are in need of enabling the CONFIG_I2C_KEMPLD =A0for a build for our Kontro=
-n (architecture is x86).=A0<div>
-<br></div><div>We have been using the Crownbay BSP. But of course I did a g=
-oogle search and found patches in the Linux kernel for allowing i2c_kempld.=
- Also these patches were associated with Fish River Island II.</div>
-<div><br></div><div>I was under the impression that these names &quot;Crown=
-bay,&quot; &quot;Fish River Island II&quot; and such were all part of Yocto=
-. The patches I encountered were dated earlier this year and I was assuming=
- the Fish River Island II BSP for our Dylan (9.0.2) build would support I2C=
-=A0</div>
+<div dir=3D"ltr"><div><div><div><div><div><div><div><div>Hello all,<br></di=
+v>I have a few questions about the files in deploy/images.<br></div>When wo=
+rking with beagleboard I would see MLO u-boot and uImage. I would copy thes=
+e to DOS partition. <br>
+</div>Now Working with ZedBoard I have been using the BOOT.bin, devicetree.=
+dtb=A0 and zImage.=A0 The BOOT.bin was created with xilinx FSBL and system.=
+bit using the Xilinx tools. =A0 The zImage and devicetree.dtb were created =
+with a kernel that was modified from linux-digilent .=A0 <a href=3D"https:/=
+/github.com/Digilent/linux-digilent.git">https://github.com/Digilent/linux-=
+digilent.git</a>.=A0 Yocto item that I have been using is custom-image-zedb=
+oard-20131214212545.rootfs.ext2.<br>
+</div>What tools do I need to use The files in deploy/images<br>custom-imag=
+e-zedboard-20131214212545.rootfs.cpio<br>custom-image-zedboard-201312142125=
+45.rootfs.ext2<br>custom-image-zedboard-20131214212545.rootfs.ext2.gz<br>
+custom-image-zedboard-20131214212545.rootfs.ext2.gz.u-boot<br>custom-image-=
+zedboard.cpio<br>custom-image-zedboard.ext2<br>custom-image-zedboard.ext2.g=
+z<br>custom-image-zedboard.ext2.gz.u-boot<br>modules--3.8-xilinx+git0+6a0be=
+dad60e2bca8d9b50bf81b9895e29e31a6d7-r1-zedboard-20131214164131.tgz<br>
+README_-_DO_NOT_DELETE_FILES_IN_THIS_DIRECTORY.txt<br>uImage<br>uImage--3.8=
+-xilinx+git0+6a0bedad60e2bca8d9b50bf81b9895e29e31a6d7-r1-zedboard-201312141=
+64131.bin<br>uImage--3.8-xilinx+git0+6a0bedad60e2bca8d9b50bf81b9895e29e31a6=
+d7-r1-zynq-zed-20131214164131.dtb<br>
+uImage-zedboard.bin<br>uImage-zynq-zed.dtb<br></div>Is uImage-zedboard.bin =
+a u-boot type file?<br></div>Which manual should I read about transferring =
+these files to the mmc.<br></div>Any and all help will be appreciated.<br>
+</div>Thanks<br></div>
 
-</div>
-</div><br></div></div>
-
---047d7bdc10f2c63bc904edd7cb62--
+--001a11c2ff706c38d504edd7e99d--
