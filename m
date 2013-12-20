@@ -1,55 +1,48 @@
 Return-Path: <brad@evidence.com>
 Received: from email.taser.com (email.taser.com [74.206.119.92])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4B538E00815
-	for <yocto@yoctoproject.org>; Thu, 19 Dec 2013 19:09:35 -0800 (PST)
-X-ASG-Debug-ID: 1387508973-0499bf7ce0440da0001-yzSStA
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1812CE00801
+	for <yocto@yoctoproject.org>; Fri, 20 Dec 2013 01:01:59 -0800 (PST)
+X-ASG-Debug-ID: 1387530117-0499bf7ce0443fd0001-yzSStA
 Received: from MAGNI.atmoss (magni.atmoss [10.10.20.112]) by email.taser.com
-	with ESMTP id b9qDWIvwRuw5q6zt; Thu, 19 Dec 2013 20:09:33 -0700 (MST)
+	with ESMTP id QlOsna8qmxZPzPEs for <yocto@yoctoproject.org>;
+	Fri, 20 Dec 2013 02:01:57 -0700 (MST)
 X-Barracuda-Envelope-From: brad@evidence.com
 X-Barracuda-RBL-Trusted-Forwarder: 10.10.20.112
 Received: from TI-ODIN.tasernet.com (172.16.1.112) by email.taser.com
 	(10.10.20.112) with Microsoft SMTP Server (TLS) id 14.2.347.0;
-	Thu, 19 Dec 2013 20:09:33 -0700
+	Fri, 20 Dec 2013 02:01:57 -0700
 Received: from TI-THOR.tasernet.com ([fe80::7c49:ae21:6650:2789]) by
 	TI-ODIN.tasernet.com ([fe80::64ff:7320:e6e7:27c8%20]) with mapi id
-	14.02.0347.000; Thu, 19 Dec 2013 20:09:32 -0700
+	14.02.0347.000; Fri, 20 Dec 2013 02:01:56 -0700
 X-Barracuda-RBL-Trusted-Forwarder: 10.10.20.112
 From: Brad Litterell <brad@evidence.com>
 X-Barracuda-BWL-IP: fe80::7c49:ae21:6650:2789
-To: Martin Jansa <martin.jansa@gmail.com>
-Thread-Topic: [yocto] Setting PV dynamically in a recipe
-X-ASG-Orig-Subj: RE: [yocto] Setting PV dynamically in a recipe
-Thread-Index: Ac77ABx4gKdRGDzAQM+tn2QPKyJSdwADABHAABQZYuMAEQsKAP//uBv8gAElHACAAjOEyA==
-Date: Fri, 20 Dec 2013 03:09:31 +0000
-Message-ID: <E51394554A503C4E852F9BEE46B03E8D019ADA5F@TI-THOR.tasernet.com>
-References: <E51394554A503C4E852F9BEE46B03E8D019AC4B3@TI-THOR.tasernet.com>
-	<ad9adfd66f224dd98d4ec05596eaaa8e@DM2PR03MB399.namprd03.prod.outlook.com>
-	<E51394554A503C4E852F9BEE46B03E8D019AC7CA@TI-THOR.tasernet.com>
-	<14453943.1Qpn4azGq8@helios>
-	<E51394554A503C4E852F9BEE46B03E8D019AC9AE@TI-THOR.tasernet.com>,
-	<20131218093624.GK3706@jama>
-In-Reply-To: <20131218093624.GK3706@jama>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: BB_NO_NETWORK question
+X-ASG-Orig-Subj: BB_NO_NETWORK question
+Thread-Index: Ac79YNLzXE8JGW/zSzWZO3xf4cFJow==
+Date: Fri, 20 Dec 2013 09:01:56 +0000
+Message-ID: <E51394554A503C4E852F9BEE46B03E8D019ADB8C@TI-THOR.tasernet.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
 x-originating-ip: [172.16.1.103]
 MIME-Version: 1.0
 X-Barracuda-Connect: magni.atmoss[10.10.20.112]
-X-Barracuda-Start-Time: 1387508973
+X-Barracuda-Start-Time: 1387530117
 X-Barracuda-URL: http://10.10.20.59:8000/cgi-mod/mark.cgi
 X-Virus-Scanned: by bsmtpd at taser.com
 X-Barracuda-BRTS-Status: 1
 X-Barracuda-Spam-Score: 0.00
 X-Barracuda-Spam-Status: No, SCORE=0.00 using global scores of TAG_LEVEL=1000.0
-	QUARANTINE_LEVEL=1000.0 KILL_LEVEL=1000.0 tests=
-X-Barracuda-Spam-Report: Code version 3.2, rules version 3.2.2.143242
+	QUARANTINE_LEVEL=1000.0 KILL_LEVEL=1000.0 tests=HTML_MESSAGE
+X-Barracuda-Spam-Report: Code version 3.2, rules version 3.2.2.143248
 	Rule breakdown below
 	pts rule name              description
 	---- ----------------------
 	--------------------------------------------------
-Cc: Paul Eggleton <paul.eggleton@linux.intel.com>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Setting PV dynamically in a recipe
+	0.00 HTML_MESSAGE           BODY: HTML included in message
+Subject: BB_NO_NETWORK question
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -61,134 +54,145 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 20 Dec 2013 03:09:40 -0000
+X-List-Received-Date: Fri, 20 Dec 2013 09:02:01 -0000
 Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: multipart/alternative;
+	boundary="_000_E51394554A503C4E852F9BEE46B03E8D019ADB8CTITHORtasernetc_"
+
+--_000_E51394554A503C4E852F9BEE46B03E8D019ADB8CTITHORtasernetc_
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
-Hi Martin,=0A=
-=0A=
-I decided just to create my own feature list:=0A=
-=0A=
-MY_FEATURES=3D"debug"=0A=
-=0A=
-and I can happily query it in my custom recipes.=0A=
-=0A=
-However, I haven't quite figured out the best way to taint the status hashe=
-s for my packages so that changes to this flag force a rebuild.  I original=
-ly tried putting the marking in PR, which works for causing the right thing=
-s to rebuild, but when I switch from debug to release, I get errors like th=
-is:=0A=
-=0A=
-ERROR: Package version for package my-config-files went backwards which wou=
-ld break package feeds from (0:2.0.0.0-r0-debug to 0:2.0.0.0-r0)=0A=
-=0A=
-Is there a way I can taint my recipes so that changing MY_FEATURES causes t=
-hem all to be evaluated as out of date.  I don't care if that causes some e=
-xtra rebuilds when I switch MY_FEATURES - I care more about avoiding the er=
-ror message.  Or is there a way I can turn off this particular error messag=
-e on specific recipes?=0A=
-=0A=
-Thanks,=0A=
-Brad=0A=
-________________________________________=0A=
-From: Martin Jansa [martin.jansa@gmail.com]=0A=
-Sent: Wednesday, December 18, 2013 1:36 AM=0A=
-To: Brad Litterell=0A=
-Cc: Paul Eggleton; yocto@yoctoproject.org=0A=
-Subject: Re: [yocto] Setting PV dynamically in a recipe=0A=
-=0A=
-On Wed, Dec 18, 2013 at 01:29:25AM +0000, Brad Litterell wrote:=0A=
-> Hi Paul,=0A=
->=0A=
-> Thanks for that tip.  For my private packages I don't build directly from=
- git, but from a tarball (in turn created from my working directory) becaus=
-e I want to be able to build the source I'm working on without committing i=
-t to git.=0A=
->=0A=
-> In an ideal world, I'd like to to be able to build in two modes: dev & re=
-lease.  Release mode would use the git-based solution (and enforce building=
- from git), and in the dev mode, build from something like externalsrc.  (T=
-he reason I don't use externalsrc directly is because it didn't detect chan=
-ges in the underlying external source, so I created a script that does and =
-updates the tarball.)=0A=
->=0A=
-> What is the best way to switch recipes between dev & test modes like that=
-.  It appears debug-tweaks is only used in image recipes, so I don't know w=
-hether I should (or could) use something like this in a package recipe:=0A=
->=0A=
-> SRC_URI +=3D '${@base_contains("EXTRA_IMAGE_FEATURES", "debug-tweaks", ".=
-..tarball...", "...git..."}'=0A=
->=0A=
-> or whether something like that is asking for trouble.  My current solutio=
-n is manual - edit the recipe, but that feels kinda lame.=0A=
->=0A=
-> It seems like most of the yocto build tools assume building directly from=
- git (or with external-src but without dependency checking).=0A=
->=0A=
-> Any suggestions?=0A=
-=0A=
-Don't use *IMAGE_FEATURES* to in recipe conditionals.=0A=
-=0A=
-When you're building some package you don't know in which image it will=0A=
-be included so you cannot know with which *IMAGE_FEATURES* it should be=0A=
-built.=0A=
-=0A=
-It's true that EXTRA_IMAGE_FEATURES are often set in DISTRO config, but=0A=
-still it's unsafe to assume they are "global". With improved=0A=
-base_contains and sstate interaction, using some flag in DISTRO_FEATURES=0A=
-shouldn't cause so many packages to rebuild, so it could be usable for=0A=
-"debug-build" flag.=0A=
-=0A=
-> ________________________________________=0A=
-> From: Paul Eggleton [paul.eggleton@linux.intel.com]=0A=
-> Sent: Tuesday, December 17, 2013 12:24 PM=0A=
-> To: Brad Litterell=0A=
-> Cc: zhenhua.luo@freescale.com; yocto@yoctoproject.org=0A=
-> Subject: Re: [yocto] Setting PV dynamically in a recipe=0A=
->=0A=
-> Hi Brad,=0A=
->=0A=
-> On Tuesday 17 December 2013 19:46:11 Brad Litterell wrote:=0A=
-> > Thank you for the reply.  However, That's not what I'm looking for.  I=
-=0A=
-> > already get the latest version of the source code.=0A=
-> >=0A=
-> > What I'm really after is the ability to generate output packages that h=
-ave=0A=
-> > increasing version numbers so I can use the package manager to update t=
-hem.=0A=
-> >=0A=
-> > I think Martin's subsequent reply is the secret to use PKGV.  I didn't =
-know=0A=
-> > about that variable.=0A=
->=0A=
-> You don't need to use any special classes to get this behaviour. Put this=
- in=0A=
-> your recipe (replacing 1.2.3 with the appropriate base version you are=0A=
-> building):=0A=
->=0A=
-> PV =3D "1.2.3+git${SRCPV}"=0A=
->=0A=
-> and enable the PR service, which will ensure SRCREV changes always increm=
-ent=0A=
-> the version properly:=0A=
->=0A=
-> http://www.yoctoproject.org/docs/current/dev-manual/dev-manual.html#worki=
-ng-with-a-pr-service=0A=
->=0A=
-> Cheers,=0A=
-> Paul=0A=
->=0A=
-> --=0A=
->=0A=
-> Paul Eggleton=0A=
-> Intel Open Source Technology Centre=0A=
-> _______________________________________________=0A=
-> yocto mailing list=0A=
-> yocto@yoctoproject.org=0A=
-> https://lists.yoctoproject.org/listinfo/yocto=0A=
-=0A=
---=0A=
-Martin 'JaMa' Jansa     jabber: Martin.Jansa@gmail.com=0A=
+I am having trouble getting my build environment to work offline.  I follow=
+ed the instructions here:
+https://wiki.yoctoproject.org/wiki/How_do_I#Q:_How_do_I_create_my_own_sourc=
+e_download_mirror_.3F
 
+I've built my project, created the tarballs, etc.  However, it appears ther=
+e is still something I'm missing.  I get an error here:
+
+$ bitbake base-files
+...
+Loaded 57 entries from dependency cache.
+NOTE: Error during finalise of /home/brad/etm2/sources/meta-arago/meta-arag=
+o-extras/recipes-devtools/ltp-ddt/ltp-ddt-legacy_1.0.bb
+ERROR: ExpansionError during parsing /home/brad/etm2/sources/meta-arago/met=
+a-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt-legacy_1.0.bb: Failure expa=
+nding variable S: ExpansionError: Failure expanding variable SRCPV, express=
+ion was ${@bb.fetch2.get_srcrev(d)} which triggered exception NetworkAccess=
+: Network access disabled through BB_NO_NETWORK but access requested with c=
+ommand git ls-remote git://arago-project.org/git/projects/test-automation/l=
+tp-ddt.git master (for url None)
+ERROR: Command execution failed: Exited with 1
+
+In this case, the SRC_URI looks like this:
+
+SRCREV =3D "5fba3d42f126ce13333fb7d0412d729b753ee5a4"
+BRANCH ?=3D "master"
+SRC_URI =3D "git://arago-project.org/git/projects/test-automation/ltp-ddt.g=
+it;protocol=3Dgit;branch=3D${BRANCH}"
+
+So, I figured apply  the same fix as mentioned on the Wiki:
+
+SRCREV =3D "5fba3d42f126ce13333fb7d0412d729b753ee5a4"
+#BRANCH ?=3D "master"
+#SRC_URI =3D "git://arago-project.org/git/projects/test-automation/ltp-ddt.=
+git;protocol=3Dgit;branch=3D${BRANCH}"
+SRC_URI =3D "git://arago-project.org/git/projects/test-automation/ltp-ddt.g=
+it;protocol=3Dgit"
+
+But I get the same error?  And I'm not even using ltp-ddt...
+
+Is there something I'm missing in setting up BB_NO_NETWORK?
+
+Thanks,
+Brad
+
+
+--_000_E51394554A503C4E852F9BEE46B03E8D019ADB8CTITHORtasernetc_
+Content-Type: text/html; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+
+<html dir=3D"ltr">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
+1">
+<style type=3D"text/css" id=3D"owaParaStyle"></style>
+</head>
+<body fpstyle=3D"1" ocsi=3D"0">
+<div style=3D"direction: ltr;font-family: Tahoma;color: #000000;font-size: =
+10pt;">
+<div>
+<div>I am having trouble getting my build environment to work offline. &nbs=
+p;I followed the instructions here:</div>
+<div><a href=3D"https://wiki.yoctoproject.org/wiki/How_do_I#Q:_How_do_I_cre=
+ate_my_own_source_download_mirror_.3F" target=3D"_blank">https://wiki.yocto=
+project.org/wiki/How_do_I#Q:_How_do_I_create_my_own_source_download_mirror_=
+.3F</a></div>
+<div><br>
+</div>
+<div>I've built my project, created the tarballs, etc. &nbsp;However, it ap=
+pears there is still something I'm missing. &nbsp;I get an error here:</div=
+>
+<div><br>
+</div>
+<div>$ bitbake base-files</div>
+<div><span style=3D"font-size: 10pt;">...</span></div>
+<div><span style=3D"font-size: 10pt;">Loaded 57 entries from dependency cac=
+he.</span></div>
+<div>NOTE: Error during finalise of /home/brad/etm2/sources/meta-arago/meta=
+-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt-legacy_1.0.bb</div>
+<div>ERROR: ExpansionError during parsing /home/brad/etm2/sources/meta-arag=
+o/meta-arago-extras/recipes-devtools/ltp-ddt/ltp-ddt-legacy_1.0.bb: Failure=
+ expanding variable S: ExpansionError: Failure expanding variable SRCPV, ex=
+pression was ${@bb.fetch2.get_srcrev(d)}
+ which triggered exception NetworkAccess: Network access disabled through B=
+B_NO_NETWORK but access requested with command git ls-remote git://arago-pr=
+oject.org/git/projects/test-automation/ltp-ddt.git master (for url None)</d=
+iv>
+<div>ERROR: Command execution failed: Exited with 1</div>
+</div>
+<div><br>
+</div>
+<div>In this case, the SRC_URI looks like this:</div>
+<div>
+<div><br>
+</div>
+<div>SRCREV =3D &quot;5fba3d42f126ce13333fb7d0412d729b753ee5a4&quot;</div>
+<div>BRANCH ?=3D &quot;master&quot;</div>
+<div>SRC_URI =3D &quot;git://arago-project.org/git/projects/test-automation=
+/ltp-ddt.git;protocol=3Dgit;branch=3D${BRANCH}&quot;</div>
+</div>
+<div><br>
+</div>
+<div>So, I figured apply &nbsp;the same fix as mentioned on the Wiki:</div>
+<div><br>
+</div>
+<div>
+<div>
+<div>SRCREV =3D &quot;5fba3d42f126ce13333fb7d0412d729b753ee5a4&quot;</div>
+<div>#BRANCH ?=3D &quot;master&quot;</div>
+<div>#SRC_URI =3D &quot;git://arago-project.org/git/projects/test-automatio=
+n/ltp-ddt.git;protocol=3Dgit;branch=3D${BRANCH}&quot;</div>
+</div>
+</div>
+<div>SRC_URI =3D &quot;git://arago-project.org/git/projects/test-automation=
+/ltp-ddt.git;protocol=3Dgit&quot;</div>
+<div><br>
+</div>
+<div><span style=3D"font-size: 10pt;">But I get the same error? &nbsp;And I=
+'m not even using ltp-ddt...</span></div>
+<div><br>
+</div>
+<div>Is there something I'm missing in setting up BB_NO_NETWORK?</div>
+<div><br>
+</div>
+<div>Thanks,</div>
+<div>Brad</div>
+<div><br>
+</div>
+</div>
+</body>
+</html>
+
+--_000_E51394554A503C4E852F9BEE46B03E8D019ADB8CTITHORtasernetc_--
