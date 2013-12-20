@@ -1,27 +1,27 @@
 Return-Path: <brad@evidence.com>
 Received: from email.taser.com (email.taser.com [74.206.119.92])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BF5E2E00801
-	for <yocto@yoctoproject.org>; Fri, 20 Dec 2013 02:03:22 -0800 (PST)
-X-ASG-Debug-ID: 1387533801-0499bf7ce2444800001-yzSStA
-Received: from LOKI.atmoss (loki.atmoss [10.10.20.113]) by email.taser.com
-	with ESMTP id fZRujHfpMI1eqMdw; Fri, 20 Dec 2013 03:03:21 -0700 (MST)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0DF97E00809
+	for <yocto@yoctoproject.org>; Fri, 20 Dec 2013 02:11:46 -0800 (PST)
+X-ASG-Debug-ID: 1387534304-0499bf7ce3444950001-yzSStA
+Received: from MAGNI.atmoss (magni.atmoss [10.10.20.112]) by email.taser.com
+	with ESMTP id Ui6kM6zgtr9cEQ18; Fri, 20 Dec 2013 03:11:44 -0700 (MST)
 X-Barracuda-Envelope-From: brad@evidence.com
-X-Barracuda-RBL-Trusted-Forwarder: 10.10.20.113
+X-Barracuda-RBL-Trusted-Forwarder: 10.10.20.112
 Received: from TI-ODIN.tasernet.com (172.16.1.112) by email.taser.com
-	(10.10.20.113) with Microsoft SMTP Server (TLS) id 14.2.347.0;
-	Fri, 20 Dec 2013 03:03:20 -0700
+	(10.10.20.112) with Microsoft SMTP Server (TLS) id 14.2.347.0;
+	Fri, 20 Dec 2013 03:11:44 -0700
 Received: from TI-THOR.tasernet.com ([fe80::7c49:ae21:6650:2789]) by
 	TI-ODIN.tasernet.com ([fe80::64ff:7320:e6e7:27c8%20]) with mapi id
-	14.02.0347.000; Fri, 20 Dec 2013 03:03:20 -0700
-X-Barracuda-RBL-Trusted-Forwarder: 10.10.20.113
+	14.02.0347.000; Fri, 20 Dec 2013 03:11:43 -0700
+X-Barracuda-RBL-Trusted-Forwarder: 10.10.20.112
 From: Brad Litterell <brad@evidence.com>
 X-Barracuda-BWL-IP: fe80::7c49:ae21:6650:2789
 To: Martin Jansa <martin.jansa@gmail.com>
 Thread-Topic: [yocto] Setting PV dynamically in a recipe
 X-ASG-Orig-Subj: RE: [yocto] Setting PV dynamically in a recipe
-Thread-Index: Ac77ABx4gKdRGDzAQM+tn2QPKyJSdwADABHAABQZYuMAEQsKAP//uBv8gAElHACAAjOEyIAA8KGA//+KzCaAAHyfAP//iq7h
-Date: Fri, 20 Dec 2013 10:03:18 +0000
-Message-ID: <E51394554A503C4E852F9BEE46B03E8D019ADC09@TI-THOR.tasernet.com>
+Thread-Index: Ac77ABx4gKdRGDzAQM+tn2QPKyJSdwADABHAABQZYuMAEQsKAP//uBv8gAElHACAAjOEyIAA8KGA//+KzCaAAHyfAP//iq7hgAABbFU=
+Date: Fri, 20 Dec 2013 10:11:43 +0000
+Message-ID: <E51394554A503C4E852F9BEE46B03E8D019ADC1E@TI-THOR.tasernet.com>
 References: <E51394554A503C4E852F9BEE46B03E8D019AC4B3@TI-THOR.tasernet.com>
 	<ad9adfd66f224dd98d4ec05596eaaa8e@DM2PR03MB399.namprd03.prod.outlook.com>
 	<E51394554A503C4E852F9BEE46B03E8D019AC7CA@TI-THOR.tasernet.com>
@@ -31,15 +31,16 @@ References: <E51394554A503C4E852F9BEE46B03E8D019AC4B3@TI-THOR.tasernet.com>
 	<E51394554A503C4E852F9BEE46B03E8D019ADA5F@TI-THOR.tasernet.com>
 	<20131220093433.GQ3706@jama>
 	<E51394554A503C4E852F9BEE46B03E8D019ADBC1@TI-THOR.tasernet.com>,
-	<20131220100106.GS3706@jama>
-In-Reply-To: <20131220100106.GS3706@jama>
+	<20131220100106.GS3706@jama>,
+	<E51394554A503C4E852F9BEE46B03E8D019ADC09@TI-THOR.tasernet.com>
+In-Reply-To: <E51394554A503C4E852F9BEE46B03E8D019ADC09@TI-THOR.tasernet.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
 x-originating-ip: [172.16.1.103]
 MIME-Version: 1.0
-X-Barracuda-Connect: loki.atmoss[10.10.20.113]
-X-Barracuda-Start-Time: 1387533801
+X-Barracuda-Connect: magni.atmoss[10.10.20.112]
+X-Barracuda-Start-Time: 1387534304
 X-Barracuda-URL: http://10.10.20.59:8000/cgi-mod/mark.cgi
 X-Virus-Scanned: by bsmtpd at taser.com
 X-Barracuda-BRTS-Status: 1
@@ -65,11 +66,32 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 20 Dec 2013 10:03:25 -0000
+X-List-Received-Date: Fri, 20 Dec 2013 10:11:47 -0000
 Content-Language: en-US
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
+Hi again,=0A=
+Is it possible I don't have sigdata files?=0A=
+=0A=
+I am trying bitbake-diffsigs -t <recipe> <task>=0A=
+=0A=
+For recipe, I've tried the package name: "etm-core" & file name "etm-core.b=
+b"  for task, I've tried fetch, configure, compile, install, do_install.=0A=
+=0A=
+All come back with same message "no sigdata files found matching ...."=0A=
+=0A=
+Is there a way to list all the possible inputs of sigfiles that exist?=0A=
+=0A=
+Disclaimer - Yocto 1.3 - possibly known issue?=0A=
+________________________________________=0A=
+From: yocto-bounces@yoctoproject.org [yocto-bounces@yoctoproject.org] on be=
+half of Brad Litterell [brad@evidence.com]=0A=
+Sent: Friday, December 20, 2013 2:03 AM=0A=
+To: Martin Jansa=0A=
+Cc: Paul Eggleton; yocto@yoctoproject.org=0A=
+Subject: Re: [yocto] Setting PV dynamically in a recipe=0A=
+=0A=
 I'll have a look at diffsigs.  ${ETM_DEBUG} is the parsed representation of=
  just the debug flag in MY_FEATURES (assuming I'll have more than one flag =
 in MY_FEATURES eventually).  So, in this case, yes they are referring to th=
@@ -252,4 +274,8 @@ orking-with-a-pr-service=0A=
 =0A=
 --=0A=
 Martin 'JaMa' Jansa     jabber: Martin.Jansa@gmail.com=0A=
+_______________________________________________=0A=
+yocto mailing list=0A=
+yocto@yoctoproject.org=0A=
+https://lists.yoctoproject.org/listinfo/yocto=0A=
 
