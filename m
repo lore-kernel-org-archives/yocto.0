@@ -1,48 +1,31 @@
-Return-Path: <martin.jansa@gmail.com>
-Received: from mail-ea0-f181.google.com (mail-ea0-f181.google.com
-	[209.85.215.181])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 37D25E00809
-	for <yocto@yoctoproject.org>; Fri, 20 Dec 2013 03:25:57 -0800 (PST)
-Received: by mail-ea0-f181.google.com with SMTP id m10so995337eaj.40
-	for <yocto@yoctoproject.org>; Fri, 20 Dec 2013 03:25:56 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=date:from:to:cc:subject:message-id:references:mime-version
-	:content-type:content-disposition:in-reply-to:user-agent;
-	bh=VBWrDRafpjtJRd5URADk/7K1Ze6VOOif7iSLRDak8J0=;
-	b=sFt52h762ld5QTXeJN0L7shc00yJLqx7rSYa86FvoGvlVkg0goSsq810praQgKdQGJ
-	2GwwlF/AWfRQt78nhzeH8Ik2eKmAlP2qlx0SXemerLmVZMf4SXC8yLjXjoy88dinW5K6
-	Z33LSCbAT/+CkTyfdXLVFaRpxg4XVsTIY9JiljGfBWR/75XVaSZWiDWbUBAo0/JiPx0l
-	Mm4iyWod2HX/2OJ8XUJjI7GzFr5fbu2fkNLBK2Bquxw/GE4R5upf5Q29iOfwDS80duUE
-	6Z3qMvoaG8GuFiKKtnBX9sn7TK98ikUT1SKT1lw/zq9MpVheNSXwMfrOjkQtwYpNcWkp
-	mqtw==
-X-Received: by 10.14.204.135 with SMTP id h7mr2186611eeo.104.1387538756706;
-	Fri, 20 Dec 2013 03:25:56 -0800 (PST)
-Received: from localhost (ip-89-176-104-107.net.upcbroadband.cz.
-	[89.176.104.107])
-	by mx.google.com with ESMTPSA id l4sm17688254een.13.2013.12.20.03.25.55
-	for <multiple recipients>
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Fri, 20 Dec 2013 03:25:55 -0800 (PST)
-Date: Fri, 20 Dec 2013 12:26:29 +0100
-From: Martin Jansa <martin.jansa@gmail.com>
-To: Brad Litterell <brad@evidence.com>
-Message-ID: <20131220112629.GT3706@jama>
-References: <E51394554A503C4E852F9BEE46B03E8D019AC7CA@TI-THOR.tasernet.com>
-	<14453943.1Qpn4azGq8@helios>
-	<E51394554A503C4E852F9BEE46B03E8D019AC9AE@TI-THOR.tasernet.com>
-	<20131218093624.GK3706@jama>
-	<E51394554A503C4E852F9BEE46B03E8D019ADA5F@TI-THOR.tasernet.com>
-	<20131220093433.GQ3706@jama>
-	<E51394554A503C4E852F9BEE46B03E8D019ADBC1@TI-THOR.tasernet.com>
-	<20131220100106.GS3706@jama>
-	<E51394554A503C4E852F9BEE46B03E8D019ADC09@TI-THOR.tasernet.com>
-	<E51394554A503C4E852F9BEE46B03E8D019ADC1E@TI-THOR.tasernet.com>
+Return-Path: <james.woodyatt@intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 324E1E007CB
+	for <yocto@yoctoproject.org>; Fri, 20 Dec 2013 12:37:44 -0800 (PST)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga102.jf.intel.com with ESMTP; 20 Dec 2013 12:33:54 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.95,523,1384329600"; d="scan'208";a="428003315"
+Received: from orsmsx107.amr.corp.intel.com ([10.22.240.5])
+	by orsmga001.jf.intel.com with ESMTP; 20 Dec 2013 12:37:43 -0800
+Received: from orsmsx115.amr.corp.intel.com (10.22.240.11) by
+	ORSMSX107.amr.corp.intel.com (10.22.240.5) with Microsoft SMTP Server
+	(TLS) id 14.3.123.3; Fri, 20 Dec 2013 12:37:43 -0800
+Received: from orsmsx105.amr.corp.intel.com ([169.254.4.51]) by
+	ORSMSX115.amr.corp.intel.com ([10.22.240.11]) with mapi id
+	14.03.0123.003; Fri, 20 Dec 2013 12:37:43 -0800
+From: "Woodyatt, James" <james.woodyatt@intel.com>
+To: Yocto Discussion <yocto@yoctoproject.org>
+Thread-Topic: building OS X toolchain with meta-darwin
+Thread-Index: AQHO/cNUpvUppXd3JUiO3QRkAQx9Rg==
+Date: Fri, 20 Dec 2013 20:37:42 +0000
+Message-ID: <CED9EA96.C00%james.woodyatt@intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.232.24.16]
 MIME-Version: 1.0
-In-Reply-To: <E51394554A503C4E852F9BEE46B03E8D019ADC1E@TI-THOR.tasernet.com>
-User-Agent: Mutt/1.5.22 (2013-10-16)
-Cc: Paul Eggleton <paul.eggleton@linux.intel.com>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Setting PV dynamically in a recipe
+Subject: building OS X toolchain with meta-darwin
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -54,249 +37,59 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 20 Dec 2013 11:26:02 -0000
-X-Groupsio-MsgNum: 17607
-Content-Type: multipart/signed; micalg=pgp-sha1;
-	protocol="application/pgp-signature"; boundary="HACzHn9G0kmbdSJa"
-Content-Disposition: inline
-
---HACzHn9G0kmbdSJa
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+X-List-Received-Date: Fri, 20 Dec 2013 20:37:47 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="Windows-1252"
+Content-ID: <7083DCE450BAC44EA6928B2969D0541A@intel.com>
 Content-Transfer-Encoding: quoted-printable
 
-On Fri, Dec 20, 2013 at 10:11:43AM +0000, Brad Litterell wrote:
-> Hi again,
-> Is it possible I don't have sigdata files?
->=20
-> I am trying bitbake-diffsigs -t <recipe> <task>
->=20
-> For recipe, I've tried the package name: "etm-core" & file name "etm-core=
-=2Ebb"  for task, I've tried fetch, configure, compile, install, do_install.
->=20
-> All come back with same message "no sigdata files found matching ...."
->=20
-> Is there a way to list all the possible inputs of sigfiles that exist?
+Everyone=8B
 
-Try
+I=B9m not sure where is the best place to take this question.  Please excus=
+e
+me, I=B9m new.
 
-bitbake -S etm-core
+I=B9m struggling to build an OS X toolchain reliably and repeatably.  I=B9v=
+e
+checked out the current top of the =8Cdylan=B9 branch of Poky, meta-darwin,
+meta-intel and (for reasons I=B9m not sure I understand) the OpenEmbedded
+meta-oe layer.  I am not succeeding to build the OS X tool chain on my
+Linux VM running under Parallels (according to the arcane manual procedure
+required for using the MacOSX10.Y.sdk extracted from Xcode while
+respecting the Apple Xcode license) using SDKMACHINE=3Di386-darwin.
 
-you should find sigdata files in tmp-eglibc/stamps directory after that.
+An annoying failure, but I can work around it, is that the OpenDarwin
+cctools have a dependency on something that isn=B9t reflected in the recipe=
+,
+so you have to do repeated =B3bitbake =ADk=B2 runs until it succeeds its
+do_configure method.  I=B9m not asking about that right now.
 
-> Disclaimer - Yocto 1.3 - possibly known issue?
+The failure I have been struggling with is that ncurses-5.9 won=B9t build
+for OS X.
 
-My answer about QA check for version going backwards was assuming 1.4 or
-newer, if I recall correctly when the change to use QA api for those
-warnings was merged.
+1. The almost-stock ncurses-5.9 in the dylan branch has a known issue
+where if it is configured for darwin targets, the compiler is passed the
+=8Bno-precomp-cpp option, which is deprecated. The GCC we are building in
+the cross toolchain for OS X doesn=B9t support that option, so the configur=
+e
+script fails.
 
-> ________________________________________
-> From: yocto-bounces@yoctoproject.org [yocto-bounces@yoctoproject.org] on =
-behalf of Brad Litterell [brad@evidence.com]
-> Sent: Friday, December 20, 2013 2:03 AM
-> To: Martin Jansa
-> Cc: Paul Eggleton; yocto@yoctoproject.org
-> Subject: Re: [yocto] Setting PV dynamically in a recipe
->=20
-> I'll have a look at diffsigs.  ${ETM_DEBUG} is the parsed representation =
-of just the debug flag in MY_FEATURES (assuming I'll have more than one fla=
-g in MY_FEATURES eventually).  So, in this case, yes they are referring to =
-the same.  Thanks for asking though.
->=20
-> ________________________________________
-> From: Martin Jansa [martin.jansa@gmail.com]
-> Sent: Friday, December 20, 2013 2:01 AM
-> To: Brad Litterell
-> Cc: Paul Eggleton; yocto@yoctoproject.org
-> Subject: Re: [yocto] Setting PV dynamically in a recipe
->=20
-> On Fri, Dec 20, 2013 at 09:39:13AM +0000, Brad Litterell wrote:
-> > I'm using it in a task, like this:
-> > do_install_prepend() {
-> >     if [ ! -z ${ETM_DEBUG} ]; then
-> > ...        do debugging stuff   ...
-> >     fi
-> > }
-> >
-> > but having it in a task definition doesn't seem to taint the sstate.  T=
-rying to figure out what other variables go into it. E.g. does DESCRIPTION =
-get included in the sstate? (I'd assume not).  Is there a meta-list somewhe=
-re of what goes in the state hash?
->=20
-> You can use bitbake-diffsigs command on one of sigdata files from your
-> recipe to see if the variable is included.
->=20
-> But here you're showing ETM_DEBUG not MY_FEATURES, is it the same?
-> >
-> >  _______________________________________
-> > From: Martin Jansa [martin.jansa@gmail.com]
-> > Sent: Friday, December 20, 2013 1:34 AM
-> > To: Brad Litterell
-> > Cc: Paul Eggleton; yocto@yoctoproject.org
-> > Subject: Re: [yocto] Setting PV dynamically in a recipe
-> >
-> > On Fri, Dec 20, 2013 at 03:09:31AM +0000, Brad Litterell wrote:
-> > > Hi Martin,
-> > >
-> > > I decided just to create my own feature list:
-> > >
-> > > MY_FEATURES=3D"debug"
-> > >
-> > > and I can happily query it in my custom recipes.
-> > >
-> > > However, I haven't quite figured out the best way to taint the status=
- hashes for my packages so that changes to this flag force a rebuild.  I or=
-iginally tried putting the marking in PR, which works for causing the right=
- things to rebuild, but when I switch from debug to release, I get errors l=
-ike this:
-> > >
-> > > ERROR: Package version for package my-config-files went backwards whi=
-ch would break package feeds from (0:2.0.0.0-r0-debug to 0:2.0.0.0-r0)
-> > >
-> > > Is there a way I can taint my recipes so that changing MY_FEATURES ca=
-uses them all to be evaluated as out of date.  I don't care if that causes =
-some extra rebuilds when I switch MY_FEATURES - I care more about avoiding =
-the error message.  Or is there a way I can turn off this particular error =
-message on specific recipes?
-> >
-> > Depends on where you're using MY_FEATURES variable in the recipe, in
-> > most cases it should be included in sstate signature and rebuilt
-> > automatically (with the same version) when MY_FEATURES is changes.
-> >
-> > If you're using latest oe-core, that error is QA check, which can be
-> > disabled with SKIP_INSANE (per package) or moved from ERROR_QA to
-> > WARN_QA in distro config.
-> >
-> > > ________________________________________
-> > > From: Martin Jansa [martin.jansa@gmail.com]
-> > > Sent: Wednesday, December 18, 2013 1:36 AM
-> > > To: Brad Litterell
-> > > Cc: Paul Eggleton; yocto@yoctoproject.org
-> > > Subject: Re: [yocto] Setting PV dynamically in a recipe
-> > >
-> > > On Wed, Dec 18, 2013 at 01:29:25AM +0000, Brad Litterell wrote:
-> > > > Hi Paul,
-> > > >
-> > > > Thanks for that tip.  For my private packages I don't build directl=
-y from git, but from a tarball (in turn created from my working directory) =
-because I want to be able to build the source I'm working on without commit=
-ting it to git.
-> > > >
-> > > > In an ideal world, I'd like to to be able to build in two modes: de=
-v & release.  Release mode would use the git-based solution (and enforce bu=
-ilding from git), and in the dev mode, build from something like externalsr=
-c.  (The reason I don't use externalsrc directly is because it didn't detec=
-t changes in the underlying external source, so I created a script that doe=
-s and updates the tarball.)
-> > > >
-> > > > What is the best way to switch recipes between dev & test modes lik=
-e that.  It appears debug-tweaks is only used in image recipes, so I don't =
-know whether I should (or could) use something like this in a package recip=
-e:
-> > > >
-> > > > SRC_URI +=3D '${@base_contains("EXTRA_IMAGE_FEATURES", "debug-tweak=
-s", "...tarball...", "...git..."}'
-> > > >
-> > > > or whether something like that is asking for trouble.  My current s=
-olution is manual - edit the recipe, but that feels kinda lame.
-> > > >
-> > > > It seems like most of the yocto build tools assume building directl=
-y from git (or with external-src but without dependency checking).
-> > > >
-> > > > Any suggestions?
-> > >
-> > > Don't use *IMAGE_FEATURES* to in recipe conditionals.
-> > >
-> > > When you're building some package you don't know in which image it wi=
-ll
-> > > be included so you cannot know with which *IMAGE_FEATURES* it should =
-be
-> > > built.
-> > >
-> > > It's true that EXTRA_IMAGE_FEATURES are often set in DISTRO config, b=
-ut
-> > > still it's unsafe to assume they are "global". With improved
-> > > base_contains and sstate interaction, using some flag in DISTRO_FEATU=
-RES
-> > > shouldn't cause so many packages to rebuild, so it could be usable for
-> > > "debug-build" flag.
-> > >
-> > > > ________________________________________
-> > > > From: Paul Eggleton [paul.eggleton@linux.intel.com]
-> > > > Sent: Tuesday, December 17, 2013 12:24 PM
-> > > > To: Brad Litterell
-> > > > Cc: zhenhua.luo@freescale.com; yocto@yoctoproject.org
-> > > > Subject: Re: [yocto] Setting PV dynamically in a recipe
-> > > >
-> > > > Hi Brad,
-> > > >
-> > > > On Tuesday 17 December 2013 19:46:11 Brad Litterell wrote:
-> > > > > Thank you for the reply.  However, That's not what I'm looking fo=
-r.  I
-> > > > > already get the latest version of the source code.
-> > > > >
-> > > > > What I'm really after is the ability to generate output packages =
-that have
-> > > > > increasing version numbers so I can use the package manager to up=
-date them.
-> > > > >
-> > > > > I think Martin's subsequent reply is the secret to use PKGV.  I d=
-idn't know
-> > > > > about that variable.
-> > > >
-> > > > You don't need to use any special classes to get this behaviour. Pu=
-t this in
-> > > > your recipe (replacing 1.2.3 with the appropriate base version you =
-are
-> > > > building):
-> > > >
-> > > > PV =3D "1.2.3+git${SRCPV}"
-> > > >
-> > > > and enable the PR service, which will ensure SRCREV changes always =
-increment
-> > > > the version properly:
-> > > >
-> > > > http://www.yoctoproject.org/docs/current/dev-manual/dev-manual.html=
-#working-with-a-pr-service
-> > > >
-> > > > Cheers,
-> > > > Paul
-> > > >
-> > > > --
-> > > >
-> > > > Paul Eggleton
-> > > > Intel Open Source Technology Centre
-> > > > _______________________________________________
-> > > > yocto mailing list
-> > > > yocto@yoctoproject.org
-> > > > https://lists.yoctoproject.org/listinfo/yocto
-> > >
-> > > --
-> > > Martin 'JaMa' Jansa     jabber: Martin.Jansa@gmail.com
-> >
-> > --
-> > Martin 'JaMa' Jansa     jabber: Martin.Jansa@gmail.com
->=20
-> --
-> Martin 'JaMa' Jansa     jabber: Martin.Jansa@gmail.com
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+2. I tried to patch the ncurses recipe so that it applies the 2013-05-04
+rollup patch from the FSF upstream, which contains the fix for the the
+=8Bno-precomp-cpp option problem, but that doesn=B9t work because GCC 4.7
+isn=B9t compatible with the C++ standard library headers in the OS X SDK
+(which are for a much older version of GCC that Apple still uses=8B for
+reasons, you all know them).
+
+I can=B9t figure out why ncurses should even need to be build for the OS X
+hosted toolchain.  This seems like an unnecessary dependency, and I don=B9t
+see how to stop requiring it.  Can anybody please help me turn off the
+requirement to build ncurses for deployment in the OS X toolchain when
+building with SDKMACHINE=3D*-darwin, please please please?  Thanks.
 
 --=20
-Martin 'JaMa' Jansa     jabber: Martin.Jansa@gmail.com
+james woodyatt <james.woodyatt@intel.com>
 
---HACzHn9G0kmbdSJa
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: Digital signature
+Software Architect, New Devices Group
 
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v2.0.22 (GNU/Linux)
 
-iEYEARECAAYFAlK0KWUACgkQN1Ujt2V2gBxmAwCfTSk0uVZBHm3Eu+OiGJkuLZ9d
-QioAoItmA59TUem0kRrhUawnIDbjy04s
-=dn75
------END PGP SIGNATURE-----
-
---HACzHn9G0kmbdSJa--
