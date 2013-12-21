@@ -1,28 +1,33 @@
-Return-Path: <vidal.develone@gmail.com>
-Received: from mail-qe0-f46.google.com (mail-qe0-f46.google.com
-	[209.85.128.46])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AC95BE00803
-	for <yocto@yoctoproject.org>; Fri, 20 Dec 2013 15:07:33 -0800 (PST)
-Received: by mail-qe0-f46.google.com with SMTP id a11so3026684qen.19
-	for <yocto@yoctoproject.org>; Fri, 20 Dec 2013 15:07:32 -0800 (PST)
+Return-Path: <bewithsathish@gmail.com>
+Received: from mail-pd0-f174.google.com (mail-pd0-f174.google.com
+	[209.85.192.174])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2A3C0E00803
+	for <yocto@yoctoproject.org>; Sat, 21 Dec 2013 06:28:16 -0800 (PST)
+Received: by mail-pd0-f174.google.com with SMTP id x10so3616892pdj.19
+	for <yocto@yoctoproject.org>; Sat, 21 Dec 2013 06:28:15 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=+d/Ajb9Z4lcBeZzrN3gGrK7bZU4dCyqb3E04/wnCgFA=;
-	b=qvQqpHy02GQP7NvUEHEz4z9Chcyb7Wj2zf9dxGogbyxD+SbHbDChLI9/Wz4B9HZh+2
-	i7Wos8qjNDI6YeRSFwPL4AzzQ5rF+MgAzi7DRxhpGdwS/8MmWVUCsUcqu023Icaer4Ue
-	Zd2tgsV8yVrlRmBCXFqCg4fgkB+shfqiXvpzLT4O5XoDt5KJ10wnPBSthr1sRCNDLr10
-	LPEBKo8rHUu6rIsVosjG2YN5kNtDrt3QEfQCsC2xOvZYs8c3MLbPp9Lu4X0MH7QRkGn/
-	ui5cTTIIZeNgnChLyifvt30Pcz85CdhoiKdLem32/fEV4HKpXX5EOlO+G76DPgZod6jY
-	7e7w==
+	h=mime-version:sender:in-reply-to:references:date:message-id:subject
+	:from:to:content-type;
+	bh=MYCD5OQTxeKyrNhQf1MJEzPp8B6Lk4e3JnNcuXf5mJQ=;
+	b=EhYTnvZJU0Ag1YaIPxSKam2tvpGxmTYUGb5kNIRbXai53hf/+APtwpHY+5kDCZtu6Z
+	4yehn/apuDAOMmEQPJv5gvvgGQlJ2m7mQcaOOA6ERO4GdBXVg4omV1N7s5bRxeMPIBL7
+	4AUDtI4aLG5m1gWKPDUnc5a7sU9NbmKVExotD58aueIRIcg/CfONlZFI/H8Lr1tV9FcN
+	XMH0A8OoTEnhk7zswcBq2pwaCjaJOaZ4chxbQ95n2uKZ4mjisNb/0eOmkY84hCcY2ZDT
+	ZrK8mqyRGy2Kq3Vd/AD8ZiUEzHK2ENC0aYcExkv2Cr6sS1O9yX9ru8fglNIAytZJZPfo
+	iOfw==
 MIME-Version: 1.0
-X-Received: by 10.224.160.210 with SMTP id o18mr19187673qax.57.1387580852652; 
-	Fri, 20 Dec 2013 15:07:32 -0800 (PST)
-Received: by 10.140.37.49 with HTTP; Fri, 20 Dec 2013 15:07:32 -0800 (PST)
-Date: Fri, 20 Dec 2013 16:07:32 -0700
-Message-ID: <CANwz6nwUFTh=HHaJObBpJgT5EYC1Ms6tr-sf4NkD9wRA=CnVaQ@mail.gmail.com>
-From: Edward Vidal <vidal.develone@gmail.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: file format
+X-Received: by 10.66.155.102 with SMTP id vv6mr15200659pab.89.1387636095809;
+	Sat, 21 Dec 2013 06:28:15 -0800 (PST)
+Sender: bewithsathish@gmail.com
+Received: by 10.68.36.138 with HTTP; Sat, 21 Dec 2013 06:28:15 -0800 (PST)
+In-Reply-To: <1161C063FEBDA543A6BFB93ABED841421B4AF870C1@SGPMBX05.APAC.bosch.com>
+References: <1161C063FEBDA543A6BFB93ABED841421B4AF870C1@SGPMBX05.APAC.bosch.com>
+Date: Sat, 21 Dec 2013 19:58:15 +0530
+X-Google-Sender-Auth: X6kgYS8kKdagOHArw6u3FxTmRqw
+Message-ID: <CANJvwR8ADbGvMcZUxOyWwUtqqa6tsCohE8cSqxVS6GDXiMGQ1Q@mail.gmail.com>
+From: Sathishkumar Duraisamy <sathishkumar.duraisamy@yahoo.com>
+To: Yocto Project <yocto@yoctoproject.org>
+Subject: Build fails for eglibc
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,27 +39,98 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 20 Dec 2013 23:07:34 -0000
-Content-Type: multipart/alternative; boundary=089e01536a84d1d7a704edff5729
+X-List-Received-Date: Sat, 21 Dec 2013 14:28:21 -0000
+Content-Type: multipart/alternative; boundary=047d7b86e3a8917daa04ee0c34b8
 
---089e01536a84d1d7a704edff5729
+--047d7b86e3a8917daa04ee0c34b8
 Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
 
-Hello,
-what is the contents of
-custom-image-zedboard-20131214212545.rootfs.ext2.gz.u-boot.  How do
-transfer to mmc?
-What files are needed from the deploy/images to boot a zedboard?
-Thanks
+ Hi,
 
---089e01536a84d1d7a704edff5729
+I using Poky-dora-10.0.0. configured for qemuarm. I am getting failed for
+eglibc with following errors. Any idea to fix this?
+
+ERROR: debugedit failed with exit code 256 (cmd was
+'/home/sdu2cob/workspace/YoctoProject/poky-dora-10.0.0/build/tmp//sysroots/=
+i686-linux/usr/lib/rpm/bin/debugedit'
+-b
+'/home/sdu2cob/workspace/YoctoProject/poky-dora-10.0.0/build/tmp//work/armv=
+5te-poky-linux-gnueabi'
+-d '/usr/src/debug' -i -l
+'/home/sdu2cob/workspace/YoctoProject/poky-dora-10.0.0/build/tmp//work/armv=
+5te-poky-linux-gnueabi/eglibc/2.18-r0/debugsources.list'
+'/home/sdu2cob/workspace/YoctoProject/poky-dora-10.0.0/build/tmp//work/armv=
+5te-poky-linux-gnueabi/eglibc/2.18-r0/package/lib/
+libm-2.18.so'):
+/home/sdu2cob/workspace/YoctoProject/poky-dora-10.0.0/build/tmp/sysroots/i6=
+86-linux/usr/lib/rpm/bin/debugedit:
+canonicalization unexpectedly shrank by one character
+ERROR: Function failed: split_and_strip_files
+ERROR: Logfile of failure stored in:
+/home/sdu2cob/workspace/YoctoProject/poky-dora-10.0.0/build/tmp//work/armv5=
+te-poky-linux-gnueabi/eglibc/2.18-r0/temp/log.do_package.516
+ERROR: Task 12
+(/home/sdu2cob/workspace/YoctoProject/poky-dora-10.0.0/meta/recipes-core/eg=
+libc/
+eglibc_2.18.bb, do_package) failed with exit code '1'
+
+
+Mit freundlichen Gr=FC=DFen / Regards
+Sathishkumar D
+
+--047d7b86e3a8917daa04ee0c34b8
 Content-Type: text/html; charset=ISO-8859-1
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div><div>Hello,<br></div>what is the contents of custom-i=
-mage-zedboard-20131214212545.rootfs.ext2.gz.u-boot.=A0 How do transfer to m=
-mc?<br></div><div>What files are needed from the deploy/images to boot a ze=
-dboard?<br>
-</div><div>Thanks<br></div></div>
+<div dir=3D"ltr"><br><div class=3D"gmail_quote"><br>
 
---089e01536a84d1d7a704edff5729--
+
+
+
+
+
+<div>
+<font face=3D"Arial, sans-serif">
+<div>Hi,</div>
+<div>=A0</div>
+<div>I using Poky-dora-10.0.0. configured for qemuarm. I am getting failed =
+for eglibc with following errors. Any idea to fix this?</div>
+<div><font face=3D"Calibri, sans-serif">=A0</font></div>
+<div>ERROR: debugedit failed with exit code 256 (cmd was &#39;/home/sdu2cob=
+/workspace/YoctoProject/poky-dora-10.0.0/build/tmp//sysroots/i686-linux/usr=
+/lib/rpm/bin/debugedit&#39; -b &#39;/home/sdu2cob/workspace/YoctoProject/po=
+ky-dora-10.0.0/build/tmp//work/armv5te-poky-linux-gnueabi&#39;
+-d &#39;/usr/src/debug&#39; -i -l &#39;/home/sdu2cob/workspace/YoctoProject=
+/poky-dora-10.0.0/build/tmp//work/armv5te-poky-linux-gnueabi/eglibc/2.18-r0=
+/debugsources.list&#39; &#39;/home/sdu2cob/workspace/YoctoProject/poky-dora=
+-10.0.0/build/tmp//work/armv5te-poky-linux-gnueabi/eglibc/2.18-r0/package/l=
+ib/<a href=3D"http://libm-2.18.so" target=3D"_blank">libm-2.18.so</a>&#39;)=
+:</div>
+
+
+<div>/home/sdu2cob/workspace/YoctoProject/poky-dora-10.0.0/build/tmp/sysroo=
+ts/i686-linux/usr/lib/rpm/bin/debugedit: canonicalization unexpectedly shra=
+nk by one character</div>
+<div>ERROR: Function failed: split_and_strip_files</div>
+<div>ERROR: Logfile of failure stored in: /home/sdu2cob/workspace/YoctoProj=
+ect/poky-dora-10.0.0/build/tmp//work/armv5te-poky-linux-gnueabi/eglibc/2.18=
+-r0/temp/log.do_package.516</div>
+<div>ERROR: Task 12 (/home/sdu2cob/workspace/YoctoProject/poky-dora-10.0.0/=
+meta/recipes-core/eglibc/<a href=3D"http://eglibc_2.18.bb" target=3D"_blank=
+">eglibc_2.18.bb</a>, do_package) failed with exit code &#39;1&#39;</div>
+<div><font face=3D"Calibri, sans-serif">=A0</font></div>
+<div><font face=3D"Calibri, sans-serif">=A0</font></div>
+<div><font face=3D"Bosch Office Sans, sans-serif">Mit freundlichen Gr=FC=DF=
+en / Regards</font></div>
+<div><font face=3D"Bosch Office Sans, sans-serif">Sathishkumar D</font></di=
+v>
+<div><font face=3D"Calibri, sans-serif">=A0</font></div>
+<div><font face=3D"Calibri, sans-serif">=A0</font></div>
+<div><font face=3D"Calibri, sans-serif">=A0</font></div>
+</font>
+</div>
+
+</div><br></div>
+
+--047d7b86e3a8917daa04ee0c34b8--
