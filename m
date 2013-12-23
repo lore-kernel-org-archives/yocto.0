@@ -1,16 +1,28 @@
-Return-Path: <packages@autobuilder.yoctoproject.org>
-Received: from autobuilder.yoctoproject.org (ab01 [10.0.10.101])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A2C72E00831
-	for <yocto@yoctoproject.org>; Mon, 23 Dec 2013 10:52:59 -0800 (PST)
-Received: by autobuilder.yoctoproject.org (Postfix, from userid 802)
-	id A08434917C; Mon, 23 Dec 2013 18:52:59 +0000 (UTC)
-Date: Mon, 23 Dec 2013 18:52:59 +0000
-From: Yocto Project Package Report System <package-reporting@yoctoproject.org>
+Return-Path: <gley-yocto@m.gmane.org>
+Received: from plane.gmane.org (plane.gmane.org [80.91.229.3])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 63218E007DC
+	for <yocto@yoctoproject.org>; Mon, 23 Dec 2013 12:47:18 -0800 (PST)
+Received: from list by plane.gmane.org with local (Exim 4.69)
+	(envelope-from <gley-yocto@m.gmane.org>) id 1VvCPD-0004Tl-CG
+	for yocto@yoctoproject.org; Mon, 23 Dec 2013 21:47:15 +0100
+Received: from ppp005054052062.access.hol.gr ([5.54.52.62])
+	by main.gmane.org with esmtp (Gmexim 0.1 (Debian))
+	id 1AlnuQ-0007hv-00
+	for <yocto@yoctoproject.org>; Mon, 23 Dec 2013 21:47:15 +0100
+Received: from gmane by ppp005054052062.access.hol.gr with local (Gmexim 0.1
+	(Debian)) id 1AlnuQ-0007hv-00
+	for <yocto@yoctoproject.org>; Mon, 23 Dec 2013 21:47:15 +0100
+X-Injected-Via-Gmane: http://gmane.org/
 To: yocto@yoctoproject.org
-Message-ID: <20131223185259.GA2601@ab01.i.yoctoproject.org>
-MIME-Version: 1.0
-User-Agent: Mutt/1.5.20 (2009-12-10)
-Subject: [Package Report System]Manual check recipes name list
+From: Robert Berger <gmane@reliableembeddedsystems.com>
+Date: Mon, 23 Dec 2013 22:47:00 +0200
+Message-ID: <l9a7ft$2rm$1@ger.gmane.org>
+Mime-Version: 1.0
+X-Complaints-To: usenet@ger.gmane.org
+X-Gmane-NNTP-Posting-Host: ppp005054052062.access.hol.gr
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:24.0) Gecko/20100101 Thunderbird/24.0
+Subject: u-boot 2013.10 LIC_FILES_CHKSUM points to an invalid file
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -22,23 +34,39 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 23 Dec 2013 18:52:59 -0000
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+X-List-Received-Date: Mon, 23 Dec 2013 20:47:21 -0000
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: 7bit
 
-This mail was sent out by Package Report System.
-It will list all the recipes which can't check upstream version by script, and will show how long it is since their last mannual version check.
-You can check the detail information at http://packages.yoctoproject.org/manuallychkinfo
+Hi,
+
+I try to build instead of u-boot v2013.07 [1] the latest and greatest
+released version i.e. v2013.10[2].
+
+... which does not build because LIC_FILES_CHKSUM points to an invalid
+file ...
+
+... and yes it does, since the COPYING file is gone ...
+
+The licencense info is contained in the source code itself as
+SPDX-License-Identifiers.
+
+How do I get it to build?
+
+Regards,
+
+Robert
+
+[1]
+http://git.denx.de/?p=u-boot.git;a=tree;h=63e74bc767dda75feff521c40b779018397fe1e7;hb=62c175fbb8a0f9a926c88294ea9f7e88eb898f6c
+
+[2]
+http://git.denx.de/?p=u-boot.git;a=tree;h=b6756a15fd1e165107adf57e7c4a393f7dbcba38;hb=183acb700378a8cfc5d50a01a65de93fb2c24586..."In
+C++ it's harder to shoot yourself in the foot, but when you do, you blow
+off your whole leg." - Bjarne Stroustrup
+
+My public pgp key is available,at:
+http://pgp.mit.edu:11371/pks/lookup?op=get&search=0x90320BF1
 
 
-PackageName              Version             LastChkVersion      LastChkTime              Maintainer                              NoUpgradeReason               
-libpng12                 1.2.50              1.2.50              82 days                  Valentin Popa <valentin.popa@...        No data                       
-sqlite3                  3080002             3.8.0.2             82 days                  Saul Wold <sgw@linux.intel.co...        No data                       
-chrpath                  0.14                N/A                 41629 d                  Paul Eggleton <paul.eggleton@...        No data                       
-atk                      2.10.0              N/A                 41629 d                  Cristiana Voicu <cristiana.vo...        No data                       
-lrzsz                    0.12.20             N/A                 41629 d                  Cristian Iorga <cristian.iorg...        No data                       
-minicom                  2.6.2               2.6.2               62 days                  Cristian Iorga <cristian.iorg...        No data                       
-Manual Check Count: 6
-Manual Need Check Count: 6
-Any problem, please contact Saul Wold <sgw@linux.intel.com> 
 
