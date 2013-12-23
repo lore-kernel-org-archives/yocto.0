@@ -1,23 +1,30 @@
-Return-Path: <paul.eggleton@linux.intel.com>
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C8A61E007DC
-	for <yocto@yoctoproject.org>; Mon, 23 Dec 2013 12:56:40 -0800 (PST)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga102.fm.intel.com with ESMTP; 23 Dec 2013 12:56:40 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.95,538,1384329600"; d="scan'208";a="454738468"
-Received: from unknown (HELO helios.localnet) ([10.252.122.50])
-	by fmsmga002.fm.intel.com with ESMTP; 23 Dec 2013 12:56:38 -0800
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: Robert Berger <gmane@reliableembeddedsystems.com>
-Date: Mon, 23 Dec 2013 20:56:37 +0000
-Message-ID: <1775123.hQ8z5s0CFj@helios>
-Organization: Intel Corporation
-User-Agent: KMail/4.10.5 (Linux/3.8.0-34-generic; KDE/4.10.5; i686; ; )
-In-Reply-To: <l9a7ft$2rm$1@ger.gmane.org>
-References: <l9a7ft$2rm$1@ger.gmane.org>
-MIME-Version: 1.0
-Cc: yocto@yoctoproject.org
+Return-Path: <gley-yocto@m.gmane.org>
+Received: from plane.gmane.org (plane.gmane.org [80.91.229.3])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1FFDEE007DC
+	for <yocto@yoctoproject.org>; Mon, 23 Dec 2013 13:30:13 -0800 (PST)
+Received: from list by plane.gmane.org with local (Exim 4.69)
+	(envelope-from <gley-yocto@m.gmane.org>) id 1VvD4i-0005gR-IM
+	for yocto@yoctoproject.org; Mon, 23 Dec 2013 22:30:08 +0100
+Received: from ppp005054052062.access.hol.gr ([5.54.52.62])
+	by main.gmane.org with esmtp (Gmexim 0.1 (Debian))
+	id 1AlnuQ-0007hv-00
+	for <yocto@yoctoproject.org>; Mon, 23 Dec 2013 22:30:08 +0100
+Received: from gmane by ppp005054052062.access.hol.gr with local (Gmexim 0.1
+	(Debian)) id 1AlnuQ-0007hv-00
+	for <yocto@yoctoproject.org>; Mon, 23 Dec 2013 22:30:08 +0100
+X-Injected-Via-Gmane: http://gmane.org/
+To: yocto@yoctoproject.org
+From: Robert Berger <gmane@reliableembeddedsystems.com>
+Date: Mon, 23 Dec 2013 23:29:53 +0200
+Message-ID: <52B8AB51.30708@reliableembeddedsystems.com>
+References: <l9a7ft$2rm$1@ger.gmane.org> <1775123.hQ8z5s0CFj@helios>
+Mime-Version: 1.0
+X-Complaints-To: usenet@ger.gmane.org
+X-Gmane-NNTP-Posting-Host: ppp005054052062.access.hol.gr
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:24.0) Gecko/20100101 Thunderbird/24.0
+In-Reply-To: <1775123.hQ8z5s0CFj@helios>
+Cc: public-yocto-EtnWKYl6rD/WsZ/bQMPhNw@plane.gmane.org
 Subject: Re: u-boot 2013.10 LIC_FILES_CHKSUM points to an invalid file
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -30,38 +37,46 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 23 Dec 2013 20:56:42 -0000
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Mon, 23 Dec 2013 21:30:22 -0000
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: 7bit
 
-Hi Robert,
+Hi Paul,
 
-On Monday 23 December 2013 22:47:00 Robert Berger wrote:
-> I try to build instead of u-boot v2013.07 [1] the latest and greatest
-> released version i.e. v2013.10[2].
+On 12/23/2013 10:56 PM, Paul Eggleton wrote:
+>  
+>> How do I get it to build?
 > 
-> ... which does not build because LIC_FILES_CHKSUM points to an invalid
-> file ...
+> In the absence of any other license statement, you'd have to point to one or 
+> more of the source files and use beginline and endline to select just the part 
+> of the header specifying the license.
+
+Thanks!
+
+This might be tricky to know upfront in same cases and would in worst
+case require different recipes with different license info since it
+depends on what configuration you build for, or which files are being
+included.
+
+A mechanism to extract the relevant info from the executable is most
+likely more accurate.
+
+But I guess not we have a chicken and egg problem ;)
+
 > 
-> ... and yes it does, since the COPYING file is gone ...
+> Cheers,
+> Paul
 > 
-> The licencense info is contained in the source code itself as
-> SPDX-License-Identifiers.
 
-Hmm, I'm not sure upstream should really have removed it, but I guess it's up 
-to them...
- 
-> How do I get it to build?
+Regards,
 
-In the absence of any other license statement, you'd have to point to one or 
-more of the source files and use beginline and endline to select just the part 
-of the header specifying the license.
+Robert
 
-Cheers,
-Paul
+..."My employer doesn't even agree with me about C indentation style." -
+Used as a disclaimer
 
--- 
+My public pgp key is available,at:
+http://pgp.mit.edu:11371/pks/lookup?op=get&search=0x90320BF1
 
-Paul Eggleton
-Intel Open Source Technology Centre
+
 
