@@ -1,28 +1,24 @@
-Return-Path: <gley-yocto@m.gmane.org>
-Received: from plane.gmane.org (plane.gmane.org [80.91.229.3])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 63218E007DC
-	for <yocto@yoctoproject.org>; Mon, 23 Dec 2013 12:47:18 -0800 (PST)
-Received: from list by plane.gmane.org with local (Exim 4.69)
-	(envelope-from <gley-yocto@m.gmane.org>) id 1VvCPD-0004Tl-CG
-	for yocto@yoctoproject.org; Mon, 23 Dec 2013 21:47:15 +0100
-Received: from ppp005054052062.access.hol.gr ([5.54.52.62])
-	by main.gmane.org with esmtp (Gmexim 0.1 (Debian))
-	id 1AlnuQ-0007hv-00
-	for <yocto@yoctoproject.org>; Mon, 23 Dec 2013 21:47:15 +0100
-Received: from gmane by ppp005054052062.access.hol.gr with local (Gmexim 0.1
-	(Debian)) id 1AlnuQ-0007hv-00
-	for <yocto@yoctoproject.org>; Mon, 23 Dec 2013 21:47:15 +0100
-X-Injected-Via-Gmane: http://gmane.org/
-To: yocto@yoctoproject.org
-From: Robert Berger <gmane@reliableembeddedsystems.com>
-Date: Mon, 23 Dec 2013 22:47:00 +0200
-Message-ID: <l9a7ft$2rm$1@ger.gmane.org>
-Mime-Version: 1.0
-X-Complaints-To: usenet@ger.gmane.org
-X-Gmane-NNTP-Posting-Host: ppp005054052062.access.hol.gr
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:24.0) Gecko/20100101 Thunderbird/24.0
-Subject: u-boot 2013.10 LIC_FILES_CHKSUM points to an invalid file
+Return-Path: <paul.eggleton@linux.intel.com>
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C8A61E007DC
+	for <yocto@yoctoproject.org>; Mon, 23 Dec 2013 12:56:40 -0800 (PST)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga102.fm.intel.com with ESMTP; 23 Dec 2013 12:56:40 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.95,538,1384329600"; d="scan'208";a="454738468"
+Received: from unknown (HELO helios.localnet) ([10.252.122.50])
+	by fmsmga002.fm.intel.com with ESMTP; 23 Dec 2013 12:56:38 -0800
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: Robert Berger <gmane@reliableembeddedsystems.com>
+Date: Mon, 23 Dec 2013 20:56:37 +0000
+Message-ID: <1775123.hQ8z5s0CFj@helios>
+Organization: Intel Corporation
+User-Agent: KMail/4.10.5 (Linux/3.8.0-34-generic; KDE/4.10.5; i686; ; )
+In-Reply-To: <l9a7ft$2rm$1@ger.gmane.org>
+References: <l9a7ft$2rm$1@ger.gmane.org>
+MIME-Version: 1.0
+Cc: yocto@yoctoproject.org
+Subject: Re: u-boot 2013.10 LIC_FILES_CHKSUM points to an invalid file
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,39 +30,38 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 23 Dec 2013 20:47:21 -0000
-Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Mon, 23 Dec 2013 20:56:42 -0000
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-Hi,
+Hi Robert,
 
-I try to build instead of u-boot v2013.07 [1] the latest and greatest
-released version i.e. v2013.10[2].
+On Monday 23 December 2013 22:47:00 Robert Berger wrote:
+> I try to build instead of u-boot v2013.07 [1] the latest and greatest
+> released version i.e. v2013.10[2].
+> 
+> ... which does not build because LIC_FILES_CHKSUM points to an invalid
+> file ...
+> 
+> ... and yes it does, since the COPYING file is gone ...
+> 
+> The licencense info is contained in the source code itself as
+> SPDX-License-Identifiers.
 
-... which does not build because LIC_FILES_CHKSUM points to an invalid
-file ...
+Hmm, I'm not sure upstream should really have removed it, but I guess it's up 
+to them...
+ 
+> How do I get it to build?
 
-... and yes it does, since the COPYING file is gone ...
+In the absence of any other license statement, you'd have to point to one or 
+more of the source files and use beginline and endline to select just the part 
+of the header specifying the license.
 
-The licencense info is contained in the source code itself as
-SPDX-License-Identifiers.
+Cheers,
+Paul
 
-How do I get it to build?
+-- 
 
-Regards,
-
-Robert
-
-[1]
-http://git.denx.de/?p=u-boot.git;a=tree;h=63e74bc767dda75feff521c40b779018397fe1e7;hb=62c175fbb8a0f9a926c88294ea9f7e88eb898f6c
-
-[2]
-http://git.denx.de/?p=u-boot.git;a=tree;h=b6756a15fd1e165107adf57e7c4a393f7dbcba38;hb=183acb700378a8cfc5d50a01a65de93fb2c24586..."In
-C++ it's harder to shoot yourself in the foot, but when you do, you blow
-off your whole leg." - Bjarne Stroustrup
-
-My public pgp key is available,at:
-http://pgp.mit.edu:11371/pks/lookup?op=get&search=0x90320BF1
-
-
+Paul Eggleton
+Intel Open Source Technology Centre
 
