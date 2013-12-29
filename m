@@ -1,28 +1,28 @@
-Return-Path: <insop.song@gmail.com>
-Received: from mail-wi0-f177.google.com (mail-wi0-f177.google.com
-	[209.85.212.177])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 60282E007C4
-	for <yocto@yoctoproject.org>; Thu, 26 Dec 2013 16:26:35 -0800 (PST)
-Received: by mail-wi0-f177.google.com with SMTP id cc10so9109135wib.16
-	for <yocto@yoctoproject.org>; Thu, 26 Dec 2013 16:26:34 -0800 (PST)
+Return-Path: <vidal.develone@gmail.com>
+Received: from mail-qe0-f49.google.com (mail-qe0-f49.google.com
+	[209.85.128.49])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 837F6E0079B
+	for <yocto@yoctoproject.org>; Sun, 29 Dec 2013 08:29:11 -0800 (PST)
+Received: by mail-qe0-f49.google.com with SMTP id w7so10597565qeb.36
+	for <yocto@yoctoproject.org>; Sun, 29 Dec 2013 08:29:10 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:from:date:message-id:subject:to:content-type;
-	bh=nA1cqEtcGK72XrOXIS8dneYCSFTvuBG+I1Q3zVB3hiQ=;
-	b=cpmdTgT7Tdfntx8mMPX4BuZcVKPxAGKHy3sKV3OE6VVpmLKF80QMiX9c4gx9UazPJZ
-	Qz60/tgkACn96w5hr0fFQ50VHAH8GQe0jq/UVCi/LAfw9jzRNielPX+sPesKwldaE75+
-	TreG82odGjMiGJomfm5cP74QSF3efgmZP+SH+hkqsb6n6GYKg6xg1zO8ILIopAHGD94h
-	bx9PqllqBdy7CNk5y4Tj+JlmjHuhK6huTGeo4a16gz9IIlY/Xgcrwjlj2kQjcjVTX53D
-	6Hwlg2rHaepwGXGPF9UQTKk0ihoviGWVP8ssERp/mQtjV+3fsr7y5xf8xbotoTUxJuge
-	4H0g==
-X-Received: by 10.180.160.166 with SMTP id xl6mr31093495wib.43.1388103994275; 
-	Thu, 26 Dec 2013 16:26:34 -0800 (PST)
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=0QgOuZHUMjYPtKYQ21Jmly+Wv206dS39sis5GsmkMcc=;
+	b=JviyHxInRguA8dftkYyp5RXRM9dJFs6ggGv9pNogjN4xIMqdO7Kab7tLzylC5HGcFv
+	qOYdX2DhdzF7paNZWIObjcAbIWxiHFfkb2h4z15oi4edCDS6/m46iT/PQJojHxWMkm+/
+	oSQ73SpfQoAq5dy7SoPNyOlaVSBSIblUWODG+Bdv3AyRQPo8MUvZKpx0l+dLRvEMXCeB
+	VRRY+sanZd8Fs/fI8oovab84y+OkVUZQbke1py0bNnPtA4woDpGpQA14c6CDFvokg+4r
+	uaCBWITD5ekFw/yv2Fh69EVbh4duK/v8GiNetVDVw9xh9MwA9zYwoIDNXfr8is+TWVqj
+	VsDw==
 MIME-Version: 1.0
-Received: by 10.194.24.170 with HTTP; Thu, 26 Dec 2013 16:26:14 -0800 (PST)
-From: Insop Song <insop.song@gmail.com>
-Date: Thu, 26 Dec 2013 16:26:14 -0800
-Message-ID: <CACzyEJ-0d5wm7MytFrSmR42vMxjar6YP0=8TpD-LwoXd6qz2gg@mail.gmail.com>
-To: Yocto Project Discussion <yocto@yoctoproject.org>
-Subject: package install in using INITSCRIPT_PARAMS
+X-Received: by 10.224.46.8 with SMTP id h8mr100524758qaf.49.1388334549933;
+	Sun, 29 Dec 2013 08:29:09 -0800 (PST)
+Received: by 10.140.37.49 with HTTP; Sun, 29 Dec 2013 08:29:09 -0800 (PST)
+Date: Sun, 29 Dec 2013 09:29:09 -0700
+Message-ID: <CANwz6nwVfpHWosH8jzeTftyMBjG7-V0kVoKBxPiJ9jcAd-_voQ@mail.gmail.com>
+From: Edward Vidal <vidal.develone@gmail.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: boot zedboard with dylan yocto
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,54 +34,115 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 27 Dec 2013 00:26:36 -0000
+X-List-Received-Date: Sun, 29 Dec 2013 16:29:14 -0000
+Content-Type: multipart/alternative; boundary=001a11c36122ada45004eeaed384
+
+--001a11c36122ada45004eeaed384
 Content-Type: text/plain; charset=ISO-8859-1
 
-Hi,
+Hello,
+Has anyone booted with the following files built with bitbake.
+custom-image-zedboard-20131223033354.rootfs.cpio
+custom-image-zedboard-20131223033354.rootfs.ext2
+custom-image-zedboard-20131223033354.rootfs.ext2.gz
+custom-image-zedboard-20131223033354.rootfs.ext2.gz.u-boot
+custom-image-zedboard.cpio
+custom-image-zedboard.ext2
+custom-image-zedboard.ext2.gz
+custom-image-zedboard.ext2.gz.u-boot
+modules--3.8-xilinx+git0+6a0bedad60e2bca8d9b50bf81b9895e29e31a6d7-r1-zedboard-20131222234334.tgz
+README_-_DO_NOT_DELETE_FILES_IN_THIS_DIRECTORY.txt
+uImage
+uImage--3.8-xilinx+git0+6a0bedad60e2bca8d9b50bf81b9895e29e31a6d7-r1-zedboard-20131222234334.bin
+uImage--3.8-xilinx+git0+6a0bedad60e2bca8d9b50bf81b9895e29e31a6d7-r1-zynq-zed-20131222234334.dtb
+uImage-zedboard.bin
+uImage-zynq-zed.dtb
+I have used the custom-image-zedboard-20131223033354.rootfs.ext2 with
+linux-digilent kernel and u-boot-digilent.
+In my dtb file I have set the following
 
-I've use the following to set up SystemV init.d configuration and it
-works fine for full root file system generation.
+model = "Xilinx Zynq ZC702";
+compatible = "xlnx,zynq-zc702";
+by editing my dts file.
+The following is the error I am getting.
 
-----------------------------------------------------------------
-my example>
+ Error: unrecognized/unsupported	machine	ID (r1 = 0x1fb694ec).
 
-INITSCRIPT_NAME = "startwifi"
-INITSCRIPT_PARAMS = "start 99 S ."
+Available machine support:
 
-----------------------------------------------------------------
+ID (hex)        NAME
+ffffffff        ARM-Versatile Express
+000008e0        ARM-Versatile Express
+00000d32        Xilinx Zynq Platform
 
-However, if I don't include the above application as part of the image
-and later install it using RPM installation (busybox rpm), then
-"/etc/rcS" is not set up on rpm installation.
+Also does anyone have sound working on the zedboard.
 
-I'd think that this should be set upon rpm installation as well.
-What do you think?
+Any and all help is appreciated.
+Thanks
 
-Thank you,
+--001a11c36122ada45004eeaed384
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
 
-Insop
+<div dir=3D"ltr"><div><div><div><div>Hello,<br></div>Has anyone booted with=
+ the following files built with bitbake.<br>custom-image-zedboard-201312230=
+33354.rootfs.cpio<br>custom-image-zedboard-20131223033354.rootfs.ext2<br>cu=
+stom-image-zedboard-20131223033354.rootfs.ext2.gz<br>
+custom-image-zedboard-20131223033354.rootfs.ext2.gz.u-boot<br>custom-image-=
+zedboard.cpio<br>custom-image-zedboard.ext2<br>custom-image-zedboard.ext2.g=
+z<br>custom-image-zedboard.ext2.gz.u-boot<br>modules--3.8-xilinx+git0+6a0be=
+dad60e2bca8d9b50bf81b9895e29e31a6d7-r1-zedboard-20131222234334.tgz<br>
+README_-_DO_NOT_DELETE_FILES_IN_THIS_DIRECTORY.txt<br>uImage<br>uImage--3.8=
+-xilinx+git0+6a0bedad60e2bca8d9b50bf81b9895e29e31a6d7-r1-zedboard-201312222=
+34334.bin<br>uImage--3.8-xilinx+git0+6a0bedad60e2bca8d9b50bf81b9895e29e31a6=
+d7-r1-zynq-zed-20131222234334.dtb<br>
+uImage-zedboard.bin<br>uImage-zynq-zed.dtb<br></div>I have used the custom-=
+image-zedboard-20131223033354.rootfs.ext2 with linux-digilent kernel and u-=
+boot-digilent.<br></div><div>In my dtb file I have set the following<br>
 
 
 
-My build env
--------------------------------------------------------------------
-Build Configuration:
-BB_VERSION        = "1.18.0"
-BUILD_SYS         = "x86_64-linux"
-NATIVELSBSTRING   = "Ubuntu-12.04"
-TARGET_SYS        = "powerpc-fsl_networking-linux"
-MACHINE           = "b4860qds"
-DISTRO            = "fsl-networking"
-DISTRO_VERSION    = "1.4.1"
-TUNE_FEATURES     = "m32 fpu-hard e6500 altivec"
-TARGET_FPU        = "hard"
-meta
-meta-yocto
-meta-yocto-bsp    = "(nobranch):5130199a19fd7410003001e99ca736699a350f10"
-meta-fsl-ppc      = "(nobranch):77d0e8f5455830a813fa5a823e37da990eec3635"
-meta-fsl-ppc-toolchain = "(nobranch):8ec94cec04527cb971c125b1ddd2c5375034d723"
-meta-virtualization = "(nobranch):ad6df4f59cd7646f61db29e8fa51f878329d6f93"
-meta-fsl-networking = "(nobranch):04ff616e1b6e97b7d9497adfe7b858d0e969135b"
-meta-oe
-meta-networking   = "(nobranch):7c8dd8f096b64a709175d37a08a4fb02ca263616"
+=09
+=09
+=09
+	<style type=3D"text/css">P { margin-bottom: 0.08in; direction: ltr; color:=
+ rgb(0, 0, 0); }P.western { font-family: "Liberation Serif","Times New Roma=
+n",serif; font-size: 12pt; }P.cjk { font-family: "WenQuanYi Zen Hei Sharp";=
+ font-size: 12pt; }P.ctl { font-family: "Lohit Devanagari"; font-size: 12pt=
+; }</style>
 
+
+<p class=3D"" style=3D"margin-bottom:0in"><a name=3D"lw_1388322562_0"></a>
+model =3D &quot;Xilinx Zynq ZC702&quot;;<br>compatible =3D
+&quot;xlnx,zynq-zc702&quot;;</p>
+
+by editing my dts file.<br></div>The following is the error  I am getting.<=
+br><br>
+
+
+=09
+=09
+=09
+	<style type=3D"text/css">PRE { direction: ltr; color: rgb(0, 0, 0); }PRE.w=
+estern {  }PRE.cjk { font-family: "WenQuanYi Zen Hei Sharp",monospace; }PRE=
+.ctl { font-family: "Lohit Devanagari",monospace; }P { margin-bottom: 0.08i=
+n; direction: ltr; color: rgb(0, 0, 0); }P.western { font-family: "Liberati=
+on Serif","Times New Roman",serif; font-size: 12pt; }P.cjk { font-family: "=
+WenQuanYi Zen Hei Sharp"; font-size: 12pt; }P.ctl { font-family: "Lohit Dev=
+anagari"; font-size: 12pt; }</style>
+
+
+<pre class=3D"">Error: unrecognized/unsupported	machine	ID (r1 =3D 0x1fb694=
+ec).
+
+Available machine support:
+
+ID (hex)        NAME
+ffffffff        ARM-Versatile Express
+000008e0        ARM-Versatile Express
+00000d32        Xilinx Zynq Platform</pre>
+
+Also does anyone have sound working on the zedboard.<br><br>Any and all hel=
+p is appreciated.<br></div>Thanks<br></div>
+
+--001a11c36122ada45004eeaed384--
