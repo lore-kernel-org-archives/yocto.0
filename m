@@ -1,28 +1,28 @@
-Return-Path: <perencia@gmail.com>
-Received: from mail-ee0-f50.google.com (mail-ee0-f50.google.com [74.125.83.50])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A3FC4E007CA
-	for <yocto@yoctoproject.org>; Wed,  1 Jan 2014 07:24:47 -0800 (PST)
-Received: by mail-ee0-f50.google.com with SMTP id c41so5855227eek.37
-	for <yocto@yoctoproject.org>; Wed, 01 Jan 2014 07:24:46 -0800 (PST)
+Return-Path: <wutengss@gmail.com>
+Received: from mail-vc0-f171.google.com (mail-vc0-f171.google.com
+	[209.85.220.171])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B769BE0044A
+	for <yocto@yoctoproject.org>; Fri,  3 Jan 2014 05:11:57 -0800 (PST)
+Received: by mail-vc0-f171.google.com with SMTP id ik5so7656900vcb.2
+	for <yocto@yoctoproject.org>; Fri, 03 Jan 2014 05:11:56 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=Jf0uatRMO2KQjZVfiy1WYNHYcmag/o9/POId0bGNHMI=;
-	b=L2d2ZMHnInLFRpAzFLF2gzGWH9CnVYAPHCrjxIhv4JEu62+0dnaMTC27MVluf8AM75
-	9c9+C8k4PsHfHSTVs657RfuoKCBGwaRdJeM5whMcRICqkRVMvNnXHSpLT33rD80DilEq
-	uOckHMAxkrpBoiOlj+VDg30EAqJmmv8NzgOVmX2CXewtVO17r0+8aJ3wrRAyb8KFCxw/
-	xuVGYoYslxU5SjYcyEC0rol0xrAlSKW/C9/LtemAX8P/XquyMFh2Q897XMfsmFqGaO+x
-	NY+TEo5/admWxXpfBjZY6LerJve3/MYe3OLWL7nWUpOt88AEKFkttDWLez9ydh6Uh9Si
-	hzVA==
+	bh=lM15uQGBNC7oq6Q6mh3gLo0s7CJ6rSQDSd5QBkpXqoI=;
+	b=pRblxSr9GUzhRz5lO/8RYeDgBr2gSOOBB276HCwNGygrOvc5e0z+fGIEHEFjZtgmkd
+	6x+ulk8P+VCyUnrgS1CgvhZriZfRNIEwd3jzSUXUUszXFupCCYQpESllmXJiRHlTKfkL
+	Vx3x3Xx6ZFrNT7BCvD5obSvu+SpWB5w/0S4c2QV47hVFrK8oqy4eQpNp72hnawfjix22
+	9swdUfPJlnlfUHDzUyMcqX2KqIyCCiRD2fAitYrhIlwioIspHVQL3AOOTuS6REH9ydqt
+	GpxUb1E4SzTGr1vOezhkyN6rFu4lB3yKlGvDaYVihlgHffFqzeJHGusaLlW1FvIFSKko
+	HR9g==
 MIME-Version: 1.0
-X-Received: by 10.14.211.69 with SMTP id v45mr11362508eeo.75.1388589886650;
-	Wed, 01 Jan 2014 07:24:46 -0800 (PST)
-Received: by 10.14.176.131 with HTTP; Wed, 1 Jan 2014 07:24:46 -0800 (PST)
-Date: Wed, 1 Jan 2014 16:24:46 +0100
-Message-ID: <CAP1ncNxSEKzErd7dDA2gJ=y8DwEiwW-Jc6pq_d-FioYSN0L1NQ@mail.gmail.com>
-From: Pedro Erencia <perencia@gmail.com>
+X-Received: by 10.52.248.238 with SMTP id yp14mr29401vdc.81.1388754716210;
+	Fri, 03 Jan 2014 05:11:56 -0800 (PST)
+Received: by 10.52.37.39 with HTTP; Fri, 3 Jan 2014 05:11:56 -0800 (PST)
+Date: Fri, 3 Jan 2014 15:11:56 +0200
+Message-ID: <CAOJdAdVfPGaSMcvB7-8LJ=oYDKwi1j_oKRbChNXGzwGV+zfT=Q@mail.gmail.com>
+From: wuteng wu <wutengss@gmail.com>
 To: yocto@yoctoproject.org
-X-Mailman-Approved-At: Thu, 02 Jan 2014 08:11:08 -0800
-Subject: How to build xgcc with debug information ?
+Subject: CAN bus protocol error
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,70 +34,60 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 01 Jan 2014 15:24:49 -0000
-Content-Type: multipart/alternative; boundary=047d7b621d9ceebbfa04eeea4697
+X-List-Received-Date: Fri, 03 Jan 2014 13:11:58 -0000
+Content-Type: multipart/alternative; boundary=089e0149bdbe8a392a04ef10a739
 
---047d7b621d9ceebbfa04eeea4697
+--089e0149bdbe8a392a04ef10a739
 Content-Type: text/plain; charset=ISO-8859-1
 
-*Hi all, I'm having a hard time trying to do what the title says.I was
-using yocto to create a qt4e-image and got an Internal compiler error |
-/home/pedro/poky/build/tmp/work-shared/gcc-4.6.3+svnr184847-r29/gcc-4_6-branch/libgcc/../gcc/libgcc2.c:
-In function '__negdi2':|
-/home/pedro/poky/build/tmp/work-shared/gcc-4.6.3+svnr184847-r29/gcc-4_6-branch/libgcc/../gcc/libgcc2.c:72:1:
-internal compiler error: Segmentation fault| Please submit a full bug
-report,*
-*Then i wanted to run gdb on xgcc but it didn't have debug symbols, so i
-added this to gcc-cross-initial.inc and gcc-cross-intermediate.inc*
+Hi,
 
-*CFLAGS += "-g"*
+I have cross compiled the canutils and installed it into the target rootfs,
+but when i tried to test the CAN bus by using the candump command as below:
 
-*And it actually generated the debug symbols but some variable were
-stripped by the -O2 optimization. *
-*( the error was found on line 86 on ira-conflicts, btw).*
+candump can0
+interface = can0, family = 29, type = 3, proto = 1
+*socket: Protocol not supported*
 
-*I have not managed to remove the -O2, I've tried changing to CFLAGS += "-g
--Og", but now it doesn't even generate a debug build :) So, before i mess
-it even more, i'd like to know what has to be done to properly create a
-debug-friendly xgcc. *
+I got the "socket: Protocol not supported" error msg, i have searched and
+found the related solution somewhere said that the 'can-raw protocol
+module' need to be included into the kernel. but how should i do that in
+yocto ?
+
+the needed driver has to be loaded by executing the commands:
 
 
-*Thanks :)*
 
---047d7b621d9ceebbfa04eeea4697
+
+*modprobe canmodprobe can-devmodprobe can-raw*
+
+but only the module can is build-in.
+
+It might be possible that the can-dev is also necessary.
+
+anyone have experience to share with me ?
+
+BR,
+Teng
+
+--089e0149bdbe8a392a04ef10a739
 Content-Type: text/html; charset=ISO-8859-1
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><font face=3D"courier new, monospace"><b>Hi all, <br><br>I=
-&#39;m having a hard time trying to do what the title says.<br>I was using =
-yocto to create a qt4e-image and got an Internal compiler error <br><br><br=
+<div dir=3D"ltr">Hi,<div><br></div><div>I have cross compiled the canutils =
+and installed it into the target rootfs, but when i tried to test the CAN b=
+us by using the candump command as below:<br><br>candump can0<br>interface =
+=3D can0, family =3D 29, type =3D 3, proto =3D 1<br>
+<b>socket: Protocol not supported</b><br><br></div><div>I got the &quot;soc=
+ket: Protocol not supported&quot; error msg, i have searched and found the =
+related solution somewhere said that the &#39;can-raw protocol module&#39; =
+need to be included into the kernel. but how should i do that in yocto ?<br=
 >
-| /home/pedro/poky/build/tmp/work-shared/gcc-4.6.3+svnr184847-r29/gcc-4_6-b=
-ranch/libgcc/../gcc/libgcc2.c: In function &#39;__negdi2&#39;:<br><br>| /ho=
-me/pedro/poky/build/tmp/work-shared/gcc-4.6.3+svnr184847-r29/gcc-4_6-branch=
-/libgcc/../gcc/libgcc2.c:72:1: internal compiler error: Segmentation fault<=
-br>
-<br>| Please submit a full bug report,<br></b></font><br><b style=3D"font-f=
-amily:&#39;courier new&#39;,monospace">Then i wanted to run gdb on xgcc but=
- it didn&#39;t have debug symbols, so i added this to gcc-cross-initial.inc=
- and gcc-cross-intermediate.inc</b><div>
-<font face=3D"courier new, monospace"><b><br></b></font></div><div><font fa=
-ce=3D"courier new, monospace"><b>CFLAGS +=3D &quot;-g&quot;</b></font></div=
-><div><font face=3D"courier new, monospace"><b><br></b></font></div><div><f=
-ont face=3D"courier new, monospace"><b>And it actually generated the debug =
-symbols but some variable were stripped by the -O2 optimization.=A0</b></fo=
-nt></div>
-<div><font face=3D"courier new, monospace"><b>( the error was found on line=
- 86 on ira-conflicts, btw).</b></font></div><div><font face=3D"courier new,=
- monospace"><b><br></b></font></div><div><font face=3D"courier new, monospa=
-ce"><b>I have not managed to remove the -O2, I&#39;ve tried changing to CFL=
-AGS +=3D &quot;-g -Og&quot;, but now it doesn&#39;t even generate a debug b=
-uild :) So, before i mess it even more, i&#39;d like to know what has to be=
- done to properly create a debug-friendly xgcc.=A0</b></font></div>
-<div><br></div><div><font face=3D"courier new, monospace"><b><br></b></font=
-></div><div><font face=3D"courier new, monospace"><b>Thanks :)</b></font></=
-div><div><font face=3D"courier new, monospace"><b><br></b></font><div><br><=
-/div>
-</div></div>
+<br></div><div>the needed driver has to be loaded by executing the commands=
+:<br><br><b>modprobe can<br>modprobe can-dev<br>modprobe can-raw<br></b></d=
+iv><div><br></div><div>but only the module can is build-in.<br><br></div>
+<div>It might be possible that the can-dev is also necessary.<br><br></div>=
+<div>anyone have experience to share with me ?<br><br></div><div>BR,<br></d=
+iv><div>Teng<br></div></div>
 
---047d7b621d9ceebbfa04eeea4697--
+--089e0149bdbe8a392a04ef10a739--
