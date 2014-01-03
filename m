@@ -1,33 +1,24 @@
-Return-Path: <andrei@gherzan.ro>
-Received: from mail-wg0-f49.google.com (mail-wg0-f49.google.com [74.125.82.49])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A0538E007DC
-	for <yocto@yoctoproject.org>; Fri,  3 Jan 2014 13:25:30 -0800 (PST)
-Received: by mail-wg0-f49.google.com with SMTP id x12so13716732wgg.4
-	for <yocto@yoctoproject.org>; Fri, 03 Jan 2014 13:25:29 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc:content-type;
-	bh=Zdt+ycimDRdkewNGhKeL+HtMV2pWAvFfUVvGYqiIRAA=;
-	b=ATv+ExS7SwpE0kgHaFdstJFKYY1XDBFJC4z9W7q5MJMOiI6NorQkGSIsE2OYxlstRW
-	cLE8/yFymQUKezcscTgWkS58Xzw8YjrrsJsYw0MHoX34XpsFa9i5hUtH+B61NV8EWJ0V
-	0TfFlsYEtxgk3233nDb+K0FBEu+52rlZBdXWnPVzDEFgV2ZzXOKknrUfoPsI/vK8cHQM
-	Szjlv1d0gxqIhgMIdDY5BGAfwmJ1EHovI01O66Tiamqp1dUs+rF13TRBFX0eSVCoNBTu
-	cSuZ45ql2aCqJt5UtoA9xbF6b8w65RrFLZkESW/fLIFoXzGF+axBpIl8Iz1NHmJFY1T3
-	G9Uw==
-X-Gm-Message-State: ALoCoQmLYQLCP1sPpcW6g/WZDNMFmJFqLlGJMPgUOSUcm2P+JWgpuqP1hk5DM33kWdvb8qzM087n
-X-Received: by 10.180.90.230 with SMTP id bz6mr3459933wib.17.1388784329523;
-	Fri, 03 Jan 2014 13:25:29 -0800 (PST)
+Return-Path: <philip@balister.org>
+Received: from starfish.geekisp.com (starfish.geekisp.com [216.168.135.166])
+	by yocto-www.yoctoproject.org (Postfix) with SMTP id 8BE7CE00803
+	for <yocto@yoctoproject.org>; Fri,  3 Jan 2014 14:48:20 -0800 (PST)
+Received: (qmail 14841 invoked by uid 1003); 3 Jan 2014 22:48:19 -0000
+Received: from unknown (HELO ?192.168.1.122?)
+	(philip@opensdr.com@71.171.44.145)
+	by mail.geekisp.com with (DHE-RSA-AES256-SHA encrypted) SMTP;
+	3 Jan 2014 22:48:19 -0000
+Message-ID: <52C73E32.4030208@balister.org>
+Date: Fri, 03 Jan 2014 17:48:18 -0500
+From: Philip Balister <philip@balister.org>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:17.0) Gecko/20130625 Thunderbird/17.0.7
 MIME-Version: 1.0
-Received: by 10.217.150.199 with HTTP; Fri, 3 Jan 2014 13:25:08 -0800 (PST)
-X-Originating-IP: [5.13.221.193]
-In-Reply-To: <1387295956-24899-1-git-send-email-andrei@gherzan.ro>
-References: <1387295956-24899-1-git-send-email-andrei@gherzan.ro>
-From: Andrei Gherzan <andrei@gherzan.ro>
-Date: Fri, 3 Jan 2014 23:25:08 +0200
-Message-ID: <CAK18fxHfh6_28H=YmeBARuzkwudDSymwtQEeq8UmywEz-BUzUQ@mail.gmail.com>
-To: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: [meta-raspberrypi][PATCH 1/6] linux-raspberrypi: Update v3.10.18 to v3.10.24
+To: Edward Vidal <vidal.develone@gmail.com>
+References: <CANwz6nyQW9br6znzmLWLAM52n4UpQA1pbu9JBR0ZvT8UO8NQQw@mail.gmail.com>
+In-Reply-To: <CANwz6nyQW9br6znzmLWLAM52n4UpQA1pbu9JBR0ZvT8UO8NQQw@mail.gmail.com>
+X-Enigmail-Version: 1.6
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: toolchain
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,42 +30,52 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 03 Jan 2014 21:25:32 -0000
-Content-Type: multipart/alternative; boundary=f46d043be008a1896604ef178c31
-
---f46d043be008a1896604ef178c31
+X-List-Received-Date: Fri, 03 Jan 2014 22:48:21 -0000
 Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: 7bit
 
-On Tue, Dec 17, 2013 at 5:59 PM, Andrei Gherzan <andrei@gherzan.ro> wrote:
+Please post meta-xilinx questions to the meta-xilinx list.
 
-> Change-Id: Icf95ec58d39eb187c0cf0fe31fd1822f81f3f038
-> Signed-off-by: Andrei Gherzan <andrei@gherzan.ro>
->
+On 01/03/2014 11:46 AM, Edward Vidal wrote:
+> Hello all,
+> I am currently working with the zedboard using a rootfs generated with a
+> dylan branch of yocto (gsl, gnuplot, gnuradio, java, vlc, v4l-utils, and
+> openCV with C920 camera).  My zImage and devicetree.dtb were built with
+> yocto sdk.  My BOOT.BIN (FSBL system.bit and u-boot) were built with 14.4
+> of Xilinx Tools.  This requires dual booting a CentOS 6.4 x86_64 (Xilinx
+> Tools) and Fedora19 x86_64 (Yocto).  I have not been able to run Yocto on
+> CentOS since the need for higher version of python.
+> 
+> Is it possible to generate a BOOT.BIN with the files generated with
+> Yocto?
 
-All updates in this series merged.
+See:
 
+https://github.com/balister/meta-xilinx/tree/working-branch/recipes-bsp/u-boot
 
--- 
-*ag*
+Basically, I use a pre-compiled fsbl.elf. This only needs the bootgen
+command (from ISE) in the path. U-boot builds fine with the toolchain
+built in OE. (Also, you can build the fsbl with an OE toolchain last
+time I checked.
 
---f46d043be008a1896604ef178c31
-Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
+Philip
 
-<div dir=3D"ltr"><br><div class=3D"gmail_extra"><br><br><div class=3D"gmail=
-_quote">On Tue, Dec 17, 2013 at 5:59 PM, Andrei Gherzan <span dir=3D"ltr">&=
-lt;<a href=3D"mailto:andrei@gherzan.ro" target=3D"_blank">andrei@gherzan.ro=
-</a>&gt;</span> wrote:<br>
+> 
+> This requires 2 toolchains.  I was checking the difference between the 2
+> see the attached files.
+> Should the difference between the toolchains be of concern going forward?
+> 
+> My Xilinx tools are node locked and I can only use on a single system.
+> Is there a method to run Yocto on CentOS6.4 x86_64?
+> Any and all help will be appreciated.
+> 
+> Thanks
+> 
+> 
+> 
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+> 
 
-<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
-x #ccc solid;padding-left:1ex">Change-Id: Icf95ec58d39eb187c0cf0fe31fd1822f=
-81f3f038<br>
-Signed-off-by: Andrei Gherzan &lt;<a href=3D"mailto:andrei@gherzan.ro">andr=
-ei@gherzan.ro</a>&gt;<br></blockquote><div><br></div><div>All updates in th=
-is series merged.=A0</div></div><br clear=3D"all"><div><br></div>--=A0</div=
-><div class=3D"gmail_extra">
-
-<b style=3D"color:rgb(51,51,51);font-family:Arial;text-align:center">ag</b>
-</div></div>
-
---f46d043be008a1896604ef178c31--
