@@ -1,38 +1,28 @@
-Return-Path: <martin.jansa@gmail.com>
-Received: from mail-ea0-f181.google.com (mail-ea0-f181.google.com
-	[209.85.215.181])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D998FE00803
-	for <yocto@yoctoproject.org>; Fri,  3 Jan 2014 23:23:10 -0800 (PST)
-Received: by mail-ea0-f181.google.com with SMTP id m10so6972137eaj.26
-	for <yocto@yoctoproject.org>; Fri, 03 Jan 2014 23:23:09 -0800 (PST)
+Return-Path: <tarek.elsherbiny@gmail.com>
+Received: from mail-qe0-f46.google.com (mail-qe0-f46.google.com
+	[209.85.128.46])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A4CE9E0080F
+	for <yocto@yoctoproject.org>; Sun,  5 Jan 2014 06:20:41 -0800 (PST)
+Received: by mail-qe0-f46.google.com with SMTP id a11so17026666qen.19
+	for <yocto@yoctoproject.org>; Sun, 05 Jan 2014 06:20:40 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=date:from:to:cc:subject:message-id:references:mime-version
-	:content-type:content-disposition:in-reply-to:user-agent;
-	bh=XBOHc+N9Sqp9FqqYdvrnmkZZ2PkeNoBUF178O7vibFg=;
-	b=MHnzWAAA64twZVV4b63gINdYoHurl3ueODih84fRs+WEUF5fDeahcPtAs0foU1O3UC
-	0efcdugufu9qsmo5wazU1mX04AaGKdW+KQNdFA1FzhAUEd1Kd9Ry6xgI7Lb4q+7W/CcF
-	XEDz539ayV3RF+zDFsyAEzqQG6YFzpRz7iulDbQ822+LDQ0kC4yIZZxyeUUHsMa71z83
-	sEfPMnQ6Jg5y48rPGj7sCPzzvYEOYxxNJF2ODRS4QvNvTgLcg4bWTpCp0H1b6ks6iLMi
-	CXXE8J7aXHrNoXssSAm8oie1ZmwV6QVuFDsxpugjlM55z/wA+YPjcrB0a1qXCF1Dv8bZ
-	/kyQ==
-X-Received: by 10.14.150.5 with SMTP id y5mr5898926eej.73.1388820189009;
-	Fri, 03 Jan 2014 23:23:09 -0800 (PST)
-Received: from localhost (ip-89-176-104-107.net.upcbroadband.cz.
-	[89.176.104.107])
-	by mx.google.com with ESMTPSA id v1sm151198942eef.9.2014.01.03.23.23.07
-	for <multiple recipients>
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Fri, 03 Jan 2014 23:23:08 -0800 (PST)
-Date: Sat, 4 Jan 2014 08:23:13 +0100
-From: Martin Jansa <martin.jansa@gmail.com>
-To: Belisko Marek <marek.belisko@gmail.com>
-Message-ID: <20140104072313.GJ3707@jama>
-References: <CAAfyv36VJSx65N_aG2f3MWpQ+YRtQTJLTfgJtojqUNLoZ-qXow@mail.gmail.com>
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=WTOaNIIlJ85pfl14XfMdxbqO65LIY09b8QvOr/p4lEM=;
+	b=hbET5pJom33WEKszwKlFqG9e8mTCO6YURzh3TIoyvlETIDWymjIfCxtrpL8HqMMZBP
+	B6IlIS6tNsnwptyoiCRDrq7KmZXIVU9TazR9xB2g7YljtLBQXXKeyLW6sDKopS5qaI/d
+	gMAilWBPbJAKISciYuh/JG4CT2WsWrsbGThPeRTKjntXVtDvL4/R4t3ldT1r4M3YySaK
+	1PMxo3n4s00nTPZ8sm098Q58X3Um7VB1/ozfYzifxlIuOrtQvN12DHD8rLEM03vc/Qus
+	JXXw6Ba2TCA7+UAzoF6U1ectoxzNtimt+/UGX5HtGzrooOQW+mvZ7izAd4QImbinqDY1
+	d58Q==
 MIME-Version: 1.0
-In-Reply-To: <CAAfyv36VJSx65N_aG2f3MWpQ+YRtQTJLTfgJtojqUNLoZ-qXow@mail.gmail.com>
-User-Agent: Mutt/1.5.22 (2013-10-16)
-Cc: yocto <yocto@yoctoproject.org>
-Subject: Re: Fedora 20 building core-image-miminal failed for danny
+X-Received: by 10.49.52.34 with SMTP id q2mr176636215qeo.10.1388931640718;
+	Sun, 05 Jan 2014 06:20:40 -0800 (PST)
+Received: by 10.96.81.104 with HTTP; Sun, 5 Jan 2014 06:20:40 -0800 (PST)
+Date: Sun, 5 Jan 2014 14:20:40 +0000
+Message-ID: <CAB3sqtYOQ5qZ2qHQ_w-fkptbhCb_q9WhNXFP8dPx0jauMNHoDg@mail.gmail.com>
+From: Tarek El-Sherbiny <tarek.elsherbiny@gmail.com>
+To: yocto@yoctoproject.org
+Subject: Smart runtime package manager
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -44,49 +34,38 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 04 Jan 2014 07:23:11 -0000
-X-Groupsio-MsgNum: 17665
-Content-Type: multipart/signed; micalg=pgp-sha1;
-	protocol="application/pgp-signature"; boundary="PEkEgRdBLZYkpbX2"
-Content-Disposition: inline
+X-List-Received-Date: Sun, 05 Jan 2014 14:20:44 -0000
+Content-Type: multipart/alternative; boundary=047d7bea3f340ffb2904ef39d909
 
---PEkEgRdBLZYkpbX2
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+--047d7bea3f340ffb2904ef39d909
+Content-Type: text/plain; charset=ISO-8859-1
+
+Hi,
+
+I'm trying to learn how smart works. I've been successful to create a repo,
+update and install from it.
+Is there smart install option to force install all the more recent packages
+without having to type the package name for each individual package?
+Something like update all to bring the target up-to-date in single command.
+
+Thanks
+-- 
+*Tarek*
+
+--047d7bea3f340ffb2904ef39d909
+Content-Type: text/html; charset=ISO-8859-1
 Content-Transfer-Encoding: quoted-printable
 
-On Sat, Jan 04, 2014 at 12:07:59AM +0100, Belisko Marek wrote:
-> Hi,
->=20
-> I'm trying to build minimal image for beagleboard in Fedora 20 in poky-da=
-nny.
-> With small tweaks (basically fix texinfo errors by replacing @colophon
-> and doc@cygnus.com) I get rid of some initial bugs but
-> binutils-cross-2.22 failing during install (log attached). I cannot
-> understand what is an error with install. Any ideas?
+<div dir=3D"ltr">Hi,<div><br></div><div>I&#39;m trying to learn how smart w=
+orks.=A0I&#39;ve been successful to create a repo, update and install from =
+it.=A0</div><div>Is there smart install option to force install all the mor=
+e recent packages without having to type the package name for each individu=
+al package?</div>
+<div>Something like update all to bring the target up-to-date in single com=
+mand.</div><div><br></div><div>Thanks<br>-- <br><div dir=3D"ltr"><i><font c=
+olor=3D"#666666" face=3D"arial, helvetica, sans-serif">Tarek</font></i></di=
+v>
 
-c-tic54x.texi:348: @itemx must follow @item
+</div></div>
 
-see texinfo fix in dylan/dora branch, maybe it would be easier to backport =
-to
-danny instead of reinventing texinfo fixes there.
-
-But there will be more components which will need a fix for texinfo,
-IIRC only dylan and newer releases have already all fixes backported.
-
---=20
-Martin 'JaMa' Jansa     jabber: Martin.Jansa@gmail.com
-
---PEkEgRdBLZYkpbX2
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: Digital signature
-
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v2.0.22 (GNU/Linux)
-
-iEYEARECAAYFAlLHtuEACgkQN1Ujt2V2gBzdiACfW/gQjTDy0Wq+1a5AjvOZHdcs
-a2QAni6T8+PDWGoml4dEa+5UrdaJJgmZ
-=BXgH
------END PGP SIGNATURE-----
-
---PEkEgRdBLZYkpbX2--
+--047d7bea3f340ffb2904ef39d909--
