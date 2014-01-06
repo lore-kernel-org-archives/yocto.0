@@ -1,21 +1,23 @@
 Return-Path: <tom.zanussi@intel.com>
 Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 86416E00822
-	for <yocto@yoctoproject.org>; Mon,  6 Jan 2014 08:52:21 -0800 (PST)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 877F5E00852
+	for <yocto@yoctoproject.org>; Mon,  6 Jan 2014 08:52:22 -0800 (PST)
 Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by orsmga102.jf.intel.com with ESMTP; 06 Jan 2014 08:48:22 -0800
+	by orsmga102.jf.intel.com with ESMTP; 06 Jan 2014 08:48:24 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.95,613,1384329600"; d="scan'208";a="454334418"
+X-IronPort-AV: E=Sophos;i="4.95,613,1384329600"; d="scan'208";a="454334458"
 Received: from unknown (HELO localhost) ([10.255.12.17])
-	by fmsmga001.fm.intel.com with ESMTP; 06 Jan 2014 08:52:19 -0800
+	by fmsmga001.fm.intel.com with ESMTP; 06 Jan 2014 08:52:21 -0800
 From: tom.zanussi@intel.com
 To: yocto@yoctoproject.org
-Date: Mon,  6 Jan 2014 11:55:23 -0600
-Message-Id: <c05b1f112b9f2e7049e8b66694f7438e3c3442cb.1389030821.git.tom.zanussi@intel.com>
+Date: Mon,  6 Jan 2014 11:55:24 -0600
+Message-Id: <24a489789a30e79548e7a6040bd6ce05f51a70d9.1389030821.git.tom.zanussi@intel.com>
 X-Mailer: git-send-email 1.7.9.5
+In-Reply-To: <c05b1f112b9f2e7049e8b66694f7438e3c3442cb.1389030821.git.tom.zanussi@intel.com>
+References: <c05b1f112b9f2e7049e8b66694f7438e3c3442cb.1389030821.git.tom.zanussi@intel.com>
 In-Reply-To: <cover.1389030821.git.tom.zanussi@intel.com>
 References: <cover.1389030821.git.tom.zanussi@intel.com>
-Subject: [PATCH 01/10] meta-chiefriver: Use the symlink to the actual image in README
+Subject: [PATCH 02/10] meta-crownbay: Use the symlink to the actual image in README
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -36,19 +38,19 @@ update the documentation to reflect that.
 
 Signed-off-by: Tom Zanussi <tom.zanussi@intel.com>
 ---
- meta-chiefriver/README |    2 +-
+ meta-crownbay/README |    2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/meta-chiefriver/README b/meta-chiefriver/README
-index 925abaa..f846be6 100644
---- a/meta-chiefriver/README
-+++ b/meta-chiefriver/README
-@@ -132,7 +132,7 @@ Under Linux, insert a USB flash drive.  Assuming the USB flash drive
+diff --git a/meta-crownbay/README b/meta-crownbay/README
+index 3912f31..af8931b 100644
+--- a/meta-crownbay/README
++++ b/meta-crownbay/README
+@@ -153,7 +153,7 @@ Under Linux, insert a USB flash drive.  Assuming the USB flash drive
  takes device /dev/sdf, use dd to copy the live image to it.  For
  example:
  
--# dd if=core-image-sato-chiefriver-20101207053738.hddimg of=/dev/sdf
-+# dd if=core-image-sato-chiefriver.hddimg of=/dev/sdf
+-# dd if=core-image-sato-crownbay-20101207053738.hddimg of=/dev/sdf
++# dd if=core-image-sato-crownbay.hddimg of=/dev/sdf
  # sync
  # eject /dev/sdf
  
