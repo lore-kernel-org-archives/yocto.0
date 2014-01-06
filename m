@@ -1,28 +1,21 @@
-Return-Path: <vidal.develone@gmail.com>
-Received: from mail-qc0-f178.google.com (mail-qc0-f178.google.com
-	[209.85.216.178])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7350AE00822
-	for <yocto@yoctoproject.org>; Mon,  6 Jan 2014 08:25:44 -0800 (PST)
-Received: by mail-qc0-f178.google.com with SMTP id i17so17503404qcy.37
-	for <yocto@yoctoproject.org>; Mon, 06 Jan 2014 08:25:44 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=fN8I4hlxF9JK8yzfHMglD3X1Huqi8GKOnXHdTmPlRTQ=;
-	b=dQaDUuVU7FTzeYmdk9ieWFNPHjXBqDNpr8tn/q/QmJmhojT22FkjOMaxdXqSSIhvLV
-	QCV9N34vlFJGIdj0uX48eF1FRDIfAe9LMzh0ki9f/ArLU3TUatqzodfuVrYvB/kJIBq4
-	tH6fmiDbDnMMHEBClAOkNdquPMkuZsoCZ1oah064abHFRMGDxk9ZmW23+cFF/cTber+3
-	CvJe/m6Q19+LDajfbhu2a/Z1PeCRmqICDXEhVSFja6Alp/YhGYwTGpCcF2Fk4EdX7bBn
-	aFlV1bhcUOyJIuEsKzUCfD2ILGI9byPteqnPzDlGtpZHj6nNIG1Pd5qD2yJ/wTu/EAt0
-	PiSA==
-MIME-Version: 1.0
-X-Received: by 10.49.74.138 with SMTP id t10mr185859311qev.21.1389025543888;
-	Mon, 06 Jan 2014 08:25:43 -0800 (PST)
-Received: by 10.140.37.49 with HTTP; Mon, 6 Jan 2014 08:25:43 -0800 (PST)
-Date: Mon, 6 Jan 2014 09:25:43 -0700
-Message-ID: <CANwz6nzBGEOUOKpUvQRNBiLkOkKA4QbnC9N+A6pjgXRisx5MLw@mail.gmail.com>
-From: Edward Vidal <vidal.develone@gmail.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: zedboard & gnuradio already stripped error
+Return-Path: <tom.zanussi@intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 86416E00822
+	for <yocto@yoctoproject.org>; Mon,  6 Jan 2014 08:52:21 -0800 (PST)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by orsmga102.jf.intel.com with ESMTP; 06 Jan 2014 08:48:22 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.95,613,1384329600"; d="scan'208";a="454334418"
+Received: from unknown (HELO localhost) ([10.255.12.17])
+	by fmsmga001.fm.intel.com with ESMTP; 06 Jan 2014 08:52:19 -0800
+From: tom.zanussi@intel.com
+To: yocto@yoctoproject.org
+Date: Mon,  6 Jan 2014 11:55:23 -0600
+Message-Id: <c05b1f112b9f2e7049e8b66694f7438e3c3442cb.1389030821.git.tom.zanussi@intel.com>
+X-Mailer: git-send-email 1.7.9.5
+In-Reply-To: <cover.1389030821.git.tom.zanussi@intel.com>
+References: <cover.1389030821.git.tom.zanussi@intel.com>
+Subject: [PATCH 01/10] meta-chiefriver: Use the symlink to the actual image in README
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,101 +27,32 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 06 Jan 2014 16:25:47 -0000
-Content-Type: multipart/alternative; boundary=047d7bdc13fe20db4904ef4fb621
+X-List-Received-Date: Mon, 06 Jan 2014 16:52:23 -0000
 
---047d7bdc13fe20db4904ef4fb621
-Content-Type: text/plain; charset=ISO-8859-1
+From: Tom Zanussi <tom.zanussi@intel.com>
 
-Hello All,
-I just built a dora custom-image for the Zedboard.  Back in July and error
-appeared
-zedboard & gnuradio *Tue Jul 16 07:47:03 PDT 2013*
+Using the image symlink when dd'ing is more convenient for the user -
+update the documentation to reflect that.
 
-Paul helped with the following
-Hi Edward,
+Signed-off-by: Tom Zanussi <tom.zanussi@intel.com>
+---
+ meta-chiefriver/README |    2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-On Tuesday 16 July 2013 08:47:03 Edward Vidal wrote:
->* ERROR: QA Issue: File '/usr/plugins/designer/libqwt_designer_plugin.so'
-*>* from qwt was already stripped, this will prevent future debugging!
-*>* ERROR: QA Issue: File '/usr/lib/libqwt.so.6.0.1' from qwt was already
-*>* stripped, this will prevent future debugging!
-*>* ERROR: QA Issue: File '/usr/lib/libqwtmathml.so.6.0.1' from qwt was already
-*>* stripped, this will prevent future debugging!
-*
-poky.conf now marks this QA issue as an error instead of a warning in order to
-pick up on quality issues when running builds. You can either:
-
-a) Fix the recipe so that qwt gets built without stripping its output
-binaries, or
-
-b) set your own value for ERROR_QA and WARN_QA so that "already-stripped"
-appears in WARN_QA rather than ERROR_QA
-
-Cheers,
-Paul
-
+diff --git a/meta-chiefriver/README b/meta-chiefriver/README
+index 925abaa..f846be6 100644
+--- a/meta-chiefriver/README
++++ b/meta-chiefriver/README
+@@ -132,7 +132,7 @@ Under Linux, insert a USB flash drive.  Assuming the USB flash drive
+ takes device /dev/sdf, use dd to copy the live image to it.  For
+ example:
+ 
+-# dd if=core-image-sato-chiefriver-20101207053738.hddimg of=/dev/sdf
++# dd if=core-image-sato-chiefriver.hddimg of=/dev/sdf
+ # sync
+ # eject /dev/sdf
+ 
 -- 
+1.7.9.5
 
-Paul Eggleton
-Intel Open Source Technology Centre
 
-I used option b) then and in the recent build today.
-ERROR_QA = "already-stripped moved to WARN_QA = " in the file
-/home/vidal/POKY/kernel_build/poky/meta-yocto/conf/distro/poky.conf
-
-Can some please pass to meta-oe group since I do not have access to that list.
-
-This error does not occur with dylan branch I just switched to dora.
-
-Thanks.
-
---047d7bdc13fe20db4904ef4fb621
-Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div>Hello All,<br></div>I just built a dora custom-image =
-for the Zedboard.=A0 Back in July and error appeared <br><h1>zedboard &amp;=
- gnuradio <i>Tue Jul 16 07:47:03 PDT 2013</i></h1><pre>Paul helped with the=
- following <br>
-Hi Edward,
-
-On Tuesday 16 July 2013 08:47:03 Edward Vidal wrote:
-&gt;<i> ERROR: QA Issue: File &#39;/usr/plugins/designer/libqwt_designer_pl=
-ugin.so&#39;
-</i>&gt;<i> from qwt was already stripped, this will prevent future debuggi=
-ng!
-</i>&gt;<i> ERROR: QA Issue: File &#39;/usr/lib/libqwt.so.6.0.1&#39; from q=
-wt was already
-</i>&gt;<i> stripped, this will prevent future debugging!
-</i>&gt;<i> ERROR: QA Issue: File &#39;/usr/lib/libqwtmathml.so.6.0.1&#39; =
-from qwt was already
-</i>&gt;<i> stripped, this will prevent future debugging!
-</i>
-poky.conf now marks this QA issue as an error instead of a warning in order=
- to=20
-pick up on quality issues when running builds. You can either:
-
-a) Fix the recipe so that qwt gets built without stripping its output=20
-binaries, or
-
-b) set your own value for ERROR_QA and WARN_QA so that &quot;already-stripp=
-ed&quot;=20
-appears in WARN_QA rather than ERROR_QA
-
-Cheers,
-Paul
-
---=20
-
-Paul Eggleton
-Intel Open Source Technology Centre
-<br></pre><pre>I used option b) then and in the recent build today.<br>ERRO=
-R_QA =3D &quot;already-stripped moved to WARN_QA =3D &quot; in the file<br>=
-/home/vidal/POKY/kernel_build/poky/meta-yocto/conf/distro/poky.conf<br></pr=
-e>
-<pre>Can some please pass to meta-oe group since I do not have access to th=
-at list.<br></pre><pre>This error does not occur with dylan branch I just s=
-witched to dora.<br><br>Thanks.<br></pre></div>
-
---047d7bdc13fe20db4904ef4fb621--
