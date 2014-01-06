@@ -1,26 +1,28 @@
-Return-Path: <paul.eggleton@linux.intel.com>
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 39590E00852
-	for <yocto@yoctoproject.org>; Mon,  6 Jan 2014 09:40:39 -0800 (PST)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga101.fm.intel.com with ESMTP; 06 Jan 2014 09:40:20 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.95,614,1384329600"; d="scan'208";a="460843100"
-Received: from unknown (HELO helios.localnet) ([10.252.122.119])
-	by fmsmga002.fm.intel.com with ESMTP; 06 Jan 2014 09:40:19 -0800
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: Tarek El-Sherbiny <tarek.elsherbiny@gmail.com>
-Date: Mon, 06 Jan 2014 17:40:18 +0000
-Message-ID: <4512745.rGr4OXPTXM@helios>
-Organization: Intel Corporation
-User-Agent: KMail/4.10.5 (Linux/3.8.0-34-generic; KDE/4.10.5; i686; ; )
-In-Reply-To: <CAB3sqtbYhaF6_=WyiihN_kE5F7yRLL4p5-YH8B5VZMcLcSNMcA@mail.gmail.com>
-References: <CAB3sqtYOQ5qZ2qHQ_w-fkptbhCb_q9WhNXFP8dPx0jauMNHoDg@mail.gmail.com>
-	<1867359.xXuMmiy9d0@helios>
-	<CAB3sqtbYhaF6_=WyiihN_kE5F7yRLL4p5-YH8B5VZMcLcSNMcA@mail.gmail.com>
+Return-Path: <tarek.elsherbiny@gmail.com>
+Received: from mail-qc0-f170.google.com (mail-qc0-f170.google.com
+	[209.85.216.170])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DCED2E00858
+	for <yocto@yoctoproject.org>; Mon,  6 Jan 2014 10:13:40 -0800 (PST)
+Received: by mail-qc0-f170.google.com with SMTP id x13so17956668qcv.15
+	for <yocto@yoctoproject.org>; Mon, 06 Jan 2014 10:13:39 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=Lpkinrw98FYyU00S7npv5o7XwUQxJvtF1rznHKbq3hg=;
+	b=IA7n6rYC1B3Z4WJ/kSDKJ3OqVuHlfZh3STzr4FZRiNhi0aaMTVnq27ORkUE31uIl8t
+	Mui0zJV/pfeFKST2P7d8cAq7KPFQZFvWQgycZp1jPgjOjc/W5EUIjUFWPk3Jl+04RyYI
+	dZYOCTYFyYaHo8oc1qQlKvjJkoUlg5yfFPh7zPLOzHOPJsKqNdwgjM2mArf7eZJ97/vw
+	U7fxd/108NGD1nVJOd/+bJYXlbDDhmjsCHNTMTu5/L+rmuenfkJHhLVH2bkZJ/qKxShn
+	NvjfKE8DDlr4Lvx8FBkRS2NMmY24aokIUcplVba4oiCbzCbZaaMVVxDHDOlC2qloigd5
+	d0FA==
 MIME-Version: 1.0
-Cc: yocto@yoctoproject.org
-Subject: Re: Smart runtime package manager
+X-Received: by 10.49.17.232 with SMTP id r8mr187309979qed.74.1389032019680;
+	Mon, 06 Jan 2014 10:13:39 -0800 (PST)
+Received: by 10.96.81.104 with HTTP; Mon, 6 Jan 2014 10:13:39 -0800 (PST)
+Date: Mon, 6 Jan 2014 18:13:39 +0000
+Message-ID: <CAB3sqtb6bujs6EB+cBs_AhUgjkAWPOiST0RXe4wSUD3QKKwz9w@mail.gmail.com>
+From: Tarek El-Sherbiny <tarek.elsherbiny@gmail.com>
+To: yocto@yoctoproject.org
+Subject: Upgrade Kernel using smart
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,42 +34,38 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 06 Jan 2014 17:40:40 -0000
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Mon, 06 Jan 2014 18:13:43 -0000
+Content-Type: multipart/alternative; boundary=047d7bea3be41d62c204ef513826
 
-On Monday 06 January 2014 17:27:20 Tarek El-Sherbiny wrote:
-> On Mon, Jan 6, 2014 at 1:57 PM, Paul Eggleton <paul.eggleton@linux.intel.com
-> wrote:
-> > On Sunday 05 January 2014 14:20:40 Tarek El-Sherbiny wrote:
-> > > I'm trying to learn how smart works. I've been successful to create a
-> > > repo, update and install from it. Is there smart install option to force
-> > > install all the more recent packages without having to type the package
-> > > name for each individual package?
-> > > Something like update all to bring the target up-to-date in single
-> > > command.
-> > 
-> > "smart upgrade" should do this.
->
-> Thanks Paul.
-> I have another question. For smart to detect a new package version is
-> available I think I have to bump the PR of the recipe. If there is another
-> package that depends on it "e.g statically linking the library" bitbake
-> will rebuild it but it wont bump the PR automatically.  Is there a
-> mechanism for bumping the PR not only for the modified package but also for
-> all the packages that depends on it?
+--047d7bea3be41d62c204ef513826
+Content-Type: text/plain; charset=ISO-8859-1
 
-Yes, you should enable the PR service:
+Hi All,
 
-http://www.yoctoproject.org/docs/current/dev-manual/dev-manual.html#working-with-a-pr-service
+When I typed the command "smart upgrade" smart detected over a 100 kernel
+module that needs to be installed.
+Most of these modules are not relevant and not installed on my system.
+How do I tell smart to check and upgrade only  for the currently installed
+modules?
 
-Cheers,
-Paul
-
-PS: Please keep replies on the mailing list - thanks.
+Thanks,
 
 -- 
+*Tarek*
 
-Paul Eggleton
-Intel Open Source Technology Centre
+--047d7bea3be41d62c204ef513826
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
 
+<div dir=3D"ltr">Hi All,<div><br></div><div>When I typed the command &quot;=
+smart upgrade&quot; smart detected over a 100 kernel module that needs to b=
+e installed.</div><div>Most of these modules are not relevant and not insta=
+lled on my system.=A0</div>
+<div>How do I tell smart to check and upgrade only =A0for the currently ins=
+talled modules?</div><div><br></div><div>Thanks,<br clear=3D"all"><div><br>=
+</div>-- <br><div dir=3D"ltr"><i><font color=3D"#666666" face=3D"arial, hel=
+vetica, sans-serif">Tarek</font></i></div>
+
+</div></div>
+
+--047d7bea3be41d62c204ef513826--
