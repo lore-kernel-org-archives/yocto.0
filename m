@@ -1,23 +1,22 @@
 Return-Path: <tom.zanussi@intel.com>
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9BA2EE00858
-	for <yocto@yoctoproject.org>; Mon,  6 Jan 2014 08:53:30 -0800 (PST)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga101.fm.intel.com with ESMTP; 06 Jan 2014 08:52:43 -0800
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1B214E00822
+	for <yocto@yoctoproject.org>; Mon,  6 Jan 2014 08:55:25 -0800 (PST)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga101.jf.intel.com with ESMTP; 06 Jan 2014 08:54:49 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.95,613,1384329600"; d="scan'208";a="460815319"
-Received: from unknown (HELO localhost) ([10.255.12.17])
-	by fmsmga002.fm.intel.com with ESMTP; 06 Jan 2014 08:52:42 -0800
-From: tom.zanussi@intel.com
+X-IronPort-AV: E=Sophos;i="4.95,613,1384329600"; d="scan'208";a="434572032"
+Received: from unknown (HELO [10.255.12.68]) ([10.255.12.68])
+	by orsmga001.jf.intel.com with ESMTP; 06 Jan 2014 08:54:40 -0800
+Message-ID: <1389027280.3040.53.camel@empanada>
+From: Tom Zanussi <tom.zanussi@intel.com>
 To: yocto@yoctoproject.org
-Date: Mon,  6 Jan 2014 11:55:30 -0600
-Message-Id: <04f5f7b31984ebd95209c4331ed0cbdc577a2296.1389030821.git.tom.zanussi@intel.com>
-X-Mailer: git-send-email 1.7.9.5
-In-Reply-To: <c05b1f112b9f2e7049e8b66694f7438e3c3442cb.1389030821.git.tom.zanussi@intel.com>
-References: <c05b1f112b9f2e7049e8b66694f7438e3c3442cb.1389030821.git.tom.zanussi@intel.com>
+Date: Mon, 06 Jan 2014 10:54:40 -0600
 In-Reply-To: <cover.1389030821.git.tom.zanussi@intel.com>
 References: <cover.1389030821.git.tom.zanussi@intel.com>
-Subject: [PATCH 08/10] meta-romley: Use the symlink to the actual image in README
+X-Mailer: Evolution 3.8.5 (3.8.5-2.fc19) 
+Mime-Version: 1.0
+Subject: Re: [PATCH 00/10] Make dd text in READMEs consistent
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -29,32 +28,53 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 06 Jan 2014 16:53:30 -0000
+X-List-Received-Date: Mon, 06 Jan 2014 16:55:26 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
-From: Tom Zanussi <tom.zanussi@intel.com>
+Oops, sorry, wrong list, please ignore..
 
-Using the image symlink when dd'ing is more convenient for the user -
-update the documentation to reflect that.
+Tom
 
-Signed-off-by: Tom Zanussi <tom.zanussi@intel.com>
----
- meta-romley/README |    2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+On Mon, 2014-01-06 at 11:55 -0600, tom.zanussi@intel.com wrote:
+> From: Tom Zanussi <tom.zanussi@intel.com>
+> 
+> This updates all the top-level meta-intel BSPs with consistent
+> text for the dd step.
+> 
+> The following changes since commit f707b6c67909ccd84cb2070bdc15777573833461:
+> 
+>   meta-fri2: Use the symlink to the actual image in README (2014-01-06 11:34:28 -0600)
+> 
+> are available in the git repository at:
+> 
+>   git://git.yoctoproject.org/meta-intel-contrib.git tzanussi/consistify-README-dd-text
+>   http://git.yoctoproject.org/cgit.cgi//log/?h=tzanussi/consistify-README-dd-text
+> 
+> Tom Zanussi (10):
+>   meta-chiefriver: Use the symlink to the actual image in README
+>   meta-crownbay: Use the symlink to the actual image in README
+>   meta-crystalforest: Use the symlink to the actual image in README
+>   meta-emenlow: Use the symlink to the actual image in README
+>   meta-jasperforest: Use the symlink to the actual image in README
+>   meta-n450: Use the symlink to the actual image in README
+>   meta-nuc: Use the symlink to the actual image in README
+>   meta-romley: Use the symlink to the actual image in README
+>   meta-sugarbay: Use the symlink to the actual image in README
+>   meta-sys940x: Use the symlink to the actual image in README
+> 
+>  meta-chiefriver/README    |    2 +-
+>  meta-crownbay/README      |    2 +-
+>  meta-crystalforest/README |    4 ++--
+>  meta-emenlow/README       |    2 +-
+>  meta-jasperforest/README  |    2 +-
+>  meta-n450/README          |    2 +-
+>  meta-nuc/README           |    2 +-
+>  meta-romley/README        |    2 +-
+>  meta-sugarbay/README      |    2 +-
+>  meta-sys940x/README       |    2 +-
+>  10 files changed, 11 insertions(+), 11 deletions(-)
+> 
 
-diff --git a/meta-romley/README b/meta-romley/README
-index b8c089b..a5041d8 100644
---- a/meta-romley/README
-+++ b/meta-romley/README
-@@ -124,7 +124,7 @@ Under Linux, insert a USB flash drive.  Assuming the USB flash drive
- takes device /dev/sdf, use dd to copy the live image to it.  For
- example:
- 
--# dd if=core-image-sato-romley-20111007220323.hddimg of=/dev/sdf
-+# dd if=core-image-sato-romley.hddimg of=/dev/sdf
- # sync
- # eject /dev/sdf
- 
--- 
-1.7.9.5
 
 
