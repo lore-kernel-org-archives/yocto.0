@@ -1,22 +1,26 @@
-Return-Path: <tom.zanussi@intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1B214E00822
-	for <yocto@yoctoproject.org>; Mon,  6 Jan 2014 08:55:25 -0800 (PST)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga101.jf.intel.com with ESMTP; 06 Jan 2014 08:54:49 -0800
+Return-Path: <paul.eggleton@linux.intel.com>
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 39590E00852
+	for <yocto@yoctoproject.org>; Mon,  6 Jan 2014 09:40:39 -0800 (PST)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga101.fm.intel.com with ESMTP; 06 Jan 2014 09:40:20 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.95,613,1384329600"; d="scan'208";a="434572032"
-Received: from unknown (HELO [10.255.12.68]) ([10.255.12.68])
-	by orsmga001.jf.intel.com with ESMTP; 06 Jan 2014 08:54:40 -0800
-Message-ID: <1389027280.3040.53.camel@empanada>
-From: Tom Zanussi <tom.zanussi@intel.com>
-To: yocto@yoctoproject.org
-Date: Mon, 06 Jan 2014 10:54:40 -0600
-In-Reply-To: <cover.1389030821.git.tom.zanussi@intel.com>
-References: <cover.1389030821.git.tom.zanussi@intel.com>
-X-Mailer: Evolution 3.8.5 (3.8.5-2.fc19) 
-Mime-Version: 1.0
-Subject: Re: [PATCH 00/10] Make dd text in READMEs consistent
+X-IronPort-AV: E=Sophos;i="4.95,614,1384329600"; d="scan'208";a="460843100"
+Received: from unknown (HELO helios.localnet) ([10.252.122.119])
+	by fmsmga002.fm.intel.com with ESMTP; 06 Jan 2014 09:40:19 -0800
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: Tarek El-Sherbiny <tarek.elsherbiny@gmail.com>
+Date: Mon, 06 Jan 2014 17:40:18 +0000
+Message-ID: <4512745.rGr4OXPTXM@helios>
+Organization: Intel Corporation
+User-Agent: KMail/4.10.5 (Linux/3.8.0-34-generic; KDE/4.10.5; i686; ; )
+In-Reply-To: <CAB3sqtbYhaF6_=WyiihN_kE5F7yRLL4p5-YH8B5VZMcLcSNMcA@mail.gmail.com>
+References: <CAB3sqtYOQ5qZ2qHQ_w-fkptbhCb_q9WhNXFP8dPx0jauMNHoDg@mail.gmail.com>
+	<1867359.xXuMmiy9d0@helios>
+	<CAB3sqtbYhaF6_=WyiihN_kE5F7yRLL4p5-YH8B5VZMcLcSNMcA@mail.gmail.com>
+MIME-Version: 1.0
+Cc: yocto@yoctoproject.org
+Subject: Re: Smart runtime package manager
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -28,53 +32,42 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 06 Jan 2014 16:55:26 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Mon, 06 Jan 2014 17:40:40 -0000
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-Oops, sorry, wrong list, please ignore..
+On Monday 06 January 2014 17:27:20 Tarek El-Sherbiny wrote:
+> On Mon, Jan 6, 2014 at 1:57 PM, Paul Eggleton <paul.eggleton@linux.intel.com
+> wrote:
+> > On Sunday 05 January 2014 14:20:40 Tarek El-Sherbiny wrote:
+> > > I'm trying to learn how smart works. I've been successful to create a
+> > > repo, update and install from it. Is there smart install option to force
+> > > install all the more recent packages without having to type the package
+> > > name for each individual package?
+> > > Something like update all to bring the target up-to-date in single
+> > > command.
+> > 
+> > "smart upgrade" should do this.
+>
+> Thanks Paul.
+> I have another question. For smart to detect a new package version is
+> available I think I have to bump the PR of the recipe. If there is another
+> package that depends on it "e.g statically linking the library" bitbake
+> will rebuild it but it wont bump the PR automatically.  Is there a
+> mechanism for bumping the PR not only for the modified package but also for
+> all the packages that depends on it?
 
-Tom
+Yes, you should enable the PR service:
 
-On Mon, 2014-01-06 at 11:55 -0600, tom.zanussi@intel.com wrote:
-> From: Tom Zanussi <tom.zanussi@intel.com>
-> 
-> This updates all the top-level meta-intel BSPs with consistent
-> text for the dd step.
-> 
-> The following changes since commit f707b6c67909ccd84cb2070bdc15777573833461:
-> 
->   meta-fri2: Use the symlink to the actual image in README (2014-01-06 11:34:28 -0600)
-> 
-> are available in the git repository at:
-> 
->   git://git.yoctoproject.org/meta-intel-contrib.git tzanussi/consistify-README-dd-text
->   http://git.yoctoproject.org/cgit.cgi//log/?h=tzanussi/consistify-README-dd-text
-> 
-> Tom Zanussi (10):
->   meta-chiefriver: Use the symlink to the actual image in README
->   meta-crownbay: Use the symlink to the actual image in README
->   meta-crystalforest: Use the symlink to the actual image in README
->   meta-emenlow: Use the symlink to the actual image in README
->   meta-jasperforest: Use the symlink to the actual image in README
->   meta-n450: Use the symlink to the actual image in README
->   meta-nuc: Use the symlink to the actual image in README
->   meta-romley: Use the symlink to the actual image in README
->   meta-sugarbay: Use the symlink to the actual image in README
->   meta-sys940x: Use the symlink to the actual image in README
-> 
->  meta-chiefriver/README    |    2 +-
->  meta-crownbay/README      |    2 +-
->  meta-crystalforest/README |    4 ++--
->  meta-emenlow/README       |    2 +-
->  meta-jasperforest/README  |    2 +-
->  meta-n450/README          |    2 +-
->  meta-nuc/README           |    2 +-
->  meta-romley/README        |    2 +-
->  meta-sugarbay/README      |    2 +-
->  meta-sys940x/README       |    2 +-
->  10 files changed, 11 insertions(+), 11 deletions(-)
-> 
+http://www.yoctoproject.org/docs/current/dev-manual/dev-manual.html#working-with-a-pr-service
 
+Cheers,
+Paul
 
+PS: Please keep replies on the mailing list - thanks.
+
+-- 
+
+Paul Eggleton
+Intel Open Source Technology Centre
 
