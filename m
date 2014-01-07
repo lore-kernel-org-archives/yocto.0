@@ -1,25 +1,22 @@
-Return-Path: <gary@mlbassoc.com>
-Received: from mail.chez-thomas.org (mail.mlbassoc.com [65.100.170.105])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 31EDDE0084B
-	for <yocto@yoctoproject.org>; Tue,  7 Jan 2014 06:21:01 -0800 (PST)
-Received: by mail.chez-thomas.org (Postfix, from userid 1998)
-	id 0D4B6F81207; Tue,  7 Jan 2014 07:21:00 -0700 (MST)
-X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on
-	hermes.chez-thomas.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=4.0 tests=ALL_TRUSTED,BAYES_00
-	autolearn=unavailable version=3.3.2
-Received: from [192.168.1.114] (zeus [192.168.1.114])
-	by mail.chez-thomas.org (Postfix) with ESMTP id 06D58F81206;
-	Tue,  7 Jan 2014 07:20:58 -0700 (MST)
-Message-ID: <52CC0D59.20008@mlbassoc.com>
-Date: Tue, 07 Jan 2014 07:21:13 -0700
-From: Gary Thomas <gary@mlbassoc.com>
+Return-Path: <sgw@linux.intel.com>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 16878E006CA
+	for <yocto@yoctoproject.org>; Tue,  7 Jan 2014 08:42:41 -0800 (PST)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga101.jf.intel.com with ESMTP; 07 Jan 2014 08:42:40 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.95,619,1384329600"; 
+	d="scan'208,217";a="462983545"
+Received: from unknown (HELO [10.255.12.53]) ([10.255.12.53])
+	by orsmga002.jf.intel.com with ESMTP; 07 Jan 2014 08:42:39 -0800
+Message-ID: <52CC2E7F.1020306@linux.intel.com>
+Date: Tue, 07 Jan 2014 08:42:39 -0800
+From: Saul Wold <sgw@linux.intel.com>
 User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:24.0) Gecko/20100101 Thunderbird/24.2.0
+	rv:24.0) Gecko/20100101 Thunderbird/24.1.0
 MIME-Version: 1.0
-To: Yocto Project <yocto@yoctoproject.org>
-Subject: build tools problem
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Minutes: Yocto Project Technical Team Meeting - Tuesday, January 7, 2014 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada).
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -31,28 +28,93 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 07 Jan 2014 14:21:03 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+X-List-Received-Date: Tue, 07 Jan 2014 16:42:44 -0000
+X-Groupsio-MsgNum: 17698
+Content-Type: multipart/mixed; boundary="------------040309090609060706070509"
+
+--------------040309090609060706070509
+Content-Type: text/html; charset=ISO-8859-1
 Content-Transfer-Encoding: 7bit
 
-I'm using the meta-toolchain on a old system to get up to date
-git+python.  Sadly, the python is incomplete, in particular
-the 'htmlntitydefs' is missing.  This leads to an error when
-trying to build the chromium browser:
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html;
+      charset=ISO-8859-1">
+    <meta name="Generator" content="Microsoft Exchange Server">
+    <!-- converted from rtf -->
+    <style><!-- .EmailQuote { margin-left: 1pt; padding-left: 4pt; border-left: #800000 2px solid; } --></style>
+  </head>
+  <body bgcolor="#FFFFFF" text="#000000">
+    <br>
+    <font size="-1"><tt><span style="font-size:11pt;">
+          <div>Attendees:</div>
+          <div>MarkH, Matthew, ScottR, Bruce, IonutC, JeffP, Richard,
+            Ross, Nitin, Jessica, MichaelH, Belen, Beth, AlexD<br>
+            <br>
+            Agenda:</div>
+          <div>&nbsp;</div>
+          <div>* Opens collection - 5 min (Saul)</div>
+          <div>* Yocto 1.6 status - 10 min (Song/team)</div>
+          <div>&nbsp; <a
+              href="https://wiki.yoctoproject.org/wiki/Yocto_Project_v1.6_Status"><font
+                color="blue"><span style="font-size:12pt;"><u>https://wiki.yoctoproject.org/wiki/Yocto_Project_v1.6_Status</u></span></font></a></div>
+          <div>&nbsp; <a
+              href="https://wiki.yoctoproject.org/wiki/Yocto_1.6_Features"><font
+                color="blue"><span style="font-size:12pt;"><u>https://wiki.yoctoproject.org/wiki/Yocto_1.6_Features</u></span></font></a></div>
+          <div>&nbsp; - Pretty slow through the holiday season, patches
+            merged that <br>
+          </div>
+          <div>&nbsp; - bug fixing: WDD number is high. If you have time
+            available during the break, please help out on bug fixing. <br>
+          </div>
+          <div>&nbsp;&nbsp;&nbsp; . Saul, at the end of M2, will have one week
+            (1/13-1/17) bug fixing sprint week. </div>
+          <div>&nbsp; - 1.5.1: QA Complete, Working on release notes, Plan
+            release by end of week<br>
+            &nbsp; - 1.4.3: Plan for post M2<br>
+            <br>
+          </div>
+          <div>&nbsp; - Build/Beth:Saul, MUT last night, looking good.</div>
+          <br>
+        </span></tt></font><br>
+    <font size="-1"><tt><span style="font-size:11pt;">* SWAT team
+          rotation: Beth/Saul -&gt; Paul<br>
+          <br>
+          <div>* Opens - 10 min<br>
+            &nbsp;Beth - Autobuilder git fetcher work, testing in progress,
+            not backwards compatible for AB code<br>
+          </div>
+          <div><br>
+            * Team Sharing - 20 min</div>
+          <div><br>
+          </div>
+          <div><font color="#1F497D">Paul: Openembedded layer index is
+              know broken since mid-Dec, being worked on my Michael and
+              Paul<br>
+              <br>
+              Michael: LayerIndex fix and Fedora20 Machine into AB Farm.<br>
+              <br>
+              Vali Cobelea (ENEA): Will OE have CarrierGrade Features,
+              MarkH said no plans since it's WR code and would require
+              certification someone to maintain it.&nbsp; Smaller parts might
+              be available in meta-openembedded.<br>
+            </font></div>
+        </span></tt></font><font size="-1"><tt>
+      </tt></font>
+  </body>
+</html>
 
-| gyp: Error importing pymod_do_mainmodule (grit_info): No module named htmlentitydefs while loading dependencies of 
-/home/local/p8301_test/tmp/work/cortexa9hf-vfp-neon-amltd-linux-gnueabi/chromium/29.0.1518.2-r0/chromium-29.0.1518.2/build/all.gyp while trying to load 
-/home/local/p8301_test/tmp/work/cortexa9hf-vfp-neon-amltd-linux-gnueabi/chromium/29.0.1518.2-r0/chromium-29.0.1518.2/build/all.gyp
+--------------040309090609060706070509
+Content-Type: text/plain; charset=UTF-8;
+ name="Attached Message Part"
+Content-Transfer-Encoding: 7bit
+Content-Disposition: attachment;
+ filename="Attached Message Part"
 
-How can I update the meta-toolchain to fix this problem?  This is
-the version I'm using:
-   http://downloads.yoctoproject.org/releases/yocto/yocto-1.5/toolchain/i686/
+_______________________________________________
+yocto mailing list
+yocto@yoctoproject.org
+https://lists.yoctoproject.org/listinfo/yocto
 
-Thanks
 
--- 
-------------------------------------------------------------
-Gary Thomas                 |  Consulting for the
-MLB Associates              |    Embedded world
-------------------------------------------------------------
-
+--------------040309090609060706070509--
