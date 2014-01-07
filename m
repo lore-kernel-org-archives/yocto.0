@@ -1,34 +1,33 @@
-Return-Path: <perencia@gmail.com>
-Received: from mail-wi0-f178.google.com (mail-wi0-f178.google.com
-	[209.85.212.178])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3B1DBE006CA
-	for <yocto@yoctoproject.org>; Tue,  7 Jan 2014 09:54:50 -0800 (PST)
-Received: by mail-wi0-f178.google.com with SMTP id bz8so1049075wib.11
-	for <yocto@yoctoproject.org>; Tue, 07 Jan 2014 09:54:49 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=from:content-type:subject:message-id:date:to:mime-version;
-	bh=+JDr5gHMleGD8jSIstsxEW8MxjCRZGvKT4kc/B+neBk=;
-	b=axwT9xnqYJxqdtzZVslIyJOQPGtrn+MczW/TPPXmUVAEBSs0Ndo+MaskHGZ12QMmRO
-	lQbkm5onFRGOzNwPz1IJ6l3E+qG2vLMhaVVt+uaHA3IyZLXLVZWHLB9nEfhtsp5zK2gj
-	vv3iwbl7tgLs7X82JLDjgrngdCywibl4cFAPs5/QB3LW71CWZGuH0jflRQlOJmv3V7wV
-	PYLh8da2DTyk0PpQSarhI3CySDnGwObL8PC1Lk5cI7Shh2RtXmYC4POb1uz8kyXHxQPl
-	FP8efprKWtEL95isTQbRSN8hZfEsdzXimy8M+u0ajWqecFAh5OBG4GDi9ZHxtMwd223F
-	mM9A==
-X-Received: by 10.180.94.7 with SMTP id cy7mr17739995wib.21.1389117288860;
-	Tue, 07 Jan 2014 09:54:48 -0800 (PST)
-Received: from [192.168.1.8] (81.184.215.121.dyn.user.ono.com.
-	[81.184.215.121])
-	by mx.google.com with ESMTPSA id e5sm31279032wja.15.2014.01.07.09.54.47
-	for <yocto@yoctoproject.org>
-	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
-	Tue, 07 Jan 2014 09:54:47 -0800 (PST)
-From: pedro <perencia@gmail.com>
-Message-Id: <FEF787CD-9378-4BD0-A524-C3A17E9C663E@gmail.com>
-Date: Tue, 7 Jan 2014 18:54:46 +0100
-To: yocto@yoctoproject.org
-Mime-Version: 1.0 (Mac OS X Mail 7.1 \(1827\))
-X-Mailer: Apple Mail (2.1827)
-Subject: Internal compilation errors with -Os
+Return-Path: <elizabeth.flanagan@intel.com>
+Received: from mail-vb0-f45.google.com (mail-vb0-f45.google.com
+	[209.85.212.45])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9B8BDE006CA
+	for <yocto@yoctoproject.org>; Tue,  7 Jan 2014 11:04:11 -0800 (PST)
+Received: by mail-vb0-f45.google.com with SMTP id i12so424189vbh.32
+	for <yocto@yoctoproject.org>; Tue, 07 Jan 2014 11:04:11 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:date:message-id:subject:from:to
+	:content-type;
+	bh=2/fmauZky6ySVeNnLLDnhMROQNAUBHDsfMECJlV6YpQ=;
+	b=cU24AYHyG17nRDRDlKAJpz844SobOEFCB6AUpVWaSVg7BwH0lsns87vthnUh8ARPY6
+	UoCxTG+OnfhiB040sB2JPk4eJ/AORvum2+vmVpZzC7nrcX632vYdMK0eXotO+oI1woyj
+	qva1XC0GnZNoTDuDrwmQhhaABvoCDBJnfVpe5ZjMbDwzo3n2PPQ4Rgdy6DoWTIYZC4u9
+	66r5cOOiiecDrbYD2LU6SYSYiIGdX8syOa9/m5maXoHO51vW2bor+MH3bT94/YeF7lG9
+	2YxC/7t+H9PyMqHUpFJK2TXoidJLIghazmNGH3m444SwJEdDQGcq5iH+aonXUGm7d/rn
+	cL/g==
+X-Gm-Message-State: ALoCoQkq2N0OAm8H4qADJ299F+d8xG7aapQpCIyjXP32I4kgM2NpkvyYwzTCnZrRHuF/XT1pUNFr
+MIME-Version: 1.0
+X-Received: by 10.52.57.194 with SMTP id k2mr3674471vdq.41.1389121450895; Tue,
+	07 Jan 2014 11:04:10 -0800 (PST)
+Received: by 10.52.164.142 with HTTP; Tue, 7 Jan 2014 11:04:10 -0800 (PST)
+Date: Tue, 7 Jan 2014 19:04:10 +0000
+Message-ID: <CAPhnLPCQXXwWjY2qaJvYETDg3_BqAtOOJd+bphUMt4vS13imoA@mail.gmail.com>
+From: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>, 
+	Alexandru C Georgescu <alexandru.c.georgescu@intel.com>,
+	Zhao Yi <yi.zhao@windriver.com>, Otavio Salvador <otavio@ossystems.com.br>
+Subject: Weekly build soon available
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,123 +39,28 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 07 Jan 2014 17:54:51 -0000
-Content-Type: multipart/alternative;
-	boundary="Apple-Mail=_DEE581E5-E9D8-473E-9AC3-3005E7D76663"
+X-List-Received-Date: Tue, 07 Jan 2014 19:04:12 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
---Apple-Mail=_DEE581E5-E9D8-473E-9AC3-3005E7D76663
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain;
-	charset=windows-1252
+The latest weekly will soon be available at:
 
-I=92m trying to build the qt4e-demo-image and i=92ve stumped into xgcc =
-internal compiler error when trying to compile libgcc (danny)
+http://autobuilder.yoctoproject.org/pub/nightly/20140107-1
 
-The compilation line that gives the error is this:
+Please begin your QA processes
 
-=
-/home/pedro/poky-last/poky/build/tmp/work/armv7a-vfp-neon-poky-linux-gnuea=
-bi/gcc-cross-initial-4.7.2-r13/gcc-4.7.2/build.x86_64-linux.arm-poky-linux=
--gnueabi/./gcc/xgcc =
--B/home/pedro/poky-last/poky/build/tmp/work/armv7a-vfp-neon-poky-linux-gnu=
-eabi/gcc-cross-initial-4.7.2-r13/gcc-4.7.2/build.x86_64-linux.arm-poky-lin=
-ux-gnueabi/./gcc/ -march=3Darmv7-a     -mthumb-interwork =
--mfloat-abi=3Dsoftfp -mfpu=3Dneon -mtune=3Dcortex-a8 =
--isystem/home/pedro/poky-last/poky/build/tmp/sysroots/igep00x0/usr/include=
- =
--B/home/pedro/poky-last/poky/build/tmp/sysroots/x86_64-linux/usr/arm-poky-=
-linux-gnueabi/bin/ =
--B/home/pedro/poky-last/poky/build/tmp/sysroots/x86_64-linux/usr/arm-poky-=
-linux-gnueabi/lib/ -isystem =
-/home/pedro/poky-last/poky/build/tmp/sysroots/x86_64-linux/usr/arm-poky-li=
-nux-gnueabi/include -isystem =
-/home/pedro/poky-last/poky/build/tmp/sysroots/x86_64-linux/usr/arm-poky-li=
-nux-gnueabi/sys-include =
---sysroot=3D/home/pedro/poky-last/poky/build/tmp/work/armv7a-vfp-neon-poky=
--linux-gnueabi/gcc-cross-initial-4.7.2-r13/gcc-4.7.2/build.x86_64-linux.ar=
-m-poky-linux-gnueabi/tmpsysroot   -g -Os -O2  -g -Os -DIN_GCC =
--DCROSS_DIRECTORY_STRUCTURE  -W -Wall -Wno-narrowing -Wwrite-strings =
--Wcast-qual -Wstrict-prototypes -Wmissing-prototypes =
--Wold-style-definition  -isystem ./include   -fPIC -fno-inline -g =
--DIN_LIBGCC2 -fbuilding-libgcc -fno-stack-protector -Dinhibit_libc  =
--fPIC -fno-inline -I. -I. -I../.././gcc =
--I/home/pedro/poky-last/poky/build/tmp/work-shared/gcc-4.7.2-r13/gcc-4.7.2=
-/libgcc =
--I/home/pedro/poky-last/poky/build/tmp/work-shared/gcc-4.7.2-r13/gcc-4.7.2=
-/libgcc/. =
--I/home/pedro/poky-last/poky/build/tmp/work-shared/gcc-4.7.2-r13/gcc-4.7.2=
-/libgcc/../gcc =
--I/home/pedro/poky-last/poky/build/tmp/work-shared/gcc-4.7.2-r13/gcc-4.7.2=
-/libgcc/../include  -DHAVE_CC_TLS  -o _absvdi2.o -MT _absvdi2.o -MD -MP =
--MF _absvdi2.dep -DL_absvdi2 -c =
-/home/pedro/poky-last/poky/build/tmp/work-shared/gcc-4.7.2-r13/gcc-4.7.2/l=
-ibgcc/libgcc2.c -fvisibility=3Dhidden -DHIDE_EXPORTS
+bitbake f594cb9f5a18dd0ab2342f96ffc6dba697b35f65
+eclipse-poky-juno 26bfc407781aa185f244a47ba63120343cee4a37
+eclipse-poky-kepler c73c6e4510c42601854f3c542ca6e14b4510380c
+meta-fsl-arm 5ede821064bfe6b94500a113c05d03d15c63af5e
+meta-fsl-ppc 035687a8e3a9a9d1576b33142f3c5817ef1161c0
+meta-intel 11fc51c05f378b7fef2f5879e8e1f11d7046e85b
+meta-minnow 6a4f0dd875a5ec0303ab4387944dc7eb98508769
+meta-qt3 4772424ab69908d4e3b9d6d4717ca889468e6acd
+oecore 1028ac813fa9803ebfff6bcfa7f8b67012609b27
+poky e93a345fae7c21652547bec501fcb1f3b6c6427d
 
+-- 
+Elizabeth Flanagan
+Yocto Project
+Build and Release
 
-I=92ve noticed that it has  -g -Os -O2  -g -Os. If I change it to -g -O2 =
-it compiles fine. Where do they come from ?  I=92ve been trying to find =
-where they are defined but i cannot see them in the gcc or the libgcc =
-bbs.  How could I get rid of the -Os ?
-
-
-
---Apple-Mail=_DEE581E5-E9D8-473E-9AC3-3005E7D76663
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/html;
-	charset=windows-1252
-
-<html><head><meta http-equiv=3D"Content-Type" content=3D"text/html =
-charset=3Dwindows-1252"></head><body style=3D"word-wrap: break-word; =
--webkit-nbsp-mode: space; -webkit-line-break: after-white-space;"><font =
-size=3D"2" face=3D"Arial">I=92m trying to build the qt4e-demo-image and =
-i=92ve stumped into xgcc internal compiler error when trying to compile =
-libgcc (danny)</font><div><font size=3D"2" =
-face=3D"Arial"><br></font></div><div><font size=3D"2" face=3D"Arial">The =
-compilation line that gives the error is =
-this:</font></div><div><br></div><div><div><font face=3D"Courier =
-New">/home/pedro/poky-last/poky/build/tmp/work/armv7a-vfp-neon-poky-linux-=
-gnueabi/gcc-cross-initial-4.7.2-r13/gcc-4.7.2/build.x86_64-linux.arm-poky-=
-linux-gnueabi/./gcc/xgcc =
--B/home/pedro/poky-last/poky/build/tmp/work/armv7a-vfp-neon-poky-linux-gnu=
-eabi/gcc-cross-initial-4.7.2-r13/gcc-4.7.2/build.x86_64-linux.arm-poky-lin=
-ux-gnueabi/./gcc/ -march=3Darmv7-a &nbsp; &nbsp; -mthumb-interwork =
--mfloat-abi=3Dsoftfp -mfpu=3Dneon -mtune=3Dcortex-a8 =
--isystem/home/pedro/poky-last/poky/build/tmp/sysroots/igep00x0/usr/include=
- =
--B/home/pedro/poky-last/poky/build/tmp/sysroots/x86_64-linux/usr/arm-poky-=
-linux-gnueabi/bin/ =
--B/home/pedro/poky-last/poky/build/tmp/sysroots/x86_64-linux/usr/arm-poky-=
-linux-gnueabi/lib/ -isystem =
-/home/pedro/poky-last/poky/build/tmp/sysroots/x86_64-linux/usr/arm-poky-li=
-nux-gnueabi/include -isystem =
-/home/pedro/poky-last/poky/build/tmp/sysroots/x86_64-linux/usr/arm-poky-li=
-nux-gnueabi/sys-include =
---sysroot=3D/home/pedro/poky-last/poky/build/tmp/work/armv7a-vfp-neon-poky=
--linux-gnueabi/gcc-cross-initial-4.7.2-r13/gcc-4.7.2/build.x86_64-linux.ar=
-m-poky-linux-gnueabi/tmpsysroot &nbsp; <b>-g -Os -O2 &nbsp;-g -Os =
-</b>-DIN_GCC -DCROSS_DIRECTORY_STRUCTURE &nbsp;-W -Wall -Wno-narrowing =
--Wwrite-strings -Wcast-qual -Wstrict-prototypes -Wmissing-prototypes =
--Wold-style-definition &nbsp;-isystem ./include &nbsp; -fPIC -fno-inline =
--g -DIN_LIBGCC2 -fbuilding-libgcc -fno-stack-protector -Dinhibit_libc =
-&nbsp;-fPIC -fno-inline -I. -I. -I../.././gcc =
--I/home/pedro/poky-last/poky/build/tmp/work-shared/gcc-4.7.2-r13/gcc-4.7.2=
-/libgcc =
--I/home/pedro/poky-last/poky/build/tmp/work-shared/gcc-4.7.2-r13/gcc-4.7.2=
-/libgcc/. =
--I/home/pedro/poky-last/poky/build/tmp/work-shared/gcc-4.7.2-r13/gcc-4.7.2=
-/libgcc/../gcc =
--I/home/pedro/poky-last/poky/build/tmp/work-shared/gcc-4.7.2-r13/gcc-4.7.2=
-/libgcc/../include &nbsp;-DHAVE_CC_TLS &nbsp;-o _absvdi2.o -MT =
-_absvdi2.o -MD -MP -MF _absvdi2.dep -DL_absvdi2 -c =
-/home/pedro/poky-last/poky/build/tmp/work-shared/gcc-4.7.2-r13/gcc-4.7.2/l=
-ibgcc/libgcc2.c -fvisibility=3Dhidden =
--DHIDE_EXPORTS</font></div></div><div><br></div><div><br></div><div><font =
-face=3D"Arial" size=3D"2">I=92ve noticed that it has &nbsp;</font><font =
-face=3D"Courier New">-g -Os -O2 &nbsp;-g -Os</font>. <font face=3D"Arial" =
-size=3D"2">If I change it to -g -O2 it compiles fine. Where do they come =
-from ? &nbsp;I=92ve been trying to find where they are defined but i =
-cannot see them in the gcc or the libgcc bbs. &nbsp;How could I get rid =
-of the</font> <font face=3D"Courier New">-Os =
-</font>?</div><div><br></div><div><br></div></body></html>=
-
---Apple-Mail=_DEE581E5-E9D8-473E-9AC3-3005E7D76663--
