@@ -1,35 +1,29 @@
-Return-Path: <reeve.yang@gmail.com>
-Received: from mail-la0-f48.google.com (mail-la0-f48.google.com
-	[209.85.215.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C43D2E006CA
-	for <yocto@yoctoproject.org>; Tue,  7 Jan 2014 12:59:53 -0800 (PST)
-Received: by mail-la0-f48.google.com with SMTP id n7so525486lam.35
-	for <yocto@yoctoproject.org>; Tue, 07 Jan 2014 12:59:52 -0800 (PST)
+Return-Path: <vidal.develone@gmail.com>
+Received: from mail-qa0-f41.google.com (mail-qa0-f41.google.com
+	[209.85.216.41])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A8A9CE006CA;
+	Tue,  7 Jan 2014 14:07:53 -0800 (PST)
+Received: by mail-qa0-f41.google.com with SMTP id w5so1159312qac.14
+	for <multiple recipients>; Tue, 07 Jan 2014 14:07:52 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type;
-	bh=0SJs+dTblgZgGoAqIvRpZEhPBHyxc+4xx7ZMyMhaxI4=;
-	b=lkJ6qh9ZSXk6e0NtWlaEVKMLSRB3oonHKcD+UIqMz5vFc3kwB6MR/o9wfLWlR0/uqy
-	axp7Chrh/l67EjHESYcYWjankyGo9cTWhx5FJ9IrwWyXfgtkysZ+rSmQafaPXdO5goIr
-	bUV4I7S0HxKPFftEmFyB3URYWoDEbabnz8iZtu3a/ajIT9km5t+f7EwdVlR+inNr4/ka
-	AdWqk7dDhRQKQVbTDBjI1A/tTN99Sv9hb/PFe+LVf0LQujrKAYKqIRrnYadWl47LqV7N
-	ajRw9QybkzTR1djRcWqdlz7djjyJUQ1QM5E+jnHZ6K5Ktduidb4iHA101IxYU5PPyhUn
-	FuVQ==
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=wIJPZ+0QQP7mtaZ4gg+Zjc5QFQlBIK6v82ULpJX3xrY=;
+	b=AysT8RryYBeXRje8D/tK45u8EPl3aW6bGWz105OaNqG/gN815u17pzyNJ14m9I9LtC
+	kecBcmKONO+fE5LRRT2wTbRFj77z3nLpynNgP0y7hV1U7fMvs4uIHUg3S4pDbUe2Mm5w
+	Td+/QZqNmfueEBOedtnKhTmYPNy/PGVU7883B/CjfUZ30KCsfaem3ggd3Bj1/j7BX0Xe
+	UjbzIEoFJ/FcaZS9mqU3JyJLmbi9tgWldC0zmSWucKNKQT4zr0QrO6zO1iTjt+eMSE25
+	qUNzjaDyHiFiXxaDThqskhI1oq6QnvGt3oOsj/rX+oQpDNMog2mTVtP5A3EWqrgjBNWp
+	4pdA==
 MIME-Version: 1.0
-X-Received: by 10.112.189.134 with SMTP id gi6mr45063774lbc.6.1389128391795;
-	Tue, 07 Jan 2014 12:59:51 -0800 (PST)
-Received: by 10.152.25.137 with HTTP; Tue, 7 Jan 2014 12:59:51 -0800 (PST)
-In-Reply-To: <CAP71WjzP3w43Bmw7R=FeC8p31pJLNwD1zyBmsGL4ZshwbzLpag@mail.gmail.com>
-References: <CAGNTBAXK-0hqLbyxdRo7RfS6MkPfxP+etmx0bE=P9vjF91tTgQ@mail.gmail.com>
-	<CAP71WjxP67f0pnxBYZfFKEB0dvR55yc4r3etUNhwbi1vZdftMg@mail.gmail.com>
-	<CAGNTBAVHWpnM2p+WoWmOJ145Y8eaeQSEPex8AXZtPod77hGtgA@mail.gmail.com>
-	<CAP71WjzP3w43Bmw7R=FeC8p31pJLNwD1zyBmsGL4ZshwbzLpag@mail.gmail.com>
-Date: Tue, 7 Jan 2014 12:59:51 -0800
-Message-ID: <CAGNTBAUw=P7S4kWTSu2SE7PjrwpCHj9eWgvXGB=naY4XMSNjQg@mail.gmail.com>
-From: Reeve Yang <reeve.yang@gmail.com>
-To: Nicolas Dechesne <nicolas.dechesne@linaro.org>
-Cc: Yocto list discussion <yocto@yoctoproject.org>
-Subject: Re: Problem & Question about FILES_${PN}
+X-Received: by 10.49.28.101 with SMTP id a5mr201198553qeh.70.1389132472254;
+	Tue, 07 Jan 2014 14:07:52 -0800 (PST)
+Received: by 10.140.37.49 with HTTP; Tue, 7 Jan 2014 14:07:52 -0800 (PST)
+Date: Tue, 7 Jan 2014 15:07:52 -0700
+Message-ID: <CANwz6nyrM0SP=xukjr2QtYbR4M2XU1F7a7up1wW1rCAoQP-TCQ@mail.gmail.com>
+From: Edward Vidal <vidal.develone@gmail.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
+	meta-xilinx@yoctoproject.org
+Subject: booting zedboard dora build
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,204 +35,354 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 07 Jan 2014 21:00:01 -0000
-Content-Type: multipart/alternative; boundary=001a11c36ad25725fb04ef67a855
+X-List-Received-Date: Tue, 07 Jan 2014 22:07:57 -0000
+Content-Type: multipart/alternative; boundary=047d7bd6adbc8e046004ef689bc1
 
---001a11c36ad25725fb04ef67a855
+--047d7bd6adbc8e046004ef689bc1
 Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
 
-Hi Nico,
+hello All,
 
-As you suggested, I removed  ${libdir}/${BPN}/*${SOLIBSDEV} from
-"FILES_${PN}-dev", but now I'm getting this error:
+My boot starts to boot then I get a data abort see below.
 
-ERROR: QA Issue: non -dev/-dbg/-nativesdk package contains symlink .so:
-syslog-ng path
-'/work/x86_64-poky-linux/syslog-ng/3.2.5-r12.1/packages-split/syslog-ng/usr=
-/lib64/syslog-ng/libafsocket.so'
-ERROR: QA run found fatal errors. Please consider fixing them.
-ERROR: Function failed: do_package_qa
-ERROR: Logfile of failure stored in:
-/home2/reeve-ws/yocto-dylan-merge/build/tmp/work/x86_64-poky-linux/syslog-n=
-g/3.2.5-r12.1/temp/log.do_package.16779
-ERROR: Task 6
-(/home2/reeve-ws/yocto-dylan-merge/meta-openembedded/meta-oe/recipes-suppor=
-t/nonworking/syslog-ng/
-syslog-ng_3.2.5.bb, do_package) failed with exit code '1'
+md5sums of files where they source to be put on /run/media/vidal/ZED_BOOT/
+These should match the md5sums on /run/media/vidal/ZED_BOOT/
+d34217fdf453c318a11bada96464a014  yocto010514/BOOT.BIN
+7a1525c3a1a63fcffbb172348cdd4221
+zedboard_support_files/boot_files_yocto_wmyled/devicetree.dtb
+7cf4e3eea28ce84886d4618856703979  yocto010514/zedboard-zynq7/uImage
+
+md5sum /run/media/vidal/ZED_BOOT/*
+
+d34217fdf453c318a11bada96464a014  /run/media/vidal/ZED_BOOT/BOOT.BIN
+u-boot created with poky & bootgen
+yocto010514/bootimage.bif
+the_ROM_image:
+{
+        [bootloader]/home/vidal/yocto010514/FSBL.elf
+        /home/vidal/yocto010514//system.bit
+        /home/vidal/yocto010514/zedboard-zynq7/u-boot.elf
+}
+
+7a1525c3a1a63fcffbb172348cdd4221
+/run/media/vidal/ZED_BOOT/devicetree.dtb   linux-digilent
+105fce435d72233f63a35aeba7b8eab1  /run/media/vidal/ZED_BOOT/uEnv.txt
+This the contents of uEnv.txt
+
+devtreeld=fatload mmc 0 0x2A00000 devicetree.dtb
+kerload=fatload mmc 0 0x00008000 uImage
+mmcboot=run devtreeld; run kerload; bootm 0x00008000 - 0x2A00000
+
+7cf4e3eea28ce84886d4618856703979  /run/media/vidal/ZED_BOOT/uImage
+created with poky
+
+mkimage -l /home/vidal/yocto010514/zedboard-zynq7/uImage
+Image Name:   Linux-3.8.11-xilinx
+Created:      Sun Jan  5 15:56:08 2014
+Image Type:   ARM Linux Kernel Image (uncompressed)
+Data Size:    2858760 Bytes = 2791.76 kB = 2.73 MB
+Load Address: 00008000
+Entry Point:  00008000
 
 
-It looks main binary package doesn't have a symlink of .so. How to fix that=
-?
+ls -la /run/media/vidal/ZED_BOOT/*
+-rw-r--r--. 1 vidal users 4372888 Jan  7 13:04
+/run/media/vidal/ZED_BOOT/BOOT.BIN
+-rw-r--r--. 1 vidal users    9720 Jan  7 12:39
+/run/media/vidal/ZED_BOOT/devicetree.dtb
+-rw-r--r--. 1 vidal users     154 Jan  7 14:05
+/run/media/vidal/ZED_BOOT/uEnv.txt
+-rw-r--r--. 1 vidal users 2858824 Jan  7 13:27 /run/media/vidal/ZED_BOOT/uImage
 
-Thanks.
-- Reeve
+
+After the uEnv.txt has been read
+* - * Qodem 0.1.2 Capture Generated Tue, 07 Jan 2014 14:17:21 -0700 BEGIN * - *
+
+echo $mmcboot
+run devtreeld; run kerload; bootm 0x00008000 - 0x2A00000
+zynq-uboot> echo $devtreeld
+fatload mmc 0 0x2A00000 devicetree.dtb
+zynq-uboot> echo $kerload
+fatload mmc 0 0x00008000 uImage
+zynq-uboot> setenv modeboot mmcboot
+zynq-uboot> boot
+Now when I boot using mmcboot this is the output
+
+reading devicetree.dtb
+9720 bytes read in 18 ms (527.3 KiB/s)
+reading uImage
+2858824 bytes read in 444 ms (6.1 MiB/s)
+## Booting kernel from Legacy Image at 00008000 ...
+   Image Name:   Linux-3.8.11-xilinx
+   Image Type:   ARM Linux Kernel Image (uncompressed)
+   Data Size:    2858760 Bytes = 2.7 MiB
+   Load Address: 00008000
+   Entry Point:  00008000
+   Verifying Checksum ... OK
+## Flattened Device Tree blob at 02a00000
+   Booting using the fdt blob at 0x2a00000
+   XIP Kernel Image ... OK
+   Loading Device Tree to 1fb4f000, end 1fb545f7 ... OK
+
+Starting kernel ...
+
+data abort
+
+    MAYBE you should read doc/README.arm-unaligned-accesses
+
+pc : [<1ff7624c>]   lr : [<1ff777d0>]
+sp : 3ffffffc  ip : 00000000 fp : 00020205
+r10: 1ffaeaf0  r9 : f345364f r8 : 00800000
+r7 : 00000000  r6 : 00008000 r5 : 1ffaeaf0  r4 : 00000000
+r3 : 00002614  r2 : 1fb4f000 r1 : baefa2ee  r0 : 11acb1b4
+Flags: nzcv  IRQs on  FIQs on  Mode SVC_32
+Resetting CPU ...
+
+resetting ...
+
+Xilinx First Stage Boot Loader
+Release 14.3 Sep 29 2013-13:27:28
+Devcfg driver initialized
+Silicon Version 1.0
+Boot mode is SD
+SD Init Done
+Flash BaseAddress E0100000
+Reboot status register 0x60000000
+ImageStartAddress = 00000000
+PartitionNumber = 00000000
+flash read base addr E0100000, image base 0
+FSBL main: Skip partition
+Reboot status register 0x61000000
+ImageStartAddress = 00000000
+PartitionNumber = 00000001
+flash read base addr E0100000, image base 0
+Reset USB...
+SUCCESSFUL_HANDOFF
+  FSBLStatus = 0x1
 
 
-On Tue, Jan 7, 2014 at 12:39 PM, Nicolas Dechesne <
-nicolas.dechesne@linaro.org> wrote:
+U-Boot 2013.07 (Jan 06 2014 - 10:40:34)
 
-> Hi,
->
-> Le 7 janv. 2014 21:35, "Reeve Yang" <reeve.yang@gmail.com> a =E9crit :
->
-> >
-> > Hi Nicolas,
-> >
-> > Thanks for reply. How nice it is! But one thing I don't understand is,
-> sometimes the files might be needed into two different packages, e.g. mai=
-n
-> and dev, how can we achieve that? In another words, is there anyway in
-> local recipe to make files not deleted during packaging time?
->
-> Thanks. Please let's keep the discussion on the list.
->
-> you cannot do that. In fact i don't quite see why you would want to do
-> that. If 2 packages provide the same file you won't be able to install th=
-em
-> simultaneously.
->
-> If you want to duplicate the same file in 2 different location in the
-> rootFS then you can duplicate in do_install().
->
-> >
-> > Appreciate your help.
-> > - Reeve
-> >
-> >
-> > On Mon, Jan 6, 2014 at 4:29 PM, Nicolas Dechesne <
-> nicolas.dechesne@linaro.org> wrote:
-> >>
-> >>
-> >> On Tue, Jan 7, 2014 at 1:19 AM, Reeve Yang <reeve.yang@gmail.com>
-> wrote:
-> >>>
-> >>> FILES_${PN} =3D "${bindir}/* ${sbindir}/* ${libexecdir}/*
-> ${libdir}/lib*${SOLIBS} \
-> >>>     ${sysconfdir} ${sharedstatedir} ${localstatedir} \
-> >>>     ${base_bindir}/* ${base_sbindir}/* \
-> >>>     ${base_libdir}/*${SOLIBS} \
-> >>>     ${datadir}/${BPN} ${libdir}/${BPN}/*${SOLIBSDEV} \
-> >>>     ${datadir}/include/scl/ ${datadir}/xsd"
-> >>> FILES_${PN}-dev +=3D "${libdir}/${BPN}/lib*.la
-> ${libdir}/${BPN}/*${SOLIBSDEV}"
-> >>
-> >>
-> >> it seems that  ${libdir}/${BPN}/*${SOLIBSDEV} is both in FILES_{PN} an=
-d
-> FILES_{PN}-dev, in which case the actual files will be added in the -dev
-> package, not, the 'main binary' package.
-> >>
-> >> Files are 'removed' from the local 'install' directory ($D) by
-> processing FILES_{PN} variables in the order defined by PACKAGES. since t=
-he
-> -dev package is before the binary package, your .so files will be added t=
-o
-> the -dev package first, and no longer in the local 'install' folder when
-> the binary package is being built.
-> >>
-> >> so you need to remove the glob from FILES_{PN}-dev.
-> >>
-> >>
-> >>
-> >
->
+Memory: ECC disabled
+DRAM:  512 MiB
+WARNING: Caches not enabled
+MMC:   zynq_sdhci: 0
+SF: Detected S25FL256S_64K with page size 64 KiB, total 32 MiB
+*** Warning - bad CRC, using default environment
 
---001a11c36ad25725fb04ef67a855
+In:    serial
+Out:   serial
+Err:   serial
+Net:   Gem.e000b000
+Hit any key to stop autoboot:  3  2  1  0
+Device: zynq_sdhci
+Manufacturer ID: 2
+OEM: 544d
+Name: SA32G
+Tran Speed: 50000000
+Rd Block Len: 512
+SD version 3.0
+High Capacity: Yes
+Capacity: 29.3 GiB
+Bus Width: 4-bit
+reading uEnv.txt
+154 bytes read in 9 ms (16.6 KiB/s)
+Loaded environment from uEnv.txt
+Importing environment from SD ...
+Copying Linux from SD to RAM...
+reading uImage
+2858824 bytes read in 448 ms (6.1 MiB/s)
+reading devicetree.dtb
+9720 bytes read in 19 ms (499 KiB/s)
+reading uramdisk.image.gz
+** Unable to read file uramdisk.image.gz **
+zynq-uboot>
+* - * Qodem 0.1.2 Capture Generated Tue, 07 Jan 2014 14:19:21 -0700 END * - *
+
+Any and all help is appreciated.
+
+Thanks
+Ed Vidal
+
+--047d7bd6adbc8e046004ef689bc1
 Content-Type: text/html; charset=ISO-8859-1
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Hi Nico,<div><br></div><div>As you suggested, I removed=A0=
-<span style=3D"font-size:13px;font-family:arial,sans-serif">=A0${libdir}/${=
-BPN}/*${</span><span style=3D"font-size:13px;font-family:arial,sans-serif">=
-SOLIBSDEV} from &quot;FILES_${PN}-dev&quot;, but now I&#39;m getting this e=
-rror:</span></div>
-<div><span style=3D"font-size:13px;font-family:arial,sans-serif"><br></span=
-></div><div><span style=3D"font-size:13px;font-family:arial,sans-serif"><di=
-v>ERROR: QA Issue: non -dev/-dbg/-nativesdk package contains symlink .so: s=
-yslog-ng path &#39;/work/x86_64-poky-linux/syslog-ng/3.2.5-r12.1/packages-s=
-plit/syslog-ng/usr/lib64/syslog-ng/libafsocket.so&#39;</div>
-<div>ERROR: QA run found fatal errors. Please consider fixing them.</div><d=
-iv>ERROR: Function failed: do_package_qa</div><div>ERROR: Logfile of failur=
-e stored in: /home2/reeve-ws/yocto-dylan-merge/build/tmp/work/x86_64-poky-l=
-inux/syslog-ng/3.2.5-r12.1/temp/log.do_package.16779</div>
-<div>ERROR: Task 6 (/home2/reeve-ws/yocto-dylan-merge/meta-openembedded/met=
-a-oe/recipes-support/nonworking/syslog-ng/<a href=3D"http://syslog-ng_3.2.5=
-.bb">syslog-ng_3.2.5.bb</a>, do_package) failed with exit code &#39;1&#39;<=
+<div dir=3D"ltr"><div><div>hello All,<br>
+
+
+=09
+=09
+=09
+	<style type=3D"text/css">PRE { direction: ltr; color: rgb(0, 0, 0); }PRE.w=
+estern {  }PRE.cjk { font-family: "WenQuanYi Zen Hei Sharp",monospace; }PRE=
+.ctl { font-family: "Lohit Devanagari",monospace; }P { margin-bottom: 0.08i=
+n; direction: ltr; color: rgb(0, 0, 0); }P.western { font-family: "Liberati=
+on Serif","Times New Roman",serif; font-size: 12pt; }P.cjk { font-family: "=
+WenQuanYi Zen Hei Sharp"; font-size: 12pt; }P.ctl { font-family: "Lohit Dev=
+anagari"; font-size: 12pt; }</style>
+
+
+<pre class=3D"">My boot starts to boot then I get a data abort see below.<b=
+r><br>md5sums of files where they source to be put on /run/media/vidal/ZED_=
+BOOT/
+These should match the md5sums on /run/media/vidal/ZED_BOOT/
+d34217fdf453c318a11bada96464a014  yocto010514/BOOT.BIN
+7a1525c3a1a63fcffbb172348cdd4221  zedboard_support_files/boot_files_yocto_w=
+myled/devicetree.dtb
+7cf4e3eea28ce84886d4618856703979  yocto010514/zedboard-zynq7/uImage
+
+md5sum /run/media/vidal/ZED_BOOT/*
+
+d34217fdf453c318a11bada96464a014  /run/media/vidal/ZED_BOOT/BOOT.BIN u-boot=
+ created with poky &amp; bootgen=20
+yocto010514/bootimage.bif
+the_ROM_image:
+{
+        [bootloader]/home/vidal/yocto010514/FSBL.elf
+        /home/vidal/yocto010514//system.bit
+        /home/vidal/yocto010514/zedboard-zynq7/u-boot.elf
+}
+
+7a1525c3a1a63fcffbb172348cdd4221  /run/media/vidal/ZED_BOOT/devicetree.dtb =
+  linux-digilent
+105fce435d72233f63a35aeba7b8eab1  /run/media/vidal/ZED_BOOT/uEnv.txt
+This the contents of uEnv.txt
+
+devtreeld=3Dfatload mmc 0 0x2A00000 devicetree.dtb
+kerload=3Dfatload mmc 0 0x00008000 uImage
+mmcboot=3Drun devtreeld; run kerload; bootm 0x00008000 - 0x2A00000
+
+7cf4e3eea28ce84886d4618856703979  /run/media/vidal/ZED_BOOT/uImage created =
+with poky
+
+mkimage -l /home/vidal/yocto010514/zedboard-zynq7/uImage
+Image Name:   Linux-3.8.11-xilinx
+Created:      Sun Jan  5 15:56:08 2014
+Image Type:   ARM Linux Kernel Image (uncompressed)
+Data Size:    2858760 Bytes =3D 2791.76 kB =3D 2.73 MB
+Load Address: 00008000
+Entry Point:  00008000
+
+
+ls -la /run/media/vidal/ZED_BOOT/*
+-rw-r--r--. 1 vidal users 4372888 Jan  7 13:04 /run/media/vidal/ZED_BOOT/BO=
+OT.BIN
+-rw-r--r--. 1 vidal users    9720 Jan  7 12:39 /run/media/vidal/ZED_BOOT/de=
+vicetree.dtb
+-rw-r--r--. 1 vidal users     154 Jan  7 14:05 /run/media/vidal/ZED_BOOT/uE=
+nv.txt
+-rw-r--r--. 1 vidal users 2858824 Jan  7 13:27 /run/media/vidal/ZED_BOOT/uI=
+mage
+
+
+After the uEnv.txt has been read
+* - * Qodem 0.1.2 Capture Generated Tue, 07 Jan 2014 14:17:21 -0700 BEGIN *=
+ - *
+
+echo $mmcboot
+run devtreeld; run kerload; bootm 0x00008000 - 0x2A00000
+zynq-uboot&gt; echo $devtreeld
+fatload mmc 0 0x2A00000 devicetree.dtb
+zynq-uboot&gt; echo $kerload
+fatload mmc 0 0x00008000 uImage
+zynq-uboot&gt; setenv modeboot mmcboot
+zynq-uboot&gt; boot
+Now when I boot using mmcboot this is the output
+
+reading devicetree.dtb
+9720 bytes read in 18 ms (527.3 KiB/s)
+reading uImage
+2858824 bytes read in 444 ms (6.1 MiB/s)
+## Booting kernel from Legacy Image at 00008000 ...
+   Image Name:   Linux-3.8.11-xilinx
+   Image Type:   ARM Linux Kernel Image (uncompressed)
+   Data Size:    2858760 Bytes =3D 2.7 MiB
+   Load Address: 00008000
+   Entry Point:  00008000
+   Verifying Checksum ... OK
+## Flattened Device Tree blob at 02a00000
+   Booting using the fdt blob at 0x2a00000
+   XIP Kernel Image ... OK
+   Loading Device Tree to 1fb4f000, end 1fb545f7 ... OK
+
+Starting kernel ...
+
+data abort
+
+    MAYBE you should read doc/README.arm-unaligned-accesses
+
+pc : [&lt;1ff7624c&gt;]   lr : [&lt;1ff777d0&gt;]
+sp : 3ffffffc  ip : 00000000 fp : 00020205
+r10: 1ffaeaf0  r9 : f345364f r8 : 00800000
+r7 : 00000000  r6 : 00008000 r5 : 1ffaeaf0  r4 : 00000000
+r3 : 00002614  r2 : 1fb4f000 r1 : baefa2ee  r0 : 11acb1b4
+Flags: nzcv  IRQs on  FIQs on  Mode SVC_32
+Resetting CPU ...
+
+resetting ...
+
+Xilinx First Stage Boot Loader=20
+Release 14.3 Sep 29 2013-13:27:28
+Devcfg driver initialized=20
+Silicon Version 1.0
+Boot mode is SD
+SD Init Done=20
+Flash BaseAddress E0100000
+Reboot status register 0x60000000=20
+ImageStartAddress =3D 00000000
+PartitionNumber =3D 00000000
+flash read base addr E0100000, image base 0
+FSBL main: Skip partition
+Reboot status register 0x61000000=20
+ImageStartAddress =3D 00000000
+PartitionNumber =3D 00000001
+flash read base addr E0100000, image base 0
+Reset USB...
+SUCCESSFUL_HANDOFF
+  FSBLStatus =3D 0x1
+
+
+U-Boot 2013.07 (Jan 06 2014 - 10:40:34)
+
+Memory: ECC disabled
+DRAM:  512 MiB
+WARNING: Caches not enabled
+MMC:   zynq_sdhci: 0
+SF: Detected S25FL256S_64K with page size 64 KiB, total 32 MiB
+*** Warning - bad CRC, using default environment
+
+In:    serial
+Out:   serial
+Err:   serial
+Net:   Gem.e000b000
+Hit any key to stop autoboot:  3  2  1  0=20
+Device: zynq_sdhci
+Manufacturer ID: 2
+OEM: 544d
+Name: SA32G=20
+Tran Speed: 50000000
+Rd Block Len: 512
+SD version 3.0
+High Capacity: Yes
+Capacity: 29.3 GiB
+Bus Width: 4-bit
+reading uEnv.txt
+154 bytes read in 9 ms (16.6 KiB/s)
+Loaded environment from uEnv.txt
+Importing environment from SD ...
+Copying Linux from SD to RAM...
+reading uImage
+2858824 bytes read in 448 ms (6.1 MiB/s)
+reading devicetree.dtb
+9720 bytes read in 19 ms (499 KiB/s)
+reading uramdisk.image.gz
+** Unable to read file uramdisk.image.gz **
+zynq-uboot&gt;=20
+* - * Qodem 0.1.2 Capture Generated Tue, 07 Jan 2014 14:19:21 -0700 END * -=
+ *</pre>
+
+Any and all help is appreciated.<br><br></div>Thanks<br></div>Ed Vidal<br><=
 /div>
-<div><br></div><div><br></div><div>It looks main binary package doesn&#39;t=
- have a symlink of .so. How to fix that?</div><div><br></div><div>Thanks.</=
-div><div>- Reeve</div></span></div></div><div class=3D"gmail_extra"><br><br=
->
-<div class=3D"gmail_quote">On Tue, Jan 7, 2014 at 12:39 PM, Nicolas Dechesn=
-e <span dir=3D"ltr">&lt;<a href=3D"mailto:nicolas.dechesne@linaro.org" targ=
-et=3D"_blank">nicolas.dechesne@linaro.org</a>&gt;</span> wrote:<br><blockqu=
-ote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc s=
-olid;padding-left:1ex">
-<p dir=3D"ltr">Hi,</p>
-<p dir=3D"ltr">Le 7 janv. 2014 21:35, &quot;Reeve Yang&quot; &lt;<a href=3D=
-"mailto:reeve.yang@gmail.com" target=3D"_blank">reeve.yang@gmail.com</a>&gt=
-; a =E9crit :</p><div class=3D"im"><br>
-&gt;<br>
-&gt; Hi Nicolas,<br>
-&gt;<br>
-&gt; Thanks for reply. How nice it is! But one thing I don&#39;t understand=
- is, sometimes the files might be needed into two different packages, e.g. =
-main and dev, how can we achieve that? In another words, is there anyway in=
- local recipe to make files not deleted during packaging time?</div>
-<p></p>
 
-<p dir=3D"ltr">Thanks. Please let&#39;s keep the discussion on the list.</p=
->
-<p dir=3D"ltr"> you cannot do that. In fact i don&#39;t quite see why you w=
-ould want to do that. If 2 packages provide the same file you won&#39;t be =
-able to install them simultaneously. </p>
-<p dir=3D"ltr">If you want to duplicate the same file in 2 different locati=
-on in the rootFS then you can duplicate in do_install().</p><div class=3D"H=
-OEnZb"><div class=3D"h5">
-<p dir=3D"ltr">&gt;<br>
-&gt; Appreciate your help.<br>
-&gt; - Reeve<br>
-&gt;<br>
-&gt;<br>
-&gt; On Mon, Jan 6, 2014 at 4:29 PM, Nicolas Dechesne &lt;<a href=3D"mailto=
-:nicolas.dechesne@linaro.org" target=3D"_blank">nicolas.dechesne@linaro.org=
-</a>&gt; wrote:<br>
-&gt;&gt;<br>
-&gt;&gt;<br>
-&gt;&gt; On Tue, Jan 7, 2014 at 1:19 AM, Reeve Yang &lt;<a href=3D"mailto:r=
-eeve.yang@gmail.com" target=3D"_blank">reeve.yang@gmail.com</a>&gt; wrote:<=
-br>
-&gt;&gt;&gt;<br>
-&gt;&gt;&gt; FILES_${PN} =3D &quot;${bindir}/* ${sbindir}/* ${libexecdir}/*=
- ${libdir}/lib*${SOLIBS} \<br>
-&gt;&gt;&gt; =A0 =A0 ${sysconfdir} ${sharedstatedir} ${localstatedir} \<br>
-&gt;&gt;&gt; =A0 =A0 ${base_bindir}/* ${base_sbindir}/* \<br>
-&gt;&gt;&gt; =A0 =A0 ${base_libdir}/*${SOLIBS} \<br>
-&gt;&gt;&gt; =A0 =A0 ${datadir}/${BPN} ${libdir}/${BPN}/*${SOLIBSDEV} \<br>
-&gt;&gt;&gt; =A0 =A0 ${datadir}/include/scl/ ${datadir}/xsd&quot;<br>
-&gt;&gt;&gt; FILES_${PN}-dev +=3D &quot;${libdir}/${BPN}/lib*.la ${libdir}/=
-${BPN}/*${SOLIBSDEV}&quot;<br>
-&gt;&gt;<br>
-&gt;&gt;<br>
-&gt;&gt; it seems that=A0=A0${libdir}/${BPN}/*${SOLIBSDEV} is both in FILES=
-_{PN} and FILES_{PN}-dev, in which case the actual files will be added in t=
-he -dev package, not, the &#39;main binary&#39; package.=A0<br>
-&gt;&gt;<br>
-&gt;&gt; Files are &#39;removed&#39; from the local &#39;install&#39; direc=
-tory ($D) by processing FILES_{PN} variables in the order defined by PACKAG=
-ES. since the -dev package is before the binary package, your .so files wil=
-l be added to the -dev package first, and no longer in the local &#39;insta=
-ll&#39; folder when the binary package is being built.<br>
-
-
-&gt;&gt;<br>
-&gt;&gt; so you need to remove the glob from FILES_{PN}-dev.<br>
-&gt;&gt;<br>
-&gt;&gt;<br>
-&gt;&gt;<br>
-&gt;<br>
-</p>
-</div></div></blockquote></div><br></div>
-
---001a11c36ad25725fb04ef67a855--
+--047d7bd6adbc8e046004ef689bc1--
