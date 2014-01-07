@@ -1,34 +1,28 @@
-Return-Path: <nicolas.dechesne@linaro.org>
-Received: from mail-ob0-f181.google.com (mail-ob0-f181.google.com
-	[209.85.214.181])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 297C4E0084B
-	for <yocto@yoctoproject.org>; Mon,  6 Jan 2014 16:29:28 -0800 (PST)
-Received: by mail-ob0-f181.google.com with SMTP id uy5so19343185obc.12
-	for <yocto@yoctoproject.org>; Mon, 06 Jan 2014 16:29:27 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc:content-type;
-	bh=S4h+r++ZxIKVxuBhQi3thUDUdeajqNU4SZC/9ekmeqs=;
-	b=L40OaB9r+RQhHTHmZ0S24y7fzlLEFQ2C4wqHSwP72z+dlN4hiiY0feqOuhEDnyvgU/
-	vm0mHSojVpunSxPZDiy3DXzN2c9CAKs3k68OU8ms37PoFF4z4ZI7hoXBe4OObyRkMVrO
-	A1vve8BZ16mgxTf/lg49s+tgjpCF360Jrs6/MKeqvCwNUvne3O7MOBT8hWwLWcgdZBfJ
-	8XZ842wc/21f0se675v2GYGLnFMoOmZoWM0R8lt2gqZ/VM2aBYW6gXHriLM1fh1fo0um
-	6fOIhe49stGgAyW+2fs3rt1Ho29VzH9BPpjCtJQyPeeOvlqw2xI8N97RRlZ29UQ6zWvS
-	jkTg==
-X-Gm-Message-State: ALoCoQm3AYgQuwJNFesoD8VvzdQsTS4imenoZi5+FmXwfbdi4kjkO3B56eUZjLuhyODDbXw8UvX6
-X-Received: by 10.182.146.104 with SMTP id tb8mr3190439obb.54.1389054567743;
-	Mon, 06 Jan 2014 16:29:27 -0800 (PST)
+Return-Path: <billmartin544@gmail.com>
+Received: from mail-ig0-f177.google.com (mail-ig0-f177.google.com
+	[209.85.213.177])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 29249E0081B
+	for <yocto@yoctoproject.org>; Mon,  6 Jan 2014 19:31:23 -0800 (PST)
+Received: by mail-ig0-f177.google.com with SMTP id uy17so554804igb.4
+	for <yocto@yoctoproject.org>; Mon, 06 Jan 2014 19:31:23 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=Z6c1tye+CDJoWmnX+EJjUpX3uVSmYNyPwyY7ErsDzs4=;
+	b=pZ5+0wSyakUucaUFI688OOuiXMLsw/7iUrdVBB44lDqjinE2AbDYps8SHg3uLSIj2p
+	h/ZvuDqjQB1WroFSQRzQxa0HENwzOa0PGZ0Vt6nhs1xK5LHvB7ytPBE280XQ9o/sfs70
+	uX+nlSAhZH6g7g0bteTyWf16gD8C82nQo1mbTyrWMjOZUGcBZi6JyRpBN4C80sczfLN3
+	IrQS3Uh0owS6quG2wwXaeLErompp5goicf/zQSFIu05ywMNA6qbBo/EQjQboVbFwIxtO
+	zVsLnP6Qh1H7MEaD+1RCweOnuTD7+CVNqs/+H5DyyH6gXp7JNmboOLzZNkcQkJceb9fT
+	lDvw==
 MIME-Version: 1.0
-Received: by 10.76.89.143 with HTTP; Mon, 6 Jan 2014 16:29:07 -0800 (PST)
-In-Reply-To: <CAGNTBAXK-0hqLbyxdRo7RfS6MkPfxP+etmx0bE=P9vjF91tTgQ@mail.gmail.com>
-References: <CAGNTBAXK-0hqLbyxdRo7RfS6MkPfxP+etmx0bE=P9vjF91tTgQ@mail.gmail.com>
-From: Nicolas Dechesne <nicolas.dechesne@linaro.org>
-Date: Tue, 7 Jan 2014 01:29:07 +0100
-Message-ID: <CAP71WjxP67f0pnxBYZfFKEB0dvR55yc4r3etUNhwbi1vZdftMg@mail.gmail.com>
-To: Reeve Yang <reeve.yang@gmail.com>
-Cc: Yocto list discussion <yocto@yoctoproject.org>
-Subject: Re: Problem & Question about FILES_${PN}
+X-Received: by 10.50.118.69 with SMTP id kk5mr8270449igb.26.1389065482844;
+	Mon, 06 Jan 2014 19:31:22 -0800 (PST)
+Received: by 10.64.228.199 with HTTP; Mon, 6 Jan 2014 19:31:22 -0800 (PST)
+Date: Mon, 6 Jan 2014 20:31:22 -0700
+Message-ID: <CAJGS5=H1s=xK2CHzjMq4qPDvy3V29sFqcn3fep0_ZT2d3WGUuQ@mail.gmail.com>
+From: Bill Martin <billmartin544@gmail.com>
+To: yocto@yoctoproject.org
+Subject: eglibc's iconv (version 2.17) command in Yocto Dylan for x86 target
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,74 +34,44 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 07 Jan 2014 00:29:30 -0000
-Content-Type: multipart/alternative; boundary=f46d04451a3915986104ef567860
+X-List-Received-Date: Tue, 07 Jan 2014 03:31:24 -0000
+Content-Type: multipart/alternative; boundary=e89a8f643382acbfc904ef59025d
 
---f46d04451a3915986104ef567860
+--e89a8f643382acbfc904ef59025d
 Content-Type: text/plain; charset=ISO-8859-1
 
-On Tue, Jan 7, 2014 at 1:19 AM, Reeve Yang <reeve.yang@gmail.com> wrote:
+I'm using Trousers and tss on my Yocto target build. I attempted to make a
+call to tspi_tpm_collateidentityrequest and this requires a UNICODE string
+in UTF-16 form. The preceding call to iconv fails when I try to convert
+from ASCII to UTF-16. I tried variations of the UTF-16, based on iconv
+--list.
 
-> FILES_${PN} = "${bindir}/* ${sbindir}/* ${libexecdir}/*
-> ${libdir}/lib*${SOLIBS} \
->     ${sysconfdir} ${sharedstatedir} ${localstatedir} \
->     ${base_bindir}/* ${base_sbindir}/* \
->     ${base_libdir}/*${SOLIBS} \
->     ${datadir}/${BPN} ${libdir}/${BPN}/*${SOLIBSDEV} \
->     ${datadir}/include/scl/ ${datadir}/xsd"
-> FILES_${PN}-dev += "${libdir}/${BPN}/lib*.la
-> ${libdir}/${BPN}/*${SOLIBSDEV}"
->
+I know this command works on other Unix-based systems. I tried on three
+different machines running Ubuntu and can convert from ASCII to UTF-16.
 
-it seems that  ${libdir}/${BPN}/*${SOLIBSDEV} is both in FILES_{PN} and
-FILES_{PN}-dev, in which case the actual files will be added in the -dev
-package, not, the 'main binary' package.
+Rather than modify all the TrouSers code and force it to only use UTF-8, I
+wonder if anyone here has a patch for eglibc that would allow iconv to
+convert to UTF-16?
 
-Files are 'removed' from the local 'install' directory ($D) by processing
-FILES_{PN} variables in the order defined by PACKAGES. since the -dev
-package is before the binary package, your .so files will be added to the
--dev package first, and no longer in the local 'install' folder when the
-binary package is being built.
+Thanks
 
-so you need to remove the glob from FILES_{PN}-dev.
+Bill Martin
+Valicore Technologies.
 
---f46d04451a3915986104ef567860
+--e89a8f643382acbfc904ef59025d
 Content-Type: text/html; charset=ISO-8859-1
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
-On Tue, Jan 7, 2014 at 1:19 AM, Reeve Yang <span dir=3D"ltr">&lt;<a href=3D=
-"mailto:reeve.yang@gmail.com" target=3D"_blank">reeve.yang@gmail.com</a>&gt=
-;</span> wrote:<br>
+<div dir=3D"ltr"><div>I&#39;m using Trousers and tss on my Yocto target bui=
+ld. I attempted to make a call to tspi_tpm_collateidentityrequest and this =
+requires a UNICODE string in UTF-16 form. The preceding call to iconv fails=
+ when I try to convert from ASCII to UTF-16. I tried variations of the UTF-=
+16, based on iconv --list.<br>
+<br>I know this command works on other Unix-based systems. I tried on three=
+ different machines running Ubuntu and can convert from ASCII to UTF-16.<br=
+><br></div>Rather than modify all the TrouSers code and force it to only us=
+e UTF-8, I wonder if anyone here has a patch for eglibc that would allow ic=
+onv to convert to UTF-16?<br>
+<br>Thanks<br><br>Bill Martin<br>Valicore Technologies.<br></div>
 
-<blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-=
-left-width:1px;border-left-color:rgb(204,204,204);border-left-style:solid;p=
-adding-left:1ex"><div>FILES_${PN} =3D &quot;${bindir}/* ${sbindir}/* ${libe=
-xecdir}/* ${libdir}/lib*${SOLIBS} \</div>
-
-
-<div>=A0 =A0 ${sysconfdir} ${sharedstatedir} ${localstatedir} \</div><div>=
-=A0 =A0 ${base_bindir}/* ${base_sbindir}/* \</div><div>=A0 =A0 ${base_libdi=
-r}/*${SOLIBS} \</div><div>=A0 =A0 ${datadir}/${BPN} ${libdir}/${BPN}/*${SOL=
-IBSDEV} \</div>
-
-
-<div>=A0 =A0 ${datadir}/include/scl/ ${datadir}/xsd&quot;</div><div>FILES_$=
-{PN}-dev +=3D &quot;${libdir}/${BPN}/lib*.la ${libdir}/${BPN}/*${SOLIBSDEV}=
-&quot;</div></blockquote></div><div class=3D"gmail_extra"><br></div>it seem=
-s that=A0=A0${libdir}/${BPN}/*${SOLIBSDEV} is both in FILES_{PN} and FILES_=
-{PN}-dev, in which case the actual files will be added in the -dev package,=
- not, the &#39;main binary&#39; package.=A0</div>
-
-<div class=3D"gmail_extra"><br></div><div class=3D"gmail_extra">Files are &=
-#39;removed&#39; from the local &#39;install&#39; directory ($D) by process=
-ing FILES_{PN} variables in the order defined by PACKAGES. since the -dev p=
-ackage is before the binary package, your .so files will be added to the -d=
-ev package first, and no longer in the local &#39;install&#39; folder when =
-the binary package is being built.</div>
-
-<div class=3D"gmail_extra"><br></div><div class=3D"gmail_extra">so you need=
- to remove the glob from FILES_{PN}-dev.</div><div class=3D"gmail_extra"><b=
-r></div><div class=3D"gmail_extra"><br><br></div></div>
-
---f46d04451a3915986104ef567860--
+--e89a8f643382acbfc904ef59025d--
