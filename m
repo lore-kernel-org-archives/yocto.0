@@ -1,34 +1,28 @@
-Return-Path: <ross.burton@intel.com>
-Received: from mail-qc0-f177.google.com (mail-qc0-f177.google.com
-	[209.85.216.177])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2E06DE007EC
-	for <yocto@yoctoproject.org>; Tue,  7 Jan 2014 02:23:27 -0800 (PST)
-Received: by mail-qc0-f177.google.com with SMTP id m20so18628172qcx.36
-	for <yocto@yoctoproject.org>; Tue, 07 Jan 2014 02:23:26 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc:content-type;
-	bh=Zd2JCte0p3RZ1nRxqqzqMVbt4PPkUWkQ6REMF3L6i8s=;
-	b=KkLEaZqwrxFtRSR3f7pB4lKpP59CYlJrjFpYAeI1r7UCGsLJrurLML00Nc6jyIuguC
-	eJJS7SFgrC2SltGuBSBkVoSWxVrGLymHQpZVvvV7YjhnvM+gWllk7CHlCG/XZMbXfhZ+
-	BErBh7syO+gA8tSvOQj+luJ7DgHJbUAgyvvmVrVslRxz9qmvSHWxO+cORTSK6ag4OdAU
-	nqiHF3oaFizLNykyJZ1lNhIttegY+8qbICLvLHsaRa2IqmEi4RT0n130h4NJEgNXFQMw
-	cYfoT1nl+qEksep8BgLjvewKOVOui7GYzgQbBzcUsWtKVl5waZi0D76fnNx2rja7m/Ah
-	HcHQ==
-X-Gm-Message-State: ALoCoQnpI5hSjINELmedsAqI7nJwHiTyBi/0Gz9hT1ngioUBNkWK+nsDcsbHSyMG7GG1thYVkMv8
-X-Received: by 10.224.13.203 with SMTP id d11mr13406090qaa.26.1389090206255;
-	Tue, 07 Jan 2014 02:23:26 -0800 (PST)
+Return-Path: <nickdademo@gmail.com>
+Received: from mail-ob0-f169.google.com (mail-ob0-f169.google.com
+	[209.85.214.169])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DE382E0084B
+	for <yocto@yoctoproject.org>; Tue,  7 Jan 2014 05:19:37 -0800 (PST)
+Received: by mail-ob0-f169.google.com with SMTP id wm4so125588obc.14
+	for <yocto@yoctoproject.org>; Tue, 07 Jan 2014 05:19:36 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:from:date:message-id:subject:to:content-type;
+	bh=G0Cx/XOzIn7cQJmPU/w0Qk5eNfPa/ynhw2/tRYb+lIk=;
+	b=npFlc5uuoQVRC46ZIzpnFF4VELVqF80XrSvy4jT3yIoz2KAxMbLivxErNoFfYnq2lC
+	GoJotRNBhT2uxWpCmC5Wl7SVA4SkSmpxiMnIny9z/H8T1L/S2fPtYl2cikvWOgTMlAm7
+	X/J/sd9g5acIA4dz7v6cH1P4M2o6U7fEfiZNd0psQJ4F45JZZ9iIX1ecIR0kGjkFbCzp
+	w1Uxy0Cc1hujgWBMZsGLJButCaMykXR/E8bgYBfBpCOsmDSEP1kyy/fEvQiYlkdvVbJQ
+	BKeqEvg3A7AtHniJrcicJ5uYkI1ZpcH3BoC0MRgxgjAL0b5J4jfEHaPLewcO9rK6NEgu
+	6eng==
+X-Received: by 10.60.157.130 with SMTP id wm2mr76464038oeb.31.1389100776248;
+	Tue, 07 Jan 2014 05:19:36 -0800 (PST)
 MIME-Version: 1.0
-Received: by 10.96.179.105 with HTTP; Tue, 7 Jan 2014 02:23:06 -0800 (PST)
-In-Reply-To: <CAJGS5=H1s=xK2CHzjMq4qPDvy3V29sFqcn3fep0_ZT2d3WGUuQ@mail.gmail.com>
-References: <CAJGS5=H1s=xK2CHzjMq4qPDvy3V29sFqcn3fep0_ZT2d3WGUuQ@mail.gmail.com>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Tue, 7 Jan 2014 10:23:06 +0000
-Message-ID: <CAJTo0LaFxcXzuAWHNeWc085e-nxA1z77tNy4kkWntzur3eBBkA@mail.gmail.com>
-To: Bill Martin <billmartin544@gmail.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: eglibc's iconv (version 2.17) command in Yocto Dylan for x86 target
+Received: by 10.76.72.70 with HTTP; Tue, 7 Jan 2014 05:19:16 -0800 (PST)
+From: "Nick D'Ademo" <nickdademo@gmail.com>
+Date: Wed, 8 Jan 2014 00:19:16 +1100
+Message-ID: <CANR6C56AqYgV-Fq1e14E0O-OjjUkkY9jcvgEuABocAYMzm338A@mail.gmail.com>
+To: yocto@yoctoproject.org
+Subject: Creating a EXT4 rootfs instead of EXT3: How?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,26 +34,42 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 07 Jan 2014 10:23:31 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Tue, 07 Jan 2014 13:19:38 -0000
+Content-Type: multipart/alternative; boundary=047d7bd6afcc535bc504ef613af2
 
-On 7 January 2014 03:31, Bill Martin <billmartin544@gmail.com> wrote:
-> I'm using Trousers and tss on my Yocto target build. I attempted to make a
-> call to tspi_tpm_collateidentityrequest and this requires a UNICODE string
-> in UTF-16 form. The preceding call to iconv fails when I try to convert from
-> ASCII to UTF-16. I tried variations of the UTF-16, based on iconv --list.
+--047d7bd6afcc535bc504ef613af2
+Content-Type: text/plain; charset=ISO-8859-1
+
+Can't seem to get the build process to create a EXT4 filesystem - I've
+tried the following:
+
+1. Tried adding ROOTFSTYPE ?= "*ext4*" to the machine .conf file
+2. Ensured EXT4 is enabled in the Linux kernel (using menuconfig)
+
+This is a build for the Intel NUC hardware.
+
+Anyone have any ideas on how to do this?
+
+Many thanks.
+
+Nick
+
+--047d7bd6afcc535bc504ef613af2
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div><div><div><div>Can&#39;t seem to get the build proces=
+s to create a EXT4 filesystem - I&#39;ve tried the following:<br></div><div=
+><br></div>1. Tried adding <span class=3D"">ROOTFSTYPE ?=3D &quot;<em>ext4<=
+/em>&quot; to the machine .conf file<br>
+
+</span></div><span class=3D"">2. Ensured EXT4 is enabled in the Linux kerne=
+l (using menuconfig)<br><br></span></div><div><span class=3D"">This is a bu=
+ild for the Intel NUC hardware.<br></span></div><div><span class=3D""><br><=
+/span></div>
+
+<span class=3D"">Anyone have any ideas on how to do this?<br><br>Many thank=
+s.<br><br></span></div><span class=3D"">Nick<br></span><div><br></div></div=
 >
-> I know this command works on other Unix-based systems. I tried on three
-> different machines running Ubuntu and can convert from ASCII to UTF-16.
->
-> Rather than modify all the TrouSers code and force it to only use UTF-8, I
-> wonder if anyone here has a patch for eglibc that would allow iconv to
-> convert to UTF-16?
 
-Can you check that your image contains the eglibc-gconv-utf-16
-package, as the character set converters are split into separate
-packages and only installed on request.  You probably want to add a
-runtime dependency on that package to trousers.
-
-Ross
-
+--047d7bd6afcc535bc504ef613af2--
