@@ -1,33 +1,27 @@
-Return-Path: <elizabeth.flanagan@intel.com>
-Received: from mail-vb0-f45.google.com (mail-vb0-f45.google.com
-	[209.85.212.45])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9B8BDE006CA
-	for <yocto@yoctoproject.org>; Tue,  7 Jan 2014 11:04:11 -0800 (PST)
-Received: by mail-vb0-f45.google.com with SMTP id i12so424189vbh.32
-	for <yocto@yoctoproject.org>; Tue, 07 Jan 2014 11:04:11 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:date:message-id:subject:from:to
-	:content-type;
-	bh=2/fmauZky6ySVeNnLLDnhMROQNAUBHDsfMECJlV6YpQ=;
-	b=cU24AYHyG17nRDRDlKAJpz844SobOEFCB6AUpVWaSVg7BwH0lsns87vthnUh8ARPY6
-	UoCxTG+OnfhiB040sB2JPk4eJ/AORvum2+vmVpZzC7nrcX632vYdMK0eXotO+oI1woyj
-	qva1XC0GnZNoTDuDrwmQhhaABvoCDBJnfVpe5ZjMbDwzo3n2PPQ4Rgdy6DoWTIYZC4u9
-	66r5cOOiiecDrbYD2LU6SYSYiIGdX8syOa9/m5maXoHO51vW2bor+MH3bT94/YeF7lG9
-	2YxC/7t+H9PyMqHUpFJK2TXoidJLIghazmNGH3m444SwJEdDQGcq5iH+aonXUGm7d/rn
-	cL/g==
-X-Gm-Message-State: ALoCoQkq2N0OAm8H4qADJ299F+d8xG7aapQpCIyjXP32I4kgM2NpkvyYwzTCnZrRHuF/XT1pUNFr
+Return-Path: <gary@mlbassoc.com>
+Received: from mail.chez-thomas.org (mail.mlbassoc.com [65.100.170.105])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 040B7E006CA
+	for <yocto@yoctoproject.org>; Tue,  7 Jan 2014 12:01:34 -0800 (PST)
+Received: by mail.chez-thomas.org (Postfix, from userid 1998)
+	id 963D3F8120D; Tue,  7 Jan 2014 13:01:34 -0700 (MST)
+X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on
+	hermes.chez-thomas.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=4.0 tests=ALL_TRUSTED,BAYES_00
+	autolearn=ham version=3.3.2
+Received: from [192.168.1.114] (zeus [192.168.1.114])
+	by mail.chez-thomas.org (Postfix) with ESMTP id DAF4EF8120B;
+	Tue,  7 Jan 2014 13:01:33 -0700 (MST)
+Message-ID: <52CC5D2C.60908@mlbassoc.com>
+Date: Tue, 07 Jan 2014 13:01:48 -0700
+From: Gary Thomas <gary@mlbassoc.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:24.0) Gecko/20100101 Thunderbird/24.2.0
 MIME-Version: 1.0
-X-Received: by 10.52.57.194 with SMTP id k2mr3674471vdq.41.1389121450895; Tue,
-	07 Jan 2014 11:04:10 -0800 (PST)
-Received: by 10.52.164.142 with HTTP; Tue, 7 Jan 2014 11:04:10 -0800 (PST)
-Date: Tue, 7 Jan 2014 19:04:10 +0000
-Message-ID: <CAPhnLPCQXXwWjY2qaJvYETDg3_BqAtOOJd+bphUMt4vS13imoA@mail.gmail.com>
-From: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>, 
-	Alexandru C Georgescu <alexandru.c.georgescu@intel.com>,
-	Zhao Yi <yi.zhao@windriver.com>, Otavio Salvador <otavio@ossystems.com.br>
-Subject: Weekly build soon available
+To: Yocto Project <yocto@yoctoproject.org>
+References: <52CC0D59.20008@mlbassoc.com>
+In-Reply-To: <52CC0D59.20008@mlbassoc.com>
+Subject: Re: build tools problem
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,28 +33,32 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 07 Jan 2014 19:04:12 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Tue, 07 Jan 2014 20:01:38 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
 
-The latest weekly will soon be available at:
+On 2014-01-07 07:21, Gary Thomas wrote:
+> I'm using the meta-toolchain on a old system to get up to date
+> git+python.  Sadly, the python is incomplete, in particular
+> the 'htmlntitydefs' is missing.  This leads to an error when
+> trying to build the chromium browser:
+>
+> | gyp: Error importing pymod_do_mainmodule (grit_info): No module named htmlentitydefs while loading dependencies of
+> /home/local/p8301_test/tmp/work/cortexa9hf-vfp-neon-amltd-linux-gnueabi/chromium/29.0.1518.2-r0/chromium-29.0.1518.2/build/all.gyp while trying to load
+> /home/local/p8301_test/tmp/work/cortexa9hf-vfp-neon-amltd-linux-gnueabi/chromium/29.0.1518.2-r0/chromium-29.0.1518.2/build/all.gyp
+>
+> How can I update the meta-toolchain to fix this problem?  This is
+> the version I'm using:
+>    http://downloads.yoctoproject.org/releases/yocto/yocto-1.5/toolchain/i686/
 
-http://autobuilder.yoctoproject.org/pub/nightly/20140107-1
-
-Please begin your QA processes
-
-bitbake f594cb9f5a18dd0ab2342f96ffc6dba697b35f65
-eclipse-poky-juno 26bfc407781aa185f244a47ba63120343cee4a37
-eclipse-poky-kepler c73c6e4510c42601854f3c542ca6e14b4510380c
-meta-fsl-arm 5ede821064bfe6b94500a113c05d03d15c63af5e
-meta-fsl-ppc 035687a8e3a9a9d1576b33142f3c5817ef1161c0
-meta-intel 11fc51c05f378b7fef2f5879e8e1f11d7046e85b
-meta-minnow 6a4f0dd875a5ec0303ab4387944dc7eb98508769
-meta-qt3 4772424ab69908d4e3b9d6d4717ca889468e6acd
-oecore 1028ac813fa9803ebfff6bcfa7f8b67012609b27
-poky e93a345fae7c21652547bec501fcb1f3b6c6427d
+A related question is how can I force the chromium recipe to use the
+python built/installed via python-native, since that version does have
+all of the packages I need.  I tried just adding 'python-native' to the
+chromium*.bb file, without any change.
 
 -- 
-Elizabeth Flanagan
-Yocto Project
-Build and Release
+------------------------------------------------------------
+Gary Thomas                 |  Consulting for the
+MLB Associates              |    Embedded world
+------------------------------------------------------------
 
