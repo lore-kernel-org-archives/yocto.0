@@ -1,33 +1,28 @@
-Return-Path: <song.liu@intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CB3F5E00854
-	for <yocto@yoctoproject.org>; Mon,  6 Jan 2014 15:10:22 -0800 (PST)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga102.jf.intel.com with ESMTP; 06 Jan 2014 15:06:23 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.95,615,1384329600"; 
-	d="scan'208,217";a="434753893"
-Received: from orsmsx104.amr.corp.intel.com ([10.22.225.131])
-	by orsmga001.jf.intel.com with ESMTP; 06 Jan 2014 15:10:15 -0800
-Received: from orsmsx115.amr.corp.intel.com (10.22.240.11) by
-	ORSMSX104.amr.corp.intel.com (10.22.225.131) with Microsoft SMTP Server
-	(TLS) id 14.3.123.3; Mon, 6 Jan 2014 15:10:15 -0800
-Received: from orsmsx108.amr.corp.intel.com ([169.254.4.34]) by
-	ORSMSX115.amr.corp.intel.com ([169.254.10.190]) with mapi id
-	14.03.0123.003; Mon, 6 Jan 2014 15:10:14 -0800
-From: "Liu, Song" <song.liu@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Agenda: Yocto Project Technical Team Meeting - Tuesday,
-	January 07, 2014 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada).
-Thread-Index: Ac8LNGGTvyxI2feES1edyb0Uez+3awAAArMQ
-Date: Mon, 6 Jan 2014 23:10:14 +0000
-Message-ID: <7E680CB2A76BB8438D08CF13C09FC53A8EFDACEA@ORSMSX108.amr.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.140]
+Return-Path: <reeve.yang@gmail.com>
+Received: from mail-la0-f42.google.com (mail-la0-f42.google.com
+	[209.85.215.42])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 930D1E0084B
+	for <yocto@yoctoproject.org>; Mon,  6 Jan 2014 16:19:29 -0800 (PST)
+Received: by mail-la0-f42.google.com with SMTP id ec20so10486628lab.1
+	for <yocto@yoctoproject.org>; Mon, 06 Jan 2014 16:19:28 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=/cxkTT+6Oa5YSSgMDb0jG4JYiVMhAo6DIAISy3W9RgU=;
+	b=RtoL0AREbjo5zcE5UAgNExeeqLZPEljL+7nHI7W2/eVmqBtxussaN2n/4/HACPj6TK
+	+yGPiyW+ch9ZUwZ3dhgUt9+4DddWX14CmGdUHwgmu305v3QmZ8R6QiGrPWwtklYUMiE2
+	s+UfWvpTND3wmJjSfdAbohdOaMKH1jTePHdg1ZqhQqcp9wzlt19yIwlYCJHMAq+eu/rI
+	EdigLhuygFciSa6fKNuVG+G5t2c8AhTpKMLJMvNMiIg8sFWgMCAUuae0BrvbReS2Btb6
+	Z+VlyqbGgLLZTKS/Oy8ozxS0g/yvtFDGRr3qGOkBsIIZdqCAvWT/AoFwdKSMsuoFVTws
+	f5jw==
 MIME-Version: 1.0
-Subject: Agenda: Yocto Project Technical Team Meeting - Tuesday, January 07, 2014 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada).
+X-Received: by 10.112.138.98 with SMTP id qp2mr1354294lbb.82.1389053968057;
+	Mon, 06 Jan 2014 16:19:28 -0800 (PST)
+Received: by 10.152.25.137 with HTTP; Mon, 6 Jan 2014 16:19:28 -0800 (PST)
+Date: Mon, 6 Jan 2014 16:19:28 -0800
+Message-ID: <CAGNTBAXK-0hqLbyxdRo7RfS6MkPfxP+etmx0bE=P9vjF91tTgQ@mail.gmail.com>
+From: Reeve Yang <reeve.yang@gmail.com>
+To: yocto@yoctoproject.org
+Subject: Problem & Question about FILES_${PN}
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,557 +34,278 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 06 Jan 2014 23:10:23 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_7E680CB2A76BB8438D08CF13C09FC53A8EFDACEAORSMSX108amrcor_"
+X-List-Received-Date: Tue, 07 Jan 2014 00:19:31 -0000
+Content-Type: multipart/alternative; boundary=089e0116049e5707bc04ef565480
 
---_000_7E680CB2A76BB8438D08CF13C09FC53A8EFDACEAORSMSX108amrcor_
-Content-Type: text/plain; charset="us-ascii"
+--089e0116049e5707bc04ef565480
+Content-Type: text/plain; charset=ISO-8859-1
+
+Hi all,
+
+I'm facing a wearied issue while packaging syslog-ng ported from OE. (I
+added meta-openembedded as a sub-module and use the recipe files from it
+directly).
+
+In my yocto build I enabled multi-lib for both 32-bits and 64-bits, default
+tune is 64-bits. The libraries are installed under /usr/lib64. As you know,
+syslog-ng_3.2.5 has plugin and I installed them under /usr/lib64/syslog-ng,
+and add that path into FILES_${PN}:
+
+FILES_${PN} = "${bindir}/* ${sbindir}/* ${libexecdir}/*
+${libdir}/lib*${SOLIBS} \
+    ${sysconfdir} ${sharedstatedir} ${localstatedir} \
+    ${base_bindir}/* ${base_sbindir}/* \
+    ${base_libdir}/*${SOLIBS} \
+    ${datadir}/${BPN} ${libdir}/${BPN}/*${SOLIBSDEV} \
+    ${datadir}/include/scl/ ${datadir}/xsd"
+
+ ${libdir}/${BPN}/*${SOLIBSDEV} is expanded as /usr/lib64/syslog-ng/*.so.
+The funny thing is, the sys-log rpm doesn't have those files (I used rpm as
+packaging scheme). I checked the generated spec file during "do_package",
+those files are not added as "%files" for package "syslog-ng". I'm pretty
+sure the files are installed.
+
+My question is, why "FIELS_${PN}" is not effective for syslog-ng
+particularly? How to control the spec if it's not? Attached is the
+syslog-ng recipe file.
+
+Thanks.
+- Reeve
+
+DESCRIPTION = "Alternative system logger daemon"
+DEPENDS = "libol flex eventlog glib-2.0"
+LICENSE = "GPL LGPL"
+LIC_FILES_CHKSUM = "file://COPYING;md5=7ec1bcc46f28b11f4722e20d9b7dd4d5"
+
+# syslog initscript is handled explicitly because order of
+# update-rc.d and update-alternatives is important
+RDEPENDS_${PN} += " ${@base_conditional("ONLINE_PACKAGE_MANAGEMENT",
+"none", "", "update-rc.d", d)}"
+
+INC_PR = "r12"
+
+inherit autotools systemd
+
+SRC_URI = "
+http://www.balabit.com/downloads/files/syslog-ng/sources/${PV}/source/${PN}_${PV}.tar.gz
+"
+
+noipv6 = "${@base_contains('DISTRO_FEATURES', 'ipv6', '', '--disable-ipv6',
+d)}"
+
+EXTRA_OECONF = " \
+    --with-libnet=${STAGING_BINDIR_CROSS} \
+    --enable-dynamic-linking \
+    ${noipv6} \
+    --enable-ssl \
+    --disable-sub-streams \
+    --disable-pacct \
+    --disable-linux-caps \
+    --disable-pcre \
+    --disable-sql \
+"
+
+EXTRA_OECONF += "${@base_contains('DISTRO_FEATURES', 'systemd',
+'--with-systemdsystemunitdir=${systemd_unitdir}/system/',
+'--without-systemdsystemunitdir', d)}"
+EXTRA_OECONF += "${@base_contains('DISTRO_FEATURES', 'systemd',
+'--enable-systemd', '--disable-systemd', d)}"
+
+do_configure_prepend() {
+    eval "${@base_contains('DISTRO_FEATURES', 'largefile', '', 'sed -i -e
+"s/-D_LARGEFILE_SOURCE//" -e "s/-D_FILE_OFFSET_BITS=64//" ${S}/configure.in',
+d)}"
+}
+
+# rename modules.conf because it breaks update-modules
+# see
+http://lists.linuxtogo.org/pipermail/openembedded-devel/2011-October/035537.html
+do_install_append() {
+    mv ${D}/${sysconfdir}/modules.conf ${D}/${sysconfdir}/scl-modules.conf
+    sed -i "s#@include 'modules.conf'#@include 'scl-modules.conf'#g"
+${D}/${sysconfdir}/scl.conf
+    install -d ${D}/${sysconfdir}/${PN}
+    install ${WORKDIR}/syslog-ng.conf ${D}${sysconfdir}/${PN}/${PN}.conf
+    rm -rf ${D}${sysconfdir}/${PN}.conf
+    install -d ${D}/${sysconfdir}/init.d
+    install -m 755 ${WORKDIR}/initscript
+${D}/${sysconfdir}/init.d/syslog.${PN}
+    mv ${D}/usr/lib/${PN} ${D}/${libdir}
+    rm -rf ${D}/usr/lib
+}
+
+FILES_${PN} = "${bindir}/* ${sbindir}/* ${libexecdir}/*
+${libdir}/lib*${SOLIBS} \
+    ${sysconfdir} ${sharedstatedir} ${localstatedir} \
+    ${base_bindir}/* ${base_sbindir}/* \
+    ${base_libdir}/*${SOLIBS} \
+    ${datadir}/${BPN} ${libdir}/${BPN}/*${SOLIBSDEV} \
+    ${datadir}/include/scl/ ${datadir}/xsd"
+FILES_${PN}-dev += "${libdir}/${BPN}/lib*.la ${libdir}/${BPN}/*${SOLIBSDEV}"
+CONFFILES_${PN} = "${sysconfdir}/${PN}/${PN}.conf ${sysconfdir}/scl.conf
+${sysconfdir}/scl-modules.conf"
+
+RPROVIDES_${PN} += "${PN}-systemd"
+RREPLACES_${PN} += "${PN}-systemd"
+RCONFLICTS_${PN} += "${PN}-systemd"
+SYSTEMD_SERVICE_${PN} = "${PN}.service"
+
+pkg_postinst_${PN} () {
+    /etc/init.d/syslog stop
+    update-alternatives --install ${sysconfdir}/init.d/syslog syslog-init
+syslog.${PN} 200
+
+    if test "x$D" != "x"; then
+        OPT="-r $D"
+    else
+        OPT="-s"
+    fi
+    # remove all rc.d-links potentially created from alternative
+    # syslog packages before creating new ones
+    update-rc.d $OPT -f syslog remove
+    update-rc.d $OPT syslog start 20 2 3 4 5 . stop 90 0 1 6 .
+}
+
+pkg_prerm_${PN} () {
+    if test "x$D" = "x"; then
+        if test "$1" = "upgrade" -o "$1" = "remove"; then
+            /etc/init.d/syslog stop
+        fi
+    fi
+
+    update-alternatives --remove syslog-init syslog.${PN}
+}
+
+pkg_postrm_${PN} () {
+    if test "x$D" != "x"; then
+        OPT="-r $D"
+    else
+        OPT=""
+    fi
+    if test "$1" = "remove" -o "$1" = "purge"; then
+        if ! test -e "/etc/init.d/syslog"; then
+            update-rc.d $OPT syslog remove
+        fi
+    fi
+}
+
+--089e0116049e5707bc04ef565480
+Content-Type: text/html; charset=ISO-8859-1
 Content-Transfer-Encoding: quoted-printable
 
-Agenda:
-
-* Opens collection - 5 min (Song)
-* Yocto 1.6 status - 10 min (Song/team)
-  https://wiki.yoctoproject.org/wiki/Yocto_Project_v1.6_Status
-  https://wiki.yoctoproject.org/wiki/Yocto_1.6_Features
-* SWAT team rotation: Beth/Saul -> Paul
-* Opens - 10 min
-* Team Sharing - 20 min
-
-
------Original Appointment-----
-
-We encourage people attending the meeting to logon the Yocto Project IRC ch=
-ancel during the meeting (optional):
-
-Yocto IRC: http://webchat.freenode.net/?channels=3D#yocto
-IRC Tutorial: http://www.irchelp.org/irchelp/irctutorial.html
-
-Conference details
-Conference name:        Yocto Project Technical Team
-Conference date/start time:     Tue Jun 25, 2013 at 11:00 AM Eastern Daylig=
-ht Time (GMT-0400)
-Participants:   30
-Duration:       60 minutes
-Participant passcode:   42001078
-Dial-in number: 1.972.995.7777
-US Toll Free number:    1.877.561.6828
-BlackBerry users, click this link to join your conference as a participant:=
-     1.972.995.7777x42001078#
-        Depending on where you are dialing from, either your BlackBerry wil=
-l pause and enter the passcode automatically or you will be prompted to cli=
-ck again to dial the passcode.
-
-
-Local and Global Access Numbers
-
-
-
-
-Country
-Dial-in number
-
-Australia:
-1800 636 843
-
-Czech Republic:
-242 430 350
-
-China (Beijing):
-From office dial 8-9957777 or 8784277
-Beijing Out of Office dial 5878 4277
-
-China (Shanghai):
-From office dial 8-9957777 or 3073322
-Shanghai Out of Office dial 2307 3322
-
-China (Shenzen):
-From office dial 8-9957777 or 6007877
-Shenzen Out of Office dial 2600 7877
-
-China (Other Cities):
-From IP phone dial 8-9957777
-Other cities - Non IP phone dial 021-23073322
-
-Denmark:
-8060 1400
-
-Finland:
-09 41333477
-
-France:
-0497 275888
-
-Germany:
-08161 803232
-
-Holland:
-030 2417490
-
-India:
-BSNL subscribers use 1800 425 9996 (Toll Free)
-Airtel subscribers use 0008 009 861 212 (Toll Free)
-From TI Campus use 89957777
-Others use 2509 9555 (Landline within Bangalore) or
-80 2509 9555 (Outside Bangalore)
-
-Israel:
-09 790 6715
-
-Italy:
-039 69061234 (039 is local city code not country code)
-
-Japan:
-From TI Campus use 8 995 7777
-Outside TI use 03 4331 3777
-
-Malaysia:
-From IP phone dial 2643799
-From Kuala Lumpur dial 4264 3799
-Outside Kuala Lumpur dial (03)4264 3799
-
-Norway:
-2 295 8744
-
-Philippines:
-From Baguio City use 4471177
-From Metro Manila area use 8702477
-
-Singapore:
-From IP phone dial 3894777
-Outside TI use 6389 4777
-
-South Korea:
-From IP phone dial 5606998
-From Seoul dial 5606998
-Outside Seoul dial (02)5606998
-
-Sweden:
-08 58755577
-
-Taiwan:
-From IP phone dial 1363
-From Taipei dial 2241 1363
-Outside Taipei dial (02)2241 1363
-
-Turkey:
-Landline Only dial 0811 288 0001
-then enter 877 633 1123
-
-UK:
-01908 355599
-
-US:
-972 995 7777 or 1877 561 6828
-
-
-Recurring conferences
-First scheduled conference:     Tue Jun 25, 2013
-Recurrence frequency:   Weekly - Every 1 week(s) on Tuesday
-Recurrence ends:        End after 52 occurrences
-
-
-
-
---_000_7E680CB2A76BB8438D08CF13C09FC53A8EFDACEAORSMSX108amrcor_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<meta name=3D"Generator" content=3D"Microsoft Exchange Server">
-<!-- converted from rtf -->
-<style><!-- .EmailQuote { margin-left: 1pt; padding-left: 4pt; border-left:=
- #800000 2px solid; } --></style>
-</head>
-<body>
-<font face=3D"Consolas" size=3D"2"><span style=3D"font-size:11pt;">
-<div>Agenda:</div>
-<div>&nbsp;</div>
-<div>* Opens collection - 5 min (Song)</div>
-<div>* Yocto 1.6 status - 10 min (Song/team)</div>
-<div>&nbsp; <a href=3D"https://wiki.yoctoproject.org/wiki/Yocto_Project_v1.=
-6_Status"><font face=3D"Calibri" color=3D"blue"><u>https://wiki.yoctoprojec=
-t.org/wiki/Yocto_Project_v1.6_Status</u></font></a></div>
-<div>&nbsp; <a href=3D"https://wiki.yoctoproject.org/wiki/Yocto_1.6_Feature=
-s"><font face=3D"Calibri" color=3D"blue"><u>https://wiki.yoctoproject.org/w=
-iki/Yocto_1.6_Features</u></font></a></div>
-<div>* SWAT team rotation: Beth/Saul -&gt; Paul</div>
-<div>* Opens - 10 min </div>
-<div>* Team Sharing - 20 min</div>
-<div><font face=3D"Times New Roman" color=3D"#1F497D">&nbsp;</font></div>
-<div><font face=3D"Times New Roman" color=3D"#1F497D">&nbsp;</font></div>
-<div><font face=3D"Tahoma" size=3D"2"><span style=3D"font-size:10pt;">-----=
-Original Appointment-----<br>
-
-</span></font></div>
-<div><font size=3D"2"><span style=3D"font-size:10.5pt;">We encourage people=
- attending the meeting to logon the Yocto Project IRC chancel during the me=
-eting (optional):</span></font></div>
-<div><font size=3D"2"><span style=3D"font-size:10.5pt;">&nbsp;</span></font=
-></div>
-<div><font size=3D"2"><span style=3D"font-size:10.5pt;">Yocto IRC: <a href=
-=3D"http://webchat.freenode.net/?channels=3D#yocto"><font color=3D"blue"><u=
->http://webchat.freenode.net/?channels=3D#yocto</u></font></a></span></font=
-></div>
-<div><font size=3D"2"><span style=3D"font-size:10.5pt;">IRC Tutorial: <a hr=
-ef=3D"http://www.irchelp.org/irchelp/irctutorial.html"><font color=3D"blue"=
-><u>http://www.irchelp.org/irchelp/irctutorial.html</u></font></a> </span><=
-/font></div>
-<div><font face=3D"Times New Roman">&nbsp;</font></div>
-<table width=3D"725" style=3D"width:435pt;margin-left:0.2pt;">
-<col width=3D"725" style=3D"width:435pt;">
-<tr>
-<td style=3D"background-color:#E8E8E8;"><font face=3D"Verdana" size=3D"2"><=
-span style=3D"font-size:8.5pt;background-color:#E8E8E8;"><b>Conference deta=
-ils</b></span></font></td>
-</tr>
-</table>
-<table width=3D"725" style=3D"width:435pt;margin-left:0.2pt;">
-<col width=3D"217" style=3D"width:130.4pt;">
-<col width=3D"507" style=3D"width:304.6pt;">
-<tr>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;">Conference name:</span></font></td>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;"><b>Yocto Project Technical Team</b></span></font></td>
-</tr>
-<tr>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;">Conference date/start time:</span></font></td>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;"><b>Tue Jun 25, 2013 at 11:00 AM Eastern Daylight Time (GMT-04=
-00)</b></span></font></td>
-</tr>
-<tr>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;">Participants:</span></font></td>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;"><b>30</b></span></font></td>
-</tr>
-<tr>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;">Duration:</span></font></td>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;"><b>60 minutes</b></span></font></td>
-</tr>
-<tr>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;">Participant passcode:</span></font></td>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;"><b>42001078</b></span></font></td>
-</tr>
-<tr>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;">Dial-in number:</span></font></td>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;"><b>1.972.995.7777</b></span></font></td>
-</tr>
-<tr>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;">US Toll Free number:</span></font></td>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;"><b>1.877.561.6828</b></span></font></td>
-</tr>
-<tr>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;">BlackBerry users, click this link to join your conference as =
-a&nbsp;<b>participant</b>:</span></font></td>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;"><b>1.972.995.7777x42001078#</b></span></font></td>
-</tr>
-<tr>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;">&nbsp;</span></font></td>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;">Depending on where you are dialing from, either your BlackBer=
-ry will pause and enter the passcode automatically or you will be prompted =
-to click again to dial the passcode.</span></font></td>
-</tr>
-<tr>
-<td colspan=3D"2">
-<table width=3D"273" style=3D"width:164.25pt;margin-left:5.55pt;">
-<col width=3D"273" style=3D"width:164.25pt;">
-<tr>
-<td><font face=3D"Times New Roman"></font></td>
-</tr>
-<tr>
-<td style=3D"background-color:#428CC6;"><font face=3D"Verdana" size=3D"2" c=
-olor=3D"#CFCFCF"><span style=3D"font-size:8.5pt;background-color:#428CC6;">=
-<b>Local and Global Access Numbers</b></span></font></td>
-</tr>
-</table>
-<div><font face=3D"Times New Roman" color=3D"#666666">&nbsp;</font></div>
-<table width=3D"576" style=3D"width:345.6pt;margin-left:5.55pt;">
-<col width=3D"172" style=3D"width:103.4pt;">
-<col width=3D"403" style=3D"width:242.2pt;">
-<tr>
-<td><font face=3D"Times New Roman"></font></td>
-</tr>
-<tr>
-<td><font face=3D"Verdana" size=3D"2"><span style=3D"font-size:8.5pt;"><b>C=
-ountry</b></span></font></td>
-<td><font face=3D"Verdana" size=3D"2"><span style=3D"font-size:8.5pt;"><b>D=
-ial-in number</b></span></font></td>
-</tr>
-<tr>
-<td style=3D"background-color:#EBEBEB;"><font face=3D"Verdana" size=3D"2" c=
-olor=3D"#666666"><span style=3D"font-size:8.5pt;background-color:#EBEBEB;">=
-<b>Australia:</b></span></font></td>
-<td style=3D"background-color:#EBEBEB;"><font face=3D"Verdana" size=3D"2" c=
-olor=3D"#666666"><span style=3D"font-size:8.5pt;background-color:#EBEBEB;">=
-1800 636 843</span></font></td>
-</tr>
-<tr>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;"><b>Czech Republic:</b></span></font></td>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;">242 430 350</span></font></td>
-</tr>
-<tr>
-<td style=3D"background-color:#EBEBEB;"><font face=3D"Verdana" size=3D"2" c=
-olor=3D"#666666"><span style=3D"font-size:8.5pt;background-color:#EBEBEB;">=
-<b>China (Beijing):</b></span></font></td>
-<td style=3D"background-color:#EBEBEB;"><font face=3D"Verdana" size=3D"2" c=
-olor=3D"#666666"><span style=3D"font-size:8.5pt;background-color:#EBEBEB;">=
-From office dial 8-9957777 or 8784277&nbsp;<br>
-
-Beijing Out of Office dial 5878 4277</span></font></td>
-</tr>
-<tr>
-<td style=3D"background-color:#EBEBEB;"><font face=3D"Verdana" size=3D"2" c=
-olor=3D"#666666"><span style=3D"font-size:8.5pt;background-color:#EBEBEB;">=
-<b>China (Shanghai):</b></span></font></td>
-<td style=3D"background-color:#EBEBEB;"><font face=3D"Verdana" size=3D"2" c=
-olor=3D"#666666"><span style=3D"font-size:8.5pt;background-color:#EBEBEB;">=
-From office dial 8-9957777 or 3073322&nbsp;<br>
-
-Shanghai Out of Office dial 2307 3322</span></font></td>
-</tr>
-<tr>
-<td style=3D"background-color:#EBEBEB;"><font face=3D"Verdana" size=3D"2" c=
-olor=3D"#666666"><span style=3D"font-size:8.5pt;background-color:#EBEBEB;">=
-<b>China (Shenzen):</b></span></font></td>
-<td style=3D"background-color:#EBEBEB;"><font face=3D"Verdana" size=3D"2" c=
-olor=3D"#666666"><span style=3D"font-size:8.5pt;background-color:#EBEBEB;">=
-From office dial 8-9957777 or 6007877&nbsp;<br>
-
-Shenzen Out of Office dial 2600 7877</span></font></td>
-</tr>
-<tr>
-<td style=3D"background-color:#EBEBEB;"><font face=3D"Verdana" size=3D"2" c=
-olor=3D"#666666"><span style=3D"font-size:8.5pt;background-color:#EBEBEB;">=
-<b>China (Other Cities):</b></span></font></td>
-<td style=3D"background-color:#EBEBEB;"><font face=3D"Verdana" size=3D"2" c=
-olor=3D"#666666"><span style=3D"font-size:8.5pt;background-color:#EBEBEB;">=
-From IP phone dial 8-9957777&nbsp;<br>
-
-Other cities - Non IP phone dial 021-23073322</span></font></td>
-</tr>
-<tr>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;"><b>Denmark:</b></span></font></td>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;">8060 1400</span></font></td>
-</tr>
-<tr>
-<td style=3D"background-color:#EBEBEB;"><font face=3D"Verdana" size=3D"2" c=
-olor=3D"#666666"><span style=3D"font-size:8.5pt;background-color:#EBEBEB;">=
-<b>Finland:</b></span></font></td>
-<td style=3D"background-color:#EBEBEB;"><font face=3D"Verdana" size=3D"2" c=
-olor=3D"#666666"><span style=3D"font-size:8.5pt;background-color:#EBEBEB;">=
-09 41333477</span></font></td>
-</tr>
-<tr>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;"><b>France:</b></span></font></td>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;">0497 275888</span></font></td>
-</tr>
-<tr>
-<td style=3D"background-color:#EBEBEB;"><font face=3D"Verdana" size=3D"2" c=
-olor=3D"#666666"><span style=3D"font-size:8.5pt;background-color:#EBEBEB;">=
-<b>Germany:</b></span></font></td>
-<td style=3D"background-color:#EBEBEB;"><font face=3D"Verdana" size=3D"2" c=
-olor=3D"#666666"><span style=3D"font-size:8.5pt;background-color:#EBEBEB;">=
-08161 803232</span></font></td>
-</tr>
-<tr>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;"><b>Holland:</b></span></font></td>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;">030 2417490</span></font></td>
-</tr>
-<tr>
-<td style=3D"background-color:#EBEBEB;"><font face=3D"Verdana" size=3D"2" c=
-olor=3D"#666666"><span style=3D"font-size:8.5pt;background-color:#EBEBEB;">=
-<b>India:</b></span></font></td>
-<td style=3D"background-color:#EBEBEB;"><font face=3D"Verdana" size=3D"2" c=
-olor=3D"#666666"><span style=3D"font-size:8.5pt;background-color:#EBEBEB;">=
-BSNL subscribers use 1800 425 9996 (Toll Free)<br>
-
-Airtel subscribers use 0008 009 861 212 (Toll Free)<br>
-
-From TI Campus use 89957777<br>
-
-Others use 2509 9555 (Landline within Bangalore) or<br>
-
-80 2509 9555 (Outside Bangalore)</span></font></td>
-</tr>
-<tr>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;"><b>Israel:</b></span></font></td>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;">09 790 6715</span></font></td>
-</tr>
-<tr>
-<td style=3D"background-color:#EBEBEB;"><font face=3D"Verdana" size=3D"2" c=
-olor=3D"#666666"><span style=3D"font-size:8.5pt;background-color:#EBEBEB;">=
-<b>Italy:</b></span></font></td>
-<td style=3D"background-color:#EBEBEB;"><font face=3D"Verdana" size=3D"2" c=
-olor=3D"#666666"><span style=3D"font-size:8.5pt;background-color:#EBEBEB;">=
-039 69061234 (039 is local city code not country code)</span></font></td>
-</tr>
-<tr>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;"><b>Japan:</b></span></font></td>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;">From TI Campus use 8 995 7777&nbsp;<br>
-
-Outside TI use 03 4331 3777</span></font></td>
-</tr>
-<tr>
-<td style=3D"background-color:#EBEBEB;"><font face=3D"Verdana" size=3D"2" c=
-olor=3D"#666666"><span style=3D"font-size:8.5pt;background-color:#EBEBEB;">=
-<b>Malaysia:</b></span></font></td>
-<td style=3D"background-color:#EBEBEB;"><font face=3D"Verdana" size=3D"2" c=
-olor=3D"#666666"><span style=3D"font-size:8.5pt;background-color:#EBEBEB;">=
-From IP phone dial 2643799&nbsp;<br>
-
-From Kuala Lumpur dial 4264 3799&nbsp;<br>
-
-Outside Kuala Lumpur dial (03)4264 3799</span></font></td>
-</tr>
-<tr>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;"><b>Norway:</b></span></font></td>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;">2 295 8744</span></font></td>
-</tr>
-<tr>
-<td style=3D"background-color:#EBEBEB;"><font face=3D"Verdana" size=3D"2" c=
-olor=3D"#666666"><span style=3D"font-size:8.5pt;background-color:#EBEBEB;">=
-<b>Philippines:</b></span></font></td>
-<td style=3D"background-color:#EBEBEB;"><font face=3D"Verdana" size=3D"2" c=
-olor=3D"#666666"><span style=3D"font-size:8.5pt;background-color:#EBEBEB;">=
-From Baguio City use 4471177&nbsp;<br>
-
-From Metro Manila area use 8702477</span></font></td>
-</tr>
-<tr>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;"><b>Singapore:</b></span></font></td>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;">From IP phone dial 3894777&nbsp;<br>
-
-Outside TI use 6389 4777</span></font></td>
-</tr>
-<tr>
-<td style=3D"background-color:#EBEBEB;"><font face=3D"Verdana" size=3D"2" c=
-olor=3D"#666666"><span style=3D"font-size:8.5pt;background-color:#EBEBEB;">=
-<b>South Korea:</b></span></font></td>
-<td style=3D"background-color:#EBEBEB;"><font face=3D"Verdana" size=3D"2" c=
-olor=3D"#666666"><span style=3D"font-size:8.5pt;background-color:#EBEBEB;">=
-From IP phone dial 5606998&nbsp;<br>
-
-From Seoul dial 5606998&nbsp;<br>
-
-Outside Seoul dial (02)5606998</span></font></td>
-</tr>
-<tr>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;"><b>Sweden:</b></span></font></td>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;">08 58755577</span></font></td>
-</tr>
-<tr>
-<td style=3D"background-color:#EBEBEB;"><font face=3D"Verdana" size=3D"2" c=
-olor=3D"#666666"><span style=3D"font-size:8.5pt;background-color:#EBEBEB;">=
-<b>Taiwan:</b></span></font></td>
-<td style=3D"background-color:#EBEBEB;"><font face=3D"Verdana" size=3D"2" c=
-olor=3D"#666666"><span style=3D"font-size:8.5pt;background-color:#EBEBEB;">=
-From IP phone dial 1363&nbsp;<br>
-
-From Taipei dial 2241 1363&nbsp;<br>
-
-Outside Taipei dial (02)2241 1363</span></font></td>
-</tr>
-<tr>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;"><b>Turkey:</b></span></font></td>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;"><b>Landline Only</b>&nbsp;dial 0811 288 0001&nbsp;<br>
-
-then enter 877 633 1123</span></font></td>
-</tr>
-<tr>
-<td style=3D"background-color:#EBEBEB;"><font face=3D"Verdana" size=3D"2" c=
-olor=3D"#666666"><span style=3D"font-size:8.5pt;background-color:#EBEBEB;">=
-<b>UK:</b></span></font></td>
-<td style=3D"background-color:#EBEBEB;"><font face=3D"Verdana" size=3D"2" c=
-olor=3D"#666666"><span style=3D"font-size:8.5pt;background-color:#EBEBEB;">=
-01908 355599</span></font></td>
-</tr>
-<tr>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;"><b>US:</b></span></font></td>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;">972 995 7777 or 1877 561 6828</span></font></td>
-</tr>
-</table>
-<div><font face=3D"Times New Roman" color=3D"#666666">&nbsp;</font></div>
-</td>
-</tr>
-</table>
-<table width=3D"725" style=3D"width:435pt;margin-left:0.2pt;">
-<col width=3D"725" style=3D"width:435pt;">
-<tr>
-<td style=3D"background-color:#E8E8E8;"><font face=3D"Verdana" size=3D"2"><=
-span style=3D"font-size:8.5pt;background-color:#E8E8E8;"><b>Recurring confe=
-rences</b></span></font></td>
-</tr>
-</table>
-<table width=3D"725" style=3D"width:435pt;margin-left:0.2pt;">
-<col width=3D"217" style=3D"width:130.4pt;">
-<col width=3D"507" style=3D"width:304.6pt;">
-<tr>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;">First scheduled conference:</span></font></td>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;"><b>Tue Jun 25, 2013</b></span></font></td>
-</tr>
-<tr>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;">Recurrence frequency:</span></font></td>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;"><b>Weekly - Every 1 week(s) on Tuesday</b></span></font></td>
-</tr>
-<tr>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;">Recurrence ends:</span></font></td>
-<td><font face=3D"Verdana" size=3D"2" color=3D"#666666"><span style=3D"font=
--size:8.5pt;"><b>End after 52 occurrences</b></span></font></td>
-</tr>
-</table>
-<div><font face=3D"Times New Roman">&nbsp;</font></div>
-<div><font face=3D"Times New Roman">&nbsp;</font></div>
-<div><font face=3D"Times New Roman">&nbsp;</font></div>
-</span></font>
-</body>
-</html>
-
---_000_7E680CB2A76BB8438D08CF13C09FC53A8EFDACEAORSMSX108amrcor_--
+<div dir=3D"ltr">Hi all,<div><br></div><div>I&#39;m facing a wearied issue =
+while packaging syslog-ng ported from OE. (I added meta-openembedded as a s=
+ub-module and use the recipe files from it directly).=A0</div><div><br></di=
+v>
+<div>In my yocto build I enabled multi-lib for both 32-bits and 64-bits, de=
+fault tune is 64-bits. The libraries are installed under /usr/lib64. As you=
+ know, syslog-ng_3.2.5 has plugin and I installed them under /usr/lib64/sys=
+log-ng, and add that path into FILES_${PN}:</div>
+<div><br></div><div><div>FILES_${PN} =3D &quot;${bindir}/* ${sbindir}/* ${l=
+ibexecdir}/* ${libdir}/lib*${SOLIBS} \</div><div>=A0 =A0 ${sysconfdir} ${sh=
+aredstatedir} ${localstatedir} \</div><div>=A0 =A0 ${base_bindir}/* ${base_=
+sbindir}/* \</div>
+<div>=A0 =A0 ${base_libdir}/*${SOLIBS} \</div><div>=A0 =A0 ${datadir}/${BPN=
+} ${libdir}/${BPN}/*${SOLIBSDEV} \</div><div>=A0 =A0 ${datadir}/include/scl=
+/ ${datadir}/xsd&quot;</div></div><div><br></div><div>=A0${libdir}/${BPN}/*=
+${SOLIBSDEV} is expanded as /usr/lib64/syslog-ng/*.so. The funny thing is, =
+the sys-log rpm doesn&#39;t have those files (I used rpm as packaging schem=
+e). I checked the generated spec file during &quot;do_package&quot;, those =
+files are not added as &quot;%files&quot; for package &quot;syslog-ng&quot;=
+. I&#39;m pretty sure the files are installed.<br>
+</div><div><br></div><div>My question is, why &quot;FIELS_${PN}&quot; is no=
+t effective for syslog-ng particularly? How to control the spec if it&#39;s=
+ not? Attached is the syslog-ng recipe file.</div><div><br></div><div>Thank=
+s.</div>
+<div>- Reeve</div><div><br></div><div><div>DESCRIPTION =3D &quot;Alternativ=
+e system logger daemon&quot;</div><div>DEPENDS =3D &quot;libol flex eventlo=
+g glib-2.0&quot;</div><div>LICENSE =3D &quot;GPL LGPL&quot;</div><div>LIC_F=
+ILES_CHKSUM =3D &quot;file://COPYING;md5=3D7ec1bcc46f28b11f4722e20d9b7dd4d5=
+&quot;</div>
+<div><br></div><div># syslog initscript is handled explicitly because order=
+ of</div><div># update-rc.d and update-alternatives is important</div><div>=
+RDEPENDS_${PN} +=3D &quot; ${@base_conditional(&quot;ONLINE_PACKAGE_MANAGEM=
+ENT&quot;, &quot;none&quot;, &quot;&quot;, &quot;update-rc.d&quot;, d)}&quo=
+t;</div>
+<div><br></div><div>INC_PR =3D &quot;r12&quot;</div><div><br></div><div>inh=
+erit autotools systemd</div><div><br></div><div>SRC_URI =3D &quot;<a href=
+=3D"http://www.balabit.com/downloads/files/syslog-ng/sources/${PV}/source/$=
+{PN}_${PV}.tar.gz">http://www.balabit.com/downloads/files/syslog-ng/sources=
+/${PV}/source/${PN}_${PV}.tar.gz</a>&quot;</div>
+<div><br></div><div>noipv6 =3D &quot;${@base_contains(&#39;DISTRO_FEATURES&=
+#39;, &#39;ipv6&#39;, &#39;&#39;, &#39;--disable-ipv6&#39;, d)}&quot;</div>=
+<div><br></div><div>EXTRA_OECONF =3D &quot; \</div><div>=A0 =A0 --with-libn=
+et=3D${STAGING_BINDIR_CROSS} \</div>
+<div>=A0 =A0 --enable-dynamic-linking \</div><div>=A0 =A0 ${noipv6} \</div>=
+<div>=A0 =A0 --enable-ssl \</div><div>=A0 =A0 --disable-sub-streams \</div>=
+<div>=A0 =A0 --disable-pacct \</div><div>=A0 =A0 --disable-linux-caps \</di=
+v><div>=A0 =A0 --disable-pcre \</div>
+<div>=A0 =A0 --disable-sql \</div><div>&quot;</div><div><br></div><div>EXTR=
+A_OECONF +=3D &quot;${@base_contains(&#39;DISTRO_FEATURES&#39;, &#39;system=
+d&#39;, &#39;--with-systemdsystemunitdir=3D${systemd_unitdir}/system/&#39;,=
+ &#39;--without-systemdsystemunitdir&#39;, d)}&quot;</div>
+<div>EXTRA_OECONF +=3D &quot;${@base_contains(&#39;DISTRO_FEATURES&#39;, &#=
+39;systemd&#39;, &#39;--enable-systemd&#39;, &#39;--disable-systemd&#39;, d=
+)}&quot;</div><div><br></div><div>do_configure_prepend() {</div><div>=A0 =
+=A0 eval &quot;${@base_contains(&#39;DISTRO_FEATURES&#39;, &#39;largefile&#=
+39;, &#39;&#39;, &#39;sed -i -e &quot;s/-D_LARGEFILE_SOURCE//&quot; -e &quo=
+t;s/-D_FILE_OFFSET_BITS=3D64//&quot; ${S}/<a href=3D"http://configure.in">c=
+onfigure.in</a>&#39;, d)}&quot;</div>
+<div>}</div><div><br></div><div># rename modules.conf because it breaks upd=
+ate-modules=A0</div><div># see <a href=3D"http://lists.linuxtogo.org/piperm=
+ail/openembedded-devel/2011-October/035537.html">http://lists.linuxtogo.org=
+/pipermail/openembedded-devel/2011-October/035537.html</a></div>
+<div>do_install_append() {</div><div>=A0 =A0 mv ${D}/${sysconfdir}/modules.=
+conf ${D}/${sysconfdir}/scl-modules.conf</div><div>=A0 =A0 sed -i &quot;s#@=
+include &#39;modules.conf&#39;#@include &#39;scl-modules.conf&#39;#g&quot; =
+${D}/${sysconfdir}/scl.conf</div>
+<div>=A0 =A0 install -d ${D}/${sysconfdir}/${PN}</div><div>=A0 =A0 install =
+${WORKDIR}/syslog-ng.conf ${D}${sysconfdir}/${PN}/${PN}.conf</div><div>=A0 =
+=A0 rm -rf ${D}${sysconfdir}/${PN}.conf</div><div>=A0 =A0 install -d ${D}/$=
+{sysconfdir}/init.d</div>
+<div>=A0 =A0 install -m 755 ${WORKDIR}/initscript ${D}/${sysconfdir}/init.d=
+/syslog.${PN}</div><div>=A0 =A0 mv ${D}/usr/lib/${PN} ${D}/${libdir}</div><=
+div>=A0 =A0 rm -rf ${D}/usr/lib</div><div>}</div><div><br></div><div>FILES_=
+${PN} =3D &quot;${bindir}/* ${sbindir}/* ${libexecdir}/* ${libdir}/lib*${SO=
+LIBS} \</div>
+<div>=A0 =A0 ${sysconfdir} ${sharedstatedir} ${localstatedir} \</div><div>=
+=A0 =A0 ${base_bindir}/* ${base_sbindir}/* \</div><div>=A0 =A0 ${base_libdi=
+r}/*${SOLIBS} \</div><div>=A0 =A0 ${datadir}/${BPN} ${libdir}/${BPN}/*${SOL=
+IBSDEV} \</div>
+<div>=A0 =A0 ${datadir}/include/scl/ ${datadir}/xsd&quot;</div><div>FILES_$=
+{PN}-dev +=3D &quot;${libdir}/${BPN}/lib*.la ${libdir}/${BPN}/*${SOLIBSDEV}=
+&quot;</div><div>CONFFILES_${PN} =3D &quot;${sysconfdir}/${PN}/${PN}.conf $=
+{sysconfdir}/scl.conf ${sysconfdir}/scl-modules.conf&quot;</div>
+<div><br></div><div>RPROVIDES_${PN} +=3D &quot;${PN}-systemd&quot;</div><di=
+v>RREPLACES_${PN} +=3D &quot;${PN}-systemd&quot;</div><div>RCONFLICTS_${PN}=
+ +=3D &quot;${PN}-systemd&quot;</div><div>SYSTEMD_SERVICE_${PN} =3D &quot;$=
+{PN}.service&quot;</div>
+<div><br></div><div>pkg_postinst_${PN} () {</div><div>=A0 =A0 /etc/init.d/s=
+yslog stop</div><div>=A0 =A0 update-alternatives --install ${sysconfdir}/in=
+it.d/syslog syslog-init syslog.${PN} 200</div><div><br></div><div>=A0 =A0 i=
+f test &quot;x$D&quot; !=3D &quot;x&quot;; then</div>
+<div>=A0 =A0 =A0 =A0 OPT=3D&quot;-r $D&quot;</div><div>=A0 =A0 else</div><d=
+iv>=A0 =A0 =A0 =A0 OPT=3D&quot;-s&quot;</div><div>=A0 =A0 fi</div><div>=A0 =
+=A0 # remove all rc.d-links potentially created from alternative</div><div>=
+=A0 =A0 # syslog packages before creating new ones</div>
+<div>=A0 =A0 update-rc.d $OPT -f syslog remove</div><div>=A0 =A0 update-rc.=
+d $OPT syslog start 20 2 3 4 5 . stop 90 0 1 6 .</div><div>}</div><div><br>=
+</div><div>pkg_prerm_${PN} () {</div><div>=A0 =A0 if test &quot;x$D&quot; =
+=3D &quot;x&quot;; then</div>
+<div>=A0 =A0 =A0 =A0 if test &quot;$1&quot; =3D &quot;upgrade&quot; -o &quo=
+t;$1&quot; =3D &quot;remove&quot;; then</div><div>=A0 =A0 =A0 =A0 =A0 =A0 /=
+etc/init.d/syslog stop</div><div>=A0 =A0 =A0 =A0 fi</div><div>=A0 =A0 fi</d=
+iv><div><br></div><div>=A0 =A0 update-alternatives --remove syslog-init sys=
+log.${PN}</div>
+<div>}</div><div><br></div><div>pkg_postrm_${PN} () {</div><div>=A0 =A0 if =
+test &quot;x$D&quot; !=3D &quot;x&quot;; then</div><div>=A0 =A0 =A0 =A0 OPT=
+=3D&quot;-r $D&quot;</div><div>=A0 =A0 else</div><div>=A0 =A0 =A0 =A0 OPT=
+=3D&quot;&quot;</div><div>=A0 =A0 fi</div>
+<div>=A0 =A0 if test &quot;$1&quot; =3D &quot;remove&quot; -o &quot;$1&quot=
+; =3D &quot;purge&quot;; then</div><div>=A0 =A0 =A0 =A0 if ! test -e &quot;=
+/etc/init.d/syslog&quot;; then</div><div>=A0 =A0 =A0 =A0 =A0 =A0 update-rc.=
+d $OPT syslog remove</div>
+<div>=A0 =A0 =A0 =A0 fi</div><div>=A0 =A0 fi</div><div>}</div></div><div><b=
+r></div></div>
+
+--089e0116049e5707bc04ef565480--
