@@ -1,28 +1,21 @@
-Return-Path: <billmartin544@gmail.com>
-Received: from mail-ig0-f177.google.com (mail-ig0-f177.google.com
-	[209.85.213.177])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 29249E0081B
-	for <yocto@yoctoproject.org>; Mon,  6 Jan 2014 19:31:23 -0800 (PST)
-Received: by mail-ig0-f177.google.com with SMTP id uy17so554804igb.4
-	for <yocto@yoctoproject.org>; Mon, 06 Jan 2014 19:31:23 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=Z6c1tye+CDJoWmnX+EJjUpX3uVSmYNyPwyY7ErsDzs4=;
-	b=pZ5+0wSyakUucaUFI688OOuiXMLsw/7iUrdVBB44lDqjinE2AbDYps8SHg3uLSIj2p
-	h/ZvuDqjQB1WroFSQRzQxa0HENwzOa0PGZ0Vt6nhs1xK5LHvB7ytPBE280XQ9o/sfs70
-	uX+nlSAhZH6g7g0bteTyWf16gD8C82nQo1mbTyrWMjOZUGcBZi6JyRpBN4C80sczfLN3
-	IrQS3Uh0owS6quG2wwXaeLErompp5goicf/zQSFIu05ywMNA6qbBo/EQjQboVbFwIxtO
-	zVsLnP6Qh1H7MEaD+1RCweOnuTD7+CVNqs/+H5DyyH6gXp7JNmboOLzZNkcQkJceb9fT
-	lDvw==
-MIME-Version: 1.0
-X-Received: by 10.50.118.69 with SMTP id kk5mr8270449igb.26.1389065482844;
-	Mon, 06 Jan 2014 19:31:22 -0800 (PST)
-Received: by 10.64.228.199 with HTTP; Mon, 6 Jan 2014 19:31:22 -0800 (PST)
-Date: Mon, 6 Jan 2014 20:31:22 -0700
-Message-ID: <CAJGS5=H1s=xK2CHzjMq4qPDvy3V29sFqcn3fep0_ZT2d3WGUuQ@mail.gmail.com>
-From: Bill Martin <billmartin544@gmail.com>
+Return-Path: <sgh@sgh.dk>
+Received: from mx-aarh-1.stofanet.dk (mx-aarh-1.stofanet.dk [212.10.10.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 18616E007EC
+	for <yocto@yoctoproject.org>; Mon,  6 Jan 2014 23:50:08 -0800 (PST)
+Received: from 5634f347.rev.stofanet.dk ([86.52.243.71] helo=asrock)
+	by mx-aarh-1.stofanet.dk (envelope-from <sgh@sgh.dk>)
+	with esmtp id 1W0RQM-0007ID-2z
+	for yocto@yoctoproject.org; Tue, 07 Jan 2014 08:50:06 +0100
+Received: from koontz.localnet (localhost [127.0.0.1])
+	by asrock (Postfix) with ESMTPS id 2092D7EEE4
+	for <yocto@yoctoproject.org>; Tue,  7 Jan 2014 08:50:06 +0100 (CET)
+From: =?ISO-8859-1?Q?S=F8ren?= Holm <sgh@sgh.dk>
 To: yocto@yoctoproject.org
-Subject: eglibc's iconv (version 2.17) command in Yocto Dylan for x86 target
+Date: Tue, 07 Jan 2014 08:50:03 +0100
+Message-ID: <1723630.4SPRZoJkQD@koontz>
+User-Agent: KMail/4.12 (Linux/3.12.0-8-generic; KDE/4.12.0; i686; ; )
+MIME-Version: 1.0
+Subject: Yocto and ccache
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,44 +27,19 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 07 Jan 2014 03:31:24 -0000
-Content-Type: multipart/alternative; boundary=e89a8f643382acbfc904ef59025d
-
---e89a8f643382acbfc904ef59025d
-Content-Type: text/plain; charset=ISO-8859-1
-
-I'm using Trousers and tss on my Yocto target build. I attempted to make a
-call to tspi_tpm_collateidentityrequest and this requires a UNICODE string
-in UTF-16 form. The preceding call to iconv fails when I try to convert
-from ASCII to UTF-16. I tried variations of the UTF-16, based on iconv
---list.
-
-I know this command works on other Unix-based systems. I tried on three
-different machines running Ubuntu and can convert from ASCII to UTF-16.
-
-Rather than modify all the TrouSers code and force it to only use UTF-8, I
-wonder if anyone here has a patch for eglibc that would allow iconv to
-convert to UTF-16?
-
-Thanks
-
-Bill Martin
-Valicore Technologies.
-
---e89a8f643382acbfc904ef59025d
-Content-Type: text/html; charset=ISO-8859-1
+X-List-Received-Date: Tue, 07 Jan 2014 07:50:13 -0000
 Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="iso-8859-1"
 
-<div dir=3D"ltr"><div>I&#39;m using Trousers and tss on my Yocto target bui=
-ld. I attempted to make a call to tspi_tpm_collateidentityrequest and this =
-requires a UNICODE string in UTF-16 form. The preceding call to iconv fails=
- when I try to convert from ASCII to UTF-16. I tried variations of the UTF-=
-16, based on iconv --list.<br>
-<br>I know this command works on other Unix-based systems. I tried on three=
- different machines running Ubuntu and can convert from ASCII to UTF-16.<br=
-><br></div>Rather than modify all the TrouSers code and force it to only us=
-e UTF-8, I wonder if anyone here has a patch for eglibc that would allow ic=
-onv to convert to UTF-16?<br>
-<br>Thanks<br><br>Bill Martin<br>Valicore Technologies.<br></div>
+Hi
 
---e89a8f643382acbfc904ef59025d--
+I've search the manual and  google for some time now in relation to yoc=
+to and=20
+ccache. So the question is now:
+
+How to I make yocto utilize ccache - it does not seem to do it on it's =
+own?
+
+--=20
+S=F8ren Holm
+
