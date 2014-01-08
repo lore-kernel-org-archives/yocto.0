@@ -1,24 +1,24 @@
 Return-Path: <paul.eggleton@linux.intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 66FB3E00816
-	for <yocto@yoctoproject.org>; Wed,  8 Jan 2014 05:33:44 -0800 (PST)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga101.jf.intel.com with ESMTP; 08 Jan 2014 05:33:36 -0800
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 621FFE00897
+	for <yocto@yoctoproject.org>; Wed,  8 Jan 2014 05:36:56 -0800 (PST)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga102.fm.intel.com with ESMTP; 08 Jan 2014 05:36:56 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.95,624,1384329600"; d="scan'208";a="463494928"
+X-IronPort-AV: E=Sophos;i="4.95,624,1384329600"; d="scan'208";a="461997342"
 Received: from unknown (HELO helios.localnet) ([10.252.122.128])
-	by orsmga002.jf.intel.com with ESMTP; 08 Jan 2014 05:33:35 -0800
+	by fmsmga002.fm.intel.com with ESMTP; 08 Jan 2014 05:36:55 -0800
 From: Paul Eggleton <paul.eggleton@linux.intel.com>
 To: Tarek El-Sherbiny <tarek.elsherbiny@gmail.com>
-Date: Wed, 08 Jan 2014 13:33:34 +0000
-Message-ID: <8631278.WqvAtfDsah@helios>
+Date: Wed, 08 Jan 2014 13:36:54 +0000
+Message-ID: <4695985.pdFe6Ipsgs@helios>
 Organization: Intel Corporation
 User-Agent: KMail/4.10.5 (Linux/3.8.0-35-generic; KDE/4.10.5; i686; ; )
-In-Reply-To: <CAB3sqtY8VkwaU8fLT3C28a-WWkW6rTHST6WEv+ijZj6_moT-_w@mail.gmail.com>
-References: <CAB3sqtY8VkwaU8fLT3C28a-WWkW6rTHST6WEv+ijZj6_moT-_w@mail.gmail.com>
+In-Reply-To: <CAB3sqtb6bujs6EB+cBs_AhUgjkAWPOiST0RXe4wSUD3QKKwz9w@mail.gmail.com>
+References: <CAB3sqtb6bujs6EB+cBs_AhUgjkAWPOiST0RXe4wSUD3QKKwz9w@mail.gmail.com>
 MIME-Version: 1.0
 Cc: yocto@yoctoproject.org
-Subject: Re: Smart PM for upgrade the full image
+Subject: Re: Upgrade Kernel using smart
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -30,29 +30,27 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 08 Jan 2014 13:33:47 -0000
+X-List-Received-Date: Wed, 08 Jan 2014 13:36:58 -0000
 Content-Transfer-Encoding: 7Bit
 Content-Type: text/plain; charset="us-ascii"
 
 Hi Tarek,
 
-On Wednesday 08 January 2014 12:52:42 Tarek El-Sherbiny wrote:
-> I have several targets deployed in multiple sites. Each target might  be
-> running  a different version of the product rootfs image. When I release a
-> new rootfs image I would like to use the smart command on each target at
-> the customer site to upgrade the software to the latest image. Going
-> through each package and install it separately is inefficient way of
-> handling the upgrade and I don't expect the customer to have the knowledge
-> for doing so.
-> 
-> What we really need is a smart command to compare the latest rootfs image
-> and install, remove or un-change packages based on what is currently
-> installed.
-> 
-> Can the smart command achieve that or do I need to write my own script?
+On Monday 06 January 2014 18:13:39 Tarek El-Sherbiny wrote:
+> When I typed the command "smart upgrade" smart detected over a 100 kernel
+> module that needs to be installed.
+> Most of these modules are not relevant and not installed on my system.
+> How do I tell smart to check and upgrade only  for the currently installed
+> modules?
 
-Isn't this the same question you asked the other day? i.e., this is "smart 
-upgrade".
+I don't know why this would be happening, but smart just uses the dependencies 
+declared in the RPM packages in order to determine what to install; so if it's 
+looking to install packages you do not currently have installed in the image, 
+in the absence of bug(s) that means somewhere a dependency has been added and 
+smart is just responding to that. If it looks like it's installing all kernel 
+module packages that probably means the "kernel-modules" meta-package is being 
+brought in by something else. I would suggest using "smart query" on the 
+target to find where this dependency exists.
 
 Cheers,
 Paul
