@@ -1,23 +1,27 @@
-Return-Path: <sgh@sgh.dk>
-Received: from mx-aarh-1.stofanet.dk (mx-aarh-1.stofanet.dk [212.10.10.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BAF15E008B6
-	for <yocto@yoctoproject.org>; Wed,  8 Jan 2014 13:44:07 -0800 (PST)
-Received: from 5634f347.rev.stofanet.dk ([86.52.243.71] helo=asrock)
-	by mx-aarh-1.stofanet.dk (envelope-from <sgh@sgh.dk>)
-	with esmtp id 1W10uz-0008JI-0b
-	for yocto@yoctoproject.org; Wed, 08 Jan 2014 22:44:05 +0100
-Received: from koontz.localnet (localhost [127.0.0.1])
-	by asrock (Postfix) with ESMTPS id E80F27EDD0
-	for <yocto@yoctoproject.org>; Wed,  8 Jan 2014 22:44:04 +0100 (CET)
-From: =?ISO-8859-1?Q?S=F8ren?= Holm <sgh@sgh.dk>
-To: yocto@yoctoproject.org
-Date: Wed, 08 Jan 2014 22:44:04 +0100
-Message-ID: <1487744.eQmCUL1Wba@koontz>
-User-Agent: KMail/4.12 (Linux/3.13.0-1-generic; KDE/4.12.0; i686; ; )
-In-Reply-To: <52CDC53F.2050906@linaro.org>
-References: <1723630.4SPRZoJkQD@koontz> <52CDC53F.2050906@linaro.org>
+Return-Path: <zafrullahmehdi@gmail.com>
+Received: from mail-wg0-f51.google.com (mail-wg0-f51.google.com [74.125.82.51])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 17218E008B6
+	for <yocto@yoctoproject.org>; Wed,  8 Jan 2014 15:54:43 -0800 (PST)
+Received: by mail-wg0-f51.google.com with SMTP id z12so1955162wgg.30
+	for <yocto@yoctoproject.org>; Wed, 08 Jan 2014 15:54:42 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:from:date:message-id:subject:to:content-type;
+	bh=22CPzvM1WieQOitcbTZNQ6jfbg8dYi/MbnMlgRLJiUM=;
+	b=OhVdich7M8MStVi7FgF9Id/CSCh0dWDPipZVuw4VXKZBnDR2zx7He03volKheP/O2F
+	WuVBcGI8ec+k4EuYxgNrVE7TgRQHDOR+ForVMnX+/k2M953shXByiJmBEYSeGXolm0wv
+	TqNfLggxg5WnyvyCO+oXO5hh07UN8p/qlEAMYoX3V1uBjgBRJueOGKIOLWAWwmNohIzf
+	LGo79GBGK49E/I4txWDUzKi9LFAKUdvVF5lXtSUK/InUsoRRXtiAK9mmLNDWjmSzC1ew
+	aHUqdT40/OQ4Nylw/8emX8DdT1GoH7aXf6zXCUJVkvq3d8ie6R3T0hDwz4u3YXqNTCRY
+	YJFQ==
+X-Received: by 10.180.212.98 with SMTP id nj2mr499991wic.52.1389225281937;
+	Wed, 08 Jan 2014 15:54:41 -0800 (PST)
 MIME-Version: 1.0
-Subject: Re: Yocto and ccache
+Received: by 10.194.59.146 with HTTP; Wed, 8 Jan 2014 15:54:21 -0800 (PST)
+From: Zafrullah Syed <zafrullahmehdi@gmail.com>
+Date: Thu, 9 Jan 2014 00:54:21 +0100
+Message-ID: <CAAGt+t09E7q1G8tunvq1BtcZmH7P85R+kqNqhhU6YhjWuK92Xg@mail.gmail.com>
+To: yocto <yocto@yoctoproject.org>
+Subject: exception MalformedUrl error
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -29,29 +33,49 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 08 Jan 2014 21:44:12 -0000
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"
+X-List-Received-Date: Wed, 08 Jan 2014 23:54:44 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
+Hi all,
 
-> I don't think it's necessary to explicitly use ccache since the OE/Yo=
-cto
-> framework already provides a sstate.bbclass which implements this sor=
-t
-> of logic and is designed to work better with the sorts of things bitb=
-ake
-> does:
+I tried to apply a patch directly to linux-gumstix_3.5.7.bb and kept
+.patch file in
+/yocto/poky/meta-gumstix/recipes-kernel/linux/linux-gumstix-3.5/
+directory along with other patches, and ran bitbake
+gumstix-console-image.
 
-Yes, it does only cache complete compiled and packed recipes. My workfl=
-ow will=20
-many times be tat I compile the same software with minor changes. And s=
-ince it=20
-is always from scratch it will always take the same amount of time. Bas=
-ically=20
-I use Jenkins for rebuilding my image and specific recipes are then tra=
-cking a=20
-branch in my application.
+Output:
 
---=20
-S=F8ren Holm
+ERROR: ExpansionError during parsing
+/home/zaif/yocto/poky/meta-gumstix/recipes-kernel/linux/linux-gumstix_3.5.7.bb:
+Failure expanding expression ${@bb.fetch.get_checksum_file_list(d)}
+which triggered exception MalformedUrl: The URL: 'missing' is invalid
+and cannot be interpreted
+ERROR: Command execution failed: Exited with 1
+
+I removed the patch file and patch entry from linux-gumstix_3.5.7.bb,
+then ran bitbake gumstix-console-image, I get the same error.
+
+I then ran
+
+bitbake -c cleansstate linux-gumstix-3.5
+bitbake world
+hob
+
+All of these returned the same error:
+
+ERROR: ExpansionError during parsing
+/home/zaif/yocto/poky/meta-gumstix/recipes-kernel/linux/linux-gumstix_3.5.7.bb:
+Failure expanding expression ${@bb.fetch.get_checksum_file_list(d)}
+which triggered exception MalformedUrl: The URL: 'missing' is invalid
+and cannot be interpreted
+ERROR: Command execution failed: Exited with 1
+
+I am trying to add this patch: http://pastebin.com/W3S6hW0M
+
+Did I messed up something ?
+
+-- 
+Regards,
+Zafrullah Syed
 
