@@ -1,37 +1,28 @@
-Return-Path: <martin.jansa@gmail.com>
-Received: from mail-ea0-f170.google.com (mail-ea0-f170.google.com
-	[209.85.215.170])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1417EE007C6
-	for <yocto@yoctoproject.org>; Wed,  8 Jan 2014 04:42:59 -0800 (PST)
-Received: by mail-ea0-f170.google.com with SMTP id k10so801063eaj.1
-	for <yocto@yoctoproject.org>; Wed, 08 Jan 2014 04:42:58 -0800 (PST)
+Return-Path: <tarek.elsherbiny@gmail.com>
+Received: from mail-qc0-f169.google.com (mail-qc0-f169.google.com
+	[209.85.216.169])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A0251E00804
+	for <yocto@yoctoproject.org>; Wed,  8 Jan 2014 04:52:42 -0800 (PST)
+Received: by mail-qc0-f169.google.com with SMTP id r5so1371732qcx.28
+	for <yocto@yoctoproject.org>; Wed, 08 Jan 2014 04:52:42 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=date:from:to:cc:subject:message-id:references:mime-version
-	:content-type:content-disposition:in-reply-to:user-agent;
-	bh=v5P4RXGTcC7Wx8b2Tj43mihCO3M1t4FmuIsLWC8/stQ=;
-	b=kVTLKkkaMQbo3FmdNq0thAo6QcAQmQ3v4cLRIOMUn9sLFhd0iIg+ZKPEMoyZclkcIP
-	ERTiJvvLM60xcFbKa7wgYIzoI8vzrxS7FHBq9Vlq0dKYlTQZhAluNDZWBkdgdrlc96/v
-	jyk1/57fFmdgy3zTooqdF54WXR11TeD7Rl3Y6/IQ4TP9t1lk5MX3t/eoadDwX1FAIqeZ
-	ITuzXOF0G6PvXF/2RQErO2gd5bUY6d4fRJFOUFDFFKiAzwUod2v7223DsJ2cdcOYaTz6
-	egUx0WZjC+K92WYlIb14kzp9eU79d91VQpnFemVXCcxLTaS45axPEvx5E0dwUDFHSIA1
-	gIqg==
-X-Received: by 10.14.221.193 with SMTP id r41mr26366231eep.92.1389184977795;
-	Wed, 08 Jan 2014 04:42:57 -0800 (PST)
-Received: from localhost (ip-89-176-104-107.net.upcbroadband.cz.
-	[89.176.104.107]) by mx.google.com with ESMTPSA id
-	b41sm189206571eef.16.2014.01.08.04.42.55 for <multiple recipients>
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Wed, 08 Jan 2014 04:42:56 -0800 (PST)
-Date: Wed, 8 Jan 2014 13:43:06 +0100
-From: Martin Jansa <martin.jansa@gmail.com>
-To: Gary Thomas <gary@mlbassoc.com>
-Message-ID: <20140108124306.GY3709@jama>
-References: <52CD3DCC.9070807@mlbassoc.com>
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=CoZguBts+5qvkpUpKxZjRxIYva+nSdMLY4cky5mSq+o=;
+	b=YcoWO+uG6zOxstQF0kXIUk9d8voZybe2fYsnaOGw15U/BUM0NrgLKprwxi7Rwj+9M2
+	NrhCB40q14SQBMGzrBRF2q5a81tg0bniPQZgATnnSE0q0CtXoXruj2MHXkW5IX0pK/IJ
+	mY0+oCZI3/dI98YdUg7puWNuCHA9uXtv048qJwrVX6Kok2o87C5iZRdbFdvqHGeoTeAc
+	yUfCtRioMrLTRySSl1L5RBEu7dhafAN18kploedBiolw/YWcQ2WkQNHXqwyCC4Yk9J/9
+	f7iFT6w+jvQN13HQerQNz48G2WtGFRIuZ7Dl9XXQKWWfubkKNCQEF+JRHqd5AklLCTYq
+	Kutw==
 MIME-Version: 1.0
-In-Reply-To: <52CD3DCC.9070807@mlbassoc.com>
-User-Agent: Mutt/1.5.22 (2013-10-16)
-Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: PR server question
+X-Received: by 10.49.72.193 with SMTP id f1mr211705377qev.58.1389185562153;
+	Wed, 08 Jan 2014 04:52:42 -0800 (PST)
+Received: by 10.96.81.104 with HTTP; Wed, 8 Jan 2014 04:52:42 -0800 (PST)
+Date: Wed, 8 Jan 2014 12:52:42 +0000
+Message-ID: <CAB3sqtY8VkwaU8fLT3C28a-WWkW6rTHST6WEv+ijZj6_moT-_w@mail.gmail.com>
+From: Tarek El-Sherbiny <tarek.elsherbiny@gmail.com>
+To: yocto@yoctoproject.org
+Subject: Smart PM for upgrade the full image
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,62 +34,49 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 08 Jan 2014 12:43:02 -0000
-X-Groupsio-MsgNum: 17707
-Content-Type: multipart/signed; micalg=pgp-sha1;
-	protocol="application/pgp-signature"; boundary="wRyyN4gAPkNkeCwp"
-Content-Disposition: inline
+X-List-Received-Date: Wed, 08 Jan 2014 12:52:43 -0000
+Content-Type: multipart/alternative; boundary=047d7b676af2f5b19404ef74f7b0
 
---wRyyN4gAPkNkeCwp
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+--047d7b676af2f5b19404ef74f7b0
+Content-Type: text/plain; charset=ISO-8859-1
+
+Hi All,
+
+I have several targets deployed in multiple sites. Each target might  be
+running  a different version of the product rootfs image. When I release a
+new rootfs image I would like to use the smart command on each target at
+the customer site to upgrade the software to the latest image. Going
+through each package and install it separately is inefficient way of
+handling the upgrade and I don't expect the customer to have the knowledge
+for doing so.
+
+What we really need is a smart command to compare the latest rootfs image
+and install, remove or un-change packages based on what is currently
+installed.
+
+Can the smart command achieve that or do I need to write my own script?
+
+Thanks,
+-- 
+*Tarek*
+
+--047d7b676af2f5b19404ef74f7b0
+Content-Type: text/html; charset=ISO-8859-1
 Content-Transfer-Encoding: quoted-printable
 
-On Wed, Jan 08, 2014 at 05:00:12AM -0700, Gary Thomas wrote:
-> I'm using a local PR server for my builds, working on my Linux
-> kernel.  When I run this sequence:
->    $ bitbake virtual/kernel -c devshell
->      ... fiddle with some kernel sources
->    $ bitbake virtual/kernel -C compile; bitbake package-index
-> I notice that the package revision for 'kernel-image-*' goes up
-> by 3 on every iteration.
->=20
-> Not that it makes much difference (or does it?), but does this
-> make sense?  Why does it not just increase by 1 since I've only
-> actually rebuilt the package once?
+<div dir=3D"ltr">Hi All,<div><br></div><div>I have several targets deployed=
+ in multiple sites. Each target might =A0be running =A0a different version =
+of the product rootfs image. When I release a new rootfs image I would like=
+ to use the smart command on each target at the customer site to upgrade th=
+e software to the latest image. Going through each package and install it s=
+eparately is inefficient way of handling the upgrade and I don&#39;t expect=
+ the customer to have the knowledge for doing so.</div>
+<div><br></div><div>What we really need is a smart command to compare the l=
+atest rootfs image and install, remove or un-change packages based on what =
+is currently installed.</div><div><br></div><div>Can the smart command achi=
+eve that or do I need to write my own script?</div>
+<div><br></div><div>Thanks,</div><div>-- <br><div dir=3D"ltr"><i><font colo=
+r=3D"#666666" face=3D"arial, helvetica, sans-serif">Tarek</font></i></div>
+</div></div>
 
-I don't remember if it was resolved already, but before it was caused by
-qemuarm/qemux86/qemux86-64 using different SRCREVs so it was bumped 3
-times every time it was parsed (and causing continual rebuilds for
-multi-machine builds).
-
-Now the continual rebuilds should be fixed by PR server returning the
-same number to each MACHINE, but maybe there was something left.
-
->=20
-> --=20
-> ------------------------------------------------------------
-> Gary Thomas                 |  Consulting for the
-> MLB Associates              |    Embedded world
-> ------------------------------------------------------------
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
-
---=20
-Martin 'JaMa' Jansa     jabber: Martin.Jansa@gmail.com
-
---wRyyN4gAPkNkeCwp
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: Digital signature
-
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v2.0.22 (GNU/Linux)
-
-iEYEARECAAYFAlLNR9oACgkQN1Ujt2V2gBxs/ACghbB/5juHjReIDatPEkpck5Ht
-o54AnRYQSycC5bKbctjauFYA19FzsTOo
-=/CpS
------END PGP SIGNATURE-----
-
---wRyyN4gAPkNkeCwp--
+--047d7b676af2f5b19404ef74f7b0--
