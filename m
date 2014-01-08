@@ -1,33 +1,36 @@
-Return-Path: <tarek.elsherbiny@gmail.com>
-Received: from mail-qc0-f170.google.com (mail-qc0-f170.google.com
-	[209.85.216.170])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1B5FDE00897
-	for <yocto@yoctoproject.org>; Wed,  8 Jan 2014 06:07:58 -0800 (PST)
-Received: by mail-qc0-f170.google.com with SMTP id e9so1324993qcy.1
-	for <yocto@yoctoproject.org>; Wed, 08 Jan 2014 06:07:57 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type;
-	bh=C4D2CQRemxyDfiSTOMnJcl2yDf1LFhJoe19AlrBGKEo=;
-	b=rcpJpqyj03MegZqEsEFz0SBuYoITf8hd8YOBlgQss3wfhGE47O4U89YUWClJ9YbzEj
-	6mLSFL7Bjl7XBbPn4kUEm9otf2mvafrl8IZxP/4NxVCtdAjzF5WNyprE/P0hxHMwWd9l
-	7Nu7+RortzsGZIwU8rAEsIcD2ryoZ8F4jVEqLbiiLkjzpHEQc96nZGI9/t0ctacht+WZ
-	EVwFgyKnnCJdxgV5+cTbjm85nabOwpmw6N+6rWiSItOLGVC4digzdXrgjCPxiqZZ+4PJ
-	EPOmRlu8VVcinmMF2N9GawjOxK6LLZ4UbTlUDc7v5ywhxYG1CowCz1ybTmN6HVb/nqve
-	PKDA==
+Return-Path: <nicolas.dechesne@linaro.org>
+Received: from mail-oa0-f46.google.com (mail-oa0-f46.google.com
+	[209.85.219.46])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C82A0E00897
+	for <yocto@yoctoproject.org>; Wed,  8 Jan 2014 06:26:23 -0800 (PST)
+Received: by mail-oa0-f46.google.com with SMTP id l6so1817494oag.19
+	for <yocto@yoctoproject.org>; Wed, 08 Jan 2014 06:26:22 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc:content-type;
+	bh=DNUJiLkgPq45fip0avHFioxbJGxforwHO3UHSkUu6IM=;
+	b=geSG5a5ixg9UIHGJVZt6wmSLDjWIv955o97LZT7zr5Eyd+6J/Fq1/YrZONMLHhokkq
+	yXfcQX/vBxwi3b4dm6P/8kM/BYr6SxPOYs7aWWa5i/pg5TIgzwKP6hST3Ej52cLI2L9L
+	WPO7Kf1DSvtrq984VxKeOCI2Kf1AHZ7w/8iO3ZjbJjrJDcof6u5iETdKO5tTj2e3htAn
+	Rcf1WWENMWxxovLOMLquoj4KZD9MBjR4vuE/kKQzmkX/OQTwiqgXWXIhOoIGzkmGIzbY
+	7reckkRDcqcxBu1ol2xqk7ok/76l1V5W5kTomcRufp96+r2p5JlauBllCTnNilxNfmcr
+	cNdg==
+X-Gm-Message-State: ALoCoQm6idNlIAfDy3jdoJj007Cn9KyoaEfFNf735lD7MT0e+q6PyOTykQ2AQ25gCmuFCwcNA9xN
+X-Received: by 10.182.60.233 with SMTP id k9mr80441418obr.34.1389191182406;
+	Wed, 08 Jan 2014 06:26:22 -0800 (PST)
 MIME-Version: 1.0
-X-Received: by 10.49.127.131 with SMTP id ng3mr6670445qeb.57.1389190077518;
-	Wed, 08 Jan 2014 06:07:57 -0800 (PST)
-Received: by 10.96.81.104 with HTTP; Wed, 8 Jan 2014 06:07:57 -0800 (PST)
-In-Reply-To: <8631278.WqvAtfDsah@helios>
-References: <CAB3sqtY8VkwaU8fLT3C28a-WWkW6rTHST6WEv+ijZj6_moT-_w@mail.gmail.com>
-	<8631278.WqvAtfDsah@helios>
-Date: Wed, 8 Jan 2014 14:07:57 +0000
-Message-ID: <CAB3sqtaURWiPHOBHe4a5n3SGEskGrohRseT6S1X97K0SNcqZnw@mail.gmail.com>
-From: Tarek El-Sherbiny <tarek.elsherbiny@gmail.com>
-To: Paul Eggleton <paul.eggleton@linux.intel.com>
-Cc: yocto@yoctoproject.org
-Subject: Re: Smart PM for upgrade the full image
+Received: by 10.76.89.143 with HTTP; Wed, 8 Jan 2014 06:26:02 -0800 (PST)
+In-Reply-To: <CANR6C55=yVTFG92rfS3Lujz1_2nhG=ogD_F2h79bt43hKX2C1A@mail.gmail.com>
+References: <CANR6C56AqYgV-Fq1e14E0O-OjjUkkY9jcvgEuABocAYMzm338A@mail.gmail.com>
+	<CAP71WjwpyEtN_2t30jx2vCwe+VTwRSpLFfd9FJqhpVn12dqNKw@mail.gmail.com>
+	<CANR6C55=yVTFG92rfS3Lujz1_2nhG=ogD_F2h79bt43hKX2C1A@mail.gmail.com>
+From: Nicolas Dechesne <nicolas.dechesne@linaro.org>
+Date: Wed, 8 Jan 2014 15:26:02 +0100
+Message-ID: <CAP71Wjw2Y3T=2ZRGD75q2jL7gisyH5h53qkPJ+hViUCs1o9R0A@mail.gmail.com>
+To: "Nick D'Ademo" <nickdademo@gmail.com>
+Cc: Yocto list discussion <yocto@yoctoproject.org>
+Subject: Re: Creating a EXT4 rootfs instead of EXT3: How?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,116 +42,58 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 08 Jan 2014 14:08:01 -0000
-Content-Type: multipart/alternative; boundary=047d7b6d7b56189aa404ef76055a
+X-List-Received-Date: Wed, 08 Jan 2014 14:26:24 -0000
+Content-Type: multipart/alternative; boundary=001a11c1e8b8f3ea5d04ef764676
 
---047d7b6d7b56189aa404ef76055a
+--001a11c1e8b8f3ea5d04ef764676
 Content-Type: text/plain; charset=ISO-8859-1
 
-Hi Paul,
+On Wed, Jan 8, 2014 at 11:55 AM, Nick D'Ademo <nickdademo@gmail.com> wrote:
 
-Thank you  for your replay.
-Smart upgrade only upgrades packages that is currently installed. It
-doesn't install new packages nor remove unwanted packages.
-Is that not true?
-
-Thanks,
-Tarek
-
-
-On Wed, Jan 8, 2014 at 1:33 PM, Paul Eggleton <paul.eggleton@linux.intel.com
-> wrote:
-
-> Hi Tarek,
+> Thanks for the reply Nicolas.
 >
-> On Wednesday 08 January 2014 12:52:42 Tarek El-Sherbiny wrote:
-> > I have several targets deployed in multiple sites. Each target might  be
-> > running  a different version of the product rootfs image. When I release
-> a
-> > new rootfs image I would like to use the smart command on each target at
-> > the customer site to upgrade the software to the latest image. Going
-> > through each package and install it separately is inefficient way of
-> > handling the upgrade and I don't expect the customer to have the
-> knowledge
-> > for doing so.
-> >
-> > What we really need is a smart command to compare the latest rootfs image
-> > and install, remove or un-change packages based on what is currently
-> > installed.
-> >
-> > Can the smart command achieve that or do I need to write my own script?
->
-> Isn't this the same question you asked the other day? i.e., this is "smart
-> upgrade".
->
-> Cheers,
-> Paul
->
-> --
->
-> Paul Eggleton
-> Intel Open Source Technology Centre
+> It seems the problem is that .hddimg uses EXT3 by default (after looking
+> at image_types.bbclass).
 >
 
+yeah, you're right. ext3 is pretty much hard coded there (and in
+image-live.bbclass)
 
+> The ROOTFS type for my build is set in
+> /meta/conf/machine/include/ia32-base.inc: IMAGE_FSTYPES += "live"
+>
+> Is there a way to make the HDDIMG use EXT4 instead?
+>
+i don't know if there is a technical reason why ext3 is being hardcoded.
+right now it doesn't seem possible to easily use ext4.
 
--- 
-*Tarek*
-
---047d7b6d7b56189aa404ef76055a
+--001a11c1e8b8f3ea5d04ef764676
 Content-Type: text/html; charset=ISO-8859-1
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Hi Paul,<div><br></div><div>Thank you =A0for your replay.<=
-/div><div>Smart upgrade only upgrades packages that is currently installed.=
- It doesn&#39;t install new packages nor remove unwanted packages.</div><di=
-v>
-Is that not true?</div><div><br></div><div>Thanks,</div><div>Tarek</div></d=
-iv><div class=3D"gmail_extra"><br><br><div class=3D"gmail_quote">On Wed, Ja=
-n 8, 2014 at 1:33 PM, Paul Eggleton <span dir=3D"ltr">&lt;<a href=3D"mailto=
-:paul.eggleton@linux.intel.com" target=3D"_blank">paul.eggleton@linux.intel=
-.com</a>&gt;</span> wrote:<br>
-<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
-x #ccc solid;padding-left:1ex">Hi Tarek,<br>
-<div><div class=3D"h5"><br>
-On Wednesday 08 January 2014 12:52:42 Tarek El-Sherbiny wrote:<br>
-&gt; I have several targets deployed in multiple sites. Each target might =
-=A0be<br>
-&gt; running =A0a different version of the product rootfs image. When I rel=
-ease a<br>
-&gt; new rootfs image I would like to use the smart command on each target =
-at<br>
-&gt; the customer site to upgrade the software to the latest image. Going<b=
-r>
-&gt; through each package and install it separately is inefficient way of<b=
-r>
-&gt; handling the upgrade and I don&#39;t expect the customer to have the k=
-nowledge<br>
-&gt; for doing so.<br>
-&gt;<br>
-&gt; What we really need is a smart command to compare the latest rootfs im=
-age<br>
-&gt; and install, remove or un-change packages based on what is currently<b=
-r>
-&gt; installed.<br>
-&gt;<br>
-&gt; Can the smart command achieve that or do I need to write my own script=
-?<br>
-<br>
-</div></div>Isn&#39;t this the same question you asked the other day? i.e.,=
- this is &quot;smart<br>
-upgrade&quot;.<br>
-<br>
-Cheers,<br>
-Paul<br>
-<span class=3D"HOEnZb"><font color=3D"#888888"><br>
---<br>
-<br>
-Paul Eggleton<br>
-Intel Open Source Technology Centre<br>
-</font></span></blockquote></div><br><br clear=3D"all"><div><br></div>-- <b=
-r><div dir=3D"ltr"><i><font color=3D"#666666" face=3D"arial, helvetica, san=
-s-serif">Tarek</font></i></div>
-</div>
+<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
+On Wed, Jan 8, 2014 at 11:55 AM, Nick D&#39;Ademo <span dir=3D"ltr">&lt;<a =
+href=3D"mailto:nickdademo@gmail.com" target=3D"_blank">nickdademo@gmail.com=
+</a>&gt;</span> wrote:<br>
 
---047d7b6d7b56189aa404ef76055a--
+<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
+x #ccc solid;padding-left:1ex"><div>Thanks for the reply Nicolas.<br><br></=
+div>It seems the problem is that .hddimg uses EXT3 by default (after lookin=
+g at image_types.bbclass).<br>
+
+</blockquote><div><br></div><div>yeah, you&#39;re right. ext3 is pretty muc=
+h hard coded there (and in image-live.bbclass)=A0</div><blockquote class=3D=
+"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding=
+-left:1ex">
+
+<p>The ROOTFS type for my build is set in /meta/conf/machine/include/ia32-b=
+ase.inc: IMAGE_FSTYPES +=3D &quot;live&quot;</p>
+
+<p>Is there a way to make the HDDIMG use EXT4 instead?</p></blockquote><div=
+>i don&#39;t know if there is a technical reason why ext3 is being hardcode=
+d. right now it doesn&#39;t seem possible to easily use ext4. =A0</div></di=
+v>
+
+<br><br></div></div>
+
+--001a11c1e8b8f3ea5d04ef764676--
