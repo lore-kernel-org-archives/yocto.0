@@ -1,27 +1,23 @@
-Return-Path: <gary@mlbassoc.com>
-Received: from mail.chez-thomas.org (mail.mlbassoc.com [65.100.170.105])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8603AE007ED
-	for <yocto@yoctoproject.org>; Thu,  9 Jan 2014 11:19:09 -0800 (PST)
-Received: by mail.chez-thomas.org (Postfix, from userid 1998)
-	id 385ACF811E9; Thu,  9 Jan 2014 12:19:08 -0700 (MST)
-X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on
-	hermes.chez-thomas.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=4.0 tests=ALL_TRUSTED,BAYES_00
-	autolearn=unavailable version=3.3.2
-Received: from [192.168.1.114] (zeus [192.168.1.114])
-	by mail.chez-thomas.org (Postfix) with ESMTP id 9DEE2F811DE;
-	Thu,  9 Jan 2014 12:19:05 -0700 (MST)
-Message-ID: <52CEF62A.8000209@mlbassoc.com>
-Date: Thu, 09 Jan 2014 12:19:06 -0700
-From: Gary Thomas <gary@mlbassoc.com>
+Return-Path: <yocto@mindchasers.com>
+Received: from smtp.webfaction.com (mail6.webfaction.com [74.55.86.74])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A8A92E0082D
+	for <yocto@yoctoproject.org>; Thu,  9 Jan 2014 12:24:45 -0800 (PST)
+Received: from [192.168.1.11] (c-68-38-40-177.hsd1.nj.comcast.net
+	[68.38.40.177])
+	by smtp.webfaction.com (Postfix) with ESMTP id 347B82241666;
+	Thu,  9 Jan 2014 20:24:43 +0000 (UTC)
+Message-ID: <52CF0589.4040905@mindchasers.com>
+Date: Thu, 09 Jan 2014 15:24:41 -0500
+From: Bob Cochran <yocto@mindchasers.com>
 User-Agent: Mozilla/5.0 (X11; Linux x86_64;
 	rv:24.0) Gecko/20100101 Thunderbird/24.2.0
 MIME-Version: 1.0
-To: yocto@yoctoproject.org
-References: <CAM1ZcoXaj-ohT8bMn90D10FzT7cRt-Yt=e_DjHs=Q69LPKHgWw@mail.gmail.com>
-In-Reply-To: <CAM1ZcoXaj-ohT8bMn90D10FzT7cRt-Yt=e_DjHs=Q69LPKHgWw@mail.gmail.com>
-Subject: Re: package various recipes
+To: Zhenhua Luo <zhenhua.luo@freescale.com>, 
+	Software Development Power Arch Multicore <MCSWDEV@freescale.com>
+References: <CA452391058F6D4E9715FB2C29D9312A0181242A@039-SN2MPN1-021.039d.mgd.msft.net>
+In-Reply-To: <CA452391058F6D4E9715FB2C29D9312A0181242A@039-SN2MPN1-021.039d.mgd.msft.net>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Yocto branches policy for concurrent SDK releases
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -33,21 +29,64 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 09 Jan 2014 19:19:09 -0000
+X-List-Received-Date: Thu, 09 Jan 2014 20:24:48 -0000
 Content-Type: text/plain; charset=ISO-8859-1; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 2014-01-09 12:02, Katu Txakur wrote:
-> Hi,
+On 11/22/2013 05:43 AM, Zhenhua Luo wrote:
+> Hi all,
 >
-> I have a few recipes one.bb <http://one.bb>, two.bb <http://two.bb>, three.bb <http://three.bb> that I bitbake to get ipk packages. I would like to create a recipe all.bb
-> <http://all.bb> that creates a single all.ipk package that will install one, two and three binaries files in the system. How can I do that?
+> Currently concurrent SDKs are on-going(e.g. SDK 1.5, T1040/T2080, LS1, etc), the same Yocto branch is used for multiple releases, there is conflict of Yocto recipes for different SDKs.
+>
+> To resolve above issue, following branch mechanism will be used:
+>
+> 1. For those layers without conflict(poky, meta-oe, meta-virtualization and layers reused from community), same branch will be used and no extra branches need to be created, change for those layer should be upstreamed synchronously.
+>
+> 2. For those layers with conflict, the branch specific to SDK are created, currently meta-fsl-ppc and meta-fsl-networking have conflict for different SDKs. Following branches will co-exist for such layers.
+>     a. Yocto release branch: dylan, dora. the common changes for all SDKs should be submitted against this branch and cherry-picked to SDK specific branches. The changes should be upstreamed synchronously.
+>     b. SDK specific branch: dylan-sdk1.5, dylan-t1_t2, etc. The SDK specific change should be submitted against SDK branch, when SDK is formally released, the changes will be upstreamed.
 
-Look at packagegroups - there are many examples in OE-core.
 
--- 
-------------------------------------------------------------
-Gary Thomas                 |  Consulting for the
-MLB Associates              |    Embedded world
-------------------------------------------------------------
+Hi Zhenhua,
+
+Any plans to create a repo for meta-fsl-networking on git.yoctoproject 
+for Power / QorIQ developers?
+
+It would be good for yocto users, such as myself, to be able to build 
+something incremental between the SDK releases using updated / patched 
+recipes pulled from the yocto repos, which should include 
+meta-fsl-networking.
+
+Say I wanted to propose a patch to a recipe like fsl-image-full, which 
+is in meta-fsl-networking, how would I go about it?
+
+Last February (2013), you proposed an FSL Yocto layers reorg that merged 
+layerscape/ARM with Power for QorIQ.  I imagine you're getting close to 
+having something internally.  Can you please share the vision with us 
+along with whether it will be public on the yocto project (as opposed to 
+kept under wraps with incremental SDK releases)?
+
+Thank you,
+
+Bob
+
+
+
+
+
+
+>
+> Please let me know if any comment.
+>
+>
+> Best Regards,
+>
+> Zhenhua
+>
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
+
 
