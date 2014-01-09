@@ -1,27 +1,23 @@
-Return-Path: <zafrullahmehdi@gmail.com>
-Received: from mail-wg0-f51.google.com (mail-wg0-f51.google.com [74.125.82.51])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 17218E008B6
-	for <yocto@yoctoproject.org>; Wed,  8 Jan 2014 15:54:43 -0800 (PST)
-Received: by mail-wg0-f51.google.com with SMTP id z12so1955162wgg.30
-	for <yocto@yoctoproject.org>; Wed, 08 Jan 2014 15:54:42 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:from:date:message-id:subject:to:content-type;
-	bh=22CPzvM1WieQOitcbTZNQ6jfbg8dYi/MbnMlgRLJiUM=;
-	b=OhVdich7M8MStVi7FgF9Id/CSCh0dWDPipZVuw4VXKZBnDR2zx7He03volKheP/O2F
-	WuVBcGI8ec+k4EuYxgNrVE7TgRQHDOR+ForVMnX+/k2M953shXByiJmBEYSeGXolm0wv
-	TqNfLggxg5WnyvyCO+oXO5hh07UN8p/qlEAMYoX3V1uBjgBRJueOGKIOLWAWwmNohIzf
-	LGo79GBGK49E/I4txWDUzKi9LFAKUdvVF5lXtSUK/InUsoRRXtiAK9mmLNDWjmSzC1ew
-	aHUqdT40/OQ4Nylw/8emX8DdT1GoH7aXf6zXCUJVkvq3d8ie6R3T0hDwz4u3YXqNTCRY
-	YJFQ==
-X-Received: by 10.180.212.98 with SMTP id nj2mr499991wic.52.1389225281937;
-	Wed, 08 Jan 2014 15:54:41 -0800 (PST)
+Return-Path: <Wenzong.Fan@windriver.com>
+Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3622FE008B8
+	for <yocto@yoctoproject.org>; Wed,  8 Jan 2014 17:38:18 -0800 (PST)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
+	[147.11.189.40])
+	by mail1.windriver.com (8.14.5/8.14.5) with ESMTP id s091cIJI017831
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL)
+	for <yocto@yoctoproject.org>; Wed, 8 Jan 2014 17:38:18 -0800 (PST)
+Received: from pek-hostel-vm12.wrs.com (128.224.153.182) by
+	ALA-HCA.corp.ad.wrs.com (147.11.189.40) with Microsoft SMTP Server id
+	14.2.347.0; Wed, 8 Jan 2014 17:38:17 -0800
+From: <wenzong.fan@windriver.com>
+To: <xin.ouyang@windriver.com>, <mark.hatle@windriver.com>,
+	<yocto@yoctoproject.org>
+Date: Wed, 8 Jan 2014 20:38:05 -0500
+Message-ID: <cover.1389171235.git.wenzong.fan@windriver.com>
+X-Mailer: git-send-email 1.7.9.5
 MIME-Version: 1.0
-Received: by 10.194.59.146 with HTTP; Wed, 8 Jan 2014 15:54:21 -0800 (PST)
-From: Zafrullah Syed <zafrullahmehdi@gmail.com>
-Date: Thu, 9 Jan 2014 00:54:21 +0100
-Message-ID: <CAAGt+t09E7q1G8tunvq1BtcZmH7P85R+kqNqhhU6YhjWuK92Xg@mail.gmail.com>
-To: yocto <yocto@yoctoproject.org>
-Subject: exception MalformedUrl error
+Subject: [meta-selinux][PATCH 00/10] selinux userspace: uprev packages to release 20131030
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -33,49 +29,124 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 08 Jan 2014 23:54:44 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Thu, 09 Jan 2014 01:38:20 -0000
+Content-Type: text/plain
 
-Hi all,
+From: Wenzong Fan <wenzong.fan@windriver.com>
 
-I tried to apply a patch directly to linux-gumstix_3.5.7.bb and kept
-.patch file in
-/yocto/poky/meta-gumstix/recipes-kernel/linux/linux-gumstix-3.5/
-directory along with other patches, and ran bitbake
-gumstix-console-image.
+Changes:
+1) Uprev selinux packages to release 20131030;
+2) Fix build dependency to libsemanage;
+3) Fix QA issues to policycoreutils;
+4) Update LIC_FILES_CHKSUM for selinux packagegroups.
 
-Output:
+Some Tests:
+1) build test:
+- add meta-selinux path to conf/bblayers.conf;
+- add DISTRO_FEATURES_append=" pam selinux" to conf/local.conf;
+- build selinux image:
+  $ bitbake core-image-selinux
 
-ERROR: ExpansionError during parsing
-/home/zaif/yocto/poky/meta-gumstix/recipes-kernel/linux/linux-gumstix_3.5.7.bb:
-Failure expanding expression ${@bb.fetch.get_checksum_file_list(d)}
-which triggered exception MalformedUrl: The URL: 'missing' is invalid
-and cannot be interpreted
-ERROR: Command execution failed: Exited with 1
+- add below configs to conf/local.conf and run image build:
+  PREFERRED_VERSION_checkpolicy = "2.2+gitAUTOINC+edc2e99687"
+  PREFERRED_VERSION_libselinux = "2.2+gitAUTOINC+edc2e99687"
+  PREFERRED_VERSION_libsemanage = "2.2+gitAUTOINC+edc2e99687"
+  PREFERRED_VERSION_libsepol = "2.2+gitAUTOINC+edc2e99687"
+  PREFERRED_VERSION_policycoreutils = "2.2.5+gitAUTOINC+edc2e99687"
+  PREFERRED_VERSION_sepolgen = "1.2.1+gitAUTOINC+edc2e99687"
 
-I removed the patch file and patch entry from linux-gumstix_3.5.7.bb,
-then ran bitbake gumstix-console-image, I get the same error.
+All builds successfully.
 
-I then ran
+2) basic verification on target:
+$ runqemu qemux86 core-image-selinux ext3 nographic qemuparams="-m 1024"
 
-bitbake -c cleansstate linux-gumstix-3.5
-bitbake world
-hob
+qemux86 login: root
+root@qemux86:~# id -Z
+root:sysadm_r:sysadm_t:s0-s15:c0.c1023
 
-All of these returned the same error:
+root@qemux86:~# sestatus
+SELinux status:                 enabled
+SELinuxfs mount:                /sys/fs/selinux
+SELinux root directory:         /etc/selinux
+Loaded policy name:             mls
+Current mode:                   enforcing
+Mode from config file:          enforcing
+Policy MLS status:              enabled
+Policy deny_unknown status:     allowed
+Max kernel policy version:      28
 
-ERROR: ExpansionError during parsing
-/home/zaif/yocto/poky/meta-gumstix/recipes-kernel/linux/linux-gumstix_3.5.7.bb:
-Failure expanding expression ${@bb.fetch.get_checksum_file_list(d)}
-which triggered exception MalformedUrl: The URL: 'missing' is invalid
-and cannot be interpreted
-ERROR: Command execution failed: Exited with 1
 
-I am trying to add this patch: http://pastebin.com/W3S6hW0M
+The following changes since commit 2209cb5fc21c1ad5a7471897528ed64170f70219:
 
-Did I messed up something ?
+  policy: Create compressed_policy distro feature (2013-12-05 09:03:41 -0500)
+
+are available in the git repository at:
+
+  git://git.pokylinux.org/poky-contrib wenzong/selinux-uprev
+  http://git.pokylinux.org/cgit.cgi/poky-contrib/log/?h=wenzong/selinux-uprev
+
+Wenzong Fan (10):
+  selinux userspace: uprev packages to release 20131030
+  checkpolicy: migrate SRC_URI to 2.2
+  libselinux: migrate SRC_URI and patches to 2.2
+  libsemanage: migrate SRC_URI to 2.2
+  libsepol: migrate SRC_URI to 2.2
+  policycoreutils: migrate SRC_URI and patches to 2.2.5
+  sepolgen: migrate SRC_URI to 1.2.1
+  libsemanage: add audit dependency
+  policycoreutils: fix QA issues
+  selinux packagegroups: update LIC_FILES_CHKSUM
+
+ recipes-security/audit/audit_2.3.2.bb              |    8 ++++-
+ .../packagegroups/packagegroup-core-selinux.bb     |    2 +-
+ .../packagegroups/packagegroup-selinux-minimal.bb  |    2 +-
+ .../packagegroup-selinux-policycoreutils.bb        |    2 +-
+ recipes-security/selinux/checkpolicy_2.1.12.bb     |    9 ------
+ recipes-security/selinux/checkpolicy_2.2.bb        |    9 ++++++
+ recipes-security/selinux/checkpolicy_git.bb        |    2 +-
+ .../libselinux-fix-init-load-policy.patch          |   27 ----------------
+ .../libselinux/libselinux-pcre-link-order.patch    |   31 ------------------
+ .../{libselinux_2.1.13.bb => libselinux_2.2.bb}    |    8 ++---
+ recipes-security/selinux/libselinux_git.bb         |   10 ++++--
+ recipes-security/selinux/libsemanage.inc           |    2 +-
+ .../libsemanage/libsemanage-fix-path-nologin.patch |    9 +++---
+ .../{libsemanage_2.1.10.bb => libsemanage_2.2.bb}  |    6 ++--
+ recipes-security/selinux/libsemanage_git.bb        |    3 +-
+ recipes-security/selinux/libsepol.inc              |    5 ++-
+ ...ibsepol-Change-ranlib-for-cross-compiling.patch |   31 ------------------
+ recipes-security/selinux/libsepol_2.1.9.bb         |   11 -------
+ recipes-security/selinux/libsepol_2.2.bb           |    9 ++++++
+ recipes-security/selinux/libsepol_git.bb           |    4 +--
+ recipes-security/selinux/policycoreutils.inc       |   12 ++++---
+ ...policycoreutils-fix-sepolicy-install-path.patch |   18 +++++------
+ .../policycoreutils-fix-strict-prototypes.patch    |   34 --------------------
+ .../policycoreutils-make-O_CLOEXEC-optional.patch  |   28 ++++++++--------
+ ...oreutils_2.1.14.bb => policycoreutils_2.2.5.bb} |    9 +++---
+ recipes-security/selinux/policycoreutils_git.bb    |    8 +++--
+ recipes-security/selinux/selinux_20130423.inc      |   12 -------
+ recipes-security/selinux/selinux_20131030.inc      |   12 +++++++
+ recipes-security/selinux/selinux_git.inc           |    4 +--
+ recipes-security/selinux/sepolgen_1.1.9.bb         |    9 ------
+ recipes-security/selinux/sepolgen_1.2.1.bb         |    9 ++++++
+ recipes-security/selinux/sepolgen_git.bb           |    2 +-
+ 32 files changed, 117 insertions(+), 230 deletions(-)
+ delete mode 100644 recipes-security/selinux/checkpolicy_2.1.12.bb
+ create mode 100644 recipes-security/selinux/checkpolicy_2.2.bb
+ delete mode 100644 recipes-security/selinux/libselinux/libselinux-fix-init-load-policy.patch
+ delete mode 100644 recipes-security/selinux/libselinux/libselinux-pcre-link-order.patch
+ rename recipes-security/selinux/{libselinux_2.1.13.bb => libselinux_2.2.bb} (58%)
+ rename recipes-security/selinux/{libsemanage_2.1.10.bb => libsemanage_2.2.bb} (70%)
+ delete mode 100644 recipes-security/selinux/libsepol/libsepol-Change-ranlib-for-cross-compiling.patch
+ delete mode 100644 recipes-security/selinux/libsepol_2.1.9.bb
+ create mode 100644 recipes-security/selinux/libsepol_2.2.bb
+ delete mode 100644 recipes-security/selinux/policycoreutils/policycoreutils-fix-strict-prototypes.patch
+ rename recipes-security/selinux/{policycoreutils_2.1.14.bb => policycoreutils_2.2.5.bb} (55%)
+ delete mode 100644 recipes-security/selinux/selinux_20130423.inc
+ create mode 100644 recipes-security/selinux/selinux_20131030.inc
+ delete mode 100644 recipes-security/selinux/sepolgen_1.1.9.bb
+ create mode 100644 recipes-security/selinux/sepolgen_1.2.1.bb
 
 -- 
-Regards,
-Zafrullah Syed
+1.7.9.5
+
 
