@@ -1,19 +1,19 @@
 Return-Path: <flihp@twobit.us>
 Received: from smtp.twobit.us (smtp.twobit.us [38.83.192.235])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BFD88E0082D
-	for <yocto@yoctoproject.org>; Thu,  9 Jan 2014 15:10:15 -0800 (PST)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2E51BE0082D
+	for <yocto@yoctoproject.org>; Thu,  9 Jan 2014 15:25:32 -0800 (PST)
 Received: from c-76-24-20-220.hsd1.ma.comcast.net ([76.24.20.220]
 	helo=localhost)
 	by smtp.twobit.us with esmtpsa (TLS1.2:DHE_RSA_AES_128_CBC_SHA1:128)
 	(Exim 4.80) (envelope-from <flihp@twobit.us>)
-	id 1W1Oih-0005ay-CR; Thu, 09 Jan 2014 23:09:00 +0000
+	id 1W1OxV-0005cD-Re; Thu, 09 Jan 2014 23:24:18 +0000
 Received: from flihp by localhost with local (Exim 4.80)
 	(envelope-from <flihp@longhaul.twobit.us>)
-	id 1W1OlF-00082u-29; Thu, 09 Jan 2014 23:11:37 +0000
+	id 1W1P02-00085I-Rh; Thu, 09 Jan 2014 23:26:54 +0000
 From: flihp@twobit.us
 To: joe@deserted.net
-Date: Thu,  9 Jan 2014 23:11:37 +0000
-Message-Id: <1389309097-30903-1-git-send-email-flihp@twobit.us>
+Date: Thu,  9 Jan 2014 23:26:54 +0000
+Message-Id: <1389310014-31051-1-git-send-email-flihp@twobit.us>
 X-Mailer: git-send-email 1.7.10.4
 X-SA-Exim-Connect-IP: 76.24.20.220
 X-SA-Exim-Mail-From: flihp@twobit.us
@@ -24,7 +24,7 @@ X-Spam-Status: No, score=-2.9 required=5.0 tests=ALL_TRUSTED,BAYES_00
 X-SA-Exim-Version: 4.2.1 (built Mon, 26 Dec 2011 16:24:06 +0000)
 X-SA-Exim-Scanned: Yes (on smtp.twobit.us)
 Cc: yocto@yoctoproject.org
-Subject: [PATCH] policycoreutils: Patch Makefile to get load_policy symlink right.
+Subject: [meta-selinux][PATCH] policycoreutils: Patch Makefile to get load_policy symlink right.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -36,7 +36,7 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 09 Jan 2014 23:10:17 -0000
+X-List-Received-Date: Thu, 09 Jan 2014 23:25:38 -0000
 
 From: Philip Tricca <flihp@twobit.us>
 
