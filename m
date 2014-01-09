@@ -1,25 +1,25 @@
 Return-Path: <Wenzong.Fan@windriver.com>
 Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B2D0BE008E6
-	for <yocto@yoctoproject.org>; Wed,  8 Jan 2014 17:38:35 -0800 (PST)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 438A4E008B8
+	for <yocto@yoctoproject.org>; Wed,  8 Jan 2014 18:54:41 -0800 (PST)
 Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
 	[147.11.189.40])
-	by mail1.windriver.com (8.14.5/8.14.5) with ESMTP id s091ca0k017852
+	by mail1.windriver.com (8.14.5/8.14.5) with ESMTP id s092sfiK018752
 	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL)
-	for <yocto@yoctoproject.org>; Wed, 8 Jan 2014 17:38:36 -0800 (PST)
+	for <yocto@yoctoproject.org>; Wed, 8 Jan 2014 18:54:42 -0800 (PST)
 Received: from pek-hostel-vm12.wrs.com (128.224.153.182) by
 	ALA-HCA.corp.ad.wrs.com (147.11.189.40) with Microsoft SMTP Server id
-	14.2.347.0; Wed, 8 Jan 2014 17:38:34 -0800
+	14.2.347.0; Wed, 8 Jan 2014 18:54:40 -0800
 From: <wenzong.fan@windriver.com>
-To: <xin.ouyang@windriver.com>, <mark.hatle@windriver.com>,
-	<yocto@yoctoproject.org>
-Date: Wed, 8 Jan 2014 20:38:15 -0500
-Message-ID: <2bfa3f4b33f050d63fa6d3a42193810c2d5d69fd.1389171235.git.wenzong.fan@windriver.com>
+To: <yocto@yoctoproject.org>, <xin.ouyang@windriver.com>,
+	<mark.hatle@windriver.com>
+Date: Wed, 8 Jan 2014 21:54:36 -0500
+Message-ID: <8c59454e27444ce819e6dcb82165420cbe597bbe.1389235842.git.wenzong.fan@windriver.com>
 X-Mailer: git-send-email 1.7.9.5
-In-Reply-To: <cover.1389171235.git.wenzong.fan@windriver.com>
-References: <cover.1389171235.git.wenzong.fan@windriver.com>
+In-Reply-To: <cover.1389235842.git.wenzong.fan@windriver.com>
+References: <cover.1389235842.git.wenzong.fan@windriver.com>
 MIME-Version: 1.0
-Subject: [meta-selinux][PATCH 10/10] selinux packagegroups: update LIC_FILES_CHKSUM
+Subject: [meta-selinux][PATCH 1/1] refpolicy: fix real path for udevd
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -31,54 +31,69 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 09 Jan 2014 01:38:35 -0000
+X-List-Received-Date: Thu, 09 Jan 2014 02:54:42 -0000
 Content-Type: text/plain
 
 From: Wenzong Fan <wenzong.fan@windriver.com>
 
+In Yocto the real path for udevd is /lib/udev/udevd, this patch fixes
+the init issues like:
+
+udevd[87]: setfilecon /dev/vcsa2 failed: Operation not permitted
+udevd[89]: setfilecon /dev/fb0 failed: Operation not permitted
+
 Signed-off-by: Wenzong Fan <wenzong.fan@windriver.com>
 ---
- .../packagegroups/packagegroup-core-selinux.bb     |    2 +-
- .../packagegroups/packagegroup-selinux-minimal.bb  |    2 +-
- .../packagegroup-selinux-policycoreutils.bb        |    2 +-
- 3 files changed, 3 insertions(+), 3 deletions(-)
+ .../refpolicy-2.20130424/poky-fc-udevd.patch       |   27 ++++++++++++++++++++
+ .../refpolicy/refpolicy_2.20130424.inc             |    1 +
+ 2 files changed, 28 insertions(+)
+ create mode 100644 recipes-security/refpolicy/refpolicy-2.20130424/poky-fc-udevd.patch
 
-diff --git a/recipes-security/packagegroups/packagegroup-core-selinux.bb b/recipes-security/packagegroups/packagegroup-core-selinux.bb
-index 76863b0..1852aba 100644
---- a/recipes-security/packagegroups/packagegroup-core-selinux.bb
-+++ b/recipes-security/packagegroups/packagegroup-core-selinux.bb
-@@ -1,6 +1,6 @@
- DESCRIPTION = "SELinux packagegroup for Poky"
- LICENSE = "MIT"
--LIC_FILES_CHKSUM = "file://${COREBASE}/LICENSE;md5=3f40d7994397109285ec7b81fdeb3b58 \
-+LIC_FILES_CHKSUM = "file://${COREBASE}/LICENSE;md5=4d92cd373abda3937c2bc47fbc49d690 \
-                     file://${COREBASE}/meta/COPYING.MIT;md5=3da9cfbcb788c80a0384361b4de20420"
- PR = "r0"
+diff --git a/recipes-security/refpolicy/refpolicy-2.20130424/poky-fc-udevd.patch b/recipes-security/refpolicy/refpolicy-2.20130424/poky-fc-udevd.patch
+new file mode 100644
+index 0000000..d6540a9
+--- /dev/null
++++ b/recipes-security/refpolicy/refpolicy-2.20130424/poky-fc-udevd.patch
+@@ -0,0 +1,27 @@
++From 86fd93b15b97042bcf5ff1b2d1228e7d64b8cfd1 Mon Sep 17 00:00:00 2001
++From: Wenzong Fan <wenzong.fan@windriver.com>
++Date: Tue, 7 Jan 2014 22:22:00 -0500
++Subject: [PATCH] refpolicy: fix real path for udevd
++
++Upstream-Status: Inappropriate [configuration]
++
++Signed-off-by: Wenzong Fan <wenzong.fan@windriver.com>
++---
++ policy/modules/system/udev.fc |    1 +
++ 1 file changed, 1 insertion(+)
++
++diff --git a/policy/modules/system/udev.fc b/policy/modules/system/udev.fc
++index 40928d8..36d471d 100644
++--- a/policy/modules/system/udev.fc
+++++ b/policy/modules/system/udev.fc
++@@ -10,6 +10,7 @@
++ /etc/udev/scripts/.+ --	gen_context(system_u:object_r:udev_helper_exec_t,s0)
++ 
++ /lib/udev/udev-acl --	gen_context(system_u:object_r:udev_exec_t,s0)
+++/lib/udev/udevd    --	gen_context(system_u:object_r:udev_exec_t,s0)
++ 
++ ifdef(`distro_debian',`
++ /lib/udev/create_static_nodes -- gen_context(system_u:object_r:udev_exec_t,s0)
++-- 
++1.7.9.5
++
+diff --git a/recipes-security/refpolicy/refpolicy_2.20130424.inc b/recipes-security/refpolicy/refpolicy_2.20130424.inc
+index 6871813..cfeeaed 100644
+--- a/recipes-security/refpolicy/refpolicy_2.20130424.inc
++++ b/recipes-security/refpolicy/refpolicy_2.20130424.inc
+@@ -27,6 +27,7 @@ SRC_URI += "file://poky-fc-subs_dist.patch \
+             file://poky-fc-ssh.patch \
+             file://poky-fc-su.patch \
+             file://poky-fc-sysnetwork.patch \
++            file://poky-fc-udevd.patch \
+            "
  
-diff --git a/recipes-security/packagegroups/packagegroup-selinux-minimal.bb b/recipes-security/packagegroups/packagegroup-selinux-minimal.bb
-index bae15ea..2ff16f8 100644
---- a/recipes-security/packagegroups/packagegroup-selinux-minimal.bb
-+++ b/recipes-security/packagegroups/packagegroup-selinux-minimal.bb
-@@ -1,6 +1,6 @@
- DESCRIPTION = "SELinux packagegroup with only packages required for basic operations"
- LICENSE = "MIT"
--LIC_FILES_CHKSUM = "file://${COREBASE}/LICENSE;md5=3f40d7994397109285ec7b81fdeb3b58 \
-+LIC_FILES_CHKSUM = "file://${COREBASE}/LICENSE;md5=4d92cd373abda3937c2bc47fbc49d690 \
-                     file://${COREBASE}/meta/COPYING.MIT;md5=3da9cfbcb788c80a0384361b4de20420"
- PR = "r0"
- 
-diff --git a/recipes-security/packagegroups/packagegroup-selinux-policycoreutils.bb b/recipes-security/packagegroups/packagegroup-selinux-policycoreutils.bb
-index bb221eb..7f56d7c 100644
---- a/recipes-security/packagegroups/packagegroup-selinux-policycoreutils.bb
-+++ b/recipes-security/packagegroups/packagegroup-selinux-policycoreutils.bb
-@@ -1,6 +1,6 @@
- DESCRIPTION = "SELinux policycoreutils packagegroup"
- LICENSE = "MIT"
--LIC_FILES_CHKSUM = "file://${COREBASE}/LICENSE;md5=3f40d7994397109285ec7b81fdeb3b58 \
-+LIC_FILES_CHKSUM = "file://${COREBASE}/LICENSE;md5=4d92cd373abda3937c2bc47fbc49d690 \
-                     file://${COREBASE}/meta/COPYING.MIT;md5=3da9cfbcb788c80a0384361b4de20420 \
- "
- PR = "r0"
+ # Specific policy for Poky
 -- 
 1.7.9.5
 
