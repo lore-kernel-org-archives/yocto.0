@@ -1,27 +1,34 @@
-Return-Path: <Xin.Ouyang@windriver.com>
-Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A67B7E00855
-	for <yocto@yoctoproject.org>; Thu,  9 Jan 2014 18:00:23 -0800 (PST)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail1.windriver.com (8.14.5/8.14.5) with ESMTP id s0A20MuL008495
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL)
-	for <yocto@yoctoproject.org>; Thu, 9 Jan 2014 18:00:22 -0800 (PST)
-Received: from Pascal-MacBookPro.local (128.224.159.178) by
-	ALA-HCA.corp.ad.wrs.com (147.11.189.50) with Microsoft SMTP Server id
-	14.2.347.0; Thu, 9 Jan 2014 18:00:22 -0800
-Message-ID: <52CF5434.4030600@windriver.com>
-Date: Fri, 10 Jan 2014 10:00:20 +0800
-From: Pascal Ouyang <xin.ouyang@windriver.com>
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.8;
-	rv:24.0) Gecko/20100101 Thunderbird/24.2.0
+Return-Path: <khajahussain-s@hcl.com>
+Received: from GWS07.hcl.com (gws07.hcl.com [192.8.186.130])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 56231E00855
+	for <yocto@yoctoproject.org>; Thu,  9 Jan 2014 21:44:07 -0800 (PST)
+X-IronPort-AV: E=Sophos;i="4.95,636,1384281000"; d="scan'208";a="17882116"
+Received: from unknown (HELO CHN-CORP-HT01.CORP.HCL.IN) ([10.249.2.33])
+	by GWS07.hcl.com with ESMTP/TLS/AES128-SHA; 10 Jan 2014 10:55:59 +0530
+Received: from CHN-HCLT-CSHT04.HCLT.CORP.HCL.IN (10.150.12.29) by
+	CHN-CORP-HT01.CORP.HCL.IN (10.249.2.33) with Microsoft SMTP Server
+	(TLS) id 14.3.123.3; Fri, 10 Jan 2014 11:14:02 +0530
+Received: from CHN-HCLT-MBS06.HCLT.CORP.HCL.IN ([10.150.12.21]) by
+	CHN-HCLT-CSHT04.HCLT.CORP.HCL.IN ([::1]) with mapi id 14.03.0123.003;
+	Fri, 10 Jan 2014 11:14:02 +0530
+From: Khaja Hussain Shaik <khajahussain-s@hcl.com>
+To: "Barros Pena, Belen" <belen.barros.pena@intel.com>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: [yocto] hob build failed with an error Nothing RPROVIDES
+	libgstinterfaces-0.10
+Thread-Index: Ac8M+e7+6z5Bw+sbR2Kn1HY8HpSGSQABGoyAAAtoj4AAJnsKQA==
+Date: Fri, 10 Jan 2014 05:44:01 +0000
+Message-ID: <31DD9473F5EB4E468EDC3B5642AD64BD08AEBD6D@chn-hclt-mbs06.HCLT.CORP.HCL.IN>
+References: <31DD9473F5EB4E468EDC3B5642AD64BD08AEB8B4@chn-hclt-mbs06.HCLT.CORP.HCL.IN>
+	<CEF481E9.3A772%belen.barros.pena@intel.com>
+In-Reply-To: <CEF481E9.3A772%belen.barros.pena@intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.150.5.114]
 MIME-Version: 1.0
-To: <wenzong.fan@windriver.com>, <yocto@yoctoproject.org>,
-	<mark.hatle@windriver.com>
-References: <cover.1389235842.git.wenzong.fan@windriver.com>
-In-Reply-To: <cover.1389235842.git.wenzong.fan@windriver.com>
-X-TagToolbar-Keys: D20140110100020805
-Subject: Re: [meta-selinux][PATCH 0/1] refpolicy: fix real path for udevd
+Cc: "Kishore Divvela -ERS, HCL Tech" <kishore-d@hcl.com>
+Subject: Re: hob build failed with an error Nothing RPROVIDES libgstinterfaces-0.10
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -33,39 +40,89 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 10 Jan 2014 02:00:23 -0000
-Content-Type: text/plain; charset="GB2312"
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Fri, 10 Jan 2014 05:44:09 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="windows-1256"
+Content-Transfer-Encoding: quoted-printable
 
-ÓÚ 14-1-9 ÉÏÎç10:54, wenzong.fan@windriver.com Ð´µÀ:
-> From: Wenzong Fan <wenzong.fan@windriver.com>
-> 
-> In Yocto the real path for udevd is /lib/udev/udevd, this patch fixes
-> the init issues like:
->      
->      udevd[87]: setfilecon /dev/vcsa2 failed: Operation not permitted
->      udevd[89]: setfilecon /dev/fb0 failed: Operation not permitted
-> 
-> The following changes since commit 2209cb5fc21c1ad5a7471897528ed64170f70219:
-> 
->    policy: Create compressed_policy distro feature (2013-12-05 09:03:41 -0500)
-> 
-> are available in the git repository at:
-> 
->    git://git.pokylinux.org/poky-contrib wenzong/fix-udevd-path
->    http://git.pokylinux.org/cgit.cgi/poky-contrib/log/?h=wenzong/fix-udevd-path
-> 
-> Wenzong Fan (1):
->    refpolicy: fix real path for udevd
-> 
->   .../refpolicy-2.20130424/poky-fc-udevd.patch       |   27 ++++++++++++++++++++
->   .../refpolicy/refpolicy_2.20130424.inc             |    1 +
->   2 files changed, 28 insertions(+)
->   create mode 100644 recipes-security/refpolicy/refpolicy-2.20130424/poky-fc-udevd.patch
-> 
+Hi Bel=E9n.
 
-Tech ok. Thank you. :)
+I am using yocto project version "Dylan (1.4)".
 
--- 
-- Pascal
+Regards
+Khaja
+
+-----Original Message-----
+From: Barros Pena, Belen [mailto:belen.barros.pena@intel.com]=20
+Sent: Thursday, January 09, 2014 10:15 PM
+To: Khaja Hussain Shaik; yocto@yoctoproject.org
+Cc: Kishore Divvela -ERS, HCL Tech; Voicu, Cristiana
+Subject: Re: [yocto] hob build failed with an error Nothing RPROVIDES libgs=
+tinterfaces-0.10
+
+Hi Khaja,
+
+Can you tell us which version of the Yocto Project you are using? Is it
+1.5 (Dora)?
+
+Thanks!
+
+Bel=E9n
+
+On 09/01/2014 05:51, "Khaja Hussain Shaik" <khajahussain-s@hcl.com> wrote:
+
+>Hi ,
+>=20
+>I am trying to build images with hob command for the Intel Baytrail taget
+>(core-image-sato).
+>
+>I am able to build the image without editing the recipes and packages.
+>But when I Include the packages for further customizing the Image, build
+>always fail with an error message
+>=20
+>Hob found an error:
+>Required build target 'hob-image-20140108-135930' has
+>no buildable providers.
+>Missing or unbuildable dependency chain was ['hob-
+>image-20140108-135930', =8Clibgstinterfaces-0.10']
+>=20
+>Any clues what could cause the problem.
+>=20
+>Thanks & Regards
+>Khaja
+>=20
+>
+>
+>
+>::DISCLAIMER::
+>--------------------------------------------------------------------------
+>--------------------------------------------------------------------------
+>The contents of this e-mail and any attachment(s) are confidential and
+>intended for the named recipient(s) only.
+>E-mail transmission is not guaranteed to be secure or error-free as
+>information could be intercepted, corrupted,
+>
+>lost, destroyed, arrive late or incomplete, or may contain viruses in
+>transmission. The e mail and its contents
+>
+>(with or without referred errors) shall therefore not attach any
+>liability on the originator or HCL or its affiliates.
+>
+>Views or opinions, if any, presented in this email are solely those of
+>the author and may not necessarily reflect the
+>
+>views or opinions of HCL or its affiliates. Any form of reproduction,
+>dissemination, copying, disclosure, modification,
+>
+>distribution and / or publication of this message without the prior
+>written consent of authorized representative of
+>
+>HCL is strictly prohibited. If you have received this email in error
+>please delete it and notify the sender immediately.
+>
+>Before opening any email and/or attachments, please check them for
+>viruses and other defects.
+>--------------------------------------------------------------------------
+>--------------------------------------------------------------------------
+
 
