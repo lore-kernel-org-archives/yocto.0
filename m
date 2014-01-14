@@ -1,29 +1,36 @@
-Return-Path: <gary@mlbassoc.com>
-Received: from mail.chez-thomas.org (mail.mlbassoc.com [65.100.170.105])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 26CFAE0079B
-	for <yocto@yoctoproject.org>; Tue, 14 Jan 2014 05:35:00 -0800 (PST)
-Received: by mail.chez-thomas.org (Postfix, from userid 1998)
-	id C39E4F811E8; Tue, 14 Jan 2014 06:34:59 -0700 (MST)
-X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on
-	hermes.chez-thomas.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=4.0 tests=ALL_TRUSTED,BAYES_00
-	autolearn=unavailable version=3.3.2
-Received: from [192.168.1.114] (zeus [192.168.1.114])
-	by mail.chez-thomas.org (Postfix) with ESMTP id CE3C1F811DC;
-	Tue, 14 Jan 2014 06:34:56 -0700 (MST)
-Message-ID: <52D53D02.1050207@mlbassoc.com>
-Date: Tue, 14 Jan 2014 06:34:58 -0700
-From: Gary Thomas <gary@mlbassoc.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:24.0) Gecko/20100101 Thunderbird/24.2.0
+Return-Path: <nicolas.dechesne@linaro.org>
+Received: from mail-oa0-f48.google.com (mail-oa0-f48.google.com
+	[209.85.219.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A4263E0079B
+	for <yocto@yoctoproject.org>; Tue, 14 Jan 2014 05:38:42 -0800 (PST)
+Received: by mail-oa0-f48.google.com with SMTP id i11so734818oag.7
+	for <yocto@yoctoproject.org>; Tue, 14 Jan 2014 05:38:41 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc:content-type;
+	bh=w6+fUMqH8uClif55vBA2XuRimACyISQI/pKAzyOIJKw=;
+	b=EQqTYAl4ZCHQ8TOcQOEi7hFtlhgwyw4sN+SNKGLVEf3G1+Q820o1WPy2MU5a0LT/J4
+	2Ywkqpi7BI49AqDBSAqD/J59qRdnT6/MXeGLH49lHIR7fcUlN7DB5k6bAxDrmKWGC4JZ
+	z4ITSsip/FdQ1vjJcikW+8Cy7iVWzi8m7iv8RdDyu1jCVNGVIKL9zCKuLTps486rnITo
+	QlsIfWiYcsXWhz4qRpse9IlFwIF7cKFej46FzjKDP3mxCzzx5AWpxTrrfj/rcM4c0x1V
+	vQAIQ7/oKWcmWUKQaUHSirPxFAR4af7gMP3Rsg8E2XXIyPgpYsuvGuIKFt363Ujc8kpK
+	rD6g==
+X-Gm-Message-State: ALoCoQmzLD830m6/RMl9xJBsbMKSxeusCoGbsHHvO1fOWSmM8/ppUaZvmDh24OuQNxSpCjTJ3/3K
+X-Received: by 10.60.123.19 with SMTP id lw19mr1158500oeb.24.1389706721616;
+	Tue, 14 Jan 2014 05:38:41 -0800 (PST)
 MIME-Version: 1.0
-To: "Burton, Ross" <ross.burton@intel.com>
+Received: by 10.76.84.233 with HTTP; Tue, 14 Jan 2014 05:38:21 -0800 (PST)
+In-Reply-To: <52D53D02.1050207@mlbassoc.com>
 References: <52D536A0.5060307@mlbassoc.com>
 	<CAP71Wjw=Q3m-bEPMniCMug0Pn4d=VoQ5VqLHGNck29XqzDkbzA@mail.gmail.com>
 	<52D53908.30304@mlbassoc.com>
 	<CAJTo0LaY3r6f+VER=+Nnh3du9KG=tcJ6KiNW0oK_1yBiv6K=pQ@mail.gmail.com>
-In-Reply-To: <CAJTo0LaY3r6f+VER=+Nnh3du9KG=tcJ6KiNW0oK_1yBiv6K=pQ@mail.gmail.com>
+	<52D53D02.1050207@mlbassoc.com>
+From: Nicolas Dechesne <nicolas.dechesne@linaro.org>
+Date: Tue, 14 Jan 2014 14:38:21 +0100
+Message-ID: <CAP71Wjyb+tQwYWKZgxiV8bcBvKj4=RrjeXZBiwkv2m838EF9Xg@mail.gmail.com>
+To: Gary Thomas <gary@mlbassoc.com>
 Cc: Yocto Project <yocto@yoctoproject.org>
 Subject: Re: gstreamer without X11?
 X-BeenThere: yocto@yoctoproject.org
@@ -37,29 +44,69 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 14 Jan 2014 13:35:01 -0000
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Tue, 14 Jan 2014 13:38:42 -0000
+Content-Type: multipart/alternative; boundary=047d7b5d2f887bfa6c04efee4f65
 
-On 2014-01-14 06:32, Burton, Ross wrote:
-> On 14 January 2014 13:18, Gary Thomas <gary@mlbassoc.com> wrote:
->>>      I don't understand why this happens though as the gst-plugins-base
->>>      recipe uses PKGCONFIG to control this:
->>>         PACKAGECONFIG ??= "${@base_contains('DISTRO___FEATURES', 'x11',
->>> 'x11', '', d)}"
->>>         PACKAGECONFIG[x11] = "--enable-x --enable-xvideo,--disable-x
->>> --disable-xvideo,virtual/__libx11 libxv libsm libice"
+--047d7b5d2f887bfa6c04efee4f65
+Content-Type: text/plain; charset=ISO-8859-1
+
+On Tue, Jan 14, 2014 at 2:34 PM, Gary Thomas <gary@mlbassoc.com> wrote:
+
+> Not sure exactly what you mean, but this showed nothing as well:
+>   $ bitbake -e gst-plugins-base | grep PACKAGECONFIG
 >
->
-> Check that gst-plugins-base resolved PACKAGECONFIG hasn't been
-> explicitly set somewhere (again, use bitbake -e gst-plugins-base).
 
-Not sure exactly what you mean, but this showed nothing as well:
-   $ bitbake -e gst-plugins-base | grep PACKAGECONFIG
+what do you mean, 'it shows nothing'? it show show 'something'. if x11 is
+enabled:
 
--- 
-------------------------------------------------------------
-Gary Thomas                 |  Consulting for the
-MLB Associates              |    Embedded world
-------------------------------------------------------------
+$ bitbake -e gst-plugins-base | grep PACKAGECONFIG
+# $PACKAGECONFIG_pn-qemu-native
+PACKAGECONFIG_pn-qemu-native="sdl"
+# $PACKAGECONFIG [6 operations]
+PACKAGECONFIG="x11"
 
+and if it's not:
+
+$ bitbake -e gst-plugins-base | grep PACKAGECONFIG
+# $PACKAGECONFIG_pn-qemu-native
+PACKAGECONFIG_pn-qemu-native="sdl"
+# $PACKAGECONFIG [6 operations]
+PACKAGECONFIG=""
+
+--047d7b5d2f887bfa6c04efee4f65
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
+On Tue, Jan 14, 2014 at 2:34 PM, Gary Thomas <span dir=3D"ltr">&lt;<a href=
+=3D"mailto:gary@mlbassoc.com" target=3D"_blank">gary@mlbassoc.com</a>&gt;</=
+span> wrote:<br>
+
+<blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-=
+left-width:1px;border-left-color:rgb(204,204,204);border-left-style:solid;p=
+adding-left:1ex"><div id=3D":28x" style=3D"overflow:hidden">Not sure exactl=
+y what you mean, but this showed nothing as well:<br>
+
+
+=A0 $ bitbake -e gst-plugins-base | grep PACKAGECONFIG<div class=3D""><div =
+id=3D":26t" class=3D"" tabindex=3D"0"></div></div></div></blockquote></div>=
+<br>what do you mean, &#39;it shows nothing&#39;? it show show &#39;somethi=
+ng&#39;. if x11 is enabled:</div>
+
+<div class=3D"gmail_extra"><br></div><div class=3D"gmail_extra"><div class=
+=3D"gmail_extra">$ bitbake -e gst-plugins-base | grep PACKAGECONFIG</div><d=
+iv class=3D"gmail_extra"># $PACKAGECONFIG_pn-qemu-native</div><div class=3D=
+"gmail_extra">
+
+PACKAGECONFIG_pn-qemu-native=3D&quot;sdl&quot;</div><div class=3D"gmail_ext=
+ra"># $PACKAGECONFIG [6 operations]</div><div class=3D"gmail_extra">PACKAGE=
+CONFIG=3D&quot;x11&quot;</div><div><br></div><div>and if it&#39;s not:</div=
+><div>
+
+<br></div><div><div>$ bitbake -e gst-plugins-base | grep PACKAGECONFIG</div=
+><div># $PACKAGECONFIG_pn-qemu-native</div><div>PACKAGECONFIG_pn-qemu-nativ=
+e=3D&quot;sdl&quot;</div><div># $PACKAGECONFIG [6 operations]</div><div>
+PACKAGECONFIG=3D&quot;&quot;</div>
+</div><div><br></div></div></div>
+
+--047d7b5d2f887bfa6c04efee4f65--
