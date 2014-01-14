@@ -1,33 +1,39 @@
-Return-Path: <song.liu@intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id ECE8AE00813
-	for <yocto@yoctoproject.org>; Tue, 14 Jan 2014 08:47:13 -0800 (PST)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga101.jf.intel.com with ESMTP; 14 Jan 2014 08:47:12 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.95,658,1384329600"; 
-	d="scan'208,217";a="466534139"
-Received: from orsmsx101.amr.corp.intel.com ([10.22.225.128])
-	by orsmga002.jf.intel.com with ESMTP; 14 Jan 2014 08:47:08 -0800
-Received: from orsmsx156.amr.corp.intel.com (10.22.240.22) by
-	ORSMSX101.amr.corp.intel.com (10.22.225.128) with Microsoft SMTP Server
-	(TLS) id 14.3.123.3; Tue, 14 Jan 2014 08:47:08 -0800
-Received: from orsmsx108.amr.corp.intel.com ([169.254.4.180]) by
-	ORSMSX156.amr.corp.intel.com ([169.254.8.206]) with mapi id
-	14.03.0123.003; Tue, 14 Jan 2014 08:47:08 -0800
-From: "Liu, Song" <song.liu@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Minutes: Yocto Project Technical Team Meeting - Tuesday,
-	January 14, 2014 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada).
-Thread-Index: Ac8RSClYT/MpfdwfTAa3/td/R+AbQgAAAmtQ
-Date: Tue, 14 Jan 2014 16:47:07 +0000
-Message-ID: <7E680CB2A76BB8438D08CF13C09FC53A8EFE0707@ORSMSX108.amr.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.138]
+Return-Path: <trevor.woerner@linaro.org>
+Received: from mail-ie0-f177.google.com (mail-ie0-f177.google.com
+	[209.85.223.177])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4DAAAE00879
+	for <yocto@yoctoproject.org>; Tue, 14 Jan 2014 14:24:49 -0800 (PST)
+Received: by mail-ie0-f177.google.com with SMTP id ar20so1227698iec.22
+	for <yocto@yoctoproject.org>; Tue, 14 Jan 2014 14:24:47 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
+	:subject:content-type:content-transfer-encoding;
+	bh=DatWsQ881HBdzH0Sa2wehzywjxYti0q2R/7ILTxXsQM=;
+	b=N5vJkezVXaP1cYMM9y+iEAU1hDoPZ/lsL02aS2lcKkOh2QFvYXbdKYA3AsE5b8nHv4
+	w2aUul9siApbnS+UDtPwrgfkPYoXqUyiRGPmrFREANqV5YH2FHfBdAWOGr5bdJ7F/X4h
+	/Na0knaeY1t+OnY/imO0iXjFQlFWrCo6PuiOAAlup4/lbhFir5mYI/7ECIX1miY0fMP3
+	IklIYDngOrDdgHkyMt5xqagCd0r8rPQdUPYA5+uZ/kdGXDrVWoGx6arsIAokuxFGQ944
+	Fjoa9VIXyyC+lm9OW4HUhH7W3bej/s/WxaxxD2qwkUJH++qBnRek+/lCd20t10FLbbQA
+	9Frw==
+X-Gm-Message-State: ALoCoQmBmvYCFkPHUxg/oUulU97cfAME8/3oFXpi7J4/BA3a3F8VhYFfqJme3gE4wkLbLY5OgGrK
+X-Received: by 10.42.40.83 with SMTP id k19mr661352ice.3.1389738287306;
+	Tue, 14 Jan 2014 14:24:47 -0800 (PST)
+Received: from [192.168.141.83] (69-165-220-158.dsl.teksavvy.com.
+	[69.165.220.158])
+	by mx.google.com with ESMTPSA id d18sm26118572igz.0.2014.01.14.14.24.45
+	for <multiple recipients>
+	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
+	Tue, 14 Jan 2014 14:24:46 -0800 (PST)
+Message-ID: <52D5B92C.5040001@linaro.org>
+Date: Tue, 14 Jan 2014 17:24:44 -0500
+From: Trevor Woerner <trevor.woerner@linaro.org>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:24.0) Gecko/20100101 Thunderbird/24.2.0
 MIME-Version: 1.0
-Subject: Minutes: Yocto Project Technical Team Meeting - Tuesday, January 14, 2014 8:00 AM-9:00 AM (UTC-08:00) Pacific Time (US & Canada).
+To: openembedded-core <openembedded-core@lists.openembedded.org>, 
+	openembedded-devel@lists.openembedded.org, yocto@yoctoproject.org
+Subject: ** bug squashing weekend - Jan 17 to 20, 2014
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,110 +45,55 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 14 Jan 2014 16:47:14 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_7E680CB2A76BB8438D08CF13C09FC53A8EFE0707ORSMSX108amrcor_"
+X-List-Received-Date: Tue, 14 Jan 2014 22:25:01 -0000
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: 7bit
 
---_000_7E680CB2A76BB8438D08CF13C09FC53A8EFE0707ORSMSX108amrcor_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Hello all OE/Yocto enthusiasts!
 
-Attendees:
-Stephen, Dave, MichaelH, Nitin, Saul, Richard, MarkH, JeffP, Beth, TomZ, Pa=
-ulE, ScottR, Krzysztof, Song
+https://bugzilla.yoctoproject.org/
 
-Agenda:
+It has been noted that the number of unresolved issues in our bugzilla
+has been rising which, if left unchecked, will lead to an
+ever-increasing bug count. In an effort to raise awareness of the number
+of unresolved bugs and work to reduce them, we'd like to plan a "bug
+squashing weekend" for this upcoming Friday to Monday (January 17th to
+20th, 2014).
 
-Stephen is transitioning into the program manager role of the Yocto Project=
-. Song will transfer related responsibilities to Stephen in the following w=
-eeks.
+If you work with OE/Yocto during the week then you'll have two days to
+look at issues, or if you have more time on weekends you'll also have
+two potential days for this activity.
 
-* Opens collection - 5 min (Song)
-* Yocto 1.6 status - 10 min (Song/team)
-  https://wiki.yoctoproject.org/wiki/Yocto_Project_v1.6_Status
-  https://wiki.yoctoproject.org/wiki/Yocto_1.6_Features
-  . We are in the first stabilization week of M2. This is also the bug fixi=
-ng sprint week. The plan is to have RC1 this week, then have RC2 with all b=
-ug fixes next week.
-  . M2: Later this morning, Saul will sync with RP, kick off RC1. RP would =
-like to get the patches from Ross in for M2.
-  . 1.4.3, will generate the build asap for QA. QA will pick up for testing=
- whenever they have cycle besides 1.6 work.
-* SWAT team rotation: Paul -> Ross
-* Opens - 10 min
-  Ionut/5721: synced with Saul.
-* Team Sharing - 20 min
-  - ScottR: moving ahead with bitbake work. Revising the manual. There is a=
-n email on the bitbake mailing list for details.
-  - Michael: added fedora machine to autobuilder. Taking half of Thursday a=
-nd Friday off this week for vacation. Negotiating colocation pricing.
-  - RP: Some people is looking at HW test automation. There is a mailing li=
-st for HW test automation. It's basic like a workgroup. Please go there if =
-you have questions or would like to contribute.
-  - Beth: 1.5.1 will be out tomorrow.
+It would be nice if anyone involved in OE/Yocto could take some time
+between now and Monday to have a look at the bugzilla database and
+consider contributing towards reducing the number of opened issues.
+Obviously if you're a maintainer or some sort of a developer there are,
+most likely, obvious issues you could consider addressing. But there are
+also lots of issues an OE/Yocto "user" could investigate as well -- for
+example there are documentation issues, there are several issues in the
+"NEEDINFO" state, and sometimes just being able to reproduce a bug (or
+not) and confirm (or not) that an issue can be demonstrated on more than
+one host can be valuable information for the person who does eventually
+get assigned to solve the problem.
 
+Please take the opportunity to have a look at the opened issues in the
+bugzilla database. If you don't have an account, please consider signing
+up. Play with the "Search" capability (you'll probably want to try an
+advanced search,
+https://bugzilla.yoctoproject.org/query.cgi?format=advanced) and see if
+there are issues to which you might want to contribute.
 
+In an effort to keep multiple people from working on the same issues
+during this sprint, please let the community know on which bugs you'd
+like to work. You could reply to this email (keeping all the mailing
+lists CC'ed), and/or you could re-assign a bug to yourself.
 
+There are usually plenty of friendly, knowledgeable people around who
+can help. You can use the mailing lists, IRC channels, or bugzilla
+itself to communicate.
+https://www.yoctoproject.org/tools-resources/community
 
---_000_7E680CB2A76BB8438D08CF13C09FC53A8EFE0707ORSMSX108amrcor_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Thanks for your participation! :-)
 
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<meta name=3D"Generator" content=3D"Microsoft Exchange Server">
-<!-- converted from rtf -->
-<style><!-- .EmailQuote { margin-left: 1pt; padding-left: 4pt; border-left:=
- #800000 2px solid; } --></style>
-</head>
-<body>
-<font face=3D"Consolas" size=3D"2"><span style=3D"font-size:11pt;">
-<div>Attendees:</div>
-<div>Stephen, Dave, MichaelH, Nitin, Saul, Richard, MarkH, JeffP, Beth, Tom=
-Z, PaulE, ScottR, Krzysztof, Song </div>
-<div>&nbsp;</div>
-<div>Agenda:</div>
-<div>&nbsp;</div>
-<div>Stephen is transitioning into the program manager role of the Yocto Pr=
-oject. Song will transfer related responsibilities to Stephen in the follow=
-ing weeks. </div>
-<div>&nbsp;</div>
-<div>* Opens collection - 5 min (Song)</div>
-<div>* Yocto 1.6 status - 10 min (Song/team)</div>
-<div>&nbsp; <a href=3D"https://wiki.yoctoproject.org/wiki/Yocto_Project_v1.=
-6_Status"><font face=3D"Calibri" color=3D"blue"><u>https://wiki.yoctoprojec=
-t.org/wiki/Yocto_Project_v1.6_Status</u></font></a></div>
-<div>&nbsp; <a href=3D"https://wiki.yoctoproject.org/wiki/Yocto_1.6_Feature=
-s"><font face=3D"Calibri" color=3D"blue"><u>https://wiki.yoctoproject.org/w=
-iki/Yocto_1.6_Features</u></font></a></div>
-<div>&nbsp; . We are in the first stabilization week of M2. This is also th=
-e bug fixing sprint week. The plan is to have RC1 this week, then have RC2 =
-with all bug fixes next week.</div>
-<div>&nbsp; . M2: Later this morning, Saul will sync with RP, kick off RC1.=
- RP would like to get the patches from Ross in for M2.</div>
-<div>&nbsp; . 1.4.3, will generate the build asap for QA. QA will pick up f=
-or testing whenever they have cycle besides 1.6 work. </div>
-<div>* SWAT team rotation: Paul -&gt; Ross</div>
-<div>* Opens - 10 min </div>
-<div>&nbsp; Ionut/5721: synced with Saul.</div>
-<div>* Team Sharing - 20 min</div>
-<div>&nbsp; - ScottR: moving ahead with bitbake work. Revising the manual. =
-There is an email on the bitbake mailing list for details.</div>
-<div>&nbsp; - Michael: added fedora machine to autobuilder. Taking half of =
-Thursday and Friday off this week for vacation. Negotiating colocation pric=
-ing. </div>
-<div>&nbsp; - RP: Some people is looking at HW test automation. There is a =
-mailing list for HW test automation. It's basic like a workgroup. Please go=
- there if you have questions or would like to contribute. </div>
-<div>&nbsp; - Beth: 1.5.1 will be out tomorrow. </div>
-<div><font face=3D"Times New Roman" color=3D"#1F497D">&nbsp;</font></div>
-<div><font face=3D"Times New Roman" color=3D"#1F497D">&nbsp;</font></div>
-<div><font face=3D"Times New Roman">&nbsp;</font></div>
-</span></font>
-</body>
-</html>
+https://bugzilla.yoctoproject.org/
 
---_000_7E680CB2A76BB8438D08CF13C09FC53A8EFE0707ORSMSX108amrcor_--
