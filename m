@@ -1,40 +1,27 @@
-Return-Path: <martin.jansa@gmail.com>
-Received: from mail-ee0-f42.google.com (mail-ee0-f42.google.com [74.125.83.42])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 75517E0079B
-	for <yocto@yoctoproject.org>; Tue, 14 Jan 2014 05:47:43 -0800 (PST)
-Received: by mail-ee0-f42.google.com with SMTP id e49so232710eek.29
-	for <yocto@yoctoproject.org>; Tue, 14 Jan 2014 05:47:42 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=date:from:to:cc:subject:message-id:references:mime-version
-	:content-type:content-disposition:in-reply-to:user-agent;
-	bh=waJamzDapneBMb2BtJtULabDOYxKf3g7KMSBdB3LJBc=;
-	b=QIjGVaJ4Wo5tqUPEa9DrucLUd4EY2eUrNnHiCNn3O3QuOBEHc5ha1cjk1S0JBy1Lvn
-	pIAq0xtfcNc/o/qdrbjEomoyZIKfqYM3URT/JzNzQfhwTV8lzYkbtvd8Hud25pjcRgZo
-	k4Z/w3EtPb6vmA/9D98zWOUh6ZJnQGCcSJ4rID9Ogi+RY7CU63jIEiJ8OCITOheAb+fM
-	KCTSqbX02tvdZcugw8vuRParHMQZ4nXpRFSWEfFRGwoLaP97WZPZ8CAn7yCyMkrtUMnZ
-	xDtfZZj/pbuXgct1VAxsn4Fi0TDbhHg52a2Gp21chtd0wavhkHVyI7HI3nIXnXtYE0CM
-	Cd4w==
-X-Received: by 10.15.91.3 with SMTP id r3mr2511853eez.18.1389707262335;
-	Tue, 14 Jan 2014 05:47:42 -0800 (PST)
-Received: from localhost (ip-89-176-104-107.net.upcbroadband.cz.
-	[89.176.104.107])
-	by mx.google.com with ESMTPSA id 7sm1773179eee.12.2014.01.14.05.47.38
-	for <multiple recipients>
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Tue, 14 Jan 2014 05:47:41 -0800 (PST)
-Date: Tue, 14 Jan 2014 14:47:54 +0100
-From: Martin Jansa <martin.jansa@gmail.com>
-To: Gary Thomas <gary@mlbassoc.com>
-Message-ID: <20140114134754.GD3717@jama>
-References: <52D536A0.5060307@mlbassoc.com>
-	<CAP71Wjw=Q3m-bEPMniCMug0Pn4d=VoQ5VqLHGNck29XqzDkbzA@mail.gmail.com>
-	<52D53908.30304@mlbassoc.com>
-	<CAJTo0LaY3r6f+VER=+Nnh3du9KG=tcJ6KiNW0oK_1yBiv6K=pQ@mail.gmail.com>
-	<52D53D02.1050207@mlbassoc.com>
+Return-Path: <gary@mlbassoc.com>
+Received: from mail.chez-thomas.org (mail.mlbassoc.com [65.100.170.105])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7CACAE0079B
+	for <yocto@yoctoproject.org>; Tue, 14 Jan 2014 05:55:50 -0800 (PST)
+Received: by mail.chez-thomas.org (Postfix, from userid 1998)
+	id 66799F811E7; Tue, 14 Jan 2014 06:55:49 -0700 (MST)
+X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on
+	hermes.chez-thomas.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=4.0 tests=ALL_TRUSTED,BAYES_00
+	autolearn=ham version=3.3.2
+Received: from [192.168.1.114] (zeus [192.168.1.114])
+	by mail.chez-thomas.org (Postfix) with ESMTP id 6F2B4F811DC;
+	Tue, 14 Jan 2014 06:55:47 -0700 (MST)
+Message-ID: <52D541E5.3040401@mlbassoc.com>
+Date: Tue, 14 Jan 2014 06:55:49 -0700
+From: Gary Thomas <gary@mlbassoc.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:24.0) Gecko/20100101 Thunderbird/24.2.0
 MIME-Version: 1.0
-In-Reply-To: <52D53D02.1050207@mlbassoc.com>
-User-Agent: Mutt/1.5.22 (2013-10-16)
-Cc: Yocto Project <yocto@yoctoproject.org>
+To: yocto@yoctoproject.org
+References: <52D536A0.5060307@mlbassoc.com>	<CAP71Wjw=Q3m-bEPMniCMug0Pn4d=VoQ5VqLHGNck29XqzDkbzA@mail.gmail.com>	<52D53908.30304@mlbassoc.com>	<CAJTo0LaY3r6f+VER=+Nnh3du9KG=tcJ6KiNW0oK_1yBiv6K=pQ@mail.gmail.com>	<52D53D02.1050207@mlbassoc.com>
+	<20140114134754.GD3717@jama>
+In-Reply-To: <20140114134754.GD3717@jama>
 Subject: Re: gstreamer without X11?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -47,52 +34,58 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 14 Jan 2014 13:47:44 -0000
-X-Groupsio-MsgNum: 17771
-Content-Type: multipart/signed; micalg=pgp-sha1;
-	protocol="application/pgp-signature"; boundary="FFoLq8A0u+X9iRU8"
-Content-Disposition: inline
+X-List-Received-Date: Tue, 14 Jan 2014 13:55:54 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
 
---FFoLq8A0u+X9iRU8
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On 2014-01-14 06:47, Martin Jansa wrote:
+> On Tue, Jan 14, 2014 at 06:34:58AM -0700, Gary Thomas wrote:
+>> On 2014-01-14 06:32, Burton, Ross wrote:
+>>> On 14 January 2014 13:18, Gary Thomas <gary@mlbassoc.com> wrote:
+>>>>>       I don't understand why this happens though as the gst-plugins-base
+>>>>>       recipe uses PKGCONFIG to control this:
+>>>>>          PACKAGECONFIG ??= "${@base_contains('DISTRO___FEATURES', 'x11',
+>>>>> 'x11', '', d)}"
+>>>>>          PACKAGECONFIG[x11] = "--enable-x --enable-xvideo,--disable-x
+>>>>> --disable-xvideo,virtual/__libx11 libxv libsm libice"
+>>>
+>>>
+>>> Check that gst-plugins-base resolved PACKAGECONFIG hasn't been
+>>> explicitly set somewhere (again, use bitbake -e gst-plugins-base).
+>>
+>> Not sure exactly what you mean, but this showed nothing as well:
+>>     $ bitbake -e gst-plugins-base | grep PACKAGECONFIG
+>
+> nothing? It should show at least assignment of empty value and a lot of
+> PACKAGECONFIG usages.
 
-On Tue, Jan 14, 2014 at 06:34:58AM -0700, Gary Thomas wrote:
-> On 2014-01-14 06:32, Burton, Ross wrote:
-> > On 14 January 2014 13:18, Gary Thomas <gary@mlbassoc.com> wrote:
-> >>>      I don't understand why this happens though as the gst-plugins-ba=
-se
-> >>>      recipe uses PKGCONFIG to control this:
-> >>>         PACKAGECONFIG ??=3D "${@base_contains('DISTRO___FEATURES', 'x=
-11',
-> >>> 'x11', '', d)}"
-> >>>         PACKAGECONFIG[x11] =3D "--enable-x --enable-xvideo,--disable-x
-> >>> --disable-xvideo,virtual/__libx11 libxv libsm libice"
-> >
-> >
-> > Check that gst-plugins-base resolved PACKAGECONFIG hasn't been
-> > explicitly set somewhere (again, use bitbake -e gst-plugins-base).
->=20
-> Not sure exactly what you mean, but this showed nothing as well:
->    $ bitbake -e gst-plugins-base | grep PACKAGECONFIG
+Sorry, no, when x11 is missing, I only get this error:
 
-nothing? It should show at least assignment of empty value and a lot of
-PACKAGECONFIG usages.
+[gthomas@titan imx6_test]$ bitbake -e gst-plugins-base
+NOTE: Started PRServer with DBfile: /home/local/imx6_test/cache/prserv.sqlite3, IP: 127.0.0.1, PORT: 45092, PID: 22974
+Loading cache: 100% |####################################################################################| ETA:  00:00:00
+Loaded 1564 entries from dependency cache.
+NOTE: Resolving any missing task queue dependencies
+ERROR: Nothing PROVIDES 'virtual/libx11' (but /home/local/poky-multi/meta/recipes-multimedia/gstreamer/gst-plugins-base_0.10.36.bb DEPENDS on or otherwise requires it)
+ERROR: libx11-diet PROVIDES virtual/libx11 but was skipped: missing required distro feature ['x11'] (not in DISTRO_FEATURES)
+ERROR: libx11 PROVIDES virtual/libx11 but was skipped: missing required distro feature ['x11'] (not in DISTRO_FEATURES)
+ERROR: nativesdk-libx11 PROVIDES virtual/libx11 but was skipped: missing required distro feature ['x11'] (not in DISTRO_FEATURES)
+ERROR: Required build target 'gst-plugins-base' has no buildable providers.
+Missing or unbuildable dependency chain was: ['gst-plugins-base', 'virtual/libx11']
 
---=20
-Martin 'JaMa' Jansa     jabber: Martin.Jansa@gmail.com
+If I have x11 in DISTRO_FEATURES, I get a full dump and the grep shows something:
 
---FFoLq8A0u+X9iRU8
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: Digital signature
+[gthomas@titan imx6_test]$ bitbake -e gst-plugins-base | grep PACKAGECONFIG
+# $PACKAGECONFIG [7 operations]
+PACKAGECONFIG=" pango x11"
+[gthomas@titan imx6_test]$
 
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v2.0.22 (GNU/Linux)
+Note this is using Poky master that's about a week old, but I doubt that
+anything has changed in this realm.
 
-iEYEARECAAYFAlLVQAoACgkQN1Ujt2V2gBxAhQCgiLeDiU08kEMc0zjwrKmtAhhQ
-sG8AoLezTl2H8rPoFCkjJJ/W0kRXrMWa
-=vTT2
------END PGP SIGNATURE-----
+-- 
+------------------------------------------------------------
+Gary Thomas                 |  Consulting for the
+MLB Associates              |    Embedded world
+------------------------------------------------------------
 
---FFoLq8A0u+X9iRU8--
