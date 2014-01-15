@@ -1,35 +1,33 @@
-Return-Path: <nicolas.dechesne@linaro.org>
-Received: from mail-oa0-f45.google.com (mail-oa0-f45.google.com
-	[209.85.219.45])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A2018E0084E
-	for <yocto@yoctoproject.org>; Wed, 15 Jan 2014 03:05:24 -0800 (PST)
-Received: by mail-oa0-f45.google.com with SMTP id j17so1010900oag.18
-	for <yocto@yoctoproject.org>; Wed, 15 Jan 2014 03:05:24 -0800 (PST)
+Return-Path: <elizabeth.flanagan@intel.com>
+Received: from mail-la0-f43.google.com (mail-la0-f43.google.com
+	[209.85.215.43])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6E1C3E0084E
+	for <yocto@yoctoproject.org>; Wed, 15 Jan 2014 03:46:00 -0800 (PST)
+Received: by mail-la0-f43.google.com with SMTP id er20so1310043lab.16
+	for <yocto@yoctoproject.org>; Wed, 15 Jan 2014 03:45:59 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc:content-type;
-	bh=wsH7kNIteXvDnNPbM7+Fe6ALfOpNXNtpu1/yTF/IOKg=;
-	b=JVkSMwC2iXvRtrdgUZhuN+FmNKyrqCGjTkotuV3Q9kA9uvzPgM5WwgsFG07rnqyT9u
-	v9YbouWkM/1D43Ff9x04KUDkI5JcEZ8W+b24VNeE3W4MJeMQANRo3NS3QYb7fSWpHxgM
-	0qMTOWLXKwX85ujtDj6mgqrUgTUA6Dbc19LVO5wL7UdgCqffkPG6xXws+m5X4hsznuqw
-	QXVwrfQQ0L6cm/EiXJf1KD6/9CXgaHEjhVv1zEvNHHB1rbjym0rhvghq+JRcQAu5dN5a
-	io45bz6QfFYOoQ4Sm2OucDowluMzpHZz941kx3q9m8MTMHec3FNygPOAIgprvxuOv001
-	WPhg==
-X-Gm-Message-State: ALoCoQn0PjhDzjlZ1i+GTTvSQFuocPHUvX4axa25dJS7IHJLKEt8U9mZxi2mJe8a9qDqHecjUCml
-X-Received: by 10.60.123.19 with SMTP id lw19mr1283310oeb.24.1389783923825;
-	Wed, 15 Jan 2014 03:05:23 -0800 (PST)
+	h=x-gm-message-state:mime-version:date:message-id:subject:from:to
+	:content-type;
+	bh=fHi/cCW5//7gwNRUk75fNxXS/O/L+S3zUdXtYIYC4dU=;
+	b=PEVztDXzIy8rqZvy/oamNZNrB6WeDU/xOrDacUvnhBPqq38cxrJA1/f6hl58Umn8mG
+	sWpmXxaw/zOjuYaSSz6zu3UFZbPaziGC1X4bW+NifN4CiDRH5CSFJiJqqiW1nzBP57q3
+	HIeEa4IZ1SWgcB+xK0Xcl0xxVrGkrr8ba3TCxY3PvsfLTSy82JqEGT6c8kUsloI8ZWw9
+	d7OidP2aadcNkv9or/bKseXlKMaVdHKTZk4qt0YyE3nIo4+VkgbTyzAtu+Ql08ybiuwP
+	c8iLGYzzWNwgEO1yJa2A52gmm1DibNOzaB2teke6ZmVGkSYj6iRVQT9aaJrppot1+PZz
+	ww7A==
+X-Gm-Message-State: ALoCoQk0DlfDxAapWgGSPxnRxvir70WYpG1CyjM7lHOSw/jBfQ6Bwkk1Ptpmfzx52soItHqG8ZFe
 MIME-Version: 1.0
-Received: by 10.76.84.233 with HTTP; Wed, 15 Jan 2014 03:05:03 -0800 (PST)
-In-Reply-To: <31DD9473F5EB4E468EDC3B5642AD64BD08AECFFC@chn-hclt-mbs06.HCLT.CORP.HCL.IN>
-References: <31DD9473F5EB4E468EDC3B5642AD64BD08AECFFC@chn-hclt-mbs06.HCLT.CORP.HCL.IN>
-From: Nicolas Dechesne <nicolas.dechesne@linaro.org>
-Date: Wed, 15 Jan 2014 12:05:03 +0100
-Message-ID: <CAP71Wjwgmoyj-L9MVyNe4Fk=g5OGmOa7KrAKCuWP+C-=iEZX6g@mail.gmail.com>
-To: Khaja Hussain Shaik <khajahussain-s@hcl.com>
-Cc: Dipesh Karmakar <Dipesh.Karmakar@hcl.com>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Rgardring GSTreamer1.0 integration on Yocto dylan
+X-Received: by 10.112.73.180 with SMTP id m20mr44396lbv.68.1389786359034; Wed,
+	15 Jan 2014 03:45:59 -0800 (PST)
+Received: by 10.152.4.70 with HTTP; Wed, 15 Jan 2014 03:45:58 -0800 (PST)
+Date: Wed, 15 Jan 2014 11:45:58 +0000
+Message-ID: <CAPhnLPALqxwRuca6uS0F4URofbE764UBFtqZ3m=VsGeFn9vvWQ@mail.gmail.com>
+From: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>, 
+	Alexandru C Georgescu <alexandru.c.georgescu@intel.com>,
+	Otavio Salvador <otavio@ossystems.com.br>, Zhao Yi <yi.zhao@windriver.com>
+Subject: 1.6_M2.rc1 now available
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,57 +39,27 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 15 Jan 2014 11:05:33 -0000
-Content-Type: multipart/alternative; boundary=047d7b5d2f881856fa04f000493e
+X-List-Received-Date: Wed, 15 Jan 2014 11:46:05 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
---047d7b5d2f881856fa04f000493e
-Content-Type: text/plain; charset=windows-1252
-Content-Transfer-Encoding: quoted-printable
+The first release candidate for the upcoming 1.6 Milestone 2 release is now
+available at:
 
-On Wed, Jan 15, 2014 at 11:49 AM, Khaja Hussain Shaik <
-khajahussain-s@hcl.com> wrote:
+http://autobuilder.yoctoproject.org/pub/releases/1.6_M2.rc1
 
-> Greetings from Khaja.
->
-> We are trying to make a Dylan build with GStreamer 1.0 support, however w=
-e
-> are facing lots of dependencies. We like to know whether it=92s possible =
-to
-> incorporate GStreamer 1.0 in Dylan? If yes then could it be possible to
-> direct us to some documents/procedure.
->
+bitbake     2ca15117e4bbda38cda07511d0ff317273f91528
+eclipse-poky-juno     26bfc407781aa185f244a47ba63120343cee4a37
+eclipse-poky-kepler     c73c6e4510c42601854f3c542ca6e14b4510380c
+meta-fsl-arm     62c777db788a657efe3e9f01d5a72b8bf296ca25
+meta-fsl-ppc     1536064e02f15761e90f784d88f2a930784f7f3d
+meta-intel     11fc51c05f378b7fef2f5879e8e1f11d7046e85b
+meta-minnow     6a4f0dd875a5ec0303ab4387944dc7eb98508769
+meta-qt3     4772424ab69908d4e3b9d6d4717ca889468e6acd
+oecore     c4c5ec52effc2ff97ac17270c1aa7884c808f5a9
+poky     e4c23f7bcb79072ea6028fbdf8f3f0dc17a63371
 
-such large 'features' are not generally backported to old/stable releases.
-only bug fixes.
+-- 
+Elizabeth Flanagan
+Yocto Project
+Build and Release
 
-gst1.0 was introduced in 'dora' where you can find gst 1.0.x branch, and
-you have gst 1.2.x support in current master. so you either need to
-backport these changes into dylan, or switch to a newer release.
-
---047d7b5d2f881856fa04f000493e
-Content-Type: text/html; charset=windows-1252
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
-On Wed, Jan 15, 2014 at 11:49 AM, Khaja Hussain Shaik <span dir=3D"ltr">&lt=
-;<a href=3D"mailto:khajahussain-s@hcl.com" target=3D"_blank">khajahussain-s=
-@hcl.com</a>&gt;</span> wrote:<br>
-
-<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
-x #ccc solid;padding-left:1ex"><p class=3D"MsoNormal">Greetings from Khaja.=
-<u></u><u></u></p>
-<p class=3D"MsoNormal">We are trying to make a Dylan build with GStreamer 1=
-.0 support, however we are facing lots of dependencies. We like to know whe=
-ther it=92s possible to incorporate GStreamer 1.0 in Dylan? If yes then cou=
-ld it be possible to direct us to some
- documents/procedure.</p></blockquote></div><br>such large &#39;features&#3=
-9; are not generally backported to old/stable releases. only bug fixes.=A0<=
-/div><div class=3D"gmail_extra"><br></div><div class=3D"gmail_extra">gst1.0=
- was introduced in &#39;dora&#39; where you can find gst 1.0.x branch, and =
-you have gst 1.2.x support in current master. so you either need to backpor=
-t these changes into dylan, or switch to a newer release.</div>
-
-<div class=3D"gmail_extra"><br></div><div class=3D"gmail_extra"><br></div><=
-/div>
-
---047d7b5d2f881856fa04f000493e--
