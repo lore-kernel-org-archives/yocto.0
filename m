@@ -1,39 +1,32 @@
-Return-Path: <trevor.woerner@linaro.org>
-Received: from mail-ie0-f177.google.com (mail-ie0-f177.google.com
-	[209.85.223.177])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4DAAAE00879
-	for <yocto@yoctoproject.org>; Tue, 14 Jan 2014 14:24:49 -0800 (PST)
-Received: by mail-ie0-f177.google.com with SMTP id ar20so1227698iec.22
-	for <yocto@yoctoproject.org>; Tue, 14 Jan 2014 14:24:47 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
-	:subject:content-type:content-transfer-encoding;
-	bh=DatWsQ881HBdzH0Sa2wehzywjxYti0q2R/7ILTxXsQM=;
-	b=N5vJkezVXaP1cYMM9y+iEAU1hDoPZ/lsL02aS2lcKkOh2QFvYXbdKYA3AsE5b8nHv4
-	w2aUul9siApbnS+UDtPwrgfkPYoXqUyiRGPmrFREANqV5YH2FHfBdAWOGr5bdJ7F/X4h
-	/Na0knaeY1t+OnY/imO0iXjFQlFWrCo6PuiOAAlup4/lbhFir5mYI/7ECIX1miY0fMP3
-	IklIYDngOrDdgHkyMt5xqagCd0r8rPQdUPYA5+uZ/kdGXDrVWoGx6arsIAokuxFGQ944
-	Fjoa9VIXyyC+lm9OW4HUhH7W3bej/s/WxaxxD2qwkUJH++qBnRek+/lCd20t10FLbbQA
-	9Frw==
-X-Gm-Message-State: ALoCoQmBmvYCFkPHUxg/oUulU97cfAME8/3oFXpi7J4/BA3a3F8VhYFfqJme3gE4wkLbLY5OgGrK
-X-Received: by 10.42.40.83 with SMTP id k19mr661352ice.3.1389738287306;
-	Tue, 14 Jan 2014 14:24:47 -0800 (PST)
-Received: from [192.168.141.83] (69-165-220-158.dsl.teksavvy.com.
-	[69.165.220.158])
-	by mx.google.com with ESMTPSA id d18sm26118572igz.0.2014.01.14.14.24.45
-	for <multiple recipients>
-	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
-	Tue, 14 Jan 2014 14:24:46 -0800 (PST)
-Message-ID: <52D5B92C.5040001@linaro.org>
-Date: Tue, 14 Jan 2014 17:24:44 -0500
-From: Trevor Woerner <trevor.woerner@linaro.org>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:24.0) Gecko/20100101 Thunderbird/24.2.0
+Return-Path: <rohit2.jindal@aricent.com>
+Received: from jaguar.aricent.com (jaguar.aricent.com [121.241.96.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 95913E00840
+	for <yocto@yoctoproject.org>; Wed, 15 Jan 2014 00:08:33 -0800 (PST)
+Received: from jaguar.aricent.com (localhost [127.0.0.1])
+	by postfix.imss71 (Postfix) with ESMTP id F153836B7A;
+	Wed, 15 Jan 2014 13:38:09 +0530 (IST)
+Received: from GUREXHT02.ASIAN.AD.ARICENT.COM (gurexht02.asian.ad.aricent.com
+	[10.203.171.138]) (using TLSv1 with cipher RC4-MD5 (128/128 bits))
+	(No client certificate requested)
+	by jaguar.aricent.com (Postfix) with ESMTP id DA1D436B3D;
+	Wed, 15 Jan 2014 13:38:08 +0530 (IST)
+Received: from GUREXMB01.asian.ad.aricent.com ([10.203.171.134]) by
+	GUREXHT02.ASIAN.AD.ARICENT.COM ([10.203.171.138]) with mapi;
+	Wed, 15 Jan 2014 13:38:09 +0530
+From: Rohit2 Jindal <rohit2.jindal@aricent.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>, Paul Eggleton
+	<paul.eggleton@linux.intel.com>, Marko Lindqvist <cazfi74@gmail.com>
+Date: Wed, 15 Jan 2014 13:38:07 +0530
+Thread-Topic: Issue in combining configure options in different tunes
+Thread-Index: Ac8Q9ce2aS6tlS+qTcWoWwD/HHopRQA0xmVg
+Message-ID: <17797116383D4341B029FDF34C22BF6A72FEFCDCC1@GUREXMB01.ASIAN.AD.ARICENT.COM>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+acceptlanguage: en-US
 MIME-Version: 1.0
-To: openembedded-core <openembedded-core@lists.openembedded.org>, 
-	openembedded-devel@lists.openembedded.org, yocto@yoctoproject.org
-Subject: ** bug squashing weekend - Jan 17 to 20, 2014
+X-TM-AS-MML: No
+Subject: Re: Issue in combining configure options in different tunes
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,55 +38,234 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 14 Jan 2014 22:25:01 -0000
-Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 15 Jan 2014 08:08:34 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_17797116383D4341B029FDF34C22BF6A72FEFCDCC1GUREXMB01ASIA_"
 
-Hello all OE/Yocto enthusiasts!
+--_000_17797116383D4341B029FDF34C22BF6A72FEFCDCC1GUREXMB01ASIA_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-https://bugzilla.yoctoproject.org/
+Humble reminder!!!!
 
-It has been noted that the number of unresolved issues in our bugzilla
-has been rising which, if left unchecked, will lead to an
-ever-increasing bug count. In an effort to raise awareness of the number
-of unresolved bugs and work to reduce them, we'd like to plan a "bug
-squashing weekend" for this upcoming Friday to Monday (January 17th to
-20th, 2014).
+Please help me out....
 
-If you work with OE/Yocto during the week then you'll have two days to
-look at issues, or if you have more time on weekends you'll also have
-two potential days for this activity.
+From: Rohit2 Jindal
+Sent: Tuesday, January 14, 2014 12:27 PM
+To: yocto@yoctoproject.org; 'Paul Eggleton'; 'Marko Lindqvist'
+Subject: Issue in combining configure options in different tunes
 
-It would be nice if anyone involved in OE/Yocto could take some time
-between now and Monday to have a look at the bugzilla database and
-consider contributing towards reducing the number of opened issues.
-Obviously if you're a maintainer or some sort of a developer there are,
-most likely, obvious issues you could consider addressing. But there are
-also lots of issues an OE/Yocto "user" could investigate as well -- for
-example there are documentation issues, there are several issues in the
-"NEEDINFO" state, and sometimes just being able to reproduce a bug (or
-not) and confirm (or not) that an issue can be demonstrated on more than
-one host can be valuable information for the person who does eventually
-get assigned to solve the problem.
+Hi,
 
-Please take the opportunity to have a look at the opened issues in the
-bugzilla database. If you don't have an account, please consider signing
-up. Play with the "Search" capability (you'll probably want to try an
-advanced search,
-https://bugzilla.yoctoproject.org/query.cgi?format=advanced) and see if
-there are issues to which you might want to contribute.
+Actually I am able to build both elf(for xloader uboot) and linux toolchain=
+(linux and userspace components) using tune mips32 and tune mips64-n32 with=
+ the required libgcc libraries and other required headers.
 
-In an effort to keep multiple people from working on the same issues
-during this sprint, please let the community know on which bugs you'd
-like to work. You could reply to this email (keeping all the mailing
-lists CC'ed), and/or you could re-assign a bug to yourself.
+Glibc libraries were also build using tune-mips64-n32 with different combin=
+ations of abi arch and endianness.
 
-There are usually plenty of friendly, knowledgeable people around who
-can help. You can use the mailing lists, IRC channels, or bugzilla
-itself to communicate.
-https://www.yoctoproject.org/tools-resources/community
+Now my issue is to combine both the toolchain in single meta-xtoolchain lay=
+er so that both can be build in one yocto workspace using single meta-xtool=
+chain layer by just changing a variable in local.conf and all is done.
 
-Thanks for your participation! :-)
+Example say Toolchain_var =3D"elf"
+               DEFAULTTUNE=3D"mips32"
+Build using the same gcc recipes the elf toolchain
 
-https://bugzilla.yoctoproject.org/
+Toolchain_var=3D"linux"
+DEFAULTTUNE=3D"mips64-n32"
+Build using the same gcc recipes the linux toolchain
 
+
+EXTRA_OECONF_append_mips32=3D "${@bb.utils.contains(<mailto:$%7b@bb.utils.c=
+ontains(>"Toolchain_var ", "elf", "put elf related extra_oeconf", "put linu=
+x related extra_oeconf", d)}"
+
+Is this type of thing possible to put EXTRA_OECONF configure options on the=
+ basis of toolchian variable ?????? and this EXTRA_OECONF_append_mips32 or =
+EXTRA_OECONF_append_mips64-n32 works???
+
+Or tell me the way that I can add specific Configure options for gcc on the=
+ basis of tune passed?????????????
+
+Please help me out on the issue.
+
+Thanks in advance!!!!
+
+Regards,
+Rohit Jindal
+
+
+
+
+
+
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D
+Please refer to http://www.aricent.com/legal/email_disclaimer.html
+for important disclosures regarding this electronic communication.
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D
+
+--_000_17797116383D4341B029FDF34C22BF6A72FEFCDCC1GUREXMB01ASIA_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 12 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:Tahoma;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;}
+span.EmailStyle17
+	{mso-style-type:personal;
+	font-family:"Calibri","sans-serif";
+	color:windowtext;}
+span.EmailStyle18
+	{mso-style-type:personal-reply;
+	font-family:"Calibri","sans-serif";
+	color:#1F497D;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">Humble reminder!!!!<o:=
+p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
+n></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D">Please help me out&#82=
+30;.<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
+n></p>
+<div>
+<div style=3D"border:none;border-top:solid #B5C4DF 1.0pt;padding:3.0pt 0in =
+0in 0in">
+<p class=3D"MsoNormal"><b><span style=3D"font-size:10.0pt;font-family:&quot=
+;Tahoma&quot;,&quot;sans-serif&quot;">From:</span></b><span style=3D"font-s=
+ize:10.0pt;font-family:&quot;Tahoma&quot;,&quot;sans-serif&quot;"> Rohit2 J=
+indal
+<br>
+<b>Sent:</b> Tuesday, January 14, 2014 12:27 PM<br>
+<b>To:</b> yocto@yoctoproject.org; 'Paul Eggleton'; 'Marko Lindqvist'<br>
+<b>Subject:</b> Issue in combining configure options in different tunes<o:p=
+></o:p></span></p>
+</div>
+</div>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Hi,<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Actually I am able to build both elf(for xloader ubo=
+ot) and linux toolchain(linux and userspace components) using tune mips32 a=
+nd tune mips64-n32 with the required libgcc libraries and other required he=
+aders.<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Glibc libraries were also build using tune-mips64-n3=
+2 with different combinations of abi arch and endianness.<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Now my issue is to combine both the toolchain in sin=
+gle meta-xtoolchain layer so that both can be build in one yocto workspace =
+using single meta-xtoolchain layer by just changing a variable in local.con=
+f and all is done.
+<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Example say Toolchain_var =3D&#8221;elf&#8221;<o:p><=
+/o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; DEFAULTTUNE=3D&#8221;mips32&#8221;<o:p></o=
+:p></p>
+<p class=3D"MsoNormal">Build using the same gcc recipes the elf toolchain <=
+o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Toolchain_var=3D&#8221;linux&#8221;<o:p></o:p></p>
+<p class=3D"MsoNormal">DEFAULTTUNE=3D&#8221;mips64-n32&#8221;<o:p></o:p></p=
+>
+<p class=3D"MsoNormal">Build using the same gcc recipes the linux toolchain=
+<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">EXTRA_OECONF_append_mips32=3D &#8220;<a href=3D"mail=
+to:$%7b@bb.utils.contains(">${@bb.utils.contains(</a>&quot;Toolchain_var &q=
+uot;, &#8220;elf&quot;, &quot;put elf related extra_oeconf&quot;, &quot;put=
+ linux related extra_oeconf&quot;, d)}&quot;<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Is this type of thing possible to put EXTRA_OECONF c=
+onfigure options on the basis of toolchian variable ?????? and this EXTRA_O=
+ECONF_append_mips32 or EXTRA_OECONF_append_mips64-n32 works???<o:p></o:p></=
+p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Or tell me the way that I can add specific Configure=
+ options for gcc on the basis of tune passed?????????????<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Please help me out on the issue.<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Thanks in advance!!!!<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Regards,<o:p></o:p></p>
+<p class=3D"MsoNormal">Rohit Jindal<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+<br>
+<font face=3D"Arial" color=3D"Gray" size=3D"2"><br>
+<br>
+<br>
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D<br>
+Please refer to http://www.aricent.com/legal/email_disclaimer.html<br>
+for important disclosures regarding this electronic communication.<br>
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D<br>
+</font>
+</body>
+</html>
+
+--_000_17797116383D4341B029FDF34C22BF6A72FEFCDCC1GUREXMB01ASIA_--
