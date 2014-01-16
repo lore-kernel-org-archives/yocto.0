@@ -1,32 +1,28 @@
-Return-Path: <rohit2.jindal@aricent.com>
-Received: from jaguar.aricent.com (jaguar.aricent.com [180.151.2.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 43AB4E0086F
-	for <yocto@yoctoproject.org>; Wed, 15 Jan 2014 21:54:15 -0800 (PST)
-Received: from jaguar.aricent.com (localhost [127.0.0.1])
-	by postfix.imss71 (Postfix) with ESMTP id 3467F36FB7;
-	Thu, 16 Jan 2014 11:21:22 +0530 (IST)
-Received: from GUREXHT01.ASIAN.AD.ARICENT.COM (gurexht01.asian.ad.aricent.com
-	[10.203.171.136]) (using TLSv1 with cipher RC4-MD5 (128/128 bits))
-	(No client certificate requested)
-	by jaguar.aricent.com (Postfix) with ESMTP id 8901236FE7;
-	Thu, 16 Jan 2014 11:10:28 +0530 (IST)
-Received: from GUREXMB01.asian.ad.aricent.com ([10.203.171.134]) by
-	GUREXHT01.ASIAN.AD.ARICENT.COM ([10.203.171.136]) with mapi;
-	Thu, 16 Jan 2014 11:10:28 +0530
-From: Rohit2 Jindal <rohit2.jindal@aricent.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>, Paul Eggleton
-	<paul.eggleton@linux.intel.com>, Marko Lindqvist <cazfi74@gmail.com>
-Date: Thu, 16 Jan 2014 11:10:27 +0530
-Thread-Topic: Issue in combining configure options in different tunes
-Thread-Index: Ac8Q9ce2aS6tlS+qTcWoWwD/HHopRQA0xmVgAC0ionA=
-Message-ID: <17797116383D4341B029FDF34C22BF6A72FEFCDE01@GUREXMB01.ASIAN.AD.ARICENT.COM>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-acceptlanguage: en-US
+Return-Path: <paul.eggleton@linux.intel.com>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AA406E00874
+	for <yocto@yoctoproject.org>; Thu, 16 Jan 2014 04:23:38 -0800 (PST)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga101.jf.intel.com with ESMTP; 16 Jan 2014 04:23:37 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.95,667,1384329600"; d="scan'208";a="467627383"
+Received: from paulonei-mobl.ger.corp.intel.com (HELO
+	peggleto-mobl5.ger.corp.intel.com) ([10.252.122.210])
+	by orsmga002.jf.intel.com with ESMTP; 16 Jan 2014 04:23:34 -0800
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: "Robert P. J. Day" <rpjday@crashcourse.ca>,
+	Scott Rifenbark <srifenbark@gmail.com>
+Date: Thu, 16 Jan 2014 12:23:33 +0000
+Message-ID: <5001422.95kKeIWq9M@peggleto-mobl5.ger.corp.intel.com>
+Organization: Intel Corporation
+User-Agent: KMail/4.11.5 (Linux/3.12.7-300.fc20.x86_64; KDE/4.11.5; x86_64; ; )
+In-Reply-To: <alpine.DEB.2.02.1311151441370.3210@oneiric>
+References: <alpine.DEB.2.02.1311140901570.24348@oneiric>
+	<alpine.DEB.2.02.1311150505090.30443@oneiric>
+	<alpine.DEB.2.02.1311151441370.3210@oneiric>
 MIME-Version: 1.0
-X-TM-AS-MML: No
-Subject: Issue in combining configure options in different tunes
+Cc: yocto@yoctoproject.org
+Subject: Re: is the ref manual DISTRO_FEATURES list meant to be exhaustive?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,218 +34,32 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 16 Jan 2014 05:54:22 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_17797116383D4341B029FDF34C22BF6A72FEFCDE01GUREXMB01ASIA_"
-
---_000_17797116383D4341B029FDF34C22BF6A72FEFCDE01GUREXMB01ASIA_
+X-List-Received-Date: Thu, 16 Jan 2014 12:23:42 -0000
+Content-Transfer-Encoding: 7Bit
 Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
 
-Hi,
+Hi Robert,
 
-Actually I am able to build both elf(for xloader uboot) and linux toolchain=
-(linux and userspace components) using tune mips32 and tune mips64-n32 with=
- the required libgcc libraries and other required headers.
+On Friday 15 November 2013 14:43:30 Robert P. J. Day wrote:
+>   a list of apparent necessary updates to section 10 of the ref
+> manual, lists of valid items for DISTRO_FEATURES and MACHINE_FEATURES:
+> 
+> http://www.crashcourse.ca/wiki/index.php/OE#_FEATURES_updates_for_Section_10
+> _of_reference_manual
 
-Glibc libraries were also build using tune-mips64-n32 with different combin=
-ations of abi arch and endianness.
+You're right that there are some missing from the list; I agree that we should 
+document all of the ones we support in OE-Core. However, I don't think we want 
+to include the libc-* ones (at least, not listing all of them; providing a 
+pointer to how you can get the list for eglibc might be useful though, 
+possibly with reference to how these features normally get into 
+DISTRO_FEATURES i.e. via DISTRO_FEATURES_LIBC_DEFAULT -> DISTRO_FEATURES_LIBC 
+).
 
-Now my issue is to combine both the toolchain in single meta-xtoolchain lay=
-er so that both can be build in one yocto workspace using single meta-xtool=
-chain layer by just changing a variable in local.conf and all is done.
+Cheers,
+Paul
 
-Example say Toolchain_var =3D"elf"
-               DEFAULTTUNE=3D"mips32"
-Build using the same gcc recipes the elf toolchain
+-- 
 
-Toolchain_var=3D"linux"
-DEFAULTTUNE=3D"mips64-n32"
-Build using the same gcc recipes the linux toolchain
+Paul Eggleton
+Intel Open Source Technology Centre
 
-
-EXTRA_OECONF_append_mips32=3D "${@bb.utils.contains(<mailto:$%7b@bb.utils.c=
-ontains(>"Toolchain_var ", "elf", "put elf related extra_oeconf", "put linu=
-x related extra_oeconf", d)}"
-
-Is this type of thing possible to put EXTRA_OECONF configure options on the=
- basis of toolchian variable ?????? and this EXTRA_OECONF_append_mips32 or =
-EXTRA_OECONF_append_mips64-n32 works???
-
-Or tell me the way that I can add specific Configure options for gcc on the=
- basis of tune passed?????????????
-
-Please help me out on the issue.
-
-Thanks in advance!!!!
-
-Regards,
-Rohit Jindal
-
-
-
-
-
-
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D
-Please refer to http://www.aricent.com/legal/email_disclaimer.html
-for important disclosures regarding this electronic communication.
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D
-
---_000_17797116383D4341B029FDF34C22BF6A72FEFCDE01GUREXMB01ASIA_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<meta name=3D"Generator" content=3D"Microsoft Word 12 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-@font-face
-	{font-family:Tahoma;
-	panose-1:2 11 6 4 3 5 4 4 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri","sans-serif";}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:purple;
-	text-decoration:underline;}
-p.MsoAcetate, li.MsoAcetate, div.MsoAcetate
-	{mso-style-priority:99;
-	mso-style-link:"Balloon Text Char";
-	margin:0in;
-	margin-bottom:.0001pt;
-	font-size:8.0pt;
-	font-family:"Tahoma","sans-serif";}
-span.EmailStyle17
-	{mso-style-type:personal;
-	font-family:"Calibri","sans-serif";
-	color:windowtext;}
-span.EmailStyle18
-	{mso-style-type:personal;
-	font-family:"Calibri","sans-serif";
-	color:#1F497D;}
-span.EmailStyle19
-	{mso-style-type:personal-reply;
-	font-family:"Calibri","sans-serif";
-	color:#1F497D;}
-span.BalloonTextChar
-	{mso-style-name:"Balloon Text Char";
-	mso-style-priority:99;
-	mso-style-link:"Balloon Text";
-	font-family:"Tahoma","sans-serif";}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-size:10.0pt;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal">Hi,<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Actually I am able to build both elf(for xloader ubo=
-ot) and linux toolchain(linux and userspace components) using tune mips32 a=
-nd tune mips64-n32 with the required libgcc libraries and other required he=
-aders.<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Glibc libraries were also build using tune-mips64-n3=
-2 with different combinations of abi arch and endianness.<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Now my issue is to combine both the toolchain in sin=
-gle meta-xtoolchain layer so that both can be build in one yocto workspace =
-using single meta-xtoolchain layer by just changing a variable in local.con=
-f and all is done.
-<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Example say Toolchain_var =3D&#8221;elf&#8221;<o:p><=
-/o:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; DEFAULTTUNE=3D&#8221;mips32&#8221;<o:p></o=
-:p></p>
-<p class=3D"MsoNormal">Build using the same gcc recipes the elf toolchain <=
-o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Toolchain_var=3D&#8221;linux&#8221;<o:p></o:p></p>
-<p class=3D"MsoNormal">DEFAULTTUNE=3D&#8221;mips64-n32&#8221;<o:p></o:p></p=
->
-<p class=3D"MsoNormal">Build using the same gcc recipes the linux toolchain=
-<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">EXTRA_OECONF_append_mips32=3D &#8220;<a href=3D"mail=
-to:$%7b@bb.utils.contains(">${@bb.utils.contains(</a>&quot;Toolchain_var &q=
-uot;, &#8220;elf&quot;, &quot;put elf related extra_oeconf&quot;, &quot;put=
- linux related extra_oeconf&quot;, d)}&quot;<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Is this type of thing possible to put EXTRA_OECONF c=
-onfigure options on the basis of toolchian variable ?????? and this EXTRA_O=
-ECONF_append_mips32 or EXTRA_OECONF_append_mips64-n32 works???<o:p></o:p></=
-p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Or tell me the way that I can add specific Configure=
- options for gcc on the basis of tune passed?????????????<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Please help me out on the issue.<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Thanks in advance!!!!<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Regards,<o:p></o:p></p>
-<p class=3D"MsoNormal">Rohit Jindal<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-</div>
-<br>
-<font face=3D"Arial" color=3D"Gray" size=3D"2"><br>
-<br>
-<br>
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D<br>
-Please refer to http://www.aricent.com/legal/email_disclaimer.html<br>
-for important disclosures regarding this electronic communication.<br>
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D<br>
-</font>
-</body>
-</html>
-
---_000_17797116383D4341B029FDF34C22BF6A72FEFCDE01GUREXMB01ASIA_--
