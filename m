@@ -1,28 +1,25 @@
-Return-Path: <k4230r6@gmail.com>
-Received: from mail-ie0-f178.google.com (mail-ie0-f178.google.com
-	[209.85.223.178])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 21B08E007E2
-	for <yocto@yoctoproject.org>; Wed, 15 Jan 2014 12:01:00 -0800 (PST)
-Received: by mail-ie0-f178.google.com with SMTP id x13so2629234ief.23
-	for <yocto@yoctoproject.org>; Wed, 15 Jan 2014 12:01:00 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=T5rGO8bIEQkVw7t6IuDAAQEaQzNbY8VKYphIMwinstI=;
-	b=LURRfI0wjavFF5tg3A4gIvRT8gC6r+PL4aN8aeWkhaowp2et/WjXA340/fczyDaMCa
-	qmXRhKZKjd9zj4c5AUKQ2hKLfRc6HyOi2++erO82rKLmQD6LvQnRt6ElucAsXMHCirad
-	FfqRkVTvEXVmjF61nAgp6NT8F8qm9a+1LERZHtHW6sdZWwrQ3j1tMdJDvutEEySVksM2
-	qTbDL6zix/pRcIcD6OTNvJobhU6kHXBrLJncFQauCsQsHASdAsKBFyEGj79i7wFqLYGb
-	AqJdg4erB4hmD3VyD6XQI3jfcDb1aPTuHGaTZA5UUVYitN6hrE3WYqD8oiNs7nH/qecn
-	2Imw==
+Return-Path: <Wenzong.Fan@windriver.com>
+Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3E93AE0086F
+	for <yocto@yoctoproject.org>; Wed, 15 Jan 2014 21:35:31 -0800 (PST)
+Received: from ALA-HCB.corp.ad.wrs.com (ala-hcb.corp.ad.wrs.com
+	[147.11.189.41])
+	by mail1.windriver.com (8.14.5/8.14.5) with ESMTP id s0G5ZUDI020789
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL)
+	for <yocto@yoctoproject.org>; Wed, 15 Jan 2014 21:35:30 -0800 (PST)
+Received: from pek-hostel-vm12.wrs.com (128.224.153.182) by
+	ALA-HCB.corp.ad.wrs.com (147.11.189.41) with Microsoft SMTP Server id
+	14.2.347.0; Wed, 15 Jan 2014 21:35:30 -0800
+From: <wenzong.fan@windriver.com>
+To: <Xin.Ouyang@windriver.com>, <mark.hatle@windriver.com>,
+	<yocto@yoctoproject.org>
+Date: Thu, 16 Jan 2014 00:35:26 -0500
+Message-ID: <c2d3efaeebff3ece35a86e44722accd24becc6b5.1389850086.git.wenzong.fan@windriver.com>
+X-Mailer: git-send-email 1.7.9.5
+In-Reply-To: <cover.1389850086.git.wenzong.fan@windriver.com>
+References: <cover.1389850086.git.wenzong.fan@windriver.com>
 MIME-Version: 1.0
-X-Received: by 10.43.0.202 with SMTP id nn10mr4329629icb.54.1389816060163;
-	Wed, 15 Jan 2014 12:01:00 -0800 (PST)
-Received: by 10.64.143.164 with HTTP; Wed, 15 Jan 2014 12:01:00 -0800 (PST)
-Date: Wed, 15 Jan 2014 21:01:00 +0100
-Message-ID: <CAALGJZbw4x+oDKLcjjKFwJRbvc8phORu02ejtccSzXu6e8TD6A@mail.gmail.com>
-From: Christian Ege <k4230r6@gmail.com>
-To: yocto@yoctoproject.org
-Subject: eglibc-locale issue in dora for populate_sdk
+Subject: [meta-selinux][PATCH 1/1] libselinux: migrate SRC_URI to 2.2.2
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,21 +31,50 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 15 Jan 2014 20:01:09 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Thu, 16 Jan 2014 05:35:34 -0000
+Content-Type: text/plain
 
-Hi,
+From: Wenzong Fan <wenzong.fan@windriver.com>
 
-may I ask to have an minor patch backportet to dora? The patch I am
-talking about is the following:
-http://git.yoctoproject.org/cgit/cgit.cgi/poky/commit/meta/recipes-core/eglibc/eglibc-locale.inc?id=ef942e3abdfa822271efd7c0f629829a80132fe5
-
-Without this patch It is not possible to build an SDK image for my SH4
-port based on dora.
-
-With kind regards,
-Christian Ege
-
+Signed-off-by: Wenzong Fan <wenzong.fan@windriver.com>
 ---
-http://project-magpie.github.io/
+ .../{libselinux_2.2.bb => libselinux_2.2.2.bb}     |    4 ++--
+ recipes-security/selinux/selinux_20131030.inc      |    2 +-
+ 2 files changed, 3 insertions(+), 3 deletions(-)
+ rename recipes-security/selinux/{libselinux_2.2.bb => libselinux_2.2.2.bb} (74%)
+
+diff --git a/recipes-security/selinux/libselinux_2.2.bb b/recipes-security/selinux/libselinux_2.2.2.bb
+similarity index 74%
+rename from recipes-security/selinux/libselinux_2.2.bb
+rename to recipes-security/selinux/libselinux_2.2.2.bb
+index 23bb9cb..d0a4e2e 100644
+--- a/recipes-security/selinux/libselinux_2.2.bb
++++ b/recipes-security/selinux/libselinux_2.2.2.bb
+@@ -5,8 +5,8 @@ include ${BPN}.inc
+ 
+ LIC_FILES_CHKSUM = "file://LICENSE;md5=84b4d2c6ef954a2d4081e775a270d0d0"
+ 
+-SRC_URI[md5sum] = "d82beab880749a017f2737e6687fec30"
+-SRC_URI[sha256sum] = "e9dc64216543a7283d786f623ac28e8867f8794138e7deba474a3aa8d02dce33"
++SRC_URI[md5sum] = "55026eb4654c4f732a27c191b39bebaf"
++SRC_URI[sha256sum] = "30ab363416806da907b86b97f1d31c252473e3200358bb1570f563c8312b5a3e"
+ 
+ SRC_URI += "\
+         file://libselinux-drop-Wno-unused-but-set-variable.patch \
+diff --git a/recipes-security/selinux/selinux_20131030.inc b/recipes-security/selinux/selinux_20131030.inc
+index 807a37c..8d09f28 100644
+--- a/recipes-security/selinux/selinux_20131030.inc
++++ b/recipes-security/selinux/selinux_20131030.inc
+@@ -3,7 +3,7 @@ SELINUX_RELEASE = "20131030"
+ SRC_URI = "http://userspace.selinuxproject.org/releases/${SELINUX_RELEASE}/${BPN}-${PV}.tar.gz"
+ 
+ PREFERRED_VERSION_checkpolicy = "2.2"
+-PREFERRED_VERSION_libselinux = "2.2"
++PREFERRED_VERSION_libselinux = "2.2.2"
+ PREFERRED_VERSION_libsemanage = "2.2"
+ PREFERRED_VERSION_libsepol = "2.2"
+ PREFERRED_VERSION_policycoreutils = "2.2.5"
+-- 
+1.7.9.5
+
 
