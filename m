@@ -1,26 +1,28 @@
-Return-Path: <dv@pseudoterminal.org>
-Received: from ptmx.org (ptmx.org [178.63.28.110])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6649BE0086B
-	for <yocto@yoctoproject.org>; Thu, 16 Jan 2014 23:26:43 -0800 (PST)
-Received: from [192.168.178.14] (chello080108009040.14.11.vie.surfer.at
-	[80.108.9.40]) by ptmx.org (Postfix) with ESMTPSA id 23DCC2267F;
-	Fri, 17 Jan 2014 08:26:40 +0100 (CET)
-Message-ID: <52D8DBA7.4070700@pseudoterminal.org>
-Date: Fri, 17 Jan 2014 08:28:39 +0100
-From: Carlos Rafael Giani <dv@pseudoterminal.org>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:24.0) Gecko/20100101 Thunderbird/24.2.0
+Return-Path: <ashish.dalela@gmail.com>
+Received: from mail-la0-f48.google.com (mail-la0-f48.google.com
+	[209.85.215.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D6487E0081B
+	for <yocto@yoctoproject.org>; Fri, 17 Jan 2014 11:46:44 -0800 (PST)
+Received: by mail-la0-f48.google.com with SMTP id er20so3911790lab.21
+	for <yocto@yoctoproject.org>; Fri, 17 Jan 2014 11:46:42 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=+6sInBqidwMj+Ep7GPtTNnLaiN2qi5l8BxmA6doPo7A=;
+	b=RQCREdF5a5Eq8q6fDP6UqK0jBh9jp5JU7nDUjxahmhxYJA9iLv8ljWql3ADtP1H+jt
+	/BSyA2JJ6e+qteOrUe/uEzV+7+UrhwH5iydsa9/cXK+IOOk5hL8BAduOg/6P5mZ1stdZ
+	1kaPKHkLDf/rMEuVS2u8/64arDlU2dWhmDq1wYmKZNhFdZd1g+PawAuEqFxZ6KpGP804
+	jQgopxO+JfrvtNQK7dD2AavGDi1UAjzf7Yy8wYaXT/jBiArtExB4sB8kgW+wCHdzRkL9
+	RJVVbVkBJLLBhgcmKsRrIjEA/UuDpy9GsOuXCBHf3hwkwMHP2eyBfdoCnq4GUCzpHwzn
+	uy9g==
 MIME-Version: 1.0
-To: Paul Eggleton <paul.eggleton@linux.intel.com>, 
-	Khaja Hussain Shaik <khajahussain-s@hcl.com>,
-	Dipesh Karmakar <Dipesh.Karmakar@hcl.com>
-References: <31DD9473F5EB4E468EDC3B5642AD64BD08AECFFC@chn-hclt-mbs06.HCLT.CORP.HCL.IN>
-	<CAP71Wjwgmoyj-L9MVyNe4Fk=g5OGmOa7KrAKCuWP+C-=iEZX6g@mail.gmail.com>
-	<1938188.T29nr9UITP@peggleto-mobl5.ger.corp.intel.com>
-In-Reply-To: <1938188.T29nr9UITP@peggleto-mobl5.ger.corp.intel.com>
-X-Mailman-Approved-At: Fri, 17 Jan 2014 08:06:04 -0800
-Cc: yocto@yoctoproject.org
-Subject: Re: Rgardring GSTreamer1.0 integration on Yocto dylan
+X-Received: by 10.112.198.36 with SMTP id iz4mr1925270lbc.14.1389988002300;
+	Fri, 17 Jan 2014 11:46:42 -0800 (PST)
+Received: by 10.112.96.198 with HTTP; Fri, 17 Jan 2014 11:46:42 -0800 (PST)
+Date: Sat, 18 Jan 2014 01:16:42 +0530
+Message-ID: <CABhkJRcAAvORSQ0d_bhEi5eX9yJfOLQ32gHiQHN4074ptDJXrQ@mail.gmail.com>
+From: Ashish Dalela <ashish.dalela@gmail.com>
+To: Yocto list discussion <yocto@yoctoproject.org>
+Subject: meta-oracle-java fails
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,42 +34,55 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 17 Jan 2014 07:26:46 -0000
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Fri, 17 Jan 2014 19:46:47 -0000
+Content-Type: multipart/alternative; boundary=001a11c233ee1e872104f02fcd5a
 
-On 2014-01-15 13:19, Paul Eggleton wrote:
-> On Wednesday 15 January 2014 12:05:03 Nicolas Dechesne wrote:
->> On Wed, Jan 15, 2014 at 11:49 AM, Khaja Hussain Shaik <
->> khajahussain-s@hcl.com> wrote:
->>> Greetings from Khaja.
->>>
->>> We are trying to make a Dylan build with GStreamer 1.0 support, however we
->>> are facing lots of dependencies. We like to know whether it’s possible to
->>> incorporate GStreamer 1.0 in Dylan? If yes then could it be possible to
->>> direct us to some documents/procedure.
->> such large 'features' are not generally backported to old/stable releases.
->> only bug fixes.
->>
->> gst1.0 was introduced in 'dora' where you can find gst 1.0.x branch, and
->> you have gst 1.2.x support in current master. so you either need to
->> backport these changes into dylan, or switch to a newer release.
-> BTW, it's worth pointing out that these recipes can be added in an additional
-> layer, so you don't need to patch the core - in fact there is a
-> meta-gstreamer10 layer that says it's compatible with dylan already:
->
-> http://layers.openembedded.org/layerindex/branch/master/layer/meta-gstreamer10/
->
-> I'm not sure how well maintained it is, you'd need to talk to the maintainer
-> (who I've added to CC).
->
-> Cheers,
-> Paul
->
+--001a11c233ee1e872104f02fcd5a
+Content-Type: text/plain; charset=ISO-8859-1
 
-I am the maintainer. Support for GStreamer 1.2 in meta-gstreamer1.0 
-dylan has not been on my immediate TODO list so far, since there has 
-been no demand for it. I can backport it in a few days.
+Hi,
 
-cheers
+I'm trying to build JDK and JRE using the meta-oracle-java recipes. The
+recipes build fine, but during do_rootfs (core-image-basic) I see the
+following errors:
 
+FOR JRE:
+| Computing transaction...error: Can't install
+oracle-jse-jre-i586-1.7.0-u25r0@i586: no package provides libavcodec.so.52
+
+FOR JDK:
+| Computing transaction...error: Can't install
+oracle-jse-jdk-i586-1.7.0-u51r0@i586: no package provides
+libavcodec.so.52(LIBAVCODEC_52)
+
+meta/recipes-multimedia/libav/libav_0.7.4.bb builds libavcodec.so.53.
+
+Does anyone know how to fix this issue?
+
+I already tried manually copying libavcodec.so.53 to libavcodec.so.52 but
+it does not help.
+
+Thanks
+-Ashish
+
+--001a11c233ee1e872104f02fcd5a
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div><br></div>Hi,<div><br></div><div>I&#39;m trying to bu=
+ild JDK and JRE using the meta-oracle-java recipes. The recipes build fine,=
+ but during do_rootfs (core-image-basic) I see the following errors:</div>
+<div><br><div>FOR JRE:</div><div><div>| Computing transaction...error: Can&=
+#39;t install oracle-jse-jre-i586-1.7.0-u25r0@i586: no package provides lib=
+avcodec.so.52</div></div><div><br></div><div>FOR JDK:</div><div><div>| Comp=
+uting transaction...error: Can&#39;t install oracle-jse-jdk-i586-1.7.0-u51r=
+0@i586: no package provides libavcodec.so.52(LIBAVCODEC_52)</div>
+</div><div><br></div></div><div>meta/recipes-multimedia/libav/<a href=3D"ht=
+tp://libav_0.7.4.bb">libav_0.7.4.bb</a> builds libavcodec.so.53.=A0</div><d=
+iv><br></div><div>Does anyone know how to fix this issue?</div><div><br></d=
+iv>
+<div>I already tried manually copying libavcodec.so.53 to libavcodec.so.52 =
+but it does not help.</div><div><br></div><div>Thanks</div><div>-Ashish</di=
+v></div>
+
+--001a11c233ee1e872104f02fcd5a--
