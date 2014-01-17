@@ -1,37 +1,37 @@
 Return-Path: <andrei@gherzan.ro>
-Received: from mail-qe0-f51.google.com (mail-qe0-f51.google.com
-	[209.85.128.51])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C349EE00820
-	for <yocto@yoctoproject.org>; Fri, 17 Jan 2014 06:51:27 -0800 (PST)
-Received: by mail-qe0-f51.google.com with SMTP id d4so3227024qej.24
-	for <yocto@yoctoproject.org>; Fri, 17 Jan 2014 06:51:27 -0800 (PST)
+Received: from mail-qc0-f174.google.com (mail-qc0-f174.google.com
+	[209.85.216.174])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 62AFFE00820
+	for <yocto@yoctoproject.org>; Fri, 17 Jan 2014 06:51:30 -0800 (PST)
+Received: by mail-qc0-f174.google.com with SMTP id x13so3574246qcv.19
+	for <yocto@yoctoproject.org>; Fri, 17 Jan 2014 06:51:29 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
 	h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
 	:references;
-	bh=Gm1WzJrsfm6NDcWFgMEKA0HUIOUTKXYuOOjSIh+6pW0=;
-	b=VtObKDuTp+DrEMd7XOOUlFFThPWWSda2WdKizJpcXtDvzzSx2zyVzjdWhUK/lsxwnP
-	3ll8GOlpK/X4oDrf7VCF14tpwrv6iU6vvTqNoZsiOupWn1G8PlEz5jx54guh/ezuh7kj
-	DjKNSlFi0VUcg72VBSbfJaz9BbSb2H32zPGKC+0xlspHgd/I3w1pL1XCAD53v24jnAb3
-	tojgmWmZAID3fcXHfhmdoUMZOZlgkE2Xcz68y2bu/C71HYPCZmC5xZqNrH/3LM4R06h+
-	SSulBDXSvS5R/klWlqZ4YCoaRa3hIDDTyAwILmtEn+QXUccoxjDlYzhidxW349Vmg9s5
-	ie3g==
-X-Gm-Message-State: ALoCoQmDlGZSDMN5xb1R4IvkuJ+janBnV2dQ0qDr8P7VNqLiUOyCb2mUA2DFs3Azpl7yCSj1iQEz
-X-Received: by 10.224.70.84 with SMTP id c20mr3794484qaj.48.1389970287228;
-	Fri, 17 Jan 2014 06:51:27 -0800 (PST)
+	bh=23UY3mYkn8GYnBJS4Q3Uf604dzpXfzTXPQFeZNSuloQ=;
+	b=ebbT3o18m0bfAEw6gMHP5OgEjbNX84Iui3ZjdFROSfEbdAj8iDugVZgxVBMTXdmuxV
+	L9pxBPoK2XJNZf/Q15XPD9ES7bzOhjihIQdBd/OtazMc/ZvxczH9XKIHAYr36XVm9M4T
+	v61xLzyGCLQJCVuOP0xubS+nNVxMMzEORPjND05C+G9igeLk2CtLi4GQDVnZQeNiG7hr
+	eqFm8QE+b1DdgN1lA6rWwDTE8YjP25GuJON9FPLrs6Xe2EZfXvB3abspwtPsQoqpwiqI
+	N5UB+EYFE8LL+sERGOSPQTRGQVxoa+Ptp6Yzxl/e6Xjs43wgRrUjs0jCMfHft+K1gSeU
+	0qMQ==
+X-Gm-Message-State: ALoCoQmV+vIX9c64FxTCfd2wUCE6EGvfjneojZ9mg00G6UPb+hGQzdx3Utm1/s33Cwpj6wB08IIL
+X-Received: by 10.224.166.70 with SMTP id l6mr3762232qay.25.1389970289435;
+	Fri, 17 Jan 2014 06:51:29 -0800 (PST)
 Received: from localhost.localdomain ([89.121.200.106])
-	by mx.google.com with ESMTPSA id w8sm14398658qag.15.2014.01.17.06.51.25
+	by mx.google.com with ESMTPSA id w8sm14398658qag.15.2014.01.17.06.51.27
 	for <multiple recipients>
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Fri, 17 Jan 2014 06:51:26 -0800 (PST)
+	Fri, 17 Jan 2014 06:51:28 -0800 (PST)
 From: Andrei Gherzan <andrei@gherzan.ro>
 To: yocto@yoctoproject.org
-Date: Fri, 17 Jan 2014 16:51:12 +0200
-Message-Id: <1389970274-26349-2-git-send-email-andrei@gherzan.ro>
+Date: Fri, 17 Jan 2014 16:51:13 +0200
+Message-Id: <1389970274-26349-3-git-send-email-andrei@gherzan.ro>
 X-Mailer: git-send-email 1.8.1.4
 In-Reply-To: <1389970274-26349-1-git-send-email-andrei@gherzan.ro>
 References: <1389970274-26349-1-git-send-email-andrei@gherzan.ro>
-Subject: [meta-raspberrypi][PATCH 2/4] packagegroup-rpi-test: Add test packagegroup
+Subject: [meta-raspberrypi][PATCH 3/4] rpi-test-image: Add test image
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,38 +43,25 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 17 Jan 2014 14:51:29 -0000
+X-List-Received-Date: Fri, 17 Jan 2014 14:51:30 -0000
 
-Change-Id: I74f7c0d33d5f9692a427587bf0f8ef9980ebfcd3
+Change-Id: Iff4f58b43d1dcf5ea4f866b565542807345d6066
 Signed-off-by: Andrei Gherzan <andrei@gherzan.ro>
 ---
- recipes-core/packagegroups/packagegroup-rpi-test.bb | 17 +++++++++++++++++
- 1 file changed, 17 insertions(+)
- create mode 100644 recipes-core/packagegroups/packagegroup-rpi-test.bb
+ recipes-core/images/rpi-test-image.bb | 4 ++++
+ 1 file changed, 4 insertions(+)
+ create mode 100644 recipes-core/images/rpi-test-image.bb
 
-diff --git a/recipes-core/packagegroups/packagegroup-rpi-test.bb b/recipes-core/packagegroups/packagegroup-rpi-test.bb
+diff --git a/recipes-core/images/rpi-test-image.bb b/recipes-core/images/rpi-test-image.bb
 new file mode 100644
-index 0000000..3f1866a
+index 0000000..b5602a6
 --- /dev/null
-+++ b/recipes-core/packagegroups/packagegroup-rpi-test.bb
-@@ -0,0 +1,17 @@
-+DESCRIPTION = "RaspberryPi Test Packagegroup"
-+LICENSE = "MIT"
-+LIC_FILES_CHKSUM = "file://${COREBASE}/LICENSE;md5=3f40d7994397109285ec7b81fdeb3b58"
++++ b/recipes-core/images/rpi-test-image.bb
+@@ -0,0 +1,4 @@
++# Base this image on rpi-basic-image
++include rpi-basic-image.bb
 +
-+inherit packagegroup
-+
-+RDEPENDS_${PN} = "\
-+    omxplayer \
-+    bcm2835 \
-+    wiringpi \
-+"
-+
-+RRECOMMENDS_${PN} = "\
-+    bigbuckbunny-1080p \
-+    bigbuckbunny-480p \
-+    bigbuckbunny-720p \
-+"
++IMAGE_INSTALL_append = " packagegroup-rpi-test"
 -- 
 1.8.1.4
 
