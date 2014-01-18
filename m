@@ -1,33 +1,35 @@
-Return-Path: <ashish.dalela@gmail.com>
-Received: from mail-lb0-f179.google.com (mail-lb0-f179.google.com
-	[209.85.217.179])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4779FE0081B
-	for <yocto@yoctoproject.org>; Fri, 17 Jan 2014 12:16:10 -0800 (PST)
-Received: by mail-lb0-f179.google.com with SMTP id l4so1748092lbv.10
-	for <yocto@yoctoproject.org>; Fri, 17 Jan 2014 12:16:09 -0800 (PST)
+Return-Path: <paul.betafive@gmail.com>
+Received: from mail-oa0-f50.google.com (mail-oa0-f50.google.com
+	[209.85.219.50])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 697EBE00820
+	for <yocto@yoctoproject.org>; Fri, 17 Jan 2014 16:45:57 -0800 (PST)
+Received: by mail-oa0-f50.google.com with SMTP id n16so2417501oag.9
+	for <yocto@yoctoproject.org>; Fri, 17 Jan 2014 16:45:56 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type;
-	bh=CVNryRGbQHPf6FQ+i/Jx3V7m7I5riUHGmq648UI9v1A=;
-	b=l1+UFJxU+4o/T0NevAxYO6ElCN2ULAd+2TGConCSUSa+dnEBWR9fpINc7myL8XCaqb
-	QvdYDHy815G8VBGbl5TC9c37YgmFE6iYfSFy/XhqxFBKBBPspdME4M80SKLzqXi9LdmW
-	fQkWqYYWGA7e0j3fV9PkLvs6uV7F2Ctay96je592M+H42mJ+uZQANp7rYjC/P13bVmT+
-	qpM7Lumh+U4nqb/SASAI+t+cAQHuFG0d2KNDKlKxFXhimsDN+XpRKT1E5zF8N++ZunDL
-	wcmszGQ43W8MyjUi/8FEQ45PV5yJ12GXeQQPrxQAnXNWGBkwgQTLYBM8mIbfiUT4Ld7F
-	Vnpg==
+	h=mime-version:sender:in-reply-to:references:from:date:message-id
+	:subject:to:cc:content-type;
+	bh=XvROMpojcm3Ru2XBtf+KHAAaic3EPY0CVEaXq0TTxcA=;
+	b=x+8ZecKW9UnuVPCAIWHnpkQQPVe5w4uN/JDhrYF2Kglsxj6+0vTm7nVTIg61xtphmn
+	trQ9jNxyhixulyNhqE0R4UvrSgx+a2hWDvtgcEW25NIRT490gXGBpq2n6H6dWzBL1weZ
+	KTfaGW8Ksva+lbLPm6z/0zXF64+xDIAWzccVM9YSrbVU3s07eAtzN6Rrr3CStl6Hpcyt
+	BYL/dBT4mKkcQoyCMdN5IYYT3J6+1IxAAxtIwgxMi7mTa5i/u7cYdw9u61uS3ddRnpJe
+	djvGbjkxMltKt5mMkDRGz45EWkI01eC6auo3hMzLYWo80yG76MrWTkOBHznN1mFhs0fz
+	ei2g==
+X-Received: by 10.182.157.114 with SMTP id wl18mr4207106obb.52.1390005956271; 
+	Fri, 17 Jan 2014 16:45:56 -0800 (PST)
 MIME-Version: 1.0
-X-Received: by 10.152.9.9 with SMTP id v9mr2024453laa.41.1389989768722; Fri,
-	17 Jan 2014 12:16:08 -0800 (PST)
-Received: by 10.112.96.198 with HTTP; Fri, 17 Jan 2014 12:16:08 -0800 (PST)
-In-Reply-To: <CAMKF1sqjX1R4M7+HFgHz43WmG+PwEN=8RJpYP1-tO7p4ny4OwA@mail.gmail.com>
-References: <CABhkJRcAAvORSQ0d_bhEi5eX9yJfOLQ32gHiQHN4074ptDJXrQ@mail.gmail.com>
-	<CAMKF1sqjX1R4M7+HFgHz43WmG+PwEN=8RJpYP1-tO7p4ny4OwA@mail.gmail.com>
-Date: Sat, 18 Jan 2014 01:46:08 +0530
-Message-ID: <CABhkJRf5PSkpjwzdD2Wweo02QTV2vLq9WSL33aY7+7dKRBfeog@mail.gmail.com>
-From: Ashish Dalela <ashish.dalela@gmail.com>
-To: Khem Raj <raj.khem@gmail.com>
-Cc: Yocto list discussion <yocto@yoctoproject.org>
-Subject: Re: meta-oracle-java fails
+Sender: paul.betafive@gmail.com
+Received: by 10.76.122.171 with HTTP; Fri, 17 Jan 2014 16:45:16 -0800 (PST)
+In-Reply-To: <1389971801-23724-4-git-send-email-andrei@gherzan.ro>
+References: <1389971801-23724-1-git-send-email-andrei@gherzan.ro>
+	<1389971801-23724-4-git-send-email-andrei@gherzan.ro>
+From: Paul Barker <paul@paulbarker.me.uk>
+Date: Sat, 18 Jan 2014 00:45:16 +0000
+X-Google-Sender-Auth: yMKPAHfCC1TuwKFmu0A87q_Hm9U
+Message-ID: <CANyK_8dMpZPu1E_-y+KkRvxg-42ACfwGg3HpupZe1OFpweb=Yw@mail.gmail.com>
+To: Andrei Gherzan <andrei@gherzan.ro>
+Cc: Yocto discussion list <yocto@yoctoproject.org>
+Subject: Re: [meta-raspberrypi][PATCH 4/5] userland: Update to remove HEAD
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,105 +41,42 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 17 Jan 2014 20:16:14 -0000
-Content-Type: multipart/alternative; boundary=089e0149512667fdf604f0303641
-
---089e0149512667fdf604f0303641
+X-List-Received-Date: Sat, 18 Jan 2014 00:46:04 -0000
 Content-Type: text/plain; charset=ISO-8859-1
 
-I already have the following in my jdk and jre recipes:
-
-DEPENDS = "libav gtk+ libxslt libxtst"
-
-Should I have RDEPENDS?
-
-Thanks
--Ashish
-
-
-On Sat, Jan 18, 2014 at 1:23 AM, Khem Raj <raj.khem@gmail.com> wrote:
-
-> On Fri, Jan 17, 2014 at 11:46 AM, Ashish Dalela <ashish.dalela@gmail.com>
-> wrote:
-> >
-> > Hi,
-> >
-> > I'm trying to build JDK and JRE using the meta-oracle-java recipes. The
-> > recipes build fine, but during do_rootfs (core-image-basic) I see the
-> > following errors:
-> >
-> > FOR JRE:
-> > | Computing transaction...error: Can't install
-> > oracle-jse-jre-i586-1.7.0-u25r0@i586: no package provides
-> libavcodec.so.52
-> >
-> > FOR JDK:
-> > | Computing transaction...error: Can't install
-> > oracle-jse-jdk-i586-1.7.0-u51r0@i586: no package provides
-> > libavcodec.so.52(LIBAVCODEC_52)
-> >
-> > meta/recipes-multimedia/libav/libav_0.7.4.bb builds libavcodec.so.53.
-> >
-> > Does anyone know how to fix this issue?
+On 17 January 2014 15:16, Andrei Gherzan <andrei@gherzan.ro> wrote:
+> Change-Id: Ib98889d05b33ec2647966f2827e1fbf84f35fd95
+> Signed-off-by: Andrei Gherzan <andrei@gherzan.ro>
+> ---
+>  recipes-graphics/userland/userland_git.bb | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
 >
-> add libav to DEPENDS in recipe which is providing oracle-jse-jdk
+> diff --git a/recipes-graphics/userland/userland_git.bb b/recipes-graphics/userland/userland_git.bb
+> index 2993044..cba1709 100644
+> --- a/recipes-graphics/userland/userland_git.bb
+> +++ b/recipes-graphics/userland/userland_git.bb
+> @@ -5,13 +5,13 @@ vcos, openmaxil, vchiq_arm, bcm_host, WFC, OpenVG."
+>  LICENSE = "Broadcom"
+>  LIC_FILES_CHKSUM = "file://LICENCE;md5=957f6640d5e2d2acfce73a36a56cb32f"
 >
-> >
-> > I already tried manually copying libavcodec.so.53 to libavcodec.so.52
-> but it
-> > does not help.
-> >
-> > Thanks
-> > -Ashish
-> >
-> > _______________________________________________
-> > yocto mailing list
-> > yocto@yoctoproject.org
-> > https://lists.yoctoproject.org/listinfo/yocto
-> >
+> -PR = "r3"
+> +PR = "r4"
 >
+>  PROVIDES = "virtual/libgles2 \
+>              virtual/egl"
+>  COMPATIBLE_MACHINE = "raspberrypi"
+>
+> -SRCREV = "d2c9f912da389c23ed27e81e940be3540f64fc59"
+> +SRCREV = "6da40ffd91f2b3c2aa8471195813322ae5d0cb0d"
+>  SRC_URI = "git://github.com/raspberrypi/userland.git;protocol=git;branch=master \
+>            "
+>  S = "${WORKDIR}/git"
 
---089e0149512667fdf604f0303641
-Content-Type: text/html; charset=ISO-8859-1
+The subject seems confusing... should this be "remote HEAD" not "remove HEAD"?
 
-<div dir="ltr">I already have the following in my jdk and jre recipes:<div><br></div><div><div>DEPENDS = &quot;libav gtk+ libxslt libxtst&quot;</div></div><div><br></div><div>Should I have RDEPENDS?</div><div><br></div><div>
-Thanks</div><div>-Ashish</div></div><div class="gmail_extra"><br><br><div class="gmail_quote">On Sat, Jan 18, 2014 at 1:23 AM, Khem Raj <span dir="ltr">&lt;<a href="mailto:raj.khem@gmail.com" target="_blank">raj.khem@gmail.com</a>&gt;</span> wrote:<br>
-<blockquote class="gmail_quote" style="margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div class="im">On Fri, Jan 17, 2014 at 11:46 AM, Ashish Dalela &lt;<a href="mailto:ashish.dalela@gmail.com">ashish.dalela@gmail.com</a>&gt; wrote:<br>
+-- 
+Paul Barker
 
-&gt;<br>
-&gt; Hi,<br>
-&gt;<br>
-&gt; I&#39;m trying to build JDK and JRE using the meta-oracle-java recipes. The<br>
-&gt; recipes build fine, but during do_rootfs (core-image-basic) I see the<br>
-&gt; following errors:<br>
-&gt;<br>
-&gt; FOR JRE:<br>
-&gt; | Computing transaction...error: Can&#39;t install<br>
-&gt; oracle-jse-jre-i586-1.7.0-u25r0@i586: no package provides libavcodec.so.52<br>
-&gt;<br>
-&gt; FOR JDK:<br>
-&gt; | Computing transaction...error: Can&#39;t install<br>
-&gt; oracle-jse-jdk-i586-1.7.0-u51r0@i586: no package provides<br>
-&gt; libavcodec.so.52(LIBAVCODEC_52)<br>
-&gt;<br>
-&gt; meta/recipes-multimedia/libav/<a href="http://libav_0.7.4.bb" target="_blank">libav_0.7.4.bb</a> builds libavcodec.so.53.<br>
-&gt;<br>
-&gt; Does anyone know how to fix this issue?<br>
-<br>
-</div>add libav to DEPENDS in recipe which is providing oracle-jse-jdk<br>
-<div class="im"><br>
-&gt;<br>
-&gt; I already tried manually copying libavcodec.so.53 to libavcodec.so.52 but it<br>
-&gt; does not help.<br>
-&gt;<br>
-&gt; Thanks<br>
-&gt; -Ashish<br>
-&gt;<br>
-</div>&gt; _______________________________________________<br>
-&gt; yocto mailing list<br>
-&gt; <a href="mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br>
-&gt; <a href="https://lists.yoctoproject.org/listinfo/yocto" target="_blank">https://lists.yoctoproject.org/listinfo/yocto</a><br>
-&gt;<br>
-</blockquote></div><br></div>
+Email: paul@paulbarker.me.uk
+http://www.paulbarker.me.uk
 
---089e0149512667fdf604f0303641--
