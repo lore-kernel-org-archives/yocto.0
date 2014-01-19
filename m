@@ -1,40 +1,39 @@
-Return-Path: <raj.khem@gmail.com>
-Received: from mail-pd0-f181.google.com (mail-pd0-f181.google.com
-	[209.85.192.181])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D50BFE00764
-	for <yocto@yoctoproject.org>; Sat, 18 Jan 2014 22:51:46 -0800 (PST)
-Received: by mail-pd0-f181.google.com with SMTP id y10so2066117pdj.12
-	for <yocto@yoctoproject.org>; Sat, 18 Jan 2014 22:51:46 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=from:to:subject:date:message-id:user-agent:in-reply-to:references
-	:mime-version:content-type;
-	bh=YdS7Vurhht1eSzQs2ntXUfCGO9MOhC3TmBEEMov5FrA=;
-	b=OfxrK38qwKMHK2TQrSdZrJqsfEbsgYgEfd9MvFtGF5vLg8B3VOdT2wyEak8gUU+q37
-	bZ1AKVu4wbnsvYsKq2aCpkQVNAbmdyenXbc8/Nixsq5e/P4A51KxgpxkzySEH4rTZ+Ys
-	XzU8esQfz5A78IwOtAQPy3MDmQVAHCsnSe83dZvL6dgry4H4oRBs4Lc0c6XduLdRLf9A
-	9ydGW9MVdojvS3xDOM6a8TNWnphNM1qHrxEu3QRAELM0BjTtzLIuEt1ViXAQcxOvTO4Z
-	4bMnRlsVjJwpVvkVnCXgyEbsIqmR9RznRanNpKiOdqz8/NvDZPEwVpoNX92ofWa7VKuS
-	76Gw==
-X-Received: by 10.66.142.107 with SMTP id rv11mr11821644pab.17.1390114306436; 
-	Sat, 18 Jan 2014 22:51:46 -0800 (PST)
-Received: from leo.localnet (99-57-140-30.lightspeed.sntcca.sbcglobal.net.
-	[99.57.140.30]) by mx.google.com with ESMTPSA id
-	sy10sm49040671pac.15.2014.01.18.22.51.44 for <yocto@yoctoproject.org>
-	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
-	Sat, 18 Jan 2014 22:51:45 -0800 (PST)
-From: Khem Raj <raj.khem@gmail.com>
+Return-Path: <andrei@gherzan.ro>
+Received: from mail-ea0-f170.google.com (mail-ea0-f170.google.com
+	[209.85.215.170])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 825D2E007A9
+	for <yocto@yoctoproject.org>; Sun, 19 Jan 2014 08:53:49 -0800 (PST)
+Received: by mail-ea0-f170.google.com with SMTP id k10so2632559eaj.15
+	for <yocto@yoctoproject.org>; Sun, 19 Jan 2014 08:53:48 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:date:from:to:subject:message-id:references
+	:mime-version:content-type:content-disposition:in-reply-to
+	:user-agent;
+	bh=NJsHFrFEex4nKJch5blWQC+aCW6Z1NUbi4Zaj6K5FiA=;
+	b=FqLICbfPvoQaaHqxU7jyg6Ru491ItJpjzYm9MJgkjDVUctgDJl85K3lnlqPpjZX/B8
+	lmZmbyHtfRNBkf/uLUuqwIknfJKzGWZw0laPF7a89XOf4LzC46CVN3ilqpVu/eY+jaVk
+	Eou51UoLeFoT98o/Lhp9fasjmQtQkjxIox+2LBkwYzgW95FcCtqMTr3a5D9fcYUxUvhd
+	WDgLzPh/xwTODl7MGhricxanWzLUfpE5A6541o9bCu+2/k6OEOVyGWEl+Ii/AdgKs9If
+	vQmte+ExwwyTLVkpxeqH6eEsRJvrvwMJFUhGQsxsiZkkCoo8LqeU0SCOLdjmabDvZduL
+	FD/Q==
+X-Gm-Message-State: ALoCoQlzrUEkrd/wKCVKFdO57FUxz+lyExTuBg3ZF5+veK7c16n4kepHbW49zhJkoxnAFcnA5NVp
+X-Received: by 10.14.218.69 with SMTP id j45mr13534320eep.22.1390150427792;
+	Sun, 19 Jan 2014 08:53:47 -0800 (PST)
+Received: from gmail.com ([79.116.111.233])
+	by mx.google.com with ESMTPSA id u7sm45060145eep.11.2014.01.19.08.53.47
+	for <yocto@yoctoproject.org>
+	(version=TLSv1 cipher=RC4-SHA bits=128/128);
+	Sun, 19 Jan 2014 08:53:47 -0800 (PST)
+Date: Sun, 19 Jan 2014 18:53:42 +0200
+From: Andrei Gherzan <andrei@gherzan.ro>
 To: yocto@yoctoproject.org
-Date: Sat, 18 Jan 2014 22:51:43 -0800
-Message-ID: <7724482.rWPM3HpHt3@leo>
-X-Face: (*D:+-|[O9m:a&dKxg#R`m^Nxy<HmNPV<Ic-_>RMPm0'o70t~39kUjcE\?l`>41l^%&x; O
-	ss*RIK.m#<6OwX.R&K={4[\RYyqeUgI^7G0BRJfLXVkrEjSlX5rk\rOt"ur?`%"2}`hDBt
-	QHQ|<@r6-hq"([T&r02ayw^tEXBwsh6g%qt!Q?)*H$OE6mk^BUm30s`G[u:_wi&vIUh&Lh
-	L_.\+; 0Q:nB(8TJq\bWseix)aav+[*-wMDT5+55W^jS%u-J{Hv)&lSoaU^m_+*>]"
-User-Agent: KMail/4.12.1 (Linux/3.12.7-2-ARCH; KDE/4.12.1; x86_64; ; )
-In-Reply-To: <52DA771E.50907@googlemail.com>
-References: <52DA771E.50907@googlemail.com>
+Message-ID: <20140119165330.GA4680@gmail.com>
+References: <1389971801-23724-1-git-send-email-andrei@gherzan.ro>
 MIME-Version: 1.0
-Subject: Re: How to fix : "WARNING: The recipe XXX is trying to install files into a shared area ..."
+In-Reply-To: <1389971801-23724-1-git-send-email-andrei@gherzan.ro>
+User-Agent: Mutt/1.5.21 (2010-09-15)
+Subject: Re: [meta-raspberrypi][PATCH 1/5] linux-raspberrypi: Update v3.12.4 to v3.12.7
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -46,57 +45,51 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 19 Jan 2014 06:51:48 -0000
-X-Groupsio-MsgNum: 17817
-Content-Type: multipart/signed; boundary="nextPart35645581.PKQWnxEg11";
-	micalg="pgp-sha1"; protocol="application/pgp-signature"
+X-List-Received-Date: Sun, 19 Jan 2014 16:53:51 -0000
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
---nextPart35645581.PKQWnxEg11
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="us-ascii"
+On Fri, Jan 17, 2014 at 05:16:37PM +0200, Andrei Gherzan wrote:
+> Change-Id: Id721163e3e69946e3c82710bf12851211b493dee
+> Signed-off-by: Andrei Gherzan <andrei@gherzan.ro>
+> ---
+>  recipes-kernel/linux/linux-raspberrypi_3.12.4.bb | 6 ------
+>  recipes-kernel/linux/linux-raspberrypi_3.12.7.bb | 6 ++++++
+>  2 files changed, 6 insertions(+), 6 deletions(-)
+>  delete mode 100644 recipes-kernel/linux/linux-raspberrypi_3.12.4.bb
+>  create mode 100644 recipes-kernel/linux/linux-raspberrypi_3.12.7.bb
+>
+> diff --git a/recipes-kernel/linux/linux-raspberrypi_3.12.4.bb b/recipes-kernel/linux/linux-raspberrypi_3.12.4.bb
+> deleted file mode 100644
+> index 17025f2..0000000
+> --- a/recipes-kernel/linux/linux-raspberrypi_3.12.4.bb
+> +++ /dev/null
+> @@ -1,6 +0,0 @@
+> -SRCREV = "9fbb114990c409406ae20c56871727ff8d4fa6ca"
+> -SRC_URI = "git://github.com/raspberrypi/linux.git;protocol=git;branch=rpi-3.12.y \
+> -           file://sl030raspberrypii2ckernel.patch \
+> -          "
+> -
+> -require linux-raspberrypi.inc
+> diff --git a/recipes-kernel/linux/linux-raspberrypi_3.12.7.bb b/recipes-kernel/linux/linux-raspberrypi_3.12.7.bb
+> new file mode 100644
+> index 0000000..b71363c
+> --- /dev/null
+> +++ b/recipes-kernel/linux/linux-raspberrypi_3.12.7.bb
+> @@ -0,0 +1,6 @@
+> +SRCREV = "7b3d6227aa8285f7cbd5b8ec767a840b6ac42477"
+> +SRC_URI = "git://github.com/raspberrypi/linux.git;protocol=git;branch=rpi-3.12.y \
+> +           file://sl030raspberrypii2ckernel.patch \
+> +          "
+> +
+> +require linux-raspberrypi.inc
+> --
+> 1.8.1.4
+>
 
-On Saturday, January 18, 2014 01:44:14 PM Christian Ege wrote:
-> Hi,
->=20
-> I do have two recipes which install files in a shared area both packa=
-ges
-> install files with the same name but maybe with
-> a slightly different content. So splitting packages will not be a goo=
-d
-> solution. What else can I do?
->=20
-> I tried setting both packages to conflict each other that also did no=
-t
-> fixed things up.
->=20
-> Are there any hints?
+Merged all updates (fixing the typo Paul pointed me out - thanks).
 
-Rename one of the files or stash them in different directory heirarchy.=
+--
+Andrei Gherzan
+m: +40.744.478.414 | f: +40.31.816.28.12
 
-
->=20
-> regards,
->=20
-> Christian
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
-
-=2D-=20
-=2DKhem
-
---nextPart35645581.PKQWnxEg11
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part.
-Content-Transfer-Encoding: 7Bit
-
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v2.0.22 (GNU/Linux)
-
-iEYEABECAAYFAlLbdgwACgkQuwUzVZGdMxQZGgCgk2K3GXhS9eMu3aGJtqTuNscC
-AEQAn0j5EwEcnYBBhrBohCRHH63FF0OW
-=N4aq
------END PGP SIGNATURE-----
-
---nextPart35645581.PKQWnxEg11--
