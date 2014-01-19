@@ -1,36 +1,36 @@
 Return-Path: <andrei@gherzan.ro>
 Received: from mail-ee0-f47.google.com (mail-ee0-f47.google.com [74.125.83.47])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7D7A9E00841
-	for <yocto@yoctoproject.org>; Sun, 19 Jan 2014 11:16:14 -0800 (PST)
-Received: by mail-ee0-f47.google.com with SMTP id d49so2266677eek.20
-	for <yocto@yoctoproject.org>; Sun, 19 Jan 2014 11:16:14 -0800 (PST)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D4137E00875
+	for <yocto@yoctoproject.org>; Sun, 19 Jan 2014 11:16:18 -0800 (PST)
+Received: by mail-ee0-f47.google.com with SMTP id d49so2266704eek.20
+	for <yocto@yoctoproject.org>; Sun, 19 Jan 2014 11:16:17 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
 	h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
 	:references;
-	bh=qBxZLXidSVjlDVZ5aTTqXRhY58Muk9WFeTBDFj+ch7I=;
-	b=ZEl5Ds+uRPloZLJA8709qLCQ/0u1oMEN3Pqn69bdVRljpI7L2CLMr5vBr/QYNL6M6K
-	ww+9vAv+twfygrBs+ezEuzfBar8I/IP6g1WvvumolY62KpStPLPwVPfwyDVEyTVwOMDj
-	NFFz4rBCYkGGtyH42j32WFt/DB3/jVZWsjxcA3QZKasfIQyo+kMGLWEkYgXwztUp+Z9E
-	t+7P8SOxarAaXHVkKXCqUmWCD6t1VI9sbc3ia50P7WekjY2WFap8weoIZ+uzUiHj2Bfs
-	idhHFNpl3jsxDnbI3tMw0f6FMSejHbsbYjv7GxG2ViZEqV4OONwU4zLoh9ebn+plA5eX
-	ZK7A==
-X-Gm-Message-State: ALoCoQmakWXn67DZ3rGxEqpn5EDi5o410SKEyaIsKXAagrRI2hFDfzv5JtwtvzJoVEkVSQOzVHYm
-X-Received: by 10.15.54.72 with SMTP id s48mr13666719eew.3.1390158974034;
-	Sun, 19 Jan 2014 11:16:14 -0800 (PST)
+	bh=LYtDOPCgVT4r2LfNsqjzQHLJDKucyb5kD8S26ziXWFQ=;
+	b=JZa7dQknAzbeLh6sjjVuk2XStPYedIHzZKJD0hzn8Qmrfrr1bdnmdqKIrv9x2WCrtV
+	k1mC2voP9SnmW+0RAQl9xmP7QwiGMuwBvM3w/I4f097fILDxsEX6gilKwgaKOo9Y5oYa
+	3Ky+IFnbvtiDgj+9DZFkQPwfgW+VHxZMdJaNZ/L6OMm/X9AC+JDpshUjJa2UE2PDXfj/
+	fxjwBPeCOjhKZfvI3cuGV656JDV6Bhoownhsm6AP1MBgqx1GL4cvyI2SuVkuH7aPrGcm
+	kRE9r1cxwLcvKqy5lT+tACJ7duOWgoBbnuPZWHGNWohXyTfbWQf77FGvxtKBP82UMy6h
+	MesQ==
+X-Gm-Message-State: ALoCoQkcNbYiEVsDK/Tz/hYeJYt5kamwEqbdnSPQWSJGKNbPKRuJ3r9md0Wa1b4ESFibYcsUHYSb
+X-Received: by 10.14.221.193 with SMTP id r41mr573539eep.92.1390158977653;
+	Sun, 19 Jan 2014 11:16:17 -0800 (PST)
 Received: from localhost.localdomain ([79.116.111.233])
-	by mx.google.com with ESMTPSA id 4sm46036842eed.14.2014.01.19.11.16.12
+	by mx.google.com with ESMTPSA id 4sm46036842eed.14.2014.01.19.11.16.15
 	for <multiple recipients>
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Sun, 19 Jan 2014 11:16:12 -0800 (PST)
+	Sun, 19 Jan 2014 11:16:16 -0800 (PST)
 From: Andrei Gherzan <andrei@gherzan.ro>
 To: yocto@yoctoproject.org
-Date: Sun, 19 Jan 2014 21:15:54 +0200
-Message-Id: <1390158956-24554-3-git-send-email-andrei@gherzan.ro>
+Date: Sun, 19 Jan 2014 21:15:56 +0200
+Message-Id: <1390158956-24554-5-git-send-email-andrei@gherzan.ro>
 X-Mailer: git-send-email 1.8.1.4
 In-Reply-To: <1390158956-24554-1-git-send-email-andrei@gherzan.ro>
 References: <1390158956-24554-1-git-send-email-andrei@gherzan.ro>
-Subject: [meta-raspberrypi][PATCH 2/4] rpi-gpio: Update to v0.5.4
+Subject: [meta-raspberrypi][PATCH 4/4] omxplayer: Update to remote HEAD
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,68 +42,126 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 19 Jan 2014 19:16:17 -0000
+X-List-Received-Date: Sun, 19 Jan 2014 19:16:19 -0000
 
-Change-Id: Ie24be5363933fa994e38b030677d7381eb8a7f2a
+* Rebase 0002-Libraries-and-headers-from-ffmpeg-are-installed-in-u.patch
+to apply on HEAD.
+* Add fix-tar-command-with-DIST.patch which reverts a change in tar command
+which breaks compilation if DIST is an absolute path.
+* Avoid stripping omxplayer binary (let build system take care of strpping).
+
+Change-Id: I95d70094b0069ad19f7d445abaf421756776c4c7
 Signed-off-by: Andrei Gherzan <andrei@gherzan.ro>
 ---
- recipes-devtools/python/rpi-gpio_0.5.3a.bb | 20 --------------------
- recipes-devtools/python/rpi-gpio_0.5.4.bb  | 19 +++++++++++++++++++
- 2 files changed, 19 insertions(+), 20 deletions(-)
- delete mode 100644 recipes-devtools/python/rpi-gpio_0.5.3a.bb
- create mode 100644 recipes-devtools/python/rpi-gpio_0.5.4.bb
+ ...nd-headers-from-ffmpeg-are-installed-in-u.patch | 24 ++++++++++------------
+ .../omxplayer/fix-tar-command-with-DIST.patch      | 18 ++++++++++++++++
+ recipes-multimedia/omxplayer/omxplayer_git.bb      | 10 +++++----
+ 3 files changed, 35 insertions(+), 17 deletions(-)
+ create mode 100644 recipes-multimedia/omxplayer/omxplayer/fix-tar-command-with-DIST.patch
 
-diff --git a/recipes-devtools/python/rpi-gpio_0.5.3a.bb b/recipes-devtools/python/rpi-gpio_0.5.3a.bb
-deleted file mode 100644
-index 9b0ece0..0000000
---- a/recipes-devtools/python/rpi-gpio_0.5.3a.bb
-+++ /dev/null
-@@ -1,20 +0,0 @@
--DESCRIPTION = "A module to control Raspberry Pi GPIO channels"
--HOMEPAGE = "http://code.google.com/p/raspberry-gpio-python/"
--SECTION = "devel/python"
--LICENSE = "MIT"
--LIC_FILES_CHKSUM = "file://LICENCE.txt;md5=35af90ff2a10e8bdc967653b9dfcb22a"
+diff --git a/recipes-multimedia/omxplayer/omxplayer/0002-Libraries-and-headers-from-ffmpeg-are-installed-in-u.patch b/recipes-multimedia/omxplayer/omxplayer/0002-Libraries-and-headers-from-ffmpeg-are-installed-in-u.patch
+index 4976995..7f7927f 100644
+--- a/recipes-multimedia/omxplayer/omxplayer/0002-Libraries-and-headers-from-ffmpeg-are-installed-in-u.patch
++++ b/recipes-multimedia/omxplayer/omxplayer/0002-Libraries-and-headers-from-ffmpeg-are-installed-in-u.patch
+@@ -8,18 +8,16 @@ Don't search for libraries and headers in /usr/local.
+ Upstream-Status: Inappropriate [embedded specific]
+ Signed-off-by: Andrei Gherzan <andrei@gherzan.ro>
+ 
+-Updated patch to apply to c0dd9502ed2c43c487674939195c69680f3d98b0 revision
 -
--SRCNAME = "RPi.GPIO"
--PR = "r0"
--
--SRC_URI = "\
--          http://pypi.python.org/packages/source/R/RPi.GPIO/${SRCNAME}-${PV}.tar.gz \
--          "
--S = "${WORKDIR}/${SRCNAME}-${PV}"
--
--inherit distutils
--
--COMPATIBLE_MACHINE = "raspberrypi"
--
--SRC_URI[md5sum] = "9cb086d2d2186062c5ae190a40902bb0"
--SRC_URI[sha256sum] = "f3342113d39901e5af1460374ff167590c427cb55460d2bda86c72bc64efc526"
-diff --git a/recipes-devtools/python/rpi-gpio_0.5.4.bb b/recipes-devtools/python/rpi-gpio_0.5.4.bb
+-diff --git a/Makefile b/Makefile
+-index 65f7637..5dc1832 100644
+---- a/Makefile
+-+++ b/Makefile
++Index: git/Makefile
++===================================================================
++--- git.orig/Makefile
+++++ git/Makefile
+ @@ -1,9 +1,9 @@
+  
+  CFLAGS+=-std=c++0x -D__STDC_CONSTANT_MACROS -D__STDC_LIMIT_MACROS -DTARGET_POSIX -DTARGET_LINUX -fPIC -DPIC -D_REENTRANT -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64 -DHAVE_CMAKE_CONFIG -D__VIDEOCORE4__ -U_FORTIFY_SOURCE -Wall -DHAVE_OMXLIB -DUSE_EXTERNAL_FFMPEG  -DHAVE_LIBAVCODEC_AVCODEC_H -DHAVE_LIBAVUTIL_OPT_H -DHAVE_LIBAVUTIL_MEM_H -DHAVE_LIBAVUTIL_AVUTIL_H -DHAVE_LIBAVFORMAT_AVFORMAT_H -DHAVE_LIBAVFILTER_AVFILTER_H -DHAVE_LIBSWRESAMPLE_SWRESAMPLE_H -DOMX -DOMX_SKIP64BIT -ftree-vectorize -DUSE_EXTERNAL_OMX -DTARGET_RASPBERRY_PI -DUSE_EXTERNAL_LIBBCM_HOST
+  
+--LDFLAGS+=-L./ -ldbus-1 -lc -lWFC -lGLESv2 -lEGL -lbcm_host -lopenmaxil -lfreetype -lz -Lffmpeg_compiled/usr/local/lib/
+-+LDFLAGS+=-L./ -ldbus-1 -lc -lWFC -lGLESv2 -lEGL -lbcm_host -lopenmaxil -lfreetype -lz -Lffmpeg_compiled/usr/lib/
++-LDFLAGS+=-L./ -Lffmpeg_compiled/usr/local/lib/ -lc -lWFC -lGLESv2 -lEGL -lbcm_host -lopenmaxil -lfreetype -lz
+++LDFLAGS+=-L./ -Lffmpeg_compiled/usr/lib/ -lc -lWFC -lGLESv2 -lEGL -lbcm_host -lopenmaxil -lfreetype -lz
+  
+ -INCLUDES+=-I./ -Ilinux -Iffmpeg_compiled/usr/local/include/
+ +INCLUDES+=-I./ -Ilinux -Iffmpeg_compiled/usr/include/
+@@ -32,11 +30,11 @@ index 65f7637..5dc1832 100644
+  	cp README.md $(DIST)/usr/share/doc/README
+ -	cp -a ffmpeg_compiled/usr/local/lib/*.so* $(DIST)/usr/lib/omxplayer/
+ +	cp -a ffmpeg_compiled/usr/lib/*.so* $(DIST)/usr/lib/omxplayer/
+- 	tar -czf omxplayer-dist.tar.gz $(DIST)
+-diff --git a/Makefile.ffmpeg b/Makefile.ffmpeg
+-index 3b31a82..5f30b51 100644
+---- a/Makefile.ffmpeg
+-+++ b/Makefile.ffmpeg
++ 	cd $(DIST); tar -czf ../$(DIST).tgz *
++Index: git/Makefile.ffmpeg
++===================================================================
++--- git.orig/Makefile.ffmpeg
+++++ git/Makefile.ffmpeg
+ @@ -248,5 +248,5 @@ checkout:
+  
+  install:
+diff --git a/recipes-multimedia/omxplayer/omxplayer/fix-tar-command-with-DIST.patch b/recipes-multimedia/omxplayer/omxplayer/fix-tar-command-with-DIST.patch
 new file mode 100644
-index 0000000..7307399
+index 0000000..5b3bd21
 --- /dev/null
-+++ b/recipes-devtools/python/rpi-gpio_0.5.4.bb
-@@ -0,0 +1,19 @@
-+DESCRIPTION = "A module to control Raspberry Pi GPIO channels"
-+HOMEPAGE = "http://code.google.com/p/raspberry-gpio-python/"
-+SECTION = "devel/python"
-+LICENSE = "MIT"
-+LIC_FILES_CHKSUM = "file://LICENCE.txt;md5=35af90ff2a10e8bdc967653b9dfcb22a"
++++ b/recipes-multimedia/omxplayer/omxplayer/fix-tar-command-with-DIST.patch
+@@ -0,0 +1,18 @@
++Revert the tar command change introduced in:
++https://github.com/popcornmix/omxplayer/commit/201c77973155861e60492e45d35467b19b69c1c4
 +
-+SRCNAME = "RPi.GPIO"
++This fails if DIST is an absolute path. The old command was working just fine.
 +
-+SRC_URI = "\
-+          http://pypi.python.org/packages/source/R/RPi.GPIO/${SRCNAME}-${PV}.tar.gz \
-+          "
-+S = "${WORKDIR}/${SRCNAME}-${PV}"
++Signed-off-by: Andrei Gherzan <andrei@gherzan.ro>
 +
-+inherit distutils
-+
-+COMPATIBLE_MACHINE = "raspberrypi"
-+
-+SRC_URI[md5sum] = "add6554ed8331d515fccb5e052c7d1ff"
-+SRC_URI[sha256sum] = "5fae8e59a9a1cdb68208d40239d7ad788d22aa9d58c54c482fa5d89ccc4c0f37"
++Index: git/Makefile
++===================================================================
++--- git.orig/Makefile
+++++ git/Makefile
++@@ -71,4 +71,4 @@ dist: omxplayer.bin
++ 	cp COPYING $(DIST)/usr/share/doc/
++ 	cp README.md $(DIST)/usr/share/doc/README
++ 	cp -a ffmpeg_compiled/usr/lib/*.so* $(DIST)/usr/lib/omxplayer/
++-	cd $(DIST); tar -czf ../$(DIST).tgz *
+++	tar -czf omxplayer-dist.tar.gz $(DIST)
++\ No newline at end of file
+diff --git a/recipes-multimedia/omxplayer/omxplayer_git.bb b/recipes-multimedia/omxplayer/omxplayer_git.bb
+index 8d444fd..33202dc 100644
+--- a/recipes-multimedia/omxplayer/omxplayer_git.bb
++++ b/recipes-multimedia/omxplayer/omxplayer_git.bb
+@@ -8,14 +8,16 @@ LICENSE = "GPLv2"
+ LIC_FILES_CHKSUM = "file://COPYING;md5=94d55d512a9ba36caa9b7df079bae19f"
+ 
+ DEPENDS = "libpcre libav virtual/egl boost freetype dbus"
+-PR = "r2"
++PR = "r3"
+ 
+-SRCREV = "74f4be222be05d3ea50be9f5a70846f7c0e9df6e"
++SRCREV = "f666a5dfbec36e2af7cd965558ac8643c86277a6"
+ SRC_URI = "git://github.com/popcornmix/omxplayer.git;protocol=git;branch=master \
+            file://0001-Remove-Makefile.include-which-includes-hardcoded.patch \
+            file://0002-Libraries-and-headers-from-ffmpeg-are-installed-in-u.patch \
+            file://0003-Remove-strip-step-in-Makefile.patch \
+-           file://mktemp-compatible-with-busybox.patch"
++           file://mktemp-compatible-with-busybox.patch \
++           file://fix-tar-command-with-DIST.patch \
++           "
+ S = "${WORKDIR}/git"
+ 
+ COMPATIBLE_MACHINE = "raspberrypi"
+@@ -55,7 +57,7 @@ do_compile() {
+ }
+ 
+ do_install() {
+-    oe_runmake dist
++    oe_runmake STRIP='echo skipping strip' dist
+     mkdir -p ${D}/usr/share/fonts/truetype/freefont/
+     install ${S}/fonts/* ${D}/usr/share/fonts/truetype/freefont/
+ }
 -- 
 1.8.1.4
 
