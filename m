@@ -1,30 +1,23 @@
-Return-Path: <belen.barros.pena@intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 01C38E0083F
-	for <yocto@yoctoproject.org>; Mon, 20 Jan 2014 04:16:26 -0800 (PST)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga102.jf.intel.com with ESMTP; 20 Jan 2014 04:12:21 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.95,690,1384329600"; d="scan'208";a="469466199"
-Received: from irsmsx102.ger.corp.intel.com ([163.33.3.155])
-	by orsmga002.jf.intel.com with ESMTP; 20 Jan 2014 04:16:24 -0800
-Received: from irsmsx106.ger.corp.intel.com ([169.254.8.188]) by
-	IRSMSX102.ger.corp.intel.com ([169.254.2.114]) with mapi id
-	14.03.0123.003; Mon, 20 Jan 2014 12:16:22 +0000
-From: "Barros Pena, Belen" <belen.barros.pena@intel.com>
-To: Richard Schmitt <richard.schmitt@freescale.com>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>
-Thread-Topic: [yocto] Query Hob and KERNEL_FEATURES
-Thread-Index: AQHPFdlu2YBDAojctEiDJO6pJ7Tn+w==
-Date: Mon, 20 Jan 2014 12:16:21 +0000
-Message-ID: <CF02C3D2.3B27E%belen.barros.pena@intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-user-agent: Microsoft-MacOutlook/14.3.9.131030
-x-originating-ip: [10.237.224.31]
+Return-Path: <yocto@mindchasers.com>
+Received: from smtp.webfaction.com (mail6.webfaction.com [74.55.86.74])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B584DE00879
+	for <yocto@yoctoproject.org>; Mon, 20 Jan 2014 08:00:50 -0800 (PST)
+Received: from [192.168.1.11] (c-68-38-40-177.hsd1.nj.comcast.net
+	[68.38.40.177])
+	by smtp.webfaction.com (Postfix) with ESMTP id D93A1225740E;
+	Mon, 20 Jan 2014 15:59:26 +0000 (UTC)
+Message-ID: <52DD47DD.8080706@mindchasers.com>
+Date: Mon, 20 Jan 2014 10:59:25 -0500
+From: Bob Cochran <yocto@mindchasers.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:24.0) Gecko/20100101 Thunderbird/24.2.0
 MIME-Version: 1.0
-Subject: Re: Query Hob and KERNEL_FEATURES
+To: Bruce Ashfield <bruce.ashfield@gmail.com>
+References: <52B879B7.8000808@mindchasers.com>
+	<CADkTA4Pxv1hnjxMW4b7yy3Q1-xn2scMROyU2ZaLmZ_i_R+VLQQ@mail.gmail.com>
+In-Reply-To: <CADkTA4Pxv1hnjxMW4b7yy3Q1-xn2scMROyU2ZaLmZ_i_R+VLQQ@mail.gmail.com>
+Cc: Yocto discussion list <yocto@yoctoproject.org>
+Subject: Re: Development of Yocto Project Kernel outside of Intel?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -36,29 +29,68 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 20 Jan 2014 12:16:29 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="iso-8859-1"
-Content-ID: <89F494211FEA8247A6D4528B7E6DB0D0@intel.com>
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Mon, 20 Jan 2014 16:00:51 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
 
-
-On 18/01/2014 23:45, "Richard Schmitt" <richard.schmitt@freescale.com>
-wrote:
-
->=20
->I=B9m new to Hob.  I see there=B9s a way to configure layers, but is there=
- a
->way to configure kernel features with Hob?  I=B9m figuring not.
-
-I am afraid there isn't. Sorry about that.
-
-Cheers
-
-Bel=E9n
-
->=20
->RIch
+On 12/23/2013 09:10 PM, Bruce Ashfield wrote:
+> I can add a few thoughts.
 >
+> We obviously have the reference BSPs to represent the major architectures, and
+> on the linux-yocto mailing list, we've been looking at BSPs from LSI as well as
+> some other pending boards (I'm waiting on them to be submitted, so I
+> won't mention
+> them here). The xilinx boards also have some yocto-style support in
+> their repository
+> with us working to adopt and integrated version of them as we move
+> into Yocto 1.6+.
+>
+> It's generally a slow process to get kernel versions aligned, but with
+> the LF LTSI
+> kernel(s), it helps create a neutral version that the Yocto project,
+> OSVs, semis and
+> others can use as a synchronization point. LTSI is part of the
+> linux-yocto kernel
+> trees as an integrated baseline, and LTSI has recently picked up more
+> attention ..
+> which has a byproduct of more BSPs being available in a similar
+> format, version and
+> configuration.
+>
+> Obviously we'd also love to see all relevant BSPs completely
+> mainlined, with short
+> stays in the Yocto tree (or others) as a BSP is developed, stabilized
+> and eventually
+> upstreamed.
+>
+> There's obviously a place for cutting edge trees, semi trees for the
+> latest and greatest,
+> stable trees .. and integrated staging grounds for all of the above.
+> So navigating that
+> mix, takes time, and we are getting there.
+>
+> Cheers,
+>
+> Bruce
+
+
+Hi Bruce (& other yocto developers),
+
+Thank you for the information.  Below is a related follow on question, 
+as I try to sort out who's doing what with kernel patches for the 
+varying embedded system chips / SoCs:
+
+To what extent do kernel patches exist for Intel chip sets that are 
+released to embedded Intel customers but aren't yet posted as patches in 
+the yocto kernels?  I assume there are proprietary drivers for IP 
+covered under NDA.  Is this the case?  Does an Intel customer find 
+themselves picking some kernel patches from the linux-yocto branches and 
+others from login protected Intel sites?
+
+Thank you,
+
+Bob
+
+
 
 
