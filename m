@@ -1,34 +1,28 @@
-Return-Path: <rohit2.jindal@aricent.com>
-Received: from jaguar.aricent.com (jaguar.aricent.com [180.151.2.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 33B6BE0087A
-	for <yocto@yoctoproject.org>; Tue, 21 Jan 2014 01:42:59 -0800 (PST)
-Received: from jaguar.aricent.com (localhost [127.0.0.1])
-	by postfix.imss71 (Postfix) with ESMTP id BDD8736B31
-	for <yocto@yoctoproject.org>; Tue, 21 Jan 2014 15:12:37 +0530 (IST)
-Received: from GUREXHT02.ASIAN.AD.ARICENT.COM (gurexht02.asian.ad.aricent.com
-	[10.203.171.138]) (using TLSv1 with cipher RC4-MD5 (128/128 bits))
-	(No client certificate requested)
-	by jaguar.aricent.com (Postfix) with ESMTP id A844736B29
-	for <yocto@yoctoproject.org>; Tue, 21 Jan 2014 15:12:37 +0530 (IST)
-Received: from GUREXMB01.asian.ad.aricent.com ([10.203.171.134]) by
-	GUREXHT02.ASIAN.AD.ARICENT.COM ([10.203.171.138]) with mapi;
-	Tue, 21 Jan 2014 15:12:38 +0530
-From: Rohit2 Jindal <rohit2.jindal@aricent.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Date: Tue, 21 Jan 2014 15:12:36 +0530
-Thread-Topic: Issue in combining configure options in different tunes
-Thread-Index: Ac8Q9ce2aS6tlS+qTcWoWwD/HHopRQA0xmVgAC0ionAAL/wNcADT7gzg
-Message-ID: <17797116383D4341B029FDF34C22BF6A72FEFCE3C3@GUREXMB01.ASIAN.AD.ARICENT.COM>
-References: <177AAA8C9A6604498BA86410157A63C95D7B680878@GUREXMB01.ASIAN.AD.ARICENT.COM>
-	<177AAA8C9A6604498BA86410157A63C972FA330401@GUREXMB01.ASIAN.AD.ARICENT.COM>
-In-Reply-To: <177AAA8C9A6604498BA86410157A63C972FA330401@GUREXMB01.ASIAN.AD.ARICENT.COM>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-acceptlanguage: en-US
+Return-Path: <hans.beckerus@gmail.com>
+Received: from mail-ob0-f174.google.com (mail-ob0-f174.google.com
+	[209.85.214.174])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1BB36E0087A
+	for <yocto@yoctoproject.org>; Tue, 21 Jan 2014 02:04:53 -0800 (PST)
+Received: by mail-ob0-f174.google.com with SMTP id uy5so4226811obc.33
+	for <yocto@yoctoproject.org>; Tue, 21 Jan 2014 02:04:52 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=9xRusCQAKKUtE10Nbv+R00mN7f+HG2IT0CL4Rayn5sQ=;
+	b=dI/PytbZSzRDbSP2HpF4pO+E0FXjyjZpAH9HMRt6QQmbG0swATR2kSMILwOjUAEL7r
+	tPJHdc4Vkig2BcO27ymtLO/QUOfd0znBohxj8DBanmE5YFCUemaTVzr4kj3dPIGK9FCT
+	mqDdb744kl/XTgCJjEzS+2BJqZm1j7jQPVFn7dCgd1KNlNgKzrSH4CMFVCMwWFqWp9Jv
+	u2S8fevVppi1Jj9NhyXFh1zNpbTktESL8qhCTXErmGkJcU8QscTd73Pgq/4Cmsxg0WJO
+	OEEkEJAQl6+jDTsV+MURgIlZj2cPB4I0eFC5tflAWgF2ofH9evfyYMy2IpbHNAuvk8Lp
+	Rcrw==
 MIME-Version: 1.0
-X-TM-AS-MML: No
-Subject: Re: Issue in combining configure options in different tunes
+X-Received: by 10.60.83.134 with SMTP id q6mr7416288oey.6.1390298692358; Tue,
+	21 Jan 2014 02:04:52 -0800 (PST)
+Received: by 10.182.228.81 with HTTP; Tue, 21 Jan 2014 02:04:52 -0800 (PST)
+Date: Tue, 21 Jan 2014 11:04:52 +0100
+Message-ID: <CAFyqS9qExjBN0n51k7tibPZ6GFEdzghmr7c5OHehht58HXjCuw@mail.gmail.com>
+From: =?ISO-8859-1?Q?Hans_Beck=E9rus?= <hans.beckerus@gmail.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: busybox and mdev, how does it really work?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,227 +34,76 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 21 Jan 2014 09:43:04 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_17797116383D4341B029FDF34C22BF6A72FEFCE3C3GUREXMB01ASIA_"
+X-List-Received-Date: Tue, 21 Jan 2014 10:04:59 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
---_000_17797116383D4341B029FDF34C22BF6A72FEFCE3C3GUREXMB01ASIA_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Hi. We have a system based on the poky-tiny distro and we use mdev as
+our device manager, or at least we do not set it to something at all
+in the distro .conf:
 
-Hi,
+# Use tmpdevfs and the busybox runtime services
+VIRTUAL-RUNTIME_dev_manager = ""
+#VIRTUAL-RUNTIME_login_manager = "tinylogin"
+#VIRTUAL-RUNTIME_init_manager = ""
+VIRTUAL-RUNTIME_keymaps = ""
 
-Actually I am able to build both elf(for xloader uboot) and linux toolchain=
-(linux and userspace components) using tune mips32 and tune mips64-n32 with=
- the required libgcc libraries and other required headers.
+and busybox is configured for have CONFIG_MDEV support.
+Other from this we have not added or installed any specific mdev packages.
 
-Glibc libraries were also build using tune-mips64-n32 with different combin=
-ations of abi arch and endianness.
+Things looked ok for a while, /dev was populated properly after boot
+and all necessary file systems / mount points were created.
+We were using an ext2 fs in RAM for mounting /.
+Now, we made a change to instead use a CPIO image compressed using xz
+and enabled the support in kernel to handle this.
+This is when our problems started :( Suddenly our system booted with
+just a very minimalistic /dev folder, containing basically only a few
+of the devices probed at boot time.
+When checking /etc/init.d we discovered that the mdev script actually
+is not part of our image at all? In fact, it never was, even when we
+used the ext2 boot!
+The only way I could see how this script may be added to the image was
+to install busybox-mdev, but that resulted in even more problems.
+Now our mtd partitions could no longer be accessed!? They were visible
+in /dev but not found by tools like flashcp. If I reduced the mdev
+script to only do 'mdev -s' it all seems to work, and /dev looks like
+it did before the change of ram boot mode.
+My guess here is that the re-mounting of /dev that is performed as
+part of the mdev init script destroys something? Also, there seems to
+be a mess among the scripts executed at boot time with respect to what
+is mounted and not.
+We have the mountall.sh script, devpts.sh, mdev and a few others that
+all seems to think they need to mount core file systems, but nothing
+besides mdev seems to mount /dev? How was this done before adding
+mdev?
+Obviously it worked well without it, but when moving to CPIO.xz it
+seems to be mandatory, but requires changes to work as expected?
 
-Now my issue is to combine both the toolchain in single meta-xtoolchain lay=
-er so that both can be build in one yocto workspace using single meta-xtool=
-chain layer by just changing a variable in local.conf and all is done.
+So, the questions now are:
 
-Example say Toolchain_var =3D"elf"
-               DEFAULTTUNE=3D"mips32"
-Build using the same gcc recipes the elf toolchain
+- how was /dev populated before when there was no /etc/init.d/mdev?
+- why does adding /etc/init.d/mdev corrupt our /dev filesystem and
+render some of our devices unusable?
+- should you really need to explicitly add busybox-mdev? And if so, is
+it expected that we need to change the init script?
 
-Toolchain_var=3D"linux"
-DEFAULTTUNE=3D"mips64-n32"
-Build using the same gcc recipes the linux toolchain
+Anyone that could describe how this is supposed to work, and what we
+probably did wrong?
+Seems a little bit too "magical" right now, and it would really feel a
+lot better if this could be explained.
 
+Thanks.
+Hans
 
-EXTRA_OECONF_append_mips32=3D "${@bb.utils.contains(<mailto:$%7b@bb.utils.c=
-ontains(>"Toolchain_var ", "elf", "put elf related extra_oeconf", "put linu=
-x related extra_oeconf", d)}"
+Build Configuration:
+BB_VERSION        = "1.20.0"
+BUILD_SYS         = "x86_64-linux"
+NATIVELSBSTRING   = "SUSE-LINUX-11"
+TARGET_SYS        = "arm-poky-linux-gnueabi"
+DISTRO_VERSION    = "1.5"
+TUNE_FEATURES     = "armv7a vfp cortexa9"
+TARGET_FPU        = "vfp"
+meta
+meta-yocto
+meta-yocto-bsp    = "dora:75bed4086eb83f1d24c31392f3dd54aa5c3679b1"
+meta-oe           = "dora:513e7ca20ddd0a5c3b649bf292a67c3e0473d3a8"
 
-Is this type of thing possible to put EXTRA_OECONF configure options on the=
- basis of toolchian variable ?????? and this EXTRA_OECONF_append_mips32 or =
-EXTRA_OECONF_append_mips64-n32 works???
-
-Or tell me the way that I can add specific Configure options for gcc on the=
- basis of tune passed?????????????
-
-Please help me out on the issue.
-
-Thanks in advance!!!!
-
-Regards,
-Rohit Jindal
-
-
-
-
-
-
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D
-Please refer to http://www.aricent.com/legal/email_disclaimer.html
-for important disclosures regarding this electronic communication.
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D
-
---_000_17797116383D4341B029FDF34C22BF6A72FEFCE3C3GUREXMB01ASIA_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<meta name=3D"Generator" content=3D"Microsoft Word 12 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-@font-face
-	{font-family:Tahoma;
-	panose-1:2 11 6 4 3 5 4 4 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri","sans-serif";}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:purple;
-	text-decoration:underline;}
-p.MsoAcetate, li.MsoAcetate, div.MsoAcetate
-	{mso-style-priority:99;
-	mso-style-link:"Balloon Text Char";
-	margin:0in;
-	margin-bottom:.0001pt;
-	font-size:8.0pt;
-	font-family:"Tahoma","sans-serif";}
-span.BalloonTextChar
-	{mso-style-name:"Balloon Text Char";
-	mso-style-priority:99;
-	mso-style-link:"Balloon Text";
-	font-family:"Tahoma","sans-serif";}
-span.EmailStyle19
-	{mso-style-type:personal;
-	font-family:"Calibri","sans-serif";
-	color:windowtext;}
-span.EmailStyle20
-	{mso-style-type:personal;
-	font-family:"Calibri","sans-serif";
-	color:#1F497D;}
-span.EmailStyle21
-	{mso-style-type:personal;
-	font-family:"Calibri","sans-serif";
-	color:#1F497D;}
-span.EmailStyle22
-	{mso-style-type:personal;
-	font-family:"Calibri","sans-serif";
-	color:#1F497D;}
-span.EmailStyle23
-	{mso-style-type:personal-reply;
-	font-family:"Calibri","sans-serif";
-	color:#1F497D;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-size:10.0pt;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">H</span>i,<o:p></o:p><=
-/p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Actually I am able to build both elf(for xloader ubo=
-ot) and linux toolchain(linux and userspace components) using tune mips32 a=
-nd tune mips64-n32 with the required libgcc libraries and other required he=
-aders.<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Glibc libraries were also build using tune-mips64-n3=
-2 with different combinations of abi arch and endianness.<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Now my issue is to combine both the toolchain in sin=
-gle meta-xtoolchain layer so that both can be build in one yocto workspace =
-using single meta-xtoolchain layer by just changing a variable in local.con=
-f and all is done.
-<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Example say Toolchain_var =3D&#8221;elf&#8221;<o:p><=
-/o:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; DEFAULTTUNE=3D&#8221;mips32&#8221;<o:p></o=
-:p></p>
-<p class=3D"MsoNormal">Build using the same gcc recipes the elf toolchain <=
-o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Toolchain_var=3D&#8221;linux&#8221;<o:p></o:p></p>
-<p class=3D"MsoNormal">DEFAULTTUNE=3D&#8221;mips64-n32&#8221;<o:p></o:p></p=
->
-<p class=3D"MsoNormal">Build using the same gcc recipes the linux toolchain=
-<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">EXTRA_OECONF_append_mips32=3D &#8220;<a href=3D"mail=
-to:$%7b@bb.utils.contains(">${@bb.utils.contains(</a>&quot;Toolchain_var &q=
-uot;, &#8220;elf&quot;, &quot;put elf related extra_oeconf&quot;, &quot;put=
- linux related extra_oeconf&quot;, d)}&quot;<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Is this type of thing possible to put EXTRA_OECONF c=
-onfigure options on the basis of toolchian variable ?????? and this EXTRA_O=
-ECONF_append_mips32 or EXTRA_OECONF_append_mips64-n32 works???<o:p></o:p></=
-p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Or tell me the way that I can add specific Configure=
- options for gcc on the basis of tune passed?????????????<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Please help me out on the issue.<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Thanks in advance!!!!<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Regards,<o:p></o:p></p>
-<p class=3D"MsoNormal">Rohit Jindal<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-</div>
-<br>
-<font face=3D"Arial" color=3D"Gray" size=3D"2"><br>
-<br>
-<br>
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D<br>
-Please refer to http://www.aricent.com/legal/email_disclaimer.html<br>
-for important disclosures regarding this electronic communication.<br>
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D<br>
-</font>
-</body>
-</html>
-
---_000_17797116383D4341B029FDF34C22BF6A72FEFCE3C3GUREXMB01ASIA_--
