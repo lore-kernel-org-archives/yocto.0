@@ -1,36 +1,30 @@
-Return-Path: <nicolas.dechesne@linaro.org>
-Received: from mail-ob0-f169.google.com (mail-ob0-f169.google.com
-	[209.85.214.169])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EDE21E00870
-	for <yocto@yoctoproject.org>; Thu, 23 Jan 2014 13:09:26 -0800 (PST)
-Received: by mail-ob0-f169.google.com with SMTP id wo20so2698639obc.0
-	for <yocto@yoctoproject.org>; Thu, 23 Jan 2014 13:09:25 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc:content-type;
-	bh=SfvjD55za5aRj2BM6EUdslntRzTTuKBSUojC92q4eOc=;
-	b=IDvWn5LMRdOSaYQuz0943FN5JU30ZZ64E3YQGy31QDDUN46DOYOtv4mYPuHH5Wiz51
-	fDTUDF+nhqFRawsd8Gy6ESDc0WI84ACClHatj7Ck1BG/lcpEO+tu1n3ZNK/gG44E2ms2
-	hc19PGBnNesS3HUytEDWcoZ9w0hofo6dyxMvHp6ZPK3ucoJ5oU0/XYI7WreT8xaWag8G
-	kiK7Htk2Is4guTasQqMeBjN4BRUz15FyD1gcMUppK0KXE+WvtVUC8WSd64lqljFadgxC
-	TrTFuGm5CEcGUYDPB0WPcLHOBQ8zOVKL8FyYlifxPqB5xXFcDyLiKCtqb/UaVWVAtBcC
-	5MdQ==
-X-Gm-Message-State: ALoCoQl//WrgcA8/33/BvVJ9Ett+au8gd3aM749Ks0O62kHBlR39Y4HskfvbHNburASSNRloxSyq
-X-Received: by 10.182.113.195 with SMTP id ja3mr8936181obb.46.1390511365694;
-	Thu, 23 Jan 2014 13:09:25 -0800 (PST)
+Return-Path: <vidal.develone@gmail.com>
+Received: from mail-qc0-f195.google.com (mail-qc0-f195.google.com
+	[209.85.216.195])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7F5FDE00870
+	for <yocto@yoctoproject.org>; Thu, 23 Jan 2014 13:13:18 -0800 (PST)
+Received: by mail-qc0-f195.google.com with SMTP id x13so1063217qcv.6
+	for <yocto@yoctoproject.org>; Thu, 23 Jan 2014 13:13:17 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:content-type; bh=VVQ7yNAvgIFOH+h5EgwE2LFeSTOFqJXmt+YksOps3zY=;
+	b=pgnBza3Hv1E2FVfTOSa9WNCm7hnEzIyuk6voReTjo1gockVggcqxyzTjLD48HBWI7t
+	d4Rq8EqVCsPWjdaLSGVaRkksvUy2okEcBIjTGVa98HVoWGDJEvjPOTfY4RdyamgKi35L
+	hZnxltDf3YFq2X06kB41VCi7Of6KwaFVFs1o8cyNXgoQj7heDHGZyhQXaJRbdLVafPZI
+	He0rR7B/J78BGb2TzztyhUkuEUzMDrcTShppO2116KzWCT3p1ZgzHYVGYhqvJlsyKkPG
+	KnIm+uuu/FLAHU6mekl/rIPlPYuL7xmqq4unzhjWTThdE2kvyEruqBW4MYv46aQQ6Nmc
+	y4Kg==
 MIME-Version: 1.0
-Received: by 10.76.182.99 with HTTP; Thu, 23 Jan 2014 13:09:04 -0800 (PST)
-In-Reply-To: <CAFZh4h8D1y9-bkr3dM7Z_30FGu=8iUA8u7xMMdO3yquXR_Qbng@mail.gmail.com>
-References: <CAFZh4h-zi=pDLr5JYgFeEfU72+qMRz2FJZ8iDt-Q3f=P+wVgKA@mail.gmail.com>
-	<CAALGJZYWh+7D7C7FKxgWM+FAfhSDA9b4utGANj12bNd7t0aw6Q@mail.gmail.com>
-	<CAFZh4h8D1y9-bkr3dM7Z_30FGu=8iUA8u7xMMdO3yquXR_Qbng@mail.gmail.com>
-From: Nicolas Dechesne <nicolas.dechesne@linaro.org>
-Date: Thu, 23 Jan 2014 22:09:04 +0100
-Message-ID: <CAP71Wjypm1yPcwiEktKH=bN6fUCLtycaPQxNkdF3NbZyUethrw@mail.gmail.com>
-To: Brian Hutchinson <b.hutchman@gmail.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: How to get a list of packages (with versions) used to create an image?
+X-Received: by 10.224.89.71 with SMTP id d7mr15246142qam.26.1390511597819;
+	Thu, 23 Jan 2014 13:13:17 -0800 (PST)
+Received: by 10.140.93.182 with HTTP; Thu, 23 Jan 2014 13:13:17 -0800 (PST)
+In-Reply-To: <CANwz6nyzMND1u_TGMNBA3wNF-2h6SjM3JQgTf7tM=q10b7fMGw@mail.gmail.com>
+References: <CANwz6nyzMND1u_TGMNBA3wNF-2h6SjM3JQgTf7tM=q10b7fMGw@mail.gmail.com>
+Date: Thu, 23 Jan 2014 14:13:17 -0700
+Message-ID: <CANwz6nys6XHQwB9DHUdgJyGuG5rinxdYqpG4y3DYgOhbqHbHDg@mail.gmail.com>
+From: Edward Vidal <vidal.develone@gmail.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: meta-topic meta-zynq
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,32 +36,85 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 23 Jan 2014 21:09:31 -0000
+X-List-Received-Date: Thu, 23 Jan 2014 21:13:23 -0000
+Content-Type: multipart/alternative; boundary=001a11c3e166d8371e04f0a9b5b8
+
+--001a11c3e166d8371e04f0a9b5b8
 Content-Type: text/plain; charset=ISO-8859-1
 
-On Thu, Jan 23, 2014 at 9:42 PM, Brian Hutchinson <b.hutchman@gmail.com> wrote:
-> Yes, but:
+---------- Forwarded message ----------
+From: Edward Vidal <vidal.develone@gmail.com>
+Date: Wed, Jan 22, 2014 at 9:37 AM
+Subject: meta-topic meta-zynq
+To: meta-xilinx@yoctoproject.org
+
+
+Hello All
+Not able to source or . in a bitbake receipe.  When source is used the
+error is source not found.  When . is used the path is not set and xps can
+not be found.
+Could the be a ubuntu problem.  I just recently changed from Fedora19
+x86_64 to precise1-Ubuntu SMP Wed Aug 14 16:19:23 UTC 2013 x86_64 x86_64
+x86_64 GNU/Linux.
+
+1.) MACHINE=zedboard bitbake virtual/kernel okay
+2.) MACHINE=zedboard bitbake u-boot-zynq okay
+3.) MACHINE=zedboard bitbake sd-bootscript okay
+4.) MACHINE=zedboard bitbake fpga-image fails
+I can manually do the following steps to obtain a fpga.bin file.
+1.) cd
+zynq_oe/build/tmp-eglibc/work/zedboard-oe-linux-gnueabi/fpga-image/5.AUTOINC-0a90b0d42e-r0/git/cf_adv7511_zed/
+2.) . /opt/Xilinx/14.4/ISE_DS/settings64.sh
+3.) xps -nw system.xmp
+4.) run bits
+5.) run exporttosdk
+6.) python ../../fpga-bit-to-bin.py --flip implementation/system.bit
+../../../5.AUTOINC-0a90b0d42e-r0/fpga.bin
+Design name: system.ncd;HW_TIMEOUT=FALSE;UserID=0xFFFFFFFF
+Partname 7z020clg484
+Date 2014/01/22
+Time 08:20:03
+found binary data: 4045564
+After deleting fpga-image from meta-zynq/receipes-core/images/my-image.bb
+MACHINE=zedboard bitbake my-image okay
+Thanks
+
+--001a11c3e166d8371e04f0a9b5b8
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><br><br><div class=3D"gmail_quote">---------- Forwarded me=
+ssage ----------<br>From: <b class=3D"gmail_sendername">Edward Vidal</b> <s=
+pan dir=3D"ltr">&lt;<a href=3D"mailto:vidal.develone@gmail.com">vidal.devel=
+one@gmail.com</a>&gt;</span><br>
+Date: Wed, Jan 22, 2014 at 9:37 AM<br>Subject: meta-topic meta-zynq<br>To: =
+<a href=3D"mailto:meta-xilinx@yoctoproject.org">meta-xilinx@yoctoproject.or=
+g</a><br><br><br><div dir=3D"ltr"><div>Hello All<br>Not able to source or .=
+ in a bitbake receipe.=A0 When source is used the error is source not found=
+.=A0 When . is used the path is not set and xps can not be found. <br>
+Could the be a ubuntu problem.=A0 I just recently changed from Fedora19 x86=
+_64 to precise1-Ubuntu SMP Wed Aug 14 16:19:23 UTC 2013 x86_64 x86_64 x86_6=
+4 GNU/Linux.<br>
+<br>1.) MACHINE=3Dzedboard bitbake virtual/kernel okay<br>2.) MACHINE=3Dzed=
+board bitbake u-boot-zynq okay<br>3.) MACHINE=3Dzedboard bitbake sd-bootscr=
+ipt okay<br>4.) MACHINE=3Dzedboard bitbake fpga-image fails<br>I can manual=
+ly do the following steps to obtain a fpga.bin file.<br>
+
+1.) cd zynq_oe/build/tmp-eglibc/work/zedboard-oe-linux-gnueabi/fpga-image/5=
+.AUTOINC-0a90b0d42e-r0/git/cf_adv7511_zed/<br>2.) . /opt/Xilinx/14.4/ISE_DS=
+/settings64.sh<br>3.) xps -nw system.xmp<br>4.) run bits<br>5.) run exportt=
+osdk<br>
+
+6.) python ../../fpga-bit-to-bin.py --flip implementation/system.bit=A0 ../=
+../../5.AUTOINC-0a90b0d42e-r0/fpga.bin<br>Design name: system.ncd;HW_TIMEOU=
+T=3DFALSE;UserID=3D0xFFFFFFFF<br>Partname 7z020clg484<br>Date 2014/01/22<br=
 >
-> 1.  I don't think package-index is image specific ... its just a list of
-> everything that has been bitbaked on the box (which doesn't equate to one
-> particular image ... it's the net of all the packages from all the images
-> that have been built thus far if I'm not mistaken ... it main use is so the
-> feeds work and the the target know what packages are available).
-> 2.  I felt like this was probably something common and a way already existed
-> so I thought I should ask in case I missed something before I wasted time
-> re-inventing the wheel.
->
-> Based on the responses so far ... it looks like this might not be as common
-> a request as I thought!
+Time 08:20:03<br>
+found binary data: 4045564<br>After deleting fpga-image from meta-zynq/rece=
+ipes-core/images/<a href=3D"http://my-image.bb" target=3D"_blank">my-image.=
+bb</a><br>MACHINE=3Dzedboard bitbake my-image okay<br></div>Thanks<br></div=
 >
 
-no. i think it is very common, and it's the purpose of 'buildhistory',
-as mentioned already. for each image generated, you will get (among
-other things)
+</div><br></div>
 
-installed-package-names.txt
-installed-package-sizes.txt
-installed-packages.txt
-
-list of all packages with version, sizes, ..
-
+--001a11c3e166d8371e04f0a9b5b8--
