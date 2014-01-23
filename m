@@ -1,30 +1,28 @@
-Return-Path: <vidal.develone@gmail.com>
-Received: from mail-qc0-f195.google.com (mail-qc0-f195.google.com
-	[209.85.216.195])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7F5FDE00870
-	for <yocto@yoctoproject.org>; Thu, 23 Jan 2014 13:13:18 -0800 (PST)
-Received: by mail-qc0-f195.google.com with SMTP id x13so1063217qcv.6
-	for <yocto@yoctoproject.org>; Thu, 23 Jan 2014 13:13:17 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:content-type; bh=VVQ7yNAvgIFOH+h5EgwE2LFeSTOFqJXmt+YksOps3zY=;
-	b=pgnBza3Hv1E2FVfTOSa9WNCm7hnEzIyuk6voReTjo1gockVggcqxyzTjLD48HBWI7t
-	d4Rq8EqVCsPWjdaLSGVaRkksvUy2okEcBIjTGVa98HVoWGDJEvjPOTfY4RdyamgKi35L
-	hZnxltDf3YFq2X06kB41VCi7Of6KwaFVFs1o8cyNXgoQj7heDHGZyhQXaJRbdLVafPZI
-	He0rR7B/J78BGb2TzztyhUkuEUzMDrcTShppO2116KzWCT3p1ZgzHYVGYhqvJlsyKkPG
-	KnIm+uuu/FLAHU6mekl/rIPlPYuL7xmqq4unzhjWTThdE2kvyEruqBW4MYv46aQQ6Nmc
-	y4Kg==
-MIME-Version: 1.0
-X-Received: by 10.224.89.71 with SMTP id d7mr15246142qam.26.1390511597819;
-	Thu, 23 Jan 2014 13:13:17 -0800 (PST)
-Received: by 10.140.93.182 with HTTP; Thu, 23 Jan 2014 13:13:17 -0800 (PST)
-In-Reply-To: <CANwz6nyzMND1u_TGMNBA3wNF-2h6SjM3JQgTf7tM=q10b7fMGw@mail.gmail.com>
-References: <CANwz6nyzMND1u_TGMNBA3wNF-2h6SjM3JQgTf7tM=q10b7fMGw@mail.gmail.com>
-Date: Thu, 23 Jan 2014 14:13:17 -0700
-Message-ID: <CANwz6nys6XHQwB9DHUdgJyGuG5rinxdYqpG4y3DYgOhbqHbHDg@mail.gmail.com>
-From: Edward Vidal <vidal.develone@gmail.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: meta-topic meta-zynq
+Return-Path: <gley-yocto@m.gmane.org>
+Received: from plane.gmane.org (plane.gmane.org [80.91.229.3])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 126A3E00861
+	for <yocto@yoctoproject.org>; Thu, 23 Jan 2014 14:19:32 -0800 (PST)
+Received: from list by plane.gmane.org with local (Exim 4.69)
+	(envelope-from <gley-yocto@m.gmane.org>) id 1W6ScT-0000nZ-WB
+	for yocto@yoctoproject.org; Thu, 23 Jan 2014 23:19:30 +0100
+Received: from pd907e742.dip0.t-ipconnect.de ([217.7.231.66])
+	by main.gmane.org with esmtp (Gmexim 0.1 (Debian))
+	id 1AlnuQ-0007hv-00
+	for <yocto@yoctoproject.org>; Thu, 23 Jan 2014 23:19:29 +0100
+Received: from gmane by pd907e742.dip0.t-ipconnect.de with local (Gmexim 0.1
+	(Debian)) id 1AlnuQ-0007hv-00
+	for <yocto@yoctoproject.org>; Thu, 23 Jan 2014 23:19:29 +0100
+X-Injected-Via-Gmane: http://gmane.org/
+To: yocto@yoctoproject.org
+From: Robert Berger <gmane@reliableembeddedsystems.com>
+Date: Fri, 24 Jan 2014 00:19:17 +0200
+Message-ID: <52E19565.4080306@reliableembeddedsystems.com>
+Mime-Version: 1.0
+X-Complaints-To: usenet@ger.gmane.org
+X-Gmane-NNTP-Posting-Host: pd907e742.dip0.t-ipconnect.de
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:24.0) Gecko/20100101 Thunderbird/24.0
+Subject: fetcher from gitpod
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -36,85 +34,44 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 23 Jan 2014 21:13:23 -0000
-Content-Type: multipart/alternative; boundary=001a11c3e166d8371e04f0a9b5b8
-
---001a11c3e166d8371e04f0a9b5b8
+X-List-Received-Date: Thu, 23 Jan 2014 22:19:35 -0000
 Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: 7bit
 
----------- Forwarded message ----------
-From: Edward Vidal <vidal.develone@gmail.com>
-Date: Wed, Jan 22, 2014 at 9:37 AM
-Subject: meta-topic meta-zynq
-To: meta-xilinx@yoctoproject.org
+Hi,
+
+I would like to fetch some get repos (currently u-boot and kernel) from
+a local git caching server[1]. This means if something changed on
+git://git.kernel.org/pub/scm/linux/kernel/git/stable/linux-stable.git
+since the last invocations it updates the changes, if nothing changed it
+provides the repo locally.
+
+After setting up the right ssh keys not to ask for a password it works
+like this:
+
+git clone gp@gitpod:linux-stable.git
+Cloning into 'linux-stable'...
+fetching from
+git://git.kernel.org/pub/scm/linux/kernel/git/stable/linux-stable.git
+remote: Counting objects: 3572381, done.
+remote: Compressing objects: 100% (574164/574164), done.
+Receiving objects: 100% (3572381/3572381), 752.89 MiB | 11.53 MiB/s, done.
+remote: Total 3572381 (delta 3008721), reused 3531934 (delta 2968274)
+Resolving deltas: 100% (3008721/3008721), done.
+
+Should this somehow already work with existing fetchers, or do I need to
+hack together my own fetcher?
+
+Regards,
+
+Robert
+
+[1] https://github.com/sitaramc/gitpod..."The problem is never how to
+get new, innovative thoughts into your mind, but how to get old ones
+out." -- Dee Hock
+
+My public pgp key is available,at:
+http://pgp.mit.edu:11371/pks/lookup?op=get&search=0x90320BF1
 
 
-Hello All
-Not able to source or . in a bitbake receipe.  When source is used the
-error is source not found.  When . is used the path is not set and xps can
-not be found.
-Could the be a ubuntu problem.  I just recently changed from Fedora19
-x86_64 to precise1-Ubuntu SMP Wed Aug 14 16:19:23 UTC 2013 x86_64 x86_64
-x86_64 GNU/Linux.
 
-1.) MACHINE=zedboard bitbake virtual/kernel okay
-2.) MACHINE=zedboard bitbake u-boot-zynq okay
-3.) MACHINE=zedboard bitbake sd-bootscript okay
-4.) MACHINE=zedboard bitbake fpga-image fails
-I can manually do the following steps to obtain a fpga.bin file.
-1.) cd
-zynq_oe/build/tmp-eglibc/work/zedboard-oe-linux-gnueabi/fpga-image/5.AUTOINC-0a90b0d42e-r0/git/cf_adv7511_zed/
-2.) . /opt/Xilinx/14.4/ISE_DS/settings64.sh
-3.) xps -nw system.xmp
-4.) run bits
-5.) run exporttosdk
-6.) python ../../fpga-bit-to-bin.py --flip implementation/system.bit
-../../../5.AUTOINC-0a90b0d42e-r0/fpga.bin
-Design name: system.ncd;HW_TIMEOUT=FALSE;UserID=0xFFFFFFFF
-Partname 7z020clg484
-Date 2014/01/22
-Time 08:20:03
-found binary data: 4045564
-After deleting fpga-image from meta-zynq/receipes-core/images/my-image.bb
-MACHINE=zedboard bitbake my-image okay
-Thanks
-
---001a11c3e166d8371e04f0a9b5b8
-Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><br><br><div class=3D"gmail_quote">---------- Forwarded me=
-ssage ----------<br>From: <b class=3D"gmail_sendername">Edward Vidal</b> <s=
-pan dir=3D"ltr">&lt;<a href=3D"mailto:vidal.develone@gmail.com">vidal.devel=
-one@gmail.com</a>&gt;</span><br>
-Date: Wed, Jan 22, 2014 at 9:37 AM<br>Subject: meta-topic meta-zynq<br>To: =
-<a href=3D"mailto:meta-xilinx@yoctoproject.org">meta-xilinx@yoctoproject.or=
-g</a><br><br><br><div dir=3D"ltr"><div>Hello All<br>Not able to source or .=
- in a bitbake receipe.=A0 When source is used the error is source not found=
-.=A0 When . is used the path is not set and xps can not be found. <br>
-Could the be a ubuntu problem.=A0 I just recently changed from Fedora19 x86=
-_64 to precise1-Ubuntu SMP Wed Aug 14 16:19:23 UTC 2013 x86_64 x86_64 x86_6=
-4 GNU/Linux.<br>
-<br>1.) MACHINE=3Dzedboard bitbake virtual/kernel okay<br>2.) MACHINE=3Dzed=
-board bitbake u-boot-zynq okay<br>3.) MACHINE=3Dzedboard bitbake sd-bootscr=
-ipt okay<br>4.) MACHINE=3Dzedboard bitbake fpga-image fails<br>I can manual=
-ly do the following steps to obtain a fpga.bin file.<br>
-
-1.) cd zynq_oe/build/tmp-eglibc/work/zedboard-oe-linux-gnueabi/fpga-image/5=
-.AUTOINC-0a90b0d42e-r0/git/cf_adv7511_zed/<br>2.) . /opt/Xilinx/14.4/ISE_DS=
-/settings64.sh<br>3.) xps -nw system.xmp<br>4.) run bits<br>5.) run exportt=
-osdk<br>
-
-6.) python ../../fpga-bit-to-bin.py --flip implementation/system.bit=A0 ../=
-../../5.AUTOINC-0a90b0d42e-r0/fpga.bin<br>Design name: system.ncd;HW_TIMEOU=
-T=3DFALSE;UserID=3D0xFFFFFFFF<br>Partname 7z020clg484<br>Date 2014/01/22<br=
->
-Time 08:20:03<br>
-found binary data: 4045564<br>After deleting fpga-image from meta-zynq/rece=
-ipes-core/images/<a href=3D"http://my-image.bb" target=3D"_blank">my-image.=
-bb</a><br>MACHINE=3Dzedboard bitbake my-image okay<br></div>Thanks<br></div=
->
-
-</div><br></div>
-
---001a11c3e166d8371e04f0a9b5b8--
