@@ -1,33 +1,36 @@
-Return-Path: <b.hutchman@gmail.com>
-Received: from mail-oa0-f46.google.com (mail-oa0-f46.google.com
-	[209.85.219.46])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7D73AE00893
-	for <yocto@yoctoproject.org>; Fri, 24 Jan 2014 06:07:47 -0800 (PST)
-Received: by mail-oa0-f46.google.com with SMTP id n16so3773740oag.19
-	for <yocto@yoctoproject.org>; Fri, 24 Jan 2014 06:07:47 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type;
-	bh=5jJcjQalnNmuwdKjpjS7l3IhZb6gygO93gKUaUZjwi4=;
-	b=IhVUFMn0n5Yxp+7yHJm+8qp815jbvSxsdfX8yScjaXCAuIHGvzLHLwxm+IWF/2U3zM
-	akIBPjQXJtdDzVOBohQvJnchAfaYMSEhqQi7X5B2TvaXoXPi9TTTKCRuduGUT2cz7x80
-	ao8cIF4a4Df9jEkCNX8v3Nq8KhbBN7MSVNRcF6gXP+fhu1J8/ttYipRWVs/Zg/p8XH9Z
-	bC0InmuXoeLJgFyirUw1WIOfLbTjhuAZJ+aI/Fv70KaCmRA1umjSqXDmXYA5Fgd17Hkm
-	4QMH+Z79jw4qa5rns/NNcnRrIwwMAocawCcemU8kj6zmxN9F1omwzLaU2iXdV2gdkL6D
-	3REQ==
-MIME-Version: 1.0
-X-Received: by 10.182.226.202 with SMTP id ru10mr12196355obc.7.1390572466912; 
-	Fri, 24 Jan 2014 06:07:46 -0800 (PST)
-Received: by 10.60.94.114 with HTTP; Fri, 24 Jan 2014 06:07:46 -0800 (PST)
-In-Reply-To: <4881727.Fp3ZJb6UjL@peggleto-mobl5.ger.corp.intel.com>
+Return-Path: <belen.barros.pena@intel.com>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4B1D0E008E0
+	for <yocto@yoctoproject.org>; Fri, 24 Jan 2014 06:12:12 -0800 (PST)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga101.jf.intel.com with ESMTP; 24 Jan 2014 06:12:12 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.95,712,1384329600"; d="scan'208";a="471875829"
+Received: from irsmsx101.ger.corp.intel.com ([163.33.3.153])
+	by orsmga002.jf.intel.com with ESMTP; 24 Jan 2014 06:12:11 -0800
+Received: from irsmsx106.ger.corp.intel.com ([169.254.8.188]) by
+	IRSMSX101.ger.corp.intel.com ([163.33.3.153]) with mapi id
+	14.03.0123.003; Fri, 24 Jan 2014 14:10:39 +0000
+From: "Barros Pena, Belen" <belen.barros.pena@intel.com>
+To: Brian Hutchinson <b.hutchman@gmail.com>
+Thread-Topic: [yocto] How to get a list of packages (with versions) used to
+	create an image?
+Thread-Index: AQHPGQ4ONfolAKaeK0WXY2pZ/Srr+A==
+Date: Fri, 24 Jan 2014 14:10:38 +0000
+Message-ID: <CF0822F9.3BA30%belen.barros.pena@intel.com>
 References: <CAFZh4h-zi=pDLr5JYgFeEfU72+qMRz2FJZ8iDt-Q3f=P+wVgKA@mail.gmail.com>
+	<CAALGJZYWh+7D7C7FKxgWM+FAfhSDA9b4utGANj12bNd7t0aw6Q@mail.gmail.com>
+	<CAFZh4h8D1y9-bkr3dM7Z_30FGu=8iUA8u7xMMdO3yquXR_Qbng@mail.gmail.com>
+	<CAP71Wjypm1yPcwiEktKH=bN6fUCLtycaPQxNkdF3NbZyUethrw@mail.gmail.com>
 	<CF07F9D1.3B9E2%belen.barros.pena@intel.com>
 	<CAFZh4h9J7qjXvHD2esvgRLQwEBqYM_Ha5LkBScmo1hcXG=hMiQ@mail.gmail.com>
-	<4881727.Fp3ZJb6UjL@peggleto-mobl5.ger.corp.intel.com>
-Date: Fri, 24 Jan 2014 09:07:46 -0500
-Message-ID: <CAFZh4h8gSP9PWCVLm+uNJQR4uc3GsCEkCgpvYeFP0W413yDubw@mail.gmail.com>
-From: Brian Hutchinson <b.hutchman@gmail.com>
-To: Paul Eggleton <paul.eggleton@linux.intel.com>
+In-Reply-To: <CAFZh4h9J7qjXvHD2esvgRLQwEBqYM_Ha5LkBScmo1hcXG=hMiQ@mail.gmail.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+user-agent: Microsoft-MacOutlook/14.3.9.131030
+x-originating-ip: [10.237.224.31]
+MIME-Version: 1.0
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: How to get a list of packages (with versions) used to create an image?
 X-BeenThere: yocto@yoctoproject.org
@@ -41,72 +44,115 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 24 Jan 2014 14:07:48 -0000
-Content-Type: multipart/alternative; boundary=001a11c32efaecc30a04f0b7e12a
-
---001a11c32efaecc30a04f0b7e12a
-Content-Type: text/plain; charset=ISO-8859-1
-
-On Fri, Jan 24, 2014 at 8:53 AM, Paul Eggleton <
-paul.eggleton@linux.intel.com> wrote:
-
->
-> If you want license and version information, probably the best place to
-> get that is the automatically produced license manifest for the image:
->
->
-> http://www.yoctoproject.org/docs/current/dev-manual/dev-manual.html#maintaining-open-source-license-compliance-during-your-products-lifecycle
->
-> Cheers,
-> Paul
->
-> For license compliance, I've just been taring up the deploy/licenses dir.
-I know it includes way more than just the licenses for the packages in the
-images but I've not investigated yet if there's a fancy way of managing
-those better.
-
-I've seen that section of the document you point out before ... I just need
-to spend more time in it.  Our release procedure in this area needs to be
-automated/streamlined and improved too!  I'll have to search the archives
-and see if I can find prior discussions on that topic.
-
-Regards,
-
-Brian
-
---001a11c32efaecc30a04f0b7e12a
-Content-Type: text/html; charset=ISO-8859-1
+X-List-Received-Date: Fri, 24 Jan 2014 14:12:15 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="iso-8859-1"
+Content-ID: <4E2BFF467B8FB1409F525698FD5CF1A2@intel.com>
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div class=3D"gmail_extra"><div class=3D"gmail_quote">On F=
-ri, Jan 24, 2014 at 8:53 AM, Paul Eggleton <span dir=3D"ltr">&lt;<a href=3D=
-"mailto:paul.eggleton@linux.intel.com" target=3D"_blank">paul.eggleton@linu=
-x.intel.com</a>&gt;</span> wrote:<br>
-<blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-=
-left:1px solid rgb(204,204,204);padding-left:1ex"><div class=3D"im">
-<br>
-</div>If you want license and version information, probably the best place =
-to<br>
-get that is the automatically produced license manifest for the image:<br>
-<br>
-<a href=3D"http://www.yoctoproject.org/docs/current/dev-manual/dev-manual.h=
-tml#maintaining-open-source-license-compliance-during-your-products-lifecyc=
-le" target=3D"_blank">http://www.yoctoproject.org/docs/current/dev-manual/d=
-ev-manual.html#maintaining-open-source-license-compliance-during-your-produ=
-cts-lifecycle</a><br>
 
-<br>
-Cheers,<br>
-Paul<br>
-<span class=3D""><font color=3D"#888888"><br></font></span></blockquote><di=
-v>For license compliance, I&#39;ve just been taring up the deploy/licenses =
-dir.=A0 I know it includes way more than just the licenses for the packages=
- in the images but I&#39;ve not investigated yet if there&#39;s a fancy way=
- of managing those better.=A0 <br>
-<br>I&#39;ve seen that section of the document you point out before ... I j=
-ust need to spend more time in it.=A0 Our release procedure in this area ne=
-eds to be automated/streamlined and improved too!=A0 I&#39;ll have to searc=
-h the archives and see if I can find prior discussions on that topic.<br>
-<br>Regards,<br><br>Brian<br></div></div><br></div></div>
 
---001a11c32efaecc30a04f0b7e12a--
+On 24/01/2014 13:46, "Brian Hutchinson" <b.hutchman@gmail.com> wrote:
+
+>
+>On Fri, Jan 24, 2014 at 6:10 AM, Barros Pena, Belen
+><belen.barros.pena@intel.com> wrote:
+>
+>
+>
+>On 23/01/2014 21:09, "Nicolas Dechesne" <nicolas.dechesne@linaro.org>
+>wrote:
+>
+>>On Thu, Jan 23, 2014 at 9:42 PM, Brian Hutchinson <b.hutchman@gmail.com>
+>>wrote:
+>>> Yes, but:
+>>>
+>>> 1.  I don't think package-index is image specific ... its just a list
+>>>of
+>>> everything that has been bitbaked on the box (which doesn't equate to
+>>>one
+>>> particular image ... it's the net of all the packages from all the
+>>>images
+>>> that have been built thus far if I'm not mistaken ... it main use is so
+>>>the
+>>> feeds work and the the target know what packages are available).
+>>> 2.  I felt like this was probably something common and a way already
+>>>existed
+>>> so I thought I should ask in case I missed something before I wasted
+>>>time
+>>> re-inventing the wheel.
+>>>
+>>> Based on the responses so far ... it looks like this might not be as
+>>>common
+>>> a request as I thought!
+>>>
+>>
+>>no. i think it is very common, and it's the purpose of 'buildhistory',
+>>as mentioned already. for each image generated, you will get (among
+>>other things)
+>>
+>>installed-package-names.txt
+>>installed-package-sizes.txt
+>>installed-packages.txt
+>>
+>>list of all packages with version, sizes, ..
+>
+>
+>
+>I know this will not help, since we are still building Toaster. But is it
+>something like this
+>
+>http://www.yoctoproject.org/toaster/image-information-packages.html
+>
+>you are thinking of? I would be interested in hearing if this would give
+>you what you need.
+>
+>
+>
+>
+>
+>
+>Hi Bel=E9n,
+>
+>
+>That is VERY nice!  I like it.
+
+Thanks, Brian. That is very encouraging :)
+
+>I'm looking for something a bit simpler though ... just want to be able
+>to have a text file with the package names and their versions that we can
+>either include as a file or copy paste in our release
+> notes since we have to keep up with this (and license info.) for every
+>release we do.
+>
+>How did you generate the html for that?
+
+What you looked at is only a prototype of the Toaster interface. Toaster
+is an utility you can run alongside the build system. It collects
+information about the build process and the artefacts generated, stores it
+in a database, and presents it in a web interface. We are currently
+building the web interface, but the back end of Toaster is already in
+place. The back end comes with a rest API which in theory you could use to
+collect the package, package version and license for a certain image, as
+long as you had Toaster running during the build.
+
+The API specification is here:
+
+https://wiki.yoctoproject.org/wiki/Analysis_REST_API_Contracts
+
+Instructions on how to Toaster are here:
+
+
+>Looks like buildhistory is what I need to be looking into from the
+>responses so far.
+>
+>
+>
+>Regards,
+>
+>Brian
+>
+>
+>
+
+
