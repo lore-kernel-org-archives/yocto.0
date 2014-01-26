@@ -1,25 +1,25 @@
 Return-Path: <Wenzong.Fan@windriver.com>
 Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6FEB5E003FA
-	for <yocto@yoctoproject.org>; Sun, 26 Jan 2014 00:54:23 -0800 (PST)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 71317E004E5
+	for <yocto@yoctoproject.org>; Sun, 26 Jan 2014 00:54:25 -0800 (PST)
 Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
 	[147.11.189.40])
-	by mail.windriver.com (8.14.5/8.14.5) with ESMTP id s0Q8sN5D019546
+	by mail.windriver.com (8.14.5/8.14.5) with ESMTP id s0Q8sPhl019552
 	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL)
-	for <yocto@yoctoproject.org>; Sun, 26 Jan 2014 00:54:23 -0800 (PST)
+	for <yocto@yoctoproject.org>; Sun, 26 Jan 2014 00:54:25 -0800 (PST)
 Received: from pek-hostel-vm12.wrs.com (128.224.153.182) by
 	ALA-HCA.corp.ad.wrs.com (147.11.189.40) with Microsoft SMTP Server id
-	14.2.347.0; Sun, 26 Jan 2014 00:54:22 -0800
+	14.2.347.0; Sun, 26 Jan 2014 00:54:25 -0800
 From: <wenzong.fan@windriver.com>
 To: <yocto@yoctoproject.org>, <xin.ouyang@windriver.com>,
 	<mark.hatle@windriver.com>
-Date: Sun, 26 Jan 2014 03:54:15 -0500
-Message-ID: <3a2ef0bff3d6174799b20f9aa10e730aefcc4716.1390725931.git.wenzong.fan@windriver.com>
+Date: Sun, 26 Jan 2014 03:54:16 -0500
+Message-ID: <da730d8219846d94cbe85b10b3f7b00c4b60dadc.1390725931.git.wenzong.fan@windriver.com>
 X-Mailer: git-send-email 1.7.9.5
 In-Reply-To: <cover.1390725931.git.wenzong.fan@windriver.com>
 References: <cover.1390725931.git.wenzong.fan@windriver.com>
 MIME-Version: 1.0
-Subject: [meta-selinux][PATCH 1/3] udev/init: sync to latest poky version ae819671
+Subject: [meta-selinux][PATCH 2/3] refpolicy: fix real path for udevadm
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -36,30 +36,54 @@ Content-Type: text/plain
 
 From: Wenzong Fan <wenzong.fan@windriver.com>
 
-Sync with the latest init file from poky as of 01262014:
-
-    oe-core commit: ae819671489a22bfdda11210ff620f564aa9b24b
-
 Signed-off-by: Wenzong Fan <wenzong.fan@windriver.com>
 ---
- recipes-core/udev/udev/init |    4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
+ .../refpolicy-2.20130424/poky-fc-udevd.patch       |   20 ++++++++++++++------
+ 1 file changed, 14 insertions(+), 6 deletions(-)
 
-diff --git a/recipes-core/udev/udev/init b/recipes-core/udev/udev/init
-index 29146ec..7194e8c 100644
---- a/recipes-core/udev/udev/init
-+++ b/recipes-core/udev/udev/init
-@@ -56,7 +56,9 @@ case "$1" in
-     }
-     [ -e /dev/pts ] || mkdir -m 0755 /dev/pts
-     [ -e /dev/shm ] || mkdir -m 1777 /dev/shm
--    mount -a -t tmpfs 2>/dev/null
-+    # the automount rule for udev needs /tmp directory available, as /tmp is a symlink
-+    # to /var/tmp which in turn is a symlink to /var/volatile/tmp, we need to make sure
-+    # /var/volatile/tmp directory to be available.
-     mkdir -p /var/volatile/tmp
+diff --git a/recipes-security/refpolicy/refpolicy-2.20130424/poky-fc-udevd.patch b/recipes-security/refpolicy/refpolicy-2.20130424/poky-fc-udevd.patch
+index d6540a9..c6c19be 100644
+--- a/recipes-security/refpolicy/refpolicy-2.20130424/poky-fc-udevd.patch
++++ b/recipes-security/refpolicy/refpolicy-2.20130424/poky-fc-udevd.patch
+@@ -1,17 +1,17 @@
+-From 86fd93b15b97042bcf5ff1b2d1228e7d64b8cfd1 Mon Sep 17 00:00:00 2001
++From 025bd3c77d3eeb0e316413bf7e6353f1ccd7f6b2 Mon Sep 17 00:00:00 2001
+ From: Wenzong Fan <wenzong.fan@windriver.com>
+-Date: Tue, 7 Jan 2014 22:22:00 -0500
+-Subject: [PATCH] refpolicy: fix real path for udevd
++Date: Sat, 25 Jan 2014 23:40:05 -0500
++Subject: [PATCH] refpolicy: fix real path for udevd/udevadm
  
-     # Cache handling.
+ Upstream-Status: Inappropriate [configuration]
+ 
+ Signed-off-by: Wenzong Fan <wenzong.fan@windriver.com>
+ ---
+- policy/modules/system/udev.fc |    1 +
+- 1 file changed, 1 insertion(+)
++ policy/modules/system/udev.fc |    2 ++
++ 1 file changed, 2 insertions(+)
+ 
+ diff --git a/policy/modules/system/udev.fc b/policy/modules/system/udev.fc
+-index 40928d8..36d471d 100644
++index 40928d8..491bb23 100644
+ --- a/policy/modules/system/udev.fc
+ +++ b/policy/modules/system/udev.fc
+ @@ -10,6 +10,7 @@
+@@ -22,6 +22,14 @@ index 40928d8..36d471d 100644
+  
+  ifdef(`distro_debian',`
+  /lib/udev/create_static_nodes -- gen_context(system_u:object_r:udev_exec_t,s0)
++@@ -27,6 +28,7 @@ ifdef(`distro_redhat',`
++ ')
++ 
++ /usr/bin/udevinfo --	gen_context(system_u:object_r:udev_exec_t,s0)
+++/usr/bin/udevadm  --	gen_context(system_u:object_r:udev_exec_t,s0)
++ 
++ /usr/lib/systemd/systemd-udevd -- gen_context(system_u:object_r:udev_exec_t,s0)
++ 
+ -- 
+ 1.7.9.5
+ 
 -- 
 1.7.9.5
 
