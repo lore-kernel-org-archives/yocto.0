@@ -1,23 +1,25 @@
 Return-Path: <Wenzong.Fan@windriver.com>
-Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2FF12E003FA
-	for <yocto@yoctoproject.org>; Sun, 26 Jan 2014 00:54:22 -0800 (PST)
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6FEB5E003FA
+	for <yocto@yoctoproject.org>; Sun, 26 Jan 2014 00:54:23 -0800 (PST)
 Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
 	[147.11.189.40])
-	by mail1.windriver.com (8.14.5/8.14.5) with ESMTP id s0Q8sL10017837
+	by mail.windriver.com (8.14.5/8.14.5) with ESMTP id s0Q8sN5D019546
 	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL)
-	for <yocto@yoctoproject.org>; Sun, 26 Jan 2014 00:54:21 -0800 (PST)
+	for <yocto@yoctoproject.org>; Sun, 26 Jan 2014 00:54:23 -0800 (PST)
 Received: from pek-hostel-vm12.wrs.com (128.224.153.182) by
 	ALA-HCA.corp.ad.wrs.com (147.11.189.40) with Microsoft SMTP Server id
-	14.2.347.0; Sun, 26 Jan 2014 00:54:21 -0800
+	14.2.347.0; Sun, 26 Jan 2014 00:54:22 -0800
 From: <wenzong.fan@windriver.com>
 To: <yocto@yoctoproject.org>, <xin.ouyang@windriver.com>,
 	<mark.hatle@windriver.com>
-Date: Sun, 26 Jan 2014 03:54:14 -0500
-Message-ID: <cover.1390725931.git.wenzong.fan@windriver.com>
+Date: Sun, 26 Jan 2014 03:54:15 -0500
+Message-ID: <3a2ef0bff3d6174799b20f9aa10e730aefcc4716.1390725931.git.wenzong.fan@windriver.com>
 X-Mailer: git-send-email 1.7.9.5
+In-Reply-To: <cover.1390725931.git.wenzong.fan@windriver.com>
+References: <cover.1390725931.git.wenzong.fan@windriver.com>
 MIME-Version: 1.0
-Subject: [meta-selinux][PATCH 0/3] Some fix to udev/refpolicy
+Subject: [meta-selinux][PATCH 1/3] udev/init: sync to latest poky version ae819671
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,29 +36,30 @@ Content-Type: text/plain
 
 From: Wenzong Fan <wenzong.fan@windriver.com>
 
-* sync udev/init to latest poky version
-* fix real path of udevadm
-* fix symlink policy.kern
+Sync with the latest init file from poky as of 01262014:
 
-The following changes since commit 7c182186f54b88e5eb38ad7540e0498da476ab87:
+    oe-core commit: ae819671489a22bfdda11210ff620f564aa9b24b
 
-  libsemanage: fix DEPENDS override issue (2014-01-23 18:00:50 +0800)
+Signed-off-by: Wenzong Fan <wenzong.fan@windriver.com>
+---
+ recipes-core/udev/udev/init |    4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
 
-are available in the git repository at:
-
-  git://git.pokylinux.org/poky-contrib wenzong/ref-updates
-  http://git.pokylinux.org/cgit.cgi/poky-contrib/log/?h=wenzong/ref-updates
-
-Wenzong Fan (3):
-  udev/init: sync to latest poky version ae819671
-  refpolicy: fix real path for udevadm
-  refpolicy: fix symlink policy.kern
-
- recipes-core/udev/udev/init                        |    4 +++-
- .../refpolicy-2.20130424/poky-fc-udevd.patch       |   20 ++++++++++++++------
- recipes-security/refpolicy/refpolicy_common.inc    |    4 ++++
- 3 files changed, 21 insertions(+), 7 deletions(-)
-
+diff --git a/recipes-core/udev/udev/init b/recipes-core/udev/udev/init
+index 29146ec..7194e8c 100644
+--- a/recipes-core/udev/udev/init
++++ b/recipes-core/udev/udev/init
+@@ -56,7 +56,9 @@ case "$1" in
+     }
+     [ -e /dev/pts ] || mkdir -m 0755 /dev/pts
+     [ -e /dev/shm ] || mkdir -m 1777 /dev/shm
+-    mount -a -t tmpfs 2>/dev/null
++    # the automount rule for udev needs /tmp directory available, as /tmp is a symlink
++    # to /var/tmp which in turn is a symlink to /var/volatile/tmp, we need to make sure
++    # /var/volatile/tmp directory to be available.
+     mkdir -p /var/volatile/tmp
+ 
+     # Cache handling.
 -- 
 1.7.9.5
 
