@@ -1,34 +1,27 @@
-Return-Path: <maxin@maxinbjohn.info>
-Received: from mail-bk0-f45.google.com (mail-bk0-f45.google.com
-	[209.85.214.45])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4C2ABE00405
-	for <yocto@yoctoproject.org>; Tue, 28 Jan 2014 07:30:00 -0800 (PST)
-Received: by mail-bk0-f45.google.com with SMTP id v16so428278bkz.4
-	for <yocto@yoctoproject.org>; Tue, 28 Jan 2014 07:29:59 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:date
-	:message-id:subject:from:to:cc:content-type;
-	bh=lW+nljACWHaSQUK5aZ2LwGEORnC69APa5Ob+eU0TT44=;
-	b=h/iAtVfWPM0TxruDdahsZdCkCRsFUJzWcqv8wpKXJBp0ARoXP1Qx8JWFQ8WcFXsY6M
-	SV1MwrY0UKTec3FvFAwZ7NLOe3FAXm0R5sJRt/CUBYDfxISZtLLA2SaDkl15V3fJD/BK
-	8NTW5Zm0Xh+OP6XuOGRqcAxwVlUaSUrXdyjAvzzECK9F6+wWpMd7pujKeMHadyS2ywuR
-	QkLH16Q9qcGziu/YsYRo10kZOKtSj09tsQrAmzB6YEJNCjI+9RfC2ZkYcM2Xnh3JWqQg
-	kZt9A9KrtSGOW+3sI4mx9kOQmsb7JXKOyJ+LFD47hynvoKaZ+BwJvO8pudunqvpyXykE
-	65mg==
-X-Gm-Message-State: ALoCoQmy0tRatiI0pqvYZhb7X5KC02cefSX7SMgj5FMWSsi5UGw8QWuCoDLeR/oKx2sfi7zd1P8D
+Return-Path: <gary@mlbassoc.com>
+Received: from mail.chez-thomas.org (mail.mlbassoc.com [65.100.170.105])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E5E91E0071E
+	for <yocto@yoctoproject.org>; Tue, 28 Jan 2014 07:36:52 -0800 (PST)
+Received: by mail.chez-thomas.org (Postfix, from userid 1998)
+	id 8E0BCF811E3; Tue, 28 Jan 2014 08:36:51 -0700 (MST)
+X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on
+	hermes.chez-thomas.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=4.0 tests=ALL_TRUSTED,BAYES_00
+	autolearn=ham version=3.3.2
+Received: from [192.168.1.114] (zeus [192.168.1.114])
+	by mail.chez-thomas.org (Postfix) with ESMTP id 7FAEFF811E2;
+	Tue, 28 Jan 2014 08:36:50 -0700 (MST)
+Message-ID: <52E7CEAC.5080601@mlbassoc.com>
+Date: Tue, 28 Jan 2014 08:37:16 -0700
+From: Gary Thomas <gary@mlbassoc.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:24.0) Gecko/20100101 Thunderbird/24.2.0
 MIME-Version: 1.0
-X-Received: by 10.205.19.65 with SMTP id qj1mr2728396bkb.1.1390922999398; Tue,
-	28 Jan 2014 07:29:59 -0800 (PST)
-Received: by 10.204.165.81 with HTTP; Tue, 28 Jan 2014 07:29:59 -0800 (PST)
-X-Originating-IP: [192.36.1.252]
-In-Reply-To: <52E7C04E.8040301@einfochips.com>
+To: yocto@yoctoproject.org
 References: <52E7C04E.8040301@einfochips.com>
-Date: Tue, 28 Jan 2014 16:29:59 +0100
-Message-ID: <CAFicg84ZVJt+1ydD8fwNfwOowNZBRgW2y+0uELo4GF-bYMir4A@mail.gmail.com>
-From: Maxin john <maxin@maxinbjohn.info>
-To: Rohit Borse <rohit.borse@einfochips.com>
-Cc: yocto <yocto@yoctoproject.org>
+	<CAFicg84ZVJt+1ydD8fwNfwOowNZBRgW2y+0uELo4GF-bYMir4A@mail.gmail.com>
+In-Reply-To: <CAFicg84ZVJt+1ydD8fwNfwOowNZBRgW2y+0uELo4GF-bYMir4A@mail.gmail.com>
 Subject: Re: log4cplus compilation
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -41,30 +34,35 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 28 Jan 2014 15:30:01 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Tue, 28 Jan 2014 15:36:55 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Hi Rohit,
-
-On Tue, Jan 28, 2014 at 3:35 PM, Rohit Borse <rohit.borse@einfochips.com> wrote:
+On 2014-01-28 08:29, Maxin john wrote:
+> Hi Rohit,
 >
+> On Tue, Jan 28, 2014 at 3:35 PM, Rohit Borse <rohit.borse@einfochips.com> wrote:
+>>
+>>
+>> Hi All,
+>>         I am facing problem while compiling log4cplus package. It gives error in do_configure().
+>> Please find attachment for error log.
+>>
 >
-> Hi All,
->        I am facing problem while compiling log4cplus package. It gives error in do_configure().
-> Please find attachment for error log.
+>>From the log, the build failure is related to the Automake version.
 >
+> " configure.ac:11: require Automake 1.12, but have 1.11.2
+>    autoreconf: automake failed with exit status: 1
+> "
+>
+> I will look into this one.
 
-From the log, the build failure is related to the Automake version.
+Automake in OE-core is already at 1.14.  Rohit Borse must be using
+very old metadata.
 
-" configure.ac:11: require Automake 1.12, but have 1.11.2
-  autoreconf: automake failed with exit status: 1
-"
-
-I will look into this one.
-
-> Thanks and Regards,
-> Rohit
-
-Best Regards,
-Maxin
+-- 
+------------------------------------------------------------
+Gary Thomas                 |  Consulting for the
+MLB Associates              |    Embedded world
+------------------------------------------------------------
 
