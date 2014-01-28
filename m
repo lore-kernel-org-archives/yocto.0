@@ -1,28 +1,23 @@
-Return-Path: <adam.yh.lee@gmail.com>
-Received: from mail-lb0-f182.google.com (mail-lb0-f182.google.com
-	[209.85.217.182])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 247B2E003FA
-	for <yocto@yoctoproject.org>; Mon, 27 Jan 2014 17:17:56 -0800 (PST)
-Received: by mail-lb0-f182.google.com with SMTP id w7so4986481lbi.41
-	for <yocto@yoctoproject.org>; Mon, 27 Jan 2014 17:17:55 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=f6g6YNMV4D7POYYNebM6oAp+QPIYXSfPznyxUYUVA7w=;
-	b=IG7uP1Zz5LrKnuTNRpL0dSZTKPQh0DX/URqbPxBZE/u53EK88XGPDazSu0Dj4HBqCG
-	7e08tatbKKtvFYLhv5aVp2FlKcuHyNIuJmA37Y5aPe+zkZZNGc7lDz4mi4mhRhxMAJOK
-	o7gptp6KayC6eCjZ7pcDPwGxiX+1W2HgeTemDdHnBudE+oD179Jw7mjfABKfVLaob1LJ
-	YUvczS0MxZL0tcaND/+/n2RHzeZVA6Ycqpu9jwCTmFlIgITFc8tbrOH5H5S2Wxj5A0iP
-	PkaKaSCJVT4KIWnAZ1WpGosyPa3DhXshbjPIcfw4mF8KhJ9BBqLump915b13J2O2SML5
-	XN/w==
+Return-Path: <Wenzong.Fan@windriver.com>
+Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6344EE006BE
+	for <yocto@yoctoproject.org>; Mon, 27 Jan 2014 17:52:34 -0800 (PST)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
+	[147.11.189.40])
+	by mail1.windriver.com (8.14.5/8.14.5) with ESMTP id s0S1qWd5017796
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL)
+	for <yocto@yoctoproject.org>; Mon, 27 Jan 2014 17:52:32 -0800 (PST)
+Received: from pek-hostel-vm12.wrs.com (128.224.153.182) by
+	ALA-HCA.corp.ad.wrs.com (147.11.189.40) with Microsoft SMTP Server id
+	14.2.347.0; Mon, 27 Jan 2014 17:52:32 -0800
+From: <wenzong.fan@windriver.com>
+To: <yocto@yoctoproject.org>, <xin.ouyang@windriver.com>,
+	<mark.hatle@windriver.com>
+Date: Mon, 27 Jan 2014 20:52:28 -0500
+Message-ID: <cover.1390815368.git.wenzong.fan@windriver.com>
+X-Mailer: git-send-email 1.7.9.5
 MIME-Version: 1.0
-X-Received: by 10.112.188.135 with SMTP id ga7mr18624703lbc.5.1390871875029;
-	Mon, 27 Jan 2014 17:17:55 -0800 (PST)
-Received: by 10.114.57.68 with HTTP; Mon, 27 Jan 2014 17:17:54 -0800 (PST)
-Date: Mon, 27 Jan 2014 17:17:54 -0800
-Message-ID: <CAFeBWL7JEOrBEy+a1VRMhU7DEaFvcruQfchNXk9UVfMyX4C08g@mail.gmail.com>
-From: Adam Lee <adam.yh.lee@gmail.com>
-To: yocto@yoctoproject.org
-Subject: Integrating a graphical login manager to XFCE
+Subject: [meta-selinux][PATCH 0/2] refpolicy: fix real path for cpio/swapoff
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,45 +29,31 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 28 Jan 2014 01:17:59 -0000
-Content-Type: multipart/alternative; boundary=001a11c367ae0a0fdf04f0fd9859
+X-List-Received-Date: Tue, 28 Jan 2014 01:52:34 -0000
+Content-Type: text/plain
 
---001a11c367ae0a0fdf04f0fd9859
-Content-Type: text/plain; charset=ISO-8859-1
+From: Wenzong Fan <wenzong.fan@windriver.com>
 
-Good day everyone!
-This is my first post to the group, so please forgive me for anything
-inappropriate.
-I've been using GDM thus far (since danny) but it has been challenging to
-integrate it into my XFCE image. Merely specifying "gdm" as
-VIRTUAL-RUNTIME_graphical_init_manager variable does not correctly
-configure PAM, systemd and console-kit. Logging in with a user created by
-doing "useradd" bounces me back to the login window. I take that user
-session doesn't get created successfully ( I don't have the log at the
-moment, but I will follow up soon). Apart from specifying GDM as the
-init-manager, and including SystemD and PAM as distro features, what other
-steps do I have to take?
+The following changes since commit 8ce3b9d0d20c79e0d6bba325f6eedbd11febc101:
 
-Thank you for your guidance!
+  refpolicy: fix new symlink for policy.kern (2014-01-26 17:44:56 +0800)
 
-Adam
+are available in the git repository at:
 
---001a11c367ae0a0fdf04f0fd9859
-Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
+  git://git.pokylinux.org/poky-contrib wenzong/ref-fix
+  http://git.pokylinux.org/cgit.cgi/poky-contrib/log/?h=wenzong/ref-fix
 
-<div dir=3D"ltr">Good day everyone!<div>This is my first post to the group,=
- so please forgive me for anything inappropriate.=A0</div><div>I&#39;ve bee=
-n using GDM thus far (since danny) but it has been challenging to integrate=
- it into my XFCE image. Merely specifying &quot;gdm&quot; as VIRTUAL-RUNTIM=
-E_graphical_init_manager variable does not correctly configure PAM, systemd=
- and console-kit. Logging in with a user created by doing &quot;useradd&quo=
-t; bounces me back to the login window. I take that user session doesn&#39;=
-t get created successfully (=A0I don&#39;t have the log at the moment, but =
-I will follow up soon). Apart from specifying GDM as the init-manager, and =
-including SystemD and PAM as distro features, what other steps do I have to=
- take?</div>
-<div><br></div><div>Thank you for your guidance!</div><div><br></div><div>A=
-dam</div></div>
+Wenzong Fan (2):
+  refpolicy: fix real path for cpio
+  refpolicy: fix real path for swapoff
 
---001a11c367ae0a0fdf04f0fd9859--
+ .../refpolicy-2.20130424/poky-fc-fstools.patch     |   19 ++++++++-------
+ .../refpolicy-2.20130424/poky-fc-rpm.patch         |   25 ++++++++++++++++++++
+ .../refpolicy/refpolicy_2.20130424.inc             |    1 +
+ 3 files changed, 36 insertions(+), 9 deletions(-)
+ create mode 100644 recipes-security/refpolicy/refpolicy-2.20130424/poky-fc-rpm.patch
+
+-- 
+1.7.9.5
+
+
