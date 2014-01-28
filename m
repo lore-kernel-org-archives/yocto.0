@@ -1,27 +1,23 @@
-Return-Path: <Xin.Ouyang@windriver.com>
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 65E46E006F3
-	for <yocto@yoctoproject.org>; Mon, 27 Jan 2014 23:21:43 -0800 (PST)
+Return-Path: <Wenzong.Fan@windriver.com>
+Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2740BE003D7
+	for <yocto@yoctoproject.org>; Mon, 27 Jan 2014 23:54:32 -0800 (PST)
 Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
 	[147.11.189.40])
-	by mail.windriver.com (8.14.5/8.14.5) with ESMTP id s0S7Lh3J013588
+	by mail1.windriver.com (8.14.5/8.14.5) with ESMTP id s0S7sWVc021266
 	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL)
-	for <yocto@yoctoproject.org>; Mon, 27 Jan 2014 23:21:43 -0800 (PST)
-Received: from Pascal-MacBookPro.local (128.224.159.178) by
-	ALA-HCA.corp.ad.wrs.com (147.11.189.50) with Microsoft SMTP Server id
-	14.2.347.0; Mon, 27 Jan 2014 23:21:42 -0800
-Message-ID: <52E75A85.9020000@windriver.com>
-Date: Tue, 28 Jan 2014 15:21:41 +0800
-From: Pascal Ouyang <xin.ouyang@windriver.com>
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.8;
-	rv:24.0) Gecko/20100101 Thunderbird/24.2.0
-MIME-Version: 1.0
-To: <wenzong.fan@windriver.com>, <yocto@yoctoproject.org>,
+	for <yocto@yoctoproject.org>; Mon, 27 Jan 2014 23:54:32 -0800 (PST)
+Received: from pek-hostel-vm12.wrs.com (128.224.153.182) by
+	ALA-HCA.corp.ad.wrs.com (147.11.189.40) with Microsoft SMTP Server id
+	14.2.347.0; Mon, 27 Jan 2014 23:54:31 -0800
+From: <wenzong.fan@windriver.com>
+To: <yocto@yoctoproject.org>, <xin.ouyang@windriver.com>,
 	<mark.hatle@windriver.com>
-References: <cover.1390815368.git.wenzong.fan@windriver.com>
-In-Reply-To: <cover.1390815368.git.wenzong.fan@windriver.com>
-X-TagToolbar-Keys: D20140128152140983
-Subject: Re: [meta-selinux][PATCH 0/2] refpolicy: fix real path for cpio/swapoff
+Date: Tue, 28 Jan 2014 02:54:28 -0500
+Message-ID: <cover.1390895404.git.wenzong.fan@windriver.com>
+X-Mailer: git-send-email 1.7.9.5
+MIME-Version: 1.0
+Subject: [meta-selinux][PATCH 0/1] refpolicy: Allow ping to get/set capabilities
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -33,38 +29,34 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 28 Jan 2014 07:21:46 -0000
-Content-Type: text/plain; charset="GB2312"
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Tue, 28 Jan 2014 07:54:35 -0000
+Content-Type: text/plain
 
-ÓÚ 14-1-28 ÉÏÎç9:52, wenzong.fan@windriver.com Ð´µÀ:
-> From: Wenzong Fan <wenzong.fan@windriver.com>
-> 
-> The following changes since commit 8ce3b9d0d20c79e0d6bba325f6eedbd11febc101:
-> 
->    refpolicy: fix new symlink for policy.kern (2014-01-26 17:44:56 +0800)
-> 
-> are available in the git repository at:
-> 
->    git://git.pokylinux.org/poky-contrib wenzong/ref-fix
->    http://git.pokylinux.org/cgit.cgi/poky-contrib/log/?h=wenzong/ref-fix
-> 
-> Wenzong Fan (2):
->    refpolicy: fix real path for cpio
->    refpolicy: fix real path for swapoff
-> 
->   .../refpolicy-2.20130424/poky-fc-fstools.patch     |   19 ++++++++-------
->   .../refpolicy-2.20130424/poky-fc-rpm.patch         |   25 ++++++++++++++++++++
->   .../refpolicy/refpolicy_2.20130424.inc             |    1 +
->   3 files changed, 36 insertions(+), 9 deletions(-)
->   create mode 100644 recipes-security/refpolicy/refpolicy-2.20130424/poky-fc-rpm.patch
-> 
+From: Wenzong Fan <wenzong.fan@windriver.com>
 
+When ping is installed with capabilities instead of being marked setuid,
+then the ping_t domain needs to be allowed to getcap/setcap.
 
-Merged. Thanks. :)
+This patch was backported from upstream.
 
-- Pascal
+The following changes since commit 271955d346f305b196f069d9dc46db16c43678de:
+
+  refpolicy: fix real path for swapoff (2014-01-28 15:20:19 +0800)
+
+are available in the git repository at:
+
+  git://git.pokylinux.org/poky-contrib wenzong/fix-ping
+  http://git.pokylinux.org/cgit.cgi/poky-contrib/log/?h=wenzong/fix-ping
+
+Wenzong Fan (1):
+  refpolicy: Allow ping to get/set capabilities
+
+ .../Allow-ping-to-get-set-capabilities.patch       |   32 ++++++++++++++++++++
+ .../refpolicy/refpolicy_2.20130424.inc             |    4 +++
+ 2 files changed, 36 insertions(+)
+ create mode 100644 recipes-security/refpolicy/refpolicy-2.20130424/Allow-ping-to-get-set-capabilities.patch
 
 -- 
-- Pascal
+1.7.9.5
+
 
