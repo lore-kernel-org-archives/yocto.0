@@ -1,31 +1,31 @@
 Return-Path: <rohit2.jindal@aricent.com>
 Received: from jaguar.aricent.com (jaguar.aricent.com [180.151.2.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DE485E003FA
-	for <yocto@yoctoproject.org>; Tue, 28 Jan 2014 05:04:37 -0800 (PST)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DB4CDE004DC
+	for <yocto@yoctoproject.org>; Tue, 28 Jan 2014 05:16:37 -0800 (PST)
 Received: from jaguar.aricent.com (localhost [127.0.0.1])
-	by postfix.imss71 (Postfix) with ESMTP id 1E56336E60
-	for <yocto@yoctoproject.org>; Tue, 28 Jan 2014 18:32:53 +0530 (IST)
-Received: from GUREXHT02.ASIAN.AD.ARICENT.COM (gurexht02.asian.ad.aricent.com
-	[10.203.171.138]) (using TLSv1 with cipher RC4-MD5 (128/128 bits))
+	by postfix.imss71 (Postfix) with ESMTP id D8EB436E10
+	for <yocto@yoctoproject.org>; Tue, 28 Jan 2014 18:46:04 +0530 (IST)
+Received: from GUREXHT01.ASIAN.AD.ARICENT.COM (gurexht01.asian.ad.aricent.com
+	[10.203.171.136]) (using TLSv1 with cipher RC4-MD5 (128/128 bits))
 	(No client certificate requested)
-	by jaguar.aricent.com (Postfix) with ESMTP id 783C536E36
-	for <yocto@yoctoproject.org>; Tue, 28 Jan 2014 18:08:29 +0530 (IST)
+	by jaguar.aricent.com (Postfix) with ESMTP id 287D536DC8
+	for <yocto@yoctoproject.org>; Tue, 28 Jan 2014 18:38:54 +0530 (IST)
 Received: from GUREXMB01.asian.ad.aricent.com ([10.203.171.134]) by
-	GUREXHT02.ASIAN.AD.ARICENT.COM ([10.203.171.138]) with mapi;
-	Tue, 28 Jan 2014 18:08:30 +0530
+	GUREXHT01.ASIAN.AD.ARICENT.COM ([10.203.171.136]) with mapi;
+	Tue, 28 Jan 2014 18:38:54 +0530
 From: Rohit2 Jindal <rohit2.jindal@aricent.com>
 To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Date: Tue, 28 Jan 2014 18:08:29 +0530
-Thread-Topic: Nested If else 
-Thread-Index: Ac8cJdi5KZoZsulhT1+hBIXDsv94QQ==
-Message-ID: <17797116383D4341B029FDF34C22BF6A72FF261B05@GUREXMB01.ASIAN.AD.ARICENT.COM>
+Date: Tue, 28 Jan 2014 18:38:54 +0530
+Thread-Topic: Override this functionality
+Thread-Index: Ac8cKhhrTAhY/5bORcqjQA8+CW+uiw==
+Message-ID: <17797116383D4341B029FDF34C22BF6A72FF261B1F@GUREXMB01.ASIAN.AD.ARICENT.COM>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
 acceptlanguage: en-US
 MIME-Version: 1.0
 X-TM-AS-MML: No
-Subject: Nested If else
+Subject: Override this functionality
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,20 +37,33 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 28 Jan 2014 13:04:40 -0000
+X-List-Received-Date: Tue, 28 Jan 2014 13:16:40 -0000
 Content-Language: en-US
 Content-Type: multipart/alternative;
-	boundary="_000_17797116383D4341B029FDF34C22BF6A72FF261B05GUREXMB01ASIA_"
+	boundary="_000_17797116383D4341B029FDF34C22BF6A72FF261B1FGUREXMB01ASIA_"
 
---_000_17797116383D4341B029FDF34C22BF6A72FF261B05GUREXMB01ASIA_
+--_000_17797116383D4341B029FDF34C22BF6A72FF261B1FGUREXMB01ASIA_
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
 Hi,
 
+Actually I am trying to use external-codesourcery-toolchain bb file to insa=
+ll my precompiled toolchain binaries  but that binaries I have to download =
+from git server. But in start itself when yocto first time start bitbake it=
+ checks for the version of toolchain. How its possible to give toolchain gc=
+c version in start itself??
 
-I s there any thing like nested if else kind of statements exist in yocto ?=
-??
+It gives this error and exits
+
+
+ERROR: Failed to obtain CodeSourcery toolchain version: Execution of '/usr/=
+bin/mips-linux-gnu-gcc -v' failed: command not found
+ERROR: Failed to obtain CodeSourcery toolchain version: Execution of '/usr/=
+bin/mips-linux-gnu-gcc -v' failed: command not found
+
+
+Any alternative to avoid this error???
 
 Regards,
 Rohit Jindal
@@ -69,7 +82,7 @@ for important disclosures regarding this electronic communication.
 =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
 =3D=3D=3D=3D
 
---_000_17797116383D4341B029FDF34C22BF6A72FF261B05GUREXMB01ASIA_
+--_000_17797116383D4341B029FDF34C22BF6A72FF261B1FGUREXMB01ASIA_
 Content-Type: text/html; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
@@ -125,9 +138,26 @@ div.WordSection1
 <div class=3D"WordSection1">
 <p class=3D"MsoNormal">Hi,<o:p></o:p></p>
 <p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Actually I am trying to use external-codesourcery-to=
+olchain bb file to insall my precompiled toolchain binaries&nbsp; but that =
+binaries I have to download from git server. But in start itself when yocto=
+ first time start bitbake it checks for
+ the version of toolchain. How its possible to give toolchain gcc version i=
+n start itself??<o:p></o:p></p>
 <p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">I s there any thing like nested if else kind of stat=
-ements exist in yocto ???<o:p></o:p></p>
+<p class=3D"MsoNormal">It gives this error and exits <o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">ERROR: Failed to obtain CodeSourcery toolchain versi=
+on: Execution of '/usr/bin/mips-linux-gnu-gcc -v' failed: command not found=
+<o:p></o:p></p>
+<p class=3D"MsoNormal">ERROR: Failed to obtain CodeSourcery toolchain versi=
+on: Execution of '/usr/bin/mips-linux-gnu-gcc -v' failed: command not found=
+<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Any alternative to avoid this error???<o:p></o:p></p=
+>
 <p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
 <p class=3D"MsoNormal">Regards,<o:p></o:p></p>
 <p class=3D"MsoNormal">Rohit Jindal<o:p></o:p></p>
@@ -150,4 +180,4 @@ for important disclosures regarding this electronic communication.<br>
 </body>
 </html>
 
---_000_17797116383D4341B029FDF34C22BF6A72FF261B05GUREXMB01ASIA_--
+--_000_17797116383D4341B029FDF34C22BF6A72FF261B1FGUREXMB01ASIA_--
