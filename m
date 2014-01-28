@@ -1,31 +1,41 @@
-Return-Path: <rohit2.jindal@aricent.com>
-Received: from jaguar.aricent.com (jaguar.aricent.com [180.151.2.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DB4CDE004DC
-	for <yocto@yoctoproject.org>; Tue, 28 Jan 2014 05:16:37 -0800 (PST)
-Received: from jaguar.aricent.com (localhost [127.0.0.1])
-	by postfix.imss71 (Postfix) with ESMTP id D8EB436E10
-	for <yocto@yoctoproject.org>; Tue, 28 Jan 2014 18:46:04 +0530 (IST)
-Received: from GUREXHT01.ASIAN.AD.ARICENT.COM (gurexht01.asian.ad.aricent.com
-	[10.203.171.136]) (using TLSv1 with cipher RC4-MD5 (128/128 bits))
-	(No client certificate requested)
-	by jaguar.aricent.com (Postfix) with ESMTP id 287D536DC8
-	for <yocto@yoctoproject.org>; Tue, 28 Jan 2014 18:38:54 +0530 (IST)
-Received: from GUREXMB01.asian.ad.aricent.com ([10.203.171.134]) by
-	GUREXHT01.ASIAN.AD.ARICENT.COM ([10.203.171.136]) with mapi;
-	Tue, 28 Jan 2014 18:38:54 +0530
-From: Rohit2 Jindal <rohit2.jindal@aricent.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Date: Tue, 28 Jan 2014 18:38:54 +0530
-Thread-Topic: Override this functionality
-Thread-Index: Ac8cKhhrTAhY/5bORcqjQA8+CW+uiw==
-Message-ID: <17797116383D4341B029FDF34C22BF6A72FF261B1F@GUREXMB01.ASIAN.AD.ARICENT.COM>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-acceptlanguage: en-US
+Return-Path: <rohit.borse@einfochips.com>
+Received: from out05.sjc.mx.trendmicro.com (out05.sjc.mx.trendmicro.com
+	[216.99.131.18])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8BC2EE005B4
+	for <yocto@yoctoproject.org>; Tue, 28 Jan 2014 06:33:15 -0800 (PST)
+Received: from relay09.sjc.mx.trendmicro.com (unknown [10.30.239.136])
+	by out05.sjc.mx.trendmicro.com (Postfix) with ESMTP id B5507980448
+	for <yocto@yoctoproject.org>; Tue, 28 Jan 2014 14:33:13 +0000 (UTC)
+Received: from pune.einfochips.com (unknown [121.241.186.85])
+	by relay09.sjc.mx.trendmicro.com (Postfix) with ESMTP id 9CA33980436
+	for <yocto@yoctoproject.org>; Tue, 28 Jan 2014 14:33:12 +0000 (UTC)
+Received: from localhost (localhost.localdomain [127.0.0.1])
+	by pune.einfochips.com (Postfix) with ESMTP id 4F0FF4DE0008
+	for <yocto@yoctoproject.org>; Tue, 28 Jan 2014 20:21:43 +0530 (IST)
+X-Virus-Scanned: amavisd-new at pune.einfochips.com
+Received: from pune.einfochips.com ([127.0.0.1])
+	by localhost (pune.einfochips.com [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id 2aUrr6DIC68F for <yocto@yoctoproject.org>;
+	Tue, 28 Jan 2014 20:21:43 +0530 (IST)
+Received: from [10.110.1.204] (unknown [10.110.1.204])
+	by pune.einfochips.com (Postfix) with ESMTPSA id 1397F4DE0001
+	for <yocto@yoctoproject.org>; Tue, 28 Jan 2014 20:21:43 +0530 (IST)
+Message-ID: <52E7C04E.8040301@einfochips.com>
+Date: Tue, 28 Jan 2014 20:05:58 +0530
+From: Rohit Borse <rohit.borse@einfochips.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:24.0) Gecko/20100101 Thunderbird/24.2.0
 MIME-Version: 1.0
-X-TM-AS-MML: No
-Subject: Override this functionality
+To: yocto <yocto@yoctoproject.org>
+X-TM-AS-Product-Ver: IMHS-1.0.0.1430-7.0.0.1014-20466.007
+X-TM-AS-Result: No--14.2000-5.0-31-10
+X-TM-AS-Result-Detail: Spam:No-Score:-14.2000-Baseline:ModeratelyHigh-Other:Lowest
+X-TMASE-MatchedRID: NepJ7Qyc8f4OuBY41QkXu2zBijri5+RV1peb/DWF8E6HwGEm+CpYGSOG
+	KxpqhEhtG7A8qz7wh4lRdQLLLSTz6ADBaeVuVh0CiQy4MG/9Stm063Wh9WVqgiyzhndreFvtauF
+	HsAGdpVLl1Q/tfF110Grz/G/ZSbVqbkV4e2xSge56MAxbZtmjb8ut1kLZUPSmSX4mReHFdZ/uJe
+	aGD7Y2LlgpWCbva+Mm
+X-TM-Deliver-Signature: 7df24db48fddcafccbb2a811d971f564
+Subject: log4cplus compilation
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,147 +47,123 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 28 Jan 2014 13:16:40 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_17797116383D4341B029FDF34C22BF6A72FF261B1FGUREXMB01ASIA_"
+X-List-Received-Date: Tue, 28 Jan 2014 14:33:18 -0000
+X-Groupsio-MsgNum: 17927
+Content-Type: multipart/mixed; boundary="------------090609040004000607040108"
 
---_000_17797116383D4341B029FDF34C22BF6A72FF261B1FGUREXMB01ASIA_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-Hi,
-
-Actually I am trying to use external-codesourcery-toolchain bb file to insa=
-ll my precompiled toolchain binaries  but that binaries I have to download =
-from git server. But in start itself when yocto first time start bitbake it=
- checks for the version of toolchain. How its possible to give toolchain gc=
-c version in start itself??
-
-It gives this error and exits
+--------------090609040004000607040108
+Content-Type: text/plain;
+	charset="ISO-8859-1";
+	format="flowed"
+Content-Transfer-Encoding: 7bit
 
 
-ERROR: Failed to obtain CodeSourcery toolchain version: Execution of '/usr/=
-bin/mips-linux-gnu-gcc -v' failed: command not found
-ERROR: Failed to obtain CodeSourcery toolchain version: Execution of '/usr/=
-bin/mips-linux-gnu-gcc -v' failed: command not found
+Hi All,
+        I am facing problem while compiling log4cplus package. It gives 
+error in do_configure().
+Please find attachment for error log.
+
+Thanks and Regards,
+Rohit
 
 
-Any alternative to avoid this error???
+---------------------------------------------------------------------------------------------
+Notice: 
+This message has been scanned by Trend Micro Mail Security scanner and is believed to be clean
+---------------------------------------------------------------------------------------------
 
-Regards,
-Rohit Jindal
+--------------090609040004000607040108
+Content-Type: text/x-log;
+ name="log4cplusError.log"
+Content-Transfer-Encoding: 7bit
+Content-Disposition: attachment;
+ filename="log4cplusError.log"
+
+rohit@rohit-pc:~/AIO_Gateway/Build_SDK/bluegiga-sdk/build$ bitbake log4cplus
+Loading cache: 100% |##################################################################################################################| ETA:  00:00:00
+Loaded 1171 entries from dependency cache.
+Parsing recipes: 100% |################################################################################################################| Time: 00:00:00
+Parsing of 892 .bb files complete (891 cached, 1 parsed). 1172 targets, 38 skipped, 0 masked, 0 errors.
+
+OE Build Configuration:
+BB_VERSION        = "1.15.1"
+TARGET_ARCH       = "arm"
+TARGET_OS         = "linux-gnueabi"
+MACHINE           = "apx4devkit"
+DISTRO            = "bluegiga"
+DISTRO_VERSION    = "5.0.0-beta10"
+TUNE_FEATURES     = "armv5 dsp thumb arm926ejs"
+TARGET_FPU        = "soft"
+meta              
+meta-yocto        
+bluegiga-bsp      
+bluegiga-distro   
+bluegiga-binary-utils
+bluegiga-examples = "<unknown>:<unknown>"
+
+NOTE: Resolving any missing task queue dependencies
+NOTE: Preparing runqueue
+NOTE: Executing SetScene Tasks
+NOTE: Executing RunQueue Tasks
+NOTE: Running task 532 of 798 (ID: 4, /home/rohit/AIO_Gateway/Build_SDK/bluegiga-sdk/yocto/meta/recipes-devtools/log4cplus/log4cplus_1.1.1.bb, do_fetch)
+NOTE: package log4cplus-1.1.1-r0: task do_fetch: Started
+NOTE: package log4cplus-1.1.1-r0: task do_fetch: Succeeded
+NOTE: Running task 788 of 798 (ID: 0, /home/rohit/AIO_Gateway/Build_SDK/bluegiga-sdk/yocto/meta/recipes-devtools/log4cplus/log4cplus_1.1.1.bb, do_unpack)
+NOTE: package log4cplus-1.1.1-r0: task do_unpack: Started
+NOTE: package log4cplus-1.1.1-r0: task do_unpack: Succeeded
+NOTE: Running task 789 of 798 (ID: 1, /home/rohit/AIO_Gateway/Build_SDK/bluegiga-sdk/yocto/meta/recipes-devtools/log4cplus/log4cplus_1.1.1.bb, do_patch)
+NOTE: package log4cplus-1.1.1-r0: task do_patch: Started
+NOTE: package log4cplus-1.1.1-r0: task do_patch: Succeeded
+NOTE: Running task 790 of 798 (ID: 6, /home/rohit/AIO_Gateway/Build_SDK/bluegiga-sdk/yocto/meta/recipes-devtools/log4cplus/log4cplus_1.1.1.bb, do_configure)
+NOTE: Running task 791 of 798 (ID: 10, /home/rohit/AIO_Gateway/Build_SDK/bluegiga-sdk/yocto/meta/recipes-devtools/log4cplus/log4cplus_1.1.1.bb, do_populate_lic)
+NOTE: package log4cplus-1.1.1-r0: task do_configure: Started
+NOTE: package log4cplus-1.1.1-r0: task do_populate_lic: Started
+NOTE: package log4cplus-1.1.1-r0: task do_populate_lic: Succeeded
+ERROR: Function failed: do_configure (see /home/rohit/AIO_Gateway/Build_SDK/bluegiga-sdk/build/tmp/work/armv5te-bluegiga-linux-gnueabi/log4cplus-1.1.1-r0/temp/log.do_configure.10773 for further information)
+ERROR: Logfile of failure stored in: /home/rohit/AIO_Gateway/Build_SDK/bluegiga-sdk/build/tmp/work/armv5te-bluegiga-linux-gnueabi/log4cplus-1.1.1-r0/temp/log.do_configure.10773
+Log data follows:
+| DEBUG: SITE files ['endian-little', 'bit-32', 'arm-common', 'common-linux', 'common-glibc', 'arm-linux', 'arm-linux-gnueabi', 'common']
+| ERROR: Function failed: do_configure (see /home/rohit/AIO_Gateway/Build_SDK/bluegiga-sdk/build/tmp/work/armv5te-bluegiga-linux-gnueabi/log4cplus-1.1.1-r0/temp/log.do_configure.10773 for further information)
+| automake (GNU automake) 1.11.2
+| Copyright (C) 2011 Free Software Foundation, Inc.
+| License GPLv2+: GNU GPL version 2 or later <http://gnu.org/licenses/gpl-2.0.html>
+| This is free software: you are free to change and redistribute it.
+| There is NO WARRANTY, to the extent permitted by law.
+|
+| Written by Tom Tromey <tromey@redhat.com>
+|        and Alexandre Duret-Lutz <adl@gnu.org>.
+| AUTOV is 1.11
+| NOTE: Executing autoreconf --verbose --install --force --exclude=autopoint -I /home/rohit/AIO_Gateway/Build_SDK/bluegiga-sdk/build/tmp/work/armv5te-bluegiga-linux-gnueabi/log4cplus-1.1.1-r0/log4cplus-1.1.1/m4/ -I/home/rohit/AIO_Gateway/Build_SDK/bluegiga-sdk/build/tmp/sysroots/x86_64-linux/usr/share/aclocal-1.11 -I /home/rohit/AIO_Gateway/Build_SDK/bluegiga-sdk/build/tmp/work/armv5te-bluegiga-linux-gnueabi/log4cplus-1.1.1-r0/log4cplus-1.1.1/aclocal-copy/
+| autoreconf: Entering directory `.'
+| autoreconf: configure.ac: not using Gettext
+| autoreconf: running: aclocal -I /home/rohit/AIO_Gateway/Build_SDK/bluegiga-sdk/build/tmp/work/armv5te-bluegiga-linux-gnueabi/log4cplus-1.1.1-r0/log4cplus-1.1.1/m4/ -I /home/rohit/AIO_Gateway/Build_SDK/bluegiga-sdk/build/tmp/sysroots/x86_64-linux/usr/share/aclocal-1.11 -I /home/rohit/AIO_Gateway/Build_SDK/bluegiga-sdk/build/tmp/work/armv5te-bluegiga-linux-gnueabi/log4cplus-1.1.1-r0/log4cplus-1.1.1/aclocal-copy/ -I /home/rohit/AIO_Gateway/Build_SDK/bluegiga-sdk/build/tmp/work/armv5te-bluegiga-linux-gnueabi/log4cplus-1.1.1-r0/log4cplus-1.1.1/m4/ -I /home/rohit/AIO_Gateway/Build_SDK/bluegiga-sdk/build/tmp/sysroots/x86_64-linux/usr/share/aclocal-1.11 -I /home/rohit/AIO_Gateway/Build_SDK/bluegiga-sdk/build/tmp/work/armv5te-bluegiga-linux-gnueabi/log4cplus-1.1.1-r0/log4cplus-1.1.1/aclocal-copy/ --force --warnings=cross -I m4
+| aclocal: unknown warning category `cross'
+| autoreconf: configure.ac: tracing
+| autoreconf: running: libtoolize --copy --force
+| libtoolize: putting auxiliary files in `.'.
+| libtoolize: copying file `./ltmain.sh'
+| libtoolize: putting macros in AC_CONFIG_MACRO_DIR, `m4'.
+| libtoolize: copying file `m4/libtool.m4'
+| libtoolize: copying file `m4/ltoptions.m4'
+| libtoolize: copying file `m4/ltsugar.m4'
+| libtoolize: copying file `m4/ltversion.m4'
+| libtoolize: copying file `m4/lt~obsolete.m4'
+| aclocal: unknown warning category `cross'
+| autoreconf: running: /home/rohit/AIO_Gateway/Build_SDK/bluegiga-sdk/build/tmp/sysroots/x86_64-linux/usr/bin/autoconf --include=/home/rohit/AIO_Gateway/Build_SDK/bluegiga-sdk/build/tmp/work/armv5te-bluegiga-linux-gnueabi/log4cplus-1.1.1-r0/log4cplus-1.1.1/m4/ --include=/home/rohit/AIO_Gateway/Build_SDK/bluegiga-sdk/build/tmp/sysroots/x86_64-linux/usr/share/aclocal-1.11 --include=/home/rohit/AIO_Gateway/Build_SDK/bluegiga-sdk/build/tmp/work/armv5te-bluegiga-linux-gnueabi/log4cplus-1.1.1-r0/log4cplus-1.1.1/aclocal-copy/ --force --warnings=cross
+| autoreconf: running: /home/rohit/AIO_Gateway/Build_SDK/bluegiga-sdk/build/tmp/sysroots/x86_64-linux/usr/bin/autoheader --include=/home/rohit/AIO_Gateway/Build_SDK/bluegiga-sdk/build/tmp/work/armv5te-bluegiga-linux-gnueabi/log4cplus-1.1.1-r0/log4cplus-1.1.1/m4/ --include=/home/rohit/AIO_Gateway/Build_SDK/bluegiga-sdk/build/tmp/sysroots/x86_64-linux/usr/share/aclocal-1.11 --include=/home/rohit/AIO_Gateway/Build_SDK/bluegiga-sdk/build/tmp/work/armv5te-bluegiga-linux-gnueabi/log4cplus-1.1.1-r0/log4cplus-1.1.1/aclocal-copy/ --force --warnings=cross
+| autoreconf: running: automake --foreign --add-missing --copy --force-missing --warnings=cross
+| automake: unknown warning category `cross'
+| configure.ac:11: require Automake 1.12, but have 1.11.2
+| autoreconf: automake failed with exit status: 1
+| ERROR: autoreconf execution failed.
+NOTE: package log4cplus-1.1.1-r0: task do_configure: Failed
+ERROR: Task 6 (/home/rohit/AIO_Gateway/Build_SDK/bluegiga-sdk/yocto/meta/recipes-devtools/log4cplus/log4cplus_1.1.1.bb, do_configure) failed with exit code '1'
+NOTE: Tasks Summary: Attempted 791 tasks of which 786 didn't need to be rerun and 1 failed.
+
+Summary: 1 task failed:
+  /home/rohit/AIO_Gateway/Build_SDK/bluegiga-sdk/yocto/meta/recipes-devtools/log4cplus/log4cplus_1.1.1.bb, do_configure
+Summary: There was 1 ERROR message shown, returning a non-zero exit code.
 
 
 
-
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D
-Please refer to http://www.aricent.com/legal/email_disclaimer.html
-for important disclosures regarding this electronic communication.
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D
-
---_000_17797116383D4341B029FDF34C22BF6A72FF261B1FGUREXMB01ASIA_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<meta name=3D"Generator" content=3D"Microsoft Word 12 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri","sans-serif";}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:purple;
-	text-decoration:underline;}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri","sans-serif";
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal">Hi,<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Actually I am trying to use external-codesourcery-to=
-olchain bb file to insall my precompiled toolchain binaries&nbsp; but that =
-binaries I have to download from git server. But in start itself when yocto=
- first time start bitbake it checks for
- the version of toolchain. How its possible to give toolchain gcc version i=
-n start itself??<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">It gives this error and exits <o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">ERROR: Failed to obtain CodeSourcery toolchain versi=
-on: Execution of '/usr/bin/mips-linux-gnu-gcc -v' failed: command not found=
-<o:p></o:p></p>
-<p class=3D"MsoNormal">ERROR: Failed to obtain CodeSourcery toolchain versi=
-on: Execution of '/usr/bin/mips-linux-gnu-gcc -v' failed: command not found=
-<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Any alternative to avoid this error???<o:p></o:p></p=
->
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Regards,<o:p></o:p></p>
-<p class=3D"MsoNormal">Rohit Jindal<o:p></o:p></p>
-</div>
-<br>
-<font face=3D"Arial" color=3D"Gray" size=3D"2"><br>
-<br>
-<br>
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D<br>
-Please refer to http://www.aricent.com/legal/email_disclaimer.html<br>
-for important disclosures regarding this electronic communication.<br>
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D<br>
-</font>
-</body>
-</html>
-
---_000_17797116383D4341B029FDF34C22BF6A72FF261B1FGUREXMB01ASIA_--
+--------------090609040004000607040108--
