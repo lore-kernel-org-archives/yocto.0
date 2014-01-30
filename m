@@ -1,28 +1,32 @@
-Return-Path: <diego.sueiro@gmail.com>
-Received: from mail-qa0-f48.google.com (mail-qa0-f48.google.com
-	[209.85.216.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9411AE005B3
-	for <yocto@yoctoproject.org>; Thu, 30 Jan 2014 08:31:03 -0800 (PST)
-Received: by mail-qa0-f48.google.com with SMTP id f11so4648630qae.7
-	for <yocto@yoctoproject.org>; Thu, 30 Jan 2014 08:31:02 -0800 (PST)
+Return-Path: <adam.yh.lee@gmail.com>
+Received: from mail-lb0-f177.google.com (mail-lb0-f177.google.com
+	[209.85.217.177])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1AE2DE005BB
+	for <yocto@yoctoproject.org>; Thu, 30 Jan 2014 10:36:00 -0800 (PST)
+Received: by mail-lb0-f177.google.com with SMTP id z5so2775107lbh.8
+	for <yocto@yoctoproject.org>; Thu, 30 Jan 2014 10:35:59 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:from:date:message-id:subject:to:content-type;
-	bh=Xw0Ikd+Bu/kFLZUxJ1ouB2wb2SBzx9/ylBjFi4BZhaQ=;
-	b=uDgUV8g/1SAIJ2E0KObrisSo/0pf/5fYqbh3CazSGP16+MGC7Dw1jzyBqPzEMUzBbd
-	ZJsul2QW9VsXUUHoRg5rDg/ftKf7ABz+t8loOamXrx4FZNSuKLh1n+WbtntK4m6ZIoRN
-	ljDc1CNFqmLc+wTx5X2THRW8xPv0L1ref6kj3pSxQUv8pmkTBVuDuHZWvsQmsqZrj1cM
-	kRGxgnXxE3NC2z9wMBwkmLsmdPK4ozKHITh1VJgjp21btEdR64aynqVBUV5Wmt8KtZyG
-	ds5A3eP0cwtJdcQXjxr+hQH18cRcnNW0ZkIh5nMUmMiERq9x2aCNAhr+M6Fl9XCR/mr+
-	VhJA==
-X-Received: by 10.140.46.119 with SMTP id j110mr22331593qga.32.1391099462583; 
-	Thu, 30 Jan 2014 08:31:02 -0800 (PST)
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type;
+	bh=r/5mxPYiOGWQuTO1TyT/ih/oZKclIGtJdicEyYAlDkY=;
+	b=XBfg89Qdrv4hf4ovxWQm3Z5QFiXVp90Au/C94iNvimKTvYEUzoMQQ+1f3+IiQDDMb1
+	cpzdDOY2JqIfy/vguGNHBlXw0TShFOBxE1+v5oElre8PTPfPMMtrea5qAt2TkwdMDFEO
+	CJ1axpBgDg7vz3dxAhc/OH83XPSIMB+cCVfSvhSIFKjBr0NtCIRBQ2pOp6k5JvIS+97u
+	dGOcM67EWkfXc+6vr64Rk6kgcLeYyHKShi3zb7py+EK8fvg26jkcneKTIHjSfmOvnRHa
+	JLzaPxqJ5ZSTqejk6X6rZ5X7NG8/Mf8fTe1LcJTlGW3BnYU93HjPVSG6E/s0Z/UzcSsi
+	s9EQ==
 MIME-Version: 1.0
-Received: by 10.140.25.47 with HTTP; Thu, 30 Jan 2014 08:30:42 -0800 (PST)
-From: Diego Sueiro <diego.sueiro@gmail.com>
-Date: Thu, 30 Jan 2014 14:30:42 -0200
-Message-ID: <CAMCfZKGN2k1NpUtGiMGK48pi5rzaZQbXrnfPbiL=brGhr4vnxw@mail.gmail.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Python package recipe
+X-Received: by 10.152.23.132 with SMTP id m4mr2318301laf.34.1391106958813;
+	Thu, 30 Jan 2014 10:35:58 -0800 (PST)
+Received: by 10.114.57.68 with HTTP; Thu, 30 Jan 2014 10:35:58 -0800 (PST)
+In-Reply-To: <17797116383D4341B029FDF34C22BF6A72FF261B05@GUREXMB01.ASIAN.AD.ARICENT.COM>
+References: <17797116383D4341B029FDF34C22BF6A72FF261B05@GUREXMB01.ASIAN.AD.ARICENT.COM>
+Date: Thu, 30 Jan 2014 10:35:58 -0800
+Message-ID: <CAFeBWL4s2dTtYd_C04kCzMY40fpE57qqbiZpxZBkJeBBRSEU6w@mail.gmail.com>
+From: Adam Lee <adam.yh.lee@gmail.com>
+To: Rohit2 Jindal <rohit2.jindal@aricent.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Nested If else
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,138 +38,108 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 30 Jan 2014 16:31:09 -0000
-Content-Type: multipart/alternative; boundary=001a11395aaa508cbd04f132956e
+X-List-Received-Date: Thu, 30 Jan 2014 18:36:03 -0000
+Content-Type: multipart/alternative; boundary=089e0160b5ee1ff00d04f13454fb
 
---001a11395aaa508cbd04f132956e
+--089e0160b5ee1ff00d04f13454fb
 Content-Type: text/plain; charset=ISO-8859-1
 
-Folks,
+It would help if you provided more context, but this might be what you are
+looking for -
+http://cgit.openembedded.org/cgit.cgi/openembedded-core/tree/meta/recipes-core/systemd/systemd-serialgetty.bb?h=master
 
-I'm trying to create a recipe for Adafruit's BeagleBone IO Python Library:
-https://github.com/adafruit/adafruit-beaglebone-io-python
-
-The problem is that this python package generates some dtbos and install
-them on /lib/firmware but these files were not presented on generated
-package.
-
-Here is my python-pybbio.bb:
-
-DESCRIPTION = "Adafruit's BeagleBone IO Python Library"
-SECTION = "devel/python"
-LICENSE = "MIT"
-LIC_FILES_CHKSUM = "file://README.rst;md5=6c89ebda10e2f2efefe5e681a9a0c1f1"
-SRCNAME = "pybbio"
+Adam
 
 
-COMPATIBLE_MACHINE = "(beaglebone)"
+On Tue, Jan 28, 2014 at 4:38 AM, Rohit2 Jindal <rohit2.jindal@aricent.com>wrote:
 
-SRC_URI = "git://
-github.com/adafruit/adafruit-beaglebone-io-python;branch=master"
-SRCREV_pn-${PN} = "ff6f11abe7864e8db735b359365a85323bff2a06"
+>  Hi,
+>
+>
+>
+>
+>
+> I s there any thing like nested if else kind of statements exist in yocto
+> ???
+>
+>
+>
+> Regards,
+>
+> Rohit Jindal
+>
+>
+>
+>
+>
+> ===============================================================================
+> Please refer to http://www.aricent.com/legal/email_disclaimer.html
+> for important disclosures regarding this electronic communication.
+>
+> ===============================================================================
+>
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
+>
 
-S = "${WORKDIR}/git"
-
-inherit setuptools
-
-PACKAGE_ARCH = "${MACHINE_ARCH}"
-
-
-To get dtbos and all python files on the package I need to add these lines
-in my recipe:
-
-do_install_append() {
-    install -d ${D}/${nonarch_base_libdir}/firmware
-    install -m 0644 ${S}/overlays/*dt* ${D}${nonarch_base_libdir}/firmware/
-
-}
-
-FILES_${PN} = " ${nonarch_base_libdir}/firmware/* \
-                 ${exec_prefix} \
-
-
-It seems not good to me and I thought that there is a better solution.
-Should I have to inherit another class to achieve this?
-
-Note: I can easly install this on target using pip install
-
-
-Regards,
-
---
-*dS
-Diego Sueiro
-
-Administrador do Embarcados
-www.embarcados.com.br
-
-/*long live rock 'n roll*/
-
---001a11395aaa508cbd04f132956e
+--089e0160b5ee1ff00d04f13454fb
 Content-Type: text/html; charset=ISO-8859-1
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Folks,<div><br></div><div style>I&#39;m trying to create a=
- recipe for=A0Adafruit&#39;s BeagleBone IO Python Library:</div><div style>=
-<a href=3D"https://github.com/adafruit/adafruit-beaglebone-io-python">https=
-://github.com/adafruit/adafruit-beaglebone-io-python</a><br>
+<div dir=3D"ltr">It would help if you provided more context, but this might=
+ be what you are looking for - =A0<a href=3D"http://cgit.openembedded.org/c=
+git.cgi/openembedded-core/tree/meta/recipes-core/systemd/systemd-serialgett=
+y.bb?h=3Dmaster">http://cgit.openembedded.org/cgit.cgi/openembedded-core/tr=
+ee/meta/recipes-core/systemd/systemd-serialgetty.bb?h=3Dmaster</a><div>
+<br></div><div>Adam</div></div><div class=3D"gmail_extra"><br><br><div clas=
+s=3D"gmail_quote">On Tue, Jan 28, 2014 at 4:38 AM, Rohit2 Jindal <span dir=
+=3D"ltr">&lt;<a href=3D"mailto:rohit2.jindal@aricent.com" target=3D"_blank"=
+>rohit2.jindal@aricent.com</a>&gt;</span> wrote:<br>
+<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
+x #ccc solid;padding-left:1ex">
 
-</div><div style><br></div><div style>The problem is that this python packa=
-ge generates some dtbos and install them on /lib/firmware but these files w=
-ere not presented on generated package.</div><div style><br></div><div styl=
-e>
 
-Here is my <a href=3D"http://python-pybbio.bb">python-pybbio.bb</a>:</div><=
-div style><div><br></div></div><blockquote style=3D"margin:0px 0px 0px 40px=
-;border:none;padding:0px"><div style><div style>DESCRIPTION =3D &quot;Adafr=
-uit&#39;s BeagleBone IO Python Library&quot;</div>
 
-</div><div style><div style>SECTION =3D &quot;devel/python&quot;</div></div=
-><div style><div style>LICENSE =3D &quot;MIT&quot;</div></div><div style><d=
-iv style>LIC_FILES_CHKSUM =3D &quot;file://README.rst;md5=3D6c89ebda10e2f2e=
-fefe5e681a9a0c1f1&quot;</div>
 
-</div><div style><div style>SRCNAME =3D &quot;pybbio&quot;</div></div><div =
-style><div style><br></div></div><div style><div style><br></div></div><div=
- style><div style>COMPATIBLE_MACHINE =3D &quot;(beaglebone)&quot;</div></di=
-v>
 
-<div style><div style><br></div></div><div style><div style>SRC_URI =3D &qu=
-ot;git://<a href=3D"http://github.com/adafruit/adafruit-beaglebone-io-pytho=
-n;branch=3Dmaster">github.com/adafruit/adafruit-beaglebone-io-python;branch=
-=3Dmaster</a>&quot;</div>
+<div lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
+<div>
+<p class=3D"MsoNormal">Hi,<u></u><u></u></p>
+<p class=3D"MsoNormal"><u></u>=A0<u></u></p>
+<p class=3D"MsoNormal"><u></u>=A0<u></u></p>
+<p class=3D"MsoNormal">I s there any thing like nested if else kind of stat=
+ements exist in yocto ???<u></u><u></u></p>
+<p class=3D"MsoNormal"><u></u>=A0<u></u></p>
+<p class=3D"MsoNormal">Regards,<u></u><u></u></p>
+<p class=3D"MsoNormal">Rohit Jindal<u></u><u></u></p>
+</div>
+<br>
+<font face=3D"Arial" color=3D"Gray"><br>
+<br>
+<br>
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D<br>
+Please refer to <a href=3D"http://www.aricent.com/legal/email_disclaimer.ht=
+ml" target=3D"_blank">http://www.aricent.com/legal/email_disclaimer.html</a=
+><br>
+for important disclosures regarding this electronic communication.<br>
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D<br>
+</font>
+</div>
 
-</div><div style><div style>SRCREV_pn-${PN} =3D &quot;ff6f11abe7864e8db735b=
-359365a85323bff2a06&quot;</div></div><div style><div style><br></div></div>=
-<div style><div style>S =3D &quot;${WORKDIR}/git&quot;</div></div><div styl=
-e>
+<br>_______________________________________________<br>
+yocto mailing list<br>
+<a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br>
+<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" target=3D"_blank"=
+>https://lists.yoctoproject.org/listinfo/yocto</a><br>
+<br></blockquote></div><br></div>
 
-<div style><br></div></div><div style><div style>inherit setuptools</div></=
-div><div style><div style><br></div></div><div style><div style>PACKAGE_ARC=
-H =3D &quot;${MACHINE_ARCH}&quot;</div></div></blockquote><div style><div>
-
-<br></div></div><div style>To get dtbos and all python files on the package=
- I need to add these lines in my recipe:</div><div style><blockquote style=
-=3D"margin:0px 0px 0px 40px;border:none;padding:0px"><div style><div>do_ins=
-tall_append() {</div>
-
-<div>=A0 =A0 install -d ${D}/${nonarch_base_libdir}/firmware</div><div>=A0 =
-=A0 install -m 0644 ${S}/overlays/*dt* ${D}${nonarch_base_libdir}/firmware/=
- =A0 =A0 =A0=A0</div><div>}<br></div><div><br></div><div>FILES_${PN} =3D &q=
-uot; ${nonarch_base_libdir}/firmware/* \</div>
-
-<div>=A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0${exec_prefix} \</div><div><br></di=
-v></div></blockquote></div><div><br></div><div style>It seems not good to m=
-e and I thought that there is a better solution. Should I have to inherit a=
-nother class to achieve this?</div>
-
-<div><br></div><div style>Note: I can easly install this on target using pi=
-p install</div><div><br></div><div><br clear=3D"all"><div><div dir=3D"ltr">=
-<div>Regards,</div><div><br></div>--<br>*dS<br>Diego Sueiro<br><br>Administ=
-rador do Embarcados<br>
-
-<a href=3D"http://www.embarcados.com.br" target=3D"_blank">www.embarcados.c=
-om.br</a><br><br>/*long live rock &#39;n roll*/<br></div></div>
-</div></div>
-
---001a11395aaa508cbd04f132956e--
+--089e0160b5ee1ff00d04f13454fb--
