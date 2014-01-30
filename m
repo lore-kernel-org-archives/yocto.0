@@ -1,23 +1,28 @@
-Return-Path: <ajlennon@dynamicdevices.co.uk>
-Received: from www.dynamicdevices.co.uk (www.dynamicdevices.co.uk
-	[89.200.136.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 27D91E0030B
-	for <yocto@yoctoproject.org>; Wed, 29 Jan 2014 12:09:42 -0800 (PST)
-Received: from [127.0.0.1] (cpc32-live22-2-0-cust59.17-2.cable.virginm.net
-	[82.36.253.60])
-	(using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by www.dynamicdevices.co.uk (Postfix) with ESMTPSA id B78868606E
-	for <yocto@yoctoproject.org>; Wed, 29 Jan 2014 20:09:40 +0000 (UTC)
-Message-ID: <52E96001.7030000@dynamicdevices.co.uk>
-Date: Wed, 29 Jan 2014 20:09:37 +0000
-From: Alex J Lennon <ajlennon@dynamicdevices.co.uk>
-User-Agent: Mozilla/5.0 (Windows NT 6.3; WOW64;
+Return-Path: <dv@pseudoterminal.org>
+Received: from ptmx.org (ptmx.org [178.63.28.110])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2C1D9E00280
+	for <yocto@yoctoproject.org>; Wed, 29 Jan 2014 17:21:09 -0800 (PST)
+Received: from [192.168.178.101] (chello080108009040.14.11.vie.surfer.at
+	[80.108.9.40]) by ptmx.org (Postfix) with ESMTPSA id 1AF632513F;
+	Thu, 30 Jan 2014 02:21:07 +0100 (CET)
+Message-ID: <52E9A981.7000000@pseudoterminal.org>
+Date: Thu, 30 Jan 2014 02:23:13 +0100
+From: Carlos Rafael Giani <dv@pseudoterminal.org>
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64;
 	rv:24.0) Gecko/20100101 Thunderbird/24.2.0
 MIME-Version: 1.0
-To: yocto@yoctoproject.org
-X-Enigmail-Version: 1.6
-Subject: How to temporarily disable a package rebuild during an image build?
+To: Khaja Hussain Shaik <khajahussain-s@hcl.com>
+References: <31DD9473F5EB4E468EDC3B5642AD64BD08AECFFC@chn-hclt-mbs06.HCLT.CORP.HCL.IN>
+	<CAP71Wjwgmoyj-L9MVyNe4Fk=g5OGmOa7KrAKCuWP+C-=iEZX6g@mail.gmail.com>
+	<1938188.T29nr9UITP@peggleto-mobl5.ger.corp.intel.com>
+	<52D8DBA7.4070700@pseudoterminal.org>
+	<31DD9473F5EB4E468EDC3B5642AD64BD08E3F431@chn-hclt-mbs06.HCLT.CORP.HCL.IN>
+In-Reply-To: <31DD9473F5EB4E468EDC3B5642AD64BD08E3F431@chn-hclt-mbs06.HCLT.CORP.HCL.IN>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
+	Paul Eggleton <paul.eggleton@linux.intel.com>,
+	"Kishore Divvela -ERS, HCL Tech" <kishore-d@hcl.com>,
+	Dipesh Karmakar <Dipesh.Karmakar@hcl.com>
+Subject: Re: Rgardring GSTreamer1.0 integration on Yocto dylan
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -29,31 +34,23 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 29 Jan 2014 20:09:43 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Thu, 30 Jan 2014 01:21:14 -0000
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
+
+On 28.01.2014 13:49, Khaja Hussain Shaik wrote:
+> Hi Carlos,
+>
+> Did you get a chance to look into the porting of gst1.0 to Dylan?
+>
+> Regards
+> Khaja
+>
 
 Hi,
 
-I was wondering if there's a per-package environment variable I could
-use to contrain the rebuilding of packages?
+sorry, not yet, very busy with other things at the moment. I hope I can 
+finish it in a few days.
 
-i.e. I am modifying a linux-imx kernel, rebuilding that kernel package
-and then generating an output filesystem image to boot from an SD card
-for testing.
-
-Each time I modify linux-imx I am finding that qt4 does a rebuild.
-
-So whilst I'm making changes to linux-imx for test I'd rather that q4
-didn't rebuild when I build the image, and was wondering if there's a
-way to prevent that?
-
-(I could, I suppose, move to a testing model that didn't use a
-completely rebuilt SD card image but I like this approach as if it
-works, well, it works, and I can distribute. Perhaps there's a better way?)
-
-Thanks,
-
-Alex
-
+Carlos
 
