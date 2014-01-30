@@ -1,30 +1,27 @@
-Return-Path: <paul.betafive@gmail.com>
-Received: from mail-vb0-f49.google.com (mail-vb0-f49.google.com
-	[209.85.212.49])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0A678E00404
-	for <yocto@yoctoproject.org>; Thu, 30 Jan 2014 13:54:17 -0800 (PST)
-Received: by mail-vb0-f49.google.com with SMTP id x14so2386500vbb.22
-	for <yocto@yoctoproject.org>; Thu, 30 Jan 2014 13:54:16 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:sender:from:date:message-id:subject:to:content-type;
-	bh=xUZ20uYRYDVpXV7ueK2zYKOtUGgUJ7IEqAA1b53OOzY=;
-	b=p6EVmDBXvpudOoW/dnkqWOZTpuIem5omUO1ouTJMzbuvODXI6wciH0zLPMoE37mEcX
-	L1VRd9EuY6bTJ6JWg93OOL2AIX4PpdiA1RNDXtEHqsYImeThRQ/orJrFYkGVG9r6UFFG
-	bu9IwnURU2Ij82bx3HvHkXgRvfqQp0N6Ea7/TFr5RKDwWcyvpWjI+PITuxKVDWMUGnqP
-	aAkcbOMc9LzkvBjegtKyqhU6+za51nHNtcCoaFfrC3pqFv+E6CSuIlKtzF8AEqfBsK1t
-	UvsWdFbr4EhWJH9TJxvKVJA6JbFxiyQu+QFPzOUlZB2lMehJsiujYKBIk0z/GOitAL0+
-	rVjw==
-X-Received: by 10.58.90.202 with SMTP id by10mr13299910veb.6.1391118856327;
-	Thu, 30 Jan 2014 13:54:16 -0800 (PST)
+Return-Path: <ajlennon@dynamicdevices.co.uk>
+Received: from www.dynamicdevices.co.uk (www.dynamicdevices.co.uk
+	[89.200.136.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E2D99E00498
+	for <yocto@yoctoproject.org>; Thu, 30 Jan 2014 15:11:09 -0800 (PST)
+Received: from [127.0.0.1] (cpc32-live22-2-0-cust59.17-2.cable.virginm.net
+	[82.36.253.60])
+	(using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by www.dynamicdevices.co.uk (Postfix) with ESMTPSA id 0F8C88606E;
+	Thu, 30 Jan 2014 23:11:07 +0000 (UTC)
+Message-ID: <52EADC09.2090204@dynamicdevices.co.uk>
+Date: Thu, 30 Jan 2014 23:11:05 +0000
+From: Alex J Lennon <ajlennon@dynamicdevices.co.uk>
+User-Agent: Mozilla/5.0 (Windows NT 6.3; WOW64;
+	rv:24.0) Gecko/20100101 Thunderbird/24.2.0
 MIME-Version: 1.0
-Sender: paul.betafive@gmail.com
-Received: by 10.220.239.135 with HTTP; Thu, 30 Jan 2014 13:53:36 -0800 (PST)
-From: Paul Barker <paul@paulbarker.me.uk>
-Date: Thu, 30 Jan 2014 21:53:36 +0000
-X-Google-Sender-Auth: YqAAP9lzJGKwY_13cxImEzP6sQw
-Message-ID: <CANyK_8dY=3pVVLU+K7aeAsFgcTyPJPp+2SKM6LYrAQeD02f3yA@mail.gmail.com>
-To: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Yocto Project and OpenEmbedded Logos
+To: Adam Lee <adam.yh.lee@gmail.com>
+References: <52E96001.7030000@dynamicdevices.co.uk>
+	<CAFeBWL737fZb2RsWoTJnU-xw-XuO5g3ynhvpDaEGZnbUijXi0g@mail.gmail.com>
+In-Reply-To: <CAFeBWL737fZb2RsWoTJnU-xw-XuO5g3ynhvpDaEGZnbUijXi0g@mail.gmail.com>
+X-Enigmail-Version: 1.6
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: How to temporarily disable a package rebuild during an image build?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -36,31 +33,397 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 30 Jan 2014 21:54:20 -0000
+X-List-Received-Date: Thu, 30 Jan 2014 23:11:13 -0000
+X-Groupsio-MsgNum: 17942
+Content-Type: multipart/alternative;
+	boundary="------------000805070701000504090104"
+
+--------------000805070701000504090104
 Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: 7bit
 
-Hi, sorry this is a last-minute question.
+Hi Adam,
 
-I'm throwing together slides for my talk at FOSDEM on Sunday and I
-could do with decent copies of the Yocto Project and OpenEmbedded
-logos to include where appropriate. I think having good images of the
-correct logos when I'm talking about OE/Yocto will help to show it off
-to possible users.
+On 30/01/2014 18:40, Adam Lee wrote:
+> I am not sure if that's the correct behaviour at all. If you are
+> building the kernel, it should only build the kernel (and its deps).
+> How are you building it? I suppose you are doing 'bitbake
+> virtual/kernel', but just checking!
+>
 
-I've got a Yocto Project logo off Google Image Search but I can't find
-a good OpenEmbedded logo that isn't a badly-JPEG-compressed image. If
-someone could link me to something better I'd really appreciate that.
+I'm building an image for test, based on fsl-image-gui out of meta-fsl-arm.
 
-Also, the "Yocto Project Brand Guidelines" link on
-https://www.yoctoproject.org/about/trademark-policy points to the page
-https://www.yoctoproject.org/ecosystem/branding-compliance-guidelines.
-That page doesn't seem to contain any info.
+It looks like that fsl image pulls in qt4 -
+
+https://github.com/Freescale/meta-fsl-demos/blob/master/recipes-fsl/images/fsl-image-gui.bb
+
+I don't quite understand why qt4 is rebuilding but if I had to guess
+perhaps it's got a dependency on framebuffer support or something.
+
+I could probably go in and change the image recipes if I really had to,
+but I'd rather leave them as is, assuming correctness of dependencies,
+I'd rather change an environment variable during my debug cycle to
+temporarily contrain rebuilding of packages that I know don't need to
+be rebuilt, so things revert to "correct" when I'm finished porting the
+kernel
 
 Cheers,
 
+Alex
+
+
+> Adam
+>
+>
+> On Wed, Jan 29, 2014 at 12:09 PM, Alex J Lennon
+> <ajlennon@dynamicdevices.co.uk <mailto:ajlennon@dynamicdevices.co.uk>>
+> wrote:
+>
+>     Hi,
+>
+>     I was wondering if there's a per-package environment variable I could
+>     use to contrain the rebuilding of packages?
+>
+>     i.e. I am modifying a linux-imx kernel, rebuilding that kernel package
+>     and then generating an output filesystem image to boot from an SD card
+>     for testing.
+>
+>     Each time I modify linux-imx I am finding that qt4 does a rebuild.
+>
+>     So whilst I'm making changes to linux-imx for test I'd rather that q4
+>     didn't rebuild when I build the image, and was wondering if there's a
+>     way to prevent that?
+>
+>     (I could, I suppose, move to a testing model that didn't use a
+>     completely rebuilt SD card image but I like this approach as if it
+>     works, well, it works, and I can distribute. Perhaps there's a
+>     better way?)
+>
+>     Thanks,
+>
+>     Alex
+>
+>     _______________________________________________
+>     yocto mailing list
+>     yocto@yoctoproject.org <mailto:yocto@yoctoproject.org>
+>     https://lists.yoctoproject.org/listinfo/yocto
+>
+>
+
 -- 
-Paul Barker
 
-Email: paul@paulbarker.me.uk
-http://www.paulbarker.me.uk
+Dynamic Devices Ltd <http://www.dynamicdevices.co.uk/>
 
+Alex J Lennon / Director
+1 Queensway, Liverpool L22 4RA
+
+mobile: +44 (0)7956 668178
+
+Linkedin <http://www.linkedin.com/in/alexjlennon> Skype
+<skype:alexjlennon?add>
+
+This e-mail message may contain confidential or legally privileged
+information and is intended only for the use of the intended
+recipient(s). Any unauthorized disclosure, dissemination, distribution,
+copying or the taking of any action in reliance on the information
+herein is prohibited. E-mails are not secure and cannot be guaranteed to
+be error free as they can be intercepted, amended, or contain viruses.
+Anyone who communicates with us by e-mail is deemed to have accepted
+these risks. Company Name is not responsible for errors or omissions in
+this message and denies any responsibility for any damage arising from
+the use of e-mail. Any opinion and other statement contained in this
+message and any attachment are solely those of the author and do not
+necessarily represent those of the company.
+
+
+--------------000805070701000504090104
+Content-Type: multipart/related;
+ boundary="------------000308060001080300070907"
+
+--------------000308060001080300070907
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: 7bit
+
+<html>
+  <head>
+    <meta content="text/html; charset=ISO-8859-1"
+      http-equiv="Content-Type">
+  </head>
+  <body text="#000000" bgcolor="#FFFFFF">
+    Hi Adam,<br>
+    <br>
+    <div class="moz-cite-prefix">On 30/01/2014 18:40, Adam Lee wrote:<br>
+    </div>
+    <blockquote
+cite="mid:CAFeBWL737fZb2RsWoTJnU-xw-XuO5g3ynhvpDaEGZnbUijXi0g@mail.gmail.com"
+      type="cite">
+      <div dir="ltr">I am not sure if that's the correct behaviour at
+        all. If you are building the kernel, it should only build the
+        kernel (and its deps).
+        <div>How are you building it? I suppose you are doing 'bitbake
+          virtual/kernel', but just checking!</div>
+        <div><br>
+        </div>
+      </div>
+    </blockquote>
+    <br>
+    I'm building an image for test, based on fsl-image-gui out of
+    meta-fsl-arm. <br>
+    <br>
+    It looks like that fsl image pulls in qt4 -<br>
+    <br>
+<a class="moz-txt-link-freetext" href="https://github.com/Freescale/meta-fsl-demos/blob/master/recipes-fsl/images/fsl-image-gui.bb">https://github.com/Freescale/meta-fsl-demos/blob/master/recipes-fsl/images/fsl-image-gui.bb</a><br>
+    <br>
+    I don't quite understand why qt4 is rebuilding but if I had to guess
+    perhaps it's got a dependency on framebuffer support or something.<br>
+    <br>
+    I could probably go in and change the image recipes if I really had
+    to, but I'd rather leave them as is, assuming correctness of
+    dependencies, <br>
+    I'd rather change an environment variable during my debug cycle to
+    temporarily contrain rebuilding of packages that I know don't need
+    to <br>
+    be rebuilt, so things revert to "correct" when I'm finished porting
+    the kernel<br>
+    <br>
+    Cheers, <br>
+    <br>
+    Alex<br>
+    <br>
+    <br>
+    <blockquote
+cite="mid:CAFeBWL737fZb2RsWoTJnU-xw-XuO5g3ynhvpDaEGZnbUijXi0g@mail.gmail.com"
+      type="cite">
+      <div dir="ltr">
+        <div>Adam</div>
+      </div>
+      <div class="gmail_extra"><br>
+        <br>
+        <div class="gmail_quote">On Wed, Jan 29, 2014 at 12:09 PM, Alex
+          J Lennon <span dir="ltr">&lt;<a moz-do-not-send="true"
+              href="mailto:ajlennon@dynamicdevices.co.uk"
+              target="_blank">ajlennon@dynamicdevices.co.uk</a>&gt;</span>
+          wrote:<br>
+          <blockquote class="gmail_quote" style="margin:0 0 0
+            .8ex;border-left:1px #ccc solid;padding-left:1ex">Hi,<br>
+            <br>
+            I was wondering if there's a per-package environment
+            variable I could<br>
+            use to contrain the rebuilding of packages?<br>
+            <br>
+            i.e. I am modifying a linux-imx kernel, rebuilding that
+            kernel package<br>
+            and then generating an output filesystem image to boot from
+            an SD card<br>
+            for testing.<br>
+            <br>
+            Each time I modify linux-imx I am finding that qt4 does a
+            rebuild.<br>
+            <br>
+            So whilst I'm making changes to linux-imx for test I'd
+            rather that q4<br>
+            didn't rebuild when I build the image, and was wondering if
+            there's a<br>
+            way to prevent that?<br>
+            <br>
+            (I could, I suppose, move to a testing model that didn't use
+            a<br>
+            completely rebuilt SD card image but I like this approach as
+            if it<br>
+            works, well, it works, and I can distribute. Perhaps there's
+            a better way?)<br>
+            <br>
+            Thanks,<br>
+            <br>
+            Alex<br>
+            <br>
+            _______________________________________________<br>
+            yocto mailing list<br>
+            <a moz-do-not-send="true"
+              href="mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br>
+            <a moz-do-not-send="true"
+              href="https://lists.yoctoproject.org/listinfo/yocto"
+              target="_blank">https://lists.yoctoproject.org/listinfo/yocto</a><br>
+          </blockquote>
+        </div>
+        <br>
+      </div>
+    </blockquote>
+    <br>
+    <div class="moz-signature">-- <br>
+      <div class="preview">
+        <p style="font-family: Helvetica, Arial, sans-serif; font-size:
+          10px; line-height: 12px;"><a
+            href="http://www.dynamicdevices.co.uk/" class="clink"><img
+              src="cid:part4.04010308.09060107@dynamicdevices.co.uk"
+              alt="Dynamic Devices Ltd" id="sig-logo" border="0"></a></p>
+        <p style="font-family: Helvetica, Arial, sans-serif; font-size:
+          10px; line-height: 12px; color: rgb(153, 153, 153);"><span
+            id="name-input" style="font-weight: bold;" class="txt">Alex
+            J Lennon</span> <span id="title-sep">/</span> <span
+            id="title-input" style="color: #999;" class="txt">Director</span><br>
+          <span id="address-input" style="color: #999;" class="txt">1
+            Queensway, Liverpool L22 4RA</span> </p>
+        <p style="font-family: Helvetica, Arial, sans-serif; font-size:
+          10px; line-height: 12px;"> <span id="mobile-input"
+            style="color: #999;" class="txt">mobile: +44 (0)7956 668178</span>
+          <br>
+          <br>
+        </p>
+        <p style="font-size: 10px; line-height: 12px; font-family:
+          Helvetica, Arial, sans-serif"> <a id="linkedin-input"
+            class="social" href="http://www.linkedin.com/in/alexjlennon"><img
+              src="cid:part6.03040909.00080006@dynamicdevices.co.uk"
+              alt="Linkedin"></a> <a id="skype-input" class="social"
+            href="skype:alexjlennon?add"><img
+              src="cid:part8.03050901.06030505@dynamicdevices.co.uk"
+              alt="Skype"></a></p>
+        <p id="disclaimer-input" style="font-family: Helvetica, Arial,
+          sans-serif; color: rgb(153, 153, 153); font-size: 9px;
+          line-height: 12px;width: 25%" class="txt">This e-mail message
+          may contain confidential or legally privileged information and
+          is intended only for the use of the intended recipient(s). Any
+          unauthorized disclosure, dissemination, distribution, copying
+          or the taking of any action in reliance on the information
+          herein is prohibited. E-mails are not secure and cannot be
+          guaranteed to be error free as they can be intercepted,
+          amended, or contain viruses. Anyone who communicates with us
+          by e-mail is deemed to have accepted these risks. Company Name
+          is not responsible for errors or omissions in this message and
+          denies any responsibility for any damage arising from the use
+          of e-mail. Any opinion and other statement contained in this
+          message and any attachment are solely those of the author and
+          do not necessarily represent those of the company.</p>
+      </div>
+    </div>
+  </body>
+</html>
+
+--------------000308060001080300070907
+Content-Type: image/png;
+ name="ddlogo-4.png"
+Content-Transfer-Encoding: base64
+Content-ID: <part4.04010308.09060107@dynamicdevices.co.uk>
+Content-Disposition: inline;
+ filename="ddlogo-4.png"
+
+iVBORw0KGgoAAAANSUhEUgAAAGwAAAA9CAIAAADH1hvIAAAAK3RFWHRDcmVhdGlvbiBUaW1lAFNh
+dCA1IEF1ZyAyMDA2IDExOjQ5OjUwIC0wMDAwVeKl8wAAAAd0SU1FB9YIBQoyDghCEsEAAAAJcEhZ
+cwAACxEAAAsRAX9kX5EAAAAEZ0FNQQAAsY8L/GEFAAAO9UlEQVR42u1bCVSTV9pO8mUPCZCEJRBA
+IOyIIrsoqK0V6WAttWptj7b+dSynOgenY4ttbe3ixsyUaWfmzHRmOv7/eMbxt1qrtra4DZsisshO
+kB0hQEIWkpB8+ZJ8mTeEIlJEtEySzvgcjid+ufd+733u+z7v3UK0WCyER/hhIDnagP8EPCJxDvCI
+xDmA85IoGx7Oyc2NSUgovHTJ0bbcB85IosFg+PXHH0fGxpqNxtwdO3766qtr169v6+hwtF33hsWZ
+gOP4F2fOiKKjH8vMvFlXh1ssJrNZq9W+8/777gLBG2+/PaJWO9rGaeBEJFbfvLk8IyN0wYIvz50D
+NkdRQ3u/tKl7YEilNuN4Z3f3uuefF4pEf/3b30wmk6ONvQtOQaJkYGDrK694+vl99MknKIpiRtNt
+qbK+s7+hS2L7a709NDKqh5L/LC6OSUpKXrasvKLC0VbfgYM1UafTHcjPh+zBZDAaa2pAATWo8ZZE
+phrVE4nEiWKYydwrVXYNypOTU6rKyjZv2rT22Wdf2r4d2HewGo7BYSRCwB7//PPo+PjS8vKiCxd+
++9FHdBa7vV82qNRY8OkXUaMo1tEvk6pGt23dCoy7MJkLEhN/WVAAzusw/sZAtNh92QdvrKisfG3P
+Ho1anX/gQMbKleBogwr1yN3eNwNIJIKXG4fLZjY2N+fu3t0/MPDL/fufzMggkRzjE/Ymsae39619
++0Da3s7Le/nFF0kIMjwyCn8gzg/aFBUhCfhuLBoFEtHuN98MCwn51cGDkRER9uyODfYbOrVG8+4H
+H8Snpgq8vRsqK3O2bRs1mNr6hmUj2odgEICZ8e5BeY9Umbk6ExpcnJy8bNWq1/LyFEql/fgbg/08
+MTktjcfjFeTnh4aEQAIeUKi1esMs4/c+fSAQuBympxu7XyLJ27u3pLT0zOefx8XG2qdfALLd3qQa
+GTm8f3+ISATc9coUOE64L4M0CpnHZs6yfS2K+QuFx44cWbx8eWdn538miTa09vaPaEfDAoRytU6P
+mWYuDCQiLtor2G9nLkYkkAKRRF8k5rqxKpmSrVKp6HS6PTtlbxKNJlN1a0fbbUlSVJi3OwcE0YzP
+pCcmgmHAIp6hAJ8YGEd+phWv+LN+ZySyHEiEhzw+356dsjeJNoAXXqysFXrykyJDzRaCUqN/CGFm
+EFzjyetQAvYXbOeQxZHbE44h0YY+6bBEJo8OCogKClBqUZ0Bm2VFhECJRFZ6kcK/Mn7UiF+Z/BXk
+SVhoI/adMDqSRABusdR3dLf3DSRGhfrwuDKV1mjGZ6xB9CfGRpFXlZmOHzW+aSJM5R2SFZFEcmGx
+7NkLB5Nog85gKKpp8OK6JUeFIQhFrhmddt7lThDGU57txhsLDBu1BLmjrb4DpyDRhiGF6mzZjTB/
+nwUhQVo9ptHf8TI6gR1LfhqsPYrl9VmaZmjEaDSiej1hLqafs4cTkUgYUzRxT3/3gDQuTOTn7Wk0
+mUkEBORPSIo9b/y4Dv/2vmub8b2p/2YSbYD1zNWGFl5v39KYSCbRfcjSf9zwPkbQO9que8IZz1hs
+kI9oGjp7ZZbuQtPvZs8ghmFajcbOptqVRJPJJBL6RAb6k5A5fi/RQgwnpWVRf44ZjRDwLPtmZ/uR
+GB8Xl5Obe/bc2SXzw59JT4GZ9lztfXgSA3PoR35BPyWp1j+9fn1gQACHzbZbvwj2JPHoZ58VHD58
+ID9/xerV7a3irNSEjOQ4d7bLD2mTSXDNpr61j1EikMb/9NWd2Rs3rsvOvlpU5ObmZrd+EexJIsyC
+n8zIqCgt3bhuXfamTVu2bSObsWdXpMLckEZ54PxGspAXkze8zyxbbsz5pODTuNRUCpVac+3azpwc
+Oo1mTwYJ9k8sJIS8cdPm8+fO40QkITX1w0OHggUeGx5Pi5gnnKUpIH/BxKQ8xldbKb8v+aomNjn5
+i7Pn/vLnvx788BDfw8PO3fnOJHttymIms85ghAWybRsR3tvQ0HDg4Ie9Pd3v7d373Pr1Co32ap14
+QC6f2GcM9hVEJdDe0S+ZaIRH8MumvZ2IrK2vb96zd29z6603Xs9bs+YpMtnqy1CPRaOx6BQ7zxPt
+RyJqNKl16JSNL7PZfPHihcOHD7q5uR7+4IOlqakdkqHrjS0aHTqFRJqFuZL6SgZlp0ZmeO/AgRMn
+T27e/OL27TkcDueu/hAsLAaNTbdrRNsvnOkUMp/DcmHQJq/JEATJyFh9/nxhZmbWhs2bn9uyhWjQ
+bXw8PSEihEpBxk20IPHI2veYJavxX3z2x2MQvwNDsnPnvtm9+40pDNLICI/NsjODBIccmZrNuFqP
+oRg2ZYUrlUk/+fg3Z8+c/p+tW1/ftYtMpQ3IlZ5C0pClI5SY8k3hhT3vvkumUN56c29KyuIpRwtk
+EsJmUukPnqB+rCTaYDCaNCj8c9fGl3XtLBYfOrS/RdzyTl7elhdeoFAp4tZbr+/ZU9vYuGvXa89k
+r6NSqZOrgPy50KlMGmVOzrx+ZCTaKNNjJrUenWICjpuLiouBShqZHJ+QcPLUqfUbntvx6k53d/cp
+1Zl0KodBs3Ma+T4cSaINOG7RGjCd3mC5mwsURf//xPEbN27syv25SCSa/BXYTKWQXZl0MkJyMH9j
+cDyJNpisQomimOm+UQm8cZh0R8nftHAWEm0wWKdBBhM+/QmBdfpCh2kg1eHxO9UwpyKRMBaqowaj
+FsUmG2aVPxoVEgh5rrd/5gROR6INMCfXooZR1Lq8QRCiK4P+EOtru8FJSbTBaMaNZjODQnGy8J0K
+pybxxwJnlJgfHR6ROAdwXrV2EoDc3eobDPMT9A8rJXKFhUAM8fVq6x+iIeQgH08203r97P6e2NDe
+cfh/j/27be2RDDZ3dP07Wu4ekI5oRx+6Om6xyDXW6gKuG8FCDPX1NptxBpUSIvSqaeu2lbk/ibAs
+w0yzvWr00CitrTtTUjbnzQIFFU3iTsngD2+KBCtMIsF6Vcp624fEpNMmFlczhTN48kNvjTxo3ecy
+Vk6ZJ0xuAb7QowZgxIUxze1Ny9iN4+l7TiSuW75k8q8Kvl94huo2oAasQyIN9vGceKLSjtZ29PDd
+xs8Up5/inLxUVFxdA9NcDpOZGBVR19aeGBmBmUxZaam2Ap+eOhPi71fZ3Dw/OPhqXb1WjwZ4ee/Y
+mE2lUDQ63dGvC1s6e2hUamxYMIxaVHBgZOC8gmMnUuZHnb5SDO2sSVui1GiKq2ppdMpLWU/GhARf
+qawZVqrWP7FCh6LHvrlY09qKm3EXBvOtl7e4c9hXahoGhxXAqRk3p8ZEBgq8wAa9ASupa5YqlEAB
+i0Fftmi+ZFjRJ5OvShy/aFwlbjdgmA41+Hl5hAcIh1XqsoYWKA8+5eXunrUkEVq4XFWr0mphvHiu
+7LSF0TBIPYOykromHMf9PfnpsdFgv0ylhld7uLJHRnUsOh0YU2pHOfBKCuWennitvrGouib3+Q3z
+BN5y1UjB30+wmPSwef75//f3J1ISaRQKPKxqEmevSP/Htxd4HNf3tr9sMGL7Pj0CFZfFxf7x5Jcu
+TEZ+bg6FTP5nZc3xwkv+Xl6gCZ19EqGnx/4d22+K2/70xdm1y5cW7P7Z+bLyfxRemi8K0hvQUb31
+msPxwssyheqdbVu5HLZMOcIZO4aHLi0KCw7z9+2TykvrmiCm/L08im82uLqwHo9PB1+qbe/6+loV
+8FLRdEuu1vA4bKPJ1NjevSolDp4YTaBjeGFFDbCZkbQIqmt01h+5fVNeJfLzyQyMBz+6Wt/ybXn1
+M8sXQ/jHhgSFB/jWtXVBRRqV5Ok2vn/uyhq/QD7xZNzfv0/i5es3VqUkiYS+ZATx4nHXLLN63zwf
+gY+Hx/X6RvhcXF0bHRLk4W49202PW0gmIywGI9RfOCRXSGTD4q7eF1avYtBoUH1lckKgr2Ci5VUp
+ifAcxgO6sSJ+EYwHuDmKGczf7TioNJqK+qaXnsr05nHBqX09+ch3i2VbdPt58ROjQps6e7Q6fc/Q
+cIC3J9Ch0ev9vT3AreChSCho7OwmjF0O57BZAt74FmTPoBSCeunCKDq0S0a4HBepcmR4ROPrwVND
+Czp9WICvbESt0Gg93F2bu3qh/MLQIBqVMhstmsYTlVqtJ/fO9qc7e5z1xxLjCsuvL14wv6Smblt2
+lu0hgoyfhNj0y4AZ3dkuzEmnHBzWneN5KvmOTbbyU3QTxYwWIsGFNdMvBlzodOg8ZgLm8aLapgkv
+4DCsgRYjmne6qDw+PKSxqzcpInSiFggOm8mY/DIIc2ji4o3aiSdubBY4dfrC6I7+wWpxR7W4/aml
+ybPhcRoSIYprW9uSoiNt/70pvmX7kBAVAbF5pqiUQadGBAZM2xzol0qj7ZPKAgTehLHjFNmD/DSH
+zWSSiKSufsl8UfC9ynRJhiAIGDQqmYSsjI/xcHMlWLcjzaBl4FYwKgIP92v1LZCYAwR3UgEMbWXL
+LRTD6N+dLrBZDBiAn6TGuzAYBKvCGgbkSlBGoDvEzydYKDh+qQTcGUblYUhcuyzt4JGjR859PT84
+6FbP7crmFq6r1VAIz/RFsV+XlT+fufJev6JzY7usWbbk9ydO/2RpCkTu5aoahUo9exJBrLNXpP3h
+5JcZKUk+Hjx4e1baEvaYY8JcD0Ks9bZEoVZnJscDiQtDAwuv1ywKF8Fn0C8waZ63B0TGQlHQqaJr
+yxfFTN529OVzfXjc0yUVMcEBZISk1IwmRYaGBgjPX6uKDRNBwRpxB6gwDMmJy6Vx4SIIJpgPCD15
+szEb2bdv35RHrmyXhWGhkMWGFEoeh7MmfakriwWaSLDOlUhVLeKXn84ij0UxhE/4vADG2LUN0GZv
+PteLywXJ47lyOiQDSrX6sYRFIQF+Qi/IbNagDgc1RBDi2GwLPtsaAY0S+fnCHIzryhHwecF+vqH+
+/j0Dgz2SIW8+DyQVEpRCremXKjR6VMjnLYmJsskF+B2TTpeqRmDCAeKYEh1m0xYYCTAp1E8wITV8
+Vw7EMjgXnUoeUqg0OtSL6wbJB2ohZGRQqdTpDZBh4sODIXgFfC4kNJ0Bg1TmzXWfDYkPsItjMpl/
+d/ykwJO/4YnHZu9c/w2Y7dr54vVKEMTI4ECIL0fb7HR4tJ84B3i0FTYH+Bdk7tmQGqQ4UwAAAABJ
+RU5ErkJggg==
+
+--------------000308060001080300070907
+Content-Type: image/png;
+ name="linkedin.png"
+Content-Transfer-Encoding: base64
+Content-ID: <part6.03040909.00080006@dynamicdevices.co.uk>
+Content-Disposition: inline;
+ filename="linkedin.png"
+
+iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAACXBIWXMAAAsTAAALEwEAmpwYAAAA
+GXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAgRJREFUeNqUUs9r1EAU/jKZ7I+2
+abBZVikKoYhCsbB/gXcFwV7Eu3jwInjyogdBj3oSPHm14KGhBwuC/gkKUqtVSglYarduKutu2c1m
+MuO82dqk1YX6YJL35r3vez/mWbWbCw3fd0PfnwjciQqOI51uH3HcjeK4M8+nToyHd640gnP1SViW
+dSwCpRS+7vwKniy9D7k3WQl2+xYWv7Sx2epgxmMmaKMtcbrmjiSZrjL4U+MBr5RsfGwlEJr1jGvh
+8dXzJuD24hqa3cFIgt09C1zn4kJk6KViWBovlgmk2jdKUn0IyykoSYeBbzbbuPXyk9GXVluoudVD
+INtmqHtjOvNwVoTlmf5k+5mo+2fXZo3+4u5bbD24aPSVrQ7mpl20ewL3ltfxORaGhHCMylBCakNC
+SfXPcglM4lU5Hl4+i+bPPYMhLJNCoKQbNkQqJ2CFF1149x33X60fkIhMGgxhGZXBiUDPwS5kHXPy
+iT56HSH88COfhT6EMViZZXCMIeEUFsktOQe6c2TByCYMYfmAWPRlov92kaCcV2AfISCbvIRlqWYp
+QaGv+5KFxp1yXgHdF32kE4awVv3Gc3XpwizWegp6e1Fy7L9eYbC/J398tO0zXGJ5ZVW3kKTRt53t
+YO7kKXCnPGLvnEOWSBNsNLeRDkRkedefNsBYqN8twP+IVBGknP8twABFyPH3kUzF5AAAAABJRU5E
+rkJggg==
+
+--------------000308060001080300070907
+Content-Type: image/png;
+ name="skype.png"
+Content-Transfer-Encoding: base64
+Content-ID: <part8.03050901.06030505@dynamicdevices.co.uk>
+Content-Disposition: inline;
+ filename="skype.png"
+
+iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAACXBIWXMAAAsTAAALEwEAmpwYAAAA
+GXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAq1JREFUeNqMk0trE1EUx/935s4k
+k1czbVpfWEctRaFiKZiCUCjqooggxZ0KfgC/QcVF1/oRBLsRXQjxgSu7qAsFpYuWoliLTaSNUJvQ
+vJvceVzPndBSF0KHOTPD5fz+55z/vcNmXi2OZuKRHIWTiho4zFVruyg1OwWKaW7HzNz1kUEnk4pD
+0xh2fQm6keDsvwJBIFGqNZ23K79yPBWNOJJH8K3q4VPVhfABjwQCSuSMQUiJXkNDNsVhHxDlxNgx
+y+GmYaDuMbwvd9Ck0gpOcg2Xeo3wW0Wx7ePhzxZuDZgYT/JQgJG4ruvgLrXzmxL24ITOMHM+jpj+
+7wg3jkVwb6kOUM5YQg/XFKu5gfroVhL0nsjwEF4stzA1v447Hzew0XIxHNcxngKebAnsMSo0EQSw
+qFggyUBaGDBl1yh6nemz8aXOcHm+gNmv23i52cAmVVmqtMmrAIrlqqpqNkqPbaKerlcw1hdDNtMN
+wMbrYh0vim209Cg6lL/ZEhhOmGHHmppDVeuQ221aWG4ZmFrIYy6/g4raErpunkjiebYfV9OgHImK
+1ENm34OAYItcVQKTGQN3HRsPVko4+S6PoTc/sLDVCIXuD0ZD8ENdhoxiudpnNfVZk+FzQ+IKmTh5
+JIGRnggerdWxQ1lpo+t6peOFB2SruUuMFZ4RrlSUgElx0fDx+HsNo7YVxrOstb+NapzZVeokiIJJ
+P2S6HVBPUs1Dj3MWx05TwzVyfaKXI22qygwVypwreqgYSWgywAUuQkaxXPg+dl0POtMgKMb7e3Cq
+WsdaTWBV7EKQwLLQ0NFMpDpVjBgebp8+GjLC82gEVxTWyjVnqC8F2+oe0+NWGmMHTqFH+91oC3A9
+gUTERItgYuB6boEHnjtd+FPK5ctVR2r6oX5nRmMwTxSY707/FWAAwixkevHIXSQAAAAASUVORK5C
+YII=
+
+--------------000308060001080300070907--
+
+--------------000805070701000504090104--
