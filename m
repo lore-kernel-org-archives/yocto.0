@@ -1,26 +1,34 @@
-Return-Path: <ajlennon@dynamicdevices.co.uk>
-Received: from www.dynamicdevices.co.uk (www.dynamicdevices.co.uk
-	[89.200.136.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 00BDBE00498
-	for <yocto@yoctoproject.org>; Thu, 30 Jan 2014 15:15:42 -0800 (PST)
-Received: from [127.0.0.1] (cpc32-live22-2-0-cust59.17-2.cable.virginm.net
-	[82.36.253.60])
-	(using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
-	(No client certificate requested)
-	by www.dynamicdevices.co.uk (Postfix) with ESMTPSA id E98618606E;
-	Thu, 30 Jan 2014 23:15:41 +0000 (UTC)
-Message-ID: <52EADD1C.3050900@dynamicdevices.co.uk>
-Date: Thu, 30 Jan 2014 23:15:40 +0000
-From: Alex J Lennon <ajlennon@dynamicdevices.co.uk>
-User-Agent: Mozilla/5.0 (Windows NT 6.3; WOW64;
-	rv:24.0) Gecko/20100101 Thunderbird/24.2.0
+Return-Path: <adam.yh.lee@gmail.com>
+Received: from mail-bk0-f54.google.com (mail-bk0-f54.google.com
+	[209.85.214.54])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EAD6DE00498
+	for <yocto@yoctoproject.org>; Thu, 30 Jan 2014 15:54:06 -0800 (PST)
+Received: by mail-bk0-f54.google.com with SMTP id u14so1838324bkz.27
+	for <yocto@yoctoproject.org>; Thu, 30 Jan 2014 15:54:05 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type;
+	bh=hM2igfIfODVhFElz4rc5xOszUs5+GVZyQDVxNsPQaBU=;
+	b=uVcqViYirp22id4C69PjDSKNDE0IyRuWLTVbLlhUF25+Ffp+1d8gWEfpsGfkOUjk62
+	5St/NBopn6MFI/hL0vYhDufnga2fVf2ixcTJdoKywJlEly7bKCyO8mpCTxQst2zdyLJW
+	A/gMIYZF3I7r4TFSmhP2pNJ8r24Yn4Sz7eZHbntl4S7Q821LIoeYGiJa/mDYfSYgrah8
+	uHuJ7WkwyNjxz3Pdmmb4kAfHwidm7UqLA6PkW504+4ggD3wOrq23J1h74YgoGy6FuDVQ
+	/HM1onxP0rX4cKJ+MkgUBtyGhrMSilUiTaFu3M1O6ZlEhsIQBpx+B6VDfaUFqjyeP4IF
+	fpEQ==
 MIME-Version: 1.0
-To: paul@paulbarker.me.uk
-References: <CANyK_8dY=3pVVLU+K7aeAsFgcTyPJPp+2SKM6LYrAQeD02f3yA@mail.gmail.com>
-In-Reply-To: <CANyK_8dY=3pVVLU+K7aeAsFgcTyPJPp+2SKM6LYrAQeD02f3yA@mail.gmail.com>
-X-Enigmail-Version: 1.6
-Cc: yocto@yoctoproject.org
-Subject: Re: Yocto Project and OpenEmbedded Logos
+X-Received: by 10.152.9.65 with SMTP id x1mr11528519laa.6.1391126045181; Thu,
+	30 Jan 2014 15:54:05 -0800 (PST)
+Received: by 10.114.57.68 with HTTP; Thu, 30 Jan 2014 15:54:04 -0800 (PST)
+In-Reply-To: <52EADC09.2090204@dynamicdevices.co.uk>
+References: <52E96001.7030000@dynamicdevices.co.uk>
+	<CAFeBWL737fZb2RsWoTJnU-xw-XuO5g3ynhvpDaEGZnbUijXi0g@mail.gmail.com>
+	<52EADC09.2090204@dynamicdevices.co.uk>
+Date: Thu, 30 Jan 2014 15:54:04 -0800
+Message-ID: <CAFeBWL4bBneiZ=brikVz0x16MtD_k3odTUs4bxDb-2kc+rmNDw@mail.gmail.com>
+From: Adam Lee <adam.yh.lee@gmail.com>
+To: Alex J Lennon <ajlennon@dynamicdevices.co.uk>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: How to temporarily disable a package rebuild during an image build?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,174 +40,275 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 30 Jan 2014 23:15:45 -0000
-X-Groupsio-MsgNum: 17943
-Content-Type: multipart/alternative;
-	boundary="------------030500010108000809060201"
+X-List-Received-Date: Thu, 30 Jan 2014 23:54:10 -0000
+X-Groupsio-MsgNum: 17944
+Content-Type: multipart/related; boundary=089e0158b8eac34e3e04f138c50a
 
---------------030500010108000809060201
+--089e0158b8eac34e3e04f138c50a
+Content-Type: multipart/alternative; boundary=089e0158b8eac34e3c04f138c509
+
+--089e0158b8eac34e3c04f138c509
 Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: 7bit
 
-Hi Paul,
+Hi Alex, so are you bitbaking the entire image every time you make a change
+to the kernel (The .bb file you linked is the image recipe)?
+If you only build the kernel (ie bitbake virtual/kernel), your system
+shouldn't build the entire image.
 
-I had similar trouble today. I couldn't for the life of me find a nice
-SVG of the Yocto logo,
-although I did scan through the brand guidelines pdf. They seem to point
-to the website
-but in the end I just scaled up the PDF and grabbed a capture from that...
+Let me know!
 
-https://www.yoctoproject.org/sites/yoctoproject.org/files/yoctoproject_styleguide.pdf
+Adam
 
-I was looking for an OpenEmbedded logo for FOSDEM 2012 and Philip
-Balister kindly pointed me to this one,
 
-http://git.openembedded.org/openembedded/tree/contrib/artwork/oe.svg
+On Thu, Jan 30, 2014 at 3:11 PM, Alex J Lennon <
+ajlennon@dynamicdevices.co.uk> wrote:
 
-I hope that's of use, cheers,
-
-Alex
-
-On 30/01/2014 21:53, Paul Barker wrote:
-> Hi, sorry this is a last-minute question.
+>  Hi Adam,
 >
-> I'm throwing together slides for my talk at FOSDEM on Sunday and I
-> could do with decent copies of the Yocto Project and OpenEmbedded
-> logos to include where appropriate. I think having good images of the
-> correct logos when I'm talking about OE/Yocto will help to show it off
-> to possible users.
 >
-> I've got a Yocto Project logo off Google Image Search but I can't find
-> a good OpenEmbedded logo that isn't a badly-JPEG-compressed image. If
-> someone could link me to something better I'd really appreciate that.
+> On 30/01/2014 18:40, Adam Lee wrote:
 >
-> Also, the "Yocto Project Brand Guidelines" link on
-> https://www.yoctoproject.org/about/trademark-policy points to the page
-> https://www.yoctoproject.org/ecosystem/branding-compliance-guidelines.
-> That page doesn't seem to contain any info.
+> I am not sure if that's the correct behaviour at all. If you are building
+> the kernel, it should only build the kernel (and its deps).
+> How are you building it? I suppose you are doing 'bitbake virtual/kernel',
+> but just checking!
+>
+>
+> I'm building an image for test, based on fsl-image-gui out of
+> meta-fsl-arm.
+>
+> It looks like that fsl image pulls in qt4 -
+>
+>
+> https://github.com/Freescale/meta-fsl-demos/blob/master/recipes-fsl/images/fsl-image-gui.bb
+>
+> I don't quite understand why qt4 is rebuilding but if I had to guess
+> perhaps it's got a dependency on framebuffer support or something.
+>
+> I could probably go in and change the image recipes if I really had to,
+> but I'd rather leave them as is, assuming correctness of dependencies,
+> I'd rather change an environment variable during my debug cycle to
+> temporarily contrain rebuilding of packages that I know don't need to
+> be rebuilt, so things revert to "correct" when I'm finished porting the
+> kernel
 >
 > Cheers,
 >
+> Alex
+>
+>
+>
+>  Adam
+>
+>
+> On Wed, Jan 29, 2014 at 12:09 PM, Alex J Lennon <
+> ajlennon@dynamicdevices.co.uk> wrote:
+>
+>> Hi,
+>>
+>> I was wondering if there's a per-package environment variable I could
+>> use to contrain the rebuilding of packages?
+>>
+>> i.e. I am modifying a linux-imx kernel, rebuilding that kernel package
+>> and then generating an output filesystem image to boot from an SD card
+>> for testing.
+>>
+>> Each time I modify linux-imx I am finding that qt4 does a rebuild.
+>>
+>> So whilst I'm making changes to linux-imx for test I'd rather that q4
+>> didn't rebuild when I build the image, and was wondering if there's a
+>> way to prevent that?
+>>
+>> (I could, I suppose, move to a testing model that didn't use a
+>> completely rebuilt SD card image but I like this approach as if it
+>> works, well, it works, and I can distribute. Perhaps there's a better
+>> way?)
+>>
+>> Thanks,
+>>
+>> Alex
+>>
+>> _______________________________________________
+>> yocto mailing list
+>> yocto@yoctoproject.org
+>> https://lists.yoctoproject.org/listinfo/yocto
+>>
+>
+>
+> --
+>
+> [image: Dynamic Devices Ltd] <http://www.dynamicdevices.co.uk/>
+>
+> Alex J Lennon / Director
+> 1 Queensway, Liverpool L22 4RA
+>
+> mobile: +44 (0)7956 668178
+>
+>  [image: Linkedin] <http://www.linkedin.com/in/alexjlennon> [image: Skype]
+>
+> This e-mail message may contain confidential or legally privileged
+> information and is intended only for the use of the intended recipient(s).
+> Any unauthorized disclosure, dissemination, distribution, copying or the
+> taking of any action in reliance on the information herein is prohibited.
+> E-mails are not secure and cannot be guaranteed to be error free as they
+> can be intercepted, amended, or contain viruses. Anyone who communicates
+> with us by e-mail is deemed to have accepted these risks. Company Name is
+> not responsible for errors or omissions in this message and denies any
+> responsibility for any damage arising from the use of e-mail. Any opinion
+> and other statement contained in this message and any attachment are solely
+> those of the author and do not necessarily represent those of the company.
+>
 
--- 
-
-Dynamic Devices Ltd <http://www.dynamicdevices.co.uk/>
-
-Alex J Lennon / Director
-1 Queensway, Liverpool L22 4RA
-
-mobile: +44 (0)7956 668178
-
-Linkedin <http://www.linkedin.com/in/alexjlennon> Skype
-<skype:alexjlennon?add>
-
-This e-mail message may contain confidential or legally privileged
-information and is intended only for the use of the intended
-recipient(s). Any unauthorized disclosure, dissemination, distribution,
-copying or the taking of any action in reliance on the information
-herein is prohibited. E-mails are not secure and cannot be guaranteed to
-be error free as they can be intercepted, amended, or contain viruses.
-Anyone who communicates with us by e-mail is deemed to have accepted
-these risks. Company Name is not responsible for errors or omissions in
-this message and denies any responsibility for any damage arising from
-the use of e-mail. Any opinion and other statement contained in this
-message and any attachment are solely those of the author and do not
-necessarily represent those of the company.
-
-
---------------030500010108000809060201
-Content-Type: multipart/related;
- boundary="------------050209050406080307040100"
-
---------------050209050406080307040100
+--089e0158b8eac34e3c04f138c509
 Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: quoted-printable
 
-<html>
-  <head>
-    <meta content="text/html; charset=ISO-8859-1"
-      http-equiv="Content-Type">
-  </head>
-  <body text="#000000" bgcolor="#FFFFFF">
-    Hi Paul,<br>
+<div dir=3D"ltr">Hi Alex, so are you bitbaking the entire image every time =
+you make a change to the kernel (The .bb file you linked is the image recip=
+e)?<div>If you only build the kernel (ie bitbake virtual/kernel), your syst=
+em shouldn&#39;t build the entire image.</div>
+<div><br></div><div>Let me know!</div><div><br></div><div>Adam</div></div><=
+div class=3D"gmail_extra"><br><br><div class=3D"gmail_quote">On Thu, Jan 30=
+, 2014 at 3:11 PM, Alex J Lennon <span dir=3D"ltr">&lt;<a href=3D"mailto:aj=
+lennon@dynamicdevices.co.uk" target=3D"_blank">ajlennon@dynamicdevices.co.u=
+k</a>&gt;</span> wrote:<br>
+<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
+x #ccc solid;padding-left:1ex">
+ =20
+   =20
+ =20
+  <div text=3D"#000000" bgcolor=3D"#FFFFFF">
+    Hi Adam,<div class=3D"im"><br>
     <br>
-    I had similar trouble today. I couldn't for the life of me find a
-    nice SVG of the Yocto logo,<br>
-    although I did scan through the brand guidelines pdf. They seem to
-    point to the website<br>
-    but in the end I just scaled up the PDF and grabbed a capture from
-    that...<br>
-    <br>
-<a class="moz-txt-link-freetext" href="https://www.yoctoproject.org/sites/yoctoproject.org/files/yoctoproject_styleguide.pdf">https://www.yoctoproject.org/sites/yoctoproject.org/files/yoctoproject_styleguide.pdf</a><br>
-    <br>
-    I was looking for an OpenEmbedded logo for FOSDEM 2012 and Philip
-    Balister kindly pointed me to this one,<br>
-    <br>
-    <a class="moz-txt-link-freetext"
-href="http://git.openembedded.org/openembedded/tree/contrib/artwork/oe.svg">http://git.openembedded.org/openembedded/tree/contrib/artwork/oe.svg</a><br>
-    <br>
-    I hope that's of use, cheers,<br>
-    <br>
-    Alex<br>
-    <br>
-    <div class="moz-cite-prefix">On 30/01/2014 21:53, Paul Barker wrote:<br>
+    <div>On 30/01/2014 18:40, Adam Lee wrote:<br>
     </div>
-    <blockquote
-cite="mid:CANyK_8dY=3pVVLU+K7aeAsFgcTyPJPp+2SKM6LYrAQeD02f3yA@mail.gmail.com"
-      type="cite">
-      <pre wrap="">Hi, sorry this is a last-minute question.
-
-I'm throwing together slides for my talk at FOSDEM on Sunday and I
-could do with decent copies of the Yocto Project and OpenEmbedded
-logos to include where appropriate. I think having good images of the
-correct logos when I'm talking about OE/Yocto will help to show it off
-to possible users.
-
-I've got a Yocto Project logo off Google Image Search but I can't find
-a good OpenEmbedded logo that isn't a badly-JPEG-compressed image. If
-someone could link me to something better I'd really appreciate that.
-
-Also, the "Yocto Project Brand Guidelines" link on
-<a class="moz-txt-link-freetext" href="https://www.yoctoproject.org/about/trademark-policy">https://www.yoctoproject.org/about/trademark-policy</a> points to the page
-<a class="moz-txt-link-freetext" href="https://www.yoctoproject.org/ecosystem/branding-compliance-guidelines">https://www.yoctoproject.org/ecosystem/branding-compliance-guidelines</a>.
-That page doesn't seem to contain any info.
-
-Cheers,
-
-</pre>
+    <blockquote type=3D"cite">
+      <div dir=3D"ltr">I am not sure if that&#39;s the correct behaviour at
+        all. If you are building the kernel, it should only build the
+        kernel (and its deps).
+        <div>How are you building it? I suppose you are doing &#39;bitbake
+          virtual/kernel&#39;, but just checking!</div>
+        <div><br>
+        </div>
+      </div>
+    </blockquote>
+    <br></div>
+    I&#39;m building an image for test, based on fsl-image-gui out of
+    meta-fsl-arm. <br>
+    <br>
+    It looks like that fsl image pulls in qt4 -<br>
+    <br>
+<a href=3D"https://github.com/Freescale/meta-fsl-demos/blob/master/recipes-=
+fsl/images/fsl-image-gui.bb" target=3D"_blank">https://github.com/Freescale=
+/meta-fsl-demos/blob/master/recipes-fsl/images/fsl-image-gui.bb</a><br>
+    <br>
+    I don&#39;t quite understand why qt4 is rebuilding but if I had to gues=
+s
+    perhaps it&#39;s got a dependency on framebuffer support or something.<=
+br>
+    <br>
+    I could probably go in and change the image recipes if I really had
+    to, but I&#39;d rather leave them as is, assuming correctness of
+    dependencies, <br>
+    I&#39;d rather change an environment variable during my debug cycle to
+    temporarily contrain rebuilding of packages that I know don&#39;t need
+    to <br>
+    be rebuilt, so things revert to &quot;correct&quot; when I&#39;m finish=
+ed porting
+    the kernel<br>
+    <br>
+    Cheers, <br>
+    <br>
+    Alex<div class=3D"im"><br>
+    <br>
+    <br>
+    <blockquote type=3D"cite">
+      <div dir=3D"ltr">
+        <div>Adam</div>
+      </div>
+      <div class=3D"gmail_extra"><br>
+        <br>
+        <div class=3D"gmail_quote">On Wed, Jan 29, 2014 at 12:09 PM, Alex
+          J Lennon <span dir=3D"ltr">&lt;<a href=3D"mailto:ajlennon@dynamic=
+devices.co.uk" target=3D"_blank">ajlennon@dynamicdevices.co.uk</a>&gt;</spa=
+n>
+          wrote:<br>
+          <blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;bord=
+er-left:1px #ccc solid;padding-left:1ex">Hi,<br>
+            <br>
+            I was wondering if there&#39;s a per-package environment
+            variable I could<br>
+            use to contrain the rebuilding of packages?<br>
+            <br>
+            i.e. I am modifying a linux-imx kernel, rebuilding that
+            kernel package<br>
+            and then generating an output filesystem image to boot from
+            an SD card<br>
+            for testing.<br>
+            <br>
+            Each time I modify linux-imx I am finding that qt4 does a
+            rebuild.<br>
+            <br>
+            So whilst I&#39;m making changes to linux-imx for test I&#39;d
+            rather that q4<br>
+            didn&#39;t rebuild when I build the image, and was wondering if
+            there&#39;s a<br>
+            way to prevent that?<br>
+            <br>
+            (I could, I suppose, move to a testing model that didn&#39;t us=
+e
+            a<br>
+            completely rebuilt SD card image but I like this approach as
+            if it<br>
+            works, well, it works, and I can distribute. Perhaps there&#39;=
+s
+            a better way?)<br>
+            <br>
+            Thanks,<br>
+            <br>
+            Alex<br>
+            <br>
+            _______________________________________________<br>
+            yocto mailing list<br>
+            <a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yoc=
+to@yoctoproject.org</a><br>
+            <a href=3D"https://lists.yoctoproject.org/listinfo/yocto" targe=
+t=3D"_blank">https://lists.yoctoproject.org/listinfo/yocto</a><br>
+          </blockquote>
+        </div>
+        <br>
+      </div>
     </blockquote>
     <br>
-    <div class="moz-signature">-- <br>
-      <div class="preview">
-        <p style="font-family: Helvetica, Arial, sans-serif; font-size:
-          10px; line-height: 12px;"><a
-            href="http://www.dynamicdevices.co.uk/" class="clink"><img
-              src="cid:part2.00020502.00030006@dynamicdevices.co.uk"
-              alt="Dynamic Devices Ltd" id="sig-logo" border="0"></a></p>
-        <p style="font-family: Helvetica, Arial, sans-serif; font-size:
-          10px; line-height: 12px; color: rgb(153, 153, 153);"><span
-            id="name-input" style="font-weight: bold;" class="txt">Alex
-            J Lennon</span> <span id="title-sep">/</span> <span
-            id="title-input" style="color: #999;" class="txt">Director</span><br>
-          <span id="address-input" style="color: #999;" class="txt">1
+    </div><span class=3D"HOEnZb"><font color=3D"#888888"><div>-- <br>
+      <div>
+        <p style=3D"font-family:Helvetica,Arial,sans-serif;font-size:10px;l=
+ine-height:12px"><a href=3D"http://www.dynamicdevices.co.uk/" target=3D"_bl=
+ank"><img src=3D"cid:part4.04010308.09060107@dynamicdevices.co.uk" alt=3D"D=
+ynamic Devices Ltd" border=3D"0"></a></p>
+
+        <p style=3D"font-family:Helvetica,Arial,sans-serif;font-size:10px;l=
+ine-height:12px;color:rgb(153,153,153)"><span style=3D"font-weight:bold">Al=
+ex
+            J Lennon</span> <span>/</span> <span style=3D"color:#999">Direc=
+tor</span><br>
+          <span style=3D"color:#999">1
             Queensway, Liverpool L22 4RA</span> </p>
-        <p style="font-family: Helvetica, Arial, sans-serif; font-size:
-          10px; line-height: 12px;"> <span id="mobile-input"
-            style="color: #999;" class="txt">mobile: +44 (0)7956 668178</span>
+        <p style=3D"font-family:Helvetica,Arial,sans-serif;font-size:10px;l=
+ine-height:12px"> <span style=3D"color:#999">mobile: <a href=3D"tel:%2B44%2=
+0%280%297956%20668178" value=3D"+447956668178" target=3D"_blank">+44 (0)795=
+6 668178</a></span>
           <br>
           <br>
         </p>
-        <p style="font-size: 10px; line-height: 12px; font-family:
-          Helvetica, Arial, sans-serif"> <a id="linkedin-input"
-            class="social" href="http://www.linkedin.com/in/alexjlennon"><img
-              src="cid:part4.02020807.02020709@dynamicdevices.co.uk"
-              alt="Linkedin"></a> <a id="skype-input" class="social"
-            href="skype:alexjlennon?add"><img
-              src="cid:part6.07070102.02070206@dynamicdevices.co.uk"
-              alt="Skype"></a></p>
-        <p id="disclaimer-input" style="font-family: Helvetica, Arial,
-          sans-serif; color: rgb(153, 153, 153); font-size: 9px;
-          line-height: 12px;width: 25%" class="txt">This e-mail message
+        <p style=3D"font-size:10px;line-height:12px;font-family:Helvetica,A=
+rial,sans-serif"> <a href=3D"http://www.linkedin.com/in/alexjlennon" target=
+=3D"_blank"><img src=3D"cid:part6.03040909.00080006@dynamicdevices.co.uk" a=
+lt=3D"Linkedin"></a> <a><img src=3D"cid:part8.03050901.06030505@dynamicdevi=
+ces.co.uk" alt=3D"Skype"></a></p>
+
+        <p style=3D"font-family:Helvetica,Arial,sans-serif;color:rgb(153,15=
+3,153);font-size:9px;line-height:12px;width:25%">This e-mail message
           may contain confidential or legally privileged information and
           is intended only for the use of the intended recipient(s). Any
           unauthorized disclosure, dissemination, distribution, copying
@@ -215,16 +324,58 @@ Cheers,
           do not necessarily represent those of the company.</p>
       </div>
     </div>
-  </body>
-</html>
+  </font></span></div>
 
---------------050209050406080307040100
-Content-Type: image/png;
- name="ddlogo-4.png"
+</blockquote></div><br></div>
+
+--089e0158b8eac34e3c04f138c509--
+
+--089e0158b8eac34e3e04f138c50a
+Content-Type: image/png; name="linkedin.png"
 Content-Transfer-Encoding: base64
-Content-ID: <part2.00020502.00030006@dynamicdevices.co.uk>
-Content-Disposition: inline;
- filename="ddlogo-4.png"
+Content-ID: <part6.03040909.00080006@dynamicdevices.co.uk>
+X-Attachment-Id: 8bf60b5a6d13090b_0.1.2
+
+iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAACXBIWXMAAAsTAAALEwEAmpwYAAAA
+GXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAgRJREFUeNqUUs9r1EAU/jKZ7I+2
+abBZVikKoYhCsbB/gXcFwV7Eu3jwInjyogdBj3oSPHm14KGhBwuC/gkKUqtVSglYarduKutu2c1m
+MuO82dqk1YX6YJL35r3vez/mWbWbCw3fd0PfnwjciQqOI51uH3HcjeK4M8+nToyHd640gnP1SViW
+dSwCpRS+7vwKniy9D7k3WQl2+xYWv7Sx2epgxmMmaKMtcbrmjiSZrjL4U+MBr5RsfGwlEJr1jGvh
+8dXzJuD24hqa3cFIgt09C1zn4kJk6KViWBovlgmk2jdKUn0IyykoSYeBbzbbuPXyk9GXVluoudVD
+INtmqHtjOvNwVoTlmf5k+5mo+2fXZo3+4u5bbD24aPSVrQ7mpl20ewL3ltfxORaGhHCMylBCakNC
+SfXPcglM4lU5Hl4+i+bPPYMhLJNCoKQbNkQqJ2CFF1149x33X60fkIhMGgxhGZXBiUDPwS5kHXPy
+iT56HSH88COfhT6EMViZZXCMIeEUFsktOQe6c2TByCYMYfmAWPRlov92kaCcV2AfISCbvIRlqWYp
+QaGv+5KFxp1yXgHdF32kE4awVv3Gc3XpwizWegp6e1Fy7L9eYbC/J398tO0zXGJ5ZVW3kKTRt53t
+YO7kKXCnPGLvnEOWSBNsNLeRDkRkedefNsBYqN8twP+IVBGknP8twABFyPH3kUzF5AAAAABJRU5E
+rkJggg==
+
+--089e0158b8eac34e3e04f138c50a
+Content-Type: image/png; name="skype.png"
+Content-Transfer-Encoding: base64
+Content-ID: <part8.03050901.06030505@dynamicdevices.co.uk>
+X-Attachment-Id: 8bf60b5a6d13090b_0.1.3
+
+iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAACXBIWXMAAAsTAAALEwEAmpwYAAAA
+GXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAq1JREFUeNqMk0trE1EUx/935s4k
+k1czbVpfWEctRaFiKZiCUCjqooggxZ0KfgC/QcVF1/oRBLsRXQjxgSu7qAsFpYuWoliLTaSNUJvQ
+vJvceVzPndBSF0KHOTPD5fz+55z/vcNmXi2OZuKRHIWTiho4zFVruyg1OwWKaW7HzNz1kUEnk4pD
+0xh2fQm6keDsvwJBIFGqNZ23K79yPBWNOJJH8K3q4VPVhfABjwQCSuSMQUiJXkNDNsVhHxDlxNgx
+y+GmYaDuMbwvd9Ck0gpOcg2Xeo3wW0Wx7ePhzxZuDZgYT/JQgJG4ruvgLrXzmxL24ITOMHM+jpj+
+7wg3jkVwb6kOUM5YQg/XFKu5gfroVhL0nsjwEF4stzA1v447Hzew0XIxHNcxngKebAnsMSo0EQSw
+qFggyUBaGDBl1yh6nemz8aXOcHm+gNmv23i52cAmVVmqtMmrAIrlqqpqNkqPbaKerlcw1hdDNtMN
+wMbrYh0vim209Cg6lL/ZEhhOmGHHmppDVeuQ221aWG4ZmFrIYy6/g4raErpunkjiebYfV9OgHImK
+1ENm34OAYItcVQKTGQN3HRsPVko4+S6PoTc/sLDVCIXuD0ZD8ENdhoxiudpnNfVZk+FzQ+IKmTh5
+JIGRnggerdWxQ1lpo+t6peOFB2SruUuMFZ4RrlSUgElx0fDx+HsNo7YVxrOstb+NapzZVeokiIJJ
+P2S6HVBPUs1Dj3MWx05TwzVyfaKXI22qygwVypwreqgYSWgywAUuQkaxXPg+dl0POtMgKMb7e3Cq
+WsdaTWBV7EKQwLLQ0NFMpDpVjBgebp8+GjLC82gEVxTWyjVnqC8F2+oe0+NWGmMHTqFH+91oC3A9
+gUTERItgYuB6boEHnjtd+FPK5ctVR2r6oX5nRmMwTxSY707/FWAAwixkevHIXSQAAAAASUVORK5C
+YII=
+
+--089e0158b8eac34e3e04f138c50a
+Content-Type: image/png; name="ddlogo-4.png"
+Content-Transfer-Encoding: base64
+Content-ID: <part4.04010308.09060107@dynamicdevices.co.uk>
+X-Attachment-Id: 8bf60b5a6d13090b_0.1.1
 
 iVBORw0KGgoAAAANSUhEUgAAAGwAAAA9CAIAAADH1hvIAAAAK3RFWHRDcmVhdGlvbiBUaW1lAFNh
 dCA1IEF1ZyAyMDA2IDExOjQ5OjUwIC0wMDAwVeKl8wAAAAd0SU1FB9YIBQoyDghCEsEAAAAJcEhZ
@@ -298,51 +449,4 @@ Vw7EMjgXnUoeUqg0OtSL6wbJB2ohZGRQqdTpDZBh4sODIXgFfC4kNJ0Bg1TmzXWfDYkPsItjMpl/
 d/ykwJO/4YnHZu9c/w2Y7dr54vVKEMTI4ECIL0fb7HR4tJ84B3i0FTYH+Bdk7tmQGqQ4UwAAAABJ
 RU5ErkJggg==
 
---------------050209050406080307040100
-Content-Type: image/png;
- name="linkedin.png"
-Content-Transfer-Encoding: base64
-Content-ID: <part4.02020807.02020709@dynamicdevices.co.uk>
-Content-Disposition: inline;
- filename="linkedin.png"
-
-iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAACXBIWXMAAAsTAAALEwEAmpwYAAAA
-GXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAgRJREFUeNqUUs9r1EAU/jKZ7I+2
-abBZVikKoYhCsbB/gXcFwV7Eu3jwInjyogdBj3oSPHm14KGhBwuC/gkKUqtVSglYarduKutu2c1m
-MuO82dqk1YX6YJL35r3vez/mWbWbCw3fd0PfnwjciQqOI51uH3HcjeK4M8+nToyHd640gnP1SViW
-dSwCpRS+7vwKniy9D7k3WQl2+xYWv7Sx2epgxmMmaKMtcbrmjiSZrjL4U+MBr5RsfGwlEJr1jGvh
-8dXzJuD24hqa3cFIgt09C1zn4kJk6KViWBovlgmk2jdKUn0IyykoSYeBbzbbuPXyk9GXVluoudVD
-INtmqHtjOvNwVoTlmf5k+5mo+2fXZo3+4u5bbD24aPSVrQ7mpl20ewL3ltfxORaGhHCMylBCakNC
-SfXPcglM4lU5Hl4+i+bPPYMhLJNCoKQbNkQqJ2CFF1149x33X60fkIhMGgxhGZXBiUDPwS5kHXPy
-iT56HSH88COfhT6EMViZZXCMIeEUFsktOQe6c2TByCYMYfmAWPRlov92kaCcV2AfISCbvIRlqWYp
-QaGv+5KFxp1yXgHdF32kE4awVv3Gc3XpwizWegp6e1Fy7L9eYbC/J398tO0zXGJ5ZVW3kKTRt53t
-YO7kKXCnPGLvnEOWSBNsNLeRDkRkedefNsBYqN8twP+IVBGknP8twABFyPH3kUzF5AAAAABJRU5E
-rkJggg==
-
---------------050209050406080307040100
-Content-Type: image/png;
- name="skype.png"
-Content-Transfer-Encoding: base64
-Content-ID: <part6.07070102.02070206@dynamicdevices.co.uk>
-Content-Disposition: inline;
- filename="skype.png"
-
-iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAACXBIWXMAAAsTAAALEwEAmpwYAAAA
-GXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAq1JREFUeNqMk0trE1EUx/935s4k
-k1czbVpfWEctRaFiKZiCUCjqooggxZ0KfgC/QcVF1/oRBLsRXQjxgSu7qAsFpYuWoliLTaSNUJvQ
-vJvceVzPndBSF0KHOTPD5fz+55z/vcNmXi2OZuKRHIWTiho4zFVruyg1OwWKaW7HzNz1kUEnk4pD
-0xh2fQm6keDsvwJBIFGqNZ23K79yPBWNOJJH8K3q4VPVhfABjwQCSuSMQUiJXkNDNsVhHxDlxNgx
-y+GmYaDuMbwvd9Ck0gpOcg2Xeo3wW0Wx7ePhzxZuDZgYT/JQgJG4ruvgLrXzmxL24ITOMHM+jpj+
-7wg3jkVwb6kOUM5YQg/XFKu5gfroVhL0nsjwEF4stzA1v447Hzew0XIxHNcxngKebAnsMSo0EQSw
-qFggyUBaGDBl1yh6nemz8aXOcHm+gNmv23i52cAmVVmqtMmrAIrlqqpqNkqPbaKerlcw1hdDNtMN
-wMbrYh0vim209Cg6lL/ZEhhOmGHHmppDVeuQ221aWG4ZmFrIYy6/g4raErpunkjiebYfV9OgHImK
-1ENm34OAYItcVQKTGQN3HRsPVko4+S6PoTc/sLDVCIXuD0ZD8ENdhoxiudpnNfVZk+FzQ+IKmTh5
-JIGRnggerdWxQ1lpo+t6peOFB2SruUuMFZ4RrlSUgElx0fDx+HsNo7YVxrOstb+NapzZVeokiIJJ
-P2S6HVBPUs1Dj3MWx05TwzVyfaKXI22qygwVypwreqgYSWgywAUuQkaxXPg+dl0POtMgKMb7e3Cq
-WsdaTWBV7EKQwLLQ0NFMpDpVjBgebp8+GjLC82gEVxTWyjVnqC8F2+oe0+NWGmMHTqFH+91oC3A9
-gUTERItgYuB6boEHnjtd+FPK5ctVR2r6oX5nRmMwTxSY707/FWAAwixkevHIXSQAAAAASUVORK5C
-YII=
-
---------------050209050406080307040100--
-
---------------030500010108000809060201--
+--089e0158b8eac34e3e04f138c50a--
