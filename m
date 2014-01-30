@@ -1,27 +1,26 @@
 Return-Path: <ajlennon@dynamicdevices.co.uk>
 Received: from www.dynamicdevices.co.uk (www.dynamicdevices.co.uk
 	[89.200.136.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E2D99E00498
-	for <yocto@yoctoproject.org>; Thu, 30 Jan 2014 15:11:09 -0800 (PST)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 00BDBE00498
+	for <yocto@yoctoproject.org>; Thu, 30 Jan 2014 15:15:42 -0800 (PST)
 Received: from [127.0.0.1] (cpc32-live22-2-0-cust59.17-2.cable.virginm.net
 	[82.36.253.60])
 	(using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by www.dynamicdevices.co.uk (Postfix) with ESMTPSA id 0F8C88606E;
-	Thu, 30 Jan 2014 23:11:07 +0000 (UTC)
-Message-ID: <52EADC09.2090204@dynamicdevices.co.uk>
-Date: Thu, 30 Jan 2014 23:11:05 +0000
+	by www.dynamicdevices.co.uk (Postfix) with ESMTPSA id E98618606E;
+	Thu, 30 Jan 2014 23:15:41 +0000 (UTC)
+Message-ID: <52EADD1C.3050900@dynamicdevices.co.uk>
+Date: Thu, 30 Jan 2014 23:15:40 +0000
 From: Alex J Lennon <ajlennon@dynamicdevices.co.uk>
 User-Agent: Mozilla/5.0 (Windows NT 6.3; WOW64;
 	rv:24.0) Gecko/20100101 Thunderbird/24.2.0
 MIME-Version: 1.0
-To: Adam Lee <adam.yh.lee@gmail.com>
-References: <52E96001.7030000@dynamicdevices.co.uk>
-	<CAFeBWL737fZb2RsWoTJnU-xw-XuO5g3ynhvpDaEGZnbUijXi0g@mail.gmail.com>
-In-Reply-To: <CAFeBWL737fZb2RsWoTJnU-xw-XuO5g3ynhvpDaEGZnbUijXi0g@mail.gmail.com>
+To: paul@paulbarker.me.uk
+References: <CANyK_8dY=3pVVLU+K7aeAsFgcTyPJPp+2SKM6LYrAQeD02f3yA@mail.gmail.com>
+In-Reply-To: <CANyK_8dY=3pVVLU+K7aeAsFgcTyPJPp+2SKM6LYrAQeD02f3yA@mail.gmail.com>
 X-Enigmail-Version: 1.6
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: How to temporarily disable a package rebuild during an image build?
+Cc: yocto@yoctoproject.org
+Subject: Re: Yocto Project and OpenEmbedded Logos
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -33,81 +32,53 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 30 Jan 2014 23:11:13 -0000
-X-Groupsio-MsgNum: 17942
+X-List-Received-Date: Thu, 30 Jan 2014 23:15:45 -0000
+X-Groupsio-MsgNum: 17943
 Content-Type: multipart/alternative;
-	boundary="------------000805070701000504090104"
+	boundary="------------030500010108000809060201"
 
---------------000805070701000504090104
+--------------030500010108000809060201
 Content-Type: text/plain; charset=ISO-8859-1
 Content-Transfer-Encoding: 7bit
 
-Hi Adam,
+Hi Paul,
 
-On 30/01/2014 18:40, Adam Lee wrote:
-> I am not sure if that's the correct behaviour at all. If you are
-> building the kernel, it should only build the kernel (and its deps).
-> How are you building it? I suppose you are doing 'bitbake
-> virtual/kernel', but just checking!
->
+I had similar trouble today. I couldn't for the life of me find a nice
+SVG of the Yocto logo,
+although I did scan through the brand guidelines pdf. They seem to point
+to the website
+but in the end I just scaled up the PDF and grabbed a capture from that...
 
-I'm building an image for test, based on fsl-image-gui out of meta-fsl-arm.
+https://www.yoctoproject.org/sites/yoctoproject.org/files/yoctoproject_styleguide.pdf
 
-It looks like that fsl image pulls in qt4 -
+I was looking for an OpenEmbedded logo for FOSDEM 2012 and Philip
+Balister kindly pointed me to this one,
 
-https://github.com/Freescale/meta-fsl-demos/blob/master/recipes-fsl/images/fsl-image-gui.bb
+http://git.openembedded.org/openembedded/tree/contrib/artwork/oe.svg
 
-I don't quite understand why qt4 is rebuilding but if I had to guess
-perhaps it's got a dependency on framebuffer support or something.
-
-I could probably go in and change the image recipes if I really had to,
-but I'd rather leave them as is, assuming correctness of dependencies,
-I'd rather change an environment variable during my debug cycle to
-temporarily contrain rebuilding of packages that I know don't need to
-be rebuilt, so things revert to "correct" when I'm finished porting the
-kernel
-
-Cheers,
+I hope that's of use, cheers,
 
 Alex
 
-
-> Adam
+On 30/01/2014 21:53, Paul Barker wrote:
+> Hi, sorry this is a last-minute question.
 >
+> I'm throwing together slides for my talk at FOSDEM on Sunday and I
+> could do with decent copies of the Yocto Project and OpenEmbedded
+> logos to include where appropriate. I think having good images of the
+> correct logos when I'm talking about OE/Yocto will help to show it off
+> to possible users.
 >
-> On Wed, Jan 29, 2014 at 12:09 PM, Alex J Lennon
-> <ajlennon@dynamicdevices.co.uk <mailto:ajlennon@dynamicdevices.co.uk>>
-> wrote:
+> I've got a Yocto Project logo off Google Image Search but I can't find
+> a good OpenEmbedded logo that isn't a badly-JPEG-compressed image. If
+> someone could link me to something better I'd really appreciate that.
 >
->     Hi,
+> Also, the "Yocto Project Brand Guidelines" link on
+> https://www.yoctoproject.org/about/trademark-policy points to the page
+> https://www.yoctoproject.org/ecosystem/branding-compliance-guidelines.
+> That page doesn't seem to contain any info.
 >
->     I was wondering if there's a per-package environment variable I could
->     use to contrain the rebuilding of packages?
->
->     i.e. I am modifying a linux-imx kernel, rebuilding that kernel package
->     and then generating an output filesystem image to boot from an SD card
->     for testing.
->
->     Each time I modify linux-imx I am finding that qt4 does a rebuild.
->
->     So whilst I'm making changes to linux-imx for test I'd rather that q4
->     didn't rebuild when I build the image, and was wondering if there's a
->     way to prevent that?
->
->     (I could, I suppose, move to a testing model that didn't use a
->     completely rebuilt SD card image but I like this approach as if it
->     works, well, it works, and I can distribute. Perhaps there's a
->     better way?)
->
->     Thanks,
->
->     Alex
->
->     _______________________________________________
->     yocto mailing list
->     yocto@yoctoproject.org <mailto:yocto@yoctoproject.org>
->     https://lists.yoctoproject.org/listinfo/yocto
->
+> Cheers,
 >
 
 -- 
@@ -136,11 +107,11 @@ message and any attachment are solely those of the author and do not
 necessarily represent those of the company.
 
 
---------------000805070701000504090104
+--------------030500010108000809060201
 Content-Type: multipart/related;
- boundary="------------000308060001080300070907"
+ boundary="------------050209050406080307040100"
 
---------------000308060001080300070907
+--------------050209050406080307040100
 Content-Type: text/html; charset=ISO-8859-1
 Content-Transfer-Encoding: 7bit
 
@@ -150,104 +121,52 @@ Content-Transfer-Encoding: 7bit
       http-equiv="Content-Type">
   </head>
   <body text="#000000" bgcolor="#FFFFFF">
-    Hi Adam,<br>
+    Hi Paul,<br>
     <br>
-    <div class="moz-cite-prefix">On 30/01/2014 18:40, Adam Lee wrote:<br>
-    </div>
-    <blockquote
-cite="mid:CAFeBWL737fZb2RsWoTJnU-xw-XuO5g3ynhvpDaEGZnbUijXi0g@mail.gmail.com"
-      type="cite">
-      <div dir="ltr">I am not sure if that's the correct behaviour at
-        all. If you are building the kernel, it should only build the
-        kernel (and its deps).
-        <div>How are you building it? I suppose you are doing 'bitbake
-          virtual/kernel', but just checking!</div>
-        <div><br>
-        </div>
-      </div>
-    </blockquote>
+    I had similar trouble today. I couldn't for the life of me find a
+    nice SVG of the Yocto logo,<br>
+    although I did scan through the brand guidelines pdf. They seem to
+    point to the website<br>
+    but in the end I just scaled up the PDF and grabbed a capture from
+    that...<br>
     <br>
-    I'm building an image for test, based on fsl-image-gui out of
-    meta-fsl-arm. <br>
+<a class="moz-txt-link-freetext" href="https://www.yoctoproject.org/sites/yoctoproject.org/files/yoctoproject_styleguide.pdf">https://www.yoctoproject.org/sites/yoctoproject.org/files/yoctoproject_styleguide.pdf</a><br>
     <br>
-    It looks like that fsl image pulls in qt4 -<br>
+    I was looking for an OpenEmbedded logo for FOSDEM 2012 and Philip
+    Balister kindly pointed me to this one,<br>
     <br>
-<a class="moz-txt-link-freetext" href="https://github.com/Freescale/meta-fsl-demos/blob/master/recipes-fsl/images/fsl-image-gui.bb">https://github.com/Freescale/meta-fsl-demos/blob/master/recipes-fsl/images/fsl-image-gui.bb</a><br>
+    <a class="moz-txt-link-freetext"
+href="http://git.openembedded.org/openembedded/tree/contrib/artwork/oe.svg">http://git.openembedded.org/openembedded/tree/contrib/artwork/oe.svg</a><br>
     <br>
-    I don't quite understand why qt4 is rebuilding but if I had to guess
-    perhaps it's got a dependency on framebuffer support or something.<br>
-    <br>
-    I could probably go in and change the image recipes if I really had
-    to, but I'd rather leave them as is, assuming correctness of
-    dependencies, <br>
-    I'd rather change an environment variable during my debug cycle to
-    temporarily contrain rebuilding of packages that I know don't need
-    to <br>
-    be rebuilt, so things revert to "correct" when I'm finished porting
-    the kernel<br>
-    <br>
-    Cheers, <br>
+    I hope that's of use, cheers,<br>
     <br>
     Alex<br>
     <br>
-    <br>
+    <div class="moz-cite-prefix">On 30/01/2014 21:53, Paul Barker wrote:<br>
+    </div>
     <blockquote
-cite="mid:CAFeBWL737fZb2RsWoTJnU-xw-XuO5g3ynhvpDaEGZnbUijXi0g@mail.gmail.com"
+cite="mid:CANyK_8dY=3pVVLU+K7aeAsFgcTyPJPp+2SKM6LYrAQeD02f3yA@mail.gmail.com"
       type="cite">
-      <div dir="ltr">
-        <div>Adam</div>
-      </div>
-      <div class="gmail_extra"><br>
-        <br>
-        <div class="gmail_quote">On Wed, Jan 29, 2014 at 12:09 PM, Alex
-          J Lennon <span dir="ltr">&lt;<a moz-do-not-send="true"
-              href="mailto:ajlennon@dynamicdevices.co.uk"
-              target="_blank">ajlennon@dynamicdevices.co.uk</a>&gt;</span>
-          wrote:<br>
-          <blockquote class="gmail_quote" style="margin:0 0 0
-            .8ex;border-left:1px #ccc solid;padding-left:1ex">Hi,<br>
-            <br>
-            I was wondering if there's a per-package environment
-            variable I could<br>
-            use to contrain the rebuilding of packages?<br>
-            <br>
-            i.e. I am modifying a linux-imx kernel, rebuilding that
-            kernel package<br>
-            and then generating an output filesystem image to boot from
-            an SD card<br>
-            for testing.<br>
-            <br>
-            Each time I modify linux-imx I am finding that qt4 does a
-            rebuild.<br>
-            <br>
-            So whilst I'm making changes to linux-imx for test I'd
-            rather that q4<br>
-            didn't rebuild when I build the image, and was wondering if
-            there's a<br>
-            way to prevent that?<br>
-            <br>
-            (I could, I suppose, move to a testing model that didn't use
-            a<br>
-            completely rebuilt SD card image but I like this approach as
-            if it<br>
-            works, well, it works, and I can distribute. Perhaps there's
-            a better way?)<br>
-            <br>
-            Thanks,<br>
-            <br>
-            Alex<br>
-            <br>
-            _______________________________________________<br>
-            yocto mailing list<br>
-            <a moz-do-not-send="true"
-              href="mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br>
-            <a moz-do-not-send="true"
-              href="https://lists.yoctoproject.org/listinfo/yocto"
-              target="_blank">https://lists.yoctoproject.org/listinfo/yocto</a><br>
-          </blockquote>
-        </div>
-        <br>
-      </div>
+      <pre wrap="">Hi, sorry this is a last-minute question.
+
+I'm throwing together slides for my talk at FOSDEM on Sunday and I
+could do with decent copies of the Yocto Project and OpenEmbedded
+logos to include where appropriate. I think having good images of the
+correct logos when I'm talking about OE/Yocto will help to show it off
+to possible users.
+
+I've got a Yocto Project logo off Google Image Search but I can't find
+a good OpenEmbedded logo that isn't a badly-JPEG-compressed image. If
+someone could link me to something better I'd really appreciate that.
+
+Also, the "Yocto Project Brand Guidelines" link on
+<a class="moz-txt-link-freetext" href="https://www.yoctoproject.org/about/trademark-policy">https://www.yoctoproject.org/about/trademark-policy</a> points to the page
+<a class="moz-txt-link-freetext" href="https://www.yoctoproject.org/ecosystem/branding-compliance-guidelines">https://www.yoctoproject.org/ecosystem/branding-compliance-guidelines</a>.
+That page doesn't seem to contain any info.
+
+Cheers,
+
+</pre>
     </blockquote>
     <br>
     <div class="moz-signature">-- <br>
@@ -255,7 +174,7 @@ cite="mid:CAFeBWL737fZb2RsWoTJnU-xw-XuO5g3ynhvpDaEGZnbUijXi0g@mail.gmail.com"
         <p style="font-family: Helvetica, Arial, sans-serif; font-size:
           10px; line-height: 12px;"><a
             href="http://www.dynamicdevices.co.uk/" class="clink"><img
-              src="cid:part4.04010308.09060107@dynamicdevices.co.uk"
+              src="cid:part2.00020502.00030006@dynamicdevices.co.uk"
               alt="Dynamic Devices Ltd" id="sig-logo" border="0"></a></p>
         <p style="font-family: Helvetica, Arial, sans-serif; font-size:
           10px; line-height: 12px; color: rgb(153, 153, 153);"><span
@@ -273,10 +192,10 @@ cite="mid:CAFeBWL737fZb2RsWoTJnU-xw-XuO5g3ynhvpDaEGZnbUijXi0g@mail.gmail.com"
         <p style="font-size: 10px; line-height: 12px; font-family:
           Helvetica, Arial, sans-serif"> <a id="linkedin-input"
             class="social" href="http://www.linkedin.com/in/alexjlennon"><img
-              src="cid:part6.03040909.00080006@dynamicdevices.co.uk"
+              src="cid:part4.02020807.02020709@dynamicdevices.co.uk"
               alt="Linkedin"></a> <a id="skype-input" class="social"
             href="skype:alexjlennon?add"><img
-              src="cid:part8.03050901.06030505@dynamicdevices.co.uk"
+              src="cid:part6.07070102.02070206@dynamicdevices.co.uk"
               alt="Skype"></a></p>
         <p id="disclaimer-input" style="font-family: Helvetica, Arial,
           sans-serif; color: rgb(153, 153, 153); font-size: 9px;
@@ -299,11 +218,11 @@ cite="mid:CAFeBWL737fZb2RsWoTJnU-xw-XuO5g3ynhvpDaEGZnbUijXi0g@mail.gmail.com"
   </body>
 </html>
 
---------------000308060001080300070907
+--------------050209050406080307040100
 Content-Type: image/png;
  name="ddlogo-4.png"
 Content-Transfer-Encoding: base64
-Content-ID: <part4.04010308.09060107@dynamicdevices.co.uk>
+Content-ID: <part2.00020502.00030006@dynamicdevices.co.uk>
 Content-Disposition: inline;
  filename="ddlogo-4.png"
 
@@ -379,11 +298,11 @@ Vw7EMjgXnUoeUqg0OtSL6wbJB2ohZGRQqdTpDZBh4sODIXgFfC4kNJ0Bg1TmzXWfDYkPsItjMpl/
 d/ykwJO/4YnHZu9c/w2Y7dr54vVKEMTI4ECIL0fb7HR4tJ84B3i0FTYH+Bdk7tmQGqQ4UwAAAABJ
 RU5ErkJggg==
 
---------------000308060001080300070907
+--------------050209050406080307040100
 Content-Type: image/png;
  name="linkedin.png"
 Content-Transfer-Encoding: base64
-Content-ID: <part6.03040909.00080006@dynamicdevices.co.uk>
+Content-ID: <part4.02020807.02020709@dynamicdevices.co.uk>
 Content-Disposition: inline;
  filename="linkedin.png"
 
@@ -400,11 +319,11 @@ QaGv+5KFxp1yXgHdF32kE4awVv3Gc3XpwizWegp6e1Fy7L9eYbC/J398tO0zXGJ5ZVW3kKTRt53t
 YO7kKXCnPGLvnEOWSBNsNLeRDkRkedefNsBYqN8twP+IVBGknP8twABFyPH3kUzF5AAAAABJRU5E
 rkJggg==
 
---------------000308060001080300070907
+--------------050209050406080307040100
 Content-Type: image/png;
  name="skype.png"
 Content-Transfer-Encoding: base64
-Content-ID: <part8.03050901.06030505@dynamicdevices.co.uk>
+Content-ID: <part6.07070102.02070206@dynamicdevices.co.uk>
 Content-Disposition: inline;
  filename="skype.png"
 
@@ -424,6 +343,6 @@ WsdaTWBV7EKQwLLQ0NFMpDpVjBgebp8+GjLC82gEVxTWyjVnqC8F2+oe0+NWGmMHTqFH+91oC3A9
 gUTERItgYuB6boEHnjtd+FPK5ctVR2r6oX5nRmMwTxSY707/FWAAwixkevHIXSQAAAAASUVORK5C
 YII=
 
---------------000308060001080300070907--
+--------------050209050406080307040100--
 
---------------000805070701000504090104--
+--------------030500010108000809060201--
