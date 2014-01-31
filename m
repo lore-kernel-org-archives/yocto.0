@@ -1,34 +1,42 @@
-Return-Path: <nicolas.dechesne@linaro.org>
-Received: from mail-oa0-f46.google.com (mail-oa0-f46.google.com
-	[209.85.219.46])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A0F50E00511
-	for <yocto@yoctoproject.org>; Fri, 31 Jan 2014 12:18:38 -0800 (PST)
-Received: by mail-oa0-f46.google.com with SMTP id n16so5783406oag.33
-	for <yocto@yoctoproject.org>; Fri, 31 Jan 2014 12:18:38 -0800 (PST)
+Return-Path: <trevor.woerner@linaro.org>
+Received: from mail-ie0-f169.google.com (mail-ie0-f169.google.com
+	[209.85.223.169])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 26A07E00546
+	for <yocto@yoctoproject.org>; Fri, 31 Jan 2014 15:34:37 -0800 (PST)
+Received: by mail-ie0-f169.google.com with SMTP id to1so4969469ieb.14
+	for <yocto@yoctoproject.org>; Fri, 31 Jan 2014 15:34:37 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc:content-type;
-	bh=7NBbp8GJhSG33dpRlmhwN4gcRZOwy6+Onv2VeMKcQVs=;
-	b=RTd1XQVuWWByHPgMvxNvtWUEqmM7y8O2gjGTjTUo6BlvDrylXDRuH2/cWKRrVoi4UT
-	nZjmwZkW+cgz6DrzP7CGJALFp3NOKuCkPOH+uyJP2Y4r5RC4YTg64g4928BIsgfJOwuH
-	pEacNDrRKLGiana1DWZq5h5Eq6bG8WVoPoB5jo8YMTAmeeaJ8KAVOMyhcVfESU+shB+j
-	1G6ft0iYy3Ijg6DP2TR9al95GYI+J7eXrsgQs5XYEFnWmIGiCFQBF6rDizUOxaohylEm
-	My2hTG35dO6YhwU5Wgm/Nom9Bzcdw7fd8P37dcBcZW+NzpouISwq1gEeIaAYy6XiuHrm
-	BZ9w==
-X-Gm-Message-State: ALoCoQnb+8S3eehdD92U7D63alZlKj3HpnvnpQJ/JRcoxgarEjes35lc+oOHnE1HCdQZrQ1q4wTK
-X-Received: by 10.60.62.199 with SMTP id a7mr2674787oes.64.1391199517845; Fri,
-	31 Jan 2014 12:18:37 -0800 (PST)
+	h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
+	:subject:references:in-reply-to:content-type
+	:content-transfer-encoding;
+	bh=G/7yU7TBM3Z0sJnuc/nqfGcIXE8CU50ec3hyiaJQJfk=;
+	b=Qxx0XVahJ0beY4+o5fWncscAZYP2p294PStVEbShlZn4ulVlIaOiZsGFHgjr2YarGZ
+	B16Hu6464gKxB/FI1hhNEZM/EOuETN1Iwk/OkHbBDjau8Ti2M35h6iybAcityYLy5T9H
+	1VezJ3HKuajstHRSm816cFu+maK4EbP/T5fBtTLMAbuN0dzipt3Xtl/a7+sttbF+v1dk
+	FTBVyfBj0+6JruoJYfbRc4buYJkNfG3FuLv6OCvVegfNak2lqNzGw9zk+FU1VKE3Bh4E
+	X2vV4ktuUily+MGVDZOfqCVeLW64xOitZhQFyc2FN8pNZcnMIPxCNuHgxXHS0lwPn4cq
+	5VYg==
+X-Gm-Message-State: ALoCoQl0oVifjpayOgFxKK15hQGVGXb39veGZ4EsFj5exJLEWuOgh/SKHd7RgdYjxMgIYnKZsbYg
+X-Received: by 10.50.238.162 with SMTP id vl2mr954581igc.45.1391211276972;
+	Fri, 31 Jan 2014 15:34:36 -0800 (PST)
+Received: from [192.168.141.83] (69-165-220-158.dsl.teksavvy.com.
+	[69.165.220.158])
+	by mx.google.com with ESMTPSA id x6sm2164133igb.3.2014.01.31.15.34.36
+	for <multiple recipients>
+	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
+	Fri, 31 Jan 2014 15:34:36 -0800 (PST)
+Message-ID: <52EC330A.7080602@linaro.org>
+Date: Fri, 31 Jan 2014 18:34:34 -0500
+From: Trevor Woerner <trevor.woerner@linaro.org>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:24.0) Gecko/20100101 Thunderbird/24.2.0
 MIME-Version: 1.0
-Received: by 10.76.182.99 with HTTP; Fri, 31 Jan 2014 12:18:17 -0800 (PST)
-In-Reply-To: <CAF8imWgmu1L6nHBoNFuEQQfnJH+5Uryq6sWmU6iRXM+Q=fg4aw@mail.gmail.com>
-References: <CAF8imWgmu1L6nHBoNFuEQQfnJH+5Uryq6sWmU6iRXM+Q=fg4aw@mail.gmail.com>
-From: Nicolas Dechesne <nicolas.dechesne@linaro.org>
-Date: Fri, 31 Jan 2014 21:18:17 +0100
-Message-ID: <CAP71Wjyt9iBKar6Hw=mzVZQB-5QUSfRbaAYP6Sz1nk7MBpN86g@mail.gmail.com>
-To: Bertrand Roussel <bertrand.roussel@cor-net.org>
-Cc: Yocto list discussion <yocto@yoctoproject.org>
-Subject: Re: Personalized SDKPATH and sysroot
+To: Brian Hutchinson <b.hutchman@gmail.com>, 
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+References: <CAFZh4h-zi=pDLr5JYgFeEfU72+qMRz2FJZ8iDt-Q3f=P+wVgKA@mail.gmail.com>
+In-Reply-To: <CAFZh4h-zi=pDLr5JYgFeEfU72+qMRz2FJZ8iDt-Q3f=P+wVgKA@mail.gmail.com>
+Subject: Re: How to get a list of packages (with versions) used to create an image?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,56 +48,24 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 31 Jan 2014 20:18:39 -0000
+X-List-Received-Date: Fri, 31 Jan 2014 23:34:38 -0000
 Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: 7bit
 
-On Thu, Jan 30, 2014 at 2:14 PM, Bertrand Roussel
-<bertrand.roussel@cor-net.org> wrote:
-> 1/ The sysroot seems to be hardcoded in binaries, for instance:
-> $
-> /opt/poky/1.4.2/sysroots/x86_64-pokysdk-linux/usr/bin/armv6-vfp-poky-linux-gnueabi/arm-poky-linux-gnueabi-gcc
-> --print-sysroot
-> /opt/poky/1.4.2/sysroots/armv6-vfp-poky-linux-gnueabi
->
-> $ ./poky-eglibc-x86_64-arm-toolchain-1.4.1.sh
-> Enter target directory for SDK (default: /opt/poky/1.4.2): /tmp/pokysdk
-> You are about to install the SDK to "/tmp/pokysdk". Proceed[Y/n]?
-> Extracting SDK...done
-> Setting it up...done
-> SDK has been successfully set up and is ready to be used.
-> $
-> /tmp/pokysdk/sysroots/x86_64-pokysdk-linux/usr/bin/armv6-vfp-poky-linux-gnueabi/arm-poky-linux-gnueabi-gcc
-> --print-sysroot
-> /opt/poky/1.4.2/sysroots/armv6-vfp-poky-linux-gnueabi
->
-> There is a 'relocate_sdk.py', is it meant to replace this path (it does look
-> like it) ?
-> It's replacing some lib-related paths, but the sysroot is kept intact,
-> enforcing the use of --sysroot to use the toolchain.
->
-> Did I miss something ?
->
+On 01/23/14 14:35, Brian Hutchinson wrote:
+> but for documentation I need to generate this list with package
+> version information as well.
 
-no, you're right the sysroot used when building the cross compiler is
-indeed hard coded in the binary. you can find some information about
-that in that thread:
+I realize this has already been answered a couple different ways, but
+(for completeness' sake) if you're using ipk as your package manager you
+can also use the following.
 
-http://lists.openembedded.org/pipermail/openembedded-core/2013-September/084156.html
+Starting from your build directory, assuming you're building on an
+x86_64 host, you're building "core-image-minimal", the machine you're
+building for is "qemuarm", and your tmp directory (as defined in
+conf/local.conf) is "tmp":
 
-> 2/ I'm using the 'poky' distribution, which specifies the SDKPATH (in
-> meta-yocto/conf/distro/poky.conf ) as "/opt/${DISTRO}/${SDK_VERSION}".
-> Is there a way to override this without making a new distribution inheriting
-> 'poky' ?
->
-> I tried to make a new toolchain recipe based on meta-toolchain, and set the
-> value there, but only a small part of the toolchain ends up in that
-> directory (gcc for instance, is compiled with the value set in the poky.conf
-> ).
-
-it needs to be defined in a .conf file to be globally available to all
-recipes. unfortunately since SDKPATH is set with "=" in poky.conf and
-not "?=" you won't be able to change it easily, even from local.conf
-since it's parsed before distro.conf...  SDKPATH is just a 'default'
-value, you can change the install dir when running the .sh file. isn't
-that enough?
+$ tmp/sysroots/x86_64-linux/usr/bin/opkg-cl \
+    -o tmp/work/qemuarm-oe-linux-gnueabi/core-image-minimal/1.0-r0/rootfs \
+    list-installed
 
