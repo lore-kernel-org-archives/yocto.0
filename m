@@ -1,34 +1,33 @@
-Return-Path: <ross.burton@intel.com>
-Received: from mail-qc0-f174.google.com (mail-qc0-f174.google.com
-	[209.85.216.174])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9D3C0E004D9
-	for <yocto@yoctoproject.org>; Fri, 31 Jan 2014 03:56:48 -0800 (PST)
-Received: by mail-qc0-f174.google.com with SMTP id x13so6847979qcv.33
-	for <yocto@yoctoproject.org>; Fri, 31 Jan 2014 03:56:48 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc:content-type;
-	bh=bDSOVyDWQbVe+5uO6FB5nm5MeEo3AA7c6sbg2+LLek0=;
-	b=cSXEQ3W+N8q6RmZqwWAKol3Sj7tmamnMGccxIOVEX5DBB8vwGULpXKYwsp/3mEasbP
-	fEz5SKsF1p9arNgUB9g7oEp0JLnLCPULZik8Bh/tOEAIUZPjWrgeGWjR/3gQ9fi3dKRm
-	jYGncNHYsIlwhN5JCk/JSC0tPuUy8Og7pMMwGJ6ojDsATgXFUL3qqseinkcn0rq9yUJ/
-	zJHoILmgVykIjBuIQuMuldoRpANTe1z3aPInQCY6L7of7G+LiVBdHueBfn7XGK3jUDm9
-	Euue7D46iJZW96SDrfZjqk0T+lFBP0uiuxLhH/B9ibNi7XaVN0b7M4HR6BR/3TE6xeia
-	AskQ==
-X-Gm-Message-State: ALoCoQnbjWR4m6eI+LyRm+1WDAlUppSUUR37e/DwyrYBLdWsPq5/MQGfRs+N5rTAhz7i15RWahDD
-X-Received: by 10.224.43.144 with SMTP id w16mr30963576qae.93.1391169408069;
-	Fri, 31 Jan 2014 03:56:48 -0800 (PST)
+Return-Path: <bertrand.roussel.fr@gmail.com>
+Received: from mail-la0-f67.google.com (mail-la0-f67.google.com
+	[209.85.215.67])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 34DA8E004D9
+	for <yocto@yoctoproject.org>; Fri, 31 Jan 2014 05:14:40 -0800 (PST)
+Received: by mail-la0-f67.google.com with SMTP id hm7so1032690lab.6
+	for <yocto@yoctoproject.org>; Fri, 31 Jan 2014 05:14:38 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:sender:in-reply-to:references:from:date:message-id
+	:subject:to:content-type;
+	bh=YWVgxrww51/rbYPws1IrUnsmJgFiCeEr06Rk/4QFjQ8=;
+	b=UwCaJeAuygRRaWEbGqw57KqFlnQ3QnybaqqVNF6GCk0zxacLYCbRogNwpjDkVRL3/X
+	n63b5AeV11wlXzQmNfn/KnUzAnadio455oZxHVDE5JD16D+YZ4s0MFYuiqI2foNd8fn6
+	m1+w4VFrvyUZ4sJXLGKioWx8nVuT//1OKlraUtr1vxY/lvio8EuIzy0S+/x3QLbUmIM0
+	mo8jsj65DWbvv/K3cUi00EFIZqAaH4MnI6ZwExdqGPcCJhyZ8XbJQFkijhP7zK+bYxo1
+	ia5WQE4g2mHBbPYORnCKUtb6yvwW1XlNwDTE1xMmTeKp0LVih4OmsuWHqk9BxQ8J9FLn
+	ovEQ==
+X-Received: by 10.112.91.228 with SMTP id ch4mr1896482lbb.19.1391174077948;
+	Fri, 31 Jan 2014 05:14:37 -0800 (PST)
 MIME-Version: 1.0
-Received: by 10.140.48.79 with HTTP; Fri, 31 Jan 2014 03:56:28 -0800 (PST)
-In-Reply-To: <05301278-AC33-4DBC-A381-DE2F5CB1E73B@padamj.com>
-References: <05301278-AC33-4DBC-A381-DE2F5CB1E73B@padamj.com>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Fri, 31 Jan 2014 11:56:28 +0000
-Message-ID: <CAJTo0LZ-RgJw+x1C5MmmOhUm1Pd-TdYoiZgABPOrESD876aoLg@mail.gmail.com>
-To: "Padam J.Singh" <me@padamj.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Help with ipset bitbake files
+Sender: bertrand.roussel.fr@gmail.com
+Received: by 10.112.27.232 with HTTP; Fri, 31 Jan 2014 05:14:17 -0800 (PST)
+In-Reply-To: <CAF8imWgmu1L6nHBoNFuEQQfnJH+5Uryq6sWmU6iRXM+Q=fg4aw@mail.gmail.com>
+References: <CAF8imWgmu1L6nHBoNFuEQQfnJH+5Uryq6sWmU6iRXM+Q=fg4aw@mail.gmail.com>
+From: Bertrand Roussel <bertrand.roussel@cor-net.org>
+Date: Fri, 31 Jan 2014 14:14:17 +0100
+X-Google-Sender-Auth: IEoeb46Jiq2uJCSeHOtgUTvjZM8
+Message-ID: <CAF8imWg9FhGNZnYuv2J8fnM8EyEkcXdDWL1d-vSvLhWaBhDtQA@mail.gmail.com>
+To: yocto@yoctoproject.org
+Subject: Personalized SDKPATH and sysroot
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,19 +39,103 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 31 Jan 2014 11:56:49 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Fri, 31 Jan 2014 13:14:41 -0000
+Content-Type: multipart/alternative; boundary=001a11348ababca86b04f143f425
 
-On 31 January 2014 11:45, Padam J.Singh <me@padamj.com> wrote:
-> When executing this recipe, all steps completes OK. However, the compiled
-> binaries are not included in the final RPMs or the final images.
+--001a11348ababca86b04f143f425
+Content-Type: text/plain; charset=ISO-8859-1
 
-If you include the output of "find" in both image/ and packages-split/
-then it would be possible to debug this.
+Hi all,
 
-FWIW, FILES_${PN} already includes ${sbindir}/*, so your assignment
-isn't achieving anything.  Also note that your second EXTRA_OECONF
-line is overwriting the first.
+I'm currently playing with Yocto 1.4, and I have few questions about
+generated SDKs.
 
-Ross
+1/ The sysroot seems to be hardcoded in binaries, for instance:
+$
+/opt/poky/1.4.2/sysroots/x86_64-pokysdk-linux/usr/bin/armv6-vfp-poky-linux-gnueabi/arm-poky-linux-gnueabi-gcc
+--print-sysroot
+/opt/poky/1.4.2/sysroots/armv6-vfp-poky-linux-gnueabi
 
+$ ./poky-eglibc-x86_64-arm-toolchain-1.4.1.sh
+Enter target directory for SDK (default: /opt/poky/1.4.2): /tmp/pokysdk
+You are about to install the SDK to "/tmp/pokysdk". Proceed[Y/n]?
+Extracting SDK...done
+Setting it up...done
+SDK has been successfully set up and is ready to be used.
+$
+/tmp/pokysdk/sysroots/x86_64-pokysdk-linux/usr/bin/armv6-vfp-poky-linux-gnueabi/arm-poky-linux-gnueabi-gcc
+--print-sysroot
+/opt/poky/1.4.2/sysroots/armv6-vfp-poky-linux-gnueabi
+
+There is a 'relocate_sdk.py', is it meant to replace this path (it does
+look like it) ?
+It's replacing some lib-related paths, but the sysroot is kept intact,
+enforcing the use of --sysroot to use the toolchain.
+
+Did I miss something ?
+
+2/ I'm using the 'poky' distribution, which specifies the SDKPATH (in
+meta-yocto/conf/distro/poky.conf ) as "/opt/${DISTRO}/${SDK_VERSION}".
+Is there a way to override this without making a new distribution
+inheriting 'poky' ?
+
+I tried to make a new toolchain recipe based on meta-toolchain, and set the
+value there, but only a small part of the toolchain ends up in that
+directory (gcc for instance, is compiled with the value set in the
+poky.conf ).
+
+Thanks!
+Bertrand
+
+--001a11348ababca86b04f143f425
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div class=3D"gmail_quote"><div dir=3D"ltr"><div><div><div=
+><div><div><div><div><div><div>Hi all,<br><br></div>I&#39;m currently playi=
+ng with Yocto 1.4, and I have few questions about generated SDKs.<br><br></=
+div>
+
+1/ The sysroot seems to be hardcoded in binaries, for instance:<br>
+$ /opt/poky/1.4.2/sysroots/x86_64-pokysdk-linux/usr/bin/armv6-vfp-poky-linu=
+x-gnueabi/arm-poky-linux-gnueabi-gcc --print-sysroot<br>/opt/poky/1.4.2/sys=
+roots/armv6-vfp-poky-linux-gnueabi<br><br>$ ./<a href=3D"http://poky-eglibc=
+-x86_64-arm-toolchain-1.4.1.sh" target=3D"_blank">poky-eglibc-x86_64-arm-to=
+olchain-1.4.1.sh</a><br>
+
+
+Enter target directory for SDK (default: /opt/poky/1.4.2): /tmp/pokysdk=A0 =
+<br>You are about to install the SDK to &quot;/tmp/pokysdk&quot;. Proceed[Y=
+/n]?<br>Extracting SDK...done<br>Setting it up...done<br>SDK has been succe=
+ssfully set up and is ready to be used.<br>
+
+
+$ /tmp/pokysdk/sysroots/x86_64-pokysdk-linux/usr/bin/armv6-vfp-poky-linux-g=
+nueabi/arm-poky-linux-gnueabi-gcc --print-sysroot<br>/opt/poky/1.4.2/sysroo=
+ts/armv6-vfp-poky-linux-gnueabi<br><br></div>There is a &#39;relocate_sdk.p=
+y&#39;, is it meant to replace this path (it does look like it) ?<br>
+
+
+</div>It&#39;s replacing some lib-related paths, but the sysroot is kept in=
+tact, enforcing the use of --sysroot to use the toolchain.<br><br></div><di=
+v>Did I miss something ?<br></div><div><br></div>2/ I&#39;m using the &#39;=
+poky&#39; distribution, which specifies the SDKPATH (in meta-yocto/conf/dis=
+tro/poky.conf ) as &quot;/opt/${DISTRO}/${SDK_VERSION}&quot;.<br>
+
+
+</div>Is there a way to override this without making a new distribution inh=
+eriting &#39;poky&#39; ?<br><br></div>I tried to make a new toolchain recip=
+e based on meta-toolchain, and set the value there, but only a small part o=
+f the toolchain ends up in that directory (gcc for instance, is compiled wi=
+th the value set in the poky.conf ).<br>
+
+
+<br></div>Thanks!<span class=3D"HOEnZb"><font color=3D"#888888"><br></font>=
+</span></div><span class=3D"HOEnZb"><font color=3D"#888888">Bertrand<br><di=
+v><div><br><br><div><div><div><div><br><br></div></div></div></div></div></=
+div>
+
+</font></span></div>
+</div><br></div>
+
+--001a11348ababca86b04f143f425--
