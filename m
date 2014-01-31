@@ -1,33 +1,35 @@
 Return-Path: <sebmennetrier@gmail.com>
-Received: from mail-ea0-f170.google.com (mail-ea0-f170.google.com
-	[209.85.215.170])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BF301E002AC
-	for <yocto@yoctoproject.org>; Fri, 31 Jan 2014 07:28:12 -0800 (PST)
-Received: by mail-ea0-f170.google.com with SMTP id k10so2437062eaj.29
-	for <yocto@yoctoproject.org>; Fri, 31 Jan 2014 07:28:11 -0800 (PST)
+Received: from mail-ea0-f171.google.com (mail-ea0-f171.google.com
+	[209.85.215.171])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 826AFE002AC
+	for <yocto@yoctoproject.org>; Fri, 31 Jan 2014 07:30:23 -0800 (PST)
+Received: by mail-ea0-f171.google.com with SMTP id f15so2428927eak.30
+	for <yocto@yoctoproject.org>; Fri, 31 Jan 2014 07:30:22 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=sender:from:to:cc:subject:date:message-id;
-	bh=YwhCovaojMUYTwf/iwNiWOJ3b6tfjiLKO5xuYVjUpKo=;
-	b=Hd1U9elW9Bbok3FsSd5qoQK2kMfvwCKK7LEpMkJI62QOck51ckjtjbVAAhLQMPxq3l
-	uN6s6ZYQeQrZEXYX42YuL6BNJCUqgPF6+m2sfWpeF4QHLaJnDTMReYKaxEpcJhGNkBID
-	OeCg7sN4lknTF5TSkHLJqScmkPwRSze1FHdinXaG3m/YLIqH1gnb77Bf9QSdUYI2gW+C
-	BJTzKrbIQzxUdJOQkwnfBKbPhxjGB/8PZf8nxBWkWrfNmYqbif4/5mHNLce2R9rjuhhe
-	xyTd8MdVi5yOacPB6Xem8Kr8hkptVlCOeSsdin1sDYART8yfCCeRC0U8kHdWc3fVYh+Z
-	0ojg==
-X-Received: by 10.14.2.193 with SMTP id 41mr14819388eef.55.1391182090957;
-	Fri, 31 Jan 2014 07:28:10 -0800 (PST)
+	h=sender:from:to:cc:subject:date:message-id:mime-version:content-type
+	:content-transfer-encoding;
+	bh=J+8ZfsdAdUtnpVcT2icZlfFteqM7ISdfgQs/76JG/Io=;
+	b=Txx2udQwRxHkv03V3lvsYclyM+vrzE7XYiC3QyYb1ahZCIU3VQVRmROR21Dv0E5MzM
+	zdiXgfjU9rqWiLeOXgPbrluE9pYQWK+NndjrS8nVVUJGGmcyEJFHwoxe8WHAL1gTxvfk
+	0tHPpgqX15PffIR1niTcv8cQbr19dq4dC9CuQaYW5t7bhGKQk9o8iqXjn3kqAZBOISpB
+	8gBMDqwuG86wWVnqvUAHdVUe29vQxzDKODYuk850Fty13DhI7VGKmwgd9jnJBJK9HqEk
+	tLOi7pBb2uPXE6rzZuHzFM4YGTl3hj5ox7TjJlJV0cP+XxJfxHym1mgP5SDsGLePNCMo
+	UuYQ==
+X-Received: by 10.14.182.68 with SMTP id n44mr3326896eem.110.1391182222627;
+	Fri, 31 Jan 2014 07:30:22 -0800 (PST)
 Received: from smennetrier-desktop.mpl.mstarsemi.fr ([94.103.137.126])
-	by mx.google.com with ESMTPSA id g1sm37657864eet.6.2014.01.31.07.28.09
+	by mx.google.com with ESMTPSA id m9sm24431039eeh.3.2014.01.31.07.30.21
 	for <multiple recipients>
 	(version=TLSv1.1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
-	Fri, 31 Jan 2014 07:28:10 -0800 (PST)
+	Fri, 31 Jan 2014 07:30:21 -0800 (PST)
 Sender: Sebastien MENNETRIER <sebmennetrier@gmail.com>
 From: =?UTF-8?q?S=C3=A9bastien=20Mennetrier?= <s.mennetrier@innotis.org>
 To: yocto@yoctoproject.org
-Date: Fri, 31 Jan 2014 16:27:27 +0100
-Message-Id: <1391182047-10327-1-git-send-email-s.mennetrier@innotis.org>
+Date: Fri, 31 Jan 2014 16:30:12 +0100
+Message-Id: <1391182212-10378-1-git-send-email-s.mennetrier@innotis.org>
 X-Mailer: git-send-email 1.8.1.2
-Subject: [meta-raspberrypi][PATCH] Add initramfs support
+MIME-Version: 1.0
+Subject: [meta-raspberrypi][PATCH V2] Add initramfs support
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,9 +41,13 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 31 Jan 2014 15:28:14 -0000
+X-List-Received-Date: Fri, 31 Jan 2014 15:30:26 -0000
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
 Permit to build an image with initramfs.
+
+Signed-off-by: Sébastien Mennetrier <s.mennetrier@innotis.org>
 ---
  classes/sdcard_image-rpi.bbclass | 5 ++++-
  1 file changed, 4 insertions(+), 1 deletion(-)
