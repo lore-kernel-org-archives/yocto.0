@@ -1,29 +1,33 @@
-Return-Path: <philipp.seb@googlemail.com>
-Received: from mail-ob0-f179.google.com (mail-ob0-f179.google.com
-	[209.85.214.179])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 69765E002A7
-	for <yocto@yoctoproject.org>; Fri, 31 Jan 2014 07:01:24 -0800 (PST)
-Received: by mail-ob0-f179.google.com with SMTP id wo20so5053368obc.24
-	for <yocto@yoctoproject.org>; Fri, 31 Jan 2014 07:01:24 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=googlemail.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=3pR3ikbnORuxgj9JaFrS/if904h8Vj6ha+mWuVM30YM=;
-	b=AsG5OERnNrwm0+ZNPA9TtLkgP9vzhsLO6sf0kDwz/8yXkE+GEXznMh15WrSbHqkgqC
-	TRbVZwvIyOiPOSvSUuf64mOgX8smOeVcDl6O8V1S23LVLkrh6ONudU9Oa+w8+okwIbEN
-	oymKg2zaD6BjrmbOTaLJK6DsQ0Dh86UaRetV+ezprtFf87ZGFleAWBuuuWUhr1gs/vqf
-	sjGGYb+6JK/N/Ck/zI3vOCfqBzsyGvHpWC+uALls9rdjow5BbpmjBnZOb77lvKDs0XLA
-	64AvYYjTxsOGrVkjeUUXr+y4TZar1L7qrD9YnN73Mgdw54Q7wOiYGUlcrCHs3NTB5X32
-	W/5w==
-MIME-Version: 1.0
-X-Received: by 10.60.179.10 with SMTP id dc10mr449213oec.85.1391180484118;
-	Fri, 31 Jan 2014 07:01:24 -0800 (PST)
-Received: by 10.76.157.226 with HTTP; Fri, 31 Jan 2014 07:01:24 -0800 (PST)
-Date: Fri, 31 Jan 2014 16:01:24 +0100
-Message-ID: <CAGNjcsOZo2X=KMUzgPoDhUKhpQVh02JHVTZx0Tn+OeA=j0LUmQ@mail.gmail.com>
-From: Philipp Sebastian <philipp.seb@googlemail.com>
-To: Yocto Mailinglist <yocto@yoctoproject.org>
-Subject: Some issues with the Sunxi-Mali Package
+Return-Path: <sebmennetrier@gmail.com>
+Received: from mail-ea0-f170.google.com (mail-ea0-f170.google.com
+	[209.85.215.170])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BF301E002AC
+	for <yocto@yoctoproject.org>; Fri, 31 Jan 2014 07:28:12 -0800 (PST)
+Received: by mail-ea0-f170.google.com with SMTP id k10so2437062eaj.29
+	for <yocto@yoctoproject.org>; Fri, 31 Jan 2014 07:28:11 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=sender:from:to:cc:subject:date:message-id;
+	bh=YwhCovaojMUYTwf/iwNiWOJ3b6tfjiLKO5xuYVjUpKo=;
+	b=Hd1U9elW9Bbok3FsSd5qoQK2kMfvwCKK7LEpMkJI62QOck51ckjtjbVAAhLQMPxq3l
+	uN6s6ZYQeQrZEXYX42YuL6BNJCUqgPF6+m2sfWpeF4QHLaJnDTMReYKaxEpcJhGNkBID
+	OeCg7sN4lknTF5TSkHLJqScmkPwRSze1FHdinXaG3m/YLIqH1gnb77Bf9QSdUYI2gW+C
+	BJTzKrbIQzxUdJOQkwnfBKbPhxjGB/8PZf8nxBWkWrfNmYqbif4/5mHNLce2R9rjuhhe
+	xyTd8MdVi5yOacPB6Xem8Kr8hkptVlCOeSsdin1sDYART8yfCCeRC0U8kHdWc3fVYh+Z
+	0ojg==
+X-Received: by 10.14.2.193 with SMTP id 41mr14819388eef.55.1391182090957;
+	Fri, 31 Jan 2014 07:28:10 -0800 (PST)
+Received: from smennetrier-desktop.mpl.mstarsemi.fr ([94.103.137.126])
+	by mx.google.com with ESMTPSA id g1sm37657864eet.6.2014.01.31.07.28.09
+	for <multiple recipients>
+	(version=TLSv1.1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
+	Fri, 31 Jan 2014 07:28:10 -0800 (PST)
+Sender: Sebastien MENNETRIER <sebmennetrier@gmail.com>
+From: =?UTF-8?q?S=C3=A9bastien=20Mennetrier?= <s.mennetrier@innotis.org>
+To: yocto@yoctoproject.org
+Date: Fri, 31 Jan 2014 16:27:27 +0100
+Message-Id: <1391182047-10327-1-git-send-email-s.mennetrier@innotis.org>
+X-Mailer: git-send-email 1.8.1.2
+Subject: [meta-raspberrypi][PATCH] Add initramfs support
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -35,46 +39,37 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 31 Jan 2014 15:01:29 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Fri, 31 Jan 2014 15:28:14 -0000
 
-Hello to everyone !
+Permit to build an image with initramfs.
+---
+ classes/sdcard_image-rpi.bbclass | 5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
 
-My Name is Philipp from Germany
-im new to the yocto Mailinglist an also to the Project this is my
-First Linux experience and im very curious about it :-)
-Maybe someone can help me with my issues ...
-Ive started my First build last saturday just trying to build a very
-tiny Linux distribution for the cubieboard (with A10 chipset) it all
-Runs very smooth thanks to the Hob Interface
+diff --git a/classes/sdcard_image-rpi.bbclass b/classes/sdcard_image-rpi.bbclass
+index 3ee4e94..815aaa9 100644
+--- a/classes/sdcard_image-rpi.bbclass
++++ b/classes/sdcard_image-rpi.bbclass
+@@ -26,6 +26,9 @@ inherit image_types
+ # Set kernel and boot loader
+ IMAGE_BOOTLOADER ?= "bcm2835-bootfiles"
+ 
++# Set initramfs extension
++KERNEL_INITRAMFS ?= ""
++
+ # Boot partition volume id
+ BOOTDD_VOLUME_ID ?= "${MACHINE}"
+ 
+@@ -91,7 +94,7 @@ IMAGE_CMD_rpi-sdimg () {
+ 	BOOT_BLOCKS=$(LC_ALL=C parted -s ${SDIMG} unit b print | awk '/ 1 / { print substr($4, 1, length($4 -1)) / 512 /2 }')
+ 	mkfs.vfat -n "${BOOTDD_VOLUME_ID}" -S 512 -C ${WORKDIR}/boot.img $BOOT_BLOCKS
+ 	mcopy -i ${WORKDIR}/boot.img -s ${DEPLOY_DIR_IMAGE}/bcm2835-bootfiles/* ::/
+-	mcopy -i ${WORKDIR}/boot.img -s ${DEPLOY_DIR_IMAGE}/${KERNEL_IMAGETYPE}-${MACHINE}.bin ::kernel.img
++	mcopy -i ${WORKDIR}/boot.img -s ${DEPLOY_DIR_IMAGE}/${KERNEL_IMAGETYPE}${KERNEL_INITRAMFS}-${MACHINE}.bin ::kernel.img
+ 
+ 	if [ -n ${FATPAYLOAD} ] ; then
+ 		echo "Copying payload into VFAT"
+-- 
+1.8.1.2
 
-To this Point all runs perfect now i want to add the Sato graphical
-interface and run in some issues with the Mali Package witch produces
-an error.
-
-Here the Message is:
-"Function failed:Fetcher failture:Fetch command failed with exit code
-1, output:"
-"fatal:Could not switch to
-`/home/philipp/poky-dora-10.0.0/build/downloads/git2/github.com.linux-sunxi.sunxi-mali.git.tmp/lib`
-: No such file or directory
-Unable to fetch in submodule path lib/mali
-
-its right the path does not exist but did i miss something to install ?
-The task was do_unpack
-and im not sure there was a allmost similar folder but the path is
-different to the one on the log
-here it is
-
-/home/philipp/poky-dora-10.0.0/build/downloads/git2/github.com.linux-sunxi.sunxi-mali.git
-
-so its without the tmp and the lib
-ive looked at the bbllayer.conf for the mali package but i have no
-idea how to fix this
-for my opinion its a path problem...
-
-I hope someone can help me
-
-regards
-Philipp
 
