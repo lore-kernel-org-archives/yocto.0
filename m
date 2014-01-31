@@ -1,33 +1,40 @@
-Return-Path: <bertrand.roussel.fr@gmail.com>
-Received: from mail-la0-f67.google.com (mail-la0-f67.google.com
-	[209.85.215.67])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 34DA8E004D9
-	for <yocto@yoctoproject.org>; Fri, 31 Jan 2014 05:14:40 -0800 (PST)
-Received: by mail-la0-f67.google.com with SMTP id hm7so1032690lab.6
-	for <yocto@yoctoproject.org>; Fri, 31 Jan 2014 05:14:38 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:sender:in-reply-to:references:from:date:message-id
-	:subject:to:content-type;
-	bh=YWVgxrww51/rbYPws1IrUnsmJgFiCeEr06Rk/4QFjQ8=;
-	b=UwCaJeAuygRRaWEbGqw57KqFlnQ3QnybaqqVNF6GCk0zxacLYCbRogNwpjDkVRL3/X
-	n63b5AeV11wlXzQmNfn/KnUzAnadio455oZxHVDE5JD16D+YZ4s0MFYuiqI2foNd8fn6
-	m1+w4VFrvyUZ4sJXLGKioWx8nVuT//1OKlraUtr1vxY/lvio8EuIzy0S+/x3QLbUmIM0
-	mo8jsj65DWbvv/K3cUi00EFIZqAaH4MnI6ZwExdqGPcCJhyZ8XbJQFkijhP7zK+bYxo1
-	ia5WQE4g2mHBbPYORnCKUtb6yvwW1XlNwDTE1xMmTeKp0LVih4OmsuWHqk9BxQ8J9FLn
-	ovEQ==
-X-Received: by 10.112.91.228 with SMTP id ch4mr1896482lbb.19.1391174077948;
-	Fri, 31 Jan 2014 05:14:37 -0800 (PST)
-MIME-Version: 1.0
-Sender: bertrand.roussel.fr@gmail.com
-Received: by 10.112.27.232 with HTTP; Fri, 31 Jan 2014 05:14:17 -0800 (PST)
-In-Reply-To: <CAF8imWgmu1L6nHBoNFuEQQfnJH+5Uryq6sWmU6iRXM+Q=fg4aw@mail.gmail.com>
-References: <CAF8imWgmu1L6nHBoNFuEQQfnJH+5Uryq6sWmU6iRXM+Q=fg4aw@mail.gmail.com>
-From: Bertrand Roussel <bertrand.roussel@cor-net.org>
-Date: Fri, 31 Jan 2014 14:14:17 +0100
-X-Google-Sender-Auth: IEoeb46Jiq2uJCSeHOtgUTvjZM8
-Message-ID: <CAF8imWg9FhGNZnYuv2J8fnM8EyEkcXdDWL1d-vSvLhWaBhDtQA@mail.gmail.com>
-To: yocto@yoctoproject.org
-Subject: Personalized SDKPATH and sysroot
+Return-Path: <me@padamj.com>
+Received: from mail-pa0-f43.google.com (mail-pa0-f43.google.com
+	[209.85.220.43])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5E399E004DD
+	for <yocto@yoctoproject.org>; Fri, 31 Jan 2014 05:53:32 -0800 (PST)
+Received: by mail-pa0-f43.google.com with SMTP id rd3so4457286pab.2
+	for <yocto@yoctoproject.org>; Fri, 31 Jan 2014 05:53:32 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:content-type:mime-version:subject:from
+	:in-reply-to:date:cc:content-transfer-encoding:message-id:references
+	:to; bh=ZTX+q5BS/duKrEWCnCZqjoPUyimABUgPxtQ7mdblaBY=;
+	b=QHVaPFhlxo/ttz47sdAioaB+0fcommGHiI12/Yxst9y/fk7mRntw9U5IgUjQQZqbuZ
+	qGZd+pS6sOPOcgk57U0FG06iipRyzmliLbbWkHexdB7/2v6Z2WLVAWmdUqMMj3G7d6sm
+	DM6XmYvi0tbZGnXWM1GzN4ccp8Eyf4KMooXHfO+Gr8GCfriPvLJsoSaiGKuVx6qVqp+r
+	HsTjuyaEyYH2O7TxUWm57XuoqsmbpZqQgV6tF0jCv/SCSXyXpoO+BbRwzAYNhRVWrStP
+	UQDcAKY3yZdc5IrUw8j//AxgiViQy2aHviikr1Ml/cmihcjgqLV6HnfS8NWIxt0jkJfx
+	6Twg==
+X-Gm-Message-State: ALoCoQm6c3/oximQy7hX6rLrlID83GFVKxe+hUEaIh+C6VhbI7u1RHtgzTpInxgNsRTCvGN3DDKQ
+X-Received: by 10.66.27.72 with SMTP id r8mr20752896pag.62.1391176412168;
+	Fri, 31 Jan 2014 05:53:32 -0800 (PST)
+Received: from [172.16.1.4] ([103.25.205.2])
+	by mx.google.com with ESMTPSA id c7sm27886879pbt.0.2014.01.31.05.53.28
+	for <multiple recipients>
+	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
+	Fri, 31 Jan 2014 05:53:30 -0800 (PST)
+Mime-Version: 1.0 (Mac OS X Mail 7.1 \(1827\))
+From: "Padam J. Singh" <me@padamj.com>
+In-Reply-To: <CAJTo0LZ-RgJw+x1C5MmmOhUm1Pd-TdYoiZgABPOrESD876aoLg@mail.gmail.com>
+Date: Fri, 31 Jan 2014 19:23:24 +0530
+Message-Id: <0268212B-3E3E-4B1D-93EC-F0619C6EA499@padamj.com>
+References: <05301278-AC33-4DBC-A381-DE2F5CB1E73B@padamj.com>
+	<CAJTo0LZ-RgJw+x1C5MmmOhUm1Pd-TdYoiZgABPOrESD876aoLg@mail.gmail.com>
+To: "Burton, Ross" <ross.burton@intel.com>
+X-Mailer: Apple Mail (2.1827)
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Help with ipset bitbake files
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,103 +46,40 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 31 Jan 2014 13:14:41 -0000
-Content-Type: multipart/alternative; boundary=001a11348ababca86b04f143f425
-
---001a11348ababca86b04f143f425
-Content-Type: text/plain; charset=ISO-8859-1
-
-Hi all,
-
-I'm currently playing with Yocto 1.4, and I have few questions about
-generated SDKs.
-
-1/ The sysroot seems to be hardcoded in binaries, for instance:
-$
-/opt/poky/1.4.2/sysroots/x86_64-pokysdk-linux/usr/bin/armv6-vfp-poky-linux-gnueabi/arm-poky-linux-gnueabi-gcc
---print-sysroot
-/opt/poky/1.4.2/sysroots/armv6-vfp-poky-linux-gnueabi
-
-$ ./poky-eglibc-x86_64-arm-toolchain-1.4.1.sh
-Enter target directory for SDK (default: /opt/poky/1.4.2): /tmp/pokysdk
-You are about to install the SDK to "/tmp/pokysdk". Proceed[Y/n]?
-Extracting SDK...done
-Setting it up...done
-SDK has been successfully set up and is ready to be used.
-$
-/tmp/pokysdk/sysroots/x86_64-pokysdk-linux/usr/bin/armv6-vfp-poky-linux-gnueabi/arm-poky-linux-gnueabi-gcc
---print-sysroot
-/opt/poky/1.4.2/sysroots/armv6-vfp-poky-linux-gnueabi
-
-There is a 'relocate_sdk.py', is it meant to replace this path (it does
-look like it) ?
-It's replacing some lib-related paths, but the sysroot is kept intact,
-enforcing the use of --sysroot to use the toolchain.
-
-Did I miss something ?
-
-2/ I'm using the 'poky' distribution, which specifies the SDKPATH (in
-meta-yocto/conf/distro/poky.conf ) as "/opt/${DISTRO}/${SDK_VERSION}".
-Is there a way to override this without making a new distribution
-inheriting 'poky' ?
-
-I tried to make a new toolchain recipe based on meta-toolchain, and set the
-value there, but only a small part of the toolchain ends up in that
-directory (gcc for instance, is compiled with the value set in the
-poky.conf ).
-
-Thanks!
-Bertrand
-
---001a11348ababca86b04f143f425
-Content-Type: text/html; charset=ISO-8859-1
+X-List-Received-Date: Fri, 31 Jan 2014 13:53:33 -0000
+Content-Type: text/plain; charset=us-ascii
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div class=3D"gmail_quote"><div dir=3D"ltr"><div><div><div=
-><div><div><div><div><div><div>Hi all,<br><br></div>I&#39;m currently playi=
-ng with Yocto 1.4, and I have few questions about generated SDKs.<br><br></=
-div>
+Hello Ross,
 
-1/ The sysroot seems to be hardcoded in binaries, for instance:<br>
-$ /opt/poky/1.4.2/sysroots/x86_64-pokysdk-linux/usr/bin/armv6-vfp-poky-linu=
-x-gnueabi/arm-poky-linux-gnueabi-gcc --print-sysroot<br>/opt/poky/1.4.2/sys=
-roots/armv6-vfp-poky-linux-gnueabi<br><br>$ ./<a href=3D"http://poky-eglibc=
--x86_64-arm-toolchain-1.4.1.sh" target=3D"_blank">poky-eglibc-x86_64-arm-to=
-olchain-1.4.1.sh</a><br>
+Thanks for the help!
 
+I was able to see that both the images/ and packages-split/ipset had the =
+binary. The root_fs does not have this file. The building of final image =
+shows that the ipset rpm is being installed.=20
 
-Enter target directory for SDK (default: /opt/poky/1.4.2): /tmp/pokysdk=A0 =
-<br>You are about to install the SDK to &quot;/tmp/pokysdk&quot;. Proceed[Y=
-/n]?<br>Extracting SDK...done<br>Setting it up...done<br>SDK has been succe=
-ssfully set up and is ready to be used.<br>
+I have added ipset to the top-level image :
+IMAGE_INSTALL +=3D "ipset"
 
+Any clues?
 
-$ /tmp/pokysdk/sysroots/x86_64-pokysdk-linux/usr/bin/armv6-vfp-poky-linux-g=
-nueabi/arm-poky-linux-gnueabi-gcc --print-sysroot<br>/opt/poky/1.4.2/sysroo=
-ts/armv6-vfp-poky-linux-gnueabi<br><br></div>There is a &#39;relocate_sdk.p=
-y&#39;, is it meant to replace this path (it does look like it) ?<br>
+Thanks,
+Padam
 
+On 31-Jan-2014, at 17:26 , Burton, Ross <ross.burton@intel.com> wrote:
 
-</div>It&#39;s replacing some lib-related paths, but the sysroot is kept in=
-tact, enforcing the use of --sysroot to use the toolchain.<br><br></div><di=
-v>Did I miss something ?<br></div><div><br></div>2/ I&#39;m using the &#39;=
-poky&#39; distribution, which specifies the SDKPATH (in meta-yocto/conf/dis=
-tro/poky.conf ) as &quot;/opt/${DISTRO}/${SDK_VERSION}&quot;.<br>
-
-
-</div>Is there a way to override this without making a new distribution inh=
-eriting &#39;poky&#39; ?<br><br></div>I tried to make a new toolchain recip=
-e based on meta-toolchain, and set the value there, but only a small part o=
-f the toolchain ends up in that directory (gcc for instance, is compiled wi=
-th the value set in the poky.conf ).<br>
+> On 31 January 2014 11:45, Padam J.Singh <me@padamj.com> wrote:
+>> When executing this recipe, all steps completes OK. However, the =
+compiled
+>> binaries are not included in the final RPMs or the final images.
+>=20
+> If you include the output of "find" in both image/ and packages-split/
+> then it would be possible to debug this.
+>=20
+> FWIW, FILES_${PN} already includes ${sbindir}/*, so your assignment
+> isn't achieving anything.  Also note that your second EXTRA_OECONF
+> line is overwriting the first.
+>=20
+> Ross
 
 
-<br></div>Thanks!<span class=3D"HOEnZb"><font color=3D"#888888"><br></font>=
-</span></div><span class=3D"HOEnZb"><font color=3D"#888888">Bertrand<br><di=
-v><div><br><br><div><div><div><div><br><br></div></div></div></div></div></=
-div>
-
-</font></span></div>
-</div><br></div>
-
---001a11348ababca86b04f143f425--
