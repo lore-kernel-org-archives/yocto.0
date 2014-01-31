@@ -1,34 +1,35 @@
-Return-Path: <belen.barros.pena@intel.com>
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 067C4E0049F
-	for <yocto@yoctoproject.org>; Fri, 31 Jan 2014 02:24:34 -0800 (PST)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga101.fm.intel.com with ESMTP; 31 Jan 2014 02:24:33 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.95,757,1384329600"; d="scan'208";a="473778247"
-Received: from irsmsx104.ger.corp.intel.com ([163.33.3.159])
-	by fmsmga002.fm.intel.com with ESMTP; 31 Jan 2014 02:24:32 -0800
-Received: from irsmsx106.ger.corp.intel.com ([169.254.8.96]) by
-	IRSMSX104.ger.corp.intel.com ([169.254.5.244]) with mapi id
-	14.03.0123.003; Fri, 31 Jan 2014 10:24:31 +0000
-From: "Barros Pena, Belen" <belen.barros.pena@intel.com>
-To: Alex J Lennon <ajlennon@dynamicdevices.co.uk>, "paul@paulbarker.me.uk"
-	<paul@paulbarker.me.uk>
-Thread-Topic: [yocto] Yocto Project and OpenEmbedded Logos
-Thread-Index: AQHPHm6hgZprM2+62UO33AlRi6BNrg==
-Date: Fri, 31 Jan 2014 10:24:31 +0000
-Message-ID: <CF112A01.3BFDB%belen.barros.pena@intel.com>
-References: <CANyK_8dY=3pVVLU+K7aeAsFgcTyPJPp+2SKM6LYrAQeD02f3yA@mail.gmail.com>
-	<52EADD1C.3050900@dynamicdevices.co.uk>
-In-Reply-To: <52EADD1C.3050900@dynamicdevices.co.uk>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-user-agent: Microsoft-MacOutlook/14.3.9.131030
-x-originating-ip: [10.237.224.31]
-MIME-Version: 1.0
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Yocto Project and OpenEmbedded Logos
+Return-Path: <me@padamj.com>
+Received: from mail-pb0-f44.google.com (mail-pb0-f44.google.com
+	[209.85.160.44])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0917DE004D9
+	for <yocto@yoctoproject.org>; Fri, 31 Jan 2014 03:49:22 -0800 (PST)
+Received: by mail-pb0-f44.google.com with SMTP id rq2so4324799pbb.17
+	for <yocto@yoctoproject.org>; Fri, 31 Jan 2014 03:49:22 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:from:content-type:content-transfer-encoding
+	:subject:message-id:date:to:mime-version;
+	bh=+Xc4UhrHOUH4u78KwyJG84Vk1wTYhGR+jY0QBOnX0w8=;
+	b=gCjS+NLD0Ovxh8HsC6/BfFm6LCYMEcUhYk41ELGRlSyGctrQApmCwXv33RFI5lrpKJ
+	ZTDHgp5i5GrN7t5urKcGwz278VxKNcG0RajVdg8s4wdvCxyXlJyil+e2WqURi1wVXAWv
+	uV8fshf0LNxMmmxTdAnWIo+hW3WgylI5RRf5Pd/fo+ai7sJkrt9rwCWt3aQJuudQ5Cyw
+	a8QziXoLc8oL4FhaZfKvFjg05Aa2Uzwwe2mZLaImlElNGSTvEnyzlwBO5XsiZ+MPADQx
+	P/IuZsU225mfORwNH2N1fUkYXUaJdReyTNhIiMgd+pIVEstDYpTAF/tRks8QQ2aHkPwe
+	vPug==
+X-Gm-Message-State: ALoCoQnwgeli4hf5/27L/wtnhjKUxmCwDcMIKQD0cjmkiDhNOQXufMBf6c9AAvEfqCEyX9pPI18/
+X-Received: by 10.68.139.73 with SMTP id qw9mr20023326pbb.121.1391168961527;
+	Fri, 31 Jan 2014 03:49:21 -0800 (PST)
+Received: from [172.16.1.4] ([103.25.205.2]) by mx.google.com with ESMTPSA id
+	yi8sm65636468pab.16.2014.01.31.03.49.18 for <yocto@yoctoproject.org>
+	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
+	Fri, 31 Jan 2014 03:49:20 -0800 (PST)
+From: Padam J. Singh <me@padamj.com>
+Message-Id: <05301278-AC33-4DBC-A381-DE2F5CB1E73B@padamj.com>
+Date: Fri, 31 Jan 2014 17:15:20 +0530
+To: yocto@yoctoproject.org
+Mime-Version: 1.0 (Mac OS X Mail 7.1 \(1827\))
+X-Mailer: Apple Mail (2.1827)
+Subject: Help with ipset bitbake files
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,91 +41,146 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 31 Jan 2014 10:24:40 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="iso-8859-1"
-Content-ID: <C646E98F1936AB40A48E5484B40A0D2C@intel.com>
+X-List-Received-Date: Fri, 31 Jan 2014 11:49:25 -0000
+Content-Type: text/plain; charset=us-ascii
 Content-Transfer-Encoding: quoted-printable
 
-Sent them off list. I'll try to get them on the website.
+Hello,
 
-Cheers
+I am trying to create a bitbake file for ipset =
+(http://ipset.netfilter.org). Currently using the Poky project.
 
-Bel=E9n=20
+When executing this recipe, all steps completes OK. However, the =
+compiled binaries are not included in the final RPMs or the final =
+images.=20
 
-On 30/01/2014 23:15, "Alex J Lennon" <ajlennon@dynamicdevices.co.uk> wrote:
+Could someone point out what could be wrong?
 
->
->
->
->Hi Paul,
->
->I had similar trouble today. I couldn't for the life of me find a nice
->SVG of the Yocto logo,
->although I did scan through the brand guidelines pdf. They seem to point
->to the website
->but in the end I just scaled up the PDF and grabbed a capture from that...
->
->https://www.yoctoproject.org/sites/yoctoproject.org/files/yoctoproject_sty
->leguide.pdf
->
->I was looking for an OpenEmbedded logo for FOSDEM 2012 and Philip
->Balister kindly pointed me to this one,
->
->http://git.openembedded.org/openembedded/tree/contrib/artwork/oe.svg
->
->I hope that's of use, cheers,
->
->Alex
->
->On 30/01/2014 21:53, Paul Barker wrote:
->
->
->Hi, sorry this is a last-minute question.
->
->I'm throwing together slides for my talk at FOSDEM on Sunday and I
->could do with decent copies of the Yocto Project and OpenEmbedded
->logos to include where appropriate. I think having good images of the
->correct logos when I'm talking about OE/Yocto will help to show it off
->to possible users.
->
->I've got a Yocto Project logo off Google Image Search but I can't find
->a good OpenEmbedded logo that isn't a badly-JPEG-compressed image. If
->someone could link me to something better I'd really appreciate that.
->
->Also, the "Yocto Project Brand Guidelines" link on
->https://www.yoctoproject.org/about/trademark-policy points to the page
->https://www.yoctoproject.org/ecosystem/branding-compliance-guidelines.
->That page doesn't seem to contain any info.
->
->Cheers,
->
->
->
->
->--=20
-> <http://www.dynamicdevices.co.uk/>
->Alex J Lennon/=20
->Director
->1 Queensway, Liverpool L22 4RA
->mobile: +44 (0)7956 668178
->
->
-> <http://www.linkedin.com/in/alexjlennon> <skype:alexjlennon?add>
->This e-mail message may contain confidential or legally privileged
->information and is intended only for the use of the intended
->recipient(s). Any unauthorized disclosure, dissemination, distribution,
->copying or the taking of any action in reliance on the information
-> herein is prohibited. E-mails are not secure and cannot be guaranteed to
->be error free as they can be intercepted, amended, or contain viruses.
->Anyone who communicates with us by e-mail is deemed to have accepted
->these risks. Company Name is not responsible
-> for errors or omissions in this message and denies any responsibility
->for any damage arising from the use of e-mail. Any opinion and other
->statement contained in this message and any attachment are solely those
->of the author and do not necessarily represent
-> those of the company.
->
->
+once I do:
+
+bitbake -DDD -v ipset
+
+the directory tmp/work/x86_64-poky-linux/ipset/6.20.1-r29/image contains =
+the libraries and the binary file ipset, however, the RPM builder only =
+includes the libraries and completely ignores the ipset file.
+
+The output from the RPM packaging process is:
+
+
+Processing files: ipset-6.20.1-r29.x86_64
+
+Provides:
+libipset.so.3(LIBIPSET_1.0)(64bit)
+elf(buildid) =3D cf8440b26d69aa1801b9d4551d277b18f74a7ce6
+elf(buildid) =3D 33d7b60b93579f13ec71d1a156882b5f59dbcbff =
+libipset.so.3()(64bit) libipset.so.3(LIBIPSET_4.0)(64bit) =
+libipset.so.3(LIBIPSET_4.1)(64bit) libipset.so.3(LIBIPSET_3.0)(64bit) =
+libipset.so.3(LIBIPSET_2.0)(64bit)
+
+Requires(interp): /bin/sh
+
+Requires(post): rtld(GNU_HASH) libc.so.6(GLIBC_2.3)(64bit) =
+libmnl.so.0(LIBMNL_1.0)(64bit) libc.so.6()(64bit) libdl.so.2()(64bit) =
+libmnl0 >=3D 1.0.3 libc.so.6(GLIBC_2.2.5)(64bit) libc6 >=3D 2.18 =
+libmnl.so.0()(64bit) /bin/sh
+
+Provides:
+libipset.so.3(LIBIPSET_1.0)(64bit) elf(buildid) =3D =
+cf8440b26d69aa1801b9d4551d277b18f74a7ce6 elf(buildid) =3D =
+33d7b60b93579f13ec71d1a156882b5f59dbcbff libipset.so.3()(64bit) =
+libipset.so.3(LIBIPSET_4.0)(64bit) libipset.so.3(LIBIPSET_4.1)(64bit) =
+libipset.so.3(LIBIPSET_3.0)(64bit) libipset.so.3(LIBIPSET_2.0)(64bit)
+Requires(interp): /bin/sh
+Requires(post): rtld(GNU_HASH) libc.so.6(GLIBC_2.3)(64bit) =
+libmnl.so.0(LIBMNL_1.0)(64bit) libc.so.6()(64bit) libdl.so.2()(64bit) =
+libmnl0 >=3D 1.0.3 libc.so.6(GLIBC_2.2.5)(64bit) libc6 >=3D 2.18 =
+libmnl.so.0()(64bit) /bin/sh
+
+
+
+Here are the files:
+
+libmnl.inc (dependency for ipset)
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+
+DESCRIPTION =3D "libmnl is a minimalistic user-space library oriented to =
+Netlink developers. There are a lot of common tasks in parsing, =
+validating, constructing of both the Netlink header and TLVs that are =
+repetitive and easy to get wrong. This library aims to provide simple =
+helpers that allows you to re-use code and to avoid re-inventing the =
+wheel."
+SECTION =3D "base"
+LICENSE =3D "GPLv2"
+DEPENDS +=3D "virtual/libc"
+
+inherit autotools
+
+PR=3D"r3"
+
+SRC_URI =3D =
+"http://netfilter.org/projects/libmnl/files/libmnl-${PV}.tar.bz2"
+
+#EXTRA_OEMAKE =3D "KERNEL_DIR=3D${KERNEL_SOURCE} MANDIR=3D${mandir}"
+BBCLASSEXTEND =3D "native"
+
+libmnl_1.0.3.bb
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+require libmnl.inc
+
+LIC_FILES_CHKSUM =3D =
+"file://COPYING;md5=3D4fbd65380cdd255951079008b364516c"
+
+SRC_URI[md5sum] =3D "7d95fc3bea3365bc03c48e484224f65f"
+SRC_URI[sha256sum] =3D =
+"6f14336e9acdbc62c2dc71bbb59ce162e54e9af5c80153e92476c5443fe784de"
+
+
+ipset.inc
+=3D=3D=3D=3D=3D=3D
+DESCRIPTION =3D "IP set framework"
+SECTION =3D "base"
+LICENSE =3D "GPLv2"
+DEPENDS +=3D "virtual/libc"
+RDEPENDS_${PN} +=3D "libmnl"
+
+inherit autotools
+inherit pkgconfig
+
+PR=3D"r29"
+
+SRC_URI =3D " \
+     http://ipset.netfilter.org/ipset-${PV}.tar.bz2 \
+     "
+EXTRA_OEMAKE =3D "KERNEL_DIR=3D${KERNEL_SOURCE} MANDIR=3D${mandir} =
+AM_CPPFLAGS=3D-I../include"
+EXTRA_OECONF =3D "--with-kmod=3Dno"
+FILES_${PN} +=3D "${sbindir} ${sbindir}/ipset"
+
+PARALLEL_MAKE =3D ""
+BBCLASSEXTEND =3D "native"
+
+
+ipset_6.20.1.bb
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+require ipset.inc
+
+LIC_FILES_CHKSUM =3D =
+"file://COPYING;md5=3D59530bdf33659b29e73d4adb9f9f6552"
+
+SRC_URI[md5sum] =3D "8af741492752fbf24d3a28a9d1473d40"
+SRC_URI[sha256sum] =3D =
+"356cac020438cd0871acbfc4cb119b8296030f0bb4661ad0d44bbc115ccbce92"
+
+
+
+
+Have been stuck on this for days now, any help or pointer to fix this =
+will help.
+
+Thanks,
+Padam
+
+
+
 
 
