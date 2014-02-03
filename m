@@ -1,37 +1,36 @@
-Return-Path: <ross.burton@intel.com>
-Received: from mail-qa0-f53.google.com (mail-qa0-f53.google.com
-	[209.85.216.53])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 52123E00444
-	for <yocto@yoctoproject.org>; Mon,  3 Feb 2014 08:20:11 -0800 (PST)
-Received: by mail-qa0-f53.google.com with SMTP id cm18so10399310qab.12
-	for <yocto@yoctoproject.org>; Mon, 03 Feb 2014 08:20:11 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc:content-type;
-	bh=FQv6ZsKfwsrZsd5vU0wYppK5aKy+icbdOikeZeHQbPM=;
-	b=MPfAyJ3jYynBcTbW2uzFtGydhsnCgs9LTiJ16rMF1jzyQJtg/SoaMs0altNKIQ7M0a
-	Tdu2b/HBE2WgfZXacD35QI1E0i1y2cOAujGP4lyw+VATEixipWbOx8L9IkMAJxntn6Dg
-	JaRCeJ26iAESud6Zh2aFB12b6h87OgwV6kg2/FLYrZoL5hnU3yPIO3m/rpZ/OQO/RMeu
-	wMWmSN+mSUymyDWYmO7MEmUHWkKu9U30cq6LP6mzKp4yLEWewybksT9JEqH49Sw54wEe
-	75UKibclqYNJnNB4mCIG7vi+TmgyKMrSBG2UV++ys+VuEobUwLZzo3bbBfSrl+4acMvu
-	GzOg==
-X-Gm-Message-State: ALoCoQl9Vh/CsSB8BUQ9nzJlx4Osnrh36sIkKa059WH3Ip8MKBp7rUSBp/mU9cSppdeS9R/S3r4k
-X-Received: by 10.140.42.180 with SMTP id c49mr54801163qga.24.1391444410900;
-	Mon, 03 Feb 2014 08:20:10 -0800 (PST)
+Return-Path: <k4230r6@gmail.com>
+Received: from mail-ee0-f47.google.com (mail-ee0-f47.google.com [74.125.83.47])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 383BBE00444
+	for <yocto@yoctoproject.org>; Mon,  3 Feb 2014 08:28:31 -0800 (PST)
+Received: by mail-ee0-f47.google.com with SMTP id d49so3720663eek.20
+	for <yocto@yoctoproject.org>; Mon, 03 Feb 2014 08:28:30 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=message-id:date:from:user-agent:mime-version:to:subject:references
+	:in-reply-to:content-type;
+	bh=xKJPiNxMfrcDZfo8lID/X9+FsUUesI5ZsnIJMxbZAnw=;
+	b=Lh5Kmrjgr0rFEuilFjW3c7xnxdnoygGySP3Ph6HBcHwMYN0X+FQikg4F4F5siQg9VZ
+	FdLQT46Ovu8pHHgqB3n+QRcqcMa7Nw7as5wAmq3hImMxJaaJ2+e9kUStseNPJve1jMIW
+	guQon3GxWQ+GNRX2uZZV9t35+suaue+IwWQIf/ok2ih/pOUOn+Qn6S2FZZ/yE4cDWX9X
+	JNnd5HPWyjKDy1IHmcv13JVCqfTpsIPrqkpVGgUJNp0U/JnFQVwko/bmU26kBHnkfIKD
+	Gfl9EQh8KSo9+3yXyoFFnsQDpG0vxp3xMTTbmecQ4Wk/uyptJ5h5Lr4sY0eWylY+sTFX
+	aIfw==
+X-Received: by 10.14.177.1 with SMTP id c1mr1474442eem.8.1391444909848;
+	Mon, 03 Feb 2014 08:28:29 -0800 (PST)
+Received: from [192.168.24.157] (HSI-KBW-091-089-117-035.hsi2.kabelbw.de.
+	[91.89.117.35]) by mx.google.com with ESMTPSA id
+	o43sm76942314eef.12.2014.02.03.08.28.29 for <yocto@yoctoproject.org>
+	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
+	Mon, 03 Feb 2014 08:28:29 -0800 (PST)
+Message-ID: <52EFC3AC.9030601@googlemail.com>
+Date: Mon, 03 Feb 2014 17:28:28 +0100
+From: Christian Ege <k4230r6@gmail.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:17.0) Gecko/20130329 Thunderbird/17.0.5
 MIME-Version: 1.0
-Received: by 10.140.48.79 with HTTP; Mon, 3 Feb 2014 08:19:50 -0800 (PST)
-In-Reply-To: <47A3F29D-1AE0-4097-A025-0BE897698EA9@padamj.com>
-References: <05301278-AC33-4DBC-A381-DE2F5CB1E73B@padamj.com>
-	<CAJTo0LZ-RgJw+x1C5MmmOhUm1Pd-TdYoiZgABPOrESD876aoLg@mail.gmail.com>
-	<0268212B-3E3E-4B1D-93EC-F0619C6EA499@padamj.com>
-	<47A3F29D-1AE0-4097-A025-0BE897698EA9@padamj.com>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Mon, 3 Feb 2014 16:19:50 +0000
-Message-ID: <CAJTo0LaWjPeqxV0JqsmAOvdTuQSDXrr0ZdyT_7+4wUx3L1DQxw@mail.gmail.com>
-To: "Padam J. Singh" <me@padamj.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Help with ipset bitbake files
+To: yocto@yoctoproject.org
+References: <CACP9YJccutcQq+j-1X0jabZK0KVvi+JJAj2ep2oicd59hJ5Xvg@mail.gmail.com>
+In-Reply-To: <CACP9YJccutcQq+j-1X0jabZK0KVvi+JJAj2ep2oicd59hJ5Xvg@mail.gmail.com>
+Subject: Re: File not found when trying to run an executable not build by Yocto
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,20 +42,136 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 03 Feb 2014 16:20:12 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Mon, 03 Feb 2014 16:28:34 -0000
+Content-Type: multipart/alternative;
+	boundary="------------000101040409010802030905"
 
-On 3 February 2014 05:13, Padam J. Singh <me@padamj.com> wrote:
-> What could be the possible reasons for a recipe to get packaged correctly in an
-> RPM, shows as being installed in the final image generation, yet none of the files actually
-> show up in the rootfs?
+--------------000101040409010802030905
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
 
-That's a very good question, and for what it's worth your recipe
-builds and installs fine into rootfs for me.
+Hi,
+> Hi,
+>
+> I am building an image for an embedded system using the chiefriver and 
+> kernel 3.12.9.  I am using Ubuntu as our base system.
+>
+> The image builds and boots fine which is great but we have some 
+> binaries built on Ubuntu which must run on the Yocto image.  When we 
+> copy these across and try and run them we get a "File Not Found" error.
+>
+> Why would this be?  Doing file on our ubuntu executables we get:
+>
+> /bin/true: ELF 64-bit LSB executable, x86-64, version 1 (SYSV), 
+> dynamically linked (uses shared libs), for GNU/Linux 2.6.24, 
+> BuildID[sha1]=0x2b45516be4a9f45b1127d54efb0d42e5f69b1c82, stripped
+>
+Just for the sake of completeness:
+- Have you either copied the files to /usr/bin or using ./executable_name?
+- Have you made a chmod+x executable_name before?
 
-Try checking the rootfs log to confirm that it's being installed, and
-the rootfs before it goes into a filesystem in
-tmp/work/MACHINE/IMAGE/VERSION/rootfs.
+Sometimes transfering files over ftp in ASCII mode results in funny 
+behaviours....
 
-Ross
+regrads,
+Christian
 
+> The Yocto executables are the same except instead of GNU/Linux 2.6.24 
+> it is 2.6.16.  It that a problem?
+>
+> Also, on ubuntu we are running libc-2.17 but on Yocto it is libc-2.18. 
+>  Is that a problem?
+>
+> Thanks for any assistance,
+> Dave
+>
+>
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+
+
+--------------000101040409010802030905
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: 7bit
+
+<html>
+  <head>
+    <meta content="text/html; charset=ISO-8859-1"
+      http-equiv="Content-Type">
+  </head>
+  <body bgcolor="#FFFFFF" text="#000000">
+    <div class="moz-cite-prefix">Hi,<br>
+    </div>
+    <blockquote
+cite="mid:CACP9YJccutcQq+j-1X0jabZK0KVvi+JJAj2ep2oicd59hJ5Xvg@mail.gmail.com"
+      type="cite">
+      <div dir="ltr">Hi,
+        <div><br>
+        </div>
+        <div>I am building an image for an embedded system using the
+          chiefriver and kernel 3.12.9. &nbsp;I am using Ubuntu as our base
+          system. &nbsp;</div>
+        <div><br>
+        </div>
+        <div>The image builds and boots fine which is great but we have
+          some binaries built on Ubuntu which must run on the Yocto
+          image. &nbsp;When we copy these across and try and run them we get
+          a "File Not Found" error.</div>
+        <div><br>
+        </div>
+        <div>Why would this be? &nbsp;Doing file on our ubuntu executables we
+          get:</div>
+        <div><br>
+        </div>
+        <div>/bin/true: ELF 64-bit LSB executable, x86-64, version 1
+          (SYSV), dynamically linked (uses shared libs), for GNU/Linux
+          2.6.24,
+          BuildID[sha1]=0x2b45516be4a9f45b1127d54efb0d42e5f69b1c82,
+          stripped<br>
+        </div>
+        <div><br>
+        </div>
+      </div>
+    </blockquote>
+    Just for the sake of completeness:<br>
+    - Have you either copied the files to /usr/bin or using
+    ./executable_name? <br>
+    - Have you made a chmod+x executable_name before?<br>
+    <br>
+    Sometimes transfering files over ftp in ASCII mode results in funny
+    behaviours....<br>
+    <br>
+    regrads,<br>
+    Christian<br>
+    <br>
+    <blockquote
+cite="mid:CACP9YJccutcQq+j-1X0jabZK0KVvi+JJAj2ep2oicd59hJ5Xvg@mail.gmail.com"
+      type="cite">
+      <div dir="ltr">
+        <div>The Yocto executables are the same except instead of
+          GNU/Linux 2.6.24 it is 2.6.16. &nbsp;It that a problem?</div>
+        <div><br>
+        </div>
+        <div>Also, on ubuntu we are running libc-2.17 but on Yocto it is
+          libc-2.18. &nbsp;Is that a problem?</div>
+        <div><br>
+        </div>
+        <div>Thanks for any assistance,</div>
+        <div>Dave</div>
+      </div>
+      <br>
+      <fieldset class="mimeAttachmentHeader"></fieldset>
+      <br>
+      <pre wrap="">_______________________________________________
+yocto mailing list
+<a class="moz-txt-link-abbreviated" href="mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a>
+<a class="moz-txt-link-freetext" href="https://lists.yoctoproject.org/listinfo/yocto">https://lists.yoctoproject.org/listinfo/yocto</a>
+</pre>
+    </blockquote>
+    <br>
+  </body>
+</html>
+
+--------------000101040409010802030905--
