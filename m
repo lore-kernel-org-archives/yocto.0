@@ -1,33 +1,33 @@
-Return-Path: <otavio.salvador@gmail.com>
-Received: from mail-yk0-f177.google.com (mail-yk0-f177.google.com
-	[209.85.160.177])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EA3F0E00710
-	for <yocto@yoctoproject.org>; Mon,  3 Feb 2014 07:51:38 -0800 (PST)
-Received: by mail-yk0-f177.google.com with SMTP id 19so40022676ykq.8
-	for <yocto@yoctoproject.org>; Mon, 03 Feb 2014 07:51:37 -0800 (PST)
+Return-Path: <kazuya.nisimura@gmail.com>
+Received: from mail-pb0-f49.google.com (mail-pb0-f49.google.com
+	[209.85.160.49])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3D7B4E006B6
+	for <yocto@yoctoproject.org>; Sun,  2 Feb 2014 21:56:50 -0800 (PST)
+Received: by mail-pb0-f49.google.com with SMTP id up15so6648851pbc.36
+	for <yocto@yoctoproject.org>; Sun, 02 Feb 2014 21:56:49 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:sender:date:message-id:subject:from:to:content-type;
-	bh=7+YEzrZv4qbydhNEyrr7MrsedZVSRwabPaZ4i8IAIV0=;
-	b=bAW5bbvoeOUzfzFAzsixEcdXD7Ogme7M3ooIS/pTKmscDALTg5ksz4b0WWZysq608/
-	cEcMHPwOUHJAnjkgrXbjm+FUWi8IQGvAq5UgJJdOaqoBWXkkAR13B2gkv1IAV0lSrJ+e
-	RoAsixB/vIfTBX9Qj6X9nG8d8/1Q5G5IH9ledLXWYpInxs5VmvM2pAeR2SGN+uzSQbJX
-	ji9TtffKboVcYXSfdlu1XYD9wiDDg8ORd5cSZrCCtVD043MqmiDZ8YC24LNSps/gqM6P
-	NoHqy1Xp0jF8ooZWcZUcoJkthgr1m422aeQ5QTBupxup+005whnkETcx8rL6LuvVnRq3
-	t+vA==
-MIME-Version: 1.0
-X-Received: by 10.236.126.81 with SMTP id a57mr1764803yhi.95.1391442697273;
-	Mon, 03 Feb 2014 07:51:37 -0800 (PST)
-Sender: otavio.salvador@gmail.com
-Received: by 10.170.62.84 with HTTP; Mon, 3 Feb 2014 07:51:37 -0800 (PST)
-Date: Mon, 3 Feb 2014 13:51:37 -0200
-X-Google-Sender-Auth: uu19Nq-fQSAWfEnPjjtEyEli2J0
-Message-ID: <CAP9ODKoYRMKW70m6CBryNm3EoGdEMrOSn1hduAA0ROrQg8Cr4g@mail.gmail.com>
-From: Otavio Salvador <otavio@ossystems.com.br>
-To: Patches and discussions about the oe-core layer
-	<openembedded-core@lists.openembedded.org>, 
-	yocto <yocto@yoctoproject.org>, Robert Yang <liezhi.yang@windriver.com>,
-	"Eggleton, Paul" <paul.eggleton@linux.intel.com>
-Subject: [for-dora] Dora backports
+	h=from:to:cc:subject:date:message-id;
+	bh=EfukEYeMIut6Z2zPfkyVUqFaWMokWjM+/gm6Ykylqew=;
+	b=SYfk1cvAgVZZPFayfhUsMJh+Y1FzTuD2/2k+2U8ZkSdRlU4atRZQZkbh1D/sxavjud
+	XnSdk64TxXvQ6/SRyD5JVNWIbZ4uyReXmuaUHJ0fvBAXrUEqbfAT1CfDXpvLGrNiV74m
+	R4qXOHLMCVrhRjrg0S++1fKUVDY94I/aHu/+1Zlc/996/HFAC4Wt73mbKRBUP9H+u80D
+	XbyuYJXKHu1IQQIXb4XojEeE0AG6mRYAgMWgMhnUwd7yE8zTYaeDk+c0nTNkf4U3WLFU
+	S9i9JqpUNyW7DiGW5QvktQURHB0P4Y5vPv1fWQNf7xvyyuEHK0iYvxEWiEVvi19kCIlh
+	0olg==
+X-Received: by 10.68.134.130 with SMTP id pk2mr632688pbb.167.1391407009870;
+	Sun, 02 Feb 2014 21:56:49 -0800 (PST)
+Received: from localhost.localdomain (KD113159197140.ppp-bb.dion.ne.jp.
+	[113.159.197.140]) by mx.google.com with ESMTPSA id
+	hb10sm52150296pbd.1.2014.02.02.21.56.48 for <multiple recipients>
+	(version=TLSv1.1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
+	Sun, 02 Feb 2014 21:56:49 -0800 (PST)
+From: Kazuya Nishimura <kazuya.nisimura@gmail.com>
+To: yocto@yoctoproject.org
+Date: Mon,  3 Feb 2014 14:56:40 +0900
+Message-Id: <1391407000-11895-1-git-send-email-kazuya.nisimura@gmail.com>
+X-Mailer: git-send-email 1.7.9.5
+X-Mailman-Approved-At: Mon, 03 Feb 2014 08:03:29 -0800
+Subject: [PATCH] tune-arm1176jzfs-s.inc: Add hard float profile, arm1176jzfshf, in AVAILTUNES
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,36 +39,35 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 03 Feb 2014 15:51:39 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Mon, 03 Feb 2014 05:56:53 -0000
 
-Hello,
+arm1176jzfshf uses -mtune=hard.
+Add -mfpu=vfp if vfp is included in TUNE_FEATURES
+---
+ conf/machine/include/tune-arm1176jzf-s.inc |    7 +++++++
+ 1 file changed, 7 insertions(+)
 
-I am adding OE-Core and Yocto mailing list as destination as this has
-fixes for both.
-
-While setting a build system, in a very clean host installation I
-found some issues which were fixed in master and ought to be
-backported to Dora:
-
-meta-yocto:
- - 1893d1576c1e7acc9881b3392a838c575019f18d (poky.conf: add Debian 7.2
-to SANITY_TESTED_DISTROS)
- - a452c02c880d1840f1150e59eede3f173f067c5f (poky.conf: add Debian 7.3
-to SANITY_TESTED_DISTROS)
-
-OE-Core:
- - 97e1d84e2d1a74791ce6af88ddc27963bc0e1bec (base.bbclass: pull in
-file-native for src.rpm)
-
-Specially the missing 'file' took me some time to figure so it is
-horrible to have this error for new users. This could be fixed for
-older releases as well (dylan at least).
-
-Regards,
-
+diff --git a/conf/machine/include/tune-arm1176jzf-s.inc b/conf/machine/include/tune-arm1176jzf-s.inc
+index ebad588..a5368a3 100644
+--- a/conf/machine/include/tune-arm1176jzf-s.inc
++++ b/conf/machine/include/tune-arm1176jzf-s.inc
+@@ -4,8 +4,15 @@ require conf/machine/include/arm/arch-armv6.inc
+ 
+ TUNEVALID[arm1176jzfs] = "Enable arm1176jzfs specific processor optimizations"
+ TUNE_CCARGS += "${@bb.utils.contains("TUNE_FEATURES", "arm1176jzfs", "-mtune=arm1176jzf-s", "", d)}"
++TUNE_CCARGS += "${@bb.utils.contains("TUNE_FEATURES", "vfp", "-mfpu=vfp", "", d)}"
+ 
+ AVAILTUNES += "arm1176jzfs"
+ TUNE_FEATURES_tune-arm1176jzfs = "${TUNE_FEATURES_tune-armv6} arm1176jzfs"
+ ARMPKGARCH_tune-arm1176jzfs = "arm1176jzfs"
+ PACKAGE_EXTRA_ARCHS_tune-arm1176jzfs = "${PACKAGE_EXTRA_ARCHS_tune-armv6}"
++
++AVAILTUNES += "arm1176jzfshf"
++TUNE_FEATURES_tune-arm1176jzfshf = "${TUNE_FEATURES_tune-arm1176jzfs} callconvention-hard"
++ARMPKGARCH_tune-arm1176jzfshf = "arm1176jzfs"
++PACKAGE_EXTRA_ARCHS_tune-arm1176jzfshf = "${PACKAGE_EXTRA_ARCHS_tune-armv6hf-vfp} arm1176jzfshf-vfp"
++
 -- 
-Otavio Salvador                             O.S. Systems
-http://www.ossystems.com.br        http://code.ossystems.com.br
-Mobile: +55 (53) 9981-7854            Mobile: +1 (347) 903-9750
+1.7.9.5
+
 
