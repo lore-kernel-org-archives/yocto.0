@@ -1,29 +1,37 @@
-Return-Path: <djwelch666@gmail.com>
-Received: from mail-pd0-f179.google.com (mail-pd0-f179.google.com
-	[209.85.192.179])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3B4A7E00706
-	for <yocto@yoctoproject.org>; Mon,  3 Feb 2014 07:51:08 -0800 (PST)
-Received: by mail-pd0-f179.google.com with SMTP id q10so7032238pdj.38
-	for <yocto@yoctoproject.org>; Mon, 03 Feb 2014 07:51:08 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=OXOhIKjHnhqpwzede67zhc3bQQQMxWTK24tXq7PtfMQ=;
-	b=DASzFT8Op3fJ37sRQMxyiqodpojvj9YHm7E+tkMQ1LH9wJYijXa50lfRm3nQSsmSeN
-	G8Vf6pQFRJrzsej5BYyJ2jHutVQdA9ezLwabOgI2eR43EKRkU95LuHeatKVkUgxnopXq
-	z6RakcDjCjBJCJ6yzx2W12OuITPgOOgVqAxENWkkYnuF8ZbejuVuYPrqf1buv5WdeZOM
-	kRS02b3j+tAop4Z0tSPBvmQzUjYKXUtJKsPux8leaY+UkW4JvsH+eGYsbZFXNSQVqTpQ
-	LamYDo3oZPJNauyp04Ffs888AaE702HjidQacTTcIP9ZFpP72TJlthFn06t7/0VrHN7Y
-	8ARA==
+Return-Path: <ross.burton@intel.com>
+Received: from mail-qa0-f53.google.com (mail-qa0-f53.google.com
+	[209.85.216.53])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 52123E00444
+	for <yocto@yoctoproject.org>; Mon,  3 Feb 2014 08:20:11 -0800 (PST)
+Received: by mail-qa0-f53.google.com with SMTP id cm18so10399310qab.12
+	for <yocto@yoctoproject.org>; Mon, 03 Feb 2014 08:20:11 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc:content-type;
+	bh=FQv6ZsKfwsrZsd5vU0wYppK5aKy+icbdOikeZeHQbPM=;
+	b=MPfAyJ3jYynBcTbW2uzFtGydhsnCgs9LTiJ16rMF1jzyQJtg/SoaMs0altNKIQ7M0a
+	Tdu2b/HBE2WgfZXacD35QI1E0i1y2cOAujGP4lyw+VATEixipWbOx8L9IkMAJxntn6Dg
+	JaRCeJ26iAESud6Zh2aFB12b6h87OgwV6kg2/FLYrZoL5hnU3yPIO3m/rpZ/OQO/RMeu
+	wMWmSN+mSUymyDWYmO7MEmUHWkKu9U30cq6LP6mzKp4yLEWewybksT9JEqH49Sw54wEe
+	75UKibclqYNJnNB4mCIG7vi+TmgyKMrSBG2UV++ys+VuEobUwLZzo3bbBfSrl+4acMvu
+	GzOg==
+X-Gm-Message-State: ALoCoQl9Vh/CsSB8BUQ9nzJlx4Osnrh36sIkKa059WH3Ip8MKBp7rUSBp/mU9cSppdeS9R/S3r4k
+X-Received: by 10.140.42.180 with SMTP id c49mr54801163qga.24.1391444410900;
+	Mon, 03 Feb 2014 08:20:10 -0800 (PST)
 MIME-Version: 1.0
-X-Received: by 10.68.196.164 with SMTP id in4mr37852340pbc.128.1391442668212; 
-	Mon, 03 Feb 2014 07:51:08 -0800 (PST)
-Received: by 10.68.40.33 with HTTP; Mon, 3 Feb 2014 07:51:08 -0800 (PST)
-Date: Mon, 3 Feb 2014 15:51:08 +0000
-Message-ID: <CACP9YJccutcQq+j-1X0jabZK0KVvi+JJAj2ep2oicd59hJ5Xvg@mail.gmail.com>
-From: David Welch <djwelch666@gmail.com>
-To: yocto@yoctoproject.org
-X-Mailman-Approved-At: Mon, 03 Feb 2014 08:03:29 -0800
-Subject: File not found when trying to run an executable not build by Yocto
+Received: by 10.140.48.79 with HTTP; Mon, 3 Feb 2014 08:19:50 -0800 (PST)
+In-Reply-To: <47A3F29D-1AE0-4097-A025-0BE897698EA9@padamj.com>
+References: <05301278-AC33-4DBC-A381-DE2F5CB1E73B@padamj.com>
+	<CAJTo0LZ-RgJw+x1C5MmmOhUm1Pd-TdYoiZgABPOrESD876aoLg@mail.gmail.com>
+	<0268212B-3E3E-4B1D-93EC-F0619C6EA499@padamj.com>
+	<47A3F29D-1AE0-4097-A025-0BE897698EA9@padamj.com>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Mon, 3 Feb 2014 16:19:50 +0000
+Message-ID: <CAJTo0LaWjPeqxV0JqsmAOvdTuQSDXrr0ZdyT_7+4wUx3L1DQxw@mail.gmail.com>
+To: "Padam J. Singh" <me@padamj.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Help with ipset bitbake files
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -35,55 +43,20 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 03 Feb 2014 15:51:09 -0000
-Content-Type: multipart/alternative; boundary=e89a8ff1c42cf6d78f04f1827d5e
+X-List-Received-Date: Mon, 03 Feb 2014 16:20:12 -0000
+Content-Type: text/plain; charset=UTF-8
 
---e89a8ff1c42cf6d78f04f1827d5e
-Content-Type: text/plain; charset=ISO-8859-1
+On 3 February 2014 05:13, Padam J. Singh <me@padamj.com> wrote:
+> What could be the possible reasons for a recipe to get packaged correctly in an
+> RPM, shows as being installed in the final image generation, yet none of the files actually
+> show up in the rootfs?
 
-Hi,
+That's a very good question, and for what it's worth your recipe
+builds and installs fine into rootfs for me.
 
-I am building an image for an embedded system using the chiefriver and
-kernel 3.12.9.  I am using Ubuntu as our base system.
+Try checking the rootfs log to confirm that it's being installed, and
+the rootfs before it goes into a filesystem in
+tmp/work/MACHINE/IMAGE/VERSION/rootfs.
 
-The image builds and boots fine which is great but we have some binaries
-built on Ubuntu which must run on the Yocto image.  When we copy these
-across and try and run them we get a "File Not Found" error.
+Ross
 
-Why would this be?  Doing file on our ubuntu executables we get:
-
-/bin/true: ELF 64-bit LSB executable, x86-64, version 1 (SYSV), dynamically
-linked (uses shared libs), for GNU/Linux 2.6.24,
-BuildID[sha1]=0x2b45516be4a9f45b1127d54efb0d42e5f69b1c82, stripped
-
-The Yocto executables are the same except instead of GNU/Linux 2.6.24 it is
-2.6.16.  It that a problem?
-
-Also, on ubuntu we are running libc-2.17 but on Yocto it is libc-2.18.  Is
-that a problem?
-
-Thanks for any assistance,
-Dave
-
---e89a8ff1c42cf6d78f04f1827d5e
-Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">Hi,<div><br></div><div>I am building an image for an embed=
-ded system using the chiefriver and kernel 3.12.9. =A0I am using Ubuntu as =
-our base system. =A0</div><div><br></div><div>The image builds and boots fi=
-ne which is great but we have some binaries built on Ubuntu which must run =
-on the Yocto image. =A0When we copy these across and try and run them we ge=
-t a &quot;File Not Found&quot; error.</div>
-<div><br></div><div>Why would this be? =A0Doing file on our ubuntu executab=
-les we get:</div><div><br></div><div>/bin/true: ELF 64-bit LSB executable, =
-x86-64, version 1 (SYSV), dynamically linked (uses shared libs), for GNU/Li=
-nux 2.6.24, BuildID[sha1]=3D0x2b45516be4a9f45b1127d54efb0d42e5f69b1c82, str=
-ipped<br>
-</div><div><br></div><div>The Yocto executables are the same except instead=
- of GNU/Linux 2.6.24 it is 2.6.16. =A0It that a problem?</div><div><br></di=
-v><div>Also, on ubuntu we are running libc-2.17 but on Yocto it is libc-2.1=
-8. =A0Is that a problem?</div>
-<div><br></div><div>Thanks for any assistance,</div><div>Dave</div></div>
-
---e89a8ff1c42cf6d78f04f1827d5e--
