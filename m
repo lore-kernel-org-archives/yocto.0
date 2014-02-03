@@ -1,33 +1,29 @@
-Return-Path: <kazuya.nisimura@gmail.com>
-Received: from mail-pb0-f49.google.com (mail-pb0-f49.google.com
-	[209.85.160.49])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3D7B4E006B6
-	for <yocto@yoctoproject.org>; Sun,  2 Feb 2014 21:56:50 -0800 (PST)
-Received: by mail-pb0-f49.google.com with SMTP id up15so6648851pbc.36
-	for <yocto@yoctoproject.org>; Sun, 02 Feb 2014 21:56:49 -0800 (PST)
+Return-Path: <djwelch666@gmail.com>
+Received: from mail-pd0-f179.google.com (mail-pd0-f179.google.com
+	[209.85.192.179])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3B4A7E00706
+	for <yocto@yoctoproject.org>; Mon,  3 Feb 2014 07:51:08 -0800 (PST)
+Received: by mail-pd0-f179.google.com with SMTP id q10so7032238pdj.38
+	for <yocto@yoctoproject.org>; Mon, 03 Feb 2014 07:51:08 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=from:to:cc:subject:date:message-id;
-	bh=EfukEYeMIut6Z2zPfkyVUqFaWMokWjM+/gm6Ykylqew=;
-	b=SYfk1cvAgVZZPFayfhUsMJh+Y1FzTuD2/2k+2U8ZkSdRlU4atRZQZkbh1D/sxavjud
-	XnSdk64TxXvQ6/SRyD5JVNWIbZ4uyReXmuaUHJ0fvBAXrUEqbfAT1CfDXpvLGrNiV74m
-	R4qXOHLMCVrhRjrg0S++1fKUVDY94I/aHu/+1Zlc/996/HFAC4Wt73mbKRBUP9H+u80D
-	XbyuYJXKHu1IQQIXb4XojEeE0AG6mRYAgMWgMhnUwd7yE8zTYaeDk+c0nTNkf4U3WLFU
-	S9i9JqpUNyW7DiGW5QvktQURHB0P4Y5vPv1fWQNf7xvyyuEHK0iYvxEWiEVvi19kCIlh
-	0olg==
-X-Received: by 10.68.134.130 with SMTP id pk2mr632688pbb.167.1391407009870;
-	Sun, 02 Feb 2014 21:56:49 -0800 (PST)
-Received: from localhost.localdomain (KD113159197140.ppp-bb.dion.ne.jp.
-	[113.159.197.140]) by mx.google.com with ESMTPSA id
-	hb10sm52150296pbd.1.2014.02.02.21.56.48 for <multiple recipients>
-	(version=TLSv1.1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
-	Sun, 02 Feb 2014 21:56:49 -0800 (PST)
-From: Kazuya Nishimura <kazuya.nisimura@gmail.com>
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=OXOhIKjHnhqpwzede67zhc3bQQQMxWTK24tXq7PtfMQ=;
+	b=DASzFT8Op3fJ37sRQMxyiqodpojvj9YHm7E+tkMQ1LH9wJYijXa50lfRm3nQSsmSeN
+	G8Vf6pQFRJrzsej5BYyJ2jHutVQdA9ezLwabOgI2eR43EKRkU95LuHeatKVkUgxnopXq
+	z6RakcDjCjBJCJ6yzx2W12OuITPgOOgVqAxENWkkYnuF8ZbejuVuYPrqf1buv5WdeZOM
+	kRS02b3j+tAop4Z0tSPBvmQzUjYKXUtJKsPux8leaY+UkW4JvsH+eGYsbZFXNSQVqTpQ
+	LamYDo3oZPJNauyp04Ffs888AaE702HjidQacTTcIP9ZFpP72TJlthFn06t7/0VrHN7Y
+	8ARA==
+MIME-Version: 1.0
+X-Received: by 10.68.196.164 with SMTP id in4mr37852340pbc.128.1391442668212; 
+	Mon, 03 Feb 2014 07:51:08 -0800 (PST)
+Received: by 10.68.40.33 with HTTP; Mon, 3 Feb 2014 07:51:08 -0800 (PST)
+Date: Mon, 3 Feb 2014 15:51:08 +0000
+Message-ID: <CACP9YJccutcQq+j-1X0jabZK0KVvi+JJAj2ep2oicd59hJ5Xvg@mail.gmail.com>
+From: David Welch <djwelch666@gmail.com>
 To: yocto@yoctoproject.org
-Date: Mon,  3 Feb 2014 14:56:40 +0900
-Message-Id: <1391407000-11895-1-git-send-email-kazuya.nisimura@gmail.com>
-X-Mailer: git-send-email 1.7.9.5
 X-Mailman-Approved-At: Mon, 03 Feb 2014 08:03:29 -0800
-Subject: [PATCH] tune-arm1176jzfs-s.inc: Add hard float profile, arm1176jzfshf, in AVAILTUNES
+Subject: File not found when trying to run an executable not build by Yocto
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,35 +35,55 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 03 Feb 2014 05:56:53 -0000
+X-List-Received-Date: Mon, 03 Feb 2014 15:51:09 -0000
+Content-Type: multipart/alternative; boundary=e89a8ff1c42cf6d78f04f1827d5e
 
-arm1176jzfshf uses -mtune=hard.
-Add -mfpu=vfp if vfp is included in TUNE_FEATURES
----
- conf/machine/include/tune-arm1176jzf-s.inc |    7 +++++++
- 1 file changed, 7 insertions(+)
+--e89a8ff1c42cf6d78f04f1827d5e
+Content-Type: text/plain; charset=ISO-8859-1
 
-diff --git a/conf/machine/include/tune-arm1176jzf-s.inc b/conf/machine/include/tune-arm1176jzf-s.inc
-index ebad588..a5368a3 100644
---- a/conf/machine/include/tune-arm1176jzf-s.inc
-+++ b/conf/machine/include/tune-arm1176jzf-s.inc
-@@ -4,8 +4,15 @@ require conf/machine/include/arm/arch-armv6.inc
- 
- TUNEVALID[arm1176jzfs] = "Enable arm1176jzfs specific processor optimizations"
- TUNE_CCARGS += "${@bb.utils.contains("TUNE_FEATURES", "arm1176jzfs", "-mtune=arm1176jzf-s", "", d)}"
-+TUNE_CCARGS += "${@bb.utils.contains("TUNE_FEATURES", "vfp", "-mfpu=vfp", "", d)}"
- 
- AVAILTUNES += "arm1176jzfs"
- TUNE_FEATURES_tune-arm1176jzfs = "${TUNE_FEATURES_tune-armv6} arm1176jzfs"
- ARMPKGARCH_tune-arm1176jzfs = "arm1176jzfs"
- PACKAGE_EXTRA_ARCHS_tune-arm1176jzfs = "${PACKAGE_EXTRA_ARCHS_tune-armv6}"
-+
-+AVAILTUNES += "arm1176jzfshf"
-+TUNE_FEATURES_tune-arm1176jzfshf = "${TUNE_FEATURES_tune-arm1176jzfs} callconvention-hard"
-+ARMPKGARCH_tune-arm1176jzfshf = "arm1176jzfs"
-+PACKAGE_EXTRA_ARCHS_tune-arm1176jzfshf = "${PACKAGE_EXTRA_ARCHS_tune-armv6hf-vfp} arm1176jzfshf-vfp"
-+
--- 
-1.7.9.5
+Hi,
 
+I am building an image for an embedded system using the chiefriver and
+kernel 3.12.9.  I am using Ubuntu as our base system.
 
+The image builds and boots fine which is great but we have some binaries
+built on Ubuntu which must run on the Yocto image.  When we copy these
+across and try and run them we get a "File Not Found" error.
+
+Why would this be?  Doing file on our ubuntu executables we get:
+
+/bin/true: ELF 64-bit LSB executable, x86-64, version 1 (SYSV), dynamically
+linked (uses shared libs), for GNU/Linux 2.6.24,
+BuildID[sha1]=0x2b45516be4a9f45b1127d54efb0d42e5f69b1c82, stripped
+
+The Yocto executables are the same except instead of GNU/Linux 2.6.24 it is
+2.6.16.  It that a problem?
+
+Also, on ubuntu we are running libc-2.17 but on Yocto it is libc-2.18.  Is
+that a problem?
+
+Thanks for any assistance,
+Dave
+
+--e89a8ff1c42cf6d78f04f1827d5e
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Hi,<div><br></div><div>I am building an image for an embed=
+ded system using the chiefriver and kernel 3.12.9. =A0I am using Ubuntu as =
+our base system. =A0</div><div><br></div><div>The image builds and boots fi=
+ne which is great but we have some binaries built on Ubuntu which must run =
+on the Yocto image. =A0When we copy these across and try and run them we ge=
+t a &quot;File Not Found&quot; error.</div>
+<div><br></div><div>Why would this be? =A0Doing file on our ubuntu executab=
+les we get:</div><div><br></div><div>/bin/true: ELF 64-bit LSB executable, =
+x86-64, version 1 (SYSV), dynamically linked (uses shared libs), for GNU/Li=
+nux 2.6.24, BuildID[sha1]=3D0x2b45516be4a9f45b1127d54efb0d42e5f69b1c82, str=
+ipped<br>
+</div><div><br></div><div>The Yocto executables are the same except instead=
+ of GNU/Linux 2.6.24 it is 2.6.16. =A0It that a problem?</div><div><br></di=
+v><div>Also, on ubuntu we are running libc-2.17 but on Yocto it is libc-2.1=
+8. =A0Is that a problem?</div>
+<div><br></div><div>Thanks for any assistance,</div><div>Dave</div></div>
+
+--e89a8ff1c42cf6d78f04f1827d5e--
