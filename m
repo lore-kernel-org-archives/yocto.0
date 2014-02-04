@@ -1,30 +1,36 @@
-Return-Path: <diego.sueiro@gmail.com>
-Received: from mail-qc0-f171.google.com (mail-qc0-f171.google.com
-	[209.85.216.171])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 68D4EE0030B
-	for <yocto@yoctoproject.org>; Tue,  4 Feb 2014 02:05:44 -0800 (PST)
-Received: by mail-qc0-f171.google.com with SMTP id n7so13068846qcx.2
-	for <yocto@yoctoproject.org>; Tue, 04 Feb 2014 02:05:44 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:content-type; bh=lYB9VfF9h6zuY+LNSBSQm91DlnoHWQ0O2l1y5UdfLlE=;
-	b=VHXbTMQdrOd3Wr1YvhluLVzCDHM3cgnV1tD/DuCie/1/16WlDjto/Su3NX8XCB/QUN
-	vNat6exZUJxzp/4DrQfRSj+aLvY0YU5rTzAjw1xK79pO2FzXIHcnrKqZTD5/CqcehVfp
-	kzXJoJlchvbhuNWUerZ/9gT5o8Rim75yAtQ6TeFhkrSJqox5C1cqFkgt41B6PPb738g/
-	Ot2RfdTSemY1Llg3ZSBQu5D3bHv16fuH1aQUxHsyLXx1Ls+v9wwRnfz9RDFTHCX+ds9H
-	2yumVkn7Zp7wBcQw+lDp6CI04b14VauuvmQ0qmScRyLUdLB3njOIl8Kmq/j/bABge0Ol
-	ky6g==
-X-Received: by 10.224.151.147 with SMTP id c19mr64312274qaw.86.1391508344073; 
-	Tue, 04 Feb 2014 02:05:44 -0800 (PST)
+Return-Path: <andrei@gherzan.ro>
+Received: from mail-vc0-f179.google.com (mail-vc0-f179.google.com
+	[209.85.220.179])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 83D20E0071E
+	for <yocto@yoctoproject.org>; Tue,  4 Feb 2014 03:03:51 -0800 (PST)
+Received: by mail-vc0-f179.google.com with SMTP id lh14so5637181vcb.38
+	for <yocto@yoctoproject.org>; Tue, 04 Feb 2014 03:03:51 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc:content-type;
+	bh=kSNXNAm7J/JzOW23H+N+auu610H0rpiREnRqozxId3o=;
+	b=gRGsSKBK0x+BC1ANlp2BBI25GDRSme3epXyjPLSReUsQ31JbFun7QuVDvf7X0/YaZT
+	zU8rpzzkSJ0QqZtuiDjD6LfkbhcZ5DRPIwDUd4CJNyZ9/0neCV1XdgYv1/x1NzUlIR/X
+	q/sksm9bLIPSfYF4HRJ1SJXB08jzFIvKyuXK9gBB1LYWd/T+plARL4vu8MGOXV0Pxj/T
+	MpvpMLGE09sMSL6ZeD6AHxtN7YHW+i8hIpxt95SUK8ZgeHQs+bu6NjqWqjmxwxDalL6v
+	gGBYd9b0VoiGhSGcqLAxZL94uZYWvBDrtAyosGffQMCGonie4soBF4fML2pRq9XYAnzk
+	r7DQ==
+X-Gm-Message-State: ALoCoQn80A6/Att++YihDR8rUfVofBQnJXIuyAH9Do4kzPOh3D9uPWX8hsHZvi/3LPIGzeZf7c5g
+X-Received: by 10.220.106.84 with SMTP id w20mr32503410vco.18.1391511830775;
+	Tue, 04 Feb 2014 03:03:50 -0800 (PST)
 MIME-Version: 1.0
-Received: by 10.140.25.47 with HTTP; Tue, 4 Feb 2014 02:05:23 -0800 (PST)
-In-Reply-To: <CAMCfZKGN2k1NpUtGiMGK48pi5rzaZQbXrnfPbiL=brGhr4vnxw@mail.gmail.com>
-References: <CAMCfZKGN2k1NpUtGiMGK48pi5rzaZQbXrnfPbiL=brGhr4vnxw@mail.gmail.com>
-From: Diego Sueiro <diego.sueiro@gmail.com>
-Date: Tue, 4 Feb 2014 08:05:23 -0200
-Message-ID: <CAMCfZKFYTE=oRsXWwRzKNKpvZdPZe8GEby+rB0BY6qCeffWdZw@mail.gmail.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Python package recipe
+Received: by 10.58.244.138 with HTTP; Tue, 4 Feb 2014 03:03:30 -0800 (PST)
+X-Originating-IP: [89.121.200.106]
+In-Reply-To: <CABgO3_PqTspCQ3s4LJ3+Rpx9YtegTLGMs=fPis_3a+CypriKBA@mail.gmail.com>
+References: <1391182212-10378-1-git-send-email-s.mennetrier@innotis.org>
+	<CABgO3_PqTspCQ3s4LJ3+Rpx9YtegTLGMs=fPis_3a+CypriKBA@mail.gmail.com>
+From: Andrei Gherzan <andrei@gherzan.ro>
+Date: Tue, 4 Feb 2014 13:03:30 +0200
+Message-ID: <CAK18fxF=zwaHu8=0R_OGqPaGtFGdDmNCjkOzeS-0RR9s4LNXAA@mail.gmail.com>
+To: Sebastien MENNETRIER <s.mennetrier@innotis.org>
+Cc: Yocto Project <yocto@yoctoproject.org>
+Subject: Re: [meta-raspberrypi][PATCH V2] Add initramfs support
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -36,169 +42,173 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 04 Feb 2014 10:05:46 -0000
-Content-Type: multipart/alternative; boundary=089e0153673e8cf3d404f191c81d
+X-List-Received-Date: Tue, 04 Feb 2014 11:03:52 -0000
+Content-Type: multipart/alternative; boundary=047d7b3435c05fe39504f1929855
 
---089e0153673e8cf3d404f191c81d
+--047d7b3435c05fe39504f1929855
 Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
 
-Folks,
+On Tue, Feb 4, 2014 at 9:45 AM, Sebastien MENNETRIER <
+s.mennetrier@innotis.org> wrote:
 
-Any suggestions?
-
-Regards,
-
---
-*dS
-Diego Sueiro
-
-Administrador do Embarcados
-www.embarcados.com.br
-
-/*long live rock 'n roll*/
+> Ping ?
+>
+>
+Been busy this weekend. Will try to take a look on the pending patches
+until Tuesday. Thanks.
 
 
-On Thu, Jan 30, 2014 at 2:30 PM, Diego Sueiro <diego.sueiro@gmail.com>wrote:
-
-> Folks,
 >
-> I'm trying to create a recipe for Adafruit's BeagleBone IO Python Library:
-> https://github.com/adafruit/adafruit-beaglebone-io-python
+> 2014-01-31 S=E9bastien Mennetrier <s.mennetrier@innotis.org>:
 >
-> The problem is that this python package generates some dtbos and install
-> them on /lib/firmware but these files were not presented on generated
-> package.
+> Permit to build an image with initramfs.
+>>
+>> Signed-off-by: S=E9bastien Mennetrier <s.mennetrier@innotis.org>
+>> ---
+>>  classes/sdcard_image-rpi.bbclass | 5 ++++-
+>>  1 file changed, 4 insertions(+), 1 deletion(-)
+>>
+>> diff --git a/classes/sdcard_image-rpi.bbclass
+>> b/classes/sdcard_image-rpi.bbclass
+>> index 3ee4e94..815aaa9 100644
+>> --- a/classes/sdcard_image-rpi.bbclass
+>> +++ b/classes/sdcard_image-rpi.bbclass
+>> @@ -26,6 +26,9 @@ inherit image_types
+>>  # Set kernel and boot loader
+>>  IMAGE_BOOTLOADER ?=3D "bcm2835-bootfiles"
+>>
+>> +# Set initramfs extension
+>> +KERNEL_INITRAMFS ?=3D ""
+>> +
+>>  # Boot partition volume id
+>>  BOOTDD_VOLUME_ID ?=3D "${MACHINE}"
+>>
+>> @@ -91,7 +94,7 @@ IMAGE_CMD_rpi-sdimg () {
+>>         BOOT_BLOCKS=3D$(LC_ALL=3DC parted -s ${SDIMG} unit b print | awk=
+ '/ 1
+>> / { print substr($4, 1, length($4 -1)) / 512 /2 }')
+>>         mkfs.vfat -n "${BOOTDD_VOLUME_ID}" -S 512 -C ${WORKDIR}/boot.img
+>> $BOOT_BLOCKS
+>>         mcopy -i ${WORKDIR}/boot.img -s
+>> ${DEPLOY_DIR_IMAGE}/bcm2835-bootfiles/* ::/
+>> -       mcopy -i ${WORKDIR}/boot.img -s
+>> ${DEPLOY_DIR_IMAGE}/${KERNEL_IMAGETYPE}-${MACHINE}.bin ::kernel.img
+>> +       mcopy -i ${WORKDIR}/boot.img -s
+>> ${DEPLOY_DIR_IMAGE}/${KERNEL_IMAGETYPE}${KERNEL_INITRAMFS}-${MACHINE}.bi=
+n
+>> ::kernel.img
+>>
+>>         if [ -n ${FATPAYLOAD} ] ; then
+>>                 echo "Copying payload into VFAT"
+>> --
+>> 1.8.1.2
+>>
+>>
 >
-> Here is my python-pybbio.bb:
->
-> DESCRIPTION = "Adafruit's BeagleBone IO Python Library"
-> SECTION = "devel/python"
-> LICENSE = "MIT"
-> LIC_FILES_CHKSUM = "file://README.rst;md5=6c89ebda10e2f2efefe5e681a9a0c1f1"
-> SRCNAME = "pybbio"
->
->
-> COMPATIBLE_MACHINE = "(beaglebone)"
->
-> SRC_URI = "git://
-> github.com/adafruit/adafruit-beaglebone-io-python;branch=master"
-> SRCREV_pn-${PN} = "ff6f11abe7864e8db735b359365a85323bff2a06"
->
-> S = "${WORKDIR}/git"
->
-> inherit setuptools
->
-> PACKAGE_ARCH = "${MACHINE_ARCH}"
->
->
-> To get dtbos and all python files on the package I need to add these lines
-> in my recipe:
->
-> do_install_append() {
->     install -d ${D}/${nonarch_base_libdir}/firmware
->     install -m 0644 ${S}/overlays/*dt*
-> ${D}${nonarch_base_libdir}/firmware/
-> }
->
-> FILES_${PN} = " ${nonarch_base_libdir}/firmware/* \
->                  ${exec_prefix} \
->
->
-> It seems not good to me and I thought that there is a better solution.
-> Should I have to inherit another class to achieve this?
->
-> Note: I can easly install this on target using pip install
->
->
-> Regards,
 >
 > --
-> *dS
-> Diego Sueiro
 >
-> Administrador do Embarcados
-> www.embarcados.com.br
+> Regards,
+> S=E9bastien
 >
-> /*long live rock 'n roll*/
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
 >
 
---089e0153673e8cf3d404f191c81d
+
+--=20
+*Andrei Gherzan*
+m: +40.744.478.414 |  f: +40.31.816.28.12
+
+--047d7b3435c05fe39504f1929855
 Content-Type: text/html; charset=ISO-8859-1
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div style>Folks,</div><div style><br></div>Any suggestion=
-s?<div class=3D"gmail_extra"><br clear=3D"all"><div><div dir=3D"ltr"><div>R=
-egards,</div><div><br></div>--<br>*dS<br>Diego Sueiro<br><br>Administrador =
-do Embarcados<br>
+<div dir=3D"ltr"><br><div class=3D"gmail_extra"><br><br><div class=3D"gmail=
+_quote">On Tue, Feb 4, 2014 at 9:45 AM, Sebastien MENNETRIER <span dir=3D"l=
+tr">&lt;<a href=3D"mailto:s.mennetrier@innotis.org" target=3D"_blank">s.men=
+netrier@innotis.org</a>&gt;</span> wrote:<br>
 
-<a href=3D"http://www.embarcados.com.br" target=3D"_blank">www.embarcados.c=
-om.br</a><br><br>/*long live rock &#39;n roll*/<br></div></div>
-<br><br><div class=3D"gmail_quote">On Thu, Jan 30, 2014 at 2:30 PM, Diego S=
-ueiro <span dir=3D"ltr">&lt;<a href=3D"mailto:diego.sueiro@gmail.com" targe=
-t=3D"_blank">diego.sueiro@gmail.com</a>&gt;</span> wrote:<br><blockquote cl=
-ass=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;p=
-adding-left:1ex">
+<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
+x #ccc solid;padding-left:1ex"><div dir=3D"ltr">Ping ?</div><div class=3D"g=
+mail_extra"><br></div></blockquote><div><br></div><div>Been busy this weeke=
+nd. Will try to take a look on the pending patches until Tuesday. Thanks.</=
+div>
 
-<div dir=3D"ltr">Folks,<div><br></div><div>I&#39;m trying to create a recip=
-e for=A0Adafruit&#39;s BeagleBone IO Python Library:</div><div><a href=3D"h=
-ttps://github.com/adafruit/adafruit-beaglebone-io-python" target=3D"_blank"=
->https://github.com/adafruit/adafruit-beaglebone-io-python</a><br>
+<div>=A0</div><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;=
+border-left:1px #ccc solid;padding-left:1ex"><div class=3D"gmail_extra"><br=
+><div class=3D"gmail_quote">2014-01-31 S=E9bastien Mennetrier <span dir=3D"=
+ltr">&lt;<a href=3D"mailto:s.mennetrier@innotis.org" target=3D"_blank">s.me=
+nnetrier@innotis.org</a>&gt;</span>:<div>
 
+<div class=3D"h5"><br>
+<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
+x #ccc solid;padding-left:1ex"><div>Permit to build an image with initramfs=
+.<br>
+<br>
+</div>Signed-off-by: S=E9bastien Mennetrier &lt;<a href=3D"mailto:s.mennetr=
+ier@innotis.org" target=3D"_blank">s.mennetrier@innotis.org</a>&gt;<br>
+<div><div>---<br>
+=A0classes/sdcard_image-rpi.bbclass | 5 ++++-<br>
+=A01 file changed, 4 insertions(+), 1 deletion(-)<br>
+<br>
+diff --git a/classes/sdcard_image-rpi.bbclass b/classes/sdcard_image-rpi.bb=
+class<br>
+index 3ee4e94..815aaa9 100644<br>
+--- a/classes/sdcard_image-rpi.bbclass<br>
++++ b/classes/sdcard_image-rpi.bbclass<br>
+@@ -26,6 +26,9 @@ inherit image_types<br>
+=A0# Set kernel and boot loader<br>
+=A0IMAGE_BOOTLOADER ?=3D &quot;bcm2835-bootfiles&quot;<br>
+<br>
++# Set initramfs extension<br>
++KERNEL_INITRAMFS ?=3D &quot;&quot;<br>
++<br>
+=A0# Boot partition volume id<br>
+=A0BOOTDD_VOLUME_ID ?=3D &quot;${MACHINE}&quot;<br>
+<br>
+@@ -91,7 +94,7 @@ IMAGE_CMD_rpi-sdimg () {<br>
+=A0 =A0 =A0 =A0 BOOT_BLOCKS=3D$(LC_ALL=3DC parted -s ${SDIMG} unit b print =
+| awk &#39;/ 1 / { print substr($4, 1, length($4 -1)) / 512 /2 }&#39;)<br>
+=A0 =A0 =A0 =A0 mkfs.vfat -n &quot;${BOOTDD_VOLUME_ID}&quot; -S 512 -C ${WO=
+RKDIR}/boot.img $BOOT_BLOCKS<br>
+=A0 =A0 =A0 =A0 mcopy -i ${WORKDIR}/boot.img -s ${DEPLOY_DIR_IMAGE}/bcm2835=
+-bootfiles/* ::/<br>
+- =A0 =A0 =A0 mcopy -i ${WORKDIR}/boot.img -s ${DEPLOY_DIR_IMAGE}/${KERNEL_=
+IMAGETYPE}-${MACHINE}.bin ::kernel.img<br>
++ =A0 =A0 =A0 mcopy -i ${WORKDIR}/boot.img -s ${DEPLOY_DIR_IMAGE}/${KERNEL_=
+IMAGETYPE}${KERNEL_INITRAMFS}-${MACHINE}.bin ::kernel.img<br>
+<br>
+=A0 =A0 =A0 =A0 if [ -n ${FATPAYLOAD} ] ; then<br>
+=A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 echo &quot;Copying payload into VFAT&quot;<=
+br>
+--<br>
+1.8.1.2<br>
+<br>
+</div></div></blockquote></div></div></div><span class=3D"HOEnZb"><font col=
+or=3D"#888888"><br><br clear=3D"all"><div><br></div>-- <br><div dir=3D"ltr"=
+><div><br>Regards,<br></div>S=E9bastien<br></div>
+</font></span></div>
+<br>_______________________________________________<br>
+yocto mailing list<br>
+<a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br>
+<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" target=3D"_blank"=
+>https://lists.yoctoproject.org/listinfo/yocto</a><br>
+<br></blockquote></div><br><br clear=3D"all"><div><br></div>-- <br><div dir=
+=3D"ltr"><div style=3D"text-align:center"></div><div style=3D"text-align:ce=
+nter"><div align=3D"left" style=3D"font-family:&#39;Times New Roman&#39;;fo=
+nt-size:medium">
 
-</div><div><br></div><div>The problem is that this python package generates=
- some dtbos and install them on /lib/firmware but these files were not pres=
-ented on generated package.</div><div><br></div><div>
-Here is my <a href=3D"http://python-pybbio.bb" target=3D"_blank">python-pyb=
-bio.bb</a>:</div><div><div><br></div></div><blockquote style=3D"margin:0px =
-0px 0px 40px;border:none;padding:0px"><div><div>DESCRIPTION =3D &quot;Adafr=
-uit&#39;s BeagleBone IO Python Library&quot;</div>
+<b style=3D"color:rgb(51,51,51);font-family:Arial;font-size:small;text-alig=
+n:center">Andrei Gherzan</b><font face=3D"Arial" color=3D"#333333" size=3D"=
+-1"><br></font><font face=3D"Arial" color=3D"#333333" size=3D"-1">m: +40.74=
+4.478.414 | =A0f: +40.31.816.28.12</font><br>
 
-
-</div><div><div>SECTION =3D &quot;devel/python&quot;</div></div><div><div>L=
-ICENSE =3D &quot;MIT&quot;</div></div><div><div>LIC_FILES_CHKSUM =3D &quot;=
-file://README.rst;md5=3D6c89ebda10e2f2efefe5e681a9a0c1f1&quot;</div>
-</div><div><div>SRCNAME =3D &quot;pybbio&quot;</div></div><div><div><br></d=
-iv></div><div><div><br></div></div><div><div>COMPATIBLE_MACHINE =3D &quot;(=
-beaglebone)&quot;</div></div>
-<div><div><br></div></div><div><div>SRC_URI =3D &quot;git://<a href=3D"http=
-://github.com/adafruit/adafruit-beaglebone-io-python;branch=3Dmaster" targe=
-t=3D"_blank">github.com/adafruit/adafruit-beaglebone-io-python;branch=3Dmas=
-ter</a>&quot;</div>
-
-
-</div><div><div>SRCREV_pn-${PN} =3D &quot;ff6f11abe7864e8db735b359365a85323=
-bff2a06&quot;</div></div><div><div><br></div></div><div><div>S =3D &quot;${=
-WORKDIR}/git&quot;</div></div><div>
-<div><br></div></div><div><div>inherit setuptools</div></div><div><div><br>=
-</div></div><div><div>PACKAGE_ARCH =3D &quot;${MACHINE_ARCH}&quot;</div></d=
-iv></blockquote><div><div>
-<br></div></div><div>To get dtbos and all python files on the package I nee=
-d to add these lines in my recipe:</div><div><blockquote style=3D"margin:0p=
-x 0px 0px 40px;border:none;padding:0px"><div><div>do_install_append() {</di=
-v>
-
-
-<div>=A0 =A0 install -d ${D}/${nonarch_base_libdir}/firmware</div><div>=A0 =
-=A0 install -m 0644 ${S}/overlays/*dt* ${D}${nonarch_base_libdir}/firmware/=
- =A0 =A0 =A0=A0</div><div>}<br></div><div><br></div><div>FILES_${PN} =3D &q=
-uot; ${nonarch_base_libdir}/firmware/* \</div>
-
-
-<div>=A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0${exec_prefix} \</div><div><br></di=
-v></div></blockquote></div><div><br></div><div>It seems not good to me and =
-I thought that there is a better solution. Should I have to inherit another=
- class to achieve this?</div>
-
-
-<div><br></div><div>Note: I can easly install this on target using pip inst=
-all</div><div><br></div><div><br clear=3D"all"><div><div dir=3D"ltr"><div>R=
-egards,</div><div><br></div>--<br>*dS<br>Diego Sueiro<br><br>Administrador =
-do Embarcados<br>
-
-
-<a href=3D"http://www.embarcados.com.br" target=3D"_blank">www.embarcados.c=
-om.br</a><br><br>/*long live rock &#39;n roll*/<br></div></div>
+</div></div></div>
 </div></div>
-</blockquote></div><br></div></div>
 
---089e0153673e8cf3d404f191c81d--
+--047d7b3435c05fe39504f1929855--
