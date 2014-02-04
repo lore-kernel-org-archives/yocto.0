@@ -1,29 +1,34 @@
-Return-Path: <briank@RUSSOUND.COM>
-Received: from Pegasus.RUSSOUND.COM (pegasus.russound.com [64.223.142.81])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C5EC0E0030B
-	for <yocto@yoctoproject.org>; Tue,  4 Feb 2014 10:03:13 -0800 (PST)
-Received: from HERMES.RUSSOUND.com (10.0.0.14) by pegasus.RUSSOUND.COM
-	(10.0.0.15) with Microsoft SMTP Server (TLS) id 8.3.298.1;
-	Tue, 4 Feb 2014 13:03:06 -0500
-Received: from HERMES.RUSSOUND.com (10.0.0.14) by HERMES.RUSSOUND.com
-	(10.0.0.14) with Microsoft SMTP Server (TLS) id 15.0.620.29;
-	Tue, 4 Feb 2014 13:03:05 -0500
-Received: from HERMES.RUSSOUND.com ([fe80::3946:4b97:77b1:c1c5]) by
-	HERMES.RUSSOUND.com ([fe80::3946:4b97:77b1:c1c5%12]) with mapi id
-	15.00.0620.020; Tue, 4 Feb 2014 13:03:05 -0500
-From: Brian Karcz <briank@RUSSOUND.COM>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Parallel builds with common shared state cache
-Thread-Index: Ac8hz87nxbjCIzVqQQeZCw+gouI1MQ==
-Date: Tue, 4 Feb 2014 18:03:05 +0000
-Message-ID: <1ebdbe80eed846bea559f9b0988acd37@HERMES.RUSSOUND.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.0.3.60]
-x-brightmail-tracker: H4sIAAAAAAAAC+NgFnrMqsTGxcLFwMCnG6n9Mchgyd2OL2wWE5a2MjkwBjBEsWbmJeVXJLBmNM/ayVTw37Jiy7xG1gbGmWZdjFwcQgJLGSXWXbvN2sXICeTsYJSY9UoMxGYWMJW48rWRBcJWlLhwrwHMZhNQl3ixdwpYvQhQzYtjX9hAbGEBc4lbS+ZDxW0kVt6YxQRh60lM2TOTGcRmEVCRmPloC9gcXgEnieb1S8FqGAXEJL6fWsMEsUtc4taT+WC2hICAxJI955khbCWJ3tvvoOI+Epe6L7BCzBGUODnzCQtE3Exi74MlUDW6Eg//LGaHsAMlvkx8BzSHA8g2lbj6PhgibCuxZ8ZEJoiws8S8G/UQYSuJa+enskLY2hLbX+2DsnUkNl1bBbVJXuL/vfssMGMmXF4GdaWsxOlri9gg7ACJZYuvsUCM95K4e1MDIpwnMf/fTrYJjCqzkMJ5FlI4z0IKh1lIflzAyLKKUdjDNcjXNVgvKDQ42D/Uz0UvOT93EyM0Aexg/HvD/hCjJAeTkijvPJWPQUJ8SfkplRmJxRnxRaU5qcWHGCU4eJREeLdqAuV4iwsSc4sz02FSMhwcShK880FSgkWp6akVaZk5JalFEOlTjJJS4rylIEkBkL6M0jy43CVGUSlh3mVqQDmegtSi3MwSiPgtRmGOh0xCLHn5ealSQCcyAIEG4ytGcQ5GJWHeWSCzeDLzSuBOeAV0HRPQdetc34NcV5KIkJJqYNSa/fltfs2Hz/+YZ9xNn+xT1f1v+cFbP6xrF7xPKrdSucI5P7H+D5OQx4uuuunTE2taf00N2HbpTNlqbouH2mohLCtmf86UEuVYqy207GVdU+YhVaeU2kkTHnxpPbWtkSEh5JNOm8KHA16J8XdqWP8fuPf7/6xTetx/v62s9zhTt/Df1j0p4RJKLMUZiYZazEXFiQBpGaQvdgMAAA==
-MIME-Version: 1.0
-Subject: Parallel builds with common shared state cache
+Return-Path: <raj.khem@gmail.com>
+Received: from mail-pd0-f174.google.com (mail-pd0-f174.google.com
+	[209.85.192.174])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 44DADE003D2
+	for <yocto@yoctoproject.org>; Tue,  4 Feb 2014 10:44:18 -0800 (PST)
+Received: by mail-pd0-f174.google.com with SMTP id z10so8532675pdj.19
+	for <yocto@yoctoproject.org>; Tue, 04 Feb 2014 10:44:17 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=from:to:cc:subject:date:message-id;
+	bh=PgPk6Y7m+OEmEXdHCDjGKhtK6ALyMh/bClgwUFFAjeg=;
+	b=EqLYjnN5HAlz6CQNq8fc8jQvsk4S+eWDQBTxk4DDZRKqKdLQKEeLfBQzkZbdhjE+Yp
+	oRm1fbnpM6uZOhPWcf4IoT7u7hIw1jUp5/N/phoA5w28SneehTqPxTjZmG2/Vb3EZvfG
+	hfpxWRL1NNxAvfyyjkqqk6Ajwe7pDxOIAkisw2ikRW8dHPoFIdHYp6liRZ9tvudtIJxf
+	FgIWSp1bSS2Cy4hx2MGvMoIk3/t334DQba4LaQdmxH40ASyOI725gT2O1E+dQfOJuqad
+	7/PKuJpUOEe6FrIwLRS4huMGP+Qa3VszIs/SCRumkIpUhISq21sRfVw5vwlw0/VmTNNm
+	7t9w==
+X-Received: by 10.69.26.228 with SMTP id jb4mr45037436pbd.83.1391539457101;
+	Tue, 04 Feb 2014 10:44:17 -0800 (PST)
+Received: from localhost.localdomain
+	(99-57-140-30.lightspeed.sntcca.sbcglobal.net. [99.57.140.30])
+	by mx.google.com with ESMTPSA id vf7sm68509238pbc.5.2014.02.04.10.44.15
+	for <multiple recipients>
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
+	Tue, 04 Feb 2014 10:44:16 -0800 (PST)
+From: Khem Raj <raj.khem@gmail.com>
+To: ajlennon@gmail.com,
+	yocto@yoctoproject.org
+Date: Tue,  4 Feb 2014 10:44:57 -0800
+Message-Id: <1391539498-8620-1-git-send-email-raj.khem@gmail.com>
+X-Mailer: git-send-email 1.8.5.3
+Subject: [PATCH 1/2] mono-xsp: Fix parse warnings
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -35,127 +40,74 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 04 Feb 2014 18:03:25 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_1ebdbe80eed846bea559f9b0988acd37HERMESRUSSOUNDcom_"
+X-List-Received-Date: Tue, 04 Feb 2014 18:44:24 -0000
 
---_000_1ebdbe80eed846bea559f9b0988acd37HERMESRUSSOUNDcom_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+WARNING: Variable key FILES_${PN}-dev (${includedir} ${FILES_SOLIBSDEV}
+${libdir}/*.la ${libdir}/*.o ${libdir}/pkgconfig ${datadir}/pkgconfig
+${datadir}/aclocal ${base_libdir}/*.o ${libdir}/${BPN}/*.la
+${base_libdir}/*.la) replaces original key FILES_mono-xsp-dev (
+/usr/lib/pkgconfig/xsp.pc       /usr/lib/pkgconfig/xsp-2.pc     ).
 
-Hi,
+Signed-off-by: Khem Raj <raj.khem@gmail.com>
+---
+ recipes-mono/mono-xsp/mono-xsp_1.2.5.bb | 15 +++++----------
+ 1 file changed, 5 insertions(+), 10 deletions(-)
 
-I'm curious is there are any issues with using a common shared state cache =
-directory, outside the build directory, for multiple different image builds=
- that also might be running in parallel to each other? I'm in the process o=
-f setting up a new build server and wanted to make sure this wasn't an inva=
-lid configuration before proceeding.
+diff --git a/recipes-mono/mono-xsp/mono-xsp_1.2.5.bb b/recipes-mono/mono-xsp/mono-xsp_1.2.5.bb
+index b27e74e..648477a 100644
+--- a/recipes-mono/mono-xsp/mono-xsp_1.2.5.bb
++++ b/recipes-mono/mono-xsp/mono-xsp_1.2.5.bb
+@@ -7,7 +7,6 @@ SECTION = "devel/mono"
+ #  - scripts in /usr/bin contain the wrong paths
+ #
+ 
+-
+ PR = "r5"
+ 
+ DEPENDS = "mono"
+@@ -21,16 +20,14 @@ SRC_URI = "http://go-mono.com/sources/xsp/xsp-${PV}.tar.bz2"
+ 
+ S = "${WORKDIR}/xsp-${PV}"
+ 
+-PACKAGES = "${PN}-dbg \
++PACKAGES += "\
+ 	libmono-webserver1.0-cil \
+ 	libmono-webserver2.0-cil \
+ 	mono-xsp \
+-	mono-xsp2 \
+-	mono-xsp-test \
++	${PN}2 \
++	${PN}-test \
+ 	mono-mod-mono-server \
+ 	mono-mod-mono-server2 \
+-	mono-xsp-doc \
+-	mono-xsp-dev \
+ 	"
+ 
+ FILES_libmono-webserver1.0-cil-dbg += " \
+@@ -91,11 +88,11 @@ FILES_mono-mod-mono-server2 = "\
+ 	/usr/lib/mono/2.0/mod-mono-server2.exe \
+ 	/usr/bin/mod-mono-server2 \
+ 	"
+-FILES_mono-xsp-dev = "\
++FILES_${PN}-dev = "\
+ 	/usr/lib/pkgconfig/xsp.pc \
+ 	/usr/lib/pkgconfig/xsp-2.pc \
+ 	"
+-FILES_mono-xsp-test = " \
++FILES_${PN}-test = " \
+ 	/usr/lib/xsp/test/1.1/authtest/index.aspx \
+ 	/usr/lib/xsp/test/1.1/authtest/login.aspx \
+ 	/usr/lib/xsp/test/1.1/authtest/web.config \
+@@ -228,7 +225,5 @@ FILES_mono-xsp-test = " \
+ 	/usr/lib/xsp/test/2.0/masterpages/content2.aspx \
+ 	"
+ 
+-
+-
+ SRC_URI[md5sum] = "adb7871e5ebeefcf8ed959523442c0fb"
+ SRC_URI[sha256sum] = "25c246b7ed3e82a5f3562c2c15db551332830de4c238a53e3260ab7d40cd015a"
+-- 
+1.8.5.3
 
-We generally build three different images that are all based on the same ma=
-chine type. Our existing builds, which are still based on Edison, all have =
-their shared state cache dir set to /opt/sstate-cache. While I'm pretty con=
-fident there are no issues having the three projects point at the same dire=
-ctory from a content perspective, are there any problems with parallel buil=
-ds in separate build trees referencing the same shared state cache area at =
-potentially the same time? Are there any general restrictions to using a co=
-mmon shared state cache directory?
 
-Thanks,
-Brian
-
---_000_1ebdbe80eed846bea559f9b0988acd37HERMESRUSSOUNDcom_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-@font-face
-	{font-family:"Lucida Console";
-	panose-1:2 11 6 9 4 5 4 2 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri","sans-serif";}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:#0563C1;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:#954F72;
-	text-decoration:underline;}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Lucida Console";
-	color:windowtext;
-	font-weight:normal;
-	font-style:normal;
-	text-decoration:none none;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-family:"Calibri","sans-serif";}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Lu=
-cida Console&quot;">Hi,<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Lu=
-cida Console&quot;"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Lu=
-cida Console&quot;">I&#8217;m curious is there are any issues with using a =
-common shared state cache directory, outside the build directory, for multi=
-ple different image builds that also might be running
- in parallel to each other? I&#8217;m in the process of setting up a new bu=
-ild server and wanted to make sure this wasn&#8217;t an invalid configurati=
-on before proceeding.<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Lu=
-cida Console&quot;"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Lu=
-cida Console&quot;">We generally build three different images that are all =
-based on the same machine type. Our existing builds, which are still based =
-on Edison, all have their shared state cache dir
- set to /opt/sstate-cache. While I&#8217;m pretty confident there are no is=
-sues having the three projects point at the same directory from a content p=
-erspective, are there any problems with parallel builds in separate build t=
-rees referencing the same shared state
- cache area at potentially the same time? Are there any general restriction=
-s to using a common shared state cache directory?<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Lu=
-cida Console&quot;"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Lu=
-cida Console&quot;">Thanks,<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Lu=
-cida Console&quot;">Brian<o:p></o:p></span></p>
-</div>
-</body>
-</html>
-
---_000_1ebdbe80eed846bea559f9b0988acd37HERMESRUSSOUNDcom_--
