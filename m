@@ -1,32 +1,31 @@
-Return-Path: <ross.burton@intel.com>
-Received: from mail-qc0-f181.google.com (mail-qc0-f181.google.com
-	[209.85.216.181])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1FDC8E0043F
-	for <yocto@yoctoproject.org>; Wed,  5 Feb 2014 06:34:31 -0800 (PST)
-Received: by mail-qc0-f181.google.com with SMTP id e9so688042qcy.26
-	for <yocto@yoctoproject.org>; Wed, 05 Feb 2014 06:34:31 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc:content-type:content-transfer-encoding;
-	bh=74UE5SrW4c51YXtHGR0q78Nbp15OTZMP+fTWdzHFTYE=;
-	b=VPZfVqsIbEUb22lGaH06dGuLBbYLrfw34vCxJKksAgrDgDLQQEUIKOPViw2DrWGWAd
-	TG2n1IfG5dRihV7i3XkZ4yFA98aRTWooPp7gFAh23DpTlOgBtx3DtIztnjWpRCAD5QVg
-	It/MnjfXV+yNECFdLjPSxkmmOFcl9KXxfk1zNkb3nuXAReotF54um8Xq3Btits+e4a2f
-	eqe9zJkF7hgM/HOiU+7DsNIy/2gVNhatNntQjOoe6LQYxinEfipoxKoV+9DrgwMvsFdv
-	secNIoAfuOcaIKalw0caYRNYyHwurvvB0yfohTdlUAy4UBMEldg+bTMmzALwXMbGV5L3
-	5jlQ==
-X-Gm-Message-State: ALoCoQklCnmdOesSNJ2MzOxvX8KciV4zmU5f8eWXHjTFybUvmpdN0FV49xwtRkfpnIkwTchBPOgE
-X-Received: by 10.140.81.74 with SMTP id e68mr2731439qgd.99.1391610870825;
-	Wed, 05 Feb 2014 06:34:30 -0800 (PST)
-MIME-Version: 1.0
-Received: by 10.140.48.79 with HTTP; Wed, 5 Feb 2014 06:34:09 -0800 (PST)
-In-Reply-To: <1ebdbe80eed846bea559f9b0988acd37@HERMES.RUSSOUND.com>
+Return-Path: <briank@RUSSOUND.COM>
+Received: from Pegasus.RUSSOUND.COM (pegasus.russound.com [64.223.142.81])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 858E2E0043F
+	for <yocto@yoctoproject.org>; Wed,  5 Feb 2014 06:58:57 -0800 (PST)
+Received: from HERMES.RUSSOUND.com (10.0.0.14) by pegasus.RUSSOUND.COM
+	(10.0.0.15) with Microsoft SMTP Server (TLS) id 8.3.298.1;
+	Wed, 5 Feb 2014 09:58:49 -0500
+Received: from HERMES.RUSSOUND.com (10.0.0.14) by HERMES.RUSSOUND.com
+	(10.0.0.14) with Microsoft SMTP Server (TLS) id 15.0.620.29;
+	Wed, 5 Feb 2014 09:58:43 -0500
+Received: from HERMES.RUSSOUND.com ([fe80::3946:4b97:77b1:c1c5]) by
+	HERMES.RUSSOUND.com ([fe80::3946:4b97:77b1:c1c5%12]) with mapi id
+	15.00.0620.020; Wed, 5 Feb 2014 09:58:42 -0500
+From: Brian Karcz <briank@RUSSOUND.COM>
+To: "Burton, Ross" <ross.burton@intel.com>
+Thread-Topic: [yocto] Parallel builds with common shared state cache
+Thread-Index: Ac8hz87nxbjCIzVqQQeZCw+gouI1MQA2W5iAAApLA9A=
+Date: Wed, 5 Feb 2014 14:58:42 +0000
+Message-ID: <e474eb1be01d499e9acdd2a4842941ce@HERMES.RUSSOUND.com>
 References: <1ebdbe80eed846bea559f9b0988acd37@HERMES.RUSSOUND.com>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Wed, 5 Feb 2014 14:34:09 +0000
-Message-ID: <CAJTo0LY+bAU5n2VyXuhBepdKfK400t5D0g8RhqOCYcKbhzKHDQ@mail.gmail.com>
-To: Brian Karcz <briank@russound.com>
+	<CAJTo0LY+bAU5n2VyXuhBepdKfK400t5D0g8RhqOCYcKbhzKHDQ@mail.gmail.com>
+In-Reply-To: <CAJTo0LY+bAU5n2VyXuhBepdKfK400t5D0g8RhqOCYcKbhzKHDQ@mail.gmail.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.0.3.60]
+x-brightmail-tracker: H4sIAAAAAAAAC+NgFnrNqsTGxcLFwMCnuzjwU5DBvMb/09ktNrSvZbKYsLSVyYEpgCGKNTMvKb8igTXjzuMGtoL7nhVP21eyNzDec+1i5OIQEljKKHHzy04mCGcHo8TZPd+AHE4OZgFTiStfG1kgbEWJC/cawGw2AXWJF3unsILYIgJaEmdfP2aGqZ88owXMFhZwluics4IZosZFYsGOjVC2lcTXed/YQWwWARWJrTM+gu3iFXCS6P3ylBniiE5GiTlz54M1cAoEShw9shCsiFFATOL7qTVQx4lL3HoyH8yWEBCQWLLnPDOErSTRe/sdVNxHYuXOGcwQCwQlTs58wgIRN5PY+2AJVI2exO6DXawQdqDE25ONQHEOINtU4ur7YIiwrcSeGROhws4S827UQ4StJK6dnwrVqS2x/dU+KFtHYtO1VVCb5CX+37vPAjNmwuVlUFfKSpy+tohtAqP6LKSQnoUU0rOQPDkLyQMLGFlWMQp7uAb5ugbrBYUGB/uH+rnoJefnbmKEJoQdjH9v2B9ilORgUhLljfH/FCTEl5SfUpmRWJwRX1Sak1p8iFGCg0dJhFc2ACjHW1yQmFucmQ6TkuHgUJLgfQPSJliUmp5akZaZU5JaBJE+xSgpJc4rANInANKXUZoHl7vEKColzMvuBZTjKUgtys0sgYjfYhTmeMgkxJKXn5cqBXQiAxBoML5iFOdgVBLmfQeyiCczrwTuhFdA1zEBXbfO9T3IdSWJCCmpBsaYhru5Xhu4cmYdCTD+s0bD3XiiuQGb2HOj/7kv/ql0qLFEFVR9DMqSq7HO9n/xyiz81arYhoU6e1rsw/ZzBuxVz5GU3L6gevmVdK41D6/PWCMmOju05NFb+R3Jt143+U8ITf5x+nqF8u/X2/UzLXyc0+Z6J82cz9okmrDqzNdJNZd1fEVCbymxFGckGmoxFxUnAgAuvTKIfgMAAA==
+MIME-Version: 1.0
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: Parallel builds with common shared state cache
 X-BeenThere: yocto@yoctoproject.org
@@ -40,27 +39,37 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 05 Feb 2014 14:34:32 -0000
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Wed, 05 Feb 2014 14:59:00 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-On 4 February 2014 18:03, Brian Karcz <briank@russound.com> wrote:
-> I=E2=80=99m curious is there are any issues with using a common shared st=
-ate cache
-> directory, outside the build directory, for multiple different image buil=
-ds
-> that also might be running in parallel to each other? I=E2=80=99m in the =
-process of
-> setting up a new build server and wanted to make sure this wasn=E2=80=99t=
- an invalid
-> configuration before proceeding.
-
-I'm not positive that there are locks around the sstate cache
-(although there arguably should be if there isn't), but the worst-case
-scenario is that one build tries to extract a partial sstate archive,
-fails because it's truncated, and does the build itself.  It's
-probably safe enough: my personal AB shares a sstate between its own
-builders and my own builds without any issues.
-
-Ross
+SGkgUm9zcywNCg0KSSdtIHN1cmUgdGhlIGZhY3QgdGhhdCB3ZSBhcmUgc3RpbGwgb24gRWRpc29u
+IGRvZXNuJ3QgaW5jcmVhc2UgdGhlIG9kZHMgdGhhdCBhbnkgcG90ZW50aWFsIGxvY2sgcHJvdGVj
+dGlvbiBpcyBpbiBwbGFjZSBvbiB0aGUgY2FjaGUuIE11Y2ggbGlrZSB5b3VyIGV4cGVyaWVuY2Vz
+LCBJIGhhdmVuJ3Qgc2VlbiBhbnl0aGluZyBhZHZlcnNlIHdpdGggb3VyIHByZXZpb3VzIGJ1aWxk
+cywgYnV0IHRoZSBjb25maWd1cmF0aW9uIHNlZW1lZCBvZGQgYW5kIHdpdGggcG90ZW50aWFsIHRv
+IGhhdmUgcHJvYmxlbXMuIEkgZmlndXJlZCBzaW5jZSBJIHdhcyBpbiB0aGUgcHJvY2VzcyBvZiB3
+b3JraW5nIG9uIHRoZSBidWlsZCBzeXN0ZW0gYW5kIHRoaXMgd2FzIHJpZ2h0IGluIG15IGZhY2Us
+IEknZCBzZWVrIG91dCBzb21lIGlucHV0IG9uIHRoZSBjb25maWd1cmF0aW9uJ3MgdmFsaWRpdHku
+DQoNClRoYW5rcywNCkJyaWFuDQoNCg0KDQotLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KRnJv
+bTogQnVydG9uLCBSb3NzIFttYWlsdG86cm9zcy5idXJ0b25AaW50ZWwuY29tXSANClNlbnQ6IFdl
+ZG5lc2RheSwgRmVicnVhcnkgMDUsIDIwMTQgOTozNCBBTQ0KVG86IEJyaWFuIEthcmN6DQpDYzog
+eW9jdG9AeW9jdG9wcm9qZWN0Lm9yZw0KU3ViamVjdDogUmU6IFt5b2N0b10gUGFyYWxsZWwgYnVp
+bGRzIHdpdGggY29tbW9uIHNoYXJlZCBzdGF0ZSBjYWNoZQ0KDQpPbiA0IEZlYnJ1YXJ5IDIwMTQg
+MTg6MDMsIEJyaWFuIEthcmN6IDxicmlhbmtAcnVzc291bmQuY29tPiB3cm90ZToNCj4gSeKAmW0g
+Y3VyaW91cyBpcyB0aGVyZSBhcmUgYW55IGlzc3VlcyB3aXRoIHVzaW5nIGEgY29tbW9uIHNoYXJl
+ZCBzdGF0ZSANCj4gY2FjaGUgZGlyZWN0b3J5LCBvdXRzaWRlIHRoZSBidWlsZCBkaXJlY3Rvcnks
+IGZvciBtdWx0aXBsZSBkaWZmZXJlbnQgDQo+IGltYWdlIGJ1aWxkcyB0aGF0IGFsc28gbWlnaHQg
+YmUgcnVubmluZyBpbiBwYXJhbGxlbCB0byBlYWNoIG90aGVyPyBJ4oCZbSANCj4gaW4gdGhlIHBy
+b2Nlc3Mgb2Ygc2V0dGluZyB1cCBhIG5ldyBidWlsZCBzZXJ2ZXIgYW5kIHdhbnRlZCB0byBtYWtl
+IA0KPiBzdXJlIHRoaXMgd2FzbuKAmXQgYW4gaW52YWxpZCBjb25maWd1cmF0aW9uIGJlZm9yZSBw
+cm9jZWVkaW5nLg0KDQpJJ20gbm90IHBvc2l0aXZlIHRoYXQgdGhlcmUgYXJlIGxvY2tzIGFyb3Vu
+ZCB0aGUgc3N0YXRlIGNhY2hlIChhbHRob3VnaCB0aGVyZSBhcmd1YWJseSBzaG91bGQgYmUgaWYg
+dGhlcmUgaXNuJ3QpLCBidXQgdGhlIHdvcnN0LWNhc2Ugc2NlbmFyaW8gaXMgdGhhdCBvbmUgYnVp
+bGQgdHJpZXMgdG8gZXh0cmFjdCBhIHBhcnRpYWwgc3N0YXRlIGFyY2hpdmUsIGZhaWxzIGJlY2F1
+c2UgaXQncyB0cnVuY2F0ZWQsIGFuZCBkb2VzIHRoZSBidWlsZCBpdHNlbGYuICBJdCdzIHByb2Jh
+Ymx5IHNhZmUgZW5vdWdoOiBteSBwZXJzb25hbCBBQiBzaGFyZXMgYSBzc3RhdGUgYmV0d2VlbiBp
+dHMgb3duIGJ1aWxkZXJzIGFuZCBteSBvd24gYnVpbGRzIHdpdGhvdXQgYW55IGlzc3Vlcy4NCg0K
+Um9zcw0K
 
