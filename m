@@ -1,33 +1,25 @@
-Return-Path: <elizabeth.flanagan@intel.com>
-Received: from mail-qc0-f172.google.com (mail-qc0-f172.google.com
-	[209.85.216.172])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 753D1E0077A
-	for <yocto@yoctoproject.org>; Wed,  5 Feb 2014 02:29:43 -0800 (PST)
-Received: by mail-qc0-f172.google.com with SMTP id c9so255175qcz.17
-	for <yocto@yoctoproject.org>; Wed, 05 Feb 2014 02:29:43 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:date:message-id:subject:from:to
-	:content-type;
-	bh=8ZyTywUG7CxeIQNGbpikNVOMLyf/9xpY0zaW6wxHwzk=;
-	b=FzPqOYL/FBpU4FJcSu4ctO/h8doAGnzzW/ZMjmp3hnQ9gnqtcLrAQYqM9yRJtgRMeB
-	J1mambbmJoMyzoMzu3gqdZVJvsjJz0wl8yKp2AL8LgYGb/HniAjAHLgCFu5eUQdit4ZQ
-	Gi/FuNjaxq/2dj2iM1Jm2jmosTB66z1hhF1+f+KnPF1WWIHGJvwpIx99micFAC2w2HE1
-	f2ofqfmPZZkzINII7vzhhaJxfc5k0zzmacP6XeVrrmK3But+DUJwlVNyqxj11JO1vgk9
-	zDGv5wuswDNnDTXywNM29nDMDsJ3Na9vpey8hqKZ9nebyXPVZk5Lg/0eEjDSqSOhyt9+
-	VShA==
-X-Gm-Message-State: ALoCoQlaa+FulQafpkQd6L5E8klV/fSU/w+a+vCekU6s8gGD4Bbr8a0FQ03a2syPy6lmG2h1YwUZ
+Return-Path: <paul.eggleton@linux.intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C15B4E0077A
+	for <yocto@yoctoproject.org>; Wed,  5 Feb 2014 03:43:31 -0800 (PST)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga102.jf.intel.com with ESMTP; 05 Feb 2014 03:39:18 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.95,786,1384329600"; d="scan'208";a="478409442"
+Received: from unknown (HELO peggleto-mobl5.ger.corp.intel.com)
+	([10.252.123.170])
+	by orsmga002.jf.intel.com with ESMTP; 05 Feb 2014 03:43:29 -0800
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: Khem Raj <raj.khem@gmail.com>
+Date: Wed, 05 Feb 2014 11:43:27 +0000
+Message-ID: <4625095.yYDEiBqlji@peggleto-mobl5.ger.corp.intel.com>
+Organization: Intel Corporation
+User-Agent: KMail/4.11.5 (Linux/3.12.9-301.fc20.x86_64; KDE/4.11.5; x86_64; ; )
+In-Reply-To: <1391539498-8620-1-git-send-email-raj.khem@gmail.com>
+References: <1391539498-8620-1-git-send-email-raj.khem@gmail.com>
 MIME-Version: 1.0
-X-Received: by 10.229.105.9 with SMTP id r9mr1151850qco.12.1391596182875; Wed,
-	05 Feb 2014 02:29:42 -0800 (PST)
-Received: by 10.140.49.239 with HTTP; Wed, 5 Feb 2014 02:29:42 -0800 (PST)
-Date: Wed, 5 Feb 2014 10:29:42 +0000
-Message-ID: <CAPhnLPCQM=x4VFKqoK5-nqQ9DZ+mbXR_HhC0wxyOfw0CKE9T_g@mail.gmail.com>
-From: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>, 
-	Alexandru C Georgescu <alexandru.c.georgescu@intel.com>,
-	Zhao Yi <yi.zhao@windriver.com>, Otavio Salvador <otavio@ossystems.com.br>
-Subject: Weekly Build available.
+Cc: yocto@yoctoproject.org, ajlennon@gmail.com
+Subject: Re: [PATCH 1/2] mono-xsp: Fix parse warnings
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,26 +31,63 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 05 Feb 2014 10:29:48 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Wed, 05 Feb 2014 11:43:31 -0000
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-The weekly build will soon be available at:
+Hi Khem,
 
-http://autobuilder.yoctoproject.org/pub/nightly/20140205-1
+On Tuesday 04 February 2014 10:44:57 Khem Raj wrote:
+> WARNING: Variable key FILES_${PN}-dev (${includedir} ${FILES_SOLIBSDEV}
+> ${libdir}/*.la ${libdir}/*.o ${libdir}/pkgconfig ${datadir}/pkgconfig
+> ${datadir}/aclocal ${base_libdir}/*.o ${libdir}/${BPN}/*.la
+> ${base_libdir}/*.la) replaces original key FILES_mono-xsp-dev (
+> /usr/lib/pkgconfig/xsp.pc       /usr/lib/pkgconfig/xsp-2.pc     ).
+> 
+> Signed-off-by: Khem Raj <raj.khem@gmail.com>
+> ---
+>  recipes-mono/mono-xsp/mono-xsp_1.2.5.bb | 15 +++++----------
+>  1 file changed, 5 insertions(+), 10 deletions(-)
+> 
+> diff --git a/recipes-mono/mono-xsp/mono-xsp_1.2.5.bb
+> b/recipes-mono/mono-xsp/mono-xsp_1.2.5.bb index b27e74e..648477a 100644
+> --- a/recipes-mono/mono-xsp/mono-xsp_1.2.5.bb
+> +++ b/recipes-mono/mono-xsp/mono-xsp_1.2.5.bb
+> @@ -7,7 +7,6 @@ SECTION = "devel/mono"
+>  #  - scripts in /usr/bin contain the wrong paths
+>  #
+> 
+> -
+>  PR = "r5"
+> 
+>  DEPENDS = "mono"
+> @@ -21,16 +20,14 @@ SRC_URI =
+> "http://go-mono.com/sources/xsp/xsp-${PV}.tar.bz2"
+> 
+>  S = "${WORKDIR}/xsp-${PV}"
+> 
+> -PACKAGES = "${PN}-dbg \
+> +PACKAGES += "\
 
-bitbake     b84d010144de687667cf855ddcb41c9b863c236e
-eclipse-poky-juno     26bfc407781aa185f244a47ba63120343cee4a37
-eclipse-poky-kepler     f4d8e9243f9355424a01e2d72fd1abbf68d3bb7c
-meta-fsl-arm     caea34d0a4109720fba93897ea4a84a72b26189a
-meta-fsl-ppc     1536064e02f15761e90f784d88f2a930784f7f3d
-meta-intel     c5ca9f67121bff0b7400a175f005212234906b37
-meta-minnow     32e4d6f17917027c3babe1ab738480de9691024d
-meta-qt3     4772424ab69908d4e3b9d6d4717ca889468e6acd
-oecore     8461283a648d7c5affd51971ebd9b35a8a4c625f
-poky     4e9eb77108c7e628ebd00ec848b8bc034802e197
+Should this be += or =+ ?
+
+>  	libmono-webserver1.0-cil \
+>  	libmono-webserver2.0-cil \
+>  	mono-xsp \
+> -	mono-xsp2 \
+> -	mono-xsp-test \
+> +	${PN}2 \
+> +	${PN}-test \
+
+Er, so you've changed it to modify instead of set PACKAGES above, so shouldn't 
+the "mono-xsp" entry be removed as well since ${PN} is already in the default 
+value of PACKAGES?
+
+Cheers,
+Paul
 
 -- 
-Elizabeth Flanagan
-Yocto Project
-Build and Release
+
+Paul Eggleton
+Intel Open Source Technology Centre
 
