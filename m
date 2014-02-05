@@ -1,25 +1,25 @@
 Return-Path: <paul.eggleton@linux.intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C15B4E0077A
-	for <yocto@yoctoproject.org>; Wed,  5 Feb 2014 03:43:31 -0800 (PST)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga102.jf.intel.com with ESMTP; 05 Feb 2014 03:39:18 -0800
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 08F0CE00780
+	for <yocto@yoctoproject.org>; Wed,  5 Feb 2014 03:48:10 -0800 (PST)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga102.fm.intel.com with ESMTP; 05 Feb 2014 03:48:10 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.95,786,1384329600"; d="scan'208";a="478409442"
+X-IronPort-AV: E=Sophos;i="4.95,786,1384329600"; d="scan'208";a="476332499"
 Received: from unknown (HELO peggleto-mobl5.ger.corp.intel.com)
 	([10.252.123.170])
-	by orsmga002.jf.intel.com with ESMTP; 05 Feb 2014 03:43:29 -0800
+	by fmsmga002.fm.intel.com with ESMTP; 05 Feb 2014 03:48:08 -0800
 From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: Khem Raj <raj.khem@gmail.com>
-Date: Wed, 05 Feb 2014 11:43:27 +0000
-Message-ID: <4625095.yYDEiBqlji@peggleto-mobl5.ger.corp.intel.com>
+To: Kazuya Nishimura <kazuya.nisimura@gmail.com>
+Date: Wed, 05 Feb 2014 11:48:07 +0000
+Message-ID: <2841839.SyqLMEXVIj@peggleto-mobl5.ger.corp.intel.com>
 Organization: Intel Corporation
 User-Agent: KMail/4.11.5 (Linux/3.12.9-301.fc20.x86_64; KDE/4.11.5; x86_64; ; )
-In-Reply-To: <1391539498-8620-1-git-send-email-raj.khem@gmail.com>
-References: <1391539498-8620-1-git-send-email-raj.khem@gmail.com>
+In-Reply-To: <1391565679-15351-1-git-send-email-kazuya.nisimura@gmail.com>
+References: <1391565679-15351-1-git-send-email-kazuya.nisimura@gmail.com>
 MIME-Version: 1.0
-Cc: yocto@yoctoproject.org, ajlennon@gmail.com
-Subject: Re: [PATCH 1/2] mono-xsp: Fix parse warnings
+Cc: yocto@yoctoproject.org
+Subject: Re: [PATCH] tune-arm1176jzfs-s.inc: Add hard float profile, arm1176jzfshf, in AVAILTUNES
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -31,59 +31,52 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 05 Feb 2014 11:43:31 -0000
+X-List-Received-Date: Wed, 05 Feb 2014 11:48:11 -0000
 Content-Transfer-Encoding: 7Bit
 Content-Type: text/plain; charset="us-ascii"
 
-Hi Khem,
+Hi Kazuya,
 
-On Tuesday 04 February 2014 10:44:57 Khem Raj wrote:
-> WARNING: Variable key FILES_${PN}-dev (${includedir} ${FILES_SOLIBSDEV}
-> ${libdir}/*.la ${libdir}/*.o ${libdir}/pkgconfig ${datadir}/pkgconfig
-> ${datadir}/aclocal ${base_libdir}/*.o ${libdir}/${BPN}/*.la
-> ${base_libdir}/*.la) replaces original key FILES_mono-xsp-dev (
-> /usr/lib/pkgconfig/xsp.pc       /usr/lib/pkgconfig/xsp-2.pc     ).
+On Wednesday 05 February 2014 11:01:19 Kazuya Nishimura wrote:
+> * arm1176jzfshf uses -mtune=hard.
+> * Add -mfpu=vfp if vfp is included in TUNE_FEATURES
 > 
-> Signed-off-by: Khem Raj <raj.khem@gmail.com>
+> Signed-off-by: Kazuya Nishimura <kazuya.nisimura@gmail.com>
+> Change-Id: If81977cacbba052fa30c4a407ec65e93148d2ee3
 > ---
->  recipes-mono/mono-xsp/mono-xsp_1.2.5.bb | 15 +++++----------
->  1 file changed, 5 insertions(+), 10 deletions(-)
+>  conf/machine/include/tune-arm1176jzf-s.inc |    7 +++++++
+>  1 file changed, 7 insertions(+)
 > 
-> diff --git a/recipes-mono/mono-xsp/mono-xsp_1.2.5.bb
-> b/recipes-mono/mono-xsp/mono-xsp_1.2.5.bb index b27e74e..648477a 100644
-> --- a/recipes-mono/mono-xsp/mono-xsp_1.2.5.bb
-> +++ b/recipes-mono/mono-xsp/mono-xsp_1.2.5.bb
-> @@ -7,7 +7,6 @@ SECTION = "devel/mono"
->  #  - scripts in /usr/bin contain the wrong paths
->  #
+> diff --git a/conf/machine/include/tune-arm1176jzf-s.inc
+> b/conf/machine/include/tune-arm1176jzf-s.inc index ebad588..a5368a3 100644
+> --- a/conf/machine/include/tune-arm1176jzf-s.inc
+> +++ b/conf/machine/include/tune-arm1176jzf-s.inc
+> @@ -4,8 +4,15 @@ require conf/machine/include/arm/arch-armv6.inc
 > 
-> -
->  PR = "r5"
+>  TUNEVALID[arm1176jzfs] = "Enable arm1176jzfs specific processor
+> optimizations" TUNE_CCARGS += "${@bb.utils.contains("TUNE_FEATURES",
+> "arm1176jzfs", "-mtune=arm1176jzf-s", "", d)}" +TUNE_CCARGS +=
+> "${@bb.utils.contains("TUNE_FEATURES", "vfp", "-mfpu=vfp", "", d)}"
 > 
->  DEPENDS = "mono"
-> @@ -21,16 +20,14 @@ SRC_URI =
-> "http://go-mono.com/sources/xsp/xsp-${PV}.tar.bz2"
-> 
->  S = "${WORKDIR}/xsp-${PV}"
-> 
-> -PACKAGES = "${PN}-dbg \
-> +PACKAGES += "\
+>  AVAILTUNES += "arm1176jzfs"
+>  TUNE_FEATURES_tune-arm1176jzfs = "${TUNE_FEATURES_tune-armv6} arm1176jzfs"
+>  ARMPKGARCH_tune-arm1176jzfs = "arm1176jzfs"
+>  PACKAGE_EXTRA_ARCHS_tune-arm1176jzfs = "${PACKAGE_EXTRA_ARCHS_tune-armv6}"
+> +
+> +AVAILTUNES += "arm1176jzfshf"
+> +TUNE_FEATURES_tune-arm1176jzfshf = "${TUNE_FEATURES_tune-arm1176jzfs}
+> callconvention-hard" +ARMPKGARCH_tune-arm1176jzfshf = "arm1176jzfs"
+> +PACKAGE_EXTRA_ARCHS_tune-arm1176jzfshf =
+> "${PACKAGE_EXTRA_ARCHS_tune-armv6hf-vfp} arm1176jzfshf-vfp" +
 
-Should this be += or =+ ?
+this patch is for a file that is part of OE-Core, and thus should be sent to 
+the openembedded-core mailing list (as noted in the poky README file):
 
->  	libmono-webserver1.0-cil \
->  	libmono-webserver2.0-cil \
->  	mono-xsp \
-> -	mono-xsp2 \
-> -	mono-xsp-test \
-> +	${PN}2 \
-> +	${PN}-test \
+http://lists.openembedded.org/mailman/listinfo/openembedded-core
 
-Er, so you've changed it to modify instead of set PACKAGES above, so shouldn't 
-the "mono-xsp" entry be removed as well since ${PN} is already in the default 
-value of PACKAGES?
+Could you please re-send it there?
 
-Cheers,
+Thanks,
 Paul
 
 -- 
