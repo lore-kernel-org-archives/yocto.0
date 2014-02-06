@@ -1,33 +1,24 @@
-Return-Path: <paul.betafive@gmail.com>
-Received: from mail-ve0-f182.google.com (mail-ve0-f182.google.com
-	[209.85.128.182])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 80E92E00475;
-	Thu,  6 Feb 2014 08:03:25 -0800 (PST)
-Received: by mail-ve0-f182.google.com with SMTP id jy13so1691655veb.27
-	for <multiple recipients>; Thu, 06 Feb 2014 08:03:25 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:sender:in-reply-to:references:from:date:message-id
-	:subject:to:cc:content-type;
-	bh=VUWFXyRI0P5rqVaoaHUJCf6lhHH5schnT1bBHjd03kc=;
-	b=mySt+Yn4sCxvffNxKfSJ9mdSB0YudzN6zZum3sPJccfvWRUtDik79J3syFaIgAY+zG
-	1HGxRhfuX5Z3E2GpoKAMlOgPDcYkjwDarViOJ8SKBqo1v5E7EoZoBpKYBPNNRGPtF9kb
-	RraupVH07ZHPI+J/2sQDMnO6EyPP+dX82quNXZOk63Z72Y2N5Wtcs1KDoq6bwQrV+3TO
-	TBJLbcoPxb9S/4wyu3MSWOOfIj5Yacz4+yAcmLix1JTKY8V1lJbEvvXSuuIw7qO7BB4z
-	eO46KtiodG736gefQVJd7GYzEh0b1UnwsBQR/mUKox9SRas+N9dyYwFpC/VVChQRyV/F
-	TMjA==
-X-Received: by 10.58.181.230 with SMTP id dz6mr1049087vec.35.1391702605028;
-	Thu, 06 Feb 2014 08:03:25 -0800 (PST)
-MIME-Version: 1.0
-Sender: paul.betafive@gmail.com
-Received: by 10.220.239.135 with HTTP; Thu, 6 Feb 2014 08:02:00 -0800 (PST)
+Return-Path: <paul.eggleton@linux.intel.com>
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 278FCE00476;
+	Thu,  6 Feb 2014 08:04:44 -0800 (PST)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga101.fm.intel.com with ESMTP; 06 Feb 2014 08:03:44 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.95,793,1384329600"; d="scan'208";a="477037763"
+Received: from unknown (HELO peggleto-mobl5.ger.corp.intel.com)
+	([10.252.123.186])
+	by fmsmga002.fm.intel.com with ESMTP; 06 Feb 2014 08:02:13 -0800
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: Edward Vidal <vidal.develone@gmail.com>
+Date: Thu, 06 Feb 2014 16:02:06 +0000
+Message-ID: <1590342.Kfn9U5XaVe@peggleto-mobl5.ger.corp.intel.com>
+Organization: Intel Corporation
+User-Agent: KMail/4.12.2 (Linux/3.12.9-301.fc20.x86_64; KDE/4.12.2; x86_64; ; )
 In-Reply-To: <CANwz6nx3WLC6b7jjFnNDCc6hXJtvRbPK5yw0pZ+sVJ8foX5HRQ@mail.gmail.com>
 References: <CANwz6nx3WLC6b7jjFnNDCc6hXJtvRbPK5yw0pZ+sVJ8foX5HRQ@mail.gmail.com>
-From: Paul Barker <paul@paulbarker.me.uk>
-Date: Thu, 6 Feb 2014 16:02:00 +0000
-X-Google-Sender-Auth: 4inzpn7P_VDhFvG25ipYovFnZC4
-Message-ID: <CANyK_8f0gn31ebzO3q=mHEsC4biCtPsfnGdpfNhrERfMc+7pFA@mail.gmail.com>
-To: Edward Vidal <vidal.develone@gmail.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
+MIME-Version: 1.0
+Cc: yocto@yoctoproject.org,
 	"meta-xilinx@yoctoproject.org" <meta-xilinx@yoctoproject.org>
 Subject: Re: meta-oe x264
 X-BeenThere: yocto@yoctoproject.org
@@ -41,20 +32,44 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 06 Feb 2014 16:03:26 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Thu, 06 Feb 2014 16:04:45 -0000
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-On 6 February 2014 15:22, Edward Vidal <vidal.develone@gmail.com> wrote:
+On Thursday 06 February 2014 08:22:06 Edward Vidal wrote:
 > Hello All,
 > In Dec 13 I used meta-oe on a dylan branch and x264 was included as part of
 > meta-oe/meta-oe/recipes-multimedia/x264.
+> Build Configuration:
+> BB_VERSION        = "1.18.0"
+> BUILD_SYS         = "x86_64-linux"
+> NATIVELSBSTRING   = "Fedora-18"
+> TARGET_SYS        = "arm-poky-linux-gnueabi"
+> MACHINE           = "zedboard"
+> DISTRO            = "poky"
+> DISTRO_VERSION    = "1.4.2"
+> TUNE_FEATURES     = " armv7a vfp neon zynq"
+> TARGET_FPU        = "vfp-neon"
+> meta
+> meta-yocto        = "dylan:4e399f08d596197859214fdb3b06403b87bf8789"
+> meta-oe
+> meta-multimedia   = "dylan:44754206632dd5b0725aeb43e99e4ff9e0245dca"
+> meta-xilinx
+> meta-kc705
+> meta-zc702
+> meta-zedboard     = "dylan:cf9571203be0af5fc654952d3f00e0a7e0fb1174"
+> 
+> I am working with the dora branch and this is now not included.
+> Does anyone know the reason that x264 was removed from the dora branch or
+> has is just not been added.  My custom-image includes it and it built okay.
 
-Looks like it's moved to oe-core:
-http://layers.openembedded.org/layerindex/branch/dora/recipes/?q=x264
+x264 was moved to OE-Core in dora, so you should still have it.
+
+Cheers,
+Paul
 
 -- 
-Paul Barker
 
-Email: paul@paulbarker.me.uk
-http://www.paulbarker.me.uk
+Paul Eggleton
+Intel Open Source Technology Centre
 
