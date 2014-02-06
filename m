@@ -1,40 +1,41 @@
-Return-Path: <ajlennon@gmail.com>
-Received: from mail-wi0-f182.google.com (mail-wi0-f182.google.com
-	[209.85.212.182])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 132B9E00790
-	for <yocto@yoctoproject.org>; Wed,  5 Feb 2014 11:07:57 -0800 (PST)
-Received: by mail-wi0-f182.google.com with SMTP id f8so889076wiw.3
-	for <yocto@yoctoproject.org>; Wed, 05 Feb 2014 11:07:57 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=sender:from:to:cc:subject:date:message-id:in-reply-to:references
-	:in-reply-to:references;
-	bh=UYYXcdXBYWPrVqHhrew8PhXXhtY8ArH1kKsxz5B2lGM=;
-	b=jP3NeWueB+Nh1/7Yv1B2iS84vBukgmG1qd+fNf/mYCEH5bG6ZK+wQAdZ9H3ditdWei
-	7OU6UI/TRNLvZnunTBwh/Y6+Vmg777r02nsBHNJpzi2cM2avYm4nBcI5wF0U7KC1+e+t
-	uTyo/09NW4YU1cha77BEiYMs/N9ysU67Ur0kfVZjq7NNChb9KPgidTAHzNiZ1hesZpUk
-	LrKsVdBbmfjfHS8vLICkXNqA5DYzVzZNPa21p+KDpxItJHtfwBXB3y792CfVwAjl7rqG
-	Nz9TNxZOCdy22xItWJ9RMh77UcXh/bNyqnPdt3a0jQZQD7XPkVyf9dJd3cbwKwTgRfYI
-	DPWQ==
-X-Received: by 10.194.104.39 with SMTP id gb7mr18774wjb.69.1391627276967;
-	Wed, 05 Feb 2014 11:07:56 -0800 (PST)
-Received: from localhost.localdomain
-	(cpc32-live22-2-0-cust59.17-2.cable.virginm.net. [82.36.253.60])
-	by mx.google.com with ESMTPSA id t6sm48291094wix.4.2014.02.05.11.07.55
-	for <multiple recipients>
-	(version=TLSv1.1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
-	Wed, 05 Feb 2014 11:07:56 -0800 (PST)
-Sender: Alex Lennon <ajlennon@gmail.com>
-From: Alex J Lennon <ajlennon@dynamicdevices.co.uk>
-To: paul.eggleton@linux.intel.com
-Date: Wed,  5 Feb 2014 19:07:36 +0000
-Message-Id: <8772af88465bf1ee9e22986104dff4f17fff5501.1391626374.git.ajlennon@dynamicdevices.co.uk>
-X-Mailer: git-send-email 1.7.9.5
-In-Reply-To: <cover.1391626374.git.ajlennon@dynamicdevices.co.uk>
-References: <cover.1391626374.git.ajlennon@dynamicdevices.co.uk>
-In-Reply-To: <cover.1391626374.git.ajlennon@dynamicdevices.co.uk>
-References: <cover.1391626374.git.ajlennon@dynamicdevices.co.uk>
-Cc: yocto@yoctoproject.org
-Subject: [PATCH 1/1] libgdiplus: Fix build error relating to missing freetype/tttables.h, and update to libgdiplus 2.10.8
+Return-Path: <rohit.borse@einfochips.com>
+Received: from out15.sjc.mx.trendmicro.com (out15.sjc.mx.trendmicro.com
+	[216.99.131.72])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F3F4CE002AC
+	for <yocto@yoctoproject.org>; Wed,  5 Feb 2014 21:28:23 -0800 (PST)
+Received: from relay07.sjc.mx.trendmicro.com (unknown [10.30.239.130])
+	by out15.sjc.mx.trendmicro.com (Postfix) with ESMTP id 06468980484
+	for <yocto@yoctoproject.org>; Thu,  6 Feb 2014 05:28:22 +0000 (UTC)
+Received: from pune.einfochips.com (unknown [121.241.186.85])
+	by relay07.sjc.mx.trendmicro.com (Postfix) with ESMTP id 5A03798041C
+	for <yocto@yoctoproject.org>; Thu,  6 Feb 2014 05:28:20 +0000 (UTC)
+Received: from localhost (localhost.localdomain [127.0.0.1])
+	by pune.einfochips.com (Postfix) with ESMTP id B2A754DE0009
+	for <yocto@yoctoproject.org>; Thu,  6 Feb 2014 11:17:08 +0530 (IST)
+X-Virus-Scanned: amavisd-new at pune.einfochips.com
+Received: from pune.einfochips.com ([127.0.0.1])
+	by localhost (pune.einfochips.com [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id itJt1q62KhPm for <yocto@yoctoproject.org>;
+	Thu,  6 Feb 2014 11:17:08 +0530 (IST)
+Received: from [10.110.1.204] (unknown [10.110.1.204])
+	by pune.einfochips.com (Postfix) with ESMTPSA id 32DA04DE0006
+	for <yocto@yoctoproject.org>; Thu,  6 Feb 2014 11:17:06 +0530 (IST)
+Message-ID: <52F31E1C.40808@einfochips.com>
+Date: Thu, 06 Feb 2014 11:01:08 +0530
+From: Rohit Borse <rohit.borse@einfochips.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:24.0) Gecko/20100101 Thunderbird/24.2.0
+MIME-Version: 1.0
+To: yocto <yocto@yoctoproject.org>
+X-TM-AS-Product-Ver: IMHS-1.0.0.1430-7.0.0.1014-20484.004
+X-TM-AS-Result: No--11.9256-5.0-31-10
+X-TM-AS-Result-Detail: Spam:No-Score:-11.9256-Baseline:ModeratelyHigh-Other:Lowest
+X-TMASE-MatchedRID: hwtUKlde9zEOuBY41QkXu6wOh3D3JSTGfkuZtv/FS5rUMPKrRLOfYfRm
+	0kmqtH+DhYuVpiZdXAKaVxA361Hfi7pOYBSjv0PMALBxQHkJtWrQhlAYqQREy0cTQWdpiE3Vrcm
+	mD7/hK1995l0nVeyiuHxoE2XK1UNlNadDKhhc0dlREF8sTZqvXCq2rl3dzGQ1Am3ZQHwG2q6gER
+	bpW42T/YVdTyYlhWvNEX7xDFVtY+hd44xSlhnE0A==
+X-TM-Deliver-Signature: c88ed3492d445d189dc6d77671d9ede7
+Subject: Error while building SDK
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -46,84 +47,223 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 05 Feb 2014 19:07:59 -0000
+X-List-Received-Date: Thu, 06 Feb 2014 05:28:27 -0000
+X-Groupsio-MsgNum: 18011
+Content-Type: multipart/mixed; boundary="------------040403030107080100080304"
 
-- libgdiplus 2.10 is fairly old, released 3 years ago (cea5a3f)
-- libgdiplus 2.10.8 is curently the most recent release available on GitHub and is also old, released 2 years ago (5179dd3)
-- there have been a substantial number of commits since these releases so it may be worth considering a recipe to build from a specific git commit (thoughts appreciated)
+--------------040403030107080100080304
+Content-Type: text/plain;
+	charset="ISO-8859-1";
+	format="flowed"
+Content-Transfer-Encoding: 7bit
 
-@see: https://github.com/mono/libgdiplus/releases
+Dear Support Team,
+I am using Ubuntu 12.04 on installed on Virtual Box. I want to build 
+bluegiga SDK (version= bluegiga-sdk-sstate_5.0.0-beta10_apx4devkit.tgz). 
+But when I am builind SDK for APx4 module, I am getting error from 
+command below onwards.
 
-libgdiplus-2.10 and libgdiplus-2.10.8 recipes fail to build currently with an error
+1. source init-sdk-env - status succes
+2. bitbake bluegiga-console-image - throws error as attached in below file.
 
- gdiplus-private.h:33:31: fatal error: freetype/tttables.h: No such file or directory
+Do let me know if SDK build is supported on Ubuntu on VirtualBox?
 
-This is a known issue addressed by commit 180c02e into master on 16/12/13. From the commit message,
-
-"As of FreeType 2.1.6 (November 2003), using #include to include Freetype libraries directly is not supported.
-This has come to a head, as in FreeType 2.5.0, the location of headers has been moved around, breaking building of libgdiplus.
-This slight change uses the "official" way to include the required header file, without breaking building on older versions of the library."
-
-Signed-off-by: Alex J Lennon <ajlennon@dynamicdevices.co.uk>
----
- ...gdiplus-2.10.x-use-freetype-include-macro.patch |   14 ++++++++++++++
- .../{libgdiplus_2.10.bb => libgdiplus_2.10.8.bb}   |    8 ++++----
- 2 files changed, 18 insertions(+), 4 deletions(-)
- create mode 100644 recipes-mono/libgdiplus/files/libgdiplus-2.10/libgdiplus-2.10.x-use-freetype-include-macro.patch
- rename recipes-mono/libgdiplus/{libgdiplus_2.10.bb => libgdiplus_2.10.8.bb} (68%)
-
-diff --git a/recipes-mono/libgdiplus/files/libgdiplus-2.10/libgdiplus-2.10.x-use-freetype-include-macro.patch b/recipes-mono/libgdiplus/files/libgdiplus-2.10/libgdiplus-2.10.x-use-freetype-include-macro.patch
-new file mode 100644
-index 0000000..bce4e9b
---- /dev/null
-+++ b/recipes-mono/libgdiplus/files/libgdiplus-2.10/libgdiplus-2.10.x-use-freetype-include-macro.patch
-@@ -0,0 +1,14 @@
-+diff -ur libgdiplus-2.10.8.org/src/gdiplus-private.h libgdiplus-2.10.8/src/gdiplus-private.h
-+--- libgdiplus-2.10.8.org/src/gdiplus-private.h 2014-02-05 17:50:30.979205246 +0000
-++++ libgdiplus-2.10.8/src/gdiplus-private.h     2014-02-05 17:51:54.519205465 +0000
-+@@ -30,7 +30,8 @@
-+ #include <stdio.h>
-+ #include <math.h>
-+ #include <glib.h>
-+-#include <freetype/tttables.h>
-++#include <ft2build.h>
-++#include FT_TRUETYPE_TABLES_H
-+ #include <pthread.h>
-+ #include <unistd.h>
-+
-+
-diff --git a/recipes-mono/libgdiplus/libgdiplus_2.10.bb b/recipes-mono/libgdiplus/libgdiplus_2.10.8.bb
-similarity index 68%
-rename from recipes-mono/libgdiplus/libgdiplus_2.10.bb
-rename to recipes-mono/libgdiplus/libgdiplus_2.10.8.bb
-index 216e329..8326a88 100644
---- a/recipes-mono/libgdiplus/libgdiplus_2.10.bb
-+++ b/recipes-mono/libgdiplus/libgdiplus_2.10.8.bb
-@@ -6,9 +6,10 @@ SECTION = "libs"
- LICENSE = "MIT"
- LIC_FILES_CHKSUM = "file://COPYING;md5=fe7364dfce9f3689eb6995e7cdd56879"
- 
--SRC_URI = "http://download.mono-project.com/sources/libgdiplus/libgdiplus-${PV}.tar.bz2 \
-+SRC_URI = "https://github.com/mono/libgdiplus/archive/${PV}.tar.gz \
-            file://libgdiplus-2.10/cairo/configure.in.diff \
-            file://libgdiplus-2.10/libgdiplus-2.10.1-libpng15.patch \
-+	   file://libgdiplus-2.10/libgdiplus-2.10.x-use-freetype-include-macro.patch \
- 	"
- 
- inherit autotools pkgconfig
-@@ -17,9 +18,8 @@ DEPENDS =+ "cairo freetype fontconfig libxft libpng"
- 
- PR = "r1"
- 
--SRC_URI[md5sum] = "451966e8f637e3a1f02d1d30f900255d"
--SRC_URI[sha256sum] = "2d9e0397ef5583ed855eaafcdac8cabbe1d58463ed1e4b545be6dde5b63712a4"
--
-+SRC_URI[md5sum] = "6fd45bbb9843f5a8851b5f44e2a5dd04"
-+SRC_URI[sha256sum] = "45c533dc72af0a24d1d3a8097873f5fe1670107fe7e6d08fb71ae586c87a0f1d"
- 
- FILES_${PN} += "${libdir}/libgdiplus.so"
- INSANE_SKIP_${PN} += "dev-so"
--- 
-1.7.9.5
+Regards,
+Rohit Borse
 
 
+---------------------------------------------------------------------------------------------
+Notice: 
+This message has been scanned by Trend Micro Mail Security scanner and is believed to be clean
+---------------------------------------------------------------------------------------------
+
+--------------040403030107080100080304
+Content-Type: text/x-log;
+ name="SDKbuildError.log"
+Content-Transfer-Encoding: 7bit
+Content-Disposition: attachment;
+ filename="SDKbuildError.log"
+
+ bitbake bluegiga-console-image
+Pseudo is not present but is required, building this first before the main build
+DEBUG: Removed the following variables from the environment: GNOME_DESKTOP_SESSION_ID, LESSOPEN, GNOME_KEYRING_CONTROL, XDG_SESSION_PATH, LANGUAGE, SHLVL, MANDATORY_PATH, WINDOWID, BBFETCH2, GDMSESSION, XDG_SEAT_PATH, LESSCLOSE, XDG_CURRENT_DESKTOP, BUILDDIR, XDG_CONFIG_DIRS, DEFAULTS_PATH, UBUNTU_MENUPROXY, LS_COLORS
+DEBUG: Found bblayers.conf (/home/shrinivas/Downloads/bluegiga-sdk/build/conf/bblayers.conf)
+DEBUG: LOAD /home/shrinivas/Downloads/bluegiga-sdk/build/conf/bblayers.conf
+DEBUG: Adding layer /home/shrinivas/Downloads/bluegiga-sdk/yocto/meta
+DEBUG: LOAD /home/shrinivas/Downloads/bluegiga-sdk/yocto/meta/conf/layer.conf
+DEBUG: Adding layer /home/shrinivas/Downloads/bluegiga-sdk/yocto/meta-yocto
+DEBUG: LOAD /home/shrinivas/Downloads/bluegiga-sdk/yocto/meta-yocto/conf/layer.conf
+DEBUG: Adding layer /home/shrinivas/Downloads/bluegiga-sdk/yocto/../meta/bluegiga-bsp
+DEBUG: LOAD /home/shrinivas/Downloads/bluegiga-sdk/yocto/../meta/bluegiga-bsp/conf/layer.conf
+DEBUG: Adding layer /home/shrinivas/Downloads/bluegiga-sdk/yocto/../meta/bluegiga-distro
+DEBUG: LOAD /home/shrinivas/Downloads/bluegiga-sdk/yocto/../meta/bluegiga-distro/conf/layer.conf
+DEBUG: Adding layer /home/shrinivas/Downloads/bluegiga-sdk/yocto/../meta/bluegiga-binary-utils
+DEBUG: LOAD /home/shrinivas/Downloads/bluegiga-sdk/yocto/../meta/bluegiga-binary-utils/conf/layer.conf
+DEBUG: Adding layer /home/shrinivas/Downloads/bluegiga-sdk/yocto/../meta/bluegiga-examples
+DEBUG: LOAD /home/shrinivas/Downloads/bluegiga-sdk/yocto/../meta/bluegiga-examples/conf/layer.conf
+DEBUG: LOAD /home/shrinivas/Downloads/bluegiga-sdk/yocto/meta/conf/bitbake.conf
+DEBUG: CONF conf/bitbake.conf:652: including conf/abi_version.conf
+DEBUG: LOAD /home/shrinivas/Downloads/bluegiga-sdk/yocto/meta/conf/abi_version.conf
+DEBUG: CONF conf/bitbake.conf:653: including conf/site.conf
+DEBUG: CONF file 'conf/site.conf' not found
+DEBUG: CONF conf/bitbake.conf:654: including conf/auto.conf
+DEBUG: CONF file 'conf/auto.conf' not found
+DEBUG: CONF conf/bitbake.conf:655: including conf/local.conf
+DEBUG: LOAD conf/local.conf
+DEBUG: CONF conf/bitbake.conf:656: including conf/build/i686-linux.conf
+DEBUG: CONF file 'conf/build/i686-linux.conf' not found
+DEBUG: CONF conf/bitbake.conf:657: including conf/target/INVALID-oe-linux.conf
+DEBUG: CONF file 'conf/target/INVALID-oe-linux.conf' not found
+DEBUG: CONF conf/bitbake.conf:658: including conf/machine/apx4devkit.conf
+DEBUG: LOAD /home/shrinivas/Downloads/bluegiga-sdk/yocto/../meta/bluegiga-bsp/conf/machine/apx4devkit.conf
+DEBUG: CONF /home/shrinivas/Downloads/bluegiga-sdk/yocto/../meta/bluegiga-bsp/conf/machine/apx4devkit.conf:28: including conf/machine/include/tune-arm926ejs.inc
+DEBUG: BB /home/shrinivas/Downloads/bluegiga-sdk/yocto/meta/conf/machine/include/tune-arm926ejs.inc: handle(data, include)
+DEBUG: LOAD /home/shrinivas/Downloads/bluegiga-sdk/yocto/meta/conf/machine/include/tune-arm926ejs.inc
+DEBUG: CONF /home/shrinivas/Downloads/bluegiga-sdk/yocto/meta/conf/machine/include/tune-arm926ejs.inc:3: including conf/machine/include/arm/arch-armv5-dsp.inc
+DEBUG: BB /home/shrinivas/Downloads/bluegiga-sdk/yocto/meta/conf/machine/include/arm/arch-armv5-dsp.inc: handle(data, include)
+DEBUG: LOAD /home/shrinivas/Downloads/bluegiga-sdk/yocto/meta/conf/machine/include/arm/arch-armv5-dsp.inc
+DEBUG: CONF /home/shrinivas/Downloads/bluegiga-sdk/yocto/meta/conf/machine/include/arm/arch-armv5-dsp.inc:3: including conf/machine/include/arm/arch-armv5.inc
+DEBUG: BB /home/shrinivas/Downloads/bluegiga-sdk/yocto/meta/conf/machine/include/arm/arch-armv5.inc: handle(data, include)
+DEBUG: LOAD /home/shrinivas/Downloads/bluegiga-sdk/yocto/meta/conf/machine/include/arm/arch-armv5.inc
+DEBUG: CONF /home/shrinivas/Downloads/bluegiga-sdk/yocto/meta/conf/machine/include/arm/arch-armv5.inc:12: including conf/machine/include/arm/arch-armv4.inc
+DEBUG: BB /home/shrinivas/Downloads/bluegiga-sdk/yocto/meta/conf/machine/include/arm/arch-armv4.inc: handle(data, include)
+DEBUG: LOAD /home/shrinivas/Downloads/bluegiga-sdk/yocto/meta/conf/machine/include/arm/arch-armv4.inc
+DEBUG: CONF /home/shrinivas/Downloads/bluegiga-sdk/yocto/meta/conf/machine/include/arm/arch-armv4.inc:9: including conf/machine/include/arm/arch-arm.inc
+DEBUG: BB /home/shrinivas/Downloads/bluegiga-sdk/yocto/meta/conf/machine/include/arm/arch-arm.inc: handle(data, include)
+DEBUG: LOAD /home/shrinivas/Downloads/bluegiga-sdk/yocto/meta/conf/machine/include/arm/arch-arm.inc
+DEBUG: CONF /home/shrinivas/Downloads/bluegiga-sdk/yocto/meta/conf/machine/include/arm/arch-armv4.inc:10: including conf/machine/include/arm/feature-arm-thumb.inc
+DEBUG: BB /home/shrinivas/Downloads/bluegiga-sdk/yocto/meta/conf/machine/include/arm/feature-arm-thumb.inc: handle(data, include)
+DEBUG: LOAD /home/shrinivas/Downloads/bluegiga-sdk/yocto/meta/conf/machine/include/arm/feature-arm-thumb.inc
+DEBUG: CONF /home/shrinivas/Downloads/bluegiga-sdk/yocto/meta/conf/machine/include/arm/arch-armv5.inc:13: including conf/machine/include/arm/feature-arm-vfp.inc
+DEBUG: BB /home/shrinivas/Downloads/bluegiga-sdk/yocto/meta/conf/machine/include/arm/feature-arm-vfp.inc: handle(data, include)
+DEBUG: LOAD /home/shrinivas/Downloads/bluegiga-sdk/yocto/meta/conf/machine/include/arm/feature-arm-vfp.inc
+DEBUG: CONF conf/bitbake.conf:659: including conf/machine-sdk/${SDKMACHINE}.conf
+DEBUG: CONF file 'conf/machine-sdk/${SDKMACHINE}.conf' not found
+DEBUG: CONF conf/bitbake.conf:660: including conf/distro/bluegiga.conf
+DEBUG: LOAD /home/shrinivas/Downloads/bluegiga-sdk/yocto/../meta/bluegiga-distro/conf/distro/bluegiga.conf
+DEBUG: CONF /home/shrinivas/Downloads/bluegiga-sdk/yocto/../meta/bluegiga-distro/conf/distro/bluegiga.conf:7: including conf/distro/include/distro_version.inc
+DEBUG: BB /home/shrinivas/Downloads/bluegiga-sdk/yocto/../meta/bluegiga-distro/conf/distro/include/distro_version.inc: handle(data, include)
+DEBUG: LOAD /home/shrinivas/Downloads/bluegiga-sdk/yocto/../meta/bluegiga-distro/conf/distro/include/distro_version.inc
+DEBUG: CONF /home/shrinivas/Downloads/bluegiga-sdk/yocto/../meta/bluegiga-distro/conf/distro/bluegiga.conf:8: including conf/distro/include/software_versions.inc
+DEBUG: BB /home/shrinivas/Downloads/bluegiga-sdk/yocto/../meta/bluegiga-distro/conf/distro/include/software_versions.inc: handle(data, include)
+DEBUG: LOAD /home/shrinivas/Downloads/bluegiga-sdk/yocto/../meta/bluegiga-distro/conf/distro/include/software_versions.inc
+DEBUG: CONF conf/bitbake.conf:661: including conf/distro/defaultsetup.conf
+DEBUG: LOAD /home/shrinivas/Downloads/bluegiga-sdk/yocto/meta/conf/distro/defaultsetup.conf
+DEBUG: CONF /home/shrinivas/Downloads/bluegiga-sdk/yocto/meta/conf/distro/defaultsetup.conf:1: including conf/distro/include/default-providers.inc
+DEBUG: BB /home/shrinivas/Downloads/bluegiga-sdk/yocto/meta/conf/distro/include/default-providers.inc: handle(data, include)
+DEBUG: LOAD /home/shrinivas/Downloads/bluegiga-sdk/yocto/meta/conf/distro/include/default-providers.inc
+DEBUG: CONF /home/shrinivas/Downloads/bluegiga-sdk/yocto/meta/conf/distro/defaultsetup.conf:2: including conf/distro/include/default-versions.inc
+DEBUG: BB /home/shrinivas/Downloads/bluegiga-sdk/yocto/meta/conf/distro/include/default-versions.inc: handle(data, include)
+DEBUG: LOAD /home/shrinivas/Downloads/bluegiga-sdk/yocto/meta/conf/distro/include/default-versions.inc
+DEBUG: CONF /home/shrinivas/Downloads/bluegiga-sdk/yocto/meta/conf/distro/defaultsetup.conf:3: including conf/distro/include/default-distrovars.inc
+DEBUG: BB /home/shrinivas/Downloads/bluegiga-sdk/yocto/meta/conf/distro/include/default-distrovars.inc: handle(data, include)
+DEBUG: LOAD /home/shrinivas/Downloads/bluegiga-sdk/yocto/meta/conf/distro/include/default-distrovars.inc
+DEBUG: CONF /home/shrinivas/Downloads/bluegiga-sdk/yocto/meta/conf/distro/defaultsetup.conf:4: including conf/distro/include/world-broken.inc
+DEBUG: BB /home/shrinivas/Downloads/bluegiga-sdk/yocto/meta/conf/distro/include/world-broken.inc: handle(data, include)
+DEBUG: LOAD /home/shrinivas/Downloads/bluegiga-sdk/yocto/meta/conf/distro/include/world-broken.inc
+DEBUG: CONF /home/shrinivas/Downloads/bluegiga-sdk/yocto/meta/conf/distro/defaultsetup.conf:7: including conf/distro/include/tcmode-default.inc
+DEBUG: BB /home/shrinivas/Downloads/bluegiga-sdk/yocto/meta/conf/distro/include/tcmode-default.inc: handle(data, include)
+DEBUG: LOAD /home/shrinivas/Downloads/bluegiga-sdk/yocto/meta/conf/distro/include/tcmode-default.inc
+DEBUG: CONF /home/shrinivas/Downloads/bluegiga-sdk/yocto/meta/conf/distro/include/tcmode-default.inc:59: including conf/distro/include/as-needed.inc
+DEBUG: BB /home/shrinivas/Downloads/bluegiga-sdk/yocto/meta/conf/distro/include/as-needed.inc: handle(data, include)
+DEBUG: LOAD /home/shrinivas/Downloads/bluegiga-sdk/yocto/meta/conf/distro/include/as-needed.inc
+DEBUG: CONF /home/shrinivas/Downloads/bluegiga-sdk/yocto/meta/conf/distro/defaultsetup.conf:10: including conf/distro/include/tclibc-eglibc.inc
+DEBUG: BB /home/shrinivas/Downloads/bluegiga-sdk/yocto/meta/conf/distro/include/tclibc-eglibc.inc: handle(data, include)
+DEBUG: LOAD /home/shrinivas/Downloads/bluegiga-sdk/yocto/meta/conf/distro/include/tclibc-eglibc.inc
+DEBUG: CONF conf/bitbake.conf:662: including conf/documentation.conf
+DEBUG: LOAD /home/shrinivas/Downloads/bluegiga-sdk/yocto/meta/conf/documentation.conf
+DEBUG: CONF conf/bitbake.conf:663: including conf/sanity.conf
+DEBUG: LOAD /home/shrinivas/Downloads/bluegiga-sdk/yocto/meta/conf/sanity.conf
+DEBUG: BB configuration INHERITs:0: inheriting classes/base.bbclass
+DEBUG: BB /home/shrinivas/Downloads/bluegiga-sdk/yocto/meta/classes/base.bbclass: handle(data, include)
+DEBUG: LOAD /home/shrinivas/Downloads/bluegiga-sdk/yocto/meta/classes/base.bbclass
+DEBUG: BB /home/shrinivas/Downloads/bluegiga-sdk/yocto/meta/classes/base.bbclass:3: inheriting classes/patch.bbclass
+DEBUG: BB /home/shrinivas/Downloads/bluegiga-sdk/yocto/meta/classes/patch.bbclass: handle(data, include)
+DEBUG: LOAD /home/shrinivas/Downloads/bluegiga-sdk/yocto/meta/classes/patch.bbclass
+DEBUG: BB /home/shrinivas/Downloads/bluegiga-sdk/yocto/meta/classes/patch.bbclass:8: inheriting classes/terminal.bbclass
+DEBUG: BB /home/shrinivas/Downloads/bluegiga-sdk/yocto/meta/classes/terminal.bbclass: handle(data, include)
+DEBUG: LOAD /home/shrinivas/Downloads/bluegiga-sdk/yocto/meta/classes/terminal.bbclass
+DEBUG: BB /home/shrinivas/Downloads/bluegiga-sdk/yocto/meta/classes/base.bbclass:4: inheriting classes/staging.bbclass
+DEBUG: BB /home/shrinivas/Downloads/bluegiga-sdk/yocto/meta/classes/staging.bbclass: handle(data, include)
+DEBUG: LOAD /home/shrinivas/Downloads/bluegiga-sdk/yocto/meta/classes/staging.bbclass
+DEBUG: BB /home/shrinivas/Downloads/bluegiga-sdk/yocto/meta/classes/base.bbclass:6: inheriting classes/mirrors.bbclass
+DEBUG: BB /home/shrinivas/Downloads/bluegiga-sdk/yocto/meta/classes/mirrors.bbclass: handle(data, include)
+DEBUG: LOAD /home/shrinivas/Downloads/bluegiga-sdk/yocto/meta/classes/mirrors.bbclass
+DEBUG: BB /home/shrinivas/Downloads/bluegiga-sdk/yocto/meta/classes/base.bbclass:7: inheriting classes/utils.bbclass
+DEBUG: BB /home/shrinivas/Downloads/bluegiga-sdk/yocto/meta/classes/utils.bbclass: handle(data, include)
+DEBUG: LOAD /home/shrinivas/Downloads/bluegiga-sdk/yocto/meta/classes/utils.bbclass
+DEBUG: BB /home/shrinivas/Downloads/bluegiga-sdk/yocto/meta/classes/base.bbclass:8: inheriting classes/utility-tasks.bbclass
+DEBUG: BB /home/shrinivas/Downloads/bluegiga-sdk/yocto/meta/classes/utility-tasks.bbclass: handle(data, include)
+DEBUG: LOAD /home/shrinivas/Downloads/bluegiga-sdk/yocto/meta/classes/utility-tasks.bbclass
+DEBUG: BB /home/shrinivas/Downloads/bluegiga-sdk/yocto/meta/classes/base.bbclass:9: inheriting classes/metadata_scm.bbclass
+DEBUG: BB /home/shrinivas/Downloads/bluegiga-sdk/yocto/meta/classes/metadata_scm.bbclass: handle(data, include)
+DEBUG: LOAD /home/shrinivas/Downloads/bluegiga-sdk/yocto/meta/classes/metadata_scm.bbclass
+DEBUG: BB /home/shrinivas/Downloads/bluegiga-sdk/yocto/meta/classes/base.bbclass:10: inheriting classes/logging.bbclass
+DEBUG: BB /home/shrinivas/Downloads/bluegiga-sdk/yocto/meta/classes/logging.bbclass: handle(data, include)
+DEBUG: LOAD /home/shrinivas/Downloads/bluegiga-sdk/yocto/meta/classes/logging.bbclass
+DEBUG: BB configuration INHERITs:0: inheriting classes/package_ipk.bbclass
+DEBUG: BB /home/shrinivas/Downloads/bluegiga-sdk/yocto/meta/classes/package_ipk.bbclass: handle(data, include)
+DEBUG: LOAD /home/shrinivas/Downloads/bluegiga-sdk/yocto/meta/classes/package_ipk.bbclass
+DEBUG: BB /home/shrinivas/Downloads/bluegiga-sdk/yocto/meta/classes/package_ipk.bbclass:1: inheriting classes/package.bbclass
+DEBUG: BB /home/shrinivas/Downloads/bluegiga-sdk/yocto/meta/classes/package.bbclass: handle(data, include)
+DEBUG: LOAD /home/shrinivas/Downloads/bluegiga-sdk/yocto/meta/classes/package.bbclass
+DEBUG: BB /home/shrinivas/Downloads/bluegiga-sdk/yocto/meta/classes/package.bbclass:41: inheriting classes/packagedata.bbclass
+DEBUG: BB /home/shrinivas/Downloads/bluegiga-sdk/yocto/meta/classes/packagedata.bbclass: handle(data, include)
+DEBUG: LOAD /home/shrinivas/Downloads/bluegiga-sdk/yocto/meta/classes/packagedata.bbclass
+DEBUG: BB /home/shrinivas/Downloads/bluegiga-sdk/yocto/meta/classes/package.bbclass:42: inheriting classes/prserv.bbclass
+DEBUG: BB /home/shrinivas/Downloads/bluegiga-sdk/yocto/meta/classes/prserv.bbclass: handle(data, include)
+DEBUG: LOAD /home/shrinivas/Downloads/bluegiga-sdk/yocto/meta/classes/prserv.bbclass
+DEBUG: BB configuration INHERITs:0: inheriting classes/buildstats.bbclass
+DEBUG: BB /home/shrinivas/Downloads/bluegiga-sdk/yocto/meta/classes/buildstats.bbclass: handle(data, include)
+DEBUG: LOAD /home/shrinivas/Downloads/bluegiga-sdk/yocto/meta/classes/buildstats.bbclass
+DEBUG: BB configuration INHERITs:0: inheriting classes/image-mklibs.bbclass
+DEBUG: BB /home/shrinivas/Downloads/bluegiga-sdk/yocto/meta/classes/image-mklibs.bbclass: handle(data, include)
+DEBUG: LOAD /home/shrinivas/Downloads/bluegiga-sdk/yocto/meta/classes/image-mklibs.bbclass
+DEBUG: BB configuration INHERITs:0: inheriting classes/image-prelink.bbclass
+DEBUG: BB /home/shrinivas/Downloads/bluegiga-sdk/yocto/meta/classes/image-prelink.bbclass: handle(data, include)
+DEBUG: LOAD /home/shrinivas/Downloads/bluegiga-sdk/yocto/meta/classes/image-prelink.bbclass
+DEBUG: BB configuration INHERITs:0: inheriting classes/insane.bbclass
+DEBUG: BB /home/shrinivas/Downloads/bluegiga-sdk/yocto/meta/classes/insane.bbclass: handle(data, include)
+DEBUG: LOAD /home/shrinivas/Downloads/bluegiga-sdk/yocto/meta/classes/insane.bbclass
+DEBUG: BB configuration INHERITs:0: inheriting classes/debian.bbclass
+DEBUG: BB /home/shrinivas/Downloads/bluegiga-sdk/yocto/meta/classes/debian.bbclass: handle(data, include)
+DEBUG: LOAD /home/shrinivas/Downloads/bluegiga-sdk/yocto/meta/classes/debian.bbclass
+DEBUG: BB configuration INHERITs:0: inheriting classes/devshell.bbclass
+DEBUG: BB /home/shrinivas/Downloads/bluegiga-sdk/yocto/meta/classes/devshell.bbclass: handle(data, include)
+DEBUG: LOAD /home/shrinivas/Downloads/bluegiga-sdk/yocto/meta/classes/devshell.bbclass
+DEBUG: BB configuration INHERITs:0: inheriting classes/sstate.bbclass
+DEBUG: BB /home/shrinivas/Downloads/bluegiga-sdk/yocto/meta/classes/sstate.bbclass: handle(data, include)
+DEBUG: LOAD /home/shrinivas/Downloads/bluegiga-sdk/yocto/meta/classes/sstate.bbclass
+DEBUG: BB configuration INHERITs:0: inheriting classes/license.bbclass
+DEBUG: BB /home/shrinivas/Downloads/bluegiga-sdk/yocto/meta/classes/license.bbclass: handle(data, include)
+DEBUG: LOAD /home/shrinivas/Downloads/bluegiga-sdk/yocto/meta/classes/license.bbclass
+DEBUG: BB configuration INHERITs:0: inheriting classes/sanity.bbclass
+DEBUG: BB /home/shrinivas/Downloads/bluegiga-sdk/yocto/meta/classes/sanity.bbclass: handle(data, include)
+DEBUG: LOAD /home/shrinivas/Downloads/bluegiga-sdk/yocto/meta/classes/sanity.bbclass
+DEBUG: Clearing SRCREV cache due to cache policy of: clear
+ERROR: Error parsing configuration files
+Traceback (most recent call last):
+  File "/home/shrinivas/Downloads/bluegiga-sdk/yocto/bitbake/lib/bb/cooker.py", line 197, in BBCooker.loadConfigurationData():
+                 self.parseConfigurationFiles(self.configuration.prefile,
+    >                                         self.configuration.postfile)
+             except SyntaxError:
+  File "/home/shrinivas/Downloads/bluegiga-sdk/yocto/bitbake/lib/bb/cooker.py", line 870, in BBCooker.parseConfigurationFiles(prefiles=[], postfiles=[]):
+             if data.getVar("BB_WORKERCONTEXT", False) is None:
+    >            bb.fetch.fetcher_init(data)
+             bb.codeparser.parser_cache_init(data)
+  File "/home/shrinivas/Downloads/bluegiga-sdk/yocto/bitbake/lib/bb/fetch2/__init__.py", line 228, in fetcher_init(d=<bb.data_smart.DataSmart object at 0x8faf8cc>):
+                 pass
+    >        revs.clear()
+         else:
+  File "/home/shrinivas/Downloads/bluegiga-sdk/yocto/bitbake/lib/bb/persist_data.py", line 142, in SQLTable.clear():
+         def clear(self):
+    >        self._execute("DELETE FROM %s;" % self.table)
+     
+  File "/home/shrinivas/Downloads/bluegiga-sdk/yocto/bitbake/lib/bb/persist_data.py", line 66, in SQLTable._execute(*query=('DELETE FROM BB_URI_HEADREVS;',)):
+                 try:
+    >                return self.cursor.execute(*query)
+                 except sqlite3.OperationalError as exc:
+OperationalError: attempt to write a readonly database
+
+
+--------------040403030107080100080304--
