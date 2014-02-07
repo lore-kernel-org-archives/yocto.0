@@ -1,23 +1,25 @@
-Return-Path: <stefanx.stanacar@intel.com>
-Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A21D2E006C4
-	for <yocto@yoctoproject.org>; Fri,  7 Feb 2014 03:01:29 -0800 (PST)
-Received: from azsmga002.ch.intel.com ([10.2.17.35])
-	by azsmga102.ch.intel.com with ESMTP; 07 Feb 2014 03:01:29 -0800
+Return-Path: <paul.eggleton@linux.intel.com>
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8E63BE006EE
+	for <yocto@yoctoproject.org>; Fri,  7 Feb 2014 03:02:16 -0800 (PST)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga101.fm.intel.com with ESMTP; 07 Feb 2014 03:02:15 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.95,799,1384329600"; d="scan'208";a="339426000"
-Received: from linux.jf.intel.com (HELO linux.intel.com) ([10.23.219.25])
-	by AZSMGA002.ch.intel.com with ESMTP; 07 Feb 2014 03:01:28 -0800
-Received: from firebird.rb.intel.com (firebird.rb.intel.com [10.237.105.156])
-	by linux.intel.com (Postfix) with ESMTP id B1CD96A4007;
-	Fri,  7 Feb 2014 03:01:20 -0800 (PST)
-From: Stefan Stanacar <stefanx.stanacar@intel.com>
-To: yocto@yoctoproject.org,
-	elizabeth.flanagan@intel.com
-Date: Fri,  7 Feb 2014 13:01:22 +0200
-Message-Id: <1391770883-14353-1-git-send-email-stefanx.stanacar@intel.com>
-X-Mailer: git-send-email 1.8.5.3
-Subject: [yocto-autobuilder][PATCH] buildsets: add a new buildset to run builds on target
+X-IronPort-AV: E=Sophos;i="4.95,799,1384329600"; d="scan'208";a="477492004"
+Received: from ryanpete-mobl.ger.corp.intel.com (HELO
+	peggleto-mobl5.ger.corp.intel.com) ([10.252.123.135])
+	by fmsmga002.fm.intel.com with ESMTP; 07 Feb 2014 03:01:45 -0800
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: Adrian Dudau <Adrian.Dudau@enea.com>
+Date: Fri, 07 Feb 2014 10:28:20 +0000
+Message-ID: <1688934.FUjqbafrUe@peggleto-mobl5.ger.corp.intel.com>
+Organization: Intel Corporation
+User-Agent: KMail/4.12.2 (Linux/3.12.9-301.fc20.x86_64; KDE/4.12.2; x86_64; ; )
+In-Reply-To: <1391766483.4155.33.camel@sestows129.enea.se>
+References: <1391766483.4155.33.camel@sestows129.enea.se>
+MIME-Version: 1.0
+Cc: yocto@yoctoproject.org
+Subject: Re: release branches and package upgrades
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -29,51 +31,44 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 07 Feb 2014 11:01:36 -0000
+X-List-Received-Date: Fri, 07 Feb 2014 11:02:17 -0000
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-Builds core-image-sato-sdk for each qemu arch and
-runs tests building sudoku/cvs/iptables.
-These do take a while, so they shouldn't be added to nightly!
+Hi Adrian,
 
-Signed-off-by: Stefan Stanacar <stefanx.stanacar@intel.com>
----
- .../nightly-qa-targetbuilds.conf                   | 26 ++++++++++++++++++++++
- 1 file changed, 26 insertions(+)
- create mode 100644 buildset-config.master/nightly-qa-targetbuilds.conf
+On Friday 07 February 2014 09:47:56 Adrian Dudau wrote:
+> I would like to understand Yocto Project's policy on the
+> release/maintenance branches (dora,dylan etc). My understanding was that
+> these were considered stable branches and only bugfixes and general
+> fixes that would not affect functionality were merged onto them.
+> 
+> However, lately, we identified patches that upgrade package versions and
+> introduced some problems in our distro. We had a hard time identifying
+> the source of these problems, since we expected the maintenance branch
+> not to change in this way.
+> 
+> Here are a couple of these patches as example in poky/dora branch:
+> 50574e41b882c3f2633f69486593eaea54d8e554
+> 63335c87c1904287cdd5fd28d0ad6a73e985f2a4
 
-diff --git a/buildset-config.master/nightly-qa-targetbuilds.conf b/buildset-config.master/nightly-qa-targetbuilds.conf
-new file mode 100644
-index 0000000..a95db78
---- /dev/null
-+++ b/buildset-config.master/nightly-qa-targetbuilds.conf
-@@ -0,0 +1,26 @@
-+[nightly-qa-targetbuilds]
-+builders: 'builder1'
-+repos: [{'poky':
-+            {'repourl':'git://git.yoctoproject.org/poky',
-+             'layerversion':{'core':'meta', 'yoctobsp':'meta-yocto-bsp'},
-+             'branch':'master'}}]
-+steps: [{'SetDest':{}},
-+        {'CheckOutLayers': {}},
-+        {'RunPreamble': {}},
-+        {'GetDistroVersion' : {'distro': 'poky'}},
-+        {'CreateAutoConf': {'machine': 'qemux86-64', 'SDKMACHINE' : 'x86_64', 'distro': 'poky'}},
-+        {'CreateBBLayersConf': {'buildprovider' : 'yocto'}},
-+        {'BuildImages': {'images': 'core-image-sato-sdk'}},
-+        {'RunSanityTests': {'images': 'core-image-sato-sdk', 'suites' : 'ping ssh buildsudoku buildcvs buildiptables'}},
-+        {'CreateAutoConf': {'machine': 'qemux86', 'SDKMACHINE' : 'x86_64', 'distro': 'poky'}},
-+        {'BuildImages': {'images': 'core-image-sato-sdk'}},
-+        {'RunSanityTests': {'images': 'core-image-sato-sdk', 'suites' : 'ping ssh buildsudoku buildcvs buildiptables'}},
-+        {'CreateAutoConf': {'machine': 'qemuarm', 'SDKMACHINE' : 'x86_64', 'distro': 'poky'}},
-+        {'BuildImages': {'images': 'core-image-sato-sdk'}},
-+        {'RunSanityTests': {'images': 'core-image-sato-sdk', 'suites' : 'ping ssh buildsudoku buildcvs buildiptables'}},
-+        {'CreateAutoConf': {'machine': 'qemuppc', 'SDKMACHINE' : 'x86_64', 'distro': 'poky'}},
-+        {'BuildImages': {'images': 'core-image-sato-sdk'}},
-+        {'RunSanityTests': {'images': 'core-image-sato-sdk', 'suites' : 'ping ssh buildsudoku buildcvs buildiptables'}},
-+        {'CreateAutoConf': {'machine': 'qemumips', 'SDKMACHINE' : 'x86_64', 'distro': 'poky'}},
-+        {'BuildImages': {'images': 'core-image-sato-sdk'}},
-+        {'RunSanityTests': {'images': 'core-image-sato-sdk', 'suites' : 'ping ssh buildsudoku buildcvs buildiptables'}}]
+Is that second revision correct? I don't see an upgrade of powertop to 2.5 on 
+the dora branch.
+ 
+> My question is: are patches like these normal and should we expect to
+> get version upgrades for packages on the maintenance branches as well?
+
+No, it is unusual to do recipe version upgrades in stable branches. For 
+reference, here is a page I wrote on the wiki which describes how the stable 
+branches should be managed:
+
+https://wiki.yoctoproject.org/wiki/Stable_branch_maintenance
+
+Cheers,
+Paul
+
 -- 
-1.8.5.3
 
+Paul Eggleton
+Intel Open Source Technology Centre
 
