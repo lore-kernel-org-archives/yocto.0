@@ -1,27 +1,31 @@
-Return-Path: <Liezhi.Yang@windriver.com>
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E3178E006B5
-	for <yocto@yoctoproject.org>; Thu,  6 Feb 2014 21:54:05 -0800 (PST)
-Received: from ALA-HCB.corp.ad.wrs.com (ala-hcb.corp.ad.wrs.com
-	[147.11.189.41])
-	by mail.windriver.com (8.14.5/8.14.5) with ESMTP id s175rvbT021393
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Thu, 6 Feb 2014 21:53:57 -0800 (PST)
-Received: from [128.224.26.32] (128.224.26.32) by ALA-HCB.corp.ad.wrs.com
-	(147.11.189.41) with Microsoft SMTP Server id 14.2.347.0;
-	Thu, 6 Feb 2014 21:53:56 -0800
-Message-ID: <52F474F0.3040303@windriver.com>
-Date: Fri, 7 Feb 2014 13:53:52 +0800
-From: Robert Yang <liezhi.yang@windriver.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:24.0) Gecko/20100101 Thunderbird/24.2.0
+Return-Path: <elizabeth.flanagan@intel.com>
+Received: from mail-qc0-f181.google.com (mail-qc0-f181.google.com
+	[209.85.216.181])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A1AF1E006AD
+	for <yocto@yoctoproject.org>; Fri,  7 Feb 2014 00:16:22 -0800 (PST)
+Received: by mail-qc0-f181.google.com with SMTP id e9so5337389qcy.12
+	for <yocto@yoctoproject.org>; Fri, 07 Feb 2014 00:16:21 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:date:message-id:subject:from:to
+	:content-type;
+	bh=MB8KHSJw9UsQ+C/4pIjOd3kRCfPYDFI8XY8CZxWuAIM=;
+	b=fy2MMDR5YZ3nLAsKeFfxPqaCC3aRKG/c1ymGy2dOtMxhDzEuu149mhbbERYfYprEc3
+	ayHsbDngor505a5OIGwd4M1KI/g1CVnXSMFuXf6kW27MEdUyOpShN341nBGlaf9o/Uxa
+	k8FAccrfW436wnhux46wihZw8ABNj5DaBfKryKx8RNW6RXdJVnO4HKwkKQDy1qLfceSC
+	hkHObX+cg5tzWzUZvKEVrMKYMkXjTByByzIR/+7RcLufmnU1bAwJSI23TIfUAuSGpFkL
+	Hoah5PSz2XZE4Iqe0ziVXvjVf6FH3ltVpJqp8WpYfl3VZNPQTi87TUSk6Kh3N/mk7BHH
+	o2wA==
+X-Gm-Message-State: ALoCoQlqe7HEAHJaVfedcI6wU7j22O6A/gDbdyxPeKE4xuE/4uBCdK7CgPki3nCSADTDkdd0OmZK
 MIME-Version: 1.0
-To: Otavio Salvador <otavio@ossystems.com.br>, Patches and discussions about
-	the oe-core layer <openembedded-core@lists.openembedded.org>, yocto
-	<yocto@yoctoproject.org>, "Eggleton, Paul" <paul.eggleton@linux.intel.com>
-References: <CAP9ODKoYRMKW70m6CBryNm3EoGdEMrOSn1hduAA0ROrQg8Cr4g@mail.gmail.com>
-In-Reply-To: <CAP9ODKoYRMKW70m6CBryNm3EoGdEMrOSn1hduAA0ROrQg8Cr4g@mail.gmail.com>
-Subject: Re: [for-dora] Dora backports
+X-Received: by 10.140.22.232 with SMTP id 95mr18248199qgn.82.1391760980927;
+	Fri, 07 Feb 2014 00:16:20 -0800 (PST)
+Received: by 10.140.49.239 with HTTP; Fri, 7 Feb 2014 00:16:20 -0800 (PST)
+Date: Fri, 7 Feb 2014 08:16:20 +0000
+Message-ID: <CAPhnLPBdU=meyvZ+OqXkMETK9SEK9gFiVRd9j8iCYC116e3_PQ@mail.gmail.com>
+From: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: 1.6_M2 released
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -33,41 +37,27 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 07 Feb 2014 05:54:07 -0000
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Fri, 07 Feb 2014 08:16:23 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
+The next milestone release for the upcoming Yocto Project 1.6 release
+is now available at:
 
-Hi Otavio,
+http://downloads.yoctoproject.org/releases/yocto/milestones/1.6_M2
 
-Thanks, I will add it to dora-next by next Tue since I'm OOO this week.
+Thank you everyone for all your contributions.
 
-// Robert
+eclipse-poky-juno 26bfc407781aa185f244a47ba63120343cee4a37
+eclipse-poky-kepler c73c6e4510c42601854f3c542ca6e14b4510380c
+meta-fsl-arm 7629b77c63ad9e1ef0c928451626eaac4173d054
+meta-fsl-ppc 1536064e02f15761e90f784d88f2a930784f7f3d
+meta-intel d8c1d14f9e0a87a0b4357b8764a0df40cc22f789
+meta-minnow 6a4f0dd875a5ec0303ab4387944dc7eb98508769
+meta-qt3 4772424ab69908d4e3b9d6d4717ca889468e6acd
+poky 1a9226f140f578f11696abf1a3c989fae1d4c14a
 
-On 2014年02月03日 23:51, Otavio Salvador wrote:
-> Hello,
->
-> I am adding OE-Core and Yocto mailing list as destination as this has
-> fixes for both.
->
-> While setting a build system, in a very clean host installation I
-> found some issues which were fixed in master and ought to be
-> backported to Dora:
->
-> meta-yocto:
->   - 1893d1576c1e7acc9881b3392a838c575019f18d (poky.conf: add Debian 7.2
-> to SANITY_TESTED_DISTROS)
->   - a452c02c880d1840f1150e59eede3f173f067c5f (poky.conf: add Debian 7.3
-> to SANITY_TESTED_DISTROS)
->
-> OE-Core:
->   - 97e1d84e2d1a74791ce6af88ddc27963bc0e1bec (base.bbclass: pull in
-> file-native for src.rpm)
->
-> Specially the missing 'file' took me some time to figure so it is
-> horrible to have this error for new users. This could be fixed for
-> older releases as well (dylan at least).
->
-> Regards,
->
+-- 
+Elizabeth Flanagan
+Yocto Project
+Build and Release
 
