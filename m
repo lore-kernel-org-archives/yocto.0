@@ -1,22 +1,36 @@
-Return-Path: <Rongqing.Li@windriver.com>
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4E575E0076F
-	for <yocto@yoctoproject.org>; Sun,  9 Feb 2014 23:11:21 -0800 (PST)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail.windriver.com (8.14.5/8.14.5) with ESMTP id s1A7BKDa026390
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL)
-	for <yocto@yoctoproject.org>; Sun, 9 Feb 2014 23:11:21 -0800 (PST)
-Received: from lirq-OptiPlex-780.corp.ad.wrs.com (128.224.162.168) by
-	ALA-HCA.corp.ad.wrs.com (147.11.189.40) with Microsoft SMTP Server id
-	14.2.347.0; Sun, 9 Feb 2014 23:11:20 -0800
-From: <rongqing.li@windriver.com>
-To: <yocto@yoctoproject.org>
-Date: Mon, 10 Feb 2014 15:12:07 +0800
-Message-ID: <cover.1392002007.git.rongqing.li@windriver.com>
-X-Mailer: git-send-email 1.7.10.4
+Return-Path: <raj.khem@gmail.com>
+Received: from mail-ig0-f178.google.com (mail-ig0-f178.google.com
+	[209.85.213.178])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A57A2E0076C
+	for <yocto@yoctoproject.org>; Sun,  9 Feb 2014 23:31:58 -0800 (PST)
+Received: by mail-ig0-f178.google.com with SMTP id uq10so6099486igb.5
+	for <yocto@yoctoproject.org>; Sun, 09 Feb 2014 23:31:57 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-type:content-transfer-encoding;
+	bh=+rphmacguwuYXClqmWhioiFfMudzHVWYQId4YZRoq8g=;
+	b=Ngk6omCDdM2y0U6KV8m8vdgqGVuYVTi2Nz7PcQkDhF9AU1cYb2ZkfvRuw8DZsoIYfs
+	mCl/8bn+fac02ojVM1suCATGChqK5u6kvwHFoSZCiWFa9LiY5AxJgDUBFyidlf/RUMyh
+	TuVsctL11zwwHtPo5qvIZ8bSjCq7Ytt89o8i2hMciFLFRgQYWr5gjc3hMQYgZOwJ72Kq
+	9qOmp8xff6uhTrCDLwOtPm0fXsYMHS+g0OpZMU86R9rxqs6Oi2zwejrIbHFPDgfNIS/5
+	JBy2034vS8NMCAlsSGyRhMNZuQXpo2y2tj+hVYKzu6KLZIECtMqFNMNCKk67atvK/rFI
+	AaIQ==
+X-Received: by 10.43.65.145 with SMTP id xm17mr14324912icb.35.1392017517706;
+	Sun, 09 Feb 2014 23:31:57 -0800 (PST)
 MIME-Version: 1.0
-Subject: [meta-selinux][PATCH 0/1] refpolicy: backport two patches
+Received: by 10.50.8.137 with HTTP; Sun, 9 Feb 2014 23:31:27 -0800 (PST)
+In-Reply-To: <31681ec9-08a2-426e-b3d2-72f6c0d22073@AM1EHSMHS015.ehs.local>
+References: <CAMKF1sptnVxCrjm7PAOCtRWzmSsxPv4nc0nUO82jMPQ+BCz9Hg@mail.gmail.com>
+	<31681ec9-08a2-426e-b3d2-72f6c0d22073@AM1EHSMHS015.ehs.local>
+From: Khem Raj <raj.khem@gmail.com>
+Date: Sun, 9 Feb 2014 23:31:27 -0800
+Message-ID: <CAMKF1srC03NP0XkoL2Qy9X7hRt_FhQy3tG_rf=mbqhYvJ=soig@mail.gmail.com>
+To: Nathan Rossi <nathan.rossi@xilinx.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
+	openembeded-devel <Openembedded-devel@lists.openembedded.org>,
+	Patches and discussions about the oe-core layer
+	<openembedded-core@lists.openembedded.org>
+Subject: Re: [OE-core] [RFT] eglibc 2.19
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -28,32 +42,74 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 10 Feb 2014 07:11:24 -0000
-Content-Type: text/plain
+X-List-Received-Date: Mon, 10 Feb 2014 07:32:03 -0000
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-From: Roy Li <rongqing.li@windriver.com>
+On Sun, Feb 9, 2014 at 9:32 PM, Nathan Rossi <nathan.rossi@xilinx.com> wrot=
+e:
+>> -----Original Message-----
+>> From: openembedded-core-bounces@lists.openembedded.org
+>> [mailto:openembedded-core-bounces@lists.openembedded.org] On Behalf Of
+>> Khem Raj
+>> Sent: Sunday, February 09, 2014 2:08 AM
+>> To: Patches and discussions about the oe-core layer; openembeded-devel;
+>> yocto@yoctoproject.org
+>> Subject: [OE-core] [RFT] eglibc 2.19
+>>
+>> Hi all
+>>
+>> I have staged a branch with eglibc 2.19 upgraded recipes here
+>>
+>> http://git.openembedded.org/openembedded-core-contrib/log/?h=3Dkraj/egli=
+bc-
+>> 2.19
+>>
+>> These are not final recipes there may be tweaks needed like adjusting
+>> SRC_URI
+>> later on.
+>>
+>> please help testing it out in your environments and machines
+>> I would be happy to help out with issues we find
+>
+> Hi Khem,
+>
+> I have given it a test with the machines on the meta-xilinx layer, specif=
+ically ARM Cortex A9 and MicroBlaze architectures. And there appears to be =
+no issues.
 
-The following changes since commit 13266999932edaa334b24c18c79815eb19559b86:
+Thanks for the report.
 
-  refpolicy: Allow ping to get/set capabilities (2014-01-28 16:41:59 +0800)
+>
+> Also I couldn't access your eglibc source tarball because of pesky corpor=
+ate web filters, so I used a direct svn export of the upstream repo at the =
+revision 25243, I assume there should be no differences?
 
-are available in the git repository at:
+there are no functional differences.
 
-  git://git.pokylinux.org/poky-contrib roy/refpolicy-backport-dhclient-hostname
-  http://git.pokylinux.org/cgit.cgi/poky-contrib/log/?h=roy/refpolicy-backport-dhclient-hostname
+>
+> On a side note, I haven't seen any mention of what is next regarding oe-c=
+ore and eglibc. Since the eglibc project has closed its development (http:/=
+/www.eglibc.org/archives/patches/msg01327.html), and that 2.19 is the final=
+ version. Are there any plans to switch oe-core to using glibc for the futu=
+re? Just curious is all.
 
-Roy Li (1):
-  refpolicy: backport two patches to fix dhclient, hostname and
-    ifconfig
+Sure there definitely are and we discussed it in Last OE meeting on
+IRC recently, we will plan moving to using glibc after 2.19, so these
+will be last 2.19 eglibc recipes.
 
- ...-not-audit-attempts-by-hostname-to-read-a.patch |   59 ++++++++++++++++++++
- ...dhcpc-binds-socket-to-random-high-udp-por.patch |   41 ++++++++++++++
- .../refpolicy/refpolicy_2.20130424.inc             |    2 +
- 3 files changed, 102 insertions(+)
- create mode 100644 recipes-security/refpolicy/refpolicy-2.20130424/hostname-do-not-audit-attempts-by-hostname-to-read-a.patch
- create mode 100644 recipes-security/refpolicy/refpolicy-2.20130424/sysnetwork-dhcpc-binds-socket-to-random-high-udp-por.patch
-
--- 
-1.7.10.4
-
+>
+> Regards,
+> Nathan
+>
+>>
+>> Thank you
+>>
+>> -Khem
+>> _______________________________________________
+>> Openembedded-core mailing list
+>> Openembedded-core@lists.openembedded.org
+>> http://lists.openembedded.org/mailman/listinfo/openembedded-core
+>
+>
 
