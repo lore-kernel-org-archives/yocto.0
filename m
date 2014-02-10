@@ -1,36 +1,24 @@
-Return-Path: <raj.khem@gmail.com>
-Received: from mail-ig0-f178.google.com (mail-ig0-f178.google.com
-	[209.85.213.178])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A57A2E0076C
-	for <yocto@yoctoproject.org>; Sun,  9 Feb 2014 23:31:58 -0800 (PST)
-Received: by mail-ig0-f178.google.com with SMTP id uq10so6099486igb.5
-	for <yocto@yoctoproject.org>; Sun, 09 Feb 2014 23:31:57 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-type:content-transfer-encoding;
-	bh=+rphmacguwuYXClqmWhioiFfMudzHVWYQId4YZRoq8g=;
-	b=Ngk6omCDdM2y0U6KV8m8vdgqGVuYVTi2Nz7PcQkDhF9AU1cYb2ZkfvRuw8DZsoIYfs
-	mCl/8bn+fac02ojVM1suCATGChqK5u6kvwHFoSZCiWFa9LiY5AxJgDUBFyidlf/RUMyh
-	TuVsctL11zwwHtPo5qvIZ8bSjCq7Ytt89o8i2hMciFLFRgQYWr5gjc3hMQYgZOwJ72Kq
-	9qOmp8xff6uhTrCDLwOtPm0fXsYMHS+g0OpZMU86R9rxqs6Oi2zwejrIbHFPDgfNIS/5
-	JBy2034vS8NMCAlsSGyRhMNZuQXpo2y2tj+hVYKzu6KLZIECtMqFNMNCKk67atvK/rFI
-	AaIQ==
-X-Received: by 10.43.65.145 with SMTP id xm17mr14324912icb.35.1392017517706;
-	Sun, 09 Feb 2014 23:31:57 -0800 (PST)
+Return-Path: <Rongqing.Li@windriver.com>
+Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AD4A7E00744
+	for <yocto@yoctoproject.org>; Sun,  9 Feb 2014 23:57:48 -0800 (PST)
+Received: from ALA-HCB.corp.ad.wrs.com (ala-hcb.corp.ad.wrs.com
+	[147.11.189.41])
+	by mail1.windriver.com (8.14.5/8.14.5) with ESMTP id s1A7vm5s018323
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL)
+	for <yocto@yoctoproject.org>; Sun, 9 Feb 2014 23:57:48 -0800 (PST)
+Received: from lirq-OptiPlex-780.corp.ad.wrs.com (128.224.162.168) by
+	ALA-HCB.corp.ad.wrs.com (147.11.189.41) with Microsoft SMTP Server id
+	14.2.347.0; Sun, 9 Feb 2014 23:57:47 -0800
+From: <rongqing.li@windriver.com>
+To: <yocto@yoctoproject.org>
+Date: Mon, 10 Feb 2014 15:58:35 +0800
+Message-ID: <8089f0d19f757ecf65f957d6a196e66c90bd7911.1392019016.git.rongqing.li@windriver.com>
+X-Mailer: git-send-email 1.7.10.4
+In-Reply-To: <cover.1392019016.git.rongqing.li@windriver.com>
+References: <cover.1392019016.git.rongqing.li@windriver.com>
 MIME-Version: 1.0
-Received: by 10.50.8.137 with HTTP; Sun, 9 Feb 2014 23:31:27 -0800 (PST)
-In-Reply-To: <31681ec9-08a2-426e-b3d2-72f6c0d22073@AM1EHSMHS015.ehs.local>
-References: <CAMKF1sptnVxCrjm7PAOCtRWzmSsxPv4nc0nUO82jMPQ+BCz9Hg@mail.gmail.com>
-	<31681ec9-08a2-426e-b3d2-72f6c0d22073@AM1EHSMHS015.ehs.local>
-From: Khem Raj <raj.khem@gmail.com>
-Date: Sun, 9 Feb 2014 23:31:27 -0800
-Message-ID: <CAMKF1srC03NP0XkoL2Qy9X7hRt_FhQy3tG_rf=mbqhYvJ=soig@mail.gmail.com>
-To: Nathan Rossi <nathan.rossi@xilinx.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	openembeded-devel <Openembedded-devel@lists.openembedded.org>,
-	Patches and discussions about the oe-core layer
-	<openembedded-core@lists.openembedded.org>
-Subject: Re: [OE-core] [RFT] eglibc 2.19
+Subject: [PATCH 1/1] refpolicy: allow portmap to create portmap_t type socket
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,74 +30,65 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 10 Feb 2014 07:32:03 -0000
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Mon, 10 Feb 2014 07:57:50 -0000
+Content-Type: text/plain
 
-On Sun, Feb 9, 2014 at 9:32 PM, Nathan Rossi <nathan.rossi@xilinx.com> wrot=
-e:
->> -----Original Message-----
->> From: openembedded-core-bounces@lists.openembedded.org
->> [mailto:openembedded-core-bounces@lists.openembedded.org] On Behalf Of
->> Khem Raj
->> Sent: Sunday, February 09, 2014 2:08 AM
->> To: Patches and discussions about the oe-core layer; openembeded-devel;
->> yocto@yoctoproject.org
->> Subject: [OE-core] [RFT] eglibc 2.19
->>
->> Hi all
->>
->> I have staged a branch with eglibc 2.19 upgraded recipes here
->>
->> http://git.openembedded.org/openembedded-core-contrib/log/?h=3Dkraj/egli=
-bc-
->> 2.19
->>
->> These are not final recipes there may be tweaks needed like adjusting
->> SRC_URI
->> later on.
->>
->> please help testing it out in your environments and machines
->> I would be happy to help out with issues we find
->
-> Hi Khem,
->
-> I have given it a test with the machines on the meta-xilinx layer, specif=
-ically ARM Cortex A9 and MicroBlaze architectures. And there appears to be =
-no issues.
+From: Roy Li <rongqing.li@windriver.com>
 
-Thanks for the report.
+Signed-off-by: Roy Li <rongqing.li@windriver.com>
+---
+ .../portmap-allow-portmap-to-create-socket.patch   |   28 ++++++++++++++++++++
+ .../refpolicy/refpolicy_2.20130424.inc             |    1 +
+ 2 files changed, 29 insertions(+)
+ create mode 100644 recipes-security/refpolicy/refpolicy-2.20130424/portmap-allow-portmap-to-create-socket.patch
 
->
-> Also I couldn't access your eglibc source tarball because of pesky corpor=
-ate web filters, so I used a direct svn export of the upstream repo at the =
-revision 25243, I assume there should be no differences?
+diff --git a/recipes-security/refpolicy/refpolicy-2.20130424/portmap-allow-portmap-to-create-socket.patch b/recipes-security/refpolicy/refpolicy-2.20130424/portmap-allow-portmap-to-create-socket.patch
+new file mode 100644
+index 0000000..aa89a98
+--- /dev/null
++++ b/recipes-security/refpolicy/refpolicy-2.20130424/portmap-allow-portmap-to-create-socket.patch
+@@ -0,0 +1,28 @@
++portmap: allow portmap to manage portmap_t type socket
++
++Upstream-Status: Pending
++
++portmap needs to create socket to receive message
++
++Signed-off-by: Roy Li <rongqing.li@windriver.com>
++---
++ policy/modules/contrib/portmap.te |    3 +++
++ 1 file changed, 3 insertions(+)
++
++diff --git a/policy/modules/contrib/portmap.te b/policy/modules/contrib/portmap.te
++index 18b255e..bacf66b 100644
++--- a/policy/modules/contrib/portmap.te
+++++ b/policy/modules/contrib/portmap.te
++@@ -16,6 +16,9 @@ type portmap_helper_exec_t;
++ init_system_domain(portmap_helper_t, portmap_helper_exec_t)
++ role portmap_helper_roles types portmap_helper_t;
++ 
+++allow portmap_t self:tcp_socket create_socket_perms;
+++allow portmap_t self:udp_socket create_socket_perms;
+++
++ type portmap_initrc_exec_t;
++ init_script_file(portmap_initrc_exec_t)
++ 
++-- 
++1.7.10.4
++
+diff --git a/recipes-security/refpolicy/refpolicy_2.20130424.inc b/recipes-security/refpolicy/refpolicy_2.20130424.inc
+index a052a2c..5d55030 100644
+--- a/recipes-security/refpolicy/refpolicy_2.20130424.inc
++++ b/recipes-security/refpolicy/refpolicy_2.20130424.inc
+@@ -52,6 +52,7 @@ SRC_URI += "file://poky-policy-fix-xconsole_device_t-as-a-dev_node.patch \
+             file://poky-policy-fix-dmesg-to-use-dev-kmsg.patch \
+             file://hostname-do-not-audit-attempts-by-hostname-to-read-a.patch \
+             file://sysnetwork-dhcpc-binds-socket-to-random-high-udp-por.patch \
++            file://portmap-allow-portmap-to-create-socket.patch \
+            "
+ 
+ # Backport from upstream
+-- 
+1.7.10.4
 
-there are no functional differences.
-
->
-> On a side note, I haven't seen any mention of what is next regarding oe-c=
-ore and eglibc. Since the eglibc project has closed its development (http:/=
-/www.eglibc.org/archives/patches/msg01327.html), and that 2.19 is the final=
- version. Are there any plans to switch oe-core to using glibc for the futu=
-re? Just curious is all.
-
-Sure there definitely are and we discussed it in Last OE meeting on
-IRC recently, we will plan moving to using glibc after 2.19, so these
-will be last 2.19 eglibc recipes.
-
->
-> Regards,
-> Nathan
->
->>
->> Thank you
->>
->> -Khem
->> _______________________________________________
->> Openembedded-core mailing list
->> Openembedded-core@lists.openembedded.org
->> http://lists.openembedded.org/mailman/listinfo/openembedded-core
->
->
 
