@@ -1,33 +1,36 @@
-Return-Path: <stephen.k.jolley@intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0AD96E0077B
-	for <yocto@yoctoproject.org>; Tue, 11 Feb 2014 08:15:33 -0800 (PST)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga101.jf.intel.com with ESMTP; 11 Feb 2014 08:15:06 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.95,826,1384329600"; 
-	d="scan'208,217";a="453596387"
-Received: from fmsmsx104.amr.corp.intel.com ([10.19.9.35])
-	by orsmga001.jf.intel.com with ESMTP; 11 Feb 2014 08:15:04 -0800
-Received: from fmsmsx114.amr.corp.intel.com (10.18.116.8) by
-	FMSMSX104.amr.corp.intel.com (10.19.9.35) with Microsoft SMTP Server
-	(TLS) id 14.3.123.3; Tue, 11 Feb 2014 08:15:01 -0800
-Received: from fmsmsx111.amr.corp.intel.com ([169.254.2.168]) by
-	FMSMSX114.amr.corp.intel.com ([10.18.116.8]) with mapi id
-	14.03.0123.003; Tue, 11 Feb 2014 08:15:00 -0800
-From: "Jolley, Stephen K" <stephen.k.jolley@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Minutes: Yocto Project Technical Team Meeting - Tuesday,
-	February 11, 2014 8:00 AM US Pacific Time
-Thread-Index: Ac8nRGZ3ktSn56K2SUS2PECpvkfTMw==
-Date: Tue, 11 Feb 2014 16:15:00 +0000
-Message-ID: <9ADD3FDE8B189B4AA2F8A3C711F8155E49420E5D@fmsmsx111.amr.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.1.200.108]
+Return-Path: <sebmennetrier@gmail.com>
+Received: from mail-lb0-f174.google.com (mail-lb0-f174.google.com
+	[209.85.217.174])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D4FE3E00764
+	for <yocto@yoctoproject.org>; Tue, 11 Feb 2014 08:33:44 -0800 (PST)
+Received: by mail-lb0-f174.google.com with SMTP id l4so6061735lbv.19
+	for <yocto@yoctoproject.org>; Tue, 11 Feb 2014 08:33:43 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=sender:from:to:cc:subject:date:message-id:mime-version:content-type
+	:content-transfer-encoding;
+	bh=/bflLe35NN2pEDh5zlCJ6d9OGZVoJCLZfstmztYiRG8=;
+	b=ai8rQbJ8CKszTyP8px/5eGLosJQ2xUx10JkS1JiURPErX+GVEk3gy0U9MtDnU+/MA7
+	LQlAKy68ZPl86dmn43VFYPVmAdIAVZsdx3aV0BR/d9TEAlen3gmnXOvVCN4+io8yiWV8
+	Cp9WCll/MVq7+NndgfgVN7AhQNBNAT5gd5AIEAlfRGo3L8ct0u6CJPdWBNXETG92kepn
+	RThc/fCTszPWIbJ3zUCdEOW3BOW1HP0Dw5+vEjNKXUOIc9C513WTtGrAGWKpJhw7f5KY
+	ta6E+aV7V/euEUg+241dY+mCZ5t0i7EKNFCG9Gmt+WLZjFhmPR5xxVg33ejKPjzf3T+J
+	Vbaw==
+X-Received: by 10.112.14.1 with SMTP id l1mr2396639lbc.39.1392136422834;
+	Tue, 11 Feb 2014 08:33:42 -0800 (PST)
+Received: from smennetrier-desktop.mpl.mstarsemi.fr
+	(connected-labs-gw1.ter2.neodc.mpl.cust.as8218.eu. [94.103.137.126])
+	by mx.google.com with ESMTPSA id
+	pz10sm20364191lbb.10.2014.02.11.08.33.41 for <multiple recipients>
+	(version=TLSv1.1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
+	Tue, 11 Feb 2014 08:33:42 -0800 (PST)
+Sender: Sebastien MENNETRIER <sebmennetrier@gmail.com>
+From: =?UTF-8?q?S=C3=A9bastien=20Mennetrier?= <s.mennetrier@innotis.org>
+To: yocto@yoctoproject.org
+Date: Tue, 11 Feb 2014 17:33:30 +0100
+Message-Id: <1392136410-8478-1-git-send-email-s.mennetrier@innotis.org>
+X-Mailer: git-send-email 1.8.1.2
 MIME-Version: 1.0
-Subject: Minutes: Yocto Project Technical Team Meeting - Tuesday, February 11, 2014 8:00 AM US Pacific Time
+Subject: [meta-raspberrypi][PATCH V3] Add initramfs support
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,265 +42,78 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 11 Feb 2014 16:15:36 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_9ADD3FDE8B189B4AA2F8A3C711F8155E49420E5Dfmsmsx111amrcor_"
+X-List-Received-Date: Tue, 11 Feb 2014 16:33:46 -0000
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
---_000_9ADD3FDE8B189B4AA2F8A3C711F8155E49420E5Dfmsmsx111amrcor_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Permit to build an image with initramfs.
+Add information in README to build with initramfs.
 
-Attendees: Jessica, Paul, Bruce, Stephen, Polk, Laurentiu, Vali, Christina,=
- Tom Z, Jefro, Denys, Christin, Saul, Belen, Richard, Alex G, Ionut, Alex D=
-, Randy N., Nitin, Alex V,
+Signed-off-by: Sébastien Mennetrier <s.mennetrier@innotis.org>
+---
+ README                           | 13 +++++++++++++
+ classes/sdcard_image-rpi.bbclass |  7 +++++--
+ 2 files changed, 18 insertions(+), 2 deletions(-)
+
+diff --git a/README b/README
+index fc492c5..daa4059 100644
+--- a/README
++++ b/README
+@@ -37,6 +37,7 @@ Contents:
+     2.F. Optional - Video camera support with V4L2 drivers
+     2.G. Images
+     2.H. Boot to U-Boot
++    2.I. Image with Initramfs
+ 3. Extra apps
+     3.A. omxplayer
+ 4. Source code and mirrors
+@@ -155,6 +156,18 @@ KERNEL_IMAGETYPE = "uImage"
+ This will make kernel.img be u-boot image which will load uImage.
+ By default, kernel.img is the actual kernel image (ex. Image).
+ 
++2.I. Image with Initramfs
++=========================
++To build an initramfs image :
++    * Set this 3 kernel variables (in linux-raspberrypi.inc for example)
++        - kernel_configure_variable BLK_DEV_INITRD y
++        - kernel_configure_variable INITRAMFS_SOURCE ""
++        - kernel_configure_variable RD_GZIP y
++    * Set the yocto variables (in linux-raspberrypi.inc for example)
++        - INITRAMFS_IMAGE = "<a name for your initramfs image>"
++        - INITRAMFS_IMAGE_BUNDLE = "1"
++    * Set the meta-rasberrypi variable (in raspberrypi.conf for example)
++        - KERNEL_INITRAMFS = "-initramfs"
+ 
+ 3. Extra apps
+ =============
+diff --git a/classes/sdcard_image-rpi.bbclass b/classes/sdcard_image-rpi.bbclass
+index 179b7b7..eb337dc 100644
+--- a/classes/sdcard_image-rpi.bbclass
++++ b/classes/sdcard_image-rpi.bbclass
+@@ -26,6 +26,9 @@ inherit image_types
+ # Set kernel and boot loader
+ IMAGE_BOOTLOADER ?= "bcm2835-bootfiles"
+ 
++# Set initramfs extension
++KERNEL_INITRAMFS ?= ""
++
+ # Boot partition volume id
+ BOOTDD_VOLUME_ID ?= "${MACHINE}"
+ 
+@@ -95,10 +98,10 @@ IMAGE_CMD_rpi-sdimg () {
+ 	case "${KERNEL_IMAGETYPE}" in
+ 	"uImage")
+ 	    mcopy -i ${WORKDIR}/boot.img -s ${DEPLOY_DIR_IMAGE}/u-boot.img ::kernel.img
+-	    mcopy -i ${WORKDIR}/boot.img -s ${DEPLOY_DIR_IMAGE}/${KERNEL_IMAGETYPE}-${MACHINE}.bin ::uImage
++	    mcopy -i ${WORKDIR}/boot.img -s ${DEPLOY_DIR_IMAGE}/${KERNEL_IMAGETYPE}${KERNEL_INITRAMFS}-${MACHINE}.bin ::uImage
+ 	    ;;
+ 	*)
+-	    mcopy -i ${WORKDIR}/boot.img -s ${DEPLOY_DIR_IMAGE}/${KERNEL_IMAGETYPE}-${MACHINE}.bin ::kernel.img
++	    mcopy -i ${WORKDIR}/boot.img -s ${DEPLOY_DIR_IMAGE}/${KERNEL_IMAGETYPE}${KERNEL_INITRAMFS}-${MACHINE}.bin ::kernel.img
+ 	    ;;
+ 	esac
+ 
+-- 
+1.8.1.2
 
 
-
-Agenda:
-
-
-
-* Opens collection - 5 min (Stephen)
-
-* Yocto 1.6 status - 10 min (Stephen/team)
-
-  https://wiki.yoctoproject.org/wiki/Yocto_Project_v1.6_Status
-
-  https://wiki.yoctoproject.org/wiki/Yocto_1.6_Features
-
-Yocto 1.6 M2 is done
-
-Yocto 1.6 M3 is being worked.  Richard give this update: We are moving to a=
- more task based structure using python.  We are seeing some random failure=
-s in Autobuilder, so this is taking some time to debug and work the issues.=
- Systemd is also have some intermittent build failures and we think we know=
- what this issue is and are developing a patch to fix.  We are working some=
- shared state patches.
-
-* SWAT team rotation: Laurentiu -> Nitin
-
-  https://wiki.yoctoproject.org/wiki/Yocto_Build_Failure_Swat_Team
-
-* Opens - 10 min
-
-* Team Sharing - 20 min
-
-Nitin - Working on making the kernel ready for 1.6 M3.  Would like to work =
-with Saul to get this ready.  Saul comment: Need to update this to make it =
-automatic.  So, talk with Beth to see if we can automate this step.
-
-Thanks,
-
-Stephen K. Jolley
-Yocto Project Program Manager
-INTEL, MS JF1-255, 2111 N.E. 25th Avenue, Hillsboro, OR 97124
-*   Work Telephone:          (503) 712-0354
-*    Cell:                                (208) 244-4460
-* Email:                             stephen.k.jolley@intel.com
-
-
---_000_9ADD3FDE8B189B4AA2F8A3C711F8155E49420E5Dfmsmsx111amrcor_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:x=3D"urn:schemas-microsoft-com:office:excel" xmlns:m=3D"http://schema=
-s.microsoft.com/office/2004/12/omml" xmlns=3D"http://www.w3.org/TR/REC-html=
-40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<meta name=3D"Generator" content=3D"Microsoft Word 14 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:Wingdings;
-	panose-1:5 0 0 0 0 0 0 0 0 0;}
-@font-face
-	{font-family:Wingdings;
-	panose-1:5 0 0 0 0 0 0 0 0 0;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-@font-face
-	{font-family:Tahoma;
-	panose-1:2 11 6 4 3 5 4 4 2 4;}
-@font-face
-	{font-family:Consolas;
-	panose-1:2 11 6 9 2 2 4 3 2 4;}
-@font-face
-	{font-family:"Comic Sans MS";
-	panose-1:3 15 7 2 3 3 2 2 2 4;}
-@font-face
-	{font-family:"MS Sans Serif";}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri","sans-serif";
-	mso-fareast-language:EN-US;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:purple;
-	text-decoration:underline;}
-p.MsoPlainText, li.MsoPlainText, div.MsoPlainText
-	{mso-style-priority:99;
-	mso-style-link:"Plain Text Char";
-	margin:0in;
-	margin-bottom:.0001pt;
-	font-size:10.5pt;
-	font-family:Consolas;
-	mso-fareast-language:EN-US;}
-p
-	{mso-style-priority:99;
-	mso-margin-top-alt:auto;
-	margin-right:0in;
-	mso-margin-bottom-alt:auto;
-	margin-left:0in;
-	font-size:12.0pt;
-	font-family:"Times New Roman","serif";
-	mso-fareast-language:ZH-CN;}
-span.PlainTextChar
-	{mso-style-name:"Plain Text Char";
-	mso-style-priority:99;
-	mso-style-link:"Plain Text";
-	font-family:Consolas;}
-span.EmailStyle20
-	{mso-style-type:personal-compose;
-	font-family:"Calibri","sans-serif";
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-size:10.0pt;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
-<div class=3D"WordSection1">
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas">Attendees: Jessica, Paul, Bruce, Stephen, Polk, La=
-urentiu, Vali, Christina, Tom Z, Jefro, Denys, Christin, Saul, Belen, Richa=
-rd, Alex G, Ionut, Alex D, Randy N.,
- Nitin, Alex V, <o:p></o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas"><o:p>&nbsp;</o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas">Agenda:<o:p></o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas">&nbsp;<o:p></o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas">* Opens collection - 5 min (Stephen)<o:p></o:p></s=
-pan></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas">* Yocto 1.6 status - 10 min (Stephen/team)<o:p></o=
-:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas">&nbsp;
-</span><span style=3D"font-size:11.0pt"><a href=3D"https://wiki.yoctoprojec=
-t.org/wiki/Yocto_Project_v1.6_Status"><span style=3D"font-family:&quot;Cali=
-bri&quot;,&quot;sans-serif&quot;">https://wiki.yoctoproject.org/wiki/Yocto_=
-Project_v1.6_Status</span></a><o:p></o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas">&nbsp;
-</span><span style=3D"font-size:11.0pt"><a href=3D"https://wiki.yoctoprojec=
-t.org/wiki/Yocto_1.6_Features"><span style=3D"font-family:&quot;Calibri&quo=
-t;,&quot;sans-serif&quot;">https://wiki.yoctoproject.org/wiki/Yocto_1.6_Fea=
-tures</span></a><o:p></o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas">Yocto 1.6 M2 is done<o:p></o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas">Yocto 1.6 M3 is being worked.&nbsp; Richard give t=
-his update: We are moving to a more task based structure using python.&nbsp=
-; We are seeing some random failures in Autobuilder,
- so this is taking some time to debug and work the issues. Systemd is also =
-have some intermittent build failures and we think we know what this issue =
-is and are developing a patch to fix.&nbsp; We are working some shared stat=
-e patches.&nbsp;
-<o:p></o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas">* SWAT team rotation: Laurentiu -&gt; Nitin<o:p></=
-o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas">&nbsp;
-<a href=3D"https://wiki.yoctoproject.org/wiki/Yocto_Build_Failure_Swat_Team=
-">https://wiki.yoctoproject.org/wiki/Yocto_Build_Failure_Swat_Team</a><o:p>=
-</o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas">* Opens - 10 min
-<o:p></o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas">* Team Sharing - 20 min<o:p></o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas">Nitin &#8211; Working on making the kernel ready f=
-or 1.6 M3.&nbsp; Would like to work with Saul to get this ready.&nbsp; Saul=
- comment: Need to update this to make it automatic.&nbsp;
- So, talk with Beth to see if we can automate this step.&nbsp; <o:p></o:p><=
-/span></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Thanks,<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal" style=3D"page-break-after:avoid;text-autospace:none"=
-><b><i><span style=3D"font-size:16.0pt;font-family:&quot;Times New Roman&qu=
-ot;,&quot;serif&quot;;color:purple">Stephen K. Jolley</span></i></b><b><i><=
-span style=3D"font-size:16.0pt;font-family:&quot;Tahoma&quot;,&quot;sans-se=
-rif&quot;;color:purple"><o:p></o:p></span></i></b></p>
-<p class=3D"MsoNormal"><b><span style=3D"font-size:8.0pt;font-family:&quot;=
-Courier New&quot;;color:blue">Yocto Project Program Manager<o:p></o:p></spa=
-n></b></p>
-<p class=3D"MsoNormal" style=3D"page-break-after:avoid;text-autospace:none"=
-><b><span style=3D"font-size:10.0pt;font-family:&quot;Courier New&quot;;col=
-or:fuchsia">INTEL, MS JF1-255, 2111 N.E. 25th Avenue, Hillsboro, OR 97124
-<o:p></o:p></span></b></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:Wingdings;color:black">(<=
-/span><span style=3D"font-family:&quot;MS Sans Serif&quot;;color:teal">
-</span><span style=3D"font-size:8.0pt;font-family:&quot;MS Sans Serif&quot;=
-;color:teal">&nbsp;&nbsp;</span><b><span style=3D"font-size:8.0pt;font-fami=
-ly:&quot;Comic Sans MS&quot;;color:teal">Work Telephone</span></b><span sty=
-le=3D"font-family:&quot;MS Sans Serif&quot;;color:teal">:&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span><span style=3D"font-size:9.0pt;font-family:&quot;MS Sans Serif&quot;=
-">(503) 712-0354<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt;font-family:Wingdings=
-;color:black">(</span><span style=3D"font-size:9.0pt;font-family:&quot;MS S=
-ans Serif&quot;;color:teal">&nbsp;&nbsp;&nbsp;
-</span><b><span style=3D"font-size:8.0pt;font-family:&quot;Comic Sans MS&qu=
-ot;;color:teal">Cell</span></b><span style=3D"font-size:9.0pt;font-family:&=
-quot;MS Sans Serif&quot;;color:teal">:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span><span style=3D"font-size:9.0pt;font-family:&quot;MS Sans Serif&quot;=
-">(208) 244-4460<span style=3D"color:black"><o:p></o:p></span></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt;font-family:Wingdings=
-">* </span>
-<b><span lang=3D"FR" style=3D"font-size:8.0pt;font-family:&quot;Comic Sans =
-MS&quot;;color:teal">Email</span></b><span lang=3D"FR" style=3D"font-size:9=
-.0pt;font-family:&quot;MS Sans Serif&quot;;color:teal">:</span><span lang=
-=3D"FR" style=3D"font-size:9.0pt;font-family:&quot;MS Sans Serif&quot;">&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;
-<u><span style=3D"color:blue">stephen.k.jolley@intel.com</span></u></span><=
-span lang=3D"FR" style=3D"font-size:12.0pt;font-family:&quot;Arial&quot;,&q=
-uot;sans-serif&quot;"><o:p></o:p></span></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-</div>
-</body>
-</html>
-
---_000_9ADD3FDE8B189B4AA2F8A3C711F8155E49420E5Dfmsmsx111amrcor_--
