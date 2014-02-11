@@ -1,37 +1,37 @@
 Return-Path: <raj.khem@gmail.com>
-Received: from mail-pb0-f43.google.com (mail-pb0-f43.google.com
-	[209.85.160.43])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 10092E007B1
-	for <yocto@yoctoproject.org>; Mon, 10 Feb 2014 22:06:16 -0800 (PST)
-Received: by mail-pb0-f43.google.com with SMTP id md12so7285174pbc.30
-	for <yocto@yoctoproject.org>; Mon, 10 Feb 2014 22:06:16 -0800 (PST)
+Received: from mail-pa0-f53.google.com (mail-pa0-f53.google.com
+	[209.85.220.53])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 84BFAE007B1
+	for <yocto@yoctoproject.org>; Mon, 10 Feb 2014 22:14:13 -0800 (PST)
+Received: by mail-pa0-f53.google.com with SMTP id lj1so7196607pab.40
+	for <yocto@yoctoproject.org>; Mon, 10 Feb 2014 22:14:13 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=content-type:mime-version:subject:from:in-reply-to:date:cc
 	:content-transfer-encoding:message-id:references:to;
-	bh=gMrcjvo83afhL1Afkz8JA7qcofyZMpoSeQNBmH7LdzE=;
-	b=XkNhyKkhsivvNiYC/XxvlFlgcJrRV4gyhmqRaQPFk1Gee8RVLmzV6gLW+lYZ7B9IeN
-	fXK7/IIn8USIKsloxlueR5DfCrS0pdjTlXkxJg2PVztmwTwIzeCHWsk6OCvkTmBbpHsy
-	SquH2sZqNIsxwjiI3QV8UCD71kpk8Hh1rHObVeG25L+YrRCtYqR3vHgr9B4E0FD+CV2D
-	QrWVhjlxKjC+SPKnTt2a0r+ghl5Eo88cj5U+F4olvCAFy8J+qdqA0dkUy1Yyrje1ifE1
-	shL1V/OaZyXNeTil/KjDOyDkcvDLngNHlAaJ5ign6H2EsabiUwcEIQAA01uEhrZ8nyjd
-	OXdg==
-X-Received: by 10.68.226.200 with SMTP id ru8mr42512437pbc.77.1392098776533;
-	Mon, 10 Feb 2014 22:06:16 -0800 (PST)
+	bh=dbx2wvQYtv9fP6LNU6ruL7SA6oITjBWMFA+DvfsOMH8=;
+	b=zl5e3e2iUiBKZEg1hcqiVByFCQmkPcRY1bMojWKVqM+gfiSzankKBBSYz1L9wczr8K
+	BKsl9zPSgbhY/U6t75+/1SGHqbOyaBXQ74h88NRHDzyhkrgo6axKKEiV0OMXYigyyKRX
+	aev14vqBeh0wrXFna+fxJ5G4uXQxop45iR6hm0EqbuTfDqpE3cX24lc4QjfpXFm6qDIv
+	1TqgIs92ttLU73De4sDnEDqoCnYgt/PqRHjAUqF6SAySm2ES1sssCVSg5rxPJxDGNikM
+	nIZuRGHSPlvbYxlBCgJD7mDTjQSKU52tpY0nsS1rs2R6KGzx7LBHiqiWN+rcdtGUH9/R
+	OvBA==
+X-Received: by 10.67.1.202 with SMTP id bi10mr30764126pad.68.1392099253517;
+	Mon, 10 Feb 2014 22:14:13 -0800 (PST)
 Received: from [192.168.0.33] (99-57-140-30.lightspeed.sntcca.sbcglobal.net.
 	[99.57.140.30]) by mx.google.com with ESMTPSA id
-	bz4sm48927052pbb.12.2014.02.10.22.06.15 for <multiple recipients>
+	ei4sm48957965pbb.42.2014.02.10.22.14.12 for <multiple recipients>
 	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
-	Mon, 10 Feb 2014 22:06:15 -0800 (PST)
+	Mon, 10 Feb 2014 22:14:12 -0800 (PST)
 Mime-Version: 1.0 (Mac OS X Mail 7.1 \(1827\))
 From: Khem Raj <raj.khem@gmail.com>
-In-Reply-To: <15820240.JO6syelmOi@shillig-arch>
-Date: Mon, 10 Feb 2014 22:06:14 -0800
-Message-Id: <3748A347-6CF3-40EA-BE35-CF24300F95A7@gmail.com>
-References: <15820240.JO6syelmOi@shillig-arch>
-To: George Hilliard <gh403@msstate.edu>
+In-Reply-To: <52F4E620.6090303@mlbassoc.com>
+Date: Mon, 10 Feb 2014 22:14:11 -0800
+Message-Id: <5CF961D0-78FE-4108-BA7C-58F9AC87AE48@gmail.com>
+References: <52F4E620.6090303@mlbassoc.com>
+To: Gary Thomas <gary@mlbassoc.com>
 X-Mailer: Apple Mail (2.1827)
-Cc: yocto@yoctoproject.org
-Subject: Re: SCons Build Issue
+Cc: Yocto Project <yocto@yoctoproject.org>
+Subject: Re: Adding functionality to SDK
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,43 +43,38 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 11 Feb 2014 06:06:20 -0000
-Content-Type: text/plain; charset=windows-1252
+X-List-Received-Date: Tue, 11 Feb 2014 06:14:14 -0000
+Content-Type: text/plain; charset=us-ascii
 Content-Transfer-Encoding: quoted-printable
 
 
-On Jan 30, 2014, at 5:32 PM, George Hilliard <gh403@msstate.edu> wrote:
+On Feb 7, 2014, at 5:56 AM, Gary Thomas <gary@mlbassoc.com> wrote:
 
-> Hello,
-> I have a build issue.  I'm trying to write a Bitbake recipe for =
-jsoncpp, which uses SConstruct.  My .bb file is at =
-https://gist.github.com/thirtythreeforty/8725055.  When I run it, =
-Bitbake complains,
->=20
-> | DEBUG: Executing shell function do_compile
-> | Traceback (most recent call last):
-> |   File =
-"/home/user/msu-community-bsp/build_mx6/tmp/sysroots/x86_64-linux/usr/bin/=
-scons", line 187, in <module>
-> |     import SCons.Script
-> | ImportError: No module named SCons.Script
-> | ERROR: scons build execution failed.
-> | ERROR: Function failed: do_compile (see =
-/home/user/msu-community-bsp/build_mx6/tmp/work/armv7a-vfp-neon-poky-linux=
--gnueabi/jsoncpp/0.5.0-r0/temp/log.do_compile.8396 for further =
-information)
->=20
-> What gives?  How can I modify the recipe (or my setup) to build this =
-infernal package?
+> I have a basic image (similar to core-image-sato) that I've added
+> (on board) SDK to using packagegroup-core-sdk  & =
+packagegroup-core-standalone-sdk-target.
+> This works pretty well but I've found some missing functionality.
+> In particular, I used it to build the kernel on my ARM board and
+> found the U-Boot 'mkimage' tool missing from the SDK.
 
-it seems SCONS_LIB_DIR need to set to point to sys root as well since =
-scons itself is coming from native sys root.
-for tests export SCONS_LIB_DIR=3D${STAGING_LIBDIR_NATIVE}/scons/=85. =
-where ever its installed might help
 
+add the package (whichever provided mkimage ) to IMAGE_INSTALL=20
 >=20
-> Thanks in advance!
-> George Hilliard
+> How can I add this to my SDK build?  I'm interested in both
+> the specific answer of how to get the U-Boot utilities but
+> also how to include additional functionality in my SDK builds,
+> e.g. additional libraries, include files, etc.
+>=20
+> I've looked through the reference manual and it seems to only
+> discuss cross-build SDK, not on-target SDK.
+>=20
+> Thanks for any pointers
+>=20
+> --=20
+> ------------------------------------------------------------
+> Gary Thomas                 |  Consulting for the
+> MLB Associates              |    Embedded world
+> ------------------------------------------------------------
 > _______________________________________________
 > yocto mailing list
 > yocto@yoctoproject.org
