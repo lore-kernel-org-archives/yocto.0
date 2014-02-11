@@ -1,34 +1,35 @@
 Return-Path: <andrei@gherzan.ro>
-Received: from mail-ve0-f171.google.com (mail-ve0-f171.google.com
-	[209.85.128.171])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B545CE0076F
-	for <yocto@yoctoproject.org>; Tue, 11 Feb 2014 02:59:25 -0800 (PST)
-Received: by mail-ve0-f171.google.com with SMTP id pa12so5957790veb.16
-	for <yocto@yoctoproject.org>; Tue, 11 Feb 2014 02:59:24 -0800 (PST)
+Received: from mail-ve0-f172.google.com (mail-ve0-f172.google.com
+	[209.85.128.172])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C3777E0076F
+	for <yocto@yoctoproject.org>; Tue, 11 Feb 2014 03:08:52 -0800 (PST)
+Received: by mail-ve0-f172.google.com with SMTP id c14so6009384vea.31
+	for <yocto@yoctoproject.org>; Tue, 11 Feb 2014 03:08:51 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
 	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
 	:message-id:subject:to:cc:content-type;
-	bh=RzyAyobD4CaOvuMeJ0FrbYy27FfIRjkIrq8ZDcQoRew=;
-	b=YDmYkLyUsnkG4dZbWd5ukJHz2MB+M8VuWepHHVUVULfEW187a+2WlOPUNBlD3xLXxk
-	QTwZCaK8KsPxlwH26Jw/yI6yfNeoW2YZZldyqIhwfeR27uat0MAiQrCO4bgsFWWv1zSf
-	VN8E4t7M0uIZe5eqrB7fty0KKLDCvEFi0NOwAbXBK8YQAYL0VuE69Ke2K2F0XNaH1afL
-	KUJcTtlkztxT+1fU/8zNTTc0ww/J69EUQSUmpWa7GyjR2sXwqNhVlYh82vcmtcwKpjJF
-	ASO/MVj9NUy6uWj6Xzu26cfPcEZS7Wj+F9ZZNYd3guSKcTrtHfErCSdsfZ94cfBkjMcI
-	Vn2A==
-X-Gm-Message-State: ALoCoQmYp6FnTmxJull815vbYeOn/U32dy4NlzE0J9XDllUUPub8pnMGkF6OzNIPVlrRzee+Eljz
-X-Received: by 10.221.29.137 with SMTP id ry9mr28041883vcb.6.1392116364247;
-	Tue, 11 Feb 2014 02:59:24 -0800 (PST)
+	bh=WVipeNapXKj1HBMT8NJ/RMVwB9A4a/ZSSYS9maKoFzA=;
+	b=OHkSCdHG5F60BOeUftv9tzptMR8aUIS9lKEr1avh4wJHFtcYUN25m5G/tEOZbO3fz7
+	bWzyvbO9anWliNJUvbavhw1CYWoFzlAGUDGI4USRJ838PygbmxC2L+nkqTw5zrCi8qNg
+	roZNMl21f66jsZnkwBOh4YsI0wfcTcrjhFEmZO9lu22BzlOY+IBDtARKSobWxJcAzmQU
+	S9gPfUYZozQ0SsTyYICukV2LqT8RSmCsSc6xbLJ5V3o4LWJRLYmjlPDoKTUSVTNwh6dp
+	mbZ/24QaAjdwyh057+EE6fFyNs5nJdD64RFfW4RYbJddqnyorVRA3KX7QGzG8ln9gsW5
+	cbeQ==
+X-Gm-Message-State: ALoCoQkAxdO954hxfOGHOHXUOKC/yQRXP8Q0bhD1KVmMTYmHM6LenF15SQ9bFvWiACLngBuqvqVt
+X-Received: by 10.220.131.210 with SMTP id y18mr28398658vcs.12.1392116931567; 
+	Tue, 11 Feb 2014 03:08:51 -0800 (PST)
 MIME-Version: 1.0
-Received: by 10.58.244.138 with HTTP; Tue, 11 Feb 2014 02:59:04 -0800 (PST)
+Received: by 10.58.244.138 with HTTP; Tue, 11 Feb 2014 03:08:31 -0800 (PST)
 X-Originating-IP: [89.121.200.106]
-In-Reply-To: <CABgO3_PYHxNRoi3FTAhp1aLfXPuvhVNvq+VAaAgJXXMH7j2yTw@mail.gmail.com>
+In-Reply-To: <CAK18fxHAhV0cG+TzDX4dL4tK=9eNwaGWmj8gUNqOVEBYKfExFg@mail.gmail.com>
 References: <1391182212-10378-1-git-send-email-s.mennetrier@innotis.org>
 	<CAK18fxG+2MJPxA420ZvV17qrbB6mRL6a8WHn1uJyDFm4QcXWhw@mail.gmail.com>
 	<CABgO3_PYHxNRoi3FTAhp1aLfXPuvhVNvq+VAaAgJXXMH7j2yTw@mail.gmail.com>
+	<CAK18fxHAhV0cG+TzDX4dL4tK=9eNwaGWmj8gUNqOVEBYKfExFg@mail.gmail.com>
 From: Andrei Gherzan <andrei@gherzan.ro>
-Date: Tue, 11 Feb 2014 12:59:04 +0200
-Message-ID: <CAK18fxHAhV0cG+TzDX4dL4tK=9eNwaGWmj8gUNqOVEBYKfExFg@mail.gmail.com>
+Date: Tue, 11 Feb 2014 13:08:31 +0200
+Message-ID: <CAK18fxH-L=cWtEvbBAsYOp6gbD0qQ+PUqw1cZUOEafyDZh+2uA@mail.gmail.com>
 To: Sebastien MENNETRIER <s.mennetrier@innotis.org>
 Cc: Yocto Project <yocto@yoctoproject.org>
 Subject: Re: [meta-raspberrypi][PATCH V2] Add initramfs support
@@ -43,95 +44,111 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 11 Feb 2014 10:59:25 -0000
-Content-Type: multipart/alternative; boundary=001a1133935c60ccb804f21f596b
+X-List-Received-Date: Tue, 11 Feb 2014 11:08:53 -0000
+Content-Type: multipart/alternative; boundary=001a1134888431494004f21f7be4
 
---001a1133935c60ccb804f21f596b
+--001a1134888431494004f21f7be4
 Content-Type: text/plain; charset=ISO-8859-1
 Content-Transfer-Encoding: quoted-printable
 
-Hello,
+On Tue, Feb 11, 2014 at 12:59 PM, Andrei Gherzan <andrei@gherzan.ro> wrote:
 
-On Mon, Feb 10, 2014 at 12:05 PM, Sebastien MENNETRIER <
-s.mennetrier@innotis.org> wrote:
-
-> Hi,
 >
+> Hello,
 >
-> 2014-02-09 Andrei Gherzan <andrei@gherzan.ro>:
+> On Mon, Feb 10, 2014 at 12:05 PM, Sebastien MENNETRIER <
+> s.mennetrier@innotis.org> wrote:
 >
-> Hi,
+>> Hi,
 >>
 >>
->> On Fri, Jan 31, 2014 at 5:30 PM, S=E9bastien Mennetrier <
->> s.mennetrier@innotis.org> wrote:
+>> 2014-02-09 Andrei Gherzan <andrei@gherzan.ro>:
 >>
->>> Permit to build an image with initramfs.
+>> Hi,
 >>>
->>> Signed-off-by: S=E9bastien Mennetrier <s.mennetrier@innotis.org>
->>> ---
->>>  classes/sdcard_image-rpi.bbclass | 5 ++++-
->>>  1 file changed, 4 insertions(+), 1 deletion(-)
 >>>
->>> diff --git a/classes/sdcard_image-rpi.bbclass
->>> b/classes/sdcard_image-rpi.bbclass
->>> index 3ee4e94..815aaa9 100644
->>> --- a/classes/sdcard_image-rpi.bbclass
->>> +++ b/classes/sdcard_image-rpi.bbclass
->>> @@ -26,6 +26,9 @@ inherit image_types
->>>  # Set kernel and boot loader
->>>  IMAGE_BOOTLOADER ?=3D "bcm2835-bootfiles"
+>>> On Fri, Jan 31, 2014 at 5:30 PM, S=E9bastien Mennetrier <
+>>> s.mennetrier@innotis.org> wrote:
 >>>
->>> +# Set initramfs extension
->>> +KERNEL_INITRAMFS ?=3D ""
->>> +
+>>>> Permit to build an image with initramfs.
+>>>>
+>>>> Signed-off-by: S=E9bastien Mennetrier <s.mennetrier@innotis.org>
+>>>> ---
+>>>>  classes/sdcard_image-rpi.bbclass | 5 ++++-
+>>>>  1 file changed, 4 insertions(+), 1 deletion(-)
+>>>>
+>>>> diff --git a/classes/sdcard_image-rpi.bbclass
+>>>> b/classes/sdcard_image-rpi.bbclass
+>>>> index 3ee4e94..815aaa9 100644
+>>>> --- a/classes/sdcard_image-rpi.bbclass
+>>>> +++ b/classes/sdcard_image-rpi.bbclass
+>>>> @@ -26,6 +26,9 @@ inherit image_types
+>>>>  # Set kernel and boot loader
+>>>>  IMAGE_BOOTLOADER ?=3D "bcm2835-bootfiles"
+>>>>
+>>>> +# Set initramfs extension
+>>>> +KERNEL_INITRAMFS ?=3D ""
+>>>> +
+>>>>
+>>>
+>>> I'm not sure how is this supposed to work. Could you please give more
+>>> info? I haven't seen this defined anywhere else so it must be something
+>>> custom you use.
 >>>
 >>
->> I'm not sure how is this supposed to work. Could you please give more
->> info? I haven't seen this defined anywhere else so it must be something
->> custom you use.
+>> When you would build an initramfs image, you must set this 3 kernel
+>> variables :
+>>      # Set initramfs
+>>      kernel_configure_variable BLK_DEV_INITRD y
+>>      kernel_configure_variable INITRAMFS_SOURCE ""
+>>      kernel_configure_variable RD_GZIP y
+>>
+>> And you must set INITRAMFS_IMAGE and INITRAMFS_IMAGE_BUNDLE variables.
+>> These variables are used in kernel.bbclass from poky.
+>>
+>> The generated image name with initramfs feature is
+>> ${KERNEL_IMAGETYPE}-initramfs-${MACHINE}.bin
+>>
+>> So you must set KERNEL_INITRAMFS in the machine.conf file with
+>> "-initramfs" in order to use this image in the mcopy below.
+>>
 >>
 >
-> When you would build an initramfs image, you must set this 3 kernel
-> variables :
->      # Set initramfs
->      kernel_configure_variable BLK_DEV_INITRD y
->      kernel_configure_variable INITRAMFS_SOURCE ""
->      kernel_configure_variable RD_GZIP y
->
-> And you must set INITRAMFS_IMAGE and INITRAMFS_IMAGE_BUNDLE variables.
-> These variables are used in kernel.bbclass from poky.
->
-> The generated image name with initramfs feature is
-> ${KERNEL_IMAGETYPE}-initramfs-${MACHINE}.bin
->
-> So you must set KERNEL_INITRAMFS in the machine.conf file with
-> "-initramfs" in order to use this image in the mcopy below.
->
+> This was exactly my point. We need to document this somewhere (most
+> probably in README). Could you please add a patch which does this?
 >
 
-This was exactly my point. We need to document this somewhere (most
-probably in README). Could you please add a patch which does this?
+Uh. And one more thing. This patch needs rebase on current master HEAD.
+Could you please resend along with the README update patch?
 
-
+Thanks in advance,
 --=20
 *Andrei Gherzan*
 m: +40.744.478.414 |  f: +40.31.816.28.12
 
---001a1133935c60ccb804f21f596b
+--001a1134888431494004f21f7be4
 Content-Type: text/html; charset=ISO-8859-1
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><br><div class=3D"gmail_extra">Hello,<br><br><div class=3D=
-"gmail_quote">On Mon, Feb 10, 2014 at 12:05 PM, Sebastien MENNETRIER <span =
-dir=3D"ltr">&lt;<a href=3D"mailto:s.mennetrier@innotis.org" target=3D"_blan=
-k">s.mennetrier@innotis.org</a>&gt;</span> wrote:<br>
+<div dir=3D"ltr"><br><div class=3D"gmail_extra"><br><br><div class=3D"gmail=
+_quote">On Tue, Feb 11, 2014 at 12:59 PM, Andrei Gherzan <span dir=3D"ltr">=
+&lt;<a href=3D"mailto:andrei@gherzan.ro" target=3D"_blank">andrei@gherzan.r=
+o</a>&gt;</span> wrote:<br>
+
+<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
+x #ccc solid;padding-left:1ex"><div dir=3D"ltr"><br><div class=3D"gmail_ext=
+ra">Hello,<br><br><div class=3D"gmail_quote"><div><div class=3D"h5">On Mon,=
+ Feb 10, 2014 at 12:05 PM, Sebastien MENNETRIER <span dir=3D"ltr">&lt;<a hr=
+ef=3D"mailto:s.mennetrier@innotis.org" target=3D"_blank">s.mennetrier@innot=
+is.org</a>&gt;</span> wrote:<br>
+
 
 <blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
 x #ccc solid;padding-left:1ex"><div dir=3D"ltr">Hi,<br><div><div class=3D"g=
 mail_extra"><br><br><div class=3D"gmail_quote">2014-02-09 Andrei Gherzan <s=
 pan dir=3D"ltr">&lt;<a href=3D"mailto:andrei@gherzan.ro" target=3D"_blank">=
-andrei@gherzan.ro</a>&gt;</span>:<div class=3D"">
+andrei@gherzan.ro</a>&gt;</span>:<div>
+
 
 <br><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;bor=
 der-left:1px solid rgb(204,204,204);padding-left:1ex">
@@ -139,6 +156,7 @@ der-left:1px solid rgb(204,204,204);padding-left:1ex">
 ail_quote"><div>On Fri, Jan 31, 2014 at 5:30 PM, S=E9bastien Mennetrier <sp=
 an dir=3D"ltr">&lt;<a href=3D"mailto:s.mennetrier@innotis.org" target=3D"_b=
 lank">s.mennetrier@innotis.org</a>&gt;</span> wrote:<br>
+
 
 
 
@@ -170,10 +188,12 @@ seen this defined anywhere else so it must be something custom you use.=A0<=
 /div>
 
 
+
 </div></div></div></blockquote><div><br></div><div></div></div><div>When yo=
 u would build an initramfs image, you must set this 3 kernel=A0 variables :=
 <br>=A0=A0=A0=A0 # Set initramfs<br>=A0=A0=A0=A0 kernel_configure_variable =
 BLK_DEV_INITRD y<br>
+
 
 
 =A0=A0=A0=A0 kernel_configure_variable INITRAMFS_SOURCE &quot;&quot;<br>=A0=
@@ -182,25 +202,32 @@ AMFS_IMAGE and INITRAMFS_IMAGE_BUNDLE variables. These variables are used i=
 n kernel.bbclass from poky.<br>
 
 
+
 <br></div>The generated image name with initramfs feature is ${KERNEL_IMAGE=
 TYPE}-initramfs-${MACHINE}.bin</div><div class=3D"gmail_quote"><br><div>So =
 you must set KERNEL_INITRAMFS in the machine.conf file with &quot;-initramf=
 s&quot; in order to use this image in the mcopy below.<br>
 
 
-</div><div class=3D""><div>=A0</div></div></div></div></div></div></blockqu=
-ote><div><br></div><div>This was exactly my point. We need to document this=
- somewhere (most probably in README). Could you please add a patch which do=
-es this?</div>
 
-<div>=A0</div></div><div><br></div>-- <br><div dir=3D"ltr"><div style=3D"te=
-xt-align:center"></div><div style=3D"text-align:center"><div align=3D"left"=
- style=3D"font-family:&#39;Times New Roman&#39;;font-size:medium"><b style=
-=3D"color:rgb(51,51,51);font-family:Arial;font-size:small;text-align:center=
-">Andrei Gherzan</b><font face=3D"Arial" color=3D"#333333" size=3D"-1"><br>
+</div><div><div>=A0</div></div></div></div></div></div></blockquote><div><b=
+r></div></div></div><div>This was exactly my point. We need to document thi=
+s somewhere (most probably in README). Could you please add a patch which d=
+oes this?</div>
+
+</div></div></div></blockquote><div><br></div><div>Uh. And one more thing. =
+This patch needs rebase on current master HEAD. Could you please resend alo=
+ng with the README update patch?</div><div><br></div><div>Thanks in advance=
+,</div>
+
+</div>-- <br><div dir=3D"ltr"><div style=3D"text-align:center"></div><div s=
+tyle=3D"text-align:center"><div align=3D"left" style=3D"font-family:&#39;Ti=
+mes New Roman&#39;;font-size:medium"><b style=3D"color:rgb(51,51,51);font-f=
+amily:Arial;font-size:small;text-align:center">Andrei Gherzan</b><font face=
+=3D"Arial" color=3D"#333333" size=3D"-1"><br>
 
 </font><font face=3D"Arial" color=3D"#333333" size=3D"-1">m: +40.744.478.41=
 4 | =A0f: +40.31.816.28.12</font><br></div></div></div>
 </div></div>
 
---001a1133935c60ccb804f21f596b--
+--001a1134888431494004f21f7be4--
