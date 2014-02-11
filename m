@@ -1,36 +1,26 @@
-Return-Path: <sebmennetrier@gmail.com>
-Received: from mail-lb0-f174.google.com (mail-lb0-f174.google.com
-	[209.85.217.174])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D4FE3E00764
-	for <yocto@yoctoproject.org>; Tue, 11 Feb 2014 08:33:44 -0800 (PST)
-Received: by mail-lb0-f174.google.com with SMTP id l4so6061735lbv.19
-	for <yocto@yoctoproject.org>; Tue, 11 Feb 2014 08:33:43 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=sender:from:to:cc:subject:date:message-id:mime-version:content-type
-	:content-transfer-encoding;
-	bh=/bflLe35NN2pEDh5zlCJ6d9OGZVoJCLZfstmztYiRG8=;
-	b=ai8rQbJ8CKszTyP8px/5eGLosJQ2xUx10JkS1JiURPErX+GVEk3gy0U9MtDnU+/MA7
-	LQlAKy68ZPl86dmn43VFYPVmAdIAVZsdx3aV0BR/d9TEAlen3gmnXOvVCN4+io8yiWV8
-	Cp9WCll/MVq7+NndgfgVN7AhQNBNAT5gd5AIEAlfRGo3L8ct0u6CJPdWBNXETG92kepn
-	RThc/fCTszPWIbJ3zUCdEOW3BOW1HP0Dw5+vEjNKXUOIc9C513WTtGrAGWKpJhw7f5KY
-	ta6E+aV7V/euEUg+241dY+mCZ5t0i7EKNFCG9Gmt+WLZjFhmPR5xxVg33ejKPjzf3T+J
-	Vbaw==
-X-Received: by 10.112.14.1 with SMTP id l1mr2396639lbc.39.1392136422834;
-	Tue, 11 Feb 2014 08:33:42 -0800 (PST)
-Received: from smennetrier-desktop.mpl.mstarsemi.fr
-	(connected-labs-gw1.ter2.neodc.mpl.cust.as8218.eu. [94.103.137.126])
-	by mx.google.com with ESMTPSA id
-	pz10sm20364191lbb.10.2014.02.11.08.33.41 for <multiple recipients>
-	(version=TLSv1.1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
-	Tue, 11 Feb 2014 08:33:42 -0800 (PST)
-Sender: Sebastien MENNETRIER <sebmennetrier@gmail.com>
-From: =?UTF-8?q?S=C3=A9bastien=20Mennetrier?= <s.mennetrier@innotis.org>
-To: yocto@yoctoproject.org
-Date: Tue, 11 Feb 2014 17:33:30 +0100
-Message-Id: <1392136410-8478-1-git-send-email-s.mennetrier@innotis.org>
-X-Mailer: git-send-email 1.8.1.2
+Return-Path: <Randy.MacLeod@windriver.com>
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C6EE1E00796
+	for <yocto@yoctoproject.org>; Tue, 11 Feb 2014 12:11:48 -0800 (PST)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
+	[147.11.189.40])
+	by mail.windriver.com (8.14.5/8.14.5) with ESMTP id s1BKBUuG011051
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
+	Tue, 11 Feb 2014 12:11:30 -0800 (PST)
+Received: from [147.11.116.205] (147.11.116.205) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server id 14.2.347.0;
+	Tue, 11 Feb 2014 12:11:30 -0800
+Message-ID: <52FA83EF.7000805@windriver.com>
+Date: Tue, 11 Feb 2014 15:11:27 -0500
+From: Randy MacLeod <randy.macleod@windriver.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:24.0) Gecko/20100101 Thunderbird/24.2.0
 MIME-Version: 1.0
-Subject: [meta-raspberrypi][PATCH V3] Add initramfs support
+To: Philip Tricca <flihp@twobit.us>, <yocto@yoctoproject.org>
+References: <1391742553-30745-1-git-send-email-flihp@twobit.us>
+In-Reply-To: <1391742553-30745-1-git-send-email-flihp@twobit.us>
+X-Originating-IP: [147.11.116.205]
+Subject: Re: [meta-selinux][PATCH 0/4] Begin mingrating bbappends to use wildcards in place of version numbers.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,78 +32,67 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 11 Feb 2014 16:33:46 -0000
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Tue, 11 Feb 2014 20:11:49 -0000
+Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Permit to build an image with initramfs.
-Add information in README to build with initramfs.
+On 14-02-06 10:09 PM, Philip Tricca wrote:
+> The current trend in OE recipes seems to use a wildcard in place of version numbers for bbappends. AFAIK this is a relatively new feature but a welcome one. This is a sort of RFC in that I think it's probably best for meta-selinux to use this mechanism to keep from having to rename bbappends everytime something in oe-core changes. I guess the right way to implement this is to change the bbappends in meta-selinux when the version numbers change upstream.
+>
 
-Signed-off-by: Sébastien Mennetrier <s.mennetrier@innotis.org>
----
- README                           | 13 +++++++++++++
- classes/sdcard_image-rpi.bbclass |  7 +++++--
- 2 files changed, 18 insertions(+), 2 deletions(-)
+Hi Philip,
 
-diff --git a/README b/README
-index fc492c5..daa4059 100644
---- a/README
-+++ b/README
-@@ -37,6 +37,7 @@ Contents:
-     2.F. Optional - Video camera support with V4L2 drivers
-     2.G. Images
-     2.H. Boot to U-Boot
-+    2.I. Image with Initramfs
- 3. Extra apps
-     3.A. omxplayer
- 4. Source code and mirrors
-@@ -155,6 +156,18 @@ KERNEL_IMAGETYPE = "uImage"
- This will make kernel.img be u-boot image which will load uImage.
- By default, kernel.img is the actual kernel image (ex. Image).
- 
-+2.I. Image with Initramfs
-+=========================
-+To build an initramfs image :
-+    * Set this 3 kernel variables (in linux-raspberrypi.inc for example)
-+        - kernel_configure_variable BLK_DEV_INITRD y
-+        - kernel_configure_variable INITRAMFS_SOURCE ""
-+        - kernel_configure_variable RD_GZIP y
-+    * Set the yocto variables (in linux-raspberrypi.inc for example)
-+        - INITRAMFS_IMAGE = "<a name for your initramfs image>"
-+        - INITRAMFS_IMAGE_BUNDLE = "1"
-+    * Set the meta-rasberrypi variable (in raspberrypi.conf for example)
-+        - KERNEL_INITRAMFS = "-initramfs"
- 
- 3. Extra apps
- =============
-diff --git a/classes/sdcard_image-rpi.bbclass b/classes/sdcard_image-rpi.bbclass
-index 179b7b7..eb337dc 100644
---- a/classes/sdcard_image-rpi.bbclass
-+++ b/classes/sdcard_image-rpi.bbclass
-@@ -26,6 +26,9 @@ inherit image_types
- # Set kernel and boot loader
- IMAGE_BOOTLOADER ?= "bcm2835-bootfiles"
- 
-+# Set initramfs extension
-+KERNEL_INITRAMFS ?= ""
-+
- # Boot partition volume id
- BOOTDD_VOLUME_ID ?= "${MACHINE}"
- 
-@@ -95,10 +98,10 @@ IMAGE_CMD_rpi-sdimg () {
- 	case "${KERNEL_IMAGETYPE}" in
- 	"uImage")
- 	    mcopy -i ${WORKDIR}/boot.img -s ${DEPLOY_DIR_IMAGE}/u-boot.img ::kernel.img
--	    mcopy -i ${WORKDIR}/boot.img -s ${DEPLOY_DIR_IMAGE}/${KERNEL_IMAGETYPE}-${MACHINE}.bin ::uImage
-+	    mcopy -i ${WORKDIR}/boot.img -s ${DEPLOY_DIR_IMAGE}/${KERNEL_IMAGETYPE}${KERNEL_INITRAMFS}-${MACHINE}.bin ::uImage
- 	    ;;
- 	*)
--	    mcopy -i ${WORKDIR}/boot.img -s ${DEPLOY_DIR_IMAGE}/${KERNEL_IMAGETYPE}-${MACHINE}.bin ::kernel.img
-+	    mcopy -i ${WORKDIR}/boot.img -s ${DEPLOY_DIR_IMAGE}/${KERNEL_IMAGETYPE}${KERNEL_INITRAMFS}-${MACHINE}.bin ::kernel.img
- 	    ;;
- 	esac
- 
+This might work out but I'm somewhat attached to the manual process.
+Manual matching shows that someone is:
+    - paying attention,
+    - fixed the bbappend version number,
+    - gotten someone else to review,
+    - hopefully built the software for at least one arch,
+    - hopefully tested run-time for at least one arch.
+
+With a wildcard matching rule, there will be times when the
+underlying package has changed and then the recipe changes and
+perhaps code patches still apply but are to some extent broken.
+Have people accepted this as a possible outcome that they
+believe will be rare? Have you tried your approach with a few
+different oe-core baselines such as dora, random, master?
+
+I'm not agaist this change but I'm trying to be sure that people
+agree that it's a good approach and that we've tested the idea
+with some historical changes.
+
+Thanks,
+
+../Randy
+
+
+> Philip Tricca (4):
+>    busybox: Use wildcard for version number in busybox bbappend.
+>    libcgroup: Use wildcard for version number in libcgroup bbappend.
+>    sudo: Use wildcard for version number in sudo bbappend.
+>    libxcb: Use wildcard for version number in libxcb bbappend.
+>
+>   recipes-core/busybox/busybox_%.bbappend        |   87 ++++++++++++++++++++++++
+>   recipes-core/busybox/busybox_1.21.1.bbappend   |   87 ------------------------
+>   recipes-core/libcgroup/libcgroup_%.bbappend    |   12 ++++
+>   recipes-core/libcgroup/libcgroup_0.38.bbappend |   12 ----
+>   recipes-extended/sudo/sudo_%.bbappend          |    3 +
+>   recipes-extended/sudo/sudo_1.8.8.bbappend      |    3 -
+>   recipes-graphics/xcb/libxcb_%.bbappend         |    8 +++
+>   recipes-graphics/xcb/libxcb_1.9.3.bbappend     |    8 ---
+>   8 files changed, 110 insertions(+), 110 deletions(-)
+>   create mode 100644 recipes-core/busybox/busybox_%.bbappend
+>   delete mode 100644 recipes-core/busybox/busybox_1.21.1.bbappend
+>   create mode 100644 recipes-core/libcgroup/libcgroup_%.bbappend
+>   delete mode 100644 recipes-core/libcgroup/libcgroup_0.38.bbappend
+>   create mode 100644 recipes-extended/sudo/sudo_%.bbappend
+>   delete mode 100644 recipes-extended/sudo/sudo_1.8.8.bbappend
+>   create mode 100644 recipes-graphics/xcb/libxcb_%.bbappend
+>   delete mode 100644 recipes-graphics/xcb/libxcb_1.9.3.bbappend
+>
+
+
 -- 
-1.8.1.2
-
+# Randy MacLeod. SMTS, Linux, Wind River
+Direct: 613.963.1350
 
