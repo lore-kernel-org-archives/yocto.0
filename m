@@ -1,30 +1,43 @@
-Return-Path: <Xin.Ouyang@windriver.com>
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5642BE007AD
-	for <yocto@yoctoproject.org>; Wed, 12 Feb 2014 18:33:45 -0800 (PST)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail.windriver.com (8.14.5/8.14.5) with ESMTP id s1D2XcOx019647
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Wed, 12 Feb 2014 18:33:40 -0800 (PST)
-Received: from pascal-macbookpro.corp.ad.wrs.com (128.224.158.235) by
-	ALA-HCA.corp.ad.wrs.com (147.11.189.50) with Microsoft SMTP Server id
-	14.2.347.0; Wed, 12 Feb 2014 18:33:36 -0800
-Message-ID: <52FC2EFF.3080900@windriver.com>
-Date: Thu, 13 Feb 2014 10:33:35 +0800
-From: Pascal Ouyang <xin.ouyang@windriver.com>
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.8;
-	rv:24.0) Gecko/20100101 Thunderbird/24.3.0
-MIME-Version: 1.0
-To: Joe MacDonald <joe@deserted.net>, Randy MacLeod
-	<randy.macleod@windriver.com>
-References: <1391742553-30745-1-git-send-email-flihp@twobit.us>	<52FA83EF.7000805@windriver.com>	<20140212011520.GA23405@deserted.net>
-	<52FAE24C.9060902@twobit.us>	<52FB8BC4.8090001@windriver.com>
-	<20140213001802.GB23405@deserted.net>
-In-Reply-To: <20140213001802.GB23405@deserted.net>
-X-TagToolbar-Keys: D20140213103335208
-Cc: yocto@yoctoproject.org
-Subject: Re: [meta-selinux][PATCH 0/4] Begin mingrating bbappends to use wildcards in place of version numbers.
+Return-Path: <raj.khem@gmail.com>
+Received: from mail-pb0-f49.google.com (mail-pb0-f49.google.com
+	[209.85.160.49])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id ED564E007AD
+	for <yocto@yoctoproject.org>; Wed, 12 Feb 2014 21:45:43 -0800 (PST)
+Received: by mail-pb0-f49.google.com with SMTP id up15so10217792pbc.8
+	for <yocto@yoctoproject.org>; Wed, 12 Feb 2014 21:45:42 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=content-type:mime-version:subject:from:in-reply-to:date:cc
+	:content-transfer-encoding:message-id:references:to;
+	bh=n8dY1lrLaIi0YB8Nfq3QkFhV0216dy4mYqTUSfSlOtw=;
+	b=YsQSwFE8PNHyXFEmpI3JttqebTsGzu0MZjPEsKGjY3rGCkia1HPuo7bXx8PwFaCcY7
+	3nJDrd/l4Q9i9h0PMMC/e9yQmDmMK8r27aVpOKIHaO3J72R5rnwIAf03h+KOuwh78YtY
+	fI2Mhvc0OjPS5ezApM8WxnmQhkO+q9j/KmvRcahIpU0d6oQ1Y5TJPOb0EEuV4Gfq+7tL
+	wuuN91QUb6vuhDb7TGN1XgalkKdOoq7Y3sF0m0M37Nm1Z1MYaGV1hrbWioE2Lcos2V+r
+	UetfHBz8w1zjpvMQYGm6GhnoRFkAO0+E7HCYQjaEJAbD40ob4SEAfp4TG7hP4+hYVeK7
+	jegw==
+X-Received: by 10.66.217.133 with SMTP id oy5mr44752755pac.46.1392270342687;
+	Wed, 12 Feb 2014 21:45:42 -0800 (PST)
+Received: from [192.168.0.33] (99-57-140-30.lightspeed.sntcca.sbcglobal.net.
+	[99.57.140.30])
+	by mx.google.com with ESMTPSA id id1sm2360087pbc.11.2014.02.12.21.45.41
+	for <multiple recipients>
+	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
+	Wed, 12 Feb 2014 21:45:41 -0800 (PST)
+Mime-Version: 1.0 (Mac OS X Mail 7.1 \(1827\))
+From: Khem Raj <raj.khem@gmail.com>
+In-Reply-To: <81756FDA-0EA9-4393-A4F2-0004E8377A7F@gmail.com>
+Date: Wed, 12 Feb 2014 21:45:39 -0800
+Message-Id: <9BE5B941-F71B-444F-84A3-07EF3CA6F9E5@gmail.com>
+References: <CAMKF1sptnVxCrjm7PAOCtRWzmSsxPv4nc0nUO82jMPQ+BCz9Hg@mail.gmail.com>
+	<1392219682.14081.1.camel@ted>
+	<81756FDA-0EA9-4393-A4F2-0004E8377A7F@gmail.com>
+To: Richard Purdie <richard.purdie@linuxfoundation.org>
+X-Mailer: Apple Mail (2.1827)
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
+	openembeded-devel <Openembedded-devel@lists.openembedded.org>,
+	Patches and discussions about the oe-core layer
+	<openembedded-core@lists.openembedded.org>
+Subject: Re: [OE-core] [RFT] eglibc 2.19
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -36,166 +49,65 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 13 Feb 2014 02:33:46 -0000
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Thu, 13 Feb 2014 05:45:46 -0000
+Content-Type: text/plain; charset=windows-1252
+Content-Transfer-Encoding: quoted-printable
 
-于 14-2-13 上午8:18, Joe MacDonald 写道:
-> [Re: [yocto] [meta-selinux][PATCH 0/4] Begin mingrating bbappends to use wildcards in place of version numbers.] On 14.02.12 (Wed 09:57) Randy MacLeod wrote:
->
->> On 14-02-11 09:54 PM, Philip Tricca wrote:
->>> On 02/11/2014 08:15 PM, Joe MacDonald wrote:
->>>> [Re: [yocto] [meta-selinux][PATCH 0/4] Begin mingrating bbappends
->>>> to use wildcards in place of version numbers.] On 14.02.11 (Tue
->>>> 15:11) Randy MacLeod wrote:
->>>>
->>>>> On 14-02-06 10:09 PM, Philip Tricca wrote:
->>>>>> The current trend in OE recipes seems to use a wildcard in
->>>>>> place of version numbers for bbappends. AFAIK this is a
->>>>>> relatively new feature but a welcome one. This is a sort of RFC
->>>>>> in that I think it's probably best for meta-selinux to use this
->>>>>> mechanism to keep from having to rename bbappends everytime
->>>>>> something in oe-core changes. I guess the right way to
->>>>>> implement this is to change the bbappends in meta-selinux when
->>>>>> the version numbers change upstream.
->>
->> I'm convinced that we should give this a try.
->> If there are cases where the wildcard bbappend doesn't work, we can
->> always use explicit versions and add a comment explaining why
->> the wildcard isn't used.
+Hi Richard, All
 
-Generally, wildcard bbappends should be applied to config parts to 
-enable/disable selinux, such as "inherit enable-selinux".
+On Feb 12, 2014, at 10:20 AM, Khem Raj <raj.khem@gmail.com> wrote:
 
-If there are selinux patches(backport, or poky only), we should also 
-leave a version bbappend.
+>=20
+> On Feb 12, 2014, at 7:41 AM, Richard Purdie =
+<richard.purdie@linuxfoundation.org> wrote:
+>=20
+>> On Sat, 2014-02-08 at 08:08 -0800, Khem Raj wrote:
+>>> Hi all
+>>>=20
+>>> I have staged a branch with eglibc 2.19 upgraded recipes here
+>>>=20
+>>> =
+http://git.openembedded.org/openembedded-core-contrib/log/?h=3Dkraj/eglibc=
+-2.19
+>>>=20
+>>> These are not final recipes there may be tweaks needed like =
+adjusting SRC_URI
+>>> later on.
+>>>=20
+>>> please help testing it out in your environments and machines
+>>> I would be happy to help out with issues we find
+>>=20
+>> The autobuilder is still going but it found:
+>>=20
+>> =
+http://autobuilder.yoctoproject.org/main/builders/nightly-fsl-ppc/builds/2=
+5/steps/BuildImages/logs/stdio
+>=20
+> I could reproduce it.
+>=20
+> This seems to be surfaced by a commit in glibc where the  math_ldbl.h =
+implementations for ppc were unified. I have for now reverted it via =
+patch and pushed to pull branch. however thats not only the one issue =
+:(. I am now seeing
+>=20
+> | ../sysdeps/powerpc/fpu/fenv_libc.h:48:6: error: impossible =
+constraint in 'asm'
+> |       asm volatile ("mtfsf 0xff,%0" : : "f" (d)); \
+> |       ^
+>=20
 
-Thanks all. :)
+Alright, the real problem was that in glibc 2.19 the SPE patch was =
+upsteamed from eglibc and now the SPE support lives under nofpu/ which =
+is correct unlike
+eglibc where it was living under fpu/ class. We were not passing =
+=97without-fp
+to eglibc configure which caused this issue. I have now fixed it in =
+metadata
+and pushed a new set of patches ( total 2) to the pull branch, which =
+should take of this issue as well as valgrind issue.=20
 
-- Pascal
-
->
-> Since this sounds like consensus:
->
-> git push origin HEAD:master
-> Counting objects: 24, done.
-> Delta compression using up to 4 threads.
-> Compressing objects: 100% (12/12), done.
-> Writing objects: 100% (16/16), 1.55 KiB, done.
-> Total 16 (delta 10), reused 0 (delta 0)
-> To git@git.yoctoproject.org:meta-selinux
->     1326699..05a0c6c  HEAD -> master
->
->
-> :-)
->
-> Thanks, Phil.
->
-> -J.
->
->>
->> ../ Randy
->>
->>>>>>
->>>>>
->>>>> Hi Philip,
->>>>>
->>>>> This might work out but I'm somewhat attached to the manual
->>>>> process.
->>>>
->>>> It's a change I'd been advocating for quite some time now.
->>>> (Actually, it was something I was somewhat surprised wasn't
->>>> possible when I first came to bitbake in general, so at least to me
->>>> this change seems pretty sensible.)
->>>>
->>>> The risks you outline are real, but historically this hasn't shown
->>>> itself to be a significant problem so far.  The types of things
->>>> this'll hit on are characterized well in Phil's RFC set.  Stuff
->>>> like sudo and libcgroup which require bbappends but the contents
->>>> haven't had any meaningful change since the stone age.  :-)
->>>>
->>>> I think this is actually a win for meta-selinux in terms of
->>>> reducing the number of commits like f0adb425.
->>>>
->>>> I've already staged the proposed change in my tree and it seems
->>>> happy, so I'm inclined to merge it, FWIW.
->>>
->>> I appreciate both sides of this being represented. I agree with Joe
->>> that it's an obvious fit for simple bbappends that require little more
->>> than --(enable|with)-selinux. The more involved bbappends may be
->>> better suited to manual version number changes.
->>>
->>> If any of the recipes from this set fall into the later category I
->>> won't object to dropping them and favoring the process manual. But as
->>> Joe points out, I think this approach is a given for the likes of
->>> sudo, libcgroup etc.
->>>
->>> Thanks,
->>> Philip
->>>
->>>>
->>>> -J.
->>>>
->>>>> Manual matching shows that someone is: - paying attention, -
->>>>> fixed the bbappend version number, - gotten someone else to
->>>>> review, - hopefully built the software for at least one arch, -
->>>>> hopefully tested run-time for at least one arch.
->>>>>
->>>>> With a wildcard matching rule, there will be times when the
->>>>> underlying package has changed and then the recipe changes and
->>>>> perhaps code patches still apply but are to some extent broken.
->>>>> Have people accepted this as a possible outcome that they believe
->>>>> will be rare? Have you tried your approach with a few different
->>>>> oe-core baselines such as dora, random, master?
->>>>>
->>>>> I'm not agaist this change but I'm trying to be sure that people
->>>>> agree that it's a good approach and that we've tested the idea
->>>>> with some historical changes.
->>>>>
->>>>> Thanks,
->>>>>
->>>>> ../Randy
->>>>>
->>>>>
->>>>>> Philip Tricca (4): busybox: Use wildcard for version number in
->>>>>> busybox bbappend. libcgroup: Use wildcard for version number in
->>>>>> libcgroup bbappend. sudo: Use wildcard for version number in
->>>>>> sudo bbappend. libxcb: Use wildcard for version number in
->>>>>> libxcb bbappend.
->>>>>>
->>>>>> recipes-core/busybox/busybox_%.bbappend        |   87
->>>>>> ++++++++++++++++++++++++
->>>>>> recipes-core/busybox/busybox_1.21.1.bbappend   |   87
->>>>>> ------------------------
->>>>>> recipes-core/libcgroup/libcgroup_%.bbappend    |   12 ++++
->>>>>> recipes-core/libcgroup/libcgroup_0.38.bbappend |   12 ----
->>>>>> recipes-extended/sudo/sudo_%.bbappend          |    3 +
->>>>>> recipes-extended/sudo/sudo_1.8.8.bbappend      |    3 -
->>>>>> recipes-graphics/xcb/libxcb_%.bbappend         |    8 +++
->>>>>> recipes-graphics/xcb/libxcb_1.9.3.bbappend     |    8 --- 8
->>>>>> files changed, 110 insertions(+), 110 deletions(-) create mode
->>>>>> 100644 recipes-core/busybox/busybox_%.bbappend delete mode
->>>>>> 100644 recipes-core/busybox/busybox_1.21.1.bbappend create mode
->>>>>> 100644 recipes-core/libcgroup/libcgroup_%.bbappend delete mode
->>>>>> 100644 recipes-core/libcgroup/libcgroup_0.38.bbappend create
->>>>>> mode 100644 recipes-extended/sudo/sudo_%.bbappend delete mode
->>>>>> 100644 recipes-extended/sudo/sudo_1.8.8.bbappend create mode
->>>>>> 100644 recipes-graphics/xcb/libxcb_%.bbappend delete mode
->>>>>> 100644 recipes-graphics/xcb/libxcb_1.9.3.bbappend
->>>>>>
->>>>>
->>>>>
->>>
->>
->>
->>
->>
->> _______________________________________________
->> yocto mailing list
->> yocto@yoctoproject.org
->> https://lists.yoctoproject.org/listinfo/yocto
+Thanks
+-Khem
 
 
--- 
-- Pascal
 
