@@ -1,21 +1,21 @@
 Return-Path: <opensource@keylevel.com>
 Received: from r109.websiteservername.com (r109.websiteservername.com
 	[65.39.128.45])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DA728E00439
-	for <yocto@yoctoproject.org>; Thu, 13 Feb 2014 14:36:07 -0800 (PST)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D921DE00404
+	for <yocto@yoctoproject.org>; Thu, 13 Feb 2014 14:36:06 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=keylevel.com;
 	s=default; 
 	h=Mime-Version:To:Date:Message-Id:Subject:Content-Transfer-Encoding:Content-Type:From;
 	bh=Tum2I/iHurD8Go2XNljabIX2fY7J4boihmvjX5ycMU4=; 
-	b=U7aPXMp4UqCs7qDkAirYFSwSfhTsc0IZLQiQ5Q3y7CCLxLL3tmcSQuhp02tCyiWT+WE1fnE27b2yEpigxXvItbsSs8tl3/hfhsWJgUfAsuN+omHji8BzN+vkSaRtbEXAWfCCCKbZCiQyZjxqRI5V14j9zwktjpHGXeWm3OHsU0U=;
+	b=q2GI8DkjVrMdm2YxS5MvXoDHdT/hh0a19dqmV9LBs0H/gHb8Ml5BJkYsQ6opEVStNtcBSa3/ET99Pr/rdSzLymPZ+yCFllW4lNatOR/dpeLkLgr9uEPCTlZPfYgB9V/d4U5AW5Jqi4SK9qrykldHQ8HeBcIXTPTqpjMogiSowyQ=;
 Received: from [109.224.171.0] (port=16179
 	helo=macbook-pro.durham.keylevel.com)
 	by r109.websiteservername.com with esmtpsa (TLSv1:AES128-SHA:128)
 	(Exim 4.82) (envelope-from <opensource@keylevel.com>)
-	id 1WE4t6-00497j-BH
-	for yocto@yoctoproject.org; Thu, 13 Feb 2014 22:36:09 +0000
+	id 1WE4t4-00497j-1C
+	for yocto@yoctoproject.org; Thu, 13 Feb 2014 22:36:07 +0000
 From: Chris Tapp <opensource@keylevel.com>
-Message-Id: <8E28A712-1466-4535-B733-44907A0243B6@keylevel.com>
+Message-Id: <B36B030A-DF5C-4A69-BEBB-9486C9FF3965@keylevel.com>
 Date: Thu, 13 Feb 2014 22:36:01 +0000
 To: Yocto Project <yocto@yoctoproject.org>
 Mime-Version: 1.0 (Mac OS X Mail 7.1 \(1827\))
