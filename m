@@ -1,28 +1,34 @@
-Return-Path: <Xin.Ouyang@windriver.com>
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3981DE007DA
-	for <yocto@yoctoproject.org>; Thu, 13 Feb 2014 01:50:34 -0800 (PST)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail.windriver.com (8.14.5/8.14.5) with ESMTP id s1D9oY5q004999
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL)
-	for <yocto@yoctoproject.org>; Thu, 13 Feb 2014 01:50:34 -0800 (PST)
-Received: from pascal-macbookpro.corp.ad.wrs.com (128.224.158.235) by
-	ALA-HCA.corp.ad.wrs.com (147.11.189.50) with Microsoft SMTP Server id
-	14.2.347.0; Thu, 13 Feb 2014 01:48:39 -0800
-Message-ID: <52FC94F5.40904@windriver.com>
-Date: Thu, 13 Feb 2014 17:48:37 +0800
-From: Pascal Ouyang <xin.ouyang@windriver.com>
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.8;
-	rv:24.0) Gecko/20100101 Thunderbird/24.3.0
+Return-Path: <otavio.salvador@gmail.com>
+Received: from mail-yk0-f174.google.com (mail-yk0-f174.google.com
+	[209.85.160.174])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6B57EE007DA
+	for <yocto@yoctoproject.org>; Thu, 13 Feb 2014 02:44:32 -0800 (PST)
+Received: by mail-yk0-f174.google.com with SMTP id 20so18776029yks.5
+	for <yocto@yoctoproject.org>; Thu, 13 Feb 2014 02:44:32 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:sender:in-reply-to:references:date:message-id:subject
+	:from:to:cc:content-type;
+	bh=sQUrWqA1wtLveFtikNTNficZkdX1w9sLPm4B/sWP/fM=;
+	b=gLaQv1TpWD+EIk1wNVrMZ8/my2aJurxbzz3cGEDnuh4wN7yMaI+orzpOglRCXLfdpV
+	xEt9QgcYKC0UB3t9g6EBqrGn+tqq9QVKOrmZ7sIaI49eC4NTgCD36cDTxdNFeYGd+Sin
+	RSjRCDDXG7Si7kFw7mlrl1GENi0nxyqu4pTFAhysUFarC5786PLq7trXvF/+JpYCuEmw
+	kQZA6+7pbnRF+ocLzEC/SZZ7K24002SpMe8CpcoGzOecUzhwgd4UR+Y3WGtiZTAG3Dzy
+	LmzxFSz1OCyNRyxeb6s7rUInA3CoVPmko1oSkOmvd8MsFup9zYVbpEI7RI6GSH2ZmV79
+	20mg==
 MIME-Version: 1.0
-To: <wenzong.fan@windriver.com>, <yocto@yoctoproject.org>,
-	<mark.hatle@windriver.com>
-References: <cover.1392278548.git.wenzong.fan@windriver.com>
-	<fff8c6f836d66296e4e78ab30c05de1e89f96c6f.1392278548.git.wenzong.fan@windriver.com>
-In-Reply-To: <fff8c6f836d66296e4e78ab30c05de1e89f96c6f.1392278548.git.wenzong.fan@windriver.com>
-X-TagToolbar-Keys: D20140213174837521
-Subject: Re: [meta-selinux][PATCH 1/1] refpolicy: fix real path for su.shadow
+X-Received: by 10.236.130.138 with SMTP id k10mr616109yhi.31.1392288272036;
+	Thu, 13 Feb 2014 02:44:32 -0800 (PST)
+Sender: otavio.salvador@gmail.com
+Received: by 10.170.161.3 with HTTP; Thu, 13 Feb 2014 02:44:31 -0800 (PST)
+In-Reply-To: <CAPhnLPCCyEijt5JJh8=EBbXNjP-+FZ7XoXFcwxEr=R2KG0hfNQ@mail.gmail.com>
+References: <CAPhnLPCCyEijt5JJh8=EBbXNjP-+FZ7XoXFcwxEr=R2KG0hfNQ@mail.gmail.com>
+Date: Thu, 13 Feb 2014 08:44:31 -0200
+X-Google-Sender-Auth: YzB7G6HycuJu8IYHvjKK1_ppUes
+Message-ID: <CAP9ODKrA9CJ70GytDYrFR=aVvpFJiR3k5OeDG_hb=Y82Yp+67Q@mail.gmail.com>
+From: Otavio Salvador <otavio@ossystems.com.br>
+To: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: 1.6_M3.rc1 availability
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,67 +40,32 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 13 Feb 2014 09:50:38 -0000
-Content-Type: text/plain; charset="GB2312"
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Thu, 13 Feb 2014 10:44:33 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
-ÓÚ 14-2-13 ÏÂÎç4:09, wenzong.fan@windriver.com Ð´µÀ:
-> From: Wenzong Fan <wenzong.fan@windriver.com>
-> 
-> Signed-off-by: Wenzong Fan <wenzong.fan@windriver.com>
-> ---
->   .../poky-fc-fix-real-path_su.patch                 |   25 ++++++++++++++++++++
->   .../refpolicy/refpolicy_2.20130424.inc             |    1 +
->   2 files changed, 26 insertions(+)
->   create mode 100644 recipes-security/refpolicy/refpolicy-2.20130424/poky-fc-fix-real-path_su.patch
-> 
-> diff --git a/recipes-security/refpolicy/refpolicy-2.20130424/poky-fc-fix-real-path_su.patch b/recipes-security/refpolicy/refpolicy-2.20130424/poky-fc-fix-real-path_su.patch
-> new file mode 100644
-> index 0000000..b0392ce
-> --- /dev/null
-> +++ b/recipes-security/refpolicy/refpolicy-2.20130424/poky-fc-fix-real-path_su.patch
-> @@ -0,0 +1,25 @@
-> +From 4affa5e9797f5d51597c9b8e0f2503883c766699 Mon Sep 17 00:00:00 2001
-> +From: Wenzong Fan <wenzong.fan@windriver.com>
-> +Date: Thu, 13 Feb 2014 00:33:07 -0500
-> +Subject: [PATCH] fix real path for su.shadow command
-> +
-> +Upstream-Status: Inappropriate [only for Poky]
-> +
-> +Signed-off-by: Wenzong Fan <wenzong.fan@windriver.com>
-> +---
-> + policy/modules/admin/su.fc |    2 ++
-> + 1 file changed, 2 insertions(+)
-> +
-> +diff --git a/policy/modules/admin/su.fc b/policy/modules/admin/su.fc
-> +index a563687..0f43827 100644
-> +--- a/policy/modules/admin/su.fc
-> ++++ b/policy/modules/admin/su.fc
-> +@@ -4,3 +4,5 @@
-> +
-> + /usr/(local/)?bin/ksu	--	gen_context(system_u:object_r:su_exec_t,s0)
-> + /usr/bin/kdesu		--	gen_context(system_u:object_r:su_exec_t,s0)
-> ++
-> ++/bin/su.shadow		--	gen_context(system_u:object_r:su_exec_t,s0)
-> +--
-> +1.7.9.5
-> +
-> diff --git a/recipes-security/refpolicy/refpolicy_2.20130424.inc b/recipes-security/refpolicy/refpolicy_2.20130424.inc
-> index 23339e3..9e5e426 100644
-> --- a/recipes-security/refpolicy/refpolicy_2.20130424.inc
-> +++ b/recipes-security/refpolicy/refpolicy_2.20130424.inc
-> @@ -30,6 +30,7 @@ SRC_URI += "file://poky-fc-subs_dist.patch \
->               file://poky-fc-udevd.patch \
->               file://poky-fc-rpm.patch \
->               file://poky-fc-ftpwho-dir.patch \
-> +            file://poky-fc-fix-real-path_su.patch \
->              "
->   
->   # Specific policy for Poky
-> 
+On Thu, Feb 13, 2014 at 5:19 AM, Flanagan, Elizabeth
+<elizabeth.flanagan@intel.com> wrote:
+> 1.6_M3.rc1 will soon be available at:
+>
+> http://autobuilder.yoctoproject.org/pub/nightly/20140213-1
+>
+> bitbake     56321b18808f5ed932543d907b9ebcfbf4420233
+> eclipse-poky-juno     26bfc407781aa185f244a47ba63120343cee4a37
+> eclipse-poky-kepler     f4d8e9243f9355424a01e2d72fd1abbf68d3bb7c
+> meta-fsl-arm     cf08433a22de0538d96f7959fb7a677b59b3f267
+> meta-fsl-ppc     1536064e02f15761e90f784d88f2a930784f7f3d
+> meta-intel     49b97a90ea3bce2a61a8578cface01f32a97e2b3
+> meta-minnow     32e4d6f17917027c3babe1ab738480de9691024d
+> meta-qt3     4772424ab69908d4e3b9d6d4717ca889468e6acd
+> oecore     b188bda18690dc1af1cb5d18bb0f3ad40c9a6cc6
+> poky     b70a10ca3ee4a0add90d387e2c8288e531aaa47c
 
-Acked.
+In the meta-fsl-arm this is quite broken. I sent a fix to the
+kernel.bbclass to solve the kernel build regression but it has not
+been applied so no machine succeed.
 
 -- 
-- Pascal
+Otavio Salvador                             O.S. Systems
+http://www.ossystems.com.br        http://code.ossystems.com.br
+Mobile: +55 (53) 9981-7854            Mobile: +1 (347) 903-9750
 
