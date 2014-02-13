@@ -1,28 +1,34 @@
-Return-Path: <luca.silicio@gmail.com>
-Received: from mail-ob0-f170.google.com (mail-ob0-f170.google.com
-	[209.85.214.170])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7E852E007D6
-	for <yocto@yoctoproject.org>; Thu, 13 Feb 2014 08:43:20 -0800 (PST)
-Received: by mail-ob0-f170.google.com with SMTP id va2so12490523obc.1
-	for <yocto@yoctoproject.org>; Thu, 13 Feb 2014 08:43:20 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=msCMQfmtatMoHt+vqM+eoBhHTUBWlRALpomyzqpgwic=;
-	b=pHSJxE/GTSL7plDqOv8WeyZBhzLW03/lt4ywboBq/Qwsz12k1GxR3FoUNz/yMhTuRf
-	N7lmz4CXJnuwhBh3B/eOV6c0eusEw2x3IG605qXBCzhUIemAx7zZ/o7Z6MnKAR2ASbuW
-	tGH67mNIzk19lrQzmJoDvEsM1565PgSgt8M9YneDs4b591un/TEJZZYQfeiqvclZqv0A
-	aPeISX5V0dHawJtc9IkkufWc3bu1YRPhLMKwzzeEGUitM+SLb4acqYX00frRjxk4eGAJ
-	1m6hE4fW5E88mfK500iScizMIf0bYVs8Oo7qJ0offpNEJ6wfE6K2vd1m86ZYiFvkKDuc
-	ccjw==
+Return-Path: <ross.burton@intel.com>
+Received: from mail-qa0-f45.google.com (mail-qa0-f45.google.com
+	[209.85.216.45])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8AA73E007E6
+	for <yocto@yoctoproject.org>; Thu, 13 Feb 2014 08:57:11 -0800 (PST)
+Received: by mail-qa0-f45.google.com with SMTP id m5so3234454qaj.18
+	for <yocto@yoctoproject.org>; Thu, 13 Feb 2014 08:57:10 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc:content-type;
+	bh=iwh/OCSpXG2D5kc3+GManyLj0Rp1Jgr3jEkp06NtcYg=;
+	b=YNYyUUGtZFYWhL7XfVrdxPil9iLYSK7ZlK+T/AW9PnE8hm7QeGr57P49zNg5ubddS8
+	rNRpNgH5sRAzbr5RgLRKzPtOF2/mRmDu/Ea7pmLV0xcTJSeEKidZ/WDh8gsAuwhDnHJ9
+	Hvv74rGt1eov/cXo2Rxmr+Da1bqTWslIwn/qUl8TXUb25zCp/QHpj6ao+gDHCQoePHR2
+	E5dirPW6hGm6xHXNqHhX97BDPRV3FPj0ySc1BXX803LE73HoApQYs0m35w6ezIcAy/3W
+	tRUmcZQy4xFNN0FM65lzv+rcbF6++9e27+vJOdEkHJcS8cWrpgkjHEtG1LmP6u2MoEjl
+	p0yA==
+X-Gm-Message-State: ALoCoQkJ3vc5xGj29ySAPR6VKbQiW2vEknNQhTE44X6NgbbYXSAVqtWI3u+ChfE4rIwKNGP/NmRV
+X-Received: by 10.224.98.139 with SMTP id q11mr4410598qan.64.1392310630422;
+	Thu, 13 Feb 2014 08:57:10 -0800 (PST)
 MIME-Version: 1.0
-X-Received: by 10.182.19.132 with SMTP id f4mr2080112obe.14.1392309800038;
-	Thu, 13 Feb 2014 08:43:20 -0800 (PST)
-Received: by 10.182.120.36 with HTTP; Thu, 13 Feb 2014 08:43:19 -0800 (PST)
-Date: Thu, 13 Feb 2014 17:43:19 +0100
-Message-ID: <CACHXdpFexqTc56vA8w03bFRgdi3rBvUgSRc+MnM5UzKGmck1nA@mail.gmail.com>
-From: Luca Silicio <luca.silicio@gmail.com>
-To: yocto@yoctoproject.org
-Subject: Intel BSP for Quark from standard kernel to rt-preempt kernel
+Received: by 10.140.48.79 with HTTP; Thu, 13 Feb 2014 08:56:50 -0800 (PST)
+In-Reply-To: <52FCD87B.30301@mlbassoc.com>
+References: <52FCD87B.30301@mlbassoc.com>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Thu, 13 Feb 2014 16:56:50 +0000
+Message-ID: <CAJTo0LaJ4rmWpvPZK62kgkoBm9CTK4uUSaYFZ8JPdZ4qXycQTQ@mail.gmail.com>
+To: Gary Thomas <gary@mlbassoc.com>
+Cc: Yocto Project <yocto@yoctoproject.org>
+Subject: Re: Can't build core-image-weston
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,46 +40,40 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 13 Feb 2014 16:43:21 -0000
-Content-Type: multipart/alternative; boundary=001a11c2aa6a0c7c6d04f24c6398
+X-List-Received-Date: Thu, 13 Feb 2014 16:57:15 -0000
+Content-Type: text/plain; charset=UTF-8
 
---001a11c2aa6a0c7c6d04f24c6398
-Content-Type: text/plain; charset=ISO-8859-1
+Hi Gary,
 
-Hi all, I'm new to Yocto Project and, since an Intel Galileo board arrived
-into my hand, I'm having to do with the Intel Galileo BSP to start learning
-it:
-https://downloadcenter.intel.com/Detail_Desc.aspx?agr=Y&DwnldID=23171&lang=eng&wapkw=galileo+software+drivers
+On 13 February 2014 14:36, Gary Thomas <gary@mlbassoc.com> wrote:
+> I had previously built core-image-sato-sdk with some extra packages:
+>   CORE_IMAGE_EXTRA_INSTALL += "rsync openssh"
+> That worked fine, but core-image-weston fails as above.  Is there a
+> reason I can't choose openssh instead of dropbear (and perhaps there
+> is some other way I am supposed to choose)?
 
-My purpose is to build a rt-preempt image to do some didactic robotics
-demo, instead of use the standard non-realtime one that is produced by
-"bitbake image-spi" or "bitbake image-full" compilation.
+You might find EXTRA_IMAGE_FEATURES += "ssh-server-openssh" better
+than CORE_IMAGE_EXTRA_INSTALL, because core-image-weston has the
+ssh-server-dropbear image feature. When specifying both the right
+thing happens (dropbear is dropped).
 
-I don't understand if this switch from standard to rt-preempt configuration
-requires only few textual editings or a deep knowledge of Yocto Project
-metadata and many hours of work.
-Thanks a lot for any suggestion,
-Lucadvp
+> I removed the openssh from the extras and now it builds, but it doesn't
+> do anything [useful] - should it actually work?  I don't see anything
+> that looks like 'weston' running.
 
---001a11c2aa6a0c7c6d04f24c6398
-Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
+Looks like weston is crashing.  There are known problems with Weston in qemu:
 
-<div dir=3D"ltr"><div><div><div>Hi all, I&#39;m new to Yocto Project and, s=
-ince an Intel Galileo board arrived into my hand, I&#39;m having to do with=
- the Intel Galileo BSP to start learning it:<br><a href=3D"https://download=
-center.intel.com/Detail_Desc.aspx?agr=3DY&amp;DwnldID=3D23171&amp;lang=3Den=
-g&amp;wapkw=3Dgalileo+software+drivers">https://downloadcenter.intel.com/De=
-tail_Desc.aspx?agr=3DY&amp;DwnldID=3D23171&amp;lang=3Deng&amp;wapkw=3Dgalil=
-eo+software+drivers</a><br>
-<br></div>My purpose is to build a rt-preempt image to do some didactic rob=
-otics demo, instead of use the standard non-realtime one that is produced b=
-y &quot;bitbake image-spi&quot; or &quot;bitbake image-full&quot; compilati=
-on.<br>
-<br></div>I don&#39;t understand if this switch from standard to rt-preempt=
- configuration requires only few textual editings or a deep knowledge of Yo=
-cto Project metadata and many hours of work.<br></div>Thanks a lot for any =
-suggestion,<br>
-Lucadvp<br></div>
+https://bugzilla.yoctoproject.org/show_bug.cgi?id=5660
 
---001a11c2aa6a0c7c6d04f24c6398--
+Valentin did the research here and I can't remember the details:
+Valentin, can you elaborate on the comments there about what is
+working/breaking?  I remember there being a qemu option that changed
+behaviour too.
+
+Try changing the init script (or just running weston manually) to pick
+the fbdev backend.  Note that right now this isn't enabled but there's
+a patch on the list to enable it by default, but it's just a
+PACKAGECONFIG away from being enabled.
+
+Ross
+
