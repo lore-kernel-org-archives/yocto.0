@@ -1,26 +1,28 @@
-Return-Path: <nitin.a.kamble@intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6978AE007DD;
-	Fri, 14 Feb 2014 13:28:05 -0800 (PST)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga102.jf.intel.com with ESMTP; 14 Feb 2014 13:23:47 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.95,847,1384329600"; d="scan'208";a="483683407"
-Received: from nakamble-mobl3.amr.corp.intel.com (HELO [10.3.52.96])
-	([10.3.52.96])
-	by orsmga002.jf.intel.com with ESMTP; 14 Feb 2014 13:27:31 -0800
-Message-ID: <52FE8A3E.9050001@intel.com>
-Date: Fri, 14 Feb 2014 13:27:26 -0800
-From: "Kamble, Nitin A" <nitin.a.kamble@intel.com>
-User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64;
-	rv:24.0) Gecko/20100101 Thunderbird/24.3.0
+Return-Path: <dorin.lazar@gmail.com>
+Received: from mail-oa0-f48.google.com (mail-oa0-f48.google.com
+	[209.85.219.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AB47BE007DD
+	for <yocto@yoctoproject.org>; Fri, 14 Feb 2014 13:43:07 -0800 (PST)
+Received: by mail-oa0-f48.google.com with SMTP id l6so15044291oag.7
+	for <yocto@yoctoproject.org>; Fri, 14 Feb 2014 13:43:06 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=suw5Tg1H27KbtzmkqtmZrBMOOW5szjnm2sq2/aPGy/Q=;
+	b=CAugjaeYHNadd2ORuIbBbeQ2hfUq16U9wVhP0O0ArwOsC320Ro7b8eRh/uTidF6zcM
+	8+ow10c7A+UeVcGcxf+V7HdmhKqZ0R3m2dDRm5sj2zcU4hScympgLhUJP6QdLTv7pKuZ
+	3UsuD+pcgyRy+nnlB8deVdo5jEkt9V75uzEuY/iGKGx8GXttCgWZeySVQ/iQgiKhDR2w
+	jhX7JfIOtPrhiSodEEF/Jssg6B8eFyRx/E5fM8YYvzyIS1Aw7YqxkU8QWK4caG+UdzG+
+	9pDgHzYT4fD4n5Dok7MXvTBfVQH8vQc1FIqCEhI64yUR+tB8oq+FNxZ5+ty+EQhXmdrA
+	FSrg==
 MIME-Version: 1.0
-To: Khem Raj <raj.khem@gmail.com>, Koen Kooi <koen@dominion.thruhere.net>
-References: <1392402286-32663-1-git-send-email-koen@dominion.thruhere.net>
-	<CAMKF1sr5NsOFkP0xE05-0JqzGqn7b1ZjE1Vh1zx-sDqX6ZNj5A@mail.gmail.com>
-In-Reply-To: <CAMKF1sr5NsOFkP0xE05-0JqzGqn7b1ZjE1Vh1zx-sDqX6ZNj5A@mail.gmail.com>
-Cc: yocto@lists.yoctoproject.org, meta-intel@lists.yoctoproject.org
-Subject: Re: [meta-intel][common][dora][PATCHv2] emgd-driver-bin: limit build to x86
+X-Received: by 10.60.116.166 with SMTP id jx6mr8678232oeb.22.1392414186132;
+	Fri, 14 Feb 2014 13:43:06 -0800 (PST)
+Received: by 10.60.141.40 with HTTP; Fri, 14 Feb 2014 13:43:06 -0800 (PST)
+Date: Fri, 14 Feb 2014 23:43:06 +0200
+Message-ID: <CAH1=ZYd5QL15kdtP15E0vvwrKfTRNPh3+_N9PL4e83siEg_wyg@mail.gmail.com>
+From: Dorin Lazar <dorin.lazar@gmail.com>
+To: yocto@yoctoproject.org
+Subject: Update for the quick start guide
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,92 +34,27 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 14 Feb 2014 21:28:06 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Fri, 14 Feb 2014 21:43:07 -0000
+Content-Type: multipart/alternative; boundary=089e0129534ef1dcf704f264b08f
 
+--089e0129534ef1dcf704f264b08f
+Content-Type: text/plain; charset=UTF-8
 
-On 2/14/2014 1:13 PM, Khem Raj wrote:
->
-> -Khem
-> On Feb 14, 2014 10:25 AM, "Koen Kooi" <koen@dominion.thruhere.net 
-> <mailto:koen@dominion.thruhere.net>> wrote:
-> >
-> > When building GL apps for non-x86 machines (e.g. raspberrypi) 
-> emgd-driver-bin is being
-> > dragged in as a valid provider. To avoid build breakage fix it at the
-> > source by limiting emgd-driver-bin to x86 architectures.
-> >
-> > Signed-off-by: Koen Kooi <koen@dominion.thruhere.net 
-> <mailto:koen@dominion.thruhere.net>>
-> > ---
-> >  common/recipes-graphics/xorg-driver/emgd-driver-bin_1.16.bb 
-> <http://emgd-driver-bin_1.16.bb> | 2 ++
-> >  common/recipes-graphics/xorg-driver/emgd-driver-bin_1.18.bb 
-> <http://emgd-driver-bin_1.18.bb> | 2 ++
-> >  2 files changed, 4 insertions(+)
-> >
-> > diff --git 
-> a/common/recipes-graphics/xorg-driver/emgd-driver-bin_1.16.bb 
-> <http://emgd-driver-bin_1.16.bb> 
-> b/common/recipes-graphics/xorg-driver/emgd-driver-bin_1.16.bb 
-> <http://emgd-driver-bin_1.16.bb>
-> > index c8ca726..8cb088e 100644
-> > --- a/common/recipes-graphics/xorg-driver/emgd-driver-bin_1.16.bb 
-> <http://emgd-driver-bin_1.16.bb>
-> > +++ b/common/recipes-graphics/xorg-driver/emgd-driver-bin_1.16.bb 
-> <http://emgd-driver-bin_1.16.bb>
-> > @@ -9,6 +9,8 @@ LICENSE = "Intel-software-license-emgd-1.16 & 
-> Intel-user-space-graphics-driver-b
-> >  LICENSE_FLAGS = "license_${PN}_${PV}"
-> >  PR = "r0"
-> >
-> > +COMPATIBLE_HOST = "(i.86).*-linux"
->
-> is it not valid for x86_64 ?
->
-No, it's not. The EMGD binary files are 32bit files, and BSPs using it 
-are all 32bit.
+Hi everyone,
+In the quick-start page, when Fedora packages are listed,
+perl-Thread-Queue.noarch should be added as well; otherwise the build won't
+pass the latest sanity checks.
+Many thanks,
+  Dorin
 
-Nitin
+--089e0129534ef1dcf704f264b08f
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-> > +
-> >  EMGD_LIC_DIR = "IEMGD_HEAD_Linux/License"
-> >  EMGD_RPM_DIR = "IEMGD_HEAD_Linux/MeeGo1.2"
-> >  EMGD_VIDEO_PLUGIN_DIR = "../common/video_plugin"
-> > diff --git 
-> a/common/recipes-graphics/xorg-driver/emgd-driver-bin_1.18.bb 
-> <http://emgd-driver-bin_1.18.bb> 
-> b/common/recipes-graphics/xorg-driver/emgd-driver-bin_1.18.bb 
-> <http://emgd-driver-bin_1.18.bb>
-> > index b3bf0d2..cf6d855 100644
-> > --- a/common/recipes-graphics/xorg-driver/emgd-driver-bin_1.18.bb 
-> <http://emgd-driver-bin_1.18.bb>
-> > +++ b/common/recipes-graphics/xorg-driver/emgd-driver-bin_1.18.bb 
-> <http://emgd-driver-bin_1.18.bb>
-> > @@ -9,6 +9,8 @@ LICENSE = "Intel-software-license-emgd-1.18 & 
-> Intel-user-space-graphics-driver-b
-> >  LICENSE_FLAGS = "license_${PN}_${PV}"
-> >  PR = "r1"
-> >
-> > +COMPATIBLE_HOST = "(i.86).*-linux"
-> > +
-> >  EMGD_LIC_DIR = "IEMGD_HEAD_Linux/License"
-> >  EMGD_RPM_DIR = "IEMGD_HEAD_Linux/MeeGo1.2"
-> >  EMGD_VIDEO_PLUGIN_DIR = "../common/video_plugin"
-> > --
-> > 1.8.3.4
-> >
-> > _______________________________________________
-> > yocto mailing list
-> > yocto@yoctoproject.org <mailto:yocto@yoctoproject.org>
-> > https://lists.yoctoproject.org/listinfo/yocto
->
->
->
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+<div dir=3D"ltr">Hi everyone,<div>In the quick-start page, when Fedora pack=
+ages are listed, perl-Thread-Queue.noarch should be added as well; otherwis=
+e the build won&#39;t pass the latest sanity checks.</div><div>Many thanks,=
+</div>
+<div>=C2=A0 Dorin</div><div><br></div></div>
 
-
+--089e0129534ef1dcf704f264b08f--
