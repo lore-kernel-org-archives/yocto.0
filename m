@@ -1,28 +1,34 @@
-Return-Path: <gary@mlbassoc.com>
-Received: from mail.chez-thomas.org (mail.mlbassoc.com [65.100.170.105])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3873CE007C8
-	for <yocto@yoctoproject.org>; Fri, 14 Feb 2014 06:42:48 -0800 (PST)
-Received: by mail.chez-thomas.org (Postfix, from userid 1998)
-	id B350EF811EA; Fri, 14 Feb 2014 07:42:47 -0700 (MST)
-X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on
-	hermes.chez-thomas.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=4.0 tests=ALL_TRUSTED,BAYES_00
-	autolearn=ham version=3.3.2
-Received: from [192.168.1.114] (zeus [192.168.1.114])
-	by mail.chez-thomas.org (Postfix) with ESMTP id E8C11F811D7;
-	Fri, 14 Feb 2014 07:42:46 -0700 (MST)
-Message-ID: <52FE2B80.9030907@mlbassoc.com>
-Date: Fri, 14 Feb 2014 07:43:12 -0700
-From: Gary Thomas <gary@mlbassoc.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:24.0) Gecko/20100101 Thunderbird/24.2.0
-MIME-Version: 1.0
+Return-Path: <koen@dominion.thruhere.net>
+Received: from mail-wi0-f170.google.com (mail-wi0-f170.google.com
+	[209.85.212.170])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1B6E4E00444
+	for <yocto@yoctoproject.org>; Fri, 14 Feb 2014 07:15:26 -0800 (PST)
+Received: by mail-wi0-f170.google.com with SMTP id hi5so596281wib.3
+	for <yocto@yoctoproject.org>; Fri, 14 Feb 2014 07:15:25 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:from:to:cc:subject:date:message-id;
+	bh=Br24+KBQf6SZQ53Zi01fhHTFtpXJCB7psBDaFXK+bB0=;
+	b=crRZrmpm/wb7oE7BpLyq67C+xEAOl3R2ycVXhzd4Woityh4JG2MkHRfJLvQsMCyxdr
+	Jz+n8UeYYZbYzXLr4t7w4DPE+NDOWpwimcpRUx3C9eqCGu3gqrzi+lThEv0giJcKnMWR
+	Y3hD90u2molpszqblNy9dWIgL37WUPIFG5xeWH+8mo42bLj/Px8IMZYxE/p9d4Qo1UO/
+	Dt4yZwruNiEq0bFbV9TnM/atI1d1kqqHPXtZmZpU37+2vdPNa47aeSRHcVYEB+KAvkjW
+	HQHEtV0bqXJS2eoheK6l7FWZ0RKK0XAIONBlodPxmDm6HMlhSrc7LIDMvqmRr/ZRfC7Q
+	RlwQ==
+X-Gm-Message-State: ALoCoQkMLqWVHUFOtRjGTGCulw4sT3zsKAGOE5BG80ClkbOXlnCod8gniE11nbGqHx69qe+AH4QN
+X-Received: by 10.180.102.42 with SMTP id fl10mr2748354wib.42.1392390925251;
+	Fri, 14 Feb 2014 07:15:25 -0800 (PST)
+Received: from localhost ([2001:610:612:0:21c:42ff:fef0:7f75])
+	by mx.google.com with ESMTPSA id f1sm5775737wik.1.2014.02.14.07.15.24
+	for <multiple recipients>
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Fri, 14 Feb 2014 07:15:24 -0800 (PST)
+From: Koen Kooi <koen@dominion.thruhere.net>
 To: yocto@yoctoproject.org
-References: <20140214142722.1D01B3804C0@gemini.denx.de>
-In-Reply-To: <20140214142722.1D01B3804C0@gemini.denx.de>
-X-Enigmail-Version: 1.5.2
-Subject: Re: Known toolchain bug?
+Date: Fri, 14 Feb 2014 16:15:06 +0100
+Message-Id: <1392390906-2516-1-git-send-email-koen@dominion.thruhere.net>
+X-Mailer: git-send-email 1.8.5.3
+Subject: [meta-raspberrypi][dora][PATCH] xserver-xf86-config: don't use wildcards in SRC_URI
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,43 +40,33 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 14 Feb 2014 14:42:51 -0000
-Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Fri, 14 Feb 2014 15:15:28 -0000
 
-On 2014-02-14 07:27, Wolfgang Denk wrote:
-> Hello,
-> 
-> in message [1] on the Linaro mailing list, Koen Kooi reported a
-> toolchain problem.  I can reproduce the same problem both in Yocto
-> 1.5.1 and witht he current top-of-tree; for example, using the latest
-> autobuilder result
-> core-image-sato-sdk-imx53qsb-20140213124023.rootfs.tar.bz2
-> I get this [source of Koen's test program attached]:
+It is strongly discouraged to use wildcards in SRC_URI since it breaks
+when using multiple bbappends and immediate expansion of FILESDIR.
 
-Source code attachment missing?
+This fixes a do_install failure when building with multiple BSPs
+enabled.
 
-> 
-> root@imx53qsb:/tmp# g++ -Wall -std=c++11 -o b -lpthread b.cpp 
-> root@imx53qsb:/tmp# ./b
-> pure virtual method called
-> terminate called without an active exception
-> Aborted
-> 
-> Is this a (known?) tool chain issue, or am I missing something?
-> 
-> 
-> [1] http://article.gmane.org/gmane.linux.linaro.toolchain/3925
-> 
-> 
-> Best regards,
-> 
-> Wolfgang Denk
-> 
+Signed-off-by: Koen Kooi <koen@dominion.thruhere.net>
+---
+ recipes-graphics/xorg-xserver/xserver-xf86-config_0.1.bbappend | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
+diff --git a/recipes-graphics/xorg-xserver/xserver-xf86-config_0.1.bbappend b/recipes-graphics/xorg-xserver/xserver-xf86-config_0.1.bbappend
+index 65931e2..3e86645 100644
+--- a/recipes-graphics/xorg-xserver/xserver-xf86-config_0.1.bbappend
++++ b/recipes-graphics/xorg-xserver/xserver-xf86-config_0.1.bbappend
+@@ -6,7 +6,7 @@ PRINC := "${@int(PRINC) + 5}"
+ THISDIR := "${@os.path.dirname(bb.data.getVar('FILE', d, True))}"
+ FILESPATH =. "${@base_set_filespath(["${THISDIR}/${PN}"], d)}:"
+ 
+-SRC_URI_append_raspberrypi = " file://xorg.conf.d/* "
++SRC_URI_append_raspberrypi = " file://xorg.conf.d/10-evdev.conf "
+ 
+ do_install_append_raspberrypi () {
+ 	install -d ${D}/${sysconfdir}/X11/xorg.conf.d/
 -- 
-------------------------------------------------------------
-Gary Thomas                 |  Consulting for the
-MLB Associates              |    Embedded world
-------------------------------------------------------------
+1.8.3.4
+
 
