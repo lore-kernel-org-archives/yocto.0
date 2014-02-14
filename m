@@ -1,28 +1,35 @@
-Return-Path: <dorin.lazar@gmail.com>
-Received: from mail-oa0-f48.google.com (mail-oa0-f48.google.com
-	[209.85.219.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AB47BE007DD
-	for <yocto@yoctoproject.org>; Fri, 14 Feb 2014 13:43:07 -0800 (PST)
-Received: by mail-oa0-f48.google.com with SMTP id l6so15044291oag.7
-	for <yocto@yoctoproject.org>; Fri, 14 Feb 2014 13:43:06 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=suw5Tg1H27KbtzmkqtmZrBMOOW5szjnm2sq2/aPGy/Q=;
-	b=CAugjaeYHNadd2ORuIbBbeQ2hfUq16U9wVhP0O0ArwOsC320Ro7b8eRh/uTidF6zcM
-	8+ow10c7A+UeVcGcxf+V7HdmhKqZ0R3m2dDRm5sj2zcU4hScympgLhUJP6QdLTv7pKuZ
-	3UsuD+pcgyRy+nnlB8deVdo5jEkt9V75uzEuY/iGKGx8GXttCgWZeySVQ/iQgiKhDR2w
-	jhX7JfIOtPrhiSodEEF/Jssg6B8eFyRx/E5fM8YYvzyIS1Aw7YqxkU8QWK4caG+UdzG+
-	9pDgHzYT4fD4n5Dok7MXvTBfVQH8vQc1FIqCEhI64yUR+tB8oq+FNxZ5+ty+EQhXmdrA
-	FSrg==
+Return-Path: <scott.m.rifenbark@intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0A6F3E007DD
+	for <yocto@yoctoproject.org>; Fri, 14 Feb 2014 14:10:34 -0800 (PST)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga102.jf.intel.com with ESMTP; 14 Feb 2014 14:05:57 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.95,847,1384329600"; 
+	d="scan'208,217";a="455776435"
+Received: from orsmsx104.amr.corp.intel.com ([10.22.225.131])
+	by orsmga001.jf.intel.com with ESMTP; 14 Feb 2014 14:10:13 -0800
+Received: from orsmsx153.amr.corp.intel.com (10.22.226.247) by
+	ORSMSX104.amr.corp.intel.com (10.22.225.131) with Microsoft SMTP Server
+	(TLS) id 14.3.123.3; Fri, 14 Feb 2014 14:10:13 -0800
+Received: from orsmsx101.amr.corp.intel.com ([169.254.8.61]) by
+	ORSMSX153.amr.corp.intel.com ([169.254.12.245]) with mapi id
+	14.03.0123.003; Fri, 14 Feb 2014 14:10:13 -0800
+From: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
+To: Dorin Lazar <dorin.lazar@gmail.com>, "yocto@yoctoproject.org"
+	<yocto@yoctoproject.org>
+Thread-Topic: [yocto] Update for the quick start guide
+Thread-Index: AQHPKc3U/8bp624Q70aAqUH6NXIPCJq1TqLA
+Date: Fri, 14 Feb 2014 22:10:13 +0000
+Message-ID: <41DEA4B02DBDEF40A0F3B6D0DDB1237983F66030@ORSMSX101.amr.corp.intel.com>
+References: <CAH1=ZYd5QL15kdtP15E0vvwrKfTRNPh3+_N9PL4e83siEg_wyg@mail.gmail.com>
+In-Reply-To: <CAH1=ZYd5QL15kdtP15E0vvwrKfTRNPh3+_N9PL4e83siEg_wyg@mail.gmail.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.139]
 MIME-Version: 1.0
-X-Received: by 10.60.116.166 with SMTP id jx6mr8678232oeb.22.1392414186132;
-	Fri, 14 Feb 2014 13:43:06 -0800 (PST)
-Received: by 10.60.141.40 with HTTP; Fri, 14 Feb 2014 13:43:06 -0800 (PST)
-Date: Fri, 14 Feb 2014 23:43:06 +0200
-Message-ID: <CAH1=ZYd5QL15kdtP15E0vvwrKfTRNPh3+_N9PL4e83siEg_wyg@mail.gmail.com>
-From: Dorin Lazar <dorin.lazar@gmail.com>
-To: yocto@yoctoproject.org
-Subject: Update for the quick start guide
+Subject: Re: Update for the quick start guide
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,27 +41,104 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 14 Feb 2014 21:43:07 -0000
-Content-Type: multipart/alternative; boundary=089e0129534ef1dcf704f264b08f
+X-List-Received-Date: Fri, 14 Feb 2014 22:10:35 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_41DEA4B02DBDEF40A0F3B6D0DDB1237983F66030ORSMSX101amrcor_"
 
---089e0129534ef1dcf704f264b08f
-Content-Type: text/plain; charset=UTF-8
+--_000_41DEA4B02DBDEF40A0F3B6D0DDB1237983F66030ORSMSX101amrcor_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-Hi everyone,
-In the quick-start page, when Fedora packages are listed,
-perl-Thread-Queue.noarch should be added as well; otherwise the build won't
-pass the latest sanity checks.
-Many thanks,
-  Dorin
+SGksDQoNCkRvZXMgdGhlIHBlcmwtVGhyZWFkLVF1ZXVlIHBhY2thZ2UgaW5jbHVkZSB0aGF0PyAg
+SSBoYXZlIGFkZGVkIHRoaXMgcGFja2FnZSBmb3IgdGhlIHNldCBvZiBtYW51YWxzIHVuZGVyIGRl
+dmVsb3BtZW50LiAgU2VlIGh0dHA6Ly93d3cueW9jdG9wcm9qZWN0Lm9yZy9kb2NzL2xhdGVzdC95
+b2N0by1wcm9qZWN0LXFzL3lvY3RvLXByb2plY3QtcXMuaHRtbC4NCg0KU2NvdHQNCg0KDQpGcm9t
+OiB5b2N0by1ib3VuY2VzQHlvY3RvcHJvamVjdC5vcmcgW21haWx0bzp5b2N0by1ib3VuY2VzQHlv
+Y3RvcHJvamVjdC5vcmddIE9uIEJlaGFsZiBPZiBEb3JpbiBMYXphcg0KU2VudDogRnJpZGF5LCBG
+ZWJydWFyeSAxNCwgMjAxNCAxOjQzIFBNDQpUbzogeW9jdG9AeW9jdG9wcm9qZWN0Lm9yZw0KU3Vi
+amVjdDogW3lvY3RvXSBVcGRhdGUgZm9yIHRoZSBxdWljayBzdGFydCBndWlkZQ0KDQpIaSBldmVy
+eW9uZSwNCkluIHRoZSBxdWljay1zdGFydCBwYWdlLCB3aGVuIEZlZG9yYSBwYWNrYWdlcyBhcmUg
+bGlzdGVkLCBwZXJsLVRocmVhZC1RdWV1ZS5ub2FyY2ggc2hvdWxkIGJlIGFkZGVkIGFzIHdlbGw7
+IG90aGVyd2lzZSB0aGUgYnVpbGQgd29uJ3QgcGFzcyB0aGUgbGF0ZXN0IHNhbml0eSBjaGVja3Mu
+DQpNYW55IHRoYW5rcywNCiAgRG9yaW4NCg0K
 
---089e0129534ef1dcf704f264b08f
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+--_000_41DEA4B02DBDEF40A0F3B6D0DDB1237983F66030ORSMSX101amrcor_
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-<div dir=3D"ltr">Hi everyone,<div>In the quick-start page, when Fedora pack=
-ages are listed, perl-Thread-Queue.noarch should be added as well; otherwis=
-e the build won&#39;t pass the latest sanity checks.</div><div>Many thanks,=
-</div>
-<div>=C2=A0 Dorin</div><div><br></div></div>
+PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
+bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
+YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
+cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
+VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
+Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
+ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTQgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
+PjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
+Q2FsaWJyaTsNCglwYW5vc2UtMToyIDE1IDUgMiAyIDIgNCAzIDIgNDt9DQpAZm9udC1mYWNlDQoJ
+e2ZvbnQtZmFtaWx5OlRhaG9tYTsNCglwYW5vc2UtMToyIDExIDYgNCAzIDUgNCA0IDIgNDt9DQov
+KiBTdHlsZSBEZWZpbml0aW9ucyAqLw0KcC5Nc29Ob3JtYWwsIGxpLk1zb05vcm1hbCwgZGl2Lk1z
+b05vcm1hbA0KCXttYXJnaW46MGluOw0KCW1hcmdpbi1ib3R0b206LjAwMDFwdDsNCglmb250LXNp
+emU6MTIuMHB0Ow0KCWZvbnQtZmFtaWx5OiJUaW1lcyBOZXcgUm9tYW4iLCJzZXJpZiI7fQ0KYTps
+aW5rLCBzcGFuLk1zb0h5cGVybGluaw0KCXttc28tc3R5bGUtcHJpb3JpdHk6OTk7DQoJY29sb3I6
+Ymx1ZTsNCgl0ZXh0LWRlY29yYXRpb246dW5kZXJsaW5lO30NCmE6dmlzaXRlZCwgc3Bhbi5Nc29I
+eXBlcmxpbmtGb2xsb3dlZA0KCXttc28tc3R5bGUtcHJpb3JpdHk6OTk7DQoJY29sb3I6cHVycGxl
+Ow0KCXRleHQtZGVjb3JhdGlvbjp1bmRlcmxpbmU7fQ0Kc3Bhbi5FbWFpbFN0eWxlMTcNCgl7bXNv
+LXN0eWxlLXR5cGU6cGVyc29uYWwtcmVwbHk7DQoJZm9udC1mYW1pbHk6IkNhbGlicmkiLCJzYW5z
+LXNlcmlmIjsNCgljb2xvcjojMUY0OTdEO30NCi5Nc29DaHBEZWZhdWx0DQoJe21zby1zdHlsZS10
+eXBlOmV4cG9ydC1vbmx5Ow0KCWZvbnQtZmFtaWx5OiJDYWxpYnJpIiwic2Fucy1zZXJpZiI7fQ0K
+QHBhZ2UgV29yZFNlY3Rpb24xDQoJe3NpemU6OC41aW4gMTEuMGluOw0KCW1hcmdpbjoxLjBpbiAx
+LjBpbiAxLjBpbiAxLjBpbjt9DQpkaXYuV29yZFNlY3Rpb24xDQoJe3BhZ2U6V29yZFNlY3Rpb24x
+O30NCi0tPjwvc3R5bGU+PCEtLVtpZiBndGUgbXNvIDldPjx4bWw+DQo8bzpzaGFwZWRlZmF1bHRz
+IHY6ZXh0PSJlZGl0IiBzcGlkbWF4PSIxMDI2IiAvPg0KPC94bWw+PCFbZW5kaWZdLS0+PCEtLVtp
+ZiBndGUgbXNvIDldPjx4bWw+DQo8bzpzaGFwZWxheW91dCB2OmV4dD0iZWRpdCI+DQo8bzppZG1h
+cCB2OmV4dD0iZWRpdCIgZGF0YT0iMSIgLz4NCjwvbzpzaGFwZWxheW91dD48L3htbD48IVtlbmRp
+Zl0tLT4NCjwvaGVhZD4NCjxib2R5IGxhbmc9IkVOLVVTIiBsaW5rPSJibHVlIiB2bGluaz0icHVy
+cGxlIj4NCjxkaXYgY2xhc3M9IldvcmRTZWN0aW9uMSI+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48
+c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1
+b3Q7LCZxdW90O3NhbnMtc2VyaWYmcXVvdDs7Y29sb3I6IzFGNDk3RCI+SGksDQo8bzpwPjwvbzpw
+Pjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXpl
+OjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LCZxdW90O3NhbnMtc2VyaWYm
+cXVvdDs7Y29sb3I6IzFGNDk3RCI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0KPHAgY2xh
+c3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6
+JnF1b3Q7Q2FsaWJyaSZxdW90OywmcXVvdDtzYW5zLXNlcmlmJnF1b3Q7O2NvbG9yOiMxRjQ5N0Qi
+PkRvZXMgdGhlIHBlcmwtVGhyZWFkLVF1ZXVlIHBhY2thZ2UgaW5jbHVkZSB0aGF0PyZuYnNwOyBJ
+IGhhdmUgYWRkZWQgdGhpcyBwYWNrYWdlIGZvciB0aGUgc2V0IG9mIG1hbnVhbHMgdW5kZXIgZGV2
+ZWxvcG1lbnQuJm5ic3A7IFNlZQ0KPGEgaHJlZj0iaHR0cDovL3d3dy55b2N0b3Byb2plY3Qub3Jn
+L2RvY3MvbGF0ZXN0L3lvY3RvLXByb2plY3QtcXMveW9jdG8tcHJvamVjdC1xcy5odG1sIj4NCmh0
+dHA6Ly93d3cueW9jdG9wcm9qZWN0Lm9yZy9kb2NzL2xhdGVzdC95b2N0by1wcm9qZWN0LXFzL3lv
+Y3RvLXByb2plY3QtcXMuaHRtbDwvYT4uPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9
+Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1
+b3Q7Q2FsaWJyaSZxdW90OywmcXVvdDtzYW5zLXNlcmlmJnF1b3Q7O2NvbG9yOiMxRjQ5N0QiPjxv
+OnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0
+eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssJnF1
+b3Q7c2Fucy1zZXJpZiZxdW90Oztjb2xvcjojMUY0OTdEIj5TY290dDxvOnA+PC9vOnA+PC9zcGFu
+PjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0
+O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssJnF1b3Q7c2Fucy1zZXJpZiZxdW90Oztj
+b2xvcjojMUY0OTdEIj48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNv
+Tm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtD
+YWxpYnJpJnF1b3Q7LCZxdW90O3NhbnMtc2VyaWYmcXVvdDs7Y29sb3I6IzFGNDk3RCI+PG86cD4m
+bmJzcDs8L286cD48L3NwYW4+PC9wPg0KPGRpdiBzdHlsZT0iYm9yZGVyOm5vbmU7Ym9yZGVyLWxl
+ZnQ6c29saWQgYmx1ZSAxLjVwdDtwYWRkaW5nOjBpbiAwaW4gMGluIDQuMHB0Ij4NCjxkaXY+DQo8
+ZGl2IHN0eWxlPSJib3JkZXI6bm9uZTtib3JkZXItdG9wOnNvbGlkICNCNUM0REYgMS4wcHQ7cGFk
+ZGluZzozLjBwdCAwaW4gMGluIDBpbiI+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48Yj48c3BhbiBz
+dHlsZT0iZm9udC1zaXplOjEwLjBwdDtmb250LWZhbWlseTomcXVvdDtUYWhvbWEmcXVvdDssJnF1
+b3Q7c2Fucy1zZXJpZiZxdW90OyI+RnJvbTo8L3NwYW4+PC9iPjxzcGFuIHN0eWxlPSJmb250LXNp
+emU6MTAuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O1RhaG9tYSZxdW90OywmcXVvdDtzYW5zLXNlcmlm
+JnF1b3Q7Ij4geW9jdG8tYm91bmNlc0B5b2N0b3Byb2plY3Qub3JnIFttYWlsdG86eW9jdG8tYm91
+bmNlc0B5b2N0b3Byb2plY3Qub3JnXQ0KPGI+T24gQmVoYWxmIE9mIDwvYj5Eb3JpbiBMYXphcjxi
+cj4NCjxiPlNlbnQ6PC9iPiBGcmlkYXksIEZlYnJ1YXJ5IDE0LCAyMDE0IDE6NDMgUE08YnI+DQo8
+Yj5Ubzo8L2I+IHlvY3RvQHlvY3RvcHJvamVjdC5vcmc8YnI+DQo8Yj5TdWJqZWN0OjwvYj4gW3lv
+Y3RvXSBVcGRhdGUgZm9yIHRoZSBxdWljayBzdGFydCBndWlkZTxvOnA+PC9vOnA+PC9zcGFuPjwv
+cD4NCjwvZGl2Pg0KPC9kaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNwOzwvbzpw
+PjwvcD4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5IaSBldmVyeW9uZSw8bzpwPjwvbzpw
+PjwvcD4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5JbiB0aGUgcXVpY2stc3RhcnQgcGFn
+ZSwgd2hlbiBGZWRvcmEgcGFja2FnZXMgYXJlIGxpc3RlZCwgcGVybC1UaHJlYWQtUXVldWUubm9h
+cmNoIHNob3VsZCBiZSBhZGRlZCBhcyB3ZWxsOyBvdGhlcndpc2UgdGhlIGJ1aWxkIHdvbid0IHBh
+c3MgdGhlIGxhdGVzdCBzYW5pdHkgY2hlY2tzLjxvOnA+PC9vOnA+PC9wPg0KPC9kaXY+DQo8ZGl2
+Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+TWFueSB0aGFua3MsPG86cD48L286cD48L3A+DQo8L2Rp
+dj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj4mbmJzcDsgRG9yaW48bzpwPjwvbzpwPjwv
+cD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+
+PC9wPg0KPC9kaXY+DQo8L2Rpdj4NCjwvZGl2Pg0KPC9kaXY+DQo8L2JvZHk+DQo8L2h0bWw+DQo=
 
---089e0129534ef1dcf704f264b08f--
+--_000_41DEA4B02DBDEF40A0F3B6D0DDB1237983F66030ORSMSX101amrcor_--
