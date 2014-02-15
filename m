@@ -1,35 +1,38 @@
-Return-Path: <scott.m.rifenbark@intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0A6F3E007DD
-	for <yocto@yoctoproject.org>; Fri, 14 Feb 2014 14:10:34 -0800 (PST)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga102.jf.intel.com with ESMTP; 14 Feb 2014 14:05:57 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.95,847,1384329600"; 
-	d="scan'208,217";a="455776435"
-Received: from orsmsx104.amr.corp.intel.com ([10.22.225.131])
-	by orsmga001.jf.intel.com with ESMTP; 14 Feb 2014 14:10:13 -0800
-Received: from orsmsx153.amr.corp.intel.com (10.22.226.247) by
-	ORSMSX104.amr.corp.intel.com (10.22.225.131) with Microsoft SMTP Server
-	(TLS) id 14.3.123.3; Fri, 14 Feb 2014 14:10:13 -0800
-Received: from orsmsx101.amr.corp.intel.com ([169.254.8.61]) by
-	ORSMSX153.amr.corp.intel.com ([169.254.12.245]) with mapi id
-	14.03.0123.003; Fri, 14 Feb 2014 14:10:13 -0800
-From: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
-To: Dorin Lazar <dorin.lazar@gmail.com>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>
-Thread-Topic: [yocto] Update for the quick start guide
-Thread-Index: AQHPKc3U/8bp624Q70aAqUH6NXIPCJq1TqLA
-Date: Fri, 14 Feb 2014 22:10:13 +0000
-Message-ID: <41DEA4B02DBDEF40A0F3B6D0DDB1237983F66030@ORSMSX101.amr.corp.intel.com>
-References: <CAH1=ZYd5QL15kdtP15E0vvwrKfTRNPh3+_N9PL4e83siEg_wyg@mail.gmail.com>
-In-Reply-To: <CAH1=ZYd5QL15kdtP15E0vvwrKfTRNPh3+_N9PL4e83siEg_wyg@mail.gmail.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.139]
-MIME-Version: 1.0
-Subject: Re: Update for the quick start guide
+Return-Path: <raj.khem@gmail.com>
+Received: from mail-pa0-f47.google.com (mail-pa0-f47.google.com
+	[209.85.220.47])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B62ACE0044C
+	for <yocto@yoctoproject.org>; Fri, 14 Feb 2014 17:46:58 -0800 (PST)
+Received: by mail-pa0-f47.google.com with SMTP id kp14so13005475pab.34
+	for <yocto@yoctoproject.org>; Fri, 14 Feb 2014 17:46:57 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=content-type:mime-version:subject:from:in-reply-to:date:cc
+	:content-transfer-encoding:message-id:references:to;
+	bh=5iRM0O8MjL4QKKUWBRWXS3lAynFayzXp+ViUQaIqwsQ=;
+	b=BiNRoWToBwA9NLLqlAJhS1PLtQ3nxmm8/ceCIl3T/IaS1fqD+xgpKt/p2jzFRGJFor
+	QnliKEf9AoQy0Rgp+dikyC7dZEbr/yYbfVQAbkHSvKhQT8Mb+mGEEs2SA69SZgZci08c
+	WUr+MJBrw4iq7L8QC842OLAEfZ7USafmZOIGsW5J3VC8kIE/QX2HMePCzxL7jWX3g1dw
+	3oq342fVLFAjogOQIygXM0bhebY94vwFx27OxBRyIoqBPmOgh9goLBCR7W0qw+rJ/V4n
+	5XAWc/fOA1voFYy7A9La0+Z4QCGzepXmCDXYpGJESgR6NA3Bcr1rf/xiD7zJbTt030YG
+	qlkQ==
+X-Received: by 10.68.136.162 with SMTP id qb2mr12863945pbb.88.1392428817843;
+	Fri, 14 Feb 2014 17:46:57 -0800 (PST)
+Received: from [192.168.0.33] (99-57-140-30.lightspeed.sntcca.sbcglobal.net.
+	[99.57.140.30]) by mx.google.com with ESMTPSA id
+	sy10sm53797754pac.15.2014.02.14.17.46.56 for <multiple recipients>
+	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
+	Fri, 14 Feb 2014 17:46:56 -0800 (PST)
+Mime-Version: 1.0 (Mac OS X Mail 7.1 \(1827\))
+From: Khem Raj <raj.khem@gmail.com>
+In-Reply-To: <52FE2B80.9030907@mlbassoc.com>
+Date: Fri, 14 Feb 2014 17:46:55 -0800
+Message-Id: <C250BCF5-44EA-4E18-B9DB-E761E85595AA@gmail.com>
+References: <20140214142722.1D01B3804C0@gemini.denx.de>
+	<52FE2B80.9030907@mlbassoc.com>
+To: Gary Thomas <gary@mlbassoc.com>
+X-Mailer: Apple Mail (2.1827)
+Cc: Yocto list discussion <yocto@yoctoproject.org>
+Subject: Re: Known toolchain bug?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,104 +44,64 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 14 Feb 2014 22:10:35 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_41DEA4B02DBDEF40A0F3B6D0DDB1237983F66030ORSMSX101amrcor_"
+X-List-Received-Date: Sat, 15 Feb 2014 01:46:58 -0000
+Content-Type: text/plain; charset=windows-1252
+Content-Transfer-Encoding: quoted-printable
 
---_000_41DEA4B02DBDEF40A0F3B6D0DDB1237983F66030ORSMSX101amrcor_
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Hello Wolfgang
 
-SGksDQoNCkRvZXMgdGhlIHBlcmwtVGhyZWFkLVF1ZXVlIHBhY2thZ2UgaW5jbHVkZSB0aGF0PyAg
-SSBoYXZlIGFkZGVkIHRoaXMgcGFja2FnZSBmb3IgdGhlIHNldCBvZiBtYW51YWxzIHVuZGVyIGRl
-dmVsb3BtZW50LiAgU2VlIGh0dHA6Ly93d3cueW9jdG9wcm9qZWN0Lm9yZy9kb2NzL2xhdGVzdC95
-b2N0by1wcm9qZWN0LXFzL3lvY3RvLXByb2plY3QtcXMuaHRtbC4NCg0KU2NvdHQNCg0KDQpGcm9t
-OiB5b2N0by1ib3VuY2VzQHlvY3RvcHJvamVjdC5vcmcgW21haWx0bzp5b2N0by1ib3VuY2VzQHlv
-Y3RvcHJvamVjdC5vcmddIE9uIEJlaGFsZiBPZiBEb3JpbiBMYXphcg0KU2VudDogRnJpZGF5LCBG
-ZWJydWFyeSAxNCwgMjAxNCAxOjQzIFBNDQpUbzogeW9jdG9AeW9jdG9wcm9qZWN0Lm9yZw0KU3Vi
-amVjdDogW3lvY3RvXSBVcGRhdGUgZm9yIHRoZSBxdWljayBzdGFydCBndWlkZQ0KDQpIaSBldmVy
-eW9uZSwNCkluIHRoZSBxdWljay1zdGFydCBwYWdlLCB3aGVuIEZlZG9yYSBwYWNrYWdlcyBhcmUg
-bGlzdGVkLCBwZXJsLVRocmVhZC1RdWV1ZS5ub2FyY2ggc2hvdWxkIGJlIGFkZGVkIGFzIHdlbGw7
-IG90aGVyd2lzZSB0aGUgYnVpbGQgd29uJ3QgcGFzcyB0aGUgbGF0ZXN0IHNhbml0eSBjaGVja3Mu
-DQpNYW55IHRoYW5rcywNCiAgRG9yaW4NCg0K
+On Feb 14, 2014, at 6:43 AM, Gary Thomas <gary@mlbassoc.com> wrote:
 
---_000_41DEA4B02DBDEF40A0F3B6D0DDB1237983F66030ORSMSX101amrcor_
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: base64
+> On 2014-02-14 07:27, Wolfgang Denk wrote:
+>> Hello,
+>>=20
+>> in message [1] on the Linaro mailing list, Koen Kooi reported a
+>> toolchain problem.  I can reproduce the same problem both in Yocto
+>> 1.5.1 and witht he current top-of-tree; for example, using the latest
+>> autobuilder result
+>> core-image-sato-sdk-imx53qsb-20140213124023.rootfs.tar.bz2
+>> I get this [source of Koen's test program attached]:
+>=20
+> Source code attachment missing?
+>=20
+>>=20
+>> root@imx53qsb:/tmp# g++ -Wall -std=3Dc++11 -o b -lpthread b.cpp=20
+>> root@imx53qsb:/tmp# ./b
+>> pure virtual method called
+>> terminate called without an active exception
+>> Aborted
+>>=20
+>> Is this a (known?) tool chain issue, or am I missing something?
+>>=20
 
-PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
-bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
-YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
-cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
-VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
-Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
-ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTQgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
-PjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
-Q2FsaWJyaTsNCglwYW5vc2UtMToyIDE1IDUgMiAyIDIgNCAzIDIgNDt9DQpAZm9udC1mYWNlDQoJ
-e2ZvbnQtZmFtaWx5OlRhaG9tYTsNCglwYW5vc2UtMToyIDExIDYgNCAzIDUgNCA0IDIgNDt9DQov
-KiBTdHlsZSBEZWZpbml0aW9ucyAqLw0KcC5Nc29Ob3JtYWwsIGxpLk1zb05vcm1hbCwgZGl2Lk1z
-b05vcm1hbA0KCXttYXJnaW46MGluOw0KCW1hcmdpbi1ib3R0b206LjAwMDFwdDsNCglmb250LXNp
-emU6MTIuMHB0Ow0KCWZvbnQtZmFtaWx5OiJUaW1lcyBOZXcgUm9tYW4iLCJzZXJpZiI7fQ0KYTps
-aW5rLCBzcGFuLk1zb0h5cGVybGluaw0KCXttc28tc3R5bGUtcHJpb3JpdHk6OTk7DQoJY29sb3I6
-Ymx1ZTsNCgl0ZXh0LWRlY29yYXRpb246dW5kZXJsaW5lO30NCmE6dmlzaXRlZCwgc3Bhbi5Nc29I
-eXBlcmxpbmtGb2xsb3dlZA0KCXttc28tc3R5bGUtcHJpb3JpdHk6OTk7DQoJY29sb3I6cHVycGxl
-Ow0KCXRleHQtZGVjb3JhdGlvbjp1bmRlcmxpbmU7fQ0Kc3Bhbi5FbWFpbFN0eWxlMTcNCgl7bXNv
-LXN0eWxlLXR5cGU6cGVyc29uYWwtcmVwbHk7DQoJZm9udC1mYW1pbHk6IkNhbGlicmkiLCJzYW5z
-LXNlcmlmIjsNCgljb2xvcjojMUY0OTdEO30NCi5Nc29DaHBEZWZhdWx0DQoJe21zby1zdHlsZS10
-eXBlOmV4cG9ydC1vbmx5Ow0KCWZvbnQtZmFtaWx5OiJDYWxpYnJpIiwic2Fucy1zZXJpZiI7fQ0K
-QHBhZ2UgV29yZFNlY3Rpb24xDQoJe3NpemU6OC41aW4gMTEuMGluOw0KCW1hcmdpbjoxLjBpbiAx
-LjBpbiAxLjBpbiAxLjBpbjt9DQpkaXYuV29yZFNlY3Rpb24xDQoJe3BhZ2U6V29yZFNlY3Rpb24x
-O30NCi0tPjwvc3R5bGU+PCEtLVtpZiBndGUgbXNvIDldPjx4bWw+DQo8bzpzaGFwZWRlZmF1bHRz
-IHY6ZXh0PSJlZGl0IiBzcGlkbWF4PSIxMDI2IiAvPg0KPC94bWw+PCFbZW5kaWZdLS0+PCEtLVtp
-ZiBndGUgbXNvIDldPjx4bWw+DQo8bzpzaGFwZWxheW91dCB2OmV4dD0iZWRpdCI+DQo8bzppZG1h
-cCB2OmV4dD0iZWRpdCIgZGF0YT0iMSIgLz4NCjwvbzpzaGFwZWxheW91dD48L3htbD48IVtlbmRp
-Zl0tLT4NCjwvaGVhZD4NCjxib2R5IGxhbmc9IkVOLVVTIiBsaW5rPSJibHVlIiB2bGluaz0icHVy
-cGxlIj4NCjxkaXYgY2xhc3M9IldvcmRTZWN0aW9uMSI+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48
-c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1
-b3Q7LCZxdW90O3NhbnMtc2VyaWYmcXVvdDs7Y29sb3I6IzFGNDk3RCI+SGksDQo8bzpwPjwvbzpw
-Pjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXpl
-OjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LCZxdW90O3NhbnMtc2VyaWYm
-cXVvdDs7Y29sb3I6IzFGNDk3RCI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0KPHAgY2xh
-c3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6
-JnF1b3Q7Q2FsaWJyaSZxdW90OywmcXVvdDtzYW5zLXNlcmlmJnF1b3Q7O2NvbG9yOiMxRjQ5N0Qi
-PkRvZXMgdGhlIHBlcmwtVGhyZWFkLVF1ZXVlIHBhY2thZ2UgaW5jbHVkZSB0aGF0PyZuYnNwOyBJ
-IGhhdmUgYWRkZWQgdGhpcyBwYWNrYWdlIGZvciB0aGUgc2V0IG9mIG1hbnVhbHMgdW5kZXIgZGV2
-ZWxvcG1lbnQuJm5ic3A7IFNlZQ0KPGEgaHJlZj0iaHR0cDovL3d3dy55b2N0b3Byb2plY3Qub3Jn
-L2RvY3MvbGF0ZXN0L3lvY3RvLXByb2plY3QtcXMveW9jdG8tcHJvamVjdC1xcy5odG1sIj4NCmh0
-dHA6Ly93d3cueW9jdG9wcm9qZWN0Lm9yZy9kb2NzL2xhdGVzdC95b2N0by1wcm9qZWN0LXFzL3lv
-Y3RvLXByb2plY3QtcXMuaHRtbDwvYT4uPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9
-Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1
-b3Q7Q2FsaWJyaSZxdW90OywmcXVvdDtzYW5zLXNlcmlmJnF1b3Q7O2NvbG9yOiMxRjQ5N0QiPjxv
-OnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0
-eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssJnF1
-b3Q7c2Fucy1zZXJpZiZxdW90Oztjb2xvcjojMUY0OTdEIj5TY290dDxvOnA+PC9vOnA+PC9zcGFu
-PjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0
-O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssJnF1b3Q7c2Fucy1zZXJpZiZxdW90Oztj
-b2xvcjojMUY0OTdEIj48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNv
-Tm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtD
-YWxpYnJpJnF1b3Q7LCZxdW90O3NhbnMtc2VyaWYmcXVvdDs7Y29sb3I6IzFGNDk3RCI+PG86cD4m
-bmJzcDs8L286cD48L3NwYW4+PC9wPg0KPGRpdiBzdHlsZT0iYm9yZGVyOm5vbmU7Ym9yZGVyLWxl
-ZnQ6c29saWQgYmx1ZSAxLjVwdDtwYWRkaW5nOjBpbiAwaW4gMGluIDQuMHB0Ij4NCjxkaXY+DQo8
-ZGl2IHN0eWxlPSJib3JkZXI6bm9uZTtib3JkZXItdG9wOnNvbGlkICNCNUM0REYgMS4wcHQ7cGFk
-ZGluZzozLjBwdCAwaW4gMGluIDBpbiI+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48Yj48c3BhbiBz
-dHlsZT0iZm9udC1zaXplOjEwLjBwdDtmb250LWZhbWlseTomcXVvdDtUYWhvbWEmcXVvdDssJnF1
-b3Q7c2Fucy1zZXJpZiZxdW90OyI+RnJvbTo8L3NwYW4+PC9iPjxzcGFuIHN0eWxlPSJmb250LXNp
-emU6MTAuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O1RhaG9tYSZxdW90OywmcXVvdDtzYW5zLXNlcmlm
-JnF1b3Q7Ij4geW9jdG8tYm91bmNlc0B5b2N0b3Byb2plY3Qub3JnIFttYWlsdG86eW9jdG8tYm91
-bmNlc0B5b2N0b3Byb2plY3Qub3JnXQ0KPGI+T24gQmVoYWxmIE9mIDwvYj5Eb3JpbiBMYXphcjxi
-cj4NCjxiPlNlbnQ6PC9iPiBGcmlkYXksIEZlYnJ1YXJ5IDE0LCAyMDE0IDE6NDMgUE08YnI+DQo8
-Yj5Ubzo8L2I+IHlvY3RvQHlvY3RvcHJvamVjdC5vcmc8YnI+DQo8Yj5TdWJqZWN0OjwvYj4gW3lv
-Y3RvXSBVcGRhdGUgZm9yIHRoZSBxdWljayBzdGFydCBndWlkZTxvOnA+PC9vOnA+PC9zcGFuPjwv
-cD4NCjwvZGl2Pg0KPC9kaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNwOzwvbzpw
-PjwvcD4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5IaSBldmVyeW9uZSw8bzpwPjwvbzpw
-PjwvcD4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5JbiB0aGUgcXVpY2stc3RhcnQgcGFn
-ZSwgd2hlbiBGZWRvcmEgcGFja2FnZXMgYXJlIGxpc3RlZCwgcGVybC1UaHJlYWQtUXVldWUubm9h
-cmNoIHNob3VsZCBiZSBhZGRlZCBhcyB3ZWxsOyBvdGhlcndpc2UgdGhlIGJ1aWxkIHdvbid0IHBh
-c3MgdGhlIGxhdGVzdCBzYW5pdHkgY2hlY2tzLjxvOnA+PC9vOnA+PC9wPg0KPC9kaXY+DQo8ZGl2
-Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+TWFueSB0aGFua3MsPG86cD48L286cD48L3A+DQo8L2Rp
-dj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj4mbmJzcDsgRG9yaW48bzpwPjwvbzpwPjwv
-cD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+
-PC9wPg0KPC9kaXY+DQo8L2Rpdj4NCjwvZGl2Pg0KPC9kaXY+DQo8L2JvZHk+DQo8L2h0bWw+DQo=
+as you can see this was a problem reported by your truly :)
 
---_000_41DEA4B02DBDEF40A0F3B6D0DDB1237983F66030ORSMSX101amrcor_--
+infact, its an issue seen for gcc4.8 and arm architecture thus far seems =
+to work fine for x86. It also works ok with gcc 4.7 on arm but given =
+that c++11 is new there is something to fix there for arm. I hope linaro =
+toolchain group has taken a note of this issue. as you can see its not =
+only seen in Linaro toolchain which was my initial thought. but its also =
+prevalent in upstream 4.8 gcc. I haven=92t tested gcc 4.9 may be its =
+fixed there.
+
+
+>>=20
+>> [1] http://article.gmane.org/gmane.linux.linaro.toolchain/3925
+>>=20
+>>=20
+>> Best regards,
+>>=20
+>> Wolfgang Denk
+>>=20
+>=20
+> --=20
+> ------------------------------------------------------------
+> Gary Thomas                 |  Consulting for the
+> MLB Associates              |    Embedded world
+> ------------------------------------------------------------
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+
+
