@@ -1,24 +1,33 @@
-Return-Path: <Rongqing.Li@windriver.com>
-Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9A7CAE00786
-	for <yocto@yoctoproject.org>; Fri, 14 Feb 2014 18:37:21 -0800 (PST)
-Received: from ALA-HCB.corp.ad.wrs.com (ala-hcb.corp.ad.wrs.com
-	[147.11.189.41])
-	by mail1.windriver.com (8.14.5/8.14.5) with ESMTP id s1F2bK98019162
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL)
-	for <yocto@yoctoproject.org>; Fri, 14 Feb 2014 18:37:20 -0800 (PST)
-Received: from lirq-OptiPlex-780.corp.ad.wrs.com (128.224.162.168) by
-	ALA-HCB.corp.ad.wrs.com (147.11.189.41) with Microsoft SMTP Server id
-	14.2.347.0; Fri, 14 Feb 2014 18:37:19 -0800
-From: <rongqing.li@windriver.com>
-To: <yocto@yoctoproject.org>
-Date: Sat, 15 Feb 2014 10:38:12 +0800
-Message-ID: <b9bdc26b7fe3e3fd21674be407f5ece45985dbfa.1392431823.git.rongqing.li@windriver.com>
-X-Mailer: git-send-email 1.7.10.4
-In-Reply-To: <cover.1392431823.git.rongqing.li@windriver.com>
-References: <cover.1392431823.git.rongqing.li@windriver.com>
+Return-Path: <dorin.lazar@gmail.com>
+Received: from mail-ob0-f172.google.com (mail-ob0-f172.google.com
+	[209.85.214.172])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4746DE0076A
+	for <yocto@yoctoproject.org>; Fri, 14 Feb 2014 20:50:00 -0800 (PST)
+Received: by mail-ob0-f172.google.com with SMTP id vb8so15069177obc.31
+	for <yocto@yoctoproject.org>; Fri, 14 Feb 2014 20:50:00 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type;
+	bh=dydAvXBsc517M7ePl2HfixCbQ+470oKZXiRhyxdr4NQ=;
+	b=TKLGJUjxK66hyBnbTr7Dn6Act5VAsQHj5t4+h3/kuJ5rPwBYdfzRSuY9LuxpCc8hxj
+	vWd+idemdOZp+W/Uhhxve4ZZuKSwIGCqBeq9DVUemfntkiN68nl/TbYxqHEw1gr0E/Be
+	JLUOFHHEKivpVJUe+Ce9i7lnXJFtt7T77TFIk9LEP00/RBf2DjcYvXsQ14gvaCRTx+Va
+	/d6ynuj1cvO0pN7xYOIvSVXbfhHS5ReddmoQG2jKXMWctVLaswbFFWmHpOPUNFicA3ow
+	SewXVUtNklTkIPhEOAhh25cZVhfx8l+PHwgmteBGSa4MXDYRguvkFEpWppM4dLfJZLl5
+	2ceA==
 MIME-Version: 1.0
-Subject: [PATCH 1/1] refpolicy: allow sysadm to run rpcbind
+X-Received: by 10.60.227.168 with SMTP id sb8mr10024563oec.10.1392439799888;
+	Fri, 14 Feb 2014 20:49:59 -0800 (PST)
+Received: by 10.60.141.40 with HTTP; Fri, 14 Feb 2014 20:49:59 -0800 (PST)
+In-Reply-To: <41DEA4B02DBDEF40A0F3B6D0DDB1237983F66030@ORSMSX101.amr.corp.intel.com>
+References: <CAH1=ZYd5QL15kdtP15E0vvwrKfTRNPh3+_N9PL4e83siEg_wyg@mail.gmail.com>
+	<41DEA4B02DBDEF40A0F3B6D0DDB1237983F66030@ORSMSX101.amr.corp.intel.com>
+Date: Sat, 15 Feb 2014 06:49:59 +0200
+Message-ID: <CAH1=ZYe2k=pKsP-AdzOhbBaLNFbefoFuCSLce2CCetcRkJoOxA@mail.gmail.com>
+From: Dorin Lazar <dorin.lazar@gmail.com>
+To: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Update for the quick start guide
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -30,70 +39,148 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 15 Feb 2014 02:37:23 -0000
-Content-Type: text/plain
+X-List-Received-Date: Sat, 15 Feb 2014 04:50:02 -0000
+Content-Type: multipart/alternative; boundary=001a1136bd70a4c20804f26aa74e
 
-From: Roy Li <rongqing.li@windriver.com>
+--001a1136bd70a4c20804f26aa74e
+Content-Type: text/plain; charset=UTF-8
 
-Signed-off-by: Roy Li <rongqing.li@windriver.com>
----
- .../poky-policy-allow-sysadm-to-run-rpcinfo.patch  |   33 ++++++++++++++++++++
- .../refpolicy/refpolicy_2.20130424.inc             |    1 +
- 2 files changed, 34 insertions(+)
- create mode 100644 recipes-security/refpolicy/refpolicy-2.20130424/poky-policy-allow-sysadm-to-run-rpcinfo.patch
-
-diff --git a/recipes-security/refpolicy/refpolicy-2.20130424/poky-policy-allow-sysadm-to-run-rpcinfo.patch b/recipes-security/refpolicy/refpolicy-2.20130424/poky-policy-allow-sysadm-to-run-rpcinfo.patch
-new file mode 100644
-index 0000000..ec3dbf4
---- /dev/null
-+++ b/recipes-security/refpolicy/refpolicy-2.20130424/poky-policy-allow-sysadm-to-run-rpcinfo.patch
-@@ -0,0 +1,33 @@
-+From 7005533d61770fed5a3312aa9dfd1c18dae88c16 Mon Sep 17 00:00:00 2001
-+From: Roy Li <rongqing.li@windriver.com>
-+Date: Sat, 15 Feb 2014 09:45:00 +0800
-+Subject: [PATCH] allow sysadm to run rpcinfo
-+
-+Upstream-Status: Pending
-+
-+type=AVC msg=audit(1392427946.976:264): avc:  denied  { connectto } for  pid=2111 comm="rpcinfo" path="/run/rpcbind.sock" scontext=system_u:system_r:rpcbind_t:s0-s15:c0.c1023 tcontext=system_u:system_r:rpcbind_t:s0-s15:c0.c1023 tclass=unix_stream_socket
-+type=SYSCALL msg=audit(1392427946.976:264): arch=c000003e syscall=42 success=no exit=-13 a0=3 a1=7fff3aa20000 a2=17 a3=22 items=0 ppid=2108 pid=2111 auid=4294967295 uid=0 gid=0 euid=0 suid=0 fsuid=0 egid=0 sgid=0 fsgid=0 ses=4294967295 tty=pts0 comm="rpcinfo" exe="/usr/sbin/rpcinfo" subj=system_u:system_r:rpcbind_t:s0-s15:c0.c1023 key=(null)
-+
-+Signed-off-by: Roy Li <rongqing.li@windriver.com>
-+---
-+ policy/modules/roles/sysadm.te |    4 ++++
-+ 1 file changed, 4 insertions(+)
-+
-+diff --git a/policy/modules/roles/sysadm.te b/policy/modules/roles/sysadm.te
-+index 1767217..5502c6a 100644
-+--- a/policy/modules/roles/sysadm.te
-++++ b/policy/modules/roles/sysadm.te
-+@@ -413,6 +413,10 @@ optional_policy(`
-+ ')
-+ 
-+ optional_policy(`
-++	rpcbind_stream_connect(sysadm_t)
-++')
-++
-++optional_policy(`
-+ 	vmware_role(sysadm_r, sysadm_t)
-+ ')
-+ 
-+-- 
-+1.7.10.4
-+
-diff --git a/recipes-security/refpolicy/refpolicy_2.20130424.inc b/recipes-security/refpolicy/refpolicy_2.20130424.inc
-index 24c0608..c732bc8 100644
---- a/recipes-security/refpolicy/refpolicy_2.20130424.inc
-+++ b/recipes-security/refpolicy/refpolicy_2.20130424.inc
-@@ -45,6 +45,7 @@ SRC_URI += "file://poky-policy-add-syslogd_t-to-trusted-object.patch \
-             file://poky-policy-fix-nfsd_t-to-mount_nfsd_fs_t.patch \
-             file://poky-policy-allow-setfiles_t-to-read-symlinks.patch \
-             file://poky-policy-fix-new-SELINUXMNT-in-sys.patch \
-+            file://poky-policy-allow-sysadm-to-run-rpcinfo.patch \
-            "
- 
- # Other policy fixes 
--- 
-1.7.10.4
+Yes, I must have had an older version cached in my browser. My bad. (the
+.noarch is just adding the architecture to the name, both names are
+pointing to the same thing).
+Many thanks,
+  Dorin
 
 
+On Sat, Feb 15, 2014 at 12:10 AM, Rifenbark, Scott M <
+scott.m.rifenbark@intel.com> wrote:
+
+>  Hi,
+>
+>
+>
+> Does the perl-Thread-Queue package include that?  I have added this
+> package for the set of manuals under development.  See
+> http://www.yoctoproject.org/docs/latest/yocto-project-qs/yocto-project-qs.html
+> .
+>
+>
+>
+> Scott
+>
+>
+>
+>
+>
+> *From:* yocto-bounces@yoctoproject.org [mailto:
+> yocto-bounces@yoctoproject.org] *On Behalf Of *Dorin Lazar
+> *Sent:* Friday, February 14, 2014 1:43 PM
+> *To:* yocto@yoctoproject.org
+> *Subject:* [yocto] Update for the quick start guide
+>
+>
+>
+> Hi everyone,
+>
+> In the quick-start page, when Fedora packages are listed,
+> perl-Thread-Queue.noarch should be added as well; otherwise the build won't
+> pass the latest sanity checks.
+>
+> Many thanks,
+>
+>   Dorin
+>
+>
+>
+
+--001a1136bd70a4c20804f26aa74e
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Yes, I must have had an older version cached in my browser=
+. My bad. (the .noarch is just adding the architecture to the name, both na=
+mes are pointing to the same thing).<div>Many thanks,</div><div>=C2=A0 Dori=
+n</div>
+</div><div class=3D"gmail_extra"><br><br><div class=3D"gmail_quote">On Sat,=
+ Feb 15, 2014 at 12:10 AM, Rifenbark, Scott M <span dir=3D"ltr">&lt;<a href=
+=3D"mailto:scott.m.rifenbark@intel.com" target=3D"_blank">scott.m.rifenbark=
+@intel.com</a>&gt;</span> wrote:<br>
+<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
+x #ccc solid;padding-left:1ex">
+
+
+
+
+
+<div lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1f497d">Hi,
+<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1f497d"><u></u>=C2=A0<u></u></spa=
+n></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1f497d">Does the perl-Thread-Queu=
+e package include that?=C2=A0 I have added this package for the set of manu=
+als under development.=C2=A0 See
+<a href=3D"http://www.yoctoproject.org/docs/latest/yocto-project-qs/yocto-p=
+roject-qs.html" target=3D"_blank">
+http://www.yoctoproject.org/docs/latest/yocto-project-qs/yocto-project-qs.h=
+tml</a>.<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1f497d"><u></u>=C2=A0<u></u></spa=
+n></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1f497d">Scott<u></u><u></u></span=
+></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1f497d"><u></u>=C2=A0<u></u></spa=
+n></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1f497d"><u></u>=C2=A0<u></u></spa=
+n></p>
+<div style=3D"border:none;border-left:solid blue 1.5pt;padding:0in 0in 0in =
+4.0pt">
+<div>
+<div style=3D"border:none;border-top:solid #b5c4df 1.0pt;padding:3.0pt 0in =
+0in 0in">
+<p class=3D"MsoNormal"><b><span style=3D"font-size:10.0pt;font-family:&quot=
+;Tahoma&quot;,&quot;sans-serif&quot;">From:</span></b><span style=3D"font-s=
+ize:10.0pt;font-family:&quot;Tahoma&quot;,&quot;sans-serif&quot;"> <a href=
+=3D"mailto:yocto-bounces@yoctoproject.org" target=3D"_blank">yocto-bounces@=
+yoctoproject.org</a> [mailto:<a href=3D"mailto:yocto-bounces@yoctoproject.o=
+rg" target=3D"_blank">yocto-bounces@yoctoproject.org</a>]
+<b>On Behalf Of </b>Dorin Lazar<br>
+<b>Sent:</b> Friday, February 14, 2014 1:43 PM<br>
+<b>To:</b> <a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yoct=
+o@yoctoproject.org</a><br>
+<b>Subject:</b> [yocto] Update for the quick start guide<u></u><u></u></spa=
+n></p>
+</div>
+</div><div><div class=3D"h5">
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<div>
+<p class=3D"MsoNormal">Hi everyone,<u></u><u></u></p>
+<div>
+<p class=3D"MsoNormal">In the quick-start page, when Fedora packages are li=
+sted, perl-Thread-Queue.noarch should be added as well; otherwise the build=
+ won&#39;t pass the latest sanity checks.<u></u><u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal">Many thanks,<u></u><u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal">=C2=A0 Dorin<u></u><u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+</div>
+</div>
+</div></div></div>
+</div>
+</div>
+
+</blockquote></div><br></div>
+
+--001a1136bd70a4c20804f26aa74e--
