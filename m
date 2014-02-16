@@ -1,41 +1,36 @@
-Return-Path: <raj.khem@gmail.com>
-Received: from mail-pa0-f48.google.com (mail-pa0-f48.google.com
-	[209.85.220.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 57FC8E007F0
-	for <yocto@yoctoproject.org>; Sat, 15 Feb 2014 22:10:00 -0800 (PST)
-Received: by mail-pa0-f48.google.com with SMTP id kx10so13874729pab.21
-	for <yocto@yoctoproject.org>; Sat, 15 Feb 2014 22:10:00 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=content-type:mime-version:subject:from:in-reply-to:date:cc
-	:message-id:references:to;
-	bh=soJBMUvZtxhwx3aunTcU0b8ulRgl8vApqf1HCr5Jdxs=;
-	b=iUxlk1AWbOFjMYMCsP8/TrWvk1ejumOG8KpnJ8dM8WEj+BPzbxoi8HgFQi8nqQfqdZ
-	tLNMwlS6gva2Xa4dcxXFsJykT4AjHAruo4TCiwu4wMz2zNH1+vEqJvVLa3jmTdr2vTlA
-	xV86CkmVQEuJGyVGoEYODlosTZ1Rdka+PJoKfmw3orWTe1oVM98tn/iRO4ukfzA+jBZl
-	5buElIvPvASyONVTq/NQGjTCUzOPHCrJBVXAQ29wAEsU+LPL4KtrMmr9vuZ1uyesczhc
-	e6wOzgXLR8C5cLerTE6Mnaa+Z8RWRSNA6nyzWARa0rhbZ8xWM3N5Ld4wpIisL/OMKVW/
-	OEVQ==
-X-Received: by 10.66.41.106 with SMTP id e10mr18955384pal.109.1392531000387;
-	Sat, 15 Feb 2014 22:10:00 -0800 (PST)
-Received: from [192.168.0.33] (99-57-140-30.lightspeed.sntcca.sbcglobal.net.
-	[99.57.140.30]) by mx.google.com with ESMTPSA id
-	nz11sm84010921pab.6.2014.02.15.22.09.59 for <multiple recipients>
-	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
-	Sat, 15 Feb 2014 22:09:59 -0800 (PST)
-Mime-Version: 1.0 (Mac OS X Mail 7.1 \(1827\))
-From: Khem Raj <raj.khem@gmail.com>
-In-Reply-To: <CABhkJRdkG816YH8+ghUtwsV6MkaaTd0q2JXtjsqaHRjWYM4ePg@mail.gmail.com>
-Date: Sat, 15 Feb 2014 22:09:57 -0800
-Message-Id: <47700885-9D75-4CA5-AA01-FA5A95242C2C@gmail.com>
-References: <CABhkJRdZ9zR+Pn8dWtNe2Xeob5QhcXTZPkNoNGgd_yHmbDzJKg@mail.gmail.com>
-	<CAE_REAvKGCm4k=UZvG7UDe6updeBs-TYNGVa+BtoF4jUPFbwhQ@mail.gmail.com>
-	<CABhkJRdrR2EeadeZHQBhmLei1Yb-T454F1bE7xZTyMK4n_zGzQ@mail.gmail.com>
-	<5D91AAAA-D703-484D-943A-6E8D1FF6644A@gmail.com>
-	<CABhkJRdkG816YH8+ghUtwsV6MkaaTd0q2JXtjsqaHRjWYM4ePg@mail.gmail.com>
-To: Ashish Dalela <ashish.dalela@gmail.com>
-X-Mailer: Apple Mail (2.1827)
-Cc: Yocto list discussion <yocto@yoctoproject.org>
-Subject: Re: meta-java compilation failure
+Return-Path: <wd@denx.de>
+Received: from mail-out.m-online.net (mail-out.m-online.net [212.18.0.9])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B35A3E007FE
+	for <yocto@yoctoproject.org>; Sun, 16 Feb 2014 04:26:24 -0800 (PST)
+Received: from frontend1.mail.m-online.net (unknown [192.168.8.180])
+	by mail-out.m-online.net (Postfix) with ESMTP id 3fRncZ1Rwnz4KK41;
+	Sun, 16 Feb 2014 13:26:21 +0100 (CET)
+Received: from localhost (dynscan1.mnet-online.de [192.168.6.68])
+	by mail.m-online.net (Postfix) with ESMTP id 3fRncY5v4Czbbff;
+	Sun, 16 Feb 2014 13:26:21 +0100 (CET)
+X-Virus-Scanned: amavisd-new at mnet-online.de
+Received: from smtp-auth.mnet-online.de ([192.168.8.180])
+	by localhost (dynscan1.mail.m-online.net [192.168.6.68]) (amavisd-new,
+	port 10024)
+	with ESMTP id 5BySx4hpi745; Sun, 16 Feb 2014 13:26:20 +0100 (CET)
+X-Auth-Info: K/At/cenl4IWtZKxVUo6EVI6ixmuoVd2cWrf3KoquUk=
+Received: from diddl.denx.de (host-80-81-18-216.customer.m-online.net
+	[80.81.18.216]) by smtp-auth.mnet-online.de (Postfix) with ESMTPA;
+	Sun, 16 Feb 2014 13:26:20 +0100 (CET)
+Received: from gemini.denx.de (gemini.denx.de [10.0.0.2])
+	by diddl.denx.de (Postfix) with ESMTP id 55F9F1A997E;
+	Sun, 16 Feb 2014 13:26:20 +0100 (CET)
+Received: from gemini.denx.de (localhost [IPv6:::1])
+	by gemini.denx.de (Postfix) with ESMTP id EB3F4380610;
+	Sun, 16 Feb 2014 13:26:19 +0100 (MET)
+X-Mailer: exmh version 2.8.0 2012-04-28 with nmh-1.5
+To: Gary Thomas <gary@mlbassoc.com>
+From: Wolfgang Denk <wd@denx.de>
+MIME-Version: 1.0
+Date: Sun, 16 Feb 2014 13:26:19 +0100
+Message-Id: <20140216122619.EB3F4380610@gemini.denx.de>
+Cc: yocto@yoctoproject.org
+Subject: Re: Known toolchain bug?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -47,93 +42,76 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 16 Feb 2014 06:10:01 -0000
-Content-Type: multipart/alternative;
-	boundary="Apple-Mail=_5B7B1FC7-9817-4EB2-98D1-3ACC3CAB9C9B"
+X-List-Received-Date: Sun, 16 Feb 2014 12:26:29 -0000
+X-Groupsio-MsgNum: 18135
+Content-Type: multipart/mixed ;
+	boundary="==_Exmh_1392553573_260960"
 
---Apple-Mail=_5B7B1FC7-9817-4EB2-98D1-3ACC3CAB9C9B
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain;
-	charset=iso-8859-1
+--==_Exmh_1392553573_260960
+Content-type: text/plain; charset=UTF-8
+Content-transfer-encoding: 8bit
+In-reply-to: <52FE2B80.9030907@mlbassoc.com>
+References: <20140214142722.1D01B3804C0@gemini.denx.de> <52FE2B80.9030907@mlbassoc.com>
+Comments: In-reply-to Gary Thomas <gary@mlbassoc.com>
+   message dated "Fri, 14 Feb 2014 07:43:12 -0700."
+
+Dear Gary Thomas,
+
+In message <52FE2B80.9030907@mlbassoc.com> you wrote:
+> > 
+> > in message [1] on the Linaro mailing list, Koen Kooi reported a
+> > toolchain problem.  I can reproduce the same problem both in Yocto
+> > 1.5.1 and witht he current top-of-tree; for example, using the latest
+> > autobuilder result
+> > core-image-sato-sdk-imx53qsb-20140213124023.rootfs.tar.bz2
+> > I get this [source of Koen's test program attached]:
+> 
+> Source code attachment missing?
+
+Sorry.  Here it is...
+
+Best regards,
+
+Wolfgang Denk
+
+-- 
+DENX Software Engineering GmbH,     MD: Wolfgang Denk & Detlev Zundel
+HRB 165235 Munich, Office: Kirchenstr.5, D-82194 Groebenzell, Germany
+Phone: (+49)-8142-66989-10 Fax: (+49)-8142-66989-80 Email: wd@denx.de
+Is the glass half empty, half full, or twice as large as it needs to
 
 
-On Feb 15, 2014, at 4:03 AM, Ashish Dalela <ashish.dalela@gmail.com> =
-wrote:
+--==_Exmh_1392553573_260960
+Content-Type: text/plain ; name="b.cpp"; charset=us-ascii
+Content-Description: b.cpp
+Content-Disposition: attachment; filename="b.cpp"
 
-> checking where jni_md.h is installed... /usr/local/classpath/include
-> checking /usr/local/classpath/include/jni_md.h usability... no
-> checking /usr/local/classpath/include/jni_md.h presence... no
-> checking for /usr/local/classpath/include/jni_md.h... no
-> configure: error: cannot find jni_md.h
-> Configure failed. The contents of all config.log files follows to aid =
-debugging
->=20
+#include <iostream>
+#include <thread>
+#include <mutex>
 
-It seems to me that cacao is missing patch for supporting openjdk7, can =
-you check if it has
-this patch applied in sources=20
+std::mutex mx;
+int i;
 
-http://www.complang.tuwien.ac.at/hg/cacao/rev/a567bcb7f589
+void thrfunc();
 
-if not then you have to apply it
+int main(void)
+{
+   i=0;
+   std::thread          thr1(thrfunc),thr2(thrfunc);
 
--Khem=
+   thr1.join();
+   thr2.join();
 
---Apple-Mail=_5B7B1FC7-9817-4EB2-98D1-3ACC3CAB9C9B
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/html;
-	charset=iso-8859-1
+   return 0;
+}
 
-<html><head><meta http-equiv=3D"Content-Type" content=3D"text/html =
-charset=3Diso-8859-1"></head><body style=3D"word-wrap: break-word; =
--webkit-nbsp-mode: space; -webkit-line-break: =
-after-white-space;"><br><div><div>On Feb 15, 2014, at 4:03 AM, Ashish =
-Dalela &lt;<a =
-href=3D"mailto:ashish.dalela@gmail.com">ashish.dalela@gmail.com</a>&gt; =
-wrote:</div><br class=3D"Apple-interchange-newline"><blockquote =
-type=3D"cite"><div style=3D"font-family: Helvetica; font-size: 12px; =
-font-style: normal; font-variant: normal; font-weight: normal; =
-letter-spacing: normal; line-height: normal; orphans: auto; text-align: =
-start; text-indent: 0px; text-transform: none; white-space: normal; =
-widows: auto; word-spacing: 0px; -webkit-text-stroke-width: =
-0px;">checking where jni_md.h is installed... =
-/usr/local/classpath/include</div><div style=3D"font-family: Helvetica; =
-font-size: 12px; font-style: normal; font-variant: normal; font-weight: =
-normal; letter-spacing: normal; line-height: normal; orphans: auto; =
-text-align: start; text-indent: 0px; text-transform: none; white-space: =
-normal; widows: auto; word-spacing: 0px; -webkit-text-stroke-width: =
-0px;">checking /usr/local/classpath/include/jni_md.h usability... =
-no</div><div style=3D"font-family: Helvetica; font-size: 12px; =
-font-style: normal; font-variant: normal; font-weight: normal; =
-letter-spacing: normal; line-height: normal; orphans: auto; text-align: =
-start; text-indent: 0px; text-transform: none; white-space: normal; =
-widows: auto; word-spacing: 0px; -webkit-text-stroke-width: =
-0px;">checking /usr/local/classpath/include/jni_md.h presence... =
-no</div><div style=3D"font-family: Helvetica; font-size: 12px; =
-font-style: normal; font-variant: normal; font-weight: normal; =
-letter-spacing: normal; line-height: normal; orphans: auto; text-align: =
-start; text-indent: 0px; text-transform: none; white-space: normal; =
-widows: auto; word-spacing: 0px; -webkit-text-stroke-width: =
-0px;">checking for /usr/local/classpath/include/jni_md.h... no</div><div =
-style=3D"font-family: Helvetica; font-size: 12px; font-style: normal; =
-font-variant: normal; font-weight: normal; letter-spacing: normal; =
-line-height: normal; orphans: auto; text-align: start; text-indent: 0px; =
-text-transform: none; white-space: normal; widows: auto; word-spacing: =
-0px; -webkit-text-stroke-width: 0px;">configure: error: cannot find =
-jni_md.h</div><div style=3D"font-family: Helvetica; font-size: 12px; =
-font-style: normal; font-variant: normal; font-weight: normal; =
-letter-spacing: normal; line-height: normal; orphans: auto; text-align: =
-start; text-indent: 0px; text-transform: none; white-space: normal; =
-widows: auto; word-spacing: 0px; -webkit-text-stroke-width: =
-0px;">Configure failed. The contents of all config.log files follows to =
-aid debugging</div><br =
-class=3D"Apple-interchange-newline"></blockquote></div><br><div>It seems =
-to me that cacao is missing patch for supporting openjdk7, can you check =
-if it has</div><div>this patch applied in =
-sources&nbsp;</div><div><br></div><div><a =
-href=3D"http://www.complang.tuwien.ac.at/hg/cacao/rev/a567bcb7f589">http:/=
-/www.complang.tuwien.ac.at/hg/cacao/rev/a567bcb7f589</a></div><div><br></d=
-iv><div>if not then you have to apply =
-it</div><div><br></div><div>-Khem</div></body></html>=
+void thrfunc()
+{
+   mx.lock();
+   i++;
+   std::cout << std::this_thread::get_id() << " i: " << i << std::endl;
+   mx.unlock();
+}
 
---Apple-Mail=_5B7B1FC7-9817-4EB2-98D1-3ACC3CAB9C9B--
+--==_Exmh_1392553573_260960--
