@@ -1,35 +1,32 @@
-Return-Path: <stefanx.stanacar@intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DFF55E007AE
-	for <yocto@yoctoproject.org>; Sun, 16 Feb 2014 23:35:41 -0800 (PST)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga102.jf.intel.com with ESMTP; 16 Feb 2014 23:31:22 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.95,859,1384329600"; d="scan'208";a="456711898"
-Received: from irsmsx103.ger.corp.intel.com ([163.33.3.157])
-	by orsmga001.jf.intel.com with ESMTP; 16 Feb 2014 23:35:40 -0800
-Received: from irsmsx153.ger.corp.intel.com (163.33.192.75) by
-	IRSMSX103.ger.corp.intel.com (163.33.3.157) with Microsoft SMTP Server
-	(TLS) id 14.3.123.3; Mon, 17 Feb 2014 07:35:37 +0000
-Received: from irsmsx105.ger.corp.intel.com ([169.254.7.202]) by
-	IRSMSX153.ger.corp.intel.com ([169.254.9.196]) with mapi id
-	14.03.0123.003; Mon, 17 Feb 2014 07:35:37 +0000
-From: "Stanacar, StefanX" <stefanx.stanacar@intel.com>
-To: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
-Thread-Topic: [yocto-autobuilder][PATCH] Add buildstep and buildset for
-	oe-selftest script
-Thread-Index: AQHPI/P+P9X7CrEse0aXNYWaOJHmEZq5HccA
-Date: Mon, 17 Feb 2014 07:35:37 +0000
-Message-ID: <1392622534.16936.0.camel@firebird.rb.intel.com>
-References: <1391770883-14353-2-git-send-email-stefanx.stanacar@intel.com>
-In-Reply-To: <1391770883-14353-2-git-send-email-stefanx.stanacar@intel.com>
-Accept-Language: en-US
+Return-Path: <isak.lichtenstein@kistler.com>
+Received: from mx2.kistler.com (mx2.kistler.com [195.49.77.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6215EE006B3
+	for <yocto@yoctoproject.org>; Mon, 17 Feb 2014 06:45:31 -0800 (PST)
+X-IronPort-AV: E=Sophos;i="4.95,861,1384297200"; d="scan'208,217";a="1314968"
+Received: from unknown (HELO kihagsepp01.int.kistler.com) ([192.168.52.67])
+	by mx2.kistler.com with ESMTP/TLS/ADH-AES256-SHA;
+	17 Feb 2014 15:45:26 +0100
+Received: from mx2.kistler.com (unknown [192.168.52.58])
+	by kihagsepp01.int.kistler.com (Postfix) with ESMTPS
+	for <yocto@yoctoproject.org>; Mon, 17 Feb 2014 15:45:25 +0100 (CET)
+X-IronPort-AV: E=Sophos;i="4.95,861,1384297200"; d="scan'208,217";a="1314967"
+Received: from kihagwinex02.int.kistler.com ([192.168.100.31])
+	by mx2.kistler.com with ESMTP/TLS/AES128-SHA; 17 Feb 2014 15:45:25 +0100
+Received: from KIHAGWINEX01.int.kistler.com ([fe80::d70:7df0:c903:4e43]) by
+	kihagwinex02.int.kistler.com ([fe80::10cf:df86:bb65:2502%16]) with mapi
+	id 14.03.0174.001; Mon, 17 Feb 2014 15:45:25 +0100
+From: Isak Lichtenstein <Isak.Lichtenstein@kistler.com>
+To: "'yocto@yoctoproject.org'" <yocto@yoctoproject.org>
+Thread-Topic: Remove major version number from package name
+Thread-Index: Ac8r7t34jM7/5BoKTlSDoSByY4Ld1w==
+Date: Mon, 17 Feb 2014 14:45:24 +0000
+Message-ID: <91B4C1B91AAEFD42AC985EA0F3D4E6684B31BBDB@kihagwinex01.int.kistler.com>
+Accept-Language: en-GB, de-CH, en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-x-originating-ip: [10.237.105.156]
+x-originating-ip: [192.168.100.116]
 MIME-Version: 1.0
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: [yocto-autobuilder][PATCH] Add buildstep and buildset for oe-selftest script
+Subject: Remove major version number from package name
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,96 +38,167 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 17 Feb 2014 07:35:44 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <55C70D6B16289F448CA67B46DCD84D28@intel.com>
-Content-Transfer-Encoding: base64
+X-List-Received-Date: Mon, 17 Feb 2014 14:45:33 -0000
+Content-Language: de-DE
+Content-Type: multipart/alternative;
+	boundary="_000_91B4C1B91AAEFD42AC985EA0F3D4E6684B31BBDBkihagwinex01int_"
 
-UGluZw0KDQoNCk9uIEZyaSwgMjAxNC0wMi0wNyBhdCAxMzowMSArMDIwMCwgU3RlZmFuIFN0YW5h
-Y2FyIHdyb3RlOg0KPiBUaGlzIHdpbGwgcnVuIHRoZSBvZS1zZWxmdGVzdCBzY3JpcHQgd2hpY2gg
-aGFzIGJlZW4NCj4gYXZhaWxhYmxlIGluIG1hc3RlciBmb3IgYSB3aGlsZS4gVGhlIHNjcmlwdHMg
-cnVuIGEgc2VyaWVzDQo+IG9mIGJpdGJha2UgdGVzdHMgYW5kIHRha2VzIGNhcmUgb2YgaXQncyBv
-d24gY29uZmlnLg0KPiBCZWNhdXNlIHNvbWUgb2YgdGhlIHRlc3RzIG1lc3MgdXAgd2l0aCBzc3Rh
-dGUgd2UNCj4gd2FudCB0byB1c2UgdGhlIGRlZmF1bHQgc3N0YXRlIGRpciwgc28gYSBub3NzdGF0
-ZSBvcHRpb24NCj4gd2FzIGFkZGVkIHRvIENyZWF0ZUF1dG9Db25mLg0KPiANCj4gU2lnbmVkLW9m
-Zi1ieTogU3RlZmFuIFN0YW5hY2FyIDxzdGVmYW54LnN0YW5hY2FyQGludGVsLmNvbT4NCj4gLS0t
-DQo+ICBidWlsZHNldC1jb25maWcubWFzdGVyL25pZ2h0bHktb2Utc2VsZnRlc3QuY29uZiAgICB8
-IDE1ICsrKysrKysrKysrKysNCj4gIC4uLi9hdXRvYnVpbGRlci9idWlsZHN0ZXBzL0NyZWF0ZUF1
-dG9Db25mLnB5ICAgICAgIHwgIDcgKysrKy0tDQo+ICAuLi4vYXV0b2J1aWxkZXIvYnVpbGRzdGVw
-cy9SdW5PZVNlbGZ0ZXN0LnB5ICAgICAgICB8IDI2ICsrKysrKysrKysrKysrKysrKysrKysNCj4g
-IDMgZmlsZXMgY2hhbmdlZCwgNDYgaW5zZXJ0aW9ucygrKSwgMiBkZWxldGlvbnMoLSkNCj4gIGNy
-ZWF0ZSBtb2RlIDEwMDY0NCBidWlsZHNldC1jb25maWcubWFzdGVyL25pZ2h0bHktb2Utc2VsZnRl
-c3QuY29uZg0KPiAgY3JlYXRlIG1vZGUgMTAwNjQ0IGxpYi9weXRob24yLjcvc2l0ZS1wYWNrYWdl
-cy9hdXRvYnVpbGRlci9idWlsZHN0ZXBzL1J1bk9lU2VsZnRlc3QucHkNCj4gDQo+IGRpZmYgLS1n
-aXQgYS9idWlsZHNldC1jb25maWcubWFzdGVyL25pZ2h0bHktb2Utc2VsZnRlc3QuY29uZiBiL2J1
-aWxkc2V0LWNvbmZpZy5tYXN0ZXIvbmlnaHRseS1vZS1zZWxmdGVzdC5jb25mDQo+IG5ldyBmaWxl
-IG1vZGUgMTAwNjQ0DQo+IGluZGV4IDAwMDAwMDAuLjQyYmNjZGUNCj4gLS0tIC9kZXYvbnVsbA0K
-PiArKysgYi9idWlsZHNldC1jb25maWcubWFzdGVyL25pZ2h0bHktb2Utc2VsZnRlc3QuY29uZg0K
-PiBAQCAtMCwwICsxLDE1IEBADQo+ICtbbmlnaHRseS1vZS1zZWxmdGVzdF0NCj4gK2J1aWxkZXJz
-OiAnYnVpbGRlcjEnDQo+ICtyZXBvczogW3sncG9reSc6DQo+ICsgICAgICAgICAgICB7J3JlcG91
-cmwnOidnaXQ6Ly9naXQueW9jdG9wcm9qZWN0Lm9yZy9wb2t5JywNCj4gKyAgICAgICAgICAgICAn
-bGF5ZXJ2ZXJzaW9uJzp7J2NvcmUnOidtZXRhJywgJ3lvY3RvYnNwJzonbWV0YS15b2N0by1ic3An
-fSwNCj4gKyAgICAgICAgICAgICAnYnJhbmNoJzonbWFzdGVyJ319XQ0KPiArc3RlcHM6IFt7J1Nl
-dERlc3QnOnt9fSwNCj4gKyAgICAgICAgeydDaGVja091dExheWVycyc6IHt9fSwNCj4gKyAgICAg
-ICAgeydSdW5QcmVhbWJsZSc6IHt9fSwNCj4gKyAgICAgICAgeydHZXREaXN0cm9WZXJzaW9uJyA6
-IHsnZGlzdHJvJzogJ3Bva3knfX0sDQo+ICsgICAgICAgIHsnQ3JlYXRlQXV0b0NvbmYnOiB7J21h
-Y2hpbmUnOiAncWVtdXg4Ni02NCcsICdTREtNQUNISU5FJyA6ICd4ODZfNjQnLCAnZGlzdHJvJzog
-J3Bva3knLCAnbm9zc3RhdGUnOiBUcnVlLCAncGFja2FnZXMnOiAncnBtJ319LA0KPiArICAgICAg
-ICB7J0NyZWF0ZUJCTGF5ZXJzQ29uZic6IHsnYnVpbGRwcm92aWRlcicgOiAneW9jdG8nfX0sDQo+
-ICsgICAgICAgIHsnQnVpbGRJbWFnZXMnOiB7J2ltYWdlcyc6ICdjb3JlLWltYWdlLW1pbmltYWwn
-fX0sDQo+ICsgICAgICAgIHsnQ3JlYXRlQkJMYXllcnNDb25mJzogeydidWlsZHByb3ZpZGVyJyA6
-ICd5b2N0bycsICdsYXllcmRpcnMnOiBbJ21ldGEtc2VsZnRlc3QnXX19LA0KPiArICAgICAgICB7
-J1J1bk9lU2VsZnRlc3QnOiB7fX1dDQo+IGRpZmYgLS1naXQgYS9saWIvcHl0aG9uMi43L3NpdGUt
-cGFja2FnZXMvYXV0b2J1aWxkZXIvYnVpbGRzdGVwcy9DcmVhdGVBdXRvQ29uZi5weSBiL2xpYi9w
-eXRob24yLjcvc2l0ZS1wYWNrYWdlcy9hdXRvYnVpbGRlci9idWlsZHN0ZXBzL0NyZWF0ZUF1dG9D
-b25mLnB5DQo+IGluZGV4IDExNmVlMTQuLmJlYzIyMWEgMTAwNjQ0DQo+IC0tLSBhL2xpYi9weXRo
-b24yLjcvc2l0ZS1wYWNrYWdlcy9hdXRvYnVpbGRlci9idWlsZHN0ZXBzL0NyZWF0ZUF1dG9Db25m
-LnB5DQo+ICsrKyBiL2xpYi9weXRob24yLjcvc2l0ZS1wYWNrYWdlcy9hdXRvYnVpbGRlci9idWls
-ZHN0ZXBzL0NyZWF0ZUF1dG9Db25mLnB5DQo+IEBAIC0zOCw2ICszOCw3IEBAIGNsYXNzIENyZWF0
-ZUF1dG9Db25mKFNoZWxsQ29tbWFuZCk6DQo+ICAgICAgICAgIHNlbGYuZmFjdG9yeSA9IGZhY3Rv
-cnkNCj4gICAgICAgICAgc2VsZi5idWlsZGFwcHNyY3JldiA9ICIke0FVVE9SRVZ9Ig0KPiAgICAg
-ICAgICBzZWxmLmluaXRtZ3I9Tm9uZQ0KPiArICAgICAgICBzZWxmLm5vc3N0YXRlPUZhbHNlDQo+
-ICAgICAgICAgIHNlbGYua3dhcmdzID0ga3dhcmdzDQo+ICAgICAgICAgIGZvciBrLCB2IGluIGFy
-Z2RpY3QuaXRlcml0ZW1zKCk6DQo+ICAgICAgICAgICAgICBpZiB0eXBlKHYpIGlzIGJvb2w6DQo+
-IEBAIC0xMDAsOSArMTAxLDExIEBAIGNsYXNzIENyZWF0ZUF1dG9Db25mKFNoZWxsQ29tbWFuZCk6
-DQo+ICAgICAgICAgICAgICAgICAgZWxpZiBzZWxmLm11bHRpbGliID09ICJsaWI2NCI6DQo+ICAg
-ICAgICAgICAgICAgICAgICAgIGZvdXQgPSBmb3V0ICsgJ01VTFRJTElCUyA9ICJtdWx0aWxpYjps
-aWI2NCIgXG4nDQo+ICAgICAgICAgICAgICAgICAgICAgIGZvdXQgPSBmb3V0ICsgJ0RFRkFVTFRU
-VU5FX3ZpcnRjbGFzcy1tdWx0aWxpYi1saWI2NCA9ICJ4ODYtNjQiIFxuJw0KPiAtICAgICAgICAg
-ICAgICAgIGZvdXQgPSBmb3V0ICsgJ1NTVEFURV9ESVIgPz0gIicgKyBvcy5lbnZpcm9uLmdldCgi
-U1NUQVRFX0RJUiIpICsgJy9tdWx0aWxpYiIgXG4nDQo+ICsgICAgICAgICAgICAgICAgaWYgbm90
-IHNlbGYubm9zc3RhdGU6DQo+ICsgICAgICAgICAgICAgICAgICAgIGZvdXQgPSBmb3V0ICsgJ1NT
-VEFURV9ESVIgPz0gIicgKyBvcy5lbnZpcm9uLmdldCgiU1NUQVRFX0RJUiIpICsgJy9tdWx0aWxp
-YiIgXG4nDQo+ICAgICAgICAgICAgICBlbHNlOg0KPiAtICAgICAgICAgICAgICAgIGZvdXQgPSBm
-b3V0ICsgJ1NTVEFURV9ESVIgPz0gIicgKyBvcy5lbnZpcm9uLmdldCgiU1NUQVRFX0RJUiIpICsg
-Jy8iIFxuJw0KPiArICAgICAgICAgICAgICAgIGlmIG5vdCBzZWxmLm5vc3N0YXRlOg0KPiArICAg
-ICAgICAgICAgICAgICAgICBmb3V0ID0gZm91dCArICdTU1RBVEVfRElSID89ICInICsgb3MuZW52
-aXJvbi5nZXQoIlNTVEFURV9ESVIiKSArICcvIiBcbicNCj4gICAgICAgICAgICAgIGlmIHNlbGYu
-Z3BsdjMgPT0gIkZhbHNlIjoNCj4gICAgICAgICAgICAgICAgICAgICAgZm91dCA9IGZvdXQgKyAn
-SU5DT01QQVRJQkxFX0xJQ0VOU0UgPSAiR1BMdjMiIFxuJw0KPiAgICAgICAgICAgICAgaWYgc2Vs
-Zi54MzIgPT0gIlRydWUiOg0KPiBkaWZmIC0tZ2l0IGEvbGliL3B5dGhvbjIuNy9zaXRlLXBhY2th
-Z2VzL2F1dG9idWlsZGVyL2J1aWxkc3RlcHMvUnVuT2VTZWxmdGVzdC5weSBiL2xpYi9weXRob24y
-Ljcvc2l0ZS1wYWNrYWdlcy9hdXRvYnVpbGRlci9idWlsZHN0ZXBzL1J1bk9lU2VsZnRlc3QucHkN
-Cj4gbmV3IGZpbGUgbW9kZSAxMDA2NDQNCj4gaW5kZXggMDAwMDAwMC4uMGVmZGRkNw0KPiAtLS0g
-L2Rldi9udWxsDQo+ICsrKyBiL2xpYi9weXRob24yLjcvc2l0ZS1wYWNrYWdlcy9hdXRvYnVpbGRl
-ci9idWlsZHN0ZXBzL1J1bk9lU2VsZnRlc3QucHkNCj4gQEAgLTAsMCArMSwyNiBAQA0KPiArJycn
-DQo+ICtfX2F1dGhvcl9fID0gIlN0ZWZhbiBTdGFuYWNhciINCj4gK19fY29weXJpZ2h0X18gPSAi
-Q29weXJpZ2h0IDIwMTQgSW50ZWwgQ29ycG9yYXRpb24iDQo+ICtfX2NyZWRpdHNfXyA9IFsiU3Rl
-ZmFuIFN0YW5hY2FyIl0NCj4gK19fbGljZW5zZV9fID0gIkdQTCINCj4gK19fdmVyc2lvbl9fID0g
-IjIuMCINCj4gK19fbWFpbnRhaW5lcl9fID0gIlN0ZWZhbiBTdGFuYWNhciINCj4gK19fZW1haWxf
-XyA9ICJzdGVmYW54LnN0YW5hY2FyQGludGVsLmNvbSINCj4gKycnJw0KPiArDQo+ICsNCj4gK2Zy
-b20gYnVpbGRib3Quc3RlcHMuc2hlbGwgaW1wb3J0IFNoZWxsQ29tbWFuZA0KPiArDQo+ICtjbGFz
-cyBSdW5PZVNlbGZ0ZXN0KFNoZWxsQ29tbWFuZCk6DQo+ICsgICAgaGFsdE9uRmFpbHVyZSA9IEZh
-bHNlDQo+ICsgICAgZmx1bmtPbkZhaWx1cmUgPSBUcnVlDQo+ICsgICAgbmFtZSA9ICJSdW5uaW5n
-IG9lLXNlbGZ0ZXN0Ig0KPiArICAgIGRlZiBfX2luaXRfXyhzZWxmLCBmYWN0b3J5LCBhcmdkaWN0
-PU5vbmUsICoqa3dhcmdzKToNCj4gKyAgICAgICAgc2VsZi5mYWN0b3J5ID0gZmFjdG9yeQ0KPiAr
-ICAgICAgICBmb3IgaywgdiBpbiBhcmdkaWN0Lml0ZXJpdGVtcygpOg0KPiArICAgICAgICAgICAg
-ICAgIHNldGF0dHIoc2VsZiwgaywgdikNCj4gKyAgICAgICAgc2VsZi5kZXNjcmlwdGlvbiA9ICJS
-dW5uaW5nIG9lLXNlbGZ0ZXN0Ig0KPiArICAgICAgICBzZWxmLnRpbWVvdXQgPSAxMDAwMDANCj4g
-KyAgICAgICAga3dhcmdzWyd0aW1lb3V0J109c2VsZi50aW1lb3V0DQo+ICsgICAgICAgIHNlbGYu
-Y29tbWFuZCA9ICJpZiBbIC1kIG1ldGEtc2VsZnRlc3QgXTsgdGhlbiAuIC4vb2UtaW5pdC1idWls
-ZC1lbnY7IG9lLXNlbGZ0ZXN0OyBlbHNlIGVjaG8gJ1NraXBwaW5nIHN0ZXAgLSBubyBtZXRhLXNl
-bGZ0ZXN0IGxheWVyIGhlcmUnOyBmaSINCj4gKyAgICAgICAgU2hlbGxDb21tYW5kLl9faW5pdF9f
-KHNlbGYsICoqa3dhcmdzKQ0KDQo=
+--_000_91B4C1B91AAEFD42AC985EA0F3D4E6684B31BBDBkihagwinex01int_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
+Hi all,
+
+I'm relatively new to yocto and open embedded.
+
+I created a few library packages like libdsp for our DSP libraries.
+
+Now when I list all installable packages for libdsp, I noticed that the mai=
+n package gets the major version number added to its name: libdsp0
+
+# opkg list | grep libdsp
+libdsp-dbg - 0.1-r26 - libdsp version 0.1-r26 - Debugging files  Board supp=
+ort library for the
+libdsp-dev - 0.1-r26 - libdsp version 0.1-r26 - Development files  Board su=
+pport library for the
+libdsp-staticdev - 0.1-r26 - libdsp version 0.1-r26 - Development files (St=
+atic Libraries)  Board
+libdsp-test - 0.1-r26 - libdsp version 0.1-r26  Board support library for t=
+he
+libdsp0 - 0.1-r26 - libdsp version 0.1-r26  Board support library for the
+
+What can I add to my recipe to suppress the automatic addition of the major=
+ version number to the package name?
+
+Kind regards
+Isak Lichtenstein
+
+
+
+--_000_91B4C1B91AAEFD42AC985EA0F3D4E6684B31BBDBkihagwinex01int_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 14 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";
+	mso-fareast-language:EN-US;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;}
+span.E-MailFormatvorlage17
+	{mso-style-type:personal-compose;
+	font-family:"Arial","sans-serif";
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri","sans-serif";
+	mso-fareast-language:EN-US;}
+@page WordSection1
+	{size:612.0pt 792.0pt;
+	margin:70.85pt 70.85pt 2.0cm 70.85pt;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"DE-CH" link=3D"blue" vlink=3D"purple">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:10.0pt;font-=
+family:&quot;Arial&quot;,&quot;sans-serif&quot;">Hi all,<o:p></o:p></span><=
+/p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:10.0pt;font-=
+family:&quot;Arial&quot;,&quot;sans-serif&quot;"><o:p>&nbsp;</o:p></span></=
+p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:10.0pt;font-=
+family:&quot;Arial&quot;,&quot;sans-serif&quot;">I&#8217;m relatively new t=
+o yocto and open embedded.<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:10.0pt;font-=
+family:&quot;Arial&quot;,&quot;sans-serif&quot;"><o:p>&nbsp;</o:p></span></=
+p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:10.0pt;font-=
+family:&quot;Arial&quot;,&quot;sans-serif&quot;">I created a few library pa=
+ckages like libdsp for our DSP libraries.<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:10.0pt;font-=
+family:&quot;Arial&quot;,&quot;sans-serif&quot;"><o:p>&nbsp;</o:p></span></=
+p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:10.0pt;font-=
+family:&quot;Arial&quot;,&quot;sans-serif&quot;">Now when I list all instal=
+lable packages for libdsp, I noticed that the main package gets the major v=
+ersion number added to its name: libdsp0<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:10.0pt;font-=
+family:&quot;Arial&quot;,&quot;sans-serif&quot;"><o:p>&nbsp;</o:p></span></=
+p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:10.0pt;font-=
+family:&quot;Arial&quot;,&quot;sans-serif&quot;"># opkg list | grep libdsp<=
+o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:10.0pt;font-=
+family:&quot;Arial&quot;,&quot;sans-serif&quot;">libdsp-dbg - 0.1-r26 - lib=
+dsp version 0.1-r26 - Debugging files&nbsp; Board support library for the<o=
+:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:10.0pt;font-=
+family:&quot;Arial&quot;,&quot;sans-serif&quot;">libdsp-dev - 0.1-r26 - lib=
+dsp version 0.1-r26 - Development files&nbsp; Board support library for the=
+<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:10.0pt;font-=
+family:&quot;Arial&quot;,&quot;sans-serif&quot;">libdsp-staticdev - 0.1-r26=
+ - libdsp version 0.1-r26 - Development files (Static Libraries)&nbsp; Boar=
+d<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:10.0pt;font-=
+family:&quot;Arial&quot;,&quot;sans-serif&quot;">libdsp-test - 0.1-r26 - li=
+bdsp version 0.1-r26&nbsp; Board support library for the
+<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:10.0pt;font-=
+family:&quot;Arial&quot;,&quot;sans-serif&quot;">libdsp0 - 0.1-r26 - libdsp=
+ version 0.1-r26&nbsp; Board support library for the
+<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:10.0pt;font-=
+family:&quot;Arial&quot;,&quot;sans-serif&quot;"><o:p>&nbsp;</o:p></span></=
+p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:10.0pt;font-=
+family:&quot;Arial&quot;,&quot;sans-serif&quot;">What can I add to my recip=
+e to suppress the automatic addition of the major version number to the pac=
+kage name?<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:10.0pt;font-=
+family:&quot;Arial&quot;,&quot;sans-serif&quot;"><o:p>&nbsp;</o:p></span></=
+p>
+<p class=3D"MsoNormal"><span lang=3D"EN-US" style=3D"font-size:10.0pt;font-=
+family:&quot;Arial&quot;,&quot;sans-serif&quot;">Kind regards<o:p></o:p></s=
+pan></p>
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
+lt:auto"><span style=3D"font-size:10.0pt;font-family:&quot;Arial&quot;,&quo=
+t;sans-serif&quot;;mso-fareast-language:DE-CH">Isak Lichtenstein<br>
+<br>
+</span><span style=3D"font-size:12.0pt;font-family:&quot;Times New Roman&qu=
+ot;,&quot;serif&quot;;mso-fareast-language:DE-CH"><o:p></o:p></span></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+</body>
+</html>
+
+--_000_91B4C1B91AAEFD42AC985EA0F3D4E6684B31BBDBkihagwinex01int_--
