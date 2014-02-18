@@ -1,29 +1,37 @@
-Return-Path: <darcy.watkins@inmotiontechnology.com>
-Received: from na01-by2-obe.outbound.protection.outlook.com
-	(mail-by2lp0242.outbound.protection.outlook.com [207.46.163.242])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7DF33E0043F
-	for <yocto@yoctoproject.org>; Tue, 18 Feb 2014 10:31:51 -0800 (PST)
-Received: from [192.168.3.163] (184.71.143.26) by
-	BY2PR01MB473.prod.exchangelabs.com (10.141.144.12) with Microsoft SMTP
-	Server (TLS) id 15.0.878.16; Tue, 18 Feb 2014 18:31:46 +0000
-From: Darcy Watkins <darcy.watkins@inmotiontechnology.com>
-To: <yocto@yoctoproject.org>
-Date: Tue, 18 Feb 2014 10:31:41 -0800
-Message-ID: <1392748301.12758.111.camel@kihei.inmotion.gotdns.com>
+Return-Path: <kaweka@gazeta.pl>
+Received: from mail-bk0-f50.google.com (mail-bk0-f50.google.com
+	[209.85.214.50])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AFC35E005B4
+	for <yocto@yoctoproject.org>; Tue, 18 Feb 2014 12:52:21 -0800 (PST)
+Received: by mail-bk0-f50.google.com with SMTP id d7so1399279bkh.37
+	for <yocto@yoctoproject.org>; Tue, 18 Feb 2014 12:52:20 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
+	:subject:content-type;
+	bh=ZZMgm4GEO1TF3e+SyjzHqVC6qdqak0U3BkLTMnAuOeo=;
+	b=NTX86oArTaO433qCzSIKBXFbVNkpgbUldE7aFz4h8v+i+C8IVj6G2WhecuUt4YCECV
+	yCI8VLhZcZai4EC/+EkaPo/JKTuWQUAbgOcvEFm1GJF1456im1VnBTQYZ+XO63cvTys8
+	dRUuKgfyj2a3TVq1wUW23RZcLgpR/V5UNrVR7SFh6tNjBFv3Ow7BXdgWC/PZLEA4BlLs
+	eI26BbHtzdyNQdgUWdbgYW5amnnaFvaGRszYq4OTCzMFyTvMil4kTb5SLBZJJsPhXfgg
+	8X+Dg9k8bLso2eG67mN2tfrcrip4uEUkYSfCej5NGCqi0E5cLh4RY+zO4xgvCo1a4i4r
+	w3hw==
+X-Gm-Message-State: ALoCoQnxX2mIHPS+Hs8Cuv9ohnJLGvAHheR7us6n7Id2/fNqbUChxVIeTTzauuZqgN9z782oY0tP
+X-Received: by 10.204.102.129 with SMTP id g1mr1898929bko.39.1392756740611;
+	Tue, 18 Feb 2014 12:52:20 -0800 (PST)
+Received: from [127.0.0.1] (e178209020.adsl.alicedsl.de. [85.178.209.20])
+	by mx.google.com with ESMTPSA id
+	rf10sm15887651bkb.3.2014.02.18.12.52.19 for <yocto@yoctoproject.org>
+	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
+	Tue, 18 Feb 2014 12:52:20 -0800 (PST)
+Message-ID: <5303C7E8.6080106@gazeta.pl>
+Date: Tue, 18 Feb 2014 21:51:52 +0100
+From: kaweka <kaweka@gazeta.pl>
+User-Agent: Mozilla/5.0 (Windows NT 5.1;
+	rv:24.0) Gecko/20100101 Thunderbird/24.3.0
 MIME-Version: 1.0
-X-Mailer: Evolution 2.28.3 (2.28.3-30.el6) 
-X-Originating-IP: [184.71.143.26]
-X-ClientProxiedBy: BY2PR08CA013.namprd08.prod.outlook.com (10.242.234.161)
-	To BY2PR01MB473.prod.exchangelabs.com (10.141.144.12)
-X-Forefront-PRVS: 0126A32F74
-X-Forefront-Antispam-Report: SFV:NSPM;
-	SFS:(10009001)(6009001)(6049001)(174874002)(199002)(189002)(85306002)(50466002)(81342001)(76786001)(94946001)(81686001)(95666001)(74706001)(76796001)(69226001)(81542001)(77096001)(83322001)(74366001)(77156001)(95416001)(19580395003)(86362001)(19580405001)(87286001)(87266001)(93516002)(87976001)(93916002)(62966002)(94316002)(65816001)(80022001)(74876001)(80976001)(50986001)(76482001)(74662001)(4396001)(51856001)(53806001)(49866001)(50226001)(47736001)(47976001)(54316002)(92726001)(88136002)(56776001)(42186004)(83072002)(33646001)(85852003)(79102001)(81816001)(93136001)(76176001)(31966008)(74502001)(66066001)(47446002)(47776003)(89996001)(77982001)(59766001)(90146001)(56816005)(46102001)(92566001)(63696002)(23676002);
-	DIR:OUT; SFP:1101; SCL:1; SRVR:BY2PR01MB473; H:[192.168.3.163];
-	CLIP:184.71.143.26;
-	FPR:BCAEF2F5.8E169046.E9E9D173.4CCCF15A.20335; PTR:InfoNoRecords;
-	A:1; MX:1; LANG:en; 
-X-OriginatorOrg: inmotiontechnology.com
-Subject: Yocto Python Issue
+To: yocto@yoctoproject.org
+Subject: BB/OE user - (a) generic questions, (b) one issue
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -35,71 +43,243 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 18 Feb 2014 18:31:54 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Tue, 18 Feb 2014 20:52:25 -0000
+Content-Type: multipart/alternative;
+	boundary="------------020609090104050709050900"
+
+--------------020609090104050709050900
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
 Content-Transfer-Encoding: 7bit
 
 Hi,
 
-I am using yocto 1.5 build environment on CentOS 6 with the prerequisite
-tools package installed to ensure that I have python 2.7, an up-to-date
-'tar' etc as instructed in the manual.
+I was directed to this mailing list by guys to be met on OpenEmbedded 
+irc channels.
 
-I have encountered the following error in a package I am building that
-uses python:
+Asking mine questions on mailing list will allow me to communicate all 
+concerns and
 
-| [SWIG PYTHON WRAP omg2000]
-| mkdir -p build-omg2000/
-| swig
--I/home/dwatkins/workspace/epsilon/repo_MG-os_test2/build/tmp/sysroots/omg2000/usr/include  -Wall -python -o build-omg2000/omgll_python_wrap.c omgll.i
-| touch .lib-omg2000-omgll
-| touch .lib-omg2000-omgll
-| [PYTHON SO omg2000]
-| cd build-omg2000 && python omgll_setup.py build
-| Traceback (most recent call last):
-|   File "omgll_setup.py", line 1, in <module>
-|     from distutils.core import setup, Extension
-|   File
-"/home/dwatkins/bin/opt/i686/poky/1.5-1/sysroots/i686-pokysdk-linux/usr/lib/python2.7/distutils/core.py", line 20, in <module>
-|     from distutils.dist import Distribution
-|   File
-"/home/dwatkins/bin/opt/i686/poky/1.5-1/sysroots/i686-pokysdk-linux/usr/lib/python2.7/distutils/dist.py", line 10, in <module>
-|     from email import message_from_file
-| ImportError: No module named email
-| make[1]: *** [build-omg2000/python/_omgll.so] Error 1
+needed details in more convenient way.
 
-Apparently the 'distutils' module needs an 'email' module and that was
-never included with it.  There is also no 'pip' included with it, nor
-could I find a python-pip-native recipe.  I tried using the 'get-pip.py'
-from python.org and got basically the same traceback because it tried to
-use the same thing.
+I am new to BitBake and OpenEmbedded.
 
-dwatkins@kihei:32bit build $
-find /home/dwatkins/bin/opt/i686/poky/1.5-1/sysroots/i686-pokysdk-linux/usr/lib/python2.7/ | grep email
-/home/dwatkins/bin/opt/i686/poky/1.5-1/sysroots/i686-pokysdk-linux/usr/lib/python2.7/site-packages/git/test/fixtures/reflog_invalid_email
-dwatkins@kihei:32bit build $
+The project's source directory structure show some Yocto elements,
 
-As indicated above, there isn't an email package as part of the python
-distro that was built in the ADT.
+on another hand some elements documented in Yocto manual are missing here.
 
-Is there a remedy for this?  If it comes down to manually installing a
-python email module, anyone know what version I need to get for python
-2.7 (or will email-6.0.0a1 from python.org work)?
+Therefore, I guess the project is not based.
+
+Manual of build system used in project provided SoC's vendor
+
+does make a reference merely to BitBake and OpenEmbedded.
+
+SoC's vendor name is not be met in Yocto project web.
+
+Therefore, I guess the project is not based on Yocto.
+
+I seems rather to be BitBake and OpenEmbedded based
+
+and in some extend to be proprietary.
+
+I didn't consult with the project owner the project details to be allowed
+
+to communicate in scope of this inquiry, e.g.: the SoC name.
+
+So please have understanding for avoiding giving such details.
+
+If there will be a need me will check appropriate measures.
+
+If it comes to BB / OE I am an user and a newbie.
+
+I am also new if it comes to building/deploying/distributing the software
+
+for linux, embedded linux.
+
+Thus the wording used by me will frequently be incorrect or inaccurate.
+
+I apologize that.
+
+I encounter some issues while trying to build the applications package
+
+according to own needs. That piece of soft is a user space application and
+
+was implemented in scope of the project.
+
+Me consulted the BitBake user manual in order to solve the issue.
+
+However, further questions arise when to consult that manual.
+
+Than the guys to be met on OE irc channels directed me
+
+to Yocto reference manual which didn't help much.
+
+It generates more new questions than answers the existing ones.
+
+There are the mentioned application (user space) and some
+
+pre-build library (at this moment unclear if kernel or user space,
+actually it might be irrelevant, or not?). The application is aimed to 
+use library.
+
+At build time however the included header file cannot be found.
+
+Thus me will have questions of two kinds:
+
+* closing gaps in understanding regarding related BB aspects
+
+* possible reasons of encountered probs while building and
+
+   possible solutions
+
+Will it be fine to ask these questions in this mailing list?
 
 
--- 
+--------------020609090104050709050900
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: 7bit
 
-Regards,
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html;
+      charset=ISO-8859-1">
+    <meta name="Generator" content="Microsoft Word 12 (filtered medium)">
+    <style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri","sans-serif";
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;}
+@page WordSection1
+	{size:612.0pt 792.0pt;
+	margin:70.85pt 70.85pt 2.0cm 70.85pt;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext="edit" spidmax="1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext="edit">
+<o:idmap v:ext="edit" data="1" />
+</o:shapelayout></xml><![endif]-->
+  </head>
+  <body bgcolor="#FFFFFF" lang="DE" link="blue" text="#000000"
+    vlink="purple">
+    <div class="WordSection1">
+      <p class="MsoNormal"><o:p>Hi,<br>
+          &nbsp;</o:p></p>
+      <p class="MsoNormal"><span lang="EN-US">I was directed to this
+          mailing list by guys to be met on OpenEmbedded irc channels.<o:p></o:p></span></p>
+      <p class="MsoNormal"><span lang="EN-US">Asking mine questions on
+          mailing list will allow me to communicate all concerns and
+          <o:p></o:p></span></p>
+      <p class="MsoNormal"><span lang="EN-US">needed details in more
+          convenient way.<o:p></o:p></span></p>
+      <p class="MsoNormal"><span lang="EN-US"><o:p>&nbsp;</o:p></span></p>
+      <p class="MsoNormal"><span lang="EN-US">I am new to BitBake and
+          OpenEmbedded.<o:p></o:p></span></p>
+      <p class="MsoNormal"><span lang="EN-US">The project&#8217;s source
+          directory structure show some Yocto elements,<o:p></o:p></span></p>
+      <p class="MsoNormal"><span lang="EN-US">on another hand some
+          elements documented in Yocto manual are missing here.<o:p></o:p></span></p>
+      <p class="MsoNormal"><span lang="EN-US">Therefore, I guess the
+          project is not based.<o:p></o:p></span></p>
+      <p class="MsoNormal"><span lang="EN-US">Manual of build system
+          used in project provided SoC&#8217;s vendor
+          <o:p></o:p></span></p>
+      <p class="MsoNormal"><span lang="EN-US">does make a reference
+          merely to BitBake and OpenEmbedded.<o:p></o:p></span></p>
+      <p class="MsoNormal"><span lang="EN-US">SoC&#8217;s vendor name is not
+          be met in Yocto project web.<o:p></o:p></span></p>
+      <p class="MsoNormal"><span lang="EN-US">Therefore, I guess the
+          project is not based on Yocto.<o:p></o:p></span></p>
+      <p class="MsoNormal"><span lang="EN-US">I seems rather to be
+          BitBake and OpenEmbedded based<o:p></o:p></span></p>
+      <p class="MsoNormal"><span lang="EN-US">and in some extend to be
+          proprietary.<o:p></o:p></span></p>
+      <p class="MsoNormal"><span lang="EN-US"><o:p>&nbsp;</o:p></span></p>
+      <p class="MsoNormal"><span lang="EN-US">I didn&#8217;t consult with the
+          project owner the project details to be allowed<o:p></o:p></span></p>
+      <p class="MsoNormal"><span lang="EN-US">to communicate in scope of
+          this inquiry, e.g.: the SoC name.<o:p></o:p></span></p>
+      <p class="MsoNormal"><span lang="EN-US">So please have
+          understanding for avoiding giving such details.<o:p></o:p></span></p>
+      <p class="MsoNormal"><span lang="EN-US">If there will be a need me
+          will check appropriate measures.<o:p></o:p></span></p>
+      <p class="MsoNormal"><span lang="EN-US"><o:p>&nbsp;</o:p></span></p>
+      <p class="MsoNormal"><span lang="EN-US">If it comes to BB / OE I
+          am an user and a newbie.<o:p></o:p></span></p>
+      <p class="MsoNormal"><span lang="EN-US">I am also new if it comes
+          to building/deploying/distributing the software<o:p></o:p></span></p>
+      <p class="MsoNormal"><span lang="EN-US">for linux, embedded linux.<o:p></o:p></span></p>
+      <p class="MsoNormal"><span lang="EN-US">Thus the wording used by
+          me will frequently be incorrect or inaccurate.<o:p></o:p></span></p>
+      <p class="MsoNormal"><span lang="EN-US">I apologize that.<o:p></o:p></span></p>
+      <p class="MsoNormal"><span lang="EN-US"><o:p>&nbsp;</o:p></span></p>
+      <p class="MsoNormal"><span lang="EN-US"><o:p>&nbsp;</o:p></span></p>
+      <p class="MsoNormal"><span lang="EN-US">I encounter some issues
+          while trying to build the applications package<o:p></o:p></span></p>
+      <p class="MsoNormal"><span lang="EN-US">according to own needs.
+          That piece of soft is a user space application and
+          <o:p></o:p></span></p>
+      <p class="MsoNormal"><span lang="EN-US">was implemented in scope
+          of the project.<o:p></o:p></span></p>
+      <p class="MsoNormal"><span lang="EN-US">Me consulted the BitBake
+          user manual in order to solve the issue.<o:p></o:p></span></p>
+      <p class="MsoNormal"><span lang="EN-US">However, further questions
+          arise when to consult that manual.<o:p></o:p></span></p>
+      <p class="MsoNormal"><span lang="EN-US">Than the guys to be met on
+          OE irc channels directed me
+          <o:p></o:p></span></p>
+      <p class="MsoNormal"><span lang="EN-US">to Yocto reference manual
+          which didn&#8217;t help much.<o:p></o:p></span></p>
+      <p class="MsoNormal"><span lang="EN-US">It generates more new
+          questions than answers the existing ones.<o:p></o:p></span></p>
+      <p class="MsoNormal"><span lang="EN-US"><o:p>&nbsp;</o:p></span></p>
+      <p class="MsoNormal"><span lang="EN-US">There are the mentioned
+          application (user space) and some
+          <o:p></o:p></span></p>
+      <p class="MsoNormal"><span lang="EN-US">pre-build library (at this
+          moment unclear if kernel or user space,<br>
+          actually it might be irrelevant, or not?). The application is
+          aimed to use library.<o:p></o:p></span></p>
+      <p class="MsoNormal"><span lang="EN-US">At build time however the
+          included header file cannot be found.<o:p></o:p></span></p>
+      <p class="MsoNormal"><span lang="EN-US">Thus me will have
+          questions of two kinds:<o:p></o:p></span></p>
+      <p class="MsoNormal"><span lang="EN-US">* closing gaps in
+          understanding regarding related BB aspects<o:p></o:p></span></p>
+      <p class="MsoNormal"><span lang="EN-US">* possible reasons of
+          encountered probs while building and
+          <o:p></o:p></span></p>
+      <p class="MsoNormal"><span lang="EN-US">&nbsp;&nbsp;possible solutions<o:p></o:p></span></p>
+      <p class="MsoNormal"><span lang="EN-US"><o:p>&nbsp;</o:p></span></p>
+      <p class="MsoNormal"><span lang="EN-US">Will it be fine to ask
+          these questions in this mailing list?<o:p></o:p></span></p>
+    </div>
+    <font color="Maroon" face="Arial" size="2">
+    </font>
+  </body>
+</html>
 
-Darcy
-
----
-
-Darcy Watkins
-Senior Software Developer
-In Motion Technology, Inc.
-350-625 Agnes St. New Westminster, BC
-Canada, V3M 5Y4
-[P1]
-
-
+--------------020609090104050709050900--
