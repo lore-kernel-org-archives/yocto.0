@@ -1,33 +1,33 @@
-Return-Path: <paul.betafive@gmail.com>
-Received: from mail-ve0-f178.google.com (mail-ve0-f178.google.com
-	[209.85.128.178])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B4270E006B5
-	for <yocto@yoctoproject.org>; Tue, 18 Feb 2014 13:28:13 -0800 (PST)
-Received: by mail-ve0-f178.google.com with SMTP id oy12so13999730veb.37
-	for <yocto@yoctoproject.org>; Tue, 18 Feb 2014 13:28:12 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:sender:from:date:message-id:subject:to:content-type;
-	bh=8I0TcONim8+eGgiWX1GeEVeLIOKnE0jFZWlzQIkkIXI=;
-	b=u1ZTDI6qqV44n7otakWBL+HZz+xc3tvBv67FVMgqHw6jiQdFd6etSc3sgs+tTcEQg/
-	kvVR7kW3srQZcWz1bntW46l4a3lZn3jTk5GH2OWmg3SqJ0hhCWFqaOKiOSPAUG7p2ix3
-	Xu8RJVJFN1cSNdUHSe/PkdLEJ6ycfmxjx8D+t0aU5qJynUsJ0Y9Z+MQdvg3Ss1T5fESD
-	cDc4AN7uTl8+TfjgHCs5/bUyxT4kQYHbwslh1fAyEm3mlZggHwuZPhlHB3qmtZJyfA3v
-	IidOWJd2Ir0miciGhgpU+MNDmq40Ah5arXvcuzq8uMmD6rosn+/UVZTNUOdpGz31FnOr
-	WpoQ==
-X-Received: by 10.52.164.39 with SMTP id yn7mr15931468vdb.25.1392758892058;
-	Tue, 18 Feb 2014 13:28:12 -0800 (PST)
+Return-Path: <Randy.MacLeod@windriver.com>
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7C9BCE0071C
+	for <yocto@yoctoproject.org>; Tue, 18 Feb 2014 19:39:24 -0800 (PST)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
+	[147.11.189.40])
+	by mail.windriver.com (8.14.5/8.14.5) with ESMTP id s1J3dM4u004669
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
+	Tue, 18 Feb 2014 19:39:22 -0800 (PST)
+Received: from [147.11.117.116] (147.11.117.116) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server id 14.2.347.0;
+	Tue, 18 Feb 2014 19:39:22 -0800
+Message-ID: <53042768.8020001@windriver.com>
+Date: Tue, 18 Feb 2014 22:39:20 -0500
+From: Randy MacLeod <randy.macleod@windriver.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:24.0) Gecko/20100101 Thunderbird/24.2.0
 MIME-Version: 1.0
-Sender: paul.betafive@gmail.com
-Received: by 10.220.239.135 with HTTP; Tue, 18 Feb 2014 13:27:31 -0800 (PST)
-From: Paul Barker <paul@paulbarker.me.uk>
-Date: Tue, 18 Feb 2014 21:27:31 +0000
-X-Google-Sender-Auth: uFaGoGBTl2iGH_QN3RcyRxE-qcw
-Message-ID: <CANyK_8eB8Rt-GqCbbw6Tu6NHuUPTeKZy+ZPRQ1eTqLb=SDPG_g@mail.gmail.com>
-To: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Python3 ptest and unittest
+To: Zhu Yanjun <yanjun.zhu@windriver.com>
+References: <1392777327-12786-1-git-send-email-yanjun.zhu@windriver.com>
+	<DFFB071F-AB89-462B-97F6-95F4EE0A766B@gmail.com>
+In-Reply-To: <DFFB071F-AB89-462B-97F6-95F4EE0A766B@gmail.com>
+X-Originating-IP: [147.11.117.116]
+Cc: yocto@yoctoproject.org, Patches and discussions about the oe-core layer
+	<openembedded-core@lists.openembedded.org>
+Subject: Re: [OE-core] [PATCH] nmap: use native python and add python dependence
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
+Reply-To: yocto@yoctoproject.org
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -36,34 +36,36 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 18 Feb 2014 21:28:16 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Wed, 19 Feb 2014 03:39:25 -0000
+Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
+Content-Transfer-Encoding: 7bit
 
-I've just thrown together a couple of things which may be useful.
-They're currently slightly hackish but I could improve them and share
-them/submit them as patches if wanted:
+On 14-02-18 09:40 PM, Khem Raj wrote:
+>
+> On Feb 18, 2014, at 6:35 PM, Zhu Yanjun <yanjun.zhu@windriver.com> wrote:
+>
+>> +export BUILD_SYS
+>> +export HOST_SYS
+>> +export STAGING_LIBDIR
+>> +export STAGING_INCDIR
+>> +
+>
+> why are these needed ?
 
-1) I've wrote a custom python test runner which runs test suites and
-outputs the format expected by ptest natively instead of needing the
-sed magic in "openembedded-core/meta/recipes-devtools/python/python/run-ptest".
-I'm using it in my own project, might move the opkg test suite over to
-it if I have time, and it might be useful for any other python test
-suites. It's <50 lines of python :)
+Also, meta-security recipes are discussed on:
+   yocto@yoctoproject.org
+not the oe-core list.
 
-2) I've wrote a script which patches this test runner into python3's
-own testsuite then runs the suite. You don't even to patch the
-Makefile from the python source tree and install it (as in the python
-recipe in openembedded-core). It should run on anything with python3
-installed with the python standard library (as the standard library
-already includes all the tests). This may be a good option for adding
-ptest support to the python3 recipe - it'd just be a single 50-line
-'run-ptest' script written in python.
+../Randy
+> _______________________________________________
+> Openembedded-core mailing list
+> Openembedded-core@lists.openembedded.org
+> http://lists.openembedded.org/mailman/listinfo/openembedded-core
+>
+>
 
-Does that sound interesting to anyone else?
 
 -- 
-Paul Barker
-
-Email: paul@paulbarker.me.uk
-http://www.paulbarker.me.uk
+# Randy MacLeod. SMTS, Linux, Wind River
+Direct: 613.963.1350
 
