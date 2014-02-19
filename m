@@ -1,45 +1,30 @@
-Return-Path: <koansoftware@gmail.com>
-Received: from mail-bk0-f53.google.com (mail-bk0-f53.google.com
-	[209.85.214.53])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AF3BAE007C9
-	for <yocto@yoctoproject.org>; Wed, 19 Feb 2014 05:50:35 -0800 (PST)
-Received: by mail-bk0-f53.google.com with SMTP id my13so205930bkb.26
-	for <yocto@yoctoproject.org>; Wed, 19 Feb 2014 05:50:34 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=message-id:date:from:reply-to:organization:user-agent:mime-version
-	:to:subject:references:in-reply-to:content-type
-	:content-transfer-encoding;
-	bh=0NSTJiE5iJ12VrQ0Jml3uGG/0DQgniqag0kXw2xz+fg=;
-	b=bgJGYw63b5Kjp8bF/TAVeenJmzp8DpuxtG2tBqP03yOtuVwnGnPH5EAHpMF5FF/sPf
-	WHd1j0LT7hR/6VOpv1/e+lUaASlhwfS8Stj/9GaUGhoV9hNlDTcTz6QdMZXQ9vXpnZwX
-	GcAIOmEhpf9CwpC2cqv6R+75vKS6L5ED+mbN5kz27DNJFvrzwGV6TEG15zD7XTu7cDpk
-	PG+Q33shsEmHuyAcAioaXgSPUwEJRZ8G+7JJWBvlt423r5mb28iE75N0tvZW3RvgJXT/
-	sl5vHSAL0c3ksdoAhlOTPyuNNCQIKASrlxItmu/xdUBzGtbgukfYcN332oFqylTEQeHK
-	FImQ==
-X-Received: by 10.204.58.66 with SMTP id f2mr229378bkh.150.1392817834503;
-	Wed, 19 Feb 2014 05:50:34 -0800 (PST)
-Received: from [192.168.0.5]
-	(host56-7-static.30-87-b.business.telecomitalia.it. [87.30.7.56])
-	by mx.google.com with ESMTPSA id zf3sm601981bkb.4.2014.02.19.05.50.31
-	for <yocto@yoctoproject.org>
-	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
-	Wed, 19 Feb 2014 05:50:33 -0800 (PST)
-Message-ID: <5304B6A4.8010602@gmail.com>
-Date: Wed, 19 Feb 2014 14:50:28 +0100
-From: Marco <koansoftware@gmail.com>
-Organization: MC
-User-Agent: Mozilla/5.0 (X11; Linux i686;
-	rv:24.0) Gecko/20100101 Thunderbird/24.2.0
+Return-Path: <laurentiu.palcu@intel.com>
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 79F98E007C9
+	for <yocto@yoctoproject.org>; Wed, 19 Feb 2014 05:51:28 -0800 (PST)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by fmsmga102.fm.intel.com with ESMTP; 19 Feb 2014 05:51:28 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.97,505,1389772800"; d="scan'208";a="477656854"
+Received: from lpalcu-linux.rb.intel.com (HELO lpalcu-linux) ([10.237.105.45])
+	by fmsmga001.fm.intel.com with ESMTP; 19 Feb 2014 05:51:26 -0800
+Date: Wed, 19 Feb 2014 15:51:25 +0200
+From: Laurentiu Palcu <laurentiu.palcu@intel.com>
+To: Federico Vitali <fede.vitali@gmail.com>
+Message-ID: <20140219135125.GF22316@lpalcu-linux>
+References: <CAD78y+7qxqkdf1d1p6dFe5Cv9dFLHpgZ3uJfOD6JdmbScfX2+g@mail.gmail.com>
+	<53048C4E.9050504@gmail.com>
+	<CAD78y+7_Dg34_VNuyTooWt_ikEJEKZTrm03Krpk80BVzmXQPAQ@mail.gmail.com>
+	<20140219125602.GE22316@lpalcu-linux>
+	<CAD78y+5bKWWYUd1V+qheXY2w-84ZAWsf5HRhoZXMjnufGuJYkg@mail.gmail.com>
 MIME-Version: 1.0
-To: yocto@yoctoproject.org
-References: <CABhkJRdZ9zR+Pn8dWtNe2Xeob5QhcXTZPkNoNGgd_yHmbDzJKg@mail.gmail.com>	<CAE_REAvKGCm4k=UZvG7UDe6updeBs-TYNGVa+BtoF4jUPFbwhQ@mail.gmail.com>	<CABhkJRdrR2EeadeZHQBhmLei1Yb-T454F1bE7xZTyMK4n_zGzQ@mail.gmail.com>	<5D91AAAA-D703-484D-943A-6E8D1FF6644A@gmail.com>	<CABhkJRdkG816YH8+ghUtwsV6MkaaTd0q2JXtjsqaHRjWYM4ePg@mail.gmail.com>
-	<47700885-9D75-4CA5-AA01-FA5A95242C2C@gmail.com>
-In-Reply-To: <47700885-9D75-4CA5-AA01-FA5A95242C2C@gmail.com>
-Subject: Re: meta-java compilation failure
+In-Reply-To: <CAD78y+5bKWWYUd1V+qheXY2w-84ZAWsf5HRhoZXMjnufGuJYkg@mail.gmail.com>
+User-Agent: Mutt/1.5.21 (2010-09-15)
+Cc: yocto@yoctoproject.org
+Subject: Re: problem with yocto behind http_proxy
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
-Reply-To: koansoftware@gmail.com
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -48,43 +33,150 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 19 Feb 2014 13:50:38 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 19 Feb 2014 13:51:32 -0000
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-Il 16/02/2014 07:09, Khem Raj ha scritto:
->
-> On Feb 15, 2014, at 4:03 AM, Ashish Dalela <ashish.dalela@gmail.com
-> <mailto:ashish.dalela@gmail.com>> wrote:
->
->> checking where jni_md.h is installed... /usr/local/classpath/include
->> checking /usr/local/classpath/include/jni_md.h usability... no
->> checking /usr/local/classpath/include/jni_md.h presence... no
->> checking for /usr/local/classpath/include/jni_md.h... no
->> configure: error: cannot find jni_md.h
->> Configure failed. The contents of all config.log files follows to aid
->> debugging
->>
->
-> It seems to me that cacao is missing patch for supporting openjdk7, can
-> you check if it has
-> this patch applied in sources
->
-> http://www.complang.tuwien.ac.at/hg/cacao/rev/a567bcb7f589
->
-> if not then you have to apply it
->
-> -Khem
->
+On Wed, Feb 19, 2014 at 02:24:38PM +0100, Federico Vitali wrote:
+> Thank you Laurentiu. Unfortunately my proxy requires authentication via
+> username and password,
+> but it seems to me that netcat doesn't support it. Or am I wrong? 
+Well, the BSD netcat (on my Ubuntu 12.04) appears to support it:
 
-I have the same problem here with meta-java (branch master and dora are 
-the same)
-The patch above looks already applied to the original sources 
-m4/java-runtime-library.m4 used by cacao_1.6.1
+From the man page:
+     -P proxy_username
+                  Specifies a username to present to a proxy server that
+                  requires authentication.  If no username is specified
+                  then authentication will not be attempted.  Proxy
+                  authentication is only supported for HTTP CONNECT
+                  proxies at present.
 
-Do you have any other idea?
+Though I don't know how you specify a password... perhaps -Puser:passwd?
 
-TIA
--- 
-Marco
+laurentiu
+> 
+> 
+> 2014-02-19 13:56 GMT+01:00 Laurentiu Palcu <laurentiu.palcu@intel.com>:
+> 
+>     Hi Federico,
+> 
+>     You can find more info about setting up Yocto behind proxies here:
+> 
+>     https://wiki.yoctoproject.org/wiki/Working_Behind_a_Network_Proxy
+> 
+>     For git, I recommend the 'nc' method. Works fine for me.
+>    
+>     laurentiu
+>    
+>     On Wed, Feb 19, 2014 at 12:12:58PM +0100, Federico Vitali wrote:
+>     > sorry I forgot to reply also to yocto@yoctoproject.org. This was the
+>     reply
+>     >
+>     > thank you Marco,
+>     > I've tried but I'm still having problems:
+>     >
+>     > WARNING: Failed to fetch URL git://git.yoctoproject.org/
+>     yocto-kernel-tools.git,
+>     > attempting MIRRORS if available
+>     > WARNING: Failed to fetch URL git://git.yoctoproject.org/
+>     linux-yocto-3.10.git;
+>     > bareclone=1;branch=standard/base,meta;name=machine,meta, attempting
+>     MIRRORS if
+>     > available
+>     > ERROR: Fetcher failure: Fetch command failed with exit code 128, output:
+>     > fatal: unable to connect to git.yoctoproject.org:
+>     > git.yoctoproject.org: Name or service not known
+>     >
+>     > I noticed that the url https://www.yoctoproject.org/sources is not
+>     working.
+>     > So I tried  http://downloads.yoctoproject.org/sources/, but I get this
+>     error:
+>     >
+>     > ERROR: Fetcher failure: Fetch command failed with exit code 128, output:
+>     > fatal: unable to connect to git.yoctoproject.org:
+>     > git.yoctoproject.org: Name or service not known
+>     >
+>     >
+>     >
+>     > 2014-02-19 11:49 GMT+01:00 Marco <koansoftware@gmail.com>:
+>     >
+>     >     Il 19/02/2014 11:44, Federico Vitali ha scritto:
+>     >
+>     >         Hi,
+>     >
+>     >         I have problems using yocto behind a firewall. The firewall
+>     blocks git,
+>     >         so I've followed the instructions
+>     >         given here:
+>     >
+>     >         http://www.yoctoproject.org/docs/1.5.1/ref-manual/ref-manual.html
+>     #
+>     >        
+>     how-does-the-yocto-project-obtain-source-code-and-will-it-work-behind-my-firewall-or-proxy-server
+>     >
+>     >         i.e. adding the following lines to my local.conf:
+>     >
+>     >         PREMIRRORS_prepend = "\
+>     >               git://.*/.*http://www.yoctoproject.org/sources/  \n \
+>     >               ftp://.*/.*http://www.yoctoproject.org/sources/  \n \
+>     >               http://.*/.*http://www.yoctoproject.org/sources/  \n \
+>     >               https://.*/.*http://www.yoctoproject.org/sources/  \n"
+>     >
+>     >
+>     >         BB_FETCH_PREMIRRORONLY = "1"
+>     >
+>     >
+>     >         but I still get the following errors:
+>     >
+>     >         ERROR: Function failed: Network access disabled through
+>     BB_NO_NETWORK
+>     >         (or set indirectly due to use of BB_FETCH_PREMIRRORONLY) but
+>     access
+>     >         requested with command git fetch -f --prune git://
+>     git.yoctoproject.org/
+>     >         yocto-kernel-tools.git  <http://git.yoctoproject.org/
+>     >         yocto-kernel-tools.git>  refs/*:refs/* (for url git://
+>     >         git.yoctoproject.org/yocto-kernel-tools.git  <http://
+>     >         git.yoctoproject.org/yocto-kernel-tools.git>)
+>     >
+>     >         ERROR: Logfile of failure stored in: /home/vitalife/yocto/
+>     >         poky-dora-10.0.1/build/tmp/work/x86_64-linux/kern-tools-native/
+>     >         0.2+gitAUTOINC+a42509b01c-r12/temp/log.do_fetch.4490
+>     >
+>     >         It seems that bitbake is still trying to access the server with
+>     git.
+>     >
+>     >         Any suggestion?
+>     >
+>     >         Thank you in advance
+>     >
+>     >         Federico
+>     >
+>     >
+>     >
+>     >
+>     >
+>     >     Remove
+>     >     BB_FETCH_PREMIRRORONLY = "1"
+>     >
+>     >
+>     >     --
+>     >     Marco Cavallini | KOAN sas | Bergamo - Italia
+>     >      embedded and real-time software engineering
+>     >     Phone:+39-035-255.235 - Fax:+39-178-22.39.748
+>     >           http://www.KoanSoftware.com
+>     >     _______________________________________________
+>     >     yocto mailing list
+>     >     yocto@yoctoproject.org
+>     >     https://lists.yoctoproject.org/listinfo/yocto
+>     >
+>     >
+> 
+>     > _______________________________________________
+>     > yocto mailing list
+>     > yocto@yoctoproject.org
+>     > https://lists.yoctoproject.org/listinfo/yocto
+> 
+> 
+> 
 
