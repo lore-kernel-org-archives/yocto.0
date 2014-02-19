@@ -1,33 +1,37 @@
-Return-Path: <Randy.MacLeod@windriver.com>
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7C9BCE0071C
-	for <yocto@yoctoproject.org>; Tue, 18 Feb 2014 19:39:24 -0800 (PST)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail.windriver.com (8.14.5/8.14.5) with ESMTP id s1J3dM4u004669
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Tue, 18 Feb 2014 19:39:22 -0800 (PST)
-Received: from [147.11.117.116] (147.11.117.116) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server id 14.2.347.0;
-	Tue, 18 Feb 2014 19:39:22 -0800
-Message-ID: <53042768.8020001@windriver.com>
-Date: Tue, 18 Feb 2014 22:39:20 -0500
-From: Randy MacLeod <randy.macleod@windriver.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:24.0) Gecko/20100101 Thunderbird/24.2.0
+Return-Path: <ross.burton@intel.com>
+Received: from mail-qa0-f53.google.com (mail-qa0-f53.google.com
+	[209.85.216.53])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 901C9E006C6
+	for <yocto@yoctoproject.org>; Wed, 19 Feb 2014 02:29:25 -0800 (PST)
+Received: by mail-qa0-f53.google.com with SMTP id cm18so169589qab.12
+	for <yocto@yoctoproject.org>; Wed, 19 Feb 2014 02:29:25 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc:content-type;
+	bh=yZUS9ADHyTaXtT+TNUXzIlSY4i3XpN/rF2Y4WZMLxy4=;
+	b=Ng8rKpQ8Mq+302rdf5C7xm3HOelabkJr4HM7obHEZtpNYDga69Uny0JSk0m33ebF/M
+	CC8EDcJuhAVYG2jHjd6bQGI1e3qpMcyq5HJm93atHf+rfscLhQcEp9coG/g2m43hG3Ul
+	EBeUkCZMli5f4OoD7JyensLYiU4oce89vvvUZk2WnFhj7cZHUVpAm/L039nJFjEpM3b3
+	6eM8eBihJPBlhGvy8IcNOKaXdaaad1Snld8ebSqxSC6o11gZXL+9VAVCrBw4emW4qoY6
+	Exu4ioq08r1/scG9DQNBDjtLhOcN3WCv2hq/7rXMwYBflnBszJWX7NpRlNxgWHjoMWRU
+	BACA==
+X-Gm-Message-State: ALoCoQllkjx8kUUvGE3NRtvVk2iYa+d6DogmH1gHinZmNvXQJkz90Yj4fBiUTIJA2j5Ufp9fT5RK
+X-Received: by 10.140.106.225 with SMTP id e88mr46055215qgf.66.1392805765002; 
+	Wed, 19 Feb 2014 02:29:25 -0800 (PST)
 MIME-Version: 1.0
-To: Zhu Yanjun <yanjun.zhu@windriver.com>
-References: <1392777327-12786-1-git-send-email-yanjun.zhu@windriver.com>
-	<DFFB071F-AB89-462B-97F6-95F4EE0A766B@gmail.com>
-In-Reply-To: <DFFB071F-AB89-462B-97F6-95F4EE0A766B@gmail.com>
-X-Originating-IP: [147.11.117.116]
-Cc: yocto@yoctoproject.org, Patches and discussions about the oe-core layer
-	<openembedded-core@lists.openembedded.org>
-Subject: Re: [OE-core] [PATCH] nmap: use native python and add python dependence
+Received: by 10.140.48.79 with HTTP; Wed, 19 Feb 2014 02:29:04 -0800 (PST)
+In-Reply-To: <5303C7E8.6080106@gazeta.pl>
+References: <5303C7E8.6080106@gazeta.pl>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Wed, 19 Feb 2014 10:29:04 +0000
+Message-ID: <CAJTo0LYgfc1_sTJRCJMorL2eSEaS5u8d6+0V_mgAveaOBnYHNA@mail.gmail.com>
+To: kaweka <kaweka@gazeta.pl>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: BB/OE user - (a) generic questions, (b) one issue
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
-Reply-To: yocto@yoctoproject.org
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -36,36 +40,13 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 19 Feb 2014 03:39:25 -0000
-Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 19 Feb 2014 10:29:28 -0000
+Content-Type: text/plain; charset=UTF-8
 
-On 14-02-18 09:40 PM, Khem Raj wrote:
->
-> On Feb 18, 2014, at 6:35 PM, Zhu Yanjun <yanjun.zhu@windriver.com> wrote:
->
->> +export BUILD_SYS
->> +export HOST_SYS
->> +export STAGING_LIBDIR
->> +export STAGING_INCDIR
->> +
->
-> why are these needed ?
+On 18 February 2014 20:51, kaweka <kaweka@gazeta.pl> wrote:
+> Will it be fine to ask these questions in this mailing list?
 
-Also, meta-security recipes are discussed on:
-   yocto@yoctoproject.org
-not the oe-core list.
+Please stop asking to ask, and just ask the questions.
 
-../Randy
-> _______________________________________________
-> Openembedded-core mailing list
-> Openembedded-core@lists.openembedded.org
-> http://lists.openembedded.org/mailman/listinfo/openembedded-core
->
->
-
-
--- 
-# Randy MacLeod. SMTS, Linux, Wind River
-Direct: 613.963.1350
+Ross
 
