@@ -1,27 +1,22 @@
-Return-Path: <chengwei.yang@intel.com>
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C4DF5E00819
-	for <yocto@yoctoproject.org>; Thu, 20 Feb 2014 04:17:26 -0800 (PST)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga101.fm.intel.com with ESMTP; 20 Feb 2014 04:17:25 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.97,512,1389772800"; 
-	d="asc'?scan'208";a="484795417"
-Received: from chengwei.bj.intel.com (HELO localhost) ([10.238.155.111])
-	by fmsmga002.fm.intel.com with ESMTP; 20 Feb 2014 04:17:24 -0800
-Date: Thu, 20 Feb 2014 20:17:23 +0800
-From: Yang Chengwei <chengwei.yang@intel.com>
-To: Paul Eggleton <paul.eggleton@linux.intel.com>
-Message-ID: <20140220121723.GN20025@chengwei-workstation.bj.intel.com>
-Mail-Followup-To: Paul Eggleton <paul.eggleton@linux.intel.com>,
-	yocto@yoctoproject.org
-References: <20140220092731.GL20025@chengwei-workstation.bj.intel.com>
-	<4890456.akrrDeAUnM@peggleto-mobl5.ger.corp.intel.com>
+Return-Path: <Rongqing.Li@windriver.com>
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3657DE00832
+	for <yocto@yoctoproject.org>; Thu, 20 Feb 2014 04:58:52 -0800 (PST)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
+	[147.11.189.40])
+	by mail.windriver.com (8.14.5/8.14.5) with ESMTP id s1KCwp5V000456
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL)
+	for <yocto@yoctoproject.org>; Thu, 20 Feb 2014 04:58:51 -0800 (PST)
+Received: from lirq-OptiPlex-780.corp.ad.wrs.com (128.224.162.168) by
+	ALA-HCA.corp.ad.wrs.com (147.11.189.40) with Microsoft SMTP Server id
+	14.2.347.0; Thu, 20 Feb 2014 04:58:50 -0800
+From: <rongqing.li@windriver.com>
+To: <yocto@yoctoproject.org>
+Date: Thu, 20 Feb 2014 20:59:49 +0800
+Message-ID: <1392901189-22637-1-git-send-email-rongqing.li@windriver.com>
+X-Mailer: git-send-email 1.7.10.4
 MIME-Version: 1.0
-In-Reply-To: <4890456.akrrDeAUnM@peggleto-mobl5.ger.corp.intel.com>
-User-Agent: Mutt/1.5.21 (2010-09-15)
-Cc: yocto@yoctoproject.org
-Subject: Re: No 'directfb' distro feature
+Subject: [PATCH][meta-selinux] audit: fix the permission of configuration file
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -33,66 +28,81 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 20 Feb 2014 12:17:28 -0000
-X-Groupsio-MsgNum: 18171
-Content-Type: multipart/signed; micalg=pgp-sha1;
-	protocol="application/pgp-signature"; boundary="jx/LfW4V5TfZLeq7"
-Content-Disposition: inline
+X-List-Received-Date: Thu, 20 Feb 2014 12:58:55 -0000
+Content-Type: text/plain
 
---jx/LfW4V5TfZLeq7
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+From: Roy Li <rongqing.li@windriver.com>
 
-Hi Paul,
+Signed-off-by: Roy Li <rongqing.li@windriver.com>
+---
+ .../audit/fix-auditd.conf-file-s-permission.patch  |   41 ++++++++++++++++++++
+ recipes-security/audit/audit_2.3.2.bb              |    4 +-
+ 2 files changed, 44 insertions(+), 1 deletion(-)
+ create mode 100644 recipes-security/audit/audit/fix-auditd.conf-file-s-permission.patch
 
-On Thu, Feb 20, 2014 at 10:08:25AM +0000, Paul Eggleton wrote:
-> Hi Chengwei,
->=20
-> > Is there a plan to fix this?
->=20
-> This is not a bug - the intention is that you customise DISTRO_FEATURES to
-> include the feature if you need it. You may find this section of the manu=
-al
-> useful:
->=20
-> http://www.yoctoproject.org/docs/current/dev-manual/dev-manual.html#creat=
-ing-your-own-distribution
+diff --git a/recipes-security/audit/audit/fix-auditd.conf-file-s-permission.patch b/recipes-security/audit/audit/fix-auditd.conf-file-s-permission.patch
+new file mode 100644
+index 0000000..be3412b
+--- /dev/null
++++ b/recipes-security/audit/audit/fix-auditd.conf-file-s-permission.patch
+@@ -0,0 +1,41 @@
++From abeb7f0e35a4e77e914fea34ddaf8b30b51e49e3 Mon Sep 17 00:00:00 2001
++From: Roy Li <rongqing.li@windriver.com>
++Date: Thu, 20 Feb 2014 20:38:31 +0800
++Subject: [PATCH] fix auditd.conf file and path permission
++
++Upstream-Status: Pending
++
++A ordinary use should not to access auditd configuration files
++
++Signed-off-by: Roy Li <rongqing.li@windriver.com>
++---
++ init.d/Makefile.am |    8 ++++++--
++ 1 file changed, 6 insertions(+), 2 deletions(-)
++
++diff --git a/init.d/Makefile.am b/init.d/Makefile.am
++index 521dd1d..50728bc 100644
++--- a/init.d/Makefile.am
+++++ b/init.d/Makefile.am
++@@ -37,13 +37,17 @@ endif
++ 
++ auditdir = $(sysconfdir)/audit
++ auditrdir = $(auditdir)/rules.d
++-dist_audit_DATA = auditd.conf
++-dist_auditr_DATA = audit.rules
+++auditconfig = auditd.conf
+++auditrconfig = audit.rules
++ sbin_SCRIPTS = augenrules
++ 
++ install-data-hook:
++ 	$(INSTALL_DATA) -D -m 640 ${srcdir}/${dispconfig} ${DESTDIR}${dispconfigdir}
++ 	$(INSTALL_DATA) -D -m 640 ${srcdir}/${libconfig} ${DESTDIR}${sysconfdir}
+++	$(INSTALL_DATA) -d -m 750 ${DESTDIR}${auditdir}
+++	$(INSTALL_DATA) -d -m 750 ${DESTDIR}${auditrdir}
+++	$(INSTALL_DATA) -m 640 ${srcdir}/${auditconfig} ${DESTDIR}${auditdir}
+++	$(INSTALL_DATA) -m 640 ${srcdir}/${auditrconfig} ${DESTDIR}${auditrdir}
++ if ENABLE_SYSTEMD
++ else
++ 	$(INSTALL_DATA) -D -m 640 ${srcdir}/auditd.sysconfig ${DESTDIR}${sysconfigdir}/auditd
++-- 
++1.7.10.4
++
+diff --git a/recipes-security/audit/audit_2.3.2.bb b/recipes-security/audit/audit_2.3.2.bb
+index edcb881..6e376f8 100644
+--- a/recipes-security/audit/audit_2.3.2.bb
++++ b/recipes-security/audit/audit_2.3.2.bb
+@@ -14,7 +14,9 @@ SRC_URI = "http://people.redhat.com/sgrubb/audit/audit-${PV}.tar.gz \
+ 	   file://audit-python-configure.patch \
+ 	   file://audit-for-cross-compiling.patch \
+ 	   file://auditd \
+-	   file://fix-swig-host-contamination.patch"
++	   file://fix-swig-host-contamination.patch \
++	   file://fix-auditd.conf-file-s-permission.patch \
++"
+ 
+ inherit autotools pythonnative update-rc.d
+ 
+-- 
+1.7.10.4
 
-Thank you, I did read developer manual or maybe I missed them? Since
-I didn't find 'directfb' as a DISTRO_FEATURES in ref manual, so I
-think it's a non-exist feature. =20
 
-Is there a way to list all available image features, distro features?
-
---
-Thanks,
-Chengwei
-
->=20
-> Cheers,
-> Paul
->=20
->=20
-> --=20
->=20
-> Paul Eggleton
-> Intel Open Source Technology Centre
-
---jx/LfW4V5TfZLeq7
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: Digital signature
-
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v1.4.12 (GNU/Linux)
-
-iQEcBAEBAgAGBQJTBfJTAAoJEEy3wb4lFVSrKRgH/0f9QsAN5y2s8xNDH8z2iof3
-IVX6J7PBclVhujpEngZhv00b0LCNLHQFzwbJ2nPTvv4YjMtACG/KCDPTqXsDasOr
-MEbvOHz4yxEpmYMzC2+pclb2BqUp2+slh1O6TJNLTzHqRZ/Qhl8WvMFg4YEqKiiN
-o8NhgX+Nzih0amA+8GRaWCxOJgZMfdKx322T6djPfBnZo+1gqlhUkAZvjSXQEonx
-zoPm2ALy5+2q5yFcpt7kAe6peCxKSgflMtKvlfyU2Kj7YjNJ8bkksHIQeTLg9PeB
-6LP6xjt6kjyGy6dqFdnzSyMp+8jsaF0oZX5xOIswwgPcDOvwWPKfSE/4qUGxLIs=
-=anWg
------END PGP SIGNATURE-----
-
---jx/LfW4V5TfZLeq7--
