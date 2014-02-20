@@ -1,25 +1,27 @@
-Return-Path: <paul.eggleton@linux.intel.com>
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7BE6DE00575
-	for <yocto@yoctoproject.org>; Thu, 20 Feb 2014 02:18:52 -0800 (PST)
+Return-Path: <chengwei.yang@intel.com>
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C4DF5E00819
+	for <yocto@yoctoproject.org>; Thu, 20 Feb 2014 04:17:26 -0800 (PST)
 Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga102.fm.intel.com with ESMTP; 20 Feb 2014 02:18:52 -0800
+	by fmsmga101.fm.intel.com with ESMTP; 20 Feb 2014 04:17:25 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.97,512,1389772800"; d="scan'208";a="484730132"
-Received: from pmckerno-mobl.ger.corp.intel.com (HELO
-	peggleto-mobl5.ger.corp.intel.com) ([10.252.123.159])
-	by fmsmga002.fm.intel.com with ESMTP; 20 Feb 2014 02:18:51 -0800
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: "Meier, Dennis" <meier.dennis@siemens.com>
-Date: Thu, 20 Feb 2014 10:18:50 +0000
-Message-ID: <6221385.P1iALBOTvE@peggleto-mobl5.ger.corp.intel.com>
-Organization: Intel Corporation
-User-Agent: KMail/4.12.2 (Linux/3.13.3-201.fc20.x86_64; KDE/4.12.2; x86_64; ; )
-In-Reply-To: <6F22A92316C68C42A591A48A6291DA9DD60628@DEFTHW99EI0MSX.ww902.siemens.net>
-References: <6F22A92316C68C42A591A48A6291DA9DD60628@DEFTHW99EI0MSX.ww902.siemens.net>
+X-IronPort-AV: E=Sophos;i="4.97,512,1389772800"; 
+	d="asc'?scan'208";a="484795417"
+Received: from chengwei.bj.intel.com (HELO localhost) ([10.238.155.111])
+	by fmsmga002.fm.intel.com with ESMTP; 20 Feb 2014 04:17:24 -0800
+Date: Thu, 20 Feb 2014 20:17:23 +0800
+From: Yang Chengwei <chengwei.yang@intel.com>
+To: Paul Eggleton <paul.eggleton@linux.intel.com>
+Message-ID: <20140220121723.GN20025@chengwei-workstation.bj.intel.com>
+Mail-Followup-To: Paul Eggleton <paul.eggleton@linux.intel.com>,
+	yocto@yoctoproject.org
+References: <20140220092731.GL20025@chengwei-workstation.bj.intel.com>
+	<4890456.akrrDeAUnM@peggleto-mobl5.ger.corp.intel.com>
 MIME-Version: 1.0
+In-Reply-To: <4890456.akrrDeAUnM@peggleto-mobl5.ger.corp.intel.com>
+User-Agent: Mutt/1.5.21 (2010-09-15)
 Cc: yocto@yoctoproject.org
-Subject: Re: @#NAME type fields
+Subject: Re: No 'directfb' distro feature
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -31,44 +33,66 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 20 Feb 2014 10:18:53 -0000
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Thu, 20 Feb 2014 12:17:28 -0000
+X-Groupsio-MsgNum: 18171
+Content-Type: multipart/signed; micalg=pgp-sha1;
+	protocol="application/pgp-signature"; boundary="jx/LfW4V5TfZLeq7"
+Content-Disposition: inline
 
-Hi Dennis,
+--jx/LfW4V5TfZLeq7
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-On Thursday 20 February 2014 09:04:38 Meier, Dennis wrote:
-> what is the reason for the "#@TYPE", "#@NAME" and "#@DESCRIPTION" fields in
-> the machine-*.conf files? Are they getting parsed somewhere? Are they there
-> for historical reasons? Could they be extended (i.e. more fields added)
-> without problem?
+Hi Paul,
 
-For a long time I think they were mostly historical - maybe someone else can 
-fill in the blanks. I believe the original intention was to provide information 
-for other tools that the build system didn't need itself. We are using these 
-in a couple of places now that I know of for machine .conf files:
+On Thu, Feb 20, 2014 at 10:08:25AM +0000, Paul Eggleton wrote:
+> Hi Chengwei,
+>=20
+> > Is there a plan to fix this?
+>=20
+> This is not a bug - the intention is that you customise DISTRO_FEATURES to
+> include the feature if you need it. You may find this section of the manu=
+al
+> useful:
+>=20
+> http://www.yoctoproject.org/docs/current/dev-manual/dev-manual.html#creat=
+ing-your-own-distribution
 
-* DESCRIPTION (or NAME, if DESCRIPTION isn't available) are read and used by 
-the OpenEmbedded layer index [1]
+Thank you, I did read developer manual or maybe I missed them? Since
+I didn't find 'directfb' as a DISTRO_FEATURES in ref manual, so I
+think it's a non-exist feature. =20
 
-* I think WEBTITLE is used to specify the title to show up for the BSP when 
-listed on the Yocto Project website [2]
+Is there a way to list all available image features, distro features?
 
-Strictly speaking these are just comments, so you could put anything in there 
-if you needed to, but if you want something that's going to be adopted by 
-other BSP authors it would be worth trying to get some consensus about the 
-values used. Currently I don't think we have this documented anywhere, but 
-people seem to have been filling in the values because they are there in the 
-templates and other BSPs.
+--
+Thanks,
+Chengwei
 
-Cheers,
-Paul
+>=20
+> Cheers,
+> Paul
+>=20
+>=20
+> --=20
+>=20
+> Paul Eggleton
+> Intel Open Source Technology Centre
 
-[1] http://layers.openembedded.org/layerindex/branch/master/machines/
-[2] https://www.yoctoproject.org/downloads
+--jx/LfW4V5TfZLeq7
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: Digital signature
 
--- 
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1.4.12 (GNU/Linux)
 
-Paul Eggleton
-Intel Open Source Technology Centre
+iQEcBAEBAgAGBQJTBfJTAAoJEEy3wb4lFVSrKRgH/0f9QsAN5y2s8xNDH8z2iof3
+IVX6J7PBclVhujpEngZhv00b0LCNLHQFzwbJ2nPTvv4YjMtACG/KCDPTqXsDasOr
+MEbvOHz4yxEpmYMzC2+pclb2BqUp2+slh1O6TJNLTzHqRZ/Qhl8WvMFg4YEqKiiN
+o8NhgX+Nzih0amA+8GRaWCxOJgZMfdKx322T6djPfBnZo+1gqlhUkAZvjSXQEonx
+zoPm2ALy5+2q5yFcpt7kAe6peCxKSgflMtKvlfyU2Kj7YjNJ8bkksHIQeTLg9PeB
+6LP6xjt6kjyGy6dqFdnzSyMp+8jsaF0oZX5xOIswwgPcDOvwWPKfSE/4qUGxLIs=
+=anWg
+-----END PGP SIGNATURE-----
 
+--jx/LfW4V5TfZLeq7--
