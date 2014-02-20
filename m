@@ -1,22 +1,27 @@
-Return-Path: <Rongqing.Li@windriver.com>
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3657DE00832
-	for <yocto@yoctoproject.org>; Thu, 20 Feb 2014 04:58:52 -0800 (PST)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail.windriver.com (8.14.5/8.14.5) with ESMTP id s1KCwp5V000456
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL)
-	for <yocto@yoctoproject.org>; Thu, 20 Feb 2014 04:58:51 -0800 (PST)
-Received: from lirq-OptiPlex-780.corp.ad.wrs.com (128.224.162.168) by
-	ALA-HCA.corp.ad.wrs.com (147.11.189.40) with Microsoft SMTP Server id
-	14.2.347.0; Thu, 20 Feb 2014 04:58:50 -0800
-From: <rongqing.li@windriver.com>
-To: <yocto@yoctoproject.org>
-Date: Thu, 20 Feb 2014 20:59:49 +0800
-Message-ID: <1392901189-22637-1-git-send-email-rongqing.li@windriver.com>
-X-Mailer: git-send-email 1.7.10.4
+Return-Path: <paul.eggleton@linux.intel.com>
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2D245E00832
+	for <yocto@yoctoproject.org>; Thu, 20 Feb 2014 05:31:36 -0800 (PST)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga102.fm.intel.com with ESMTP; 20 Feb 2014 05:31:35 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.97,512,1389772800"; d="scan'208";a="484838420"
+Received: from pmckerno-mobl.ger.corp.intel.com (HELO
+	peggleto-mobl5.ger.corp.intel.com) ([10.252.123.159])
+	by fmsmga002.fm.intel.com with ESMTP; 20 Feb 2014 05:30:37 -0800
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: Yang Chengwei <chengwei.yang@intel.com>
+Date: Thu, 20 Feb 2014 13:30:36 +0000
+Message-ID: <3288268.NjMvuFWqDF@peggleto-mobl5.ger.corp.intel.com>
+Organization: Intel Corporation
+User-Agent: KMail/4.12.2 (Linux/3.13.3-201.fc20.x86_64; KDE/4.12.2; x86_64; ; )
+In-Reply-To: <20140220121723.GN20025@chengwei-workstation.bj.intel.com>
+References: <20140220092731.GL20025@chengwei-workstation.bj.intel.com>
+	<4890456.akrrDeAUnM@peggleto-mobl5.ger.corp.intel.com>
+	<20140220121723.GN20025@chengwei-workstation.bj.intel.com>
 MIME-Version: 1.0
-Subject: [PATCH][meta-selinux] audit: fix the permission of configuration file
+Cc: yocto@yoctoproject.org
+Subject: Re: No 'directfb' distro feature
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -28,81 +33,43 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 20 Feb 2014 12:58:55 -0000
-Content-Type: text/plain
+X-List-Received-Date: Thu, 20 Feb 2014 13:31:37 -0000
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-From: Roy Li <rongqing.li@windriver.com>
+On Thursday 20 February 2014 20:17:23 Yang Chengwei wrote:
+> On Thu, Feb 20, 2014 at 10:08:25AM +0000, Paul Eggleton wrote:
+> > > Is there a plan to fix this?
+> > 
+> > This is not a bug - the intention is that you customise DISTRO_FEATURES to
+> > include the feature if you need it. You may find this section of the
+> > manual useful:
+> > 
+> > http://www.yoctoproject.org/docs/current/dev-manual/dev-manual.html#creati
+> > ng-your-own-distribution
+>
+> Thank you, I did read developer manual or maybe I missed them? Since
+> I didn't find 'directfb' as a DISTRO_FEATURES in ref manual, so I
+> think it's a non-exist feature.
+> 
+> Is there a way to list all available image features, distro features?
 
-Signed-off-by: Roy Li <rongqing.li@windriver.com>
----
- .../audit/fix-auditd.conf-file-s-permission.patch  |   41 ++++++++++++++++++++
- recipes-security/audit/audit_2.3.2.bb              |    4 +-
- 2 files changed, 44 insertions(+), 1 deletion(-)
- create mode 100644 recipes-security/audit/audit/fix-auditd.conf-file-s-permission.patch
+We should be listing all of the ones we define in the manual, if we aren't we 
+need to fix the manual. There isn't really a way to list them in the code 
+(other than searching it with "git grep") because the features are only really 
+defined by the checks that are made for them e.g. 
+${@base_contains('DISTRO_FEATURES', 'systemd', 'true', 'false', d)}
 
-diff --git a/recipes-security/audit/audit/fix-auditd.conf-file-s-permission.patch b/recipes-security/audit/audit/fix-auditd.conf-file-s-permission.patch
-new file mode 100644
-index 0000000..be3412b
---- /dev/null
-+++ b/recipes-security/audit/audit/fix-auditd.conf-file-s-permission.patch
-@@ -0,0 +1,41 @@
-+From abeb7f0e35a4e77e914fea34ddaf8b30b51e49e3 Mon Sep 17 00:00:00 2001
-+From: Roy Li <rongqing.li@windriver.com>
-+Date: Thu, 20 Feb 2014 20:38:31 +0800
-+Subject: [PATCH] fix auditd.conf file and path permission
-+
-+Upstream-Status: Pending
-+
-+A ordinary use should not to access auditd configuration files
-+
-+Signed-off-by: Roy Li <rongqing.li@windriver.com>
-+---
-+ init.d/Makefile.am |    8 ++++++--
-+ 1 file changed, 6 insertions(+), 2 deletions(-)
-+
-+diff --git a/init.d/Makefile.am b/init.d/Makefile.am
-+index 521dd1d..50728bc 100644
-+--- a/init.d/Makefile.am
-++++ b/init.d/Makefile.am
-+@@ -37,13 +37,17 @@ endif
-+ 
-+ auditdir = $(sysconfdir)/audit
-+ auditrdir = $(auditdir)/rules.d
-+-dist_audit_DATA = auditd.conf
-+-dist_auditr_DATA = audit.rules
-++auditconfig = auditd.conf
-++auditrconfig = audit.rules
-+ sbin_SCRIPTS = augenrules
-+ 
-+ install-data-hook:
-+ 	$(INSTALL_DATA) -D -m 640 ${srcdir}/${dispconfig} ${DESTDIR}${dispconfigdir}
-+ 	$(INSTALL_DATA) -D -m 640 ${srcdir}/${libconfig} ${DESTDIR}${sysconfdir}
-++	$(INSTALL_DATA) -d -m 750 ${DESTDIR}${auditdir}
-++	$(INSTALL_DATA) -d -m 750 ${DESTDIR}${auditrdir}
-++	$(INSTALL_DATA) -m 640 ${srcdir}/${auditconfig} ${DESTDIR}${auditdir}
-++	$(INSTALL_DATA) -m 640 ${srcdir}/${auditrconfig} ${DESTDIR}${auditrdir}
-+ if ENABLE_SYSTEMD
-+ else
-+ 	$(INSTALL_DATA) -D -m 640 ${srcdir}/auditd.sysconfig ${DESTDIR}${sysconfigdir}/auditd
-+-- 
-+1.7.10.4
-+
-diff --git a/recipes-security/audit/audit_2.3.2.bb b/recipes-security/audit/audit_2.3.2.bb
-index edcb881..6e376f8 100644
---- a/recipes-security/audit/audit_2.3.2.bb
-+++ b/recipes-security/audit/audit_2.3.2.bb
-@@ -14,7 +14,9 @@ SRC_URI = "http://people.redhat.com/sgrubb/audit/audit-${PV}.tar.gz \
- 	   file://audit-python-configure.patch \
- 	   file://audit-for-cross-compiling.patch \
- 	   file://auditd \
--	   file://fix-swig-host-contamination.patch"
-+	   file://fix-swig-host-contamination.patch \
-+	   file://fix-auditd.conf-file-s-permission.patch \
-+"
- 
- inherit autotools pythonnative update-rc.d
- 
+You are of course free to define your own DISTRO_FEATURES simply by checking 
+for them in your recipes (where it makes sense; typically PACKAGECONFIG is 
+used for configuration options for individual recipes these days and 
+DISTRO_FEATURES is left for features that are controlled system-wide).
+
+Cheers,
+Paul
+
 -- 
-1.7.10.4
 
+Paul Eggleton
+Intel Open Source Technology Centre
 
