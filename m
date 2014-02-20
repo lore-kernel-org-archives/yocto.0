@@ -1,27 +1,32 @@
-Return-Path: <paul.eggleton@linux.intel.com>
+Return-Path: <scott.m.rifenbark@intel.com>
 Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2D245E00832
-	for <yocto@yoctoproject.org>; Thu, 20 Feb 2014 05:31:36 -0800 (PST)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga102.fm.intel.com with ESMTP; 20 Feb 2014 05:31:35 -0800
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 047C9E00843
+	for <yocto@yoctoproject.org>; Thu, 20 Feb 2014 05:40:12 -0800 (PST)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by fmsmga102.fm.intel.com with ESMTP; 20 Feb 2014 05:40:10 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.97,512,1389772800"; d="scan'208";a="484838420"
-Received: from pmckerno-mobl.ger.corp.intel.com (HELO
-	peggleto-mobl5.ger.corp.intel.com) ([10.252.123.159])
-	by fmsmga002.fm.intel.com with ESMTP; 20 Feb 2014 05:30:37 -0800
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: Yang Chengwei <chengwei.yang@intel.com>
-Date: Thu, 20 Feb 2014 13:30:36 +0000
-Message-ID: <3288268.NjMvuFWqDF@peggleto-mobl5.ger.corp.intel.com>
-Organization: Intel Corporation
-User-Agent: KMail/4.12.2 (Linux/3.13.3-201.fc20.x86_64; KDE/4.12.2; x86_64; ; )
-In-Reply-To: <20140220121723.GN20025@chengwei-workstation.bj.intel.com>
-References: <20140220092731.GL20025@chengwei-workstation.bj.intel.com>
-	<4890456.akrrDeAUnM@peggleto-mobl5.ger.corp.intel.com>
-	<20140220121723.GN20025@chengwei-workstation.bj.intel.com>
+X-IronPort-AV: E=Sophos;i="4.97,512,1389772800"; d="scan'208";a="478456551"
+Received: from orsmsx106.amr.corp.intel.com ([10.22.225.133])
+	by fmsmga001.fm.intel.com with ESMTP; 20 Feb 2014 05:40:10 -0800
+Received: from orsmsx101.amr.corp.intel.com ([169.254.8.61]) by
+	ORSMSX106.amr.corp.intel.com ([169.254.5.234]) with mapi id
+	14.03.0123.003; Thu, 20 Feb 2014 05:40:10 -0800
+From: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
+To: "Yang, Chengwei" <chengwei.yang@intel.com>, "yocto@yoctoproject.org"
+	<yocto@yoctoproject.org>
+Thread-Topic: [yocto] [PATCH] Ref-manual: fix typo for XDG_RUNTIME_DIR
+	variable	value
+Thread-Index: AQHPLE/klBiIG7SIrkmFxvomSQviQJq+JK1A
+Date: Thu, 20 Feb 2014 13:40:09 +0000
+Message-ID: <41DEA4B02DBDEF40A0F3B6D0DDB1237983F66BAC@ORSMSX101.amr.corp.intel.com>
+References: <1392689926-4212-1-git-send-email-chengwei.yang@intel.com>
+In-Reply-To: <1392689926-4212-1-git-send-email-chengwei.yang@intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.139]
 MIME-Version: 1.0
-Cc: yocto@yoctoproject.org
-Subject: Re: No 'directfb' distro feature
+Subject: Re: [PATCH] Ref-manual: fix typo for XDG_RUNTIME_DIR variable	value
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -33,43 +38,53 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 20 Feb 2014 13:31:37 -0000
-Content-Transfer-Encoding: 7Bit
+X-List-Received-Date: Thu, 20 Feb 2014 13:40:15 -0000
+Content-Language: en-US
 Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-On Thursday 20 February 2014 20:17:23 Yang Chengwei wrote:
-> On Thu, Feb 20, 2014 at 10:08:25AM +0000, Paul Eggleton wrote:
-> > > Is there a plan to fix this?
-> > 
-> > This is not a bug - the intention is that you customise DISTRO_FEATURES to
-> > include the feature if you need it. You may find this section of the
-> > manual useful:
-> > 
-> > http://www.yoctoproject.org/docs/current/dev-manual/dev-manual.html#creati
-> > ng-your-own-distribution
+Chengwei,=20
+
+Thanks for reporting this.  I have applied the patch to both the master (1.=
+6) and dora branches of the yocto-docs Git repository.  You can see the cha=
+nge at http://www.yoctoproject.org/docs/latest/ref-manual/ref-manual.html#r=
+unning-weston and at http://www.yoctoproject.org/docs/1.5.1/ref-manual/ref-=
+manual.html#running-weston.=20
+
+Scott
+
+>-----Original Message-----
+>From: yocto-bounces@yoctoproject.org [mailto:yocto-
+>bounces@yoctoproject.org] On Behalf Of Chengwei Yang
+>Sent: Monday, February 17, 2014 6:19 PM
+>To: yocto@yoctoproject.org
+>Subject: [yocto] [PATCH] Ref-manual: fix typo for XDG_RUNTIME_DIR variable
+>value
 >
-> Thank you, I did read developer manual or maybe I missed them? Since
-> I didn't find 'directfb' as a DISTRO_FEATURES in ref manual, so I
-> think it's a non-exist feature.
-> 
-> Is there a way to list all available image features, distro features?
-
-We should be listing all of the ones we define in the manual, if we aren't we 
-need to fix the manual. There isn't really a way to list them in the code 
-(other than searching it with "git grep") because the features are only really 
-defined by the checks that are made for them e.g. 
-${@base_contains('DISTRO_FEATURES', 'systemd', 'true', 'false', d)}
-
-You are of course free to define your own DISTRO_FEATURES simply by checking 
-for them in your recipes (where it makes sense; typically PACKAGECONFIG is 
-used for configuration options for individual recipes these days and 
-DISTRO_FEATURES is left for features that are controlled system-wide).
-
-Cheers,
-Paul
-
--- 
-
-Paul Eggleton
-Intel Open Source Technology Centre
+>Signed-off-by: Chengwei Yang <chengwei.yang@intel.com>
+>---
+> documentation/ref-manual/technical-details.xml |    2 +-
+> 1 file changed, 1 insertion(+), 1 deletion(-)
+>
+>diff --git a/documentation/ref-manual/technical-details.xml
+>b/documentation/ref-manual/technical-details.xml
+>index 51b9148..106bb2c 100644
+>--- a/documentation/ref-manual/technical-details.xml
+>+++ b/documentation/ref-manual/technical-details.xml
+>@@ -1005,7 +1005,7 @@
+>                     <literallayout class=3D'monospaced'>
+>      mkdir -p /tmp/$USER-weston
+>      chmod 0700 /tmp/$USER-weston
+>-     export XDG_RUNTIME_DIR=3D/tmp/$USER=3Dweston
+>+     export XDG_RUNTIME_DIR=3D/tmp/$USER-weston
+>                     </literallayout></para></listitem>
+>                 <listitem><para>Launch Weston in the shell:
+>                     <literallayout class=3D'monospaced'>
+>--
+>1.7.9.5
+>
+>_______________________________________________
+>yocto mailing list
+>yocto@yoctoproject.org
+>https://lists.yoctoproject.org/listinfo/yocto
 
