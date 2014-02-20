@@ -1,26 +1,33 @@
-Return-Path: <paul.eggleton@linux.intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 88991E007EF
-	for <yocto@yoctoproject.org>; Wed, 19 Feb 2014 10:42:00 -0800 (PST)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga102.jf.intel.com with ESMTP; 19 Feb 2014 10:37:40 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.97,507,1389772800"; d="scan'208";a="458275230"
-Received: from justinda-mobl1.ger.corp.intel.com (HELO
-	peggleto-mobl5.ger.corp.intel.com) ([10.252.123.135])
-	by orsmga001.jf.intel.com with ESMTP; 19 Feb 2014 10:41:55 -0800
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: Federico Vitali <fede.vitali@gmail.com>, yocto@yoctoproject.org
-Date: Wed, 19 Feb 2014 18:41:54 +0000
-Message-ID: <1740491.kMHWtVylMU@peggleto-mobl5.ger.corp.intel.com>
-Organization: Intel Corporation
-User-Agent: KMail/4.12.2 (Linux/3.13.3-201.fc20.x86_64; KDE/4.12.2; x86_64; ; )
-In-Reply-To: <CAD78y+7_Dg34_VNuyTooWt_ikEJEKZTrm03Krpk80BVzmXQPAQ@mail.gmail.com>
-References: <CAD78y+7qxqkdf1d1p6dFe5Cv9dFLHpgZ3uJfOD6JdmbScfX2+g@mail.gmail.com>
-	<53048C4E.9050504@gmail.com>
-	<CAD78y+7_Dg34_VNuyTooWt_ikEJEKZTrm03Krpk80BVzmXQPAQ@mail.gmail.com>
+Return-Path: <meier.dennis@siemens.com>
+Received: from david.siemens.de (david.siemens.de [192.35.17.14])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1CC63E00575
+	for <yocto@yoctoproject.org>; Thu, 20 Feb 2014 01:04:46 -0800 (PST)
+Received: from mail2.sbs.de (localhost [127.0.0.1])
+	by david.siemens.de (8.14.3/8.14.3) with ESMTP id s1K94dSQ008724
+	for <yocto@yoctoproject.org>; Thu, 20 Feb 2014 10:04:40 +0100
+Received: from DEFTHW99ET5MSX.ww902.siemens.net
+	(defthw99et5msx.ww902.siemens.net [157.163.148.55])
+	by mail2.sbs.de (8.14.3/8.14.3) with ESMTP id s1K94dg3015197
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL)
+	for <yocto@yoctoproject.org>; Thu, 20 Feb 2014 10:04:39 +0100
+Received: from DENBGAT9ERCMSX.ww902.siemens.net (139.22.70.82) by
+	DEFTHW99ET5MSX.ww902.siemens.net (157.163.148.55) with Microsoft SMTP
+	Server (TLS) id 8.3.342.0; Thu, 20 Feb 2014 10:04:39 +0100
+Received: from DEFTHW99EI0MSX.ww902.siemens.net ([169.254.5.204]) by
+	DENBGAT9ERCMSX.ww902.siemens.net ([139.22.70.82]) with mapi id
+	14.03.0174.001; Thu, 20 Feb 2014 10:04:38 +0100
+From: "Meier, Dennis" <meier.dennis@siemens.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: @#NAME type fields
+Thread-Index: Ac8uGsmHgPYOtdvMR8m9rzIE8dSGcw==
+Date: Thu, 20 Feb 2014 09:04:38 +0000
+Message-ID: <6F22A92316C68C42A591A48A6291DA9DD60628@DEFTHW99EI0MSX.ww902.siemens.net>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [139.22.70.23]
 MIME-Version: 1.0
-Subject: Re: problem with yocto behind http_proxy
+Subject: @#NAME type fields
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,41 +39,19 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 19 Feb 2014 18:42:01 -0000
-Content-Transfer-Encoding: 7Bit
+X-List-Received-Date: Thu, 20 Feb 2014 09:04:47 -0000
+Content-Language: en-US
 Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Federico,
+Good day everyone,
 
-On Wednesday 19 February 2014 12:12:58 Federico Vitali wrote:
-> sorry I forgot to reply also to yocto@yoctoproject.org. This was the reply
-> 
-> thank you Marco,
-> I've tried but I'm still having problems:
-> 
-> WARNING: Failed to fetch URL git://
-> git.yoctoproject.org/yocto-kernel-tools.git, attempting MIRRORS if available
-> WARNING: Failed to fetch URL git://
-> git.yoctoproject.org/linux-yocto-3.10.git;bareclone=1;branch=standard/base,m
-> eta;name=machine,meta, attempting MIRRORS if available
-> ERROR: Fetcher failure: Fetch command failed with exit code 128, output:
-> fatal: unable to connect to git.yoctoproject.org:
-> git.yoctoproject.org: Name or service not known
-> 
-> I noticed that the url https://www.yoctoproject.org/sources is not working.
+what is the reason for the "#@TYPE", "#@NAME" and "#@DESCRIPTION" fields in=
+ the machine-*.conf files? Are they getting parsed somewhere? Are they ther=
+e for historical reasons? Could they be extended (i.e. more fields added) w=
+ithout problem?
 
-I think there are several issues occurring here, but FWIW I did ask Michael 
-Halstead (who manages our infrastructure) to fix the website so that this 
-documented URL above at least works, and he has now done that.
+Regards,
+Dennis
 
-(It looks like you may have a solution to the overall problem now though, 
-which is good.)
-
-Cheers,
-Paul
-
--- 
-
-Paul Eggleton
-Intel Open Source Technology Centre
 
