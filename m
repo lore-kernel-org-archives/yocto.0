@@ -1,28 +1,35 @@
-Return-Path: <Xin.Ouyang@windriver.com>
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D4D47E007F6
-	for <yocto@yoctoproject.org>; Thu, 20 Feb 2014 23:56:12 -0800 (PST)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail.windriver.com (8.14.5/8.14.5) with ESMTP id s1L7uBYL015450
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL)
-	for <yocto@yoctoproject.org>; Thu, 20 Feb 2014 23:56:12 -0800 (PST)
-Received: from pascal-macbookpro.corp.ad.wrs.com (128.224.158.235) by
-	ALA-HCA.corp.ad.wrs.com (147.11.189.50) with Microsoft SMTP Server id
-	14.2.347.0; Thu, 20 Feb 2014 23:56:11 -0800
-Message-ID: <53070699.6080909@windriver.com>
-Date: Fri, 21 Feb 2014 15:56:09 +0800
-From: Pascal Ouyang <xin.ouyang@windriver.com>
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.8;
-	rv:24.0) Gecko/20100101 Thunderbird/24.3.0
+Return-Path: <andrei@gherzan.ro>
+Received: from mail-vc0-f182.google.com (mail-vc0-f182.google.com
+	[209.85.220.182])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 76BB0E007F6
+	for <yocto@yoctoproject.org>; Fri, 21 Feb 2014 00:13:57 -0800 (PST)
+Received: by mail-vc0-f182.google.com with SMTP id id10so2933959vcb.41
+	for <yocto@yoctoproject.org>; Fri, 21 Feb 2014 00:13:57 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc:content-type;
+	bh=OFT3fAMxqwfErpcVjXBpmdEhTUHAdjPtokadiUY+kso=;
+	b=ODStHej5p0gy6tjKndSxcXI7tYg86S21uAu2S2B5lR8fJGk0mvIb2ooU41kosPdFIA
+	Gt3gFjH1KayRuFHJq/K/Ar26/+IhSc2bPMq2AtoXzssh22h9u3soXjHlIjQZ93T17NAX
+	0BdI0o/QhYWflgOiLRgVCFarb5rltgyIPE0VBQvUBx5WheyldsgpBeajPZUMZc7f0IYE
+	ehxzjo3CChfPRW5hLe7cc1fBJB8F1du062s/9BOHzp/qyDyjScTRtJQK/FAWTWFyXBs3
+	2sWA4EL34WDzPZ0uCtUCOiZvvlgh3lV30PDwNXfGnmxtliGxK4i4XyMQnZ5/B606OlBO
+	zQ/g==
+X-Gm-Message-State: ALoCoQmNxr7L5dsMQ2E2x1MINDAAMzRV+qQF5zI7SfgPEgW31UFgB63+1W2sDXOzk4gicYiRvzDs
+X-Received: by 10.53.10.137 with SMTP id ea9mr3285961vdd.74.1392970437022;
+	Fri, 21 Feb 2014 00:13:57 -0800 (PST)
 MIME-Version: 1.0
-To: Rongqing Li <rongqing.li@windriver.com>
-References: <1392901189-22637-1-git-send-email-rongqing.li@windriver.com>
-	<5306E9C0.2090600@windriver.com> <5307036D.2070002@windriver.com>
-In-Reply-To: <5307036D.2070002@windriver.com>
-X-TagToolbar-Keys: D20140221155609794
-Cc: yocto@yoctoproject.org
-Subject: Re: [PATCH][meta-selinux] audit: fix the permission of configuration file
+Received: by 10.58.244.138 with HTTP; Fri, 21 Feb 2014 00:13:36 -0800 (PST)
+X-Originating-IP: [89.121.200.106]
+In-Reply-To: <1392390906-2516-1-git-send-email-koen@dominion.thruhere.net>
+References: <1392390906-2516-1-git-send-email-koen@dominion.thruhere.net>
+From: Andrei Gherzan <andrei@gherzan.ro>
+Date: Fri, 21 Feb 2014 10:13:36 +0200
+Message-ID: <CAK18fxHxiT=_2AT5ogNs4-z6=2dxu07Y0v6pU1yf-ezQaXDU1Q@mail.gmail.com>
+To: Koen Kooi <koen@dominion.thruhere.net>
+Cc: Yocto Project <yocto@yoctoproject.org>
+Subject: Re: [meta-raspberrypi][dora][PATCH] xserver-xf86-config: don't use wildcards in SRC_URI
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,116 +41,46 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 21 Feb 2014 07:56:18 -0000
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Fri, 21 Feb 2014 08:14:00 -0000
+Content-Type: multipart/alternative; boundary=001a1134044c14eb7704f2e634a8
 
-于 14-2-21 下午3:42, Rongqing Li 写道:
->
->
-> On 02/21/2014 01:53 PM, Pascal Ouyang wrote:
->> 于 14-2-20 下午8:59, rongqing.li@windriver.com 写道:
->>> From: Roy Li <rongqing.li@windriver.com>
->>>
->>> Signed-off-by: Roy Li <rongqing.li@windriver.com>
->>> ---
->>>   .../audit/fix-auditd.conf-file-s-permission.patch  |   41
->>> ++++++++++++++++++++
->>>   recipes-security/audit/audit_2.3.2.bb              |    4 +-
->>>   2 files changed, 44 insertions(+), 1 deletion(-)
->>>   create mode 100644
->>> recipes-security/audit/audit/fix-auditd.conf-file-s-permission.patch
->>>
->>> diff --git
->>> a/recipes-security/audit/audit/fix-auditd.conf-file-s-permission.patch
->>> b/recipes-security/audit/audit/fix-auditd.conf-file-s-permission.patch
->>> new file mode 100644
->>> index 0000000..be3412b
->>> --- /dev/null
->>> +++
->>> b/recipes-security/audit/audit/fix-auditd.conf-file-s-permission.patch
->>> @@ -0,0 +1,41 @@
->>> +From abeb7f0e35a4e77e914fea34ddaf8b30b51e49e3 Mon Sep 17 00:00:00 2001
->>> +From: Roy Li <rongqing.li@windriver.com>
->>> +Date: Thu, 20 Feb 2014 20:38:31 +0800
->>> +Subject: [PATCH] fix auditd.conf file and path permission
->>> +
->>> +Upstream-Status: Pending
->>> +
->>> +A ordinary use should not to access auditd configuration files
->>> +
->>> +Signed-off-by: Roy Li <rongqing.li@windriver.com>
->>> +---
->>> + init.d/Makefile.am |    8 ++++++--
->>> + 1 file changed, 6 insertions(+), 2 deletions(-)
->>> +
->>> +diff --git a/init.d/Makefile.am b/init.d/Makefile.am
->>> +index 521dd1d..50728bc 100644
->>> +--- a/init.d/Makefile.am
->>> ++++ b/init.d/Makefile.am
->>> +@@ -37,13 +37,17 @@ endif
->>> +
->>> + auditdir = $(sysconfdir)/audit
->>> + auditrdir = $(auditdir)/rules.d
->>> +-dist_audit_DATA = auditd.conf
->>> +-dist_auditr_DATA = audit.rules
->>> ++auditconfig = auditd.conf
->>> ++auditrconfig = audit.rules
->>> + sbin_SCRIPTS = augenrules
->>> +
->>> + install-data-hook:
->>> +     $(INSTALL_DATA) -D -m 640 ${srcdir}/${dispconfig}
->>> ${DESTDIR}${dispconfigdir}
->>> +     $(INSTALL_DATA) -D -m 640 ${srcdir}/${libconfig}
->>> ${DESTDIR}${sysconfdir}
->>> ++    $(INSTALL_DATA) -d -m 750 ${DESTDIR}${auditdir}
->>> ++    $(INSTALL_DATA) -d -m 750 ${DESTDIR}${auditrdir}
->>> ++    $(INSTALL_DATA) -m 640 ${srcdir}/${auditconfig}
->>> ${DESTDIR}${auditdir}
->>> ++    $(INSTALL_DATA) -m 640 ${srcdir}/${auditrconfig}
->>> ${DESTDIR}${auditrdir}
->>> + if ENABLE_SYSTEMD
->>> + else
->>> +     $(INSTALL_DATA) -D -m 640 ${srcdir}/auditd.sysconfig
->>> ${DESTDIR}${sysconfigdir}/auditd
->>> +--
->>> +1.7.10.4
->>> +
->>> diff --git a/recipes-security/audit/audit_2.3.2.bb
->>> b/recipes-security/audit/audit_2.3.2.bb
->>> index edcb881..6e376f8 100644
->>> --- a/recipes-security/audit/audit_2.3.2.bb
->>> +++ b/recipes-security/audit/audit_2.3.2.bb
->>> @@ -14,7 +14,9 @@ SRC_URI =
->>> "http://people.redhat.com/sgrubb/audit/audit-${PV}.tar.gz \
->>>          file://audit-python-configure.patch \
->>>          file://audit-for-cross-compiling.patch \
->>>          file://auditd \
->>> -       file://fix-swig-host-contamination.patch"
->>> +       file://fix-swig-host-contamination.patch \
->>> +       file://fix-auditd.conf-file-s-permission.patch \
->>> +"
->>>
->>>   inherit autotools pythonnative update-rc.d
->>>
->>>
->>
->> chmod in do_install is enough, please do not use a patch.
->>
->
-> Why ?
->
-> -Roy
->
->> Thanks. :)
->>
->
+--001a1134044c14eb7704f2e634a8
+Content-Type: text/plain; charset=ISO-8859-1
 
-Because more patches need more maintain work. It is not unnecessary if 
-simple bb modify also work.
+Hello Koen,
 
-Thanks. :)
+On Fri, Feb 14, 2014 at 5:15 PM, Koen Kooi <koen@dominion.thruhere.net>wrote:
+
+> It is strongly discouraged to use wildcards in SRC_URI since it breaks
+> when using multiple bbappends and immediate expansion of FILESDIR.
+>
+> This fixes a do_install failure when building with multiple BSPs
+> enabled.
+>
+>
+This was merged in master and dora. Thank you.
 
 -- 
-- Pascal
+ag
 
+--001a1134044c14eb7704f2e634a8
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Hello Koen,<div><div class=3D"gmail_extra"><br><div class=
+=3D"gmail_quote">On Fri, Feb 14, 2014 at 5:15 PM, Koen Kooi <span dir=3D"lt=
+r">&lt;<a href=3D"mailto:koen@dominion.thruhere.net" target=3D"_blank">koen=
+@dominion.thruhere.net</a>&gt;</span> wrote:<br>
+
+<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
+x #ccc solid;padding-left:1ex">It is strongly discouraged to use wildcards =
+in SRC_URI since it breaks<br>
+when using multiple bbappends and immediate expansion of FILESDIR.<br>
+<br>
+This fixes a do_install failure when building with multiple BSPs<br>
+enabled.<br><span class=3D"HOEnZb"><font color=3D"#888888"><br></font></spa=
+n></blockquote><div><br></div><div>This was merged in master and dora. Than=
+k you.</div></div><div><br></div>--=A0</div><div class=3D"gmail_extra">ag
+</div></div></div>
+
+--001a1134044c14eb7704f2e634a8--
