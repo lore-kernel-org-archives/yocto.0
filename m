@@ -1,35 +1,34 @@
 Return-Path: <andrei@gherzan.ro>
-Received: from mail-vc0-f180.google.com (mail-vc0-f180.google.com
-	[209.85.220.180])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E2662E007F6
-	for <yocto@yoctoproject.org>; Fri, 21 Feb 2014 00:17:44 -0800 (PST)
-Received: by mail-vc0-f180.google.com with SMTP id ks9so2949759vcb.39
-	for <yocto@yoctoproject.org>; Fri, 21 Feb 2014 00:17:43 -0800 (PST)
+Received: from mail-qg0-f41.google.com (mail-qg0-f41.google.com
+	[209.85.192.41])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8EEE4E007F6
+	for <yocto@yoctoproject.org>; Fri, 21 Feb 2014 02:29:23 -0800 (PST)
+Received: by mail-qg0-f41.google.com with SMTP id i50so7117969qgf.0
+	for <yocto@yoctoproject.org>; Fri, 21 Feb 2014 02:29:23 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc:content-type;
-	bh=wgHItPfU/MkKLVOU0gZPzfhKIkZ4td11hj9QbrHbIMY=;
-	b=T9iYq7+lyZIPSSh070ETaO9AzWilQK0oDhg6TEnmyYZU39ydYMTXzENpmmFDhXyRAm
-	OH/op0PO8alWzB8xmT4DWiJ56KSDN2CmVauiyEhw0ISJGtN6ddT+GUSTeuakberxmuDa
-	ExBY9j8MPmNAs3TTxRzcjR3WofnDvYOcVLVAHSZjk8dnAvAGAybYoXXNax4DmGO8f8lg
-	ZvJCh60PfmtTD1Ufv+PTQNKHBBlbnMGIa1bG4CnCOA75ySH7qCmrIl0dRYxfayQFHWhc
-	QcoE91Ag7doZ18CZ+bFOTKMWLm41jIaEwePgC4YI49+KJPRiUPKtfYuw2wARVte7D7EA
-	c6WQ==
-X-Gm-Message-State: ALoCoQmzEsFe9rd46i81bxOdMXl2tj5GntyiHWGMQA6ZlYj5WAFEG6x7o2WFuywlbBFhWrJ/BdxI
-X-Received: by 10.52.94.77 with SMTP id da13mr3299062vdb.55.1392970663829;
-	Fri, 21 Feb 2014 00:17:43 -0800 (PST)
-MIME-Version: 1.0
-Received: by 10.58.244.138 with HTTP; Fri, 21 Feb 2014 00:17:22 -0800 (PST)
-X-Originating-IP: [89.121.200.106]
-In-Reply-To: <1392724329-14226-1-git-send-email-net147@gmail.com>
-References: <1392724329-14226-1-git-send-email-net147@gmail.com>
+	h=x-gm-message-state:from:to:cc:subject:date:message-id;
+	bh=Eg0vFsW7J6yPt4a3rD7TZ4EIJ4dPHe0O/+alF0xOexU=;
+	b=l1kNPPeYvPHOll00uw6cD7ldTwsvViTHu9VHf62U2TC3YSMAf0Hlfy2lvCRhy8aRQW
+	L714fOFR7l/DIfJ8Na+U0yYMhO4vp0rTkWXzXQDKoEfpeC1ZUOa4ZzskzVHiThRI9DsT
+	K3uqKNklYEwF6ZHn26tTfnOBjW6LEtqGBKt5dKAb0xuwSJY4uxkFr9HfI16ogDNP4k+l
+	9xZEicoS3nif7tZ/oyfc1gVYPQe5Kf8kNEHyGeCmipPqR6pyt1uf4zTAanlk+iWC+pF9
+	77bYSSaSTOM46I1ewvSlyFcF54Io3+KS186dStFsJarGBBFkr6om+npLdZ98EUV9tEhV
+	5p3Q==
+X-Gm-Message-State: ALoCoQl9A2fdnwhQVZNRDqD7srJrp/truqfzgMQPeT5wu/onf1bYeChnZhOSBaegje0iPKDAnSN+
+X-Received: by 10.224.119.147 with SMTP id z19mr8656360qaq.20.1392978562818;
+	Fri, 21 Feb 2014 02:29:22 -0800 (PST)
+Received: from localhost.localdomain ([89.121.200.106])
+	by mx.google.com with ESMTPSA id
+	k61sm11862511qge.12.2014.02.21.02.29.20 for <multiple recipients>
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Fri, 21 Feb 2014 02:29:21 -0800 (PST)
 From: Andrei Gherzan <andrei@gherzan.ro>
-Date: Fri, 21 Feb 2014 10:17:22 +0200
-Message-ID: <CAK18fxFDqgVOZa_wsb98QtDy8R0JCBubGJotc7WTN3EoREpxgA@mail.gmail.com>
-To: Jonathan Liu <net147@gmail.com>
-Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: [meta-raspberrypi][PATCH] sdcard_image-rpi.bbclass: use absolute path to rootfs
+To: yocto@yoctoproject.org
+Date: Fri, 21 Feb 2014 12:29:02 +0200
+Message-Id: <1392978548-31880-1-git-send-email-andrei@gherzan.ro>
+X-Mailer: git-send-email 1.8.1.4
+Subject: [meta-raspberrypi][PATCH 1/7] linux-raspberrypi: Update v3.11.10 to current remote HEAD
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,48 +40,25 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 21 Feb 2014 08:17:47 -0000
-Content-Type: multipart/alternative; boundary=20cf307f3bf099b6cf04f2e6414a
+X-List-Received-Date: Fri, 21 Feb 2014 10:29:24 -0000
 
---20cf307f3bf099b6cf04f2e6414a
-Content-Type: text/plain; charset=ISO-8859-1
-
-Hello Jonathan,
-
-
-On Tue, Feb 18, 2014 at 1:52 PM, Jonathan Liu <net147@gmail.com> wrote:
-
-> Change-Id: Ib513f195351b379dbb9f503dc5927f2018169b95
-> Signed-off-by: Jonathan Liu <net147@gmail.com>
-> ---
->  classes/sdcard_image-rpi.bbclass | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
->
-
-This was merged in master. Thank you for your contribution.
-
+Change-Id: I724511ad5e96ff1b7779c3afe772eaf0d5250c8e
+Signed-off-by: Andrei Gherzan <andrei@gherzan.ro>
 ---
-ag
+ recipes-kernel/linux/linux-raspberrypi_3.11.10.bb | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
---20cf307f3bf099b6cf04f2e6414a
-Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
+diff --git a/recipes-kernel/linux/linux-raspberrypi_3.11.10.bb b/recipes-kernel/linux/linux-raspberrypi_3.11.10.bb
+index 3962b40..6df11fe 100644
+--- a/recipes-kernel/linux/linux-raspberrypi_3.11.10.bb
++++ b/recipes-kernel/linux/linux-raspberrypi_3.11.10.bb
+@@ -1,4 +1,4 @@
+-SRCREV = "71397e18fb1038619f3066827b83d6fcd5d8bd62"
++SRCREV = "8f768c5f2a3314e4eacce8d667c787f8dadfda74"
+ SRC_URI = "git://github.com/raspberrypi/linux.git;protocol=git;branch=rpi-3.11.y \
+            file://sl030raspberrypii2ckernel.patch \
+           "
+-- 
+1.8.1.4
 
-<div dir=3D"ltr">Hello Jonathan,<br><div class=3D"gmail_extra"><br><br><div=
- class=3D"gmail_quote">On Tue, Feb 18, 2014 at 1:52 PM, Jonathan Liu <span =
-dir=3D"ltr">&lt;<a href=3D"mailto:net147@gmail.com" target=3D"_blank">net14=
-7@gmail.com</a>&gt;</span> wrote:<br>
 
-<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
-x #ccc solid;padding-left:1ex">Change-Id: Ib513f195351b379dbb9f503dc5927f20=
-18169b95<br>
-Signed-off-by: Jonathan Liu &lt;<a href=3D"mailto:net147@gmail.com">net147@=
-gmail.com</a>&gt;<br>
----<br>
-=A0classes/sdcard_image-rpi.bbclass | 2 +-<br>
-=A01 file changed, 1 insertion(+), 1 deletion(-)<br></blockquote><div><br><=
-/div><div>This was merged in master. Thank you for your contribution.</div>=
-<div><br></div><div>---</div><div>ag=A0</div></div>
-</div></div>
-
---20cf307f3bf099b6cf04f2e6414a--
