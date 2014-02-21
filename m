@@ -1,23 +1,24 @@
-Return-Path: <stefanx.stanacar@intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D0CE1E0087B
-	for <yocto@yoctoproject.org>; Thu, 20 Feb 2014 11:19:23 -0800 (PST)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga101.jf.intel.com with ESMTP; 20 Feb 2014 11:19:22 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.97,514,1389772800"; d="scan'208";a="459021363"
-Received: from linux.jf.intel.com (HELO linux.intel.com) ([10.23.219.25])
-	by orsmga001.jf.intel.com with ESMTP; 20 Feb 2014 11:19:22 -0800
-Received: from firebird.rb.intel.com (firebird.rb.intel.com [10.237.105.156])
-	by linux.intel.com (Postfix) with ESMTP id 60F9E6A4083;
-	Thu, 20 Feb 2014 11:19:12 -0800 (PST)
-From: Stefan Stanacar <stefanx.stanacar@intel.com>
-To: yocto@yoctoproject.org,
-	elizabeth.flanagan@intel.com
-Date: Thu, 20 Feb 2014 21:19:16 +0200
-Message-Id: <1392923956-1166-2-git-send-email-stefanx.stanacar@intel.com>
-X-Mailer: git-send-email 1.8.5.3
-Subject: [yocto-autobuilder][PATCH] Add buildstep and buildset for oe-selftest script
+Return-Path: <philip@balister.org>
+Received: from starfish.geekisp.com (starfish.geekisp.com [216.168.135.166])
+	by yocto-www.yoctoproject.org (Postfix) with SMTP id 4328AE0086E
+	for <yocto@yoctoproject.org>; Thu, 20 Feb 2014 16:03:27 -0800 (PST)
+Received: (qmail 7561 invoked by uid 1003); 21 Feb 2014 00:03:25 -0000
+Received: from unknown (HELO ?192.168.1.146?)
+	(philip@opensdr.com@71.171.41.155)
+	by mail.geekisp.com with (DHE-RSA-AES256-SHA encrypted) SMTP;
+	21 Feb 2014 00:03:25 -0000
+Message-ID: <530697CC.5050402@balister.org>
+Date: Thu, 20 Feb 2014 19:03:24 -0500
+From: Philip Balister <philip@balister.org>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:17.0) Gecko/20130625 Thunderbird/17.0.7
+MIME-Version: 1.0
+To: "openembedded-devel@lists.openembedded.org"
+	<openembedded-devel@lists.openembedded.org>, 
+	openembedded-core <openembedded-core@lists.openembedded.org>, 
+	Yocto Project <yocto@yoctoproject.org>
+X-Enigmail-Version: 1.6
+Subject: OEDAM: OpenEmbedded Developers (Americas) Meeting
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -29,104 +30,37 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 20 Feb 2014 19:19:26 -0000
+X-List-Received-Date: Fri, 21 Feb 2014 00:03:28 -0000
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: 7bit
 
-This will run the oe-selftest script which has been
-available in master for a while. The scripts run a series
-of bitbake tests and takes care of it's own config.
-Because some of the tests mess up with sstate we
-want to use the default sstate dir, so a nosstate option
-was added to CreateAutoConf.
+The OpenEmbedded Project is holding a developers meeting May 2-3,
+2014, in Santa Clara, CA. This meeting is immediately after the Embedded
+Linux Conference North America. All active OpenEmbedded and Yocto
+Project developers are invited to attend.
 
-Signed-off-by: Stefan Stanacar <stefanx.stanacar@intel.com>
----
- buildset-config.master/nightly-oe-selftest.conf    | 15 +++++++++++++
- .../autobuilder/buildsteps/CreateAutoConf.py       |  7 ++++--
- .../autobuilder/buildsteps/RunOeSelftest.py        | 26 ++++++++++++++++++++++
- 3 files changed, 46 insertions(+), 2 deletions(-)
- create mode 100644 buildset-config.master/nightly-oe-selftest.conf
- create mode 100644 lib/python2.7/site-packages/autobuilder/buildsteps/RunOeSelftest.py
+NOTE: this is a development meeting for the project itself, not a
+training session.
 
-diff --git a/buildset-config.master/nightly-oe-selftest.conf b/buildset-config.master/nightly-oe-selftest.conf
-new file mode 100644
-index 0000000..42bccde
---- /dev/null
-+++ b/buildset-config.master/nightly-oe-selftest.conf
-@@ -0,0 +1,15 @@
-+[nightly-oe-selftest]
-+builders: 'builder1'
-+repos: [{'poky':
-+            {'repourl':'git://git.yoctoproject.org/poky',
-+             'layerversion':{'core':'meta', 'yoctobsp':'meta-yocto-bsp'},
-+             'branch':'master'}}]
-+steps: [{'SetDest':{}},
-+        {'CheckOutLayers': {}},
-+        {'RunPreamble': {}},
-+        {'GetDistroVersion' : {'distro': 'poky'}},
-+        {'CreateAutoConf': {'machine': 'qemux86-64', 'SDKMACHINE' : 'x86_64', 'distro': 'poky', 'nosstate': True, 'packages': 'rpm'}},
-+        {'CreateBBLayersConf': {'buildprovider' : 'yocto'}},
-+        {'BuildImages': {'images': 'core-image-minimal'}},
-+        {'CreateBBLayersConf': {'buildprovider' : 'yocto', 'layerdirs': ['meta-selftest']}},
-+        {'RunOeSelftest': {}}]
-diff --git a/lib/python2.7/site-packages/autobuilder/buildsteps/CreateAutoConf.py b/lib/python2.7/site-packages/autobuilder/buildsteps/CreateAutoConf.py
-index 116ee14..bec221a 100644
---- a/lib/python2.7/site-packages/autobuilder/buildsteps/CreateAutoConf.py
-+++ b/lib/python2.7/site-packages/autobuilder/buildsteps/CreateAutoConf.py
-@@ -38,6 +38,7 @@ class CreateAutoConf(ShellCommand):
-         self.factory = factory
-         self.buildappsrcrev = "${AUTOREV}"
-         self.initmgr=None
-+        self.nosstate=False
-         self.kwargs = kwargs
-         for k, v in argdict.iteritems():
-             if type(v) is bool:
-@@ -100,9 +101,11 @@ class CreateAutoConf(ShellCommand):
-                 elif self.multilib == "lib64":
-                     fout = fout + 'MULTILIBS = "multilib:lib64" \n'
-                     fout = fout + 'DEFAULTTUNE_virtclass-multilib-lib64 = "x86-64" \n'
--                fout = fout + 'SSTATE_DIR ?= "' + os.environ.get("SSTATE_DIR") + '/multilib" \n'
-+                if not self.nosstate:
-+                    fout = fout + 'SSTATE_DIR ?= "' + os.environ.get("SSTATE_DIR") + '/multilib" \n'
-             else:
--                fout = fout + 'SSTATE_DIR ?= "' + os.environ.get("SSTATE_DIR") + '/" \n'
-+                if not self.nosstate:
-+                    fout = fout + 'SSTATE_DIR ?= "' + os.environ.get("SSTATE_DIR") + '/" \n'
-             if self.gplv3 == "False":
-                     fout = fout + 'INCOMPATIBLE_LICENSE = "GPLv3" \n'
-             if self.x32 == "True":
-diff --git a/lib/python2.7/site-packages/autobuilder/buildsteps/RunOeSelftest.py b/lib/python2.7/site-packages/autobuilder/buildsteps/RunOeSelftest.py
-new file mode 100644
-index 0000000..0efddd7
---- /dev/null
-+++ b/lib/python2.7/site-packages/autobuilder/buildsteps/RunOeSelftest.py
-@@ -0,0 +1,26 @@
-+'''
-+__author__ = "Stefan Stanacar"
-+__copyright__ = "Copyright 2014 Intel Corporation"
-+__credits__ = ["Stefan Stanacar"]
-+__license__ = "GPL"
-+__version__ = "2.0"
-+__maintainer__ = "Stefan Stanacar"
-+__email__ = "stefanx.stanacar@intel.com"
-+'''
-+
-+
-+from buildbot.steps.shell import ShellCommand
-+
-+class RunOeSelftest(ShellCommand):
-+    haltOnFailure = False
-+    flunkOnFailure = True
-+    name = "Running oe-selftest"
-+    def __init__(self, factory, argdict=None, **kwargs):
-+        self.factory = factory
-+        for k, v in argdict.iteritems():
-+                setattr(self, k, v)
-+        self.description = "Running oe-selftest"
-+        self.timeout = 100000
-+        kwargs['timeout']=self.timeout
-+        self.command = "if [ -d meta-selftest ]; then . ./oe-init-build-env; oe-selftest; else echo 'Skipping step - no meta-selftest layer here'; fi"
-+        ShellCommand.__init__(self, **kwargs)
--- 
-1.8.5.3
+May 2-3, 2014
+time TBD
 
+Ettus Research/National Instruments
+4600 Patrick Henry Drive
+Santa Clara, CA 95054 USA
+
+Lunch will be provided on both days.
+
+For more information and to add yourself to the list of attendees, see
+the wiki page at
+http://openembedded.org/wiki/OEDAM
+
+Here are a couple of photos from 2009:
+
+http://www.flickr.com/photos/32615155@N00/sets/72157622653686647/
+
+I'd like to thank Jefro for help with this announcement. Any errors are
+mine though.
+
+Philip, OpenEmbedded eV Chair.
 
