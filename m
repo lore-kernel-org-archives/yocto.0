@@ -1,37 +1,37 @@
 Return-Path: <andrei@gherzan.ro>
-Received: from mail-qg0-f45.google.com (mail-qg0-f45.google.com
-	[209.85.192.45])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 30985E00867
-	for <yocto@yoctoproject.org>; Fri, 21 Feb 2014 02:29:33 -0800 (PST)
-Received: by mail-qg0-f45.google.com with SMTP id j5so7127180qga.4
-	for <yocto@yoctoproject.org>; Fri, 21 Feb 2014 02:29:33 -0800 (PST)
+Received: from mail-qc0-f174.google.com (mail-qc0-f174.google.com
+	[209.85.216.174])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C24B1E00868
+	for <yocto@yoctoproject.org>; Fri, 21 Feb 2014 02:29:35 -0800 (PST)
+Received: by mail-qc0-f174.google.com with SMTP id x13so5541162qcv.33
+	for <yocto@yoctoproject.org>; Fri, 21 Feb 2014 02:29:34 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
 	h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
 	:references;
-	bh=pAuWWAAQ9u6qPx3aiVqePaT/FhWEfC45DMg6GVMiWNQ=;
-	b=PSD2vuza7mWXutiL39YdWexsrdIT8UNGNzifQU7yz2VtxxKtZ+wpvdiGWV47K9YEa6
-	nEIwDkOEa9jIbuiIl1jwfOM/iRrPpZHBPwL3HSpkaTq8o7E/LCeikGtafT0jm4eiotMG
-	iRcXBPyz79LuWji6RSexlHkds7KFU0i8MT3Zckz9JYgdRP7MYMM60qoO6QEoSU3SgqHt
-	Ci0WdsVk+rY9JkoO0O1gKMNI1+8rngduWT4c+LC/eAASRbaCum6CY00PZ4u43WqriM8L
-	Q1T980UiAqbhUbGURDX4LABMfqaylTISI4sdMuJ+WcqD1keUUv0sNAH1bKVODxMwZxe/
-	o0Ow==
-X-Gm-Message-State: ALoCoQlSWT4TQBwe89sA+qUDP0dcnxtF8V4dHKK/sZdE6JoLM5C1EVhgYDi34JdbAVOQ+JN9f5nu
-X-Received: by 10.224.30.16 with SMTP id s16mr8729923qac.74.1392978573085;
-	Fri, 21 Feb 2014 02:29:33 -0800 (PST)
+	bh=Mj+IvP0vMAUDmGzF0v2VGF40Pn2eA4zK59elbjn4kBs=;
+	b=SF7MVeO8KijobYtq+/lvP51VaYrnEz24q8xSsx1M2jJwXRWTG5Fc9vc65VifLJsK9S
+	T0WwqqUzZ3YT/+FjsrrXbjmFS4FJffLoeM37Pqael3Fm6GocZ8PYQrDBs4ODLdyXvyqB
+	xD+dwq7JamcLKF69B3EeNPc/F3OA3Ul1WqRkk7R0XFSKSkDsLsPgHkSlsqSYt+zdcDtL
+	P00IoDoBDhd7Cb/cMs1ZKkGyaGG4UbzizZBNouhCI0DzONvqQ+to4x1zyljWHXeFSX1W
+	5Ecga04X5u8M+6LduVkOFMKkW+LdX/mZADfv8z4pscDokuTywfKbC9bI/5kU1v4NPKHP
+	7ZiQ==
+X-Gm-Message-State: ALoCoQmvEhrbhrGSlAHaRl3a/ePwfTxBzVbzJagNqAkQRCu0qUhOc3GWGsRP9t5pjTbj6bVfBVWX
+X-Received: by 10.224.151.147 with SMTP id c19mr8483759qaw.86.1392978574810;
+	Fri, 21 Feb 2014 02:29:34 -0800 (PST)
 Received: from localhost.localdomain ([89.121.200.106])
 	by mx.google.com with ESMTPSA id
-	k61sm11862511qge.12.2014.02.21.02.29.30 for <multiple recipients>
+	k61sm11862511qge.12.2014.02.21.02.29.33 for <multiple recipients>
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Fri, 21 Feb 2014 02:29:31 -0800 (PST)
+	Fri, 21 Feb 2014 02:29:34 -0800 (PST)
 From: Andrei Gherzan <andrei@gherzan.ro>
 To: yocto@yoctoproject.org
-Date: Fri, 21 Feb 2014 12:29:07 +0200
-Message-Id: <1392978548-31880-6-git-send-email-andrei@gherzan.ro>
+Date: Fri, 21 Feb 2014 12:29:08 +0200
+Message-Id: <1392978548-31880-7-git-send-email-andrei@gherzan.ro>
 X-Mailer: git-send-email 1.8.1.4
 In-Reply-To: <1392978548-31880-1-git-send-email-andrei@gherzan.ro>
 References: <1392978548-31880-1-git-send-email-andrei@gherzan.ro>
-Subject: [meta-raspberrypi][PATCH 6/7] userland: Update to current remote HEAD
+Subject: [meta-raspberrypi][PATCH 7/7] omxplayer: Update to current remote HEAD
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,26 +43,37 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 21 Feb 2014 10:29:34 -0000
+X-List-Received-Date: Fri, 21 Feb 2014 10:29:36 -0000
 
-Change-Id: I635b2f2bff03ca7f091f8d5476afa4681f6bda71
+No need for mktemp-compatible-with-busybox.patch as the issue was
+fixed in current revision.
+
+Change-Id: I1eecd332e8e51dbbf97e25ec6ed133077f137d7b
 Signed-off-by: Andrei Gherzan <andrei@gherzan.ro>
 ---
- recipes-graphics/userland/userland_git.bb | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ recipes-multimedia/omxplayer/omxplayer_git.bb | 5 ++---
+ 1 file changed, 2 insertions(+), 3 deletions(-)
 
-diff --git a/recipes-graphics/userland/userland_git.bb b/recipes-graphics/userland/userland_git.bb
-index cba1709..07c8381 100644
---- a/recipes-graphics/userland/userland_git.bb
-+++ b/recipes-graphics/userland/userland_git.bb
-@@ -11,7 +11,7 @@ PROVIDES = "virtual/libgles2 \
-             virtual/egl"
- COMPATIBLE_MACHINE = "raspberrypi"
+diff --git a/recipes-multimedia/omxplayer/omxplayer_git.bb b/recipes-multimedia/omxplayer/omxplayer_git.bb
+index 33202dc..67af007 100644
+--- a/recipes-multimedia/omxplayer/omxplayer_git.bb
++++ b/recipes-multimedia/omxplayer/omxplayer_git.bb
+@@ -8,14 +8,13 @@ LICENSE = "GPLv2"
+ LIC_FILES_CHKSUM = "file://COPYING;md5=94d55d512a9ba36caa9b7df079bae19f"
  
--SRCREV = "6da40ffd91f2b3c2aa8471195813322ae5d0cb0d"
-+SRCREV = "8181677fc08814cd5fcd1475ab73046f89f8dc80"
- SRC_URI = "git://github.com/raspberrypi/userland.git;protocol=git;branch=master \
-           "
+ DEPENDS = "libpcre libav virtual/egl boost freetype dbus"
+-PR = "r3"
++PR = "r4"
+ 
+-SRCREV = "f666a5dfbec36e2af7cd965558ac8643c86277a6"
++SRCREV = "7af21f596378e5efeceebedff9c4a298e2d06d98"
+ SRC_URI = "git://github.com/popcornmix/omxplayer.git;protocol=git;branch=master \
+            file://0001-Remove-Makefile.include-which-includes-hardcoded.patch \
+            file://0002-Libraries-and-headers-from-ffmpeg-are-installed-in-u.patch \
+            file://0003-Remove-strip-step-in-Makefile.patch \
+-           file://mktemp-compatible-with-busybox.patch \
+            file://fix-tar-command-with-DIST.patch \
+            "
  S = "${WORKDIR}/git"
 -- 
 1.8.1.4
