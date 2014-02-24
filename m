@@ -1,33 +1,29 @@
-Return-Path: <andrei@gherzan.ro>
-Received: from mail-wg0-f44.google.com (mail-wg0-f44.google.com [74.125.82.44])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C863AE00889
-	for <yocto@yoctoproject.org>; Mon, 24 Feb 2014 03:24:12 -0800 (PST)
-Received: by mail-wg0-f44.google.com with SMTP id k14so4468938wgh.11
-	for <yocto@yoctoproject.org>; Mon, 24 Feb 2014 03:24:11 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:content-type;
-	bh=SkmuDrC0ZfPv5OniirAIMHdoDPQuV6wx7JgtJy9Wjko=;
-	b=G9zB2oFNNwKODtB1oohuMJMrtyLWxSyQg/wNHB4olnF3Gckn8IDbslj6eEe17YjfHt
-	I6Uok2ETrl9ZWCbu4OmOeQXVMb9lyGTA+WZfQy9hPBF7gFk6VyDGZZlnpd0mto8D6qIv
-	GIISHHKldHobrnRfLetnmhyww5OzhlG6oGwK27B3ACEr2DSRupzndG6kA94XY61KVyYE
-	TYMf/69blT1h4T/7HEvl94i0X9y9hjgkwLIFCKFAteBHVDV78BGDtFlC8QCmBo4Ah/eB
-	K6V/qSaTeu5x+UD7cgOZkn9YHXccjX3UWzI3h6tI9Bopcpr/YvHHVPHxzuy/+drQfLr1
-	XPEA==
-X-Gm-Message-State: ALoCoQmRxM0jqQrPaDWzAKjtF9pRDp/NYg3lty25M+lgrE9neK3J5PQd38KwUIjgy8sscButfOdb
-X-Received: by 10.194.192.233 with SMTP id hj9mr18569521wjc.78.1393241050738; 
-	Mon, 24 Feb 2014 03:24:10 -0800 (PST)
+Return-Path: <munoz0raul@gmail.com>
+Received: from mail-vc0-f182.google.com (mail-vc0-f182.google.com
+	[209.85.220.182])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B2495E008B1;
+	Mon, 24 Feb 2014 05:34:49 -0800 (PST)
+Received: by mail-vc0-f182.google.com with SMTP id id10so5715786vcb.41
+	for <multiple recipients>; Mon, 24 Feb 2014 05:34:49 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=0D43QonAiYn6GmubQ0c+pLO5OKr4dtneeCgyOcJF3Gw=;
+	b=h7gFZkRYNYNt2AgOPst54HAIeptjy7N/xxFpvXLE+1QZVIgdxjLE/WGMx4Nw83bf5Y
+	8Q7Jr9UksNrW4ZTIpMhEECO9RVgHbYhJJB5tWt+g0tZHr3Nj3BxmG0NbiZh/S1ycX328
+	AEGCsL6osJOUXKoEPFPxX8hpi6ZDvHbn+fctGacixFtA7KjuId1BNDKfteHH6UiwLT39
+	nlxpRJLo05LnlRs4Gh05ecZViBf9cWGiZU9bm/iqXc5ybVq5hOQlg/z316s05WyzvmKb
+	hp3/bE4bQyeX5MpRpUMD3OcNE/zrLU9eZziipJN+DqmruIuoUlA02lwA8/dE5QRSIBOq
+	vk/Q==
 MIME-Version: 1.0
-Received: by 10.216.31.129 with HTTP; Mon, 24 Feb 2014 03:23:50 -0800 (PST)
-X-Originating-IP: [89.121.200.106]
-In-Reply-To: <1393240811-6739-1-git-send-email-andrei@gherzan.ro>
-References: <1393240811-6739-1-git-send-email-andrei@gherzan.ro>
-From: Andrei Gherzan <andrei@gherzan.ro>
-Date: Mon, 24 Feb 2014 13:23:50 +0200
-Message-ID: <CAK18fxHFF-ogn4S+ZcKsObNYxFf9qc+mYBAz8n=AhHJSM7sWTg@mail.gmail.com>
-To: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: [meta-raspberrypi][PATCH v2 1/1] omxplayer: Update to current remote HEAD
+X-Received: by 10.221.37.1 with SMTP id tc1mr12669777vcb.32.1393248888888;
+	Mon, 24 Feb 2014 05:34:48 -0800 (PST)
+Received: by 10.221.68.131 with HTTP; Mon, 24 Feb 2014 05:34:48 -0800 (PST)
+Date: Mon, 24 Feb 2014 10:34:48 -0300
+Message-ID: <CANmVirgMuSXcSmHYSaEGazQX=oJTyJQEmrRKGZHE9tprkeM_yw@mail.gmail.com>
+From: Raul Rosetto Munoz <munoz0raul@gmail.com>
+To: "meta-ti@yoctoproject.org" <meta-ti@yoctoproject.org>, 
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Device Tree Overlays
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,128 +35,437 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 24 Feb 2014 11:24:15 -0000
-Content-Type: multipart/alternative; boundary=047d7bb70b2eea87eb04f325356c
+X-List-Received-Date: Mon, 24 Feb 2014 13:34:51 -0000
+Content-Type: multipart/alternative; boundary=001a11334c381b229104f32709a5
 
---047d7bb70b2eea87eb04f325356c
+--001a11334c381b229104f32709a5
 Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
 
-On Mon, Feb 24, 2014 at 1:20 PM, Andrei Gherzan <andrei@gherzan.ro> wrote:
+Hello All,
 
-> No need for mktemp-compatible-with-busybox.patch as the issue was
-> fixed in current revision.
-> omxplayer startup bash script needs pgrep so add procps to RDEPENDS.
->
-> Change-Id: I1eecd332e8e51dbbf97e25ec6ed133077f137d7b
-> Signed-off-by: Andrei Gherzan <andrei@gherzan.ro>
-> ---
->  recipes-multimedia/omxplayer/omxplayer_git.bb | 5 ++---
->  1 file changed, 2 insertions(+), 3 deletions(-)
->
-> diff --git a/recipes-multimedia/omxplayer/omxplayer_git.bbb/recipes-multimedia/omxplayer/
-> omxplayer_git.bb
-> index 33202dc..526dc86 100644
-> --- a/recipes-multimedia/omxplayer/omxplayer_git.bb
-> +++ b/recipes-multimedia/omxplayer/omxplayer_git.bb
-> @@ -10,12 +10,11 @@ LIC_FILES_CHKSUM =
-> "file://COPYING;md5=94d55d512a9ba36caa9b7df079bae19f"
->  DEPENDS = "libpcre libav virtual/egl boost freetype dbus"
->  PR = "r3"
->
-> -SRCREV = "f666a5dfbec36e2af7cd965558ac8643c86277a6"
-> +SRCREV = "7af21f596378e5efeceebedff9c4a298e2d06d98"
->  SRC_URI = "git://
-> github.com/popcornmix/omxplayer.git;protocol=git;branch=master \
->
-> file://0001-Remove-Makefile.include-which-includes-hardcoded.patch \
->
-> file://0002-Libraries-and-headers-from-ffmpeg-are-installed-in-u.patch \
->             file://0003-Remove-strip-step-in-Makefile.patch \
-> -           file://mktemp-compatible-with-busybox.patch \
->             file://fix-tar-command-with-DIST.patch \
->             "
->  S = "${WORKDIR}/git"
-> @@ -68,4 +67,4 @@ FILES_${PN} = "${bindir}/omxplayer* \
->
->  FILES_${PN}-dev += "${libdir}/omxplayer/*.so"
->
-> -RDEPENDS_${PN} += "bash"
-> +RDEPENDS_${PN} += "bash procps"
-> --
-> 1.8.1.4
->
->
-This updated patch along with the patches from last series were merged.
+I just compile a Yocto linux for BeagleBone Black using dora branch.
 
--- 
-*ag*
+I would like to use device tree overlay to change the pin mux.
 
---047d7bb70b2eea87eb04f325356c
+But I think that this linux not enable this feature.
+
+I couldnt see this folders:
+
+root@beaglebone:/lib/firmware# export
+SLOTS=3D/sys/devices/bone_capemgr.9/slots
+
+1
+2
+3
+4
+5
+6
+7
+root@beaglebone:~/temp# cat $SLOTS
+0: 54:PF---
+1: 55:PF---
+2: 56:PF---
+3: 57:PF---
+4: ff:P-O-L Bone-LT-eMMC-2G,00A0,Texas Instrument,BB-BONE-EMMC-2G
+5: ff:P-O-L Bone-Black-HDMI,00A0,Texas Instrument,BB-BONELT-HDMI
+
+Plz some one can tell me what I need to do to use this feature?
+
+Is some thing possible using yocto?
+
+Thanks.
+--=20
+*Raul Rosetto Mu=F1oz*
+
+--001a11334c381b229104f32709a5
 Content-Type: text/html; charset=ISO-8859-1
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><br><div class=3D"gmail_extra"><br><br><div class=3D"gmail=
-_quote">On Mon, Feb 24, 2014 at 1:20 PM, Andrei Gherzan <span dir=3D"ltr">&=
-lt;<a href=3D"mailto:andrei@gherzan.ro" target=3D"_blank">andrei@gherzan.ro=
-</a>&gt;</span> wrote:<br>
+<div dir=3D"ltr"><div><div>Hello All,</div><div><br></div><div>I just compi=
+le a Yocto linux for BeagleBone Black using dora branch.</div><div><br></di=
+v><div>I would like to use device tree overlay to change the pin mux.</div>
+<div><br></div><div>But I think that this linux not enable this feature.</d=
+iv><div><br></div><div>I couldnt see this folders:</div><div><br></div><div=
+><div>root@beaglebone:/lib/firmware# export SLOTS=3D/sys/devices/bone_capem=
+gr.9/slots</div>
+</div><div><br></div><div><table class=3D"" style=3D"font-size:12px;margin-=
+left:0px;font-family:Monaco,MonacoRegular,&#39;Courier New&#39;,monospace;b=
+ackground-color:rgb(253,253,253);color:rgb(116,116,116);line-height:15px;bo=
+rder-collapse:collapse!important;border-spacing:0px!important;border:none!i=
+mportant;padding:0px!important;margin-right:0px!important;margin-bottom:0px=
+!important;margin-top:0px!important;background-image:none!important;width:a=
+uto!important">
+<tbody><tr class=3D"" style=3D"padding:0px!important;border:none!important;=
+vertical-align:top!important;margin:0px!important"><td class=3D"" style=3D"=
+border-bottom-width:0px;border-top-width:0px;border-left-width:0px;font-fam=
+ily:Monaco,MonacoRegular,&#39;Courier New&#39;,monospace!important;vertical=
+-align:top!important;padding:0px!important;background-color:rgb(238,238,238=
+)!important;border-right-style:solid!important;border-right-width:1px!impor=
+tant;border-right-color:rgb(0,128,0)!important;color:rgb(0,0,0)!important">
+<div class=3D"" style=3D"border:0px;padding:0px;margin:0px"><div class=3D""=
+ style=3D"font-family:inherit;border:0px;padding:0px 5px;margin:0px;text-al=
+ign:center;font-size:inherit!important;line-height:inherit!important;font-w=
+eight:inherit!important;height:inherit!important">
+1</div><div class=3D"" style=3D"font-family:inherit;border:0px;padding:0px =
+5px;margin:0px;text-align:center;font-size:inherit!important;line-height:in=
+herit!important;font-weight:inherit!important;height:inherit!important">2</=
+div>
+<div class=3D"" style=3D"font-family:inherit;border:0px;padding:0px 5px;mar=
+gin:0px;text-align:center;font-size:inherit!important;line-height:inherit!i=
+mportant;font-weight:inherit!important;height:inherit!important">3</div><di=
+v class=3D"" style=3D"font-family:inherit;border:0px;padding:0px 5px;margin=
+:0px;text-align:center;font-size:inherit!important;line-height:inherit!impo=
+rtant;font-weight:inherit!important;height:inherit!important">
+4</div><div class=3D"" style=3D"font-family:inherit;border:0px;padding:0px =
+5px;margin:0px;text-align:center;font-size:inherit!important;line-height:in=
+herit!important;font-weight:inherit!important;height:inherit!important">5</=
+div>
+<div class=3D"" style=3D"font-family:inherit;border:0px;padding:0px 5px;mar=
+gin:0px;text-align:center;font-size:inherit!important;line-height:inherit!i=
+mportant;font-weight:inherit!important;height:inherit!important">6</div><di=
+v class=3D"" style=3D"font-family:inherit;border:0px;padding:0px 5px;margin=
+:0px;text-align:center;font-size:inherit!important;line-height:inherit!impo=
+rtant;font-weight:inherit!important;height:inherit!important">
+7</div></div></td><td class=3D"" style=3D"border:0px;width:649px;font-famil=
+y:Monaco,MonacoRegular,&#39;Courier New&#39;,monospace!important;vertical-a=
+lign:top!important;padding:0px!important"><div class=3D"" style=3D"padding:=
+0px;margin:0px;color:rgb(0,0,0);white-space:pre;overflow:visible;background=
+-image:none!important;border:none!important">
+<div class=3D"" id=3D"crayon-530b48709bf76604528014-1" style=3D"font-family=
+:inherit;border:0px;padding:0px 5px;margin:0px;font-size:inherit!important;=
+line-height:inherit!important;font-weight:inherit!important;height:inherit!=
+important">
+<span class=3D"" style=3D"font-family:inherit;display:inline-block;zoom:1;f=
+ont-size:inherit!important;line-height:inherit!important;font-weight:inheri=
+t!important;height:inherit!important">root</span><span class=3D"" style=3D"=
+font-family:inherit;display:inline-block;zoom:1;font-size:inherit!important=
+;line-height:inherit!important;font-weight:inherit!important;height:inherit=
+!important">@</span><span class=3D"" style=3D"font-family:inherit;display:i=
+nline-block;zoom:1;font-size:inherit!important;line-height:inherit!importan=
+t;font-weight:inherit!important;height:inherit!important">beaglebone</span>=
+<span class=3D"" style=3D"font-family:inherit;display:inline-block;zoom:1;f=
+ont-size:inherit!important;line-height:inherit!important;font-weight:inheri=
+t!important;height:inherit!important">:</span><span class=3D"" style=3D"fon=
+t-family:inherit;display:inline-block;zoom:1;font-size:inherit!important;li=
+ne-height:inherit!important;font-weight:inherit!important;height:inherit!im=
+portant">~</span><span class=3D"" style=3D"font-family:inherit;display:inli=
+ne-block;zoom:1;font-size:inherit!important;line-height:inherit!important;f=
+ont-weight:inherit!important;height:inherit!important">/</span><span class=
+=3D"" style=3D"font-family:inherit;display:inline-block;zoom:1;font-size:in=
+herit!important;line-height:inherit!important;font-weight:inherit!important=
+;height:inherit!important">temp</span><span class=3D"" style=3D"font-family=
+:inherit;display:inline-block;zoom:1;font-size:inherit!important;line-heigh=
+t:inherit!important;font-weight:inherit!important;height:inherit!important"=
+># cat $SLOTS</span></div>
+<div class=3D"" id=3D"crayon-530b48709bf76604528014-2" style=3D"font-family=
+:inherit;border:0px;padding:0px 5px;margin:0px;background-color:rgb(247,247=
+,247)!important;font-size:inherit!important;line-height:inherit!important;f=
+ont-weight:inherit!important;height:inherit!important">
+<span class=3D"" style=3D"font-family:inherit;display:inline-block;zoom:1;f=
+ont-size:inherit!important;line-height:inherit!important;font-weight:inheri=
+t!important;height:inherit!important;color:rgb(0,111,224)!important"> </spa=
+n><span class=3D"" style=3D"font-family:inherit;display:inline-block;zoom:1=
+;font-size:inherit!important;line-height:inherit!important;font-weight:inhe=
+rit!important;height:inherit!important;color:rgb(8,40,251)!important">0</sp=
+an><span class=3D"" style=3D"font-family:inherit;display:inline-block;zoom:=
+1;font-size:inherit!important;line-height:inherit!important;font-weight:inh=
+erit!important;height:inherit!important">:</span><span class=3D"" style=3D"=
+font-family:inherit;display:inline-block;zoom:1;font-size:inherit!important=
+;line-height:inherit!important;font-weight:inherit!important;height:inherit=
+!important;color:rgb(0,111,224)!important"> </span><span class=3D"" style=
+=3D"font-family:inherit;display:inline-block;zoom:1;font-size:inherit!impor=
+tant;line-height:inherit!important;font-weight:inherit!important;height:inh=
+erit!important;color:rgb(8,40,251)!important">54</span><span class=3D"" sty=
+le=3D"font-family:inherit;display:inline-block;zoom:1;font-size:inherit!imp=
+ortant;line-height:inherit!important;font-weight:inherit!important;height:i=
+nherit!important">:</span><span class=3D"" style=3D"font-family:inherit;dis=
+play:inline-block;zoom:1;font-size:inherit!important;line-height:inherit!im=
+portant;font-weight:inherit!important;height:inherit!important">PF</span><s=
+pan class=3D"" style=3D"font-family:inherit;display:inline-block;zoom:1;fon=
+t-size:inherit!important;line-height:inherit!important;font-weight:inherit!=
+important;height:inherit!important">--</span><span class=3D"" style=3D"font=
+-family:inherit;display:inline-block;zoom:1;font-size:inherit!important;lin=
+e-height:inherit!important;font-weight:inherit!important;height:inherit!imp=
+ortant">-</span><span class=3D"" style=3D"font-family:inherit;display:inlin=
+e-block;zoom:1;font-size:inherit!important;line-height:inherit!important;fo=
+nt-weight:inherit!important;height:inherit!important;color:rgb(0,111,224)!i=
+mportant"> </span></div>
+<div class=3D"" id=3D"crayon-530b48709bf76604528014-3" style=3D"font-family=
+:inherit;border:0px;padding:0px 5px;margin:0px;font-size:inherit!important;=
+line-height:inherit!important;font-weight:inherit!important;height:inherit!=
+important">
+<span class=3D"" style=3D"font-family:inherit;display:inline-block;zoom:1;f=
+ont-size:inherit!important;line-height:inherit!important;font-weight:inheri=
+t!important;height:inherit!important;color:rgb(0,111,224)!important"> </spa=
+n><span class=3D"" style=3D"font-family:inherit;display:inline-block;zoom:1=
+;font-size:inherit!important;line-height:inherit!important;font-weight:inhe=
+rit!important;height:inherit!important;color:rgb(8,40,251)!important">1</sp=
+an><span class=3D"" style=3D"font-family:inherit;display:inline-block;zoom:=
+1;font-size:inherit!important;line-height:inherit!important;font-weight:inh=
+erit!important;height:inherit!important">:</span><span class=3D"" style=3D"=
+font-family:inherit;display:inline-block;zoom:1;font-size:inherit!important=
+;line-height:inherit!important;font-weight:inherit!important;height:inherit=
+!important;color:rgb(0,111,224)!important"> </span><span class=3D"" style=
+=3D"font-family:inherit;display:inline-block;zoom:1;font-size:inherit!impor=
+tant;line-height:inherit!important;font-weight:inherit!important;height:inh=
+erit!important;color:rgb(8,40,251)!important">55</span><span class=3D"" sty=
+le=3D"font-family:inherit;display:inline-block;zoom:1;font-size:inherit!imp=
+ortant;line-height:inherit!important;font-weight:inherit!important;height:i=
+nherit!important">:</span><span class=3D"" style=3D"font-family:inherit;dis=
+play:inline-block;zoom:1;font-size:inherit!important;line-height:inherit!im=
+portant;font-weight:inherit!important;height:inherit!important">PF</span><s=
+pan class=3D"" style=3D"font-family:inherit;display:inline-block;zoom:1;fon=
+t-size:inherit!important;line-height:inherit!important;font-weight:inherit!=
+important;height:inherit!important">--</span><span class=3D"" style=3D"font=
+-family:inherit;display:inline-block;zoom:1;font-size:inherit!important;lin=
+e-height:inherit!important;font-weight:inherit!important;height:inherit!imp=
+ortant">-</span><span class=3D"" style=3D"font-family:inherit;display:inlin=
+e-block;zoom:1;font-size:inherit!important;line-height:inherit!important;fo=
+nt-weight:inherit!important;height:inherit!important;color:rgb(0,111,224)!i=
+mportant"> </span></div>
+<div class=3D"" id=3D"crayon-530b48709bf76604528014-4" style=3D"font-family=
+:inherit;border:0px;padding:0px 5px;margin:0px;background-color:rgb(247,247=
+,247)!important;font-size:inherit!important;line-height:inherit!important;f=
+ont-weight:inherit!important;height:inherit!important">
+<span class=3D"" style=3D"font-family:inherit;display:inline-block;zoom:1;f=
+ont-size:inherit!important;line-height:inherit!important;font-weight:inheri=
+t!important;height:inherit!important;color:rgb(0,111,224)!important"> </spa=
+n><span class=3D"" style=3D"font-family:inherit;display:inline-block;zoom:1=
+;font-size:inherit!important;line-height:inherit!important;font-weight:inhe=
+rit!important;height:inherit!important;color:rgb(8,40,251)!important">2</sp=
+an><span class=3D"" style=3D"font-family:inherit;display:inline-block;zoom:=
+1;font-size:inherit!important;line-height:inherit!important;font-weight:inh=
+erit!important;height:inherit!important">:</span><span class=3D"" style=3D"=
+font-family:inherit;display:inline-block;zoom:1;font-size:inherit!important=
+;line-height:inherit!important;font-weight:inherit!important;height:inherit=
+!important;color:rgb(0,111,224)!important"> </span><span class=3D"" style=
+=3D"font-family:inherit;display:inline-block;zoom:1;font-size:inherit!impor=
+tant;line-height:inherit!important;font-weight:inherit!important;height:inh=
+erit!important;color:rgb(8,40,251)!important">56</span><span class=3D"" sty=
+le=3D"font-family:inherit;display:inline-block;zoom:1;font-size:inherit!imp=
+ortant;line-height:inherit!important;font-weight:inherit!important;height:i=
+nherit!important">:</span><span class=3D"" style=3D"font-family:inherit;dis=
+play:inline-block;zoom:1;font-size:inherit!important;line-height:inherit!im=
+portant;font-weight:inherit!important;height:inherit!important">PF</span><s=
+pan class=3D"" style=3D"font-family:inherit;display:inline-block;zoom:1;fon=
+t-size:inherit!important;line-height:inherit!important;font-weight:inherit!=
+important;height:inherit!important">--</span><span class=3D"" style=3D"font=
+-family:inherit;display:inline-block;zoom:1;font-size:inherit!important;lin=
+e-height:inherit!important;font-weight:inherit!important;height:inherit!imp=
+ortant">-</span><span class=3D"" style=3D"font-family:inherit;display:inlin=
+e-block;zoom:1;font-size:inherit!important;line-height:inherit!important;fo=
+nt-weight:inherit!important;height:inherit!important;color:rgb(0,111,224)!i=
+mportant"> </span></div>
+<div class=3D"" id=3D"crayon-530b48709bf76604528014-5" style=3D"font-family=
+:inherit;border:0px;padding:0px 5px;margin:0px;font-size:inherit!important;=
+line-height:inherit!important;font-weight:inherit!important;height:inherit!=
+important">
+<span class=3D"" style=3D"font-family:inherit;display:inline-block;zoom:1;f=
+ont-size:inherit!important;line-height:inherit!important;font-weight:inheri=
+t!important;height:inherit!important;color:rgb(0,111,224)!important"> </spa=
+n><span class=3D"" style=3D"font-family:inherit;display:inline-block;zoom:1=
+;font-size:inherit!important;line-height:inherit!important;font-weight:inhe=
+rit!important;height:inherit!important;color:rgb(8,40,251)!important">3</sp=
+an><span class=3D"" style=3D"font-family:inherit;display:inline-block;zoom:=
+1;font-size:inherit!important;line-height:inherit!important;font-weight:inh=
+erit!important;height:inherit!important">:</span><span class=3D"" style=3D"=
+font-family:inherit;display:inline-block;zoom:1;font-size:inherit!important=
+;line-height:inherit!important;font-weight:inherit!important;height:inherit=
+!important;color:rgb(0,111,224)!important"> </span><span class=3D"" style=
+=3D"font-family:inherit;display:inline-block;zoom:1;font-size:inherit!impor=
+tant;line-height:inherit!important;font-weight:inherit!important;height:inh=
+erit!important;color:rgb(8,40,251)!important">57</span><span class=3D"" sty=
+le=3D"font-family:inherit;display:inline-block;zoom:1;font-size:inherit!imp=
+ortant;line-height:inherit!important;font-weight:inherit!important;height:i=
+nherit!important">:</span><span class=3D"" style=3D"font-family:inherit;dis=
+play:inline-block;zoom:1;font-size:inherit!important;line-height:inherit!im=
+portant;font-weight:inherit!important;height:inherit!important">PF</span><s=
+pan class=3D"" style=3D"font-family:inherit;display:inline-block;zoom:1;fon=
+t-size:inherit!important;line-height:inherit!important;font-weight:inherit!=
+important;height:inherit!important">--</span><span class=3D"" style=3D"font=
+-family:inherit;display:inline-block;zoom:1;font-size:inherit!important;lin=
+e-height:inherit!important;font-weight:inherit!important;height:inherit!imp=
+ortant">-</span><span class=3D"" style=3D"font-family:inherit;display:inlin=
+e-block;zoom:1;font-size:inherit!important;line-height:inherit!important;fo=
+nt-weight:inherit!important;height:inherit!important;color:rgb(0,111,224)!i=
+mportant"> </span></div>
+<div class=3D"" id=3D"crayon-530b48709bf76604528014-6" style=3D"font-family=
+:inherit;border:0px;padding:0px 5px;margin:0px;background-color:rgb(247,247=
+,247)!important;font-size:inherit!important;line-height:inherit!important;f=
+ont-weight:inherit!important;height:inherit!important">
+<span class=3D"" style=3D"font-family:inherit;display:inline-block;zoom:1;f=
+ont-size:inherit!important;line-height:inherit!important;font-weight:inheri=
+t!important;height:inherit!important;color:rgb(0,111,224)!important"> </spa=
+n><span class=3D"" style=3D"font-family:inherit;display:inline-block;zoom:1=
+;font-size:inherit!important;line-height:inherit!important;font-weight:inhe=
+rit!important;height:inherit!important;color:rgb(8,40,251)!important">4</sp=
+an><span class=3D"" style=3D"font-family:inherit;display:inline-block;zoom:=
+1;font-size:inherit!important;line-height:inherit!important;font-weight:inh=
+erit!important;height:inherit!important">:</span><span class=3D"" style=3D"=
+font-family:inherit;display:inline-block;zoom:1;font-size:inherit!important=
+;line-height:inherit!important;font-weight:inherit!important;height:inherit=
+!important;color:rgb(0,111,224)!important"> </span><span class=3D"" style=
+=3D"font-family:inherit;display:inline-block;zoom:1;font-size:inherit!impor=
+tant;line-height:inherit!important;font-weight:inherit!important;height:inh=
+erit!important">ff</span><span class=3D"" style=3D"font-family:inherit;disp=
+lay:inline-block;zoom:1;font-size:inherit!important;line-height:inherit!imp=
+ortant;font-weight:inherit!important;height:inherit!important">:</span><spa=
+n class=3D"" style=3D"font-family:inherit;display:inline-block;zoom:1;font-=
+size:inherit!important;line-height:inherit!important;font-weight:inherit!im=
+portant;height:inherit!important">P</span><span class=3D"" style=3D"font-fa=
+mily:inherit;display:inline-block;zoom:1;font-size:inherit!important;line-h=
+eight:inherit!important;font-weight:inherit!important;height:inherit!import=
+ant">-</span><span class=3D"" style=3D"font-family:inherit;display:inline-b=
+lock;zoom:1;font-size:inherit!important;line-height:inherit!important;font-=
+weight:inherit!important;height:inherit!important">O</span><span class=3D""=
+ style=3D"font-family:inherit;display:inline-block;zoom:1;font-size:inherit=
+!important;line-height:inherit!important;font-weight:inherit!important;heig=
+ht:inherit!important">-</span><span class=3D"" style=3D"font-family:inherit=
+;display:inline-block;zoom:1;font-size:inherit!important;line-height:inheri=
+t!important;font-weight:inherit!important;height:inherit!important">L</span=
+><span class=3D"" style=3D"font-family:inherit;display:inline-block;zoom:1;=
+font-size:inherit!important;line-height:inherit!important;font-weight:inher=
+it!important;height:inherit!important;color:rgb(0,111,224)!important"> </sp=
+an><span class=3D"" style=3D"font-family:inherit;display:inline-block;zoom:=
+1;font-size:inherit!important;line-height:inherit!important;font-weight:inh=
+erit!important;height:inherit!important">Bone</span><span class=3D"" style=
+=3D"font-family:inherit;display:inline-block;zoom:1;font-size:inherit!impor=
+tant;line-height:inherit!important;font-weight:inherit!important;height:inh=
+erit!important">-</span><span class=3D"" style=3D"font-family:inherit;displ=
+ay:inline-block;zoom:1;font-size:inherit!important;line-height:inherit!impo=
+rtant;font-weight:inherit!important;height:inherit!important">LT</span><spa=
+n class=3D"" style=3D"font-family:inherit;display:inline-block;zoom:1;font-=
+size:inherit!important;line-height:inherit!important;font-weight:inherit!im=
+portant;height:inherit!important">-</span><span class=3D"" style=3D"font-fa=
+mily:inherit;display:inline-block;zoom:1;font-size:inherit!important;line-h=
+eight:inherit!important;font-weight:inherit!important;height:inherit!import=
+ant">eMMC</span><span class=3D"" style=3D"font-family:inherit;display:inlin=
+e-block;zoom:1;font-size:inherit!important;line-height:inherit!important;fo=
+nt-weight:inherit!important;height:inherit!important">-</span><span class=
+=3D"" style=3D"font-family:inherit;display:inline-block;zoom:1;font-size:in=
+herit!important;line-height:inherit!important;font-weight:inherit!important=
+;height:inherit!important;color:rgb(8,40,251)!important">2G</span><span cla=
+ss=3D"" style=3D"font-family:inherit;display:inline-block;zoom:1;font-size:=
+inherit!important;line-height:inherit!important;font-weight:inherit!importa=
+nt;height:inherit!important">,</span><span class=3D"" style=3D"font-family:=
+inherit;display:inline-block;zoom:1;font-size:inherit!important;line-height=
+:inherit!important;font-weight:inherit!important;height:inherit!important;c=
+olor:rgb(8,40,251)!important">00A0</span><span class=3D"" style=3D"font-fam=
+ily:inherit;display:inline-block;zoom:1;font-size:inherit!important;line-he=
+ight:inherit!important;font-weight:inherit!important;height:inherit!importa=
+nt">,</span><span class=3D"" style=3D"font-family:inherit;display:inline-bl=
+ock;zoom:1;font-size:inherit!important;line-height:inherit!important;font-w=
+eight:inherit!important;height:inherit!important">Texas </span><span class=
+=3D"" style=3D"font-family:inherit;display:inline-block;zoom:1;font-size:in=
+herit!important;line-height:inherit!important;font-weight:inherit!important=
+;height:inherit!important">Instrument</span><span class=3D"" style=3D"font-=
+family:inherit;display:inline-block;zoom:1;font-size:inherit!important;line=
+-height:inherit!important;font-weight:inherit!important;height:inherit!impo=
+rtant">,</span><span class=3D"" style=3D"font-family:inherit;display:inline=
+-block;zoom:1;font-size:inherit!important;line-height:inherit!important;fon=
+t-weight:inherit!important;height:inherit!important">BB</span><span class=
+=3D"" style=3D"font-family:inherit;display:inline-block;zoom:1;font-size:in=
+herit!important;line-height:inherit!important;font-weight:inherit!important=
+;height:inherit!important">-</span><span class=3D"" style=3D"font-family:in=
+herit;display:inline-block;zoom:1;font-size:inherit!important;line-height:i=
+nherit!important;font-weight:inherit!important;height:inherit!important">BO=
+NE</span><span class=3D"" style=3D"font-family:inherit;display:inline-block=
+;zoom:1;font-size:inherit!important;line-height:inherit!important;font-weig=
+ht:inherit!important;height:inherit!important">-</span><span class=3D"" sty=
+le=3D"font-family:inherit;display:inline-block;zoom:1;font-size:inherit!imp=
+ortant;line-height:inherit!important;font-weight:inherit!important;height:i=
+nherit!important">EMMC</span><span class=3D"" style=3D"font-family:inherit;=
+display:inline-block;zoom:1;font-size:inherit!important;line-height:inherit=
+!important;font-weight:inherit!important;height:inherit!important">-</span>=
+<span class=3D"" style=3D"font-family:inherit;display:inline-block;zoom:1;f=
+ont-size:inherit!important;line-height:inherit!important;font-weight:inheri=
+t!important;height:inherit!important;color:rgb(8,40,251)!important">2G</spa=
+n></div>
+<div class=3D"" id=3D"crayon-530b48709bf76604528014-7" style=3D"font-family=
+:inherit;border:0px;padding:0px 5px;margin:0px;font-size:inherit!important;=
+line-height:inherit!important;font-weight:inherit!important;height:inherit!=
+important">
+<span class=3D"" style=3D"font-family:inherit;display:inline-block;zoom:1;f=
+ont-size:inherit!important;line-height:inherit!important;font-weight:inheri=
+t!important;height:inherit!important;color:rgb(0,111,224)!important"> </spa=
+n><span class=3D"" style=3D"font-family:inherit;display:inline-block;zoom:1=
+;font-size:inherit!important;line-height:inherit!important;font-weight:inhe=
+rit!important;height:inherit!important;color:rgb(8,40,251)!important">5</sp=
+an><span class=3D"" style=3D"font-family:inherit;display:inline-block;zoom:=
+1;font-size:inherit!important;line-height:inherit!important;font-weight:inh=
+erit!important;height:inherit!important">:</span><span class=3D"" style=3D"=
+font-family:inherit;display:inline-block;zoom:1;font-size:inherit!important=
+;line-height:inherit!important;font-weight:inherit!important;height:inherit=
+!important;color:rgb(0,111,224)!important"> </span><span class=3D"" style=
+=3D"font-family:inherit;display:inline-block;zoom:1;font-size:inherit!impor=
+tant;line-height:inherit!important;font-weight:inherit!important;height:inh=
+erit!important">ff</span><span class=3D"" style=3D"font-family:inherit;disp=
+lay:inline-block;zoom:1;font-size:inherit!important;line-height:inherit!imp=
+ortant;font-weight:inherit!important;height:inherit!important">:</span><spa=
+n class=3D"" style=3D"font-family:inherit;display:inline-block;zoom:1;font-=
+size:inherit!important;line-height:inherit!important;font-weight:inherit!im=
+portant;height:inherit!important">P</span><span class=3D"" style=3D"font-fa=
+mily:inherit;display:inline-block;zoom:1;font-size:inherit!important;line-h=
+eight:inherit!important;font-weight:inherit!important;height:inherit!import=
+ant">-</span><span class=3D"" style=3D"font-family:inherit;display:inline-b=
+lock;zoom:1;font-size:inherit!important;line-height:inherit!important;font-=
+weight:inherit!important;height:inherit!important">O</span><span class=3D""=
+ style=3D"font-family:inherit;display:inline-block;zoom:1;font-size:inherit=
+!important;line-height:inherit!important;font-weight:inherit!important;heig=
+ht:inherit!important">-</span><span class=3D"" style=3D"font-family:inherit=
+;display:inline-block;zoom:1;font-size:inherit!important;line-height:inheri=
+t!important;font-weight:inherit!important;height:inherit!important">L</span=
+><span class=3D"" style=3D"font-family:inherit;display:inline-block;zoom:1;=
+font-size:inherit!important;line-height:inherit!important;font-weight:inher=
+it!important;height:inherit!important;color:rgb(0,111,224)!important"> </sp=
+an><span class=3D"" style=3D"font-family:inherit;display:inline-block;zoom:=
+1;font-size:inherit!important;line-height:inherit!important;font-weight:inh=
+erit!important;height:inherit!important">Bone</span><span class=3D"" style=
+=3D"font-family:inherit;display:inline-block;zoom:1;font-size:inherit!impor=
+tant;line-height:inherit!important;font-weight:inherit!important;height:inh=
+erit!important">-</span><span class=3D"" style=3D"font-family:inherit;displ=
+ay:inline-block;zoom:1;font-size:inherit!important;line-height:inherit!impo=
+rtant;font-weight:inherit!important;height:inherit!important">Black</span><=
+span class=3D"" style=3D"font-family:inherit;display:inline-block;zoom:1;fo=
+nt-size:inherit!important;line-height:inherit!important;font-weight:inherit=
+!important;height:inherit!important">-</span><span class=3D"" style=3D"font=
+-family:inherit;display:inline-block;zoom:1;font-size:inherit!important;lin=
+e-height:inherit!important;font-weight:inherit!important;height:inherit!imp=
+ortant">HDMI</span><span class=3D"" style=3D"font-family:inherit;display:in=
+line-block;zoom:1;font-size:inherit!important;line-height:inherit!important=
+;font-weight:inherit!important;height:inherit!important">,</span><span clas=
+s=3D"" style=3D"font-family:inherit;display:inline-block;zoom:1;font-size:i=
+nherit!important;line-height:inherit!important;font-weight:inherit!importan=
+t;height:inherit!important;color:rgb(8,40,251)!important">00A0</span><span =
+class=3D"" style=3D"font-family:inherit;display:inline-block;zoom:1;font-si=
+ze:inherit!important;line-height:inherit!important;font-weight:inherit!impo=
+rtant;height:inherit!important">,</span><span class=3D"" style=3D"font-fami=
+ly:inherit;display:inline-block;zoom:1;font-size:inherit!important;line-hei=
+ght:inherit!important;font-weight:inherit!important;height:inherit!importan=
+t">Texas </span><span class=3D"" style=3D"font-family:inherit;display:inlin=
+e-block;zoom:1;font-size:inherit!important;line-height:inherit!important;fo=
+nt-weight:inherit!important;height:inherit!important">Instrument</span><spa=
+n class=3D"" style=3D"font-family:inherit;display:inline-block;zoom:1;font-=
+size:inherit!important;line-height:inherit!important;font-weight:inherit!im=
+portant;height:inherit!important">,</span><span class=3D"" style=3D"font-fa=
+mily:inherit;display:inline-block;zoom:1;font-size:inherit!important;line-h=
+eight:inherit!important;font-weight:inherit!important;height:inherit!import=
+ant">BB</span><span class=3D"" style=3D"font-family:inherit;display:inline-=
+block;zoom:1;font-size:inherit!important;line-height:inherit!important;font=
+-weight:inherit!important;height:inherit!important">-</span><span class=3D"=
+" style=3D"font-family:inherit;display:inline-block;zoom:1;font-size:inheri=
+t!important;line-height:inherit!important;font-weight:inherit!important;hei=
+ght:inherit!important">BONELT</span><span class=3D"" style=3D"font-family:i=
+nherit;display:inline-block;zoom:1;font-size:inherit!important;line-height:=
+inherit!important;font-weight:inherit!important;height:inherit!important">-=
+</span><span class=3D"" style=3D"font-family:inherit;display:inline-block;z=
+oom:1;font-size:inherit!important;line-height:inherit!important;font-weight=
+:inherit!important;height:inherit!important">HDMI</span></div>
+</div></td></tr></tbody></table></div><div><br></div><div>Plz some one can =
+tell me what I need to do to use this feature?</div><div><br></div><div>Is =
+some thing possible using yocto?</div><div><br></div><div>Thanks.</div>
+</div>-- <br><div dir=3D"ltr">*Raul Rosetto Mu=F1oz*<br></div>
+</div>
 
-<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
-x #ccc solid;padding-left:1ex">No need for mktemp-compatible-with-busybox.p=
-atch as the issue was<br>
-fixed in current revision.<br>
-omxplayer startup bash script needs pgrep so add procps to RDEPENDS.<br>
-<br>
-Change-Id: I1eecd332e8e51dbbf97e25ec6ed133077f137d7b<br>
-Signed-off-by: Andrei Gherzan &lt;<a href=3D"mailto:andrei@gherzan.ro">andr=
-ei@gherzan.ro</a>&gt;<br>
----<br>
-=A0recipes-multimedia/omxplayer/<a href=3D"http://omxplayer_git.bb" target=
-=3D"_blank">omxplayer_git.bb</a> | 5 ++---<br>
-=A01 file changed, 2 insertions(+), 3 deletions(-)<br>
-<br>
-diff --git a/recipes-multimedia/omxplayer/<a href=3D"http://omxplayer_git.b=
-b" target=3D"_blank">omxplayer_git.bb</a> b/recipes-multimedia/omxplayer/<a=
- href=3D"http://omxplayer_git.bb" target=3D"_blank">omxplayer_git.bb</a><br=
->
-index 33202dc..526dc86 100644<br>
---- a/recipes-multimedia/omxplayer/<a href=3D"http://omxplayer_git.bb" targ=
-et=3D"_blank">omxplayer_git.bb</a><br>
-+++ b/recipes-multimedia/omxplayer/<a href=3D"http://omxplayer_git.bb" targ=
-et=3D"_blank">omxplayer_git.bb</a><br>
-@@ -10,12 +10,11 @@ LIC_FILES_CHKSUM =3D &quot;file://COPYING;md5=3D94d55d5=
-12a9ba36caa9b7df079bae19f&quot;<br>
-=A0DEPENDS =3D &quot;libpcre libav virtual/egl boost freetype dbus&quot;<br=
->
-=A0PR =3D &quot;r3&quot;<br>
-<br>
--SRCREV =3D &quot;f666a5dfbec36e2af7cd965558ac8643c86277a6&quot;<br>
-+SRCREV =3D &quot;7af21f596378e5efeceebedff9c4a298e2d06d98&quot;<br>
-=A0SRC_URI =3D &quot;git://<a href=3D"http://github.com/popcornmix/omxplaye=
-r.git;protocol=3Dgit;branch=3Dmaster" target=3D"_blank">github.com/popcornm=
-ix/omxplayer.git;protocol=3Dgit;branch=3Dmaster</a> \<br>
-=A0 =A0 =A0 =A0 =A0 =A0 file://0001-Remove-Makefile.include-which-includes-=
-hardcoded.patch \<br>
-=A0 =A0 =A0 =A0 =A0 =A0 file://0002-Libraries-and-headers-from-ffmpeg-are-i=
-nstalled-in-u.patch \<br>
-=A0 =A0 =A0 =A0 =A0 =A0 file://0003-Remove-strip-step-in-Makefile.patch \<b=
-r>
-- =A0 =A0 =A0 =A0 =A0 file://mktemp-compatible-with-busybox.patch \<br>
-=A0 =A0 =A0 =A0 =A0 =A0 file://fix-tar-command-with-DIST.patch \<br>
-=A0 =A0 =A0 =A0 =A0 =A0 &quot;<br>
-=A0S =3D &quot;${WORKDIR}/git&quot;<br>
-@@ -68,4 +67,4 @@ FILES_${PN} =3D &quot;${bindir}/omxplayer* \<br>
-<br>
-=A0FILES_${PN}-dev +=3D &quot;${libdir}/omxplayer/*.so&quot;<br>
-<br>
--RDEPENDS_${PN} +=3D &quot;bash&quot;<br>
-+RDEPENDS_${PN} +=3D &quot;bash procps&quot;<br>
-<span class=3D"HOEnZb"><font color=3D"#888888">--<br>
-1.8.1.4<br>
-<br>
-</font></span></blockquote></div><div class=3D"gmail_extra"><br></div>This =
-updated patch along with the patches from last series were merged.<br><div>=
-<br></div>--=A0</div><div class=3D"gmail_extra"><b style=3D"color:rgb(51,51=
-,51);font-family:Arial;text-align:center">ag</b>
-</div></div>
-
---047d7bb70b2eea87eb04f325356c--
+--001a11334c381b229104f32709a5--
