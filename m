@@ -1,19 +1,28 @@
-Return-Path: <george.nita@enea.com>
-Received: from mx-3.enea.com (sestofw01.enea.se [192.36.1.252])
-	by yocto-www.yoctoproject.org (Postfix) with SMTP id 6427CE008B2
-	for <yocto@yoctoproject.org>; Mon, 24 Feb 2014 05:49:15 -0800 (PST)
-Received: from [192.168.14.144] (192.168.14.144) by smtp.enea.com
-	(172.21.1.208) with Microsoft SMTP Server id 14.3.158.1;
-	Mon, 24 Feb 2014 14:49:12 +0100
-Message-ID: <530B4DD7.8060300@enea.com>
-Date: Mon, 24 Feb 2014 15:49:11 +0200
-From: George Nita <george.nita@enea.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:24.0) Gecko/20100101 Thunderbird/24.3.0
-MIME-Version: 1.0
-To: <yocto@yoctoproject.org>
-X-Originating-IP: [192.168.14.144]
-Subject: git2_arago-project.org.git.projects.u-boot-keystone.git.tar.gz missing
+Return-Path: <opensource@keylevel.com>
+Received: from hosting.adsl24.co.uk (hosting.adsl24.co.uk [84.234.17.171])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D0DFCE008C1;
+	Mon, 24 Feb 2014 07:46:16 -0800 (PST)
+Received: from [109.224.171.0] (port=42593
+	helo=macbook-pro.durham.keylevel.com)
+	by hosting.adsl24.co.uk with esmtpsa (TLSv1:AES128-SHA:128)
+	(Exim 4.82) (envelope-from <opensource@keylevel.com>)
+	id 1WHxjP-0000jw-Ll; Mon, 24 Feb 2014 15:46:12 +0000
+From: Chris Tapp <opensource@keylevel.com>
+Date: Mon, 24 Feb 2014 15:46:07 +0000
+Message-Id: <2081A7FF-759C-444A-A5D8-479DC718591D@keylevel.com>
+To: meta-intel@yoctoproject.org
+Mime-Version: 1.0 (Mac OS X Mail 7.1 \(1827\))
+X-Mailer: Apple Mail (2.1827)
+X-AntiAbuse: This header was added to track abuse,
+	please include it with any abuse report
+X-AntiAbuse: Primary Hostname - hosting.adsl24.co.uk
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - keylevel.com
+X-Get-Message-Sender-Via: hosting.adsl24.co.uk: authenticated_id:
+	mail@keylevel.adsl24.co.uk
+Cc: Yocto Project <yocto@yoctoproject.org>
+Subject: Cedartrail zero-copy texture updates
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -25,22 +34,30 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 24 Feb 2014 13:49:17 -0000
-Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Mon, 24 Feb 2014 15:46:18 -0000
+Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: quoted-printable
 
-Hello,
+I'm trying to get zero-copy GLES textures working using Danny / =
+Cedartrail (PVR) so I can stream video frames into a GLES application.
 
-I'm doing a keystone-evm build and getting the error:
-DEBUG: Fetcher failure: Fetch command failed with exit code 8, output:
-http://downloads.yoctoproject.org/mirror/sources/git2_arago-project.org.git.projects.u-boot-keystone.git.tar.gz:
-2014-02-24 07:42:05 ERROR 404: Not Found.
+Googling hasn't really helped that much with how to do this, but I think =
+I need to use eglCreateImageKHR and a client-side buffer so that =
+glEGLImageTargetTexture2DOES() can be used to bind the texture to an =
+image in memory.
 
-If someone knows why this file is missing from the repository, please reply.
+eglCreatePixmapSurfaceHI() looks like it allows client memory to be used =
+as a colour-buffer which can be passed to eglCreateImageKHR, but I can't =
+seem to be able to create a context which supports pixmaps.
+
+Are there any examples out there to show how to put all of this =
+together?
+
+Chris Tapp
+
+opensource@keylevel.com
+www.keylevel.com
 
 
 
--- 
-Best regards,
-George Nita
 
