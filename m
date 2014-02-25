@@ -1,33 +1,24 @@
-Return-Path: <raj.khem@gmail.com>
-Received: from mail-ie0-f173.google.com (mail-ie0-f173.google.com
-	[209.85.223.173])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3F4B7E008DA;
-	Mon, 24 Feb 2014 21:31:00 -0800 (PST)
-Received: by mail-ie0-f173.google.com with SMTP id lx4so4438118iec.32
-	for <multiple recipients>; Mon, 24 Feb 2014 21:30:59 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-type;
-	bh=1lKlyuox1/mEqZMUxv05dI7E1uGsroNTbRaOLMcOdEQ=;
-	b=glg0dpHLye3p7QmQkqAaV8OIM0mfrkxhIavLsDR3UM8gjf4SX13RkIwGVFaOsfvG+Z
-	MSP8EHQhZPxAlm8HYhNDA/OcqzLTmQCyd59cPOyMaUeneqvwU55fRVCknYZpMMvZRgQj
-	PcCKDM4KlZ7jfSVH5a5hcDsZIbQnCN8mup4P0pH6prIt8BdThPDvSfVxAdJuc8Lh3aik
-	nFAxrSw8xwa1qs2PoXp7qnzI2GfnWAwNwoqm0M8ibY9Pakm5Nc13Fs0l5O1Vb8rzv14t
-	IHlc507MZvnE31mNCDV6ca1uuHj56XiIdu0a0o8thipEG3Wdf98G5SjaZ6ZwBDW++R7e
-	76kQ==
-X-Received: by 10.50.43.170 with SMTP id x10mr1190692igl.20.1393306259810;
-	Mon, 24 Feb 2014 21:30:59 -0800 (PST)
+Return-Path: <MANIMEHALAI.SELVARAJ@lnttechservices.com>
+Received: from mailout2.ltindia.com (mailout2.ltindia.com [203.199.60.171])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EC28DE008C3
+	for <yocto@yoctoproject.org>; Tue, 25 Feb 2014 02:27:48 -0800 (PST)
+Received: from unknown (HELO POCITMSEXHUB02.LntUniverse.com) ([10.2.1.59])
+	by mailout2.ltindia.com with ESMTP; 25 Feb 2014 15:57:45 +0530
+Received: from POCITMSEXMB06.LntUniverse.com ([fe80::7871:7933:7aa5:96ea]) by
+	POCITMSEXHUB02.LntUniverse.com ([::1]) with mapi id 14.03.0169.001;
+	Tue, 25 Feb 2014 15:57:44 +0530
+From: Manimehalai S <MANIMEHALAI.SELVARAJ@LNTTECHSERVICES.COM>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: Basic query regarding porting
+Thread-Index: Ac8yE5J5oeWfb3u4S827dbfnDd+gtw==
+Date: Tue, 25 Feb 2014 10:27:44 +0000
+Message-ID: <921B4CADE3939E41A17374DDCEBA12813A3FF7@POCITMSEXMB06.LntUniverse.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.2.1.199]
 MIME-Version: 1.0
-Received: by 10.50.224.137 with HTTP; Mon, 24 Feb 2014 21:30:29 -0800 (PST)
-In-Reply-To: <CANmVirgMuSXcSmHYSaEGazQX=oJTyJQEmrRKGZHE9tprkeM_yw@mail.gmail.com>
-References: <CANmVirgMuSXcSmHYSaEGazQX=oJTyJQEmrRKGZHE9tprkeM_yw@mail.gmail.com>
-From: Khem Raj <raj.khem@gmail.com>
-Date: Mon, 24 Feb 2014 21:30:29 -0800
-Message-ID: <CAMKF1srPrJ0PHufvSXQb0D70_=gjnPbD4SzfyOF1=kjqpTxMWQ@mail.gmail.com>
-To: Raul Rosetto Munoz <munoz0raul@gmail.com>
-Cc: "meta-ti@yoctoproject.org" <meta-ti@yoctoproject.org>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: [meta-ti] Device Tree Overlays
+Subject: Basic query regarding porting
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,49 +30,124 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 25 Feb 2014 05:31:01 -0000
-Content-Type: multipart/alternative; boundary=089e01176cadadee4c04f33464f3
+X-List-Received-Date: Tue, 25 Feb 2014 10:27:53 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_921B4CADE3939E41A17374DDCEBA12813A3FF7POCITMSEXMB06LntU_"
 
---089e01176cadadee4c04f33464f3
-Content-Type: text/plain; charset=UTF-8
+--_000_921B4CADE3939E41A17374DDCEBA12813A3FF7POCITMSEXMB06LntU_
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-On Mon, Feb 24, 2014 at 5:34 AM, Raul Rosetto Munoz <munoz0raul@gmail.com>w=
-rote:
+Hi all,
 
-> I couldnt see this folders:
->
-> root@beaglebone:/lib/fir
-> =E2=80=8Ban=E2=80=8B
-> mware# export SLOTS=3D/sys/devices/bone_capemgr.9/slots
->
+I am new to yocto. Consider that we are developing a new board based on TI'=
+s beagle board. How should I start porting to the new board in Yocto.
 
-=E2=80=8Bc=E2=80=8Ban you use the kernel from meta-beagleboard and check if=
- you get cape
-support
+Thanks
 
---089e01176cadadee4c04f33464f3
-Content-Type: text/html; charset=UTF-8
+Larsen & Toubro Limited
+
+www.larsentoubro.com
+
+This Email may contain confidential or privileged information for the inten=
+ded recipient (s). If you are not the intended recipient, please do not use=
+ or disseminate the information, notify the sender and delete it from your =
+system.
+
+--_000_921B4CADE3939E41A17374DDCEBA12813A3FF7POCITMSEXMB06LntU_
+Content-Type: text/html; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
-On Mon, Feb 24, 2014 at 5:34 AM, Raul Rosetto Munoz <span dir=3D"ltr">&lt;<=
-a href=3D"mailto:munoz0raul@gmail.com" target=3D"_blank">munoz0raul@gmail.c=
-om</a>&gt;</span> wrote:<br>
-
-<blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-=
-left-width:1px;border-left-color:rgb(204,204,204);border-left-style:solid;p=
-adding-left:1ex"><div>I couldnt see this folders:</div><div><br></div><div>
-
-<div>root@beaglebone:/lib/fir<div class=3D"gmail_default" style=3D"font-fam=
-ily:&#39;courier new&#39;,monospace;font-size:small;display:inline">=E2=80=
-=8Ban=E2=80=8B</div>mware# export SLOTS=3D/sys/devices/bone_capemgr.9/slots=
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 14 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:"Trebuchet MS";
+	panose-1:2 11 6 3 2 2 2 2 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";
+	mso-fareast-language:EN-US;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;}
+p
+	{mso-style-priority:99;
+	mso-margin-top-alt:auto;
+	margin-right:0cm;
+	margin-bottom:12.0pt;
+	margin-left:0cm;
+	font-size:12.0pt;
+	font-family:"Times New Roman","serif";}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Trebuchet MS","sans-serif";
+	color:windowtext;}
+span.vote-count-post4
+	{mso-style-name:vote-count-post4;
+	color:#808185;
+	font-weight:normal;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri","sans-serif";
+	mso-fareast-language:EN-US;}
+@page WordSection1
+	{size:612.0pt 792.0pt;
+	margin:72.0pt 72.0pt 72.0pt 72.0pt;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-IN" link=3D"blue" vlink=3D"purple">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Tr=
+ebuchet MS&quot;,&quot;sans-serif&quot;">Hi all,<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Tr=
+ebuchet MS&quot;,&quot;sans-serif&quot;"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Tr=
+ebuchet MS&quot;,&quot;sans-serif&quot;">I am new to yocto. Consider that w=
+e are developing a new board based on TI&#8217;s beagle board. How should I=
+ start porting to the new board in Yocto.<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Tr=
+ebuchet MS&quot;,&quot;sans-serif&quot;"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Tr=
+ebuchet MS&quot;,&quot;sans-serif&quot;">Thanks<o:p></o:p></span></p>
 </div>
-</div><div></div></blockquote></div><br><div class=3D"gmail_default" style=
-=3D"font-family:&#39;courier new&#39;,monospace;font-size:small">=E2=80=8Bc=
-=E2=80=8Ban you use the kernel from meta-beagleboard and check if you get c=
-ape support=C2=A0</div>
+<p><span style=3D"color: #000000"><strong>Larsen &amp; Toubro Limited </str=
+ong></span><br>
+<br>
+<strong><a href=3D"www.larsentoubro.com" target=3D"_blank">www.larsentoubro=
+.com</a></strong></p>
+<p><span style=3D"color: #000000">This Email may contain confidential or pr=
+ivileged information for the intended recipient (s). If you are not the int=
+ended recipient, please do not use or disseminate the information, notify t=
+he sender and delete it from your
+ system.</span></p>
+</body>
+</html>
 
-<br></div></div>
-
---089e01176cadadee4c04f33464f3--
+--_000_921B4CADE3939E41A17374DDCEBA12813A3FF7POCITMSEXMB06LntU_--
