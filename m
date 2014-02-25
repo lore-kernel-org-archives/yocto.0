@@ -1,35 +1,35 @@
-Return-Path: <andrei@gherzan.ro>
-Received: from mail-wg0-f43.google.com (mail-wg0-f43.google.com [74.125.82.43])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C2217E008DD
-	for <yocto@yoctoproject.org>; Tue, 25 Feb 2014 04:03:17 -0800 (PST)
-Received: by mail-wg0-f43.google.com with SMTP id k14so288149wgh.2
-	for <yocto@yoctoproject.org>; Tue, 25 Feb 2014 04:03:16 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc:content-type;
-	bh=EygHz4GW8R6I5vxKdbFpvl7GsjTfjgyXxCjQoEZUIu4=;
-	b=QeEtq0058y8/qZzDv4dq4W66fWm/d/V8Pj3Y2KPlk0hShXPj0aFnyBXFCnu02h0eR9
-	R5rvvWS0HbtuYdJzNyHPX6P7HPaqSokyXx2l/TpSAcA8x7NF/VcELNC9LyVHLzAEBeBd
-	v8ZeK0GgiU2fRFdEqancd7EXNjoOzuUA6HllIcx5JPhoIzp2rdrQh2lnH6oNg2/bFRNl
-	/xKNbdlWr75aa7sEDU2Ay1LtAatXNB5BdRpsNl72HUYXUmjjyvr0kA6u7IbVPxErdKfK
-	xT1CeLA7nW4QGlvCL8PZH69iOWGgL4TPd+bh5TAfKxZE2yR/72F/6sIPz8mgPB1j/Utb
-	XiHQ==
-X-Gm-Message-State: ALoCoQkjeHwtRMgC04BoaKfvQOyMM8+TkrGzb+XZXtpchkz6TtV2WUCQQgRQ6ugxtTgmQg8EMSSb
-X-Received: by 10.194.119.168 with SMTP id kv8mr23996558wjb.41.1393329794761; 
-	Tue, 25 Feb 2014 04:03:14 -0800 (PST)
+Return-Path: <paul.betafive@gmail.com>
+Received: from mail-vc0-f176.google.com (mail-vc0-f176.google.com
+	[209.85.220.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A759AE008F2
+	for <yocto@yoctoproject.org>; Tue, 25 Feb 2014 07:35:12 -0800 (PST)
+Received: by mail-vc0-f176.google.com with SMTP id la4so7283567vcb.7
+	for <yocto@yoctoproject.org>; Tue, 25 Feb 2014 07:35:11 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:sender:in-reply-to:references:from:date:message-id
+	:subject:to:cc:content-type;
+	bh=z7JwZDkJzNgjySWvLTXsfOHdGsVjxsrhQuthy14bT0M=;
+	b=sdxXOtQefMsHSv4T4Gkkzq324xOvbLkDmRKPScLbTCDzwO5CcP/o0szQB/UefO/ewx
+	AsgkmY9m+8OM7EY2ihgS3qfaPhGZvCkoAvNsVxU6IIYrDPA3YkJ3TouzdxUV3DoNB30l
+	StACNaRhhKvwphg1VF4n4GhPYgEAUGiFHzZ/Rj0Djrmtl40ixiiMHtPP7LX6FvcX9Jox
+	81xoKSkXXxs6Xad6QcgYPl3dqlMzWaR+uQRoRNsq95vzF7z89e5Nq6XniebJwNlF1fie
+	PpPp5k9spq47tQtafX9VJK5wZEmFodbZL/pdML02Udh5z5xliZ+2iWrx9FdczuxnQKgs
+	3LOQ==
+X-Received: by 10.52.94.77 with SMTP id da13mr195751vdb.55.1393342511295; Tue,
+	25 Feb 2014 07:35:11 -0800 (PST)
 MIME-Version: 1.0
-Received: by 10.216.31.129 with HTTP; Tue, 25 Feb 2014 04:02:54 -0800 (PST)
-X-Originating-IP: [89.121.200.106]
-In-Reply-To: <CAJTo0LYU0kgLA-BAUnQ5odLotjSjpPGtw72w8CGT=UKsvQ4pLA@mail.gmail.com>
-References: <1393329130-17062-1-git-send-email-andrei@gherzan.ro>
-	<CAJTo0LYU0kgLA-BAUnQ5odLotjSjpPGtw72w8CGT=UKsvQ4pLA@mail.gmail.com>
-From: Andrei Gherzan <andrei@gherzan.ro>
-Date: Tue, 25 Feb 2014 14:02:54 +0200
-Message-ID: <CAK18fxFJkqucO1-HxtYBZ0j-SiezVS9hUHRfrzP+Y=TuQVBvFg@mail.gmail.com>
-To: "Burton, Ross" <ross.burton@intel.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: [meta-raspberrypi][PATCH 1/1] mesa: Replace ugly fix with PACKAGECONFIG
+Sender: paul.betafive@gmail.com
+Received: by 10.220.239.135 with HTTP; Tue, 25 Feb 2014 07:34:31 -0800 (PST)
+In-Reply-To: <530CB3A6.3060404@cestona.ro>
+References: <530CB3A6.3060404@cestona.ro>
+From: Paul Barker <paul@paulbarker.me.uk>
+Date: Tue, 25 Feb 2014 15:34:31 +0000
+X-Google-Sender-Auth: gVnWJwbyej54JFWSRsPmq-u4Wzo
+Message-ID: <CANyK_8dB_ZV61OkmuWM5TUjBgp7gTBGPU58-iVy6TXCJmCUv=Q@mail.gmail.com>
+To: Thilo Cestonaro <thilo@cestona.ro>
+Cc: Yocto discussion list <yocto@yoctoproject.org>,
+	Openembedded Core List <openembedded-core@lists.openembedded.org>
+Subject: Re: [OE-core] opkg-build and dpkg-deb 1.17.x
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,63 +41,49 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 25 Feb 2014 12:03:18 -0000
-Content-Type: multipart/alternative; boundary=089e01176b1d78d30904f339df19
-
---089e01176b1d78d30904f339df19
+X-List-Received-Date: Tue, 25 Feb 2014 15:35:12 -0000
 Content-Type: text/plain; charset=ISO-8859-1
 
-On Tue, Feb 25, 2014 at 2:00 PM, Burton, Ross <ross.burton@intel.com> wrote:
-
-> On 25 February 2014 11:52, Andrei Gherzan <andrei@gherzan.ro> wrote:
-> > +# EGL and GLES are provided by userland package
-> > +PACKAGECONFIG_remove_raspberrypi = "egl gles"
-> > +PROVIDES_remove_raspberrypi = "\
-> > +    virtual/libgles1 \
-> > +    virtual/libgles2 \
-> > +    virtual/egl"
+On 25 February 2014 15:15, Thilo Cestonaro <thilo@cestona.ro> wrote:
+> Hey all,
 >
-> Are you aware of mesa-gl?  This recipe builds a GL-only Mesa (no gles
-> or egl), and is designed to sit alongside binary drivers that provide
-> EGL and GLES to avoid exactly this sort of hackery to Mesa.
+> with a recent change in dpkg-deb (
+> http://anonscm.debian.org/gitweb/?p=dpkg/dpkg.git;a=commitdiff;h=547dca4c3ff23df5dfa554f1943b371cd7056ee4
+> ), the packages generated by opkg-build will not be accepted by dpkg-deb
+> anymore. The change disallows that the data.tar.gz is packed into the
+> ipk or deb before the control.tar.gz.
+>
+> Supplied patch for opkg-utils repo fixes this.
+>
+> Greetings
+> Thilo
 >
 
-Good hint. Thanks.
+This needs to be sent to the yocto@yoctoproject.org mailing list
+rather than the openembedded-core@lists.openembedded.org mailing list.
+
+It should also be sent using 'git send-email' if possible and the
+description of why this change is needed needs to be included in the
+commit message for the patch.
+
+You'll also need to add a 'Signed-off-by' line to the patch.
+
+The full contribution guidelines for opkg-utils are now in the file
+'CONTRIBUTING' in the root of the source tree. See
+https://git.yoctoproject.org/cgit/cgit.cgi/opkg-utils/tree/CONTRIBUTING
+for an online copy.
+
+Regarding the change itself, is the 'debian-binary' file still allowed
+to be infront of the 'control.tar.gz' file in the archive? Other than
+that question, the change looks good at first glance.
+
+If any of that doesn't work for you, let me know and I'll try to help out.
+
+Thanks,
 
 -- 
-*ag*
+Paul Barker
 
---089e01176b1d78d30904f339df19
-Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
+Email: paul@paulbarker.me.uk
+http://www.paulbarker.me.uk
 
-<div dir=3D"ltr"><br><div class=3D"gmail_extra"><br><br><div class=3D"gmail=
-_quote">On Tue, Feb 25, 2014 at 2:00 PM, Burton, Ross <span dir=3D"ltr">&lt=
-;<a href=3D"mailto:ross.burton@intel.com" target=3D"_blank">ross.burton@int=
-el.com</a>&gt;</span> wrote:<br>
-
-
-<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
-x #ccc solid;padding-left:1ex"><div>On 25 February 2014 11:52, Andrei Gherz=
-an &lt;<a href=3D"mailto:andrei@gherzan.ro" target=3D"_blank">andrei@gherza=
-n.ro</a>&gt; wrote:<br>
-
-
-
-&gt; +# EGL and GLES are provided by userland package<br>
-&gt; +PACKAGECONFIG_remove_raspberrypi =3D &quot;egl gles&quot;<br>
-&gt; +PROVIDES_remove_raspberrypi =3D &quot;\<br>
-&gt; + =A0 =A0virtual/libgles1 \<br>
-&gt; + =A0 =A0virtual/libgles2 \<br>
-&gt; + =A0 =A0virtual/egl&quot;<br>
-<br>
-</div>Are you aware of mesa-gl? =A0This recipe builds a GL-only Mesa (no gl=
-es<br>
-or egl), and is designed to sit alongside binary drivers that provide<br>
-EGL and GLES to avoid exactly this sort of hackery to Mesa.<br></blockquote=
-><div><br></div><div>Good hint. Thanks.</div><div>=A0</div></div>--=A0</div=
-><div class=3D"gmail_extra"><b style=3D"text-align:center;color:rgb(51,51,5=
-1);font-family:Arial">ag</b>
-</div></div>
-
---089e01176b1d78d30904f339df19--
