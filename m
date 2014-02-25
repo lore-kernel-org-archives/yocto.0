@@ -1,32 +1,34 @@
-Return-Path: <pcjegan@gmail.com>
-Received: from mail-ve0-f170.google.com (mail-ve0-f170.google.com
-	[209.85.128.170])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C3D9DE008DC
-	for <yocto@yoctoproject.org>; Tue, 25 Feb 2014 03:10:22 -0800 (PST)
-Received: by mail-ve0-f170.google.com with SMTP id c14so231136vea.15
-	for <yocto@yoctoproject.org>; Tue, 25 Feb 2014 03:10:21 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-type;
-	bh=OAcp7P7TcUIwh0FZVbPZbccizO16h66rciudkqOgYC0=;
-	b=dRMkTqdLDlzxOJt5lY1opcQ3DXbynhx7l/XZlioYLCHSraBpMC2UBVEUABAuMqMjgD
-	JfbVO5GU5MHPdngN1Cn/PzT2BzpPzlpDtt7JQe1F13CRkalTCmTLyvGGkL+TguQNItkG
-	wSQfvII0k6QlDTZZk/E2P4daDzTm5vBSkZhG8bVjJag3A/LemZiSExAjuChKO5oSugQz
-	aFY08yOG09W5FNzgDddfQlmBW96RKIt3y0jBXw8ne/CPD4RQjMTkMgBd0gZI9NLH6ppr
-	v1djDpfZZRtpv8cFsmQYo0ucpLfhFYNXQN9a5HYKS7mJ/vFQZJndS1FkucRmC7KbJREa
-	RyjQ==
-X-Received: by 10.52.95.233 with SMTP id dn9mr450143vdb.3.1393326621348; Tue,
-	25 Feb 2014 03:10:21 -0800 (PST)
-MIME-Version: 1.0
-Received: by 10.220.116.146 with HTTP; Tue, 25 Feb 2014 03:10:01 -0800 (PST)
-In-Reply-To: <921B4CADE3939E41A17374DDCEBA12813A3FF7@POCITMSEXMB06.LntUniverse.com>
-References: <921B4CADE3939E41A17374DDCEBA12813A3FF7@POCITMSEXMB06.LntUniverse.com>
-From: Jegan Chandru <pcjegan@gmail.com>
-Date: Tue, 25 Feb 2014 16:40:01 +0530
-Message-ID: <CAAA4K6KiPE55Ep1+04pe-LccZRYj5EAo-StTTMJffof6_y3uuw@mail.gmail.com>
-To: Manimehalai S <MANIMEHALAI.SELVARAJ@lnttechservices.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Basic query regarding porting
+Return-Path: <andrei@gherzan.ro>
+Received: from mail-qa0-f44.google.com (mail-qa0-f44.google.com
+	[209.85.216.44])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1E1F5E008DC
+	for <yocto@yoctoproject.org>; Tue, 25 Feb 2014 03:52:22 -0800 (PST)
+Received: by mail-qa0-f44.google.com with SMTP id f11so138560qae.3
+	for <yocto@yoctoproject.org>; Tue, 25 Feb 2014 03:52:21 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:from:to:cc:subject:date:message-id;
+	bh=IRSj7wQQ5xCLYDzwvKWPK9HhG49FXvTKNEgS9sVQgrs=;
+	b=FKjdHzCVYG+kCyqhIGZE1DRCBvc4xzCX0HikAiNcsYE5iEdBDwuyamDtt3gmFFYNKL
+	AaARB2gJy9bFRKVJ7TiAYn4/Cdps6JlYUmtopfdEo0Y0pm5Z6tySyICWGKhM02VpJxfQ
+	WHXfJwumTbFM8CMrZla9mvsExHzboOpDzXtO0V61hCe7U1p5ullvUGLhbW9pg74l8LJs
+	wkQ2GZKwVfxmDWcDkzhYYsPu/0997UIxpkKKuS0M2/dFS0T55kBM+aBmgO3QOl3YVODD
+	o8+fYWIeWaICeK7pCys6nf+d0JHuPYnTEBh1FS8jtXXXDoUrgc9WCFH72IGzTS2FE0Rh
+	Dotg==
+X-Gm-Message-State: ALoCoQknIMtR1zttzi3MtaR68r0wmX6dZCAA3m0imr1JoBVy6/FOtqbBs5reg55EJ6lrg/n1iAiw
+X-Received: by 10.224.54.10 with SMTP id o10mr37494952qag.9.1393329141549;
+	Tue, 25 Feb 2014 03:52:21 -0800 (PST)
+Received: from localhost.localdomain ([89.121.200.106])
+	by mx.google.com with ESMTPSA id y71sm29726189qgd.3.2014.02.25.03.52.19
+	for <multiple recipients>
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Tue, 25 Feb 2014 03:52:20 -0800 (PST)
+From: Andrei Gherzan <andrei@gherzan.ro>
+To: yocto@yoctoproject.org
+Date: Tue, 25 Feb 2014 13:52:10 +0200
+Message-Id: <1393329130-17062-1-git-send-email-andrei@gherzan.ro>
+X-Mailer: git-send-email 1.8.1.4
+Subject: [meta-raspberrypi][PATCH 1/1] mesa: Replace ugly fix with PACKAGECONFIG
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,162 +40,75 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 25 Feb 2014 11:10:25 -0000
-Content-Type: multipart/alternative; boundary=001a1136b61052597504f3392268
+X-List-Received-Date: Tue, 25 Feb 2014 11:52:25 -0000
 
---001a1136b61052597504f3392268
-Content-Type: text/plain; charset=ISO-8859-1
+Use "%" as version because this append should be applied on any mesa
+version.
 
-Hi,
+Change-Id: I5ed3c50a0a794f8ea63cc1906f0139ec47459fa6
+Signed-off-by: Andrei Gherzan <andrei@gherzan.ro>
+---
+ recipes-graphics/mesa/mesa_%.bbappend     |  6 ++++++
+ recipes-graphics/mesa/mesa_9.2.5.bbappend | 36 -------------------------------
+ 2 files changed, 6 insertions(+), 36 deletions(-)
+ create mode 100644 recipes-graphics/mesa/mesa_%.bbappend
+ delete mode 100644 recipes-graphics/mesa/mesa_9.2.5.bbappend
 
-You should start reading the yocto documents. ;)
-Start here,
-https://www.yoctoproject.org/documentation/current
-You should focus on,
-http://www.yoctoproject.org/docs/current/yocto-project-qs/yocto-project-qs.html
-http://www.yoctoproject.org/docs/current/bsp-guide/bsp-guide.html
-
-As you have mentioned TI Beagle Board,
-http://layers.openembedded.org/layerindex/branch/master/layer/meta-beagleboard/
-You can integrate this layer to your yocto.
-
-For any other how to, plenty of help available online.
-
-Happy Yocto!
-
-
-
-On Tue, Feb 25, 2014 at 3:57 PM, Manimehalai S <
-MANIMEHALAI.SELVARAJ@lnttechservices.com> wrote:
-
->  Hi all,
->
->
->
-> I am new to yocto. Consider that we are developing a new board based on
-> TI's beagle board. How should I start porting to the new board in Yocto.
->
->
->
-> Thanks
->
-> *Larsen & Toubro Limited *
->
-> *www.larsentoubro.com <http://www.larsentoubro.com>*
->
-> This Email may contain confidential or privileged information for the
-> intended recipient (s). If you are not the intended recipient, please do
-> not use or disseminate the information, notify the sender and delete it
-> from your system.
->
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
->
->
-
-
+diff --git a/recipes-graphics/mesa/mesa_%.bbappend b/recipes-graphics/mesa/mesa_%.bbappend
+new file mode 100644
+index 0000000..6ea5a8f
+--- /dev/null
++++ b/recipes-graphics/mesa/mesa_%.bbappend
+@@ -0,0 +1,6 @@
++# EGL and GLES are provided by userland package
++PACKAGECONFIG_remove_raspberrypi = "egl gles"
++PROVIDES_remove_raspberrypi = "\
++    virtual/libgles1 \
++    virtual/libgles2 \
++    virtual/egl"
+diff --git a/recipes-graphics/mesa/mesa_9.2.5.bbappend b/recipes-graphics/mesa/mesa_9.2.5.bbappend
+deleted file mode 100644
+index 34da98f..0000000
+--- a/recipes-graphics/mesa/mesa_9.2.5.bbappend
++++ /dev/null
+@@ -1,36 +0,0 @@
+-PRINC := "${@int(PRINC) + 2}"
+-
+-#
+-# FIXME
+-# We need a way to disable EGL and GL ES2, these are provided by userland package
+-#
+-python __anonymous () {
+-    import re
+-
+-    machine = d.getVar('MACHINE', True)
+-    if machine == 'raspberrypi':
+-        # Remove egl and gles2 configure options
+-        extra_oeconf = d.getVar('EXTRA_OECONF', True).split()
+-        take_out = ['--enable-egl', '--enable-gles2', '--enable-gles1']
+-        put_in = ['--disable-egl', '--disable-gles2', '--disable-gles1']
+-        pattern = re.compile("--with-egl-platforms")
+-        new_extra_oeconf = []
+-        for i in extra_oeconf:
+-            if i not in take_out and not pattern.match(i):
+-                new_extra_oeconf.append(i)
+-        for i in put_in:
+-            new_extra_oeconf.append(i)
+-        d.setVar('EXTRA_OECONF', ' '.join(new_extra_oeconf))
+-
+-        # Remove egl and gles2 from provides
+-        provides = d.getVar('PROVIDES', True).split()
+-        take_out = ['virtual/libgles2', 'virtual/egl', 'virtual/libgles1']
+-        new_provides = []
+-        for i in provides:
+-            if i not in take_out:
+-                new_provides.append(i)
+-        d.setVar('PROVIDES', ' '.join(new_provides))
+-
+-        # We are now machine specific
+-        d.setVar('PACKAGE_ARCH', d.getVar('MACHINE_ARCH'))
+-}
 -- 
-JCP
-
---001a1136b61052597504f3392268
-Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div class=3D"gmail_default" style=3D"font-family:&#39;tre=
-buchet ms&#39;,sans-serif">Hi,</div><div class=3D"gmail_default" style=3D"f=
-ont-family:&#39;trebuchet ms&#39;,sans-serif"><br></div><div class=3D"gmail=
-_default" style=3D"font-family:&#39;trebuchet ms&#39;,sans-serif">
-
-You should start reading the yocto documents. ;)</div><div class=3D"gmail_d=
-efault" style=3D"font-family:&#39;trebuchet ms&#39;,sans-serif">Start here,=
-</div><div class=3D"gmail_default" style=3D"font-family:&#39;trebuchet ms&#=
-39;,sans-serif">
-
-<a href=3D"https://www.yoctoproject.org/documentation/current">https://www.=
-yoctoproject.org/documentation/current</a><br></div><div class=3D"gmail_def=
-ault" style=3D"font-family:&#39;trebuchet ms&#39;,sans-serif">You should fo=
-cus on,</div>
-
-<div class=3D"gmail_default"><font face=3D"trebuchet ms, sans-serif"><a hre=
-f=3D"http://www.yoctoproject.org/docs/current/yocto-project-qs/yocto-projec=
-t-qs.html">http://www.yoctoproject.org/docs/current/yocto-project-qs/yocto-=
-project-qs.html</a></font><br>
-
-</div><div class=3D"gmail_default"><font face=3D"trebuchet ms, sans-serif">=
-<a href=3D"http://www.yoctoproject.org/docs/current/bsp-guide/bsp-guide.htm=
-l">http://www.yoctoproject.org/docs/current/bsp-guide/bsp-guide.html</a><br=
->
-</font></div>
-<div class=3D"gmail_default" style=3D"font-family:&#39;trebuchet ms&#39;,sa=
-ns-serif"><br></div><div class=3D"gmail_default" style=3D"font-family:&#39;=
-trebuchet ms&#39;,sans-serif">As you have mentioned TI Beagle Board,</div><=
-div class=3D"gmail_default">
-
-<font face=3D"trebuchet ms, sans-serif"><a href=3D"http://layers.openembedd=
-ed.org/layerindex/branch/master/layer/meta-beagleboard/">http://layers.open=
-embedded.org/layerindex/branch/master/layer/meta-beagleboard/</a></font><br=
->
-
-</div><div class=3D"gmail_default"><font face=3D"trebuchet ms, sans-serif">=
-You can integrate this layer to your yocto.</font></div><div class=3D"gmail=
-_default"><font face=3D"trebuchet ms, sans-serif"><br></font></div><div cla=
-ss=3D"gmail_default">
-
-<font face=3D"trebuchet ms, sans-serif">For any other how to, plenty of hel=
-p available&nbsp;</font><span style=3D"font-family:&#39;trebuchet ms&#39;,s=
-ans-serif">online.</span></div><div class=3D"gmail_default"><font face=3D"t=
-rebuchet ms, sans-serif"><br>
-
-</font></div><div class=3D"gmail_default"><font face=3D"trebuchet ms, sans-=
-serif">Happy Yocto!&nbsp;</font></div><div class=3D"gmail_default"><br></di=
-v></div><div class=3D"gmail_extra"><br><br><div class=3D"gmail_quote">On Tu=
-e, Feb 25, 2014 at 3:57 PM, Manimehalai S <span dir=3D"ltr">&lt;<a href=3D"=
-mailto:MANIMEHALAI.SELVARAJ@lnttechservices.com" target=3D"_blank">MANIMEHA=
-LAI.SELVARAJ@lnttechservices.com</a>&gt;</span> wrote:<br>
-
-<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
-x #ccc solid;padding-left:1ex">
+1.8.1.4
 
 
-
-
-
-<div lang=3D"EN-IN" link=3D"blue" vlink=3D"purple">
-<div>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Tr=
-ebuchet MS&quot;,&quot;sans-serif&quot;">Hi all,<u></u><u></u></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Tr=
-ebuchet MS&quot;,&quot;sans-serif&quot;"><u></u>&nbsp;<u></u></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Tr=
-ebuchet MS&quot;,&quot;sans-serif&quot;">I am new to yocto. Consider that w=
-e are developing a new board based on TI&rsquo;s beagle board. How should I=
- start porting to the new board in Yocto.<u></u><u></u></span></p>
-
-
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Tr=
-ebuchet MS&quot;,&quot;sans-serif&quot;"><u></u>&nbsp;<u></u></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt;font-family:&quot;Tr=
-ebuchet MS&quot;,&quot;sans-serif&quot;">Thanks<u></u><u></u></span></p>
-</div>
-<p><span style><strong>Larsen &amp; Toubro Limited </strong></span><br>
-<br>
-<strong><a href=3D"http://www.larsentoubro.com" target=3D"_blank">www.larse=
-ntoubro.com</a></strong></p>
-<p><span style>This Email may contain confidential or privileged informatio=
-n for the intended recipient (s). If you are not the intended recipient, pl=
-ease do not use or disseminate the information, notify the sender and delet=
-e it from your
- system.</span></p>
-</div>
-
-<br>_______________________________________________<br>
-yocto mailing list<br>
-<a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br>
-<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" target=3D"_blank"=
->https://lists.yoctoproject.org/listinfo/yocto</a><br>
-<br></blockquote></div><br><br clear=3D"all"><div><br></div>-- <br>JCP
-</div>
-
---001a1136b61052597504f3392268--
