@@ -1,38 +1,33 @@
-Return-Path: <ajlennon@gmail.com>
-Received: from mail-we0-f175.google.com (mail-we0-f175.google.com
-	[74.125.82.175])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C1C6DE0093A
-	for <yocto@yoctoproject.org>; Wed, 26 Feb 2014 12:59:27 -0800 (PST)
-Received: by mail-we0-f175.google.com with SMTP id q59so2128022wes.20
-	for <yocto@yoctoproject.org>; Wed, 26 Feb 2014 12:59:26 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=message-id:date:from:user-agent:mime-version:to:subject:references
-	:in-reply-to:content-type:content-transfer-encoding;
-	bh=FIU6iMKBU55aShlNVC7gYho0CvyxXHe1We4KOmIOzrc=;
-	b=XyUS+pjV7lJP5enA31k29N+ADV/klFoPeQJXAR21B4A4uPMlUhBwbvR6+TV0Ro9vhe
-	Bwzxl0soNi83e6bsEw293J42Yp3WZxZ8pmh9jQrBbeY4LP7vnIv3QjySrJ8WO1nNK4vL
-	he2yzrTOFekOfgMN+o2rj2Y7RYuCMrE39vbx6O/dBUFzzFXb46cwmolTul7n9hLxhSZL
-	2/GC5FtlE/p50QAqspSAIrRtO/YSTZtOeB4zuE6m1JDCvC7fTj8tRyP96TShv/wUrgkO
-	t0E+DwC/HvF/MJroN523P+z5mzxL22L7GXqHmQ/7zNOUlE8fFmN8C0g5FGDdoPsRSnOq
-	iVbw==
-X-Received: by 10.194.22.129 with SMTP id d1mr4416231wjf.22.1393448366578;
-	Wed, 26 Feb 2014 12:59:26 -0800 (PST)
-Received: from [192.168.0.2] (cpc32-live22-2-0-cust59.17-2.cable.virginm.net.
-	[82.36.253.60]) by mx.google.com with ESMTPSA id
-	ff7sm13468957wic.10.2014.02.26.12.59.23 for <multiple recipients>
-	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
-	Wed, 26 Feb 2014 12:59:24 -0800 (PST)
-Message-ID: <530E55AC.1020405@gmail.com>
-Date: Wed, 26 Feb 2014 20:59:24 +0000
-From: Alex J Lennon <ajlennon@gmail.com>
-User-Agent: Mozilla/5.0 (Windows NT 6.3; WOW64;
-	rv:24.0) Gecko/20100101 Thunderbird/24.3.0
+Return-Path: <elizabeth.flanagan@intel.com>
+Received: from mail-vc0-f178.google.com (mail-vc0-f178.google.com
+	[209.85.220.178])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 39E8EE007BD
+	for <yocto@yoctoproject.org>; Wed, 26 Feb 2014 21:58:36 -0800 (PST)
+Received: by mail-vc0-f178.google.com with SMTP id ik5so2066983vcb.9
+	for <yocto@yoctoproject.org>; Wed, 26 Feb 2014 21:58:35 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:date:message-id:subject:from:to
+	:content-type;
+	bh=+VtIM8ROt32LaKd12OCoHrtLVzpEcExsWfrMw+aDwsk=;
+	b=ez0DkQWV+nFsemtRj3GgUsKBRUd7D2suTT0OympyzNXa+JKLwGE2yAKhxgr0iK9JYf
+	LEs8cbiUkyh6C0EwZs8V/FHfVdlurb1ZbE3Z7RsKhXAJzbpWNVr7QVCSkxG5X2+XzABA
+	RlYtAwVhoqXCRB/OP0KchO5kT6s6QM30nORashOxO9HQ8zf34NIvSS+XefiXkK5fe/EK
+	kU7m81uQ34haUTifQY/gWGNie8TUSzodkjJu5sN0dw1m8UenRta9btAaarpaalA8Xi/v
+	y0w3Cgx/NiJxAVojas7QWHKZlIAENdAZfcb8MVr3jjo1QkUj3Vgjr/BlN1LJ6UMvGjFk
+	/U1g==
+X-Gm-Message-State: ALoCoQmw+2nIZ/kYaAKWRka2Zv8wb+2CAR1ElTAjfuXwZfaJZMMj7aj5lH3n0Qj7t2lT7oq4n6hB
 MIME-Version: 1.0
-To: Khem Raj <raj.khem@gmail.com>, yocto@yoctoproject.org
-References: <1391539498-8620-1-git-send-email-raj.khem@gmail.com>
-In-Reply-To: <1391539498-8620-1-git-send-email-raj.khem@gmail.com>
-X-Mailman-Approved-At: Wed, 26 Feb 2014 20:59:33 -0800
-Subject: Re: [PATCH 1/2] mono-xsp: Fix parse warnings
+X-Received: by 10.52.246.42 with SMTP id xt10mr7656872vdc.9.1393480715645;
+	Wed, 26 Feb 2014 21:58:35 -0800 (PST)
+Received: by 10.52.76.201 with HTTP; Wed, 26 Feb 2014 21:58:35 -0800 (PST)
+Date: Thu, 27 Feb 2014 05:58:35 +0000
+Message-ID: <CAPhnLPB0vC85zL7U1aC2FDhQFc+u48wdggi=AMqD=UpDYQAggA@mail.gmail.com>
+From: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>, 
+	Alexandru C Georgescu <alexandru.c.georgescu@intel.com>,
+	Zhao Yi <yi.zhao@windriver.com>, Otavio Salvador <otavio@ossystems.com.br>
+Subject: Week build available
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -44,23 +39,26 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 26 Feb 2014 20:59:31 -0000
+X-List-Received-Date: Thu, 27 Feb 2014 05:58:39 -0000
 Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: 7bit
+
+The weekly build is now available at:
+http://autobuilder.yoctoproject.org/pub/nightly/20140226-1
+
+bitbake 4a5009036e9cb38f6e0260a88278948931073bc6
+eclipse-poky-juno 26bfc407781aa185f244a47ba63120343cee4a37
+eclipse-poky-kepler 1dfe1d2f1322b5fda8e1a7637c447b0e060efb3e
+meta-fsl-arm 5d2d7b49061281587f2bdb28cf97b51bf5fca961
+meta-fsl-ppc 290a669e5480792836d4f7769ba2ef6f49799323
+meta-intel d7026654ae4d18e7d7c193f64e4a4ce22453cfa5
+meta-minnow 32e4d6f17917027c3babe1ab738480de9691024d
+meta-qt3 4772424ab69908d4e3b9d6d4717ca889468e6acd
+oecore 010d5b437413156c3f4dc90a14698231bb195c2e
+poky 5ab9d7e28f987fba8bab03bb7851c263f746c208
 
 
-
-On 04/02/2014 18:44, Khem Raj wrote:
-> WARNING: Variable key FILES_${PN}-dev (${includedir} ${FILES_SOLIBSDEV}
-> ${libdir}/*.la ${libdir}/*.o ${libdir}/pkgconfig ${datadir}/pkgconfig
-> ${datadir}/aclocal ${base_libdir}/*.o ${libdir}/${BPN}/*.la
-> ${base_libdir}/*.la) replaces original key FILES_mono-xsp-dev (
-> /usr/lib/pkgconfig/xsp.pc       /usr/lib/pkgconfig/xsp-2.pc     ).
-> 
-> Signed-off-by: Khem Raj <raj.khem@gmail.com>
-
-Committed to meta-mono master, many thanks Khem
-
-Alex
-
+-- 
+Elizabeth Flanagan
+Yocto Project
+Build and Release
 
