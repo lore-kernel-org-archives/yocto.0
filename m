@@ -1,29 +1,33 @@
-Return-Path: <ajlennon@dynamicdevices.co.uk>
-Received: from www.dynamicdevices.co.uk (www.dynamicdevices.co.uk
-	[89.200.136.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4AAC5E00784
-	for <yocto@yoctoproject.org>; Thu, 27 Feb 2014 11:15:40 -0800 (PST)
-Received: from [127.0.0.1] (cpc32-live22-2-0-cust59.17-2.cable.virginm.net
-	[82.36.253.60])
-	(using TLSv1 with cipher ECDHE-RSA-AES128-SHA (128/128 bits))
-	(No client certificate requested)
-	by www.dynamicdevices.co.uk (Postfix) with ESMTPSA id 4A2FC860F0;
-	Thu, 27 Feb 2014 19:15:39 +0000 (UTC)
-Message-ID: <530F8EDA.1030307@dynamicdevices.co.uk>
-Date: Thu, 27 Feb 2014 19:15:38 +0000
+Return-Path: <ajlennon@gmail.com>
+Received: from mail-wg0-f42.google.com (mail-wg0-f42.google.com [74.125.82.42])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 44A6DE008FF
+	for <yocto@yoctoproject.org>; Thu, 27 Feb 2014 13:48:11 -0800 (PST)
+Received: by mail-wg0-f42.google.com with SMTP id x13so3379922wgg.1
+	for <yocto@yoctoproject.org>; Thu, 27 Feb 2014 13:48:09 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=sender:from:to:subject:date:message-id;
+	bh=XKHgfS+8QXksFkag+rqw+iJYM10Cim18vzmijkCXNko=;
+	b=S7angbHJly9vaA9LHQWWWYwTkbxG+WPdK3obJWOT0+7CZPjezuHE5xKQxfNy35sDra
+	uDe1zp4mddYbEZFJ9zUPTi2rhMFXltN0ncfe1z/ocXWEeUA5FNCaFNyINXTo4iRaN7ja
+	28ENi24Msynjg7hB6wCbSMr5zIcepFuI8GoPkf/7/JsCbEeBn4FKAGavBZPt9+BSNNOt
+	ds2D9cZwkrxpJqNkuFJKWQaxm7MV0QKrMZi06a2cxCjilBjv54Rz8IiLZu/hzM6mLyOT
+	A1EBMRXlrMEDmreStTxFB87IFz0Pp5UN8P++uWCsFr+dmrNLSQVKf+jCMQPkduPuGvq8
+	9XWA==
+X-Received: by 10.180.77.74 with SMTP id q10mr144535wiw.39.1393537689576;
+	Thu, 27 Feb 2014 13:48:09 -0800 (PST)
+Received: from localhost.localdomain
+	(cpc32-live22-2-0-cust59.17-2.cable.virginm.net. [82.36.253.60])
+	by mx.google.com with ESMTPSA id lz3sm78367wic.1.2014.02.27.13.48.07
+	for <yocto@yoctoproject.org>
+	(version=TLSv1.1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
+	Thu, 27 Feb 2014 13:48:07 -0800 (PST)
+Sender: Alex Lennon <ajlennon@gmail.com>
 From: Alex J Lennon <ajlennon@dynamicdevices.co.uk>
-User-Agent: Mozilla/5.0 (Windows NT 6.3; WOW64;
-	rv:24.0) Gecko/20100101 Thunderbird/24.3.0
-MIME-Version: 1.0
-To: Paul Eggleton <paul.eggleton@linux.intel.com>
-References: <cover.1393510407.git.ajlennon@dynamicdevices.co.uk>
-	<1535634.dXkxAnYu3c@peggleto-mobl5.ger.corp.intel.com>
-	<530F8427.80705@dynamicdevices.co.uk>
-	<3266133.m0A4OyqJlT@peggleto-mobl5.ger.corp.intel.com>
-In-Reply-To: <3266133.m0A4OyqJlT@peggleto-mobl5.ger.corp.intel.com>
-X-Enigmail-Version: 1.6
-Cc: yocto@yoctoproject.org
-Subject: Re: [meta-mono] [PATCH 1/1] gtk-sharp: Updated to GTK# 2.12.21
+To: yocto@yoctoproject.org
+Date: Thu, 27 Feb 2014 21:47:39 +0000
+Message-Id: <cover.1393537481.git.ajlennon@dynamicdevices.co.uk>
+X-Mailer: git-send-email 1.7.9.5
+Subject: [meta-mono] [PATCH 0/1] mono-xsp: Update to 2.10
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -35,100 +39,31 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 27 Feb 2014 19:15:41 -0000
-Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Thu, 27 Feb 2014 21:48:12 -0000
 
+See following patch for details
 
-On 27/02/2014 18:48, Paul Eggleton wrote:
-> On Thursday 27 February 2014 18:29:59 Alex J Lennon wrote:
->> On 27/02/2014 18:18, Paul Eggleton wrote:
->>> PR values needn't match up between different distros. The point is they
->>> should get increased when a material change to the recipe's output
->>> happens; and this can happen for example when:
->>>
->>> * A class that the recipe inherits is changed
->>>
->>> * A dependency of the recipe that influences how the recipe is built gets
->>> changed
->>>
->>> * Some global configuration changed that affects how the recipe is built
->>> e.g. DISTRO_FEATURES
->>>
->>> * A bbappend is added or removed
->>>
->>> In all of these cases the recipe itself does not get changed at all -
->>> prior to the PR server we had to remember to manually bump PR in the
->>> affected recipes, or (more often) we'd forget to handle it properly
->>> altogether. With the PR server, PR bumps happen automatically in response
->>> to signatures changing, which is about as accurate an indicator as we can
->>> get as far as determining whether the output has changed, and certainly
->>> much less prone to mistakes.
->> OK so I can't download the source code to a distribution and built
->> identical, identically versioned packages to theirs? With something like
->> RPM wouldn't I expect to be able to download an RPM source package
->> and build an identical, versioned RPM from it?
-> They'll always be "identical" as far as the material content goes, that's not
-> in question here - we're just talking about the PR values. For the PR values
-> it depends - which distro are we talking about? IIRC for example, SHR and
-> Angstrom both make their PR servers available so that people's PR values
-> will match up if they build it from source themselves.
->
-> However, I think we're starting to head into territory where you have to
-> ask who is maintaining this distro you are referring to. If you're making
-> changes to how things get built, arguably it's now a derivative distro
-> and you ought to be maintaining it yourself; at which point you shouldn't
-> expect the PR values to match up. How else would you signify that you'd
-> made the configuration change (or added your own patch, or ...) if it's
-> someone else's distro that doesn't contain that change "upstream"?
->
->> Taking a slightly different tack, if I upgrade a recipe PV from 1.0.0 to
->> 2.0.0 to correspond to the upstream source versioning, and at that
->> time I remove PR and build some packages.
->>
->> Then a month later I realise I need something extra added to the
->> configuration options, which gives me a different output, what do I 
->> change to make sure the new package is versioned differently from
->> the old package? (i.e. presumably if the network service is
->> running it will handle it for me, but if it's not running then new
->> package will be versioned identically to my old package?)
-> Yes. If you care about PR values (i.e. you're using packaging on the
-> target) then you need to enable and use the PR server. If you do that,
-> you don't need to make any additional change other than the
-> configure option change you've already made - EXTRA_OECONF
-> would presumably have been changed -> do_configure signature
-> changes -> dependent task signatures change -> the PR value
-> changes automatically.
->
->>>> I suppose the other question is, if I release a package of revision X,
->>>> then another which is up-rev'd' to Y as I made a change to the recipe
->>>> and so the NBPRS up-revs, then somebody comes back to me and tells me
->>>> they are having a problem with Xm then how do I link that rev X to the
->>>> specific commit that went to build it so I can audit ?
->>> The PR server doesn't track this - however, all of this information does
->>> go into buildhistory if you enable that.
->> Must look at that, yes.
-> For reference:
->
-> http://www.yoctoproject.org/docs/current/ref-manual/ref-manual.html#maintaining-build-output-quality
->
-> Cheers,
-> Paul
->
+The following changes since commit 8bc61051cafd1d12cef3111132a50ebdd87640a2:
 
-I've just noticed this which seems to usefully address some of my
-questions; include for others who may come across the thread,
+  gtk-sharp, libgdiplus mono-helloworld, mono: Removed extraneous PR variables from upgraded recipes (2014-02-27 17:16:14 +0000)
 
-https://bugzilla.yoctoproject.org/show_bug.cgi?id=1556
+are available in the git repository at:
 
-Excellent. So I can export my current set of AUTOPR values to a file,
-give that to another development team in the handover, or test, or
-whomever,
-who can then import and build packages with the same version/name
-(assuming that they're on another site or otherwise don't have access to
-my PR
-network service ). I can see that will obviate the need for an
-inordinate number of conversations with the test team.
+  git://git.yoctoproject.org/meta-mono ajl/mono-xsp
+  http://git.yoctoproject.org/cgit.cgi/meta-mono/log/?h=ajl/mono-xsp
 
+Alex J Lennon (1):
+  mono-xsp: Updated to 2.10
+
+ recipes-mono/mono-xsp/mono-xsp.inc      |   33 +++++
+ recipes-mono/mono-xsp/mono-xsp_1.2.5.bb |  228 -------------------------------
+ recipes-mono/mono-xsp/mono-xsp_2.10.bb  |    5 +
+ 3 files changed, 38 insertions(+), 228 deletions(-)
+ create mode 100644 recipes-mono/mono-xsp/mono-xsp.inc
+ delete mode 100644 recipes-mono/mono-xsp/mono-xsp_1.2.5.bb
+ create mode 100644 recipes-mono/mono-xsp/mono-xsp_2.10.bb
+
+-- 
+1.7.9.5
 
 
