@@ -1,34 +1,27 @@
-Return-Path: <cristian.iorga@intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 97305E00804
-	for <yocto@yoctoproject.org>; Thu, 27 Feb 2014 00:52:43 -0800 (PST)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga101.jf.intel.com with ESMTP; 27 Feb 2014 00:52:24 -0800
+Return-Path: <paul.eggleton@linux.intel.com>
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EE7D2E004F1
+	for <yocto@yoctoproject.org>; Thu, 27 Feb 2014 04:21:43 -0800 (PST)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga101.fm.intel.com with ESMTP; 27 Feb 2014 04:21:13 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.97,553,1389772800"; d="scan'208";a="490768680"
-Received: from irsmsx104.ger.corp.intel.com ([163.33.3.159])
-	by orsmga002.jf.intel.com with ESMTP; 27 Feb 2014 00:51:51 -0800
-Received: from irsmsx153.ger.corp.intel.com (163.33.192.75) by
-	IRSMSX104.ger.corp.intel.com (163.33.3.159) with Microsoft SMTP Server
-	(TLS) id 14.3.123.3; Thu, 27 Feb 2014 08:51:50 +0000
-Received: from irsmsx105.ger.corp.intel.com ([169.254.7.202]) by
-	IRSMSX153.ger.corp.intel.com ([169.254.9.61]) with mapi id
-	14.03.0123.003; Thu, 27 Feb 2014 08:51:50 +0000
-From: "Iorga, Cristian" <cristian.iorga@intel.com>
-To: Chris Tapp <opensource@keylevel.com>, Yocto Project
-	<yocto@yoctoproject.org>
-Thread-Topic: [yocto] Later versions of gstreamer
-Thread-Index: AQHPMzY60jhLkcCl3U+dFRWTw+G225rIywEQ
-Date: Thu, 27 Feb 2014 08:51:50 +0000
-Message-ID: <969F26A8BAB325438E7EB80D3C3134FB16D02A51@IRSMSX105.ger.corp.intel.com>
-References: <9AB00C54-DF23-4674-A970-64444675D90B@keylevel.com>
-In-Reply-To: <9AB00C54-DF23-4674-A970-64444675D90B@keylevel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [163.33.239.180]
+X-IronPort-AV: E=Sophos;i="4.97,554,1389772800"; d="scan'208";a="489202013"
+Received: from ssaevars-mobl.ger.corp.intel.com (HELO
+	peggleto-mobl5.ger.corp.intel.com) ([10.252.120.24])
+	by fmsmga002.fm.intel.com with ESMTP; 27 Feb 2014 04:21:12 -0800
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: "Meier, Dennis" <meier.dennis@siemens.com>
+Date: Thu, 27 Feb 2014 12:21:11 +0000
+Message-ID: <696754439.xt49FElyt9@peggleto-mobl5.ger.corp.intel.com>
+Organization: Intel Corporation
+User-Agent: KMail/4.12.2 (Linux/3.13.4-200.fc20.x86_64; KDE/4.12.2; x86_64; ; )
+In-Reply-To: <2388138.yKjCEoKfgy@peggleto-mobl5.ger.corp.intel.com>
+References: <9ADD3FDE8B189B4AA2F8A3C711F8155E54FA5AC3@fmsmsx111.amr.corp.intel.com>
+	<6F22A92316C68C42A591A48A6291DA9DD60D59@DEFTHW99EI0MSX.ww902.siemens.net>
+	<2388138.yKjCEoKfgy@peggleto-mobl5.ger.corp.intel.com>
 MIME-Version: 1.0
-Subject: Re: Later versions of gstreamer
+Cc: yocto@yoctoproject.org, Scott Rifenbark <srifenbark@gmail.com>
+Subject: Re: Minutes: Yocto Project Technical Team Meeting - Tuesday, February 25, 2014 8:00 AM US Pacific Time
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,70 +33,48 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 27 Feb 2014 08:52:44 -0000
-Content-Language: en-US
+X-List-Received-Date: Thu, 27 Feb 2014 12:21:47 -0000
+Content-Transfer-Encoding: 7Bit
 Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
 
-Hello Chris,
+On Wednesday 26 February 2014 10:50:51 Paul Eggleton wrote:
+> Hi Dennis,
+> 
+> On Wednesday 26 February 2014 09:56:46 Meier, Dennis wrote:
+> > > * Yocto 1.6 status - 10 min (Stephen/team)
+> > > 
+> > >  https://wiki.yoctoproject.org/wiki/Yocto_Project_v1.6_Status
+> > >  https://wiki.yoctoproject.org/wiki/Yocto_1.6_Features
+> > > 
+> > > YP 1.6 M3 RC2 is about ready for release.  Still working some
+> > > non-blocking
+> > > issues for M3.  YP 1.6 > is progressing for release at the end of April.
+> > > Richard: Could use some more eyes on the new revision of the Bitbake
+> > > manual located here.  If you have time please review it.
+> > 
+> > Concerning the bitbake manual at
+> > http://www.yoctoproject.org/docs/temp/user-manual/user-manual.html: I
+> > found
+> > a small mistake and wanted to create a patch but the user-manual doesn't
+> > seem to be in the https://github.com/openembedded/bitbake or
+> > http://git.openembedded.org/bitbake/ repo. What am I doing wrong or where
+> > can I find this newest version?
+> 
+> I can't tell for sure but It looks like Scott hasn't pushed his changes out
+> yet, he's only published the output. Scott, when you get a chance would you
+> be able to push a poky-contrib branch with your most recent BitBake manual
+> changes in it?
 
-Carlos Rafael has more details, he maintains a gstreamer 1.x.y branch and h=
-e says that is has support for danny also.
+Just to follow up, Scott has now pushed the following poky-contrib branch 
+containing his latest BitBake manual changes:
 
-See details below.
+http://git.yoctoproject.org/cgit/cgit.cgi/poky-contrib/log/?h=srifenbark/wmat5
 
-Good luck.
+Cheers,
+Paul
 
-Regards,
-Cristian Iorga
-YP
-Intel Corporation
+-- 
 
-
-> -----Original Message-----
-> From: Carlos Rafael Giani [mailto:dv@pseudoterminal.org]
-> Subject: Re: [yocto] Rgardring GSTreamer1.0 integration on Yocto dylan
-> <missing>
-> On 2014-01-28 13:49, Khaja Hussain Shaik wrote:
->> Hi Carlos,
->>
->> Did you get a chance to look into the porting of gst1.0 to Dylan?
->>
->> Regards
->> Khaja
->>
-> I have now upgraded the recipes in meta-gstreamer1.0 to version 1.2.2.
-> It is a backport from the current OE-core recipes. Furthermore, I=20
-> added the Orc OE-core recipes to this layer. This way, gstreamer is=20
-> built with Orc support by default, even for danny and dylan.
->
-> cheers,
-> Carlos
-
------Original Message-----
-From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org=
-] On Behalf Of Chris Tapp
-Sent: Wednesday, February 26, 2014 11:03 PM
-To: Yocto Project
-Subject: [yocto] Later versions of gstreamer
-
-I'm currently using 'danny' for a project, but that only has Gstreamer 0.10=
- in the meta data.
-
-Has anyone tried using 1.0.x (or, better still, 1.2.x) with 'danny'?
-
-Unfortunately, I'm stuck at 'danny' as I need video acceleration for cedart=
-rail and that isn't supported in later versions.
-
-Chris Tapp
-
-opensource@keylevel.com
-www.keylevel.com
-
-
-
-_______________________________________________
-yocto mailing list
-yocto@yoctoproject.org
-https://lists.yoctoproject.org/listinfo/yocto
+Paul Eggleton
+Intel Open Source Technology Centre
 
