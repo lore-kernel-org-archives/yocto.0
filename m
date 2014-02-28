@@ -1,35 +1,34 @@
-Return-Path: <ashcharles@gmail.com>
-Received: from mail-vc0-f179.google.com (mail-vc0-f179.google.com
-	[209.85.220.179])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7F95AE0090A
-	for <yocto@yoctoproject.org>; Thu, 27 Feb 2014 17:09:55 -0800 (PST)
-Received: by mail-vc0-f179.google.com with SMTP id lh14so35142vcb.10
-	for <yocto@yoctoproject.org>; Thu, 27 Feb 2014 17:09:55 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-type;
-	bh=sKfLcWw3aE+PRpvk9zp3kWlU1EQnrBPgOpvnToEEm04=;
-	b=byOVHLRTxtQ1HyvFQEOghtz5FwxQsS5EbqVPU1hWjUrJ5jvnIYviKS1G14tuyjRGyj
-	RkwchgO3GLZ9Ix66H9HnRr57Ru+zrBsXlf8jcfxvDGyayjVpxLuHva6g1wPi2Gm9pgKe
-	BRaEDC0azAZX5cdLyRT7BoqL/00lXSCN9d9km8tdCyPFwCFAfNQf7lynqI0tak23Vg1q
-	yQIaRLsfrzzEG3F93JEFRbsEovUNdCegHUuASFwlz76payRv2kpvVNbyqW91VxuuGkxS
-	U3wpwBCJH3lnfwnt5vH1R27ebyD4rmV9qjBt3COfVXBNM3tbAya0AUhZN1+vbuCkc/GP
-	OEFA==
-X-Received: by 10.52.186.230 with SMTP id fn6mr11407141vdc.14.1393549794943;
-	Thu, 27 Feb 2014 17:09:54 -0800 (PST)
+Return-Path: <cristian.iorga@intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DA56FE00949
+	for <yocto@yoctoproject.org>; Thu, 27 Feb 2014 23:24:42 -0800 (PST)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga102.jf.intel.com with ESMTP; 27 Feb 2014 23:20:17 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.97,560,1389772800"; d="scan'208";a="491363193"
+Received: from irsmsx103.ger.corp.intel.com ([163.33.3.157])
+	by orsmga002.jf.intel.com with ESMTP; 27 Feb 2014 23:24:39 -0800
+Received: from irsmsx106.ger.corp.intel.com ([169.254.8.177]) by
+	IRSMSX103.ger.corp.intel.com ([169.254.3.84]) with mapi id
+	14.03.0123.003; Fri, 28 Feb 2014 07:24:38 +0000
+From: "Iorga, Cristian" <cristian.iorga@intel.com>
+To: Chris Tapp <opensource@keylevel.com>
+Thread-Topic: [yocto] Later versions of gstreamer
+Thread-Index: AQHPMzY60jhLkcCl3U+dFRWTw+G225rIywEQgADCEACAALYtUA==
+Date: Fri, 28 Feb 2014 07:24:26 +0000
+Message-ID: <969F26A8BAB325438E7EB80D3C3134FB16D075DE@IRSMSX106.ger.corp.intel.com>
+References: <9AB00C54-DF23-4674-A970-64444675D90B@keylevel.com>
+	<969F26A8BAB325438E7EB80D3C3134FB16D02A51@IRSMSX105.ger.corp.intel.com>
+	<E0FCD8F0-EA74-43E0-A739-6B2B59CB21ED@keylevel.com>
+In-Reply-To: <E0FCD8F0-EA74-43E0-A739-6B2B59CB21ED@keylevel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [163.33.239.182]
 MIME-Version: 1.0
-Received: by 10.58.45.134 with HTTP; Thu, 27 Feb 2014 17:09:24 -0800 (PST)
-In-Reply-To: <CAMKF1srsi2EfUBsPam0n8DqLJw8+WiZBDMYQoquf0yQGu4VmoA@mail.gmail.com>
-References: <CAK8F28nj1CNzSGxJegJDjgP7f=OGAUbNPY9ak9ea+JoAOEKhYg@mail.gmail.com>
-	<CAMKF1srAGgNbQqE62_Jts+fUfOzq04nu1XFW7uABLg0QsaMgng@mail.gmail.com>
-	<CAK8F28mEj01FWh6=0XRSduXAVGtvk1vR4+=7pxQn2qfUmjtFkQ@mail.gmail.com>
-	<CAMKF1srsi2EfUBsPam0n8DqLJw8+WiZBDMYQoquf0yQGu4VmoA@mail.gmail.com>
-From: Ash Charles <ashcharles@gmail.com>
-Date: Thu, 27 Feb 2014 17:09:24 -0800
-Message-ID: <CAK8F28=Z5=T2+z1a=66Jzsi_nOyMWLBOA-F8NZovR8Z=1hTVgg@mail.gmail.com>
-To: Khem Raj <raj.khem@gmail.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Using MACHINE_EXTRA_RDEPENDS to install wifi Firmware
+Cc: Yocto Project <yocto@yoctoproject.org>,
+	"dv@pseudoterminal.org" <dv@pseudoterminal.org>
+Subject: Re: Later versions of gstreamer
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,19 +40,111 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 28 Feb 2014 01:09:56 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Fri, 28 Feb 2014 07:24:44 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-On Thu, Feb 27, 2014 at 4:54 PM, Khem Raj <raj.khem@gmail.com> wrote:
-> as you can see kernel-firmware-whiteheat is the package name under
-> which kernel is packaging it
-> so include that if you want the kernel provided one.
-Ah---perfect.  That makes sense.
-I had
-MACHINE_EXTRA_RDEPENDS += "linux-firmware-sd8686"
-I should have had
-MACHINE_EXTRA_RDEPENDS += "kernel-firmware-sd8686"
+Hi Chris,
+The gstreamer1.0 that Carlos Rafael is taking care of is maintained in a se=
+parate layer that won't get integrated into danny, because for older YP rel=
+eases, no new features are added, only bugs are fixed or backported.
+The in meta-gstreamer1.0 will need to be added as a layer into your own ima=
+ge.
+See more details at:
+http://www.yoctoproject.org/docs/1.5.1/dev-manual/dev-manual.html#enabling-=
+your-layer
 
-Thanks for your help!
---Ash
+If you need more info, please ask.
+
+Regards,
+Cristian Iorga
+YP
+Intel Corporation
+
+-----Original Message-----
+From: Chris Tapp [mailto:opensource@keylevel.com]=20
+Sent: Thursday, February 27, 2014 10:23 PM
+To: Iorga, Cristian
+Cc: dv@pseudoterminal.org
+Subject: Re: [yocto] Later versions of gstreamer
+
+Hi Cristian,
+
+On 27 Feb 2014, at 08:51, Iorga, Cristian <cristian.iorga@intel.com> wrote:
+
+> Hello Chris,
+>=20
+> Carlos Rafael has more details, he maintains a gstreamer 1.x.y branch and=
+ he says that is has support for danny also.
+
+Thanks, that's good news. Thanks Carlos :-)
+
+I assume I just grab this from Poky meta head until it gets into a 'danny' =
+release? Sorry, but my git skills are poor ;-)
+
+>=20
+> See details below.
+>=20
+> Good luck.
+>=20
+> Regards,
+> Cristian Iorga
+> YP
+> Intel Corporation
+>=20
+>=20
+>> -----Original Message-----
+>> From: Carlos Rafael Giani [mailto:dv@pseudoterminal.org]
+>> Subject: Re: [yocto] Rgardring GSTreamer1.0 integration on Yocto=20
+>> dylan <missing> On 2014-01-28 13:49, Khaja Hussain Shaik wrote:
+>>> Hi Carlos,
+>>>=20
+>>> Did you get a chance to look into the porting of gst1.0 to Dylan?
+>>>=20
+>>> Regards
+>>> Khaja
+>>>=20
+>> I have now upgraded the recipes in meta-gstreamer1.0 to version 1.2.2.
+>> It is a backport from the current OE-core recipes. Furthermore, I=20
+>> added the Orc OE-core recipes to this layer. This way, gstreamer is=20
+>> built with Orc support by default, even for danny and dylan.
+>>=20
+>> cheers,
+>> Carlos
+>=20
+> -----Original Message-----
+> From: yocto-bounces@yoctoproject.org=20
+> [mailto:yocto-bounces@yoctoproject.org] On Behalf Of Chris Tapp
+> Sent: Wednesday, February 26, 2014 11:03 PM
+> To: Yocto Project
+> Subject: [yocto] Later versions of gstreamer
+>=20
+> I'm currently using 'danny' for a project, but that only has Gstreamer 0.=
+10 in the meta data.
+>=20
+> Has anyone tried using 1.0.x (or, better still, 1.2.x) with 'danny'?
+>=20
+> Unfortunately, I'm stuck at 'danny' as I need video acceleration for ceda=
+rtrail and that isn't supported in later versions.
+>=20
+> Chris Tapp
+>=20
+> opensource@keylevel.com
+> www.keylevel.com
+>=20
+>=20
+>=20
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+
+Chris Tapp
+
+opensource@keylevel.com
+www.keylevel.com
+
+
+
 
