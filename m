@@ -1,42 +1,43 @@
-Return-Path: <ajlennon@gmail.com>
-Received: from mail-we0-f172.google.com (mail-we0-f172.google.com
-	[74.125.82.172])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F03ECE00936
-	for <yocto@yoctoproject.org>; Fri, 28 Feb 2014 05:17:49 -0800 (PST)
-Received: by mail-we0-f172.google.com with SMTP id u56so546681wes.17
-	for <yocto@yoctoproject.org>; Fri, 28 Feb 2014 05:17:48 -0800 (PST)
+Return-Path: <koansoftware@gmail.com>
+Received: from mail-ee0-f46.google.com (mail-ee0-f46.google.com [74.125.83.46])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 359BAE0094B
+	for <yocto@yoctoproject.org>; Fri, 28 Feb 2014 05:53:47 -0800 (PST)
+Received: by mail-ee0-f46.google.com with SMTP id d49so2263688eek.33
+	for <yocto@yoctoproject.org>; Fri, 28 Feb 2014 05:53:46 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=sender:from:to:subject:date:message-id:in-reply-to:references
-	:in-reply-to:references;
-	bh=MaxsDfBuam+ZSZCO/1ytIHHGVOf+pmxhpwLf/1rmfOc=;
-	b=Ncec3fE2FbHzn4y9GCsNl07czyzStcRlNIJ8tiLmDKbpmjVIS8jbuWOVAjlpvwsBux
-	+8fuQdnuc63JKYD4VWviOJMIpV8U8sVyWvUZfVREubURYvlWYxxKq5WkhRsELE+pUDdm
-	zzBAazCAgo401Pehfq0IIiK+2ys6mEUX1cQjh2igGrYQbymfMbDb/MV09OZYqZwhQuIh
-	nI7B9ziOe2wX8/tAm9opUtNocyG1M6o7Ph9ueokHsgpHoAEjaJWaIcj3gNfmmfawo9xy
-	VtRGfpDLiXbL4wGIK462y9pCF7LVP3Gu9sZkrkisFkOwC6ScdQOtJ03iMX3zXbVqUOsF
-	NNjQ==
-X-Received: by 10.194.63.103 with SMTP id f7mr2728041wjs.38.1393593467992;
-	Fri, 28 Feb 2014 05:17:47 -0800 (PST)
-Received: from localhost.localdomain
-	(cpc32-live22-2-0-cust59.17-2.cable.virginm.net. [82.36.253.60])
-	by mx.google.com with ESMTPSA id n15sm4976195wij.3.2014.02.28.05.17.47
+	h=message-id:date:from:reply-to:organization:user-agent:mime-version
+	:to:subject:references:in-reply-to:content-type
+	:content-transfer-encoding;
+	bh=eTsKEhg18wGAcx2g6gSwObGJC6oEIpDrnMuDy1wRR0s=;
+	b=llC5F8eAaTBj8vCqlG5WF9ayfXZZazjdhiiCNmBY7kXXCbD0mBD8EwFM5K0q5xa2mp
+	F5eHJzH7yHF0ANNN6y3/gg7IFaEcD6Z2Up/jSZNjpu8hnrWCkQQ94T4fQnW7clYet4dS
+	27jeAYjyVfAPaOb795guYCq0QHKxDcWfzEo91z1zfTtUqC7cu98f0U0JxYP0/pnFpaCO
+	UgYttyI9RQmRA/Dg5v6z/eRWpK0Q4nKdlw25SUktqGZEv8pkqpzSjtZUOmhLzmtPUcSn
+	HcfAGy8WLX0Opw/0rabe/3yZyB18SLIjb6JlNQWnm9B1PrAv+y1ruVDQmuTxt9wcHFrF
+	dC7A==
+X-Received: by 10.14.246.196 with SMTP id q44mr11293905eer.45.1393595625805;
+	Fri, 28 Feb 2014 05:53:45 -0800 (PST)
+Received: from [192.168.0.5]
+	(host56-7-static.30-87-b.business.telecomitalia.it. [87.30.7.56])
+	by mx.google.com with ESMTPSA id 48sm10752021eee.2.2014.02.28.05.53.43
 	for <yocto@yoctoproject.org>
-	(version=TLSv1.1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
-	Fri, 28 Feb 2014 05:17:47 -0800 (PST)
-Sender: Alex Lennon <ajlennon@gmail.com>
-From: Alex J Lennon <ajlennon@dynamicdevices.co.uk>
+	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
+	Fri, 28 Feb 2014 05:53:44 -0800 (PST)
+Message-ID: <531094E5.2050906@gmail.com>
+Date: Fri, 28 Feb 2014 14:53:41 +0100
+From: Marco <koansoftware@gmail.com>
+Organization: MC
+User-Agent: Mozilla/5.0 (X11; Linux i686;
+	rv:24.0) Gecko/20100101 Thunderbird/24.3.0
+MIME-Version: 1.0
 To: yocto@yoctoproject.org
-Date: Fri, 28 Feb 2014 13:16:51 +0000
-Message-Id: <42b6b3da0c55f2c76ced18ecee319099bd5a3343.1393593269.git.ajlennon@dynamicdevices.co.uk>
-X-Mailer: git-send-email 1.7.9.5
-In-Reply-To: <cover.1393593269.git.ajlennon@dynamicdevices.co.uk>
-References: <cover.1393593269.git.ajlennon@dynamicdevices.co.uk>
-In-Reply-To: <cover.1393593269.git.ajlennon@dynamicdevices.co.uk>
-References: <cover.1393593269.git.ajlennon@dynamicdevices.co.uk>
-Subject: [meta-mono] [PATCH 1/1] mono-basic: Add VisualBasic.NET support with mono-basic v2.10
+References: <CAD78y+6bm_gdoQtU6RP9xHp_ASPD-r8SWU7Sg55SvtouzurvhQ@mail.gmail.com>
+In-Reply-To: <CAD78y+6bm_gdoQtU6RP9xHp_ASPD-r8SWU7Sg55SvtouzurvhQ@mail.gmail.com>
+Subject: Re: Build qemuarm compatible with freescale i.MX6
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
+Reply-To: koansoftware@gmail.com
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -45,108 +46,35 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 28 Feb 2014 13:17:50 -0000
+X-List-Received-Date: Fri, 28 Feb 2014 13:53:50 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Synopsis:
+Il 28/02/2014 11:03, Federico Vitali ha scritto:
+> Goodmorning,
+>
+> I'm new to yocto project, I would like to know if there is the
+> possibility to build a qemuarm
+> kernel compatible with fsl i.MX6. I'm developing with a sabre SD board
+> and I would like to
+> run the same filesystem both on the real target and via qemu emulation
+> on my PC for application
+> developement purposes.
+>
+> Thank you in advance to anyone who wants to contribute!
+>
 
-@see http://www.mono-project.com/VisualBasic.NET_support for details on VB.Net support in Mono
 
-Testing:
+Federico,
+AFAIK the kernel can't be the same and moreover iMX6 generated system 
+will use hw graphic acceleration, so probably couldn't be the same.
+You can use a generic ARM kernel on qemuarm and a specific one on iMX6 
+with the same image type though.
 
-mono-basic recipe was added to a qemux86 image for testing. A simple VB helloworld application was used from this link
-
-@see http://msdn.microsoft.com/en-us/library/3cf7t4xt(v=vs.110).aspx
-
-The script was first compiled to an .exe on the build Ubuntu host, copied to the qemux86 image and executed successfully with
-
-mono helloworld.exe
-
-i.e. A message box was shown
-
-Then the script was copied to the qemux86 image, compiled and executed successfully with
-
-vbnc helloworld.vb
-mono helloworld.exe
-
-Note that when using VB.Net on an, e.g., Ubuntu host it may be necessary to add a missing link. The recipe handles creation of this link for the target package.
-
-sudo ln -s /usr/lib/mono/4.0/Microsoft.VisualBasic.dll  /usr/lib/mono/4.5/Microsoft.VisualBasic.dll
-
-@see http://mono.1490590.n4.nabble.com/mod-mono-with-VB-The-library-Microsoft-VisualBasic-dll-could-not-be-found-td4659980.html
-
-Signed-off-by: Alex J Lennon <ajlennon@dynamicdevices.co.uk>
----
- recipes-mono/mono-basic/mono-basic.inc     |   47 ++++++++++++++++++++++++++++
- recipes-mono/mono-basic/mono-basic_2.10.bb |    5 +++
- 2 files changed, 52 insertions(+)
- create mode 100644 recipes-mono/mono-basic/mono-basic.inc
- create mode 100644 recipes-mono/mono-basic/mono-basic_2.10.bb
-
-diff --git a/recipes-mono/mono-basic/mono-basic.inc b/recipes-mono/mono-basic/mono-basic.inc
-new file mode 100644
-index 0000000..8f66395
---- /dev/null
-+++ b/recipes-mono/mono-basic/mono-basic.inc
-@@ -0,0 +1,47 @@
-+DESCRIPTION = "Visual Basic.NET support in Mono"
-+SECTION = "devel/mono"
-+DEPENDS = "mono"
-+RDEPENDS_${PN} = "mono"
-+LICENSE = "LGPLv2"
-+LIC_FILES_CHKSUM = "file://LICENSE;md5=d8c5dc22eb6f25667cf8d96f603635e7"
-+
-+inherit autotools 
-+
-+SRC_URI = "http://download.mono-project.com/sources/mono-basic/mono-basic-${PV}.tar.bz2"
-+
-+FILES_${PN} += " \
-+  ${libdir}/mono/2.0/*.dll \
-+  ${libdir}/mono/4.0/*.dll \
-+  ${libdir}/mono/4.0/*.exe \
-+  ${libdir}/mono/4.0/*.rsp \
-+  ${libdir}/mono/4.5/* \
-+  ${libdir}/mono/gac/Mono.Cecil.VB \
-+  ${libdir}/mono/gac/Microsoft.VisualBasic \
-+  ${libdir}/mono/gac/Mono.Cecil.VB.Pdb/0.9.3.0__0738eb9f132ed756/*.dll \
-+  ${libdir}/mono/gac/Microsoft.VisualBasic/10.0.0.0__b03f5f7f11d50a3a/*.dll \
-+  ${libdir}/mono/gac/Microsoft.VisualBasic/8.0.0.0__b03f5f7f11d50a3a/*.dll \
-+  ${libdir}/mono/gac/Mono.Cecil.VB.Mdb/0.9.3.0__0738eb9f132ed756/*.dll \
-+  ${libdir}/mono/gac/Mono.Cecil.VB/0.9.3.0__0738eb9f132ed756/*.dll \
-+"
-+
-+FILES_${PN}-dbg += " \
-+  ${libdir}/mono/4.0/*.mdb \
-+  ${libdir}/mono/gac/*.Pdb \
-+  ${libdir}/mono/gac/*.Mdb \
-+  ${libdir}/mono/gac/Mono.Cecil.VB.Pdb/0.9.3.0__0738eb9f132ed756/*.mdb \
-+  ${libdir}/mono/gac/Microsoft.VisualBasic/10.0.0.0__b03f5f7f11d50a3a/*.mdb \
-+  ${libdir}/mono/gac/Microsoft.VisualBasic/8.0.0.0__b03f5f7f11d50a3a/*.mdb \
-+  ${libdir}/mono/gac/Mono.Cecil.VB.Mdb/0.9.3.0__0738eb9f132ed756/*.mdb \
-+  ${libdir}/mono/gac/Mono.Cecil.VB/0.9.3.0__0738eb9f132ed756/*.mdb \
-+"
-+
-+do_compile_prepend() {
-+  sed -e "s|\$(prefix)|${STAGING_DIR_NATIVE}/usr|" -i build/profiles/net_2_0.make
-+  sed -e "s|\$(prefix)|${STAGING_DIR_NATIVE}/usr|" -i build/profiles/net_4_0.make
-+}
-+
-+do_install_append() {
-+ install -d "${D}${libdir}/mono/4.5"
-+ ln -sf ${libdir}/mono/4.0/Microsoft.VisualBasic.dll  ${D}${libdir}/mono/4.5/Microsoft.VisualBasic.dll
-+}
-+
-diff --git a/recipes-mono/mono-basic/mono-basic_2.10.bb b/recipes-mono/mono-basic/mono-basic_2.10.bb
-new file mode 100644
-index 0000000..422499b
---- /dev/null
-+++ b/recipes-mono/mono-basic/mono-basic_2.10.bb
-@@ -0,0 +1,5 @@
-+require mono-basic.inc
-+
-+SRC_URI[md5sum] = "b459890e5447419ab1a5ea43d9b8afe8"
-+SRC_URI[sha256sum] = "1cd87b634d4d862527c548bb827542d11a607569005df0123678e381ad12b186"
-+
+Ciao
 -- 
-1.7.9.5
-
+Marco Cavallini | KOAN sas | Bergamo - Italia
+  embedded and real-time software engineering
+Phone:+39-035-255.235 - Fax:+39-178-22.39.748
+       http://www.KoanSoftware.com
 
