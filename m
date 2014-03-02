@@ -1,28 +1,32 @@
-Return-Path: <bianchirickkutta@gmail.com>
-Received: from mail-vc0-f193.google.com (mail-vc0-f193.google.com
-	[209.85.220.193])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D5692E006EA
-	for <yocto@yoctoproject.org>; Sat,  1 Mar 2014 20:20:50 -0800 (PST)
-Received: by mail-vc0-f193.google.com with SMTP id hq11so849359vcb.0
-	for <yocto@yoctoproject.org>; Sat, 01 Mar 2014 20:20:49 -0800 (PST)
+Return-Path: <raj.khem@gmail.com>
+Received: from mail-ie0-f173.google.com (mail-ie0-f173.google.com
+	[209.85.223.173])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BBD3EE008C8
+	for <yocto@yoctoproject.org>; Sat,  1 Mar 2014 20:54:52 -0800 (PST)
+Received: by mail-ie0-f173.google.com with SMTP id rl12so1657373iec.4
+	for <yocto@yoctoproject.org>; Sat, 01 Mar 2014 20:54:51 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=jbvmbHZ0MvmX4oKCwKpUxCSZkUm3/qoXWrcrLTYwlw0=;
-	b=oyY4Lo0ndTv75LRHv/Lvn/1bM0RJoUVj1lKuZP/6nce9YECeBZdWTepi9bVuvnJh/H
-	VXr35lCIy8Ph4OWVtbNtOJ3cpSwFnRlq0BCAEqrZbAe88/vO24vG0qsQpJUddb/vUpFC
-	vpeN0It4H5QG0d6YfK9GAdUxLTndiy45r6//mJ2hES6aQzRYNatDhFTDAlMxItIRwxFC
-	pUtw0E3HM1TkoqGY6ZAfjIn8DSAcDuznZsV/sHtoBaKJrzU1f4zGoAtryZ7VIdCKwztc
-	dAJ5WfwNgUTE/n4b/eFYQnK07zBV/34JRnWcm/4hJay+b52mJUtuOnvc5D6c9xeh0ZSn
-	f+jw==
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-type;
+	bh=LCdlKuNTabu8fkR7NgXGGkegTG2xsxp8qJHHhDTb3sM=;
+	b=nSoy8NUO7LBXHKzmarY2rAuROuoeZeeWjy0k/Et3hHEbiNZQ1Fw/KEWu7MxLkclSYx
+	puzvXiJ2j2VUkl2fnVdN+QY7envOuaB9r17byTpnph0oWR5isJLwLDpE8Cbuuhhqhj04
+	jmDOn88N/kNV7Rbw5uPWfkey31wm8gHVLUdQqTryb5yvRVJ4Hhk+1BQUSBsnVcSPWh6U
+	TaE/PFWCOVzOSKLx2n9gvoo86KOsYNiSuqHAjb7Ge7b8uOAFI1Oln4yUMp0hhBjcVSxL
+	hMuggLBxlbi50v8oQw7re6oBiDfJIZOCPiSpTh0NoPIeY6qPfAcEAy6qGlU3VPdor2SI
+	Vhzg==
+X-Received: by 10.50.143.69 with SMTP id sc5mr14461474igb.2.1393736091755;
+	Sat, 01 Mar 2014 20:54:51 -0800 (PST)
 MIME-Version: 1.0
-X-Received: by 10.220.200.6 with SMTP id eu6mr4810vcb.35.1393734049196; Sat,
-	01 Mar 2014 20:20:49 -0800 (PST)
-Received: by 10.220.96.66 with HTTP; Sat, 1 Mar 2014 20:20:49 -0800 (PST)
-Date: Sat, 1 Mar 2014 21:20:49 -0700
-Message-ID: <CAA7h+EoghW9UZacjVfhRuEmAWadbsz5zyYAM-RAKQPSpf8--0A@mail.gmail.com>
-From: Rick Bianchi <bianchirickkutta@gmail.com>
-To: yocto@yoctoproject.org
-Subject: Which .bbappend file ?
+Received: by 10.50.224.136 with HTTP; Sat, 1 Mar 2014 20:54:21 -0800 (PST)
+In-Reply-To: <CAA7h+EoghW9UZacjVfhRuEmAWadbsz5zyYAM-RAKQPSpf8--0A@mail.gmail.com>
+References: <CAA7h+EoghW9UZacjVfhRuEmAWadbsz5zyYAM-RAKQPSpf8--0A@mail.gmail.com>
+From: Khem Raj <raj.khem@gmail.com>
+Date: Sat, 1 Mar 2014 20:54:21 -0800
+Message-ID: <CAMKF1srOOz0dfB778a=hVD6htVY4LUx7XaZbnKH7YHSwcuPYog@mail.gmail.com>
+To: Rick Bianchi <bianchirickkutta@gmail.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Which .bbappend file ?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,126 +38,67 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 02 Mar 2014 04:20:51 -0000
-Content-Type: multipart/alternative; boundary=047d7b5d6612e9ef4e04f397fe97
+X-List-Received-Date: Sun, 02 Mar 2014 04:54:54 -0000
+Content-Type: text/plain; charset=UTF-8
 
---047d7b5d6612e9ef4e04f397fe97
-Content-Type: text/plain; charset=ISO-8859-1
-
-Okay, I am feeling a little thick, but here is my question.
-
-How do I know which .bbappend file is the right one to modify.
-
-Here is everything that would be in my layers:
-
-/yocto/poky/meta/recipes-kernel/linux/linux-yocto
-/yocto/poky/meta/recipes-kernel/linux/linux-yocto-dev.bb
-/yocto/poky/meta/recipes-kernel/linux/linux-yocto-rt_3.2.bb
-/yocto/poky/meta/recipes-kernel/linux/linux-yocto-rt_3.4.bb
-yocto/poky/meta/recipes-kernel/linux/linux-yocto-rt_3.8.bb
-/yocto/poky/meta/recipes-kernel/linux/linux-yocto-tiny_3.2.bb
-/yocto/poky/meta/recipes-kernel/linux/linux-yocto-tiny_3.4.bb
-/yocto/poky/meta/recipes-kernel/linux/linux-yocto-tiny_3.8.bb
-/yocto/poky/meta/recipes-kernel/linux/linux-yocto.inc
-/yocto/poky/meta/recipes-kernel/linux/linux-yocto_3.2.bb
-/yocto/poky/meta/recipes-kernel/linux/linux-yocto_3.4.bb
-/yocto/poky/meta/recipes-kernel/linux/linux-yocto_3.8.bb
-
-
-
-
-Generally speaking, the preferred approach is to determine the incremental
-change you want to make and add that as a configuration fragment. For
-example, if you want to add support for a basic serial console, create a
-file named 8250.cfg in thefiles directory with the following content
-(without indentation):
-
-     CONFIG_SERIAL_8250=y
-     CONFIG_SERIAL_8250_CONSOLE=y
-     CONFIG_SERIAL_8250_PCI=y
-     CONFIG_SERIAL_8250_NR_UARTS=4
-     CONFIG_SERIAL_8250_RUNTIME_UARTS=4
-     CONFIG_SERIAL_CORE=y
-     CONFIG_SERIAL_CORE_CONSOLE=y
-
-
-Next, include this configuration fragment and *extend
-the FILESPATH variable in your .bbappend file:*
-
-     FILESEXTRAPATHS_prepend := "${THISDIR}/files:"
-     SRC_URI += "file://8250.cfg"
-
-
-Thanks,
-Rick
-
---047d7b5d6612e9ef4e04f397fe97
-Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div><div>Okay, I am feeling a little thick, but here is m=
-y question.<br><br></div>How do I know which .bbappend file is the right on=
-e to modify.<br><br></div>Here is everything that would be in my layers:<br=
+On Sat, Mar 1, 2014 at 8:20 PM, Rick Bianchi <bianchirickkutta@gmail.com> wrote:
+> Okay, I am feeling a little thick, but here is my question.
 >
-<br>/yocto/poky/meta/recipes-kernel/linux/linux-yocto<br>/yocto/poky/meta/r=
-ecipes-kernel/linux/<a href=3D"http://linux-yocto-dev.bb">linux-yocto-dev.b=
-b</a><br>/yocto/poky/meta/recipes-kernel/linux/<a href=3D"http://linux-yoct=
-o-rt_3.2.bb">linux-yocto-rt_3.2.bb</a><br>
-/yocto/poky/meta/recipes-kernel/linux/<a href=3D"http://linux-yocto-rt_3.4.=
-bb">linux-yocto-rt_3.4.bb</a><br>yocto/poky/meta/recipes-kernel/linux/<a hr=
-ef=3D"http://linux-yocto-rt_3.8.bb">linux-yocto-rt_3.8.bb</a><br>/yocto/pok=
-y/meta/recipes-kernel/linux/<a href=3D"http://linux-yocto-tiny_3.2.bb">linu=
-x-yocto-tiny_3.2.bb</a><br>
-/yocto/poky/meta/recipes-kernel/linux/<a href=3D"http://linux-yocto-tiny_3.=
-4.bb">linux-yocto-tiny_3.4.bb</a><br>/yocto/poky/meta/recipes-kernel/linux/=
-<a href=3D"http://linux-yocto-tiny_3.8.bb">linux-yocto-tiny_3.8.bb</a><br>/=
-yocto/poky/meta/recipes-kernel/linux/linux-yocto.inc<br>
-/yocto/poky/meta/recipes-kernel/linux/<a href=3D"http://linux-yocto_3.2.bb"=
->linux-yocto_3.2.bb</a><br>/yocto/poky/meta/recipes-kernel/linux/<a href=3D=
-"http://linux-yocto_3.4.bb">linux-yocto_3.4.bb</a><br>/yocto/poky/meta/reci=
-pes-kernel/linux/<a href=3D"http://linux-yocto_3.8.bb">linux-yocto_3.8.bb</=
-a><br>
-<br><div><br><br><br><p style=3D"line-height:1.5em;margin-top:0em;color:rgb=
-(51,51,51);font-family:Verdana,Sans,sans-serif;font-size:medium;font-style:=
-normal;font-variant:normal;font-weight:normal;letter-spacing:normal;text-al=
-ign:start;text-indent:0px;text-transform:none;white-space:normal;word-spaci=
-ng:0px;background-color:rgb(255,255,255)">
-Generally speaking, the preferred approach is to determine the incremental =
-change you want to make and add that as a configuration fragment. For examp=
-le, if you want to add support for a basic serial console, create a file na=
-med<span class=3D"">=A0</span><code class=3D"" style=3D"font-size:medium;fo=
-nt-family:Courier,monospace">8250.cfg</code><span class=3D"">=A0</span>in t=
-he<code class=3D"" style=3D"font-size:medium;font-family:Courier,monospace"=
->files</code><span class=3D"">=A0</span>directory with the following conten=
-t (without indentation):</p>
-<pre class=3D"" style=3D"overflow:auto;color:rgb(51,51,51);font-style:norma=
-l;font-variant:normal;font-weight:normal;letter-spacing:normal;line-height:=
-normal;text-align:start;text-indent:0px;text-transform:none;word-spacing:0p=
-x;background-color:rgb(255,255,255)">
-     CONFIG_SERIAL_8250=3Dy
-     CONFIG_SERIAL_8250_CONSOLE=3Dy
-     CONFIG_SERIAL_8250_PCI=3Dy
-     CONFIG_SERIAL_8250_NR_UARTS=3D4
-     CONFIG_SERIAL_8250_RUNTIME_UARTS=3D4
-     CONFIG_SERIAL_CORE=3Dy
-     CONFIG_SERIAL_CORE_CONSOLE=3Dy
-                </pre><p style=3D"line-height:1.5em;margin-top:0em;color:rg=
-b(51,51,51);font-family:Verdana,Sans,sans-serif;font-size:medium;font-style=
-:normal;font-variant:normal;font-weight:normal;letter-spacing:normal;text-a=
-lign:start;text-indent:0px;text-transform:none;white-space:normal;word-spac=
-ing:0px;background-color:rgb(255,255,255)">
-Next, include this configuration fragment and <b><span style=3D"color:rgb(0=
-,0,0)">extend the<span class=3D"">=A0</span><code class=3D"" style=3D"font-=
-size:medium;font-family:Courier,monospace">FILESPATH</code><span class=3D""=
->=A0</span>variable in your<span class=3D"">=A0</span><code class=3D"" styl=
-e=3D"font-size:medium;font-family:Courier,monospace">.bbappend</code><span =
-class=3D"">=A0</span>file:</span></b></p>
-<pre class=3D"" style=3D"overflow:auto;color:rgb(51,51,51);font-style:norma=
-l;font-variant:normal;font-weight:normal;letter-spacing:normal;line-height:=
-normal;text-align:start;text-indent:0px;text-transform:none;word-spacing:0p=
-x;background-color:rgb(255,255,255)">
-     FILESEXTRAPATHS_prepend :=3D &quot;${THISDIR}/files:&quot;
-     SRC_URI +=3D &quot;file://8250.cfg&quot;
-</pre><br class=3D""></div><div>Thanks,<br></div><div>Rick<br></div></div>
+> How do I know which .bbappend file is the right one to modify.
+>
+> Here is everything that would be in my layers:
+>
+> /yocto/poky/meta/recipes-kernel/linux/linux-yocto
+> /yocto/poky/meta/recipes-kernel/linux/linux-yocto-dev.bb
+> /yocto/poky/meta/recipes-kernel/linux/linux-yocto-rt_3.2.bb
+> /yocto/poky/meta/recipes-kernel/linux/linux-yocto-rt_3.4.bb
+> yocto/poky/meta/recipes-kernel/linux/linux-yocto-rt_3.8.bb
+> /yocto/poky/meta/recipes-kernel/linux/linux-yocto-tiny_3.2.bb
+> /yocto/poky/meta/recipes-kernel/linux/linux-yocto-tiny_3.4.bb
+> /yocto/poky/meta/recipes-kernel/linux/linux-yocto-tiny_3.8.bb
+> /yocto/poky/meta/recipes-kernel/linux/linux-yocto.inc
+> /yocto/poky/meta/recipes-kernel/linux/linux-yocto_3.2.bb
+> /yocto/poky/meta/recipes-kernel/linux/linux-yocto_3.4.bb
+> /yocto/poky/meta/recipes-kernel/linux/linux-yocto_3.8.bb
+>
+>
 
---047d7b5d6612e9ef4e04f397fe97--
+well you should know which kernel is in use you can also ask bitbake
+
+bitbake -s | grep linux-yocto
+
+It should tell you which version of linux-yocto is being used.
+
+>
+>
+> Generally speaking, the preferred approach is to determine the incremental
+> change you want to make and add that as a configuration fragment. For
+> example, if you want to add support for a basic serial console, create a
+> file named 8250.cfg in thefiles directory with the following content
+> (without indentation):
+>
+>      CONFIG_SERIAL_8250=y
+>      CONFIG_SERIAL_8250_CONSOLE=y
+>      CONFIG_SERIAL_8250_PCI=y
+>      CONFIG_SERIAL_8250_NR_UARTS=4
+>      CONFIG_SERIAL_8250_RUNTIME_UARTS=4
+>      CONFIG_SERIAL_CORE=y
+>      CONFIG_SERIAL_CORE_CONSOLE=y
+>
+>
+> Next, include this configuration fragment and extend the FILESPATH variable
+> in your .bbappend file:
+>
+>      FILESEXTRAPATHS_prepend := "${THISDIR}/files:"
+>      SRC_URI += "file://8250.cfg"
+>
+>
+> Thanks,
+> Rick
+>
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
+
