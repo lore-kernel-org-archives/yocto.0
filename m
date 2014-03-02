@@ -1,28 +1,25 @@
-Return-Path: <bianchirickkutta@gmail.com>
-Received: from mail-vc0-f195.google.com (mail-vc0-f195.google.com
-	[209.85.220.195])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1C845E008C8
-	for <yocto@yoctoproject.org>; Sat,  1 Mar 2014 22:13:03 -0800 (PST)
-Received: by mail-vc0-f195.google.com with SMTP id le5so872793vcb.2
-	for <yocto@yoctoproject.org>; Sat, 01 Mar 2014 22:13:02 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=5ewGzFu/FTiyKV8prndkhIktjTUlIZt7YKHzBehI+tQ=;
-	b=jN42GxJyJk62kvo956mxINsu4vxF9AYNYnxFYhcjj50NssQREsXFhCn3cgepKZP2xr
-	T8NxipahCm91Jq7DNq5f4XaSKmn2kIS2x6BD35KqvWh9aBhHUUADTQ7CFhXOQ8fiYCdi
-	M/cQ6OKlex5UGxoBdiCne5pJa1qDH/j/XmkenHvpjuJvnzIQ4SfzcrAS6wnQsoZt7USg
-	uUmmMVkjvLhByXtoR0RtJE5SD7GtHLfzP5iv7oWCLJV/TmToktqSUeJyMIYmbY9k2hgR
-	SE6MvaOA9VVnKdTJimfa4cAWq462ECBh/0WAKs/D7TYp9D52QpHlqGl4EjHjVemGswGA
-	WPYA==
+Return-Path: <paul.eggleton@linux.intel.com>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 11144E008C8
+	for <yocto@yoctoproject.org>; Sun,  2 Mar 2014 04:59:30 -0800 (PST)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga101.jf.intel.com with ESMTP; 02 Mar 2014 04:59:29 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.97,572,1389772800"; d="scan'208";a="465046138"
+Received: from pmckerno-mobl.ger.corp.intel.com (HELO
+	peggleto-mobl5.ger.corp.intel.com) ([10.252.123.249])
+	by orsmga001.jf.intel.com with ESMTP; 02 Mar 2014 04:59:15 -0800
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: Rick Bianchi <bianchirickkutta@gmail.com>
+Date: Sun, 02 Mar 2014 12:59:02 +0000
+Message-ID: <11914575.EXu7RhDefO@peggleto-mobl5.ger.corp.intel.com>
+Organization: Intel Corporation
+User-Agent: KMail/4.12.2 (Linux/3.13.4-200.fc20.x86_64; KDE/4.12.2; x86_64; ; )
+In-Reply-To: <CAA7h+Ep1+4wTDDfmp=CETPJMLFkP9M_AtRtR8BSvq+Mua3hS9A@mail.gmail.com>
+References: <CAA7h+Ep1+4wTDDfmp=CETPJMLFkP9M_AtRtR8BSvq+Mua3hS9A@mail.gmail.com>
 MIME-Version: 1.0
-X-Received: by 10.221.30.14 with SMTP id sa14mr112263vcb.44.1393740782367;
-	Sat, 01 Mar 2014 22:13:02 -0800 (PST)
-Received: by 10.220.96.66 with HTTP; Sat, 1 Mar 2014 22:13:02 -0800 (PST)
-Date: Sat, 1 Mar 2014 23:13:02 -0700
-Message-ID: <CAA7h+Ep1+4wTDDfmp=CETPJMLFkP9M_AtRtR8BSvq+Mua3hS9A@mail.gmail.com>
-From: Rick Bianchi <bianchirickkutta@gmail.com>
-To: yocto@yoctoproject.org
-Subject: openjade-0.6.14.tar.gz Compile Error
+Cc: yocto@yoctoproject.org
+Subject: Re: openjade-0.6.14.tar.gz Compile Error
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,70 +31,47 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 02 Mar 2014 06:13:04 -0000
-Content-Type: multipart/alternative; boundary=001a11336a2e3df96b04f39990ad
+X-List-Received-Date: Sun, 02 Mar 2014 12:59:31 -0000
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
---001a11336a2e3df96b04f39990ad
-Content-Type: text/plain; charset=ISO-8859-1
+Hi Rick,
 
-I get the following error when I try to compile. I cannot locate the file
-"openjade-0.6.14.tar.gz". Any thoughts?
+On Saturday 01 March 2014 23:13:02 Rick Bianchi wrote:
+> I get the following error when I try to compile. I cannot locate the file
+> "openjade-0.6.14.tar.gz". Any thoughts?
+> 
+> 
+> 
+> 
+> WARNING: Failed to fetch URL
+> http://downloads.sourceforge.net/openjade/openjade-0.6.14.tar.gz,
+> attempting MIRRORS if available
+> ERROR: Fetcher failure: Fetch command failed with exit code 8, output:
+> http://downloads.sourceforge.net/openjade/openjade-0.6.14.tar.gz:
+> 2014-03-01 23:05:10 ERROR 404: Not Found.
+> 
+> ERROR: Function failed: Fetcher failure for URL: '
+> http://downloads.sourceforge.net/openjade/openjade-0.6.14.tar.gz'. Unable
+> to fetch URL from any source.
+> ERROR: Logfile of failure stored in:
+> /home/infinitezero/yocto001/build/tmp/work/x86_64-linux/docbook-utils-native
+> /0.6.14-r5/temp/log.do_fetch.9159 ERROR: Task 1501
+> (/home/infinitezero/yocto001/poky/meta/recipes-devtools/docbook-utils/
+> docbook-utils-native_0.6.14.bb, do_fetch) failed with exit code '1'
+> NOTE: Tasks Summary: Attempted 1815 tasks of which 1808 didn't need to be
+> rerun and 1 failed.
 
+Something is very wrong here - the docbook-utils-native recipe has no 
+reference to an openjade tarball.
 
+What version of the build system are you running?
 
+Cheers,
+Paul
 
-WARNING: Failed to fetch URL
-http://downloads.sourceforge.net/openjade/openjade-0.6.14.tar.gz,
-attempting MIRRORS if available
-ERROR: Fetcher failure: Fetch command failed with exit code 8, output:
-http://downloads.sourceforge.net/openjade/openjade-0.6.14.tar.gz:
-2014-03-01 23:05:10 ERROR 404: Not Found.
+-- 
 
-ERROR: Function failed: Fetcher failure for URL: '
-http://downloads.sourceforge.net/openjade/openjade-0.6.14.tar.gz'. Unable
-to fetch URL from any source.
-ERROR: Logfile of failure stored in:
-/home/infinitezero/yocto001/build/tmp/work/x86_64-linux/docbook-utils-native/0.6.14-r5/temp/log.do_fetch.9159
-ERROR: Task 1501
-(/home/infinitezero/yocto001/poky/meta/recipes-devtools/docbook-utils/
-docbook-utils-native_0.6.14.bb, do_fetch) failed with exit code '1'
-NOTE: Tasks Summary: Attempted 1815 tasks of which 1808 didn't need to be
-rerun and 1 failed.
-Waiting for 0 running tasks to finish:
+Paul Eggleton
+Intel Open Source Technology Centre
 
-Summary: 1 task failed:
-  /home/infinitezero/yocto001/poky/meta/recipes-devtools/docbook-utils/
-docbook-utils-native_0.6.14.bb, do_fetch
-Summary: There was 1 WARNING message shown.
-Summary: There were 2 ERROR messages shown, returning a non-zero exit code.
-
---001a11336a2e3df96b04f39990ad
-Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">I get the following error when I try to compile. I cannot =
-locate the file &quot;openjade-0.6.14.tar.gz&quot;. Any thoughts?<br><br><b=
-r><br><br>WARNING: Failed to fetch URL <a href=3D"http://downloads.sourcefo=
-rge.net/openjade/openjade-0.6.14.tar.gz">http://downloads.sourceforge.net/o=
-penjade/openjade-0.6.14.tar.gz</a>, attempting MIRRORS if available<br>
-ERROR: Fetcher failure: Fetch command failed with exit code 8, output:<br><=
-a href=3D"http://downloads.sourceforge.net/openjade/openjade-0.6.14.tar.gz"=
->http://downloads.sourceforge.net/openjade/openjade-0.6.14.tar.gz</a>:<br>
-2014-03-01 23:05:10 ERROR 404: Not Found.<br><br>ERROR: Function failed: Fe=
-tcher failure for URL: &#39;<a href=3D"http://downloads.sourceforge.net/ope=
-njade/openjade-0.6.14.tar.gz">http://downloads.sourceforge.net/openjade/ope=
-njade-0.6.14.tar.gz</a>&#39;. Unable to fetch URL from any source.<br>
-ERROR: Logfile of failure stored in: /home/infinitezero/yocto001/build/tmp/=
-work/x86_64-linux/docbook-utils-native/0.6.14-r5/temp/log.do_fetch.9159<br>=
-ERROR: Task 1501 (/home/infinitezero/yocto001/poky/meta/recipes-devtools/do=
-cbook-utils/<a href=3D"http://docbook-utils-native_0.6.14.bb">docbook-utils=
--native_0.6.14.bb</a>, do_fetch) failed with exit code &#39;1&#39;<br>
-NOTE: Tasks Summary: Attempted 1815 tasks of which 1808 didn&#39;t need to =
-be rerun and 1 failed.<br>Waiting for 0 running tasks to finish:<br><br>Sum=
-mary: 1 task failed:<br>=A0 /home/infinitezero/yocto001/poky/meta/recipes-d=
-evtools/docbook-utils/<a href=3D"http://docbook-utils-native_0.6.14.bb">doc=
-book-utils-native_0.6.14.bb</a>, do_fetch<br>
-Summary: There was 1 WARNING message shown.<br>Summary: There were 2 ERROR =
-messages shown, returning a non-zero exit code.<br><br></div>
-
---001a11336a2e3df96b04f39990ad--
