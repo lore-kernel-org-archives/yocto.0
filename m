@@ -1,36 +1,39 @@
-Return-Path: <bianchirickkutta@gmail.com>
-Received: from mail-ve0-f173.google.com (mail-ve0-f173.google.com
-	[209.85.128.173])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4CEE8E009EB
-	for <yocto@yoctoproject.org>; Mon,  3 Mar 2014 08:56:59 -0800 (PST)
-Received: by mail-ve0-f173.google.com with SMTP id oy12so1804191veb.4
-	for <yocto@yoctoproject.org>; Mon, 03 Mar 2014 08:56:59 -0800 (PST)
+Return-Path: <ajlennon@gmail.com>
+Received: from mail-we0-f169.google.com (mail-we0-f169.google.com
+	[74.125.82.169])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8F39DE009EB
+	for <yocto@yoctoproject.org>; Mon,  3 Mar 2014 08:57:10 -0800 (PST)
+Received: by mail-we0-f169.google.com with SMTP id w62so1727390wes.0
+	for <yocto@yoctoproject.org>; Mon, 03 Mar 2014 08:57:10 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type;
-	bh=Onfy4w7/5Z6D1+zTl7hVEakYTJ4w+a04n8dZfbsMg0w=;
-	b=mU/rHVP/zgD8AiN9hKNcOxg5XJeR9591wDRB2Os8uODS5ozdoSOD++HNQ7VodlgOAj
-	SQ/FRg6GxPdPn8IMWKnmB1baOl9TERGyB6C2AdDHjYiX01J89jFqmCdHfGX5u3rw34tD
-	e9kVKkt7GwlGas4jtfADRyNm2xnkhXMXFa+1AdyI2Q7w+JfH41QAar9Pf1DiAs9K9TDf
-	XcPHjgsCiZzoqS53d5DDQ5VeaR7Nqfb+t+0paGJ+mx/3aT+0M1VBGiVsMP/v+yIkwZ0b
-	yszr3fNYLcUkxZoMtNpQ2EkRgIX5ZOrUS15qvdBT3CcM/eGi9wI6uERoNMHJ6bgKLN2h
-	18/A==
-MIME-Version: 1.0
-X-Received: by 10.58.168.142 with SMTP id zw14mr3397790veb.33.1393865819101;
-	Mon, 03 Mar 2014 08:56:59 -0800 (PST)
-Received: by 10.220.96.66 with HTTP; Mon, 3 Mar 2014 08:56:59 -0800 (PST)
-In-Reply-To: <CAA7h+EogdaLsVOCbVv3W_qaEicfJs-WtKMPdCeKbDUubZVakkA@mail.gmail.com>
-References: <CAA7h+EqtOE2spfgtXi2CiogUFsytGxyb4EgqSAoanwTximA-+w@mail.gmail.com>
-	<1461290.cFV4RBsgra@peggleto-mobl5.ger.corp.intel.com>
-	<CAA7h+EoPfLcMW3SF9SkUKai5KPe9RJpEJu8+Nz+akUYX9TNZfw@mail.gmail.com>
-	<1583886.umgNPlo09z@peggleto-mobl5.ger.corp.intel.com>
-	<CAA7h+EogdaLsVOCbVv3W_qaEicfJs-WtKMPdCeKbDUubZVakkA@mail.gmail.com>
-Date: Mon, 3 Mar 2014 09:56:59 -0700
-Message-ID: <CAA7h+ErXKX-M=VsC2GDqe5DGNE-y_VtEPv0YdO+ws+HHGTa9FA@mail.gmail.com>
-From: Rick Bianchi <bianchirickkutta@gmail.com>
-To: Paul Eggleton <paul.eggleton@linux.intel.com>
-Cc: yocto@yoctoproject.org
-Subject: Re: WARNING: Failed to fetch URL http://downloads.sourceforge.net/openjade/openjade-0.6.14.tar.gz, attempting MIRRORS if available
+	h=sender:from:to:subject:date:message-id:in-reply-to:references
+	:in-reply-to:references;
+	bh=QTnCdWxDkPrxBEZT82KVO7gQrPaky87TwHU8AafFVp0=;
+	b=L4aaqlW4lFkSxxPVn8YEbBvvCxweukh158Rpq/CLb6Nh876GAwF6TiJcAWfXdawBuM
+	A+CKcTu1XUV2X4Z+2NZqTuCE8KDd31myatHlnvxH6nHCOtolpnGl+gM+jaHiYFmf32P8
+	hMmo/D+BukkMhQ71FF48GF6OBNzPmNvJu01ZXZKFMdOnWsVwQH6xB2c5t8WpfNgWPaC/
+	8yCJZLsHP5BsVkjYrcpirkVOQhmSMD+/mELMZQZLnaQP2s0Y2dqiY4Xe9nDOfD57XhJz
+	7uCYVl+501fs/vfzMiifZSviSj+ieksatnXS4UirBhHKG6aYDhMT/iqCQv/Yci6NhEOm
+	uqIA==
+X-Received: by 10.194.90.233 with SMTP id bz9mr8146370wjb.65.1393865829950;
+	Mon, 03 Mar 2014 08:57:09 -0800 (PST)
+Received: from localhost.localdomain
+	(cpc32-live22-2-0-cust59.17-2.cable.virginm.net. [82.36.253.60])
+	by mx.google.com with ESMTPSA id f7sm37941181wjb.7.2014.03.03.08.57.09
+	for <yocto@yoctoproject.org>
+	(version=TLSv1.1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
+	Mon, 03 Mar 2014 08:57:09 -0800 (PST)
+Sender: Alex Lennon <ajlennon@gmail.com>
+From: Alex J Lennon <ajlennon@dynamicdevices.co.uk>
+To: yocto@yoctoproject.org
+Date: Mon,  3 Mar 2014 16:56:29 +0000
+Message-Id: <7f0b95a485f9c5a1429ae55c0f6e1a9968500c3b.1393865664.git.ajlennon@dynamicdevices.co.uk>
+X-Mailer: git-send-email 1.7.9.5
+In-Reply-To: <cover.1393865664.git.ajlennon@dynamicdevices.co.uk>
+References: <cover.1393865664.git.ajlennon@dynamicdevices.co.uk>
+In-Reply-To: <cover.1393865664.git.ajlennon@dynamicdevices.co.uk>
+References: <cover.1393865664.git.ajlennon@dynamicdevices.co.uk>
+Subject: [meta-mono] [PATCH 1/1] dbus-sharp, dbus-sharp-glib: Added C# managed implementation of D-Bus and GLib bindings
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,173 +45,163 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 03 Mar 2014 16:57:02 -0000
-Content-Type: multipart/alternative; boundary=047d7b6da02803205404f3b6ad60
+X-List-Received-Date: Mon, 03 Mar 2014 16:57:11 -0000
 
---047d7b6da02803205404f3b6ad60
-Content-Type: text/plain; charset=ISO-8859-1
+Signed-off-by: Alex J Lennon <ajlennon@dynamicdevices.co.uk>
+---
+ recipes-mono/dbus-sharp-glib/dbus-sharp-glib.inc   |   35 ++++++++++++++++++++
+ .../dbus-sharp-glib/dbus-sharp-glib_0.6.0.bb       |    6 ++++
+ .../fix-message-reader-writer.patch                |   29 ++++++++++++++++
+ recipes-mono/dbus-sharp/dbus-sharp.inc             |   31 +++++++++++++++++
+ recipes-mono/dbus-sharp/dbus-sharp_0.8.0.bb        |    9 +++++
+ 5 files changed, 110 insertions(+)
+ create mode 100644 recipes-mono/dbus-sharp-glib/dbus-sharp-glib.inc
+ create mode 100644 recipes-mono/dbus-sharp-glib/dbus-sharp-glib_0.6.0.bb
+ create mode 100644 recipes-mono/dbus-sharp/dbus-sharp-0.8.0/fix-message-reader-writer.patch
+ create mode 100644 recipes-mono/dbus-sharp/dbus-sharp.inc
+ create mode 100644 recipes-mono/dbus-sharp/dbus-sharp_0.8.0.bb
 
-Any help you can give me on patching it would be greatly appreciated.
+diff --git a/recipes-mono/dbus-sharp-glib/dbus-sharp-glib.inc b/recipes-mono/dbus-sharp-glib/dbus-sharp-glib.inc
+new file mode 100644
+index 0000000..6f1367a
+--- /dev/null
++++ b/recipes-mono/dbus-sharp-glib/dbus-sharp-glib.inc
+@@ -0,0 +1,35 @@
++SUMMARY = "C# implementation of D-Bus GlibC integration module"
++DESCRIPTION = "This is a fork of ndesk-dbus-glib, which provides GLib main loop integration for Managed D-Bus."
++SECTION = "devel/mono"
++DEPENDS = "mono dbus-sharp"
++LICENSE = "MIT"
++LIC_FILES_CHKSUM = "files://COPYING;md5=ea73672fbe49f67f1c1b44a7e763dab4"
++
++inherit autotools
++
++def dbus_sharp_glib_download_version(d):
++    pvsplit = d.getVar('PV', True).split('.')
++    return pvsplit[0] + '.' + pvsplit[1]
++
++SDIRVER = "${@dbus_sharp_glib_download_version(d)}"
++
++SRC_URI = "https://github.com/mono/dbus-sharp-glib/archive/v${SDIRVER}.tar.gz"
++
++S = "${WORKDIR}/${PN}-${SDIRVER}"
++
++FILESPATH =. "${FILE_DIRNAME}/${PN}-${PV}:"
++
++FILES_${PN} += " \
++  ${libdir}/mono/gac/dbus-sharp-glib/2.0.0.0__5675b0c3093115b5/dbus-sharp-glib.dll.config \
++  ${libdir}/mono/gac/dbus-sharp-glib/2.0.0.0__5675b0c3093115b5/dbus-sharp-glib.dll \
++  ${libdir}/mono/dbus-sharp-glib-2.0/dbus-sharp-glib.dll \
++"
++
++FILES_${PN}-dbg += " \
++  ${libdir}/mono/gac/dbus-sharp-glib/2.0.0.0__5675b0c3093115b5/dbus-sharp-glib.dll.mdb \
++"
++
++do_configure_prepend() {
++  export DBUS_SHARP_LIBS="/r:${STAGING_LIBDIR}/mono/dbus-sharp-2.0/dbus-sharp.dll"
++}
++
+diff --git a/recipes-mono/dbus-sharp-glib/dbus-sharp-glib_0.6.0.bb b/recipes-mono/dbus-sharp-glib/dbus-sharp-glib_0.6.0.bb
+new file mode 100644
+index 0000000..c86dc31
+--- /dev/null
++++ b/recipes-mono/dbus-sharp-glib/dbus-sharp-glib_0.6.0.bb
+@@ -0,0 +1,6 @@
++require dbus-sharp-glib.inc
++
++inherit pkgconfig
++
++SRC_URI[md5sum] = "1b00ef8523eb830acaa34b3f6fb8d739"
++SRC_URI[sha256sum] = "d337d5a4dbaab2084972f85d175ba30ca87aa6baaa635288f3b37ca71f2d9047"
+diff --git a/recipes-mono/dbus-sharp/dbus-sharp-0.8.0/fix-message-reader-writer.patch b/recipes-mono/dbus-sharp/dbus-sharp-0.8.0/fix-message-reader-writer.patch
+new file mode 100644
+index 0000000..e4fb89a
+--- /dev/null
++++ b/recipes-mono/dbus-sharp/dbus-sharp-0.8.0/fix-message-reader-writer.patch
+@@ -0,0 +1,29 @@
++diff -ur dbus-sharp-0.8.org/src/Protocol/MessageReader.cs dbus-sharp-0.8/src/Protocol/MessageReader.cs
++--- dbus-sharp-0.8.org/src/Protocol/MessageReader.cs	2014-03-03 13:37:15.777082234 +0000
+++++ dbus-sharp-0.8/src/Protocol/MessageReader.cs	2014-03-03 13:38:28.253082420 +0000
++@@ -576,8 +576,8 @@
++ 			int sof = Marshal.SizeOf (fis[0].FieldType);
++ 
++ 			unsafe {
++-				byte* pVal = (byte*)&val;
++-				DirectCopy (sof, (uint)(fis.Length * sof), (IntPtr)pVal);
+++				GCHandle valueHandle = GCHandle.Alloc(val);
+++ 				DirectCopy (sof, (uint)(fis.Length * sof), (IntPtr)valueHandle);
++ 			}
++ 
++ 			return val;
++diff -ur dbus-sharp-0.8.org/src/Protocol/MessageWriter.cs dbus-sharp-0.8/src/Protocol/MessageWriter.cs
++--- dbus-sharp-0.8.org/src/Protocol/MessageWriter.cs	2014-03-03 13:37:21.661082245 +0000
+++++ dbus-sharp-0.8/src/Protocol/MessageWriter.cs	2014-03-03 13:38:56.325082508 +0000
++@@ -428,9 +428,8 @@
++ 			if (MessageReader.IsEligibleStruct (typeof (T), fis)) {
++ 				byte[] buffer = new byte[Marshal.SizeOf (fis[0].FieldType) * fis.Length];
++ 				unsafe {
++-					byte* pVal = (byte*)&value;
++-					Marshal.Copy ((IntPtr)pVal, buffer, 0, buffer.Length);
++-				}
+++					GCHandle valueHandle = GCHandle.Alloc(value);
+++ 					Marshal.Copy ((IntPtr) valueHandle, buffer, 0, buffer.Length);				}
++ 				stream.Write (buffer, 0, buffer.Length);
++ 				return;
++ 			}
+diff --git a/recipes-mono/dbus-sharp/dbus-sharp.inc b/recipes-mono/dbus-sharp/dbus-sharp.inc
+new file mode 100644
+index 0000000..2629d9a
+--- /dev/null
++++ b/recipes-mono/dbus-sharp/dbus-sharp.inc
+@@ -0,0 +1,31 @@
++SUMMARY = "C# implementation of D-Bus"
++DESCRIPTION = "An inter-process communication framework that lets applications	interface with the system event bus as well as allowing them to talk to one another in a peer-to-peer configuration."
++SECTION = "devel/mono"
++DEPENDS = "mono"
++LICENSE = "MIT"
++LIC_FILES_CHKSUM = "files://COPYING;md5=09d60852216ea29fdba9ea146513336c"
++
++inherit autotools
++
++def dbus_sharp_download_version(d):
++    pvsplit = d.getVar('PV', True).split('.')
++    return pvsplit[0] + '.' + pvsplit[1]
++
++SDIRVER = "${@dbus_sharp_download_version(d)}"
++
++SRC_URI = "https://github.com/mono/dbus-sharp/archive/v${SDIRVER}.tar.gz"
++
++S = "${WORKDIR}/${PN}-${SDIRVER}"
++
++FILESPATH =. "${FILE_DIRNAME}/${PN}-${PV}:"
++
++FILES_${PN} += " \
++  ${libdir}/mono/dbus-sharp-2.0/* \
++  ${libdir}/mono/gac/dbus-sharp/2.0.0.0__5675b0c3093115b5/dbus-sharp.dll.config \
++  ${libdir}/mono/gac/dbus-sharp/2.0.0.0__5675b0c3093115b5/dbus-sharp.dll \
++"
++
++FILES_${PN}-dbg += " \
++  ${libdir}/mono/gac/dbus-sharp/2.0.0.0__5675b0c3093115b5/dbus-sharp.dll.mdb \
++"
++
+diff --git a/recipes-mono/dbus-sharp/dbus-sharp_0.8.0.bb b/recipes-mono/dbus-sharp/dbus-sharp_0.8.0.bb
+new file mode 100644
+index 0000000..61f773c
+--- /dev/null
++++ b/recipes-mono/dbus-sharp/dbus-sharp_0.8.0.bb
+@@ -0,0 +1,9 @@
++require dbus-sharp.inc
++
++inherit pkgconfig
++
++SRC_URI += "file://fix-message-reader-writer.patch"
++
++SRC_URI[md5sum] = "b63c684b326a20119cdefdddb1fa0578"
++SRC_URI[sha256sum] = "efbe1ab0c519efe80fe3498a5836b5d754af87f9b3cff3bf0cbb16d5fc7e0a50"
++
+-- 
+1.7.9.5
 
 
-On Mon, Mar 3, 2014 at 9:55 AM, Rick Bianchi <bianchirickkutta@gmail.com>wrote:
-
-> | jade: symbol lookup error:
-> /home/infinitezero/yoctousbip/build/tmp/sysroots/x86_64-linux/usr/bin/../../usr/lib/libospgrove.so.0:
-> undefined symbol: _ZN14OpenJade_Grove8ClassDef12sgmlDocumentE
-> | jade: symbol lookup error:
-> /home/infinitezero/yoctousbip/build/tmp/sysroots/x86_64-linux/usr/bin/../../usr/lib/libospgrove.so.0:
-> undefined symbol: _ZN14OpenJade_Grove8ClassDef12sgmlDocumentE
-> | make[2]: *** [api.html] Error 127
-> | make[2]: *** Waiting for unfinished jobs....
-> | make[2]: *** [docbook2man.html] Error 127
-> | jade: symbol lookup error:
-> /home/infinitezero/yoctousbip/build/tmp/sysroots/x86_64-linux/usr/bin/../../usr/lib/libospgrove.so.0:
-> undefined symbol: _ZN14OpenJade_Grove8ClassDef12sgmlDocumentE
-> | make[2]: *** [backend-spec.html] Error 127
-> | jade: symbol lookup error:
-> /home/infinitezero/yoctousbip/build/tmp/sysroots/x86_64-linux/usr/bin/../../usr/lib/libospgrove.so.0:
-> undefined symbol: _ZN14OpenJade_Grove8ClassDef12sgmlDocumentE
-> | make[2]: *** [docbook2texi.html] Error 127
-> | make[2]: Leaving directory
-> `/home/infinitezero/yoctousbip/build/tmp/work/x86_64-linux/docbook-utils-native/0.6.14-r3/build/doc/HTML'
-> | make[1]: *** [all-recursive] Error 1
-> | make[1]: Leaving directory
-> `/home/infinitezero/yoctousbip/build/tmp/work/x86_64-linux/docbook-utils-native/0.6.14-r3/build/doc'
-> | make: *** [all-recursive] Error 1
-> | ERROR: oe_runmake failed
-> | ERROR: Function failed: do_compile (see
-> /home/infinitezero/yoctousbip/build/tmp/work/x86_64-linux/docbook-utils-native/0.6.14-r3/temp/log.do_compile.21796
-> for further information)
-> ERROR: Task 1503
-> (/home/infinitezero/yoctousbip/poky/meta/recipes-devtools/docbook-utils/
-> docbook-utils-native_0.6.14.bb, do_compile) failed with exit code '1'
-> NOTE: Tasks Summary: Attempted 1862 tasks of which 1858 didn't need to be
-> rerun and 1 failed.
->
-> Waiting for 0 running tasks to finish:
->
-> Summary: 1 task failed:
-> /home/infinitezero/yoctousbip/poky/meta/recipes-devtools/docbook-utils/
-> docbook-utils-native_0.6.14.bb, do_compile
-> Summary: There was 1 ERROR message shown, returning a non-zero exit code.
->
->
->
-> On Mon, Mar 3, 2014 at 9:49 AM, Paul Eggleton <
-> paul.eggleton@linux.intel.com> wrote:
->
->> On Monday 03 March 2014 09:47:16 Rick Bianchi wrote:
->> > No, I have not made any changes to the yoctousbip/build/conf/local.conf.
->> >
->> > The only change I made was to the file:
->> > yoctousbip/poky/meta/recipes-devtools/docbook-utils/
->> > docbook-utils-native_0.6.14.bb
->>
->> Ah - that explains it. This is not the right value of SRC_URI for this
->> recipe.
->>
->> > It was throwing an error and I understood that it needed to be patched.
->>
->> What error was it throwing?
->>
->> Cheers,
->> Paul
->>
->> --
->>
->> Paul Eggleton
->> Intel Open Source Technology Centre
->>
->
->
-
---047d7b6da02803205404f3b6ad60
-Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">Any help you can give me on patching it would be greatly a=
-ppreciated.<br></div><div class=3D"gmail_extra"><br><br><div class=3D"gmail=
-_quote">On Mon, Mar 3, 2014 at 9:55 AM, Rick Bianchi <span dir=3D"ltr">&lt;=
-<a href=3D"mailto:bianchirickkutta@gmail.com" target=3D"_blank">bianchirick=
-kutta@gmail.com</a>&gt;</span> wrote:<br>
-<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
-x #ccc solid;padding-left:1ex"><div dir=3D"ltr">| jade: symbol lookup error=
-: /home/infinitezero/yoctousbip/build/tmp/sysroots/x86_64-linux/usr/bin/../=
-../usr/lib/libospgrove.so.0: undefined symbol: _ZN14OpenJade_Grove8ClassDef=
-12sgmlDocumentE<br>
-| jade: symbol lookup error: /home/infinitezero/yoctousbip/build/tmp/sysroo=
-ts/x86_64-linux/usr/bin/../../usr/lib/libospgrove.so.0: undefined symbol: _=
-ZN14OpenJade_Grove8ClassDef12sgmlDocumentE<br>
-| make[2]: *** [api.html] Error 127<br>| make[2]: *** Waiting for unfinishe=
-d jobs....<br>| make[2]: *** [docbook2man.html] Error 127<br>| jade: symbol=
- lookup error: /home/infinitezero/yoctousbip/build/tmp/sysroots/x86_64-linu=
-x/usr/bin/../../usr/lib/libospgrove.so.0: undefined symbol: _ZN14OpenJade_G=
-rove8ClassDef12sgmlDocumentE<br>
-
-| make[2]: *** [backend-spec.html] Error 127<br>| jade: symbol lookup error=
-: /home/infinitezero/yoctousbip/build/tmp/sysroots/x86_64-linux/usr/bin/../=
-../usr/lib/libospgrove.so.0: undefined symbol: _ZN14OpenJade_Grove8ClassDef=
-12sgmlDocumentE<br>
-
-| make[2]: *** [docbook2texi.html] Error 127<br>| make[2]: Leaving director=
-y `/home/infinitezero/yoctousbip/build/tmp/work/x86_64-linux/docbook-utils-=
-native/0.6.14-r3/build/doc/HTML&#39;<br>| make[1]: *** [all-recursive] Erro=
-r 1<br>
-
-| make[1]: Leaving directory `/home/infinitezero/yoctousbip/build/tmp/work/=
-x86_64-linux/docbook-utils-native/0.6.14-r3/build/doc&#39;<br>| make: *** [=
-all-recursive] Error 1<br>| ERROR: oe_runmake failed<br>| ERROR: Function f=
-ailed: do_compile (see /home/infinitezero/yoctousbip/build/tmp/work/x86_64-=
-linux/docbook-utils-native/0.6.14-r3/temp/log.do_compile.21796 for further =
-information)<br>
-
-ERROR: Task 1503 (/home/infinitezero/yoctousbip/poky/meta/recipes-devtools/=
-docbook-utils/<a href=3D"http://docbook-utils-native_0.6.14.bb" target=3D"_=
-blank">docbook-utils-native_0.6.14.bb</a>, do_compile) failed with exit cod=
-e &#39;1&#39;<br>
-
-NOTE: Tasks Summary: Attempted 1862 tasks of which 1858 didn&#39;t need to =
-be rerun and 1 failed.<div class=3D""><br>Waiting for 0 running tasks to fi=
-nish:<br><br>Summary: 1 task failed:<br></div>  /home/infinitezero/yoctousb=
-ip/poky/meta/recipes-devtools/docbook-utils/<a href=3D"http://docbook-utils=
--native_0.6.14.bb" target=3D"_blank">docbook-utils-native_0.6.14.bb</a>, do=
-_compile<br>
-
-Summary: There was 1 ERROR message shown, returning a non-zero exit code.<b=
-r><br></div><div class=3D"HOEnZb"><div class=3D"h5"><div class=3D"gmail_ext=
-ra"><br><br><div class=3D"gmail_quote">On Mon, Mar 3, 2014 at 9:49 AM, Paul=
- Eggleton <span dir=3D"ltr">&lt;<a href=3D"mailto:paul.eggleton@linux.intel=
-.com" target=3D"_blank">paul.eggleton@linux.intel.com</a>&gt;</span> wrote:=
-<br>
-
-<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
-x #ccc solid;padding-left:1ex"><div>On Monday 03 March 2014 09:47:16 Rick B=
-ianchi wrote:<br>
-&gt; No, I have not made any changes to the yoctousbip/build/conf/local.con=
-f.<br>
-&gt;<br>
-&gt; The only change I made was to the file:<br>
-&gt; yoctousbip/poky/meta/recipes-devtools/docbook-utils/<br>
-&gt; <a href=3D"http://docbook-utils-native_0.6.14.bb" target=3D"_blank">do=
-cbook-utils-native_0.6.14.bb</a><br>
-<br>
-</div>Ah - that explains it. This is not the right value of SRC_URI for thi=
-s recipe.<br>
-<div><br>
-&gt; It was throwing an error and I understood that it needed to be patched=
-.<br>
-<br>
-</div>What error was it throwing?<br>
-<div><div><br>
-Cheers,<br>
-Paul<br>
-<br>
---<br>
-<br>
-Paul Eggleton<br>
-Intel Open Source Technology Centre<br>
-</div></div></blockquote></div><br></div>
-</div></div></blockquote></div><br></div>
-
---047d7b6da02803205404f3b6ad60--
