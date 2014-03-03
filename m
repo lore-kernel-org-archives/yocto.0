@@ -1,35 +1,34 @@
-Return-Path: <ross.burton@intel.com>
-Received: from mail-qc0-f177.google.com (mail-qc0-f177.google.com
-	[209.85.216.177])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CEA21E00832
-	for <yocto@yoctoproject.org>; Mon,  3 Mar 2014 04:18:02 -0800 (PST)
-Received: by mail-qc0-f177.google.com with SMTP id w7so3549269qcr.22
-	for <yocto@yoctoproject.org>; Mon, 03 Mar 2014 04:18:01 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc:content-type:content-transfer-encoding;
-	bh=UPkgT8LPxHekcKuQIN71NBK7/A+DiqiIXRL/Qjwu3JE=;
-	b=TFnA8QvJWT0ZzjFuxfTYEFvwO2n8fVOcffjqNtMkffUsrJTmVR30B1YTg9n72vfdYh
-	zmCHlO9ij9PThHf1kE+XvGoEBh7ZD57Eg3/X5sKR3aesno923C05TIfqsJLvVqKhCRH8
-	iDh/UxiS+xkT58948D/d4ge2XYEhFZ7wmCaqUnTHaZp+VKqFoRN8URpLUZ8n9PmsciSP
-	p7QARj4klrrRl5y2ewaeFGwdHB8EU71Fz/yhARTfDlC3wgh4RnwZrHXRLN/j5FkDzfie
-	iy3ios5VnWXQhg2a3KgpuGbOpFIqa8w0LIF3A7x2pnFtlqYNjhLq1lk9uJvjqlfTFHVj
-	vyGQ==
-X-Gm-Message-State: ALoCoQmtUaD3qi+LSTtODhXEAgd6WJhuZoC0lzTf1DdDh+Hxx9+PxKwq01l7zJ+MPXmZJrB+Re4Y
-X-Received: by 10.140.42.54 with SMTP id b51mr21537888qga.87.1393849081191;
-	Mon, 03 Mar 2014 04:18:01 -0800 (PST)
-MIME-Version: 1.0
-Received: by 10.140.48.79 with HTTP; Mon, 3 Mar 2014 04:17:41 -0800 (PST)
-In-Reply-To: <CAP71Wjxm7c0LoeHFQ+xPOcgbs4P5i2RRg0TJSGmWfe1xm4-mkw@mail.gmail.com>
-References: <FF9E7E89-95A5-4383-8BAF-35B201407F20@keylevel.com>
-	<CAP71Wjxm7c0LoeHFQ+xPOcgbs4P5i2RRg0TJSGmWfe1xm4-mkw@mail.gmail.com>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Mon, 3 Mar 2014 12:17:41 +0000
-Message-ID: <CAJTo0LYPv3WMjkW8-QWhzBx7SK6p7My4_jA40bS1aG8D46MuiQ@mail.gmail.com>
-To: Nicolas Dechesne <nicolas.dechesne@linaro.org>
-Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: Package 'X' provides... what?
+Return-Path: <ajlennon@gmail.com>
+Received: from mail-we0-f180.google.com (mail-we0-f180.google.com
+	[74.125.82.180])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 55FD1E00928
+	for <yocto@yoctoproject.org>; Mon,  3 Mar 2014 04:45:07 -0800 (PST)
+Received: by mail-we0-f180.google.com with SMTP id p61so1946701wes.39
+	for <yocto@yoctoproject.org>; Mon, 03 Mar 2014 04:45:06 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=sender:from:to:subject:date:message-id;
+	bh=MGNyRJ0RdHOzAl+qTNFzlTVFRittHFcBLPfX06MBCGg=;
+	b=QcBgeKgBt9lBiKTxHmpoZY9lZDdj6Gy1fzoVVxfWD5KhyPTdj6pO6/qZ3QUqURhaGs
+	RCkLwtkvAHMhFCUFYBlSGHwTBsFTkA7uq/kvpRi6K00IyP8elyda0NbpgAUnpklU0Krs
+	KRihZXPVvJHeVEUoaAZXAbXKgpCnxKOURdpt6zX5Hg4YjmS8wPFg0DK0vydT680xgMam
+	vPoeKcPiq+kV2fTCWsqoB7pHmB6Eh6Acl0Jr65XYg7ByuPr2ZWUr+MmiHmdRyyQwI9rs
+	wMOMCJTKLq6HBWx1yH/hk8QGXhnN13rz3NQAn86YJ8uakBzD/MYJDBxrlk+ZPgxLgafA
+	bs8Q==
+X-Received: by 10.194.57.77 with SMTP id g13mr11354199wjq.42.1393850704915;
+	Mon, 03 Mar 2014 04:45:04 -0800 (PST)
+Received: from localhost.localdomain
+	(cpc32-live22-2-0-cust59.17-2.cable.virginm.net. [82.36.253.60])
+	by mx.google.com with ESMTPSA id 12sm34748805wjm.10.2014.03.03.04.45.02
+	for <yocto@yoctoproject.org>
+	(version=TLSv1.1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
+	Mon, 03 Mar 2014 04:45:02 -0800 (PST)
+Sender: Alex Lennon <ajlennon@gmail.com>
+From: Alex J Lennon <ajlennon@dynamicdevices.co.uk>
+To: yocto@yoctoproject.org
+Date: Mon,  3 Mar 2014 12:44:29 +0000
+Message-Id: <cover.1393850555.git.ajlennon@dynamicdevices.co.uk>
+X-Mailer: git-send-email 1.7.9.5
+Subject: [meta-mono] [PATCH 0/1] fsharp: Add support for F# programming language v3.1
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,30 +40,29 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 03 Mar 2014 12:18:05 -0000
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Mon, 03 Mar 2014 12:45:10 -0000
 
-On 3 March 2014 07:10, Nicolas Dechesne <nicolas.dechesne@linaro.org> wrote=
-:
->> How do I find out what (e.g.) gstreamer1.0-plugins-base.bb actually prov=
-ides? Once I've got it to build for one plugin I can go to the work directo=
-ry to see what gets packaged to find the names of other plugins, but I can'=
-t find a way in to start with. Is there some bitbake magic I can use to lis=
-t what's provided by a recipe?
->
-> you can try:
->
-> bitbake -e gstreamer1.0-plugins-base | grep ^PACKAGES
->
-> basically, you are looking for the content of the variable 'PACKAGES'
+See following patch for details
 
-Note that for situations such as this you won't find
-PACKAGES=3Dgstreamer1.0-plugins-base-playbin anywhere as the set of
-plugins that a recipe can build is dynamic .  There'll be a
-PACKAGES_DYNAMIC=3Dgstreamer1.0-plugins-* statement that tells bitbake
-it will provide a set of packages matching a glob, but that's all.  No
-way of going from -plugins-playbin to the gstreamer1.0-plugins-base.
+The following changes since commit 3caf7ee6e56c2c0f009724f36665afe647b7873a:
 
-Ross
+  mono-native: Modify build to eliminate dependency on on host system mscorlib.dll (2014-03-03 10:37:28 +0000)
+
+are available in the git repository at:
+
+  git://git.yoctoproject.org/meta-mono ajl/fsharp
+  http://git.yoctoproject.org/cgit.cgi/meta-mono/log/?h=ajl/fsharp
+
+Alex J Lennon (1):
+  fsharp: Add support for F# programming language v3.1
+
+ recipes-mono/fsharp/fsharp.inc        |   43 +++++++++++++++++++++++++++++++++
+ recipes-mono/fsharp/fsharp_3.1.1.1.bb |    7 ++++++
+ 2 files changed, 50 insertions(+)
+ create mode 100644 recipes-mono/fsharp/fsharp.inc
+ create mode 100644 recipes-mono/fsharp/fsharp_3.1.1.1.bb
+
+-- 
+1.7.9.5
+
 
