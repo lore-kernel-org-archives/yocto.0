@@ -1,39 +1,28 @@
-Return-Path: <ajlennon@gmail.com>
-Received: from mail-we0-f180.google.com (mail-we0-f180.google.com
-	[74.125.82.180])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 57643E00963
-	for <yocto@yoctoproject.org>; Mon,  3 Mar 2014 04:45:09 -0800 (PST)
-Received: by mail-we0-f180.google.com with SMTP id p61so1919621wes.25
-	for <yocto@yoctoproject.org>; Mon, 03 Mar 2014 04:45:08 -0800 (PST)
+Return-Path: <bianchirickkutta@gmail.com>
+Received: from mail-vc0-f193.google.com (mail-vc0-f193.google.com
+	[209.85.220.193])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A5DD2E009BA
+	for <yocto@yoctoproject.org>; Mon,  3 Mar 2014 06:36:48 -0800 (PST)
+Received: by mail-vc0-f193.google.com with SMTP id hq11so1413124vcb.8
+	for <yocto@yoctoproject.org>; Mon, 03 Mar 2014 06:36:47 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=sender:from:to:subject:date:message-id:in-reply-to:references
-	:in-reply-to:references;
-	bh=13or7z+rXbxkW83Y8+BFsRKqxV0pDMG/jdsCID804Yg=;
-	b=siQ0WjKXTn3P3vyza4SZwWrUGKr7f1xj+QPX6Op8WiHt3kWbu3FZW0YzouzgggveUs
-	mbLXJ0WD0BwSC+MQuZ3lkvrf6DnEMpOfN8jWPXVhD9d9AvzDVFf/SxM+mXp7qyfbfaCG
-	2lBxHb8pSJsbJvLgnKFQ+3DiKUCCmT2acVhYmPCr1TmXJID3ZgJd66fhx9khDYdgGKDB
-	2TTjYHKfDxGUom0BAcA4Lr0bnTqHkz6bczdxe8XLbIIKDNpE+17PyorjI7gSWK/jd2jl
-	VzguIOMd1YKyLmAoKb5kYTHdIGQQu2gg9LtSPGZuxUu0lkKWsx1XKUpN4wTpiZLYY+MB
-	le8Q==
-X-Received: by 10.194.110.135 with SMTP id ia7mr17375859wjb.5.1393850707940;
-	Mon, 03 Mar 2014 04:45:07 -0800 (PST)
-Received: from localhost.localdomain
-	(cpc32-live22-2-0-cust59.17-2.cable.virginm.net. [82.36.253.60])
-	by mx.google.com with ESMTPSA id 12sm34748805wjm.10.2014.03.03.04.45.06
-	for <yocto@yoctoproject.org>
-	(version=TLSv1.1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
-	Mon, 03 Mar 2014 04:45:07 -0800 (PST)
-Sender: Alex Lennon <ajlennon@gmail.com>
-From: Alex J Lennon <ajlennon@dynamicdevices.co.uk>
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=Xfh/knF97KIMXf1XhkfubPuDX4jvrOfPKy4m8VacKA4=;
+	b=TfsTL7i11850rFx0YQ5GrYLz/OC9kS1gw6vskLfgwA1qxWMbDd2oxgZu44TH+o7ZKX
+	4f0+cVwcyktf/V8X794hB5noIkJWs3GVX7gRYt5legTRW6UrxjGFf6A4Uq8boAZhNGEW
+	d2kSHuhhxRQUo3M2IZkrIUaVfm3Q7S4BYWP+H1Q0GUaWjmhv8KwS148StFseuWfPxYdM
+	gxoA4H3kmfpWPTib7ir05Rhbntf51pcsN7SumQtvfXi2jtpmYdd1Akv4FIILq0eSI+m9
+	3KMyPyM1IuPzgUbKaE7haq/AcIFFF8kXwH4Y3z8RscoOa+/dX+x8GkjhOg90Qjd8XDHp
+	qGKg==
+MIME-Version: 1.0
+X-Received: by 10.52.181.1 with SMTP id ds1mr102741vdc.92.1393857407429; Mon,
+	03 Mar 2014 06:36:47 -0800 (PST)
+Received: by 10.220.96.66 with HTTP; Mon, 3 Mar 2014 06:36:47 -0800 (PST)
+Date: Mon, 3 Mar 2014 07:36:47 -0700
+Message-ID: <CAA7h+EqtOE2spfgtXi2CiogUFsytGxyb4EgqSAoanwTximA-+w@mail.gmail.com>
+From: Rick Bianchi <bianchirickkutta@gmail.com>
 To: yocto@yoctoproject.org
-Date: Mon,  3 Mar 2014 12:44:30 +0000
-Message-Id: <21568bf4eb910281768553db2d9f5068d7b34769.1393850555.git.ajlennon@dynamicdevices.co.uk>
-X-Mailer: git-send-email 1.7.9.5
-In-Reply-To: <cover.1393850555.git.ajlennon@dynamicdevices.co.uk>
-References: <cover.1393850555.git.ajlennon@dynamicdevices.co.uk>
-In-Reply-To: <cover.1393850555.git.ajlennon@dynamicdevices.co.uk>
-References: <cover.1393850555.git.ajlennon@dynamicdevices.co.uk>
-Subject: [meta-mono] [PATCH 1/1] fsharp: Add support for F# programming language v3.1
+Subject: WARNING: Failed to fetch URL http://downloads.sourceforge.net/openjade/openjade-0.6.14.tar.gz, attempting MIRRORS if available
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,88 +34,110 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 03 Mar 2014 12:45:10 -0000
+X-List-Received-Date: Mon, 03 Mar 2014 14:36:49 -0000
+Content-Type: multipart/alternative; boundary=bcaec548a625a331e704f3b4b766
 
-Testing
-=======
+--bcaec548a625a331e704f3b4b766
+Content-Type: text/plain; charset=ISO-8859-1
 
-qemux86 image was created including the interactive shell (fsharpi) and the compiler (fsharpc) which could both be executed
+Does anyone know how I can get around this error? There is no such package
+on sourceforge "Fetcher failure for URL: '
+http://downloads.sourceforge.net/openjade/openjade-0.6.14.tar.gz'. Unable
+to fetch URL from any source."
 
-Examples from the Wikipiedia page were successfully compiled and executed with mono, including Hello World, Windows Forms, and Asynchronous Parallel Programming
-
-@see: http://en.wikipedia.org/wiki/F_Sharp_(programming_language)
-
-Signed-off-by: Alex J Lennon <ajlennon@dynamicdevices.co.uk>
----
- recipes-mono/fsharp/fsharp.inc        |   43 +++++++++++++++++++++++++++++++++
- recipes-mono/fsharp/fsharp_3.1.1.1.bb |    7 ++++++
- 2 files changed, 50 insertions(+)
- create mode 100644 recipes-mono/fsharp/fsharp.inc
- create mode 100644 recipes-mono/fsharp/fsharp_3.1.1.1.bb
-
-diff --git a/recipes-mono/fsharp/fsharp.inc b/recipes-mono/fsharp/fsharp.inc
-new file mode 100644
-index 0000000..569f9ab
---- /dev/null
-+++ b/recipes-mono/fsharp/fsharp.inc
-@@ -0,0 +1,43 @@
-+SUMMARY = "F# programming language"
-+DESCRIPTION = "F# is a strongly-typed, functional-first programming language for writing simple code to solve complex problems."
-+SECTION = "devel/mono"
-+DEPENDS = "mono"
-+LICENSE = "Apache-2.0"
-+LIC_FILES_CHKSUM = "files://LICENSE;md5=512efb9375da0bd2fee9e2b9352c08af"
-+
-+inherit autotools
-+
-+# For some reason the URL template changes from version to version,
-+# therefore use some variables for the directory and extension
-+SRC_URI = "https://github.com/fsharp/fsharp/archive/${PV}.tar.gz"
-+
-+# AJL - Could split out mdb debugging files into -dbg package in future?
-+FILES_${PN} += "\
-+  ${libdir}/mono/* \  
-+  ${libdir}/mono/xbuild/Microsoft/VisualStudio/* \
-+  ${libdir}/mono/Microsoft F#/v4.0/* \
-+  ${libdir}/mono/Microsoft SDKs/F#/3.0/* \
-+  ${libdir}/mono/Microsoft SDKs/F#/3.1/* \
-+  ${libdir}/mono/2.0/* \
-+  ${libdir}/lib/mono/gac/* \
-+  ${libdir}/mono/gac/FSharp.Compiler.Interactive.Settings/4.3.1.0__f536804aa0eb945b/* \
-+  ${libdir}/mono/gac/FSharp.Compiler.Server.Shared/4.3.1.0__f536804aa0eb945b/* \
-+  ${libdir}/mono/gac/FSharp.Data.TypeProviders/4.3.1.0__f536804aa0eb945b/* \
-+  ${libdir}/mono/gac/policy.2.3.FSharp.Core/0.0.0.0__b03f5f7f11d50a3a/* \
-+  ${libdir}/mono/gac/policy.2.3.FSharp.Core/0.0.0.0__b03f5f7f11d50a3a/* \
-+  ${libdir}/mono/gac/policy.4.0.FSharp.Core/0.0.0.0__b03f5f7f11d50a3a/* \
-+  ${libdir}/mono/gac/policy.3.3.FSharp.Core/0.0.0.0__b03f5f7f11d50a3a/* \
-+  ${libdir}/mono/gac/policy.3.3.FSharp.Core/0.0.0.0__b03f5f7f11d50a3a/* \
-+  ${libdir}/mono/gac/policy.2.0.FSharp.Core/0.0.0.0__b03f5f7f11d50a3a/* \
-+  ${libdir}/mono/gac/FSharp.Core/2.3.98.1__b03f5f7f11d50a3a/* \
-+  ${libdir}/mono/gac/FSharp.Core/2.3.1.0__b03f5f7f11d50a3a/* \
-+  ${libdir}/mono/gac/FSharp.Core/4.3.1.0__b03f5f7f11d50a3a/* \
-+  ${libdir}/mono/gac/FSharp.Core/2.3.99.1__b03f5f7f11d50a3a/* \
-+  ${libdir}/mono/gac/FSharp.Compiler/4.3.1.0__f536804aa0eb945b/* \
-+  ${libdir}/mono/gac/policy.4.3.FSharp.Core/0.0.0.0__b03f5f7f11d50a3a/* \
-+  ${libdir}/mono/gac/FSharp.Build/* \
-+  ${libdir}/mono/4.0/* \
-+  ${libdir}/mono/monotouch/* \
-+  ${libdir}/mono/monodroid/* \
-+"
-+
-diff --git a/recipes-mono/fsharp/fsharp_3.1.1.1.bb b/recipes-mono/fsharp/fsharp_3.1.1.1.bb
-new file mode 100644
-index 0000000..bc3533f
---- /dev/null
-+++ b/recipes-mono/fsharp/fsharp_3.1.1.1.bb
-@@ -0,0 +1,7 @@
-+require fsharp.inc
-+
-+inherit pkgconfig
-+
-+SRC_URI[md5sum] = "2900b258f57db34ca51d0caba58c9cd3"
-+SRC_URI[sha256sum] = "ad3f53e835d18a0c53a12101c118619a1cb8e4f6c216001572790e9509679bcf"
-+
--- 
-1.7.9.5
+Build Configuration:
+BB_VERSION = "1.18.0"
+BUILD_SYS = "x86_64-linux"
+NATIVELSBSTRING = "Ubuntu-12.04"
+TARGET_SYS = "arm-poky-linux-gnueabi"
+MACHINE = "overo"
+DISTRO = "poky"
+DISTRO_VERSION = "1.4.3"
+TUNE_FEATURES = "armv7a vfp neon"
+TARGET_FPU = "vfp-neon"
+meta
+meta-yocto = "(nobranch):e2bb4a70a99a057d45316bbac65d6044ea54c484"
+meta-gnome
+meta-oe
+meta-xfce
+meta-systemd
+meta-networking
+meta-multimedia = "(nobranch):cb182019c4f7485713cb50623240c01882448ffd"
+meta-gumstix = "(nobranch):f10408773c2e81cc520c5a022c8bbe232a7b26aa"
+meta-gumstix-extras = "(nobranch):2b249710f1441841f326e9e8ab6fb2a217e84b73"
 
 
+WARNING: Failed to fetch URL
+http://downloads.sourceforge.net/openjade/openjade-0.6.14.tar.gz,
+attempting MIRRORS if available
+ERROR: Fetcher failure: Fetch command failed with exit code 8, output:
+http://downloads.sourceforge.net/openjade/openjade-0.6.14.tar.gz:
+2014-03-03 07:34:57 ERROR 404: Not Found.
+
+ERROR: Function failed: Fetcher failure for URL: '
+http://downloads.sourceforge.net/openjade/openjade-0.6.14.tar.gz'. Unable
+to fetch URL from any source.
+ERROR: Logfile of failure stored in:
+/home/infinitezero/yocto001/build/tmp/work/x86_64-linux/docbook-utils-native/0.6.14-r5/temp/log.do_fetch.5555
+ERROR: Task 1501
+(/home/infinitezero/yocto001/poky/meta/recipes-devtools/docbook-utils/
+docbook-utils-native_0.6.14.bb, do_fetch) failed with exit code '1'
+NOTE: Tasks Summary: Attempted 1825 tasks of which 1820 didn't need to be
+rerun and 1 failed.
+Waiting for 0 running tasks to finish:
+
+Summary: 1 task failed:
+/home/infinitezero/yocto001/poky/meta/recipes-devtools/docbook-utils/
+docbook-utils-native_0.6.14.bb, do_fetch
+Summary: There was 1 WARNING message shown.
+Summary: There were 2 ERROR messages shown, returning a non-zero exit code.
+
+--bcaec548a625a331e704f3b4b766
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><br><div>Does anyone know how I can get around this error?=
+ There is no such package on sourceforge &quot;Fetcher failure for URL: &#3=
+9;<a href=3D"http://downloads.sourceforge.net/openjade/openjade-0.6.14.tar.=
+gz">http://downloads.sourceforge.net/openjade/openjade-0.6.14.tar.gz</a>&#3=
+9;. Unable to fetch URL from any source.&quot;</div>
+<div><br></div><div>Build Configuration:<br>BB_VERSION        =3D &quot;1.1=
+8.0&quot;<br>BUILD_SYS         =3D &quot;x86_64-linux&quot;<br>NATIVELSBSTR=
+ING   =3D &quot;Ubuntu-12.04&quot;<br>TARGET_SYS        =3D &quot;arm-poky-=
+linux-gnueabi&quot;<br>
+MACHINE           =3D &quot;overo&quot;<br>DISTRO            =3D &quot;poky=
+&quot;<br>DISTRO_VERSION    =3D &quot;1.4.3&quot;<br>TUNE_FEATURES     =3D =
+&quot;armv7a vfp neon&quot;<br>TARGET_FPU        =3D &quot;vfp-neon&quot;<b=
+r>meta              <br>
+meta-yocto        =3D &quot;(nobranch):e2bb4a70a99a057d45316bbac65d6044ea54=
+c484&quot;<br>meta-gnome        <br>meta-oe           <br>meta-xfce        =
+ <br>meta-systemd      <br>meta-networking   <br>meta-multimedia   =3D &quo=
+t;(nobranch):cb182019c4f7485713cb50623240c01882448ffd&quot;<br>
+meta-gumstix      =3D &quot;(nobranch):f10408773c2e81cc520c5a022c8bbe232a7b=
+26aa&quot;<br>meta-gumstix-extras =3D &quot;(nobranch):2b249710f1441841f326=
+e9e8ab6fb2a217e84b73&quot;<br></div><div><br></div><div><br>WARNING: Failed=
+ to fetch URL <a href=3D"http://downloads.sourceforge.net/openjade/openjade=
+-0.6.14.tar.gz">http://downloads.sourceforge.net/openjade/openjade-0.6.14.t=
+ar.gz</a>, attempting MIRRORS if available<br>
+ERROR: Fetcher failure: Fetch command failed with exit code 8, output:<br><=
+a href=3D"http://downloads.sourceforge.net/openjade/openjade-0.6.14.tar.gz"=
+>http://downloads.sourceforge.net/openjade/openjade-0.6.14.tar.gz</a>:<br>
+2014-03-03 07:34:57 ERROR 404: Not Found.<br><br>ERROR: Function failed: Fe=
+tcher failure for URL: &#39;<a href=3D"http://downloads.sourceforge.net/ope=
+njade/openjade-0.6.14.tar.gz">http://downloads.sourceforge.net/openjade/ope=
+njade-0.6.14.tar.gz</a>&#39;. Unable to fetch URL from any source.<br>
+ERROR: Logfile of failure stored in: /home/infinitezero/yocto001/build/tmp/=
+work/x86_64-linux/docbook-utils-native/0.6.14-r5/temp/log.do_fetch.5555<br>=
+ERROR: Task 1501 (/home/infinitezero/yocto001/poky/meta/recipes-devtools/do=
+cbook-utils/<a href=3D"http://docbook-utils-native_0.6.14.bb">docbook-utils=
+-native_0.6.14.bb</a>, do_fetch) failed with exit code &#39;1&#39;<br>
+NOTE: Tasks Summary: Attempted 1825 tasks of which 1820 didn&#39;t need to =
+be rerun and 1 failed.<br>Waiting for 0 running tasks to finish:<br><br>Sum=
+mary: 1 task failed:<br>  /home/infinitezero/yocto001/poky/meta/recipes-dev=
+tools/docbook-utils/<a href=3D"http://docbook-utils-native_0.6.14.bb">docbo=
+ok-utils-native_0.6.14.bb</a>, do_fetch<br>
+Summary: There was 1 WARNING message shown.<br>Summary: There were 2 ERROR =
+messages shown, returning a non-zero exit code.<br><br></div><div><br></div=
+></div>
+
+--bcaec548a625a331e704f3b4b766--
