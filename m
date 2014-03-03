@@ -1,32 +1,31 @@
-Return-Path: <opensource@keylevel.com>
-Received: from hosting.adsl24.co.uk (hosting.adsl24.co.uk [84.234.17.171])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 85130E009BF
-	for <yocto@yoctoproject.org>; Sun,  2 Mar 2014 16:02:50 -0800 (PST)
-Received: from [109.224.171.0] (port=32308
-	helo=macbook-pro.durham.keylevel.com)
-	by hosting.adsl24.co.uk with esmtpsa (TLSv1:AES128-SHA:128)
-	(Exim 4.82) (envelope-from <opensource@keylevel.com>)
-	id 1WKGLJ-00063c-0K; Mon, 03 Mar 2014 00:02:49 +0000
-Mime-Version: 1.0 (Mac OS X Mail 7.2 \(1874\))
-From: Chris Tapp <opensource@keylevel.com>
-In-Reply-To: <99216291-F434-4282-BF02-B5815A13F313@keylevel.com>
-Date: Mon, 3 Mar 2014 00:02:47 +0000
-Message-Id: <3A728F19-FEF3-43E4-BC2A-CD7F5062DB73@keylevel.com>
-References: <DB981723-A2BE-4924-8C87-91DC5E300380@keylevel.com>
-	<D44F773C-8F8B-46EE-85FB-2BEA4E290BDA@gmail.com>
-	<99216291-F434-4282-BF02-B5815A13F313@keylevel.com>
-To: Khem Raj <raj.khem@gmail.com>
-X-Mailer: Apple Mail (2.1874)
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - hosting.adsl24.co.uk
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - keylevel.com
-X-Get-Message-Sender-Via: hosting.adsl24.co.uk: authenticated_id:
-	mail@keylevel.adsl24.co.uk
-Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: QA issues when building gstreamer1.0 under 'danny'
+Return-Path: <mgloff@emacinc.com>
+Received: from mail-we0-f169.google.com (mail-we0-f169.google.com
+	[74.125.82.169])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0F952E00962
+	for <yocto@yoctoproject.org>; Sun,  2 Mar 2014 17:58:42 -0800 (PST)
+Received: by mail-we0-f169.google.com with SMTP id w62so662670wes.0
+	for <yocto@yoctoproject.org>; Sun, 02 Mar 2014 17:58:41 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:date:message-id:subject:from:to
+	:content-type;
+	bh=Usi9QF3/SJD3xqsm5ovapABZnvihjtwBggGVbRGNEec=;
+	b=F/GzBLFWxt9Z6Z5t+sKjhsohfoicsK2dB4C8zuJ26H3NTiZUnV82zgbyDil6V7wJn4
+	0yfJnPf6JTkpb50ee+uF6kmOXUQM4VnvCsSvg1QDJ2VddtTrnqniEGZFtha/iTU7+22e
+	xY6ltmy/xIkDQMAwIMvIkcWlT15tElEUoXlu8fzmzRJ0yt7KdS4JP2R06rrrdYMpho/8
+	/jsRIGInOjQSDw9LHtmDzjYGSDTQW9RdAA9qHT5kFFvSX2AxVMSQkj6L7S9jVA8Yzksz
+	/9+MgTiMCynTi3XQEueaTQXPi12pJfv9Z5FWQm33ZeNljO2O3vSg+bGV/pmnpF4l+pwj
+	ko1g==
+X-Gm-Message-State: ALoCoQmnJh8UWBqldZL8Zn3zR828E/JN3hQEH8Ogz8zL4u3VtgiHVmaiFVavLGK99iyHHzsLcG4z
+MIME-Version: 1.0
+X-Received: by 10.194.204.229 with SMTP id lb5mr1825514wjc.67.1393811921358;
+	Sun, 02 Mar 2014 17:58:41 -0800 (PST)
+Received: by 10.216.163.1 with HTTP; Sun, 2 Mar 2014 17:58:41 -0800 (PST)
+Date: Sun, 2 Mar 2014 19:58:41 -0600
+Message-ID: <CALXw4G5VUNySyWoOoFbKHnMUWFjZfQKwQCu0T0cWtwGOAMQnow@mail.gmail.com>
+From: Michael Gloff <mgloff@emacinc.com>
+To: Yocto discussion list <yocto@yoctoproject.org>
+Subject: Toolchain
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,40 +37,24 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 03 Mar 2014 00:02:50 -0000
-Content-Type: text/plain; charset=windows-1252
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Mon, 03 Mar 2014 01:58:44 -0000
+Content-Type: multipart/alternative; boundary=047d7bae466474f6e104f3aa20f9
 
+--047d7bae466474f6e104f3aa20f9
+Content-Type: text/plain; charset=ISO-8859-1
 
-On 2 Mar 2014, at 22:40, Chris Tapp <opensource@keylevel.com> wrote:
+Is there a reason why the toolchain cannot be built with a machine name
+that contains capital letters? Seems weird, everything else builds fine,
+but meta-toolchain fails complaining about caps.
 
->=20
-> On 2 Mar 2014, at 22:27, Khem Raj <raj.khem@gmail.com> wrote:
->=20
->>=20
->> On Mar 2, 2014, at 2:17 PM, Chris Tapp <opensource@keylevel.com> =
-wrote:
->>=20
->>> What do I need to do to get these bits added to the image?
->>=20
->> well you need to add the files to appropriate packages. If packages =
-don=92t exist
->> then add packages to PACKAGES variables and then FILES_<packagename> =
-=3D =93${libdir}/<soname>=94
->> something on those lines=20
->=20
-> Ok, but shouldn't this already be done by the gstreamer1.0 recipe(s)?
+Thanks,
 
-I've switched  to using the 'danny' branch of meta-gstreamer1.0 =
-(https://github.com/dv1/meta-gstreamer1.0).
+Michael Gloff
 
-Seems to have done the trick ;-)
+--047d7bae466474f6e104f3aa20f9
+Content-Type: text/html; charset=ISO-8859-1
 
-Chris Tapp
+<div dir="ltr"><div>Is there a reason why the toolchain cannot be built with a machine name that contains capital letters? Seems weird, everything else builds fine, but meta-toolchain fails complaining about caps.<br><br></div>
+<div>Thanks,<br><br></div><div>Michael Gloff<br></div></div>
 
-opensource@keylevel.com
-www.keylevel.com
-
-
-
-
+--047d7bae466474f6e104f3aa20f9--
