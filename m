@@ -1,17 +1,22 @@
-Return-Path: <packages@packages.i.yoctoproject.org>
-Received: from packages.i.yoctoproject.org (packages.i.yoctoproject.org
-	[10.0.10.47])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 70111E0084A
-	for <yocto@yoctoproject.org>; Mon,  3 Mar 2014 14:28:49 -0800 (PST)
-Received: by packages.i.yoctoproject.org (Postfix, from userid 802)
-	id 6E135A421D; Mon,  3 Mar 2014 22:28:49 +0000 (UTC)
-Date: Mon, 3 Mar 2014 22:28:49 +0000
-From: "package-report@yoctoproject.org" <packages@packages.i.yoctoproject.org>
-To: yocto@yoctoproject.org
-Message-ID: <20140303222849.GA14170@packages.i.yoctoproject.org>
+Return-Path: <Rongqing.Li@windriver.com>
+Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CC6D8E0094F
+	for <yocto@yoctoproject.org>; Mon,  3 Mar 2014 21:51:21 -0800 (PST)
+Received: from ALA-HCB.corp.ad.wrs.com (ala-hcb.corp.ad.wrs.com
+	[147.11.189.41])
+	by mail1.windriver.com (8.14.5/8.14.5) with ESMTP id s245pK6x028213
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL)
+	for <yocto@yoctoproject.org>; Mon, 3 Mar 2014 21:51:20 -0800 (PST)
+Received: from lirq-OptiPlex-780.corp.ad.wrs.com (128.224.162.168) by
+	ALA-HCB.corp.ad.wrs.com (147.11.189.41) with Microsoft SMTP Server id
+	14.3.169.1; Mon, 3 Mar 2014 21:51:20 -0800
+From: <rongqing.li@windriver.com>
+To: <yocto@yoctoproject.org>
+Date: Tue, 4 Mar 2014 13:52:28 +0800
+Message-ID: <cover.1393912246.git.rongqing.li@windriver.com>
+X-Mailer: git-send-email 1.7.10.4
 MIME-Version: 1.0
-User-Agent: Mutt/1.5.21 (2010-09-15)
-Subject: [Package Report System]Manual check recipes name list
+Subject: [PATCH 0/2] fix audit configuration file permission and enable systemd support
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -23,26 +28,32 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 03 Mar 2014 22:28:49 -0000
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+X-List-Received-Date: Tue, 04 Mar 2014 05:51:22 -0000
+Content-Type: text/plain
 
-This mail was sent out by Package Report System.
-It will list all the recipes which can't check upstream version by script, and will show how long it is since their last mannual version check.
-You can check the detail information at http://packages.yoctoproject.org/manuallychkinfo
+From: Roy Li <rongqing.li@windriver.com>
 
+The following changes since commit a6079a43719e79e12a57e609923a0cccdba06916:
 
-PackageName              Version             LastChkVersion      LastChkTime              Maintainer                              NoUpgradeReason               
-puzzles                  r9765               N/A                 41699 d                  Valentin Popa <valentin.popa@...        No data                       
-libpng                   1.6.7               1.6.6               152 day                  Valentin Popa <valentin.popa@...        No data                       
-libpng12                 1.2.50              1.2.50              152 day                  Valentin Popa <valentin.popa@...        No data                       
-sqlite3                  3080002             3.8.0.2             152 day                  Saul Wold <sgw@linux.intel.co...        No data                       
-lz4                      r112                N/A                 41699 d                  No Maintainer info                      No data                       
-python-numpy             1.7.0               N/A                 41699 d                  No Maintainer info                      No data                       
-atk                      2.10.0              N/A                 41699 d                  Cristiana Voicu <cristiana.vo...        No data                       
-ubootchart               0.0+r12             0.0+r12             538 day                  Cristiana Voicu <cristiana.vo...        No data                       
-tremor                   20120314            20120122            357 day                  Cristian Iorga <cristian.iorg...        Same revision on different SVN...
-Manual Check Count: 9
-Manual Need Check Count: 9
-Any problem, please contact Saul Wold <sgw@linux.intel.com> 
+  refpolicy: fix real path for su.shadow (2014-02-13 10:52:07 -0500)
+
+are available in the git repository at:
+
+  git://git.pokylinux.org/poky-contrib roy/audit-two-fix
+  http://git.pokylinux.org/cgit.cgi/poky-contrib/log/?h=roy/audit-two-fix
+
+Roy Li (2):
+  audit: Add systemd support
+  audit: fix the permission of configuration file
+
+ recipes-security/audit/audit/audit-volatile.conf |    1 +
+ recipes-security/audit/audit/auditd.service      |   21 +++++++++++++++++++++
+ recipes-security/audit/audit_2.3.2.bb            |   21 +++++++++++++++++++--
+ 3 files changed, 41 insertions(+), 2 deletions(-)
+ create mode 100644 recipes-security/audit/audit/audit-volatile.conf
+ create mode 100644 recipes-security/audit/audit/auditd.service
+
+-- 
+1.7.10.4
+
 
