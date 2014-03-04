@@ -1,30 +1,50 @@
-Return-Path: <paul.eggleton@linux.intel.com>
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6D77FE00975
-	for <yocto@yoctoproject.org>; Tue,  4 Mar 2014 03:14:55 -0800 (PST)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga102.fm.intel.com with ESMTP; 04 Mar 2014 03:14:55 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.97,584,1389772800"; d="scan'208";a="492019999"
-Received: from mmckenna-mobl2.ger.corp.intel.com (HELO
-	peggleto-mobl5.ger.corp.intel.com) ([10.252.120.51])
-	by fmsmga002.fm.intel.com with ESMTP; 04 Mar 2014 03:14:53 -0800
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: Alex J Lennon <ajlennon@dynamicdevices.co.uk>
-Date: Tue, 04 Mar 2014 11:14:47 +0000
-Message-ID: <1499138.kxKh9OGNhb@peggleto-mobl5.ger.corp.intel.com>
-Organization: Intel Corporation
-User-Agent: KMail/4.12.2 (Linux/3.13.5-200.fc20.x86_64; KDE/4.12.2; x86_64; ; )
-In-Reply-To: <5315B37E.9040505@dynamicdevices.co.uk>
-References: <5315A685.5070702@dynamicdevices.co.uk>
-	<3478033.4G0PVG1MHp@peggleto-mobl5.ger.corp.intel.com>
-	<5315B37E.9040505@dynamicdevices.co.uk>
+Return-Path: <joelparker27@yahoo.com>
+Received: from nm40-vm1.bullet.mail.bf1.yahoo.com
+	(nm40-vm1.bullet.mail.bf1.yahoo.com [72.30.239.209])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E7066E0098D
+	for <yocto@yoctoproject.org>; Tue,  4 Mar 2014 05:50:03 -0800 (PST)
+Received: from [98.139.212.151] by nm40.bullet.mail.bf1.yahoo.com with NNFMP;
+	04 Mar 2014 13:50:02 -0000
+Received: from [98.139.212.240] by tm8.bullet.mail.bf1.yahoo.com with NNFMP;
+	04 Mar 2014 13:50:02 -0000
+Received: from [127.0.0.1] by omp1049.mail.bf1.yahoo.com with NNFMP;
+	04 Mar 2014 13:50:02 -0000
+X-Yahoo-Newman-Property: ymail-3
+X-Yahoo-Newman-Id: 664292.30763.bm@omp1049.mail.bf1.yahoo.com
+Received: (qmail 6767 invoked by uid 60001); 4 Mar 2014 13:50:02 -0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s1024;
+	t=1393941002; bh=Eq+kcfTDWW6ZzolhSQ2Tz1ZQF+Dnoefj7nVqsJn7nBc=;
+	h=X-YMail-OSG:Received:X-Rocket-MIMEInfo:X-Mailer:Message-ID:Date:From:Reply-To:Subject:To:MIME-Version:Content-Type;
+	b=r/X8/O34LK/H4ch38y49rbJzPA/bWK3+We2XumDcqseljdi1spi7lKuE4Tga7ukSULNFu4LQJN8RBpUjcOnlPPyflheArVUxsjz3eV5dxbR+Yk0ag38XwzgS4n52YWwJtyaK/xHQqBiHjODBJneVK7mcNVkcUAeX++9vuTPe9C0=
+DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws; s=s1024; d=yahoo.com;
+	h=X-YMail-OSG:Received:X-Rocket-MIMEInfo:X-Mailer:Message-ID:Date:From:Reply-To:Subject:To:MIME-Version:Content-Type;
+	b=rDU7xavR53lQ5lYpgbg2fgeKDifZ0hHJtiYpdP3OAC3CQrVbSR6lPsUNdVSmKk3+FNG+dhxYY6bsMGR/OCcKkR64waT7z85FOI3bzpNws/mt+pWdPVsA5VSjT8oIE4iGtbQIhqxlB0KCr4KG6Her2p6zKjiqZRlRlE25fleV9cM=;
+X-YMail-OSG: JJ7K30EVM1lrPIfPj75l0rBivtEEU87PXLLm7oohpU0K_5k
+	3I9mis8kHqSa_grHytA1975QZbQQrMNkEaLbigBzzOnSe0RDdrlMOTarWV.A
+	cE1sqBMujzZ6qAFHwjoUmhAA8fGbIKeR1lS6zXp3SHvxP7XgCwPdkGgqAqgZ
+	lM_oNXJV_9hmOLx0H9l8d_O6gVwLdNRNCaQNfoDpToGjzELr1P.Cpwr6Qjci
+	A74eMiyV1SLTuM6qZ_ScO.oeICy7QGOEZv6lVrFgYUz3N7JTgZUTJR9Vgjtr
+	sF.AaMrzTNfX7iGOngBbXJxoygqtCgyQ7t9i_4rXXiKR7bIw5sNXRUGsFzRB
+	RyEytmgR0RO2C3A90Is7X2v5_eSNABl8lA_b1o_d5bXfnVy8gpXWjSkQrzXG
+	wJBInLG4g1sJOZmaGUGsb7MWtafC.VG3brsEBI9cvLI9byF0QmNE3atEyQet
+	m.rh2cvgd2mrxWG1Ry2lAQrxfBIznkJ8oVoBnMyHBgC6t5e35SoGZY30B.J.
+	MsiGOyhn1SLkN4C8H6YRV1r0GXJaSJIsoKJX6dLv7Luw6i8ro0B_wme.2Myc
+	nklp0kxDVQ_riRl0X
+Received: from [71.41.161.30] by web163105.mail.bf1.yahoo.com via HTTP;
+	Tue, 04 Mar 2014 05:50:02 PST
+X-Rocket-MIMEInfo: 002.001,
+	SSBoYXZlIGFuIEltYWdlIGZvciB0aGUgd2FuZGJvYXJkLXNvbG8gYW5kIGFtIHRyeWluZyB0byBmaWd1cmUgb3V0IHRoZSBjb3JyZWN0IHBhY2thZ2UgbmFtZXMuIEZvciBleGFtcGxlOgoKSU1BR0VfRkVBVFVSRVMgKz0gInNwbGFzaCBzc2gtc2VydmVyLWRyb3BiZWFyIgoKd2hlcmUgZG8gSSBnZXQgdGhlIG5hbWUgc3NoLXNlcnZlci1kcm9wYmVhciA_IEkgYW0gdHJ5aW5nIHRvIGFkZCBzdXBwb3J0IGZvciBodHRwZCwgaWNvbnYgYW5kIGRldiBsaWJyYXJ5LCBhbmQgc3FsaXRlMyBhbmQgZGV2IGxpYnJhcnkBMAEBAQE-
+X-Mailer: YahooMailWebService/0.8.177.636
+Message-ID: <1393941002.38518.YahooMailNeo@web163105.mail.bf1.yahoo.com>
+Date: Tue, 4 Mar 2014 05:50:02 -0800 (PST)
+From: Joel Parker <joelparker27@yahoo.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 MIME-Version: 1.0
-Cc: yocto@yoctoproject.org
-Subject: Re: FILES_${PN} packaging and wildcarded exclusions
+Subject: Add Packages to Recipie
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
+Reply-To: Joel Parker <joelparker27@yahoo.com>
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -33,71 +53,25 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 04 Mar 2014 11:14:56 -0000
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Tue, 04 Mar 2014 13:50:04 -0000
+Content-Type: multipart/alternative;
+	boundary="196471698-593803752-1393941002=:38518"
 
-On Tuesday 04 March 2014 11:05:34 Alex J Lennon wrote:
-> On 04/03/2014 11:01, Paul Eggleton wrote:
-> > Hi Alex,
-> > 
-> > On Tuesday 04 March 2014 10:10:13 Alex J Lennon wrote:
-> >> I'm trying to understand how to cleanly extend FILES${PN} to include
-> >> files that are staged and need to be packaged
-> >> 
-> >> If I start with something like
-> >> 
-> >> FILES_${PN} += " \
-> >> ${libdir}/mono/gac/policy.0.2.Mono.Addins/0.0.0.0__0738eb9f132ed756/* \
-> >> ${libdir}/mono/gac/policy.0.2.Mono.Addins.Setup/0.0.0.0__0738eb9f132ed756
-> >> /*
-> >> \
-> >> ${libdir}/mono/gac/policy.0.6.Mono.Addins.CecilReflector/0.0.0.0__0738eb9
-> >> f13 2ed756/* \
-> >> ${libdir}/mono/gac/policy.0.6.Mono.Addins.Gui/0.0.0.0__0738eb9f132ed756/*
-> >> \
-> >> <snip/>
-> >> 
-> >> I seem to be able to clean that up a bit to
-> >> 
-> >> FILES_${PN} += " \
-> >> ${libdir}/mono/gac/*/*/* \
-> >> <snip/>
-> >> 
-> >> What I'd like to do is to be able to represent "all files excepting
-> >> files ending with .mdb", for example, as I want to add those to a
-> >> ${PN}-dbg package.
-> >> 
-> >> I was wondering if there's a syntax I can use within FILES_${PN} to
-> >> achieve that cleanly?
-> > 
-> > There isn't I'm afraid - the tools you have available are wildcards and
-> > the
-> > ordering of PACKAGES, since the first package whose FILES value matches a
-> > file will get the file. However, for this specific case this should be
-> > just fine - ${PN}-dbg appears before ${PN} in the default value of
-> > PACKAGES, so you just need to ensure FILES_${PN}-dbg is extended as
-> > needed.
-> 
-> Oh great, thanks. So as long as I make sure the order of precedence is
-> as needed in PACKAGES then the files will go in the right packages.
-> 
-> I wonder if there's any benefit to allowing regexp in FILES_
-> definitions? Or if that's just overcomplicating something that already
-> works?
+--196471698-593803752-1393941002=:38518
+Content-Type: text/plain; charset=us-ascii
 
-Well, I know the issue of making packaging a bit more flexible has been talked 
-about in the past, but I think we'd be reluctant to just add regex support 
-unless it's solving something that's hard / impossible with the current 
-scheme. The way it works now is already a bit complex for new users so 
-increasing the complexity might have the opposite to the desired effect, and of 
-course there's compatibility and performance impact to think about.
+I have an Image for the wandboard-solo and am trying to figure out the correct package names. For example:
 
-Cheers,
-Paul
+IMAGE_FEATURES += "splash ssh-server-dropbear"
 
--- 
+where do I get the name ssh-server-dropbear ? I am trying to add support for httpd, iconv and dev library, and sqlite3 and dev library, what would I put for the feature names ?
 
-Paul Eggleton
-Intel Open Source Technology Centre
+-- Joel Parker
 
+--196471698-593803752-1393941002=:38518
+Content-Type: text/html; charset=us-ascii
+
+<html><body><div style="color:#000; background-color:#fff; font-family:HelveticaNeue, Helvetica Neue, Helvetica, Arial, Lucida Grande, sans-serif;font-size:12pt"><div>I have an Image for the wandboard-solo and am trying to figure out the correct package names. For example:</div><div><br></div><div style="color: rgb(0, 0, 0); font-size: 16px; font-family: HelveticaNeue,Helvetica Neue,Helvetica,Arial,Lucida Grande,sans-serif; background-color: transparent; font-style: normal;">IMAGE_FEATURES += "splash ssh-server-dropbear"</div><div style="color: rgb(0, 0, 0); font-size: 16px; font-family: HelveticaNeue,Helvetica Neue,Helvetica,Arial,Lucida Grande,sans-serif; background-color: transparent; font-style: normal;"><br></div><div style="color: rgb(0, 0, 0); font-size: 16px; font-family: HelveticaNeue,Helvetica Neue,Helvetica,Arial,Lucida Grande,sans-serif; background-color: transparent; font-style: normal;">where do I get the name ssh-server-dropbear ? I am
+ trying to add support for httpd, iconv and dev library, and sqlite3 and dev library, what would I put for the feature names ?</div><div style="color: rgb(0, 0, 0); font-size: 16px; font-family: HelveticaNeue,Helvetica Neue,Helvetica,Arial,Lucida Grande,sans-serif; background-color: transparent; font-style: normal;"><br></div><div style="color: rgb(0, 0, 0); font-size: 16px; font-family: HelveticaNeue,Helvetica Neue,Helvetica,Arial,Lucida Grande,sans-serif; background-color: transparent; font-style: normal;">-- Joel Parker<br></div></div></body></html>
+
+--196471698-593803752-1393941002=:38518--
