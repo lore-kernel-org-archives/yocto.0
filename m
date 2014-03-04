@@ -1,36 +1,30 @@
-Return-Path: <paul.betafive@gmail.com>
-Received: from mail-vc0-f177.google.com (mail-vc0-f177.google.com
-	[209.85.220.177])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 60DA8E009A0
-	for <yocto@yoctoproject.org>; Tue,  4 Mar 2014 06:38:14 -0800 (PST)
-Received: by mail-vc0-f177.google.com with SMTP id if11so4378754vcb.36
-	for <yocto@yoctoproject.org>; Tue, 04 Mar 2014 06:38:13 -0800 (PST)
+Return-Path: <katutxakurra@gmail.com>
+Received: from mail-ig0-f181.google.com (mail-ig0-f181.google.com
+	[209.85.213.181])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8131AE009A0
+	for <yocto@yoctoproject.org>; Tue,  4 Mar 2014 06:38:43 -0800 (PST)
+Received: by mail-ig0-f181.google.com with SMTP id h18so1574434igc.2
+	for <yocto@yoctoproject.org>; Tue, 04 Mar 2014 06:38:42 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:sender:in-reply-to:references:from:date:message-id
-	:subject:to:cc:content-type;
-	bh=0Eu1uqCobF4kgRlkDpi/SkZGuYGRYpkG1eeFcXw6Rdc=;
-	b=WzImJhv3YcOQEeUoNj+xi/rMC/t2T4sm4imdvkpBkvG4aDOudPiIZ03hJbW2YmMoM5
-	yI6w/camCD2upLzIueGM1lTsCGLL50q8EnzzSrE+1kznKQStdDXyVSLcV8LuzFKIlPn/
-	syTLEl+5TGLPHBETI1VDnTbHfeS5xxuVO7le7xtswd1+bCxZCOy4xj56uwLEA+XFo83n
-	o5tu9YjKLr3z/xbA9xmXulfpq0wuouL5/P2myo2SkqPnVUrs/vhomtS4Nv2DfKfsBaxT
-	KfrtSo9xWId49rGqc6DIy9asnxBd3GlJsjwcTkcjWQRjUZJD6/OEWDou1z7EeIhOLwZ3
-	GdmQ==
-X-Received: by 10.220.249.6 with SMTP id mi6mr2783215vcb.33.1393943893297;
-	Tue, 04 Mar 2014 06:38:13 -0800 (PST)
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:content-type; bh=diMVtP1fQh0TMZYZOY4nTfh2Af/8n48KAT7Dx2U8bF0=;
+	b=AbJyO2pQkU0G/Nh5GW5rppLCvcpl0OhPeMhTzj75J1JmZro0sbI1LwPbCiJDaG58pt
+	js3xoDi7zAZLwyspCdQiIY2uCWDdWCMF7Z53oA/STH0fTatcJY+UCWzXSoUCeIzHdtrb
+	iW9ir2jX4X1qACHZpg2EwAko5mlFNCjciD574EILZG629MUMKaHjkHWsGa3Lu/Of0OgH
+	jel3STL9bMvTzdWOD2oZg7SoYI/OVj3HMEPqW39kpmUMV8G0yf5Z+9UA1k8/M8kk0VT8
+	swZsn5VvyNrsQ5ZScwvFBLeqRASJYHCY/3vqehedSUnnWx9WcJh6aQZPiWzceA+JVTs/
+	uWfA==
 MIME-Version: 1.0
-Sender: paul.betafive@gmail.com
-Received: by 10.220.239.135 with HTTP; Tue, 4 Mar 2014 06:37:33 -0800 (PST)
-In-Reply-To: <1393942977.87424.YahooMailNeo@web163101.mail.bf1.yahoo.com>
-References: <1393941002.38518.YahooMailNeo@web163105.mail.bf1.yahoo.com>
-	<5315DC71.3080904@dynamicdevices.co.uk>
-	<1393942977.87424.YahooMailNeo@web163101.mail.bf1.yahoo.com>
-From: Paul Barker <paul@paulbarker.me.uk>
-Date: Tue, 4 Mar 2014 14:37:33 +0000
-X-Google-Sender-Auth: ZBEFuj10mRgYAtLeGL_dIZT6ZpQ
-Message-ID: <CANyK_8fGoQe1XaeU+Kt_CAiba2bUb9kKyu4KDCvXWXuzj5SBvg@mail.gmail.com>
-To: Joel Parker <joelparker27@yahoo.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Add Packages to Recipie
+X-Received: by 10.43.49.132 with SMTP id va4mr484993icb.79.1393943922733; Tue,
+	04 Mar 2014 06:38:42 -0800 (PST)
+Received: by 10.50.44.97 with HTTP; Tue, 4 Mar 2014 06:38:42 -0800 (PST)
+In-Reply-To: <CAM1ZcoVHPgerCQnFsP5EpAu=71s-WMHYfrwM3Q5eBFngKPq8XA@mail.gmail.com>
+References: <CAM1ZcoVHPgerCQnFsP5EpAu=71s-WMHYfrwM3Q5eBFngKPq8XA@mail.gmail.com>
+Date: Tue, 4 Mar 2014 14:38:42 +0000
+Message-ID: <CAM1ZcoX8R7CLcrLzXA2B9LqYLkHGPCtqSpsapcBP39-DWKc6tA@mail.gmail.com>
+From: Katu Txakur <katutxakurra@gmail.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: enable/disable systemd from image.bb
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,37 +36,81 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 04 Mar 2014 14:38:15 -0000
+X-List-Received-Date: Tue, 04 Mar 2014 14:38:43 -0000
+Content-Type: multipart/alternative; boundary=bcaec5299ff959f76404f3c8dc24
+
+--bcaec5299ff959f76404f3c8dc24
 Content-Type: text/plain; charset=ISO-8859-1
 
-On 4 March 2014 14:22, Joel Parker <joelparker27@yahoo.com> wrote:
+Sorry, I sent it uncompleted by mistake.
+
+I've also tried
+
+ROOTFS_POSTPROCESS_COMMAND =+ "\
+    rm -rf /etc/systemd/system/multi-user.target.wants/recipeA.service; \
+"
+
+but it didn't work either. Anyone knows how to do this?
+
+Thanks,
+Katu
+
+
+2014-03-04 14:37 GMT+00:00 Katu Txakur <katutxakurra@gmail.com>:
+
+> Hi,
 >
-> Yeah, that is what I tried but it gave me this :
+> I'm using Yocto 1.3 and I've created some recipes. All of them have
+> systemd services. Some of them start at boot time and others don't. Let's
+> say for example:
+> recipeA_1.0.bb > SYSTEMD_AUTO_ENABLE_${PN}-systemd = "enable"
+> recipeB_1.0.bb > SYSTEMD_AUTO_ENABLE_${PN}-systemd = "disable"
 >
-> ERROR: 'httpd' in IMAGE_FEATURES is not a valid image feature.
+> I want to create two image.bb files. One of them will start A and the
+> other one will start B. I've tried adding
 >
-> -- Joel Parker
+> imageB.bb
+> .....
+> SYSTEMD_AUTO_ENABLE_recipeA-systemd = "disable"
+> SYSTEMD_AUTO_ENABLE_recipeB-systemd = "enable"
+> .....
+>
+> I've also tried
+>
+>
 >
 
-IMAGE_FEATURES is for features (basically collections of packages put
-together in a certain way), IMAGE_INSTALL is for packages and
-packagegroups. You can use IMAGE_INSTALL_append to add to
-IMAGE_INSTALL from your local.conf, but you're far better off creating
-a new image recipe and setting IMAGE_INSTALL there.
+--bcaec5299ff959f76404f3c8dc24
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
 
-You may want to read the relevant section of the documentation at
-http://www.yoctoproject.org/docs/current/dev-manual/dev-manual.html#usingpoky-extend-customimage.
+<div dir=3D"ltr"><div><div><div><div>Sorry, I sent it uncompleted by mistak=
+e.<br><br></div>I&#39;ve also tried<br><br>ROOTFS_POSTPROCESS_COMMAND =3D+ =
+&quot;\<br>=A0=A0=A0 rm -rf /etc/systemd/system/multi-user.target.wants/rec=
+ipeA.service; \<br>
+&quot;<br><br></div>but it didn&#39;t work either. Anyone knows how to do t=
+his?<br><br></div>Thanks,<br></div>Katu<br></div><div class=3D"gmail_extra"=
+><br><br><div class=3D"gmail_quote">2014-03-04 14:37 GMT+00:00 Katu Txakur =
+<span dir=3D"ltr">&lt;<a href=3D"mailto:katutxakurra@gmail.com" target=3D"_=
+blank">katutxakurra@gmail.com</a>&gt;</span>:<br>
+<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
+x #ccc solid;padding-left:1ex"><div dir=3D"ltr"><div><div><div><div>Hi,<br>=
+<br></div>I&#39;m using Yocto 1.3 and I&#39;ve created some recipes. All of=
+ them have systemd services. Some of them start at boot time and others don=
+&#39;t. Let&#39;s say for example:<br>
 
-To find the names to add to IMAGE_INSTALL, you can search the recipe
-index at http://layers.openembedded.org/layerindex/branch/master/recipes/.
-Note that you may need to change the "Branch" selector to whatever
-version of The Yocto Project you're using.
+</div><a href=3D"http://recipeA_1.0.bb" target=3D"_blank">recipeA_1.0.bb</a=
+> &gt; SYSTEMD_AUTO_ENABLE_${PN}-systemd =3D &quot;enable&quot;<br><a href=
+=3D"http://recipeB_1.0.bb" target=3D"_blank">recipeB_1.0.bb</a> &gt; SYSTEM=
+D_AUTO_ENABLE_${PN}-systemd =3D &quot;disable&quot;<br>
 
-Hope this helps,
+<br></div>I want to create two <a href=3D"http://image.bb" target=3D"_blank=
+">image.bb</a> files. One of them will start A and the other one will start=
+ B. I&#39;ve tried adding<br><br>imageB.bb<br>.....<br>SYSTEMD_AUTO_ENABLE_=
+recipeA-systemd =3D &quot;disable&quot;<br>
 
--- 
-Paul Barker
+SYSTEMD_AUTO_ENABLE_recipeB-systemd =3D &quot;enable&quot;<br>.....<br><br>=
+</div>I&#39;ve also tried <br><br><div><br></div></div>
+</blockquote></div><br></div>
 
-Email: paul@paulbarker.me.uk
-http://www.paulbarker.me.uk
-
+--bcaec5299ff959f76404f3c8dc24--
