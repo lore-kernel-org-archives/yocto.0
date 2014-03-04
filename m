@@ -1,24 +1,24 @@
 Return-Path: <ajlennon@dynamicdevices.co.uk>
 Received: from www.dynamicdevices.co.uk (www.dynamicdevices.co.uk
 	[89.200.136.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8C7B8E00A25
-	for <yocto@yoctoproject.org>; Tue,  4 Mar 2014 10:28:20 -0800 (PST)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3B8A7E00A25
+	for <yocto@yoctoproject.org>; Tue,  4 Mar 2014 10:29:27 -0800 (PST)
 Received: from localhost (localhost [127.0.0.1])
-	by www.dynamicdevices.co.uk (Postfix) with ESMTP id B6E6A862DB;
-	Tue,  4 Mar 2014 18:28:18 +0000 (UTC)
+	by www.dynamicdevices.co.uk (Postfix) with ESMTP id 331CF862DB;
+	Tue,  4 Mar 2014 18:29:27 +0000 (UTC)
 X-Virus-Scanned: Debian amavisd-new at lennoab2.miniserver.com
 Received: from www.dynamicdevices.co.uk ([127.0.0.1])
 	by localhost (www.dynamicdevices.co.uk [127.0.0.1]) (amavisd-new,
 	port 10024)
-	with ESMTP id a8uW1VOXPPWP; Tue,  4 Mar 2014 18:28:18 +0000 (UTC)
+	with ESMTP id zJWoLp2NJgXl; Tue,  4 Mar 2014 18:29:26 +0000 (UTC)
 Received: from [127.0.0.1] (cpc32-live22-2-0-cust59.17-2.cable.virginm.net
 	[82.36.253.60])
 	(using TLSv1 with cipher ECDHE-RSA-AES128-SHA (128/128 bits))
 	(No client certificate requested)
-	by www.dynamicdevices.co.uk (Postfix) with ESMTPSA id 39A758610D;
-	Tue,  4 Mar 2014 18:28:18 +0000 (UTC)
-Message-ID: <53161B3E.1070902@dynamicdevices.co.uk>
-Date: Tue, 04 Mar 2014 18:28:14 +0000
+	by www.dynamicdevices.co.uk (Postfix) with ESMTPSA id C1CA68610D;
+	Tue,  4 Mar 2014 18:29:26 +0000 (UTC)
+Message-ID: <53161B82.2050102@dynamicdevices.co.uk>
+Date: Tue, 04 Mar 2014 18:29:22 +0000
 From: Alex J Lennon <ajlennon@dynamicdevices.co.uk>
 User-Agent: Mozilla/5.0 (Windows NT 6.3; WOW64;
 	rv:24.0) Gecko/20100101 Thunderbird/24.3.0
@@ -40,11 +40,11 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 04 Mar 2014 18:28:21 -0000
+X-List-Received-Date: Tue, 04 Mar 2014 18:29:28 -0000
 Content-Type: multipart/alternative;
-	boundary="------------070305090000010501090801"
+	boundary="------------020302080401080505070702"
 
---------------070305090000010501090801
+--------------020302080401080505070702
 Content-Type: text/plain; charset=ISO-8859-1
 Content-Transfer-Encoding: 7bit
 
@@ -65,17 +65,12 @@ On 04/03/2014 18:18, Joel Parker wrote:
 > inherit core-image
 >
 
-That recipe builds for me here Joel. You might try
+"When that drops into the devshell look at ../log.do_rootfs to see why
+it fails."
 
-bitbake -c devshell custom-image
+* ../temp/log.do_rootfs
 
-When that drops into the devshell look at ../log.do_rootfs to see why it
-fails.
-
-BR, Alex
-
-
---------------070305090000010501090801
+--------------020302080401080505070702
 Content-Type: text/html; charset=ISO-8859-1
 Content-Transfer-Encoding: 7bit
 
@@ -115,19 +110,14 @@ Content-Transfer-Encoding: 7bit
       </div>
     </blockquote>
     <br>
-    That recipe builds for me here Joel. You might try <br>
+    "When that drops into the devshell look at ../log.do_rootfs to see
+    why it fails."<br>
     <br>
-    bitbake -c devshell custom-image<br>
-    <br>
-    When that drops into the devshell look at ../log.do_rootfs to see
-    why it fails.<br>
-    <br>
-    BR, Alex<br>
-    <br>
+    * ../temp/log.do_rootfs <br>
     <div class="moz-signature">
       <div class="preview"> </div>
     </div>
   </body>
 </html>
 
---------------070305090000010501090801--
+--------------020302080401080505070702--
