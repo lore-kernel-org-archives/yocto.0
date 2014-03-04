@@ -1,33 +1,36 @@
-Return-Path: <raj.khem@gmail.com>
-Received: from mail-ie0-f174.google.com (mail-ie0-f174.google.com
-	[209.85.223.174])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 02A52E0096A
-	for <yocto@yoctoproject.org>; Tue,  4 Mar 2014 14:46:29 -0800 (PST)
-Received: by mail-ie0-f174.google.com with SMTP id rp18so233346iec.5
-	for <yocto@yoctoproject.org>; Tue, 04 Mar 2014 14:46:29 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-type;
-	bh=TGMEPdwP9JUTdN2kKVdmmo2QUjBPmSlRjgbnlhZikHE=;
-	b=xXnK4BnZfwkl+9BUlMlopI9W0637ZgJSv09/ldexaQs/1/viBM8w92BzDdWQcRtEzJ
-	HxOGP6VJtSQTWsj0UCVwHuGSADt6MdQKEF1Ncr6bYdadNx2y8lX4KuWTgVhmiyTPNm65
-	Jta9qM64m6YyHurdrvg0LIjwnMEWYmd9HTOkELn2bsmkUkKFc33t4hgpVtGYAOfrhvJ2
-	Wirib7stYziHAtJL4y/kjzjfKq8aWxGm0xSdTzWabrEXQ6tYKebiQrVf0AVSKPQ3VVba
-	zpGcli73g0MoOXqL1RJRIy/ycYBPsCEhvDLfabR8OwxYz/VcPQ9GPIZJqC9RNHhr8+i5
-	dkIg==
-X-Received: by 10.50.20.100 with SMTP id m4mr5875141ige.17.1393973188900; Tue,
-	04 Mar 2014 14:46:28 -0800 (PST)
+Return-Path: <andrei@gherzan.ro>
+Received: from mail-wg0-f42.google.com (mail-wg0-f42.google.com [74.125.82.42])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4F596E0096A
+	for <yocto@yoctoproject.org>; Tue,  4 Mar 2014 14:52:08 -0800 (PST)
+Received: by mail-wg0-f42.google.com with SMTP id y10so248471wgg.13
+	for <yocto@yoctoproject.org>; Tue, 04 Mar 2014 14:52:07 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc:content-type;
+	bh=Cd7W4qXOUyI8c8D2pXOUWij9yFOCJcR3MnTnc4niWf4=;
+	b=TxZqRPjbKcZnmuSmGyYfoDVF0KQ7cwcILxOa1qYancijc/KpnZWEnZChIAwth7S46C
+	iHF9ksTKXBqnq0wdSYyMunOkRSo2b9JYio3yDNgsgBFjeDXbP0IsxxUk2vw8oMexUvsM
+	xuWmnqTgl6jVFla7CybOWC1u3+LlQmMpj1qXeyRVC9RKn8/4TjkG1GfoeWsjAPlUJlp8
+	54xdHCOv0uC/0D6QIp2U2gOJF0y0CiyapBOiZDQbeW8jkKkRqFmwJbPaSubPnYYohYuK
+	r2SkZSee27f1tEca5FFgg5J/X5f7Eb9jQ7y5EI0NcETtJdEdkXWyi+bqpAilEVnXUDdv
+	GpXA==
+X-Gm-Message-State: ALoCoQmwLkdfc36i5CuCgfX1e6tptxu7utpE3OIF4qk4h3YNQm87aQ0k3HT9/OrnaH0ffQbnztOv
+X-Received: by 10.194.179.69 with SMTP id de5mr3428053wjc.4.1393973527207;
+	Tue, 04 Mar 2014 14:52:07 -0800 (PST)
 MIME-Version: 1.0
-Received: by 10.50.224.136 with HTTP; Tue, 4 Mar 2014 14:45:58 -0800 (PST)
-In-Reply-To: <CAM1ZcoX8R7CLcrLzXA2B9LqYLkHGPCtqSpsapcBP39-DWKc6tA@mail.gmail.com>
-References: <CAM1ZcoVHPgerCQnFsP5EpAu=71s-WMHYfrwM3Q5eBFngKPq8XA@mail.gmail.com>
-	<CAM1ZcoX8R7CLcrLzXA2B9LqYLkHGPCtqSpsapcBP39-DWKc6tA@mail.gmail.com>
-From: Khem Raj <raj.khem@gmail.com>
-Date: Tue, 4 Mar 2014 14:45:58 -0800
-Message-ID: <CAMKF1spktCyfdaT+i=eGVZFywMRPRXCmNP0u=DAwzRZCgz1eZw@mail.gmail.com>
-To: Katu Txakur <katutxakurra@gmail.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: enable/disable systemd from image.bb
+Received: by 10.216.31.129 with HTTP; Tue, 4 Mar 2014 14:51:47 -0800 (PST)
+X-Originating-IP: [5.13.146.71]
+In-Reply-To: <CAMKF1soRRrcaW2o=Ebw5nm1Jc-222QKwTU8OwW_VbdisGTQJ8g@mail.gmail.com>
+References: <1393581239-5526-1-git-send-email-s.mennetrier@innotis.org>
+	<CABgO3_MuNG3BRko9w=uXgOJW9aFrGKUeYdNbtskSNNxdpk6g8g@mail.gmail.com>
+	<CAMKF1soRRrcaW2o=Ebw5nm1Jc-222QKwTU8OwW_VbdisGTQJ8g@mail.gmail.com>
+From: Andrei Gherzan <andrei@gherzan.ro>
+Date: Wed, 5 Mar 2014 00:51:47 +0200
+Message-ID: <CAK18fxF3frJ-8f66maAOQssO+jWxeQzvtQSN9+ReJN0Np8KrFg@mail.gmail.com>
+To: Khem Raj <raj.khem@gmail.com>
+Cc: Yocto Project <yocto@yoctoproject.org>
+Subject: Re: [meta-raspberrypi][for-dora][PATCH] Installed fonts directory in the default location needed by omxplayer
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,56 +42,110 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 04 Mar 2014 22:46:32 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Tue, 04 Mar 2014 22:52:09 -0000
+Content-Type: multipart/alternative; boundary=089e01493caeea760804f3cfc0a6
 
-On Tue, Mar 4, 2014 at 6:38 AM, Katu Txakur <katutxakurra@gmail.com> wrote:
-> Sorry, I sent it uncompleted by mistake.
->
-> I've also tried
->
-> ROOTFS_POSTPROCESS_COMMAND =+ "\
->     rm -rf /etc/systemd/system/multi-user.target.wants/recipeA.service; \
-> "
->
-> but it didn't work either. Anyone knows how to do this?
->
+--089e01493caeea760804f3cfc0a6
+Content-Type: text/plain; charset=ISO-8859-1
 
-you can mask the service via a postprocess command something like
-systemctl --root=${D} mask <yourservice>.service
+On Wed, Mar 5, 2014 at 12:39 AM, Khem Raj <raj.khem@gmail.com> wrote:
+
+> On Tue, Mar 4, 2014 at 12:18 AM, Sebastien MENNETRIER
+> <s.mennetrier@innotis.org> wrote:
+> >>  do_install() {
+> >>         oe_runmake dist
+> >> +       mkdir -p ${D}/usr/share/fonts/truetype/freefont/
+> >> +       install ${S}/fonts/* ${D}/usr/share/fonts/truetype/freefont/
+> >>  }
+> >>
+> >>  FILES_${PN} = "${bindir}/omxplayer* \
+> >> -               ${libdir}/omxplayer/lib*${SOLIBS}"
+> >> +               ${libdir}/omxplayer/lib*${SOLIBS} \
+> >> +               /usr/share/fonts"
+> >>
+> >
+>
+> send the patch to OE-Core ml
 
 
-> Thanks,
-> Katu
->
->
-> 2014-03-04 14:37 GMT+00:00 Katu Txakur <katutxakurra@gmail.com>:
->
->> Hi,
->>
->> I'm using Yocto 1.3 and I've created some recipes. All of them have
->> systemd services. Some of them start at boot time and others don't. Let's
->> say for example:
->> recipeA_1.0.bb > SYSTEMD_AUTO_ENABLE_${PN}-systemd = "enable"
->> recipeB_1.0.bb > SYSTEMD_AUTO_ENABLE_${PN}-systemd = "disable"
->>
->> I want to create two image.bb files. One of them will start A and the
->> other one will start B. I've tried adding
->>
->> imageB.bb
->> .....
->> SYSTEMD_AUTO_ENABLE_recipeA-systemd = "disable"
->> SYSTEMD_AUTO_ENABLE_recipeB-systemd = "enable"
->> .....
->>
->> I've also tried
->>
->>
->
->
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+Why exactly? meta-rpi is using yocto mailinglist.
+
+
+> and dont hardcode /usr/share but use
+> ${datadir} instead
 >
 
+That's a good catch.
+
+Sebastien, one more thing, could you please adjust the subject to include
+"omxplayer:" prefix?
+
+Thanks,
+-- 
+*Andrei Gherzan*
+m: +40.744.478.414 |  f: +40.31.816.28.12
+
+--089e01493caeea760804f3cfc0a6
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><br><div class=3D"gmail_extra"><br><br><div class=3D"gmail=
+_quote">On Wed, Mar 5, 2014 at 12:39 AM, Khem Raj <span dir=3D"ltr">&lt;<a =
+href=3D"mailto:raj.khem@gmail.com" target=3D"_blank">raj.khem@gmail.com</a>=
+&gt;</span> wrote:<br>
+
+
+<blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-=
+left-width:1px;border-left-color:rgb(204,204,204);border-left-style:solid;p=
+adding-left:1ex"><div>On Tue, Mar 4, 2014 at 12:18 AM, Sebastien MENNETRIER=
+<br>
+
+
+
+&lt;<a href=3D"mailto:s.mennetrier@innotis.org" target=3D"_blank">s.mennetr=
+ier@innotis.org</a>&gt; wrote:<br>
+&gt;&gt; =A0do_install() {<br>
+&gt;&gt; =A0 =A0 =A0 =A0 oe_runmake dist<br>
+&gt;&gt; + =A0 =A0 =A0 mkdir -p ${D}/usr/share/fonts/truetype/freefont/<br>
+&gt;&gt; + =A0 =A0 =A0 install ${S}/fonts/* ${D}/usr/share/fonts/truetype/f=
+reefont/<br>
+&gt;&gt; =A0}<br>
+&gt;&gt;<br>
+&gt;&gt; =A0FILES_${PN} =3D &quot;${bindir}/omxplayer* \<br>
+&gt;&gt; - =A0 =A0 =A0 =A0 =A0 =A0 =A0 ${libdir}/omxplayer/lib*${SOLIBS}&qu=
+ot;<br>
+&gt;&gt; + =A0 =A0 =A0 =A0 =A0 =A0 =A0 ${libdir}/omxplayer/lib*${SOLIBS} \<=
+br>
+&gt;&gt; + =A0 =A0 =A0 =A0 =A0 =A0 =A0 /usr/share/fonts&quot;<br>
+&gt;&gt;<br>
+&gt;<br>
+<br>
+</div>send the patch to OE-Core ml </blockquote><div><br></div><div>Why exa=
+ctly? meta-rpi is using yocto mailinglist.</div><div>=A0</div><blockquote c=
+lass=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left-width:1p=
+x;border-left-color:rgb(204,204,204);border-left-style:solid;padding-left:1=
+ex">
+
+
+and dont hardcode /usr/share but use<br>
+${datadir} instead<br></blockquote><div><br></div><div>That&#39;s a good ca=
+tch.</div><div><br></div><div>Sebastien, one more thing, could you please a=
+djust the subject to include &quot;omxplayer:&quot; prefix?</div></div>
+
+
+<br clear=3D"all"><div>Thanks,</div>-- <br><div dir=3D"ltr"><div style=3D"t=
+ext-align:center"></div><div style=3D"text-align:center"><div align=3D"left=
+" style=3D"font-family:&#39;Times New Roman&#39;;font-size:medium"><b style=
+=3D"color:rgb(51,51,51);font-family:Arial;font-size:small;text-align:center=
+">Andrei Gherzan</b><font face=3D"Arial" color=3D"#333333" size=3D"-1"><br>
+
+
+</font><font face=3D"Arial" color=3D"#333333" size=3D"-1">m: <a href=3D"tel=
+:%2B40.744.478.414" value=3D"+40744478414" target=3D"_blank">+40.744.478.41=
+4</a> | =A0f: <a href=3D"tel:%2B40.31.816.28.12" value=3D"+40318162812" tar=
+get=3D"_blank">+40.31.816.28.12</a></font><br>
+
+</div></div></div>
+</div></div>
+
+--089e01493caeea760804f3cfc0a6--
