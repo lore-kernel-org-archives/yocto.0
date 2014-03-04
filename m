@@ -1,28 +1,37 @@
 Return-Path: <bianchirickkutta@gmail.com>
-Received: from mail-ve0-f196.google.com (mail-ve0-f196.google.com
-	[209.85.128.196])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 02863E009DF
-	for <yocto@yoctoproject.org>; Tue,  4 Mar 2014 09:00:31 -0800 (PST)
-Received: by mail-ve0-f196.google.com with SMTP id cz12so1593982veb.3
-	for <yocto@yoctoproject.org>; Tue, 04 Mar 2014 09:00:30 -0800 (PST)
+Received: from mail-vc0-f180.google.com (mail-vc0-f180.google.com
+	[209.85.220.180])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4820EE00A0D
+	for <yocto@yoctoproject.org>; Tue,  4 Mar 2014 09:35:55 -0800 (PST)
+Received: by mail-vc0-f180.google.com with SMTP id ks9so4527091vcb.25
+	for <yocto@yoctoproject.org>; Tue, 04 Mar 2014 09:35:54 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=9kIR4UOqa8rZbIm9rzc4+A/pYL4FQqTr26Ka2e9fFFk=;
-	b=krVObdmt+nLn0vVbYNM3M5wfIXyTJNLPwa3gz/zkzLsXHnmoewaP8N3aOz/7YbEO8I
-	IFUdb4+DRoUSK2+Lwq/pfrWCLBVd55TmF2XKXePtNLtwO/uv2gZUtczKXQFYj+GTCMBi
-	abCxFxdb96D89CQxFLAN8WCzqRrVFjbktB7yHbJdz2G7/r0NKXGCb0VRujq244+bk4JJ
-	RapKxcfsaUs6ks41+TfKiSMScPs9/VZoRIoTfMKG9HHe5c3SNN9TRK7jhecRIITKnGrA
-	yBn+KX76UQT4G/Ruv26HsN5xuL70m9nCOxhw5uo0obWm3zhPaDF3zybchzA0IpWBAz/o
-	gPAg==
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type;
+	bh=q5AyC4HhiC1MlkTjhumupVPJyMUm2ozmqkhYTlQ65ng=;
+	b=W9p9UYmhKT02VCXtAYFVBoQoh72ZzqvGOamQa/57AeVdVGId4iPDuLLnWRzf1tnQwO
+	5sewZMj2CiyzJAZRx9C+2+vWynjOw5AVkupBJc8cu+Tk8KDpMpiMSqPeWt77BiLzjhh4
+	nI7768CpKmjDfxZxipTagBulWp7mz+T78f1KVHFHz/0SN8CcgnAmncxj09FZh82Z7qlf
+	piGNlz2pM0dfcTGR18jY6yB/AiK3d8DvUyZY3Gmmx2cptgJLx47x2rfwIgf1aDBr1eK2
+	bwA1eHXKsOIxFF0tMuv3VMsJYJBOaV77PKkhsvx2FEVePtWH6FZPmLcOTrzsi8zZ/nMp
+	VtCA==
 MIME-Version: 1.0
-X-Received: by 10.220.200.6 with SMTP id eu6mr301366vcb.35.1393952430649; Tue,
-	04 Mar 2014 09:00:30 -0800 (PST)
-Received: by 10.220.96.66 with HTTP; Tue, 4 Mar 2014 09:00:30 -0800 (PST)
-Date: Tue, 4 Mar 2014 10:00:30 -0700
-Message-ID: <CAA7h+EoJq4bz+mOMOTae5MkbBHYOSJS_SEEw0R5QefAGwmdo3Q@mail.gmail.com>
+X-Received: by 10.58.37.232 with SMTP id b8mr369804vek.27.1393953222753; Tue,
+	04 Mar 2014 09:13:42 -0800 (PST)
+Received: by 10.220.96.66 with HTTP; Tue, 4 Mar 2014 09:13:42 -0800 (PST)
+In-Reply-To: <CANyK_8dF8U-jiVjuZ5xk5DBF_iqQuyKupahz4F1X+hKv4D_Avw@mail.gmail.com>
+References: <1393941002.38518.YahooMailNeo@web163105.mail.bf1.yahoo.com>
+	<5315DC71.3080904@dynamicdevices.co.uk>
+	<1393942977.87424.YahooMailNeo@web163101.mail.bf1.yahoo.com>
+	<CANyK_8fGoQe1XaeU+Kt_CAiba2bUb9kKyu4KDCvXWXuzj5SBvg@mail.gmail.com>
+	<26D5BB52-5D73-4746-ACEE-4A21BD130B77@yahoo.com>
+	<CANyK_8dF8U-jiVjuZ5xk5DBF_iqQuyKupahz4F1X+hKv4D_Avw@mail.gmail.com>
+Date: Tue, 4 Mar 2014 10:13:42 -0700
+Message-ID: <CAA7h+ErKdDhkax_PVzDJ2gh4c9oZZJcsP+G1akHFdJbXe-i7cw@mail.gmail.com>
 From: Rick Bianchi <bianchirickkutta@gmail.com>
-To: yocto@yoctoproject.org
-Subject: Smart Package Manager Repos?
+To: Paul Barker <paul@paulbarker.me.uk>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Add Packages to Recipie
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,32 +43,99 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 04 Mar 2014 17:00:34 -0000
-Content-Type: multipart/alternative; boundary=047d7b5d66127687ce04f3cad73c
+X-List-Received-Date: Tue, 04 Mar 2014 17:35:56 -0000
+Content-Type: multipart/alternative; boundary=089e01176de5ad038604f3cb06ff
 
---047d7b5d66127687ce04f3cad73c
+--089e01176de5ad038604f3cb06ff
 Content-Type: text/plain; charset=ISO-8859-1
 
-I get the following erro when I run smart update. Is there another repo?
-
-error: failed acquire release file for 'gumstix package repository'
-error:
-http://package-cache.s3-website-us-west-2.amazonaws.com/dev/repodata/repomd.xml
-
+Paul,
+My question is in the vain as Joel's, I need to add the program usbip (I
+have already added the kernel modules) to the build, but I cannot find any
+recipes for it. I have search in the package manager (smart) and it is not
+there either "error: 'usbip' matches no packages". Is there a way for me to
+add it during the build process?
 
 Thanks,
 Rick
 
---047d7b5d66127687ce04f3cad73c
+
+On Tue, Mar 4, 2014 at 7:56 AM, Paul Barker <paul@paulbarker.me.uk> wrote:
+
+> On 4 March 2014 14:47, Joel Parker <joelparker27@yahoo.com> wrote:
+> > Ok, thanks for that but what do you do for things that aren't in the
+> extended recipes list ? Specifically, I need sqlite3, sqlite3-devel and
+> iconv
+> >
+>
+> I don't understand your query: I can find sqlite3 and libiconv using
+> the recipe search link I posted.
+>
+> You won't find '-devel' packages though, I think the OE convention is
+> to use '-dev' instead. The recipe index doesn't show them, but most
+> packages offer '-dbg', '-dev', etc as appropriate.
+>
+> Thanks,
+>
+> --
+> Paul Barker
+>
+> Email: paul@paulbarker.me.uk
+> http://www.paulbarker.me.uk
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
+
+--089e01176de5ad038604f3cb06ff
 Content-Type: text/html; charset=ISO-8859-1
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><br><div>I get the following erro when I run smart update.=
- Is there another repo?</div><div><br></div><div>error: failed acquire rele=
-ase file for &#39;gumstix package repository&#39;</div><div>error: <a href=
-=3D"http://package-cache.s3-website-us-west-2.amazonaws.com/dev/repodata/re=
-pomd.xml">http://package-cache.s3-website-us-west-2.amazonaws.com/dev/repod=
-ata/repomd.xml</a></div>
-<div><br></div><div><br></div><div>Thanks,</div><div>Rick</div></div>
+<div dir=3D"ltr"><div>Paul,<br></div><div>My question is in the vain as Joe=
+l&#39;s, I need to add the program usbip (I have already added the kernel m=
+odules) to the build, but I cannot find any recipes for it. I have search i=
+n the package manager (smart) and it is not there either &quot;error: &#39;=
+usbip&#39; matches no packages&quot;. Is there a way for me to add it durin=
+g the build process?</div>
+<div><br></div><div>Thanks,</div><div>Rick</div></div><div class=3D"gmail_e=
+xtra"><br><br><div class=3D"gmail_quote">On Tue, Mar 4, 2014 at 7:56 AM, Pa=
+ul Barker <span dir=3D"ltr">&lt;<a href=3D"mailto:paul@paulbarker.me.uk" ta=
+rget=3D"_blank">paul@paulbarker.me.uk</a>&gt;</span> wrote:<br>
+<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
+x #ccc solid;padding-left:1ex"><div class=3D"">On 4 March 2014 14:47, Joel =
+Parker &lt;<a href=3D"mailto:joelparker27@yahoo.com">joelparker27@yahoo.com=
+</a>&gt; wrote:<br>
 
---047d7b5d66127687ce04f3cad73c--
+&gt; Ok, thanks for that but what do you do for things that aren&#39;t in t=
+he extended recipes list ? Specifically, I need sqlite3, sqlite3-devel and =
+iconv<br>
+&gt;<br>
+<br>
+</div>I don&#39;t understand your query: I can find sqlite3 and libiconv us=
+ing<br>
+the recipe search link I posted.<br>
+<br>
+You won&#39;t find &#39;-devel&#39; packages though, I think the OE convent=
+ion is<br>
+to use &#39;-dev&#39; instead. The recipe index doesn&#39;t show them, but =
+most<br>
+packages offer &#39;-dbg&#39;, &#39;-dev&#39;, etc as appropriate.<br>
+<br>
+Thanks,<br>
+<div class=3D"HOEnZb"><div class=3D"h5"><br>
+--<br>
+Paul Barker<br>
+<br>
+Email: <a href=3D"mailto:paul@paulbarker.me.uk">paul@paulbarker.me.uk</a><b=
+r>
+<a href=3D"http://www.paulbarker.me.uk" target=3D"_blank">http://www.paulba=
+rker.me.uk</a><br>
+_______________________________________________<br>
+yocto mailing list<br>
+<a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br>
+<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" target=3D"_blank"=
+>https://lists.yoctoproject.org/listinfo/yocto</a><br>
+</div></div></blockquote></div><br></div>
+
+--089e01176de5ad038604f3cb06ff--
