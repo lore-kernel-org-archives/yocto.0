@@ -1,38 +1,33 @@
-Return-Path: <paul.betafive@gmail.com>
-Received: from mail-ve0-f180.google.com (mail-ve0-f180.google.com
-	[209.85.128.180])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8CE01E00852
-	for <yocto@yoctoproject.org>; Tue,  4 Mar 2014 06:57:05 -0800 (PST)
-Received: by mail-ve0-f180.google.com with SMTP id jz11so5881577veb.11
-	for <yocto@yoctoproject.org>; Tue, 04 Mar 2014 06:57:04 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:sender:in-reply-to:references:from:date:message-id
-	:subject:to:cc:content-type;
-	bh=GUhf1BK/g7nXVmo2TGjsRg7dxazdy0RHUhXerA2Zu8A=;
-	b=UkgpREgKJfetw1eh830B2jOXIIjHNM0B/RgsulyiE/ZLpJOFtfutenRtEHGpMq4sNW
-	1dPVj7lDTAUgIoEHTlYSOLUM7J8ixde4eXrB/4Sy4srnv1NJMmUD1oi/+UCJyc/wM8Dh
-	/aaBEcN7jcDbG0rmGMPm+qaD38oWhfCQy29+MTvBOoRMKheEQ5mGL1Upw+gRlUIS+K+s
-	Ozm8vW9lpdpOctYr/DuV6n+ldVpc5H4/fB+EFskdH1kmuA5jR5eCIIen0uujSh5+izr7
-	jCR72ZGkS1H/gIYWdxTQFA312MVAfot60Tax2jPliD5QAEwKVjMfYUq/SRaljbT2jpS7
-	JZFQ==
-X-Received: by 10.58.18.133 with SMTP id w5mr44759ved.77.1393945024421; Tue,
-	04 Mar 2014 06:57:04 -0800 (PST)
+Return-Path: <stephen.k.jolley@intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A8E87E009D9
+	for <yocto@yoctoproject.org>; Tue,  4 Mar 2014 08:24:29 -0800 (PST)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga102.jf.intel.com with ESMTP; 04 Mar 2014 08:19:32 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.97,585,1389772800"; 
+	d="scan'208,217";a="493911926"
+Received: from fmsmsx107.amr.corp.intel.com ([10.19.9.54])
+	by orsmga002.jf.intel.com with ESMTP; 04 Mar 2014 08:20:58 -0800
+Received: from fmsmsx117.amr.corp.intel.com (10.18.116.17) by
+	FMSMSX107.amr.corp.intel.com (10.19.9.54) with Microsoft SMTP Server
+	(TLS) id 14.3.123.3; Tue, 4 Mar 2014 08:20:47 -0800
+Received: from fmsmsx111.amr.corp.intel.com ([169.254.2.5]) by
+	fmsmsx117.amr.corp.intel.com ([169.254.13.37]) with mapi id
+	14.03.0123.003; Tue, 4 Mar 2014 08:20:47 -0800
+From: "Jolley, Stephen K" <stephen.k.jolley@intel.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: Minutes: Yocto Project Technical Team Meeting - Tuesday, March
+	4, 2014 8:00 AM US Pacific Time
+Thread-Index: Ac83xbBYKkXgOZdIROyjPy73PpPkJA==
+Date: Tue, 4 Mar 2014 16:20:46 +0000
+Message-ID: <9ADD3FDE8B189B4AA2F8A3C711F8155E54FA970E@fmsmsx111.amr.corp.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.1.200.108]
 MIME-Version: 1.0
-Sender: paul.betafive@gmail.com
-Received: by 10.220.239.135 with HTTP; Tue, 4 Mar 2014 06:56:24 -0800 (PST)
-In-Reply-To: <26D5BB52-5D73-4746-ACEE-4A21BD130B77@yahoo.com>
-References: <1393941002.38518.YahooMailNeo@web163105.mail.bf1.yahoo.com>
-	<5315DC71.3080904@dynamicdevices.co.uk>
-	<1393942977.87424.YahooMailNeo@web163101.mail.bf1.yahoo.com>
-	<CANyK_8fGoQe1XaeU+Kt_CAiba2bUb9kKyu4KDCvXWXuzj5SBvg@mail.gmail.com>
-	<26D5BB52-5D73-4746-ACEE-4A21BD130B77@yahoo.com>
-From: Paul Barker <paul@paulbarker.me.uk>
-Date: Tue, 4 Mar 2014 14:56:24 +0000
-X-Google-Sender-Auth: PTf9hjwwsW-jBIwGLzZ717LC5l8
-Message-ID: <CANyK_8dF8U-jiVjuZ5xk5DBF_iqQuyKupahz4F1X+hKv4D_Avw@mail.gmail.com>
-To: Joel Parker <joelparker27@yahoo.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Add Packages to Recipie
+Subject: Minutes: Yocto Project Technical Team Meeting - Tuesday, March 4, 2014 8:00 AM US Pacific Time
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -44,25 +39,283 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 04 Mar 2014 14:57:05 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Tue, 04 Mar 2014 16:24:29 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_9ADD3FDE8B189B4AA2F8A3C711F8155E54FA970Efmsmsx111amrcor_"
 
-On 4 March 2014 14:47, Joel Parker <joelparker27@yahoo.com> wrote:
-> Ok, thanks for that but what do you do for things that aren't in the extended recipes list ? Specifically, I need sqlite3, sqlite3-devel and iconv
->
+--_000_9ADD3FDE8B189B4AA2F8A3C711F8155E54FA970Efmsmsx111amrcor_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-I don't understand your query: I can find sqlite3 and libiconv using
-the recipe search link I posted.
+Attendees: Stephen, Michael, Vali, Ross, Mark, Bruce, Jessica, Tom, Randy, =
+Cristiana, Belen, Richard, Matthew, Jefro, Cristian, Jeff, Paul, Nitin, Sau=
+l, Beth
 
-You won't find '-devel' packages though, I think the OE convention is
-to use '-dev' instead. The recipe index doesn't show them, but most
-packages offer '-dbg', '-dev', etc as appropriate.
+
+
+* Opens collection - 5 min (Stephen)
+
+* Yocto 1.6 status - 10 min (Stephen/team)
+
+YP 1.6 M3 RC2 was approved to be released.  Should be released in the short=
+ly.
+
+YP 1.6 is drawing to a close over the new few weeks and some features will =
+be dropped to insure a stable final release by the target release date of A=
+pril 25th.
+
+  https://wiki.yoctoproject.org/wiki/Yocto_Project_v1.6_Status
+
+  https://wiki.yoctoproject.org/wiki/Yocto_1.6_Features
+
+* SWAT team rotation: Paul -> Saul
+
+  https://wiki.yoctoproject.org/wiki/Yocto_Build_Failure_Swat_Team
+
+* Opens - 10 min
+
+Michael - Bugzilla upgrades.  We are using 4.2 and 4.4 is out.  Testopia is=
+ not yet supporting 4.4.  He would like users/volunteers to help him test t=
+he upgrade to 4.4 with Testopia.  Saul agreed to help.
+
+Michael - Infrastructure status update -  We are moving to a new server and=
+ are in process with that move.
+
+Richard - A number of the Autobuilders are offline and need some attention =
+to get them up and running again.  Michael will work with Beth to get them =
+running.
+
+* Team Sharing - 20 min
+
+Richard - Removal of PRink code is progressing.  Need to us a separate PR s=
+erver.  Will be a warning in 1.6 and not work so after.   Standard Autotool=
+s now can use separate build directories.   Need to decide how aggressive w=
+e will in 1.6 about implementing this feature.  It is strongly desired.
+
+
 
 Thanks,
 
--- 
-Paul Barker
+Stephen K. Jolley
+Yocto Project Program Manager
+INTEL, MS JF1-255, 2111 N.E. 25th Avenue, Hillsboro, OR 97124
+*   Work Telephone:          (480) 554-5904
+*    Cell:                                (208) 244-4460
+* Email:                             stephen.k.jolley@intel.com
 
-Email: paul@paulbarker.me.uk
-http://www.paulbarker.me.uk
 
+--_000_9ADD3FDE8B189B4AA2F8A3C711F8155E54FA970Efmsmsx111amrcor_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:x=3D"urn:schemas-microsoft-com:office:excel" xmlns:m=3D"http://schema=
+s.microsoft.com/office/2004/12/omml" xmlns=3D"http://www.w3.org/TR/REC-html=
+40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 14 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;}
+@font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:Tahoma;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
+@font-face
+	{font-family:"Comic Sans MS";
+	panose-1:3 15 7 2 3 3 2 2 2 4;}
+@font-face
+	{font-family:Consolas;
+	panose-1:2 11 6 9 2 2 4 3 2 4;}
+@font-face
+	{font-family:"MS Sans Serif";}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";
+	mso-fareast-language:EN-US;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;}
+p.MsoPlainText, li.MsoPlainText, div.MsoPlainText
+	{mso-style-priority:99;
+	mso-style-link:"Plain Text Char";
+	margin:0in;
+	margin-bottom:.0001pt;
+	font-size:10.5pt;
+	font-family:Consolas;
+	mso-fareast-language:EN-US;}
+p
+	{mso-style-priority:99;
+	mso-margin-top-alt:auto;
+	margin-right:0in;
+	mso-margin-bottom-alt:auto;
+	margin-left:0in;
+	font-size:12.0pt;
+	font-family:"Times New Roman","serif";
+	mso-fareast-language:ZH-CN;}
+span.PlainTextChar
+	{mso-style-name:"Plain Text Char";
+	mso-style-priority:99;
+	mso-style-link:"Plain Text";
+	font-family:Consolas;}
+span.EmailStyle20
+	{mso-style-type:personal-compose;
+	font-family:"Calibri","sans-serif";
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
+<div class=3D"WordSection1">
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas">Attendees: Stephen, Michael, Vali, Ross, Mark, Bru=
+ce, Jessica, Tom, Randy, Cristiana, Belen, Richard, Matthew, Jefro, Cristia=
+n, Jeff, Paul, Nitin, Saul, Beth<o:p></o:p></span></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas">&nbsp;<o:p></o:p></span></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas">* Opens collection - 5 min (Stephen)<o:p></o:p></s=
+pan></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas">* Yocto 1.6 status - 10 min (Stephen/team)<o:p></o=
+:p></span></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas">YP 1.6 M3 RC2 was approved to be released.&nbsp; S=
+hould be released in the shortly.<o:p></o:p></span></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas">YP 1.6 is drawing to a close over the new few week=
+s and some features will be dropped to insure a stable final release by the=
+ target release date of April 25<sup>th</sup>.
+<o:p></o:p></span></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas">&nbsp;
+</span><span style=3D"font-size:11.0pt"><a href=3D"https://wiki.yoctoprojec=
+t.org/wiki/Yocto_Project_v1.6_Status"><span style=3D"font-family:&quot;Cali=
+bri&quot;,&quot;sans-serif&quot;">https://wiki.yoctoproject.org/wiki/Yocto_=
+Project_v1.6_Status</span></a><o:p></o:p></span></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas">&nbsp;
+</span><span style=3D"font-size:11.0pt"><a href=3D"https://wiki.yoctoprojec=
+t.org/wiki/Yocto_1.6_Features"><span style=3D"font-family:&quot;Calibri&quo=
+t;,&quot;sans-serif&quot;">https://wiki.yoctoproject.org/wiki/Yocto_1.6_Fea=
+tures</span></a><o:p></o:p></span></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas">* SWAT team rotation: Paul -&gt; Saul<o:p></o:p></=
+span></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas">&nbsp;
+<a href=3D"https://wiki.yoctoproject.org/wiki/Yocto_Build_Failure_Swat_Team=
+">https://wiki.yoctoproject.org/wiki/Yocto_Build_Failure_Swat_Team</a><o:p>=
+</o:p></span></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas">* Opens - 10 min
+<o:p></o:p></span></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas">Michael &#8211; Bugzilla upgrades.&nbsp; We are us=
+ing 4.2 and 4.4 is out.&nbsp; Testopia is not yet supporting 4.4.&nbsp; He =
+would like users/volunteers to help him test the upgrade
+ to 4.4 with Testopia. &nbsp;Saul agreed to help.<o:p></o:p></span></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas">Michael &#8211; Infrastructure status update - &nb=
+sp;We are moving to a new server and are in process with that move.&nbsp;&n=
+bsp;
+<o:p></o:p></span></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas">Richard &#8211; A number of the Autobuilders are o=
+ffline and need some attention to get them up and running again. &nbsp;Mich=
+ael will work with Beth to get them running.
+<o:p></o:p></span></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas">* Team Sharing - 20 min<o:p></o:p></span></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas">Richard &#8211; Removal of PRink code is progressi=
+ng.&nbsp; Need to us a separate PR server.&nbsp; Will be a warning in 1.6 a=
+nd not work so after.&nbsp; &nbsp;Standard Autotools now can use
+ separate build directories.&nbsp; &nbsp;Need to decide how aggressive we w=
+ill in 1.6 about implementing this feature.&nbsp; It is strongly desired. &=
+nbsp;&nbsp;<o:p></o:p></span></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas"><o:p>&nbsp;</o:p></span></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas">Thanks,<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal" style=3D"page-break-after:avoid;text-autospace:none"=
+><b><i><span style=3D"font-size:16.0pt;font-family:&quot;Times New Roman&qu=
+ot;,&quot;serif&quot;;color:purple">Stephen K. Jolley</span></i></b><b><i><=
+span style=3D"font-size:16.0pt;font-family:&quot;Tahoma&quot;,&quot;sans-se=
+rif&quot;;color:purple"><o:p></o:p></span></i></b></p>
+<p class=3D"MsoNormal"><b><span style=3D"font-size:8.0pt;font-family:&quot;=
+Courier New&quot;;color:blue">Yocto Project Program Manager<o:p></o:p></spa=
+n></b></p>
+<p class=3D"MsoNormal" style=3D"page-break-after:avoid;text-autospace:none"=
+><b><span style=3D"font-size:10.0pt;font-family:&quot;Courier New&quot;;col=
+or:fuchsia">INTEL, MS JF1-255, 2111 N.E. 25th Avenue, Hillsboro, OR 97124
+<o:p></o:p></span></b></p>
+<p class=3D"MsoNormal"><span style=3D"font-family:Wingdings;color:black">(<=
+/span><span style=3D"font-family:&quot;MS Sans Serif&quot;;color:teal">
+</span><span style=3D"font-size:8.0pt;font-family:&quot;MS Sans Serif&quot;=
+;color:teal">&nbsp;&nbsp;</span><b><span style=3D"font-size:8.0pt;font-fami=
+ly:&quot;Comic Sans MS&quot;;color:teal">Work Telephone</span></b><span sty=
+le=3D"font-family:&quot;MS Sans Serif&quot;;color:teal">:&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span style=3D"font-size:9.0pt;font-family:&quot;MS Sans Serif&quot;=
+">(480) 554-5904<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt;font-family:Wingdings=
+;color:black">(</span><span style=3D"font-size:9.0pt;font-family:&quot;MS S=
+ans Serif&quot;;color:teal">&nbsp;&nbsp;&nbsp;
+</span><b><span style=3D"font-size:8.0pt;font-family:&quot;Comic Sans MS&qu=
+ot;;color:teal">Cell</span></b><span style=3D"font-size:9.0pt;font-family:&=
+quot;MS Sans Serif&quot;;color:teal">:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span style=3D"font-size:9.0pt;font-family:&quot;MS Sans Serif&quot;=
+">(208) 244-4460<span style=3D"color:black"><o:p></o:p></span></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt;font-family:Wingdings=
+">* </span>
+<b><span lang=3D"FR" style=3D"font-size:8.0pt;font-family:&quot;Comic Sans =
+MS&quot;;color:teal">Email</span></b><span lang=3D"FR" style=3D"font-size:9=
+.0pt;font-family:&quot;MS Sans Serif&quot;;color:teal">:</span><span lang=
+=3D"FR" style=3D"font-size:9.0pt;font-family:&quot;MS Sans Serif&quot;">&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;
+<u><span style=3D"color:blue">stephen.k.jolley@intel.com</span></u></span><=
+span lang=3D"FR" style=3D"font-size:12.0pt;font-family:&quot;Arial&quot;,&q=
+uot;sans-serif&quot;"><o:p></o:p></span></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+</body>
+</html>
+
+--_000_9ADD3FDE8B189B4AA2F8A3C711F8155E54FA970Efmsmsx111amrcor_--
