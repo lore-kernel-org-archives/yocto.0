@@ -1,28 +1,34 @@
-Return-Path: <bianchirickkutta@gmail.com>
-Received: from mail-ve0-f193.google.com (mail-ve0-f193.google.com
-	[209.85.128.193])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 65864E00A63
-	for <yocto@yoctoproject.org>; Wed,  5 Mar 2014 07:29:08 -0800 (PST)
-Received: by mail-ve0-f193.google.com with SMTP id oz11so418456veb.8
-	for <yocto@yoctoproject.org>; Wed, 05 Mar 2014 07:29:08 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=9pbEeHvktGJOfSMySfhuOcIKWY4OZGgx5ZCkzCG/G/E=;
-	b=LcnBVX0YfJuF13vUtMRqjz96Kgv9yA+T+K5PWOaydSwpO3m8itM+OebefDBnV6bntN
-	MXsyAO9jV4/K2QbXXJAHO/mhv/Fd9uRoATIb40UcgqHebQg3csQhGXoRoffnEykMlr8K
-	muUQALM3ZGJ3AKykHMJ0O4tU5qmABpcK70v3VHqkVZOf+ASZpIGkn/sP3LDtcjG0kErT
-	7CRXbJgoRisP1TYolV7u4O6KJYKlUylCxDIDsqfXKQkexMKB2PB1I3pSQbOEYLFDpcnq
-	h4AQJ890sm+5Gu6UoTRwrdj7ggMdIoRMMwK1NGQhhz6Fofuj+vrmHOi+CL7hH3oEZLoU
-	/R8A==
-MIME-Version: 1.0
-X-Received: by 10.220.99.72 with SMTP id t8mr543196vcn.10.1394033348316; Wed,
-	05 Mar 2014 07:29:08 -0800 (PST)
-Received: by 10.220.96.66 with HTTP; Wed, 5 Mar 2014 07:29:08 -0800 (PST)
-Date: Wed, 5 Mar 2014 08:29:08 -0700
-Message-ID: <CAA7h+EreYR9drptegiSJmnk9b3asLHdemDNLyPeSF4pyUE9ukw@mail.gmail.com>
-From: Rick Bianchi <bianchirickkutta@gmail.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: GLIB-2.0 target compile issue
+Return-Path: <andrei@gherzan.ro>
+Received: from mail-qc0-f174.google.com (mail-qc0-f174.google.com
+	[209.85.216.174])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 06E77E0078E
+	for <yocto@yoctoproject.org>; Wed,  5 Mar 2014 07:30:18 -0800 (PST)
+Received: by mail-qc0-f174.google.com with SMTP id x13so1266045qcv.33
+	for <yocto@yoctoproject.org>; Wed, 05 Mar 2014 07:30:17 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:from:to:cc:subject:date:message-id;
+	bh=RhZl2g/gRMf2YLAzPRMlsMbepRKxk3hI9smFzsZuxp4=;
+	b=Q0D5e8qOXULEeIaO+V3Wr4xdVH9hlMATzq6UQ4jXVmpMEusDJ6VXYXef5+uUX5+yYu
+	EMKQPEHMFLveKEoOTyTl3rKerXBZccRvSEU4J0flL3Cj0bI65U7+srmu4UfZ9X83T+WG
+	z7dqcHRw7IpUrcolHFRp80Q8osStrV+V3tvvyCdplaA9haJGzV3DjXml5nFgDuCDbXzt
+	F3pjG/Cw+tUlWmqelqA2Vvj4uf40pEdT6SZXqOSbl2p5MpffqEtVAgTezPhiVYQZcOjk
+	LotDRDXrX2l6hBSkffGE6d98Hqys7QvrhcWTkHvsg8B2QQ82Un9fy0c2JPreYcBMhbaq
+	f52w==
+X-Gm-Message-State: ALoCoQn/StCM5NJKMVAeY9bHl5y++CQZhN3+DPZO4C9gHR6JxAE5lA0t2bn1xPPPxB4ERAzkUrig
+X-Received: by 10.140.49.109 with SMTP id p100mr7162787qga.52.1394033417731;
+	Wed, 05 Mar 2014 07:30:17 -0800 (PST)
+Received: from localhost.localdomain ([89.121.200.106])
+	by mx.google.com with ESMTPSA id i7sm8746074qan.0.2014.03.05.07.30.15
+	for <multiple recipients>
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Wed, 05 Mar 2014 07:30:16 -0800 (PST)
+From: Andrei Gherzan <andrei@gherzan.ro>
+To: yocto@yoctoproject.org
+Date: Wed,  5 Mar 2014 17:29:56 +0200
+Message-Id: <1394033396-3514-1-git-send-email-andrei@gherzan.ro>
+X-Mailer: git-send-email 1.8.5.3
+Subject: [meta-raspberrypi][PATCH1 1/1] omxplayer: Don't hardcode datadir
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,46 +40,36 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 05 Mar 2014 15:29:11 -0000
-Content-Type: multipart/alternative; boundary=001a11c1d71c88137504f3ddae95
+X-List-Received-Date: Wed, 05 Mar 2014 15:30:21 -0000
 
---001a11c1d71c88137504f3ddae95
-Content-Type: text/plain; charset=ISO-8859-1
+Change-Id: Ibe66106fdf1da38d43278f5e2853c722709b91db
+Signed-off-by: Andrei Gherzan <andrei@gherzan.ro>
+---
+ recipes-multimedia/omxplayer/omxplayer_git.bb | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
-I have add IMAGE_INSTALL_append =" glib-2.0" to my local.conf and compile
-the image on the host without any issues.
+diff --git a/recipes-multimedia/omxplayer/omxplayer_git.bb b/recipes-multimedia/omxplayer/omxplayer_git.bb
+index 526dc86..c83d6c3 100644
+--- a/recipes-multimedia/omxplayer/omxplayer_git.bb
++++ b/recipes-multimedia/omxplayer/omxplayer_git.bb
+@@ -57,13 +57,13 @@ do_compile() {
+ 
+ do_install() {
+     oe_runmake STRIP='echo skipping strip' dist
+-    mkdir -p ${D}/usr/share/fonts/truetype/freefont/
+-    install ${S}/fonts/* ${D}/usr/share/fonts/truetype/freefont/
++    mkdir -p ${D}${datadir}/fonts/truetype/freefont/
++    install ${S}/fonts/* ${D}${datadir}/fonts/truetype/freefont/
+ }
+ 
+ FILES_${PN} = "${bindir}/omxplayer* \
+                ${libdir}/omxplayer/lib*${SOLIBS} \
+-               /usr/share/fonts"
++               ${D}${datadir}/fonts"
+ 
+ FILES_${PN}-dev += "${libdir}/omxplayer/*.so"
+ 
+-- 
+1.8.5.3
 
-When I try to compile on the target I get the following error:
 
-checking pkg-config is at least version 0.9.0... yes
-checking for PACKAGE... no
-configure: error: Package requirements (glib-2.0 >= 2.6.0) were not met:
-
-No package 'glib-2.0' found
-
-Consider adjusting the PKG_CONFIG_PATH environment variable if you
-installed software in a non-standard prefix.
-
-Alternatively, you may set the environment variables PACKAGE_CFLAGS
-and PACKAGE_LIBS to avoid the need to call pkg-config.
-See the pkg-config man page for more details.
-
---001a11c1d71c88137504f3ddae95
-Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">I have add=A0IMAGE_INSTALL_append =3D&quot; glib-2.0&quot;=
- to my local.conf and compile the image on the host without any issues.=A0<=
-div><br></div><div style>When I try to compile on the target I get the foll=
-owing error:</div>
-<div style><br></div><div style><div>checking pkg-config is at least versio=
-n 0.9.0... yes</div><div>checking for PACKAGE... no</div><div>configure: er=
-ror: Package requirements (glib-2.0 &gt;=3D 2.6.0) were not met:</div><div>
-<br></div><div>No package &#39;glib-2.0&#39; found</div><div><br></div><div=
->Consider adjusting the PKG_CONFIG_PATH environment variable if you</div><d=
-iv>installed software in a non-standard prefix.</div><div><br></div><div>
-Alternatively, you may set the environment variables PACKAGE_CFLAGS</div><d=
-iv>and PACKAGE_LIBS to avoid the need to call pkg-config.</div><div>See the=
- pkg-config man page for more details.</div><div><br></div></div></div>
-
---001a11c1d71c88137504f3ddae95--
