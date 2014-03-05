@@ -1,25 +1,33 @@
-Return-Path: <paul.eggleton@linux.intel.com>
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2D18AE00A37
-	for <yocto@yoctoproject.org>; Wed,  5 Mar 2014 03:34:05 -0800 (PST)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga102.fm.intel.com with ESMTP; 05 Mar 2014 03:34:04 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.97,592,1389772800"; d="scan'208";a="492715173"
-Received: from maurorob-mobl.ger.corp.intel.com (HELO
-	peggleto-mobl5.ger.corp.intel.com) ([10.252.120.80])
-	by fmsmga002.fm.intel.com with ESMTP; 05 Mar 2014 03:33:57 -0800
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: karl@hiramoto.org
-Date: Wed, 05 Mar 2014 11:33:55 +0000
-Message-ID: <1917463.rdkL3MgD4s@peggleto-mobl5.ger.corp.intel.com>
-Organization: Intel Corporation
-User-Agent: KMail/4.12.3 (Linux/3.13.5-200.fc20.x86_64; KDE/4.12.3; x86_64; ; )
-In-Reply-To: <1393972957-11804-1-git-send-email-karl@hiramoto.org>
-References: <1393972957-11804-1-git-send-email-karl@hiramoto.org>
-MIME-Version: 1.0
-Cc: yocto@yoctoproject.org
-Subject: Re: [PATCH] gnutls: Fixed bug that prevented the rejection of v1 intermediate CA certificates.
+Return-Path: <net147@gmail.com>
+Received: from mail-pa0-f45.google.com (mail-pa0-f45.google.com
+	[209.85.220.45])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E26DDE00A44
+	for <yocto@yoctoproject.org>; Wed,  5 Mar 2014 05:28:13 -0800 (PST)
+Received: by mail-pa0-f45.google.com with SMTP id kl14so1092829pab.4
+	for <yocto@yoctoproject.org>; Wed, 05 Mar 2014 05:28:13 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=from:to:cc:subject:date:message-id;
+	bh=XTSv/bUGWr4rK+q7AGbni+95BB97F/p+Fch0903Ltvo=;
+	b=y3foJHljqZE6gUBRqrpEZcGL+PWFi6oVg/fmaDLQ7J2wN8F7dHviicDokyTDCZWGZo
+	mvHPCQWabBMluv5HjYC+IXgtHwdFHDBFZJfV6W4myeiHhawnNB3iQXHT7CQxGddTp64F
+	JM0GYC4gLnvv+JbcTM7uOjxE2VXDLJqwTNadP3eYMAlM6U1UvPfHjOiD//ximOIQfdQU
+	QS9EeKb8saL7NNfuxDNoJHTOm9IoUvTjNaYO9UZuToUBmBFN9Yn5yUVJlool7yUpK8aE
+	tL2jcYMexa5jT8s+U7lI4e/hXmSnG2OGgmFZfMfXdHRwi8eiS5XRb0Nn63qIIBxeV1py
+	uWDQ==
+X-Received: by 10.68.49.228 with SMTP id x4mr7001148pbn.50.1394026093375;
+	Wed, 05 Mar 2014 05:28:13 -0800 (PST)
+Received: from 60-242-179-244.static.tpgi.com.au
+	(60-242-179-244.static.tpgi.com.au. [60.242.179.244])
+	by mx.google.com with ESMTPSA id cz3sm8426997pbc.9.2014.03.05.05.28.11
+	for <multiple recipients>
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Wed, 05 Mar 2014 05:28:12 -0800 (PST)
+From: Jonathan Liu <net147@gmail.com>
+To: yocto@yoctoproject.org
+Date: Thu,  6 Mar 2014 00:33:16 +1100
+Message-Id: <1394026396-22961-1-git-send-email-net147@gmail.com>
+X-Mailer: git-send-email 1.9.0
+Subject: [meta-raspberrypi][PATCH] sdcard_image-rpi: make rpi-sdimg image dependent on rootfs type
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -31,42 +39,33 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 05 Mar 2014 11:34:06 -0000
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Wed, 05 Mar 2014 13:28:14 -0000
 
-Hi Karl,
+The rootfs may be using a filesystem type other than ext3 so it should
+not be hardcoded.
 
-On Tuesday 04 March 2014 23:42:37 karl@hiramoto.org wrote:
-> From: Karl Hiramoto <karl@hiramoto.org>
-> 
-> This patch is for the yocto dylan branch   it comes from uptream:
+Change-Id: I71c1a96831ce4617b24de7743fe3b70ec5822a33
+Signed-off-by: Jonathan Liu <net147@gmail.com>
+---
+ classes/sdcard_image-rpi.bbclass | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-Thanks very much for sending these two. Because these are fixes for pretty 
-serious security issues and we really need them in the dylan branch for the 
-imminent 1.4.3 release, I've handled the following already and sent out new 
-patches; however for the future could you please remember these:
-
-* Patches for the OE-Core metadata need to go to the OE-Core mailing list 
-(openembedded-core@lists.openembedded.org). There is a "Where to Send Patches" 
-guide in the README file.
-
-* Individual patch files next to recipes need an Upstream-Status marker - see: 
-http://www.openembedded.org/wiki/Commit_Patch_Message_Guidelines#Patch_Header_Recommendations
-
-* Please also add your Signed-off-by to individual patch files (not just the 
-commit message)
-
-* We ideally need patches for master first and stable branches second
-
-Again, I've already taken care of these so you don't need to do anything for 
-now.
-
-Thanks,
-Paul
-
+diff --git a/classes/sdcard_image-rpi.bbclass b/classes/sdcard_image-rpi.bbclass
+index 1b055bd..71b6477 100644
+--- a/classes/sdcard_image-rpi.bbclass
++++ b/classes/sdcard_image-rpi.bbclass
+@@ -22,8 +22,8 @@ inherit image_types
+ # |                        |            |                        |
+ # 0                      4MiB     4MiB + 20MiB       4MiB + 20Mib + SDIMG_ROOTFS
+ 
+-# This image depends on ext3 image
+-IMAGE_TYPEDEP_rpi-sdimg = "ext3"
++# This image depends on the rootfs image
++IMAGE_TYPEDEP_rpi-sdimg = "${SDIMG_ROOTFS_TYPE}"
+ 
+ # Set kernel and boot loader
+ IMAGE_BOOTLOADER ?= "bcm2835-bootfiles"
 -- 
+1.9.0
 
-Paul Eggleton
-Intel Open Source Technology Centre
 
