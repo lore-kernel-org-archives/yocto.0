@@ -1,40 +1,33 @@
-Return-Path: <andrei@gherzan.ro>
-Received: from mail-qa0-f45.google.com (mail-qa0-f45.google.com
-	[209.85.216.45])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 686A2E009AC
-	for <yocto@yoctoproject.org>; Wed,  5 Mar 2014 08:00:14 -0800 (PST)
-Received: by mail-qa0-f45.google.com with SMTP id hw13so1167509qab.18
-	for <yocto@yoctoproject.org>; Wed, 05 Mar 2014 08:00:14 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-	:mime-version:content-type:content-disposition:in-reply-to
-	:user-agent;
-	bh=TPXFT0BAslSPZbLXHSrjBqublEmiZcCfN7K+h9Yn1YM=;
-	b=G7zC7ycM9U8WgZnFxt59s1U3F71BP0OGL/qjmbmSOqcEtt4R5ATsfD7FZVrkPOOchk
-	P6hORJTYPsJ0vnaCtDcfvhXMG8QbM9U6Deqlcfbm17BYfsJGLd8u+e5QV2tkea1MA9CQ
-	yiq/oHK38KjC187IH/zZMtFyKYxU+TC1u5/+EgqYR0DAD6OtV0y3jjX4gumrEhFPJekD
-	pUYyGC0b/zP/5ub4jdAuA1z9/3Dl36OmqQV6uEHLzw20l9J6+TnMwqXbZpZK0+XN4QY2
-	xYzDs5AYJtl0xomPK3OEK1xUn/KHg/W9WgyK2iN3YcLyV9TjO24Y+zHXtKTvDoIPBx2O
-	t4AQ==
-X-Gm-Message-State: ALoCoQmuUCgo2cGWC0nP8llReZOWcpxxbD92iclJBz4k5MUNXxY8kVPaSWzz9tM/M+qgioiECbB1
-X-Received: by 10.224.131.135 with SMTP id x7mr7598973qas.15.1394035210481;
-	Wed, 05 Mar 2014 08:00:10 -0800 (PST)
-Received: from gmail.com ([89.121.200.106])
-	by mx.google.com with ESMTPSA id p8sm3613045qga.9.2014.03.05.08.00.08
-	for <multiple recipients>
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Wed, 05 Mar 2014 08:00:09 -0800 (PST)
-Date: Wed, 5 Mar 2014 18:00:04 +0200
-From: Andrei Gherzan <andrei@gherzan.ro>
-To: Jonathan Liu <net147@gmail.com>
-Message-ID: <20140305160004.GB2222@gmail.com>
-References: <1394026396-22961-1-git-send-email-net147@gmail.com>
+Return-Path: <ratheesh.ksz@gmail.com>
+Received: from mail-yh0-f53.google.com (mail-yh0-f53.google.com
+	[209.85.213.53])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 224A2E009FD
+	for <yocto@yoctoproject.org>; Wed,  5 Mar 2014 08:15:37 -0800 (PST)
+Received: by mail-yh0-f53.google.com with SMTP id v1so1217874yhn.40
+	for <yocto@yoctoproject.org>; Wed, 05 Mar 2014 08:15:37 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type;
+	bh=38HtvOUGDC8Z63Ft+H2sFQ177a9PUOYNk6ril1UcR08=;
+	b=GpqHyKocgwHF/rvT40AXDoxPlGBeQsFlfAOAYAssbaqh535lUXiv9/yVxrvvs0xFyI
+	9JqsATO9iFvcRc6dpDz6zxNTn7qsUL/+u8gspOy+RQCZSFZjSrf1mpEvNAKZmBnCrTkx
+	esuOog3SqZwZEMKFimjD8HkTIjHeJdWg/0g+WDaklEkIw81hFqbpMqaF9sOtVQXiuD4R
+	EtZmMcjs+UBwQYzPIVSzQe8PawTmTD76eYlCrNdYrjJZNVk6hKP/7hDGRsNi7gOaFF+C
+	bwgFuZejklfTp7S4dMaSSHMJYGJImtOQ0lZ4qsHzvRX5pKVsmQ/h3LRyJqYFiZzIVMze
+	tcaQ==
 MIME-Version: 1.0
-In-Reply-To: <1394026396-22961-1-git-send-email-net147@gmail.com>
-User-Agent: Mutt/1.5.21 (2010-09-15)
+X-Received: by 10.236.199.82 with SMTP id w58mr7917627yhn.57.1394036136952;
+	Wed, 05 Mar 2014 08:15:36 -0800 (PST)
+Received: by 10.170.125.23 with HTTP; Wed, 5 Mar 2014 08:15:36 -0800 (PST)
+In-Reply-To: <5316ED96.8030403@dynamicdevices.co.uk>
+References: <CAGZFCEFFA+CBqkTbu4nsWuy4xjbbpsqrrXeLp4oE8OU84J_wkA@mail.gmail.com>
+	<5316ED96.8030403@dynamicdevices.co.uk>
+Date: Wed, 5 Mar 2014 21:45:36 +0530
+Message-ID: <CAGZFCEGhHTJam1bjAnOa_s=TAkeZe0-UcWH-1f0QNk5Cr9TaTg@mail.gmail.com>
+From: ratheesh kannoth <ratheesh.ksz@gmail.com>
+To: Alex J Lennon <ajlennon@dynamicdevices.co.uk>
 Cc: yocto@yoctoproject.org
-Subject: Re: [meta-raspberrypi][PATCH] sdcard_image-rpi: make rpi-sdimg image dependent on rootfs type
+Subject: Re: Error on building
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -46,24 +39,42 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 05 Mar 2014 16:00:18 -0000
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+X-List-Received-Date: Wed, 05 Mar 2014 16:15:40 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
-On Thu, Mar 06, 2014 at 12:33:16AM +1100, Jonathan Liu wrote:
-> The rootfs may be using a filesystem type other than ext3 so it should
-> not be hardcoded.
+On Wed, Mar 5, 2014 at 2:55 PM, Alex J Lennon
+<ajlennon@dynamicdevices.co.uk> wrote:
+> Ratheesh, I believe you would need to ensure that any static libraries
+> built are either removed or packaged appropriately so as not to trigger
+> the Q/A error.
 >
-> Change-Id: I71c1a96831ce4617b24de7743fe3b70ec5822a33
-> Signed-off-by: Jonathan Liu <net147@gmail.com>
-> ---
->  classes/sdcard_image-rpi.bbclass | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
+> One approach is to modify the recipe to add the static library to the
+> -staticdev package, i.e. to add
 >
+> FILES_${PN}-staticdev += " path\to\static\library\libsf_engine.a"
+>
+> What recipe are you trying to build?
+>
+> Cheers,
+>
+> Alex
 
-Merged. Thank you.
+Alex,
+Thanks. I am trying  to compile snort package.  I could easily get
+around these problems using  INSANE_SKIP.  But a new problem popped
+up. I have compiled  libdnet with out  a SONAME. So snort binary
+contains , ( ldd shows ) a full path to the library.  So rootfs build
+fails with
+following error.
 
---
-Andrei Gherzan
-m: +40.744.478.414 | f: +40.31.816.28.12
+Computing transaction...error: Can't install sf-test-1.0-r0.6@x86_64:
+no package provides
+/workspace/linux/wrlinux/bitbake_build/tmp/sysroots/intel-x86-64/usr/lib64/libdnet()(64bit)
+
+I can rebuild libdnet with  SONAME ( linker flag ) and solve this
+problem  OR  I can put SKIP_FILEDEPS = "1" in  sf  recipe file. But
+SKIP_FILEDEPS  will skip every check  in all recipes. I am looking
+something similar  option like  INSANE_SKIP_${PN} += "dev-so" ??
+
+-Ratheesh
 
