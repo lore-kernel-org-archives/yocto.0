@@ -1,25 +1,33 @@
-Return-Path: <elizabeth.flanagan@intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E7203E00AF2
-	for <yocto@yoctoproject.org>; Wed,  5 Mar 2014 10:27:56 -0800 (PST)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga102.jf.intel.com with ESMTP; 05 Mar 2014 10:23:24 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.97,593,1389772800"; d="scan'208";a="494628107"
-Received: from qana.jf.intel.com ([10.7.201.148])
-	by orsmga002.jf.intel.com with ESMTP; 05 Mar 2014 10:26:51 -0800
-Received: by qana.jf.intel.com (Postfix, from userid 1000)
-	id C5D1C5F82A96; Wed,  5 Mar 2014 10:23:33 -0800 (PST)
-From: Elizabeth Flanagan <elizabeth.flanagan@intel.com>
-To: yocto@yoctoproject.org
-Date: Wed,  5 Mar 2014 10:23:17 -0800
-Message-Id: <9e7db7260ac679609c9dd35237f0ba2a6d0a74f9.1394042358.git.elizabeth.flanagan@intel.com>
-X-Mailer: git-send-email 1.8.1.2
-In-Reply-To: <cover.1394042358.git.elizabeth.flanagan@intel.com>
+Return-Path: <raj.khem@gmail.com>
+Received: from mail-ie0-f182.google.com (mail-ie0-f182.google.com
+	[209.85.223.182])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C5BBBE00A8C
+	for <yocto@yoctoproject.org>; Wed,  5 Mar 2014 10:31:32 -0800 (PST)
+Received: by mail-ie0-f182.google.com with SMTP id y20so1494126ier.27
+	for <yocto@yoctoproject.org>; Wed, 05 Mar 2014 10:31:31 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-type;
+	bh=394ofl2f5q085oJ5HeYhVZlVC4Z3Ekhi29E8FM5aH8g=;
+	b=TjOBWkJglzmYFNju+vmJ0/+bCuGMRGr/popadeT2flj+10lFuLHzP3Sf2CXqn7zJ2i
+	Ge155BhpAWx35HJtUx+Jbv+f9js5rP+g5O3NbDJTl1OdzafKp2FuYl2f1vE2h/vKO75Y
+	WQ6l2nDkg+Y0e4F2t28idiuER6I+1NsFjfj3t71Hv9sQ2UBY6Q1RkgSjO+eOGY6UHA/+
+	sOUpzhf7Hm6AYiUHLGsoOmBvphl3ICxxTAFqkovjVSI3NFbqIIbQCQcmd/8DKWGgZc0P
+	yA8tNE/0MeRpCiKrPOZYrYAA30tAPTSvHpS4LERwJska2B1/KkuGLSDxTHPNaWwcY+mz
+	o71Q==
+X-Received: by 10.50.20.100 with SMTP id m4mr10681585ige.17.1394044291934;
+	Wed, 05 Mar 2014 10:31:31 -0800 (PST)
+MIME-Version: 1.0
+Received: by 10.50.224.136 with HTTP; Wed, 5 Mar 2014 10:31:01 -0800 (PST)
+In-Reply-To: <60198294855571725c0b3dea2c9b53f3c1b4d7e9.1394042358.git.elizabeth.flanagan@intel.com>
 References: <cover.1394042358.git.elizabeth.flanagan@intel.com>
-In-Reply-To: <cover.1394042358.git.elizabeth.flanagan@intel.com>
-References: <cover.1394042358.git.elizabeth.flanagan@intel.com>
-Subject: [AB PATCH 26/27] fs.py: Bump default timeout
+	<60198294855571725c0b3dea2c9b53f3c1b4d7e9.1394042358.git.elizabeth.flanagan@intel.com>
+From: Khem Raj <raj.khem@gmail.com>
+Date: Wed, 5 Mar 2014 10:31:01 -0800
+Message-ID: <CAMKF1srnQu9DY4qgMpjWHQcgxYnJY=h-POK1ReLKi7hBiA0P4Q@mail.gmail.com>
+To: Elizabeth Flanagan <elizabeth.flanagan@intel.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: [AB PATCH 03/27] nightly-world-uclibc: uclibc target
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -31,38 +39,14 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 05 Mar 2014 18:27:57 -0000
+X-List-Received-Date: Wed, 05 Mar 2014 18:31:34 -0000
+Content-Type: text/plain; charset=UTF-8
 
-120 seconds is too little if we're doing a mv across filesystems.
+On Wed, Mar 5, 2014 at 10:22 AM, Elizabeth Flanagan
+<elizabeth.flanagan@intel.com> wrote:
+>
+> This should add a uclibc world build (which will probably have
+> some issues at first)
 
-Signed-off-by: Elizabeth Flanagan <elizabeth.flanagan@intel.com>
----
- .../buildbot_slave-0.8.8-py2.7.egg/buildslave/commands/fs.py          | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
-
-diff --git a/lib/python2.7/site-packages/buildbot_slave-0.8.8-py2.7.egg/buildslave/commands/fs.py b/lib/python2.7/site-packages/buildbot_slave-0.8.8-py2.7.egg/buildslave/commands/fs.py
-index 3e01568..ae720cd 100644
---- a/lib/python2.7/site-packages/buildbot_slave-0.8.8-py2.7.egg/buildslave/commands/fs.py
-+++ b/lib/python2.7/site-packages/buildbot_slave-0.8.8-py2.7.egg/buildslave/commands/fs.py
-@@ -148,7 +148,7 @@ class CopyDirectory(base.Command):
-         fromdir = os.path.join(self.builder.basedir, args['fromdir'])
-         todir = os.path.join(self.builder.basedir, args['todir'])
- 
--        self.timeout = args.get('timeout', 120)
-+        self.timeout = args.get('timeout', 1200)
-         self.maxTime = args.get('maxTime', None)
- 
-         if runtime.platformType != "posix":
-@@ -197,7 +197,7 @@ class Move(base.Command):
-         fromdir = os.path.join(self.builder.basedir, args['fromdir'])
-         todir = args['todir']
- 
--        self.timeout = args.get('timeout', 120)
-+        self.timeout = args.get('timeout', 1200)
-         self.maxTime = args.get('maxTime', None)
- 
-         if runtime.platformType != "posix":
--- 
-1.8.1.2
-
+yay ! thanks
 
