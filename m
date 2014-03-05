@@ -1,32 +1,26 @@
-Return-Path: <raj.khem@gmail.com>
-Received: from mail-ie0-f176.google.com (mail-ie0-f176.google.com
-	[209.85.223.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EFD02E00A94
-	for <yocto@yoctoproject.org>; Wed,  5 Mar 2014 13:22:42 -0800 (PST)
-Received: by mail-ie0-f176.google.com with SMTP id rd18so1758182iec.35
-	for <yocto@yoctoproject.org>; Wed, 05 Mar 2014 13:22:42 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-type;
-	bh=SjvgR4tzRVQnC0tfStzLroCqlH4MENpl49d3dZWiKpQ=;
-	b=hD0r6Dj+fT4nd5JoDqqEiuy7VBX1qjTGiBSlpg5OXve45trADJonVcVpld86FiFuTW
-	9/2O6e3B8tqB8Pkc9xLNmdwJYghQjqGCSuXVZHyL1qumC00e2gPIcIBc9zFTogOliXAv
-	xmlFHZdPu8l5p3I6rzUWEknYbRYQWcj6DjXWDkznK0P/dA0YWosvd73ednXpJEQSefV7
-	RdzqLNOmKZMweyWMC8DAYe1Ve2nqLPsqPgYc2vZUf/EucXIdIVbMwmoU1vV73RHyQZod
-	ZMmJzdgIdYeQFCHgsb+OQov+NgTNqkBkSkAGgLltxo+eW+7+tlYrom6dox8CVFPH2R4y
-	q+xQ==
-X-Received: by 10.50.43.170 with SMTP id x10mr11778690igl.20.1394054562061;
-	Wed, 05 Mar 2014 13:22:42 -0800 (PST)
+Return-Path: <sgw@linux.intel.com>
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A71D3E00A89
+	for <yocto@yoctoproject.org>; Wed,  5 Mar 2014 13:39:44 -0800 (PST)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga101.fm.intel.com with ESMTP; 05 Mar 2014 13:39:43 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.97,595,1389772800"; d="scan'208";a="493033664"
+Received: from unknown (HELO [10.255.12.231]) ([10.255.12.231])
+	by fmsmga002.fm.intel.com with ESMTP; 05 Mar 2014 13:39:42 -0800
+Message-ID: <5317999E.2070007@linux.intel.com>
+Date: Wed, 05 Mar 2014 13:39:42 -0800
+From: Saul Wold <sgw@linux.intel.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:24.0) Gecko/20100101 Thunderbird/24.2.0
 MIME-Version: 1.0
-Received: by 10.50.224.136 with HTTP; Wed, 5 Mar 2014 13:22:12 -0800 (PST)
-In-Reply-To: <CAGZFCEFFA+CBqkTbu4nsWuy4xjbbpsqrrXeLp4oE8OU84J_wkA@mail.gmail.com>
-References: <CAGZFCEFFA+CBqkTbu4nsWuy4xjbbpsqrrXeLp4oE8OU84J_wkA@mail.gmail.com>
-From: Khem Raj <raj.khem@gmail.com>
-Date: Wed, 5 Mar 2014 13:22:12 -0800
-Message-ID: <CAMKF1srG1Ksh+kgzZqChw29QRh2VKc6wSFy3yosyFrJJnvzi3Q@mail.gmail.com>
-To: ratheesh kannoth <ratheesh.ksz@gmail.com>
+To: Khem Raj <raj.khem@gmail.com>, 
+	Elizabeth Flanagan <elizabeth.flanagan@intel.com>
+References: <cover.1394042358.git.elizabeth.flanagan@intel.com>	<60198294855571725c0b3dea2c9b53f3c1b4d7e9.1394042358.git.elizabeth.flanagan@intel.com>
+	<CAMKF1srnQu9DY4qgMpjWHQcgxYnJY=h-POK1ReLKi7hBiA0P4Q@mail.gmail.com>
+In-Reply-To: <CAMKF1srnQu9DY4qgMpjWHQcgxYnJY=h-POK1ReLKi7hBiA0P4Q@mail.gmail.com>
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Error on building
+Subject: Re: [AB PATCH 03/27] nightly-world-uclibc: uclibc target
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,23 +32,33 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 05 Mar 2014 21:22:46 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Wed, 05 Mar 2014 21:39:44 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Wed, Mar 5, 2014 at 12:01 AM, ratheesh kannoth
-<ratheesh.ksz@gmail.com> wrote:
-> ERROR: QA Issue: non -staticdev package contains static .a library:
-> sf-test path '/work/x86_64-wrs-linux/sf/1.0-r0/packages-split/sf-test/lib/snort_dynamicengine/libsf_engine.a'
+On 03/05/2014 10:31 AM, Khem Raj wrote:
+> On Wed, Mar 5, 2014 at 10:22 AM, Elizabeth Flanagan
+> <elizabeth.flanagan@intel.com> wrote:
+>>
+>> This should add a uclibc world build (which will probably have
+>> some issues at first)
+>
+> yay ! thanks
 
-for this you have to adjust packaging FILES_${PN}-staticdev +=
-"${base_libdir}/snort_dynamicengine/libsf_engine.a"
+Yes, it will have issues, I ran a world build a while ago for this bug: 
+  https://bugzilla.yoctoproject.org/show_bug.cgi?id=5431
 
-> ERROR: QA Issue: sf-test:
-> /work/x86_64-wrs-linux/sf/1.0-r0/packages-split/sf-test/lib/snort_dynamicengine/libsf_engine.so.0.0.0
-> contains probably-redundant RPATH /usr/lib64
+So we currently have some idea, we should add any new bugs to block this 
+one.
 
-This is a bit harder one, you need to look into build system of sf and
-see if it using wrong version of libtool or somesuch
-where its not setting up -rpath or -rpath-link or -rpath-dynamic
-properly relative to sysroot.
+Will this run nightly or as requested?
+
+
+Sau!
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
+>
 
