@@ -1,35 +1,28 @@
-Return-Path: <raj.khem@gmail.com>
-Received: from mail-ie0-f171.google.com (mail-ie0-f171.google.com
-	[209.85.223.171])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EC6FDE0097D
-	for <yocto@yoctoproject.org>; Tue,  4 Mar 2014 15:07:10 -0800 (PST)
-Received: by mail-ie0-f171.google.com with SMTP id ar20so271405iec.2
-	for <yocto@yoctoproject.org>; Tue, 04 Mar 2014 15:07:09 -0800 (PST)
+Return-Path: <bianchirickkutta@gmail.com>
+Received: from mail-ve0-f193.google.com (mail-ve0-f193.google.com
+	[209.85.128.193])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E19C2E00A21
+	for <yocto@yoctoproject.org>; Tue,  4 Mar 2014 20:50:25 -0800 (PST)
+Received: by mail-ve0-f193.google.com with SMTP id oz11so173802veb.0
+	for <yocto@yoctoproject.org>; Tue, 04 Mar 2014 20:50:24 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-type;
-	bh=hI/O31yM3XW7j3sU3QwuPR6J2yj/2DNIBO49/tBhITM=;
-	b=FexGnkW+Rz9ZCtUrybMv9dHcF+g8IzZxo7FR0iVdcAqW7Ny+OrRmD1MwUW83/O/3fP
-	YlgBfujV/NU7a5DYH4Q0jFKcdqZmgv0OGqNQ3B7H4EpUJA2lDjVhKTJXL6ficFdPE9Vp
-	zMDh+h7k5G6UdXyWfSkoaO+1Nr9voYNtUkYcPGkHRIakmnET+y5jAegFM+Zo7oUM9DHo
-	q8zhppaqgvaTzbkZr5O1tB91OpizAK7SyA1mkalp3eZRXLcFzQn6d6oF8BhbMmfA3zAS
-	6vUpoYhOoORahQ8kcKWgB52lXJyD63BeD1jRc2oYL8MVgv5WtGtD/kjfiC8k8jhid/vn
-	Rmtg==
-X-Received: by 10.50.60.103 with SMTP id g7mr31457365igr.20.1393974429608;
-	Tue, 04 Mar 2014 15:07:09 -0800 (PST)
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=oSTn5DVrxFoshW0EngJyVAkX9nAJapxcAyMThW7Y6Fc=;
+	b=a5yg+QNAg11HQgkLC/+zlk/k5V5dspUql8VdxNgjHmqQ4lGd/tNh/+GTFjUF5WKsvJ
+	nl6MQGiD7K2hB97QzA+Dl+Ljoz1Jw50gWHh2WsGX0Q9GTt7dOBX19QDr9f5b+TX/ZJmH
+	/F/kNcgwgtY3lUbu1Gvn0NHL7WZavJFdrLqHLOEuvcVjQ11PqczmXP5HQB8t/xKYVPwI
+	GRiyc+HIeL7QzqFeMwiNm2QwThHv2ZEMrlosGNmwwR03D5ITp4xPb5bF4HkcmU/EZgac
+	Rpb+KsNhzqUASaCbmFkaM7VCfjiRJSTpd/rvWYwfINRn4mlhyt76YF8eJdZAH5JGlgYQ
+	lD8g==
 MIME-Version: 1.0
-Received: by 10.50.224.136 with HTTP; Tue, 4 Mar 2014 15:06:39 -0800 (PST)
-In-Reply-To: <CAK18fxF3frJ-8f66maAOQssO+jWxeQzvtQSN9+ReJN0Np8KrFg@mail.gmail.com>
-References: <1393581239-5526-1-git-send-email-s.mennetrier@innotis.org>
-	<CABgO3_MuNG3BRko9w=uXgOJW9aFrGKUeYdNbtskSNNxdpk6g8g@mail.gmail.com>
-	<CAMKF1soRRrcaW2o=Ebw5nm1Jc-222QKwTU8OwW_VbdisGTQJ8g@mail.gmail.com>
-	<CAK18fxF3frJ-8f66maAOQssO+jWxeQzvtQSN9+ReJN0Np8KrFg@mail.gmail.com>
-From: Khem Raj <raj.khem@gmail.com>
-Date: Tue, 4 Mar 2014 15:06:39 -0800
-Message-ID: <CAMKF1spdGtLfkhTXZeZkAKjCFJAHGDDfa0ZytWMZwuoRquQ_UA@mail.gmail.com>
-To: Andrei Gherzan <andrei@gherzan.ro>
-Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: [meta-raspberrypi][for-dora][PATCH] Installed fonts directory in the default location needed by omxplayer
+X-Received: by 10.58.200.168 with SMTP id jt8mr74891vec.30.1393995024439; Tue,
+	04 Mar 2014 20:50:24 -0800 (PST)
+Received: by 10.220.96.66 with HTTP; Tue, 4 Mar 2014 20:50:24 -0800 (PST)
+Date: Tue, 4 Mar 2014 21:50:24 -0700
+Message-ID: <CAA7h+Ep__sbmST0ppgTrWYv5HQeOxTyRGj2tHGKNYSVaK5xMHA@mail.gmail.com>
+From: Rick Bianchi <bianchirickkutta@gmail.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Compiling errors
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,12 +34,26 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 04 Mar 2014 23:07:11 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Wed, 05 Mar 2014 04:50:28 -0000
+Content-Type: multipart/alternative; boundary=047d7bd6bd76401e3904f3d4c27e
 
-On Tue, Mar 4, 2014 at 2:51 PM, Andrei Gherzan <andrei@gherzan.ro> wrote:
-> Why exactly? meta-rpi is using yocto mailinglist.
+--047d7bd6bd76401e3904f3d4c27e
+Content-Type: text/plain; charset=ISO-8859-1
 
-Oh didnt notice if this was a meta-rpi specific patch, but if it is
-then ml is ok
+I get the following errors while trying to compile:
 
+Error: autogen-native not found in the base feeds (overo armv7a-vfp-neon
+armv7a-vfp armv7a armv6-vfp armv6 armv5e-vfp armv5e armv5-vfp armv5 armv4
+arm noarch any all).
+
+When I do a bitbake -s | grep autogen-native it shows up.
+
+I am also getting the same error for dhcp recipe.
+
+--047d7bd6bd76401e3904f3d4c27e
+Content-Type: text/html; charset=ISO-8859-1
+
+<div dir="ltr"><div><div>I get the following errors while trying to compile:<br><br>Error: autogen-native not found in the base feeds (overo armv7a-vfp-neon armv7a-vfp armv7a armv6-vfp armv6 armv5e-vfp armv5e armv5-vfp armv5 armv4 arm noarch any all).<br>
+<br></div>When I do a bitbake -s | grep autogen-native it shows up.<br><br></div>I am also getting the same error for dhcp recipe.<br></div>
+
+--047d7bd6bd76401e3904f3d4c27e--
