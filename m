@@ -1,35 +1,35 @@
-Return-Path: <mgloff@emacinc.com>
-Received: from mail-we0-f180.google.com (mail-we0-f180.google.com
-	[74.125.82.180])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 68300E00A42
-	for <yocto@yoctoproject.org>; Wed,  5 Mar 2014 09:00:32 -0800 (PST)
-Received: by mail-we0-f180.google.com with SMTP id p61so1560897wes.25
-	for <yocto@yoctoproject.org>; Wed, 05 Mar 2014 09:00:31 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:date
-	:message-id:subject:from:to:cc:content-type;
-	bh=E7sYlzFRkeMcMDqLFCcOZG0GNcv6sp6HsHiSsI6tjOs=;
-	b=fBXou4L00cDCxlsCVeDLJiX2DqjIxufeR6/zhKvfPuBt2GydupFcV+eY4wYHMHe4YB
-	0MiJapf3S1mXwtSxS39UN6l6vgrhAmGt0FNTK/eQ/GAS66tXhzq2IUUV8Z58Dvvkosuq
-	8yRbDZVLRzKOAUddRYu3sILEgegGSihNul92bsyeX7ypf7SBYg5uFcOWGoiL7ynn0Cm2
-	+Vb+Xu1j7lmvonEqx/l5CEHL1O60EZApJN3uKwREdh4AmA6e5k+GlT5MGaH87gWBLfJC
-	ptadOSO0kkTY0xc/x1wQaInzXvYqRgzRP3c5V61ugjJa6tciPSOBuw5JQSPyPYcFaBRI
-	/IBA==
-X-Gm-Message-State: ALoCoQlAUuhJTHFvbFEWXVTKGZEKn5dyTpOPUQJulSiaNnjA4vXA/jz1falCPrbMtEXQ4IDNv/qk
+Return-Path: <ajlennon@dynamicdevices.co.uk>
+Received: from www.dynamicdevices.co.uk (www.dynamicdevices.co.uk
+	[89.200.136.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 82A08E00A42
+	for <yocto@yoctoproject.org>; Wed,  5 Mar 2014 09:01:20 -0800 (PST)
+Received: from localhost (localhost [127.0.0.1])
+	by www.dynamicdevices.co.uk (Postfix) with ESMTP id 85F63862DB;
+	Wed,  5 Mar 2014 17:01:19 +0000 (UTC)
+X-Virus-Scanned: Debian amavisd-new at lennoab2.miniserver.com
+Received: from www.dynamicdevices.co.uk ([127.0.0.1])
+	by localhost (www.dynamicdevices.co.uk [127.0.0.1]) (amavisd-new,
+	port 10024)
+	with ESMTP id CJHtzHc5Eh1a; Wed,  5 Mar 2014 17:01:16 +0000 (UTC)
+Received: from [127.0.0.1] (cpc32-live22-2-0-cust59.17-2.cable.virginm.net
+	[82.36.253.60])
+	(using TLSv1 with cipher ECDHE-RSA-AES128-SHA (128/128 bits))
+	(No client certificate requested)
+	by www.dynamicdevices.co.uk (Postfix) with ESMTPSA id E00EF8610D;
+	Wed,  5 Mar 2014 17:01:16 +0000 (UTC)
+Message-ID: <53175857.9040702@dynamicdevices.co.uk>
+Date: Wed, 05 Mar 2014 17:01:11 +0000
+From: Alex J Lennon <ajlennon@dynamicdevices.co.uk>
+User-Agent: Mozilla/5.0 (Windows NT 6.3; WOW64;
+	rv:24.0) Gecko/20100101 Thunderbird/24.3.0
 MIME-Version: 1.0
-X-Received: by 10.194.78.77 with SMTP id z13mr2697421wjw.64.1394038831686;
-	Wed, 05 Mar 2014 09:00:31 -0800 (PST)
-Received: by 10.216.163.1 with HTTP; Wed, 5 Mar 2014 09:00:31 -0800 (PST)
-In-Reply-To: <126717450.ayqcFG2vtF@peggleto-mobl5.ger.corp.intel.com>
-References: <CALXw4G5VUNySyWoOoFbKHnMUWFjZfQKwQCu0T0cWtwGOAMQnow@mail.gmail.com>
-	<126717450.ayqcFG2vtF@peggleto-mobl5.ger.corp.intel.com>
-Date: Wed, 5 Mar 2014 11:00:31 -0600
-Message-ID: <CALXw4G5Ti_rZ+LWVYivbqeEAyFn2fOTDtYD9kvMBcq94R0X_xg@mail.gmail.com>
-From: Michael Gloff <mgloff@emacinc.com>
-To: Paul Eggleton <paul.eggleton@linux.intel.com>
-Cc: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: Toolchain
+To: ratheesh kannoth <ratheesh.ksz@gmail.com>
+References: <CAGZFCEFFA+CBqkTbu4nsWuy4xjbbpsqrrXeLp4oE8OU84J_wkA@mail.gmail.com>	<5316ED96.8030403@dynamicdevices.co.uk>	<CAGZFCEGhHTJam1bjAnOa_s=TAkeZe0-UcWH-1f0QNk5Cr9TaTg@mail.gmail.com>	<531752DA.70108@dynamicdevices.co.uk>
+	<CAGZFCEE5knYLDPR7WDNdW2Z6JwPoouM_dSfUN563DSxMNdkj7w@mail.gmail.com>
+In-Reply-To: <CAGZFCEE5knYLDPR7WDNdW2Z6JwPoouM_dSfUN563DSxMNdkj7w@mail.gmail.com>
+X-Enigmail-Version: 1.6
+Cc: yocto@yoctoproject.org
+Subject: Re: Error on building
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,126 +41,77 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 05 Mar 2014 17:00:35 -0000
-Content-Type: multipart/alternative; boundary=047d7bfcfc985dba3d04f3def5d6
-
---047d7bfcfc985dba3d04f3def5d6
+X-List-Received-Date: Wed, 05 Mar 2014 17:01:22 -0000
 Content-Type: text/plain; charset=ISO-8859-1
-
-Paul,
-The error is below. Machine name: PMX-090T. This is on dora 1.5.1
-
-ERROR: Function failed: opkg-build execution failed
-ERROR: Logfile of failure stored in:
-/opt/oe/build/tmp/work/i686-nativesdk-emacsdk-linux/meta-environment-PMX-090T/1.0-r8/temp/log.do_package_write_ipk.15358
-Log data follows:
-| DEBUG: Executing python function sstate_task_prefunc
-| DEBUG: Python function sstate_task_prefunc finished
-| DEBUG: Executing python function do_package_write_ipk
-| DEBUG: Executing python function read_subpackage_metadata
-| DEBUG: Python function read_subpackage_metadata finished
-| DEBUG: Executing python function do_package_ipk
-| meta-environment-PMX-090T
-| *** Error: Package name  contains illegal characters, (other than
-[a-z0-9.+-])
-|
-| opkg-build: Please fix the above errors and try again.
-| DEBUG: Python function do_package_ipk finished
-| DEBUG: Python function do_package_write_ipk finished
-| ERROR: Function failed: opkg-build execution failed
-ERROR: Task 788 (/opt/oe/recipes/poky/meta/recipes-core/meta/
-meta-environment.bb, do_package_write_ipk) failed with exit code '1'
-
-Thanks,
-
-Michael Gloff
+Content-Transfer-Encoding: 7bit
 
 
-
-On Mon, Mar 3, 2014 at 12:52 PM, Paul Eggleton <
-paul.eggleton@linux.intel.com> wrote:
-
-> Hi Michael,
+On 05/03/2014 16:54, ratheesh kannoth wrote:
+> On Wed, Mar 5, 2014 at 10:07 PM, Alex J Lennon
+> <ajlennon@dynamicdevices.co.uk> wrote:
+>> On 05/03/2014 16:15, ratheesh kannoth wrote:
+>>> On Wed, Mar 5, 2014 at 2:55 PM, Alex J Lennon
+>>> <ajlennon@dynamicdevices.co.uk> wrote:
+>>>> Ratheesh, I believe you would need to ensure that any static libraries
+>>>> built are either removed or packaged appropriately so as not to trigger
+>>>> the Q/A error.
+>>>>
+>>>> One approach is to modify the recipe to add the static library to the
+>>>> -staticdev package, i.e. to add
+>>>>
+>>>> FILES_${PN}-staticdev += " path\to\static\library\libsf_engine.a"
+>>>>
+>>>> What recipe are you trying to build?
+>>>>
+>>>> Cheers,
+>>>>
+>>>> Alex
+>>> Alex,
+>>> Thanks. I am trying  to compile snort package.  I could easily get
+>>> around these problems using  INSANE_SKIP.  But a new problem popped
+>>> up. I have compiled  libdnet with out  a SONAME. So snort binary
+>>> contains , ( ldd shows ) a full path to the library.  So rootfs build
+>>> fails with
+>>> following error.
+>>>
+>>> Computing transaction...error: Can't install sf-test-1.0-r0.6@x86_64:
+>>> no package provides
+>>> /workspace/linux/wrlinux/bitbake_build/tmp/sysroots/intel-x86-64/usr/lib64/libdnet()(64bit)
+>>>
+>>> I can rebuild libdnet with  SONAME ( linker flag ) and solve this
+>>> problem  OR  I can put SKIP_FILEDEPS = "1" in  sf  recipe file. But
+>>> SKIP_FILEDEPS  will skip every check  in all recipes. I am looking
+>>> something similar  option like  INSANE_SKIP_${PN} += "dev-so" ??
+>> That's interesting Ratheesh. Is there a reason for not including the
+>> soname attribute in libdnet?
+>>
+>> I would have thought that in a situation like that where there's no
+>> soname the snort binary shared library path should be fixed up to the
+>> target path, a relative path, rather than an absolute host path?
+>>
+>> Cheers,
+>>
+>> Alex
+>>
+>>> -Ratheesh
+> I removed soname by mistake.
 >
-> On Sunday 02 March 2014 19:58:41 Michael Gloff wrote:
-> > Is there a reason why the toolchain cannot be built with a machine name
-> > that contains capital letters? Seems weird, everything else builds fine,
-> > but meta-toolchain fails complaining about caps.
->
-> Although machine names are traditionally all lower case in our build
-> system,
-> there's no deliberate restriction in place that enforces this.
->
-> Would you be able to provide more details, such as the version of the build
-> system you are using, the exact capital letters you used in the machine
-> name,
-> and the error you received?
->
-> Thanks,
-> Paul
->
-> --
->
-> Paul Eggleton
-> Intel Open Source Technology Centre
->
+> I would like to know about workarounds  if such problem comes in yocto. Could u
+> enlighten me
 
---047d7bfcfc985dba3d04f3def5d6
-Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
+I'm no expert I'm afraid Ratheesh. I try to avoid the workarounds
+as they usually cause me problems down the road, but I'd probably
+look at the same thing as you with INSANE_SKIP_
 
-<div dir=3D"ltr"><div><div><div>Paul,<br></div>The error is below. Machine =
-name: PMX-090T. This is on dora 1.5.1<br><br>ERROR: Function failed: opkg-b=
-uild execution failed<br>ERROR: Logfile of failure stored in: /opt/oe/build=
-/tmp/work/i686-nativesdk-emacsdk-linux/meta-environment-PMX-090T/1.0-r8/tem=
-p/log.do_package_write_ipk.15358<br>
-Log data follows:<br>| DEBUG: Executing python function sstate_task_prefunc=
-<br>| DEBUG: Python function sstate_task_prefunc finished<br>| DEBUG: Execu=
-ting python function do_package_write_ipk<br>| DEBUG: Executing python func=
-tion read_subpackage_metadata<br>
-| DEBUG: Python function read_subpackage_metadata finished<br>| DEBUG: Exec=
-uting python function do_package_ipk<br>| meta-environment-PMX-090T<br>| **=
-* Error: Package name=A0 contains illegal characters, (other than [a-z0-9.+=
--])<br>
-| <br>| opkg-build: Please fix the above errors and try again.<br>| DEBUG: =
-Python function do_package_ipk finished<br>| DEBUG: Python function do_pack=
-age_write_ipk finished<br>| ERROR: Function failed: opkg-build execution fa=
-iled<br>
-ERROR: Task 788 (/opt/oe/recipes/poky/meta/recipes-core/meta/<a href=3D"htt=
-p://meta-environment.bb">meta-environment.bb</a>, do_package_write_ipk) fai=
-led with exit code &#39;1&#39;<br><br></div>Thanks,<br><br></div>Michael Gl=
-off<br>
-<div><div><br></div></div></div><div class=3D"gmail_extra"><br><br><div cla=
-ss=3D"gmail_quote">On Mon, Mar 3, 2014 at 12:52 PM, Paul Eggleton <span dir=
-=3D"ltr">&lt;<a href=3D"mailto:paul.eggleton@linux.intel.com" target=3D"_bl=
-ank">paul.eggleton@linux.intel.com</a>&gt;</span> wrote:<br>
-<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
-x #ccc solid;padding-left:1ex">Hi Michael,<br>
-<br>
-On Sunday 02 March 2014 19:58:41 Michael Gloff wrote:<br>
-&gt; Is there a reason why the toolchain cannot be built with a machine nam=
-e<br>
-&gt; that contains capital letters? Seems weird, everything else builds fin=
-e,<br>
-&gt; but meta-toolchain fails complaining about caps.<br>
-<br>
-Although machine names are traditionally all lower case in our build system=
-,<br>
-there&#39;s no deliberate restriction in place that enforces this.<br>
-<br>
-Would you be able to provide more details, such as the version of the build=
-<br>
-system you are using, the exact capital letters you used in the machine nam=
-e,<br>
-and the error you received?<br>
-<br>
-Thanks,<br>
-Paul<br>
-<span class=3D"HOEnZb"><font color=3D"#888888"><br>
---<br>
-<br>
-Paul Eggleton<br>
-Intel Open Source Technology Centre<br>
-</font></span></blockquote></div><br></div>
+...
 
---047d7bfcfc985dba3d04f3def5d6--
+Hunting around a little it does look as though you can do per-recipe dep
+skips though,
+and indeed per-package skips
+
+http://patches.openembedded.org/patch/43457/
+
+
+> -Ratheesh
+
+
