@@ -1,34 +1,25 @@
-Return-Path: <ajlennon@dynamicdevices.co.uk>
-Received: from www.dynamicdevices.co.uk (www.dynamicdevices.co.uk
-	[89.200.136.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EA1F6E00A33
-	for <yocto@yoctoproject.org>; Wed,  5 Mar 2014 01:25:49 -0800 (PST)
-Received: from localhost (localhost [127.0.0.1])
-	by www.dynamicdevices.co.uk (Postfix) with ESMTP id 31732862DB;
-	Wed,  5 Mar 2014 09:25:48 +0000 (UTC)
-X-Virus-Scanned: Debian amavisd-new at lennoab2.miniserver.com
-Received: from www.dynamicdevices.co.uk ([127.0.0.1])
-	by localhost (www.dynamicdevices.co.uk [127.0.0.1]) (amavisd-new,
-	port 10024)
-	with ESMTP id cOSdklGaH13Q; Wed,  5 Mar 2014 09:25:47 +0000 (UTC)
-Received: from [127.0.0.1] (cpc32-live22-2-0-cust59.17-2.cable.virginm.net
-	[82.36.253.60])
-	(using TLSv1 with cipher ECDHE-RSA-AES128-SHA (128/128 bits))
-	(No client certificate requested)
-	by www.dynamicdevices.co.uk (Postfix) with ESMTPSA id 569868610D;
-	Wed,  5 Mar 2014 09:25:47 +0000 (UTC)
-Message-ID: <5316ED96.8030403@dynamicdevices.co.uk>
-Date: Wed, 05 Mar 2014 09:25:42 +0000
-From: Alex J Lennon <ajlennon@dynamicdevices.co.uk>
-User-Agent: Mozilla/5.0 (Windows NT 6.3; WOW64;
-	rv:24.0) Gecko/20100101 Thunderbird/24.3.0
+Return-Path: <paul.eggleton@linux.intel.com>
+Received: from mga14.intel.com (mga14.intel.com [143.182.124.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4C024E00A36
+	for <yocto@yoctoproject.org>; Wed,  5 Mar 2014 02:44:37 -0800 (PST)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by azsmga102.ch.intel.com with ESMTP; 05 Mar 2014 02:44:24 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.97,592,1389772800"; d="scan'208";a="486383234"
+Received: from maurorob-mobl.ger.corp.intel.com (HELO
+	peggleto-mobl5.ger.corp.intel.com) ([10.252.120.80])
+	by fmsmga001.fm.intel.com with ESMTP; 05 Mar 2014 02:44:22 -0800
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: Rick Bianchi <bianchirickkutta@gmail.com>
+Date: Wed, 05 Mar 2014 10:44:22 +0000
+Message-ID: <1587540.foosnhxu1K@peggleto-mobl5.ger.corp.intel.com>
+Organization: Intel Corporation
+User-Agent: KMail/4.12.3 (Linux/3.13.5-200.fc20.x86_64; KDE/4.12.3; x86_64; ; )
+In-Reply-To: <CAA7h+Ep__sbmST0ppgTrWYv5HQeOxTyRGj2tHGKNYSVaK5xMHA@mail.gmail.com>
+References: <CAA7h+Ep__sbmST0ppgTrWYv5HQeOxTyRGj2tHGKNYSVaK5xMHA@mail.gmail.com>
 MIME-Version: 1.0
-To: ratheesh kannoth <ratheesh.ksz@gmail.com>
-References: <CAGZFCEFFA+CBqkTbu4nsWuy4xjbbpsqrrXeLp4oE8OU84J_wkA@mail.gmail.com>
-In-Reply-To: <CAGZFCEFFA+CBqkTbu4nsWuy4xjbbpsqrrXeLp4oE8OU84J_wkA@mail.gmail.com>
-X-Enigmail-Version: 1.6
 Cc: yocto@yoctoproject.org
-Subject: Re: Error on building
+Subject: Re: Compiling errors
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,42 +31,45 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 05 Mar 2014 09:25:52 -0000
-Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 05 Mar 2014 10:44:38 -0000
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
+Hi Rick,
 
-On 05/03/2014 08:01, ratheesh kannoth wrote:
-> I am getting following error. what is the problem. ? How can i get around this ?
->
->
-> ERROR: QA Issue: non -staticdev package contains static .a library:
-> sf-test path '/work/x86_64-wrs-linux/sf/1.0-r0/packages-split/sf-test/lib/snort_dynamicengine/libsf_engine.a'
-> ERROR: QA Issue: sf-test:
-> /work/x86_64-wrs-linux/sf/1.0-r0/packages-split/sf-test/lib/snort_dynamicengine/libsf_engine.so.0.0.0
-> contains probably-redundant RPATH /usr/lib64
->
+On Tuesday 04 March 2014 21:50:24 Rick Bianchi wrote:
+> I get the following errors while trying to compile:
+> 
+> Error: autogen-native not found in the base feeds (overo armv7a-vfp-neon
+> armv7a-vfp armv7a armv6-vfp armv6 armv5e-vfp armv5e armv5-vfp armv5 armv4
+> arm noarch any all).
+> 
+> When I do a bitbake -s | grep autogen-native it shows up.
+> 
+> I am also getting the same error for dhcp recipe.
 
-Ratheesh, I believe you would need to ensure that any static libraries
-built are either removed or packaged appropriately so as not to trigger
-the Q/A error.
+Based on the error, what you're talking about here are not recipes - these are 
+*packages* you're adding to IMAGE_INSTALL, is that correct?
 
-One approach is to modify the recipe to add the static library to the
--staticdev package, i.e. to add
+Anything with -native at the end is a recipe that is intended to build for the 
+build host, so it wouldn't make sense to add "autogen-native" to a list of 
+packages to be installed into an image for the target. The equivalent package 
+name for the target would be simply "autogen", except no recipe producing this 
+target package exists (there is only autogen-native). If you really need 
+autogen for the target you're going to have to write (or adapt) a recipe for 
+it yourself.
 
-FILES_${PN}-staticdev += " path\to\static\library\libsf_engine.a"
-
-What recipe are you trying to build?
+The dhcp case is different - the "dhcp" package is actually empty and thus a 
+package file for it is never produced; the reason it is empty is that the 
+server and client portions are packaged separately in dhcp-server and 
+dhcp-client packages respectively, so you'll need to decide which of these you 
+want and specify those to be installed instead.
 
 Cheers,
+Paul
 
-Alex
+-- 
 
-> Thanks,
-> Ratheesh
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
-represent those of the company.
+Paul Eggleton
+Intel Open Source Technology Centre
 
