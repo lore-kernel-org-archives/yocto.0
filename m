@@ -1,25 +1,25 @@
 Return-Path: <elizabeth.flanagan@intel.com>
 Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 69380E00A80
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 76023E00A89
 	for <yocto@yoctoproject.org>; Wed,  5 Mar 2014 10:26:51 -0800 (PST)
 Received: from fmsmga001.fm.intel.com ([10.253.24.23])
 	by orsmga101.jf.intel.com with ESMTP; 05 Mar 2014 10:26:50 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.97,593,1389772800"; d="scan'208";a="486606559"
+X-IronPort-AV: E=Sophos;i="4.97,593,1389772800"; d="scan'208";a="486606562"
 Received: from qana.jf.intel.com ([10.7.201.148])
 	by fmsmga001.fm.intel.com with ESMTP; 05 Mar 2014 10:26:50 -0800
 Received: by qana.jf.intel.com (Postfix, from userid 1000)
-	id 64FEA5F803F2; Wed,  5 Mar 2014 10:23:32 -0800 (PST)
+	id B36385F82A4A; Wed,  5 Mar 2014 10:23:32 -0800 (PST)
 From: Elizabeth Flanagan <elizabeth.flanagan@intel.com>
 To: yocto@yoctoproject.org
-Date: Wed,  5 Mar 2014 10:23:01 -0800
-Message-Id: <d9a8cea8786c34877d7adeb478735aa375fd61c7.1394042358.git.elizabeth.flanagan@intel.com>
+Date: Wed,  5 Mar 2014 10:23:03 -0800
+Message-Id: <ad4ce901f3708414b41692daa7fd3956fb9381b3.1394042358.git.elizabeth.flanagan@intel.com>
 X-Mailer: git-send-email 1.8.1.2
 In-Reply-To: <cover.1394042358.git.elizabeth.flanagan@intel.com>
 References: <cover.1394042358.git.elizabeth.flanagan@intel.com>
 In-Reply-To: <cover.1394042358.git.elizabeth.flanagan@intel.com>
 References: <cover.1394042358.git.elizabeth.flanagan@intel.com>
-Subject: [AB PATCH 10/27] BuildSet.py: Remove more debug code.
+Subject: [AB PATCH 12/27] yoctogit: Don't use branch args for referenced clone
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -33,31 +33,28 @@ List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
 X-List-Received-Date: Wed, 05 Mar 2014 18:26:51 -0000
 
-From: Beth Flanagan <elizabeth.flanagan@intel.com>
+From: Richard Purdie <richard.purdie@linuxfoundation.org>
 
-Removed some log.msg code.
-
-Signed-off-by: Beth Flanagan <elizabeth.flanagan@intel.com>
+Signed-off-by: Richard Purdie <richard.purdie@linuxfoundation.org>
 ---
- lib/python2.7/site-packages/autobuilder/BuildSet.py | 2 --
- 1 file changed, 2 deletions(-)
+ .../buildbot-0.8.8-py2.7.egg/buildbot/steps/source/yoctogit.py        | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/lib/python2.7/site-packages/autobuilder/BuildSet.py b/lib/python2.7/site-packages/autobuilder/BuildSet.py
-index c913e93..7973a23 100644
---- a/lib/python2.7/site-packages/autobuilder/BuildSet.py
-+++ b/lib/python2.7/site-packages/autobuilder/BuildSet.py
-@@ -59,11 +59,9 @@ class BuildSet():
-                     for layer in layers:
-                         kwargs=stepOrder[step]
-                         layername=layer.iterkeys().next()
--                        log.msg(type(Property('commit_resolvedhead_'+layername)))
-                         if os.environ.get("RESOLVE_TRIGGERED_HEAD") == "True":
-                             m = __import__ ("ResolveLayerHead")
-                             func = getattr(m, "ResolveLayerHead")
--                            log.msg(layer[layer.iterkeys().next()])
-                             factoryFN(func(locals()['f'+name],
-                                       layername=layername,
-                                       scheduler=name,
+diff --git a/lib/python2.7/site-packages/buildbot-0.8.8-py2.7.egg/buildbot/steps/source/yoctogit.py b/lib/python2.7/site-packages/buildbot-0.8.8-py2.7.egg/buildbot/steps/source/yoctogit.py
+index 93ce805..446631d 100644
+--- a/lib/python2.7/site-packages/buildbot-0.8.8-py2.7.egg/buildbot/steps/source/yoctogit.py
++++ b/lib/python2.7/site-packages/buildbot-0.8.8-py2.7.egg/buildbot/steps/source/yoctogit.py
+@@ -470,8 +470,8 @@ class YoctoGit(Source):
+         mirror = None
+         if self.mirrordir:
+             mirror = self.mirrordir + "/" + self.repourl.replace("git://", "") + "/"
+-            if os.path.exists(mirror):
+-                  command = ['clone'] + args + ["-s", "-n"] + [mirror, '.']
++            if self.pathExists(mirror):
++                  command = ['clone'] + ["-s", "-n"] + [mirror, '.']
+ 
+         #Fix references
+         if self.prog:
 -- 
 1.8.1.2
 
