@@ -1,33 +1,34 @@
-Return-Path: <sebmennetrier@gmail.com>
-Received: from mail-ie0-f182.google.com (mail-ie0-f182.google.com
-	[209.85.223.182])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5ABD5E00A33
-	for <yocto@yoctoproject.org>; Wed,  5 Mar 2014 01:06:34 -0800 (PST)
-Received: by mail-ie0-f182.google.com with SMTP id y20so762944ier.27
-	for <yocto@yoctoproject.org>; Wed, 05 Mar 2014 01:06:34 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:sender:in-reply-to:references:date:message-id:subject
-	:from:to:cc:content-type;
-	bh=HKG74SvWZ6jYTehlO3PHAeY6FB901dC/0nLH7KuK/eo=;
-	b=Y8hZC5JRgGXdyj5eCsk49+H20qNPFU3jblKiI1WRo0zLR9nKK5BK2Y/S2yLjWxwZiK
-	l7G1+IAwl0sXVHfGQBWWGsETBOLXuXyYZtYlujb5Sg4BqQshKMN2Y6xWstaqMqts7z73
-	KK3m7GuSDvBrncYfTH9KoR4kpIgSdps/7ytW5qxmGnCe5Wpim4yVfss1amjSFm339di4
-	L1eKfGPEYbv/hETu/YfQCKORR1nEGsjgRKCduG8PxLIEw0pO4UwijscUo5yHX2VW/XDa
-	/tBdGhwcy191k5mQo/5SBkd8rX2kaHqEb//7cye4xD5LBpLE7KWql8ml6vOL+0mBbJb8
-	ciJg==
+Return-Path: <ajlennon@dynamicdevices.co.uk>
+Received: from www.dynamicdevices.co.uk (www.dynamicdevices.co.uk
+	[89.200.136.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EA1F6E00A33
+	for <yocto@yoctoproject.org>; Wed,  5 Mar 2014 01:25:49 -0800 (PST)
+Received: from localhost (localhost [127.0.0.1])
+	by www.dynamicdevices.co.uk (Postfix) with ESMTP id 31732862DB;
+	Wed,  5 Mar 2014 09:25:48 +0000 (UTC)
+X-Virus-Scanned: Debian amavisd-new at lennoab2.miniserver.com
+Received: from www.dynamicdevices.co.uk ([127.0.0.1])
+	by localhost (www.dynamicdevices.co.uk [127.0.0.1]) (amavisd-new,
+	port 10024)
+	with ESMTP id cOSdklGaH13Q; Wed,  5 Mar 2014 09:25:47 +0000 (UTC)
+Received: from [127.0.0.1] (cpc32-live22-2-0-cust59.17-2.cable.virginm.net
+	[82.36.253.60])
+	(using TLSv1 with cipher ECDHE-RSA-AES128-SHA (128/128 bits))
+	(No client certificate requested)
+	by www.dynamicdevices.co.uk (Postfix) with ESMTPSA id 569868610D;
+	Wed,  5 Mar 2014 09:25:47 +0000 (UTC)
+Message-ID: <5316ED96.8030403@dynamicdevices.co.uk>
+Date: Wed, 05 Mar 2014 09:25:42 +0000
+From: Alex J Lennon <ajlennon@dynamicdevices.co.uk>
+User-Agent: Mozilla/5.0 (Windows NT 6.3; WOW64;
+	rv:24.0) Gecko/20100101 Thunderbird/24.3.0
 MIME-Version: 1.0
-X-Received: by 10.50.61.147 with SMTP id p19mr7852422igr.49.1394010393895;
-	Wed, 05 Mar 2014 01:06:33 -0800 (PST)
-Sender: sebmennetrier@gmail.com
-Received: by 10.42.198.139 with HTTP; Wed, 5 Mar 2014 01:06:33 -0800 (PST)
-In-Reply-To: <1394010268-16318-1-git-send-email-s.mennetrier@innotis.org>
-References: <1394010268-16318-1-git-send-email-s.mennetrier@innotis.org>
-Date: Wed, 5 Mar 2014 10:06:33 +0100
-X-Google-Sender-Auth: TDcPfAUS2fLlXEjxZYMSr1lT2cE
-Message-ID: <CABgO3_M-uEXjoNRLZp0Ri92csGCZnkj5C6Qs+1My2yXSA6m7pQ@mail.gmail.com>
-From: Sebastien MENNETRIER <s.mennetrier@innotis.org>
-To: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: [meta-raspberrypi][PATCH V2] omxplayer : Install fonts directory in datadir
+To: ratheesh kannoth <ratheesh.ksz@gmail.com>
+References: <CAGZFCEFFA+CBqkTbu4nsWuy4xjbbpsqrrXeLp4oE8OU84J_wkA@mail.gmail.com>
+In-Reply-To: <CAGZFCEFFA+CBqkTbu4nsWuy4xjbbpsqrrXeLp4oE8OU84J_wkA@mail.gmail.com>
+X-Enigmail-Version: 1.6
+Cc: yocto@yoctoproject.org
+Subject: Re: Error on building
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,99 +40,42 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 05 Mar 2014 09:06:35 -0000
-Content-Type: multipart/alternative; boundary=047d7bdca4385768e904f3d85696
-
---047d7bdca4385768e904f3d85696
+X-List-Received-Date: Wed, 05 Mar 2014 09:25:52 -0000
 Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
-
-Sorry, I forget "for-dora" in subject
+Content-Transfer-Encoding: 7bit
 
 
-Regards,
-S=E9bastien
-
-
-2014-03-05 10:04 GMT+01:00 S=E9bastien Mennetrier <s.mennetrier@innotis.org=
->:
-
-> Signed-off-by: S=E9bastien Mennetrier <s.mennetrier@innotis.org>
-> ---
->  recipes-multimedia/omxplayer/omxplayer_git.bb | 5 ++++-
->  1 file changed, 4 insertions(+), 1 deletion(-)
->
-> diff --git a/recipes-multimedia/omxplayer/omxplayer_git.bbb/recipes-multi=
-media/omxplayer/
-> omxplayer_git.bb
-> index a456026..7492f62 100644
-> --- a/recipes-multimedia/omxplayer/omxplayer_git.bb
-> +++ b/recipes-multimedia/omxplayer/omxplayer_git.bb
-> @@ -52,9 +52,12 @@ do_compile() {
->
->  do_install() {
->         oe_runmake dist
-> +       mkdir -p ${D}${datadir}/fonts/truetype/freefont/
-> +       install ${S}/fonts/* ${D}${datadir}/fonts/truetype/freefont/
->  }
->
->  FILES_${PN} =3D "${bindir}/omxplayer* \
-> -               ${libdir}/omxplayer/lib*${SOLIBS}"
-> +               ${libdir}/omxplayer/lib*${SOLIBS} \
-> +               ${datadir}/fonts"
->
->  FILES_${PN}-dev +=3D "${libdir}/omxplayer/*.so"
-> --
-> 1.8.1.2
+On 05/03/2014 08:01, ratheesh kannoth wrote:
+> I am getting following error. what is the problem. ? How can i get around this ?
 >
 >
-
---047d7bdca4385768e904f3d85696
-Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">Sorry, I forget &quot;for-dora&quot; in subject<br></div><=
-div class=3D"gmail_extra"><br clear=3D"all"><div><div dir=3D"ltr"><div><br>=
-Regards,<br></div>S=E9bastien<br></div></div>
-<br><br><div class=3D"gmail_quote">2014-03-05 10:04 GMT+01:00 S=E9bastien M=
-ennetrier <span dir=3D"ltr">&lt;<a href=3D"mailto:s.mennetrier@innotis.org"=
- target=3D"_blank">s.mennetrier@innotis.org</a>&gt;</span>:<br><blockquote =
-class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid=
-;padding-left:1ex">
-Signed-off-by: S=E9bastien Mennetrier &lt;<a href=3D"mailto:s.mennetrier@in=
-notis.org">s.mennetrier@innotis.org</a>&gt;<br>
----<br>
-=A0recipes-multimedia/omxplayer/<a href=3D"http://omxplayer_git.bb" target=
-=3D"_blank">omxplayer_git.bb</a> | 5 ++++-<br>
-=A01 file changed, 4 insertions(+), 1 deletion(-)<br>
-<br>
-diff --git a/recipes-multimedia/omxplayer/<a href=3D"http://omxplayer_git.b=
-b" target=3D"_blank">omxplayer_git.bb</a> b/recipes-multimedia/omxplayer/<a=
- href=3D"http://omxplayer_git.bb" target=3D"_blank">omxplayer_git.bb</a><br=
+> ERROR: QA Issue: non -staticdev package contains static .a library:
+> sf-test path '/work/x86_64-wrs-linux/sf/1.0-r0/packages-split/sf-test/lib/snort_dynamicengine/libsf_engine.a'
+> ERROR: QA Issue: sf-test:
+> /work/x86_64-wrs-linux/sf/1.0-r0/packages-split/sf-test/lib/snort_dynamicengine/libsf_engine.so.0.0.0
+> contains probably-redundant RPATH /usr/lib64
 >
-index a456026..7492f62 100644<br>
---- a/recipes-multimedia/omxplayer/<a href=3D"http://omxplayer_git.bb" targ=
-et=3D"_blank">omxplayer_git.bb</a><br>
-+++ b/recipes-multimedia/omxplayer/<a href=3D"http://omxplayer_git.bb" targ=
-et=3D"_blank">omxplayer_git.bb</a><br>
-@@ -52,9 +52,12 @@ do_compile() {<br>
-<br>
-=A0do_install() {<br>
-=A0 =A0 =A0 =A0 oe_runmake dist<br>
-+ =A0 =A0 =A0 mkdir -p ${D}${datadir}/fonts/truetype/freefont/<br>
-+ =A0 =A0 =A0 install ${S}/fonts/* ${D}${datadir}/fonts/truetype/freefont/<=
-br>
-=A0}<br>
-<br>
-=A0FILES_${PN} =3D &quot;${bindir}/omxplayer* \<br>
-- =A0 =A0 =A0 =A0 =A0 =A0 =A0 ${libdir}/omxplayer/lib*${SOLIBS}&quot;<br>
-+ =A0 =A0 =A0 =A0 =A0 =A0 =A0 ${libdir}/omxplayer/lib*${SOLIBS} \<br>
-+ =A0 =A0 =A0 =A0 =A0 =A0 =A0 ${datadir}/fonts&quot;<br>
-<br>
-=A0FILES_${PN}-dev +=3D &quot;${libdir}/omxplayer/*.so&quot;<br>
-<span class=3D"HOEnZb"><font color=3D"#888888">--<br>
-1.8.1.2<br>
-<br>
-</font></span></blockquote></div><br></div>
 
---047d7bdca4385768e904f3d85696--
+Ratheesh, I believe you would need to ensure that any static libraries
+built are either removed or packaged appropriately so as not to trigger
+the Q/A error.
+
+One approach is to modify the recipe to add the static library to the
+-staticdev package, i.e. to add
+
+FILES_${PN}-staticdev += " path\to\static\library\libsf_engine.a"
+
+What recipe are you trying to build?
+
+Cheers,
+
+Alex
+
+> Thanks,
+> Ratheesh
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+represent those of the company.
+
