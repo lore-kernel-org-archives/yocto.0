@@ -1,36 +1,39 @@
-Return-Path: <kergoth@gmail.com>
-Received: from mail-la0-f42.google.com (mail-la0-f42.google.com
-	[209.85.215.42])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E8861E00991
-	for <yocto@yoctoproject.org>; Wed,  5 Mar 2014 07:48:16 -0800 (PST)
-Received: by mail-la0-f42.google.com with SMTP id ec20so839758lab.1
-	for <yocto@yoctoproject.org>; Wed, 05 Mar 2014 07:48:15 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:sender:in-reply-to:references:from:date:message-id
-	:subject:to:cc:content-type;
-	bh=zriUSezIvB8dkSKt5paIxe2+sQXUo9AeU0PL36S40Ko=;
-	b=WFjpj5APnBD3agoWVqp8OOa1kMsKY8mJfq5ENtAIij5wgRJVhfdwMT9h7WjzArVfdY
-	FdDiQeKFu+nkoWQeHazh7SpvR9lpyjqoiFfWHs5L8f3b5jIbaI7to3jixylpl4HZQgTJ
-	R5gAuZOqnGaXtJRGoKsTXBjixVmV7RXFETSDxMNFDlNiuWl5oiVIVXaRx+8b52PX+naf
-	scr5T1Sob1hHGIBKNLSJtwzhBj32RTspAabf62hCZat70go4Mib031hK12y5YqGB8yq3
-	yq1tx9X5y8mJICgORgeon0AuPNLqQPyKgpwRNTDLMsHVm+7zpDrBxRYRVBKqXhNc/NUz
-	Y/aQ==
-X-Received: by 10.152.3.72 with SMTP id a8mr2691493laa.33.1394034494927; Wed,
-	05 Mar 2014 07:48:14 -0800 (PST)
+Return-Path: <andrei@gherzan.ro>
+Received: from mail-qa0-f43.google.com (mail-qa0-f43.google.com
+	[209.85.216.43])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A85E5E0097B
+	for <yocto@yoctoproject.org>; Wed,  5 Mar 2014 07:50:45 -0800 (PST)
+Received: by mail-qa0-f43.google.com with SMTP id j15so1152993qaq.16
+	for <yocto@yoctoproject.org>; Wed, 05 Mar 2014 07:50:45 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:date:from:to:subject:message-id:references
+	:mime-version:content-type:content-disposition:in-reply-to
+	:user-agent;
+	bh=Gd3zWhJGBraqxjuVefjnmXeWdPfjRPtm9Q/T+nghpOk=;
+	b=k0mMT7RlMNe5aDLxHRw84juk0ne6YyWrJdwBvpUKDXdcwf2U4yhFJWBxgQ6SuHcBsK
+	ATGR13LlQ3vsvgs+rz2WBfaI2mHVY2ltjIEiZdnIlJiW/jRreWZbekur9pXdL7CehjF2
+	FRpI0uvpa3I5bj0gJYUjeTtOnGrE6wPXbrJH2LVzYlwB9rMYd8lqBBovO9vtY9Yuiv72
+	czNu76c/pbUCCu3b/W7dsrXp/kCo9fo8tTRZXBiinnz5OwES+ELGHafsn6b+0/lIFmt0
+	aMO3NeVisIQpml+AoXku9OYbKZG5+cPbINHjsZkldOXjCIX/rFhCmTSQDgvJyUjrGPs/
+	8MMg==
+X-Gm-Message-State: ALoCoQlfdjEL0q7xkAvUdjBigbv9RajkO5xOhkCdt/hi7iE0xq0f0YxksqDDu3h0RjszyOJ5amkZ
+X-Received: by 10.140.91.228 with SMTP id z91mr7356265qgd.32.1394034645144;
+	Wed, 05 Mar 2014 07:50:45 -0800 (PST)
+Received: from gmail.com ([89.121.200.106])
+	by mx.google.com with ESMTPSA id z18sm8891274qab.5.2014.03.05.07.50.43
+	for <yocto@yoctoproject.org>
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Wed, 05 Mar 2014 07:50:44 -0800 (PST)
+Date: Wed, 5 Mar 2014 17:50:24 +0200
+From: Andrei Gherzan <andrei@gherzan.ro>
+To: yocto@yoctoproject.org
+Message-ID: <20140305155024.GA2222@gmail.com>
+References: <1394033396-3514-1-git-send-email-andrei@gherzan.ro>
 MIME-Version: 1.0
-Sender: kergoth@gmail.com
-Received: by 10.112.35.200 with HTTP; Wed, 5 Mar 2014 07:47:54 -0800 (PST)
-In-Reply-To: <CAA7h+Eo4YT9Wq9sG827u1sX23eE5asfzv3kEkQ_5d+7B-cMTWA@mail.gmail.com>
-References: <CAA7h+EreYR9drptegiSJmnk9b3asLHdemDNLyPeSF4pyUE9ukw@mail.gmail.com>
-	<CABcZANnoOxT2x1ZQ_wbmJrjuWMbZOCYOA7U2qfygES09qkd7MQ@mail.gmail.com>
-	<CAA7h+Eo4YT9Wq9sG827u1sX23eE5asfzv3kEkQ_5d+7B-cMTWA@mail.gmail.com>
-From: Chris Larson <clarson@kergoth.com>
-Date: Wed, 5 Mar 2014 08:47:54 -0700
-X-Google-Sender-Auth: NoHJYFQBupTXXPZiSxrw-UTcUgQ
-Message-ID: <CABcZAN=JMEKMO_Ht=i9BJ-qduMgyzV=ju+z53CgAQsUE7ay9VA@mail.gmail.com>
-To: Rick Bianchi <bianchirickkutta@gmail.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: GLIB-2.0 target compile issue
+In-Reply-To: <1394033396-3514-1-git-send-email-andrei@gherzan.ro>
+User-Agent: Mutt/1.5.21 (2010-09-15)
+Subject: Re: [meta-raspberrypi][PATCH1 1/1] omxplayer: Don't hardcode datadir
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,33 +45,46 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 05 Mar 2014 15:48:17 -0000
-Content-Type: multipart/alternative; boundary=089e01419f34dffb2604f3ddf21b
+X-List-Received-Date: Wed, 05 Mar 2014 15:50:48 -0000
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
---089e01419f34dffb2604f3ddf21b
-Content-Type: text/plain; charset=UTF-8
+On Wed, Mar 05, 2014 at 05:29:56PM +0200, Andrei Gherzan wrote:
+> Change-Id: Ibe66106fdf1da38d43278f5e2853c722709b91db
+> Signed-off-by: Andrei Gherzan <andrei@gherzan.ro>
+> ---
+>  recipes-multimedia/omxplayer/omxplayer_git.bb | 6 +++---
+>  1 file changed, 3 insertions(+), 3 deletions(-)
+>
+> diff --git a/recipes-multimedia/omxplayer/omxplayer_git.bb b/recipes-multimedia/omxplayer/omxplayer_git.bb
+> index 526dc86..c83d6c3 100644
+> --- a/recipes-multimedia/omxplayer/omxplayer_git.bb
+> +++ b/recipes-multimedia/omxplayer/omxplayer_git.bb
+> @@ -57,13 +57,13 @@ do_compile() {
+>
+>  do_install() {
+>      oe_runmake STRIP='echo skipping strip' dist
+> -    mkdir -p ${D}/usr/share/fonts/truetype/freefont/
+> -    install ${S}/fonts/* ${D}/usr/share/fonts/truetype/freefont/
+> +    mkdir -p ${D}${datadir}/fonts/truetype/freefont/
+> +    install ${S}/fonts/* ${D}${datadir}/fonts/truetype/freefont/
+>  }
+>
+>  FILES_${PN} = "${bindir}/omxplayer* \
+>                 ${libdir}/omxplayer/lib*${SOLIBS} \
+> -               /usr/share/fonts"
+> +               ${D}${datadir}/fonts"
 
-On Wed, Mar 5, 2014 at 8:47 AM, Rick Bianchi <bianchirickkutta@gmail.com>wrote:
+Merged in master fixing the above typo (${D} shoudn't be there obviously).
 
-> Can I just add the dev-pkgs to my local.conf?
+>
+>  FILES_${PN}-dev += "${libdir}/omxplayer/*.so"
+>
+> --
+> 1.8.5.3
+>
 
+--
+Andrei Gherzan
+m: +40.744.478.414 | f: +40.31.816.28.12
 
-EXTRA_IMAGE_FEATURES += "dev-pkgs"
--- 
-Christopher Larson
-clarson at kergoth dot com
-Founder - BitBake, OpenEmbedded, OpenZaurus
-Maintainer - Tslib
-Senior Software Engineer, Mentor Graphics
-
---089e01419f34dffb2604f3ddf21b
-Content-Type: text/html; charset=UTF-8
-
-<div dir="ltr"><div class="gmail_extra"><br><div class="gmail_quote">On Wed, Mar 5, 2014 at 8:47 AM, Rick Bianchi <span dir="ltr">&lt;<a href="mailto:bianchirickkutta@gmail.com" target="_blank">bianchirickkutta@gmail.com</a>&gt;</span> wrote:<br>
-
-<blockquote class="gmail_quote" style="margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">Can I just add the dev-pkgs to my local.conf?</blockquote></div><br></div><div class="gmail_extra">EXTRA_IMAGE_FEATURES += &quot;dev-pkgs&quot;<br>
-
--- <br>Christopher Larson<br>clarson at kergoth dot com<br>Founder - BitBake, OpenEmbedded, OpenZaurus<br>Maintainer - Tslib<br>Senior Software Engineer, Mentor Graphics
-</div></div>
-
---089e01419f34dffb2604f3ddf21b--
