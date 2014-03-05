@@ -1,33 +1,32 @@
 Return-Path: <raj.khem@gmail.com>
-Received: from mail-ie0-f182.google.com (mail-ie0-f182.google.com
-	[209.85.223.182])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C5BBBE00A8C
-	for <yocto@yoctoproject.org>; Wed,  5 Mar 2014 10:31:32 -0800 (PST)
-Received: by mail-ie0-f182.google.com with SMTP id y20so1494126ier.27
-	for <yocto@yoctoproject.org>; Wed, 05 Mar 2014 10:31:31 -0800 (PST)
+Received: from mail-ig0-f179.google.com (mail-ig0-f179.google.com
+	[209.85.213.179])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 940FCE00A8C
+	for <yocto@yoctoproject.org>; Wed,  5 Mar 2014 10:32:59 -0800 (PST)
+Received: by mail-ig0-f179.google.com with SMTP id t19so5010589igi.0
+	for <yocto@yoctoproject.org>; Wed, 05 Mar 2014 10:32:58 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-type;
-	bh=394ofl2f5q085oJ5HeYhVZlVC4Z3Ekhi29E8FM5aH8g=;
-	b=TjOBWkJglzmYFNju+vmJ0/+bCuGMRGr/popadeT2flj+10lFuLHzP3Sf2CXqn7zJ2i
-	Ge155BhpAWx35HJtUx+Jbv+f9js5rP+g5O3NbDJTl1OdzafKp2FuYl2f1vE2h/vKO75Y
-	WQ6l2nDkg+Y0e4F2t28idiuER6I+1NsFjfj3t71Hv9sQ2UBY6Q1RkgSjO+eOGY6UHA/+
-	sOUpzhf7Hm6AYiUHLGsoOmBvphl3ICxxTAFqkovjVSI3NFbqIIbQCQcmd/8DKWGgZc0P
-	yA8tNE/0MeRpCiKrPOZYrYAA30tAPTSvHpS4LERwJska2B1/KkuGLSDxTHPNaWwcY+mz
-	o71Q==
-X-Received: by 10.50.20.100 with SMTP id m4mr10681585ige.17.1394044291934;
-	Wed, 05 Mar 2014 10:31:31 -0800 (PST)
+	:cc:content-type:content-transfer-encoding;
+	bh=5HfS3sD8lKt4Ogzuo5DU6NQg9g2vkROjxKkez/shNCs=;
+	b=jdIT7dbZT+EZulLTrH5isLyDqiddNHKQxY/vY/zbP69zdl5KGtQmdHgsGq4KE44+xH
+	4AlhPf+Zoh4NexGvJX6j/Zwh1flInAwhJqh5KVpV3VHf6IJqe77oF6abVBuCBN3D28cM
+	uKiFnK/HuTKWhcd/5fQSJ1wuI8bSnu2tgqzeJ/qStZNkLY60AYk2mOYLcs+kochjcxWb
+	DtnHMcMmJZdDJgGlpQ6CdXdnshw5D2MKBN9ZExG+mMZ6Iyhqii6rm7pGdZb+GvBgZGw6
+	yfaVGEQSF7GJ7ka+tX171JA0uDKU2niE2Giag8eFuS6X1iTfUQeDfQfbzhIjr9ty5HkZ
+	Vy/Q==
+X-Received: by 10.50.60.103 with SMTP id g7mr36313103igr.20.1394044378595;
+	Wed, 05 Mar 2014 10:32:58 -0800 (PST)
 MIME-Version: 1.0
-Received: by 10.50.224.136 with HTTP; Wed, 5 Mar 2014 10:31:01 -0800 (PST)
-In-Reply-To: <60198294855571725c0b3dea2c9b53f3c1b4d7e9.1394042358.git.elizabeth.flanagan@intel.com>
-References: <cover.1394042358.git.elizabeth.flanagan@intel.com>
-	<60198294855571725c0b3dea2c9b53f3c1b4d7e9.1394042358.git.elizabeth.flanagan@intel.com>
+Received: by 10.50.224.136 with HTTP; Wed, 5 Mar 2014 10:32:28 -0800 (PST)
+In-Reply-To: <1394010268-16318-1-git-send-email-s.mennetrier@innotis.org>
+References: <1394010268-16318-1-git-send-email-s.mennetrier@innotis.org>
 From: Khem Raj <raj.khem@gmail.com>
-Date: Wed, 5 Mar 2014 10:31:01 -0800
-Message-ID: <CAMKF1srnQu9DY4qgMpjWHQcgxYnJY=h-POK1ReLKi7hBiA0P4Q@mail.gmail.com>
-To: Elizabeth Flanagan <elizabeth.flanagan@intel.com>
+Date: Wed, 5 Mar 2014 10:32:28 -0800
+Message-ID: <CAMKF1srEaqx2pwT52zbeQyE-b0hcU6wxVrZgX4eSfmoAoCn7wQ@mail.gmail.com>
+To: =?UTF-8?Q?S=C3=A9bastien_Mennetrier?= <s.mennetrier@innotis.org>
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: [AB PATCH 03/27] nightly-world-uclibc: uclibc target
+Subject: Re: [meta-raspberrypi][PATCH V2] omxplayer : Install fonts directory in datadir
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,14 +38,46 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 05 Mar 2014 18:31:34 -0000
+X-List-Received-Date: Wed, 05 Mar 2014 18:33:00 -0000
 Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-On Wed, Mar 5, 2014 at 10:22 AM, Elizabeth Flanagan
-<elizabeth.flanagan@intel.com> wrote:
+On Wed, Mar 5, 2014 at 1:04 AM, S=C3=A9bastien Mennetrier
+<s.mennetrier@innotis.org> wrote:
+> Signed-off-by: S=C3=A9bastien Mennetrier <s.mennetrier@innotis.org>
+> ---
+>  recipes-multimedia/omxplayer/omxplayer_git.bb | 5 ++++-
+>  1 file changed, 4 insertions(+), 1 deletion(-)
 >
-> This should add a uclibc world build (which will probably have
-> some issues at first)
+> diff --git a/recipes-multimedia/omxplayer/omxplayer_git.bb b/recipes-mult=
+imedia/omxplayer/omxplayer_git.bb
+> index a456026..7492f62 100644
+> --- a/recipes-multimedia/omxplayer/omxplayer_git.bb
+> +++ b/recipes-multimedia/omxplayer/omxplayer_git.bb
+> @@ -52,9 +52,12 @@ do_compile() {
+>
+>  do_install() {
+>         oe_runmake dist
+> +       mkdir -p ${D}${datadir}/fonts/truetype/freefont/
+> +       install ${S}/fonts/* ${D}${datadir}/fonts/truetype/freefont/
 
-yay ! thanks
+just use
+
+install -D ${S}/fonts/* ${D}${datadir}/fonts/truetype/freefont/
+
+>  }
+>
+>  FILES_${PN} =3D "${bindir}/omxplayer* \
+> -               ${libdir}/omxplayer/lib*${SOLIBS}"
+> +               ${libdir}/omxplayer/lib*${SOLIBS} \
+> +               ${datadir}/fonts"
+>
+>  FILES_${PN}-dev +=3D "${libdir}/omxplayer/*.so"
+> --
+> 1.8.1.2
+>
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
