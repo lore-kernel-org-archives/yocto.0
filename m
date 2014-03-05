@@ -1,35 +1,32 @@
 Return-Path: <raj.khem@gmail.com>
-Received: from mail-ie0-f169.google.com (mail-ie0-f169.google.com
-	[209.85.223.169])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C2317E00A9A
-	for <yocto@yoctoproject.org>; Wed,  5 Mar 2014 13:14:39 -0800 (PST)
-Received: by mail-ie0-f169.google.com with SMTP id to1so1756099ieb.28
-	for <yocto@yoctoproject.org>; Wed, 05 Mar 2014 13:14:39 -0800 (PST)
+Received: from mail-ig0-f171.google.com (mail-ig0-f171.google.com
+	[209.85.213.171])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A334FE00AAE
+	for <yocto@yoctoproject.org>; Wed,  5 Mar 2014 13:15:55 -0800 (PST)
+Received: by mail-ig0-f171.google.com with SMTP id hl1so11942233igb.4
+	for <yocto@yoctoproject.org>; Wed, 05 Mar 2014 13:15:54 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
 	:cc:content-type;
-	bh=+6n0dpRjDA+f7s8ULDZ6HZ6UTg82fu4yDnSEMKjPJ+o=;
-	b=C60x+qliPSbX3xAKunoEyp3LPn5We0DNjYBcI3/CFqfJDhlyTVow23IyTsH5VzvD/r
-	RYgWCrl6zm+v5ErqVVQlkuR+gF14m9mnFyFUnP1cPu7pyAhftJj/ZObe3cEQ64aNeozJ
-	Rsp3vPzrSq4XQdPGZe46w9XM12XcQt5aBW5js3L2zTT94zsZRTRThD3AINDQjinfBvfl
-	eaD7d8wwmnIWzIPmJIVKP1vfySZFQtZTR+5WtFCRt3CULMbuWSa1Umjav6urU2zJyEPW
-	E3eHQPYKRhvjKVXZYlYH6IJZL0nVzLnK5TMlNrPvzg9d8vUGyq5aj1KKyxXp1+Rzqr3e
-	vMMA==
-X-Received: by 10.43.46.3 with SMTP id um3mr6440030icb.1.1394054079525; Wed,
-	05 Mar 2014 13:14:39 -0800 (PST)
+	bh=3V5TqlPOx2X46huCySkvixqvT0JOyEQNPLTBWTDv9Xk=;
+	b=MJixnU/UtKfMSs8caTp/QVcmINGWZe5fCIj6FiiVAS0UtH8DDsl99B8uyb1UJMqzdE
+	ZGHwdHflUrgGEnoZe0ZPMFZ4xhO10RlSCXS7mjV8HcWSWlnSl25a1uTafhq+1Ow+Tl0l
+	ev1MSQoZ+MA1Dm4O/S7dvDyV0bVavFoqkcFCV08uAh9u/Ml7dUoq9k43JefeJ3FLqDY/
+	izLUyo8Ab/1gt4zizCIrlx2cpahHm0t9A+6y1r4MlSu7xVOgxCllMYXpVTH21nHM2VqP
+	93gyLr9Kxj9Bm/jFXJuaGjyE8Bj8CvvqZ5zHimr66AR0VNIJRYZRQDXGNC7iXZxfhGaK
+	zh9A==
+X-Received: by 10.50.143.69 with SMTP id sc5mr37333728igb.2.1394054154487;
+	Wed, 05 Mar 2014 13:15:54 -0800 (PST)
 MIME-Version: 1.0
-Received: by 10.50.224.136 with HTTP; Wed, 5 Mar 2014 13:14:09 -0800 (PST)
-In-Reply-To: <CALXw4G5Ti_rZ+LWVYivbqeEAyFn2fOTDtYD9kvMBcq94R0X_xg@mail.gmail.com>
-References: <CALXw4G5VUNySyWoOoFbKHnMUWFjZfQKwQCu0T0cWtwGOAMQnow@mail.gmail.com>
-	<126717450.ayqcFG2vtF@peggleto-mobl5.ger.corp.intel.com>
-	<CALXw4G5Ti_rZ+LWVYivbqeEAyFn2fOTDtYD9kvMBcq94R0X_xg@mail.gmail.com>
+Received: by 10.50.224.136 with HTTP; Wed, 5 Mar 2014 13:15:24 -0800 (PST)
+In-Reply-To: <1394028560.17657.YahooMailNeo@web163103.mail.bf1.yahoo.com>
+References: <1394028560.17657.YahooMailNeo@web163103.mail.bf1.yahoo.com>
 From: Khem Raj <raj.khem@gmail.com>
-Date: Wed, 5 Mar 2014 13:14:09 -0800
-Message-ID: <CAMKF1sqWR9CTknPqAx=48w41kVzFm6QG4A3HEW-n+rMoUuzKMQ@mail.gmail.com>
-To: Michael Gloff <mgloff@emacinc.com>
-Cc: Paul Eggleton <paul.eggleton@linux.intel.com>,
-	Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: Toolchain
+Date: Wed, 5 Mar 2014 13:15:24 -0800
+Message-ID: <CAMKF1spN_KT1-PtQR22ixmQ=xTxBoAht04AY11CauCz0ba0BiQ@mail.gmail.com>
+To: Joel Parker <joelparker27@yahoo.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Adding headers to tool chain
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,13 +38,12 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 05 Mar 2014 21:14:40 -0000
+X-List-Received-Date: Wed, 05 Mar 2014 21:15:55 -0000
 Content-Type: text/plain; charset=UTF-8
 
-On Wed, Mar 5, 2014 at 9:00 AM, Michael Gloff <mgloff@emacinc.com> wrote:
-> | *** Error: Package name  contains illegal characters, (other than
-> [a-z0-9.+-])
+On Wed, Mar 5, 2014 at 6:09 AM, Joel Parker <joelparker27@yahoo.com> wrote:
+> $ bitbake meta-toolchain
 
-hmm meta-environment-PMX-090T is a package name and
-thats limitation of opkg backend, if you are too tied to
+do bitbake -cpopulate_sdk <image-to-which-you-added-sqlite>
+and install that SDK
 
