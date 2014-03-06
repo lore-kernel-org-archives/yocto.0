@@ -1,35 +1,38 @@
-Return-Path: <joaohf@gmail.com>
-Received: from mail-yk0-f175.google.com (mail-yk0-f175.google.com
-	[209.85.160.175])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 72611E00AD6
-	for <yocto@yoctoproject.org>; Wed,  5 Mar 2014 18:21:12 -0800 (PST)
-Received: by mail-yk0-f175.google.com with SMTP id 131so5116503ykp.6
-	for <yocto@yoctoproject.org>; Wed, 05 Mar 2014 18:21:12 -0800 (PST)
+Return-Path: <paul.betafive@gmail.com>
+Received: from mail-ve0-f178.google.com (mail-ve0-f178.google.com
+	[209.85.128.178])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D97BDE00734
+	for <yocto@yoctoproject.org>; Thu,  6 Mar 2014 04:58:31 -0800 (PST)
+Received: by mail-ve0-f178.google.com with SMTP id jw12so2526976veb.37
+	for <yocto@yoctoproject.org>; Thu, 06 Mar 2014 04:58:30 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=from:to:cc:subject:date:message-id:mime-version:content-type
-	:content-transfer-encoding;
-	bh=TaNw5lHcLCu0MTjrvmKo0SdGUbrJY+fsi4uhGA9LC7o=;
-	b=p/5NcWMobJoEB1BbeFOaoD2qjssvEUflQqgb+gWpiD8DAm3z+1RUNBUZQLvU76QLUM
-	kZDDWpGiKRxlmqr81QHn5OOnwBSCrKyNDVU+Kg5qQKQiysx5rTAA75laFYv59nenRwpt
-	RuXBdoMMSE79R9yUyjlWtehbeIR1bct2fFLUlgRBmTyZ6L4nhffsfW+fa529j7ETohJA
-	noGqInJp8qc48MSDHrePP6wJtrm48y/tBvKI3xD7LME0KRk4sy7RPEGv5L1XLGCMQd91
-	RN8f4S5SBNhS+/n9FrUk6rLbM4b2LIqPkuzOaXrFnkYvjhBYZ3gL9YpuF1qRIuI+8Sps
-	mh/w==
-X-Received: by 10.236.15.102 with SMTP id e66mr11438694yhe.69.1394072471991;
-	Wed, 05 Mar 2014 18:21:11 -0800 (PST)
-Received: from localhost.localdomain ([201.53.197.242])
-	by mx.google.com with ESMTPSA id
-	l23sm13892843yhg.15.2014.03.05.18.21.09 for <multiple recipients>
-	(version=TLSv1.1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
-	Wed, 05 Mar 2014 18:21:11 -0800 (PST)
-From: =?UTF-8?q?Jo=C3=A3o=20Henrique=20Ferreira=20de=20Freitas?=
-	<joaohf@gmail.com>
-To: yocto@yoctoproject.org
-Date: Wed,  5 Mar 2014 23:20:58 -0300
-Message-Id: <1394072458-5930-1-git-send-email-joaohf@gmail.com>
-X-Mailer: git-send-email 1.8.3.2
+	h=mime-version:sender:in-reply-to:references:from:date:message-id
+	:subject:to:cc:content-type;
+	bh=8G3fDeplY25HHm0561IgwlwnEAnmQ2cO2kXbNVtc6HA=;
+	b=GRoQf1Lh6F3/X7swlID+ECweplg/9SpqVs3kyPj1/jrMtSYdrwQiSg7vkZteKjcKh2
+	eo/Y7PEo4vpmboT5t9kD++CvxrLjs1oppKDF1BojvEl/VwzJwv4qoJy9uufdNlY5sWFN
+	rm2WAu71znJrGSa/cYvS7U59XehNwjaXI4ala+DNcAk7HjauWBtH99V7qUOzFIDqrhkP
+	qScw6ftfC/M5R6EKcUYhI5spXCJc9eEsv+Y/6PVKYJbgY7yQf7sE4pPVOLlatqNt//Ra
+	/65oUzEywJJ1Ju3yM8f+28vAcN52TdsL+JAZ6xM6ivjTCBYIOj//zrKYMZkTU94A1MyJ
+	QXSA==
+X-Received: by 10.58.165.68 with SMTP id yw4mr5281016veb.17.1394110710421;
+	Thu, 06 Mar 2014 04:58:30 -0800 (PST)
 MIME-Version: 1.0
-Subject: [yocto-docs][PATCH] kernel-dev: Updates "Generating Configuration Files" section
+Sender: paul.betafive@gmail.com
+Received: by 10.220.239.135 with HTTP; Thu, 6 Mar 2014 04:57:50 -0800 (PST)
+In-Reply-To: <CAMKF1sqWR9CTknPqAx=48w41kVzFm6QG4A3HEW-n+rMoUuzKMQ@mail.gmail.com>
+References: <CALXw4G5VUNySyWoOoFbKHnMUWFjZfQKwQCu0T0cWtwGOAMQnow@mail.gmail.com>
+	<126717450.ayqcFG2vtF@peggleto-mobl5.ger.corp.intel.com>
+	<CALXw4G5Ti_rZ+LWVYivbqeEAyFn2fOTDtYD9kvMBcq94R0X_xg@mail.gmail.com>
+	<CAMKF1sqWR9CTknPqAx=48w41kVzFm6QG4A3HEW-n+rMoUuzKMQ@mail.gmail.com>
+From: Paul Barker <paul@paulbarker.me.uk>
+Date: Thu, 6 Mar 2014 12:57:50 +0000
+X-Google-Sender-Auth: UBGFRbXqDk_a8CEGvBMJE9rxIg4
+Message-ID: <CANyK_8fbBHck74MBuz7LjXpcXjGFdExngwJ=5nn-sTHCvoKg5w@mail.gmail.com>
+To: Khem Raj <raj.khem@gmail.com>
+Cc: Paul Eggleton <paul.eggleton@linux.intel.com>,
+	Yocto discussion list <yocto@yoctoproject.org>
+Subject: Re: Toolchain
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,67 +44,35 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 06 Mar 2014 02:21:15 -0000
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Thu, 06 Mar 2014 12:58:32 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
-Add a new step about how to use diffconfig task to create
-kernel config fragments.
+On 5 March 2014 21:14, Khem Raj <raj.khem@gmail.com> wrote:
+> On Wed, Mar 5, 2014 at 9:00 AM, Michael Gloff <mgloff@emacinc.com> wrote:
+>> | *** Error: Package name  contains illegal characters, (other than
+>> [a-z0-9.+-])
+>
+> hmm meta-environment-PMX-090T is a package name and
+> thats limitation of opkg backend, if you are too tied to
 
-[YOCTO #3862]
+opkg itself doesn't seem to have this limitation, I just created and installed a
+test package named 'A' perfectly fine.
 
-Signed-off-by: João Henrique Ferreira de Freitas <joaohf@gmail.com>
----
- documentation/kernel-dev/kernel-dev-common.xml | 25 +++++++++----------------
- 1 file changed, 9 insertions(+), 16 deletions(-)
+The Debian policy says:
+    Package names (both source and binary, see Package, Section 5.6.7) must
+    consist only of lower case letters (a-z), digits (0-9), plus (+) and minus
+    (-) signs, and periods (.). They must be at least two characters long and
+    must start with an alphanumeric character.
 
-diff --git a/documentation/kernel-dev/kernel-dev-common.xml b/documentation/kernel-dev/kernel-dev-common.xml
-index a152f9f..de04a39 100644
---- a/documentation/kernel-dev/kernel-dev-common.xml
-+++ b/documentation/kernel-dev/kernel-dev-common.xml
-@@ -342,32 +342,25 @@
-                         <literallayout class='monospaced'>
-      $ bitbake linux-yocto -c kernel_configme -f
-                         </literallayout></para></listitem>
--                    <listitem><para>Copy and rename the resulting
--                        <filename>.config</filename> file (e.g.
--                        <filename>config.orig</filename>).
--                        </para></listitem>
-                     <listitem><para>Run the <filename>menuconfig</filename>
-                         command:
-                         <literallayout class='monospaced'>
-      $ bitbake linux-yocto -c menuconfig
-                         </literallayout></para></listitem>
--                    <listitem><para>Prepare a configuration fragment based on
--                        the differences between the two files.
--                        </para></listitem>
-+                    <listitem><para>Run the <filename>diffconfig</filename>
-+                        command to prepare a configuration fragment.
-+                        The result file <filename>fragment.cfg</filename> will be placed in
-+                        <filename>${</filename><ulink url='&YOCTO_DOCS_REF_URL;#var-WORKDIR'><filename>WORKDIR</filename></ulink><filename>}</filename> directory:
-+                        <literallayout class='monospaced'>
-+     $ bitbake linux-yocto -c diffconfig
-+                        </literallayout></para></listitem>
-                 </orderedlist>
-             </para>
- 
-             <para>
--                Ultimately, the configuration fragment file needs to be a
-+                The <filename>diffconfig</filename> command creates a file that is a
-                 list of Linux kernel <filename>CONFIG_</filename> assignments.
--                It cannot be in <filename>diff</filename> format.
--                Here is an example of a command that creates your
--                configuration fragment file.
--                Regardless of the exact command you use, plan on reviewing
--                the output as you can usually remove some of the defaults:
--                <literallayout class='monospaced'>
--     $ diff -Nurp config.orig .config | sed -n "s/^\+//p" > frag.cfg
--                </literallayout>
-+
-                 See the "<link linkend='changing-the-configuration'>Changing the Configuration</link>"
-                 section for information on how to use the output as a
-                 configuration fragment.
+So I think the restriction is there to keep generated packages
+compatible with dpkg-deb.
+
+We could consider removing the restriction if that compatibility isn't
+necessary.
+
 -- 
-1.8.3.2
+Paul Barker
 
+Email: paul@paulbarker.me.uk
+http://www.paulbarker.me.uk
 
