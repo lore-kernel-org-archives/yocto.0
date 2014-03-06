@@ -1,37 +1,34 @@
-Return-Path: <ashcharles@gmail.com>
-Received: from mail-vc0-f178.google.com (mail-vc0-f178.google.com
-	[209.85.220.178])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 04703E00A40
-	for <yocto@yoctoproject.org>; Thu,  6 Mar 2014 11:06:29 -0800 (PST)
-Received: by mail-vc0-f178.google.com with SMTP id ik5so3120774vcb.9
-	for <yocto@yoctoproject.org>; Thu, 06 Mar 2014 11:06:29 -0800 (PST)
+Return-Path: <bianchirickkutta@gmail.com>
+Received: from mail-vc0-f180.google.com (mail-vc0-f180.google.com
+	[209.85.220.180])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 22392E00A48
+	for <yocto@yoctoproject.org>; Thu,  6 Mar 2014 11:12:49 -0800 (PST)
+Received: by mail-vc0-f180.google.com with SMTP id ks9so3010176vcb.39
+	for <yocto@yoctoproject.org>; Thu, 06 Mar 2014 11:12:49 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
 	:cc:content-type;
-	bh=Z2ArOIkI4/tE5xHerggWJOSkwb4BMTwQWxg+JDnyG78=;
-	b=R8GJ3oDcFOgcikF+tLcBxFd3Gwm09+JPtMiZbZQes/XmBTb2Kpn49JN+bdAx7gcCe3
-	9YCIYwPwBtQAYAArwL2QGLJ1aEOCqQwjJfS2mEEU7HA7bIGfjuCH35LleVEE3dMfxA55
-	pxWQnz6NE+pOBrMTRcyHOqK5n1eTYoGZD/wHrpWQ6tf+I4NSegU22dxwvVAEUT9C8Q/X
-	Vz1IJsBsNdytXNoklGr+OFMGmEIMYydJAaL3hshiE9QwqkMf4FRRMVx+Eke0ubrwn0oi
-	L8xbmnywR33jjCdhyAvGPzBfyaOULB0RM2E0jAUntFIwiJFXZVAZyZK6bMjgEKlw/5s/
-	L3tA==
-X-Received: by 10.220.164.80 with SMTP id d16mr6163748vcy.15.1394132789133;
-	Thu, 06 Mar 2014 11:06:29 -0800 (PST)
+	bh=roLZLKMZdxPcRhp8/ikmd079ECLM7zSI3FUAq9g2h3E=;
+	b=F2xGwAjDX+hMRz9DcpzvlMvlQTbGzfKRSjQTRirbeid6a3AX6Hmv0DG7qdFuhF4kk1
+	kPS+4djmBSI+WlypTEVTWT9ksoxdznTSGsqtkeW/wyv0F8psKrO/IGrj38OybaNhw5tk
+	vpxqLHVN6N0H19FQwksuQhG2f8cFB3JKF+VNJRsFIfjFrRXhhYyzIvCvEz+eqH14Zz0C
+	lJRFpspJxqEHNQJTe2+fU5RJgTjuhThjIuEs5Xj7B8azbyQKsp5wQZwO3bGD7BRqtsZX
+	LD1exCzYBIn8RUI8IXCJo4/nUZGbEQVyPctKpacEos7R4ItiTqAOrqwbJT86kVP3DO90
+	au5w==
 MIME-Version: 1.0
-Received: by 10.58.45.134 with HTTP; Thu, 6 Mar 2014 11:05:59 -0800 (PST)
-In-Reply-To: <CAK8F28m8AZX3ea0tqJvVQgphF8rSFnJV34hCkdJgOWR1oCdQnA@mail.gmail.com>
-References: <CAK8F28nj1CNzSGxJegJDjgP7f=OGAUbNPY9ak9ea+JoAOEKhYg@mail.gmail.com>
-	<CAMKF1srAGgNbQqE62_Jts+fUfOzq04nu1XFW7uABLg0QsaMgng@mail.gmail.com>
-	<CAK8F28mEj01FWh6=0XRSduXAVGtvk1vR4+=7pxQn2qfUmjtFkQ@mail.gmail.com>
-	<CAMKF1srsi2EfUBsPam0n8DqLJw8+WiZBDMYQoquf0yQGu4VmoA@mail.gmail.com>
-	<CAK8F28=Z5=T2+z1a=66Jzsi_nOyMWLBOA-F8NZovR8Z=1hTVgg@mail.gmail.com>
-	<CAK8F28m8AZX3ea0tqJvVQgphF8rSFnJV34hCkdJgOWR1oCdQnA@mail.gmail.com>
-From: Ash Charles <ashcharles@gmail.com>
-Date: Thu, 6 Mar 2014 11:05:59 -0800
-Message-ID: <CAK8F28kXAneCxACgdSK-kKBYXvCVJS69R4hYY2UBTAC9My39ow@mail.gmail.com>
+X-Received: by 10.220.161.132 with SMTP id r4mr2106476vcx.29.1394133168976;
+	Thu, 06 Mar 2014 11:12:48 -0800 (PST)
+Received: by 10.220.96.66 with HTTP; Thu, 6 Mar 2014 11:12:48 -0800 (PST)
+In-Reply-To: <CAMKF1spN_KT1-PtQR22ixmQ=xTxBoAht04AY11CauCz0ba0BiQ@mail.gmail.com>
+References: <1394028560.17657.YahooMailNeo@web163103.mail.bf1.yahoo.com>
+	<CAMKF1spN_KT1-PtQR22ixmQ=xTxBoAht04AY11CauCz0ba0BiQ@mail.gmail.com>
+Date: Thu, 6 Mar 2014 12:12:48 -0700
+Message-ID: <CAA7h+Eqr8bVtsoYoNA7EWhUJZ63L27botuvLiBhx5O5CwLF2+Q@mail.gmail.com>
+From: Rick Bianchi <bianchirickkutta@gmail.com>
 To: Khem Raj <raj.khem@gmail.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Using MACHINE_EXTRA_RDEPENDS to install wifi Firmware
+Cc: Joel Parker <joelparker27@yahoo.com>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Adding headers to tool chain
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,63 +40,54 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 06 Mar 2014 19:06:35 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Thu, 06 Mar 2014 19:12:50 -0000
+Content-Type: multipart/alternative; boundary=001a11c2209e4e767304f3f4ec89
 
-Hi,
+--001a11c2209e4e767304f3f4ec89
+Content-Type: text/plain; charset=ISO-8859-1
 
-I tried a clean build just to make sure but I still see the issue.
+Khem,
+Is this the same process if I needed to get the kernel headers and source
+onto the build?
 
-Basically, the kernel.bbclass is packaging and shipping all the
-firmware it finds in the kernel source.  The linux-firmware recipe is
-also shipping a superset of firmware to those files found in the
-kernel hence I see warnings about the files shipped by both recipes.
-Is there a way to only include just the package I need from
-linux-firmware (linux-firmware-sd8686) without getting all files in
-the sysroot-destdir?
---or--
-Is there a way to instruct the kernel.bbclass not to ship any firmware?
 
-Thanks for any suggestions!
+On Wed, Mar 5, 2014 at 2:15 PM, Khem Raj <raj.khem@gmail.com> wrote:
 
---Ash
-
-On Fri, Feb 28, 2014 at 10:45 AM, Ash Charles <ashcharles@gmail.com> wrote:
-> I think my response yesterday was slightly premature...
+> On Wed, Mar 5, 2014 at 6:09 AM, Joel Parker <joelparker27@yahoo.com>
+> wrote:
+> > $ bitbake meta-toolchain
 >
-> If I understand correctly, packages of the form
-> 'kernel-firmware-<xxxx>' are provided by the kernel recipe for any
-> firmware that is licensed such that it can be included directly with
-> the kernel source i.e. in the <linux>/firmware directory.  A superset
-> of this firmware is available from the linux-firmware repository with
-> different licensing.  Firmware can be pulled into an image with the
-> addition of a 'linux-firmward-<xxxx>' package.
+> do bitbake -cpopulate_sdk <image-to-which-you-added-sqlite>
+> and install that SDK
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 >
-> It seems though that adding a 'linux-firmware-<xxxx>' package pulls in
-> the basic 'linux-firmware' package that includes firmware binaries
-> already shipped with the kernel.
->
-> If this is correct, I see two options:
-> 1. 'linux-firmware-<xxxx>' should only pull in the explicit firmware
-> specified, or
-> 2. if 'linux-firmware' is getting pulled in, the kernel recipe
-> shouldn't populate any firmware
->
-> Am I on the right track?
->
-> --Ash
->
-> On Thu, Feb 27, 2014 at 5:09 PM, Ash Charles <ashcharles@gmail.com> wrote:
->> On Thu, Feb 27, 2014 at 4:54 PM, Khem Raj <raj.khem@gmail.com> wrote:
->>> as you can see kernel-firmware-whiteheat is the package name under
->>> which kernel is packaging it
->>> so include that if you want the kernel provided one.
->> Ah---perfect.  That makes sense.
->> I had
->> MACHINE_EXTRA_RDEPENDS += "linux-firmware-sd8686"
->> I should have had
->> MACHINE_EXTRA_RDEPENDS += "kernel-firmware-sd8686"
->>
->> Thanks for your help!
->> --Ash
 
+--001a11c2209e4e767304f3f4ec89
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div>Khem,<br></div><div>Is this the same process if I nee=
+ded to get the kernel headers and source onto the build?</div></div><div cl=
+ass=3D"gmail_extra"><br><br><div class=3D"gmail_quote">On Wed, Mar 5, 2014 =
+at 2:15 PM, Khem Raj <span dir=3D"ltr">&lt;<a href=3D"mailto:raj.khem@gmail=
+.com" target=3D"_blank">raj.khem@gmail.com</a>&gt;</span> wrote:<br>
+<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
+x #ccc solid;padding-left:1ex">On Wed, Mar 5, 2014 at 6:09 AM, Joel Parker =
+&lt;<a href=3D"mailto:joelparker27@yahoo.com">joelparker27@yahoo.com</a>&gt=
+; wrote:<br>
+
+&gt; $ bitbake meta-toolchain<br>
+<br>
+do bitbake -cpopulate_sdk &lt;image-to-which-you-added-sqlite&gt;<br>
+and install that SDK<br>
+_______________________________________________<br>
+yocto mailing list<br>
+<a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br>
+<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" target=3D"_blank"=
+>https://lists.yoctoproject.org/listinfo/yocto</a><br>
+</blockquote></div><br></div>
+
+--001a11c2209e4e767304f3f4ec89--
