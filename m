@@ -1,30 +1,37 @@
-Return-Path: <darcy.watkins@inmotiontechnology.com>
-Received: from na01-by2-obe.outbound.protection.outlook.com
-	(mail-by2lp0242.outbound.protection.outlook.com [207.46.163.242])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2CC34E009F5
-	for <yocto@yoctoproject.org>; Thu,  6 Mar 2014 09:48:56 -0800 (PST)
-Received: from [192.168.3.163] (184.71.143.26) by
-	BLUPR01MB471.prod.exchangelabs.com (10.141.81.25) with Microsoft SMTP
-	Server (TLS) id 15.0.893.10; Thu, 6 Mar 2014 17:48:52 +0000
-From: Darcy Watkins <darcy.watkins@inmotiontechnology.com>
-To: yocto <yocto@yoctoproject.org>
-Date: Thu, 6 Mar 2014 09:48:46 -0800
-Message-ID: <1394128126.16006.28.camel@kihei.inmotion.gotdns.com>
+Return-Path: <ashcharles@gmail.com>
+Received: from mail-vc0-f178.google.com (mail-vc0-f178.google.com
+	[209.85.220.178])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 04703E00A40
+	for <yocto@yoctoproject.org>; Thu,  6 Mar 2014 11:06:29 -0800 (PST)
+Received: by mail-vc0-f178.google.com with SMTP id ik5so3120774vcb.9
+	for <yocto@yoctoproject.org>; Thu, 06 Mar 2014 11:06:29 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-type;
+	bh=Z2ArOIkI4/tE5xHerggWJOSkwb4BMTwQWxg+JDnyG78=;
+	b=R8GJ3oDcFOgcikF+tLcBxFd3Gwm09+JPtMiZbZQes/XmBTb2Kpn49JN+bdAx7gcCe3
+	9YCIYwPwBtQAYAArwL2QGLJ1aEOCqQwjJfS2mEEU7HA7bIGfjuCH35LleVEE3dMfxA55
+	pxWQnz6NE+pOBrMTRcyHOqK5n1eTYoGZD/wHrpWQ6tf+I4NSegU22dxwvVAEUT9C8Q/X
+	Vz1IJsBsNdytXNoklGr+OFMGmEIMYydJAaL3hshiE9QwqkMf4FRRMVx+Eke0ubrwn0oi
+	L8xbmnywR33jjCdhyAvGPzBfyaOULB0RM2E0jAUntFIwiJFXZVAZyZK6bMjgEKlw/5s/
+	L3tA==
+X-Received: by 10.220.164.80 with SMTP id d16mr6163748vcy.15.1394132789133;
+	Thu, 06 Mar 2014 11:06:29 -0800 (PST)
 MIME-Version: 1.0
-X-Mailer: Evolution 2.28.3 (2.28.3-30.el6) 
-X-Originating-IP: [184.71.143.26]
-X-ClientProxiedBy: DM2PR06CA029.namprd06.prod.outlook.com (10.141.241.29) To
-	BLUPR01MB471.prod.exchangelabs.com (10.141.81.25)
-X-Forefront-PRVS: 0142F22657
-X-Forefront-Antispam-Report: SFV:NSPM;
-	SFS:(10009001)(6029001)(6049001)(6009001)(428001)(199002)(189002)(377454003)(46102001)(53806001)(77096001)(49866001)(81542001)(47736001)(81342001)(47976001)(50986001)(4396001)(95416001)(50226001)(97336001)(77156001)(93136001)(86362001)(85852003)(93516002)(92566001)(83072002)(51856001)(92726001)(93916002)(74502001)(76176001)(74662001)(76482001)(87266001)(65816001)(76796001)(56776001)(66066001)(47446002)(42186004)(54316002)(87286001)(80022001)(62966002)(94316002)(94946001)(31966008)(85306002)(76786001)(47776003)(77982001)(63696002)(59766001)(79102001)(90146001)(56816005)(74706001)(89996001)(95666003)(69226001)(83322001)(19580395003)(80976001)(23676002)(97186001)(81686001)(33646001)(81816001)(74366001)(50466002)(74876001)(87976001)(88136002);
-	DIR:OUT; SFP:1101; SCL:1; SRVR:BLUPR01MB471; H:[192.168.3.163];
-	CLIP:184.71.143.26; FPR:BFECF019.8C2694C4.CDF68573.8C93170.20328;
-	PTR:InfoNoRecords; A:1; MX:1; LANG:en; 
-Received-SPF: None (: inmotiontechnology.com does not designate permitted
-	sender hosts)
-X-OriginatorOrg: inmotiontechnology.com
-Subject: java.lang.OutOfMemoryError
+Received: by 10.58.45.134 with HTTP; Thu, 6 Mar 2014 11:05:59 -0800 (PST)
+In-Reply-To: <CAK8F28m8AZX3ea0tqJvVQgphF8rSFnJV34hCkdJgOWR1oCdQnA@mail.gmail.com>
+References: <CAK8F28nj1CNzSGxJegJDjgP7f=OGAUbNPY9ak9ea+JoAOEKhYg@mail.gmail.com>
+	<CAMKF1srAGgNbQqE62_Jts+fUfOzq04nu1XFW7uABLg0QsaMgng@mail.gmail.com>
+	<CAK8F28mEj01FWh6=0XRSduXAVGtvk1vR4+=7pxQn2qfUmjtFkQ@mail.gmail.com>
+	<CAMKF1srsi2EfUBsPam0n8DqLJw8+WiZBDMYQoquf0yQGu4VmoA@mail.gmail.com>
+	<CAK8F28=Z5=T2+z1a=66Jzsi_nOyMWLBOA-F8NZovR8Z=1hTVgg@mail.gmail.com>
+	<CAK8F28m8AZX3ea0tqJvVQgphF8rSFnJV34hCkdJgOWR1oCdQnA@mail.gmail.com>
+From: Ash Charles <ashcharles@gmail.com>
+Date: Thu, 6 Mar 2014 11:05:59 -0800
+Message-ID: <CAK8F28kXAneCxACgdSK-kKBYXvCVJS69R4hYY2UBTAC9My39ow@mail.gmail.com>
+To: Khem Raj <raj.khem@gmail.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Using MACHINE_EXTRA_RDEPENDS to install wifi Firmware
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -36,64 +43,63 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 06 Mar 2014 17:48:57 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Thu, 06 Mar 2014 19:06:35 -0000
+Content-Type: text/plain; charset=UTF-8
 
 Hi,
 
-Is there a way to dynamically reduce the number of bitbake threads that
-can run while in the middle of a build?
+I tried a clean build just to make sure but I still see the issue.
 
-I have occasionally encountered out-of-memory errors while building the
-java system.  When I manually rerun 'bitbake icedtea6-native' (after the
-error shown below) followed by rerunning the original target, it will
-proceed to completion OK.
+Basically, the kernel.bbclass is packaging and shipping all the
+firmware it finds in the kernel source.  The linux-firmware recipe is
+also shipping a superset of firmware to those files found in the
+kernel hence I see warnings about the files shipped by both recipes.
+Is there a way to only include just the package I need from
+linux-firmware (linux-firmware-sd8686) without getting all files in
+the sysroot-destdir?
+--or--
+Is there a way to instruct the kernel.bbclass not to ship any firmware?
 
-| Mar 6, 2014 9:01:49 AM com.redhat.rewriter.ClassRewriter processFile
-| INFO: Processing class /home/dwatkins/workspace/epsilon/repo_MG-os_test2/build/tmp/work/i686-linux/icedtea6-native/1.8.11-r5.3/icedtea6-1.8.11/rhino/rhino.old/org/mozilla/javascript/ast/DoLoop.class
-| Exception in thread "main" java.lang.OutOfMemoryError: can't create thread
-|    at java.lang.VMThread.create(Native Method)
-|    at java.lang.Thread.start(Thread.java:922)
-|    at java.util.concurrent.ThreadPoolExecutor.addIfUnderMaximumPoolSize(ThreadPoolExecutor.java:485)
-|    at java.util.concurrent.ThreadPoolExecutor.execute(ThreadPoolExecutor.java:890)
-|    at java.util.concurrent.AbstractExecutorService.submit(AbstractExecutorService.java:91)
-|    at com.redhat.rewriter.ClassRewriter.processFile(ClassRewriter.java:114)
-|    at com.redhat.rewriter.ClassRewriter.processFile(ClassRewriter.java:109)
-|    at com.redhat.rewriter.ClassRewriter.processFile(ClassRewriter.java:109)
-|    at com.redhat.rewriter.ClassRewriter.processFile(ClassRewriter.java:109)
-|    at com.redhat.rewriter.ClassRewriter.processFile(ClassRewriter.java:109)
-|    at com.redhat.rewriter.ClassRewriter.processFile(ClassRewriter.java:109)
-|    at com.redhat.rewriter.ClassRewriter.main(ClassRewriter.java:91)
-| make[1]: *** [stamps/rewrite-rhino.stamp] Error 1
-| make[1]: Leaving directory `/home/dwatkins/workspace/epsilon/repo_MG-os_test2/build/tmp/work/i686-linux/icedtea6-native/1.8.11-r5.3/icedtea6-1.8.11'
-| make: *** [hotspot] Error 2
-| ERROR: oe_runmake failed
+Thanks for any suggestions!
 
-What I need is the ability to have a recipe declare that it is a
-resource hog and should be run with the thread limit reduced until it is
-done.
+--Ash
 
-I tried cutting from 8 threads to 4 threads (on my quad core), but it is
-still hit and miss.  I could cut it more, but then things will be rather
-slow for the rest of the build.
-
-Anyone have comments or suggestions?
-
-
--- 
-
-Regards,
-
-Darcy
-
----
-
-Darcy Watkins
-Senior Software Developer
-In Motion Technology, Inc.
-350-625 Agnes St. New Westminster, BC
-Canada, V3M 5Y4
-[P1]
-
+On Fri, Feb 28, 2014 at 10:45 AM, Ash Charles <ashcharles@gmail.com> wrote:
+> I think my response yesterday was slightly premature...
+>
+> If I understand correctly, packages of the form
+> 'kernel-firmware-<xxxx>' are provided by the kernel recipe for any
+> firmware that is licensed such that it can be included directly with
+> the kernel source i.e. in the <linux>/firmware directory.  A superset
+> of this firmware is available from the linux-firmware repository with
+> different licensing.  Firmware can be pulled into an image with the
+> addition of a 'linux-firmward-<xxxx>' package.
+>
+> It seems though that adding a 'linux-firmware-<xxxx>' package pulls in
+> the basic 'linux-firmware' package that includes firmware binaries
+> already shipped with the kernel.
+>
+> If this is correct, I see two options:
+> 1. 'linux-firmware-<xxxx>' should only pull in the explicit firmware
+> specified, or
+> 2. if 'linux-firmware' is getting pulled in, the kernel recipe
+> shouldn't populate any firmware
+>
+> Am I on the right track?
+>
+> --Ash
+>
+> On Thu, Feb 27, 2014 at 5:09 PM, Ash Charles <ashcharles@gmail.com> wrote:
+>> On Thu, Feb 27, 2014 at 4:54 PM, Khem Raj <raj.khem@gmail.com> wrote:
+>>> as you can see kernel-firmware-whiteheat is the package name under
+>>> which kernel is packaging it
+>>> so include that if you want the kernel provided one.
+>> Ah---perfect.  That makes sense.
+>> I had
+>> MACHINE_EXTRA_RDEPENDS += "linux-firmware-sd8686"
+>> I should have had
+>> MACHINE_EXTRA_RDEPENDS += "kernel-firmware-sd8686"
+>>
+>> Thanks for your help!
+>> --Ash
 
