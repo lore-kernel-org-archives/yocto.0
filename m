@@ -1,38 +1,41 @@
-Return-Path: <paul.betafive@gmail.com>
-Received: from mail-ve0-f178.google.com (mail-ve0-f178.google.com
-	[209.85.128.178])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D97BDE00734
-	for <yocto@yoctoproject.org>; Thu,  6 Mar 2014 04:58:31 -0800 (PST)
-Received: by mail-ve0-f178.google.com with SMTP id jw12so2526976veb.37
-	for <yocto@yoctoproject.org>; Thu, 06 Mar 2014 04:58:30 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:sender:in-reply-to:references:from:date:message-id
-	:subject:to:cc:content-type;
-	bh=8G3fDeplY25HHm0561IgwlwnEAnmQ2cO2kXbNVtc6HA=;
-	b=GRoQf1Lh6F3/X7swlID+ECweplg/9SpqVs3kyPj1/jrMtSYdrwQiSg7vkZteKjcKh2
-	eo/Y7PEo4vpmboT5t9kD++CvxrLjs1oppKDF1BojvEl/VwzJwv4qoJy9uufdNlY5sWFN
-	rm2WAu71znJrGSa/cYvS7U59XehNwjaXI4ala+DNcAk7HjauWBtH99V7qUOzFIDqrhkP
-	qScw6ftfC/M5R6EKcUYhI5spXCJc9eEsv+Y/6PVKYJbgY7yQf7sE4pPVOLlatqNt//Ra
-	/65oUzEywJJ1Ju3yM8f+28vAcN52TdsL+JAZ6xM6ivjTCBYIOj//zrKYMZkTU94A1MyJ
-	QXSA==
-X-Received: by 10.58.165.68 with SMTP id yw4mr5281016veb.17.1394110710421;
-	Thu, 06 Mar 2014 04:58:30 -0800 (PST)
+Return-Path: <bevenson@melinkcorp.com>
+Received: from na01-bl2-obe.outbound.protection.outlook.com
+	(mail-bl2lp0204.outbound.protection.outlook.com [207.46.163.204])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B9379E00789
+	for <yocto@yoctoproject.org>; Thu,  6 Mar 2014 05:43:54 -0800 (PST)
+Received: from BLUPR05MB037.namprd05.prod.outlook.com (10.255.210.145) by
+	BLUPR05MB182.namprd05.prod.outlook.com (10.255.190.142) with Microsoft
+	SMTP Server (TLS) id 15.0.893.10; Thu, 6 Mar 2014 13:43:41 +0000
+Received: from BLUPR05MB037.namprd05.prod.outlook.com ([169.254.15.158]) by
+	BLUPR05MB037.namprd05.prod.outlook.com ([169.254.15.247]) with mapi id
+	15.00.0888.003; Thu, 6 Mar 2014 13:43:41 +0000
+From: Bryan Evenson <bevenson@melinkcorp.com>
+To: Elizabeth Flanagan <elizabeth.flanagan@intel.com>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: [yocto] [AB PATCH 06/27] Autobuilder.py/Buildset.py: More sane
+	parser/UI
+Thread-Index: AQHPOKDIunCAF+f4D0+UwEdSmDKTuJrUBBHw
+Date: Thu, 6 Mar 2014 13:43:40 +0000
+Message-ID: <9e3dd03777e746aa8f3bd01f69d9a873@BLUPR05MB037.namprd05.prod.outlook.com>
+References: <cover.1394042358.git.elizabeth.flanagan@intel.com>
+	<3beb0e18e2659a8266e9fe1c705c8fe263aae387.1394042358.git.elizabeth.flanagan@intel.com>
+In-Reply-To: <3beb0e18e2659a8266e9fe1c705c8fe263aae387.1394042358.git.elizabeth.flanagan@intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-vipre-scanned: 003E99720069FA003E9ABF
+x-originating-ip: [98.100.91.242]
+x-forefront-prvs: 0142F22657
+x-forefront-antispam-report: SFV:NSPM;
+	SFS:(10009001)(6009001)(428001)(199002)(189002)(377454003)(51704005)(13464003)(164054003)(90146001)(56816005)(85852003)(83072002)(51856001)(46102001)(53806001)(93516002)(77096001)(56776001)(86362001)(97336001)(97186001)(95666003)(66066001)(80022001)(65816001)(33646001)(79102001)(77982001)(59766001)(63696002)(81342001)(224313003)(224303002)(81542001)(47976001)(81686001)(74706001)(50986001)(47736001)(74876001)(87266001)(15975445006)(69226001)(83322001)(15202345003)(19580395003)(19580405001)(49866001)(81816001)(2656002)(80976001)(95416001)(87936001)(54316002)(93136001)(74502001)(47446002)(92566001)(94316002)(74316001)(54356001)(31966008)(76482001)(74366001)(74662001)(85306002)(76576001)(94946001)(4396001)(76786001)(76796001)(24736002);
+	DIR:OUT; SFP:1101; SCL:1; SRVR:BLUPR05MB182;
+	H:BLUPR05MB037.namprd05.prod.outlook.com; CLIP:98.100.91.242;
+	FPR:FCFAF928.BF2DCE6.79DCB78F.4FC7FD6D.202F6; PTR:InfoNoRecords;
+	A:1; MX:1; LANG:en; 
+received-spf: None (: melinkcorp.com does not designate permitted sender hosts)
 MIME-Version: 1.0
-Sender: paul.betafive@gmail.com
-Received: by 10.220.239.135 with HTTP; Thu, 6 Mar 2014 04:57:50 -0800 (PST)
-In-Reply-To: <CAMKF1sqWR9CTknPqAx=48w41kVzFm6QG4A3HEW-n+rMoUuzKMQ@mail.gmail.com>
-References: <CALXw4G5VUNySyWoOoFbKHnMUWFjZfQKwQCu0T0cWtwGOAMQnow@mail.gmail.com>
-	<126717450.ayqcFG2vtF@peggleto-mobl5.ger.corp.intel.com>
-	<CALXw4G5Ti_rZ+LWVYivbqeEAyFn2fOTDtYD9kvMBcq94R0X_xg@mail.gmail.com>
-	<CAMKF1sqWR9CTknPqAx=48w41kVzFm6QG4A3HEW-n+rMoUuzKMQ@mail.gmail.com>
-From: Paul Barker <paul@paulbarker.me.uk>
-Date: Thu, 6 Mar 2014 12:57:50 +0000
-X-Google-Sender-Auth: UBGFRbXqDk_a8CEGvBMJE9rxIg4
-Message-ID: <CANyK_8fbBHck74MBuz7LjXpcXjGFdExngwJ=5nn-sTHCvoKg5w@mail.gmail.com>
-To: Khem Raj <raj.khem@gmail.com>
-Cc: Paul Eggleton <paul.eggleton@linux.intel.com>,
-	Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: Toolchain
+X-OriginatorOrg: melinkcorp.com
+Subject: Re: [AB PATCH 06/27] Autobuilder.py/Buildset.py: More sane	parser/UI
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -44,35 +47,63 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 06 Mar 2014 12:58:32 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Thu, 06 Mar 2014 13:43:57 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-On 5 March 2014 21:14, Khem Raj <raj.khem@gmail.com> wrote:
-> On Wed, Mar 5, 2014 at 9:00 AM, Michael Gloff <mgloff@emacinc.com> wrote:
->> | *** Error: Package name  contains illegal characters, (other than
->> [a-z0-9.+-])
->
-> hmm meta-environment-PMX-090T is a package name and
-> thats limitation of opkg backend, if you are too tied to
+Beth,
 
-opkg itself doesn't seem to have this limitation, I just created and installed a
-test package named 'A' perfectly fine.
+> -----Original Message-----
+> From: yocto-bounces@yoctoproject.org [mailto:yocto-
+> bounces@yoctoproject.org] On Behalf Of Elizabeth Flanagan
+> Sent: Wednesday, March 05, 2014 1:23 PM
+> To: yocto@yoctoproject.org
+> Subject: [yocto] [AB PATCH 06/27] Autobuilder.py/Buildset.py: More sane
+> parser/UI
+>=20
+> From: Beth Flanagan <elizabeth.flanagan@intel.com>
+>=20
+> The parser for Autobuilder.py didn't dive very deep on triggered builds. =
+If it
+> found one, it just grabbed it's properties and then displayed them on the=
+ UI.
+> This allowed us to mix and match repos/branches/commits.
+>=20
 
-The Debian policy says:
-    Package names (both source and binary, see Package, Section 5.6.7) must
-    consist only of lower case letters (a-z), digits (0-9), plus (+) and minus
-    (-) signs, and periods (.). They must be at least two characters long and
-    must start with an alphanumeric character.
+I'm a little unclear what functionality is being removed.  After this commi=
+t, are we still able to specify a different repo/branch/commit for each lay=
+er?  Or was the previous functionality to mix and match repo/branch/commits=
+ within a layer?  For example, would a buildset still be able to specify th=
+e repos as follows:
 
-So I think the restriction is there to keep generated packages
-compatible with dpkg-deb.
+repos: [{'poky':=20
+            {'repourl':'git://git.yoctoproject.org/poky',=20
+             'branch':'dora'}},
+        {'meta-openembedded':=20
+            {'repourl':'git://git.openembedded.org/meta-openembedded',=20
+             'branch':'dora'}}]
 
-We could consider removing the restriction if that compatibility isn't
-necessary.
+which have a different repository for each layer?  Or do something like:
+repos: [{'poky':=20
+            {'repourl':'git://git.yoctoproject.org/poky',=20
+             'branch':'dora'}},
+        {'meta-openembedded':=20
+            {'repourl':'git://git.openembedded.org/meta-openembedded',=20
+             'branch':'master'}}]
 
--- 
-Paul Barker
+to specify different branches for each layer?  Granted, probably not a good=
+ idea for poky and meta-openembedded, but would be necessary for private la=
+yers that don't follow the same branch naming scheme.=20
 
-Email: paul@paulbarker.me.uk
-http://www.paulbarker.me.uk
+And as you had stated this is a fairly large patchset with some interface c=
+hanges.  What are the plans (short-term and long-term) for the Autobuilder =
+documentation?  Is the plan just to update the README files, or are there p=
+lans to move toward an HTML document under http://www.yoctoproject.org/docu=
+mentation?  Either way, the Autobuilder documentation is pretty sparse and =
+as an Autobuilder user I'm willing to extend the documentation.  If there a=
+re specific sections you are looking to document first, let us know.
+
+Thanks,
+Bryan
 
