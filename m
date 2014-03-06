@@ -1,28 +1,25 @@
-Return-Path: <bianchirickkutta@gmail.com>
-Received: from mail-vc0-f196.google.com (mail-vc0-f196.google.com
-	[209.85.220.196])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9D3F1E00973
-	for <yocto@yoctoproject.org>; Thu,  6 Mar 2014 08:05:30 -0800 (PST)
-Received: by mail-vc0-f196.google.com with SMTP id lf12so1008714vcb.11
-	for <yocto@yoctoproject.org>; Thu, 06 Mar 2014 08:05:30 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=0WnBL47Ru9RwoxxLqynoJ/qrwuRDxwsW6jCIBvWUVUo=;
-	b=KvLOCgibj2EIDT4fwCyV1YhXvTLPzGvigBhaIMZgmrfPTo6WT+OBQex29gF455tKug
-	1jTxtB65d2J9zA3d4EsJjIel3hlbckjg752b5VFJJGhNWG80adXVbnrS1NgePHpCRW6F
-	38suB3yWA+Wb9k2AB9Ymv8gzPY9YNWHaC+tuyjbziWnSujtJ3DdYuJbOQQdw7TxGXEx1
-	X4NIhFkoK4CEn3NbK5lKZwUWuI21h/qCRVrmP17HxBNVYqn/7c7f0hPIx6jQREQnf1af
-	JBW/BUSq3TDhR2u32736bUbo6HORXbrk58jKcizKZzw0LD14TQQiTAzBvnWNngdnhT6x
-	K/cw==
+Return-Path: <paul.eggleton@linux.intel.com>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9310DE009AA
+	for <yocto@yoctoproject.org>; Thu,  6 Mar 2014 09:02:15 -0800 (PST)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga101.jf.intel.com with ESMTP; 06 Mar 2014 09:01:24 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.97,601,1389772800"; d="scan'208";a="467823281"
+Received: from lbhoopat-mobl1.ger.corp.intel.com (HELO
+	peggleto-mobl5.ger.corp.intel.com) ([10.252.123.174])
+	by orsmga001.jf.intel.com with ESMTP; 06 Mar 2014 09:00:51 -0800
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: Rick Bianchi <bianchirickkutta@gmail.com>
+Date: Thu, 06 Mar 2014 17:00:49 +0000
+Message-ID: <1687242.35WvzdQ7Vj@peggleto-mobl5.ger.corp.intel.com>
+Organization: Intel Corporation
+User-Agent: KMail/4.12.3 (Linux/3.13.5-200.fc20.x86_64; KDE/4.12.3; x86_64; ; )
+In-Reply-To: <CAA7h+EqQ0Jv1rz75E0owrG0k-b0w5fmgOuTzZhZz2-OSW8p6Rg@mail.gmail.com>
+References: <CAA7h+EqQ0Jv1rz75E0owrG0k-b0w5fmgOuTzZhZz2-OSW8p6Rg@mail.gmail.com>
 MIME-Version: 1.0
-X-Received: by 10.220.11.141 with SMTP id t13mr1470536vct.30.1394121930054;
-	Thu, 06 Mar 2014 08:05:30 -0800 (PST)
-Received: by 10.220.96.66 with HTTP; Thu, 6 Mar 2014 08:05:30 -0800 (PST)
-Date: Thu, 6 Mar 2014 09:05:30 -0700
-Message-ID: <CAA7h+EqQ0Jv1rz75E0owrG0k-b0w5fmgOuTzZhZz2-OSW8p6Rg@mail.gmail.com>
-From: Rick Bianchi <bianchirickkutta@gmail.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: hwdata needed for usbip
+Cc: yocto@yoctoproject.org
+Subject: Re: hwdata needed for usbip
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,26 +31,30 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 06 Mar 2014 16:05:31 -0000
-Content-Type: multipart/alternative; boundary=001a11c3c9706a1eb704f3f24ec2
+X-List-Received-Date: Thu, 06 Mar 2014 17:02:18 -0000
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
---001a11c3c9706a1eb704f3f24ec2
-Content-Type: text/plain; charset=ISO-8859-1
+Hi Rick,
 
-I have looked high and low for the hwdata package, usbip needs it to
-function. I don't see it with a bitbake -s | grep hwdata and it is not in
-smart repos.
+On Thursday 06 March 2014 09:05:30 Rick Bianchi wrote:
+> I have looked high and low for the hwdata package, usbip needs it to
+> function. I don't see it with a bitbake -s | grep hwdata and it is not in
+> smart repos.
+> 
+> Is this package include in another package? If, so which one?
 
-Is this package include in another package? If, so which one?
+If I understand correctly, "hwdata" is a Red Hat packaging convention and is 
+composed of databases from several different source packages; we ship them via 
+the recipes for their source packages. Thus the USB ID device database can be 
+found in a usbutils-ids package (produced by the usbutils recipe), the PCI ID 
+database in pciutils-ids (produced by the pciutils recipe), etc.
 
---001a11c3c9706a1eb704f3f24ec2
-Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
+Cheers,
+Paul
 
-<div dir=3D"ltr">I have looked high and low for the hwdata package, usbip n=
-eeds it to function. I don&#39;t see it with a bitbake -s | grep hwdata and=
- it is not in smart repos.<div><br></div><div style>Is this package include=
- in another package? If, so which one?</div>
-</div>
+-- 
 
---001a11c3c9706a1eb704f3f24ec2--
+Paul Eggleton
+Intel Open Source Technology Centre
+
