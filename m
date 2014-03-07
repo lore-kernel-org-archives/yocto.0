@@ -1,34 +1,36 @@
-Return-Path: <bianchirickkutta@gmail.com>
-Received: from mail-vc0-f177.google.com (mail-vc0-f177.google.com
-	[209.85.220.177])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3EF7CE00995
-	for <yocto@yoctoproject.org>; Thu,  6 Mar 2014 16:30:33 -0800 (PST)
-Received: by mail-vc0-f177.google.com with SMTP id if17so700071vcb.36
-	for <yocto@yoctoproject.org>; Thu, 06 Mar 2014 16:30:32 -0800 (PST)
+Return-Path: <paul.betafive@gmail.com>
+Received: from mail-vc0-f171.google.com (mail-vc0-f171.google.com
+	[209.85.220.171])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 61282E00973
+	for <yocto@yoctoproject.org>; Thu,  6 Mar 2014 17:01:13 -0800 (PST)
+Received: by mail-vc0-f171.google.com with SMTP id le5so3449477vcb.16
+	for <yocto@yoctoproject.org>; Thu, 06 Mar 2014 17:01:13 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:content-type; bh=BgGsIR/jl0MKS1m9eI1o09+dJTyLs098ioTRx7Kmvw4=;
-	b=Is6GsK7+URY6KcPZcYqEeGuUOflQwLUp08oU7gZvtGKgpxGdPoQUnq5iEQtGQ+W6DH
-	mb5I4bkljKmOGV+2l98ioKbdxUYcA5DwymJ5bz8IyH5qXD+IqCHdXe95ytZswnn+jEr7
-	NaeG7yhWmwCAnPljv3P5hBZ4RgkIpX7lIsSw/q4cHO01u0AJ9J2qeJMEBRqanvTRmf5W
-	otbjEdQs9CMkIYHlNmOyw2azvdfxZviVGNDyUj35oP8wet4D9h9epArbakLv3dYux0dR
-	Jj4gzyxrM7mRkQGlETcXILAtPYfDjCRzS33OGYS36RHn7J30wEsooKLRP3dNFG6XxIeo
-	2C+g==
+	h=mime-version:sender:in-reply-to:references:from:date:message-id
+	:subject:to:cc:content-type;
+	bh=qUvelFTKgj5hXPdBLY0ER7n+V/1O1WEC/22m3vFuR0o=;
+	b=F+jRPgDrfgggU3Csrj/U3Jq7v+FINUoOyCpHT38w99nGGEzBN5D+yvJfcBszNn0fI4
+	q3Ob2wIuRPYy/VZBqI6+LkBpH5hFN1JXjX9wzwg9izlGaZCPpWy9zsqZr28c5i4tFnrz
+	BwuoQNVN4qMy6y6d45eIiRlyaglzxeF1vvEPzQFWzcLhif5xK9R5z28FYcADv1Ip7CQp
+	e0FW1lcrQsreRLsE0CEbbLP1HdoMThUTGpIobfShxxHgLjR+NQzXjHM5tYeUGAxsVgf2
+	/dSCTxtgwqnRo130w9AyLbL6G1GsP5mxWRT+TxOSa2N0WC4BjLQI9IPgLojbTPiVhrhx
+	vnKQ==
+X-Received: by 10.220.103.141 with SMTP id k13mr3868814vco.25.1394154072857;
+	Thu, 06 Mar 2014 17:01:12 -0800 (PST)
 MIME-Version: 1.0
-X-Received: by 10.52.61.133 with SMTP id p5mr9917681vdr.4.1394152232478; Thu,
-	06 Mar 2014 16:30:32 -0800 (PST)
-Received: by 10.220.96.66 with HTTP; Thu, 6 Mar 2014 16:30:32 -0800 (PST)
-In-Reply-To: <CAMKF1srUeJ-Djk_ibR=PYW9MS3FVX20psJZMMguxYEVWdwoVJQ@mail.gmail.com>
-References: <1394028560.17657.YahooMailNeo@web163103.mail.bf1.yahoo.com>
-	<CAMKF1spN_KT1-PtQR22ixmQ=xTxBoAht04AY11CauCz0ba0BiQ@mail.gmail.com>
-	<CAA7h+Eqr8bVtsoYoNA7EWhUJZ63L27botuvLiBhx5O5CwLF2+Q@mail.gmail.com>
-	<CAMKF1srUeJ-Djk_ibR=PYW9MS3FVX20psJZMMguxYEVWdwoVJQ@mail.gmail.com>
-Date: Thu, 6 Mar 2014 17:30:32 -0700
-Message-ID: <CAA7h+Epd3vWbrH5eOm5SYzT7X97sJ6Y6yH61=21W7CnuTQzNjQ@mail.gmail.com>
-From: Rick Bianchi <bianchirickkutta@gmail.com>
-To: Khem Raj <raj.khem@gmail.com>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Adding headers to tool chain
+Sender: paul.betafive@gmail.com
+Received: by 10.220.239.135 with HTTP; Thu, 6 Mar 2014 17:00:32 -0800 (PST)
+In-Reply-To: <CANyK_8dPHBVFBKe9zaJrQXwec=eXtR41gTKUDLvA=HS4Qheu4Q@mail.gmail.com>
+References: <1393359963-10611-1-git-send-email-thilo@cestona.ro>
+	<CANyK_8c31PfGXatRRfX+pFd+CqH76+92dZi-JjQOWC+mgOg60g@mail.gmail.com>
+	<CANyK_8dPHBVFBKe9zaJrQXwec=eXtR41gTKUDLvA=HS4Qheu4Q@mail.gmail.com>
+From: Paul Barker <paul@paulbarker.me.uk>
+Date: Fri, 7 Mar 2014 01:00:32 +0000
+X-Google-Sender-Auth: ya5uiSo6OLRzi3n8eVnDK9I1hIs
+Message-ID: <CANyK_8e0kPPij_kDvmBjnE_p1CyB1xvpJsKDkfB0uS-yk5uWpg@mail.gmail.com>
+To: Thilo Cestonaro <thilo@cestona.ro>
+Cc: Yocto discussion list <yocto@yoctoproject.org>
+Subject: Re: [PATCH] create dpkg-deb compatible ipks/opks again
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,80 +42,42 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 07 Mar 2014 00:30:36 -0000
-Content-Type: multipart/alternative; boundary=001a1136b38e946c2304f3f95c99
-
---001a1136b38e946c2304f3f95c99
+X-List-Received-Date: Fri, 07 Mar 2014 01:01:14 -0000
 Content-Type: text/plain; charset=ISO-8859-1
 
-Khem,
-I did the following, but still no headers and source in /usr/src:
-
-bitbake meta-toolchain
-
-bitbake -cpopulate_sdk gumstix-console-image
-
-
-
-
-On Thu, Mar 6, 2014 at 12:34 PM, Khem Raj <raj.khem@gmail.com> wrote:
-
-> On Thu, Mar 6, 2014 at 11:12 AM, Rick Bianchi
-> <bianchirickkutta@gmail.com> wrote:
-> > Khem,
-> > Is this the same process if I needed to get the kernel headers and source
-> > onto the build?
-> >
+On 3 March 2014 09:02, Paul Barker <paul@paulbarker.me.uk> wrote:
+> On 1 March 2014 14:29, Paul Barker <paul@paulbarker.me.uk> wrote:
+>> On 25 February 2014 20:26, Thilo Cestonaro <thilo@cestona.ro> wrote:
+>>> With a change from last august in dpkg-deb, the packages generated by opkg-build will not be accepted by dpkg-deb anymore.
+>>> The change disallows that the data.tar.gz is packed into the ipk/opk before the control.tar.gz.
+>>> For details have a look here:
+>>> http://anonscm.debian.org/gitweb/?p=dpkg/dpkg.git;a=commitdiff;h=547dca4c3ff23df5dfa554f1943b371cd7056ee4
+>>>
+>>> For details which order is correct, see "man 5 deb", but in short it is:
+>>> debian-binary, control.tar.gz and data.tar.gz
+>>>
+>>> Signed-off-by: Thilo Cestonaro <thilo@cestona.ro>
+>>
+>> I've slightly modified the subject line to "opkg-build: create
+>> dpkg-deb compatible ipks/opks again" so that we can see in the
+>> shortlog that this relates to opkg-build.
+>>
 >
-> this is application development so kernel headers for userspace will be
-> there.
+> Tested and merged!
 >
-> >
-> > On Wed, Mar 5, 2014 at 2:15 PM, Khem Raj <raj.khem@gmail.com> wrote:
-> >>
-> >> On Wed, Mar 5, 2014 at 6:09 AM, Joel Parker <joelparker27@yahoo.com>
-> >> wrote:
-> >> > $ bitbake meta-toolchain
-> >>
-> >> do bitbake -cpopulate_sdk <image-to-which-you-added-sqlite>
-> >> and install that SDK
-> >> _______________________________________________
-> >> yocto mailing list
-> >> yocto@yoctoproject.org
-> >> https://lists.yoctoproject.org/listinfo/yocto
-> >
-> >
+> The recipe in openembedded-core
+> (meta/recipes-devtools/opkg-utils/opkg-utils_git.bb) now needs
+> updating to reference the new commit ID. Would you like to create a
+> patch for that or shall I do it?
 >
 
---001a1136b38e946c2304f3f95c99
-Content-Type: text/html; charset=ISO-8859-1
+I've just submitted a patch to the oe-core mailing list myself to do this.
 
-<div dir="ltr"><div>Khem,<br></div><div>I did the following, but still no headers and source in /usr/src:</div><div><br></div><div>bitbake meta-toolchain</div><div><br></div><div>bitbake -cpopulate_sdk gumstix-console-image</div>
-<div><br></div><div><br></div><div class="gmail_extra"><br><br><div class="gmail_quote">On Thu, Mar 6, 2014 at 12:34 PM, Khem Raj <span dir="ltr">&lt;<a href="mailto:raj.khem@gmail.com" target="_blank">raj.khem@gmail.com</a>&gt;</span> wrote:<br>
-<blockquote class="gmail_quote" style="margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div class="">On Thu, Mar 6, 2014 at 11:12 AM, Rick Bianchi<br>
-&lt;<a href="mailto:bianchirickkutta@gmail.com">bianchirickkutta@gmail.com</a>&gt; wrote:<br>
-&gt; Khem,<br>
-&gt; Is this the same process if I needed to get the kernel headers and source<br>
-&gt; onto the build?<br>
-&gt;<br>
-<br>
-</div>this is application development so kernel headers for userspace will be there.<br>
-<div class="HOEnZb"><div class="h5"><br>
-&gt;<br>
-&gt; On Wed, Mar 5, 2014 at 2:15 PM, Khem Raj &lt;<a href="mailto:raj.khem@gmail.com">raj.khem@gmail.com</a>&gt; wrote:<br>
-&gt;&gt;<br>
-&gt;&gt; On Wed, Mar 5, 2014 at 6:09 AM, Joel Parker &lt;<a href="mailto:joelparker27@yahoo.com">joelparker27@yahoo.com</a>&gt;<br>
-&gt;&gt; wrote:<br>
-&gt;&gt; &gt; $ bitbake meta-toolchain<br>
-&gt;&gt;<br>
-&gt;&gt; do bitbake -cpopulate_sdk &lt;image-to-which-you-added-sqlite&gt;<br>
-&gt;&gt; and install that SDK<br>
-&gt;&gt; _______________________________________________<br>
-&gt;&gt; yocto mailing list<br>
-&gt;&gt; <a href="mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br>
-&gt;&gt; <a href="https://lists.yoctoproject.org/listinfo/yocto" target="_blank">https://lists.yoctoproject.org/listinfo/yocto</a><br>
-&gt;<br>
-&gt;<br>
-</div></div></blockquote></div><br></div></div>
+Cheers,
 
---001a1136b38e946c2304f3f95c99--
+-- 
+Paul Barker
+
+Email: paul@paulbarker.me.uk
+http://www.paulbarker.me.uk
+
