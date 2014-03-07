@@ -1,31 +1,26 @@
-Return-Path: <elizabeth.flanagan@intel.com>
-Received: from mail-ve0-f178.google.com (mail-ve0-f178.google.com
-	[209.85.128.178])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E43CDE009F5
-	for <yocto@yoctoproject.org>; Thu,  6 Mar 2014 18:55:05 -0800 (PST)
-Received: by mail-ve0-f178.google.com with SMTP id jw12so3671319veb.9
-	for <yocto@yoctoproject.org>; Thu, 06 Mar 2014 18:55:05 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:date:message-id:subject:from:to
-	:content-type;
-	bh=X4RVkRSPeetOcrqMHZkUX7rLcHEIwX/hZnhknvZrOss=;
-	b=KwuCbJp5h+MArJqr9OmYO2evp0LAiB3g0K4znitfbaKCHg9+zn1+VNyv4KzOlfp/yj
-	0MVs80ItW0g3w+ep88F5mjJQlZdAWQYHziiKkfRaFZCZwH3o6SWNmSBVnFEeEUFEnz7Z
-	RgZZDqWw2gdWOViqUOZ7xTL/+OQZyheWNqdVDhAU0BE8xyEtSXvwZ7mWM9MnDyw5thNU
-	iKHPCczwFSAtTGpQe9txwKDzJRj3MS7YPlYfNYN6h5n64mjKi3t/7btuJmQhw3iWhvVi
-	Mv3vFNS5x6u9ZLpHpYZ65eAz1u4eiB8dJ1L6QjGSMMAf3RhpDiH4WlvMsxmM72mX0gM+
-	LRjQ==
-X-Gm-Message-State: ALoCoQkjNUGSKMPIHmO99y75XaiB2ULMSjh2LRGAP51Fef/cJn8ZzUv6BjHRYA9wEGJfi27sBv1p
+Return-Path: <Rongqing.Li@windriver.com>
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 23A4AE009FC
+	for <yocto@yoctoproject.org>; Thu,  6 Mar 2014 19:32:41 -0800 (PST)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
+	[147.11.189.40])
+	by mail.windriver.com (8.14.5/8.14.5) with ESMTP id s273Wenk029478
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL)
+	for <yocto@yoctoproject.org>; Thu, 6 Mar 2014 19:32:40 -0800 (PST)
+Received: from [128.224.162.168] (128.224.162.168) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server id 14.3.169.1;
+	Thu, 6 Mar 2014 19:32:39 -0800
+Message-ID: <53193E20.2000703@windriver.com>
+Date: Fri, 7 Mar 2014 11:33:52 +0800
+From: Rongqing Li <rongqing.li@windriver.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:17.0) Gecko/20130623 Thunderbird/17.0.7
 MIME-Version: 1.0
-X-Received: by 10.58.200.229 with SMTP id jv5mr7997664vec.15.1394160905172;
-	Thu, 06 Mar 2014 18:55:05 -0800 (PST)
-Received: by 10.52.76.201 with HTTP; Thu, 6 Mar 2014 18:55:05 -0800 (PST)
-Date: Fri, 7 Mar 2014 02:55:05 +0000
-Message-ID: <CAPhnLPDEXPBSGSH3zfi41EoNVEz+qarG4pdhLtMxJK_zooPu7g@mail.gmail.com>
-From: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Upcoming feature freeze
+To: <rongqing.li@windriver.com>
+References: <cover.1393912246.git.rongqing.li@windriver.com>
+In-Reply-To: <cover.1393912246.git.rongqing.li@windriver.com>
+Cc: yocto@yoctoproject.org
+Subject: Re: [PATCH 0/2] fix audit configuration file permission and enable systemd support
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,17 +32,39 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 07 Mar 2014 02:55:09 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Fri, 07 Mar 2014 03:32:42 -0000
+Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Just a friendly reminder everyone. Feature freeze for 1.6 is this
-Sunday. Please have pull requests in before then so we can start in
-bugfixing.
+ping, it should be [meta-selinux]
 
--b
+
+-Roy
+On 03/04/2014 01:52 PM, rongqing.li@windriver.com wrote:
+> From: Roy Li <rongqing.li@windriver.com>
+>
+> The following changes since commit a6079a43719e79e12a57e609923a0cccdba06916:
+>
+>    refpolicy: fix real path for su.shadow (2014-02-13 10:52:07 -0500)
+>
+> are available in the git repository at:
+>
+>    git://git.pokylinux.org/poky-contrib roy/audit-two-fix
+>    http://git.pokylinux.org/cgit.cgi/poky-contrib/log/?h=roy/audit-two-fix
+>
+> Roy Li (2):
+>    audit: Add systemd support
+>    audit: fix the permission of configuration file
+>
+>   recipes-security/audit/audit/audit-volatile.conf |    1 +
+>   recipes-security/audit/audit/auditd.service      |   21 +++++++++++++++++++++
+>   recipes-security/audit/audit_2.3.2.bb            |   21 +++++++++++++++++++--
+>   3 files changed, 41 insertions(+), 2 deletions(-)
+>   create mode 100644 recipes-security/audit/audit/audit-volatile.conf
+>   create mode 100644 recipes-security/audit/audit/auditd.service
+>
 
 -- 
-Elizabeth Flanagan
-Yocto Project
-Build and Release
+Best Reagrds,
+Roy | RongQing Li
 
