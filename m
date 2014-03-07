@@ -1,24 +1,35 @@
-Return-Path: <ben@benkamen.net>
-Received: from cornelius.benjammin.net (Cornelius.benjammin.net
-	[173.161.90.36])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AA5CAE00AC9
-	for <yocto@yoctoproject.org>; Fri,  7 Mar 2014 09:55:45 -0800 (PST)
-Received: from [192.168.125.8] (zappa.benjammin.net [173.161.90.35])
-	(authenticated bits=0)
-	by cornelius.benjammin.net (8.14.4/8.14.4) with ESMTP id s27HthB1006310
-	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES128-SHA bits=128 verify=NO)
-	for <yocto@yoctoproject.org>; Fri, 7 Mar 2014 11:55:44 -0600
-Message-ID: <531A081F.5010803@benkamen.net>
-Date: Fri, 07 Mar 2014 11:55:43 -0600
-From: Ben Kamen <ben@benjammin.net>
-User-Agent: Mozilla/5.0 (Windows NT 5.1;
-	rv:24.0) Gecko/20100101 Thunderbird/24.3.0
+Return-Path: <raj.khem@gmail.com>
+Received: from mail-ig0-f176.google.com (mail-ig0-f176.google.com
+	[209.85.213.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7B626E00AE0
+	for <yocto@yoctoproject.org>; Fri,  7 Mar 2014 11:46:41 -0800 (PST)
+Received: by mail-ig0-f176.google.com with SMTP id uy17so2796826igb.3
+	for <yocto@yoctoproject.org>; Fri, 07 Mar 2014 11:46:41 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-type;
+	bh=0zyFSAfbbZlW3vh7cUGusSQENgTqEWD+LLDSMwner2U=;
+	b=TJ3rztRium+tFp+SZyX0RqkhMrqvsbojuwxrLIWMEtFvTS/oqPK3ovLGfi7O67103i
+	5EDV4WpUVAv8hsLbTt2J72rRPgCefwcOZJrNvdy6keqqm5C5FXiDpljW4FrRfmCyqivC
+	ENQZy9pKGNBDlQDTgkJIN/dKKiihvE7IkLPArwh52zvmRxgspuf9PKeRPfKJF0LSeZcR
+	D+XgBeNho/WG0lc1AWVQL905gv4cYgInO3p1ijQBGIyOjk9l9lwkQFmSWrUWk0Go4Zln
+	1vsTWIkOTLrZhLtnfXnl9tWa8Nqa9Kk+s+b3RptQyvDADrrv15X8fa15ZqSzDjjxqoho
+	CXDw==
+X-Received: by 10.50.32.6 with SMTP id e6mr4823305igi.2.1394221601391; Fri, 07
+	Mar 2014 11:46:41 -0800 (PST)
 MIME-Version: 1.0
-To: yocto@yoctoproject.org
-References: <5319BBD3.2040703@dynamicdevices.co.uk>	<d7a9bc4b1fb345ba80df198abb7138e3@BLUPR05MB037.namprd05.prod.outlook.com>
+Received: by 10.50.224.136 with HTTP; Fri, 7 Mar 2014 11:46:11 -0800 (PST)
+In-Reply-To: <531A081F.5010803@benkamen.net>
+References: <5319BBD3.2040703@dynamicdevices.co.uk>
+	<d7a9bc4b1fb345ba80df198abb7138e3@BLUPR05MB037.namprd05.prod.outlook.com>
 	<CAJv4cO0mjzs7Mh5zcezsvbE+Zf3VRGgd2XODzZiPKu0d5LPF-g@mail.gmail.com>
-In-Reply-To: <CAJv4cO0mjzs7Mh5zcezsvbE+Zf3VRGgd2XODzZiPKu0d5LPF-g@mail.gmail.com>
-Subject: Slightly OT: Administrivia (add "-- " to footers)
+	<531A081F.5010803@benkamen.net>
+From: Khem Raj <raj.khem@gmail.com>
+Date: Fri, 7 Mar 2014 11:46:11 -0800
+Message-ID: <CAMKF1sq-5xjNOHS1mnwUvsEpMrFDpu=9oqO1KrD=5tzGjtgMuA@mail.gmail.com>
+To: Ben Kamen <ben@benjammin.net>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Slightly OT: Administrivia (add "-- " to footers)
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -30,22 +41,31 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 07 Mar 2014 17:55:46 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Fri, 07 Mar 2014 19:46:43 -0000
+Content-Type: text/plain; charset=UTF-8
 
-If I could  make a small suggestion for the Yocto list owners.
+On Fri, Mar 7, 2014 at 9:55 AM, Ben Kamen <ben@benjammin.net> wrote:
+> If I could  make a small suggestion for the Yocto list owners.
+>
+> I also run MailMan and have set all the footers to be preceded by the "-- "
+> (dash dash space).
+>
+> For the mailers that understand it (like Thunderbird), everything past the
+> "-- " is excluded in replies.
+>
+> This would cut down a lot on needed trim of appended footers on the list.
+>
 
-I also run MailMan and have set all the footers to be preceded by the "-- " (dash dash space).
+I think its a very good suggestion. I am sure Michael H would be interested.
 
-For the mailers that understand it (like Thunderbird), everything past the "-- " is excluded in replies.
-
-This would cut down a lot on needed trim of appended footers on the list.
-
-Just an item for the suggestion box.
-
-Cheers,
-
-  -Ben
-
+> Just an item for the suggestion box.
+>
+> Cheers,
+>
+>  -Ben
+>
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
