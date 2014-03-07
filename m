@@ -1,35 +1,35 @@
-Return-Path: <raj.khem@gmail.com>
-Received: from mail-ig0-f176.google.com (mail-ig0-f176.google.com
-	[209.85.213.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7B626E00AE0
-	for <yocto@yoctoproject.org>; Fri,  7 Mar 2014 11:46:41 -0800 (PST)
-Received: by mail-ig0-f176.google.com with SMTP id uy17so2796826igb.3
-	for <yocto@yoctoproject.org>; Fri, 07 Mar 2014 11:46:41 -0800 (PST)
+Return-Path: <diego.sueiro@gmail.com>
+Received: from mail-qc0-f170.google.com (mail-qc0-f170.google.com
+	[209.85.216.170])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A2BC1E00AE0
+	for <yocto@yoctoproject.org>; Fri,  7 Mar 2014 11:49:18 -0800 (PST)
+Received: by mail-qc0-f170.google.com with SMTP id e9so5351131qcy.1
+	for <yocto@yoctoproject.org>; Fri, 07 Mar 2014 11:49:17 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
 	:cc:content-type;
-	bh=0zyFSAfbbZlW3vh7cUGusSQENgTqEWD+LLDSMwner2U=;
-	b=TJ3rztRium+tFp+SZyX0RqkhMrqvsbojuwxrLIWMEtFvTS/oqPK3ovLGfi7O67103i
-	5EDV4WpUVAv8hsLbTt2J72rRPgCefwcOZJrNvdy6keqqm5C5FXiDpljW4FrRfmCyqivC
-	ENQZy9pKGNBDlQDTgkJIN/dKKiihvE7IkLPArwh52zvmRxgspuf9PKeRPfKJF0LSeZcR
-	D+XgBeNho/WG0lc1AWVQL905gv4cYgInO3p1ijQBGIyOjk9l9lwkQFmSWrUWk0Go4Zln
-	1vsTWIkOTLrZhLtnfXnl9tWa8Nqa9Kk+s+b3RptQyvDADrrv15X8fa15ZqSzDjjxqoho
-	CXDw==
-X-Received: by 10.50.32.6 with SMTP id e6mr4823305igi.2.1394221601391; Fri, 07
-	Mar 2014 11:46:41 -0800 (PST)
+	bh=NzuCz+qGU3Ue8xdPIgszfr1tvmR/O4YADMeY2GpFOW4=;
+	b=y4VrCfAjucxx9uRM/TvrXvapbqgVcSMNvT6f/DKmKgsnmOIbDJ6cX+Z4fmZpWq6TPD
+	mEoF+rfoXpOhxWaDk2YBoqUR6Ptfi0P7oNrmAAKFh4hOqCZp6WP2nRnIs3mT9fYodAVY
+	BAe7GUCOovbnmGrhOcrEGiziyKWTIP+qMjdXw/s2IHJE4Me6s0hzI8a39gZSf2frBOd5
+	oA8sJwe0IusiGUZBYl60umZhV1Eaql9+U5YtA8ikO8Rhwr62b8+edOBy/zrbag6JzQs5
+	Wv3pyiVCJNCdX+k1ZKTicG96nSFYnDwHOefv6W/2n68i6z3y3Zeyv1TNZLNGUfUseAS0
+	kY6Q==
 MIME-Version: 1.0
-Received: by 10.50.224.136 with HTTP; Fri, 7 Mar 2014 11:46:11 -0800 (PST)
-In-Reply-To: <531A081F.5010803@benkamen.net>
+X-Received: by 10.224.163.139 with SMTP id a11mr24204706qay.1.1394221757355;
+	Fri, 07 Mar 2014 11:49:17 -0800 (PST)
+Received: by 10.140.25.47 with HTTP; Fri, 7 Mar 2014 11:49:17 -0800 (PST)
+Received: by 10.140.25.47 with HTTP; Fri, 7 Mar 2014 11:49:17 -0800 (PST)
+In-Reply-To: <CAJv4cO0mjzs7Mh5zcezsvbE+Zf3VRGgd2XODzZiPKu0d5LPF-g@mail.gmail.com>
 References: <5319BBD3.2040703@dynamicdevices.co.uk>
 	<d7a9bc4b1fb345ba80df198abb7138e3@BLUPR05MB037.namprd05.prod.outlook.com>
 	<CAJv4cO0mjzs7Mh5zcezsvbE+Zf3VRGgd2XODzZiPKu0d5LPF-g@mail.gmail.com>
-	<531A081F.5010803@benkamen.net>
-From: Khem Raj <raj.khem@gmail.com>
-Date: Fri, 7 Mar 2014 11:46:11 -0800
-Message-ID: <CAMKF1sq-5xjNOHS1mnwUvsEpMrFDpu=9oqO1KrD=5tzGjtgMuA@mail.gmail.com>
-To: Ben Kamen <ben@benjammin.net>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Slightly OT: Administrivia (add "-- " to footers)
+Date: Fri, 7 Mar 2014 16:49:17 -0300
+Message-ID: <CAMCfZKGY-34kHESBAzR_bUmD=XsnWNUq2+nTwQAa4sLtUkDKEA@mail.gmail.com>
+From: Diego Sueiro <diego.sueiro@gmail.com>
+To: "Mark O'Donovan" <shiftee@eircom.net>
+Cc: yocto@yoctoproject.org
+Subject: Re: Remote management of embedded devices
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,31 +41,46 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 07 Mar 2014 19:46:43 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Fri, 07 Mar 2014 19:49:22 -0000
+Content-Type: multipart/alternative; boundary=089e0158a8e695f9cc04f4098cec
 
-On Fri, Mar 7, 2014 at 9:55 AM, Ben Kamen <ben@benjammin.net> wrote:
-> If I could  make a small suggestion for the Yocto list owners.
->
-> I also run MailMan and have set all the footers to be preceded by the "-- "
-> (dash dash space).
->
-> For the mailers that understand it (like Thunderbird), everything past the
-> "-- " is excluded in replies.
->
-> This would cut down a lot on needed trim of appended footers on the list.
->
+--089e0158a8e695f9cc04f4098cec
+Content-Type: text/plain; charset=ISO-8859-1
 
-I think its a very good suggestion. I am sure Michael H would be interested.
+Hi Mark,
 
-> Just an item for the suggestion box.
+On Fri, Mar 7, 2014 at 2:42 PM, Mark O'Donovan <shiftee@eircom.net> wrote:
 >
-> Cheers,
->
->  -Ben
->
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+> We're experimenting with software called yalertunnel (yaler.net).
 
+Is it open-source? Is there any cost to use it?
+
+Regards,
+
+--
+*dS
+Diego Sueiro
+
+Administrador do Embarcados
+www.embarcados.com.br
+
+/*long live rock 'n roll*/
+
+--089e0158a8e695f9cc04f4098cec
+Content-Type: text/html; charset=ISO-8859-1
+
+<p dir="ltr">Hi Mark,</p>
+<p dir="ltr">On Fri, Mar 7, 2014 at 2:42 PM, Mark O&#39;Donovan &lt;<a href="mailto:shiftee@eircom.net">shiftee@eircom.net</a>&gt; wrote:<br>
+&gt;<br>
+&gt; We&#39;re experimenting with software called yalertunnel (<a href="http://yaler.net">yaler.net</a>).<br></p>
+<p dir="ltr">Is it open-source? Is there any cost to use it?<br></p>
+<p dir="ltr">Regards,</p>
+<p dir="ltr">--<br>
+*dS<br>
+Diego Sueiro</p>
+<p dir="ltr">Administrador do Embarcados<br>
+<a href="http://www.embarcados.com.br">www.embarcados.com.br</a></p>
+<p dir="ltr">/*long live rock &#39;n roll*/<br>
+</p>
+
+--089e0158a8e695f9cc04f4098cec--
