@@ -1,37 +1,32 @@
-Return-Path: <raj.khem@gmail.com>
-Received: from mail-ie0-f177.google.com (mail-ie0-f177.google.com
-	[209.85.223.177])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A12B8E009B0
-	for <yocto@yoctoproject.org>; Thu,  6 Mar 2014 17:39:36 -0800 (PST)
-Received: by mail-ie0-f177.google.com with SMTP id rl12so3688454iec.36
-	for <yocto@yoctoproject.org>; Thu, 06 Mar 2014 17:39:35 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type;
-	bh=LxP8zRGrGVaSycc0bHNtNziNvESLv0f4UTwaeQuqwUg=;
-	b=Y0RimNqGfDvCMW3wNuNL+m9fUwKD7zX2PL1FaC26b9eUQvt8TN3lfwLDtOWqWimhX0
-	wzLepjEvhoYPkFpd0GUfHNtc3FvbTOiWFeC8FUJx8xR7ji0cu/eCX3yWDH693yvxUlvp
-	NyXp1XRV5JmXPNgK7t02i6M+0iP1u/lF9N3ZMmLDunm+p34MAQX2Eq3fcThSzlYXWBnC
-	M3Ma+HsN+lFIoudRWGVY++VGWf56xtTbL1LHnt+U5KAUyWZiFsq1h4ReN2LvuFBZSGMB
-	p4G23v9p7vWP+rGrcU38YJIXG0iyq5LFUXXh+p+Nhegr0xj96qv1t07VnzCll17UbdQS
-	rpnw==
+Return-Path: <elizabeth.flanagan@intel.com>
+Received: from mail-ve0-f178.google.com (mail-ve0-f178.google.com
+	[209.85.128.178])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6A415E009FC
+	for <yocto@yoctoproject.org>; Thu,  6 Mar 2014 18:35:44 -0800 (PST)
+Received: by mail-ve0-f178.google.com with SMTP id jw12so3549629veb.37
+	for <yocto@yoctoproject.org>; Thu, 06 Mar 2014 18:35:44 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:date:message-id:subject:from:to:cc
+	:content-type;
+	bh=KePUSOBQRRS5fFqGl7KYZsxnpLFyaMUiN5E3co4jzHo=;
+	b=kK3aRJWGubgzaUP6eZdtSVNOyBDZYpyS82gFrl1o8oh1auhtQ0rDlt3g886o8kDtRq
+	KfLMiU1F/ddNxftOv9bhicibosJdteE/oN1MVCsyY6IG1faMUCWOmSXrmUhaZCTU/hAB
+	OdAta613JWnrE71/iF3ag+k8MD8nNjay6JTJKD2QUbJWLAFh1ndcOfjsxkIun/hrYvzy
+	8te2YDjSUuN2wOSdLeHNY4pKkQJiXWy3TquKIsZU6gkD31CoRyVYf8sI57IlwUF5AASQ
+	If/ps4fa6MzJt1qIzZoW02JWxe8PIcToDPFpq/rX2NebdGx6Ut730QIBTFQxxKz+UtGX
+	d7lQ==
+X-Gm-Message-State: ALoCoQlqEWwRAMhrazKj5jp+dcNJi5IcOfhJh7cTYpdNe/iwsuWFOqwlcnv13ZESKUE9zdcENcOG
 MIME-Version: 1.0
-X-Received: by 10.43.75.2 with SMTP id yy2mr12918425icb.54.1394156375312; Thu,
-	06 Mar 2014 17:39:35 -0800 (PST)
-Received: by 10.50.224.136 with HTTP; Thu, 6 Mar 2014 17:39:35 -0800 (PST)
-Received: by 10.50.224.136 with HTTP; Thu, 6 Mar 2014 17:39:35 -0800 (PST)
-In-Reply-To: <CAA7h+Epd3vWbrH5eOm5SYzT7X97sJ6Y6yH61=21W7CnuTQzNjQ@mail.gmail.com>
-References: <1394028560.17657.YahooMailNeo@web163103.mail.bf1.yahoo.com>
-	<CAMKF1spN_KT1-PtQR22ixmQ=xTxBoAht04AY11CauCz0ba0BiQ@mail.gmail.com>
-	<CAA7h+Eqr8bVtsoYoNA7EWhUJZ63L27botuvLiBhx5O5CwLF2+Q@mail.gmail.com>
-	<CAMKF1srUeJ-Djk_ibR=PYW9MS3FVX20psJZMMguxYEVWdwoVJQ@mail.gmail.com>
-	<CAA7h+Epd3vWbrH5eOm5SYzT7X97sJ6Y6yH61=21W7CnuTQzNjQ@mail.gmail.com>
-Date: Thu, 6 Mar 2014 17:39:35 -0800
-Message-ID: <CAMKF1sosDf5UJkNwjvPFVYxSo-Jt3DHnKZ0A_B_YWQ_ET7o6Rg@mail.gmail.com>
-From: Khem Raj <raj.khem@gmail.com>
-To: Rick Bianchi <bianchirickkutta@gmail.com>
-Cc: yocto@yoctoproject.org
-Subject: Re: Adding headers to tool chain
+X-Received: by 10.221.26.10 with SMTP id rk10mr8012099vcb.0.1394159743975;
+	Thu, 06 Mar 2014 18:35:43 -0800 (PST)
+Received: by 10.52.76.201 with HTTP; Thu, 6 Mar 2014 18:35:43 -0800 (PST)
+Date: Fri, 7 Mar 2014 02:35:43 +0000
+Message-ID: <CAPhnLPCjUzdpQ71A1T6pGsOwnvre7ST78E0XRyRj9Sb4ji8-0A@mail.gmail.com>
+From: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Cc: Otavio Salvador <otavio@ossystems.com.br>
+Subject: Yocto Project 1.4.3.rc3 now available for testing
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,105 +38,25 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 07 Mar 2014 01:39:38 -0000
-Content-Type: multipart/alternative; boundary=001a11c30ef0830e5504f3fa53d4
+X-List-Received-Date: Fri, 07 Mar 2014 02:35:45 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
---001a11c30ef0830e5504f3fa53d4
-Content-Type: text/plain; charset=UTF-8
+Please begin QA as soon as possible:
 
--Khem
-On Mar 6, 2014 4:30 PM, "Rick Bianchi" <bianchirickkutta@gmail.com> wrote:
->
-> Khem,
-> I did the following, but still no headers and source in /usr/src:
->
+http://autobuilder.yoctoproject.org/pub/nightly/20140306-3
 
-yes its application sdk not kernel or device driver sdk
+bitbake 66d01338ab1095775b854ad7509f4d2631c6e6ed Trigger
+eclipse-poky-juno dc9a609c68fe4a6bbbf34d418fd6611489c1d6f7 Trigger
+meta-fsl-arm 24caed8ff6f6088033d00d4567f7a7cad7fd5dd3 Trigger
+meta-fsl-ppc e4876c9193fc92a3978fcd7dd4858b86c3da5af5 Trigger
+meta-intel 0a0605d258783bfd18c75029d9d1ccb663ffd139 Trigger
+meta-minnow d5849d5ea14bc9b34ddd05b92c3a7ea46bd1863a Trigger
+meta-qt3 4c27cce6688aa39852f3cba5e7b80ec279019605 Trigger
+oecore fae45abd37636741d51e5b75ad2c09f43b72d01d
+poky 7ab82abcad9ede847c42c01d2a4f4c2c18877e6f
 
-> bitbake meta-toolchain
->
-> bitbake -cpopulate_sdk gumstix-console-image
->
->
->
->
-> On Thu, Mar 6, 2014 at 12:34 PM, Khem Raj <raj.khem@gmail.com> wrote:
->>
->> On Thu, Mar 6, 2014 at 11:12 AM, Rick Bianchi
->> <bianchirickkutta@gmail.com> wrote:
->> > Khem,
->> > Is this the same process if I needed to get the kernel headers and
-source
->> > onto the build?
->> >
->>
->> this is application development so kernel headers for userspace will be
-there.
->>
->> >
->> > On Wed, Mar 5, 2014 at 2:15 PM, Khem Raj <raj.khem@gmail.com> wrote:
->> >>
->> >> On Wed, Mar 5, 2014 at 6:09 AM, Joel Parker <joelparker27@yahoo.com>
->> >> wrote:
->> >> > $ bitbake meta-toolchain
->> >>
->> >> do bitbake -cpopulate_sdk <image-to-which-you-added-sqlite>
->> >> and install that SDK
->> >> _______________________________________________
->> >> yocto mailing list
->> >> yocto@yoctoproject.org
->> >> https://lists.yoctoproject.org/listinfo/yocto
->> >
->> >
->
->
+-- 
+Elizabeth Flanagan
+Yocto Project
+Build and Release
 
---001a11c30ef0830e5504f3fa53d4
-Content-Type: text/html; charset=UTF-8
-
-<p dir="ltr"></p>
-<p dir="ltr">-Khem<br>
-On Mar 6, 2014 4:30 PM, &quot;Rick Bianchi&quot; &lt;<a href="mailto:bianchirickkutta@gmail.com">bianchirickkutta@gmail.com</a>&gt; wrote:<br>
-&gt;<br>
-&gt; Khem,<br>
-&gt; I did the following, but still no headers and source in /usr/src:<br>
-&gt;</p>
-<p dir="ltr">yes its application sdk not kernel or device driver sdk</p>
-<p dir="ltr">&gt; bitbake meta-toolchain<br>
-&gt;<br>
-&gt; bitbake -cpopulate_sdk gumstix-console-image<br>
-&gt;<br>
-&gt;<br>
-&gt;<br>
-&gt;<br>
-&gt; On Thu, Mar 6, 2014 at 12:34 PM, Khem Raj &lt;<a href="mailto:raj.khem@gmail.com">raj.khem@gmail.com</a>&gt; wrote:<br>
-&gt;&gt;<br>
-&gt;&gt; On Thu, Mar 6, 2014 at 11:12 AM, Rick Bianchi<br>
-&gt;&gt; &lt;<a href="mailto:bianchirickkutta@gmail.com">bianchirickkutta@gmail.com</a>&gt; wrote:<br>
-&gt;&gt; &gt; Khem,<br>
-&gt;&gt; &gt; Is this the same process if I needed to get the kernel headers and source<br>
-&gt;&gt; &gt; onto the build?<br>
-&gt;&gt; &gt;<br>
-&gt;&gt;<br>
-&gt;&gt; this is application development so kernel headers for userspace will be there.<br>
-&gt;&gt;<br>
-&gt;&gt; &gt;<br>
-&gt;&gt; &gt; On Wed, Mar 5, 2014 at 2:15 PM, Khem Raj &lt;<a href="mailto:raj.khem@gmail.com">raj.khem@gmail.com</a>&gt; wrote:<br>
-&gt;&gt; &gt;&gt;<br>
-&gt;&gt; &gt;&gt; On Wed, Mar 5, 2014 at 6:09 AM, Joel Parker &lt;<a href="mailto:joelparker27@yahoo.com">joelparker27@yahoo.com</a>&gt;<br>
-&gt;&gt; &gt;&gt; wrote:<br>
-&gt;&gt; &gt;&gt; &gt; $ bitbake meta-toolchain<br>
-&gt;&gt; &gt;&gt;<br>
-&gt;&gt; &gt;&gt; do bitbake -cpopulate_sdk &lt;image-to-which-you-added-sqlite&gt;<br>
-&gt;&gt; &gt;&gt; and install that SDK<br>
-&gt;&gt; &gt;&gt; _______________________________________________<br>
-&gt;&gt; &gt;&gt; yocto mailing list<br>
-&gt;&gt; &gt;&gt; <a href="mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br>
-&gt;&gt; &gt;&gt; <a href="https://lists.yoctoproject.org/listinfo/yocto">https://lists.yoctoproject.org/listinfo/yocto</a><br>
-&gt;&gt; &gt;<br>
-&gt;&gt; &gt;<br>
-&gt;<br>
-&gt;<br>
-</p>
-
---001a11c30ef0830e5504f3fa53d4--
