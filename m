@@ -1,26 +1,20 @@
-Return-Path: <Rongqing.Li@windriver.com>
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 23A4AE009FC
-	for <yocto@yoctoproject.org>; Thu,  6 Mar 2014 19:32:41 -0800 (PST)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail.windriver.com (8.14.5/8.14.5) with ESMTP id s273Wenk029478
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL)
-	for <yocto@yoctoproject.org>; Thu, 6 Mar 2014 19:32:40 -0800 (PST)
-Received: from [128.224.162.168] (128.224.162.168) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server id 14.3.169.1;
-	Thu, 6 Mar 2014 19:32:39 -0800
-Message-ID: <53193E20.2000703@windriver.com>
-Date: Fri, 7 Mar 2014 11:33:52 +0800
-From: Rongqing Li <rongqing.li@windriver.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:17.0) Gecko/20130623 Thunderbird/17.0.7
-MIME-Version: 1.0
-To: <rongqing.li@windriver.com>
-References: <cover.1393912246.git.rongqing.li@windriver.com>
-In-Reply-To: <cover.1393912246.git.rongqing.li@windriver.com>
-Cc: yocto@yoctoproject.org
-Subject: Re: [PATCH 0/2] fix audit configuration file permission and enable systemd support
+Return-Path: <paul.eggleton@linux.intel.com>
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3C855E009FC
+	for <yocto@yoctoproject.org>; Fri,  7 Mar 2014 03:59:02 -0800 (PST)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by fmsmga101.fm.intel.com with ESMTP; 07 Mar 2014 03:59:02 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.97,607,1389772800"; d="scan'208";a="487874079"
+Received: from lbhoopat-mobl1.ger.corp.intel.com (HELO
+	peggleto-mobl5.ger.corp.intel.com) ([10.252.120.98])
+	by fmsmga001.fm.intel.com with ESMTP; 07 Mar 2014 03:59:01 -0800
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: yocto@yoctoproject.org
+Date: Fri,  7 Mar 2014 11:58:55 +0000
+Message-Id: <1394193535-22411-1-git-send-email-paul.eggleton@linux.intel.com>
+X-Mailer: git-send-email 1.8.5.3
+Subject: [meta-qt3][PATCH] core-image-lsb-qt3: fix for rename of packagegroup-core-basic
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,39 +26,27 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 07 Mar 2014 03:32:42 -0000
-Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Fri, 07 Mar 2014 11:59:03 -0000
 
-ping, it should be [meta-selinux]
+Signed-off-by: Paul Eggleton <paul.eggleton@linux.intel.com>
+---
+ recipes-qt3/images/core-image-lsb-qt3.bb | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-
--Roy
-On 03/04/2014 01:52 PM, rongqing.li@windriver.com wrote:
-> From: Roy Li <rongqing.li@windriver.com>
->
-> The following changes since commit a6079a43719e79e12a57e609923a0cccdba06916:
->
->    refpolicy: fix real path for su.shadow (2014-02-13 10:52:07 -0500)
->
-> are available in the git repository at:
->
->    git://git.pokylinux.org/poky-contrib roy/audit-two-fix
->    http://git.pokylinux.org/cgit.cgi/poky-contrib/log/?h=roy/audit-two-fix
->
-> Roy Li (2):
->    audit: Add systemd support
->    audit: fix the permission of configuration file
->
->   recipes-security/audit/audit/audit-volatile.conf |    1 +
->   recipes-security/audit/audit/auditd.service      |   21 +++++++++++++++++++++
->   recipes-security/audit/audit_2.3.2.bb            |   21 +++++++++++++++++++--
->   3 files changed, 41 insertions(+), 2 deletions(-)
->   create mode 100644 recipes-security/audit/audit/audit-volatile.conf
->   create mode 100644 recipes-security/audit/audit/auditd.service
->
-
+diff --git a/recipes-qt3/images/core-image-lsb-qt3.bb b/recipes-qt3/images/core-image-lsb-qt3.bb
+index 8aab5ae..b56b1c6 100644
+--- a/recipes-qt3/images/core-image-lsb-qt3.bb
++++ b/recipes-qt3/images/core-image-lsb-qt3.bb
+@@ -2,7 +2,7 @@ IMAGE_FEATURES += "splash ssh-server-openssh"
+ 
+ IMAGE_INSTALL = "\
+     ${CORE_IMAGE_BASE_INSTALL} \
+-    packagegroup-core-basic \
++    packagegroup-core-full-cmdline \
+     packagegroup-core-lsb \
+     packagegroup-core-qt3-libs \
+     "
 -- 
-Best Reagrds,
-Roy | RongQing Li
+1.8.5.3
+
 
