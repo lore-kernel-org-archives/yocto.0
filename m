@@ -1,33 +1,35 @@
-Return-Path: <ajlennon@dynamicdevices.co.uk>
-Received: from www.dynamicdevices.co.uk (www.dynamicdevices.co.uk
-	[89.200.136.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 190C8E0098F
-	for <yocto@yoctoproject.org>; Sat,  8 Mar 2014 01:19:05 -0800 (PST)
-Received: from localhost (localhost [127.0.0.1])
-	by www.dynamicdevices.co.uk (Postfix) with ESMTP id 5B8E1862DB;
-	Sat,  8 Mar 2014 09:19:05 +0000 (UTC)
-X-Virus-Scanned: Debian amavisd-new at lennoab2.miniserver.com
-Received: from www.dynamicdevices.co.uk ([127.0.0.1])
-	by localhost (www.dynamicdevices.co.uk [127.0.0.1]) (amavisd-new,
-	port 10024)
-	with ESMTP id I1xfkRrjogkv; Sat,  8 Mar 2014 09:19:04 +0000 (UTC)
-Received: from [127.0.0.1] (cpc32-live22-2-0-cust59.17-2.cable.virginm.net
-	[82.36.253.60])
-	(using TLSv1 with cipher ECDHE-RSA-AES128-SHA (128/128 bits))
-	(No client certificate requested)
-	by www.dynamicdevices.co.uk (Postfix) with ESMTPSA id 796B48610D;
-	Sat,  8 Mar 2014 09:19:04 +0000 (UTC)
-Message-ID: <531AE081.8070601@dynamicdevices.co.uk>
-Date: Sat, 08 Mar 2014 09:18:57 +0000
-From: Alex J Lennon <ajlennon@dynamicdevices.co.uk>
-User-Agent: Mozilla/5.0 (Windows NT 6.3; WOW64;
-	rv:24.0) Gecko/20100101 Thunderbird/24.3.0
+Return-Path: <dfldashgkv@gmail.com>
+Received: from mail-qg0-f50.google.com (mail-qg0-f50.google.com
+	[209.85.192.50])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 502C2E0097A
+	for <yocto@yoctoproject.org>; Sat,  8 Mar 2014 04:01:42 -0800 (PST)
+Received: by mail-qg0-f50.google.com with SMTP id q108so5915030qgd.9
+	for <yocto@yoctoproject.org>; Sat, 08 Mar 2014 04:01:42 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:sender:in-reply-to:references:date:message-id:subject
+	:from:to:cc:content-type;
+	bh=e9KavCLich6pCMV9PiM5/YLkNjdObbjk6IOTMVwjxfo=;
+	b=MDbBIqdK/5Nq9gGaJq3cBja1jTaVlcbYJS8OhCmosvqz3ws1YOipCBhEa3utdCC7Mw
+	Hb3GZ5tIpxYXUc1FwZryI7atsryuCL0IyNjfjpKSmJ1PCdTPK3JFAciGZR7QLiLR9MPe
+	dh+ZuIGZ+PX6me98fSIhNtc3ctPxCHRuRxVb/u3ojW1lpTAZuxr6nIUpA7KlsBYa/GhE
+	wv6JaXAfmxtutk84PElo0SuRPE2LvQHfX6JjJfEZFixHID2ENF5I8Vucq3nU5EB/VuFI
+	gkDGYynSatZM0y89soVTJiSCvIHWnioGsy6piitVVFbrcfwA2jSmSuALWmPvTnVkP9Uf
+	8Fmg==
 MIME-Version: 1.0
-To: Mark O'Donovan <shiftee@eircom.net>
-References: <5319BBD3.2040703@dynamicdevices.co.uk>	<d7a9bc4b1fb345ba80df198abb7138e3@BLUPR05MB037.namprd05.prod.outlook.com>
+X-Received: by 10.224.43.144 with SMTP id w16mr745133qae.93.1394280101943;
+	Sat, 08 Mar 2014 04:01:41 -0800 (PST)
+Sender: dfldashgkv@gmail.com
+Received: by 10.96.21.130 with HTTP; Sat, 8 Mar 2014 04:01:41 -0800 (PST)
+In-Reply-To: <CAMCfZKGY-34kHESBAzR_bUmD=XsnWNUq2+nTwQAa4sLtUkDKEA@mail.gmail.com>
+References: <5319BBD3.2040703@dynamicdevices.co.uk>
+	<d7a9bc4b1fb345ba80df198abb7138e3@BLUPR05MB037.namprd05.prod.outlook.com>
 	<CAJv4cO0mjzs7Mh5zcezsvbE+Zf3VRGgd2XODzZiPKu0d5LPF-g@mail.gmail.com>
-In-Reply-To: <CAJv4cO0mjzs7Mh5zcezsvbE+Zf3VRGgd2XODzZiPKu0d5LPF-g@mail.gmail.com>
-X-Enigmail-Version: 1.6
+	<CAMCfZKGY-34kHESBAzR_bUmD=XsnWNUq2+nTwQAa4sLtUkDKEA@mail.gmail.com>
+Date: Sat, 8 Mar 2014 12:01:41 +0000
+X-Google-Sender-Auth: eJlaLyFOVJtZIsezlzyVB3GtgGM
+Message-ID: <CAJv4cO1CSbf5bukkOgJgPYPEzg-EQsGK0XSeS+P0bm1wdzshEw@mail.gmail.com>
+From: "Mark O'Donovan" <shiftee@eircom.net>
+To: Diego Sueiro <diego.sueiro@gmail.com>
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: Remote management of embedded devices
 X-BeenThere: yocto@yoctoproject.org
@@ -41,67 +43,81 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 08 Mar 2014 09:19:08 -0000
-Content-Type: multipart/alternative;
-	boundary="------------040602060609090206070309"
+X-List-Received-Date: Sat, 08 Mar 2014 12:01:43 -0000
+Content-Type: multipart/alternative; boundary=047d7bdca19a319e7c04f41722ea
 
---------------040602060609090206070309
+--047d7bdca19a319e7c04f41722ea
 Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: 7bit
+
+It is open-source.
+I've just looked through the license file, the main point seems to be that
+is is free for non-commercial purposes.
+It claims to be based on the sleepycat license.
+
+See here for the source code and license file:
+  http://hg.yaler.org/yaler/src/
+
+Regards,
+Mark
 
 
-On 07/03/2014 17:42, Mark O'Donovan wrote:
-> We're experimenting with software called yalertunnel (yaler.net
-> <http://yaler.net>).
-> It causes embedded devices to maintain a connection to a relay server
-> through which they can be accessed. We are using a 3g broadband
-> dongle with no static ip or port forwarding and results have been quite
-> good. We have been using it only for accessing our web-interface but
-> they also support ssh.
+On Fri, Mar 7, 2014 at 7:49 PM, Diego Sueiro <diego.sueiro@gmail.com> wrote:
 
-Thanks for that Mark. I will take a look.
+> Hi Mark,
+>
+> On Fri, Mar 7, 2014 at 2:42 PM, Mark O'Donovan <shiftee@eircom.net> wrote:
+> >
+> > We're experimenting with software called yalertunnel (yaler.net).
+>
+> Is it open-source? Is there any cost to use it?
+>
+> Regards,
+>
+> --
+> *dS
+> Diego Sueiro
+>
+> Administrador do Embarcados
+> www.embarcados.com.br
+>
+> /*long live rock 'n roll*/
+>
 
-Best, Alex
-
-
---------------040602060609090206070309
+--047d7bdca19a319e7c04f41722ea
 Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: quoted-printable
 
-<html>
-  <head>
-    <meta content="text/html; charset=ISO-8859-1"
-      http-equiv="Content-Type">
-  </head>
-  <body text="#000000" bgcolor="#FFFFFF">
-    <br>
-    <div class="moz-cite-prefix">On 07/03/2014 17:42, Mark O'Donovan
-      wrote:<br>
-    </div>
-    <blockquote
-cite="mid:CAJv4cO0mjzs7Mh5zcezsvbE+Zf3VRGgd2XODzZiPKu0d5LPF-g@mail.gmail.com"
-      type="cite">
-      <div dir="ltr">We're experimenting with software called
-        yalertunnel (<a moz-do-not-send="true" href="http://yaler.net">yaler.net</a>).
-        <br>
-        It causes embedded devices to maintain a connection to a relay
-        server<br>
-        through which they can be accessed. We are using a 3g broadband<br>
-        dongle with no static ip or port forwarding and results have
-        been quite <br>
-        good. We have been using it only for accessing our web-interface
-        but <br>
-        they also support ssh.</div>
-    </blockquote>
-    <br>
-    Thanks for that Mark. I will take a look.<br>
-    <br>
-    Best, Alex<br>
-    <br>
-    <div class="moz-signature">
-      <div class="preview"> </div>
-    </div>
-  </body>
-</html>
+<div dir=3D"ltr"><div><div><div><div>It is open-source.<br></div>I&#39;ve j=
+ust looked through the license file, the main point seems to be that is is =
+free for non-commercial purposes.<br></div><div>It claims to be based on th=
+e sleepycat license.<br>
+</div></div><br>See here for the source code and license file:<br>=A0 <a hr=
+ef=3D"http://hg.yaler.org/yaler/src/">http://hg.yaler.org/yaler/src/</a><br=
+><br></div><div>Regards,<br>Mark<br></div></div><div class=3D"gmail_extra">=
+<br>
+<br><div class=3D"gmail_quote">On Fri, Mar 7, 2014 at 7:49 PM, Diego Sueiro=
+ <span dir=3D"ltr">&lt;<a href=3D"mailto:diego.sueiro@gmail.com" target=3D"=
+_blank">diego.sueiro@gmail.com</a>&gt;</span> wrote:<br><blockquote class=
+=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padd=
+ing-left:1ex">
+<p dir=3D"ltr">Hi Mark,</p><div class=3D"">
+<p dir=3D"ltr">On Fri, Mar 7, 2014 at 2:42 PM, Mark O&#39;Donovan &lt;<a hr=
+ef=3D"mailto:shiftee@eircom.net" target=3D"_blank">shiftee@eircom.net</a>&g=
+t; wrote:<br>
+&gt;<br>
+&gt; We&#39;re experimenting with software called yalertunnel (<a href=3D"h=
+ttp://yaler.net" target=3D"_blank">yaler.net</a>).<br></p>
+</div><p dir=3D"ltr">Is it open-source? Is there any cost to use it?<br></p=
+>
+<p dir=3D"ltr">Regards,</p>
+<p dir=3D"ltr">--<br>
+*dS<br>
+Diego Sueiro</p>
+<p dir=3D"ltr">Administrador do Embarcados<br>
+<a href=3D"http://www.embarcados.com.br" target=3D"_blank">www.embarcados.c=
+om.br</a></p>
+<p dir=3D"ltr">/*long live rock &#39;n roll*/<br>
+</p>
+</blockquote></div><br></div>
 
---------------040602060609090206070309--
+--047d7bdca19a319e7c04f41722ea--
