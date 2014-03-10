@@ -1,21 +1,21 @@
 Return-Path: <elizabeth.flanagan@intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 73C32E00AE2
-	for <yocto@yoctoproject.org>; Mon, 10 Mar 2014 10:32:58 -0700 (PDT)
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0696AE00AE2
+	for <yocto@yoctoproject.org>; Mon, 10 Mar 2014 10:49:59 -0700 (PDT)
 Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga101.jf.intel.com with ESMTP; 10 Mar 2014 10:32:58 -0700
+	by orsmga102.jf.intel.com with ESMTP; 10 Mar 2014 10:45:30 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.97,625,1389772800"; d="scan'208";a="497159372"
+X-IronPort-AV: E=Sophos;i="4.97,625,1389772800"; d="scan'208";a="497166867"
 Received: from qana.jf.intel.com ([10.7.201.148])
-	by orsmga002.jf.intel.com with ESMTP; 10 Mar 2014 10:32:29 -0700
+	by orsmga002.jf.intel.com with ESMTP; 10 Mar 2014 10:49:58 -0700
 Received: by qana.jf.intel.com (Postfix, from userid 1000)
-	id 47FBB5F8286E; Mon, 10 Mar 2014 10:29:07 -0700 (PDT)
+	id 4A06F5F825AC; Mon, 10 Mar 2014 10:46:36 -0700 (PDT)
 From: Elizabeth Flanagan <elizabeth.flanagan@intel.com>
 To: yocto@yoctoproject.org
-Date: Mon, 10 Mar 2014 10:29:02 -0700
-Message-Id: <1394472542-10246-1-git-send-email-elizabeth.flanagan@intel.com>
+Date: Mon, 10 Mar 2014 10:46:31 -0700
+Message-Id: <1394473591-11356-1-git-send-email-elizabeth.flanagan@intel.com>
 X-Mailer: git-send-email 1.8.1.2
-Subject: [AUTOBUILDER][PATCH] yoctogit.py: remove trailing "/" is source dir
+Subject: [AUTOBUILDER][PATCH v2] yoctogit.py: Fix cp construction from source to build
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -27,7 +27,7 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 10 Mar 2014 17:33:00 -0000
+X-List-Received-Date: Mon, 10 Mar 2014 17:50:03 -0000
 
 This commit removes the mkdir from movecopy as it is not needed.
 It also changes the workdir in barecopy and movecopy to
@@ -48,7 +48,7 @@ Signed-off-by: Elizabeth Flanagan <elizabeth.flanagan@intel.com>
  1 file changed, 11 insertions(+), 24 deletions(-)
 
 diff --git a/lib/python2.7/site-packages/buildbot-0.8.8-py2.7.egg/buildbot/steps/source/yoctogit.py b/lib/python2.7/site-packages/buildbot-0.8.8-py2.7.egg/buildbot/steps/source/yoctogit.py
-index 26599e7..4641c1a 100644
+index 26599e7..487e286 100644
 --- a/lib/python2.7/site-packages/buildbot-0.8.8-py2.7.egg/buildbot/steps/source/yoctogit.py
 +++ b/lib/python2.7/site-packages/buildbot-0.8.8-py2.7.egg/buildbot/steps/source/yoctogit.py
 @@ -121,7 +121,7 @@ class YoctoGit(Source):
@@ -56,7 +56,7 @@ index 26599e7..4641c1a 100644
          self.method    = method
          self.prog  = progress
 -        self.repourl   = repourl
-+        self.repourl   = repourl.rstrip('\\')
++        self.repourl   = repourl.rstrip('/')
          self.retryFetch = retryFetch
          self.submodules = submodules
          self.shallow   = shallow
@@ -97,7 +97,7 @@ index 26599e7..4641c1a 100644
 +           "oecore" in self.layername or \
 +           "eclipse" in self.layername:
              todir = "build"
-+            self.workdir = 'source/'+self.repourl.rstrip('//')
++            self.workdir = 'source/'+self.repourl.rstrip('/')
          else:
              todir = "build/" + self.layername
 +            self.workdir = 'source/'+self.repourl
