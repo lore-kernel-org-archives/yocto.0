@@ -1,23 +1,36 @@
-Return-Path: <David.Nystrom@enea.com>
-Received: from mx-3.enea.com (sestofw01.enea.se [192.36.1.252])
-	by yocto-www.yoctoproject.org (Postfix) with SMTP id 9D60CE008D6
-	for <yocto@yoctoproject.org>; Tue, 11 Mar 2014 04:41:34 -0700 (PDT)
-Received: from [172.16.141.133] (172.16.141.133) by smtp.enea.com
-	(172.21.1.209) with Microsoft SMTP Server id 14.3.158.1;
-	Tue, 11 Mar 2014 12:41:30 +0100
-Message-ID: <531EF654.4000608@enea.com>
-Date: Tue, 11 Mar 2014 12:41:08 +0100
-From: =?UTF-8?B?RGF2aWQgTnlzdHLDtm0=?= <david.nystrom@enea.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:24.0) Gecko/20100101 Thunderbird/24.3.0
+Return-Path: <Kevin.Evans@rigaku.com>
+Received: from mail1.bemta12.messagelabs.com (mail1.bemta12.messagelabs.com
+	[216.82.251.14])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CF378E00AEC
+	for <yocto@yoctoproject.org>; Mon, 10 Mar 2014 09:19:26 -0700 (PDT)
+Received: from [216.82.250.83:33206] by server-14.bemta-12.messagelabs.com id
+	A4/43-27892-E06ED135; Mon, 10 Mar 2014 16:19:26 +0000
+X-Env-Sender: Kevin.Evans@rigaku.com
+X-Msg-Ref: server-12.tower-120.messagelabs.com!1394468363!8191535!4
+X-Originating-IP: [74.51.198.13]
+X-StarScan-Received: 
+X-StarScan-Version: 6.9.16; banners=-,-,-
+X-VirusChecked: Checked
+Received: (qmail 5253 invoked from network); 10 Mar 2014 16:19:25 -0000
+Received: from unknown (HELO mail.rigaku.com) (74.51.198.13)
+	by server-12.tower-120.messagelabs.com with AES128-SHA encrypted SMTP;
+	10 Mar 2014 16:19:25 -0000
+Received: from RAC-BCS-EXCHG1.rac.local ([169.254.2.14]) by
+	RAC-BCS-EXCHG2.rac.local ([169.254.1.176]) with mapi id 14.03.0123.003;
+	Mon, 10 Mar 2014 11:19:08 -0500
+From: Kevin Evans <Kevin.Evans@rigaku.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: SysVinit and psplash
+Thread-Index: Ac88fCa/B+HQ9fpmRNOjeINccM9WnA==
+Date: Mon, 10 Mar 2014 16:19:07 +0000
+Message-ID: <498C38F5E894A4499E84980494E5D95C1AA628E3@RAC-BCS-EXCHG1.rac.local>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.200.0.49]
 MIME-Version: 1.0
-To: Josef Holzmayr <jholzmayr@the-exact-steps.net>, <ferlandm@sonatest.com>
-References: <1941676061.151463.1394449148860.open-xchange@email.1und1.de>	<20140310155225.GZ15075@marc-desktop>
-	<727708959.176973.1394468103205.open-xchange@email.1und1.de>
-In-Reply-To: <727708959.176973.1394468103205.open-xchange@email.1und1.de>
-X-Originating-IP: [172.16.141.133]
-Cc: yocto@yoctoproject.org
-Subject: Re: [RFC] Blubber, a tool to set up yocto/poky projects easily
+X-Mailman-Approved-At: Tue, 11 Mar 2014 08:08:14 -0700
+Subject: SysVinit and psplash
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -29,54 +42,59 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 11 Mar 2014 11:41:36 -0000
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+X-List-Received-Date: Mon, 10 Mar 2014 16:19:28 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_498C38F5E894A4499E84980494E5D95C1AA628E3RACBCSEXCHG1rac_"
+
+--_000_498C38F5E894A4499E84980494E5D95C1AA628E3RACBCSEXCHG1rac_
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 
-On 2014-03-10 17:15, Josef Holzmayr wrote:
-> Hello Marc,
->
->> Marc Ferland <ferlandm@sonatest.com> hat am 10. M=C3=A4rz 2014 um 16:52
->> geschrieben:
->>
->>
->> On Mon, Mar 10, 2014 at 11:59:08AM +0100, Josef Holzmayr wrote:
->>> Howdy!
->>>
->>> After looking more and more into yocto, one of the main issues for me i=
-s the
->>> process to set up a project properly, including all layers and conf opt=
-ions.
->>> Especially those which would be needed to set exactly the same way agai=
-n and
->>> again every time somebody needs to reproduce a build.
->>>
->>> So I've come up with an idea: a small tool that can handle these things=
- for
->>> me.
->>> And here it is for your enjoyment/use/abuse/comments:
->>>
->> You should have a look at the 'repo' tool from the android
->> community. I think it already does part of what you're trying to do
->> here.
->>
->> The freescale yocto bsp already uses repo:
->> https://github.com/Freescale/fsl-community-bsp-platform
->
-> Yes indeed, it is quite a nice tool for doing the first part of the job. =
-Thanks
-> for pointing out, will look into it more really soon.
->
+Hello all:
 
-Perhaps $TEMPLATECONF functionality may be relevant for the second part?
+I am using yocto denzil release with an IGEPv2 (beagle board clone). It app=
+ears the init is ignoring my log level being set to quite and prints the ru=
+n level 5 messages and they appear between the splash screen and xorg start=
+ing.  I am not sure of the best way to suppress the text being displayed he=
+re. So far I have used:
 
+1. Set loglevel=3Dquiet in kernel commnand line (this silences the logging =
+before pslash but not after.
+2. Set the USE_VT build variable to "0". this only disabled logins through =
+the VT.
 
->> Cheers!
->>
->> Marc
->
-> Greetz
-> Josef/Leto
->
+Not sure what to try now. Any help would be appreciated.
 
+--_000_498C38F5E894A4499E84980494E5D95C1AA628E3RACBCSEXCHG1rac_
+Content-Type: text/html; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 
+<html dir=3D"ltr">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
+1">
+<style id=3D"owaParaStyle" type=3D"text/css">P {margin-top:0;margin-bottom:=
+0;}</style>
+</head>
+<body ocsi=3D"0" fpstyle=3D"1">
+<div style=3D"direction: ltr;font-family: Tahoma;color: #000000;font-size: =
+10pt;">Hello all:<br>
+<br>
+I am using yocto denzil release with an IGEPv2 (beagle board clone). It app=
+ears the init is ignoring my log level being set to quite and prints the ru=
+n level 5 messages and they appear between the splash screen and xorg start=
+ing.&nbsp; I am not sure of the best
+ way to suppress the text being displayed here. So far I have used:<br>
+<br>
+1. Set loglevel=3Dquiet in kernel commnand line (this silences the logging =
+before pslash but not after.<br>
+2. Set the USE_VT build variable to &quot;0&quot;. this only disabled login=
+s through the VT.<br>
+<br>
+Not sure what to try now. Any help would be appreciated.<br>
+</div>
+</body>
+</html>
+
+--_000_498C38F5E894A4499E84980494E5D95C1AA628E3RACBCSEXCHG1rac_--
