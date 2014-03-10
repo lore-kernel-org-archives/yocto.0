@@ -1,36 +1,32 @@
-Return-Path: <ajlennon@dynamicdevices.co.uk>
-Received: from www.dynamicdevices.co.uk (www.dynamicdevices.co.uk
-	[89.200.136.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 00B42E00AA3
-	for <yocto@yoctoproject.org>; Mon, 10 Mar 2014 04:44:04 -0700 (PDT)
-Received: from localhost (localhost [127.0.0.1])
-	by www.dynamicdevices.co.uk (Postfix) with ESMTP id 7DE0327E003;
-	Mon, 10 Mar 2014 11:44:02 +0000 (UTC)
-X-Virus-Scanned: Debian amavisd-new at lennoab2.miniserver.com
-Received: from www.dynamicdevices.co.uk ([127.0.0.1])
-	by localhost (www.dynamicdevices.co.uk [127.0.0.1]) (amavisd-new,
-	port 10024)
-	with ESMTP id eodZY56OWJJf; Mon, 10 Mar 2014 11:43:58 +0000 (UTC)
-Received: from [127.0.0.1] (cpc32-live22-2-0-cust59.17-2.cable.virginm.net
-	[82.36.253.60])
-	(using TLSv1 with cipher ECDHE-RSA-AES128-SHA (128/128 bits))
-	(No client certificate requested)
-	by www.dynamicdevices.co.uk (Postfix) with ESMTPSA id 4958C27E001;
-	Mon, 10 Mar 2014 11:43:58 +0000 (UTC)
-Message-ID: <531DA573.5000408@dynamicdevices.co.uk>
-Date: Mon, 10 Mar 2014 11:43:47 +0000
-From: Alex J Lennon <ajlennon@dynamicdevices.co.uk>
-User-Agent: Mozilla/5.0 (Windows NT 6.3; WOW64;
-	rv:24.0) Gecko/20100101 Thunderbird/24.3.0
+Return-Path: <katutxakurra@gmail.com>
+Received: from mail-ig0-f172.google.com (mail-ig0-f172.google.com
+	[209.85.213.172])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 81DEDE00AA3
+	for <yocto@yoctoproject.org>; Mon, 10 Mar 2014 04:55:32 -0700 (PDT)
+Received: by mail-ig0-f172.google.com with SMTP id uq10so8016881igb.5
+	for <yocto@yoctoproject.org>; Mon, 10 Mar 2014 04:55:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:content-type; bh=kVk/hUEkwuBI0eChgX6ddMZNLTjMisRr3qDLpB2u4e4=;
+	b=dINDHPbaAkn9yYCtMsHUptzIzNDf0J3QGRzvTPKfHNnsRBH/MDnmxgKTNr4m/39auX
+	ZVt7aXQ8La5DD5ZIUwcVpMa1h1SpsF+oEYZEM/DEmOFHFOzLEe1BEL1Tj9ouzjEPFJBn
+	pBBSNPO9EDKxIjv4t8TM+00Pq465XJg231qSE8+oTX8bCPBuKgDOpselO2NAlT29gWHB
+	/FlU9oE6cfg+xvj1FfCPwnZQcarwwQjX/aK5BZK6f9NkwpVE9BzglutWcN5VZeRlaaIR
+	VHaKZmckGLcAhG6/tOa+1uox2LCvOZ9Th+2RjS4G999gRIDQNuA8c62lAc0hnslKjTiR
+	V5fQ==
 MIME-Version: 1.0
-To: Josef Holzmayr <jholzmayr@the-exact-steps.net>, 
-	Vali Cobelea <valentin.cobelea@enea.com>
-References: <1941676061.151463.1394449148860.open-xchange@email.1und1.de>	<531D9C64.4010806@enea.com>	<58476941.152432.1394449910667.open-xchange@email.1und1.de>	<531D9FFA.7060407@enea.com>
-	<1342303316.154219.1394451169246.open-xchange@email.1und1.de>
-In-Reply-To: <1342303316.154219.1394451169246.open-xchange@email.1und1.de>
-X-Enigmail-Version: 1.6
-Cc: yocto@yoctoproject.org
-Subject: Re: [RFC] Blubber, a tool to set up yocto/poky projects easily
+X-Received: by 10.42.4.201 with SMTP id 9mr1277845ict.57.1394452532084; Mon,
+	10 Mar 2014 04:55:32 -0700 (PDT)
+Received: by 10.50.230.46 with HTTP; Mon, 10 Mar 2014 04:55:32 -0700 (PDT)
+In-Reply-To: <CAMKF1spktCyfdaT+i=eGVZFywMRPRXCmNP0u=DAwzRZCgz1eZw@mail.gmail.com>
+References: <CAM1ZcoVHPgerCQnFsP5EpAu=71s-WMHYfrwM3Q5eBFngKPq8XA@mail.gmail.com>
+	<CAM1ZcoX8R7CLcrLzXA2B9LqYLkHGPCtqSpsapcBP39-DWKc6tA@mail.gmail.com>
+	<CAMKF1spktCyfdaT+i=eGVZFywMRPRXCmNP0u=DAwzRZCgz1eZw@mail.gmail.com>
+Date: Mon, 10 Mar 2014 11:55:32 +0000
+Message-ID: <CAM1ZcoUCJcyEcNhukSkTf6NiDzdVSFwhPvD_3BD5Ozw4SRg-bw@mail.gmail.com>
+From: Katu Txakur <katutxakurra@gmail.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: enable/disable systemd from image.bb
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,139 +38,162 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 10 Mar 2014 11:44:07 -0000
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Mon, 10 Mar 2014 11:55:35 -0000
+Content-Type: multipart/alternative; boundary=001a11346bd2d4c5e304f43f4749
+
+--001a11346bd2d4c5e304f43f4749
+Content-Type: text/plain; charset=ISO-8859-1
+
+Thanks Khem,
+
+I found my mistake. I forgot adding ${IMAGE_ROOTFS} and I was trying to run
+the commands in my host. This works.
+
+ROOTFS_POSTPROCESS_COMMAND =+ "\
+    rm -rf
+${IMAGE_ROOTFS}/etc/systemd/system/multi-user.target.wants/recipeA.service;
+\
+    ln -sf ${IMAGE_ROOTFS}/lib/systemd/system/recipeB.service'
+'/etc/systemd/system/multi-user.target.wants/recipeB.service; \
+"
+
+regards,
+Katu
 
 
-On 10/03/2014 11:32, Josef Holzmayr wrote:
-> Hello Vali,
+2014-03-04 22:45 GMT+00:00 Khem Raj <raj.khem@gmail.com>:
+
+> On Tue, Mar 4, 2014 at 6:38 AM, Katu Txakur <katutxakurra@gmail.com>
+> wrote:
+> > Sorry, I sent it uncompleted by mistake.
+> >
+> > I've also tried
+> >
+> > ROOTFS_POSTPROCESS_COMMAND =+ "\
+> >     rm -rf /etc/systemd/system/multi-user.target.wants/recipeA.service; \
+> > "
+> >
+> > but it didn't work either. Anyone knows how to do this?
+> >
 >
->> Vali Cobelea <valentin.cobelea@enea.com> hat am 10. März 2014 um 12:20
->> geschrieben:
->>
->> The idea behind 'is' would be to have more safety and less crashes when
->> one of the arguments, in your case, is empty (eg None).
-> Well there are cases where I needed to compare strings that have been read in
-> and then modified from two different sources (e.g., files). Hence in my
-> understanding, they have the same content, but not the same id. So if I want to
-> match their content only, I'd have to use "==" because "is" would give me false
-> even if the content matches.
-
-Hi Josef, Vali,
-
-Interesting points.
-
-fwiw I'd have thought myself that string comparison should be string
-comparison (==) as if you use an object identity comparison as a string
-comparison (is), you potentially introduce opaque problems when the
-strings are the same - i.e. same bytes of data - but the objects are not
-the same for whatever reason.
-
-e.g.
-
-stringvar1 = "A string for comparison"
-stringvar2 = "A string for "
-stringvar2 += "comparison";
-
-if stringvar1 == stringvar2:
-  print stringvar1 + " == " + stringvar2
-else:
-  print stringvar1 + " != " + stringvar2
-
-if stringvar1 is stringvar2:
-  print stringvar1 + " is " + stringvar2
-else:
-  print stringvar1 + " is not " + stringvar2
-
-Results in,
-
-A string for comparison == A string for comparison
-A string for comparison is not A string for comparison
-
-Cheers,
-
-Alex
-
->> This discussion can go over and over, is more a flavor thing: being
->> pythonian or not.
-> Agreed, with the exception of the above said. But you're right, I'll look into
-> the topic and see if it can bring improvements. Thanks again for your input.
+> you can mask the service via a postprocess command something like
+> systemctl --root=${D} mask <yourservice>.service
 >
->> Best regards,
->> Vali
-> Greetz
-> Josef /Leto
 >
->> On 03/10/2014 01:11 PM, Josef Holzmayr wrote:
->>> Hello Vali,
->>>
->>>> Vali Cobelea <valentin.cobelea@enea.com> hat am 10. März 2014 um 12:05
->>>> geschrieben:
->>>>
->>>> Looks ok at a first look, but my first suggestion would be to start
->>>> using the "is" operator instead of "==" when it comes to comparing strings.
->>>> Otherwise using your way with "==" will crash if any of the variables
->>>> (those "sys.argv[]") are None (void).
->>> Thanks for the quick input! However, this is one of the very rare points I
->>> intently did that way, because of the difference in meaning from "==" to
->>> "is"
->>> (see
->>> http://stackoverflow.com/questions/1504717/why-does-comparing-strings-in-python-using-either-or-is-sometimes-produce).
->>> But I'm curious, how would one then properly compare the content of two
->>> strings?
->>> Checking both types first?
->>>
->>>> Best regards,
->>>> Vali
->>> Greetz
->>> Josef/Leto
->>>
->>>> On 03/10/2014 12:59 PM, Josef Holzmayr wrote:
->>>>> Howdy!
->>>>>
->>>>> After looking more and more into yocto, one of the main issues for me is
->>>>> the
->>>>> process to set up a project properly, including all layers and conf
->>>>> options.
->>>>> Especially those which would be needed to set exactly the same way again
->>>>> and
->>>>> again every time somebody needs to reproduce a build.
->>>>>
->>>>> So I've come up with an idea: a small tool that can handle these things
->>>>> for
->>>>> me.
->>>>> And here it is for your enjoyment/use/abuse/comments:
->>>>>
->>>>> https://github.com/LetoThe2nd/blubber
->>>>>
->>>>> Short excerpt from the README:
->>>>>
->>>>> But be warned first. Blubber is still in pre-pre-pre-alpha stage (more
->>>>> like
->>>>> a
->>>>> proof of concept), and has the following defects/bugs/non-features:
->>>>> - Horribly bad python code (Yes, its really that bad. Blame me, its my
->>>>> first
->>>>> attempt to use that language)
->>>>> - No error checking whatsoever
->>>>> - Largely incomplete feature set
->>>>> - Did I already mention the utterly bad code?
->>>>> - Only supports git sources so far.
->>>>>
->>>>> Despite that, it can already do some magic:
->>>>> - Getting poky and layers from git, and checking out branches/tags/commits
->>>>> if
->>>>> needed
->>>>> - Accordingly setting up build/conf/bblayers.conf
->>>>> - Setting up build/conf/local.conf with a set of predefined options
->>>>> - Running arbitrary commands with proper shell setup (source-ed
->>>>> poky/oe-init-build-env) for the configured project.
->>>>>
->>>>> If anybody has feedback, just scream loudly. Or if anybody knows of a
->>>>> better
->>>>> solution making it all obsolete, please also scream. Thanks!
->>>>>
->>>>> Leto
+> > Thanks,
+> > Katu
+> >
+> >
+> > 2014-03-04 14:37 GMT+00:00 Katu Txakur <katutxakurra@gmail.com>:
+> >
+> >> Hi,
+> >>
+> >> I'm using Yocto 1.3 and I've created some recipes. All of them have
+> >> systemd services. Some of them start at boot time and others don't.
+> Let's
+> >> say for example:
+> >> recipeA_1.0.bb > SYSTEMD_AUTO_ENABLE_${PN}-systemd = "enable"
+> >> recipeB_1.0.bb > SYSTEMD_AUTO_ENABLE_${PN}-systemd = "disable"
+> >>
+> >> I want to create two image.bb files. One of them will start A and the
+> >> other one will start B. I've tried adding
+> >>
+> >> imageB.bb
+> >> .....
+> >> SYSTEMD_AUTO_ENABLE_recipeA-systemd = "disable"
+> >> SYSTEMD_AUTO_ENABLE_recipeB-systemd = "enable"
+> >> .....
+> >>
+> >> I've also tried
+> >>
+> >>
+> >
+> >
+> > _______________________________________________
+> > yocto mailing list
+> > yocto@yoctoproject.org
+> > https://lists.yoctoproject.org/listinfo/yocto
+> >
+>
 
+--001a11346bd2d4c5e304f43f4749
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
 
+<div dir=3D"ltr"><div><div><div>Thanks Khem,<br><br></div>I found my mistak=
+e. I forgot adding ${IMAGE_ROOTFS} and I was trying to run the commands in =
+my host. This works.<br><br>ROOTFS_POSTPROCESS_COMMAND =3D+ &quot;\<br>
+=A0 =A0 rm -rf ${IMAGE_ROOTFS}/etc/systemd/system/multi-user.target.wants/r=
+ecipeA.service; \<br>=A0=A0=A0 ln -sf ${IMAGE_ROOTFS}/lib/systemd/system/re=
+cipeB.service&#39; &#39;/etc/systemd/system/multi-user.target.wants/recipeB=
+.service; \<br>
+<div class=3D"im">
+&quot;</div><br></div>regards,<br></div>Katu<br></div><div class=3D"gmail_e=
+xtra"><br><br><div class=3D"gmail_quote">2014-03-04 22:45 GMT+00:00 Khem Ra=
+j <span dir=3D"ltr">&lt;<a href=3D"mailto:raj.khem@gmail.com" target=3D"_bl=
+ank">raj.khem@gmail.com</a>&gt;</span>:<br>
+<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
+x #ccc solid;padding-left:1ex"><div class=3D"">On Tue, Mar 4, 2014 at 6:38 =
+AM, Katu Txakur &lt;<a href=3D"mailto:katutxakurra@gmail.com">katutxakurra@=
+gmail.com</a>&gt; wrote:<br>
+
+&gt; Sorry, I sent it uncompleted by mistake.<br>
+&gt;<br>
+&gt; I&#39;ve also tried<br>
+&gt;<br>
+&gt; ROOTFS_POSTPROCESS_COMMAND =3D+ &quot;\<br>
+&gt; =A0 =A0 rm -rf /etc/systemd/system/multi-user.target.wants/recipeA.ser=
+vice; \<br>
+&gt; &quot;<br>
+&gt;<br>
+&gt; but it didn&#39;t work either. Anyone knows how to do this?<br>
+&gt;<br>
+<br>
+</div>you can mask the service via a postprocess command something like<br>
+systemctl --root=3D${D} mask &lt;yourservice&gt;.service<br>
+<div class=3D""><br>
+<br>
+&gt; Thanks,<br>
+&gt; Katu<br>
+&gt;<br>
+&gt;<br>
+&gt; 2014-03-04 14:37 GMT+00:00 Katu Txakur &lt;<a href=3D"mailto:katutxaku=
+rra@gmail.com">katutxakurra@gmail.com</a>&gt;:<br>
+&gt;<br>
+&gt;&gt; Hi,<br>
+&gt;&gt;<br>
+&gt;&gt; I&#39;m using Yocto 1.3 and I&#39;ve created some recipes. All of =
+them have<br>
+&gt;&gt; systemd services. Some of them start at boot time and others don&#=
+39;t. Let&#39;s<br>
+&gt;&gt; say for example:<br>
+&gt;&gt; <a href=3D"http://recipeA_1.0.bb" target=3D"_blank">recipeA_1.0.bb=
+</a> &gt; SYSTEMD_AUTO_ENABLE_${PN}-systemd =3D &quot;enable&quot;<br>
+&gt;&gt; <a href=3D"http://recipeB_1.0.bb" target=3D"_blank">recipeB_1.0.bb=
+</a> &gt; SYSTEMD_AUTO_ENABLE_${PN}-systemd =3D &quot;disable&quot;<br>
+&gt;&gt;<br>
+&gt;&gt; I want to create two <a href=3D"http://image.bb" target=3D"_blank"=
+>image.bb</a> files. One of them will start A and the<br>
+&gt;&gt; other one will start B. I&#39;ve tried adding<br>
+&gt;&gt;<br>
+&gt;&gt; imageB.bb<br>
+&gt;&gt; .....<br>
+&gt;&gt; SYSTEMD_AUTO_ENABLE_recipeA-systemd =3D &quot;disable&quot;<br>
+&gt;&gt; SYSTEMD_AUTO_ENABLE_recipeB-systemd =3D &quot;enable&quot;<br>
+&gt;&gt; .....<br>
+&gt;&gt;<br>
+&gt;&gt; I&#39;ve also tried<br>
+&gt;&gt;<br>
+&gt;&gt;<br>
+&gt;<br>
+&gt;<br>
+</div>&gt; _______________________________________________<br>
+&gt; yocto mailing list<br>
+&gt; <a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><b=
+r>
+&gt; <a href=3D"https://lists.yoctoproject.org/listinfo/yocto" target=3D"_b=
+lank">https://lists.yoctoproject.org/listinfo/yocto</a><br>
+&gt;<br>
+</blockquote></div><br></div>
+
+--001a11346bd2d4c5e304f43f4749--
