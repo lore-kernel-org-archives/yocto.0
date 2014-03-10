@@ -1,37 +1,24 @@
-Return-Path: <jholzmayr@the-exact-steps.net>
-Received: from moutng.kundenserver.de (moutng.kundenserver.de
-	[212.227.126.130])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B3F04E00AEC
-	for <yocto@yoctoproject.org>; Mon, 10 Mar 2014 09:15:07 -0700 (PDT)
-Received: from oxbsltgw54.schlund.de (oxbsltgw54.schlund.de [172.19.249.201])
-	by mrelayeu.kundenserver.de (node=mreue003) with ESMTP (Nemesis)
-	id 0MZysF-1WbYXA0uQZ-00LkoC; Mon, 10 Mar 2014 17:15:03 +0100
-Date: Mon, 10 Mar 2014 17:15:03 +0100 (CET)
-From: Josef Holzmayr <jholzmayr@the-exact-steps.net>
-To: ferlandm@sonatest.com
-Message-ID: <727708959.176973.1394468103205.open-xchange@email.1und1.de>
-In-Reply-To: <20140310155225.GZ15075@marc-desktop>
-References: <1941676061.151463.1394449148860.open-xchange@email.1und1.de>
-	<20140310155225.GZ15075@marc-desktop>
-MIME-Version: 1.0
-X-Priority: 3
-Importance: Medium
-X-Mailer: Open-Xchange Mailer v7.4.0-Rev29
-X-Provags-ID: V02:K0:Dkl+hOLqXbfH0ytoO0cLi2yOMxS111pU7AKRZrDyuJq
-	PQh2lyRslQtuM3T0pm8ngTVxWczcF7+uQj+QugQ1DXGZkA1RmA
-	mqYgpCWYfwFABGa3wek395RYqTQ58hMacMYd9XGmImzDPu8Khj
-	TkibKaKkQT9zdUmZ7DOdI+UW5HKvKXSIqTZs7Z+2vKKHnIHe2t
-	I5xYt1OIh1o4UH2r0z/YrGnLfWggddt7BdFjtsQ0sm9SevBj3i
-	8RroqOejNLkRBtdRc3oX7HlizRgEirLHWI19uhb7a4pXbbn9qa
-	ZlEZzFhwDmg9srTyf1ApcgO3z03xdfx2d6646RzFGZ8oNWW+pA
-	h9OrsvuYjdwE5oT0vcfx0DZ+i2Qe9VEaA2LB/4nYN/VXxvewiP
-	UUzwiP0AbojQT2zPiBlSRHUJRXmxcpeOSg=
-Cc: yocto@yoctoproject.org
-Subject: Re: [RFC] Blubber, a tool to set up yocto/poky projects easily
+Return-Path: <elizabeth.flanagan@intel.com>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 73C32E00AE2
+	for <yocto@yoctoproject.org>; Mon, 10 Mar 2014 10:32:58 -0700 (PDT)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga101.jf.intel.com with ESMTP; 10 Mar 2014 10:32:58 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.97,625,1389772800"; d="scan'208";a="497159372"
+Received: from qana.jf.intel.com ([10.7.201.148])
+	by orsmga002.jf.intel.com with ESMTP; 10 Mar 2014 10:32:29 -0700
+Received: by qana.jf.intel.com (Postfix, from userid 1000)
+	id 47FBB5F8286E; Mon, 10 Mar 2014 10:29:07 -0700 (PDT)
+From: Elizabeth Flanagan <elizabeth.flanagan@intel.com>
+To: yocto@yoctoproject.org
+Date: Mon, 10 Mar 2014 10:29:02 -0700
+Message-Id: <1394472542-10246-1-git-send-email-elizabeth.flanagan@intel.com>
+X-Mailer: git-send-email 1.8.1.2
+Subject: [AUTOBUILDER][PATCH] yoctogit.py: remove trailing "/" is source dir
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
-Reply-To: Josef Holzmayr <jholzmayr@the-exact-steps.net>
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -40,47 +27,99 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 10 Mar 2014 16:15:08 -0000
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Mon, 10 Mar 2014 17:33:00 -0000
 
-Hello Marc,
+This commit removes the mkdir from movecopy as it is not needed.
+It also changes the workdir in barecopy and movecopy to
+the source dir, as we can't alwas be sure that the destination
+dir even exists.
 
-> Marc Ferland <ferlandm@sonatest.com> hat am 10. M=C3=A4rz 2014 um 16:52
-> geschrieben:
->
->
-> On Mon, Mar 10, 2014 at 11:59:08AM +0100, Josef Holzmayr wrote:
-> > Howdy!
-> >
-> > After looking more and more into yocto, one of the main issues for me i=
-s the
-> > process to set up a project properly, including all layers and conf opt=
-ions.
-> > Especially those which would be needed to set exactly the same way agai=
-n and
-> > again every time somebody needs to reproduce a build.
-> >
-> > So I've come up with an idea: a small tool that can handle these things=
- for
-> > me.
-> > And here it is for your enjoyment/use/abuse/comments:
-> >
-> You should have a look at the 'repo' tool from the android
-> community. I think it already does part of what you're trying to do
-> here.
->
-> The freescale yocto bsp already uses repo:
-> https://github.com/Freescale/fsl-community-bsp-platform
+This also ensures that we are in fact constructing our cp string
+correctly, by striping any trailing "/" from self.repourl
 
-Yes indeed, it is quite a nice tool for doing the first part of the job. Th=
-anks
-for pointing out, will look into it more really soon.
+As repourl is used to construct the cp from source to build, that
+trailing slash, if it exists, causes the directory structure to
+not be correct (e.g. cp -R ./foo/ ./bar and cp -R ./foo ./bar
+don't do the same thing, obviously)
 
-> Cheers!
->
-> Marc
+Signed-off-by: Elizabeth Flanagan <elizabeth.flanagan@intel.com>
+---
+ .../buildbot/steps/source/yoctogit.py              | 35 +++++++---------------
+ 1 file changed, 11 insertions(+), 24 deletions(-)
 
-Greetz
-Josef/Leto
+diff --git a/lib/python2.7/site-packages/buildbot-0.8.8-py2.7.egg/buildbot/steps/source/yoctogit.py b/lib/python2.7/site-packages/buildbot-0.8.8-py2.7.egg/buildbot/steps/source/yoctogit.py
+index 26599e7..4641c1a 100644
+--- a/lib/python2.7/site-packages/buildbot-0.8.8-py2.7.egg/buildbot/steps/source/yoctogit.py
++++ b/lib/python2.7/site-packages/buildbot-0.8.8-py2.7.egg/buildbot/steps/source/yoctogit.py
+@@ -121,7 +121,7 @@ class YoctoGit(Source):
+         self.branch    = branch
+         self.method    = method
+         self.prog  = progress
+-        self.repourl   = repourl
++        self.repourl   = repourl.rstrip('\\')
+         self.retryFetch = retryFetch
+         self.submodules = submodules
+         self.shallow   = shallow
+@@ -255,13 +255,11 @@ class YoctoGit(Source):
+         if "poky" in self.layername or \
+            "oecore" in self.layername or \
+            "eclipse" in self.layername:
+-            todir = "."
+-            self.workdir = "build"
++            todir = "build"
++            self.workdir = 'source/'+self.repourl
+         else:
+-            todir = "./" + self.layername
+-            self.workdir = "build/" + self.layername
+-
+-
++            todir = "build/" + self.layername
++            self.workdir = 'source/'+self.repourl
+         d.addCallback(lambda _: self.incremental())
+         def copy(_):
+             cmd = buildstep.RemoteCommand('cpdir',
+@@ -278,7 +276,7 @@ class YoctoGit(Source):
+             d.addCallback(lambda _: evaluateCommand(cmd))
+             return d
+         d.addCallback(copy)
+-        
++       
+         def resetWorkdir(_):
+             if "poky" in self.layername or \
+                "oecore" in self.layername or \
+@@ -316,26 +314,15 @@ class YoctoGit(Source):
+                 log.msg("Source step failed while running command %s" % cmd)
+                 raise buildstep.BuildStepFailed()
+         d.addCallback(lambda _: evaluateCommand(cmd))
+-
+-        if self.layername == "poky" or self.layername == "oecore":
++        if "poky" in self.layername or \
++           "oecore" in self.layername or \
++           "eclipse" in self.layername:
+             todir = "build"
++            self.workdir = 'source/'+self.repourl.rstrip('//')
+         else:
+             todir = "build/" + self.layername
++            self.workdir = 'source/'+self.repourl
+ 
+-        def mkdir(_):
+-            cmd = buildstep.RemoteCommand('mkdir', {'dir': 'build',
+-                                                    'logEnviron': self.logEnviron,
+-                                                    'timeout': self.timeout,})
+-            cmd.useLog(self.stdio_log, False)
+-            d = self.runCommand(cmd)
+-            def evaluateCommand(cmd):
+-                if cmd.didFail():
+-                    log.msg("Source step failed while running command %s" % cmd)
+-                    raise buildstep.BuildStepFailed()
+-            d.addCallback(lambda _: evaluateCommand(cmd))
+-            return d
+-        d.addCallback(mkdir)
+-        d.addCallback(lambda _: self.incremental())
+         def copy(_):
+             cmd = buildstep.RemoteCommand('cpdir',
+                                           {'fromdir': srcdir,
+-- 
+1.8.1.2
+
 
