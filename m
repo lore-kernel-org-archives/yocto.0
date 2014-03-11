@@ -1,34 +1,23 @@
-Return-Path: <ross.burton@intel.com>
-Received: from mail-qa0-f42.google.com (mail-qa0-f42.google.com
-	[209.85.216.42])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 81BFFE009CE
-	for <yocto@yoctoproject.org>; Tue, 11 Mar 2014 09:49:26 -0700 (PDT)
-Received: by mail-qa0-f42.google.com with SMTP id k15so8656260qaq.15
-	for <yocto@yoctoproject.org>; Tue, 11 Mar 2014 09:49:26 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc:content-type;
-	bh=UX/wdvi1ynPgQK1J72NWKQ+A2XxWot2sq0LsHZwibkM=;
-	b=SX1oPVFHVx1R65UuxmOSRSLERxao+wkPPNyko1Ws0xLJ3ZOvHzamWUficZ8bbyT/NA
-	L6ZtvUbKO/tGeSPSd9bfWlfm6nKUevnk4t01/qNahZPJXaOnqmHklBwXBXt+crDTR0s/
-	UxV9itDRhLVq9v9+uMyJ9aZvIAtpFos8uf/zEWI1vE3y3wSoZSc3zdzBHT0jNT3DKMEw
-	WT3TIF83m8UN+gBSZG35+8ktsE0CsBYb70vsiCe7+YcgsDGgyIDYRR1HZ88uDaAp7eGl
-	+grOrQrWxF19ruSLvsFWBh/tyn7KVijt9J58xu+k+ecE+6GlKh8/GEjxczq2F4eoDdjl
-	Vq2A==
-X-Gm-Message-State: ALoCoQlZmqWZ2/vbpMNT+1/mUEAlHHL2X7nZQ0HE1yGaMyBmpEtGFWOZ9Eitv9ZnWlVsV1lMIUzd
-X-Received: by 10.224.45.197 with SMTP id g5mr49923890qaf.52.1394556565959;
-	Tue, 11 Mar 2014 09:49:25 -0700 (PDT)
+Return-Path: <jonathan.austin@arm.com>
+Received: from service87.mimecast.com (service87.mimecast.com [91.220.42.44])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 11CDCE009A7
+	for <yocto@yoctoproject.org>; Tue, 11 Mar 2014 11:00:29 -0700 (PDT)
+Received: from cam-owa2.Emea.Arm.com (fw-tnat.cambridge.arm.com
+	[217.140.96.21]) by service87.mimecast.com;
+	Tue, 11 Mar 2014 18:00:24 +0000
+Received: from [10.2.202.23] ([10.1.255.212]) by cam-owa2.Emea.Arm.com with
+	Microsoft SMTPSVC(6.0.3790.3959); Tue, 11 Mar 2014 18:00:33 +0000
+Message-ID: <531F4F28.40506@arm.com>
+Date: Tue, 11 Mar 2014 18:00:08 +0000
+From: Jonathan Austin <jonathan.austin@arm.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:24.0) Gecko/20100101 Thunderbird/24.2.0
 MIME-Version: 1.0
-Received: by 10.140.48.79 with HTTP; Tue, 11 Mar 2014 09:49:05 -0700 (PDT)
-In-Reply-To: <cover.1394042358.git.elizabeth.flanagan@intel.com>
-References: <cover.1394042358.git.elizabeth.flanagan@intel.com>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Tue, 11 Mar 2014 16:49:05 +0000
-Message-ID: <CAJTo0La5YYHtzpn=HRppe4HrkcRwiMRzOidzm69=i5q2zcKsWg@mail.gmail.com>
-To: Elizabeth Flanagan <elizabeth.flanagan@intel.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: [AB PATCH 00/27] Autobuilder patches
+To: yocto@yoctoproject.org
+X-OriginalArrivalTime: 11 Mar 2014 18:00:33.0866 (UTC)
+	FILETIME=[CC725AA0:01CF3D53]
+X-MC-Unique: 114031118002402301
+Subject: Debugging udev cache issues
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,123 +29,110 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 11 Mar 2014 16:49:29 -0000
+X-List-Received-Date: Tue, 11 Mar 2014 18:00:30 -0000
 Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-On 5 March 2014 18:22, Elizabeth Flanagan <elizabeth.flanagan@intel.com> wrote:
-> Beth Flanagan (8):
->   PrepPkgIndex.py: ln instead of cp
+Hi all,
 
-This leaves several alternative lines that are commented out, why not
-just have the one working line?
+I've built a small poky/Yocto 1.5 system for an imx6 board, using
+core-image-minimal. I want to use the gadget driver, and have an init
+script of my own to set that up.
 
->   Autobuilder.py/Buildset.py: More sane parser/UI
+However, this only works when the udev cache is not involved at boot time.
 
-Erm, yeah, sure.  I'll take your word for that :)
+On the first boot of my new system, udev runs and loads the modules for my
+USB hardware. (among other things):
 
->   nightly.conf: Add additional parameters
+---
+Starting udev
+udevd[69]: starting version 182
+usbcore: registered new interface driver usbfs
+usbcore: registered new interface driver hub
+usbcore: registered new device driver usb
+[...]
+Starting Bootlog daemon: bootlogd: cannot allocate pseudo tty: No such file=
+ or directory bootlogd.
+Populating dev cache
+---
 
-This removes RunBitbakeSelfTest and needlessly reindents a large block.
+Good!
 
-Isn't the change to PublishLayerTarballs unrelated and therefore
-should be in a separate commit?
+However, on subsequent boots, the udev cache kicks in and the appropriate
+modules are no longer loaded.
+---
+Starting udev
+udevd[71]: starting version 182
+Starting Bootlog daemon: bootlogd: cannot allocate pseudo tty: No such file=
+ or directory bootlogd.
+[...]
+---
 
->   CheckOutLayers.py/ResolveLayerHead.py: support simplified git
+This means the init script that loads the gadget module for me fails.
 
-Ack.
+I added some debug (set -x) to the udev init script, and I can see that
+it is finding/unpacking the cache, and then running udevadm, as expected:
 
->   Autobuilder.py: remove DEBUG code
->   BuildSet.py: Remove more debug code.
->   yocto-start/stop-autobuilder: start buildslave-janitor
+---
++ cd /
++ tar xf /etc/dev.tar
++ not_first_boot=3D1
++ [ no !=3D no ]
++ [ -e /dev/shm/udev.cache ]
++ rm -f /dev/shm/udev.cache
++ kill_udevd
++ echo -e \000\000\000\000
++ /lib/udev/udevd -d
++ udevadm control --env=3DSTARTUP=3D1
++ [ 1 !=3D  ]
++ udevadm trigger --action=3Dadd --subsystem-nomatch=3Dtty --subsystem-noma=
+tch=3Dmem --subsystem-nomatch=3Dvc --subsystem-nomatch=3Dvtconsole --subsys=
+tem-nomatch=3Dmisc --subsystem-nomatch=3Ddcon --subsystem-nomatch=3Dpci_bus=
+ --subsystem-nomatch=3Dgraphics --subsystem-nomatch=3Dbacklight --subsystem=
+-nomatch=3Dvideo4linux --subsystem-nomatch=3Dplatform
++ exit 0
++ udevadm settle --timeout=3D3
+---
 
-Ack x 3.
+But at that stage, no drivers are loaded.
 
->   forms.html/layout.html: support simplified UI
+Curiously, if I manually run the udevadm trigger command (as above) after I=
+'ve
+logged in, the usb drivers come up...
 
-Ack.
+$udevadm trigger --action=3Dadd --subsystem-nomatch=3Dtty --subsystem-nomat=
+ch=3Dmem --subsystem-nomatch=3Dvc --subsystem-nomatch=3Dvtconsole --subsyst=
+em-nomatch=3Dmisc --subsystem-nomatch=3Ddcon --subsystem-nomatch=3Dpci_bus =
+ --subsystem-nomatch=3Dgraphics --subsystem-nomatch=3Dbacklight --subsystem=
+-nomatch=3Dvideo4linux--subsystem-nomatch=3Dplatform
+usbcore: registered new interface driver usbfs
+usbcore: registered new interface driver hub
+usbcore: registered new device driver usb
+[...]
 
-> Elizabeth Flanagan (12):
->   nightly-world-uclibc: uclibc target
+From there I can restart my service that controls the gadget driver and it
+works...
 
-Ack.
+This behaviour seems insensitive to the STARTUP env variable - I can
+set it either way when I manually run udevadm and it still 'works' (ie caus=
+es
+the USB hardware to be initialized)
 
->   SyncPersistDB.py: First run failure correction
+So, I guess my initial question is: Why does running:
 
-Pretty sure you didn't mean -b there (block device).
+udevadm trigger --action=3Dadd --subsystem-noma[..etc...]
 
->   BuildSet.py: Set workdir based on layer not order
+inside of the udev init script not work as expected, and how can I debug th=
+is
+further? Does this work for other people with core-image-minimal? Perhaps I=
+'ve
+missed something obvious about how to compose the system?
 
-I'm not massively keen on special-casing poky/oe-core like this
-because it breaks when you use something that is almost but not quite
-poky (such as iot-devkit).  Can this be an option that the buildset
-can set (and defaulting to something that mostly works)?
+I am aware I can disable the udev cache, but I'd rather sort out what's
+going wrong rather than turn it off because it isn't working!
 
-Also a better idiom is:
+Thanks in advance for any pointers,
 
-if layername in ('poky', 'oe-core', 'eclipse'):
-   pass
+Jonny
 
->   yoctogit.py: fix callbacks and instance attrs
-
-More hardcoding of repo names and behaviour.  Again, does this mean
-that iot-devkit (a fork of poky) won't build in the autobuilder?
-
->   PublishArtifacts.py: Fix poky-tiny publish
->   PublishArtifacts.py: genericx86-64 publish
->   BuildEclipsePlugin.py: Change location of build.
->   PublishArtifacts.py: Change where we find eclipse artifacts
-
-Ack x 4
-
->   yocto-autobuilder-setup: set the correct bb version
-
-Might be useful to stop using bb (bitbake? buildbot?) and use the full name :)
-
-Ack.
-
->   fs.py: Bump default timeout
-
-Ack.
-
->   autobuilder: whitespace removal
->   BuildSet.py: remove trailing spaces
-
-Should be squashed.
-
-> Richard Purdie (5):
->   Add mirror functionality to git fetcher
-Ack.
-
->   trigger.py: Allow wait and nowait triggers
-
-Ack.
-
->   yoctogit: Don't use branch args for referenced clone
-
-This also changes os.path.exists to self.pathExists which AFAICT have
-different uses (local vs remote).  The commit should clarify this.
-
->   bin/buildslave-janitor: For fast-git checkouts
-
-Truncated commit message.
-
->   yoctogit: Remove use of oe.path.exists()
-
-This commit doesn't actually remove a use of os.path.exists, so either
-the patch is incomplete or the message is misleading.
-
-> Stefan Stanacar (2):
->   buildsets: add a new buildset to run builds on target
-
-Ack.
-
->   Add buildstep and buildset for oe-selftest script
-
-I'm a big fan of logically independent sequential patches as they make
-things a lot easier to review, so I'd say the change to CreateAutoConf
-should be split out as a separate commit.  It's unrelated to the
-commit short message and only mentioned in passing in the long
-message.
-
-Ross
 
