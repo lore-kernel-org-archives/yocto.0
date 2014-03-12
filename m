@@ -1,40 +1,35 @@
-Return-Path: <Kevin.Evans@rigaku.com>
-Received: from mail1.bemta7.messagelabs.com (mail1.bemta7.messagelabs.com
-	[216.82.254.111])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 80402E00A5C
-	for <yocto@yoctoproject.org>; Wed, 12 Mar 2014 08:51:30 -0700 (PDT)
-Received: from [216.82.253.163:2469] by server-15.bemta-7.messagelabs.com id
-	A6/18-26584-18280235; Wed, 12 Mar 2014 15:51:29 +0000
-X-Env-Sender: Kevin.Evans@rigaku.com
-X-Msg-Ref: server-16.tower-166.messagelabs.com!1394639488!17455628!1
-X-Originating-IP: [74.51.198.13]
-X-StarScan-Received: 
-X-StarScan-Version: 6.9.16; banners=-,-,-
-X-VirusChecked: Checked
-Received: (qmail 9194 invoked from network); 12 Mar 2014 15:51:29 -0000
-Received: from unknown (HELO mail.rigaku.com) (74.51.198.13)
-	by server-16.tower-166.messagelabs.com with AES128-SHA encrypted SMTP;
-	12 Mar 2014 15:51:29 -0000
-Received: from RAC-BCS-EXCHG1.rac.local ([169.254.2.14]) by
-	RAC-BCS-EXCHG2.rac.local ([169.254.1.176]) with mapi id 14.03.0123.003;
-	Wed, 12 Mar 2014 10:51:28 -0500
-From: Kevin Evans <Kevin.Evans@rigaku.com>
-To: David Welch <djwelch666@gmail.com>
-Thread-Topic: [yocto] SysVinit and psplash
-Thread-Index: Ac88fCa/B+HQ9fpmRNOjeINccM9WnABhMosAAAJsRjE=
-Date: Wed, 12 Mar 2014 15:51:27 +0000
-Message-ID: <498C38F5E894A4499E84980494E5D95C1AA62D3C@RAC-BCS-EXCHG1.rac.local>
-References: <498C38F5E894A4499E84980494E5D95C1AA628E3@RAC-BCS-EXCHG1.rac.local>,
-	<CACP9YJeqSeDm0WPOo2_1eqL+OJ7rrkR3=5oRoxkYnSf_3+NsBQ@mail.gmail.com>
-In-Reply-To: <CACP9YJeqSeDm0WPOo2_1eqL+OJ7rrkR3=5oRoxkYnSf_3+NsBQ@mail.gmail.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.200.0.49]
+Return-Path: <bianchirickkutta@gmail.com>
+Received: from mail-vc0-f177.google.com (mail-vc0-f177.google.com
+	[209.85.220.177])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 17C75E009CE
+	for <yocto@yoctoproject.org>; Wed, 12 Mar 2014 12:11:48 -0700 (PDT)
+Received: by mail-vc0-f177.google.com with SMTP id if17so7731727vcb.22
+	for <yocto@yoctoproject.org>; Wed, 12 Mar 2014 12:11:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type;
+	bh=YIQ8YkBd7VZwaNixRvYcgIqfiYUSYTbms2Nre+TYHss=;
+	b=V5i55mkLuW4uX5Y4MpoWAOLUCshSj+d6mOcVw8EuSDRBAsClqWzx+kAcPqbgxMR6Vq
+	mgXW3xfIw2Aqp1GdU27jfSzN+AGhymedNaMzmA1Y06LOtBSwIeylfHpxDxuY9ovH2lqK
+	7/41Cwowjs11wrwb6uEhD5ekENY7Lf/DYd5IMMK7AScIWwrinHiMWDwOg8P4Oceh/hRk
+	f5f5SnV8tVlNHkarLdU7H4vOIBXqc4N4B+bpygU+kKYPfwklap/+/JpAmnTSKIYL8cdn
+	P2dNIW1oQERhTFDD0APP8sgmwtx/zIqFxLwe0b8YtU5dm5m4fTf6uGR4+DDdp43/u7ac
+	2J8g==
 MIME-Version: 1.0
-X-Mailman-Approved-At: Wed, 12 Mar 2014 12:03:59 -0700
+X-Received: by 10.58.94.195 with SMTP id de3mr10548veb.39.1394651508121; Wed,
+	12 Mar 2014 12:11:48 -0700 (PDT)
+Received: by 10.220.96.66 with HTTP; Wed, 12 Mar 2014 12:11:48 -0700 (PDT)
+In-Reply-To: <5320AB11.4060303@mlbassoc.com>
+References: <CAA7h+EpU6RVwbewuJ6r04+O2CvjPBpP1z86dpAthm4_cBrrO+Q@mail.gmail.com>
+	<53207D25.2040309@mlbassoc.com>
+	<CAA7h+Eomb_92298Y1NDmtTNiTmNcbivytLd9xT=1FVZ+My=PAw@mail.gmail.com>
+	<5320AB11.4060303@mlbassoc.com>
+Date: Wed, 12 Mar 2014 12:11:48 -0700
+Message-ID: <CAA7h+EoYviRS34heBABgE-o1eQP0po=rVgE-Tc98vSg16F-5+g@mail.gmail.com>
+From: Rick Bianchi <bianchirickkutta@gmail.com>
+To: Gary Thomas <gary@mlbassoc.com>
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: SysVinit and psplash
+Subject: Re: Building on target
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -46,136 +41,219 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 12 Mar 2014 15:51:33 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_498C38F5E894A4499E84980494E5D95C1AA62D3CRACBCSEXCHG1rac_"
+X-List-Received-Date: Wed, 12 Mar 2014 19:11:50 -0000
+Content-Type: multipart/alternative; boundary=047d7ba96cf4ba245d04f46d9bfe
 
---_000_498C38F5E894A4499E84980494E5D95C1AA62D3CRACBCSEXCHG1rac_
-Content-Type: text/plain; charset="iso-8859-1"
+--047d7ba96cf4ba245d04f46d9bfe
+Content-Type: text/plain; charset=ISO-8859-1
+
+usbip from /usr/src/kernel/drivers/staging/usbip
+
+
+On Wed, Mar 12, 2014 at 11:44 AM, Gary Thomas <gary@mlbassoc.com> wrote:
+
+> On 2014-03-12 10:09, Rick Bianchi wrote:
+> > I completely agree with regards to the comparison, but I have compiled
+> the same exact source on the same target (arm) and it only took 5 minutes
+> when running the Linaro image.
+> >
+> > To clarify, the only difference is the build, one is Linaro (took 5
+> minutes to compile source on the target) and the other Yocto (took almost
+> 24 hours to compile source on the target).
+>
+> Sorry, I missed that this was on the same hardware.
+>
+> What are you building?  I'm going to try and duplicate this here
+> on hardware I have that's quite similar to your Gumstix board.
+>
+> >
+> > Is there something that I am missing?
+> >
+> >
+> > On Wed, Mar 12, 2014 at 8:28 AM, Gary Thomas <gary@mlbassoc.com <mailto:
+> gary@mlbassoc.com>> wrote:
+> >
+> >     On 2014-03-12 09:15, Rick Bianchi wrote:
+> >     >
+> >     > I have the gumstix-console-image with the added packages below.
+> When I compile on the target is take a very long time for it to complete,
+> over 24 hours. I have compiled the same
+> >     > code on the same target, but running Linaro image, and it only
+> takes a few minutes. Is there another recipe that I need to add to the
+> build to speed up compiling?
+> >
+> >     Doubtful.  The reason your build on the target takes so long is
+> merely
+> >     one of horsepower - that little ARM processor just doesn't have it,
+> especially
+> >     if you are comparing it to a typical desktop environment.
+> >
+> >     > EXTRA_IMAGE_FEATURES += "dev-pkgs"
+> >     > IMAGE_INSTALL_append =" autoconf"
+> >     > IMAGE_INSTALL_append =" autofs"
+> >     > IMAGE_INSTALL_append =" automake"
+> >     > IMAGE_INSTALL_append =" ccache"
+> >     > IMAGE_INSTALL_append =" chkconfig"
+> >     > IMAGE_INSTALL_append =" dbus-glib"
+> >     > IMAGE_INSTALL_append =" gcc"
+> >     > IMAGE_INSTALL_append =" glib-2.0"
+> >     > IMAGE_INSTALL_append =" glib-networking"
+> >     > IMAGE_INSTALL_append =" glibmm"
+> >     > IMAGE_INSTALL_append =" packagegroup-core-buildessential"
+> >     > IMAGE_INSTALL_append =" pciutils"
+> >     > IMAGE_INSTALL_append =" pkgconfig"
+> >     > IMAGE_INSTALL_append =" python-scons"
+> >     > IMAGE_INSTALL_append =" systemd-compat-units"
+> >     > IMAGE_INSTALL_append =" sysfsutils"
+> >     > IMAGE_INSTALL_append =" tcp-wrappers"
+> >     > IMAGE_INSTALL_append =" usbutils"
+> >     > IMAGE_INSTALL_append =" util-macros"
+> >     >
+> >     >
+> >
+> >     --
+> >     ------------------------------------------------------------
+> >     Gary Thomas                 |  Consulting for the
+> >     MLB Associates              |    Embedded world
+> >     ------------------------------------------------------------
+> >     --
+> >     _______________________________________________
+> >     yocto mailing list
+> >     yocto@yoctoproject.org <mailto:yocto@yoctoproject.org>
+> >     https://lists.yoctoproject.org/listinfo/yocto
+> >
+> >
+> >
+> >
+>
+> --
+> ------------------------------------------------------------
+> Gary Thomas                 |  Consulting for the
+> MLB Associates              |    Embedded world
+> ------------------------------------------------------------
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
+
+--047d7ba96cf4ba245d04f46d9bfe
+Content-Type: text/html; charset=ISO-8859-1
 Content-Transfer-Encoding: quoted-printable
 
-David,
-
-Thanks for that pointer.  I updated my u-boot ini file to pass the console=
-=3Dtty2 to the kernel command line and it took care of the problem.
-
--Kevin
-________________________________
-From: David Welch [djwelch666@gmail.com]
-Sent: Wednesday, March 12, 2014 4:39 AM
-To: Kevin Evans
-Cc: yocto@yoctoproject.org
-Subject: Re: [yocto] SysVinit and psplash
-
-I too found this to be a problem.  Setting console=3Dtty2 made the messages=
- come out on another console and not visible on the screen.
-
-
-On Mon, Mar 10, 2014 at 4:19 PM, Kevin Evans <Kevin.Evans@rigaku.com<mailto=
-:Kevin.Evans@rigaku.com>> wrote:
-Hello all:
-
-I am using yocto denzil release with an IGEPv2 (beagle board clone). It app=
-ears the init is ignoring my log level being set to quite and prints the ru=
-n level 5 messages and they appear between the splash screen and xorg start=
-ing.  I am not sure of the best way to suppress the text being displayed he=
-re. So far I have used:
-
-1. Set loglevel=3Dquiet in kernel commnand line (this silences the logging =
-before pslash but not after.
-2. Set the USE_VT build variable to "0". this only disabled logins through =
-the VT.
-
-Not sure what to try now. Any help would be appreciated.
-
---
-_______________________________________________
-yocto mailing list
-yocto@yoctoproject.org<mailto:yocto@yoctoproject.org>
-https://lists.yoctoproject.org/listinfo/yocto
-
-
-
---_000_498C38F5E894A4499E84980494E5D95C1AA62D3CRACBCSEXCHG1rac_
-Content-Type: text/html; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
-
-<html dir=3D"ltr">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
-1">
-<style id=3D"owaParaStyle" type=3D"text/css">P {margin-top:0;margin-bottom:=
-0;}</style>
-</head>
-<body ocsi=3D"0" fpstyle=3D"1">
-<div style=3D"direction: ltr;font-family: Tahoma;color: #000000;font-size: =
-10pt;">David,<br>
-<br>
-Thanks for that pointer.&nbsp; I updated my u-boot ini file to pass the con=
-sole=3Dtty2 to the kernel command line and it took care of the problem.<br>
-<br>
--Kevin<br>
-<div style=3D"font-family: Times New Roman; color: #000000; font-size: 16px=
-">
-<hr tabindex=3D"-1">
-<div style=3D"direction: ltr;" id=3D"divRpF629509"><font color=3D"#000000" =
-face=3D"Tahoma" size=3D"2"><b>From:</b> David Welch [djwelch666@gmail.com]<=
+<div dir=3D"ltr">usbip from /usr/src/kernel/drivers/staging/usbip<br></div>=
+<div class=3D"gmail_extra"><br><br><div class=3D"gmail_quote">On Wed, Mar 1=
+2, 2014 at 11:44 AM, Gary Thomas <span dir=3D"ltr">&lt;<a href=3D"mailto:ga=
+ry@mlbassoc.com" target=3D"_blank">gary@mlbassoc.com</a>&gt;</span> wrote:<=
 br>
-<b>Sent:</b> Wednesday, March 12, 2014 4:39 AM<br>
-<b>To:</b> Kevin Evans<br>
-<b>Cc:</b> yocto@yoctoproject.org<br>
-<b>Subject:</b> Re: [yocto] SysVinit and psplash<br>
-</font><br>
-</div>
-<div></div>
-<div>
-<div dir=3D"ltr">I too found this to be a problem. &nbsp;Setting console=3D=
-tty2 made the messages come out on another console and not visible on the s=
-creen.</div>
-<div class=3D"gmail_extra"><br>
+<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
+x #ccc solid;padding-left:1ex"><div class=3D"">On 2014-03-12 10:09, Rick Bi=
+anchi wrote:<br>
+&gt; I completely agree with regards to the comparison, but I have compiled=
+ the same exact source on the same target (arm) and it only took 5 minutes =
+when running the Linaro image.<br>
+&gt;<br>
+&gt; To clarify, the only difference is the build, one is Linaro (took 5 mi=
+nutes to compile source on the target) and the other Yocto (took almost 24 =
+hours to compile source on the target).<br>
 <br>
-<div class=3D"gmail_quote">On Mon, Mar 10, 2014 at 4:19 PM, Kevin Evans <sp=
-an dir=3D"ltr">
-&lt;<a href=3D"mailto:Kevin.Evans@rigaku.com" target=3D"_blank">Kevin.Evans=
-@rigaku.com</a>&gt;</span> wrote:<br>
-<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex; border-left:1=
-px #ccc solid; padding-left:1ex">
-<div>
-<div style=3D"direction:ltr; font-size:10pt; font-family:Tahoma">Hello all:=
+</div>Sorry, I missed that this was on the same hardware.<br>
 <br>
+What are you building? &nbsp;I&#39;m going to try and duplicate this here<b=
+r>
+on hardware I have that&#39;s quite similar to your Gumstix board.<br>
+<div class=3D""><br>
+&gt;<br>
+&gt; Is there something that I am missing?<br>
+&gt;<br>
+&gt;<br>
+</div><div><div class=3D"h5">&gt; On Wed, Mar 12, 2014 at 8:28 AM, Gary Tho=
+mas &lt;<a href=3D"mailto:gary@mlbassoc.com">gary@mlbassoc.com</a> &lt;mail=
+to:<a href=3D"mailto:gary@mlbassoc.com">gary@mlbassoc.com</a>&gt;&gt; wrote=
+:<br>
+
+&gt;<br>
+&gt; &nbsp; &nbsp; On 2014-03-12 09:15, Rick Bianchi wrote:<br>
+&gt; &nbsp; &nbsp; &gt;<br>
+&gt; &nbsp; &nbsp; &gt; I have the gumstix-console-image with the added pac=
+kages below. When I compile on the target is take a very long time for it t=
+o complete, over 24 hours. I have compiled the same<br>
+&gt; &nbsp; &nbsp; &gt; code on the same target, but running Linaro image, =
+and it only takes a few minutes. Is there another recipe that I need to add=
+ to the build to speed up compiling?<br>
+&gt;<br>
+&gt; &nbsp; &nbsp; Doubtful. &nbsp;The reason your build on the target take=
+s so long is merely<br>
+&gt; &nbsp; &nbsp; one of horsepower - that little ARM processor just doesn=
+&#39;t have it, especially<br>
+&gt; &nbsp; &nbsp; if you are comparing it to a typical desktop environment=
+.<br>
+&gt;<br>
+&gt; &nbsp; &nbsp; &gt; EXTRA_IMAGE_FEATURES +=3D &quot;dev-pkgs&quot;<br>
+&gt; &nbsp; &nbsp; &gt; IMAGE_INSTALL_append =3D&quot; autoconf&quot;<br>
+&gt; &nbsp; &nbsp; &gt; IMAGE_INSTALL_append =3D&quot; autofs&quot;<br>
+&gt; &nbsp; &nbsp; &gt; IMAGE_INSTALL_append =3D&quot; automake&quot;<br>
+&gt; &nbsp; &nbsp; &gt; IMAGE_INSTALL_append =3D&quot; ccache&rdquo;<br>
+&gt; &nbsp; &nbsp; &gt; IMAGE_INSTALL_append =3D&quot; chkconfig&quot;<br>
+&gt; &nbsp; &nbsp; &gt; IMAGE_INSTALL_append =3D&quot; dbus-glib&quot;<br>
+&gt; &nbsp; &nbsp; &gt; IMAGE_INSTALL_append =3D&quot; gcc&quot;<br>
+&gt; &nbsp; &nbsp; &gt; IMAGE_INSTALL_append =3D&quot; glib-2.0&quot;<br>
+&gt; &nbsp; &nbsp; &gt; IMAGE_INSTALL_append =3D&quot; glib-networking&quot=
+;<br>
+&gt; &nbsp; &nbsp; &gt; IMAGE_INSTALL_append =3D&quot; glibmm&quot;<br>
+&gt; &nbsp; &nbsp; &gt; IMAGE_INSTALL_append =3D&quot; packagegroup-core-bu=
+ildessential&quot;<br>
+&gt; &nbsp; &nbsp; &gt; IMAGE_INSTALL_append =3D&quot; pciutils&quot;<br>
+&gt; &nbsp; &nbsp; &gt; IMAGE_INSTALL_append =3D&quot; pkgconfig&rdquo;<br>
+&gt; &nbsp; &nbsp; &gt; IMAGE_INSTALL_append =3D&quot; python-scons&quot;<b=
+r>
+&gt; &nbsp; &nbsp; &gt; IMAGE_INSTALL_append =3D&quot; systemd-compat-units=
+&rdquo;<br>
+&gt; &nbsp; &nbsp; &gt; IMAGE_INSTALL_append =3D&quot; sysfsutils&quot;<br>
+&gt; &nbsp; &nbsp; &gt; IMAGE_INSTALL_append =3D&quot; tcp-wrappers&quot;<b=
+r>
+&gt; &nbsp; &nbsp; &gt; IMAGE_INSTALL_append =3D&quot; usbutils&quot;<br>
+&gt; &nbsp; &nbsp; &gt; IMAGE_INSTALL_append =3D&quot; util-macros&quot;<br=
+>
+&gt; &nbsp; &nbsp; &gt;<br>
+&gt; &nbsp; &nbsp; &gt;<br>
+&gt;<br>
+&gt; &nbsp; &nbsp; --<br>
+&gt; &nbsp; &nbsp; --------------------------------------------------------=
+----<br>
+&gt; &nbsp; &nbsp; Gary Thomas &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &n=
+bsp; &nbsp; | &nbsp;Consulting for the<br>
+&gt; &nbsp; &nbsp; MLB Associates &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;=
+ &nbsp;| &nbsp; &nbsp;Embedded world<br>
+&gt; &nbsp; &nbsp; --------------------------------------------------------=
+----<br>
+&gt; &nbsp; &nbsp; --<br>
+&gt; &nbsp; &nbsp; _______________________________________________<br>
+&gt; &nbsp; &nbsp; yocto mailing list<br>
+</div></div>&gt; &nbsp; &nbsp; <a href=3D"mailto:yocto@yoctoproject.org">yo=
+cto@yoctoproject.org</a> &lt;mailto:<a href=3D"mailto:yocto@yoctoproject.or=
+g">yocto@yoctoproject.org</a>&gt;<br>
+&gt; &nbsp; &nbsp; <a href=3D"https://lists.yoctoproject.org/listinfo/yocto=
+" target=3D"_blank">https://lists.yoctoproject.org/listinfo/yocto</a><br>
+<div class=3D"HOEnZb"><div class=3D"h5">&gt;<br>
+&gt;<br>
+&gt;<br>
+&gt;<br>
 <br>
-I am using yocto denzil release with an IGEPv2 (beagle board clone). It app=
-ears the init is ignoring my log level being set to quite and prints the ru=
-n level 5 messages and they appear between the splash screen and xorg start=
-ing.&nbsp; I am not sure of the best
- way to suppress the text being displayed here. So far I have used:<br>
-<br>
-1. Set loglevel=3Dquiet in kernel commnand line (this silences the logging =
-before pslash but not after.<br>
-2. Set the USE_VT build variable to &quot;0&quot;. this only disabled login=
-s through the VT.<br>
-<br>
-Not sure what to try now. Any help would be appreciated.<br>
-</div>
-</div>
-<br>
+--<br>
+------------------------------------------------------------<br>
+Gary Thomas &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; | &nbsp=
+;Consulting for the<br>
+MLB Associates &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;| &nbsp; &nb=
+sp;Embedded world<br>
+------------------------------------------------------------<br>
 --<br>
 _______________________________________________<br>
 yocto mailing list<br>
-<a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yocto@yoctoproj=
-ect.org</a><br>
+<a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br>
 <a href=3D"https://lists.yoctoproject.org/listinfo/yocto" target=3D"_blank"=
 >https://lists.yoctoproject.org/listinfo/yocto</a><br>
-<br>
-</blockquote>
-</div>
-<br>
-</div>
-</div>
-</div>
-</div>
-</body>
-</html>
+</div></div></blockquote></div><br></div>
 
---_000_498C38F5E894A4499E84980494E5D95C1AA62D3CRACBCSEXCHG1rac_--
+--047d7ba96cf4ba245d04f46d9bfe--
