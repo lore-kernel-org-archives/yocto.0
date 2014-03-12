@@ -1,30 +1,28 @@
-Return-Path: <Bruce.Ashfield@windriver.com>
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 855E3E0077C
-	for <yocto@yoctoproject.org>; Wed, 12 Mar 2014 00:25:18 -0700 (PDT)
-Received: from ALA-HCB.corp.ad.wrs.com (ala-hcb.corp.ad.wrs.com
-	[147.11.189.41])
-	by mail.windriver.com (8.14.5/8.14.5) with ESMTP id s2C7PFim014506
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Wed, 12 Mar 2014 00:25:15 -0700 (PDT)
-Received: from server.local (128.224.22.159) by ALA-HCB.corp.ad.wrs.com
-	(147.11.189.41) with Microsoft SMTP Server id 14.3.169.1;
-	Wed, 12 Mar 2014 00:25:14 -0700
-Message-ID: <53200BE2.5060608@windriver.com>
-Date: Wed, 12 Mar 2014 03:25:22 -0400
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.9;
-	rv:24.0) Gecko/20100101 Thunderbird/24.3.0
+Return-Path: <djwelch666@gmail.com>
+Received: from mail-pd0-f172.google.com (mail-pd0-f172.google.com
+	[209.85.192.172])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C1FDCE009BB
+	for <yocto@yoctoproject.org>; Wed, 12 Mar 2014 02:35:39 -0700 (PDT)
+Received: by mail-pd0-f172.google.com with SMTP id p10so829904pdj.17
+	for <yocto@yoctoproject.org>; Wed, 12 Mar 2014 02:35:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=Uml1I7DHm0kY6+v7AnRPS/2/hUlkXbbgTRp4MRCDruM=;
+	b=EyMDrhyKv5PRZXZrYBiThiuU8AxwrhH2MKL21GQ1nHZxcKMgmzzDF2hGAmMcL1EmsO
+	e/rGCA2C/qdLYwBN0TPPQ0Bvw0unwt30vcsFuBXrLjgSGHhI3ayzhTG4s/T73TBzIh7v
+	BrhBWsYtKSlt52S62LERN+Af8teQz25ZgKZ5dqNuCKWsC8NUCJwOhUFnW3JlH8Se/FnY
+	gNBJhayYTjnis+jmJLpuxAoiIWdMSfbyp5XJmDmfbgjwh3mYdDZ8gIT3d7fpPgEtxipm
+	mm28gCwEVmu6kfSns3M7Mslu0s5B7DqI3gAywKrEkWtHTwx8c0yoosd7zxDWMWf+1yLm
+	UGLg==
 MIME-Version: 1.0
-To: Paul Eggleton <paul.eggleton@linux.intel.com>, Andy Ng
-	<andreas2025@gmail.com>
-References: <CAAVaN8x28LCRC7Oz+vdovFk9EifMd2eGdkaUsymi1GRaGhOEsg@mail.gmail.com>
-	<531F85C0.6050402@windriver.com>
-	<1862955.r4ZPgX2shq@peggleto-mobl5.ger.corp.intel.com>
-	<2182545.6raVmoJO5X@peggleto-mobl5.ger.corp.intel.com>
-In-Reply-To: <2182545.6raVmoJO5X@peggleto-mobl5.ger.corp.intel.com>
-Cc: yocto@yoctoproject.org
-Subject: Re: Working with a git'ed kernel on the server
+X-Received: by 10.68.244.229 with SMTP id xj5mr3721426pbc.108.1394616938844;
+	Wed, 12 Mar 2014 02:35:38 -0700 (PDT)
+Received: by 10.68.230.199 with HTTP; Wed, 12 Mar 2014 02:35:38 -0700 (PDT)
+Date: Wed, 12 Mar 2014 09:35:38 +0000
+Message-ID: <CACP9YJdqYwOHcEDWwuwKFubt8E1-jY6hSpevpGkNHxShVSOrrA@mail.gmail.com>
+From: David Welch <djwelch666@gmail.com>
+To: yocto@yoctoproject.org
+Subject: Creating an installer for your Yocto image.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -36,36 +34,46 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 12 Mar 2014 07:25:19 -0000
-Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 12 Mar 2014 09:35:39 -0000
+Content-Type: multipart/alternative; boundary=047d7b2e07e33cd85f04f4658f42
 
-On 2014-03-11, 6:10 PM, Paul Eggleton wrote:
-> On Tuesday 11 March 2014 22:05:53 Paul Eggleton wrote:
->> On Tuesday 11 March 2014 17:53:04 Bruce Ashfield wrote:
->>> On 2014-03-11, 3:22 PM, Andy Ng wrote:
->>>> Thank you,
->>>>
->>>> I've just noticed my bb file has:
->>>>
->>>> SRCREV_pn-${PN} = "${AUTOREV}"
->>>>
->>>> So it should be ok?
->>>
->>> That should be all you need.
->>
->> If this line is in a recipe you can remove the _pn-${PN} as well as that
->> won't be achieving anything.
->
-> Well, that is, unless somewhere else you have a SRCREV_pn-<PN> = line.
+--047d7b2e07e33cd85f04f4658f42
+Content-Type: text/plain; charset=ISO-8859-1
 
-Agreed. Thanks for the clarification Paul!
+Hi,
 
-Bruce
+Currently we are dd'ing a yocto created image to a hd.  This works great
+for having our production people create new machines in a factory.
 
->
-> Cheers,
-> Paul
->
+I have a new requirement now for what happens if we want to re-image a
+machine in the field.  Ideally I would like to be able to insert a USB
+stick and have an unattended installation process completely re-image the
+hard drive.
 
+I was wondering if there was a Yocto/bitbake package which could create a
+default standard linux installation application that could be run at boot
+time to partition the hd and install the image.  Would you guys know if
+there was a good way this could be achieved or is it a case of writing
+something from scratch?
 
+Thanks,
+David
+
+--047d7b2e07e33cd85f04f4658f42
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Hi,<div><br></div><div>Currently we are dd&#39;ing a yocto=
+ created image to a hd. =A0This works great for having our production peopl=
+e create new machines in a factory.</div><div><br></div><div>I have a new r=
+equirement now for what happens if we want to re-image a machine in the fie=
+ld. =A0Ideally I would like to be able to insert a USB stick and have an un=
+attended installation process completely re-image the hard drive.</div>
+<div><br></div><div>I was wondering if there was a Yocto/bitbake package wh=
+ich could create a default standard linux installation application that cou=
+ld be run at boot time to partition the hd and install the image. =A0Would =
+you guys know if there was a good way this could be achieved or is it a cas=
+e of writing something from scratch?</div>
+<div><br></div><div>Thanks,</div><div>David</div></div>
+
+--047d7b2e07e33cd85f04f4658f42--
