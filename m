@@ -1,23 +1,29 @@
-Return-Path: <jonathan.austin@arm.com>
-Received: from service87.mimecast.com (service87.mimecast.com [91.220.42.44])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B4F17E00ABB
-	for <yocto@yoctoproject.org>; Wed, 12 Mar 2014 11:08:21 -0700 (PDT)
-Received: from cam-owa2.Emea.Arm.com (fw-tnat.cambridge.arm.com
-	[217.140.96.21]) by service87.mimecast.com;
-	Wed, 12 Mar 2014 18:08:17 +0000
-Received: from [10.2.202.23] ([10.1.255.212]) by cam-owa2.Emea.Arm.com with
-	Microsoft SMTPSVC(6.0.3790.3959); Wed, 12 Mar 2014 18:08:27 +0000
-Message-ID: <5320A287.80608@arm.com>
-Date: Wed, 12 Mar 2014 18:08:07 +0000
-From: Jonathan Austin <jonathan.austin@arm.com>
+Return-Path: <gary@mlbassoc.com>
+Received: from mail.chez-thomas.org (mail.mlbassoc.com [65.100.170.105])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CC320E00AAB
+	for <yocto@yoctoproject.org>; Wed, 12 Mar 2014 11:44:31 -0700 (PDT)
+Received: by mail.chez-thomas.org (Postfix, from userid 1998)
+	id 5B70AF811E8; Wed, 12 Mar 2014 12:44:31 -0600 (MDT)
+X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on
+	hermes.chez-thomas.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=4.0 tests=ALL_TRUSTED,BAYES_00
+	autolearn=unavailable version=3.3.2
+Received: from [192.168.1.114] (zeus [192.168.1.114])
+	by mail.chez-thomas.org (Postfix) with ESMTP id 8B2A0F811DA;
+	Wed, 12 Mar 2014 12:44:29 -0600 (MDT)
+Message-ID: <5320AB11.4060303@mlbassoc.com>
+Date: Wed, 12 Mar 2014 12:44:33 -0600
+From: Gary Thomas <gary@mlbassoc.com>
 User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:24.0) Gecko/20100101 Thunderbird/24.2.0
+	rv:24.0) Gecko/20100101 Thunderbird/24.3.0
 MIME-Version: 1.0
 To: yocto@yoctoproject.org
-X-OriginalArrivalTime: 12 Mar 2014 18:08:27.0481 (UTC)
-	FILETIME=[11280490:01CF3E1E]
-X-MC-Unique: 114031218081702001
-Subject: ADT: understanding YOCTOADT_TARGET_MACHINE_arch
+References: <CAA7h+EpU6RVwbewuJ6r04+O2CvjPBpP1z86dpAthm4_cBrrO+Q@mail.gmail.com>	<53207D25.2040309@mlbassoc.com>
+	<CAA7h+Eomb_92298Y1NDmtTNiTmNcbivytLd9xT=1FVZ+My=PAw@mail.gmail.com>
+In-Reply-To: <CAA7h+Eomb_92298Y1NDmtTNiTmNcbivytLd9xT=1FVZ+My=PAw@mail.gmail.com>
+X-Enigmail-Version: 1.5.2
+Subject: Re: Building on target
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -29,64 +35,76 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 12 Mar 2014 18:08:22 -0000
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Wed, 12 Mar 2014 18:44:35 -0000
+Content-Type: text/plain; charset=windows-1252
+Content-Transfer-Encoding: 8bit
 
-Hi list,
+On 2014-03-12 10:09, Rick Bianchi wrote:
+> I completely agree with regards to the comparison, but I have compiled the same exact source on the same target (arm) and it only took 5 minutes when running the Linaro image.
+> 
+> To clarify, the only difference is the build, one is Linaro (took 5 minutes to compile source on the target) and the other Yocto (took almost 24 hours to compile source on the target).
 
-I've been looking at the ADT, and specifically building a custom SDK/ADT=20
-for a particular board...
+Sorry, I missed that this was on the same hardware.
 
-This is an ARM board, so I thought I'd set:
-YOCTOADT_TARGET_MACHINE_arm=3D"myboard"
+What are you building?  I'm going to try and duplicate this here
+on hardware I have that's quite similar to your Gumstix board.
 
-Sadly, that doesn't work. I'm trying to understand why.
+> 
+> Is there something that I am missing?
+> 
+> 
+> On Wed, Mar 12, 2014 at 8:28 AM, Gary Thomas <gary@mlbassoc.com <mailto:gary@mlbassoc.com>> wrote:
+> 
+>     On 2014-03-12 09:15, Rick Bianchi wrote:
+>     >
+>     > I have the gumstix-console-image with the added packages below. When I compile on the target is take a very long time for it to complete, over 24 hours. I have compiled the same
+>     > code on the same target, but running Linaro image, and it only takes a few minutes. Is there another recipe that I need to add to the build to speed up compiling?
+> 
+>     Doubtful.  The reason your build on the target takes so long is merely
+>     one of horsepower - that little ARM processor just doesn't have it, especially
+>     if you are comparing it to a typical desktop environment.
+> 
+>     > EXTRA_IMAGE_FEATURES += "dev-pkgs"
+>     > IMAGE_INSTALL_append =" autoconf"
+>     > IMAGE_INSTALL_append =" autofs"
+>     > IMAGE_INSTALL_append =" automake"
+>     > IMAGE_INSTALL_append =" ccache”
+>     > IMAGE_INSTALL_append =" chkconfig"
+>     > IMAGE_INSTALL_append =" dbus-glib"
+>     > IMAGE_INSTALL_append =" gcc"
+>     > IMAGE_INSTALL_append =" glib-2.0"
+>     > IMAGE_INSTALL_append =" glib-networking"
+>     > IMAGE_INSTALL_append =" glibmm"
+>     > IMAGE_INSTALL_append =" packagegroup-core-buildessential"
+>     > IMAGE_INSTALL_append =" pciutils"
+>     > IMAGE_INSTALL_append =" pkgconfig”
+>     > IMAGE_INSTALL_append =" python-scons"
+>     > IMAGE_INSTALL_append =" systemd-compat-units”
+>     > IMAGE_INSTALL_append =" sysfsutils"
+>     > IMAGE_INSTALL_append =" tcp-wrappers"
+>     > IMAGE_INSTALL_append =" usbutils"
+>     > IMAGE_INSTALL_append =" util-macros"
+>     >
+>     >
+> 
+>     --
+>     ------------------------------------------------------------
+>     Gary Thomas                 |  Consulting for the
+>     MLB Associates              |    Embedded world
+>     ------------------------------------------------------------
+>     --
+>     _______________________________________________
+>     yocto mailing list
+>     yocto@yoctoproject.org <mailto:yocto@yoctoproject.org>
+>     https://lists.yoctoproject.org/listinfo/yocto
+> 
+> 
+> 
+> 
 
-Despite changing YOCTOADT_REPO in my adt_installer.conf, the=20
-adt_installer fails to find the cross canadian package group for my board..=
-.
-
-Unknown package 'packagegroup-cross-canadian-myboard
-
-Looking at the log, I see that the installer is still looking on the=20
-yocto servers for (nativesdk) files. I can see that the nativesdk=20
-locations are hard-coded in opkg/conf/opkg-sdk-i686.conf - so I guess it=20
-isn't surprising that it can't find the right board, the Yocto servers=20
-know nothing of myboard at this stage!
-
-Seeing those hardcoded paths made me wonder if I was using the=20
-YOCTOADT_TARGET_MACHINE_arm variable wrong...
-
-Would it be 'right' to specify just 'arm' here? This is an imx6 board,=20
-and TARGET_SYS =3D "arm-poky-linux-gnueabi". By my understanding, this=20
-will affect which toolchain I get, among other things. I'd defintiely=20
-like a machine specific sysroot, for example[1]
-
-So - what's the meaning/point of this TARGET_MACHINE_arch option? I see=20
-that there exists:
-packagegroup-cross-canadian-imx53qsb_1.0-r0_all.ipk
-
-  - so clearly someone's felt the need to use something other than just=20
-'arm' here in the past!
-
-Has anyone else done an ADT for a custom board that uses the ADT=20
-infrastructure?
-
-Do you create a detailed overlay to the adt-installer recipe and change=20
-config, etc?
-
-It feels a little like I'm missing a step when generating the ADT that=20
-tells it more important details about what I'm creating - if so, sorry=20
-for the questions, but please could you point me there?
-
-Thanks
-
-Jonny
-
-[1] I think that my images currently have to be called 'core-image-xxx'=20
-to work with existing ADT scripts, unless I'm missing some config=20
-somewhere, but that's a different issue that I'll dig into shortly
-
-
+-- 
+------------------------------------------------------------
+Gary Thomas                 |  Consulting for the
+MLB Associates              |    Embedded world
+------------------------------------------------------------
 
