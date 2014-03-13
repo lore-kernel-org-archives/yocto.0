@@ -1,35 +1,25 @@
-Return-Path: <paul.betafive@gmail.com>
-Received: from mail-ve0-f170.google.com (mail-ve0-f170.google.com
-	[209.85.128.170])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 87073E00AEC
-	for <yocto@yoctoproject.org>; Thu, 13 Mar 2014 13:34:54 -0700 (PDT)
-Received: by mail-ve0-f170.google.com with SMTP id pa12so1716170veb.15
-	for <yocto@yoctoproject.org>; Thu, 13 Mar 2014 13:34:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:sender:in-reply-to:references:from:date:message-id
-	:subject:to:cc:content-type;
-	bh=F2/23PWX8iubgqrd7oK76O3AQhKZTDlscxgG2zS5WPs=;
-	b=w2bkRiXDt2IEvrsGKMmj/HY6r3bKfraLUfEqCpgDftGKRdzgcniL1n0N/M+53ucpYV
-	FvVH6jyigbsb04K5QunEBqXlehLnV6rwOtqkuioqHwiYSwqOETIc4iTquc72oSCTIBbo
-	zygFOXCrl4CfzjgGGjxa923mW60BjwwD7uv2uwWa7EBFlHgP0yAOidAS1LzfjbKTJ2w5
-	JlZW4oD9mqnl8vvr8UrW9cWDvHFOQeteAl/Fxfz6orm0QbJ4CJoFsaHuGSBGW3mZKb05
-	W6ZNSB5WU7qlWO82D5CmvioaYzAnxEIpjfJQ0VHxH8o7771bSqFYYpuq91ZG0kQNJ4Gn
-	znNg==
-X-Received: by 10.221.40.10 with SMTP id to10mr3006930vcb.22.1394742894176;
-	Thu, 13 Mar 2014 13:34:54 -0700 (PDT)
+Return-Path: <joe.slater@windriver.com>
+Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4C4DAE00AE9
+	for <yocto@yoctoproject.org>; Thu, 13 Mar 2014 14:08:24 -0700 (PDT)
+Received: from ALA-HCB.corp.ad.wrs.com (ala-hcb.corp.ad.wrs.com
+	[147.11.189.41])
+	by mail1.windriver.com (8.14.5/8.14.5) with ESMTP id s2DL8KLO016424
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL)
+	for <yocto@yoctoproject.org>; Thu, 13 Mar 2014 14:08:20 -0700 (PDT)
+Received: from ala-jslater-lx3.wrs.com (147.11.152.42) by
+	ALA-HCB.corp.ad.wrs.com (147.11.189.41) with Microsoft SMTP Server id
+	14.3.169.1; Thu, 13 Mar 2014 14:08:20 -0700
+From: Joe Slater <jslater@windriver.com>
+To: <yocto@yoctoproject.org>, <rongqing.li@windriver.com>
+Date: Thu, 13 Mar 2014 14:08:19 -0700
+Message-ID: <1394744899-23794-2-git-send-email-jslater@windriver.com>
+X-Mailer: git-send-email 1.7.3.4
+In-Reply-To: <1394744899-23794-1-git-send-email-jslater@windriver.com>
+References: <1394744899-23794-1-git-send-email-jslater@windriver.com>
 MIME-Version: 1.0
-Sender: paul.betafive@gmail.com
-Received: by 10.220.239.135 with HTTP; Thu, 13 Mar 2014 13:34:13 -0700 (PDT)
-In-Reply-To: <CANyK_8fyV-rokqVYWx7b=oskL-A3NXi1JDE6yH+oeta63xMtBw@mail.gmail.com>
-References: <CA+rwqNQgcrQ_Ee_3ABmLhRHh5ySk3izbOWf9Txa82=LVXnRCLg@mail.gmail.com>
-	<CANyK_8fyV-rokqVYWx7b=oskL-A3NXi1JDE6yH+oeta63xMtBw@mail.gmail.com>
-From: Paul Barker <paul@paulbarker.me.uk>
-Date: Thu, 13 Mar 2014 20:34:13 +0000
-X-Google-Sender-Auth: cYhVSGS5VE6hbp8k2-gv_Zvhk6I
-Message-ID: <CANyK_8dvQ3kAPMG+_wZfNrnD2iQGJ_=PTJ9eegcbhk9tJYg7hg@mail.gmail.com>
-To: Mateusz Kaczanowski <kaczanowski.mateusz@gmail.com>
-Cc: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: Beagleboard booting kernel in qemu, halts
+Cc: joe.slater@windriver.com
+Subject: [meta-selinux PATCH 1/1] policycoreutils: semanage
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,56 +31,64 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 13 Mar 2014 20:34:55 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Thu, 13 Mar 2014 21:08:25 -0000
+Content-Type: text/plain
 
-On 13 March 2014 20:32, Paul Barker <paul@paulbarker.me.uk> wrote:
-> On 13 March 2014 18:59, Mateusz Kaczanowski
-> <kaczanowski.mateusz@gmail.com> wrote:
->> Hello everyone,
->> I'm trying to run beagleboard image in qemu. So I've built the kernel and
->> rootfs via yocto.
->>
->> But! Yocto generates zImage so I did:
->> MACHINE=beagleboard bitbake virtual/kernel
->> mkimage -A arm -O linux -T kernel -C none -a 0x80008000 -e 0x80008000 -n
->> "Linux kernel" -d ./zImage uImage
->>
->> and then I'm  running the sdcard with
->> qemu-system-arm -M beaglexm -drive if=sd,cache=writeback,file=/dev/sdb
->> -clock unix -serial stdio
+When modifying an selinux login record, seobject.py,
+may try to log a value, self.sename,  which has been preset to "None"
+and this will fail.  So, we set it to something useful.
 
-I should have read this line before I replied, maybe my advice is wrong...
+Signed-off-by: Joe Slater <jslater@windriver.com>
+---
+ .../policycoreutils-semanage-edit-user.patch       |   21 ++++++++++++++++++++
+ recipes-security/selinux/policycoreutils_2.2.5.bb  |    3 +-
+ 2 files changed, 23 insertions(+), 1 deletions(-)
+ create mode 100644 recipes-security/selinux/policycoreutils/policycoreutils-semanage-edit-user.patch
 
->>
->> Booting halts and nothing happends, no login prompt.
->> I would appreciate ANY help, I'm really lame in that subject:/
->>
->> That is my output:
->>
->
->> Kernel command line: console=ttyO2,115200n8 mpurate=auto buddy=none
->> camera=none vram=12M omapfb.mode=dvi:640x480MR-16@60 omapdss.def_disp=dvi
->> root=/dev/mmcblk0p2 rw rootfstype=ext3 rootwait
->
-> Ignoring how gmail has wrapped it, this is the kernel command line.
-> It's putting the console on ttyO2 which is a serial port on the
-> Beagleboard xM. You need to somehow change it so the console is on
-> tty1 if you want it to appear on the screen in qemu.
->
-> Hope this helps,
->
-> --
-> Paul Barker
->
-> Email: paul@paulbarker.me.uk
-> http://www.paulbarker.me.uk
-
-
-
+diff --git a/recipes-security/selinux/policycoreutils/policycoreutils-semanage-edit-user.patch b/recipes-security/selinux/policycoreutils/policycoreutils-semanage-edit-user.patch
+new file mode 100644
+index 0000000..f5aaa74
+--- /dev/null
++++ b/recipes-security/selinux/policycoreutils/policycoreutils-semanage-edit-user.patch
+@@ -0,0 +1,21 @@
++policycoreutils: semanage
++
++When modifying selinux login records, self.sename might not be
++needed, but it IS passed to a log function, so it must be set
++to something or the log attempt will fail.
++
++Upstream-Status: Pending
++
++Signed-off-by: Joe Slater <jslater@windriver.com>
++
++
++--- a/semanage/seobject.py
+++++ b/semanage/seobject.py
++@@ -576,6 +576,7 @@ class loginRecords(semanageRecords):
++ 
++ 		if sename != "":
++ 			semanage_seuser_set_sename(self.sh, u, sename)
+++			self.sename = sename
++ 		else:
++ 			self.sename = self.oldsename
++ 			
+diff --git a/recipes-security/selinux/policycoreutils_2.2.5.bb b/recipes-security/selinux/policycoreutils_2.2.5.bb
+index d851f74..bd3a5dd 100644
+--- a/recipes-security/selinux/policycoreutils_2.2.5.bb
++++ b/recipes-security/selinux/policycoreutils_2.2.5.bb
+@@ -1,4 +1,4 @@
+-PR = "r0"
++PR = "r1"
+ 
+ include selinux_20131030.inc
+ include ${BPN}.inc
+@@ -13,4 +13,5 @@ SRC_URI += "\
+ 	file://policycoreutils-fix-sepolicy-install-path.patch \
+ 	file://policycoreutils-make-O_CLOEXEC-optional.patch \
+ 	file://policycoreutils-loadpolicy-symlink.patch \
++	file://policycoreutils-semanage-edit-user.patch \
+ 	"
 -- 
-Paul Barker
+1.7.3.4
 
-Email: paul@paulbarker.me.uk
-http://www.paulbarker.me.uk
 
