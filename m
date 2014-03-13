@@ -1,28 +1,32 @@
-Return-Path: <b-sathishkumar@hcl.com>
-Received: from GWS08.hcl.com (gws08.hcl.com [192.8.186.131])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DB294E003C8
-	for <yocto@yoctoproject.org>; Thu, 13 Mar 2014 08:10:08 -0700 (PDT)
-X-IronPort-AV: E=Sophos;i="4.97,647,1389724200"; d="scan'208,217";a="19720847"
-Received: from unknown (HELO CHN-CORP-HT01.CORP.HCL.IN) ([10.249.2.33])
-	by GWS08.hcl.com with ESMTP/TLS/AES128-SHA; 13 Mar 2014 20:36:51 +0530
-Received: from CHN-HCLT-CSHT03.HCLT.CORP.HCL.IN (10.150.12.28) by
-	CHN-CORP-HT01.CORP.HCL.IN (10.249.2.33) with Microsoft SMTP Server
-	(TLS) id 14.3.123.3; Thu, 13 Mar 2014 20:40:06 +0530
-Received: from CHN-HCLT-MBS04.HCLT.CORP.HCL.IN ([10.150.12.19]) by
-	CHN-HCLT-CSHT03.HCLT.CORP.HCL.IN ([::1]) with mapi id 14.03.0123.003;
-	Thu, 13 Mar 2014 20:40:06 +0530
-From: "Sathish Kumar Balasubramaniam -ERS, HCL Tech" <b-sathishkumar@hcl.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Porting a BSP from Dylan to Dora
-Thread-Index: Ac8+zhYkKE6EyLcoR7+fakEGaQfPfQ==
-Date: Thu, 13 Mar 2014 15:10:05 +0000
-Message-ID: <5D833673AB94D9489A7F7F73E9E611C814A9B525@chn-hclt-mbs04.HCLT.CORP.HCL.IN>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.150.5.114]
+Return-Path: <adam.yh.lee@gmail.com>
+Received: from mail-vc0-f174.google.com (mail-vc0-f174.google.com
+	[209.85.220.174])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 24F7FE00726
+	for <yocto@yoctoproject.org>; Thu, 13 Mar 2014 08:14:34 -0700 (PDT)
+Received: by mail-vc0-f174.google.com with SMTP id ld13so1229129vcb.5
+	for <yocto@yoctoproject.org>; Thu, 13 Mar 2014 08:14:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type;
+	bh=dx4iFfSGwF80W8BPCDnCIj6eR0YMBV6NQjbp4zxEMkk=;
+	b=tWm2vCMTgsAL++KWIpSAF4VPCAuz0wwaIAiFl2ZU95a3E196h9a+l/cluFjl1tpKv0
+	vfpx3rTKZjaqy1YErX9FCq0mTVp9OJG9KGy9InlqT2/98BH/vbtxeTw+KVEa1ubSEMZT
+	fFRUHKPnwNV+Z74Rfg6dBmcWwXcZSzOtVUxP86jD8GqVSi0GHQD13UbGW/gzUn7ykLFh
+	v2rVN0fRjbBWAygL2ySTLbct/YbejgQwNuqISbGzKKiR3hyaBiKh+kyTmUiUQT253Jwu
+	OMSnZK5Vnk5WoitbrTXOZICNLQ40jAIhcZ9qaQusxJEQ0v8F6V5PWTBJVrrLDgdmiRp+
+	6vVg==
 MIME-Version: 1.0
-Subject: Porting a BSP from Dylan to Dora
+X-Received: by 10.220.131.210 with SMTP id y18mr1995364vcs.12.1394723673573;
+	Thu, 13 Mar 2014 08:14:33 -0700 (PDT)
+Received: by 10.52.169.99 with HTTP; Thu, 13 Mar 2014 08:14:33 -0700 (PDT)
+In-Reply-To: <5D833673AB94D9489A7F7F73E9E611C814A9B525@chn-hclt-mbs04.HCLT.CORP.HCL.IN>
+References: <5D833673AB94D9489A7F7F73E9E611C814A9B525@chn-hclt-mbs04.HCLT.CORP.HCL.IN>
+Date: Thu, 13 Mar 2014 08:14:33 -0700
+Message-ID: <CAFeBWL58tiRay+tU+cMn+BK-c1OuqHQvoi_WeM_nwLMADJi=NQ@mail.gmail.com>
+From: Adam Lee <adam.yh.lee@gmail.com>
+To: "Sathish Kumar Balasubramaniam -ERS, HCL Tech" <b-sathishkumar@hcl.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Porting a BSP from Dylan to Dora
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,145 +38,147 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 13 Mar 2014 15:10:11 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_5D833673AB94D9489A7F7F73E9E611C814A9B525chnhcltmbs04HCL_"
+X-List-Received-Date: Thu, 13 Mar 2014 15:14:35 -0000
+Content-Type: multipart/alternative; boundary=001a113488841f901104f47e6939
 
---_000_5D833673AB94D9489A7F7F73E9E611C814A9B525chnhcltmbs04HCL_
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
+--001a113488841f901104f47e6939
+Content-Type: text/plain; charset=ISO-8859-1
+
+I believe there is a migration guide in the Yocto Project Reference Manual
+
+Adam
+
+
+On Thu, Mar 13, 2014 at 8:10 AM, Sathish Kumar Balasubramaniam -ERS, HCL
+Tech <b-sathishkumar@hcl.com> wrote:
+
+>  Hello,
+>
+>
+>
+> We have a BSP which is based on Dylan version.
+>
+> To port this BSP to Dora version what will be the steps needed ?
+>
+> Please can someone detail on this.
+>
+>
+>
+>
+>
+> Thanks,
+>
+> B.Sathish Kumar
+>
+>
+>
+> ::DISCLAIMER::
+>
+> ----------------------------------------------------------------------------------------------------------------------------------------------------
+>
+> The contents of this e-mail and any attachment(s) are confidential and
+> intended for the named recipient(s) only.
+> E-mail transmission is not guaranteed to be secure or error-free as
+> information could be intercepted, corrupted,
+> lost, destroyed, arrive late or incomplete, or may contain viruses in
+> transmission. The e mail and its contents
+> (with or without referred errors) shall therefore not attach any liability
+> on the originator or HCL or its affiliates.
+> Views or opinions, if any, presented in this email are solely those of the
+> author and may not necessarily reflect the
+> views or opinions of HCL or its affiliates. Any form of reproduction,
+> dissemination, copying, disclosure, modification,
+> distribution and / or publication of this message without the prior
+> written consent of authorized representative of
+> HCL is strictly prohibited. If you have received this email in error
+> please delete it and notify the sender immediately.
+> Before opening any email and/or attachments, please check them for viruses
+> and other defects.
+>
+>
+> ----------------------------------------------------------------------------------------------------------------------------------------------------
+>
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
+>
+
+--001a113488841f901104f47e6939
+Content-Type: text/html; charset=ISO-8859-1
 Content-Transfer-Encoding: quoted-printable
 
-Hello,
+<div dir=3D"ltr">I believe there is a migration guide in the Yocto Project =
+Reference Manual<div><br></div><div>Adam</div></div><div class=3D"gmail_ext=
+ra"><br><br><div class=3D"gmail_quote">On Thu, Mar 13, 2014 at 8:10 AM, Sat=
+hish Kumar Balasubramaniam -ERS, HCL Tech <span dir=3D"ltr">&lt;<a href=3D"=
+mailto:b-sathishkumar@hcl.com" target=3D"_blank">b-sathishkumar@hcl.com</a>=
+&gt;</span> wrote:<br>
+<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
+x #ccc solid;padding-left:1ex">
 
-We have a BSP which is based on Dylan version.
-To port this BSP to Dora version what will be the steps needed ?
-Please can someone detail on this.
 
 
-Thanks,
-B.Sathish Kumar
 
 
-::DISCLAIMER::
----------------------------------------------------------------------------=
--------------------------------------------------------------------------
-
-The contents of this e-mail and any attachment(s) are confidential and inte=
-nded for the named recipient(s) only.
-E-mail transmission is not guaranteed to be secure or error-free as informa=
-tion could be intercepted, corrupted,
-lost, destroyed, arrive late or incomplete, or may contain viruses in trans=
-mission. The e mail and its contents
-(with or without referred errors) shall therefore not attach any liability =
-on the originator or HCL or its affiliates.
-Views or opinions, if any, presented in this email are solely those of the =
-author and may not necessarily reflect the
-views or opinions of HCL or its affiliates. Any form of reproduction, disse=
-mination, copying, disclosure, modification,
-distribution and / or publication of this message without the prior written=
- consent of authorized representative of
-HCL is strictly prohibited. If you have received this email in error please=
- delete it and notify the sender immediately.
-Before opening any email and/or attachments, please check them for viruses =
-and other defects.
-
----------------------------------------------------------------------------=
--------------------------------------------------------------------------
-
---_000_5D833673AB94D9489A7F7F73E9E611C814A9B525chnhcltmbs04HCL_
-Content-Type: text/html; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii">
-<meta name=3D"Generator" content=3D"Microsoft Word 14 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri","sans-serif";}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:purple;
-	text-decoration:underline;}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri","sans-serif";
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-family:"Calibri","sans-serif";}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal">Hello,<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">We have a BSP which is based on Dylan version.<o:p><=
-/o:p></p>
+<div lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
+<div>
+<p class=3D"MsoNormal">Hello,<u></u><u></u></p>
+<p class=3D"MsoNormal"><u></u>=A0<u></u></p>
+<p class=3D"MsoNormal">We have a BSP which is based on Dylan version.<u></u=
+><u></u></p>
 <p class=3D"MsoNormal">To port this BSP to Dora version what will be the st=
-eps needed ?<o:p></o:p></p>
-<p class=3D"MsoNormal">Please can someone detail on this.<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Thanks,<o:p></o:p></p>
-<p class=3D"MsoNormal">B.Sathish Kumar<o:p></o:p></p>
+eps needed ?<u></u><u></u></p>
+<p class=3D"MsoNormal">Please can someone detail on this.<u></u><u></u></p>
+<p class=3D"MsoNormal"><u></u>=A0<u></u></p>
+<p class=3D"MsoNormal"><u></u>=A0<u></u></p>
+<p class=3D"MsoNormal">Thanks,<u></u><u></u></p>
+<p class=3D"MsoNormal">B.Sathish Kumar<u></u><u></u></p>
 </div>
-<span style=3D"FONT-FAMILY: 'Arial','sans-serif'; COLOR: gray; FONT-SIZE: 7=
-.5pt; mso-fareast-font-family: 'Times New Roman'">
-<P style=3D"MARGIN: 0in 0in 0pt" class=3DMsoNormal><br><br><font style=3D"F=
-ONT-FAMILY: 'Arial','sans-serif'; COLOR: gray; FONT-SIZE: 9px">::DISCLAIMER=
-::<br>---------------------------------------------------------------------=
+<span style=3D"FONT-FAMILY:&#39;Arial&#39;,&#39;sans-serif&#39;;COLOR:gray;=
+FONT-SIZE:7.5pt">
+<p style=3D"MARGIN:0in 0in 0pt" class=3D"MsoNormal"><br><br><font style=3D"=
+FONT-FAMILY:&#39;Arial&#39;,&#39;sans-serif&#39;;COLOR:gray;FONT-SIZE:9px">=
+::DISCLAIMER::<br>---------------------------------------------------------=
 ---------------------------------------------------------------------------=
-----</font></P>
-<P style=3D"MARGIN: 0in 0in 0pt" class=3DMsoNormal><font style=3D"FONT-FAMI=
-LY: 'Arial','sans-serif'; COLOR: gray; FONT-SIZE: 11px">The contents of thi=
-s e-mail and any attachment(s) are confidential and intended for the named =
-recipient(s) only.<br>E-mail transmission is not guaranteed to be secure or=
- error-free as information could be intercepted, corrupted, <br>lost, destr=
-oyed, arrive late or incomplete, or may contain viruses in transmission. Th=
-e e mail and its contents <br>(with or without referred errors) shall there=
-fore not attach any liability on the originator or HCL or its affiliates. <=
-br>Views or opinions, if any, presented in this email are solely those of t=
-he author and may not necessarily reflect the <br>views or opinions of HCL =
-or its affiliates. Any form of reproduction, dissemination, copying, disclo=
-sure, modification, <br>distribution and / or publication of this message w=
-ithout the prior written consent of authorized representative of <br>HCL is=
- strictly prohibited. If you have received this email in error please delet=
-e it and notify the sender immediately. <br>Before opening any email and/or=
- attachments, please check them for viruses and other defects.</font></P>
-<P style=3D"MARGIN: 0in 0in 0pt" class=3DMsoNormal><font style=3D"FONT-FAMI=
-LY: 'Arial','sans-serif'; COLOR: gray; FONT-SIZE: 11px">-------------------=
----------------------------------------------------------------------------=
-------------------------------------------------------</font></span></P></b=
-ody>
-</html>
+----------------</font></p>
 
---_000_5D833673AB94D9489A7F7F73E9E611C814A9B525chnhcltmbs04HCL_--
+<p style=3D"MARGIN:0in 0in 0pt" class=3D"MsoNormal"><font style=3D"FONT-FAM=
+ILY:&#39;Arial&#39;,&#39;sans-serif&#39;;COLOR:gray;FONT-SIZE:11px">The con=
+tents of this e-mail and any attachment(s) are confidential and intended fo=
+r the named recipient(s) only.<br>
+E-mail transmission is not guaranteed to be secure or error-free as informa=
+tion could be intercepted, corrupted, <br>lost, destroyed, arrive late or i=
+ncomplete, or may contain viruses in transmission. The e mail and its conte=
+nts <br>
+(with or without referred errors) shall therefore not attach any liability =
+on the originator or HCL or its affiliates. <br>Views or opinions, if any, =
+presented in this email are solely those of the author and may not necessar=
+ily reflect the <br>
+views or opinions of HCL or its affiliates. Any form of reproduction, disse=
+mination, copying, disclosure, modification, <br>distribution and / or publ=
+ication of this message without the prior written consent of authorized rep=
+resentative of <br>
+HCL is strictly prohibited. If you have received this email in error please=
+ delete it and notify the sender immediately. <br>Before opening any email =
+and/or attachments, please check them for viruses and other defects.</font>=
+</p>
+
+<p style=3D"MARGIN:0in 0in 0pt" class=3D"MsoNormal"><font style=3D"FONT-FAM=
+ILY:&#39;Arial&#39;,&#39;sans-serif&#39;;COLOR:gray;FONT-SIZE:11px">-------=
+---------------------------------------------------------------------------=
+------------------------------------------------------------------</font></=
+p>
+</span></div>
+
+<br>--<br>
+_______________________________________________<br>
+yocto mailing list<br>
+<a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br>
+<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" target=3D"_blank"=
+>https://lists.yoctoproject.org/listinfo/yocto</a><br>
+<br></blockquote></div><br></div>
+
+--001a113488841f901104f47e6939--
