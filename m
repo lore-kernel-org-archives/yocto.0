@@ -1,33 +1,27 @@
-Return-Path: <ross.burton@intel.com>
-Received: from mail-qg0-f50.google.com (mail-qg0-f50.google.com
-	[209.85.192.50])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2D8AEE00AF3
-	for <yocto@yoctoproject.org>; Fri, 14 Mar 2014 09:41:27 -0700 (PDT)
-Received: by mail-qg0-f50.google.com with SMTP id q108so8028416qgd.9
-	for <yocto@yoctoproject.org>; Fri, 14 Mar 2014 09:41:26 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc:content-type;
-	bh=/UllrLJx0QvqQ6fMKy3E8mIwWB+7mqkERPNEk52DbXI=;
-	b=JSe3oNqVl+ppvJx/aautdGk5ySiYvD47NnPEXwcOXl2xUvQL00aETpXiBn3vucIYBo
-	fnC038Hco5vm0JXk/xxWUHufArxQaNgGG9sXBLJZlsjb9k1NnmtYRbHOdWBV4sxVpYF5
-	kcH8bD7YCT+nhUqLKkDXfdH6xgBEmwfEBAVYQ8kDCBGDl4vqM5TZj1Gt93lI7AWrtXrt
-	kRV+wuydkiex37FcyetsxQ1WLKPGxLZTDXa0gkAjCAKkcqvh1P4Vz9nhx370z87jwpB8
-	Z9B70eVcdieCb00AmTL/45Q7UoMwn96LHcBRoxdiwJCV9CureMaBEXuTalp/J88pFdyN
-	ruGA==
-X-Gm-Message-State: ALoCoQm0PyouvAoY3KuV5Tfs0Ze5u+voUZiikVKJMfeHvWFMRcBXYBGlnB49SRspeVxrqfOVYeOM
-X-Received: by 10.224.22.147 with SMTP id n19mr3763405qab.93.1394815286770;
-	Fri, 14 Mar 2014 09:41:26 -0700 (PDT)
+Return-Path: <gary@mlbassoc.com>
+Received: from mail.chez-thomas.org (mail.mlbassoc.com [65.100.170.105])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5836BE00AF3
+	for <yocto@yoctoproject.org>; Fri, 14 Mar 2014 09:45:10 -0700 (PDT)
+Received: by mail.chez-thomas.org (Postfix, from userid 1998)
+	id 60916F81201; Fri, 14 Mar 2014 10:45:10 -0600 (MDT)
+X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on
+	hermes.chez-thomas.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=4.0 tests=ALL_TRUSTED,BAYES_00
+	autolearn=unavailable version=3.3.2
+Received: from [192.168.1.114] (zeus [192.168.1.114])
+	by mail.chez-thomas.org (Postfix) with ESMTP id 6FAD7F811FD;
+	Fri, 14 Mar 2014 10:45:09 -0600 (MDT)
+Message-ID: <5323321C.8030709@mlbassoc.com>
+Date: Fri, 14 Mar 2014 10:45:16 -0600
+From: Gary Thomas <gary@mlbassoc.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:24.0) Gecko/20100101 Thunderbird/24.3.0
 MIME-Version: 1.0
-Received: by 10.140.48.79 with HTTP; Fri, 14 Mar 2014 09:41:06 -0700 (PDT)
-In-Reply-To: <CACP9YJcdsdfdTGO6AmA+nPYzrR6St0-4n8QVFL3ujoGeVp6+cw@mail.gmail.com>
+To: yocto@yoctoproject.org
 References: <CACP9YJcdsdfdTGO6AmA+nPYzrR6St0-4n8QVFL3ujoGeVp6+cw@mail.gmail.com>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Fri, 14 Mar 2014 16:41:06 +0000
-Message-ID: <CAJTo0La3rLcyruUZtTQ75Rbd6Xieix+Tegvyi_4dU5p7kQiC9w@mail.gmail.com>
-To: David Welch <djwelch666@gmail.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+In-Reply-To: <CACP9YJcdsdfdTGO6AmA+nPYzrR6St0-4n8QVFL3ujoGeVp6+cw@mail.gmail.com>
+X-Enigmail-Version: 1.5.2
 Subject: Re: Building a metapackage
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -40,15 +34,34 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 14 Mar 2014 16:41:30 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Fri, 14 Mar 2014 16:45:16 -0000
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: 7bit
 
-On 14 March 2014 16:34, David Welch <djwelch666@gmail.com> wrote:
-> Is it possible to build a meta packages whose sole purpose is to bring in
-> dependencies?
+On 2014-03-14 10:34, David Welch wrote:
+> Hi,
+> 
+> Is it possible to build a meta packages whose sole purpose is to bring in dependencies?
+> 
+> Suppose I have package-1.deb, package-2.deb and package-3.deb.  I would like add a .bb file to build a metapackage for those three packages.  I have tried the following but it
+> didn't work:
+> 
+> SUMMARY = "Package"
+> DESCRIPTION = ""
+> LICENSE = "CLOSED"
+> DEPENDS = " \
+> package-1 package-2 package-3 \
+> "
+> inherit meta
+> 
+> My use case is a series of voices by different manufactures which need to be installed on a per-manufacturer basis.  So all the voices from manufacture1 would need to be installed
+> on one machine and all the voices from manufacturer2 need to go on another machine.  There are about 50-100 voice packages per manufacturer.
 
-You've just described a package group - have a look at anything called
-packagegroup-*.bb in oe-core, and packagegroup.bbclass.
+I think packagegroups (previously known as tasks) are what you are looking for.
 
-Ross
+-- 
+------------------------------------------------------------
+Gary Thomas                 |  Consulting for the
+MLB Associates              |    Embedded world
+------------------------------------------------------------
 
