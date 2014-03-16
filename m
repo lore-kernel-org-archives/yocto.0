@@ -1,37 +1,31 @@
-Return-Path: <alext.mkrs@gmail.com>
-Received: from mail-ee0-f48.google.com (mail-ee0-f48.google.com [74.125.83.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7AD36E002A6
-	for <yocto@yoctoproject.org>; Sat, 15 Mar 2014 10:50:08 -0700 (PDT)
-Received: by mail-ee0-f48.google.com with SMTP id b57so1874994eek.7
-	for <yocto@yoctoproject.org>; Sat, 15 Mar 2014 10:50:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=message-id:date:from:user-agent:mime-version:to:cc:subject
-	:content-type:content-transfer-encoding;
-	bh=tJcEiEvedwMTnVHSfonf2v+cooKWD/hJXM3w6tgGPIw=;
-	b=NWb7lnwquHaN2SQQ2vRNZBswrw+wiGI4oK9Idvh0IawZugs9UXdJvkuAfLZ2WZoCwK
-	77dRat0PZpULSH3L01EOCA0ehRTE8PxdlX9hbCAmjbKhMFqctsuvVHqEmp2fUOTxgcmk
-	ksLk1ucX0pijSJ2QpDhqfWCa/i0/86OUWal8MdDKo/ygcZxsQJRiZYj1ztviNCM8o2x8
-	tFtUo+FJeQfGZRzT1AKP/DYEC1lUTvFe9msZiKqanSHkj6GBCioDkoNK6xRxlb0/BDNE
-	JjVbGzjkQgBooj7UmLMldohgM6aaQ/HCY0ptTPliJE2maWaGt5IyYbu8EdLFL29mgcqu
-	gUGQ==
-X-Received: by 10.14.8.201 with SMTP id 49mr39236eer.110.1394905807139;
-	Sat, 15 Mar 2014 10:50:07 -0700 (PDT)
-Received: from [192.168.1.174] (89-69-181-95.dynamic.chello.pl. [89.69.181.95])
-	by mx.google.com with ESMTPSA id t4sm13891905eeb.29.2014.03.15.10.50.05
-	for <multiple recipients>
-	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
-	Sat, 15 Mar 2014 10:50:06 -0700 (PDT)
-Message-ID: <532492D3.8060100@gmail.com>
-Date: Sat, 15 Mar 2014 18:50:11 +0100
-From: Alex T <alext.mkrs@gmail.com>
-User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64;
-	rv:24.0) Gecko/20100101 Thunderbird/24.3.0
+Return-Path: <ankur@embertec.com>
+Received: from mail.embertec.com (mail.embertec.com [119.18.44.70])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 13C4CE009C2
+	for <yocto@yoctoproject.org>; Sun, 16 Mar 2014 16:03:52 -0700 (PDT)
+Received: from mail.embertec.com by embertec.com (mail.embertec.com)
+	(SecurityGateway 2.0.6) with SMTP id SG000726276.MSG 
+	for <yocto@yoctoproject.org>; Mon, 17 Mar 2014 09:29:23 +1030
+Received: from EMBSVR01.ember.local ([fe80::b1f0:778b:4c9c:36f7]) by
+	EMBSVR01.ember.local ([fe80::b1f0:778b:4c9c:36f7%18]) with mapi;
+	Mon, 17 Mar 2014 09:29:19 +1030
+From: Ankur Patel <ankur@embertec.com>
+To: Khem Raj <raj.khem@gmail.com>
+Date: Mon, 17 Mar 2014 09:29:16 +1030
+Thread-Topic: [yocto] Issue installing External Kernel Module with same name
+Thread-Index: Ac8/oASbFSQVdQUnQ7ORkrZHekGH2wByrLVQ
+Message-ID: <BD5E516FF3711A41B93DC005170007BB010D4B975C8B@EMBSVR01.ember.local>
+References: <BD5E516FF3711A41B93DC005170007BB010D4B870A88@EMBSVR01.ember.local>
+	<CAMKF1sp_a1QqXhiAJ-2nQapCYHX_fJpYZrTD=NZKcLJZGgzzRQ@mail.gmail.com>
+In-Reply-To: <CAMKF1sp_a1QqXhiAJ-2nQapCYHX_fJpYZrTD=NZKcLJZGgzzRQ@mail.gmail.com>
+Accept-Language: en-US, en-AU
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+acceptlanguage: en-US, en-AU
 MIME-Version: 1.0
-To: yocto@yoctoproject.org
-X-Enigmail-Version: 1.6
+X-SGHeloLookup-Result: pass smtp.helo=mail.embertec.com (ip=192.168.14.10)
 X-Mailman-Approved-At: Sun, 16 Mar 2014 20:03:47 -0700
-Cc: alext.mkrs@gmail.com
-Subject: Problem with git.yoctoproject.org - looks like a server-side issue, confirmed on #yocto IRC channel
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Issue installing External Kernel Module with same name
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,42 +37,25 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 15 Mar 2014 17:50:10 -0000
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Sun, 16 Mar 2014 23:03:54 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-Hello,
-
-Looks like there's some problem with Yocto's git server, surfaced just
-recently.
-
-In short - "git fetch --depth=3 <refspec>", which was working just fine
-about a week ago, now fails with:
-
-===
-Running: git remote add origin git://git.yoctoproject.org/poky
-
-Running: git fetch origin --depth=3 tags/dylan-9.0.2:tags/dylan-9.0.2
-
-fatal: The remote end hung up unexpectedly
-
-fatal: protocol error: bad pack header
-
-===
-
-And we've ruled out the git client version or client's location problem
-(tried three different git client versions and at least three different
-people face the problem).
-This is demonstrated in detail in this Intel Galileo community thread:
-https://communities.intel.com/message/227798#227798
-
-I've also got a confirmation on the #yocto IRC channel from Khem Raj,
-that it must be a server-side issue. Googling the error seems to suggest
-that may be a sort of OOM or other resource-related problem on the
-server too.
-
-Could you please look into that and fix, if that's indeed a server problem?
-
-regards,
-Alex
+DQoNCi0tLS0tT3JpZ2luYWwgTWVzc2FnZS0tLS0tDQpGcm9tOiBLaGVtIFJhaiBbbWFpbHRvOnJh
+ai5raGVtQGdtYWlsLmNvbV0gDQpTZW50OiBTYXR1cmRheSwgMTUgTWFyY2ggMjAxNCAyOjQyIEFN
+DQpUbzogQW5rdXIgUGF0ZWwNCkNjOiB5b2N0b0B5b2N0b3Byb2plY3Qub3JnDQpTdWJqZWN0OiBS
+ZTogW3lvY3RvXSBJc3N1ZSBpbnN0YWxsaW5nIEV4dGVybmFsIEtlcm5lbCBNb2R1bGUgd2l0aCBz
+YW1lIG5hbWUNCg0KPk9uIFRodSwgTWFyIDEzLCAyMDE0IGF0IDExOjAwIFBNLCBBbmt1ciBQYXRl
+bCA8YW5rdXJAZW1iZXJ0ZWMuY29tPiB3cm90ZToNCj4+IE5vdyB0aGUgcHJvYmxlbSBpcywgYXMg
+a2VybmVsIGFsc28gYnVpbGRzIHRoZSB3aWZpIGRyaXZlciBtb2R1bGVzIA0KPj4gYmFzZWQgb24g
+dGhlIHNhbWUgLmNvbmZpZyBmaWxlIHVzZWQgYnkgZXh0ZXJuYWwgZHJpdmVyIG1vZHVsZS4NCg0K
+DQo+RGlzYWJsZSB0aGUgb3B0aW9uIGluIHRoZSBjb21wb25lbnQgd2hlcmUgeW91IGRvbnQgd2Fu
+dCBpdCBmcm9tLiBJbiB0aGlzIGNhc2Uga2VybmVsIC1LaGVtDQoNCkBLaGVtOiBTdXJlLCBJIGFn
+cmVlIHRvIHRoaXMgcG9pbnQuIERvIEkgaGF2ZSB0byB1cGRhdGUgdGhlIC5jb25maWcgZmlsZSB0
+byBkaXNhYmxlIHRoZSB0aSB3aWZpIGRyaXZlcj8gQnV0IHRoaXMgd2lsbCBhbHNvIGFmZmVjdCB0
+aGUgYnVpbGQgZm9yIEV4dGVybmFsIERyaXZlciBtb2R1bGVzPyBPciBJIGhhdmUgdG8gdXBkYXRl
+IHRoZSBNYWtlZmlsZSB1bmRlciBkcml2ZXJzL25ldC93aWZpIHRvIHByZXZlbnQgYnVpbGRpbmcg
+dGhlIG1vZHVsZXM/IChOb3Qgc3VyZSBpZiBsYXRlciBpcyB0aGUgY29ycmVjdCB3YXkpDQoNClJl
+Z2FyZHMsDQpBbmt1cg0KDQo=
 
