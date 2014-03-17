@@ -1,28 +1,50 @@
-Return-Path: <gustavowalbon@gmail.com>
-Received: from mail-ve0-f180.google.com (mail-ve0-f180.google.com
-	[209.85.128.180])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3A6F5E00AF2
-	for <yocto@yoctoproject.org>; Mon, 17 Mar 2014 06:19:01 -0700 (PDT)
-Received: by mail-ve0-f180.google.com with SMTP id jz11so5751259veb.11
-	for <yocto@yoctoproject.org>; Mon, 17 Mar 2014 06:19:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:from:date:message-id:subject:to:content-type;
-	bh=Bmckq49e3jXYdDOUoitt2TyAvZ6ZETSRdVRInGsgnDo=;
-	b=FzWF7xvXEooeAEejScDuLsfBoq0Sf2jM6OdEo0ld3/SERiipO7H0H5xztY4QM0NKpF
-	fL8m0RWdjKZ9quUbLz64rpNdfGsjboWbATCe2WlQI3ZUPVoXOCxd13ep1yva0bqpes7A
-	s/MdhlCTU05OU+8Hx3CmpjAdPh5jkhUEwWgvIgR5ePutGM/zrcsTL36x7SLyO2TClU90
-	Df0VdCQT3S9Uw5obRL3E2UG0OiMVvGZJXI5arPY4lYlVXWd7OQKCq7A2ynZBK66ADTU5
-	fYZKb1ytdyZCIZnkXZayEvHzi2SrkQoOyNU9NZIYktafNzdtWcsgcTX0/lDeJniXiXCn
-	Z9/A==
-X-Received: by 10.58.37.232 with SMTP id b8mr1172118vek.27.1395062340934; Mon,
-	17 Mar 2014 06:19:00 -0700 (PDT)
+Return-Path: <mhalstead@linuxfoundation.org>
+Received: from mail-yh0-f52.google.com (mail-yh0-f52.google.com
+	[209.85.213.52])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A1256E008D6
+	for <yocto@yoctoproject.org>; Mon, 17 Mar 2014 07:10:05 -0700 (PDT)
+Received: by mail-yh0-f52.google.com with SMTP id c41so5232195yho.25
+	for <yocto@yoctoproject.org>; Mon, 17 Mar 2014 07:10:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=linuxfoundation.org; s=google;
+	h=sender:message-id:date:from:user-agent:mime-version:to:subject
+	:references:in-reply-to:content-type;
+	bh=d/X4Zc9SqnCMdNGyL2pEYXg1Q+ra0bSLBaLG3HXsGAw=;
+	b=BgDEvi1AtLd9PSZ6V8RHZ1X7mRo0H1SADGGY0RBPlZ/uB0eUHK/57zBpxl5GGqGh7S
+	cx5A5eQEP6tcwW1sVeEqgHUR4MXTPnOOkm9tzYwB8tLA68cbsVMhffs2hZylj8E3nTbP
+	SqZV0Tt1z8zSfV967PGIDDu7/+00tHI+6Rzrc=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:sender:message-id:date:from:user-agent
+	:mime-version:to:subject:references:in-reply-to:content-type;
+	bh=d/X4Zc9SqnCMdNGyL2pEYXg1Q+ra0bSLBaLG3HXsGAw=;
+	b=YgpOmkw+/bXJ7tsFCmhImly/S33Gvp5PvL0rD43MGQDSkeSzcpeUp76548JzL1AKEk
+	2mXwTWe2QhgRq3Mtbd0crRGEK6xEjQGohEApu0/mSEBuma8Z5Je7w8p1GpzIPzMe0kZl
+	5i9OHqM0C6Vz3EevwzqcdceSkt22YSPNDG1lmIwRMDQeN3kawu0/ZWexOw4COjQ5CXS7
+	BlwPTmKQmNA9iZEZAWOO7nKqI6iCe8gjrHtz1CxSVBQgjxyiKRkVYY1MJrXyqLYq76VN
+	fF5g5usEaMXE4XlqX2sVifh8EqJkp6z9cBE6jmkFOK6IHx7qTdJ8MCe9AaFtvqJ68b2n
+	zKzg==
+X-Gm-Message-State: ALoCoQljkSt2iUoyU/XpGBLCcTlcCLxcj3RpklrHsvDhknoMFsWRj1Bq6O8tctgZCjvczxvjmHQ9
+X-Received: by 10.236.0.97 with SMTP id 61mr2051825yha.121.1395065405232;
+	Mon, 17 Mar 2014 07:10:05 -0700 (PDT)
+Received: from pride.local (c-50-154-149-200.hsd1.fl.comcast.net.
+	[50.154.149.200])
+	by mx.google.com with ESMTPSA id n21sm33232895yhm.1.2014.03.17.07.10.03
+	for <multiple recipients>
+	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
+	Mon, 17 Mar 2014 07:10:04 -0700 (PDT)
+Sender: Michael Halstead <mhalstead@linuxfoundation.org>
+Message-ID: <5327023A.6030501@yoctoproject.org>
+Date: Mon, 17 Mar 2014 10:10:02 -0400
+From: Michael Halstead <michael@yoctoproject.org>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:24.0) Gecko/20100101 Thunderbird/24.3.0
 MIME-Version: 1.0
-Received: by 10.220.127.69 with HTTP; Mon, 17 Mar 2014 06:18:40 -0700 (PDT)
-From: Gustavo Walbon <gustavowalbon@gmail.com>
-Date: Mon, 17 Mar 2014 10:18:40 -0300
-Message-ID: <CAAU+_hRv_obVU5T4aU+aao8O=3Vj8120g2myxXXqE3=4pdwFbA@mail.gmail.com>
 To: yocto@yoctoproject.org
-Subject: Dora vs Dylan: Poppler + Qt 4.8.5
+References: <532492D3.8060100@gmail.com>
+In-Reply-To: <532492D3.8060100@gmail.com>
+X-Enigmail-Version: 1.6
+Subject: Re: Problem with git.yoctoproject.org - looks like a server-side issue, confirmed on #yocto IRC channel
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,246 +56,152 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 17 Mar 2014 13:19:04 -0000
-Content-Type: multipart/alternative; boundary=089e01176de54565ce04f4cd43cd
+X-List-Received-Date: Mon, 17 Mar 2014 14:10:06 -0000
+X-Groupsio-MsgNum: 18561
+Content-Type: multipart/signed; protocol="application/pkcs7-signature";
+	micalg=sha1; boundary="------------ms090703070509090101070502"
 
---089e01176de54565ce04f4cd43cd
-Content-Type: text/plain; charset=UTF-8
-
-Hi,
-
-When I tried this recipe for Poppler:
-
-*DESCRIPTION = "Poppler is a PDF rendering library based on the xpdf-3.0
-code base."*
-*HOMEPAGE = "http://poppler.freedesktop.org
-<http://poppler.freedesktop.org>"*
-
-*LICENSE = "GPLv2"*
-*LIC_FILES_CHKSUM = "file://COPYING;md5=751419260aa954499f7abaabaa882bbe"*
-*PR = "r3"*
-
- *SECTION = "x11/libs"*
-
-*DEPENDS = "qt4-x11-free jpeg zlib cairo pth libassuan libksba"*
-*RDEPENDS_${PN} = "poppler-data"*
-
-*SRC_URI = "http://poppler.freedesktop.org/${BPN}-${PV}.tar.gz
-<http://poppler.freedesktop.org/${BPN}-${PV}.tar.gz>"*
-
-*SRC_URI[md5sum] = "a61e3b844061f5324512a16d6d16984c" *
-*SRC_URI[sha256sum] =
-"b4620f645319f4a8790465730bc472d5745155d0780809406fb29c62316d49a8"*
-
-*inherit autotools pkgconfig*
-
-*EXTRA_OECONF = " --enable-xpdf-headers \*
-* --disable-gtk-test \*
-* --disable-qt4-test \*
-* --disable-qt-test \*
-* --enable-zlib \*
-*       "*
-*def get_poppler_fpu_setting(bb, d):*
-*    if d.getVar('TARGET_FPU', 1) in [ 'soft' ]:*
-*        return "--enable-fixedpoint"*
-*    return ""*
-
-*#check for TARGET_FPU=soft and inform configure of the result so it can
-disable some floating points*
-*EXTRA_OECONF += "${@get_poppler_fpu_setting(bb, d)}"*
-
-*The error from bitbake was:*
-
-*| make  all-am*
-*| make[4]: Entering directory
-`/project/dora/build/tmp/work/cortexa9hf-vfp-neon-projectos-linux-gnueabi/poppler/0.20.1-r3/poppler-0.20.1/qt4/src'*
-*| ../../arm-projectos-linux-gnueabi-libtool  --tag=CXX   --mode=link
-arm-projectos-linux-gnueabi-g++  -march=armv7-a -mthumb-interwork
--mfloat-abi=hard -mfpu=neon -mtune=cortex-a9
---sysroot=/project/dora/build/tmp/sysroots/imx6qsabrelite
--Dpoppler_qt4_EXPORTS -Wall -Woverloaded-virtual -Wnon-virtual-dtor
--Wcast-align -fno-exceptions -fno-check-new -fno-common  -O2 -pipe -g
--feliminate-unused-debug-types -fpermissive -fvisibility-inlines-hidden
--ansi -version-info 4:0:0   -Wl,-O1 -Wl,--hash-style=gnu -Wl,--as-needed -o
-libpoppler-qt4.la <http://libpoppler-qt4.la> -rpath /usr/lib
-libpoppler_qt4_la-poppler-document.lo libpoppler_qt4_la-poppler-page.lo
-libpoppler_qt4_la-poppler-fontinfo.lo
-libpoppler_qt4_la-poppler-embeddedfile.lo
-libpoppler_qt4_la-poppler-textbox.lo libpoppler_qt4_la-poppler-link.lo
-libpoppler_qt4_la-poppler-annotation.lo
-libpoppler_qt4_la-poppler-link-extractor.lo
-libpoppler_qt4_la-poppler-optcontent.lo
-libpoppler_qt4_la-poppler-page-transition.lo
-libpoppler_qt4_la-poppler-sound.lo libpoppler_qt4_la-poppler-form.lo
-libpoppler_qt4_la-poppler-base-converter.lo
-libpoppler_qt4_la-poppler-ps-converter.lo
-libpoppler_qt4_la-poppler-pdf-converter.lo
-libpoppler_qt4_la-poppler-qiodeviceoutstream.lo
-libpoppler_qt4_la-poppler-private.lo libpoppler_qt4_la-poppler-movie.lo
-libpoppler_qt4_la-poppler-media.lo ../../poppler/libpoppler.la
-<http://libpoppler.la> ../../poppler/libpoppler-arthur.la
-<http://libpoppler-arthur.la> -lfontconfig  -lQtGui -lQtXml -lQtCore  -lz
--Wl,-O1 -Wl,--hash-style=gnu -Wl,--as-needed*
-*| arm-projectos-linux-gnueabi-libtool: link: cannot find the library `' or
-unhandled argument `-DLINUX=1'*
-*| make[4]: *** [libpoppler-qt4.la <http://libpoppler-qt4.la>] Error 1*
-*| make[4]: Leaving directory
-`/project/dora/build/tmp/work/cortexa9hf-vfp-neon-projectos-linux-gnueabi/poppler/0.20.1-r3/poppler-0.20.1/qt4/src'*
-*| make[3]: *** [all] Error 2*
-*| make[3]: Leaving directory
-`/project/dora/build/tmp/work/cortexa9hf-vfp-neon-projectos-linux-gnueabi/poppler/0.20.1-r3/poppler-0.20.1/qt4/src'*
-*| make[2]: *** [all-recursive] Error 1*
-*| make[2]: Leaving directory
-`/project/dora/build/tmp/work/cortexa9hf-vfp-neon-projectos-linux-gnueabi/poppler/0.20.1-r3/poppler-0.20.1/qt4'*
-*| make[1]: *** [all-recursive] Error 1*
-*| make[1]: Leaving directory
-`/project/dora/build/tmp/work/cortexa9hf-vfp-neon-projectos-linux-gnueabi/poppler/0.20.1-r3/poppler-0.20.1'*
-*| make: *** [all] Error 2*
-*| ERROR: oe_runmake failed*
-*| WARNING: exit code 1 from a shell command.*
-*| ERROR: Function failed: do_compile (log file is located at
-/project/dora/build/tmp/work/cortexa9hf-vfp-neon-projectos-linux-gnueabi/poppler/0.20.1-r3/temp/log.do_compile.19063)*
-*ERROR: Task 6
-(/project/dora/meta-omnimed/common/recipes-libs/poppler/poppler_0.20.1.bb
-<http://poppler_0.20.1.bb>, do_compile) failed with exit code '1'*
-*NOTE: Tasks Summary: Attempted 2274 tasks of which 2273 didn't need to be
-rerun and 1 failed.*
-*No currently running tasks (1704 of 2281)*
-
-*Summary: 1 task failed:*
-*  /project/dora/meta-omnimed/common/recipes-libs/poppler/poppler_0.20.1.bb
-<http://poppler_0.20.1.bb>, do_compile*
-*Summary: There was 1 ERROR message shown, returning a non-zero exit code.*
-
-
-In Dylan Branch this not happened, but in Dora Branch is the same recipe
-and version of Poppler.
-
-My application using Poppler + Qt.
-
-
-
-Thanks
-
---089e01176de54565ce04f4cd43cd
-Content-Type: text/html; charset=UTF-8
+--------------ms090703070509090101070502
+Content-Type: text/plain; charset=ISO-8859-1
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Hi,<div><br></div><div>When I tried this recipe for Popple=
-r:</div><div><br></div><div><div><i>DESCRIPTION =3D &quot;Poppler is a PDF =
-rendering library based on the xpdf-3.0 code base.&quot;</i></div><div><i>H=
-OMEPAGE =3D &quot;<a href=3D"http://poppler.freedesktop.org">http://poppler=
-.freedesktop.org</a>&quot;</i></div>
+On 03/15/2014 01:50 PM, Alex T wrote:
+> Hello,
+>
+> Looks like there's some problem with Yocto's git server, surfaced just
+> recently.
+>
+> In short - "git fetch --depth=3D3 <refspec>", which was working just fi=
+ne
+> about a week ago, now fails with:
+>
+> =3D=3D=3D
+> Running: git remote add origin git://git.yoctoproject.org/poky
+>
+> Running: git fetch origin --depth=3D3 tags/dylan-9.0.2:tags/dylan-9.0.2=
 
-<div><i><br></i></div><div><i>LICENSE =3D &quot;GPLv2&quot;</i></div><div><=
-i>LIC_FILES_CHKSUM =3D &quot;file://COPYING;md5=3D751419260aa954499f7abaaba=
-a882bbe&quot;</i></div><div><i>PR =3D &quot;r3&quot;</i></div><div><i><br><=
-/i></div>
+>
+> fatal: The remote end hung up unexpectedly
+>
+> fatal: protocol error: bad pack header
+>
+> =3D=3D=3D
+>
+> And we've ruled out the git client version or client's location problem=
 
-<div><i>SECTION =3D &quot;x11/libs&quot;</i></div><div><i><br></i></div><di=
-v><i>DEPENDS =3D &quot;qt4-x11-free jpeg zlib cairo pth libassuan libksba&q=
-uot;</i></div><div><i>RDEPENDS_${PN} =3D &quot;poppler-data&quot;</i></div>=
-<div>
+> (tried three different git client versions and at least three different=
 
-<i><br></i></div><div><i>SRC_URI =3D &quot;<a href=3D"http://poppler.freede=
-sktop.org/${BPN}-${PV}.tar.gz">http://poppler.freedesktop.org/${BPN}-${PV}.=
-tar.gz</a>&quot;</i></div><div><i>SRC_URI[md5sum] =3D &quot;a61e3b844061f53=
-24512a16d6d16984c&quot;<br>
+> people face the problem).
+> This is demonstrated in detail in this Intel Galileo community thread:
+> https://communities.intel.com/message/227798#227798
+>
+> I've also got a confirmation on the #yocto IRC channel from Khem Raj,
+> that it must be a server-side issue. Googling the error seems to sugges=
+t
+> that may be a sort of OOM or other resource-related problem on the
+> server too.
+>
+> Could you please look into that and fix, if that's indeed a server prob=
+lem?
+I recently updated git to version 1.9.0 which caused the problem. With
+1.9.0 additional permissions to the are required to write temporary
+files in the working directory. I've rolled back the upgrade and shallow
+clones are working once again.
 
-</i></div><div><i>SRC_URI[sha256sum] =3D &quot;b4620f645319f4a8790465730bc4=
-72d5745155d0780809406fb29c62316d49a8&quot;</i></div><div><i><br></i></div><=
-div><i>inherit autotools pkgconfig</i></div><div><i><br></i></div><div><i>E=
-XTRA_OECONF =3D &quot; --enable-xpdf-headers \</i></div>
+Michael Halstead
+Yocto Project / Sys Admin
 
-<div><i><span class=3D"" style=3D"white-space:pre">		</span> --disable-gtk-=
-test \</i></div><div><i><span class=3D"" style=3D"white-space:pre">		</span=
-> --disable-qt4-test \</i></div><div><i><span class=3D"" style=3D"white-spa=
-ce:pre">		</span> --disable-qt-test \</i></div>
+>
+> regards,
+> Alex
 
-<div><i><span class=3D"" style=3D"white-space:pre">		</span> --enable-zlib =
-\</i></div><div><i><span class=3D"" style=3D"white-space:pre">	</span> =C2=
-=A0 =C2=A0 =C2=A0 &quot;</i></div><div><i>def get_poppler_fpu_setting(bb, d=
-):</i><br></div><div>
 
-<i>=C2=A0 =C2=A0 if d.getVar(&#39;TARGET_FPU&#39;, 1) in [ &#39;soft&#39; ]=
-:</i></div><div><i>=C2=A0 =C2=A0 =C2=A0 =C2=A0 return &quot;--enable-fixedp=
-oint&quot;</i></div><div><i>=C2=A0 =C2=A0 return &quot;&quot;</i></div><div=
-><i><br></i></div><div><i>#check for TARGET_FPU=3Dsoft and inform configure=
- of the result so it can disable some floating points</i></div>
 
-<div><i>EXTRA_OECONF +=3D &quot;${@get_poppler_fpu_setting(bb, d)}&quot;</i=
-></div></div><div><br></div><div><b>The error from bitbake was:</b></div><d=
-iv><br><div><i>| make =C2=A0all-am</i></div><div><i>| make[4]: Entering dir=
-ectory `/project/dora/build/tmp/work/cortexa9hf-vfp-neon-projectos-linux-gn=
-ueabi/poppler/0.20.1-r3/poppler-0.20.1/qt4/src&#39;</i></div>
+--------------ms090703070509090101070502
+Content-Type: application/pkcs7-signature; name="smime.p7s"
+Content-Transfer-Encoding: base64
+Content-Disposition: attachment; filename="smime.p7s"
+Content-Description: S/MIME Cryptographic Signature
 
-<div><i>| ../../arm-projectos-linux-gnueabi-libtool =C2=A0--tag=3DCXX =C2=
-=A0 --mode=3Dlink arm-projectos-linux-gnueabi-g++ =C2=A0-march=3Darmv7-a -m=
-thumb-interwork -mfloat-abi=3Dhard -mfpu=3Dneon -mtune=3Dcortex-a9 --sysroo=
-t=3D/project/dora/build/tmp/sysroots/imx6qsabrelite -Dpoppler_qt4_EXPORTS -=
-Wall -Woverloaded-virtual -Wnon-virtual-dtor -Wcast-align -fno-exceptions -=
-fno-check-new -fno-common =C2=A0-O2 -pipe -g -feliminate-unused-debug-types=
- -fpermissive -fvisibility-inlines-hidden -ansi -version-info 4:0:0 =C2=A0 =
--Wl,-O1 -Wl,--hash-style=3Dgnu -Wl,--as-needed -o <a href=3D"http://libpopp=
-ler-qt4.la">libpoppler-qt4.la</a> -rpath /usr/lib libpoppler_qt4_la-poppler=
--document.lo libpoppler_qt4_la-poppler-page.lo libpoppler_qt4_la-poppler-fo=
-ntinfo.lo libpoppler_qt4_la-poppler-embeddedfile.lo libpoppler_qt4_la-poppl=
-er-textbox.lo libpoppler_qt4_la-poppler-link.lo libpoppler_qt4_la-poppler-a=
-nnotation.lo libpoppler_qt4_la-poppler-link-extractor.lo libpoppler_qt4_la-=
-poppler-optcontent.lo libpoppler_qt4_la-poppler-page-transition.lo libpoppl=
-er_qt4_la-poppler-sound.lo libpoppler_qt4_la-poppler-form.lo libpoppler_qt4=
-_la-poppler-base-converter.lo libpoppler_qt4_la-poppler-ps-converter.lo lib=
-poppler_qt4_la-poppler-pdf-converter.lo libpoppler_qt4_la-poppler-qiodevice=
-outstream.lo libpoppler_qt4_la-poppler-private.lo libpoppler_qt4_la-poppler=
--movie.lo libpoppler_qt4_la-poppler-media.lo ../../poppler/<a href=3D"http:=
-//libpoppler.la">libpoppler.la</a> ../../poppler/<a href=3D"http://libpoppl=
-er-arthur.la">libpoppler-arthur.la</a> -lfontconfig =C2=A0-lQtGui -lQtXml -=
-lQtCore =C2=A0-lz -Wl,-O1 -Wl,--hash-style=3Dgnu -Wl,--as-needed</i></div>
+MIAGCSqGSIb3DQEHAqCAMIACAQExCzAJBgUrDgMCGgUAMIAGCSqGSIb3DQEHAQAAoIINjDCCBjQw
+ggQcoAMCAQICASAwDQYJKoZIhvcNAQEFBQAwfTELMAkGA1UEBhMCSUwxFjAUBgNVBAoTDVN0YXJ0
+Q29tIEx0ZC4xKzApBgNVBAsTIlNlY3VyZSBEaWdpdGFsIENlcnRpZmljYXRlIFNpZ25pbmcxKTAn
+BgNVBAMTIFN0YXJ0Q29tIENlcnRpZmljYXRpb24gQXV0aG9yaXR5MB4XDTA3MTAyNDIxMDI1NVoX
+DTE3MTAyNDIxMDI1NVowgYwxCzAJBgNVBAYTAklMMRYwFAYDVQQKEw1TdGFydENvbSBMdGQuMSsw
+KQYDVQQLEyJTZWN1cmUgRGlnaXRhbCBDZXJ0aWZpY2F0ZSBTaWduaW5nMTgwNgYDVQQDEy9TdGFy
+dENvbSBDbGFzcyAyIFByaW1hcnkgSW50ZXJtZWRpYXRlIENsaWVudCBDQTCCASIwDQYJKoZIhvcN
+AQEBBQADggEPADCCAQoCggEBAMsohUWcASz7GfKrpTOMKqANy9BV7V0igWdGxA8IU77L3aTxErQ+
+fcxtDYZ36Z6GH0YFn7fq5RADteP0AYzrCA+EQTfi8q1+kA3m0nwtwXG94M5sIqsvs7lRP1aycBke
+/s5g9hJHryZ2acScnzczjBCAo7X1v5G3yw8MDP2m2RCye0KfgZ4nODerZJVzhAlOD9YejvAXZqHk
+sw56HzElVIoYSZ3q4+RJuPXXfIoyby+Y2m1E+YzX5iCZXBx05gk6MKAW1vaw4/v2OOLy6FZH3XHH
+tOkzUreG//CsFnB9+uaYSlR65cdGzTsmoIK8WH1ygoXhRBm98SD7Hf/r3FELNvUCAwEAAaOCAa0w
+ggGpMA8GA1UdEwEB/wQFMAMBAf8wDgYDVR0PAQH/BAQDAgEGMB0GA1UdDgQWBBSuVYNv7DHKufcd
++q9rMfPIHeOsuzAfBgNVHSMEGDAWgBROC+8apEBbpRdphzDKNGhD0EGu8jBmBggrBgEFBQcBAQRa
+MFgwJwYIKwYBBQUHMAGGG2h0dHA6Ly9vY3NwLnN0YXJ0c3NsLmNvbS9jYTAtBggrBgEFBQcwAoYh
+aHR0cDovL3d3dy5zdGFydHNzbC5jb20vc2ZzY2EuY3J0MFsGA1UdHwRUMFIwJ6AloCOGIWh0dHA6
+Ly93d3cuc3RhcnRzc2wuY29tL3Nmc2NhLmNybDAnoCWgI4YhaHR0cDovL2NybC5zdGFydHNzbC5j
+b20vc2ZzY2EuY3JsMIGABgNVHSAEeTB3MHUGCysGAQQBgbU3AQIBMGYwLgYIKwYBBQUHAgEWImh0
+dHA6Ly93d3cuc3RhcnRzc2wuY29tL3BvbGljeS5wZGYwNAYIKwYBBQUHAgEWKGh0dHA6Ly93d3cu
+c3RhcnRzc2wuY29tL2ludGVybWVkaWF0ZS5wZGYwDQYJKoZIhvcNAQEFBQADggIBADqpJw3I07QW
+ke9plNBpxUxcffc7nUrIQpJHDci91DFG7fVhHRkMZ1J+BKg5UNUxIFJ2Z9B90Micc/NXcs7kPBRd
+n6XGO/vPc87Y6R+cWS9Nc9+fp3Enmsm94OxOwI9wn8qnr/6o3mD4noP9JphwUPTXwHovjavRnhUQ
+HLfo/i2NG0XXgTHXS2Xm0kVUozXqpYpAdumMiB/vezj1QHQJDmUdPYMcp+reg9901zkyT3fDW/iv
+JVv6pWtkh6Pw2ytZT7mvg7YhX3V50Nv860cV11mocUVcqBLv0gcT+HBDYtbuvexNftwNQKD5193A
+7zN4vG7CTYkXxytSjKuXrpEatEiFPxWgb84nVj25SU5q/r1Xhwby6mLhkbaXslkVtwEWT3Van49r
+KjlK4XrUKYYWtnfzq6aSak5u0Vpxd1rY79tWhD3EdCvOhNz/QplNa+VkIsrcp7+8ZhP1l1b2U6Ma
+xIVteuVMD3X0vziIwr7jxYae9FZjbxlpUemqXjcC0QaFfN7qI0JsQMALL7iGRBg7K0CoOBzECdD3
+fuZil5kU/LP9cr1BK31U0Uy651bFnAMMMkqhAChIbn0ei72VnbpSsrrSdF0BAGYQ8vyHae5aCg+H
+75dVCV33K6FuxZrf09yTz+Vx/PkdRUYkXmZz/OTfyJXsUOUXrym6KvI2rYpccSk5MIIHUDCCBjig
+AwIBAgICIgMwDQYJKoZIhvcNAQEFBQAwgYwxCzAJBgNVBAYTAklMMRYwFAYDVQQKEw1TdGFydENv
+bSBMdGQuMSswKQYDVQQLEyJTZWN1cmUgRGlnaXRhbCBDZXJ0aWZpY2F0ZSBTaWduaW5nMTgwNgYD
+VQQDEy9TdGFydENvbSBDbGFzcyAyIFByaW1hcnkgSW50ZXJtZWRpYXRlIENsaWVudCBDQTAeFw0x
+MjA2MTMwNDU5MjlaFw0xNDA2MTQxNjE4MzBaMIGRMRkwFwYDVQQNExBnMDFwWTYwMWJGM1BrRTY3
+MQswCQYDVQQGEwJVUzEPMA0GA1UECBMGT3JlZ29uMRIwEAYDVQQHEwlIaWxsc2Jvcm8xGTAXBgNV
+BAMTEE1pY2hhZWwgSGFsc3RlYWQxJzAlBgkqhkiG9w0BCQEWGG1pY2hhZWxAeW9jdG9wcm9qZWN0
+Lm9yZzCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBAMFZ+GW0VKdiyuQy3hlOvwcHxcm0
+8ZwNGGah4zipYky5wVFZO7p9LjJfyF6rvd24xdkaTluxTMmd9pfq2cOVQ6c3RsPufv1yBUbytk6F
+4Wk+qD0qEGjuHh5FfakcLIEsHiSn3nzaQZHaolS/yzx/A3coQS8pQrshZYqAF/ME5OxMyL8KDdtk
+xatt1reDPqzvI5rKYdeEbmHsTYgd9WWHvs8MfZFHidZoAXMXU+PcsKCUxEYhgP/h9NKcTApu/Mhd
+IPKn11pD+gfDM+ochGu1uxuW/t1tNJyRYDVQSDV+rpliQ7mrimSmyktIKkow02pUk4Xw3OqdYq7/
+/HpVOUs5nk8CAwEAAaOCA7MwggOvMAkGA1UdEwQCMAAwCwYDVR0PBAQDAgSwMB0GA1UdJQQWMBQG
+CCsGAQUFBwMCBggrBgEFBQcDBDAdBgNVHQ4EFgQUcZFNotb1OfDmPE6GQ6MQIBh7meUwHwYDVR0j
+BBgwFoAUrlWDb+wxyrn3HfqvazHzyB3jrLswIwYDVR0RBBwwGoEYbWljaGFlbEB5b2N0b3Byb2pl
+Y3Qub3JnMIICIQYDVR0gBIICGDCCAhQwggIQBgsrBgEEAYG1NwECAjCCAf8wLgYIKwYBBQUHAgEW
+Imh0dHA6Ly93d3cuc3RhcnRzc2wuY29tL3BvbGljeS5wZGYwNAYIKwYBBQUHAgEWKGh0dHA6Ly93
+d3cuc3RhcnRzc2wuY29tL2ludGVybWVkaWF0ZS5wZGYwgfcGCCsGAQUFBwICMIHqMCcWIFN0YXJ0
+Q29tIENlcnRpZmljYXRpb24gQXV0aG9yaXR5MAMCAQEagb5UaGlzIGNlcnRpZmljYXRlIHdhcyBp
+c3N1ZWQgYWNjb3JkaW5nIHRvIHRoZSBDbGFzcyAyIFZhbGlkYXRpb24gcmVxdWlyZW1lbnRzIG9m
+IHRoZSBTdGFydENvbSBDQSBwb2xpY3ksIHJlbGlhbmNlIG9ubHkgZm9yIHRoZSBpbnRlbmRlZCBw
+dXJwb3NlIGluIGNvbXBsaWFuY2Ugb2YgdGhlIHJlbHlpbmcgcGFydHkgb2JsaWdhdGlvbnMuMIGc
+BggrBgEFBQcCAjCBjzAnFiBTdGFydENvbSBDZXJ0aWZpY2F0aW9uIEF1dGhvcml0eTADAgECGmRM
+aWFiaWxpdHkgYW5kIHdhcnJhbnRpZXMgYXJlIGxpbWl0ZWQhIFNlZSBzZWN0aW9uICJMZWdhbCBh
+bmQgTGltaXRhdGlvbnMiIG9mIHRoZSBTdGFydENvbSBDQSBwb2xpY3kuMDYGA1UdHwQvMC0wK6Ap
+oCeGJWh0dHA6Ly9jcmwuc3RhcnRzc2wuY29tL2NydHUyLWNybC5jcmwwgY4GCCsGAQUFBwEBBIGB
+MH8wOQYIKwYBBQUHMAGGLWh0dHA6Ly9vY3NwLnN0YXJ0c3NsLmNvbS9zdWIvY2xhc3MyL2NsaWVu
+dC9jYTBCBggrBgEFBQcwAoY2aHR0cDovL2FpYS5zdGFydHNzbC5jb20vY2VydHMvc3ViLmNsYXNz
+Mi5jbGllbnQuY2EuY3J0MCMGA1UdEgQcMBqGGGh0dHA6Ly93d3cuc3RhcnRzc2wuY29tLzANBgkq
+hkiG9w0BAQUFAAOCAQEANR/d6M8GHL/rkx3Kz9ILDxYMcekmFgefaDXNQMicUHiUw5TsIl5af1pS
+Y2AvbKlA2/FZnyG8w42FuK6ZQBZJxs4/N10NW8qDmuuFTi6TyJgurj73tx9RogW50miDHMZLoMRe
+avB1h8zy99L2lRPZSebpSFkrQdYDHaGRVhYMjEcWNW9cLxhR8BaAEw/KlpERv3hUQpwGMppYOE66
+M7KJ3HpeR7DXfa4njL9W2hukTQNsskdWtzejHp5iQ65+5Mv+NXLmYP4uLJcR9AbttgNhwStc0P1b
+LxnQkElGeUzATOBq+QsVZ7Fo6sSS7kqrhpfaPibqpj83m/wSgpKVsbZJ3DGCA9owggPWAgEBMIGT
+MIGMMQswCQYDVQQGEwJJTDEWMBQGA1UEChMNU3RhcnRDb20gTHRkLjErMCkGA1UECxMiU2VjdXJl
+IERpZ2l0YWwgQ2VydGlmaWNhdGUgU2lnbmluZzE4MDYGA1UEAxMvU3RhcnRDb20gQ2xhc3MgMiBQ
+cmltYXJ5IEludGVybWVkaWF0ZSBDbGllbnQgQ0ECAiIDMAkGBSsOAwIaBQCgggIbMBgGCSqGSIb3
+DQEJAzELBgkqhkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTE0MDMxNzE0MTAwMlowIwYJKoZIhvcN
+AQkEMRYEFC2EqwpMDaqfcrhq3FJVpQpvEm2DMGwGCSqGSIb3DQEJDzFfMF0wCwYJYIZIAWUDBAEq
+MAsGCWCGSAFlAwQBAjAKBggqhkiG9w0DBzAOBggqhkiG9w0DAgICAIAwDQYIKoZIhvcNAwICAUAw
+BwYFKw4DAgcwDQYIKoZIhvcNAwICASgwgaQGCSsGAQQBgjcQBDGBljCBkzCBjDELMAkGA1UEBhMC
+SUwxFjAUBgNVBAoTDVN0YXJ0Q29tIEx0ZC4xKzApBgNVBAsTIlNlY3VyZSBEaWdpdGFsIENlcnRp
+ZmljYXRlIFNpZ25pbmcxODA2BgNVBAMTL1N0YXJ0Q29tIENsYXNzIDIgUHJpbWFyeSBJbnRlcm1l
+ZGlhdGUgQ2xpZW50IENBAgIiAzCBpgYLKoZIhvcNAQkQAgsxgZaggZMwgYwxCzAJBgNVBAYTAklM
+MRYwFAYDVQQKEw1TdGFydENvbSBMdGQuMSswKQYDVQQLEyJTZWN1cmUgRGlnaXRhbCBDZXJ0aWZp
+Y2F0ZSBTaWduaW5nMTgwNgYDVQQDEy9TdGFydENvbSBDbGFzcyAyIFByaW1hcnkgSW50ZXJtZWRp
+YXRlIENsaWVudCBDQQICIgMwDQYJKoZIhvcNAQEBBQAEggEAAe+1R0tB9wVogUJqPBLesUK4HF9c
+YOlErduWtpZn2WUsPurkCf5SEdA5ix20ef11WZGGjSFmeWZYwCh9h935di6OCeIYxUdOmjx3GoKO
+DtKc3aCpHEt6anrlGcLIrx5C5vERkMoO/gKVvsH9RJ1do8w8BtLIMvdsAq9IM4cBdYjDvABU44OL
+X98rNtT65Te+UHE4CvfjDUexqRFeyZ2YWA3MwoOV5uR00zQS/supiqD+Vl3YO9CHmkXC/Qq30fp8
+isBFNg0qJ7paBT5lOs8tkQ8r6xA4mp01BX9FHZpz44PJeaFxArfJosJQ8nNtANaGt3k1Ijs07qYD
+s8sXGPdxsQAAAAAAAA==
 
-<div><i>| arm-projectos-linux-gnueabi-libtool: link: cannot find the librar=
-y `&#39; or unhandled argument `-DLINUX=3D1&#39;</i></div><div><i>| make[4]=
-: *** [<a href=3D"http://libpoppler-qt4.la">libpoppler-qt4.la</a>] Error 1<=
-/i></div>
-
-<div><i>| make[4]: Leaving directory `/project/dora/build/tmp/work/cortexa9=
-hf-vfp-neon-projectos-linux-gnueabi/poppler/0.20.1-r3/poppler-0.20.1/qt4/sr=
-c&#39;</i></div><div><i>| make[3]: *** [all] Error 2</i></div><div><i>| mak=
-e[3]: Leaving directory `/project/dora/build/tmp/work/cortexa9hf-vfp-neon-p=
-rojectos-linux-gnueabi/poppler/0.20.1-r3/poppler-0.20.1/qt4/src&#39;</i></d=
-iv>
-
-<div><i>| make[2]: *** [all-recursive] Error 1</i></div><div><i>| make[2]: =
-Leaving directory `/project/dora/build/tmp/work/cortexa9hf-vfp-neon-project=
-os-linux-gnueabi/poppler/0.20.1-r3/poppler-0.20.1/qt4&#39;</i></div><div>
-
-<i>| make[1]: *** [all-recursive] Error 1</i></div><div><i>| make[1]: Leavi=
-ng directory `/project/dora/build/tmp/work/cortexa9hf-vfp-neon-projectos-li=
-nux-gnueabi/poppler/0.20.1-r3/poppler-0.20.1&#39;</i></div><div><i>| make: =
-*** [all] Error 2</i></div>
-
-<div><i>| ERROR: oe_runmake failed</i></div><div><i>| WARNING: exit code 1 =
-from a shell command.</i></div><div><i>| ERROR: Function failed: do_compile=
- (log file is located at /project/dora/build/tmp/work/cortexa9hf-vfp-neon-p=
-rojectos-linux-gnueabi/poppler/0.20.1-r3/temp/log.do_compile.19063)</i></di=
-v>
-
-<div><i>ERROR: Task 6 (/project/dora/meta-omnimed/common/recipes-libs/poppl=
-er/<a href=3D"http://poppler_0.20.1.bb">poppler_0.20.1.bb</a>, do_compile) =
-failed with exit code &#39;1&#39;</i></div><div><i>NOTE: Tasks Summary: Att=
-empted 2274 tasks of which 2273 didn&#39;t need to be rerun and 1 failed.</=
-i></div>
-
-<div><i>No currently running tasks (1704 of 2281)</i></div><div><i><br></i>=
-</div><div><i>Summary: 1 task failed:</i></div><div><i>=C2=A0 /project/dora=
-/meta-omnimed/common/recipes-libs/poppler/<a href=3D"http://poppler_0.20.1.=
-bb">poppler_0.20.1.bb</a>, do_compile</i></div>
-
-<div><i>Summary: There was 1 ERROR message shown, returning a non-zero exit=
- code.</i></div></div><div><br></div><div><br></div><div>In Dylan Branch th=
-is not happened, but in Dora Branch is the same recipe and version of Poppl=
-er.</div>
-
-<div><br></div><div>My application using Poppler + Qt.</div><div><br></div>=
-<div><br></div><div><br></div><div>Thanks</div></div>
-
---089e01176de54565ce04f4cd43cd--
+--------------ms090703070509090101070502--
