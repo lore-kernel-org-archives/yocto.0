@@ -1,24 +1,24 @@
 Return-Path: <bianchirickkutta@gmail.com>
-Received: from mail-ve0-f178.google.com (mail-ve0-f178.google.com
-	[209.85.128.178])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B9328E00B43
-	for <yocto@yoctoproject.org>; Tue, 18 Mar 2014 11:05:16 -0700 (PDT)
-Received: by mail-ve0-f178.google.com with SMTP id jw12so7464871veb.37
-	for <yocto@yoctoproject.org>; Tue, 18 Mar 2014 11:05:15 -0700 (PDT)
+Received: from mail-vc0-f180.google.com (mail-vc0-f180.google.com
+	[209.85.220.180])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 41F40E00B39
+	for <yocto@yoctoproject.org>; Tue, 18 Mar 2014 11:30:43 -0700 (PDT)
+Received: by mail-vc0-f180.google.com with SMTP id lf12so7886239vcb.11
+	for <yocto@yoctoproject.org>; Tue, 18 Mar 2014 11:30:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
 	:cc:content-type;
-	bh=FVy1RTSQ1hf8GUzp7mQkS/9E9ESlGoZyun2YFkIwJeo=;
-	b=RK2M45yPWUXsyEq0IfjwH9sJE9IxCZO0hlmr1l0Mkn6DV34NHMXA4kXdjosBEeY2gG
-	uwrNQloWXSHZ340AFXzC+N8ni1NklDf+clKU22Hkw56W5829ISjoKLoQ8ffNFP9awsLs
-	b1en5RHi5MOzcpw+p/ZX/GxjjwH0ZzYafm3M1DRIWqWgP9ZgmUglIkOXfYcmjTYuojeH
-	zaMD+5hHy51GuV/CJeyzPsmBR/hx4wApxxGfUv7/J+p4GdOOe2Mf7EQcI1DZW9iWDj8L
-	LJEPzfOZmOxPdFP0vv6QdycDIHv2+2tbmvlIenlql6oVoOO+uiAr6qyf3dWOVen784zI
-	eGoQ==
+	bh=Vf4z4WGdAQXpDxE4x0VNL0Ffw9tIkhVaHlf/GpBnqkI=;
+	b=ftpLGcdtvDiuECzvEeQOEl5k4f9GLiFEb21LzpW2leDnqityN+euqjURJ2zFlkRM7/
+	8mRAnXSUW89Ny6UCykFY3sRH8eXREGi8PFbGb0BcvrfAZBEDPNMdK13lsueCKu5FZDXN
+	7ByeBA1DzXjOJvtAA5kkjbd/nWvnKt5IBxck6MfOMwrAuaTnX778CBMXzzPSoQyfWj4y
+	uGWtya6wwP5O3m71kReY7UoPtrhGiT3dKAmYaYksku0wuYY5wcT5Pfn6UXRhNt2tlyl6
+	KapFaSJRF+feNXOml3cTupxHCyOGCAhU3vH9v6tAy/rDuV9ZIIpmpm0+29Ro1BX3MxL3
+	q8CA==
 MIME-Version: 1.0
-X-Received: by 10.52.69.146 with SMTP id e18mr21895001vdu.15.1395165915589;
-	Tue, 18 Mar 2014 11:05:15 -0700 (PDT)
-Received: by 10.220.96.66 with HTTP; Tue, 18 Mar 2014 11:05:15 -0700 (PDT)
+X-Received: by 10.52.243.167 with SMTP id wz7mr102184vdc.47.1395167442676;
+	Tue, 18 Mar 2014 11:30:42 -0700 (PDT)
+Received: by 10.220.96.66 with HTTP; Tue, 18 Mar 2014 11:30:42 -0700 (PDT)
 In-Reply-To: <53288899.8090702@mlbassoc.com>
 References: <CAA7h+EpU6RVwbewuJ6r04+O2CvjPBpP1z86dpAthm4_cBrrO+Q@mail.gmail.com>
 	<53207D25.2040309@mlbassoc.com>
@@ -31,8 +31,8 @@ References: <CAA7h+EpU6RVwbewuJ6r04+O2CvjPBpP1z86dpAthm4_cBrrO+Q@mail.gmail.com>
 	<CAA7h+EprV97+okAJhq=b9jZrJz0UhegC3D0cDhSNsgboS4by6A@mail.gmail.com>
 	<CAA7h+ErZGg61XAYC5fZ2cLyeKfo7Ge_U9ZPGfNy2a+TMqiA76A@mail.gmail.com>
 	<53288899.8090702@mlbassoc.com>
-Date: Tue, 18 Mar 2014 11:05:15 -0700
-Message-ID: <CAA7h+ErFeM7cDcFP4deDSzj9NowO4TRxTjhmHuZvAKW986rOTg@mail.gmail.com>
+Date: Tue, 18 Mar 2014 11:30:42 -0700
+Message-ID: <CAA7h+EpfhqXRPhdzEardavHfhM=d3b7AuPq3+GA=zobvReaOpg@mail.gmail.com>
 From: Rick Bianchi <bianchirickkutta@gmail.com>
 To: Gary Thomas <gary@mlbassoc.com>
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
@@ -48,13 +48,15 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 18 Mar 2014 18:05:19 -0000
-Content-Type: multipart/alternative; boundary=20cf3071cd0ecd302b04f4e56062
+X-List-Received-Date: Tue, 18 Mar 2014 18:30:44 -0000
+Content-Type: multipart/alternative; boundary=001a11c1bf16d2afe904f4e5bb7a
 
---20cf3071cd0ecd302b04f4e56062
+--001a11c1bf16d2afe904f4e5bb7a
 Content-Type: text/plain; charset=ISO-8859-1
 
-Got it.
+I rebooted the system with the "reboot" command and then checked the date
+and time with "date", it did not hold the system time and date correctly
+Sat Jan 1 02:28:44 UTC 2000.
 
 
 On Tue, Mar 18, 2014 at 10:55 AM, Gary Thomas <gary@mlbassoc.com> wrote:
@@ -255,17 +257,20 @@ On Tue, Mar 18, 2014 at 10:55 AM, Gary Thomas <gary@mlbassoc.com> wrote:
 > ------------------------------------------------------------
 >
 
---20cf3071cd0ecd302b04f4e56062
+--001a11c1bf16d2afe904f4e5bb7a
 Content-Type: text/html; charset=ISO-8859-1
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Got it.<br></div><div class=3D"gmail_extra"><br><br><div c=
-lass=3D"gmail_quote">On Tue, Mar 18, 2014 at 10:55 AM, Gary Thomas <span di=
-r=3D"ltr">&lt;<a href=3D"mailto:gary@mlbassoc.com" target=3D"_blank">gary@m=
-lbassoc.com</a>&gt;</span> wrote:<br>
-<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
-x #ccc solid;padding-left:1ex"><div class=3D"">On 2014-03-18 11:49, Rick Bi=
-anchi wrote:<br>
+<div dir=3D"ltr">I rebooted the system with the &quot;reboot&quot; command =
+and then checked the date and time with &quot;date&quot;, it did not hold t=
+he system time and date correctly Sat Jan  1 02:28:44 UTC 2000.<br></div><d=
+iv class=3D"gmail_extra">
+<br><br><div class=3D"gmail_quote">On Tue, Mar 18, 2014 at 10:55 AM, Gary T=
+homas <span dir=3D"ltr">&lt;<a href=3D"mailto:gary@mlbassoc.com" target=3D"=
+_blank">gary@mlbassoc.com</a>&gt;</span> wrote:<br><blockquote class=3D"gma=
+il_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-lef=
+t:1ex">
+<div class=3D"">On 2014-03-18 11:49, Rick Bianchi wrote:<br>
 &gt; Should have noted, that the date and time reset on every reboot?<br>
 <br>
 </div>Unless you have a battery backed up clock device, e.g. Dallas RTC,<br=
@@ -577,4 +582,4 @@ sp;Embedded world<br>
 ------------------------------------------------------------<br>
 </div></div></blockquote></div><br></div>
 
---20cf3071cd0ecd302b04f4e56062--
+--001a11c1bf16d2afe904f4e5bb7a--
