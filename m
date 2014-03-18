@@ -1,39 +1,29 @@
-Return-Path: <bianchirickkutta@gmail.com>
-Received: from mail-vc0-f172.google.com (mail-vc0-f172.google.com
-	[209.85.220.172])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8CF49E00B39
-	for <yocto@yoctoproject.org>; Tue, 18 Mar 2014 11:32:09 -0700 (PDT)
-Received: by mail-vc0-f172.google.com with SMTP id la4so7702351vcb.17
-	for <yocto@yoctoproject.org>; Tue, 18 Mar 2014 11:32:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type;
-	bh=v5kpUC26awWjKgaS+DjPc3eI+YrB+DN66rNLUnlieRE=;
-	b=hTQARPDCDNZOtXI/mF7IXcczrZ9HC1soC/uWboGt3vf5wsJ1ZFL7z2dlJfbsTw5gQm
-	t1VpPI2A6XnHFMAaITC2uGS8H+VqD18iSHUr4fZWwDgipo6680fchqxUX64h7dGqf9NE
-	YYtjno3vZr23pjjBW/RUyZoj6yoIjSAX2HH9THc0NdyrlgRGcu+xcbNVNl3JMEw002/Y
-	UhaVu4q6cTo5wkG+WlfPFpc90NpQg3WK+IkmwT4V/MJUGAzyFX40qST5bkaMZKmvJSPe
-	fhuN7mWO6EqIuqsct+OpApqPWrGcUmiBGT7wHKkzzouFufQwYYvbYuU21594tGCi/5fd
-	eZXw==
+Return-Path: <gary@mlbassoc.com>
+Received: from mail.chez-thomas.org (mail.mlbassoc.com [65.100.170.105])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 85397E00B3C
+	for <yocto@yoctoproject.org>; Tue, 18 Mar 2014 11:43:36 -0700 (PDT)
+Received: by mail.chez-thomas.org (Postfix, from userid 1998)
+	id 6B1F4F811F9; Tue, 18 Mar 2014 12:43:36 -0600 (MDT)
+X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on
+	hermes.chez-thomas.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=4.0 tests=ALL_TRUSTED,BAYES_00
+	autolearn=unavailable version=3.3.2
+Received: from [192.168.1.114] (zeus [192.168.1.114])
+	by mail.chez-thomas.org (Postfix) with ESMTP id 9A8F5F811F8;
+	Tue, 18 Mar 2014 12:43:33 -0600 (MDT)
+Message-ID: <532893E3.9010405@mlbassoc.com>
+Date: Tue, 18 Mar 2014 12:43:47 -0600
+From: Gary Thomas <gary@mlbassoc.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:24.0) Gecko/20100101 Thunderbird/24.3.0
 MIME-Version: 1.0
-X-Received: by 10.58.248.163 with SMTP id yn3mr5686431vec.0.1395167529290;
-	Tue, 18 Mar 2014 11:32:09 -0700 (PDT)
-Received: by 10.220.96.66 with HTTP; Tue, 18 Mar 2014 11:32:09 -0700 (PDT)
-In-Reply-To: <532887BB.6080207@mlbassoc.com>
-References: <CAA7h+EoDLUqhc1LsciVo55QxLNX0ZQvLg9AKCffpKCctX4AMxQ@mail.gmail.com>
-	<532871AE.4070709@mlbassoc.com>
-	<CAA7h+Ep60qgSkAmJei+vOdmZ2r5b5bj4uyn0o7zRXK0XG3Lj=w@mail.gmail.com>
-	<53287AD3.5040505@mlbassoc.com>
-	<CAA7h+Ep4-7XLFfpJurAikNMEDSesmTv=1Sc20QuLhALn4EATDg@mail.gmail.com>
-	<53287E26.3060005@mlbassoc.com>
-	<CAA7h+EoOgyx52B0tb+hgErJyE9AU-PsYhOMy6wuUX9k4NDfNVA@mail.gmail.com>
-	<532887BB.6080207@mlbassoc.com>
-Date: Tue, 18 Mar 2014 11:32:09 -0700
-Message-ID: <CAA7h+EqEBjbT7Ew9b4cKQUcwkjRbPJE6_WUeSFXVAWaGfrC25A@mail.gmail.com>
-From: Rick Bianchi <bianchirickkutta@gmail.com>
-To: Gary Thomas <gary@mlbassoc.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Losing Ethernet after reboot
+To: yocto@yoctoproject.org
+References: <CAA7h+EpU6RVwbewuJ6r04+O2CvjPBpP1z86dpAthm4_cBrrO+Q@mail.gmail.com>	<53207D25.2040309@mlbassoc.com>	<CAA7h+Eomb_92298Y1NDmtTNiTmNcbivytLd9xT=1FVZ+My=PAw@mail.gmail.com>	<5320AB11.4060303@mlbassoc.com>	<CAA7h+EoYviRS34heBABgE-o1eQP0po=rVgE-Tc98vSg16F-5+g@mail.gmail.com>	<5323147A.8000400@mlbassoc.com>	<CAA7h+EpRdEuYERe+N2enPyPDuP1fN+qE_PD9NnEGHYDV2wwP+Q@mail.gmail.com>	<53237FCF.8020700@mlbassoc.com>	<CAA7h+EprV97+okAJhq=b9jZrJz0UhegC3D0cDhSNsgboS4by6A@mail.gmail.com>	<CAA7h+ErZGg61XAYC5fZ2cLyeKfo7Ge_U9ZPGfNy2a+TMqiA76A@mail.gmail.com>	<53288899.8090702@mlbassoc.com>
+	<CAA7h+EpfhqXRPhdzEardavHfhM=d3b7AuPq3+GA=zobvReaOpg@mail.gmail.com>
+In-Reply-To: <CAA7h+EpfhqXRPhdzEardavHfhM=d3b7AuPq3+GA=zobvReaOpg@mail.gmail.com>
+X-Enigmail-Version: 1.5.2
+Subject: Re: Building on target
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,250 +35,186 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 18 Mar 2014 18:32:12 -0000
-Content-Type: multipart/alternative; boundary=047d7bf15fd4fc51fe04f4e5c068
+X-List-Received-Date: Tue, 18 Mar 2014 18:43:37 -0000
+Content-Type: text/plain; charset=windows-1252
+Content-Transfer-Encoding: 8bit
 
---047d7bf15fd4fc51fe04f4e5c068
-Content-Type: text/plain; charset=ISO-8859-1
+On 2014-03-18 12:30, Rick Bianchi wrote:
+> I rebooted the system with the "reboot" command and then checked the date and time with "date", it did not hold the system time and date correctly Sat Jan 1 02:28:44 UTC 2000.
 
-If I run, "ifup eth0" it bring eth0 with dhcp, and I can the skip the
-"udhcpc eth0".
+There seems to be something very wrong with your startup/shutdown scripts
+as both this problem and the networking issue are handled by those scripts.
 
+Did you try turning on the verbose mode?  If so, you should see a line like
+this during shutdown:
+  INIT: [2014-03-18 17:33:20.978789236] Running /etc/rc6.d/S25save-rtc.sh stop...
+and another like these on reboot:
+  INIT: [1970-01-01 00:00:05.079166199] Running /etc/rcS.d/S40networking start...
+  INIT: [1970-01-01 00:00:05.103022145] Running /etc/rcS.d/S55bootmisc.sh start...
 
-On Tue, Mar 18, 2014 at 10:51 AM, Gary Thomas <gary@mlbassoc.com> wrote:
+> On Tue, Mar 18, 2014 at 10:55 AM, Gary Thomas <gary@mlbassoc.com <mailto:gary@mlbassoc.com>> wrote:
+> 
+>     On 2014-03-18 11:49, Rick Bianchi wrote:
+>     > Should have noted, that the date and time reset on every reboot?
+> 
+>     Unless you have a battery backed up clock device, e.g. Dallas RTC,
+>     this will happen.  If you shut your Yocto system down properly, e.g.
+>     using '# reboot', it will keep track of when you shut down and then
+>     set the clock to that time when you reboot.  Without a true RTC, there's
+>     little else that it can do unless you run NTP and get the time from some
+>     external server.
+> 
+>     > On Tue, Mar 18, 2014 at 10:48 AM, Rick Bianchi <bianchirickkutta@gmail.com <mailto:bianchirickkutta@gmail.com> <mailto:bianchirickkutta@gmail.com <mailto:bianchirickkutta@gmail.com>>> wrote:
+>     >
+>     >     Gary,
+>     >     I noticed during the make the it was complaining about the date being in the future; I checked and sure thing the date and time were bit off, about 14 years. I set it to the
+>     >     correct time  with "date --set="18 MARCH 2014 10:32:00" and the build completed in under 10 mins.
+>     >
+>     >
+>     >     On Fri, Mar 14, 2014 at 3:16 PM, Gary Thomas <gary@mlbassoc.com <mailto:gary@mlbassoc.com> <mailto:gary@mlbassoc.com <mailto:gary@mlbassoc.com>>> wrote:
+>     >
+>     >         On 2014-03-14 08:49, Rick Bianchi wrote:
+>     >         > If I have time today I will try to reproduce your results. If not, I will get to it first thing next week and post my result.
+>     >
+>     >         One thing I forgot to point out is I used the identical kernel+modules for
+>     >         both setups.  I would be interested to see if that makes any difference for
+>     >         you.  I can't fully test it as my board doesn't have a Linaro kernel.
+>     >
+>     >         So there are four combinations - I only tried the first two:
+>     >           Yocto kernel + Yocto rootfs
+>     >           Yocto kernel + Linaro rootfs
+>     >           Linaro kernel + Yocto rootfs
+>     >           Linaro kernel + Linaro rootfs
+>     >
+>     >         > On Fri, Mar 14, 2014 at 7:38 AM, Gary Thomas <gary@mlbassoc.com <mailto:gary@mlbassoc.com> <mailto:gary@mlbassoc.com <mailto:gary@mlbassoc.com>> <mailto:gary@mlbassoc.com <mailto:gary@mlbassoc.com>
+>     <mailto:gary@mlbassoc.com <mailto:gary@mlbassoc.com>>>> wrote:
+>     >         >
+>     >         >     On 2014-03-12 13:11, Rick Bianchi wrote:
+>     >         >     > usbip from /usr/src/kernel/drivers/staging/usbip
+>     >         >
+>     >         >     I finally managed to make this comparison.  I did this by taking my Poky/Yocto
+>     >         >     built system for a i.MX6 system (ARM Cortex-A9) and replaced the rootfs with
+>     >         >     one for the Gumstix Overo (linaro).  The results were nothing like yours, so
+>     >         >     it's a bit confusing.
+>     >         >
+>     >         >     I actually built an entire Linux kernel - not just the one directory you mentioned.
+>     >         >
+>     >         >     Poky/Yocto - 37 minutes
+>     >         >     Linaro     - 48 minutes
+>     >         >
+>     >         >     There is some flex in these numbers as they were on different [brand] SD cards, etc,
+>     >         >     but I sure did not see the "5 minutes for Linaro vs 24 hours on Yocto" that you reported.
+>     >         >
+>     >         >     Perhaps the only thing I did differently was I added the SDK tools to my Yocto system
+>     >         >     using these meta-packages instead of the list you used.
+>     >         >       packagegroup-core-sdk packagegroup-core-standalone-sdk-target
+>     >         >
+>     >         >     You might try that to see if it makes any difference.
+>     >         >
+>     >         >     n.b. part of what took me so long to get these results is I was trying to run this test
+>     >         >     on something closer to your Overo board.  I have an older OMAP DM3730 board here that I
+>     >         >     tried to do these same steps, but it was unstable and I could not get the Linaro based
+>     >         >     file system to work at all.  Very strange.  In any case, I think the comparison I did get
+>     >         >     with the i.MX6 is valid.
+>     >         >
+>     >         >     > On Wed, Mar 12, 2014 at 11:44 AM, Gary Thomas <gary@mlbassoc.com <mailto:gary@mlbassoc.com> <mailto:gary@mlbassoc.com <mailto:gary@mlbassoc.com>> <mailto:gary@mlbassoc.com <mailto:gary@mlbassoc.com>
+>     <mailto:gary@mlbassoc.com <mailto:gary@mlbassoc.com>>> <mailto:gary@mlbassoc.com <mailto:gary@mlbassoc.com> <mailto:gary@mlbassoc.com <mailto:gary@mlbassoc.com>>
+>     >         <mailto:gary@mlbassoc.com <mailto:gary@mlbassoc.com> <mailto:gary@mlbassoc.com <mailto:gary@mlbassoc.com>>>>> wrote:
+>     >         >     >
+>     >         >     >     On 2014-03-12 10:09, Rick Bianchi wrote:
+>     >         >     >     > I completely agree with regards to the comparison, but I have compiled the same exact source on the same target (arm) and it only took 5 minutes when running the Linaro image.
+>     >         >     >     >
+>     >         >     >     > To clarify, the only difference is the build, one is Linaro (took 5 minutes to compile source on the target) and the other Yocto (took almost 24 hours to compile source on the target).
+>     >         >     >
+>     >         >     >     Sorry, I missed that this was on the same hardware.
+>     >         >     >
+>     >         >     >     What are you building?  I'm going to try and duplicate this here
+>     >         >     >     on hardware I have that's quite similar to your Gumstix board.
+>     >         >     >
+>     >         >     >     >
+>     >         >     >     > Is there something that I am missing?
+>     >         >     >     >
+>     >         >     >     >
+>     >         >     >     > On Wed, Mar 12, 2014 at 8:28 AM, Gary Thomas <gary@mlbassoc.com <mailto:gary@mlbassoc.com> <mailto:gary@mlbassoc.com <mailto:gary@mlbassoc.com>> <mailto:gary@mlbassoc.com <mailto:gary@mlbassoc.com>
+>     <mailto:gary@mlbassoc.com <mailto:gary@mlbassoc.com>>> <mailto:gary@mlbassoc.com <mailto:gary@mlbassoc.com> <mailto:gary@mlbassoc.com <mailto:gary@mlbassoc.com>>
+>     >         <mailto:gary@mlbassoc.com <mailto:gary@mlbassoc.com> <mailto:gary@mlbassoc.com <mailto:gary@mlbassoc.com>>>> <mailto:gary@mlbassoc.com <mailto:gary@mlbassoc.com>
+>     <mailto:gary@mlbassoc.com <mailto:gary@mlbassoc.com>> <mailto:gary@mlbassoc.com <mailto:gary@mlbassoc.com> <mailto:gary@mlbassoc.com <mailto:gary@mlbassoc.com>>>
+>     >         >     <mailto:gary@mlbassoc.com <mailto:gary@mlbassoc.com> <mailto:gary@mlbassoc.com <mailto:gary@mlbassoc.com>> <mailto:gary@mlbassoc.com <mailto:gary@mlbassoc.com>
+>     <mailto:gary@mlbassoc.com <mailto:gary@mlbassoc.com>>>>>> wrote:
+>     >         >     >     >
+>     >         >     >     >     On 2014-03-12 09:15, Rick Bianchi wrote:
+>     >         >     >     >     >
+>     >         >     >     >     > I have the gumstix-console-image with the added packages below. When I compile on the target is take a very long time for it to complete, over 24 hours. I have compiled the same
+>     >         >     >     >     > code on the same target, but running Linaro image, and it only takes a few minutes. Is there another recipe that I need to add to the build to speed up compiling?
+>     >         >     >     >
+>     >         >     >     >     Doubtful.  The reason your build on the target takes so long is merely
+>     >         >     >     >     one of horsepower - that little ARM processor just doesn't have it, especially
+>     >         >     >     >     if you are comparing it to a typical desktop environment.
+>     >         >     >     >
+>     >         >     >     >     > EXTRA_IMAGE_FEATURES += "dev-pkgs"
+>     >         >     >     >     > IMAGE_INSTALL_append =" autoconf"
+>     >         >     >     >     > IMAGE_INSTALL_append =" autofs"
+>     >         >     >     >     > IMAGE_INSTALL_append =" automake"
+>     >         >     >     >     > IMAGE_INSTALL_append =" ccache”
+>     >         >     >     >     > IMAGE_INSTALL_append =" chkconfig"
+>     >         >     >     >     > IMAGE_INSTALL_append =" dbus-glib"
+>     >         >     >     >     > IMAGE_INSTALL_append =" gcc"
+>     >         >     >     >     > IMAGE_INSTALL_append =" glib-2.0"
+>     >         >     >     >     > IMAGE_INSTALL_append =" glib-networking"
+>     >         >     >     >     > IMAGE_INSTALL_append =" glibmm"
+>     >         >     >     >     > IMAGE_INSTALL_append =" packagegroup-core-buildessential"
+>     >         >     >     >     > IMAGE_INSTALL_append =" pciutils"
+>     >         >     >     >     > IMAGE_INSTALL_append =" pkgconfig”
+>     >         >     >     >     > IMAGE_INSTALL_append =" python-scons"
+>     >         >     >     >     > IMAGE_INSTALL_append =" systemd-compat-units”
+>     >         >     >     >     > IMAGE_INSTALL_append =" sysfsutils"
+>     >         >     >     >     > IMAGE_INSTALL_append =" tcp-wrappers"
+>     >         >     >     >     > IMAGE_INSTALL_append =" usbutils"
+>     >         >     >     >     > IMAGE_INSTALL_append =" util-macros"
+>     >         >
+>     >         >     --
+>     >         >     ------------------------------------------------------------
+>     >         >     Gary Thomas                 |  Consulting for the
+>     >         >     MLB Associates              |    Embedded world
+>     >         >     ------------------------------------------------------------
+>     >         >     --
+>     >         >     _______________________________________________
+>     >         >     yocto mailing list
+>     >         >     yocto@yoctoproject.org <mailto:yocto@yoctoproject.org> <mailto:yocto@yoctoproject.org <mailto:yocto@yoctoproject.org>> <mailto:yocto@yoctoproject.org
+>     <mailto:yocto@yoctoproject.org> <mailto:yocto@yoctoproject.org <mailto:yocto@yoctoproject.org>>>
+>     >         >     https://lists.yoctoproject.org/listinfo/yocto
+>     >         >
+>     >         >
+>     >         >
+>     >         >
+>     >
+>     >         --
+>     >         ------------------------------------------------------------
+>     >         Gary Thomas                 |  Consulting for the
+>     >         MLB Associates              |    Embedded world
+>     >         ------------------------------------------------------------
+>     >         --
+>     >         _______________________________________________
+>     >         yocto mailing list
+>     >         yocto@yoctoproject.org <mailto:yocto@yoctoproject.org> <mailto:yocto@yoctoproject.org <mailto:yocto@yoctoproject.org>>
+>     >         https://lists.yoctoproject.org/listinfo/yocto
+>     >
+>     >
+>     >
+> 
+>     --
+>     ------------------------------------------------------------
+>     Gary Thomas                 |  Consulting for the
+>     MLB Associates              |    Embedded world
+>     ------------------------------------------------------------
+> 
+> 
+> 
+> 
 
-> On 2014-03-18 11:14, Rick Bianchi wrote:
-> > 1. Yes, I do have init-ifupdown on the target.
-> >
-> > 2. No, I have not made any changes to the INITSCRIPT_PARAMS.
-> >
->
-> OK, you must be using an older release/branch as this was recently changed.
->
-> You can try tracing the bootup to see if/when the networking is started:
-> Make this change & reboot.
->   root@everest-p36:~# sed -i s/VERBOSE=no/VERBOSE=very/ /etc/default/rcS
-> This will print a line indicating which init scripts are run, etc.
->
-> Also, what happens if you try to bring up your network using 'ifup eth0'
-> instead of 'ifconfig eth0 up;udhcpc eth0'?
->
-> > On Tue, Mar 18, 2014 at 10:11 AM, Gary Thomas <gary@mlbassoc.com<mailto:
-> gary@mlbassoc.com>> wrote:
-> >
-> >     On 2014-03-18 10:58, Rick Bianchi wrote:
-> >     > ls -l /etc/rc*/S*networking  only gives me the following:
-> >     >
-> >     > lrwxrwxrwx 1 root root 20 Mar 14 2014 /etc/rcS.d/S40networking ->
-> ../init.d/networking
-> >
-> >     Looks like something changed the init scripts settings.  These are
-> in the file
-> >       .../meta/recipes-core/init-ifupdown/init-ifupdown_1.0.bb <
-> http://init-ifupdown_1.0.bb>:
-> >         INITSCRIPT_NAME = "networking"
-> >         INITSCRIPT_PARAMS = "start 01 2 3 4 5 . stop 80 0 6 1 ."
-> >
-> >     I presume that you have a init-ifupdown_1.0.bbappend file for your
-> target?
-> >     Are you changing the INITSCRIPT_PARAMS perhaps?
-> >
-> >     > On Tue, Mar 18, 2014 at 9:56 AM, Gary Thomas <gary@mlbassoc.com<mailto:
-> gary@mlbassoc.com> <mailto:gary@mlbassoc.com <mailto:gary@mlbassoc.com>>>
-> wrote:
-> >     >
-> >     >     On 2014-03-18 10:42, Rick Bianchi wrote:
-> >     >     > Sorry typing on the fly. Here is what is in interfaces:
-> >     >     > auto eth0
-> >     >     > iface eth0 inet dhcp
-> >     >
-> >     >     Are you using systemd or sysvinit?
-> >     >
-> >     >     I use sysvinit and have these init script settings that start
-> the network:
-> >     >     root@everest-p36:~# ls -l /etc/rc*/S*networking
-> >     >     lrwxrwxrwx 1 root root 20 Mar 18 15:58
-> /etc/rc2.d/S01networking -> ../init.d/networking
-> >     >     lrwxrwxrwx 1 root root 20 Mar 18 15:58
-> /etc/rc3.d/S01networking -> ../init.d/networking
-> >     >     lrwxrwxrwx 1 root root 20 Mar 18 15:58
-> /etc/rc4.d/S01networking -> ../init.d/networking
-> >     >     lrwxrwxrwx 1 root root 20 Mar 18 15:58
-> /etc/rc5.d/S01networking -> ../init.d/networking
-> >     >
-> >     >     >
-> >     >     >
-> >     >     > On Tue, Mar 18, 2014 at 9:17 AM, Gary Thomas <
-> gary@mlbassoc.com <mailto:gary@mlbassoc.com> <mailto:gary@mlbassoc.com<mailto:
-> gary@mlbassoc.com>> <mailto:gary@mlbassoc.com <mailto:gary@mlbassoc.com>
-> >     <mailto:gary@mlbassoc.com <mailto:gary@mlbassoc.com>>>> wrote:
-> >     >     >
-> >     >     >     On 2014-03-18 10:10, Rick Bianchi wrote:
-> >     >     >     >
-> >     >     >     > I losing Ethernet after every reboot. What is the
-> process to have it come up manually?
-> >     >     >     >
-> >     >     >     > Image: Dylan gumstix-console
-> >     >     >     >
-> >     >     >     > I have already added eth0 auto to my
-> /etc/network/interfaces.
-> >     >     >
-> >     >     >     Shouldn't this line read
-> >     >     >       auto eth0
-> >     >     >     not the other way around?
-> >     >     >
-> >     >     >     > At the moment I need to run the following after every
-> reboot:
-> >     >     >     >
-> >     >     >     > ifconfig eth0 up
-> >     >     >     > udhcpc eth0
->
-> --
-> ------------------------------------------------------------
-> Gary Thomas                 |  Consulting for the
-> MLB Associates              |    Embedded world
-> ------------------------------------------------------------
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
->
+-- 
+------------------------------------------------------------
+Gary Thomas                 |  Consulting for the
+MLB Associates              |    Embedded world
+------------------------------------------------------------
 
---047d7bf15fd4fc51fe04f4e5c068
-Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><br>If I run, &quot;ifup eth0&quot; it bring eth0 with dhc=
-p, and I can the skip the &quot;udhcpc eth0&quot;.</div><div class=3D"gmail=
-_extra"><br><br><div class=3D"gmail_quote">On Tue, Mar 18, 2014 at 10:51 AM=
-, Gary Thomas <span dir=3D"ltr">&lt;<a href=3D"mailto:gary@mlbassoc.com" ta=
-rget=3D"_blank">gary@mlbassoc.com</a>&gt;</span> wrote:<br>
-<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
-x #ccc solid;padding-left:1ex"><div class=3D"">On 2014-03-18 11:14, Rick Bi=
-anchi wrote:<br>
-&gt; 1. Yes, I do have init-ifupdown on the target.<br>
-&gt;<br>
-&gt; 2. No, I have not made any changes to the INITSCRIPT_PARAMS.<br>
-&gt;<br>
-<br>
-</div>OK, you must be using an older release/branch as this was recently ch=
-anged.<br>
-<br>
-You can try tracing the bootup to see if/when the networking is started:<br=
->
-Make this change &amp; reboot.<br>
-=A0 root@everest-p36:~# sed -i s/VERBOSE=3Dno/VERBOSE=3Dvery/ /etc/default/=
-rcS<br>
-This will print a line indicating which init scripts are run, etc.<br>
-<br>
-Also, what happens if you try to bring up your network using &#39;ifup eth0=
-&#39;<br>
-instead of &#39;ifconfig eth0 up;udhcpc eth0&#39;?<br>
-<div class=3D""><br>
-&gt; On Tue, Mar 18, 2014 at 10:11 AM, Gary Thomas &lt;<a href=3D"mailto:ga=
-ry@mlbassoc.com">gary@mlbassoc.com</a> &lt;mailto:<a href=3D"mailto:gary@ml=
-bassoc.com">gary@mlbassoc.com</a>&gt;&gt; wrote:<br>
-&gt;<br>
-&gt; =A0 =A0 On 2014-03-18 10:58, Rick Bianchi wrote:<br>
-&gt; =A0 =A0 &gt; ls -l /etc/rc*/S*networking =A0only gives me the followin=
-g:<br>
-&gt; =A0 =A0 &gt;<br>
-&gt; =A0 =A0 &gt; lrwxrwxrwx 1 root root 20 Mar 14 2014 /etc/rcS.d/S40netwo=
-rking -&gt; ../init.d/networking<br>
-&gt;<br>
-&gt; =A0 =A0 Looks like something changed the init scripts settings. =A0The=
-se are in the file<br>
-</div>&gt; =A0 =A0 =A0 .../meta/recipes-core/init-ifupdown/<a href=3D"http:=
-//init-ifupdown_1.0.bb" target=3D"_blank">init-ifupdown_1.0.bb</a> &lt;<a h=
-ref=3D"http://init-ifupdown_1.0.bb" target=3D"_blank">http://init-ifupdown_=
-1.0.bb</a>&gt;:<br>
-
-<div class=3D"">&gt; =A0 =A0 =A0 =A0 INITSCRIPT_NAME =3D &quot;networking&q=
-uot;<br>
-&gt; =A0 =A0 =A0 =A0 INITSCRIPT_PARAMS =3D &quot;start 01 2 3 4 5 . stop 80=
- 0 6 1 .&quot;<br>
-&gt;<br>
-&gt; =A0 =A0 I presume that you have a init-ifupdown_1.0.bbappend file for =
-your target?<br>
-&gt; =A0 =A0 Are you changing the INITSCRIPT_PARAMS perhaps?<br>
-&gt;<br>
-</div><div class=3D"">&gt; =A0 =A0 &gt; On Tue, Mar 18, 2014 at 9:56 AM, Ga=
-ry Thomas &lt;<a href=3D"mailto:gary@mlbassoc.com">gary@mlbassoc.com</a> &l=
-t;mailto:<a href=3D"mailto:gary@mlbassoc.com">gary@mlbassoc.com</a>&gt; &lt=
-;mailto:<a href=3D"mailto:gary@mlbassoc.com">gary@mlbassoc.com</a> &lt;mail=
-to:<a href=3D"mailto:gary@mlbassoc.com">gary@mlbassoc.com</a>&gt;&gt;&gt; w=
-rote:<br>
-
-&gt; =A0 =A0 &gt;<br>
-&gt; =A0 =A0 &gt; =A0 =A0 On 2014-03-18 10:42, Rick Bianchi wrote:<br>
-&gt; =A0 =A0 &gt; =A0 =A0 &gt; Sorry typing on the fly. Here is what is in =
-interfaces:<br>
-&gt; =A0 =A0 &gt; =A0 =A0 &gt; auto eth0<br>
-&gt; =A0 =A0 &gt; =A0 =A0 &gt; iface eth0 inet dhcp<br>
-&gt; =A0 =A0 &gt;<br>
-&gt; =A0 =A0 &gt; =A0 =A0 Are you using systemd or sysvinit?<br>
-&gt; =A0 =A0 &gt;<br>
-&gt; =A0 =A0 &gt; =A0 =A0 I use sysvinit and have these init script setting=
-s that start the network:<br>
-&gt; =A0 =A0 &gt; =A0 =A0 root@everest-p36:~# ls -l /etc/rc*/S*networking<b=
-r>
-&gt; =A0 =A0 &gt; =A0 =A0 lrwxrwxrwx 1 root root 20 Mar 18 15:58 /etc/rc2.d=
-/S01networking -&gt; ../init.d/networking<br>
-&gt; =A0 =A0 &gt; =A0 =A0 lrwxrwxrwx 1 root root 20 Mar 18 15:58 /etc/rc3.d=
-/S01networking -&gt; ../init.d/networking<br>
-&gt; =A0 =A0 &gt; =A0 =A0 lrwxrwxrwx 1 root root 20 Mar 18 15:58 /etc/rc4.d=
-/S01networking -&gt; ../init.d/networking<br>
-&gt; =A0 =A0 &gt; =A0 =A0 lrwxrwxrwx 1 root root 20 Mar 18 15:58 /etc/rc5.d=
-/S01networking -&gt; ../init.d/networking<br>
-&gt; =A0 =A0 &gt;<br>
-&gt; =A0 =A0 &gt; =A0 =A0 &gt;<br>
-&gt; =A0 =A0 &gt; =A0 =A0 &gt;<br>
-</div>&gt; =A0 =A0 &gt; =A0 =A0 &gt; On Tue, Mar 18, 2014 at 9:17 AM, Gary =
-Thomas &lt;<a href=3D"mailto:gary@mlbassoc.com">gary@mlbassoc.com</a> &lt;m=
-ailto:<a href=3D"mailto:gary@mlbassoc.com">gary@mlbassoc.com</a>&gt; &lt;ma=
-ilto:<a href=3D"mailto:gary@mlbassoc.com">gary@mlbassoc.com</a> &lt;mailto:=
-<a href=3D"mailto:gary@mlbassoc.com">gary@mlbassoc.com</a>&gt;&gt; &lt;mail=
-to:<a href=3D"mailto:gary@mlbassoc.com">gary@mlbassoc.com</a> &lt;mailto:<a=
- href=3D"mailto:gary@mlbassoc.com">gary@mlbassoc.com</a>&gt;<br>
-
-<div class=3D"">&gt; =A0 =A0 &lt;mailto:<a href=3D"mailto:gary@mlbassoc.com=
-">gary@mlbassoc.com</a> &lt;mailto:<a href=3D"mailto:gary@mlbassoc.com">gar=
-y@mlbassoc.com</a>&gt;&gt;&gt;&gt; wrote:<br>
-&gt; =A0 =A0 &gt; =A0 =A0 &gt;<br>
-&gt; =A0 =A0 &gt; =A0 =A0 &gt; =A0 =A0 On 2014-03-18 10:10, Rick Bianchi wr=
-ote:<br>
-&gt; =A0 =A0 &gt; =A0 =A0 &gt; =A0 =A0 &gt;<br>
-&gt; =A0 =A0 &gt; =A0 =A0 &gt; =A0 =A0 &gt; I losing Ethernet after every r=
-eboot. What is the process to have it come up manually?<br>
-&gt; =A0 =A0 &gt; =A0 =A0 &gt; =A0 =A0 &gt;<br>
-&gt; =A0 =A0 &gt; =A0 =A0 &gt; =A0 =A0 &gt; Image: Dylan gumstix-console<br=
->
-&gt; =A0 =A0 &gt; =A0 =A0 &gt; =A0 =A0 &gt;<br>
-&gt; =A0 =A0 &gt; =A0 =A0 &gt; =A0 =A0 &gt; I have already added eth0 auto =
-to my /etc/network/interfaces.<br>
-&gt; =A0 =A0 &gt; =A0 =A0 &gt;<br>
-&gt; =A0 =A0 &gt; =A0 =A0 &gt; =A0 =A0 Shouldn&#39;t this line read<br>
-&gt; =A0 =A0 &gt; =A0 =A0 &gt; =A0 =A0 =A0 auto eth0<br>
-&gt; =A0 =A0 &gt; =A0 =A0 &gt; =A0 =A0 not the other way around?<br>
-&gt; =A0 =A0 &gt; =A0 =A0 &gt;<br>
-&gt; =A0 =A0 &gt; =A0 =A0 &gt; =A0 =A0 &gt; At the moment I need to run the=
- following after every reboot:<br>
-&gt; =A0 =A0 &gt; =A0 =A0 &gt; =A0 =A0 &gt;<br>
-&gt; =A0 =A0 &gt; =A0 =A0 &gt; =A0 =A0 &gt; ifconfig eth0 up<br>
-&gt; =A0 =A0 &gt; =A0 =A0 &gt; =A0 =A0 &gt; udhcpc eth0<br>
-<br>
---<br>
-------------------------------------------------------------<br>
-Gary Thomas =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 | =A0Consulting for the<br>
-MLB Associates =A0 =A0 =A0 =A0 =A0 =A0 =A0| =A0 =A0Embedded world<br>
-------------------------------------------------------------<br>
---<br>
-_______________________________________________<br>
-yocto mailing list<br>
-<a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br>
-</div><a href=3D"https://lists.yoctoproject.org/listinfo/yocto" target=3D"_=
-blank">https://lists.yoctoproject.org/listinfo/yocto</a><br>
-</blockquote></div><br></div>
-
---047d7bf15fd4fc51fe04f4e5c068--
