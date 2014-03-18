@@ -1,28 +1,28 @@
-Return-Path: <bianchirickkutta@gmail.com>
-Received: from mail-vc0-f176.google.com (mail-vc0-f176.google.com
-	[209.85.220.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AAC34E00B30
-	for <yocto@yoctoproject.org>; Tue, 18 Mar 2014 09:10:32 -0700 (PDT)
-Received: by mail-vc0-f176.google.com with SMTP id lc6so7354339vcb.7
-	for <yocto@yoctoproject.org>; Tue, 18 Mar 2014 09:10:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=8ZGtw3Ah8biyaVojAP3iFk16I1OyaXnwNWehZtabZ0g=;
-	b=jfEU1sTLPEekNqsE63KrZTkFscODZbQoapFflSoyucFKPdkQ47vKUpzAp8BZmKZSn5
-	eD2xvf34WJwtb0uq2AF8VZuU+araMcy1TXQno+L8BJb4Ew5BBmJnMLBdFLIVkKvCR01e
-	gs32LQ9vczUs9P3rmk5GqjMZNPqqIA2Faya+mnSRf+Gn+p9fRQIRAzVDLvtkPmTF+rD7
-	2GHhg+81lx5P/BGWwJn0LyBUBUJPXjUqZNnU6aXW8fzD/hoM+bkG/grjWg5XvzkXXlVc
-	KiWY/a6EA6ukGy81z4u9OZ+zH5rN1hSZjEQM91BLiGR38m0Vjvimv6bnszn+POrZp84q
-	Dy+w==
+Return-Path: <gary@mlbassoc.com>
+Received: from mail.chez-thomas.org (mail.mlbassoc.com [65.100.170.105])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 23D65E00B32
+	for <yocto@yoctoproject.org>; Tue, 18 Mar 2014 09:17:39 -0700 (PDT)
+Received: by mail.chez-thomas.org (Postfix, from userid 1998)
+	id 2A7B0F811F7; Tue, 18 Mar 2014 10:17:39 -0600 (MDT)
+X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on
+	hermes.chez-thomas.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=4.0 tests=ALL_TRUSTED,BAYES_00
+	autolearn=unavailable version=3.3.2
+Received: from [192.168.1.114] (zeus [192.168.1.114])
+	by mail.chez-thomas.org (Postfix) with ESMTP id C1A1AF811E9;
+	Tue, 18 Mar 2014 10:17:37 -0600 (MDT)
+Message-ID: <532871AE.4070709@mlbassoc.com>
+Date: Tue, 18 Mar 2014 10:17:50 -0600
+From: Gary Thomas <gary@mlbassoc.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:24.0) Gecko/20100101 Thunderbird/24.3.0
 MIME-Version: 1.0
-X-Received: by 10.52.108.228 with SMTP id hn4mr1806469vdb.43.1395159031415;
-	Tue, 18 Mar 2014 09:10:31 -0700 (PDT)
-Received: by 10.220.96.66 with HTTP; Tue, 18 Mar 2014 09:10:31 -0700 (PDT)
-Date: Tue, 18 Mar 2014 09:10:31 -0700
-Message-ID: <CAA7h+EoDLUqhc1LsciVo55QxLNX0ZQvLg9AKCffpKCctX4AMxQ@mail.gmail.com>
-From: Rick Bianchi <bianchirickkutta@gmail.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Losing Ethernet after reboot
+To: yocto@yoctoproject.org
+References: <CAA7h+EoDLUqhc1LsciVo55QxLNX0ZQvLg9AKCffpKCctX4AMxQ@mail.gmail.com>
+In-Reply-To: <CAA7h+EoDLUqhc1LsciVo55QxLNX0ZQvLg9AKCffpKCctX4AMxQ@mail.gmail.com>
+X-Enigmail-Version: 1.5.2
+Subject: Re: Losing Ethernet after reboot
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,35 +34,30 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 18 Mar 2014 16:10:34 -0000
-Content-Type: multipart/alternative; boundary=bcaec548a8e979086404f4e3c650
-
---bcaec548a8e979086404f4e3c650
+X-List-Received-Date: Tue, 18 Mar 2014 16:17:40 -0000
 Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: 7bit
 
-I losing Ethernet after every reboot. What is the process to have it come
-up manually?
+On 2014-03-18 10:10, Rick Bianchi wrote:
+> 
+> I losing Ethernet after every reboot. What is the process to have it come up manually?
+> 
+> Image: Dylan gumstix-console
+> 
+> I have already added eth0 auto to my /etc/network/interfaces.
 
-Image: Dylan gumstix-console
+Shouldn't this line read
+  auto eth0
+not the other way around?
 
-I have already added eth0 auto to my /etc/network/interfaces.
+> At the moment I need to run the following after every reboot:
+> 
+> ifconfig eth0 up
+> udhcpc eth0
 
+-- 
+------------------------------------------------------------
+Gary Thomas                 |  Consulting for the
+MLB Associates              |    Embedded world
+------------------------------------------------------------
 
-At the moment I need to run the following after every reboot:
-
-ifconfig eth0 up
-udhcpc eth0
-
---bcaec548a8e979086404f4e3c650
-Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><br><div>I losing Ethernet after every reboot. What is the=
- process to have it come up manually?</div><div><br></div><div>Image: Dylan=
- gumstix-console</div><div><br></div><div>I have already added eth0 auto to=
- my /etc/network/interfaces.</div>
-<div><br></div><div><br></div><div>At the moment I need to run the followin=
-g after every reboot:</div><div><br></div><div>ifconfig eth0 up<br>udhcpc e=
-th0</div><div><br></div></div>
-
---bcaec548a8e979086404f4e3c650--
