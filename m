@@ -1,36 +1,27 @@
-Return-Path: <scott.m.rifenbark@intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 70B97E009A7
-	for <yocto@yoctoproject.org>; Wed, 19 Mar 2014 06:10:24 -0700 (PDT)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga101.jf.intel.com with ESMTP; 19 Mar 2014 06:08:31 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.97,685,1389772800"; d="scan'208";a="475625913"
-Received: from orsmsx103.amr.corp.intel.com ([10.22.225.130])
-	by orsmga001.jf.intel.com with ESMTP; 19 Mar 2014 06:08:31 -0700
-Received: from orsmsx159.amr.corp.intel.com (10.22.240.24) by
-	ORSMSX103.amr.corp.intel.com (10.22.225.130) with Microsoft SMTP Server
-	(TLS) id 14.3.123.3; Wed, 19 Mar 2014 06:08:31 -0700
-Received: from orsmsx101.amr.corp.intel.com ([169.254.8.45]) by
-	ORSMSX159.amr.corp.intel.com ([169.254.11.44]) with mapi id
-	14.03.0123.003; Wed, 19 Mar 2014 06:08:30 -0700
-From: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
-To: "Stoicescu, CorneliuX" <corneliux.stoicescu@intel.com>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: oe-selftest documentation
-Thread-Index: Ac9DcFJ8mXowjRFWRXy+1IRNJLXz1gAA29og
-Date: Wed, 19 Mar 2014 13:08:30 +0000
-Message-ID: <41DEA4B02DBDEF40A0F3B6D0DDB1237983F8501E@ORSMSX101.amr.corp.intel.com>
-References: <33115ABC4887814E8A92A08FBC93416B0A213411@IRSMSX103.ger.corp.intel.com>
-In-Reply-To: <33115ABC4887814E8A92A08FBC93416B0A213411@IRSMSX103.ger.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.138]
-MIME-Version: 1.0
-Cc: "Purdie, Richard" <richard.purdie@intel.com>, "Eggleton,
-	Paul" <paul.eggleton@intel.com>
-Subject: Re: oe-selftest documentation
+Return-Path: <richard.purdie@linuxfoundation.org>
+Received: from dan.rpsys.net (dan.rpsys.net [93.97.175.187])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 34DFAE00995
+	for <yocto@yoctoproject.org>; Wed, 19 Mar 2014 07:04:01 -0700 (PDT)
+Received: from localhost (dan.rpsys.net [127.0.0.1])
+	by dan.rpsys.net (8.14.4/8.14.4/Debian-2.1ubuntu4) with ESMTP id
+	s2JE3kCt017006; Wed, 19 Mar 2014 14:03:47 GMT
+X-Virus-Scanned: Debian amavisd-new at dan.rpsys.net
+Received: from dan.rpsys.net ([127.0.0.1])
+	by localhost (dan.rpsys.net [127.0.0.1]) (amavisd-new, port 10024)
+	with LMTP id vpLfO-RAvQOV; Wed, 19 Mar 2014 14:03:46 +0000 (GMT)
+Received: from [192.168.3.10] (rpvlan0 [192.168.3.10]) (authenticated bits=0)
+	by dan.rpsys.net (8.14.4/8.14.4/Debian-2.1ubuntu1) with ESMTP id
+	s2JE3dUK016998
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES128-SHA bits=128 verify=NOT);
+	Wed, 19 Mar 2014 14:03:41 GMT
+Message-ID: <1395237814.3808.118.camel@ted>
+From: Richard Purdie <richard.purdie@linuxfoundation.org>
+To: yocto <yocto@yoctoproject.org>, Burton Ross <ross.burton@intel.com>,
+	"Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
+Date: Wed, 19 Mar 2014 14:03:34 +0000
+X-Mailer: Evolution 3.8.4-0ubuntu1 
+Mime-Version: 1.0
+Subject: [PATCH 2/2] buildslave-janitor: Add in try/except handling to make calls robust against failure
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,77 +33,49 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 19 Mar 2014 13:10:26 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Wed, 19 Mar 2014 14:04:05 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+
+There is a suspicion that the command can fail causing the janitor trash
+removal process to exit. This adds in some exception handling to deal
+with this. It include a timeout to stop it entering nasty loops.
+
+This combined with the previous patch should let us figure out what
+error conditions its hitting.
+
+Signed-off-by: Richard Purdie <richard.purdie@linuxfoundation.org>
+---
+ bin/buildslave-janitor | 15 ++++++++++-----
+ 1 file changed, 10 insertions(+), 5 deletions(-)
+
+diff --git a/bin/buildslave-janitor b/bin/buildslave-janitor
+index 153f18d..2cfef86 100755
+--- a/bin/buildslave-janitor
++++ b/bin/buildslave-janitor
+@@ -66,11 +66,16 @@ def trash_processor(trashdir):
+         print("Not prepared to use a trashdir of /")
+         return
+     while True:
+-        files = os.listdir(trashdir)
+-        if files:
+-            os.system("ionice -c 3 rm %s -rf" % trashdir)
+-        else:
+-            time.sleep(30*60) # 30 minutes
++        try:
++            files = os.listdir(trashdir)
++            if files:
++                os.system("ionice -c 3 rm %s -rf" % trashdir)
++            else:
++                time.sleep(30*60) # 30 minutes
++        except Exception as e:
++            print("Exception %s in trash cleaner" % str(e))
++            time.sleep(60) # 1 minute timeout to prevent crazy looping
++            pass
+     return
+ 
+ def mirror_processor(mirrordir):
 
 
 
->-----Original Message-----
->From: yocto-bounces@yoctoproject.org [mailto:yocto-
->bounces@yoctoproject.org] On Behalf Of Stoicescu, CorneliuX
->Sent: Wednesday, March 19, 2014 5:50 AM
->To: yocto@yoctoproject.org
->Cc: Purdie, Richard; Eggleton, Paul
->Subject: [yocto] oe-selftest documentation
->
->Hello,
->
->We have oe-selftest already integrated in poky but we lack in documentatio=
-n:
->https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D4740
->
->Here is what I am thinking about what could be done and I would like opini=
-ons
->on what should be done:
->1) We can do a wiki entry to describe in detail how to use oe-selftest and=
- give
->examples. The problem here is that as oe-selftest changes this entry might
->become outdated and even if we update it then older Yocto releases users
->will not be able to use it anymore.
-
-You can solve the "out-dated" problem by having sections in the wiki specif=
-ic to various releases.
-
->2) We can have a manual entry derived from the wiki entry. Scott can use t=
-he
->wiki entry as a reference, if we decide to have one, to create the manual
->entry. The advantage of this is that we will have valid and up to date
->information for each Yocto release.
-
-If you have a manual entry for the feature then it will be correct for that=
- release of the YP.  The wiki then becomes a spot for detailed information =
-that would need to be common across all releases of the manual (e.g. concep=
-ts, basic information that does not change from release to release, etc.). =
- Note that that information could just as well be in the manual thus elimin=
-ating the need for the wiki entry.
-
->3) We can introduce comments in the script to explain what and why it does
->what it does(at the moment we have some though)
-
-This is a good idea regardless of what you do.  You should self-document th=
-e script with comments.  It would help me out as well.
-
->4) We can introduce comments in test modules or a DESCRIPTION field to
->document the test steps, especially for more complex tests(we have no such
->comments at the moment).
-
-This is a good idea also regardless of what you do.  The more in-line expla=
-nation the better.
-
->
->I would opt for 2) and 3) as I believe they give the most value with the l=
-east
->amount of time needed for creation and maintenance.
->
->If anyone has any more ideas please add your thoughts.
->
->Regards,
->Corneliu
->--
->_______________________________________________
->yocto mailing list
->yocto@yoctoproject.org
->https://lists.yoctoproject.org/listinfo/yocto
 
