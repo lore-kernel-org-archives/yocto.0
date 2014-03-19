@@ -1,34 +1,34 @@
-Return-Path: <ross.burton@intel.com>
-Received: from mail-qg0-f43.google.com (mail-qg0-f43.google.com
-	[209.85.192.43])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 25FAAE00995
-	for <yocto@yoctoproject.org>; Wed, 19 Mar 2014 07:28:23 -0700 (PDT)
-Received: by mail-qg0-f43.google.com with SMTP id f51so25996088qge.2
-	for <yocto@yoctoproject.org>; Wed, 19 Mar 2014 07:28:22 -0700 (PDT)
+Return-Path: <elizabeth.flanagan@intel.com>
+Received: from mail-ve0-f174.google.com (mail-ve0-f174.google.com
+	[209.85.128.174])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7F700E003C7
+	for <yocto@yoctoproject.org>; Wed, 19 Mar 2014 08:37:35 -0700 (PDT)
+Received: by mail-ve0-f174.google.com with SMTP id oz11so8840740veb.5
+	for <yocto@yoctoproject.org>; Wed, 19 Mar 2014 08:37:35 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc:content-type;
-	bh=ee5Fn2KCCD3/fJP2/lEyDYa7FiSU90beI8JnBEQqf7k=;
-	b=f7aleiEbPSRF9pmkSUJk7nhLrU3RpTdwhGJ5IE9qPKnkXF6qXBrtOelvzLkreDSjgu
-	13bas/TVaQFQmCw5Mbbev1LEr2Z2NN4B7iZURk7pqoiDtFcceysdoPhL2cvAgd5jDATv
-	JhWJ+ANZ7N7kr1jTnl0SD328AzNBY6n+AVduG3pYKrGoTmtEeiuxWQmAZovyP4ROzjzy
-	up+7X+yl/A0w6+u1tOJnGoAlRqXpaoVnX5SBLm0+R/sWRpnNEa5cBd8QB7mvpmxDruHi
-	S7r/pr3d8bSDSG5vBU91j1XRIYCblZI9M/whT2OLljxky0WoK/AhZIcNzLyygWQMPOJe
-	1nww==
-X-Gm-Message-State: ALoCoQmezhQZVQyA1oMnwZUWt7UKLPXUW40FeE2CLh4+fPilI9UBW+w1L4YhrWN77Al8dsL9JaCN
-X-Received: by 10.224.45.197 with SMTP id g5mr43439338qaf.52.1395239302427;
-	Wed, 19 Mar 2014 07:28:22 -0700 (PDT)
+	h=x-gm-message-state:mime-version:in-reply-to:references:date
+	:message-id:subject:from:to:cc:content-type;
+	bh=tyTgToK8Xk8mUW7QDEzbPUAT5a5WvnD+iXbuZoThUj0=;
+	b=JdWb+eN7r1KqriGNd6OVcrC8W8dP8XyY3ily+h5zoR52Nyb9QCZGtjCrSpl3NwGWLD
+	Jx1JQnscrX062gARlb7IjsZc3sGoiBvN6/Er2YVivz9LysFU6ljMr29+D63ag/m98H2X
+	qYH0kHagL7LU24ZiiwB+tDFgqeEa+lFbeY2QriXkrn7UwJI8+B0vI0sjZSkX6yEC7QuF
+	MH7UHnPYVOSe7IDlufr0wzRSc6ZpHySe4hlv0TEY0x5URk1FpAG6UgBuM3CfOQ0i+SOM
+	goIFLK4xgAXPuNXAJ5MQV2DrNAcqc8N/AO80GarZ71uysMFg6nhQFbvMJBFxYJtubZeq
+	wZPg==
+X-Gm-Message-State: ALoCoQnXTIcskXEkAkNOzq6dyXzjUzy2HHYRhfAsHH3WMsaTMyvPaiY2tdgGVExAMcaW84N7kl+E
 MIME-Version: 1.0
-Received: by 10.140.27.167 with HTTP; Wed, 19 Mar 2014 07:28:02 -0700 (PDT)
-In-Reply-To: <1395237814.3808.118.camel@ted>
-References: <1395237814.3808.118.camel@ted>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Wed, 19 Mar 2014 14:28:02 +0000
-Message-ID: <CAJTo0Lap6EmDrEcjermih=_=y5cg5gG_vX9tgnTSB8hG_=4pgw@mail.gmail.com>
-To: Richard Purdie <richard.purdie@linuxfoundation.org>
-Cc: yocto <yocto@yoctoproject.org>
-Subject: Re: [PATCH 2/2] buildslave-janitor: Add in try/except handling to make calls robust against failure
+X-Received: by 10.220.109.1 with SMTP id h1mr17892146vcp.20.1395243455039;
+	Wed, 19 Mar 2014 08:37:35 -0700 (PDT)
+Received: by 10.52.173.69 with HTTP; Wed, 19 Mar 2014 08:37:34 -0700 (PDT)
+In-Reply-To: <1395198633-6308-1-git-send-email-firemagelynn@gmail.com>
+References: <1395198633-6308-1-git-send-email-firemagelynn@gmail.com>
+Date: Wed, 19 Mar 2014 08:37:34 -0700
+Message-ID: <CAPhnLPBf-265aQhXa7TVdyHwS0AxqdjO9_6moXNn3KRzV=ggwg@mail.gmail.com>
+From: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
+To: Lynn Cyrin <firemagelynn@gmail.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: [AUTOBUILDER 1/4] nightly.conf: added package image triggers
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,54 +40,51 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 19 Mar 2014 14:28:27 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Wed, 19 Mar 2014 15:37:38 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
-Both patches look good, Reviewed-by: Ross Burton <ross.burton@intel.com>
+This looks good. I may switch these over to the no_wait scheduler, but
+for now yes.
 
-Ross
+Reviewed-by: Beth Flanagan <elizabeth.flanagan@intel.com>
 
-On 19 March 2014 14:03, Richard Purdie
-<richard.purdie@linuxfoundation.org> wrote:
-> There is a suspicion that the command can fail causing the janitor trash
-> removal process to exit. This adds in some exception handling to deal
-> with this. It include a timeout to stop it entering nasty loops.
+On Tue, Mar 18, 2014 at 8:10 PM, Lynn Cyrin <firemagelynn@gmail.com> wrote:
+> Added triggers for nightly-rpm, nightly-deb, nightly-ipk into nightly.conf
 >
-> This combined with the previous patch should let us figure out what
-> error conditions its hitting.
+> reference #3140
 >
-> Signed-off-by: Richard Purdie <richard.purdie@linuxfoundation.org>
+> Signed-off-by: Lynn Cyrin <firemagelynn@gmail.com>
 > ---
->  bin/buildslave-janitor | 15 ++++++++++-----
->  1 file changed, 10 insertions(+), 5 deletions(-)
+>  buildset-config.master/nightly.conf |    3 ++-
+>  1 file changed, 2 insertions(+), 1 deletion(-)
 >
-> diff --git a/bin/buildslave-janitor b/bin/buildslave-janitor
-> index 153f18d..2cfef86 100755
-> --- a/bin/buildslave-janitor
-> +++ b/bin/buildslave-janitor
-> @@ -66,11 +66,16 @@ def trash_processor(trashdir):
->          print("Not prepared to use a trashdir of /")
->          return
->      while True:
-> -        files = os.listdir(trashdir)
-> -        if files:
-> -            os.system("ionice -c 3 rm %s -rf" % trashdir)
-> -        else:
-> -            time.sleep(30*60) # 30 minutes
-> +        try:
-> +            files = os.listdir(trashdir)
-> +            if files:
-> +                os.system("ionice -c 3 rm %s -rf" % trashdir)
-> +            else:
-> +                time.sleep(30*60) # 30 minutes
-> +        except Exception as e:
-> +            print("Exception %s in trash cleaner" % str(e))
-> +            time.sleep(60) # 1 minute timeout to prevent crazy looping
-> +            pass
->      return
+> diff --git a/buildset-config.master/nightly.conf b/buildset-config.master/nightly.conf
+> index 085c25f..0bd68e3 100644
+> --- a/buildset-config.master/nightly.conf
+> +++ b/buildset-config.master/nightly.conf
+> @@ -78,7 +78,8 @@ steps: [{'SetDest':{}},
+>                             'nightly-multilib': {}, 'nightly-x32': {},
+>                             'nightly-ppc': {}, 'nightly-ppc-lsb': {},
+>                             'nightly-x86-64': {}, 'nightly-x86-64-lsb': {},
+> -                           'nightly-x86': {}, 'nightly-x86-lsb': {}},
+> +                           'nightly-x86': {}, 'nightly-x86-lsb': {},
+> +                           'nightly-rpm': {}, 'nightly-deb': {}, 'nightly-ipk': {}},
+>                             'schedulerNames_nowait' : {'build-appliance': {},
+>                             'eclipse-plugin-kepler': {}, 'eclipse-plugin-juno': {},
+>                             'nightly-non-gpl3': {}, 'nightly-oecore': {},
+> --
+> 1.7.9.5
 >
->  def mirror_processor(mirrordir):
->
->
->
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+
+
+
+-- 
+Elizabeth Flanagan
+Yocto Project
+Build and Release
 
