@@ -1,33 +1,30 @@
-Return-Path: <elizabeth.flanagan@intel.com>
-Received: from mail-vc0-f174.google.com (mail-vc0-f174.google.com
-	[209.85.220.174])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A98A7E009A7
-	for <yocto@yoctoproject.org>; Tue, 18 Mar 2014 23:11:58 -0700 (PDT)
-Received: by mail-vc0-f174.google.com with SMTP id ld13so8572843vcb.33
-	for <yocto@yoctoproject.org>; Tue, 18 Mar 2014 23:11:56 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:date:message-id:subject:from:to
-	:content-type;
-	bh=D2MKNVYWLyEEXurU9VSHfO7alTnfGof7kXl3vg5W0TY=;
-	b=TbP1HgI1NdKJAgyTVQmBxDeghjvQlyArZMHllTp3wMFnEJowpJ3yjQQn4bLnWlqsfQ
-	Vl4yS46rme5qEkzFg+xWx2gVeD11niev+xOocR76Ph7hbunPEAhJrkCsRyBNZ17/jqsO
-	9oWMaJWZ9fpj0Pa+Cz+sVOnvPKgGI/5EQMFQtnS0F9eACDz6IwZcSxqrOLiplaYWg0k5
-	/6lTQL8W96Q8TPhwYZ7q2O+vsr1EnH6bit5NovqFTvFQ+rWDBT3rrP/+M7CnN6CyqP4X
-	HPJDWJh5BlFijfAeMJAZK6PqSzwviBdR6NuQLcIcbL5D7II66lwLmGeVv/HEbKLP9vQg
-	cjqQ==
-X-Gm-Message-State: ALoCoQkpt/v2Evjz+qYHrNvjzemoQ72H/IH6DnFuqws68+52ocN0i9rVCNZ+IvNA+P0JIoOXbGtp
+Return-Path: <corneliux.stoicescu@intel.com>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9FD66E0098F
+	for <yocto@yoctoproject.org>; Wed, 19 Mar 2014 05:50:16 -0700 (PDT)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga101.jf.intel.com with ESMTP; 19 Mar 2014 05:50:15 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.97,685,1389772800"; d="scan'208";a="475614929"
+Received: from irsmsx104.ger.corp.intel.com ([163.33.3.159])
+	by orsmga001.jf.intel.com with ESMTP; 19 Mar 2014 05:50:14 -0700
+Received: from irsmsx103.ger.corp.intel.com ([169.254.3.27]) by
+	IRSMSX104.ger.corp.intel.com ([169.254.5.224]) with mapi id
+	14.03.0123.003; Wed, 19 Mar 2014 12:50:11 +0000
+From: "Stoicescu, CorneliuX" <corneliux.stoicescu@intel.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: oe-selftest documentation
+Thread-Index: Ac9DcFJ8mXowjRFWRXy+1IRNJLXz1g==
+Date: Wed, 19 Mar 2014 12:50:11 +0000
+Message-ID: <33115ABC4887814E8A92A08FBC93416B0A213411@IRSMSX103.ger.corp.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [163.33.239.182]
 MIME-Version: 1.0
-X-Received: by 10.58.57.42 with SMTP id f10mr28603311veq.1.1395209515281; Tue,
-	18 Mar 2014 23:11:55 -0700 (PDT)
-Received: by 10.52.173.69 with HTTP; Tue, 18 Mar 2014 23:11:55 -0700 (PDT)
-Date: Tue, 18 Mar 2014 23:11:55 -0700
-Message-ID: <CAPhnLPCV+R6nJQg_F-LvUwXHDFndLe6t=+v+ThaUWSTZNMQmzg@mail.gmail.com>
-From: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>, 
-	Alexandru C Georgescu <alexandru.c.georgescu@intel.com>,
-	Zhao Yi <yi.zhao@windriver.com>, Otavio Salvador <otavio@ossystems.com.br>
-Subject: 1.4.3_rc4 now avaialbe for testing.
+Cc: "Purdie, Richard" <richard.purdie@intel.com>, "Eggleton,
+	Paul" <paul.eggleton@intel.com>
+Subject: oe-selftest documentation
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,27 +36,37 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 19 Mar 2014 06:11:59 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Wed, 19 Mar 2014 12:50:16 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-The fourth release candidate for 1.4.3 is now available at:
+Hello,
 
-http://autobuilder.yoctoproject.org/pub/nightly/20140318-5
+We have oe-selftest already integrated in poky but we lack in documentation=
+: https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D4740
 
-Please begin QA on it as soon as possible.
+Here is what I am thinking about what could be done and I would like opinio=
+ns on what should be done:
+1) We can do a wiki entry to describe in detail how to use oe-selftest and =
+give examples. The problem here is that as oe-selftest changes this entry m=
+ight become outdated and even if we update it then older Yocto releases use=
+rs will not be able to use it anymore.
+2) We can have a manual entry derived from the wiki entry. Scott can use th=
+e wiki entry as a reference, if we decide to have one, to create the manual=
+ entry. The advantage of this is that we will have valid and up to date inf=
+ormation for each Yocto release.
+3) We can introduce comments in the script to explain what and why it does =
+what it does(at the moment we have some though)
+4) We can introduce comments in test modules or a DESCRIPTION field to docu=
+ment the test steps, especially for more complex tests(we have no such comm=
+ents at the moment).
 
-bitbake 66d01338ab1095775b854ad7509f4d2631c6e6ed
-eclipse-poky-juno dc9a609c68fe4a6bbbf34d418fd6611489c1d6f7
-meta-fsl-arm 24caed8ff6f6088033d00d4567f7a7cad7fd5dd3
-meta-fsl-ppc e4876c9193fc92a3978fcd7dd4858b86c3da5af5
-meta-intel 6ea7c0f0af5ad20bffba3cf21b17da892e842f82
-meta-minnow d5849d5ea14bc9b34ddd05b92c3a7ea46bd1863a
-meta-qt3 4c27cce6688aa39852f3cba5e7b80ec279019605
-oecore 30d3f06fddea2d8f3537d3415c95d75a6487078c
-poky c397b69e681d5f1ffe0a0bfd9d43ee880fc27553
+I would opt for 2) and 3) as I believe they give the most value with the le=
+ast amount of time needed for creation and maintenance. =20
 
--- 
-Elizabeth Flanagan
-Yocto Project
-Build and Release
+If anyone has any more ideas please add your thoughts.=20
+
+Regards,
+Corneliu
 
