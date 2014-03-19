@@ -1,34 +1,33 @@
-Return-Path: <firemagelynn@gmail.com>
-Received: from mail-pb0-f46.google.com (mail-pb0-f46.google.com
-	[209.85.160.46])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C22A0E009FC
-	for <yocto@yoctoproject.org>; Tue, 18 Mar 2014 20:12:00 -0700 (PDT)
-Received: by mail-pb0-f46.google.com with SMTP id rq2so8175697pbb.5
-	for <yocto@yoctoproject.org>; Tue, 18 Mar 2014 20:12:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=from:to:cc:subject:date:message-id:in-reply-to:references;
-	bh=41MknlgUE3j+Aun09tnXS1HVMs01/swlCAqaYR55ia8=;
-	b=k97dgpgSKjrn3KnmOcZS8kvoTw9zABQYaeYdw31f66IL+y1cSAiZ1yLxXPClAXRyF1
-	f7LOGeA/qK8ONO0NIHmBBXvXgvLBXLvXuKP8PdU7jcc6K8zaTMxIlHcV261+zjv5Bml+
-	pClcdnvnIiMJVsqer82sINmDSkqVXbFL67c7jO0AIFltbwCjdli6/Voe0JNM/di24tFX
-	gJjYx0QNd9oarrJoDwoQJNWjtMs22wIyMXfGFfGjLYKsuFQB+rDaMawLFJNZEG8DlXiv
-	+k1MyJSsK2/Bb6f7cTyAMVUnJDa0EaSPC0qqRn6EvluS4inIi942T92Q169cueQFFqNG
-	6TRw==
-X-Received: by 10.68.4.232 with SMTP id n8mr37053249pbn.114.1395198720100;
-	Tue, 18 Mar 2014 20:12:00 -0700 (PDT)
-Received: from lynn-1015E.gateway.sonic.net (50-0-18-180.dsl.static.sonic.net.
-	[50.0.18.180]) by mx.google.com with ESMTPSA id
-	lh13sm96450235pab.4.2014.03.18.20.11.52 for <multiple recipients>
-	(version=TLSv1.1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
-	Tue, 18 Mar 2014 20:11:53 -0700 (PDT)
-From: Lynn Cyrin <firemagelynn@gmail.com>
-To: yocto@yoctoproject.org
-Date: Tue, 18 Mar 2014 20:10:33 -0700
-Message-Id: <1395198633-6308-4-git-send-email-firemagelynn@gmail.com>
-X-Mailer: git-send-email 1.7.9.5
-In-Reply-To: <1395198633-6308-1-git-send-email-firemagelynn@gmail.com>
-References: <1395198633-6308-1-git-send-email-firemagelynn@gmail.com>
-Subject: [AUTOBUILDER 4/4] nightly-ipk.conf: created conf file
+Return-Path: <elizabeth.flanagan@intel.com>
+Received: from mail-vc0-f174.google.com (mail-vc0-f174.google.com
+	[209.85.220.174])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A98A7E009A7
+	for <yocto@yoctoproject.org>; Tue, 18 Mar 2014 23:11:58 -0700 (PDT)
+Received: by mail-vc0-f174.google.com with SMTP id ld13so8572843vcb.33
+	for <yocto@yoctoproject.org>; Tue, 18 Mar 2014 23:11:56 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:date:message-id:subject:from:to
+	:content-type;
+	bh=D2MKNVYWLyEEXurU9VSHfO7alTnfGof7kXl3vg5W0TY=;
+	b=TbP1HgI1NdKJAgyTVQmBxDeghjvQlyArZMHllTp3wMFnEJowpJ3yjQQn4bLnWlqsfQ
+	Vl4yS46rme5qEkzFg+xWx2gVeD11niev+xOocR76Ph7hbunPEAhJrkCsRyBNZ17/jqsO
+	9oWMaJWZ9fpj0Pa+Cz+sVOnvPKgGI/5EQMFQtnS0F9eACDz6IwZcSxqrOLiplaYWg0k5
+	/6lTQL8W96Q8TPhwYZ7q2O+vsr1EnH6bit5NovqFTvFQ+rWDBT3rrP/+M7CnN6CyqP4X
+	HPJDWJh5BlFijfAeMJAZK6PqSzwviBdR6NuQLcIcbL5D7II66lwLmGeVv/HEbKLP9vQg
+	cjqQ==
+X-Gm-Message-State: ALoCoQkpt/v2Evjz+qYHrNvjzemoQ72H/IH6DnFuqws68+52ocN0i9rVCNZ+IvNA+P0JIoOXbGtp
+MIME-Version: 1.0
+X-Received: by 10.58.57.42 with SMTP id f10mr28603311veq.1.1395209515281; Tue,
+	18 Mar 2014 23:11:55 -0700 (PDT)
+Received: by 10.52.173.69 with HTTP; Tue, 18 Mar 2014 23:11:55 -0700 (PDT)
+Date: Tue, 18 Mar 2014 23:11:55 -0700
+Message-ID: <CAPhnLPCV+R6nJQg_F-LvUwXHDFndLe6t=+v+ThaUWSTZNMQmzg@mail.gmail.com>
+From: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>, 
+	Alexandru C Georgescu <alexandru.c.georgescu@intel.com>,
+	Zhao Yi <yi.zhao@windriver.com>, Otavio Salvador <otavio@ossystems.com.br>
+Subject: 1.4.3_rc4 now avaialbe for testing.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,42 +39,27 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 19 Mar 2014 03:12:00 -0000
+X-List-Received-Date: Wed, 19 Mar 2014 06:11:59 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
-Created configuration file for a ipk package build image
+The fourth release candidate for 1.4.3 is now available at:
 
-Signed-off-by: Lynn Cyrin <firemagelynn@gmail.com>
----
- buildset-config.master/nightly-ipk.conf |   19 +++++++++++++++++++
- 1 file changed, 19 insertions(+)
- create mode 100644 buildset-config.master/nightly-ipk.conf
+http://autobuilder.yoctoproject.org/pub/nightly/20140318-5
 
-diff --git a/buildset-config.master/nightly-ipk.conf b/buildset-config.master/nightly-ipk.conf
-new file mode 100644
-index 0000000..bf7c613
---- /dev/null
-+++ b/buildset-config.master/nightly-ipk.conf
-@@ -0,0 +1,19 @@
-+[nightly-ipk]
-+builders: 'builder1'
-+repos: [{'poky':
-+            {'repourl':'git://git.yoctoproject.org/poky',
-+             'layerversion':{'core':'meta', 'yoctobsp':'meta-yocto-bsp'},
-+             'branch':'master'}},
-+        {'meta-qt3':
-+            {'repourl':'git://git.yoctoproject.org/meta-qt3',
-+             'branch':'master'}}]
-+steps: [{'SetDest':{}},
-+        {'CheckOutLayers': {}},
-+        {'RunPreamble': {}},
-+        {'GetDistroVersion' : {'distro': 'poky'}},
-+        {'CreateAutoConf': {'machine': 'qemux86', 'SDKMACHINE' : 'i686', 'distro': 'poky', 'buildhistory' : True, 'packages': 'ipk'}},
-+        {'CreateBBLayersConf': {'buildprovider' : 'yocto'}},
-+        {'SyncPersistDB' : {'distro' : 'poky'}},
-+        {'BuildImages': {'images': 'core-image-sato core-image-sato-dev core-image-sato-sdk core-image-minimal core-image-minimal-dev'}},
-+        {'RunSanityTests': {'images': 'core-image-minimal core-image-sato core-image-sato-sdk'}},
-+        {'SyncPersistDB' : {'commit' : True, 'distro':'poky'}}]
+Please begin QA on it as soon as possible.
+
+bitbake 66d01338ab1095775b854ad7509f4d2631c6e6ed
+eclipse-poky-juno dc9a609c68fe4a6bbbf34d418fd6611489c1d6f7
+meta-fsl-arm 24caed8ff6f6088033d00d4567f7a7cad7fd5dd3
+meta-fsl-ppc e4876c9193fc92a3978fcd7dd4858b86c3da5af5
+meta-intel 6ea7c0f0af5ad20bffba3cf21b17da892e842f82
+meta-minnow d5849d5ea14bc9b34ddd05b92c3a7ea46bd1863a
+meta-qt3 4c27cce6688aa39852f3cba5e7b80ec279019605
+oecore 30d3f06fddea2d8f3537d3415c95d75a6487078c
+poky c397b69e681d5f1ffe0a0bfd9d43ee880fc27553
+
 -- 
-1.7.9.5
-
+Elizabeth Flanagan
+Yocto Project
+Build and Release
 
