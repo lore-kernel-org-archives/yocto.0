@@ -1,32 +1,29 @@
-Return-Path: <elvis.dowson@gmail.com>
-Received: from mail-ee0-f46.google.com (mail-ee0-f46.google.com [74.125.83.46])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D27EEE00AF1
-	for <yocto@yoctoproject.org>; Sat, 29 Mar 2014 01:02:43 -0700 (PDT)
-Received: by mail-ee0-f46.google.com with SMTP id t10so4736655eei.5
-	for <yocto@yoctoproject.org>; Sat, 29 Mar 2014 01:02:42 -0700 (PDT)
+Return-Path: <itjegan@gmail.com>
+Received: from mail-wi0-f180.google.com (mail-wi0-f180.google.com
+	[209.85.212.180])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2E2F4E0098F
+	for <yocto@yoctoproject.org>; Wed, 19 Mar 2014 05:12:59 -0700 (PDT)
+Received: by mail-wi0-f180.google.com with SMTP id hn9so4950035wib.7
+	for <yocto@yoctoproject.org>; Wed, 19 Mar 2014 05:12:58 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=from:content-type:subject:date:message-id:cc:to:mime-version;
-	bh=T71bDp4QWdH2klAdRqnyrnooZrkc6upWjmoZceGPcFA=;
-	b=TczRzxNJkTXyrmUX7t3UuNBCsYtcdqWu3/Tgp2zEcumlktpzigKNW8WkgRdklUAveW
-	SBXS1pUUxJDyK89IpkFR/oHYtOQkixVO8lidIwR/m4ojUu2eauVVPjXi7xREe0Da+27N
-	UYqvbPjLDmkRFDBRFZNW6p/P7UqfKACzF3CeH2GH6n0dnNNA5bhG4vuSTGd1lDhTquuf
-	E5tVm4ULc3stehbsHJSVHzvJ00XLvxFV5M/cbEyrtW+LntcAAOIOzTjaa695QAiemenP
-	LfSXHbKnnhc1c8Dq/Ecim+UQpzbRq0yp66QYSx8ScEvgSiZTP5mayYXrupAbEI5liqG1
-	NeCA==
-X-Received: by 10.14.206.137 with SMTP id l9mr16181580eeo.40.1396080161956;
-	Sat, 29 Mar 2014 01:02:41 -0700 (PDT)
-Received: from [192.168.1.101] ([94.205.107.23])
-	by mx.google.com with ESMTPSA id 4sm17012087eeq.33.2014.03.29.01.02.39
-	for <multiple recipients>
-	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
-	Sat, 29 Mar 2014 01:02:40 -0700 (PDT)
-From: Elvis Dowson <elvis.dowson@gmail.com>
-Date: Sat, 29 Mar 2014 12:02:35 +0400
-Message-Id: <BFDE5C68-EC5E-4FA5-92DD-49CDFB39DB70@gmail.com>
-To: Yocto Discussion Mailing List <yocto@yoctoproject.org>
-Mime-Version: 1.0 (Mac OS X Mail 7.3 \(1877.4\))
-X-Mailer: Apple Mail (2.1877.4)
-Subject: [poky] WARNING: QA Issue: ELF binary has relocations in .text
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=RsFUTo918QhqXbDtQ8cT+TqI60/ZpXJIvjU46UC5iwo=;
+	b=d2cMueYzmfVPpLUyZxt4tmPa6spnJsbH1RPUXv4ze8dkoZvJPxf1czgkruK4zKhxIg
+	8s/OjP7MpbLNDYykqMNp1Q38si0egOBhvwWDT2y7sXJJGxdQXxzKG62hU4y0GZ9hX6qN
+	y5kYdjEeeAGMkJwdEor7s0aR1hqtUq0S6QduTkIqGPQ0pvnCE6XQIjhDyWTjqUgYM97d
+	1iiDooH1GD1rglJ0omQsbkBvG4wTO9IHj5o3K1EVwEcQSlja30zVtf6v2gopNa/h5QYy
+	HqSVn/uN7gHE7mBIFPnskAI/b4whTNAKjmExyzzzyuPKAQeNQIDIbZOWpnyS5FNqxte5
+	ni7w==
+MIME-Version: 1.0
+X-Received: by 10.180.82.37 with SMTP id f5mr18583124wiy.6.1395231178102; Wed,
+	19 Mar 2014 05:12:58 -0700 (PDT)
+Received: by 10.194.95.167 with HTTP; Wed, 19 Mar 2014 05:12:58 -0700 (PDT)
+Date: Wed, 19 Mar 2014 17:42:58 +0530
+Message-ID: <CAFE+A7kjuv0x9mqr8+mYnd4eXTm1LCkyjBEHQjJA20KpvGsQAA@mail.gmail.com>
+From: Jegathesan Durairaj <itjegan@gmail.com>
+To: yocto@yoctoproject.org
+X-Mailman-Approved-At: Sat, 29 Mar 2014 13:14:58 -0700
+Subject: Recursive entry to debugger" panic seen with KGDB (PowerPC)
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,346 +35,157 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 29 Mar 2014 08:02:44 -0000
-X-Groupsio-MsgNum: 18753
-Content-Type: multipart/signed;
-	boundary="Apple-Mail=_7C90BBA8-EC1D-4F32-B3C5-770D17F5739A";
-	protocol="application/pgp-signature"; micalg=pgp-sha512
+X-List-Received-Date: Wed, 19 Mar 2014 12:13:00 -0000
+Content-Type: multipart/alternative; boundary=f46d04430416c01de304f4f4927b
 
---Apple-Mail=_7C90BBA8-EC1D-4F32-B3C5-770D17F5739A
-Content-Type: multipart/alternative;
-	boundary="Apple-Mail=_F1FDC073-0F99-4C3B-BE0E-07612380F1C7"
+--f46d04430416c01de304f4f4927b
+Content-Type: text/plain; charset=ISO-8859-1
 
---Apple-Mail=_F1FDC073-0F99-4C3B-BE0E-07612380F1C7
+I am using Linux Kernel Version 2.6.34.6 SMP for powerPC 64 bit. I tried to
+debug kernel using KGDB and ended up in Kernel panic reboot issue. Here is
+the list of steps I did.
+
+1) I enabled the following in the config file
+
+CONFIG_DEBUG_PAGEALLOC=y
+CONFIG_DEBUG_KERNEL=y
+CONFIG_DEBUG_INFO=y
+CONFIG_KGDB=y
+CONFIG_FRAME_POINTER=y
+CONFIG_KGDB_SERIAL_CONSOLE=y
+
+Built and loaded the Kernel.
+
+2) My Linux PC is connected terminal server using ttyS0 and I enabled KGDB
+over serial port by doing
+
+"echo ttyS0 > /sys/module/kgdboc/parameters/kgdboc"
+
+3) Trigger KGDB by issuing sysrq-g. echo g > /proc/sysrq-trigger
+
+4) Kernel Panic reboot is seen with the following reboot log
+
+sw0:root> echo ttyS0 > /sys/module/kgdboc/parameters/kgdboc
+kgdb: Registered I/O driver kgdboc.
+sw0:root> echo g > /proc/sysrq-trigger
+SysRq : DEBUG
+Entering KGDB
+Unable to handle kernel paging request for instruction fetch
+Faulting instruction address: 0x00000000
+KGDB: re-enter exception: ALL breakpoints killed
+Call Trace:
+STACK MAGIC 0x57ac6e9d
+[813679c0] [40007fcc] show_stack+0x84/0x24c (unreliable)
+[81367a20] [4057d9f4] dump_stack+0x2c/0x44
+[81367a30] [40098008] kgdb_handle_exception+0x184/0x1b8
+[81367a80] [40013320] kgdb_debugger+0x88/0xa0
+[81367a90] [4000f5a4] die+0x48/0x28c
+[81367ac0] [40019460] bad_page_fault+0x90/0xe0
+[81367ae0] [400123fc] handle_page_fault+0x7c/0x80
+[81367ba0] [407a0000] kmalloc_caches+0xdc0/0x1340
+[81367bb0] [402d11ac] uart_poll_get_char+0x58/0x70
+[81367bc0] [402daae8] kgdboc_get_char+0x40/0x58
+[81367bd0] [40096eac] kgdb_cpu_enter+0x420/0x1320
+[81367c60] [40097f08] kgdb_handle_exception+0x84/0x1b8
+[81367cb0] [40013250] kgdb_handle_breakpoint+0x4c/0x94
+[81367cc0] [40578dbc] program_check_exception+0x5c/0x860
+[81367da0] [40012544] ret_from_except_full+0x0/0x4c
+[81367e60] [40096018] sysrq_handle_gdb+0x94/0xb0
+[81367e70] [402c9f28] __handle_sysrq+0xe0/0x1c8
+[81367ea0] [402ca06c] write_sysrq_trigger+0x5c/0x80
+[81367eb0] [401614a4] proc_reg_write+0x90/0xcc
+[81367ee0] [4011201c] vfs_write+0xb4/0x1a8
+[81367f00] [401122b0] sys_write+0x60/0x144
+[81367f40] [40011f4c] ret_from_syscall+0x0/0x3c
+Kernel panic - not syncing: Recursive entry to debugger
+Call Trace:
+STACK MAGIC 0x57ac6e9d
+
+
+Can you help me to understand the root cause of the issue? Let me know
+how to solve this issue.
+
+
+Thanks
+
+Jegan
+
+--f46d04430416c01de304f4f4927b
+Content-Type: text/html; charset=ISO-8859-1
 Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain;
-	charset=windows-1252
 
-Hi,
+<div dir=3D"ltr"><pre style=3D"white-space:pre-wrap;font-size:13px;margin-t=
+op:0px;margin-bottom:0px;padding:15px;border-width:0px 0px 0px 1px;border-l=
+eft-style:solid;border-left-color:rgb(229,229,229);outline:0px;vertical-ali=
+gn:baseline;font-family:monospace,sans-serif;word-wrap:break-word;overflow:=
+auto;color:rgb(85,85,85);line-height:18px">
+I am using Linux Kernel Version 2.6.34.6 SMP for powerPC 64 bit. I tried to
+debug kernel using KGDB and ended up in Kernel panic reboot issue. Here is
+the list of steps I did.
 
-I just built meta-toolchain using the latest poky master, along with the =
-meta-xilinx layer, and find that the build system issues multiple QA =
-warnings, for a number of qemu machine configurations that are not =
-specified in my local.conf.
+1) I enabled the following in the config file
 
-I only have MACHINE=3D=93zc702-zynq7=94 specified, but the toolchain =
-appears to be generating native-sdk-qemu binaries for all architectures.
+CONFIG_DEBUG_PAGEALLOC=3Dy
+CONFIG_DEBUG_KERNEL=3Dy
+CONFIG_DEBUG_INFO=3Dy
+CONFIG_KGDB=3Dy
+CONFIG_FRAME_POINTER=3Dy
+CONFIG_KGDB_SERIAL_CONSOLE=3Dy
 
-Build Configuration:
-BB_VERSION        =3D "1.21.1"
-BUILD_SYS         =3D "x86_64-linux"
-NATIVELSBSTRING   =3D "Ubuntu-12.10"
-TARGET_SYS        =3D "arm-poky-linux-gnueabi"
-MACHINE           =3D "zc702-zynq7"
-DISTRO            =3D "poky"
-DISTRO_VERSION    =3D "1.5+snapshot-20140329"
-TUNE_FEATURES     =3D " armv7a vfp neon zynq"
-TARGET_FPU        =3D "vfp-neon"
-meta             =20
-meta-yocto       =20
-meta-yocto-bsp    =3D "master:95cd5688c67fa179204a7704b1287980672894fd"
-meta-xilinx       =3D "master:9d446e98558239d0453d61f65e69b67c4df72f26"
-meta-xilinx-community =3D =
-"master:3b513f2b29f047b17778538c331bfaddd6105e39"
+Built and loaded the Kernel.
 
-NOTE: Preparing runqueue
-NOTE: Executing SetScene Tasks
-NOTE: Executing RunQueue Tasks
-WARNING: QA Issue: ELF binary =
-'/tool/yocto/build/zc702/tmp/work/x86_64-nativesdk-pokysdk-linux/nativesdk=
--eglibc/2.19-r0/packages-split/nativesdk-nscd/opt/poky/1.5+snapshot/sysroo=
-ts/x86_64-pokysdk-linux/usr/sbin/nscd' has relocations in .text
-WARNING: QA Issue: ELF binary =
-'/tool/yocto/build/zc702/tmp/work/x86_64-nativesdk-pokysdk-linux/nativesdk=
--qemu/1.7.0-r0/packages-split/nativesdk-qemu/opt/poky/1.5+snapshot/sysroot=
-s/x86_64-pokysdk-linux/usr/bin/qemu-system-microblazeel' has relocations =
-in .text
-WARNING: QA Issue: ELF binary =
-'/tool/yocto/build/zc702/tmp/work/x86_64-nativesdk-pokysdk-linux/nativesdk=
--qemu/1.7.0-r0/packages-split/nativesdk-qemu/opt/poky/1.5+snapshot/sysroot=
-s/x86_64-pokysdk-linux/usr/bin/qemu-system-mipsel' has relocations in =
-.text
-WARNING: QA Issue: ELF binary =
-'/tool/yocto/build/zc702/tmp/work/x86_64-nativesdk-pokysdk-linux/nativesdk=
--qemu/1.7.0-r0/packages-split/nativesdk-qemu/opt/poky/1.5+snapshot/sysroot=
-s/x86_64-pokysdk-linux/usr/bin/qemu-system-i386' has relocations in =
-.text
-WARNING: QA Issue: ELF binary =
-'/tool/yocto/build/zc702/tmp/work/x86_64-nativesdk-pokysdk-linux/nativesdk=
--qemu/1.7.0-r0/packages-split/nativesdk-qemu/opt/poky/1.5+snapshot/sysroot=
-s/x86_64-pokysdk-linux/usr/bin/qemu-ga' has relocations in .text
-WARNING: QA Issue: ELF binary =
-'/tool/yocto/build/zc702/tmp/work/x86_64-nativesdk-pokysdk-linux/nativesdk=
--qemu/1.7.0-r0/packages-split/nativesdk-qemu/opt/poky/1.5+snapshot/sysroot=
-s/x86_64-pokysdk-linux/usr/bin/qemu-mips.real' has relocations in .text
-WARNING: QA Issue: ELF binary =
-'/tool/yocto/build/zc702/tmp/work/x86_64-nativesdk-pokysdk-linux/nativesdk=
--qemu/1.7.0-r0/packages-split/nativesdk-qemu/opt/poky/1.5+snapshot/sysroot=
-s/x86_64-pokysdk-linux/usr/bin/qemu-microblazeel' has relocations in =
-.text
-WARNING: QA Issue: ELF binary =
-'/tool/yocto/build/zc702/tmp/work/x86_64-nativesdk-pokysdk-linux/nativesdk=
--qemu/1.7.0-r0/packages-split/nativesdk-qemu/opt/poky/1.5+snapshot/sysroot=
-s/x86_64-pokysdk-linux/usr/bin/qemu-img' has relocations in .text
-WARNING: QA Issue: ELF binary =
-'/tool/yocto/build/zc702/tmp/work/x86_64-nativesdk-pokysdk-linux/nativesdk=
--qemu/1.7.0-r0/packages-split/nativesdk-qemu/opt/poky/1.5+snapshot/sysroot=
-s/x86_64-pokysdk-linux/usr/bin/qemu-mipsel' has relocations in .text
-WARNING: QA Issue: ELF binary =
-'/tool/yocto/build/zc702/tmp/work/x86_64-nativesdk-pokysdk-linux/nativesdk=
--qemu/1.7.0-r0/packages-split/nativesdk-qemu/opt/poky/1.5+snapshot/sysroot=
-s/x86_64-pokysdk-linux/usr/bin/qemu-system-mips' has relocations in =
-.text
-WARNING: QA Issue: ELF binary =
-'/tool/yocto/build/zc702/tmp/work/x86_64-nativesdk-pokysdk-linux/nativesdk=
--qemu/1.7.0-r0/packages-split/nativesdk-qemu/opt/poky/1.5+snapshot/sysroot=
-s/x86_64-pokysdk-linux/usr/bin/qemu-nbd' has relocations in .text
-WARNING: QA Issue: ELF binary =
-'/tool/yocto/build/zc702/tmp/work/x86_64-nativesdk-pokysdk-linux/nativesdk=
--qemu/1.7.0-r0/packages-split/nativesdk-qemu/opt/poky/1.5+snapshot/sysroot=
-s/x86_64-pokysdk-linux/usr/bin/qemu-x86_64' has relocations in .text
-WARNING: QA Issue: ELF binary =
-'/tool/yocto/build/zc702/tmp/work/x86_64-nativesdk-pokysdk-linux/nativesdk=
--qemu/1.7.0-r0/packages-split/nativesdk-qemu/opt/poky/1.5+snapshot/sysroot=
-s/x86_64-pokysdk-linux/usr/bin/qemu-i386' has relocations in .text
-WARNING: QA Issue: ELF binary =
-'/tool/yocto/build/zc702/tmp/work/x86_64-nativesdk-pokysdk-linux/nativesdk=
--qemu/1.7.0-r0/packages-split/nativesdk-qemu/opt/poky/1.5+snapshot/sysroot=
-s/x86_64-pokysdk-linux/usr/bin/qemu-system-ppc' has relocations in .text
-WARNING: QA Issue: ELF binary =
-'/tool/yocto/build/zc702/tmp/work/x86_64-nativesdk-pokysdk-linux/nativesdk=
--qemu/1.7.0-r0/packages-split/nativesdk-qemu/opt/poky/1.5+snapshot/sysroot=
-s/x86_64-pokysdk-linux/usr/bin/qemu-ppc' has relocations in .text
-WARNING: QA Issue: ELF binary =
-'/tool/yocto/build/zc702/tmp/work/x86_64-nativesdk-pokysdk-linux/nativesdk=
--qemu/1.7.0-r0/packages-split/nativesdk-qemu/opt/poky/1.5+snapshot/sysroot=
-s/x86_64-pokysdk-linux/usr/bin/qemu-system-arm' has relocations in .text
-WARNING: QA Issue: ELF binary =
-'/tool/yocto/build/zc702/tmp/work/x86_64-nativesdk-pokysdk-linux/nativesdk=
--qemu/1.7.0-r0/packages-split/nativesdk-qemu/opt/poky/1.5+snapshot/sysroot=
-s/x86_64-pokysdk-linux/usr/bin/qemu-system-x86_64' has relocations in =
-.text
-WARNING: QA Issue: ELF binary =
-'/tool/yocto/build/zc702/tmp/work/x86_64-nativesdk-pokysdk-linux/nativesdk=
--qemu/1.7.0-r0/packages-split/nativesdk-qemu/opt/poky/1.5+snapshot/sysroot=
-s/x86_64-pokysdk-linux/usr/bin/qemu-io' has relocations in .text
-WARNING: QA Issue: ELF binary =
-'/tool/yocto/build/zc702/tmp/work/x86_64-nativesdk-pokysdk-linux/nativesdk=
--qemu/1.7.0-r0/packages-split/nativesdk-qemu/opt/poky/1.5+snapshot/sysroot=
-s/x86_64-pokysdk-linux/usr/bin/qemu-arm' has relocations in .text
-WARNING: QA Issue: ELF binary =
-'/tool/yocto/build/zc702/tmp/work/x86_64-nativesdk-pokysdk-linux/nativesdk=
--qemu/1.7.0-r0/packages-split/nativesdk-qemu/opt/poky/1.5+snapshot/sysroot=
-s/x86_64-pokysdk-linux/usr/lib/qemu/qemu-bridge-helper' has relocations =
-in .text
-NOTE: Tasks Summary: Attempted 1938 tasks of which 988 didn't need to be =
-rerun and all succeeded.
+2) My Linux PC is connected terminal server using ttyS0 and I enabled KGDB
+over serial port by doing
 
-Summary: There were 20 WARNING messages shown.
+&quot;echo ttyS0 &gt; /sys/module/kgdboc/parameters/kgdboc&quot;
 
-real	20m47.466s
-user	0m8.620s
-sys	0m0.904s
+3) Trigger KGDB by issuing sysrq-g. echo g &gt; /proc/sysrq-trigger
+
+4) Kernel Panic reboot is seen with the following reboot log
+
+sw0:root&gt; echo ttyS0 &gt; /sys/module/kgdboc/parameters/kgdboc
+kgdb: Registered I/O driver kgdboc.
+sw0:root&gt; echo g &gt; /proc/sysrq-trigger
+SysRq : DEBUG
+Entering KGDB
+Unable to handle kernel paging request for instruction fetch
+Faulting instruction address: 0x00000000
+KGDB: re-enter exception: ALL breakpoints killed
+Call Trace:
+STACK MAGIC 0x57ac6e9d
+[813679c0] [40007fcc] show_stack+0x84/0x24c (unreliable)
+[81367a20] [4057d9f4] dump_stack+0x2c/0x44
+[81367a30] [40098008] kgdb_handle_exception+0x184/0x1b8
+[81367a80] [40013320] kgdb_debugger+0x88/0xa0
+[81367a90] [4000f5a4] die+0x48/0x28c
+[81367ac0] [40019460] bad_page_fault+0x90/0xe0
+[81367ae0] [400123fc] handle_page_fault+0x7c/0x80
+[81367ba0] [407a0000] kmalloc_caches+0xdc0/0x1340
+[81367bb0] [402d11ac] uart_poll_get_char+0x58/0x70
+[81367bc0] [402daae8] kgdboc_get_char+0x40/0x58
+[81367bd0] [40096eac] kgdb_cpu_enter+0x420/0x1320
+[81367c60] [40097f08] kgdb_handle_exception+0x84/0x1b8
+[81367cb0] [40013250] kgdb_handle_breakpoint+0x4c/0x94
+[81367cc0] [40578dbc] program_check_exception+0x5c/0x860
+[81367da0] [40012544] ret_from_except_full+0x0/0x4c
+[81367e60] [40096018] sysrq_handle_gdb+0x94/0xb0
+[81367e70] [402c9f28] __handle_sysrq+0xe0/0x1c8
+[81367ea0] [402ca06c] write_sysrq_trigger+0x5c/0x80
+[81367eb0] [401614a4] proc_reg_write+0x90/0xcc
+[81367ee0] [4011201c] vfs_write+0xb4/0x1a8
+[81367f00] [401122b0] sys_write+0x60/0x144
+[81367f40] [40011f4c] ret_from_syscall+0x0/0x3c
+Kernel panic - not syncing: Recursive entry to debugger
+Call Trace:
+STACK MAGIC 0x57ac6e9d
 
 
-Regards,
+Can you help me to understand the root cause of the issue? Let me know
+how to solve this issue.
 
-Elvis Dowson
 
---Apple-Mail=_F1FDC073-0F99-4C3B-BE0E-07612380F1C7
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/html;
-	charset=windows-1252
+Thanks
 
-<html><head><meta http-equiv=3D"Content-Type" content=3D"text/html =
-charset=3Dwindows-1252"></head><body style=3D"word-wrap: break-word; =
--webkit-nbsp-mode: space; -webkit-line-break: =
-after-white-space;">Hi,<div><br></div><div>I just built meta-toolchain =
-using the latest poky master, along with the meta-xilinx layer, and find =
-that the build system issues multiple QA warnings, for a number of qemu =
-machine configurations that are not specified in my =
-local.conf.</div><div><br></div><div>I only have MACHINE=3D=93zc702-zynq7=94=
- specified, but the toolchain appears to be generating native-sdk-qemu =
-binaries for all architectures.</div><div><br></div><div><div><font =
-face=3D"Monaco" size=3D"1">Build Configuration:</font></div><div><font =
-face=3D"Monaco" size=3D"1">BB_VERSION &nbsp; &nbsp; &nbsp; &nbsp;=3D =
-"1.21.1"</font></div><div><font face=3D"Monaco" size=3D"1">BUILD_SYS =
-&nbsp; &nbsp; &nbsp; &nbsp; =3D "x86_64-linux"</font></div><div><font =
-face=3D"Monaco" size=3D"1">NATIVELSBSTRING &nbsp; =3D =
-"Ubuntu-12.10"</font></div><div><font face=3D"Monaco" =
-size=3D"1">TARGET_SYS &nbsp; &nbsp; &nbsp; &nbsp;=3D =
-"arm-poky-linux-gnueabi"</font></div><div><font face=3D"Monaco" =
-size=3D"1">MACHINE &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; =3D =
-"zc702-zynq7"</font></div><div><font face=3D"Monaco" size=3D"1">DISTRO =
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;=3D =
-"poky"</font></div><div><font face=3D"Monaco" size=3D"1">DISTRO_VERSION =
-&nbsp; &nbsp;=3D "1.5+snapshot-20140329"</font></div><div><font =
-face=3D"Monaco" size=3D"1">TUNE_FEATURES &nbsp; &nbsp; =3D " armv7a vfp =
-neon zynq"</font></div><div><font face=3D"Monaco" size=3D"1">TARGET_FPU =
-&nbsp; &nbsp; &nbsp; &nbsp;=3D "vfp-neon"</font></div><div><font =
-face=3D"Monaco" size=3D"1">meta &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; =
-&nbsp; &nbsp;</font></div><div><font face=3D"Monaco" size=3D"1">meta-yocto=
- &nbsp; &nbsp; &nbsp; &nbsp;</font></div><div><font face=3D"Monaco" =
-size=3D"1">meta-yocto-bsp &nbsp; &nbsp;=3D =
-"master:95cd5688c67fa179204a7704b1287980672894fd"</font></div><div><font =
-face=3D"Monaco" size=3D"1">meta-xilinx &nbsp; &nbsp; &nbsp; =3D =
-"master:9d446e98558239d0453d61f65e69b67c4df72f26"</font></div><div><font =
-face=3D"Monaco" size=3D"1">meta-xilinx-community =3D =
-"master:3b513f2b29f047b17778538c331bfaddd6105e39"</font></div><div><font =
-face=3D"Monaco" size=3D"1"><br></font></div><div><font face=3D"Monaco" =
-size=3D"1">NOTE: Preparing runqueue</font></div><div><font face=3D"Monaco"=
- size=3D"1">NOTE: Executing SetScene Tasks</font></div><div><font =
-face=3D"Monaco" size=3D"1">NOTE: Executing RunQueue =
-Tasks</font></div><div><font face=3D"Monaco" size=3D"1">WARNING: QA =
-Issue: ELF binary =
-'/tool/yocto/build/zc702/tmp/work/x86_64-nativesdk-pokysdk-linux/nativesdk=
--eglibc/2.19-r0/packages-split/nativesdk-nscd/opt/poky/1.5+snapshot/sysroo=
-ts/x86_64-pokysdk-linux/usr/sbin/nscd' has relocations in =
-.text</font></div><div><font face=3D"Monaco" size=3D"1">WARNING: QA =
-Issue: ELF binary =
-'/tool/yocto/build/zc702/tmp/work/x86_64-nativesdk-pokysdk-linux/nativesdk=
--qemu/1.7.0-r0/packages-split/nativesdk-qemu/opt/poky/1.5+snapshot/sysroot=
-s/x86_64-pokysdk-linux/usr/bin/qemu-system-microblazeel' has relocations =
-in .text</font></div><div><font face=3D"Monaco" size=3D"1">WARNING: QA =
-Issue: ELF binary =
-'/tool/yocto/build/zc702/tmp/work/x86_64-nativesdk-pokysdk-linux/nativesdk=
--qemu/1.7.0-r0/packages-split/nativesdk-qemu/opt/poky/1.5+snapshot/sysroot=
-s/x86_64-pokysdk-linux/usr/bin/qemu-system-mipsel' has relocations in =
-.text</font></div><div><font face=3D"Monaco" size=3D"1">WARNING: QA =
-Issue: ELF binary =
-'/tool/yocto/build/zc702/tmp/work/x86_64-nativesdk-pokysdk-linux/nativesdk=
--qemu/1.7.0-r0/packages-split/nativesdk-qemu/opt/poky/1.5+snapshot/sysroot=
-s/x86_64-pokysdk-linux/usr/bin/qemu-system-i386' has relocations in =
-.text</font></div><div><font face=3D"Monaco" size=3D"1">WARNING: QA =
-Issue: ELF binary =
-'/tool/yocto/build/zc702/tmp/work/x86_64-nativesdk-pokysdk-linux/nativesdk=
--qemu/1.7.0-r0/packages-split/nativesdk-qemu/opt/poky/1.5+snapshot/sysroot=
-s/x86_64-pokysdk-linux/usr/bin/qemu-ga' has relocations in =
-.text</font></div><div><font face=3D"Monaco" size=3D"1">WARNING: QA =
-Issue: ELF binary =
-'/tool/yocto/build/zc702/tmp/work/x86_64-nativesdk-pokysdk-linux/nativesdk=
--qemu/1.7.0-r0/packages-split/nativesdk-qemu/opt/poky/1.5+snapshot/sysroot=
-s/x86_64-pokysdk-linux/usr/bin/qemu-mips.real' has relocations in =
-.text</font></div><div><font face=3D"Monaco" size=3D"1">WARNING: QA =
-Issue: ELF binary =
-'/tool/yocto/build/zc702/tmp/work/x86_64-nativesdk-pokysdk-linux/nativesdk=
--qemu/1.7.0-r0/packages-split/nativesdk-qemu/opt/poky/1.5+snapshot/sysroot=
-s/x86_64-pokysdk-linux/usr/bin/qemu-microblazeel' has relocations in =
-.text</font></div><div><font face=3D"Monaco" size=3D"1">WARNING: QA =
-Issue: ELF binary =
-'/tool/yocto/build/zc702/tmp/work/x86_64-nativesdk-pokysdk-linux/nativesdk=
--qemu/1.7.0-r0/packages-split/nativesdk-qemu/opt/poky/1.5+snapshot/sysroot=
-s/x86_64-pokysdk-linux/usr/bin/qemu-img' has relocations in =
-.text</font></div><div><font face=3D"Monaco" size=3D"1">WARNING: QA =
-Issue: ELF binary =
-'/tool/yocto/build/zc702/tmp/work/x86_64-nativesdk-pokysdk-linux/nativesdk=
--qemu/1.7.0-r0/packages-split/nativesdk-qemu/opt/poky/1.5+snapshot/sysroot=
-s/x86_64-pokysdk-linux/usr/bin/qemu-mipsel' has relocations in =
-.text</font></div><div><font face=3D"Monaco" size=3D"1">WARNING: QA =
-Issue: ELF binary =
-'/tool/yocto/build/zc702/tmp/work/x86_64-nativesdk-pokysdk-linux/nativesdk=
--qemu/1.7.0-r0/packages-split/nativesdk-qemu/opt/poky/1.5+snapshot/sysroot=
-s/x86_64-pokysdk-linux/usr/bin/qemu-system-mips' has relocations in =
-.text</font></div><div><font face=3D"Monaco" size=3D"1">WARNING: QA =
-Issue: ELF binary =
-'/tool/yocto/build/zc702/tmp/work/x86_64-nativesdk-pokysdk-linux/nativesdk=
--qemu/1.7.0-r0/packages-split/nativesdk-qemu/opt/poky/1.5+snapshot/sysroot=
-s/x86_64-pokysdk-linux/usr/bin/qemu-nbd' has relocations in =
-.text</font></div><div><font face=3D"Monaco" size=3D"1">WARNING: QA =
-Issue: ELF binary =
-'/tool/yocto/build/zc702/tmp/work/x86_64-nativesdk-pokysdk-linux/nativesdk=
--qemu/1.7.0-r0/packages-split/nativesdk-qemu/opt/poky/1.5+snapshot/sysroot=
-s/x86_64-pokysdk-linux/usr/bin/qemu-x86_64' has relocations in =
-.text</font></div><div><font face=3D"Monaco" size=3D"1">WARNING: QA =
-Issue: ELF binary =
-'/tool/yocto/build/zc702/tmp/work/x86_64-nativesdk-pokysdk-linux/nativesdk=
--qemu/1.7.0-r0/packages-split/nativesdk-qemu/opt/poky/1.5+snapshot/sysroot=
-s/x86_64-pokysdk-linux/usr/bin/qemu-i386' has relocations in =
-.text</font></div><div><font face=3D"Monaco" size=3D"1">WARNING: QA =
-Issue: ELF binary =
-'/tool/yocto/build/zc702/tmp/work/x86_64-nativesdk-pokysdk-linux/nativesdk=
--qemu/1.7.0-r0/packages-split/nativesdk-qemu/opt/poky/1.5+snapshot/sysroot=
-s/x86_64-pokysdk-linux/usr/bin/qemu-system-ppc' has relocations in =
-.text</font></div><div><font face=3D"Monaco" size=3D"1">WARNING: QA =
-Issue: ELF binary =
-'/tool/yocto/build/zc702/tmp/work/x86_64-nativesdk-pokysdk-linux/nativesdk=
--qemu/1.7.0-r0/packages-split/nativesdk-qemu/opt/poky/1.5+snapshot/sysroot=
-s/x86_64-pokysdk-linux/usr/bin/qemu-ppc' has relocations in =
-.text</font></div><div><font face=3D"Monaco" size=3D"1">WARNING: QA =
-Issue: ELF binary =
-'/tool/yocto/build/zc702/tmp/work/x86_64-nativesdk-pokysdk-linux/nativesdk=
--qemu/1.7.0-r0/packages-split/nativesdk-qemu/opt/poky/1.5+snapshot/sysroot=
-s/x86_64-pokysdk-linux/usr/bin/qemu-system-arm' has relocations in =
-.text</font></div><div><font face=3D"Monaco" size=3D"1">WARNING: QA =
-Issue: ELF binary =
-'/tool/yocto/build/zc702/tmp/work/x86_64-nativesdk-pokysdk-linux/nativesdk=
--qemu/1.7.0-r0/packages-split/nativesdk-qemu/opt/poky/1.5+snapshot/sysroot=
-s/x86_64-pokysdk-linux/usr/bin/qemu-system-x86_64' has relocations in =
-.text</font></div><div><font face=3D"Monaco" size=3D"1">WARNING: QA =
-Issue: ELF binary =
-'/tool/yocto/build/zc702/tmp/work/x86_64-nativesdk-pokysdk-linux/nativesdk=
--qemu/1.7.0-r0/packages-split/nativesdk-qemu/opt/poky/1.5+snapshot/sysroot=
-s/x86_64-pokysdk-linux/usr/bin/qemu-io' has relocations in =
-.text</font></div><div><font face=3D"Monaco" size=3D"1">WARNING: QA =
-Issue: ELF binary =
-'/tool/yocto/build/zc702/tmp/work/x86_64-nativesdk-pokysdk-linux/nativesdk=
--qemu/1.7.0-r0/packages-split/nativesdk-qemu/opt/poky/1.5+snapshot/sysroot=
-s/x86_64-pokysdk-linux/usr/bin/qemu-arm' has relocations in =
-.text</font></div><div><font face=3D"Monaco" size=3D"1">WARNING: QA =
-Issue: ELF binary =
-'/tool/yocto/build/zc702/tmp/work/x86_64-nativesdk-pokysdk-linux/nativesdk=
--qemu/1.7.0-r0/packages-split/nativesdk-qemu/opt/poky/1.5+snapshot/sysroot=
-s/x86_64-pokysdk-linux/usr/lib/qemu/qemu-bridge-helper' has relocations =
-in .text</font></div><div><font face=3D"Monaco" size=3D"1">NOTE: Tasks =
-Summary: Attempted 1938 tasks of which 988 didn't need to be rerun and =
-all succeeded.</font></div><div><font face=3D"Monaco" =
-size=3D"1"><br></font></div><div><font face=3D"Monaco" size=3D"1">Summary:=
- There were 20 WARNING messages shown.</font></div><div><font =
-face=3D"Monaco" size=3D"1"><br></font></div><div><font face=3D"Monaco" =
-size=3D"1">real<span class=3D"Apple-tab-span" style=3D"white-space:pre">	=
-</span>20m47.466s</font></div><div><font face=3D"Monaco" =
-size=3D"1">user<span class=3D"Apple-tab-span" style=3D"white-space:pre">	=
-</span>0m8.620s</font></div><div><font face=3D"Monaco" size=3D"1">sys<span=
- class=3D"Apple-tab-span" style=3D"white-space:pre">	=
-</span>0m0.904s</font></div><div><br></div></div><div><br></div><div>Regar=
-ds,</div><div><br></div><div>Elvis Dowson</div></body></html>=
+Jegan</pre></div>
 
---Apple-Mail=_F1FDC073-0F99-4C3B-BE0E-07612380F1C7--
-
---Apple-Mail=_7C90BBA8-EC1D-4F32-B3C5-770D17F5739A
-Content-Transfer-Encoding: 7bit
-Content-Disposition: attachment;
-	filename=signature.asc
-Content-Type: application/pgp-signature;
-	name=signature.asc
-Content-Description: Message signed with OpenPGP using GPGMail
-
------BEGIN PGP SIGNATURE-----
-Comment: GPGTools - https://gpgtools.org
-
-iQQcBAEBCgAGBQJTNn4bAAoJENajI+UwiZtEB/cf/2kuIKM5N51Vhfao6EsFk2Pe
-752UfVxx8LqZwvGuodcZ6nu6DmiPOyAUHrmSrubsaOEoWNQFAnwil8DWqufCCjgO
-7cTM1Mxa+LBwL7drjykrJ5o1YXnWPnQi+Z4J8H0qLHwSwCdGTykLyCjizAfswkrH
-2XW5PgVMpCelsUtLczI08kfzDut0Hks8XtO1f4KdADUHlj9okCXtvO9ZXCXetxtm
-IJ9WZIhJUtecFOeYF2e9cSBQuNlqyOIF3POV7KjeCcc3CkUUisi6ajg7pb8j2w+g
-FpTvOaeowKO6GPp2+aeXjf/HvfZTDtj/vXo4qYO6ozGNfR6qPNpCIxV/h9sHDSwl
-fZThvwJNBVeyKo1WOupgwE1pmBKEa3fjQV9Wz7sHorhtSta8pU+jGbn8M6P+NGmv
-cswsYoMm8fnOI+HNBhEywz/TG56CGmjaWqwbb1ZGCJHYICg6h7OrzvlwBtxW6Epx
-dOb3lxWTgpaA+E/YN86Z5neBMjKBXJok3iaG/f45gE/24vkUm4USqOsTa7urPMAY
-cVe3/+xQiyoXcOQN69a6Ia5/9g70mY/mHXOy5w30tGu55uYNmRURNRN2/cjaFMFk
-19kFYp7gKgYYYZdib3bo/eDt04rcRZEEhus4/liILSWRB4kV6ZEsKYbnaB+EOJSO
-TKyN2SWkpLuPOGlhSCBS3suGuIWes79ZoH6u6SJk9/t4V+wEXFkiKDNI6ChfE7+l
-0mb1iBDrNeTs1TKREYNCbH+STJOXrwdc8xfzv/DgKwJERPndU8V7IB5d70tuwFfC
-rZLhCc4GyoOw9jAG6ymCGVnlEQO2OXU8lM2baIdQNLXxpopAr9qqmXGQWB1A77xG
-OKoXX7Kg3Z9+NC11W7Us55gO/DwG68mdNrCys20Fq1U9Riog9NYwveJaBF0KHE4Z
-N9EtJwueIgeQRVvdSigeKvwbe/IUE6iCs0BZio/JqZqq6cdJ6fAR7qsFvtnE2dMM
-hk/rc2V7lpTqJup0In0IGm2i4tXQEgWXlaRUHj2cMB/loRftv0/KpIF8iHaj8I3k
-kuGsC+E5mV3Utbbv5eY+5a0qwZRO1MrSl9Kon82UTSKLjKRZv0vVfZeFX9wC0F6+
-Al3i3Qn2HTZzS8H+OFV/h7oBBS3KTEt+JdPui4WeEWHdztc6iprMiyqnRv0mo9BP
-GvLZV7G8uUJ9toCOKrvrXh6pjhhIi9DoMuYVAfdnL7UDGYxtgF3vKIQ80h2+9z2Y
-k9kTaNPtsdp5IiplHATGfEQuiJpe2WDOSGO10R10pr4A4OfG6uOxU9U0xjxsMIsl
-ITiJ6gl8/jFWI2reSvUh5BhbTwI3MI51CMOpTdsigKOh5Sc67zmndHGpXQ/Nn3Q=
-=Y+oG
------END PGP SIGNATURE-----
-
---Apple-Mail=_7C90BBA8-EC1D-4F32-B3C5-770D17F5739A--
+--f46d04430416c01de304f4f4927b--
