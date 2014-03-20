@@ -1,36 +1,35 @@
-Return-Path: <elizabeth.flanagan@intel.com>
-Received: from mail-ve0-f170.google.com (mail-ve0-f170.google.com
-	[209.85.128.170])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7F1EDE00B3D
-	for <yocto@yoctoproject.org>; Thu, 20 Mar 2014 14:53:47 -0700 (PDT)
-Received: by mail-ve0-f170.google.com with SMTP id pa12so1693120veb.1
-	for <yocto@yoctoproject.org>; Thu, 20 Mar 2014 14:53:47 -0700 (PDT)
+Return-Path: <ross.burton@intel.com>
+Received: from mail-qa0-f51.google.com (mail-qa0-f51.google.com
+	[209.85.216.51])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C09D3E00B4A
+	for <yocto@yoctoproject.org>; Thu, 20 Mar 2014 16:19:20 -0700 (PDT)
+Received: by mail-qa0-f51.google.com with SMTP id j7so1668982qaq.38
+	for <yocto@yoctoproject.org>; Thu, 20 Mar 2014 16:19:19 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:date
-	:message-id:subject:from:to:cc:content-type;
-	bh=3c/Wkk4OGA1LQKdCfDFIGuGV0cdB2PzPqaX/XAggfNc=;
-	b=AUf63aYjqp9XD6+FByEOXWObgY1qVbd5E5B1AV5Abgex28YipPUl1aN78FKc3zYuW1
-	1ZPGM5EgC6KPadqxzoQDgv65TDMJwj3r0w32PREckggTrt619my99UN1RjQAzKnTvGL3
-	7Tg4txotgKA2gz9RPIzVgRoyGWDTqJIsB55xE/fSr8Yz0D9FV6WHrSlE9XMJDtQ03jdk
-	CniT9I86cbD62c4YojO9LWD3SowcErM2H9dckBUoIymHk23F845OAl0dGWTFWfBPoSSz
-	sp/ZH2hr7sULd6ug0JHMffSxSQEznwCQ2epNfzEn6ly/sAjUafLPUgw4SIPuUJrjkQLa
-	5QdA==
-X-Gm-Message-State: ALoCoQmwBf1PZgeeBs3F1LpsabuGekeYCtrg972TjW3/aY42bS6p5ve0k3iwFirwN9Y2gfztyOed
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc:content-type;
+	bh=7eUwy3I/4yTH5B2YivE0q9SLVqYZzfhulYraP2dBTmQ=;
+	b=PSsIwoJn+sFnlOisIP3igmJZ7E46Hn5hhVzez0Ot+1inWbazkfYc3tjwovUBCHPuEx
+	3YtVA/SG3Z1Y+C071pgPVH8pqNEbdwbQlBpE00uaMw7vWXADBOl4NEXBXmb4APPSavaP
+	28569moyLbr1DBH/FaJwM8ufPFPyRkwRTnxcc0/hXf9OoU0doiCHmiXWrT3mkED43cXl
+	BF1KlFpg1tjQvu3Uw81BRL4LM/HblrCu6hMWRCKxK2jAhesBQCYhppkTCfIWBUYe30R5
+	Ukz2zzqD4vJiDv2PrZelhoLFBGnINXEiZfnfxxUHvFKGFabG7wiqHhzJf44bp90wULoG
+	POjQ==
+X-Gm-Message-State: ALoCoQlDFLBTOKCg3Ooy7jWNW8R90saFLw0DQiWG9iFzhBAWQVkmHA9SchKGLxyW+16qteBWAxc+
+X-Received: by 10.229.193.136 with SMTP id du8mr53860849qcb.11.1395357559338; 
+	Thu, 20 Mar 2014 16:19:19 -0700 (PDT)
 MIME-Version: 1.0
-X-Received: by 10.58.122.164 with SMTP id lt4mr35183105veb.2.1395352426980;
-	Thu, 20 Mar 2014 14:53:46 -0700 (PDT)
-Received: by 10.52.173.69 with HTTP; Thu, 20 Mar 2014 14:53:46 -0700 (PDT)
-In-Reply-To: <CAJTo0Lb0ZGFDErQWzp=mhGJmk9u=UxHbj-K=wEW0pGyxOhqhWg@mail.gmail.com>
+Received: by 10.140.27.167 with HTTP; Thu, 20 Mar 2014 16:18:59 -0700 (PDT)
+In-Reply-To: <1c5954b6a863bb3d6d306b16ce750e1aa9f431f1.1395261635.git.elizabeth.flanagan@intel.com>
 References: <cover.1395261635.git.elizabeth.flanagan@intel.com>
-	<15d3c57733e746090eb65ea218b2f85435d0972d.1395261635.git.elizabeth.flanagan@intel.com>
-	<CAJTo0Lb0ZGFDErQWzp=mhGJmk9u=UxHbj-K=wEW0pGyxOhqhWg@mail.gmail.com>
-Date: Thu, 20 Mar 2014 14:53:46 -0700
-Message-ID: <CAPhnLPC4-vffcNMArDAEtsTzt-JAPYm-SADPUAbWz0cVLypiOQ@mail.gmail.com>
-From: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
-To: "Burton, Ross" <ross.burton@intel.com>
+	<1c5954b6a863bb3d6d306b16ce750e1aa9f431f1.1395261635.git.elizabeth.flanagan@intel.com>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Thu, 20 Mar 2014 23:18:59 +0000
+Message-ID: <CAJTo0LYUcfSi44dHPDOGXijW-BoadA=8sUUPxbr64a0NEZC25g@mail.gmail.com>
+To: Elizabeth Flanagan <elizabeth.flanagan@intel.com>
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: [AB PATCH 02/22] yoctogit.py: Fix cp construction from source to build
+Subject: Re: [AB PATCH 22/22] yoctogit.py: sync on mv
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,46 +41,21 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 20 Mar 2014 21:53:48 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Thu, 20 Mar 2014 23:19:21 -0000
+Content-Type: text/plain; charset=UTF-8
 
-On Thu, Mar 20, 2014 at 7:29 AM, Burton, Ross <ross.burton@intel.com> wrote:
-> On 19 March 2014 20:51, Elizabeth Flanagan <elizabeth.flanagan@intel.com> wrote:
->> +        if "poky" in self.layername or \
->> +           "oecore" in self.layername or \
->> +           "eclipse" in self.layername:
->
-> Do you actually need to do substring comparisons (in vs is) there?  I
-> suspect not, so I prefer this idiom as it involves less repetition:
->
-> if self.layername in ('poky', 'oecore', 'eclipse')
+On 19 March 2014 20:51, Elizabeth Flanagan <elizabeth.flanagan@intel.com> wrote:
+> On systems with very high load sometimes the system still thinks the
+> build dir is there. I've only seen this once, but a sync here ensures
+> that the system knows that build has been moved.
 
-In this case, yeah, we need a substring comparision, as we need to
-support the layer being named eclipse-poky-<branch-name> and
-poky/poky-contrib. We need to eventually figure out a better, more
-standardized way of indicating the base layer, but until we do and
-propagate that change out (as it changes configs), doing it this way
-both supports the way people have come to understand what "base" is.
+That smells like a race in the AB code instead of the kernel being
+confused over the state of the file system, and the best a sync can do
+is reduce the window of failure at the cost of a potentially very
+heavy IO burst.
 
--b
+I'd say drop this and if the problem occurs again, attempt to diagnose
+where the race is.
 
->
-> Ross
-> ---------------------------------------------------------------------
-> Intel Corporation (UK) Limited
-> Registered No. 1134945 (England)
-> Registered Office: Pipers Way, Swindon SN3 1RJ
-> VAT No: 860 2173 47
->
-> This e-mail and any attachments may contain confidential material for
-> the sole use of the intended recipient(s). Any review or distribution
-> by others is strictly prohibited. If you are not the intended
-> recipient, please contact the sender and delete all copies.
-
-
-
--- 
-Elizabeth Flanagan
-Yocto Project
-Build and Release
+Ross
 
