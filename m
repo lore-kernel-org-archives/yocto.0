@@ -1,30 +1,28 @@
-Return-Path: <gary@mlbassoc.com>
-Received: from mail.chez-thomas.org (mail.mlbassoc.com [65.100.170.105])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EBC5AE00B8C
-	for <yocto@yoctoproject.org>; Fri, 21 Mar 2014 15:04:33 -0700 (PDT)
-Received: by mail.chez-thomas.org (Postfix, from userid 1998)
-	id 3B3E9F8121B; Fri, 21 Mar 2014 16:04:33 -0600 (MDT)
-X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on
-	hermes.chez-thomas.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=4.0 tests=ALL_TRUSTED,BAYES_00
-	autolearn=unavailable version=3.3.2
-Received: from [192.168.1.114] (zeus [192.168.1.114])
-	by mail.chez-thomas.org (Postfix) with ESMTP id 235BCF81218;
-	Fri, 21 Mar 2014 16:04:32 -0600 (MDT)
-Message-ID: <532CB770.90004@mlbassoc.com>
-Date: Fri, 21 Mar 2014 16:04:32 -0600
-From: Gary Thomas <gary@mlbassoc.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:24.0) Gecko/20100101 Thunderbird/24.3.0
+Return-Path: <guy.dillen@gmail.com>
+Received: from mail-yk0-f177.google.com (mail-yk0-f177.google.com
+	[209.85.160.177])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 64D02E00B90
+	for <yocto@yoctoproject.org>; Fri, 21 Mar 2014 16:02:43 -0700 (PDT)
+Received: by mail-yk0-f177.google.com with SMTP id q200so8037698ykb.8
+	for <yocto@yoctoproject.org>; Fri, 21 Mar 2014 16:02:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=OA2Fbqe0DvYG8dyCUMFnsyli7AruRSPCexJpodEDYik=;
+	b=LbWWk63f6x6wD/J5GujbYH8WYNg527L8YxvXFJWWAQpeLET7b0hLw0g++8X270ZIz0
+	is+GY+od38yX+eB+dQF2+uclaOd3eo+x/+h5K89CzsMEysvVQBprFUIuAf/jjXny4aCC
+	h+vQEUREWM4nD2pF5BLBxgwK+1wsIgUJPZ61VwJAlpsHyrzVFEfn7AZG6bFBzuFQO9ia
+	QtAz6PjcbC6zQ874DcuyFj2ShmQyGRMviIzamYYVwlDsvl6F/rV7WAOSXyzNR++Qwd0Z
+	M6Q3w9Ehf65grWX/HA5tFZDmKTNkBODWfl9uzQk8DkfR00KrIkB2IQ9QUmR8U5JIAcXu
+	WPQg==
 MIME-Version: 1.0
-To: Jate S <jatedev@gmail.com>
-References: <CAPphmgYBnU6-NtLt+FDgpc97CKsnU6y8OSSGGO9W9isbf0xH7g@mail.gmail.com>	<532CB035.2020703@mlbassoc.com>
-	<CAPphmgbHhHMRTAGtXMsHfbHR6FuQa7MODGW_UQY22xCO2Z38MQ@mail.gmail.com>
-In-Reply-To: <CAPphmgbHhHMRTAGtXMsHfbHR6FuQa7MODGW_UQY22xCO2Z38MQ@mail.gmail.com>
-X-Enigmail-Version: 1.5.2
-Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: linux-yocto fetch bottleneck
+X-Received: by 10.236.231.101 with SMTP id k95mr45770941yhq.34.1395442962601; 
+	Fri, 21 Mar 2014 16:02:42 -0700 (PDT)
+Received: by 10.170.112.2 with HTTP; Fri, 21 Mar 2014 16:02:42 -0700 (PDT)
+Date: Sat, 22 Mar 2014 00:02:42 +0100
+Message-ID: <CAG-xyJr=tUpmrV9CkdoxqTOJU8wO9kWuSA+6hwA_Z09z81YB5w@mail.gmail.com>
+From: Guy Dillen <guy.dillen@gmail.com>
+To: yocto@yoctoproject.org
+Subject: (Embedded) Java 7 or 8 support
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -36,46 +34,24 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 21 Mar 2014 22:04:34 -0000
+X-List-Received-Date: Fri, 21 Mar 2014 23:02:45 -0000
+Content-Type: multipart/alternative; boundary=047d7bfeafd4171ca704f525e2c9
+
+--047d7bfeafd4171ca704f525e2c9
 Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: 7bit
 
-On 2014-03-21 15:54, Jate S wrote:
-> The documentation has warnings of space usage. Will it start using
-> lots of space? If so, can I use it on a per mirror basis?
+Hi,
 
-Yes, the tarballs can be quite large, but they are incredibly useful
-with a local mirror.  Especially when you consider that updating a GIT
-checkout, e.g. the Linux kernel. can take a *really* long time.
+I'm new to Poky/Yocto.
+Can I make a Poky/Yocto Linux build for the Atmel SAMA5D3 Xplained
+(Cortex-A5 microprocessor)?
 
-> I am using a local mirror, so maybe the space usage will not be a problem.
+Thanks.
 
-The space needed will not be terribly different than what you've already
-encountered without generating the tarballs.
+--047d7bfeafd4171ca704f525e2c9
+Content-Type: text/html; charset=ISO-8859-1
 
-n.b. it's polite to keep replies on the mailing list so that everyone benefits.
+<div dir="ltr">Hi,<div><br></div><div>I&#39;m new to Poky/Yocto.</div><div>Can I make a Poky/Yocto Linux build for the Atmel SAMA5D3 Xplained (Cortex-A5 microprocessor)?</div><div><br></div><div>Thanks.
+</div></div>
 
-> On Fri, Mar 21, 2014 at 5:33 PM, Gary Thomas <gary@mlbassoc.com> wrote:
->> On 2014-03-21 15:27, Jate S wrote:
->>> I am running into a bottleneck with the linux-yocto recipe on dora
->>> 1.5.1. The fetch retrieves git2_git.yoctoproject.org.git.tar.gz, but
->>> then it hits a bottleneck when it must do a git fetch to update to the
->>> required references. The git server does not have high bandwdith.
->>>
->>> One workaround that I've found is to archive the git repository and
->>> replace the tar.gz in the downloads directory. The recipe then finds
->>> the required references.
->>>
->>> Would BB_GENERATE_MIRROR_TARBALLS actually take care of this? Any
->>> other recommendations?
->>
->> Yes, that's exactly what BB_GENERATE_MIRROR_TARBALLS does.  The updated
->> tarball will end up in your downloads directory.  If you use any sort of
->> local mirror, you'll want to push the new tarball to it for the next time.
-
--- 
-------------------------------------------------------------
-Gary Thomas                 |  Consulting for the
-MLB Associates              |    Embedded world
-------------------------------------------------------------
-
+--047d7bfeafd4171ca704f525e2c9--
