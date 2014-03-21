@@ -1,20 +1,33 @@
-Return-Path: <paul.eggleton@linux.intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3B140E00B78
-	for <yocto@yoctoproject.org>; Fri, 21 Mar 2014 10:05:37 -0700 (PDT)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga102.jf.intel.com with ESMTP; 21 Mar 2014 09:59:38 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.97,704,1389772800"; d="scan'208";a="504950787"
-Received: from unknown (HELO peggleto-mobl5.ger.corp.intel.com)
-	([10.252.120.240])
-	by orsmga002.jf.intel.com with ESMTP; 21 Mar 2014 10:03:38 -0700
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: yocto@yoctoproject.org
-Date: Fri, 21 Mar 2014 17:03:21 +0000
-Message-Id: <1395421401-18701-1-git-send-email-paul.eggleton@linux.intel.com>
-X-Mailer: git-send-email 1.8.5.3
-Subject: [meta-qt3][PATCH] qt-x11-free: apply Fedora patch to support freetype 2.5.1+
+Return-Path: <raj.khem@gmail.com>
+Received: from mail-ig0-f170.google.com (mail-ig0-f170.google.com
+	[209.85.213.170])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9AAF8E00B80
+	for <yocto@yoctoproject.org>; Fri, 21 Mar 2014 11:22:55 -0700 (PDT)
+Received: by mail-ig0-f170.google.com with SMTP id uq10so2435894igb.1
+	for <yocto@yoctoproject.org>; Fri, 21 Mar 2014 11:22:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-type;
+	bh=ZxShSuUe3RxYvK/+UtdQacP+MBBLh9F5xi2OprYxrMg=;
+	b=jHi/N0sLPLZ/9vYmWCMKXEmRSC6DWl0lpIYJmtVqcnDOKULqtyl+7jaOOfxQNo75zp
+	Rl87eWkMjpN2zkjwHXyAM6byUckMchMn3CUrOiqx95ZWcLPtLi29RFaLJLMk8Fx9EkE2
+	cy/ytzlBtdM15Fm2krSMSbVtBtSJOFkJFZTdlgDohP8jwujA0PFoj46kZTug3HDMs5tM
+	i2vThcksQfWYcuf0ciCqfFoWDPZyxtGm8faraZiUXV+uWsH0Ec9flvQAvVFefkVTRpA+
+	yrYr8AGL4nRzAFNaoZMrh/NTSnevYQ1eoduSaN6xjzUJgEz9EFaQyU0dpULBkYOyOIDN
+	pPBA==
+X-Received: by 10.50.60.103 with SMTP id g7mr4412331igr.20.1395426174423; Fri,
+	21 Mar 2014 11:22:54 -0700 (PDT)
+MIME-Version: 1.0
+Received: by 10.50.224.136 with HTTP; Fri, 21 Mar 2014 11:22:24 -0700 (PDT)
+In-Reply-To: <CANyK_8e6dfzu64SRLzZdXFE3obT6Td-8UUDqfcoSAqWTjoOq3g@mail.gmail.com>
+References: <CANyK_8e6dfzu64SRLzZdXFE3obT6Td-8UUDqfcoSAqWTjoOq3g@mail.gmail.com>
+From: Khem Raj <raj.khem@gmail.com>
+Date: Fri, 21 Mar 2014 11:22:24 -0700
+Message-ID: <CAMKF1sq7QUcKypgyn8auurnqRd5ZfztdymcxquRwsRxvN4seqw@mail.gmail.com>
+To: Paul Barker <paul@paulbarker.me.uk>
+Cc: Yocto discussion list <yocto@yoctoproject.org>,
+	openembedded-core <openembedded-core@lists.openembedded.org>
+Subject: Re: [OE-core] OpenEmbedded and musl-libc
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -26,92 +39,50 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 21 Mar 2014 17:05:38 -0000
+X-List-Received-Date: Fri, 21 Mar 2014 18:22:55 -0000
+Content-Type: text/plain; charset=UTF-8
 
-Without this we were picking up the host version (if present) and
-possibly failing later on due to "unsafe for cross-compilation" errors.
+On Fri, Mar 21, 2014 at 5:34 AM, Paul Barker <paul@paulbarker.me.uk> wrote:
+> Hi all,
+>
+> musl-libc hit version 1.0.0 yesterday and is starting to look good to
+> me. It's basically a really small but very functional libc that would
+> suit embedded environments very well as an alternative to
+> eglibc/uclibc. I'm personally very interested in using it in my
+> projects and I also think it could fit in well with the aims of
+> poky-tiny.
+>
+> http://www.etalabs.net/compare_libcs.html gives some pretty useful info.
+>
+> I'm basically emailing to see if anyone else is interested in this or
+> if anyone has looked at using it before in OpenEmbedded as a google
+> for previous discussions didn't turn anything up.
+>
+> I'm currently very busy between various projects so I don't have time
+> to hack together a musl-libc recipe myself but I should have time to
+> help test it.
 
-Signed-off-by: Paul Eggleton <paul.eggleton@linux.intel.com>
----
- .../qt-x11-free-3.3.8b-freetype251.patch           | 53 ++++++++++++++++++++++
- recipes-qt3/qt3/qt-x11-free_3.3.7.bb               |  3 +-
- 2 files changed, 55 insertions(+), 1 deletion(-)
- create mode 100644 recipes-qt3/qt3/qt-x11-free/qt-x11-free-3.3.8b-freetype251.patch
+it has been under my radar for a while. I have actually locally made
+toolchains with
+clang+musl and it seems to be coming along. its licensed differently thats
+the biggest attraction for folks who do static linking. Otherwise it still
+doesnt yet support variety of architectures that other libcs support. given
+now we have kconfig for eglibc too may be it fills in the nommu gap much
+like uclibc does today. I have some plans for 1.7 for adding it to OE
+may be in a layer
+of its own first and then migrate it to OE-core
 
-diff --git a/recipes-qt3/qt3/qt-x11-free/qt-x11-free-3.3.8b-freetype251.patch b/recipes-qt3/qt3/qt-x11-free/qt-x11-free-3.3.8b-freetype251.patch
-new file mode 100644
-index 0000000..99b1fff
---- /dev/null
-+++ b/recipes-qt3/qt3/qt-x11-free/qt-x11-free-3.3.8b-freetype251.patch
-@@ -0,0 +1,53 @@
-+Fix for FreeType 2.5.1
-+
-+Patch originally from Fedora.
-+
-+Upstream-Status: Inappropriate [unmaintained]
-+
-+Signed-off-by: Paul Eggleton <paul.eggleton@linux.intel.com>
-+
-+diff -ur qt-x11-free-3.3.8b/config.tests/x11/xfreetype.test qt-x11-free-3.3.8b-freetype251/config.tests/x11/xfreetype.test
-+--- qt-x11-free-3.3.8b/config.tests/x11/xfreetype.test	2008-01-15 20:09:15.000000000 +0100
-++++ qt-x11-free-3.3.8b-freetype251/config.tests/x11/xfreetype.test	2014-02-23 19:22:02.000000000 +0100
-+@@ -116,33 +116,14 @@
-+ # check for freetype2 headers
-+ FREETYPE2_INCDIR=
-+ if [ "$XFT" = "yes" ]; then
-+-    INC="freetype2/freetype/freetype.h"
-+-    XDIRS=`sed -n -e '/^QMAKE_INCDIR_X11[	]*=/ { s/[^=]*=[	 ]*//; s/-I/ /g; p; }' $XCONFIG`
-+-    LDIRS=`sed -n -e '/^QMAKE_INCDIR[	]*=/ { s/[^=]*=[	 ]*//; s/-I/ /g; p; }' $XCONFIG`
-+-    INCDIRS="$IN_INCDIRS $XDIRS $LDIRS /usr/include /include"
-+-    F=
-+-    for INCDIR in $INCDIRS; do
-+-	if [ -f $INCDIR/$INC ]; then
-+-	    # detect major version of freetype2
-+-	    FREETYPE_MAJOR=`grep "#define FREETYPE_MAJOR" $INCDIR/$INC | head -n 1 | awk '{ print \$3 }'`
-+-	    FREETYPE_MINOR=`grep "#define FREETYPE_MINOR" $INCDIR/$INC | head -n 1 | awk '{ print \$3 }'`
-+-	    FREETYPE_PATCH=`grep "#define FREETYPE_PATCH" $INCDIR/$INC | head -n 1 | awk '{ print \$3 }'`
-+-	    test -z "$FREETYPE_PATCH" && FREETYPE_PATCH="0"
-+-	    [ "$VERBOSE" = "yes" ] && \
-+-		echo "  Found Freetype version $FREETYPE_MAJOR.$FREETYPE_MINOR.$FREETYPE_PATCH"
-+-	    if [ "$FREETYPE_MAJOR" -eq "2" ] \
-+-               && [ "$FREETYPE_MINOR" -ge "0" -a "$FREETYPE_PATCH" -ge "9" ] \
-+-               || [ "$FREETYPE_MINOR" -ge "1" ]; then
-+-		F=yes
-+-		FREETYPE2_INCDIR=$INCDIR/freetype2
-+-		[ "$VERBOSE" = "yes" ] && echo "  Found $INC in $INCDIR"
-+-		break
-+-	    fi
-+-	fi
-+-    done
-+-    if [ -z "$F" ]; then
-+-	XFT=no
-+-	[ "$VERBOSE" = "yes" ] && echo "  Could not find $INC anywhere in $INCDIRS"
-++    # minimum is freetype 2.0.9, which had libtool version 6.3.0
-++    if pkg-config --atleast-version=6.3.0 freetype2; then
-++        [ "$VERBOSE" = "yes" ] && echo "  Found Freetype >= 2.0.9 using pkg-config"
-++        FREETYPE2_INCDIR=`pkg-config --cflags-only-I freetype2 | sed -e 's/^-I//g' -e 's/ -I/ /g'`
-++        [ "$VERBOSE" = "yes" ] && echo "  Freetype headers in $FREETYPE2_INCDIR"
-++    else
-++        XFT=no
-++        [ "$VERBOSE" = "yes" ] && echo "  Could not find Freetype >= 2.0.9 using pkg-config"
-+     fi
-+ fi
-+ 
-diff --git a/recipes-qt3/qt3/qt-x11-free_3.3.7.bb b/recipes-qt3/qt3/qt-x11-free_3.3.7.bb
-index af4fc01..89f976d 100644
---- a/recipes-qt3/qt3/qt-x11-free_3.3.7.bb
-+++ b/recipes-qt3/qt3/qt-x11-free_3.3.7.bb
-@@ -9,7 +9,8 @@ SRC_URI = "ftp://ftp.trolltech.com/qt/source/qt-x11-free-${PV}.tar.bz2 \
- 	   file://configure.patch \
- 	   file://no-examples.patch \
-            file://gcc4_1-HACK.patch \
--           file://qt3-cstddef.patch"
-+           file://qt3-cstddef.patch \
-+           file://qt-x11-free-3.3.8b-freetype251.patch"
- 
- require qt-x11-free-common.inc
- 
--- 
-1.8.5.3
-
+>
+> Thanks,
+>
+> --
+> Paul Barker
+>
+> Email: paul@paulbarker.me.uk
+> http://www.paulbarker.me.uk
+> --
+> _______________________________________________
+> Openembedded-core mailing list
+> Openembedded-core@lists.openembedded.org
+> http://lists.openembedded.org/mailman/listinfo/openembedded-core
 
