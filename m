@@ -1,36 +1,28 @@
-Return-Path: <paul.betafive@gmail.com>
-Received: from mail-vc0-f169.google.com (mail-vc0-f169.google.com
-	[209.85.220.169])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id ABB70E00B86
-	for <yocto@yoctoproject.org>; Fri, 21 Mar 2014 12:41:57 -0700 (PDT)
-Received: by mail-vc0-f169.google.com with SMTP id ik5so3216856vcb.28
-	for <yocto@yoctoproject.org>; Fri, 21 Mar 2014 12:41:56 -0700 (PDT)
+Return-Path: <jatedev@gmail.com>
+Received: from mail-qc0-f196.google.com (mail-qc0-f196.google.com
+	[209.85.216.196])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B5925E00B8C
+	for <yocto@yoctoproject.org>; Fri, 21 Mar 2014 14:27:52 -0700 (PDT)
+Received: by mail-qc0-f196.google.com with SMTP id i17so1144025qcy.3
+	for <yocto@yoctoproject.org>; Fri, 21 Mar 2014 14:27:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:sender:in-reply-to:references:from:date:message-id
-	:subject:to:cc:content-type;
-	bh=dYzrLEXk+9LO0+1E2a+e6CjVETbmBH4mnw8J3Oa0jzg=;
-	b=Ix8YgdPhiOLzOhEJi3cVjQi/CjTHJfjyBnyGn5jm+AtCDoDCKRusLniHMkNX8K1Dvu
-	KxePBibeFl59he6e88MU5UpVDjdd+R1Lmy2NVdlfK9+td6hEWxpd6tncw5/SDR5Oj8+q
-	FDCIFczlUTnwJ1FYY/2yfBpAKZtBQ7InO7sEmwLqUWo1bRcdMn2lcf/pdOdF6Kjr7dUF
-	XhGfUEaa+0CWftbFwvvnKZL1SUslMQAXJpPbBtKi/OUKfPrW1CMt8jcF+kH7qt7j7Mm3
-	Vsshy6eKGsf0qkyX7yGnHceibhSRSw5Xa/SZDmDf5qTH36u2SvvB0KpjSr6Dzu3OkNyk
-	b6ew==
-X-Received: by 10.52.253.75 with SMTP id zy11mr1956318vdc.10.1395430916837;
-	Fri, 21 Mar 2014 12:41:56 -0700 (PDT)
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=nCgyo32c1h9r+O+kpfOZnB7GalmIcejuf8Rzm4f/QT4=;
+	b=jS1WLHpl3x5DRR3TnlDkQpHFeCKPrS+DALDkP39y+Wmo3EeDfwxCPVfsSDTPqgDYUt
+	aOOYxvxNoRaCEK/nBMz1w2R8wwTg2INs6pXeNy/js2xCu0tH0w+sYdXSSIe7xKv3/Giv
+	5q+y+N9ATBD3FcW7M8QY9gYVC6kpb27qLhFM5/HOEvepndYJICNiGrQqZxL0eunQzuq5
+	U1W2fjPSD3LM0a5vNm9gDocpMj3yS35VQxtuiwr4Hlk4lWDvAh15aQ6OtXytXUX7QlAR
+	wBk5098RqDvet7tcAwwwCyR1rHHeJzFCb7uO85/MDh+DABA8/TlIY48pARFpzrYnU80r
+	w1TQ==
 MIME-Version: 1.0
-Sender: paul.betafive@gmail.com
-Received: by 10.220.239.135 with HTTP; Fri, 21 Mar 2014 12:41:16 -0700 (PDT)
-In-Reply-To: <CAMKF1sq7QUcKypgyn8auurnqRd5ZfztdymcxquRwsRxvN4seqw@mail.gmail.com>
-References: <CANyK_8e6dfzu64SRLzZdXFE3obT6Td-8UUDqfcoSAqWTjoOq3g@mail.gmail.com>
-	<CAMKF1sq7QUcKypgyn8auurnqRd5ZfztdymcxquRwsRxvN4seqw@mail.gmail.com>
-From: Paul Barker <paul@paulbarker.me.uk>
-Date: Fri, 21 Mar 2014 19:41:16 +0000
-X-Google-Sender-Auth: BuCYD6Ad7lrkC4VFvqVeY3r-ZK0
-Message-ID: <CANyK_8ecTyGxdha8E=cTX0KEYcVfezZZBGtGuQuYi3_GBEg8nw@mail.gmail.com>
-To: Khem Raj <raj.khem@gmail.com>
-Cc: Yocto discussion list <yocto@yoctoproject.org>,
-	openembedded-core <openembedded-core@lists.openembedded.org>
-Subject: Re: [OE-core] OpenEmbedded and musl-libc
+X-Received: by 10.224.151.130 with SMTP id c2mr58265742qaw.67.1395437271335;
+	Fri, 21 Mar 2014 14:27:51 -0700 (PDT)
+Received: by 10.140.87.237 with HTTP; Fri, 21 Mar 2014 14:27:51 -0700 (PDT)
+Date: Fri, 21 Mar 2014 17:27:51 -0400
+Message-ID: <CAPphmgYBnU6-NtLt+FDgpc97CKsnU6y8OSSGGO9W9isbf0xH7g@mail.gmail.com>
+From: Jate S <jatedev@gmail.com>
+To: yocto@yoctoproject.org
+Subject: linux-yocto fetch bottleneck
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,54 +34,21 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 21 Mar 2014 19:41:58 -0000
+X-List-Received-Date: Fri, 21 Mar 2014 21:27:52 -0000
 Content-Type: text/plain; charset=ISO-8859-1
 
-On 21 March 2014 18:22, Khem Raj <raj.khem@gmail.com> wrote:
-> On Fri, Mar 21, 2014 at 5:34 AM, Paul Barker <paul@paulbarker.me.uk> wrote:
->> Hi all,
->>
->> musl-libc hit version 1.0.0 yesterday and is starting to look good to
->> me. It's basically a really small but very functional libc that would
->> suit embedded environments very well as an alternative to
->> eglibc/uclibc. I'm personally very interested in using it in my
->> projects and I also think it could fit in well with the aims of
->> poky-tiny.
->>
->> http://www.etalabs.net/compare_libcs.html gives some pretty useful info.
->>
->> I'm basically emailing to see if anyone else is interested in this or
->> if anyone has looked at using it before in OpenEmbedded as a google
->> for previous discussions didn't turn anything up.
->>
->> I'm currently very busy between various projects so I don't have time
->> to hack together a musl-libc recipe myself but I should have time to
->> help test it.
->
-> it has been under my radar for a while. I have actually locally made
-> toolchains with
-> clang+musl and it seems to be coming along. its licensed differently thats
-> the biggest attraction for folks who do static linking. Otherwise it still
-> doesnt yet support variety of architectures that other libcs support. given
-> now we have kconfig for eglibc too may be it fills in the nommu gap much
-> like uclibc does today. I have some plans for 1.7 for adding it to OE
-> may be in a layer
-> of its own first and then migrate it to OE-core
->
+I am running into a bottleneck with the linux-yocto recipe on dora
+1.5.1. The fetch retrieves git2_git.yoctoproject.org.git.tar.gz, but
+then it hits a bottleneck when it must do a git fetch to update to the
+required references. The git server does not have high bandwdith.
 
-Yea, that's the sort of approach I was expecting. Getting musl to
-build is the easy bit, making it usable as the system libc for an
-entire image is the difficult bit. I think at least initially we'd
-need a few bbappends in a meta-musl layer to fix packages which don't
-compile out-of-the-box with musl.
+One workaround that I've found is to archive the git repository and
+replace the tar.gz in the downloads directory. The recipe then finds
+the required references.
 
-I don't think musl fills the nommu gap though - from the comparison
-page I linked to it says musl doesn't support mmu-less
-microcontrollers.
+Would BB_GENERATE_MIRROR_TARBALLS actually take care of this? Any
+other recommendations?
 
--- 
-Paul Barker
 
-Email: paul@paulbarker.me.uk
-http://www.paulbarker.me.uk
+- Jate S.
 
