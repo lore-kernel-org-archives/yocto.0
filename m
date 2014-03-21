@@ -1,32 +1,31 @@
-Return-Path: <ross.burton@intel.com>
-Received: from mail-qg0-f50.google.com (mail-qg0-f50.google.com
-	[209.85.192.50])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7EA32E00B62
-	for <yocto@yoctoproject.org>; Fri, 21 Mar 2014 06:11:18 -0700 (PDT)
-Received: by mail-qg0-f50.google.com with SMTP id q108so6951612qgd.9
-	for <yocto@yoctoproject.org>; Fri, 21 Mar 2014 06:11:18 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc:content-type;
-	bh=cRnaAVv08L4GLW7daRYm+epX/Pi0eevv/2jULjY/Jdk=;
-	b=KUiord5qELBKpEjnd7P/w0Ns95YxhOQv+uN64lNIpK9ih74f8el4Wc151uafljzP4L
-	4+Apy/aRW/rgqpepg6kTylL65CMjWxSGqUNMMkYOoYvEo/OjT6Zkj2FvBlv/h6rlKMFs
-	0hEFZEOELWIjGzWkTUjTsmWKWVhEFURquc3oJAFFBq/NM7YaibluDMu9HMJjYNx4pZHr
-	zBiCyWUfWtPt6Pioelk5iuGYHxULHfWKGZEo+B7KP2jFgYsyQ+LETBcx5pRLNeHgXgHG
-	UsLTNl3c0d7UtAoREiK3WoBTZN0+GEC1pLNFUjbc8t4AhAAqe1dFxyWJqiYPVBxhfbov
-	eCyQ==
-X-Gm-Message-State: ALoCoQliRnMzJRimspaAER+gdq4ZvGPJMw1Zp3p19FZOeeTNKwZfJiSebSsOav8sIsUPrqegrTiQ
-X-Received: by 10.224.45.197 with SMTP id g5mr57316528qaf.52.1395407478090;
-	Fri, 21 Mar 2014 06:11:18 -0700 (PDT)
+Return-Path: <seth.boll@gmail.com>
+Received: from mail-oa0-f50.google.com (mail-oa0-f50.google.com
+	[209.85.219.50])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3E8AAE00B63
+	for <yocto@yoctoproject.org>; Fri, 21 Mar 2014 06:26:09 -0700 (PDT)
+Received: by mail-oa0-f50.google.com with SMTP id i7so2476839oag.37
+	for <yocto@yoctoproject.org>; Fri, 21 Mar 2014 06:26:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type;
+	bh=a7Bx5Pvd3UdQSzOUyP2nTsGMHTPYsjQoNrbbKYvQQW4=;
+	b=sZTmEqMtgErMn/lUi+WCYdXAXx2T8aj+41m3L1jYywOv/abnNRYW6sLXgl8Rpw5x+W
+	glgSrB3Q+jJsa/L1Q+C11qBlFOO+/rLGn6r/BcFWjKdsEaWixn2hfv6STedOcDEqiDJX
+	NqnWnRJ7DWzZk/MQCHo+/ueVFYDt8ceSukXFOR97/9iYeK7ahwRt9tAK5pa0SbsVBzM0
+	F6quTwF554dmIjrcRT2JD1RXNl8Ei8p/MjSyjzXL7mLLAncF4SFnkSNOT5ZzJjLCqHO5
+	mG4oDSy7gYaEDGb5JN8vlaI7n9Ra3p3iLuAILai7uXGJshMEceIsEJfhyPzXe6yn0VqP
+	wVXw==
 MIME-Version: 1.0
-Received: by 10.140.27.167 with HTTP; Fri, 21 Mar 2014 06:10:58 -0700 (PDT)
-In-Reply-To: <CANyK_8e6dfzu64SRLzZdXFE3obT6Td-8UUDqfcoSAqWTjoOq3g@mail.gmail.com>
+X-Received: by 10.182.33.6 with SMTP id n6mr12128857obi.48.1395408368744; Fri,
+	21 Mar 2014 06:26:08 -0700 (PDT)
+Received: by 10.60.0.112 with HTTP; Fri, 21 Mar 2014 06:26:08 -0700 (PDT)
+In-Reply-To: <CAJTo0Las0o_JcsvW-X+L=EQAvUf3yVVQBunoCi=cAzR=3y2DrA@mail.gmail.com>
 References: <CANyK_8e6dfzu64SRLzZdXFE3obT6Td-8UUDqfcoSAqWTjoOq3g@mail.gmail.com>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Fri, 21 Mar 2014 13:10:58 +0000
-Message-ID: <CAJTo0Las0o_JcsvW-X+L=EQAvUf3yVVQBunoCi=cAzR=3y2DrA@mail.gmail.com>
-To: Paul Barker <paul@paulbarker.me.uk>
+	<CAJTo0Las0o_JcsvW-X+L=EQAvUf3yVVQBunoCi=cAzR=3y2DrA@mail.gmail.com>
+Date: Fri, 21 Mar 2014 08:26:08 -0500
+Message-ID: <CA+JN8xOH+=oJe3w_e06q3VJqZ9T_mQdmbUK8CBL3RE9+h=BiUQ@mail.gmail.com>
+From: Seth Bollinger <seth.boll@gmail.com>
+To: "Burton, Ross" <ross.burton@intel.com>
 Cc: Yocto discussion list <yocto@yoctoproject.org>,
 	openembedded-core <openembedded-core@lists.openembedded.org>
 Subject: Re: [OE-core] OpenEmbedded and musl-libc
@@ -41,17 +40,37 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 21 Mar 2014 13:11:21 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Fri, 21 Mar 2014 13:26:10 -0000
+Content-Type: multipart/alternative; boundary=089e0158a83622bf4e04f51dd4e8
 
-On 21 March 2014 12:34, Paul Barker <paul@paulbarker.me.uk> wrote:
-> I'm currently very busy between various projects so I don't have time
-> to hack together a musl-libc recipe myself but I should have time to
-> help test it.
+--089e0158a83622bf4e04f51dd4e8
+Content-Type: text/plain; charset=ISO-8859-1
 
-I saw that yesterday too and thought it could be interesting for
-Yocto.  I'm curious as to why it's better than uclibc though
-(genuinely curious, I know little about uclibc beyond "it's smaller").
+>
+>
+> I saw that yesterday too and thought it could be interesting for
+> Yocto.  I'm curious as to why it's better than uclibc though
+> (genuinely curious, I know little about uclibc beyond "it's smaller").
+>
 
-Ross
+It been a while since I've reviewed uclibc, but doesn't it break a lot of
+software with its vfork only paradigm?
 
+Seth
+
+--089e0158a83622bf4e04f51dd4e8
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div class=3D"gmail_extra"><div class=3D"gmail_quote"><blo=
+ckquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #c=
+cc solid;padding-left:1ex"><br>
+I saw that yesterday too and thought it could be interesting for<br>
+Yocto. =A0I&#39;m curious as to why it&#39;s better than uclibc though<br>
+(genuinely curious, I know little about uclibc beyond &quot;it&#39;s smalle=
+r&quot;).<br></blockquote><div><br></div><div>It been a while since I&#39;v=
+e reviewed uclibc, but doesn&#39;t it break a lot of software with its vfor=
+k only paradigm?</div>
+<div><br></div><div>Seth</div></div><br></div></div>
+
+--089e0158a83622bf4e04f51dd4e8--
