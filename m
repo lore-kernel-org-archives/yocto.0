@@ -1,30 +1,31 @@
-Return-Path: <boon.leong.ong@intel.com>
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8B2C9E00B54
-	for <yocto@yoctoproject.org>; Fri, 21 Mar 2014 03:07:05 -0700 (PDT)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga101.fm.intel.com with ESMTP; 21 Mar 2014 03:07:04 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.97,703,1389772800"; d="scan'208";a="503584786"
-Received: from pgsmsx101.gar.corp.intel.com ([10.221.44.78])
-	by fmsmga002.fm.intel.com with ESMTP; 21 Mar 2014 03:07:03 -0700
-Received: from pgsmsx105.gar.corp.intel.com ([169.254.8.207]) by
-	PGSMSX101.gar.corp.intel.com ([169.254.1.140]) with mapi id
-	14.03.0123.003; Fri, 21 Mar 2014 18:07:02 +0800
-From: "Ong, Boon Leong" <boon.leong.ong@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Question on cross-compiling 32-bit application on 64-bit
-	target platform
-Thread-Index: Ac9E6LKCMPPIDrFhR9KFOwsbKeRHUAABIthw
-Date: Fri, 21 Mar 2014 10:07:02 +0000
-Message-ID: <AF233D1473C1364ABD51D28909A1B1B7240CB168@pgsmsx105.gar.corp.intel.com>
-Accept-Language: en-GB, en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [172.30.20.206]
+Return-Path: <paul.betafive@gmail.com>
+Received: from mail-ve0-f177.google.com (mail-ve0-f177.google.com
+	[209.85.128.177])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9E16BE00B5D
+	for <yocto@yoctoproject.org>; Fri, 21 Mar 2014 05:35:05 -0700 (PDT)
+Received: by mail-ve0-f177.google.com with SMTP id sa20so2456140veb.36
+	for <yocto@yoctoproject.org>; Fri, 21 Mar 2014 05:35:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:sender:from:date:message-id:subject:to:content-type;
+	bh=KJYEkQaNKyUZ52QNA6PKXcLNOwqmZiYvI0O4jKZDJ8o=;
+	b=RZakvEnih9UDg99OoQTcllavCM8OOJuxAznaiXxTS64hbDjqbY6ODSDu1w0F0/dWJ4
+	HYwPHhmWNYZ/Ui9zpR0GIuEM9vzmcu0pepcWohX8rTNnrDvMQry2TtQ2OOvfPSS5uVAP
+	MFLntdnssnjLeQ77tcq8XAtvnGH61RN7AZhBuUNEZ2tVS/m7DW0JRIdqH7at0Vgt1LgA
+	dkFSadzH2ra3tq756AMVUke96xZmyCj/BdlvJv5wntIM4aO+Ls7ZGJcwbreq8l7ryTFE
+	2T0gu149iXR1qgFV29kNnd7eghZw9zCSD243OOiyQoziXeZZ5x8bSDvMgutFnMK7bwEC
+	0xVA==
+X-Received: by 10.52.170.16 with SMTP id ai16mr63317vdc.69.1395405305133; Fri,
+	21 Mar 2014 05:35:05 -0700 (PDT)
 MIME-Version: 1.0
-Cc: "Khade, Abhishek" <abhishek.khade@intel.com>
-Subject: Question on cross-compiling 32-bit application on 64-bit target platform
+Sender: paul.betafive@gmail.com
+Received: by 10.220.239.135 with HTTP; Fri, 21 Mar 2014 05:34:24 -0700 (PDT)
+From: Paul Barker <paul@paulbarker.me.uk>
+Date: Fri, 21 Mar 2014 12:34:24 +0000
+X-Google-Sender-Auth: XQjc9vVFZC8TYMlbdfsI21ZCpgw
+Message-ID: <CANyK_8e6dfzu64SRLzZdXFE3obT6Td-8UUDqfcoSAqWTjoOq3g@mail.gmail.com>
+To: Yocto discussion list <yocto@yoctoproject.org>, 
+	openembedded-core <openembedded-core@lists.openembedded.org>
+Subject: OpenEmbedded and musl-libc
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -36,19 +37,33 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 21 Mar 2014 10:07:06 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Fri, 21 Mar 2014 12:35:08 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
-Hi,=20
-	Could anyone comment on whether we can cross-compile a 32-bit application =
-on a 64-bit Intel machine booted with core-image-sato-sdk hddimg.=20
-	If it is not enabled by default on the SDK image, how can I configure the =
-recipe to do so when I build core-image-sato-sdk?=20
-	Could anyone shed some light on this. Much appreciated.
+Hi all,
 
+musl-libc hit version 1.0.0 yesterday and is starting to look good to
+me. It's basically a really small but very functional libc that would
+suit embedded environments very well as an alternative to
+eglibc/uclibc. I'm personally very interested in using it in my
+projects and I also think it could fit in well with the aims of
+poky-tiny.
 
-Thanks
-Boon Leong=09
+http://www.etalabs.net/compare_libcs.html gives some pretty useful info.
+
+I'm basically emailing to see if anyone else is interested in this or
+if anyone has looked at using it before in OpenEmbedded as a google
+for previous discussions didn't turn anything up.
+
+I'm currently very busy between various projects so I don't have time
+to hack together a musl-libc recipe myself but I should have time to
+help test it.
+
+Thanks,
+
+-- 
+Paul Barker
+
+Email: paul@paulbarker.me.uk
+http://www.paulbarker.me.uk
 
