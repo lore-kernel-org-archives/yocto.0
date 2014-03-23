@@ -1,43 +1,35 @@
-Return-Path: <trevor.woerner@linaro.org>
-Received: from mail-oa0-f51.google.com (mail-oa0-f51.google.com
-	[209.85.219.51])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3A3DDE00B94
-	for <yocto@yoctoproject.org>; Sat, 22 Mar 2014 14:07:32 -0700 (PDT)
-Received: by mail-oa0-f51.google.com with SMTP id i4so4147370oah.38
-	for <yocto@yoctoproject.org>; Sat, 22 Mar 2014 14:07:31 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
-	:cc:subject:references:in-reply-to:content-type
-	:content-transfer-encoding;
-	bh=IVe2IyFlHzw91lB5Z/hlY8Xawwd0IxxVk1BFmlrXAqs=;
-	b=N5Dncac+WvEjjmhmKppkctDNZ7pvwcM16zP5wv3lUnZ7Ey68dllT7l8jysYvN6ecSQ
-	wzk8zYC/JfSQRvAhMeH3EzdanS5ZNfBH7E9z4v0Ibk8r/uV5jAFYp39Dj15SYJ3M35zq
-	ZOr/QUEP+flpKTH8/T3fsPrvU6a0fP9dlj8Qq0oDAhr8kV95qrGCRC1By/LdLbaXp2Ik
-	N0VVU8+CnrAb5rSEuDPBNC9oOrv7P8Zw8F4t+pGmgvF06KM0T9s8IW05t8CNXf/9yvVV
-	ai87oXLGNvC3gnsLyZLjn/tshMZiHByaSXrmK4O49QNippo5wTJxR/V9HYdvMwDxdqB+
-	sSDA==
-X-Gm-Message-State: ALoCoQmPP3RWxnaWYahnb1R0baT0ZDM63zA+B3vDXCVrpenpQ7N6ADJyjsdgbnocFx67EIC/3Miu
-X-Received: by 10.182.22.18 with SMTP id z18mr18663857obe.42.1395522451265;
-	Sat, 22 Mar 2014 14:07:31 -0700 (PDT)
-Received: from [192.168.141.83] (69-165-220-158.dsl.teksavvy.com.
-	[69.165.220.158])
-	by mx.google.com with ESMTPSA id cg5sm14826484obc.9.2014.03.22.14.07.30
-	for <multiple recipients>
+Return-Path: <raj.khem@gmail.com>
+Received: from mail-pb0-f44.google.com (mail-pb0-f44.google.com
+	[209.85.160.44])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 43EEDE0073C
+	for <yocto@yoctoproject.org>; Sun, 23 Mar 2014 01:35:23 -0700 (PDT)
+Received: by mail-pb0-f44.google.com with SMTP id rp16so4168038pbb.17
+	for <yocto@yoctoproject.org>; Sun, 23 Mar 2014 01:35:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=from:content-type:subject:message-id:date:to:mime-version;
+	bh=TrAtByhXX63jsVdpOGp3Wa5fpzrSkTOfkzYIjmTWJC4=;
+	b=ZpJyG88d7FQg96ni4Vg9MtMM9kjYiwcgWAO2YOn1ZvCeBlolz9IezHAh/2JijH+gwx
+	S1AHptfJ4M2c5T9SXeqwvEGgAizzepF9htU4r3jMUf48mFdDzDwTPxkV+ojWiNszr4Vg
+	zwrYPxezseLHFgIhsYk2B9oBzTv9KW3XBBI26RmhK/fc6QXttgvPjRPgODfTBk98+XDe
+	DWGOWj/lrb4S4LvkXgLwVdbrKa4BEc1IT5/q7yn4LUIkY/cwAgiqsHcQW3zq5fGsmY15
+	FhgwTZiVzBTUxIM32yWmoqiYLpeDfPKiv3FJiDyZOlwPlaO6czKfgm/jF0CLGGo63/Ns
+	FlLQ==
+X-Received: by 10.68.4.8 with SMTP id g8mr1359123pbg.133.1395563723175;
+	Sun, 23 Mar 2014 01:35:23 -0700 (PDT)
+Received: from [192.168.0.33] (99-57-140-30.lightspeed.sntcca.sbcglobal.net.
+	[99.57.140.30]) by mx.google.com with ESMTPSA id
+	ix2sm20560772pbc.45.2014.03.23.01.35.21 for <multiple recipients>
 	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
-	Sat, 22 Mar 2014 14:07:30 -0700 (PDT)
-Message-ID: <532DFB91.2030403@linaro.org>
-Date: Sat, 22 Mar 2014 17:07:29 -0400
-From: Trevor Woerner <trevor.woerner@linaro.org>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:24.0) Gecko/20100101 Thunderbird/24.3.0
-MIME-Version: 1.0
-To: "Burton, Ross" <ross.burton@intel.com>
-References: <532D6D85.7010302@linaro.org>
-	<CAJTo0LYruhkg+c5KOae410SQkV0sRH-h05Y+gL73i1zYfsh0cw@mail.gmail.com>
-In-Reply-To: <CAJTo0LYruhkg+c5KOae410SQkV0sRH-h05Y+gL73i1zYfsh0cw@mail.gmail.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: inherit setuptools
+	Sun, 23 Mar 2014 01:35:21 -0700 (PDT)
+From: Khem Raj <raj.khem@gmail.com>
+Message-Id: <E7466334-BD13-4847-948A-0885F4B4F987@gmail.com>
+Date: Sun, 23 Mar 2014 01:35:18 -0700
+To: openembedded-core <openembedded-core@lists.openembedded.org>,
+	openembeded-devel <openembedded-devel@lists.openembedded.org>,
+	Yocto Project <yocto@yoctoproject.org>
+Mime-Version: 1.0 (Mac OS X Mail 7.2 \(1874\))
+X-Mailer: Apple Mail (2.1874)
+Subject: [RFT] gcc 4.9
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -49,80 +41,64 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 22 Mar 2014 21:07:33 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Sun, 23 Mar 2014 08:35:24 -0000
+X-Groupsio-MsgNum: 18665
+Content-Type: multipart/signed;
+	boundary="Apple-Mail=_9BF578BE-AA5B-4B03-B1B7-E02D90E99D70";
+	protocol="application/pgp-signature"; micalg=pgp-sha1
+
+--Apple-Mail=_9BF578BE-AA5B-4B03-B1B7-E02D90E99D70
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain;
+	charset=us-ascii
+
+Hi
+
+gcc 4.9 release is coming in summer therefore I have put together the =
+recipes here
+
+=
+http://git.openembedded.org/openembedded-core-contrib/log/?h=3Dkraj/gcc-4.=
+9
+
+So far my testing has been booting angstrom/systemd-image on all =
+supported
+qemu machines (except qemumips64 where there is a know kernel issue) =
+both eglibc/uclibc
+images
+
+we would like to target them for 1.7 release so if you have cycles to =
+test out
+your image/machine combos please do so I would be interested in feedback =
+and would accumulate fixes in this branch
+
+If you run into some issues with some packages then its recommended to =
+go through
+
+http://gcc.gnu.org/gcc-4.9/changes.html
+
+and especially http://gcc.gnu.org/gcc-4.9/porting_to.html
+
+Which could help in cooking patches
+
+Thanks
+
+-Khem
+
+--Apple-Mail=_9BF578BE-AA5B-4B03-B1B7-E02D90E99D70
 Content-Transfer-Encoding: 7bit
+Content-Disposition: attachment;
+	filename=signature.asc
+Content-Type: application/pgp-signature;
+	name=signature.asc
+Content-Description: Message signed with OpenPGP using GPGMail
 
-On 03/22/14 15:45, Burton, Ross wrote:
-> On 22 March 2014 11:01, Trevor Woerner <trevor.woerner@linaro.org> wrote:
->> | Traceback (most recent call last):
->> |   File
->> "/SSD/build/fsl/build-wandboard-dual/tmp/sysroots/x86_64-linux/usr/bin/bmaptool",
->> line 65, in <module>
->> |     from bmaptools import BmapCreate, BmapCopy, BmapHelpers, TransRead
->> | ImportError: No module named bmaptools
-> That's interesting because as can be seen in your listing, there *is*
-> a module called bmaptools.  Does bmap do anything "clever" (read:
-> stupid) before it does that import?
+-----BEGIN PGP SIGNATURE-----
+Comment: GPGTools - https://gpgtools.org
 
-Oh wow, you're right. The "bmaptools" python script which is installed
-"by-hand" simply does:
+iEYEARECAAYFAlMunMYACgkQuwUzVZGdMxTeuACfbutTrBxLZzGI7wk3M5DW5jWh
+OXEAnj1goor8FwlOOyvrq4P+7UI8521J
+=PiO2
+-----END PGP SIGNATURE-----
 
-    #!/usr/bin/python
-    # EASY-INSTALL-SCRIPT: 'bmap-tools==3.2','bmaptool'
-    __requires__ = 'bmap-tools==3.2'
-    import pkg_resources
-    pkg_resources.run_script('bmap-tools==3.2', 'bmaptool')
-
-
-Whereas the one installed by using OE looks more like a regular python
-script. It's starts with:
-
-    #!/usr/bin/env python
-    [...snip...]
-    VERSION = "3.2"
-
-    import argparse
-    import sys
-    import os
-    import stat
-    import time
-    import logging
-    import tempfile
-    import traceback
-    import shutil
-    import io
-    from bmaptools import BmapCreate, BmapCopy, BmapHelpers, TransRead
-
-    class NamedFile(object):
-    [...snip...]
-
-
-And if my understanding of "inherit setuptools" is correct, this class
-explicitly circumvents the use of easy-install. (?)
-
-> And FWIW, I didn't get much out of bmap when I tried it because of how
-> our images were constructed: all of the sparse segments disappeared
-> when a whole-disk image was created.  I got a much better win by using
-> USB 3: around 10 seconds to write a gigabyte+ image to a stick...
-
-Interesting.
-
-By default an image created by OE will be just slightly larger than what
-is required. So a core-image-minimal will be just ~80MB, most of the
-empty space is removed, and the image can be dd'ed onto a microSD card
-quickly. But unless I partition the device (for example, 4GB microSD
-card) myself, the resulting image will only see ~80MB of disk space.
-When I force the build to generate a 4GB image (to load into a 4GB
-microSD card and have the remaining space available) using dd takes
-almost 50 minutes. Using bmap to load the same image onto the same 4GB
-card takes under 15 minutes.
-
-So yes, there's no win if you're just burning the image that comes out
-of the build, because these images only contain the useful parts. But
-the images which come out of the build only create a partition that is
-slightly larger than the used space, leaving the rest of the device
-unusable (unless you partition it yourself).
-
-Or is there some trick I'm missing?
-
+--Apple-Mail=_9BF578BE-AA5B-4B03-B1B7-E02D90E99D70--
