@@ -1,34 +1,28 @@
-Return-Path: <scott.m.rifenbark@intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 21D6CE00BC0
-	for <yocto@yoctoproject.org>; Mon, 24 Mar 2014 12:40:13 -0700 (PDT)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga102.jf.intel.com with ESMTP; 24 Mar 2014 12:35:36 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.97,722,1389772800"; d="scan'208";a="479050215"
-Received: from orsmsx108.amr.corp.intel.com ([10.22.240.6])
-	by orsmga001.jf.intel.com with ESMTP; 24 Mar 2014 12:40:10 -0700
-Received: from orsmsx160.amr.corp.intel.com (10.22.226.43) by
-	ORSMSX108.amr.corp.intel.com (10.22.240.6) with Microsoft SMTP Server
-	(TLS) id 14.3.123.3; Mon, 24 Mar 2014 12:40:09 -0700
-Received: from orsmsx101.amr.corp.intel.com ([169.254.8.45]) by
-	ORSMSX160.amr.corp.intel.com ([169.254.13.164]) with mapi id
-	14.03.0123.003; Mon, 24 Mar 2014 12:40:09 -0700
-From: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
-To: Richard Purdie <richard.purdie@linuxfoundation.org>, openembedded-core
-	<openembedded-core@lists.openembedded.org>, yocto <yocto@yoctoproject.org>
-Thread-Topic: [yocto] Features in Yocto Project 1.7
-Thread-Index: AQHPR3qptUmm4/pCLE6Vsn5TF7tV5prwonzA
-Date: Mon, 24 Mar 2014 19:40:09 +0000
-Message-ID: <41DEA4B02DBDEF40A0F3B6D0DDB1237983F859B5@ORSMSX101.amr.corp.intel.com>
-References: <1395676843.24890.7.camel@ted>
-In-Reply-To: <1395676843.24890.7.camel@ted>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.140]
+Return-Path: <bianchirickkutta@gmail.com>
+Received: from mail-vc0-f182.google.com (mail-vc0-f182.google.com
+	[209.85.220.182])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A620BE00BD0
+	for <yocto@yoctoproject.org>; Mon, 24 Mar 2014 14:51:19 -0700 (PDT)
+Received: by mail-vc0-f182.google.com with SMTP id ks9so6676366vcb.27
+	for <yocto@yoctoproject.org>; Mon, 24 Mar 2014 14:51:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=w66TxOSf78zjXHQC1YP050pHE7jobc/p0i6MhJctS+Q=;
+	b=DzwKlEJJMDjeDrqOWAUYtTF6tA4qXF9Uw8/daqvhRMLSOvbvgN0PHESbqe/YcrChdz
+	4T3zVvfKW9D7YNu+cnqB2X6LGTC3bMlfbLUpWJuXeHHOll3eZFIyUJ5mBJoxRG47gWo6
+	hzComBwJ1J6NwbyrM4rlECtahv4/nFjIFmE+593meFW3fooRqZTuRhSTQpH71hYTsHP3
+	BVB6YOP1jS1DyD6T5wDzcGmBnaRDraOKcxFSXWw/onVDW0ApdZOC0QutXklb16fO/ryn
+	mivwgEgMu6un1BwSDOg6U6Z5d1TmEGHMKBMJ6orHKcLBofGCWURfio0W1+1yqhFvpyHT
+	u1gw==
 MIME-Version: 1.0
-Subject: Re: Features in Yocto Project 1.7
+X-Received: by 10.58.133.15 with SMTP id oy15mr50585166veb.19.1395697878156;
+	Mon, 24 Mar 2014 14:51:18 -0700 (PDT)
+Received: by 10.220.96.66 with HTTP; Mon, 24 Mar 2014 14:51:18 -0700 (PDT)
+Date: Mon, 24 Mar 2014 14:51:18 -0700
+Message-ID: <CAA7h+Eq51KBH4j2hqsecAiVnLV27m1u02JpOUeEyScQXZo-akQ@mail.gmail.com>
+From: Rick Bianchi <bianchirickkutta@gmail.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: wlan0 No lease, failing
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,57 +34,58 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 24 Mar 2014 19:40:16 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Mon, 24 Mar 2014 21:51:19 -0000
+Content-Type: multipart/alternative; boundary=047d7b6d9f823dcffb04f5613c9b
+
+--047d7b6d9f823dcffb04f5613c9b
+Content-Type: text/plain; charset=ISO-8859-1
+
+Gumstix Overo
+
+Build Configuration:
+BB_VERSION = "1.20.0"
+BUILD_SYS = "x86_64-linux"
+NATIVELSBSTRING = "Ubuntu-13.10"
+TARGET_SYS = "arm-poky-linux-gnueabi"
+MACHINE = "overo"
+DISTRO = "poky"
+DISTRO_VERSION = "1.5.1"
+TUNE_FEATURES = "armv7a vfp neon"
+TARGET_FPU = "vfp-neon"
+I have not been able to get any wireless device to connect. I have verified
+on the Linaro build that all equipment works.
+
+I get the following:
+
+root@overo:~$ ifup wlan0
+Successfully initialized wpa_supplicant
+udhcpc (v1.21.1) started
+Sending discover...
+Sending discover...
+Sending discover...
+No lease, failing
+root@overo:~$
+
+--047d7b6d9f823dcffb04f5613c9b
+Content-Type: text/html; charset=ISO-8859-1
 Content-Transfer-Encoding: quoted-printable
 
-I can see this effort as a  basis for re-writing the "Models" chapter of th=
-e development manual.
+<div dir=3D"ltr"><div>Gumstix Overo=A0</div><div><br></div><div>Build Confi=
+guration:<br>BB_VERSION        =3D &quot;1.20.0&quot;<br>BUILD_SYS         =
+=3D &quot;x86_64-linux&quot;<br>NATIVELSBSTRING   =3D &quot;Ubuntu-13.10&qu=
+ot;<br>
+TARGET_SYS        =3D &quot;arm-poky-linux-gnueabi&quot;<br>MACHINE        =
+   =3D &quot;overo&quot;<br>DISTRO            =3D &quot;poky&quot;<br>DISTR=
+O_VERSION    =3D &quot;1.5.1&quot;<br>TUNE_FEATURES     =3D &quot;armv7a vf=
+p neon&quot;<br>
+TARGET_FPU        =3D &quot;vfp-neon&quot;<br></div><div>I have not been ab=
+le to get any wireless device to connect. I have verified on the Linaro bui=
+ld that all equipment works.</div><div><br></div><div>I get the following:<=
+/div>
+<div><br></div><div>root@overo:~$  ifup wlan0<br>Successfully initialized w=
+pa_supplicant<br>udhcpc (v1.21.1) started<br>Sending discover...<br>Sending=
+ discover...<br>Sending discover...<br>No lease, failing<br>root@overo:~$  =
+<br>
+</div></div>
 
-Scott
-
->-----Original Message-----
->From: yocto-bounces@yoctoproject.org [mailto:yocto-
->bounces@yoctoproject.org] On Behalf Of Richard Purdie
->Sent: Monday, March 24, 2014 9:01 AM
->To: openembedded-core; yocto
->Subject: [yocto] Features in Yocto Project 1.7
->
->As development on 1.6 finishes up, its time to think about what we should =
-be
->doing in the 1.7 cycle.
->
->I think from my perspective, in 1.7 I'd like to see us looking at "Develop=
-er
->Workflow". Its a generic topic which I think covered multiple areas (in no
->particular order):
->
->* the ADT/SDK and how it intergrates into the rest of the system
->* toaster
->* python devshell
->* exteralsrc.bbclass
->* memory resident bitbake
->* how a standalone app developer might build an image
->* locked sstate
->
->and probably more I'm forgetting.
->
->If anyone does have things they plan to work on, or ideas for things that
->should be worked on, please do file enhancement requests in the
->bugzilla:
->
->https://bugzilla.yoctoproject.org/
->
->Cheers,
->
->Richard
->
->
->
->--
->_______________________________________________
->yocto mailing list
->yocto@yoctoproject.org
->https://lists.yoctoproject.org/listinfo/yocto
-
+--047d7b6d9f823dcffb04f5613c9b--
