@@ -1,34 +1,34 @@
-Return-Path: <elizabeth.flanagan@intel.com>
-Received: from mail-vc0-f174.google.com (mail-vc0-f174.google.com
-	[209.85.220.174])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 78E0EE00AEC
-	for <yocto@yoctoproject.org>; Mon, 24 Mar 2014 09:51:24 -0700 (PDT)
-Received: by mail-vc0-f174.google.com with SMTP id ld13so6079340vcb.33
-	for <yocto@yoctoproject.org>; Mon, 24 Mar 2014 09:51:23 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:date
-	:message-id:subject:from:to:cc:content-type;
-	bh=NJAtepqktIX1y3EJNWXDhfHGzUliJMeT9GLW0fOtCaA=;
-	b=KhNLPzoUbR6TzoqajF1eFsebMthuWIP7Q6kBxmBhdxk7FD3UKQVmSnVFYi7feh9+0f
-	bkK96a0JocDr7isN3fvAQYL36dlIEt8gCMzvQ9oAZUuGRJnqZJTWqGCigIZ4GAl/BFV0
-	Vn3/XZrHASTQt4LO42Dbts1EK9u/5AJHy+rPhOikjAFFQQ0C8ge8GdZ4u2B2poIVETii
-	vca/WMAFk/IXugDVTLOr5EM934C8GoL2Vp5YMWLi5T7wPMNbS0fkD3e1v1lf4XmppRkT
-	xiVtA9SbLV0jof7alz/NVpZrzeUQQkAQ7RvvI8dTGNWZ4Vee2lTcjpLcgdNr7MwCYctS
-	6ZZA==
-X-Gm-Message-State: ALoCoQl5REWigiMOljYeIum4V0izXYJqaDYlDtXaTxwpzDnvXMqws+jBzNOSdDUHtn8cnOw64TCU
+Return-Path: <scott.m.rifenbark@intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 21D6CE00BC0
+	for <yocto@yoctoproject.org>; Mon, 24 Mar 2014 12:40:13 -0700 (PDT)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga102.jf.intel.com with ESMTP; 24 Mar 2014 12:35:36 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.97,722,1389772800"; d="scan'208";a="479050215"
+Received: from orsmsx108.amr.corp.intel.com ([10.22.240.6])
+	by orsmga001.jf.intel.com with ESMTP; 24 Mar 2014 12:40:10 -0700
+Received: from orsmsx160.amr.corp.intel.com (10.22.226.43) by
+	ORSMSX108.amr.corp.intel.com (10.22.240.6) with Microsoft SMTP Server
+	(TLS) id 14.3.123.3; Mon, 24 Mar 2014 12:40:09 -0700
+Received: from orsmsx101.amr.corp.intel.com ([169.254.8.45]) by
+	ORSMSX160.amr.corp.intel.com ([169.254.13.164]) with mapi id
+	14.03.0123.003; Mon, 24 Mar 2014 12:40:09 -0700
+From: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
+To: Richard Purdie <richard.purdie@linuxfoundation.org>, openembedded-core
+	<openembedded-core@lists.openembedded.org>, yocto <yocto@yoctoproject.org>
+Thread-Topic: [yocto] Features in Yocto Project 1.7
+Thread-Index: AQHPR3qptUmm4/pCLE6Vsn5TF7tV5prwonzA
+Date: Mon, 24 Mar 2014 19:40:09 +0000
+Message-ID: <41DEA4B02DBDEF40A0F3B6D0DDB1237983F859B5@ORSMSX101.amr.corp.intel.com>
+References: <1395676843.24890.7.camel@ted>
+In-Reply-To: <1395676843.24890.7.camel@ted>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.140]
 MIME-Version: 1.0
-X-Received: by 10.220.95.139 with SMTP id d11mr3331813vcn.21.1395679883817;
-	Mon, 24 Mar 2014 09:51:23 -0700 (PDT)
-Received: by 10.52.173.69 with HTTP; Mon, 24 Mar 2014 09:51:23 -0700 (PDT)
-In-Reply-To: <1395198633-6308-1-git-send-email-firemagelynn@gmail.com>
-References: <1395198633-6308-1-git-send-email-firemagelynn@gmail.com>
-Date: Mon, 24 Mar 2014 09:51:23 -0700
-Message-ID: <CAPhnLPB0mNwCqdKVKy2Y8vdcq3Tvf+c=xd2NuKTar_9CZtOJ=g@mail.gmail.com>
-From: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
-To: Lynn Cyrin <firemagelynn@gmail.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: [AUTOBUILDER 1/4] nightly.conf: added package image triggers
+Subject: Re: Features in Yocto Project 1.7
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,51 +40,57 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 24 Mar 2014 16:51:27 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Mon, 24 Mar 2014 19:40:16 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-Pulled into yocto-autobuilder master-next for testing. If it goes ok
-in dev we'll pull into production next opening.
+I can see this effort as a  basis for re-writing the "Models" chapter of th=
+e development manual.
 
--b
+Scott
 
-On Tue, Mar 18, 2014 at 8:10 PM, Lynn Cyrin <firemagelynn@gmail.com> wrote:
-> Added triggers for nightly-rpm, nightly-deb, nightly-ipk into nightly.conf
+>-----Original Message-----
+>From: yocto-bounces@yoctoproject.org [mailto:yocto-
+>bounces@yoctoproject.org] On Behalf Of Richard Purdie
+>Sent: Monday, March 24, 2014 9:01 AM
+>To: openembedded-core; yocto
+>Subject: [yocto] Features in Yocto Project 1.7
 >
-> reference #3140
+>As development on 1.6 finishes up, its time to think about what we should =
+be
+>doing in the 1.7 cycle.
 >
-> Signed-off-by: Lynn Cyrin <firemagelynn@gmail.com>
-> ---
->  buildset-config.master/nightly.conf |    3 ++-
->  1 file changed, 2 insertions(+), 1 deletion(-)
+>I think from my perspective, in 1.7 I'd like to see us looking at "Develop=
+er
+>Workflow". Its a generic topic which I think covered multiple areas (in no
+>particular order):
 >
-> diff --git a/buildset-config.master/nightly.conf b/buildset-config.master/nightly.conf
-> index 085c25f..0bd68e3 100644
-> --- a/buildset-config.master/nightly.conf
-> +++ b/buildset-config.master/nightly.conf
-> @@ -78,7 +78,8 @@ steps: [{'SetDest':{}},
->                             'nightly-multilib': {}, 'nightly-x32': {},
->                             'nightly-ppc': {}, 'nightly-ppc-lsb': {},
->                             'nightly-x86-64': {}, 'nightly-x86-64-lsb': {},
-> -                           'nightly-x86': {}, 'nightly-x86-lsb': {}},
-> +                           'nightly-x86': {}, 'nightly-x86-lsb': {},
-> +                           'nightly-rpm': {}, 'nightly-deb': {}, 'nightly-ipk': {}},
->                             'schedulerNames_nowait' : {'build-appliance': {},
->                             'eclipse-plugin-kepler': {}, 'eclipse-plugin-juno': {},
->                             'nightly-non-gpl3': {}, 'nightly-oecore': {},
-> --
-> 1.7.9.5
+>* the ADT/SDK and how it intergrates into the rest of the system
+>* toaster
+>* python devshell
+>* exteralsrc.bbclass
+>* memory resident bitbake
+>* how a standalone app developer might build an image
+>* locked sstate
 >
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
-
-
-
--- 
-Elizabeth Flanagan
-Yocto Project
-Build and Release
+>and probably more I'm forgetting.
+>
+>If anyone does have things they plan to work on, or ideas for things that
+>should be worked on, please do file enhancement requests in the
+>bugzilla:
+>
+>https://bugzilla.yoctoproject.org/
+>
+>Cheers,
+>
+>Richard
+>
+>
+>
+>--
+>_______________________________________________
+>yocto mailing list
+>yocto@yoctoproject.org
+>https://lists.yoctoproject.org/listinfo/yocto
 
