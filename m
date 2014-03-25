@@ -1,32 +1,33 @@
-Return-Path: <scott.m.rifenbark@intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8A8A5E00969
-	for <yocto@yoctoproject.org>; Tue, 25 Mar 2014 09:33:40 -0700 (PDT)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga101.jf.intel.com with ESMTP; 25 Mar 2014 09:23:56 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.97,728,1389772800"; 
-	d="scan'208,217";a="507258050"
-Received: from orsmsx107.amr.corp.intel.com ([10.22.240.5])
-	by orsmga002.jf.intel.com with ESMTP; 25 Mar 2014 09:23:17 -0700
-Received: from orsmsx101.amr.corp.intel.com ([169.254.8.45]) by
-	ORSMSX107.amr.corp.intel.com ([169.254.1.189]) with mapi id
-	14.03.0123.003; Tue, 25 Mar 2014 09:23:17 -0700
-From: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
-To: Patrick Doyle <wpdster@gmail.com>
-Thread-Topic: [yocto] Problems building documentation for bitbake 1.17.0
-Thread-Index: AQHPSCoZyQg0UJsleEu7XngkYRJB9prx3ogggACEmwD//5enkA==
-Date: Tue, 25 Mar 2014 16:23:17 +0000
-Message-ID: <41DEA4B02DBDEF40A0F3B6D0DDB1237983F85C36@ORSMSX101.amr.corp.intel.com>
+Return-Path: <wpdster@gmail.com>
+Received: from mail-vc0-f175.google.com (mail-vc0-f175.google.com
+	[209.85.220.175])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 113FCE0073C
+	for <yocto@yoctoproject.org>; Tue, 25 Mar 2014 09:48:17 -0700 (PDT)
+Received: by mail-vc0-f175.google.com with SMTP id lh14so889253vcb.20
+	for <yocto@yoctoproject.org>; Tue, 25 Mar 2014 09:48:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-type;
+	bh=TlDnUHF2HqDRekvhLeBOIhbhh792hpo9N5KBUAnqywY=;
+	b=jD4sRyffIG86Qv6IzYpmsBom/0z38hJju687/rbzM63FdmCOn+gBENWcjL/w3ueNOu
+	o686ikfI4lmUA0ixdUnA0aa+wbywR9qK11YLnIXqEBWVIAPdbqMvVLTGmvlOtOT+q4jT
+	km3N/MyHNJJclwb0c8TlwRgZwTsOTpckC9DJZRirzS4YlHyHyTCQw3L3Js6iV8ZF2/Op
+	aJQQXtHj+QIuGqDei6TGk2lbiXOd9n/BZWSd9yF47dUouk2awgXsafn05izfb1KAwu7D
+	qqa+OSZeGaXwx3Loq7IKwd5WLrbZSomddR0Fgy+H3gHZOYP3JGs4iRNWmtIMBvhPDkE4
+	Qh5A==
+X-Received: by 10.58.179.115 with SMTP id df19mr460663vec.41.1395766096685;
+	Tue, 25 Mar 2014 09:48:16 -0700 (PDT)
+MIME-Version: 1.0
+Received: by 10.58.39.69 with HTTP; Tue, 25 Mar 2014 09:47:56 -0700 (PDT)
+In-Reply-To: <41DEA4B02DBDEF40A0F3B6D0DDB1237983F85C36@ORSMSX101.amr.corp.intel.com>
 References: <CAF_dkJBDA2j8wVTa-JJ9vgKyigmhzC9bjv00o3fum-qqnPi80A@mail.gmail.com>
 	<41DEA4B02DBDEF40A0F3B6D0DDB1237983F85BD4@ORSMSX101.amr.corp.intel.com>
 	<CAF_dkJAsfHs4iCSUyG3zwbj-02Pu8u63D===5cCjaeiMemnbmw@mail.gmail.com>
-In-Reply-To: <CAF_dkJAsfHs4iCSUyG3zwbj-02Pu8u63D===5cCjaeiMemnbmw@mail.gmail.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.139]
-MIME-Version: 1.0
+	<41DEA4B02DBDEF40A0F3B6D0DDB1237983F85C36@ORSMSX101.amr.corp.intel.com>
+From: Patrick Doyle <wpdster@gmail.com>
+Date: Tue, 25 Mar 2014 12:47:56 -0400
+Message-ID: <CAF_dkJD7VwPe5joKp8t4c0-CoG_Jv56EEZZzASVcZ0p7WB5EfA@mail.gmail.com>
+To: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: Problems building documentation for bitbake 1.17.0
 X-BeenThere: yocto@yoctoproject.org
@@ -40,331 +41,545 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 25 Mar 2014 16:33:42 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_41DEA4B02DBDEF40A0F3B6D0DDB1237983F85C36ORSMSX101amrcor_"
+X-List-Received-Date: Tue, 25 Mar 2014 16:48:20 -0000
+Content-Type: multipart/alternative; boundary=047d7b6730ac61ef9c04f5711ec0
 
---_000_41DEA4B02DBDEF40A0F3B6D0DDB1237983F85C36ORSMSX101amrcor_
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+--047d7b6730ac61ef9c04f5711ec0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-SG1t4oCmIEkgY2FuIHRoZSBmb2xsb3dpbmcgb24gVWJ1bnR1IDEyLjA0Og0KDQokIGdpdCBjbG9u
-ZSBnaXQ6Ly9naXQub3BlbmVtYmVkZGVkLm9yZy9iaXRiYWtlPGh0dHA6Ly9naXQub3BlbmVtYmVk
-ZGVkLm9yZy9iaXRiYWtlPg0KJCBjZCBiaXRiYWtlDQokIG1ha2UgRE9DPXVzZXItbWFudWFsDQpC
-dWlsZHMgYm90aCBIVE1MIGFuZCBQREYgZmluZS4gIEFzc3VtZXMgdGhlIOKAnG1hc3RlcuKAnSBi
-cmFuY2guDQpJIGhhdmUgdGhlIG1ha2UsIHhzbHRwcm9jLCBkb2Nib29rLXV0aWxzLCBmb3AsIGRi
-bGF0ZXgsIGFuZCB4bWx0byBwYWNrYWdlcyBvbiBteSBob3N0IGJ1aWxkIG1hY2hpbmUuDQpTY290
-dA0KDQoNCg0KDQpGcm9tOiBQYXRyaWNrIERveWxlIFttYWlsdG86d3Bkc3RlckBnbWFpbC5jb21d
-DQpTZW50OiBUdWVzZGF5LCBNYXJjaCAyNSwgMjAxNCA4OjMwIEFNDQpUbzogUmlmZW5iYXJrLCBT
-Y290dCBNDQpDYzogeW9jdG9AeW9jdG9wcm9qZWN0Lm9yZw0KU3ViamVjdDogUmU6IFt5b2N0b10g
-UHJvYmxlbXMgYnVpbGRpbmcgZG9jdW1lbnRhdGlvbiBmb3IgYml0YmFrZSAxLjE3LjANCg0KSSBw
-b2tlZCBhcm91bmQgc29tZSBtb3JlIGFmdGVyIHNlbmRpbmcgbXkgZW1haWwgKGluc3RlYWQgb2Yg
-ZG9pbmcgdGhlIHdvcmsgSSB3YXMgc3VwcG9zZWQgdG8gYmUgZG9pbmcpIGFuZCBmb3VuZCB0aGF0
-LCBieSBpZ25vcmluZyB0aGUgZG9jYm9vayBtZXNzYWdlcyBhbmQganVzdCBsZXR0aW5nIHRoZSBz
-ZXR1cCBjb21wbGV0ZSBmb3IgMS4xNy4wLCBpdCB3b3JrZWQgKG9uY2UgSSBhcHQtZ290IGFub3Ro
-ZXIgcGFja2FnZSBvciB0d286IHhzbHRwcm9jLCBsaWJ4bWwyLXV0aWxzLCBmb3AsIG1heWJlIG90
-aGVycykuICBTbyBJIG5vdyBoYXZlIGEgZG9jL21hbnVhbC9odG1sIGRpcmVjdG9yeSBmb3IgMS4x
-Ny4wLg0KDQpJIHN0aWxsIGNhbid0IGJ1aWxkIHRoZSBkb2NzICh3aXRoICJtYWtlIERPQz11c2Vy
-LW1hbnVhbCIpIG9uIG1hc3RlciB0aG91Z2guICBJdCBmYWlscyB0byBidWlsZCB1c2VyLW1hbnVh
-bC5wZGY6DQoNCmh0dHA6Ly9kb2Nib29rLnNvdXJjZWZvcmdlLm5ldC9yZWxlYXNlL3hzbC9jdXJy
-ZW50L2NvbW1vbi9lbi54bWw6MTg4OiBwYXJzZXIgZXJyb3IgOiBQcmVtYXR1cmUgZW5kIG9mIGRh
-dGEgaW4gdGFnIGwxMG4gbGluZSAyDQo8bDpnZW50ZXh0IGtleT0ibGlzdG9mDQogICAgICAgICAg
-ICAgICAgICAgICAgXg0KW3dhcm5pbmddIC91c3IvYmluL2ZvcDogVW5hYmxlIHRvIGxvY2F0ZSBz
-ZXJ2bGV0LWFwaSBpbiAvdXNyL3NoYXJlL2phdmENCkRlZmF1bHQgcGFnZS1oZWlnaHQgc2V0IHRv
-OiAxMWluDQpEZWZhdWx0IHBhZ2Utd2lkdGggc2V0IHRvOiA4LjI2aW4NCkV4Y2VwdGlvbg0Kb3Jn
-LmFwYWNoZS5mb3AuYXBwcy5GT1BFeGNlcHRpb246IFN0cmluZyBpbmRleCBvdXQgb2YgcmFuZ2U6
-IDANCmphdmEubGFuZy5TdHJpbmdJbmRleE91dE9mQm91bmRzRXhjZXB0aW9uOiBTdHJpbmcgaW5k
-ZXggb3V0IG9mIHJhbmdlOiAwDQoNCg0KKioqKioqKiogQ3JlYXRpbmcgVGFyYmFsbCBvZiBkb2N1
-bWVudCBmaWxlcw0KDQpjZCB1c2VyLW1hbnVhbDsgdGFyIC1jdnpmIHVzZXItbWFudWFsLnRneiB1
-c2VyLW1hbnVhbC1zdHlsZS5jc3MgdXNlci1tYW51YWwuaHRtbCB1c2VyLW1hbnVhbC5wZGYgZmln
-dXJlcy9iaXRiYWtlLXRpdGxlLnBuZzsgY2QgLi4NCnVzZXItbWFudWFsLXN0eWxlLmNzcw0KdXNl
-ci1tYW51YWwuaHRtbA0KdGFyOiB1c2VyLW1hbnVhbC5wZGY6IENhbm5vdCBzdGF0OiBObyBzdWNo
-IGZpbGUgb3IgZGlyZWN0b3J5DQpmaWd1cmVzL2JpdGJha2UtdGl0bGUucG5nDQp0YXI6IEV4aXRp
-bmcgd2l0aCBmYWlsdXJlIHN0YXR1cyBkdWUgdG8gcHJldmlvdXMgZXJyb3JzDQoNCkknbSBub3Qg
-dG8gc3VyZSB3aGF0IHRvIG1ha2Ugb2YgdGhpcyA6LSkNCi0td3BkDQoNCg0KT24gVHVlLCBNYXIg
-MjUsIDIwMTQgYXQgMTA6MzggQU0sIFJpZmVuYmFyaywgU2NvdHQgTSA8c2NvdHQubS5yaWZlbmJh
-cmtAaW50ZWwuY29tPG1haWx0bzpzY290dC5tLnJpZmVuYmFya0BpbnRlbC5jb20+PiB3cm90ZToN
-CkkgY3JlYXRlZCBhIGZyZXNoIGNsb25lIG9mIHRoZSB1cHN0cmVhbSBCQiByZXBvc2l0b3J5LCBj
-aGVja2VkIG91dCB0aGUgMS4xNy4wIHRhZyBhbmQgY2Fubm90IG1ha2UgdGhlIHVzZXItbWFudWFs
-LiAgSSBkb27igJl0IHRoaW5rIHRoZSBhYmlsaXR5IHRvIG1ha2UgdXNlci1tYW51YWwgd2FzIGlu
-IHBsYWNlIGF0IHRoZSB0aW1lIDEuMTcuMCB0YWcgaGFwcGVuZWQuICBJIGFtIGp1c3QgZ3Vlc3Np
-bmcgaGVyZSB0aG91Z2guDQoNClNjb3R0DQoNCkZyb206IHlvY3RvLWJvdW5jZXNAeW9jdG9wcm9q
-ZWN0Lm9yZzxtYWlsdG86eW9jdG8tYm91bmNlc0B5b2N0b3Byb2plY3Qub3JnPiBbbWFpbHRvOnlv
-Y3RvLWJvdW5jZXNAeW9jdG9wcm9qZWN0Lm9yZzxtYWlsdG86eW9jdG8tYm91bmNlc0B5b2N0b3By
-b2plY3Qub3JnPl0gT24gQmVoYWxmIE9mIFBhdHJpY2sgRG95bGUNClNlbnQ6IFR1ZXNkYXksIE1h
-cmNoIDI1LCAyMDE0IDU6NTggQU0NClRvOiB5b2N0b0B5b2N0b3Byb2plY3Qub3JnPG1haWx0bzp5
-b2N0b0B5b2N0b3Byb2plY3Qub3JnPg0KU3ViamVjdDogW3lvY3RvXSBQcm9ibGVtcyBidWlsZGlu
-ZyBkb2N1bWVudGF0aW9uIGZvciBiaXRiYWtlIDEuMTcuMA0KDQpIZWxsbyBhbGwsDQoNCkkganVz
-dCB0cmllZA0KDQokIGdpdCBjbG9uZSBnaXQ6Ly9naXQub3BlbmVtYmVkZGVkLm9yZy9iaXRiYWtl
-PGh0dHA6Ly9naXQub3BlbmVtYmVkZGVkLm9yZy9iaXRiYWtlPg0KJCBjZCBiaXRiYWtlDQokIGdp
-dCBjaGVja291dCAxLjE3LjANCiQgcHl0aG9uIHNldHVwLnB5IGluc3RhbGwNCg0KYW5kIHRoYXQg
-ZmFpbGVkIHdpdGggYW4gaW5maW5pdGUgKHdlbGwsIEkgaGl0IF5DIGJlZm9yZSBJIGZvdW5kIG91
-dCBmb3IgcmVhbCkgc3RyZWFtIG9mIG1lc3NhZ2VzIG9mIHRoZSBmb3JtOg0KDQpodHRwOi8vZG9j
-Ym9vay5zb3VyY2Vmb3JnZS5uZXQvcmVsZWFzZS94c2wvY3VycmVudC9jb21tb24vZW4ueG1sOjIw
-NzogcGFyc2VyIGVycm9yIDogRXh0cmEgY29udGVudCBhdCB0aGUgZW5kIG9mIHRoZSBkb2N1bWVu
-dA0KxJ7En8SgxKHEosSjxpPJoMekx6XHpsenx7THteG4oOG4oUhoxKTEpcSmxKfInsifyabhuKLh
-uKPhuKThuKXhuKbhuKfhuKjhuKnhuKrhuKsNCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBeDQoNCkkg
-dHJpZWQgdGhpcyBvbiBhIFVidW50dSAxMi4wNCBMVFMgNjQgYml0IG1hY2hpbmUuICBBbSBJIG1p
-c3NpbmcgYSBwYXJ0aWN1bGFyIGRlcGVuZGVuY3k/ICBJcyB0aGlzIGEga25vd24gcHJvYmxlbSAo
-d2l0aCBhbiBvYnZpb3VzIHNvbHV0aW9uPykgIFRoZSBHb29nbGUgZG9lc24ndCB0ZWxsIG1lIGFu
-eXRoaW5nIG9idmlvdXMgYWJvdXQgImRvY2Jvb2sgZXh0cmEgY29udGVudCBhdCBlbmQgb2YgZG9j
-dW1lbnQiICAoSSBkaWRuJ3QgdHJ5IHNlYXJjaGluZyBmb3IgdGhlIHN0cmluZyBvZiByYW5kb20g
-Y2hhcmFjdGVycyB0aGF0IGZvbGxvd3MgdGhhdC4gIFBlcmhhcHMgSSBzaG91bGQgdHJ5LikNCg0K
-SSBnZXQgdGhlIHNhbWUgZXJyb3Igd2hlbiBleGVjdXRpbmcgIm1ha2UgRE9DPXVzZXItbWFudWFs
-IiBvbiB0aGUgbWFzdGVyIGJyYW5jaCAobm90ZSB0aGF0IHNldHVwLnB5IGRvZXNuJ3Qgd29yayBy
-aWdodCBub3cgb24gbWFzdGVyKSwgc28gSSdtIGluY2xpbmVkIHRvIGJlbGlldmUgdGhlIHByb2Js
-ZW0gaXMgYXQgbXkgZW5kLiAgSSdtIGp1c3Qgbm90IHN1cmUgd2hlcmUgdG8gc3RhcnQgbG9va2lu
-ZyBmb3IgYSBzb2x1dGlvbi4gIFNvIEkgZmlndXJlZCBJJ2QgYXNrLg0KDQotLXdwZA0KDQoNCg==
+That's the ticket=E2=80=A6. thanks.
 
---_000_41DEA4B02DBDEF40A0F3B6D0DDB1237983F85C36ORSMSX101amrcor_
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: base64
+Installing dblatex and/or xmlto made everything work (and work much
+faster!).  1.17.0 installs fine (with python setup.py install --user) and
+"make DOC=3Duser-manual" works for master.  setup still doesn't work on
+master, probably because doc/manual/thml/* no longer exists:
 
-PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
-bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
-YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
-cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
-VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
-Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
-ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTQgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
-PjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
-Q2FsaWJyaTsNCglwYW5vc2UtMToyIDE1IDUgMiAyIDIgNCAzIDIgNDt9DQpAZm9udC1mYWNlDQoJ
-e2ZvbnQtZmFtaWx5OlRhaG9tYTsNCglwYW5vc2UtMToyIDExIDYgNCAzIDUgNCA0IDIgNDt9DQov
-KiBTdHlsZSBEZWZpbml0aW9ucyAqLw0KcC5Nc29Ob3JtYWwsIGxpLk1zb05vcm1hbCwgZGl2Lk1z
-b05vcm1hbA0KCXttYXJnaW46MGluOw0KCW1hcmdpbi1ib3R0b206LjAwMDFwdDsNCglmb250LXNp
-emU6MTIuMHB0Ow0KCWZvbnQtZmFtaWx5OiJUaW1lcyBOZXcgUm9tYW4iLCJzZXJpZiI7fQ0KYTps
-aW5rLCBzcGFuLk1zb0h5cGVybGluaw0KCXttc28tc3R5bGUtcHJpb3JpdHk6OTk7DQoJY29sb3I6
-Ymx1ZTsNCgl0ZXh0LWRlY29yYXRpb246dW5kZXJsaW5lO30NCmE6dmlzaXRlZCwgc3Bhbi5Nc29I
-eXBlcmxpbmtGb2xsb3dlZA0KCXttc28tc3R5bGUtcHJpb3JpdHk6OTk7DQoJY29sb3I6cHVycGxl
-Ow0KCXRleHQtZGVjb3JhdGlvbjp1bmRlcmxpbmU7fQ0KcC5Nc29BY2V0YXRlLCBsaS5Nc29BY2V0
-YXRlLCBkaXYuTXNvQWNldGF0ZQ0KCXttc28tc3R5bGUtcHJpb3JpdHk6OTk7DQoJbXNvLXN0eWxl
-LWxpbms6IkJhbGxvb24gVGV4dCBDaGFyIjsNCgltYXJnaW46MGluOw0KCW1hcmdpbi1ib3R0b206
-LjAwMDFwdDsNCglmb250LXNpemU6OC4wcHQ7DQoJZm9udC1mYW1pbHk6IlRhaG9tYSIsInNhbnMt
-c2VyaWYiO30NCnNwYW4uQmFsbG9vblRleHRDaGFyDQoJe21zby1zdHlsZS1uYW1lOiJCYWxsb29u
-IFRleHQgQ2hhciI7DQoJbXNvLXN0eWxlLXByaW9yaXR5Ojk5Ow0KCW1zby1zdHlsZS1saW5rOiJC
-YWxsb29uIFRleHQiOw0KCWZvbnQtZmFtaWx5OiJUYWhvbWEiLCJzYW5zLXNlcmlmIjt9DQpzcGFu
-LkVtYWlsU3R5bGUxOQ0KCXttc28tc3R5bGUtdHlwZTpwZXJzb25hbC1yZXBseTsNCglmb250LWZh
-bWlseToiQ2FsaWJyaSIsInNhbnMtc2VyaWYiOw0KCWNvbG9yOiMxRjQ5N0Q7fQ0KLk1zb0NocERl
-ZmF1bHQNCgl7bXNvLXN0eWxlLXR5cGU6ZXhwb3J0LW9ubHk7DQoJZm9udC1mYW1pbHk6IkNhbGli
-cmkiLCJzYW5zLXNlcmlmIjt9DQpAcGFnZSBXb3JkU2VjdGlvbjENCgl7c2l6ZTo4LjVpbiAxMS4w
-aW47DQoJbWFyZ2luOjEuMGluIDEuMGluIDEuMGluIDEuMGluO30NCmRpdi5Xb3JkU2VjdGlvbjEN
-Cgl7cGFnZTpXb3JkU2VjdGlvbjE7fQ0KLS0+PC9zdHlsZT48IS0tW2lmIGd0ZSBtc28gOV0+PHht
-bD4NCjxvOnNoYXBlZGVmYXVsdHMgdjpleHQ9ImVkaXQiIHNwaWRtYXg9IjEwMjYiIC8+DQo8L3ht
-bD48IVtlbmRpZl0tLT48IS0tW2lmIGd0ZSBtc28gOV0+PHhtbD4NCjxvOnNoYXBlbGF5b3V0IHY6
-ZXh0PSJlZGl0Ij4NCjxvOmlkbWFwIHY6ZXh0PSJlZGl0IiBkYXRhPSIxIiAvPg0KPC9vOnNoYXBl
-bGF5b3V0PjwveG1sPjwhW2VuZGlmXS0tPg0KPC9oZWFkPg0KPGJvZHkgbGFuZz0iRU4tVVMiIGxp
-bms9ImJsdWUiIHZsaW5rPSJwdXJwbGUiPg0KPGRpdiBjbGFzcz0iV29yZFNlY3Rpb24xIj4NCjxw
-IGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFt
-aWx5OiZxdW90O0NhbGlicmkmcXVvdDssJnF1b3Q7c2Fucy1zZXJpZiZxdW90Oztjb2xvcjojMUY0
-OTdEIj5IbW3igKYgSSBjYW4gdGhlIGZvbGxvd2luZyBvbiBVYnVudHUgMTIuMDQ6PG86cD48L286
-cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6
-ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OywmcXVvdDtzYW5zLXNlcmlm
-JnF1b3Q7O2NvbG9yOiMxRjQ5N0QiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNs
-YXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJtc28tbWFyZ2luLXRvcC1hbHQ6YXV0bzttc28tbWFyZ2lu
-LWJvdHRvbS1hbHQ6YXV0byI+JCBnaXQgY2xvbmUmbmJzcDtnaXQ6Ly88YSBocmVmPSJodHRwOi8v
-Z2l0Lm9wZW5lbWJlZGRlZC5vcmcvYml0YmFrZSIgdGFyZ2V0PSJfYmxhbmsiPmdpdC5vcGVuZW1i
-ZWRkZWQub3JnL2JpdGJha2U8L2E+DQo8YnI+DQokIGNkIGJpdGJha2U8YnI+DQokIG1ha2UgRE9D
-PXVzZXItbWFudWFsPG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0i
-bXNvLW1hcmdpbi10b3AtYWx0OmF1dG87bXNvLW1hcmdpbi1ib3R0b20tYWx0OmF1dG8iPkJ1aWxk
-cyBib3RoIEhUTUwgYW5kIFBERiBmaW5lLiZuYnNwOyBBc3N1bWVzIHRoZSDigJxtYXN0ZXLigJ0g
-YnJhbmNoLiZuYnNwOw0KPG86cD48L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHls
-ZT0ibXNvLW1hcmdpbi10b3AtYWx0OmF1dG87bXNvLW1hcmdpbi1ib3R0b20tYWx0OmF1dG8iPkkg
-aGF2ZSB0aGUgbWFrZSwgeHNsdHByb2MsIGRvY2Jvb2stdXRpbHMsIGZvcCwgZGJsYXRleCwgYW5k
-IHhtbHRvIHBhY2thZ2VzIG9uIG15IGhvc3QgYnVpbGQgbWFjaGluZS48bzpwPjwvbzpwPjwvcD4N
-CjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJtc28tbWFyZ2luLXRvcC1hbHQ6YXV0bzttc28t
-bWFyZ2luLWJvdHRvbS1hbHQ6YXV0byI+U2NvdHQ8bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJN
-c29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90
-O0NhbGlicmkmcXVvdDssJnF1b3Q7c2Fucy1zZXJpZiZxdW90Oztjb2xvcjojMUY0OTdEIj48bzpw
-PiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHls
-ZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LCZxdW90
-O3NhbnMtc2VyaWYmcXVvdDs7Y29sb3I6IzFGNDk3RCI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+
-PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7
-Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OywmcXVvdDtzYW5zLXNlcmlmJnF1b3Q7O2Nv
-bG9yOiMxRjQ5N0QiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29O
-b3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0Nh
-bGlicmkmcXVvdDssJnF1b3Q7c2Fucy1zZXJpZiZxdW90Oztjb2xvcjojMUY0OTdEIj48bzpwPiZu
-YnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8ZGl2IHN0eWxlPSJib3JkZXI6bm9uZTtib3JkZXItbGVm
-dDpzb2xpZCBibHVlIDEuNXB0O3BhZGRpbmc6MGluIDBpbiAwaW4gNC4wcHQiPg0KPGRpdj4NCjxk
-aXYgc3R5bGU9ImJvcmRlcjpub25lO2JvcmRlci10b3A6c29saWQgI0I1QzRERiAxLjBwdDtwYWRk
-aW5nOjMuMHB0IDBpbiAwaW4gMGluIj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxiPjxzcGFuIHN0
-eWxlPSJmb250LXNpemU6MTAuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O1RhaG9tYSZxdW90OywmcXVv
-dDtzYW5zLXNlcmlmJnF1b3Q7Ij5Gcm9tOjwvc3Bhbj48L2I+PHNwYW4gc3R5bGU9ImZvbnQtc2l6
-ZToxMC4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7VGFob21hJnF1b3Q7LCZxdW90O3NhbnMtc2VyaWYm
-cXVvdDsiPiBQYXRyaWNrIERveWxlIFttYWlsdG86d3Bkc3RlckBnbWFpbC5jb21dDQo8YnI+DQo8
-Yj5TZW50OjwvYj4gVHVlc2RheSwgTWFyY2ggMjUsIDIwMTQgODozMCBBTTxicj4NCjxiPlRvOjwv
-Yj4gUmlmZW5iYXJrLCBTY290dCBNPGJyPg0KPGI+Q2M6PC9iPiB5b2N0b0B5b2N0b3Byb2plY3Qu
-b3JnPGJyPg0KPGI+U3ViamVjdDo8L2I+IFJlOiBbeW9jdG9dIFByb2JsZW1zIGJ1aWxkaW5nIGRv
-Y3VtZW50YXRpb24gZm9yIGJpdGJha2UgMS4xNy4wPG86cD48L286cD48L3NwYW4+PC9wPg0KPC9k
-aXY+DQo8L2Rpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0K
-PGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPkkgcG9rZWQgYXJvdW5kIHNvbWUgbW9yZSBhZnRl
-ciBzZW5kaW5nIG15IGVtYWlsIChpbnN0ZWFkIG9mIGRvaW5nIHRoZSB3b3JrIEkgd2FzIHN1cHBv
-c2VkIHRvIGJlIGRvaW5nKSBhbmQgZm91bmQgdGhhdCwgYnkgaWdub3JpbmcgdGhlIGRvY2Jvb2sg
-bWVzc2FnZXMgYW5kIGp1c3QgbGV0dGluZyB0aGUgc2V0dXAgY29tcGxldGUgZm9yIDEuMTcuMCwg
-aXQgd29ya2VkIChvbmNlIEkgYXB0LWdvdCBhbm90aGVyIHBhY2thZ2UNCiBvciB0d286IHhzbHRw
-cm9jLCBsaWJ4bWwyLXV0aWxzLCBmb3AsIG1heWJlIG90aGVycykuICZuYnNwO1NvIEkgbm93IGhh
-dmUgYSBkb2MvbWFudWFsL2h0bWwgZGlyZWN0b3J5IGZvciAxLjE3LjAuPG86cD48L286cD48L3A+
-DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8L2Rp
-dj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5JIHN0aWxsIGNhbid0IGJ1aWxkIHRoZSBk
-b2NzICh3aXRoICZxdW90O21ha2UgRE9DPXVzZXItbWFudWFsJnF1b3Q7KSBvbiBtYXN0ZXIgdGhv
-dWdoLiAmbmJzcDtJdCBmYWlscyB0byBidWlsZCB1c2VyLW1hbnVhbC5wZGY6PG86cD48L286cD48
-L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNwOzwvbzpw
-PjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48YSBocmVm
-PSJodHRwOi8vZG9jYm9vay5zb3VyY2Vmb3JnZS5uZXQvcmVsZWFzZS94c2wvY3VycmVudC9jb21t
-b24vZW4ueG1sOjE4OCI+aHR0cDovL2RvY2Jvb2suc291cmNlZm9yZ2UubmV0L3JlbGVhc2UveHNs
-L2N1cnJlbnQvY29tbW9uL2VuLnhtbDoxODg8L2E+OiBwYXJzZXIgZXJyb3IgOiBQcmVtYXR1cmUg
-ZW5kIG9mIGRhdGEgaW4gdGFnIGwxMG4gbGluZSAyPG86cD48L286cD48L3A+DQo8L2Rpdj4NCjxk
-aXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj4mbHQ7bDpnZW50ZXh0IGtleT0mcXVvdDtsaXN0b2Y8
-bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPiZuYnNw
-OyAmbmJzcDsgJm5ic3A7ICZuYnNwOyAmbmJzcDsgJm5ic3A7ICZuYnNwOyAmbmJzcDsgJm5ic3A7
-ICZuYnNwOyAmbmJzcDsgXjxvOnA+PC9vOnA+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9
-Ik1zb05vcm1hbCI+W3dhcm5pbmddIC91c3IvYmluL2ZvcDogVW5hYmxlIHRvIGxvY2F0ZSBzZXJ2
-bGV0LWFwaSBpbiAvdXNyL3NoYXJlL2phdmE8bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPGRpdj4N
-CjxwIGNsYXNzPSJNc29Ob3JtYWwiPkRlZmF1bHQgcGFnZS1oZWlnaHQgc2V0IHRvOiAxMWluPG86
-cD48L286cD48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5EZWZhdWx0
-IHBhZ2Utd2lkdGggc2V0IHRvOiA4LjI2aW48bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPGRpdj4N
-CjxwIGNsYXNzPSJNc29Ob3JtYWwiPkV4Y2VwdGlvbjxvOnA+PC9vOnA+PC9wPg0KPC9kaXY+DQo8
-ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+b3JnLmFwYWNoZS5mb3AuYXBwcy5GT1BFeGNlcHRp
-b246IFN0cmluZyBpbmRleCBvdXQgb2YgcmFuZ2U6IDA8bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0K
-PGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPmphdmEubGFuZy5TdHJpbmdJbmRleE91dE9mQm91
-bmRzRXhjZXB0aW9uOiBTdHJpbmcgaW5kZXggb3V0IG9mIHJhbmdlOiAwPG86cD48L286cD48L3A+
-DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNwOzwvbzpwPjwv
-cD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPiZuYnNwOzxvOnA+PC9vOnA+
-PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+KioqKioqKiogQ3JlYXRp
-bmcgVGFyYmFsbCBvZiBkb2N1bWVudCBmaWxlczxvOnA+PC9vOnA+PC9wPg0KPC9kaXY+DQo8ZGl2
-Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+Jm5ic3A7PG86cD48L286cD48L3A+DQo8L2Rpdj4NCjxk
-aXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5jZCB1c2VyLW1hbnVhbDsgdGFyIC1jdnpmIHVzZXIt
-bWFudWFsLnRneiB1c2VyLW1hbnVhbC1zdHlsZS5jc3MgdXNlci1tYW51YWwuaHRtbCB1c2VyLW1h
-bnVhbC5wZGYgZmlndXJlcy9iaXRiYWtlLXRpdGxlLnBuZzsgY2QgLi48bzpwPjwvbzpwPjwvcD4N
-CjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPnVzZXItbWFudWFsLXN0eWxlLmNz
-czxvOnA+PC9vOnA+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+dXNl
-ci1tYW51YWwuaHRtbDxvOnA+PC9vOnA+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1z
-b05vcm1hbCI+dGFyOiB1c2VyLW1hbnVhbC5wZGY6IENhbm5vdCBzdGF0OiBObyBzdWNoIGZpbGUg
-b3IgZGlyZWN0b3J5PG86cD48L286cD48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNv
-Tm9ybWFsIj5maWd1cmVzL2JpdGJha2UtdGl0bGUucG5nPG86cD48L286cD48L3A+DQo8L2Rpdj4N
-CjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj50YXI6IEV4aXRpbmcgd2l0aCBmYWlsdXJlIHN0
-YXR1cyBkdWUgdG8gcHJldmlvdXMgZXJyb3JzPG86cD48L286cD48L3A+DQo8L2Rpdj4NCjwvZGl2
-Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPC9k
-aXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+SSdtIG5vdCB0byBzdXJlIHdoYXQgdG8g
-bWFrZSBvZiB0aGlzIDotKTxvOnA+PC9vOnA+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9
-Ik1zb05vcm1hbCI+LS13cGQ8bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNz
-PSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPC9kaXY+DQo8L2Rpdj4NCjxkaXY+
-DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0ibWFyZ2luLWJvdHRvbToxMi4wcHQiPjxvOnA+
-Jm5ic3A7PC9vOnA+PC9wPg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPk9uIFR1ZSwgTWFy
-IDI1LCAyMDE0IGF0IDEwOjM4IEFNLCBSaWZlbmJhcmssIFNjb3R0IE0gJmx0OzxhIGhyZWY9Im1h
-aWx0bzpzY290dC5tLnJpZmVuYmFya0BpbnRlbC5jb20iIHRhcmdldD0iX2JsYW5rIj5zY290dC5t
-LnJpZmVuYmFya0BpbnRlbC5jb208L2E+Jmd0OyB3cm90ZTo8bzpwPjwvbzpwPjwvcD4NCjxkaXY+
-DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9Im1zby1tYXJnaW4tdG9wLWFsdDph
-dXRvO21zby1tYXJnaW4tYm90dG9tLWFsdDphdXRvIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjEx
-LjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LCZxdW90O3NhbnMtc2VyaWYmcXVv
-dDs7Y29sb3I6IzFGNDk3RCI+SSBjcmVhdGVkIGEgZnJlc2ggY2xvbmUgb2YgdGhlIHVwc3RyZWFt
-IEJCIHJlcG9zaXRvcnksIGNoZWNrZWQgb3V0IHRoZSAxLjE3LjAgdGFnIGFuZCBjYW5ub3QgbWFr
-ZQ0KIHRoZSB1c2VyLW1hbnVhbC4gJm5ic3A7SSBkb27igJl0IHRoaW5rIHRoZSBhYmlsaXR5IHRv
-IG1ha2UgdXNlci1tYW51YWwgd2FzIGluIHBsYWNlIGF0IHRoZSB0aW1lIDEuMTcuMCB0YWcgaGFw
-cGVuZWQuJm5ic3A7IEkgYW0ganVzdCBndWVzc2luZyBoZXJlIHRob3VnaC48L3NwYW4+PG86cD48
-L286cD48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0ibXNvLW1hcmdpbi10b3AtYWx0
-OmF1dG87bXNvLW1hcmdpbi1ib3R0b20tYWx0OmF1dG8iPjxzcGFuIHN0eWxlPSJmb250LXNpemU6
-MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssJnF1b3Q7c2Fucy1zZXJpZiZx
-dW90Oztjb2xvcjojMUY0OTdEIj4mbmJzcDs8L3NwYW4+PG86cD48L286cD48L3A+DQo8cCBjbGFz
-cz0iTXNvTm9ybWFsIiBzdHlsZT0ibXNvLW1hcmdpbi10b3AtYWx0OmF1dG87bXNvLW1hcmdpbi1i
-b3R0b20tYWx0OmF1dG8iPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5
-OiZxdW90O0NhbGlicmkmcXVvdDssJnF1b3Q7c2Fucy1zZXJpZiZxdW90Oztjb2xvcjojMUY0OTdE
-Ij5TY290dDwvc3Bhbj48bzpwPjwvbzpwPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxl
-PSJtc28tbWFyZ2luLXRvcC1hbHQ6YXV0bzttc28tbWFyZ2luLWJvdHRvbS1hbHQ6YXV0byI+PHNw
-YW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90
-OywmcXVvdDtzYW5zLXNlcmlmJnF1b3Q7O2NvbG9yOiMxRjQ5N0QiPiZuYnNwOzwvc3Bhbj48bzpw
-PjwvbzpwPjwvcD4NCjxkaXYgc3R5bGU9ImJvcmRlcjpub25lO2JvcmRlci1sZWZ0OnNvbGlkIGJs
-dWUgMS41cHQ7cGFkZGluZzowaW4gMGluIDBpbiA0LjBwdCI+DQo8ZGl2Pg0KPGRpdiBzdHlsZT0i
-Ym9yZGVyOm5vbmU7Ym9yZGVyLXRvcDpzb2xpZCAjQjVDNERGIDEuMHB0O3BhZGRpbmc6My4wcHQg
-MGluIDBpbiAwaW4iPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9Im1zby1tYXJnaW4tdG9w
-LWFsdDphdXRvO21zby1tYXJnaW4tYm90dG9tLWFsdDphdXRvIj48Yj48c3BhbiBzdHlsZT0iZm9u
-dC1zaXplOjEwLjBwdDtmb250LWZhbWlseTomcXVvdDtUYWhvbWEmcXVvdDssJnF1b3Q7c2Fucy1z
-ZXJpZiZxdW90OyI+RnJvbTo8L3NwYW4+PC9iPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTAuMHB0
-O2ZvbnQtZmFtaWx5OiZxdW90O1RhaG9tYSZxdW90OywmcXVvdDtzYW5zLXNlcmlmJnF1b3Q7Ij4N
-CjxhIGhyZWY9Im1haWx0bzp5b2N0by1ib3VuY2VzQHlvY3RvcHJvamVjdC5vcmciIHRhcmdldD0i
-X2JsYW5rIj55b2N0by1ib3VuY2VzQHlvY3RvcHJvamVjdC5vcmc8L2E+IFttYWlsdG86PGEgaHJl
-Zj0ibWFpbHRvOnlvY3RvLWJvdW5jZXNAeW9jdG9wcm9qZWN0Lm9yZyIgdGFyZ2V0PSJfYmxhbmsi
-PnlvY3RvLWJvdW5jZXNAeW9jdG9wcm9qZWN0Lm9yZzwvYT5dDQo8Yj5PbiBCZWhhbGYgT2YgPC9i
-PlBhdHJpY2sgRG95bGU8YnI+DQo8Yj5TZW50OjwvYj4gVHVlc2RheSwgTWFyY2ggMjUsIDIwMTQg
-NTo1OCBBTTxicj4NCjxiPlRvOjwvYj4gPGEgaHJlZj0ibWFpbHRvOnlvY3RvQHlvY3RvcHJvamVj
-dC5vcmciIHRhcmdldD0iX2JsYW5rIj55b2N0b0B5b2N0b3Byb2plY3Qub3JnPC9hPjxicj4NCjxi
-PlN1YmplY3Q6PC9iPiBbeW9jdG9dIFByb2JsZW1zIGJ1aWxkaW5nIGRvY3VtZW50YXRpb24gZm9y
-IGJpdGJha2UgMS4xNy4wPC9zcGFuPjxvOnA+PC9vOnA+PC9wPg0KPC9kaXY+DQo8L2Rpdj4NCjxk
-aXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9Im1zby1tYXJnaW4tdG9wLWFs
-dDphdXRvO21zby1tYXJnaW4tYm90dG9tLWFsdDphdXRvIj4mbmJzcDs8bzpwPjwvbzpwPjwvcD4N
-CjxkaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9Im1zby1tYXJnaW4tdG9w
-LWFsdDphdXRvO21zby1tYXJnaW4tYm90dG9tLWFsdDphdXRvIj5IZWxsbyBhbGwsPG86cD48L286
-cD48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0ibXNvLW1h
-cmdpbi10b3AtYWx0OmF1dG87bXNvLW1hcmdpbi1ib3R0b20tYWx0OmF1dG8iPiZuYnNwOzxvOnA+
-PC9vOnA+PC9wPg0KPC9kaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0ibXNvLW1hcmdp
-bi10b3AtYWx0OmF1dG87bXNvLW1hcmdpbi1ib3R0b20tYWx0OmF1dG8iPkkganVzdCB0cmllZDxv
-OnA+PC9vOnA+PC9wPg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJtc28tbWFy
-Z2luLXRvcC1hbHQ6YXV0bzttc28tbWFyZ2luLWJvdHRvbS1hbHQ6YXV0byI+Jm5ic3A7PG86cD48
-L286cD48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0ibXNv
-LW1hcmdpbi10b3AtYWx0OmF1dG87bXNvLW1hcmdpbi1ib3R0b20tYWx0OmF1dG8iPiQgZ2l0IGNs
-b25lJm5ic3A7Z2l0Oi8vPGEgaHJlZj0iaHR0cDovL2dpdC5vcGVuZW1iZWRkZWQub3JnL2JpdGJh
-a2UiIHRhcmdldD0iX2JsYW5rIj5naXQub3BlbmVtYmVkZGVkLm9yZy9iaXRiYWtlPC9hPjxvOnA+
-PC9vOnA+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9Im1z
-by1tYXJnaW4tdG9wLWFsdDphdXRvO21zby1tYXJnaW4tYm90dG9tLWFsdDphdXRvIj4kIGNkIGJp
-dGJha2U8bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwi
-IHN0eWxlPSJtc28tbWFyZ2luLXRvcC1hbHQ6YXV0bzttc28tbWFyZ2luLWJvdHRvbS1hbHQ6YXV0
-byI+JCBnaXQgY2hlY2tvdXQgMS4xNy4wPG86cD48L286cD48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8
-cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0ibXNvLW1hcmdpbi10b3AtYWx0OmF1dG87bXNvLW1h
-cmdpbi1ib3R0b20tYWx0OmF1dG8iPiQgcHl0aG9uIHNldHVwLnB5IGluc3RhbGw8bzpwPjwvbzpw
-PjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJtc28tbWFy
-Z2luLXRvcC1hbHQ6YXV0bzttc28tbWFyZ2luLWJvdHRvbS1hbHQ6YXV0byI+Jm5ic3A7PG86cD48
-L286cD48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0ibXNv
-LW1hcmdpbi10b3AtYWx0OmF1dG87bXNvLW1hcmdpbi1ib3R0b20tYWx0OmF1dG8iPmFuZCB0aGF0
-IGZhaWxlZCB3aXRoIGFuIGluZmluaXRlICh3ZWxsLCBJIGhpdCBeQyBiZWZvcmUgSSBmb3VuZCBv
-dXQgZm9yIHJlYWwpIHN0cmVhbSBvZiBtZXNzYWdlcyBvZiB0aGUgZm9ybTo8bzpwPjwvbzpwPjwv
-cD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJtc28tbWFyZ2lu
-LXRvcC1hbHQ6YXV0bzttc28tbWFyZ2luLWJvdHRvbS1hbHQ6YXV0byI+Jm5ic3A7PG86cD48L286
-cD48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9
-Im1zby1tYXJnaW4tdG9wLWFsdDphdXRvO21zby1tYXJnaW4tYm90dG9tLWFsdDphdXRvIj48YSBo
-cmVmPSJodHRwOi8vZG9jYm9vay5zb3VyY2Vmb3JnZS5uZXQvcmVsZWFzZS94c2wvY3VycmVudC9j
-b21tb24vZW4ueG1sOjIwNyIgdGFyZ2V0PSJfYmxhbmsiPmh0dHA6Ly9kb2Nib29rLnNvdXJjZWZv
-cmdlLm5ldC9yZWxlYXNlL3hzbC9jdXJyZW50L2NvbW1vbi9lbi54bWw6MjA3PC9hPjogcGFyc2Vy
-IGVycm9yDQogOiBFeHRyYSBjb250ZW50IGF0IHRoZSBlbmQgb2YgdGhlIGRvY3VtZW50PG86cD48
-L286cD48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0ibXNv
-LW1hcmdpbi10b3AtYWx0OmF1dG87bXNvLW1hcmdpbi1ib3R0b20tYWx0OmF1dG8iPsSexJ/EoMSh
-xKLEo8aTyaDHpMelx6bHp8e0x7XhuKDhuKFIaMSkxKXEpsSnyJ7In8mm4bii4bij4bik4bil4bim
-4bin4bio4bip4biq4birPG86cD48L286cD48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0i
-TXNvTm9ybWFsIiBzdHlsZT0ibXNvLW1hcmdpbi10b3AtYWx0OmF1dG87bXNvLW1hcmdpbi1ib3R0
-b20tYWx0OmF1dG8iPiZuYnNwOyAmbmJzcDsgJm5ic3A7ICZuYnNwOyAmbmJzcDsgJm5ic3A7ICZu
-YnNwOyAmbmJzcDsgJm5ic3A7ICZuYnNwOyAmbmJzcDsgJm5ic3A7ICZuYnNwOyAmbmJzcDsgJm5i
-c3A7ICZuYnNwOyAmbmJzcDsgJm5ic3A7ICZuYnNwOyAmbmJzcDsgJm5ic3A7ICZuYnNwOyAmbmJz
-cDsgJm5ic3A7ICZuYnNwOyAmbmJzcDsgJm5ic3A7ICZuYnNwOyAmbmJzcDsgJm5ic3A7ICZuYnNw
-OyAmbmJzcDsgJm5ic3A7ICZuYnNwOyAmbmJzcDsgJm5ic3A7ICZuYnNwOyAmbmJzcDsgJm5ic3A7
-ICZuYnNwO148bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9
-Ik1zb05vcm1hbCIgc3R5bGU9Im1zby1tYXJnaW4tdG9wLWFsdDphdXRvO21zby1tYXJnaW4tYm90
-dG9tLWFsdDphdXRvIj4mbmJzcDs8bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNs
-YXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJtc28tbWFyZ2luLXRvcC1hbHQ6YXV0bzttc28tbWFyZ2lu
-LWJvdHRvbS1hbHQ6YXV0byI+SSB0cmllZCB0aGlzIG9uIGEgVWJ1bnR1IDEyLjA0IExUUyA2NCBi
-aXQgbWFjaGluZS4gJm5ic3A7QW0gSSBtaXNzaW5nIGEgcGFydGljdWxhciBkZXBlbmRlbmN5PyAm
-bmJzcDtJcyB0aGlzIGEga25vd24gcHJvYmxlbSAod2l0aCBhbiBvYnZpb3VzIHNvbHV0aW9uPykg
-Jm5ic3A7VGhlIEdvb2dsZSBkb2Vzbid0IHRlbGwgbWUgYW55dGhpbmcNCiBvYnZpb3VzIGFib3V0
-ICZxdW90O2RvY2Jvb2sgZXh0cmEgY29udGVudCBhdCBlbmQgb2YgZG9jdW1lbnQmcXVvdDsgJm5i
-c3A7KEkgZGlkbid0IHRyeSBzZWFyY2hpbmcgZm9yIHRoZSBzdHJpbmcgb2YgcmFuZG9tIGNoYXJh
-Y3RlcnMgdGhhdCBmb2xsb3dzIHRoYXQuICZuYnNwO1BlcmhhcHMgSSBzaG91bGQgdHJ5Lik8bzpw
-PjwvbzpwPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJt
-c28tbWFyZ2luLXRvcC1hbHQ6YXV0bzttc28tbWFyZ2luLWJvdHRvbS1hbHQ6YXV0byI+Jm5ic3A7
-PG86cD48L286cD48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHls
-ZT0ibXNvLW1hcmdpbi10b3AtYWx0OmF1dG87bXNvLW1hcmdpbi1ib3R0b20tYWx0OmF1dG8iPkkg
-Z2V0IHRoZSBzYW1lIGVycm9yIHdoZW4gZXhlY3V0aW5nICZxdW90O21ha2UgRE9DPXVzZXItbWFu
-dWFsJnF1b3Q7IG9uIHRoZSBtYXN0ZXIgYnJhbmNoIChub3RlIHRoYXQgc2V0dXAucHkgZG9lc24n
-dCB3b3JrIHJpZ2h0IG5vdyBvbiBtYXN0ZXIpLCBzbyBJJ20gaW5jbGluZWQgdG8gYmVsaWV2ZSB0
-aGUgcHJvYmxlbSBpcw0KIGF0IG15IGVuZC4gJm5ic3A7SSdtIGp1c3Qgbm90IHN1cmUgd2hlcmUg
-dG8gc3RhcnQgbG9va2luZyBmb3IgYSBzb2x1dGlvbi4gJm5ic3A7U28gSSBmaWd1cmVkIEknZCBh
-c2suPG86cD48L286cD48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBz
-dHlsZT0ibXNvLW1hcmdpbi10b3AtYWx0OmF1dG87bXNvLW1hcmdpbi1ib3R0b20tYWx0OmF1dG8i
-PiZuYnNwOzxvOnA+PC9vOnA+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1h
-bCIgc3R5bGU9Im1zby1tYXJnaW4tdG9wLWFsdDphdXRvO21zby1tYXJnaW4tYm90dG9tLWFsdDph
-dXRvIj4tLXdwZDxvOnA+PC9vOnA+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05v
-cm1hbCIgc3R5bGU9Im1zby1tYXJnaW4tdG9wLWFsdDphdXRvO21zby1tYXJnaW4tYm90dG9tLWFs
-dDphdXRvIj4mbmJzcDs8bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPC9kaXY+DQo8L2Rpdj4NCjwv
-ZGl2Pg0KPC9kaXY+DQo8L2Rpdj4NCjwvZGl2Pg0KPC9kaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFs
-Ij48bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjwvZGl2Pg0KPC9kaXY+DQo8L2Rpdj4NCjwvYm9keT4N
-CjwvaHRtbD4NCg==
+      data_files =3D [("share/bitbake", glob("conf/*") + glob("classes/*"))=
+,
+                  ("share/doc/bitbake-%s/manual" % __version__,
+glob("doc/manual/html/*"))],
 
---_000_41DEA4B02DBDEF40A0F3B6D0DDB1237983F85C36ORSMSX101amrcor_--
+--wpd
+
+
+
+On Tue, Mar 25, 2014 at 12:23 PM, Rifenbark, Scott M <
+scott.m.rifenbark@intel.com> wrote:
+
+>  Hmm=E2=80=A6 I can the following on Ubuntu 12.04:
+>
+>
+>
+> $ git clone git://git.openembedded.org/bitbake
+> $ cd bitbake
+> $ make DOC=3Duser-manual
+>
+> Builds both HTML and PDF fine.  Assumes the =E2=80=9Cmaster=E2=80=9D bran=
+ch.
+>
+> I have the make, xsltproc, docbook-utils, fop, dblatex, and xmlto package=
+s
+> on my host build machine.
+>
+> Scott
+>
+>
+>
+>
+>
+>
+>
+>
+>
+> *From:* Patrick Doyle [mailto:wpdster@gmail.com]
+> *Sent:* Tuesday, March 25, 2014 8:30 AM
+> *To:* Rifenbark, Scott M
+> *Cc:* yocto@yoctoproject.org
+> *Subject:* Re: [yocto] Problems building documentation for bitbake 1.17.0
+>
+>
+>
+> I poked around some more after sending my email (instead of doing the wor=
+k
+> I was supposed to be doing) and found that, by ignoring the docbook
+> messages and just letting the setup complete for 1.17.0, it worked (once =
+I
+> apt-got another package or two: xsltproc, libxml2-utils, fop, maybe
+> others).  So I now have a doc/manual/html directory for 1.17.0.
+>
+>
+>
+> I still can't build the docs (with "make DOC=3Duser-manual") on master
+> though.  It fails to build user-manual.pdf:
+>
+>
+>
+> http://docbook.sourceforge.net/release/xsl/current/common/en.xml:188:
+> parser error : Premature end of data in tag l10n line 2
+>
+> <l:gentext key=3D"listof
+>
+>                       ^
+>
+> [warning] /usr/bin/fop: Unable to locate servlet-api in /usr/share/java
+>
+> Default page-height set to: 11in
+>
+> Default page-width set to: 8.26in
+>
+> Exception
+>
+> org.apache.fop.apps.FOPException: String index out of range: 0
+>
+> java.lang.StringIndexOutOfBoundsException: String index out of range: 0
+>
+>
+>
+>
+>
+> ******** Creating Tarball of document files
+>
+>
+>
+> cd user-manual; tar -cvzf user-manual.tgz user-manual-style.css
+> user-manual.html user-manual.pdf figures/bitbake-title.png; cd ..
+>
+> user-manual-style.css
+>
+> user-manual.html
+>
+> tar: user-manual.pdf: Cannot stat: No such file or directory
+>
+> figures/bitbake-title.png
+>
+> tar: Exiting with failure status due to previous errors
+>
+>
+>
+> I'm not to sure what to make of this :-)
+>
+> --wpd
+>
+>
+>
+>
+>
+> On Tue, Mar 25, 2014 at 10:38 AM, Rifenbark, Scott M <
+> scott.m.rifenbark@intel.com> wrote:
+>
+> I created a fresh clone of the upstream BB repository, checked out the
+> 1.17.0 tag and cannot make the user-manual.  I don=E2=80=99t think the ab=
+ility to
+> make user-manual was in place at the time 1.17.0 tag happened.  I am just
+> guessing here though.
+>
+>
+>
+> Scott
+>
+>
+>
+> *From:* yocto-bounces@yoctoproject.org [mailto:
+> yocto-bounces@yoctoproject.org] *On Behalf Of *Patrick Doyle
+> *Sent:* Tuesday, March 25, 2014 5:58 AM
+> *To:* yocto@yoctoproject.org
+> *Subject:* [yocto] Problems building documentation for bitbake 1.17.0
+>
+>
+>
+> Hello all,
+>
+>
+>
+> I just tried
+>
+>
+>
+> $ git clone git://git.openembedded.org/bitbake
+>
+> $ cd bitbake
+>
+> $ git checkout 1.17.0
+>
+> $ python setup.py install
+>
+>
+>
+> and that failed with an infinite (well, I hit ^C before I found out for
+> real) stream of messages of the form:
+>
+>
+>
+> http://docbook.sourceforge.net/release/xsl/current/common/en.xml:207:
+> parser error : Extra content at the end of the document
+>
+> =C4=9E=C4=9F=C4=A0=C4=A1=C4=A2=C4=A3=C6=93=C9=A0=C7=A4=C7=A5=C7=A6=C7=A7=
+=C7=B4=C7=B5=E1=B8=A0=E1=B8=A1Hh=C4=A4=C4=A5=C4=A6=C4=A7=C8=9E=C8=9F=C9=A6=
+=E1=B8=A2=E1=B8=A3=E1=B8=A4=E1=B8=A5=E1=B8=A6=E1=B8=A7=E1=B8=A8=E1=B8=A9=E1=
+=B8=AA=E1=B8=AB
+>
+>
+>      ^
+>
+>
+>
+> I tried this on a Ubuntu 12.04 LTS 64 bit machine.  Am I missing a
+> particular dependency?  Is this a known problem (with an obvious solution=
+?)
+>  The Google doesn't tell me anything obvious about "docbook extra content
+> at end of document"  (I didn't try searching for the string of random
+> characters that follows that.  Perhaps I should try.)
+>
+>
+>
+> I get the same error when executing "make DOC=3Duser-manual" on the maste=
+r
+> branch (note that setup.py doesn't work right now on master), so I'm
+> inclined to believe the problem is at my end.  I'm just not sure where to
+> start looking for a solution.  So I figured I'd ask.
+>
+>
+>
+> --wpd
+>
+>
+>
+>
+>
+
+--047d7b6730ac61ef9c04f5711ec0
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">That&#39;s the ticket=E2=80=A6. thanks.<div><br></div><div=
+>Installing dblatex and/or xmlto made everything work (and work much faster=
+!). =C2=A01.17.0 installs fine (with python setup.py install --user) and &q=
+uot;make DOC=3Duser-manual&quot; works for master. =C2=A0setup still doesn&=
+#39;t work on master, probably because doc/manual/thml/* no longer exists:<=
+/div>
+
+<div><br></div><div><div>=C2=A0 =C2=A0 =C2=A0 data_files =3D [(&quot;share/=
+bitbake&quot;, glob(&quot;conf/*&quot;) + glob(&quot;classes/*&quot;)),</di=
+v><div>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 (&quo=
+t;share/doc/bitbake-%s/manual&quot; % __version__, glob(&quot;doc/manual/ht=
+ml/*&quot;))],</div>
+
+</div><div><br></div><div>--wpd</div><div><br></div></div><div class=3D"gma=
+il_extra"><br><br><div class=3D"gmail_quote">On Tue, Mar 25, 2014 at 12:23 =
+PM, Rifenbark, Scott M <span dir=3D"ltr">&lt;<a href=3D"mailto:scott.m.rife=
+nbark@intel.com" target=3D"_blank">scott.m.rifenbark@intel.com</a>&gt;</spa=
+n> wrote:<br>
+
+<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
+x #ccc solid;padding-left:1ex">
+
+
+
+
+
+<div lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1f497d">Hmm=E2=80=A6 I can the fo=
+llowing on Ubuntu 12.04:<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1f497d"><u></u>=C2=A0<u></u></spa=
+n></p>
+<p class=3D"MsoNormal"></p><div class=3D"">$ git clone=C2=A0git://<a href=
+=3D"http://git.openembedded.org/bitbake" target=3D"_blank">git.openembedded=
+.org/bitbake</a>
+<br>
+$ cd bitbake<br></div>
+$ make DOC=3Duser-manual<u></u><u></u><p></p>
+<p class=3D"MsoNormal">Builds both HTML and PDF fine.=C2=A0 Assumes the =E2=
+=80=9Cmaster=E2=80=9D branch.=C2=A0
+<u></u><u></u></p>
+<p class=3D"MsoNormal">I have the make, xsltproc, docbook-utils, fop, dblat=
+ex, and xmlto packages on my host build machine.<u></u><u></u></p>
+<p class=3D"MsoNormal">Scott<u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1f497d"><u></u>=C2=A0<u></u></spa=
+n></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1f497d"><u></u>=C2=A0<u></u></spa=
+n></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1f497d"><u></u>=C2=A0<u></u></spa=
+n></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1f497d"><u></u>=C2=A0<u></u></spa=
+n></p>
+<div style=3D"border:none;border-left:solid blue 1.5pt;padding:0in 0in 0in =
+4.0pt">
+<div>
+<div style=3D"border:none;border-top:solid #b5c4df 1.0pt;padding:3.0pt 0in =
+0in 0in">
+<p class=3D"MsoNormal"><b><span style=3D"font-size:10.0pt;font-family:&quot=
+;Tahoma&quot;,&quot;sans-serif&quot;">From:</span></b><span style=3D"font-s=
+ize:10.0pt;font-family:&quot;Tahoma&quot;,&quot;sans-serif&quot;"> Patrick =
+Doyle [mailto:<a href=3D"mailto:wpdster@gmail.com" target=3D"_blank">wpdste=
+r@gmail.com</a>]
+<br>
+<b>Sent:</b> Tuesday, March 25, 2014 8:30 AM<br>
+<b>To:</b> Rifenbark, Scott M<br>
+<b>Cc:</b> <a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yoct=
+o@yoctoproject.org</a><br>
+<b>Subject:</b> Re: [yocto] Problems building documentation for bitbake 1.1=
+7.0<u></u><u></u></span></p>
+</div>
+</div><div><div class=3D"h5">
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<div>
+<p class=3D"MsoNormal">I poked around some more after sending my email (ins=
+tead of doing the work I was supposed to be doing) and found that, by ignor=
+ing the docbook messages and just letting the setup complete for 1.17.0, it=
+ worked (once I apt-got another package
+ or two: xsltproc, libxml2-utils, fop, maybe others). =C2=A0So I now have a=
+ doc/manual/html directory for 1.17.0.<u></u><u></u></p>
+<div>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal">I still can&#39;t build the docs (with &quot;make DO=
+C=3Duser-manual&quot;) on master though. =C2=A0It fails to build user-manua=
+l.pdf:<u></u><u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+</div>
+<div>
+<div>
+<p class=3D"MsoNormal"><a href=3D"http://docbook.sourceforge.net/release/xs=
+l/current/common/en.xml:188" target=3D"_blank">http://docbook.sourceforge.n=
+et/release/xsl/current/common/en.xml:188</a>: parser error : Premature end =
+of data in tag l10n line 2<u></u><u></u></p>
+
+
+</div>
+<div>
+<p class=3D"MsoNormal">&lt;l:gentext key=3D&quot;listof<u></u><u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal">=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 ^<u></u><u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal">[warning] /usr/bin/fop: Unable to locate servlet-api=
+ in /usr/share/java<u></u><u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal">Default page-height set to: 11in<u></u><u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal">Default page-width set to: 8.26in<u></u><u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal">Exception<u></u><u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal">org.apache.fop.apps.FOPException: String index out o=
+f range: 0<u></u><u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal">java.lang.StringIndexOutOfBoundsException: String in=
+dex out of range: 0<u></u><u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal">=C2=A0<u></u><u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal">******** Creating Tarball of document files<u></u><u=
+></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal">=C2=A0<u></u><u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal">cd user-manual; tar -cvzf user-manual.tgz user-manua=
+l-style.css user-manual.html user-manual.pdf figures/bitbake-title.png; cd =
+..<u></u><u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal">user-manual-style.css<u></u><u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal">user-manual.html<u></u><u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal">tar: user-manual.pdf: Cannot stat: No such file or d=
+irectory<u></u><u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal">figures/bitbake-title.png<u></u><u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal">tar: Exiting with failure status due to previous err=
+ors<u></u><u></u></p>
+</div>
+</div>
+<div>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal">I&#39;m not to sure what to make of this :-)<u></u><=
+u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal">--wpd<u></u><u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+</div>
+</div>
+<div>
+<p class=3D"MsoNormal" style=3D"margin-bottom:12.0pt"><u></u>=C2=A0<u></u><=
+/p>
+<div>
+<p class=3D"MsoNormal">On Tue, Mar 25, 2014 at 10:38 AM, Rifenbark, Scott M=
+ &lt;<a href=3D"mailto:scott.m.rifenbark@intel.com" target=3D"_blank">scott=
+.m.rifenbark@intel.com</a>&gt; wrote:<u></u><u></u></p>
+<div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1f497d">I created a fresh clone o=
+f the upstream BB repository, checked out the 1.17.0 tag and cannot make
+ the user-manual. =C2=A0I don=E2=80=99t think the ability to make user-manu=
+al was in place at the time 1.17.0 tag happened.=C2=A0 I am just guessing h=
+ere though.</span><u></u><u></u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1f497d">=C2=A0</span><u></u><u></=
+u></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1f497d">Scott</span><u></u><u></u=
+></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1f497d">=C2=A0</span><u></u><u></=
+u></p>
+<div style=3D"border:none;border-left:solid blue 1.5pt;padding:0in 0in 0in =
+4.0pt">
+<div>
+<div style=3D"border:none;border-top:solid #b5c4df 1.0pt;padding:3.0pt 0in =
+0in 0in">
+<p class=3D"MsoNormal"><b><span style=3D"font-size:10.0pt;font-family:&quot=
+;Tahoma&quot;,&quot;sans-serif&quot;">From:</span></b><span style=3D"font-s=
+ize:10.0pt;font-family:&quot;Tahoma&quot;,&quot;sans-serif&quot;">
+<a href=3D"mailto:yocto-bounces@yoctoproject.org" target=3D"_blank">yocto-b=
+ounces@yoctoproject.org</a> [mailto:<a href=3D"mailto:yocto-bounces@yoctopr=
+oject.org" target=3D"_blank">yocto-bounces@yoctoproject.org</a>]
+<b>On Behalf Of </b>Patrick Doyle<br>
+<b>Sent:</b> Tuesday, March 25, 2014 5:58 AM<br>
+<b>To:</b> <a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yoct=
+o@yoctoproject.org</a><br>
+<b>Subject:</b> [yocto] Problems building documentation for bitbake 1.17.0<=
+/span><u></u><u></u></p>
+</div>
+</div>
+<div>
+<div>
+<p class=3D"MsoNormal">=C2=A0<u></u><u></u></p>
+<div>
+<div>
+<p class=3D"MsoNormal">Hello all,<u></u><u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal">=C2=A0<u></u><u></u></p>
+</div>
+<p class=3D"MsoNormal">I just tried<u></u><u></u></p>
+<div>
+<p class=3D"MsoNormal">=C2=A0<u></u><u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal">$ git clone=C2=A0git://<a href=3D"http://git.openemb=
+edded.org/bitbake" target=3D"_blank">git.openembedded.org/bitbake</a><u></u=
+><u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal">$ cd bitbake<u></u><u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal">$ git checkout 1.17.0<u></u><u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal">$ python setup.py install<u></u><u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal">=C2=A0<u></u><u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal">and that failed with an infinite (well, I hit ^C bef=
+ore I found out for real) stream of messages of the form:<u></u><u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal">=C2=A0<u></u><u></u></p>
+</div>
+<div>
+<div>
+<p class=3D"MsoNormal"><a href=3D"http://docbook.sourceforge.net/release/xs=
+l/current/common/en.xml:207" target=3D"_blank">http://docbook.sourceforge.n=
+et/release/xsl/current/common/en.xml:207</a>: parser error
+ : Extra content at the end of the document<u></u><u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal">=C4=9E=C4=9F=C4=A0=C4=A1=C4=A2=C4=A3=C6=93=C9=A0=C7=
+=A4=C7=A5=C7=A6=C7=A7=C7=B4=C7=B5=E1=B8=A0=E1=B8=A1Hh=C4=A4=C4=A5=C4=A6=C4=
+=A7=C8=9E=C8=9F=C9=A6=E1=B8=A2=E1=B8=A3=E1=B8=A4=E1=B8=A5=E1=B8=A6=E1=B8=A7=
+=E1=B8=A8=E1=B8=A9=E1=B8=AA=E1=B8=AB<u></u><u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal">=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
+=C2=A0^<u></u><u></u></p>
+</div>
+</div>
+<div>
+<p class=3D"MsoNormal">=C2=A0<u></u><u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal">I tried this on a Ubuntu 12.04 LTS 64 bit machine. =
+=C2=A0Am I missing a particular dependency? =C2=A0Is this a known problem (=
+with an obvious solution?) =C2=A0The Google doesn&#39;t tell me anything
+ obvious about &quot;docbook extra content at end of document&quot; =C2=A0(=
+I didn&#39;t try searching for the string of random characters that follows=
+ that. =C2=A0Perhaps I should try.)<u></u><u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal">=C2=A0<u></u><u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal">I get the same error when executing &quot;make DOC=
+=3Duser-manual&quot; on the master branch (note that setup.py doesn&#39;t w=
+ork right now on master), so I&#39;m inclined to believe the problem is
+ at my end. =C2=A0I&#39;m just not sure where to start looking for a soluti=
+on. =C2=A0So I figured I&#39;d ask.<u></u><u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal">=C2=A0<u></u><u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal">--wpd<u></u><u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal">=C2=A0<u></u><u></u></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+</div>
+</div></div></div>
+</div>
+</div>
+
+</blockquote></div><br></div>
+
+--047d7b6730ac61ef9c04f5711ec0--
