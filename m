@@ -1,30 +1,42 @@
-Return-Path: <gary@mlbassoc.com>
-Received: from mail.chez-thomas.org (mail.mlbassoc.com [65.100.170.105])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E1889E002A6
-	for <yocto@yoctoproject.org>; Mon, 24 Mar 2014 16:25:13 -0700 (PDT)
-Received: by mail.chez-thomas.org (Postfix, from userid 1998)
-	id D9DB1F811E0; Mon, 24 Mar 2014 17:25:12 -0600 (MDT)
-X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on
-	hermes.chez-thomas.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=4.0 tests=ALL_TRUSTED,BAYES_00
-	autolearn=unavailable version=3.3.2
-Received: from [192.168.1.114] (zeus [192.168.1.114])
-	by mail.chez-thomas.org (Postfix) with ESMTP id BA00FF811DA;
-	Mon, 24 Mar 2014 17:25:11 -0600 (MDT)
-Message-ID: <5330BEDD.3020607@mlbassoc.com>
-Date: Mon, 24 Mar 2014 17:25:17 -0600
-From: Gary Thomas <gary@mlbassoc.com>
+Return-Path: <trevor.woerner@linaro.org>
+Received: from mail-yh0-f44.google.com (mail-yh0-f44.google.com
+	[209.85.213.44])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A062CE00975
+	for <yocto@yoctoproject.org>; Mon, 24 Mar 2014 17:11:22 -0700 (PDT)
+Received: by mail-yh0-f44.google.com with SMTP id f10so6015909yha.31
+	for <yocto@yoctoproject.org>; Mon, 24 Mar 2014 17:11:22 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
+	:subject:references:in-reply-to:content-type
+	:content-transfer-encoding;
+	bh=alaEu1pOhlqd9a3XnyekC/NbdLo61xTjBlNWSklTgPo=;
+	b=KHR+4EgzbOxC3Qc4xx6p3MmBXL3BrtGQyrZv1qLv3s+sVehUrZzHCuWOyEW2diVS/2
+	DBrrqVR0YYCgrNrwB9oKcwp9HcMZ4ghubKiI1/2femO/Dp/By+BYRP388r10LE0/79mp
+	4OonUeUSZCKDB2JfkmBiE19WmMguvm7u+oQtI+UjFMIqqXPW5j5qPjuxLRz0lwPJMY9o
+	HmyejKLxZ9PDLlwa2R+6hNeLBsElBR/uSqBmmbDpt26CQ3n6hEuw3K6AkPoDlmH22AEv
+	Ga7YDZerCwhWFp65DX2moKJ8SB3nLVJ1GnE6ihW3YMpkwcYJ2oK/0Vpxrb8uKaMikaJ6
+	0HSg==
+X-Gm-Message-State: ALoCoQl9F9Du+T64tmihr8PzdHChAazQyA1J0yMzNGRLEBTApALmtr9KiU58cufXS59+jX2Uu+N4
+X-Received: by 10.236.61.45 with SMTP id v33mr69209632yhc.20.1395706282426;
+	Mon, 24 Mar 2014 17:11:22 -0700 (PDT)
+Received: from [192.168.141.83] (69-165-220-158.dsl.teksavvy.com.
+	[69.165.220.158]) by mx.google.com with ESMTPSA id
+	u21sm25797984yhb.24.2014.03.24.17.11.21 for <multiple recipients>
+	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
+	Mon, 24 Mar 2014 17:11:21 -0700 (PDT)
+Message-ID: <5330C9A8.904@linaro.org>
+Date: Mon, 24 Mar 2014 20:11:20 -0400
+From: Trevor Woerner <trevor.woerner@linaro.org>
 User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:24.0) Gecko/20100101 Thunderbird/24.4.0
+	rv:24.0) Gecko/20100101 Thunderbird/24.3.0
 MIME-Version: 1.0
-To: Jate S <jatedev@gmail.com>
-References: <CAPphmgYBnU6-NtLt+FDgpc97CKsnU6y8OSSGGO9W9isbf0xH7g@mail.gmail.com>	<532CB035.2020703@mlbassoc.com>	<CAPphmgbHhHMRTAGtXMsHfbHR6FuQa7MODGW_UQY22xCO2Z38MQ@mail.gmail.com>	<532CB770.90004@mlbassoc.com>
-	<CAPphmgZ8ix__X7uvJzuGmiFOTZpcKydCoS-X5Vs15GKA-ujW6Q@mail.gmail.com>
-In-Reply-To: <CAPphmgZ8ix__X7uvJzuGmiFOTZpcKydCoS-X5Vs15GKA-ujW6Q@mail.gmail.com>
-X-Enigmail-Version: 1.5.2
-Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: linux-yocto fetch bottleneck
+To: Richard Purdie <richard.purdie@linuxfoundation.org>, 
+	openembedded-core <openembedded-core@lists.openembedded.org>,
+	yocto <yocto@yoctoproject.org>
+References: <1395676843.24890.7.camel@ted>
+In-Reply-To: <1395676843.24890.7.camel@ted>
+Subject: --conf Was: [OE-core] Features in Yocto Project 1.7
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -36,65 +48,38 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 24 Mar 2014 23:25:14 -0000
+X-List-Received-Date: Tue, 25 Mar 2014 00:11:23 -0000
 Content-Type: text/plain; charset=ISO-8859-1
 Content-Transfer-Encoding: 7bit
 
-On 2014-03-24 17:18, Jate S wrote:
-> What is the name of the mirror tarball that's created? I am trying to
-> see if it worked. I saw no log messages stating "Creating tarball of
-> git repository".
+On 03/24/14 12:00, Richard Purdie wrote:
+> I think from my perspective, in 1.7 I'd like to see us looking at
+> "Developer Workflow".
 
-It will look something like this (for the opkg-utils_git recipe)
-  downloads/git2_git.yoctoproject.org.opkg-utils.tar.gz
+Maybe I'm using things incorrectly :-)
 
-You should then  arrange to move/copy any of these tarballs to your mirror
-so you benefit from this the next time around (when building in a new/different
-build tree)
+But I often find that I'm switching between building different images.
+For example, one moment I might be building core-image-minimal (CIM),
+then later I'll want to build a GUI image with Wayland.
 
-> On Fri, Mar 21, 2014 at 6:04 PM, Gary Thomas <gary@mlbassoc.com> wrote:
->> On 2014-03-21 15:54, Jate S wrote:
->>> The documentation has warnings of space usage. Will it start using
->>> lots of space? If so, can I use it on a per mirror basis?
->>
->> Yes, the tarballs can be quite large, but they are incredibly useful
->> with a local mirror.  Especially when you consider that updating a GIT
->> checkout, e.g. the Linux kernel. can take a *really* long time.
->>
->>> I am using a local mirror, so maybe the space usage will not be a problem.
->>
->> The space needed will not be terribly different than what you've already
->> encountered without generating the tarballs.
->>
->> n.b. it's polite to keep replies on the mailing list so that everyone benefits.
->>
->>> On Fri, Mar 21, 2014 at 5:33 PM, Gary Thomas <gary@mlbassoc.com> wrote:
->>>> On 2014-03-21 15:27, Jate S wrote:
->>>>> I am running into a bottleneck with the linux-yocto recipe on dora
->>>>> 1.5.1. The fetch retrieves git2_git.yoctoproject.org.git.tar.gz, but
->>>>> then it hits a bottleneck when it must do a git fetch to update to the
->>>>> required references. The git server does not have high bandwdith.
->>>>>
->>>>> One workaround that I've found is to archive the git repository and
->>>>> replace the tar.gz in the downloads directory. The recipe then finds
->>>>> the required references.
->>>>>
->>>>> Would BB_GENERATE_MIRROR_TARBALLS actually take care of this? Any
->>>>> other recommendations?
->>>>
->>>> Yes, that's exactly what BB_GENERATE_MIRROR_TARBALLS does.  The updated
->>>> tarball will end up in your downloads directory.  If you use any sort of
->>>> local mirror, you'll want to push the new tarball to it for the next time.
->>
->> --
->> ------------------------------------------------------------
->> Gary Thomas                 |  Consulting for the
->> MLB Associates              |    Embedded world
->> ------------------------------------------------------------
+Switching between CIM and the GUI image requires changes to both
+conf/local.conf and conf/bblayers.conf. I will either have two separate
+sets of files and symlink between them, or I'll need to edit them by
+hand to comment/uncomment out various blocks. I often get this wrong and
+will need to restart a couple times before the build can hope to
+complete successfully.
 
--- 
-------------------------------------------------------------
-Gary Thomas                 |  Consulting for the
-MLB Associates              |    Embedded world
-------------------------------------------------------------
+If I could wish for one workflow change, it would be the ability to
+switch between various build configurations with the minimum of fuss:
+- maybe the layer information could be contained within the
+configuration file, then on the bitbake cmdline I could just say
+"bitbake --conf wayland" or "bitbake --conf mycim" and it would know to
+find and use conf/wayland.conf or conf/mycim.conf?
+- maybe the local.conf could be renamed wayland.conf and the
+bblayers.conf could be renamed wayland.bblayers then I could type
+"bitbake --conf wayland" and it would know to look for wayland.conf and
+wayland.bblayers?
+
+Does this sort of workflow make sense to others? Or have people noticed
+this and solved it in some clever way?
 
