@@ -1,42 +1,23 @@
-Return-Path: <trevor.woerner@linaro.org>
-Received: from mail-yh0-f44.google.com (mail-yh0-f44.google.com
-	[209.85.213.44])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A062CE00975
-	for <yocto@yoctoproject.org>; Mon, 24 Mar 2014 17:11:22 -0700 (PDT)
-Received: by mail-yh0-f44.google.com with SMTP id f10so6015909yha.31
-	for <yocto@yoctoproject.org>; Mon, 24 Mar 2014 17:11:22 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
-	:subject:references:in-reply-to:content-type
-	:content-transfer-encoding;
-	bh=alaEu1pOhlqd9a3XnyekC/NbdLo61xTjBlNWSklTgPo=;
-	b=KHR+4EgzbOxC3Qc4xx6p3MmBXL3BrtGQyrZv1qLv3s+sVehUrZzHCuWOyEW2diVS/2
-	DBrrqVR0YYCgrNrwB9oKcwp9HcMZ4ghubKiI1/2femO/Dp/By+BYRP388r10LE0/79mp
-	4OonUeUSZCKDB2JfkmBiE19WmMguvm7u+oQtI+UjFMIqqXPW5j5qPjuxLRz0lwPJMY9o
-	HmyejKLxZ9PDLlwa2R+6hNeLBsElBR/uSqBmmbDpt26CQ3n6hEuw3K6AkPoDlmH22AEv
-	Ga7YDZerCwhWFp65DX2moKJ8SB3nLVJ1GnE6ihW3YMpkwcYJ2oK/0Vpxrb8uKaMikaJ6
-	0HSg==
-X-Gm-Message-State: ALoCoQl9F9Du+T64tmihr8PzdHChAazQyA1J0yMzNGRLEBTApALmtr9KiU58cufXS59+jX2Uu+N4
-X-Received: by 10.236.61.45 with SMTP id v33mr69209632yhc.20.1395706282426;
-	Mon, 24 Mar 2014 17:11:22 -0700 (PDT)
-Received: from [192.168.141.83] (69-165-220-158.dsl.teksavvy.com.
-	[69.165.220.158]) by mx.google.com with ESMTPSA id
-	u21sm25797984yhb.24.2014.03.24.17.11.21 for <multiple recipients>
-	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
-	Mon, 24 Mar 2014 17:11:21 -0700 (PDT)
-Message-ID: <5330C9A8.904@linaro.org>
-Date: Mon, 24 Mar 2014 20:11:20 -0400
-From: Trevor Woerner <trevor.woerner@linaro.org>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:24.0) Gecko/20100101 Thunderbird/24.3.0
+Return-Path: <Wenzong.Fan@windriver.com>
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C2959E0098F
+	for <yocto@yoctoproject.org>; Mon, 24 Mar 2014 18:07:53 -0700 (PDT)
+Received: from ALA-HCB.corp.ad.wrs.com (ala-hcb.corp.ad.wrs.com
+	[147.11.189.41])
+	by mail.windriver.com (8.14.5/8.14.5) with ESMTP id s2P17qvp006786
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL)
+	for <yocto@yoctoproject.org>; Mon, 24 Mar 2014 18:07:53 -0700 (PDT)
+Received: from pek-hostel-vm12.wrs.com (128.224.153.182) by
+	ALA-HCB.corp.ad.wrs.com (147.11.189.41) with Microsoft SMTP Server id
+	14.3.169.1; Mon, 24 Mar 2014 18:07:52 -0700
+From: <wenzong.fan@windriver.com>
+To: <yocto@yoctoproject.org>, <xin.ouyang@windriver.com>,
+	<mark.hatle@windriver.com>, <Joe.MacDonald@windriver.com>
+Date: Mon, 24 Mar 2014 21:07:46 -0400
+Message-ID: <cover.1395709062.git.wenzong.fan@windriver.com>
+X-Mailer: git-send-email 1.7.9.5
 MIME-Version: 1.0
-To: Richard Purdie <richard.purdie@linuxfoundation.org>, 
-	openembedded-core <openembedded-core@lists.openembedded.org>,
-	yocto <yocto@yoctoproject.org>
-References: <1395676843.24890.7.camel@ted>
-In-Reply-To: <1395676843.24890.7.camel@ted>
-Subject: --conf Was: [OE-core] Features in Yocto Project 1.7
+Subject: [meta-selinux][PATCH 0/4] add targeted/minimum policy and some updates
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -48,38 +29,51 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 25 Mar 2014 00:11:23 -0000
-Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Tue, 25 Mar 2014 01:07:54 -0000
+Content-Type: text/plain
 
-On 03/24/14 12:00, Richard Purdie wrote:
-> I think from my perspective, in 1.7 I'd like to see us looking at
-> "Developer Workflow".
+From: Wenzong Fan <wenzong.fan@windriver.com>
 
-Maybe I'm using things incorrectly :-)
+Changes:
+* backport tmpfs_t patch from upstream;
+* add rules for /var/log symlink on poky;
+* add targeted policy type
+* add minimum targeted policy
 
-But I often find that I'm switching between building different images.
-For example, one moment I might be building core-image-minimal (CIM),
-then later I'll want to build a GUI image with Wayland.
+The following changes since commit a6079a43719e79e12a57e609923a0cccdba06916:
 
-Switching between CIM and the GUI image requires changes to both
-conf/local.conf and conf/bblayers.conf. I will either have two separate
-sets of files and symlink between them, or I'll need to edit them by
-hand to comment/uncomment out various blocks. I often get this wrong and
-will need to restart a couple times before the build can hope to
-complete successfully.
+  refpolicy: fix real path for su.shadow (2014-02-13 10:52:07 -0500)
 
-If I could wish for one workflow change, it would be the ability to
-switch between various build configurations with the minimum of fuss:
-- maybe the layer information could be contained within the
-configuration file, then on the bitbake cmdline I could just say
-"bitbake --conf wayland" or "bitbake --conf mycim" and it would know to
-find and use conf/wayland.conf or conf/mycim.conf?
-- maybe the local.conf could be renamed wayland.conf and the
-bblayers.conf could be renamed wayland.bblayers then I could type
-"bitbake --conf wayland" and it would know to look for wayland.conf and
-wayland.bblayers?
+are available in the git repository at:
 
-Does this sort of workflow make sense to others? Or have people noticed
-this and solved it in some clever way?
+  git://git.pokylinux.org/poky-contrib wenzong/ref-minimum
+  http://git.pokylinux.org/cgit.cgi/poky-contrib/log/?h=wenzong/ref-minimum
+
+Wenzong Fan (4):
+  refpolicy: associate tmpfs_t (shm) to device_t (devtmpfs) file
+    systems
+  refpolicy: add rules for /var/log symlink on poky
+  refpolicy: add targeted policy type
+  refpolicy: add minimum targeted policy
+
+ ...associate-tmpfs_t-shm-to-device_t-devtmpf.patch |   30 +++
+ ...ky-policy-add-rules-for-syslogd_t-symlink.patch |   30 +++
+ ...rules-for-var-log-symlink-audisp_remote_t.patch |   29 +++
+ .../refpolicy/refpolicy-minimum_2.20130424.bb      |   46 +++++
+ ...olicy-fix-optional-issue-on-sysadm-module.patch |   60 ++++++
+ .../refpolicy-unconfined_u-default-user.patch      |  198 ++++++++++++++++++++
+ .../refpolicy/refpolicy-targeted_2.20130424.bb     |   18 ++
+ .../refpolicy/refpolicy_2.20130424.inc             |    3 +
+ 8 files changed, 414 insertions(+)
+ create mode 100644 recipes-security/refpolicy/refpolicy-2.20130424/filesystem-associate-tmpfs_t-shm-to-device_t-devtmpf.patch
+ create mode 100644 recipes-security/refpolicy/refpolicy-2.20130424/poky-policy-add-rules-for-syslogd_t-symlink.patch
+ create mode 100644 recipes-security/refpolicy/refpolicy-2.20130424/poky-policy-add-rules-for-var-log-symlink-audisp_remote_t.patch
+ create mode 100644 recipes-security/refpolicy/refpolicy-minimum_2.20130424.bb
+ create mode 100644 recipes-security/refpolicy/refpolicy-targeted/refpolicy-fix-optional-issue-on-sysadm-module.patch
+ create mode 100644 recipes-security/refpolicy/refpolicy-targeted/refpolicy-unconfined_u-default-user.patch
+ create mode 100644 recipes-security/refpolicy/refpolicy-targeted_2.20130424.bb
+
+-- 
+1.7.9.5
+
 
