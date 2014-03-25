@@ -1,33 +1,26 @@
-Return-Path: <raj.khem@gmail.com>
-Received: from mail-ie0-f174.google.com (mail-ie0-f174.google.com
-	[209.85.223.174])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D2080E0073C
-	for <yocto@yoctoproject.org>; Tue, 25 Mar 2014 10:29:22 -0700 (PDT)
-Received: by mail-ie0-f174.google.com with SMTP id rp18so721638iec.19
-	for <yocto@yoctoproject.org>; Tue, 25 Mar 2014 10:29:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-type;
-	bh=jhgsZdk/bJfegIiPFPKM5a3kqqN1IhGK09yxePdWvRw=;
-	b=YWSTW2ICRTv1e8YTj4C3qdP9rXjQZVnzdJUlcPdIY4tWvaOjqns4rbZPWJkBZzo8bT
-	8yb7qKhv9OougE1M1aFzM9FsgtmUXMN/t9syORzMGZofZfw3MpTiUk3vdLHOLyfkW61W
-	U8lb909g6gmkRER2/lC/hH7tktqr6L+iNgQg6ayNPjKgtUvQ/MG4plBd10HettI3ypDI
-	jLHW/kud03lPzaFbVvxlnsnPtPiGvH32RCI10C4LmYGvfuYIDm2VKYzh4EJeaOKY7cHG
-	nLSD8PbHMCmHMDuotzbbcPnd6WwfEY2sFi4elhGztKWgreCJP9oM8Jh8RJIvV9R8OSjf
-	bh5Q==
-X-Received: by 10.42.92.194 with SMTP id u2mr55333355icm.19.1395768562222;
-	Tue, 25 Mar 2014 10:29:22 -0700 (PDT)
+Return-Path: <philip@balister.org>
+Received: from sanddollar.geekisp.com (sanddollar.geekisp.com
+	[216.168.135.167])
+	by yocto-www.yoctoproject.org (Postfix) with SMTP id 5906CE0073C
+	for <yocto@yoctoproject.org>; Tue, 25 Mar 2014 10:37:12 -0700 (PDT)
+Received: (qmail 31070 invoked by uid 1003); 25 Mar 2014 17:37:11 -0000
+Received: from unknown (HELO ?10.16.32.157?)
+	(philip@opensdr.com@64.186.172.226)
+	by mail.geekisp.com with (DHE-RSA-AES256-SHA encrypted) SMTP;
+	25 Mar 2014 17:37:11 -0000
+Message-ID: <5331BEC6.2000904@balister.org>
+Date: Tue, 25 Mar 2014 10:37:10 -0700
+From: Philip Balister <philip@balister.org>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:17.0) Gecko/20130625 Thunderbird/17.0.7
 MIME-Version: 1.0
-Received: by 10.50.224.136 with HTTP; Tue, 25 Mar 2014 10:28:52 -0700 (PDT)
-In-Reply-To: <AF233D1473C1364ABD51D28909A1B1B7240CB168@pgsmsx105.gar.corp.intel.com>
-References: <AF233D1473C1364ABD51D28909A1B1B7240CB168@pgsmsx105.gar.corp.intel.com>
-From: Khem Raj <raj.khem@gmail.com>
-Date: Tue, 25 Mar 2014 10:28:52 -0700
-Message-ID: <CAMKF1spyCqUnKC1ODZyEObOKvzn=KC+OTAz7kj=VR3+SPicsrQ@mail.gmail.com>
-To: "Ong, Boon Leong" <boon.leong.ong@intel.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>, "Khade,
-	Abhishek" <abhishek.khade@intel.com>
-Subject: Re: Question on cross-compiling 32-bit application on 64-bit target platform
+To: =?ISO-8859-1?Q?David_Nystr=F6m?= <david.nystrom@enea.com>
+References: <1395676843.24890.7.camel@ted> <5331935A.6060009@enea.com>
+In-Reply-To: <5331935A.6060009@enea.com>
+X-Enigmail-Version: 1.6
+Cc: yocto <yocto@yoctoproject.org>,
+	openembedded-core <openembedded-core@lists.openembedded.org>
+Subject: Re: [OE-core] Features in Yocto Project 1.7
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,29 +32,66 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 25 Mar 2014 17:29:24 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Tue, 25 Mar 2014 17:37:16 -0000
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: 8bit
 
-On Fri, Mar 21, 2014 at 3:07 AM, Ong, Boon Leong
-<boon.leong.ong@intel.com> wrote:
-> Hi,
->         Could anyone comment on whether we can cross-compile a 32-bit application on a 64-bit Intel machine booted with core-image-sato-sdk hddimg.
->         If it is not enabled by default on the SDK image, how can I configure the recipe to do so when I build core-image-sato-sdk?
->         Could anyone shed some light on this. Much appreciated.
->
+On 03/25/2014 07:31 AM, David Nyström wrote:
+> On 2014-03-24 17:00, Richard Purdie wrote:
+>> As development on 1.6 finishes up, its time to think about what we
+>> should be doing in the 1.7 cycle.
+>>
+>> I think from my perspective, in 1.7 I'd like to see us looking at
+>> "Developer Workflow". Its a generic topic which I think covered multiple
+>> areas (in no particular order):
+>>
+>> * the ADT/SDK and how it intergrates into the rest of the system
+> 
+>> * toaster
+>> * python devshell
+>> * exteralsrc.bbclass
+>> * memory resident bitbake
+>> * how a standalone app developer might build an image
+> 
+> +1
+> My wishlist:
+> 
+> 1. Assembly of an image from a package repository using the SDK.
+> 2. Ability to easily package multiple kernel flavours(builds with
+> different kernel configs) with linux related bbclass:es.
 
-you would need to bundle 32bit target SDK along with. I am not sure if
-its already done for you.
-so adding something like lib32-packagegroup-core-sdk
-lib32-packagegroup-core-standalone-sdk-target
-to your image might take you further in this direction assuming you
-have multilib enabled
->
-> Thanks
-> Boon Leong
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+Can we update the OEDAM web page with some of these ideas:
+
+http://openembedded.org/wiki/OEDAM
+
+Discussion should continue on the list, but we have an agenda item to
+talk about the next release and this would be a good time to review the
+ideas raised in the this thread. I put in a placeholder with the link to
+Otavio's email. (And I really like his thoughts)
+
+Philip
+
+
+> 
+> Br,
+> David
+> 
+> 
+>> * locked sstate
+>>
+>> and probably more I'm forgetting.
+>>
+>> If anyone does have things they plan to work on, or ideas for things
+>> that should be worked on, please do file enhancement requests in the
+>> bugzilla:
+>>
+>> https://bugzilla.yoctoproject.org/
+>>
+>> Cheers,
+>>
+>> Richard
+>>
+>>
+>>
+> 
 
