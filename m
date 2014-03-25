@@ -1,38 +1,35 @@
-Return-Path: <martin.jansa@gmail.com>
-Received: from mail-ee0-f49.google.com (mail-ee0-f49.google.com [74.125.83.49])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EA1A6E003C7
-	for <yocto@yoctoproject.org>; Mon, 24 Mar 2014 22:50:32 -0700 (PDT)
-Received: by mail-ee0-f49.google.com with SMTP id c41so5107971eek.22
-	for <yocto@yoctoproject.org>; Mon, 24 Mar 2014 22:50:31 -0700 (PDT)
+Return-Path: <otavio.salvador@gmail.com>
+Received: from mail-yk0-f174.google.com (mail-yk0-f174.google.com
+	[209.85.160.174])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3E86EE0073C
+	for <yocto@yoctoproject.org>; Tue, 25 Mar 2014 05:22:12 -0700 (PDT)
+Received: by mail-yk0-f174.google.com with SMTP id 20so913208yks.5
+	for <yocto@yoctoproject.org>; Tue, 25 Mar 2014 05:22:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=date:from:to:cc:subject:message-id:references:mime-version
-	:content-type:content-disposition:in-reply-to:user-agent;
-	bh=AtLht8U+tbKoODIeIDa0QAp3VSs22LbM7wLrhcZq2lQ=;
-	b=vu1b2+S07q582vQfryOW2K8XzNZewQFIiTzqXrkxQxDNNOQNtOaLn5S6YWj3cqKAgt
-	tp49yEIBzcdHgH/G8yHRGURP7cGjTcXYd9g7+Z9Cpk2L+TgXAPsCeSIw9Kqxp/J7NE73
-	4VEjIVwZIaBGsNBx5mqnahzkmjo2KAGOd2ILVh87TjKoQ8nP5qDgM7Y0iNfJQd4Wf9lN
-	uAzoTFt1TFDnZfX07wsn070wZVFzuD7z9dQBKYqQHz8UwfG7TPTv7KPDpQXJNpSq3scL
-	hrnZI212X2MevlZlJY54lmGYdskvRXd5cehno2Sjd2EKes14YgQ5qnMUY4dWmuNW/Kxl
-	CCCQ==
-X-Received: by 10.15.44.3 with SMTP id y3mr1295545eev.58.1395726631306;
-	Mon, 24 Mar 2014 22:50:31 -0700 (PDT)
-Received: from localhost (ip-89-176-104-3.net.upcbroadband.cz. [89.176.104.3])
-	by mx.google.com with ESMTPSA id
-	bc51sm37934500eeb.22.2014.03.24.22.50.29 for <multiple recipients>
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Mon, 24 Mar 2014 22:50:29 -0700 (PDT)
-Date: Tue, 25 Mar 2014 06:50:28 +0100
-From: Martin Jansa <martin.jansa@gmail.com>
-To: Trevor Woerner <trevor.woerner@linaro.org>
-Message-ID: <20140325055028.GA3710@jama>
-References: <1395676843.24890.7.camel@ted>
- <5330C9A8.904@linaro.org>
+	h=mime-version:sender:in-reply-to:references:date:message-id:subject
+	:from:to:cc:content-type;
+	bh=AY9C7ocsU/hnzGxskeMCs78GeiyBKTee26vASoYJ2p4=;
+	b=yrB/3vDca9Fzp0q0mzT4TR1NnEegAd2uUL0d+3dabfSzhpoGuzjWVJBu/J2ro6INYQ
+	KLACgdFq30VLOKnUqvYxFxMr/8BNe0WGxhWjipAiSoFnfYlMLtRlH+7sYQPR5N35+YI8
+	JQSqhR24VC8UDCQ8DDEssCyHGbEbpkVF8qZ+umu+6t6zo6IcHgMYctyQr1RTU6QlP7bw
+	H5fLIcO6JRTIfh3INbkwmlLZDWGi6FUQMD7FnAPBSXnPBjUPCMYs1CO331EFjd0d1jQH
+	42zolu1qLKqEQI9xpbRnTMciGVJXMmXMDmPGyGs9JFZbgr/MDkDLf0Z+kz+e6z34mI/g
+	Y2fw==
 MIME-Version: 1.0
-In-Reply-To: <5330C9A8.904@linaro.org>
-User-Agent: Mutt/1.5.22 (2013-10-16)
+X-Received: by 10.236.44.173 with SMTP id n33mr6538376yhb.2.1395750132138;
+	Tue, 25 Mar 2014 05:22:12 -0700 (PDT)
+Sender: otavio.salvador@gmail.com
+Received: by 10.170.124.72 with HTTP; Tue, 25 Mar 2014 05:22:12 -0700 (PDT)
+In-Reply-To: <1395676843.24890.7.camel@ted>
+References: <1395676843.24890.7.camel@ted>
+Date: Tue, 25 Mar 2014 09:22:12 -0300
+X-Google-Sender-Auth: KzdFP2t9MzFpPH-gvlbPIL1nJcQ
+Message-ID: <CAP9ODKo8S2PjwqdxgwLYC=fWLMsdqLKkLXGuvnxf4xd3nqCJJA@mail.gmail.com>
+From: Otavio Salvador <otavio@ossystems.com.br>
+To: Richard Purdie <richard.purdie@linuxfoundation.org>
 Cc: yocto <yocto@yoctoproject.org>,
 	openembedded-core <openembedded-core@lists.openembedded.org>
-Subject: Re: [OE-core] --conf Was: Features in Yocto Project 1.7
+Subject: Re: [OE-core] Features in Yocto Project 1.7
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -44,65 +41,39 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 25 Mar 2014 05:50:35 -0000
-X-Groupsio-MsgNum: 18687
-Content-Type: multipart/signed; micalg=pgp-sha1;
-	protocol="application/pgp-signature"; boundary="RnlQjJ0d97Da+TV1"
-Content-Disposition: inline
+X-List-Received-Date: Tue, 25 Mar 2014 12:22:14 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
---RnlQjJ0d97Da+TV1
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On Mon, Mar 24, 2014 at 1:00 PM, Richard Purdie
+<richard.purdie@linuxfoundation.org> wrote:
+> As development on 1.6 finishes up, its time to think about what we
+> should be doing in the 1.7 cycle.
+>
+> I think from my perspective, in 1.7 I'd like to see us looking at
+> "Developer Workflow". Its a generic topic which I think covered multiple
+> areas (in no particular order):
+>
+> * the ADT/SDK and how it intergrates into the rest of the system
+> * toaster
+> * python devshell
+> * exteralsrc.bbclass
+> * memory resident bitbake
+> * how a standalone app developer might build an image
+> * locked sstate
+>
+> and probably more I'm forgetting.
+>
+> If anyone does have things they plan to work on, or ideas for things
+> that should be worked on, please do file enhancement requests in the
+> bugzilla:
 
-On Mon, Mar 24, 2014 at 08:11:20PM -0400, Trevor Woerner wrote:
-> On 03/24/14 12:00, Richard Purdie wrote:
-> > I think from my perspective, in 1.7 I'd like to see us looking at
-> > "Developer Workflow".
->=20
-> Maybe I'm using things incorrectly :-)
->=20
-> But I often find that I'm switching between building different images.
-> For example, one moment I might be building core-image-minimal (CIM),
-> then later I'll want to build a GUI image with Wayland.
->=20
-> Switching between CIM and the GUI image requires changes to both
-> conf/local.conf and conf/bblayers.conf. I will either have two separate
-> sets of files and symlink between them, or I'll need to edit them by
-> hand to comment/uncomment out various blocks. I often get this wrong and
-> will need to restart a couple times before the build can hope to
-> complete successfully.
->=20
-> If I could wish for one workflow change, it would be the ability to
-> switch between various build configurations with the minimum of fuss:
-> - maybe the layer information could be contained within the
-> configuration file, then on the bitbake cmdline I could just say
-> "bitbake --conf wayland" or "bitbake --conf mycim" and it would know to
-> find and use conf/wayland.conf or conf/mycim.conf?
-> - maybe the local.conf could be renamed wayland.conf and the
-> bblayers.conf could be renamed wayland.bblayers then I could type
-> "bitbake --conf wayland" and it would know to look for wayland.conf and
-> wayland.bblayers?
->=20
-> Does this sort of workflow make sense to others? Or have people noticed
-> this and solved it in some clever way?
+I'd like to cover
+http://lists.openembedded.org/pipermail/openembedded-core/2014-February/089287.html
+but this got no replies. So I am unsure people think it is an
+important thing or not.
 
-Can you show some example of config you need to have wor wayland and
-cannot have for core-image-minimal?
+-- 
+Otavio Salvador                             O.S. Systems
+http://www.ossystems.com.br        http://code.ossystems.com.br
+Mobile: +55 (53) 9981-7854            Mobile: +1 (347) 903-9750
 
---=20
-Martin 'JaMa' Jansa     jabber: Martin.Jansa@gmail.com
-
---RnlQjJ0d97Da+TV1
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: Digital signature
-
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v2.0.22 (GNU/Linux)
-
-iEYEARECAAYFAlMxGSQACgkQN1Ujt2V2gBzXqgCgt7v5522+FkIZ8dEYamLfGSN4
-btEAn2tNrQlmPvGNAKic9NkiX91itfT1
-=IIGb
------END PGP SIGNATURE-----
-
---RnlQjJ0d97Da+TV1--
