@@ -1,25 +1,25 @@
 Return-Path: <Wenzong.Fan@windriver.com>
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 43806E00AE6
-	for <yocto@yoctoproject.org>; Mon, 24 Mar 2014 18:07:57 -0700 (PDT)
+Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BF2BAE00AEC
+	for <yocto@yoctoproject.org>; Mon, 24 Mar 2014 18:07:55 -0700 (PDT)
 Received: from ALA-HCB.corp.ad.wrs.com (ala-hcb.corp.ad.wrs.com
 	[147.11.189.41])
-	by mail.windriver.com (8.14.5/8.14.5) with ESMTP id s2P17u6f006789
+	by mail1.windriver.com (8.14.5/8.14.5) with ESMTP id s2P17skD010906
 	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL)
-	for <yocto@yoctoproject.org>; Mon, 24 Mar 2014 18:07:56 -0700 (PDT)
+	for <yocto@yoctoproject.org>; Mon, 24 Mar 2014 18:07:55 -0700 (PDT)
 Received: from pek-hostel-vm12.wrs.com (128.224.153.182) by
 	ALA-HCB.corp.ad.wrs.com (147.11.189.41) with Microsoft SMTP Server id
-	14.3.169.1; Mon, 24 Mar 2014 18:07:56 -0700
+	14.3.169.1; Mon, 24 Mar 2014 18:07:54 -0700
 From: <wenzong.fan@windriver.com>
 To: <yocto@yoctoproject.org>, <xin.ouyang@windriver.com>,
 	<mark.hatle@windriver.com>, <Joe.MacDonald@windriver.com>
-Date: Mon, 24 Mar 2014 21:07:48 -0400
-Message-ID: <3bb1e5b71e9adf2bbffc4c6c73a2469d0a49f7cb.1395709062.git.wenzong.fan@windriver.com>
+Date: Mon, 24 Mar 2014 21:07:47 -0400
+Message-ID: <b3e19a7b5438116a9a68cef9f6d4c170cd0b170e.1395709062.git.wenzong.fan@windriver.com>
 X-Mailer: git-send-email 1.7.9.5
 In-Reply-To: <cover.1395709062.git.wenzong.fan@windriver.com>
 References: <cover.1395709062.git.wenzong.fan@windriver.com>
 MIME-Version: 1.0
-Subject: [meta-selinux][PATCH 2/4] refpolicy: add rules for /var/log symlink on poky
+Subject: [meta-selinux][PATCH 1/4] refpolicy: associate tmpfs_t (shm) to device_t (devtmpfs) file systems
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -36,99 +36,63 @@ Content-Type: text/plain
 
 From: Wenzong Fan <wenzong.fan@windriver.com>
 
+The patch is backported from upstream.
+
 Signed-off-by: Wenzong Fan <wenzong.fan@windriver.com>
 ---
- ...ky-policy-add-rules-for-syslogd_t-symlink.patch |   30 ++++++++++++++++++++
- ...rules-for-var-log-symlink-audisp_remote_t.patch |   29 +++++++++++++++++++
- .../refpolicy/refpolicy_2.20130424.inc             |    2 ++
- 3 files changed, 61 insertions(+)
- create mode 100644 recipes-security/refpolicy/refpolicy-2.20130424/poky-policy-add-rules-for-syslogd_t-symlink.patch
- create mode 100644 recipes-security/refpolicy/refpolicy-2.20130424/poky-policy-add-rules-for-var-log-symlink-audisp_remote_t.patch
+ ...associate-tmpfs_t-shm-to-device_t-devtmpf.patch |   30 ++++++++++++++++++++
+ .../refpolicy/refpolicy_2.20130424.inc             |    1 +
+ 2 files changed, 31 insertions(+)
+ create mode 100644 recipes-security/refpolicy/refpolicy-2.20130424/filesystem-associate-tmpfs_t-shm-to-device_t-devtmpf.patch
 
-diff --git a/recipes-security/refpolicy/refpolicy-2.20130424/poky-policy-add-rules-for-syslogd_t-symlink.patch b/recipes-security/refpolicy/refpolicy-2.20130424/poky-policy-add-rules-for-syslogd_t-symlink.patch
+diff --git a/recipes-security/refpolicy/refpolicy-2.20130424/filesystem-associate-tmpfs_t-shm-to-device_t-devtmpf.patch b/recipes-security/refpolicy/refpolicy-2.20130424/filesystem-associate-tmpfs_t-shm-to-device_t-devtmpf.patch
 new file mode 100644
-index 0000000..aa9734a
+index 0000000..094d9e5
 --- /dev/null
-+++ b/recipes-security/refpolicy/refpolicy-2.20130424/poky-policy-add-rules-for-syslogd_t-symlink.patch
++++ b/recipes-security/refpolicy/refpolicy-2.20130424/filesystem-associate-tmpfs_t-shm-to-device_t-devtmpf.patch
 @@ -0,0 +1,30 @@
-+Subject: [PATCH] add rules for the symlink of /var/log - syslogd_t
++Upstream-Status: backport
 +
-+We have added rules for the symlink of /var/log in logging.if,
-+while syslogd_t uses /var/log but does not use the
-+interfaces in logging.if. So still need add a individual rule for
-+syslogd_t.
++Signed-off-by: Wenzong Fan <wenzong.fan@windriver.com>
++=========================
++From e3072cb7bf8f9e09598f01c9eb58d9cfb319d8a1 Mon Sep 17 00:00:00 2001
++From: Dominick Grift <dominick.grift@gmail.com>
++Date: Tue, 24 Sep 2013 15:39:21 +0200
++Subject: [PATCH] filesystem: associate tmpfs_t (shm) to device_t (devtmpfs)
++ file systems
 +
-+Upstream-Status: Inappropriate [only for Poky]
-+
-+Signed-off-by: Xin Ouyang <Xin.Ouyang@windriver.com>
++Signed-off-by: Dominick Grift <dominick.grift@gmail.com>
 +---
-+ policy/modules/system/logging.te | 2 ++
-+ 1 file changed, 2 insertions(+)
-+
-+diff --git a/policy/modules/system/logging.te b/policy/modules/system/logging.te
-+index 2ad9ea5..70427d8 100644
-+--- a/policy/modules/system/logging.te
-++++ b/policy/modules/system/logging.te
-+@@ -384,6 +384,8 @@ rw_fifo_files_pattern(syslogd_t, var_log_t, var_log_t)
-+ # Allow access for syslog-ng
-+ allow syslogd_t var_log_t:dir { create setattr };
-+ 
-++allow syslogd_t var_log_t:lnk_file read_lnk_file_perms;
-++
-+ # manage temporary files
-+ manage_dirs_pattern(syslogd_t, syslogd_tmp_t, syslogd_tmp_t)
-+ manage_files_pattern(syslogd_t, syslogd_tmp_t, syslogd_tmp_t)
-+-- 
-+1.7.11.7
-+
-diff --git a/recipes-security/refpolicy/refpolicy-2.20130424/poky-policy-add-rules-for-var-log-symlink-audisp_remote_t.patch b/recipes-security/refpolicy/refpolicy-2.20130424/poky-policy-add-rules-for-var-log-symlink-audisp_remote_t.patch
-new file mode 100644
-index 0000000..cbf0f7d
---- /dev/null
-+++ b/recipes-security/refpolicy/refpolicy-2.20130424/poky-policy-add-rules-for-var-log-symlink-audisp_remote_t.patch
-@@ -0,0 +1,29 @@
-+Subject: [PATCH] add rules for the symlink of /var/log - audisp_remote_t
-+
-+We have added rules for the symlink of /var/log in logging.if,
-+while audisp_remote_t uses /var/log but does not use the
-+interfaces in logging.if. So still need add a individual rule for
-+audisp_remote_t.
-+
-+Upstream-Status: Inappropriate [only for Poky]
-+
-+Signed-off-by: Xin Ouyang <Xin.Ouyang@windriver.com>
-+---
-+ policy/modules/system/logging.te | 1 +
++ policy/modules/kernel/filesystem.te |    1 +
 + 1 file changed, 1 insertion(+)
 +
-+diff --git a/policy/modules/system/logging.te b/policy/modules/system/logging.te
-+index 8426a49..2ad9ea5 100644
-+--- a/policy/modules/system/logging.te
-++++ b/policy/modules/system/logging.te
-+@@ -262,6 +262,7 @@ allow audisp_remote_t self:capability { setuid setpcap };
-+ allow audisp_remote_t self:process { getcap setcap };
-+ allow audisp_remote_t self:tcp_socket create_socket_perms;
-+ allow audisp_remote_t var_log_t:dir search_dir_perms;
-++allow audisp_remote_t var_log_t:lnk_file read_lnk_file_perms;
-+ 
-+ manage_dirs_pattern(audisp_remote_t, audit_spool_t, audit_spool_t)
-+ manage_files_pattern(audisp_remote_t, audit_spool_t, audit_spool_t)
++diff --git a/policy/modules/kernel/filesystem.te b/policy/modules/kernel/filesystem.te
++index ed59e5e..f72cde1 100644
++--- a/policy/modules/kernel/filesystem.te
+++++ b/policy/modules/kernel/filesystem.te
++@@ -177,6 +177,7 @@ genfscon vxfs / gen_context(system_u:object_r:vxfs_t,s0)
++ # tmpfs_t is the type for tmpfs filesystems
++ #
++ type tmpfs_t;
+++dev_associate(tmpfs_t)
++ fs_type(tmpfs_t)
++ files_type(tmpfs_t)
++ files_mountpoint(tmpfs_t)
 +-- 
-+1.7.11.7
++1.7.10.4
 +
 diff --git a/recipes-security/refpolicy/refpolicy_2.20130424.inc b/recipes-security/refpolicy/refpolicy_2.20130424.inc
-index 08ed04c..c3c7732 100644
+index 9e5e426..08ed04c 100644
 --- a/recipes-security/refpolicy/refpolicy_2.20130424.inc
 +++ b/recipes-security/refpolicy/refpolicy_2.20130424.inc
-@@ -37,6 +37,8 @@ SRC_URI += "file://poky-fc-subs_dist.patch \
- SRC_URI += "file://poky-policy-add-syslogd_t-to-trusted-object.patch \
-             file://poky-policy-add-rules-for-var-log-symlink.patch \
-             file://poky-policy-add-rules-for-var-log-symlink-apache.patch \
-+            file://poky-policy-add-rules-for-var-log-symlink-audisp_remote_t.patch \
-+            file://poky-policy-add-rules-for-syslogd_t-symlink.patch \
-             file://poky-policy-add-rules-for-var-cache-symlink.patch \
-             file://poky-policy-add-rules-for-tmp-symlink.patch \
-             file://poky-policy-add-rules-for-bsdpty_device_t.patch \
+@@ -58,6 +58,7 @@ SRC_URI += "file://poky-policy-fix-xconsole_device_t-as-a-dev_node.patch \
+ 
+ # Backport from upstream
+ SRC_URI += "file://Allow-ping-to-get-set-capabilities.patch \
++            file://filesystem-associate-tmpfs_t-shm-to-device_t-devtmpf.patch \
+            "
+ 
+ include refpolicy_common.inc
 -- 
 1.7.9.5
 
