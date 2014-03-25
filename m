@@ -1,42 +1,36 @@
-Return-Path: <trevor.woerner@linaro.org>
-Received: from mail-yk0-f175.google.com (mail-yk0-f175.google.com
-	[209.85.160.175])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 279E1E0073C
-	for <yocto@yoctoproject.org>; Tue, 25 Mar 2014 09:09:06 -0700 (PDT)
-Received: by mail-yk0-f175.google.com with SMTP id 131so1715491ykp.6
-	for <yocto@yoctoproject.org>; Tue, 25 Mar 2014 09:09:05 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
-	:cc:subject:references:in-reply-to:content-type
-	:content-transfer-encoding;
-	bh=y+d0ILvclzcaskaaxszNB2ACDj/TXeWxAr5N4e78NYw=;
-	b=MIWP2/fyyJw2MCMpK91h+uWGRy2SM9wVsYXzqc9hJtVKPe7euq6xPzmR3agYg4Pqd9
-	DJBMkq7UpBjkfiF9Udy7JGKF/6wwSmuVnuAUle/yTzl6o6zFwvJWRbyiHktgzmz56WGT
-	M5A0UayRUxR+t3w392t1aoTv46jIw7ZOE8EA0fdLMLx5TDfOKoiP88WMYhmPK24XlPUG
-	VDaM+2jHzu3IWWHDNIAoUyqIxJIUqX/jANkcFItGQBA2N6C9xRUzTQbROugEGWs7IoDo
-	l5ZSy004AA3VjWkz8t1RTFuQZ+jqN3Nj+x0h+CwpqBPrPhTJlMpHm8hCwN+JIqIXPswM
-	f8zA==
-X-Gm-Message-State: ALoCoQnHwb0eZ6gd7tnTdxi+nzWRuSqtxcqB6G5hsdCZg14VETYRfv6CoH8AV1lULGniU1Emni1f
-X-Received: by 10.236.155.106 with SMTP id i70mr19502861yhk.38.1395763741392; 
-	Tue, 25 Mar 2014 09:09:01 -0700 (PDT)
-Received: from [192.168.141.83] (69-165-220-158.dsl.teksavvy.com.
-	[69.165.220.158]) by mx.google.com with ESMTPSA id
-	d68sm12310619yhc.37.2014.03.25.09.08.58 for <multiple recipients>
-	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
-	Tue, 25 Mar 2014 09:08:58 -0700 (PDT)
-Message-ID: <5331AA1A.1050307@linaro.org>
-Date: Tue, 25 Mar 2014 12:08:58 -0400
-From: Trevor Woerner <trevor.woerner@linaro.org>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:24.0) Gecko/20100101 Thunderbird/24.3.0
+Return-Path: <boon.leong.ong@intel.com>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D1702E0073C
+	for <yocto@yoctoproject.org>; Tue, 25 Mar 2014 09:13:45 -0700 (PDT)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by orsmga101.jf.intel.com with ESMTP; 25 Mar 2014 09:07:06 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.97,728,1389772800"; d="scan'208";a="499214379"
+Received: from pgsmsx103.gar.corp.intel.com ([10.221.44.82])
+	by fmsmga001.fm.intel.com with ESMTP; 25 Mar 2014 09:06:56 -0700
+Received: from kmsmsx151.gar.corp.intel.com (172.21.73.86) by
+	PGSMSX103.gar.corp.intel.com (10.221.44.82) with Microsoft SMTP Server
+	(TLS) id 14.3.123.3; Wed, 26 Mar 2014 00:06:54 +0800
+Received: from pgsmsx101.gar.corp.intel.com ([169.254.1.140]) by
+	KMSMSX151.gar.corp.intel.com ([169.254.10.81]) with mapi id
+	14.03.0123.003; Wed, 26 Mar 2014 00:06:53 +0800
+From: "Ong, Boon Leong" <boon.leong.ong@intel.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: [yocto] Question on cross-compiling 32-bit application on
+	64-bit target platform
+Thread-Index: AQHPRO4aPpZtU/7W2k2hLWnNDFvCVZrx/nCQ
+Date: Tue, 25 Mar 2014 16:06:52 +0000
+Message-ID: <AF233D1473C1364ABD51D28909A1B1B7240DDCA4@PGSMSX101.gar.corp.intel.com>
+References: <AF233D1473C1364ABD51D28909A1B1B7240CB168@pgsmsx105.gar.corp.intel.com>
+In-Reply-To: <AF233D1473C1364ABD51D28909A1B1B7240CB168@pgsmsx105.gar.corp.intel.com>
+Accept-Language: en-GB, en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [172.30.20.205]
 MIME-Version: 1.0
-To: "Burton, Ross" <ross.burton@intel.com>
-References: <532D6D85.7010302@linaro.org>
-	<CAJTo0LYruhkg+c5KOae410SQkV0sRH-h05Y+gL73i1zYfsh0cw@mail.gmail.com>
-In-Reply-To: <CAJTo0LYruhkg+c5KOae410SQkV0sRH-h05Y+gL73i1zYfsh0cw@mail.gmail.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: inherit setuptools
+Cc: "Khade, Abhishek" <abhishek.khade@intel.com>, "Wold,
+	Saul" <saul.wold@intel.com>
+Subject: Re: Question on cross-compiling 32-bit application on 64-bit target platform
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -48,31 +42,38 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 25 Mar 2014 16:09:09 -0000
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Tue, 25 Mar 2014 16:13:45 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Ross,
+Just following up - can someone offer some help here?"
 
-On 03/22/14 15:45, Burton, Ross wrote:
-> And FWIW, I didn't get much out of bmap when I tried it because of how
-> our images were constructed: all of the sparse segments disappeared
-> when a whole-disk image was created.
-
-I have expanded a little bit on this issue here:
-http://twoerner.blogspot.ca/2014/03/using-bmaptool-to-create-memory-card.html
-
-and I see better what you mean about sparse segments. Using bmaptool,
-theoretically, the same core-image-minimal should take the same ~20
-seconds to write whether the image is 80MB or 4GB. The fact these are
-significantly different suggests there might be room for improvement in
-the way our images are created?
-
-Still, I was able to go from 50 minutes to 14 when writing the 4GB image
-using bmaptool versus using dd, so that's an improvement none the less.
-
-> I got a much better win by using USB 3: around 10 seconds to write a
-> gigabyte+ image to a stick... Ross 
-
-Thanks for the tip!
+> -----Original Message-----
+> From: yocto-bounces@yoctoproject.org [mailto:yocto-
+> bounces@yoctoproject.org] On Behalf Of Ong, Boon Leong
+> Sent: Friday, March 21, 2014 6:07 PM
+> To: yocto@yoctoproject.org
+> Cc: Khade, Abhishek
+> Subject: [yocto] Question on cross-compiling 32-bit application on 64-bit=
+ target
+> platform
+>=20
+> Hi,
+> 	Could anyone comment on whether we can cross-compile a 32-bit
+> application on a 64-bit Intel machine booted with core-image-sato-sdk hdd=
+img.
+> 	If it is not enabled by default on the SDK image, how can I configure th=
+e
+> recipe to do so when I build core-image-sato-sdk?
+> 	Could anyone shed some light on this. Much appreciated.
+>=20
+>=20
+> Thanks
+> Boon Leong
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
