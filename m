@@ -1,38 +1,31 @@
-Return-Path: <martin.jansa@gmail.com>
-Received: from mail-ee0-f49.google.com (mail-ee0-f49.google.com [74.125.83.49])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A991EE009A7
-	for <yocto@yoctoproject.org>; Wed, 26 Mar 2014 07:46:58 -0700 (PDT)
-Received: by mail-ee0-f49.google.com with SMTP id c41so1716462eek.22
-	for <yocto@yoctoproject.org>; Wed, 26 Mar 2014 07:46:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=date:from:to:cc:subject:message-id:references:mime-version
-	:content-type:content-disposition:in-reply-to:user-agent;
-	bh=MiH43ZCESYsjZzwG/UixK1+chlJJN0SkicSgOjnO+Kg=;
-	b=vp+FtQOLE4zEWlq7ISplfYMNjJBBqmxFUMQe0FbHt7JGWdwNuyVonVTu5WBx0UBw0G
-	up5btB+MIYJcKNx/kH1vMs+U+sVqeNF61OqHzJ0NPR8LNPwY2N03MLGGu4d69cH3mCgO
-	0DbIcco2wuCc4Xt7HYUQSlkJ8gjlBESKACXmJDmZhOex/REldkB+FeSPWvOm7koJZ563
-	ZaiKGt/n1G8SIRioZYNpc229ZBGUmjaTB72x5MC3K4M57VVblqGQWf3WK460WcxRDefL
-	Z6OBbLkXNErI2QOBw5Q5Qqzep3l5RWaUliBBBdk9qCstk3dHPzrqa9BKT3Up4QZAq0x5
-	P6PQ==
-X-Received: by 10.15.22.201 with SMTP id f49mr75946631eeu.18.1395845217572;
-	Wed, 26 Mar 2014 07:46:57 -0700 (PDT)
-Received: from localhost (ip-89-176-104-3.net.upcbroadband.cz. [89.176.104.3])
-	by mx.google.com with ESMTPSA id
-	y7sm29176318eev.5.2014.03.26.07.46.53 for <multiple recipients>
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Wed, 26 Mar 2014 07:46:54 -0700 (PDT)
-Date: Wed, 26 Mar 2014 15:46:54 +0100
-From: Martin Jansa <martin.jansa@gmail.com>
-To: Trevor Woerner <trevor.woerner@linaro.org>
-Message-ID: <20140326144653.GA3709@jama>
-References: <1395676843.24890.7.camel@ted> <5330C9A8.904@linaro.org>
-	<20140325055028.GA3710@jama> <5332E520.5050005@linaro.org>
-MIME-Version: 1.0
-In-Reply-To: <5332E520.5050005@linaro.org>
-User-Agent: Mutt/1.5.22 (2013-10-16)
-Cc: yocto <yocto@yoctoproject.org>,
+Return-Path: <thomas.petazzoni@free-electrons.com>
+Received: from mail.free-electrons.com (top.free-electrons.com [176.31.233.9])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1EE2DE00B7E
+	for <yocto@yoctoproject.org>; Wed, 26 Mar 2014 09:44:24 -0700 (PDT)
+Received: by mail.free-electrons.com (Postfix, from userid 106)
+	id 203947D9; Wed, 26 Mar 2014 17:44:23 +0100 (CET)
+X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on
+	mail.free-electrons.com
+X-Spam-Level: 
+X-Spam-Status: No, score=-1.0 required=5.0 tests=ALL_TRUSTED,SHORTCIRCUIT
+	shortcircuit=ham autolearn=disabled version=3.3.2
+Received: from skate (col31-4-88-188-83-94.fbx.proxad.net [88.188.83.94])
+	by mail.free-electrons.com (Postfix) with ESMTPSA id AE5A37AD;
+	Wed, 26 Mar 2014 17:44:22 +0100 (CET)
+Date: Wed, 26 Mar 2014 17:44:20 +0100
+From: Thomas Petazzoni <thomas.petazzoni@free-electrons.com>
+To: Seth Bollinger <seth.boll@gmail.com>
+Message-ID: <20140326174420.648506cf@skate>
+In-Reply-To: <CA+JN8xOH+=oJe3w_e06q3VJqZ9T_mQdmbUK8CBL3RE9+h=BiUQ@mail.gmail.com>
+References: <CANyK_8e6dfzu64SRLzZdXFE3obT6Td-8UUDqfcoSAqWTjoOq3g@mail.gmail.com>
+	<CAJTo0Las0o_JcsvW-X+L=EQAvUf3yVVQBunoCi=cAzR=3y2DrA@mail.gmail.com>
+	<CA+JN8xOH+=oJe3w_e06q3VJqZ9T_mQdmbUK8CBL3RE9+h=BiUQ@mail.gmail.com>
+Organization: Free Electrons
+X-Mailer: Claws Mail 3.9.1 (GTK+ 2.24.20; x86_64-pc-linux-gnu)
+Mime-Version: 1.0
+Cc: Yocto discussion list <yocto@yoctoproject.org>,
 	openembedded-core <openembedded-core@lists.openembedded.org>
-Subject: Re: [OE-core] --conf Was: Features in Yocto Project 1.7
+Subject: Re: [OE-core] OpenEmbedded and musl-libc
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -44,77 +37,31 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 26 Mar 2014 14:47:00 -0000
-X-Groupsio-MsgNum: 18710
-Content-Type: multipart/signed; micalg=pgp-sha1;
-	protocol="application/pgp-signature"; boundary="sm4nu43k4a2Rpi4c"
-Content-Disposition: inline
+X-List-Received-Date: Wed, 26 Mar 2014 16:44:28 -0000
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
---sm4nu43k4a2Rpi4c
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Dear Seth Bollinger,
 
-On Wed, Mar 26, 2014 at 10:33:04AM -0400, Trevor Woerner wrote:
-> On 03/25/14 01:50, Martin Jansa wrote:
-> > Can you show some example of config you need to have wor wayland and
-> > cannot have for core-image-minimal?=20
->=20
-> Okay, good point. I should have thought harder to come up with a better
-> example :-) It's funny, actually, that you're the one pressing me on
-> this, I first encountered this issue and started thinking about it while
-> trying to reproduce your "State of bitbake world" tests :-)
+On Fri, 21 Mar 2014 08:26:08 -0500, Seth Bollinger wrote:
 
-:) I see, but the point is that I'm not changing those entries based on
-what I'm building. It's "customization" which would normally be included
-in distro config based on what distro supports, but in this case I'm
-using nodistro and want to build test more than what's "supported" in
-nodistro.
+> > I saw that yesterday too and thought it could be interesting for
+> > Yocto.  I'm curious as to why it's better than uclibc though
+> > (genuinely curious, I know little about uclibc beyond "it's smaller").
+> 
+> It been a while since I've reviewed uclibc, but doesn't it break a lot of
+> software with its vfork only paradigm?
 
-> Let's say you're a board maintainer; some people want to run gstreamer,
-> some people want to try out systemd, some want to run wayland. Each of
-> these requires tweaks to a conf/local.conf, no? I'm constantly changing
-> my set of IMAGE_INSTALL_append's, fiddling with preferred versions, and
-> distro features.
+I'm not sure where you have seen that uClibc has vfork() only paradigm,
+but it's not correct. uClibc has a proper fork() implementation on all
+MMU-equipped CPU architectures that uClibc support. Only the non-MMU
+architectures are limited to vfork(). The originality of uClibc here is
+probably precisely the fact that it supports non-MMU architectures,
+which many other C libraries do not.
 
-Yes, people often need to tweak local.conf, but my point is that they
-shouldn't tweak it based on what they are going to build.
+Thomas
+-- 
+Thomas Petazzoni, CTO, Free Electrons
+Embedded Linux, Kernel and Android engineering
+http://free-electrons.com
 
-e.g. if I decide to build qtbase with icu enabled, then I should use the
-same qtbase in core-image-minimal and wayland-image, otherwise I'll see
-a lot of rebuilds and not-so-good sstate reuse (especially if you often
-use sstate-cache-management which will remove your 2nd qt* variants
-between the builds).
-
-> If I'm just doing a one-off build then sure, adjust conf/local.conf
-> manually. But if I'm perpetually rotating between a bunch of tests as
-> repositories are modified, it would be easier to just specify which
-> configuration I want from the bitbake cmdline.
->=20
-> As I mentioned, maybe I'm doing things wrong? Maybe others have separate
-> build locations, or maybe others define their own images which
-> incorporate these adjustments? But I'd be quite surprised to find I'm
-> the only one having to edit conf/local.conf to comment/un-comment blocks
-> before every build.
->=20
-> As a concrete example, currently I'm flipping between dora and master
-> builds. For some reason I can't seem to reuse the same TMPDIR between
-> them. So every time I "repo init -b <newbranch>" I then also have to
-> edit conf/local.conf before bitbaking.
-
---=20
-Martin 'JaMa' Jansa     jabber: Martin.Jansa@gmail.com
-
---sm4nu43k4a2Rpi4c
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: Digital signature
-
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v2.0.22 (GNU/Linux)
-
-iEYEARECAAYFAlMy6F0ACgkQN1Ujt2V2gBznOgCfb5OcNIf7exn5Orc9wgDD2xgD
-zPYAniKitFHKOdnAYcLnWP9PW82bNKIl
-=PGDG
------END PGP SIGNATURE-----
-
---sm4nu43k4a2Rpi4c--
