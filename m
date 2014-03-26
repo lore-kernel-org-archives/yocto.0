@@ -1,30 +1,32 @@
-Return-Path: <thomas.petazzoni@free-electrons.com>
-Received: from mail.free-electrons.com (top.free-electrons.com [176.31.233.9])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 602E6E00B7E
-	for <yocto@yoctoproject.org>; Wed, 26 Mar 2014 09:48:32 -0700 (PDT)
-Received: by mail.free-electrons.com (Postfix, from userid 106)
-	id 284377D9; Wed, 26 Mar 2014 17:48:32 +0100 (CET)
-X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on
-	mail.free-electrons.com
-X-Spam-Level: 
-X-Spam-Status: No, score=-1.0 required=5.0 tests=ALL_TRUSTED,SHORTCIRCUIT
-	shortcircuit=ham autolearn=disabled version=3.3.2
-Received: from skate (col31-4-88-188-83-94.fbx.proxad.net [88.188.83.94])
-	by mail.free-electrons.com (Postfix) with ESMTPSA id C272D7AD;
-	Wed, 26 Mar 2014 17:48:31 +0100 (CET)
-Date: Wed, 26 Mar 2014 17:48:29 +0100
-From: Thomas Petazzoni <thomas.petazzoni@free-electrons.com>
-To: Khem Raj <raj.khem@gmail.com>
-Message-ID: <20140326174829.5d897f11@skate>
-In-Reply-To: <CAMKF1sq7QUcKypgyn8auurnqRd5ZfztdymcxquRwsRxvN4seqw@mail.gmail.com>
-References: <CANyK_8e6dfzu64SRLzZdXFE3obT6Td-8UUDqfcoSAqWTjoOq3g@mail.gmail.com>
-	<CAMKF1sq7QUcKypgyn8auurnqRd5ZfztdymcxquRwsRxvN4seqw@mail.gmail.com>
-Organization: Free Electrons
-X-Mailer: Claws Mail 3.9.1 (GTK+ 2.24.20; x86_64-pc-linux-gnu)
-Mime-Version: 1.0
-Cc: Yocto discussion list <yocto@yoctoproject.org>,
-	openembedded-core <openembedded-core@lists.openembedded.org>
-Subject: Re: [OE-core] OpenEmbedded and musl-libc
+Return-Path: <mahyar@boundarydevices.com>
+Received: from mail-la0-f52.google.com (mail-la0-f52.google.com
+	[209.85.215.52])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2B5DAE00B7F
+	for <yocto@yoctoproject.org>; Wed, 26 Mar 2014 09:53:09 -0700 (PDT)
+Received: by mail-la0-f52.google.com with SMTP id ec20so1701660lab.39
+	for <yocto@yoctoproject.org>; Wed, 26 Mar 2014 09:53:08 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:date:message-id:subject:from:to
+	:content-type;
+	bh=kzU+eO9pqfdjhlgFF+af/URW7CkRWm54CvCM1I9Ohgg=;
+	b=Lig4/GklQvqPIIJm6dBVjObx/D84CUSUMpRpKziUChXQ4O+6POQJIhOjdUMV3dBb1g
+	yWRCLG0beJzjUHY65GOYZB0UH9WsKNkQaJ78ZCcixQOrZXnTC/skit3ObtL0PEV8ZcME
+	9jmpNVaeUlaZEObnhDJOK4/bwl3Wuj03MlP8Dph3IL0O6kaJ+2v2dq9P0nUwAg7aH0wL
+	H9B0k9+ixW7vAX8R6hmTgdcZiGYl1lTpbYQux3socdVJUaqClbM/7s8N22NpIyoWywmZ
+	iXzP+s3mt0bariEYIM0omc/Es4Qp186gVczfAb1rX/VWZm5n0/V3nplpBXuWO6BeLa91
+	65bQ==
+X-Gm-Message-State: ALoCoQmqc81MS23pB8fEGZ+L0b05oT8+NXrAuwClpyn5mIJ8AmXi6VHDpMI0fA2Wh+gBJ00Efo5K
+MIME-Version: 1.0
+X-Received: by 10.152.23.169 with SMTP id n9mr1926382laf.45.1395852788169;
+	Wed, 26 Mar 2014 09:53:08 -0700 (PDT)
+Received: by 10.112.88.164 with HTTP; Wed, 26 Mar 2014 09:53:08 -0700 (PDT)
+X-Originating-IP: [63.226.49.26]
+Date: Wed, 26 Mar 2014 09:53:08 -0700
+Message-ID: <CAOJo16XX_Bu2pEcpOn73wOnDyRNTus3DxwLUjKwSraDAYPb_WQ@mail.gmail.com>
+From: Mahyar Yaghmaee <mahyar@boundarydevices.com>
+To: yocto@yoctoproject.org
+Subject: autobuilder setting, ACCEPT_FSL_EULA
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -36,43 +38,61 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 26 Mar 2014 16:48:32 -0000
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 26 Mar 2014 16:53:11 -0000
+Content-Type: multipart/alternative; boundary=089e0160b99a990b1e04f5854d0d
 
-Dear Khem Raj,
+--089e0160b99a990b1e04f5854d0d
+Content-Type: text/plain; charset=ISO-8859-1
 
-On Fri, 21 Mar 2014 11:22:24 -0700, Khem Raj wrote:
+Hello All,
 
-> it has been under my radar for a while. I have actually locally made
-> toolchains with
-> clang+musl and it seems to be coming along. its licensed differently thats
-> the biggest attraction for folks who do static linking. Otherwise it still
-> doesnt yet support variety of architectures that other libcs support. given
-> now we have kconfig for eglibc too may be it fills in the nommu gap much
-> like uclibc does today.
+I'm trying to run autobuilder for my custom .conf file but I need to
+include ACCEPT_FSL_EULA="1" in the generated local.conf file.
+ Unfortunately I couldn't find anything related to that in the
+CreateAutoConf.py file to set in my .conf  file.
 
-The non-MMU gap? Last time I looked, musl didn't had support for any
-non-MMU architecture. See also
-http://lists.uclibc.org/pipermail/uclibc/2014-February/048258.html:
+here's the error messege in the log file:
 
-"""
-> Do you intend to have support for non-MMU architectures in musl?
+recipe gpu-viv-bin-mx6q-1_3.10.17-1.0.0-hfp-r0: task do_unpack: Started
+ERROR: To use 'gpu-viv-bin-mx6q' you need to accept the Freescale EULA
+at '/home/mahyar/autobuilder/yocto-autobuilder/yocto-slave/nightly-fsl-image-gui-master/build/meta-fsl-arm/EULA'.
+Please read it and in case you accept it, write: ACCEPT_FSL_EULA = "1"
+in your local.conf.
+ERROR: Function failed: do_unpack
+ERROR: Logfile of failure stored in:
+/home/mahyar/autobuilder/yocto-autobuilder/yocto-slave/nightly-fsl-image-gui-master/build/build/tmp/work/cortexa9hf-vfp-neon-mx6-poky-linux-gnueabi/gpu-viv-bin-mx6q/1_3.10.17-1.0.0-hfp-r0/temp/log.do_unpack.10848
+NOTE: recipe gpu-viv-bin-mx6q-1_3.10.17-1.0.0-hfp-r0: task do_unpack: Failed
 
-At present there isn't a plan to, but we're not particularly opposed
-to it either. The big questions are how invasive it would be and
-whether we can provide full functionality in any reasonable way. The
-answers to those questions wouldn't translate directly to a yes or no
-but would be an important part of considerations. It would probably
-help to have someone familiar with the technical aspects of supporting
-non-MMU archs discuss it with us on our mailing list or IRC channel.
 
-Rich
-"""
+please let me know if you have any suggestions
 
-Thomas
--- 
-Thomas Petazzoni, CTO, Free Electrons
-Embedded Linux, Kernel and Android engineering
-http://free-electrons.com
+Regards,
+Mahyar
 
+--089e0160b99a990b1e04f5854d0d
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div><div>Hello All,<br><br></div>I&#39;m trying to run au=
+tobuilder for my custom .conf file but I need to include ACCEPT_FSL_EULA=3D=
+&quot;1&quot; in the generated local.conf file.<br>=A0Unfortunately I could=
+n&#39;t find anything related to that in the CreateAutoConf.py file to set =
+in my .conf=A0 file.<br>
+<br></div><div>here&#39;s the error messege in the log file:<br><pre><span =
+class=3D"">recipe gpu-viv-bin-mx6q-1_3.10.17-1.0.0-hfp-r0: task do_unpack: =
+Started
+ERROR: To use &#39;gpu-viv-bin-mx6q&#39; you need to accept the Freescale E=
+ULA at &#39;/home/mahyar/autobuilder/yocto-autobuilder/yocto-slave/nightly-=
+fsl-image-gui-master/build/meta-fsl-arm/EULA&#39;. Please read it and in ca=
+se you accept it, write: ACCEPT_FSL_EULA =3D &quot;1&quot; in your local.co=
+nf.
+ERROR: Function failed: do_unpack
+ERROR: Logfile of failure stored in: /home/mahyar/autobuilder/yocto-autobui=
+lder/yocto-slave/nightly-fsl-image-gui-master/build/build/tmp/work/cortexa9=
+hf-vfp-neon-mx6-poky-linux-gnueabi/gpu-viv-bin-mx6q/1_3.10.17-1.0.0-hfp-r0/=
+temp/log.do_unpack.10848
+NOTE: recipe gpu-viv-bin-mx6q-1_3.10.17-1.0.0-hfp-r0: task do_unpack: Faile=
+d</span></pre><br></div><div>please let me know if you have any suggestions=
+<br><br></div><div>Regards,<br>Mahyar<br></div></div>
+
+--089e0160b99a990b1e04f5854d0d--
