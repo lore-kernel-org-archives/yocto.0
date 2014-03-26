@@ -1,23 +1,34 @@
-Return-Path: <denis@denix.org>
-Received: from vms173023pub.verizon.net (vms173023pub.verizon.net
-	[206.46.173.23])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4A203E00B8B
-	for <yocto@yoctoproject.org>; Wed, 26 Mar 2014 12:19:37 -0700 (PDT)
-Received: from gandalf.denix.org ([unknown] [71.191.205.189])
-	by vms173023.mailsrvcs.net
-	(Sun Java(tm) System Messaging Server 7u2-7.02 32bit (built Apr 16
-	2009)) with ESMTPA id <0N3200DLO5ODUB50@vms173023.mailsrvcs.net> for
-	yocto@yoctoproject.org; Wed, 26 Mar 2014 14:19:26 -0500 (CDT)
-Received: from localhost.localdomain (elrond [192.168.0.7])
-	by gandalf.denix.org (Postfix) with ESMTP id 3D67F201CF; Wed,
-	26 Mar 2014 15:19:25 -0400 (EDT)
-From: Denys Dmytriyenko <denis@denix.org>
-To: yocto@yoctoproject.org
-Date: Wed, 26 Mar 2014 15:19:24 -0400
-Message-id: <1395861564-19898-1-git-send-email-denis@denix.org>
-X-Mailer: git-send-email 1.8.3.2
-Cc: Denys Dmytriyenko <denys@ti.com>
-Subject: [meta-yocto][PATCH] beaglebone: add OE machine definition for use with linux-yocto kernels
+Return-Path: <elizabeth.flanagan@intel.com>
+Received: from mail-ve0-f173.google.com (mail-ve0-f173.google.com
+	[209.85.128.173])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 159D8E00B8B
+	for <yocto@yoctoproject.org>; Wed, 26 Mar 2014 12:31:45 -0700 (PDT)
+Received: by mail-ve0-f173.google.com with SMTP id oy12so2928523veb.32
+	for <yocto@yoctoproject.org>; Wed, 26 Mar 2014 12:31:44 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:date
+	:message-id:subject:from:to:cc:content-type;
+	bh=ij7Qf9klasmAc6+csEqrVj0jZCO0LSx9GAgHGfCFOWs=;
+	b=dC0FtHQpUEn33rf6BV+bZdtHTbJ1dnpeECMPeyboNLH6cfouJeCO1nfPzTpgFU9GXG
+	92XZKOqRo5LkIiwvuQJKq1cscbt80TMAcwYuwrm8MeE187ihyDHZMOJqz3fGzXQZ59Z0
+	mkuypweQ53jY254Jr8rjvRqeTYV2b3qhRD2GbpmRMn7XB78zl9F2XVNIkFxFShWMtXrZ
+	AGCuEuM5VP6d6DSBNcJKIWxQ8oIaSGoW0ffD7XYy0o4NKvNBf/qAfPqvSb1uqVvJuZzm
+	0K02JDpJxVdLBSC3gVhe60IKAA2vXeuulK1CMu74kZ1isPoI25iEu4QkrIWUVLUoPVWX
+	tNVw==
+X-Gm-Message-State: ALoCoQnB9OoLUESUCKMzQKzzvfG9+8qnj9HF1bcEVZLuGrOcxQUlZF0xNgMoTjuuvBsNA7Wqk9pN
+MIME-Version: 1.0
+X-Received: by 10.59.9.38 with SMTP id dp6mr2815207ved.24.1395862304464; Wed,
+	26 Mar 2014 12:31:44 -0700 (PDT)
+Received: by 10.52.173.69 with HTTP; Wed, 26 Mar 2014 12:31:44 -0700 (PDT)
+In-Reply-To: <5B5D636C5F0AA747B37D0EFC72B563C42D559E0A@RIC-MS02.MWSG.int>
+References: <5B5D636C5F0AA747B37D0EFC72B563C42D559E0A@RIC-MS02.MWSG.int>
+Date: Wed, 26 Mar 2014 19:31:44 +0000
+Message-ID: <CAPhnLPA3-NDDP5uP+8atu8n-tRDLR8rjqPb4LDjJththEnLDuw@mail.gmail.com>
+From: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
+To: "Stath, Paul" <PStath@axxcelera.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Change to 1.5_M5.rc1???
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -29,75 +40,43 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 26 Mar 2014 19:19:38 -0000
+X-List-Received-Date: Wed, 26 Mar 2014 19:31:48 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
-From: Denys Dmytriyenko <denys@ti.com>
+Looking at this now. Obviously, it's not correct.
 
-Kernel support is now in linux-yocto-dev and will be moved to a versioned
-recipe once 3.14 is released.
+On Wed, Mar 26, 2014 at 7:04 PM, Stath, Paul <PStath@axxcelera.com> wrote:
+> We have a local clone of the yocto repository that is refreshed nightly via 'git pull'.
+>
+> When trying to push a tag to the local yocto clone, I'm getting the following error:
+>
+>  ! [rejected]        1.5_M5.rc1 -> 1.5_M5.rc1 (non-fast-forward)
+>
+> In my dev copy:
+>
+> $ git rev-parse 1.5_M5.rc1
+> b9f5cc7be05303ba5ed478a3a108ddc579539744
+>
+> In a fresh clone of http://git.yoctoproject.org/cgit/cgit.cgi/poky
+> $ git rev-parse 1.5_M5.rc1
+> 295656cfdaf17bcbbeac8599fc8ebb2d5aa435d2
+>
+> Since the same commit the tag points to is also the HEAD of the 1.6_M5 branch,
+> I'm guessing that the tag SHOULD be 1.6_M5.rc1.
+>
+> Could someone please follow-up?
+>
+> -- Paul Stath
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
-Signed-off-by: Denys Dmytriyenko <denys@ti.com>
-Cc: Bruce Ashfield <bruce.ashfield@windriver.com>
----
- meta-yocto-bsp/conf/machine/beaglebone.conf        | 37 ++++++++++++++++++++++
- .../recipes-kernel/linux/linux-yocto-dev.bbappend  |  3 ++
- 2 files changed, 40 insertions(+)
- create mode 100644 meta-yocto-bsp/conf/machine/beaglebone.conf
- create mode 100644 meta-yocto-bsp/recipes-kernel/linux/linux-yocto-dev.bbappend
 
-diff --git a/meta-yocto-bsp/conf/machine/beaglebone.conf b/meta-yocto-bsp/conf/machine/beaglebone.conf
-new file mode 100644
-index 0000000..0765b33
---- /dev/null
-+++ b/meta-yocto-bsp/conf/machine/beaglebone.conf
-@@ -0,0 +1,37 @@
-+#@TYPE: Machine
-+#@NAME: Beaglebone machine
-+#@DESCRIPTION: Machine configuration for http://beagleboard.org/bone and http://beagleboard.org/black boards
-+
-+PREFERRED_PROVIDER_virtual/xserver ?= "xserver-xorg"
-+XSERVER ?= "xserver-xorg \
-+           xf86-input-evdev \
-+           xf86-input-mouse \
-+           xf86-video-omapfb \
-+           xf86-input-keyboard"
-+
-+# Ship all kernel modules by default
-+MACHINE_EXTRA_RRECOMMENDS = " kernel-modules"
-+
-+EXTRA_IMAGEDEPENDS += "u-boot"
-+
-+DEFAULTTUNE ?= "cortexa8hf-neon"
-+include conf/machine/include/tune-cortexa8.inc
-+
-+IMAGE_FSTYPES += "tar.bz2 jffs2"
-+EXTRA_IMAGECMD_jffs2 = "-lnp "
-+
-+SERIAL_CONSOLE = "115200 ttyO2"
-+
-+PREFERRED_PROVIDER_virtual/kernel ?= "linux-yocto-dev"
-+PREFERRED_VERSION_linux-yocto-dev ?= "3.14%"
-+
-+KERNEL_IMAGETYPE = "zImage"
-+KERNEL_DEVICETREE = "am335x-bone.dtb am335x-boneblack.dtb"
-+
-+SPL_BINARY = "MLO"
-+UBOOT_SUFFIX = "img"
-+UBOOT_MACHINE = "am335_evm_config"
-+UBOOT_ENTRYPOINT = "0x80008000"
-+UBOOT_LOADADDRESS = "0x80008000"
-+
-+MACHINE_FEATURES = "usbgadget usbhost vfat alsa"
-diff --git a/meta-yocto-bsp/recipes-kernel/linux/linux-yocto-dev.bbappend b/meta-yocto-bsp/recipes-kernel/linux/linux-yocto-dev.bbappend
-new file mode 100644
-index 0000000..6cb7e55
---- /dev/null
-+++ b/meta-yocto-bsp/recipes-kernel/linux/linux-yocto-dev.bbappend
-@@ -0,0 +1,3 @@
-+KBRANCH_beaglebone = "standard/beaglebone"
-+
-+COMPATIBLE_MACHINE_beaglebone = "beaglebone"
+
 -- 
-1.8.3.2
-
+Elizabeth Flanagan
+Yocto Project
+Build and Release
 
