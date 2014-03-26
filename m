@@ -1,37 +1,33 @@
-Return-Path: <nicolas.dechesne@linaro.org>
-Received: from mail-oa0-f54.google.com (mail-oa0-f54.google.com
-	[209.85.219.54])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 34A60E00B90
-	for <yocto@yoctoproject.org>; Wed, 26 Mar 2014 13:45:28 -0700 (PDT)
-Received: by mail-oa0-f54.google.com with SMTP id n16so3240064oag.41
-	for <yocto@yoctoproject.org>; Wed, 26 Mar 2014 13:45:28 -0700 (PDT)
+Return-Path: <elizabeth.flanagan@intel.com>
+Received: from mail-vc0-f173.google.com (mail-vc0-f173.google.com
+	[209.85.220.173])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1F57FE00B90
+	for <yocto@yoctoproject.org>; Wed, 26 Mar 2014 14:14:55 -0700 (PDT)
+Received: by mail-vc0-f173.google.com with SMTP id il7so3178678vcb.32
+	for <yocto@yoctoproject.org>; Wed, 26 Mar 2014 14:14:54 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc:content-type;
-	bh=BZbgP55hXdeYmtjh7XTirS5M5pCjIAq2YjQV+CMzWoQ=;
-	b=f+oYdYh2gmkUqk4oS++2aPw0WzdOI9Y0P2+xzOPWU/Ld2qbCf64sEc4vIgSgc1c6w5
-	3JchQYfNQUv+w+zNq91hMqcSb0+0ISxRqLPB7FyhQ/BqVivNUCY+YF4DWi6IVjJPye39
-	bnoDz/Ra+8zJ6k2kvZUbHcBX2RDzdhVXCk7xE+UMgfITADW6dkVjgq3gKIG0++CBTd1i
-	SAlCfDn9dEYeRXgbA9M8+grk7I01fnOgX388EZZizgy4sy6hK2nXBJW3Ss0mK0MU4n31
-	3Pf9U+x1aHvhyheXtfHTRlbhTMG7YeqnASimkYe/ud6oKhrEzMgOr3FCRQFokYyucz35
-	jwFw==
-X-Gm-Message-State: ALoCoQlw/nN1GZDUfdH4xNncd8F+sj9VPaDqEandPiQe75T13hMsyzsDmP6zairs50Md6yRSLFoN
-X-Received: by 10.182.2.42 with SMTP id 10mr3112674obr.73.1395866727984; Wed,
-	26 Mar 2014 13:45:27 -0700 (PDT)
+	h=x-gm-message-state:mime-version:date:message-id:subject:from:to
+	:content-type;
+	bh=irdtfFOvuw2a9icWEsyKec0dPOfNODjMosMeLN+Xm38=;
+	b=dZFzFG9iAaYZX9Tgansh0+BH/mdgF5laSSGL+TSMtVWhLGdKp3+aEPwDl1WGEvBrzE
+	+JkmCBHb2ClByAFcKSEKJBs/qXfhyc26bdl7vdw/gC1G9Kc62h/jcwxXg1OUXiMFiinB
+	hXixt56yJWErWGj/1uqUrSFPTHIIXhkn0xOLiPncUrKFz7YL3dgKf9H3pZQ1Iq4WPYKC
+	J4xiHIxRs7yDGpVmpiY5819kvOxImWMb6u6syqUCt3DMWm2rPc7Q84IC6uIX7cOAPWo4
+	dVyvOzFqve22CKfYxC2dw5718hZTq/pcAjQrw2bVATlOH4IVveikk6ANkVitAePbNSaD
+	7BHQ==
+X-Gm-Message-State: ALoCoQkU/ngglnqYBKJHO9VwpzznwJzb0MjvFMAYs7V9CzNWUVCQlSo1mRkAVOeGSxQ93SpgoXM4
 MIME-Version: 1.0
-Received: by 10.76.110.9 with HTTP; Wed, 26 Mar 2014 13:45:07 -0700 (PDT)
-In-Reply-To: <CAP9ODKoSO6ewoim_4c6N15C5-uQz0XQ3kPam421mYRPhRcWoNg@mail.gmail.com>
-References: <1395676843.24890.7.camel@ted> <5330C9A8.904@linaro.org>
-	<20140325055028.GA3710@jama> <5332E520.5050005@linaro.org>
-	<CAP9ODKoSO6ewoim_4c6N15C5-uQz0XQ3kPam421mYRPhRcWoNg@mail.gmail.com>
-From: Nicolas Dechesne <nicolas.dechesne@linaro.org>
-Date: Wed, 26 Mar 2014 21:45:07 +0100
-Message-ID: <CAP71Wjz2MD52m_ij09nCRZoDh6iJfojae7sJYK4ZwSqZ_qGVZQ@mail.gmail.com>
-To: Otavio Salvador <otavio@ossystems.com.br>
-Cc: yocto <yocto@yoctoproject.org>,
-	openembedded-core <openembedded-core@lists.openembedded.org>
-Subject: Re: [OE-core] --conf Was: Features in Yocto Project 1.7
+X-Received: by 10.58.111.163 with SMTP id ij3mr2573156veb.26.1395868494445;
+	Wed, 26 Mar 2014 14:14:54 -0700 (PDT)
+Received: by 10.52.173.69 with HTTP; Wed, 26 Mar 2014 14:14:54 -0700 (PDT)
+Date: Wed, 26 Mar 2014 14:14:54 -0700
+Message-ID: <CAPhnLPAJy5Lxbxfrh_RV-fOeoEyaXy8jZR6go2VdP=unHToFPw@mail.gmail.com>
+From: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>, 
+	Alexandru C Georgescu <alexandru.c.georgescu@intel.com>,
+	Zhao Yi <yi.zhao@windriver.com>, Otavio Salvador <otavio@ossystems.com.br>
+Subject: Reducing nightly/release build artifacts.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,32 +39,35 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 26 Mar 2014 20:45:31 -0000
+X-List-Received-Date: Wed, 26 Mar 2014 21:14:56 -0000
 Content-Type: text/plain; charset=ISO-8859-1
 
-On Wed, Mar 26, 2014 at 3:38 PM, Otavio Salvador
-<otavio@ossystems.com.br> wrote:
->> As a concrete example, currently I'm flipping between dora and master
->> builds. For some reason I can't seem to reuse the same TMPDIR between
->> them. So every time I "repo init -b <newbranch>" I then also have to
->> edit conf/local.conf before bitbaking.
->
-> Use separated build directories for this, so you don't need to mangle
-> conf/local.conf every time.
->
-> Personally I have different trees for Dora and Master and inside it I
-> have several build directories when working in this kind of test
-> (different distro features and like) and this is easy to maintain. For
-> auto builder, we cooked a script to abstract the configuration in
-> command line options so we can easily extend it and get it used in
-> several build jobs.
+Folks,
 
-I do that too. build folders are 'cheap' assuming good use of sstate
-and rm_work. my typical setup is:
-- one workspace for each OE release branch (trees checkout)
-- one <build> folder for each combination of <distro>-<machine>
-- one shared downloads folder for *all* builds across all workspace
-- one shared ssate for each workspace . i am not sharing sstate across
-OE releases, mostly because sstate-cache-management would always
-delete the wrong stuff otherwise.
+I'd like to start looking at reducing the number of artifacts we're
+releasing both for our nightly builds (which is at 250,000 artifacts
+and .25 TB!) and releases.
+
+What I'm thinking is this:
+
+Reduce nightly:
+- Reduce ADT-REPO to just qemu* arches for all builds
+- If every QA team could provide me a list of what files they actually
+need I could reduce the published artifacts to *just* what is needed.
+
+Reduce releases:
+- Reduce ADT-REPO to just qemu
+- Don't release ipk/rpm/debs. Continue to release ipks through ADT
+- Don't release machines outside of BSP tarball /binary directory
+
+If folks who do QA could get me a list of all the files they use, we
+can start removing excess artifacts. I know this is a balance, but I'd
+really like us to start targeting our release artifacts to just the
+things we need.
+
+
+-- 
+Elizabeth Flanagan
+Yocto Project
+Build and Release
 
