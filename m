@@ -1,26 +1,27 @@
-Return-Path: <philip@balister.org>
-Received: from sanddollar.geekisp.com (sanddollar.geekisp.com
-	[216.168.135.167])
-	by yocto-www.yoctoproject.org (Postfix) with SMTP id 5906CE0073C
-	for <yocto@yoctoproject.org>; Tue, 25 Mar 2014 10:37:12 -0700 (PDT)
-Received: (qmail 31070 invoked by uid 1003); 25 Mar 2014 17:37:11 -0000
-Received: from unknown (HELO ?10.16.32.157?)
-	(philip@opensdr.com@64.186.172.226)
-	by mail.geekisp.com with (DHE-RSA-AES256-SHA encrypted) SMTP;
-	25 Mar 2014 17:37:11 -0000
-Message-ID: <5331BEC6.2000904@balister.org>
-Date: Tue, 25 Mar 2014 10:37:10 -0700
-From: Philip Balister <philip@balister.org>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:17.0) Gecko/20130625 Thunderbird/17.0.7
+Return-Path: <Xin.Ouyang@windriver.com>
+Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 17A43E00B4C
+	for <yocto@yoctoproject.org>; Tue, 25 Mar 2014 22:36:48 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
+	[147.11.189.40])
+	by mail1.windriver.com (8.14.5/8.14.5) with ESMTP id s2Q5alnQ029467
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL)
+	for <yocto@yoctoproject.org>; Tue, 25 Mar 2014 22:36:48 -0700 (PDT)
+Received: from Pascal-MacBookPro.local (128.224.158.235) by
+	ALA-HCA.corp.ad.wrs.com (147.11.189.50) with Microsoft SMTP Server id
+	14.3.169.1; Tue, 25 Mar 2014 22:36:47 -0700
+Message-ID: <5332676D.5010502@windriver.com>
+Date: Wed, 26 Mar 2014 13:36:45 +0800
+From: Pascal Ouyang <xin.ouyang@windriver.com>
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.8;
+	rv:24.0) Gecko/20100101 Thunderbird/24.3.0
 MIME-Version: 1.0
-To: =?ISO-8859-1?Q?David_Nystr=F6m?= <david.nystrom@enea.com>
-References: <1395676843.24890.7.camel@ted> <5331935A.6060009@enea.com>
-In-Reply-To: <5331935A.6060009@enea.com>
-X-Enigmail-Version: 1.6
-Cc: yocto <yocto@yoctoproject.org>,
-	openembedded-core <openembedded-core@lists.openembedded.org>
-Subject: Re: [OE-core] Features in Yocto Project 1.7
+To: <wenzong.fan@windriver.com>, <yocto@yoctoproject.org>,
+	<mark.hatle@windriver.com>, <Joe.MacDonald@windriver.com>
+References: <cover.1395709062.git.wenzong.fan@windriver.com>
+In-Reply-To: <cover.1395709062.git.wenzong.fan@windriver.com>
+X-TagToolbar-Keys: D20140326133645476
+Subject: Re: [meta-selinux][PATCH 0/4] add targeted/minimum policy and some updates
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,66 +33,55 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 25 Mar 2014 17:37:16 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Wed, 26 Mar 2014 05:36:49 -0000
+Content-Type: text/plain; charset="GB2312"
 Content-Transfer-Encoding: 8bit
 
-On 03/25/2014 07:31 AM, David Nyström wrote:
-> On 2014-03-24 17:00, Richard Purdie wrote:
->> As development on 1.6 finishes up, its time to think about what we
->> should be doing in the 1.7 cycle.
->>
->> I think from my perspective, in 1.7 I'd like to see us looking at
->> "Developer Workflow". Its a generic topic which I think covered multiple
->> areas (in no particular order):
->>
->> * the ADT/SDK and how it intergrates into the rest of the system
+ÓÚ 14-3-25 ÉÏÎç9:07, wenzong.fan@windriver.com Ð´µÀ:
+> From: Wenzong Fan <wenzong.fan@windriver.com>
 > 
->> * toaster
->> * python devshell
->> * exteralsrc.bbclass
->> * memory resident bitbake
->> * how a standalone app developer might build an image
+> Changes:
+> * backport tmpfs_t patch from upstream;
+> * add rules for /var/log symlink on poky;
+> * add targeted policy type
+> * add minimum targeted policy
 > 
-> +1
-> My wishlist:
+> The following changes since commit a6079a43719e79e12a57e609923a0cccdba06916:
 > 
-> 1. Assembly of an image from a package repository using the SDK.
-> 2. Ability to easily package multiple kernel flavours(builds with
-> different kernel configs) with linux related bbclass:es.
+>    refpolicy: fix real path for su.shadow (2014-02-13 10:52:07 -0500)
+> 
+> are available in the git repository at:
+> 
+>    git://git.pokylinux.org/poky-contrib wenzong/ref-minimum
+>    http://git.pokylinux.org/cgit.cgi/poky-contrib/log/?h=wenzong/ref-minimum
+> 
+> Wenzong Fan (4):
+>    refpolicy: associate tmpfs_t (shm) to device_t (devtmpfs) file
+>      systems
+>    refpolicy: add rules for /var/log symlink on poky
+>    refpolicy: add targeted policy type
+>    refpolicy: add minimum targeted policy
+> 
+>   ...associate-tmpfs_t-shm-to-device_t-devtmpf.patch |   30 +++
+>   ...ky-policy-add-rules-for-syslogd_t-symlink.patch |   30 +++
+>   ...rules-for-var-log-symlink-audisp_remote_t.patch |   29 +++
+>   .../refpolicy/refpolicy-minimum_2.20130424.bb      |   46 +++++
+>   ...olicy-fix-optional-issue-on-sysadm-module.patch |   60 ++++++
+>   .../refpolicy-unconfined_u-default-user.patch      |  198 ++++++++++++++++++++
+>   .../refpolicy/refpolicy-targeted_2.20130424.bb     |   18 ++
+>   .../refpolicy/refpolicy_2.20130424.inc             |    3 +
+>   8 files changed, 414 insertions(+)
+>   create mode 100644 recipes-security/refpolicy/refpolicy-2.20130424/filesystem-associate-tmpfs_t-shm-to-device_t-devtmpf.patch
+>   create mode 100644 recipes-security/refpolicy/refpolicy-2.20130424/poky-policy-add-rules-for-syslogd_t-symlink.patch
+>   create mode 100644 recipes-security/refpolicy/refpolicy-2.20130424/poky-policy-add-rules-for-var-log-symlink-audisp_remote_t.patch
+>   create mode 100644 recipes-security/refpolicy/refpolicy-minimum_2.20130424.bb
+>   create mode 100644 recipes-security/refpolicy/refpolicy-targeted/refpolicy-fix-optional-issue-on-sysadm-module.patch
+>   create mode 100644 recipes-security/refpolicy/refpolicy-targeted/refpolicy-unconfined_u-default-user.patch
+>   create mode 100644 recipes-security/refpolicy/refpolicy-targeted_2.20130424.bb
+> 
 
-Can we update the OEDAM web page with some of these ideas:
+Ack. :)
 
-http://openembedded.org/wiki/OEDAM
-
-Discussion should continue on the list, but we have an agenda item to
-talk about the next release and this would be a good time to review the
-ideas raised in the this thread. I put in a placeholder with the link to
-Otavio's email. (And I really like his thoughts)
-
-Philip
-
-
-> 
-> Br,
-> David
-> 
-> 
->> * locked sstate
->>
->> and probably more I'm forgetting.
->>
->> If anyone does have things they plan to work on, or ideas for things
->> that should be worked on, please do file enhancement requests in the
->> bugzilla:
->>
->> https://bugzilla.yoctoproject.org/
->>
->> Cheers,
->>
->> Richard
->>
->>
->>
-> 
+-- 
+- Pascal
 
