@@ -1,41 +1,33 @@
-Return-Path: <trevor.woerner@linaro.org>
-Received: from mail-vc0-f181.google.com (mail-vc0-f181.google.com
-	[209.85.220.181])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C3338E00997
-	for <yocto@yoctoproject.org>; Wed, 26 Mar 2014 07:33:06 -0700 (PDT)
-Received: by mail-vc0-f181.google.com with SMTP id id10so2463482vcb.40
-	for <yocto@yoctoproject.org>; Wed, 26 Mar 2014 07:33:06 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
-	:cc:subject:references:in-reply-to:content-type
-	:content-transfer-encoding;
-	bh=3U1KgJg6NFtH83IFB8EWiXMZtg3Y9a6Q2/XZ7y1zZkQ=;
-	b=UbBVkGS172Ll8eqKSfDRQn8hnAx7OnMp+QhyYDy5mN4nAL4BVimQ4uEVmf5Ma3nknw
-	0YYTCsYlbvreuO1gxxVEoZB1pNNR6uStWM0v83/ZfW5NeXx3tShdxh9A2qSL+UTKH9k3
-	21kPIksVL3Hl8otorW0g0Mck/VTDX/J8eZi9gUa0G+Tf1EKPR6bd0OxCIT2CEE/Ghxq1
-	4dNy7/FGuKA+OV8+aPZ0/EjK7chdQNJVhWqdTTWXK9vBy6g9zFjne39IS83tAdh0vPEX
-	3LRzY+XCy8soUu5NHDYb9Q8Tfbybtxu0Wof2XTo4Mkj86FwavfLWG9vJQh8KuJOgRgFj
-	LokA==
-X-Gm-Message-State: ALoCoQlGuKBLneMf2Ytjf7bi89hbkeYyi8tENY/LWy4GmVhtIIY8mcuicvbjB/u4KGgnj4ociljF
-X-Received: by 10.52.119.197 with SMTP id kw5mr51671396vdb.5.1395844386056;
-	Wed, 26 Mar 2014 07:33:06 -0700 (PDT)
-Received: from [192.168.141.83] (69-165-220-158.dsl.teksavvy.com.
-	[69.165.220.158])
-	by mx.google.com with ESMTPSA id v20sm38608283vdj.0.2014.03.26.07.33.04
-	for <multiple recipients>
-	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
-	Wed, 26 Mar 2014 07:33:05 -0700 (PDT)
-Message-ID: <5332E520.5050005@linaro.org>
-Date: Wed, 26 Mar 2014 10:33:04 -0400
-From: Trevor Woerner <trevor.woerner@linaro.org>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:24.0) Gecko/20100101 Thunderbird/24.3.0
+Return-Path: <otavio.salvador@gmail.com>
+Received: from mail-yh0-f42.google.com (mail-yh0-f42.google.com
+	[209.85.213.42])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A36EDE009A7
+	for <yocto@yoctoproject.org>; Wed, 26 Mar 2014 07:38:29 -0700 (PDT)
+Received: by mail-yh0-f42.google.com with SMTP id t59so2189440yho.1
+	for <yocto@yoctoproject.org>; Wed, 26 Mar 2014 07:38:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:sender:in-reply-to:references:date:message-id:subject
+	:from:to:cc:content-type;
+	bh=fcG8mpphS1ZqgJHHtSeRA0rzENoKonWtOPyhoRi3ssI=;
+	b=CuERpaD6WwqlG8aRHdhmp/2RpKifv0dlNOJ0z4BHbK4pzGrExmhiUbi6rVvdAOQD7F
+	7UyPCrWBvjXTWsIeGPNB65KBnHzHPFLyo8zsHl85sK7O/Yrl7H5fGlRR7Ba9o0Ju7POV
+	jaHCJtu9bmB5NgwZjLS5jZamsNZEr+opRJwu81p9WM1LdGLUKE17a1Tx0Fm6PHunw8g7
+	aBhB7J/cqyetUkOg3YkYjvdoBbPw3eJpsBAYjJCx94KLAms22YQ6/8imBc5J5+PhPlRU
+	vWQpnKoTjcIGjVHmtbEhriyapSnhQN5crt4iqqJYsE7GBfzSC5N8CYp0yhR7DAcGKwJb
+	mCNw==
 MIME-Version: 1.0
-To: Martin Jansa <martin.jansa@gmail.com>
+X-Received: by 10.236.230.41 with SMTP id i39mr50634118yhq.14.1395844708424;
+	Wed, 26 Mar 2014 07:38:28 -0700 (PDT)
+Sender: otavio.salvador@gmail.com
+Received: by 10.170.124.72 with HTTP; Wed, 26 Mar 2014 07:38:28 -0700 (PDT)
+In-Reply-To: <5332E520.5050005@linaro.org>
 References: <1395676843.24890.7.camel@ted> <5330C9A8.904@linaro.org>
-	<20140325055028.GA3710@jama>
-In-Reply-To: <20140325055028.GA3710@jama>
+	<20140325055028.GA3710@jama> <5332E520.5050005@linaro.org>
+Date: Wed, 26 Mar 2014 11:38:28 -0300
+X-Google-Sender-Auth: wMZse3x5f2rFkcY-bBAUdDvHK44
+Message-ID: <CAP9ODKoSO6ewoim_4c6N15C5-uQz0XQ3kPam421mYRPhRcWoNg@mail.gmail.com>
+From: Otavio Salvador <otavio@ossystems.com.br>
+To: Trevor Woerner <trevor.woerner@linaro.org>
 Cc: yocto <yocto@yoctoproject.org>,
 	openembedded-core <openembedded-core@lists.openembedded.org>
 Subject: Re: [OE-core] --conf Was: Features in Yocto Project 1.7
@@ -50,38 +42,33 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 26 Mar 2014 14:33:09 -0000
+X-List-Received-Date: Wed, 26 Mar 2014 14:38:29 -0000
 Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: 7bit
 
-On 03/25/14 01:50, Martin Jansa wrote:
-> Can you show some example of config you need to have wor wayland and
-> cannot have for core-image-minimal? 
+On Wed, Mar 26, 2014 at 11:33 AM, Trevor Woerner
+<trevor.woerner@linaro.org> wrote:
+> On 03/25/14 01:50, Martin Jansa wrote:
+>> Can you show some example of config you need to have wor wayland and
+>> cannot have for core-image-minimal?
+>
+...
+> As a concrete example, currently I'm flipping between dora and master
+> builds. For some reason I can't seem to reuse the same TMPDIR between
+> them. So every time I "repo init -b <newbranch>" I then also have to
+> edit conf/local.conf before bitbaking.
 
-Okay, good point. I should have thought harder to come up with a better
-example :-) It's funny, actually, that you're the one pressing me on
-this, I first encountered this issue and started thinking about it while
-trying to reproduce your "State of bitbake world" tests :-)
+Use separated build directories for this, so you don't need to mangle
+conf/local.conf every time.
 
-Let's say you're a board maintainer; some people want to run gstreamer,
-some people want to try out systemd, some want to run wayland. Each of
-these requires tweaks to a conf/local.conf, no? I'm constantly changing
-my set of IMAGE_INSTALL_append's, fiddling with preferred versions, and
-distro features.
+Personally I have different trees for Dora and Master and inside it I
+have several build directories when working in this kind of test
+(different distro features and like) and this is easy to maintain. For
+auto builder, we cooked a script to abstract the configuration in
+command line options so we can easily extend it and get it used in
+several build jobs.
 
-If I'm just doing a one-off build then sure, adjust conf/local.conf
-manually. But if I'm perpetually rotating between a bunch of tests as
-repositories are modified, it would be easier to just specify which
-configuration I want from the bitbake cmdline.
-
-As I mentioned, maybe I'm doing things wrong? Maybe others have separate
-build locations, or maybe others define their own images which
-incorporate these adjustments? But I'd be quite surprised to find I'm
-the only one having to edit conf/local.conf to comment/un-comment blocks
-before every build.
-
-As a concrete example, currently I'm flipping between dora and master
-builds. For some reason I can't seem to reuse the same TMPDIR between
-them. So every time I "repo init -b <newbranch>" I then also have to
-edit conf/local.conf before bitbaking.
+-- 
+Otavio Salvador                             O.S. Systems
+http://www.ossystems.com.br        http://code.ossystems.com.br
+Mobile: +55 (53) 9981-7854            Mobile: +1 (347) 903-9750
 
