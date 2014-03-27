@@ -1,22 +1,36 @@
-Return-Path: <stefanx.stanacar@intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A2220E00A71
-	for <yocto@yoctoproject.org>; Thu, 27 Mar 2014 09:50:23 -0700 (PDT)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga101.jf.intel.com with ESMTP; 27 Mar 2014 09:42:00 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.97,743,1389772800"; d="scan'208";a="481517109"
-Received: from linux.jf.intel.com (HELO linux.intel.com) ([10.23.219.25])
-	by orsmga001.jf.intel.com with ESMTP; 27 Mar 2014 09:41:59 -0700
-Received: from firebird.rb.intel.com (firebird.rb.intel.com [10.237.105.160])
-	by linux.intel.com (Postfix) with ESMTP id B1E6E6A4007;
-	Thu, 27 Mar 2014 09:41:44 -0700 (PDT)
-From: Stefan Stanacar <stefanx.stanacar@intel.com>
-To: yocto@yoctoproject.org
-Date: Thu, 27 Mar 2014 18:42:14 +0200
-Message-Id: <1395938534-9644-1-git-send-email-stefanx.stanacar@intel.com>
-X-Mailer: git-send-email 1.8.5.3
-Subject: [yocto-autobuilder][PATCH] buildsets: nightly-qa-targetbuilds: remove the mips build
+Return-Path: <stuartl@vrt.com.au>
+Received: from ipmail04.adl6.internode.on.net (ipmail04.adl6.internode.on.net
+	[150.101.137.141])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A09F8E00BA1
+	for <yocto@yoctoproject.org>; Thu, 27 Mar 2014 12:55:27 -0700 (PDT)
+Received: from eth2015.qld.adsl.internode.on.net (HELO
+	atomos.longlandclan.yi.org) ([150.101.176.226])
+	by ipmail04.adl6.internode.on.net with ESMTP; 28 Mar 2014 06:25:24 +1030
+Received: by atomos.longlandclan.yi.org (Postfix, from userid 8)
+	id 5137F2024BD1; Fri, 28 Mar 2014 05:55:22 +1000 (EST)
+X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on
+	atomos.longlandclan.yi.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-1.0, required=5.0, tests=[ALL_TRUSTED=-1]
+	autolearn=unavailable version=3.3.2
+Received: from [IPv6:2001:44b8:21ac:7053:223:6cff:fe83:b6b7] (vk4msl-mb.local
+	[IPv6:2001:44b8:21ac:7053:223:6cff:fe83:b6b7])
+	by atomos.longlandclan.yi.org (Postfix) with ESMTPSA id 86E3D2024BD1;
+	Fri, 28 Mar 2014 05:55:18 +1000 (EST)
+Message-ID: <5334829A.80001@vrt.com.au>
+Date: Fri, 28 Mar 2014 05:57:14 +1000
+From: Stuart Longland <stuartl@vrt.com.au>
+Organization: VRT Systems
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:24.0) Gecko/20100101 Thunderbird/24.2.0
+MIME-Version: 1.0
+To: "Burton, Ross" <ross.burton@intel.com>
+References: <5333BC31.1030405@vrt.com.au>
+	<CAJTo0LaHX3fFfdCkROuaj69SmA7LKAL79MinWtXRPUG-1rCZxw@mail.gmail.com>
+In-Reply-To: <CAJTo0LaHX3fFfdCkROuaj69SmA7LKAL79MinWtXRPUG-1rCZxw@mail.gmail.com>
+X-Enigmail-Version: 1.6
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: matchbox-terminal and function keys
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -28,30 +42,31 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 27 Mar 2014 16:50:25 -0000
+X-List-Received-Date: Thu, 27 Mar 2014 19:55:32 -0000
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-The build tests for iptables/cvs/sudoku take too much time on qemumips
-and usually buildbot ends up killing the step as it hits the timeout,
-so we should drop them.
+Hi Ross,
+On 27/03/14 22:27, Burton, Ross wrote:
+> Can you paste the output of cat to confirm the values you're seeing?
+> The xterm guide says VT100 for F1-F4 (as VT100 doesn't define F5
+> onwards) and VT220 for F5-F10 and that's what I'm seeing when I
+> attempt this (F10 specifically being ^[[21~).
 
-Signed-off-by: Stefan Stanacar <stefanx.stanacar@intel.com>
----
- buildset-config.master/nightly-qa-targetbuilds.conf | 3 ---
- 1 file changed, 3 deletions(-)
+Well, evidently the ncurses devs didn't get that memo as F1-F5 aren't
+recognised when TERM=xterm.  I understood xterm was a superset of vt220.
 
-diff --git a/buildset-config.master/nightly-qa-targetbuilds.conf b/buildset-config.master/nightly-qa-targetbuilds.conf
-index a95db78..96ec7f8 100644
---- a/buildset-config.master/nightly-qa-targetbuilds.conf
-+++ b/buildset-config.master/nightly-qa-targetbuilds.conf
-@@ -20,7 +20,4 @@ steps: [{'SetDest':{}},
-         {'RunSanityTests': {'images': 'core-image-sato-sdk', 'suites' : 'ping ssh buildsudoku buildcvs buildiptables'}},
-         {'CreateAutoConf': {'machine': 'qemuppc', 'SDKMACHINE' : 'x86_64', 'distro': 'poky'}},
-         {'BuildImages': {'images': 'core-image-sato-sdk'}},
--        {'RunSanityTests': {'images': 'core-image-sato-sdk', 'suites' : 'ping ssh buildsudoku buildcvs buildiptables'}},
--        {'CreateAutoConf': {'machine': 'qemumips', 'SDKMACHINE' : 'x86_64', 'distro': 'poky'}},
--        {'BuildImages': {'images': 'core-image-sato-sdk'}},
-         {'RunSanityTests': {'images': 'core-image-sato-sdk', 'suites' : 'ping ssh buildsudoku buildcvs buildiptables'}}]
+I'll do a `cat` to a file and post the contents when I get in.  I'm just
+confused as to why ncurses applications don't seem to recognise F1-F5.
+
+Regards,
 -- 
-1.8.5.3
+Stuart Longland
+Contractor
+     _ ___
+\  /|_) |                           T: +61 7 3535 9619
+ \/ | \ |     38b Douglas Street    F: +61 7 3535 9699
+   SYSTEMS    Milton QLD 4064       http://www.vrt.com.au
+
 
 
