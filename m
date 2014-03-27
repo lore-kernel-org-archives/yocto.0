@@ -1,38 +1,34 @@
-Return-Path: <paul.betafive@gmail.com>
-Received: from mail-ve0-f174.google.com (mail-ve0-f174.google.com
-	[209.85.128.174])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 66FD9E00B93
-	for <yocto@yoctoproject.org>; Thu, 27 Mar 2014 05:53:48 -0700 (PDT)
-Received: by mail-ve0-f174.google.com with SMTP id oz11so3932641veb.19
-	for <yocto@yoctoproject.org>; Thu, 27 Mar 2014 05:53:48 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:sender:in-reply-to:references:from:date:message-id
-	:subject:to:cc:content-type;
-	bh=EdZew7xhYxf9u8K+2bsO5IlwDqX3zePXDDs8+1N51vc=;
-	b=O92RBCHpmKuRYHV1EDaXqVM5sg0F6q0/qktiWWTOB/EyITxwK+hLGnr8k9z3bDmc2j
-	cwmJari6YClc1Sy17x0YAM8nYuFmdRb6smddS21G8sgfu/So+yAu8ZZuWzVTUrJwOkyJ
-	sTXFVMiyIf6hJw7iWiG/T9Z5rulqlOilTnPgQfeUVr4H1MpTRDGSxBjGGoEslyuclN3R
-	WIvqjKaFngWC6+zdcGOLJS3bE6BpnKlDiahNE61LS4rKO+OXJ/2PMbmMEj4MPZ/676wd
-	dPYgq7LsWv+3GJkkyfECBBWp7DxRLWmISTuucRlJh8vY2Yy+ZT3wuQ8a3TqBqaac0x6X
-	oM+w==
-X-Received: by 10.221.22.71 with SMTP id qv7mr223636vcb.34.1395924828175; Thu,
-	27 Mar 2014 05:53:48 -0700 (PDT)
+Return-Path: <ross.burton@intel.com>
+Received: from mail-qg0-f42.google.com (mail-qg0-f42.google.com
+	[209.85.192.42])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 09006E00A71
+	for <yocto@yoctoproject.org>; Thu, 27 Mar 2014 06:45:41 -0700 (PDT)
+Received: by mail-qg0-f42.google.com with SMTP id q107so2842873qgd.1
+	for <yocto@yoctoproject.org>; Thu, 27 Mar 2014 06:45:40 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc:content-type;
+	bh=fLEqM9nFJWl2FbUsyUUhf9YEwBLvWe8q+MTqje5qAOs=;
+	b=JqfEH5b3oSTB9GydA1UPOIk7BJ7fov9SsKUbQnNxCJTf3RWeneCDNumwtLmPOwED/u
+	mlbC0XcJ8AkynKZ3KzEfHO56BefdhPycgzRCWBV+x8ILhmfWbjNMBNGBtLtcoIwGd2bv
+	td/16y9rRMap6ufVt4oj+JSBqrxLKK9dRGUM4nknlOAAdPb6Cudcr5JNVB15IB68lUNu
+	6Q58+Xgfg8b5InsdD59ombwymufBeFNGjWunYhfo5QkjZT9vMlYVNX6+21y7+qek31ts
+	JkVvpnq0Q2D//6F0dmPSSKPOueDkyaG/fUOykjK67dWBV70sONc3CYbbGHYC2ZRpWLCr
+	Qvww==
+X-Gm-Message-State: ALoCoQm5GR9BOhhcoJJtm6AqyhojSUREfbcRHhDMPwb0xSSpSb5RtalAS4bNpMXrqskzDlPgjUkJ
+X-Received: by 10.140.106.195 with SMTP id e61mr2056212qgf.66.1395927940449;
+	Thu, 27 Mar 2014 06:45:40 -0700 (PDT)
 MIME-Version: 1.0
-Sender: paul.betafive@gmail.com
-Received: by 10.220.239.135 with HTTP; Thu, 27 Mar 2014 05:53:08 -0700 (PDT)
-In-Reply-To: <CAJTo0LYF0VNwy7=rhmr7U_=tXwJtPOax3AKttn66q3qD_QXd2w@mail.gmail.com>
-References: <CAMKF1soKZqqmQUVCQnUqS1GV1FO5KictTO+=up=d7Jw3+QhXMw@mail.gmail.com>
-	<CAJTo0LYF0VNwy7=rhmr7U_=tXwJtPOax3AKttn66q3qD_QXd2w@mail.gmail.com>
-From: Paul Barker <paul@paulbarker.me.uk>
-Date: Thu, 27 Mar 2014 12:53:08 +0000
-X-Google-Sender-Auth: aiKzMXh5yfx2nyT6AUIfG6buXUo
-Message-ID: <CANyK_8deVKbC6xOUQHubvphfwQCQefHGWCt7Mp1QM4DUVXja5g@mail.gmail.com>
-To: "Burton, Ross" <ross.burton@intel.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	OE-devel <openembedded-devel@lists.openembedded.org>,
-	Patches and discussions about the oe-core layer
-	<openembedded-core@lists.openembedded.org>
-Subject: Re: [OE-core] [oe] initial support for musl libc with OE/Yocto Project
+Received: by 10.140.27.167 with HTTP; Thu, 27 Mar 2014 06:45:20 -0700 (PDT)
+In-Reply-To: <E4938C0D959B3445943720B88F072134156124E7@NDA-HCLT-MBS02.hclt.corp.hcl.in>
+References: <E4938C0D959B3445943720B88F072134156124E7@NDA-HCLT-MBS02.hclt.corp.hcl.in>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Thu, 27 Mar 2014 13:45:20 +0000
+Message-ID: <CAJTo0LbH0Jt=JffvU7g-LAo3pn=hnDxd6hG+3Rj0uf6CY-ZdKg@mail.gmail.com>
+To: Meenakumari Shedole <meenakumari.s@hcl.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Help-Gstreamer Vaapi Plugin Issue in 1080p mp4 playback
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -44,35 +40,14 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 27 Mar 2014 12:53:49 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Thu, 27 Mar 2014 13:45:44 -0000
+Content-Type: text/plain; charset=UTF-8
 
-On 26 March 2014 22:12, Burton, Ross <ross.burton@intel.com> wrote:
-> On 26 March 2014 22:04, Khem Raj <raj.khem@gmail.com> wrote:
->> There were interest in other threads in having musl as an alternative
->> to eglibc/uclibc that we already have in OE, in that direction I have
->> poured in my on and off work and put it into a contrib tree
->
-> Blimey Khem that was quick. :)
->
+On 27 March 2014 06:58, Meenakumari Shedole <meenakumari.s@hcl.com> wrote:
+> filesrc-> decodebin->queue->ffmpegcolorspace->xvimagesink
 
-Agreed!
+Try just using playbin2 instead of constructing a pipeline manually,
+there's lot of smarts that you'll need to do manually otherwise.
 
-I wonder if it's worth splitting this out into its own layer though
-(with fixes done via bbappends) so that it's easy for multiple people
-to contribute to. It would also mean it doesn't need rebasing onto
-master all the time.
-
-I'd definitely like to get involved with this. In particular I can
-ensure opkg (both current release and development branch) work with
-musl and see if some of my preferred software from meta-oe will build
-(vim, htop, etc).
-
-Many thanks,
-
--- 
-Paul Barker
-
-Email: paul@paulbarker.me.uk
-http://www.paulbarker.me.uk
+Ross
 
