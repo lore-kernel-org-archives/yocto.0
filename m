@@ -1,22 +1,46 @@
-Return-Path: <stefanx.stanacar@intel.com>
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id ADF21E00A71
-	for <yocto@yoctoproject.org>; Thu, 27 Mar 2014 09:31:18 -0700 (PDT)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga102.fm.intel.com with ESMTP; 27 Mar 2014 09:31:15 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.97,743,1389772800"; d="scan'208";a="508336443"
-Received: from linux.jf.intel.com (HELO linux.intel.com) ([10.23.219.25])
-	by fmsmga002.fm.intel.com with ESMTP; 27 Mar 2014 09:29:33 -0700
-Received: from firebird.rb.intel.com (firebird.rb.intel.com [10.237.105.160])
-	by linux.intel.com (Postfix) with ESMTP id 4AFA16A4007;
-	Thu, 27 Mar 2014 09:29:18 -0700 (PDT)
-From: Stefan Stanacar <stefanx.stanacar@intel.com>
-To: yocto@yoctoproject.org
-Date: Thu, 27 Mar 2014 18:29:47 +0200
-Message-Id: <1395937787-9207-1-git-send-email-stefanx.stanacar@intel.com>
-X-Mailer: git-send-email 1.8.5.3
-Subject: [yocto-autobuilder][PATCH] nightly-deb/ipk: don't use the default tests
+Return-Path: <trevor.woerner@linaro.org>
+Received: from mail-oa0-f46.google.com (mail-oa0-f46.google.com
+	[209.85.219.46])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 58439E00A71
+	for <yocto@yoctoproject.org>; Thu, 27 Mar 2014 09:33:40 -0700 (PDT)
+Received: by mail-oa0-f46.google.com with SMTP id i7so4633799oag.33
+	for <yocto@yoctoproject.org>; Thu, 27 Mar 2014 09:33:40 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
+	:cc:subject:references:in-reply-to:content-type
+	:content-transfer-encoding;
+	bh=Ul6EuwyDnfEyJanCvqB+R2uESY1KUhcW8C0so7TvTA8=;
+	b=D3HbnQEVuhLV/uRe1JCJvcPGqMV70rU07xPuoa3j2wAAlG8NPKRkXmHumdrwuy8vo5
+	EBayaJ6y7mcxlgRRnpU5/mAhCsFpGMz0/DgxVwnqU9DvX6rMj26zcIErMZe1QU58RHPS
+	NpwVOddlBsdpXhV1vC4ZDCAfHRdFtff24oaZiipgHhL2jeq1BKxScVXI6iMkl7dFgBGb
+	PT28Coh4rYyjN7fary3mZCuveec/55VRkuXi6kquF3Ois1NsBcnrnkX93jr3QS/wxHFq
+	2oeqqx31/C8D1AEpwVykLMlrAEqmEItiGU1+HZKxyR3oRvx8latNteyv+UW9v1d0kxH0
+	qiPw==
+X-Gm-Message-State: ALoCoQlJysF5dL0tUHPVgbWZ4L93jxXQN9CfXKUkkeL5IiZu6tNSR2DegzFkLM+5d3lvzV7HVypv
+X-Received: by 10.182.118.169 with SMTP id kn9mr1055027obb.46.1395938019957;
+	Thu, 27 Mar 2014 09:33:39 -0700 (PDT)
+Received: from [192.168.141.83] (69-165-220-158.dsl.teksavvy.com.
+	[69.165.220.158]) by mx.google.com with ESMTPSA id
+	kn10sm10208269oeb.0.2014.03.27.09.33.38 for <multiple recipients>
+	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
+	Thu, 27 Mar 2014 09:33:39 -0700 (PDT)
+Message-ID: <533452E2.9030407@linaro.org>
+Date: Thu, 27 Mar 2014 12:33:38 -0400
+From: Trevor Woerner <trevor.woerner@linaro.org>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:24.0) Gecko/20100101 Thunderbird/24.3.0
+MIME-Version: 1.0
+To: Nicolas Dechesne <nicolas.dechesne@linaro.org>, 
+	Otavio Salvador <otavio@ossystems.com.br>
+References: <1395676843.24890.7.camel@ted> <5330C9A8.904@linaro.org>
+	<20140325055028.GA3710@jama> <5332E520.5050005@linaro.org>
+	<CAP9ODKoSO6ewoim_4c6N15C5-uQz0XQ3kPam421mYRPhRcWoNg@mail.gmail.com>
+	<CAP71Wjz2MD52m_ij09nCRZoDh6iJfojae7sJYK4ZwSqZ_qGVZQ@mail.gmail.com>
+In-Reply-To: <CAP71Wjz2MD52m_ij09nCRZoDh6iJfojae7sJYK4ZwSqZ_qGVZQ@mail.gmail.com>
+Cc: yocto <yocto@yoctoproject.org>,
+	openembedded-core <openembedded-core@lists.openembedded.org>
+Subject: Re: [OE-core] --conf Was: Features in Yocto Project 1.7
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -28,55 +52,9 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 27 Mar 2014 16:31:20 -0000
+X-List-Received-Date: Thu, 27 Mar 2014 16:33:43 -0000
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: 7bit
 
-We can't use RunSanityTests as it is because the default
-test suites (which are defined in testimage.bbclass) include rpm and smart.
-Anything included in TEST_SUITES is a mandatory test and will be a fail in this
-buildset as obviously this images don't have rpm/smart.
-Also we can't use 'ping auto' either (which will run all the tests suitable for the image),
-because for core-image-sato-sdk that will run cvs/iptables/sudoku build tests which
-take a long time (and we have another buildset nightly-qa-targetbuild for that) so we need
-to hardcode the list of tests - the same as the defaults for a rpm core-image-sato-sdk,
-minus rpm and smart (and without smart this RunSanity will take half of the time)
-
-Signed-off-by: Stefan Stanacar <stefanx.stanacar@intel.com>
----
- buildset-config.master/nightly-deb.conf | 6 +++++-
- buildset-config.master/nightly-ipk.conf | 6 +++++-
- 2 files changed, 10 insertions(+), 2 deletions(-)
-
-diff --git a/buildset-config.master/nightly-deb.conf b/buildset-config.master/nightly-deb.conf
-index 648401b..7ed5eed 100644
---- a/buildset-config.master/nightly-deb.conf
-+++ b/buildset-config.master/nightly-deb.conf
-@@ -15,5 +15,9 @@ steps: [{'SetDest':{}},
-         {'CreateBBLayersConf': {'buildprovider' : 'yocto'}},
-         {'SyncPersistDB' : {'distro' : 'poky'}},
-         {'BuildImages': {'images': 'core-image-sato core-image-sato-dev core-image-sato-sdk core-image-minimal core-image-minimal-dev'}},
--        {'RunSanityTests': {'images': 'core-image-minimal core-image-sato core-image-sato-sdk'}},
-+        {'RunSanityTests': {'images': 'core-image-minimal'}},
-+        {'CreateAutoConf': {'machine': 'qemux86', 'SDKMACHINE' : 'i686', 'distro': 'poky', 'buildhistory' : True, 'packages': 'ipk'}},
-+        {'RunSanityTests': {'images' 'core-image-sato', 'suites' : 'ping ssh auto'}},
-+        {'CreateAutoConf': {'machine': 'qemux86', 'SDKMACHINE' : 'i686', 'distro': 'poky', 'buildhistory' : True, 'packages': 'ipk'}},
-+        {'RunSanityTests': {'images' : 'core-image-sato-sdk', 'suites' : 'ping ssh df connman syslog xorg scp vnc date perl ldd gcc kernelmodule dmesg python'}},
-         {'SyncPersistDB' : {'commit' : True, 'distro':'poky'}}]
-diff --git a/buildset-config.master/nightly-ipk.conf b/buildset-config.master/nightly-ipk.conf
-index bf7c613..c96d098 100644
---- a/buildset-config.master/nightly-ipk.conf
-+++ b/buildset-config.master/nightly-ipk.conf
-@@ -15,5 +15,9 @@ steps: [{'SetDest':{}},
-         {'CreateBBLayersConf': {'buildprovider' : 'yocto'}},
-         {'SyncPersistDB' : {'distro' : 'poky'}},
-         {'BuildImages': {'images': 'core-image-sato core-image-sato-dev core-image-sato-sdk core-image-minimal core-image-minimal-dev'}},
--        {'RunSanityTests': {'images': 'core-image-minimal core-image-sato core-image-sato-sdk'}},
-+        {'RunSanityTests': {'images': 'core-image-minimal'}},
-+        {'CreateAutoConf': {'machine': 'qemux86', 'SDKMACHINE' : 'i686', 'distro': 'poky', 'buildhistory' : True, 'packages': 'ipk'}},
-+        {'RunSanityTests': {'images' 'core-image-sato', 'suites' : 'ping ssh auto'}},
-+        {'CreateAutoConf': {'machine': 'qemux86', 'SDKMACHINE' : 'i686', 'distro': 'poky', 'buildhistory' : True, 'packages': 'ipk'}},
-+        {'RunSanityTests': {'images' : 'core-image-sato-sdk', 'suites' : 'ping ssh df connman syslog xorg scp vnc date perl ldd gcc kernelmodule dmesg python'}},
-         {'SyncPersistDB' : {'commit' : True, 'distro':'poky'}}]
--- 
-1.8.5.3
-
+Excellent information! Thanks for all the workflow examples, this is great.
 
