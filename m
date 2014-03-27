@@ -1,34 +1,38 @@
-Return-Path: <ross.burton@intel.com>
-Received: from mail-qg0-f44.google.com (mail-qg0-f44.google.com
-	[209.85.192.44])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 268D9E00B93
-	for <yocto@yoctoproject.org>; Thu, 27 Mar 2014 05:27:35 -0700 (PDT)
-Received: by mail-qg0-f44.google.com with SMTP id a108so2612991qge.17
-	for <yocto@yoctoproject.org>; Thu, 27 Mar 2014 05:27:35 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc:content-type;
-	bh=KewBei+3M0AKDb95xK/z4j+qVa0Yn/v6XGNfaUQEGC4=;
-	b=aBcF1PB4g1oKGJwOhuV2ahOwKX+MNd9xg6r5zDTZQMHLYyAT8MTQQhdjZYlE/cOkQU
-	Rdpp+2SlZx7CdQY6jTwXvhZvZyYWwJRjFYsjHSALZfTPOfAqMgue4NriEHinfvcKIyR7
-	n5Ycm9u+SvGh3UEnfOn1XZxd6QKs68q/ONbGuirGBv44ja5NToHu/a71IsipuqZ4EdPv
-	3tbJYBgP9KTnZ8hoscQkRObkcbpW/gdbgmRbqZqB0SnNO5OcHsaWhdRHLQ1PGdQ9QGU2
-	Ije/GDgOwf5MkD+hRvaU/FxZDdgamxDkcASodXBxttIcMszyZ+p9+gTWH5lekzMlbOG1
-	o3Tw==
-X-Gm-Message-State: ALoCoQkdrKb/rtWzjX73ISc2ODRqhnEDgeBL2+kn9n0O6mzvvw/CdORX9vpUehHLHWyzGTRXkwFo
-X-Received: by 10.140.41.197 with SMTP id z63mr1522510qgz.102.1395923255136;
-	Thu, 27 Mar 2014 05:27:35 -0700 (PDT)
+Return-Path: <paul.betafive@gmail.com>
+Received: from mail-ve0-f174.google.com (mail-ve0-f174.google.com
+	[209.85.128.174])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 66FD9E00B93
+	for <yocto@yoctoproject.org>; Thu, 27 Mar 2014 05:53:48 -0700 (PDT)
+Received: by mail-ve0-f174.google.com with SMTP id oz11so3932641veb.19
+	for <yocto@yoctoproject.org>; Thu, 27 Mar 2014 05:53:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:sender:in-reply-to:references:from:date:message-id
+	:subject:to:cc:content-type;
+	bh=EdZew7xhYxf9u8K+2bsO5IlwDqX3zePXDDs8+1N51vc=;
+	b=O92RBCHpmKuRYHV1EDaXqVM5sg0F6q0/qktiWWTOB/EyITxwK+hLGnr8k9z3bDmc2j
+	cwmJari6YClc1Sy17x0YAM8nYuFmdRb6smddS21G8sgfu/So+yAu8ZZuWzVTUrJwOkyJ
+	sTXFVMiyIf6hJw7iWiG/T9Z5rulqlOilTnPgQfeUVr4H1MpTRDGSxBjGGoEslyuclN3R
+	WIvqjKaFngWC6+zdcGOLJS3bE6BpnKlDiahNE61LS4rKO+OXJ/2PMbmMEj4MPZ/676wd
+	dPYgq7LsWv+3GJkkyfECBBWp7DxRLWmISTuucRlJh8vY2Yy+ZT3wuQ8a3TqBqaac0x6X
+	oM+w==
+X-Received: by 10.221.22.71 with SMTP id qv7mr223636vcb.34.1395924828175; Thu,
+	27 Mar 2014 05:53:48 -0700 (PDT)
 MIME-Version: 1.0
-Received: by 10.140.27.167 with HTTP; Thu, 27 Mar 2014 05:27:15 -0700 (PDT)
-In-Reply-To: <5333BC31.1030405@vrt.com.au>
-References: <5333BC31.1030405@vrt.com.au>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Thu, 27 Mar 2014 12:27:15 +0000
-Message-ID: <CAJTo0LaHX3fFfdCkROuaj69SmA7LKAL79MinWtXRPUG-1rCZxw@mail.gmail.com>
-To: Stuart Longland <stuartl@vrt.com.au>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: matchbox-terminal and function keys
+Sender: paul.betafive@gmail.com
+Received: by 10.220.239.135 with HTTP; Thu, 27 Mar 2014 05:53:08 -0700 (PDT)
+In-Reply-To: <CAJTo0LYF0VNwy7=rhmr7U_=tXwJtPOax3AKttn66q3qD_QXd2w@mail.gmail.com>
+References: <CAMKF1soKZqqmQUVCQnUqS1GV1FO5KictTO+=up=d7Jw3+QhXMw@mail.gmail.com>
+	<CAJTo0LYF0VNwy7=rhmr7U_=tXwJtPOax3AKttn66q3qD_QXd2w@mail.gmail.com>
+From: Paul Barker <paul@paulbarker.me.uk>
+Date: Thu, 27 Mar 2014 12:53:08 +0000
+X-Google-Sender-Auth: aiKzMXh5yfx2nyT6AUIfG6buXUo
+Message-ID: <CANyK_8deVKbC6xOUQHubvphfwQCQefHGWCt7Mp1QM4DUVXja5g@mail.gmail.com>
+To: "Burton, Ross" <ross.burton@intel.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
+	OE-devel <openembedded-devel@lists.openembedded.org>,
+	Patches and discussions about the oe-core layer
+	<openembedded-core@lists.openembedded.org>
+Subject: Re: [OE-core] [oe] initial support for musl libc with OE/Yocto Project
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,23 +44,35 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 27 Mar 2014 12:27:37 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Thu, 27 Mar 2014 12:53:49 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
-On 27 March 2014 05:50, Stuart Longland <stuartl@vrt.com.au> wrote:
-> The terminal reports itself as TERM=xterm.  When I do a `cat`, I observe
-> that matchbox-terminal is reporting F1-F5 using VT100 terminal
-> sequences, but F6-F10 using VT220 sequences.  If I set TERM=vt100, I get
-> F1-F5 working, but unfortunately, I need F10 as well.
+On 26 March 2014 22:12, Burton, Ross <ross.burton@intel.com> wrote:
+> On 26 March 2014 22:04, Khem Raj <raj.khem@gmail.com> wrote:
+>> There were interest in other threads in having musl as an alternative
+>> to eglibc/uclibc that we already have in OE, in that direction I have
+>> poured in my on and off work and put it into a contrib tree
 >
-> So the terminal that matchbox-terminal emulates is neither a VT100 nor a
-> VT220 (or the superset it claims to be: xterm), but a confused mix of
-> the two.
+> Blimey Khem that was quick. :)
+>
 
-Can you paste the output of cat to confirm the values you're seeing?
-The xterm guide says VT100 for F1-F4 (as VT100 doesn't define F5
-onwards) and VT220 for F5-F10 and that's what I'm seeing when I
-attempt this (F10 specifically being ^[[21~).
+Agreed!
 
-Ross
+I wonder if it's worth splitting this out into its own layer though
+(with fixes done via bbappends) so that it's easy for multiple people
+to contribute to. It would also mean it doesn't need rebasing onto
+master all the time.
+
+I'd definitely like to get involved with this. In particular I can
+ensure opkg (both current release and development branch) work with
+musl and see if some of my preferred software from meta-oe will build
+(vim, htop, etc).
+
+Many thanks,
+
+-- 
+Paul Barker
+
+Email: paul@paulbarker.me.uk
+http://www.paulbarker.me.uk
 
