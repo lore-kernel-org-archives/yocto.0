@@ -1,23 +1,33 @@
-Return-Path: <Peter.Seebach@windriver.com>
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1C585E00B90
-	for <yocto@yoctoproject.org>; Wed, 26 Mar 2014 17:46:10 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail.windriver.com (8.14.5/8.14.5) with ESMTP id s2R0k9oJ000777
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL)
-	for <yocto@yoctoproject.org>; Wed, 26 Mar 2014 17:46:09 -0700 (PDT)
-Received: from e6410-2 (172.25.40.227) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.40) with Microsoft SMTP Server id 14.3.169.1;
-	Wed, 26 Mar 2014 17:46:09 -0700
-Date: Wed, 26 Mar 2014 19:45:46 -0500
-From: Peter Seebach <peter.seebach@windriver.com>
-To: <yocto@yoctoproject.org>, "Hatle, Mark" <mark.hatle@windriver.com>, Pascal
-	Ouyang <xin.ouyang@windriver.com>
-Message-ID: <20140326194546.2d88d3e1@e6410-2>
-X-Mailer: Claws Mail 3.8.0 (GTK+ 2.24.10; x86_64-pc-linux-gnu)
+Return-Path: <elizabeth.flanagan@intel.com>
+Received: from mail-ve0-f180.google.com (mail-ve0-f180.google.com
+	[209.85.128.180])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EE51BE00B90
+	for <yocto@yoctoproject.org>; Wed, 26 Mar 2014 17:54:43 -0700 (PDT)
+Received: by mail-ve0-f180.google.com with SMTP id jz11so3218226veb.39
+	for <yocto@yoctoproject.org>; Wed, 26 Mar 2014 17:54:43 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:date:message-id:subject:from:to
+	:content-type;
+	bh=KX7EdkHx2P8ANws7g5QTjYgrf0UcGVyYGhDxu/AD1tQ=;
+	b=C6ljBbgFPGabpxxPLMQYOP6HKCM82QTP9AkDwO6BrL4m4aWN22NsZUbr9pe8ffLXwc
+	DYh3aZskkybTGm5cKYKCwgkBBk4kvNxrR7T58+YGwC0u+Bb0Bd6trQNmtpuqYHy7zIEw
+	KSi6scIFTaB04S01Ib5YmqLlvqaSbm/LLbOFBvugbwdBu2N9NvZJq0lg5WsGQqDw0pA+
+	hO1A2Io8VYaTE5uz+V1ClxC1Q8Yts2qYSr1FaIMVIr0egZDJ1Rzk4h50QQD/D3svT3x5
+	OBMK+LDmC7Iw2LyPT/LWyLkdumWxfd6SEMNHg32JvHwf5Hp+JfqXqlv8TqKPlzV1oqEG
+	EvAA==
+X-Gm-Message-State: ALoCoQnA1sQQPM7hCl3M7766+191iOJYSSWD4N0MwZIPcUwNzz08K2Yqu+cmdgq/ItzKS2CsHLiV
 MIME-Version: 1.0
-Subject: meta-selinux/policycoreutils [PATCH 1/1] Add missing dependencies to semanage
+X-Received: by 10.58.201.5 with SMTP id jw5mr60468494vec.6.1395881683284; Wed,
+	26 Mar 2014 17:54:43 -0700 (PDT)
+Received: by 10.52.173.69 with HTTP; Wed, 26 Mar 2014 17:54:43 -0700 (PDT)
+Date: Wed, 26 Mar 2014 17:54:43 -0700
+Message-ID: <CAPhnLPCdvP5RNCDA+Buxw0N-fph5j_FV8kLWJS4U99DtKTmoMw@mail.gmail.com>
+From: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>, 
+	Alexandru C Georgescu <alexandru.c.georgescu@intel.com>,
+	Zhao Yi <yi.zhao@windriver.com>, Otavio Salvador <otavio@ossystems.com.br>
+Subject: 1.6_M5.rc1 now available
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -29,62 +39,25 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 27 Mar 2014 00:46:12 -0000
-Content-Type: text/plain; charset="US-ASCII"
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Thu, 27 Mar 2014 00:54:45 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
-The semanage utility is missing two dependencies, so if your system
-hasn't happened to pick them up, it will install but not be able to
-execute. Add the missing dependencies. (Tested locally using a bbappend
-file.)
+Please begin QA as soon as possible.
 
-Note that gzip.py requires python-io. That's already in BPN-python, which is already in RDEPENDS, so I'm not adding it specifically to semanage.
+http://autobuilder.yoctoproject.org/pub/releases/yocto-1.6_M5.rc1/
 
-The following changes since commit a6079a43719e79e12a57e609923a0cccdba06916:
-
-  refpolicy: fix real path for su.shadow (2014-02-13 10:52:07 -0500)
-
-are available in the git repository at:
-
-  git://git.yoctoproject.org/poky-contrib seebs/semanage-python-depends
-  http://git.yoctoproject.org/cgit.cgi/poky-contrib/log/?h=seebs/semanage-python-depends
-
-Peter Seebach (1):
-  policycoreutils.inc: Add missing dependencies for semanage
-
- recipes-security/selinux/policycoreutils.inc | 2 ++
- 1 file changed, 2 insertions(+)
-
-And here's the actual patch:
-
-policycoreutils.inc: Add missing dependencies for
- semanage
-
-The semanage utility requires python-compression (for "import gzip")
-and python-xml (for "import xml.etree.ElementTree").
-
-Signed-off-by: Peter Seebach <peter.seebach@windriver.com>
----
- recipes-security/selinux/policycoreutils.inc | 2 ++
- 1 file changed, 2 insertions(+)
-
-diff --git a/recipes-security/selinux/policycoreutils.inc b/recipes-security/selinux/policycoreutils.inc
-index 56470e9..521e70b 100644
---- a/recipes-security/selinux/policycoreutils.inc
-+++ b/recipes-security/selinux/policycoreutils.inc
-@@ -75,6 +75,8 @@ RDEPENDS_${BPN}-secon += "libselinux"
- RDEPENDS_${BPN}-semanage = "\
- 	python-core \
- 	python-ipy \
-+	python-compression \
-+	python-xml \
- 	${BPN}-python \
- 	libselinux-python \
- "
--- 
-1.8.3.4
-
+bitbake 2a80735183e8faa110b4c6d8d85c4707f28e03a1
+eclipse-poky-juno 26bfc407781aa185f244a47ba63120343cee4a37
+eclipse-poky-kepler 1dfe1d2f1322b5fda8e1a7637c447b0e060efb3e
+meta-fsl-arm 1b571a2f7b3b7ea42d6b4e1a1e85f20a5b7a1ba4
+meta-fsl-ppc 290a669e5480792836d4f7769ba2ef6f49799323
+meta-minnow 743fa66aa0cc2265a9c1f293c305828d90b4fbbd
+meta-qt3 3016129d90b7ac8517a5227d819f10ad417b5b45
+oecore 43d717df16312a8f0333aff6b8b037b4b9d51bf3
+poky 47ceed0d8d60a3ddc398738acafe3aabf4ab8c90
 
 -- 
-Listen, get this.  Nobody with a good compiler needs to be justified.
+Elizabeth Flanagan
+Yocto Project
+Build and Release
 
