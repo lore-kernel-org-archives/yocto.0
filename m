@@ -1,30 +1,39 @@
-Return-Path: <meenakumari.s@hcl.com>
-Received: from GWS06.hcl.com (gws06.hcl.com [203.105.185.25])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 83E91E00BA7
-	for <yocto@yoctoproject.org>; Thu, 27 Mar 2014 23:06:19 -0700 (PDT)
-X-IronPort-AV: E=Sophos;i="4.97,748,1389724200"; d="scan'208";a="64278650"
-Received: from unknown (HELO NDA-HCLIN-HT02.CORP.HCL.IN) ([10.248.64.36])
-	by GWS06.hcl.com with ESMTP/TLS/AES128-SHA; 28 Mar 2014 11:31:57 +0530
-Received: from NDA-HCLT-CSHT03.HCLT.CORP.HCL.IN (10.98.132.28) by
-	NDA-HCLIN-HT02.CORP.HCL.IN (10.248.64.36) with Microsoft SMTP Server
-	(TLS) id 8.3.245.1; Fri, 28 Mar 2014 11:35:41 +0530
-Received: from NDA-HCLT-MBS02.HCLT.CORP.HCL.IN ([10.98.132.17]) by
-	NDA-HCLT-CSHT03.HCLT.CORP.HCL.IN ([10.98.132.28]) with mapi id
-	14.03.0123.003; Fri, 28 Mar 2014 11:35:40 +0530
-From: Meenakumari Shedole <meenakumari.s@hcl.com>
-To: "ross.burton@intel.com" <ross.burton@intel.com>
-Thread-Topic: [yocto] Help-Gstreamer Vaapi Plugin Issue in 1080p mp4 playback
-Thread-Index: AQHPSYlGWF8OgI4BY0eUG8fpk2Rq8Zr0llAAgAFgBgCAAAsvkA==
-Date: Fri, 28 Mar 2014 06:05:39 +0000
-Message-ID: <E4938C0D959B3445943720B88F07213415613522@NDA-HCLT-MBS02.hclt.corp.hcl.in>
+Return-Path: <alexandru.c.georgescu@intel.com>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1B205E00BA7
+	for <yocto@yoctoproject.org>; Fri, 28 Mar 2014 01:21:45 -0700 (PDT)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by orsmga101.jf.intel.com with ESMTP; 28 Mar 2014 01:21:44 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.97,749,1389772800"; d="scan'208";a="501538857"
+Received: from irsmsx103.ger.corp.intel.com ([163.33.3.157])
+	by fmsmga001.fm.intel.com with ESMTP; 28 Mar 2014 01:21:40 -0700
+Received: from irsmsx152.ger.corp.intel.com (163.33.192.66) by
+	IRSMSX103.ger.corp.intel.com (163.33.3.157) with Microsoft SMTP Server
+	(TLS) id 14.3.123.3; Fri, 28 Mar 2014 08:20:38 +0000
+Received: from irsmsx104.ger.corp.intel.com ([169.254.5.2]) by
+	IRSMSX152.ger.corp.intel.com ([169.254.6.180]) with mapi id
+	14.03.0123.003; Fri, 28 Mar 2014 08:20:38 +0000
+From: "Georgescu, Alexandru C" <alexandru.c.georgescu@intel.com>
+To: "Zhao, Yi (Wind River)" <yi.zhao@windriver.com>, "Flanagan, Elizabeth"
+	<elizabeth.flanagan@intel.com>
+Thread-Topic: Reducing nightly/release build artifacts.
+Thread-Index: AQHPSizPBgRJMP8/hUCAyHdNJ7+qB5r2KLVw
+Date: Fri, 28 Mar 2014 08:20:36 +0000
+Message-ID: <1FFB62CE8AEB0D4298B51122D8903E961B6869CB@IRSMSX104.ger.corp.intel.com>
+References: <CAPhnLPAJy5Lxbxfrh_RV-fOeoEyaXy8jZR6go2VdP=unHToFPw@mail.gmail.com>
+	<CAP9ODKqAh9Jb2E8DyBFQuwe91ndAGF5zJr1VAHKdfK=SrRxdDQ@mail.gmail.com>
+	<CAPhnLPDwbCTBNg4aPHqYpakMwEz-wCyBYD-fr_ap97JC1fDWfg@mail.gmail.com>
+	<5334DD22.5070806@windriver.com>
+In-Reply-To: <5334DD22.5070806@windriver.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-x-originating-ip: [10.98.134.12]
+x-originating-ip: [163.33.239.180]
 MIME-Version: 1.0
-Cc: Dipesh Karmakar <Dipesh.Karmakar@hcl.com>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Help-Gstreamer Vaapi Plugin Issue in 1080p mp4 playback
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
+	Otavio Salvador <otavio@ossystems.com.br>
+Subject: Re: Reducing nightly/release build artifacts.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -36,54 +45,48 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 28 Mar 2014 06:06:21 -0000
+X-List-Received-Date: Fri, 28 Mar 2014 08:21:48 -0000
 Content-Language: en-US
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: base64
 
-SGkgUm9zcywNCg0KVGhhbmtzIGZvciB5b3VyIHJlcGx5Lg0KDQpBY3R1YWxseSB3ZSBoYXZlIHRy
-aWVkIHRoYXQsIHByb2JsZW0gd2FzLA0KMS4gcGxheWJpbjIgKyBhdmkvM2dwIGlzIHdvcmtpbmcg
-cHJvcGVybHkgYmVjYXVzZSBvZiB4dmltYWdlc2luayBpcyB1c2VkIGludGVyYWxseS4NCjIuIHBs
-YXliaW4yICsgbXA0IGlzIG5vdCB0YWtpbmcgdmFhcGkgc2luaywgd2UgbmVlZCB0byBtYW51YWxs
-eSBzZXQgdmlkZW8tc2luaz12YWFwaXNpbmsuDQogICBBbHNvIHdlIGFyZSBnZXR0aW5nIGFyYml0
-cmFyeSBjcmFzaCB3aGlsZSBzZXR0aW5nIHRoZSBxbWwgdmlkZW8gd2luZG93IGlkIHRvIHRoZSB2
-YWFwaSBzaW5rLg0KICAgU28gd2UgYXJlIG5vdCBnZXR0aW5nIGFueSBzaW5nbGUgcGlwZSB0byBw
-bGF5IG1wNC9hdmkvM2dwIHN0dWZmLg0KDQpJIGJlbGlldmUgd2UgbmVlZCB0byBjaGFuZ2UgcGxh
-eWJpbjIgc2luayBkeW5hbWljYWxseSB0byB4dmltYWdlc2luay92YWFwaXNpbmsgYmFzZWQgb24g
-dGhlIGlucHV0Lg0KSXMgaXQganVzdGlmaWVkPyBXaGF0IGtpbmQgb2YgaXNzdWVzIHdlIG1heSBm
-b3VuZCBpbiBjYXNlPw0KDQoNClJlZ2FyZHMNCk1lZW5hDQoNCi0tLS0tT3JpZ2luYWwgTWVzc2Fn
-ZS0tLS0tDQpGcm9tOiBCdXJ0b24sIFJvc3MgW21haWx0bzpyb3NzLmJ1cnRvbkBpbnRlbC5jb21d
-IA0KU2VudDogVGh1cnNkYXksIE1hcmNoIDI3LCAyMDE0IDc6MTUgUE0NClRvOiBNZWVuYWt1bWFy
-aSBTaGVkb2xlDQpDYzogeW9jdG9AeW9jdG9wcm9qZWN0Lm9yZw0KU3ViamVjdDogUmU6IFt5b2N0
-b10gSGVscC1Hc3RyZWFtZXIgVmFhcGkgUGx1Z2luIElzc3VlIGluIDEwODBwIG1wNCBwbGF5YmFj
-aw0KDQpPbiAyNyBNYXJjaCAyMDE0IDA2OjU4LCBNZWVuYWt1bWFyaSBTaGVkb2xlIDxtZWVuYWt1
-bWFyaS5zQGhjbC5jb20+IHdyb3RlOg0KPiBmaWxlc3JjLT4gZGVjb2RlYmluLT5xdWV1ZS0+ZmZt
-cGVnY29sb3JzcGFjZS0+eHZpbWFnZXNpbmsNCg0KVHJ5IGp1c3QgdXNpbmcgcGxheWJpbjIgaW5z
-dGVhZCBvZiBjb25zdHJ1Y3RpbmcgYSBwaXBlbGluZSBtYW51YWxseSwNCnRoZXJlJ3MgbG90IG9m
-IHNtYXJ0cyB0aGF0IHlvdSdsbCBuZWVkIHRvIGRvIG1hbnVhbGx5IG90aGVyd2lzZS4NCg0KUm9z
-cw0KCgo6OkRJU0NMQUlNRVI6OgotLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tCgpU
-aGUgY29udGVudHMgb2YgdGhpcyBlLW1haWwgYW5kIGFueSBhdHRhY2htZW50KHMpIGFyZSBjb25m
-aWRlbnRpYWwgYW5kIGludGVuZGVkIGZvciB0aGUgbmFtZWQgcmVjaXBpZW50KHMpIG9ubHkuCkUt
-bWFpbCB0cmFuc21pc3Npb24gaXMgbm90IGd1YXJhbnRlZWQgdG8gYmUgc2VjdXJlIG9yIGVycm9y
-LWZyZWUgYXMgaW5mb3JtYXRpb24gY291bGQgYmUgaW50ZXJjZXB0ZWQsIGNvcnJ1cHRlZCwKbG9z
-dCwgZGVzdHJveWVkLCBhcnJpdmUgbGF0ZSBvciBpbmNvbXBsZXRlLCBvciBtYXkgY29udGFpbiB2
-aXJ1c2VzIGluIHRyYW5zbWlzc2lvbi4gVGhlIGUgbWFpbCBhbmQgaXRzIGNvbnRlbnRzCih3aXRo
-IG9yIHdpdGhvdXQgcmVmZXJyZWQgZXJyb3JzKSBzaGFsbCB0aGVyZWZvcmUgbm90IGF0dGFjaCBh
-bnkgbGlhYmlsaXR5IG9uIHRoZSBvcmlnaW5hdG9yIG9yIEhDTCBvciBpdHMgYWZmaWxpYXRlcy4K
-Vmlld3Mgb3Igb3BpbmlvbnMsIGlmIGFueSwgcHJlc2VudGVkIGluIHRoaXMgZW1haWwgYXJlIHNv
-bGVseSB0aG9zZSBvZiB0aGUgYXV0aG9yIGFuZCBtYXkgbm90IG5lY2Vzc2FyaWx5IHJlZmxlY3Qg
-dGhlCnZpZXdzIG9yIG9waW5pb25zIG9mIEhDTCBvciBpdHMgYWZmaWxpYXRlcy4gQW55IGZvcm0g
-b2YgcmVwcm9kdWN0aW9uLCBkaXNzZW1pbmF0aW9uLCBjb3B5aW5nLCBkaXNjbG9zdXJlLCBtb2Rp
-ZmljYXRpb24sCmRpc3RyaWJ1dGlvbiBhbmQgLyBvciBwdWJsaWNhdGlvbiBvZiB0aGlzIG1lc3Nh
-Z2Ugd2l0aG91dCB0aGUgcHJpb3Igd3JpdHRlbiBjb25zZW50IG9mIGF1dGhvcml6ZWQgcmVwcmVz
-ZW50YXRpdmUgb2YKSENMIGlzIHN0cmljdGx5IHByb2hpYml0ZWQuIElmIHlvdSBoYXZlIHJlY2Vp
-dmVkIHRoaXMgZW1haWwgaW4gZXJyb3IgcGxlYXNlIGRlbGV0ZSBpdCBhbmQgbm90aWZ5IHRoZSBz
-ZW5kZXIgaW1tZWRpYXRlbHkuCkJlZm9yZSBvcGVuaW5nIGFueSBlbWFpbCBhbmQvb3IgYXR0YWNo
-bWVudHMsIHBsZWFzZSBjaGVjayB0aGVtIGZvciB2aXJ1c2VzIGFuZCBvdGhlciBkZWZlY3RzLgoK
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQo=
-
+SGksDQpXZSBuZWVkIGdlbmVyaWN4ODYtNjQgbHNiIGltYWdlLiBJdCBpcyB1c2VkIGZvciBzdHJl
+c3MgdGVzdGluZy4NCg0KUmVnYXJkcywNCi0tDQpBbGV4YW5kcnUgR2Vvcmdlc2N1DQoNCi0tLS0t
+T3JpZ2luYWwgTWVzc2FnZS0tLS0tDQpGcm9tOiBZaSBaaGFvIFttYWlsdG86eWkuemhhb0B3aW5k
+cml2ZXIuY29tXSANClNlbnQ6IEZyaWRheSwgTWFyY2ggMjgsIDIwMTQgNDoyNCBBTQ0KVG86IEZs
+YW5hZ2FuLCBFbGl6YWJldGgNCkNjOiBPdGF2aW8gU2FsdmFkb3I7IHlvY3RvQHlvY3RvcHJvamVj
+dC5vcmc7IEdlb3JnZXNjdSwgQWxleGFuZHJ1IEMNClN1YmplY3Q6IFJlOiBSZWR1Y2luZyBuaWdo
+dGx5L3JlbGVhc2UgYnVpbGQgYXJ0aWZhY3RzLg0KDQpIaSBCZXRoLA0KDQoNCuS6jiAyMDE05bm0
+MDPmnIgyN+aXpSAwNTozMCwgRmxhbmFnYW4sIEVsaXphYmV0aCDlhpnpgZM6DQo+IEEgbGlzdCBv
+ZiBleGFjdGx5IHdoYXQgZmlsZXMgeW91IHVzZSBmb3IgUUEgd291bGQgYmUgZ3JhbmQuDQo+DQo+
+IFdlIGNhbiB1c2UgaHR0cDovL2F1dG9idWlsZGVyLnlvY3RvcHJvamVjdC5vcmcvcHViL25pZ2h0
+bHkvMjAxNDAzMjYtMS8NCj4gYXMgb3VyIGJhc2UuDQoNCldlIGRvbid0IHVzZSBhbGwgcWVtdS1s
+c2IgLCBiZWFnbGVib2FyZC1sc2IsIHJvdXRlcnN0YXRpb25wcm8tbHNiLCBhbmQgcDEwMjJkcy1s
+c2IgYXJ0aWZhY3RzLg0KRm9yIHRoZSBpbWFnZSB0eXBlLCB3ZSBkb24ndCBuZWVkIG1pbmltYWwt
+ZGV2IGFuZCBzYXRvLWRldi4NCg0KVGhhbmtzLA0KWWkNCg0KDQo+DQo+IC1iDQo+DQo+IE9uIFdl
+ZCwgTWFyIDI2LCAyMDE0IGF0IDI6MjIgUE0sIE90YXZpbyBTYWx2YWRvciANCj4gPG90YXZpb0Bv
+c3N5c3RlbXMuY29tLmJyPiB3cm90ZToNCj4+IEhlbGxvIEJldGgsDQo+Pg0KPj4gT24gV2VkLCBN
+YXIgMjYsIDIwMTQgYXQgNjoxNCBQTSwgRmxhbmFnYW4sIEVsaXphYmV0aCANCj4+IDxlbGl6YWJl
+dGguZmxhbmFnYW5AaW50ZWwuY29tPiB3cm90ZToNCj4+PiBJJ2QgbGlrZSB0byBzdGFydCBsb29r
+aW5nIGF0IHJlZHVjaW5nIHRoZSBudW1iZXIgb2YgYXJ0aWZhY3RzIHdlJ3JlIA0KPj4+IHJlbGVh
+c2luZyBib3RoIGZvciBvdXIgbmlnaHRseSBidWlsZHMgKHdoaWNoIGlzIGF0IDI1MCwwMDAgYXJ0
+aWZhY3RzIA0KPj4+IGFuZCAuMjUgVEIhKSBhbmQgcmVsZWFzZXMuDQo+Pj4NCj4+PiBXaGF0IEkn
+bSB0aGlua2luZyBpcyB0aGlzOg0KPj4+DQo+Pj4gUmVkdWNlIG5pZ2h0bHk6DQo+Pj4gLSBSZWR1
+Y2UgQURULVJFUE8gdG8ganVzdCBxZW11KiBhcmNoZXMgZm9yIGFsbCBidWlsZHMNCj4+PiAtIElm
+IGV2ZXJ5IFFBIHRlYW0gY291bGQgcHJvdmlkZSBtZSBhIGxpc3Qgb2Ygd2hhdCBmaWxlcyB0aGV5
+IA0KPj4+IGFjdHVhbGx5IG5lZWQgSSBjb3VsZCByZWR1Y2UgdGhlIHB1Ymxpc2hlZCBhcnRpZmFj
+dHMgdG8gKmp1c3QqIHdoYXQgaXMgbmVlZGVkLg0KPj4+DQo+Pj4gUmVkdWNlIHJlbGVhc2VzOg0K
+Pj4+IC0gUmVkdWNlIEFEVC1SRVBPIHRvIGp1c3QgcWVtdQ0KPj4+IC0gRG9uJ3QgcmVsZWFzZSBp
+cGsvcnBtL2RlYnMuIENvbnRpbnVlIHRvIHJlbGVhc2UgaXBrcyB0aHJvdWdoIEFEVA0KPj4+IC0g
+RG9uJ3QgcmVsZWFzZSBtYWNoaW5lcyBvdXRzaWRlIG9mIEJTUCB0YXJiYWxsIC9iaW5hcnkgZGly
+ZWN0b3J5DQo+Pj4NCj4+PiBJZiBmb2xrcyB3aG8gZG8gUUEgY291bGQgZ2V0IG1lIGEgbGlzdCBv
+ZiBhbGwgdGhlIGZpbGVzIHRoZXkgdXNlLCB3ZSANCj4+PiBjYW4gc3RhcnQgcmVtb3ZpbmcgZXhj
+ZXNzIGFydGlmYWN0cy4gSSBrbm93IHRoaXMgaXMgYSBiYWxhbmNlLCBidXQgDQo+Pj4gSSdkIHJl
+YWxseSBsaWtlIHVzIHRvIHN0YXJ0IHRhcmdldGluZyBvdXIgcmVsZWFzZSBhcnRpZmFjdHMgdG8g
+anVzdCANCj4+PiB0aGUgdGhpbmdzIHdlIG5lZWQuDQo+PiBJIGZ1bGx5IGFncmVlIG9uIHRoYXQu
+DQo+Pg0KPj4gSXMgdGhlcmUgYW55dGhpbmcgeW91IG5lZWQgc3BlY2lmaWNhbGx5IGZyb20gbWU/
+DQo+Pg0KPj4gLS0NCj4+IE90YXZpbyBTYWx2YWRvciAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgTy5TLiBTeXN0ZW1zDQo+PiBodHRwOi8vd3d3Lm9zc3lzdGVtcy5jb20uYnIgICAgICAgIGh0
+dHA6Ly9jb2RlLm9zc3lzdGVtcy5jb20uYnINCj4+IE1vYmlsZTogKzU1ICg1MykgOTk4MS03ODU0
+ICAgICAgICAgICAgTW9iaWxlOiArMSAoMzQ3KSA5MDMtOTc1MA0KPg0KPg0KDQo=
 
