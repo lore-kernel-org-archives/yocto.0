@@ -1,39 +1,35 @@
-Return-Path: <alexandru.c.georgescu@intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1B205E00BA7
-	for <yocto@yoctoproject.org>; Fri, 28 Mar 2014 01:21:45 -0700 (PDT)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by orsmga101.jf.intel.com with ESMTP; 28 Mar 2014 01:21:44 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.97,749,1389772800"; d="scan'208";a="501538857"
-Received: from irsmsx103.ger.corp.intel.com ([163.33.3.157])
-	by fmsmga001.fm.intel.com with ESMTP; 28 Mar 2014 01:21:40 -0700
-Received: from irsmsx152.ger.corp.intel.com (163.33.192.66) by
-	IRSMSX103.ger.corp.intel.com (163.33.3.157) with Microsoft SMTP Server
-	(TLS) id 14.3.123.3; Fri, 28 Mar 2014 08:20:38 +0000
-Received: from irsmsx104.ger.corp.intel.com ([169.254.5.2]) by
-	IRSMSX152.ger.corp.intel.com ([169.254.6.180]) with mapi id
-	14.03.0123.003; Fri, 28 Mar 2014 08:20:38 +0000
-From: "Georgescu, Alexandru C" <alexandru.c.georgescu@intel.com>
-To: "Zhao, Yi (Wind River)" <yi.zhao@windriver.com>, "Flanagan, Elizabeth"
-	<elizabeth.flanagan@intel.com>
-Thread-Topic: Reducing nightly/release build artifacts.
-Thread-Index: AQHPSizPBgRJMP8/hUCAyHdNJ7+qB5r2KLVw
-Date: Fri, 28 Mar 2014 08:20:36 +0000
-Message-ID: <1FFB62CE8AEB0D4298B51122D8903E961B6869CB@IRSMSX104.ger.corp.intel.com>
-References: <CAPhnLPAJy5Lxbxfrh_RV-fOeoEyaXy8jZR6go2VdP=unHToFPw@mail.gmail.com>
-	<CAP9ODKqAh9Jb2E8DyBFQuwe91ndAGF5zJr1VAHKdfK=SrRxdDQ@mail.gmail.com>
-	<CAPhnLPDwbCTBNg4aPHqYpakMwEz-wCyBYD-fr_ap97JC1fDWfg@mail.gmail.com>
-	<5334DD22.5070806@windriver.com>
-In-Reply-To: <5334DD22.5070806@windriver.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [163.33.239.180]
+Return-Path: <ross.burton@intel.com>
+Received: from mail-qa0-f45.google.com (mail-qa0-f45.google.com
+	[209.85.216.45])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 18634E00BA7
+	for <yocto@yoctoproject.org>; Fri, 28 Mar 2014 04:12:24 -0700 (PDT)
+Received: by mail-qa0-f45.google.com with SMTP id hw13so5119370qab.32
+	for <yocto@yoctoproject.org>; Fri, 28 Mar 2014 04:12:24 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc:content-type;
+	bh=VNFyc8eAc+6+miCaV2J75A3wkTIAIY7yGNAAOSRaD4g=;
+	b=Uo6VwA7QK5W7PrXZbX7mkm4u269pg8OJdl05OsKg6HwHJU4DebdcOp8aaFKJVcQUoq
+	VsILLmJLbD/luKaEzp0SYwuT+IP2kQOVznlkLDVbqPP13SAlQsnrDhcmHViWAuMv3ndG
+	bJnRMGeGABwcTWi07botMpO+8/sxBbRn7JpVrRui4Z+VP932Z4FtShtZQ19J3FcBSjnt
+	xVZPHdvhtE5PH1UFQzXI2uxZ7g9MQfmtht1qtEdemSc3ZneaQOLo89Rb8KTmpUu7va9K
+	iiO1euJcTicNnkivNW99Zre+AWQafHZ/BQLKSYFaVVGLKhJKfpc10HkdHnOJxo8Qsv+r
+	a6sw==
+X-Gm-Message-State: ALoCoQlySkLayKdMEo9aBVZ8HkD2pEkx2gLEjG/oBrAs0HPv18OUMOyu+HA4ytMpR/Xqm2zrczs7
+X-Received: by 10.224.75.5 with SMTP id w5mr8533057qaj.52.1396005144039; Fri,
+	28 Mar 2014 04:12:24 -0700 (PDT)
 MIME-Version: 1.0
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	Otavio Salvador <otavio@ossystems.com.br>
-Subject: Re: Reducing nightly/release build artifacts.
+Received: by 10.140.27.167 with HTTP; Fri, 28 Mar 2014 04:12:03 -0700 (PDT)
+In-Reply-To: <E4938C0D959B3445943720B88F07213415613522@NDA-HCLT-MBS02.hclt.corp.hcl.in>
+References: <E4938C0D959B3445943720B88F07213415613522@NDA-HCLT-MBS02.hclt.corp.hcl.in>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Fri, 28 Mar 2014 11:12:03 +0000
+Message-ID: <CAJTo0LY5VVCZbimtTBNdgDCEB+1mwSwdsVH31ik8GSdheg48OQ@mail.gmail.com>
+To: Meenakumari Shedole <meenakumari.s@hcl.com>
+Cc: Dipesh Karmakar <Dipesh.Karmakar@hcl.com>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Help-Gstreamer Vaapi Plugin Issue in 1080p mp4 playback
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,48 +41,24 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 28 Mar 2014 08:21:48 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+X-List-Received-Date: Fri, 28 Mar 2014 11:12:25 -0000
+Content-Type: text/plain; charset=UTF-8
 
-SGksDQpXZSBuZWVkIGdlbmVyaWN4ODYtNjQgbHNiIGltYWdlLiBJdCBpcyB1c2VkIGZvciBzdHJl
-c3MgdGVzdGluZy4NCg0KUmVnYXJkcywNCi0tDQpBbGV4YW5kcnUgR2Vvcmdlc2N1DQoNCi0tLS0t
-T3JpZ2luYWwgTWVzc2FnZS0tLS0tDQpGcm9tOiBZaSBaaGFvIFttYWlsdG86eWkuemhhb0B3aW5k
-cml2ZXIuY29tXSANClNlbnQ6IEZyaWRheSwgTWFyY2ggMjgsIDIwMTQgNDoyNCBBTQ0KVG86IEZs
-YW5hZ2FuLCBFbGl6YWJldGgNCkNjOiBPdGF2aW8gU2FsdmFkb3I7IHlvY3RvQHlvY3RvcHJvamVj
-dC5vcmc7IEdlb3JnZXNjdSwgQWxleGFuZHJ1IEMNClN1YmplY3Q6IFJlOiBSZWR1Y2luZyBuaWdo
-dGx5L3JlbGVhc2UgYnVpbGQgYXJ0aWZhY3RzLg0KDQpIaSBCZXRoLA0KDQoNCuS6jiAyMDE05bm0
-MDPmnIgyN+aXpSAwNTozMCwgRmxhbmFnYW4sIEVsaXphYmV0aCDlhpnpgZM6DQo+IEEgbGlzdCBv
-ZiBleGFjdGx5IHdoYXQgZmlsZXMgeW91IHVzZSBmb3IgUUEgd291bGQgYmUgZ3JhbmQuDQo+DQo+
-IFdlIGNhbiB1c2UgaHR0cDovL2F1dG9idWlsZGVyLnlvY3RvcHJvamVjdC5vcmcvcHViL25pZ2h0
-bHkvMjAxNDAzMjYtMS8NCj4gYXMgb3VyIGJhc2UuDQoNCldlIGRvbid0IHVzZSBhbGwgcWVtdS1s
-c2IgLCBiZWFnbGVib2FyZC1sc2IsIHJvdXRlcnN0YXRpb25wcm8tbHNiLCBhbmQgcDEwMjJkcy1s
-c2IgYXJ0aWZhY3RzLg0KRm9yIHRoZSBpbWFnZSB0eXBlLCB3ZSBkb24ndCBuZWVkIG1pbmltYWwt
-ZGV2IGFuZCBzYXRvLWRldi4NCg0KVGhhbmtzLA0KWWkNCg0KDQo+DQo+IC1iDQo+DQo+IE9uIFdl
-ZCwgTWFyIDI2LCAyMDE0IGF0IDI6MjIgUE0sIE90YXZpbyBTYWx2YWRvciANCj4gPG90YXZpb0Bv
-c3N5c3RlbXMuY29tLmJyPiB3cm90ZToNCj4+IEhlbGxvIEJldGgsDQo+Pg0KPj4gT24gV2VkLCBN
-YXIgMjYsIDIwMTQgYXQgNjoxNCBQTSwgRmxhbmFnYW4sIEVsaXphYmV0aCANCj4+IDxlbGl6YWJl
-dGguZmxhbmFnYW5AaW50ZWwuY29tPiB3cm90ZToNCj4+PiBJJ2QgbGlrZSB0byBzdGFydCBsb29r
-aW5nIGF0IHJlZHVjaW5nIHRoZSBudW1iZXIgb2YgYXJ0aWZhY3RzIHdlJ3JlIA0KPj4+IHJlbGVh
-c2luZyBib3RoIGZvciBvdXIgbmlnaHRseSBidWlsZHMgKHdoaWNoIGlzIGF0IDI1MCwwMDAgYXJ0
-aWZhY3RzIA0KPj4+IGFuZCAuMjUgVEIhKSBhbmQgcmVsZWFzZXMuDQo+Pj4NCj4+PiBXaGF0IEkn
-bSB0aGlua2luZyBpcyB0aGlzOg0KPj4+DQo+Pj4gUmVkdWNlIG5pZ2h0bHk6DQo+Pj4gLSBSZWR1
-Y2UgQURULVJFUE8gdG8ganVzdCBxZW11KiBhcmNoZXMgZm9yIGFsbCBidWlsZHMNCj4+PiAtIElm
-IGV2ZXJ5IFFBIHRlYW0gY291bGQgcHJvdmlkZSBtZSBhIGxpc3Qgb2Ygd2hhdCBmaWxlcyB0aGV5
-IA0KPj4+IGFjdHVhbGx5IG5lZWQgSSBjb3VsZCByZWR1Y2UgdGhlIHB1Ymxpc2hlZCBhcnRpZmFj
-dHMgdG8gKmp1c3QqIHdoYXQgaXMgbmVlZGVkLg0KPj4+DQo+Pj4gUmVkdWNlIHJlbGVhc2VzOg0K
-Pj4+IC0gUmVkdWNlIEFEVC1SRVBPIHRvIGp1c3QgcWVtdQ0KPj4+IC0gRG9uJ3QgcmVsZWFzZSBp
-cGsvcnBtL2RlYnMuIENvbnRpbnVlIHRvIHJlbGVhc2UgaXBrcyB0aHJvdWdoIEFEVA0KPj4+IC0g
-RG9uJ3QgcmVsZWFzZSBtYWNoaW5lcyBvdXRzaWRlIG9mIEJTUCB0YXJiYWxsIC9iaW5hcnkgZGly
-ZWN0b3J5DQo+Pj4NCj4+PiBJZiBmb2xrcyB3aG8gZG8gUUEgY291bGQgZ2V0IG1lIGEgbGlzdCBv
-ZiBhbGwgdGhlIGZpbGVzIHRoZXkgdXNlLCB3ZSANCj4+PiBjYW4gc3RhcnQgcmVtb3ZpbmcgZXhj
-ZXNzIGFydGlmYWN0cy4gSSBrbm93IHRoaXMgaXMgYSBiYWxhbmNlLCBidXQgDQo+Pj4gSSdkIHJl
-YWxseSBsaWtlIHVzIHRvIHN0YXJ0IHRhcmdldGluZyBvdXIgcmVsZWFzZSBhcnRpZmFjdHMgdG8g
-anVzdCANCj4+PiB0aGUgdGhpbmdzIHdlIG5lZWQuDQo+PiBJIGZ1bGx5IGFncmVlIG9uIHRoYXQu
-DQo+Pg0KPj4gSXMgdGhlcmUgYW55dGhpbmcgeW91IG5lZWQgc3BlY2lmaWNhbGx5IGZyb20gbWU/
-DQo+Pg0KPj4gLS0NCj4+IE90YXZpbyBTYWx2YWRvciAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgTy5TLiBTeXN0ZW1zDQo+PiBodHRwOi8vd3d3Lm9zc3lzdGVtcy5jb20uYnIgICAgICAgIGh0
-dHA6Ly9jb2RlLm9zc3lzdGVtcy5jb20uYnINCj4+IE1vYmlsZTogKzU1ICg1MykgOTk4MS03ODU0
-ICAgICAgICAgICAgTW9iaWxlOiArMSAoMzQ3KSA5MDMtOTc1MA0KPg0KPg0KDQo=
+On 28 March 2014 06:05, Meenakumari Shedole <meenakumari.s@hcl.com> wrote:
+> 1. playbin2 + avi/3gp is working properly because of xvimagesink is used interally.
+> 2. playbin2 + mp4 is not taking vaapi sink, we need to manually set video-sink=vaapisink.
+>    Also we are getting arbitrary crash while setting the qml video window id to the vaapi sink.
+>    So we are not getting any single pipe to play mp4/avi/3gp stuff.
+
+The important question is what recipe are you using to get the vaapi elements?
+
+What happens if you use vaapisink with AVI/3GP?  You should still get
+some acceleration.
+
+Note that especially when using vaapi sink you need to wait for the
+sink to create the window and then reparent it, you can't provide your
+own X window to vaapisink.  This is the usual cause for breakage.  Do
+testing with gst-launch before attempting to use your own application.
+
+Ross
 
