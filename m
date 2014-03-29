@@ -1,36 +1,32 @@
-Return-Path: <david.c.nystrom@gmail.com>
-Received: from mail-ob0-f181.google.com (mail-ob0-f181.google.com
-	[209.85.214.181])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D55DAE00BC6
-	for <yocto@yoctoproject.org>; Fri, 28 Mar 2014 11:00:31 -0700 (PDT)
-Received: by mail-ob0-f181.google.com with SMTP id wp4so6389555obc.12
-	for <yocto@yoctoproject.org>; Fri, 28 Mar 2014 11:00:30 -0700 (PDT)
+Return-Path: <elvis.dowson@gmail.com>
+Received: from mail-ee0-f46.google.com (mail-ee0-f46.google.com [74.125.83.46])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D27EEE00AF1
+	for <yocto@yoctoproject.org>; Sat, 29 Mar 2014 01:02:43 -0700 (PDT)
+Received: by mail-ee0-f46.google.com with SMTP id t10so4736655eei.5
+	for <yocto@yoctoproject.org>; Sat, 29 Mar 2014 01:02:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type;
-	bh=VsJJ5U/V8hq9DMd9t5D0jcqSIat3Wg/47/h8xxaKo8c=;
-	b=YjgyGhC6/puUU5VC9A6edeELYNjmdWoSrCiH5e+XFLCD4vIsuFC0UkQKp5qzpYtcTI
-	X2KP7HZaAirvoCsKbGvCSG18Zk0cij0i8V6sTZhOAHe/EYPipO2x/kPaV9PvSIoN7UTN
-	90RrghoyOxOlGE7TpfZsZsy2WWF36ZRMhbZi2VkQ9tfvb5vcuoJYm8fOseUTDJwn3AAY
-	YlFx6k2SPUobU+VKZnDTjWyPU3ixdefOthKvl1Ecl/2Lw8Q/27RBqMXCROfeHZgNP7Oc
-	n7fhVP5HTMDRRalynTFzGT30jJULtltfb2LzIA5CWGPIRMBqu0pcB/AC/1ruziHU+iHM
-	RD3A==
-MIME-Version: 1.0
-X-Received: by 10.182.22.33 with SMTP id a1mr1803876obf.60.1396029630623; Fri,
-	28 Mar 2014 11:00:30 -0700 (PDT)
-Received: by 10.60.40.200 with HTTP; Fri, 28 Mar 2014 11:00:30 -0700 (PDT)
-Received: by 10.60.40.200 with HTTP; Fri, 28 Mar 2014 11:00:30 -0700 (PDT)
-In-Reply-To: <CAP9ODKrT1c3UP30ntyi1c+CGJdBW49-6CnoTtXfwoJSC63XRTQ@mail.gmail.com>
-References: <1395676843.24890.7.camel@ted> <5331935A.6060009@enea.com>
-	<533401A8.60304@enea.com>
-	<CAP9ODKrT1c3UP30ntyi1c+CGJdBW49-6CnoTtXfwoJSC63XRTQ@mail.gmail.com>
-Date: Fri, 28 Mar 2014 19:00:30 +0100
-Message-ID: <CAAKB1h1s9NVYwTU+j6sYR3njER9V81ZS4E8m5B27ipwUgf1=NA@mail.gmail.com>
-From: David Nystrom <david.c.nystrom@gmail.com>
-To: Otavio Salvador <otavio@ossystems.com.br>
-Cc: yocto@yoctoproject.org, Patches and discussions about the oe-core layer
-	<openembedded-core@lists.openembedded.org>
-Subject: Re: [OE-core] Features in Yocto Project 1.7
+	h=from:content-type:subject:date:message-id:cc:to:mime-version;
+	bh=T71bDp4QWdH2klAdRqnyrnooZrkc6upWjmoZceGPcFA=;
+	b=TczRzxNJkTXyrmUX7t3UuNBCsYtcdqWu3/Tgp2zEcumlktpzigKNW8WkgRdklUAveW
+	SBXS1pUUxJDyK89IpkFR/oHYtOQkixVO8lidIwR/m4ojUu2eauVVPjXi7xREe0Da+27N
+	UYqvbPjLDmkRFDBRFZNW6p/P7UqfKACzF3CeH2GH6n0dnNNA5bhG4vuSTGd1lDhTquuf
+	E5tVm4ULc3stehbsHJSVHzvJ00XLvxFV5M/cbEyrtW+LntcAAOIOzTjaa695QAiemenP
+	LfSXHbKnnhc1c8Dq/Ecim+UQpzbRq0yp66QYSx8ScEvgSiZTP5mayYXrupAbEI5liqG1
+	NeCA==
+X-Received: by 10.14.206.137 with SMTP id l9mr16181580eeo.40.1396080161956;
+	Sat, 29 Mar 2014 01:02:41 -0700 (PDT)
+Received: from [192.168.1.101] ([94.205.107.23])
+	by mx.google.com with ESMTPSA id 4sm17012087eeq.33.2014.03.29.01.02.39
+	for <multiple recipients>
+	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
+	Sat, 29 Mar 2014 01:02:40 -0700 (PDT)
+From: Elvis Dowson <elvis.dowson@gmail.com>
+Date: Sat, 29 Mar 2014 12:02:35 +0400
+Message-Id: <BFDE5C68-EC5E-4FA5-92DD-49CDFB39DB70@gmail.com>
+To: Yocto Discussion Mailing List <yocto@yoctoproject.org>
+Mime-Version: 1.0 (Mac OS X Mail 7.3 \(1877.4\))
+X-Mailer: Apple Mail (2.1877.4)
+Subject: [poky] WARNING: QA Issue: ELF binary has relocations in .text
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,200 +38,346 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 28 Mar 2014 18:00:34 -0000
-Content-Type: multipart/alternative; boundary=001a1133177c3ab52e04f5ae7afa
+X-List-Received-Date: Sat, 29 Mar 2014 08:02:44 -0000
+X-Groupsio-MsgNum: 18753
+Content-Type: multipart/signed;
+	boundary="Apple-Mail=_7C90BBA8-EC1D-4F32-B3C5-770D17F5739A";
+	protocol="application/pgp-signature"; micalg=pgp-sha512
 
---001a1133177c3ab52e04f5ae7afa
-Content-Type: text/plain; charset=ISO-8859-1
+--Apple-Mail=_7C90BBA8-EC1D-4F32-B3C5-770D17F5739A
+Content-Type: multipart/alternative;
+	boundary="Apple-Mail=_F1FDC073-0F99-4C3B-BE0E-07612380F1C7"
+
+--Apple-Mail=_F1FDC073-0F99-4C3B-BE0E-07612380F1C7
 Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain;
+	charset=windows-1252
 
-On 28 Mar 2014 16:24, "Otavio Salvador" <otavio@ossystems.com.br> wrote:
->
-> Hello David,
->
-> On Thu, Mar 27, 2014 at 7:47 AM, David Nystr=F6m <david.nystrom@enea.com>
-wrote:
-> > On 2014-03-25 15:31, David Nystr=F6m wrote:
-> >>
-> >> On 2014-03-24 17:00, Richard Purdie wrote:
-> >>>
-> >>> As development on 1.6 finishes up, its time to think about what we
-> >>> should be doing in the 1.7 cycle.
-> >>>
-> >>> I think from my perspective, in 1.7 I'd like to see us looking at
-> >>> "Developer Workflow". Its a generic topic which I think covered
-multiple
-> >>> areas (in no particular order):
-> >>>
-> >>> * the ADT/SDK and how it intergrates into the rest of the system
-> >>
-> >>
-> >>> * toaster
-> >>> * python devshell
-> >>> * exteralsrc.bbclass
-> >>> * memory resident bitbake
-> >>> * how a standalone app developer might build an image
-> >>
-> >>
-> >> +1
-> >> My wishlist:
-> >>
-> >> 1. Assembly of an image from a package repository using the SDK.
-> >> 2. Ability to easily package multiple kernel flavours(builds with
-> >> different kernel configs) with linux related bbclass:es.
-> >
-> >
-> > 3. layer based repository splitting.
-> > --
-> > When having multiple users of a base repository. Ease management of
-> > customized repos, by having he ability to mark layers as "split layers"=
-,
-> > this would yield a separate repo per "split layer", which would contain
-> > packages modified/created by this layer.
->
-> So you mean:
->
->  * base package feed
->  * meta-qt5 package feed
->
-> and in case meta-qt5 adds a bbappend, in a existing recipe, what will
-> be the behavior?
+Hi,
 
-If bbappending the bash recipe, f.ex.
-bash packages will be generated without meta-qt5 mods in base repo, and
-subsequently generated with qt5 mods in the meta-qt5 repo.
+I just built meta-toolchain using the latest poky master, along with the =
+meta-xilinx layer, and find that the build system issues multiple QA =
+warnings, for a number of qemu machine configurations that are not =
+specified in my local.conf.
 
-//DD
+I only have MACHINE=3D=93zc702-zynq7=94 specified, but the toolchain =
+appears to be generating native-sdk-qemu binaries for all architectures.
 
->
-> > Said packages would also be built for the base repo, but without
-split-layer
-> > modifications.
-> >
-> > A customized distro would use a compound of the base repo + split repo,
-> > where the split repo would have higher priority.
-> >
-> > I guess this could mean one deploy directory per split-layer.
->
-> This part is easy as all package managers we use has support for it (I
-> think) so it is a matter of proper generating those and add a method
-> to include it in the image, the first part is the most complicated one
-> I think...
->
-> --
-> Otavio Salvador                             O.S. Systems
-> http://www.ossystems.com.br        http://code.ossystems.com.br
-> Mobile: +55 (53) 9981-7854            Mobile: +1 (347) 903-9750
-> --
-> _______________________________________________
-> Openembedded-core mailing list
-> Openembedded-core@lists.openembedded.org
-> http://lists.openembedded.org/mailman/listinfo/openembedded-core
+Build Configuration:
+BB_VERSION        =3D "1.21.1"
+BUILD_SYS         =3D "x86_64-linux"
+NATIVELSBSTRING   =3D "Ubuntu-12.10"
+TARGET_SYS        =3D "arm-poky-linux-gnueabi"
+MACHINE           =3D "zc702-zynq7"
+DISTRO            =3D "poky"
+DISTRO_VERSION    =3D "1.5+snapshot-20140329"
+TUNE_FEATURES     =3D " armv7a vfp neon zynq"
+TARGET_FPU        =3D "vfp-neon"
+meta             =20
+meta-yocto       =20
+meta-yocto-bsp    =3D "master:95cd5688c67fa179204a7704b1287980672894fd"
+meta-xilinx       =3D "master:9d446e98558239d0453d61f65e69b67c4df72f26"
+meta-xilinx-community =3D =
+"master:3b513f2b29f047b17778538c331bfaddd6105e39"
 
---001a1133177c3ab52e04f5ae7afa
-Content-Type: text/html; charset=ISO-8859-1
+NOTE: Preparing runqueue
+NOTE: Executing SetScene Tasks
+NOTE: Executing RunQueue Tasks
+WARNING: QA Issue: ELF binary =
+'/tool/yocto/build/zc702/tmp/work/x86_64-nativesdk-pokysdk-linux/nativesdk=
+-eglibc/2.19-r0/packages-split/nativesdk-nscd/opt/poky/1.5+snapshot/sysroo=
+ts/x86_64-pokysdk-linux/usr/sbin/nscd' has relocations in .text
+WARNING: QA Issue: ELF binary =
+'/tool/yocto/build/zc702/tmp/work/x86_64-nativesdk-pokysdk-linux/nativesdk=
+-qemu/1.7.0-r0/packages-split/nativesdk-qemu/opt/poky/1.5+snapshot/sysroot=
+s/x86_64-pokysdk-linux/usr/bin/qemu-system-microblazeel' has relocations =
+in .text
+WARNING: QA Issue: ELF binary =
+'/tool/yocto/build/zc702/tmp/work/x86_64-nativesdk-pokysdk-linux/nativesdk=
+-qemu/1.7.0-r0/packages-split/nativesdk-qemu/opt/poky/1.5+snapshot/sysroot=
+s/x86_64-pokysdk-linux/usr/bin/qemu-system-mipsel' has relocations in =
+.text
+WARNING: QA Issue: ELF binary =
+'/tool/yocto/build/zc702/tmp/work/x86_64-nativesdk-pokysdk-linux/nativesdk=
+-qemu/1.7.0-r0/packages-split/nativesdk-qemu/opt/poky/1.5+snapshot/sysroot=
+s/x86_64-pokysdk-linux/usr/bin/qemu-system-i386' has relocations in =
+.text
+WARNING: QA Issue: ELF binary =
+'/tool/yocto/build/zc702/tmp/work/x86_64-nativesdk-pokysdk-linux/nativesdk=
+-qemu/1.7.0-r0/packages-split/nativesdk-qemu/opt/poky/1.5+snapshot/sysroot=
+s/x86_64-pokysdk-linux/usr/bin/qemu-ga' has relocations in .text
+WARNING: QA Issue: ELF binary =
+'/tool/yocto/build/zc702/tmp/work/x86_64-nativesdk-pokysdk-linux/nativesdk=
+-qemu/1.7.0-r0/packages-split/nativesdk-qemu/opt/poky/1.5+snapshot/sysroot=
+s/x86_64-pokysdk-linux/usr/bin/qemu-mips.real' has relocations in .text
+WARNING: QA Issue: ELF binary =
+'/tool/yocto/build/zc702/tmp/work/x86_64-nativesdk-pokysdk-linux/nativesdk=
+-qemu/1.7.0-r0/packages-split/nativesdk-qemu/opt/poky/1.5+snapshot/sysroot=
+s/x86_64-pokysdk-linux/usr/bin/qemu-microblazeel' has relocations in =
+.text
+WARNING: QA Issue: ELF binary =
+'/tool/yocto/build/zc702/tmp/work/x86_64-nativesdk-pokysdk-linux/nativesdk=
+-qemu/1.7.0-r0/packages-split/nativesdk-qemu/opt/poky/1.5+snapshot/sysroot=
+s/x86_64-pokysdk-linux/usr/bin/qemu-img' has relocations in .text
+WARNING: QA Issue: ELF binary =
+'/tool/yocto/build/zc702/tmp/work/x86_64-nativesdk-pokysdk-linux/nativesdk=
+-qemu/1.7.0-r0/packages-split/nativesdk-qemu/opt/poky/1.5+snapshot/sysroot=
+s/x86_64-pokysdk-linux/usr/bin/qemu-mipsel' has relocations in .text
+WARNING: QA Issue: ELF binary =
+'/tool/yocto/build/zc702/tmp/work/x86_64-nativesdk-pokysdk-linux/nativesdk=
+-qemu/1.7.0-r0/packages-split/nativesdk-qemu/opt/poky/1.5+snapshot/sysroot=
+s/x86_64-pokysdk-linux/usr/bin/qemu-system-mips' has relocations in =
+.text
+WARNING: QA Issue: ELF binary =
+'/tool/yocto/build/zc702/tmp/work/x86_64-nativesdk-pokysdk-linux/nativesdk=
+-qemu/1.7.0-r0/packages-split/nativesdk-qemu/opt/poky/1.5+snapshot/sysroot=
+s/x86_64-pokysdk-linux/usr/bin/qemu-nbd' has relocations in .text
+WARNING: QA Issue: ELF binary =
+'/tool/yocto/build/zc702/tmp/work/x86_64-nativesdk-pokysdk-linux/nativesdk=
+-qemu/1.7.0-r0/packages-split/nativesdk-qemu/opt/poky/1.5+snapshot/sysroot=
+s/x86_64-pokysdk-linux/usr/bin/qemu-x86_64' has relocations in .text
+WARNING: QA Issue: ELF binary =
+'/tool/yocto/build/zc702/tmp/work/x86_64-nativesdk-pokysdk-linux/nativesdk=
+-qemu/1.7.0-r0/packages-split/nativesdk-qemu/opt/poky/1.5+snapshot/sysroot=
+s/x86_64-pokysdk-linux/usr/bin/qemu-i386' has relocations in .text
+WARNING: QA Issue: ELF binary =
+'/tool/yocto/build/zc702/tmp/work/x86_64-nativesdk-pokysdk-linux/nativesdk=
+-qemu/1.7.0-r0/packages-split/nativesdk-qemu/opt/poky/1.5+snapshot/sysroot=
+s/x86_64-pokysdk-linux/usr/bin/qemu-system-ppc' has relocations in .text
+WARNING: QA Issue: ELF binary =
+'/tool/yocto/build/zc702/tmp/work/x86_64-nativesdk-pokysdk-linux/nativesdk=
+-qemu/1.7.0-r0/packages-split/nativesdk-qemu/opt/poky/1.5+snapshot/sysroot=
+s/x86_64-pokysdk-linux/usr/bin/qemu-ppc' has relocations in .text
+WARNING: QA Issue: ELF binary =
+'/tool/yocto/build/zc702/tmp/work/x86_64-nativesdk-pokysdk-linux/nativesdk=
+-qemu/1.7.0-r0/packages-split/nativesdk-qemu/opt/poky/1.5+snapshot/sysroot=
+s/x86_64-pokysdk-linux/usr/bin/qemu-system-arm' has relocations in .text
+WARNING: QA Issue: ELF binary =
+'/tool/yocto/build/zc702/tmp/work/x86_64-nativesdk-pokysdk-linux/nativesdk=
+-qemu/1.7.0-r0/packages-split/nativesdk-qemu/opt/poky/1.5+snapshot/sysroot=
+s/x86_64-pokysdk-linux/usr/bin/qemu-system-x86_64' has relocations in =
+.text
+WARNING: QA Issue: ELF binary =
+'/tool/yocto/build/zc702/tmp/work/x86_64-nativesdk-pokysdk-linux/nativesdk=
+-qemu/1.7.0-r0/packages-split/nativesdk-qemu/opt/poky/1.5+snapshot/sysroot=
+s/x86_64-pokysdk-linux/usr/bin/qemu-io' has relocations in .text
+WARNING: QA Issue: ELF binary =
+'/tool/yocto/build/zc702/tmp/work/x86_64-nativesdk-pokysdk-linux/nativesdk=
+-qemu/1.7.0-r0/packages-split/nativesdk-qemu/opt/poky/1.5+snapshot/sysroot=
+s/x86_64-pokysdk-linux/usr/bin/qemu-arm' has relocations in .text
+WARNING: QA Issue: ELF binary =
+'/tool/yocto/build/zc702/tmp/work/x86_64-nativesdk-pokysdk-linux/nativesdk=
+-qemu/1.7.0-r0/packages-split/nativesdk-qemu/opt/poky/1.5+snapshot/sysroot=
+s/x86_64-pokysdk-linux/usr/lib/qemu/qemu-bridge-helper' has relocations =
+in .text
+NOTE: Tasks Summary: Attempted 1938 tasks of which 988 didn't need to be =
+rerun and all succeeded.
+
+Summary: There were 20 WARNING messages shown.
+
+real	20m47.466s
+user	0m8.620s
+sys	0m0.904s
+
+
+Regards,
+
+Elvis Dowson
+
+--Apple-Mail=_F1FDC073-0F99-4C3B-BE0E-07612380F1C7
 Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html;
+	charset=windows-1252
 
-<p dir=3D"ltr"><br>
-On 28 Mar 2014 16:24, &quot;Otavio Salvador&quot; &lt;<a href=3D"mailto:ota=
-vio@ossystems.com.br">otavio@ossystems.com.br</a>&gt; wrote:<br>
-&gt;<br>
-&gt; Hello David,<br>
-&gt;<br>
-&gt; On Thu, Mar 27, 2014 at 7:47 AM, David Nystr=F6m &lt;<a href=3D"mailto=
-:david.nystrom@enea.com">david.nystrom@enea.com</a>&gt; wrote:<br>
-&gt; &gt; On 2014-03-25 15:31, David Nystr=F6m wrote:<br>
-&gt; &gt;&gt;<br>
-&gt; &gt;&gt; On 2014-03-24 17:00, Richard Purdie wrote:<br>
-&gt; &gt;&gt;&gt;<br>
-&gt; &gt;&gt;&gt; As development on 1.6 finishes up, its time to think abou=
-t what we<br>
-&gt; &gt;&gt;&gt; should be doing in the 1.7 cycle.<br>
-&gt; &gt;&gt;&gt;<br>
-&gt; &gt;&gt;&gt; I think from my perspective, in 1.7 I&#39;d like to see u=
-s looking at<br>
-&gt; &gt;&gt;&gt; &quot;Developer Workflow&quot;. Its a generic topic which=
- I think covered multiple<br>
-&gt; &gt;&gt;&gt; areas (in no particular order):<br>
-&gt; &gt;&gt;&gt;<br>
-&gt; &gt;&gt;&gt; * the ADT/SDK and how it intergrates into the rest of the=
- system<br>
-&gt; &gt;&gt;<br>
-&gt; &gt;&gt;<br>
-&gt; &gt;&gt;&gt; * toaster<br>
-&gt; &gt;&gt;&gt; * python devshell<br>
-&gt; &gt;&gt;&gt; * exteralsrc.bbclass<br>
-&gt; &gt;&gt;&gt; * memory resident bitbake<br>
-&gt; &gt;&gt;&gt; * how a standalone app developer might build an image<br>
-&gt; &gt;&gt;<br>
-&gt; &gt;&gt;<br>
-&gt; &gt;&gt; +1<br>
-&gt; &gt;&gt; My wishlist:<br>
-&gt; &gt;&gt;<br>
-&gt; &gt;&gt; 1. Assembly of an image from a package repository using the S=
-DK.<br>
-&gt; &gt;&gt; 2. Ability to easily package multiple kernel flavours(builds =
-with<br>
-&gt; &gt;&gt; different kernel configs) with linux related bbclass:es.<br>
-&gt; &gt;<br>
-&gt; &gt;<br>
-&gt; &gt; 3. layer based repository splitting.<br>
-&gt; &gt; --<br>
-&gt; &gt; When having multiple users of a base repository. Ease management =
-of<br>
-&gt; &gt; customized repos, by having he ability to mark layers as &quot;sp=
-lit layers&quot;,<br>
-&gt; &gt; this would yield a separate repo per &quot;split layer&quot;, whi=
-ch would contain<br>
-&gt; &gt; packages modified/created by this layer.<br>
-&gt;<br>
-&gt; So you mean:<br>
-&gt;<br>
-&gt; =A0* base package feed<br>
-&gt; =A0* meta-qt5 package feed<br>
-&gt;<br>
-&gt; and in case meta-qt5 adds a bbappend, in a existing recipe, what will<=
-br>
-&gt; be the behavior?</p>
-<p dir=3D"ltr">If bbappending the bash recipe, f.ex.<br>
-bash packages will be generated without meta-qt5 mods in base repo, and sub=
-sequently generated with qt5 mods in the meta-qt5 repo.</p>
-<p dir=3D"ltr">//DD</p>
-<p dir=3D"ltr">&gt;<br>
-&gt; &gt; Said packages would also be built for the base repo, but without =
-split-layer<br>
-&gt; &gt; modifications.<br>
-&gt; &gt;<br>
-&gt; &gt; A customized distro would use a compound of the base repo + split=
- repo,<br>
-&gt; &gt; where the split repo would have higher priority.<br>
-&gt; &gt;<br>
-&gt; &gt; I guess this could mean one deploy directory per split-layer.<br>
-&gt;<br>
-&gt; This part is easy as all package managers we use has support for it (I=
-<br>
-&gt; think) so it is a matter of proper generating those and add a method<b=
-r>
-&gt; to include it in the image, the first part is the most complicated one=
-<br>
-&gt; I think...<br>
-&gt;<br>
-&gt; --<br>
-&gt; Otavio Salvador =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =
-=A0 O.S. Systems<br>
-&gt; <a href=3D"http://www.ossystems.com.br">http://www.ossystems.com.br</a=
-> =A0 =A0 =A0 =A0<a href=3D"http://code.ossystems.com.br">http://code.ossys=
-tems.com.br</a><br>
-&gt; Mobile: +55 (53) 9981-7854 =A0 =A0 =A0 =A0 =A0 =A0Mobile: +1 (347) 903=
--9750<br>
-&gt; --<br>
-&gt; _______________________________________________<br>
-&gt; Openembedded-core mailing list<br>
-&gt; <a href=3D"mailto:Openembedded-core@lists.openembedded.org">Openembedd=
-ed-core@lists.openembedded.org</a><br>
-&gt; <a href=3D"http://lists.openembedded.org/mailman/listinfo/openembedded=
--core">http://lists.openembedded.org/mailman/listinfo/openembedded-core</a>=
-<br>
-</p>
+<html><head><meta http-equiv=3D"Content-Type" content=3D"text/html =
+charset=3Dwindows-1252"></head><body style=3D"word-wrap: break-word; =
+-webkit-nbsp-mode: space; -webkit-line-break: =
+after-white-space;">Hi,<div><br></div><div>I just built meta-toolchain =
+using the latest poky master, along with the meta-xilinx layer, and find =
+that the build system issues multiple QA warnings, for a number of qemu =
+machine configurations that are not specified in my =
+local.conf.</div><div><br></div><div>I only have MACHINE=3D=93zc702-zynq7=94=
+ specified, but the toolchain appears to be generating native-sdk-qemu =
+binaries for all architectures.</div><div><br></div><div><div><font =
+face=3D"Monaco" size=3D"1">Build Configuration:</font></div><div><font =
+face=3D"Monaco" size=3D"1">BB_VERSION &nbsp; &nbsp; &nbsp; &nbsp;=3D =
+"1.21.1"</font></div><div><font face=3D"Monaco" size=3D"1">BUILD_SYS =
+&nbsp; &nbsp; &nbsp; &nbsp; =3D "x86_64-linux"</font></div><div><font =
+face=3D"Monaco" size=3D"1">NATIVELSBSTRING &nbsp; =3D =
+"Ubuntu-12.10"</font></div><div><font face=3D"Monaco" =
+size=3D"1">TARGET_SYS &nbsp; &nbsp; &nbsp; &nbsp;=3D =
+"arm-poky-linux-gnueabi"</font></div><div><font face=3D"Monaco" =
+size=3D"1">MACHINE &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; =3D =
+"zc702-zynq7"</font></div><div><font face=3D"Monaco" size=3D"1">DISTRO =
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;=3D =
+"poky"</font></div><div><font face=3D"Monaco" size=3D"1">DISTRO_VERSION =
+&nbsp; &nbsp;=3D "1.5+snapshot-20140329"</font></div><div><font =
+face=3D"Monaco" size=3D"1">TUNE_FEATURES &nbsp; &nbsp; =3D " armv7a vfp =
+neon zynq"</font></div><div><font face=3D"Monaco" size=3D"1">TARGET_FPU =
+&nbsp; &nbsp; &nbsp; &nbsp;=3D "vfp-neon"</font></div><div><font =
+face=3D"Monaco" size=3D"1">meta &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; =
+&nbsp; &nbsp;</font></div><div><font face=3D"Monaco" size=3D"1">meta-yocto=
+ &nbsp; &nbsp; &nbsp; &nbsp;</font></div><div><font face=3D"Monaco" =
+size=3D"1">meta-yocto-bsp &nbsp; &nbsp;=3D =
+"master:95cd5688c67fa179204a7704b1287980672894fd"</font></div><div><font =
+face=3D"Monaco" size=3D"1">meta-xilinx &nbsp; &nbsp; &nbsp; =3D =
+"master:9d446e98558239d0453d61f65e69b67c4df72f26"</font></div><div><font =
+face=3D"Monaco" size=3D"1">meta-xilinx-community =3D =
+"master:3b513f2b29f047b17778538c331bfaddd6105e39"</font></div><div><font =
+face=3D"Monaco" size=3D"1"><br></font></div><div><font face=3D"Monaco" =
+size=3D"1">NOTE: Preparing runqueue</font></div><div><font face=3D"Monaco"=
+ size=3D"1">NOTE: Executing SetScene Tasks</font></div><div><font =
+face=3D"Monaco" size=3D"1">NOTE: Executing RunQueue =
+Tasks</font></div><div><font face=3D"Monaco" size=3D"1">WARNING: QA =
+Issue: ELF binary =
+'/tool/yocto/build/zc702/tmp/work/x86_64-nativesdk-pokysdk-linux/nativesdk=
+-eglibc/2.19-r0/packages-split/nativesdk-nscd/opt/poky/1.5+snapshot/sysroo=
+ts/x86_64-pokysdk-linux/usr/sbin/nscd' has relocations in =
+.text</font></div><div><font face=3D"Monaco" size=3D"1">WARNING: QA =
+Issue: ELF binary =
+'/tool/yocto/build/zc702/tmp/work/x86_64-nativesdk-pokysdk-linux/nativesdk=
+-qemu/1.7.0-r0/packages-split/nativesdk-qemu/opt/poky/1.5+snapshot/sysroot=
+s/x86_64-pokysdk-linux/usr/bin/qemu-system-microblazeel' has relocations =
+in .text</font></div><div><font face=3D"Monaco" size=3D"1">WARNING: QA =
+Issue: ELF binary =
+'/tool/yocto/build/zc702/tmp/work/x86_64-nativesdk-pokysdk-linux/nativesdk=
+-qemu/1.7.0-r0/packages-split/nativesdk-qemu/opt/poky/1.5+snapshot/sysroot=
+s/x86_64-pokysdk-linux/usr/bin/qemu-system-mipsel' has relocations in =
+.text</font></div><div><font face=3D"Monaco" size=3D"1">WARNING: QA =
+Issue: ELF binary =
+'/tool/yocto/build/zc702/tmp/work/x86_64-nativesdk-pokysdk-linux/nativesdk=
+-qemu/1.7.0-r0/packages-split/nativesdk-qemu/opt/poky/1.5+snapshot/sysroot=
+s/x86_64-pokysdk-linux/usr/bin/qemu-system-i386' has relocations in =
+.text</font></div><div><font face=3D"Monaco" size=3D"1">WARNING: QA =
+Issue: ELF binary =
+'/tool/yocto/build/zc702/tmp/work/x86_64-nativesdk-pokysdk-linux/nativesdk=
+-qemu/1.7.0-r0/packages-split/nativesdk-qemu/opt/poky/1.5+snapshot/sysroot=
+s/x86_64-pokysdk-linux/usr/bin/qemu-ga' has relocations in =
+.text</font></div><div><font face=3D"Monaco" size=3D"1">WARNING: QA =
+Issue: ELF binary =
+'/tool/yocto/build/zc702/tmp/work/x86_64-nativesdk-pokysdk-linux/nativesdk=
+-qemu/1.7.0-r0/packages-split/nativesdk-qemu/opt/poky/1.5+snapshot/sysroot=
+s/x86_64-pokysdk-linux/usr/bin/qemu-mips.real' has relocations in =
+.text</font></div><div><font face=3D"Monaco" size=3D"1">WARNING: QA =
+Issue: ELF binary =
+'/tool/yocto/build/zc702/tmp/work/x86_64-nativesdk-pokysdk-linux/nativesdk=
+-qemu/1.7.0-r0/packages-split/nativesdk-qemu/opt/poky/1.5+snapshot/sysroot=
+s/x86_64-pokysdk-linux/usr/bin/qemu-microblazeel' has relocations in =
+.text</font></div><div><font face=3D"Monaco" size=3D"1">WARNING: QA =
+Issue: ELF binary =
+'/tool/yocto/build/zc702/tmp/work/x86_64-nativesdk-pokysdk-linux/nativesdk=
+-qemu/1.7.0-r0/packages-split/nativesdk-qemu/opt/poky/1.5+snapshot/sysroot=
+s/x86_64-pokysdk-linux/usr/bin/qemu-img' has relocations in =
+.text</font></div><div><font face=3D"Monaco" size=3D"1">WARNING: QA =
+Issue: ELF binary =
+'/tool/yocto/build/zc702/tmp/work/x86_64-nativesdk-pokysdk-linux/nativesdk=
+-qemu/1.7.0-r0/packages-split/nativesdk-qemu/opt/poky/1.5+snapshot/sysroot=
+s/x86_64-pokysdk-linux/usr/bin/qemu-mipsel' has relocations in =
+.text</font></div><div><font face=3D"Monaco" size=3D"1">WARNING: QA =
+Issue: ELF binary =
+'/tool/yocto/build/zc702/tmp/work/x86_64-nativesdk-pokysdk-linux/nativesdk=
+-qemu/1.7.0-r0/packages-split/nativesdk-qemu/opt/poky/1.5+snapshot/sysroot=
+s/x86_64-pokysdk-linux/usr/bin/qemu-system-mips' has relocations in =
+.text</font></div><div><font face=3D"Monaco" size=3D"1">WARNING: QA =
+Issue: ELF binary =
+'/tool/yocto/build/zc702/tmp/work/x86_64-nativesdk-pokysdk-linux/nativesdk=
+-qemu/1.7.0-r0/packages-split/nativesdk-qemu/opt/poky/1.5+snapshot/sysroot=
+s/x86_64-pokysdk-linux/usr/bin/qemu-nbd' has relocations in =
+.text</font></div><div><font face=3D"Monaco" size=3D"1">WARNING: QA =
+Issue: ELF binary =
+'/tool/yocto/build/zc702/tmp/work/x86_64-nativesdk-pokysdk-linux/nativesdk=
+-qemu/1.7.0-r0/packages-split/nativesdk-qemu/opt/poky/1.5+snapshot/sysroot=
+s/x86_64-pokysdk-linux/usr/bin/qemu-x86_64' has relocations in =
+.text</font></div><div><font face=3D"Monaco" size=3D"1">WARNING: QA =
+Issue: ELF binary =
+'/tool/yocto/build/zc702/tmp/work/x86_64-nativesdk-pokysdk-linux/nativesdk=
+-qemu/1.7.0-r0/packages-split/nativesdk-qemu/opt/poky/1.5+snapshot/sysroot=
+s/x86_64-pokysdk-linux/usr/bin/qemu-i386' has relocations in =
+.text</font></div><div><font face=3D"Monaco" size=3D"1">WARNING: QA =
+Issue: ELF binary =
+'/tool/yocto/build/zc702/tmp/work/x86_64-nativesdk-pokysdk-linux/nativesdk=
+-qemu/1.7.0-r0/packages-split/nativesdk-qemu/opt/poky/1.5+snapshot/sysroot=
+s/x86_64-pokysdk-linux/usr/bin/qemu-system-ppc' has relocations in =
+.text</font></div><div><font face=3D"Monaco" size=3D"1">WARNING: QA =
+Issue: ELF binary =
+'/tool/yocto/build/zc702/tmp/work/x86_64-nativesdk-pokysdk-linux/nativesdk=
+-qemu/1.7.0-r0/packages-split/nativesdk-qemu/opt/poky/1.5+snapshot/sysroot=
+s/x86_64-pokysdk-linux/usr/bin/qemu-ppc' has relocations in =
+.text</font></div><div><font face=3D"Monaco" size=3D"1">WARNING: QA =
+Issue: ELF binary =
+'/tool/yocto/build/zc702/tmp/work/x86_64-nativesdk-pokysdk-linux/nativesdk=
+-qemu/1.7.0-r0/packages-split/nativesdk-qemu/opt/poky/1.5+snapshot/sysroot=
+s/x86_64-pokysdk-linux/usr/bin/qemu-system-arm' has relocations in =
+.text</font></div><div><font face=3D"Monaco" size=3D"1">WARNING: QA =
+Issue: ELF binary =
+'/tool/yocto/build/zc702/tmp/work/x86_64-nativesdk-pokysdk-linux/nativesdk=
+-qemu/1.7.0-r0/packages-split/nativesdk-qemu/opt/poky/1.5+snapshot/sysroot=
+s/x86_64-pokysdk-linux/usr/bin/qemu-system-x86_64' has relocations in =
+.text</font></div><div><font face=3D"Monaco" size=3D"1">WARNING: QA =
+Issue: ELF binary =
+'/tool/yocto/build/zc702/tmp/work/x86_64-nativesdk-pokysdk-linux/nativesdk=
+-qemu/1.7.0-r0/packages-split/nativesdk-qemu/opt/poky/1.5+snapshot/sysroot=
+s/x86_64-pokysdk-linux/usr/bin/qemu-io' has relocations in =
+.text</font></div><div><font face=3D"Monaco" size=3D"1">WARNING: QA =
+Issue: ELF binary =
+'/tool/yocto/build/zc702/tmp/work/x86_64-nativesdk-pokysdk-linux/nativesdk=
+-qemu/1.7.0-r0/packages-split/nativesdk-qemu/opt/poky/1.5+snapshot/sysroot=
+s/x86_64-pokysdk-linux/usr/bin/qemu-arm' has relocations in =
+.text</font></div><div><font face=3D"Monaco" size=3D"1">WARNING: QA =
+Issue: ELF binary =
+'/tool/yocto/build/zc702/tmp/work/x86_64-nativesdk-pokysdk-linux/nativesdk=
+-qemu/1.7.0-r0/packages-split/nativesdk-qemu/opt/poky/1.5+snapshot/sysroot=
+s/x86_64-pokysdk-linux/usr/lib/qemu/qemu-bridge-helper' has relocations =
+in .text</font></div><div><font face=3D"Monaco" size=3D"1">NOTE: Tasks =
+Summary: Attempted 1938 tasks of which 988 didn't need to be rerun and =
+all succeeded.</font></div><div><font face=3D"Monaco" =
+size=3D"1"><br></font></div><div><font face=3D"Monaco" size=3D"1">Summary:=
+ There were 20 WARNING messages shown.</font></div><div><font =
+face=3D"Monaco" size=3D"1"><br></font></div><div><font face=3D"Monaco" =
+size=3D"1">real<span class=3D"Apple-tab-span" style=3D"white-space:pre">	=
+</span>20m47.466s</font></div><div><font face=3D"Monaco" =
+size=3D"1">user<span class=3D"Apple-tab-span" style=3D"white-space:pre">	=
+</span>0m8.620s</font></div><div><font face=3D"Monaco" size=3D"1">sys<span=
+ class=3D"Apple-tab-span" style=3D"white-space:pre">	=
+</span>0m0.904s</font></div><div><br></div></div><div><br></div><div>Regar=
+ds,</div><div><br></div><div>Elvis Dowson</div></body></html>=
 
---001a1133177c3ab52e04f5ae7afa--
+--Apple-Mail=_F1FDC073-0F99-4C3B-BE0E-07612380F1C7--
+
+--Apple-Mail=_7C90BBA8-EC1D-4F32-B3C5-770D17F5739A
+Content-Transfer-Encoding: 7bit
+Content-Disposition: attachment;
+	filename=signature.asc
+Content-Type: application/pgp-signature;
+	name=signature.asc
+Content-Description: Message signed with OpenPGP using GPGMail
+
+-----BEGIN PGP SIGNATURE-----
+Comment: GPGTools - https://gpgtools.org
+
+iQQcBAEBCgAGBQJTNn4bAAoJENajI+UwiZtEB/cf/2kuIKM5N51Vhfao6EsFk2Pe
+752UfVxx8LqZwvGuodcZ6nu6DmiPOyAUHrmSrubsaOEoWNQFAnwil8DWqufCCjgO
+7cTM1Mxa+LBwL7drjykrJ5o1YXnWPnQi+Z4J8H0qLHwSwCdGTykLyCjizAfswkrH
+2XW5PgVMpCelsUtLczI08kfzDut0Hks8XtO1f4KdADUHlj9okCXtvO9ZXCXetxtm
+IJ9WZIhJUtecFOeYF2e9cSBQuNlqyOIF3POV7KjeCcc3CkUUisi6ajg7pb8j2w+g
+FpTvOaeowKO6GPp2+aeXjf/HvfZTDtj/vXo4qYO6ozGNfR6qPNpCIxV/h9sHDSwl
+fZThvwJNBVeyKo1WOupgwE1pmBKEa3fjQV9Wz7sHorhtSta8pU+jGbn8M6P+NGmv
+cswsYoMm8fnOI+HNBhEywz/TG56CGmjaWqwbb1ZGCJHYICg6h7OrzvlwBtxW6Epx
+dOb3lxWTgpaA+E/YN86Z5neBMjKBXJok3iaG/f45gE/24vkUm4USqOsTa7urPMAY
+cVe3/+xQiyoXcOQN69a6Ia5/9g70mY/mHXOy5w30tGu55uYNmRURNRN2/cjaFMFk
+19kFYp7gKgYYYZdib3bo/eDt04rcRZEEhus4/liILSWRB4kV6ZEsKYbnaB+EOJSO
+TKyN2SWkpLuPOGlhSCBS3suGuIWes79ZoH6u6SJk9/t4V+wEXFkiKDNI6ChfE7+l
+0mb1iBDrNeTs1TKREYNCbH+STJOXrwdc8xfzv/DgKwJERPndU8V7IB5d70tuwFfC
+rZLhCc4GyoOw9jAG6ymCGVnlEQO2OXU8lM2baIdQNLXxpopAr9qqmXGQWB1A77xG
+OKoXX7Kg3Z9+NC11W7Us55gO/DwG68mdNrCys20Fq1U9Riog9NYwveJaBF0KHE4Z
+N9EtJwueIgeQRVvdSigeKvwbe/IUE6iCs0BZio/JqZqq6cdJ6fAR7qsFvtnE2dMM
+hk/rc2V7lpTqJup0In0IGm2i4tXQEgWXlaRUHj2cMB/loRftv0/KpIF8iHaj8I3k
+kuGsC+E5mV3Utbbv5eY+5a0qwZRO1MrSl9Kon82UTSKLjKRZv0vVfZeFX9wC0F6+
+Al3i3Qn2HTZzS8H+OFV/h7oBBS3KTEt+JdPui4WeEWHdztc6iprMiyqnRv0mo9BP
+GvLZV7G8uUJ9toCOKrvrXh6pjhhIi9DoMuYVAfdnL7UDGYxtgF3vKIQ80h2+9z2Y
+k9kTaNPtsdp5IiplHATGfEQuiJpe2WDOSGO10R10pr4A4OfG6uOxU9U0xjxsMIsl
+ITiJ6gl8/jFWI2reSvUh5BhbTwI3MI51CMOpTdsigKOh5Sc67zmndHGpXQ/Nn3Q=
+=Y+oG
+-----END PGP SIGNATURE-----
+
+--Apple-Mail=_7C90BBA8-EC1D-4F32-B3C5-770D17F5739A--
