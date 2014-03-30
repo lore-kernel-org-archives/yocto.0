@@ -1,35 +1,34 @@
-Return-Path: <paul.betafive@gmail.com>
-Received: from mail-vc0-f169.google.com (mail-vc0-f169.google.com
-	[209.85.220.169])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 97EC3E00BE3
-	for <yocto@yoctoproject.org>; Sun, 30 Mar 2014 08:43:42 -0700 (PDT)
-Received: by mail-vc0-f169.google.com with SMTP id ik5so7793830vcb.0
-	for <yocto@yoctoproject.org>; Sun, 30 Mar 2014 08:43:41 -0700 (PDT)
+Return-Path: <raj.khem@gmail.com>
+Received: from mail-ie0-f182.google.com (mail-ie0-f182.google.com
+	[209.85.223.182])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 585B6E00BE3
+	for <yocto@yoctoproject.org>; Sun, 30 Mar 2014 09:49:24 -0700 (PDT)
+Received: by mail-ie0-f182.google.com with SMTP id y20so6894669ier.27
+	for <yocto@yoctoproject.org>; Sun, 30 Mar 2014 09:49:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:sender:in-reply-to:references:from:date:message-id
-	:subject:to:cc:content-type;
-	bh=WiZfVZCt01O3DFGIOP6BCvvXdFFgOHyDRMDr7HKK+mk=;
-	b=Fc/M7K8k4hqicQBZ+a+raBCHDDVX+HXtSRhZRzyS6cJORbKvrEKNVC+M1BuUbvjnrc
-	zWJzVE7RBaqRZHJfM9QD91U3Vn2CClckcSg/KZ2hGvLHNfp4DHmGdySkL2KG/qyJeZY0
-	nvx6/Vi1nY0bUr8K/XWMUygu5TPLeVaIUg6WQwYNrrQaKhf3Pvr4A8o9OQEWwX4+n5VH
-	UJdCMGwJ1YJwjNr1HB837M96wB9xv/hdAO5GnoEG0w1wfQg5JzUCySWKz1fDfVxjqNMF
-	gKs0itjugRexHE3XZjjWlWHbcq1xtzy/3nJKXRiFgkA9a/9Ug+i6DRIultQCb3QqZORU
-	jtpw==
-X-Received: by 10.220.133.80 with SMTP id e16mr18563736vct.13.1396194221309;
-	Sun, 30 Mar 2014 08:43:41 -0700 (PDT)
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-type;
+	bh=5Al5/FZ2kxxiUfdyrWsgveSCpkHrhs0vDjL0xOwcolc=;
+	b=QinPuqVV2P8BAkJpjDiq99EoNvTLSP3NEfJ9jK5xPIHEyGXkjut9R+CLvX8GsoO2Ev
+	4JRqBI1eS7XQmHnS2B+MHlDYKX3hsE+wH42bNzoIUU3dgYOw30RSfmiGfIUgpe1Zlird
+	jiqIjg/+O11TPrOfGYs+iXoibsg3nkpBLbbZFhR4FfrlOKpGwR3sUZEW1TC9WjfdhlAR
+	PDTTJN/NYqBcN9qcWZe8d2HmJRuqJaszocjbSTvI7DKJLnNHwfQkQWuf4D/JoWdb5ez0
+	D+91vuzqY/ZNE8PLHe7vughIs80z6kuVFqjFTVVa2t4O6YtbDYgEaHzz1B8NLQeaUNJX
+	BsXQ==
+X-Received: by 10.42.40.83 with SMTP id k19mr24411244ice.3.1396198163685; Sun,
+	30 Mar 2014 09:49:23 -0700 (PDT)
 MIME-Version: 1.0
-Sender: paul.betafive@gmail.com
-Received: by 10.220.239.135 with HTTP; Sun, 30 Mar 2014 08:43:01 -0700 (PDT)
-In-Reply-To: <CAMKF1sqPB+QCvPHHcxsU+ExBmNWg9jPXajkAR_FdKpJ76-x9dg@mail.gmail.com>
+Received: by 10.50.229.14 with HTTP; Sun, 30 Mar 2014 09:48:53 -0700 (PDT)
+In-Reply-To: <CANyK_8er+2sjvU1csLOEpZ06qCL4h+bP2ecUYYGzyiEw0kXzQw@mail.gmail.com>
 References: <CAMKF1soKZqqmQUVCQnUqS1GV1FO5KictTO+=up=d7Jw3+QhXMw@mail.gmail.com>
 	<CAJTo0LYF0VNwy7=rhmr7U_=tXwJtPOax3AKttn66q3qD_QXd2w@mail.gmail.com>
 	<CANyK_8deVKbC6xOUQHubvphfwQCQefHGWCt7Mp1QM4DUVXja5g@mail.gmail.com>
 	<CAMKF1sqPB+QCvPHHcxsU+ExBmNWg9jPXajkAR_FdKpJ76-x9dg@mail.gmail.com>
-From: Paul Barker <paul@paulbarker.me.uk>
-Date: Sun, 30 Mar 2014 16:43:01 +0100
-X-Google-Sender-Auth: o9kTunvH_9YbOJXbcOLF8ylH7E0
-Message-ID: <CANyK_8er+2sjvU1csLOEpZ06qCL4h+bP2ecUYYGzyiEw0kXzQw@mail.gmail.com>
-To: Khem Raj <raj.khem@gmail.com>
+	<CANyK_8er+2sjvU1csLOEpZ06qCL4h+bP2ecUYYGzyiEw0kXzQw@mail.gmail.com>
+From: Khem Raj <raj.khem@gmail.com>
+Date: Sun, 30 Mar 2014 09:48:53 -0700
+Message-ID: <CAMKF1spno7Np8FXr3JXw3_W72+vRkchzZ8J5X+3e4RCFY+6nLg@mail.gmail.com>
+To: Paul Barker <paul@paulbarker.me.uk>
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
 	Patches and discussions about the oe-core layer
 	<openembedded-core@lists.openembedded.org>,
@@ -46,96 +45,73 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 30 Mar 2014 15:43:44 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Sun, 30 Mar 2014 16:49:27 -0000
+Content-Type: text/plain; charset=UTF-8
 
-On 30 March 2014 05:17, Khem Raj <raj.khem@gmail.com> wrote:
-> On Thu, Mar 27, 2014 at 5:53 AM, Paul Barker <paul@paulbarker.me.uk> wrote:
->> On 26 March 2014 22:12, Burton, Ross <ross.burton@intel.com> wrote:
->>> On 26 March 2014 22:04, Khem Raj <raj.khem@gmail.com> wrote:
->>>> There were interest in other threads in having musl as an alternative
->>>> to eglibc/uclibc that we already have in OE, in that direction I have
->>>> poured in my on and off work and put it into a contrib tree
+On Sun, Mar 30, 2014 at 8:43 AM, Paul Barker <paul@paulbarker.me.uk> wrote:
+> On 30 March 2014 05:17, Khem Raj <raj.khem@gmail.com> wrote:
+>> On Thu, Mar 27, 2014 at 5:53 AM, Paul Barker <paul@paulbarker.me.uk> wrote:
+>>> On 26 March 2014 22:12, Burton, Ross <ross.burton@intel.com> wrote:
+>>>> On 26 March 2014 22:04, Khem Raj <raj.khem@gmail.com> wrote:
+>>>>> There were interest in other threads in having musl as an alternative
+>>>>> to eglibc/uclibc that we already have in OE, in that direction I have
+>>>>> poured in my on and off work and put it into a contrib tree
+>>>>
+>>>> Blimey Khem that was quick. :)
+>>>>
 >>>
->>> Blimey Khem that was quick. :)
+>>> Agreed!
 >>>
+>>> I wonder if it's worth splitting this out into its own layer though
 >>
->> Agreed!
+>> I thought about it and since class/conf changes that need to go in into OE-core
+>> first I kept it as it is (lazyness too). I think once the core support
+>> is available in OE-core
+>> we can spin the recipes into a layer of its own.
 >>
->> I wonder if it's worth splitting this out into its own layer though
->
-> I thought about it and since class/conf changes that need to go in into OE-core
-> first I kept it as it is (lazyness too). I think once the core support
-> is available in OE-core
-> we can spin the recipes into a layer of its own.
->
->> (with fixes done via bbappends) so that it's easy for multiple people
->> to contribute to. It would also mean it doesn't need rebasing onto
->> master all the time.
+>>> (with fixes done via bbappends) so that it's easy for multiple people
+>>> to contribute to. It would also mean it doesn't need rebasing onto
+>>> master all the time.
+>>>
+>>> I'd definitely like to get involved with this. In particular I can
+>>> ensure opkg (both current release and development branch) work with
+>>> musl and see if some of my preferred software from meta-oe will build
+>>> (vim, htop, etc).
 >>
->> I'd definitely like to get involved with this. In particular I can
->> ensure opkg (both current release and development branch) work with
->> musl and see if some of my preferred software from meta-oe will build
->> (vim, htop, etc).
+>> start with what we have. Once master opens up I would propose the needed
+>> changes to OE-core and spin a layer
+>>
 >
-> start with what we have. Once master opens up I would propose the needed
-> changes to OE-core and spin a layer
+> I did a quick 'bitbake -k core-image-minimal' to see what's currently
+> failing. Full logs and config at
+> http://www.paulbarker.me.uk/musl-build/
 >
+> Build Configuration:
+> BB_VERSION        = "1.21.1"
+> BUILD_SYS         = "x86_64-linux"
+> NATIVELSBSTRING   = "Ubuntu-12.04"
+> TARGET_SYS        = "arm-oe-linux-musleabi"
+> MACHINE           = "qemuarm"
+> DISTRO            = "nodistro"
+> DISTRO_VERSION    = "nodistro.0"
+> TUNE_FEATURES     = "armv5 thumb dsp"
+> TARGET_FPU        = "soft"
+> meta              = "kraj/musl:faafa7022ed057d55c131c456d1bdd5dfa3d2517"
+>
+> Summary: 6 tasks failed:
+>   openembedded-core/meta/recipes-support/attr/attr_2.4.47.bb, do_compile
+>   openembedded-core/meta/recipes-devtools/python/python_2.7.3.bb, do_compile
+>   openembedded-core/meta/recipes-core/util-linux/util-linux_2.24.1.bb,
+> do_compile
+>   openembedded-core/meta/recipes-core/sysvinit/sysvinit_2.88dsf.bb, do_compile
+>   openembedded-core/meta/recipes-core/busybox/busybox_1.22.1.bb, do_compile
+>   openembedded-core/meta/recipes-core/glib-2.0/glib-2.0_2.38.2.bb, do_compile
+>
+> I can see for util-linux that we need to implement qsort_r().
+>
+> Busybox probably just needs config changes:
+> http://wiki.musl-libc.org/wiki/Building_Busybox
 
-I did a quick 'bitbake -k core-image-minimal' to see what's currently
-failing. Full logs and config at
-http://www.paulbarker.me.uk/musl-build/
 
-Build Configuration:
-BB_VERSION        = "1.21.1"
-BUILD_SYS         = "x86_64-linux"
-NATIVELSBSTRING   = "Ubuntu-12.04"
-TARGET_SYS        = "arm-oe-linux-musleabi"
-MACHINE           = "qemuarm"
-DISTRO            = "nodistro"
-DISTRO_VERSION    = "nodistro.0"
-TUNE_FEATURES     = "armv5 thumb dsp"
-TARGET_FPU        = "soft"
-meta              = "kraj/musl:faafa7022ed057d55c131c456d1bdd5dfa3d2517"
-
-Summary: 6 tasks failed:
-  openembedded-core/meta/recipes-support/attr/attr_2.4.47.bb, do_compile
-  openembedded-core/meta/recipes-devtools/python/python_2.7.3.bb, do_compile
-  openembedded-core/meta/recipes-core/util-linux/util-linux_2.24.1.bb,
-do_compile
-  openembedded-core/meta/recipes-core/sysvinit/sysvinit_2.88dsf.bb, do_compile
-  openembedded-core/meta/recipes-core/busybox/busybox_1.22.1.bb, do_compile
-  openembedded-core/meta/recipes-core/glib-2.0/glib-2.0_2.38.2.bb, do_compile
-
-I can see for util-linux that we need to implement qsort_r().
-
-Busybox probably just needs config changes:
-http://wiki.musl-libc.org/wiki/Building_Busybox
-
-glib is getting confused as both musl and libiconv provide <iconv.h> as warned:
-
-    WARNING: The recipe libiconv is trying to install files into a shared area
-    when those files already exist. Those files and their manifest location are:
-       /home/pbarker/musl-build/build/tmp-musl/sysroots/qemuarm/usr/include/iconv.h
-       Matched in manifest-qemuarm-musl.populate_sysroot
-    Please verify which package should provide the above files.
-
-We also have:
-
-    WARNING: The recipe gettext is trying to install files into a shared area
-    when those files already exist. Those files and their manifest location are:
-       /home/pbarker/musl-build/build/tmp-musl/sysroots/qemuarm/usr/include/libintl.h
-       Matched in manifest-qemuarm-musl.populate_sysroot
-    Please verify which package should provide the above files.
-
-    WARNING: QA Issue: gettext: Files/directories were installed but not shipped
-      /usr/lib/charset.alias
-
-Hope this helps,
-
--- 
-Paul Barker
-
-Email: paul@paulbarker.me.uk
-http://www.paulbarker.me.uk
+I already have local fix for busy box.
 
