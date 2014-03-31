@@ -1,42 +1,39 @@
-Return-Path: <paul.betafive@gmail.com>
-Received: from mail-vc0-f177.google.com (mail-vc0-f177.google.com
-	[209.85.220.177])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B38EFE00C08
-	for <yocto@yoctoproject.org>; Mon, 31 Mar 2014 08:21:42 -0700 (PDT)
-Received: by mail-vc0-f177.google.com with SMTP id if17so8167679vcb.22
-	for <yocto@yoctoproject.org>; Mon, 31 Mar 2014 08:21:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:sender:in-reply-to:references:from:date:message-id
-	:subject:to:cc:content-type;
-	bh=cfrxX1+TTfzXr9DmIXqnUKcTmeN/z0RXo4kZbEX+xAk=;
-	b=YfoVzQPXcZzTD9eXUwMThRoUXzL5XR5WsYj6Qjv6yxdx/l1/UsHDmHvdSDjGs5swW7
-	wlP+qc6I+epwlL2K0TO+3bZ8nHa+y50E+2glTIk8glvhSPk9Knb6L/oHhxoJtBXJjp6R
-	qYYyt1P+dxpQ1GEeiNIK8b7mpq+uemKU9e8qas92ScWJeiorBvdYJ5Vz8SRcKTNW+BQz
-	iiJRpK6LX0vAoPssNRkMC7bDgi3OQR01x4rO5vhgFOIFOpud6VLMOu8XoKgGvZrX7sh5
-	BgbTMNxBabBdDRoKqjswvAV2pE0PVvH3lAVS+Xz0azfmqZ2kMoAQ4s9deXB2pzT89uDU
-	j3DQ==
-X-Received: by 10.220.162.6 with SMTP id t6mr24356894vcx.12.1396279301473;
-	Mon, 31 Mar 2014 08:21:41 -0700 (PDT)
+Return-Path: <bevenson@melinkcorp.com>
+Received: from na01-bn1-obe.outbound.protection.outlook.com
+	(mail-bn1lp0144.outbound.protection.outlook.com [207.46.163.144])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2F6CAE00C1D
+	for <yocto@yoctoproject.org>; Mon, 31 Mar 2014 10:59:26 -0700 (PDT)
+Received: from BLUPR05MB037.namprd05.prod.outlook.com (10.255.210.145) by
+	BLUPR05MB039.namprd05.prod.outlook.com (10.255.210.148) with Microsoft
+	SMTP Server (TLS) id 15.0.908.10; Mon, 31 Mar 2014 17:59:23 +0000
+Received: from BLUPR05MB037.namprd05.prod.outlook.com ([169.254.15.8]) by
+	BLUPR05MB037.namprd05.prod.outlook.com ([169.254.15.238]) with mapi id
+	15.00.0908.008; Mon, 31 Mar 2014 17:59:23 +0000
+From: Bryan Evenson <bevenson@melinkcorp.com>
+To: Bryan Evenson <bevenson@melinkcorp.com>, "yocto@yoctoproject.org"
+	<yocto@yoctoproject.org>
+Thread-Topic: USB not automounting, missing /dev/disk directory
+Thread-Index: Ac9M5e1xfdNt7L6zSUK9E3L7/ur62QADqdrg
+Date: Mon, 31 Mar 2014 17:59:22 +0000
+Message-ID: <6c4dbf0aa1f3451f858527d4999bd8be@BLUPR05MB037.namprd05.prod.outlook.com>
+References: <cc39eee6eb68468399f4d2370dd04ced@BLUPR05MB037.namprd05.prod.outlook.com>
+In-Reply-To: <cc39eee6eb68468399f4d2370dd04ced@BLUPR05MB037.namprd05.prod.outlook.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-vipre-scanned: 015341D6006CF801534323
+x-originating-ip: [98.100.91.242]
+x-forefront-prvs: 0167DB5752
+x-forefront-antispam-report: SFV:NSPM;
+	SFS:(10009001)(6009001)(428001)(377454003)(199002)(189002)(51704005)(164054003)(13464003)(33646001)(81342001)(74876001)(81542001)(50986001)(47736001)(47976001)(69226001)(49866001)(77096001)(4396001)(19580405001)(83322001)(19580395003)(76576001)(76796001)(76482001)(54316002)(54356001)(56776001)(46102001)(53806001)(98676001)(20776003)(80022001)(65816001)(74502001)(79102001)(63696002)(87936001)(74662001)(56816005)(85852003)(83072002)(31966008)(66066001)(15975445006)(90146001)(85306002)(81816001)(2656002)(87266001)(77982001)(59766001)(92566001)(86362001)(94316002)(93136001)(51856001)(97186001)(74366001)(97336001)(80976001)(99286001)(74706001)(94946001)(93516002)(81686001)(95666003)(95416001)(24736002);
+	DIR:OUT; SFP:1101; SCL:1; SRVR:BLUPR05MB039;
+	H:BLUPR05MB037.namprd05.prod.outlook.com;
+	FPR:DEA6FEDD.96FE8DDC.D1E1B3BF.5AF5E26B.203B5; MLV:sfv;
+	PTR:InfoNoRecords; A:1; MX:1; LANG:en; 
+received-spf: None (: melinkcorp.com does not designate permitted sender hosts)
 MIME-Version: 1.0
-Sender: paul.betafive@gmail.com
-Received: by 10.220.239.135 with HTTP; Mon, 31 Mar 2014 08:21:01 -0700 (PDT)
-In-Reply-To: <CAMKF1spno7Np8FXr3JXw3_W72+vRkchzZ8J5X+3e4RCFY+6nLg@mail.gmail.com>
-References: <CAMKF1soKZqqmQUVCQnUqS1GV1FO5KictTO+=up=d7Jw3+QhXMw@mail.gmail.com>
-	<CAJTo0LYF0VNwy7=rhmr7U_=tXwJtPOax3AKttn66q3qD_QXd2w@mail.gmail.com>
-	<CANyK_8deVKbC6xOUQHubvphfwQCQefHGWCt7Mp1QM4DUVXja5g@mail.gmail.com>
-	<CAMKF1sqPB+QCvPHHcxsU+ExBmNWg9jPXajkAR_FdKpJ76-x9dg@mail.gmail.com>
-	<CANyK_8er+2sjvU1csLOEpZ06qCL4h+bP2ecUYYGzyiEw0kXzQw@mail.gmail.com>
-	<CAMKF1spno7Np8FXr3JXw3_W72+vRkchzZ8J5X+3e4RCFY+6nLg@mail.gmail.com>
-From: Paul Barker <paul@paulbarker.me.uk>
-Date: Mon, 31 Mar 2014 16:21:01 +0100
-X-Google-Sender-Auth: e-zW64N3Nh9YUOgfnMcr1CuHIHo
-Message-ID: <CANyK_8f_V247P1UWaeG-7YwBq4MrHQ=+69NOgW8LUZ4_Xgx2qA@mail.gmail.com>
-To: Khem Raj <raj.khem@gmail.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	Patches and discussions about the oe-core layer
-	<openembedded-core@lists.openembedded.org>,
-	OE-devel <openembedded-devel@lists.openembedded.org>
-Subject: Re: [OE-core] [oe] initial support for musl libc with OE/Yocto Project
+X-OriginatorOrg: melinkcorp.com
+Subject: Re: USB not automounting, missing /dev/disk directory
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -48,95 +45,83 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 31 Mar 2014 15:21:42 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Mon, 31 Mar 2014 17:59:27 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-On 30 March 2014 17:48, Khem Raj <raj.khem@gmail.com> wrote:
-> On Sun, Mar 30, 2014 at 8:43 AM, Paul Barker <paul@paulbarker.me.uk> wrote:
->> On 30 March 2014 05:17, Khem Raj <raj.khem@gmail.com> wrote:
->>> On Thu, Mar 27, 2014 at 5:53 AM, Paul Barker <paul@paulbarker.me.uk> wrote:
->>>> On 26 March 2014 22:12, Burton, Ross <ross.burton@intel.com> wrote:
->>>>> On 26 March 2014 22:04, Khem Raj <raj.khem@gmail.com> wrote:
->>>>>> There were interest in other threads in having musl as an alternative
->>>>>> to eglibc/uclibc that we already have in OE, in that direction I have
->>>>>> poured in my on and off work and put it into a contrib tree
->>>>>
->>>>> Blimey Khem that was quick. :)
->>>>>
->>>>
->>>> Agreed!
->>>>
->>>> I wonder if it's worth splitting this out into its own layer though
->>>
->>> I thought about it and since class/conf changes that need to go in into OE-core
->>> first I kept it as it is (lazyness too). I think once the core support
->>> is available in OE-core
->>> we can spin the recipes into a layer of its own.
->>>
->>>> (with fixes done via bbappends) so that it's easy for multiple people
->>>> to contribute to. It would also mean it doesn't need rebasing onto
->>>> master all the time.
->>>>
->>>> I'd definitely like to get involved with this. In particular I can
->>>> ensure opkg (both current release and development branch) work with
->>>> musl and see if some of my preferred software from meta-oe will build
->>>> (vim, htop, etc).
->>>
->>> start with what we have. Once master opens up I would propose the needed
->>> changes to OE-core and spin a layer
->>>
->>
->> I did a quick 'bitbake -k core-image-minimal' to see what's currently
->> failing. Full logs and config at
->> http://www.paulbarker.me.uk/musl-build/
->>
->> Build Configuration:
->> BB_VERSION        = "1.21.1"
->> BUILD_SYS         = "x86_64-linux"
->> NATIVELSBSTRING   = "Ubuntu-12.04"
->> TARGET_SYS        = "arm-oe-linux-musleabi"
->> MACHINE           = "qemuarm"
->> DISTRO            = "nodistro"
->> DISTRO_VERSION    = "nodistro.0"
->> TUNE_FEATURES     = "armv5 thumb dsp"
->> TARGET_FPU        = "soft"
->> meta              = "kraj/musl:faafa7022ed057d55c131c456d1bdd5dfa3d2517"
->>
->> Summary: 6 tasks failed:
->>   openembedded-core/meta/recipes-support/attr/attr_2.4.47.bb, do_compile
->>   openembedded-core/meta/recipes-devtools/python/python_2.7.3.bb, do_compile
->>   openembedded-core/meta/recipes-core/util-linux/util-linux_2.24.1.bb,
->> do_compile
->>   openembedded-core/meta/recipes-core/sysvinit/sysvinit_2.88dsf.bb, do_compile
->>   openembedded-core/meta/recipes-core/busybox/busybox_1.22.1.bb, do_compile
->>   openembedded-core/meta/recipes-core/glib-2.0/glib-2.0_2.38.2.bb, do_compile
->>
->> I can see for util-linux that we need to implement qsort_r().
->>
->> Busybox probably just needs config changes:
->> http://wiki.musl-libc.org/wiki/Building_Busybox
->
->
-> I already have local fix for busy box.
+All,
 
-Excellent! I'm currently looking at util-linux.
+> -----Original Message-----
+> From: yocto-bounces@yoctoproject.org [mailto:yocto-
+> bounces@yoctoproject.org] On Behalf Of Bryan Evenson
+> Sent: Monday, March 31, 2014 9:57 AM
+> To: yocto@yoctoproject.org
+> Subject: [yocto] USB not automounting, missing /dev/disk directory
+>=20
+> All,
+>=20
+> I am on poky/dylan, and I recently did something to really screw up my lo=
+cal
+> build and I'm trying to figure out how to recover.  I have a custom image
+> which is core-image-minimal plus a few packages for my needs.  For a targ=
+et
+> device running my latest built image, the target recognizes USB devices b=
+ut
+> does not automount a USB stick.  Also, my target device does not have a
+> /dev/disk directory, which I assume means udev is not doing some things i=
+t
+> should.
+>=20
+> I have a local git repository of all layers which I'm using to tag my loc=
+al
+> releases.  The most likely candidate for my problem is after my last rele=
+ase, I
+> tried building with systemd for init just to see how that works, differen=
+ces in
+> image size, etc.  Specifically, I added:
+>=20
+> DISTRO_FEATURES_append =3D " systemd"
+> VIRTUAL-RUNTIME_init_manager =3D "systemd"
+> DISTRO_FEATURES_BACKFILL_CONSIDERED =3D "sysvinit"
+>=20
+> to my configuration.  After the systemd test build, I deleted these three=
+ lines
+> from my configuration and rebuilt the image to revert back to sysVinit.
+> Everything seems to work on my system except USB stick automounting.
+> The only other core function modification I see since my last release was=
+ a
+> configuration change I'd made to Busbox, which I also have reverted.  I d=
+id a
+> bitbake -c cleanall of all the installed packages on my image (at least I=
+ thought
+> so) and rebuilt the image.  Even after the clean rebuild, I still have th=
+e issue
+> with the USB stick not automounting and no /dev/disk directory on the
+> filesystem.
+>=20
+> Any ideas on what else needs to be cleaned out or rebuilt?  I've been try=
+ing
+> to avoid deleting the entire tmp/ directory, but I will if that looks to =
+be the
+> best solution.
+>=20
 
-I think we should ask for a new repo to be setup on
-git.yoctoproject.org for meta-musl. I'm happy to be one of the
-maintainers for that, I hope that you are as well and maybe a couple
-of the others who were interested could also help. I think having a
-few people as maintainers is important as we're all already fairly
-busy on other projects.
+I've tracked down what I believe is the problem.  systemd builds udev revis=
+ion 199, but dylan is using udev revision 182.  After reverting the configu=
+ration for systemd, there was still a package for udev revision 199 in my i=
+pk directory.  Since I did not specify which revision of udev to use in my =
+image recipe, udev revision 199 was being installed on my system.
 
-Once the layer is setup we can move the recipes off your branch of
-oe-core and into the layer as time permits. That would just leave the
-changes which need to go into oe-core on your branch.
+I'm doing a full clean of all packages for my image and deleting the ipk/ d=
+irectory to force a full rebuild of everything.  After this incident, I wan=
+t to make sure there were no more surprises left over.
 
-Does that sound like a sensible plan?
-
--- 
-Paul Barker
-
-Email: paul@paulbarker.me.uk
-http://www.paulbarker.me.uk
+> Thanks,
+> Bryan Evenson
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
