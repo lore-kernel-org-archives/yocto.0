@@ -1,24 +1,28 @@
-Return-Path: <denis@denix.org>
-Received: from vms173021pub.verizon.net (vms173021pub.verizon.net
-	[206.46.173.21])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 25CC1E00C0B;
-	Mon, 31 Mar 2014 08:04:56 -0700 (PDT)
-Received: from gandalf.denix.org ([unknown] [71.191.205.189])
-	by vms173021.mailsrvcs.net
-	(Sun Java(tm) System Messaging Server 7u2-7.02 32bit (built Apr 16
-	2009))
-	with ESMTPA id <0N3B00I3E37FL7G0@vms173021.mailsrvcs.net>; Mon,
-	31 Mar 2014 10:04:38 -0500 (CDT)
-Received: from localhost.localdomain (elrond [192.168.0.7])
-	by gandalf.denix.org (Postfix) with ESMTP id 5047E200BA; Mon,
-	31 Mar 2014 11:04:27 -0400 (EDT)
-From: Denys Dmytriyenko <denis@denix.org>
-To: yocto@yoctoproject.org,	poky@yoctoproject.org
-Date: Mon, 31 Mar 2014 11:04:25 -0400
-Message-id: <1396278265-1705-1-git-send-email-denis@denix.org>
-X-Mailer: git-send-email 1.9.1
-Cc: Denys Dmytriyenko <denys@ti.com>
-Subject: [PATCH] beaglebone: fix typo in the U-Boot config name
+Return-Path: <fede.vitali@gmail.com>
+Received: from mail-oa0-f51.google.com (mail-oa0-f51.google.com
+	[209.85.219.51])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E4B1EE00C08
+	for <yocto@yoctoproject.org>; Mon, 31 Mar 2014 08:19:14 -0700 (PDT)
+Received: by mail-oa0-f51.google.com with SMTP id i4so9529708oah.38
+	for <yocto@yoctoproject.org>; Mon, 31 Mar 2014 08:19:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=ssPr2Ocf4lbenh4Y8Z1ks7avF8YYsR70Z/W52CV6+/U=;
+	b=QYxo4rH716MlxiJuk5x2ZAoL8OXAFi16aPAH96TVjcZYZPtcunEPSD0WzLxvQt3fZB
+	YzuCaSof/h42wpcjyrAwW5ofx1xk9Awfy6R/INXh7YMKCy5qN7VPtbjkLHOkRu4LV6A/
+	qzgVzwC4bxSpP0mjJd1psWRaEd8TimhF9/RknYJvQIocGzIk7hkBNygacwrnt2YTrV1O
+	k/2ahbTzA+z/vjdMwt/fvPCVYYKTShtlG0/N8DdWy6rPiwJf7R4gmXjQjkPV1uD8mv3y
+	YFJV9mNe7vJUds9oyYLoZCCkdt14uf8156dp8s7TEov/EMP2HLOTe/axJb40fAeBtsi5
+	nX3Q==
+MIME-Version: 1.0
+X-Received: by 10.60.83.234 with SMTP id t10mr14178052oey.4.1396279153649;
+	Mon, 31 Mar 2014 08:19:13 -0700 (PDT)
+Received: by 10.76.101.112 with HTTP; Mon, 31 Mar 2014 08:19:13 -0700 (PDT)
+Date: Mon, 31 Mar 2014 17:19:13 +0200
+Message-ID: <CAD78y+7HQ18cjdxz9_xC0DAp_Q-HnDZ15CU5YT6CfXRUHpteQw@mail.gmail.com>
+From: Federico Vitali <fede.vitali@gmail.com>
+To: Yocto list discussion <yocto@yoctoproject.org>
+Subject: [meta-freescale] Problems concerning qte-in-use-image
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -30,29 +34,53 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 31 Mar 2014 15:04:57 -0000
+X-List-Received-Date: Mon, 31 Mar 2014 15:19:15 -0000
+Content-Type: multipart/alternative; boundary=089e0116019cf5ee2b04f5e892fd
 
-From: Denys Dmytriyenko <denys@ti.com>
+--089e0116019cf5ee2b04f5e892fd
+Content-Type: text/plain; charset=ISO-8859-1
 
-Signed-off-by: Denys Dmytriyenko <denys@ti.com>
----
- meta-yocto-bsp/conf/machine/beaglebone.conf | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Hi everyone,
 
-diff --git a/meta-yocto-bsp/conf/machine/beaglebone.conf b/meta-yocto-bsp/conf/machine/beaglebone.conf
-index 1dcf351..8b474a5 100644
---- a/meta-yocto-bsp/conf/machine/beaglebone.conf
-+++ b/meta-yocto-bsp/conf/machine/beaglebone.conf
-@@ -30,7 +30,7 @@ KERNEL_DEVICETREE = "am335x-bone.dtb am335x-boneblack.dtb"
- 
- SPL_BINARY = "MLO"
- UBOOT_SUFFIX = "img"
--UBOOT_MACHINE = "am335_evm_config"
-+UBOOT_MACHINE = "am335x_evm_config"
- UBOOT_ENTRYPOINT = "0x80008000"
- UBOOT_LOADADDRESS = "0x80008000"
- 
--- 
-1.9.1
+I've build qte-in-use image for imx6qsabrelite and I have some problems
+running qt embedded applications.
+Some of the problems are:
 
+1. after the boot completes and login I try to launch the demo application:
 
+# qtdemoE -qws
+
+my screen goes black and nothing happens. The board hangs, non answer also
+via serial connection
+
+2. I build and run a simple application, it runs correctly, but when I
+close the application the board hangs,
+and I have to reset it.
+
+I've read some discussion about qte-in-use-image, but I didn't found a
+solution...
+
+Any help will be appreciated.
+
+Thank you,
+Federico
+
+--089e0116019cf5ee2b04f5e892fd
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Hi everyone,<div><br></div><div>I&#39;ve build qte-in-use =
+image for=A0imx6qsabrelite and I have some problems running qt embedded app=
+lications.</div><div>Some of the problems are:</div><div><br></div><div>1. =
+after the boot completes and login I try to launch the demo application:</d=
+iv>
+<div><br></div><div># qtdemoE -qws</div><div><br></div><div>my screen goes =
+black and nothing happens. The board hangs, non answer also via serial conn=
+ection</div><div><br></div><div>2. I build and run a simple application, it=
+ runs correctly, but when I close the application the board hangs,</div>
+<div>and I have to reset it.</div><div><br></div><div>I&#39;ve read some di=
+scussion about qte-in-use-image, but I didn&#39;t found a solution...=A0</d=
+iv><div><br></div><div>Any help will be appreciated.</div><div><br></div>
+<div>Thank you,</div><div>Federico</div><div><br></div></div>
+
+--089e0116019cf5ee2b04f5e892fd--
