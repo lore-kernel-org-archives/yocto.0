@@ -1,39 +1,36 @@
-Return-Path: <bevenson@melinkcorp.com>
-Received: from na01-bn1-obe.outbound.protection.outlook.com
-	(mail-bn1lp0144.outbound.protection.outlook.com [207.46.163.144])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2F6CAE00C1D
-	for <yocto@yoctoproject.org>; Mon, 31 Mar 2014 10:59:26 -0700 (PDT)
-Received: from BLUPR05MB037.namprd05.prod.outlook.com (10.255.210.145) by
-	BLUPR05MB039.namprd05.prod.outlook.com (10.255.210.148) with Microsoft
-	SMTP Server (TLS) id 15.0.908.10; Mon, 31 Mar 2014 17:59:23 +0000
-Received: from BLUPR05MB037.namprd05.prod.outlook.com ([169.254.15.8]) by
-	BLUPR05MB037.namprd05.prod.outlook.com ([169.254.15.238]) with mapi id
-	15.00.0908.008; Mon, 31 Mar 2014 17:59:23 +0000
-From: Bryan Evenson <bevenson@melinkcorp.com>
-To: Bryan Evenson <bevenson@melinkcorp.com>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>
-Thread-Topic: USB not automounting, missing /dev/disk directory
-Thread-Index: Ac9M5e1xfdNt7L6zSUK9E3L7/ur62QADqdrg
-Date: Mon, 31 Mar 2014 17:59:22 +0000
-Message-ID: <6c4dbf0aa1f3451f858527d4999bd8be@BLUPR05MB037.namprd05.prod.outlook.com>
-References: <cc39eee6eb68468399f4d2370dd04ced@BLUPR05MB037.namprd05.prod.outlook.com>
-In-Reply-To: <cc39eee6eb68468399f4d2370dd04ced@BLUPR05MB037.namprd05.prod.outlook.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-vipre-scanned: 015341D6006CF801534323
-x-originating-ip: [98.100.91.242]
-x-forefront-prvs: 0167DB5752
-x-forefront-antispam-report: SFV:NSPM;
-	SFS:(10009001)(6009001)(428001)(377454003)(199002)(189002)(51704005)(164054003)(13464003)(33646001)(81342001)(74876001)(81542001)(50986001)(47736001)(47976001)(69226001)(49866001)(77096001)(4396001)(19580405001)(83322001)(19580395003)(76576001)(76796001)(76482001)(54316002)(54356001)(56776001)(46102001)(53806001)(98676001)(20776003)(80022001)(65816001)(74502001)(79102001)(63696002)(87936001)(74662001)(56816005)(85852003)(83072002)(31966008)(66066001)(15975445006)(90146001)(85306002)(81816001)(2656002)(87266001)(77982001)(59766001)(92566001)(86362001)(94316002)(93136001)(51856001)(97186001)(74366001)(97336001)(80976001)(99286001)(74706001)(94946001)(93516002)(81686001)(95666003)(95416001)(24736002);
-	DIR:OUT; SFP:1101; SCL:1; SRVR:BLUPR05MB039;
-	H:BLUPR05MB037.namprd05.prod.outlook.com;
-	FPR:DEA6FEDD.96FE8DDC.D1E1B3BF.5AF5E26B.203B5; MLV:sfv;
-	PTR:InfoNoRecords; A:1; MX:1; LANG:en; 
-received-spf: None (: melinkcorp.com does not designate permitted sender hosts)
+Return-Path: <elizabeth.flanagan@intel.com>
+Received: from mail-ve0-f173.google.com (mail-ve0-f173.google.com
+	[209.85.128.173])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 57305E00C1D
+	for <yocto@yoctoproject.org>; Mon, 31 Mar 2014 11:38:06 -0700 (PDT)
+Received: by mail-ve0-f173.google.com with SMTP id oy12so8419221veb.18
+	for <yocto@yoctoproject.org>; Mon, 31 Mar 2014 11:38:06 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:date
+	:message-id:subject:from:to:cc:content-type;
+	bh=CMiod9Z5h0z/Dty8bsMbs206Rw+WhexHonV1JwPpUe4=;
+	b=AV+nb28UskgOzaXOteQ3HkL1uHm7GsMkZkCYoPsib/OH9frY5E25I+AvVYdafpPd3R
+	aOirte/a0xpwy600lqQMRvew1yqu0Zsx4R0gwM5gDRFVi5zoe4fJq8NxzqoI5gItlFRA
+	lZdhnxdPIqfNqEXgBfIyT3i6I2iGXUpIawxAIwpM1H5TfhOW26fPh6aNvr4k5FLUgXus
+	+84zgjzfNbsOTN/cOurLH4C2Y54VsPJfAkZhmXCG+Fd1qC5eWgQb/cAPK9IaeU0U1DrK
+	1wXr26zmEL+/VAbKGcGS6L3Qn834ng6ew02RQCKZcW0mVUVqBQEUKZbqROsmqH36mhhz
+	1EaQ==
+X-Gm-Message-State: ALoCoQkdeh1u3agwr6wpeGaeaJue/yWhPBQsIaWEoykTJNS3tKeGxUwDHol3P43olBoA7InYc3dO
 MIME-Version: 1.0
-X-OriginatorOrg: melinkcorp.com
-Subject: Re: USB not automounting, missing /dev/disk directory
+X-Received: by 10.59.7.102 with SMTP id db6mr8988834ved.17.1396291085904; Mon,
+	31 Mar 2014 11:38:05 -0700 (PDT)
+Received: by 10.52.173.69 with HTTP; Mon, 31 Mar 2014 11:38:05 -0700 (PDT)
+In-Reply-To: <CAP9ODKqMiSZRRMHg24J8BOe4wizeJWcufk7DvteXsknCC4X8Gg@mail.gmail.com>
+References: <CAPhnLPAJy5Lxbxfrh_RV-fOeoEyaXy8jZR6go2VdP=unHToFPw@mail.gmail.com>
+	<CAP9ODKqAh9Jb2E8DyBFQuwe91ndAGF5zJr1VAHKdfK=SrRxdDQ@mail.gmail.com>
+	<CAP9ODKqMiSZRRMHg24J8BOe4wizeJWcufk7DvteXsknCC4X8Gg@mail.gmail.com>
+Date: Mon, 31 Mar 2014 11:38:05 -0700
+Message-ID: <CAPhnLPDGY8ydV5jyRH=bLk=sAoj=c4ZP=b8Rx=1n6tfdG1Zbkg@mail.gmail.com>
+From: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
+To: Otavio Salvador <otavio@ossystems.com.br>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Reducing nightly/release build artifacts.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,83 +42,41 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 31 Mar 2014 17:59:27 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Mon, 31 Mar 2014 18:38:07 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
-All,
+Otavio
 
-> -----Original Message-----
-> From: yocto-bounces@yoctoproject.org [mailto:yocto-
-> bounces@yoctoproject.org] On Behalf Of Bryan Evenson
-> Sent: Monday, March 31, 2014 9:57 AM
-> To: yocto@yoctoproject.org
-> Subject: [yocto] USB not automounting, missing /dev/disk directory
->=20
-> All,
->=20
-> I am on poky/dylan, and I recently did something to really screw up my lo=
-cal
-> build and I'm trying to figure out how to recover.  I have a custom image
-> which is core-image-minimal plus a few packages for my needs.  For a targ=
-et
-> device running my latest built image, the target recognizes USB devices b=
-ut
-> does not automount a USB stick.  Also, my target device does not have a
-> /dev/disk directory, which I assume means udev is not doing some things i=
-t
-> should.
->=20
-> I have a local git repository of all layers which I'm using to tag my loc=
-al
-> releases.  The most likely candidate for my problem is after my last rele=
-ase, I
-> tried building with systemd for init just to see how that works, differen=
-ces in
-> image size, etc.  Specifically, I added:
->=20
-> DISTRO_FEATURES_append =3D " systemd"
-> VIRTUAL-RUNTIME_init_manager =3D "systemd"
-> DISTRO_FEATURES_BACKFILL_CONSIDERED =3D "sysvinit"
->=20
-> to my configuration.  After the systemd test build, I deleted these three=
- lines
-> from my configuration and rebuilt the image to revert back to sysVinit.
-> Everything seems to work on my system except USB stick automounting.
-> The only other core function modification I see since my last release was=
- a
-> configuration change I'd made to Busbox, which I also have reverted.  I d=
-id a
-> bitbake -c cleanall of all the installed packages on my image (at least I=
- thought
-> so) and rebuilt the image.  Even after the clean rebuild, I still have th=
-e issue
-> with the USB stick not automounting and no /dev/disk directory on the
-> filesystem.
->=20
-> Any ideas on what else needs to be cleaned out or rebuilt?  I've been try=
-ing
-> to avoid deleting the entire tmp/ directory, but I will if that looks to =
-be the
-> best solution.
->=20
+So, if I were to not publish the fsl builds, would that be an issue?
 
-I've tracked down what I believe is the problem.  systemd builds udev revis=
-ion 199, but dylan is using udev revision 182.  After reverting the configu=
-ration for systemd, there was still a package for udev revision 199 in my i=
-pk directory.  Since I did not specify which revision of udev to use in my =
-image recipe, udev revision 199 was being installed on my system.
+-b
 
-I'm doing a full clean of all packages for my image and deleting the ipk/ d=
-irectory to force a full rebuild of everything.  After this incident, I wan=
-t to make sure there were no more surprises left over.
-
-> Thanks,
-> Bryan Evenson
+On Fri, Mar 28, 2014 at 6:02 AM, Otavio Salvador
+<otavio@ossystems.com.br> wrote:
+> Hello Beth,
+>
+> On Wed, Mar 26, 2014 at 6:22 PM, Otavio Salvador
+> <otavio@ossystems.com.br> wrote:
+>> On Wed, Mar 26, 2014 at 6:14 PM, Flanagan, Elizabeth
+>> <elizabeth.flanagan@intel.com> wrote:
+>>> I'd like to start looking at reducing the number of artifacts we're
+>>> releasing both for our nightly builds (which is at 250,000 artifacts
+>>> and .25 TB!) and releases.
+>
+> I don't use any meta-fsl-arm artifacts as I usually build the images
+> for testing, as does Daiane, however the autobuilder is critical for
+> me as your build does spot and exercise other things which mine does
+> not (plus the MUT) so I highly depend on it.
+>
 > --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+> Otavio Salvador                             O.S. Systems
+> http://www.ossystems.com.br        http://code.ossystems.com.br
+> Mobile: +55 (53) 9981-7854            Mobile: +1 (347) 903-9750
+
+
+
+-- 
+Elizabeth Flanagan
+Yocto Project
+Build and Release
 
