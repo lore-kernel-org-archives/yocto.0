@@ -1,34 +1,35 @@
-Return-Path: <elizabeth.flanagan@intel.com>
-Received: from mail-ve0-f173.google.com (mail-ve0-f173.google.com
-	[209.85.128.173])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 57305E00C1D
-	for <yocto@yoctoproject.org>; Mon, 31 Mar 2014 11:38:06 -0700 (PDT)
-Received: by mail-ve0-f173.google.com with SMTP id oy12so8419221veb.18
-	for <yocto@yoctoproject.org>; Mon, 31 Mar 2014 11:38:06 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:date
-	:message-id:subject:from:to:cc:content-type;
-	bh=CMiod9Z5h0z/Dty8bsMbs206Rw+WhexHonV1JwPpUe4=;
-	b=AV+nb28UskgOzaXOteQ3HkL1uHm7GsMkZkCYoPsib/OH9frY5E25I+AvVYdafpPd3R
-	aOirte/a0xpwy600lqQMRvew1yqu0Zsx4R0gwM5gDRFVi5zoe4fJq8NxzqoI5gItlFRA
-	lZdhnxdPIqfNqEXgBfIyT3i6I2iGXUpIawxAIwpM1H5TfhOW26fPh6aNvr4k5FLUgXus
-	+84zgjzfNbsOTN/cOurLH4C2Y54VsPJfAkZhmXCG+Fd1qC5eWgQb/cAPK9IaeU0U1DrK
-	1wXr26zmEL+/VAbKGcGS6L3Qn834ng6ew02RQCKZcW0mVUVqBQEUKZbqROsmqH36mhhz
-	1EaQ==
-X-Gm-Message-State: ALoCoQkdeh1u3agwr6wpeGaeaJue/yWhPBQsIaWEoykTJNS3tKeGxUwDHol3P43olBoA7InYc3dO
+Return-Path: <otavio.salvador@gmail.com>
+Received: from mail-yh0-f54.google.com (mail-yh0-f54.google.com
+	[209.85.213.54])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 50AFAE00C1D
+	for <yocto@yoctoproject.org>; Mon, 31 Mar 2014 11:39:01 -0700 (PDT)
+Received: by mail-yh0-f54.google.com with SMTP id f73so8033435yha.13
+	for <yocto@yoctoproject.org>; Mon, 31 Mar 2014 11:39:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:sender:in-reply-to:references:date:message-id:subject
+	:from:to:cc:content-type;
+	bh=w37NAZSql6m+rANYZ/yk8r5+rakcTYHAPN0fsytl2gY=;
+	b=HftSBBPriDZYW9cWYDSmWa3DS9YBmp4Wp9FyUOs1mKGbICWEQVehaDBtM17gst4YO9
+	FILqzOYWl/qG+6CozXJ4q4aegPjZVHLpOyUUcUzQgwWGK5HAySTYO74b8BLZ/SLih77E
+	3hcTIRSkeSkqF3OH98JQcJ/yfJDI6drATpIMVkWjETCAlw7auLCHXi9cJdwqJIOMalxp
+	yEpQwIhIUnsrrOa5C3qebSZHUt4LvQ9YRObfEDP39qAsnPy4s3qw8xQf8uhj5ZXrjpnL
+	V5g/RQ15mh6wmsxK62DXSlee8mvBABB9Zj91SLNe79jKy/i1pfX6ALKsnrnih47Jsxt+
+	7jqA==
 MIME-Version: 1.0
-X-Received: by 10.59.7.102 with SMTP id db6mr8988834ved.17.1396291085904; Mon,
-	31 Mar 2014 11:38:05 -0700 (PDT)
-Received: by 10.52.173.69 with HTTP; Mon, 31 Mar 2014 11:38:05 -0700 (PDT)
-In-Reply-To: <CAP9ODKqMiSZRRMHg24J8BOe4wizeJWcufk7DvteXsknCC4X8Gg@mail.gmail.com>
+X-Received: by 10.236.63.103 with SMTP id z67mr7724666yhc.2.1396291141140;
+	Mon, 31 Mar 2014 11:39:01 -0700 (PDT)
+Sender: otavio.salvador@gmail.com
+Received: by 10.170.124.72 with HTTP; Mon, 31 Mar 2014 11:39:01 -0700 (PDT)
+In-Reply-To: <CAPhnLPDGY8ydV5jyRH=bLk=sAoj=c4ZP=b8Rx=1n6tfdG1Zbkg@mail.gmail.com>
 References: <CAPhnLPAJy5Lxbxfrh_RV-fOeoEyaXy8jZR6go2VdP=unHToFPw@mail.gmail.com>
 	<CAP9ODKqAh9Jb2E8DyBFQuwe91ndAGF5zJr1VAHKdfK=SrRxdDQ@mail.gmail.com>
 	<CAP9ODKqMiSZRRMHg24J8BOe4wizeJWcufk7DvteXsknCC4X8Gg@mail.gmail.com>
-Date: Mon, 31 Mar 2014 11:38:05 -0700
-Message-ID: <CAPhnLPDGY8ydV5jyRH=bLk=sAoj=c4ZP=b8Rx=1n6tfdG1Zbkg@mail.gmail.com>
-From: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
-To: Otavio Salvador <otavio@ossystems.com.br>
+	<CAPhnLPDGY8ydV5jyRH=bLk=sAoj=c4ZP=b8Rx=1n6tfdG1Zbkg@mail.gmail.com>
+Date: Mon, 31 Mar 2014 15:39:01 -0300
+X-Google-Sender-Auth: 1PeqV6xb7RyFaq3vIulUv_v4pQY
+Message-ID: <CAP9ODKotM4XFA8cpSu=SjpcjAKwHThPGxJVnE=5VC2xs_ww8ug@mail.gmail.com>
+From: Otavio Salvador <otavio@ossystems.com.br>
+To: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: Reducing nightly/release build artifacts.
 X-BeenThere: yocto@yoctoproject.org
@@ -42,41 +43,18 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 31 Mar 2014 18:38:07 -0000
+X-List-Received-Date: Mon, 31 Mar 2014 18:39:03 -0000
 Content-Type: text/plain; charset=ISO-8859-1
 
-Otavio
+On Mon, Mar 31, 2014 at 3:38 PM, Flanagan, Elizabeth
+<elizabeth.flanagan@intel.com> wrote:
+> So, if I were to not publish the fsl builds, would that be an issue?
 
-So, if I were to not publish the fsl builds, would that be an issue?
-
--b
-
-On Fri, Mar 28, 2014 at 6:02 AM, Otavio Salvador
-<otavio@ossystems.com.br> wrote:
-> Hello Beth,
->
-> On Wed, Mar 26, 2014 at 6:22 PM, Otavio Salvador
-> <otavio@ossystems.com.br> wrote:
->> On Wed, Mar 26, 2014 at 6:14 PM, Flanagan, Elizabeth
->> <elizabeth.flanagan@intel.com> wrote:
->>> I'd like to start looking at reducing the number of artifacts we're
->>> releasing both for our nightly builds (which is at 250,000 artifacts
->>> and .25 TB!) and releases.
->
-> I don't use any meta-fsl-arm artifacts as I usually build the images
-> for testing, as does Daiane, however the autobuilder is critical for
-> me as your build does spot and exercise other things which mine does
-> not (plus the MUT) so I highly depend on it.
->
-> --
-> Otavio Salvador                             O.S. Systems
-> http://www.ossystems.com.br        http://code.ossystems.com.br
-> Mobile: +55 (53) 9981-7854            Mobile: +1 (347) 903-9750
-
-
+For me, it would work. In case I need something I can ask you to add
+it back in future.
 
 -- 
-Elizabeth Flanagan
-Yocto Project
-Build and Release
+Otavio Salvador                             O.S. Systems
+http://www.ossystems.com.br        http://code.ossystems.com.br
+Mobile: +55 (53) 9981-7854            Mobile: +1 (347) 903-9750
 
