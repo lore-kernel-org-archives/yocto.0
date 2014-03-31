@@ -1,28 +1,42 @@
-Return-Path: <fede.vitali@gmail.com>
-Received: from mail-oa0-f51.google.com (mail-oa0-f51.google.com
-	[209.85.219.51])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E4B1EE00C08
-	for <yocto@yoctoproject.org>; Mon, 31 Mar 2014 08:19:14 -0700 (PDT)
-Received: by mail-oa0-f51.google.com with SMTP id i4so9529708oah.38
-	for <yocto@yoctoproject.org>; Mon, 31 Mar 2014 08:19:13 -0700 (PDT)
+Return-Path: <paul.betafive@gmail.com>
+Received: from mail-vc0-f177.google.com (mail-vc0-f177.google.com
+	[209.85.220.177])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B38EFE00C08
+	for <yocto@yoctoproject.org>; Mon, 31 Mar 2014 08:21:42 -0700 (PDT)
+Received: by mail-vc0-f177.google.com with SMTP id if17so8167679vcb.22
+	for <yocto@yoctoproject.org>; Mon, 31 Mar 2014 08:21:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=ssPr2Ocf4lbenh4Y8Z1ks7avF8YYsR70Z/W52CV6+/U=;
-	b=QYxo4rH716MlxiJuk5x2ZAoL8OXAFi16aPAH96TVjcZYZPtcunEPSD0WzLxvQt3fZB
-	YzuCaSof/h42wpcjyrAwW5ofx1xk9Awfy6R/INXh7YMKCy5qN7VPtbjkLHOkRu4LV6A/
-	qzgVzwC4bxSpP0mjJd1psWRaEd8TimhF9/RknYJvQIocGzIk7hkBNygacwrnt2YTrV1O
-	k/2ahbTzA+z/vjdMwt/fvPCVYYKTShtlG0/N8DdWy6rPiwJf7R4gmXjQjkPV1uD8mv3y
-	YFJV9mNe7vJUds9oyYLoZCCkdt14uf8156dp8s7TEov/EMP2HLOTe/axJb40fAeBtsi5
-	nX3Q==
+	h=mime-version:sender:in-reply-to:references:from:date:message-id
+	:subject:to:cc:content-type;
+	bh=cfrxX1+TTfzXr9DmIXqnUKcTmeN/z0RXo4kZbEX+xAk=;
+	b=YfoVzQPXcZzTD9eXUwMThRoUXzL5XR5WsYj6Qjv6yxdx/l1/UsHDmHvdSDjGs5swW7
+	wlP+qc6I+epwlL2K0TO+3bZ8nHa+y50E+2glTIk8glvhSPk9Knb6L/oHhxoJtBXJjp6R
+	qYYyt1P+dxpQ1GEeiNIK8b7mpq+uemKU9e8qas92ScWJeiorBvdYJ5Vz8SRcKTNW+BQz
+	iiJRpK6LX0vAoPssNRkMC7bDgi3OQR01x4rO5vhgFOIFOpud6VLMOu8XoKgGvZrX7sh5
+	BgbTMNxBabBdDRoKqjswvAV2pE0PVvH3lAVS+Xz0azfmqZ2kMoAQ4s9deXB2pzT89uDU
+	j3DQ==
+X-Received: by 10.220.162.6 with SMTP id t6mr24356894vcx.12.1396279301473;
+	Mon, 31 Mar 2014 08:21:41 -0700 (PDT)
 MIME-Version: 1.0
-X-Received: by 10.60.83.234 with SMTP id t10mr14178052oey.4.1396279153649;
-	Mon, 31 Mar 2014 08:19:13 -0700 (PDT)
-Received: by 10.76.101.112 with HTTP; Mon, 31 Mar 2014 08:19:13 -0700 (PDT)
-Date: Mon, 31 Mar 2014 17:19:13 +0200
-Message-ID: <CAD78y+7HQ18cjdxz9_xC0DAp_Q-HnDZ15CU5YT6CfXRUHpteQw@mail.gmail.com>
-From: Federico Vitali <fede.vitali@gmail.com>
-To: Yocto list discussion <yocto@yoctoproject.org>
-Subject: [meta-freescale] Problems concerning qte-in-use-image
+Sender: paul.betafive@gmail.com
+Received: by 10.220.239.135 with HTTP; Mon, 31 Mar 2014 08:21:01 -0700 (PDT)
+In-Reply-To: <CAMKF1spno7Np8FXr3JXw3_W72+vRkchzZ8J5X+3e4RCFY+6nLg@mail.gmail.com>
+References: <CAMKF1soKZqqmQUVCQnUqS1GV1FO5KictTO+=up=d7Jw3+QhXMw@mail.gmail.com>
+	<CAJTo0LYF0VNwy7=rhmr7U_=tXwJtPOax3AKttn66q3qD_QXd2w@mail.gmail.com>
+	<CANyK_8deVKbC6xOUQHubvphfwQCQefHGWCt7Mp1QM4DUVXja5g@mail.gmail.com>
+	<CAMKF1sqPB+QCvPHHcxsU+ExBmNWg9jPXajkAR_FdKpJ76-x9dg@mail.gmail.com>
+	<CANyK_8er+2sjvU1csLOEpZ06qCL4h+bP2ecUYYGzyiEw0kXzQw@mail.gmail.com>
+	<CAMKF1spno7Np8FXr3JXw3_W72+vRkchzZ8J5X+3e4RCFY+6nLg@mail.gmail.com>
+From: Paul Barker <paul@paulbarker.me.uk>
+Date: Mon, 31 Mar 2014 16:21:01 +0100
+X-Google-Sender-Auth: e-zW64N3Nh9YUOgfnMcr1CuHIHo
+Message-ID: <CANyK_8f_V247P1UWaeG-7YwBq4MrHQ=+69NOgW8LUZ4_Xgx2qA@mail.gmail.com>
+To: Khem Raj <raj.khem@gmail.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
+	Patches and discussions about the oe-core layer
+	<openembedded-core@lists.openembedded.org>,
+	OE-devel <openembedded-devel@lists.openembedded.org>
+Subject: Re: [OE-core] [oe] initial support for musl libc with OE/Yocto Project
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,53 +48,95 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 31 Mar 2014 15:19:15 -0000
-Content-Type: multipart/alternative; boundary=089e0116019cf5ee2b04f5e892fd
-
---089e0116019cf5ee2b04f5e892fd
+X-List-Received-Date: Mon, 31 Mar 2014 15:21:42 -0000
 Content-Type: text/plain; charset=ISO-8859-1
 
-Hi everyone,
+On 30 March 2014 17:48, Khem Raj <raj.khem@gmail.com> wrote:
+> On Sun, Mar 30, 2014 at 8:43 AM, Paul Barker <paul@paulbarker.me.uk> wrote:
+>> On 30 March 2014 05:17, Khem Raj <raj.khem@gmail.com> wrote:
+>>> On Thu, Mar 27, 2014 at 5:53 AM, Paul Barker <paul@paulbarker.me.uk> wrote:
+>>>> On 26 March 2014 22:12, Burton, Ross <ross.burton@intel.com> wrote:
+>>>>> On 26 March 2014 22:04, Khem Raj <raj.khem@gmail.com> wrote:
+>>>>>> There were interest in other threads in having musl as an alternative
+>>>>>> to eglibc/uclibc that we already have in OE, in that direction I have
+>>>>>> poured in my on and off work and put it into a contrib tree
+>>>>>
+>>>>> Blimey Khem that was quick. :)
+>>>>>
+>>>>
+>>>> Agreed!
+>>>>
+>>>> I wonder if it's worth splitting this out into its own layer though
+>>>
+>>> I thought about it and since class/conf changes that need to go in into OE-core
+>>> first I kept it as it is (lazyness too). I think once the core support
+>>> is available in OE-core
+>>> we can spin the recipes into a layer of its own.
+>>>
+>>>> (with fixes done via bbappends) so that it's easy for multiple people
+>>>> to contribute to. It would also mean it doesn't need rebasing onto
+>>>> master all the time.
+>>>>
+>>>> I'd definitely like to get involved with this. In particular I can
+>>>> ensure opkg (both current release and development branch) work with
+>>>> musl and see if some of my preferred software from meta-oe will build
+>>>> (vim, htop, etc).
+>>>
+>>> start with what we have. Once master opens up I would propose the needed
+>>> changes to OE-core and spin a layer
+>>>
+>>
+>> I did a quick 'bitbake -k core-image-minimal' to see what's currently
+>> failing. Full logs and config at
+>> http://www.paulbarker.me.uk/musl-build/
+>>
+>> Build Configuration:
+>> BB_VERSION        = "1.21.1"
+>> BUILD_SYS         = "x86_64-linux"
+>> NATIVELSBSTRING   = "Ubuntu-12.04"
+>> TARGET_SYS        = "arm-oe-linux-musleabi"
+>> MACHINE           = "qemuarm"
+>> DISTRO            = "nodistro"
+>> DISTRO_VERSION    = "nodistro.0"
+>> TUNE_FEATURES     = "armv5 thumb dsp"
+>> TARGET_FPU        = "soft"
+>> meta              = "kraj/musl:faafa7022ed057d55c131c456d1bdd5dfa3d2517"
+>>
+>> Summary: 6 tasks failed:
+>>   openembedded-core/meta/recipes-support/attr/attr_2.4.47.bb, do_compile
+>>   openembedded-core/meta/recipes-devtools/python/python_2.7.3.bb, do_compile
+>>   openembedded-core/meta/recipes-core/util-linux/util-linux_2.24.1.bb,
+>> do_compile
+>>   openembedded-core/meta/recipes-core/sysvinit/sysvinit_2.88dsf.bb, do_compile
+>>   openembedded-core/meta/recipes-core/busybox/busybox_1.22.1.bb, do_compile
+>>   openembedded-core/meta/recipes-core/glib-2.0/glib-2.0_2.38.2.bb, do_compile
+>>
+>> I can see for util-linux that we need to implement qsort_r().
+>>
+>> Busybox probably just needs config changes:
+>> http://wiki.musl-libc.org/wiki/Building_Busybox
+>
+>
+> I already have local fix for busy box.
 
-I've build qte-in-use image for imx6qsabrelite and I have some problems
-running qt embedded applications.
-Some of the problems are:
+Excellent! I'm currently looking at util-linux.
 
-1. after the boot completes and login I try to launch the demo application:
+I think we should ask for a new repo to be setup on
+git.yoctoproject.org for meta-musl. I'm happy to be one of the
+maintainers for that, I hope that you are as well and maybe a couple
+of the others who were interested could also help. I think having a
+few people as maintainers is important as we're all already fairly
+busy on other projects.
 
-# qtdemoE -qws
+Once the layer is setup we can move the recipes off your branch of
+oe-core and into the layer as time permits. That would just leave the
+changes which need to go into oe-core on your branch.
 
-my screen goes black and nothing happens. The board hangs, non answer also
-via serial connection
+Does that sound like a sensible plan?
 
-2. I build and run a simple application, it runs correctly, but when I
-close the application the board hangs,
-and I have to reset it.
+-- 
+Paul Barker
 
-I've read some discussion about qte-in-use-image, but I didn't found a
-solution...
+Email: paul@paulbarker.me.uk
+http://www.paulbarker.me.uk
 
-Any help will be appreciated.
-
-Thank you,
-Federico
-
---089e0116019cf5ee2b04f5e892fd
-Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">Hi everyone,<div><br></div><div>I&#39;ve build qte-in-use =
-image for=A0imx6qsabrelite and I have some problems running qt embedded app=
-lications.</div><div>Some of the problems are:</div><div><br></div><div>1. =
-after the boot completes and login I try to launch the demo application:</d=
-iv>
-<div><br></div><div># qtdemoE -qws</div><div><br></div><div>my screen goes =
-black and nothing happens. The board hangs, non answer also via serial conn=
-ection</div><div><br></div><div>2. I build and run a simple application, it=
- runs correctly, but when I close the application the board hangs,</div>
-<div>and I have to reset it.</div><div><br></div><div>I&#39;ve read some di=
-scussion about qte-in-use-image, but I didn&#39;t found a solution...=A0</d=
-iv><div><br></div><div>Any help will be appreciated.</div><div><br></div>
-<div>Thank you,</div><div>Federico</div><div><br></div></div>
-
---089e0116019cf5ee2b04f5e892fd--
