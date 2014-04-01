@@ -1,33 +1,25 @@
-Return-Path: <meenakumari.s@hcl.com>
-Received: from GWS05.hcl.com (gws05.avitas.hcl.com [203.105.185.23])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C0E41E00C53
-	for <yocto@yoctoproject.org>; Tue,  1 Apr 2014 02:05:56 -0700 (PDT)
-X-IronPort-AV: E=Sophos;i="4.97,771,1389724200"; d="scan'208";a="59068380"
-Received: from unknown (HELO NDA-CORP-HT02.CORP.HCL.IN) ([10.248.64.34])
-	by GWS05.hcl.com with ESMTP/TLS/AES128-SHA; 01 Apr 2014 14:33:50 +0530
-Received: from NDA-HCLT-CSHT06.HCLT.CORP.HCL.IN (10.98.132.31) by
-	NDA-CORP-HT02.CORP.HCL.IN (10.248.64.34) with Microsoft SMTP Server
-	(TLS) id 14.3.123.3; Tue, 1 Apr 2014 14:35:47 +0530
-Received: from NDA-HCLT-MBS02.HCLT.CORP.HCL.IN ([10.98.132.17]) by
-	NDA-HCLT-CSHT06.HCLT.CORP.HCL.IN ([10.98.132.31]) with mapi id
-	14.03.0123.003; Tue, 1 Apr 2014 14:35:47 +0530
-From: Meenakumari Shedole <meenakumari.s@hcl.com>
-To: "Burton, Ross" <ross.burton@intel.com>
-Thread-Topic: [yocto] Help-Gstreamer Vaapi Plugin Issue in 1080p mp4 playback
-Thread-Index: AQHPSYlGWF8OgI4BY0eUG8fpk2Rq8Zr0llAAgAFgBgCAAAsvkP///EyAgAZ3sHA=
-Date: Tue, 1 Apr 2014 09:05:47 +0000
-Message-ID: <E4938C0D959B3445943720B88F07213415613B44@NDA-HCLT-MBS02.hclt.corp.hcl.in>
-References: <E4938C0D959B3445943720B88F07213415613522@NDA-HCLT-MBS02.hclt.corp.hcl.in>
-	<CAJTo0LY5VVCZbimtTBNdgDCEB+1mwSwdsVH31ik8GSdheg48OQ@mail.gmail.com>
-In-Reply-To: <CAJTo0LY5VVCZbimtTBNdgDCEB+1mwSwdsVH31ik8GSdheg48OQ@mail.gmail.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.98.134.12]
+Return-Path: <paul.eggleton@linux.intel.com>
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 89E8DE00C53
+	for <yocto@yoctoproject.org>; Tue,  1 Apr 2014 02:52:41 -0700 (PDT)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by fmsmga101.fm.intel.com with ESMTP; 01 Apr 2014 02:52:40 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.97,771,1389772800"; d="scan'208";a="504211705"
+Received: from mmckenna-mobl2.ger.corp.intel.com (HELO
+	peggleto-mobl5.ger.corp.intel.com) ([10.252.120.155])
+	by fmsmga001.fm.intel.com with ESMTP; 01 Apr 2014 02:52:32 -0700
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: Andrey Telepin <systemcpp@mail.ru>
+Date: Tue, 01 Apr 2014 10:52:31 +0100
+Message-ID: <2484286.PxjcV5vpH4@peggleto-mobl5.ger.corp.intel.com>
+Organization: Intel Corporation
+User-Agent: KMail/4.12.3 (Linux/3.13.6-200.fc20.x86_64; KDE/4.12.3; x86_64; ; )
+In-Reply-To: <2636868.FdafsGWpEz@atelepin-nb>
+References: <2486851.ASaRMk8FDl@atelepin-nb> <2636868.FdafsGWpEz@atelepin-nb>
 MIME-Version: 1.0
-Cc: Dipesh Karmakar <Dipesh.Karmakar@hcl.com>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Help-Gstreamer Vaapi Plugin Issue in 1080p mp4 playback
+Cc: yocto@yoctoproject.org
+Subject: Re: qt-gstreamer configure problem
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,79 +31,25 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 01 Apr 2014 09:06:09 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+X-List-Received-Date: Tue, 01 Apr 2014 09:52:41 -0000
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-VGhhbmtzIGZvciB5b3VyIGlucHV0Lg0KDQpJIGhhdmUgdXNlZCBsaWJ2YS1pbnRlbC1kcml2ZXIt
-MS4yLjAgYXMgYSBwYXJ0IG9mIG1ldGEtaW50ZWwgb24gRG9yYSBhcyB0aGUgcmVjaXBlcyBwcm92
-aWRlZCBieSBJbnRlbC4gSSBjYW4gYXR0YWNoIGJiIGZpbGUgYWxzbyBpZiBpdHMgbmVlZGVkLg0K
-SGF2ZSBidWlsZCBJbnRlbCB2YSBzb3VyY2UgbWFudWFsbHkgYW5kIG5vdyB3ZSBjYW4gYWJsZSB0
-byBzaW5rIHdpdGggdmFhcGlzaW5rIGluIGl0cyBvd24gd2luZG93Lg0KV2UgYXJlIG5vdCBhYmxl
-IHRvIHVzZSB2YWFwaXNpbmsgd2l0aCBBVkkvM0dQIGZpbGVzLCBhc2tpbmcgZm9yIHNvbWUgbWlz
-c2luZyB2aWRlby94LXN1cmZhY2UuDQoNCkkgaGF2ZSBjaGVja2VkIHZhYXBpc2luayBzb3VyY2Us
-IGl0IHNlZW1zIGl0cyBzdXBwb3J0aW5nIG92ZXJsYXkgb24gZm9yZWlnbiBYIHdpbmRvdy4NCmh0
-dHBzOi8vZ2l0b3Jpb3VzLm9yZy92YWFwaS9nc3RyZWFtZXItdmFhcGkvc291cmNlLzY0M2QzNWU4
-N2E2NzM3NmFmOWNkODljZDg2ODY2NjM2OGIxMDVhYzM6Z3N0L3ZhYXBpc2luay9nc3R2YWFwaXNp
-bmsuYw0Kc3RhdGljIGdib29sZWFuIGdzdF92YWFwaXNpbmtfaW1wbGVtZW50c19pbnRlcmZhY2Vf
-c3VwcG9ydGVkKCk7DQpzdGF0aWMgZ2Jvb2xlYW4gZ3N0X3ZhYXBpc2lua19lbnN1cmVfd2luZG93
-X3hpZCgpOw0KDQpIb3dldmVyIHdoZW4gSSBhbSB0cnlpbmcgdG8gc2V0IHRoZSB3aW5kb3cgdG8g
-dGhlIHNpbmsgdXNpbmcgZ3N0X3hfb3ZlcmxheV9zZXRfeHdpbmRvd19pZCBPUiBnc3RfeF9vdmVy
-bGF5X3NldF93aW5kb3dfaGFuZGxlIEFQSSdzIEkgYW0gZ2V0dGluZyBmb2xsb3dpbmcgcnVudGlt
-ZSBlcnJvci4NCg0KICAgIFNldFdpbmRvd0lkKCkgaW4gUGlwZXMvUEFTRV9NV19NZWRpYVBpcGUu
-Y3BwLCBsaW5lIDQwMzogd2luZG93IGlkIDY5MjA2MDIyZA0KICAgIGxpYnZhOiBWQS1BUEkgdmVy
-c2lvbiAwLjMyLjANCiAgICBsaWJ2YTogdmFfZ2V0RHJpdmVyTmFtZSgpIHJldHVybnMgMA0KICAg
-IGxpYnZhOiBUcnlpbmcgdG8gb3BlbiAvdXNyL2xpYi9pMzg2LWxpbnV4LWdudS9kcmkvaTk2NV9k
-cnZfdmlkZW8uc28NCiAgICBsaWJ2YTogdmFfb3BlbkRyaXZlcigpIHJldHVybnMgMA0KDQogICAg
-R1N0cmVhbWVyLUNSSVRJQ0FMICoqOiBnc3RfdXRpbF9mcmFjdGlvbl9tdWx0aXBseTogYXNzZXJ0
-aW9uIGBhX2QgIT0gMCcgZmFpbGVkDQoNCkJUVyBJIGFtIG5vdCBhd2FyZSBvZiByZXBhcmVudCB3
-aW5kb3cuDQoNCldlIGhhdmUgcnVuIHRoZSBzYW1lIHNldHVwIGluIGRlc2t0b3Agc2lkZSBVYnVu
-dHUgYWxzbyAoR1NUIHZhYXBpIFZlcnNpb246IDAuMy42KSwgcmVzdWx0aW5nIHRoZSBzYW1lLg0K
-DQoNCg0KVGhhbmtzIGFuZCBSZWdhcmRzLg0KTWVlbmENCg0KDQoNCi0tLS0tT3JpZ2luYWwgTWVz
-c2FnZS0tLS0tDQpGcm9tOiBCdXJ0b24sIFJvc3MgW21haWx0bzpyb3NzLmJ1cnRvbkBpbnRlbC5j
-b21dIA0KU2VudDogRnJpZGF5LCBNYXJjaCAyOCwgMjAxNCA0OjQyIFBNDQpUbzogTWVlbmFrdW1h
-cmkgU2hlZG9sZQ0KQ2M6IHlvY3RvQHlvY3RvcHJvamVjdC5vcmc7IERpcGVzaCBLYXJtYWthcg0K
-U3ViamVjdDogUmU6IFt5b2N0b10gSGVscC1Hc3RyZWFtZXIgVmFhcGkgUGx1Z2luIElzc3VlIGlu
-IDEwODBwIG1wNCBwbGF5YmFjaw0KDQpPbiAyOCBNYXJjaCAyMDE0IDA2OjA1LCBNZWVuYWt1bWFy
-aSBTaGVkb2xlIDxtZWVuYWt1bWFyaS5zQGhjbC5jb20+IHdyb3RlOg0KPiAxLiBwbGF5YmluMiAr
-IGF2aS8zZ3AgaXMgd29ya2luZyBwcm9wZXJseSBiZWNhdXNlIG9mIHh2aW1hZ2VzaW5rIGlzIHVz
-ZWQgaW50ZXJhbGx5Lg0KPiAyLiBwbGF5YmluMiArIG1wNCBpcyBub3QgdGFraW5nIHZhYXBpIHNp
-bmssIHdlIG5lZWQgdG8gbWFudWFsbHkgc2V0IHZpZGVvLXNpbms9dmFhcGlzaW5rLg0KPiAgICBB
-bHNvIHdlIGFyZSBnZXR0aW5nIGFyYml0cmFyeSBjcmFzaCB3aGlsZSBzZXR0aW5nIHRoZSBxbWwg
-dmlkZW8gd2luZG93IGlkIHRvIHRoZSB2YWFwaSBzaW5rLg0KPiAgICBTbyB3ZSBhcmUgbm90IGdl
-dHRpbmcgYW55IHNpbmdsZSBwaXBlIHRvIHBsYXkgbXA0L2F2aS8zZ3Agc3R1ZmYuDQoNClRoZSBp
-bXBvcnRhbnQgcXVlc3Rpb24gaXMgd2hhdCByZWNpcGUgYXJlIHlvdSB1c2luZyB0byBnZXQgdGhl
-IHZhYXBpIGVsZW1lbnRzPw0KDQpXaGF0IGhhcHBlbnMgaWYgeW91IHVzZSB2YWFwaXNpbmsgd2l0
-aCBBVkkvM0dQPyAgWW91IHNob3VsZCBzdGlsbCBnZXQNCnNvbWUgYWNjZWxlcmF0aW9uLg0KDQpO
-b3RlIHRoYXQgZXNwZWNpYWxseSB3aGVuIHVzaW5nIHZhYXBpIHNpbmsgeW91IG5lZWQgdG8gd2Fp
-dCBmb3IgdGhlDQpzaW5rIHRvIGNyZWF0ZSB0aGUgd2luZG93IGFuZCB0aGVuIHJlcGFyZW50IGl0
-LCB5b3UgY2FuJ3QgcHJvdmlkZSB5b3VyDQpvd24gWCB3aW5kb3cgdG8gdmFhcGlzaW5rLiAgVGhp
-cyBpcyB0aGUgdXN1YWwgY2F1c2UgZm9yIGJyZWFrYWdlLiAgRG8NCnRlc3Rpbmcgd2l0aCBnc3Qt
-bGF1bmNoIGJlZm9yZSBhdHRlbXB0aW5nIHRvIHVzZSB5b3VyIG93biBhcHBsaWNhdGlvbi4NCg0K
-Um9zcw0KCgo6OkRJU0NMQUlNRVI6OgotLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-CgpUaGUgY29udGVudHMgb2YgdGhpcyBlLW1haWwgYW5kIGFueSBhdHRhY2htZW50KHMpIGFyZSBj
-b25maWRlbnRpYWwgYW5kIGludGVuZGVkIGZvciB0aGUgbmFtZWQgcmVjaXBpZW50KHMpIG9ubHku
-CkUtbWFpbCB0cmFuc21pc3Npb24gaXMgbm90IGd1YXJhbnRlZWQgdG8gYmUgc2VjdXJlIG9yIGVy
-cm9yLWZyZWUgYXMgaW5mb3JtYXRpb24gY291bGQgYmUgaW50ZXJjZXB0ZWQsIGNvcnJ1cHRlZCwK
-bG9zdCwgZGVzdHJveWVkLCBhcnJpdmUgbGF0ZSBvciBpbmNvbXBsZXRlLCBvciBtYXkgY29udGFp
-biB2aXJ1c2VzIGluIHRyYW5zbWlzc2lvbi4gVGhlIGUgbWFpbCBhbmQgaXRzIGNvbnRlbnRzCih3
-aXRoIG9yIHdpdGhvdXQgcmVmZXJyZWQgZXJyb3JzKSBzaGFsbCB0aGVyZWZvcmUgbm90IGF0dGFj
-aCBhbnkgbGlhYmlsaXR5IG9uIHRoZSBvcmlnaW5hdG9yIG9yIEhDTCBvciBpdHMgYWZmaWxpYXRl
-cy4KVmlld3Mgb3Igb3BpbmlvbnMsIGlmIGFueSwgcHJlc2VudGVkIGluIHRoaXMgZW1haWwgYXJl
-IHNvbGVseSB0aG9zZSBvZiB0aGUgYXV0aG9yIGFuZCBtYXkgbm90IG5lY2Vzc2FyaWx5IHJlZmxl
-Y3QgdGhlCnZpZXdzIG9yIG9waW5pb25zIG9mIEhDTCBvciBpdHMgYWZmaWxpYXRlcy4gQW55IGZv
-cm0gb2YgcmVwcm9kdWN0aW9uLCBkaXNzZW1pbmF0aW9uLCBjb3B5aW5nLCBkaXNjbG9zdXJlLCBt
-b2RpZmljYXRpb24sCmRpc3RyaWJ1dGlvbiBhbmQgLyBvciBwdWJsaWNhdGlvbiBvZiB0aGlzIG1l
-c3NhZ2Ugd2l0aG91dCB0aGUgcHJpb3Igd3JpdHRlbiBjb25zZW50IG9mIGF1dGhvcml6ZWQgcmVw
-cmVzZW50YXRpdmUgb2YKSENMIGlzIHN0cmljdGx5IHByb2hpYml0ZWQuIElmIHlvdSBoYXZlIHJl
-Y2VpdmVkIHRoaXMgZW1haWwgaW4gZXJyb3IgcGxlYXNlIGRlbGV0ZSBpdCBhbmQgbm90aWZ5IHRo
-ZSBzZW5kZXIgaW1tZWRpYXRlbHkuCkJlZm9yZSBvcGVuaW5nIGFueSBlbWFpbCBhbmQvb3IgYXR0
-YWNobWVudHMsIHBsZWFzZSBjaGVjayB0aGVtIGZvciB2aXJ1c2VzIGFuZCBvdGhlciBkZWZlY3Rz
-LgoKLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQo=
+On Tuesday 01 April 2014 14:29:58 Andrey Telepin wrote:
+> On Tuesday, April 01, 2014 13:54:45 Andrey Telepin wrote:
+> > QT_QTGUI_INCLUDE_DIR
+> 
+> SOLVED adding -DQT_QTGUI_INCLUDE_DIR=${OE_QMAKE_INCDIR_QT}/QtGui to
+> EXTRA_OECMAKE
 
+It's a bit late, but I'm thinking maybe we ought to have a cmake_qt4 class 
+that just does all of this for you (as meta-qt5 has cmake_qt5).
+
+Cheers,
+Paul
+
+-- 
+
+Paul Eggleton
+Intel Open Source Technology Centre
 
