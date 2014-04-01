@@ -1,34 +1,34 @@
-Return-Path: <jenslucius@freenet.de>
-Received: from mout2.freenet.de (mout2.freenet.de [195.4.92.92])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0BAC0E00AEC
-	for <yocto@yoctoproject.org>; Tue,  1 Apr 2014 12:02:36 -0700 (PDT)
-Received: from [195.4.92.140] (helo=mjail0.freenet.de)
-	by mout2.freenet.de with esmtpa (ID jenslucius@freenet.de) (port 25)
-	(Exim 4.80.1 #4) id 1WV3xC-0006sh-KT
-	for yocto@yoctoproject.org; Tue, 01 Apr 2014 21:02:34 +0200
-Received: from localhost ([::1]:43462 helo=mjail0.freenet.de)
-	by mjail0.freenet.de with esmtpa (ID jenslucius@freenet.de) (Exim
-	4.80.1 #4) id 1WV3xC-0000EZ-GK
-	for yocto@yoctoproject.org; Tue, 01 Apr 2014 21:02:34 +0200
-Received: from mx13.freenet.de ([195.4.92.23]:51013)
-	by mjail0.freenet.de with esmtpa (ID jenslucius@freenet.de) (Exim
-	4.80.1 #4) id 1WV3u5-0005lu-VV
-	for yocto@yoctoproject.org; Tue, 01 Apr 2014 20:59:22 +0200
-Received: from p5b0e3861.dip0.t-ipconnect.de ([91.14.56.97]:64969
-	helo=[192.168.2.12])
-	by mx13.freenet.de with esmtpsa (ID jenslucius@freenet.de)
-	(TLSv1:DHE-RSA-AES128-SHA:128) (port 587) (Exim 4.80.1 #4)
-	id 1WV3u5-0004h6-PR
-	for yocto@yoctoproject.org; Tue, 01 Apr 2014 20:59:21 +0200
-Message-ID: <533B0C8F.9050004@freenet.de>
-Date: Tue, 01 Apr 2014 20:59:27 +0200
-From: Jens Lucius <jenslucius@freenet.de>
-User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64;
-	rv:24.0) Gecko/20100101 Thunderbird/24.4.0
+Return-Path: <elizabeth.flanagan@intel.com>
+Received: from mail-vc0-f170.google.com (mail-vc0-f170.google.com
+	[209.85.220.170])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BDC8EE00B27
+	for <yocto@yoctoproject.org>; Tue,  1 Apr 2014 12:57:18 -0700 (PDT)
+Received: by mail-vc0-f170.google.com with SMTP id hu19so10779314vcb.1
+	for <yocto@yoctoproject.org>; Tue, 01 Apr 2014 12:57:17 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:date
+	:message-id:subject:from:to:cc:content-type;
+	bh=Rxjrd5YR61LBjQ+PENsiRO41oSwUE/AJf3BFKB1Oeng=;
+	b=Pf0NmNRp+TVy3S5RjKyP6DhA60VH/wx3cX7xkMTG0cf2xLV1wHL+Z8LgzaSdb/p6Cj
+	hl5ig5wGZEll/4ALIMhRgEGktLxnNIEB6pgCfCj28VR0K4KQYbDSAV9TNuV50aNTaAEQ
+	E0P04zPk9dBUf7GEpkpFHYzrC2VYApaMQPaFGsXwhPDvOcekMb+gWHrtVRYDVWVqZdkD
+	LBliQVnjl3P3oJ/FNPUGaRUacmMqBL8gsye/cgE3Ftck/NNf0FKYErl4fqrQ0fru3jOd
+	ujLJ5/ZZjC9O6/TRRtTjCZNUlldflvtMnB8TtsaVj71fPhBlc1gI0NcsCTjN9z1WMw0R
+	jb8g==
+X-Gm-Message-State: ALoCoQm44fmcZ929HFvqEHaMAcLh4V+1YKjaC7QIZD7Bf1ZPsx4WSzHGVudNy2LJDNa3iLqpBPer
 MIME-Version: 1.0
-To: yocto@yoctoproject.org
-X-Originated-At: 91.14.56.97!64969
-Subject: Is Python Tkinter available for Yocto
+X-Received: by 10.52.249.105 with SMTP id yt9mr2360823vdc.34.1396382237313;
+	Tue, 01 Apr 2014 12:57:17 -0700 (PDT)
+Received: by 10.52.173.69 with HTTP; Tue, 1 Apr 2014 12:57:17 -0700 (PDT)
+In-Reply-To: <1396349224-14532-3-git-send-email-stefanx.stanacar@intel.com>
+References: <1396349224-14532-3-git-send-email-stefanx.stanacar@intel.com>
+Date: Tue, 1 Apr 2014 12:57:17 -0700
+Message-ID: <CAPhnLPDAidcScPf5xMsACZ3btQ06USYXA=gjgiDHv3M-OsDhsg@mail.gmail.com>
+From: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
+To: Stefan Stanacar <stefanx.stanacar@intel.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: [yocto-autobuilder][PATCH] nightly-multilib: don't build lsb image
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,40 +40,49 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 01 Apr 2014 19:02:42 -0000
-Content-Type: text/plain; charset=ISO-8859-15; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Tue, 01 Apr 2014 19:57:19 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
-Hi,
+Pulled into master, thanks!
 
-I am a little bit confused if Python Tkinter is included as a package 
-for python in the Yocto system.
+-b
 
-Pro:
-- The output of "bitbake -e python | grep ^PACKAGES=" shows a package 
-called "python-tkinter."
--  In 
-"tmp/work/armv6-vfp-poky-linux-gnueabi/python/2.7.3-r0.3/packages-split" 
-there is a folder called python-tkinter
+On Tue, Apr 1, 2014 at 3:47 AM, Stefan Stanacar
+<stefanx.stanacar@intel.com> wrote:
+> We shouldn't build an lsb image here as this isn't a
+> poky-lsb build.
+> There is a pending patch on oe-core that will break this
+> build if we don't remove it and it doesn't buys us too much test
+> coverage anyway.
+>
+> Signed-off-by: Stefan Stanacar <stefanx.stanacar@intel.com>
+> ---
+>  buildset-config.master/nightly-multilib.conf | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+>
+> diff --git a/buildset-config.master/nightly-multilib.conf b/buildset-config.master/nightly-multilib.conf
+> index b5dfec3..49e6ea7 100644
+> --- a/buildset-config.master/nightly-multilib.conf
+> +++ b/buildset-config.master/nightly-multilib.conf
+> @@ -25,4 +25,4 @@ steps: [{'SetDest':{}},
+>          {'BuildImages': {'images': 'core-image-sato'}},
+>          {'RunSanityTests': {'images': 'core-image-sato', 'suites' : 'ping ssh connman xorg multilib dmesg auto'}},
+>          {'CreateAutoConf': {'machine': 'qemux86', 'SDKMACHINE' : 'i686', 'multilib': 'lib64', 'distro': 'poky'}},
+> -        {'BuildImages': {'images': 'lib64-core-image-sato lib64-core-image-sato-sdk lib64-core-image-lsb-sdk'}}]
+> +        {'BuildImages': {'images': 'lib64-core-image-sato lib64-core-image-sato-sdk'}}]
+> --
+> 1.9.0
+>
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
-Contra:
-- There is a patch for python recipe called 
-"avoid_warning_about_tkinter.patch" which states "_tkinter module needs 
-tk module along with tcl. tk is not yet integrated in yocto so we skip 
-the check for this module. Avoid a warning by not  adding this module to 
-missing variable."
-- I have included in my recipe: "python-core python-tkinter" which gave 
-no error, but no tkinter installed and I have tried including 
-"python-core python-modules" which gave me a lot of python modules, but 
-still no tkinter. (tried "from Tkinter import *" which gave an error and 
-no tkinter in /usr/lib/python2.7)
 
-Do I manually need to install another package? Is it included or not? Do 
-I need to do my own recipe?
 
-Any help would be appreciated.
-
-Thanks,
-
-Jens
+-- 
+Elizabeth Flanagan
+Yocto Project
+Build and Release
 
