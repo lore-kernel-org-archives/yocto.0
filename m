@@ -1,22 +1,22 @@
 Return-Path: <stefanx.stanacar@intel.com>
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1C0F2E00C56
-	for <yocto@yoctoproject.org>; Tue,  1 Apr 2014 03:46:46 -0700 (PDT)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by fmsmga101.fm.intel.com with ESMTP; 01 Apr 2014 03:46:46 -0700
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 11A33E00C56
+	for <yocto@yoctoproject.org>; Tue,  1 Apr 2014 03:46:45 -0700 (PDT)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga101.jf.intel.com with ESMTP; 01 Apr 2014 03:46:43 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.97,771,1389772800"; d="scan'208";a="504240181"
+X-IronPort-AV: E=Sophos;i="4.97,771,1389772800"; d="scan'208";a="512261296"
 Received: from linux.jf.intel.com (HELO linux.intel.com) ([10.23.219.25])
-	by fmsmga001.fm.intel.com with ESMTP; 01 Apr 2014 03:46:46 -0700
+	by orsmga002.jf.intel.com with ESMTP; 01 Apr 2014 03:46:43 -0700
 Received: from firebird.rb.intel.com (firebird.rb.intel.com [10.237.105.160])
-	by linux.intel.com (Postfix) with ESMTP id 809F86A4083;
-	Tue,  1 Apr 2014 03:46:30 -0700 (PDT)
+	by linux.intel.com (Postfix) with ESMTP id 0F7D46A4083;
+	Tue,  1 Apr 2014 03:46:27 -0700 (PDT)
 From: Stefan Stanacar <stefanx.stanacar@intel.com>
 To: yocto@yoctoproject.org
-Date: Tue,  1 Apr 2014 13:47:04 +0300
-Message-Id: <1396349224-14532-3-git-send-email-stefanx.stanacar@intel.com>
+Date: Tue,  1 Apr 2014 13:47:02 +0300
+Message-Id: <1396349224-14532-1-git-send-email-stefanx.stanacar@intel.com>
 X-Mailer: git-send-email 1.9.0
-Subject: [yocto-autobuilder][PATCH] nightly-multilib: don't build lsb image
+Subject: [yocto-autobuilder][PATCH] CreateAutoConf: strict checking for multilib
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -28,29 +28,36 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 01 Apr 2014 10:46:47 -0000
+X-List-Received-Date: Tue, 01 Apr 2014 10:46:48 -0000
 
-We shouldn't build an lsb image here as this isn't a
-poky-lsb build.
-There is a pending patch on oe-core that will break this
-build if we don't remove it and it doesn't buys us too much test
-coverage anyway.
+So we don't create multilib configs unless True or lib32 or lib64,
+and doesn't add the inherit multilib.conf for False.
 
 Signed-off-by: Stefan Stanacar <stefanx.stanacar@intel.com>
 ---
- buildset-config.master/nightly-multilib.conf | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ lib/python2.7/site-packages/autobuilder/buildsteps/CreateAutoConf.py | 5 +++--
+ 1 file changed, 3 insertions(+), 2 deletions(-)
 
-diff --git a/buildset-config.master/nightly-multilib.conf b/buildset-config.master/nightly-multilib.conf
-index b5dfec3..49e6ea7 100644
---- a/buildset-config.master/nightly-multilib.conf
-+++ b/buildset-config.master/nightly-multilib.conf
-@@ -25,4 +25,4 @@ steps: [{'SetDest':{}},
-         {'BuildImages': {'images': 'core-image-sato'}},
-         {'RunSanityTests': {'images': 'core-image-sato', 'suites' : 'ping ssh connman xorg multilib dmesg auto'}},
-         {'CreateAutoConf': {'machine': 'qemux86', 'SDKMACHINE' : 'i686', 'multilib': 'lib64', 'distro': 'poky'}},
--        {'BuildImages': {'images': 'lib64-core-image-sato lib64-core-image-sato-sdk lib64-core-image-lsb-sdk'}}]
-+        {'BuildImages': {'images': 'lib64-core-image-sato lib64-core-image-sato-sdk'}}]
+diff --git a/lib/python2.7/site-packages/autobuilder/buildsteps/CreateAutoConf.py b/lib/python2.7/site-packages/autobuilder/buildsteps/CreateAutoConf.py
+index ec69355..59a88c4 100644
+--- a/lib/python2.7/site-packages/autobuilder/buildsteps/CreateAutoConf.py
++++ b/lib/python2.7/site-packages/autobuilder/buildsteps/CreateAutoConf.py
+@@ -95,12 +95,13 @@ class CreateAutoConf(ShellCommand):
+             if self.pvr == "True":
+                 fout = fout + 'LICENSE_FLAGS_WHITELIST += "license_cdv-pvr-driver" \n'
+                 fout = fout + 'PVR_LICENSE = "yes" \n'
+-            if self.multilib:
+-                fout = fout + 'require conf/multilib.conf \n'
++            if self.multilib and self.multilib != "False":
+                 if self.multilib == "True" or self.multilib == "lib32":
++                    fout = fout + 'require conf/multilib.conf \n'
+                     fout = fout + 'MULTILIBS = "multilib:lib32" \n'
+                     fout = fout + 'DEFAULTTUNE_virtclass-multilib-lib32 = "x86" \n'
+                 elif self.multilib == "lib64":
++                    fout = fout + 'require conf/multilib.conf \n'
+                     fout = fout + 'MULTILIBS = "multilib:lib64" \n'
+                     fout = fout + 'DEFAULTTUNE_virtclass-multilib-lib64 = "x86-64" \n'
+                 if not self.nosstate:
 -- 
 1.9.0
 
