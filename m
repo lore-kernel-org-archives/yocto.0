@@ -1,22 +1,22 @@
 Return-Path: <stefanx.stanacar@intel.com>
 Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 11A33E00C56
-	for <yocto@yoctoproject.org>; Tue,  1 Apr 2014 03:46:45 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1DAE1E00C59
+	for <yocto@yoctoproject.org>; Tue,  1 Apr 2014 03:46:48 -0700 (PDT)
 Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga101.jf.intel.com with ESMTP; 01 Apr 2014 03:46:43 -0700
+	by orsmga101.jf.intel.com with ESMTP; 01 Apr 2014 03:46:45 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.97,771,1389772800"; d="scan'208";a="512261296"
+X-IronPort-AV: E=Sophos;i="4.97,771,1389772800"; d="scan'208";a="512261306"
 Received: from linux.jf.intel.com (HELO linux.intel.com) ([10.23.219.25])
-	by orsmga002.jf.intel.com with ESMTP; 01 Apr 2014 03:46:43 -0700
+	by orsmga002.jf.intel.com with ESMTP; 01 Apr 2014 03:46:44 -0700
 Received: from firebird.rb.intel.com (firebird.rb.intel.com [10.237.105.160])
-	by linux.intel.com (Postfix) with ESMTP id 0F7D46A4083;
-	Tue,  1 Apr 2014 03:46:27 -0700 (PDT)
+	by linux.intel.com (Postfix) with ESMTP id 4886C6A4083;
+	Tue,  1 Apr 2014 03:46:29 -0700 (PDT)
 From: Stefan Stanacar <stefanx.stanacar@intel.com>
 To: yocto@yoctoproject.org
-Date: Tue,  1 Apr 2014 13:47:02 +0300
-Message-Id: <1396349224-14532-1-git-send-email-stefanx.stanacar@intel.com>
+Date: Tue,  1 Apr 2014 13:47:03 +0300
+Message-Id: <1396349224-14532-2-git-send-email-stefanx.stanacar@intel.com>
 X-Mailer: git-send-email 1.9.0
-Subject: [yocto-autobuilder][PATCH] CreateAutoConf: strict checking for multilib
+Subject: [yocto-autobuilder][PATCH] nightly-ipk/deb: drop some test suites for sato-sdk
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -30,34 +30,35 @@ List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
 X-List-Received-Date: Tue, 01 Apr 2014 10:46:48 -0000
 
-So we don't create multilib configs unless True or lib32 or lib64,
-and doesn't add the inherit multilib.conf for False.
+We don't have these on dora and I'd prefer not to check
+for each valid test in RunSanity.
 
 Signed-off-by: Stefan Stanacar <stefanx.stanacar@intel.com>
 ---
- lib/python2.7/site-packages/autobuilder/buildsteps/CreateAutoConf.py | 5 +++--
- 1 file changed, 3 insertions(+), 2 deletions(-)
+ buildset-config.master/nightly-deb.conf | 2 +-
+ buildset-config.master/nightly-ipk.conf | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/lib/python2.7/site-packages/autobuilder/buildsteps/CreateAutoConf.py b/lib/python2.7/site-packages/autobuilder/buildsteps/CreateAutoConf.py
-index ec69355..59a88c4 100644
---- a/lib/python2.7/site-packages/autobuilder/buildsteps/CreateAutoConf.py
-+++ b/lib/python2.7/site-packages/autobuilder/buildsteps/CreateAutoConf.py
-@@ -95,12 +95,13 @@ class CreateAutoConf(ShellCommand):
-             if self.pvr == "True":
-                 fout = fout + 'LICENSE_FLAGS_WHITELIST += "license_cdv-pvr-driver" \n'
-                 fout = fout + 'PVR_LICENSE = "yes" \n'
--            if self.multilib:
--                fout = fout + 'require conf/multilib.conf \n'
-+            if self.multilib and self.multilib != "False":
-                 if self.multilib == "True" or self.multilib == "lib32":
-+                    fout = fout + 'require conf/multilib.conf \n'
-                     fout = fout + 'MULTILIBS = "multilib:lib32" \n'
-                     fout = fout + 'DEFAULTTUNE_virtclass-multilib-lib32 = "x86" \n'
-                 elif self.multilib == "lib64":
-+                    fout = fout + 'require conf/multilib.conf \n'
-                     fout = fout + 'MULTILIBS = "multilib:lib64" \n'
-                     fout = fout + 'DEFAULTTUNE_virtclass-multilib-lib64 = "x86-64" \n'
-                 if not self.nosstate:
+diff --git a/buildset-config.master/nightly-deb.conf b/buildset-config.master/nightly-deb.conf
+index d58772d..c4cc872 100644
+--- a/buildset-config.master/nightly-deb.conf
++++ b/buildset-config.master/nightly-deb.conf
+@@ -16,4 +16,4 @@ steps: [{'SetDest':{}},
+         {'BuildImages': {'images': 'core-image-sato core-image-sato-dev core-image-sato-sdk core-image-minimal core-image-minimal-dev'}},
+         {'RunSanityTests': {'images': 'core-image-minimal'}},
+         {'RunSanityTests': {'images' : 'core-image-sato', 'suites' : 'ping ssh auto'}},
+-        {'RunSanityTests': {'images' : 'core-image-sato-sdk', 'suites' : 'ping ssh df connman syslog xorg scp vnc date perl ldd gcc kernelmodule dmesg python'}}]
++        {'RunSanityTests': {'images' : 'core-image-sato-sdk', 'suites' : 'ping ssh df connman syslog xorg scp vnc date perl ldd gcc dmesg'}}]
+diff --git a/buildset-config.master/nightly-ipk.conf b/buildset-config.master/nightly-ipk.conf
+index 974596f..c6455bc 100644
+--- a/buildset-config.master/nightly-ipk.conf
++++ b/buildset-config.master/nightly-ipk.conf
+@@ -16,4 +16,4 @@ steps: [{'SetDest':{}},
+         {'BuildImages': {'images': 'core-image-sato core-image-sato-dev core-image-sato-sdk core-image-minimal core-image-minimal-dev'}},
+         {'RunSanityTests': {'images' : 'core-image-minimal'}},
+         {'RunSanityTests': {'images' : 'core-image-sato', 'suites' : 'ping ssh auto'}},
+-        {'RunSanityTests': {'images' : 'core-image-sato-sdk', 'suites' : 'ping ssh df connman syslog xorg scp vnc date perl ldd gcc kernelmodule dmesg python'}}]
++        {'RunSanityTests': {'images' : 'core-image-sato-sdk', 'suites' : 'ping ssh df connman syslog xorg scp vnc date perl ldd gcc dmesg'}}]
 -- 
 1.9.0
 
