@@ -1,23 +1,29 @@
-Return-Path: <jonathan.austin@arm.com>
-Received: from service87.mimecast.com (service87.mimecast.com [91.220.42.44])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DA1DAE009BA
-	for <yocto@yoctoproject.org>; Tue,  1 Apr 2014 09:23:05 -0700 (PDT)
-Received: from cam-owa2.Emea.Arm.com (fw-tnat.cambridge.arm.com
-	[217.140.96.21]) by service87.mimecast.com;
-	Tue, 01 Apr 2014 17:23:02 +0100
-Received: from [10.2.202.23] ([10.1.255.212]) by cam-owa2.Emea.Arm.com with
-	Microsoft SMTPSVC(6.0.3790.3959); Tue, 1 Apr 2014 17:23:17 +0100
-Message-ID: <533AE7CE.6070708@arm.com>
-Date: Tue, 01 Apr 2014 17:22:38 +0100
-From: Jonathan Austin <jonathan.austin@arm.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:24.0) Gecko/20100101 Thunderbird/24.2.0
+Return-Path: <sergeikrivonos@gmail.com>
+Received: from mail-oa0-f44.google.com (mail-oa0-f44.google.com
+	[209.85.219.44])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 47619E009A7
+	for <yocto@yoctoproject.org>; Tue,  1 Apr 2014 09:37:18 -0700 (PDT)
+Received: by mail-oa0-f44.google.com with SMTP id n16so11633855oag.31
+	for <yocto@yoctoproject.org>; Tue, 01 Apr 2014 09:37:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=4KSuzWwp+WwYnDTxswbCa1F04lL6jFT7XPrXhClJP6g=;
+	b=CN3CAPXAJ1tMspQlltfwe7y7W/qfiSNDXeA0JoYMnTKLoWgKaQCeQAeJUULkeR/oqe
+	ZsfllihfGUlH1F9P0IfPxYHB2ykB7q/CkO58cr9qiScpuCY2MDYKmmO6HxOVhD3f/Y37
+	t9JwOC+GnJhrWd+/2UT/ErSRDNFbB69D3WGaEH23s+Sb4oIZQspD5lmdCVCi4zTBU6+v
+	i+8Mav52u8BczQFnLfHNVDXNhHvNxZdDBlLQbwyvO+/jiLz0YvEf+l6JjYZ3ndXyGRs7
+	WGYBi6ewWTqoTQRMMO/fIoC0yabe6CtpXqxoGezJ3yeHsEyi1IsdtGluOritVPIDK5de
+	3r0Q==
 MIME-Version: 1.0
-To: yocto <yocto@yoctoproject.org>
-X-OriginalArrivalTime: 01 Apr 2014 16:23:17.0507 (UTC)
-	FILETIME=[B0616530:01CF4DC6]
-X-MC-Unique: 114040117230202701
-Subject: ADT/SDK and cmake - generating the toolchain/cmake config
+X-Received: by 10.60.116.166 with SMTP id jx6mr29748332oeb.22.1396370238058;
+	Tue, 01 Apr 2014 09:37:18 -0700 (PDT)
+Received: by 10.182.128.227 with HTTP; Tue, 1 Apr 2014 09:37:18 -0700 (PDT)
+Date: Tue, 1 Apr 2014 19:37:18 +0300
+Message-ID: <CAGz9X0eeJkRDOXN1+TFxT-TpwvS=xn+a5b9-GAgjNtKNDaQo2w@mail.gmail.com>
+From: =?UTF-8?B?0KHQtdGA0LPQtdC5INCa0YDQuNCy0L7QvdC+0YE=?=
+	<sergeikrivonos@gmail.com>
+To: yocto@yoctoproject.org
+Subject: Eclipse+Webos
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -29,34 +35,14 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 01 Apr 2014 16:23:07 -0000
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Tue, 01 Apr 2014 16:37:21 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
-Hi all,
+Hi,
 
-The ADT documentation walks you through building an 'app' using=20
-autoconf/make, and the environment setup script that is created as part=20
-of the SDK build contains all the necessary autofoo/environment=20
-variables. This is great, and I've worked through the autotools example=20
-happily. Thanks :)
+How to import OpenWebos project using Yoctos Eclipse plugin?
 
-What I can't find, though, is anything that does the equivalent for=20
-cmake. I'm new to cmake so could be missing something obvious, but after=20
-seeing the 'environment-setup-TARGET' files (the ones at=20
-/opt/poky/1.5.1/) I thought there might also be a cmake toolchain file=20
-(toolchain-TARGET.cmake, for example) or some other cmake-foo.
-
-I can see that cmake support was merged for Eclipse/ADT, so it seems=20
-like cmake could be supported 'outside the IDE', but I can't quite see=20
-how what I ought to twiddle to do this. I found the tantalizingly named=20
-'cmake_do_generate_toolchain_file()' and all the other relevant stuff in=20
-meta/classes/cmake.bbclass, but I don't know what the 'right' way to=20
-propagate all that stuff into the SDK/ADT would be.
-
-Any help with getting started would be greatly appreciated.
-
-Thanks
-Jonny
-
+Thanks,
+Sergei Krivonos
+skype: sergio_krivonos
 
