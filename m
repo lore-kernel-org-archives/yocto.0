@@ -1,24 +1,28 @@
-Return-Path: <vaduvajanalexandru@yahoo.com>
-Received: from mx-3.enea.com (sestofw01.enea.se [192.36.1.252])
-	by yocto-www.yoctoproject.org (Postfix) with SMTP id CDB43E00C6E
-	for <yocto@yoctoproject.org>; Tue,  1 Apr 2014 03:48:10 -0700 (PDT)
-Received: from sestofb10.enea.se (172.21.3.145) by smtp.enea.com
-	(172.21.1.209) with Microsoft SMTP Server id 14.3.158.1; Tue, 1 Apr 2014
-	12:48:09 +0200
-Received: by sestofb10.enea.se (Postfix, from userid 4470)	id 52ED828840C;
-	Tue,  1 Apr 2014 12:48:09 +0200 (CEST)
-From: Alexandru.Vaduva <Alexandru.Vaduva@enea.com>
-To: <yocto@yoctoproject.org>
-Date: Tue, 1 Apr 2014 12:48:07 +0200
-Message-ID: <1396349287-33532-2-git-send-email-Alexandru.Vaduva@enea.com>
-X-Mailer: git-send-email 1.7.10.4
-In-Reply-To: <1396349287-33532-1-git-send-email-Alexandru.Vaduva@enea.com>
-References: <1396349287-33532-1-git-send-email-Alexandru.Vaduva@enea.com>
+Return-Path: <campingandskiing@gmail.com>
+Received: from mail-lb0-f178.google.com (mail-lb0-f178.google.com
+	[209.85.217.178])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EB9C5E00C59
+	for <yocto@yoctoproject.org>; Tue,  1 Apr 2014 05:28:17 -0700 (PDT)
+Received: by mail-lb0-f178.google.com with SMTP id s7so7012351lbd.9
+	for <yocto@yoctoproject.org>; Tue, 01 Apr 2014 05:28:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=/XWZF+z2NhFrxDaACUUianiLb1Y3IDWwgAWkhxZZ26o=;
+	b=xBqJrnY8L3XWbhMyDKgxnvgxVUAs9a1NhyLh05wJdzmaOhjBONpmrKLm+MJJ+Bk3FR
+	vDpxY2Xd/ClL2IlyGE5TFe4Tj02cgVw2LEpnDTivixlp+bTUd+dwjdT39h/67JUoip08
+	eZndEYU+00MZ5EdIEwXudzdeC7JpX5BpiwmT6JOV92sCgLB1pgEKP9mEkGB2ynXZOdw2
+	1M9ld6OCGu8nOMfvX9X7aW76kENXLH0rMiF48RnYo5jgVm2qsD7gDGAEoISD1AQLNWG3
+	wi6C7uziD+he5XP81LMFstYmzL5KV9ALT1ILrhDh9qd1fQFunR9EDT5FABnG0Pkxpo5/
+	sRlA==
 MIME-Version: 1.0
-Received-SPF: None (SESTOEX03.enea.se: Alexandru.Vaduva@enea.com does not
-	designate permitted sender hosts)
-Cc: "Alexandru.Vaduva" <Alexandru.Vaduva@enea.com>
-Subject: [PATCH 1/1] refpolicy: Updated FILESEXTRAPATHS_prepend value
+X-Received: by 10.152.22.166 with SMTP id e6mr50675laf.71.1396355295553; Tue,
+	01 Apr 2014 05:28:15 -0700 (PDT)
+Received: by 10.112.123.11 with HTTP; Tue, 1 Apr 2014 05:28:15 -0700 (PDT)
+Date: Tue, 1 Apr 2014 08:28:15 -0400
+Message-ID: <CAGVfQ44TKVV3+Oeu5U0dFwxKrw1qr8HNkwwbXPyULxp1yXAxNw@mail.gmail.com>
+From: Toby Flynn <campingandskiing@gmail.com>
+To: yocto@yoctoproject.org
+Subject: Yocto Project Developer Day at ELC 2014
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -30,37 +34,23 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 01 Apr 2014 10:48:11 -0000
-Content-Type: text/plain
+X-List-Received-Date: Tue, 01 Apr 2014 12:28:18 -0000
+Content-Type: multipart/alternative; boundary=089e0160c1645f2c0904f5fa4da3
 
-From: "Alexandru.Vaduva" <Alexandru.Vaduva@enea.com>
+--089e0160c1645f2c0904f5fa4da3
+Content-Type: text/plain; charset=ISO-8859-1
 
-The value was defined as:
-FILESEXTRAPATHS_prepend := "${THISDIR}/refpolicy-${PV}:"
-and changed it to:
-FILESEXTRAPATHS_prepend := "${THISDIR}/refpolicy-2.20130424:"
-becase the bb that inherit this overwrites the PV every time,
-changing its name.
+Are there plans to have a Yocto Developer Day on the Monday before the ELC
+this year as in Past years?
 
-Signed-off-by: Alexandru.Vaduva <Alexandru.Vaduva@enea.com>
----
- recipes-security/refpolicy/refpolicy_2.20130424.inc |    2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Toby
 
-diff --git a/recipes-security/refpolicy/refpolicy_2.20130424.inc b/recipes-security/refpolicy/refpolicy_2.20130424.inc
-index 9e5e426..4ea61fc 100644
---- a/recipes-security/refpolicy/refpolicy_2.20130424.inc
-+++ b/recipes-security/refpolicy/refpolicy_2.20130424.inc
-@@ -4,7 +4,7 @@ SRC_URI = "http://oss.tresys.com/files/refpolicy/refpolicy-${PV}.tar.bz2;"
- SRC_URI[md5sum] = "6a5c975258cc8eb92c122f11b11a5085"
- SRC_URI[sha256sum] = "6039ba854f244a39dc727cc7db25632f7b933bb271c803772d754d4354f5aef4"
- 
--FILESEXTRAPATHS_prepend := "${THISDIR}/refpolicy-${PV}:"
-+FILESEXTRAPATHS_prepend := "${THISDIR}/refpolicy-2.20130424:"
- 
- # Fix file contexts for Poky
- SRC_URI += "file://poky-fc-subs_dist.patch \
--- 
-1.7.10.4
+--089e0160c1645f2c0904f5fa4da3
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
 
+<div dir=3D"ltr">Are there plans to have a Yocto Developer Day on the Monda=
+y before the ELC this year as in Past years? =A0<div><br></div><div>Toby</d=
+iv></div>
 
+--089e0160c1645f2c0904f5fa4da3--
