@@ -1,32 +1,34 @@
-Return-Path: <meenakumari.s@hcl.com>
-Received: from GWS05.hcl.com (gws05.hcl.com [203.105.185.23])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 85645E00C59
-	for <yocto@yoctoproject.org>; Tue,  1 Apr 2014 05:40:41 -0700 (PDT)
-X-IronPort-AV: E=Sophos;i="4.97,772,1389724200"; d="scan'208";a="59090349"
-Received: from unknown (HELO NDA-HCLIN-HT02.CORP.HCL.IN) ([10.248.64.36])
-	by GWS05.hcl.com with ESMTP/TLS/AES128-SHA; 01 Apr 2014 18:08:22 +0530
-Received: from NDA-HCLT-CSHT03.HCLT.CORP.HCL.IN (10.98.132.28) by
-	NDA-HCLIN-HT02.CORP.HCL.IN (10.248.64.36) with Microsoft SMTP Server
-	(TLS) id 8.3.245.1; Tue, 1 Apr 2014 18:10:20 +0530
-Received: from NDA-HCLT-MBS02.HCLT.CORP.HCL.IN ([10.98.132.17]) by
-	NDA-HCLT-CSHT03.HCLT.CORP.HCL.IN ([10.98.132.28]) with mapi id
-	14.03.0123.003; Tue, 1 Apr 2014 18:10:18 +0530
-From: Meenakumari Shedole <meenakumari.s@hcl.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	"gwenole.beauchesne@intel.com" <gwenole.beauchesne@intel.com>
-Thread-Topic: [yocto] Help-Gstreamer Vaapi Plugin Issue in 1080p mp4 playback
-Thread-Index: AQHPSYlGWF8OgI4BY0eUG8fpk2Rq8Zr0llAAgAFgBgCAAAsvkP///EyAgAZ3sHCAAEJeQA==
-Date: Tue, 1 Apr 2014 12:40:17 +0000
-Message-ID: <E4938C0D959B3445943720B88F07213415613DBA@NDA-HCLT-MBS02.hclt.corp.hcl.in>
-References: <E4938C0D959B3445943720B88F07213415613522@NDA-HCLT-MBS02.hclt.corp.hcl.in>
-	<CAJTo0LY5VVCZbimtTBNdgDCEB+1mwSwdsVH31ik8GSdheg48OQ@mail.gmail.com> 
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.98.134.12]
+Return-Path: <jefro.net@gmail.com>
+Received: from mail-lb0-f178.google.com (mail-lb0-f178.google.com
+	[209.85.217.178])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 706FDE00C6F
+	for <yocto@yoctoproject.org>; Tue,  1 Apr 2014 07:43:25 -0700 (PDT)
+Received: by mail-lb0-f178.google.com with SMTP id s7so7167869lbd.9
+	for <yocto@yoctoproject.org>; Tue, 01 Apr 2014 07:43:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:sender:in-reply-to:references:from:date:message-id
+	:subject:to:cc:content-type;
+	bh=tR1y55rm7bFKJ2wodv4zsVDqi6vTfd2WszYieyoIhdQ=;
+	b=TNhqWtLV9YoV+ZFo68aWYTNb71QS0XovTja45c22sQGIAzpsaxcxOMYeK+MpyEtrjc
+	3GXoIeCvOySAFa1GElUg3E9SZWNK7WohxO/UqRUqyuii9aTOFNHXT5Q/ULx3nnulWviG
+	KM8orfrDt5XmJbguVYcmB7e6Y2Nx+EkkCCqU8sF73VjL3DW13ZIg4fB6YEZsvHqd7jBi
+	feEf0mX4tnvluOgk5ylOBFY//JvHu+0ho+1aU5tzOnGcSONlPNOKkL2fOBY55U9ukXml
+	pXElcClWq/dFnQmGOz0uqxF51reg+FEuPLfPco2MQD7nAPIvTmWVo6QZefFeWIjZW943
+	2xlA==
+X-Received: by 10.112.158.105 with SMTP id wt9mr2383482lbb.31.1396363404084;
+	Tue, 01 Apr 2014 07:43:24 -0700 (PDT)
 MIME-Version: 1.0
-Cc: Dipesh Karmakar <Dipesh.Karmakar@hcl.com>
-Subject: Re: Help-Gstreamer Vaapi Plugin Issue in 1080p mp4 playback
+Sender: jefro.net@gmail.com
+Received: by 10.112.173.199 with HTTP; Tue, 1 Apr 2014 07:43:04 -0700 (PDT)
+In-Reply-To: <CAGVfQ44TKVV3+Oeu5U0dFwxKrw1qr8HNkwwbXPyULxp1yXAxNw@mail.gmail.com>
+References: <CAGVfQ44TKVV3+Oeu5U0dFwxKrw1qr8HNkwwbXPyULxp1yXAxNw@mail.gmail.com>
+From: Jeff Osier-Mixon <jefro@jefro.net>
+Date: Tue, 1 Apr 2014 07:43:04 -0700
+X-Google-Sender-Auth: jujnTAkW_57yzxD-a-XoCdKSH7M
+Message-ID: <CA+YB3rbOiu5kM=2JxdFPfJ-PuK_m+phVKiYoT9Bar8Yj3O8T0A@mail.gmail.com>
+To: Toby Flynn <campingandskiing@gmail.com>
+Cc: Yocto Project <yocto@yoctoproject.org>
+Subject: Re: Yocto Project Developer Day at ELC 2014
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,90 +40,32 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 01 Apr 2014 12:40:52 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+X-List-Received-Date: Tue, 01 Apr 2014 14:43:26 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
-VGhpcyBpcyByZWdhcmRpbmcgMTA4MHAgbXA0IHBsYXliYWNrIGNhc2UuDQoNCldlIGFyZSB1c2lu
-ZyBnc3RyZWFtZXIwLjEwLjM2IGZvciBvdXIgMTA4MHAgbXA0IHBsYXliYWNrIGFuZCB3ZSBoYXZl
-IHVzZWQgZm9sbG93aW5nIGdzdHJhZW1lciBwaXBlbGluZS4NCmZpbGVzcmMtPiBkZWNvZGViaW4t
-PnF1ZXVlLT5mZm1wZWdjb2xvcnNwYWNlLT54dmltYWdlc2luaw0KDQpIZXJlIHdlIGFyZSBmYWNp
-bmcgbG90IG9mIGJ1ZmZlciBkcm9wIGFuZCB2aWRlbyBpcyBkaXNwbGF5aW5nIGxpa2Ugc2xvdyBt
-b3Rpb24gc28sIHdlIHRoaW5rIHRoYXQgbWF5IGJlIHh2aW1hZ2VzaW5rIGlzIG5vdCB1c2luZyB0
-aGUgdmlkZW8gYWNjZWxlcmF0aW9uIHByb3ZpZGVkIGJ5IEludGVsLCBoZW5jZSB3ZSBtb3ZlZCB0
-byB2YWFwaXZpZGVvc2luay4gSG93ZXZlciB3ZSBmb3VuZCB0aGUgZm9sbG93aW5nIGVycm9yIHdo
-aWxlIHVzaW5nIHZhYXBpdmlkZW9zaW5rDQoNCkxhdGVyIFdlIHRyaWVkIHZhYXBpc2luayB3aXRo
-IGJlbG93IHBpcGVsaW5lDQogDQpQbGF5YmluMi0tPnZpZGVvLXNpbms9dmFhcGlzaW5rLg0KDQpC
-dXQgVmlkZW8gaXMgbm90IHBsYXlpbmcgd2l0aCBxdHdpbmRvdyggYXBwbGljYXRpb24gd2luZG93
-KSxjcmVhdGluZyBpdHMgb3duIG9uZSB3aW5kb3cuDQoNCkR1ZSB0byB0aGlzIHByb2JsZW0uDQoN
-CkkgaGF2ZSB1c2VkIGxpYnZhLWludGVsLWRyaXZlci0xLjIuMCBhcyBhIHBhcnQgb2YgbWV0YS1p
-bnRlbCBvbiBEb3JhIGFzIHRoZSByZWNpcGVzIHByb3ZpZGVkIGJ5IEludGVsLiBJIGNhbiBhdHRh
-Y2ggYmIgZmlsZSBhbHNvIGlmIGl0cyBuZWVkZWQuDQpIYXZlIGJ1aWxkIEludGVsIHZhIHNvdXJj
-ZSBtYW51YWxseSBhbmQgbm93IHdlIGNhbiBhYmxlIHRvIHNpbmsgd2l0aCB2YWFwaXNpbmsgaW4g
-aXRzIG93biB3aW5kb3cuDQpXZSBhcmUgbm90IGFibGUgdG8gdXNlIHZhYXBpc2luayB3aXRoIEFW
-SS8zR1AgZmlsZXMsIGFza2luZyBmb3Igc29tZSBtaXNzaW5nIHZpZGVvL3gtc3VyZmFjZS4NCg0K
-SSBoYXZlIGNoZWNrZWQgdmFhcGlzaW5rIHNvdXJjZSwgaXQgc2VlbXMgaXRzIHN1cHBvcnRpbmcg
-b3ZlcmxheSBvbiBmb3JlaWduIFggd2luZG93Lg0KaHR0cHM6Ly9naXRvcmlvdXMub3JnL3ZhYXBp
-L2dzdHJlYW1lci12YWFwaS9zb3VyY2UvNjQzZDM1ZTg3YTY3Mzc2YWY5Y2Q4OWNkODY4NjY2MzY4
-YjEwNWFjMzpnc3QvdmFhcGlzaW5rL2dzdHZhYXBpc2luay5jDQpzdGF0aWMgZ2Jvb2xlYW4gZ3N0
-X3ZhYXBpc2lua19pbXBsZW1lbnRzX2ludGVyZmFjZV9zdXBwb3J0ZWQoKTsNCnN0YXRpYyBnYm9v
-bGVhbiBnc3RfdmFhcGlzaW5rX2Vuc3VyZV93aW5kb3dfeGlkKCk7DQoNCkhvd2V2ZXIgd2hlbiBJ
-IGFtIHRyeWluZyB0byBzZXQgdGhlIHdpbmRvdyB0byB0aGUgc2luayB1c2luZyBnc3RfeF9vdmVy
-bGF5X3NldF94d2luZG93X2lkIE9SIGdzdF94X292ZXJsYXlfc2V0X3dpbmRvd19oYW5kbGUgQVBJ
-J3MgSSBhbSBnZXR0aW5nIGZvbGxvd2luZyBydW50aW1lIGVycm9yLg0KDQogICAgU2V0V2luZG93
-SWQoKSBpbiBQaXBlcy9QQVNFX01XX01lZGlhUGlwZS5jcHAsIGxpbmUgNDAzOiB3aW5kb3cgaWQg
-NjkyMDYwMjJkDQogICAgbGlidmE6IFZBLUFQSSB2ZXJzaW9uIDAuMzIuMA0KICAgIGxpYnZhOiB2
-YV9nZXREcml2ZXJOYW1lKCkgcmV0dXJucyAwDQogICAgbGlidmE6IFRyeWluZyB0byBvcGVuIC91
-c3IvbGliL2kzODYtbGludXgtZ251L2RyaS9pOTY1X2Rydl92aWRlby5zbw0KICAgIGxpYnZhOiB2
-YV9vcGVuRHJpdmVyKCkgcmV0dXJucyAwDQoNCiAgICBHU3RyZWFtZXItQ1JJVElDQUwgKio6IGdz
-dF91dGlsX2ZyYWN0aW9uX211bHRpcGx5OiBhc3NlcnRpb24gYGFfZCAhPSAwJyBmYWlsZWQNCg0K
-V2UgaGF2ZSBydW4gdGhlIHNhbWUgc2V0dXAgaW4gZGVza3RvcCBzaWRlIFVidW50dSBhbHNvIChH
-U1QgdmFhcGkgVmVyc2lvbjogMC4zLjYpLCByZXN1bHRpbmcgdGhlIHNhbWUuDQoNCg0KDQpUaGFu
-a3MgYW5kIFJlZ2FyZHMuDQpNZWVuYQ0KDQoNCg0KLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0N
-CkZyb206IEJ1cnRvbiwgUm9zcyBbbWFpbHRvOnJvc3MuYnVydG9uQGludGVsLmNvbV0gDQpTZW50
-OiBGcmlkYXksIE1hcmNoIDI4LCAyMDE0IDQ6NDIgUE0NClRvOiBNZWVuYWt1bWFyaSBTaGVkb2xl
-DQpDYzogeW9jdG9AeW9jdG9wcm9qZWN0Lm9yZzsgRGlwZXNoIEthcm1ha2FyDQpTdWJqZWN0OiBS
-ZTogW3lvY3RvXSBIZWxwLUdzdHJlYW1lciBWYWFwaSBQbHVnaW4gSXNzdWUgaW4gMTA4MHAgbXA0
-IHBsYXliYWNrDQoNCk9uIDI4IE1hcmNoIDIwMTQgMDY6MDUsIE1lZW5ha3VtYXJpIFNoZWRvbGUg
-PG1lZW5ha3VtYXJpLnNAaGNsLmNvbT4gd3JvdGU6DQo+IDEuIHBsYXliaW4yICsgYXZpLzNncCBp
-cyB3b3JraW5nIHByb3Blcmx5IGJlY2F1c2Ugb2YgeHZpbWFnZXNpbmsgaXMgdXNlZCBpbnRlcmFs
-bHkuDQo+IDIuIHBsYXliaW4yICsgbXA0IGlzIG5vdCB0YWtpbmcgdmFhcGkgc2luaywgd2UgbmVl
-ZCB0byBtYW51YWxseSBzZXQgdmlkZW8tc2luaz12YWFwaXNpbmsuDQo+ICAgIEFsc28gd2UgYXJl
-IGdldHRpbmcgYXJiaXRyYXJ5IGNyYXNoIHdoaWxlIHNldHRpbmcgdGhlIHFtbCB2aWRlbyB3aW5k
-b3cgaWQgdG8gdGhlIHZhYXBpIHNpbmsuDQo+ICAgIFNvIHdlIGFyZSBub3QgZ2V0dGluZyBhbnkg
-c2luZ2xlIHBpcGUgdG8gcGxheSBtcDQvYXZpLzNncCBzdHVmZi4NCg0KVGhlIGltcG9ydGFudCBx
-dWVzdGlvbiBpcyB3aGF0IHJlY2lwZSBhcmUgeW91IHVzaW5nIHRvIGdldCB0aGUgdmFhcGkgZWxl
-bWVudHM/DQoNCldoYXQgaGFwcGVucyBpZiB5b3UgdXNlIHZhYXBpc2luayB3aXRoIEFWSS8zR1A/
-ICBZb3Ugc2hvdWxkIHN0aWxsIGdldA0Kc29tZSBhY2NlbGVyYXRpb24uDQoNCk5vdGUgdGhhdCBl
-c3BlY2lhbGx5IHdoZW4gdXNpbmcgdmFhcGkgc2luayB5b3UgbmVlZCB0byB3YWl0IGZvciB0aGUN
-CnNpbmsgdG8gY3JlYXRlIHRoZSB3aW5kb3cgYW5kIHRoZW4gcmVwYXJlbnQgaXQsIHlvdSBjYW4n
-dCBwcm92aWRlIHlvdXINCm93biBYIHdpbmRvdyB0byB2YWFwaXNpbmsuICBUaGlzIGlzIHRoZSB1
-c3VhbCBjYXVzZSBmb3IgYnJlYWthZ2UuICBEbw0KdGVzdGluZyB3aXRoIGdzdC1sYXVuY2ggYmVm
-b3JlIGF0dGVtcHRpbmcgdG8gdXNlIHlvdXIgb3duIGFwcGxpY2F0aW9uLg0KDQpSb3NzDQoKCjo6
-RElTQ0xBSU1FUjo6Ci0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0KClRoZSBjb250
-ZW50cyBvZiB0aGlzIGUtbWFpbCBhbmQgYW55IGF0dGFjaG1lbnQocykgYXJlIGNvbmZpZGVudGlh
-bCBhbmQgaW50ZW5kZWQgZm9yIHRoZSBuYW1lZCByZWNpcGllbnQocykgb25seS4KRS1tYWlsIHRy
-YW5zbWlzc2lvbiBpcyBub3QgZ3VhcmFudGVlZCB0byBiZSBzZWN1cmUgb3IgZXJyb3ItZnJlZSBh
-cyBpbmZvcm1hdGlvbiBjb3VsZCBiZSBpbnRlcmNlcHRlZCwgY29ycnVwdGVkLApsb3N0LCBkZXN0
-cm95ZWQsIGFycml2ZSBsYXRlIG9yIGluY29tcGxldGUsIG9yIG1heSBjb250YWluIHZpcnVzZXMg
-aW4gdHJhbnNtaXNzaW9uLiBUaGUgZSBtYWlsIGFuZCBpdHMgY29udGVudHMKKHdpdGggb3Igd2l0
-aG91dCByZWZlcnJlZCBlcnJvcnMpIHNoYWxsIHRoZXJlZm9yZSBub3QgYXR0YWNoIGFueSBsaWFi
-aWxpdHkgb24gdGhlIG9yaWdpbmF0b3Igb3IgSENMIG9yIGl0cyBhZmZpbGlhdGVzLgpWaWV3cyBv
-ciBvcGluaW9ucywgaWYgYW55LCBwcmVzZW50ZWQgaW4gdGhpcyBlbWFpbCBhcmUgc29sZWx5IHRo
-b3NlIG9mIHRoZSBhdXRob3IgYW5kIG1heSBub3QgbmVjZXNzYXJpbHkgcmVmbGVjdCB0aGUKdmll
-d3Mgb3Igb3BpbmlvbnMgb2YgSENMIG9yIGl0cyBhZmZpbGlhdGVzLiBBbnkgZm9ybSBvZiByZXBy
-b2R1Y3Rpb24sIGRpc3NlbWluYXRpb24sIGNvcHlpbmcsIGRpc2Nsb3N1cmUsIG1vZGlmaWNhdGlv
-biwKZGlzdHJpYnV0aW9uIGFuZCAvIG9yIHB1YmxpY2F0aW9uIG9mIHRoaXMgbWVzc2FnZSB3aXRo
-b3V0IHRoZSBwcmlvciB3cml0dGVuIGNvbnNlbnQgb2YgYXV0aG9yaXplZCByZXByZXNlbnRhdGl2
-ZSBvZgpIQ0wgaXMgc3RyaWN0bHkgcHJvaGliaXRlZC4gSWYgeW91IGhhdmUgcmVjZWl2ZWQgdGhp
-cyBlbWFpbCBpbiBlcnJvciBwbGVhc2UgZGVsZXRlIGl0IGFuZCBub3RpZnkgdGhlIHNlbmRlciBp
-bW1lZGlhdGVseS4KQmVmb3JlIG9wZW5pbmcgYW55IGVtYWlsIGFuZC9vciBhdHRhY2htZW50cywg
-cGxlYXNlIGNoZWNrIHRoZW0gZm9yIHZpcnVzZXMgYW5kIG90aGVyIGRlZmVjdHMuCgotLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tCg==
+Hi Toby - we are not holding a Developer Day at ELC this year,
+unfortunately. YP will be there with a booth and some demos. There is
+a 2-day OE/YP hackathon for project developers planned following ELC
+() but it is specifically for face-to-face work on the project itself,
+not for training. We do have a DevDay planned for ELCE in Dusseldorf
+in the fall.
 
+On Tue, Apr 1, 2014 at 5:28 AM, Toby Flynn <campingandskiing@gmail.com> wrote:
+> Are there plans to have a Yocto Developer Day on the Monday before the ELC
+> this year as in Past years?
+>
+> Toby
+>
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
+
+
+
+-- 
+Jeff Osier-Mixon @Intel
+Yocto Project Community Manager http://yoctoproject.org
 
