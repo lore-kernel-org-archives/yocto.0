@@ -1,34 +1,22 @@
-Return-Path: <jefro.net@gmail.com>
-Received: from mail-lb0-f178.google.com (mail-lb0-f178.google.com
-	[209.85.217.178])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 706FDE00C6F
-	for <yocto@yoctoproject.org>; Tue,  1 Apr 2014 07:43:25 -0700 (PDT)
-Received: by mail-lb0-f178.google.com with SMTP id s7so7167869lbd.9
-	for <yocto@yoctoproject.org>; Tue, 01 Apr 2014 07:43:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:sender:in-reply-to:references:from:date:message-id
-	:subject:to:cc:content-type;
-	bh=tR1y55rm7bFKJ2wodv4zsVDqi6vTfd2WszYieyoIhdQ=;
-	b=TNhqWtLV9YoV+ZFo68aWYTNb71QS0XovTja45c22sQGIAzpsaxcxOMYeK+MpyEtrjc
-	3GXoIeCvOySAFa1GElUg3E9SZWNK7WohxO/UqRUqyuii9aTOFNHXT5Q/ULx3nnulWviG
-	KM8orfrDt5XmJbguVYcmB7e6Y2Nx+EkkCCqU8sF73VjL3DW13ZIg4fB6YEZsvHqd7jBi
-	feEf0mX4tnvluOgk5ylOBFY//JvHu+0ho+1aU5tzOnGcSONlPNOKkL2fOBY55U9ukXml
-	pXElcClWq/dFnQmGOz0uqxF51reg+FEuPLfPco2MQD7nAPIvTmWVo6QZefFeWIjZW943
-	2xlA==
-X-Received: by 10.112.158.105 with SMTP id wt9mr2383482lbb.31.1396363404084;
-	Tue, 01 Apr 2014 07:43:24 -0700 (PDT)
+Return-Path: <darcy.watkins@inmotiontechnology.com>
+Received: from sierrawireless.com (spf.sierrawireless.com [208.81.121.47])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 84B9EE003C7
+	for <yocto@yoctoproject.org>; Tue,  1 Apr 2014 07:52:15 -0700 (PDT)
+Received: from carmd-exchmb01.sierrawireless.local ([10.0.6.3]) by
+	carmd-exchhub02.sierrawireless.local ([::1]) with mapi; Tue, 1 Apr 2014
+	07:52:15 -0700
+From: Darcy Watkins <darcy.watkins@inmotiontechnology.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Date: Tue, 1 Apr 2014 07:52:13 -0700
+Thread-Topic: berlios.de git clone connection refused
+Thread-Index: Ac9Nue2gvD29RgcMT/qVy9FyTLm2Kw==
+Message-ID: <8F90F944E50427428C60E12A34A309D237F0479FD4@carmd-exchmb01.sierrawireless.local>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+acceptlanguage: en-US
 MIME-Version: 1.0
-Sender: jefro.net@gmail.com
-Received: by 10.112.173.199 with HTTP; Tue, 1 Apr 2014 07:43:04 -0700 (PDT)
-In-Reply-To: <CAGVfQ44TKVV3+Oeu5U0dFwxKrw1qr8HNkwwbXPyULxp1yXAxNw@mail.gmail.com>
-References: <CAGVfQ44TKVV3+Oeu5U0dFwxKrw1qr8HNkwwbXPyULxp1yXAxNw@mail.gmail.com>
-From: Jeff Osier-Mixon <jefro@jefro.net>
-Date: Tue, 1 Apr 2014 07:43:04 -0700
-X-Google-Sender-Auth: jujnTAkW_57yzxD-a-XoCdKSH7M
-Message-ID: <CA+YB3rbOiu5kM=2JxdFPfJ-PuK_m+phVKiYoT9Bar8Yj3O8T0A@mail.gmail.com>
-To: Toby Flynn <campingandskiing@gmail.com>
-Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: Yocto Project Developer Day at ELC 2014
+Subject: berlios.de git clone connection refused
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,32 +28,72 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 01 Apr 2014 14:43:26 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Tue, 01 Apr 2014 14:52:16 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_8F90F944E50427428C60E12A34A309D237F0479FD4carmdexchmb01_"
 
-Hi Toby - we are not holding a Developer Day at ELC this year,
-unfortunately. YP will be there with a booth and some demos. There is
-a 2-day OE/YP hackathon for project developers planned following ELC
-() but it is specifically for face-to-face work on the project itself,
-not for training. We do have a DevDay planned for ELCE in Dusseldorf
-in the fall.
+--_000_8F90F944E50427428C60E12A34A309D237F0479FD4carmdexchmb01_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-On Tue, Apr 1, 2014 at 5:28 AM, Toby Flynn <campingandskiing@gmail.com> wrote:
-> Are there plans to have a Yocto Developer Day on the Monday before the ELC
-> this year as in Past years?
->
-> Toby
->
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
->
+What is being done about the fetch failures at berlios.de?  This has broken=
+ jamvm.  Are there other projects affected by this?  From what I can google=
+ about it, berios.de was supposed to shut down over a year ago with project=
+s migrated to sourceforge.
 
+--_000_8F90F944E50427428C60E12A34A309D237F0479FD4carmdexchmb01_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40"><head><META HTTP-EQUIV=3D"Content-Type" CONTENT=
+=3D"text/html; charset=3Dus-ascii"><meta name=3DGenerator content=3D"Micros=
+oft Word 14 (filtered medium)"><style><!--
+/* Font Definitions */
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";
+	mso-fareast-language:EN-US;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri","sans-serif";
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri","sans-serif";
+	mso-fareast-language:EN-US;}
+@page WordSection1
+	{size:612.0pt 792.0pt;
+	margin:72.0pt 72.0pt 72.0pt 72.0pt;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]--></head><body lang=3DEN-CA link=3Dblue vli=
+nk=3Dpurple><div class=3DWordSection1><p class=3DMsoNormal>What is being do=
+ne about the fetch failures at berlios.de?&nbsp; This has broken jamvm.&nbs=
+p; Are there other projects affected by this?&nbsp; From what I can google =
+about it, berios.de was supposed to shut down over a year ago with projects=
+ migrated to sourceforge.<o:p></o:p></p></div></body></html>=
 
--- 
-Jeff Osier-Mixon @Intel
-Yocto Project Community Manager http://yoctoproject.org
-
+--_000_8F90F944E50427428C60E12A34A309D237F0479FD4carmdexchmb01_--
