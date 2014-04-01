@@ -1,25 +1,22 @@
-Return-Path: <paul.eggleton@linux.intel.com>
+Return-Path: <stefanx.stanacar@intel.com>
 Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 89E8DE00C53
-	for <yocto@yoctoproject.org>; Tue,  1 Apr 2014 02:52:41 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1C0F2E00C56
+	for <yocto@yoctoproject.org>; Tue,  1 Apr 2014 03:46:46 -0700 (PDT)
 Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by fmsmga101.fm.intel.com with ESMTP; 01 Apr 2014 02:52:40 -0700
+	by fmsmga101.fm.intel.com with ESMTP; 01 Apr 2014 03:46:46 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.97,771,1389772800"; d="scan'208";a="504211705"
-Received: from mmckenna-mobl2.ger.corp.intel.com (HELO
-	peggleto-mobl5.ger.corp.intel.com) ([10.252.120.155])
-	by fmsmga001.fm.intel.com with ESMTP; 01 Apr 2014 02:52:32 -0700
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: Andrey Telepin <systemcpp@mail.ru>
-Date: Tue, 01 Apr 2014 10:52:31 +0100
-Message-ID: <2484286.PxjcV5vpH4@peggleto-mobl5.ger.corp.intel.com>
-Organization: Intel Corporation
-User-Agent: KMail/4.12.3 (Linux/3.13.6-200.fc20.x86_64; KDE/4.12.3; x86_64; ; )
-In-Reply-To: <2636868.FdafsGWpEz@atelepin-nb>
-References: <2486851.ASaRMk8FDl@atelepin-nb> <2636868.FdafsGWpEz@atelepin-nb>
-MIME-Version: 1.0
-Cc: yocto@yoctoproject.org
-Subject: Re: qt-gstreamer configure problem
+X-IronPort-AV: E=Sophos;i="4.97,771,1389772800"; d="scan'208";a="504240181"
+Received: from linux.jf.intel.com (HELO linux.intel.com) ([10.23.219.25])
+	by fmsmga001.fm.intel.com with ESMTP; 01 Apr 2014 03:46:46 -0700
+Received: from firebird.rb.intel.com (firebird.rb.intel.com [10.237.105.160])
+	by linux.intel.com (Postfix) with ESMTP id 809F86A4083;
+	Tue,  1 Apr 2014 03:46:30 -0700 (PDT)
+From: Stefan Stanacar <stefanx.stanacar@intel.com>
+To: yocto@yoctoproject.org
+Date: Tue,  1 Apr 2014 13:47:04 +0300
+Message-Id: <1396349224-14532-3-git-send-email-stefanx.stanacar@intel.com>
+X-Mailer: git-send-email 1.9.0
+Subject: [yocto-autobuilder][PATCH] nightly-multilib: don't build lsb image
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -31,25 +28,30 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 01 Apr 2014 09:52:41 -0000
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Tue, 01 Apr 2014 10:46:47 -0000
 
-On Tuesday 01 April 2014 14:29:58 Andrey Telepin wrote:
-> On Tuesday, April 01, 2014 13:54:45 Andrey Telepin wrote:
-> > QT_QTGUI_INCLUDE_DIR
-> 
-> SOLVED adding -DQT_QTGUI_INCLUDE_DIR=${OE_QMAKE_INCDIR_QT}/QtGui to
-> EXTRA_OECMAKE
+We shouldn't build an lsb image here as this isn't a
+poky-lsb build.
+There is a pending patch on oe-core that will break this
+build if we don't remove it and it doesn't buys us too much test
+coverage anyway.
 
-It's a bit late, but I'm thinking maybe we ought to have a cmake_qt4 class 
-that just does all of this for you (as meta-qt5 has cmake_qt5).
+Signed-off-by: Stefan Stanacar <stefanx.stanacar@intel.com>
+---
+ buildset-config.master/nightly-multilib.conf | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Cheers,
-Paul
-
+diff --git a/buildset-config.master/nightly-multilib.conf b/buildset-config.master/nightly-multilib.conf
+index b5dfec3..49e6ea7 100644
+--- a/buildset-config.master/nightly-multilib.conf
++++ b/buildset-config.master/nightly-multilib.conf
+@@ -25,4 +25,4 @@ steps: [{'SetDest':{}},
+         {'BuildImages': {'images': 'core-image-sato'}},
+         {'RunSanityTests': {'images': 'core-image-sato', 'suites' : 'ping ssh connman xorg multilib dmesg auto'}},
+         {'CreateAutoConf': {'machine': 'qemux86', 'SDKMACHINE' : 'i686', 'multilib': 'lib64', 'distro': 'poky'}},
+-        {'BuildImages': {'images': 'lib64-core-image-sato lib64-core-image-sato-sdk lib64-core-image-lsb-sdk'}}]
++        {'BuildImages': {'images': 'lib64-core-image-sato lib64-core-image-sato-sdk'}}]
 -- 
+1.9.0
 
-Paul Eggleton
-Intel Open Source Technology Centre
 
