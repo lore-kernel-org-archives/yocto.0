@@ -1,24 +1,33 @@
-Return-Path: <philip@balister.org>
-Received: from starfish.geekisp.com (starfish.geekisp.com [216.168.135.166])
-	by yocto-www.yoctoproject.org (Postfix) with SMTP id D30D2E00B7B
-	for <yocto@yoctoproject.org>; Tue,  1 Apr 2014 17:50:01 -0700 (PDT)
-Received: (qmail 21364 invoked by uid 1003); 2 Apr 2014 00:50:00 -0000
-Received: from unknown (HELO ?10.16.32.157?)
-	(philip@opensdr.com@64.186.172.226)
-	by mail.geekisp.com with (DHE-RSA-AES256-SHA encrypted) SMTP;
-	2 Apr 2014 00:50:00 -0000
-Message-ID: <533B5EB4.2000703@balister.org>
-Date: Tue, 01 Apr 2014 17:49:56 -0700
-From: Philip Balister <philip@balister.org>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:17.0) Gecko/20130625 Thunderbird/17.0.7
+Return-Path: <elizabeth.flanagan@intel.com>
+Received: from mail-vc0-f173.google.com (mail-vc0-f173.google.com
+	[209.85.220.173])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C7A4FE00BAB
+	for <yocto@yoctoproject.org>; Tue,  1 Apr 2014 22:32:51 -0700 (PDT)
+Received: by mail-vc0-f173.google.com with SMTP id il7so10929502vcb.4
+	for <yocto@yoctoproject.org>; Tue, 01 Apr 2014 22:32:51 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:date:message-id:subject:from:to
+	:content-type;
+	bh=VboWWnJno9h5/BEqwz2+V9jPC68yKyzd4gjvj0RmZiM=;
+	b=IIhoe2xBHvTwB0KtDZOUUJz7zmrdr1g8cTqW4qYdEqPF/VSdWyE0BnF2yQHAeY7gzs
+	dno9wbxwnRae+op5a7muJV4AZZaAn18iWkCxkUG6xFowbAUF6jvns6kDIU93STST4o6d
+	Gph9Vh0zrrepCmUJPXLqQSN+F1izAO/nyuPN33ppHXXVpUr0xJyZOi4lTyv3M01nqLPS
+	fIbaRyy2ASq1+rfhp5O+eh27FjwDP0FkbUeO6+82EDLR43xlfdPBXUnK0byIHWKFV9fb
+	tY76CvImkt3cbfa35Bvrm/RFeYphquy6IpLIfbg5UT4ot3zeFvERtP9hTPBd53NSsIvR
+	HTvw==
+X-Gm-Message-State: ALoCoQnOwKI8rXDkxaOtWE10dUlKP/nUkytBAZ6EFg/rlu0xQ+IZi5O/Q3qVSpB/NlJkR1JqQ/Ey
 MIME-Version: 1.0
-To: Jonathan Austin <jonathan.austin@arm.com>
-References: <533AE7CE.6070708@arm.com>
-In-Reply-To: <533AE7CE.6070708@arm.com>
-X-Enigmail-Version: 1.6
-Cc: yocto <yocto@yoctoproject.org>
-Subject: Re: ADT/SDK and cmake - generating the toolchain/cmake config
+X-Received: by 10.52.108.164 with SMTP id hl4mr5630195vdb.25.1396416771087;
+	Tue, 01 Apr 2014 22:32:51 -0700 (PDT)
+Received: by 10.52.173.69 with HTTP; Tue, 1 Apr 2014 22:32:51 -0700 (PDT)
+Date: Tue, 1 Apr 2014 22:32:51 -0700
+Message-ID: <CAPhnLPDEhVthy3gt1E9Gwx1L6Q74Kg8a8FFuOqMrEtvJf5P50g@mail.gmail.com>
+From: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>, 
+	Alexandru C Georgescu <alexandru.c.georgescu@intel.com>,
+	Otavio Salvador <otavio@ossystems.com.br>, Zhao Yi <yi.zhao@windriver.com>
+Subject: 1.6_M5.rc2 will soon be available
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -30,44 +39,25 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 02 Apr 2014 00:50:04 -0000
+X-List-Received-Date: Wed, 02 Apr 2014 05:32:53 -0000
 Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: 7bit
 
-On 04/01/2014 09:22 AM, Jonathan Austin wrote:
-> Hi all,
-> 
-> The ADT documentation walks you through building an 'app' using
-> autoconf/make, and the environment setup script that is created as part
-> of the SDK build contains all the necessary autofoo/environment
-> variables. This is great, and I've worked through the autotools example
-> happily. Thanks :)
-> 
-> What I can't find, though, is anything that does the equivalent for
-> cmake. I'm new to cmake so could be missing something obvious, but after
-> seeing the 'environment-setup-TARGET' files (the ones at
-> /opt/poky/1.5.1/) I thought there might also be a cmake toolchain file
-> (toolchain-TARGET.cmake, for example) or some other cmake-foo.
-> 
-> I can see that cmake support was merged for Eclipse/ADT, so it seems
-> like cmake could be supported 'outside the IDE', but I can't quite see
-> how what I ought to twiddle to do this. I found the tantalizingly named
-> 'cmake_do_generate_toolchain_file()' and all the other relevant stuff in
-> meta/classes/cmake.bbclass, but I don't know what the 'right' way to
-> propagate all that stuff into the SDK/ADT would be.
-> 
-> Any help with getting started would be greatly appreciated.
+The next rc for the upcoming 1.6 "daisy" release will be available at:
 
-This toolchain file builds gnuradio from an SDK:
+http://autobuilder.yoctoproject.org/pub/releases/yocto-1.6_M5.rc2 Unknown
 
-https://github.com/gnuradio/gnuradio/blob/master/cmake/Toolchains/oe-sdk_cross.cmake
+Please begin QA as soon as possible.
 
-Does this help?
+bitbake f0a1a3e24757f7658d272035620465f92a3e4c3c
+eclipse-poky-juno 26bfc407781aa185f244a47ba63120343cee4a37
+eclipse-poky-kepler 1dfe1d2f1322b5fda8e1a7637c447b0e060efb3e
+meta-fsl-arm b6eb4bf18bc96332a18c53bdfcf23a4ff684bc72
+meta-fsl-ppc 290a669e5480792836d4f7769ba2ef6f49799323
+meta-intel 385480881105643d83277023ce74df8c1b4a9c9e
+meta-minnow 743fa66aa0cc2265a9c1f293c305828d90b4fbbd
+meta-qt3 3016129d90b7ac8517a5227d819f10ad417b5b45
+oecore 9d502ca8551fd461f869395b1b7e62d6dcf59a84
+poky 3e528d3e4bc542ca2f654c54363c56af0fb9f61b
 
-Philip
-
-> 
-> Thanks
-> Jonny
-> 
+-b
 
