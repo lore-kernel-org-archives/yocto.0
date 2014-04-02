@@ -1,32 +1,33 @@
 Return-Path: <meenakumari.s@hcl.com>
-Received: from GWS05.hcl.com (gws05.avitas.hcl.com [203.105.185.23])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6D385E00BAB
-	for <yocto@yoctoproject.org>; Tue,  1 Apr 2014 23:32:29 -0700 (PDT)
-X-IronPort-AV: E=Sophos;i="4.97,778,1389724200"; d="scan'208";a="59146964"
-Received: from unknown (HELO NDA-CORP-HT02.CORP.HCL.IN) ([10.248.64.34])
-	by GWS05.hcl.com with ESMTP/TLS/AES128-SHA; 02 Apr 2014 12:00:24 +0530
-Received: from NDA-HCLT-CSHT02.HCLT.CORP.HCL.IN (10.98.132.27) by
-	NDA-CORP-HT02.CORP.HCL.IN (10.248.64.34) with Microsoft SMTP Server
-	(TLS) id 14.3.123.3; Wed, 2 Apr 2014 12:02:22 +0530
+Received: from GWS06.hcl.com (gws06.avitas.hcl.com [203.105.185.25])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 64AB1E00BB6
+	for <yocto@yoctoproject.org>; Tue,  1 Apr 2014 23:32:42 -0700 (PDT)
+X-IronPort-AV: E=Sophos;i="4.97,778,1389724200"; d="scan'208";a="64764793"
+Received: from unknown (HELO NDA-HCLIN-HT02.CORP.HCL.IN) ([10.248.64.36])
+	by GWS06.hcl.com with ESMTP/TLS/AES128-SHA; 02 Apr 2014 11:51:39 +0530
+Received: from NDA-HCLT-CSHT04.HCLT.CORP.HCL.IN (10.98.132.29) by
+	NDA-HCLIN-HT02.CORP.HCL.IN (10.248.64.36) with Microsoft SMTP Server
+	(TLS) id 8.3.245.1; Wed, 2 Apr 2014 11:55:40 +0530
 Received: from NDA-HCLT-MBS02.HCLT.CORP.HCL.IN ([10.98.132.17]) by
-	NDA-HCLT-CSHT02.HCLT.CORP.HCL.IN ([10.98.132.27]) with mapi id
-	14.03.0123.003; Wed, 2 Apr 2014 12:02:22 +0530
+	NDA-HCLT-CSHT04.HCLT.CORP.HCL.IN ([10.98.132.29]) with mapi id
+	14.03.0123.003; Wed, 2 Apr 2014 11:55:40 +0530
 From: Meenakumari Shedole <meenakumari.s@hcl.com>
 To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
 	"gwenole.beauchesne@intel.com" <gwenole.beauchesne@intel.com>
 Thread-Topic: [yocto] Help-Gstreamer Vaapi Plugin Issue in 1080p mp4 playback
-Thread-Index: AQHPSYlGWF8OgI4BY0eUG8fpk2Rq8Zr0llAAgAFgBgCAAAsvkP///EyAgAZ3sHCAAEJeQIABLiLA
-Date: Wed, 2 Apr 2014 06:32:20 +0000
-Message-ID: <E4938C0D959B3445943720B88F07213415614CE4@NDA-HCLT-MBS02.hclt.corp.hcl.in>
-References: <E4938C0D959B3445943720B88F07213415613522@NDA-HCLT-MBS02.hclt.corp.hcl.in>
-	<CAJTo0LY5VVCZbimtTBNdgDCEB+1mwSwdsVH31ik8GSdheg48OQ@mail.gmail.com> 
+Thread-Index: Ac9OPF2bWF8OgI4BY0eUG8fpk2Rq8Q==
+X-CallingTelephoneNumber: IPM.Note
+X-VoiceMessageDuration: 1
+X-FaxNumberOfPages: 0
+Date: Wed, 2 Apr 2014 06:25:39 +0000
+Message-ID: <E4938C0D959B3445943720B88F07213415614CBE@NDA-HCLT-MBS02.hclt.corp.hcl.in>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
 x-originating-ip: [10.98.134.12]
 MIME-Version: 1.0
 Cc: Dipesh Karmakar <Dipesh.Karmakar@hcl.com>
-Subject: Re: Help-Gstreamer Vaapi Plugin Issue in 1080p mp4 playback
+Subject: Recall: Help-Gstreamer Vaapi Plugin Issue in 1080p mp4 playback
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,90 +39,39 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 02 Apr 2014 06:32:40 -0000
+X-List-Received-Date: Wed, 02 Apr 2014 06:32:44 -0000
 Content-Language: en-US
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-VGhpcyBpcyByZWdhcmRpbmcgMTA4MHAgbXA0IHBsYXliYWNrIGNhc2UuDQoNCldlIGFyZSB1c2lu
-ZyBnc3RyZWFtZXIwLjEwLjM2IGZvciBvdXIgMTA4MHAgbXA0IHBsYXliYWNrIGFuZCB3ZSBoYXZl
-IHVzZWQgZm9sbG93aW5nIGdzdHJhZW1lciBwaXBlbGluZS4NCmZpbGVzcmMtPiBkZWNvZGViaW4t
-PnF1ZXVlLT5mZm1wZWdjb2xvcnNwYWNlLT54dmltYWdlc2luaw0KDQpIZXJlIHdlIGFyZSBmYWNp
-bmcgbG90IG9mIGJ1ZmZlciBkcm9wIGFuZCB2aWRlbyBpcyBkaXNwbGF5aW5nIGxpa2Ugc2xvdyBt
-b3Rpb24gc28sIHdlIHRoaW5rIHRoYXQgbWF5IGJlIHh2aW1hZ2VzaW5rIGlzIG5vdCB1c2luZyB0
-aGUgdmlkZW8gYWNjZWxlcmF0aW9uIHByb3ZpZGVkIGJ5IEludGVsLCBoZW5jZSB3ZSBtb3ZlZCB0
-byB2YWFwaXZpZGVvc2luay4gSG93ZXZlciB3ZSBmb3VuZCB0aGUgZm9sbG93aW5nIGVycm9yIHdo
-aWxlIHVzaW5nIHZhYXBpdmlkZW9zaW5rDQoNCkxhdGVyIFdlIHRyaWVkIHZhYXBpc2luayB3aXRo
-IGJlbG93IHBpcGVsaW5lDQoNClBsYXliaW4yLS0+dmlkZW8tc2luaz12YWFwaXNpbmsuDQoNCkJ1
-dCBWaWRlbyBpcyBub3QgcGxheWluZyB3aXRoIHF0d2luZG93KCBhcHBsaWNhdGlvbiB3aW5kb3cp
-LGNyZWF0aW5nIGl0cyBvd24gb25lIHdpbmRvdy4NCg0KRHVlIHRvIHRoaXMgcHJvYmxlbS4NCg0K
-SSBoYXZlIHVzZWQgbGlidmEtaW50ZWwtZHJpdmVyLTEuMi4wIGFzIGEgcGFydCBvZiBtZXRhLWlu
-dGVsIG9uIERvcmEgYXMgdGhlIHJlY2lwZXMgcHJvdmlkZWQgYnkgSW50ZWwuIEkgY2FuIGF0dGFj
-aCBiYiBmaWxlIGFsc28gaWYgaXRzIG5lZWRlZC4NCkhhdmUgYnVpbGQgSW50ZWwgdmEgc291cmNl
-IG1hbnVhbGx5IGFuZCBub3cgd2UgY2FuIGFibGUgdG8gc2luayB3aXRoIHZhYXBpc2luayBpbiBp
-dHMgb3duIHdpbmRvdy4NCldlIGFyZSBub3QgYWJsZSB0byB1c2UgdmFhcGlzaW5rIHdpdGggQVZJ
-LzNHUCBmaWxlcywgYXNraW5nIGZvciBzb21lIG1pc3NpbmcgdmlkZW8veC1zdXJmYWNlLg0KDQpJ
-IGhhdmUgY2hlY2tlZCB2YWFwaXNpbmsgc291cmNlLCBpdCBzZWVtcyBpdHMgc3VwcG9ydGluZyBv
-dmVybGF5IG9uIGZvcmVpZ24gWCB3aW5kb3cuDQpodHRwczovL2dpdG9yaW91cy5vcmcvdmFhcGkv
-Z3N0cmVhbWVyLXZhYXBpL3NvdXJjZS82NDNkMzVlODdhNjczNzZhZjljZDg5Y2Q4Njg2NjYzNjhi
-MTA1YWMzOmdzdC92YWFwaXNpbmsvZ3N0dmFhcGlzaW5rLmMNCnN0YXRpYyBnYm9vbGVhbiBnc3Rf
-dmFhcGlzaW5rX2ltcGxlbWVudHNfaW50ZXJmYWNlX3N1cHBvcnRlZCgpOw0Kc3RhdGljIGdib29s
-ZWFuIGdzdF92YWFwaXNpbmtfZW5zdXJlX3dpbmRvd194aWQoKTsNCg0KSG93ZXZlciB3aGVuIEkg
-YW0gdHJ5aW5nIHRvIHNldCB0aGUgd2luZG93IHRvIHRoZSBzaW5rIHVzaW5nIGdzdF94X292ZXJs
-YXlfc2V0X3h3aW5kb3dfaWQgT1IgZ3N0X3hfb3ZlcmxheV9zZXRfd2luZG93X2hhbmRsZSBBUEkn
-cyBJIGFtIGdldHRpbmcgZm9sbG93aW5nIHJ1bnRpbWUgZXJyb3IuDQoNCiAgICBTZXRXaW5kb3dJ
-ZCgpIGluIE1lZGlhUGlwZS5jcHAsIGxpbmUgNDAzOiB3aW5kb3cgaWQgNjkyMDYwMjJkDQogICAg
-bGlidmE6IFZBLUFQSSB2ZXJzaW9uIDAuMzIuMA0KICAgIGxpYnZhOiB2YV9nZXREcml2ZXJOYW1l
-KCkgcmV0dXJucyAwDQogICAgbGlidmE6IFRyeWluZyB0byBvcGVuIC91c3IvbGliL2kzODYtbGlu
-dXgtZ251L2RyaS9pOTY1X2Rydl92aWRlby5zbw0KICAgIGxpYnZhOiB2YV9vcGVuRHJpdmVyKCkg
-cmV0dXJucyAwDQoNCiAgICBHU3RyZWFtZXItQ1JJVElDQUwgKio6IGdzdF91dGlsX2ZyYWN0aW9u
-X211bHRpcGx5OiBhc3NlcnRpb24gYGFfZCAhPSAwJyBmYWlsZWQNCg0KV2UgaGF2ZSBydW4gdGhl
-IHNhbWUgc2V0dXAgaW4gZGVza3RvcCBzaWRlIFVidW50dSBhbHNvIChHU1QgdmFhcGkgVmVyc2lv
-bjogMC4zLjYpLCByZXN1bHRpbmcgdGhlIHNhbWUuDQoNCg0KDQpUaGFua3MgYW5kIFJlZ2FyZHMu
-DQpNZWVuYQ0KDQoNCg0KLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCkZyb206IEJ1cnRvbiwg
-Um9zcyBbbWFpbHRvOnJvc3MuYnVydG9uQGludGVsLmNvbV0gDQpTZW50OiBGcmlkYXksIE1hcmNo
-IDI4LCAyMDE0IDQ6NDIgUE0NClRvOiBNZWVuYWt1bWFyaSBTaGVkb2xlDQpDYzogeW9jdG9AeW9j
-dG9wcm9qZWN0Lm9yZzsgRGlwZXNoIEthcm1ha2FyDQpTdWJqZWN0OiBSZTogW3lvY3RvXSBIZWxw
-LUdzdHJlYW1lciBWYWFwaSBQbHVnaW4gSXNzdWUgaW4gMTA4MHAgbXA0IHBsYXliYWNrDQoNCk9u
-IDI4IE1hcmNoIDIwMTQgMDY6MDUsIE1lZW5ha3VtYXJpIFNoZWRvbGUgPG1lZW5ha3VtYXJpLnNA
-aGNsLmNvbT4gd3JvdGU6DQo+IDEuIHBsYXliaW4yICsgYXZpLzNncCBpcyB3b3JraW5nIHByb3Bl
-cmx5IGJlY2F1c2Ugb2YgeHZpbWFnZXNpbmsgaXMgdXNlZCBpbnRlcmFsbHkuDQo+IDIuIHBsYXli
-aW4yICsgbXA0IGlzIG5vdCB0YWtpbmcgdmFhcGkgc2luaywgd2UgbmVlZCB0byBtYW51YWxseSBz
-ZXQgdmlkZW8tc2luaz12YWFwaXNpbmsuDQo+ICAgIEFsc28gd2UgYXJlIGdldHRpbmcgYXJiaXRy
-YXJ5IGNyYXNoIHdoaWxlIHNldHRpbmcgdGhlIHFtbCB2aWRlbyB3aW5kb3cgaWQgdG8gdGhlIHZh
-YXBpIHNpbmsuDQo+ICAgIFNvIHdlIGFyZSBub3QgZ2V0dGluZyBhbnkgc2luZ2xlIHBpcGUgdG8g
-cGxheSBtcDQvYXZpLzNncCBzdHVmZi4NCg0KVGhlIGltcG9ydGFudCBxdWVzdGlvbiBpcyB3aGF0
-IHJlY2lwZSBhcmUgeW91IHVzaW5nIHRvIGdldCB0aGUgdmFhcGkgZWxlbWVudHM/DQoNCldoYXQg
-aGFwcGVucyBpZiB5b3UgdXNlIHZhYXBpc2luayB3aXRoIEFWSS8zR1A/ICBZb3Ugc2hvdWxkIHN0
-aWxsIGdldA0Kc29tZSBhY2NlbGVyYXRpb24uDQoNCk5vdGUgdGhhdCBlc3BlY2lhbGx5IHdoZW4g
-dXNpbmcgdmFhcGkgc2luayB5b3UgbmVlZCB0byB3YWl0IGZvciB0aGUNCnNpbmsgdG8gY3JlYXRl
-IHRoZSB3aW5kb3cgYW5kIHRoZW4gcmVwYXJlbnQgaXQsIHlvdSBjYW4ndCBwcm92aWRlIHlvdXIN
-Cm93biBYIHdpbmRvdyB0byB2YWFwaXNpbmsuICBUaGlzIGlzIHRoZSB1c3VhbCBjYXVzZSBmb3Ig
-YnJlYWthZ2UuICBEbw0KdGVzdGluZyB3aXRoIGdzdC1sYXVuY2ggYmVmb3JlIGF0dGVtcHRpbmcg
-dG8gdXNlIHlvdXIgb3duIGFwcGxpY2F0aW9uLg0KDQpSb3NzDQoKCjo6RElTQ0xBSU1FUjo6Ci0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0KClRoZSBjb250ZW50cyBvZiB0aGlzIGUt
-bWFpbCBhbmQgYW55IGF0dGFjaG1lbnQocykgYXJlIGNvbmZpZGVudGlhbCBhbmQgaW50ZW5kZWQg
-Zm9yIHRoZSBuYW1lZCByZWNpcGllbnQocykgb25seS4KRS1tYWlsIHRyYW5zbWlzc2lvbiBpcyBu
-b3QgZ3VhcmFudGVlZCB0byBiZSBzZWN1cmUgb3IgZXJyb3ItZnJlZSBhcyBpbmZvcm1hdGlvbiBj
-b3VsZCBiZSBpbnRlcmNlcHRlZCwgY29ycnVwdGVkLApsb3N0LCBkZXN0cm95ZWQsIGFycml2ZSBs
-YXRlIG9yIGluY29tcGxldGUsIG9yIG1heSBjb250YWluIHZpcnVzZXMgaW4gdHJhbnNtaXNzaW9u
-LiBUaGUgZSBtYWlsIGFuZCBpdHMgY29udGVudHMKKHdpdGggb3Igd2l0aG91dCByZWZlcnJlZCBl
-cnJvcnMpIHNoYWxsIHRoZXJlZm9yZSBub3QgYXR0YWNoIGFueSBsaWFiaWxpdHkgb24gdGhlIG9y
-aWdpbmF0b3Igb3IgSENMIG9yIGl0cyBhZmZpbGlhdGVzLgpWaWV3cyBvciBvcGluaW9ucywgaWYg
-YW55LCBwcmVzZW50ZWQgaW4gdGhpcyBlbWFpbCBhcmUgc29sZWx5IHRob3NlIG9mIHRoZSBhdXRo
-b3IgYW5kIG1heSBub3QgbmVjZXNzYXJpbHkgcmVmbGVjdCB0aGUKdmlld3Mgb3Igb3BpbmlvbnMg
-b2YgSENMIG9yIGl0cyBhZmZpbGlhdGVzLiBBbnkgZm9ybSBvZiByZXByb2R1Y3Rpb24sIGRpc3Nl
-bWluYXRpb24sIGNvcHlpbmcsIGRpc2Nsb3N1cmUsIG1vZGlmaWNhdGlvbiwKZGlzdHJpYnV0aW9u
-IGFuZCAvIG9yIHB1YmxpY2F0aW9uIG9mIHRoaXMgbWVzc2FnZSB3aXRob3V0IHRoZSBwcmlvciB3
-cml0dGVuIGNvbnNlbnQgb2YgYXV0aG9yaXplZCByZXByZXNlbnRhdGl2ZSBvZgpIQ0wgaXMgc3Ry
-aWN0bHkgcHJvaGliaXRlZC4gSWYgeW91IGhhdmUgcmVjZWl2ZWQgdGhpcyBlbWFpbCBpbiBlcnJv
-ciBwbGVhc2UgZGVsZXRlIGl0IGFuZCBub3RpZnkgdGhlIHNlbmRlciBpbW1lZGlhdGVseS4KQmVm
-b3JlIG9wZW5pbmcgYW55IGVtYWlsIGFuZC9vciBhdHRhY2htZW50cywgcGxlYXNlIGNoZWNrIHRo
-ZW0gZm9yIHZpcnVzZXMgYW5kIG90aGVyIGRlZmVjdHMuCgotLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tCg==
+Meenakumari Shedole would like to recall the message, "[yocto] Help-Gstream=
+er Vaapi Plugin Issue in 1080p mp4 playback".
+
+
+::DISCLAIMER::
+---------------------------------------------------------------------------=
+-------------------------------------------------------------------------
+
+The contents of this e-mail and any attachment(s) are confidential and inte=
+nded for the named recipient(s) only.
+E-mail transmission is not guaranteed to be secure or error-free as informa=
+tion could be intercepted, corrupted,
+lost, destroyed, arrive late or incomplete, or may contain viruses in trans=
+mission. The e mail and its contents
+(with or without referred errors) shall therefore not attach any liability =
+on the originator or HCL or its affiliates.
+Views or opinions, if any, presented in this email are solely those of the =
+author and may not necessarily reflect the
+views or opinions of HCL or its affiliates. Any form of reproduction, disse=
+mination, copying, disclosure, modification,
+distribution and / or publication of this message without the prior written=
+ consent of authorized representative of
+HCL is strictly prohibited. If you have received this email in error please=
+ delete it and notify the sender immediately.
+Before opening any email and/or attachments, please check them for viruses =
+and other defects.
+
+---------------------------------------------------------------------------=
+-------------------------------------------------------------------------
 
 
