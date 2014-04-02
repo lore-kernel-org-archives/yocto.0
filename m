@@ -1,32 +1,31 @@
-Return-Path: <bhushan.az@gmail.com>
-Received: from mail-we0-f169.google.com (mail-we0-f169.google.com
-	[74.125.82.169])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 12310E00BD3
-	for <yocto@yoctoproject.org>; Wed,  2 Apr 2014 04:53:20 -0700 (PDT)
-Received: by mail-we0-f169.google.com with SMTP id w62so93232wes.0
-	for <yocto@yoctoproject.org>; Wed, 02 Apr 2014 04:53:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type;
-	bh=CXpOC1zpmnU1FCFxs3Wdk/RqziE46SkJKJWPnoKepMc=;
-	b=AdrTQa/yVAn1lZcuA+21I3ZiQaosSt8SA3o21qL3F1/xiNdxy1r+jNkGHI6eLtiz6i
-	Dc4Zf9fkfYPdbpeyPSZn8dGLG9b8oevKdkWXeeUTBpD2O6z1TlWL34GI6r/ZIL2Ak9WG
-	85DOSYg+MgWMjptKgHXySmZEa3UmfmaU71dMYVGWV/u83hjzrM6FLpNsa3K5788tQMYz
-	GpyLTFWwdvsaBnk3vACNw9JFvXfnfQmlP5Zn3Q0pKxHW2jhhB4zgYBibzIM21nRLT1gf
-	5sxLDXIGD+MTx20NudvyQa2rZsCaH6AL5HzHVu7nl9KdxrGKen1g3M/tojoDxw9nOFKQ
-	DadQ==
-MIME-Version: 1.0
-X-Received: by 10.180.91.114 with SMTP id cd18mr1526859wib.28.1396439598985;
-	Wed, 02 Apr 2014 04:53:18 -0700 (PDT)
-Received: by 10.217.12.74 with HTTP; Wed, 2 Apr 2014 04:53:18 -0700 (PDT)
-In-Reply-To: <CAJTo0LbMn-FgabF5cHb=3jKSW-sC2gKC2oRdeQg+TcEXZH5K7Q@mail.gmail.com>
+Return-Path: <cristian.iorga@intel.com>
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1C8B8E00BD3
+	for <yocto@yoctoproject.org>; Wed,  2 Apr 2014 05:16:04 -0700 (PDT)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga101.fm.intel.com with ESMTP; 02 Apr 2014 05:15:01 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.97,780,1389772800"; 
+	d="scan'208,217";a="512831123"
+Received: from irsmsx103.ger.corp.intel.com ([163.33.3.157])
+	by fmsmga002.fm.intel.com with ESMTP; 02 Apr 2014 05:15:01 -0700
+Received: from irsmsx105.ger.corp.intel.com ([169.254.7.78]) by
+	IRSMSX103.ger.corp.intel.com ([163.33.3.157]) with mapi id
+	14.03.0123.003; Wed, 2 Apr 2014 13:14:05 +0100
+From: "Iorga, Cristian" <cristian.iorga@intel.com>
+To: Bhushan Shirsath <bhushan.az@gmail.com>, "yocto@yoctoproject.org"
+	<yocto@yoctoproject.org>
+Thread-Topic: [yocto] copying media files to qemux86
+Thread-Index: AQHPTmO9vtm/tDnFn02ifJIyjYoDKJr+PHgw
+Date: Wed, 2 Apr 2014 12:14:05 +0000
+Message-ID: <969F26A8BAB325438E7EB80D3C3134FB1CE7762E@IRSMSX105.ger.corp.intel.com>
 References: <CAG2NicKU0K+KVJ6XJgb9-zatAq81qtDxrJtC_g2W8AZ7nGtrig@mail.gmail.com>
-	<CAJTo0LbMn-FgabF5cHb=3jKSW-sC2gKC2oRdeQg+TcEXZH5K7Q@mail.gmail.com>
-Date: Wed, 2 Apr 2014 17:23:18 +0530
-Message-ID: <CAG2NicKBt_5GwPB4OMdZypqCwvhHRttnT6ZfNOsnPzV0uUv-sQ@mail.gmail.com>
-From: Bhushan Shirsath <bhushan.az@gmail.com>
-To: "Burton, Ross" <ross.burton@intel.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+In-Reply-To: <CAG2NicKU0K+KVJ6XJgb9-zatAq81qtDxrJtC_g2W8AZ7nGtrig@mail.gmail.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [163.33.239.180]
+MIME-Version: 1.0
 Subject: Re: copying media files to qemux86
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -39,71 +38,179 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 02 Apr 2014 11:53:21 -0000
-Content-Type: multipart/alternative; boundary=f46d043749ad3f75d904f60dee24
+X-List-Received-Date: Wed, 02 Apr 2014 12:16:05 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_969F26A8BAB325438E7EB80D3C3134FB1CE7762EIRSMSX105gercor_"
 
---f46d043749ad3f75d904f60dee24
-Content-Type: text/plain; charset=ISO-8859-1
-
-Thanks Ross.
-got it done using scp.
-
-
-
-On Wed, Apr 2, 2014 at 4:49 PM, Burton, Ross <ross.burton@intel.com> wrote:
-
-> On 2 April 2014 12:06, Bhushan Shirsath <bhushan.az@gmail.com> wrote:
-> > I'm able to successfully launch "runqemu qemux86".
-> > Now i intend to test the media libs built using Yocto on qemu currently.
-> > Is it possible to transfer/copy media files to qemux86 emulator ?
-> >
-> > I tried copying files to tmp/sysroots/qemux86/ but it didn't work.
->
-> The sysroot isn't the image. To get content into the image there are
-> several ways, depending on what need to do:
->
-> 1) make a recipe for the files and install the resulting packages into the
-> image
-> 2) boot the image and then copy the files using scp
-> 3) loopback mount the filesystem and copy the files before booting the
-> image
->
-> Ross
->
-
---f46d043749ad3f75d904f60dee24
-Content-Type: text/html; charset=ISO-8859-1
+--_000_969F26A8BAB325438E7EB80D3C3134FB1CE7762EIRSMSX105gercor_
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div>Thanks Ross.</div><div>got it done using scp.=A0<br><=
-/div><div><br></div></div><div class=3D"gmail_extra"><br><br><div class=3D"=
-gmail_quote">On Wed, Apr 2, 2014 at 4:49 PM, Burton, Ross <span dir=3D"ltr"=
->&lt;<a href=3D"mailto:ross.burton@intel.com" target=3D"_blank">ross.burton=
-@intel.com</a>&gt;</span> wrote:<br>
-<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
-x #ccc solid;padding-left:1ex"><div class=3D"HOEnZb"><div class=3D"h5">On 2=
- April 2014 12:06, Bhushan Shirsath &lt;<a href=3D"mailto:bhushan.az@gmail.=
-com">bhushan.az@gmail.com</a>&gt; wrote:<br>
+Hello,
 
-&gt; I&#39;m able to successfully launch &quot;runqemu qemux86&quot;.<br>
-&gt; Now i intend to test the media libs built using Yocto on qemu currentl=
-y.<br>
-&gt; Is it possible to transfer/copy media files to qemux86 emulator ?<br>
-&gt;<br>
-&gt; I tried copying files to tmp/sysroots/qemux86/ but it didn&#39;t work.=
-<br>
-<br>
-</div></div>The sysroot isn&#39;t the image. To get content into the image =
-there are<br>
-several ways, depending on what need to do:<br>
-<br>
-1) make a recipe for the files and install the resulting packages into the =
-image<br>
-2) boot the image and then copy the files using scp<br>
-3) loopback mount the filesystem and copy the files before booting the imag=
-e<br>
-<span class=3D"HOEnZb"><font color=3D"#888888"><br>
-Ross<br>
-</font></span></blockquote></div><br></div>
+By  media files, you mean music or video files?
+If so, depending on the image (if it has ssh support), you can copy into /h=
+ome/root using scp after you boot the image.
+I have use this to test mp3 playback, for example with some audio files.
 
---f46d043749ad3f75d904f60dee24--
+Regards,
+Cristian Iorga
+YP
+Intel Corporation
+
+From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org=
+] On Behalf Of Bhushan Shirsath
+Sent: Wednesday, April 2, 2014 2:07 PM
+To: yocto@yoctoproject.org
+Subject: [yocto] copying media files to qemux86
+
+Hi,
+
+I'm able to successfully launch "runqemu qemux86".
+Now i intend to test the media libs built using Yocto on qemu currently.
+Is it possible to transfer/copy media files to qemux86 emulator ?
+
+I tried copying files to tmp/sysroots/qemux86/ but it didn't work.
+
+Thanks,
+--bhushan
+
+--_000_969F26A8BAB325438E7EB80D3C3134FB1CE7762EIRSMSX105gercor_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:12.0pt;
+	font-family:"Times New Roman","serif";}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:#954F72;
+	text-decoration:underline;}
+span.EmailStyle17
+	{mso-style-type:personal-reply;
+	font-family:"Calibri","sans-serif";
+	color:#1F497D;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri","sans-serif";}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1F497D">Hello,<o:p></o:p></span><=
+/p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1F497D"><o:p>&nbsp;</o:p></span><=
+/p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1F497D">By&nbsp; media files, you=
+ mean music or video files?<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1F497D">If so, depending on the i=
+mage (if it has ssh support), you can copy into /home/root using scp after =
+you boot the image.<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1F497D">I have use this to test m=
+p3 playback, for example with some audio files.<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1F497D"><o:p>&nbsp;</o:p></span><=
+/p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1F497D">Regards,<o:p></o:p></span=
+></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1F497D">Cristian Iorga<o:p></o:p>=
+</span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1F497D">YP<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1F497D">Intel Corporation<o:p></o=
+:p></span></p>
+<p class=3D"MsoNormal"><a name=3D"_MailEndCompose"><span style=3D"font-size=
+:11.0pt;font-family:&quot;Calibri&quot;,&quot;sans-serif&quot;;color:#1F497=
+D"><o:p>&nbsp;</o:p></span></a></p>
+<p class=3D"MsoNormal" style=3D"margin-left:.5in"><b><span style=3D"font-si=
+ze:11.0pt;font-family:&quot;Calibri&quot;,&quot;sans-serif&quot;">From:</sp=
+an></b><span style=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,&quo=
+t;sans-serif&quot;"> yocto-bounces@yoctoproject.org [mailto:yocto-bounces@y=
+octoproject.org]
+<b>On Behalf Of </b>Bhushan Shirsath<br>
+<b>Sent:</b> Wednesday, April 2, 2014 2:07 PM<br>
+<b>To:</b> yocto@yoctoproject.org<br>
+<b>Subject:</b> [yocto] copying media files to qemux86<o:p></o:p></span></p=
+>
+<p class=3D"MsoNormal" style=3D"margin-left:.5in"><o:p>&nbsp;</o:p></p>
+<div>
+<p class=3D"MsoNormal" style=3D"margin-left:.5in">Hi,<o:p></o:p></p>
+<div>
+<p class=3D"MsoNormal" style=3D"margin-left:.5in"><o:p>&nbsp;</o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal" style=3D"margin-left:.5in">I'm able to successfully =
+launch &quot;runqemu qemux86&quot;.<o:p></o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal" style=3D"margin-left:.5in">Now i intend to test the =
+media libs built using Yocto on qemu currently.<o:p></o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal" style=3D"margin-left:.5in">Is it possible to transfe=
+r/copy media files to qemux86 emulator ?<o:p></o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal" style=3D"margin-left:.5in"><o:p>&nbsp;</o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal" style=3D"margin-left:.5in">I tried copying files to&=
+nbsp;tmp/sysroots/qemux86/ but it didn't work.<o:p></o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal" style=3D"margin-left:.5in"><o:p>&nbsp;</o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal" style=3D"margin-left:.5in">Thanks,<o:p></o:p></p>
+</div>
+<div>
+<p class=3D"MsoNormal" style=3D"margin-left:.5in">--bhushan<o:p></o:p></p>
+</div>
+</div>
+</div>
+</body>
+</html>
+
+--_000_969F26A8BAB325438E7EB80D3C3134FB1CE7762EIRSMSX105gercor_--
