@@ -1,35 +1,27 @@
-Return-Path: <cristian.iorga@intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 98967E00BAB
-	for <yocto@yoctoproject.org>; Wed,  2 Apr 2014 01:00:24 -0700 (PDT)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga102.jf.intel.com with ESMTP; 02 Apr 2014 00:55:00 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.97,778,1389772800"; 
-	d="scan'208,217";a="485515110"
-Received: from irsmsx104.ger.corp.intel.com ([163.33.3.159])
-	by orsmga001.jf.intel.com with ESMTP; 02 Apr 2014 00:59:23 -0700
-Received: from irsmsx101.ger.corp.intel.com (163.33.3.153) by
-	IRSMSX104.ger.corp.intel.com (163.33.3.159) with Microsoft SMTP Server
-	(TLS) id 14.3.123.3; Wed, 2 Apr 2014 08:59:22 +0100
-Received: from irsmsx105.ger.corp.intel.com ([169.254.7.78]) by
-	IRSMSX101.ger.corp.intel.com ([169.254.1.248]) with mapi id
-	14.03.0123.003; Wed, 2 Apr 2014 08:59:22 +0100
-From: "Iorga, Cristian" <cristian.iorga@intel.com>
-To: Darcy Watkins <darcy.watkins@inmotiontechnology.com>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: berlios.de git clone connection refused
-Thread-Index: Ac9Nue2gvD29RgcMT/qVy9FyTLm2KwAj19CA
-Date: Wed, 2 Apr 2014 07:59:21 +0000
-Message-ID: <969F26A8BAB325438E7EB80D3C3134FB1CE7747B@IRSMSX105.ger.corp.intel.com>
-References: <8F90F944E50427428C60E12A34A309D237F0479FD4@carmd-exchmb01.sierrawireless.local>
-In-Reply-To: <8F90F944E50427428C60E12A34A309D237F0479FD4@carmd-exchmb01.sierrawireless.local>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [163.33.239.180]
+Return-Path: <systemcpp@mail.ru>
+Received: from smtp39.i.mail.ru (smtp39.i.mail.ru [94.100.177.99])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 28E4FE00BAB
+	for <yocto@yoctoproject.org>; Wed,  2 Apr 2014 03:48:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mail.ru;
+	s=mail2; 
+	h=Content-Transfer-Encoding:Content-Type:MIME-Version:Message-ID:Date:Subject:To:From;
+	bh=8dE0tDI6Qo4wWVNpn0Z+V9nHA7DCckYn//Xb60PwKzA=; 
+	b=JqBfCgnEO4ypy3b0qPJtLY9AWk0VIsclQnq/fzeFr754zG+qGaQ4f16wCWcik4tzszVfhuOdmuBIKm0rdFGIeaKJZPl0KPVTdKZs44oH/BA8u4infnbgCvuV0rEzZt/WuxOR5EYugYVGbOgK9KyDQV+8wdPHXtWxbgC56C2i0yw=;
+Received: from [213.157.36.206] (port=57363 helo=atelepin-nb.localnet)
+	by smtp39.i.mail.ru with esmtpa (envelope-from <systemcpp@mail.ru>)
+	id 1WVIhy-0004ol-7S
+	for yocto@yoctoproject.org; Wed, 02 Apr 2014 14:47:50 +0400
+From: Andrey Telepin <systemcpp@mail.ru>
+To: yocto@yoctoproject.org
+Date: Wed, 02 Apr 2014 16:47:45 +0600
+Message-ID: <1516835.hnZfIudZDS@atelepin-nb>
+Organization: Home
+User-Agent: KMail/4.11.5 (Linux/3.11.0-18-generic; KDE/4.11.5; i686; ; )
 MIME-Version: 1.0
-Subject: Re: berlios.de git clone connection refused
+X-Spam: Not detected
+X-Spam: Not detected
+X-Mras: Ok
+Subject: qt-gstreamer do_install issue
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,115 +33,124 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 02 Apr 2014 08:00:24 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_969F26A8BAB325438E7EB80D3C3134FB1CE7747BIRSMSX105gercor_"
+X-List-Received-Date: Wed, 02 Apr 2014 10:48:22 -0000
+Content-Type: multipart/alternative; boundary="nextPart1486254.U5GfreZzku"
+Content-Transfer-Encoding: 7Bit
 
---_000_969F26A8BAB325438E7EB80D3C3134FB1CE7747BIRSMSX105gercor_
+--nextPart1486254.U5GfreZzku
+Content-Transfer-Encoding: 7Bit
 Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
 
-Hello,
-Patches and solving issues are always welcome.
+Hello All! 
 
-From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org=
-] On Behalf Of Darcy Watkins
-Sent: Tuesday, April 1, 2014 5:52 PM
-To: yocto@yoctoproject.org
-Subject: [yocto] berlios.de git clone connection refused
+I write .bb file for qt-gstreamer, all steps seems to by normal, but on do_install i get 
+next error:
 
-What is being done about the fetch failures at berlios.de?  This has broken=
- jamvm.  Are there other projects affected by this?  From what I can google=
- about it, berios.de was supposed to shut down over a year ago with project=
-s migrated to sourceforge.
+ERROR: QA Issue: qt-gstreamer: Files/directories were installed but not shipped
+  /usr/lib
+  /usr/local
+  /usr/lib/gstreamer-0.10
+  /usr/lib/gstreamer-0.10/libgstqtvideosink.so        
+.........
 
---_000_969F26A8BAB325438E7EB80D3C3134FB1CE7747BIRSMSX105gercor_
+*My .bb file*
+
+LICENSE = "GPLv2"
+LIC_FILES_CHKSUM = "file://COPYING;md5=2d5025d4aa3495befef8f17206a5b0a1"
+SECTION = "multimedia"
+
+PR = "r0"
+
+SRC_URI = "http://gstreamer.freedesktop.org/src/qt-gstreamer/qt-gstreamer-0.10.2.tar.gz"
+
+SRC_URI[md5sum] = "0428aedf2874fd0884ad4c41db9da20e"
+SRC_URI[sha256sum] = 
+"d40d312b34916582b29e6ade4fb856749071e041c0a92bc219d7f424c45dd8aa"
+
+# DEPENDS = "boost qt4-embedded"
+
+inherit qmake2 cmake qt4x11
+
+do_configure() {
+	# Ensure we get the cmake configure and not qmake
+	cmake_do_configure
+}
+
+
+export EXTRA_OECMAKE = "-DQT_QMAKE_EXECUTABLE=${OE_QMAKE_QMAKE} \
+                        -DQT_LRELEASE_EXECUTABLE=${OE_QMAKE_LRELEASE} \
+                        -DQT_MOC_EXECUTABLE=${OE_QMAKE_MOC} \
+                        -DQT_UIC_EXECUTABLE=${OE_QMAKE_UIC} \
+                        -DQT_RCC_EXECUTABLE=${OE_QMAKE_RCC} \
+                        -DQT_LIBRARY_DIR=${OE_QMAKE_LIBDIR_QT} \
+                        -DQT_HEADERS_DIR=${OE_QMAKE_INCDIR_QT} \
+                        -DQT_QTCORE_INCLUDE_DIR=${OE_QMAKE_INCDIR_QT}/QtCore \
+			-
+DQT_QTGUI_INCLUDE_DIR=${OE_QMAKE_INCDIR_QT}/QtGui \
+			-DQTGSTREAMER_EXAMPLES=OFF	
+\
+                        "
+
+
+What i miss?
+Thanks!
+
+--nextPart1486254.U5GfreZzku
+Content-Transfer-Encoding: 7Bit
 Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
 
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri","sans-serif";}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:purple;
-	text-decoration:underline;}
-span.EmailStyle17
-	{mso-style-type:personal;
-	font-family:"Calibri","sans-serif";
-	color:windowtext;}
-span.EmailStyle18
-	{mso-style-type:personal-reply;
-	font-family:"Calibri","sans-serif";
-	color:#1F497D;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-size:10.0pt;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">Hello,<o:p></o:p></spa=
-n></p>
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D">Patches and solving is=
-sues are always welcome.<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><a name=3D"_MailEndCompose"><span style=3D"color:#1F=
-497D"><o:p>&nbsp;</o:p></span></a></p>
-<div>
-<div style=3D"border:none;border-top:solid #E1E1E1 1.0pt;padding:3.0pt 0in =
-0in 0in">
-<p class=3D"MsoNormal" style=3D"margin-left:.5in"><b>From:</b> yocto-bounce=
-s@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org]
-<b>On Behalf Of </b>Darcy Watkins<br>
-<b>Sent:</b> Tuesday, April 1, 2014 5:52 PM<br>
-<b>To:</b> yocto@yoctoproject.org<br>
-<b>Subject:</b> [yocto] berlios.de git clone connection refused<o:p></o:p><=
-/p>
-</div>
-</div>
-<p class=3D"MsoNormal" style=3D"margin-left:.5in"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal" style=3D"margin-left:.5in"><span lang=3D"EN-CA">What=
- is being done about the fetch failures at berlios.de?&nbsp; This has broke=
-n jamvm.&nbsp; Are there other projects affected by this?&nbsp; From what I=
- can google about it, berios.de was supposed to shut
- down over a year ago with projects migrated to sourceforge.<o:p></o:p></sp=
-an></p>
-</div>
-</body>
-</html>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd">
+<html><head><meta name="qrichtext" content="1" /><style type="text/css">
+p, li { white-space: pre-wrap; }
+</style></head><body style=" font-family:'Ubuntu'; font-size:9pt; font-weight:400; font-style:normal;">
+<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; -qt-user-state:0;">Hello All! </p>
+<p style="-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; ">&nbsp;</p>
+<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; -qt-user-state:0;">I write .bb file for qt-gstreamer, all steps seems to by normal, but on do_install i get next error:</p>
+<p style="-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; ">&nbsp;</p>
+<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; -qt-user-state:0;">ERROR: QA Issue: qt-gstreamer: Files/directories were installed but not shipped</p>
+<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; -qt-user-state:0;">  /usr/lib</p>
+<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; -qt-user-state:0;">  /usr/local</p>
+<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; -qt-user-state:0;">  /usr/lib/gstreamer-0.10</p>
+<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; -qt-user-state:0;">  /usr/lib/gstreamer-0.10/libgstqtvideosink.so        </p>
+<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; -qt-user-state:0;">.........</p>
+<p style="-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; ">&nbsp;</p>
+<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; -qt-user-state:0;"><span style=" font-weight:600;">My .bb file</span></p>
+<p style="-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; ">&nbsp;</p>
+<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; -qt-user-state:0;">LICENSE = &quot;GPLv2&quot;</p>
+<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; -qt-user-state:0;">LIC_FILES_CHKSUM = &quot;file://COPYING;md5=2d5025d4aa3495befef8f17206a5b0a1&quot;</p>
+<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; -qt-user-state:0;">SECTION = &quot;multimedia&quot;</p>
+<p style="-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; ">&nbsp;</p>
+<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; -qt-user-state:0;">PR = &quot;r0&quot;</p>
+<p style="-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; ">&nbsp;</p>
+<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; -qt-user-state:0;">SRC_URI = &quot;http://gstreamer.freedesktop.org/src/qt-gstreamer/qt-gstreamer-0.10.2.tar.gz&quot;</p>
+<p style="-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; ">&nbsp;</p>
+<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; -qt-user-state:0;">SRC_URI[md5sum] = &quot;0428aedf2874fd0884ad4c41db9da20e&quot;</p>
+<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; -qt-user-state:0;">SRC_URI[sha256sum] = &quot;d40d312b34916582b29e6ade4fb856749071e041c0a92bc219d7f424c45dd8aa&quot;</p>
+<p style="-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; ">&nbsp;</p>
+<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; -qt-user-state:0;"># DEPENDS = &quot;boost qt4-embedded&quot;</p>
+<p style="-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; ">&nbsp;</p>
+<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; -qt-user-state:0;">inherit qmake2 cmake qt4x11</p>
+<p style="-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; ">&nbsp;</p>
+<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; -qt-user-state:0;">do_configure() {</p>
+<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; -qt-user-state:0;">	# Ensure we get the cmake configure and not qmake</p>
+<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; -qt-user-state:0;">	cmake_do_configure</p>
+<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; -qt-user-state:0;">}</p>
+<p style="-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; ">&nbsp;</p>
+<p style="-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; ">&nbsp;</p>
+<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; -qt-user-state:0;">export EXTRA_OECMAKE = &quot;-DQT_QMAKE_EXECUTABLE=${OE_QMAKE_QMAKE} \</p>
+<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; -qt-user-state:0;">                        -DQT_LRELEASE_EXECUTABLE=${OE_QMAKE_LRELEASE} \</p>
+<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; -qt-user-state:0;">                        -DQT_MOC_EXECUTABLE=${OE_QMAKE_MOC} \</p>
+<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; -qt-user-state:0;">                        -DQT_UIC_EXECUTABLE=${OE_QMAKE_UIC} \</p>
+<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; -qt-user-state:0;">                        -DQT_RCC_EXECUTABLE=${OE_QMAKE_RCC} \</p>
+<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; -qt-user-state:0;">                        -DQT_LIBRARY_DIR=${OE_QMAKE_LIBDIR_QT} \</p>
+<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; -qt-user-state:0;">                        -DQT_HEADERS_DIR=${OE_QMAKE_INCDIR_QT} \</p>
+<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; -qt-user-state:0;">                        -DQT_QTCORE_INCLUDE_DIR=${OE_QMAKE_INCDIR_QT}/QtCore \</p>
+<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; -qt-user-state:0;">			-DQT_QTGUI_INCLUDE_DIR=${OE_QMAKE_INCDIR_QT}/QtGui \</p>
+<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; -qt-user-state:0;">			-DQTGSTREAMER_EXAMPLES=OFF	\</p>
+<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; -qt-user-state:0;">                        &quot;</p>
+<p style="-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; ">&nbsp;</p>
+<p style="-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; ">&nbsp;</p>
+<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; -qt-user-state:0;">What i miss?</p>
+<p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; -qt-user-state:0;">Thanks!</p></body></html>
 
---_000_969F26A8BAB325438E7EB80D3C3134FB1CE7747BIRSMSX105gercor_--
+--nextPart1486254.U5GfreZzku--
