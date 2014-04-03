@@ -1,36 +1,28 @@
-Return-Path: <meenakumari.s@hcl.com>
-Received: from GWS06.hcl.com (gws06.avitas.hcl.com [203.105.185.25])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6AC54E00C8B
-	for <yocto@yoctoproject.org>; Wed,  2 Apr 2014 23:59:39 -0700 (PDT)
-X-IronPort-AV: E=Sophos;i="4.97,784,1389724200"; d="scan'208";a="64906105"
-Received: from unknown (HELO NDA-CORP-HT03.CORP.HCL.IN) ([10.248.64.35])
-	by GWS06.hcl.com with ESMTP/TLS/AES128-SHA; 03 Apr 2014 12:25:02 +0530
-Received: from NDA-HCLT-CSHT04.HCLT.CORP.HCL.IN (10.98.132.29) by
-	NDA-CORP-HT03.CORP.HCL.IN (10.248.64.35) with Microsoft SMTP Server
-	(TLS) id 14.3.123.3; Thu, 3 Apr 2014 12:29:06 +0530
-Received: from NDA-HCLT-MBS02.HCLT.CORP.HCL.IN ([10.98.132.17]) by
-	NDA-HCLT-CSHT04.HCLT.CORP.HCL.IN ([10.98.132.29]) with mapi id
-	14.03.0123.003; Thu, 3 Apr 2014 12:29:07 +0530
-From: Meenakumari Shedole <meenakumari.s@hcl.com>
-To: "Burton, Ross" <ross.burton@intel.com>
-Thread-Topic: [yocto] Help-Gstreamer Vaapi Plugin Issue in 1080p mp4 playback
-Thread-Index: AQHPSYlGWF8OgI4BY0eUG8fpk2Rq8Zr0llAAgAFgBgCAAAsvkP///EyAgAZ3sHCAAV3GAIAAirrQgAEjGrc=
-Date: Thu, 3 Apr 2014 06:59:06 +0000
-Message-ID: <E4938C0D959B3445943720B88F07213415615920@NDA-HCLT-MBS02.hclt.corp.hcl.in>
-References: <E4938C0D959B3445943720B88F07213415613522@NDA-HCLT-MBS02.hclt.corp.hcl.in>
-	<CAJTo0LY5VVCZbimtTBNdgDCEB+1mwSwdsVH31ik8GSdheg48OQ@mail.gmail.com>
-	<E4938C0D959B3445943720B88F07213415613B44@NDA-HCLT-MBS02.hclt.corp.hcl.in>
-	<CAJTo0LZt8JA25fpeCxbkdMH44rcNtKKE8vPvhrnPN8iLMcJYAA@mail.gmail.com>,
-	<97272D6808818244BD88BD72F19D658B03CAC1EB@chn-hclt-mbs06.HCLT.CORP.HCL.IN>
-In-Reply-To: <97272D6808818244BD88BD72F19D658B03CAC1EB@chn-hclt-mbs06.HCLT.CORP.HCL.IN>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.98.134.12]
+Return-Path: <sshilpa.22@gmail.com>
+Received: from mail-ie0-f179.google.com (mail-ie0-f179.google.com
+	[209.85.223.179])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 53FCAE00C8B
+	for <yocto@yoctoproject.org>; Thu,  3 Apr 2014 00:11:22 -0700 (PDT)
+Received: by mail-ie0-f179.google.com with SMTP id lx4so1370338iec.24
+	for <yocto@yoctoproject.org>; Thu, 03 Apr 2014 00:11:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=FinbENGyDoptx3N3oFWMiks84z4K7fsscwRsVD+CeiA=;
+	b=J9TfsSCs00hxWxplR7wexHge8xs70dIVzPwLkXcMvl9ndv87L9yp/PHGxqTil7A99/
+	sbm5Y7nftuN6aS+CnwQK1b1PifNRHrTW+wRdAHI773qSMkL64U6K0LH94dlweVVKAVZO
+	u0Bt7zMkRTvukY4TX+zk23M4IBC7BssCAkDAtF3hwHl2+PO5ZU6qws6wXZCSaSTee2bs
+	IOoBDo+eSfVYkJ25gRTWzailxYE8uqT1pTtE6h0g4EYb+ZfsDZoAnknkJlNDhk4PP1gT
+	o+bX5WwTKoqimswStOHJobq47MMqzB8hh5JM4HL31aH0GCBmz1be/3pzj6rOtCWDpH6V
+	j6vQ==
 MIME-Version: 1.0
-Cc: Dipesh Karmakar <Dipesh.Karmakar@hcl.com>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Help-Gstreamer Vaapi Plugin Issue in 1080p mp4 playback
+X-Received: by 10.50.43.225 with SMTP id z1mr13418600igl.29.1396509081437;
+	Thu, 03 Apr 2014 00:11:21 -0700 (PDT)
+Received: by 10.43.48.202 with HTTP; Thu, 3 Apr 2014 00:11:21 -0700 (PDT)
+Date: Thu, 3 Apr 2014 12:41:21 +0530
+Message-ID: <CABC-JjP3bH8KqkN=uKkOQYiLLyCYZxHvkkjiUDii5Udb7+ToaQ@mail.gmail.com>
+From: Shilpa S <sshilpa.22@gmail.com>
+To: yocto@yoctoproject.org
+Subject: Beagleboard - XM - Kernel 2.6.32
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,92 +34,263 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 03 Apr 2014 06:59:45 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Thu, 03 Apr 2014 07:11:23 -0000
+Content-Type: multipart/alternative; boundary=089e010d8dd6ba0b5d04f61e1b49
+
+--089e010d8dd6ba0b5d04f61e1b49
+Content-Type: text/plain; charset=ISO-8859-1
+
+Hello,
+
+
+I am trying to work with camera in beagleboard xm.
+I am using kernel 2.6.32 - danny version.
+
+The kernel is not booting further, it hangs up with following message.
+
+"Uncompressing Linux........................................... done,
+booting the kernel"
+
+Since I am using the older kernel, I have replaced the serial console from
+ttyO2 to ttyS2. Still I end up with same message.
+
+Following is the printenv:
+
+U-Boot SPL 2011.09-01172-gfdbe8b9-dirty (Apr 01 2014 - 12:36:24)
+Texas Instruments Revision detection unimplemented
+OMAP SD/MMC: 0
+reading u-boot.img
+reading u-boot.img
+
+
+U-Boot 2011.09-01172-gfdbe8b9-dirty (Apr 01 2014 - 12:36:24)
+
+OMAP36XX/37XX-GP ES1.2, CPU-OPP2, L3-165MHz, Max CPU Clock 1 Ghz
+OMAP3 Beagle board + LPDDR/NAND
+I2C:   ready
+DRAM:  512 MiB
+WARNING: Caches not enabled
+NAND:  0 MiB
+MMC:   OMAP SD/MMC: 0
+*** Warning - readenv() failed, using default environment
+
+In:    serial
+Out:   serial
+Err:   serial
+Beagle xM Rev C
+No EEPROM on expansion board
+No EEPROM on expansion board
+Die ID #4f5600029ff80000016830100f021011
+Net:   Net Initialization Skipped
+No ethernet found.
+Hit any key to stop autoboot:  0
+OMAP3 beagleboard.org # printenv
+baudrate=115200
+beaglerev=xMC
+bootcmd=if mmc rescan ${mmcdev}; then if userbutton; then setenv bootenv
+user.txt;fi;echo SD/MMC found on device ${mmcdev};if run loadbootenv; then
+echo Loaded environment from ${bootenv};run importbootenv;fi;if test -n
+$uenvcmd; then echo Running uenvcmd ...;run uenvcmd;fi;if run loaduimage;
+then run mmcboot;fi;fi;run nandboot;
+bootdelay=2
+bootenv=uEnv.txt
+bootfile=uImage.beagle
+buddy=none
+buddy2=none
+camera=none
+console=ttyS2,115200n8
+defaultdisplay=dvi
+dieid#=4f5600029ff80000016830100f021011
+dvimode=640x480MR-16@60
+importbootenv=echo Importing environment from mmc ...; env import -t
+$loadaddr $filesize
+loadaddr=0x80200000
+loadbootenv=fatload mmc ${mmcdev} ${loadaddr} ${bootenv}
+loadramdisk=fatload mmc ${mmcdev} ${rdaddr} ramdisk.gz
+loaduimage=ext2load mmc ${mmcdev}:2 ${loadaddr} /boot/uImage
+loaduimagefat=fatload mmc ${mmcdev} ${loadaddr} uImage
+mmcargs=setenv bootargs console=${console} ${optargs} mpurate=${mpurate}
+buddy=${buddy} buddy2=${buddy2} camera=${camera} vram=${vram}
+omapfb.mode=dvi:${dvimode} omapdss.def_disp=${defaultdisplay}
+root=${mmcroot} rootfstype=${mmcrootfstype}
+mmcboot=echo Booting from mmc ...; run mmcargs; bootm ${loadaddr}
+mmcdev=0
+mmcroot=/dev/mmcblk0p2 ro
+mmcrootfstype=ext3 rootwait
+mpurate=auto
+nandargs=setenv bootargs console=${console} ${optargs} mpurate=${mpurate}
+buddy=${buddy} camera=${camera} vram=${vram} omapfb.mode=dvi:${dvimode}
+omapdss.def_disp=${defaultdisplay} root=${nandroot}
+rootfstype=${nandrootfstype}
+nandboot=echo Booting from nand ...; run nandargs; nand read ${loadaddr}
+280000 400000; bootm ${loadaddr}
+nandroot=ubi0:rootfs ubi.mtd=4
+nandrootfstype=ubifs
+ramargs=setenv bootargs console=${console} ${optargs} mpurate=${mpurate}
+buddy=${buddy} vram=${vram} omapfb.mode=dvi:${dvimode}
+omapdss.def_disp=${defaultdisplay} root=${ramroot}
+rootfstype=${ramrootfstype}
+ramboot=echo Booting from ramdisk ...; run ramargs; bootm ${loadaddr}
+ramroot=/dev/ram0 rw ramdisk_size=65536 initrd=0x81000000,64M
+ramrootfstype=ext2
+rdaddr=0x81000000
+usbtty=cdc_acm
+vram=12M
+
+Environment size: 2132/131068 bytes
+OMAP3 beagleboard.org # boot
+The user button is currently NOT pressed.
+SD/MMC found on device 0
+reading uEnv.txt
+
+** Unable to read "uEnv.txt" from mmc 0:1 **
+Loading file "/boot/uImage" from mmc device 0:2 (xxa2)
+3141760 bytes read
+Booting from mmc ...
+## Booting kernel from Legacy Image at 80200000 ...
+   Image Name:   Linux-2.6.32
+   Image Type:   ARM Linux Kernel Image (uncompressed)
+   Data Size:    3141696 Bytes = 3 MiB
+   Load Address: 80008000
+   Entry Point:  80008000
+   Verifying Checksum ... OK
+   Loading Kernel Image ... OK
+OK
+
+Starting kernel ...
+
+Uncompressing
+Linux...........................................................................................................................................................................................................
+done, booting the kernel.
+
+
+
+Please help me to solve this issue !
+
+Thanks and Regards,
+Shilpa
+
+--089e010d8dd6ba0b5d04f61e1b49
+Content-Type: text/html; charset=ISO-8859-1
 Content-Transfer-Encoding: quoted-printable
 
-Hi,
+<div dir=3D"ltr">Hello,<div class=3D"gmail_quote"><div dir=3D"ltr"><div><di=
+v class=3D"h5"><br><div><br>I am trying to work with camera in beagleboard =
+xm.<br><div class=3D"gmail_quote"><div dir=3D"ltr"><div><div><div><div><div=
+><div>I am using kernel 2.6.32 - danny version.<br>
 
-We have checked avi, mp4, 3gp, ogv and many other extensions with gst-launc=
-h-0.10 playbin, all are playing properly except 1080p-mp4; its playing kind=
- of slow-motion taking cpu usage >60%. Log reveals, lots of buffer drop in =
-sink side.
-
-gst-launch-0.10 playbin2 + mp4/avi is failing with following error,
-
-libva: VA-API version 0.32.0
-libva: va_getDriverName() returns 0
-libva: Trying to open /usr/lib/dri/i965_drv_video.so
-libva: Found init function __vaDriverInit_0_32
-libva error: /usr/lib/dri/i965_drv_video.so init failed
-libva: va_openDriver() returns -1
-vaInitialize failed with error code -1 (unknown libva error),exit
-
-Based on the log, it's clear that playbin is using soft-decoder incase hw-d=
-ecoder fails, hence taking high cpu usage, however playbin2 is only taking =
-hw-decoder.
+<br></div>The kernel is not booting further, it hangs up with following mes=
+sage.<br>
+<br>&quot;Uncompressing Linux........................................... do=
+ne, booting the kernel&quot;<br></div><br>Since I am using the older kernel=
+, I have replaced the serial console from ttyO2 to ttyS2. Still I end up wi=
+th same message. <br>
 
 
-Thanks and Regards
-Meena
 
------Original Message-----
-From: Burton, Ross [mailto:ross.burton@intel.com]
-Sent: Wednesday, April 02, 2014 4:20 PM
-To: Meenakumari Shedole
-Cc: yocto@yoctoproject.org; Dipesh Karmakar
-Subject: Re: [yocto] Help-Gstreamer Vaapi Plugin Issue in 1080p mp4 playback
-
-On 1 April 2014 10:05, Meenakumari Shedole <meenakumari.s@hcl.com> wrote:
-> I have used libva-intel-driver-1.2.0 as a part of meta-intel on Dora as t=
-he recipes provided by Intel. I can attach bb file also if its needed.
-> Have build Intel va source manually and now we can able to sink with vaap=
-isink in its own window.
-> We are not able to use vaapisink with AVI/3GP files, asking for some miss=
-ing video/x-surface.
->
-> I have checked vaapisink source, it seems its supporting overlay on forei=
-gn X window.
-> https://gitorious.org/vaapi/gstreamer-vaapi/source/643d35e87a67376af9c
-> d89cd868666368b105ac3:gst/vaapisink/gstvaapisink.c
-> static gboolean gst_vaapisink_implements_interface_supported();
-> static gboolean gst_vaapisink_ensure_window_xid();
-
-The most important thing to do here is to do testing with gst-launch to rem=
-ove your application causing problems.  Embedding pipelines (especially usi=
-ng vaapi) into other windows isn't trivial and its
-possible that your application is causing the problem.    If
-"gst-launch playbin2" works fine for all of your files then your applicatio=
-n is causing the problem.
-
-Ross
+<br></div>Following is the printenv:<br><br>U-Boot SPL 2011.09-01172-gfdbe8=
+b9-dirty (Apr 01 2014 - 12:36:24)<br>Texas Instruments Revision detection u=
+nimplemented<br>OMAP SD/MMC: 0<br>reading u-boot.img<br>reading u-boot.img<=
+br>
 
 
-::DISCLAIMER::
----------------------------------------------------------------------------=
--------------------------------------------------------------------------
 
-The contents of this e-mail and any attachment(s) are confidential and inte=
-nded for the named recipient(s) only.
-E-mail transmission is not guaranteed to be secure or error-free as informa=
-tion could be intercepted, corrupted,
-lost, destroyed, arrive late or incomplete, or may contain viruses in trans=
-mission. The e mail and its contents
-(with or without referred errors) shall therefore not attach any liability =
-on the originator or HCL or its affiliates.
-Views or opinions, if any, presented in this email are solely those of the =
-author and may not necessarily reflect the
-views or opinions of HCL or its affiliates. Any form of reproduction, disse=
-mination, copying, disclosure, modification,
-distribution and / or publication of this message without the prior written=
- consent of authorized representative of
-HCL is strictly prohibited. If you have received this email in error please=
- delete it and notify the sender immediately.
-Before opening any email and/or attachments, please check them for viruses =
-and other defects.
-
----------------------------------------------------------------------------=
--------------------------------------------------------------------------
+<br><br>U-Boot 2011.09-01172-gfdbe8b9-dirty (Apr 01 2014 - 12:36:24)<br><br=
+>OMAP36XX/37XX-GP ES1.2, CPU-OPP2, L3-165MHz, Max CPU Clock 1 Ghz<br>OMAP3 =
+Beagle board + LPDDR/NAND<br>I2C:=A0=A0 ready<br>DRAM:=A0 512 MiB<br>WARNIN=
+G: Caches not enabled<br>
 
 
+
+NAND:=A0 0 MiB<br>MMC:=A0=A0 OMAP SD/MMC: 0<br>*** Warning - readenv() fail=
+ed, using default environment<br><br>In:=A0=A0=A0 serial<br>Out:=A0=A0 seri=
+al<br>Err:=A0=A0 serial<br>Beagle xM Rev C<br>No EEPROM on expansion board<=
+br>No EEPROM on expansion board<br>
+
+
+
+Die ID #4f5600029ff80000016830100f021011<br>Net:=A0=A0 Net Initialization S=
+kipped<br>No ethernet found.<br>Hit any key to stop autoboot:=A0 0 <br>OMAP=
+3 <a href=3D"http://beagleboard.org" target=3D"_blank">beagleboard.org</a> =
+# printenv<br>
+
+
+baudrate=3D115200<br>
+beaglerev=3DxMC<br>bootcmd=3Dif mmc rescan ${mmcdev}; then if userbutton;=
+=20
+then setenv bootenv user.txt;fi;echo SD/MMC found on device ${mmcdev};if
+ run loadbootenv; then echo Loaded environment from ${bootenv};run=20
+importbootenv;fi;if test -n $uenvcmd; then echo Running uenvcmd ...;run=20
+uenvcmd;fi;if run loaduimage; then run mmcboot;fi;fi;run nandboot;<br>
+bootdelay=3D2<br>bootenv=3DuEnv.txt<br>bootfile=3DuImage.beagle<br>buddy=3D=
+none<br>buddy2=3Dnone<br>camera=3Dnone<br>console=3DttyS2,115200n8<br>defau=
+ltdisplay=3Ddvi<br>dieid#=3D4f5600029ff80000016830100f021011<br>dvimode=3D6=
+40x480MR-16@60<br>
+
+
+
+importbootenv=3Decho Importing environment from mmc ...; env import -t $loa=
+daddr $filesize<br>loadaddr=3D0x80200000<br>loadbootenv=3Dfatload mmc ${mmc=
+dev} ${loadaddr} ${bootenv}<br>loadramdisk=3Dfatload mmc ${mmcdev} ${rdaddr=
+} ramdisk.gz<br>
+
+
+
+loaduimage=3Dext2load mmc ${mmcdev}:2 ${loadaddr} /boot/uImage<br>loaduimag=
+efat=3Dfatload mmc ${mmcdev} ${loadaddr} uImage<br>mmcargs=3Dsetenv
+ bootargs console=3D${console} ${optargs} mpurate=3D${mpurate}=20
+buddy=3D${buddy} buddy2=3D${buddy2} camera=3D${camera} vram=3D${vram}=20
+omapfb.mode=3Ddvi:${dvimode} omapdss.def_disp=3D${defaultdisplay} root=3D${=
+mmcroot} rootfstype=3D${mmcrootfstype}<br>
+mmcboot=3Decho Booting from mmc ...; run mmcargs; bootm ${loadaddr}<br>mmcd=
+ev=3D0<br>mmcroot=3D/dev/mmcblk0p2 ro<br>mmcrootfstype=3Dext3 rootwait<br>m=
+purate=3Dauto<br>nandargs=3Dsetenv
+ bootargs console=3D${console} ${optargs} mpurate=3D${mpurate}=20
+buddy=3D${buddy} camera=3D${camera} vram=3D${vram} omapfb.mode=3Ddvi:${dvim=
+ode}=20
+omapdss.def_disp=3D${defaultdisplay} root=3D${nandroot} rootfstype=3D${nand=
+rootfstype}<br>
+nandboot=3Decho Booting from nand ...; run nandargs; nand read ${loadaddr} =
+280000 400000; bootm ${loadaddr}<br>nandroot=3Dubi0:rootfs ubi.mtd=3D4<br>n=
+androotfstype=3Dubifs<br>ramargs=3Dsetenv
+ bootargs console=3D${console} ${optargs} mpurate=3D${mpurate}=20
+buddy=3D${buddy} vram=3D${vram} omapfb.mode=3Ddvi:${dvimode}=20
+omapdss.def_disp=3D${defaultdisplay} root=3D${ramroot} rootfstype=3D${ramro=
+otfstype}<br>
+ramboot=3Decho Booting from ramdisk ...; run ramargs; bootm ${loadaddr}<br>=
+ramroot=3D/dev/ram0 rw ramdisk_size=3D65536 initrd=3D0x81000000,64M<br>ramr=
+ootfstype=3Dext2<br>rdaddr=3D0x81000000<br>usbtty=3Dcdc_acm<br>vram=3D12M<b=
+r><br>Environment size: 2132/131068 bytes<br>
+
+
+
+OMAP3 <a href=3D"http://beagleboard.org" target=3D"_blank">beagleboard.org<=
+/a> # boot<br>The user button is currently NOT pressed.<br>SD/MMC found on =
+device 0<br>reading uEnv.txt<br><br>** Unable to read &quot;uEnv.txt&quot; =
+from mmc 0:1 **<br>
+
+
+
+Loading file &quot;/boot/uImage&quot; from mmc device 0:2 (xxa2)<br>3141760=
+ bytes read<br>Booting from mmc ...<br>## Booting kernel from Legacy Image =
+at 80200000 ...<br>=A0=A0 Image Name:=A0=A0 Linux-2.6.32<br>=A0=A0 Image Ty=
+pe:=A0=A0 ARM Linux Kernel Image (uncompressed)<br>
+
+
+
+=A0=A0 Data Size:=A0=A0=A0 3141696 Bytes =3D 3 MiB<br>=A0=A0 Load Address: =
+80008000<br>=A0=A0 Entry Point:=A0 80008000<br>=A0=A0 Verifying Checksum ..=
+. OK<br>=A0=A0 Loading Kernel Image ... OK<br>OK<br><br>Starting kernel ...=
+<br><br>Uncompressing Linux................................................=
+...........................................................................=
+...........................................................................=
+..... done, booting the kernel.<br>
+
+
+
+<br><br><br></div>Please help me to solve this issue !<br><br></div>Thanks =
+and Regards,<br></div>Shilpa</div>
+</div><br></div></div></div></div>
+</div><br></div>
+
+--089e010d8dd6ba0b5d04f61e1b49--
