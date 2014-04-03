@@ -1,46 +1,54 @@
-Return-Path: <joe@deserted.net>
-Received: from mail-qc0-f180.google.com (mail-qc0-f180.google.com
-	[209.85.216.180])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 14A15E00B77
-	for <yocto@yoctoproject.org>; Thu,  3 Apr 2014 12:20:35 -0700 (PDT)
-Received: by mail-qc0-f180.google.com with SMTP id w7so2361119qcr.25
-	for <yocto@yoctoproject.org>; Thu, 03 Apr 2014 12:20:35 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-	:mime-version:content-type:content-disposition:in-reply-to
-	:user-agent;
-	bh=73PEe7Q2CMbQ0QMXIwKV3sM9dsxQDBw5fBadycU3Ocg=;
-	b=ks4v8qvyCVym7gti3+n8GMfI5teby3PpR0c7BCIqQrpbUgF/GOVRsPWbelCGyKVHLn
-	32Fr6BSv2qQy4OHHFF/UL2C4jBsaO6I6D3g5G4mVuX4QG28q8F+gzndM+PDCLGOUUTO2
-	7e0x7p4uGpHjAyJ+YwQ7k915/swYY8AXDpZItIiZLdhZk81MsAhRBky6o1rmHyMUAzFX
-	JVLBle/iYiEv9wV4RohE3vE3BxGuOSFKVypC6q2o8GL+HF16EQZ8Eb1YtFXHPjDJZG+5
-	rto/52A+aky1AAROvTYk8rNXWBJ5TYj6RbtY5LrV02pJPwPNykXjkX343AlOD2wk2qQf
-	TZDA==
-X-Gm-Message-State: ALoCoQmILfHKwSX+nee9/oWtGVkBjejfUkAn+AhY6Vh+ocuUzyXV+ChrplV6tM02LVQ2aSrnPd8l
-X-Received: by 10.140.86.166 with SMTP id p35mr8898718qgd.81.1396552835041;
-	Thu, 03 Apr 2014 12:20:35 -0700 (PDT)
-Received: from deserted.net ([128.224.252.2])
-	by mx.google.com with ESMTPSA id b37sm7996695qge.16.2014.04.03.12.20.31
-	for <multiple recipients>
-	(version=TLSv1.2 cipher=RC4-SHA bits=128/128);
-	Thu, 03 Apr 2014 12:20:31 -0700 (PDT)
-Date: Thu, 3 Apr 2014 15:20:29 -0400
-From: Joe MacDonald <joe@deserted.net>
-To: wenzong.fan@windriver.com
-Message-ID: <20140403192027.GM4075@deserted.net>
-References: <cover.1395709062.git.wenzong.fan@windriver.com>
+Return-Path: <vaduvajanalexandru@yahoo.com>
+Received: from nm20-vm5.bullet.mail.ne1.yahoo.com
+	(nm20-vm5.bullet.mail.ne1.yahoo.com [98.138.91.242])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 857C2E00B77
+	for <yocto@yoctoproject.org>; Thu,  3 Apr 2014 13:49:51 -0700 (PDT)
+Received: from [98.138.100.117] by nm20.bullet.mail.ne1.yahoo.com with NNFMP;
+	03 Apr 2014 20:49:50 -0000
+Received: from [98.138.226.164] by tm108.bullet.mail.ne1.yahoo.com with NNFMP;
+	03 Apr 2014 20:49:50 -0000
+Received: from [127.0.0.1] by omp1065.mail.ne1.yahoo.com with NNFMP;
+	03 Apr 2014 20:49:50 -0000
+X-Yahoo-Newman-Property: ymail-3
+X-Yahoo-Newman-Id: 349875.74689.bm@omp1065.mail.ne1.yahoo.com
+Received: (qmail 5779 invoked by uid 60001); 3 Apr 2014 20:49:50 -0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s1024;
+	t=1396558190; bh=EKiSTnzKjE4BuZlHMum1Xcz8GFudZFnhaKqeDjwm2xI=;
+	h=X-YMail-OSG:Received:X-Rocket-MIMEInfo:X-Mailer:References:Message-ID:Date:From:Reply-To:Subject:To:Cc:In-Reply-To:MIME-Version:Content-Type;
+	b=sGV3y8V7sHINVw8gRu9PEHlB5amX3UTXqQ+Yf1KDjP6w/+HsdRBr5TdSLAIdzH/EWn49e38NikdlqL6h4jePvrCZWBMAyK9oeksBfCuRqoY7piW/SP6XjtXgPvJU2uvHawvdsXm+9rK2EDGIB4ZbevoqY5HyR1hd6KRPEpXNpl8=
+DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws; s=s1024; d=yahoo.com;
+	h=X-YMail-OSG:Received:X-Rocket-MIMEInfo:X-Mailer:References:Message-ID:Date:From:Reply-To:Subject:To:Cc:In-Reply-To:MIME-Version:Content-Type;
+	b=YnlHQDRd6FXH35iw9NkTzIeHQsz1Em1n7ZehqfBexpjNJA4TR7h9jP1vAmUOygPItVSkH5SZmoxqD0YzcghquqqP+zSA9o9H2H8XdBhSNeehVaiYU7p4fbN5SCqJI8lpdaApSKiIFQWP0DZMXwtEmlKxwLWvfbHyeyNpuxFONQA=;
+X-YMail-OSG: 7SFR1l8VM1m.6bAyci5t2k5LyRbsyt2LVHls5346GTAKq0_
+	RJ5rOeAZ.ar9XowNReheRgwLoM3ZupWb5jPicrqhyCAJrKoIi1Ry.dKVYm53
+	ydqRYaehVWL3_BrdxSV5rW6pCaABhOTDZQuk91invBZrLRyzhWtSTRFk00Wu
+	RH67Y.xZx9vUnVVXMlvRrZM2oWasF2GRGxCLhu054Bj.B.fJBqo7J3VnJKZx
+	WMEabSrykaLI7TfXjQtXYlS4fvps.8tP7RYZM6F0XpgXhQxcn5KHX0LG2ZQr
+	9QXBQl6CPtXr4VWhLW0LnPdN6HOmzbRP_gu5C9lgpwaerWMzJJ7E2S6nIo90
+	__IZK1UNljkfLLVl5amBRfJ57wWc_qgAECwgfjdXcyB5W8XAB6Z.d_CIwEgH
+	HzM9TLG7T1.k4v8_qoF9.iznIjz6BIC19UgreAK_pNUWaXtEvTLX7EDw.5lK
+	DCq8JXOUmOhKm8Mqz8FbddPYcU3k77ZvWITPwveQi1FIbZDycVrWRVpnkLyX
+	tdh5yBuMmhUtTkyuPqc8khmqSNr_0Cowct.itcaVZ8UJVHC6wCeD6YIZIaKA kZw--
+Received: from [141.85.0.106] by web122501.mail.ne1.yahoo.com via HTTP;
+	Thu, 03 Apr 2014 13:49:50 PDT
+X-Rocket-MIMEInfo: 002.001,
+	VGhhbmsgeW91IHRvby4KCgpPbiBUaHVyc2RheSwgQXByaWwgMywgMjAxNCA5OjUyIFBNLCBKb2UgTWFjRG9uYWxkIDxqb2VAZGVzZXJ0ZWQubmV0PiB3cm90ZToKIApNZXJnZWQsIHRoYW5rcy4KLUouCgoKW1t5b2N0b10gW1BBVENIIDAvMV0gQ2hhbmdlZCByZWZwb2xpY3kgdmFsdWUgRklMRVNFWFRSQVBBVEhTX3ByZXBlbmRdIE9uIDE0LjA0LjAxIChUdWUgMTI6NDgpIEFsZXhhbmRydS5WYWR1dmEgd3JvdGU6Cgo.IEZyb206ICJBbGV4YW5kcnUuVmFkdXZhIiA8QWxleGFuZHJ1LlZhZHV2YUBlbmVhLmNvbT4BMAEBAQE-
+X-Mailer: YahooMailWebService/0.8.182.648
+References: <1396349287-33532-1-git-send-email-Alexandru.Vaduva@enea.com>
+	<20140403185217.GE4075@deserted.net>
+Message-ID: <1396558190.8120.YahooMailNeo@web122501.mail.ne1.yahoo.com>
+Date: Thu, 3 Apr 2014 13:49:50 -0700 (PDT)
+From: Vaduva alexandru <vaduvajanalexandru@yahoo.com>
+To: Joe MacDonald <joe@deserted.net>,
+	"Alexandru.Vaduva" <Alexandru.Vaduva@enea.com>
+In-Reply-To: <20140403185217.GE4075@deserted.net>
 MIME-Version: 1.0
-In-Reply-To: <cover.1395709062.git.wenzong.fan@windriver.com>
-X-URL: http://github.com/joeythesaint/joe-s-common-environment/tree/master
-X-Configuration: git://github.com/joeythesaint/joe-s-common-environment.git
-X-Editor: Vim-703 http://www.vim.org
-User-Agent: Mutt/1.5.22 (2013-10-16)
-Cc: yocto@yoctoproject.org
-Subject: Re: [meta-selinux][PATCH 0/4] add targeted/minimum policy and some updates
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: [PATCH 0/1] Changed refpolicy value FILESEXTRAPATHS_prepend
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
+Reply-To: Vaduva alexandru <vaduvajanalexandru@yahoo.com>
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -49,107 +57,71 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 03 Apr 2014 19:20:38 -0000
-X-Groupsio-MsgNum: 18843
-Content-Type: multipart/signed; micalg=pgp-sha1;
-	protocol="application/pgp-signature"; boundary="YIwHDYD8sUXtBKvt"
-Content-Disposition: inline
+X-List-Received-Date: Thu, 03 Apr 2014 20:49:55 -0000
+Content-Type: multipart/alternative;
+	boundary="-1149815241-944957725-1396558190=:8120"
 
---YIwHDYD8sUXtBKvt
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+---1149815241-944957725-1396558190=:8120
+Content-Type: text/plain; charset=iso-8859-1
 Content-Transfer-Encoding: quoted-printable
 
-Hey Wenzong,
+Thank you too.=0A=0A=0AOn Thursday, April 3, 2014 9:52 PM, Joe MacDonald <j=
+oe@deserted.net> wrote:=0A =0AMerged, thanks.=0A-J.=0A=0A=0A[[yocto] [PATCH=
+ 0/1] Changed refpolicy value FILESEXTRAPATHS_prepend] On 14.04.01 (Tue 12:=
+48) Alexandru.Vaduva wrote:=0A=0A> From: "Alexandru.Vaduva" <Alexandru.Vadu=
+va@enea.com>=0A> =0A> The value was defined as:=0A>=A0 =A0  FILESEXTRAPATHS=
+_prepend :=3D "${THISDIR}/refpolicy-${PV}:"=0A> and changed it to:=0A>=A0 =
+=A0  FILESEXTRAPATHS_prepend :=3D "${THISDIR}/refpolicy-2.20130424:"=0A> be=
+cause the bb that inherit this overwrites the PV every time,=0A> changing i=
+ts name.=0A> =0A> Upstream-Status: Pending=0A> =0A> Alexandru.Vaduva (1):=
+=0A>=A0  refpolicy: Updated FILESEXTRAPATHS_prepend value=0A> =0A>=A0 recip=
+es-security/refpolicy/refpolicy_2.20130424.inc |=A0 =A0 2 +-=0A>=A0 1 file =
+changed, 1 insertion(+), 1 deletion(-)=0A> =0A> -- =0A> 1.7.10.4=0A> =0A-- =
+=0A-Joe MacDonald.=0A:wq=0A=0A-- =0A_______________________________________=
+________=0Ayocto mailing list=0Ayocto@yoctoproject.org=0Ahttps://lists.yoct=
+oproject.org/listinfo/yocto
 
-I merged two of these four.
+---1149815241-944957725-1396558190=:8120
+Content-Type: text/html; charset=iso-8859-1
+Content-Transfer-Encoding: quoted-printable
 
-[[yocto] [meta-selinux][PATCH 0/4] add targeted/minimum policy and some upd=
-ates] On 14.03.24 (Mon 21:07) wenzong.fan@windriver.com wrote:
+<html><body><div style=3D"color:#000; background-color:#fff; font-family:He=
+lveticaNeue, Helvetica Neue, Helvetica, Arial, Lucida Grande, sans-serif;fo=
+nt-size:12pt">Thank you too.<br><div><span><br></span></div><div style=3D"d=
+isplay: block;" class=3D"yahoo_quoted"> <div style=3D"font-family: Helvetic=
+aNeue, Helvetica Neue, Helvetica, Arial, Lucida Grande, sans-serif; font-si=
+ze: 12pt;"> <div style=3D"font-family: HelveticaNeue, Helvetica Neue, Helve=
+tica, Arial, Lucida Grande, sans-serif; font-size: 12pt;"> <div dir=3D"ltr"=
+> <font face=3D"Arial" size=3D"2"> On Thursday, April 3, 2014 9:52 PM, Joe =
+MacDonald &lt;joe@deserted.net&gt; wrote:<br> </font> </div>  <div class=3D=
+"y_msg_container">Merged, thanks.<br clear=3D"none">-J.<br clear=3D"none"><=
+div class=3D"yqt8948986900" id=3D"yqtfd10830"><br clear=3D"none">[[yocto] [=
+PATCH 0/1] Changed refpolicy value FILESEXTRAPATHS_prepend] On 14.04.01 (Tu=
+e 12:48) Alexandru.Vaduva wrote:<br clear=3D"none"><br clear=3D"none">&gt; =
+From: "Alexandru.Vaduva"
+ &lt;<a shape=3D"rect" ymailto=3D"mailto:Alexandru.Vaduva@enea.com" href=3D=
+"mailto:Alexandru.Vaduva@enea.com">Alexandru.Vaduva@enea.com</a>&gt;<br cle=
+ar=3D"none">&gt; <br clear=3D"none">&gt; The value was defined as:<br clear=
+=3D"none">&gt;&nbsp; &nbsp;  FILESEXTRAPATHS_prepend :=3D "${THISDIR}/refpo=
+licy-${PV}:"<br clear=3D"none">&gt; and changed it to:<br clear=3D"none">&g=
+t;&nbsp; &nbsp;  FILESEXTRAPATHS_prepend :=3D "${THISDIR}/refpolicy-2.20130=
+424:"<br clear=3D"none">&gt; because the bb that inherit this overwrites th=
+e PV every time,<br clear=3D"none">&gt; changing its name.<br clear=3D"none=
+">&gt; <br clear=3D"none">&gt; Upstream-Status: Pending<br clear=3D"none">&=
+gt; <br clear=3D"none">&gt; Alexandru.Vaduva (1):<br clear=3D"none">&gt;&nb=
+sp;  refpolicy: Updated FILESEXTRAPATHS_prepend value<br clear=3D"none">&gt=
+; <br clear=3D"none">&gt;&nbsp; recipes-security/refpolicy/refpolicy_2.2013=
+0424.inc |&nbsp; &nbsp; 2 +-<br clear=3D"none">&gt;&nbsp; 1 file changed, 1=
+ insertion(+), 1 deletion(-)<br
+ clear=3D"none">&gt; <br clear=3D"none">&gt; -- <br clear=3D"none">&gt; 1.7=
+.10.4</div><br clear=3D"none">&gt; <br clear=3D"none">-- <br clear=3D"none"=
+>-Joe MacDonald.<br clear=3D"none">:wq<br><div class=3D"yqt8948986900" id=
+=3D"yqtfd59186">-- <br clear=3D"none">_____________________________________=
+__________<br clear=3D"none">yocto mailing list<br clear=3D"none"><a shape=
+=3D"rect" ymailto=3D"mailto:yocto@yoctoproject.org" href=3D"mailto:yocto@yo=
+ctoproject.org">yocto@yoctoproject.org</a><br clear=3D"none"><a shape=3D"re=
+ct" href=3D"https://lists.yoctoproject.org/listinfo/yocto" target=3D"_blank=
+">https://lists.yoctoproject.org/listinfo/yocto</a><br clear=3D"none"></div=
+><br><br></div>  </div> </div>  </div> </div></body></html>
 
-> From: Wenzong Fan <wenzong.fan@windriver.com>
->=20
-> Changes:
-> * backport tmpfs_t patch from upstream;
-> * add rules for /var/log symlink on poky;
-
-These both went in.  These:
-
-> * add targeted policy type
-> * add minimum targeted policy
-
-I'm less clear on.  They both look like significant changes to
-refpolicy-* behaviour, which is fine, but in that case I think it'd be
-better to give them a different name.  Or one that differentiates them
-significantly.  For example the "minimum" policy has users unconfined
-and applications confined?  Or neither?  I'm not sure what the value is
-of these.
-
-If they really are just specialized versions of the standard reference
-policy, they should at least be ported to use the refpolicy_common
-infrastructure Phil set up a while back.
-
-Thanks,
--J.
-
->=20
-> The following changes since commit a6079a43719e79e12a57e609923a0cccdba069=
-16:
->=20
->   refpolicy: fix real path for su.shadow (2014-02-13 10:52:07 -0500)
->=20
-> are available in the git repository at:
->=20
->   git://git.pokylinux.org/poky-contrib wenzong/ref-minimum
->   http://git.pokylinux.org/cgit.cgi/poky-contrib/log/?h=3Dwenzong/ref-min=
-imum
->=20
-> Wenzong Fan (4):
->   refpolicy: associate tmpfs_t (shm) to device_t (devtmpfs) file
->     systems
->   refpolicy: add rules for /var/log symlink on poky
->   refpolicy: add targeted policy type
->   refpolicy: add minimum targeted policy
->=20
->  ...associate-tmpfs_t-shm-to-device_t-devtmpf.patch |   30 +++
->  ...ky-policy-add-rules-for-syslogd_t-symlink.patch |   30 +++
->  ...rules-for-var-log-symlink-audisp_remote_t.patch |   29 +++
->  .../refpolicy/refpolicy-minimum_2.20130424.bb      |   46 +++++
->  ...olicy-fix-optional-issue-on-sysadm-module.patch |   60 ++++++
->  .../refpolicy-unconfined_u-default-user.patch      |  198 ++++++++++++++=
-++++++
->  .../refpolicy/refpolicy-targeted_2.20130424.bb     |   18 ++
->  .../refpolicy/refpolicy_2.20130424.inc             |    3 +
->  8 files changed, 414 insertions(+)
->  create mode 100644 recipes-security/refpolicy/refpolicy-2.20130424/files=
-ystem-associate-tmpfs_t-shm-to-device_t-devtmpf.patch
->  create mode 100644 recipes-security/refpolicy/refpolicy-2.20130424/poky-=
-policy-add-rules-for-syslogd_t-symlink.patch
->  create mode 100644 recipes-security/refpolicy/refpolicy-2.20130424/poky-=
-policy-add-rules-for-var-log-symlink-audisp_remote_t.patch
->  create mode 100644 recipes-security/refpolicy/refpolicy-minimum_2.201304=
-24.bb
->  create mode 100644 recipes-security/refpolicy/refpolicy-targeted/refpoli=
-cy-fix-optional-issue-on-sysadm-module.patch
->  create mode 100644 recipes-security/refpolicy/refpolicy-targeted/refpoli=
-cy-unconfined_u-default-user.patch
->  create mode 100644 recipes-security/refpolicy/refpolicy-targeted_2.20130=
-424.bb
->=20
---=20
--Joe MacDonald.
-:wq
-
---YIwHDYD8sUXtBKvt
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: Digital signature
-
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v1.4.12 (GNU/Linux)
-
-iEYEARECAAYFAlM9tHsACgkQwFvcllog0XwjeQCeO8CZD1jYOwxweOMr3jQ9Ia8r
-O2gAnjAwQnbq8GwMEWcgmSOJD5Y6D7/k
-=8qKu
------END PGP SIGNATURE-----
-
---YIwHDYD8sUXtBKvt--
+---1149815241-944957725-1396558190=:8120--
