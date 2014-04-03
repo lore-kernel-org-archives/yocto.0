@@ -1,23 +1,26 @@
-Return-Path: <joe.slater@windriver.com>
-Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D4B40E00C32
-	for <yocto@yoctoproject.org>; Wed,  2 Apr 2014 14:20:01 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail1.windriver.com (8.14.5/8.14.5) with ESMTP id s32LJxwX025114
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL)
-	for <yocto@yoctoproject.org>; Wed, 2 Apr 2014 14:19:59 -0700 (PDT)
-Received: from ala-jslater-lx3.wrs.com (147.11.152.42) by
-	ALA-HCA.corp.ad.wrs.com (147.11.189.40) with Microsoft SMTP Server id
-	14.3.169.1; Wed, 2 Apr 2014 14:19:59 -0700
-From: Joe Slater <jslater@windriver.com>
-To: <yocto@yoctoproject.org>
-Date: Wed, 2 Apr 2014 14:19:58 -0700
-Message-ID: <1396473598-28636-1-git-send-email-jslater@windriver.com>
-X-Mailer: git-send-email 1.7.3.4
+Return-Path: <systemcpp@mail.ru>
+Received: from smtp8.mail.ru (smtp8.mail.ru [94.100.176.53])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4236BE00C6E
+	for <yocto@yoctoproject.org>; Wed,  2 Apr 2014 18:25:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mail.ru;
+	s=mail2; 
+	h=Content-Type:Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:To:From;
+	bh=s8g8QSp9FC4jsZrjf+q1KfKpG6/yUXztkLx1AyiZM5M=; 
+	b=qxBxumty7kX9L9OWI7mBcXKq9U7qoA0Z3g1yO0Xw7cZ2bILbETJRNq2VzwIdO1FTdabVhWWczOfklKcQseQv38t8lT8jOdm3aIgaS6Q+5CiS2UcXxa3E8arS9POGtY8ZsCEo+wbc7YW0VgKBpVVotmEduse8p/6jNdWbgUWUuo8=;
+Received: from [213.157.36.206] (port=50469 helo=atelepin-nb.localnet)
+	by smtp8.mail.ru with esmtpa (envelope-from <systemcpp@mail.ru>)
+	id 1WVWP0-0004po-36
+	for yocto@yoctoproject.org; Thu, 03 Apr 2014 05:25:10 +0400
+From: Andrey Telepin <systemcpp@mail.ru>
+To: yocto@yoctoproject.org
+Date: Thu, 03 Apr 2014 07:25:06 +0600
+Message-ID: <3442523.WH0q7U2T2Z@atelepin-nb>
+Organization: Home
+User-Agent: KMail/4.11.5 (Linux/3.11.0-19-generic; KDE/4.11.5; i686; ; )
 MIME-Version: 1.0
-Cc: joe.slater@windriver.com, joe.macdonald@windriver.com
-Subject: [meta-selinux][PATCH 1/1] mesa: add dependency on libselinux-native
+X-Spam: Not detected
+X-Mras: Ok
+Subject: "qt-gstreamer do_install issue"
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -29,30 +32,61 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 02 Apr 2014 21:20:04 -0000
-Content-Type: text/plain
+X-List-Received-Date: Thu, 03 Apr 2014 01:25:13 -0000
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-mesa builds a host utility named builtin_compiler,
-and that needs selinux, too, if --enable-selinux is
-specfied to configure.
+Hello All! 
 
-Signed-off-by: Joe Slater <jslater@windriver.com>
----
- recipes-graphics/mesa/mesa_9.1.6.bbappend |    5 +++++
- 1 file changed, 5 insertions(+)
+I write .bb file for qt-gstreamer, all steps seems to by normal, but on 
+do_install i get 
+next error:
 
-diff --git a/recipes-graphics/mesa/mesa_9.1.6.bbappend b/recipes-graphics/mesa/mesa_9.1.6.bbappend
-index 8c11cac..0004f71 100644
---- a/recipes-graphics/mesa/mesa_9.1.6.bbappend
-+++ b/recipes-graphics/mesa/mesa_9.1.6.bbappend
-@@ -1 +1,6 @@
- inherit enable-selinux
-+
-+# But wait!  There's more!  mesa builds a host program named builtin_compiler
-+# and it needs selinux, too.  We replace the PACKAGECONFIG[] in the bbclass.
-+#
-+PACKAGECONFIG[selinux] = "--enable-selinux,--disable-selinux,libselinux libselinux-native,"
--- 
-1.7.9.5
+ERROR: QA Issue: qt-gstreamer: Files/directories were installed but not 
+shipped
+  /usr/lib
+  /usr/local
+  /usr/lib/gstreamer-0.10
+  /usr/lib/gstreamer-0.10/libgstqtvideosink.so        
+.........
 
+*My .bb file*
+
+LICENSE = "GPLv2"
+LIC_FILES_CHKSUM = "file://COPYING;md5=2d5025d4aa3495befef8f17206a5b0a1"
+SECTION = "multimedia"
+
+PR = "r0"
+
+SRC_URI = "http://gstreamer.freedesktop.org/src/qt-gstreamer/qt-gstreamer-0.10.2.tar.gz"
+
+SRC_URI[md5sum] = "0428aedf2874fd0884ad4c41db9da20e"
+SRC_URI[sha256sum] = 
+"d40d312b34916582b29e6ade4fb856749071e041c0a92bc219d7f424c45dd8aa"
+
+# DEPENDS = "boost qt4-embedded"
+
+inherit qmake2 cmake qt4x11
+
+do_configure() {
+        # Ensure we get the cmake configure and not qmake
+        cmake_do_configure
+}
+
+
+export EXTRA_OECMAKE = "-DQT_QMAKE_EXECUTABLE=${OE_QMAKE_QMAKE} \
+                        -DQT_LRELEASE_EXECUTABLE=${OE_QMAKE_LRELEASE} \
+                        -DQT_MOC_EXECUTABLE=${OE_QMAKE_MOC} \
+                        -DQT_UIC_EXECUTABLE=${OE_QMAKE_UIC} \
+                        -DQT_RCC_EXECUTABLE=${OE_QMAKE_RCC} \
+                        -DQT_LIBRARY_DIR=${OE_QMAKE_LIBDIR_QT} \
+                        -DQT_HEADERS_DIR=${OE_QMAKE_INCDIR_QT} \
+                        -DQT_QTCORE_INCLUDE_DIR=${OE_QMAKE_INCDIR_QT}/QtCore \
+                        -DQT_QTGUI_INCLUDE_DIR=${OE_QMAKE_INCDIR_QT}/QtGui \
+                        -DQTGSTREAMER_EXAMPLES=OFF      \
+                        "
+
+
+What i miss?
+Thanks!
 
