@@ -1,43 +1,43 @@
 Return-Path: <joe@deserted.net>
-Received: from mail-qa0-f53.google.com (mail-qa0-f53.google.com
-	[209.85.216.53])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0657DE00B76
-	for <yocto@yoctoproject.org>; Thu,  3 Apr 2014 12:15:57 -0700 (PDT)
-Received: by mail-qa0-f53.google.com with SMTP id w8so2067786qac.40
-	for <yocto@yoctoproject.org>; Thu, 03 Apr 2014 12:15:57 -0700 (PDT)
+Received: from mail-qc0-f180.google.com (mail-qc0-f180.google.com
+	[209.85.216.180])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 14A15E00B77
+	for <yocto@yoctoproject.org>; Thu,  3 Apr 2014 12:20:35 -0700 (PDT)
+Received: by mail-qc0-f180.google.com with SMTP id w7so2361119qcr.25
+	for <yocto@yoctoproject.org>; Thu, 03 Apr 2014 12:20:35 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
 	h=x-gm-message-state:date:from:to:cc:subject:message-id:references
 	:mime-version:content-type:content-disposition:in-reply-to
 	:user-agent;
-	bh=+Sbntri7k1pFQgMfdRrStpZ4qeyjMFLklwqA2Jdd2vs=;
-	b=NSJ16bdkm31s1bGGJZ+bRR4MMcvJ8UP44v/XOfLtrLSO+O7Wf5YF3y5+wutfArG6vZ
-	ciAhQrZxreZHC9tIclsJqen/BNjmRo+H6GqGuitv+W4wMP8x1iejrQHlNLD1BzFXYIla
-	TvGK9mTadrOOK8M4ZVBcHtSRlNoUzuNb0cGvx4nfnyOEBSXOUbarC69g86+1nAGzTykG
-	TdzBM//jyrD/qdZ30883YlxtJd/5cfwX7kLhF1GfjK4Cc6m0A8Tv2SCIHjQzS9Gfu+bv
-	8a1JLKfPa39I60hGnyUzcJ1Y78ngZ5KEjFsaZUfseKJg74dGL9LeaI8eJt4oUMhXrS57
-	hsHg==
-X-Gm-Message-State: ALoCoQnkBi6xwcdt2SNj4WRnYllmeAPcgoXF8I+GIr4ztmbPPF8TR5h2+FZ+ECVqata6IVY+6ffZ
-X-Received: by 10.224.67.131 with SMTP id r3mr9399772qai.75.1396552556890;
-	Thu, 03 Apr 2014 12:15:56 -0700 (PDT)
+	bh=73PEe7Q2CMbQ0QMXIwKV3sM9dsxQDBw5fBadycU3Ocg=;
+	b=ks4v8qvyCVym7gti3+n8GMfI5teby3PpR0c7BCIqQrpbUgF/GOVRsPWbelCGyKVHLn
+	32Fr6BSv2qQy4OHHFF/UL2C4jBsaO6I6D3g5G4mVuX4QG28q8F+gzndM+PDCLGOUUTO2
+	7e0x7p4uGpHjAyJ+YwQ7k915/swYY8AXDpZItIiZLdhZk81MsAhRBky6o1rmHyMUAzFX
+	JVLBle/iYiEv9wV4RohE3vE3BxGuOSFKVypC6q2o8GL+HF16EQZ8Eb1YtFXHPjDJZG+5
+	rto/52A+aky1AAROvTYk8rNXWBJ5TYj6RbtY5LrV02pJPwPNykXjkX343AlOD2wk2qQf
+	TZDA==
+X-Gm-Message-State: ALoCoQmILfHKwSX+nee9/oWtGVkBjejfUkAn+AhY6Vh+ocuUzyXV+ChrplV6tM02LVQ2aSrnPd8l
+X-Received: by 10.140.86.166 with SMTP id p35mr8898718qgd.81.1396552835041;
+	Thu, 03 Apr 2014 12:20:35 -0700 (PDT)
 Received: from deserted.net ([128.224.252.2])
-	by mx.google.com with ESMTPSA id v3sm11694141qaj.1.2014.04.03.12.15.55
+	by mx.google.com with ESMTPSA id b37sm7996695qge.16.2014.04.03.12.20.31
 	for <multiple recipients>
 	(version=TLSv1.2 cipher=RC4-SHA bits=128/128);
-	Thu, 03 Apr 2014 12:15:55 -0700 (PDT)
-Date: Thu, 3 Apr 2014 15:15:53 -0400
+	Thu, 03 Apr 2014 12:20:31 -0700 (PDT)
+Date: Thu, 3 Apr 2014 15:20:29 -0400
 From: Joe MacDonald <joe@deserted.net>
-To: Joe Slater <jslater@windriver.com>
-Message-ID: <20140403191551.GL4075@deserted.net>
-References: <1396473598-28636-1-git-send-email-jslater@windriver.com>
+To: wenzong.fan@windriver.com
+Message-ID: <20140403192027.GM4075@deserted.net>
+References: <cover.1395709062.git.wenzong.fan@windriver.com>
 MIME-Version: 1.0
-In-Reply-To: <1396473598-28636-1-git-send-email-jslater@windriver.com>
+In-Reply-To: <cover.1395709062.git.wenzong.fan@windriver.com>
 X-URL: http://github.com/joeythesaint/joe-s-common-environment/tree/master
 X-Configuration: git://github.com/joeythesaint/joe-s-common-environment.git
 X-Editor: Vim-703 http://www.vim.org
 User-Agent: Mutt/1.5.22 (2013-10-16)
-Cc: yocto@yoctoproject.org, joe.slater@windriver.com
-Subject: Re: [meta-selinux][PATCH 1/1] mesa: add dependency on libselinux-native
+Cc: yocto@yoctoproject.org
+Subject: Re: [meta-selinux][PATCH 0/4] add targeted/minimum policy and some updates
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -49,64 +49,107 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 03 Apr 2014 19:16:00 -0000
-X-Groupsio-MsgNum: 18842
+X-List-Received-Date: Thu, 03 Apr 2014 19:20:38 -0000
+X-Groupsio-MsgNum: 18843
 Content-Type: multipart/signed; micalg=pgp-sha1;
-	protocol="application/pgp-signature"; boundary="Jbyekxk18hnEXT0m"
+	protocol="application/pgp-signature"; boundary="YIwHDYD8sUXtBKvt"
 Content-Disposition: inline
 
---Jbyekxk18hnEXT0m
+--YIwHDYD8sUXtBKvt
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-Merged, thanks.
+Hey Wenzong,
+
+I merged two of these four.
+
+[[yocto] [meta-selinux][PATCH 0/4] add targeted/minimum policy and some upd=
+ates] On 14.03.24 (Mon 21:07) wenzong.fan@windriver.com wrote:
+
+> From: Wenzong Fan <wenzong.fan@windriver.com>
+>=20
+> Changes:
+> * backport tmpfs_t patch from upstream;
+> * add rules for /var/log symlink on poky;
+
+These both went in.  These:
+
+> * add targeted policy type
+> * add minimum targeted policy
+
+I'm less clear on.  They both look like significant changes to
+refpolicy-* behaviour, which is fine, but in that case I think it'd be
+better to give them a different name.  Or one that differentiates them
+significantly.  For example the "minimum" policy has users unconfined
+and applications confined?  Or neither?  I'm not sure what the value is
+of these.
+
+If they really are just specialized versions of the standard reference
+policy, they should at least be ported to use the refpolicy_common
+infrastructure Phil set up a while back.
+
+Thanks,
 -J.
 
-[[yocto] [meta-selinux][PATCH 1/1] mesa: add dependency on libselinux-nativ=
-e] On 14.04.02 (Wed 14:19) Joe Slater wrote:
-
-> mesa builds a host utility named builtin_compiler,
-> and that needs selinux, too, if --enable-selinux is
-> specfied to configure.
 >=20
-> Signed-off-by: Joe Slater <jslater@windriver.com>
-> ---
->  recipes-graphics/mesa/mesa_9.1.6.bbappend |    5 +++++
->  1 file changed, 5 insertions(+)
+> The following changes since commit a6079a43719e79e12a57e609923a0cccdba069=
+16:
 >=20
-> diff --git a/recipes-graphics/mesa/mesa_9.1.6.bbappend b/recipes-graphics=
-/mesa/mesa_9.1.6.bbappend
-> index 8c11cac..0004f71 100644
-> --- a/recipes-graphics/mesa/mesa_9.1.6.bbappend
-> +++ b/recipes-graphics/mesa/mesa_9.1.6.bbappend
-> @@ -1 +1,6 @@
->  inherit enable-selinux
-> +
-> +# But wait!  There's more!  mesa builds a host program named builtin_com=
-piler
-> +# and it needs selinux, too.  We replace the PACKAGECONFIG[] in the bbcl=
-ass.
-> +#
-> +PACKAGECONFIG[selinux] =3D "--enable-selinux,--disable-selinux,libselinu=
-x libselinux-native,"
-> --=20
-> 1.7.9.5
+>   refpolicy: fix real path for su.shadow (2014-02-13 10:52:07 -0500)
+>=20
+> are available in the git repository at:
+>=20
+>   git://git.pokylinux.org/poky-contrib wenzong/ref-minimum
+>   http://git.pokylinux.org/cgit.cgi/poky-contrib/log/?h=3Dwenzong/ref-min=
+imum
+>=20
+> Wenzong Fan (4):
+>   refpolicy: associate tmpfs_t (shm) to device_t (devtmpfs) file
+>     systems
+>   refpolicy: add rules for /var/log symlink on poky
+>   refpolicy: add targeted policy type
+>   refpolicy: add minimum targeted policy
+>=20
+>  ...associate-tmpfs_t-shm-to-device_t-devtmpf.patch |   30 +++
+>  ...ky-policy-add-rules-for-syslogd_t-symlink.patch |   30 +++
+>  ...rules-for-var-log-symlink-audisp_remote_t.patch |   29 +++
+>  .../refpolicy/refpolicy-minimum_2.20130424.bb      |   46 +++++
+>  ...olicy-fix-optional-issue-on-sysadm-module.patch |   60 ++++++
+>  .../refpolicy-unconfined_u-default-user.patch      |  198 ++++++++++++++=
+++++++
+>  .../refpolicy/refpolicy-targeted_2.20130424.bb     |   18 ++
+>  .../refpolicy/refpolicy_2.20130424.inc             |    3 +
+>  8 files changed, 414 insertions(+)
+>  create mode 100644 recipes-security/refpolicy/refpolicy-2.20130424/files=
+ystem-associate-tmpfs_t-shm-to-device_t-devtmpf.patch
+>  create mode 100644 recipes-security/refpolicy/refpolicy-2.20130424/poky-=
+policy-add-rules-for-syslogd_t-symlink.patch
+>  create mode 100644 recipes-security/refpolicy/refpolicy-2.20130424/poky-=
+policy-add-rules-for-var-log-symlink-audisp_remote_t.patch
+>  create mode 100644 recipes-security/refpolicy/refpolicy-minimum_2.201304=
+24.bb
+>  create mode 100644 recipes-security/refpolicy/refpolicy-targeted/refpoli=
+cy-fix-optional-issue-on-sysadm-module.patch
+>  create mode 100644 recipes-security/refpolicy/refpolicy-targeted/refpoli=
+cy-unconfined_u-default-user.patch
+>  create mode 100644 recipes-security/refpolicy/refpolicy-targeted_2.20130=
+424.bb
 >=20
 --=20
 -Joe MacDonald.
 :wq
 
---Jbyekxk18hnEXT0m
+--YIwHDYD8sUXtBKvt
 Content-Type: application/pgp-signature; name="signature.asc"
 Content-Description: Digital signature
 
 -----BEGIN PGP SIGNATURE-----
 Version: GnuPG v1.4.12 (GNU/Linux)
 
-iEYEARECAAYFAlM9s2cACgkQwFvcllog0XwRYACghThru7ktWuANn2nBbxOUHrqt
-bSoAn15TxI4tTO66y+/r5XVuTxbZfF04
-=dM7b
+iEYEARECAAYFAlM9tHsACgkQwFvcllog0XwjeQCeO8CZD1jYOwxweOMr3jQ9Ia8r
+O2gAnjAwQnbq8GwMEWcgmSOJD5Y6D7/k
+=8qKu
 -----END PGP SIGNATURE-----
 
---Jbyekxk18hnEXT0m--
+--YIwHDYD8sUXtBKvt--
