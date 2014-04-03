@@ -1,38 +1,34 @@
-Return-Path: <yejun.guo@intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DD363E00C92
-	for <yocto@yoctoproject.org>; Thu,  3 Apr 2014 01:55:10 -0700 (PDT)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga101.jf.intel.com with ESMTP; 03 Apr 2014 01:55:10 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.97,785,1389772800"; d="scan'208";a="513960654"
-Received: from fmsmsx107.amr.corp.intel.com ([10.19.9.54])
-	by orsmga002.jf.intel.com with ESMTP; 03 Apr 2014 01:55:09 -0700
-Received: from FMSMSX109.amr.corp.intel.com (10.18.116.9) by
-	FMSMSX107.amr.corp.intel.com (10.19.9.54) with Microsoft SMTP Server
-	(TLS) id 14.3.123.3; Thu, 3 Apr 2014 01:55:09 -0700
-Received: from shsmsx152.ccr.corp.intel.com (10.239.6.52) by
-	fmsmsx109.amr.corp.intel.com (10.18.116.9) with Microsoft SMTP Server
-	(TLS) id 14.3.123.3; Thu, 3 Apr 2014 01:55:09 -0700
-Received: from shsmsx101.ccr.corp.intel.com ([169.254.1.11]) by
-	SHSMSX152.ccr.corp.intel.com ([169.254.6.130]) with mapi id
-	14.03.0123.003; Thu, 3 Apr 2014 16:54:41 +0800
-From: "Guo, Yejun" <yejun.guo@intel.com>
-To: "Burton, Ross" <ross.burton@intel.com>
-Thread-Topic: [yocto] how to set LICENSE for llvm in .bb file
-Thread-Index: AQHPTwJbXUl4nhctYUGwuDhThGUdIZr/j5uA
-Date: Thu, 3 Apr 2014 08:54:40 +0000
-Message-ID: <854E8DBA9F41904AB047E03BB6963AE501A0F8F6@SHSMSX101.ccr.corp.intel.com>
-References: <854E8DBA9F41904AB047E03BB6963AE501A0E62E@SHSMSX101.ccr.corp.intel.com>
-	<CAJTo0LYkrBTcbrSOAyce0tZN6WZJ=9jPOSjYpdr1WnCEY5bfwA@mail.gmail.com>
-In-Reply-To: <CAJTo0LYkrBTcbrSOAyce0tZN6WZJ=9jPOSjYpdr1WnCEY5bfwA@mail.gmail.com>
-Accept-Language: zh-CN, en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.239.127.40]
-MIME-Version: 1.0
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: how to set LICENSE for llvm in .bb file
+Return-Path: <joe@deserted.net>
+Received: from mail-qg0-f41.google.com (mail-qg0-f41.google.com
+	[209.85.192.41])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A699CE00B69
+	for <yocto@yoctoproject.org>; Thu,  3 Apr 2014 06:17:07 -0700 (PDT)
+Received: by mail-qg0-f41.google.com with SMTP id z60so1759403qgd.28
+	for <yocto@yoctoproject.org>; Thu, 03 Apr 2014 06:17:06 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:from:to:subject:date:message-id;
+	bh=UqJkJ7Np66FtKHB6bvtpNWmAZ5QLaFKbk758ixJlcV4=;
+	b=bTrZx+P4ptfkH4yLlu9GeDKNh3V6Pg1B8prVRtKLyCKi1a84Pl7lTgIhR6bZmtCkB+
+	0MYFt2e5DlA0UKsmdfvJnpeDyJFtlco9ZKaB80AA9HHfOzXfgPX1KTHTeWAWv5sHEiEx
+	1Nu/jZxMYrpJ2HewkjLyKZtK/QmPjGncye+KGyObMBwUINrTvVvzySC67UZrsxUwhyB/
+	0jxUqFJqrh4nM58unKFNnAnawCTLbUIkrBZeWehvrYwLz1e+lKxIwGT4UJbrDcQfSKy4
+	ELeBj0a1GRQUFL5hXsuGP2kGutlT0fIIs+rhbttFJliauuZ6DhopIjaBQrm4mRxYDoxx
+	Uyig==
+X-Gm-Message-State: ALoCoQker9ZHWCdQxKve3+aqElXgIPkikNBu43j3YtPqKkUOcpWA0XjsoDvF4LjffIvl/ij3x8R6
+X-Received: by 10.224.13.77 with SMTP id b13mr7437465qaa.34.1396531026727;
+	Thu, 03 Apr 2014 06:17:06 -0700 (PDT)
+Received: from yow-asskicker.wrs.com ([128.224.252.2])
+	by mx.google.com with ESMTPSA id 104sm6860420qgq.1.2014.04.03.06.17.05
+	for <multiple recipients>
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Thu, 03 Apr 2014 06:17:05 -0700 (PDT)
+From: Joe MacDonald <joe@deserted.net>
+To: yocto@yoctoproject.org
+Date: Thu,  3 Apr 2014 09:17:04 -0400
+Message-Id: <1396531024-12780-1-git-send-email-joe@deserted.net>
+X-Mailer: git-send-email 1.7.10.4
+Subject: [meta-selinux][PATCH] refpolicy: add versioned directory to FILESEXTRAPATHS
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -44,26 +40,31 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 03 Apr 2014 08:55:14 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+X-List-Received-Date: Thu, 03 Apr 2014 13:17:15 -0000
 
-VGhhbmsgeW91IFJvc3MsIHdoYXQgSSBhY3R1YWxseSBuZWVkIGlzIGxsdm0rY2xhbmcsIGl0IGlz
-IGEgdmVyeSBnb29kIHJlZmVyZW5jZSBmb3IgbWUgdG8gcmVzb2x2ZSB0aGUgbGljZW5zZSBpc3N1
-ZSwgYW5kIHRoZSBTWVNST09UX1BSRVBST0NFU1NfRlVOQ1Mga25vd2xlZGdlIHRvIHJlc29sdmUg
-bGx2bS1jb25maWcgaXNzdWUuDQoNCg0KVGhhbmtzDQpZZWp1bg0KDQoNCi0tLS0tT3JpZ2luYWwg
-TWVzc2FnZS0tLS0tDQpGcm9tOiBCdXJ0b24sIFJvc3MgW21haWx0bzpyb3NzLmJ1cnRvbkBpbnRl
-bC5jb21dIA0KU2VudDogVGh1cnNkYXksIEFwcmlsIDAzLCAyMDE0IDI6MDEgUE0NClRvOiBHdW8s
-IFllanVuDQpDYzogeW9jdG9AeW9jdG9wcm9qZWN0Lm9yZw0KU3ViamVjdDogUmU6IFt5b2N0b10g
-aG93IHRvIHNldCBMSUNFTlNFIGZvciBsbHZtIGluIC5iYiBmaWxlDQoNCk9uIDMgQXByaWwgMjAx
-NCAwMzoxNiwgR3VvLCBZZWp1biA8eWVqdW4uZ3VvQGludGVsLmNvbT4gd3JvdGU6DQo+IEknbSBh
-ZGRpbmcgcGFja2FnZSBsbHZtIHdoaWNoIGhhcyBpdHMgb3duIGxpY2Vuc2U6IFVuaXZlcnNpdHkg
-b2YgSWxsaW5vaXMvTkNTQSBPcGVuIFNvdXJjZSBMaWNlbnNlLCBzZWUgYXQgaHR0cDovL2xsdm0u
-b3JnL3JlbGVhc2VzLzMuNC9MSUNFTlNFLlRYVCAuICBJIHRyaWVkIHNvbWV0aGluZyBmb3IgTElD
-RU5TRSBpbiAuYmIgZmlsZSwgYnV0IGlzIG5vdCByZWNvZ25pemVkIGJ5IHRoZSBzeXN0ZW0uIENv
-dWxkIHlvdSBwbGVhc2UgbGV0IG1lIGtub3cgaG93IHRvIHNldCB0aGlzIHZhbHVlPyBUaGFua3Mg
-YSBsb3QhDQoNCkxMVk0gaXMgYWxyZWFkeSBwYWNrYWdlZCBvdXRzaWRlIG9mIG9lLWNvcmU6DQoN
-Cmh0dHA6Ly9sYXllcnMub3BlbmVtYmVkZGVkLm9yZy9sYXllcmluZGV4L2JyYW5jaC9tYXN0ZXIv
-cmVjaXBlcy8/cT1sbHZtDQoNClJvc3MNCg==
+${PV} is no longer calculated for non-bb/bbappend files, resulting in a
+failure to find any patches in refpolicy-2.20130424/.  Explicitly set the
+path name rather than relying on the ${PV} expansion.
+
+Signed-off-by: Joe MacDonald <joe@deserted.net>
+---
+ recipes-security/refpolicy/refpolicy_2.20130424.inc |    2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/recipes-security/refpolicy/refpolicy_2.20130424.inc b/recipes-security/refpolicy/refpolicy_2.20130424.inc
+index 9e5e426..4ea61fc 100644
+--- a/recipes-security/refpolicy/refpolicy_2.20130424.inc
++++ b/recipes-security/refpolicy/refpolicy_2.20130424.inc
+@@ -4,7 +4,7 @@ SRC_URI = "http://oss.tresys.com/files/refpolicy/refpolicy-${PV}.tar.bz2;"
+ SRC_URI[md5sum] = "6a5c975258cc8eb92c122f11b11a5085"
+ SRC_URI[sha256sum] = "6039ba854f244a39dc727cc7db25632f7b933bb271c803772d754d4354f5aef4"
+ 
+-FILESEXTRAPATHS_prepend := "${THISDIR}/refpolicy-${PV}:"
++FILESEXTRAPATHS_prepend := "${THISDIR}/refpolicy-2.20130424:"
+ 
+ # Fix file contexts for Poky
+ SRC_URI += "file://poky-fc-subs_dist.patch \
+-- 
+1.7.10.4
+
 
