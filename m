@@ -1,44 +1,43 @@
 Return-Path: <joe@deserted.net>
-Received: from mail-qc0-f181.google.com (mail-qc0-f181.google.com
-	[209.85.216.181])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9F9ABE00B78
-	for <yocto@yoctoproject.org>; Thu,  3 Apr 2014 12:06:31 -0700 (PDT)
-Received: by mail-qc0-f181.google.com with SMTP id x3so2336486qcv.26
-	for <yocto@yoctoproject.org>; Thu, 03 Apr 2014 12:06:31 -0700 (PDT)
+Received: from mail-qa0-f44.google.com (mail-qa0-f44.google.com
+	[209.85.216.44])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B6392E00B76
+	for <yocto@yoctoproject.org>; Thu,  3 Apr 2014 12:06:56 -0700 (PDT)
+Received: by mail-qa0-f44.google.com with SMTP id dc16so2074068qab.31
+	for <yocto@yoctoproject.org>; Thu, 03 Apr 2014 12:06:55 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
 	h=x-gm-message-state:date:from:to:cc:subject:message-id:references
 	:mime-version:content-type:content-disposition:in-reply-to
 	:user-agent;
-	bh=i8OaE8H+XCzhYyZoRoj8wo8omHv1Ym4o2B9MtBAvlcI=;
-	b=l1xryKi2U2wEBb9goMhwDIb5ObxJvXDx+m2naK2LNlHZ3bItm57yDEdRV5h9LSYjUJ
-	q+krCBSw50Cm+9yy9DG39Ncvzf6ToMMJn/0WVKBUJEV4SQQz0BqJVsiaIdK8KXkrrf/0
-	jx5KH3hExQWIhtVzxZKlHV/bCwvJoLiA0qBkxuj1pyqySXfM3x0fZGtOtBCQoT7UtbC2
-	SCaw3oq7JH+gS4khUn1cqKRWKy+w136XG5dizEtFHtOJPEv9d1iT48Gh4L6NL81SBSXz
-	G0bFD8y9ye0zQ9w+oJeQZJGBVVYmS4ghL7Z8fDQpHVHXZwZEHnJl+t+8z07MjvcyKqre
-	jDlQ==
-X-Gm-Message-State: ALoCoQkZr/W+7zAAhfEdP+bqzElSDvipIl9uBBr/LtNCkAPE/UwTkHHP7hn+33g/EqVYuwpssaaQ
-X-Received: by 10.140.102.85 with SMTP id v79mr9043553qge.8.1396551990919;
-	Thu, 03 Apr 2014 12:06:30 -0700 (PDT)
+	bh=7VwthFWgGNV1i6GQ719N+2Nbi7FufC8plXWf4M0gs2g=;
+	b=HhcW5rWbGy8pP4+MLzEJCnmdrCr1tEaXkpgg+TR+EBnevhwu6JP1KwySDlZKDcZkfk
+	kqv8nPq9PdcKCjQ8812Vpud5lNLxvT0D28C4KLs0JAl3uW/1hmyqgzTmZ7SSlwOsLi0p
+	97jgy/6jJvZUWp1dS43DO01GnmIvsB94YnwUsZUBb+drnwizyKnxyO6PNvBfB+BVB4Ea
+	Z2qq7nlchRe8Eo3PtYCAerU+ECzR3tfeH4voOFwuGnM1pP8Ls/9nhw09yGoYdEWnel7w
+	2PBmdkVHBW5KkW/T+G2yLEM/lKMVU3bYtLTKkF19rbBLfrrY7mAMYJw+xWtLRhZ1ZqYM
+	OGQQ==
+X-Gm-Message-State: ALoCoQntl73/3ydht4nEXbt7NHXAljf5v/vSPpv1N0cYArCSBva0IWPNaTu5kHd2ArF86YDL5WUo
+X-Received: by 10.224.3.5 with SMTP id 5mr9385457qal.45.1396552015659;
+	Thu, 03 Apr 2014 12:06:55 -0700 (PDT)
 Received: from deserted.net ([128.224.252.2])
-	by mx.google.com with ESMTPSA id x5sm11643657qaj.9.2014.04.03.12.06.29
+	by mx.google.com with ESMTPSA id f3sm11648136qag.7.2014.04.03.12.06.54
 	for <multiple recipients>
 	(version=TLSv1.2 cipher=RC4-SHA bits=128/128);
-	Thu, 03 Apr 2014 12:06:29 -0700 (PDT)
-Date: Thu, 3 Apr 2014 15:06:26 -0400
+	Thu, 03 Apr 2014 12:06:54 -0700 (PDT)
+Date: Thu, 3 Apr 2014 15:06:52 -0400
 From: Joe MacDonald <joe@deserted.net>
-To: Chong Lu <Chong.Lu@windriver.com>
-Message-ID: <20140403190625.GJ4075@deserted.net>
-References: <cover.1394503849.git.Chong.Lu@windriver.com>
-	<6626e126921cee6e11b53d180f8ba3ceba8ef215.1394503849.git.Chong.Lu@windriver.com>
+To: jackie.huang@windriver.com
+Message-ID: <20140403190650.GK4075@deserted.net>
+References: <1394691979-12021-1-git-send-email-jackie.huang@windriver.com>
 MIME-Version: 1.0
-In-Reply-To: <6626e126921cee6e11b53d180f8ba3ceba8ef215.1394503849.git.Chong.Lu@windriver.com>
+In-Reply-To: <1394691979-12021-1-git-send-email-jackie.huang@windriver.com>
 X-URL: http://github.com/joeythesaint/joe-s-common-environment/tree/master
 X-Configuration: git://github.com/joeythesaint/joe-s-common-environment.git
 X-Editor: Vim-703 http://www.vim.org
 User-Agent: Mutt/1.5.22 (2013-10-16)
 Cc: yocto@yoctoproject.org
-Subject: Re: [meta-selinux][PATCH 1/1] checkpolicy: Don't link against libfl
+Subject: Re: [meta-selinux][PATCH] policycoreutils: drop the patch for old refpolicy
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -50,13 +49,13 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 03 Apr 2014 19:06:31 -0000
-X-Groupsio-MsgNum: 18840
+X-List-Received-Date: Thu, 03 Apr 2014 19:06:56 -0000
+X-Groupsio-MsgNum: 18841
 Content-Type: multipart/signed; micalg=pgp-sha1;
-	protocol="application/pgp-signature"; boundary="NgG1H2o5aFKkgPy/"
+	protocol="application/pgp-signature"; boundary="9a9Vq1BJdYBEXpLG"
 Content-Disposition: inline
 
---NgG1H2o5aFKkgPy/
+--9a9Vq1BJdYBEXpLG
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
@@ -64,112 +63,121 @@ Content-Transfer-Encoding: quoted-printable
 Merged, thanks.
 -J.
 
-[[yocto] [meta-selinux][PATCH 1/1] checkpolicy: Don't link against libfl] O=
-n 14.03.11 (Tue 10:13) Chong Lu wrote:
+[[yocto] [meta-selinux][PATCH] policycoreutils: drop the patch for old refp=
+olicy] On 14.03.13 (Thu 14:26) jackie.huang@windriver.com wrote:
 
-> In policy_scan.l file, we have already removed all references to yywrap by
-> adding "%option noyywrap" statements to each flex source file that doesn't
-> override yywrap. After this, we no longer need to link against libfl and =
-so
-> no longer get errors about undefined references to yylex.
+> From: Jackie Huang <jackie.huang@windriver.com>
 >=20
-> Signed-off-by: Chong Lu <Chong.Lu@windriver.com>
+> The patch policycoreutils-revert-run_init-open_init_pty.patch
+> is only for refpolicy version older than 2.20120725, now the
+> refpolicy is updated to 2.20130424 so drop the patch or it
+> will make run_init fail to start some init scripts.
+>=20
+> Signed-off-by: Jackie Huang <jackie.huang@windriver.com>
 > ---
->  recipes-security/selinux/checkpolicy.inc           |  2 +
->  .../checkpolicy-Do-not-link-against-libfl.patch    | 44 ++++++++++++++++=
-++++++
->  2 files changed, 46 insertions(+)
->  create mode 100644 recipes-security/selinux/checkpolicy/checkpolicy-Do-n=
-ot-link-against-libfl.patch
+>  ...cycoreutils-revert-run_init-open_init_pty.patch |   40 --------------=
+------
+>  recipes-security/selinux/policycoreutils_2.2.5.bb  |    1 -
+>  recipes-security/selinux/policycoreutils_git.bb    |    1 -
+>  3 files changed, 42 deletions(-)
+>  delete mode 100644 recipes-security/selinux/policycoreutils/policycoreut=
+ils-revert-run_init-open_init_pty.patch
 >=20
-> diff --git a/recipes-security/selinux/checkpolicy.inc b/recipes-security/=
-selinux/checkpolicy.inc
-> index 096f938..54edc11 100644
-> --- a/recipes-security/selinux/checkpolicy.inc
-> +++ b/recipes-security/selinux/checkpolicy.inc
-> @@ -13,6 +13,8 @@ LICENSE =3D "GPLv2+"
+> diff --git a/recipes-security/selinux/policycoreutils/policycoreutils-rev=
+ert-run_init-open_init_pty.patch b/recipes-security/selinux/policycoreutils=
+/policycoreutils-revert-run_init-open_init_pty.patch
+> deleted file mode 100644
+> index aedae21..0000000
+> --- a/recipes-security/selinux/policycoreutils/policycoreutils-revert-run=
+_init-open_init_pty.patch
+> +++ /dev/null
+> @@ -1,40 +0,0 @@
+> -From 0b2d9e47c759bf2d0842f20d6af5c4e678e9c34c Mon Sep 17 00:00:00 2001
+> -From: Xin Ouyang <Xin.Ouyang@windriver.com>
+> -Date: Tue, 4 Jun 2013 17:04:44 +0800
+> -Subject: [PATCH] policycoreutils: Revert "run_init: If open_init_pty ..."
+> -
+> -This reverts commit d46e88abb6e1f7b0228c30c98ba4fb739e63cda3.
+> -
+> -In d46e88ab, run_init will not use open_init_pty as Redhat did. Our
+> -old refpolicy still does no work well with this, and make init scripts
+> -fail to start so revert it.
+> -
+> -This patch should be dropped while refpolicy is upreved to 2.20120725+.
+> -
+> -Upstream-Status: Inappropriate [for old refpolicy]
+> -
+> ----
+> - run_init/run_init.c | 7 -------
+> - 1 file changed, 7 deletions(-)
+> -
+> -diff --git a/run_init/run_init.c b/run_init/run_init.c
+> -index 92034be..9db766c 100644
+> ---- a/run_init/run_init.c
+> -+++ b/run_init/run_init.c
+> -@@ -406,13 +406,6 @@ int main(int argc, char *argv[])
+> - 			new_context);
+> - 		exit(-1);
+> - 	}
+> --	if (! access("/usr/sbin/open_init_pty", X_OK)) {
+> --		if (execvp(argv[1], argv + 1)) {
+> --			perror("execvp");
+> --			exit(-1);
+> --		}
+> --		return 0;
+> --	}
+> - 	/*
+> - 	 * Do not execvp the command directly from run_init; since it would run
+> - 	 * under with a pty under sysadm_devpts_t. Instead, we call open_init_=
+tty,
+> ---=20
+> -1.8.1.2
+> -
+> diff --git a/recipes-security/selinux/policycoreutils_2.2.5.bb b/recipes-=
+security/selinux/policycoreutils_2.2.5.bb
+> index d851f74..64cb495 100644
+> --- a/recipes-security/selinux/policycoreutils_2.2.5.bb
+> +++ b/recipes-security/selinux/policycoreutils_2.2.5.bb
+> @@ -9,7 +9,6 @@ SRC_URI[md5sum] =3D "a2963d7024c5c4ce89f2459d48f91ec8"
+>  SRC_URI[sha256sum] =3D "bbf850a8c3c2f371f439d6525663eecdd3a737acd594d2f2=
+7f8d8f3a07830cc4"
 > =20
->  DEPENDS +=3D "libsepol libselinux bison-native flex-native"
+>  SRC_URI +=3D "\
+> -	file://policycoreutils-revert-run_init-open_init_pty.patch \
+>  	file://policycoreutils-fix-sepolicy-install-path.patch \
+>  	file://policycoreutils-make-O_CLOEXEC-optional.patch \
+>  	file://policycoreutils-loadpolicy-symlink.patch \
+> diff --git a/recipes-security/selinux/policycoreutils_git.bb b/recipes-se=
+curity/selinux/policycoreutils_git.bb
+> index 9a6425b..92f6c26 100644
+> --- a/recipes-security/selinux/policycoreutils_git.bb
+> +++ b/recipes-security/selinux/policycoreutils_git.bb
+> @@ -7,7 +7,6 @@ include ${BPN}.inc
+>  LIC_FILES_CHKSUM =3D "file://COPYING;md5=3D393a5ca445f6965873eca0259a17f=
+833"
 > =20
-> +SRC_URI +=3D "file://checkpolicy-Do-not-link-against-libfl.patch"
-> +
->  EXTRA_OEMAKE +=3D "PREFIX=3D${D}"=20
->  EXTRA_OEMAKE +=3D "LEX=3D'flex'"
-> =20
-> diff --git a/recipes-security/selinux/checkpolicy/checkpolicy-Do-not-link=
--against-libfl.patch b/recipes-security/selinux/checkpolicy/checkpolicy-Do-=
-not-link-against-libfl.patch
-> new file mode 100644
-> index 0000000..6fcf459
-> --- /dev/null
-> +++ b/recipes-security/selinux/checkpolicy/checkpolicy-Do-not-link-agains=
-t-libfl.patch
-> @@ -0,0 +1,44 @@
-> +checkpolicy: Don't link against libfl
-> +
-> +In policy_scan.l file, we have already removed all references to yywrap =
-by
-> +adding "%option noyywrap" statements to each flex source file that doesn=
-'t
-> +override yywrap. After this, we no longer need to link against libfl and=
- so
-> +no longer get errors about undefined references to yylex.
-> +
-> +Upstream-status: Pending
-> +
-> +Signed-off-by: Chong Lu <Chong.Lu@windriver.com>
-> +---
-> + Makefile      |    2 +-
-> + test/Makefile |    2 +-
-> + 2 files changed, 2 insertions(+), 2 deletions(-)
-> +
-> +diff --git a/Makefile b/Makefile
-> +index e5fae3d..14ac70e 100644
-> +--- a/Makefile
-> ++++ b/Makefile
-> +@@ -19,7 +19,7 @@ CHECKOBJS =3D y.tab.o lex.yy.o queue.o module_compiler=
-=2Eo parse_util.o \
-> + CHECKPOLOBJS =3D $(CHECKOBJS) checkpolicy.o
-> + CHECKMODOBJS =3D $(CHECKOBJS) checkmodule.o
-> +=20
-> +-LDLIBS=3D$(LIBDIR)/libsepol.a -lfl
-> ++LDLIBS=3D$(LIBDIR)/libsepol.a
-> +=20
-> + GENERATED=3Dlex.yy.c y.tab.c y.tab.h
-> +=20
-> +diff --git a/test/Makefile b/test/Makefile
-> +index 63b4d24..0f19a8a 100644
-> +--- a/test/Makefile
-> ++++ b/test/Makefile
-> +@@ -9,7 +9,7 @@ INCLUDEDIR ?=3D $(PREFIX)/include
-> + CFLAGS ?=3D -g -Wall -W -Werror -O2 -pipe
-> + override CFLAGS +=3D -I$(INCLUDEDIR)
-> +=20
-> +-LDLIBS=3D-lfl -lselinux $(LIBDIR)/libsepol.a -L$(LIBDIR)
-> ++LDLIBS=3D-lselinux $(LIBDIR)/libsepol.a -L$(LIBDIR)
-> +=20
-> + all: dispol dismod
-> +=20
-> +--=20
-> +1.7.9.5
-> +
+>  SRC_URI +=3D "\
+> -	file://policycoreutils-revert-run_init-open_init_pty.patch \
+>  	file://policycoreutils-fix-sepolicy-install-path.patch \
+>  	file://policycoreutils-make-O_CLOEXEC-optional.patch \
+>  	"
 > --=20
-> 1.8.1.2
+> 1.7.9.5
 >=20
 --=20
 -Joe MacDonald.
 :wq
 
---NgG1H2o5aFKkgPy/
+--9a9Vq1BJdYBEXpLG
 Content-Type: application/pgp-signature; name="signature.asc"
 Content-Description: Digital signature
 
 -----BEGIN PGP SIGNATURE-----
 Version: GnuPG v1.4.12 (GNU/Linux)
 
-iEYEARECAAYFAlM9sTEACgkQwFvcllog0Xz7xACeIwPR8co2a+p3r7ZynWi47fj9
-LFwAn3HoSz2XRcO+rJio+LMYOzgEDCXh
-=5M/d
+iEYEARECAAYFAlM9sUoACgkQwFvcllog0XxplgCfXSNvsEgS5/hbTdVHZbkjQvdb
+yTIAn1BaVHF/k7AHl4t9gFkYUaXdXBUz
+=X2aA
 -----END PGP SIGNATURE-----
 
---NgG1H2o5aFKkgPy/--
+--9a9Vq1BJdYBEXpLG--
