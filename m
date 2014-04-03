@@ -1,42 +1,44 @@
 Return-Path: <joe@deserted.net>
-Received: from mail-qc0-f172.google.com (mail-qc0-f172.google.com
-	[209.85.216.172])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6D72FE00B81
-	for <yocto@yoctoproject.org>; Thu,  3 Apr 2014 12:05:54 -0700 (PDT)
-Received: by mail-qc0-f172.google.com with SMTP id i8so2394732qcq.3
-	for <yocto@yoctoproject.org>; Thu, 03 Apr 2014 12:05:53 -0700 (PDT)
+Received: from mail-qc0-f181.google.com (mail-qc0-f181.google.com
+	[209.85.216.181])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9F9ABE00B78
+	for <yocto@yoctoproject.org>; Thu,  3 Apr 2014 12:06:31 -0700 (PDT)
+Received: by mail-qc0-f181.google.com with SMTP id x3so2336486qcv.26
+	for <yocto@yoctoproject.org>; Thu, 03 Apr 2014 12:06:31 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
 	h=x-gm-message-state:date:from:to:cc:subject:message-id:references
 	:mime-version:content-type:content-disposition:in-reply-to
 	:user-agent;
-	bh=XZ9SuKfKYKfVtf/ZUZvHtQSSFuZfZwkjhF1rYTXDRwU=;
-	b=KK7OeqgofEbGnEjUXaTMFI+Y7t3TQdC5Ia+abjyrOTg79fomZ1H0J8GdiELQ3x7fQ+
-	85+YP5BoWwC8b2EDQo0DJuFLyf8wvGkjIIsBn2J1zyMEKqhoOjvt3fcUhExXnyWHjwfJ
-	ZAQS2t4hM8UB3shVGEVe32pgUa+3I8Nh+v3Ft5ktPWFxhI/qcvkYLk3ij7wsQUemNmyB
-	vxD6D8zLhLXvTKHG5R8tW/M7gBBIawhzAz3SlJUMUOTYTpJujKeLJM9ASLvl35plgJZG
-	fFTvc+pz3icelSulQd0bKZXtmg3PSSm5qVV85BQgbNQ81yCedvpM+yO/1UpsQnpGDyyQ
-	Eqyg==
-X-Gm-Message-State: ALoCoQkETKEvAvCCUi/f8GrgeEJbWGuMHN1/jPD4t5SC8Vo0WqJAudbegQ64hJThHWV2O0asaxxI
-X-Received: by 10.140.26.242 with SMTP id 105mr4306995qgv.92.1396551953865;
-	Thu, 03 Apr 2014 12:05:53 -0700 (PDT)
-Received: from deserted.net ([128.224.252.2]) by mx.google.com with ESMTPSA id
-	z10sm11614720qaf.33.2014.04.03.12.05.52 for <multiple recipients>
+	bh=i8OaE8H+XCzhYyZoRoj8wo8omHv1Ym4o2B9MtBAvlcI=;
+	b=l1xryKi2U2wEBb9goMhwDIb5ObxJvXDx+m2naK2LNlHZ3bItm57yDEdRV5h9LSYjUJ
+	q+krCBSw50Cm+9yy9DG39Ncvzf6ToMMJn/0WVKBUJEV4SQQz0BqJVsiaIdK8KXkrrf/0
+	jx5KH3hExQWIhtVzxZKlHV/bCwvJoLiA0qBkxuj1pyqySXfM3x0fZGtOtBCQoT7UtbC2
+	SCaw3oq7JH+gS4khUn1cqKRWKy+w136XG5dizEtFHtOJPEv9d1iT48Gh4L6NL81SBSXz
+	G0bFD8y9ye0zQ9w+oJeQZJGBVVYmS4ghL7Z8fDQpHVHXZwZEHnJl+t+8z07MjvcyKqre
+	jDlQ==
+X-Gm-Message-State: ALoCoQkZr/W+7zAAhfEdP+bqzElSDvipIl9uBBr/LtNCkAPE/UwTkHHP7hn+33g/EqVYuwpssaaQ
+X-Received: by 10.140.102.85 with SMTP id v79mr9043553qge.8.1396551990919;
+	Thu, 03 Apr 2014 12:06:30 -0700 (PDT)
+Received: from deserted.net ([128.224.252.2])
+	by mx.google.com with ESMTPSA id x5sm11643657qaj.9.2014.04.03.12.06.29
+	for <multiple recipients>
 	(version=TLSv1.2 cipher=RC4-SHA bits=128/128);
-	Thu, 03 Apr 2014 12:05:53 -0700 (PDT)
-Date: Thu, 3 Apr 2014 15:05:50 -0400
+	Thu, 03 Apr 2014 12:06:29 -0700 (PDT)
+Date: Thu, 3 Apr 2014 15:06:26 -0400
 From: Joe MacDonald <joe@deserted.net>
-To: rongqing.li@windriver.com
-Message-ID: <20140403190548.GI4075@deserted.net>
-References: <cover.1392431823.git.rongqing.li@windriver.com>
+To: Chong Lu <Chong.Lu@windriver.com>
+Message-ID: <20140403190625.GJ4075@deserted.net>
+References: <cover.1394503849.git.Chong.Lu@windriver.com>
+	<6626e126921cee6e11b53d180f8ba3ceba8ef215.1394503849.git.Chong.Lu@windriver.com>
 MIME-Version: 1.0
-In-Reply-To: <cover.1392431823.git.rongqing.li@windriver.com>
+In-Reply-To: <6626e126921cee6e11b53d180f8ba3ceba8ef215.1394503849.git.Chong.Lu@windriver.com>
 X-URL: http://github.com/joeythesaint/joe-s-common-environment/tree/master
 X-Configuration: git://github.com/joeythesaint/joe-s-common-environment.git
 X-Editor: Vim-703 http://www.vim.org
 User-Agent: Mutt/1.5.22 (2013-10-16)
 Cc: yocto@yoctoproject.org
-Subject: Re: [meta-selinux][PATCH 0/1] refpolicy: allow sysadm to run rpcbind
+Subject: Re: [meta-selinux][PATCH 1/1] checkpolicy: Don't link against libfl
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -48,13 +50,13 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 03 Apr 2014 19:05:55 -0000
-X-Groupsio-MsgNum: 18839
+X-List-Received-Date: Thu, 03 Apr 2014 19:06:31 -0000
+X-Groupsio-MsgNum: 18840
 Content-Type: multipart/signed; micalg=pgp-sha1;
-	protocol="application/pgp-signature"; boundary="zqjkMoGlbUJ91oFe"
+	protocol="application/pgp-signature"; boundary="NgG1H2o5aFKkgPy/"
 Content-Disposition: inline
 
---zqjkMoGlbUJ91oFe
+--NgG1H2o5aFKkgPy/
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
@@ -62,45 +64,112 @@ Content-Transfer-Encoding: quoted-printable
 Merged, thanks.
 -J.
 
-[[yocto] [meta-selinux][PATCH 0/1] refpolicy: allow sysadm to run rpcbind] =
-On 14.02.15 (Sat 10:38) rongqing.li@windriver.com wrote:
+[[yocto] [meta-selinux][PATCH 1/1] checkpolicy: Don't link against libfl] O=
+n 14.03.11 (Tue 10:13) Chong Lu wrote:
 
-> From: Roy Li <rongqing.li@windriver.com>
+> In policy_scan.l file, we have already removed all references to yywrap by
+> adding "%option noyywrap" statements to each flex source file that doesn't
+> override yywrap. After this, we no longer need to link against libfl and =
+so
+> no longer get errors about undefined references to yylex.
 >=20
-> The following changes since commit b032f0898f3e61f34c9f7fde9445ad3ee0d976=
-c8:
->=20
->   refpolicy: make proftpd be able to work (2014-02-14 14:04:46 +0800)
->=20
-> are available in the git repository at:
->=20
->   git://git.pokylinux.org/poky-contrib roy/rpcbind
->   http://git.pokylinux.org/cgit.cgi/poky-contrib/log/?h=3Droy/rpcbind
->=20
-> Roy Li (1):
->   refpolicy: allow sysadm to run rpcbind
->=20
->  .../poky-policy-allow-sysadm-to-run-rpcinfo.patch  |   33 ++++++++++++++=
+> Signed-off-by: Chong Lu <Chong.Lu@windriver.com>
+> ---
+>  recipes-security/selinux/checkpolicy.inc           |  2 +
+>  .../checkpolicy-Do-not-link-against-libfl.patch    | 44 ++++++++++++++++=
 ++++++
->  .../refpolicy/refpolicy_2.20130424.inc             |    1 +
->  2 files changed, 34 insertions(+)
->  create mode 100644 recipes-security/refpolicy/refpolicy-2.20130424/poky-=
-policy-allow-sysadm-to-run-rpcinfo.patch
+>  2 files changed, 46 insertions(+)
+>  create mode 100644 recipes-security/selinux/checkpolicy/checkpolicy-Do-n=
+ot-link-against-libfl.patch
+>=20
+> diff --git a/recipes-security/selinux/checkpolicy.inc b/recipes-security/=
+selinux/checkpolicy.inc
+> index 096f938..54edc11 100644
+> --- a/recipes-security/selinux/checkpolicy.inc
+> +++ b/recipes-security/selinux/checkpolicy.inc
+> @@ -13,6 +13,8 @@ LICENSE =3D "GPLv2+"
+> =20
+>  DEPENDS +=3D "libsepol libselinux bison-native flex-native"
+> =20
+> +SRC_URI +=3D "file://checkpolicy-Do-not-link-against-libfl.patch"
+> +
+>  EXTRA_OEMAKE +=3D "PREFIX=3D${D}"=20
+>  EXTRA_OEMAKE +=3D "LEX=3D'flex'"
+> =20
+> diff --git a/recipes-security/selinux/checkpolicy/checkpolicy-Do-not-link=
+-against-libfl.patch b/recipes-security/selinux/checkpolicy/checkpolicy-Do-=
+not-link-against-libfl.patch
+> new file mode 100644
+> index 0000000..6fcf459
+> --- /dev/null
+> +++ b/recipes-security/selinux/checkpolicy/checkpolicy-Do-not-link-agains=
+t-libfl.patch
+> @@ -0,0 +1,44 @@
+> +checkpolicy: Don't link against libfl
+> +
+> +In policy_scan.l file, we have already removed all references to yywrap =
+by
+> +adding "%option noyywrap" statements to each flex source file that doesn=
+'t
+> +override yywrap. After this, we no longer need to link against libfl and=
+ so
+> +no longer get errors about undefined references to yylex.
+> +
+> +Upstream-status: Pending
+> +
+> +Signed-off-by: Chong Lu <Chong.Lu@windriver.com>
+> +---
+> + Makefile      |    2 +-
+> + test/Makefile |    2 +-
+> + 2 files changed, 2 insertions(+), 2 deletions(-)
+> +
+> +diff --git a/Makefile b/Makefile
+> +index e5fae3d..14ac70e 100644
+> +--- a/Makefile
+> ++++ b/Makefile
+> +@@ -19,7 +19,7 @@ CHECKOBJS =3D y.tab.o lex.yy.o queue.o module_compiler=
+=2Eo parse_util.o \
+> + CHECKPOLOBJS =3D $(CHECKOBJS) checkpolicy.o
+> + CHECKMODOBJS =3D $(CHECKOBJS) checkmodule.o
+> +=20
+> +-LDLIBS=3D$(LIBDIR)/libsepol.a -lfl
+> ++LDLIBS=3D$(LIBDIR)/libsepol.a
+> +=20
+> + GENERATED=3Dlex.yy.c y.tab.c y.tab.h
+> +=20
+> +diff --git a/test/Makefile b/test/Makefile
+> +index 63b4d24..0f19a8a 100644
+> +--- a/test/Makefile
+> ++++ b/test/Makefile
+> +@@ -9,7 +9,7 @@ INCLUDEDIR ?=3D $(PREFIX)/include
+> + CFLAGS ?=3D -g -Wall -W -Werror -O2 -pipe
+> + override CFLAGS +=3D -I$(INCLUDEDIR)
+> +=20
+> +-LDLIBS=3D-lfl -lselinux $(LIBDIR)/libsepol.a -L$(LIBDIR)
+> ++LDLIBS=3D-lselinux $(LIBDIR)/libsepol.a -L$(LIBDIR)
+> +=20
+> + all: dispol dismod
+> +=20
+> +--=20
+> +1.7.9.5
+> +
+> --=20
+> 1.8.1.2
 >=20
 --=20
 -Joe MacDonald.
 :wq
 
---zqjkMoGlbUJ91oFe
+--NgG1H2o5aFKkgPy/
 Content-Type: application/pgp-signature; name="signature.asc"
 Content-Description: Digital signature
 
 -----BEGIN PGP SIGNATURE-----
 Version: GnuPG v1.4.12 (GNU/Linux)
 
-iEYEARECAAYFAlM9sQwACgkQwFvcllog0Xz7FgCeOk5gxbYmiiJSmWRSUdFk4OJ3
-4ZEAn3L99+93L7L0sqR5H5PeXUEkA6O8
-=1AwU
+iEYEARECAAYFAlM9sTEACgkQwFvcllog0Xz7xACeIwPR8co2a+p3r7ZynWi47fj9
+LFwAn3HoSz2XRcO+rJio+LMYOzgEDCXh
+=5M/d
 -----END PGP SIGNATURE-----
 
---zqjkMoGlbUJ91oFe--
+--NgG1H2o5aFKkgPy/--
