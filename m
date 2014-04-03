@@ -1,43 +1,35 @@
-Return-Path: <joe@deserted.net>
-Received: from mail-qg0-f48.google.com (mail-qg0-f48.google.com
-	[209.85.192.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 96D13E00B6D
-	for <yocto@yoctoproject.org>; Thu,  3 Apr 2014 07:56:15 -0700 (PDT)
-Received: by mail-qg0-f48.google.com with SMTP id i50so1193809qgf.35
-	for <yocto@yoctoproject.org>; Thu, 03 Apr 2014 07:56:15 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-	:mime-version:content-type:content-disposition:in-reply-to
-	:user-agent;
-	bh=ToZdKcN/zmPl5j0he/ktcRzlGvxWH61A+BTa/iVq478=;
-	b=DvaxQlapym0jiZi17AebbHad3uaqMXtmCIs7naaR7oxcSRGuSK+aQjLMT8JFOXvJqy
-	Qkbv60yo1rcFQvRDa4nfgKzwlgPNhc+SFYJV9FUcs3muZXVaRAbkCXRYZing4W3DFB4t
-	IvsLbDjX8oHPS0a1X1/OW3DAseDTPbuabodBunDcr36Qcb7nvjIKImOoC47TYCU4KCd2
-	yJQA0fBhahfOY/RhsrOxqqCSiQv9fLM97ZBIguUGv2ieai2MLH5BV7PHMqlgqepZKP9O
-	d7F/AWWHF1K5cT2exKiqye7P10Y1dU3xEOkZJzXQxWZ/ALzaa6Aj8sKEGTO22TEuNvPj
-	Sxtw==
-X-Gm-Message-State: ALoCoQmRpiBXJv26UI5hW1vXcGs+Z89r3NrkxedqUR97CKe12bFgXF9rxUf1s6rsgC9YNN2QB4yB
-X-Received: by 10.224.37.10 with SMTP id v10mr1731922qad.104.1396536974880;
-	Thu, 03 Apr 2014 07:56:14 -0700 (PDT)
-Received: from deserted.net ([128.224.252.2]) by mx.google.com with ESMTPSA id
-	z10sm10485478qaf.33.2014.04.03.07.56.13 for <multiple recipients>
-	(version=TLSv1.2 cipher=RC4-SHA bits=128/128);
-	Thu, 03 Apr 2014 07:56:13 -0700 (PDT)
-Date: Thu, 3 Apr 2014 10:56:11 -0400
-From: Joe MacDonald <joe@deserted.net>
-To: Vaduva alexandru <vaduvajanalexandru@yahoo.com>
-Message-ID: <20140403145609.GD4075@deserted.net>
-References: <1396531024-12780-1-git-send-email-joe@deserted.net>
-	<1396533882.11779.YahooMailNeo@web122503.mail.ne1.yahoo.com>
+Return-Path: <gwenole.beauchesne@intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E65D4E00B6D
+	for <yocto@yoctoproject.org>; Thu,  3 Apr 2014 07:57:32 -0700 (PDT)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga102.jf.intel.com with ESMTP; 03 Apr 2014 07:49:36 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.97,787,1389772800"; d="scan'208";a="514139599"
+Received: from irsmsx102.ger.corp.intel.com ([163.33.3.155])
+	by orsmga002.jf.intel.com with ESMTP; 03 Apr 2014 07:53:46 -0700
+Received: from irsmsx103.ger.corp.intel.com ([169.254.3.172]) by
+	IRSMSX102.ger.corp.intel.com ([169.254.2.45]) with mapi id
+	14.03.0123.003; Thu, 3 Apr 2014 15:52:39 +0100
+From: "Beauchesne, Gwenole" <gwenole.beauchesne@intel.com>
+To: Meenakumari Shedole <meenakumari.s@hcl.com>, "yocto@yoctoproject.org"
+	<yocto@yoctoproject.org>
+Thread-Topic: [yocto] Help-Gstreamer Vaapi Plugin Issue in 1080p mp4 playback
+Thread-Index: AQHPSYlGWF8OgI4BY0eUG8fpk2Rq8Zr0llAAgAFgBgCAAAsvkP///EyAgAZ3sHCAAEJeQIABLiLAgAIeozA=
+Date: Thu, 3 Apr 2014 14:52:38 +0000
+Message-ID: <278E3B7DD17B744DAAB36F6424581BA61AE98D6D@IRSMSX103.ger.corp.intel.com>
+References: <E4938C0D959B3445943720B88F07213415613522@NDA-HCLT-MBS02.hclt.corp.hcl.in>
+	<CAJTo0LY5VVCZbimtTBNdgDCEB+1mwSwdsVH31ik8GSdheg48OQ@mail.gmail.com>
+	<E4938C0D959B3445943720B88F07213415614CE4@NDA-HCLT-MBS02.hclt.corp.hcl.in>
+In-Reply-To: <E4938C0D959B3445943720B88F07213415614CE4@NDA-HCLT-MBS02.hclt.corp.hcl.in>
+Accept-Language: en-US, fr-FR, en-GB
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [163.33.239.182]
 MIME-Version: 1.0
-In-Reply-To: <1396533882.11779.YahooMailNeo@web122503.mail.ne1.yahoo.com>
-X-URL: http://github.com/joeythesaint/joe-s-common-environment/tree/master
-X-Configuration: git://github.com/joeythesaint/joe-s-common-environment.git
-X-Editor: Vim-703 http://www.vim.org
-User-Agent: Mutt/1.5.22 (2013-10-16)
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: [meta-selinux][PATCH] refpolicy: add versioned directory to	FILESEXTRAPATHS
+X-Mailman-Approved-At: Thu, 03 Apr 2014 08:22:22 -0700
+Cc: Dipesh Karmakar <Dipesh.Karmakar@hcl.com>
+Subject: Re: Help-Gstreamer Vaapi Plugin Issue in 1080p mp4 playback
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -49,82 +41,69 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 03 Apr 2014 14:56:19 -0000
-X-Groupsio-MsgNum: 18832
-Content-Type: multipart/signed; micalg=pgp-sha1;
-	protocol="application/pgp-signature"; boundary="UoPmpPX/dBe4BELn"
-Content-Disposition: inline
+X-List-Received-Date: Thu, 03 Apr 2014 14:57:35 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
---UoPmpPX/dBe4BELn
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+SGksDQoNCj4gSSBoYXZlIGNoZWNrZWQgdmFhcGlzaW5rIHNvdXJjZSwgaXQgc2VlbXMgaXRzIHN1
+cHBvcnRpbmcgb3ZlcmxheSBvbiBmb3JlaWduIFgNCj4gd2luZG93Lg0KPiBodHRwczovL2dpdG9y
+aW91cy5vcmcvdmFhcGkvZ3N0cmVhbWVyLQ0KPiB2YWFwaS9zb3VyY2UvNjQzZDM1ZTg3YTY3Mzc2
+YWY5Y2Q4OWNkODY4NjY2MzY4YjEwNWFjMzpnc3QvdmFhcGlzaW5rL2dzDQo+IHR2YWFwaXNpbmsu
+Yw0KPiBzdGF0aWMgZ2Jvb2xlYW4gZ3N0X3ZhYXBpc2lua19pbXBsZW1lbnRzX2ludGVyZmFjZV9z
+dXBwb3J0ZWQoKTsNCj4gc3RhdGljIGdib29sZWFuIGdzdF92YWFwaXNpbmtfZW5zdXJlX3dpbmRv
+d194aWQoKTsNCg0KVGhlIHZlcnNpb24geW91IG1lbnRpb24gbG9va3MgdmVyeSBvbGQuIEkgaGF2
+ZSBpbnRlZ3JhdGVkIGEgZml4IGZyb20gYW5vdGhlciB1c2VyLCB3aG8gaGFzIGJlZW4gc3VjY2Vz
+c2Z1bGx5IHVzaW5nIGdzdHJlYW1lci12YWFwaSB3aXRoIEdTdHJlYW1lciAwLjEwIGluIGEgc2Nl
+bmFyaW8geW91IGRlc2NyaWJlICh2YWFwaXNpbmsgKyBmb3JlaWduIHdpbmRvdykuIFBsZWFzZSB1
+cGRhdGUgeW91ciBnc3RyZWFtZXItdmFhcGkgdmVyc2lvbiB0byBhdCBsZWFzdCAwLjUuOC4gT3Is
+IHRoZSBjdXJyZW50IGdpdCBtYXN0ZXIgdHJlZS4gT3RoZXIgYnJhbmNoZXMgYXJlIG5vdCBtYWlu
+dGFpbmVkIGFueSBtb3JlLiBUaGUgZml4IEkgaGF2ZSBpbiBtaW5kIHdhcyBmODY2NmUyLg0KDQpS
+ZWdhcmRzLA0KR3dlbm9sZS4NCg0KPiAtLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KPiBGcm9t
+OiBCdXJ0b24sIFJvc3MgW21haWx0bzpyb3NzLmJ1cnRvbkBpbnRlbC5jb21dDQo+IFNlbnQ6IEZy
+aWRheSwgTWFyY2ggMjgsIDIwMTQgNDo0MiBQTQ0KPiBUbzogTWVlbmFrdW1hcmkgU2hlZG9sZQ0K
+PiBDYzogeW9jdG9AeW9jdG9wcm9qZWN0Lm9yZzsgRGlwZXNoIEthcm1ha2FyDQo+IFN1YmplY3Q6
+IFJlOiBbeW9jdG9dIEhlbHAtR3N0cmVhbWVyIFZhYXBpIFBsdWdpbiBJc3N1ZSBpbiAxMDgwcCBt
+cDQNCj4gcGxheWJhY2sNCj4gDQo+IE9uIDI4IE1hcmNoIDIwMTQgMDY6MDUsIE1lZW5ha3VtYXJp
+IFNoZWRvbGUgPG1lZW5ha3VtYXJpLnNAaGNsLmNvbT4NCj4gd3JvdGU6DQo+ID4gMS4gcGxheWJp
+bjIgKyBhdmkvM2dwIGlzIHdvcmtpbmcgcHJvcGVybHkgYmVjYXVzZSBvZiB4dmltYWdlc2luayBp
+cyB1c2VkDQo+IGludGVyYWxseS4NCj4gPiAyLiBwbGF5YmluMiArIG1wNCBpcyBub3QgdGFraW5n
+IHZhYXBpIHNpbmssIHdlIG5lZWQgdG8gbWFudWFsbHkgc2V0IHZpZGVvLQ0KPiBzaW5rPXZhYXBp
+c2luay4NCj4gPiAgICBBbHNvIHdlIGFyZSBnZXR0aW5nIGFyYml0cmFyeSBjcmFzaCB3aGlsZSBz
+ZXR0aW5nIHRoZSBxbWwgdmlkZW8gd2luZG93IGlkDQo+IHRvIHRoZSB2YWFwaSBzaW5rLg0KPiA+
+ICAgIFNvIHdlIGFyZSBub3QgZ2V0dGluZyBhbnkgc2luZ2xlIHBpcGUgdG8gcGxheSBtcDQvYXZp
+LzNncCBzdHVmZi4NCj4gDQo+IFRoZSBpbXBvcnRhbnQgcXVlc3Rpb24gaXMgd2hhdCByZWNpcGUg
+YXJlIHlvdSB1c2luZyB0byBnZXQgdGhlIHZhYXBpDQo+IGVsZW1lbnRzPw0KPiANCj4gV2hhdCBo
+YXBwZW5zIGlmIHlvdSB1c2UgdmFhcGlzaW5rIHdpdGggQVZJLzNHUD8gIFlvdSBzaG91bGQgc3Rp
+bGwgZ2V0IHNvbWUNCj4gYWNjZWxlcmF0aW9uLg0KPiANCj4gTm90ZSB0aGF0IGVzcGVjaWFsbHkg
+d2hlbiB1c2luZyB2YWFwaSBzaW5rIHlvdSBuZWVkIHRvIHdhaXQgZm9yIHRoZSBzaW5rIHRvDQo+
+IGNyZWF0ZSB0aGUgd2luZG93IGFuZCB0aGVuIHJlcGFyZW50IGl0LCB5b3UgY2FuJ3QgcHJvdmlk
+ZSB5b3VyIG93biBYDQo+IHdpbmRvdyB0byB2YWFwaXNpbmsuICBUaGlzIGlzIHRoZSB1c3VhbCBj
+YXVzZSBmb3IgYnJlYWthZ2UuICBEbyB0ZXN0aW5nIHdpdGgNCj4gZ3N0LWxhdW5jaCBiZWZvcmUg
+YXR0ZW1wdGluZyB0byB1c2UgeW91ciBvd24gYXBwbGljYXRpb24uDQo+IA0KPiBSb3NzDQo+IA0K
+PiANCj4gOjpESVNDTEFJTUVSOjoNCj4gLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLQ0KPiAtLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0NCj4gDQo+IFRoZSBjb250ZW50cyBvZiB0aGlzIGUtbWFpbCBhbmQgYW55IGF0dGFjaG1l
+bnQocykgYXJlIGNvbmZpZGVudGlhbCBhbmQNCj4gaW50ZW5kZWQgZm9yIHRoZSBuYW1lZCByZWNp
+cGllbnQocykgb25seS4NCj4gRS1tYWlsIHRyYW5zbWlzc2lvbiBpcyBub3QgZ3VhcmFudGVlZCB0
+byBiZSBzZWN1cmUgb3IgZXJyb3ItZnJlZSBhcw0KPiBpbmZvcm1hdGlvbiBjb3VsZCBiZSBpbnRl
+cmNlcHRlZCwgY29ycnVwdGVkLCBsb3N0LCBkZXN0cm95ZWQsIGFycml2ZSBsYXRlIG9yDQo+IGlu
+Y29tcGxldGUsIG9yIG1heSBjb250YWluIHZpcnVzZXMgaW4gdHJhbnNtaXNzaW9uLiBUaGUgZSBt
+YWlsIGFuZCBpdHMNCj4gY29udGVudHMgKHdpdGggb3Igd2l0aG91dCByZWZlcnJlZCBlcnJvcnMp
+IHNoYWxsIHRoZXJlZm9yZSBub3QgYXR0YWNoIGFueQ0KPiBsaWFiaWxpdHkgb24gdGhlIG9yaWdp
+bmF0b3Igb3IgSENMIG9yIGl0cyBhZmZpbGlhdGVzLg0KPiBWaWV3cyBvciBvcGluaW9ucywgaWYg
+YW55LCBwcmVzZW50ZWQgaW4gdGhpcyBlbWFpbCBhcmUgc29sZWx5IHRob3NlIG9mIHRoZQ0KPiBh
+dXRob3IgYW5kIG1heSBub3QgbmVjZXNzYXJpbHkgcmVmbGVjdCB0aGUgdmlld3Mgb3Igb3Bpbmlv
+bnMgb2YgSENMIG9yIGl0cw0KPiBhZmZpbGlhdGVzLiBBbnkgZm9ybSBvZiByZXByb2R1Y3Rpb24s
+IGRpc3NlbWluYXRpb24sIGNvcHlpbmcsIGRpc2Nsb3N1cmUsDQo+IG1vZGlmaWNhdGlvbiwgZGlz
+dHJpYnV0aW9uIGFuZCAvIG9yIHB1YmxpY2F0aW9uIG9mIHRoaXMgbWVzc2FnZSB3aXRob3V0IHRo
+ZQ0KPiBwcmlvciB3cml0dGVuIGNvbnNlbnQgb2YgYXV0aG9yaXplZCByZXByZXNlbnRhdGl2ZSBv
+ZiBIQ0wgaXMgc3RyaWN0bHkNCj4gcHJvaGliaXRlZC4gSWYgeW91IGhhdmUgcmVjZWl2ZWQgdGhp
+cyBlbWFpbCBpbiBlcnJvciBwbGVhc2UgZGVsZXRlIGl0IGFuZCBub3RpZnkNCj4gdGhlIHNlbmRl
+ciBpbW1lZGlhdGVseS4NCj4gQmVmb3JlIG9wZW5pbmcgYW55IGVtYWlsIGFuZC9vciBhdHRhY2ht
+ZW50cywgcGxlYXNlIGNoZWNrIHRoZW0gZm9yIHZpcnVzZXMNCj4gYW5kIG90aGVyIGRlZmVjdHMu
+DQo+IA0KPiAtLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tDQo+IC0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQ0K
 
-[Re: [yocto] [meta-selinux][PATCH] refpolicy: add versioned directory to FI=
-LESEXTRAPATHS] On 14.04.03 (Thu 07:04) Vaduva alexandru wrote:
-
-> I also did a similar patch sometime ago, but it is waiting for a merge to
-> upstream.
-
-Ah, found it.  I missed it in my filters when I was looking for
-meta-selinux stuff.  Since it's the same content, I'll merge yours.
-
--J.
-
->=20
-> On Thursday, April 3, 2014 4:18 PM, Joe MacDonald <joe@deserted.net> wrot=
-e:
-> ${PV} is no longer calculated for non-bb/bbappend files, resulting in a
-> failure to find any patches in refpolicy-2.20130424/.  Explicitly set the
-> path name rather than relying on the ${PV} expansion.
->=20
-> Signed-off-by: Joe MacDonald <joe@deserted.net>
-> ---
-> recipes-security/refpolicy/refpolicy_2.20130424.inc |    2 +-
-> 1 file changed, 1 insertion(+), 1 deletion(-)
->=20
-> diff --git a/recipes-security/refpolicy/refpolicy_2.20130424.inc b/
-> recipes-security/refpolicy/refpolicy_2.20130424.inc
-> index 9e5e426..4ea61fc 100644
-> --- a/recipes-security/refpolicy/refpolicy_2.20130424.inc
-> +++ b/recipes-security/refpolicy/refpolicy_2.20130424.inc
-> @@ -4,7 +4,7 @@ SRC_URI =3D "http://oss.tresys.com/files/refpolicy/refpol=
-icy-$
-> {PV}.tar.bz2;"
-> SRC_URI[md5sum] =3D "6a5c975258cc8eb92c122f11b11a5085"
-> SRC_URI[sha256sum] =3D
-> "6039ba854f244a39dc727cc7db25632f7b933bb271c803772d754d4354f5aef4"
->=20
-> -FILESEXTRAPATHS_prepend :=3D "${THISDIR}/refpolicy-${PV}:"
-> +FILESEXTRAPATHS_prepend :=3D "${THISDIR}/refpolicy-2.20130424:"
->=20
-> # Fix file contexts for Poky
-> SRC_URI +=3D "file://poky-fc-subs_dist.patch \
-> --
-> 1.7.10.4
->=20
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
->=20
->=20
-
---=20
--Joe MacDonald.
-:wq
-
---UoPmpPX/dBe4BELn
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: Digital signature
-
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v1.4.12 (GNU/Linux)
-
-iEYEARECAAYFAlM9dokACgkQwFvcllog0Xy1EwCggWCwWX0o/u3uRRiO+3qWYQL+
-HDcAn1MY/3tnsBKtCQOexIzZLyiZ8dYV
-=VvAu
------END PGP SIGNATURE-----
-
---UoPmpPX/dBe4BELn--
