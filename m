@@ -1,43 +1,43 @@
 Return-Path: <joe@deserted.net>
-Received: from mail-qg0-f48.google.com (mail-qg0-f48.google.com
-	[209.85.192.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AC1DEE00B74
-	for <yocto@yoctoproject.org>; Thu,  3 Apr 2014 11:54:29 -0700 (PDT)
-Received: by mail-qg0-f48.google.com with SMTP id i50so1532362qgf.21
-	for <yocto@yoctoproject.org>; Thu, 03 Apr 2014 11:54:29 -0700 (PDT)
+Received: from mail-qg0-f41.google.com (mail-qg0-f41.google.com
+	[209.85.192.41])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6F481E00B78
+	for <yocto@yoctoproject.org>; Thu,  3 Apr 2014 12:05:35 -0700 (PDT)
+Received: by mail-qg0-f41.google.com with SMTP id z60so2296063qgd.0
+	for <yocto@yoctoproject.org>; Thu, 03 Apr 2014 12:05:35 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
 	h=x-gm-message-state:date:from:to:cc:subject:message-id:references
 	:mime-version:content-type:content-disposition:in-reply-to
 	:user-agent;
-	bh=ZZBUA8qCCvs2m6fghWih/08wmaTB2LMee7hamgiHvUE=;
-	b=eunBPxU3Hs9NlK8I1JZUYj0WMbH5rK+Zjpq/DaG4QCfznYGIz1AXgNdWV1eU/LEwJH
-	xBxg9mOz/nmF0vwAoeR29t32VSQMbF5EIoYXNrzWeRQwSr9RBHKQwzRckpA5bFePzeFo
-	CoqMctlLxjRVToOkdWZX0GvS7T0SLvvOvO2EauluSpjCF9uVdrB0GXjnXU/GVU9cGm9M
-	YykiVjtjWDaoCPhtX1KvKluudNK0SN+YVdthlw+F2mj5XGoI/gNqyR6x0fyxsyoPFNT6
-	wPMeFd0WnEETj2OJJvsnM9QUJjZ9lvh45rUi/QDBY8BxxDYd+nb2vfj5qK3Ag9Awneqi
-	80pg==
-X-Gm-Message-State: ALoCoQn8oKS+byeE/Om0dp4vOxdgxpULqBUp67+kFEPCBJAVUXuWJJ0TBkiowSjYCuGxwgvmB+WP
-X-Received: by 10.224.70.19 with SMTP id b19mr6531799qaj.61.1396551269111;
-	Thu, 03 Apr 2014 11:54:29 -0700 (PDT)
+	bh=7SwpzPoNRquSoHhTfQPG076N1l+2prc0r0VLgLojXw4=;
+	b=GTmrhFNVAy7VmRRuXOAYoE5VySoijgB8F0elJPi5O5948zrh8lg4eZj6cLMH04SrXD
+	lhLV94nQIG41mOSEL5RduhjcKyGvZm2PzuQNb6PncgJCM2suOC27IhwtCdbBwWc//6Ql
+	UEb9iEkxyxvZqVRtwC5EH3tswV957ZHZVRUVwxz2xV7w7Gqa4dPLkoMunMbLfqsx3FxD
+	DOecljzQZvq82jSD/+MBtSwLxlxzdIFh1f8VITKjbXXxmxRuvE7GRU8NEoWEE+ZMgDeu
+	pasaTGc066+/rJDf8FOrX6NgKcftorCOGceDBg4uU7jk7AWqqs2ISW5l5RbJZS+rv+Lz
+	vW3Q==
+X-Gm-Message-State: ALoCoQmnaUmdP9tSTDsfDRdgUpTAIOFJSUkc67irWFS/bVL9L6xb2jyd95TvAbbdoyJ+FQVa/1CM
+X-Received: by 10.140.109.132 with SMTP id l4mr8990997qgf.72.1396551935231;
+	Thu, 03 Apr 2014 12:05:35 -0700 (PDT)
 Received: from deserted.net ([128.224.252.2])
-	by mx.google.com with ESMTPSA id e67sm7916068qge.13.2014.04.03.11.54.27
+	by mx.google.com with ESMTPSA id b5sm11623968qar.25.2014.04.03.12.05.34
 	for <multiple recipients>
 	(version=TLSv1.2 cipher=RC4-SHA bits=128/128);
-	Thu, 03 Apr 2014 11:54:28 -0700 (PDT)
-Date: Thu, 3 Apr 2014 14:54:25 -0400
+	Thu, 03 Apr 2014 12:05:34 -0700 (PDT)
+Date: Thu, 3 Apr 2014 15:05:31 -0400
 From: Joe MacDonald <joe@deserted.net>
-To: Joe Slater <jslater@windriver.com>
-Message-ID: <20140403185423.GG4075@deserted.net>
-References: <1394744899-23794-1-git-send-email-jslater@windriver.com>
+To: rongqing.li@windriver.com
+Message-ID: <20140403190528.GH4075@deserted.net>
+References: <cover.1392358150.git.rongqing.li@windriver.com>
 MIME-Version: 1.0
-In-Reply-To: <1394744899-23794-1-git-send-email-jslater@windriver.com>
+In-Reply-To: <cover.1392358150.git.rongqing.li@windriver.com>
 X-URL: http://github.com/joeythesaint/joe-s-common-environment/tree/master
 X-Configuration: git://github.com/joeythesaint/joe-s-common-environment.git
 X-Editor: Vim-703 http://www.vim.org
 User-Agent: Mutt/1.5.22 (2013-10-16)
-Cc: yocto@yoctoproject.org, joe.slater@windriver.com
-Subject: Re: [meta-selinux PATCH 0/1] policycoreutils (semanage)
+Cc: yocto@yoctoproject.org
+Subject: Re: [PATCH 0/1][meta-selinux][V2] refpolicy: make proftpd be able to work
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -49,13 +49,13 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 03 Apr 2014 18:54:30 -0000
-X-Groupsio-MsgNum: 18837
+X-List-Received-Date: Thu, 03 Apr 2014 19:05:36 -0000
+X-Groupsio-MsgNum: 18838
 Content-Type: multipart/signed; micalg=pgp-sha1;
-	protocol="application/pgp-signature"; boundary="GUPx2O/K0ibUojHx"
+	protocol="application/pgp-signature"; boundary="ISKrrfpKsPiF35CV"
 Content-Disposition: inline
 
---GUPx2O/K0ibUojHx
+--ISKrrfpKsPiF35CV
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
@@ -63,41 +63,45 @@ Content-Transfer-Encoding: quoted-printable
 Merged, thanks.
 -J.
 
-[[yocto] [meta-selinux PATCH 0/1] policycoreutils (semanage)] On 14.03.13 (=
-Thu 14:08) Joe Slater wrote:
+[[yocto] [PATCH 0/1][meta-selinux][V2] refpolicy: make proftpd be able to w=
+ork] On 14.02.14 (Fri 14:10) rongqing.li@windriver.com wrote:
 
-> Fix a failure to modify records if we want to change the seuser
-> for a login user.  Just a log issue.
+> From: Roy Li <rongqing.li@windriver.com>
 >=20
-> I incremented PR.  I think we should either do that are get rid of it.
+> The following changes since commit a6079a43719e79e12a57e609923a0cccdba069=
+16:
 >=20
-> Joe Slater (1):
->   policycoreutils: semanage
+>   refpolicy: fix real path for su.shadow (2014-02-13 10:52:07 -0500)
 >=20
->  .../policycoreutils-semanage-edit-user.patch       |   21 ++++++++++++++=
+> are available in the git repository at:
+>=20
+>   git://git.pokylinux.org/poky-contrib roy/proftpd-1
+>   http://git.pokylinux.org/cgit.cgi/poky-contrib/log/?h=3Droy/proftpd-1
+>=20
+> Roy Li (1):
+>   refpolicy: make proftpd be able to work
+>=20
+>  .../ftp-add-ftpd_t-to-mlsfilewrite.patch           |   39 ++++++++++++++=
 ++++++
->  recipes-security/selinux/policycoreutils_2.2.5.bb  |    3 +-
->  2 files changed, 23 insertions(+), 1 deletions(-)
->  create mode 100644 recipes-security/selinux/policycoreutils/policycoreut=
-ils-semanage-edit-user.patch
->=20
-> --=20
-> 1.7.3.4
+>  .../refpolicy/refpolicy_2.20130424.inc             |    1 +
+>  2 files changed, 40 insertions(+)
+>  create mode 100644 recipes-security/refpolicy/refpolicy-2.20130424/ftp-a=
+dd-ftpd_t-to-mlsfilewrite.patch
 >=20
 --=20
 -Joe MacDonald.
 :wq
 
---GUPx2O/K0ibUojHx
+--ISKrrfpKsPiF35CV
 Content-Type: application/pgp-signature; name="signature.asc"
 Content-Description: Digital signature
 
 -----BEGIN PGP SIGNATURE-----
 Version: GnuPG v1.4.12 (GNU/Linux)
 
-iEYEARECAAYFAlM9rl8ACgkQwFvcllog0XzmRQCbBNbd2tburxaZtYO6OSJgHeOs
-AMkAn033M2F/cNYU5NXPIzz/a0J2NJ9b
-=5JTo
+iEYEARECAAYFAlM9sPgACgkQwFvcllog0XzHYgCeOYhO1WimEmeunzJ4cvbR73QB
+xPYAoKr4yOeG1f3kr1B9iw3uUTCksfVu
+=0fvR
 -----END PGP SIGNATURE-----
 
---GUPx2O/K0ibUojHx--
+--ISKrrfpKsPiF35CV--
