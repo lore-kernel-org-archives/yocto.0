@@ -1,40 +1,43 @@
-Return-Path: <ross.burton@intel.com>
-Received: from mail-qa0-f43.google.com (mail-qa0-f43.google.com
-	[209.85.216.43])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D24E6E00B6D
-	for <yocto@yoctoproject.org>; Thu,  3 Apr 2014 07:42:21 -0700 (PDT)
-Received: by mail-qa0-f43.google.com with SMTP id j15so1727004qaq.2
-	for <yocto@yoctoproject.org>; Thu, 03 Apr 2014 07:42:20 -0700 (PDT)
+Return-Path: <joe@deserted.net>
+Received: from mail-qg0-f48.google.com (mail-qg0-f48.google.com
+	[209.85.192.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 96D13E00B6D
+	for <yocto@yoctoproject.org>; Thu,  3 Apr 2014 07:56:15 -0700 (PDT)
+Received: by mail-qg0-f48.google.com with SMTP id i50so1193809qgf.35
+	for <yocto@yoctoproject.org>; Thu, 03 Apr 2014 07:56:15 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc:content-type;
-	bh=8kf0khb4Lxu9Zdj7HvoTS5noebSwRoSgmdyPX3NAiIQ=;
-	b=FFPV0yAgz8YVxzlHRYN4Al5J/szy576AcBAF2kzmpGnlYK88FPRRckFe9cUprwe6BI
-	n2iun08KhfF4xm4HZrJ2uLVP2eAbdiQewe363IZcOsOxvcuug+iywIg5oZEaYvOqZxJz
-	BS+qrSZ1BD+Zyw06Vml8KV0sxSzkjkmdQtv6ovpwPGk9VZwu2g3KE00WI4yVWnwd3AZv
-	f2JI5XkRdgqKytcO+R48rZ1QX7Tt++KcBOkVsQLXRl3EkpaqjJYsjR/lK4IUCyqTItq9
-	vLaoiuAo0JcscaFNcsw0NKbKKlRlRQ9/Ifa7mT0sW06dFYQvcZzxME1sE7pe+uioK9Cn
-	XtqQ==
-X-Gm-Message-State: ALoCoQlariZsGmg6Cu0qGYhliJLJM71b7UlvXgxznC3h8ik/XqJiESdiDCm0XalyqOOxqx/nFdJ1
-X-Received: by 10.229.219.133 with SMTP id hu5mr7914865qcb.5.1396536140673;
-	Thu, 03 Apr 2014 07:42:20 -0700 (PDT)
+	h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+	:mime-version:content-type:content-disposition:in-reply-to
+	:user-agent;
+	bh=ToZdKcN/zmPl5j0he/ktcRzlGvxWH61A+BTa/iVq478=;
+	b=DvaxQlapym0jiZi17AebbHad3uaqMXtmCIs7naaR7oxcSRGuSK+aQjLMT8JFOXvJqy
+	Qkbv60yo1rcFQvRDa4nfgKzwlgPNhc+SFYJV9FUcs3muZXVaRAbkCXRYZing4W3DFB4t
+	IvsLbDjX8oHPS0a1X1/OW3DAseDTPbuabodBunDcr36Qcb7nvjIKImOoC47TYCU4KCd2
+	yJQA0fBhahfOY/RhsrOxqqCSiQv9fLM97ZBIguUGv2ieai2MLH5BV7PHMqlgqepZKP9O
+	d7F/AWWHF1K5cT2exKiqye7P10Y1dU3xEOkZJzXQxWZ/ALzaa6Aj8sKEGTO22TEuNvPj
+	Sxtw==
+X-Gm-Message-State: ALoCoQmRpiBXJv26UI5hW1vXcGs+Z89r3NrkxedqUR97CKe12bFgXF9rxUf1s6rsgC9YNN2QB4yB
+X-Received: by 10.224.37.10 with SMTP id v10mr1731922qad.104.1396536974880;
+	Thu, 03 Apr 2014 07:56:14 -0700 (PDT)
+Received: from deserted.net ([128.224.252.2]) by mx.google.com with ESMTPSA id
+	z10sm10485478qaf.33.2014.04.03.07.56.13 for <multiple recipients>
+	(version=TLSv1.2 cipher=RC4-SHA bits=128/128);
+	Thu, 03 Apr 2014 07:56:13 -0700 (PDT)
+Date: Thu, 3 Apr 2014 10:56:11 -0400
+From: Joe MacDonald <joe@deserted.net>
+To: Vaduva alexandru <vaduvajanalexandru@yahoo.com>
+Message-ID: <20140403145609.GD4075@deserted.net>
+References: <1396531024-12780-1-git-send-email-joe@deserted.net>
+	<1396533882.11779.YahooMailNeo@web122503.mail.ne1.yahoo.com>
 MIME-Version: 1.0
-Received: by 10.140.27.167 with HTTP; Thu, 3 Apr 2014 07:41:59 -0700 (PDT)
-In-Reply-To: <E4938C0D959B3445943720B88F07213415615920@NDA-HCLT-MBS02.hclt.corp.hcl.in>
-References: <E4938C0D959B3445943720B88F07213415613522@NDA-HCLT-MBS02.hclt.corp.hcl.in>
-	<CAJTo0LY5VVCZbimtTBNdgDCEB+1mwSwdsVH31ik8GSdheg48OQ@mail.gmail.com>
-	<E4938C0D959B3445943720B88F07213415613B44@NDA-HCLT-MBS02.hclt.corp.hcl.in>
-	<CAJTo0LZt8JA25fpeCxbkdMH44rcNtKKE8vPvhrnPN8iLMcJYAA@mail.gmail.com>
-	<97272D6808818244BD88BD72F19D658B03CAC1EB@chn-hclt-mbs06.HCLT.CORP.HCL.IN>
-	<E4938C0D959B3445943720B88F07213415615920@NDA-HCLT-MBS02.hclt.corp.hcl.in>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Thu, 3 Apr 2014 15:41:59 +0100
-Message-ID: <CAJTo0Lbsm-UvHQ7E1fLMAP=nHk2pzOf7+kZGWr96rTg+7e1DNQ@mail.gmail.com>
-To: Meenakumari Shedole <meenakumari.s@hcl.com>
-Cc: Dipesh Karmakar <Dipesh.Karmakar@hcl.com>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Help-Gstreamer Vaapi Plugin Issue in 1080p mp4 playback
+In-Reply-To: <1396533882.11779.YahooMailNeo@web122503.mail.ne1.yahoo.com>
+X-URL: http://github.com/joeythesaint/joe-s-common-environment/tree/master
+X-Configuration: git://github.com/joeythesaint/joe-s-common-environment.git
+X-Editor: Vim-703 http://www.vim.org
+User-Agent: Mutt/1.5.22 (2013-10-16)
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: [meta-selinux][PATCH] refpolicy: add versioned directory to	FILESEXTRAPATHS
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -46,23 +49,82 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 03 Apr 2014 14:42:24 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Thu, 03 Apr 2014 14:56:19 -0000
+X-Groupsio-MsgNum: 18832
+Content-Type: multipart/signed; micalg=pgp-sha1;
+	protocol="application/pgp-signature"; boundary="UoPmpPX/dBe4BELn"
+Content-Disposition: inline
 
-On 3 April 2014 07:59, Meenakumari Shedole <meenakumari.s@hcl.com> wrote:
-> gst-launch-0.10 playbin2 + mp4/avi is failing with following error,
->
-> libva: VA-API version 0.32.0
-> libva: va_getDriverName() returns 0
-> libva: Trying to open /usr/lib/dri/i965_drv_video.so
-> libva: Found init function __vaDriverInit_0_32
-> libva error: /usr/lib/dri/i965_drv_video.so init failed
-> libva: va_openDriver() returns -1
-> vaInitialize failed with error code -1 (unknown libva error),exit
+--UoPmpPX/dBe4BELn
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-In this case you'll want to start testing with the lower-level
-utilities in the va library packages.  I haven't tested this for a
-while but it certainly worked when 1.5 was released.
+[Re: [yocto] [meta-selinux][PATCH] refpolicy: add versioned directory to FI=
+LESEXTRAPATHS] On 14.04.03 (Thu 07:04) Vaduva alexandru wrote:
 
-Ross
+> I also did a similar patch sometime ago, but it is waiting for a merge to
+> upstream.
 
+Ah, found it.  I missed it in my filters when I was looking for
+meta-selinux stuff.  Since it's the same content, I'll merge yours.
+
+-J.
+
+>=20
+> On Thursday, April 3, 2014 4:18 PM, Joe MacDonald <joe@deserted.net> wrot=
+e:
+> ${PV} is no longer calculated for non-bb/bbappend files, resulting in a
+> failure to find any patches in refpolicy-2.20130424/.  Explicitly set the
+> path name rather than relying on the ${PV} expansion.
+>=20
+> Signed-off-by: Joe MacDonald <joe@deserted.net>
+> ---
+> recipes-security/refpolicy/refpolicy_2.20130424.inc |    2 +-
+> 1 file changed, 1 insertion(+), 1 deletion(-)
+>=20
+> diff --git a/recipes-security/refpolicy/refpolicy_2.20130424.inc b/
+> recipes-security/refpolicy/refpolicy_2.20130424.inc
+> index 9e5e426..4ea61fc 100644
+> --- a/recipes-security/refpolicy/refpolicy_2.20130424.inc
+> +++ b/recipes-security/refpolicy/refpolicy_2.20130424.inc
+> @@ -4,7 +4,7 @@ SRC_URI =3D "http://oss.tresys.com/files/refpolicy/refpol=
+icy-$
+> {PV}.tar.bz2;"
+> SRC_URI[md5sum] =3D "6a5c975258cc8eb92c122f11b11a5085"
+> SRC_URI[sha256sum] =3D
+> "6039ba854f244a39dc727cc7db25632f7b933bb271c803772d754d4354f5aef4"
+>=20
+> -FILESEXTRAPATHS_prepend :=3D "${THISDIR}/refpolicy-${PV}:"
+> +FILESEXTRAPATHS_prepend :=3D "${THISDIR}/refpolicy-2.20130424:"
+>=20
+> # Fix file contexts for Poky
+> SRC_URI +=3D "file://poky-fc-subs_dist.patch \
+> --
+> 1.7.10.4
+>=20
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>=20
+>=20
+
+--=20
+-Joe MacDonald.
+:wq
+
+--UoPmpPX/dBe4BELn
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: Digital signature
+
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1.4.12 (GNU/Linux)
+
+iEYEARECAAYFAlM9dokACgkQwFvcllog0Xy1EwCggWCwWX0o/u3uRRiO+3qWYQL+
+HDcAn1MY/3tnsBKtCQOexIzZLyiZ8dYV
+=VvAu
+-----END PGP SIGNATURE-----
+
+--UoPmpPX/dBe4BELn--
