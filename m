@@ -1,31 +1,34 @@
-Return-Path: <jessica.zhang@intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 00456E00C68
-	for <yocto@yoctoproject.org>; Wed,  2 Apr 2014 22:50:23 -0700 (PDT)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga102.jf.intel.com with ESMTP; 02 Apr 2014 22:45:41 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.97,784,1389772800"; d="scan'208";a="486295967"
-Received: from orsmsx107.amr.corp.intel.com ([10.22.240.5])
-	by orsmga001.jf.intel.com with ESMTP; 02 Apr 2014 22:50:22 -0700
-Received: from orsmsx103.amr.corp.intel.com ([169.254.2.44]) by
-	ORSMSX107.amr.corp.intel.com ([169.254.1.189]) with mapi id
-	14.03.0123.003; Wed, 2 Apr 2014 22:50:23 -0700
-From: "Zhang, Jessica" <jessica.zhang@intel.com>
-To: =?koi8-r?B?88XSx8XKIOvSydfPzs/T?= <sergeikrivonos@gmail.com>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: [yocto] Eclipse+Webos
-Thread-Index: AQHPTcoCQ4nGyk2X7UyEmUGavwz+IZr/Y/Iw
-Date: Thu, 3 Apr 2014 05:50:21 +0000
-Message-ID: <C6510F6D410BB64A8C15398EDC6B847C805A5A77@ORSMSX103.amr.corp.intel.com>
-References: <CAGz9X0eeJkRDOXN1+TFxT-TpwvS=xn+a5b9-GAgjNtKNDaQo2w@mail.gmail.com>
-In-Reply-To: <CAGz9X0eeJkRDOXN1+TFxT-TpwvS=xn+a5b9-GAgjNtKNDaQo2w@mail.gmail.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.139]
+Return-Path: <ross.burton@intel.com>
+Received: from mail-qc0-f177.google.com (mail-qc0-f177.google.com
+	[209.85.216.177])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5ADB0E00C68
+	for <yocto@yoctoproject.org>; Wed,  2 Apr 2014 23:01:23 -0700 (PDT)
+Received: by mail-qc0-f177.google.com with SMTP id w7so1338756qcr.8
+	for <yocto@yoctoproject.org>; Wed, 02 Apr 2014 23:01:22 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc:content-type:content-transfer-encoding;
+	bh=7by2rF0WzGbuPRN+tWZCyf7jJHvIFftXHIStoZE4u4Q=;
+	b=knB+0WXmGMLNwUhzln/cUe8Tub+m2gWmijZLBfV+EV8TwvSVq05shnlPRp9ywQK8Co
+	M6g9sR0qaKuYQ5R4ZW9C3VRmdt59zNV9q6+/mzEDOM/fq2fLl3CodSTBPpAyJYwxSe+b
+	NjCVacHl3FynPucDe6A6sLDzAmLGQ4JntTcsS9vA2WsXo00mESEH+985aqgL6tC73aqu
+	WEhCh7Jo3h/QSGkc5xoTV9wzWyERNXE3KVbcu9RRIwTy55pKhIamUXF+/hq+qcdrw6yk
+	FHM6akEThGz4Nu/kRzkak/xWz9YAQx2RnzZjLb2Rt/cnOv+ZNU2g8zGFEfRlehGvXinX
+	gotg==
+X-Gm-Message-State: ALoCoQlHYh4SiJU1vVapG5EgqKOl0zOdyjPaoEuv0/l7aNFRAO9hCe2iBR6J+yRCUSOzpnaDb1cS
+X-Received: by 10.140.20.167 with SMTP id 36mr5077207qgj.54.1396504882881;
+	Wed, 02 Apr 2014 23:01:22 -0700 (PDT)
 MIME-Version: 1.0
-Subject: Re: Eclipse+Webos
+Received: by 10.140.27.167 with HTTP; Wed, 2 Apr 2014 23:01:02 -0700 (PDT)
+In-Reply-To: <854E8DBA9F41904AB047E03BB6963AE501A0E62E@SHSMSX101.ccr.corp.intel.com>
+References: <854E8DBA9F41904AB047E03BB6963AE501A0E62E@SHSMSX101.ccr.corp.intel.com>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Thu, 3 Apr 2014 07:01:02 +0100
+Message-ID: <CAJTo0LYkrBTcbrSOAyce0tZN6WZJ=9jPOSjYpdr1WnCEY5bfwA@mail.gmail.com>
+To: "Guo, Yejun" <yejun.guo@intel.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: how to set LICENSE for llvm in .bb file
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,41 +40,19 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 03 Apr 2014 05:50:27 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="koi8-r"
+X-List-Received-Date: Thu, 03 Apr 2014 06:01:26 -0000
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-Hi Sergei,
+On 3 April 2014 03:16, Guo, Yejun <yejun.guo@intel.com> wrote:
+> I'm adding package llvm which has its own license: University of Illinois=
+/NCSA Open Source License, see at http://llvm.org/releases/3.4/LICENSE.TXT =
+.  I tried something for LICENSE in .bb file, but is not recognized by the =
+system. Could you please let me know how to set this value? Thanks a lot!
 
-Are you talking about importing webos meta data?  You can try to do a local=
- clone of the webos, then in Eclipse create a bitbake commander project.  F=
-or the project locations, enter the directory that contains the webos meta =
-data directory, for the project name, enter your webos meta-data folder nam=
-e.  To use yocto meta-data as an example, I've cloned it under /home/jzhang=
-/poky, so my project location I enter /home/jzhang, and project name I ente=
-r poky.
+LLVM is already packaged outside of oe-core:
 
-Cheers,
-Jessica
+http://layers.openembedded.org/layerindex/branch/master/recipes/?q=3Dllvm
 
------Original Message-----
-From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org=
-] On Behalf Of =F3=C5=D2=C7=C5=CA =EB=D2=C9=D7=CF=CE=CF=D3
-Sent: Tuesday, April 01, 2014 9:37 AM
-To: yocto@yoctoproject.org
-Subject: [yocto] Eclipse+Webos
-
-Hi,
-
-How to import OpenWebos project using Yoctos Eclipse plugin?
-
-Thanks,
-Sergei Krivonos
-skype: sergio_krivonos
---=20
-_______________________________________________
-yocto mailing list
-yocto@yoctoproject.org
-https://lists.yoctoproject.org/listinfo/yocto
+Ross
 
