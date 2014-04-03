@@ -1,33 +1,36 @@
-Return-Path: <elizabeth.flanagan@intel.com>
-Received: from mail-vc0-f173.google.com (mail-vc0-f173.google.com
-	[209.85.220.173])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BCB0EE00C8B
-	for <yocto@yoctoproject.org>; Wed,  2 Apr 2014 22:15:56 -0700 (PDT)
-Received: by mail-vc0-f173.google.com with SMTP id il7so1598116vcb.32
-	for <yocto@yoctoproject.org>; Wed, 02 Apr 2014 22:15:56 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:date
-	:message-id:subject:from:to:cc:content-type
-	:content-transfer-encoding;
-	bh=DT+Z++8Z89KmAW3Mk4+94X2A5UIAkYwNZcbUoI5K//Q=;
-	b=mZmhxujFSERHXypKzTo6ZICyZgkjyzUAz8H25LUDo8GCv8WnyoO1KpBghzUpkgAuhI
-	7dwRC5II8ZrGkH0ejmo3fp/k1+jn8coNoBS3fevmjCdNkpNQIwy7Sutud6QrXda4Wa3n
-	lL5lP1IIBqorPapku7tHlAJnQmu1ZXeXRSCOxQvpuLf77RKcDJ9sDW9n4W8VvjYUyvSn
-	FyJhxBjm/HQA27giWAEAeuHvqc2l+cMsWGQmdcBk4oiI5VWza0GAl06Wnv/7rCDuxAtg
-	Jzcj7YG/fUomBk0al5lMWVP6L5rTuVYL5EAjyLRa0ICXFSgRfsYUn7GXcRtBCbNi88lH
-	P/RA==
-X-Gm-Message-State: ALoCoQmbMba/jHlTUesQmQSN1ZOSUJaPM6/2ckAo7KzZIxF2wfrFM9ytstXQxS3JYkMN7lk+rSIJ
-MIME-Version: 1.0
-X-Received: by 10.220.188.10 with SMTP id cy10mr1167816vcb.36.1396502155945;
-	Wed, 02 Apr 2014 22:15:55 -0700 (PDT)
-Received: by 10.52.173.69 with HTTP; Wed, 2 Apr 2014 22:15:55 -0700 (PDT)
-In-Reply-To: <854E8DBA9F41904AB047E03BB6963AE501A0E62E@SHSMSX101.ccr.corp.intel.com>
+Return-Path: <yejun.guo@intel.com>
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8E011E00C68
+	for <yocto@yoctoproject.org>; Wed,  2 Apr 2014 22:34:42 -0700 (PDT)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by fmsmga102.fm.intel.com with ESMTP; 02 Apr 2014 22:34:42 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.97,784,1389772800"; d="scan'208";a="505916622"
+Received: from fmsmsx108.amr.corp.intel.com ([10.19.9.228])
+	by fmsmga001.fm.intel.com with ESMTP; 02 Apr 2014 22:34:42 -0700
+Received: from FMSMSX110.amr.corp.intel.com (10.18.116.10) by
+	FMSMSX108.amr.corp.intel.com (10.19.9.228) with Microsoft SMTP Server
+	(TLS) id 14.3.123.3; Wed, 2 Apr 2014 22:34:42 -0700
+Received: from shsmsx103.ccr.corp.intel.com (10.239.4.69) by
+	fmsmsx110.amr.corp.intel.com (10.18.116.10) with Microsoft SMTP Server
+	(TLS) id 14.3.123.3; Wed, 2 Apr 2014 22:34:41 -0700
+Received: from shsmsx101.ccr.corp.intel.com ([169.254.1.11]) by
+	SHSMSX103.ccr.corp.intel.com ([169.254.4.199]) with mapi id
+	14.03.0123.003; Thu, 3 Apr 2014 13:34:34 +0800
+From: "Guo, Yejun" <yejun.guo@intel.com>
+To: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
+Thread-Topic: [yocto] how to set LICENSE for llvm in .bb file
+Thread-Index: AQHPTvvdnTt2H+tjMkaSTBYIQpLImpr/XoXw
+Date: Thu, 3 Apr 2014 05:34:32 +0000
+Message-ID: <854E8DBA9F41904AB047E03BB6963AE501A0F775@SHSMSX101.ccr.corp.intel.com>
 References: <854E8DBA9F41904AB047E03BB6963AE501A0E62E@SHSMSX101.ccr.corp.intel.com>
-Date: Wed, 2 Apr 2014 22:15:55 -0700
-Message-ID: <CAPhnLPD5_19gPzyez-CHKjzzE_2dzeOrEm9FPwFYg7wkQTP58A@mail.gmail.com>
-From: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
-To: "Guo, Yejun" <yejun.guo@intel.com>
+	<CAPhnLPD5_19gPzyez-CHKjzzE_2dzeOrEm9FPwFYg7wkQTP58A@mail.gmail.com>
+In-Reply-To: <CAPhnLPD5_19gPzyez-CHKjzzE_2dzeOrEm9FPwFYg7wkQTP58A@mail.gmail.com>
+Accept-Language: zh-CN, en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.239.127.40]
+MIME-Version: 1.0
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: how to set LICENSE for llvm in .bb file
 X-BeenThere: yocto@yoctoproject.org
@@ -41,18 +44,29 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 03 Apr 2014 05:15:59 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Thu, 03 Apr 2014 05:34:45 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-As it's not going into core, I would the license to your layer by
-adding a custom license directory to your layer.conf:
+Thanks Elizabeth!
+
+
+-----Original Message-----
+From: Flanagan, Elizabeth [mailto:elizabeth.flanagan@intel.com]=20
+Sent: Thursday, April 03, 2014 1:16 PM
+To: Guo, Yejun
+Cc: yocto@yoctoproject.org
+Subject: Re: [yocto] how to set LICENSE for llvm in .bb file
+
+As it's not going into core, I would the license to your layer by adding a =
+custom license directory to your layer.conf:
 
 # Additional license directories.
 LICENSE_PATH +=3D "${LAYERDIR}/custom-licenses"
 
-Place the license in custom-license. I'd name it NCSA-1.0. Then I
-would reference that in your .bb file:
+Place the license in custom-license. I'd name it NCSA-1.0. Then I would ref=
+erence that in your .bb file:
 
 LICENSE =3D "NCSA-1.0 & ...... (llvm has a few other licenses iirc)
 
@@ -76,7 +90,7 @@ system. Could you please let me know how to set this value? Thanks a lot!
 
 
 
---=20
+--
 Elizabeth Flanagan
 Yocto Project
 Build and Release
