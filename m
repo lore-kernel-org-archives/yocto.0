@@ -1,26 +1,26 @@
-Return-Path: <Xin.Ouyang@windriver.com>
+Return-Path: <Wenzong.Fan@windriver.com>
 Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C01A9E00BE0
-	for <yocto@yoctoproject.org>; Fri,  4 Apr 2014 00:57:29 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 961CDE00BE0
+	for <yocto@yoctoproject.org>; Fri,  4 Apr 2014 01:00:35 -0700 (PDT)
 Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
 	[147.11.189.40])
-	by mail1.windriver.com (8.14.5/8.14.5) with ESMTP id s347vRna015738
+	by mail1.windriver.com (8.14.5/8.14.5) with ESMTP id s3480XmA015790
 	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Fri, 4 Apr 2014 00:57:27 -0700 (PDT)
-Received: from Pascal-MacBookPro.local (128.224.158.235) by
-	ALA-HCA.corp.ad.wrs.com (147.11.189.50) with Microsoft SMTP Server id
-	14.3.169.1; Fri, 4 Apr 2014 00:57:26 -0700
-Message-ID: <533E65E5.9040707@windriver.com>
-Date: Fri, 4 Apr 2014 15:57:25 +0800
-From: Pascal Ouyang <xin.ouyang@windriver.com>
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.8;
-	rv:24.0) Gecko/20100101 Thunderbird/24.4.0
+	Fri, 4 Apr 2014 01:00:34 -0700 (PDT)
+Received: from [128.224.162.138] (128.224.162.138) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.40) with Microsoft SMTP Server id 14.3.169.1;
+	Fri, 4 Apr 2014 01:00:33 -0700
+Message-ID: <533E669F.4050109@windriver.com>
+Date: Fri, 4 Apr 2014 16:00:31 +0800
+From: wenzong fan <wenzong.fan@windriver.com>
+User-Agent: Mozilla/5.0 (X11; Linux i686;
+	rv:24.0) Gecko/20100101 Thunderbird/24.2.0
 MIME-Version: 1.0
-To: Joe MacDonald <joe@deserted.net>, <wenzong.fan@windriver.com>
-References: <cover.1395709062.git.wenzong.fan@windriver.com>	<20140403192027.GM4075@deserted.net>
+To: Pascal Ouyang <xin.ouyang@windriver.com>, Joe MacDonald <joe@deserted.net>
+References: <cover.1395709062.git.wenzong.fan@windriver.com>
+	<20140403192027.GM4075@deserted.net>
 	<533E57CD.8010202@windriver.com>
 In-Reply-To: <533E57CD.8010202@windriver.com>
-X-TagToolbar-Keys: D20140404155725158
 Cc: yocto@yoctoproject.org
 Subject: Re: [meta-selinux][PATCH 0/4] add targeted/minimum policy and some updates
 X-BeenThere: yocto@yoctoproject.org
@@ -34,11 +34,11 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 04 Apr 2014 07:57:31 -0000
+X-List-Received-Date: Fri, 04 Apr 2014 08:00:38 -0000
 Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
 
-于 14-4-4 下午2:57, Pascal Ouyang 写道:
+On 04/04/2014 02:57 PM, Pascal Ouyang wrote:
 > 于 14-4-4 上午3:20, Joe MacDonald 写道:
 >> Hey Wenzong,
 >>
@@ -68,6 +68,15 @@ Content-Transfer-Encoding: 8bit
 >> If they really are just specialized versions of the standard reference
 >> policy, they should at least be ported to use the refpolicy_common
 >> infrastructure Phil set up a while back.
+
+We have used the refpolicy_common via: include refpolicy_${PV}.inc -> 
+refpolicy_common.inc
+
+And appreciate for Pascal clarify the usage & difference between those 
+two policies:)
+
+Wenzong
+
 >
 > Hi Joe&Wenzong,
 >
@@ -84,20 +93,10 @@ Content-Transfer-Encoding: 8bit
 > - standard/mls :
 >    un-ruled applications(usually bin_t) will run on unconfined domain,
 > so operations will *not* be blocked.
-
-s#standard/mls#targeted/minimum#
-
 > - targeted/minimum
 >    un-ruled applications will run on user's current domain, such as
 > user_t,sysadm_t, so most privileged operations will be blocked.
 >
-
-s#targeted/minimum#standard/mls#
-
-:-;
-
-- Pascal
-
 >
 > Difference between refpolicy-minium&refpolicy-targeted
 > * refpolicy-minium = targeted policy with only core policies
@@ -167,8 +166,4 @@ s#targeted/minimum#standard/mls#
 >>>
 >
 >
-
-
--- 
-- Pascal
 
