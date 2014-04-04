@@ -1,36 +1,32 @@
-Return-Path: <paul.betafive@gmail.com>
-Received: from mail-ve0-f179.google.com (mail-ve0-f179.google.com
-	[209.85.128.179])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 59AB0E00B94
-	for <yocto@yoctoproject.org>; Fri,  4 Apr 2014 09:36:36 -0700 (PDT)
-Received: by mail-ve0-f179.google.com with SMTP id db12so1629022veb.38
-	for <yocto@yoctoproject.org>; Fri, 04 Apr 2014 09:36:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:sender:in-reply-to:references:from:date:message-id
-	:subject:to:cc:content-type:content-transfer-encoding;
-	bh=HMevAyWlVmQtwD59BOiJd8qe7TFLTQo9HrYEtXWB2hQ=;
-	b=xyRgu5OzFLWwr3nSjv2Xrwcnvjl8pyShSZPk6Hrb6EgiOUKVcZuJeo/gc6Die6pZgk
-	qFmRb5WsBYexHdkyf7aPi1Ij8L+vS4vES47QWuxyT97MRXTojUEOrCrdTOnTA3PLZJH7
-	Xy0VhteospdxjSt/CUwJu0bEIjW9xwNOSicSyRPwEqyXjWSc1Y7+b9NOHhTCm5S2DIXw
-	MSsj+FdtasqXmH9XxDVHV8xaHJEvqjyFUZ9xFtP6L4/g+DapIOOLee74XAgl3+j4azp0
-	71yW6xq8lUwHY16RM22Vu7dC8kFqkqPUIIZd9dl6Cg3GGt5D1slsI8ChXPI1flWKhiW1
-	QSzg==
-X-Received: by 10.58.248.5 with SMTP id yi5mr651482vec.42.1396629396267; Fri,
-	04 Apr 2014 09:36:36 -0700 (PDT)
+Return-Path: <elizabeth.flanagan@intel.com>
+Received: from mail-vc0-f174.google.com (mail-vc0-f174.google.com
+	[209.85.220.174])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BC14CE00C22
+	for <yocto@yoctoproject.org>; Fri,  4 Apr 2014 11:01:01 -0700 (PDT)
+Received: by mail-vc0-f174.google.com with SMTP id ld13so3316184vcb.5
+	for <yocto@yoctoproject.org>; Fri, 04 Apr 2014 11:01:00 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:date:message-id:subject:from:to
+	:content-type;
+	bh=A1FOrGKe5QCmPc0NKyN2biHrC5yat3rSqyG4v7G/I68=;
+	b=X662vTxpVeFS9IKJWCNhSLacuKcwNBfw6bL8x8O9sHGrsvPUo2ZQIRHm7/5SLCx0d1
+	OIEgxB7UnYujUnFpqeUnEVT4Lh7lmd4XJkDUSiA8YEYisgjSNpaMwX24xyleJQF1K9Iw
+	r943F/3C1UGOYWyv4UIRmrZU6r0p+t+zuE24vyLLCGEiV31N1NisD9GvFNGm+TWHfjLG
+	FgcmIiZyXby61i80bJa5Wr6ZXClLLNb081kIJ7HekKt7Vmu1z7s6S6s1FUCRgouLmUw8
+	SUjxThJWP4Cw13fnlmoV/WmlY6tF8nVSLR97DZudug156CDNDAqvF5LHsqCZ8gMntqBs
+	YFtg==
+X-Gm-Message-State: ALoCoQmNVyuLkA3TQ1eWft1GkIUWeEJvtzewPAnY5AWskud27G8cYmDTzU3aOWAv1f+XaxjwKLDS
 MIME-Version: 1.0
-Sender: paul.betafive@gmail.com
-Received: by 10.221.5.133 with HTTP; Fri, 4 Apr 2014 09:35:56 -0700 (PDT)
-In-Reply-To: <533ED18F.9050604@freenet.de>
-References: <533B0C8F.9050004@freenet.de> <533EC2F7.9070803@freenet.de>
-	<533EC4F1.1020305@mlbassoc.com> <533ED18F.9050604@freenet.de>
-From: Paul Barker <paul@paulbarker.me.uk>
-Date: Fri, 4 Apr 2014 17:35:56 +0100
-X-Google-Sender-Auth: PMDy0ThSM9AiS8myq8QnUY6gHn8
-Message-ID: <CANyK_8fPPkbyaoBuP-bLpSxkC0FM7i-v9ucCWEYsLZGQbZk5EA@mail.gmail.com>
-To: Jens Lucius <jenslucius@freenet.de>
-Cc: Yocto discussion list <yocto@yoctoproject.org>,
-	Gary Thomas <gary@mlbassoc.com>
-Subject: Re: Is Python Tkinter available for Yocto
+X-Received: by 10.52.240.207 with SMTP id wc15mr12098651vdc.14.1396634460437; 
+	Fri, 04 Apr 2014 11:01:00 -0700 (PDT)
+Received: by 10.52.173.69 with HTTP; Fri, 4 Apr 2014 11:01:00 -0700 (PDT)
+Date: Fri, 4 Apr 2014 11:01:00 -0700
+Message-ID: <CAPhnLPBoePDTvfv+SgW+EOdMDNg6jqL6D5RnF4g-WYPizA4Z+Q@mail.gmail.com>
+From: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
+	yocto-announce@yoctoproject.org
+Subject: [ANNOUNCEMENT] Yocto Project 1.4.3 (dylan 9.0.3) Released
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,42 +38,134 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 04 Apr 2014 16:36:37 -0000
+X-List-Received-Date: Fri, 04 Apr 2014 18:01:04 -0000
 Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
 
-On 4 April 2014 16:36, Jens Lucius <jenslucius@freenet.de> wrote:
-> Am 04.04.2014 16:42, schrieb Gary Thomas:
->>
->> Note: there was already a recipe for tk 8.6.0 in meta-oe (always a
->> good place to check for missing pieces before crafting your own)
->>
-> Actually there is. Don=B4t know why I missed that. I just started with yo=
-cto
-> this week and still get confused where to best look for recipes. There is
-> the old openembedded, meta-oe, oe-core/meta, yocto and some are floating
-> around in other gits. Would be really nice to have one place to go.
->
-> But thanks again for pointing to the meta-oe where I will also look for
-> recipes in the future.
->
+Hello,
 
-The best place to search is usually
-http://layers.openembedded.org/layerindex/branch/master/recipes/
+The latest point release of the Yocto Project, 1.4.3 (dylan 9.0.3) is now
+available for download at:
 
-Just make sure you check the README for any layers you include to see
-what else they depend on (e.g. some layers depend on the meta-oe
-layer).
+http://downloads.yoctoproject.org/releases/yocto/yocto-1.4.3/poky-dylan-9.0.3.tar.bz2
+http://mirrors.kernel.org/yocto/yocto/yocto-1.4.3/poky-dylan-9.0.3.tar.gz
 
-Recipes from the old openembedded repo usually need a bit of work to
-bring them up to date, they're a good last resort before writing your
-own recipe for something.
+A gpg signed version of these release notes is available at:
 
-Cheers,
+http://downloads.yoctoproject.org/releases/yocto/yocto-1.4.3/RELEASENOTES.txt
 
---=20
-Paul Barker
+Thanks go out to everyone for all their hard work during this release!
 
-Email: paul@paulbarker.me.uk
-http://www.paulbarker.me.uk
+Sincerely,
+
+Elizabeth Flanagan
+Yocto Build and Release
+<elizabeth.flanagan@intel.com>
+
+
+--------------------
+yocto-1.4.3 Errata
+--------------------
+
+Release Name: poky-dylan-9.0.3
+Branch:  dylan
+Tag:  dylan-9.0.3
+Hash:  6ef08331868c694ce7c3b31eeaac84e6aa8d660b
+md5:  0ce3883fa12a21d9c6cc735a5be9ad37
+Download Locations:
+http://downloads.yoctoproject.org/releases/yocto/yocto-1.4.3/poky-dylan-9.0.3.tar.bz2
+http://mirrors.kernel.org/yocto/yocto/yocto-1.4.3/poky-dylan-9.0.3.tar.bz2
+
+Release Name: eclipse-poky-juno-dylan-9.0.3
+Branch:  dylan
+Tag:  dylan-9.0.3
+Hash:  dc9a609c68fe4a6bbbf34d418fd6611489c1d6f7
+md5:  1e27a640a1496c880ef512147ded610d
+Download Locations:
+http://downloads.yoctoproject.org/releases/yocto/yocto-1.4.3/eclipse-poky-juno-dylan-9.0.3.tar.bz2
+http://mirrors.kernel.org/yocto/yocto/yocto-1.4.3/eclipse-poky-juno-dylan-9.0.3.tar.bz2
+
+Release Name: meta-qt3-dylan-9.0.3
+Branch:  dylan
+Tag:  dylan-9.0.3
+Hash:  4c27cce6688aa39852f3cba5e7b80ec279019605
+md5:  b53c8a80196e3daab0c955c0ec538e33
+Download Locations:
+http://downloads.yoctoproject.org/releases/yocto/yocto-1.4.3/meta-qt3-dylan-9.0.3.tar.bz2
+http://mirrors.kernel.org/yocto/yocto/yocto-1.4.3/meta-qt3-dylan-9.0.3.tar.bz2
+
+--------------------
+Security Fixes
+--------------------
+-gnutls: CVE-2014-0092
+-gnutls: CVE-2014-1959
+-libtiff: CVE-2013-4243
+-libtiff: CVE-2013-4232
+-libtiff: CVE-2013-1960
+-gst-ffmpeg: CVE-2013-3674
+-python: CVE-2011-4944
+-python: CVE-2013-4238
+-perl: CVE-2012-6329
+-perl: CVE-2013-1667
+
+--------------------
+Changelog
+--------------------
+-rpm: Enable compatibility with older RPM packages that have invalid platforms
+-lsbtest: fix comparison bashism
+-init-install-efi.sh: Remove unnecessary udev rules file to avoid errors
+-gnutls: fix failure during do_compile
+-gnutls: Fixed bug that prevented the rejection of v1 intermediate CA
+certificates.
+-gnutls: CVE-2014-0092 correct return codes
+-subversion: fix build problem when sysroot contains '-D' or '-I'
+-guile: fix the depends for target recipes
+-guile: fix build with Texinfo 5.0
+-grep: Add patch for texinfo 5.1
+-Fixes for tar 1.27 on the build host
+-findutils_4.2.31: backport fixes for doc build errors
+-elfutils-native: Fix build on distros with gcc 4.8
+-libx11: backport _XEatDataWords API to fix QEMU startup failures on
+modern distros
+-runqemu: Use correct kvm CPU options for qemux86* with kvm
+-cmake: set system name correctly
+-libsoup-2.4: add intltool-native to DEPENDS
+-packagegroup-self-hosted: add missing python modules for build appliance
+-python: Add missing python-ctypes dependency to python-multiprocessing
+-libtiff: CVE-2013-4243
+-libtiff: CVE-2013-4232
+-libtiff: fix CVE-2013-1960
+-gst-ffmpeg: fix CVE-2013-3674
+-image-mklibs: ensure sysroot is correctly set when calling gcc
+-package.bbclass: ensure license excluded files aren't packaged
+-license.bbclass: include all licenses in the manifest
+-license.bbclass: fix missing of license files on ubuntu build host
+-metadata_scm: Avoid crashing on new svn version layouts
+-meta-toolchain-qt: put QT_CONF_PATH in environment script
+-nativesdk-qt4-tools: create qt.conf file
+-dropbear: pass SFTPSERVER_PATH explicitly
+-elfutils-native: Update the patch to include the missing pieces
+needed for tests
+-busybox: configure system user id to range from 100 to 999
+-sstate: Drop 'SafeDep' code from setscene validation to fix some
+sstate tasks not being executed
+-bitbake: perforce: Fix path subdirectory issues
+-bitbake: fetch/hg: Improve user/password handling
+-bitbake: fetch2/svn.py: use log instead of info to retrieve revision
+-bitbake: fetch2: Don't allow '/' in user:pass, fix branch containing '@'
+-bitbake: bitbake: lib/bb/cache.py: Change debugging note to a debug message
+-bitbake: hob/hoblistmodel: check if vals of packages/recipes names are not None
+-bitbake: methodpool: Retire it, remove global method scope
+-rpm: fix typo in PACKAGECONFIG
+-Fix "bitbake package-index" for RPM
+-kernel.bbclass: Correct post(inst|rm) package association
+-python: Backport 2 CVE from upstream (CVE-2011-4944 / CVE-2013-4238)
+-perl: Backport 2 CVE Patches (CVE-2012-6329 / CVE-2013-1667)
+-libxml2: remove erroneous patch for CVE-2012-2871 (issue not present
+in this version)
+-sysvinit-inittab: ensure unique label for SERIAL_CONSOLES entries
+-ncurses: Fix problems expanding ncurses-libtinfo when in IMAGE_INSTALL
+-db: Fix build with high PARALLEL_MAKE
+-boost: fix build when PARALLEL_MAKE is not set
+-mc: Don't remove libdir and split helpers into packages
+-kern-tools: use dylan branch
 
