@@ -1,28 +1,28 @@
-Return-Path: <peter.ducai@gmail.com>
-Received: from mail-vc0-f176.google.com (mail-vc0-f176.google.com
-	[209.85.220.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 70BF1E00B78
-	for <yocto@yoctoproject.org>; Thu,  3 Apr 2014 15:26:39 -0700 (PDT)
-Received: by mail-vc0-f176.google.com with SMTP id lc6so2469369vcb.21
-	for <yocto@yoctoproject.org>; Thu, 03 Apr 2014 15:26:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=Os0x/HrBdYVwr53A3/N4iQCmLKM/MgOnA4jJw2phS5w=;
-	b=oRhvoVqm88BABByt/tgm5xLjssMB9EUigWqZAr+sAc28wLnoOZ/CWeEQEQZfTNY1PF
-	erQgpRRyk5t3T9ZzfjYF9mHplTaIGFJbjv73rgSI92uITrgwQ2aj3+F1NXTy5tvWm3sk
-	peH40VsVouoo/nLCq8S52+mpVxOaXVL4zwkRyyb5jEiqxU7zH8JrnKWcqtfgBSUMrNiw
-	a1AnaBa2IEBuZrUSJDq4p5xXeg4vdQ7GUP+MvlMQ75Xkt5WUDI0Wwi/S1Ycj4Uu1kY6v
-	oVdU32iF30QAwsrnpMYWRZbZeHZsBQgE9SRDp7srYqeC4CbicSUX6+cxshBnaSqJqR+3
-	Eh/Q==
+Return-Path: <Xin.Ouyang@windriver.com>
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1F06AE00BE0
+	for <yocto@yoctoproject.org>; Thu,  3 Apr 2014 23:57:21 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
+	[147.11.189.40])
+	by mail.windriver.com (8.14.5/8.14.5) with ESMTP id s346vJR7029760
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
+	Thu, 3 Apr 2014 23:57:19 -0700 (PDT)
+Received: from Pascal-MacBookPro.local (128.224.158.235) by
+	ALA-HCA.corp.ad.wrs.com (147.11.189.50) with Microsoft SMTP Server id
+	14.3.169.1; Thu, 3 Apr 2014 23:57:19 -0700
+Message-ID: <533E57CD.8010202@windriver.com>
+Date: Fri, 4 Apr 2014 14:57:17 +0800
+From: Pascal Ouyang <xin.ouyang@windriver.com>
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.8;
+	rv:24.0) Gecko/20100101 Thunderbird/24.4.0
 MIME-Version: 1.0
-X-Received: by 10.221.20.199 with SMTP id qp7mr4983205vcb.24.1396563998939;
-	Thu, 03 Apr 2014 15:26:38 -0700 (PDT)
-Received: by 10.220.224.81 with HTTP; Thu, 3 Apr 2014 15:26:38 -0700 (PDT)
-Date: Fri, 4 Apr 2014 00:26:38 +0200
-Message-ID: <CAGtsjUDohP7p3NSLj-TvvV+xSDKJOmeUKeSc6EOQ5t_UhOonmA@mail.gmail.com>
-From: peter ducai <peter.ducai@gmail.com>
-To: yocto@yoctoproject.org
-Subject: helper scripts for Yocto
+To: Joe MacDonald <joe@deserted.net>, <wenzong.fan@windriver.com>
+References: <cover.1395709062.git.wenzong.fan@windriver.com>
+	<20140403192027.GM4075@deserted.net>
+In-Reply-To: <20140403192027.GM4075@deserted.net>
+X-TagToolbar-Keys: D20140404145717221
+Cc: yocto@yoctoproject.org
+Subject: Re: [meta-selinux][PATCH 0/4] add targeted/minimum policy and some updates
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,28 +34,111 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 03 Apr 2014 22:26:48 -0000
-Content-Type: multipart/alternative; boundary=001a11339e2e10229304f62ae5a7
+X-List-Received-Date: Fri, 04 Apr 2014 06:57:23 -0000
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
 
---001a11339e2e10229304f62ae5a7
-Content-Type: text/plain; charset=UTF-8
+于 14-4-4 上午3:20, Joe MacDonald 写道:
+> Hey Wenzong,
+>
+> I merged two of these four.
+>
+> [[yocto] [meta-selinux][PATCH 0/4] add targeted/minimum policy and some updates] On 14.03.24 (Mon 21:07) wenzong.fan@windriver.com wrote:
+>
+>> From: Wenzong Fan <wenzong.fan@windriver.com>
+>>
+>> Changes:
+>> * backport tmpfs_t patch from upstream;
+>> * add rules for /var/log symlink on poky;
+>
+> These both went in.  These:
+>
+>> * add targeted policy type
+>> * add minimum targeted policy
+>
+> I'm less clear on.  They both look like significant changes to
+> refpolicy-* behaviour, which is fine, but in that case I think it'd be
+> better to give them a different name.  Or one that differentiates them
+> significantly.  For example the "minimum" policy has users unconfined
+> and applications confined?  Or neither?  I'm not sure what the value is
+> of these.
+>
+> If they really are just specialized versions of the standard reference
+> policy, they should at least be ported to use the refpolicy_common
+> infrastructure Phil set up a while back.
 
-hi all,
-here are my helper scripts for Yocto, after finding wiki too long I decided
-to automate it's parts.. hopefully someone find it useful. Work will be
-ongoin also in next days as I want full deployment to be scripted/automated.
+Hi Joe&Wenzong,
 
-https://github.com/daemonna/YoctoTools
+According to the origin design, both policy types are targeted policies.
 
---001a11339e2e10229304f62ae5a7
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+For targeted policies,
+* Users will login into shells on unconfined domain.
+* For applications with no policy module or with policy module disabled, 
+they will also run on unconfined domain.
+* For applications "targeted", they would have policy module enabled, 
+with rules to do domtrans from unconfined/init* domain to their own domain.
 
-<div dir=3D"ltr">hi all,<div>here are my helper scripts for Yocto, after fi=
-nding wiki too long I decided to automate it&#39;s parts.. hopefully someon=
-e find it useful. Work will be ongoin also in next days as I want full depl=
-oyment to be scripted/automated.</div>
-<div><br></div><div><a href=3D"https://github.com/daemonna/YoctoTools">http=
-s://github.com/daemonna/YoctoTools</a><br></div></div>
+The result will be:
+- standard/mls :
+   un-ruled applications(usually bin_t) will run on unconfined domain, 
+so operations will *not* be blocked.
+- targeted/minimum
+   un-ruled applications will run on user's current domain, such as 
+user_t,sysadm_t, so most privileged operations will be blocked.
 
---001a11339e2e10229304f62ae5a7--
+
+Difference between refpolicy-minium&refpolicy-targeted
+* refpolicy-minium = targeted policy with only core policies
+   It should just be used for admins to defined their own policy.
+   For example, a httpd server could just use refpolicy-minium + httpd 
+module. Actually, I have thought to use refpolicy-targeted-minium as its 
+name, but not in the end.
+* refpolicy-targeted = targeted policy with all 300+ modules
+
+Thanks. :)
+
+- Pascal
+
+>
+> Thanks,
+> -J.
+>
+>>
+>> The following changes since commit a6079a43719e79e12a57e609923a0cccdba06916:
+>>
+>>    refpolicy: fix real path for su.shadow (2014-02-13 10:52:07 -0500)
+>>
+>> are available in the git repository at:
+>>
+>>    git://git.pokylinux.org/poky-contrib wenzong/ref-minimum
+>>    http://git.pokylinux.org/cgit.cgi/poky-contrib/log/?h=wenzong/ref-minimum
+>>
+>> Wenzong Fan (4):
+>>    refpolicy: associate tmpfs_t (shm) to device_t (devtmpfs) file
+>>      systems
+>>    refpolicy: add rules for /var/log symlink on poky
+>>    refpolicy: add targeted policy type
+>>    refpolicy: add minimum targeted policy
+>>
+>>   ...associate-tmpfs_t-shm-to-device_t-devtmpf.patch |   30 +++
+>>   ...ky-policy-add-rules-for-syslogd_t-symlink.patch |   30 +++
+>>   ...rules-for-var-log-symlink-audisp_remote_t.patch |   29 +++
+>>   .../refpolicy/refpolicy-minimum_2.20130424.bb      |   46 +++++
+>>   ...olicy-fix-optional-issue-on-sysadm-module.patch |   60 ++++++
+>>   .../refpolicy-unconfined_u-default-user.patch      |  198 ++++++++++++++++++++
+>>   .../refpolicy/refpolicy-targeted_2.20130424.bb     |   18 ++
+>>   .../refpolicy/refpolicy_2.20130424.inc             |    3 +
+>>   8 files changed, 414 insertions(+)
+>>   create mode 100644 recipes-security/refpolicy/refpolicy-2.20130424/filesystem-associate-tmpfs_t-shm-to-device_t-devtmpf.patch
+>>   create mode 100644 recipes-security/refpolicy/refpolicy-2.20130424/poky-policy-add-rules-for-syslogd_t-symlink.patch
+>>   create mode 100644 recipes-security/refpolicy/refpolicy-2.20130424/poky-policy-add-rules-for-var-log-symlink-audisp_remote_t.patch
+>>   create mode 100644 recipes-security/refpolicy/refpolicy-minimum_2.20130424.bb
+>>   create mode 100644 recipes-security/refpolicy/refpolicy-targeted/refpolicy-fix-optional-issue-on-sysadm-module.patch
+>>   create mode 100644 recipes-security/refpolicy/refpolicy-targeted/refpolicy-unconfined_u-default-user.patch
+>>   create mode 100644 recipes-security/refpolicy/refpolicy-targeted_2.20130424.bb
+>>
+
+
+-- 
+- Pascal
+
