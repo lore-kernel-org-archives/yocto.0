@@ -1,32 +1,35 @@
-Return-Path: <bhushan.az@gmail.com>
-Received: from mail-wg0-f47.google.com (mail-wg0-f47.google.com [74.125.82.47])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1A999E00BE0
-	for <yocto@yoctoproject.org>; Fri,  4 Apr 2014 03:34:52 -0700 (PDT)
-Received: by mail-wg0-f47.google.com with SMTP id x12so3164753wgg.18
-	for <yocto@yoctoproject.org>; Fri, 04 Apr 2014 03:34:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type;
-	bh=ujAwaY+erVeyqfbTu8GJBfLPUHirnitx4RMCzHwsvSI=;
-	b=sL8mnYFskVmD/FETLbzv8PrQpjcFGHerDKV3y8eE4PWC/7hTXvWfETFJ3aaM1pkvYq
-	R0rYtcdWNk2GZCMGsQskCdB0Q2GsfLlYFp0912Wybqwii+GjbmSq3WDRx6Yp//5cQ9fr
-	+qVvDiCktht2bwGOvQRPkWOVYy6xxD8wC1GIdI/+JKQBXMyANdqTye37HUDsBnE7jYtf
-	52/Bh2JCPQaKChWgHxoi7HFIXOexFOZWRb/3URgfygRPp4Zr4aRBrnpaSSCg4nuKaSTM
-	cSKLyT5V4ICgq3K3MBqFwqO0EKfFGnjp4wKidM50/o4OyMaLCJ8Ly1zCPrU9Plyc/99Y
-	xF2A==
+Return-Path: <meenakumari.s@hcl.com>
+Received: from GWS06.hcl.com (gws06.hcl.com [203.105.185.25])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0632EE00BE0
+	for <yocto@yoctoproject.org>; Fri,  4 Apr 2014 03:49:55 -0700 (PDT)
+X-IronPort-AV: E=Sophos;i="4.97,794,1389724200"; d="scan'208";a="65071813"
+Received: from unknown (HELO NDA-CORP-HT02.CORP.HCL.IN) ([10.248.64.34])
+	by GWS06.hcl.com with ESMTP/TLS/AES128-SHA; 04 Apr 2014 16:15:42 +0530
+Received: from NDA-HCLT-CSHT06.HCLT.CORP.HCL.IN (10.98.132.31) by
+	NDA-CORP-HT02.CORP.HCL.IN (10.248.64.34) with Microsoft SMTP Server
+	(TLS) id 14.3.123.3; Fri, 4 Apr 2014 16:19:50 +0530
+Received: from NDA-HCLT-MBS02.HCLT.CORP.HCL.IN ([10.98.132.17]) by
+	NDA-HCLT-CSHT06.HCLT.CORP.HCL.IN ([10.98.132.31]) with mapi id
+	14.03.0123.003; Fri, 4 Apr 2014 16:19:49 +0530
+From: Meenakumari Shedole <meenakumari.s@hcl.com>
+To: "Beauchesne, Gwenole" <gwenole.beauchesne@intel.com>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: [yocto] Help-Gstreamer Vaapi Plugin Issue in 1080p mp4 playback
+Thread-Index: AQHPSYlGWF8OgI4BY0eUG8fpk2Rq8Zr0llAAgAFgBgCAAAsvkP///EyAgAZ3sHCAAEJeQIABLiLAgAIeozCAAUvshQ==
+Date: Fri, 4 Apr 2014 10:49:49 +0000
+Message-ID: <E4938C0D959B3445943720B88F07213415615A67@NDA-HCLT-MBS02.hclt.corp.hcl.in>
+References: <E4938C0D959B3445943720B88F07213415613522@NDA-HCLT-MBS02.hclt.corp.hcl.in>
+	<CAJTo0LY5VVCZbimtTBNdgDCEB+1mwSwdsVH31ik8GSdheg48OQ@mail.gmail.com>
+	<E4938C0D959B3445943720B88F07213415614CE4@NDA-HCLT-MBS02.hclt.corp.hcl.in>,
+	<278E3B7DD17B744DAAB36F6424581BA61AE98D6D@IRSMSX103.ger.corp.intel.com>
+In-Reply-To: <278E3B7DD17B744DAAB36F6424581BA61AE98D6D@IRSMSX103.ger.corp.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.98.134.12]
 MIME-Version: 1.0
-X-Received: by 10.194.192.132 with SMTP id hg4mr18782099wjc.28.1396607690834; 
-	Fri, 04 Apr 2014 03:34:50 -0700 (PDT)
-Received: by 10.217.12.74 with HTTP; Fri, 4 Apr 2014 03:34:50 -0700 (PDT)
-In-Reply-To: <969F26A8BAB325438E7EB80D3C3134FB1CE7762E@IRSMSX105.ger.corp.intel.com>
-References: <CAG2NicKU0K+KVJ6XJgb9-zatAq81qtDxrJtC_g2W8AZ7nGtrig@mail.gmail.com>
-	<969F26A8BAB325438E7EB80D3C3134FB1CE7762E@IRSMSX105.ger.corp.intel.com>
-Date: Fri, 4 Apr 2014 16:04:50 +0530
-Message-ID: <CAG2NicJgs3qFJ5-mhDJUzegrE30NuN2Ci6-BG=WhbKzdSjmQQg@mail.gmail.com>
-From: Bhushan S <bhushan.az@gmail.com>
-To: "Iorga, Cristian" <cristian.iorga@intel.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: copying media files to qemux86
+Cc: Dipesh Karmakar <Dipesh.Karmakar@hcl.com>
+Subject: Re: Help-Gstreamer Vaapi Plugin Issue in 1080p mp4 playback
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,182 +41,119 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 04 Apr 2014 10:34:53 -0000
-Content-Type: multipart/alternative; boundary=047d7b8738964d8cd804f635118b
-
---047d7b8738964d8cd804f635118b
-Content-Type: text/plain; charset=ISO-8859-1
-
-Yes Cristian.
-My earlier attempt with scp was unsuccessful (probably lack of ssh support).
-
-Currently I'm stuck with enabling gst-plugins-ugly package and plugins from
-gst-plugins-base package
-
-
-
-On Wed, Apr 2, 2014 at 5:44 PM, Iorga, Cristian <cristian.iorga@intel.com>wrote:
-
->  Hello,
->
->
->
-> By  media files, you mean music or video files?
->
-> If so, depending on the image (if it has ssh support), you can copy into
-> /home/root using scp after you boot the image.
->
-> I have use this to test mp3 playback, for example with some audio files.
->
->
->
-> Regards,
->
-> Cristian Iorga
->
-> YP
->
-> Intel Corporation
->
->
->
-> *From:* yocto-bounces@yoctoproject.org [mailto:
-> yocto-bounces@yoctoproject.org] *On Behalf Of *Bhushan Shirsath
-> *Sent:* Wednesday, April 2, 2014 2:07 PM
-> *To:* yocto@yoctoproject.org
-> *Subject:* [yocto] copying media files to qemux86
->
->
->
-> Hi,
->
->
->
-> I'm able to successfully launch "runqemu qemux86".
->
-> Now i intend to test the media libs built using Yocto on qemu currently.
->
-> Is it possible to transfer/copy media files to qemux86 emulator ?
->
->
->
-> I tried copying files to tmp/sysroots/qemux86/ but it didn't work.
->
->
->
-> Thanks,
->
-> --bhushan
->
-
---047d7b8738964d8cd804f635118b
-Content-Type: text/html; charset=ISO-8859-1
+X-List-Received-Date: Fri, 04 Apr 2014 10:50:01 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Yes Cristian.<div>My earlier attempt with scp was unsucces=
-sful (probably lack of ssh support).</div><div><br></div><div>Currently I&#=
-39;m stuck with enabling gst-plugins-ugly package and plugins from gst-plug=
-ins-base package</div>
-<div><br></div></div><div class=3D"gmail_extra"><br><br><div class=3D"gmail=
-_quote">On Wed, Apr 2, 2014 at 5:44 PM, Iorga, Cristian <span dir=3D"ltr">&=
-lt;<a href=3D"mailto:cristian.iorga@intel.com" target=3D"_blank">cristian.i=
-orga@intel.com</a>&gt;</span> wrote:<br>
-<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
-x #ccc solid;padding-left:1ex">
+Thanks for your resposne Gwenole.=0A=
+=0A=
+I downloaded updated gstreamer-vaapi-0.5.8 and GStreamer-0.10.36 with other=
+ dependency plaugins and va deriver but after manually install no luck to e=
+xecute vaapisink.=0A=
+=0A=
+can you please suggest, vaapi dependencies and their version to build.=0A=
+=0A=
+Regards=0A=
+Meena.=0A=
+________________________________________=0A=
+From: Beauchesne, Gwenole [gwenole.beauchesne@intel.com]=0A=
+Sent: Thursday, April 03, 2014 8:22 PM=0A=
+To: Meenakumari Shedole; yocto@yoctoproject.org=0A=
+Cc: Dipesh Karmakar=0A=
+Subject: RE: [yocto] Help-Gstreamer Vaapi Plugin Issue in 1080p mp4 playbac=
+k=0A=
+=0A=
+Hi,=0A=
+=0A=
+> I have checked vaapisink source, it seems its supporting overlay on forei=
+gn X=0A=
+> window.=0A=
+> https://gitorious.org/vaapi/gstreamer-=0A=
+> vaapi/source/643d35e87a67376af9cd89cd868666368b105ac3:gst/vaapisink/gs=0A=
+> tvaapisink.c=0A=
+> static gboolean gst_vaapisink_implements_interface_supported();=0A=
+> static gboolean gst_vaapisink_ensure_window_xid();=0A=
+=0A=
+The version you mention looks very old. I have integrated a fix from anothe=
+r user, who has been successfully using gstreamer-vaapi with GStreamer 0.10=
+ in a scenario you describe (vaapisink + foreign window). Please update you=
+r gstreamer-vaapi version to at least 0.5.8. Or, the current git master tre=
+e. Other branches are not maintained any more. The fix I have in mind was f=
+8666e2.=0A=
+=0A=
+Regards,=0A=
+Gwenole.=0A=
+=0A=
+> -----Original Message-----=0A=
+> From: Burton, Ross [mailto:ross.burton@intel.com]=0A=
+> Sent: Friday, March 28, 2014 4:42 PM=0A=
+> To: Meenakumari Shedole=0A=
+> Cc: yocto@yoctoproject.org; Dipesh Karmakar=0A=
+> Subject: Re: [yocto] Help-Gstreamer Vaapi Plugin Issue in 1080p mp4=0A=
+> playback=0A=
+>=0A=
+> On 28 March 2014 06:05, Meenakumari Shedole <meenakumari.s@hcl.com>=0A=
+> wrote:=0A=
+> > 1. playbin2 + avi/3gp is working properly because of xvimagesink is use=
+d=0A=
+> interally.=0A=
+> > 2. playbin2 + mp4 is not taking vaapi sink, we need to manually set vid=
+eo-=0A=
+> sink=3Dvaapisink.=0A=
+> >    Also we are getting arbitrary crash while setting the qml video wind=
+ow id=0A=
+> to the vaapi sink.=0A=
+> >    So we are not getting any single pipe to play mp4/avi/3gp stuff.=0A=
+>=0A=
+> The important question is what recipe are you using to get the vaapi=0A=
+> elements?=0A=
+>=0A=
+> What happens if you use vaapisink with AVI/3GP?  You should still get som=
+e=0A=
+> acceleration.=0A=
+>=0A=
+> Note that especially when using vaapi sink you need to wait for the sink =
+to=0A=
+> create the window and then reparent it, you can't provide your own X=0A=
+> window to vaapisink.  This is the usual cause for breakage.  Do testing w=
+ith=0A=
+> gst-launch before attempting to use your own application.=0A=
+>=0A=
+> Ross=0A=
+>=0A=
+>=0A=
+> ::DISCLAIMER::=0A=
+> -------------------------------------------------------------------------=
+---------------------=0A=
+> ------------------------------------------------------=0A=
+>=0A=
+> The contents of this e-mail and any attachment(s) are confidential and=0A=
+> intended for the named recipient(s) only.=0A=
+> E-mail transmission is not guaranteed to be secure or error-free as=0A=
+> information could be intercepted, corrupted, lost, destroyed, arrive late=
+ or=0A=
+> incomplete, or may contain viruses in transmission. The e mail and its=0A=
+> contents (with or without referred errors) shall therefore not attach any=
+=0A=
+> liability on the originator or HCL or its affiliates.=0A=
+> Views or opinions, if any, presented in this email are solely those of th=
+e=0A=
+> author and may not necessarily reflect the views or opinions of HCL or it=
+s=0A=
+> affiliates. Any form of reproduction, dissemination, copying, disclosure,=
+=0A=
+> modification, distribution and / or publication of this message without t=
+he=0A=
+> prior written consent of authorized representative of HCL is strictly=0A=
+> prohibited. If you have received this email in error please delete it and=
+ notify=0A=
+> the sender immediately.=0A=
+> Before opening any email and/or attachments, please check them for viruse=
+s=0A=
+> and other defects.=0A=
+>=0A=
+> -------------------------------------------------------------------------=
+---------------------=0A=
+> ------------------------------------------------------=0A=
 
-
-
-
-
-<div lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
-<div>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1f497d">Hello,<u></u><u></u></spa=
-n></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1f497d"><u></u>=A0<u></u></span><=
-/p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1f497d">By=A0 media files, you me=
-an music or video files?<u></u><u></u></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1f497d">If so, depending on the i=
-mage (if it has ssh support), you can copy into /home/root using scp after =
-you boot the image.<u></u><u></u></span></p>
-
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1f497d">I have use this to test m=
-p3 playback, for example with some audio files.<u></u><u></u></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1f497d"><u></u>=A0<u></u></span><=
-/p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1f497d">Regards,<u></u><u></u></s=
-pan></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1f497d">Cristian Iorga<u></u><u><=
-/u></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1f497d">YP<u></u><u></u></span></=
-p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1f497d">Intel Corporation<u></u><=
-u></u></span></p>
-<p class=3D"MsoNormal"><a name=3D"145225d2fee78011__MailEndCompose"><span s=
-tyle=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,&quot;sans-serif&q=
-uot;;color:#1f497d"><u></u>=A0<u></u></span></a></p>
-<p class=3D"MsoNormal" style=3D"margin-left:.5in"><b><span style=3D"font-si=
-ze:11.0pt;font-family:&quot;Calibri&quot;,&quot;sans-serif&quot;">From:</sp=
-an></b><span style=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,&quo=
-t;sans-serif&quot;"> <a href=3D"mailto:yocto-bounces@yoctoproject.org" targ=
-et=3D"_blank">yocto-bounces@yoctoproject.org</a> [mailto:<a href=3D"mailto:=
-yocto-bounces@yoctoproject.org" target=3D"_blank">yocto-bounces@yoctoprojec=
-t.org</a>]
-<b>On Behalf Of </b>Bhushan Shirsath<br>
-<b>Sent:</b> Wednesday, April 2, 2014 2:07 PM<br>
-<b>To:</b> <a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yoct=
-o@yoctoproject.org</a><br>
-<b>Subject:</b> [yocto] copying media files to qemux86<u></u><u></u></span>=
-</p><div><div class=3D"h5">
-<p class=3D"MsoNormal" style=3D"margin-left:.5in"><u></u>=A0<u></u></p>
-<div>
-<p class=3D"MsoNormal" style=3D"margin-left:.5in">Hi,<u></u><u></u></p>
-<div>
-<p class=3D"MsoNormal" style=3D"margin-left:.5in"><u></u>=A0<u></u></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"margin-left:.5in">I&#39;m able to successfu=
-lly launch &quot;runqemu qemux86&quot;.<u></u><u></u></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"margin-left:.5in">Now i intend to test the =
-media libs built using Yocto on qemu currently.<u></u><u></u></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"margin-left:.5in">Is it possible to transfe=
-r/copy media files to qemux86 emulator ?<u></u><u></u></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"margin-left:.5in"><u></u>=A0<u></u></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"margin-left:.5in">I tried copying files to=
-=A0tmp/sysroots/qemux86/ but it didn&#39;t work.<u></u><u></u></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"margin-left:.5in"><u></u>=A0<u></u></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"margin-left:.5in">Thanks,<u></u><u></u></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"margin-left:.5in">--bhushan<u></u><u></u></=
-p>
-</div>
-</div>
-</div></div></div>
-</div>
-
-</blockquote></div><br></div>
-
---047d7b8738964d8cd804f635118b--
