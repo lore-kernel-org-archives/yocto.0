@@ -1,37 +1,36 @@
-Return-Path: <cristian.iorga@intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 89C1AE00A13
-	for <yocto@yoctoproject.org>; Fri,  4 Apr 2014 06:51:52 -0700 (PDT)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by orsmga101.jf.intel.com with ESMTP; 04 Apr 2014 06:51:52 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.97,795,1389772800"; 
-	d="scan'208,217";a="506987445"
-Received: from irsmsx103.ger.corp.intel.com ([163.33.3.157])
-	by fmsmga001.fm.intel.com with ESMTP; 04 Apr 2014 06:51:30 -0700
-Received: from irsmsx106.ger.corp.intel.com (163.33.3.31) by
-	IRSMSX103.ger.corp.intel.com (163.33.3.157) with Microsoft SMTP Server
-	(TLS) id 14.3.123.3; Fri, 4 Apr 2014 14:50:24 +0100
-Received: from irsmsx105.ger.corp.intel.com ([169.254.7.78]) by
-	IRSMSX106.ger.corp.intel.com ([169.254.8.26]) with mapi id
-	14.03.0123.003; Fri, 4 Apr 2014 14:50:24 +0100
-From: "Iorga, Cristian" <cristian.iorga@intel.com>
-To: Bhushan S <bhushan.az@gmail.com>
-Thread-Topic: [yocto] copying media files to qemux86
-Thread-Index: AQHPTmO9vtm/tDnFn02ifJIyjYoDKJr+PHgwgAL5AACAAEa4UA==
-Date: Fri, 4 Apr 2014 13:50:18 +0000
-Message-ID: <969F26A8BAB325438E7EB80D3C3134FB1CE79221@IRSMSX105.ger.corp.intel.com>
-References: <CAG2NicKU0K+KVJ6XJgb9-zatAq81qtDxrJtC_g2W8AZ7nGtrig@mail.gmail.com>
-	<969F26A8BAB325438E7EB80D3C3134FB1CE7762E@IRSMSX105.ger.corp.intel.com>
-	<CAG2NicJgs3qFJ5-mhDJUzegrE30NuN2Ci6-BG=WhbKzdSjmQQg@mail.gmail.com>
-In-Reply-To: <CAG2NicJgs3qFJ5-mhDJUzegrE30NuN2Ci6-BG=WhbKzdSjmQQg@mail.gmail.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [163.33.239.182]
+Return-Path: <jenslucius@freenet.de>
+Received: from mout1.freenet.de (mout1.freenet.de [195.4.92.91])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EE441E00A13
+	for <yocto@yoctoproject.org>; Fri,  4 Apr 2014 07:36:47 -0700 (PDT)
+Received: from [195.4.92.140] (helo=mjail0.freenet.de)
+	by mout1.freenet.de with esmtpa (ID jenslucius@freenet.de) (port 25)
+	(Exim 4.80.1 #4) id 1WW5Eb-0001en-ML
+	for yocto@yoctoproject.org; Fri, 04 Apr 2014 16:36:45 +0200
+Received: from localhost ([::1]:55945 helo=mjail0.freenet.de)
+	by mjail0.freenet.de with esmtpa (ID jenslucius@freenet.de) (Exim
+	4.80.1 #4) id 1WW5Eb-0004IJ-I9
+	for yocto@yoctoproject.org; Fri, 04 Apr 2014 16:36:45 +0200
+Received: from mx11.freenet.de ([195.4.92.21]:46748)
+	by mjail0.freenet.de with esmtpa (ID jenslucius@freenet.de) (Exim
+	4.80.1 #4) id 1WW5CI-0001pf-SS
+	for yocto@yoctoproject.org; Fri, 04 Apr 2014 16:34:22 +0200
+Received: from p5b0e3861.dip0.t-ipconnect.de ([91.14.56.97]:61100
+	helo=[192.168.2.12])
+	by mx11.freenet.de with esmtpsa (ID jenslucius@freenet.de)
+	(TLSv1:DHE-RSA-AES128-SHA:128) (port 587) (Exim 4.80.1 #4)
+	id 1WW5CI-0004RD-Ox
+	for yocto@yoctoproject.org; Fri, 04 Apr 2014 16:34:22 +0200
+Message-ID: <533EC2F7.9070803@freenet.de>
+Date: Fri, 04 Apr 2014 16:34:31 +0200
+From: Jens Lucius <jenslucius@freenet.de>
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64;
+	rv:24.0) Gecko/20100101 Thunderbird/24.4.0
 MIME-Version: 1.0
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: copying media files to qemux86
+To: yocto@yoctoproject.org
+References: <533B0C8F.9050004@freenet.de>
+In-Reply-To: <533B0C8F.9050004@freenet.de>
+X-Originated-At: 91.14.56.97!61100
+Subject: Re: Is Python Tkinter available for Yocto
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,314 +42,41 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 04 Apr 2014 13:51:53 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_969F26A8BAB325438E7EB80D3C3134FB1CE79221IRSMSX105gercor_"
-
---_000_969F26A8BAB325438E7EB80D3C3134FB1CE79221IRSMSX105gercor_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-Hello,
-What kind of troubles with gst-plugins-base?
-See YB5589: https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D5589
-Maybe there is a hint in there, and the meta gst package will help..
-/Cristian
-
-From: Bhushan S [mailto:bhushan.az@gmail.com]
-Sent: Friday, April 4, 2014 1:35 PM
-To: Iorga, Cristian
-Cc: yocto@yoctoproject.org
-Subject: Re: [yocto] copying media files to qemux86
-
-Yes Cristian.
-My earlier attempt with scp was unsuccessful (probably lack of ssh support)=
-.
-
-Currently I'm stuck with enabling gst-plugins-ugly package and plugins from=
- gst-plugins-base package
+X-List-Received-Date: Fri, 04 Apr 2014 14:36:51 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
 
 
-On Wed, Apr 2, 2014 at 5:44 PM, Iorga, Cristian <cristian.iorga@intel.com<m=
-ailto:cristian.iorga@intel.com>> wrote:
-Hello,
-
-By  media files, you mean music or video files?
-If so, depending on the image (if it has ssh support), you can copy into /h=
-ome/root using scp after you boot the image.
-I have use this to test mp3 playback, for example with some audio files.
-
-Regards,
-Cristian Iorga
-YP
-Intel Corporation
-
-From: yocto-bounces@yoctoproject.org<mailto:yocto-bounces@yoctoproject.org>=
- [mailto:yocto-bounces@yoctoproject.org<mailto:yocto-bounces@yoctoproject.o=
-rg>] On Behalf Of Bhushan Shirsath
-Sent: Wednesday, April 2, 2014 2:07 PM
-To: yocto@yoctoproject.org<mailto:yocto@yoctoproject.org>
-Subject: [yocto] copying media files to qemux86
-
-Hi,
-
-I'm able to successfully launch "runqemu qemux86".
-Now i intend to test the media libs built using Yocto on qemu currently.
-Is it possible to transfer/copy media files to qemux86 emulator ?
-
-I tried copying files to tmp/sysroots/qemux86/ but it didn't work.
-
-Thanks,
---bhushan
-
-
---_000_969F26A8BAB325438E7EB80D3C3134FB1CE79221IRSMSX105gercor_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+> I am a little bit confused if Python Tkinter is included as a package 
+> for python in the Yocto system.
 >
-<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:12.0pt;
-	font-family:"Times New Roman","serif";}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:purple;
-	text-decoration:underline;}
-span.EmailStyle17
-	{mso-style-type:personal-reply;
-	font-family:"Calibri","sans-serif";
-	color:#1F497D;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-family:"Calibri","sans-serif";}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1F497D">Hello,<o:p></o:p></span><=
-/p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1F497D">What kind of troubles wit=
-h
-</span>gst-plugins-base?<o:p></o:p></p>
-<p class=3D"MsoNormal">See YB5589: <a href=3D"https://bugzilla.yoctoproject=
-.org/show_bug.cgi?id=3D5589">
-https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D5589</a><o:p></o:p></p>
-<p class=3D"MsoNormal">Maybe there is a hint in there, and the meta gst pac=
-kage will help..<o:p></o:p></p>
-<p class=3D"MsoNormal">/Cristian<span style=3D"font-size:11.0pt;font-family=
-:&quot;Calibri&quot;,&quot;sans-serif&quot;;color:#1F497D"><o:p></o:p></spa=
-n></p>
-<p class=3D"MsoNormal"><a name=3D"_MailEndCompose"><span style=3D"font-size=
-:11.0pt;font-family:&quot;Calibri&quot;,&quot;sans-serif&quot;;color:#1F497=
-D"><o:p>&nbsp;</o:p></span></a></p>
-<p class=3D"MsoNormal" style=3D"margin-left:.5in"><b><span style=3D"font-si=
-ze:11.0pt;font-family:&quot;Calibri&quot;,&quot;sans-serif&quot;">From:</sp=
-an></b><span style=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,&quo=
-t;sans-serif&quot;"> Bhushan S [mailto:bhushan.az@gmail.com]
-<br>
-<b>Sent:</b> Friday, April 4, 2014 1:35 PM<br>
-<b>To:</b> Iorga, Cristian<br>
-<b>Cc:</b> yocto@yoctoproject.org<br>
-<b>Subject:</b> Re: [yocto] copying media files to qemux86<o:p></o:p></span=
-></p>
-<p class=3D"MsoNormal" style=3D"margin-left:.5in"><o:p>&nbsp;</o:p></p>
-<div>
-<p class=3D"MsoNormal" style=3D"margin-left:.5in">Yes Cristian.<o:p></o:p><=
-/p>
-<div>
-<p class=3D"MsoNormal" style=3D"margin-left:.5in">My earlier attempt with s=
-cp was unsuccessful (probably lack of ssh support).<o:p></o:p></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"margin-left:.5in"><o:p>&nbsp;</o:p></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"margin-left:.5in">Currently I'm stuck with =
-enabling gst-plugins-ugly package and plugins from gst-plugins-base package=
-<o:p></o:p></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"margin-left:.5in"><o:p>&nbsp;</o:p></p>
-</div>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:0in;margin-right:0in;mar=
-gin-bottom:12.0pt;margin-left:.5in">
-<o:p>&nbsp;</o:p></p>
-<div>
-<p class=3D"MsoNormal" style=3D"margin-left:.5in">On Wed, Apr 2, 2014 at 5:=
-44 PM, Iorga, Cristian &lt;<a href=3D"mailto:cristian.iorga@intel.com" targ=
-et=3D"_blank">cristian.iorga@intel.com</a>&gt; wrote:<o:p></o:p></p>
-<blockquote style=3D"border:none;border-left:solid #CCCCCC 1.0pt;padding:0i=
-n 0in 0in 6.0pt;margin-left:4.8pt;margin-right:0in">
-<div>
-<div>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
-lt:auto;margin-left:.5in">
-<span style=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,&quot;sans-=
-serif&quot;;color:#1F497D">Hello,</span><o:p></o:p></p>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
-lt:auto;margin-left:.5in">
-<span style=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,&quot;sans-=
-serif&quot;;color:#1F497D">&nbsp;</span><o:p></o:p></p>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
-lt:auto;margin-left:.5in">
-<span style=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,&quot;sans-=
-serif&quot;;color:#1F497D">By&nbsp; media files, you mean music or video fi=
-les?</span><o:p></o:p></p>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
-lt:auto;margin-left:.5in">
-<span style=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,&quot;sans-=
-serif&quot;;color:#1F497D">If so, depending on the image (if it has ssh sup=
-port), you can copy into /home/root using scp after you boot the image.</sp=
-an><o:p></o:p></p>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
-lt:auto;margin-left:.5in">
-<span style=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,&quot;sans-=
-serif&quot;;color:#1F497D">I have use this to test mp3 playback, for exampl=
-e with some audio files.</span><o:p></o:p></p>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
-lt:auto;margin-left:.5in">
-<span style=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,&quot;sans-=
-serif&quot;;color:#1F497D">&nbsp;</span><o:p></o:p></p>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
-lt:auto;margin-left:.5in">
-<span style=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,&quot;sans-=
-serif&quot;;color:#1F497D">Regards,</span><o:p></o:p></p>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
-lt:auto;margin-left:.5in">
-<span style=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,&quot;sans-=
-serif&quot;;color:#1F497D">Cristian Iorga</span><o:p></o:p></p>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
-lt:auto;margin-left:.5in">
-<span style=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,&quot;sans-=
-serif&quot;;color:#1F497D">YP</span><o:p></o:p></p>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
-lt:auto;margin-left:.5in">
-<span style=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,&quot;sans-=
-serif&quot;;color:#1F497D">Intel Corporation</span><o:p></o:p></p>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
-lt:auto;margin-left:.5in">
-<a name=3D"145225d2fee78011__MailEndCompose"><span style=3D"font-size:11.0p=
-t;font-family:&quot;Calibri&quot;,&quot;sans-serif&quot;;color:#1F497D">&nb=
-sp;</span></a><o:p></o:p></p>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
-lt:auto;margin-left:1.0in">
-<b><span style=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,&quot;sa=
-ns-serif&quot;">From:</span></b><span style=3D"font-size:11.0pt;font-family=
-:&quot;Calibri&quot;,&quot;sans-serif&quot;">
-<a href=3D"mailto:yocto-bounces@yoctoproject.org" target=3D"_blank">yocto-b=
-ounces@yoctoproject.org</a> [mailto:<a href=3D"mailto:yocto-bounces@yoctopr=
-oject.org" target=3D"_blank">yocto-bounces@yoctoproject.org</a>]
-<b>On Behalf Of </b>Bhushan Shirsath<br>
-<b>Sent:</b> Wednesday, April 2, 2014 2:07 PM<br>
-<b>To:</b> <a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yoct=
-o@yoctoproject.org</a><br>
-<b>Subject:</b> [yocto] copying media files to qemux86</span><o:p></o:p></p=
+> - There is a patch for python recipe called 
+> "avoid_warning_about_tkinter.patch" which states "_tkinter module 
+> needs tk module along with tcl. tk is not yet integrated in yocto so 
+> we skip the check for this module. Avoid a warning by not adding this 
+> module to missing variable."
+> - I have included in my recipe: "python-core python-tkinter" which 
+> gave no error, but no tkinter installed and I have tried including 
+> "python-core python-modules" which gave me a lot of python modules, 
+> but still no tkinter. (tried "from Tkinter import *" which gave an 
+> error and no tkinter in /usr/lib/python2.7)
 >
-<div>
-<div>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
-lt:auto;margin-left:1.0in">
-&nbsp;<o:p></o:p></p>
-<div>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
-lt:auto;margin-left:1.0in">
-Hi,<o:p></o:p></p>
-<div>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
-lt:auto;margin-left:1.0in">
-&nbsp;<o:p></o:p></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
-lt:auto;margin-left:1.0in">
-I'm able to successfully launch &quot;runqemu qemux86&quot;.<o:p></o:p></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
-lt:auto;margin-left:1.0in">
-Now i intend to test the media libs built using Yocto on qemu currently.<o:=
-p></o:p></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
-lt:auto;margin-left:1.0in">
-Is it possible to transfer/copy media files to qemux86 emulator ?<o:p></o:p=
-></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
-lt:auto;margin-left:1.0in">
-&nbsp;<o:p></o:p></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
-lt:auto;margin-left:1.0in">
-I tried copying files to&nbsp;tmp/sysroots/qemux86/ but it didn't work.<o:p=
-></o:p></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
-lt:auto;margin-left:1.0in">
-&nbsp;<o:p></o:p></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
-lt:auto;margin-left:1.0in">
-Thanks,<o:p></o:p></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
-lt:auto;margin-left:1.0in">
---bhushan<o:p></o:p></p>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</blockquote>
-</div>
-<p class=3D"MsoNormal" style=3D"margin-left:.5in"><o:p>&nbsp;</o:p></p>
-</div>
-</div>
-</body>
-</html>
+> Do I manually need to install another package? Is it included or not? 
+> Do I need to do my own recipe?
 
---_000_969F26A8BAB325438E7EB80D3C3134FB1CE79221IRSMSX105gercor_--
+To answer my own question:
+
+Yes Tkinter is included in Python build but as the patch states it needs 
+tcl as well as tk with tcl already included in Yocto and tk not.
+
+Andrei Gherzan wrote a .bb for OE-Core for tk version 8.5.11 which did 
+work for me after bumping it to the latest version 8.6.1.
+
+If anybody needs it or wants to integrate it in Yocto here is the bb: 
+(just remember to include tk and tcl in your build or add dependencies 
+for them in python).
+
+http://pastebin.com/tRGk0U0c
+
+Jens
+
