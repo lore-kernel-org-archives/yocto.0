@@ -1,22 +1,40 @@
-Return-Path: <Alexandru.Vaduva@enea.com>
-Received: from mx-3.enea.com (sestofw01.enea.se [192.36.1.252])
-	by yocto-www.yoctoproject.org (Postfix) with SMTP id A32C2E00CA7
-	for <yocto@yoctoproject.org>; Mon,  7 Apr 2014 03:10:46 -0700 (PDT)
-Received: from sestofb10.enea.se (172.21.3.145) by smtp.enea.com
-	(172.21.1.208) with Microsoft SMTP Server id 14.3.158.1; Mon, 7 Apr 2014
-	12:10:40 +0200
-Received: by sestofb10.enea.se (Postfix, from userid 4470)	id BF754288415;
-	Mon,  7 Apr 2014 12:10:40 +0200 (CEST)
-From: Alexandru.Vaduva <Alexandru.Vaduva@enea.com>
-To: <yocto@yoctoproject.org>
-Date: Mon, 7 Apr 2014 12:10:37 +0200
-Message-ID: <1396865438-19132-1-git-send-email-Alexandru.Vaduva@enea.com>
-X-Mailer: git-send-email 1.7.10.4
+Return-Path: <vrajaram@cisco.com>
+Received: from rcdn-iport-6.cisco.com (rcdn-iport-6.cisco.com [173.37.86.77])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1534DE00CA8
+	for <yocto@yoctoproject.org>; Mon,  7 Apr 2014 05:32:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+	d=cisco.com; i=@cisco.com; l=5805; q=dns/txt; s=iport;
+	t=1396873960; x=1398083560;
+	h=from:to:subject:date:message-id:mime-version;
+	bh=LQS/250NIFaRWdgbspk5wgFIdD0JR+ilWJ6O4hD8Hgs=;
+	b=Ec6Uagbhj7uHz6AyatmisW/KIHsF2qhDJBdJriNDDvS6xTKMVPewvzsS
+	slm0f8v88Cq3QaDiRr3cikgamgpVw51kiRrhPQg2m075LV7XA9Y9LtiB9
+	ISGKNpVDksRhAqevNlR2fYcuePwxgrkTqldRXDuqTL0lQblvbkVgkYcuU 0=;
+X-IronPort-Anti-Spam-Filtered: true
+X-IronPort-Anti-Spam-Result: AhIFAJKaQlOtJA2E/2dsb2JhbABZgkJEO1fFOxZ0giyBCwEMdCcEiAyaGbE7F5MwBJhbgTSRC4Mwgis
+X-IronPort-AV: E=Sophos;i="4.97,810,1389744000"; 
+	d="scan'208,217";a="315802653"
+Received: from alln-core-10.cisco.com ([173.36.13.132])
+	by rcdn-iport-6.cisco.com with ESMTP; 07 Apr 2014 12:32:15 +0000
+Received: from xhc-aln-x01.cisco.com (xhc-aln-x01.cisco.com [173.36.12.75])
+	by alln-core-10.cisco.com (8.14.5/8.14.5) with ESMTP id s37CWFXt018715
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL)
+	for <yocto@yoctoproject.org>; Mon, 7 Apr 2014 12:32:15 GMT
+Received: from xmb-aln-x10.cisco.com ([169.254.5.135]) by
+	xhc-aln-x01.cisco.com ([173.36.12.75]) with mapi id 14.03.0123.003;
+	Mon, 7 Apr 2014 07:32:15 -0500
+From: "Vinodh Rajaraman (vrajaram)" <vrajaram@cisco.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: Provides/Depends
+Thread-Index: AQHPUl1nD6lftrqrJ06oALLpFN/sXg==
+Date: Mon, 7 Apr 2014 12:32:14 +0000
+Message-ID: <CF689193.37F0%vrajaram@cisco.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.142.105.204]
 MIME-Version: 1.0
-Received-SPF: None (SESTOEX08.enea.se: Alexandru.Vaduva@enea.com does not
-	designate permitted sender hosts)
-Cc: "Alexandru.Vaduva" <Alexandru.Vaduva@enea.com>
-Subject: [PATCH] libcap-ng: resolved issue related with LONG_BIT definition.
+Subject: Provides/Depends
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -28,115 +46,158 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 07 Apr 2014 10:10:51 -0000
-Content-Type: text/plain
+X-List-Received-Date: Mon, 07 Apr 2014 12:32:40 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_CF68919337F0vrajaramciscocom_"
 
-From: "Alexandru.Vaduva" <Alexandru.Vaduva@enea.com>
+--_000_CF68919337F0vrajaramciscocom_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-The problem is well known for 64 bits architectures and the solution
-is offered in the same recibe but in the meta-selinux layer.
+Hi,
 
-Signed-off-by: Alexandru.Vaduva <Alexandru.Vaduva@enea.com>
----
- recipes-security/libcap-ng/libcap-ng/python.patch |   39 +++++++++++++++++++++
- recipes-security/libcap-ng/libcap-ng_0.7.3.bb     |   38 ++++++++++++++++----
- 2 files changed, 71 insertions(+), 6 deletions(-)
- create mode 100644 recipes-security/libcap-ng/libcap-ng/python.patch
+Am new to BitBake, and would need some help understanding RPROVIDES/RDEPEND=
+S and how I need to write Recipes with respect to these. Am writing a new R=
+ecipe to generate a RPM, and we get few dependency errors as below.
 
-diff --git a/recipes-security/libcap-ng/libcap-ng/python.patch b/recipes-security/libcap-ng/libcap-ng/python.patch
-new file mode 100644
-index 0000000..d82ceb4
---- /dev/null
-+++ b/recipes-security/libcap-ng/libcap-ng/python.patch
-@@ -0,0 +1,39 @@
-+configure.ac - Avoid an incorrect check for python.
-+Makefile.am - avoid hard coded host include paths.
-+
-+Signed-off-by: Mark Hatle <mark.hatle@windriver.com>
-+
-+--- libcap-ng-0.6.5/configure.ac.orig	2012-01-17 13:59:03.645898989 -0600
-++++ libcap-ng-0.6.5/configure.ac	2012-01-17 13:59:46.353959252 -0600
-+@@ -120,17 +120,8 @@
-+ else
-+ AC_MSG_RESULT(testing)
-+ AM_PATH_PYTHON
-+-if test -f /usr/include/python${am_cv_python_version}/Python.h ; then
-+-	python_found="yes"
-+-	AC_MSG_NOTICE(Python bindings will be built)
-+-else
-+-	python_found="no"
-+-	if test x$use_python = xyes ; then
-+-		AC_MSG_ERROR([Python explicitly required and python headers found])
-+-	else
-+-		AC_MSG_WARN("Python headers not found - python bindings will not be made")
-+-	fi
-+-fi
-++python_found="yes"
-++AC_MSG_NOTICE(Python bindings will be built)
-+ fi
-+ AM_CONDITIONAL(HAVE_PYTHON, test ${python_found} = "yes")
-+ 
-+--- libcap-ng-0.6.5/bindings/python/Makefile.am.orig	2010-11-03 12:31:59.000000000 -0500
-++++ libcap-ng-0.6.5/bindings/python/Makefile.am	2012-01-17 14:05:50.199834467 -0600
-+@@ -24,7 +24,8 @@
-+ CONFIG_CLEAN_FILES = *.loT *.rej *.orig
-+ AM_CFLAGS = -fPIC -DPIC
-+ PYLIBVER ?= python$(PYTHON_VERSION)
-+-INCLUDES = -I. -I$(top_builddir) -I/usr/include/$(PYLIBVER)
-++PYINC ?= /usr/include/$(PYLIBVER)
-++INCLUDES = -I. -I$(top_builddir) -I$(PYINC)
-+ LIBS = $(top_builddir)/src/libcap-ng.la
-+ pyexec_PYTHON = capng.py
-+ pyexec_LTLIBRARIES = _capng.la
-diff --git a/recipes-security/libcap-ng/libcap-ng_0.7.3.bb b/recipes-security/libcap-ng/libcap-ng_0.7.3.bb
-index ef70207..3f225ba 100644
---- a/recipes-security/libcap-ng/libcap-ng_0.7.3.bb
-+++ b/recipes-security/libcap-ng/libcap-ng_0.7.3.bb
-@@ -1,11 +1,37 @@
--DESCRIPTION = "The libcap-ng library is intended to make programming with posix capabilities much easier than the traditional libcap library."
--HOMEPAGE = "http://people.redhat.com/sgrubb/libcap-ng/index.html"
--LICENSE = "GPL-2.0"
--LIC_FILES_CHKSUM = "file://COPYING;md5=94d55d512a9ba36caa9b7df079bae19f"
-+SUMMARY = "An alternate posix capabilities library"
-+DESCRIPTION = "The libcap-ng library is intended to make programming \
-+with POSIX capabilities much easier than the traditional libcap library."
-+HOMEPAGE = "http://freecode.com/projects/libcap-ng"
-+SECTION = "base"
-+LICENSE = "GPLv2+ & LGPLv2.1+"
-+LIC_FILES_CHKSUM = "file://COPYING;md5=94d55d512a9ba36caa9b7df079bae19f \
-+		    file://COPYING.LIB;md5=e3eda01d9815f8d24aae2dbd89b68b06"
- 
--SRC_URI = "http://people.redhat.com/sgrubb/libcap-ng/${PN}-${PV}.tar.gz"
-+SRC_URI = "http://people.redhat.com/sgrubb/libcap-ng/libcap-ng-${PV}.tar.gz \
-+	   file://python.patch"
-+
-+inherit lib_package autotools pythonnative
- 
- SRC_URI[md5sum] = "610afb774f80a8032b711281df126283"
- SRC_URI[sha256sum] = "5ca441c8d3a1e4cfe8a8151907977662679457311ccaa7eaac91447c33a35bb1"
- 
--inherit autotools
-+DEPENDS += "swig-native python"
-+
-+EXTRA_OEMAKE += "PYLIBVER='python${PYTHON_BASEVERSION}' PYINC='${STAGING_INCDIR}/${PYLIBVER}'"
-+
-+PACKAGES += "${PN}-python"
-+
-+FILES_${PN}-dbg += "${libdir}/python${PYTHON_BASEVERSION}/*/.debug"
-+FILES_${PN}-python = "${libdir}/python${PYTHON_BASEVERSION}"
-+
-+BBCLASSEXTEND = "native"
-+
-+do_install_append() {
-+	# Moving libcap-ng to base_libdir
-+	if [ ! ${D}${libdir} -ef ${D}${base_libdir} ]; then
-+		mkdir -p ${D}/${base_libdir}/
-+		mv -f ${D}${libdir}/libcap-ng.so.* ${D}${base_libdir}/
-+		relpath=${@os.path.relpath("${base_libdir}", "${libdir}")}
-+		ln -sf ${relpath}/libcap-ng.so.0.0.0 ${D}${libdir}/libcap-ng.so
-+	fi
-+}
--- 
-1.7.10.4
+Computing transaction...error: Can't install core-1.0-r0@lib32_x86: no pack=
+age provides libdevmapper.so.1.02
+Computing transaction...error: Can't install core-1.0-r0@lib32_x86: no pack=
+age provides /usr/bin/expect
+Computing transaction...error: Can't install core-1.0-r0@lib32_x86: no pack=
+age provides libicudata.so.36
 
 
+In my workspace, I see that nobody is providing this library, but a rpm que=
+ry on system yields as below
+
+$ rpm --query --provides device-mapper
+libdevmapper-event.so.1.02()(64bit)
+libdevmapper-event.so.1.02(Base)(64bit)
+libdevmapper.so.1.02()(64bit)
+libdevmapper.so.1.02(Base)(64bit)
+device-mapper =3D 1.02.67-2.el5
+libdevmapper-event.so.1.02
+libdevmapper-event.so.1.02(Base)
+libdevmapper.so.1.02
+libdevmapper.so.1.02(Base)
+device-mapper =3D 1.02.67-2.el5
+
+I see that there is a package that provides this library that my Bitbake re=
+cipe is dependent on.
+sjc-ads-1625:/ws/vrajaram-sjc/demo/satori/target-n9000/bitbake_build/tmp/wo=
+rk=3D>$find . -name "libicudata*"
+./x86_64-wrs-linux/icu-3.6-r7/icu/source/stubdata/libicudata.so.36.0
+./x86_64-wrs-linux/icu-3.6-r7/icu/source/stubdata/libicudata.so.36
+./x86_64-wrs-linux/icu-3.6-r7/icu/source/stubdata/libicudata.so
+./x86_64-wrs-linux/icu-3.6-r7/icu/source/lib/libicudata.so.36.0
+./x86_64-wrs-linux/icu-3.6-r7/icu/source/lib/libicudata.so.36
+./x86_64-wrs-linux/icu-3.6-r7/icu/source/lib/libicudata.so
+./x86_64-wrs-linux/icu-3.6-r7/image/usr/lib64/libicudata.so.36.0
+./x86_64-wrs-linux/icu-3.6-r7/image/usr/lib64/libicudata.so
+./x86_64-wrs-linux/icu-3.6-r7/image/usr/lib64/libicudata.so.36
+
+sjc-ads-1625:/ws/vrajaram-sjc/demo/satori/target-n9000/bitbake_build/tmp/wo=
+rk=3D>$which expect
+/usr/bin/expect
+
+
+Now question is, how do I make my recipe refer to above packages, or librar=
+ies ? Do I need to add them to RDEPENDS_{PN} +=3D " " ? And what syntax sho=
+uld I use for referencing for each case above? Not sure from where I can ge=
+t /usr/bin/expect from ? Should we download ?
+
+Vinodh
+
+--_000_CF68919337F0vrajaramciscocom_
+Content-Type: text/html; charset="us-ascii"
+Content-ID: <956146E189F29841A22B6D9AEFF21EBE@emea.cisco.com>
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+</head>
+<body style=3D"word-wrap: break-word; -webkit-nbsp-mode: space; -webkit-lin=
+e-break: after-white-space; color: rgb(0, 0, 0); font-size: 14px; font-fami=
+ly: Baskerville, sans-serif; ">
+<div>Hi,</div>
+<div><br>
+</div>
+<div>Am new to BitBake, and would need some help understanding RPROVIDES/RD=
+EPENDS and how I need to write Recipes with respect to these. Am writing a =
+new Recipe to generate a RPM, and we get few dependency errors as below.</d=
+iv>
+<div><br>
+</div>
+<div>Computing transaction...error: Can't install core-1.0-r0@lib32_x86: no=
+ package provides libdevmapper.so.1.02</div>
+<div>Computing transaction...error: Can't install core-1.0-r0@lib32_x86: no=
+ package provides /usr/bin/expect</div>
+<div>Computing transaction...error: Can't install core-1.0-r0@lib32_x86: no=
+ package provides libicudata.so.36</div>
+<div><br>
+</div>
+<div><br>
+</div>
+<div>In my workspace, I see that nobody is providing this library, but a rp=
+m query on system yields as below</div>
+<div><br>
+</div>
+<div>
+<div>$ rpm --query --provides device-mapper</div>
+<div>libdevmapper-event.so.1.02()(64bit)</div>
+<div>libdevmapper-event.so.1.02(Base)(64bit)</div>
+<div>libdevmapper.so.1.02()(64bit)</div>
+<div>libdevmapper.so.1.02(Base)(64bit)</div>
+<div>device-mapper =3D 1.02.67-2.el5</div>
+<div>libdevmapper-event.so.1.02</div>
+<div>libdevmapper-event.so.1.02(Base)</div>
+<div><b>libdevmapper.so.1.02</b></div>
+<div><b>libdevmapper.so.1.02(Base)</b></div>
+<div>device-mapper =3D 1.02.67-2.el5</div>
+</div>
+<div><br>
+</div>
+<div>I see that there is a package that provides this library that my Bitba=
+ke recipe is dependent on.</div>
+<div>
+<div>sjc-ads-1625:/ws/vrajaram-sjc/demo/satori/target-n9000/bitbake_build/t=
+mp/work=3D&gt;$find . -name &quot;libicudata*&quot;</div>
+<div>./x86_64-wrs-linux/icu-3.6-r7/icu/source/stubdata/libicudata.so.36.0</=
+div>
+<div>./x86_64-wrs-linux/icu-3.6-r7/icu/source/stubdata/libicudata.so.36</di=
+v>
+<div>./x86_64-wrs-linux/icu-3.6-r7/icu/source/stubdata/libicudata.so</div>
+<div>./x86_64-wrs-linux/icu-3.6-r7/icu/source/lib/libicudata.so.36.0</div>
+<div>./x86_64-wrs-linux/icu-3.6-r7/icu/source/lib/libicudata.so.36</div>
+<div>./x86_64-wrs-linux/icu-3.6-r7/icu/source/lib/libicudata.so</div>
+<div>./x86_64-wrs-linux/icu-3.6-r7/image/usr/lib64/libicudata.so.36.0</div>
+<div>./x86_64-wrs-linux/icu-3.6-r7/image/usr/lib64/libicudata.so</div>
+<div>./x86_64-wrs-linux/icu-3.6-r7/image/usr/lib64/libicudata.so.36</div>
+</div>
+<div><br>
+</div>
+<div>
+<div>sjc-ads-1625:/ws/vrajaram-sjc/demo/satori/target-n9000/bitbake_build/t=
+mp/work=3D&gt;$which expect</div>
+<div>/usr/bin/expect</div>
+</div>
+<div><br>
+</div>
+<div><br>
+</div>
+<div>Now question is, how do I make my recipe refer to above packages, or l=
+ibraries ? Do I need to add them to RDEPENDS_{PN} &#43;=3D &quot; &quot; ? =
+And what syntax should I use for referencing for each case above? Not sure =
+from where I can get /usr/bin/expect from ? Should
+ we download ?</div>
+<div><br>
+</div>
+<div>Vinodh</div>
+</body>
+</html>
+
+--_000_CF68919337F0vrajaramciscocom_--
