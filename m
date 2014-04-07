@@ -1,40 +1,42 @@
-Return-Path: <vrajaram@cisco.com>
-Received: from rcdn-iport-6.cisco.com (rcdn-iport-6.cisco.com [173.37.86.77])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1534DE00CA8
-	for <yocto@yoctoproject.org>; Mon,  7 Apr 2014 05:32:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-	d=cisco.com; i=@cisco.com; l=5805; q=dns/txt; s=iport;
-	t=1396873960; x=1398083560;
-	h=from:to:subject:date:message-id:mime-version;
-	bh=LQS/250NIFaRWdgbspk5wgFIdD0JR+ilWJ6O4hD8Hgs=;
-	b=Ec6Uagbhj7uHz6AyatmisW/KIHsF2qhDJBdJriNDDvS6xTKMVPewvzsS
-	slm0f8v88Cq3QaDiRr3cikgamgpVw51kiRrhPQg2m075LV7XA9Y9LtiB9
-	ISGKNpVDksRhAqevNlR2fYcuePwxgrkTqldRXDuqTL0lQblvbkVgkYcuU 0=;
-X-IronPort-Anti-Spam-Filtered: true
-X-IronPort-Anti-Spam-Result: AhIFAJKaQlOtJA2E/2dsb2JhbABZgkJEO1fFOxZ0giyBCwEMdCcEiAyaGbE7F5MwBJhbgTSRC4Mwgis
-X-IronPort-AV: E=Sophos;i="4.97,810,1389744000"; 
-	d="scan'208,217";a="315802653"
-Received: from alln-core-10.cisco.com ([173.36.13.132])
-	by rcdn-iport-6.cisco.com with ESMTP; 07 Apr 2014 12:32:15 +0000
-Received: from xhc-aln-x01.cisco.com (xhc-aln-x01.cisco.com [173.36.12.75])
-	by alln-core-10.cisco.com (8.14.5/8.14.5) with ESMTP id s37CWFXt018715
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL)
-	for <yocto@yoctoproject.org>; Mon, 7 Apr 2014 12:32:15 GMT
-Received: from xmb-aln-x10.cisco.com ([169.254.5.135]) by
-	xhc-aln-x01.cisco.com ([173.36.12.75]) with mapi id 14.03.0123.003;
-	Mon, 7 Apr 2014 07:32:15 -0500
-From: "Vinodh Rajaraman (vrajaram)" <vrajaram@cisco.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Provides/Depends
-Thread-Index: AQHPUl1nD6lftrqrJ06oALLpFN/sXg==
-Date: Mon, 7 Apr 2014 12:32:14 +0000
-Message-ID: <CF689193.37F0%vrajaram@cisco.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.142.105.204]
+Return-Path: <joe@deserted.net>
+Received: from mail-qg0-f51.google.com (mail-qg0-f51.google.com
+	[209.85.192.51])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6996AE00B57
+	for <yocto@yoctoproject.org>; Mon,  7 Apr 2014 06:54:51 -0700 (PDT)
+Received: by mail-qg0-f51.google.com with SMTP id q108so6173304qgd.38
+	for <yocto@yoctoproject.org>; Mon, 07 Apr 2014 06:54:51 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+	:mime-version:content-type:content-disposition:in-reply-to
+	:user-agent;
+	bh=+VTIY9qbZBZ9NMYw7O/2OaV280xUEJZOh3k9Ooss5eY=;
+	b=JSIq1b+nepZ3TK//XsK+xWWQWjssaxry33ehvW74E8DHPYCGAOkZaVo5Ak6DnL8a/I
+	UAFBwIjvjVtC18qJdybUHG5nnG++Xsw/Ce6UUZukpE9bbCCCMe7b3n87mzcd/PQ2d740
+	Ugr6BDnwPN00oGyZLkcEo4e/L61eUZ8N/NXbXTlPCwsE3D1muRIMWidRiNEei0a2xxxh
+	k2vJdTOwbtYbymD/9ENf0kc2gOC/Kpa5Z3/Nc4sab9qyr9RPgzxq3nxXNrh82tmtlYwQ
+	+hjAKoBDaXH6HBWQxofxbaVhXpoA1AnEI6WZPeysJ92Gb7dzPM+3eO2/DC/prWuoLjn7
+	A+cg==
+X-Gm-Message-State: ALoCoQlPXr0p9gJOfGPHjx+owznj5sTKIXSyBpbpj0OTQfCe8YkJ2upTpa3u71GhsZPVA/Twaek4
+X-Received: by 10.229.179.65 with SMTP id bp1mr15111758qcb.11.1396878891106;
+	Mon, 07 Apr 2014 06:54:51 -0700 (PDT)
+Received: from deserted.net ([128.224.252.2]) by mx.google.com with ESMTPSA id
+	p68sm23176715qga.18.2014.04.07.06.54.49 for <multiple recipients>
+	(version=TLSv1.2 cipher=RC4-SHA bits=128/128);
+	Mon, 07 Apr 2014 06:54:49 -0700 (PDT)
+Date: Mon, 7 Apr 2014 09:54:47 -0400
+From: Joe MacDonald <joe@deserted.net>
+To: Mark Hatle <mark.hatle@windriver.com>
+Message-ID: <20140407135445.GA5044@deserted.net>
+References: <1396652972-28046-1-git-send-email-mark.hatle@windriver.com>
 MIME-Version: 1.0
-Subject: Provides/Depends
+In-Reply-To: <1396652972-28046-1-git-send-email-mark.hatle@windriver.com>
+X-URL: http://github.com/joeythesaint/joe-s-common-environment/tree/master
+X-Configuration: git://github.com/joeythesaint/joe-s-common-environment.git
+X-Editor: Vim-703 http://www.vim.org
+User-Agent: Mutt/1.5.22 (2013-10-16)
+Cc: yocto@yoctoproject.org
+Subject: Re: [meta-selinux][PATCH] audit: Fix lack of a default audit.rules
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -46,158 +48,97 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 07 Apr 2014 12:32:40 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_CF68919337F0vrajaramciscocom_"
+X-List-Received-Date: Mon, 07 Apr 2014 13:54:52 -0000
+X-Groupsio-MsgNum: 18867
+Content-Type: multipart/signed; micalg=pgp-sha1;
+	protocol="application/pgp-signature"; boundary="ZPt4rx8FFjLCG7dd"
+Content-Disposition: inline
 
---_000_CF68919337F0vrajaramciscocom_
-Content-Type: text/plain; charset="us-ascii"
+--ZPt4rx8FFjLCG7dd
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-Hi,
+[[meta-selinux][PATCH] audit: Fix lack of a default audit.rules] On 14.04.0=
+4 (Fri 18:09) Mark Hatle wrote:
 
-Am new to BitBake, and would need some help understanding RPROVIDES/RDEPEND=
-S and how I need to write Recipes with respect to these. Am writing a new R=
-ecipe to generate a RPM, and we get few dependency errors as below.
+> Various components were failing, and upon investigation it was noted
+> that the audit.rules file referenced by the initscript wasn't available.
+>=20
+> There was however a copy under the rules.d directory.  Investigating
+> the audit.spec file (which in the upstream source) showed that it was
+> expected that the version in the rules.d should be copied into
+> /etc/audit.
 
-Computing transaction...error: Can't install core-1.0-r0@lib32_x86: no pack=
-age provides libdevmapper.so.1.02
-Computing transaction...error: Can't install core-1.0-r0@lib32_x86: no pack=
-age provides /usr/bin/expect
-Computing transaction...error: Can't install core-1.0-r0@lib32_x86: no pack=
-age provides libicudata.so.36
+It's expected that you'd actually generate the audit.rules file using
+augenrules, but this is a reasonable approximation of that.  :-)
 
+> Do this and correct the systemd services file to use the same file.
 
-In my workspace, I see that nobody is providing this library, but a rpm que=
-ry on system yields as below
+Also the right thing to do here.
 
-$ rpm --query --provides device-mapper
-libdevmapper-event.so.1.02()(64bit)
-libdevmapper-event.so.1.02(Base)(64bit)
-libdevmapper.so.1.02()(64bit)
-libdevmapper.so.1.02(Base)(64bit)
-device-mapper =3D 1.02.67-2.el5
-libdevmapper-event.so.1.02
-libdevmapper-event.so.1.02(Base)
-libdevmapper.so.1.02
-libdevmapper.so.1.02(Base)
-device-mapper =3D 1.02.67-2.el5
+Merging.
+-J.
 
-I see that there is a package that provides this library that my Bitbake re=
-cipe is dependent on.
-sjc-ads-1625:/ws/vrajaram-sjc/demo/satori/target-n9000/bitbake_build/tmp/wo=
-rk=3D>$find . -name "libicudata*"
-./x86_64-wrs-linux/icu-3.6-r7/icu/source/stubdata/libicudata.so.36.0
-./x86_64-wrs-linux/icu-3.6-r7/icu/source/stubdata/libicudata.so.36
-./x86_64-wrs-linux/icu-3.6-r7/icu/source/stubdata/libicudata.so
-./x86_64-wrs-linux/icu-3.6-r7/icu/source/lib/libicudata.so.36.0
-./x86_64-wrs-linux/icu-3.6-r7/icu/source/lib/libicudata.so.36
-./x86_64-wrs-linux/icu-3.6-r7/icu/source/lib/libicudata.so
-./x86_64-wrs-linux/icu-3.6-r7/image/usr/lib64/libicudata.so.36.0
-./x86_64-wrs-linux/icu-3.6-r7/image/usr/lib64/libicudata.so
-./x86_64-wrs-linux/icu-3.6-r7/image/usr/lib64/libicudata.so.36
+>=20
+> Signed-off-by: Mark Hatle <mark.hatle@windriver.com>
+> ---
+>  recipes-security/audit/audit/auditd.service | 2 +-
+>  recipes-security/audit/audit_2.3.2.bb       | 5 +++++
+>  2 files changed, 6 insertions(+), 1 deletion(-)
+>=20
+> diff --git a/recipes-security/audit/audit/auditd.service b/recipes-securi=
+ty/audit/audit/auditd.service
+> index 6daa056..adf4d3b 100644
+> --- a/recipes-security/audit/audit/auditd.service
+> +++ b/recipes-security/audit/audit/auditd.service
+> @@ -14,7 +14,7 @@ ExecStart=3D/sbin/auditd -n
+>  ## Then copy existing rules to /etc/audit/rules.d/
+>  ## Not doing this last step can cause loss of existing rules
+>  #ExecStartPost=3D-/sbin/augenrules --load
+> -ExecStartPost=3D-/sbin/auditctl -R /etc/audit/rules.d/audit.rules
+> +ExecStartPost=3D-/sbin/auditctl -R /etc/audit/audit.rules
+>  ExecReload=3D/bin/kill -HUP $MAINPID
+> =20
+>  [Install]
+> diff --git a/recipes-security/audit/audit_2.3.2.bb b/recipes-security/aud=
+it/audit_2.3.2.bb
+> index 4a9c954..ae6556f 100644
+> --- a/recipes-security/audit/audit_2.3.2.bb
+> +++ b/recipes-security/audit/audit_2.3.2.bb
+> @@ -67,6 +67,8 @@ FILES_${PN}-dbg +=3D "${libdir}/python${PYTHON_BASEVERS=
+ION}/*/.debug"
+>  FILES_${PN}-python =3D "${libdir}/python${PYTHON_BASEVERSION}"
+>  FILES_${PN}-dev +=3D "${base_libdir}/*.so ${base_libdir}/*.la"
+> =20
+> +CONFFILES_auditd +=3D "${sysconfdir}/audit/audit.rules"
+> +
+>  do_install_append() {
+>  	rm -f ${D}/${libdir}/python${PYTHON_BASEVERSION}/site-packages/*.a
+>  	rm -f ${D}/${libdir}/python${PYTHON_BASEVERSION}/site-packages/*.la
+> @@ -91,4 +93,7 @@ do_install_append() {
+> =20
+>  	chmod 750 ${D}/etc/audit ${D}/etc/audit/rules.d
+>  	chmod 640 ${D}/etc/audit/auditd.conf ${D}/etc/audit/rules.d/audit.rules
+> +
+> +	# Based on the audit.spec "Copy default rules into place on new install=
+ation"
+> +	cp ${D}/etc/audit/rules.d/audit.rules ${D}/etc/audit/audit.rules
+>  }
+--=20
+-Joe MacDonald.
+:wq
 
-sjc-ads-1625:/ws/vrajaram-sjc/demo/satori/target-n9000/bitbake_build/tmp/wo=
-rk=3D>$which expect
-/usr/bin/expect
+--ZPt4rx8FFjLCG7dd
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: Digital signature
 
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1.4.12 (GNU/Linux)
 
-Now question is, how do I make my recipe refer to above packages, or librar=
-ies ? Do I need to add them to RDEPENDS_{PN} +=3D " " ? And what syntax sho=
-uld I use for referencing for each case above? Not sure from where I can ge=
-t /usr/bin/expect from ? Should we download ?
+iEYEARECAAYFAlNCrg4ACgkQwFvcllog0XzYPACfaJ68KbYAxm0oubIcSPClcYYY
+BisAn2wIyiBf1uWx4DBQsLiqxwuTODLH
+=atl2
+-----END PGP SIGNATURE-----
 
-Vinodh
-
---_000_CF68919337F0vrajaramciscocom_
-Content-Type: text/html; charset="us-ascii"
-Content-ID: <956146E189F29841A22B6D9AEFF21EBE@emea.cisco.com>
-Content-Transfer-Encoding: quoted-printable
-
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-</head>
-<body style=3D"word-wrap: break-word; -webkit-nbsp-mode: space; -webkit-lin=
-e-break: after-white-space; color: rgb(0, 0, 0); font-size: 14px; font-fami=
-ly: Baskerville, sans-serif; ">
-<div>Hi,</div>
-<div><br>
-</div>
-<div>Am new to BitBake, and would need some help understanding RPROVIDES/RD=
-EPENDS and how I need to write Recipes with respect to these. Am writing a =
-new Recipe to generate a RPM, and we get few dependency errors as below.</d=
-iv>
-<div><br>
-</div>
-<div>Computing transaction...error: Can't install core-1.0-r0@lib32_x86: no=
- package provides libdevmapper.so.1.02</div>
-<div>Computing transaction...error: Can't install core-1.0-r0@lib32_x86: no=
- package provides /usr/bin/expect</div>
-<div>Computing transaction...error: Can't install core-1.0-r0@lib32_x86: no=
- package provides libicudata.so.36</div>
-<div><br>
-</div>
-<div><br>
-</div>
-<div>In my workspace, I see that nobody is providing this library, but a rp=
-m query on system yields as below</div>
-<div><br>
-</div>
-<div>
-<div>$ rpm --query --provides device-mapper</div>
-<div>libdevmapper-event.so.1.02()(64bit)</div>
-<div>libdevmapper-event.so.1.02(Base)(64bit)</div>
-<div>libdevmapper.so.1.02()(64bit)</div>
-<div>libdevmapper.so.1.02(Base)(64bit)</div>
-<div>device-mapper =3D 1.02.67-2.el5</div>
-<div>libdevmapper-event.so.1.02</div>
-<div>libdevmapper-event.so.1.02(Base)</div>
-<div><b>libdevmapper.so.1.02</b></div>
-<div><b>libdevmapper.so.1.02(Base)</b></div>
-<div>device-mapper =3D 1.02.67-2.el5</div>
-</div>
-<div><br>
-</div>
-<div>I see that there is a package that provides this library that my Bitba=
-ke recipe is dependent on.</div>
-<div>
-<div>sjc-ads-1625:/ws/vrajaram-sjc/demo/satori/target-n9000/bitbake_build/t=
-mp/work=3D&gt;$find . -name &quot;libicudata*&quot;</div>
-<div>./x86_64-wrs-linux/icu-3.6-r7/icu/source/stubdata/libicudata.so.36.0</=
-div>
-<div>./x86_64-wrs-linux/icu-3.6-r7/icu/source/stubdata/libicudata.so.36</di=
-v>
-<div>./x86_64-wrs-linux/icu-3.6-r7/icu/source/stubdata/libicudata.so</div>
-<div>./x86_64-wrs-linux/icu-3.6-r7/icu/source/lib/libicudata.so.36.0</div>
-<div>./x86_64-wrs-linux/icu-3.6-r7/icu/source/lib/libicudata.so.36</div>
-<div>./x86_64-wrs-linux/icu-3.6-r7/icu/source/lib/libicudata.so</div>
-<div>./x86_64-wrs-linux/icu-3.6-r7/image/usr/lib64/libicudata.so.36.0</div>
-<div>./x86_64-wrs-linux/icu-3.6-r7/image/usr/lib64/libicudata.so</div>
-<div>./x86_64-wrs-linux/icu-3.6-r7/image/usr/lib64/libicudata.so.36</div>
-</div>
-<div><br>
-</div>
-<div>
-<div>sjc-ads-1625:/ws/vrajaram-sjc/demo/satori/target-n9000/bitbake_build/t=
-mp/work=3D&gt;$which expect</div>
-<div>/usr/bin/expect</div>
-</div>
-<div><br>
-</div>
-<div><br>
-</div>
-<div>Now question is, how do I make my recipe refer to above packages, or l=
-ibraries ? Do I need to add them to RDEPENDS_{PN} &#43;=3D &quot; &quot; ? =
-And what syntax should I use for referencing for each case above? Not sure =
-from where I can get /usr/bin/expect from ? Should
- we download ?</div>
-<div><br>
-</div>
-<div>Vinodh</div>
-</body>
-</html>
-
---_000_CF68919337F0vrajaramciscocom_--
+--ZPt4rx8FFjLCG7dd--
