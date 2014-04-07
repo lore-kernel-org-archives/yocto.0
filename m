@@ -1,26 +1,28 @@
-Return-Path: <philip@balister.org>
-Received: from starfish.geekisp.com (starfish.geekisp.com [216.168.135.166])
-	by yocto-www.yoctoproject.org (Postfix) with SMTP id B6FC1E00C51
-	for <yocto@yoctoproject.org>; Mon,  7 Apr 2014 16:01:59 -0700 (PDT)
-Received: (qmail 26674 invoked by uid 1003); 7 Apr 2014 23:01:58 -0000
-Received: from unknown (HELO ?10.16.32.157?)
-	(philip@opensdr.com@64.186.172.226)
-	by mail.geekisp.com with (DHE-RSA-AES128-SHA encrypted) SMTP;
-	7 Apr 2014 23:01:58 -0000
-Message-ID: <53432E65.6040107@balister.org>
-Date: Mon, 07 Apr 2014 16:01:57 -0700
-From: Philip Balister <philip@balister.org>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:24.0) Gecko/20100101 Thunderbird/24.4.0
-MIME-Version: 1.0
-To: "openembedded-devel@lists.openembedded.org"
-	<openembedded-devel@lists.openembedded.org>, 
-	openembedded-core <openembedded-core@lists.openembedded.org>, 
-	"openembedded-members@lists.openembedded.org"
-	<openembedded-members@lists.openembedded.org>, 
-	Yocto Project <yocto@yoctoproject.org>
-X-Enigmail-Version: 1.6
-Subject: OEDAM updates
+Return-Path: <denis@denix.org>
+Received: from vms173023pub.verizon.net (vms173023pub.verizon.net
+	[206.46.173.23])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 89CDBE00C46
+	for <yocto@yoctoproject.org>; Mon,  7 Apr 2014 16:17:58 -0700 (PDT)
+Received: from gandalf.denix.org ([unknown] [71.191.205.189])
+	by vms173023.mailsrvcs.net
+	(Sun Java(tm) System Messaging Server 7u2-7.02 32bit (built Apr 16
+	2009)) with ESMTPA id <0N3O00C3GOP0Y9E0@vms173023.mailsrvcs.net> for
+	yocto@yoctoproject.org; Mon, 07 Apr 2014 18:17:39 -0500 (CDT)
+Received: by gandalf.denix.org (Postfix, from userid 1000)	id D9629200AC; Mon,
+	07 Apr 2014 19:17:23 -0400 (EDT)
+Date: Mon, 07 Apr 2014 19:17:23 -0400
+From: Denys Dmytriyenko <denis@denix.org>
+To: openembedded-members@lists.openembedded.org
+Message-id: <20140407231723.GJ3370@denix.org>
+References: <53432E65.6040107@balister.org>
+MIME-version: 1.0
+In-reply-to: <53432E65.6040107@balister.org>
+User-Agent: Mutt/1.5.20 (2009-06-14)
+Cc: Yocto Project <yocto@yoctoproject.org>,
+	"openembedded-devel@lists.openembedded.org"
+	<openembedded-devel@lists.openembedded.org>,
+	openembedded-core <openembedded-core@lists.openembedded.org>
+Subject: Re: OEDAM updates
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,19 +34,25 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 07 Apr 2014 23:02:03 -0000
-Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Mon, 07 Apr 2014 23:18:00 -0000
+Content-type: text/plain; charset=us-ascii
+Content-disposition: inline
 
-Once again, please add yourself (or email Jefro or myself) if you plan
-to attend OEDAM. We have room for about 5-10 more people.
+On Mon, Apr 07, 2014 at 04:01:57PM -0700, Philip Balister wrote:
+> Once again, please add yourself (or email Jefro or myself) if you plan
+> to attend OEDAM. We have room for about 5-10 more people.
+> 
+> http://www.openembedded.org/wiki/OEDAM
+> 
+> We should also get serious about creating an agenda. Even if you are not
+> able to attend please take a look at the agenda and add topics you think
+> should be discussed. We'll likely have to review the agenda when we
+> start, but now is a good time to air your grievances.
 
-http://www.openembedded.org/wiki/OEDAM
+I'm not sure how many will be staying all day Saturday, but can we try to 
+group agenda topics so most pressing matters fall on Friday and maybe Saturday 
+morning?
 
-We should also get serious about creating an agenda. Even if you are not
-able to attend please take a look at the agenda and add topics you think
-should be discussed. We'll likely have to review the agenda when we
-start, but now is a good time to air your grievances.
-
-Philip
+-- 
+Denys
 
