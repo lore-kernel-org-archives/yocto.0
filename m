@@ -1,22 +1,34 @@
-Return-Path: <Valentin.Cobelea@enea.com>
-Received: from mx-3.enea.com (sestofw01.enea.se [192.36.1.252])
-	by yocto-www.yoctoproject.org (Postfix) with SMTP id 98636E00BEF
-	for <yocto@yoctoproject.org>; Tue,  8 Apr 2014 08:41:03 -0700 (PDT)
-Received: from localhost.enea.se (192.168.14.171) by smtp.enea.com
-	(172.21.1.208) with Microsoft SMTP Server id 14.3.158.1; Tue, 8 Apr 2014
-	17:41:02 +0200
-Message-ID: <5344188D.60707@enea.com>
-Date: Tue, 8 Apr 2014 18:41:01 +0300
-From: Vali Cobelea <valentin.cobelea@enea.com>
-Organization: ENEA
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:24.0) Gecko/20100101 Thunderbird/24.2.0
+Return-Path: <kergoth@gmail.com>
+Received: from mail-bk0-f41.google.com (mail-bk0-f41.google.com
+	[209.85.214.41])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 252DBE00BEA
+	for <yocto@yoctoproject.org>; Tue,  8 Apr 2014 08:47:16 -0700 (PDT)
+Received: by mail-bk0-f41.google.com with SMTP id d7so644294bkh.0
+	for <yocto@yoctoproject.org>; Tue, 08 Apr 2014 08:47:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:sender:in-reply-to:references:from:date:message-id
+	:subject:to:cc:content-type;
+	bh=UDF37Gsr8SGtu+q9FFLjWrotyI7HOkkyQsy2qQxB/hA=;
+	b=LfptphqxPbmNZmD2qKCHwfhvi6heorJuil3Ar5g7uhjuviR4MuTfUePTwYQVkven2P
+	UyespC8F6eWw+6RnGp3FMPK9Tbe6uJWo8KJEzNYcKAyC4x287JnuZ/yQ3bR9QFHOd2dh
+	FVWvjJC9TUELNKk1WxK/+07F+f/2ouQHbBOwFzMwFhT2/z13cA2X0z9BVTddNSchZQ5x
+	sa/+ED/bEueFbGdyKT7g7R5os84wrku1GVXt5eCg7YtT+hq7yIjoPpkxEcoPJwsXXD6f
+	JAjD88GiqBWZuoA8uROTnZt0RfiX51lheYGMxREdtWgwxsRrCFZPTQ+blhKaYQLJ5Mwp
+	z2gQ==
+X-Received: by 10.112.91.129 with SMTP id ce1mr2448314lbb.40.1396972035661;
+	Tue, 08 Apr 2014 08:47:15 -0700 (PDT)
 MIME-Version: 1.0
-To: Chris Larson <clarson@kergoth.com>
+Sender: kergoth@gmail.com
+Received: by 10.112.35.194 with HTTP; Tue, 8 Apr 2014 08:46:55 -0700 (PDT)
+In-Reply-To: <5344188D.60707@enea.com>
 References: <534416F0.10109@enea.com>
 	<CABcZAN=oz+-oMJozmjrrTkUDb76t_OdkgAJoQdMM5THEHs3Jtw@mail.gmail.com>
-In-Reply-To: <CABcZAN=oz+-oMJozmjrrTkUDb76t_OdkgAJoQdMM5THEHs3Jtw@mail.gmail.com>
-X-Originating-IP: [192.168.14.171]
+	<5344188D.60707@enea.com>
+From: Chris Larson <clarson@kergoth.com>
+Date: Tue, 8 Apr 2014 08:46:55 -0700
+X-Google-Sender-Auth: kkwy7GY2uSp0-mPul3f6thbpjug
+Message-ID: <CABcZANkr9LiEU5Q28OaPkZxDRg-L2tzQiiHGqct7q1p3VSkvhQ@mail.gmail.com>
+To: Vali Cobelea <valentin.cobelea@enea.com>
 Cc: Yocto list discussion <yocto@yoctoproject.org>,
 	Alexandru Vaduva <Alexandru.Vaduva@enea.com>
 Subject: Re: CGL compliance layer initiative
@@ -31,124 +43,52 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 08 Apr 2014 15:41:05 -0000
-Content-Type: multipart/alternative;
-	boundary="------------050403080108020408020505"
+X-List-Received-Date: Tue, 08 Apr 2014 15:47:19 -0000
+Content-Type: multipart/alternative; boundary=001a1133a602f2644204f689e5ee
 
---------------050403080108020408020505
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
+--001a1133a602f2644204f689e5ee
+Content-Type: text/plain; charset=UTF-8
 
-Hi,
+On Tue, Apr 8, 2014 at 8:41 AM, Vali Cobelea <valentin.cobelea@enea.com>wrote:
 
-It should work as I tried it outside the company network; otherwise I'll 
-ping back the IT guys to allow anonymous access.
-
-Sorry for any inconvenience,
-Vali
-
-
-On 04/08/2014 06:38 PM, Chris Larson wrote:
+> It should work as I tried it outside the company network; otherwise I'll
+> ping back the IT guys to allow anonymous access.
 >
-> On Tue, Apr 8, 2014 at 8:34 AM, Vali Cobelea 
-> <valentin.cobelea@enea.com <mailto:valentin.cobelea@enea.com>> wrote:
->
->     Here at ENEA we decided to take the initiative regarding the CGL
->     compliance when it comes to the Yocto Project.
->     For this we started the work on a dedicated layer called
->     'meta-cgl' which can be accessed / cloned from here:
->
->     http://git.enea.com/git/?p=linux/meta-cgl.git
->      git clone git@git.enea.com:linux/meta-cgl
->
->     Have a look of the things we got there so far, please remember
->     that there is still plenty of work to be done (layer architecture,
->     CGL requirements coverage mode and so on).
->     It is a little bit more than a stub layer, consider it a starting
->     point for the direction we would like to have with this layer.
->
->     Any input is much appreciated, lets keep the discussion by this
->     email thread and see where it goes.
->
->
-> Is there no anonymous clone url, or are you giving us your ssh keys? ;)
-> -- 
-> Christopher Larson
-> clarson at kergoth dot com
-> Founder - BitBake, OpenEmbedded, OpenZaurus
-> Maintainer - Tslib
-> Senior Software Engineer, Mentor Graphics
 
+You tried it, yes, but you have the ssh keys necessary to authenticate as
+the git user on that server, which no one outside your company does :) If
+you want folks to be able to clone your repository without having to add
+their public keys to your ssh server config, then you will indeed want to
+contact IT to get anonymous access going.
+-- 
+Christopher Larson
+clarson at kergoth dot com
+Founder - BitBake, OpenEmbedded, OpenZaurus
+Maintainer - Tslib
+Senior Software Engineer, Mentor Graphics
 
---------------050403080108020408020505
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
+--001a1133a602f2644204f689e5ee
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-<html>
-  <head>
-    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
-  </head>
-  <body text="#000000" bgcolor="#FFFFFF">
-    <div class="moz-cite-prefix">Hi,<br>
-      <br>
-      It should work as I tried it outside the company network;
-      otherwise I'll ping back the IT guys to allow anonymous access.<br>
-      <br>
-      Sorry for any inconvenience,<br>
-      Vali<br>
-      <br>
-      <br>
-      On 04/08/2014 06:38 PM, Chris Larson wrote:<br>
-    </div>
-    <blockquote
-cite="mid:CABcZAN=oz+-oMJozmjrrTkUDb76t_OdkgAJoQdMM5THEHs3Jtw@mail.gmail.com"
-      type="cite">
-      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-      <div dir="ltr">
-        <div class="gmail_extra"><br>
-          <div class="gmail_quote">On Tue, Apr 8, 2014 at 8:34 AM, Vali
-            Cobelea <span dir="ltr">&lt;<a moz-do-not-send="true"
-                href="mailto:valentin.cobelea@enea.com" target="_blank">valentin.cobelea@enea.com</a>&gt;</span>
-            wrote:<br>
-            <blockquote class="gmail_quote" style="margin:0 0 0
-              .8ex;border-left:1px #ccc solid;padding-left:1ex">
-              <div id=":vt" class="a3s" style="overflow:hidden">Here at
-                ENEA we decided to take the initiative regarding the CGL
-                compliance when it comes to the Yocto Project.<br>
-                For this we started the work on a dedicated layer called
-                'meta-cgl' which can be accessed / cloned from here:<br>
-                <br>
-                 <a moz-do-not-send="true"
-                  href="http://git.enea.com/git/?p=linux/meta-cgl.git"
-                  target="_blank">http://git.enea.com/git/?p=linux/meta-cgl.git</a><br>
-                 git clone <a class="moz-txt-link-abbreviated" href="mailto:git@git.enea.com:linux/meta-cgl">git@git.enea.com:linux/meta-cgl</a><br>
-                <br>
-                Have a look of the things we got there so far, please
-                remember that there is still plenty of work to be done
-                (layer architecture, CGL requirements coverage mode and
-                so on).<br>
-                It is a little bit more than a stub layer, consider it a
-                starting point for the direction we would like to have
-                with this layer.<br>
-                <br>
-                Any input is much appreciated, lets keep the discussion
-                by this email thread and see where it goes.</div>
-            </blockquote>
-          </div>
-          <br>
-          Is there no anonymous clone url, or are you giving us your ssh
-          keys? ;)<br>
-          -- <br>
-          Christopher Larson<br>
-          clarson at kergoth dot com<br>
-          Founder - BitBake, OpenEmbedded, OpenZaurus<br>
-          Maintainer - Tslib<br>
-          Senior Software Engineer, Mentor Graphics
-        </div>
-      </div>
-    </blockquote>
-    <br>
-  </body>
-</html>
+<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
+On Tue, Apr 8, 2014 at 8:41 AM, Vali Cobelea <span dir=3D"ltr">&lt;<a href=
+=3D"mailto:valentin.cobelea@enea.com" target=3D"_blank">valentin.cobelea@en=
+ea.com</a>&gt;</span> wrote:<br>
 
---------------050403080108020408020505--
+<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
+x #ccc solid;padding-left:1ex"><div>It should work as I tried it outside th=
+e company network;
+      otherwise I&#39;ll ping back the IT guys to allow anonymous access.<b=
+r></div></blockquote></div><br>You tried it, yes, but you have the ssh keys=
+ necessary to authenticate as the git user on that server, which no one out=
+side your company does :) If you want folks to be able to clone your reposi=
+tory without having to add their public keys to your ssh server config, the=
+n you will indeed want to contact IT to get anonymous access going.<br>
+
+-- <br>Christopher Larson<br>clarson at kergoth dot com<br>Founder - BitBak=
+e, OpenEmbedded, OpenZaurus<br>Maintainer - Tslib<br>Senior Software Engine=
+er, Mentor Graphics
+</div></div>
+
+--001a1133a602f2644204f689e5ee--
