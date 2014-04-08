@@ -1,35 +1,35 @@
-Return-Path: <andrei@gherzan.ro>
-Received: from mail-wg0-f44.google.com (mail-wg0-f44.google.com [74.125.82.44])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 48A41E00C46
-	for <yocto@yoctoproject.org>; Tue,  8 Apr 2014 01:03:05 -0700 (PDT)
-Received: by mail-wg0-f44.google.com with SMTP id m15so542344wgh.15
-	for <yocto@yoctoproject.org>; Tue, 08 Apr 2014 01:03:04 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc:content-type;
-	bh=NX70+EFbh5JdCefvcOiZg0FFbJb9xgHs++YIZCOzzMo=;
-	b=f2wSeyG7Y/FgmKXSeoXC9V263Y2bIOoe2m+6eEflUuFUc6roDbJGyQJzzTLAB7599i
-	KAkyDO7dlbdcvgDQ2brGYrlwpJY1uLcFVoNyp5bG3svu0sLqwYgI8DlxliRVO+XTI7A2
-	7erOVb1fnMxqjUnuVhS2XQX3i/dG2Cv1U7qCxwKjTaJzLHDwxgAxeCVVxt1ce77jONLs
-	Hvdy/ykTjKpCb8XfaBTbmyRX5E5wCxv1ZU6UYjBR+Mz9MrrqIn9OjCK0/DkmUJhbILU1
-	b/6P2Adgq6s8N9Bzu2o57OBQrjdPxHSXKqoWzLzH5fWx1vT7JHy4MiBgN3+sC4ZZ7wui
-	ojaw==
-X-Gm-Message-State: ALoCoQn2IliFsLy1sebBFgRMIKz5dU+uGnKrjmzhu4+kLIL/559Awclfu9C0DSCUoemcYpMeTCMd
-X-Received: by 10.180.98.1 with SMTP id ee1mr30764430wib.10.1396944183869;
-	Tue, 08 Apr 2014 01:03:03 -0700 (PDT)
+Return-Path: <bhushan.az@gmail.com>
+Received: from mail-wi0-f180.google.com (mail-wi0-f180.google.com
+	[209.85.212.180])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 78E10E00C51
+	for <yocto@yoctoproject.org>; Tue,  8 Apr 2014 04:48:27 -0700 (PDT)
+Received: by mail-wi0-f180.google.com with SMTP id q5so1172783wiv.7
+	for <yocto@yoctoproject.org>; Tue, 08 Apr 2014 04:48:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type;
+	bh=2kpcPPrqP/fB2g91P+m7/dkgd7EfjmpAvZFPowavZS0=;
+	b=yXpOcrZJVfmoYFWrfPh6sIB2hqZX0+1mIBw8z1gU/pUIljd479db74zv05rsVnIdqU
+	EpAWPxpQpccY7V94Ofu9wBd1GsISEwA4oupDaLJCQgMI0j0ZbLFQURN4VKQ0+tNnTtnh
+	MkhMA6AZCtVTtt0A8Bdy5c6hE+1blvDbHSPbPn3EMjOAGUyr6Y/jK6M81RbmyOdCYGsk
+	L9kTBv0t266VjcBaDbVWW0B2FSMyoDg2TxwrbpYya7NUsfJ5NSedh27hrmKe+dm9cW6o
+	XxYrlbgSpp1mdWOHCs18hjUKhktqULXqQxm8fmDlSws8tkEVuvm2LIiDFYMELEGxs75m
+	FyiA==
 MIME-Version: 1.0
-Received: by 10.216.31.129 with HTTP; Tue, 8 Apr 2014 01:02:43 -0700 (PDT)
-X-Originating-IP: [89.121.200.106]
-In-Reply-To: <5343A81F.2040907@reliableembeddedsystems.com>
-References: <CAD78y+7r_2_nyzizGccLkyFj1PL2q3TBn4czTGsJr5dp6vos5Q@mail.gmail.com>
-	<5343A81F.2040907@reliableembeddedsystems.com>
-From: Andrei Gherzan <andrei@gherzan.ro>
-Date: Tue, 8 Apr 2014 11:02:43 +0300
-Message-ID: <CAK18fxEjk5934KybvYCZ_akKL4iwFTdwFU+X+ZcD7pFGn6FO1w@mail.gmail.com>
-To: Robert Berger <gmane@reliableembeddedsystems.com>
-Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: [meta-raspberrypi] Problem building core-image-sato-sdk
+X-Received: by 10.180.108.147 with SMTP id hk19mr31310482wib.42.1396957706581; 
+	Tue, 08 Apr 2014 04:48:26 -0700 (PDT)
+Received: by 10.217.12.74 with HTTP; Tue, 8 Apr 2014 04:48:26 -0700 (PDT)
+In-Reply-To: <969F26A8BAB325438E7EB80D3C3134FB1CE79221@IRSMSX105.ger.corp.intel.com>
+References: <CAG2NicKU0K+KVJ6XJgb9-zatAq81qtDxrJtC_g2W8AZ7nGtrig@mail.gmail.com>
+	<969F26A8BAB325438E7EB80D3C3134FB1CE7762E@IRSMSX105.ger.corp.intel.com>
+	<CAG2NicJgs3qFJ5-mhDJUzegrE30NuN2Ci6-BG=WhbKzdSjmQQg@mail.gmail.com>
+	<969F26A8BAB325438E7EB80D3C3134FB1CE79221@IRSMSX105.ger.corp.intel.com>
+Date: Tue, 8 Apr 2014 17:18:26 +0530
+Message-ID: <CAG2NicJbdvb75WFKFcAeMQFywYkdE7jLbB4rp3dibzHXTi92Dw@mail.gmail.com>
+From: Bhushan S <bhushan.az@gmail.com>
+To: "Iorga, Cristian" <cristian.iorga@intel.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: copying media files to qemux86
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,146 +41,325 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 08 Apr 2014 08:03:08 -0000
-Content-Type: multipart/alternative; boundary=f46d041824f8d9d71904f683696e
+X-List-Received-Date: Tue, 08 Apr 2014 11:48:28 -0000
+Content-Type: multipart/alternative; boundary=e89a8f3ba5b5ddfae404f6868f3f
 
---f46d041824f8d9d71904f683696e
+--e89a8f3ba5b5ddfae404f6868f3f
 Content-Type: text/plain; charset=ISO-8859-1
 
-On Tue, Apr 8, 2014 at 10:41 AM, Robert Berger <
-gmane@reliableembeddedsystems.com> wrote:
+Hello Cristian,
 
-> On 03/09/2014 02:08 PM, Federico Vitali wrote:
-> > Hi everyone,
-> >
-> > I've succesfully build core-image-sato for raspberry pi, but when I try
-> > to build the sdk version I obtain the following error:
-> >
->
-> BTW I get the error also with core-image-sato:
->
-> builder@ubuntu-srvr-lv:~/rpi/poky/raspberrypi/conf$ bitbake
-> core-image-sato
-> Loading cache: 100%
->
-> |#####################################################################################################################################|
-> ETA:  00:00:00
-> Loaded 1215 entries from dependency cache.
-> NOTE: Resolving any missing task queue dependencies
->
-> Build Configuration:
-> BB_VERSION        = "1.20.0"
-> BUILD_SYS         = "x86_64-linux"
-> NATIVELSBSTRING   = "Ubuntu-12.04"
-> TARGET_SYS        = "arm-poky-linux-gnueabi"
-> MACHINE           = "raspberrypi"
-> DISTRO            = "poky"
-> DISTRO_VERSION    = "1.5.1"
-> TUNE_FEATURES     = "armv6 vfp"
-> TARGET_FPU        = "vfp"
-> meta
-> meta-yocto
-> meta-yocto-bsp    = "dora:98bd952a5b72c584fc1094e4a61eb9e2a24cc97b"
-> meta-raspberrypi  = "master:fbc0947e96e8989d46b1570619554cb916e24049"
->
-> NOTE: Preparing runqueue
-> NOTE: Executing SetScene Tasks
-> NOTE: Executing RunQueue Tasks
-> ERROR: Recipe mesa-gl is trying to create package libegl-mesa which was
-> already written by recipe mesa. This will cause corruption, please
-> resolve this and only provide the package from one recipe or the other
-> or only build one of the recipes.
-> ERROR: Function failed: read_subpackage_metadata
-> ERROR: Logfile of failure stored in:
->
-> /home/builder/rpi/poky/raspberrypi/tmp/work/armv6-vfp-poky-linux-gnueabi/mesa-gl/2_9.1.6-r0/temp/log.do_package_write_ipk.9838
-> ERROR: Task 2436
-> (/home/builder/rpi/poky/meta/recipes-graphics/mesa/mesa-gl_9.1.6.bb,
-> do_package_write_ipk) failed with exit code '1'
->
->
-Will try to take a look on this this weekend. If anybody finds the root of
-the problem please submit a patch.
-Thanks,
+Had a similar doubt as described by Paul in Bug
+5589<https://bugzilla.yoctoproject.org/show_bug.cgi?id=5589>
+.
+Basically i wanted the "audiotestsrc" and "videotestsrc" plugins from
+gst-plugins-base and even though *-base was configured with those options,
+I still didn't see it in gst-inspect on qemux86.
+only after I added it to "CORE_IMAGE_EXTRA_INSTALL" i got it in the final
+image.
 
--- 
-*Andrei Gherzan*
-m: +40.744.478.414 |  f: +40.31.816.28.12
+Normal understanding was to enable it while ./configure and that should
+work. Am I missing something here ?
 
---f46d041824f8d9d71904f683696e
+Regards,
+--bhushan
+
+
+
+On Fri, Apr 4, 2014 at 7:20 PM, Iorga, Cristian <cristian.iorga@intel.com>wrote:
+
+>  Hello,
+>
+> What kind of troubles with gst-plugins-base?
+>
+> See YB5589: https://bugzilla.yoctoproject.org/show_bug.cgi?id=5589
+>
+> Maybe there is a hint in there, and the meta gst package will help..
+>
+> /Cristian
+>
+>
+>
+> *From:* Bhushan S [mailto:bhushan.az@gmail.com]
+> *Sent:* Friday, April 4, 2014 1:35 PM
+> *To:* Iorga, Cristian
+> *Cc:* yocto@yoctoproject.org
+> *Subject:* Re: [yocto] copying media files to qemux86
+>
+>
+>
+> Yes Cristian.
+>
+> My earlier attempt with scp was unsuccessful (probably lack of ssh
+> support).
+>
+>
+>
+> Currently I'm stuck with enabling gst-plugins-ugly package and plugins
+> from gst-plugins-base package
+>
+>
+>
+>
+>
+> On Wed, Apr 2, 2014 at 5:44 PM, Iorga, Cristian <cristian.iorga@intel.com>
+> wrote:
+>
+>   Hello,
+>
+>
+>
+> By  media files, you mean music or video files?
+>
+> If so, depending on the image (if it has ssh support), you can copy into
+> /home/root using scp after you boot the image.
+>
+> I have use this to test mp3 playback, for example with some audio files.
+>
+>
+>
+> Regards,
+>
+> Cristian Iorga
+>
+> YP
+>
+> Intel Corporation
+>
+>
+>
+> *From:* yocto-bounces@yoctoproject.org [mailto:
+> yocto-bounces@yoctoproject.org] *On Behalf Of *Bhushan Shirsath
+> *Sent:* Wednesday, April 2, 2014 2:07 PM
+> *To:* yocto@yoctoproject.org
+> *Subject:* [yocto] copying media files to qemux86
+>
+>
+>
+> Hi,
+>
+>
+>
+> I'm able to successfully launch "runqemu qemux86".
+>
+> Now i intend to test the media libs built using Yocto on qemu currently.
+>
+> Is it possible to transfer/copy media files to qemux86 emulator ?
+>
+>
+>
+> I tried copying files to tmp/sysroots/qemux86/ but it didn't work.
+>
+>
+>
+> Thanks,
+>
+> --bhushan
+>
+>
+>
+
+--e89a8f3ba5b5ddfae404f6868f3f
 Content-Type: text/html; charset=ISO-8859-1
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><br><div class=3D"gmail_extra"><br><br><div class=3D"gmail=
-_quote">On Tue, Apr 8, 2014 at 10:41 AM, Robert Berger <span dir=3D"ltr">&l=
-t;<a href=3D"mailto:gmane@reliableembeddedsystems.com" target=3D"_blank">gm=
-ane@reliableembeddedsystems.com</a>&gt;</span> wrote:<br>
-
+<div dir=3D"ltr">Hello Cristian,<div><br></div><div>Had a similar doubt as =
+described by Paul in=A0<a href=3D"https://bugzilla.yoctoproject.org/show_bu=
+g.cgi?id=3D5589">Bug 5589</a>.</div><div>Basically i wanted the &quot;audio=
+testsrc&quot; and &quot;videotestsrc&quot; plugins from gst-plugins-base an=
+d even though *-base was configured with those options,=A0</div>
+<div>I still didn&#39;t see it in gst-inspect on qemux86.</div><div>only af=
+ter I added it to &quot;CORE_IMAGE_EXTRA_INSTALL&quot; i got it in the fina=
+l image.</div><div><br></div><div>Normal understanding was to enable it whi=
+le ./configure and that should work. Am I missing something here ?=A0</div>
+<div><br></div><div>Regards,</div><div>--bhushan</div><div><br></div></div>=
+<div class=3D"gmail_extra"><br><br><div class=3D"gmail_quote">On Fri, Apr 4=
+, 2014 at 7:20 PM, Iorga, Cristian <span dir=3D"ltr">&lt;<a href=3D"mailto:=
+cristian.iorga@intel.com" target=3D"_blank">cristian.iorga@intel.com</a>&gt=
+;</span> wrote:<br>
 <blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
-x #ccc solid;padding-left:1ex"><div class=3D"">On 03/09/2014 02:08 PM, Fede=
-rico Vitali wrote:<br>
-</div><div class=3D"">&gt; Hi everyone,<br>
-&gt;<br>
-&gt; I&#39;ve succesfully build core-image-sato for raspberry pi, but when =
-I try<br>
-&gt; to build the sdk version I obtain the following error:<br>
-&gt;<br>
-<br>
-</div>BTW I get the error also with core-image-sato:<br>
-<br>
-builder@ubuntu-srvr-lv:~/rpi/poky/raspberrypi/conf$ bitbake core-image-sato=
-<br>
-Loading cache: 100%<br>
-|##########################################################################=
-###########################################################|<br>
-ETA: =A000:00:00<br>
-Loaded 1215 entries from dependency cache.<br>
-NOTE: Resolving any missing task queue dependencies<br>
-<br>
-Build Configuration:<br>
-BB_VERSION =A0 =A0 =A0 =A0=3D &quot;1.20.0&quot;<br>
-BUILD_SYS =A0 =A0 =A0 =A0 =3D &quot;x86_64-linux&quot;<br>
-NATIVELSBSTRING =A0 =3D &quot;Ubuntu-12.04&quot;<br>
-TARGET_SYS =A0 =A0 =A0 =A0=3D &quot;arm-poky-linux-gnueabi&quot;<br>
-MACHINE =A0 =A0 =A0 =A0 =A0 =3D &quot;raspberrypi&quot;<br>
-DISTRO =A0 =A0 =A0 =A0 =A0 =A0=3D &quot;poky&quot;<br>
-DISTRO_VERSION =A0 =A0=3D &quot;1.5.1&quot;<br>
-TUNE_FEATURES =A0 =A0 =3D &quot;armv6 vfp&quot;<br>
-TARGET_FPU =A0 =A0 =A0 =A0=3D &quot;vfp&quot;<br>
-meta<br>
-meta-yocto<br>
-meta-yocto-bsp =A0 =A0=3D &quot;dora:98bd952a5b72c584fc1094e4a61eb9e2a24cc9=
-7b&quot;<br>
-meta-raspberrypi =A0=3D &quot;master:fbc0947e96e8989d46b1570619554cb916e240=
-49&quot;<br>
-<br>
-NOTE: Preparing runqueue<br>
-NOTE: Executing SetScene Tasks<br>
-NOTE: Executing RunQueue Tasks<br>
-ERROR: Recipe mesa-gl is trying to create package libegl-mesa which was<br>
-already written by recipe mesa. This will cause corruption, please<br>
-resolve this and only provide the package from one recipe or the other<br>
-or only build one of the recipes.<br>
-ERROR: Function failed: read_subpackage_metadata<br>
-ERROR: Logfile of failure stored in:<br>
-/home/builder/rpi/poky/raspberrypi/tmp/work/armv6-vfp-poky-linux-gnueabi/me=
-sa-gl/2_9.1.6-r0/temp/log.do_package_write_ipk.9838<br>
-ERROR: Task 2436<br>
-(/home/builder/rpi/poky/meta/recipes-graphics/mesa/<a href=3D"http://mesa-g=
-l_9.1.6.bb" target=3D"_blank">mesa-gl_9.1.6.bb</a>,<br>
-do_package_write_ipk) failed with exit code &#39;1&#39;<br>
-<br></blockquote><div><br></div><div>Will try to take a look on this this w=
-eekend. If anybody finds the root of the problem please submit a patch.=A0<=
-/div><div>Thanks,</div><div>=A0</div></div>-- <br><div dir=3D"ltr"><div sty=
-le=3D"text-align:center">
+x #ccc solid;padding-left:1ex">
 
-</div><div style=3D"text-align:center"><div align=3D"left" style=3D"font-fa=
-mily:&#39;Times New Roman&#39;;font-size:medium"><b style=3D"color:rgb(51,5=
-1,51);font-family:Arial;font-size:small;text-align:center">Andrei Gherzan</=
-b><font face=3D"Arial" color=3D"#333333" size=3D"-1"><br>
 
-</font><font face=3D"Arial" color=3D"#333333" size=3D"-1">m: +40.744.478.41=
-4 | =A0f: +40.31.816.28.12</font><br></div></div></div>
-</div></div>
 
---f46d041824f8d9d71904f683696e--
+
+
+<div lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1f497d">Hello,<u></u><u></u></spa=
+n></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1f497d">What kind of troubles wit=
+h
+</span>gst-plugins-base?<u></u><u></u></p>
+<p class=3D"MsoNormal">See YB5589: <a href=3D"https://bugzilla.yoctoproject=
+.org/show_bug.cgi?id=3D5589" target=3D"_blank">
+https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D5589</a><u></u><u></u><=
+/p>
+<p class=3D"MsoNormal">Maybe there is a hint in there, and the meta gst pac=
+kage will help..<u></u><u></u></p>
+<p class=3D"MsoNormal">/Cristian<span style=3D"font-size:11.0pt;font-family=
+:&quot;Calibri&quot;,&quot;sans-serif&quot;;color:#1f497d"><u></u><u></u></=
+span></p>
+<p class=3D"MsoNormal"><a name=3D"1452d02992ac7263__MailEndCompose"><span s=
+tyle=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,&quot;sans-serif&q=
+uot;;color:#1f497d"><u></u>=A0<u></u></span></a></p>
+<p class=3D"MsoNormal" style=3D"margin-left:.5in"><b><span style=3D"font-si=
+ze:11.0pt;font-family:&quot;Calibri&quot;,&quot;sans-serif&quot;">From:</sp=
+an></b><span style=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,&quo=
+t;sans-serif&quot;"> Bhushan S [mailto:<a href=3D"mailto:bhushan.az@gmail.c=
+om" target=3D"_blank">bhushan.az@gmail.com</a>]
+<br>
+<b>Sent:</b> Friday, April 4, 2014 1:35 PM<br>
+<b>To:</b> Iorga, Cristian<br>
+<b>Cc:</b> <a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yoct=
+o@yoctoproject.org</a><br>
+<b>Subject:</b> Re: [yocto] copying media files to qemux86<u></u><u></u></s=
+pan></p><div><div class=3D"h5">
+<p class=3D"MsoNormal" style=3D"margin-left:.5in"><u></u>=A0<u></u></p>
+<div>
+<p class=3D"MsoNormal" style=3D"margin-left:.5in">Yes Cristian.<u></u><u></=
+u></p>
+<div>
+<p class=3D"MsoNormal" style=3D"margin-left:.5in">My earlier attempt with s=
+cp was unsuccessful (probably lack of ssh support).<u></u><u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal" style=3D"margin-left:.5in"><u></u>=A0<u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal" style=3D"margin-left:.5in">Currently I&#39;m stuck w=
+ith enabling gst-plugins-ugly package and plugins from gst-plugins-base pac=
+kage<u></u><u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal" style=3D"margin-left:.5in"><u></u>=A0<u></u></p>
+</div>
+</div>
+<div>
+<p class=3D"MsoNormal" style=3D"margin-right:0in;margin-bottom:12.0pt;margi=
+n-left:.5in">
+<u></u>=A0<u></u></p>
+<div>
+<p class=3D"MsoNormal" style=3D"margin-left:.5in">On Wed, Apr 2, 2014 at 5:=
+44 PM, Iorga, Cristian &lt;<a href=3D"mailto:cristian.iorga@intel.com" targ=
+et=3D"_blank">cristian.iorga@intel.com</a>&gt; wrote:<u></u><u></u></p>
+<blockquote style=3D"border:none;border-left:solid #cccccc 1.0pt;padding:0i=
+n 0in 0in 6.0pt;margin-left:4.8pt;margin-right:0in">
+<div>
+<div>
+<p class=3D"MsoNormal" style=3D"margin-left:.5in">
+<span style=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,&quot;sans-=
+serif&quot;;color:#1f497d">Hello,</span><u></u><u></u></p>
+<p class=3D"MsoNormal" style=3D"margin-left:.5in">
+<span style=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,&quot;sans-=
+serif&quot;;color:#1f497d">=A0</span><u></u><u></u></p>
+<p class=3D"MsoNormal" style=3D"margin-left:.5in">
+<span style=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,&quot;sans-=
+serif&quot;;color:#1f497d">By=A0 media files, you mean music or video files=
+?</span><u></u><u></u></p>
+<p class=3D"MsoNormal" style=3D"margin-left:.5in">
+<span style=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,&quot;sans-=
+serif&quot;;color:#1f497d">If so, depending on the image (if it has ssh sup=
+port), you can copy into /home/root using scp after you boot the image.</sp=
+an><u></u><u></u></p>
+
+<p class=3D"MsoNormal" style=3D"margin-left:.5in">
+<span style=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,&quot;sans-=
+serif&quot;;color:#1f497d">I have use this to test mp3 playback, for exampl=
+e with some audio files.</span><u></u><u></u></p>
+<p class=3D"MsoNormal" style=3D"margin-left:.5in">
+<span style=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,&quot;sans-=
+serif&quot;;color:#1f497d">=A0</span><u></u><u></u></p>
+<p class=3D"MsoNormal" style=3D"margin-left:.5in">
+<span style=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,&quot;sans-=
+serif&quot;;color:#1f497d">Regards,</span><u></u><u></u></p>
+<p class=3D"MsoNormal" style=3D"margin-left:.5in">
+<span style=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,&quot;sans-=
+serif&quot;;color:#1f497d">Cristian Iorga</span><u></u><u></u></p>
+<p class=3D"MsoNormal" style=3D"margin-left:.5in">
+<span style=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,&quot;sans-=
+serif&quot;;color:#1f497d">YP</span><u></u><u></u></p>
+<p class=3D"MsoNormal" style=3D"margin-left:.5in">
+<span style=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,&quot;sans-=
+serif&quot;;color:#1f497d">Intel Corporation</span><u></u><u></u></p>
+<p class=3D"MsoNormal" style=3D"margin-left:.5in">
+<a name=3D"1452d02992ac7263_145225d2fee78011__MailEndCompose"><span style=
+=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,&quot;sans-serif&quot;=
+;color:#1f497d">=A0</span></a><u></u><u></u></p>
+<p class=3D"MsoNormal" style=3D"margin-left:1.0in">
+<b><span style=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,&quot;sa=
+ns-serif&quot;">From:</span></b><span style=3D"font-size:11.0pt;font-family=
+:&quot;Calibri&quot;,&quot;sans-serif&quot;">
+<a href=3D"mailto:yocto-bounces@yoctoproject.org" target=3D"_blank">yocto-b=
+ounces@yoctoproject.org</a> [mailto:<a href=3D"mailto:yocto-bounces@yoctopr=
+oject.org" target=3D"_blank">yocto-bounces@yoctoproject.org</a>]
+<b>On Behalf Of </b>Bhushan Shirsath<br>
+<b>Sent:</b> Wednesday, April 2, 2014 2:07 PM<br>
+<b>To:</b> <a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yoct=
+o@yoctoproject.org</a><br>
+<b>Subject:</b> [yocto] copying media files to qemux86</span><u></u><u></u>=
+</p>
+<div>
+<div>
+<p class=3D"MsoNormal" style=3D"margin-left:1.0in">
+=A0<u></u><u></u></p>
+<div>
+<p class=3D"MsoNormal" style=3D"margin-left:1.0in">
+Hi,<u></u><u></u></p>
+<div>
+<p class=3D"MsoNormal" style=3D"margin-left:1.0in">
+=A0<u></u><u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal" style=3D"margin-left:1.0in">
+I&#39;m able to successfully launch &quot;runqemu qemux86&quot;.<u></u><u><=
+/u></p>
+</div>
+<div>
+<p class=3D"MsoNormal" style=3D"margin-left:1.0in">
+Now i intend to test the media libs built using Yocto on qemu currently.<u>=
+</u><u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal" style=3D"margin-left:1.0in">
+Is it possible to transfer/copy media files to qemux86 emulator ?<u></u><u>=
+</u></p>
+</div>
+<div>
+<p class=3D"MsoNormal" style=3D"margin-left:1.0in">
+=A0<u></u><u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal" style=3D"margin-left:1.0in">
+I tried copying files to=A0tmp/sysroots/qemux86/ but it didn&#39;t work.<u>=
+</u><u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal" style=3D"margin-left:1.0in">
+=A0<u></u><u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal" style=3D"margin-left:1.0in">
+Thanks,<u></u><u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal" style=3D"margin-left:1.0in">
+--bhushan<u></u><u></u></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</blockquote>
+</div>
+<p class=3D"MsoNormal" style=3D"margin-left:.5in"><u></u>=A0<u></u></p>
+</div>
+</div></div></div>
+</div>
+
+</blockquote></div><br></div>
+
+--e89a8f3ba5b5ddfae404f6868f3f--
