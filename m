@@ -1,35 +1,26 @@
-Return-Path: <bhushan.az@gmail.com>
-Received: from mail-wi0-f180.google.com (mail-wi0-f180.google.com
-	[209.85.212.180])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 78E10E00C51
-	for <yocto@yoctoproject.org>; Tue,  8 Apr 2014 04:48:27 -0700 (PDT)
-Received: by mail-wi0-f180.google.com with SMTP id q5so1172783wiv.7
-	for <yocto@yoctoproject.org>; Tue, 08 Apr 2014 04:48:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type;
-	bh=2kpcPPrqP/fB2g91P+m7/dkgd7EfjmpAvZFPowavZS0=;
-	b=yXpOcrZJVfmoYFWrfPh6sIB2hqZX0+1mIBw8z1gU/pUIljd479db74zv05rsVnIdqU
-	EpAWPxpQpccY7V94Ofu9wBd1GsISEwA4oupDaLJCQgMI0j0ZbLFQURN4VKQ0+tNnTtnh
-	MkhMA6AZCtVTtt0A8Bdy5c6hE+1blvDbHSPbPn3EMjOAGUyr6Y/jK6M81RbmyOdCYGsk
-	L9kTBv0t266VjcBaDbVWW0B2FSMyoDg2TxwrbpYya7NUsfJ5NSedh27hrmKe+dm9cW6o
-	XxYrlbgSpp1mdWOHCs18hjUKhktqULXqQxm8fmDlSws8tkEVuvm2LIiDFYMELEGxs75m
-	FyiA==
+Return-Path: <gary@mlbassoc.com>
+Received: from mail.chez-thomas.org (mail.mlbassoc.com [65.100.170.105])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B1A7CE00C5B
+	for <yocto@yoctoproject.org>; Tue,  8 Apr 2014 06:28:41 -0700 (PDT)
+Received: by mail.chez-thomas.org (Postfix, from userid 1998)
+	id D802FF811EC; Tue,  8 Apr 2014 07:28:40 -0600 (MDT)
+X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on
+	hermes.chez-thomas.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=4.0 tests=ALL_TRUSTED,BAYES_00
+	autolearn=ham version=3.3.2
+Received: from [192.168.1.114] (zeus [192.168.1.114])
+	by mail.chez-thomas.org (Postfix) with ESMTP id 150C6F811D7;
+	Tue,  8 Apr 2014 07:28:40 -0600 (MDT)
+Message-ID: <5343F995.4080402@mlbassoc.com>
+Date: Tue, 08 Apr 2014 07:28:53 -0600
+From: Gary Thomas <gary@mlbassoc.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:24.0) Gecko/20100101 Thunderbird/24.4.0
 MIME-Version: 1.0
-X-Received: by 10.180.108.147 with SMTP id hk19mr31310482wib.42.1396957706581; 
-	Tue, 08 Apr 2014 04:48:26 -0700 (PDT)
-Received: by 10.217.12.74 with HTTP; Tue, 8 Apr 2014 04:48:26 -0700 (PDT)
-In-Reply-To: <969F26A8BAB325438E7EB80D3C3134FB1CE79221@IRSMSX105.ger.corp.intel.com>
-References: <CAG2NicKU0K+KVJ6XJgb9-zatAq81qtDxrJtC_g2W8AZ7nGtrig@mail.gmail.com>
-	<969F26A8BAB325438E7EB80D3C3134FB1CE7762E@IRSMSX105.ger.corp.intel.com>
-	<CAG2NicJgs3qFJ5-mhDJUzegrE30NuN2Ci6-BG=WhbKzdSjmQQg@mail.gmail.com>
-	<969F26A8BAB325438E7EB80D3C3134FB1CE79221@IRSMSX105.ger.corp.intel.com>
-Date: Tue, 8 Apr 2014 17:18:26 +0530
-Message-ID: <CAG2NicJbdvb75WFKFcAeMQFywYkdE7jLbB4rp3dibzHXTi92Dw@mail.gmail.com>
-From: Bhushan S <bhushan.az@gmail.com>
-To: "Iorga, Cristian" <cristian.iorga@intel.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: copying media files to qemux86
+To: Yocto Project <yocto@yoctoproject.org>
+X-Enigmail-Version: 1.5.2
+Subject: fetchall strangeness
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,325 +32,56 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 08 Apr 2014 11:48:28 -0000
-Content-Type: multipart/alternative; boundary=e89a8f3ba5b5ddfae404f6868f3f
-
---e89a8f3ba5b5ddfae404f6868f3f
+X-List-Received-Date: Tue, 08 Apr 2014 13:28:43 -0000
 Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: 7bit
 
-Hello Cristian,
+I just ran 'bitbake <image> -c fetchall' in a clean build tree
+and noticed that this builds a bunch of native packages:
 
-Had a similar doubt as described by Paul in Bug
-5589<https://bugzilla.yoctoproject.org/show_bug.cgi?id=5589>
-.
-Basically i wanted the "audiotestsrc" and "videotestsrc" plugins from
-gst-plugins-base and even though *-base was configured with those options,
-I still didn't see it in gst-inspect on qemux86.
-only after I added it to "CORE_IMAGE_EXTRA_INSTALL" i got it in the final
-image.
+$ ls -l tmp/work/*/*/*/temp/log.do_compile.*
+-rw-r--r-- 1 gary develop  76530 Apr  8 14:17 tmp/work/i686-linux/apr-native/1.4.8-r0/temp/log.do_compile.8115
+-rw-r--r-- 1 gary develop  51866 Apr  8 14:17 tmp/work/i686-linux/apr-util-native/1.5.2-r0/temp/log.do_compile.19690
+-rw-r--r-- 1 gary develop  27916 Apr  8 14:11 tmp/work/i686-linux/autoconf-native/2.69-r11/temp/log.do_compile.20820
+-rw-r--r-- 1 gary develop  11925 Apr  8 14:11 tmp/work/i686-linux/automake-native/1.14-r0/temp/log.do_compile.22425
+-rw-r--r-- 1 gary develop  28129 Apr  8 14:14 tmp/work/i686-linux/bzip2-native/1.0.6-r5/temp/log.do_compile.12000
+-rw-r--r-- 1 gary develop     85 Apr  8 14:11 tmp/work/i686-linux/cryptodev-linux-native/1.6-r0/temp/log.do_compile.13477
+-rw-r--r-- 1 gary develop   5815 Apr  8 14:14 tmp/work/i686-linux/expat-native/2.1.0-r0/temp/log.do_compile.25198
+-rw-r--r-- 1 gary develop  41125 Apr  8 14:15 tmp/work/i686-linux/file-native/5.16-r0/temp/log.do_compile.28856
+-rw-r--r-- 1 gary develop  92543 Apr  8 14:14 tmp/work/i686-linux/gdbm-native/1.11-r0/temp/log.do_compile.5100
+-rw-r--r-- 1 gary develop    110 Apr  8 14:10 tmp/work/i686-linux/gettext-minimal-native/0.18.3.2-r0/temp/log.do_compile.9603
+-rw-r--r-- 1 gary develop     85 Apr  8 14:10 tmp/work/i686-linux/gnu-config-native/20120814-r0/temp/log.do_compile.8957
+-rw-r--r-- 1 gary develop 787508 Apr  8 14:18 tmp/work/i686-linux/gnutls-native/2.12.23-r8.4/temp/log.do_compile.6985
+-rw-r--r-- 1 gary develop  10398 Apr  8 14:10 tmp/work/i686-linux/libcap-native/2.22-r6/temp/log.do_compile.10990
+-rw-r--r-- 1 gary develop 129792 Apr  8 14:15 tmp/work/i686-linux/libgcrypt-native/1.5.3-r0/temp/log.do_compile.15135
+-rw-r--r-- 1 gary develop  26450 Apr  8 14:14 tmp/work/i686-linux/libgpg-error-native/1.12-r0/temp/log.do_compile.1064
+-rw-r--r-- 1 gary develop  83871 Apr  8 14:14 tmp/work/i686-linux/libtasn1-native/3.4-r0/temp/log.do_compile.23801
+-rw-r--r-- 1 gary develop  34071 Apr  8 14:12 tmp/work/i686-linux/libtool-native/2.4.2-r6.1/temp/log.do_compile.27475
+-rw-r--r-- 1 gary develop 278406 Apr  8 14:21 tmp/work/i686-linux/libxml2-native/2.9.1-r0/temp/log.do_compile.3191
+-rw-r--r-- 1 gary develop 189586 Apr  8 14:12 tmp/work/i686-linux/lzo-native/2.06-r1/temp/log.do_compile.10403
+-rw-r--r-- 1 gary develop 101354 Apr  8 14:11 tmp/work/i686-linux/m4-native/1.4.17-r0/temp/log.do_compile.19559
+-rw-r--r-- 1 gary develop 829027 Apr  8 14:13 tmp/work/i686-linux/ncurses-native/5.9-r15.1/temp/log.do_compile.11001
+-rw-r--r-- 1 gary develop  14753 Apr  8 14:21 tmp/work/i686-linux/neon-native/0.30.0-r0/temp/log.do_compile.15805
+-rw-r--r-- 1 gary develop 504937 Apr  8 14:16 tmp/work/i686-linux/openssl-native/1.0.1e-r15.0/temp/log.do_compile.30233
+-rw-r--r-- 1 gary develop   3170 Apr  8 14:13 tmp/work/i686-linux/pigz-native/2.3.1-r0/temp/log.do_compile.4503
+-rw-r--r-- 1 gary develop 149805 Apr  8 14:13 tmp/work/i686-linux/pkgconfig-native/0.28-r0/temp/log.do_compile.12369
+-rw-r--r-- 1 gary develop 100152 Apr  8 14:19 tmp/work/i686-linux/python-native/2.7.3-r0.1/temp/log.do_compile.32093
+-rw-r--r-- 1 gary develop   1585 Apr  8 14:10 tmp/work/i686-linux/quilt-native/0.61-r0/temp/log.do_compile.8085
+-rw-r--r-- 1 gary develop  34761 Apr  8 14:14 tmp/work/i686-linux/readline-native/6.3-r0/temp/log.do_compile.19880
+-rw-r--r-- 1 gary develop   8633 Apr  8 14:15 tmp/work/i686-linux/sqlite3-native/1_3.8.3.1-r0/temp/log.do_compile.28334
+-rw-r--r-- 1 gary develop 473033 Apr  8 14:23 tmp/work/i686-linux/subversion-native/1.7.10-r0/temp/log.do_compile.19956
+-rw-r--r-- 1 gary develop 911700 Apr  8 14:16 tmp/work/i686-linux/util-linux-native/2.24.1-r0/temp/log.do_compile.2925
+-rw-r--r-- 1 gary develop 475772 Apr  8 14:13 tmp/work/i686-linux/xz-native/5.1.3alpha-r0/temp/log.do_compile.21732
+-rw-r--r-- 1 gary develop   8341 Apr  8 14:13 tmp/work/i686-linux/zlib-native/1.2.8-r0/temp/log.do_compile.614
 
-Normal understanding was to enable it while ./configure and that should
-work. Am I missing something here ?
+Why?
 
-Regards,
---bhushan
+Note: this is using the latest Poky/Yocto master, but I've
+seen this behaviour for a long time...
 
+-- 
+------------------------------------------------------------
+Gary Thomas                 |  Consulting for the
+MLB Associates              |    Embedded world
+------------------------------------------------------------
 
-
-On Fri, Apr 4, 2014 at 7:20 PM, Iorga, Cristian <cristian.iorga@intel.com>wrote:
-
->  Hello,
->
-> What kind of troubles with gst-plugins-base?
->
-> See YB5589: https://bugzilla.yoctoproject.org/show_bug.cgi?id=5589
->
-> Maybe there is a hint in there, and the meta gst package will help..
->
-> /Cristian
->
->
->
-> *From:* Bhushan S [mailto:bhushan.az@gmail.com]
-> *Sent:* Friday, April 4, 2014 1:35 PM
-> *To:* Iorga, Cristian
-> *Cc:* yocto@yoctoproject.org
-> *Subject:* Re: [yocto] copying media files to qemux86
->
->
->
-> Yes Cristian.
->
-> My earlier attempt with scp was unsuccessful (probably lack of ssh
-> support).
->
->
->
-> Currently I'm stuck with enabling gst-plugins-ugly package and plugins
-> from gst-plugins-base package
->
->
->
->
->
-> On Wed, Apr 2, 2014 at 5:44 PM, Iorga, Cristian <cristian.iorga@intel.com>
-> wrote:
->
->   Hello,
->
->
->
-> By  media files, you mean music or video files?
->
-> If so, depending on the image (if it has ssh support), you can copy into
-> /home/root using scp after you boot the image.
->
-> I have use this to test mp3 playback, for example with some audio files.
->
->
->
-> Regards,
->
-> Cristian Iorga
->
-> YP
->
-> Intel Corporation
->
->
->
-> *From:* yocto-bounces@yoctoproject.org [mailto:
-> yocto-bounces@yoctoproject.org] *On Behalf Of *Bhushan Shirsath
-> *Sent:* Wednesday, April 2, 2014 2:07 PM
-> *To:* yocto@yoctoproject.org
-> *Subject:* [yocto] copying media files to qemux86
->
->
->
-> Hi,
->
->
->
-> I'm able to successfully launch "runqemu qemux86".
->
-> Now i intend to test the media libs built using Yocto on qemu currently.
->
-> Is it possible to transfer/copy media files to qemux86 emulator ?
->
->
->
-> I tried copying files to tmp/sysroots/qemux86/ but it didn't work.
->
->
->
-> Thanks,
->
-> --bhushan
->
->
->
-
---e89a8f3ba5b5ddfae404f6868f3f
-Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">Hello Cristian,<div><br></div><div>Had a similar doubt as =
-described by Paul in=A0<a href=3D"https://bugzilla.yoctoproject.org/show_bu=
-g.cgi?id=3D5589">Bug 5589</a>.</div><div>Basically i wanted the &quot;audio=
-testsrc&quot; and &quot;videotestsrc&quot; plugins from gst-plugins-base an=
-d even though *-base was configured with those options,=A0</div>
-<div>I still didn&#39;t see it in gst-inspect on qemux86.</div><div>only af=
-ter I added it to &quot;CORE_IMAGE_EXTRA_INSTALL&quot; i got it in the fina=
-l image.</div><div><br></div><div>Normal understanding was to enable it whi=
-le ./configure and that should work. Am I missing something here ?=A0</div>
-<div><br></div><div>Regards,</div><div>--bhushan</div><div><br></div></div>=
-<div class=3D"gmail_extra"><br><br><div class=3D"gmail_quote">On Fri, Apr 4=
-, 2014 at 7:20 PM, Iorga, Cristian <span dir=3D"ltr">&lt;<a href=3D"mailto:=
-cristian.iorga@intel.com" target=3D"_blank">cristian.iorga@intel.com</a>&gt=
-;</span> wrote:<br>
-<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
-x #ccc solid;padding-left:1ex">
-
-
-
-
-
-<div lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
-<div>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1f497d">Hello,<u></u><u></u></spa=
-n></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
-libri&quot;,&quot;sans-serif&quot;;color:#1f497d">What kind of troubles wit=
-h
-</span>gst-plugins-base?<u></u><u></u></p>
-<p class=3D"MsoNormal">See YB5589: <a href=3D"https://bugzilla.yoctoproject=
-.org/show_bug.cgi?id=3D5589" target=3D"_blank">
-https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D5589</a><u></u><u></u><=
-/p>
-<p class=3D"MsoNormal">Maybe there is a hint in there, and the meta gst pac=
-kage will help..<u></u><u></u></p>
-<p class=3D"MsoNormal">/Cristian<span style=3D"font-size:11.0pt;font-family=
-:&quot;Calibri&quot;,&quot;sans-serif&quot;;color:#1f497d"><u></u><u></u></=
-span></p>
-<p class=3D"MsoNormal"><a name=3D"1452d02992ac7263__MailEndCompose"><span s=
-tyle=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,&quot;sans-serif&q=
-uot;;color:#1f497d"><u></u>=A0<u></u></span></a></p>
-<p class=3D"MsoNormal" style=3D"margin-left:.5in"><b><span style=3D"font-si=
-ze:11.0pt;font-family:&quot;Calibri&quot;,&quot;sans-serif&quot;">From:</sp=
-an></b><span style=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,&quo=
-t;sans-serif&quot;"> Bhushan S [mailto:<a href=3D"mailto:bhushan.az@gmail.c=
-om" target=3D"_blank">bhushan.az@gmail.com</a>]
-<br>
-<b>Sent:</b> Friday, April 4, 2014 1:35 PM<br>
-<b>To:</b> Iorga, Cristian<br>
-<b>Cc:</b> <a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yoct=
-o@yoctoproject.org</a><br>
-<b>Subject:</b> Re: [yocto] copying media files to qemux86<u></u><u></u></s=
-pan></p><div><div class=3D"h5">
-<p class=3D"MsoNormal" style=3D"margin-left:.5in"><u></u>=A0<u></u></p>
-<div>
-<p class=3D"MsoNormal" style=3D"margin-left:.5in">Yes Cristian.<u></u><u></=
-u></p>
-<div>
-<p class=3D"MsoNormal" style=3D"margin-left:.5in">My earlier attempt with s=
-cp was unsuccessful (probably lack of ssh support).<u></u><u></u></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"margin-left:.5in"><u></u>=A0<u></u></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"margin-left:.5in">Currently I&#39;m stuck w=
-ith enabling gst-plugins-ugly package and plugins from gst-plugins-base pac=
-kage<u></u><u></u></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"margin-left:.5in"><u></u>=A0<u></u></p>
-</div>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"margin-right:0in;margin-bottom:12.0pt;margi=
-n-left:.5in">
-<u></u>=A0<u></u></p>
-<div>
-<p class=3D"MsoNormal" style=3D"margin-left:.5in">On Wed, Apr 2, 2014 at 5:=
-44 PM, Iorga, Cristian &lt;<a href=3D"mailto:cristian.iorga@intel.com" targ=
-et=3D"_blank">cristian.iorga@intel.com</a>&gt; wrote:<u></u><u></u></p>
-<blockquote style=3D"border:none;border-left:solid #cccccc 1.0pt;padding:0i=
-n 0in 0in 6.0pt;margin-left:4.8pt;margin-right:0in">
-<div>
-<div>
-<p class=3D"MsoNormal" style=3D"margin-left:.5in">
-<span style=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,&quot;sans-=
-serif&quot;;color:#1f497d">Hello,</span><u></u><u></u></p>
-<p class=3D"MsoNormal" style=3D"margin-left:.5in">
-<span style=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,&quot;sans-=
-serif&quot;;color:#1f497d">=A0</span><u></u><u></u></p>
-<p class=3D"MsoNormal" style=3D"margin-left:.5in">
-<span style=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,&quot;sans-=
-serif&quot;;color:#1f497d">By=A0 media files, you mean music or video files=
-?</span><u></u><u></u></p>
-<p class=3D"MsoNormal" style=3D"margin-left:.5in">
-<span style=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,&quot;sans-=
-serif&quot;;color:#1f497d">If so, depending on the image (if it has ssh sup=
-port), you can copy into /home/root using scp after you boot the image.</sp=
-an><u></u><u></u></p>
-
-<p class=3D"MsoNormal" style=3D"margin-left:.5in">
-<span style=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,&quot;sans-=
-serif&quot;;color:#1f497d">I have use this to test mp3 playback, for exampl=
-e with some audio files.</span><u></u><u></u></p>
-<p class=3D"MsoNormal" style=3D"margin-left:.5in">
-<span style=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,&quot;sans-=
-serif&quot;;color:#1f497d">=A0</span><u></u><u></u></p>
-<p class=3D"MsoNormal" style=3D"margin-left:.5in">
-<span style=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,&quot;sans-=
-serif&quot;;color:#1f497d">Regards,</span><u></u><u></u></p>
-<p class=3D"MsoNormal" style=3D"margin-left:.5in">
-<span style=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,&quot;sans-=
-serif&quot;;color:#1f497d">Cristian Iorga</span><u></u><u></u></p>
-<p class=3D"MsoNormal" style=3D"margin-left:.5in">
-<span style=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,&quot;sans-=
-serif&quot;;color:#1f497d">YP</span><u></u><u></u></p>
-<p class=3D"MsoNormal" style=3D"margin-left:.5in">
-<span style=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,&quot;sans-=
-serif&quot;;color:#1f497d">Intel Corporation</span><u></u><u></u></p>
-<p class=3D"MsoNormal" style=3D"margin-left:.5in">
-<a name=3D"1452d02992ac7263_145225d2fee78011__MailEndCompose"><span style=
-=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,&quot;sans-serif&quot;=
-;color:#1f497d">=A0</span></a><u></u><u></u></p>
-<p class=3D"MsoNormal" style=3D"margin-left:1.0in">
-<b><span style=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,&quot;sa=
-ns-serif&quot;">From:</span></b><span style=3D"font-size:11.0pt;font-family=
-:&quot;Calibri&quot;,&quot;sans-serif&quot;">
-<a href=3D"mailto:yocto-bounces@yoctoproject.org" target=3D"_blank">yocto-b=
-ounces@yoctoproject.org</a> [mailto:<a href=3D"mailto:yocto-bounces@yoctopr=
-oject.org" target=3D"_blank">yocto-bounces@yoctoproject.org</a>]
-<b>On Behalf Of </b>Bhushan Shirsath<br>
-<b>Sent:</b> Wednesday, April 2, 2014 2:07 PM<br>
-<b>To:</b> <a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yoct=
-o@yoctoproject.org</a><br>
-<b>Subject:</b> [yocto] copying media files to qemux86</span><u></u><u></u>=
-</p>
-<div>
-<div>
-<p class=3D"MsoNormal" style=3D"margin-left:1.0in">
-=A0<u></u><u></u></p>
-<div>
-<p class=3D"MsoNormal" style=3D"margin-left:1.0in">
-Hi,<u></u><u></u></p>
-<div>
-<p class=3D"MsoNormal" style=3D"margin-left:1.0in">
-=A0<u></u><u></u></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"margin-left:1.0in">
-I&#39;m able to successfully launch &quot;runqemu qemux86&quot;.<u></u><u><=
-/u></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"margin-left:1.0in">
-Now i intend to test the media libs built using Yocto on qemu currently.<u>=
-</u><u></u></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"margin-left:1.0in">
-Is it possible to transfer/copy media files to qemux86 emulator ?<u></u><u>=
-</u></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"margin-left:1.0in">
-=A0<u></u><u></u></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"margin-left:1.0in">
-I tried copying files to=A0tmp/sysroots/qemux86/ but it didn&#39;t work.<u>=
-</u><u></u></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"margin-left:1.0in">
-=A0<u></u><u></u></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"margin-left:1.0in">
-Thanks,<u></u><u></u></p>
-</div>
-<div>
-<p class=3D"MsoNormal" style=3D"margin-left:1.0in">
---bhushan<u></u><u></u></p>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</blockquote>
-</div>
-<p class=3D"MsoNormal" style=3D"margin-left:.5in"><u></u>=A0<u></u></p>
-</div>
-</div></div></div>
-</div>
-
-</blockquote></div><br></div>
-
---e89a8f3ba5b5ddfae404f6868f3f--
