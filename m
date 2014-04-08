@@ -1,33 +1,31 @@
 Return-Path: <kergoth@gmail.com>
-Received: from mail-bk0-f41.google.com (mail-bk0-f41.google.com
-	[209.85.214.41])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 252DBE00BEA
-	for <yocto@yoctoproject.org>; Tue,  8 Apr 2014 08:47:16 -0700 (PDT)
-Received: by mail-bk0-f41.google.com with SMTP id d7so644294bkh.0
-	for <yocto@yoctoproject.org>; Tue, 08 Apr 2014 08:47:15 -0700 (PDT)
+Received: from mail-bk0-f47.google.com (mail-bk0-f47.google.com
+	[209.85.214.47])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C633AE00BEA
+	for <yocto@yoctoproject.org>; Tue,  8 Apr 2014 08:49:21 -0700 (PDT)
+Received: by mail-bk0-f47.google.com with SMTP id w10so620620bkz.6
+	for <yocto@yoctoproject.org>; Tue, 08 Apr 2014 08:49:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=mime-version:sender:in-reply-to:references:from:date:message-id
 	:subject:to:cc:content-type;
-	bh=UDF37Gsr8SGtu+q9FFLjWrotyI7HOkkyQsy2qQxB/hA=;
-	b=LfptphqxPbmNZmD2qKCHwfhvi6heorJuil3Ar5g7uhjuviR4MuTfUePTwYQVkven2P
-	UyespC8F6eWw+6RnGp3FMPK9Tbe6uJWo8KJEzNYcKAyC4x287JnuZ/yQ3bR9QFHOd2dh
-	FVWvjJC9TUELNKk1WxK/+07F+f/2ouQHbBOwFzMwFhT2/z13cA2X0z9BVTddNSchZQ5x
-	sa/+ED/bEueFbGdyKT7g7R5os84wrku1GVXt5eCg7YtT+hq7yIjoPpkxEcoPJwsXXD6f
-	JAjD88GiqBWZuoA8uROTnZt0RfiX51lheYGMxREdtWgwxsRrCFZPTQ+blhKaYQLJ5Mwp
-	z2gQ==
-X-Received: by 10.112.91.129 with SMTP id ce1mr2448314lbb.40.1396972035661;
-	Tue, 08 Apr 2014 08:47:15 -0700 (PDT)
+	bh=g3iMzA1Ki5Z4wB1NPcU9pg/+rz7R195Q/OCH1s2dM8U=;
+	b=NufQHHBGQDlHWB9wdzmDCAN0GetYcg+YtyAToAIKpDP6yjrN0cMSEMzJONtnW+sdN4
+	qRSDTu73TVhZ3xe3zSGBTWeqtYUiyS2isDJHTSBn/S1BlIk7wyVXrqLYG3L95rPeSrPR
+	uT+3ziITslZLNvooSLKs44EmwUDhHuYGl50FElFLo71khP45fqLhFFUqMp/sIsiOyVMA
+	mw1rFDf7lWaL6M0a1N6c5c7iAMFx2ZkeeQBKiOfdynQcTMGuT1j2/UhsH/0yZV7usIkH
+	0XUQ0zi7rbdNCdiph93jmcTcG0mtFbQhSq1WyjThaGFhseSe9HdA74Oh0IedYsCLdymu
+	bO7Q==
+X-Received: by 10.152.115.178 with SMTP id jp18mr3363374lab.23.1396972160082; 
+	Tue, 08 Apr 2014 08:49:20 -0700 (PDT)
 MIME-Version: 1.0
 Sender: kergoth@gmail.com
-Received: by 10.112.35.194 with HTTP; Tue, 8 Apr 2014 08:46:55 -0700 (PDT)
-In-Reply-To: <5344188D.60707@enea.com>
+Received: by 10.112.35.194 with HTTP; Tue, 8 Apr 2014 08:49:00 -0700 (PDT)
+In-Reply-To: <534416F0.10109@enea.com>
 References: <534416F0.10109@enea.com>
-	<CABcZAN=oz+-oMJozmjrrTkUDb76t_OdkgAJoQdMM5THEHs3Jtw@mail.gmail.com>
-	<5344188D.60707@enea.com>
 From: Chris Larson <clarson@kergoth.com>
-Date: Tue, 8 Apr 2014 08:46:55 -0700
-X-Google-Sender-Auth: kkwy7GY2uSp0-mPul3f6thbpjug
-Message-ID: <CABcZANkr9LiEU5Q28OaPkZxDRg-L2tzQiiHGqct7q1p3VSkvhQ@mail.gmail.com>
+Date: Tue, 8 Apr 2014 08:49:00 -0700
+X-Google-Sender-Auth: NvDfLvBcETpXLlI1Xe28QDfGJ84
+Message-ID: <CABcZANkGQVaqnGdxvL85i-gHi5xyWe_gH7n3CA44dQGxzVrhYw@mail.gmail.com>
 To: Vali Cobelea <valentin.cobelea@enea.com>
 Cc: Yocto list discussion <yocto@yoctoproject.org>,
 	Alexandru Vaduva <Alexandru.Vaduva@enea.com>
@@ -43,23 +41,25 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 08 Apr 2014 15:47:19 -0000
-Content-Type: multipart/alternative; boundary=001a1133a602f2644204f689e5ee
+X-List-Received-Date: Tue, 08 Apr 2014 15:49:25 -0000
+Content-Type: multipart/alternative; boundary=001a11c3474c5ce80904f689ed88
 
---001a1133a602f2644204f689e5ee
+--001a11c3474c5ce80904f689ed88
 Content-Type: text/plain; charset=UTF-8
 
-On Tue, Apr 8, 2014 at 8:41 AM, Vali Cobelea <valentin.cobelea@enea.com>wrote:
+On Tue, Apr 8, 2014 at 8:34 AM, Vali Cobelea <valentin.cobelea@enea.com>wrote:
 
-> It should work as I tried it outside the company network; otherwise I'll
-> ping back the IT guys to allow anonymous access.
+> Here at ENEA we decided to take the initiative regarding the CGL
+> compliance when it comes to the Yocto Project.
+> For this we started the work on a dedicated layer called 'meta-cgl' which
+> can be accessed / cloned from here:
+>
+>  http://git.enea.com/git/?p=linux/meta-cgl.git
+>  git clone git@git.enea.com:linux/meta-cgl
 >
 
-You tried it, yes, but you have the ssh keys necessary to authenticate as
-the git user on that server, which no one outside your company does :) If
-you want folks to be able to clone your repository without having to add
-their public keys to your ssh server config, then you will indeed want to
-contact IT to get anonymous access going.
+git clone git://git.enea.com/linux/meta-cgl.git for those of us who don't
+work for ENEA, works fine :)
 -- 
 Christopher Larson
 clarson at kergoth dot com
@@ -67,28 +67,35 @@ Founder - BitBake, OpenEmbedded, OpenZaurus
 Maintainer - Tslib
 Senior Software Engineer, Mentor Graphics
 
---001a1133a602f2644204f689e5ee
+--001a11c3474c5ce80904f689ed88
 Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
 <div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
-On Tue, Apr 8, 2014 at 8:41 AM, Vali Cobelea <span dir=3D"ltr">&lt;<a href=
+On Tue, Apr 8, 2014 at 8:34 AM, Vali Cobelea <span dir=3D"ltr">&lt;<a href=
 =3D"mailto:valentin.cobelea@enea.com" target=3D"_blank">valentin.cobelea@en=
 ea.com</a>&gt;</span> wrote:<br>
 
-<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
-x #ccc solid;padding-left:1ex"><div>It should work as I tried it outside th=
-e company network;
-      otherwise I&#39;ll ping back the IT guys to allow anonymous access.<b=
-r></div></blockquote></div><br>You tried it, yes, but you have the ssh keys=
- necessary to authenticate as the git user on that server, which no one out=
-side your company does :) If you want folks to be able to clone your reposi=
-tory without having to add their public keys to your ssh server config, the=
-n you will indeed want to contact IT to get anonymous access going.<br>
+<blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-=
+left-width:1px;border-left-color:rgb(204,204,204);border-left-style:solid;p=
+adding-left:1ex"><div id=3D":1i2" class=3D"" style=3D"overflow:hidden">Here=
+ at ENEA we decided to take the initiative regarding the CGL compliance whe=
+n it comes to the Yocto Project.<br>
+
+
+For this we started the work on a dedicated layer called &#39;meta-cgl&#39;=
+ which can be accessed / cloned from here:<br>
+<br>
+=C2=A0<a href=3D"http://git.enea.com/git/?p=3Dlinux/meta-cgl.git" target=3D=
+"_blank">http://git.enea.com/git/?p=3D<u></u>linux/meta-cgl.git</a><br>
+=C2=A0git clone git@git.enea.com:linux/meta-<u></u>cgl</div></blockquote></=
+div><br>git clone=C2=A0git://<a href=3D"http://git.enea.com/linux/meta-cgl.=
+git">git.enea.com/linux/meta-cgl.git</a> for those of us who don&#39;t work=
+ for ENEA, works fine :)<br>
 
 -- <br>Christopher Larson<br>clarson at kergoth dot com<br>Founder - BitBak=
 e, OpenEmbedded, OpenZaurus<br>Maintainer - Tslib<br>Senior Software Engine=
 er, Mentor Graphics
 </div></div>
 
---001a1133a602f2644204f689e5ee--
+--001a11c3474c5ce80904f689ed88--
