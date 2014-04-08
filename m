@@ -1,22 +1,22 @@
 Return-Path: <gley-yocto@m.gmane.org>
 Received: from plane.gmane.org (plane.gmane.org [80.91.229.3])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6AC0FE00C46
-	for <yocto@yoctoproject.org>; Tue,  8 Apr 2014 00:36:00 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 679B0E00C46
+	for <yocto@yoctoproject.org>; Tue,  8 Apr 2014 00:41:46 -0700 (PDT)
 Received: from list by plane.gmane.org with local (Exim 4.69)
-	(envelope-from <gley-yocto@m.gmane.org>) id 1WXQZa-0005hF-ID
-	for yocto@yoctoproject.org; Tue, 08 Apr 2014 09:35:58 +0200
+	(envelope-from <gley-yocto@m.gmane.org>) id 1WXQfA-0000q5-UW
+	for yocto@yoctoproject.org; Tue, 08 Apr 2014 09:41:44 +0200
 Received: from ppp005054168166.access.hol.gr ([5.54.168.166])
 	by main.gmane.org with esmtp (Gmexim 0.1 (Debian))
 	id 1AlnuQ-0007hv-00
-	for <yocto@yoctoproject.org>; Tue, 08 Apr 2014 09:35:58 +0200
+	for <yocto@yoctoproject.org>; Tue, 08 Apr 2014 09:41:44 +0200
 Received: from gmane by ppp005054168166.access.hol.gr with local (Gmexim 0.1
 	(Debian)) id 1AlnuQ-0007hv-00
-	for <yocto@yoctoproject.org>; Tue, 08 Apr 2014 09:35:58 +0200
+	for <yocto@yoctoproject.org>; Tue, 08 Apr 2014 09:41:44 +0200
 X-Injected-Via-Gmane: http://gmane.org/
 To: yocto@yoctoproject.org
 From: Robert Berger <gmane@reliableembeddedsystems.com>
-Date: Tue, 08 Apr 2014 10:35:35 +0300
-Message-ID: <5343A6C7.5030909@reliableembeddedsystems.com>
+Date: Tue, 08 Apr 2014 10:41:19 +0300
+Message-ID: <5343A81F.2040907@reliableembeddedsystems.com>
 References: <CAD78y+7r_2_nyzizGccLkyFj1PL2q3TBn4czTGsJr5dp6vos5Q@mail.gmail.com>
 Mime-Version: 1.0
 X-Complaints-To: usenet@ger.gmane.org
@@ -36,11 +36,9 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 08 Apr 2014 07:36:02 -0000
+X-List-Received-Date: Tue, 08 Apr 2014 07:41:46 -0000
 Content-Type: text/plain; charset=ISO-8859-1
 Content-Transfer-Encoding: 7bit
-
-Hi,
 
 On 03/09/2014 02:08 PM, Federico Vitali wrote:
 > Hi everyone,
@@ -48,48 +46,48 @@ On 03/09/2014 02:08 PM, Federico Vitali wrote:
 > I've succesfully build core-image-sato for raspberry pi, but when I try
 > to build the sdk version I obtain the following error:
 > 
-> ERROR: Multiple .bb files are due to be built which each provide
-> virtual/libgles2
-> (/home/vitalife/yocto/poky/meta-raspberrypi/recipes-graphics/userland/userland_git.bb
-> <http://userland_git.bb>
-> /home/vitalife/yocto/poky/meta/recipes-graphics/mesa/mesa_git.bb
-> <http://mesa_git.bb>).
->  This usually means one provides something the other doesn't and should.
-> ERROR: Multiple versions of mesa are due to be built
-> (/home/vitalife/yocto/poky/meta/recipes-graphics/mesa/mesa_9.1.6.bb
-> <http://mesa_9.1.6.bb>
-> /home/vitalife/yocto/poky/meta/recipes-graphics/mesa/mesa_git.bb
-> <http://mesa_git.bb>). Only one version of a given PN should be built in
-> any given build. You likely need to set PREFERRED_VERSION_mesa to select
-> the correct version or don't depend on multiple versions.
-> 
-> What could be the problem? 
 
-I hit the same problem and tried something like this [1] and
-PREFERRED_VERSION_mesa ?= "9.1.6", but the problem persists.
+BTW I get the error also with core-image-sato:
 
-Did you find a solution?
+builder@ubuntu-srvr-lv:~/rpi/poky/raspberrypi/conf$ bitbake core-image-sato
+Loading cache: 100%
+|#####################################################################################################################################|
+ETA:  00:00:00
+Loaded 1215 entries from dependency cache.
+NOTE: Resolving any missing task queue dependencies
 
-[1]
-http://git.yoctoproject.org/cgit/cgit.cgi/meta-intel/tree/common/recipes-graphics/mesa/mesa_9.1.6.bbappend?h=dora
+Build Configuration:
+BB_VERSION        = "1.20.0"
+BUILD_SYS         = "x86_64-linux"
+NATIVELSBSTRING   = "Ubuntu-12.04"
+TARGET_SYS        = "arm-poky-linux-gnueabi"
+MACHINE           = "raspberrypi"
+DISTRO            = "poky"
+DISTRO_VERSION    = "1.5.1"
+TUNE_FEATURES     = "armv6 vfp"
+TARGET_FPU        = "vfp"
+meta
+meta-yocto
+meta-yocto-bsp    = "dora:98bd952a5b72c584fc1094e4a61eb9e2a24cc97b"
+meta-raspberrypi  = "master:fbc0947e96e8989d46b1570619554cb916e24049"
 
-Regards,
+NOTE: Preparing runqueue
+NOTE: Executing SetScene Tasks
+NOTE: Executing RunQueue Tasks
+ERROR: Recipe mesa-gl is trying to create package libegl-mesa which was
+already written by recipe mesa. This will cause corruption, please
+resolve this and only provide the package from one recipe or the other
+or only build one of the recipes.
+ERROR: Function failed: read_subpackage_metadata
+ERROR: Logfile of failure stored in:
+/home/builder/rpi/poky/raspberrypi/tmp/work/armv6-vfp-poky-linux-gnueabi/mesa-gl/2_9.1.6-r0/temp/log.do_package_write_ipk.9838
+ERROR: Task 2436
+(/home/builder/rpi/poky/meta/recipes-graphics/mesa/mesa-gl_9.1.6.bb,
+do_package_write_ipk) failed with exit code '1'
 
-Robert
 
-> 
-> Thank you in advance
-> 
-> Federico
-> 
-> 
-> 
-> -- 
-> 
-
-..."German programmers tend to take it as a personal insult when a fault
-is detected in code that they have written." - Debora Weber-Wulff
-weberwu@tfh-berlin.de [comp.risks 16.94]
+..."To be or not to be... that is the question." - The answer is 0xff
+since: 0x2b | ~0x2b = 0xff
 
 My public pgp key is available,at:
 http://pgp.mit.edu:11371/pks/lookup?op=get&search=0x90320BF1
