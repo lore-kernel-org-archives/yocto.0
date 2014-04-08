@@ -1,39 +1,30 @@
-Return-Path: <SRS0=0YJyQI=ZI=xstreamworship.com=darcy@yourhostingaccount.com>
-Received: from mailout05.yourhostingaccount.com
-	(mailout05.yourhostingaccount.com [65.254.254.69])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0BFE1E00C46
-	for <yocto@yoctoproject.org>; Mon,  7 Apr 2014 22:21:47 -0700 (PDT)
-Received: from mailscan22.yourhostingaccount.com ([10.1.15.22]
-	helo=mailscan22.yourhostingaccount.com)
-	by mailout05.yourhostingaccount.com with esmtp (Exim)
-	id 1WXOTh-0004As-KH
-	for yocto@yoctoproject.org; Tue, 08 Apr 2014 01:21:45 -0400
-Received: from impout02.yourhostingaccount.com ([10.1.55.2]
-	helo=impout02.yourhostingaccount.com)
-	by mailscan22.yourhostingaccount.com with esmtp (Exim)
-	id 1WXOTh-0001Zk-SR; Tue, 08 Apr 2014 01:21:45 -0400
-Received: from walauthsmtp12.yourhostingaccount.com ([10.1.18.12])
-	by impout02.yourhostingaccount.com with NO UCE
-	id nHMl1n00Q0FdXoS01HMllL; Tue, 08 Apr 2014 01:21:45 -0400
-X-EN-OrigOutIP: 10.1.18.12
-X-EN-IMPSID: nHMl1n00Q0FdXoS01HMllL
-Received: from [70.68.129.247] (port=55354 helo=[192.168.25.11])
-	by walauthsmtp12.yourhostingaccount.com with esmtpa (Exim)
-	id 1WXOTh-0000hr-FE; Tue, 08 Apr 2014 01:21:45 -0400
-Message-ID: <1396934499.19057.43.camel@stabb>
-From: Darcy Watkins <darcy@xstreamworship.com>
+Return-Path: <gley-yocto@m.gmane.org>
+Received: from plane.gmane.org (plane.gmane.org [80.91.229.3])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6AC0FE00C46
+	for <yocto@yoctoproject.org>; Tue,  8 Apr 2014 00:36:00 -0700 (PDT)
+Received: from list by plane.gmane.org with local (Exim 4.69)
+	(envelope-from <gley-yocto@m.gmane.org>) id 1WXQZa-0005hF-ID
+	for yocto@yoctoproject.org; Tue, 08 Apr 2014 09:35:58 +0200
+Received: from ppp005054168166.access.hol.gr ([5.54.168.166])
+	by main.gmane.org with esmtp (Gmexim 0.1 (Debian))
+	id 1AlnuQ-0007hv-00
+	for <yocto@yoctoproject.org>; Tue, 08 Apr 2014 09:35:58 +0200
+Received: from gmane by ppp005054168166.access.hol.gr with local (Gmexim 0.1
+	(Debian)) id 1AlnuQ-0007hv-00
+	for <yocto@yoctoproject.org>; Tue, 08 Apr 2014 09:35:58 +0200
+X-Injected-Via-Gmane: http://gmane.org/
 To: yocto@yoctoproject.org
-Date: Mon, 07 Apr 2014 22:21:39 -0700
-In-Reply-To: <1396918944.19057.21.camel@stabb>
-References: <1396918944.19057.21.camel@stabb>
-X-Mailer: Evolution 3.8.5 (3.8.5-2.fc19) 
+From: Robert Berger <gmane@reliableembeddedsystems.com>
+Date: Tue, 08 Apr 2014 10:35:35 +0300
+Message-ID: <5343A6C7.5030909@reliableembeddedsystems.com>
+References: <CAD78y+7r_2_nyzizGccLkyFj1PL2q3TBn4czTGsJr5dp6vos5Q@mail.gmail.com>
 Mime-Version: 1.0
-X-EN-UserInfo: 9718c98d0dcf33dd6a452bac2a172d62:931c98230c6409dcc37fa7e93b490c27
-X-EN-AuthUser: dwatkins@pop.powweb.com
-Sender: Darcy Watkins <darcy@xstreamworship.com>
-X-EN-OrigIP: 70.68.129.247
-X-EN-OrigHost: unknown
-Subject: Re: Ext3 rootfs Corrupted during do_rootfs
+X-Complaints-To: usenet@ger.gmane.org
+X-Gmane-NNTP-Posting-Host: ppp005054168166.access.hol.gr
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:24.0) Gecko/20100101 Thunderbird/24.0
+In-Reply-To: <CAD78y+7r_2_nyzizGccLkyFj1PL2q3TBn4czTGsJr5dp6vos5Q@mail.gmail.com>
+Subject: Re: [meta-raspberrypi] Problem building core-image-sato-sdk
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,54 +36,63 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 08 Apr 2014 05:21:48 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Tue, 08 Apr 2014 07:36:02 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 Content-Transfer-Encoding: 7bit
 
-On Mon, 2014-04-07 at 18:02 -0700, Darcy Watkins wrote:
-> Hello,
+Hi,
+
+On 03/09/2014 02:08 PM, Federico Vitali wrote:
+> Hi everyone,
 > 
-> I think I may have encountered the same issue as reported originally on
-> the meta freescale list...
-> https://lists.yoctoproject.org/pipermail/meta-freescale/2014-February/006928.html
-> ...and...
-> https://lists.yoctoproject.org/pipermail/meta-freescale/2014-February/007086.html
---snip!--
+> I've succesfully build core-image-sato for raspberry pi, but when I try
+> to build the sdk version I obtain the following error:
+> 
+> ERROR: Multiple .bb files are due to be built which each provide
+> virtual/libgles2
+> (/home/vitalife/yocto/poky/meta-raspberrypi/recipes-graphics/userland/userland_git.bb
+> <http://userland_git.bb>
+> /home/vitalife/yocto/poky/meta/recipes-graphics/mesa/mesa_git.bb
+> <http://mesa_git.bb>).
+>  This usually means one provides something the other doesn't and should.
+> ERROR: Multiple versions of mesa are due to be built
+> (/home/vitalife/yocto/poky/meta/recipes-graphics/mesa/mesa_9.1.6.bb
+> <http://mesa_9.1.6.bb>
+> /home/vitalife/yocto/poky/meta/recipes-graphics/mesa/mesa_git.bb
+> <http://mesa_git.bb>). Only one version of a given PN should be built in
+> any given build. You likely need to set PREFERRED_VERSION_mesa to select
+> the correct version or don't depend on multiple versions.
+> 
+> What could be the problem? 
 
-Found a workaround!  I set the IMAGE_ROOTFS_EXTRA_SPACE to a nice 128M
-margin and got everything working OK.
+I hit the same problem and tried something like this [1] and
+PREFERRED_VERSION_mesa ?= "9.1.6", but the problem persists.
 
-So it would appear that the rootfs size estimation algorithm
-underestimates the needed size.  Perhaps using 'du' on the build host
-results in variances between how it lays out on the host versus the
-filesystem being constructed for the target.
+Did you find a solution?
 
-The algorithm includes a margin for error, so we run into trouble when
-the variances accumulate to exceed this margin.
-
-Perhaps worse than any of this is that the populate-extfs.sh script
-didn't catch the failures to exit with an error code (i.e. to break the
-build rather than leave a corrupt rootfs).
-
-Hopefully this info helps.
-
-I have observed symptoms of the filesystem corrupted this way as any of:
- - kernel boots but unable to complete init because things are missing
- - numerous error messages about commands missing during startup
- - a seemingly random file at a path that should be a directory
- - files in wrong location, usually closer to the root directory
- - broken symlinks
- - commands / programs / libraries missing
-
-
-
--- 
+[1]
+http://git.yoctoproject.org/cgit/cgit.cgi/meta-intel/tree/common/recipes-graphics/mesa/mesa_9.1.6.bbappend?h=dora
 
 Regards,
 
-Darcy
+Robert
 
-http://xstreamworship.com
-[P1]
+> 
+> Thank you in advance
+> 
+> Federico
+> 
+> 
+> 
+> -- 
+> 
+
+..."German programmers tend to take it as a personal insult when a fault
+is detected in code that they have written." - Debora Weber-Wulff
+weberwu@tfh-berlin.de [comp.risks 16.94]
+
+My public pgp key is available,at:
+http://pgp.mit.edu:11371/pks/lookup?op=get&search=0x90320BF1
+
 
 
