@@ -1,34 +1,45 @@
-Return-Path: <kergoth@gmail.com>
-Received: from mail-la0-f48.google.com (mail-la0-f48.google.com
-	[209.85.215.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 83A82E00BF0
-	for <yocto@yoctoproject.org>; Wed,  9 Apr 2014 14:00:25 -0700 (PDT)
-Received: by mail-la0-f48.google.com with SMTP id gf5so1577834lab.7
-	for <yocto@yoctoproject.org>; Wed, 09 Apr 2014 14:00:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:sender:in-reply-to:references:from:date:message-id
-	:subject:to:cc:content-type;
-	bh=d0WiW67IZPrhP7eddadSOn5qQMVm39va00lIgdANk5Y=;
-	b=K5jOAlHHk8yyz+uzr332UgF+qp5h9pYvu6nyNLJl53PVxbxWx80mSYm/2xnV8kmOLi
-	irPiWQh8jpf3d/6soYieqOYzIEyUbWEDb8wqhtRpara5b7mPRC4qm16ip4912M4m+6Ew
-	FMVGf+zeBpqlSV0kUmcbquIzQo3ztsMkiEzGnqfBFjKt3P3jEUB8ps+HBYIfNtJeruhj
-	wy4rb+P6QZWp85BC5vf0ZfPVzc6w6DjKxyfmNLEWkTlIf/RxTLZc/yWAG2nHTwlRM0m4
-	ddQg3xKoCIB2hKqKVeTWxb5wBwFOm9mlhiY0ko94co4OyX9JuB1R0FveFTTbsWqgRZCN
-	Bnpw==
-X-Received: by 10.153.8.135 with SMTP id dk7mr9105457lad.18.1397077223752;
-	Wed, 09 Apr 2014 14:00:23 -0700 (PDT)
+Return-Path: <rstreif@linuxfoundation.org>
+Received: from mail-pb0-f45.google.com (mail-pb0-f45.google.com
+	[209.85.160.45])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2958BE00BF0
+	for <yocto@yoctoproject.org>; Wed,  9 Apr 2014 16:33:04 -0700 (PDT)
+Received: by mail-pb0-f45.google.com with SMTP id uo5so3119365pbc.18
+	for <yocto@yoctoproject.org>; Wed, 09 Apr 2014 16:33:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=linuxfoundation.org; s=google;
+	h=mime-version:sender:in-reply-to:references:date:message-id:subject
+	:from:to:cc:content-type;
+	bh=SRXXKmU3IVqjbt0vlSsaUUu6TGMIo9XrqtX+qdg8YzQ=;
+	b=T3K3rWBSA6xfHAv4BMFY0iIxqECdoDjxBwJ9Za+Es7W8Ylo/VCPXEQQd5W5P6PWHDp
+	v33B+BSqv9VJ2nuEXDqO4t0MguS3tzkhHeSln1X2P4OjT2rotE92GEEl6N+TmGvzHzL6
+	/Mc5waWCSgBbZSK5wT7BJbwxo8lX2VEY3cnTw=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:sender:in-reply-to:references:date
+	:message-id:subject:from:to:cc:content-type;
+	bh=SRXXKmU3IVqjbt0vlSsaUUu6TGMIo9XrqtX+qdg8YzQ=;
+	b=AstTP6LTKbxCZbWY/UYORd208MJSBYJu6yBcq5ZyO2X2FguKn3tEOisPuEiSZKyDvR
+	9boi6xulajA1ZZBQ2zL5Q8wsFmRD7JL90RpGebLYy1uVGSVsMo5ElOmFymkI6JIPlZ1C
+	pEJkgKs5VvGhiq6zh8EJywdjCO7ju3wFgA16yfGH644I1rQrvJiCRk/DlFAmb8+QYfty
+	LNiY1G5fML+l0rMBR5GBXAJ/3yuN/udoLpKam0z5NnmCcsDtBZ+4Bo1ruwrLNPuXlSzM
+	35GloOwrObsGddfUFsi5aH1XAbfLZtfRiBK08ASoOKk1JorHefLUVqY4dI5gOWeZpd8z
+	rofw==
+X-Gm-Message-State: ALoCoQnhJd8emaX+Byqm9UHVKLDDSVNmvj/mJ4+VLnTDW/kVh58KNx9S55aps503xOMX5evMdQUF
 MIME-Version: 1.0
-Sender: kergoth@gmail.com
-Received: by 10.112.35.194 with HTTP; Wed, 9 Apr 2014 14:00:03 -0700 (PDT)
-In-Reply-To: <CAPphmgb4T+ZWE_rsVu6iS=XGCESVBqjSeysQHi5BVpkENnQrbQ@mail.gmail.com>
-References: <CAPphmgb4T+ZWE_rsVu6iS=XGCESVBqjSeysQHi5BVpkENnQrbQ@mail.gmail.com>
-From: Chris Larson <clarson@kergoth.com>
-Date: Wed, 9 Apr 2014 14:00:03 -0700
-X-Google-Sender-Auth: VRg1nc5aWsqvqCLxUqIIHMuyg_8
-Message-ID: <CABcZAN=uPhJWEqbbj3qUdLy9O45dCQqvdDKhepvy4a-JoQR4Vw@mail.gmail.com>
-To: Jate S <jatedev@gmail.com>
-Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: do_populate_sysroot_setscene needs pseudo-native
+X-Received: by 10.67.23.135 with SMTP id ia7mr15550957pad.5.1397086383935;
+	Wed, 09 Apr 2014 16:33:03 -0700 (PDT)
+Sender: rstreif@linuxfoundation.org
+Received: by 10.68.232.229 with HTTP; Wed, 9 Apr 2014 16:33:03 -0700 (PDT)
+In-Reply-To: <5345B327.5030203@balister.org>
+References: <CF6AE2C6.41DF5%belen.barros.pena@intel.com>
+	<5345B327.5030203@balister.org>
+Date: Wed, 9 Apr 2014 16:33:03 -0700
+X-Google-Sender-Auth: Wkvm1rsGED5L0KSmU0bkLAUR-Bs
+Message-ID: <CA+gsK-qsb+UVcKsuE_NMAw_dVD-LkdkgOwayBHLPdM3QPPt2Bw@mail.gmail.com>
+From: Rudolf Streif <rudolf.streif@linux.com>
+To: Belen Barros Pena <belen.barros.pena@intel.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Dogfooding and usability testing Toaster
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,109 +51,61 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 09 Apr 2014 21:00:28 -0000
-Content-Type: multipart/alternative; boundary=001a11347e9ea54b9e04f6a263f9
+X-List-Received-Date: Wed, 09 Apr 2014 23:33:05 -0000
+Content-Type: multipart/alternative; boundary=001a1134519aa2a60b04f6a485d6
 
---001a11347e9ea54b9e04f6a263f9
-Content-Type: text/plain; charset=UTF-8
+--001a1134519aa2a60b04f6a485d6
+Content-Type: text/plain; charset=ISO-8859-1
 
-On Wed, Apr 9, 2014 at 1:52 PM, Jate S <jatedev@gmail.com> wrote:
+Hi Belen,
 
-> WARNING: Setscene task 45
-> (/home/jate/workspace/poky/meta/recipes-connectivity/avahi/
-> avahi-ui_0.6.31.bb,
-> do_populate_sysroot_setscene) failed with exit code '1' - real task
-> will be run instead
->
-> The task log.do_populate_sysroot_setscene has the following WARNING:
->
-> NOTE: Performing useradd with [--root
-> /home/jate/workspace/poky/qemux86/tmp/sysroots/qemux86 --system --home
-> /var/run/avahi-daemon                               --no-create-home
-> --shell /bin/false                               --user-group avahi]
-> and 10 times of retry
->
-> /home/jate/workspace/poky/qemux86/tmp/work/i586-poky-linux/avahi-ui/0.6.31-r7.0/temp/run.useradd_sysroot_sstate.17299:
-> line 284:
-> /home/jate/workspace/poky/qemux86/tmp/sysroots/i686-linux/usr/bin/pseudo:
-> No such file or directory
-> WARNING: useradd command did not succeed. Retrying...
->
-> If I bitbake pseudo-native manually first, I can eliminate the
-> warning. I tried adding pseudo-native to the useradd.bbclass, but that
-> doesn't cause a rebuild.
->
-> Any thoughts on how to do this?
->
+That is exciting. I just ran with it and started a build with toaster in
+the background. A couple of observations from the get-go:
 
-You likely need something like:
+   - South 0.8.4 is also needed in addition to Django. The Toaster Wiki [1]
+   does not say that but the Contribute to Toaster page [2] does.
+   - You need to run 'sudo pip install ...' for Django and South otherwise
+   the installation fails with 'permission denied' for /usr/lib/python2.7
+   - Clicking on "Show me the manual" in the Toaster UI directs to [3]
+   which requires a log in
+   - Is it possible to relocate/rename the toaster.sqlite database via
+   configuration setting? If so, could I use the same database for different
+   build environments?
 
-    do_populate_sysroot_setscene[depends] +=
-"pseudo-native:do_populate_sysroot_setscene"
+Thanks,
+Rudi
 
-If you grep around oe-core/poky, there are a couple examples of this. I
-actually just ran into a case like this, where gdk-pixbuf-native needed
-jpeg-native to run its setscene postinst, but the dep was missing, causing
-setscene failure.
--- 
-Christopher Larson
-clarson at kergoth dot com
-Founder - BitBake, OpenEmbedded, OpenZaurus
-Maintainer - Tslib
-Senior Software Engineer, Mentor Graphics
 
---001a11347e9ea54b9e04f6a263f9
-Content-Type: text/html; charset=UTF-8
+
+
+[1] https://wiki.yoctoproject.org/wiki/Toaster#Installation_and_Running
+[2] https://wiki.yoctoproject.org/wiki/Contribute_to_Toaster
+[3] https://www.yoctoproject.org/documentation/toaster-manual
+
+--001a1134519aa2a60b04f6a485d6
+Content-Type: text/html; charset=ISO-8859-1
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
-On Wed, Apr 9, 2014 at 1:52 PM, Jate S <span dir=3D"ltr">&lt;<a href=3D"mai=
-lto:jatedev@gmail.com" target=3D"_blank">jatedev@gmail.com</a>&gt;</span> w=
-rote:<br>
-
-<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
-x #ccc solid;padding-left:1ex"><div id=3D":af" class=3D"a3s" style=3D"overf=
-low:hidden">WARNING: Setscene task 45<br>
-(/home/jate/workspace/poky/meta/recipes-connectivity/avahi/<a href=3D"http:=
-//avahi-ui_0.6.31.bb" target=3D"_blank">avahi-ui_0.6.31.bb</a>,<br>
-do_populate_sysroot_setscene) failed with exit code &#39;1&#39; - real task=
-<br>
-will be run instead<br>
-<br>
-The task log.do_populate_sysroot_setscene has the following WARNING:<br>
-<br>
-NOTE: Performing useradd with [--root<br>
-/home/jate/workspace/poky/qemux86/tmp/sysroots/qemux86 --system --home<br>
-/var/run/avahi-daemon =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 --no-create-home<br>
---shell /bin/false =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 --user-group avahi]<br>
-and 10 times of retry<br>
-/home/jate/workspace/poky/qemux86/tmp/work/i586-poky-linux/avahi-ui/0.6.31-=
-r7.0/temp/run.useradd_sysroot_sstate.17299:<br>
-line 284: /home/jate/workspace/poky/qemux86/tmp/sysroots/i686-linux/usr/bin=
-/pseudo:<br>
-No such file or directory<br>
-WARNING: useradd command did not succeed. Retrying...<br>
-<br>
-If I bitbake pseudo-native manually first, I can eliminate the<br>
-warning. I tried adding pseudo-native to the useradd.bbclass, but that<br>
-doesn&#39;t cause a rebuild.<br>
-<br>
-Any thoughts on how to do this?</div></blockquote></div><br>You likely need=
- something like:</div><div class=3D"gmail_extra"><br></div><div class=3D"gm=
-ail_extra">=C2=A0 =C2=A0 do_populate_sysroot_setscene[depends] +=3D &quot;p=
-seudo-native:do_populate_sysroot_setscene&quot;</div>
-
-<div class=3D"gmail_extra"><br></div><div class=3D"gmail_extra">If you grep=
- around oe-core/poky, there are a couple examples of this. I actually just =
-ran into a case like this, where gdk-pixbuf-native needed jpeg-native to ru=
-n its setscene postinst, but the dep was missing, causing setscene failure.=
-<br>
-
--- <br>Christopher Larson<br>clarson at kergoth dot com<br>Founder - BitBak=
-e, OpenEmbedded, OpenZaurus<br>Maintainer - Tslib<br>Senior Software Engine=
-er, Mentor Graphics
+<div dir=3D"ltr">Hi Belen,<div><br></div><div>That is exciting. I just ran =
+with it and started a build with toaster in the background. A couple of obs=
+ervations from the get-go:</div><div><ul><li>South 0.8.4 is also needed in =
+addition to Django. The Toaster Wiki [1] does not say that but the Contribu=
+te to Toaster page [2] does.</li>
+<li>You need to run &#39;sudo pip install ...&#39; for Django and South oth=
+erwise the installation fails with &#39;permission denied&#39; for /usr/lib=
+/python2.7</li><li>Clicking on &quot;Show me the manual&quot; in the Toaste=
+r UI directs to [3] which requires a log in</li>
+<li>Is it possible to relocate/rename the toaster.sqlite database via confi=
+guration setting? If so, could I use the same database for different build =
+environments?</li></ul><div>Thanks,</div><div>Rudi</div><div><br></div>
+</div><div><br></div><div><br></div><div><br></div><div>[1]=A0<a href=3D"ht=
+tps://wiki.yoctoproject.org/wiki/Toaster#Installation_and_Running">https://=
+wiki.yoctoproject.org/wiki/Toaster#Installation_and_Running</a></div><div>[=
+2]=A0<a href=3D"https://wiki.yoctoproject.org/wiki/Contribute_to_Toaster">h=
+ttps://wiki.yoctoproject.org/wiki/Contribute_to_Toaster</a></div>
+<div>[3]=A0<a href=3D"https://www.yoctoproject.org/documentation/toaster-ma=
+nual">https://www.yoctoproject.org/documentation/toaster-manual</a></div><d=
+iv class=3D"gmail_extra"><br><br><div class=3D"gmail_quote"><br></div>
 </div></div>
 
---001a11347e9ea54b9e04f6a263f9--
+--001a1134519aa2a60b04f6a485d6--
