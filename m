@@ -1,28 +1,24 @@
-Return-Path: <jatedev@gmail.com>
-Received: from mail-qg0-f66.google.com (mail-qg0-f66.google.com
-	[209.85.192.66])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6D208E00BF0
-	for <yocto@yoctoproject.org>; Wed,  9 Apr 2014 13:52:41 -0700 (PDT)
-Received: by mail-qg0-f66.google.com with SMTP id a108so908984qge.5
-	for <yocto@yoctoproject.org>; Wed, 09 Apr 2014 13:52:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=wyPI0vSIvWKlkFJ5VHU3D+Lw/m1/f33MRfy/n2NQz2g=;
-	b=tM+7F8jE//PJqDBOAgJxUyKlIyHi1pkD6XgPKzmb+80lDZh6GhiNIhcYvkS1nlVXmI
-	AMzmZCCbIItNd0S88kmtZ9zuubek94oH4KfFjeGSHk0qOo63600wpLHYQMEV/eED8mhk
-	imAZ0k2q22JpOXsw5wUfyyZAsqKebSsTbCngEegOGv17FRC0Gaq4cvwCc1nM5FiBb74R
-	4Q5of3kNTfYAVe0DnQfSATraCYz7AeMrIW0Y31fgThOUiQypc7A1UMAor5iG7KwTHITx
-	OdSEzKD4h8LdsM8dexw98wqvMyueH7c/augvOy2YxMm0v6VbtBXt7qkOA8KQcxYjc5Ub
-	ECtQ==
+Return-Path: <philip@balister.org>
+Received: from starfish.geekisp.com (starfish.geekisp.com [216.168.135.166])
+	by yocto-www.yoctoproject.org (Postfix) with SMTP id 45C32E00C02
+	for <yocto@yoctoproject.org>; Wed,  9 Apr 2014 13:52:57 -0700 (PDT)
+Received: (qmail 4862 invoked by uid 1003); 9 Apr 2014 20:52:56 -0000
+Received: from unknown (HELO ?10.16.32.157?)
+	(philip@opensdr.com@64.186.172.226)
+	by mail.geekisp.com with (DHE-RSA-AES128-SHA encrypted) SMTP;
+	9 Apr 2014 20:52:56 -0000
+Message-ID: <5345B327.5030203@balister.org>
+Date: Wed, 09 Apr 2014 13:52:55 -0700
+From: Philip Balister <philip@balister.org>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:24.0) Gecko/20100101 Thunderbird/24.4.0
 MIME-Version: 1.0
-X-Received: by 10.140.101.180 with SMTP id u49mr15158145qge.27.1397076761107; 
-	Wed, 09 Apr 2014 13:52:41 -0700 (PDT)
-Received: by 10.140.101.138 with HTTP; Wed, 9 Apr 2014 13:52:41 -0700 (PDT)
-Date: Wed, 9 Apr 2014 16:52:41 -0400
-Message-ID: <CAPphmgb4T+ZWE_rsVu6iS=XGCESVBqjSeysQHi5BVpkENnQrbQ@mail.gmail.com>
-From: Jate S <jatedev@gmail.com>
-To: Yocto Project <yocto@yoctoproject.org>
-Subject: do_populate_sysroot_setscene needs pseudo-native
+To: "Barros Pena, Belen" <belen.barros.pena@intel.com>, 
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+References: <CF6AE2C6.41DF5%belen.barros.pena@intel.com>
+In-Reply-To: <CF6AE2C6.41DF5%belen.barros.pena@intel.com>
+X-Enigmail-Version: 1.6
+Subject: Re: Dogfooding and usability testing Toaster
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,34 +30,51 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 09 Apr 2014 20:52:44 -0000
+X-List-Received-Date: Wed, 09 Apr 2014 20:52:58 -0000
 Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: 8bit
 
-I am getting the following warning:
+On 04/09/2014 03:43 AM, Barros Pena, Belen wrote:
+> Hi all,
+> 
+> I am looking into collecting feedback on the first version of Toaster
+> 
+> https://www.yoctoproject.org/blogs/belenbarrospena/2014/eye-candy
+> 
+> which will be out with Yocto Project 1.6. There are 2 things I'd like to
+> do:
+> 
+> 1) Dogfooding
+> 
+> Once the release is out, it would be great to have people trying Toaster
+> for real work stuff, and telling us how it went. I am of course
+> particularly keen on hearing about what's wrong, so feel free to vent your
+> frustrations with the thing.
+> 
+> 2) (More formal) usability testing
+> 
+> I am also looking into validating the Toaster interface in more
+> conventional ways, which means usability testing. This is done in
+> 30-minute sessions run remotely using screen sharing software, although we
+> can also do it in person if you are going to ELC or the OEDAM. During
+> those 30 minutes you will be asked to do some stuff with Toaster and to
+> speak your mind a lot. I will also ask for your permission to record the
+> session, which you can of course refuse.
 
-WARNING: Setscene task 45
-(/home/jate/workspace/poky/meta/recipes-connectivity/avahi/avahi-ui_0.6.31.bb,
-do_populate_sysroot_setscene) failed with exit code '1' - real task
-will be run instead
+Belen, can you add this to the OEDAM wiki page? We should have a good
+variety of people there to give feedback.
 
-The task log.do_populate_sysroot_setscene has the following WARNING:
+Philip
 
-NOTE: Performing useradd with [--root
-/home/jate/workspace/poky/qemux86/tmp/sysroots/qemux86 --system --home
-/var/run/avahi-daemon                               --no-create-home
---shell /bin/false                               --user-group avahi]
-and 10 times of retry
-/home/jate/workspace/poky/qemux86/tmp/work/i586-poky-linux/avahi-ui/0.6.31-r7.0/temp/run.useradd_sysroot_sstate.17299:
-line 284: /home/jate/workspace/poky/qemux86/tmp/sysroots/i686-linux/usr/bin/pseudo:
-No such file or directory
-WARNING: useradd command did not succeed. Retrying...
-
-If I bitbake pseudo-native manually first, I can eliminate the
-warning. I tried adding pseudo-native to the useradd.bbclass, but that
-doesn't cause a rebuild.
-
-Any thoughts on how to do this?
-
-
-- Jate
+> 
+> If you would like to volunteer for this (which is useful and important
+> stuff), get in touch with me (I am belen in IRC, or email me). I would
+> normally give out something in return for your time, but things are tight
+> right now, so I'm afraid all you'll get on this occasion is a heartwarming
+> thank you.
+> 
+> Cheers
+> 
+> Belén
+> 
 
