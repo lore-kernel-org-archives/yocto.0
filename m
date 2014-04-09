@@ -1,35 +1,27 @@
-Return-Path: <wpdster@gmail.com>
-Received: from mail-pb0-f47.google.com (mail-pb0-f47.google.com
-	[209.85.160.47])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7A106E00B88
-	for <yocto@yoctoproject.org>; Wed,  9 Apr 2014 04:14:03 -0700 (PDT)
-Received: by mail-pb0-f47.google.com with SMTP id up15so2357791pbc.6
-	for <yocto@yoctoproject.org>; Wed, 09 Apr 2014 04:14:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-type;
-	bh=8OyBD3gQh9/JnK/JoERGqGUPx78b/RefRiR9xFXoni0=;
-	b=kwlqad4mQOQTyLhX8y8wnJgcN83QLRGOy6q8HLZ72SgR4ePpjWuOEoQt4/X0WG45e2
-	k7Nsu1fnFKFCq1wTPC6uQEkRDUhk+CjP7POSGf/AE5N9Uec0LmwBM1ri1rmXScJdn7eH
-	B3rFcuZrCNd/bzZaQQFFwVR0hTDQOapYqOc/qSkxtkQVCaoeZ+zMEAitXlGIOUkCIlgv
-	LR0bX13DMrIUcu/acrjhzJtQT0SH/5c/MgyRZvrXyNPzrxh4D8mQIn1IaQn3MHYE4Wg1
-	VjXy7d8mG9c5C26mofat1JhBQLzbxI+MUCJmnJpsOMBidgH7x1/iT8MCby2cmxoE3H97
-	zwJg==
-X-Received: by 10.68.102.34 with SMTP id fl2mr11275709pbb.2.1397042043700;
-	Wed, 09 Apr 2014 04:14:03 -0700 (PDT)
-MIME-Version: 1.0
-Received: by 10.70.32.161 with HTTP; Wed, 9 Apr 2014 04:13:33 -0700 (PDT)
-In-Reply-To: <CAJTo0LbrFHPfQ5kD9XfaSTc2YM_1x=AzdC4CYJecc_w6FM7n9A@mail.gmail.com>
-References: <CAF_dkJBmwwiaC0Kna5rrZ2J_WnKYz9gvTU55xBXCkEyxoZ88yQ@mail.gmail.com>
-	<CAJTo0LbrFHPfQ5kD9XfaSTc2YM_1x=AzdC4CYJecc_w6FM7n9A@mail.gmail.com>
-From: Patrick Doyle <wpdster@gmail.com>
-Date: Wed, 9 Apr 2014 07:13:33 -0400
-Message-ID: <CAF_dkJAbX84L7zVZPMkYKxesuwjfeHB-B6mzJFoqkEvHOqHj-Q@mail.gmail.com>
-To: "Burton, Ross" <ross.burton@intel.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	gstreamer-devel <gstreamer-devel@lists.freedesktop.org>,
-	gstreamer-embedded@lists.freedesktop.org
-Subject: Re: Squeezing a gstreamer video pipeline into the smallest footprint possible
+Return-Path: <richard.purdie@linuxfoundation.org>
+Received: from dan.rpsys.net (5751f4a1.skybroadband.com [87.81.244.161])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 280BBE00B88
+	for <yocto@yoctoproject.org>; Wed,  9 Apr 2014 04:46:57 -0700 (PDT)
+Received: from localhost (dan.rpsys.net [127.0.0.1])
+	by dan.rpsys.net (8.14.4/8.14.4/Debian-2.1ubuntu4) with ESMTP id
+	s39Bj0b1028394; Wed, 9 Apr 2014 12:46:15 +0100
+X-Virus-Scanned: Debian amavisd-new at dan.rpsys.net
+Received: from dan.rpsys.net ([127.0.0.1])
+	by localhost (dan.rpsys.net [127.0.0.1]) (amavisd-new, port 10024)
+	with LMTP id hDaafY5YSVL3; Wed,  9 Apr 2014 12:46:14 +0100 (BST)
+Received: from [192.168.3.10] (rpvlan0 [192.168.3.10]) (authenticated bits=0)
+	by dan.rpsys.net (8.14.4/8.14.4/Debian-2.1ubuntu1) with ESMTP id
+	s39Bk8VK028403
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES128-SHA bits=128 verify=NOT);
+	Wed, 9 Apr 2014 12:46:10 +0100
+Message-ID: <1397043963.24597.160.camel@ted>
+From: Richard Purdie <richard.purdie@linuxfoundation.org>
+To: openembedded-core <openembedded-core@lists.openembedded.org>
+Date: Wed, 09 Apr 2014 12:46:03 +0100
+X-Mailer: Evolution 3.8.4-0ubuntu1 
+Mime-Version: 1.0
+Cc: yocto <yocto@yoctoproject.org>
+Subject: The point of Release Candidates
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,35 +33,61 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 09 Apr 2014 11:14:06 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Wed, 09 Apr 2014 11:47:00 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
-Thank you for the tips folks... please keep them coming.  At the moment
-(for this pinhole sized project) I only need support for video.  Is
-there any way to strip out all of the audio components from the
-gstreamer I generate?  I tried adding --disable-vorbis to my recipe,
-only to find that config.status shows that both --disable-vorbis and
---enable-vorbis options we set in ac_cs_config.
+It seems people don't understand what the point of a Release Candidate
+is, or the timelines we work to. The fact this is coming as a surprise
+to people is seriously upsetting to me as we've done this for long
+enough now that people should know the drill.
 
-In the mean time, I'm going to go build my own pipeline & link it
-statically as suggested by Sebastian.
+A release candidate is what is says, a possible candidate to be
+released. We merge things, it goes to QA, it gets tested and then we
+decide go/no go.
 
-Thank you again.
+I appreciate this time around, RC1 was a trial run due to the kernel
+issues. We did the best would could there having decided to go for 3.14.
 
---wpd
+RC3 was meant to happen last night. In theory, patches should have been
+submitted by Sunday for it giving me Monday/Tuesday to review, merge,
+test and sort things out.
+
+I delayed RC3 by 24 hours since:
+
+a) yocto-bsp tooling was broken. It fell off the radar and was a 
+   release blocker
+b) the RC2 QA report wasn't out
+
+I'm now finding that:
+
+a) The QA teams either don't have or can't boot beaglebone. 
+b) The beaglebone README still isn't available. I took patches on the 
+   understanding this would be available. The QA team who do have 
+   hardware are trying to test something which isn't documented so this 
+   is hindering a). Are they testing the right thing? Who knows.
+c) We have a number of edgerouter bugs. Why are these appearing now?
+d) There are cyptodev patches in various states of flux. The turnaround 
+   on patches there isn't what I'd expect at rc3 if people want them in.
+   Basically, they're not going in now due to that.
+e) The patch quality is to be blunt, dire. Patches coming in at this 
+   point need to be well thought out and tested. Instead, some people 
+   are panicking and appear to be throwing any old thing in and then 
+   worry about bug fixing it later.
+
+At this point, its looking like we may have to go to rc4 as bugs with
+two of the reference BSPs is a serious issue. I don't think people
+realise how much of a mess we're heading into here as even to make rc4,
+I need the fixes near enough yesterday.
+
+I'm actually taking this pretty personally. I do what I can for the
+project to pull things together. I do try and cut people slack where
+possible to make things happen. In return, it appears people are just
+taking advantage of this. I may well start getting a lot stricter with
+deadlines, cutoffs and so on which I can guarantee that people are not
+going to enjoy.
+
+Richard
 
 
-On Wed, Apr 9, 2014 at 4:53 AM, Burton, Ross <ross.burton@intel.com> wrote:
-> On 9 April 2014 00:03, Patrick Doyle <wpdster@gmail.com> wrote:
->> I have a ridiculously pinhole sized memory footprint into which I
->> would like to squeeze a gstreamer based video pipeline.  I am looking
->> for tips on what I can do to minimize the footprint as much as
->> possible for my Yocto based system.
->
-> The GStreamer plugins and libraries are all packaged independently in
-> Yocto, so you can do some heavy size reduction by just installing the
-> packages you need, and double-checking that nothing unexpected gets
-> pulled in via dependencies.
->
-> Ross
 
