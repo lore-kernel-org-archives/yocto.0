@@ -1,35 +1,36 @@
-Return-Path: <erik.boto@pelagicore.com>
-Received: from mail-ob0-f169.google.com (mail-ob0-f169.google.com
-	[209.85.214.169])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0E9EAE00B88
-	for <yocto@yoctoproject.org>; Tue,  8 Apr 2014 23:47:20 -0700 (PDT)
-Received: by mail-ob0-f169.google.com with SMTP id va2so2247038obc.0
-	for <yocto@yoctoproject.org>; Tue, 08 Apr 2014 23:47:19 -0700 (PDT)
+Return-Path: <ross.burton@intel.com>
+Received: from mail-qc0-f173.google.com (mail-qc0-f173.google.com
+	[209.85.216.173])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D5739E00B88
+	for <yocto@yoctoproject.org>; Wed,  9 Apr 2014 01:54:05 -0700 (PDT)
+Received: by mail-qc0-f173.google.com with SMTP id r5so2415318qcx.32
+	for <yocto@yoctoproject.org>; Wed, 09 Apr 2014 01:54:04 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:date
-	:message-id:subject:from:to:cc:content-type
-	:content-transfer-encoding;
-	bh=KvpwbnVsUy7nEnR4xfk5yx51IhEYo5NJQb0lA0gM63k=;
-	b=WfjlSU5CGBAKUaFh8PW1qce6Kz/1xF0ZNipPCh+SN48A1HeaJPrPlAw2ySZ7Pu2lVc
-	+IHlmKRiZZgvoBBfAsWQr0NfPbecdP3c4hTWNIJeXBGo6x2uZRF/L6vMwJYQ7OiAhdpx
-	1DzYuxl4cL4KIA5zK7T1ZHhuze/OWlj3cIN/ZwB46MhRKg7Qr5gegxi2cr7200THd+zH
-	RiY2yVyPDJtGHvqA7VrNSfcFW2L0ol02Jka8VMTshpL03/2GEHStgoEDCpDD+aWYNWSH
-	qfTSX0jw3GvP5hCk8EbxiYy/6piHOvjEP8a1xIIdjSZWJqKyDomowkCMLXTpJyvN2F8+
-	s1Nw==
-X-Gm-Message-State: ALoCoQm097QUvQXhWtbmnlKh82DAxOZN1TPWwow1VGcDsessbvQQdLpXvXRLTM80LMxwy4MJ1GWU
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc:content-type;
+	bh=kJLfJFvFu1ontgCtWhRvzSmjHnx6Sy0pYbhkVnSp1Yo=;
+	b=HhOF5EM3k+839+DULnOXdmAxf9hXXXwDW42GeariRAirXVhvH7YOTfQAOzJVAY4CAP
+	tdPmsvkAfhPiMRMjEGv/nTlcA9NgxJChSlj15MUv8eEA9xETvbONmHRHJGHAUxJi07ty
+	pGn01wD5Hvf6XRirfLG/LGp5M6F98LX2O31PU5rHoyrJn2YDh2BHEBcVJlkjjK0r2JEm
+	f8efWs9F7tAemA5FX/Z5yE0fdLnwYYsp5vavVmM0roiV27ILkRW3sxRv4GdHKUUokFOB
+	akPzo1sNQJsNQy0zPwRzeUBs2jjTXUNJMppg3j8PhouR7ZKp2Q0Xwc41YQPWulvtwEKu
+	lkzA==
+X-Gm-Message-State: ALoCoQnp3fd8IB5bvg5kwtbFavC3BvnLPPL42QSSZZvSi13Pr9OHSgsUBDR8E6HqdCbag2vSBvjH
+X-Received: by 10.224.127.129 with SMTP id g1mr10800095qas.22.1397033644422;
+	Wed, 09 Apr 2014 01:54:04 -0700 (PDT)
 MIME-Version: 1.0
-X-Received: by 10.182.105.1 with SMTP id gi1mr7297439obb.9.1397026039357; Tue,
-	08 Apr 2014 23:47:19 -0700 (PDT)
-Received: by 10.76.12.197 with HTTP; Tue, 8 Apr 2014 23:47:19 -0700 (PDT)
-In-Reply-To: <de6b3cec81f445b99d03b5382d698195@DM2PR03MB399.namprd03.prod.outlook.com>
-References: <de6b3cec81f445b99d03b5382d698195@DM2PR03MB399.namprd03.prod.outlook.com>
-Date: Wed, 9 Apr 2014 08:47:19 +0200
-Message-ID: <CA+AhUGw3Vsdoe1FfiUDyQ+vAXCjrttNaLpSvu1+vuQNaGwk7nw@mail.gmail.com>
-From: =?ISO-8859-1?Q?Erik_Bot=F6?= <erik.boto@pelagicore.com>
-To: "zhenhua.luo@freescale.com" <zhenhua.luo@freescale.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Can Yocto support "git clone" for url with http prefix
+Received: by 10.140.27.167 with HTTP; Wed, 9 Apr 2014 01:53:44 -0700 (PDT)
+In-Reply-To: <CAF_dkJBmwwiaC0Kna5rrZ2J_WnKYz9gvTU55xBXCkEyxoZ88yQ@mail.gmail.com>
+References: <CAF_dkJBmwwiaC0Kna5rrZ2J_WnKYz9gvTU55xBXCkEyxoZ88yQ@mail.gmail.com>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Wed, 9 Apr 2014 09:53:44 +0100
+Message-ID: <CAJTo0LbrFHPfQ5kD9XfaSTc2YM_1x=AzdC4CYJecc_w6FM7n9A@mail.gmail.com>
+To: Patrick Doyle <wpdster@gmail.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
+	gstreamer-devel <gstreamer-devel@lists.freedesktop.org>,
+	gstreamer-embedded@lists.freedesktop.org
+Subject: Re: Squeezing a gstreamer video pipeline into the smallest footprint possible
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,60 +42,19 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 09 Apr 2014 06:47:23 -0000
-Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Wed, 09 Apr 2014 08:54:09 -0000
+Content-Type: text/plain; charset=UTF-8
 
-Hi,
+On 9 April 2014 00:03, Patrick Doyle <wpdster@gmail.com> wrote:
+> I have a ridiculously pinhole sized memory footprint into which I
+> would like to squeeze a gstreamer based video pipeline.  I am looking
+> for tips on what I can do to minimize the footprint as much as
+> possible for my Yocto based system.
 
-On Wed, Apr 9, 2014 at 8:21 AM, zhenhua.luo@freescale.com
-<zhenhua.luo@freescale.com> wrote:
-> I want to create recipe for a package which is managed by Gerrit, Gerrit =
-only provides an anonymous HTTP url(http://aaaa:8181/bb) which can be clone=
-d by "git clone http://aaaa:8181/bb" correctly.
->
-> I set SRC_URI to "http://aaaa:8181/bb" in the bb file, following is the d=
-etailed definition.
->        SRC_URI =3D "http://aaaa:8181/bb;protocol=3Dgit;branch=3Dmaster"
->
-> When I try to build the package, following error appears.
->         ERROR: Function failed: URL: 'http://aaaa:8181/bb;protocol=3Dgit;=
-branch=3Dmaster' has invalid parameters. Invalid protocol - if you wish to =
-fetch from a git repository using http, you need to instead use the git:// =
-prefix with protocol=3Dhttp
->
-> May I know if Yocto can support "git clone" for url with http prefix?
+The GStreamer plugins and libraries are all packaged independently in
+Yocto, so you can do some heavy size reduction by just installing the
+packages you need, and double-checking that nothing unexpected gets
+pulled in via dependencies.
 
-Yes. All git SRC_URI start with git:// and then you can specify
-protocol=3Dhttp. E.g.
-
-SRC_URI =3D "git://aaaa:8181/bb;protocol=3Dhttp;branch=3Dmaster"
-
-Cheers,
-Erik
-
->
->
-> Best Regards,
->
-> Zhenhua
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
-
-
-
---=20
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-Erik Bot=F6
-Senior Software Engineer
-Pelagicore AB
-Ekelundsgatan 4, 6tr, SE-411 18 Gothenburg, Sweden
-Mobile: +46 (0)76 881 72 03
-E-Mail: erik.boto@pelagicore.com
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+Ross
 
