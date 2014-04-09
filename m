@@ -1,36 +1,39 @@
-Return-Path: <ross.burton@intel.com>
-Received: from mail-qc0-f173.google.com (mail-qc0-f173.google.com
-	[209.85.216.173])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D5739E00B88
-	for <yocto@yoctoproject.org>; Wed,  9 Apr 2014 01:54:05 -0700 (PDT)
-Received: by mail-qc0-f173.google.com with SMTP id r5so2415318qcx.32
-	for <yocto@yoctoproject.org>; Wed, 09 Apr 2014 01:54:04 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc:content-type;
-	bh=kJLfJFvFu1ontgCtWhRvzSmjHnx6Sy0pYbhkVnSp1Yo=;
-	b=HhOF5EM3k+839+DULnOXdmAxf9hXXXwDW42GeariRAirXVhvH7YOTfQAOzJVAY4CAP
-	tdPmsvkAfhPiMRMjEGv/nTlcA9NgxJChSlj15MUv8eEA9xETvbONmHRHJGHAUxJi07ty
-	pGn01wD5Hvf6XRirfLG/LGp5M6F98LX2O31PU5rHoyrJn2YDh2BHEBcVJlkjjK0r2JEm
-	f8efWs9F7tAemA5FX/Z5yE0fdLnwYYsp5vavVmM0roiV27ILkRW3sxRv4GdHKUUokFOB
-	akPzo1sNQJsNQy0zPwRzeUBs2jjTXUNJMppg3j8PhouR7ZKp2Q0Xwc41YQPWulvtwEKu
-	lkzA==
-X-Gm-Message-State: ALoCoQnp3fd8IB5bvg5kwtbFavC3BvnLPPL42QSSZZvSi13Pr9OHSgsUBDR8E6HqdCbag2vSBvjH
-X-Received: by 10.224.127.129 with SMTP id g1mr10800095qas.22.1397033644422;
-	Wed, 09 Apr 2014 01:54:04 -0700 (PDT)
+Return-Path: <zhenhua.luo@freescale.com>
+Received: from na01-by2-obe.outbound.protection.outlook.com
+	(mail-by2lp0238.outbound.protection.outlook.com [207.46.163.238])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 66DC0E00B88
+	for <yocto@yoctoproject.org>; Wed,  9 Apr 2014 02:59:53 -0700 (PDT)
+Received: from DM2PR03MB399.namprd03.prod.outlook.com (10.141.84.148) by
+	DM2PR03MB400.namprd03.prod.outlook.com (10.141.84.153) with Microsoft
+	SMTP Server (TLS) id 15.0.913.9; Wed, 9 Apr 2014 09:59:51 +0000
+Received: from DM2PR03MB399.namprd03.prod.outlook.com ([10.141.84.148]) by
+	DM2PR03MB399.namprd03.prod.outlook.com ([10.141.84.148]) with mapi id
+	15.00.0913.002; Wed, 9 Apr 2014 09:59:51 +0000
+From: "zhenhua.luo@freescale.com" <zhenhua.luo@freescale.com>
+To: =?iso-8859-1?Q?Erik_Bot=F6?= <erik.boto@pelagicore.com>
+Thread-Topic: [yocto] Can Yocto support "git clone" for url with http prefix
+Thread-Index: Ac9Tu+pLlbOCcacvRQeZleCu8ZLgFgAA6LqAAAC573A=
+Date: Wed, 9 Apr 2014 09:59:51 +0000
+Message-ID: <06a61e36787b489abd0c8fa4e0be9da4@DM2PR03MB399.namprd03.prod.outlook.com>
+References: <de6b3cec81f445b99d03b5382d698195@DM2PR03MB399.namprd03.prod.outlook.com>
+	<CA+AhUGw3Vsdoe1FfiUDyQ+vAXCjrttNaLpSvu1+vuQNaGwk7nw@mail.gmail.com>
+In-Reply-To: <CA+AhUGw3Vsdoe1FfiUDyQ+vAXCjrttNaLpSvu1+vuQNaGwk7nw@mail.gmail.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [192.88.158.212]
+x-forefront-prvs: 01762B0D64
+x-forefront-antispam-report: SFV:NSPM;
+	SFS:(10009001)(6009001)(428001)(51704005)(189002)(199002)(24454002)(13464003)(252514010)(377454003)(83072002)(85852003)(97336001)(87936001)(85306002)(74316001)(94946001)(92566001)(93516002)(93136001)(94316002)(86362001)(76482001)(81342001)(99396002)(81542001)(74876001)(95666003)(74366001)(69226001)(59766002)(63696004)(95416001)(53806002)(50986002)(2656002)(65816002)(98676001)(80022001)(87266001)(49866001)(56816006)(97186001)(46102001)(4396001)(90146001)(66066001)(74662001)(77982001)(76576001)(74502001)(31966008)(76786001)(83322001)(19580405001)(15202345003)(80976001)(74706001)(33646001)(15975445006)(20776003)(81686001)(56776002)(19580395003)(47446003)(76796001)(81816001)(79102001)(54316003)(47736002)(54356002)(47976003)(24736002);
+	DIR:OUT; SFP:1101; SCL:1; SRVR:DM2PR03MB400;
+	H:DM2PR03MB399.namprd03.prod.outlook.com;
+	FPR:ECDFFA07.250264A2.B5EDB05B.87EF5E71.20274; MLV:sfv;
+	PTR:InfoNoRecords; MX:1; A:1; LANG:en; 
+received-spf: None (: freescale.com does not designate permitted sender hosts)
 MIME-Version: 1.0
-Received: by 10.140.27.167 with HTTP; Wed, 9 Apr 2014 01:53:44 -0700 (PDT)
-In-Reply-To: <CAF_dkJBmwwiaC0Kna5rrZ2J_WnKYz9gvTU55xBXCkEyxoZ88yQ@mail.gmail.com>
-References: <CAF_dkJBmwwiaC0Kna5rrZ2J_WnKYz9gvTU55xBXCkEyxoZ88yQ@mail.gmail.com>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Wed, 9 Apr 2014 09:53:44 +0100
-Message-ID: <CAJTo0LbrFHPfQ5kD9XfaSTc2YM_1x=AzdC4CYJecc_w6FM7n9A@mail.gmail.com>
-To: Patrick Doyle <wpdster@gmail.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	gstreamer-devel <gstreamer-devel@lists.freedesktop.org>,
-	gstreamer-embedded@lists.freedesktop.org
-Subject: Re: Squeezing a gstreamer video pipeline into the smallest footprint possible
+X-OriginatorOrg: freescale.com
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Can Yocto support "git clone" for url with http prefix
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,19 +45,85 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 09 Apr 2014 08:54:09 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Wed, 09 Apr 2014 09:59:55 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 
-On 9 April 2014 00:03, Patrick Doyle <wpdster@gmail.com> wrote:
-> I have a ridiculously pinhole sized memory footprint into which I
-> would like to squeeze a gstreamer based video pipeline.  I am looking
-> for tips on what I can do to minimize the footprint as much as
-> possible for my Yocto based system.
+Thank you, Erik.=20
 
-The GStreamer plugins and libraries are all packaged independently in
-Yocto, so you can do some heavy size reduction by just installing the
-packages you need, and double-checking that nothing unexpected gets
-pulled in via dependencies.
 
-Ross
+Best Regards,
+
+Zhenhua
+
+> -----Original Message-----
+> From: yocto-bounces@yoctoproject.org [mailto:yocto-
+> bounces@yoctoproject.org] On Behalf Of Erik Bot?
+> Sent: Wednesday, April 09, 2014 2:47 PM
+> To: Luo Zhenhua-B19537
+> Cc: yocto@yoctoproject.org
+> Subject: Re: [yocto] Can Yocto support "git clone" for url with http
+> prefix
+>=20
+> Hi,
+>=20
+> On Wed, Apr 9, 2014 at 8:21 AM, zhenhua.luo@freescale.com
+> <zhenhua.luo@freescale.com> wrote:
+> > I want to create recipe for a package which is managed by Gerrit,
+> Gerrit only provides an anonymous HTTP url(http://aaaa:8181/bb) which can
+> be cloned by "git clone http://aaaa:8181/bb" correctly.
+> >
+> > I set SRC_URI to "http://aaaa:8181/bb" in the bb file, following is the
+> detailed definition.
+> >        SRC_URI =3D "http://aaaa:8181/bb;protocol=3Dgit;branch=3Dmaster"
+> >
+> > When I try to build the package, following error appears.
+> >         ERROR: Function failed: URL:
+> > 'http://aaaa:8181/bb;protocol=3Dgit;branch=3Dmaster' has invalid
+> > parameters. Invalid protocol - if you wish to fetch from a git
+> > repository using http, you need to instead use the git:// prefix with
+> > protocol=3Dhttp
+> >
+> > May I know if Yocto can support "git clone" for url with http prefix?
+>=20
+> Yes. All git SRC_URI start with git:// and then you can specify
+> protocol=3Dhttp. E.g.
+>=20
+> SRC_URI =3D "git://aaaa:8181/bb;protocol=3Dhttp;branch=3Dmaster"
+>=20
+> Cheers,
+> Erik
+>=20
+> >
+> >
+> > Best Regards,
+> >
+> > Zhenhua
+> > --
+> > _______________________________________________
+> > yocto mailing list
+> > yocto@yoctoproject.org
+> > https://lists.yoctoproject.org/listinfo/yocto
+>=20
+>=20
+>=20
+> --
+> =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+> Erik Bot=F6
+> Senior Software Engineer
+> Pelagicore AB
+> Ekelundsgatan 4, 6tr, SE-411 18 Gothenburg, Sweden
+> Mobile: +46 (0)76 881 72 03
+> E-Mail: erik.boto@pelagicore.com
+> =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>=20
+
 
