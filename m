@@ -1,24 +1,28 @@
-Return-Path: <edward@collabora.com>
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [93.93.135.160])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 793C5E00B88
-	for <yocto@yoctoproject.org>; Wed,  9 Apr 2014 06:00:28 -0700 (PDT)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-	(Authenticated sender: edward) with ESMTPSA id 9739E60066F
-Message-ID: <1397048422.2265.13.camel@deumeu.home.bilboed.com>
-From: Edward Hervey <edward@collabora.com>
-To: Discussions specific to using GStreamer on embedded systems
-	<gstreamer-embedded@lists.freedesktop.org>
-Date: Wed, 09 Apr 2014 15:00:22 +0200
-In-Reply-To: <CAF_dkJAbX84L7zVZPMkYKxesuwjfeHB-B6mzJFoqkEvHOqHj-Q@mail.gmail.com>
-References: <CAF_dkJBmwwiaC0Kna5rrZ2J_WnKYz9gvTU55xBXCkEyxoZ88yQ@mail.gmail.com>
-	<CAJTo0LbrFHPfQ5kD9XfaSTc2YM_1x=AzdC4CYJecc_w6FM7n9A@mail.gmail.com>
-	<CAF_dkJAbX84L7zVZPMkYKxesuwjfeHB-B6mzJFoqkEvHOqHj-Q@mail.gmail.com>
-X-Mailer: Evolution 3.10.4 (3.10.4-2.fc20) 
-Mime-Version: 1.0
-X-Mailman-Approved-At: Wed, 09 Apr 2014 08:11:22 -0700
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	gstreamer-devel <gstreamer-devel@lists.freedesktop.org>
-Subject: Re: Squeezing a gstreamer video pipeline into the smallest footprint possible
+Return-Path: <jatedev@gmail.com>
+Received: from mail-qg0-f66.google.com (mail-qg0-f66.google.com
+	[209.85.192.66])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6D208E00BF0
+	for <yocto@yoctoproject.org>; Wed,  9 Apr 2014 13:52:41 -0700 (PDT)
+Received: by mail-qg0-f66.google.com with SMTP id a108so908984qge.5
+	for <yocto@yoctoproject.org>; Wed, 09 Apr 2014 13:52:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=wyPI0vSIvWKlkFJ5VHU3D+Lw/m1/f33MRfy/n2NQz2g=;
+	b=tM+7F8jE//PJqDBOAgJxUyKlIyHi1pkD6XgPKzmb+80lDZh6GhiNIhcYvkS1nlVXmI
+	AMzmZCCbIItNd0S88kmtZ9zuubek94oH4KfFjeGSHk0qOo63600wpLHYQMEV/eED8mhk
+	imAZ0k2q22JpOXsw5wUfyyZAsqKebSsTbCngEegOGv17FRC0Gaq4cvwCc1nM5FiBb74R
+	4Q5of3kNTfYAVe0DnQfSATraCYz7AeMrIW0Y31fgThOUiQypc7A1UMAor5iG7KwTHITx
+	OdSEzKD4h8LdsM8dexw98wqvMyueH7c/augvOy2YxMm0v6VbtBXt7qkOA8KQcxYjc5Ub
+	ECtQ==
+MIME-Version: 1.0
+X-Received: by 10.140.101.180 with SMTP id u49mr15158145qge.27.1397076761107; 
+	Wed, 09 Apr 2014 13:52:41 -0700 (PDT)
+Received: by 10.140.101.138 with HTTP; Wed, 9 Apr 2014 13:52:41 -0700 (PDT)
+Date: Wed, 9 Apr 2014 16:52:41 -0400
+Message-ID: <CAPphmgb4T+ZWE_rsVu6iS=XGCESVBqjSeysQHi5BVpkENnQrbQ@mail.gmail.com>
+From: Jate S <jatedev@gmail.com>
+To: Yocto Project <yocto@yoctoproject.org>
+Subject: do_populate_sysroot_setscene needs pseudo-native
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -30,52 +34,34 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 09 Apr 2014 13:00:29 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 09 Apr 2014 20:52:44 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
-Hi,
+I am getting the following warning:
 
-  Disabling the GStreamer debugging system can also help trim off a
-decent amount from the packages.
+WARNING: Setscene task 45
+(/home/jate/workspace/poky/meta/recipes-connectivity/avahi/avahi-ui_0.6.31.bb,
+do_populate_sysroot_setscene) failed with exit code '1' - real task
+will be run instead
 
-    Edward
+The task log.do_populate_sysroot_setscene has the following WARNING:
 
-On Wed, 2014-04-09 at 07:13 -0400, Patrick Doyle wrote:
-> Thank you for the tips folks... please keep them coming.  At the moment
-> (for this pinhole sized project) I only need support for video.  Is
-> there any way to strip out all of the audio components from the
-> gstreamer I generate?  I tried adding --disable-vorbis to my recipe,
-> only to find that config.status shows that both --disable-vorbis and
-> --enable-vorbis options we set in ac_cs_config.
-> 
-> In the mean time, I'm going to go build my own pipeline & link it
-> statically as suggested by Sebastian.
-> 
-> Thank you again.
-> 
-> --wpd
-> 
-> 
-> On Wed, Apr 9, 2014 at 4:53 AM, Burton, Ross <ross.burton@intel.com> wrote:
-> > On 9 April 2014 00:03, Patrick Doyle <wpdster@gmail.com> wrote:
-> >> I have a ridiculously pinhole sized memory footprint into which I
-> >> would like to squeeze a gstreamer based video pipeline.  I am looking
-> >> for tips on what I can do to minimize the footprint as much as
-> >> possible for my Yocto based system.
-> >
-> > The GStreamer plugins and libraries are all packaged independently in
-> > Yocto, so you can do some heavy size reduction by just installing the
-> > packages you need, and double-checking that nothing unexpected gets
-> > pulled in via dependencies.
-> >
-> > Ross
-> _______________________________________________
-> gstreamer-embedded mailing list
-> gstreamer-embedded@lists.freedesktop.org
-> http://lists.freedesktop.org/mailman/listinfo/gstreamer-embedded
+NOTE: Performing useradd with [--root
+/home/jate/workspace/poky/qemux86/tmp/sysroots/qemux86 --system --home
+/var/run/avahi-daemon                               --no-create-home
+--shell /bin/false                               --user-group avahi]
+and 10 times of retry
+/home/jate/workspace/poky/qemux86/tmp/work/i586-poky-linux/avahi-ui/0.6.31-r7.0/temp/run.useradd_sysroot_sstate.17299:
+line 284: /home/jate/workspace/poky/qemux86/tmp/sysroots/i686-linux/usr/bin/pseudo:
+No such file or directory
+WARNING: useradd command did not succeed. Retrying...
 
--- 
-Edward Hervey <edward@collabora.com>
+If I bitbake pseudo-native manually first, I can eliminate the
+warning. I tried adding pseudo-native to the useradd.bbclass, but that
+doesn't cause a rebuild.
 
+Any thoughts on how to do this?
+
+
+- Jate
 
