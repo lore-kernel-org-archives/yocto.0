@@ -1,26 +1,35 @@
-Return-Path: <Valentin.Cobelea@enea.com>
-Received: from mx-3.enea.com (sestofw01.enea.se [192.36.1.252])
-	by yocto-www.yoctoproject.org (Postfix) with SMTP id 0CE75E00B88
-	for <yocto@yoctoproject.org>; Wed,  9 Apr 2014 04:05:45 -0700 (PDT)
-Received: from localhost.enea.se (192.168.14.171) by smtp.enea.com
-	(172.21.1.208) with Microsoft SMTP Server id 14.3.158.1; Wed, 9 Apr 2014
-	13:05:41 +0200
-Message-ID: <53452985.7020202@enea.com>
-Date: Wed, 9 Apr 2014 14:05:41 +0300
-From: Vali Cobelea <valentin.cobelea@enea.com>
-Organization: ENEA
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:24.0) Gecko/20100101 Thunderbird/24.2.0
+Return-Path: <wpdster@gmail.com>
+Received: from mail-pb0-f47.google.com (mail-pb0-f47.google.com
+	[209.85.160.47])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7A106E00B88
+	for <yocto@yoctoproject.org>; Wed,  9 Apr 2014 04:14:03 -0700 (PDT)
+Received: by mail-pb0-f47.google.com with SMTP id up15so2357791pbc.6
+	for <yocto@yoctoproject.org>; Wed, 09 Apr 2014 04:14:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-type;
+	bh=8OyBD3gQh9/JnK/JoERGqGUPx78b/RefRiR9xFXoni0=;
+	b=kwlqad4mQOQTyLhX8y8wnJgcN83QLRGOy6q8HLZ72SgR4ePpjWuOEoQt4/X0WG45e2
+	k7Nsu1fnFKFCq1wTPC6uQEkRDUhk+CjP7POSGf/AE5N9Uec0LmwBM1ri1rmXScJdn7eH
+	B3rFcuZrCNd/bzZaQQFFwVR0hTDQOapYqOc/qSkxtkQVCaoeZ+zMEAitXlGIOUkCIlgv
+	LR0bX13DMrIUcu/acrjhzJtQT0SH/5c/MgyRZvrXyNPzrxh4D8mQIn1IaQn3MHYE4Wg1
+	VjXy7d8mG9c5C26mofat1JhBQLzbxI+MUCJmnJpsOMBidgH7x1/iT8MCby2cmxoE3H97
+	zwJg==
+X-Received: by 10.68.102.34 with SMTP id fl2mr11275709pbb.2.1397042043700;
+	Wed, 09 Apr 2014 04:14:03 -0700 (PDT)
 MIME-Version: 1.0
-To: Paul Eggleton <paul.eggleton@linux.intel.com>
-References: <534416F0.10109@enea.com>
-	<9507315.eLP4En45Q5@peggleto-mobl5.ger.corp.intel.com>
-	<53452733.2070806@enea.com>
-	<33266524.grSQoK8z6t@peggleto-mobl5.ger.corp.intel.com>
-In-Reply-To: <33266524.grSQoK8z6t@peggleto-mobl5.ger.corp.intel.com>
-X-Originating-IP: [192.168.14.171]
-Cc: yocto@yoctoproject.org, Alexandru Vaduva <Alexandru.Vaduva@enea.com>
-Subject: Re: CGL compliance layer initiative
+Received: by 10.70.32.161 with HTTP; Wed, 9 Apr 2014 04:13:33 -0700 (PDT)
+In-Reply-To: <CAJTo0LbrFHPfQ5kD9XfaSTc2YM_1x=AzdC4CYJecc_w6FM7n9A@mail.gmail.com>
+References: <CAF_dkJBmwwiaC0Kna5rrZ2J_WnKYz9gvTU55xBXCkEyxoZ88yQ@mail.gmail.com>
+	<CAJTo0LbrFHPfQ5kD9XfaSTc2YM_1x=AzdC4CYJecc_w6FM7n9A@mail.gmail.com>
+From: Patrick Doyle <wpdster@gmail.com>
+Date: Wed, 9 Apr 2014 07:13:33 -0400
+Message-ID: <CAF_dkJAbX84L7zVZPMkYKxesuwjfeHB-B6mzJFoqkEvHOqHj-Q@mail.gmail.com>
+To: "Burton, Ross" <ross.burton@intel.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
+	gstreamer-devel <gstreamer-devel@lists.freedesktop.org>,
+	gstreamer-embedded@lists.freedesktop.org
+Subject: Re: Squeezing a gstreamer video pipeline into the smallest footprint possible
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,64 +41,35 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 09 Apr 2014 11:05:46 -0000
-Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 09 Apr 2014 11:14:06 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
-OK Paul, that indeed makes sense, I really did not knew that preliminary 
-versions of layers are accepted.
-I will discuss around here and if everything goes OK we will start the 
-move in the "public" layer index.
-I also do agree with an all-together strategy, no matter for the layer 
-state.
+Thank you for the tips folks... please keep them coming.  At the moment
+(for this pinhole sized project) I only need support for video.  Is
+there any way to strip out all of the audio components from the
+gstreamer I generate?  I tried adding --disable-vorbis to my recipe,
+only to find that config.status shows that both --disable-vorbis and
+--enable-vorbis options we set in ac_cs_config.
+
+In the mean time, I'm going to go build my own pipeline & link it
+statically as suggested by Sebastian.
+
+Thank you again.
+
+--wpd
 
 
-Much appreciated,
-Vali
-
-
-On 04/09/2014 02:01 PM, Paul Eggleton wrote:
-> On Wednesday 09 April 2014 13:55:47 Vali Cobelea wrote:
->> On 04/09/2014 01:51 PM, Paul Eggleton wrote:
->>> On Tuesday 08 April 2014 18:34:08 Vali Cobelea wrote:
->>>> Here at ENEA we decided to take the initiative regarding the CGL
->>>> compliance when it comes to the Yocto Project.
->>>> For this we started the work on a dedicated layer called 'meta-cgl'
->>>>
->>>> which can be accessed / cloned from here:
->>>>     http://git.enea.com/git/?p=linux/meta-cgl.git
->>>>     git clone git@git.enea.com:linux/meta-cgl
->>>>
->>>> Have a look of the things we got there so far, please remember that
->>>> there is still plenty of work to be done (layer architecture, CGL
->>>> requirements coverage mode and so on).
->>>> It is a little bit more than a stub layer, consider it a starting point
->>>> for the direction we would like to have with this layer.
->>>>
->>>> Any input is much appreciated, lets keep the discussion by this email
->>>> thread and see where it goes.
->>> I don't have anything to offer on the layer contents, but I would say in
->>> order to make it easy for people to find this layer I would strongly
->>> encourage you to>
->>> submit it to the OpenEmbedded layer index:
->>>     http://layers.openembedded.org/layerindex/submit/
->> Thank you for the input.
->> We will keep the layer for a short period of time at the current
->> location while getting other ideas regarding the content / architecture.
->> The layer initiative will also be raised up in the board advisory
->> meeting, in order to get even more input.
->> After which we will make it easier to find, access and use for anyone,
->> exactly as you suggested.
-> OK, as the maintainer it's totally up to you.
+On Wed, Apr 9, 2014 at 4:53 AM, Burton, Ross <ross.burton@intel.com> wrote:
+> On 9 April 2014 00:03, Patrick Doyle <wpdster@gmail.com> wrote:
+>> I have a ridiculously pinhole sized memory footprint into which I
+>> would like to squeeze a gstreamer based video pipeline.  I am looking
+>> for tips on what I can do to minimize the footprint as much as
+>> possible for my Yocto based system.
 >
-> I would say though generally that I'd like to see more people adding their
-> work-in-progress layers to the layer index, even if at some time later they
-> will be moved elsewhere or absorbed into another layer - it just makes it
-> easier to point people to the layer index so they can find recipes that have
-> already been written, rather than having to re-write them from scratch.
+> The GStreamer plugins and libraries are all packaged independently in
+> Yocto, so you can do some heavy size reduction by just installing the
+> packages you need, and double-checking that nothing unexpected gets
+> pulled in via dependencies.
 >
-> Cheers,
-> Paul
->
-
+> Ross
 
