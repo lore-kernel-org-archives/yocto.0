@@ -1,36 +1,33 @@
-Return-Path: <kergoth@gmail.com>
-Received: from mail-la0-f51.google.com (mail-la0-f51.google.com
-	[209.85.215.51])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0FEF2E00BF0
-	for <yocto@yoctoproject.org>; Wed,  9 Apr 2014 16:40:00 -0700 (PDT)
-Received: by mail-la0-f51.google.com with SMTP id pv20so1740792lab.10
-	for <yocto@yoctoproject.org>; Wed, 09 Apr 2014 16:39:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:sender:in-reply-to:references:from:date:message-id
-	:subject:to:cc:content-type;
-	bh=AYC2ZrPI3XKG/7j8iPfnyGTOAkA/qFuDKoMxmFM5mzE=;
-	b=kpFDy9hDajvSYFi4lLS8huAb4nwQUToUr1IqkWpO6YsMw/KU4+OCI3vZqhk0ZBcG4g
-	rYEN1NPbZyCISPBIPzsJanBgvgQxkEpmnm+oKeS8nHw3BVcw+nAIuYL8LZJ8Y4v8jQ4Q
-	8Hkd8lkDUsuIy0YfjwGliiXIRMNZoNTyRlwOKTkYFuZTUPQqgG3nlEvY8zIdoPBowBzb
-	/bklR64fE6wHUUXo/+vlpsQ57fos74LkH1vOqWSlOzHbnQWAS9KV99jC9fPf8SeYHVc1
-	k3WLuLVkFff7xlA3b8suDn/lmuyPXD3cuWjMY3UUIrIQiRPy78aEJ+rhfT3lhcWf3hLq
-	Z4/A==
-X-Received: by 10.112.27.133 with SMTP id t5mr9073997lbg.21.1397086798856;
-	Wed, 09 Apr 2014 16:39:58 -0700 (PDT)
+Return-Path: <elizabeth.flanagan@intel.com>
+Received: from mail-vc0-f182.google.com (mail-vc0-f182.google.com
+	[209.85.220.182])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8A94BE00BF0
+	for <yocto@yoctoproject.org>; Wed,  9 Apr 2014 22:03:33 -0700 (PDT)
+Received: by mail-vc0-f182.google.com with SMTP id ib6so2899347vcb.41
+	for <yocto@yoctoproject.org>; Wed, 09 Apr 2014 22:03:32 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:date:message-id:subject:from:to
+	:content-type;
+	bh=mRZAx7CSiF8KUaKfxrOQjFHeYtcDauZNwOctEAZN/1k=;
+	b=TWeSTLAfS6U7tOb47aeJ5P6tfEFYtC3Es7AMtHZolmbFZhSAq7KKEvwmfWdsrL11u2
+	T//eZWMjXQSZOa6ttki9MvLq4hvwkT3WgUuARn2Z+pazSOX/F8le3SKxn88KyePWY5h9
+	qvIVV8tAKOAxxPq8WzOTZ3N3HVCizV9uVYd+lRVV3dark6DvYkZPWnk5KnB/AwnINXWQ
+	EZCjKHmvBu0VYT6fnlsAk9HxtVCbPqDsdxK9god/oh2mQRtrzf0e5YcASgHVo1fckL8Y
+	VG+oBldhjv8/0dkLmHX03uOejZDzS7VC2mhvIMpdw92qHiQAA/Hw1/nkJNZZ3IuKgtB4
+	Z7rw==
+X-Gm-Message-State: ALoCoQk3xvOmfNYU5YOVyRYw0+onAe/qc1bh4qx7r9Pr8CI03K8movKS/2MlJMZ1DP0v+NQ5zK8u
 MIME-Version: 1.0
-Sender: kergoth@gmail.com
-Received: by 10.112.35.194 with HTTP; Wed, 9 Apr 2014 16:39:38 -0700 (PDT)
-In-Reply-To: <CA+gsK-qsb+UVcKsuE_NMAw_dVD-LkdkgOwayBHLPdM3QPPt2Bw@mail.gmail.com>
-References: <CF6AE2C6.41DF5%belen.barros.pena@intel.com>
-	<5345B327.5030203@balister.org>
-	<CA+gsK-qsb+UVcKsuE_NMAw_dVD-LkdkgOwayBHLPdM3QPPt2Bw@mail.gmail.com>
-From: Chris Larson <clarson@kergoth.com>
-Date: Wed, 9 Apr 2014 16:39:38 -0700
-X-Google-Sender-Auth: z2BEtPlzKhJ60XdcWi1b_ccs4tY
-Message-ID: <CABcZAN=yHZOkzXZf0tkVSumV370y9HLAp2H3rcDtO2dV8F5WHA@mail.gmail.com>
-To: Rudolf Streif <rudolf.streif@linux.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Dogfooding and usability testing Toaster
+X-Received: by 10.52.142.10 with SMTP id rs10mr10512498vdb.3.1397106212847;
+	Wed, 09 Apr 2014 22:03:32 -0700 (PDT)
+Received: by 10.52.173.69 with HTTP; Wed, 9 Apr 2014 22:03:32 -0700 (PDT)
+Date: Wed, 9 Apr 2014 22:03:32 -0700
+Message-ID: <CAPhnLPB-EHuntTftJzSVptECpg4S5TQn0DRGj1qR5c0jgJczHA@mail.gmail.com>
+From: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>, 
+	Alexandru C Georgescu <alexandru.c.georgescu@intel.com>,
+	Otavio Salvador <otavio@ossystems.com.br>, Zhao Yi <yi.zhao@windriver.com>
+Subject: yocto-1.6_M5.rc3 available
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,72 +39,33 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 09 Apr 2014 23:40:03 -0000
-Content-Type: multipart/alternative; boundary=001a1133b04a5dc7b304f6a49e6c
+X-List-Received-Date: Thu, 10 Apr 2014 05:03:36 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
---001a1133b04a5dc7b304f6a49e6c
-Content-Type: text/plain; charset=UTF-8
+All,
 
-On Wed, Apr 9, 2014 at 4:33 PM, Rudolf Streif <rudolf.streif@linux.com>wrote:
+We have an rc3 build for our upcoming 1.6 release. We had to rebuild
+the eclipse-poky-kepler
+plugin due to some incompatibility with the debian 7 builder. We also
+have issues in
+nightly-oecore:
 
-> That is exciting. I just ran with it and started a build with toaster in
-> the background. A couple of observations from the get-go:
->
->    - South 0.8.4 is also needed in addition to Django. The Toaster Wiki
->    [1] does not say that but the Contribute to Toaster page [2] does.
->    - You need to run 'sudo pip install ...' for Django and South
->    otherwise the installation fails with 'permission denied' for
->    /usr/lib/python2.7
->    - Clicking on "Show me the manual" in the Toaster UI directs to [3]
->    which requires a log in
->    - Is it possible to relocate/rename the toaster.sqlite database via
->    configuration setting? If so, could I use the same database for different
->    build environments?
->
->
-Side note: you can use pip install --user ... rather than sudo pip, to
-install it to your user site-packages directory under ~/.local, which won't
-impact the rest of the system.
--- 
-Christopher Larson
-clarson at kergoth dot com
-Founder - BitBake, OpenEmbedded, OpenZaurus
-Maintainer - Tslib
-Senior Software Engineer, Mentor Graphics
+http://autobuilder.yoctoproject.org/main/builders/nightly-oecore/builds/39
+and
+http://autobuilder.yoctoproject.org/main/builders/nightly-x86-64/builds/40
 
---001a1133b04a5dc7b304f6a49e6c
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+The build is available at:
 
-<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
-On Wed, Apr 9, 2014 at 4:33 PM, Rudolf Streif <span dir=3D"ltr">&lt;<a href=
-=3D"mailto:rudolf.streif@linux.com" target=3D"_blank">rudolf.streif@linux.c=
-om</a>&gt;</span> wrote:<br>
+http://autobuilder.yoctoproject.org/pub/releases/yocto-1.6_M5.rc3
 
-<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
-x #ccc solid;padding-left:1ex"><div>That is exciting. I just ran with it an=
-d started a build with toaster in the background. A couple of observations =
-from the get-go:</div>
+bitbake     40027a6e093c3b7480bfaccbd57e0e613d9a7b71
+eclipse-poky-juno     26bfc407781aa185f244a47ba63120343cee4a37
+eclipse-poky-kepler     1dfe1d2f1322b5fda8e1a7637c447b0e060efb3e
+meta-fsl-arm     d4316faef78ceb01ff023579e15110939ec69408
+meta-fsl-ppc     c4fa1b431f4efc4982a168119db95236cfa8cad3
+meta-intel     db84acfc8d9ed8dccd4a79de39fee337bc729662
+meta-minnow     743fa66aa0cc2265a9c1f293c305828d90b4fbbd
+meta-qt3     3016129d90b7ac8517a5227d819f10ad417b5b45
+oecore     77e3d60fa00a41424fe65977b2bf307727a5a26c
+poky     046a9ea30356daf4f3f8f4ddfc5b57fcfd85a27f
 
-<div><ul><li>South 0.8.4 is also needed in addition to Django. The Toaster =
-Wiki [1] does not say that but the Contribute to Toaster page [2] does.</li=
->
-<li>You need to run &#39;sudo pip install ...&#39; for Django and South oth=
-erwise the installation fails with &#39;permission denied&#39; for /usr/lib=
-/python2.7</li><li>Clicking on &quot;Show me the manual&quot; in the Toaste=
-r UI directs to [3] which requires a log in</li>
-
-
-<li>Is it possible to relocate/rename the toaster.sqlite database via confi=
-guration setting? If so, could I use the same database for different build =
-environments?</li></ul></div></blockquote></div><br>Side note: you can use =
-pip install --user ... rather than sudo pip, to install it to your user sit=
-e-packages directory under ~/.local, which won&#39;t impact the rest of the=
- system.<br>
-
--- <br>Christopher Larson<br>clarson at kergoth dot com<br>Founder - BitBak=
-e, OpenEmbedded, OpenZaurus<br>Maintainer - Tslib<br>Senior Software Engine=
-er, Mentor Graphics
-</div></div>
-
---001a1133b04a5dc7b304f6a49e6c--
