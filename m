@@ -1,28 +1,28 @@
-Return-Path: <peter.ducai@gmail.com>
-Received: from mail-vc0-f169.google.com (mail-vc0-f169.google.com
-	[209.85.220.169])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E7096E00BBF
-	for <yocto@yoctoproject.org>; Thu, 10 Apr 2014 00:14:49 -0700 (PDT)
-Received: by mail-vc0-f169.google.com with SMTP id ik5so3075308vcb.14
-	for <yocto@yoctoproject.org>; Thu, 10 Apr 2014 00:14:48 -0700 (PDT)
+Return-Path: <kazuya.nisimura@gmail.com>
+Received: from mail-qg0-f44.google.com (mail-qg0-f44.google.com
+	[209.85.192.44])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 624CBE00BBF
+	for <yocto@yoctoproject.org>; Thu, 10 Apr 2014 00:49:28 -0700 (PDT)
+Received: by mail-qg0-f44.google.com with SMTP id a108so3537255qge.3
+	for <yocto@yoctoproject.org>; Thu, 10 Apr 2014 00:49:27 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=XXuWoCsZfM7T14pohC4c4XzsrgC9p27eUW6Xsn6J+W8=;
-	b=upj/b4bK+mahOMKk/NfatuZdDjqb0Wj9sT3BmE3zzxTgT6/fhu6ZpbQzAA8NOC3PS0
-	xETtoo/LaZz7Ua7u5Vok9KX/8+OeBtKV8IUT/vpXZ1wZaruttkSYTz2JFJpnhoQOuOZa
-	uUMPc58/eh0p1ob3BZSEUAAlsKJ/x/0a9Do2wBo7T9svAmN6ca7c+K4Z65vmLZmDzYOn
-	PkKEdZTbzoDzwf/40qY6/ABF+dqvEmZpEPf1Fef05D/JTQ3DevVdgC4vsjtwM6NbxCEl
-	NC4daL5cX2hh9L4z3eqkOZjsIK/WH5h9+r+tpSFGZj4oe3waf9qsE5aLNfVgVSX9iSQ8
-	bhuA==
+	bh=K6qJZBmEdlXeDRBnzUjVXwRAjVh852eZCtizSLm8ors=;
+	b=njWelzFotHuvugOVq4ybMKGGfMQDDBGeFU5lR1GV3xzQFfg/YYFhDs4ABq515Awygc
+	VAS9YbvVSU3Q9YY8YL0D43a37KXJwglHij4xKDLOJQdLbaYgD0NwOZaWkI/uq6n2n87p
+	mkVOjjqFhTOrX5zRIYV8geXBFC5X6rTzuxFUB3JPSqe4scZHibtMOVlippVcs2ZGOZD5
+	Xic+arymlnVeewO8fkJwcxoKXXsu8o9dz/JnlbPsKm9lD+F9n54qAcCNnfpppCdAZysp
+	1r7u+wSdSZDKu/2XrHq5K3pcIuaySdSv1QVjW6Z3vAjD1cNCZcu47HEGdNrB3V4Ol2ds
+	Swhg==
 MIME-Version: 1.0
-X-Received: by 10.58.105.105 with SMTP id gl9mr12822534veb.3.1397114088836;
-	Thu, 10 Apr 2014 00:14:48 -0700 (PDT)
-Received: by 10.220.224.81 with HTTP; Thu, 10 Apr 2014 00:14:48 -0700 (PDT)
-Date: Thu, 10 Apr 2014 09:14:48 +0200
-Message-ID: <CAGtsjUBxqC+v439Z6cev+MDjO83Fp2PTh9HoLxycRxbaee_0MQ@mail.gmail.com>
-From: peter ducai <peter.ducai@gmail.com>
+X-Received: by 10.140.109.100 with SMTP id k91mr17744631qgf.12.1397116167657; 
+	Thu, 10 Apr 2014 00:49:27 -0700 (PDT)
+Received: by 10.96.148.194 with HTTP; Thu, 10 Apr 2014 00:49:27 -0700 (PDT)
+Date: Thu, 10 Apr 2014 16:49:27 +0900
+Message-ID: <CA+o05Tx8fqSHXdEeRDPODvCt8CuUupSZJ8buKoCsr+EyG+6nRg@mail.gmail.com>
+From: Kazuya Nishimura <kazuya.nisimura@gmail.com>
 To: yocto@yoctoproject.org
-Subject: ADT installer support
+Subject: [meta-linaro][PATCH] external-linaro-toolchain: Fix for 32bit armhf build
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,73 +34,381 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 10 Apr 2014 07:14:50 -0000
-Content-Type: multipart/alternative; boundary=047d7b5d2c30f9d5df04f6aaf8f1
+X-List-Received-Date: Thu, 10 Apr 2014 07:49:29 -0000
+Content-Type: multipart/alternative; boundary=001a1139b43ae21d2d04f6ab7456
 
---047d7b5d2c30f9d5df04f6aaf8f1
-Content-Type: text/plain; charset=UTF-8
+--001a1139b43ae21d2d04f6ab7456
+Content-Type: text/plain; charset=ISO-8859-1
 
-hi all,
-i currently work for company that is using ADT installer and they like to
-automate it. After digging in code I found out this is very badly written
-(5 scripts calling each other) and almost impossible to run it without any
-user intervention. My main question is:
+From: Kazuya Nishimura <kazuya.nisimura@gmail.com>
 
-is there any maintainer for ADT? is there actually anyone that use it on
-daily basis ? was anyone able to automate it?
+Use ld-linux-armhf.so.3 if call convention hard.
+Fix QA issue errors by packaging approprieately.
+Add eglibc-locale_2.19.bbappend to fix QA issue error.
+  An empty directory is created while do_install.
 
-Reading thru documentation I really start doubting purpose of ADT, as there
-are other ways how to recompile project, and being pushed to work with ADT,
-I already start creating something that really gonna work and can be fully
-automated... so actually I'm trying to get a rid of ADT (and no maintainer
-is another reason to do so). Currently at
-https://github.com/daemonna/YoctoTools are only 2 functional scripts to
-replace docs/wiki and to speed up things for developer:
+Signed-off-by: Kazuya Nishimura <kazuya.nisimura@gmail.com>
+---
+ .../conf/distro/include/tcmode-external-linaro.inc |    1 +
+ .../eglibc/eglibc-locale_2.19.bbappend             |   23 ++++++++++++
+ .../external-linaro-toolchain.bb                   |   38
+++++++++++++++++----
+ 3 files changed, 56 insertions(+), 6 deletions(-)
+ create mode 100755
+meta-linaro-toolchain/recipes-core/eglibc/eglibc-locale_2.19.bbappend
 
-yocto_dependency_installer.sh - Will detect distro and install all
-dependencies... user doesn't have to find out what distro he has and what
-commands to run
+diff --git
+a/meta-linaro-toolchain/conf/distro/include/tcmode-external-linaro.inc
+b/meta-linaro-toolchain/conf/distro/include/tcmode-external-linaro.inc
+index 1d9fd59..26d464c 100644
+--- a/meta-linaro-toolchain/conf/distro/include/tcmode-external-linaro.inc
++++ b/meta-linaro-toolchain/conf/distro/include/tcmode-external-linaro.inc
+@@ -41,6 +41,7 @@ DISTRO_FEATURES_LIBC = "ipv4 ipv6 libc-backtrace
+libc-big-macros libc-bsd libc-c
+  libc-getlogin libc-idn libc-inet-anl libc-libm libc-libm-big \
+  libc-memusage libc-nis libc-nsswitch libc-rcmd libc-rtld-debug libc-spawn
+libc-streams libc-sunrpc \
+  libc-utmp libc-utmpx libc-wordexp libc-posix-clang-wchar
+libc-posix-regexp libc-posix-regexp-glibc \
++ libc-charsets libc-locales libc-locale-code \
+  libc-posix-wchar-io"
 
-yocto_15_installer.sh - Yocto 1.5.1 installer. Will download, unpack and
-build Yocto 1.5.1.. after looking at differences between 1.5 and 1.6, I
-found best way is to make version specific script.
+ ENABLE_BINARY_LOCALE_GENERATION = "0"
+diff --git
+a/meta-linaro-toolchain/recipes-core/eglibc/eglibc-locale_2.19.bbappend
+b/meta-linaro-toolchain/recipes-core/eglibc/eglibc-locale_2.19.bbappend
+new file mode 100755
+index 0000000..3e91e74
+--- /dev/null
++++ b/meta-linaro-toolchain/recipes-core/eglibc/eglibc-locale_2.19.bbappend
+@@ -0,0 +1,23 @@
++do_install () {
++ mkdir -p ${D}${datadir}
++ if [ -n "$(ls ${LOCALETREESRC}/${bindir})" ]; then
++ mkdir -p ${D}${bindir}
++ cp -fpPR ${LOCALETREESRC}/${bindir}/* ${D}${bindir}
++ fi
++ if [ -n "$(ls ${LOCALETREESRC}/${localedir})" ]; then
++ mkdir -p ${D}${localedir}
++ cp -fpPR ${LOCALETREESRC}/${localedir}/* ${D}${localedir}
++ fi
++ if [ -e ${LOCALETREESRC}/${libdir}/gconv ]; then
++ mkdir -p ${D}${libdir}
++ cp -fpPR ${LOCALETREESRC}/${libdir}/gconv ${D}${libdir}
++ fi
++ if [ -e ${LOCALETREESRC}/${datadir}/i18n ]; then
++ cp -fpPR ${LOCALETREESRC}/${datadir}/i18n ${D}${datadir}
++ fi
++ if [ -e ${LOCALETREESRC}/${datadir}/locale ]; then
++ cp -fpPR ${LOCALETREESRC}/${datadir}/locale ${D}${datadir}
++ fi
++ chown root.root -R ${D}
++ cp -fpPR ${LOCALETREESRC}/SUPPORTED ${WORKDIR}
++}
+diff --git
+a/meta-linaro-toolchain/recipes-devtools/external-linaro-toolchain/
+external-linaro-toolchain.bbb/meta-linaro-toolchain/recipes-devtools/external-linaro-toolchain/
+external-linaro-toolchain.bb
+index 240d550..47fd4ca 100644
+--- a/meta-linaro-toolchain/recipes-devtools/external-linaro-toolchain/
+external-linaro-toolchain.bb
++++ b/meta-linaro-toolchain/recipes-devtools/external-linaro-toolchain/
+external-linaro-toolchain.bb
+@@ -41,6 +41,12 @@ PROVIDES += "\
+  libitm \
+  libitm-dev \
+  libitm-staticdev \
++ libasan \
++ libasan-dev \
++ libasan-staticdev \
++ libatomic \
++ libatomic-dev \
++ libatomic-staticdev \
+  virtual/linux-libc-headers \
+ "
 
-Other scripts (like toolchain installer) are already in progress, but still
-not stable. Still, I'd like to ask, what is proper way to push these
-changes into Yocto. Is it this mailing list only? or should I contact
-someone else?
+@@ -50,12 +56,11 @@ PR = "r2"
+ # https://launchpad.net/linaro-toolchain-binaries
+ SRC_URI = "file://SUPPORTED"
 
-thanks and have a nice day
++LDLINUX32 = "${@base_contains("TUNE_FEATURES", "callconvention-hard",
+"ld-linux-armhf.so.3", "ld-linux.so.3",d)}"
++
+ do_install() {
+  install -d ${D}${base_libdir}
+- install -d ${D}${bindir}
+- install -d ${D}${sbindir}
+  install -d ${D}${libdir}
+- install -d ${D}${libexecdir}
+  install -d ${D}${datadir}
+  install -d ${D}${includedir}
 
---047d7b5d2c30f9d5df04f6aaf8f1
-Content-Type: text/html; charset=UTF-8
+@@ -79,7 +84,7 @@ do_install() {
+  fi
+
+  # fix up the copied symlinks (they are still pointing to the multiarch
+directory)
+- linker_name="${@base_contains("TUNE_FEATURES", "aarch64",
+"ld-linux-aarch64.so.1", "ld-linux.so.3",d)}"
++ linker_name="${@base_contains("TUNE_FEATURES", "aarch64",
+"ld-linux-aarch64.so.1", "${LDLINUX32}",d)}"
+  ln -sf ld-${ELT_VER_LIBC}.so ${D}${base_libdir}/${linker_name}
+  ln -sf ../../lib/libnsl.so.1 ${D}${libdir}/libnsl.so
+  ln -sf ../../lib/librt.so.1 ${D}${libdir}/librt.so
+@@ -144,6 +149,12 @@ PACKAGES =+ "\
+  libitm \
+  libitm-dev \
+  libitm-staticdev \
++ libasan \
++ libasan-dev \
++ libasan-staticdev \
++ libatomic \
++ libatomic-dev \
++ libatomic-staticdev \
+ "
+
+ INSANE_SKIP_${PN}-dbg = "staticdev"
+@@ -282,14 +293,16 @@ FILES_libssp-staticdev = " \
+
+ FILES_libgfortran = "${base_libdir}/libgfortran.so.*"
+ FILES_libgfortran-dev = " \
+-  ${base_libdir}/libgfortran.so"
++  ${base_libdir}/libgfortran.so \
++  ${base_libdir}/libgfortran.spec"
+ FILES_libgfortran-staticdev = " \
+   ${base_libdir}/libgfortran.a \
+   ${base_libdir}/libgfortranbegin.a"
+
+ FILES_libmudflap = "${base_libdir}/libmudflap*.so.*"
+ FILES_libmudflap-dev = "\
+-  ${base_libdir}/libmudflap*.so \
++  ${base_libdir}/libmudflap*.so"
++FILES_libmudflap-staticdev = "\
+   ${base_libdir}/libmudflap*.a \
+   ${base_libdir}/libmudflap*.la"
+
+@@ -313,6 +326,19 @@ FILES_libgomp-dev = "\
+ FILES_libgomp-staticdev = "\
+   ${base_libdir}/libgomp*.a \
+   "
++
++FILES_libasan = "\
++  ${base_libdir}/libasan.so.* \
++  "
++FILES_libasan-dev = "\
++  ${base_libdir}/libasan.so \
++  "
++FILES_libatomic ="\
++  ${base_libdir}/libatomic.so.* \
++  "
++FILES_libatomic-dev = "\
++  ${base_libdir}/libatomic.so \
++  "
+ ELT_VER_MAIN ??= ""
+
+ python () {
+-- 
+1.7.9.5
+
+--001a1139b43ae21d2d04f6ab7456
+Content-Type: text/html; charset=ISO-8859-1
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">hi all,<div>i currently work for company that is using ADT=
- installer and they like to automate it. After digging in code I found out =
-this is very badly written (5 scripts calling each other) and almost imposs=
-ible to run it without any user intervention. My main question is:</div>
-<div><br></div><div>is there any maintainer for ADT? is there actually anyo=
-ne that use it on daily basis ? was anyone able to automate it?</div><div><=
-br></div><div>Reading thru documentation I really start doubting purpose of=
- ADT, as there are other ways how to recompile project, and being pushed to=
- work with ADT, I already start creating something that really gonna work a=
-nd can be fully automated... so actually I&#39;m trying to get a rid of ADT=
- (and no maintainer is another reason to do so). Currently at=C2=A0<a href=
-=3D"https://github.com/daemonna/YoctoTools">https://github.com/daemonna/Yoc=
-toTools</a> are only 2 functional scripts to replace docs/wiki and to speed=
- up things for developer:</div>
-<div><br></div><div><div>yocto_dependency_installer.sh - Will detect distro=
- and install all dependencies... user doesn&#39;t have to find out what dis=
-tro he has and what commands to run</div><div><br></div><div>yocto_15_insta=
-ller.sh - Yocto 1.5.1 installer. Will download, unpack and build Yocto 1.5.=
-1.. after looking at differences between 1.5 and 1.6, I found best way is t=
-o make version specific script.</div>
-</div><div><br></div><div>Other scripts (like toolchain installer) are alre=
-ady in progress, but still not stable. Still, I&#39;d like to ask, what is =
-proper way to push these changes into Yocto. Is it this mailing list only? =
-or should I contact someone else?</div>
-<div><br></div><div>thanks and have a nice day</div><div><br></div><div><br=
-></div></div>
+<div dir=3D"ltr"><div>From: Kazuya Nishimura &lt;<a href=3D"mailto:kazuya.n=
+isimura@gmail.com" target=3D"_blank">kazuya.nisimura@gmail.com</a>&gt;</div=
+><div><br></div><div><div>Use ld-linux-armhf.so.3 if call convention hard.<=
+/div>
+<div>Fix QA issue errors by packaging approprieately.</div>
+<div>Add eglibc-locale_2.19.bbappend to fix QA issue error.</div><div>=A0 A=
+n empty directory is created while do_install.</div><div><br></div><div>Sig=
+ned-off-by: Kazuya Nishimura &lt;<a href=3D"mailto:kazuya.nisimura@gmail.co=
+m" target=3D"_blank">kazuya.nisimura@gmail.com</a>&gt;</div>
 
---047d7b5d2c30f9d5df04f6aaf8f1--
+<div>---</div><div>=A0.../conf/distro/include/tcmode-external-linaro.inc | =
+=A0 =A01 +</div><div>=A0.../eglibc/eglibc-locale_2.19.bbappend =A0 =A0 =A0 =
+=A0 =A0 =A0 | =A0 23 ++++++++++++</div><div>=A0.../<a href=3D"http://extern=
+al-linaro-toolchain.bb" target=3D"_blank">external-linaro-toolchain.bb</a> =
+=A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 | =A0 38 ++++++++++++++++----</div>
+
+<div>=A03 files changed, 56 insertions(+), 6 deletions(-)</div><div>=A0crea=
+te mode 100755 meta-linaro-toolchain/recipes-core/eglibc/eglibc-locale_2.19=
+.bbappend</div><div><br></div><div>diff --git a/meta-linaro-toolchain/conf/=
+distro/include/tcmode-external-linaro.inc b/meta-linaro-toolchain/conf/dist=
+ro/include/tcmode-external-linaro.inc</div>
+
+<div>index 1d9fd59..26d464c 100644</div><div>--- a/meta-linaro-toolchain/co=
+nf/distro/include/tcmode-external-linaro.inc</div><div>+++ b/meta-linaro-to=
+olchain/conf/distro/include/tcmode-external-linaro.inc</div><div>@@ -41,6 +=
+41,7 @@ DISTRO_FEATURES_LIBC =3D &quot;ipv4 ipv6 libc-backtrace libc-big-ma=
+cros libc-bsd libc-c</div>
+
+<div>=A0<span style=3D"white-space:pre-wrap">			</span>libc-getlogin libc-i=
+dn libc-inet-anl libc-libm libc-libm-big \</div><div>=A0<span style=3D"whit=
+e-space:pre-wrap">			</span>libc-memusage libc-nis libc-nsswitch libc-rcmd =
+libc-rtld-debug libc-spawn libc-streams libc-sunrpc \</div>
+
+<div>=A0<span style=3D"white-space:pre-wrap">			</span>libc-utmp libc-utmpx=
+ libc-wordexp libc-posix-clang-wchar libc-posix-regexp libc-posix-regexp-gl=
+ibc \</div><div>+<span style=3D"white-space:pre-wrap">			</span>libc-charse=
+ts libc-locales libc-locale-code \</div>
+
+<div>=A0<span style=3D"white-space:pre-wrap">			</span>libc-posix-wchar-io&=
+quot;</div><div>=A0</div><div>=A0ENABLE_BINARY_LOCALE_GENERATION =3D &quot;=
+0&quot;</div><div>diff --git a/meta-linaro-toolchain/recipes-core/eglibc/eg=
+libc-locale_2.19.bbappend b/meta-linaro-toolchain/recipes-core/eglibc/eglib=
+c-locale_2.19.bbappend</div>
+
+<div>new file mode 100755</div><div>index 0000000..3e91e74</div><div>--- /d=
+ev/null</div><div>+++ b/meta-linaro-toolchain/recipes-core/eglibc/eglibc-lo=
+cale_2.19.bbappend</div><div>@@ -0,0 +1,23 @@</div><div>+do_install () {</d=
+iv>
+
+<div>+<span style=3D"white-space:pre-wrap">	</span>mkdir -p ${D}${datadir}<=
+/div><div>+<span style=3D"white-space:pre-wrap">	</span>if [ -n &quot;$(ls =
+${LOCALETREESRC}/${bindir})&quot; ]; then</div><div>+<span style=3D"white-s=
+pace:pre-wrap">		</span>mkdir -p ${D}${bindir}</div>
+
+<div>+<span style=3D"white-space:pre-wrap">		</span>cp -fpPR ${LOCALETREESR=
+C}/${bindir}/* ${D}${bindir}</div><div>+<span style=3D"white-space:pre-wrap=
+">	</span>fi</div><div>+<span style=3D"white-space:pre-wrap">	</span>if [ -=
+n &quot;$(ls ${LOCALETREESRC}/${localedir})&quot; ]; then</div>
+
+<div>+<span style=3D"white-space:pre-wrap">		</span>mkdir -p ${D}${localedi=
+r}</div><div>+<span style=3D"white-space:pre-wrap">		</span>cp -fpPR ${LOCA=
+LETREESRC}/${localedir}/* ${D}${localedir}</div><div>+<span style=3D"white-=
+space:pre-wrap">	</span>fi</div>
+
+<div>+<span style=3D"white-space:pre-wrap">	</span>if [ -e ${LOCALETREESRC}=
+/${libdir}/gconv ]; then</div><div>+<span style=3D"white-space:pre-wrap">		=
+</span>mkdir -p ${D}${libdir}</div><div>+<span style=3D"white-space:pre-wra=
+p">		</span>cp -fpPR ${LOCALETREESRC}/${libdir}/gconv ${D}${libdir}</div>
+
+<div>+<span style=3D"white-space:pre-wrap">	</span>fi</div><div>+<span styl=
+e=3D"white-space:pre-wrap">	</span>if [ -e ${LOCALETREESRC}/${datadir}/i18n=
+ ]; then</div><div>+<span style=3D"white-space:pre-wrap">		</span>cp -fpPR =
+${LOCALETREESRC}/${datadir}/i18n ${D}${datadir}</div>
+
+<div>+<span style=3D"white-space:pre-wrap">	</span>fi</div><div>+<span styl=
+e=3D"white-space:pre-wrap">	</span>if [ -e ${LOCALETREESRC}/${datadir}/loca=
+le ]; then</div><div>+<span style=3D"white-space:pre-wrap">		</span>cp -fpP=
+R ${LOCALETREESRC}/${datadir}/locale ${D}${datadir}</div>
+
+<div>+<span style=3D"white-space:pre-wrap">	</span>fi</div><div>+<span styl=
+e=3D"white-space:pre-wrap">	</span>chown root.root -R ${D}</div><div>+<span=
+ style=3D"white-space:pre-wrap">	</span>cp -fpPR ${LOCALETREESRC}/SUPPORTED=
+ ${WORKDIR}</div>
+
+<div>+}</div><div>diff --git a/meta-linaro-toolchain/recipes-devtools/exter=
+nal-linaro-toolchain/<a href=3D"http://external-linaro-toolchain.bb" target=
+=3D"_blank">external-linaro-toolchain.bb</a> b/meta-linaro-toolchain/recipe=
+s-devtools/external-linaro-toolchain/<a href=3D"http://external-linaro-tool=
+chain.bb" target=3D"_blank">external-linaro-toolchain.bb</a></div>
+
+<div>index 240d550..47fd4ca 100644</div><div>--- a/meta-linaro-toolchain/re=
+cipes-devtools/external-linaro-toolchain/<a href=3D"http://external-linaro-=
+toolchain.bb" target=3D"_blank">external-linaro-toolchain.bb</a></div><div>
++++ b/meta-linaro-toolchain/recipes-devtools/external-linaro-toolchain/<a h=
+ref=3D"http://external-linaro-toolchain.bb" target=3D"_blank">external-lina=
+ro-toolchain.bb</a></div>
+<div>@@ -41,6 +41,12 @@ PROVIDES +=3D &quot;\</div><div>=A0<span style=3D"w=
+hite-space:pre-wrap">	</span>libitm \</div><div>=A0<span style=3D"white-spa=
+ce:pre-wrap">	</span>libitm-dev \</div><div>=A0<span style=3D"white-space:p=
+re-wrap">	</span>libitm-staticdev \</div>
+
+<div>+<span style=3D"white-space:pre-wrap">	</span>libasan \</div><div>+<sp=
+an style=3D"white-space:pre-wrap">	</span>libasan-dev \</div><div>+<span st=
+yle=3D"white-space:pre-wrap">	</span>libasan-staticdev \</div><div>
++<span style=3D"white-space:pre-wrap">	</span>libatomic \</div><div>+<span =
+style=3D"white-space:pre-wrap">	</span>libatomic-dev \</div><div>+<span sty=
+le=3D"white-space:pre-wrap">	</span>libatomic-staticdev \</div><div>
+=A0<span style=3D"white-space:pre-wrap">	</span>virtual/linux-libc-headers =
+\</div><div>=A0&quot;</div><div>=A0</div><div>@@ -50,12 +56,11 @@ PR =3D &q=
+uot;r2&quot;</div><div>=A0# <a href=3D"https://launchpad.net/linaro-toolcha=
+in-binaries" target=3D"_blank">https://launchpad.net/linaro-toolchain-binar=
+ies</a></div>
+
+<div>=A0SRC_URI =3D &quot;file://SUPPORTED&quot;</div><div>=A0</div><div>+L=
+DLINUX32 =3D &quot;${@base_contains(&quot;TUNE_FEATURES&quot;, &quot;callco=
+nvention-hard&quot;, &quot;ld-linux-armhf.so.3&quot;, &quot;ld-linux.so.3&q=
+uot;,d)}&quot;</div>
+
+<div>+</div><div>=A0do_install() {</div><div>=A0<span style=3D"white-space:=
+pre-wrap">	</span>install -d ${D}${base_libdir}</div><div>-<span style=3D"w=
+hite-space:pre-wrap">	</span>install -d ${D}${bindir}</div><div>-<span styl=
+e=3D"white-space:pre-wrap">	</span>install -d ${D}${sbindir}</div>
+
+<div>=A0<span style=3D"white-space:pre-wrap">	</span>install -d ${D}${libdi=
+r}</div><div>-<span style=3D"white-space:pre-wrap">	</span>install -d ${D}$=
+{libexecdir}</div><div>=A0<span style=3D"white-space:pre-wrap">	</span>inst=
+all -d ${D}${datadir}</div>
+
+<div>=A0<span style=3D"white-space:pre-wrap">	</span>install -d ${D}${inclu=
+dedir}</div><div>=A0</div><div>@@ -79,7 +84,7 @@ do_install() {</div><div>=
+=A0<span style=3D"white-space:pre-wrap">	</span>fi</div><div>=A0</div><div>=
+=A0<span style=3D"white-space:pre-wrap">	</span># fix up the copied symlink=
+s (they are still pointing to the multiarch directory)</div>
+
+<div>-<span style=3D"white-space:pre-wrap">	</span>linker_name=3D&quot;${@b=
+ase_contains(&quot;TUNE_FEATURES&quot;, &quot;aarch64&quot;, &quot;ld-linux=
+-aarch64.so.1&quot;, &quot;ld-linux.so.3&quot;,d)}&quot;</div><div>+<span s=
+tyle=3D"white-space:pre-wrap">	</span>linker_name=3D&quot;${@base_contains(=
+&quot;TUNE_FEATURES&quot;, &quot;aarch64&quot;, &quot;ld-linux-aarch64.so.1=
+&quot;, &quot;${LDLINUX32}&quot;,d)}&quot;</div>
+
+<div>=A0<span style=3D"white-space:pre-wrap">	</span>ln -sf ld-${ELT_VER_LI=
+BC}.so ${D}${base_libdir}/${linker_name}</div><div>=A0<span style=3D"white-=
+space:pre-wrap">	</span>ln -sf ../../lib/libnsl.so.1 ${D}${libdir}/libnsl.s=
+o</div>
+
+<div>=A0<span style=3D"white-space:pre-wrap">	</span>ln -sf ../../lib/librt=
+.so.1 ${D}${libdir}/librt.so</div><div>@@ -144,6 +149,12 @@ PACKAGES =3D+ &=
+quot;\</div><div>=A0<span style=3D"white-space:pre-wrap">	</span>libitm \</=
+div>
+<div>=A0<span style=3D"white-space:pre-wrap">	</span>libitm-dev \</div><div=
+>=A0<span style=3D"white-space:pre-wrap">	</span>libitm-staticdev \</div><d=
+iv>+<span style=3D"white-space:pre-wrap">	</span>libasan \</div><div>
++<span style=3D"white-space:pre-wrap">	</span>libasan-dev \</div><div>+<spa=
+n style=3D"white-space:pre-wrap">	</span>libasan-staticdev \</div><div>+<sp=
+an style=3D"white-space:pre-wrap">	</span>libatomic \</div><div>+<span styl=
+e=3D"white-space:pre-wrap">	</span>libatomic-dev \</div>
+
+<div>+<span style=3D"white-space:pre-wrap">	</span>libatomic-staticdev \</d=
+iv><div>=A0&quot;</div><div>=A0</div><div>=A0INSANE_SKIP_${PN}-dbg =3D &quo=
+t;staticdev&quot;</div><div>@@ -282,14 +293,16 @@ FILES_libssp-staticdev =
+=3D &quot; \</div>
+
+<div>=A0</div><div>=A0FILES_libgfortran =3D &quot;${base_libdir}/libgfortra=
+n.so.*&quot;</div><div>=A0FILES_libgfortran-dev =3D &quot; \</div><div>- =
+=A0${base_libdir}/libgfortran.so&quot;</div><div>+ =A0${base_libdir}/libgfo=
+rtran.so \</div>
+
+<div>+ =A0${base_libdir}/libgfortran.spec&quot;</div><div>=A0FILES_libgfort=
+ran-staticdev =3D &quot; \</div><div>=A0 =A0${base_libdir}/libgfortran.a \<=
+/div><div>=A0 =A0${base_libdir}/libgfortranbegin.a&quot;</div><div>=A0</div=
+><div>=A0FILES_libmudflap =3D &quot;${base_libdir}/libmudflap*.so.*&quot;</=
+div>
+
+<div>=A0FILES_libmudflap-dev =3D &quot;\</div><div>- =A0${base_libdir}/libm=
+udflap*.so \</div><div>+ =A0${base_libdir}/libmudflap*.so&quot;</div><div>+=
+FILES_libmudflap-staticdev =3D &quot;\</div><div>=A0 =A0${base_libdir}/libm=
+udflap*.a \</div>
+
+<div>=A0 =A0${base_libdir}/libmudflap*.la&quot;</div><div>=A0</div><div>@@ =
+-313,6 +326,19 @@ FILES_libgomp-dev =3D &quot;\</div><div>=A0FILES_libgomp-=
+staticdev =3D &quot;\</div><div>=A0 =A0${base_libdir}/libgomp*.a \</div><di=
+v>=A0 =A0&quot;</div>
+
+<div>+</div><div>+FILES_libasan =3D &quot;\</div><div>+ =A0${base_libdir}/l=
+ibasan.so.* \</div><div>+ =A0&quot;</div><div>+FILES_libasan-dev =3D &quot;=
+\</div><div>+ =A0${base_libdir}/libasan.so \</div><div>+ =A0&quot;</div><di=
+v>+FILES_libatomic =3D&quot;\</div>
+
+<div>+ =A0${base_libdir}/libatomic.so.* \</div><div>+ =A0&quot;</div><div>+=
+FILES_libatomic-dev =3D &quot;\</div><div>+ =A0${base_libdir}/libatomic.so =
+\</div><div>+ =A0&quot;</div><div>=A0ELT_VER_MAIN ??=3D &quot;&quot;</div><=
+div>=A0</div>
+
+<div>=A0python () {</div><div>--=A0</div><div>1.7.9.5</div><div><br></div><=
+/div></div>
+
+--001a1139b43ae21d2d04f6ab7456--
