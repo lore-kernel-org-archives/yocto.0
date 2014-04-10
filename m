@@ -1,36 +1,27 @@
-Return-Path: <meenakumari.s@hcl.com>
-Received: from GWS06.hcl.com (gws06.avitas.hcl.com [203.105.185.25])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5DC47E00BBF
-	for <yocto@yoctoproject.org>; Thu, 10 Apr 2014 01:14:14 -0700 (PDT)
-X-IronPort-AV: E=Sophos;i="4.97,833,1389724200"; d="scan'208";a="65616359"
-Received: from unknown (HELO NDA-CORP-HT03.CORP.HCL.IN) ([10.248.64.35])
-	by GWS06.hcl.com with ESMTP/TLS/AES128-SHA; 10 Apr 2014 13:39:39 +0530
-Received: from NDA-HCLT-CSHT03.HCLT.CORP.HCL.IN (10.98.132.28) by
-	NDA-CORP-HT03.CORP.HCL.IN (10.248.64.35) with Microsoft SMTP Server
-	(TLS) id 14.3.123.3; Thu, 10 Apr 2014 13:44:08 +0530
-Received: from NDA-HCLT-MBS02.HCLT.CORP.HCL.IN ([10.98.132.17]) by
-	NDA-HCLT-CSHT03.HCLT.CORP.HCL.IN ([10.98.132.28]) with mapi id
-	14.03.0123.003; Thu, 10 Apr 2014 13:44:07 +0530
-From: Meenakumari Shedole <meenakumari.s@hcl.com>
-To: "Beauchesne, Gwenole" <gwenole.beauchesne@intel.com>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: [yocto] Help-Gstreamer Vaapi Plugin Issue in 1080p mp4 playback
-Thread-Index: AQHPSYlGWF8OgI4BY0eUG8fpk2Rq8Zr0llAAgAFgBgCAAAsvkP///EyAgAZ3sHCAAEJeQIABLiLAgAIeozCAAUvshYAJRS7j
-Date: Thu, 10 Apr 2014 08:14:07 +0000
-Message-ID: <E4938C0D959B3445943720B88F07213415616AD7@NDA-HCLT-MBS02.hclt.corp.hcl.in>
-References: <E4938C0D959B3445943720B88F07213415613522@NDA-HCLT-MBS02.hclt.corp.hcl.in>
-	<CAJTo0LY5VVCZbimtTBNdgDCEB+1mwSwdsVH31ik8GSdheg48OQ@mail.gmail.com>
-	<E4938C0D959B3445943720B88F07213415614CE4@NDA-HCLT-MBS02.hclt.corp.hcl.in>,
-	<278E3B7DD17B744DAAB36F6424581BA61AE98D6D@IRSMSX103.ger.corp.intel.com>,
-	<E4938C0D959B3445943720B88F07213415615A67@NDA-HCLT-MBS02.hclt.corp.hcl.in>
-In-Reply-To: <E4938C0D959B3445943720B88F07213415615A67@NDA-HCLT-MBS02.hclt.corp.hcl.in>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.98.134.12]
+Return-Path: <paul.eggleton@linux.intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9E577E00BBF
+	for <yocto@yoctoproject.org>; Thu, 10 Apr 2014 03:14:40 -0700 (PDT)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga102.jf.intel.com with ESMTP; 10 Apr 2014 03:09:54 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.97,833,1389772800"; d="scan'208";a="490667560"
+Received: from pbrannig-mobl.ger.corp.intel.com (HELO
+	peggleto-mobl5.ger.corp.intel.com) ([10.252.121.73])
+	by orsmga001.jf.intel.com with ESMTP; 10 Apr 2014 03:14:38 -0700
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: yocto@yoctoproject.org
+Date: Thu, 10 Apr 2014 11:14:37 +0100
+Message-ID: <1545986.M2ZRmN0uFt@peggleto-mobl5.ger.corp.intel.com>
+Organization: Intel Corporation
+User-Agent: KMail/4.12.4 (Linux/3.13.9-200.fc20.x86_64; KDE/4.12.4; x86_64; ; )
+In-Reply-To: <CABcZAN=yHZOkzXZf0tkVSumV370y9HLAp2H3rcDtO2dV8F5WHA@mail.gmail.com>
+References: <CF6AE2C6.41DF5%belen.barros.pena@intel.com>
+	<CA+gsK-qsb+UVcKsuE_NMAw_dVD-LkdkgOwayBHLPdM3QPPt2Bw@mail.gmail.com>
+	<CABcZAN=yHZOkzXZf0tkVSumV370y9HLAp2H3rcDtO2dV8F5WHA@mail.gmail.com>
 MIME-Version: 1.0
-Cc: Dipesh Karmakar <Dipesh.Karmakar@hcl.com>
-Subject: Re: Help-Gstreamer Vaapi Plugin Issue in 1080p mp4 playback
+Cc: Chris Larson <clarson@kergoth.com>
+Subject: Re: Dogfooding and usability testing Toaster
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,151 +33,43 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 10 Apr 2014 08:14:18 -0000
-Content-Language: en-US
+X-List-Received-Date: Thu, 10 Apr 2014 10:14:40 -0000
+Content-Transfer-Encoding: 7Bit
 Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
 
-Hi All.=0A=
-=0A=
-By using all latest version packages, Vaapi able to set the foreign window =
-but there is random changes between Application and VaapiSink in SetWindowI=
-d, Play and Stop state.=0A=
- =0A=
-Below are few of the different behaviors.=0A=
-=0A=
-a.  To play 1080p media, First SetWindowID, Play and Stop. ( It works with =
-foreign window)=0A=
-b.  To play 1080p media, Second time only Play and Stop. (It won't work) an=
-d crash the daemon.=0A=
-c.  start the daemon and app=0A=
-d.  This time again SetWindowID, Play and Stop. (It works with foreign wind=
-ow)=0A=
-e.  Only Play and Stop.( it works and won't crash the daemon also)=0A=
-f.   Next time again setWindowID, Play and Stop. (it won't works)=0A=
-g.  Next again to SetWindowID, Play and Stop.(it works)=0A=
-=0A=
-Some times when I use only Play and Stop it open it's own window and start =
-to play.=0A=
-=0A=
-Regards=0A=
-Meenakumari Shedole=0A=
-________________________________________=0A=
-From: Meenakumari Shedole=0A=
-Sent: Friday, April 04, 2014 4:19 PM=0A=
-To: Beauchesne, Gwenole; yocto@yoctoproject.org=0A=
-Cc: Dipesh Karmakar=0A=
-Subject: RE: [yocto] Help-Gstreamer Vaapi Plugin Issue in 1080p mp4 playbac=
-k=0A=
-=0A=
-Thanks for your resposne Gwenole.=0A=
-=0A=
-I downloaded updated gstreamer-vaapi-0.5.8 and GStreamer-0.10.36 with other=
- dependency plaugins and va deriver but after manually install no luck to e=
-xecute vaapisink.=0A=
-=0A=
-can you please suggest, vaapi dependencies and their version to build.=0A=
-=0A=
-Regards=0A=
-Meena.=0A=
-________________________________________=0A=
-From: Beauchesne, Gwenole [gwenole.beauchesne@intel.com]=0A=
-Sent: Thursday, April 03, 2014 8:22 PM=0A=
-To: Meenakumari Shedole; yocto@yoctoproject.org=0A=
-Cc: Dipesh Karmakar=0A=
-Subject: RE: [yocto] Help-Gstreamer Vaapi Plugin Issue in 1080p mp4 playbac=
-k=0A=
-=0A=
-Hi,=0A=
-=0A=
-> I have checked vaapisink source, it seems its supporting overlay on forei=
-gn X=0A=
-> window.=0A=
-> https://gitorious.org/vaapi/gstreamer-=0A=
-> vaapi/source/643d35e87a67376af9cd89cd868666368b105ac3:gst/vaapisink/gs=0A=
-> tvaapisink.c=0A=
-> static gboolean gst_vaapisink_implements_interface_supported();=0A=
-> static gboolean gst_vaapisink_ensure_window_xid();=0A=
-=0A=
-The version you mention looks very old. I have integrated a fix from anothe=
-r user, who has been successfully using gstreamer-vaapi with GStreamer 0.10=
- in a scenario you describe (vaapisink + foreign window). Please update you=
-r gstreamer-vaapi version to at least 0.5.8. Or, the current git master tre=
-e. Other branches are not maintained any more. The fix I have in mind was f=
-8666e2.=0A=
-=0A=
-Regards,=0A=
-Gwenole.=0A=
-=0A=
-> -----Original Message-----=0A=
-> From: Burton, Ross [mailto:ross.burton@intel.com]=0A=
-> Sent: Friday, March 28, 2014 4:42 PM=0A=
-> To: Meenakumari Shedole=0A=
-> Cc: yocto@yoctoproject.org; Dipesh Karmakar=0A=
-> Subject: Re: [yocto] Help-Gstreamer Vaapi Plugin Issue in 1080p mp4=0A=
-> playback=0A=
->=0A=
-> On 28 March 2014 06:05, Meenakumari Shedole <meenakumari.s@hcl.com>=0A=
-> wrote:=0A=
-> > 1. playbin2 + avi/3gp is working properly because of xvimagesink is use=
-d=0A=
-> interally.=0A=
-> > 2. playbin2 + mp4 is not taking vaapi sink, we need to manually set vid=
-eo-=0A=
-> sink=3Dvaapisink.=0A=
-> >    Also we are getting arbitrary crash while setting the qml video wind=
-ow id=0A=
-> to the vaapi sink.=0A=
-> >    So we are not getting any single pipe to play mp4/avi/3gp stuff.=0A=
->=0A=
-> The important question is what recipe are you using to get the vaapi=0A=
-> elements?=0A=
->=0A=
-> What happens if you use vaapisink with AVI/3GP?  You should still get som=
-e=0A=
-> acceleration.=0A=
->=0A=
-> Note that especially when using vaapi sink you need to wait for the sink =
-to=0A=
-> create the window and then reparent it, you can't provide your own X=0A=
-> window to vaapisink.  This is the usual cause for breakage.  Do testing w=
-ith=0A=
-> gst-launch before attempting to use your own application.=0A=
->=0A=
-> Ross=0A=
->=0A=
->=0A=
-> ::DISCLAIMER::=0A=
-> -------------------------------------------------------------------------=
----------------------=0A=
-> ------------------------------------------------------=0A=
->=0A=
-> The contents of this e-mail and any attachment(s) are confidential and=0A=
-> intended for the named recipient(s) only.=0A=
-> E-mail transmission is not guaranteed to be secure or error-free as=0A=
-> information could be intercepted, corrupted, lost, destroyed, arrive late=
- or=0A=
-> incomplete, or may contain viruses in transmission. The e mail and its=0A=
-> contents (with or without referred errors) shall therefore not attach any=
-=0A=
-> liability on the originator or HCL or its affiliates.=0A=
-> Views or opinions, if any, presented in this email are solely those of th=
-e=0A=
-> author and may not necessarily reflect the views or opinions of HCL or it=
-s=0A=
-> affiliates. Any form of reproduction, dissemination, copying, disclosure,=
-=0A=
-> modification, distribution and / or publication of this message without t=
-he=0A=
-> prior written consent of authorized representative of HCL is strictly=0A=
-> prohibited. If you have received this email in error please delete it and=
- notify=0A=
-> the sender immediately.=0A=
-> Before opening any email and/or attachments, please check them for viruse=
-s=0A=
-> and other defects.=0A=
->=0A=
-> -------------------------------------------------------------------------=
----------------------=0A=
-> ------------------------------------------------------=0A=
+On Wednesday 09 April 2014 16:39:38 Chris Larson wrote:
+> On Wed, Apr 9, 2014 at 4:33 PM, Rudolf Streif 
+<rudolf.streif@linux.com>wrote:
+> > That is exciting. I just ran with it and started a build with toaster in
+> > 
+> > the background. A couple of observations from the get-go:
+> >    - South 0.8.4 is also needed in addition to Django. The Toaster Wiki
+> >    [1] does not say that but the Contribute to Toaster page [2] does.
+> >    - You need to run 'sudo pip install ...' for Django and South
+> >    otherwise the installation fails with 'permission denied' for
+> >    /usr/lib/python2.7
+> >    - Clicking on "Show me the manual" in the Toaster UI directs to [3]
+> >    which requires a log in
+> >    - Is it possible to relocate/rename the toaster.sqlite database via
+> >    configuration setting? If so, could I use the same database for
+> >    different
+> >    build environments?
+> 
+> Side note: you can use pip install --user ... rather than sudo pip, to
+> install it to your user site-packages directory under ~/.local, which won't
+> impact the rest of the system.
+
+I'd like to see this documented using virtualenv [1] to install the additional 
+packages - it's so much cleaner than any other solution.
+
+Cheers,
+Paul
+
+[1] For those who aren't familiar with virtualenv:
+http://simononsoftware.com/virtualenv-tutorial/
+
+-- 
+
+Paul Eggleton
+Intel Open Source Technology Centre
 
