@@ -1,36 +1,38 @@
-Return-Path: <jenslucius@freenet.de>
-Received: from mout3.freenet.de (mout3.freenet.de [195.4.92.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C9B96E00C89
-	for <yocto@yoctoproject.org>; Thu, 10 Apr 2014 14:43:12 -0700 (PDT)
-Received: from [195.4.92.141] (helo=mjail1.freenet.de)
-	by mout3.freenet.de with esmtpa (ID jenslucius@freenet.de) (port 25)
-	(Exim 4.80.1 #4) id 1WYMkY-0004O8-3D
-	for yocto@yoctoproject.org; Thu, 10 Apr 2014 23:43:10 +0200
-Received: from localhost ([::1]:33767 helo=mjail1.freenet.de)
-	by mjail1.freenet.de with esmtpa (ID jenslucius@freenet.de) (Exim
-	4.80.1 #4) id 1WYMkY-00021q-0P
-	for yocto@yoctoproject.org; Thu, 10 Apr 2014 23:43:10 +0200
-Received: from mx8.freenet.de ([195.4.92.18]:47318)
-	by mjail1.freenet.de with esmtpa (ID jenslucius@freenet.de) (Exim
-	4.80.1 #4) id 1WYMiG-0008Au-2z
-	for yocto@yoctoproject.org; Thu, 10 Apr 2014 23:40:48 +0200
-Received: from p5b0e2acc.dip0.t-ipconnect.de ([91.14.42.204]:51713
-	helo=[192.168.2.12])
-	by mx8.freenet.de with esmtpsa (ID jenslucius@freenet.de)
-	(TLSv1:DHE-RSA-AES128-SHA:128) (port 587) (Exim 4.80.1 #4)
-	id 1WYMiF-0004yD-Lt
-	for yocto@yoctoproject.org; Thu, 10 Apr 2014 23:40:48 +0200
-Message-ID: <53470FDA.6010703@freenet.de>
-Date: Thu, 10 Apr 2014 23:40:42 +0200
-From: Jens Lucius <jenslucius@freenet.de>
-User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64;
-	rv:24.0) Gecko/20100101 Thunderbird/24.4.0
+Return-Path: <trevor.woerner@linaro.org>
+Received: from mail-ig0-f175.google.com (mail-ig0-f175.google.com
+	[209.85.213.175])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 22E6FE00CAF
+	for <yocto@yoctoproject.org>; Thu, 10 Apr 2014 16:26:18 -0700 (PDT)
+Received: by mail-ig0-f175.google.com with SMTP id ur14so139681igb.8
+	for <yocto@yoctoproject.org>; Thu, 10 Apr 2014 16:26:17 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
+	:subject:content-type:content-transfer-encoding;
+	bh=bJOMoqJMqmRSsD27sgeVSVhqmiWlXZgYXUbL4mknzzk=;
+	b=SdO1GodqDnM0aao4ylyAn7RyrmAG1iWblBX91IT6Qhhm2Pa3sisFU+Z9cAJBIpDfxI
+	XaQieFuFd2DA4nbiXs3ZBkWDg9zaZyvY5qoDKTICnytE5cwcznH0PojbDyHPLXFeoiMd
+	mF8GxfDdFugkiI+uhO711H/pQfkEbNyn3Bm8n5Nc2OLQPKpfA6WEa2aFqtDMYxnj7yPI
+	zEo0b45duHnYdP+AYkPkU84205gw/FWdHksljvfUpF8gR3hIHf+OyCVnvxcjWrzaz3UP
+	T3mtND9pb0+KyOZ4dWflbqZ2vGKOt0W1cHzjIWBm5rgb1ohgiAmi07PZQb8MOfQLq5Mc
+	hlmw==
+X-Gm-Message-State: ALoCoQlvP36kLrBa7bzdUXInsVNH1uBxsd93pqgWaLjho/yrpAX9RJspC9oR3n7OOPxThETSWu2K
+X-Received: by 10.42.16.199 with SMTP id q7mr15630802ica.16.1397172377817;
+	Thu, 10 Apr 2014 16:26:17 -0700 (PDT)
+Received: from [192.168.141.83] (69-165-220-158.dsl.teksavvy.com.
+	[69.165.220.158])
+	by mx.google.com with ESMTPSA id s8sm1107480ige.4.2014.04.10.16.26.16
+	for <yocto@yoctoproject.org>
+	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
+	Thu, 10 Apr 2014 16:26:17 -0700 (PDT)
+Message-ID: <53472898.8030207@linaro.org>
+Date: Thu, 10 Apr 2014 19:26:16 -0400
+From: Trevor Woerner <trevor.woerner@linaro.org>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:24.0) Gecko/20100101 Thunderbird/24.3.0
 MIME-Version: 1.0
-To: yocto@yoctoproject.org
-References: <533B0C8F.9050004@freenet.de>
-In-Reply-To: <533B0C8F.9050004@freenet.de>
-X-Originated-At: 91.14.42.204!51713
-Subject: Building python module after compiling in one recipe
+To: yocto <yocto@yoctoproject.org>
+Subject: polkit and consolekit
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,51 +44,19 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 10 Apr 2014 21:43:13 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+X-List-Received-Date: Thu, 10 Apr 2014 23:26:20 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 Content-Transfer-Encoding: 7bit
 
-Hi
+consolekit has a dependency on polkit:
 
-I am trying to bitbake pjproject including the python module. I manged 
-to write a working .bb recipe for the latest pjproject, which compiles 
-and installes correctly. But I also want to build the python module.
+arm-oe-linux-gnueabi-gcc: error:
+/SSD/build/distroless/tmp/qemuarm-eglibc/sysroots/qemuarm/usr/lib/libpolkit-gobject-1.so:
+No such file or directory
+ERROR: Function failed: do_compile (log file is located at
+/SSD/build/distroless/tmp/qemuarm-eglibc/work/armv5te-oe-linux-gnueabi/consolekit/0.4.6-r0/temp/log.do_compile.18881)
 
-The documentation of pjproject says about building the python module:
+Whereas consolekit is in openembedded-core, polkit is in meta-openembedded.
 
- 1. Build the PJSIP libraries first with the usual "./configure && make
-    dep && make" commands.
- 2. Go to pjsip-apps/src/python directory.
- 3. Run *'sudo python ./setup.py install'* or just *'sudo make'*
-
-So I guess with the working recipe I got part 1. I tried to do stepts 2 
-and 3 by adding the following:
-
-do_compile_append() {
-export BUILD_SYS
-export HOST_SYS
-export STAGING_INCDIR
-export STAGING_LIBDIR
-
-cd ${S}/pjsip-apps/src/python
-oe_runmake
-}
-
-which starts the building process but then terminates with:
-
-| cc1: warning: include location "/usr/include/python2.7" is unsafe for 
-cross-compilation [-Wpoison-system-directories]
-| In file included from _pjsua.c:20:0:
-| _pjsua.h:25:20: fatal error: Python.h: No such file or directory
-
-So I guess it is trying to use the host python for building the module 
-(which is obviously not correct).
-
-So can I build them both in one recipe and how? And if built correctly 
-how to install the modules?
-
-Thanks for your help.
-
-
-
+Suggestions?
 
