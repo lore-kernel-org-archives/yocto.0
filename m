@@ -1,33 +1,35 @@
-Return-Path: <wpdster@gmail.com>
-Received: from mail-pa0-f52.google.com (mail-pa0-f52.google.com
-	[209.85.220.52])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 08427E00C73
-	for <yocto@yoctoproject.org>; Thu, 10 Apr 2014 11:05:47 -0700 (PDT)
-Received: by mail-pa0-f52.google.com with SMTP id rd3so4324501pab.11
-	for <yocto@yoctoproject.org>; Thu, 10 Apr 2014 11:05:47 -0700 (PDT)
+Return-Path: <romain145@gmail.com>
+Received: from mail-vc0-f172.google.com (mail-vc0-f172.google.com
+	[209.85.220.172])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 87103E00C76
+	for <yocto@yoctoproject.org>; Thu, 10 Apr 2014 11:36:33 -0700 (PDT)
+Received: by mail-vc0-f172.google.com with SMTP id la4so3771801vcb.17
+	for <yocto@yoctoproject.org>; Thu, 10 Apr 2014 11:36:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
 	:cc:content-type;
-	bh=ju4aC4fr2GDgosQ13VzAF5hg2ZDKIhvmpBEX3Wfsnlo=;
-	b=S3diqOm0JJz4VcvCRorEVPAqP4ZV6W96VRysyncUL26vmwt4qfYa3mN/YsOl5dEzAf
-	ImQ6hMgDlkWwLsI+z5krWBARbHOneJLY9cv0UFCYL6OWkic108B5+OgoRZRMNzqEQP8Y
-	Pw/ZK+DbLYmw5iZ1VZ0ky0TgTPwnujGTOx4DHRVM16t1IK5BGKW7IVFuWxxHGovggf5n
-	NWfq2+zcM6k9krcdICbTs9m/tAIiPJA2/gfgF0uqIzjHq1zcvpBO3+F9b964eaFzvkNB
-	nR5wTnGMpDs4noxjv6X7XS1AiVLZ7z6UruWO4ZdI4GyiIEw+64yK3hPDrzIqJ2Nl57gG
-	w+Bg==
-X-Received: by 10.68.102.34 with SMTP id fl2mr21391671pbb.2.1397153147470;
-	Thu, 10 Apr 2014 11:05:47 -0700 (PDT)
+	bh=Ltm+eDokBtzwiZMyNk3p++JFEuZz2ToEW1uNmTTO8JQ=;
+	b=nd0Ue1TbndFtyXZh9mCSA0aBlTUlPP/f7/rqpdhShlwajypUwKP/ISD7i6qF8h3s9F
+	X5sTn/nqYQLnamoacllN5uQZyHGD08llDMsbBq8hJ0q4woL8qb/dUXDVtx3smNm8JxdO
+	JkLiVyiafqXJEme99iqK9ltEOJcjB1naNPy14O32CnAZKy/bGbW6UjEtK0RhAolO7tQ0
+	KIGor+U4oYZHbYI8oY15pzGRh22kW8EZ8PlUfeMfphzWWAzr05FyystuWQ4b2Y3OXgLG
+	T8XcpQqL0NqFcWikmS8TdH79rlV7L/pyqwAKR67lbdFJ1pElHPlEe8YLv5g2scuewc7R
+	oR+Q==
+X-Received: by 10.58.13.104 with SMTP id g8mr15324697vec.16.1397154992955;
+	Thu, 10 Apr 2014 11:36:32 -0700 (PDT)
 MIME-Version: 1.0
-Received: by 10.70.32.161 with HTTP; Thu, 10 Apr 2014 11:05:17 -0700 (PDT)
-In-Reply-To: <5346BA37.3010501@windriver.com>
-References: <CAF_dkJD45hZOEwqb4giAKmdO-22WK3KTf-Bz0RWZvKTHD9-qFQ@mail.gmail.com>
-	<5346BA37.3010501@windriver.com>
-From: Patrick Doyle <wpdster@gmail.com>
-Date: Thu, 10 Apr 2014 14:05:17 -0400
-Message-ID: <CAF_dkJBtoweCRLzC95mJxZqwDHGR719cjYD0nedhJRsXHcqb0Q@mail.gmail.com>
-To: Bruce Ashfield <bruce.ashfield@windriver.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: How to include kernel module without including the kernel in the rootfs?
+Received: by 10.58.236.163 with HTTP; Thu, 10 Apr 2014 11:36:12 -0700 (PDT)
+In-Reply-To: <4237672.0WqBQukXvJ@peggleto-mobl5.ger.corp.intel.com>
+References: <CAKfC58sPYyCdKCLusG_gbu4B1fCie0PM6YFz+chdda61Sah7RA@mail.gmail.com>
+	<2070676.utD6R3GvnO@peggleto-mobl5.ger.corp.intel.com>
+	<CAKfC58tJSvWfPF0OZnBgawqw7+-7FOEzOikb=Qhwtz0vJFaTWQ@mail.gmail.com>
+	<4237672.0WqBQukXvJ@peggleto-mobl5.ger.corp.intel.com>
+From: Romain <romain145@gmail.com>
+Date: Thu, 10 Apr 2014 19:36:12 +0100
+Message-ID: <CAKfC58uJTPrHx_Wws1graobTvb3=5favPdZGJbWQ7GQHoPyBhQ@mail.gmail.com>
+To: Paul Eggleton <paul.eggleton@linux.intel.com>
+Cc: yocto@yoctoproject.org
+Subject: Re: PREFERRED_PROVIDER entry in local.conf
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,52 +41,25 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 10 Apr 2014 18:05:52 -0000
+X-List-Received-Date: Thu, 10 Apr 2014 18:36:34 -0000
+Content-Type: multipart/alternative; boundary=047d7b2e73860d27b504f6b47fd3
+
+--047d7b2e73860d27b504f6b47fd3
 Content-Type: text/plain; charset=ISO-8859-1
 
-Hi Bruce,
-Thank you very much.  That did the trick.
+Thanks for filing the bug.
 
---wpd
+I confirm that adding the line in my local.conf fix the jpeg provider :
+PREFERRED_PROVIDER_jpeg = "libjpeg-turbo"
 
+Thanks for your help !
+Romain
 
-On Thu, Apr 10, 2014 at 11:35 AM, Bruce Ashfield
-<bruce.ashfield@windriver.com> wrote:
-> On 14-04-10 11:32 AM, Patrick Doyle wrote:
->>
->> I just added a custom kernel module to my build, and now my rootfs
->> includes a copy of my kernel (thus making it too large to fit in my
->> pinhole sized root partition).
->>
->> Is there any way to prevent the kernel from being included in the
->> rootfs?  Do modutils require a kernel image in order to function
->> properly?
->
->
-> Clear this in your kernel recipe:
->
-> # Allow machines to override this dependency if kernel image files are
-> # not wanted in images as standard
-> RDEPENDS_kernel-base ?= "kernel-image"
->
-> and you'll get no kernel image, and yes, modules will work.
->
-> Bruce
->
->
->>
->> My recipe contains
->>
->> inherit module
->>
->> So I'm expecting that the module class does magic that results in the
->> kernel getting installed.
->>
->> Is there a flag I can set to say "Don't do that?".
->>
->> Thanks.
->>
->> --wpd
->>
->
+--047d7b2e73860d27b504f6b47fd3
+Content-Type: text/html; charset=ISO-8859-1
 
+<div dir="ltr">Thanks for filing the bug.<div><br></div><div>I confirm that adding the line in my local.conf fix the jpeg provider :</div><div>PREFERRED_PROVIDER_jpeg = &quot;libjpeg-turbo&quot;<br></div><div><br></div><div>
+
+Thanks for your help !</div><div class="gmail_extra"><div>Romain</div></div></div>
+
+--047d7b2e73860d27b504f6b47fd3--
