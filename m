@@ -1,29 +1,25 @@
 Return-Path: <denis@denix.org>
-Received: from vms173025pub.verizon.net (vms173025pub.verizon.net
-	[206.46.173.25])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 628ADE00BE0
-	for <yocto@yoctoproject.org>; Thu, 10 Apr 2014 08:58:31 -0700 (PDT)
+Received: from vms173017pub.verizon.net (vms173017pub.verizon.net
+	[206.46.173.17])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8D79BE00BE0
+	for <yocto@yoctoproject.org>; Thu, 10 Apr 2014 09:23:51 -0700 (PDT)
 Received: from gandalf.denix.org ([unknown] [71.191.205.189])
-	by vms173025.mailsrvcs.net
+	by vms173017.mailsrvcs.net
 	(Sun Java(tm) System Messaging Server 7u2-7.02 32bit (built Apr 16
-	2009)) with ESMTPA id <0N3T0062OOCWBT81@vms173025.mailsrvcs.net> for
-	yocto@yoctoproject.org; Thu, 10 Apr 2014 10:58:09 -0500 (CDT)
-Received: by gandalf.denix.org (Postfix, from userid 1000)	id A76AF2016D; Thu,
-	10 Apr 2014 11:58:08 -0400 (EDT)
-Date: Thu, 10 Apr 2014 11:58:08 -0400
+	2009)) with ESMTPA id <0N3T0047UPJ7JXA0@vms173017.mailsrvcs.net> for
+	yocto@yoctoproject.org; Thu, 10 Apr 2014 11:23:32 -0500 (CDT)
+Received: by gandalf.denix.org (Postfix, from userid 1000)	id A48912016D; Thu,
+	10 Apr 2014 12:23:31 -0400 (EDT)
+Date: Thu, 10 Apr 2014 12:23:31 -0400
 From: Denys Dmytriyenko <denis@denix.org>
-To: "Stanacar, StefanX" <stefanx.stanacar@intel.com>
-Message-id: <20140410155808.GN3370@denix.org>
-References: <1397116933-20764-1-git-send-email-denis@denix.org>
-	<1397137009.21633.6.camel@firebird.rb.intel.com>
-	<1397139316.21633.8.camel@firebird.rb.intel.com>
-	<1397143684.21633.9.camel@firebird.rb.intel.com>
+To: Patrick Doyle <wpdster@gmail.com>
+Message-id: <20140410162331.GO3370@denix.org>
+References: <CAF_dkJABdHQcftHoPJ1EO_bdjahyYJ84HZL5V+mErqzQaTKJSQ@mail.gmail.com>
 MIME-version: 1.0
-In-reply-to: <1397143684.21633.9.camel@firebird.rb.intel.com>
+In-reply-to: <CAF_dkJABdHQcftHoPJ1EO_bdjahyYJ84HZL5V+mErqzQaTKJSQ@mail.gmail.com>
 User-Agent: Mutt/1.5.20 (2009-06-14)
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	"denys@ti.com" <denys@ti.com>
-Subject: Re: [meta-yocto][PATCH 1/2] beaglebone.conf: configuration updates
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Why increment PRINC by 2?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -35,100 +31,101 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 10 Apr 2014 15:58:33 -0000
+X-List-Received-Date: Thu, 10 Apr 2014 16:23:53 -0000
 Content-type: text/plain; charset=us-ascii
 Content-disposition: inline
 
-On Thu, Apr 10, 2014 at 03:27:43PM +0000, Stanacar, StefanX wrote:
+On Thu, Apr 10, 2014 at 11:55:08AM -0400, Patrick Doyle wrote:
+> The BSP guide gives the following helpful tip for installing a custom
+> /etc/network/interfaces file (see
+> https://www.yoctoproject.org/docs/current/bsp-guide/bsp-guide.html#customizing-a-recipe-for-a-bsp
+> -- and thank you, BTW -- that addressed a specific problem I needed to
+> solve):
+> 
+> 1. Edit the init-ifupdown_1.0.bbappend file so that it contains the following:
+> 
+>      FILESEXTRAPATHS_prepend := "${THISDIR}/files:"
+>      PRINC := "${@int(PRINC) + 2}"
 > 
 > 
+> The append file needs to be in the meta-xyz/recipes-core/init-ifupdown
+> directory.
 > 
-> On Thu, 2014-04-10 at 14:14 +0000, Stanacar, StefanX wrote:
-> > 
-> > 
-> > On Thu, 2014-04-10 at 13:36 +0000, Stanacar, StefanX wrote:
-> > > Hi Denys,
-> > > 
-> > > With this patch applied and the updated README I can boot a Beaglebone
-> > > Black (rev A6) with a default yocto image/config (I've used
-> > > core-image-sato-sdk FWIW). Everything seems fine, I ran a bunch of tests
-> > > on the image, except for X - it doesn't start :(.
-> > > I've built with fbdev and omapfb too.
-> > > 
-> > > X log for fbdev: 
-> > > http://pastebin.com/sqNc35U0
-> > > 
-> > > for omapfb:
-> > > http://pastebin.com/fMkzMW8U
-> > > 
-> > > Is there anything else that needs to changed/added? I could add a
-> > > xorg.conf on the image too, but then it beats the point...
-> > > 
-> > 
-> > What I was trying to say is that we are missing a .bbappend for
-> > xserver-xf86-config that adds the right xorg.conf (either for fbdev or
-> > omapfb). I'll try to come up with one.
+> 2. Create and place the new interfaces configuration file in the BSP's
+> layer here:
 > 
+>      meta-xyz/recipes-core/init-ifupdown/files/xyz/interfaces
 > 
-> Okay ignore that it didn't helped, I think I know what's missing.. I
-> need the latest SRCREV_meta for kernel.
+> In my continuing attempt to understand the mindset of Yocto
+> practitioners, I would appreciate any light folks can shed on this... it
+> opens up so many questions to me...
+> 
+> 1) Why does FILESEXTRAPATHS exist?  The documentation says, "You can
+> extend FILESPATH variable by using FILESEXTRAPATHS."  Errr, can't one
+> extend FILESPATH with
+> 
+> FILESPATH = "blah:" + $FILESPATH
+> 
+> or
+> FILESPATH_prepend = "blah:"
+> 
+> I see that the documentation for FILESPATH specifically states:
+> 
+> "Do not hand-edit the FILESPATH variable. If you want the build system
+> to look in directories other than the defaults, extend the FILESPATH
+> variable by using the FILESEXTRAPATHS variable."
+> 
+> but that doesn't help me understand why this method is preferred for
+> extending FILESPATH.
+> 
+> 2) Why does PRINC exist?  The documentation says that PRINC "causes
+> the PR variable of .bbappend files to dynamically increment" and that
+> "This increment minimizes the impact of layer ordering."  I guess that
+> means that the init-ifupdown_1.0.bb file has some revision (which I
+> think is "1.0") and that, when my .bbappend file is appended to it,
+> causes the recipe to effectively be "3.0".  Why do I care?  If there
+> is an "init-ifupdown_5.0.bb" file someplace in my search path, won't I
+> get that one anyway?  How does this minimize the impact of layer
+> ordering?
 
-Sorry for the delay - yes, couple tweaks are needed from BSP as well.
+That is PV (package version) you are thinking of. But PRINC increments PR 
+(package revision).
+
+PR is not used in the recipe names, but rather in resulting binary packages. 
+So your init-ifupdown_1.0.bb/bbappend will result in a binary package of 
+init-ifupdown_1.0-r0_<arch/mach>.ipk/rpm
+
+That portion -r0 will be incremented, becoming -r2 or the original+2 (can be 
+any number)
+
+PV usually corresponds to changes in the sources, while PR corresponds to 
+changes in the recipe. If a recipe is composed from multiple parts (.inc file 
+or .bbappend) you may want to distinguish that.
+
+As an alternative, some distro chose to append a more meaningful suffix to PR 
+instead of just incrementing PR. I.e. our Arago distro appends "-aragoX" where 
+X is the number of revisions we made in our distro on top of the main recipe. 
+The end result of the package version will be "3.5-r6-arago2". It means the 
+sources for the package are of version 3.5, the main recipe was updated 6 
+times and there were also 2 more recipe bbappend updates by the distro...
+
+It's a common practice in Linux Distro world - Ubuntu uses the same principle, 
+when updating packages inherited from Debian, e.g. bash_4.1-2ubuntu3_i386.deb
+
+-- 
+Denys
 
 
-> > > On Thu, 2014-04-10 at 04:02 -0400, Denys Dmytriyenko wrote:
-> > > > From: Denys Dmytriyenko <denys@ti.com>
-> > > > 
-> > > > * Use fbdev video driver for xserver-xorg
-> > > > * Recommend installing device tree DTB files into rootfs /boot directory
-> > > > * Switch back to uImage kernel format from zImage, as U-boot was not updated
-> > > >   - default has changed to zImage in newer U-boot 2013.10+, but we use 2013.07
-> > > > * Correct copy/paste typo in serial console
-> > > > 
-> > > > Signed-off-by: Denys Dmytriyenko <denys@ti.com>
-> > > > ---
-> > > >  meta-yocto-bsp/conf/machine/beaglebone.conf | 10 +++++-----
-> > > >  1 file changed, 5 insertions(+), 5 deletions(-)
-> > > > 
-> > > > diff --git a/meta-yocto-bsp/conf/machine/beaglebone.conf b/meta-yocto-bsp/conf/machine/beaglebone.conf
-> > > > index f2ef0cf..4263715 100644
-> > > > --- a/meta-yocto-bsp/conf/machine/beaglebone.conf
-> > > > +++ b/meta-yocto-bsp/conf/machine/beaglebone.conf
-> > > > @@ -6,11 +6,10 @@ PREFERRED_PROVIDER_virtual/xserver ?= "xserver-xorg"
-> > > >  XSERVER ?= "xserver-xorg \
-> > > >             xf86-input-evdev \
-> > > >             xf86-input-mouse \
-> > > > -           xf86-video-omapfb \
-> > > > +           xf86-video-fbdev \
-> > > >             xf86-input-keyboard"
-> > > >  
-> > > > -# Ship all kernel modules by default
-> > > > -MACHINE_EXTRA_RRECOMMENDS = " kernel-modules"
-> > > > +MACHINE_EXTRA_RRECOMMENDS = " kernel-modules kernel-devicetree"
-> > > >  
-> > > >  EXTRA_IMAGEDEPENDS += "u-boot"
-> > > >  
-> > > > @@ -20,13 +19,14 @@ include conf/machine/include/tune-cortexa8.inc
-> > > >  IMAGE_FSTYPES += "tar.bz2 jffs2"
-> > > >  EXTRA_IMAGECMD_jffs2 = "-lnp "
-> > > >  
-> > > > -SERIAL_CONSOLE = "115200 ttyO2"
-> > > > +SERIAL_CONSOLE = "115200 ttyO0"
-> > > >  
-> > > >  PREFERRED_PROVIDER_virtual/kernel ?= "linux-yocto"
-> > > >  PREFERRED_VERSION_linux-yocto ?= "3.14%"
-> > > >  
-> > > > -KERNEL_IMAGETYPE = "zImage"
-> > > > +KERNEL_IMAGETYPE = "uImage"
-> > > >  KERNEL_DEVICETREE = "am335x-bone.dtb am335x-boneblack.dtb"
-> > > > +KERNEL_EXTRA_ARGS += "LOADADDR=${UBOOT_ENTRYPOINT}"
-> > > >  
-> > > >  SPL_BINARY = "MLO"
-> > > >  UBOOT_SUFFIX = "img"
-> > > > -- 
-> > > > 1.9.1
-> > > > 
-> > > 
-> > 
+> Oh yeah, and why increment by 2?  Why not 1, or pi?
 > 
+> I guess I only had 2 questions... but 1,000,000 subquestions :-)
+> 
+> Thanks for any tips you can give me.
+> 
+> --wpd
+> -- 
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
