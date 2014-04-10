@@ -1,28 +1,34 @@
-Return-Path: <wpdster@gmail.com>
-Received: from mail-pa0-f42.google.com (mail-pa0-f42.google.com
-	[209.85.220.42])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E99F5E00CB9
-	for <yocto@yoctoproject.org>; Thu, 10 Apr 2014 16:44:15 -0700 (PDT)
-Received: by mail-pa0-f42.google.com with SMTP id fb1so4628437pad.29
-	for <yocto@yoctoproject.org>; Thu, 10 Apr 2014 16:44:15 -0700 (PDT)
+Return-Path: <kergoth@gmail.com>
+Received: from mail-lb0-f170.google.com (mail-lb0-f170.google.com
+	[209.85.217.170])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B220AE00CBF
+	for <yocto@yoctoproject.org>; Thu, 10 Apr 2014 16:51:18 -0700 (PDT)
+Received: by mail-lb0-f170.google.com with SMTP id s7so2897428lbd.15
+	for <yocto@yoctoproject.org>; Thu, 10 Apr 2014 16:51:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:from:date:message-id:subject:to:content-type;
-	bh=ROwwYsnLgMeSLRxi+UPl3OegEDxJC7g2czcBDJ0miP4=;
-	b=OZjU7ulq8Aca4zWne1YCY4FzviR/83JZyIrZV2Z3RU+WUWtFyo2uZk9YySewgMqUob
-	oBlYJLYk240Nljis3FFtW3mBo1HJTdeu4g9FTku6GgrNNSZ8t8dF6Bz5S1EvOjkACQjK
-	FPHb7n0G9B2olMLCs3iGsaMbUz0XsLc5Z0lJcGu/1oXvtZDrD9kch3+0Os1JNSCgUAEe
-	MZ614jdo1dxDW0Oe279Trcx/ev2qOyiAWEY+90QKdx1FLSCbSz4wzMGldnLKpn8/78Cf
-	w8bOOwo0YlCO0gYMuKfYmb+uxJRHsWjsV9xn8awMicN1BWCS8OyP3Xzz32LtznFouT0Q
-	7JNg==
-X-Received: by 10.66.141.144 with SMTP id ro16mr22787234pab.131.1397173455033; 
-	Thu, 10 Apr 2014 16:44:15 -0700 (PDT)
+	h=mime-version:sender:in-reply-to:references:from:date:message-id
+	:subject:to:cc:content-type;
+	bh=QukbHSqypJD2dJqqu4RG2w1xDRxeKO313weBSd7n1dk=;
+	b=CqqXpNYdt/9qmLM0tvPoQ863yqLqTxtKMtwvoALkc1LSlFY6jLGprW4noR3aThBGcT
+	YNEjEuW6vsf1yjeyvlj6ufrMGD5l/IpyAwspTyrTZ3QLE+6CbtIC7PmTDSQ43g7W0lJT
+	RLBK/52A4aUc0jhhXyY1e03ZXYwwCZlToR/s3htCMAj8UkJAD0ARrHWr7G3HHc2cCbun
+	PSN1McA51xxkKZQJ6LvtRh03z2OUw9ZLHqn5FNrrrmFjerNu54nOQCw9Xvulles116Zn
+	5bLiSzWiBVkRgTWw/Q85Cpr/A9vsOZO7z/QXrTS1wb05KR5R14njtzK3u5RYiKCMrz4y
+	enkQ==
+X-Received: by 10.112.41.227 with SMTP id i3mr3319613lbl.41.1397173877255;
+	Thu, 10 Apr 2014 16:51:17 -0700 (PDT)
 MIME-Version: 1.0
-Received: by 10.70.32.161 with HTTP; Thu, 10 Apr 2014 16:43:44 -0700 (PDT)
-From: Patrick Doyle <wpdster@gmail.com>
-Date: Thu, 10 Apr 2014 19:43:44 -0400
-Message-ID: <CAF_dkJAi700hXNbRQc=1UVTRY7VVwwf+UJyQ5EJm=+FoxQvC9A@mail.gmail.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Confusion about autotools
+Sender: kergoth@gmail.com
+Received: by 10.112.35.194 with HTTP; Thu, 10 Apr 2014 16:50:57 -0700 (PDT)
+In-Reply-To: <CAF_dkJAi700hXNbRQc=1UVTRY7VVwwf+UJyQ5EJm=+FoxQvC9A@mail.gmail.com>
+References: <CAF_dkJAi700hXNbRQc=1UVTRY7VVwwf+UJyQ5EJm=+FoxQvC9A@mail.gmail.com>
+From: Chris Larson <clarson@kergoth.com>
+Date: Thu, 10 Apr 2014 16:50:57 -0700
+X-Google-Sender-Auth: Kuz5H-Rrq_hic-He61QPEG-7L5I
+Message-ID: <CABcZAN=BAXcbK87929P34zCeT9Y4o3nUm12P99N+=4Gy31zSxw@mail.gmail.com>
+To: Patrick Doyle <wpdster@gmail.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Confusion about autotools
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,51 +40,105 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 10 Apr 2014 23:44:18 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Thu, 10 Apr 2014 23:51:20 -0000
+Content-Type: multipart/alternative; boundary=001a113468f0a4b21c04f6b8e450
 
-I am trying to write a recipe for a custom gstreamer plugin that
-compiles fine (natively) with autotools.
+--001a113468f0a4b21c04f6b8e450
+Content-Type: text/plain; charset=UTF-8
 
-I thought it would be as simple as writing a recipe that said something like:
+On Thu, Apr 10, 2014 at 4:43 PM, Patrick Doyle <wpdster@gmail.com> wrote:
 
-inherit autotools
+> I am trying to write a recipe for a custom gstreamer plugin that
+> compiles fine (natively) with autotools.
+>
+> I thought it would be as simple as writing a recipe that said something
+> like:
+>
+> inherit autotools
+>
+> myplugin_do_fetch() {
+>     commands_to_make_a_copy_of_my_source_code_in_build_tree;
+> }
+> EXPORT_FUNCTIONS do_fetch
+>
+> (I am leaving out the boilerplate DESCRIPTION, LICENSE, etc...
+>
+> But when I try to run my recipe, I get an error that ends like:
+>
+> 109: /home/wpd/.../run.do_fetch.1234 do_fetch: not found
+>
+> and when I look at run.do_fetch, I see on line 109
+>
+> do_fetch
+>
+> I thought that do_fetch would be inherited from base.bbclass.  I look
+> in autotools.bbclass and I don't see a do_fetch function task defined
+> there.
+>
 
-myplugin_do_fetch() {
-    commands_to_make_a_copy_of_my_source_code_in_build_tree;
-}
-EXPORT_FUNCTIONS do_fetch
+EXPORT_FUNCTIONS is an inheritance mechanism, to let you override a
+function in a class you inherit but still be able to explicitly call the
+function defined by that class. Unless you have a 'myplugin' class, nothing
+will translate myplugin_do_fetch to do_fetch. If you want to override a
+function like do_fetch in your recipe, just override that function, don't
+prefix it.
+-- 
+Christopher Larson
+clarson at kergoth dot com
+Founder - BitBake, OpenEmbedded, OpenZaurus
+Maintainer - Tslib
+Senior Software Engineer, Mentor Graphics
 
-(I am leaving out the boilerplate DESCRIPTION, LICENSE, etc...
+--001a113468f0a4b21c04f6b8e450
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-But when I try to run my recipe, I get an error that ends like:
+<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
+On Thu, Apr 10, 2014 at 4:43 PM, Patrick Doyle <span dir=3D"ltr">&lt;<a hre=
+f=3D"mailto:wpdster@gmail.com" target=3D"_blank">wpdster@gmail.com</a>&gt;<=
+/span> wrote:<br>
 
-109: /home/wpd/.../run.do_fetch.1234 do_fetch: not found
+<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
+x #ccc solid;padding-left:1ex"><div id=3D":xe" class=3D"a3s" style=3D"overf=
+low:hidden">I am trying to write a recipe for a custom gstreamer plugin tha=
+t<br>
 
-and when I look at run.do_fetch, I see on line 109
+compiles fine (natively) with autotools.<br>
+<br>
+I thought it would be as simple as writing a recipe that said something lik=
+e:<br>
+<br>
+inherit autotools<br>
+<br>
+myplugin_do_fetch() {<br>
+=C2=A0 =C2=A0 commands_to_make_a_copy_of_my_source_code_in_build_tree;<br>
+}<br>
+EXPORT_FUNCTIONS do_fetch<br>
+<br>
+(I am leaving out the boilerplate DESCRIPTION, LICENSE, etc...<br>
+<br>
+But when I try to run my recipe, I get an error that ends like:<br>
+<br>
+109: /home/wpd/.../run.do_fetch.1234 do_fetch: not found<br>
+<br>
+and when I look at run.do_fetch, I see on line 109<br>
+<br>
+do_fetch<br>
+<br>
+I thought that do_fetch would be inherited from base.bbclass. =C2=A0I look<=
+br>
+in autotools.bbclass and I don&#39;t see a do_fetch function task defined<b=
+r>
+there.</div></blockquote></div><br>EXPORT_FUNCTIONS is an inheritance mecha=
+nism, to let you override a function in a class you inherit but still be ab=
+le to explicitly call the function defined by that class. Unless you have a=
+ &#39;myplugin&#39; class, nothing will translate myplugin_do_fetch to do_f=
+etch. If you want to override a function like do_fetch in your recipe, just=
+ override that function, don&#39;t prefix it.<br>
 
-do_fetch
+-- <br>Christopher Larson<br>clarson at kergoth dot com<br>Founder - BitBak=
+e, OpenEmbedded, OpenZaurus<br>Maintainer - Tslib<br>Senior Software Engine=
+er, Mentor Graphics
+</div></div>
 
-I thought that do_fetch would be inherited from base.bbclass.  I look
-in autotools.bbclass and I don't see a do_fetch function task defined
-there.
-
-So now I'm confused.  Since this isn't working the way I thought it
-would, I figured it was time (once again -- and thanks for all of the
-help so far!) to ask the list how I should do this.
-
-For purely hysterical reasons, the gst plugin is in the same (bzr)
-repository and my yocto build environment.  I was expecting to write a
-"do_fetch()" task that would copy the source files into the
-appropriate location in build tree.
-
-I guess I could create a subdirectory of the recipe that contains a
-bunch of symbolic links to each of the source files required to build
-the plugin, and list them all as file:whatever in SRC_URI.  But that
-feels hackish.
-
-Once again, any tips to help over this hump (and help me make it to
-the big important demo next week) would be welcome.
-
---wpd
-
+--001a113468f0a4b21c04f6b8e450--
