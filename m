@@ -1,38 +1,28 @@
-Return-Path: <trevor.woerner@linaro.org>
-Received: from mail-ig0-f175.google.com (mail-ig0-f175.google.com
-	[209.85.213.175])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 22E6FE00CAF
-	for <yocto@yoctoproject.org>; Thu, 10 Apr 2014 16:26:18 -0700 (PDT)
-Received: by mail-ig0-f175.google.com with SMTP id ur14so139681igb.8
-	for <yocto@yoctoproject.org>; Thu, 10 Apr 2014 16:26:17 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
-	:subject:content-type:content-transfer-encoding;
-	bh=bJOMoqJMqmRSsD27sgeVSVhqmiWlXZgYXUbL4mknzzk=;
-	b=SdO1GodqDnM0aao4ylyAn7RyrmAG1iWblBX91IT6Qhhm2Pa3sisFU+Z9cAJBIpDfxI
-	XaQieFuFd2DA4nbiXs3ZBkWDg9zaZyvY5qoDKTICnytE5cwcznH0PojbDyHPLXFeoiMd
-	mF8GxfDdFugkiI+uhO711H/pQfkEbNyn3Bm8n5Nc2OLQPKpfA6WEa2aFqtDMYxnj7yPI
-	zEo0b45duHnYdP+AYkPkU84205gw/FWdHksljvfUpF8gR3hIHf+OyCVnvxcjWrzaz3UP
-	T3mtND9pb0+KyOZ4dWflbqZ2vGKOt0W1cHzjIWBm5rgb1ohgiAmi07PZQb8MOfQLq5Mc
-	hlmw==
-X-Gm-Message-State: ALoCoQlvP36kLrBa7bzdUXInsVNH1uBxsd93pqgWaLjho/yrpAX9RJspC9oR3n7OOPxThETSWu2K
-X-Received: by 10.42.16.199 with SMTP id q7mr15630802ica.16.1397172377817;
-	Thu, 10 Apr 2014 16:26:17 -0700 (PDT)
-Received: from [192.168.141.83] (69-165-220-158.dsl.teksavvy.com.
-	[69.165.220.158])
-	by mx.google.com with ESMTPSA id s8sm1107480ige.4.2014.04.10.16.26.16
-	for <yocto@yoctoproject.org>
-	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
-	Thu, 10 Apr 2014 16:26:17 -0700 (PDT)
-Message-ID: <53472898.8030207@linaro.org>
-Date: Thu, 10 Apr 2014 19:26:16 -0400
-From: Trevor Woerner <trevor.woerner@linaro.org>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:24.0) Gecko/20100101 Thunderbird/24.3.0
+Return-Path: <wpdster@gmail.com>
+Received: from mail-pa0-f42.google.com (mail-pa0-f42.google.com
+	[209.85.220.42])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E99F5E00CB9
+	for <yocto@yoctoproject.org>; Thu, 10 Apr 2014 16:44:15 -0700 (PDT)
+Received: by mail-pa0-f42.google.com with SMTP id fb1so4628437pad.29
+	for <yocto@yoctoproject.org>; Thu, 10 Apr 2014 16:44:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:from:date:message-id:subject:to:content-type;
+	bh=ROwwYsnLgMeSLRxi+UPl3OegEDxJC7g2czcBDJ0miP4=;
+	b=OZjU7ulq8Aca4zWne1YCY4FzviR/83JZyIrZV2Z3RU+WUWtFyo2uZk9YySewgMqUob
+	oBlYJLYk240Nljis3FFtW3mBo1HJTdeu4g9FTku6GgrNNSZ8t8dF6Bz5S1EvOjkACQjK
+	FPHb7n0G9B2olMLCs3iGsaMbUz0XsLc5Z0lJcGu/1oXvtZDrD9kch3+0Os1JNSCgUAEe
+	MZ614jdo1dxDW0Oe279Trcx/ev2qOyiAWEY+90QKdx1FLSCbSz4wzMGldnLKpn8/78Cf
+	w8bOOwo0YlCO0gYMuKfYmb+uxJRHsWjsV9xn8awMicN1BWCS8OyP3Xzz32LtznFouT0Q
+	7JNg==
+X-Received: by 10.66.141.144 with SMTP id ro16mr22787234pab.131.1397173455033; 
+	Thu, 10 Apr 2014 16:44:15 -0700 (PDT)
 MIME-Version: 1.0
-To: yocto <yocto@yoctoproject.org>
-Subject: polkit and consolekit
+Received: by 10.70.32.161 with HTTP; Thu, 10 Apr 2014 16:43:44 -0700 (PDT)
+From: Patrick Doyle <wpdster@gmail.com>
+Date: Thu, 10 Apr 2014 19:43:44 -0400
+Message-ID: <CAF_dkJAi700hXNbRQc=1UVTRY7VVwwf+UJyQ5EJm=+FoxQvC9A@mail.gmail.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Confusion about autotools
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -44,19 +34,51 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 10 Apr 2014 23:26:20 -0000
+X-List-Received-Date: Thu, 10 Apr 2014 23:44:18 -0000
 Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: 7bit
 
-consolekit has a dependency on polkit:
+I am trying to write a recipe for a custom gstreamer plugin that
+compiles fine (natively) with autotools.
 
-arm-oe-linux-gnueabi-gcc: error:
-/SSD/build/distroless/tmp/qemuarm-eglibc/sysroots/qemuarm/usr/lib/libpolkit-gobject-1.so:
-No such file or directory
-ERROR: Function failed: do_compile (log file is located at
-/SSD/build/distroless/tmp/qemuarm-eglibc/work/armv5te-oe-linux-gnueabi/consolekit/0.4.6-r0/temp/log.do_compile.18881)
+I thought it would be as simple as writing a recipe that said something like:
 
-Whereas consolekit is in openembedded-core, polkit is in meta-openembedded.
+inherit autotools
 
-Suggestions?
+myplugin_do_fetch() {
+    commands_to_make_a_copy_of_my_source_code_in_build_tree;
+}
+EXPORT_FUNCTIONS do_fetch
+
+(I am leaving out the boilerplate DESCRIPTION, LICENSE, etc...
+
+But when I try to run my recipe, I get an error that ends like:
+
+109: /home/wpd/.../run.do_fetch.1234 do_fetch: not found
+
+and when I look at run.do_fetch, I see on line 109
+
+do_fetch
+
+I thought that do_fetch would be inherited from base.bbclass.  I look
+in autotools.bbclass and I don't see a do_fetch function task defined
+there.
+
+So now I'm confused.  Since this isn't working the way I thought it
+would, I figured it was time (once again -- and thanks for all of the
+help so far!) to ask the list how I should do this.
+
+For purely hysterical reasons, the gst plugin is in the same (bzr)
+repository and my yocto build environment.  I was expecting to write a
+"do_fetch()" task that would copy the source files into the
+appropriate location in build tree.
+
+I guess I could create a subdirectory of the recipe that contains a
+bunch of symbolic links to each of the source files required to build
+the plugin, and list them all as file:whatever in SRC_URI.  But that
+feels hackish.
+
+Once again, any tips to help over this hump (and help me make it to
+the big important demo next week) would be welcome.
+
+--wpd
 
