@@ -1,33 +1,30 @@
-Return-Path: <belen.barros.pena@intel.com>
-Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B4D31E00BBF
-	for <yocto@yoctoproject.org>; Thu, 10 Apr 2014 03:16:18 -0700 (PDT)
-Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by azsmga101.ch.intel.com with ESMTP; 10 Apr 2014 03:16:18 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.97,833,1389772800"; d="scan'208";a="417313677"
-Received: from irsmsx104.ger.corp.intel.com ([163.33.3.159])
-	by azsmga001.ch.intel.com with ESMTP; 10 Apr 2014 03:16:11 -0700
-Received: from irsmsx106.ger.corp.intel.com ([169.254.8.58]) by
-	IRSMSX104.ger.corp.intel.com ([169.254.5.224]) with mapi id
-	14.03.0123.003; Thu, 10 Apr 2014 11:14:46 +0100
-From: "Barros Pena, Belen" <belen.barros.pena@intel.com>
-To: Philip Balister <philip@balister.org>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>
-Thread-Topic: [yocto] Dogfooding and usability testing Toaster
-Thread-Index: AQHPVKWye+na1INwFUe6M9rJJf0Lug==
-Date: Thu, 10 Apr 2014 10:14:45 +0000
-Message-ID: <CF6C2B67.42069%belen.barros.pena@intel.com>
-References: <CF6AE2C6.41DF5%belen.barros.pena@intel.com>
-	<5345B327.5030203@balister.org>
-In-Reply-To: <5345B327.5030203@balister.org>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-user-agent: Microsoft-MacOutlook/14.3.9.131030
-x-originating-ip: [10.237.224.34]
+Return-Path: <romain145@gmail.com>
+Received: from mail-vc0-f170.google.com (mail-vc0-f170.google.com
+	[209.85.220.170])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F3DE6E00BBF
+	for <yocto@yoctoproject.org>; Thu, 10 Apr 2014 03:22:15 -0700 (PDT)
+Received: by mail-vc0-f170.google.com with SMTP id hu19so3296396vcb.29
+	for <yocto@yoctoproject.org>; Thu, 10 Apr 2014 03:22:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:content-type; bh=sXv5c/EeruGSOjJIusxY9Y7bDyPWb63peU7J3jnzNh4=;
+	b=yqhmOY79tI3ETtPKiTgLEyYlA4+Ktma+RWrfCD/YTYoZ1aB9kOiaLLhgLZVXTv/p4P
+	astMpoEME3Vqw0uXPZntljYa2LiS7YRoJ+JoKVr6Us94Hjd+9A8iZgXLQCUT6bcMT6w9
+	+8j1zy5Atsb8I9IEH7Oyl/NdsQOkTqfFa8Z7CFCKHNhQRXgZL3TcbVipyciHaJ20Ftse
+	BwgPRyqDXUfmzQNWHF00VENcWhVWsOrJd2UhVDijuVKANePngjfkfCi2Y0uBHTu+ETKw
+	P4VgHe0OIDV4L4aEl8etbwbFYidZ5VFKVXCJX4SH0ItljEvRRXuk8fSMz728Nx+AHn6K
+	SLJA==
+X-Received: by 10.58.46.207 with SMTP id x15mr14151580vem.17.1397125334999;
+	Thu, 10 Apr 2014 03:22:14 -0700 (PDT)
 MIME-Version: 1.0
-Subject: Re: Dogfooding and usability testing Toaster
+Received: by 10.58.236.163 with HTTP; Thu, 10 Apr 2014 03:21:54 -0700 (PDT)
+In-Reply-To: <CAKfC58sPYyCdKCLusG_gbu4B1fCie0PM6YFz+chdda61Sah7RA@mail.gmail.com>
+References: <CAKfC58sPYyCdKCLusG_gbu4B1fCie0PM6YFz+chdda61Sah7RA@mail.gmail.com>
+From: Romain <romain145@gmail.com>
+Date: Thu, 10 Apr 2014 11:21:54 +0100
+Message-ID: <CAKfC58saGQftdHrdUgpXa2s3OfCYrCizSh1oR=ZoxsLv5eVUeQ@mail.gmail.com>
+To: yocto@yoctoproject.org
+Subject: Re: PREFERRED_PROVIDER entry in local.conf
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,68 +36,68 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 10 Apr 2014 10:16:24 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="iso-8859-1"
-Content-ID: <1CDBDB11F4043649B42C2662795C311F@intel.com>
+X-List-Received-Date: Thu, 10 Apr 2014 10:22:17 -0000
+Content-Type: multipart/alternative; boundary=089e013a18c24caced04f6ad97ba
+
+--089e013a18c24caced04f6ad97ba
+Content-Type: text/plain; charset=ISO-8859-1
+
+Hi, any clue ?
+
+Thanks and Regards
+Romain
+
+On 8 April 2014 18:10, Romain <romain145@gmail.com> wrote:
+
+> Hello all,
+>
+> While building an image I get those notes, and I would like to lock down
+> the providers for sshd and jpeg :
+> NOTE: multiple providers are available for runtime sshd (openssh, dropbear)
+> NOTE: consider defining a PREFERRED_PROVIDER entry to match sshd
+> NOTE: multiple providers are available for jpeg (jpeg, libjpeg-turbo)
+> NOTE: consider defining a PREFERRED_PROVIDER entry to match jpeg
+>
+> I tried a few syntax in the local.conf, but none of them seem to work :
+> PREFERRED_PROVIDER_virtual/sshd = "ssh-server-openssh"
+> PREFERRED_PROVIDER_sshd = "ssh-server-openssh"
+> PREFERRED_PROVIDER_sshd = "openssh"
+> PREFERRED_PROVIDER_openssh = "sshd"
+>
+> Thanks !
+> Romain
+>
+
+--089e013a18c24caced04f6ad97ba
+Content-Type: text/html; charset=ISO-8859-1
 Content-Transfer-Encoding: quoted-printable
 
-On 09/04/2014 21:52, "Philip Balister" <philip@balister.org> wrote:
+<div dir=3D"ltr">Hi, any clue ?<div class=3D"gmail_extra"><div><br></div><d=
+iv>Thanks and Regards<br>Romain</div></div><div class=3D"gmail_extra"><br><=
+div class=3D"gmail_quote">On 8 April 2014 18:10, Romain <span dir=3D"ltr">&=
+lt;<a href=3D"mailto:romain145@gmail.com" target=3D"_blank">romain145@gmail=
+.com</a>&gt;</span> wrote:<br>
 
->On 04/09/2014 03:43 AM, Barros Pena, Belen wrote:
->> Hi all,
->>=20
->> I am looking into collecting feedback on the first version of Toaster
->>=20
->> https://www.yoctoproject.org/blogs/belenbarrospena/2014/eye-candy
->>=20
->> which will be out with Yocto Project 1.6. There are 2 things I'd like to
->> do:
->>=20
->> 1) Dogfooding
->>=20
->> Once the release is out, it would be great to have people trying Toaster
->> for real work stuff, and telling us how it went. I am of course
->> particularly keen on hearing about what's wrong, so feel free to vent
->>your
->> frustrations with the thing.
->>=20
->> 2) (More formal) usability testing
->>=20
->> I am also looking into validating the Toaster interface in more
->> conventional ways, which means usability testing. This is done in
->> 30-minute sessions run remotely using screen sharing software, although
->>we
->> can also do it in person if you are going to ELC or the OEDAM. During
->> those 30 minutes you will be asked to do some stuff with Toaster and to
->> speak your mind a lot. I will also ask for your permission to record the
->> session, which you can of course refuse.
->
->Belen, can you add this to the OEDAM wiki page? We should have a good
->variety of people there to give feedback.
-
-Good point. It also gave me the excuse to request an account for the wiki.
-Will do as soon as I get login details.
-
-Thanks!
-
-Bel=E9n
-
->
->Philip
->
->>=20
->> If you would like to volunteer for this (which is useful and important
->> stuff), get in touch with me (I am belen in IRC, or email me). I would
->> normally give out something in return for your time, but things are
->>tight
->> right now, so I'm afraid all you'll get on this occasion is a
->>heartwarming
->> thank you.
->>=20
->> Cheers
->>=20
->> Bel=E9n
->>=20
+<blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-=
+left-width:1px;border-left-color:rgb(204,204,204);border-left-style:solid;p=
+adding-left:1ex"><div dir=3D"ltr"><p dir=3D"ltr">Hello all,</p>
+<p dir=3D"ltr">While building an image I get those notes, and I would like =
+to lock down the providers for sshd and jpeg :<br>
+NOTE: multiple providers are available for runtime sshd (openssh, dropbear)=
+<br>
+NOTE: consider defining a PREFERRED_PROVIDER entry to match sshd<br>
+NOTE: multiple providers are available for jpeg (jpeg, libjpeg-turbo)<br>
+NOTE: consider defining a PREFERRED_PROVIDER entry to match jpeg<br></p><p>=
+I tried a few syntax in the local.conf, but none of them seem to work :<br>=
+PREFERRED_PROVIDER_virtual/sshd =3D &quot;ssh-server-openssh&quot;<br>PREFE=
+RRED_PROVIDER_sshd =3D &quot;ssh-server-openssh&quot;<br>
 
 
+PREFERRED_PROVIDER_sshd =3D &quot;openssh&quot;<br>PREFERRED_PROVIDER_opens=
+sh =3D &quot;sshd&quot;</p>
+<p dir=3D"ltr">Thanks !<span class=3D""><font color=3D"#888888"><br>Romain<=
+br></font></span></p>
+</div>
+</blockquote></div><br></div></div>
+
+--089e013a18c24caced04f6ad97ba--
