@@ -1,32 +1,38 @@
-Return-Path: <raj.khem@gmail.com>
-Received: from mail-ig0-f181.google.com (mail-ig0-f181.google.com
-	[209.85.213.181])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BF6DBE00C82
-	for <yocto@yoctoproject.org>; Thu, 10 Apr 2014 11:36:37 -0700 (PDT)
-Received: by mail-ig0-f181.google.com with SMTP id h18so4139843igc.2
-	for <yocto@yoctoproject.org>; Thu, 10 Apr 2014 11:36:36 -0700 (PDT)
+Return-Path: <diego.sueiro@gmail.com>
+Received: from mail-qa0-f42.google.com (mail-qa0-f42.google.com
+	[209.85.216.42])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 226E7E00C87
+	for <yocto@yoctoproject.org>; Thu, 10 Apr 2014 14:35:43 -0700 (PDT)
+Received: by mail-qa0-f42.google.com with SMTP id k15so4535190qaq.15
+	for <yocto@yoctoproject.org>; Thu, 10 Apr 2014 14:35:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
 	:cc:content-type;
-	bh=3s9cWAbXAPLSMs7o4aVkNJiuirnUv047TV+IihKgU7M=;
-	b=08dfl6oAYPa1M+Mu+sqF8zXBz4qkZ7a6lstMGy5bhzePQZv2/6Oln/yM3WeIlJHtlF
-	aIRe/cwpjlcMLsOIqr76qR2SHDdmfKcMKrKuBBDnvxcGH+lxiN1gPTkcT1Tl9+kwiDvK
-	13E5mxEhUwyXfl8ioSqg7dRYQJwgcdl6jIHVsuenRpiIeDBnlHuekp9Prlp1uuNo+q1J
-	FaYNwGYG6Wm1+j+ptPHecz7zqnOd0L0xiboeiuHEupJ1tZsqADiD5YenXOpVosPTScdQ
-	TBa3fCd8anqYrZtIeomtU4rfWL01BFkmSpj5OEadKRx7fSxQX07B/q/84WEMmsQa4VD1
-	z2zw==
-X-Received: by 10.50.60.103 with SMTP id g7mr12773597igr.20.1397154996641;
-	Thu, 10 Apr 2014 11:36:36 -0700 (PDT)
+	bh=sEXap1cpE/nFM64N5wdn6/bm58ko7N4fQGc8hqKprdo=;
+	b=jWYnutyVC1obYfkav5zho6XZs7QD01NUJA9BBTwiyRripumwlfK8T3ioNCfmb2Dm6S
+	e5xnNUs7St5TckLBYw50kPH/f0ysKnREeTipSxoxGacUPBznK31HaQ4Bjxzd+whvdXyv
+	xizvjIs9YwIwuoQ65s5KTaZXrXyKrEDEaiyIkbOtXB1p5N9WZZ0HGcno6pOhw2rglyBK
+	OEuMnCjUThdGIbY6xBewnuo0NYRf0oCoVJpLAvxqRVB513XYefYmDEkV7vALXTs+rA2b
+	wk1tzfkIin/kQaIlbFwlK7HN7crHDysOGmhPLyOpovQ+/0gNYNXVlqZRjb020RQZEO0P
+	6puw==
 MIME-Version: 1.0
-Received: by 10.50.229.14 with HTTP; Thu, 10 Apr 2014 11:36:06 -0700 (PDT)
-In-Reply-To: <CA+o05Tx8fqSHXdEeRDPODvCt8CuUupSZJ8buKoCsr+EyG+6nRg@mail.gmail.com>
-References: <CA+o05Tx8fqSHXdEeRDPODvCt8CuUupSZJ8buKoCsr+EyG+6nRg@mail.gmail.com>
-From: Khem Raj <raj.khem@gmail.com>
-Date: Thu, 10 Apr 2014 11:36:06 -0700
-Message-ID: <CAMKF1sr5TyCRTmL+aYQYkEsEpKVGm7tSVF6DcUmGWDiRSE=S6Q@mail.gmail.com>
-To: Kazuya Nishimura <kazuya.nisimura@gmail.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: [meta-linaro][PATCH] external-linaro-toolchain: Fix for 32bit armhf build
+X-Received: by 10.224.44.17 with SMTP id y17mr1059062qae.36.1397165742618;
+	Thu, 10 Apr 2014 14:35:42 -0700 (PDT)
+Received: by 10.140.40.114 with HTTP; Thu, 10 Apr 2014 14:35:42 -0700 (PDT)
+Received: by 10.140.40.114 with HTTP; Thu, 10 Apr 2014 14:35:42 -0700 (PDT)
+In-Reply-To: <53452985.7020202@enea.com>
+References: <534416F0.10109@enea.com>
+	<9507315.eLP4En45Q5@peggleto-mobl5.ger.corp.intel.com>
+	<53452733.2070806@enea.com>
+	<33266524.grSQoK8z6t@peggleto-mobl5.ger.corp.intel.com>
+	<53452985.7020202@enea.com>
+Date: Thu, 10 Apr 2014 18:35:42 -0300
+Message-ID: <CAMCfZKG4BdGfkwa-uhoLUe8m7PKc_NUC=ciDi2GXCsCqDmmi+Q@mail.gmail.com>
+From: Diego Sueiro <diego.sueiro@gmail.com>
+To: Vali Cobelea <valentin.cobelea@enea.com>
+Cc: yocto@yoctoproject.org, Alexandru Vaduva <Alexandru.Vaduva@enea.com>,
+	Paul Eggleton <paul.eggleton@linux.intel.com>
+Subject: Re: CGL compliance layer initiative
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,185 +44,92 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 10 Apr 2014 18:36:39 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Thu, 10 Apr 2014 21:35:46 -0000
+Content-Type: multipart/alternative; boundary=047d7bdc88e4c8208204f6b6ff87
 
-On Thu, Apr 10, 2014 at 12:49 AM, Kazuya Nishimura
-<kazuya.nisimura@gmail.com> wrote:
-> From: Kazuya Nishimura <kazuya.nisimura@gmail.com>
->
-> Use ld-linux-armhf.so.3 if call convention hard.
-> Fix QA issue errors by packaging approprieately.
-> Add eglibc-locale_2.19.bbappend to fix QA issue error.
->   An empty directory is created while do_install.
->
-> Signed-off-by: Kazuya Nishimura <kazuya.nisimura@gmail.com>
-> ---
->  .../conf/distro/include/tcmode-external-linaro.inc |    1 +
->  .../eglibc/eglibc-locale_2.19.bbappend             |   23 ++++++++++++
->  .../external-linaro-toolchain.bb                   |   38
-> ++++++++++++++++----
->  3 files changed, 56 insertions(+), 6 deletions(-)
->  create mode 100755
-> meta-linaro-toolchain/recipes-core/eglibc/eglibc-locale_2.19.bbappend
->
-> diff --git
-> a/meta-linaro-toolchain/conf/distro/include/tcmode-external-linaro.inc
-> b/meta-linaro-toolchain/conf/distro/include/tcmode-external-linaro.inc
-> index 1d9fd59..26d464c 100644
-> --- a/meta-linaro-toolchain/conf/distro/include/tcmode-external-linaro.inc
-> +++ b/meta-linaro-toolchain/conf/distro/include/tcmode-external-linaro.inc
-> @@ -41,6 +41,7 @@ DISTRO_FEATURES_LIBC = "ipv4 ipv6 libc-backtrace
-> libc-big-macros libc-bsd libc-c
->   libc-getlogin libc-idn libc-inet-anl libc-libm libc-libm-big \
->   libc-memusage libc-nis libc-nsswitch libc-rcmd libc-rtld-debug libc-spawn
-> libc-streams libc-sunrpc \
->   libc-utmp libc-utmpx libc-wordexp libc-posix-clang-wchar libc-posix-regexp
-> libc-posix-regexp-glibc \
-> + libc-charsets libc-locales libc-locale-code \
->   libc-posix-wchar-io"
->
->  ENABLE_BINARY_LOCALE_GENERATION = "0"
-> diff --git
-> a/meta-linaro-toolchain/recipes-core/eglibc/eglibc-locale_2.19.bbappend
-> b/meta-linaro-toolchain/recipes-core/eglibc/eglibc-locale_2.19.bbappend
-> new file mode 100755
-> index 0000000..3e91e74
-> --- /dev/null
-> +++ b/meta-linaro-toolchain/recipes-core/eglibc/eglibc-locale_2.19.bbappend
-> @@ -0,0 +1,23 @@
-> +do_install () {
-> + mkdir -p ${D}${datadir}
-> + if [ -n "$(ls ${LOCALETREESRC}/${bindir})" ]; then
-> + mkdir -p ${D}${bindir}
-> + cp -fpPR ${LOCALETREESRC}/${bindir}/* ${D}${bindir}
-> + fi
-> + if [ -n "$(ls ${LOCALETREESRC}/${localedir})" ]; then
-> + mkdir -p ${D}${localedir}
-> + cp -fpPR ${LOCALETREESRC}/${localedir}/* ${D}${localedir}
-> + fi
-> + if [ -e ${LOCALETREESRC}/${libdir}/gconv ]; then
-> + mkdir -p ${D}${libdir}
-> + cp -fpPR ${LOCALETREESRC}/${libdir}/gconv ${D}${libdir}
-> + fi
-> + if [ -e ${LOCALETREESRC}/${datadir}/i18n ]; then
-> + cp -fpPR ${LOCALETREESRC}/${datadir}/i18n ${D}${datadir}
-> + fi
-> + if [ -e ${LOCALETREESRC}/${datadir}/locale ]; then
-> + cp -fpPR ${LOCALETREESRC}/${datadir}/locale ${D}${datadir}
-> + fi
-> + chown root.root -R ${D}
-> + cp -fpPR ${LOCALETREESRC}/SUPPORTED ${WORKDIR}
-> +}
+--047d7bdc88e4c8208204f6b6ff87
+Content-Type: text/plain; charset=ISO-8859-1
 
-why is chown needed here ?
-secondly, this piece should go into OE-Core
+Vali,
 
-> diff --git
-> a/meta-linaro-toolchain/recipes-devtools/external-linaro-toolchain/external-linaro-toolchain.bb
-> b/meta-linaro-toolchain/recipes-devtools/external-linaro-toolchain/external-linaro-toolchain.bb
-> index 240d550..47fd4ca 100644
-> ---
-> a/meta-linaro-toolchain/recipes-devtools/external-linaro-toolchain/external-linaro-toolchain.bb
-> +++
-> b/meta-linaro-toolchain/recipes-devtools/external-linaro-toolchain/external-linaro-toolchain.bb
-> @@ -41,6 +41,12 @@ PROVIDES += "\
->   libitm \
->   libitm-dev \
->   libitm-staticdev \
-> + libasan \
-> + libasan-dev \
-> + libasan-staticdev \
-> + libatomic \
-> + libatomic-dev \
-> + libatomic-staticdev \
->   virtual/linux-libc-headers \
->  "
->
-> @@ -50,12 +56,11 @@ PR = "r2"
->  # https://launchpad.net/linaro-toolchain-binaries
->  SRC_URI = "file://SUPPORTED"
->
-> +LDLINUX32 = "${@base_contains("TUNE_FEATURES", "callconvention-hard",
-> "ld-linux-armhf.so.3", "ld-linux.so.3",d)}"
-> +
->  do_install() {
->   install -d ${D}${base_libdir}
-> - install -d ${D}${bindir}
-> - install -d ${D}${sbindir}
->   install -d ${D}${libdir}
-> - install -d ${D}${libexecdir}
->   install -d ${D}${datadir}
->   install -d ${D}${includedir}
->
-> @@ -79,7 +84,7 @@ do_install() {
->   fi
->
->   # fix up the copied symlinks (they are still pointing to the multiarch
-> directory)
-> - linker_name="${@base_contains("TUNE_FEATURES", "aarch64",
-> "ld-linux-aarch64.so.1", "ld-linux.so.3",d)}"
-> + linker_name="${@base_contains("TUNE_FEATURES", "aarch64",
-> "ld-linux-aarch64.so.1", "${LDLINUX32}",d)}"
->   ln -sf ld-${ELT_VER_LIBC}.so ${D}${base_libdir}/${linker_name}
->   ln -sf ../../lib/libnsl.so.1 ${D}${libdir}/libnsl.so
->   ln -sf ../../lib/librt.so.1 ${D}${libdir}/librt.so
-> @@ -144,6 +149,12 @@ PACKAGES =+ "\
->   libitm \
->   libitm-dev \
->   libitm-staticdev \
-> + libasan \
-> + libasan-dev \
-> + libasan-staticdev \
-> + libatomic \
-> + libatomic-dev \
-> + libatomic-staticdev \
->  "
->
->  INSANE_SKIP_${PN}-dbg = "staticdev"
-> @@ -282,14 +293,16 @@ FILES_libssp-staticdev = " \
->
->  FILES_libgfortran = "${base_libdir}/libgfortran.so.*"
->  FILES_libgfortran-dev = " \
-> -  ${base_libdir}/libgfortran.so"
-> +  ${base_libdir}/libgfortran.so \
-> +  ${base_libdir}/libgfortran.spec"
->  FILES_libgfortran-staticdev = " \
->    ${base_libdir}/libgfortran.a \
->    ${base_libdir}/libgfortranbegin.a"
->
->  FILES_libmudflap = "${base_libdir}/libmudflap*.so.*"
->  FILES_libmudflap-dev = "\
-> -  ${base_libdir}/libmudflap*.so \
-> +  ${base_libdir}/libmudflap*.so"
-> +FILES_libmudflap-staticdev = "\
->    ${base_libdir}/libmudflap*.a \
->    ${base_libdir}/libmudflap*.la"
->
-> @@ -313,6 +326,19 @@ FILES_libgomp-dev = "\
->  FILES_libgomp-staticdev = "\
->    ${base_libdir}/libgomp*.a \
->    "
-> +
-> +FILES_libasan = "\
-> +  ${base_libdir}/libasan.so.* \
-> +  "
-> +FILES_libasan-dev = "\
-> +  ${base_libdir}/libasan.so \
-> +  "
-> +FILES_libatomic ="\
-> +  ${base_libdir}/libatomic.so.* \
-> +  "
-> +FILES_libatomic-dev = "\
-> +  ${base_libdir}/libatomic.so \
-> +  "
->  ELT_VER_MAIN ??= ""
->
->  python () {
-> --
-> 1.7.9.5
+I'm excited to see CGL support for Yocto.
+I'm going to test this layer as soon as possible.
+
+One question, which branch of Yocto is it based on?
+
+Regards,
+
+--
+*dS
+Diego Sueiro
+sent from mobile.
+On Apr 9, 2014 11:05 AM, "Vali Cobelea" <valentin.cobelea@enea.com> wrote:
+
+> OK Paul, that indeed makes sense, I really did not knew that preliminary
+> versions of layers are accepted.
+> I will discuss around here and if everything goes OK we will start the
+> move in the "public" layer index.
+> I also do agree with an all-together strategy, no matter for the layer
+> state.
 >
 >
+> Much appreciated,
+> Vali
+>
+>
+> On 04/09/2014 02:01 PM, Paul Eggleton wrote:
+>
+>> On Wednesday 09 April 2014 13:55:47 Vali Cobelea wrote:
+>>
+>>> On 04/09/2014 01:51 PM, Paul Eggleton wrote:
+>>>
+>>>> On Tuesday 08 April 2014 18:34:08 Vali Cobelea wrote:
+>>>>
+>>>>> Here at ENEA we decided to take the initiative regarding the CGL
+>>>>> compliance when it comes to the Yocto Project.
+>>>>> For this we started the work on a dedicated layer called 'meta-cgl'
+>>>>>
+>>>>> which can be accessed / cloned from here:
+>>>>>     http://git.enea.com/git/?p=linux/meta-cgl.git
+>>>>>     git clone git@git.enea.com:linux/meta-cgl
+>>>>>
+>>>>> Have a look of the things we got there so far, please remember that
+>>>>> there is still plenty of work to be done (layer architecture, CGL
+>>>>> requirements coverage mode and so on).
+>>>>> It is a little bit more than a stub layer, consider it a starting point
+>>>>> for the direction we would like to have with this layer.
+>>>>>
+>>>>> Any input is much appreciated, lets keep the discussion by this email
+>>>>> thread and see where it goes.
+>>>>>
+>>>> I don't have anything to offer on the layer contents, but I would say in
+>>>> order to make it easy for people to find this layer I would strongly
+>>>> encourage you to>
+>>>> submit it to the OpenEmbedded layer index:
+>>>>     http://layers.openembedded.org/layerindex/submit/
+>>>>
+>>> Thank you for the input.
+>>> We will keep the layer for a short period of time at the current
+>>> location while getting other ideas regarding the content / architecture.
+>>> The layer initiative will also be raised up in the board advisory
+>>> meeting, in order to get even more input.
+>>> After which we will make it easier to find, access and use for anyone,
+>>> exactly as you suggested.
+>>>
+>> OK, as the maintainer it's totally up to you.
+>>
+>> I would say though generally that I'd like to see more people adding their
+>> work-in-progress layers to the layer index, even if at some time later
+>> they
+>> will be moved elsewhere or absorbed into another layer - it just makes it
+>> easier to point people to the layer index so they can find recipes that
+>> have
+>> already been written, rather than having to re-write them from scratch.
+>>
+>> Cheers,
+>> Paul
+>>
+>>
 > --
 > _______________________________________________
 > yocto mailing list
@@ -224,3 +137,108 @@ secondly, this piece should go into OE-Core
 > https://lists.yoctoproject.org/listinfo/yocto
 >
 
+--047d7bdc88e4c8208204f6b6ff87
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
+
+<p dir=3D"ltr">Vali, </p>
+<p dir=3D"ltr">I&#39;m excited to see CGL support for Yocto. <br>
+I&#39;m going to test this layer as soon as possible. </p>
+<p dir=3D"ltr">One question, which branch of Yocto is it based on? </p>
+<p dir=3D"ltr">Regards, </p>
+<p dir=3D"ltr">--<br>
+*dS<br>
+Diego Sueiro<br>
+sent from mobile. </p>
+<div class=3D"gmail_quote">On Apr 9, 2014 11:05 AM, &quot;Vali Cobelea&quot=
+; &lt;<a href=3D"mailto:valentin.cobelea@enea.com">valentin.cobelea@enea.co=
+m</a>&gt; wrote:<br type=3D"attribution"><blockquote class=3D"gmail_quote" =
+style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">
+OK Paul, that indeed makes sense, I really did not knew that preliminary ve=
+rsions of layers are accepted.<br>
+I will discuss around here and if everything goes OK we will start the move=
+ in the &quot;public&quot; layer index.<br>
+I also do agree with an all-together strategy, no matter for the layer stat=
+e.<br>
+<br>
+<br>
+Much appreciated,<br>
+Vali<br>
+<br>
+<br>
+On 04/09/2014 02:01 PM, Paul Eggleton wrote:<br>
+<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
+x #ccc solid;padding-left:1ex">
+On Wednesday 09 April 2014 13:55:47 Vali Cobelea wrote:<br>
+<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
+x #ccc solid;padding-left:1ex">
+On 04/09/2014 01:51 PM, Paul Eggleton wrote:<br>
+<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
+x #ccc solid;padding-left:1ex">
+On Tuesday 08 April 2014 18:34:08 Vali Cobelea wrote:<br>
+<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
+x #ccc solid;padding-left:1ex">
+Here at ENEA we decided to take the initiative regarding the CGL<br>
+compliance when it comes to the Yocto Project.<br>
+For this we started the work on a dedicated layer called &#39;meta-cgl&#39;=
+<br>
+<br>
+which can be accessed / cloned from here:<br>
+=A0 =A0 <a href=3D"http://git.enea.com/git/?p=3Dlinux/meta-cgl.git" target=
+=3D"_blank">http://git.enea.com/git/?p=3D<u></u>linux/meta-cgl.git</a><br>
+=A0 =A0 git clone git@git.enea.com:linux/meta-<u></u>cgl<br>
+<br>
+Have a look of the things we got there so far, please remember that<br>
+there is still plenty of work to be done (layer architecture, CGL<br>
+requirements coverage mode and so on).<br>
+It is a little bit more than a stub layer, consider it a starting point<br>
+for the direction we would like to have with this layer.<br>
+<br>
+Any input is much appreciated, lets keep the discussion by this email<br>
+thread and see where it goes.<br>
+</blockquote>
+I don&#39;t have anything to offer on the layer contents, but I would say i=
+n<br>
+order to make it easy for people to find this layer I would strongly<br>
+encourage you to&gt;<br>
+submit it to the OpenEmbedded layer index:<br>
+=A0 =A0 <a href=3D"http://layers.openembedded.org/layerindex/submit/" targe=
+t=3D"_blank">http://layers.openembedded.<u></u>org/layerindex/submit/</a><b=
+r>
+</blockquote>
+Thank you for the input.<br>
+We will keep the layer for a short period of time at the current<br>
+location while getting other ideas regarding the content / architecture.<br=
+>
+The layer initiative will also be raised up in the board advisory<br>
+meeting, in order to get even more input.<br>
+After which we will make it easier to find, access and use for anyone,<br>
+exactly as you suggested.<br>
+</blockquote>
+OK, as the maintainer it&#39;s totally up to you.<br>
+<br>
+I would say though generally that I&#39;d like to see more people adding th=
+eir<br>
+work-in-progress layers to the layer index, even if at some time later they=
+<br>
+will be moved elsewhere or absorbed into another layer - it just makes it<b=
+r>
+easier to point people to the layer index so they can find recipes that hav=
+e<br>
+already been written, rather than having to re-write them from scratch.<br>
+<br>
+Cheers,<br>
+Paul<br>
+<br>
+</blockquote>
+<br>
+-- <br>
+______________________________<u></u>_________________<br>
+yocto mailing list<br>
+<a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yocto@yoctoproj=
+ect.org</a><br>
+<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" target=3D"_blank"=
+>https://lists.yoctoproject.<u></u>org/listinfo/yocto</a><br>
+</blockquote></div>
+
+--047d7bdc88e4c8208204f6b6ff87--
