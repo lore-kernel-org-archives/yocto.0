@@ -1,31 +1,33 @@
-Return-Path: <denis@denix.org>
-Received: from vms173025pub.verizon.net (vms173025pub.verizon.net
-	[206.46.173.25])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6B8BDE00C39
-	for <yocto@yoctoproject.org>; Thu, 10 Apr 2014 10:18:04 -0700 (PDT)
-Received: from gandalf.denix.org ([unknown] [71.191.205.189])
-	by vms173025.mailsrvcs.net
-	(Sun Java(tm) System Messaging Server 7u2-7.02 32bit (built Apr 16
-	2009)) with ESMTPA id <0N3T002MAS24X070@vms173025.mailsrvcs.net> for
-	yocto@yoctoproject.org; Thu, 10 Apr 2014 12:18:04 -0500 (CDT)
-Received: by gandalf.denix.org (Postfix, from userid 1000)	id E88EB20396; Thu,
-	10 Apr 2014 13:18:03 -0400 (EDT)
-Date: Thu, 10 Apr 2014 13:18:03 -0400
-From: Denys Dmytriyenko <denis@denix.org>
-To: "Stanacar, StefanX" <stefanx.stanacar@intel.com>
-Message-id: <20140410171803.GS3370@denix.org>
-References: <1397116933-20764-1-git-send-email-denis@denix.org>
-	<1397137009.21633.6.camel@firebird.rb.intel.com>
-	<1397139316.21633.8.camel@firebird.rb.intel.com>
-	<1397143684.21633.9.camel@firebird.rb.intel.com>
-	<20140410155808.GN3370@denix.org>
-	<1397147772.21633.12.camel@firebird.rb.intel.com>
-MIME-version: 1.0
-In-reply-to: <1397147772.21633.12.camel@firebird.rb.intel.com>
-User-Agent: Mutt/1.5.20 (2009-06-14)
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	"denys@ti.com" <denys@ti.com>
-Subject: Re: [meta-yocto][PATCH 1/2] beaglebone.conf: configuration updates
+Return-Path: <wpdster@gmail.com>
+Received: from mail-pa0-f52.google.com (mail-pa0-f52.google.com
+	[209.85.220.52])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 08427E00C73
+	for <yocto@yoctoproject.org>; Thu, 10 Apr 2014 11:05:47 -0700 (PDT)
+Received: by mail-pa0-f52.google.com with SMTP id rd3so4324501pab.11
+	for <yocto@yoctoproject.org>; Thu, 10 Apr 2014 11:05:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-type;
+	bh=ju4aC4fr2GDgosQ13VzAF5hg2ZDKIhvmpBEX3Wfsnlo=;
+	b=S3diqOm0JJz4VcvCRorEVPAqP4ZV6W96VRysyncUL26vmwt4qfYa3mN/YsOl5dEzAf
+	ImQ6hMgDlkWwLsI+z5krWBARbHOneJLY9cv0UFCYL6OWkic108B5+OgoRZRMNzqEQP8Y
+	Pw/ZK+DbLYmw5iZ1VZ0ky0TgTPwnujGTOx4DHRVM16t1IK5BGKW7IVFuWxxHGovggf5n
+	NWfq2+zcM6k9krcdICbTs9m/tAIiPJA2/gfgF0uqIzjHq1zcvpBO3+F9b964eaFzvkNB
+	nR5wTnGMpDs4noxjv6X7XS1AiVLZ7z6UruWO4ZdI4GyiIEw+64yK3hPDrzIqJ2Nl57gG
+	w+Bg==
+X-Received: by 10.68.102.34 with SMTP id fl2mr21391671pbb.2.1397153147470;
+	Thu, 10 Apr 2014 11:05:47 -0700 (PDT)
+MIME-Version: 1.0
+Received: by 10.70.32.161 with HTTP; Thu, 10 Apr 2014 11:05:17 -0700 (PDT)
+In-Reply-To: <5346BA37.3010501@windriver.com>
+References: <CAF_dkJD45hZOEwqb4giAKmdO-22WK3KTf-Bz0RWZvKTHD9-qFQ@mail.gmail.com>
+	<5346BA37.3010501@windriver.com>
+From: Patrick Doyle <wpdster@gmail.com>
+Date: Thu, 10 Apr 2014 14:05:17 -0400
+Message-ID: <CAF_dkJBtoweCRLzC95mJxZqwDHGR719cjYD0nedhJRsXHcqb0Q@mail.gmail.com>
+To: Bruce Ashfield <bruce.ashfield@windriver.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: How to include kernel module without including the kernel in the rootfs?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,114 +39,52 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 10 Apr 2014 17:18:05 -0000
-Content-type: text/plain; charset=us-ascii
-Content-disposition: inline
+X-List-Received-Date: Thu, 10 Apr 2014 18:05:52 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
-On Thu, Apr 10, 2014 at 04:35:51PM +0000, Stanacar, StefanX wrote:
-> 
-> 
-> 
-> On Thu, 2014-04-10 at 11:58 -0400, Denys Dmytriyenko wrote:
-> > On Thu, Apr 10, 2014 at 03:27:43PM +0000, Stanacar, StefanX wrote:
-> > > 
-> > > 
-> > > 
-> > > On Thu, 2014-04-10 at 14:14 +0000, Stanacar, StefanX wrote:
-> > > > 
-> > > > 
-> > > > On Thu, 2014-04-10 at 13:36 +0000, Stanacar, StefanX wrote:
-> > > > > Hi Denys,
-> > > > > 
-> > > > > With this patch applied and the updated README I can boot a Beaglebone
-> > > > > Black (rev A6) with a default yocto image/config (I've used
-> > > > > core-image-sato-sdk FWIW). Everything seems fine, I ran a bunch of tests
-> > > > > on the image, except for X - it doesn't start :(.
-> > > > > I've built with fbdev and omapfb too.
-> > > > > 
-> > > > > X log for fbdev: 
-> > > > > http://pastebin.com/sqNc35U0
-> > > > > 
-> > > > > for omapfb:
-> > > > > http://pastebin.com/fMkzMW8U
-> > > > > 
-> > > > > Is there anything else that needs to changed/added? I could add a
-> > > > > xorg.conf on the image too, but then it beats the point...
-> > > > > 
-> > > > 
-> > > > What I was trying to say is that we are missing a .bbappend for
-> > > > xserver-xf86-config that adds the right xorg.conf (either for fbdev or
-> > > > omapfb). I'll try to come up with one.
-> > > 
-> > > 
-> > > Okay ignore that it didn't helped, I think I know what's missing.. I
-> > > need the latest SRCREV_meta for kernel.
-> > 
-> > Sorry for the delay - yes, couple tweaks are needed from BSP as well.
-> 
-> I've rebuit with latest SRCREV_meta and indeed X starts fine now,
-> thanks.
+Hi Bruce,
+Thank you very much.  That did the trick.
 
-Great, thanks for verifying it!
-
--- 
-Denys
+--wpd
 
 
-> > > > > On Thu, 2014-04-10 at 04:02 -0400, Denys Dmytriyenko wrote:
-> > > > > > From: Denys Dmytriyenko <denys@ti.com>
-> > > > > > 
-> > > > > > * Use fbdev video driver for xserver-xorg
-> > > > > > * Recommend installing device tree DTB files into rootfs /boot directory
-> > > > > > * Switch back to uImage kernel format from zImage, as U-boot was not updated
-> > > > > >   - default has changed to zImage in newer U-boot 2013.10+, but we use 2013.07
-> > > > > > * Correct copy/paste typo in serial console
-> > > > > > 
-> > > > > > Signed-off-by: Denys Dmytriyenko <denys@ti.com>
-> > > > > > ---
-> > > > > >  meta-yocto-bsp/conf/machine/beaglebone.conf | 10 +++++-----
-> > > > > >  1 file changed, 5 insertions(+), 5 deletions(-)
-> > > > > > 
-> > > > > > diff --git a/meta-yocto-bsp/conf/machine/beaglebone.conf b/meta-yocto-bsp/conf/machine/beaglebone.conf
-> > > > > > index f2ef0cf..4263715 100644
-> > > > > > --- a/meta-yocto-bsp/conf/machine/beaglebone.conf
-> > > > > > +++ b/meta-yocto-bsp/conf/machine/beaglebone.conf
-> > > > > > @@ -6,11 +6,10 @@ PREFERRED_PROVIDER_virtual/xserver ?= "xserver-xorg"
-> > > > > >  XSERVER ?= "xserver-xorg \
-> > > > > >             xf86-input-evdev \
-> > > > > >             xf86-input-mouse \
-> > > > > > -           xf86-video-omapfb \
-> > > > > > +           xf86-video-fbdev \
-> > > > > >             xf86-input-keyboard"
-> > > > > >  
-> > > > > > -# Ship all kernel modules by default
-> > > > > > -MACHINE_EXTRA_RRECOMMENDS = " kernel-modules"
-> > > > > > +MACHINE_EXTRA_RRECOMMENDS = " kernel-modules kernel-devicetree"
-> > > > > >  
-> > > > > >  EXTRA_IMAGEDEPENDS += "u-boot"
-> > > > > >  
-> > > > > > @@ -20,13 +19,14 @@ include conf/machine/include/tune-cortexa8.inc
-> > > > > >  IMAGE_FSTYPES += "tar.bz2 jffs2"
-> > > > > >  EXTRA_IMAGECMD_jffs2 = "-lnp "
-> > > > > >  
-> > > > > > -SERIAL_CONSOLE = "115200 ttyO2"
-> > > > > > +SERIAL_CONSOLE = "115200 ttyO0"
-> > > > > >  
-> > > > > >  PREFERRED_PROVIDER_virtual/kernel ?= "linux-yocto"
-> > > > > >  PREFERRED_VERSION_linux-yocto ?= "3.14%"
-> > > > > >  
-> > > > > > -KERNEL_IMAGETYPE = "zImage"
-> > > > > > +KERNEL_IMAGETYPE = "uImage"
-> > > > > >  KERNEL_DEVICETREE = "am335x-bone.dtb am335x-boneblack.dtb"
-> > > > > > +KERNEL_EXTRA_ARGS += "LOADADDR=${UBOOT_ENTRYPOINT}"
-> > > > > >  
-> > > > > >  SPL_BINARY = "MLO"
-> > > > > >  UBOOT_SUFFIX = "img"
-> > > > > > -- 
-> > > > > > 1.9.1
-> > > > > > 
-> > > > > 
-> > > > 
-> > > 
-> 
+On Thu, Apr 10, 2014 at 11:35 AM, Bruce Ashfield
+<bruce.ashfield@windriver.com> wrote:
+> On 14-04-10 11:32 AM, Patrick Doyle wrote:
+>>
+>> I just added a custom kernel module to my build, and now my rootfs
+>> includes a copy of my kernel (thus making it too large to fit in my
+>> pinhole sized root partition).
+>>
+>> Is there any way to prevent the kernel from being included in the
+>> rootfs?  Do modutils require a kernel image in order to function
+>> properly?
+>
+>
+> Clear this in your kernel recipe:
+>
+> # Allow machines to override this dependency if kernel image files are
+> # not wanted in images as standard
+> RDEPENDS_kernel-base ?= "kernel-image"
+>
+> and you'll get no kernel image, and yes, modules will work.
+>
+> Bruce
+>
+>
+>>
+>> My recipe contains
+>>
+>> inherit module
+>>
+>> So I'm expecting that the module class does magic that results in the
+>> kernel getting installed.
+>>
+>> Is there a flag I can set to say "Don't do that?".
+>>
+>> Thanks.
+>>
+>> --wpd
+>>
+>
 
