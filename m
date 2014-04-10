@@ -1,26 +1,40 @@
-Return-Path: <denis@denix.org>
-Received: from vms173021pub.verizon.net (vms173021pub.verizon.net
-	[206.46.173.21])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A4A6AE00BE0
-	for <yocto@yoctoproject.org>; Thu, 10 Apr 2014 09:33:12 -0700 (PDT)
-Received: from gandalf.denix.org ([unknown] [71.191.205.189])
-	by vms173021.mailsrvcs.net
-	(Sun Java(tm) System Messaging Server 7u2-7.02 32bit (built Apr 16
-	2009)) with ESMTPA id <0N3T004D7PYQ7VE0@vms173021.mailsrvcs.net> for
-	yocto@yoctoproject.org; Thu, 10 Apr 2014 11:33:01 -0500 (CDT)
-Received: by gandalf.denix.org (Postfix, from userid 1000)	id A962A2016D; Thu,
-	10 Apr 2014 12:32:50 -0400 (EDT)
-Date: Thu, 10 Apr 2014 12:32:50 -0400
-From: Denys Dmytriyenko <denis@denix.org>
-To: Patrick Doyle <wpdster@gmail.com>
-Message-id: <20140410163250.GP3370@denix.org>
-References: <CAF_dkJABdHQcftHoPJ1EO_bdjahyYJ84HZL5V+mErqzQaTKJSQ@mail.gmail.com>
-	<20140410162331.GO3370@denix.org>
-MIME-version: 1.0
-In-reply-to: <20140410162331.GO3370@denix.org>
-User-Agent: Mutt/1.5.20 (2009-06-14)
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Why increment PRINC by 2?
+Return-Path: <stefanx.stanacar@intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 04EACE00BE2
+	for <yocto@yoctoproject.org>; Thu, 10 Apr 2014 09:37:08 -0700 (PDT)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga102.jf.intel.com with ESMTP; 10 Apr 2014 09:31:23 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.97,835,1389772800"; d="scan'208";a="518611217"
+Received: from irsmsx102.ger.corp.intel.com ([163.33.3.155])
+	by orsmga002.jf.intel.com with ESMTP; 10 Apr 2014 09:35:54 -0700
+Received: from irsmsx154.ger.corp.intel.com (163.33.192.96) by
+	IRSMSX102.ger.corp.intel.com (163.33.3.155) with Microsoft SMTP Server
+	(TLS) id 14.3.123.3; Thu, 10 Apr 2014 17:35:52 +0100
+Received: from irsmsx105.ger.corp.intel.com ([169.254.7.78]) by
+	IRSMSX154.ger.corp.intel.com ([169.254.12.252]) with mapi id
+	14.03.0123.003; Thu, 10 Apr 2014 17:35:52 +0100
+From: "Stanacar, StefanX" <stefanx.stanacar@intel.com>
+To: "denis@denix.org" <denis@denix.org>
+Thread-Topic: [yocto] [meta-yocto][PATCH 1/2] beaglebone.conf: configuration
+	updates
+Thread-Index: AQHPVMHgiNF6xlwyTEq25pg9mXzDhJsK1E8AgAAUVwCAAAhnAIAACqMA
+Date: Thu, 10 Apr 2014 16:35:51 +0000
+Message-ID: <1397147772.21633.12.camel@firebird.rb.intel.com>
+References: <1397116933-20764-1-git-send-email-denis@denix.org>
+	<1397137009.21633.6.camel@firebird.rb.intel.com>
+	<1397139316.21633.8.camel@firebird.rb.intel.com>
+	<1397143684.21633.9.camel@firebird.rb.intel.com>
+	<20140410155808.GN3370@denix.org>
+In-Reply-To: <20140410155808.GN3370@denix.org>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.237.105.160]
+MIME-Version: 1.0
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
+	"denys@ti.com" <denys@ti.com>
+Subject: Re: [meta-yocto][PATCH 1/2] beaglebone.conf: configuration updates
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,107 +46,78 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 10 Apr 2014 16:33:14 -0000
-Content-type: text/plain; charset=us-ascii
-Content-disposition: inline
+X-List-Received-Date: Thu, 10 Apr 2014 16:37:10 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <C5B95ECC82384B4382DB2AACDAAD9240@intel.com>
+Content-Transfer-Encoding: base64
 
-On Thu, Apr 10, 2014 at 12:23:31PM -0400, Denys Dmytriyenko wrote:
-> On Thu, Apr 10, 2014 at 11:55:08AM -0400, Patrick Doyle wrote:
-> > The BSP guide gives the following helpful tip for installing a custom
-> > /etc/network/interfaces file (see
-> > https://www.yoctoproject.org/docs/current/bsp-guide/bsp-guide.html#customizing-a-recipe-for-a-bsp
-> > -- and thank you, BTW -- that addressed a specific problem I needed to
-> > solve):
-> > 
-> > 1. Edit the init-ifupdown_1.0.bbappend file so that it contains the following:
-> > 
-> >      FILESEXTRAPATHS_prepend := "${THISDIR}/files:"
-> >      PRINC := "${@int(PRINC) + 2}"
-> > 
-> > 
-> > The append file needs to be in the meta-xyz/recipes-core/init-ifupdown
-> > directory.
-> > 
-> > 2. Create and place the new interfaces configuration file in the BSP's
-> > layer here:
-> > 
-> >      meta-xyz/recipes-core/init-ifupdown/files/xyz/interfaces
-> > 
-> > In my continuing attempt to understand the mindset of Yocto
-> > practitioners, I would appreciate any light folks can shed on this... it
-> > opens up so many questions to me...
-> > 
-> > 1) Why does FILESEXTRAPATHS exist?  The documentation says, "You can
-> > extend FILESPATH variable by using FILESEXTRAPATHS."  Errr, can't one
-> > extend FILESPATH with
-> > 
-> > FILESPATH = "blah:" + $FILESPATH
-> > 
-> > or
-> > FILESPATH_prepend = "blah:"
-> > 
-> > I see that the documentation for FILESPATH specifically states:
-> > 
-> > "Do not hand-edit the FILESPATH variable. If you want the build system
-> > to look in directories other than the defaults, extend the FILESPATH
-> > variable by using the FILESEXTRAPATHS variable."
-> > 
-> > but that doesn't help me understand why this method is preferred for
-> > extending FILESPATH.
-> > 
-> > 2) Why does PRINC exist?  The documentation says that PRINC "causes
-> > the PR variable of .bbappend files to dynamically increment" and that
-> > "This increment minimizes the impact of layer ordering."  I guess that
-> > means that the init-ifupdown_1.0.bb file has some revision (which I
-> > think is "1.0") and that, when my .bbappend file is appended to it,
-> > causes the recipe to effectively be "3.0".  Why do I care?  If there
-> > is an "init-ifupdown_5.0.bb" file someplace in my search path, won't I
-> > get that one anyway?  How does this minimize the impact of layer
-> > ordering?
-> 
-> That is PV (package version) you are thinking of. But PRINC increments PR 
-> (package revision).
-> 
-> PR is not used in the recipe names, but rather in resulting binary packages. 
-> So your init-ifupdown_1.0.bb/bbappend will result in a binary package of 
-> init-ifupdown_1.0-r0_<arch/mach>.ipk/rpm
-> 
-> That portion -r0 will be incremented, becoming -r2 or the original+2 (can be 
-> any number)
-> 
-> PV usually corresponds to changes in the sources, while PR corresponds to 
-> changes in the recipe. If a recipe is composed from multiple parts (.inc file 
-> or .bbappend) you may want to distinguish that.
-> 
-> As an alternative, some distro chose to append a more meaningful suffix to PR 
-> instead of just incrementing PR. I.e. our Arago distro appends "-aragoX" where 
-> X is the number of revisions we made in our distro on top of the main recipe. 
-> The end result of the package version will be "3.5-r6-arago2". It means the 
-> sources for the package are of version 3.5, the main recipe was updated 6 
-> times and there were also 2 more recipe bbappend updates by the distro...
-> 
-> It's a common practice in Linux Distro world - Ubuntu uses the same principle, 
-> when updating packages inherited from Debian, e.g. bash_4.1-2ubuntu3_i386.deb
-
-Ah, and forgot to mention the new way of dealing with PR increments:
-https://wiki.yoctoproject.org/wiki/PR_Service
-
-
-> > Oh yeah, and why increment by 2?  Why not 1, or pi?
-> > 
-> > I guess I only had 2 questions... but 1,000,000 subquestions :-)
-> > 
-> > Thanks for any tips you can give me.
-> > 
-> > --wpd
-> > -- 
-> > _______________________________________________
-> > yocto mailing list
-> > yocto@yoctoproject.org
-> > https://lists.yoctoproject.org/listinfo/yocto
-> -- 
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+DQoNCg0KT24gVGh1LCAyMDE0LTA0LTEwIGF0IDExOjU4IC0wNDAwLCBEZW55cyBEbXl0cml5ZW5r
+byB3cm90ZToNCj4gT24gVGh1LCBBcHIgMTAsIDIwMTQgYXQgMDM6Mjc6NDNQTSArMDAwMCwgU3Rh
+bmFjYXIsIFN0ZWZhblggd3JvdGU6DQo+ID4gDQo+ID4gDQo+ID4gDQo+ID4gT24gVGh1LCAyMDE0
+LTA0LTEwIGF0IDE0OjE0ICswMDAwLCBTdGFuYWNhciwgU3RlZmFuWCB3cm90ZToNCj4gPiA+IA0K
+PiA+ID4gDQo+ID4gPiBPbiBUaHUsIDIwMTQtMDQtMTAgYXQgMTM6MzYgKzAwMDAsIFN0YW5hY2Fy
+LCBTdGVmYW5YIHdyb3RlOg0KPiA+ID4gPiBIaSBEZW55cywNCj4gPiA+ID4gDQo+ID4gPiA+IFdp
+dGggdGhpcyBwYXRjaCBhcHBsaWVkIGFuZCB0aGUgdXBkYXRlZCBSRUFETUUgSSBjYW4gYm9vdCBh
+IEJlYWdsZWJvbmUNCj4gPiA+ID4gQmxhY2sgKHJldiBBNikgd2l0aCBhIGRlZmF1bHQgeW9jdG8g
+aW1hZ2UvY29uZmlnIChJJ3ZlIHVzZWQNCj4gPiA+ID4gY29yZS1pbWFnZS1zYXRvLXNkayBGV0lX
+KS4gRXZlcnl0aGluZyBzZWVtcyBmaW5lLCBJIHJhbiBhIGJ1bmNoIG9mIHRlc3RzDQo+ID4gPiA+
+IG9uIHRoZSBpbWFnZSwgZXhjZXB0IGZvciBYIC0gaXQgZG9lc24ndCBzdGFydCA6KC4NCj4gPiA+
+ID4gSSd2ZSBidWlsdCB3aXRoIGZiZGV2IGFuZCBvbWFwZmIgdG9vLg0KPiA+ID4gPiANCj4gPiA+
+ID4gWCBsb2cgZm9yIGZiZGV2OiANCj4gPiA+ID4gaHR0cDovL3Bhc3RlYmluLmNvbS9zcU5jMzVV
+MA0KPiA+ID4gPiANCj4gPiA+ID4gZm9yIG9tYXBmYjoNCj4gPiA+ID4gaHR0cDovL3Bhc3RlYmlu
+LmNvbS9mTWt6TVc4VQ0KPiA+ID4gPiANCj4gPiA+ID4gSXMgdGhlcmUgYW55dGhpbmcgZWxzZSB0
+aGF0IG5lZWRzIHRvIGNoYW5nZWQvYWRkZWQ/IEkgY291bGQgYWRkIGENCj4gPiA+ID4geG9yZy5j
+b25mIG9uIHRoZSBpbWFnZSB0b28sIGJ1dCB0aGVuIGl0IGJlYXRzIHRoZSBwb2ludC4uLg0KPiA+
+ID4gPiANCj4gPiA+IA0KPiA+ID4gV2hhdCBJIHdhcyB0cnlpbmcgdG8gc2F5IGlzIHRoYXQgd2Ug
+YXJlIG1pc3NpbmcgYSAuYmJhcHBlbmQgZm9yDQo+ID4gPiB4c2VydmVyLXhmODYtY29uZmlnIHRo
+YXQgYWRkcyB0aGUgcmlnaHQgeG9yZy5jb25mIChlaXRoZXIgZm9yIGZiZGV2IG9yDQo+ID4gPiBv
+bWFwZmIpLiBJJ2xsIHRyeSB0byBjb21lIHVwIHdpdGggb25lLg0KPiA+IA0KPiA+IA0KPiA+IE9r
+YXkgaWdub3JlIHRoYXQgaXQgZGlkbid0IGhlbHBlZCwgSSB0aGluayBJIGtub3cgd2hhdCdzIG1p
+c3NpbmcuLiBJDQo+ID4gbmVlZCB0aGUgbGF0ZXN0IFNSQ1JFVl9tZXRhIGZvciBrZXJuZWwuDQo+
+IA0KPiBTb3JyeSBmb3IgdGhlIGRlbGF5IC0geWVzLCBjb3VwbGUgdHdlYWtzIGFyZSBuZWVkZWQg
+ZnJvbSBCU1AgYXMgd2VsbC4NCg0KSSd2ZSByZWJ1aXQgd2l0aCBsYXRlc3QgU1JDUkVWX21ldGEg
+YW5kIGluZGVlZCBYIHN0YXJ0cyBmaW5lIG5vdywNCnRoYW5rcy4NCg0KQ2hlZXJzLA0KU3RlZmFu
+DQoNCj4gDQo+IA0KPiA+ID4gPiBPbiBUaHUsIDIwMTQtMDQtMTAgYXQgMDQ6MDIgLTA0MDAsIERl
+bnlzIERteXRyaXllbmtvIHdyb3RlOg0KPiA+ID4gPiA+IEZyb206IERlbnlzIERteXRyaXllbmtv
+IDxkZW55c0B0aS5jb20+DQo+ID4gPiA+ID4gDQo+ID4gPiA+ID4gKiBVc2UgZmJkZXYgdmlkZW8g
+ZHJpdmVyIGZvciB4c2VydmVyLXhvcmcNCj4gPiA+ID4gPiAqIFJlY29tbWVuZCBpbnN0YWxsaW5n
+IGRldmljZSB0cmVlIERUQiBmaWxlcyBpbnRvIHJvb3RmcyAvYm9vdCBkaXJlY3RvcnkNCj4gPiA+
+ID4gPiAqIFN3aXRjaCBiYWNrIHRvIHVJbWFnZSBrZXJuZWwgZm9ybWF0IGZyb20gekltYWdlLCBh
+cyBVLWJvb3Qgd2FzIG5vdCB1cGRhdGVkDQo+ID4gPiA+ID4gICAtIGRlZmF1bHQgaGFzIGNoYW5n
+ZWQgdG8gekltYWdlIGluIG5ld2VyIFUtYm9vdCAyMDEzLjEwKywgYnV0IHdlIHVzZSAyMDEzLjA3
+DQo+ID4gPiA+ID4gKiBDb3JyZWN0IGNvcHkvcGFzdGUgdHlwbyBpbiBzZXJpYWwgY29uc29sZQ0K
+PiA+ID4gPiA+IA0KPiA+ID4gPiA+IFNpZ25lZC1vZmYtYnk6IERlbnlzIERteXRyaXllbmtvIDxk
+ZW55c0B0aS5jb20+DQo+ID4gPiA+ID4gLS0tDQo+ID4gPiA+ID4gIG1ldGEteW9jdG8tYnNwL2Nv
+bmYvbWFjaGluZS9iZWFnbGVib25lLmNvbmYgfCAxMCArKysrKy0tLS0tDQo+ID4gPiA+ID4gIDEg
+ZmlsZSBjaGFuZ2VkLCA1IGluc2VydGlvbnMoKyksIDUgZGVsZXRpb25zKC0pDQo+ID4gPiA+ID4g
+DQo+ID4gPiA+ID4gZGlmZiAtLWdpdCBhL21ldGEteW9jdG8tYnNwL2NvbmYvbWFjaGluZS9iZWFn
+bGVib25lLmNvbmYgYi9tZXRhLXlvY3RvLWJzcC9jb25mL21hY2hpbmUvYmVhZ2xlYm9uZS5jb25m
+DQo+ID4gPiA+ID4gaW5kZXggZjJlZjBjZi4uNDI2MzcxNSAxMDA2NDQNCj4gPiA+ID4gPiAtLS0g
+YS9tZXRhLXlvY3RvLWJzcC9jb25mL21hY2hpbmUvYmVhZ2xlYm9uZS5jb25mDQo+ID4gPiA+ID4g
+KysrIGIvbWV0YS15b2N0by1ic3AvY29uZi9tYWNoaW5lL2JlYWdsZWJvbmUuY29uZg0KPiA+ID4g
+PiA+IEBAIC02LDExICs2LDEwIEBAIFBSRUZFUlJFRF9QUk9WSURFUl92aXJ0dWFsL3hzZXJ2ZXIg
+Pz0gInhzZXJ2ZXIteG9yZyINCj4gPiA+ID4gPiAgWFNFUlZFUiA/PSAieHNlcnZlci14b3JnIFwN
+Cj4gPiA+ID4gPiAgICAgICAgICAgICB4Zjg2LWlucHV0LWV2ZGV2IFwNCj4gPiA+ID4gPiAgICAg
+ICAgICAgICB4Zjg2LWlucHV0LW1vdXNlIFwNCj4gPiA+ID4gPiAtICAgICAgICAgICB4Zjg2LXZp
+ZGVvLW9tYXBmYiBcDQo+ID4gPiA+ID4gKyAgICAgICAgICAgeGY4Ni12aWRlby1mYmRldiBcDQo+
+ID4gPiA+ID4gICAgICAgICAgICAgeGY4Ni1pbnB1dC1rZXlib2FyZCINCj4gPiA+ID4gPiAgDQo+
+ID4gPiA+ID4gLSMgU2hpcCBhbGwga2VybmVsIG1vZHVsZXMgYnkgZGVmYXVsdA0KPiA+ID4gPiA+
+IC1NQUNISU5FX0VYVFJBX1JSRUNPTU1FTkRTID0gIiBrZXJuZWwtbW9kdWxlcyINCj4gPiA+ID4g
+PiArTUFDSElORV9FWFRSQV9SUkVDT01NRU5EUyA9ICIga2VybmVsLW1vZHVsZXMga2VybmVsLWRl
+dmljZXRyZWUiDQo+ID4gPiA+ID4gIA0KPiA+ID4gPiA+ICBFWFRSQV9JTUFHRURFUEVORFMgKz0g
+InUtYm9vdCINCj4gPiA+ID4gPiAgDQo+ID4gPiA+ID4gQEAgLTIwLDEzICsxOSwxNCBAQCBpbmNs
+dWRlIGNvbmYvbWFjaGluZS9pbmNsdWRlL3R1bmUtY29ydGV4YTguaW5jDQo+ID4gPiA+ID4gIElN
+QUdFX0ZTVFlQRVMgKz0gInRhci5iejIgamZmczIiDQo+ID4gPiA+ID4gIEVYVFJBX0lNQUdFQ01E
+X2pmZnMyID0gIi1sbnAgIg0KPiA+ID4gPiA+ICANCj4gPiA+ID4gPiAtU0VSSUFMX0NPTlNPTEUg
+PSAiMTE1MjAwIHR0eU8yIg0KPiA+ID4gPiA+ICtTRVJJQUxfQ09OU09MRSA9ICIxMTUyMDAgdHR5
+TzAiDQo+ID4gPiA+ID4gIA0KPiA+ID4gPiA+ICBQUkVGRVJSRURfUFJPVklERVJfdmlydHVhbC9r
+ZXJuZWwgPz0gImxpbnV4LXlvY3RvIg0KPiA+ID4gPiA+ICBQUkVGRVJSRURfVkVSU0lPTl9saW51
+eC15b2N0byA/PSAiMy4xNCUiDQo+ID4gPiA+ID4gIA0KPiA+ID4gPiA+IC1LRVJORUxfSU1BR0VU
+WVBFID0gInpJbWFnZSINCj4gPiA+ID4gPiArS0VSTkVMX0lNQUdFVFlQRSA9ICJ1SW1hZ2UiDQo+
+ID4gPiA+ID4gIEtFUk5FTF9ERVZJQ0VUUkVFID0gImFtMzM1eC1ib25lLmR0YiBhbTMzNXgtYm9u
+ZWJsYWNrLmR0YiINCj4gPiA+ID4gPiArS0VSTkVMX0VYVFJBX0FSR1MgKz0gIkxPQURBRERSPSR7
+VUJPT1RfRU5UUllQT0lOVH0iDQo+ID4gPiA+ID4gIA0KPiA+ID4gPiA+ICBTUExfQklOQVJZID0g
+Ik1MTyINCj4gPiA+ID4gPiAgVUJPT1RfU1VGRklYID0gImltZyINCj4gPiA+ID4gPiAtLSANCj4g
+PiA+ID4gPiAxLjkuMQ0KPiA+ID4gPiA+IA0KPiA+ID4gPiANCj4gPiA+IA0KPiA+IA0KDQo=
 
