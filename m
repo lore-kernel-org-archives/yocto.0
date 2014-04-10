@@ -1,33 +1,28 @@
-Return-Path: <elizabeth.flanagan@intel.com>
-Received: from mail-vc0-f182.google.com (mail-vc0-f182.google.com
-	[209.85.220.182])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8A94BE00BF0
-	for <yocto@yoctoproject.org>; Wed,  9 Apr 2014 22:03:33 -0700 (PDT)
-Received: by mail-vc0-f182.google.com with SMTP id ib6so2899347vcb.41
-	for <yocto@yoctoproject.org>; Wed, 09 Apr 2014 22:03:32 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:date:message-id:subject:from:to
-	:content-type;
-	bh=mRZAx7CSiF8KUaKfxrOQjFHeYtcDauZNwOctEAZN/1k=;
-	b=TWeSTLAfS6U7tOb47aeJ5P6tfEFYtC3Es7AMtHZolmbFZhSAq7KKEvwmfWdsrL11u2
-	T//eZWMjXQSZOa6ttki9MvLq4hvwkT3WgUuARn2Z+pazSOX/F8le3SKxn88KyePWY5h9
-	qvIVV8tAKOAxxPq8WzOTZ3N3HVCizV9uVYd+lRVV3dark6DvYkZPWnk5KnB/AwnINXWQ
-	EZCjKHmvBu0VYT6fnlsAk9HxtVCbPqDsdxK9god/oh2mQRtrzf0e5YcASgHVo1fckL8Y
-	VG+oBldhjv8/0dkLmHX03uOejZDzS7VC2mhvIMpdw92qHiQAA/Hw1/nkJNZZ3IuKgtB4
-	Z7rw==
-X-Gm-Message-State: ALoCoQk3xvOmfNYU5YOVyRYw0+onAe/qc1bh4qx7r9Pr8CI03K8movKS/2MlJMZ1DP0v+NQ5zK8u
+Return-Path: <peter.ducai@gmail.com>
+Received: from mail-vc0-f169.google.com (mail-vc0-f169.google.com
+	[209.85.220.169])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E7096E00BBF
+	for <yocto@yoctoproject.org>; Thu, 10 Apr 2014 00:14:49 -0700 (PDT)
+Received: by mail-vc0-f169.google.com with SMTP id ik5so3075308vcb.14
+	for <yocto@yoctoproject.org>; Thu, 10 Apr 2014 00:14:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=XXuWoCsZfM7T14pohC4c4XzsrgC9p27eUW6Xsn6J+W8=;
+	b=upj/b4bK+mahOMKk/NfatuZdDjqb0Wj9sT3BmE3zzxTgT6/fhu6ZpbQzAA8NOC3PS0
+	xETtoo/LaZz7Ua7u5Vok9KX/8+OeBtKV8IUT/vpXZ1wZaruttkSYTz2JFJpnhoQOuOZa
+	uUMPc58/eh0p1ob3BZSEUAAlsKJ/x/0a9Do2wBo7T9svAmN6ca7c+K4Z65vmLZmDzYOn
+	PkKEdZTbzoDzwf/40qY6/ABF+dqvEmZpEPf1Fef05D/JTQ3DevVdgC4vsjtwM6NbxCEl
+	NC4daL5cX2hh9L4z3eqkOZjsIK/WH5h9+r+tpSFGZj4oe3waf9qsE5aLNfVgVSX9iSQ8
+	bhuA==
 MIME-Version: 1.0
-X-Received: by 10.52.142.10 with SMTP id rs10mr10512498vdb.3.1397106212847;
-	Wed, 09 Apr 2014 22:03:32 -0700 (PDT)
-Received: by 10.52.173.69 with HTTP; Wed, 9 Apr 2014 22:03:32 -0700 (PDT)
-Date: Wed, 9 Apr 2014 22:03:32 -0700
-Message-ID: <CAPhnLPB-EHuntTftJzSVptECpg4S5TQn0DRGj1qR5c0jgJczHA@mail.gmail.com>
-From: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>, 
-	Alexandru C Georgescu <alexandru.c.georgescu@intel.com>,
-	Otavio Salvador <otavio@ossystems.com.br>, Zhao Yi <yi.zhao@windriver.com>
-Subject: yocto-1.6_M5.rc3 available
+X-Received: by 10.58.105.105 with SMTP id gl9mr12822534veb.3.1397114088836;
+	Thu, 10 Apr 2014 00:14:48 -0700 (PDT)
+Received: by 10.220.224.81 with HTTP; Thu, 10 Apr 2014 00:14:48 -0700 (PDT)
+Date: Thu, 10 Apr 2014 09:14:48 +0200
+Message-ID: <CAGtsjUBxqC+v439Z6cev+MDjO83Fp2PTh9HoLxycRxbaee_0MQ@mail.gmail.com>
+From: peter ducai <peter.ducai@gmail.com>
+To: yocto@yoctoproject.org
+Subject: ADT installer support
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,33 +34,73 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 10 Apr 2014 05:03:36 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Thu, 10 Apr 2014 07:14:50 -0000
+Content-Type: multipart/alternative; boundary=047d7b5d2c30f9d5df04f6aaf8f1
 
-All,
+--047d7b5d2c30f9d5df04f6aaf8f1
+Content-Type: text/plain; charset=UTF-8
 
-We have an rc3 build for our upcoming 1.6 release. We had to rebuild
-the eclipse-poky-kepler
-plugin due to some incompatibility with the debian 7 builder. We also
-have issues in
-nightly-oecore:
+hi all,
+i currently work for company that is using ADT installer and they like to
+automate it. After digging in code I found out this is very badly written
+(5 scripts calling each other) and almost impossible to run it without any
+user intervention. My main question is:
 
-http://autobuilder.yoctoproject.org/main/builders/nightly-oecore/builds/39
-and
-http://autobuilder.yoctoproject.org/main/builders/nightly-x86-64/builds/40
+is there any maintainer for ADT? is there actually anyone that use it on
+daily basis ? was anyone able to automate it?
 
-The build is available at:
+Reading thru documentation I really start doubting purpose of ADT, as there
+are other ways how to recompile project, and being pushed to work with ADT,
+I already start creating something that really gonna work and can be fully
+automated... so actually I'm trying to get a rid of ADT (and no maintainer
+is another reason to do so). Currently at
+https://github.com/daemonna/YoctoTools are only 2 functional scripts to
+replace docs/wiki and to speed up things for developer:
 
-http://autobuilder.yoctoproject.org/pub/releases/yocto-1.6_M5.rc3
+yocto_dependency_installer.sh - Will detect distro and install all
+dependencies... user doesn't have to find out what distro he has and what
+commands to run
 
-bitbake     40027a6e093c3b7480bfaccbd57e0e613d9a7b71
-eclipse-poky-juno     26bfc407781aa185f244a47ba63120343cee4a37
-eclipse-poky-kepler     1dfe1d2f1322b5fda8e1a7637c447b0e060efb3e
-meta-fsl-arm     d4316faef78ceb01ff023579e15110939ec69408
-meta-fsl-ppc     c4fa1b431f4efc4982a168119db95236cfa8cad3
-meta-intel     db84acfc8d9ed8dccd4a79de39fee337bc729662
-meta-minnow     743fa66aa0cc2265a9c1f293c305828d90b4fbbd
-meta-qt3     3016129d90b7ac8517a5227d819f10ad417b5b45
-oecore     77e3d60fa00a41424fe65977b2bf307727a5a26c
-poky     046a9ea30356daf4f3f8f4ddfc5b57fcfd85a27f
+yocto_15_installer.sh - Yocto 1.5.1 installer. Will download, unpack and
+build Yocto 1.5.1.. after looking at differences between 1.5 and 1.6, I
+found best way is to make version specific script.
 
+Other scripts (like toolchain installer) are already in progress, but still
+not stable. Still, I'd like to ask, what is proper way to push these
+changes into Yocto. Is it this mailing list only? or should I contact
+someone else?
+
+thanks and have a nice day
+
+--047d7b5d2c30f9d5df04f6aaf8f1
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">hi all,<div>i currently work for company that is using ADT=
+ installer and they like to automate it. After digging in code I found out =
+this is very badly written (5 scripts calling each other) and almost imposs=
+ible to run it without any user intervention. My main question is:</div>
+<div><br></div><div>is there any maintainer for ADT? is there actually anyo=
+ne that use it on daily basis ? was anyone able to automate it?</div><div><=
+br></div><div>Reading thru documentation I really start doubting purpose of=
+ ADT, as there are other ways how to recompile project, and being pushed to=
+ work with ADT, I already start creating something that really gonna work a=
+nd can be fully automated... so actually I&#39;m trying to get a rid of ADT=
+ (and no maintainer is another reason to do so). Currently at=C2=A0<a href=
+=3D"https://github.com/daemonna/YoctoTools">https://github.com/daemonna/Yoc=
+toTools</a> are only 2 functional scripts to replace docs/wiki and to speed=
+ up things for developer:</div>
+<div><br></div><div><div>yocto_dependency_installer.sh - Will detect distro=
+ and install all dependencies... user doesn&#39;t have to find out what dis=
+tro he has and what commands to run</div><div><br></div><div>yocto_15_insta=
+ller.sh - Yocto 1.5.1 installer. Will download, unpack and build Yocto 1.5.=
+1.. after looking at differences between 1.5 and 1.6, I found best way is t=
+o make version specific script.</div>
+</div><div><br></div><div>Other scripts (like toolchain installer) are alre=
+ady in progress, but still not stable. Still, I&#39;d like to ask, what is =
+proper way to push these changes into Yocto. Is it this mailing list only? =
+or should I contact someone else?</div>
+<div><br></div><div>thanks and have a nice day</div><div><br></div><div><br=
+></div></div>
+
+--047d7b5d2c30f9d5df04f6aaf8f1--
