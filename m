@@ -1,30 +1,36 @@
-Return-Path: <romain145@gmail.com>
-Received: from mail-vc0-f170.google.com (mail-vc0-f170.google.com
-	[209.85.220.170])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F3DE6E00BBF
-	for <yocto@yoctoproject.org>; Thu, 10 Apr 2014 03:22:15 -0700 (PDT)
-Received: by mail-vc0-f170.google.com with SMTP id hu19so3296396vcb.29
-	for <yocto@yoctoproject.org>; Thu, 10 Apr 2014 03:22:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:content-type; bh=sXv5c/EeruGSOjJIusxY9Y7bDyPWb63peU7J3jnzNh4=;
-	b=yqhmOY79tI3ETtPKiTgLEyYlA4+Ktma+RWrfCD/YTYoZ1aB9kOiaLLhgLZVXTv/p4P
-	astMpoEME3Vqw0uXPZntljYa2LiS7YRoJ+JoKVr6Us94Hjd+9A8iZgXLQCUT6bcMT6w9
-	+8j1zy5Atsb8I9IEH7Oyl/NdsQOkTqfFa8Z7CFCKHNhQRXgZL3TcbVipyciHaJ20Ftse
-	BwgPRyqDXUfmzQNWHF00VENcWhVWsOrJd2UhVDijuVKANePngjfkfCi2Y0uBHTu+ETKw
-	P4VgHe0OIDV4L4aEl8etbwbFYidZ5VFKVXCJX4SH0ItljEvRRXuk8fSMz728Nx+AHn6K
-	SLJA==
-X-Received: by 10.58.46.207 with SMTP id x15mr14151580vem.17.1397125334999;
-	Thu, 10 Apr 2014 03:22:14 -0700 (PDT)
+Return-Path: <belen.barros.pena@intel.com>
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D47ECE00BBF
+	for <yocto@yoctoproject.org>; Thu, 10 Apr 2014 03:26:30 -0700 (PDT)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga101.fm.intel.com with ESMTP; 10 Apr 2014 03:26:28 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.97,833,1389772800"; d="scan'208";a="518241536"
+Received: from irsmsx102.ger.corp.intel.com ([163.33.3.155])
+	by fmsmga002.fm.intel.com with ESMTP; 10 Apr 2014 03:26:08 -0700
+Received: from irsmsx106.ger.corp.intel.com ([169.254.8.58]) by
+	IRSMSX102.ger.corp.intel.com ([169.254.2.45]) with mapi id
+	14.03.0123.003; Thu, 10 Apr 2014 11:25:44 +0100
+From: "Barros Pena, Belen" <belen.barros.pena@intel.com>
+To: Paul Eggleton <paul.eggleton@linux.intel.com>, "yocto@yoctoproject.org"
+	<yocto@yoctoproject.org>, "Damian, Alexandru" <alexandru.damian@intel.com>
+Thread-Topic: [yocto] Dogfooding and usability testing Toaster
+Thread-Index: AQHPVKc6eXHQXb8KaEeNB1LjtfLwIg==
+Date: Thu, 10 Apr 2014 10:25:43 +0000
+Message-ID: <CF6C2F0B.42091%belen.barros.pena@intel.com>
+References: <CF6AE2C6.41DF5%belen.barros.pena@intel.com>
+	<CA+gsK-qsb+UVcKsuE_NMAw_dVD-LkdkgOwayBHLPdM3QPPt2Bw@mail.gmail.com>
+	<CABcZAN=yHZOkzXZf0tkVSumV370y9HLAp2H3rcDtO2dV8F5WHA@mail.gmail.com>
+	<1545986.M2ZRmN0uFt@peggleto-mobl5.ger.corp.intel.com>
+In-Reply-To: <1545986.M2ZRmN0uFt@peggleto-mobl5.ger.corp.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+user-agent: Microsoft-MacOutlook/14.3.9.131030
+x-originating-ip: [10.237.224.34]
 MIME-Version: 1.0
-Received: by 10.58.236.163 with HTTP; Thu, 10 Apr 2014 03:21:54 -0700 (PDT)
-In-Reply-To: <CAKfC58sPYyCdKCLusG_gbu4B1fCie0PM6YFz+chdda61Sah7RA@mail.gmail.com>
-References: <CAKfC58sPYyCdKCLusG_gbu4B1fCie0PM6YFz+chdda61Sah7RA@mail.gmail.com>
-From: Romain <romain145@gmail.com>
-Date: Thu, 10 Apr 2014 11:21:54 +0100
-Message-ID: <CAKfC58saGQftdHrdUgpXa2s3OfCYrCizSh1oR=ZoxsLv5eVUeQ@mail.gmail.com>
-To: yocto@yoctoproject.org
-Subject: Re: PREFERRED_PROVIDER entry in local.conf
+Cc: Chris Larson <clarson@kergoth.com>
+Subject: Re: Dogfooding and usability testing Toaster
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -36,68 +42,80 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 10 Apr 2014 10:22:17 -0000
-Content-Type: multipart/alternative; boundary=089e013a18c24caced04f6ad97ba
-
---089e013a18c24caced04f6ad97ba
-Content-Type: text/plain; charset=ISO-8859-1
-
-Hi, any clue ?
-
-Thanks and Regards
-Romain
-
-On 8 April 2014 18:10, Romain <romain145@gmail.com> wrote:
-
-> Hello all,
->
-> While building an image I get those notes, and I would like to lock down
-> the providers for sshd and jpeg :
-> NOTE: multiple providers are available for runtime sshd (openssh, dropbear)
-> NOTE: consider defining a PREFERRED_PROVIDER entry to match sshd
-> NOTE: multiple providers are available for jpeg (jpeg, libjpeg-turbo)
-> NOTE: consider defining a PREFERRED_PROVIDER entry to match jpeg
->
-> I tried a few syntax in the local.conf, but none of them seem to work :
-> PREFERRED_PROVIDER_virtual/sshd = "ssh-server-openssh"
-> PREFERRED_PROVIDER_sshd = "ssh-server-openssh"
-> PREFERRED_PROVIDER_sshd = "openssh"
-> PREFERRED_PROVIDER_openssh = "sshd"
->
-> Thanks !
-> Romain
->
-
---089e013a18c24caced04f6ad97ba
-Content-Type: text/html; charset=ISO-8859-1
+X-List-Received-Date: Thu, 10 Apr 2014 10:26:31 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="iso-8859-1"
+Content-ID: <F7EA4A7C2458C84FA92B2D2242CC4488@intel.com>
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Hi, any clue ?<div class=3D"gmail_extra"><div><br></div><d=
-iv>Thanks and Regards<br>Romain</div></div><div class=3D"gmail_extra"><br><=
-div class=3D"gmail_quote">On 8 April 2014 18:10, Romain <span dir=3D"ltr">&=
-lt;<a href=3D"mailto:romain145@gmail.com" target=3D"_blank">romain145@gmail=
-.com</a>&gt;</span> wrote:<br>
+On 10/04/2014 11:14, "Paul Eggleton" <paul.eggleton@linux.intel.com> wrote:
 
-<blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-=
-left-width:1px;border-left-color:rgb(204,204,204);border-left-style:solid;p=
-adding-left:1ex"><div dir=3D"ltr"><p dir=3D"ltr">Hello all,</p>
-<p dir=3D"ltr">While building an image I get those notes, and I would like =
-to lock down the providers for sshd and jpeg :<br>
-NOTE: multiple providers are available for runtime sshd (openssh, dropbear)=
-<br>
-NOTE: consider defining a PREFERRED_PROVIDER entry to match sshd<br>
-NOTE: multiple providers are available for jpeg (jpeg, libjpeg-turbo)<br>
-NOTE: consider defining a PREFERRED_PROVIDER entry to match jpeg<br></p><p>=
-I tried a few syntax in the local.conf, but none of them seem to work :<br>=
-PREFERRED_PROVIDER_virtual/sshd =3D &quot;ssh-server-openssh&quot;<br>PREFE=
-RRED_PROVIDER_sshd =3D &quot;ssh-server-openssh&quot;<br>
+>On Wednesday 09 April 2014 16:39:38 Chris Larson wrote:
+>> On Wed, Apr 9, 2014 at 4:33 PM, Rudolf Streif
+><rudolf.streif@linux.com>wrote:
+>> > That is exciting. I just ran with it and started a build with toaster
+>>in
+>> >=20
+>> > the background. A couple of observations from the get-go:
+>> >    - South 0.8.4 is also needed in addition to Django. The Toaster
+>>Wiki
+>> >    [1] does not say that but the Contribute to Toaster page [2] does.
+>> >    - You need to run 'sudo pip install ...' for Django and South
+>> >    otherwise the installation fails with 'permission denied' for
+>> >    /usr/lib/python2.7
+
+Thanks for this. We'll make sure to update the wiki.
 
 
-PREFERRED_PROVIDER_sshd =3D &quot;openssh&quot;<br>PREFERRED_PROVIDER_opens=
-sh =3D &quot;sshd&quot;</p>
-<p dir=3D"ltr">Thanks !<span class=3D""><font color=3D"#888888"><br>Romain<=
-br></font></span></p>
-</div>
-</blockquote></div><br></div></div>
+>> >    - Clicking on "Show me the manual" in the Toaster UI directs to [3]
+>> >    which requires a log in
 
---089e013a18c24caced04f6ad97ba--
+Ah, yes: the manual is not ready yet, so its web page is not published.
+That's why you are being asked to log in. It should be ready by release
+time.
+
+>> >    - Is it possible to relocate/rename the toaster.sqlite database via
+>> >    configuration setting? If so, could I use the same database for
+>> >    different
+>> >    build environments?
+
+I believe you can, although Alex Damien is the one who can explain the
+details. The information here:
+
+https://wiki.yoctoproject.org/wiki/Toaster#Setting_up_a_Toaster_Instance_on
+_a_Remote_Host
+
+might also answer some questions.
+
+>>=20
+>> Side note: you can use pip install --user ... rather than sudo pip, to
+>> install it to your user site-packages directory under ~/.local, which
+>>won't
+>> impact the rest of the system.
+>
+>I'd like to see this documented using virtualenv [1] to install the
+>additional=20
+>packages - it's so much cleaner than any other solution.
+
+Good point. I'll look into getting that going.
+
+Bel=E9n
+
+>
+>Cheers,
+>Paul
+>
+>[1] For those who aren't familiar with virtualenv:
+>http://simononsoftware.com/virtualenv-tutorial/
+>
+>--=20
+>
+>Paul Eggleton
+>Intel Open Source Technology Centre
+>--=20
+>_______________________________________________
+>yocto mailing list
+>yocto@yoctoproject.org
+>https://lists.yoctoproject.org/listinfo/yocto
+
+
