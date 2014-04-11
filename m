@@ -1,36 +1,33 @@
-Return-Path: <martin.jansa@gmail.com>
-Received: from mail-ee0-f49.google.com (mail-ee0-f49.google.com [74.125.83.49])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7D9B6E00CE3
-	for <yocto@yoctoproject.org>; Fri, 11 Apr 2014 01:31:06 -0700 (PDT)
-Received: by mail-ee0-f49.google.com with SMTP id c41so3841170eek.36
-	for <yocto@yoctoproject.org>; Fri, 11 Apr 2014 01:31:05 -0700 (PDT)
+Return-Path: <sujith.h@gmail.com>
+Received: from mail-ee0-f53.google.com (mail-ee0-f53.google.com [74.125.83.53])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 93D15E00CE5
+	for <yocto@yoctoproject.org>; Fri, 11 Apr 2014 05:07:50 -0700 (PDT)
+Received: by mail-ee0-f53.google.com with SMTP id b57so4082643eek.12
+	for <yocto@yoctoproject.org>; Fri, 11 Apr 2014 05:07:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=date:from:to:cc:subject:message-id:references:mime-version
-	:content-type:content-disposition:in-reply-to:user-agent;
-	bh=GBwxtcebNDlhNyelgMaImULDjnl9c0w3wW/ilTfNQiA=;
-	b=vlWdZAW4XUYFGva6wpFyxD9858mClGgH9KAdXTC3Ir26z76qsCOP/aegTy+sZXkEuz
-	Po8Aj+OpcFhJ46me2aWigSL1YFvU564NozNEEcmGLOsknPFhI19tCH58UlvJ9FWnvNcx
-	W21rUPI1EXYYLfoBXqRzWEQqHpnsO05W2tPELmIdKBDHKsqyK5pnV1EqiSPYUiw0ZkGD
-	jJK0oKXOnzdOHudLm1O742nVcitGlYkb2+s8OkUNoMS2nE+RV4E2JWm/0esJNesgjik1
-	+9q/Lpuh8Zg9Cx54ewYcm6GxmWEN16s5l97eCGWpjx17qfpXpV+rn27vp9JHCvyQe6Qk
-	7NfQ==
-X-Received: by 10.15.27.195 with SMTP id p43mr27549387eeu.2.1397205065254;
-	Fri, 11 Apr 2014 01:31:05 -0700 (PDT)
-Received: from localhost (ip-89-176-104-3.net.upcbroadband.cz. [89.176.104.3])
+	h=from:to:cc:subject:date:message-id;
+	bh=Yi/M6czNh8dvaiaZ5mPYDMvhzmUMNZiZqlAHwbdWKNw=;
+	b=cx0HyxgvlbnTEytbNv4dlvieK2qkHKpogWbe8RZEUupxmVTjcnQeepWdxqze0QEO3L
+	oSHWr+7MT8aZNL6Ml8FngVPAsb6BlP5LULxVxczRW1FfsI6CHQP3FkOCzYZcd23bhVHa
+	63CbUQp5/umdlaiyTXZXpNbHUXsj4wX3K9m1lgoA08FdZ8qnajamwrQzXxEuYhC5oVEU
+	ZLFEbUWzaTsGzEB9VtACMKW8B82XEW7uUmh3qNLi+ogD/z81W7xzJnsKEFr8AaG4P837
+	f5GC9hcLbGbNqus6rf3lt3mcu6zzjZVN8p0AH/jQifPZInkrzWEnuiSKwKINFxgy5sSD
+	T3Zg==
+X-Received: by 10.14.193.201 with SMTP id k49mr28388500een.50.1397218069378;
+	Fri, 11 Apr 2014 05:07:49 -0700 (PDT)
+Received: from linux-z8xt.inp.mentorg.com ([139.181.35.34])
 	by mx.google.com with ESMTPSA id
-	48sm15993533eee.2.2014.04.11.01.31.03 for <multiple recipients>
+	q49sm17198027eem.34.2014.04.11.05.07.46 for <multiple recipients>
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Fri, 11 Apr 2014 01:31:04 -0700 (PDT)
-Date: Fri, 11 Apr 2014 10:31:13 +0200
-From: Martin Jansa <martin.jansa@gmail.com>
-To: Trevor Woerner <trevor.woerner@linaro.org>
-Message-ID: <20140411083113.GT2132@jama>
-References: <53472898.8030207@linaro.org>
-MIME-Version: 1.0
-In-Reply-To: <53472898.8030207@linaro.org>
-User-Agent: Mutt/1.5.22 (2013-10-16)
-Cc: yocto <yocto@yoctoproject.org>
-Subject: Re: polkit and consolekit
+	Fri, 11 Apr 2014 05:07:48 -0700 (PDT)
+From: Sujith H <sujith.h@gmail.com>
+To: holger.behrens@windriver.com,
+	florin.sarbu@windriver.com
+Date: Fri, 11 Apr 2014 17:37:13 +0530
+Message-Id: <1397218033-20029-1-git-send-email-sujith.h@gmail.com>
+X-Mailer: git-send-email 1.8.4
+Cc: yocto@yoctoproject.org, Sujith H <Sujith_Haridasan@mentor.com>
+Subject: [PATCH] weston: Add weston.ini
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,48 +39,38 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 11 Apr 2014 08:31:12 -0000
-X-Groupsio-MsgNum: 18963
-Content-Type: multipart/signed; micalg=pgp-sha1;
-	protocol="application/pgp-signature"; boundary="vKcNkqnJHUUp475E"
-Content-Disposition: inline
+X-List-Received-Date: Fri, 11 Apr 2014 12:07:51 -0000
 
---vKcNkqnJHUUp475E
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+From: Sujith H <Sujith_Haridasan@mentor.com>
 
-On Thu, Apr 10, 2014 at 07:26:16PM -0400, Trevor Woerner wrote:
-> consolekit has a dependency on polkit:
->=20
-> arm-oe-linux-gnueabi-gcc: error:
-> /SSD/build/distroless/tmp/qemuarm-eglibc/sysroots/qemuarm/usr/lib/libpolk=
-it-gobject-1.so:
-> No such file or directory
-> ERROR: Function failed: do_compile (log file is located at
-> /SSD/build/distroless/tmp/qemuarm-eglibc/work/armv5te-oe-linux-gnueabi/co=
-nsolekit/0.4.6-r0/temp/log.do_compile.18881)
->=20
-> Whereas consolekit is in openembedded-core, polkit is in meta-openembedde=
-d.
->=20
-> Suggestions?
+Adding weston.ini to $HOME/.config. With this change
+user can login to $HOME and launch weston with ivi-shell.
 
-PACKAGECONFIG to keep polkit support disabled by default.
+Signed-off-by: Sujith H <Sujith_Haridasan@mentor.com>
+---
+ recipes-graphics/wayland/weston_1.4.0.bbappend | 11 +++++++++++
+ 1 file changed, 11 insertions(+)
 
---=20
-Martin 'JaMa' Jansa     jabber: Martin.Jansa@gmail.com
+diff --git a/recipes-graphics/wayland/weston_1.4.0.bbappend b/recipes-graphics/wayland/weston_1.4.0.bbappend
+index 7a8ba6f..6168271 100644
+--- a/recipes-graphics/wayland/weston_1.4.0.bbappend
++++ b/recipes-graphics/wayland/weston_1.4.0.bbappend
+@@ -12,3 +12,14 @@ PR = "r1"
+ 
+ FILES_${PN} += "${libdir}/weston/*"
+ FILES_${PN}-dbg += "${libdir}/weston/.debug/*"
++
++do_install_append() {
++   install -d ${D}/home/root/.config
++   install -m 0644 ${S}/ivi-shell/weston.ini.in ${D}/home/root/.config/weston.ini
++   sed -i -e  's/hmi-controller.so/hmi-controller.so, ivi-controller.so/' ${D}/home/root/.config/weston.ini
++   sed -i -e 's|\@libexecdir\@|${libexecdir}|' ${D}/home/root/.config/weston.ini
++   sed -i -e 's|\@abs_top_builddir\@\/data|${datadir}\/weston|' ${D}/home/root/.config/weston.ini
++   sed -i -e 's|\@abs_top_builddir\@\/clients|${bindir}|' ${D}/home/root/.config/weston.ini
++}
++
++FILES_${PN} += "/home/root/.config"
+-- 
+1.8.4
 
---vKcNkqnJHUUp475E
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: Digital signature
 
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v2.0.22 (GNU/Linux)
-
-iEYEARECAAYFAlNHqFEACgkQN1Ujt2V2gBzBKQCdHAGdlPrU9VE5QA+njRru+RM7
-N9UAnRgSme74FzbJcnI5rbafLlKbqi5x
-=Ksa2
------END PGP SIGNATURE-----
-
---vKcNkqnJHUUp475E--
