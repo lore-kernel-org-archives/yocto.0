@@ -1,22 +1,25 @@
-Return-Path: <sgh@sgh.dk>
-Received: from mx-aarh-2.stofanet.dk (mx-aarh-2.stofanet.dk [212.10.10.12])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E181AE00CED
-	for <yocto@yoctoproject.org>; Fri, 11 Apr 2014 08:03:27 -0700 (PDT)
-Received: from 5634f347.rev.stofanet.dk ([86.52.243.71] helo=asrock)
-	by mx-aarh-2.stofanet.dk (envelope-from <sgh@sgh.dk>)
-	with esmtp id 1WYczE-0007dA-0k; Fri, 11 Apr 2014 17:03:24 +0200
-Received: from koontz.localnet (localhost [127.0.0.1])
-	by asrock (Postfix) with ESMTPS id EB7117ED3C;
-	Fri, 11 Apr 2014 17:03:23 +0200 (CEST)
-From: =?ISO-8859-1?Q?S=F8ren?= Holm <sgh@sgh.dk>
-To: Bruce Ashfield <bruce.ashfield@windriver.com>
-Date: Fri, 11 Apr 2014 17:03:23 +0200
-Message-ID: <3576503.mNsH0YDmIl@koontz>
-User-Agent: KMail/4.13 (Linux/3.13.0-23-lowlatency; KDE/4.13.0; i686; ; )
-In-Reply-To: <5347F2E9.208@windriver.com>
-References: <2489555.PeAzndN2bA@koontz> <2289397.7FZuMHCiSt@koontz>
-	<5347F2E9.208@windriver.com>
+Return-Path: <Bruce.Ashfield@windriver.com>
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2AAA2E00CED
+	for <yocto@yoctoproject.org>; Fri, 11 Apr 2014 08:05:55 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
+	[147.11.189.40])
+	by mail.windriver.com (8.14.5/8.14.5) with ESMTP id s3BF5pQS015413
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
+	Fri, 11 Apr 2014 08:05:51 -0700 (PDT)
+Received: from [128.224.56.48] (128.224.56.48) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server id 14.3.169.1;
+	Fri, 11 Apr 2014 08:05:50 -0700
+Message-ID: <534804C8.4060900@windriver.com>
+Date: Fri, 11 Apr 2014 11:05:44 -0400
+From: Bruce Ashfield <bruce.ashfield@windriver.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:24.0) Gecko/20100101 Thunderbird/24.4.0
 MIME-Version: 1.0
+To: =?ISO-8859-1?Q?S=F8ren_Holm?= <sgh@sgh.dk>
+References: <2489555.PeAzndN2bA@koontz> <2289397.7FZuMHCiSt@koontz>
+	<5347F2E9.208@windriver.com> <3576503.mNsH0YDmIl@koontz>
+In-Reply-To: <3576503.mNsH0YDmIl@koontz>
 Cc: yocto@yoctoproject.org
 Subject: Re: defconfig on daisy
 X-BeenThere: yocto@yoctoproject.org
@@ -30,32 +33,54 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 11 Apr 2014 15:03:31 -0000
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"
+X-List-Received-Date: Fri, 11 Apr 2014 15:05:56 -0000
+Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
+Content-Transfer-Encoding: 8bit
 
-Hi Bruce
+On 14-04-11 11:03 AM, Søren Holm wrote:
+> Hi Bruce
+>
+> I just check if AUFS is enabled. It should be since that's in my defconfig.
 
-I just check if AUFS is enabled. It should be since that's in my defcon=
-fig.
+ok, here's my output:
 
-Fredag den 11. april 2014 09:49:29 skrev Bruce Ashfield:
-> On 14-04-11 03:39 AM, S=F8ren Holm wrote:
-> > Sure
-> >=20
-> > I guess this is what you need :
-> >=20
-> > http://sgh.dk/~sgh/cb16_kernel.tar.bz2
-> >=20
-> > It's just the machine-configuration and my append-file and defconfi=
-g.
->=20
-> replying again .. with the list this time.
->=20
-> Great. I did a build here and I see the defconfig being applied. How
-> were you determining that it wasn't happening ? I want to make sure
-> I'm checking the same config options.
->=20
---=20
-S=F8ren Holm
+yow-bashfiel-d3 [/home/bruc...957655f-r0]> grep AUFS 
+linux-cb16-standard-build/.config
+CONFIG_AUFS_FS=y
+CONFIG_AUFS_BRANCH_MAX_127=y
+# CONFIG_AUFS_BRANCH_MAX_511 is not set
+# CONFIG_AUFS_BRANCH_MAX_1023 is not set
+# CONFIG_AUFS_BRANCH_MAX_32767 is not set
+CONFIG_AUFS_SBILIST=y
+# CONFIG_AUFS_HNOTIFY is not set
+# CONFIG_AUFS_RDU is not set
+# CONFIG_AUFS_PROC_MAP is not set
+# CONFIG_AUFS_SP_IATTR is not set
+# CONFIG_AUFS_SHWH is not set
+# CONFIG_AUFS_BR_RAMFS is not set
+CONFIG_AUFS_BDEV_LOOP=y
+# CONFIG_AUFS_DEBUG is not set
+
+Cheers,
+
+Bruce
+
+>
+> Fredag den 11. april 2014 09:49:29 skrev Bruce Ashfield:
+>> On 14-04-11 03:39 AM, Søren Holm wrote:
+>>> Sure
+>>>
+>>> I guess this is what you need :
+>>>
+>>> http://sgh.dk/~sgh/cb16_kernel.tar.bz2
+>>>
+>>> It's just the machine-configuration and my append-file and defconfig.
+>>
+>> replying again .. with the list this time.
+>>
+>> Great. I did a build here and I see the defconfig being applied. How
+>> were you determining that it wasn't happening ? I want to make sure
+>> I'm checking the same config options.
+>>
+
 
