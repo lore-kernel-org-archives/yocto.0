@@ -1,27 +1,31 @@
-Return-Path: <Bruce.Ashfield@windriver.com>
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 64C07E00CE9
-	for <yocto@yoctoproject.org>; Fri, 11 Apr 2014 05:46:11 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail.windriver.com (8.14.5/8.14.5) with ESMTP id s3BCk0TX021237
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Fri, 11 Apr 2014 05:46:00 -0700 (PDT)
-Received: from [128.224.56.48] (128.224.56.48) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server id 14.3.169.1;
-	Fri, 11 Apr 2014 05:45:59 -0700
-Message-ID: <5347E401.2050804@windriver.com>
-Date: Fri, 11 Apr 2014 08:45:53 -0400
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:24.0) Gecko/20100101 Thunderbird/24.4.0
+Return-Path: <Alexandru.Vaduva@enea.com>
+Received: from mx-3.enea.com (sestofw01.enea.se [192.36.1.252])
+	by yocto-www.yoctoproject.org (Postfix) with SMTP id 5809BE00CE9
+	for <yocto@yoctoproject.org>; Fri, 11 Apr 2014 06:38:57 -0700 (PDT)
+Received: from SESTOEX05.enea.se ([fe80::41cb:8d2e:2e90:a183]) by
+	SESTOEX03.enea.se ([fe80::6ce7:7b51:1edf:e245%17]) with mapi id
+	14.03.0158.001; Fri, 11 Apr 2014 15:38:50 +0200
+From: Alexandru Vaduva <Alexandru.Vaduva@enea.com>
+To: Bruce Ashfield <bruce.ashfield@windriver.com>, Valentin Cobelea
+	<Valentin.Cobelea@enea.com>, Diego Sueiro <diego.sueiro@gmail.com>
+Thread-Topic: [yocto] CGL compliance layer initiative
+Thread-Index: AQHPUz/83LYhBBz6x0m0vfcbs3JvypsI+2kAgAABFoCAAAGRAIAAATOAgAJCWwCAAJ5+AIAAX8+AgAAr/CA=
+Date: Fri, 11 Apr 2014 13:38:49 +0000
+Message-ID: <DDB0C57E45663A458C5CACB7B5688BC21D6538F0@sestoex05.enea.se>
+References: <534416F0.10109@enea.com>
+	<9507315.eLP4En45Q5@peggleto-mobl5.ger.corp.intel.com>
+	<53452733.2070806@enea.com>
+	<33266524.grSQoK8z6t@peggleto-mobl5.ger.corp.intel.com>
+	<53452985.7020202@enea.com>
+	<CAMCfZKG4BdGfkwa-uhoLUe8m7PKc_NUC=ciDi2GXCsCqDmmi+Q@mail.gmail.com>
+	<534793A2.2000603@enea.com> <5347E401.2050804@windriver.com>
+In-Reply-To: <5347E401.2050804@windriver.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [172.21.1.188]
 MIME-Version: 1.0
-To: Vali Cobelea <valentin.cobelea@enea.com>, Diego Sueiro
-	<diego.sueiro@gmail.com>
-References: <534416F0.10109@enea.com>	<9507315.eLP4En45Q5@peggleto-mobl5.ger.corp.intel.com>	<53452733.2070806@enea.com>	<33266524.grSQoK8z6t@peggleto-mobl5.ger.corp.intel.com>	<53452985.7020202@enea.com>	<CAMCfZKG4BdGfkwa-uhoLUe8m7PKc_NUC=ciDi2GXCsCqDmmi+Q@mail.gmail.com>
-	<534793A2.2000603@enea.com>
-In-Reply-To: <534793A2.2000603@enea.com>
-Cc: yocto@yoctoproject.org, Alexandru Vaduva <Alexandru.Vaduva@enea.com>,
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
 	Paul Eggleton <paul.eggleton@linux.intel.com>
 Subject: Re: CGL compliance layer initiative
 X-BeenThere: yocto@yoctoproject.org
@@ -35,38 +39,66 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 11 Apr 2014 12:46:12 -0000
-Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Fri, 11 Apr 2014 13:38:59 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+Thanks Bruce good observation the BBMASK variable should be:
+BBMASK =3D "meta-security/recipes-security/libcap-ng"
+
+The "meta-cloud-services/meta-openstack/recipes-support/lvm2" was removed b=
+ecause=20
+the patch it applies was identic with the one meta-enea applies and it offe=
+red an error.=20
+Solved this with the last patch.
+
+
+Alex
+
+-----Original Message-----
+From: Bruce Ashfield [mailto:bruce.ashfield@windriver.com]=20
+Sent: Friday, April 11, 2014 3:46 PM
+To: Valentin Cobelea; Diego Sueiro
+Cc: yocto@yoctoproject.org; Alexandru Vaduva; Paul Eggleton
+Subject: Re: [yocto] CGL compliance layer initiative
 
 On 14-04-11 03:02 AM, Vali Cobelea wrote:
 > Hi Diego,
 >
 > Thank you for your interest in the meta-cgl layer.
-> Please be aware that the layer is in its alpha state, as I said an
+> Please be aware that the layer is in its alpha state, as I said an=20
 > initiative that started with a layer.
 >
 > The branch is 'master', no custom things yet.
-> Below you can find the instructions to clone all of the "dependency layers":
+> Below you can find the instructions to clone all of the "dependency layer=
+s":
 >
 > git clonegit://git.yoctoproject.org/meta-qt3
-> <http://twiki.enea.se/twiki/bin/edit/Git://git/yoctoproject/org/Meta-qt3?topicparent=EETeng.EneaLinuxCGLBuildInstructions;nowysiwyg=0>
+> <http://twiki.enea.se/twiki/bin/edit/Git://git/yoctoproject/org/Meta-q
+> t3?topicparent=3DEETeng.EneaLinuxCGLBuildInstructions;nowysiwyg=3D0>
 > git clonegit://git.yoctoproject.org/meta-virtualization
-> <http://twiki.enea.se/twiki/bin/edit/Git://git/yoctoproject/org/Meta-virtualization?topicparent=EETeng.EneaLinuxCGLBuildInstructions;nowysiwyg=0>
-> git clonegit://git.yoctoproject.org/meta-selinux
-> <http://twiki.enea.se/twiki/bin/edit/Git://git/yoctoproject/org/Meta-selinux?topicparent=EETeng.EneaLinuxCGLBuildInstructions;nowysiwyg=0>
+> <http://twiki.enea.se/twiki/bin/edit/Git://git/yoctoproject/org/Meta-v
+> irtualization?topicparent=3DEETeng.EneaLinuxCGLBuildInstructions;nowysiw
+> yg=3D0> git clonegit://git.yoctoproject.org/meta-selinux
+> <http://twiki.enea.se/twiki/bin/edit/Git://git/yoctoproject/org/Meta-s
+> elinux?topicparent=3DEETeng.EneaLinuxCGLBuildInstructions;nowysiwyg=3D0>
 > git clonegit://git.yoctoproject.org/meta-cloud-services
-> <http://twiki.enea.se/twiki/bin/edit/Git://git/yoctoproject/org/Meta-cloud-services?topicparent=EETeng.EneaLinuxCGLBuildInstructions;nowysiwyg=0>
-> git clonegit://git.yoctoproject.org/meta-security
-> <http://twiki.enea.se/twiki/bin/edit/Git://git/yoctoproject/org/Meta-security?topicparent=EETeng.EneaLinuxCGLBuildInstructions;nowysiwyg=0>
+> <http://twiki.enea.se/twiki/bin/edit/Git://git/yoctoproject/org/Meta-c
+> loud-services?topicparent=3DEETeng.EneaLinuxCGLBuildInstructions;nowysiw
+> yg=3D0> git clonegit://git.yoctoproject.org/meta-security
+> <http://twiki.enea.se/twiki/bin/edit/Git://git/yoctoproject/org/Meta-s
+> ecurity?topicparent=3DEETeng.EneaLinuxCGLBuildInstructions;nowysiwyg=3D0>
 > git clonehttps://github.com/joaohf/meta-openclovis.git
 >
-> Also, since there are duplicated recipes in these layers, please add the
-> following BBMASK in cong/local.conf  (big thank you to Alex Vaduva for
+> Also, since there are duplicated recipes in these layers, please add=20
+> the following BBMASK in cong/local.conf  (big thank you to Alex Vaduva=20
+> for
 > this):
 >
-> BBMASK =
-> "meta-cloud-services/meta-openstack/recipes-support/lvm2|meta-security/recipes-security/libcap-ng"
+> BBMASK =3D
+> "meta-cloud-services/meta-openstack/recipes-support/lvm2|meta-security/re=
+cipes-security/libcap-ng"
 >
 
 What exactly are you finding with lvm2 in meta-cloud-services ?
@@ -96,7 +128,7 @@ Bruce
 >> Diego Sueiro
 >> sent from mobile.
 >>
->> On Apr 9, 2014 11:05 AM, "Vali Cobelea" <valentin.cobelea@enea.com
+>> On Apr 9, 2014 11:05 AM, "Vali Cobelea" <valentin.cobelea@enea.com=20
 >> <mailto:valentin.cobelea@enea.com>> wrote:
 >>
 >>     OK Paul, that indeed makes sense, I really did not knew that
@@ -126,7 +158,7 @@ Bruce
 >>                     called 'meta-cgl'
 >>
 >>                     which can be accessed / cloned from here:
->>                     http://git.enea.com/git/?p=linux/meta-cgl.git
+>>                     http://git.enea.com/git/?p=3Dlinux/meta-cgl.git
 >>                         git clone git@git.enea.com:linux/meta-cgl
 >>
 >>                     Have a look of the things we got there so far,
