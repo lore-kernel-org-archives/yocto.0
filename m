@@ -1,33 +1,33 @@
 Return-Path: <sujith.h@gmail.com>
-Received: from mail-ee0-f53.google.com (mail-ee0-f53.google.com [74.125.83.53])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 93D15E00CE5
-	for <yocto@yoctoproject.org>; Fri, 11 Apr 2014 05:07:50 -0700 (PDT)
-Received: by mail-ee0-f53.google.com with SMTP id b57so4082643eek.12
-	for <yocto@yoctoproject.org>; Fri, 11 Apr 2014 05:07:49 -0700 (PDT)
+Received: from mail-ee0-f45.google.com (mail-ee0-f45.google.com [74.125.83.45])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CC6A0E00CE5
+	for <yocto@yoctoproject.org>; Fri, 11 Apr 2014 05:21:40 -0700 (PDT)
+Received: by mail-ee0-f45.google.com with SMTP id d17so4108350eek.4
+	for <yocto@yoctoproject.org>; Fri, 11 Apr 2014 05:21:39 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=from:to:cc:subject:date:message-id;
 	bh=Yi/M6czNh8dvaiaZ5mPYDMvhzmUMNZiZqlAHwbdWKNw=;
-	b=cx0HyxgvlbnTEytbNv4dlvieK2qkHKpogWbe8RZEUupxmVTjcnQeepWdxqze0QEO3L
-	oSHWr+7MT8aZNL6Ml8FngVPAsb6BlP5LULxVxczRW1FfsI6CHQP3FkOCzYZcd23bhVHa
-	63CbUQp5/umdlaiyTXZXpNbHUXsj4wX3K9m1lgoA08FdZ8qnajamwrQzXxEuYhC5oVEU
-	ZLFEbUWzaTsGzEB9VtACMKW8B82XEW7uUmh3qNLi+ogD/z81W7xzJnsKEFr8AaG4P837
-	f5GC9hcLbGbNqus6rf3lt3mcu6zzjZVN8p0AH/jQifPZInkrzWEnuiSKwKINFxgy5sSD
-	T3Zg==
-X-Received: by 10.14.193.201 with SMTP id k49mr28388500een.50.1397218069378;
-	Fri, 11 Apr 2014 05:07:49 -0700 (PDT)
+	b=HatzoWFuCb57lz1FD9TqZs89TT4bXDZB9Yip9yECQk/erSW0lUONfu9dkE8ijJNVt7
+	nRn169c6gpxnPnQNxKtSNTVAA4YQowreNQEHqvoWYjhlVYyGxm4gPZTgO3niWbnF81lA
+	5c4oRFueb/4RFE9l5MI5aoCSN6Aejf9nuSm2otW71cxUBvjE4cjBfAXrrLUpZQ7rlIsF
+	LK6ApI0+vnAGkGmZrd1fPUq44bLTnRC3Q144WMBmrR0IHoghHGbyu1e0Mr/AsL6ulgHr
+	qE8pu6zY6F3EsgD7ivepNa3L8VCj4J0TzBjiPE2MaHle7WJ3FsJRcYpgvl3sgGxlhfEg
+	er5g==
+X-Received: by 10.15.43.77 with SMTP id w53mr28525716eev.10.1397218899239;
+	Fri, 11 Apr 2014 05:21:39 -0700 (PDT)
 Received: from linux-z8xt.inp.mentorg.com ([139.181.35.34])
-	by mx.google.com with ESMTPSA id
-	q49sm17198027eem.34.2014.04.11.05.07.46 for <multiple recipients>
+	by mx.google.com with ESMTPSA id q41sm17319485eez.7.2014.04.11.05.21.36
+	for <multiple recipients>
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Fri, 11 Apr 2014 05:07:48 -0700 (PDT)
+	Fri, 11 Apr 2014 05:21:38 -0700 (PDT)
 From: Sujith H <sujith.h@gmail.com>
 To: holger.behrens@windriver.com,
 	florin.sarbu@windriver.com
-Date: Fri, 11 Apr 2014 17:37:13 +0530
-Message-Id: <1397218033-20029-1-git-send-email-sujith.h@gmail.com>
+Date: Fri, 11 Apr 2014 17:51:04 +0530
+Message-Id: <1397218864-20777-1-git-send-email-sujith.h@gmail.com>
 X-Mailer: git-send-email 1.8.4
 Cc: yocto@yoctoproject.org, Sujith H <Sujith_Haridasan@mentor.com>
-Subject: [PATCH] weston: Add weston.ini
+Subject: [meta-ivi][PATCH] weston: Add weston.ini
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,7 +39,7 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 11 Apr 2014 12:07:51 -0000
+X-List-Received-Date: Fri, 11 Apr 2014 12:21:43 -0000
 
 From: Sujith H <Sujith_Haridasan@mentor.com>
 
