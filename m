@@ -1,35 +1,38 @@
-Return-Path: <wpdster@gmail.com>
-Received: from mail-pb0-f41.google.com (mail-pb0-f41.google.com
-	[209.85.160.41])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7459AE00CC1
-	for <yocto@yoctoproject.org>; Thu, 10 Apr 2014 17:21:47 -0700 (PDT)
-Received: by mail-pb0-f41.google.com with SMTP id jt11so4677260pbb.28
-	for <yocto@yoctoproject.org>; Thu, 10 Apr 2014 17:21:47 -0700 (PDT)
+Return-Path: <joaohf@gmail.com>
+Received: from mail-yh0-f43.google.com (mail-yh0-f43.google.com
+	[209.85.213.43])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AF6C9E00CD6
+	for <yocto@yoctoproject.org>; Thu, 10 Apr 2014 19:20:31 -0700 (PDT)
+Received: by mail-yh0-f43.google.com with SMTP id b6so4720393yha.2
+	for <yocto@yoctoproject.org>; Thu, 10 Apr 2014 19:20:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-type;
-	bh=wMY3Y3JmzKWI7ShFc5QxE1hTWXEO7nhvgEwIMfjXB1Q=;
-	b=BMj7+VTg92O2kHekLKt88/M4EBJRUtPXxQY3Z9GlmVf4UDtwItv2k3YO6YvTEAeiJD
-	77aoQg64/nzNpwgTHQHUtWFwmKAdqD8fsW/yn01WgbXxelmQ7vyfXE0WlqgZhEEZO8X6
-	9iWv7wZVXK0Nr+SbKNGwetjXhSPVf4qxbUw4Bm3FItUA+dmLKZ8YQknJeG4V8D77OZpe
-	MK/RtVqU5xaZ4qVU49Dg3h23/WmrZsh8Tjqjgal9F/WRawhCOAgmj1oYY2dHq/KX+gOt
-	7Zbj6WzkWQTYVbjXeEou3YvC3Bj2AQ9jQ7DUyjoFl+GhrHoUszC9oS7/m/cvKTBLpQlL
-	0OTA==
-X-Received: by 10.66.141.144 with SMTP id ro16mr22952049pab.131.1397175707831; 
-	Thu, 10 Apr 2014 17:21:47 -0700 (PDT)
+	h=message-id:date:from:user-agent:mime-version:to:cc:subject
+	:references:in-reply-to:content-type:content-transfer-encoding;
+	bh=KHwG3Z1xD5lsbHwUlDpgIDAH6HfK/1S2x5bwdsZalpc=;
+	b=tdo6h+nuwFO9WSZrBHJ63iwyQcWyfl3rD5sdSb4lq6q9SuUCKIQftU28gkhpufN/ye
+	XmkozbVNwfWm8t995OyOgjWfjuwZy8Wj0Yi3yteDmpPqSM4tR3wdlzafAb3mEBg3fGG8
+	2kbMavAC2xIgEx2yNOIeJlDy3NdlezJKdyVbKVGet9R9XceKpWyB32WokM4LGivKNT7a
+	GGUB0xGlasEInRbILYJC/KV5KLLzQrNNLjlzr6QzBBDp0TP75KZKPEx2eDfZ0q3tj5rk
+	6S9hNyY+QLJMMPzYanD/vikPs/vbZ02S9Lwevl6mcECZHpUYb4OyNuwkCoGrqG/f95w7
+	BINw==
+X-Received: by 10.236.117.174 with SMTP id j34mr28130303yhh.13.1397182830242; 
+	Thu, 10 Apr 2014 19:20:30 -0700 (PDT)
+Received: from [192.168.1.3] ([187.106.6.19]) by mx.google.com with ESMTPSA id
+	m23sm11081142yho.15.2014.04.10.19.20.28 for <multiple recipients>
+	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
+	Thu, 10 Apr 2014 19:20:29 -0700 (PDT)
+Message-ID: <5347516B.2020601@gmail.com>
+Date: Thu, 10 Apr 2014 23:20:27 -0300
+From: =?ISO-8859-1?Q?Jo=E3o_Henrique_Ferreira_de_Freitas?= <joaohf@gmail.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:24.0) Gecko/20100101 Thunderbird/24.4.0
 MIME-Version: 1.0
-Received: by 10.70.32.161 with HTTP; Thu, 10 Apr 2014 17:21:17 -0700 (PDT)
-In-Reply-To: <CABcZANncV5nWPhA1XR4ydhbkk=MLOmFFDdYO830D_DWyqYU_+A@mail.gmail.com>
-References: <CAF_dkJAi700hXNbRQc=1UVTRY7VVwwf+UJyQ5EJm=+FoxQvC9A@mail.gmail.com>
-	<CABcZAN=BAXcbK87929P34zCeT9Y4o3nUm12P99N+=4Gy31zSxw@mail.gmail.com>
-	<CAF_dkJBdofKM1WNEKyMw1Bg3A4o5DBaYwbjbXaU5SYrFyGb7wg@mail.gmail.com>
-	<CABcZANncV5nWPhA1XR4ydhbkk=MLOmFFDdYO830D_DWyqYU_+A@mail.gmail.com>
-From: Patrick Doyle <wpdster@gmail.com>
-Date: Thu, 10 Apr 2014 20:21:17 -0400
-Message-ID: <CAF_dkJCr68rXkpDY_XFgvQPPB4aeCOsUmiWMMFd2_eaCT+86aw@mail.gmail.com>
-To: Chris Larson <clarson@kergoth.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Confusion about autotools
+To: Vali Cobelea <valentin.cobelea@enea.com>, 
+	Yocto list discussion <yocto@yoctoproject.org>
+References: <534416F0.10109@enea.com>
+In-Reply-To: <534416F0.10109@enea.com>
+Cc: Alexandru Vaduva <Alexandru.Vaduva@enea.com>
+Subject: Re: CGL compliance layer initiative
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,46 +44,59 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 11 Apr 2014 00:21:48 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Fri, 11 Apr 2014 02:20:31 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 8bit
 
-ok, thanks.
+Hi Vali,
 
-I do get a "Hello World" message out of do_unpack().  Weird.
+I took a look into meta-cgl and I've builded with all master (lots of 
+warning) layers described in README file. Good initiative.
+
+I noted that in README file you mention about 'meta-openclovis'. I 
+believed that you got openipmi recipe from meta-openclovis, because
+meta-cgl has a .bbappend to it. Am I right?
+
+Indeed meta-openclovis has three recipes that could stay in meta-cgl: 
+openhpi, openhpi-subagent and openipmi.
+
+What about the quality of recipes that meta-cgl will use from others 
+layers? For instance the patchs/stable code release/features in net-snmp 
+recipe
+is aligned with CGL requirements? My concern is about the scope and 
+stability of meta-cgl.
 
 Thanks.
 
---wpd
+PS:
 
+Build Configuration:
+BB_VERSION        = "1.23.0"
+BUILD_SYS         = "x86_64-linux"
+NATIVELSBSTRING   = "Ubuntu-13.10"
+TARGET_SYS        = "i586-poky-linux"
+MACHINE           = "qemux86"
+DISTRO            = "poky"
+DISTRO_VERSION    = "1.6+snapshot-20140411"
+TUNE_FEATURES     = "m32 i586"
+TARGET_FPU        = ""
+meta              = "master:863cc7483f5ee43189537940de8ee5c0964d24cc"
+meta-cgl          = "master:63a890e8513ff50279a1ce53e45a0394fd05b2b6"
+meta-qt3          = "master:3016129d90b7ac8517a5227d819f10ad417b5b45"
+meta-networking
+meta-filesystems
+meta-oe
+meta-perl         = "master:477ccd867cc71f8277f2670b7be34b3b15300052"
+meta-yocto
+meta-yocto-bsp    = "master:863cc7483f5ee43189537940de8ee5c0964d24cc"
+meta-virtualization = "master:7544bfb6ec7efd283e7e7ff712e91452fdffb534"
+meta-openclovis   = "master:68f9a9c4ab01590d63506126660e3316ba668f99"
+meta-selinux      = "master:0362287928bc0a58b755488ebd74441c28eeeee2"
+meta-security     = "master:7e8c7918d9ff8fc89579502cc136e37deecdfd96"
+meta-openstack    = "master:940e7d24c418a9cbb93850c31d00e4f1edeaf764"
 
-On Thu, Apr 10, 2014 at 8:15 PM, Chris Larson <clarson@kergoth.com> wrote:
->
-> On Thu, Apr 10, 2014 at 5:12 PM, Patrick Doyle <wpdster@gmail.com> wrote:
->>
->> ok, that makes sense.  Trying to pattern match against too many
->> patterns, and not spending enough time understanding the underlying
->> technology.  Thank you for the explanation.
->>
->> If you don't mind, I'll move on to my next question...
->>
->> I now have a "do_fetch()" task that looks like this:
->>
->> do_fetch () {
->> bberror "Hello World"
->> exit 1
->> }
->>
->> Where would I see "Hello World" pop out?  I don't see it in the log file.
->
->
-> It should show up in the do_fetch log (not the cooker log), which lives next
-> to the run script. That said, it's possible you're hitting an issue due to
-> the base.bbclass fetch implementation being python, not shell.
->
-> --
-> Christopher Larson
-> clarson at kergoth dot com
-> Founder - BitBake, OpenEmbedded, OpenZaurus
-> Maintainer - Tslib
-> Senior Software Engineer, Mentor Graphics
+-- 
+João Henrique Ferreira de Freitas - joaohf_at_gmail.com
+Campinas-SP-Brasil
+
 
