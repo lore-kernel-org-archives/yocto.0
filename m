@@ -1,24 +1,23 @@
 Return-Path: <Valentin.Cobelea@enea.com>
 Received: from mx-3.enea.com (sestofw01.enea.se [192.36.1.252])
-	by yocto-www.yoctoproject.org (Postfix) with SMTP id 4B80BE00CE1
-	for <yocto@yoctoproject.org>; Fri, 11 Apr 2014 00:03:04 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with SMTP id C27C9E00C35
+	for <yocto@yoctoproject.org>; Fri, 11 Apr 2014 00:10:25 -0700 (PDT)
 Received: from localhost.enea.se (192.168.14.171) by smtp.enea.com
-	(172.21.1.208) with Microsoft SMTP Server id 14.3.158.1;
-	Fri, 11 Apr 2014 09:02:58 +0200
-Message-ID: <534793A2.2000603@enea.com>
-Date: Fri, 11 Apr 2014 10:02:58 +0300
+	(172.21.1.209) with Microsoft SMTP Server id 14.3.158.1;
+	Fri, 11 Apr 2014 09:10:21 +0200
+Message-ID: <5347955D.7090501@enea.com>
+Date: Fri, 11 Apr 2014 10:10:21 +0300
 From: Vali Cobelea <valentin.cobelea@enea.com>
 Organization: ENEA
 User-Agent: Mozilla/5.0 (X11; Linux x86_64;
 	rv:24.0) Gecko/20100101 Thunderbird/24.2.0
 MIME-Version: 1.0
-To: Diego Sueiro <diego.sueiro@gmail.com>
-References: <534416F0.10109@enea.com>	<9507315.eLP4En45Q5@peggleto-mobl5.ger.corp.intel.com>	<53452733.2070806@enea.com>	<33266524.grSQoK8z6t@peggleto-mobl5.ger.corp.intel.com>	<53452985.7020202@enea.com>
-	<CAMCfZKG4BdGfkwa-uhoLUe8m7PKc_NUC=ciDi2GXCsCqDmmi+Q@mail.gmail.com>
-In-Reply-To: <CAMCfZKG4BdGfkwa-uhoLUe8m7PKc_NUC=ciDi2GXCsCqDmmi+Q@mail.gmail.com>
+To: =?ISO-8859-1?Q?Jo=E3o_Henrique_Ferreira_de_Freitas?= <joaohf@gmail.com>,
+	Yocto list discussion <yocto@yoctoproject.org>
+References: <534416F0.10109@enea.com> <5347516B.2020601@gmail.com>
+In-Reply-To: <5347516B.2020601@gmail.com>
 X-Originating-IP: [192.168.14.171]
-Cc: yocto@yoctoproject.org, Alexandru Vaduva <Alexandru.Vaduva@enea.com>,
-	Paul Eggleton <paul.eggleton@linux.intel.com>
+Cc: Alexandru Vaduva <Alexandru.Vaduva@enea.com>
 Subject: Re: CGL compliance layer initiative
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -31,544 +30,82 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 11 Apr 2014 07:03:07 -0000
-Content-Type: multipart/alternative;
-	boundary="------------040708040705000806020904"
-
---------------040708040705000806020904
+X-List-Received-Date: Fri, 11 Apr 2014 07:10:30 -0000
 Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: quoted-printable
 
-Hi Diego,
+Hi,
 
-Thank you for your interest in the meta-cgl layer.
-Please be aware that the layer is in its alpha state, as I said an 
-initiative that started with a layer.
+Thank you for your kind words.
 
-The branch is 'master', no custom things yet.
-Below you can find the instructions to clone all of the "dependency layers":
+On 04/11/2014 05:20 AM, Jo=E3o Henrique Ferreira de Freitas wrote:
+> Hi Vali,
+>
+> I took a look into meta-cgl and I've builded with all master (lots of=20
+> warning) layers described in README file. Good initiative.
 
-git clonegit://git.yoctoproject.org/meta-qt3 
-<http://twiki.enea.se/twiki/bin/edit/Git://git/yoctoproject/org/Meta-qt3?topicparent=EETeng.EneaLinuxCGLBuildInstructions;nowysiwyg=0>
-git clonegit://git.yoctoproject.org/meta-virtualization 
-<http://twiki.enea.se/twiki/bin/edit/Git://git/yoctoproject/org/Meta-virtualization?topicparent=EETeng.EneaLinuxCGLBuildInstructions;nowysiwyg=0>
-git clonegit://git.yoctoproject.org/meta-selinux 
-<http://twiki.enea.se/twiki/bin/edit/Git://git/yoctoproject/org/Meta-selinux?topicparent=EETeng.EneaLinuxCGLBuildInstructions;nowysiwyg=0>
-git clonegit://git.yoctoproject.org/meta-cloud-services 
-<http://twiki.enea.se/twiki/bin/edit/Git://git/yoctoproject/org/Meta-cloud-services?topicparent=EETeng.EneaLinuxCGLBuildInstructions;nowysiwyg=0>
-git clonegit://git.yoctoproject.org/meta-security 
-<http://twiki.enea.se/twiki/bin/edit/Git://git/yoctoproject/org/Meta-security?topicparent=EETeng.EneaLinuxCGLBuildInstructions;nowysiwyg=0>
-git clonehttps://github.com/joaohf/meta-openclovis.git
+The warnings will be addressed in the upcoming changes. The current=20
+state is only the first showcase, an alpha version if you want to call=20
+it this way.
 
-Also, since there are duplicated recipes in these layers, please add the 
-following BBMASK in cong/local.conf  (big thank you to Alex Vaduva for 
-this):
+>
+> I noted that in README file you mention about 'meta-openclovis'. I=20
+> believed that you got openipmi recipe from meta-openclovis, because
+> meta-cgl has a .bbappend to it. Am I right?
 
-BBMASK = 
-"meta-cloud-services/meta-openstack/recipes-support/lvm2|meta-security/recipes-security/libcap-ng"
+Yes you are right.
 
+>
+> Indeed meta-openclovis has three recipes that could stay in meta-cgl:=20
+> openhpi, openhpi-subagent and openipmi.
 
-Let me know how the test goes Deigo.
+All these are mapped based on our investigation towards few CGL=20
+compliance requirements.
+
+>
+> What about the quality of recipes that meta-cgl will use from others=20
+> layers? For instance the patchs/stable code release/features in=20
+> net-snmp recipe
+> is aligned with CGL requirements? My concern is about the scope and=20
+> stability of meta-cgl.
+
+Again, right now we only shown by this layer, in the current state, a=20
+direction for what we think could be used in order to start any the CGL=20
+compliance for Yocto Project based Linux distros.
 
 
 Best regards,
 Vali
 
-On 04/11/2014 12:35 AM, Diego Sueiro wrote:
 >
-> Vali,
+> Thanks.
 >
-> I'm excited to see CGL support for Yocto.
-> I'm going to test this layer as soon as possible.
+> PS:
 >
-> One question, which branch of Yocto is it based on?
->
-> Regards,
->
-> --
-> *dS
-> Diego Sueiro
-> sent from mobile.
->
-> On Apr 9, 2014 11:05 AM, "Vali Cobelea" <valentin.cobelea@enea.com 
-> <mailto:valentin.cobelea@enea.com>> wrote:
->
->     OK Paul, that indeed makes sense, I really did not knew that
->     preliminary versions of layers are accepted.
->     I will discuss around here and if everything goes OK we will start
->     the move in the "public" layer index.
->     I also do agree with an all-together strategy, no matter for the
->     layer state.
->
->
->     Much appreciated,
->     Vali
->
->
->     On 04/09/2014 02:01 PM, Paul Eggleton wrote:
->
->         On Wednesday 09 April 2014 13:55:47 Vali Cobelea wrote:
->
->             On 04/09/2014 01:51 PM, Paul Eggleton wrote:
->
->                 On Tuesday 08 April 2014 18:34:08 Vali Cobelea wrote:
->
->                     Here at ENEA we decided to take the initiative
->                     regarding the CGL
->                     compliance when it comes to the Yocto Project.
->                     For this we started the work on a dedicated layer
->                     called 'meta-cgl'
->
->                     which can be accessed / cloned from here:
->                     http://git.enea.com/git/?p=linux/meta-cgl.git
->                         git clone git@git.enea.com:linux/meta-cgl
->
->                     Have a look of the things we got there so far,
->                     please remember that
->                     there is still plenty of work to be done (layer
->                     architecture, CGL
->                     requirements coverage mode and so on).
->                     It is a little bit more than a stub layer,
->                     consider it a starting point
->                     for the direction we would like to have with this
->                     layer.
->
->                     Any input is much appreciated, lets keep the
->                     discussion by this email
->                     thread and see where it goes.
->
->                 I don't have anything to offer on the layer contents,
->                 but I would say in
->                 order to make it easy for people to find this layer I
->                 would strongly
->                 encourage you to>
->                 submit it to the OpenEmbedded layer index:
->                 http://layers.openembedded.org/layerindex/submit/
->
->             Thank you for the input.
->             We will keep the layer for a short period of time at the
->             current
->             location while getting other ideas regarding the content /
->             architecture.
->             The layer initiative will also be raised up in the board
->             advisory
->             meeting, in order to get even more input.
->             After which we will make it easier to find, access and use
->             for anyone,
->             exactly as you suggested.
->
->         OK, as the maintainer it's totally up to you.
->
->         I would say though generally that I'd like to see more people
->         adding their
->         work-in-progress layers to the layer index, even if at some
->         time later they
->         will be moved elsewhere or absorbed into another layer - it
->         just makes it
->         easier to point people to the layer index so they can find
->         recipes that have
->         already been written, rather than having to re-write them from
->         scratch.
->
->         Cheers,
->         Paul
->
->
->     -- 
->     _______________________________________________
->     yocto mailing list
->     yocto@yoctoproject.org <mailto:yocto@yoctoproject.org>
->     https://lists.yoctoproject.org/listinfo/yocto
+> Build Configuration:
+> BB_VERSION        =3D "1.23.0"
+> BUILD_SYS         =3D "x86_64-linux"
+> NATIVELSBSTRING   =3D "Ubuntu-13.10"
+> TARGET_SYS        =3D "i586-poky-linux"
+> MACHINE           =3D "qemux86"
+> DISTRO            =3D "poky"
+> DISTRO_VERSION    =3D "1.6+snapshot-20140411"
+> TUNE_FEATURES     =3D "m32 i586"
+> TARGET_FPU        =3D ""
+> meta              =3D "master:863cc7483f5ee43189537940de8ee5c0964d24cc"
+> meta-cgl          =3D "master:63a890e8513ff50279a1ce53e45a0394fd05b2b6"
+> meta-qt3          =3D "master:3016129d90b7ac8517a5227d819f10ad417b5b45"
+> meta-networking
+> meta-filesystems
+> meta-oe
+> meta-perl         =3D "master:477ccd867cc71f8277f2670b7be34b3b15300052"
+> meta-yocto
+> meta-yocto-bsp    =3D "master:863cc7483f5ee43189537940de8ee5c0964d24cc"
+> meta-virtualization =3D "master:7544bfb6ec7efd283e7e7ff712e91452fdffb534"
+> meta-openclovis   =3D "master:68f9a9c4ab01590d63506126660e3316ba668f99"
+> meta-selinux      =3D "master:0362287928bc0a58b755488ebd74441c28eeeee2"
+> meta-security     =3D "master:7e8c7918d9ff8fc89579502cc136e37deecdfd96"
+> meta-openstack    =3D "master:940e7d24c418a9cbb93850c31d00e4f1edeaf764"
 >
 
 
---------------040708040705000806020904
-Content-Type: text/html; charset="ISO-8859-1"
-Content-Transfer-Encoding: 7bit
-
-<html>
-  <head>
-    <meta content="text/html; charset=ISO-8859-1"
-      http-equiv="Content-Type">
-  </head>
-  <body text="#000000" bgcolor="#FFFFFF">
-    <div class="moz-cite-prefix">Hi Diego,<br>
-      <br>
-      Thank you for your interest in the meta-cgl layer.<br>
-      Please be aware that the layer is in its alpha state, as I said an
-      initiative that started with a layer.<br>
-      <br>
-      The branch is 'master', no custom things yet.<br>
-      Below you can find the instructions to clone all of the
-      "dependency layers":<br>
-      <br>
-      <meta http-equiv="content-type" content="text/html;
-        charset=ISO-8859-1">
-      <span style="color: rgb(0, 0, 0); font-family: arial, verdana,
-        sans-serif; font-size: 14px; font-style: normal; font-variant:
-        normal; font-weight: normal; letter-spacing: normal;
-        line-height: 20.474998474121094px; orphans: auto; text-align:
-        left; text-indent: 0px; text-transform: none; white-space:
-        normal; widows: auto; word-spacing: 0px;
-        -webkit-text-stroke-width: 0px; background-color: rgb(255, 255,
-        255); display: inline !important; float: none;">git clone<span
-          class="Apple-converted-space">&nbsp;</span></span><span
-        class="twikiNewLink" style="color: rgb(0, 0, 0); font-family:
-        arial, verdana, sans-serif; font-size: 14px; font-style: normal;
-        font-variant: normal; font-weight: normal; letter-spacing:
-        normal; line-height: 20.474998474121094px; orphans: auto;
-        text-align: left; text-indent: 0px; text-transform: none;
-        white-space: normal; widows: auto; word-spacing: 0px;
-        -webkit-text-stroke-width: 0px; background-color: rgb(255, 255,
-        255);"><a
-href="http://twiki.enea.se/twiki/bin/edit/Git://git/yoctoproject/org/Meta-qt3?topicparent=EETeng.EneaLinuxCGLBuildInstructions;nowysiwyg=0"
-          rel="nofollow" title="git://git.yoctoproject.org/meta-qt3
-          (this topic does not yet exist; you can create it)"
-          style="text-decoration: none; color: rgb(183, 53, 30);
-          background-color: transparent; border-color: rgb(183, 53, 30);
-          border-style: none none dotted; border-width: 1px;">git://git.yoctoproject.org/meta-qt3</a></span><span
-        style="color: rgb(0, 0, 0); font-family: arial, verdana,
-        sans-serif; font-size: 14px; font-style: normal; font-variant:
-        normal; font-weight: normal; letter-spacing: normal;
-        line-height: 20.474998474121094px; orphans: auto; text-align:
-        left; text-indent: 0px; text-transform: none; white-space:
-        normal; widows: auto; word-spacing: 0px;
-        -webkit-text-stroke-width: 0px; background-color: rgb(255, 255,
-        255); display: inline !important; float: none;"><span
-          class="Apple-converted-space">&nbsp;</span></span><br style="color:
-        rgb(0, 0, 0); font-family: arial, verdana, sans-serif;
-        font-size: 14px; font-style: normal; font-variant: normal;
-        font-weight: normal; letter-spacing: normal; line-height:
-        20.474998474121094px; orphans: auto; text-align: left;
-        text-indent: 0px; text-transform: none; white-space: normal;
-        widows: auto; word-spacing: 0px; -webkit-text-stroke-width: 0px;
-        background-color: rgb(255, 255, 255);">
-      <span style="color: rgb(0, 0, 0); font-family: arial, verdana,
-        sans-serif; font-size: 14px; font-style: normal; font-variant:
-        normal; font-weight: normal; letter-spacing: normal;
-        line-height: 20.474998474121094px; orphans: auto; text-align:
-        left; text-indent: 0px; text-transform: none; white-space:
-        normal; widows: auto; word-spacing: 0px;
-        -webkit-text-stroke-width: 0px; background-color: rgb(255, 255,
-        255); display: inline !important; float: none;">git clone<span
-          class="Apple-converted-space">&nbsp;</span></span><span
-        class="twikiNewLink" style="color: rgb(0, 0, 0); font-family:
-        arial, verdana, sans-serif; font-size: 14px; font-style: normal;
-        font-variant: normal; font-weight: normal; letter-spacing:
-        normal; line-height: 20.474998474121094px; orphans: auto;
-        text-align: left; text-indent: 0px; text-transform: none;
-        white-space: normal; widows: auto; word-spacing: 0px;
-        -webkit-text-stroke-width: 0px; background-color: rgb(255, 255,
-        255);"><a
-href="http://twiki.enea.se/twiki/bin/edit/Git://git/yoctoproject/org/Meta-virtualization?topicparent=EETeng.EneaLinuxCGLBuildInstructions;nowysiwyg=0"
-          rel="nofollow"
-          title="git://git.yoctoproject.org/meta-virtualization (this
-          topic does not yet exist; you can create it)"
-          style="text-decoration: none; color: rgb(183, 53, 30);
-          background-color: transparent; border-color: rgb(183, 53, 30);
-          border-style: none none dotted; border-width: 1px;">git://git.yoctoproject.org/meta-virtualization</a></span><span
-        style="color: rgb(0, 0, 0); font-family: arial, verdana,
-        sans-serif; font-size: 14px; font-style: normal; font-variant:
-        normal; font-weight: normal; letter-spacing: normal;
-        line-height: 20.474998474121094px; orphans: auto; text-align:
-        left; text-indent: 0px; text-transform: none; white-space:
-        normal; widows: auto; word-spacing: 0px;
-        -webkit-text-stroke-width: 0px; background-color: rgb(255, 255,
-        255); display: inline !important; float: none;"><span
-          class="Apple-converted-space">&nbsp;</span></span><br style="color:
-        rgb(0, 0, 0); font-family: arial, verdana, sans-serif;
-        font-size: 14px; font-style: normal; font-variant: normal;
-        font-weight: normal; letter-spacing: normal; line-height:
-        20.474998474121094px; orphans: auto; text-align: left;
-        text-indent: 0px; text-transform: none; white-space: normal;
-        widows: auto; word-spacing: 0px; -webkit-text-stroke-width: 0px;
-        background-color: rgb(255, 255, 255);">
-      <span style="color: rgb(0, 0, 0); font-family: arial, verdana,
-        sans-serif; font-size: 14px; font-style: normal; font-variant:
-        normal; font-weight: normal; letter-spacing: normal;
-        line-height: 20.474998474121094px; orphans: auto; text-align:
-        left; text-indent: 0px; text-transform: none; white-space:
-        normal; widows: auto; word-spacing: 0px;
-        -webkit-text-stroke-width: 0px; background-color: rgb(255, 255,
-        255); display: inline !important; float: none;">git clone<span
-          class="Apple-converted-space">&nbsp;</span></span><span
-        class="twikiNewLink" style="color: rgb(0, 0, 0); font-family:
-        arial, verdana, sans-serif; font-size: 14px; font-style: normal;
-        font-variant: normal; font-weight: normal; letter-spacing:
-        normal; line-height: 20.474998474121094px; orphans: auto;
-        text-align: left; text-indent: 0px; text-transform: none;
-        white-space: normal; widows: auto; word-spacing: 0px;
-        -webkit-text-stroke-width: 0px; background-color: rgb(255, 255,
-        255);"><a
-href="http://twiki.enea.se/twiki/bin/edit/Git://git/yoctoproject/org/Meta-selinux?topicparent=EETeng.EneaLinuxCGLBuildInstructions;nowysiwyg=0"
-          rel="nofollow" title="git://git.yoctoproject.org/meta-selinux
-          (this topic does not yet exist; you can create it)"
-          style="text-decoration: none; color: rgb(183, 53, 30);
-          background-color: transparent; border-color: rgb(183, 53, 30);
-          border-style: none none dotted; border-width: 1px;">git://git.yoctoproject.org/meta-selinux</a></span><span
-        style="color: rgb(0, 0, 0); font-family: arial, verdana,
-        sans-serif; font-size: 14px; font-style: normal; font-variant:
-        normal; font-weight: normal; letter-spacing: normal;
-        line-height: 20.474998474121094px; orphans: auto; text-align:
-        left; text-indent: 0px; text-transform: none; white-space:
-        normal; widows: auto; word-spacing: 0px;
-        -webkit-text-stroke-width: 0px; background-color: rgb(255, 255,
-        255); display: inline !important; float: none;"><span
-          class="Apple-converted-space">&nbsp;</span></span><br style="color:
-        rgb(0, 0, 0); font-family: arial, verdana, sans-serif;
-        font-size: 14px; font-style: normal; font-variant: normal;
-        font-weight: normal; letter-spacing: normal; line-height:
-        20.474998474121094px; orphans: auto; text-align: left;
-        text-indent: 0px; text-transform: none; white-space: normal;
-        widows: auto; word-spacing: 0px; -webkit-text-stroke-width: 0px;
-        background-color: rgb(255, 255, 255);">
-      <span style="color: rgb(0, 0, 0); font-family: arial, verdana,
-        sans-serif; font-size: 14px; font-style: normal; font-variant:
-        normal; font-weight: normal; letter-spacing: normal;
-        line-height: 20.474998474121094px; orphans: auto; text-align:
-        left; text-indent: 0px; text-transform: none; white-space:
-        normal; widows: auto; word-spacing: 0px;
-        -webkit-text-stroke-width: 0px; background-color: rgb(255, 255,
-        255); display: inline !important; float: none;">git clone<span
-          class="Apple-converted-space">&nbsp;</span></span><span
-        class="twikiNewLink" style="color: rgb(0, 0, 0); font-family:
-        arial, verdana, sans-serif; font-size: 14px; font-style: normal;
-        font-variant: normal; font-weight: normal; letter-spacing:
-        normal; line-height: 20.474998474121094px; orphans: auto;
-        text-align: left; text-indent: 0px; text-transform: none;
-        white-space: normal; widows: auto; word-spacing: 0px;
-        -webkit-text-stroke-width: 0px; background-color: rgb(255, 255,
-        255);"><a
-href="http://twiki.enea.se/twiki/bin/edit/Git://git/yoctoproject/org/Meta-cloud-services?topicparent=EETeng.EneaLinuxCGLBuildInstructions;nowysiwyg=0"
-          rel="nofollow"
-          title="git://git.yoctoproject.org/meta-cloud-services (this
-          topic does not yet exist; you can create it)"
-          style="text-decoration: none; color: rgb(183, 53, 30);
-          background-color: transparent; border-color: rgb(183, 53, 30);
-          border-style: none none dotted; border-width: 1px;">git://git.yoctoproject.org/meta-cloud-services</a></span><span
-        style="color: rgb(0, 0, 0); font-family: arial, verdana,
-        sans-serif; font-size: 14px; font-style: normal; font-variant:
-        normal; font-weight: normal; letter-spacing: normal;
-        line-height: 20.474998474121094px; orphans: auto; text-align:
-        left; text-indent: 0px; text-transform: none; white-space:
-        normal; widows: auto; word-spacing: 0px;
-        -webkit-text-stroke-width: 0px; background-color: rgb(255, 255,
-        255); display: inline !important; float: none;"><span
-          class="Apple-converted-space">&nbsp;</span></span><br style="color:
-        rgb(0, 0, 0); font-family: arial, verdana, sans-serif;
-        font-size: 14px; font-style: normal; font-variant: normal;
-        font-weight: normal; letter-spacing: normal; line-height:
-        20.474998474121094px; orphans: auto; text-align: left;
-        text-indent: 0px; text-transform: none; white-space: normal;
-        widows: auto; word-spacing: 0px; -webkit-text-stroke-width: 0px;
-        background-color: rgb(255, 255, 255);">
-      <span style="color: rgb(0, 0, 0); font-family: arial, verdana,
-        sans-serif; font-size: 14px; font-style: normal; font-variant:
-        normal; font-weight: normal; letter-spacing: normal;
-        line-height: 20.474998474121094px; orphans: auto; text-align:
-        left; text-indent: 0px; text-transform: none; white-space:
-        normal; widows: auto; word-spacing: 0px;
-        -webkit-text-stroke-width: 0px; background-color: rgb(255, 255,
-        255); display: inline !important; float: none;">git clone<span
-          class="Apple-converted-space">&nbsp;</span></span><span
-        class="twikiNewLink" style="color: rgb(0, 0, 0); font-family:
-        arial, verdana, sans-serif; font-size: 14px; font-style: normal;
-        font-variant: normal; font-weight: normal; letter-spacing:
-        normal; line-height: 20.474998474121094px; orphans: auto;
-        text-align: left; text-indent: 0px; text-transform: none;
-        white-space: normal; widows: auto; word-spacing: 0px;
-        -webkit-text-stroke-width: 0px; background-color: rgb(255, 255,
-        255);"><a
-href="http://twiki.enea.se/twiki/bin/edit/Git://git/yoctoproject/org/Meta-security?topicparent=EETeng.EneaLinuxCGLBuildInstructions;nowysiwyg=0"
-          rel="nofollow" title="git://git.yoctoproject.org/meta-security
-          (this topic does not yet exist; you can create it)"
-          style="text-decoration: none; color: rgb(183, 53, 30);
-          background-color: transparent; border-color: rgb(183, 53, 30);
-          border-style: none none dotted; border-width: 1px;">git://git.yoctoproject.org/meta-security</a></span><span
-        style="color: rgb(0, 0, 0); font-family: arial, verdana,
-        sans-serif; font-size: 14px; font-style: normal; font-variant:
-        normal; font-weight: normal; letter-spacing: normal;
-        line-height: 20.474998474121094px; orphans: auto; text-align:
-        left; text-indent: 0px; text-transform: none; white-space:
-        normal; widows: auto; word-spacing: 0px;
-        -webkit-text-stroke-width: 0px; background-color: rgb(255, 255,
-        255); display: inline !important; float: none;"><span
-          class="Apple-converted-space">&nbsp;</span></span><br style="color:
-        rgb(0, 0, 0); font-family: arial, verdana, sans-serif;
-        font-size: 14px; font-style: normal; font-variant: normal;
-        font-weight: normal; letter-spacing: normal; line-height:
-        20.474998474121094px; orphans: auto; text-align: left;
-        text-indent: 0px; text-transform: none; white-space: normal;
-        widows: auto; word-spacing: 0px; -webkit-text-stroke-width: 0px;
-        background-color: rgb(255, 255, 255);">
-      <span style="color: rgb(0, 0, 0); font-family: arial, verdana,
-        sans-serif; font-size: 14px; font-style: normal; font-variant:
-        normal; font-weight: normal; letter-spacing: normal;
-        line-height: 20.474998474121094px; orphans: auto; text-align:
-        left; text-indent: 0px; text-transform: none; white-space:
-        normal; widows: auto; word-spacing: 0px;
-        -webkit-text-stroke-width: 0px; background-color: rgb(255, 255,
-        255); display: inline !important; float: none;">git clone<span
-          class="Apple-converted-space">&nbsp;</span></span><a
-        href="https://github.com/joaohf/meta-openclovis.git"
-        target="_top" style="text-decoration: none; color: rgb(88, 67,
-        139); background-color: rgb(255, 255, 255); border-color:
-        rgb(88, 67, 139); border-style: none none dotted; border-width:
-        1px; font-family: arial, verdana, sans-serif; font-size: 14px;
-        font-style: normal; font-variant: normal; font-weight: normal;
-        letter-spacing: normal; line-height: 20.474998474121094px;
-        orphans: auto; text-align: left; text-indent: 0px;
-        text-transform: none; white-space: normal; widows: auto;
-        word-spacing: 0px; -webkit-text-stroke-width: 0px;">https://github.com/joaohf/meta-openclovis.git</a><span
-        style="color: rgb(0, 0, 0); font-family: arial, verdana,
-        sans-serif; font-size: 14px; font-style: normal; font-variant:
-        normal; font-weight: normal; letter-spacing: normal;
-        line-height: 20.474998474121094px; orphans: auto; text-align:
-        left; text-indent: 0px; text-transform: none; white-space:
-        normal; widows: auto; word-spacing: 0px;
-        -webkit-text-stroke-width: 0px; background-color: rgb(255, 255,
-        255); display: inline !important; float: none;"><span
-          class="Apple-converted-space"> </span></span><br>
-      <br>
-      Also, since there are duplicated recipes in these layers, please
-      add the following BBMASK in cong/local.conf&nbsp; (big thank you to
-      Alex Vaduva for this):<br>
-      <br>
-      BBMASK =
-"meta-cloud-services/meta-openstack/recipes-support/lvm2|meta-security/recipes-security/libcap-ng"<br>
-      <br>
-      <br>
-      Let me know how the test goes Deigo.<br>
-      <br>
-      <br>
-      Best regards,<br>
-      Vali<br>
-      <br>
-      On 04/11/2014 12:35 AM, Diego Sueiro wrote:<br>
-    </div>
-    <blockquote
-cite="mid:CAMCfZKG4BdGfkwa-uhoLUe8m7PKc_NUC=ciDi2GXCsCqDmmi+Q@mail.gmail.com"
-      type="cite">
-      <meta http-equiv="Content-Type" content="text/html;
-        charset=ISO-8859-1">
-      <p dir="ltr">Vali, </p>
-      <p dir="ltr">I'm excited to see CGL support for Yocto. <br>
-        I'm going to test this layer as soon as possible. </p>
-      <p dir="ltr">One question, which branch of Yocto is it based on? </p>
-      <p dir="ltr">Regards, </p>
-      <p dir="ltr">--<br>
-        *dS<br>
-        Diego Sueiro<br>
-        sent from mobile. </p>
-      <div class="gmail_quote">On Apr 9, 2014 11:05 AM, "Vali Cobelea"
-        &lt;<a moz-do-not-send="true"
-          href="mailto:valentin.cobelea@enea.com">valentin.cobelea@enea.com</a>&gt;
-        wrote:<br type="attribution">
-        <blockquote class="gmail_quote" style="margin:0 0 0
-          .8ex;border-left:1px #ccc solid;padding-left:1ex">
-          OK Paul, that indeed makes sense, I really did not knew that
-          preliminary versions of layers are accepted.<br>
-          I will discuss around here and if everything goes OK we will
-          start the move in the "public" layer index.<br>
-          I also do agree with an all-together strategy, no matter for
-          the layer state.<br>
-          <br>
-          <br>
-          Much appreciated,<br>
-          Vali<br>
-          <br>
-          <br>
-          On 04/09/2014 02:01 PM, Paul Eggleton wrote:<br>
-          <blockquote class="gmail_quote" style="margin:0 0 0
-            .8ex;border-left:1px #ccc solid;padding-left:1ex">
-            On Wednesday 09 April 2014 13:55:47 Vali Cobelea wrote:<br>
-            <blockquote class="gmail_quote" style="margin:0 0 0
-              .8ex;border-left:1px #ccc solid;padding-left:1ex">
-              On 04/09/2014 01:51 PM, Paul Eggleton wrote:<br>
-              <blockquote class="gmail_quote" style="margin:0 0 0
-                .8ex;border-left:1px #ccc solid;padding-left:1ex">
-                On Tuesday 08 April 2014 18:34:08 Vali Cobelea wrote:<br>
-                <blockquote class="gmail_quote" style="margin:0 0 0
-                  .8ex;border-left:1px #ccc solid;padding-left:1ex">
-                  Here at ENEA we decided to take the initiative
-                  regarding the CGL<br>
-                  compliance when it comes to the Yocto Project.<br>
-                  For this we started the work on a dedicated layer
-                  called 'meta-cgl'<br>
-                  <br>
-                  which can be accessed / cloned from here:<br>
-                  &nbsp; &nbsp; <a moz-do-not-send="true"
-                    href="http://git.enea.com/git/?p=linux/meta-cgl.git"
-                    target="_blank">http://git.enea.com/git/?p=linux/meta-cgl.git</a><br>
-                  &nbsp; &nbsp; git clone <a class="moz-txt-link-abbreviated" href="mailto:git@git.enea.com:linux/meta-cgl">git@git.enea.com:linux/meta-cgl</a><br>
-                  <br>
-                  Have a look of the things we got there so far, please
-                  remember that<br>
-                  there is still plenty of work to be done (layer
-                  architecture, CGL<br>
-                  requirements coverage mode and so on).<br>
-                  It is a little bit more than a stub layer, consider it
-                  a starting point<br>
-                  for the direction we would like to have with this
-                  layer.<br>
-                  <br>
-                  Any input is much appreciated, lets keep the
-                  discussion by this email<br>
-                  thread and see where it goes.<br>
-                </blockquote>
-                I don't have anything to offer on the layer contents,
-                but I would say in<br>
-                order to make it easy for people to find this layer I
-                would strongly<br>
-                encourage you to&gt;<br>
-                submit it to the OpenEmbedded layer index:<br>
-                &nbsp; &nbsp; <a moz-do-not-send="true"
-                  href="http://layers.openembedded.org/layerindex/submit/"
-                  target="_blank">http://layers.openembedded.org/layerindex/submit/</a><br>
-              </blockquote>
-              Thank you for the input.<br>
-              We will keep the layer for a short period of time at the
-              current<br>
-              location while getting other ideas regarding the content /
-              architecture.<br>
-              The layer initiative will also be raised up in the board
-              advisory<br>
-              meeting, in order to get even more input.<br>
-              After which we will make it easier to find, access and use
-              for anyone,<br>
-              exactly as you suggested.<br>
-            </blockquote>
-            OK, as the maintainer it's totally up to you.<br>
-            <br>
-            I would say though generally that I'd like to see more
-            people adding their<br>
-            work-in-progress layers to the layer index, even if at some
-            time later they<br>
-            will be moved elsewhere or absorbed into another layer - it
-            just makes it<br>
-            easier to point people to the layer index so they can find
-            recipes that have<br>
-            already been written, rather than having to re-write them
-            from scratch.<br>
-            <br>
-            Cheers,<br>
-            Paul<br>
-            <br>
-          </blockquote>
-          <br>
-          -- <br>
-          _______________________________________________<br>
-          yocto mailing list<br>
-          <a moz-do-not-send="true" href="mailto:yocto@yoctoproject.org"
-            target="_blank">yocto@yoctoproject.org</a><br>
-          <a moz-do-not-send="true"
-            href="https://lists.yoctoproject.org/listinfo/yocto"
-            target="_blank">https://lists.yoctoproject.org/listinfo/yocto</a><br>
-        </blockquote>
-      </div>
-    </blockquote>
-    <br>
-  </body>
-</html>
-
---------------040708040705000806020904--
