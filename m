@@ -1,22 +1,25 @@
-Return-Path: <sgh@sgh.dk>
-Received: from mx-aarh-1.stofanet.dk (mx-aarh-1.stofanet.dk [212.10.10.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4B83FE00CEE
-	for <yocto@yoctoproject.org>; Fri, 11 Apr 2014 09:15:24 -0700 (PDT)
-Received: from 5634f347.rev.stofanet.dk ([86.52.243.71] helo=asrock)
-	by mx-aarh-1.stofanet.dk (envelope-from <sgh@sgh.dk>)
-	with esmtp id 1WYe6r-0003VE-1R; Fri, 11 Apr 2014 18:15:21 +0200
-Received: from koontz.localnet (localhost [127.0.0.1])
-	by asrock (Postfix) with ESMTPS id 207BF7F197;
-	Fri, 11 Apr 2014 18:15:21 +0200 (CEST)
-From: =?ISO-8859-1?Q?S=F8ren?= Holm <sgh@sgh.dk>
-To: Bruce Ashfield <bruce.ashfield@windriver.com>
-Date: Fri, 11 Apr 2014 18:15:20 +0200
-Message-ID: <3478732.Agy1Jcga6F@koontz>
-User-Agent: KMail/4.13 (Linux/3.13.0-23-lowlatency; KDE/4.13.0; i686; ; )
-In-Reply-To: <5348091A.9070500@windriver.com>
-References: <2489555.PeAzndN2bA@koontz> <2327870.6kBY9rsEeq@koontz>
-	<5348091A.9070500@windriver.com>
+Return-Path: <Bruce.Ashfield@windriver.com>
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D8EB9E00CFB
+	for <yocto@yoctoproject.org>; Fri, 11 Apr 2014 09:51:14 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
+	[147.11.189.40])
+	by mail.windriver.com (8.14.5/8.14.5) with ESMTP id s3BGp8XX002605
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
+	Fri, 11 Apr 2014 09:51:08 -0700 (PDT)
+Received: from [128.224.56.48] (128.224.56.48) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server id 14.3.169.1;
+	Fri, 11 Apr 2014 09:51:08 -0700
+Message-ID: <53481D75.8070306@windriver.com>
+Date: Fri, 11 Apr 2014 12:51:01 -0400
+From: Bruce Ashfield <bruce.ashfield@windriver.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:24.0) Gecko/20100101 Thunderbird/24.4.0
 MIME-Version: 1.0
+To: =?ISO-8859-1?Q?S=F8ren_Holm?= <sgh@sgh.dk>
+References: <2489555.PeAzndN2bA@koontz> <2327870.6kBY9rsEeq@koontz>
+	<5348091A.9070500@windriver.com> <3478732.Agy1Jcga6F@koontz>
+In-Reply-To: <3478732.Agy1Jcga6F@koontz>
 Cc: yocto@yoctoproject.org
 Subject: Re: defconfig on daisy
 X-BeenThere: yocto@yoctoproject.org
@@ -30,43 +33,46 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 11 Apr 2014 16:15:27 -0000
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"
+X-List-Received-Date: Fri, 11 Apr 2014 16:51:15 -0000
+Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
+Content-Transfer-Encoding: 8bit
 
-Ok
+On 14-04-11 12:15 PM, Søren Holm wrote:
+> Ok
+>
+> Using the *exact* same bbappend file for both 3.10 and 3.14 gives me a correct
+> -config for 3.10 but not for 3.14. Both 3.10/defconfig and 3.14/defconfig
+> contains my original defconfig, so it is picked up and should be taken into
+> account.
 
-Using the *exact* same bbappend file for both 3.10 and 3.14 gives me a =
-correct=20
--config for 3.10 but not for 3.14. Both 3.10/defconfig and 3.14/defconf=
-ig=20
-contains my original defconfig, so it is picked up and should be taken =
-into=20
-account.=20
+This is a slightly different problem .. I can see that I managed to
+drop a patch which links AUFS into the build. Hence why everything
+is dropped.
 
-Fredag den 11. april 2014 11:24:10 skrev Bruce Ashfield:
-> On 14-04-11 11:21 AM, S=F8ren Holm wrote:
-> > Hi Bruce
-> >=20
-> > I just realized that I gave you the wrong files. I migrate to dora,=
- so
-> > 3.14 is my kernel I'm building. I gave you the dora-files - doh!. I=
-'ll
-> > check if 3.10 works because it does for you on daisy and for me on =
-dora.
->=20
-> No worries. I just forced the kernel version to 3.10 to test. If you
-> want to send the 3.14 ones, I can double check there as well.
->=20
-> Bruce
->=20
-> > Fredag den 11. april 2014 11:05:44 skrev Bruce Ashfield:
-> >> On 14-04-11 11:03 AM, S=F8ren Holm wrote:
-> >>> Hi Bruce
-> >>>=20
-> >>> I just check if AUFS is enabled. It should be since that's in my
-> >>> defconfig.
+I'm fixing that right now in 3.14, and will send updates later.
 
---=20
-S=F8ren Holm
+Bruce
+
+>
+> Fredag den 11. april 2014 11:24:10 skrev Bruce Ashfield:
+>> On 14-04-11 11:21 AM, Søren Holm wrote:
+>>> Hi Bruce
+>>>
+>>> I just realized that I gave you the wrong files. I migrate to dora, so
+>>> 3.14 is my kernel I'm building. I gave you the dora-files - doh!. I'll
+>>> check if 3.10 works because it does for you on daisy and for me on dora.
+>>
+>> No worries. I just forced the kernel version to 3.10 to test. If you
+>> want to send the 3.14 ones, I can double check there as well.
+>>
+>> Bruce
+>>
+>>> Fredag den 11. april 2014 11:05:44 skrev Bruce Ashfield:
+>>>> On 14-04-11 11:03 AM, Søren Holm wrote:
+>>>>> Hi Bruce
+>>>>>
+>>>>> I just check if AUFS is enabled. It should be since that's in my
+>>>>> defconfig.
+>
+
 
