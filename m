@@ -1,33 +1,27 @@
-Return-Path: <Alexandru.Vaduva@enea.com>
-Received: from mx-3.enea.com (sestofw01.enea.se [192.36.1.252])
-	by yocto-www.yoctoproject.org (Postfix) with SMTP id 5809BE00CE9
-	for <yocto@yoctoproject.org>; Fri, 11 Apr 2014 06:38:57 -0700 (PDT)
-Received: from SESTOEX05.enea.se ([fe80::41cb:8d2e:2e90:a183]) by
-	SESTOEX03.enea.se ([fe80::6ce7:7b51:1edf:e245%17]) with mapi id
-	14.03.0158.001; Fri, 11 Apr 2014 15:38:50 +0200
-From: Alexandru Vaduva <Alexandru.Vaduva@enea.com>
-To: Bruce Ashfield <bruce.ashfield@windriver.com>, Valentin Cobelea
-	<Valentin.Cobelea@enea.com>, Diego Sueiro <diego.sueiro@gmail.com>
-Thread-Topic: [yocto] CGL compliance layer initiative
-Thread-Index: AQHPUz/83LYhBBz6x0m0vfcbs3JvypsI+2kAgAABFoCAAAGRAIAAATOAgAJCWwCAAJ5+AIAAX8+AgAAr/CA=
-Date: Fri, 11 Apr 2014 13:38:49 +0000
-Message-ID: <DDB0C57E45663A458C5CACB7B5688BC21D6538F0@sestoex05.enea.se>
-References: <534416F0.10109@enea.com>
-	<9507315.eLP4En45Q5@peggleto-mobl5.ger.corp.intel.com>
-	<53452733.2070806@enea.com>
-	<33266524.grSQoK8z6t@peggleto-mobl5.ger.corp.intel.com>
-	<53452985.7020202@enea.com>
-	<CAMCfZKG4BdGfkwa-uhoLUe8m7PKc_NUC=ciDi2GXCsCqDmmi+Q@mail.gmail.com>
-	<534793A2.2000603@enea.com> <5347E401.2050804@windriver.com>
-In-Reply-To: <5347E401.2050804@windriver.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [172.21.1.188]
+Return-Path: <Bruce.Ashfield@windriver.com>
+Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BDD77E00B6E
+	for <yocto@yoctoproject.org>; Fri, 11 Apr 2014 06:49:40 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
+	[147.11.189.40])
+	by mail1.windriver.com (8.14.5/8.14.5) with ESMTP id s3BDnak3015864
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
+	Fri, 11 Apr 2014 06:49:37 -0700 (PDT)
+Received: from [128.224.56.48] (128.224.56.48) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server id 14.3.169.1;
+	Fri, 11 Apr 2014 06:49:35 -0700
+Message-ID: <5347F2E9.208@windriver.com>
+Date: Fri, 11 Apr 2014 09:49:29 -0400
+From: Bruce Ashfield <bruce.ashfield@windriver.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:24.0) Gecko/20100101 Thunderbird/24.4.0
 MIME-Version: 1.0
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	Paul Eggleton <paul.eggleton@linux.intel.com>
-Subject: Re: CGL compliance layer initiative
+To: =?ISO-8859-1?Q?S=F8ren_Holm?= <sgh@sgh.dk>
+References: <2489555.PeAzndN2bA@koontz> <53476D43.6030900@windriver.com>
+	<2289397.7FZuMHCiSt@koontz>
+In-Reply-To: <2289397.7FZuMHCiSt@koontz>
+Cc: yocto@yoctoproject.org
+Subject: Re: defconfig on daisy
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,187 +33,34 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 11 Apr 2014 13:38:59 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Fri, 11 Apr 2014 13:49:42 -0000
+Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
+Content-Transfer-Encoding: 8bit
 
-Thanks Bruce good observation the BBMASK variable should be:
-BBMASK =3D "meta-security/recipes-security/libcap-ng"
-
-The "meta-cloud-services/meta-openstack/recipes-support/lvm2" was removed b=
-ecause=20
-the patch it applies was identic with the one meta-enea applies and it offe=
-red an error.=20
-Solved this with the last patch.
-
-
-Alex
-
------Original Message-----
-From: Bruce Ashfield [mailto:bruce.ashfield@windriver.com]=20
-Sent: Friday, April 11, 2014 3:46 PM
-To: Valentin Cobelea; Diego Sueiro
-Cc: yocto@yoctoproject.org; Alexandru Vaduva; Paul Eggleton
-Subject: Re: [yocto] CGL compliance layer initiative
-
-On 14-04-11 03:02 AM, Vali Cobelea wrote:
-> Hi Diego,
+On 14-04-11 03:39 AM, Søren Holm wrote:
+> Sure
 >
-> Thank you for your interest in the meta-cgl layer.
-> Please be aware that the layer is in its alpha state, as I said an=20
-> initiative that started with a layer.
+> I guess this is what you need :
 >
-> The branch is 'master', no custom things yet.
-> Below you can find the instructions to clone all of the "dependency layer=
-s":
+> http://sgh.dk/~sgh/cb16_kernel.tar.bz2
 >
-> git clonegit://git.yoctoproject.org/meta-qt3
-> <http://twiki.enea.se/twiki/bin/edit/Git://git/yoctoproject/org/Meta-q
-> t3?topicparent=3DEETeng.EneaLinuxCGLBuildInstructions;nowysiwyg=3D0>
-> git clonegit://git.yoctoproject.org/meta-virtualization
-> <http://twiki.enea.se/twiki/bin/edit/Git://git/yoctoproject/org/Meta-v
-> irtualization?topicparent=3DEETeng.EneaLinuxCGLBuildInstructions;nowysiw
-> yg=3D0> git clonegit://git.yoctoproject.org/meta-selinux
-> <http://twiki.enea.se/twiki/bin/edit/Git://git/yoctoproject/org/Meta-s
-> elinux?topicparent=3DEETeng.EneaLinuxCGLBuildInstructions;nowysiwyg=3D0>
-> git clonegit://git.yoctoproject.org/meta-cloud-services
-> <http://twiki.enea.se/twiki/bin/edit/Git://git/yoctoproject/org/Meta-c
-> loud-services?topicparent=3DEETeng.EneaLinuxCGLBuildInstructions;nowysiw
-> yg=3D0> git clonegit://git.yoctoproject.org/meta-security
-> <http://twiki.enea.se/twiki/bin/edit/Git://git/yoctoproject/org/Meta-s
-> ecurity?topicparent=3DEETeng.EneaLinuxCGLBuildInstructions;nowysiwyg=3D0>
-> git clonehttps://github.com/joaohf/meta-openclovis.git
->
-> Also, since there are duplicated recipes in these layers, please add=20
-> the following BBMASK in cong/local.conf  (big thank you to Alex Vaduva=20
-> for
-> this):
->
-> BBMASK =3D
-> "meta-cloud-services/meta-openstack/recipes-support/lvm2|meta-security/re=
-cipes-security/libcap-ng"
->
+> It's just the machine-configuration and my append-file and defconfig.
 
-What exactly are you finding with lvm2 in meta-cloud-services ?
+replying again .. with the list this time.
+
+Great. I did a build here and I see the defconfig being applied. How
+were you determining that it wasn't happening ? I want to make sure
+I'm checking the same config options.
 
 Bruce
 
 >
-> Let me know how the test goes Deigo.
->
->
-> Best regards,
-> Vali
->
-> On 04/11/2014 12:35 AM, Diego Sueiro wrote:
+> Fredag den 11. april 2014 00:19:15 skrev Bruce Ashfield:
+>> Nothing has changed in this area, and it works here. Can you post
+>> your defconfig, and machine you are building somewhere so I can try
+>> it myself ?
 >>
->> Vali,
->>
->> I'm excited to see CGL support for Yocto.
->> I'm going to test this layer as soon as possible.
->>
->> One question, which branch of Yocto is it based on?
->>
->> Regards,
->>
->> --
->> *dS
->> Diego Sueiro
->> sent from mobile.
->>
->> On Apr 9, 2014 11:05 AM, "Vali Cobelea" <valentin.cobelea@enea.com=20
->> <mailto:valentin.cobelea@enea.com>> wrote:
->>
->>     OK Paul, that indeed makes sense, I really did not knew that
->>     preliminary versions of layers are accepted.
->>     I will discuss around here and if everything goes OK we will start
->>     the move in the "public" layer index.
->>     I also do agree with an all-together strategy, no matter for the
->>     layer state.
->>
->>
->>     Much appreciated,
->>     Vali
->>
->>
->>     On 04/09/2014 02:01 PM, Paul Eggleton wrote:
->>
->>         On Wednesday 09 April 2014 13:55:47 Vali Cobelea wrote:
->>
->>             On 04/09/2014 01:51 PM, Paul Eggleton wrote:
->>
->>                 On Tuesday 08 April 2014 18:34:08 Vali Cobelea wrote:
->>
->>                     Here at ENEA we decided to take the initiative
->>                     regarding the CGL
->>                     compliance when it comes to the Yocto Project.
->>                     For this we started the work on a dedicated layer
->>                     called 'meta-cgl'
->>
->>                     which can be accessed / cloned from here:
->>                     http://git.enea.com/git/?p=3Dlinux/meta-cgl.git
->>                         git clone git@git.enea.com:linux/meta-cgl
->>
->>                     Have a look of the things we got there so far,
->>                     please remember that
->>                     there is still plenty of work to be done (layer
->>                     architecture, CGL
->>                     requirements coverage mode and so on).
->>                     It is a little bit more than a stub layer,
->>                     consider it a starting point
->>                     for the direction we would like to have with this
->>                     layer.
->>
->>                     Any input is much appreciated, lets keep the
->>                     discussion by this email
->>                     thread and see where it goes.
->>
->>                 I don't have anything to offer on the layer contents,
->>                 but I would say in
->>                 order to make it easy for people to find this layer I
->>                 would strongly
->>                 encourage you to>
->>                 submit it to the OpenEmbedded layer index:
->>                 http://layers.openembedded.org/layerindex/submit/
->>
->>             Thank you for the input.
->>             We will keep the layer for a short period of time at the
->>             current
->>             location while getting other ideas regarding the content /
->>             architecture.
->>             The layer initiative will also be raised up in the board
->>             advisory
->>             meeting, in order to get even more input.
->>             After which we will make it easier to find, access and use
->>             for anyone,
->>             exactly as you suggested.
->>
->>         OK, as the maintainer it's totally up to you.
->>
->>         I would say though generally that I'd like to see more people
->>         adding their
->>         work-in-progress layers to the layer index, even if at some
->>         time later they
->>         will be moved elsewhere or absorbed into another layer - it
->>         just makes it
->>         easier to point people to the layer index so they can find
->>         recipes that have
->>         already been written, rather than having to re-write them from
->>         scratch.
->>
->>         Cheers,
->>         Paul
->>
->>
->>     --
->>     _______________________________________________
->>     yocto mailing list
->>     yocto@yoctoproject.org <mailto:yocto@yoctoproject.org>
->>     https://lists.yoctoproject.org/listinfo/yocto
->>
->
->
+>> Bruce
 >
 
 
