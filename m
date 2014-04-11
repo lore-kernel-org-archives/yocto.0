@@ -1,27 +1,17 @@
-Return-Path: <Bruce.Ashfield@windriver.com>
-Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BDD77E00B6E
-	for <yocto@yoctoproject.org>; Fri, 11 Apr 2014 06:49:40 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail1.windriver.com (8.14.5/8.14.5) with ESMTP id s3BDnak3015864
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Fri, 11 Apr 2014 06:49:37 -0700 (PDT)
-Received: from [128.224.56.48] (128.224.56.48) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server id 14.3.169.1;
-	Fri, 11 Apr 2014 06:49:35 -0700
-Message-ID: <5347F2E9.208@windriver.com>
-Date: Fri, 11 Apr 2014 09:49:29 -0400
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:24.0) Gecko/20100101 Thunderbird/24.4.0
+Return-Path: <darcy.watkins@inmotiontechnology.com>
+Received: from sierrawireless.com (spf.sierrawireless.com [208.81.121.44])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C8FE3E00CED
+	for <yocto@yoctoproject.org>; Fri, 11 Apr 2014 07:52:18 -0700 (PDT)
+Received: from [192.168.3.163] (184.71.143.26) by
+	CARMD-EXCHHUB01.sierrawireless.local (10.0.6.2) with Microsoft SMTP
+	Server (TLS) id 8.3.348.2; Fri, 11 Apr 2014 07:52:17 -0700
+From: Darcy Watkins <darcy.watkins@inmotiontechnology.com>
+To: yocto <yocto@yoctoproject.org>
+Date: Fri, 11 Apr 2014 07:52:16 -0700
+Message-ID: <1397227936.27169.19.camel@kihei.inmotion.gotdns.com>
 MIME-Version: 1.0
-To: =?ISO-8859-1?Q?S=F8ren_Holm?= <sgh@sgh.dk>
-References: <2489555.PeAzndN2bA@koontz> <53476D43.6030900@windriver.com>
-	<2289397.7FZuMHCiSt@koontz>
-In-Reply-To: <2289397.7FZuMHCiSt@koontz>
-Cc: yocto@yoctoproject.org
-Subject: Re: defconfig on daisy
+X-Mailer: Evolution 2.28.3 (2.28.3-30.el6) 
+Subject: Yocto 1.6 Kernel Choices
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -33,34 +23,26 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 11 Apr 2014 13:49:42 -0000
-Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Fri, 11 Apr 2014 14:52:19 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
-On 14-04-11 03:39 AM, Søren Holm wrote:
-> Sure
->
-> I guess this is what you need :
->
-> http://sgh.dk/~sgh/cb16_kernel.tar.bz2
->
-> It's just the machine-configuration and my append-file and defconfig.
+Hi,
 
-replying again .. with the list this time.
+The current yocto 1.5 has kernel recipes for kernel 3.4, 3.8 and 3.10
+plus various BSP layers add their own variants (e.g. 3.0 for i.MX6 from
+Freescale).  I saw notes mentioning kernel 3.14 for the next release.
 
-Great. I did a build here and I see the defconfig being applied. How
-were you determining that it wasn't happening ? I want to make sure
-I'm checking the same config options.
+When I downloaded the M4 tarball for poky, I saw the recipes for 3.4,
+3.8 and 3.10 but didn't notice any others added.
 
-Bruce
+What are plans for supported kernels in yocto 1.6?  In particular the
+ones known as linux-yocto?
 
->
-> Fredag den 11. april 2014 00:19:15 skrev Bruce Ashfield:
->> Nothing has changed in this area, and it works here. Can you post
->> your defconfig, and machine you are building somewhere so I can try
->> it myself ?
->>
->> Bruce
->
+Thanks in advance.
+
+Regards,
+
+Darcy
 
 
