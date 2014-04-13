@@ -1,28 +1,26 @@
-Return-Path: <fede.vitali@gmail.com>
-Received: from mail-ob0-f179.google.com (mail-ob0-f179.google.com
-	[209.85.214.179])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D7344E00AB5
-	for <yocto@yoctoproject.org>; Sat, 12 Apr 2014 09:27:54 -0700 (PDT)
-Received: by mail-ob0-f179.google.com with SMTP id va2so7498399obc.10
-	for <yocto@yoctoproject.org>; Sat, 12 Apr 2014 09:27:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=gfgOT0QvWAMomkbCDmRWojtbTogz78fdb5D74dACQOE=;
-	b=AJELLkZJeoK1HYKpjIgHJC/6fkkT8rQEJjxmv7zHbBItrnIfdq3SQsWxoV++BpuALx
-	H9pMi0/WRY5Dy+NYgNbdOwXZ1v/q/tT34l0iTiLL6ACHTRzeksmLmQCukjYjQ8wD8vs9
-	tJwMO/lOYtqjqxwH5PWoYe6v+Bt17/amuJzTHzxHxiGMg2UH2DegovC6ScLv5AahpsoG
-	I946AI9fbzk9qpd0++k4UViqRzwuiQ0/08ltnHhTFn2Opi6fIhUQL/GDgRRzFU3BLLHA
-	cWGRmJqp3/BJPMbpZj+RhvCJG+5gzt8VwNxNTGkMIpF/v3nnraOzdJQY5oPvPB8FfBjR
-	UU7g==
+Return-Path: <gary@mlbassoc.com>
+Received: from mail.chez-thomas.org (mail.mlbassoc.com [65.100.170.105])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 42A7EE00B30
+	for <yocto@yoctoproject.org>; Sun, 13 Apr 2014 02:12:16 -0700 (PDT)
+Received: by mail.chez-thomas.org (Postfix, from userid 1998)
+	id B0779F811DB; Sun, 13 Apr 2014 03:12:14 -0600 (MDT)
+X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on
+	hermes.chez-thomas.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=4.0 tests=ALL_TRUSTED,BAYES_00
+	autolearn=unavailable version=3.3.2
+Received: from [192.168.1.114] (zeus [192.168.1.114])
+	by mail.chez-thomas.org (Postfix) with ESMTP id 4F21DF811D8;
+	Sun, 13 Apr 2014 03:12:13 -0600 (MDT)
+Message-ID: <534A54F0.5020203@mlbassoc.com>
+Date: Sun, 13 Apr 2014 03:12:16 -0600
+From: Gary Thomas <gary@mlbassoc.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:24.0) Gecko/20100101 Thunderbird/24.4.0
 MIME-Version: 1.0
-X-Received: by 10.60.51.69 with SMTP id i5mr24941470oeo.17.1397320074271; Sat,
-	12 Apr 2014 09:27:54 -0700 (PDT)
-Received: by 10.76.101.112 with HTTP; Sat, 12 Apr 2014 09:27:54 -0700 (PDT)
-Date: Sat, 12 Apr 2014 18:27:54 +0200
-Message-ID: <CAD78y+6HxrYWCyVh6xbGS=4MXB1WSBzQLSpBo2kKakJ8TZgghA@mail.gmail.com>
-From: Federico Vitali <fede.vitali@gmail.com>
-To: Yocto list discussion <yocto@yoctoproject.org>
-Subject: Question about remote debugging via gdbserver
+To: Yocto Project <yocto@yoctoproject.org>
+X-Enigmail-Version: 1.5.2
+Subject: BBB doesn't boot
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,53 +32,86 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 12 Apr 2014 16:27:56 -0000
-Content-Type: multipart/alternative; boundary=001a11c300deaa21a504f6daee40
-
---001a11c300deaa21a504f6daee40
+X-List-Received-Date: Sun, 13 Apr 2014 09:12:23 -0000
 Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: 7bit
 
-Hi everyone,
+I just tried building (core-image-sato) for my BeagleBoneBlack
+using the latest Poky/Yocto master:
 
-I'm wondering if it is possible to debug an installed library on the target
-via gdbserver.
-I try to explain: suppose that I'm developing an application using
-gstreamel libraries.
+Build Configuration:
+BB_VERSION        = "1.23.0"
+BUILD_SYS         = "i686-linux"
+NATIVELSBSTRING   = "Fedora-13"
+TARGET_SYS        = "arm-poky-linux-gnueabi"
+MACHINE           = "beaglebone"
+DISTRO            = "poky"
+DISTRO_VERSION    = "1.6+snapshot-20140411"
+TUNE_FEATURES     = "armv7a vfp neon callconvention-hard cortexa8"
+TARGET_FPU        = "vfp-neon"
+meta
+meta-yocto
+meta-yocto-bsp    = "master:863cc7483f5ee43189537940de8ee5c0964d24cc"
 
-I set up eclipse / gdb to work with my target on the network. When I reach
-a gst funciont
-(e.g. gst_init) I would like to jump into the line of code of gstreamer
-which implements
-that function. Is there a way to instruct eclipse to fetch symbols and
-sources from local filesystem,
-eg:
+This built the kernel using SRCREV 928d7b2dda
 
-symbols:
-/opt/poky/1.5.1/sysroots/armv6-vfp-poky-linux-gnueabi/usr/lib/.debug/libgstbase-0.10.so.0.30.0
-sources: /usr/src/debug/gstreamer/0.10.36-r2/gstreamer-0.10.36/
+I followed the bring-up instructions from README.hadware and the
+boot failed to even start the kernel.  Here's what I see:
 
+=============================== boot log =========================================
+U-Boot 2013.07 (Apr 11 2014 - 15:03:04)
 
-Thank you in advance!
+I2C:   ready
+DRAM:  512 MiB
+WARNING: Caches not enabled
+NAND:  0 MiB
+MMC:   OMAP SD/MMC: 0, OMAP SD/MMC: 1
+*** Warning - readenv() failed, using default environment
 
-Federico
+musb-hdrc: ConfigData=0xde (UTMI-8, dyn FIFOs, HB-ISO Rx, HB-ISO Tx, SoftConn)
+musb-hdrc: MHDRC RTL version 2.0
+musb-hdrc: setup fifo_mode 4
+musb-hdrc: 28/31 max ep, 16384/16384 memory
+USB Peripheral mode controller at 47401000 using PIO, IRQ 0
+musb-hdrc: ConfigData=0xde (UTMI-8, dyn FIFOs, HB-ISO Rx, HB-ISO Tx, SoftConn)
+musb-hdrc: MHDRC RTL version 2.0
+musb-hdrc: setup fifo_mode 4
+musb-hdrc: 28/31 max ep, 16384/16384 memory
+USB Host mode controller at 47401800 using PIO, IRQ 0
+Net:   <ethaddr> not set. Validating first E-fuse MAC
+Phy not found
+PHY reset timed out
+cpsw, usb_ether
+Hit any key to stop autoboot:  0
+mmc0 is current device
+SD/MMC found on device 0
+reading uEnv.txt
+** Unable to read file uEnv.txt **
+4981688 bytes read in 613 ms (7.7 MiB/s)
+29192 bytes read in 46 ms (619.1 KiB/s)
+Booting from mmc ...
+## Booting kernel from Legacy Image at 80200000 ...
+   Image Name:   Linux-3.14.0-yocto-standard
+   Image Type:   ARM Linux Kernel Image (uncompressed)
+   Data Size:    4981624 Bytes = 4.8 MiB
+   Load Address: 80008000
+   Entry Point:  80008000
+   Verifying Checksum ... OK
+## Flattened Device Tree blob at 80f80000
+   Booting using the fdt blob at 0x80f80000
+   Loading Kernel Image ... OK
+   Using Device Tree in place at 80f80000, end 80f8a207
 
---001a11c300deaa21a504f6daee40
-Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
+Starting kernel ...
+==================================================================================
 
-<div dir=3D"ltr">Hi everyone,<div><br></div><div>I&#39;m wondering if it is=
- possible to debug an installed library on the target via gdbserver.</div><=
-div>I try to explain: suppose that I&#39;m developing an application using =
-gstreamel libraries.</div>
-<div><br></div><div>I set up eclipse / gdb to work with my target on the ne=
-twork. When I reach a gst funciont</div><div>(e.g. gst_init) I would like t=
-o jump into the line of code of gstreamer which implements</div><div>that f=
-unction. Is there a way to instruct eclipse to fetch symbols and sources fr=
-om local filesystem,</div>
-<div>eg:</div><div><br></div><div>symbols: /opt/poky/1.5.1/sysroots/armv6-v=
-fp-poky-linux-gnueabi/usr/lib/.debug/libgstbase-0.10.so.0.30.0<br></div><di=
-v>sources:=A0/usr/src/debug/gstreamer/0.10.36-r2/gstreamer-0.10.36/</div>
-<div><br></div><div><br></div><div>Thank you in advance!</div><div><br></di=
-v><div>Federico</div><div><br></div></div>
+Any ideas what I've done wrong?
 
---001a11c300deaa21a504f6daee40--
+Thanks
+
+-- 
+------------------------------------------------------------
+Gary Thomas                 |  Consulting for the
+MLB Associates              |    Embedded world
+------------------------------------------------------------
+
