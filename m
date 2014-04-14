@@ -1,33 +1,29 @@
-Return-Path: <stefanx.stanacar@intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 26554E00B84
-	for <yocto@yoctoproject.org>; Mon, 14 Apr 2014 04:38:27 -0700 (PDT)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by orsmga101.jf.intel.com with ESMTP; 14 Apr 2014 04:38:26 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.97,856,1389772800"; d="scan'208";a="512598419"
-Received: from irsmsx102.ger.corp.intel.com ([163.33.3.155])
-	by fmsmga001.fm.intel.com with ESMTP; 14 Apr 2014 04:38:13 -0700
-Received: from irsmsx154.ger.corp.intel.com (163.33.192.96) by
-	IRSMSX102.ger.corp.intel.com (163.33.3.155) with Microsoft SMTP Server
-	(TLS) id 14.3.123.3; Mon, 14 Apr 2014 12:38:06 +0100
-Received: from irsmsx105.ger.corp.intel.com ([169.254.7.78]) by
-	IRSMSX154.ger.corp.intel.com ([163.33.192.96]) with mapi id
-	14.03.0123.003; Mon, 14 Apr 2014 12:38:06 +0100
-From: "Stanacar, StefanX" <stefanx.stanacar@intel.com>
-To: "gary@mlbassoc.com" <gary@mlbassoc.com>
-Thread-Topic: [yocto] BBB doesn't boot
-Thread-Index: AQHPVvi7U65QgTaRbkKYHPQsid6RTpsQ2+EAgAARggA=
-Date: Mon, 14 Apr 2014 11:38:06 +0000
-Message-ID: <1397475506.9306.10.camel@firebird.rb.intel.com>
-References: <534A54F0.5020203@mlbassoc.com>
-	<1397471746.9306.9.camel@firebird.rb.intel.com>
-In-Reply-To: <1397471746.9306.9.camel@firebird.rb.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.237.105.160]
+Return-Path: <gary@mlbassoc.com>
+Received: from mail.chez-thomas.org (mail.mlbassoc.com [65.100.170.105])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 20BE1E00B84
+	for <yocto@yoctoproject.org>; Mon, 14 Apr 2014 04:44:16 -0700 (PDT)
+Received: by mail.chez-thomas.org (Postfix, from userid 1998)
+	id 45E9BF811E5; Mon, 14 Apr 2014 05:44:16 -0600 (MDT)
+X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on
+	hermes.chez-thomas.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=4.0 tests=ALL_TRUSTED,BAYES_00
+	autolearn=unavailable version=3.3.2
+Received: from [192.168.1.114] (zeus [192.168.1.114])
+	by mail.chez-thomas.org (Postfix) with ESMTP id F3878F81188;
+	Mon, 14 Apr 2014 05:44:14 -0600 (MDT)
+Message-ID: <534BCA14.7000603@mlbassoc.com>
+Date: Mon, 14 Apr 2014 05:44:20 -0600
+From: Gary Thomas <gary@mlbassoc.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:24.0) Gecko/20100101 Thunderbird/24.4.0
 MIME-Version: 1.0
+To: "Stanacar, StefanX" <stefanx.stanacar@intel.com>
+References: <534A54F0.5020203@mlbassoc.com>	
+	<1397471746.9306.9.camel@firebird.rb.intel.com>
+	<1397475506.9306.10.camel@firebird.rb.intel.com>
+In-Reply-To: <1397475506.9306.10.camel@firebird.rb.intel.com>
+X-Enigmail-Version: 1.5.2
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: BBB doesn't boot
 X-BeenThere: yocto@yoctoproject.org
@@ -41,83 +37,117 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 14 Apr 2014 11:38:28 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <10458540F8AC154D82A3DB80D1FDDF5F@intel.com>
-Content-Transfer-Encoding: base64
+X-List-Received-Date: Mon, 14 Apr 2014 11:44:17 -0000
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-DQoNCg0KT24gTW9uLCAyMDE0LTA0LTE0IGF0IDEwOjM1ICswMDAwLCBTdGFuYWNhciwgU3RlZmFu
-WCB3cm90ZToNCj4gSGkgR2FyeSwNCj4gDQo+IE9uIFN1biwgMjAxNC0wNC0xMyBhdCAwMzoxMiAt
-MDYwMCwgR2FyeSBUaG9tYXMgd3JvdGU6DQo+ID4gSSBqdXN0IHRyaWVkIGJ1aWxkaW5nIChjb3Jl
-LWltYWdlLXNhdG8pIGZvciBteSBCZWFnbGVCb25lQmxhY2sNCj4gPiB1c2luZyB0aGUgbGF0ZXN0
-IFBva3kvWW9jdG8gbWFzdGVyOg0KPiA+IA0KPiA+IEJ1aWxkIENvbmZpZ3VyYXRpb246DQo+ID4g
-QkJfVkVSU0lPTiAgICAgICAgPSAiMS4yMy4wIg0KPiA+IEJVSUxEX1NZUyAgICAgICAgID0gImk2
-ODYtbGludXgiDQo+ID4gTkFUSVZFTFNCU1RSSU5HICAgPSAiRmVkb3JhLTEzIg0KPiA+IFRBUkdF
-VF9TWVMgICAgICAgID0gImFybS1wb2t5LWxpbnV4LWdudWVhYmkiDQo+ID4gTUFDSElORSAgICAg
-ICAgICAgPSAiYmVhZ2xlYm9uZSINCj4gPiBESVNUUk8gICAgICAgICAgICA9ICJwb2t5Ig0KPiA+
-IERJU1RST19WRVJTSU9OICAgID0gIjEuNitzbmFwc2hvdC0yMDE0MDQxMSINCj4gPiBUVU5FX0ZF
-QVRVUkVTICAgICA9ICJhcm12N2EgdmZwIG5lb24gY2FsbGNvbnZlbnRpb24taGFyZCBjb3J0ZXhh
-OCINCj4gPiBUQVJHRVRfRlBVICAgICAgICA9ICJ2ZnAtbmVvbiINCj4gPiBtZXRhDQo+ID4gbWV0
-YS15b2N0bw0KPiA+IG1ldGEteW9jdG8tYnNwICAgID0gIm1hc3Rlcjo4NjNjYzc0ODNmNWVlNDMx
-ODk1Mzc5NDBkZThlZTVjMDk2NGQyNGNjIg0KPiA+IA0KPiA+IFRoaXMgYnVpbHQgdGhlIGtlcm5l
-bCB1c2luZyBTUkNSRVYgOTI4ZDdiMmRkYQ0KPiA+IA0KPiA+IEkgZm9sbG93ZWQgdGhlIGJyaW5n
-LXVwIGluc3RydWN0aW9ucyBmcm9tIFJFQURNRS5oYWR3YXJlIGFuZCB0aGUNCj4gPiBib290IGZh
-aWxlZCB0byBldmVuIHN0YXJ0IHRoZSBrZXJuZWwuICBIZXJlJ3Mgd2hhdCBJIHNlZToNCj4gPiAN
-Cj4gPiA9PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09IGJvb3QgbG9nID09PT09PT09PT09
-PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09DQo+ID4gVS1Cb290IDIwMTMuMDcgKEFwciAx
-MSAyMDE0IC0gMTU6MDM6MDQpDQo+ID4gDQo+ID4gSTJDOiAgIHJlYWR5DQo+ID4gRFJBTTogIDUx
-MiBNaUINCj4gPiBXQVJOSU5HOiBDYWNoZXMgbm90IGVuYWJsZWQNCj4gPiBOQU5EOiAgMCBNaUIN
-Cj4gPiBNTUM6ICAgT01BUCBTRC9NTUM6IDAsIE9NQVAgU0QvTU1DOiAxDQo+ID4gKioqIFdhcm5p
-bmcgLSByZWFkZW52KCkgZmFpbGVkLCB1c2luZyBkZWZhdWx0IGVudmlyb25tZW50DQo+ID4gDQo+
-ID4gbXVzYi1oZHJjOiBDb25maWdEYXRhPTB4ZGUgKFVUTUktOCwgZHluIEZJRk9zLCBIQi1JU08g
-UngsIEhCLUlTTyBUeCwgU29mdENvbm4pDQo+ID4gbXVzYi1oZHJjOiBNSERSQyBSVEwgdmVyc2lv
-biAyLjANCj4gPiBtdXNiLWhkcmM6IHNldHVwIGZpZm9fbW9kZSA0DQo+ID4gbXVzYi1oZHJjOiAy
-OC8zMSBtYXggZXAsIDE2Mzg0LzE2Mzg0IG1lbW9yeQ0KPiA+IFVTQiBQZXJpcGhlcmFsIG1vZGUg
-Y29udHJvbGxlciBhdCA0NzQwMTAwMCB1c2luZyBQSU8sIElSUSAwDQo+ID4gbXVzYi1oZHJjOiBD
-b25maWdEYXRhPTB4ZGUgKFVUTUktOCwgZHluIEZJRk9zLCBIQi1JU08gUngsIEhCLUlTTyBUeCwg
-U29mdENvbm4pDQo+ID4gbXVzYi1oZHJjOiBNSERSQyBSVEwgdmVyc2lvbiAyLjANCj4gPiBtdXNi
-LWhkcmM6IHNldHVwIGZpZm9fbW9kZSA0DQo+ID4gbXVzYi1oZHJjOiAyOC8zMSBtYXggZXAsIDE2
-Mzg0LzE2Mzg0IG1lbW9yeQ0KPiA+IFVTQiBIb3N0IG1vZGUgY29udHJvbGxlciBhdCA0NzQwMTgw
-MCB1c2luZyBQSU8sIElSUSAwDQo+ID4gTmV0OiAgIDxldGhhZGRyPiBub3Qgc2V0LiBWYWxpZGF0
-aW5nIGZpcnN0IEUtZnVzZSBNQUMNCj4gPiBQaHkgbm90IGZvdW5kDQo+ID4gUEhZIHJlc2V0IHRp
-bWVkIG91dA0KPiA+IGNwc3csIHVzYl9ldGhlcg0KPiA+IEhpdCBhbnkga2V5IHRvIHN0b3AgYXV0
-b2Jvb3Q6ICAwDQo+ID4gbW1jMCBpcyBjdXJyZW50IGRldmljZQ0KPiA+IFNEL01NQyBmb3VuZCBv
-biBkZXZpY2UgMA0KPiA+IHJlYWRpbmcgdUVudi50eHQNCj4gPiAqKiBVbmFibGUgdG8gcmVhZCBm
-aWxlIHVFbnYudHh0ICoqDQo+ID4gNDk4MTY4OCBieXRlcyByZWFkIGluIDYxMyBtcyAoNy43IE1p
-Qi9zKQ0KPiA+IDI5MTkyIGJ5dGVzIHJlYWQgaW4gNDYgbXMgKDYxOS4xIEtpQi9zKQ0KPiA+IEJv
-b3RpbmcgZnJvbSBtbWMgLi4uDQo+ID4gIyMgQm9vdGluZyBrZXJuZWwgZnJvbSBMZWdhY3kgSW1h
-Z2UgYXQgODAyMDAwMDAgLi4uDQo+ID4gICAgSW1hZ2UgTmFtZTogICBMaW51eC0zLjE0LjAteW9j
-dG8tc3RhbmRhcmQNCj4gPiAgICBJbWFnZSBUeXBlOiAgIEFSTSBMaW51eCBLZXJuZWwgSW1hZ2Ug
-KHVuY29tcHJlc3NlZCkNCj4gPiAgICBEYXRhIFNpemU6ICAgIDQ5ODE2MjQgQnl0ZXMgPSA0Ljgg
-TWlCDQo+ID4gICAgTG9hZCBBZGRyZXNzOiA4MDAwODAwMA0KPiA+ICAgIEVudHJ5IFBvaW50OiAg
-ODAwMDgwMDANCj4gPiAgICBWZXJpZnlpbmcgQ2hlY2tzdW0gLi4uIE9LDQo+ID4gIyMgRmxhdHRl
-bmVkIERldmljZSBUcmVlIGJsb2IgYXQgODBmODAwMDANCj4gPiAgICBCb290aW5nIHVzaW5nIHRo
-ZSBmZHQgYmxvYiBhdCAweDgwZjgwMDAwDQo+ID4gICAgTG9hZGluZyBLZXJuZWwgSW1hZ2UgLi4u
-IE9LDQo+ID4gICAgVXNpbmcgRGV2aWNlIFRyZWUgaW4gcGxhY2UgYXQgODBmODAwMDAsIGVuZCA4
-MGY4YTIwNw0KPiA+IA0KPiA+IFN0YXJ0aW5nIGtlcm5lbCAuLi4NCj4gPiA9PT09PT09PT09PT09
-PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09
-PT09PT09PT09PT09DQo+ID4gDQo+ID4gQW55IGlkZWFzIHdoYXQgSSd2ZSBkb25lIHdyb25nPw0K
-PiA+IA0KPiANCj4gVGhpcyBpcyBzdHJhbmdlIGJlY2F1c2UgbGFzdCB3ZWVrIEkgYm9vdGVkIG15
-c2VsZiBhIEJCQi4NCj4gVGhpcyBhY3R1YWxseSBsb29rcyBsaWtlIHRoZSBzZXJpYWwgZG9lc24n
-dCBvdXRwdXQsIHBlcmhhcHMgdGhlIGtlcm5lbA0KPiBkb2VzIGJvb3QuIEkgd29uZGVyIGlmIGNv
-bnNvbGUgaXMgcmlnaHQgZm9yIHRoZSBrZXJuZWwgY21kbGluZS4NCj4gT24gRnJpZGF5IEkgYnVp
-bHQgYW5kIGJvb3RlZCBmcm9tDQo+IG1hc3RlcjpkYjgwZjc5NmU3ODc0NjAxNGEwZjk0OTc2Mzhl
-NWM2ZmQyOTUzZWYwIHdoaWNoIGlzIGEgYml0IGVhcmxpZXINCj4gdGhhdCB3aGF0IHlvdSBoYXZl
-IGJ1dCBiYXNpY2FsbHkgdGhlIHNhbWUgdGhpbmcgKHVwZGF0ZXMgZm9yIGtlcm5lbA0KPiB3aGlj
-aCBzaG91bGQgZml4IHRoaW5ncywgSSd2ZSB0ZXN0ZWQgd2l0aCBTUkNSRVZfbWV0YV9wbi1saW51
-eC15b2N0byA9DQo+ICIke0FVVE9SRVZ9IiB0aG9zZSBiZWZvcmUgdGhleSBlbnRlcmVkIGluIG1h
-c3RlciBiZWNhdXNlIEkgZGlkbid0IGhhZA0KPiBIRE1JIG91dHB1dCBvbiBteSBtYXN0ZXIgY29t
-bWl0KS4NCj4gDQo+IEknbSBnb25uYSByZWJ1aWxkIGZyb20gZGFpc3kgdGlwIGFuZCBzZWUgd2hh
-dCBoYXBwZW5zLg0KPiANCg0KSSBqdXN0IGRpZCBhIGNsZWFuIGJ1aWxkIGZyb20gZGFpc3kgYW5k
-IGl0IHdvcmtlZCBmaW5lLi4uDQpDb3VsZCB5b3UgdHJ5IGFnYWluPyBBbmQgcGVyaGFwcyAtY2Ns
-ZWFuc3N0YXRlIGZvciBsaW51eC15b2N0bz8gSSdtDQp0aGlua2luZyB0aGF0IHNvbWVob3cgaXQg
-ZGlkbid0IHBpY2tlZCB1cCB0aGUgbmV3IGNvbnNvbGU9IHRoYXQgY2hhbmdlZA0KaW4gdGhlIG1h
-Y2hpbmUgZGVmaW5pdGlvbi4NCg0KQ2hlZXJzLA0KU3RlZmFuDQoNCj4gQ2hlZXJzLA0KPiBTdGVm
-YW4NCj4gDQo+IA0KPiANCj4gDQo+IA0KPiANCj4gPiBUaGFua3MNCj4gPiANCj4gPiAtLSANCj4g
-PiAtLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0NCj4gPiBHYXJ5IFRob21hcyAgICAgICAgICAgICAgICAgfCAgQ29uc3VsdGluZyBmb3Ig
-dGhlDQo+ID4gTUxCIEFzc29jaWF0ZXMgICAgICAgICAgICAgIHwgICAgRW1iZWRkZWQgd29ybGQN
-Cj4gPiAtLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0NCj4gDQoNCg==
+On 2014-04-14 05:38, Stanacar, StefanX wrote:
+> 
+> 
+> 
+> On Mon, 2014-04-14 at 10:35 +0000, Stanacar, StefanX wrote:
+>> Hi Gary,
+>>
+>> On Sun, 2014-04-13 at 03:12 -0600, Gary Thomas wrote:
+>>> I just tried building (core-image-sato) for my BeagleBoneBlack
+>>> using the latest Poky/Yocto master:
+>>>
+>>> Build Configuration:
+>>> BB_VERSION        = "1.23.0"
+>>> BUILD_SYS         = "i686-linux"
+>>> NATIVELSBSTRING   = "Fedora-13"
+>>> TARGET_SYS        = "arm-poky-linux-gnueabi"
+>>> MACHINE           = "beaglebone"
+>>> DISTRO            = "poky"
+>>> DISTRO_VERSION    = "1.6+snapshot-20140411"
+>>> TUNE_FEATURES     = "armv7a vfp neon callconvention-hard cortexa8"
+>>> TARGET_FPU        = "vfp-neon"
+>>> meta
+>>> meta-yocto
+>>> meta-yocto-bsp    = "master:863cc7483f5ee43189537940de8ee5c0964d24cc"
+>>>
+>>> This built the kernel using SRCREV 928d7b2dda
+>>>
+>>> I followed the bring-up instructions from README.hadware and the
+>>> boot failed to even start the kernel.  Here's what I see:
+>>>
+>>> =============================== boot log =========================================
+>>> U-Boot 2013.07 (Apr 11 2014 - 15:03:04)
+>>>
+>>> I2C:   ready
+>>> DRAM:  512 MiB
+>>> WARNING: Caches not enabled
+>>> NAND:  0 MiB
+>>> MMC:   OMAP SD/MMC: 0, OMAP SD/MMC: 1
+>>> *** Warning - readenv() failed, using default environment
+>>>
+>>> musb-hdrc: ConfigData=0xde (UTMI-8, dyn FIFOs, HB-ISO Rx, HB-ISO Tx, SoftConn)
+>>> musb-hdrc: MHDRC RTL version 2.0
+>>> musb-hdrc: setup fifo_mode 4
+>>> musb-hdrc: 28/31 max ep, 16384/16384 memory
+>>> USB Peripheral mode controller at 47401000 using PIO, IRQ 0
+>>> musb-hdrc: ConfigData=0xde (UTMI-8, dyn FIFOs, HB-ISO Rx, HB-ISO Tx, SoftConn)
+>>> musb-hdrc: MHDRC RTL version 2.0
+>>> musb-hdrc: setup fifo_mode 4
+>>> musb-hdrc: 28/31 max ep, 16384/16384 memory
+>>> USB Host mode controller at 47401800 using PIO, IRQ 0
+>>> Net:   <ethaddr> not set. Validating first E-fuse MAC
+>>> Phy not found
+>>> PHY reset timed out
+>>> cpsw, usb_ether
+>>> Hit any key to stop autoboot:  0
+>>> mmc0 is current device
+>>> SD/MMC found on device 0
+>>> reading uEnv.txt
+>>> ** Unable to read file uEnv.txt **
+>>> 4981688 bytes read in 613 ms (7.7 MiB/s)
+>>> 29192 bytes read in 46 ms (619.1 KiB/s)
+>>> Booting from mmc ...
+>>> ## Booting kernel from Legacy Image at 80200000 ...
+>>>    Image Name:   Linux-3.14.0-yocto-standard
+>>>    Image Type:   ARM Linux Kernel Image (uncompressed)
+>>>    Data Size:    4981624 Bytes = 4.8 MiB
+>>>    Load Address: 80008000
+>>>    Entry Point:  80008000
+>>>    Verifying Checksum ... OK
+>>> ## Flattened Device Tree blob at 80f80000
+>>>    Booting using the fdt blob at 0x80f80000
+>>>    Loading Kernel Image ... OK
+>>>    Using Device Tree in place at 80f80000, end 80f8a207
+>>>
+>>> Starting kernel ...
+>>> ==================================================================================
+>>>
+>>> Any ideas what I've done wrong?
+>>>
+>>
+>> This is strange because last week I booted myself a BBB.
+>> This actually looks like the serial doesn't output, perhaps the kernel
+>> does boot. I wonder if console is right for the kernel cmdline.
+>> On Friday I built and booted from
+>> master:db80f796e78746014a0f9497638e5c6fd2953ef0 which is a bit earlier
+>> that what you have but basically the same thing (updates for kernel
+>> which should fix things, I've tested with SRCREV_meta_pn-linux-yocto =
+>> "${AUTOREV}" those before they entered in master because I didn't had
+>> HDMI output on my master commit).
+>>
+>> I'm gonna rebuild from daisy tip and see what happens.
+>>
+> 
+> I just did a clean build from daisy and it worked fine...
+> Could you try again? And perhaps -ccleansstate for linux-yocto? I'm
+> thinking that somehow it didn't picked up the new console= that changed
+> in the machine definition.
+
+I'll try daisy, but my build/test was clean from the mentioned master rev.
+
+I checked the console setup in U-Boot:
+  console=ttyO0,115200n8
+which I think is correct.
+
+-- 
+------------------------------------------------------------
+Gary Thomas                 |  Consulting for the
+MLB Associates              |    Embedded world
+------------------------------------------------------------
 
