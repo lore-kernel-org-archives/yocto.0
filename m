@@ -1,27 +1,33 @@
-Return-Path: <gary@mlbassoc.com>
-Received: from mail.chez-thomas.org (mail.mlbassoc.com [65.100.170.105])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 512A7E00B84
-	for <yocto@yoctoproject.org>; Mon, 14 Apr 2014 03:25:52 -0700 (PDT)
-Received: by mail.chez-thomas.org (Postfix, from userid 1998)
-	id 1AD3BF811D7; Mon, 14 Apr 2014 04:25:52 -0600 (MDT)
-X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on
-	hermes.chez-thomas.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=4.0 tests=ALL_TRUSTED,BAYES_00
-	autolearn=unavailable version=3.3.2
-Received: from [192.168.1.114] (zeus [192.168.1.114])
-	by mail.chez-thomas.org (Postfix) with ESMTP id 70E7AF81188;
-	Mon, 14 Apr 2014 04:25:50 -0600 (MDT)
-Message-ID: <534BB7B3.3060104@mlbassoc.com>
-Date: Mon, 14 Apr 2014 04:25:55 -0600
-From: Gary Thomas <gary@mlbassoc.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:24.0) Gecko/20100101 Thunderbird/24.4.0
+Return-Path: <stefanx.stanacar@intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DCB58E00B84
+	for <yocto@yoctoproject.org>; Mon, 14 Apr 2014 03:35:56 -0700 (PDT)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga102.jf.intel.com with ESMTP; 14 Apr 2014 03:31:09 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.97,856,1389772800"; d="scan'208";a="520376530"
+Received: from irsmsx104.ger.corp.intel.com ([163.33.3.159])
+	by orsmga002.jf.intel.com with ESMTP; 14 Apr 2014 03:35:54 -0700
+Received: from irsmsx152.ger.corp.intel.com (163.33.192.66) by
+	IRSMSX104.ger.corp.intel.com (163.33.3.159) with Microsoft SMTP Server
+	(TLS) id 14.3.123.3; Mon, 14 Apr 2014 11:35:28 +0100
+Received: from irsmsx105.ger.corp.intel.com ([169.254.7.78]) by
+	IRSMSX152.ger.corp.intel.com ([169.254.6.180]) with mapi id
+	14.03.0123.003; Mon, 14 Apr 2014 11:35:28 +0100
+From: "Stanacar, StefanX" <stefanx.stanacar@intel.com>
+To: "gary@mlbassoc.com" <gary@mlbassoc.com>
+Thread-Topic: [yocto] BBB doesn't boot
+Thread-Index: AQHPVvi7U65QgTaRbkKYHPQsid6RTpsQ2+EA
+Date: Mon, 14 Apr 2014 10:35:27 +0000
+Message-ID: <1397471746.9306.9.camel@firebird.rb.intel.com>
+References: <534A54F0.5020203@mlbassoc.com>
+In-Reply-To: <534A54F0.5020203@mlbassoc.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.237.105.160]
 MIME-Version: 1.0
-To: yocto@yoctoproject.org
-References: <534A54F0.5020203@mlbassoc.com> <20140414023328.GY3370@denix.org>
-In-Reply-To: <20140414023328.GY3370@denix.org>
-X-Enigmail-Version: 1.5.2
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: BBB doesn't boot
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -34,94 +40,74 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 14 Apr 2014 10:25:53 -0000
-Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Mon, 14 Apr 2014 10:35:57 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <936F06E88BC9F842888723F494D38E53@intel.com>
+Content-Transfer-Encoding: base64
 
-On 2014-04-13 20:33, Denys Dmytriyenko wrote:
-> On Sun, Apr 13, 2014 at 03:12:16AM -0600, Gary Thomas wrote:
->> I just tried building (core-image-sato) for my BeagleBoneBlack
->> using the latest Poky/Yocto master:
->>
->> Build Configuration:
->> BB_VERSION        = "1.23.0"
->> BUILD_SYS         = "i686-linux"
->> NATIVELSBSTRING   = "Fedora-13"
->> TARGET_SYS        = "arm-poky-linux-gnueabi"
->> MACHINE           = "beaglebone"
->> DISTRO            = "poky"
->> DISTRO_VERSION    = "1.6+snapshot-20140411"
->> TUNE_FEATURES     = "armv7a vfp neon callconvention-hard cortexa8"
->> TARGET_FPU        = "vfp-neon"
->> meta
->> meta-yocto
->> meta-yocto-bsp    = "master:863cc7483f5ee43189537940de8ee5c0964d24cc"
->>
->> This built the kernel using SRCREV 928d7b2dda
->>
->> I followed the bring-up instructions from README.hadware and the
->> boot failed to even start the kernel.  Here's what I see:
->>
->> =============================== boot log =========================================
->> U-Boot 2013.07 (Apr 11 2014 - 15:03:04)
->>
->> I2C:   ready
->> DRAM:  512 MiB
->> WARNING: Caches not enabled
->> NAND:  0 MiB
->> MMC:   OMAP SD/MMC: 0, OMAP SD/MMC: 1
->> *** Warning - readenv() failed, using default environment
->>
->> musb-hdrc: ConfigData=0xde (UTMI-8, dyn FIFOs, HB-ISO Rx, HB-ISO Tx, SoftConn)
->> musb-hdrc: MHDRC RTL version 2.0
->> musb-hdrc: setup fifo_mode 4
->> musb-hdrc: 28/31 max ep, 16384/16384 memory
->> USB Peripheral mode controller at 47401000 using PIO, IRQ 0
->> musb-hdrc: ConfigData=0xde (UTMI-8, dyn FIFOs, HB-ISO Rx, HB-ISO Tx, SoftConn)
->> musb-hdrc: MHDRC RTL version 2.0
->> musb-hdrc: setup fifo_mode 4
->> musb-hdrc: 28/31 max ep, 16384/16384 memory
->> USB Host mode controller at 47401800 using PIO, IRQ 0
->> Net:   <ethaddr> not set. Validating first E-fuse MAC
->> Phy not found
->> PHY reset timed out
->> cpsw, usb_ether
->> Hit any key to stop autoboot:  0
->> mmc0 is current device
->> SD/MMC found on device 0
->> reading uEnv.txt
->> ** Unable to read file uEnv.txt **
->> 4981688 bytes read in 613 ms (7.7 MiB/s)
->> 29192 bytes read in 46 ms (619.1 KiB/s)
->> Booting from mmc ...
->> ## Booting kernel from Legacy Image at 80200000 ...
->>    Image Name:   Linux-3.14.0-yocto-standard
->>    Image Type:   ARM Linux Kernel Image (uncompressed)
->>    Data Size:    4981624 Bytes = 4.8 MiB
->>    Load Address: 80008000
->>    Entry Point:  80008000
->>    Verifying Checksum ... OK
->> ## Flattened Device Tree blob at 80f80000
->>    Booting using the fdt blob at 0x80f80000
->>    Loading Kernel Image ... OK
->>    Using Device Tree in place at 80f80000, end 80f8a207
->>
->> Starting kernel ...
->> ==================================================================================
->>
->> Any ideas what I've done wrong?
-> 
-> Hmm, everything looks sane. What revision is your BBB? And did you press 
-> USER/BOOT button or erased eMMC partition per instructions?
-> 
-
-Revision A5A, with an LCD cape
-
-Yes, I erased the eMMC before trying this.
-
--- 
-------------------------------------------------------------
-Gary Thomas                 |  Consulting for the
-MLB Associates              |    Embedded world
-------------------------------------------------------------
+SGkgR2FyeSwNCg0KT24gU3VuLCAyMDE0LTA0LTEzIGF0IDAzOjEyIC0wNjAwLCBHYXJ5IFRob21h
+cyB3cm90ZToNCj4gSSBqdXN0IHRyaWVkIGJ1aWxkaW5nIChjb3JlLWltYWdlLXNhdG8pIGZvciBt
+eSBCZWFnbGVCb25lQmxhY2sNCj4gdXNpbmcgdGhlIGxhdGVzdCBQb2t5L1lvY3RvIG1hc3RlcjoN
+Cj4gDQo+IEJ1aWxkIENvbmZpZ3VyYXRpb246DQo+IEJCX1ZFUlNJT04gICAgICAgID0gIjEuMjMu
+MCINCj4gQlVJTERfU1lTICAgICAgICAgPSAiaTY4Ni1saW51eCINCj4gTkFUSVZFTFNCU1RSSU5H
+ICAgPSAiRmVkb3JhLTEzIg0KPiBUQVJHRVRfU1lTICAgICAgICA9ICJhcm0tcG9reS1saW51eC1n
+bnVlYWJpIg0KPiBNQUNISU5FICAgICAgICAgICA9ICJiZWFnbGVib25lIg0KPiBESVNUUk8gICAg
+ICAgICAgICA9ICJwb2t5Ig0KPiBESVNUUk9fVkVSU0lPTiAgICA9ICIxLjYrc25hcHNob3QtMjAx
+NDA0MTEiDQo+IFRVTkVfRkVBVFVSRVMgICAgID0gImFybXY3YSB2ZnAgbmVvbiBjYWxsY29udmVu
+dGlvbi1oYXJkIGNvcnRleGE4Ig0KPiBUQVJHRVRfRlBVICAgICAgICA9ICJ2ZnAtbmVvbiINCj4g
+bWV0YQ0KPiBtZXRhLXlvY3RvDQo+IG1ldGEteW9jdG8tYnNwICAgID0gIm1hc3Rlcjo4NjNjYzc0
+ODNmNWVlNDMxODk1Mzc5NDBkZThlZTVjMDk2NGQyNGNjIg0KPiANCj4gVGhpcyBidWlsdCB0aGUg
+a2VybmVsIHVzaW5nIFNSQ1JFViA5MjhkN2IyZGRhDQo+IA0KPiBJIGZvbGxvd2VkIHRoZSBicmlu
+Zy11cCBpbnN0cnVjdGlvbnMgZnJvbSBSRUFETUUuaGFkd2FyZSBhbmQgdGhlDQo+IGJvb3QgZmFp
+bGVkIHRvIGV2ZW4gc3RhcnQgdGhlIGtlcm5lbC4gIEhlcmUncyB3aGF0IEkgc2VlOg0KPiANCj4g
+PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PSBib290IGxvZyA9PT09PT09PT09PT09PT09
+PT09PT09PT09PT09PT09PT09PT09PT09PQ0KPiBVLUJvb3QgMjAxMy4wNyAoQXByIDExIDIwMTQg
+LSAxNTowMzowNCkNCj4gDQo+IEkyQzogICByZWFkeQ0KPiBEUkFNOiAgNTEyIE1pQg0KPiBXQVJO
+SU5HOiBDYWNoZXMgbm90IGVuYWJsZWQNCj4gTkFORDogIDAgTWlCDQo+IE1NQzogICBPTUFQIFNE
+L01NQzogMCwgT01BUCBTRC9NTUM6IDENCj4gKioqIFdhcm5pbmcgLSByZWFkZW52KCkgZmFpbGVk
+LCB1c2luZyBkZWZhdWx0IGVudmlyb25tZW50DQo+IA0KPiBtdXNiLWhkcmM6IENvbmZpZ0RhdGE9
+MHhkZSAoVVRNSS04LCBkeW4gRklGT3MsIEhCLUlTTyBSeCwgSEItSVNPIFR4LCBTb2Z0Q29ubikN
+Cj4gbXVzYi1oZHJjOiBNSERSQyBSVEwgdmVyc2lvbiAyLjANCj4gbXVzYi1oZHJjOiBzZXR1cCBm
+aWZvX21vZGUgNA0KPiBtdXNiLWhkcmM6IDI4LzMxIG1heCBlcCwgMTYzODQvMTYzODQgbWVtb3J5
+DQo+IFVTQiBQZXJpcGhlcmFsIG1vZGUgY29udHJvbGxlciBhdCA0NzQwMTAwMCB1c2luZyBQSU8s
+IElSUSAwDQo+IG11c2ItaGRyYzogQ29uZmlnRGF0YT0weGRlIChVVE1JLTgsIGR5biBGSUZPcywg
+SEItSVNPIFJ4LCBIQi1JU08gVHgsIFNvZnRDb25uKQ0KPiBtdXNiLWhkcmM6IE1IRFJDIFJUTCB2
+ZXJzaW9uIDIuMA0KPiBtdXNiLWhkcmM6IHNldHVwIGZpZm9fbW9kZSA0DQo+IG11c2ItaGRyYzog
+MjgvMzEgbWF4IGVwLCAxNjM4NC8xNjM4NCBtZW1vcnkNCj4gVVNCIEhvc3QgbW9kZSBjb250cm9s
+bGVyIGF0IDQ3NDAxODAwIHVzaW5nIFBJTywgSVJRIDANCj4gTmV0OiAgIDxldGhhZGRyPiBub3Qg
+c2V0LiBWYWxpZGF0aW5nIGZpcnN0IEUtZnVzZSBNQUMNCj4gUGh5IG5vdCBmb3VuZA0KPiBQSFkg
+cmVzZXQgdGltZWQgb3V0DQo+IGNwc3csIHVzYl9ldGhlcg0KPiBIaXQgYW55IGtleSB0byBzdG9w
+IGF1dG9ib290OiAgMA0KPiBtbWMwIGlzIGN1cnJlbnQgZGV2aWNlDQo+IFNEL01NQyBmb3VuZCBv
+biBkZXZpY2UgMA0KPiByZWFkaW5nIHVFbnYudHh0DQo+ICoqIFVuYWJsZSB0byByZWFkIGZpbGUg
+dUVudi50eHQgKioNCj4gNDk4MTY4OCBieXRlcyByZWFkIGluIDYxMyBtcyAoNy43IE1pQi9zKQ0K
+PiAyOTE5MiBieXRlcyByZWFkIGluIDQ2IG1zICg2MTkuMSBLaUIvcykNCj4gQm9vdGluZyBmcm9t
+IG1tYyAuLi4NCj4gIyMgQm9vdGluZyBrZXJuZWwgZnJvbSBMZWdhY3kgSW1hZ2UgYXQgODAyMDAw
+MDAgLi4uDQo+ICAgIEltYWdlIE5hbWU6ICAgTGludXgtMy4xNC4wLXlvY3RvLXN0YW5kYXJkDQo+
+ICAgIEltYWdlIFR5cGU6ICAgQVJNIExpbnV4IEtlcm5lbCBJbWFnZSAodW5jb21wcmVzc2VkKQ0K
+PiAgICBEYXRhIFNpemU6ICAgIDQ5ODE2MjQgQnl0ZXMgPSA0LjggTWlCDQo+ICAgIExvYWQgQWRk
+cmVzczogODAwMDgwMDANCj4gICAgRW50cnkgUG9pbnQ6ICA4MDAwODAwMA0KPiAgICBWZXJpZnlp
+bmcgQ2hlY2tzdW0gLi4uIE9LDQo+ICMjIEZsYXR0ZW5lZCBEZXZpY2UgVHJlZSBibG9iIGF0IDgw
+ZjgwMDAwDQo+ICAgIEJvb3RpbmcgdXNpbmcgdGhlIGZkdCBibG9iIGF0IDB4ODBmODAwMDANCj4g
+ICAgTG9hZGluZyBLZXJuZWwgSW1hZ2UgLi4uIE9LDQo+ICAgIFVzaW5nIERldmljZSBUcmVlIGlu
+IHBsYWNlIGF0IDgwZjgwMDAwLCBlbmQgODBmOGEyMDcNCj4gDQo+IFN0YXJ0aW5nIGtlcm5lbCAu
+Li4NCj4gPT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09
+PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PQ0KPiANCj4gQW55IGlkZWFzIHdoYXQgSSd2
+ZSBkb25lIHdyb25nPw0KPiANCg0KVGhpcyBpcyBzdHJhbmdlIGJlY2F1c2UgbGFzdCB3ZWVrIEkg
+Ym9vdGVkIG15c2VsZiBhIEJCQi4NClRoaXMgYWN0dWFsbHkgbG9va3MgbGlrZSB0aGUgc2VyaWFs
+IGRvZXNuJ3Qgb3V0cHV0LCBwZXJoYXBzIHRoZSBrZXJuZWwNCmRvZXMgYm9vdC4gSSB3b25kZXIg
+aWYgY29uc29sZSBpcyByaWdodCBmb3IgdGhlIGtlcm5lbCBjbWRsaW5lLg0KT24gRnJpZGF5IEkg
+YnVpbHQgYW5kIGJvb3RlZCBmcm9tDQptYXN0ZXI6ZGI4MGY3OTZlNzg3NDYwMTRhMGY5NDk3NjM4
+ZTVjNmZkMjk1M2VmMCB3aGljaCBpcyBhIGJpdCBlYXJsaWVyDQp0aGF0IHdoYXQgeW91IGhhdmUg
+YnV0IGJhc2ljYWxseSB0aGUgc2FtZSB0aGluZyAodXBkYXRlcyBmb3Iga2VybmVsDQp3aGljaCBz
+aG91bGQgZml4IHRoaW5ncywgSSd2ZSB0ZXN0ZWQgd2l0aCBTUkNSRVZfbWV0YV9wbi1saW51eC15
+b2N0byA9DQoiJHtBVVRPUkVWfSIgdGhvc2UgYmVmb3JlIHRoZXkgZW50ZXJlZCBpbiBtYXN0ZXIg
+YmVjYXVzZSBJIGRpZG4ndCBoYWQNCkhETUkgb3V0cHV0IG9uIG15IG1hc3RlciBjb21taXQpLg0K
+DQpJJ20gZ29ubmEgcmVidWlsZCBmcm9tIGRhaXN5IHRpcCBhbmQgc2VlIHdoYXQgaGFwcGVucy4N
+Cg0KQ2hlZXJzLA0KU3RlZmFuDQoNCg0KDQoNCg0KDQo+IFRoYW5rcw0KPiANCj4gLS0gDQo+IC0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LQ0KPiBHYXJ5IFRob21hcyAgICAgICAgICAgICAgICAgfCAgQ29uc3VsdGluZyBmb3IgdGhlDQo+
+IE1MQiBBc3NvY2lhdGVzICAgICAgICAgICAgICB8ICAgIEVtYmVkZGVkIHdvcmxkDQo+IC0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQ0K
+DQo=
 
