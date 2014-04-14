@@ -1,35 +1,28 @@
-Return-Path: <stefanx.stanacar@intel.com>
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4B323E00B84
-	for <yocto@yoctoproject.org>; Mon, 14 Apr 2014 01:29:51 -0700 (PDT)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga102.fm.intel.com with ESMTP; 14 Apr 2014 01:29:51 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.97,855,1389772800"; d="scan'208";a="520032428"
-Received: from irsmsx103.ger.corp.intel.com ([163.33.3.157])
-	by fmsmga002.fm.intel.com with ESMTP; 14 Apr 2014 01:29:49 -0700
-Received: from irsmsx106.ger.corp.intel.com (163.33.3.31) by
-	IRSMSX103.ger.corp.intel.com (163.33.3.157) with Microsoft SMTP Server
-	(TLS) id 14.3.123.3; Mon, 14 Apr 2014 09:29:46 +0100
-Received: from irsmsx105.ger.corp.intel.com ([169.254.7.78]) by
-	IRSMSX106.ger.corp.intel.com ([169.254.8.26]) with mapi id
-	14.03.0123.003; Mon, 14 Apr 2014 09:29:46 +0100
-From: "Stanacar, StefanX" <stefanx.stanacar@intel.com>
-To: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
-Thread-Topic: [yocto] New RC for 1.6.
-Thread-Index: AQHPVUU0aF2Qvcu//kSI9tcId6jxMpsQvCuA
-Date: Mon, 14 Apr 2014 08:29:45 +0000
-Message-ID: <1397464205.9306.3.camel@firebird.rb.intel.com>
-References: <CAPhnLPDLvgMCN_e050a4sYWh=n=ukZMCjkuTskVWC2XWUd0oJQ@mail.gmail.com>
-In-Reply-To: <CAPhnLPDLvgMCN_e050a4sYWh=n=ukZMCjkuTskVWC2XWUd0oJQ@mail.gmail.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.237.105.160]
+Return-Path: <gary@mlbassoc.com>
+Received: from mail.chez-thomas.org (mail.mlbassoc.com [65.100.170.105])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 512A7E00B84
+	for <yocto@yoctoproject.org>; Mon, 14 Apr 2014 03:25:52 -0700 (PDT)
+Received: by mail.chez-thomas.org (Postfix, from userid 1998)
+	id 1AD3BF811D7; Mon, 14 Apr 2014 04:25:52 -0600 (MDT)
+X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on
+	hermes.chez-thomas.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=4.0 tests=ALL_TRUSTED,BAYES_00
+	autolearn=unavailable version=3.3.2
+Received: from [192.168.1.114] (zeus [192.168.1.114])
+	by mail.chez-thomas.org (Postfix) with ESMTP id 70E7AF81188;
+	Mon, 14 Apr 2014 04:25:50 -0600 (MDT)
+Message-ID: <534BB7B3.3060104@mlbassoc.com>
+Date: Mon, 14 Apr 2014 04:25:55 -0600
+From: Gary Thomas <gary@mlbassoc.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:24.0) Gecko/20100101 Thunderbird/24.4.0
 MIME-Version: 1.0
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	"otavio@ossystems.com.br" <otavio@ossystems.com.br>
-Subject: Re: New RC for 1.6.
+To: yocto@yoctoproject.org
+References: <534A54F0.5020203@mlbassoc.com> <20140414023328.GY3370@denix.org>
+In-Reply-To: <20140414023328.GY3370@denix.org>
+X-Enigmail-Version: 1.5.2
+Subject: Re: BBB doesn't boot
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,39 +34,94 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 14 Apr 2014 08:29:54 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <ED224025F2B67747AAE98AB12E40D10C@intel.com>
-Content-Transfer-Encoding: base64
+X-List-Received-Date: Mon, 14 Apr 2014 10:25:53 -0000
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: 7bit
 
-SGkgQmV0aCwNCg0KVGhlcmUgYXJlIHNvbWUgYXJ0aWZhY3RzIG1pc3NpbmcgZm9yIGJlYWdsZWJv
-bmUsIHRoZSAuZHRiIGZpbGVzLg0KcmMzIGhhZCB0aGVtLi4uIFRoaXMgaXMgb25seSBhIHByb2Js
-ZW0gZm9yIG1pbmltYWwgaW1hZ2VzLCBhbGwgdGhlDQpvdGhlcnMgZG9uJ3QgbmVlZCB0aGUgZHRi
-IGZpbGVzLCBidXQgdGhleSBzaG91bGQgYmUgdGhlcmUgbmV2ZXJ0aGVsZXNzDQooYmV0d2VlbiBy
-YzMgYW5kIHJjNCBrZXJuZWwgaW1hZ2UgdHlwZSBjaGFuZ2VkIGZyb20gekltYWdlIHRvIHVJbWFn
-ZQ0KZndpdywgc28gdGhlIGR0YiBmaWxlIGNoYW5nZWQgbmFtZSB0b28sIGFzIGluDQp1SW1hZ2Ut
-YW0zMzV4LWJvbmVibGFjay5kdGIpDQoNCg0KQ2hlZXJzLA0KU3RlZmFuDQoNCk9uIFRodSwgMjAx
-NC0wNC0xMCBhdCAyMjoxNSAtMDcwMCwgRmxhbmFnYW4sIEVsaXphYmV0aCB3cm90ZToNCj4gQWxs
-LA0KPiANCj4gQSBmZXcgbXVjaCBuZWVkZWQgYnVnIGZpeGVzIGNhbWUgaW4gdG8gZml4IHNvbWUg
-b2YgdGhlIGlzc3VlcyB3ZSBzYXcNCj4gd2l0aCByYzMuIFdlIGRlY2lkZWQgdGhhdCB3ZSBzaG91
-bGQganVzdCByb2xsIGFuZCByYzQuIFBsZWFzZSBiZWdpbg0KPiB0ZXN0aW5nIHRoaXMgYXMgc29v
-biBhcyBwb3NzaWJsZS4NCj4gDQo+IFdlJ3JlIHNlZWluZyBvbmUgaXNzdWUgb24gdGhlIHdvcmxk
-IGJ1aWxkOg0KPiANCj4gaHR0cDovL2F1dG9idWlsZGVyLnlvY3RvcHJvamVjdC5vcmcvbWFpbi9i
-dWlsZGVycy9uaWdodGx5LXdvcmxkL2J1aWxkcy80Mi9zdGVwcy9CdWlsZEltYWdlcy9sb2dzL3N0
-ZGlvDQo+IA0KPiBidXQgYXMgdGhpcyBwcm9kdWNlcyBubyBwdWJsaXNoZWQgYXJ0aWZhY3RzLCBJ
-IHRoaW5rIHdlJ3JlIG9rIHdpdGggYXQNCj4gbGVhc3QgdGhlIHJlbGVhc2UgYXJ0aWZhY3RzLg0K
-PiANCj4gaHR0cDovL2F1dG9idWlsZGVyLnlvY3RvcHJvamVjdC5vcmcvcHViL3JlbGVhc2VzL3lv
-Y3RvLTEuNl9NNS5yYzQNCj4gDQo+IGJpdGJha2UgYmI0OTgwYzYzZGIzODZjZTdkMzBkOWE2Yjg2
-ZTlmMzg2MWIzYmMzYQ0KPiBlY2xpcHNlLXBva3ktanVubyAyNmJmYzQwNzc4MWFhMTg1ZjI0NGE0
-N2JhNjMxMjAzNDNjZWU0YTM3DQo+IGVjbGlwc2UtcG9reS1rZXBsZXIgMWRmZTFkMmYxMzIyYjVm
-ZGE4ZTFhNzYzN2M0NDdiMGUwNjBlZmIzZQ0KPiBtZXRhLWZzbC1hcm0gZDQzMTZmYWVmNzhjZWIw
-MWZmMDIzNTc5ZTE1MTEwOTM5ZWM2OTQwOA0KPiBtZXRhLWZzbC1wcGMgYzRmYTFiNDMxZjRlZmM0
-OTgyYTE2ODExOWRiOTUyMzZjZmE4Y2FkMw0KPiBtZXRhLWludGVsIGRiODRhY2ZjOGQ5ZWQ4ZGNj
-ZDRhNzlkZTM5ZmVlMzM3YmM3Mjk2NjINCj4gbWV0YS1taW5ub3cgN2JkY2QxMTQwYjcyOTU5OGJh
-ZTYyNDZhNGJiYzIxYzM5NTBhYWRkOA0KPiBtZXRhLXF0MyAzMDE2MTI5ZDkwYjdhYzg1MTdhNTIy
-N2Q4MTlmMTBhZDQxN2I1YjQ1DQo+IG9lY29yZSBkY2ExYjRmMDczZmZmNzQwMzY0ZjA2NmY2YTY4
-YmIzYzg2OTdiN2E2DQo+IHBva3kgYTA5NTgyNjEyNjUwNDk5MDRmZDc4YTJiYTAxOThkNDZlNWU2
-NWVhOQ0KPiANCj4gDQo+IC0tIA0KPiBFbGl6YWJldGggRmxhbmFnYW4NCj4gWW9jdG8gUHJvamVj
-dA0KPiBCdWlsZCBhbmQgUmVsZWFzZQ0KDQo=
+On 2014-04-13 20:33, Denys Dmytriyenko wrote:
+> On Sun, Apr 13, 2014 at 03:12:16AM -0600, Gary Thomas wrote:
+>> I just tried building (core-image-sato) for my BeagleBoneBlack
+>> using the latest Poky/Yocto master:
+>>
+>> Build Configuration:
+>> BB_VERSION        = "1.23.0"
+>> BUILD_SYS         = "i686-linux"
+>> NATIVELSBSTRING   = "Fedora-13"
+>> TARGET_SYS        = "arm-poky-linux-gnueabi"
+>> MACHINE           = "beaglebone"
+>> DISTRO            = "poky"
+>> DISTRO_VERSION    = "1.6+snapshot-20140411"
+>> TUNE_FEATURES     = "armv7a vfp neon callconvention-hard cortexa8"
+>> TARGET_FPU        = "vfp-neon"
+>> meta
+>> meta-yocto
+>> meta-yocto-bsp    = "master:863cc7483f5ee43189537940de8ee5c0964d24cc"
+>>
+>> This built the kernel using SRCREV 928d7b2dda
+>>
+>> I followed the bring-up instructions from README.hadware and the
+>> boot failed to even start the kernel.  Here's what I see:
+>>
+>> =============================== boot log =========================================
+>> U-Boot 2013.07 (Apr 11 2014 - 15:03:04)
+>>
+>> I2C:   ready
+>> DRAM:  512 MiB
+>> WARNING: Caches not enabled
+>> NAND:  0 MiB
+>> MMC:   OMAP SD/MMC: 0, OMAP SD/MMC: 1
+>> *** Warning - readenv() failed, using default environment
+>>
+>> musb-hdrc: ConfigData=0xde (UTMI-8, dyn FIFOs, HB-ISO Rx, HB-ISO Tx, SoftConn)
+>> musb-hdrc: MHDRC RTL version 2.0
+>> musb-hdrc: setup fifo_mode 4
+>> musb-hdrc: 28/31 max ep, 16384/16384 memory
+>> USB Peripheral mode controller at 47401000 using PIO, IRQ 0
+>> musb-hdrc: ConfigData=0xde (UTMI-8, dyn FIFOs, HB-ISO Rx, HB-ISO Tx, SoftConn)
+>> musb-hdrc: MHDRC RTL version 2.0
+>> musb-hdrc: setup fifo_mode 4
+>> musb-hdrc: 28/31 max ep, 16384/16384 memory
+>> USB Host mode controller at 47401800 using PIO, IRQ 0
+>> Net:   <ethaddr> not set. Validating first E-fuse MAC
+>> Phy not found
+>> PHY reset timed out
+>> cpsw, usb_ether
+>> Hit any key to stop autoboot:  0
+>> mmc0 is current device
+>> SD/MMC found on device 0
+>> reading uEnv.txt
+>> ** Unable to read file uEnv.txt **
+>> 4981688 bytes read in 613 ms (7.7 MiB/s)
+>> 29192 bytes read in 46 ms (619.1 KiB/s)
+>> Booting from mmc ...
+>> ## Booting kernel from Legacy Image at 80200000 ...
+>>    Image Name:   Linux-3.14.0-yocto-standard
+>>    Image Type:   ARM Linux Kernel Image (uncompressed)
+>>    Data Size:    4981624 Bytes = 4.8 MiB
+>>    Load Address: 80008000
+>>    Entry Point:  80008000
+>>    Verifying Checksum ... OK
+>> ## Flattened Device Tree blob at 80f80000
+>>    Booting using the fdt blob at 0x80f80000
+>>    Loading Kernel Image ... OK
+>>    Using Device Tree in place at 80f80000, end 80f8a207
+>>
+>> Starting kernel ...
+>> ==================================================================================
+>>
+>> Any ideas what I've done wrong?
+> 
+> Hmm, everything looks sane. What revision is your BBB? And did you press 
+> USER/BOOT button or erased eMMC partition per instructions?
+> 
+
+Revision A5A, with an LCD cape
+
+Yes, I erased the eMMC before trying this.
+
+-- 
+------------------------------------------------------------
+Gary Thomas                 |  Consulting for the
+MLB Associates              |    Embedded world
+------------------------------------------------------------
 
