@@ -1,23 +1,25 @@
 Return-Path: <Hongxu.Jia@windriver.com>
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3B141E00B80
-	for <yocto@yoctoproject.org>; Sun, 13 Apr 2014 18:53:55 -0700 (PDT)
+Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4864AE00B89
+	for <yocto@yoctoproject.org>; Sun, 13 Apr 2014 18:53:57 -0700 (PDT)
 Received: from ALA-HCB.corp.ad.wrs.com (ala-hcb.corp.ad.wrs.com
 	[147.11.189.41])
-	by mail.windriver.com (8.14.5/8.14.5) with ESMTP id s3E1rsis017816
+	by mail1.windriver.com (8.14.5/8.14.5) with ESMTP id s3E1ruQH003673
 	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL)
-	for <yocto@yoctoproject.org>; Sun, 13 Apr 2014 18:53:55 -0700 (PDT)
+	for <yocto@yoctoproject.org>; Sun, 13 Apr 2014 18:53:56 -0700 (PDT)
 Received: from pek-hjia-d1.corp.ad.wrs.com (128.224.162.194) by
 	ALA-HCB.corp.ad.wrs.com (147.11.189.41) with Microsoft SMTP Server id
-	14.3.169.1; Sun, 13 Apr 2014 18:53:54 -0700
+	14.3.169.1; Sun, 13 Apr 2014 18:53:56 -0700
 From: Hongxu Jia <hongxu.jia@windriver.com>
 To: <yocto@yoctoproject.org>, <mark.hatle@windriver.com>,
 	<randy.macleod@windriver.com>
-Date: Mon, 14 Apr 2014 09:53:43 +0800
-Message-ID: <cover.1397439775.git.hongxu.jia@windriver.com>
+Date: Mon, 14 Apr 2014 09:53:44 +0800
+Message-ID: <f14d1b840a28c99d63830551808804b7e436b357.1397439775.git.hongxu.jia@windriver.com>
 X-Mailer: git-send-email 1.8.1.2
+In-Reply-To: <cover.1397439775.git.hongxu.jia@windriver.com>
+References: <cover.1397439775.git.hongxu.jia@windriver.com>
 MIME-Version: 1.0
-Subject: [PATCH 0/8][meta-selinux] fix PRINC QA Warning
+Subject: [PATCH 1/8] refpolicy: remove PRINC warning
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -29,53 +31,79 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 14 Apr 2014 01:53:55 -0000
+X-List-Received-Date: Mon, 14 Apr 2014 01:53:57 -0000
 Content-Type: text/plain
 
-The following changes since commit 0362287928bc0a58b755488ebd74441c28eeeee2:
+Bump up PR and remove PRINC.
 
-  audit: Fix lack of a default audit.rules (2014-04-07 09:55:49 -0400)
-
-are available in the git repository at:
-
-  git://git.pokylinux.org/poky-contrib hongxu/fix-selinux-princ
-  http://git.pokylinux.org/cgit.cgi/poky-contrib/log/?h=hongxu/fix-princ
-
-Hongxu Jia (8):
-  refpolicy: remove PRINC warning
-  checkpolicy: remove PRINC warning
-  libselinux: remove PRINC warning
-  libsemanage: remove PRINC warning
-  libsepol: remove PRINC warning
-  sepolgen: remove PRINC warning
-  libpcre_8.34.bbappend: remove PRINC warning
-  policycoreutils: remove PRINC warning
-
+Signed-off-by: Hongxu Jia <hongxu.jia@windriver.com>
+---
  recipes-security/refpolicy/refpolicy-mcs_2.20130424.bb      | 2 +-
  recipes-security/refpolicy/refpolicy-mls_2.20130424.bb      | 2 +-
  recipes-security/refpolicy/refpolicy-standard_2.20130424.bb | 2 +-
  recipes-security/refpolicy/refpolicy_2.20130424.inc         | 2 --
  recipes-security/refpolicy/refpolicy_common.inc             | 2 --
- recipes-security/selinux/checkpolicy.inc                    | 2 --
- recipes-security/selinux/checkpolicy_2.2.bb                 | 2 +-
- recipes-security/selinux/checkpolicy_git.bb                 | 2 +-
- recipes-security/selinux/libselinux.inc                     | 2 --
- recipes-security/selinux/libselinux_2.2.2.bb                | 2 +-
- recipes-security/selinux/libselinux_git.bb                  | 2 +-
- recipes-security/selinux/libsemanage.inc                    | 2 --
- recipes-security/selinux/libsemanage_2.2.bb                 | 2 +-
- recipes-security/selinux/libsemanage_git.bb                 | 2 +-
- recipes-security/selinux/libsepol.inc                       | 2 --
- recipes-security/selinux/libsepol_2.2.bb                    | 2 +-
- recipes-security/selinux/libsepol_git.bb                    | 2 +-
- recipes-security/selinux/policycoreutils.inc                | 2 --
- recipes-security/selinux/policycoreutils_git.bb             | 2 +-
- recipes-security/selinux/sepolgen.inc                       | 2 --
- recipes-security/selinux/sepolgen_1.2.1.bb                  | 2 +-
- recipes-security/selinux/sepolgen_git.bb                    | 2 +-
- recipes-support/libpcre/libpcre_8.34.bbappend               | 2 --
- 23 files changed, 14 insertions(+), 32 deletions(-)
+ 5 files changed, 3 insertions(+), 7 deletions(-)
 
+diff --git a/recipes-security/refpolicy/refpolicy-mcs_2.20130424.bb b/recipes-security/refpolicy/refpolicy-mcs_2.20130424.bb
+index adb8e4a..17a73c7 100644
+--- a/recipes-security/refpolicy/refpolicy-mcs_2.20130424.bb
++++ b/recipes-security/refpolicy/refpolicy-mcs_2.20130424.bb
+@@ -6,7 +6,7 @@ level. This is useful on systems where a hierarchical policy (MLS) isn't \
+ needed (pretty much all systems) but the non-hierarchical categories are. \
+ "
+ 
+-PR = "r0"
++PR = "r4"
+ 
+ POLICY_TYPE = "mcs"
+ 
+diff --git a/recipes-security/refpolicy/refpolicy-mls_2.20130424.bb b/recipes-security/refpolicy/refpolicy-mls_2.20130424.bb
+index b20f130..b4b6bf8 100644
+--- a/recipes-security/refpolicy/refpolicy-mls_2.20130424.bb
++++ b/recipes-security/refpolicy/refpolicy-mls_2.20130424.bb
+@@ -5,7 +5,7 @@ It allows giving data labels such as \"Top Secret\" and preventing \
+ such data from leaking to processes or files with lower classification. \
+ "
+ 
+-PR = "r0"
++PR = "r4"
+ 
+ POLICY_TYPE = "mls"
+ 
+diff --git a/recipes-security/refpolicy/refpolicy-standard_2.20130424.bb b/recipes-security/refpolicy/refpolicy-standard_2.20130424.bb
+index 922df42..4084421 100644
+--- a/recipes-security/refpolicy/refpolicy-standard_2.20130424.bb
++++ b/recipes-security/refpolicy/refpolicy-standard_2.20130424.bb
+@@ -3,7 +3,7 @@ DESCRIPTION = "\
+ This is the reference policy for SELinux built with type enforcement \
+ only."
+ 
+-PR = "r3"
++PR = "r7"
+ 
+ POLICY_TYPE = "standard"
+ 
+diff --git a/recipes-security/refpolicy/refpolicy_2.20130424.inc b/recipes-security/refpolicy/refpolicy_2.20130424.inc
+index dcce3ba..5dbb2dc 100644
+--- a/recipes-security/refpolicy/refpolicy_2.20130424.inc
++++ b/recipes-security/refpolicy/refpolicy_2.20130424.inc
+@@ -1,5 +1,3 @@
+-PRINC = "1"
+-
+ SRC_URI = "http://oss.tresys.com/files/refpolicy/refpolicy-${PV}.tar.bz2;"
+ SRC_URI[md5sum] = "6a5c975258cc8eb92c122f11b11a5085"
+ SRC_URI[sha256sum] = "6039ba854f244a39dc727cc7db25632f7b933bb271c803772d754d4354f5aef4"
+diff --git a/recipes-security/refpolicy/refpolicy_common.inc b/recipes-security/refpolicy/refpolicy_common.inc
+index fbf9441..76790af 100644
+--- a/recipes-security/refpolicy/refpolicy_common.inc
++++ b/recipes-security/refpolicy/refpolicy_common.inc
+@@ -1,5 +1,3 @@
+-PRINC = "4"
+-
+ SECTION = "base"
+ LICENSE = "GPLv2"
+ 
 -- 
 1.8.1.2
 
