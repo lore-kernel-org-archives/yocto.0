@@ -1,36 +1,26 @@
-Return-Path: <martin.jansa@gmail.com>
-Received: from mail-ee0-f53.google.com (mail-ee0-f53.google.com [74.125.83.53])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 99A00E00BB8
-	for <yocto@yoctoproject.org>; Mon, 14 Apr 2014 07:41:12 -0700 (PDT)
-Received: by mail-ee0-f53.google.com with SMTP id b57so6666643eek.40
-	for <yocto@yoctoproject.org>; Mon, 14 Apr 2014 07:41:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=date:from:to:cc:subject:message-id:references:mime-version
-	:content-type:content-disposition:in-reply-to:user-agent;
-	bh=u5WiApDtTYzFB31O8e3eD5uan7QbsY3RfcVD+D5+pSE=;
-	b=oN67nfdKEB4nF2v9qArLRtERfGgYrLdi20zYujEqD2xh5LAsONtkhYoduE/3yh1Rph
-	whYlub/MufneveldDdQOZkxHVkJQ66g1NTazVxHzBTCy/Ed9HfUuRmxQlYI6HXnPSfeD
-	XkQ7TWe3/uAb13V93p+0NP0PLTgnj3PKwKNwNHlvCBJS9RUygylDQljHNngoxK+cmm+n
-	eyHjoHWrBaDxL9rORqpehJlTcUDZLGMb168H42Z2MwEd3YpooOmUptqpf9D+G2ER0BMf
-	q1XHobcB8qkTx2BiQmm9sX06J0qSdX0/tjw+HLOX1yBL8aQGNLjN9Gb1Uc2RkILHO1/6
-	MdOQ==
-X-Received: by 10.14.246.1 with SMTP id p1mr52182921eer.20.1397486471379;
-	Mon, 14 Apr 2014 07:41:11 -0700 (PDT)
-Received: from localhost (ip-89-176-104-3.net.upcbroadband.cz. [89.176.104.3])
-	by mx.google.com with ESMTPSA id
-	z48sm41501367eel.27.2014.04.14.07.41.09 for <multiple recipients>
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Mon, 14 Apr 2014 07:41:10 -0700 (PDT)
-Date: Mon, 14 Apr 2014 16:41:21 +0200
-From: Martin Jansa <martin.jansa@gmail.com>
-To: Richard Schmitt <richard.schmitt@freescale.com>
-Message-ID: <20140414144121.GC2132@jama>
-References: <aa3464940d85426fbca4b43ff4c7c9c9@BL2PR03MB210.namprd03.prod.outlook.com>
-MIME-Version: 1.0
-In-Reply-To: <aa3464940d85426fbca4b43ff4c7c9c9@BL2PR03MB210.namprd03.prod.outlook.com>
-User-Agent: Mutt/1.5.22 (2013-10-16)
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: openssl and heartbleed
+Return-Path: <denis@denix.org>
+Received: from vms173019pub.verizon.net (vms173019pub.verizon.net
+	[206.46.173.19])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 771F9E00BB7
+	for <yocto@yoctoproject.org>; Mon, 14 Apr 2014 08:47:09 -0700 (PDT)
+Received: from gandalf.denix.org ([unknown] [71.191.205.189])
+	by vms173019.mailsrvcs.net
+	(Sun Java(tm) System Messaging Server 7u2-7.02 32bit (built Apr 16
+	2009)) with ESMTPA id <0N4100INW2I6RI80@vms173019.mailsrvcs.net> for
+	yocto@yoctoproject.org; Mon, 14 Apr 2014 10:47:05 -0500 (CDT)
+Received: by gandalf.denix.org (Postfix, from userid 1000)	id F2F6A20182; Mon,
+	14 Apr 2014 11:46:53 -0400 (EDT)
+Date: Mon, 14 Apr 2014 11:46:53 -0400
+From: Denys Dmytriyenko <denis@denix.org>
+To: Gary Thomas <gary@mlbassoc.com>
+Message-id: <20140414154653.GZ3370@denix.org>
+References: <534A54F0.5020203@mlbassoc.com> <20140414023328.GY3370@denix.org>
+	<534BB7B3.3060104@mlbassoc.com>
+MIME-version: 1.0
+In-reply-to: <534BB7B3.3060104@mlbassoc.com>
+User-Agent: Mutt/1.5.20 (2009-06-14)
+Cc: yocto@yoctoproject.org
+Subject: Re: BBB doesn't boot
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,36 +32,96 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 14 Apr 2014 14:41:14 -0000
-X-Groupsio-MsgNum: 19007
-Content-Type: multipart/signed; micalg=pgp-sha1;
-	protocol="application/pgp-signature"; boundary="DRp5/Sds4nAqvQzf"
-Content-Disposition: inline
+X-List-Received-Date: Mon, 14 Apr 2014 15:47:12 -0000
+Content-type: text/plain; charset=us-ascii
+Content-disposition: inline
 
---DRp5/Sds4nAqvQzf
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On Mon, Apr 14, 2014 at 04:25:55AM -0600, Gary Thomas wrote:
+> On 2014-04-13 20:33, Denys Dmytriyenko wrote:
+> > On Sun, Apr 13, 2014 at 03:12:16AM -0600, Gary Thomas wrote:
+> >> I just tried building (core-image-sato) for my BeagleBoneBlack
+> >> using the latest Poky/Yocto master:
+> >>
+> >> Build Configuration:
+> >> BB_VERSION        = "1.23.0"
+> >> BUILD_SYS         = "i686-linux"
+> >> NATIVELSBSTRING   = "Fedora-13"
+> >> TARGET_SYS        = "arm-poky-linux-gnueabi"
+> >> MACHINE           = "beaglebone"
+> >> DISTRO            = "poky"
+> >> DISTRO_VERSION    = "1.6+snapshot-20140411"
+> >> TUNE_FEATURES     = "armv7a vfp neon callconvention-hard cortexa8"
+> >> TARGET_FPU        = "vfp-neon"
+> >> meta
+> >> meta-yocto
+> >> meta-yocto-bsp    = "master:863cc7483f5ee43189537940de8ee5c0964d24cc"
+> >>
+> >> This built the kernel using SRCREV 928d7b2dda
+> >>
+> >> I followed the bring-up instructions from README.hadware and the
+> >> boot failed to even start the kernel.  Here's what I see:
+> >>
+> >> =============================== boot log =========================================
+> >> U-Boot 2013.07 (Apr 11 2014 - 15:03:04)
+> >>
+> >> I2C:   ready
+> >> DRAM:  512 MiB
+> >> WARNING: Caches not enabled
+> >> NAND:  0 MiB
+> >> MMC:   OMAP SD/MMC: 0, OMAP SD/MMC: 1
+> >> *** Warning - readenv() failed, using default environment
+> >>
+> >> musb-hdrc: ConfigData=0xde (UTMI-8, dyn FIFOs, HB-ISO Rx, HB-ISO Tx, SoftConn)
+> >> musb-hdrc: MHDRC RTL version 2.0
+> >> musb-hdrc: setup fifo_mode 4
+> >> musb-hdrc: 28/31 max ep, 16384/16384 memory
+> >> USB Peripheral mode controller at 47401000 using PIO, IRQ 0
+> >> musb-hdrc: ConfigData=0xde (UTMI-8, dyn FIFOs, HB-ISO Rx, HB-ISO Tx, SoftConn)
+> >> musb-hdrc: MHDRC RTL version 2.0
+> >> musb-hdrc: setup fifo_mode 4
+> >> musb-hdrc: 28/31 max ep, 16384/16384 memory
+> >> USB Host mode controller at 47401800 using PIO, IRQ 0
+> >> Net:   <ethaddr> not set. Validating first E-fuse MAC
+> >> Phy not found
+> >> PHY reset timed out
+> >> cpsw, usb_ether
+> >> Hit any key to stop autoboot:  0
+> >> mmc0 is current device
+> >> SD/MMC found on device 0
+> >> reading uEnv.txt
+> >> ** Unable to read file uEnv.txt **
+> >> 4981688 bytes read in 613 ms (7.7 MiB/s)
+> >> 29192 bytes read in 46 ms (619.1 KiB/s)
+> >> Booting from mmc ...
+> >> ## Booting kernel from Legacy Image at 80200000 ...
+> >>    Image Name:   Linux-3.14.0-yocto-standard
+> >>    Image Type:   ARM Linux Kernel Image (uncompressed)
+> >>    Data Size:    4981624 Bytes = 4.8 MiB
+> >>    Load Address: 80008000
+> >>    Entry Point:  80008000
+> >>    Verifying Checksum ... OK
+> >> ## Flattened Device Tree blob at 80f80000
+> >>    Booting using the fdt blob at 0x80f80000
+> >>    Loading Kernel Image ... OK
+> >>    Using Device Tree in place at 80f80000, end 80f8a207
+> >>
+> >> Starting kernel ...
+> >> ==================================================================================
+> >>
+> >> Any ideas what I've done wrong?
+> > 
+> > Hmm, everything looks sane. What revision is your BBB? And did you press 
+> > USER/BOOT button or erased eMMC partition per instructions?
+> > 
+> 
+> Revision A5A, with an LCD cape
 
-On Mon, Apr 14, 2014 at 02:37:52PM +0000, Richard Schmitt wrote:
-> Does the Yocto project plan to have some response to the heartbleed explo=
-it in openssl in the near term?  Has this already been addressed?
+Hmm, I'm wondering if LCD cape conflicts here - there's no cape support in 
+this BSP. Can you try w/o it?
 
-It was already addressed for master, daisy, dora and dylan.
+As of the board revision - I was testing on different ones from A1 to A6 and 
+didn't see any major issue...
 
---=20
-Martin 'JaMa' Jansa     jabber: Martin.Jansa@gmail.com
+-- 
+Denys
 
---DRp5/Sds4nAqvQzf
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: Digital signature
-
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v2.0.22 (GNU/Linux)
-
-iEYEARECAAYFAlNL85EACgkQN1Ujt2V2gBzGWQCgsYrbSeBMmrMEyq4PRaf/fbT6
-NZwAoLhdFpcGes9uS2HO+F2pQ3fvuCyL
-=mXn6
------END PGP SIGNATURE-----
-
---DRp5/Sds4nAqvQzf--
