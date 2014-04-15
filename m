@@ -1,32 +1,26 @@
-Return-Path: <denis@denix.org>
-Received: from vms173019pub.verizon.net (vms173019pub.verizon.net
-	[206.46.173.19])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9ABE8E00B9D
-	for <yocto@yoctoproject.org>; Tue, 15 Apr 2014 12:43:18 -0700 (PDT)
-Received: from gandalf.denix.org ([unknown] [71.191.205.189])
-	by vms173019.mailsrvcs.net
-	(Sun Java(tm) System Messaging Server 7u2-7.02 32bit (built Apr 16
-	2009)) with ESMTPA id <0N4300M0383VHC40@vms173019.mailsrvcs.net> for
-	yocto@yoctoproject.org; Tue, 15 Apr 2014 14:43:18 -0500 (CDT)
-Received: by gandalf.denix.org (Postfix, from userid 1000)	id 89F89201BF; Tue,
-	15 Apr 2014 15:43:07 -0400 (EDT)
-Date: Tue, 15 Apr 2014 15:43:07 -0400
-From: Denys Dmytriyenko <denis@denix.org>
-To: Paul Eggleton <paul.eggleton@linux.intel.com>
-Message-id: <20140415194307.GG11339@denix.org>
-References: <534C0415.20701@mlbassoc.com>
-	<3130526.9zUpmp9SKQ@peggleto-mobl5.ger.corp.intel.com>
-	<20140415162639.GC11339@denix.org>
-	<16254891.OyPbf7clBT@peggleto-mobl5.ger.corp.intel.com>
-	<20140415171601.GD11339@denix.org> <20140415174112.GE11339@denix.org>
-MIME-version: 1.0
-In-reply-to: <20140415174112.GE11339@denix.org>
-User-Agent: Mutt/1.5.20 (2009-06-14)
-Cc: yocto@yoctoproject.org
-Subject: Re: BBB doesn't boot
+Return-Path: <jeremy@rhtech.co.nz>
+Received: from linuxplesk9.openhost.net.nz (linuxplesk9.openhost.net.nz
+	[119.47.118.13])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7F7F3E00BE4
+	for <yocto@yoctoproject.org>; Tue, 15 Apr 2014 15:13:07 -0700 (PDT)
+Received: (qmail 11319 invoked from network); 16 Apr 2014 10:13:06 +1200
+Received: from 122-61-40-229.jetstream.xtra.co.nz (HELO ?192.168.1.98?)
+	(122.61.40.229)
+	by linuxplesk9.openhost.net.nz with (DHE-RSA-AES128-SHA encrypted) SMTP;
+	16 Apr 2014 10:13:05 +1200
+Message-ID: <534DAEF0.2000501@rhtech.co.nz>
+Date: Wed, 16 Apr 2014 10:13:04 +1200
+From: Jeremy Cole-Baker <jeremy@rhtech.co.nz>
+Organization: Riverhead Technology
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64;
+	rv:24.0) Gecko/20100101 Thunderbird/24.4.0
+MIME-Version: 1.0
+To: yocto@yoctoproject.org
+Subject: Getting USB devices to work on BeagleBoard xM
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
+Reply-To: jeremy@rhtech.co.nz
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -35,49 +29,212 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 15 Apr 2014 19:43:19 -0000
-Content-type: text/plain; charset=us-ascii
-Content-disposition: inline
+X-List-Received-Date: Tue, 15 Apr 2014 22:13:11 -0000
+Content-Type: multipart/alternative;
+	boundary="------------060005030708030801010805"
 
-On Tue, Apr 15, 2014 at 01:41:12PM -0400, Denys Dmytriyenko wrote:
-> > > > > Some other things I tried with a "long" TMPDIR path (note that it's the
-> > > > > TMPDIR path that makes the difference - in my tests I've been using
-> > > > > /home/paul/poky/build2/much/longer/path/to/tmp). None of this helped:
-> > > > > 
-> > > > > * kernel built with gcc 4.7.2 and binutils 2.23.2
-> > > > > * u-boot built with gcc 4.7.2 and binutils 2.23.2
-> > > > > * u-boot from http://downloads.angstrom-distribution.org/demo/beaglebone/
-> > > > > * earlyprintk and CONFIG_DEBUG_LL - no additional output printed
-> > > > > 
-> > > > > I think we're now at the point where we'd benefit from someone with better
-> > > > > knowledge debugging the issue.
-> > > > 
-> > > > Ok, should we expand the search area? Since this is supposed to be vanilla
-> > > > 3.14 kernel, can we try other platforms and see if they are similarly
-> > > > affected? I'll try pinging our kernel guys for any ideas...
-> > > 
-> > > As far as I know it has only been observed with beaglebone (both white and 
-> > > black, if it makes a difference). FWIW, qemuarm images from the autobuilder 
-> > > boot just fine, and apparently the same is true of edgerouter (different 
-> > > architecture but also uses u-boot).
-> > 
-> > But do those other platforms use uImage or zImage?
+--------------060005030708030801010805
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
 
-I don't yet know what is going on, but building in the same directory with 
-sources (B = S) makes it work regarless of the path length:
+Hi,
 
-/OE/RAM/poky-111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111/22222222222222222222222222222222222222222222222222222222222222222222/3333333333333333333333333333333333333333333333333333/tmp/work/beaglebone-poky-linux-gnueabi/linux-yocto/3.14+gitAUTOINC+928d7b2dda_0143c6ebb4-r0/linux
+I've managed to build a couple of different recipes for my BeagleBoard 
+(BeagleBoard xM Rev C), and also had a go at customising it.  I think 
+I've tried core-image-minimal and core-image-basic.
 
-So, I just commented out setting kernel-specific B in linux-yocto.inc and any 
-kernel now boots with long path:
+The build works OK, and I can set up my micro SD card and get it to 
+boot. I see lots of messages about loading drivers during boot, and I 
+can log in to linux.
 
-#B = "${WORKDIR}/linux-${PACKAGE_ARCH}-${LINUX_KERNEL_TYPE}-build"
+However, the USB devices don't seem to be working. The built in 
+USB-Ethernet isn't there, and when I plug in a USB stick nothing happens 
+- nothing in /dev/ and no messages in the system log.
 
-I'm copying Richard and Bruce directly to see if they may have a quick insight 
-and/or accept it as a workaround for the release. I'll keep digging further, 
-but if anyone cares to verify the above workaround works for them, I would 
-appreciate. Thanks!
+I don't know whether this is something I missed in the build, or some 
+configuration I need to do. I also don't know whether it is specific to 
+the Beagle or a general problem. Unfortunately I am new to Kernel builds 
+and device drivers.
+
+Here's what I've looked into:
+
+The boot-up messages indicate that the USB drivers are loaded, e.g.:
+
+<snip>
+usbcore: registered new interface driver usbfs
+usbcore: registered new interface driver hub
+usbcore: registered new device driver usb
+...
+usbcore: registered new interface driver smsc75xx
+usbcore: registered new interface driver smsc95xx
+...etc
+
+(I think smsc95xx is the USB-Ethernet chip on the beagle board xM).
+
+ehci_hcd: USB 2.0 'Enhanced' Host Controller (EHCI) Driver
+ehci-omap: OMAP-EHCI Host Controller driver
+ehci-omap 48064800.ehci: EHCI Host Controller
+ehci-omap 48064800.ehci: new USB bus registered, assigned bus number 1
+ehci-omap 48064800.ehci: irq 93, io mem 0x48064800
+ehci-omap 48064800.ehci: USB 2.0 started, EHCI 1.00
+hub 1-0:1.0: USB hub found
+hub 1-0:1.0: 3 ports detected
+usbcore: registered new interface driver usb-storage
+musb-hdrc musb-hdrc.0.auto: musb_init_controller failed with status -6
+mousedev: PS/2 mouse device common for all mice
+...Etc
+
+There's a modprobe error which occurs a couple of times:
+
+udevd[71]: starting version 175
+modprobe: chdir(3.10.11-yocto-standard): No such file or directory
+
+I also saw errors from the ethernet subsystem (?), along the lines of 
+"eth0: device not found" and "usb0: device not found". This occurred 
+during boot and also when I used "ifup eth0". I'm actually seeing a 
+different error now: "ifconfig: SIOCGIFFLAGS: No such device". In either 
+case, I think it's because something to do with the actual USB hardware 
+is missing or not configured.
+
+"lsmod" shows no modules loaded, i.e.:
+
+root@beagleboard:~#lsmod
+Module Size Used by
+root@beagleboard:~#
+
+Does this mean that the various device drivers, etc, above are built in 
+to the kernel?
+
+Any suggestions for how to diagnose / fix this problem? Anybody else 
+have experience with the BeagleBoard xM? I'm a bit lost.
+
+Thanks!
+
 
 -- 
-Denys
+Riverhead Technology
+Jeremy Cole-Baker
+Ph. (+64) 27 673 0129
+www.rhtech.co.nz
 
+
+--------------060005030708030801010805
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: 7bit
+
+<html>
+  <head>
+
+    <meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+  </head>
+  <body bgcolor="#FFFFFF" text="#000000">
+    Hi, <br>
+    <br>
+    I've managed to build a couple of different recipes for my
+    BeagleBoard (BeagleBoard xM Rev C), and also had a go at customising
+    it.&nbsp; I think I've tried core-image-minimal and core-image-basic.<br>
+    <br>
+    The build works OK, and I can set up my micro SD card and get it to
+    boot. I see lots of messages about loading drivers during boot, and
+    I can log in to linux. <br>
+    <br>
+    However, the USB devices don't seem to be working. The built in
+    USB-Ethernet isn't there, and when I plug in a USB stick nothing
+    happens - nothing in /dev/ and no messages in the system log. <br>
+    <br>
+    I don't know whether this is something I missed in the build, or
+    some configuration I need to do. I also don't know whether it is
+    specific to the Beagle or a general problem. Unfortunately I am new
+    to Kernel builds and device drivers. <br>
+    <br>
+    Here's what I've looked into: <br>
+    <br>
+    The boot-up messages indicate that the USB drivers are loaded, e.g.:<br>
+    <br>
+    &lt;snip&gt;<br>
+    usbcore: registered new interface driver usbfs<br>
+    usbcore: registered new interface driver hub<br>
+    usbcore: registered new device driver usb<br>
+    ...<br>
+    usbcore: registered new interface driver smsc75xx<br>
+    usbcore: registered new interface driver smsc95xx<br>
+    ...etc<br>
+    <br>
+    (I think smsc95xx is the USB-Ethernet chip on the beagle board xM).
+    <br>
+    <br>
+    ehci_hcd: USB 2.0 'Enhanced' Host Controller (EHCI) Driver<br>
+    ehci-omap: OMAP-EHCI Host Controller driver<br>
+    ehci-omap 48064800.ehci: EHCI Host Controller<br>
+    ehci-omap 48064800.ehci: new USB bus registered, assigned bus number
+    1<br>
+    ehci-omap 48064800.ehci: irq 93, io mem 0x48064800<br>
+    ehci-omap 48064800.ehci: USB 2.0 started, EHCI 1.00<br>
+    hub 1-0:1.0: USB hub found<br>
+    hub 1-0:1.0: 3 ports detected<br>
+    usbcore: registered new interface driver usb-storage<br>
+    musb-hdrc musb-hdrc.0.auto: musb_init_controller failed with status
+    -6<br>
+    mousedev: PS/2 mouse device common for all mice<br>
+    ...Etc<br>
+    <br>
+    There's a modprobe error which occurs a couple of times: <br>
+    <br>
+    udevd[71]: starting version 175<br>
+    modprobe: chdir(3.10.11-yocto-standard): No such file or directory<br>
+    <br>
+    I also saw errors from the ethernet subsystem (?), along the lines
+    of "eth0: device not found" and "usb0: device not found". This
+    occurred during boot and also when I used "ifup eth0". I'm actually
+    seeing a different error now: "ifconfig: SIOCGIFFLAGS: No such
+    device". In either case, I think it's because something to do with
+    the actual USB hardware is missing or not configured. <br>
+    <br>
+    "lsmod" shows no modules loaded, i.e.: <br>
+    <br>
+    <span style="color: rgb(51, 51, 51); font-family: Arial, sans-serif;
+      font-size: 14px; font-style: normal; font-variant: normal;
+      font-weight: normal; letter-spacing: normal; line-height: 19px;
+      orphans: auto; text-align: start; text-indent: 0px;
+      text-transform: none; white-space: normal; widows: auto;
+      word-spacing: 0px; -webkit-text-stroke-width: 0px;
+      background-color: rgb(255, 255, 255); display: inline !important;
+      float: none;"><span class="Apple-converted-space"><span
+          style="color: rgb(51, 51, 51); font-family: Arial, sans-serif;
+          font-size: 14px; font-style: normal; font-variant: normal;
+          font-weight: normal; letter-spacing: normal; line-height:
+          19px; orphans: auto; text-align: start; text-indent: 0px;
+          text-transform: none; white-space: normal; widows: auto;
+          word-spacing: 0px; -webkit-text-stroke-width: 0px;
+          background-color: rgb(255, 255, 255); display: inline
+          !important; float: none;">root@beagleboard:~#<span
+            class="Apple-converted-space">&nbsp;</span></span></span>lsmod <br>
+      Module Size Used by</span><br>
+    <span style="color: rgb(51, 51, 51); font-family: Arial, sans-serif;
+      font-size: 14px; font-style: normal; font-variant: normal;
+      font-weight: normal; letter-spacing: normal; line-height: 19px;
+      orphans: auto; text-align: start; text-indent: 0px;
+      text-transform: none; white-space: normal; widows: auto;
+      word-spacing: 0px; -webkit-text-stroke-width: 0px;
+      background-color: rgb(255, 255, 255); display: inline !important;
+      float: none;">root@beagleboard:~#<span
+        class="Apple-converted-space"> </span></span><br>
+    <br>
+    Does this mean that the various device drivers, etc, above are built
+    in to the kernel?<br>
+    <br>
+    Any suggestions for how to diagnose / fix this problem? Anybody else
+    have experience with the BeagleBoard xM? I'm a bit lost. <br>
+    <br>
+    Thanks!<br>
+    <br>
+    <br>
+    <pre class="moz-signature" cols="72">-- 
+Riverhead Technology
+Jeremy Cole-Baker
+Ph. (+64) 27 673 0129
+<a class="moz-txt-link-abbreviated" href="http://www.rhtech.co.nz">www.rhtech.co.nz</a></pre>
+  </body>
+</html>
+
+--------------060005030708030801010805--
