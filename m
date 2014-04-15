@@ -1,33 +1,37 @@
-Return-Path: <stephen.k.jolley@intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E56F9E00B8B
-	for <yocto@yoctoproject.org>; Tue, 15 Apr 2014 08:12:03 -0700 (PDT)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga102.jf.intel.com with ESMTP; 15 Apr 2014 08:05:48 -0700
+Return-Path: <corneliux.stoicescu@intel.com>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2FC64E00B8B
+	for <yocto@yoctoproject.org>; Tue, 15 Apr 2014 08:16:00 -0700 (PDT)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga101.jf.intel.com with ESMTP; 15 Apr 2014 08:15:53 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.97,864,1389772800"; 
-	d="scan'208,217";a="521398418"
-Received: from fmsmsx107.amr.corp.intel.com ([10.19.9.54])
-	by orsmga002.jf.intel.com with ESMTP; 15 Apr 2014 08:10:34 -0700
-Received: from fmsmsx101.amr.corp.intel.com (10.19.9.52) by
-	FMSMSX107.amr.corp.intel.com (10.19.9.54) with Microsoft SMTP Server
-	(TLS) id 14.3.123.3; Tue, 15 Apr 2014 08:10:34 -0700
-Received: from fmsmsx111.amr.corp.intel.com ([169.254.2.42]) by
-	FMSMSX101.amr.corp.intel.com ([169.254.1.102]) with mapi id
-	14.03.0123.003; Tue, 15 Apr 2014 08:10:33 -0700
-From: "Jolley, Stephen K" <stephen.k.jolley@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Minutes: Yocto Project Technical Team Meeting - Tuesday, April
-	15, 2014 8:00 AM US Pacific Time
-Thread-Index: Ac9YvNg58hX7rytfQC645fjs5XSEQA==
-Date: Tue, 15 Apr 2014 15:10:33 +0000
-Message-ID: <9ADD3FDE8B189B4AA2F8A3C711F8155E5503A201@fmsmsx111.amr.corp.intel.com>
+X-IronPort-AV: E=Sophos;i="4.97,864,1389772800"; d="scan'208";a="493576268"
+Received: from irsmsx102.ger.corp.intel.com ([163.33.3.155])
+	by orsmga001.jf.intel.com with ESMTP; 15 Apr 2014 08:15:16 -0700
+Received: from irsmsx153.ger.corp.intel.com (163.33.192.75) by
+	IRSMSX102.ger.corp.intel.com (163.33.3.155) with Microsoft SMTP Server
+	(TLS) id 14.3.123.3; Tue, 15 Apr 2014 16:15:15 +0100
+Received: from irsmsx103.ger.corp.intel.com ([169.254.3.172]) by
+	IRSMSX153.ger.corp.intel.com ([169.254.9.200]) with mapi id
+	14.03.0123.003; Tue, 15 Apr 2014 16:15:15 +0100
+From: "Stoicescu, CorneliuX" <corneliux.stoicescu@intel.com>
+To: Paul Eggleton <paul.eggleton@linux.intel.com>, "yocto@yoctoproject.org"
+	<yocto@yoctoproject.org>
+Thread-Topic: [yocto] BBB doesn't boot
+Thread-Index: AQHPVvi7UCGMRFXr7EqKinYwKPRwGZsQVSAAgACEAYCAAFmtgIAAAWGAgAACeICAAAEggIAAARsAgABDvYCAACrEgIAAGsuAgAAV/wCAADPFAIAABooAgAACyQCAAD8tgIAAL0uAgAAxbACAABePoA==
+Date: Tue, 15 Apr 2014 15:15:14 +0000
+Message-ID: <33115ABC4887814E8A92A08FBC93416B0A247E43@IRSMSX103.ger.corp.intel.com>
+References: <534C0415.20701@mlbassoc.com>
+	<1397552645.2977.0.camel@firebird.rb.intel.com>
+	<1397562801.2977.2.camel@firebird.rb.intel.com>
+	<3130526.9zUpmp9SKQ@peggleto-mobl5.ger.corp.intel.com>
+In-Reply-To: <3130526.9zUpmp9SKQ@peggleto-mobl5.ger.corp.intel.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-x-originating-ip: [10.1.200.108]
+x-originating-ip: [163.33.239.181]
 MIME-Version: 1.0
-Subject: Minutes: Yocto Project Technical Team Meeting - Tuesday, April 15, 2014 8:00 AM US Pacific Time
+Subject: Re: BBB doesn't boot
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,252 +43,147 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 15 Apr 2014 15:12:06 -0000
+X-List-Received-Date: Tue, 15 Apr 2014 15:16:03 -0000
 Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_9ADD3FDE8B189B4AA2F8A3C711F8155E5503A201fmsmsx111amrcor_"
-
---_000_9ADD3FDE8B189B4AA2F8A3C711F8155E5503A201fmsmsx111amrcor_
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-Attendees:  Stephen, Armin, Scott R., Paul, Belen, Christiana, Vali, Jeff, =
-Michael H, Matthew, Michael B, Sean,
+> -----Original Message-----
+> From: yocto-bounces@yoctoproject.org [mailto:yocto-
+> bounces@yoctoproject.org] On Behalf Of Paul Eggleton
+> Sent: Tuesday, April 15, 2014 5:50 PM
+> To: yocto@yoctoproject.org
+> Subject: Re: [yocto] BBB doesn't boot
+>=20
+> On Tuesday 15 April 2014 11:52:49 Stanacar, StefanX wrote:
+> > On Tue, 2014-04-15 at 09:03 +0000, Stanacar, StefanX wrote:
+> > > On Tue, 2014-04-15 at 01:17 -0400, Denys Dmytriyenko wrote:
+> > > > On Tue, Apr 15, 2014 at 01:07:28AM -0400, Denys Dmytriyenko wrote:
+> > > > > On Tue, Apr 15, 2014 at 05:44:04AM +0100, Richard Purdie wrote:
+> > > > > > On Mon, 2014-04-14 at 21:38 -0400, Denys Dmytriyenko wrote:
+> > > > > > > On Tue, Apr 15, 2014 at 01:20:03AM +0100, Richard Purdie wrot=
+e:
+> > > > > > > > On Mon, 2014-04-14 at 18:44 -0400, Denys Dmytriyenko wrote:
+> > > > > > > > > On Mon, Apr 14, 2014 at 02:11:05PM -0600, Gary Thomas
+> wrote:
+> > > > > > > > > > Very interesting results!  These are the results from
+> > > > > > > > > > the
+> build hosts I have:
+> > > > > > > > > >   Fedora 13 (i686) - fails
+> > > > > > > > > >   Fedora 17 (i686) - fails
+> > > > > > > > > >   Ubuntu 12.04 (x86_64) - boots
+> > > > > > > > >
+> > > > > > > > > Interesting indeed. I have no idea what's so special
+> > > > > > > > > about Fedora host - this is the first time I hear about
+> > > > > > > > > issues with it. I may try experimenting with different
+> > > > > > > > > VMs once I have more time...
+> > > > > > > >
+> > > > > > > > I've been having a look at this. The biggest differences I
+> > > > > > > > can find between working and non working builds is the
+> > > > > > > > path length to the build directory for the kernel. This is
+> > > > > > > > from comparing vmlinux files from working and non working
+> > > > > > > > builds.
+> > > > > > > >
+> > > > > > > > Works:
+> > > > > > > > /home/paul/poky/build/tmp/work/beaglebone-poky-linux-
+> gnuea
+> > > > > > > > bi
+> > > > > > > >
+> > > > > > > > Doesn't Work:
+> > > > > > > > /media/data1/build1/poky/build/tmp/work/beaglebone-poky-li
+> > > > > > > > nux-gn
+> > > > > > > > ueabi
+> > > > > > > >
+> > > > > > > > I also have been wondering if the version strings may be
+> > > > > > > > making a difference.
+> > > > > > > >
+> > > > > > > > http://dan.rpsys.net/uImage-rp2 is a uImage from a broken
+> > > > > > > > build where I truncated the path length to a "working"
+> > > > > > > > build path length and patched in the same version strings:
+> > > > > > > >
+> > > > > > > > const char linux_banner[] =3D
+> > > > > > > >
+> > > > > > > >        "Linux version 3.14.0-yocto-standard
+> > > > > > > >        (paul@ubuntu-build01) (gcc
+> > > > > > > >
+> > > > > > > > version 4.8.2 (GCC) ) #1 PREEMPT Mon Apr 14 16:00:52 BST
+> > > > > > > > 2014\n";
+> > > > > > > >
+> > > > > > > > const char linux_proc_banner[] =3D "%s version %s
+> > > > > > > > (paul@ubuntu-build01)
+> > > > > > > > (gcc version 4.8.2 (GCC) ) %s\n";
+> > > > > > > >
+> > > > > > > > to init/version.c.
+> > > > > > > >
+> > > > > > > > I don't have hardware and would be interested to know if
+> > > > > > > > the kernel linked to above works or not. If it doesn't, it
+> > > > > > > > rules out these path and string lengths, if it does work,
+> > > > > > > > it points to a problem there.
+> > > > > > >
+> > > > > > > Richard,
+> > > > > >
+> > > > > > > Good catch! It boots:
+> > > > > > Thanks Denys, this helps narrow down the issue. I've shared
+> > > > > > http://dan.rpsys.net/uImage-rp3 which is the same as the last
+> > > > > > one but with my changes to version.c reverted. The one should
+> > > > > > tell us if its the paths or the strings.
+> > > > >
+> > > > > This one also boots for me:
+> > > > >
+> > > > > Linux version 3.14.0-yocto-standard (richard@ted) (gcc version
+> > > > > 4.8.2
+> > > > > (GCC) ) #2 PREEMPT Tue Apr 15 05:40:19 IST 2014> > >
+> > > > > > I'm guessing the path problem is more likely but anything is
+> > > > > > possible.
+> > > > > > This is starting to look like some kind of compiler or linker i=
+ssue.
+> > > > > > If
+> > > > > > it is that, it would help to have more data points about what
+> > > > > > works and what doesn't. With that in mind could people who
+> > > > > > have good or bad builds please share the paths they built the
+> > > > > > kernels in so we can see if we can spot some kind of pattern.
+> > > >
+> > > > BTW, my path is
+> > > > /OE/RAM/poky/tmp/work/beaglebone-poky-linux-gnueabi and it
+> works.
+> > >
+> > > I can confirm:
+> > >  build dir in /home/stefans/b1  works,
+> > >
+> > > but /home/stefans/yocto/poky/build doesn't.
+> >
+> > But this works
+> > [stefans@firebird bu]$ pwd
+> > /home/stefans/yocto/poky/bu
+> > [stefans@firebird bu]$ echo `pwd`| wc -c
+> > 28
+> >
+> >
+> > But 29 doesn't.
+> > So, what now?
+>=20
+> Some other things I tried with a "long" TMPDIR path (note that it's the
+> TMPDIR path that makes the difference - in my tests I've been using
+> /home/paul/poky/build2/much/longer/path/to/tmp). None of this helped:
+>=20
+> * kernel built with gcc 4.7.2 and binutils 2.23.2
+> * u-boot built with gcc 4.7.2 and binutils 2.23.2
+> * u-boot from http://downloads.angstrom-
+> distribution.org/demo/beaglebone/
+> * earlyprintk and CONFIG_DEBUG_LL - no additional output printed
+>=20
+> I think we're now at the point where we'd benefit from someone with bette=
+r
+> knowledge debugging the issue.
+>=20
+> Cheers,
+> Paul
+>=20
 
+I don't know if this is helpful but this TMPDIR path size issue reminded me=
+ of a bug I verified some time ago:=20
+https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D3989
 
+Regards,
+Corneliu
 
-* Opens collection - 5 min (Stephen)
-
-
-
-* Yocto 1.6 status - 5 min (Stephen/team)
-
-  https://wiki.yoctoproject.org/wiki/Yocto_Project_v1.6_Status
-
-  https://wiki.yoctoproject.org/wiki/Yocto_1.6_Features
-
-
-
-* SWAT team rotation: Laurentiu -> Nitin
-
-  https://wiki.yoctoproject.org/wiki/Yocto_Build_Failure_Swat_Team
-
-
-
-* Opens - 10 min
-
-
-
-* Team Sharing - 10 min
-
-Scott - 4/22 will be the last day for documentation changes for 1.6 and not=
- more changes will be made until we start work on 1.7.  If you have changes=
- you would like see included they should get them to Scott ASAP!
-
-Thanks,
-
-Stephen K. Jolley
-Yocto Project Program Manager
-INTEL, MS JF1-255, 2111 N.E. 25th Avenue, Hillsboro, OR 97124
-*   Work Telephone:          (503) 712-0534
-*    Cell:                                (208) 244-4460
-* Email:                             stephen.k.jolley@intel.com
-
-
---_000_9ADD3FDE8B189B4AA2F8A3C711F8155E5503A201fmsmsx111amrcor_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:x=3D"urn:schemas-microsoft-com:office:excel" xmlns:m=3D"http://schema=
-s.microsoft.com/office/2004/12/omml" xmlns=3D"http://www.w3.org/TR/REC-html=
-40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<meta name=3D"Generator" content=3D"Microsoft Word 14 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:Wingdings;
-	panose-1:5 0 0 0 0 0 0 0 0 0;}
-@font-face
-	{font-family:Wingdings;
-	panose-1:5 0 0 0 0 0 0 0 0 0;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-@font-face
-	{font-family:Tahoma;
-	panose-1:2 11 6 4 3 5 4 4 2 4;}
-@font-face
-	{font-family:Consolas;
-	panose-1:2 11 6 9 2 2 4 3 2 4;}
-@font-face
-	{font-family:"Comic Sans MS";
-	panose-1:3 15 7 2 3 3 2 2 2 4;}
-@font-face
-	{font-family:"MS Sans Serif";}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri","sans-serif";
-	mso-fareast-language:EN-US;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:purple;
-	text-decoration:underline;}
-p.MsoPlainText, li.MsoPlainText, div.MsoPlainText
-	{mso-style-priority:99;
-	mso-style-link:"Plain Text Char";
-	margin:0in;
-	margin-bottom:.0001pt;
-	font-size:10.5pt;
-	font-family:Consolas;
-	mso-fareast-language:EN-US;}
-p
-	{mso-style-priority:99;
-	mso-margin-top-alt:auto;
-	margin-right:0in;
-	mso-margin-bottom-alt:auto;
-	margin-left:0in;
-	font-size:12.0pt;
-	font-family:"Times New Roman","serif";
-	mso-fareast-language:ZH-CN;}
-span.PlainTextChar
-	{mso-style-name:"Plain Text Char";
-	mso-style-priority:99;
-	mso-style-link:"Plain Text";
-	font-family:Consolas;}
-span.EmailStyle20
-	{mso-style-type:personal-compose;
-	font-family:"Calibri","sans-serif";
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-size:10.0pt;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
-<div class=3D"WordSection1">
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas">Attendees:&nbsp; Stephen, Armin, Scott R., Paul, B=
-elen, Christiana, Vali, Jeff, Michael H, Matthew, Michael B, Sean,
-<o:p></o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas"><o:p>&nbsp;</o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas">* Opens collection - 5 min (Stephen)<o:p></o:p></s=
-pan></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas"><o:p>&nbsp;</o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas">* Yocto 1.6 status - 5 min (Stephen/team)<o:p></o:=
-p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas">&nbsp;
-</span><span style=3D"font-size:11.0pt"><a href=3D"https://wiki.yoctoprojec=
-t.org/wiki/Yocto_Project_v1.6_Status"><span style=3D"font-family:&quot;Cali=
-bri&quot;,&quot;sans-serif&quot;">https://wiki.yoctoproject.org/wiki/Yocto_=
-Project_v1.6_Status</span></a><o:p></o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas">&nbsp;
-</span><span style=3D"font-size:11.0pt"><a href=3D"https://wiki.yoctoprojec=
-t.org/wiki/Yocto_1.6_Features"><span style=3D"font-family:&quot;Calibri&quo=
-t;,&quot;sans-serif&quot;">https://wiki.yoctoproject.org/wiki/Yocto_1.6_Fea=
-tures</span></a><o:p></o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt"><o:p>&nbsp;</o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas">* SWAT team rotation: Laurentiu -&gt; Nitin<o:p></=
-o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas">&nbsp;
-<a href=3D"https://wiki.yoctoproject.org/wiki/Yocto_Build_Failure_Swat_Team=
-">https://wiki.yoctoproject.org/wiki/Yocto_Build_Failure_Swat_Team</a><o:p>=
-</o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas"><o:p>&nbsp;</o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas">* Opens - 10 min
-<o:p></o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas"><o:p>&nbsp;</o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas">* Team Sharing - 10 min<o:p></o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas">Scott &#8211; 4/22 will be the last day for docume=
-ntation changes for 1.6 and not more changes will be made until we start wo=
-rk on 1.7.&nbsp; If you have changes you would
- like see included they should get them to Scott ASAP!<o:p></o:p></span></p=
->
-<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
-n></p>
-<p class=3D"MsoNormal">Thanks,<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal" style=3D"page-break-after:avoid;text-autospace:none"=
-><b><i><span style=3D"font-size:16.0pt;font-family:&quot;Times New Roman&qu=
-ot;,&quot;serif&quot;;color:purple">Stephen K. Jolley</span></i></b><b><i><=
-span style=3D"font-size:16.0pt;font-family:&quot;Tahoma&quot;,&quot;sans-se=
-rif&quot;;color:purple"><o:p></o:p></span></i></b></p>
-<p class=3D"MsoNormal"><b><span style=3D"font-size:8.0pt;font-family:&quot;=
-Courier New&quot;;color:blue">Yocto Project Program Manager<o:p></o:p></spa=
-n></b></p>
-<p class=3D"MsoNormal" style=3D"page-break-after:avoid;text-autospace:none"=
-><b><span style=3D"font-size:10.0pt;font-family:&quot;Courier New&quot;;col=
-or:fuchsia">INTEL, MS JF1-255, 2111 N.E. 25th Avenue, Hillsboro, OR 97124
-<o:p></o:p></span></b></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:Wingdings;color:black">(<=
-/span><span style=3D"font-family:&quot;MS Sans Serif&quot;;color:teal">
-</span><span style=3D"font-size:8.0pt;font-family:&quot;MS Sans Serif&quot;=
-;color:teal">&nbsp;&nbsp;</span><b><span style=3D"font-size:8.0pt;font-fami=
-ly:&quot;Comic Sans MS&quot;;color:teal">Work Telephone</span></b><span sty=
-le=3D"font-family:&quot;MS Sans Serif&quot;;color:teal">:&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span><span style=3D"font-size:9.0pt;font-family:&quot;MS Sans Serif&quot;=
-">(503) 712-0534<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt;font-family:Wingdings=
-;color:black">(</span><span style=3D"font-size:9.0pt;font-family:&quot;MS S=
-ans Serif&quot;;color:teal">&nbsp;&nbsp;&nbsp;
-</span><b><span style=3D"font-size:8.0pt;font-family:&quot;Comic Sans MS&qu=
-ot;;color:teal">Cell</span></b><span style=3D"font-size:9.0pt;font-family:&=
-quot;MS Sans Serif&quot;;color:teal">:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span><span style=3D"font-size:9.0pt;font-family:&quot;MS Sans Serif&quot;=
-">(208) 244-4460<span style=3D"color:black"><o:p></o:p></span></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt;font-family:Wingdings=
-">* </span>
-<b><span lang=3D"FR" style=3D"font-size:8.0pt;font-family:&quot;Comic Sans =
-MS&quot;;color:teal">Email</span></b><span lang=3D"FR" style=3D"font-size:9=
-.0pt;font-family:&quot;MS Sans Serif&quot;;color:teal">:</span><span lang=
-=3D"FR" style=3D"font-size:9.0pt;font-family:&quot;MS Sans Serif&quot;">&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;
-<u><span style=3D"color:blue">stephen.k.jolley@intel.com</span></u></span><=
-span lang=3D"FR" style=3D"font-size:12.0pt;font-family:&quot;Arial&quot;,&q=
-uot;sans-serif&quot;"><o:p></o:p></span></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-</div>
-</body>
-</html>
-
---_000_9ADD3FDE8B189B4AA2F8A3C711F8155E5503A201fmsmsx111amrcor_--
