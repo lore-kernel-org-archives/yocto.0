@@ -1,27 +1,38 @@
-Return-Path: <denis@denix.org>
-Received: from vms173019pub.verizon.net (vms173019pub.verizon.net
-	[206.46.173.19])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 47B50E00B99
-	for <yocto@yoctoproject.org>; Tue, 15 Apr 2014 10:16:03 -0700 (PDT)
-Received: from gandalf.denix.org ([unknown] [71.191.205.189])
-	by vms173019.mailsrvcs.net
-	(Sun Java(tm) System Messaging Server 7u2-7.02 32bit (built Apr 16
-	2009)) with ESMTPA id <0N4300BWX1AQ3D00@vms173019.mailsrvcs.net> for
-	yocto@yoctoproject.org; Tue, 15 Apr 2014 12:16:02 -0500 (CDT)
-Received: by gandalf.denix.org (Postfix, from userid 1000)	id 357D6201BF; Tue,
-	15 Apr 2014 13:16:01 -0400 (EDT)
-Date: Tue, 15 Apr 2014 13:16:01 -0400
-From: Denys Dmytriyenko <denis@denix.org>
-To: Paul Eggleton <paul.eggleton@linux.intel.com>
-Message-id: <20140415171601.GD11339@denix.org>
+Return-Path: <stefanx.stanacar@intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 136BBE00B99
+	for <yocto@yoctoproject.org>; Tue, 15 Apr 2014 10:25:40 -0700 (PDT)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga102.jf.intel.com with ESMTP; 15 Apr 2014 10:20:52 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.97,865,1389772800"; d="scan'208";a="493656959"
+Received: from irsmsx104.ger.corp.intel.com ([163.33.3.159])
+	by orsmga001.jf.intel.com with ESMTP; 15 Apr 2014 10:25:38 -0700
+Received: from irsmsx107.ger.corp.intel.com (163.33.3.99) by
+	IRSMSX104.ger.corp.intel.com (163.33.3.159) with Microsoft SMTP Server
+	(TLS) id 14.3.123.3; Tue, 15 Apr 2014 18:25:37 +0100
+Received: from irsmsx105.ger.corp.intel.com ([169.254.7.78]) by
+	IRSMSX107.ger.corp.intel.com ([169.254.10.157]) with mapi id
+	14.03.0123.003; Tue, 15 Apr 2014 18:25:37 +0100
+From: "Stanacar, StefanX" <stefanx.stanacar@intel.com>
+To: "denis@denix.org" <denis@denix.org>
+Thread-Topic: [yocto] BBB doesn't boot
+Thread-Index: AQHPVvi7U65QgTaRbkKYHPQsid6RTpsQVSAAgACEAYCAAFmtgIAAAWGAgAACeICAAAEggIAAARsAgABDvYCAACrEgIAAGsuAgAAV/wCAADPFAIAABooAgAACyQCAAD9TgIAAL0uAgAAxRgCAABsWgIAAEJ8A
+Date: Tue, 15 Apr 2014 17:25:37 +0000
+Message-ID: <1397582768.2977.4.camel@firebird.rb.intel.com>
 References: <534C0415.20701@mlbassoc.com>
+	<1397552645.2977.0.camel@firebird.rb.intel.com>
+	<1397562801.2977.2.camel@firebird.rb.intel.com>
 	<3130526.9zUpmp9SKQ@peggleto-mobl5.ger.corp.intel.com>
 	<20140415162639.GC11339@denix.org>
-	<16254891.OyPbf7clBT@peggleto-mobl5.ger.corp.intel.com>
-MIME-version: 1.0
-In-reply-to: <16254891.OyPbf7clBT@peggleto-mobl5.ger.corp.intel.com>
-User-Agent: Mutt/1.5.20 (2009-06-14)
-Cc: yocto@yoctoproject.org
+In-Reply-To: <20140415162639.GC11339@denix.org>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.237.105.38]
+MIME-Version: 1.0
+Cc: "paul.eggleton@linux.intel.com" <paul.eggleton@linux.intel.com>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: BBB doesn't boot
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -34,180 +45,117 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 15 Apr 2014 17:16:05 -0000
-Content-type: text/plain; charset=us-ascii
-Content-disposition: inline
+X-List-Received-Date: Tue, 15 Apr 2014 17:25:43 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <F28930598A43E848A56DA337F8860F39@intel.com>
+Content-Transfer-Encoding: base64
 
-On Tue, Apr 15, 2014 at 05:36:10PM +0100, Paul Eggleton wrote:
-> On Tuesday 15 April 2014 12:26:39 Denys Dmytriyenko wrote:
-> > On Tue, Apr 15, 2014 at 03:49:42PM +0100, Paul Eggleton wrote:
-> > > On Tuesday 15 April 2014 11:52:49 Stanacar, StefanX wrote:
-> > > > On Tue, 2014-04-15 at 09:03 +0000, Stanacar, StefanX wrote:
-> > > > > On Tue, 2014-04-15 at 01:17 -0400, Denys Dmytriyenko wrote:
-> > > > > > On Tue, Apr 15, 2014 at 01:07:28AM -0400, Denys Dmytriyenko wrote:
-> > > > > > > On Tue, Apr 15, 2014 at 05:44:04AM +0100, Richard Purdie wrote:
-> > > > > > > > On Mon, 2014-04-14 at 21:38 -0400, Denys Dmytriyenko wrote:
-> > > > > > > > > On Tue, Apr 15, 2014 at 01:20:03AM +0100, Richard Purdie 
-> wrote:
-> > > > > > > > > > On Mon, 2014-04-14 at 18:44 -0400, Denys Dmytriyenko wrote:
-> > > > > > > > > > > On Mon, Apr 14, 2014 at 02:11:05PM -0600, Gary Thomas 
-> wrote:
-> > > > > > > > > > > > Very interesting results!  These are the results from
-> > > > > > > > > > > > the
-> > > 
-> > > build hosts I have:
-> > > > > > > > > > > >   Fedora 13 (i686) - fails
-> > > > > > > > > > > >   Fedora 17 (i686) - fails
-> > > > > > > > > > > >   Ubuntu 12.04 (x86_64) - boots
-> > > > > > > > > > > 
-> > > > > > > > > > > Interesting indeed. I have no idea what's so special about
-> > > > > > > > > > > Fedora host - this is the first time I hear about issues
-> > > > > > > > > > > with
-> > > > > > > > > > > it. I may try experimenting with different VMs once I have
-> > > > > > > > > > > more time...
-> > > > > > > > > > 
-> > > > > > > > > > I've been having a look at this. The biggest differences I
-> > > > > > > > > > can
-> > > > > > > > > > find
-> > > > > > > > > > between working and non working builds is the path length to
-> > > > > > > > > > the
-> > > > > > > > > > build
-> > > > > > > > > > directory for the kernel. This is from comparing vmlinux
-> > > > > > > > > > files
-> > > > > > > > > > from
-> > > > > > > > > > working and non working builds.
-> > > > > > > > > > 
-> > > > > > > > > > Works:
-> > > > > > > > > > /home/paul/poky/build/tmp/work/beaglebone-poky-linux-gnueabi
-> > > > > > > > > > 
-> > > > > > > > > > Doesn't Work:
-> > > > > > > > > > /media/data1/build1/poky/build/tmp/work/beaglebone-poky-linu
-> > > > > > > > > > x-gn
-> > > > > > > > > > ueabi
-> > > > > > > > > > 
-> > > > > > > > > > I also have been wondering if the version strings may be
-> > > > > > > > > > making
-> > > > > > > > > > a
-> > > > > > > > > > difference.
-> > > > > > > > > > 
-> > > > > > > > > > http://dan.rpsys.net/uImage-rp2 is a uImage from a broken
-> > > > > > > > > > build
-> > > > > > > > > > where I
-> > > > > > > > > > truncated the path length to a "working" build path length
-> > > > > > > > > > and
-> > > > > > > > > > patched
-> > > > > > > > > > in the same version strings:
-> > > > > > > > > > 
-> > > > > > > > > > const char linux_banner[] =
-> > > > > > > > > > 
-> > > > > > > > > >        "Linux version 3.14.0-yocto-standard
-> > > > > > > > > >        (paul@ubuntu-build01) (gcc
-> > > > > > > > > > 
-> > > > > > > > > > version 4.8.2 (GCC) ) #1 PREEMPT Mon Apr 14 16:00:52 BST
-> > > > > > > > > > 2014\n";
-> > > > > > > > > > 
-> > > > > > > > > > const char linux_proc_banner[] = "%s version %s
-> > > > > > > > > > (paul@ubuntu-build01)
-> > > > > > > > > > (gcc version 4.8.2 (GCC) ) %s\n";
-> > > > > > > > > > 
-> > > > > > > > > > to init/version.c.
-> > > > > > > > > > 
-> > > > > > > > > > I don't have hardware and would be interested to know if the
-> > > > > > > > > > kernel
-> > > > > > > > > > linked to above works or not. If it doesn't, it rules out
-> > > > > > > > > > these
-> > > > > > > > > > path and
-> > > > > > > > > > string lengths, if it does work, it points to a problem
-> > > > > > > > > > there.
-> > > > > > > > > 
-> > > > > > > > > Richard,
-> > > > > > > > 
-> > > > > > > > > Good catch! It boots:
-> > > > > > > > Thanks Denys, this helps narrow down the issue. I've shared
-> > > > > > > > http://dan.rpsys.net/uImage-rp3 which is the same as the last
-> > > > > > > > one
-> > > > > > > > but
-> > > > > > > > with my changes to version.c reverted. The one should tell us if
-> > > > > > > > its
-> > > > > > > > the
-> > > > > > > > paths or the strings.
-> > > > > > > 
-> > > > > > > This one also boots for me:
-> > > > > > > 
-> > > > > > > Linux version 3.14.0-yocto-standard (richard@ted) (gcc version
-> > > > > > > 4.8.2
-> > > > > > > (GCC) ) #2 PREEMPT Tue Apr 15 05:40:19 IST 2014> > >
-> > > > > > > 
-> > > > > > > > I'm guessing the path problem is more likely but anything is
-> > > > > > > > possible.
-> > > > > > > > This is starting to look like some kind of compiler or linker
-> > > > > > > > issue.
-> > > > > > > > If
-> > > > > > > > it is that, it would help to have more data points about what
-> > > > > > > > works
-> > > > > > > > and
-> > > > > > > > what doesn't. With that in mind could people who have good or
-> > > > > > > > bad
-> > > > > > > > builds
-> > > > > > > > please share the paths they built the kernels in so we can see
-> > > > > > > > if we
-> > > > > > > > can
-> > > > > > > > spot some kind of pattern.
-> > > > > > 
-> > > > > > BTW, my path is /OE/RAM/poky/tmp/work/beaglebone-poky-linux-gnueabi
-> > > > > > and
-> > > > > > it works.
-> > > > > 
-> > > > > I can confirm:
-> > > > >  build dir in /home/stefans/b1  works,
-> > > > > 
-> > > > > but /home/stefans/yocto/poky/build doesn't.
-> > > > 
-> > > > But this works
-> > > > [stefans@firebird bu]$ pwd
-> > > > /home/stefans/yocto/poky/bu
-> > > > [stefans@firebird bu]$ echo `pwd`| wc -c
-> > > > 28
-> > > > 
-> > > > But 29 doesn't.
-> > > > So, what now?
-> > > 
-> > > Some other things I tried with a "long" TMPDIR path (note that it's the
-> > > TMPDIR path that makes the difference - in my tests I've been using
-> > > /home/paul/poky/build2/much/longer/path/to/tmp). None of this helped:
-> > > 
-> > > * kernel built with gcc 4.7.2 and binutils 2.23.2
-> > > * u-boot built with gcc 4.7.2 and binutils 2.23.2
-> > > * u-boot from http://downloads.angstrom-distribution.org/demo/beaglebone/
-> > > * earlyprintk and CONFIG_DEBUG_LL - no additional output printed
-> > > 
-> > > I think we're now at the point where we'd benefit from someone with better
-> > > knowledge debugging the issue.
-> > 
-> > Ok, should we expand the search area? Since this is supposed to be vanilla
-> > 3.14 kernel, can we try other platforms and see if they are similarly
-> > affected? I'll try pinging our kernel guys for any ideas...
-> 
-> As far as I know it has only been observed with beaglebone (both white and 
-> black, if it makes a difference). FWIW, qemuarm images from the autobuilder 
-> boot just fine, and apparently the same is true of edgerouter (different 
-> architecture but also uses u-boot).
-
-But do those other platforms use uImage or zImage?
-
-Anyway, just for testing, I switched to zImage and it seems to boot fine for 
-me regarldless of the path length...
-
-I just sent 2 patches to test this out - unfortunately booting zImage isntead 
-of uImage requires fiddling with U-boot variables a bit, when using 2013.07. 
-So I also provided a quick update patch to get U-boot 2014.01 that has zImage 
-enabled by default.
-
-Those patches are not yet for merging and they are directly against Poky - 
-could anyone having issues with booting BBB try them? Place new u-boot.img 
-into first boot FAT partition and new zImage kernel image to /boot dir of the 
-rootfs partition. Please let me know if it works for your long paths. Thanks.
-
--- 
-Denys
+DQoNCg0KT24gVHVlLCAyMDE0LTA0LTE1IGF0IDEyOjI2IC0wNDAwLCBEZW55cyBEbXl0cml5ZW5r
+byB3cm90ZToNCj4gT24gVHVlLCBBcHIgMTUsIDIwMTQgYXQgMDM6NDk6NDJQTSArMDEwMCwgUGF1
+bCBFZ2dsZXRvbiB3cm90ZToNCj4gPiBPbiBUdWVzZGF5IDE1IEFwcmlsIDIwMTQgMTE6NTI6NDkg
+U3RhbmFjYXIsIFN0ZWZhblggd3JvdGU6DQo+ID4gPiBPbiBUdWUsIDIwMTQtMDQtMTUgYXQgMDk6
+MDMgKzAwMDAsIFN0YW5hY2FyLCBTdGVmYW5YIHdyb3RlOg0KPiA+ID4gPiBPbiBUdWUsIDIwMTQt
+MDQtMTUgYXQgMDE6MTcgLTA0MDAsIERlbnlzIERteXRyaXllbmtvIHdyb3RlOg0KPiA+ID4gPiA+
+IE9uIFR1ZSwgQXByIDE1LCAyMDE0IGF0IDAxOjA3OjI4QU0gLTA0MDAsIERlbnlzIERteXRyaXll
+bmtvIHdyb3RlOg0KPiA+ID4gPiA+ID4gT24gVHVlLCBBcHIgMTUsIDIwMTQgYXQgMDU6NDQ6MDRB
+TSArMDEwMCwgUmljaGFyZCBQdXJkaWUgd3JvdGU6DQo+ID4gPiA+ID4gPiA+IE9uIE1vbiwgMjAx
+NC0wNC0xNCBhdCAyMTozOCAtMDQwMCwgRGVueXMgRG15dHJpeWVua28gd3JvdGU6DQo+ID4gPiA+
+ID4gPiA+ID4gT24gVHVlLCBBcHIgMTUsIDIwMTQgYXQgMDE6MjA6MDNBTSArMDEwMCwgUmljaGFy
+ZCBQdXJkaWUgd3JvdGU6DQo+ID4gPiA+ID4gPiA+ID4gPiBPbiBNb24sIDIwMTQtMDQtMTQgYXQg
+MTg6NDQgLTA0MDAsIERlbnlzIERteXRyaXllbmtvIHdyb3RlOg0KPiA+ID4gPiA+ID4gPiA+ID4g
+PiBPbiBNb24sIEFwciAxNCwgMjAxNCBhdCAwMjoxMTowNVBNIC0wNjAwLCBHYXJ5IFRob21hcyB3
+cm90ZToNCj4gPiA+ID4gPiA+ID4gPiA+ID4gPiBWZXJ5IGludGVyZXN0aW5nIHJlc3VsdHMhICBU
+aGVzZSBhcmUgdGhlIHJlc3VsdHMgZnJvbSB0aGUgDQo+ID4gYnVpbGQgaG9zdHMgSSBoYXZlOg0K
+PiA+ID4gPiA+ID4gPiA+ID4gPiA+ICAgRmVkb3JhIDEzIChpNjg2KSAtIGZhaWxzDQo+ID4gPiA+
+ID4gPiA+ID4gPiA+ID4gICBGZWRvcmEgMTcgKGk2ODYpIC0gZmFpbHMNCj4gPiA+ID4gPiA+ID4g
+PiA+ID4gPiAgIFVidW50dSAxMi4wNCAoeDg2XzY0KSAtIGJvb3RzDQo+ID4gPiA+ID4gPiA+ID4g
+PiA+IA0KPiA+ID4gPiA+ID4gPiA+ID4gPiBJbnRlcmVzdGluZyBpbmRlZWQuIEkgaGF2ZSBubyBp
+ZGVhIHdoYXQncyBzbyBzcGVjaWFsIGFib3V0DQo+ID4gPiA+ID4gPiA+ID4gPiA+IEZlZG9yYSBo
+b3N0IC0gdGhpcyBpcyB0aGUgZmlyc3QgdGltZSBJIGhlYXIgYWJvdXQgaXNzdWVzIHdpdGgNCj4g
+PiA+ID4gPiA+ID4gPiA+ID4gaXQuIEkgbWF5IHRyeSBleHBlcmltZW50aW5nIHdpdGggZGlmZmVy
+ZW50IFZNcyBvbmNlIEkgaGF2ZQ0KPiA+ID4gPiA+ID4gPiA+ID4gPiBtb3JlIHRpbWUuLi4NCj4g
+PiA+ID4gPiA+ID4gPiA+IA0KPiA+ID4gPiA+ID4gPiA+ID4gSSd2ZSBiZWVuIGhhdmluZyBhIGxv
+b2sgYXQgdGhpcy4gVGhlIGJpZ2dlc3QgZGlmZmVyZW5jZXMgSSBjYW4NCj4gPiA+ID4gPiA+ID4g
+PiA+IGZpbmQNCj4gPiA+ID4gPiA+ID4gPiA+IGJldHdlZW4gd29ya2luZyBhbmQgbm9uIHdvcmtp
+bmcgYnVpbGRzIGlzIHRoZSBwYXRoIGxlbmd0aCB0byB0aGUNCj4gPiA+ID4gPiA+ID4gPiA+IGJ1
+aWxkDQo+ID4gPiA+ID4gPiA+ID4gPiBkaXJlY3RvcnkgZm9yIHRoZSBrZXJuZWwuIFRoaXMgaXMg
+ZnJvbSBjb21wYXJpbmcgdm1saW51eCBmaWxlcw0KPiA+ID4gPiA+ID4gPiA+ID4gZnJvbQ0KPiA+
+ID4gPiA+ID4gPiA+ID4gd29ya2luZyBhbmQgbm9uIHdvcmtpbmcgYnVpbGRzLg0KPiA+ID4gPiA+
+ID4gPiA+ID4gDQo+ID4gPiA+ID4gPiA+ID4gPiBXb3JrczoNCj4gPiA+ID4gPiA+ID4gPiA+IC9o
+b21lL3BhdWwvcG9reS9idWlsZC90bXAvd29yay9iZWFnbGVib25lLXBva3ktbGludXgtZ251ZWFi
+aQ0KPiA+ID4gPiA+ID4gPiA+ID4gDQo+ID4gPiA+ID4gPiA+ID4gPiBEb2Vzbid0IFdvcms6DQo+
+ID4gPiA+ID4gPiA+ID4gPiAvbWVkaWEvZGF0YTEvYnVpbGQxL3Bva3kvYnVpbGQvdG1wL3dvcmsv
+YmVhZ2xlYm9uZS1wb2t5LWxpbnV4LWduDQo+ID4gPiA+ID4gPiA+ID4gPiB1ZWFiaQ0KPiA+ID4g
+PiA+ID4gPiA+ID4gDQo+ID4gPiA+ID4gPiA+ID4gPiBJIGFsc28gaGF2ZSBiZWVuIHdvbmRlcmlu
+ZyBpZiB0aGUgdmVyc2lvbiBzdHJpbmdzIG1heSBiZSBtYWtpbmcNCj4gPiA+ID4gPiA+ID4gPiA+
+IGENCj4gPiA+ID4gPiA+ID4gPiA+IGRpZmZlcmVuY2UuDQo+ID4gPiA+ID4gPiA+ID4gPiANCj4g
+PiA+ID4gPiA+ID4gPiA+IGh0dHA6Ly9kYW4ucnBzeXMubmV0L3VJbWFnZS1ycDIgaXMgYSB1SW1h
+Z2UgZnJvbSBhIGJyb2tlbiBidWlsZA0KPiA+ID4gPiA+ID4gPiA+ID4gd2hlcmUgSQ0KPiA+ID4g
+PiA+ID4gPiA+ID4gdHJ1bmNhdGVkIHRoZSBwYXRoIGxlbmd0aCB0byBhICJ3b3JraW5nIiBidWls
+ZCBwYXRoIGxlbmd0aCBhbmQNCj4gPiA+ID4gPiA+ID4gPiA+IHBhdGNoZWQNCj4gPiA+ID4gPiA+
+ID4gPiA+IGluIHRoZSBzYW1lIHZlcnNpb24gc3RyaW5nczoNCj4gPiA+ID4gPiA+ID4gPiA+IA0K
+PiA+ID4gPiA+ID4gPiA+ID4gY29uc3QgY2hhciBsaW51eF9iYW5uZXJbXSA9DQo+ID4gPiA+ID4g
+PiA+ID4gPiANCj4gPiA+ID4gPiA+ID4gPiA+ICAgICAgICAiTGludXggdmVyc2lvbiAzLjE0LjAt
+eW9jdG8tc3RhbmRhcmQNCj4gPiA+ID4gPiA+ID4gPiA+ICAgICAgICAocGF1bEB1YnVudHUtYnVp
+bGQwMSkgKGdjYw0KPiA+ID4gPiA+ID4gPiA+ID4gDQo+ID4gPiA+ID4gPiA+ID4gPiB2ZXJzaW9u
+IDQuOC4yIChHQ0MpICkgIzEgUFJFRU1QVCBNb24gQXByIDE0IDE2OjAwOjUyIEJTVA0KPiA+ID4g
+PiA+ID4gPiA+ID4gMjAxNFxuIjsNCj4gPiA+ID4gPiA+ID4gPiA+IA0KPiA+ID4gPiA+ID4gPiA+
+ID4gY29uc3QgY2hhciBsaW51eF9wcm9jX2Jhbm5lcltdID0gIiVzIHZlcnNpb24gJXMNCj4gPiA+
+ID4gPiA+ID4gPiA+IChwYXVsQHVidW50dS1idWlsZDAxKQ0KPiA+ID4gPiA+ID4gPiA+ID4gKGdj
+YyB2ZXJzaW9uIDQuOC4yIChHQ0MpICkgJXNcbiI7DQo+ID4gPiA+ID4gPiA+ID4gPiANCj4gPiA+
+ID4gPiA+ID4gPiA+IHRvIGluaXQvdmVyc2lvbi5jLg0KPiA+ID4gPiA+ID4gPiA+ID4gDQo+ID4g
+PiA+ID4gPiA+ID4gPiBJIGRvbid0IGhhdmUgaGFyZHdhcmUgYW5kIHdvdWxkIGJlIGludGVyZXN0
+ZWQgdG8ga25vdyBpZiB0aGUNCj4gPiA+ID4gPiA+ID4gPiA+IGtlcm5lbA0KPiA+ID4gPiA+ID4g
+PiA+ID4gbGlua2VkIHRvIGFib3ZlIHdvcmtzIG9yIG5vdC4gSWYgaXQgZG9lc24ndCwgaXQgcnVs
+ZXMgb3V0IHRoZXNlDQo+ID4gPiA+ID4gPiA+ID4gPiBwYXRoIGFuZA0KPiA+ID4gPiA+ID4gPiA+
+ID4gc3RyaW5nIGxlbmd0aHMsIGlmIGl0IGRvZXMgd29yaywgaXQgcG9pbnRzIHRvIGEgcHJvYmxl
+bSB0aGVyZS4NCj4gPiA+ID4gPiA+ID4gPiANCj4gPiA+ID4gPiA+ID4gPiBSaWNoYXJkLA0KPiA+
+ID4gPiA+ID4gPiANCj4gPiA+ID4gPiA+ID4gPiBHb29kIGNhdGNoISBJdCBib290czoNCj4gPiA+
+ID4gPiA+ID4gVGhhbmtzIERlbnlzLCB0aGlzIGhlbHBzIG5hcnJvdyBkb3duIHRoZSBpc3N1ZS4g
+SSd2ZSBzaGFyZWQNCj4gPiA+ID4gPiA+ID4gaHR0cDovL2Rhbi5ycHN5cy5uZXQvdUltYWdlLXJw
+MyB3aGljaCBpcyB0aGUgc2FtZSBhcyB0aGUgbGFzdCBvbmUNCj4gPiA+ID4gPiA+ID4gYnV0DQo+
+ID4gPiA+ID4gPiA+IHdpdGggbXkgY2hhbmdlcyB0byB2ZXJzaW9uLmMgcmV2ZXJ0ZWQuIFRoZSBv
+bmUgc2hvdWxkIHRlbGwgdXMgaWYgaXRzDQo+ID4gPiA+ID4gPiA+IHRoZQ0KPiA+ID4gPiA+ID4g
+PiBwYXRocyBvciB0aGUgc3RyaW5ncy4NCj4gPiA+ID4gPiA+IA0KPiA+ID4gPiA+ID4gVGhpcyBv
+bmUgYWxzbyBib290cyBmb3IgbWU6DQo+ID4gPiA+ID4gPiANCj4gPiA+ID4gPiA+IExpbnV4IHZl
+cnNpb24gMy4xNC4wLXlvY3RvLXN0YW5kYXJkIChyaWNoYXJkQHRlZCkgKGdjYyB2ZXJzaW9uIDQu
+OC4yDQo+ID4gPiA+ID4gPiAoR0NDKSApICMyIFBSRUVNUFQgVHVlIEFwciAxNSAwNTo0MDoxOSBJ
+U1QgMjAxND4gPiA+IA0KPiA+ID4gPiA+ID4gPiBJJ20gZ3Vlc3NpbmcgdGhlIHBhdGggcHJvYmxl
+bSBpcyBtb3JlIGxpa2VseSBidXQgYW55dGhpbmcgaXMNCj4gPiA+ID4gPiA+ID4gcG9zc2libGUu
+DQo+ID4gPiA+ID4gPiA+IFRoaXMgaXMgc3RhcnRpbmcgdG8gbG9vayBsaWtlIHNvbWUga2luZCBv
+ZiBjb21waWxlciBvciBsaW5rZXIgaXNzdWUuDQo+ID4gPiA+ID4gPiA+IElmDQo+ID4gPiA+ID4g
+PiA+IGl0IGlzIHRoYXQsIGl0IHdvdWxkIGhlbHAgdG8gaGF2ZSBtb3JlIGRhdGEgcG9pbnRzIGFi
+b3V0IHdoYXQgd29ya3MNCj4gPiA+ID4gPiA+ID4gYW5kDQo+ID4gPiA+ID4gPiA+IHdoYXQgZG9l
+c24ndC4gV2l0aCB0aGF0IGluIG1pbmQgY291bGQgcGVvcGxlIHdobyBoYXZlIGdvb2Qgb3IgYmFk
+DQo+ID4gPiA+ID4gPiA+IGJ1aWxkcw0KPiA+ID4gPiA+ID4gPiBwbGVhc2Ugc2hhcmUgdGhlIHBh
+dGhzIHRoZXkgYnVpbHQgdGhlIGtlcm5lbHMgaW4gc28gd2UgY2FuIHNlZSBpZiB3ZQ0KPiA+ID4g
+PiA+ID4gPiBjYW4NCj4gPiA+ID4gPiA+ID4gc3BvdCBzb21lIGtpbmQgb2YgcGF0dGVybi4NCj4g
+PiA+ID4gPiANCj4gPiA+ID4gPiBCVFcsIG15IHBhdGggaXMgL09FL1JBTS9wb2t5L3RtcC93b3Jr
+L2JlYWdsZWJvbmUtcG9reS1saW51eC1nbnVlYWJpIGFuZA0KPiA+ID4gPiA+IGl0IHdvcmtzLg0K
+PiA+ID4gPiANCj4gPiA+ID4gSSBjYW4gY29uZmlybToNCj4gPiA+ID4gIGJ1aWxkIGRpciBpbiAv
+aG9tZS9zdGVmYW5zL2IxICB3b3JrcywNCj4gPiA+ID4gDQo+ID4gPiA+IGJ1dCAvaG9tZS9zdGVm
+YW5zL3lvY3RvL3Bva3kvYnVpbGQgZG9lc24ndC4NCj4gPiA+IA0KPiA+ID4gQnV0IHRoaXMgd29y
+a3MNCj4gPiA+IFtzdGVmYW5zQGZpcmViaXJkIGJ1XSQgcHdkDQo+ID4gPiAvaG9tZS9zdGVmYW5z
+L3lvY3RvL3Bva3kvYnUNCj4gPiA+IFtzdGVmYW5zQGZpcmViaXJkIGJ1XSQgZWNobyBgcHdkYHwg
+d2MgLWMNCj4gPiA+IDI4DQo+ID4gPiANCj4gPiA+IA0KPiA+ID4gQnV0IDI5IGRvZXNuJ3QuDQo+
+ID4gPiBTbywgd2hhdCBub3c/DQo+ID4gDQo+ID4gU29tZSBvdGhlciB0aGluZ3MgSSB0cmllZCB3
+aXRoIGEgImxvbmciIFRNUERJUiBwYXRoIChub3RlIHRoYXQgaXQncyB0aGUgVE1QRElSIA0KPiA+
+IHBhdGggdGhhdCBtYWtlcyB0aGUgZGlmZmVyZW5jZSAtIGluIG15IHRlc3RzIEkndmUgYmVlbiB1
+c2luZyANCj4gPiAvaG9tZS9wYXVsL3Bva3kvYnVpbGQyL211Y2gvbG9uZ2VyL3BhdGgvdG8vdG1w
+KS4gTm9uZSBvZiB0aGlzIGhlbHBlZDoNCj4gPiANCj4gPiAqIGtlcm5lbCBidWlsdCB3aXRoIGdj
+YyA0LjcuMiBhbmQgYmludXRpbHMgMi4yMy4yDQo+ID4gKiB1LWJvb3QgYnVpbHQgd2l0aCBnY2Mg
+NC43LjIgYW5kIGJpbnV0aWxzIDIuMjMuMg0KPiA+ICogdS1ib290IGZyb20gaHR0cDovL2Rvd25s
+b2Fkcy5hbmdzdHJvbS1kaXN0cmlidXRpb24ub3JnL2RlbW8vYmVhZ2xlYm9uZS8NCj4gPiAqIGVh
+cmx5cHJpbnRrIGFuZCBDT05GSUdfREVCVUdfTEwgLSBubyBhZGRpdGlvbmFsIG91dHB1dCBwcmlu
+dGVkDQo+ID4gDQo+ID4gSSB0aGluayB3ZSdyZSBub3cgYXQgdGhlIHBvaW50IHdoZXJlIHdlJ2Qg
+YmVuZWZpdCBmcm9tIHNvbWVvbmUgd2l0aCBiZXR0ZXIgDQo+ID4ga25vd2xlZGdlIGRlYnVnZ2lu
+ZyB0aGUgaXNzdWUuDQo+IA0KPiBPaywgc2hvdWxkIHdlIGV4cGFuZCB0aGUgc2VhcmNoIGFyZWE/
+IFNpbmNlIHRoaXMgaXMgc3VwcG9zZWQgdG8gYmUgdmFuaWxsYSANCj4gMy4xNCBrZXJuZWwsIGNh
+biB3ZSB0cnkgb3RoZXIgcGxhdGZvcm1zIGFuZCBzZWUgaWYgdGhleSBhcmUgc2ltaWxhcmx5IA0K
+PiBhZmZlY3RlZD8gSSdsbCB0cnkgcGluZ2luZyBvdXIga2VybmVsIGd1eXMgZm9yIGFueSBpZGVh
+cy4uLg0KPiANCg0KDQpGV0lXLCBJIGZpbGVkIGh0dHBzOi8vYnVnemlsbGEueW9jdG9wcm9qZWN0
+Lm9yZy9zaG93X2J1Zy5jZ2k/aWQ9NjE2NQ0KdGhhdCBjb250YWlucyBhbGwgdGhlIGluZm8gSSBo
+YWQuDQpBIGxpbmsgdG8gdHdvIG9mIG15IGtlcm5lbCBpcyB0aGVyZSwgb25lIHdvcmtpbmcgb25l
+IG5vdC4NCg0KQ2hlZXJzLA0KU3RlZmFuDQoNCg==
 
