@@ -1,34 +1,33 @@
-Return-Path: <kergoth@gmail.com>
-Received: from mail-la0-f41.google.com (mail-la0-f41.google.com
-	[209.85.215.41])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E352DE00B8C
-	for <yocto@yoctoproject.org>; Tue, 15 Apr 2014 07:57:50 -0700 (PDT)
-Received: by mail-la0-f41.google.com with SMTP id gl10so7002628lab.14
-	for <yocto@yoctoproject.org>; Tue, 15 Apr 2014 07:57:48 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:sender:in-reply-to:references:from:date:message-id
-	:subject:to:cc:content-type;
-	bh=5yYu6sAab6ODoO89I6sUR5Beh7mIG2y1XCBRI3X9ttc=;
-	b=BXHwCNEXelFtUk7hN4batNspYMYbs4HGADgBgwmgTlx3Uk8nd3aMPDcPfsbcuerVLR
-	sHcU1RBQo/jCMkssQhl8SJ0e8u51DzRAwL15V/n+8I9xZgzGQfKn6PUA1/4+2X8h+6Rp
-	2IhHYEagF3+HNXqJzlTmPEwM2wzkDJY8DgmwYyxsW7lqGvOKhgokVBJvnyqC0Os40T6r
-	xkPKTSGljE//XTnYIWu7n4FM+4IBTbZBsSDKhtXYCFRCmvL8tB/24sFtRrULCQVbuqLI
-	V8/BA0nDvFqzcr9j5IZXzb3ucbEtj7INRqnT0OwL0WLYa6Y4ezLSyqiN/1ohcRQ154ym
-	nz3w==
-X-Received: by 10.112.160.168 with SMTP id xl8mr1488549lbb.3.1397573868509;
-	Tue, 15 Apr 2014 07:57:48 -0700 (PDT)
+Return-Path: <stephen.k.jolley@intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E56F9E00B8B
+	for <yocto@yoctoproject.org>; Tue, 15 Apr 2014 08:12:03 -0700 (PDT)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga102.jf.intel.com with ESMTP; 15 Apr 2014 08:05:48 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.97,864,1389772800"; 
+	d="scan'208,217";a="521398418"
+Received: from fmsmsx107.amr.corp.intel.com ([10.19.9.54])
+	by orsmga002.jf.intel.com with ESMTP; 15 Apr 2014 08:10:34 -0700
+Received: from fmsmsx101.amr.corp.intel.com (10.19.9.52) by
+	FMSMSX107.amr.corp.intel.com (10.19.9.54) with Microsoft SMTP Server
+	(TLS) id 14.3.123.3; Tue, 15 Apr 2014 08:10:34 -0700
+Received: from fmsmsx111.amr.corp.intel.com ([169.254.2.42]) by
+	FMSMSX101.amr.corp.intel.com ([169.254.1.102]) with mapi id
+	14.03.0123.003; Tue, 15 Apr 2014 08:10:33 -0700
+From: "Jolley, Stephen K" <stephen.k.jolley@intel.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: Minutes: Yocto Project Technical Team Meeting - Tuesday, April
+	15, 2014 8:00 AM US Pacific Time
+Thread-Index: Ac9YvNg58hX7rytfQC645fjs5XSEQA==
+Date: Tue, 15 Apr 2014 15:10:33 +0000
+Message-ID: <9ADD3FDE8B189B4AA2F8A3C711F8155E5503A201@fmsmsx111.amr.corp.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.1.200.108]
 MIME-Version: 1.0
-Sender: kergoth@gmail.com
-Received: by 10.112.35.194 with HTTP; Tue, 15 Apr 2014 07:57:28 -0700 (PDT)
-In-Reply-To: <1397565927-21177-1-git-send-email-sujith.h@gmail.com>
-References: <1397565927-21177-1-git-send-email-sujith.h@gmail.com>
-From: Chris Larson <clarson@kergoth.com>
-Date: Tue, 15 Apr 2014 07:57:28 -0700
-X-Google-Sender-Auth: 54luCLL3u-oDWyB4iaax534Hzvk
-Message-ID: <CABcZANk7-yLrM1QBwGJ0UR64P0btMssmVW3UCJ+b-P1gpxhwuw@mail.gmail.com>
-To: Sujith H <sujith.h@gmail.com>
-Cc: yocto <yocto@yoctoproject.org>, Sujith H <Sujith_Haridasan@mentor.com>
-Subject: Re: [PATCH] weston: Add weston.ini
+Subject: Minutes: Yocto Project Technical Team Meeting - Tuesday, April 15, 2014 8:00 AM US Pacific Time
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,69 +39,252 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 15 Apr 2014 14:57:51 -0000
-Content-Type: multipart/alternative; boundary=001a11c3888cfadde604f7160584
+X-List-Received-Date: Tue, 15 Apr 2014 15:12:06 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_9ADD3FDE8B189B4AA2F8A3C711F8155E5503A201fmsmsx111amrcor_"
 
---001a11c3888cfadde604f7160584
-Content-Type: text/plain; charset=UTF-8
-
-On Tue, Apr 15, 2014 at 5:45 AM, Sujith H <sujith.h@gmail.com> wrote:
-
-> From: Sujith H <Sujith_Haridasan@mentor.com>
->
-> Adding weston.ini to $HOME/.config. With this change
-> user can login to $HOME and launch weston with ivi-shell.
->
-> Signed-off-by: Sujith H <Sujith_Haridasan@mentor.com>
->
-
-1) the package manager shouldn't install user files, unless absolutely
-necessary, and if you're going to do something like that, you should at
-least split it out into a separate package, IMO
-2) you hardcode /home/root rather than using the variable for root's home
-directory (see bitbake.conf)
-3) you don't actually mention what layer this patch is destined for. I'm
-guessing meta-yocto?
--- 
-Christopher Larson
-clarson at kergoth dot com
-Founder - BitBake, OpenEmbedded, OpenZaurus
-Maintainer - Tslib
-Senior Software Engineer, Mentor Graphics
-
---001a11c3888cfadde604f7160584
-Content-Type: text/html; charset=UTF-8
+--_000_9ADD3FDE8B189B4AA2F8A3C711F8155E5503A201fmsmsx111amrcor_
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
-On Tue, Apr 15, 2014 at 5:45 AM, Sujith H <span dir=3D"ltr">&lt;<a href=3D"=
-mailto:sujith.h@gmail.com" target=3D"_blank">sujith.h@gmail.com</a>&gt;</sp=
-an> wrote:<br>
-
-<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
-x #ccc solid;padding-left:1ex"><div id=3D":4t4" class=3D"a3s" style=3D"over=
-flow:hidden">From: Sujith H &lt;<a href=3D"mailto:Sujith_Haridasan@mentor.c=
-om">Sujith_Haridasan@mentor.com</a>&gt;<br>
+Attendees:  Stephen, Armin, Scott R., Paul, Belen, Christiana, Vali, Jeff, =
+Michael H, Matthew, Michael B, Sean,
 
 
-<br>
-Adding weston.ini to $HOME/.config. With this change<br>
-user can login to $HOME and launch weston with ivi-shell.<br>
-<br>
-Signed-off-by: Sujith H &lt;<a href=3D"mailto:Sujith_Haridasan@mentor.com">=
-Sujith_Haridasan@mentor.com</a>&gt;</div></blockquote></div><br>1) the pack=
-age manager shouldn&#39;t install user files, unless absolutely necessary, =
-and if you&#39;re going to do something like that, you should at least spli=
-t it out into a separate package, IMO</div>
 
-<div class=3D"gmail_extra">2) you hardcode /home/root rather than using the=
- variable for root&#39;s home directory (see bitbake.conf)</div><div class=
-=3D"gmail_extra">3) you don&#39;t actually mention what layer this patch is=
- destined for. I&#39;m guessing meta-yocto?<br>
+* Opens collection - 5 min (Stephen)
 
--- <br>Christopher Larson<br>clarson at kergoth dot com<br>Founder - BitBak=
-e, OpenEmbedded, OpenZaurus<br>Maintainer - Tslib<br>Senior Software Engine=
-er, Mentor Graphics
-</div></div>
 
---001a11c3888cfadde604f7160584--
+
+* Yocto 1.6 status - 5 min (Stephen/team)
+
+  https://wiki.yoctoproject.org/wiki/Yocto_Project_v1.6_Status
+
+  https://wiki.yoctoproject.org/wiki/Yocto_1.6_Features
+
+
+
+* SWAT team rotation: Laurentiu -> Nitin
+
+  https://wiki.yoctoproject.org/wiki/Yocto_Build_Failure_Swat_Team
+
+
+
+* Opens - 10 min
+
+
+
+* Team Sharing - 10 min
+
+Scott - 4/22 will be the last day for documentation changes for 1.6 and not=
+ more changes will be made until we start work on 1.7.  If you have changes=
+ you would like see included they should get them to Scott ASAP!
+
+Thanks,
+
+Stephen K. Jolley
+Yocto Project Program Manager
+INTEL, MS JF1-255, 2111 N.E. 25th Avenue, Hillsboro, OR 97124
+*   Work Telephone:          (503) 712-0534
+*    Cell:                                (208) 244-4460
+* Email:                             stephen.k.jolley@intel.com
+
+
+--_000_9ADD3FDE8B189B4AA2F8A3C711F8155E5503A201fmsmsx111amrcor_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:x=3D"urn:schemas-microsoft-com:office:excel" xmlns:m=3D"http://schema=
+s.microsoft.com/office/2004/12/omml" xmlns=3D"http://www.w3.org/TR/REC-html=
+40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 14 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;}
+@font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:Tahoma;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
+@font-face
+	{font-family:Consolas;
+	panose-1:2 11 6 9 2 2 4 3 2 4;}
+@font-face
+	{font-family:"Comic Sans MS";
+	panose-1:3 15 7 2 3 3 2 2 2 4;}
+@font-face
+	{font-family:"MS Sans Serif";}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";
+	mso-fareast-language:EN-US;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;}
+p.MsoPlainText, li.MsoPlainText, div.MsoPlainText
+	{mso-style-priority:99;
+	mso-style-link:"Plain Text Char";
+	margin:0in;
+	margin-bottom:.0001pt;
+	font-size:10.5pt;
+	font-family:Consolas;
+	mso-fareast-language:EN-US;}
+p
+	{mso-style-priority:99;
+	mso-margin-top-alt:auto;
+	margin-right:0in;
+	mso-margin-bottom-alt:auto;
+	margin-left:0in;
+	font-size:12.0pt;
+	font-family:"Times New Roman","serif";
+	mso-fareast-language:ZH-CN;}
+span.PlainTextChar
+	{mso-style-name:"Plain Text Char";
+	mso-style-priority:99;
+	mso-style-link:"Plain Text";
+	font-family:Consolas;}
+span.EmailStyle20
+	{mso-style-type:personal-compose;
+	font-family:"Calibri","sans-serif";
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
+<div class=3D"WordSection1">
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas">Attendees:&nbsp; Stephen, Armin, Scott R., Paul, B=
+elen, Christiana, Vali, Jeff, Michael H, Matthew, Michael B, Sean,
+<o:p></o:p></span></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas"><o:p>&nbsp;</o:p></span></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas">* Opens collection - 5 min (Stephen)<o:p></o:p></s=
+pan></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas"><o:p>&nbsp;</o:p></span></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas">* Yocto 1.6 status - 5 min (Stephen/team)<o:p></o:=
+p></span></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas">&nbsp;
+</span><span style=3D"font-size:11.0pt"><a href=3D"https://wiki.yoctoprojec=
+t.org/wiki/Yocto_Project_v1.6_Status"><span style=3D"font-family:&quot;Cali=
+bri&quot;,&quot;sans-serif&quot;">https://wiki.yoctoproject.org/wiki/Yocto_=
+Project_v1.6_Status</span></a><o:p></o:p></span></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas">&nbsp;
+</span><span style=3D"font-size:11.0pt"><a href=3D"https://wiki.yoctoprojec=
+t.org/wiki/Yocto_1.6_Features"><span style=3D"font-family:&quot;Calibri&quo=
+t;,&quot;sans-serif&quot;">https://wiki.yoctoproject.org/wiki/Yocto_1.6_Fea=
+tures</span></a><o:p></o:p></span></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt"><o:p>&nbsp;</o:p></span></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas">* SWAT team rotation: Laurentiu -&gt; Nitin<o:p></=
+o:p></span></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas">&nbsp;
+<a href=3D"https://wiki.yoctoproject.org/wiki/Yocto_Build_Failure_Swat_Team=
+">https://wiki.yoctoproject.org/wiki/Yocto_Build_Failure_Swat_Team</a><o:p>=
+</o:p></span></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas"><o:p>&nbsp;</o:p></span></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas">* Opens - 10 min
+<o:p></o:p></span></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas"><o:p>&nbsp;</o:p></span></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas">* Team Sharing - 10 min<o:p></o:p></span></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas">Scott &#8211; 4/22 will be the last day for docume=
+ntation changes for 1.6 and not more changes will be made until we start wo=
+rk on 1.7.&nbsp; If you have changes you would
+ like see included they should get them to Scott ASAP!<o:p></o:p></span></p=
+>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
+n></p>
+<p class=3D"MsoNormal">Thanks,<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal" style=3D"page-break-after:avoid;text-autospace:none"=
+><b><i><span style=3D"font-size:16.0pt;font-family:&quot;Times New Roman&qu=
+ot;,&quot;serif&quot;;color:purple">Stephen K. Jolley</span></i></b><b><i><=
+span style=3D"font-size:16.0pt;font-family:&quot;Tahoma&quot;,&quot;sans-se=
+rif&quot;;color:purple"><o:p></o:p></span></i></b></p>
+<p class=3D"MsoNormal"><b><span style=3D"font-size:8.0pt;font-family:&quot;=
+Courier New&quot;;color:blue">Yocto Project Program Manager<o:p></o:p></spa=
+n></b></p>
+<p class=3D"MsoNormal" style=3D"page-break-after:avoid;text-autospace:none"=
+><b><span style=3D"font-size:10.0pt;font-family:&quot;Courier New&quot;;col=
+or:fuchsia">INTEL, MS JF1-255, 2111 N.E. 25th Avenue, Hillsboro, OR 97124
+<o:p></o:p></span></b></p>
+<p class=3D"MsoNormal"><span style=3D"font-family:Wingdings;color:black">(<=
+/span><span style=3D"font-family:&quot;MS Sans Serif&quot;;color:teal">
+</span><span style=3D"font-size:8.0pt;font-family:&quot;MS Sans Serif&quot;=
+;color:teal">&nbsp;&nbsp;</span><b><span style=3D"font-size:8.0pt;font-fami=
+ly:&quot;Comic Sans MS&quot;;color:teal">Work Telephone</span></b><span sty=
+le=3D"font-family:&quot;MS Sans Serif&quot;;color:teal">:&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span style=3D"font-size:9.0pt;font-family:&quot;MS Sans Serif&quot;=
+">(503) 712-0534<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt;font-family:Wingdings=
+;color:black">(</span><span style=3D"font-size:9.0pt;font-family:&quot;MS S=
+ans Serif&quot;;color:teal">&nbsp;&nbsp;&nbsp;
+</span><b><span style=3D"font-size:8.0pt;font-family:&quot;Comic Sans MS&qu=
+ot;;color:teal">Cell</span></b><span style=3D"font-size:9.0pt;font-family:&=
+quot;MS Sans Serif&quot;;color:teal">:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span style=3D"font-size:9.0pt;font-family:&quot;MS Sans Serif&quot;=
+">(208) 244-4460<span style=3D"color:black"><o:p></o:p></span></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt;font-family:Wingdings=
+">* </span>
+<b><span lang=3D"FR" style=3D"font-size:8.0pt;font-family:&quot;Comic Sans =
+MS&quot;;color:teal">Email</span></b><span lang=3D"FR" style=3D"font-size:9=
+.0pt;font-family:&quot;MS Sans Serif&quot;;color:teal">:</span><span lang=
+=3D"FR" style=3D"font-size:9.0pt;font-family:&quot;MS Sans Serif&quot;">&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;
+<u><span style=3D"color:blue">stephen.k.jolley@intel.com</span></u></span><=
+span lang=3D"FR" style=3D"font-size:12.0pt;font-family:&quot;Arial&quot;,&q=
+uot;sans-serif&quot;"><o:p></o:p></span></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+</body>
+</html>
+
+--_000_9ADD3FDE8B189B4AA2F8A3C711F8155E5503A201fmsmsx111amrcor_--
