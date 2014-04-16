@@ -1,44 +1,33 @@
-Return-Path: <akuster@mvista.com>
-Received: from mail-pb0-f49.google.com (mail-pb0-f49.google.com
-	[209.85.160.49])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5D40CE00955
-	for <yocto@yoctoproject.org>; Wed, 16 Apr 2014 15:57:30 -0700 (PDT)
-Received: by mail-pb0-f49.google.com with SMTP id jt11so11364579pbb.22
-	for <yocto@yoctoproject.org>; Wed, 16 Apr 2014 15:57:30 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
-	:cc:subject:references:in-reply-to:content-type
-	:content-transfer-encoding;
-	bh=0sVo/fPCjNwSj6+HvPe5rvA77iyS2Jlq4wjFFM1UO+g=;
-	b=arqCyOPdZLBn3rxGDf6OrszeG+1VATkPvLzSHnDQ2EuZMmovlXvLvvbLo3qalpU5pH
-	raCEOzsRM9bzzYRFq46Tgu6CnPeX+0P8A5GfyuKSB0UmEUGK0O2mnVcYn9fBuV3VTCRd
-	cAVodwP5TF4Nu7I0b6JAhn+s21Zq2J58L8LcteqttVIvG5YQaOqQS7OhF6fpS9qhfWuH
-	9yJGDRt+UCwp2Gvohq5d+j3KHXh8/Hsx7h5m9XvlbOoz2bmBRRzj2470q4vPdta81aRo
-	lfR/xSInMYtA0q/RbQHEKwRKSDfIaZzeD/dPs6ZmuznZYCK1A0ruR8phpckCYcjJABOH
-	e6TQ==
-X-Gm-Message-State: ALoCoQmC+RcL4O7Y1avNS98nZObVKQDB+G2E3ZMcWvmdZqVEqDr2S/JH72he66cDOTTasvEfoXLv
-X-Received: by 10.68.134.169 with SMTP id pl9mr11444304pbb.133.1397689050384; 
-	Wed, 16 Apr 2014 15:57:30 -0700 (PDT)
-Received: from Akusters-laptop.local (c-98-239-95-55.hsd1.ca.comcast.net.
-	[98.239.95.55]) by mx.google.com with ESMTPSA id
-	om6sm49304371pbc.43.2014.04.16.15.57.29 for <multiple recipients>
-	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
-	Wed, 16 Apr 2014 15:57:29 -0700 (PDT)
-Message-ID: <534F0AD8.9050705@mvista.com>
-Date: Wed, 16 Apr 2014 15:57:28 -0700
-From: "akuster@mvista" <akuster@mvista.com>
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.9;
-	rv:24.0) Gecko/20100101 Thunderbird/24.4.0
+Return-Path: <raj.khem@gmail.com>
+Received: from mail-ie0-f169.google.com (mail-ie0-f169.google.com
+	[209.85.223.169])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B72DCE00C02
+	for <yocto@yoctoproject.org>; Wed, 16 Apr 2014 15:57:32 -0700 (PDT)
+Received: by mail-ie0-f169.google.com with SMTP id to1so11322587ieb.28
+	for <yocto@yoctoproject.org>; Wed, 16 Apr 2014 15:57:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-type;
+	bh=EL5fXxrDojhy/m/jUIwKcbpxR5a7NidDC+dkLWAQ/Qw=;
+	b=SPY+X+2Kxu6wr5S4U29OyDnuTVviXnIE8kyBXgCMFu7QCXSyKRHqY96KUr5kdpnO2L
+	0aG6kPwpo2ckWZrKn+GEhko6f5N9wlmksDCIDxYl3/GwdRN9vc3VgX/GAUH7WJZgUzoF
+	eU7BlWxvh+ttTLJu2ed7QPNKlOIb/CmgC3mx52LsBU0f01gcMmDoIVNIwrAUaWSEbvm1
+	wKuCYjCHhpwgQN0rFkAIeiqYMxbwXH/HQNjYX4wBcaJ4gV/ymwhJrXJ4nsp14sSw38zp
+	ZDjjUMwCXGJFLvrdiyRJ+sPlV32C0jzisbfBvwygCUpqLmVgTZY0n6B3bzE5TCeyXzAX
+	EswA==
+X-Received: by 10.50.30.167 with SMTP id t7mr10504369igh.17.1397689051641;
+	Wed, 16 Apr 2014 15:57:31 -0700 (PDT)
 MIME-Version: 1.0
-To: "Stewart, David C" <david.c.stewart@intel.com>, 
-	Jeff Osier-Mixon <jefro@jefro.net>
-References: <534ED0A3.3040209@mvista.com>
-	<CA+YB3rbxPWJFa80LjcBn0H7r3PQuWf80-ooamVsYtVJWRph12w@mail.gmail.com>
-	<CF7433D3.8A888%david.c.stewart@intel.com>
-In-Reply-To: <CF7433D3.8A888%david.c.stewart@intel.com>
-Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: Yocto life cycle statement
+Received: by 10.50.229.14 with HTTP; Wed, 16 Apr 2014 15:57:01 -0700 (PDT)
+In-Reply-To: <loom.20140416T210857-619@post.gmane.org>
+References: <CALb2248grw7+NKWt8yfEpVR1_DYgkWEGYwhhr5N5ng_6JqU2mA@mail.gmail.com>
+	<loom.20140416T210857-619@post.gmane.org>
+From: Khem Raj <raj.khem@gmail.com>
+Date: Wed, 16 Apr 2014 15:57:01 -0700
+Message-ID: <CAMKF1soYrCBxDKQbDOWOEj4SLfNoMz=kBarw+pc2CvKQpfMJQg@mail.gmail.com>
+To: Hermanus Botha <wkj.id10t@gmail.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Integrating Golang
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -50,74 +39,25 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 16 Apr 2014 22:57:31 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 16 Apr 2014 22:57:34 -0000
+Content-Type: text/plain; charset=UTF-8
 
-On 4/16/14, 1:21 PM, Stewart, David C wrote:
+On Wed, Apr 16, 2014 at 12:10 PM, Hermanus Botha <wkj.id10t@gmail.com> wrote:
+> So I don't really know much about Yocto. But I would also like to see some
+> more Go-lang action on Yocto.
 
-Thanks Stewart.
+Start by generating the gcc runtime  and language support in gcc
+recipes. add it to RUNTIMETARGET and adjust PACKAGES
+you also need to add it to LANGUAGES that should get it to some point.
 
-That is what I was looking for.
-
-regards,
-Armin
-> I found the following comments at
-> https://wiki.yoctoproject.org/wiki/FAQ#What_is_the_release_cycle_of_the_Yoc
-> to_Project.3F
-> (It does seem like we have been supplying maintenance releases for two
-> releases back, not just one. So maybe this wiki needs to be updated)
 >
+> This section of their manual seems promising.
+> http://www.yoctoproject.org/docs/current/ref-manual/ref-manual.html#cross-
+> development-toolchain-generation
 >
->
-> What is the release cycle of the Yocto Project?
->
-> Each release of the Yocto Project is subject to its own release schedule
-> according to the community-maintained Project Planning Guide
-> <https://wiki.yoctoproject.org/wiki/Planning#Yocto>. It is generally
-> expected that a new version of the Yocto Project will be released every
-> six months.
->
-> What is the overall support plan for the Yocto Project?
->
-> Security patches and critical bug fixes are supplied one release back. No
-> toolchain or kernel changes are allowed for these updates. Support for
-> longer periods of time can be supplied by commercial OSVs.
->
->
->
-> On 4/16/14, 12:43 PM, "Jeff Osier-Mixon" <jefro@jefro.net> wrote:
->
->> Hi Armin - let me do some research on this, just wanted to let you
->> know that I had seen it. I'm not sure we have a formal statement
->> published.
->>
->> On Wed, Apr 16, 2014 at 11:49 AM, akuster@mvista <akuster@mvista.com>
->> wrote:
->>> Hello,
->>>
->>> Can someone point to a 'life cycle statement' for Yocto versions, one
->>> that
->>> discusses limited bug fixing peroid and ultimate EOL of a version. I am
->>> having trouble find it.
->>>
->>> Regards,
->>> Armin
->>> --
->>> _______________________________________________
->>> yocto mailing list
->>> yocto@yoctoproject.org
->>> https://lists.yoctoproject.org/listinfo/yocto
->>
->>
->>
->> --
->> Jeff Osier-Mixon @Intel
->> Yocto Project Community Manager http://yoctoproject.org
->> --
->> _______________________________________________
->> yocto mailing list
->> yocto@yoctoproject.org
->> https://lists.yoctoproject.org/listinfo/yocto
->
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
