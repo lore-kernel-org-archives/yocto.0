@@ -1,41 +1,28 @@
-Return-Path: <stefanx.stanacar@intel.com>
-Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C07E3E00B85
-	for <yocto@yoctoproject.org>; Wed, 16 Apr 2014 03:20:45 -0700 (PDT)
-Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by azsmga101.ch.intel.com with ESMTP; 16 Apr 2014 03:20:45 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.97,871,1389772800"; d="scan'208";a="419726466"
-Received: from irsmsx103.ger.corp.intel.com ([163.33.3.157])
-	by azsmga001.ch.intel.com with ESMTP; 16 Apr 2014 03:20:43 -0700
-Received: from irsmsx151.ger.corp.intel.com (163.33.192.59) by
-	IRSMSX103.ger.corp.intel.com (163.33.3.157) with Microsoft SMTP Server
-	(TLS) id 14.3.123.3; Wed, 16 Apr 2014 11:20:36 +0100
-Received: from irsmsx105.ger.corp.intel.com ([169.254.7.78]) by
-	IRSMSX151.ger.corp.intel.com ([163.33.192.59]) with mapi id
-	14.03.0123.003; Wed, 16 Apr 2014 11:20:37 +0100
-From: "Stanacar, StefanX" <stefanx.stanacar@intel.com>
-To: "denis@denix.org" <denis@denix.org>
-Thread-Topic: [yocto] BBB doesn't boot
-Thread-Index: AQHPVvi7U65QgTaRbkKYHPQsid6RTpsQVSAAgACEAYCAAFmtgIAAAWGAgAACeICAAAEggIAAARsAgABDvYCAACrEgIAAGsuAgAAV/wCAADPFAIAABooAgAACyQCAAD9TgIAAL0uAgAAxRgCAABsWgIAAAqkAgAALIoCAAAcJAIAAIhCAgABBVwCAABqxAIAAAkuAgACW/YA=
-Date: Wed, 16 Apr 2014 10:20:36 +0000
-Message-ID: <1397643667.23327.5.camel@firebird.rb.intel.com>
-References: <534C0415.20701@mlbassoc.com>
-	<3130526.9zUpmp9SKQ@peggleto-mobl5.ger.corp.intel.com>
-	<20140415162639.GC11339@denix.org>
-	<16254891.OyPbf7clBT@peggleto-mobl5.ger.corp.intel.com>
-	<20140415171601.GD11339@denix.org> <20140415174112.GE11339@denix.org>
-	<20140415194307.GG11339@denix.org> <1397605018.15843.119.camel@ted>
-	<20140416011230.GH11339@denix.org> <20140416012043.GI11339@denix.org>
-In-Reply-To: <20140416012043.GI11339@denix.org>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.237.105.38]
+Return-Path: <katutxakurra@gmail.com>
+Received: from mail-ie0-f171.google.com (mail-ie0-f171.google.com
+	[209.85.223.171])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5AC9DE00C02
+	for <yocto@yoctoproject.org>; Wed, 16 Apr 2014 08:54:12 -0700 (PDT)
+Received: by mail-ie0-f171.google.com with SMTP id ar20so10773458iec.30
+	for <yocto@yoctoproject.org>; Wed, 16 Apr 2014 08:54:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=uARfZJC9Z58Mst4ySp23a9kWNQ3QpyHuTn27UrmgjFY=;
+	b=zQmw4cjLz40whoJL2TJM2i4UPakxinxrLGK4vezIPYNsrcjka2awqKJFwMS2zoZlhm
+	GrG3KLoBhLhGtIHQc8FUWSilghx4xVbekfFzOXc1pCWMpUrS17HCdv27PI/VJNE25sKx
+	d0NYI0iEccYZexEaMx06OaLSShnlZPpWqwW5tdrrjsWA8mTk8R2HwgFvILYyFQaubNYM
+	smovjsYHC1AoUtwQ4YQkbd4A0DUNqYjjNM5RR9ptcbzz8KWcoX/SMYXJN1U/ZYA0CNq+
+	nEKphFv7CMd6U9tNFG2GpP+v3/PvTacph3ZWalG6qnGAxzRzVINxkrr0GdTb16QyMw7f
+	3EXQ==
 MIME-Version: 1.0
-Cc: "paul.eggleton@linux.intel.com" <paul.eggleton@linux.intel.com>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: BBB doesn't boot
+X-Received: by 10.43.13.134 with SMTP id pm6mr2608453icb.79.1397663651818;
+	Wed, 16 Apr 2014 08:54:11 -0700 (PDT)
+Received: by 10.50.115.2 with HTTP; Wed, 16 Apr 2014 08:54:11 -0700 (PDT)
+Date: Wed, 16 Apr 2014 16:54:11 +0100
+Message-ID: <CAM1ZcoVDa-mgYRYuPJqJQ4uKHNeVz+btnfFA=FnkD1xxhiFJvw@mail.gmail.com>
+From: Katu Txakur <katutxakurra@gmail.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: non empty package group
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -47,102 +34,42 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 16 Apr 2014 10:20:47 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <E894E3D242611E4298C6E7FF174ED0A1@intel.com>
-Content-Transfer-Encoding: base64
+X-List-Received-Date: Wed, 16 Apr 2014 15:54:13 -0000
+Content-Type: multipart/alternative; boundary=bcaec51968e37b716304f72aed37
 
-DQoNCg0KT24gVHVlLCAyMDE0LTA0LTE1IGF0IDIxOjIwIC0wNDAwLCBEZW55cyBEbXl0cml5ZW5r
-byB3cm90ZToNCj4gT24gVHVlLCBBcHIgMTUsIDIwMTQgYXQgMDk6MTI6MzBQTSAtMDQwMCwgRGVu
-eXMgRG15dHJpeWVua28gd3JvdGU6DQo+ID4gT24gV2VkLCBBcHIgMTYsIDIwMTQgYXQgMTI6MzY6
-NThBTSArMDEwMCwgUmljaGFyZCBQdXJkaWUgd3JvdGU6DQo+ID4gPiBPbiBUdWUsIDIwMTQtMDQt
-MTUgYXQgMTU6NDMgLTA0MDAsIERlbnlzIERteXRyaXllbmtvIHdyb3RlOg0KPiA+ID4gPiBJIGRv
-bid0IHlldCBrbm93IHdoYXQgaXMgZ29pbmcgb24sIGJ1dCBidWlsZGluZyBpbiB0aGUgc2FtZSBk
-aXJlY3Rvcnkgd2l0aCANCj4gPiA+ID4gc291cmNlcyAoQiA9IFMpIG1ha2VzIGl0IHdvcmsgcmVn
-YXJsZXNzIG9mIHRoZSBwYXRoIGxlbmd0aDoNCj4gPiA+ID4gDQo+ID4gPiA+IC9PRS9SQU0vcG9r
-eS0xMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTEx
-MTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTEvMjIyMjIy
-MjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIy
-MjIyMjIvMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMz
-My90bXAvd29yay9iZWFnbGVib25lLXBva3ktbGludXgtZ251ZWFiaS9saW51eC15b2N0by8zLjE0
-K2dpdEFVVE9JTkMrOTI4ZDdiMmRkYV8wMTQzYzZlYmI0LXIwL2xpbnV4DQo+ID4gPiA+IA0KPiA+
-ID4gPiBTbywgSSBqdXN0IGNvbW1lbnRlZCBvdXQgc2V0dGluZyBrZXJuZWwtc3BlY2lmaWMgQiBp
-biBsaW51eC15b2N0by5pbmMgYW5kIGFueSANCj4gPiA+ID4ga2VybmVsIG5vdyBib290cyB3aXRo
-IGxvbmcgcGF0aDoNCj4gPiA+ID4gDQo+ID4gPiA+ICNCID0gIiR7V09SS0RJUn0vbGludXgtJHtQ
-QUNLQUdFX0FSQ0h9LSR7TElOVVhfS0VSTkVMX1RZUEV9LWJ1aWxkIg0KPiA+ID4gPiANCj4gPiA+
-ID4gSSdtIGNvcHlpbmcgUmljaGFyZCBhbmQgQnJ1Y2UgZGlyZWN0bHkgdG8gc2VlIGlmIHRoZXkg
-bWF5IGhhdmUgYSBxdWljayBpbnNpZ2h0IA0KPiA+ID4gPiBhbmQvb3IgYWNjZXB0IGl0IGFzIGEg
-d29ya2Fyb3VuZCBmb3IgdGhlIHJlbGVhc2UuIEknbGwga2VlcCBkaWdnaW5nIGZ1cnRoZXIsIA0K
-PiA+ID4gPiBidXQgaWYgYW55b25lIGNhcmVzIHRvIHZlcmlmeSB0aGUgYWJvdmUgd29ya2Fyb3Vu
-ZCB3b3JrcyBmb3IgdGhlbSwgSSB3b3VsZCANCj4gPiA+ID4gYXBwcmVjaWF0ZS4gVGhhbmtzIQ0K
-PiA+ID4gDQo+ID4gPiBJJ20gdHJhdmVsbGluZyBhbmQgZG9uJ3QgaGF2ZSBoYXJkd2FyZSBzbyBJ
-J20gbGltaXRlZCBpbiB3aGF0IEkgY2FuIGxvb2sNCj4gPiA+IGF0IHJpZ2h0IG5vdy4gSSBzdXNw
-ZWN0IHRoaXMgd29ya2Fyb3VuZCAid29ya3MiIGJlY2F1c2UgaXQgbWFrZXMgdGhlDQo+ID4gPiAi
-YmVhZ2xlYm9uZS1zdGFuZGFyZC1idWlsZCIgZXh0cmEgY2hhcmFjdGVycyBvbiB0aGUgcGF0aC4g
-SSBoYXZlIGENCj4gPiA+IGZlZWxpbmcgeW91ciAtMTExMTExMSB0ZXN0IGFib3ZlIG1heSBoYXZl
-IHJldXNlZCBzc3RhdGUgb3Igc29tZXRoaW5nDQo+ID4gPiBsaWtlIHRoYXQgYW5kIGdpdmVuIG1p
-c2xlYWRpbmcgcmVzdWx0cy4gSSdkIGJlIGludGVyZXN0ZWQgaW4gdGhlIHZtbGludXgNCj4gPiA+
-IGZpbGUgZnJvbSB0aGUgYnVpbGQgYWJvdmUgdG8gc2VlIGlmIHRoZSBwb2t5LTExMTExMSBwYXRo
-bmFtZXMgYXJlIGluDQo+ID4gPiB0aGVyZSAodGhleSBnZXQgc3RyaXBwZWQgb3V0IHdoZW4geW91
-IGNyZWF0ZSB0aGUgekltYWdlKS4NCj4gPiANCj4gPiBOb3BlLCBJIHdhcyBmb29sZWQgYnkgc3N0
-YXRlIG9uY2UsIHNvIHRoaXMgdGltZSBJIHRlc3RlZCB3aXRoIGNsZWFuc3N0YXRlIGFuZCANCj4g
-PiBjb21wYXJlZCB0aW1lc3RhbXBzIG9mIHRoZSBrZXJuZWwgd2hlbiBpdCBib290cyAtIGl0IGlz
-IGRlZmluaXRlbHkgdGhlIG5ldyANCj4gPiBvbmUuIEFuZCB0byBtYWtlIHN1cmUgJ2JlYWdsZWJv
-bmUtc3RhbmRhcmQtYnVpbGQnIGV4dHJhIHN1ZmZpeCBkb2Vzbid0IGFmZmVjdCANCj4gPiBpdCwg
-SSBpbmNyZWFzZWQgdGhlIHBhdGggbGVuZ3RoIGV2ZW4gZnVydGhlciAtIHRoYXQgZXh0cmEgbGV2
-ZWwgd2l0aCAzMzMgaXMgDQo+ID4gdGhlcmUgdG8gb3Zlci1jb21wZW5zYXRlLCBhcyBpdCB3YXMg
-ZmFpbGluZyBiZWZvcmUgZXZlbiB3aXRoIGp1c3QgMTExIGFuZCAyMjIgDQo+ID4gbGV2ZWxzIG9u
-bHkuLi4gTG9va3MgbGlrZSBHYXJ5IHdhcyBhbHNvIGFibGUgdG8gdmVyaWZ5IGl0Lg0KPiA+IA0K
-PiA+IEJ1dCwgeW91IGFyZSByaWdodCBhYm91dCB2bWxpbnV4IC0gaXQgZG9lc24ndCBoYXZlIHRo
-b3NlIHBhdGhzIGluIHRoZXJlIGFueSANCj4gPiBtb3JlISBJJ3ZlIHNlZW4gdGhlbSB0aGVyZSB3
-aGVuIGJ1aWxkaW5nIHdpdGggQiAhPSBTLCBidXQgdGhleSBhcmUgZ29uZSB3aGVuIA0KPiA+IGJ1
-aWxkaW5nIHdpdGggQiA9IFMuIFdvbmRlcmluZyB3aHkuIFlvdSBjYW4gY2hlY2sgaXQgZm9yIHlv
-dXJzZWxmOg0KPiA+IA0KPiA+IGh0dHA6Ly9hcmFnby1wcm9qZWN0Lm9yZy9maWxlcy9zaG9ydC10
-ZXJtL21pc2Mvdm1saW51eC0zLjE0LjAteW9jdG8tc3RhbmRhcmQNCj4gDQo+IEFuZCwgYXMgYSBm
-b2xsb3cgdXAsIGFsbCB0aG9zZSBsb25nIHBhdGhzIGluIHZtbGludXggd2hlbiBidWlsdCB3aXRo
-IEIgIT0gUyANCj4gcG9pbnQgdG8gc291cmNlcy4gSGVyZSBhcmUgZmV3IGV4YW1wbGVzOg0KPiAN
-Cj4gQiAhPSBTIHN0cmluZ3M6DQo+IA0KPiAvT0UvUkFNL3Bva3kvdG1wL3dvcmsvYmVhZ2xlYm9u
-ZS1wb2t5LWxpbnV4LWdudWVhYmkvbGludXgteW9jdG8vMy4xNCtnaXRBVVRPSU5DKzkyOGQ3YjJk
-ZGFfMDE0M2M2ZWJiNC1yMC9saW51eC9pbml0L21haW4uYw0KPiBlYXJseWNvbg0KPiA0TWFsZm9y
-bWVkIGVhcmx5IG9wdGlvbiAnJXMnDQo+IDNTdGFydGluZyBpbml0OiAlcyBleGlzdHMgYnV0IGNv
-dWxkbid0IGV4ZWN1dGUgaXQgKGVycm9yICVkKQ0KPiAuLi4NCj4gNlRyeWluZyB0byB1bnBhY2sg
-cm9vdGZzIGltYWdlIGFzIGluaXRyYW1mcy4uLg0KPiAvT0UvUkFNL3Bva3kvdG1wL3dvcmsvYmVh
-Z2xlYm9uZS1wb2t5LWxpbnV4LWdudWVhYmkvbGludXgteW9jdG8vMy4xNCtnaXRBVVRPSU5DKzky
-OGQ3YjJkZGFfMDE0M2M2ZWJiNC1yMC9saW51eC9pbml0L2luaXRyYW1mcy5jDQo+IDZyb290ZnMg
-aW1hZ2UgaXMgbm90IGluaXRyYW1mcyAoJXMpOyBsb29rcyBsaWtlIGFuIGluaXRyZA0KPiBUUkFJ
-TEVSISEhDQo+IC4uLg0KPiAlbHUuJTAybHUgQm9nb01JUFMgKGxwaj0lbHUpDQo+IC9PRS9SQU0v
-cG9reS90bXAvd29yay9iZWFnbGVib25lLXBva3ktbGludXgtZ251ZWFiaS9saW51eC15b2N0by8z
-LjE0K2dpdEFVVE9JTkMrOTI4ZDdiMmRkYV8wMTQzYzZlYmI0LXIwL2xpbnV4L2FyY2gvYXJtL3Zm
-cC92ZnBtb2R1bGUuYw0KPiA2VkZQIHN1cHBvcnQgdjAuMzogDQo+IA0KPiANCj4gQiA9IFMgc2Ft
-ZSBzdHJpbmdzOg0KPiANCj4gaW5pdC9tYWluLmMNCj4gZWFybHljb24NCj4gNE1hbGZvcm1lZCBl
-YXJseSBvcHRpb24gJyVzJw0KPiAzU3RhcnRpbmcgaW5pdDogJXMgZXhpc3RzIGJ1dCBjb3VsZG4n
-dCBleGVjdXRlIGl0IChlcnJvciAlZCkNCj4gLi4uDQo+IDZUcnlpbmcgdG8gdW5wYWNrIHJvb3Rm
-cyBpbWFnZSBhcyBpbml0cmFtZnMuLi4NCj4gaW5pdC9pbml0cmFtZnMuYw0KPiA2cm9vdGZzIGlt
-YWdlIGlzIG5vdCBpbml0cmFtZnMgKCVzKTsgbG9va3MgbGlrZSBhbiBpbml0cmQNCj4gVFJBSUxF
-UiEhIQ0KPiAuLi4NCj4gJWx1LiUwMmx1IEJvZ29NSVBTIChscGo9JWx1KQ0KPiBhcmNoL2FybS92
-ZnAvdmZwbW9kdWxlLmMNCj4gNlZGUCBzdXBwb3J0IHYwLjM6IA0KPiANCj4gDQo+IFNvLCB0aGF0
-IGV4cGxhaW5zIHdoeSBCID0gUyB3b3JrcyByZWdhcmRsZXNzIG9mIHRoZSBsb2NhdGlvbiwgYXMg
-aXQgZG9lc24ndCANCj4gZW1iZWQgZnVsbCBwYXRoIHRvIHNvdXJjZSBmaWxlcy4uLg0KPiANCg0K
-DQpCdXQgcWVtdXg4Ni02NCBvciBnZW5lcmljeDg2LTY0IG9yIHFlbXVhcm0ga2VybmVsIGhhcyB0
-aGUgc2FtZSBzdHJpbmdzLA0KYW5kIGl0IGJvb3RzIGp1c3QgZmluZToNCg0KJCBzdHJpbmdzDQp5
-b2N0by1hdXRvYnVpbGRlci95b2N0by1zbGF2ZS9uaWdodGx5LXg4Ni02NC9idWlsZC9idWlsZC90
-bXAvd29yay9xZW11eDg2XzY0LXBva3ktbGludXgvbGludXgteW9jdG8vMy4xNCtnaXRBVVRPSU5D
-K2ZjOGMzMDM5OGRfMDE0M2M2ZWJiNC1yMC9saW51eC1xZW11eDg2XzY0LXN0YW5kYXJkLWJ1aWxk
-L3ZtbGludXggfCBncmVwIC1BIDIgLUIgMiAtRSAiaW5pdC9tYWluLmMiDQo0TWFsZm9ybWVkIGVh
-cmx5IG9wdGlvbiAnJXMnDQozU3RhcnRpbmcgaW5pdDogJXMgZXhpc3RzIGJ1dCBjb3VsZG4ndCBl
-eGVjdXRlIGl0IChlcnJvciAlZCkNCi9ob21lL3N0ZWZhbnMveW9jdG8tYXV0b2J1aWxkZXIveW9j
-dG8tc2xhdmUvbmlnaHRseS14ODYtNjQvYnVpbGQvYnVpbGQvdG1wL3dvcmsvcWVtdXg4Nl82NC1w
-b2t5LWxpbnV4L2xpbnV4LXlvY3RvLzMuMTQrZ2l0QVVUT0lOQytmYzhjMzAzOThkXzAxNDNjNmVi
-YjQtcjAvbGludXgvaW5pdC9tYWluLmMNCjRQYXJhbWV0ZXIgJXMgaXMgb2Jzb2xldGUsIGlnbm9y
-ZWQNCkludGVycnVwdHMgd2VyZSBlbmFibGVkICp2ZXJ5KiBlYXJseSwgZml4aW5nIGl0DQoNCnFl
-bXVhcm06DQokIHN0cmluZ3MNCnlvY3RvLWF1dG9idWlsZGVyL3lvY3RvLXNsYXZlL25pZ2h0bHkt
-YXJtL2J1aWxkL2J1aWxkL3RtcC93b3JrL3FlbXVhcm0tcG9reS1saW51eC1nbnVlYWJpL2xpbnV4
-LXlvY3RvLzMuMTQrZ2l0QVVUT0lOQys5MjhkN2IyZGRhX2M5NjY5ODdmODgtcjAvbGludXgtcWVt
-dWFybS1zdGFuZGFyZC1idWlsZC92bWxpbnV4IHwgZ3JlcCAtQSAyIC1CIDIgLUUgImluaXQvbWFp
-bi5jIg0KdGFiXw0KX19rcw0KL2hvbWUvc3RlZmFucy95b2N0by1hdXRvYnVpbGRlci95b2N0by1z
-bGF2ZS9uaWdodGx5LWFybS9idWlsZC9idWlsZC90bXAvd29yay9xZW11YXJtLXBva3ktbGludXgt
-Z251ZWFiaS9saW51eC15b2N0by8zLjE0K2dpdEFVVE9JTkMrOTI4ZDdiMmRkYV9jOTY2OTg3Zjg4
-LXIwL2xpbnV4L2luaXQvbWFpbi5jDQplYXJseWNvbg0KNE1hbGZvcm1lZCBlYXJseSBvcHRpb24g
-JyVzJw0KDQoNCkNoZWVycywNClN0ZWZhbg0KDQoNCj4gLS0gDQo+IERlbnlzDQoNCg==
+--bcaec51968e37b716304f72aed37
+Content-Type: text/plain; charset=UTF-8
 
+Hi,
+
+I have some recipes that generate multiple packages.
+I also have a package group that groups all the recipes.
+I would like to use the package created with the packagegroup recipe to
+install all the files coming from my recipes into the target system. The
+aim is to have one package that will install/update all the binaries,
+libraries and config of the recipes included in the packagegroup.
+How can I include all the files in the recipes added to REDEPENDS of the
+package group into the package to do this?
+I've tried RPROVIDES but the .ipk package created from the
+mypackagegroup.bbrecipe doesn't include any of the files.
+
+Thanks
+
+--bcaec51968e37b716304f72aed37
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div><div><div><div><div>Hi,<br><br></div>I have some reci=
+pes that generate multiple packages.<br></div>I also have a package group t=
+hat groups all the recipes.<br></div>I would like to use the package create=
+d with the packagegroup recipe to install all the files coming from my reci=
+pes into the target system. The aim is to have one package that will instal=
+l/update all the binaries, libraries and config of the recipes included in =
+the packagegroup.<br>
+How can I include all the files in the recipes added to REDEPENDS of the pa=
+ckage group into the package to do this?<br></div>I&#39;ve tried RPROVIDES =
+but the .ipk package created from the <a href=3D"http://mypackagegroup.bb">=
+mypackagegroup.bb</a> recipe doesn&#39;t include any of the files.<br>
+<br></div>Thanks<br></div>
+
+--bcaec51968e37b716304f72aed37--
