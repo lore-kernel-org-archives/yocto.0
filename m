@@ -1,29 +1,34 @@
-Return-Path: <jatedev@gmail.com>
-Received: from mail-qc0-f193.google.com (mail-qc0-f193.google.com
-	[209.85.216.193])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C19C2E00C1D
-	for <yocto@yoctoproject.org>; Thu, 17 Apr 2014 10:23:41 -0700 (PDT)
-Received: by mail-qc0-f193.google.com with SMTP id e16so217545qcx.4
-	for <yocto@yoctoproject.org>; Thu, 17 Apr 2014 10:23:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:cc:content-type;
-	bh=yQSJNgCsAZT427aTI5Lg5BVc5OzjvPcyukZfB4Gbl7E=;
-	b=g4zZ/RfURjhhiVVmgwtqniPtIidhjOcJktWcH5BMXwtG+canmqPvUwl8VzXj4Y1m2r
-	mx0s4hoTIaVTdHEjzThcoW0ez1xrTwi8zGA7jWMEh8pT1f17UnWnmvzqSnb2FpUKFAQL
-	dwZtxOVHR2L0901IMskE8pdvq8qlyXOgJ9dLTg9MNVEjEeDPqCsTDdnExBTHBFDYdedx
-	3u3lbUSQXyMIh8IXflKM7XeiRZOWRIxWkBw6AVxRObl5uepi+T0B0XAsStHD4gzPnH5B
-	irFwg1VqhJijSPutjissXgs6+hn5r7shc7yVXDEAInNqKQXNM5T6w2UqTuDBkyu2A0KZ
-	rcvg==
+Return-Path: <elizabeth.flanagan@intel.com>
+Received: from mail-ve0-f182.google.com (mail-ve0-f182.google.com
+	[209.85.128.182])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 07B7DE00C1D
+	for <yocto@yoctoproject.org>; Thu, 17 Apr 2014 11:09:20 -0700 (PDT)
+Received: by mail-ve0-f182.google.com with SMTP id jw12so914504veb.27
+	for <yocto@yoctoproject.org>; Thu, 17 Apr 2014 11:09:20 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:date
+	:message-id:subject:from:to:cc:content-type;
+	bh=oiC72DCtkpQyXVqSrma2HvEhzxIQkKcaKdMmDVkglzs=;
+	b=kN/CFHRP3eLUpZ+rbRRkNPiXS4TCpcU98erbaQLOmcAj5Qw4L8fwS3wKl0ChIi7xPH
+	04oprf2PrPCTsbx1AOQFzFvhnHjclwVKtzQCw9jFixZukTmKH8uq1okbe0iCkGuCg9F5
+	XiKRmSjMXXyvQ+l1ml+UMavXJy0rCScOnA2aTWbZ9jim/MxvKYbd5HkVrB5S3+YfUrKD
+	1WaY+YNKkd0KYEc8hQyl1qdtqutNJBD83fQmzqr4zXnwtDySzzuBk0+cwDzdKcvrDFSq
+	VkA0y0su3lRQ91ZxJQ0mfqlRqG2VNzqbP+M9b4KunS0WGoFqCSF5ckDIKkXNQrUgXC/9
+	6VuQ==
+X-Gm-Message-State: ALoCoQkE08SUsq3lapfiOqYqM2Zahc4tcVPx4v4WQYmLDp3wHF0xXXFDjLJ8ALkL0/aXFLPxfY7Y
 MIME-Version: 1.0
-X-Received: by 10.140.20.113 with SMTP id 104mr12448030qgi.71.1397755420632;
-	Thu, 17 Apr 2014 10:23:40 -0700 (PDT)
-Received: by 10.140.95.111 with HTTP; Thu, 17 Apr 2014 10:23:40 -0700 (PDT)
-Date: Thu, 17 Apr 2014 13:23:40 -0400
-Message-ID: <CAPphmgbuaWBpsSszJ=5e+g=pjeE97_9XU5a7JQbzOfM-VQTQrQ@mail.gmail.com>
-From: Jate S <jatedev@gmail.com>
-To: elizabeth.flanagan@intel.com
+X-Received: by 10.58.201.5 with SMTP id jw5mr12428039vec.6.1397758160264; Thu,
+	17 Apr 2014 11:09:20 -0700 (PDT)
+Received: by 10.52.173.69 with HTTP; Thu, 17 Apr 2014 11:09:20 -0700 (PDT)
+In-Reply-To: <CAPphmgbuaWBpsSszJ=5e+g=pjeE97_9XU5a7JQbzOfM-VQTQrQ@mail.gmail.com>
+References: <CAPphmgbuaWBpsSszJ=5e+g=pjeE97_9XU5a7JQbzOfM-VQTQrQ@mail.gmail.com>
+Date: Thu, 17 Apr 2014 11:09:20 -0700
+Message-ID: <CAPhnLPAOc2mN3-QhG0BM5jN5ENCHXfP52hi6ETbrj=OLOU8jWQ@mail.gmail.com>
+From: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
+To: Jate S <jatedev@gmail.com>
 Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: autobuilder repourl by commit
+Subject: Re: autobuilder repourl by commit
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -35,30 +40,35 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 17 Apr 2014 17:23:42 -0000
-Content-Type: multipart/alternative; boundary=001a11c12d1854ea1304f7404bf4
+X-List-Received-Date: Thu, 17 Apr 2014 18:09:23 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
---001a11c12d1854ea1304f7404bf4
-Content-Type: text/plain; charset=UTF-8
+Jate,
 
-I am customizing the Yocto autobuilder for my own project. I would like to
-specify a checksum for the repourl for poky. What property do I need to
-add? I have tried adding the property commit, but it does not appear to
-work.
+You can use the 'hash' property. Just make sure you have no other
+branch/tag properties in the repo description.
 
-Thanks,
+So, something like this should work:
 
-- Jate S.
+repos: [{'poky':
+            {'repourl':'git://git.yoctoproject.org/poky',
+             'hash':'7831ae829103ab283645'}},
 
---001a11c12d1854ea1304f7404bf4
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
 
-I am customizing the Yocto=C2=A0autobuilder for my own project. I would lik=
-e to specify a checksum for the repourl for poky. What property do I need t=
-o add? I have tried adding the property=C2=A0commit, but it does not appear=
- to work.<div>
-<br></div><div>Thanks,<span></span><br><div><br></div><div>-=C2=A0Jate S.</=
-div><div><br></div></div>
+On Thu, Apr 17, 2014 at 10:23 AM, Jate S <jatedev@gmail.com> wrote:
+> I am customizing the Yocto autobuilder for my own project. I would like to
+> specify a checksum for the repourl for poky. What property do I need to add?
+> I have tried adding the property commit, but it does not appear to work.
+>
+> Thanks,
+>
+> - Jate S.
+>
 
---001a11c12d1854ea1304f7404bf4--
+
+
+-- 
+Elizabeth Flanagan
+Yocto Project
+Build and Release
+
