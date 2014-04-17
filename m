@@ -1,34 +1,23 @@
-Return-Path: <elizabeth.flanagan@intel.com>
-Received: from mail-ve0-f182.google.com (mail-ve0-f182.google.com
-	[209.85.128.182])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 07B7DE00C1D
-	for <yocto@yoctoproject.org>; Thu, 17 Apr 2014 11:09:20 -0700 (PDT)
-Received: by mail-ve0-f182.google.com with SMTP id jw12so914504veb.27
-	for <yocto@yoctoproject.org>; Thu, 17 Apr 2014 11:09:20 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:date
-	:message-id:subject:from:to:cc:content-type;
-	bh=oiC72DCtkpQyXVqSrma2HvEhzxIQkKcaKdMmDVkglzs=;
-	b=kN/CFHRP3eLUpZ+rbRRkNPiXS4TCpcU98erbaQLOmcAj5Qw4L8fwS3wKl0ChIi7xPH
-	04oprf2PrPCTsbx1AOQFzFvhnHjclwVKtzQCw9jFixZukTmKH8uq1okbe0iCkGuCg9F5
-	XiKRmSjMXXyvQ+l1ml+UMavXJy0rCScOnA2aTWbZ9jim/MxvKYbd5HkVrB5S3+YfUrKD
-	1WaY+YNKkd0KYEc8hQyl1qdtqutNJBD83fQmzqr4zXnwtDySzzuBk0+cwDzdKcvrDFSq
-	VkA0y0su3lRQ91ZxJQ0mfqlRqG2VNzqbP+M9b4KunS0WGoFqCSF5ckDIKkXNQrUgXC/9
-	6VuQ==
-X-Gm-Message-State: ALoCoQkE08SUsq3lapfiOqYqM2Zahc4tcVPx4v4WQYmLDp3wHF0xXXFDjLJ8ALkL0/aXFLPxfY7Y
-MIME-Version: 1.0
-X-Received: by 10.58.201.5 with SMTP id jw5mr12428039vec.6.1397758160264; Thu,
-	17 Apr 2014 11:09:20 -0700 (PDT)
-Received: by 10.52.173.69 with HTTP; Thu, 17 Apr 2014 11:09:20 -0700 (PDT)
-In-Reply-To: <CAPphmgbuaWBpsSszJ=5e+g=pjeE97_9XU5a7JQbzOfM-VQTQrQ@mail.gmail.com>
-References: <CAPphmgbuaWBpsSszJ=5e+g=pjeE97_9XU5a7JQbzOfM-VQTQrQ@mail.gmail.com>
-Date: Thu, 17 Apr 2014 11:09:20 -0700
-Message-ID: <CAPhnLPAOc2mN3-QhG0BM5jN5ENCHXfP52hi6ETbrj=OLOU8jWQ@mail.gmail.com>
-From: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
-To: Jate S <jatedev@gmail.com>
-Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: autobuilder repourl by commit
+Return-Path: <denis@denix.org>
+Received: from vms173023pub.verizon.net (vms173023pub.verizon.net
+	[206.46.173.23])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8E601E00C1B
+	for <yocto@yoctoproject.org>; Thu, 17 Apr 2014 12:06:03 -0700 (PDT)
+Received: from gandalf.denix.org ([unknown] [71.191.205.189])
+	by vms173023.mailsrvcs.net
+	(Sun Java(tm) System Messaging Server 7u2-7.02 32bit (built Apr 16
+	2009)) with ESMTPA id <0N460082RVPMBE40@vms173023.mailsrvcs.net> for
+	yocto@yoctoproject.org; Thu, 17 Apr 2014 14:05:47 -0500 (CDT)
+Received: from localhost.localdomain (elrond [192.168.0.7])
+	by gandalf.denix.org (Postfix) with ESMTP id A066220091; Thu,
+	17 Apr 2014 15:05:46 -0400 (EDT)
+From: Denys Dmytriyenko <denis@denix.org>
+To: openembedded-core@lists.openembedded.org,	yocto@yoctoproject.org
+Date: Thu, 17 Apr 2014 15:05:33 -0400
+Message-id: <1397761533-10634-1-git-send-email-denis@denix.org>
+X-Mailer: git-send-email 1.9.2
+Cc: Denys Dmytriyenko <denys@ti.com>
+Subject: [PATCH] u-boot: fix beaglebone boot issue with large kernel images
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,35 +29,119 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 17 Apr 2014 18:09:23 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Thu, 17 Apr 2014 19:06:05 -0000
 
-Jate,
+From: Denys Dmytriyenko <denys@ti.com>
 
-You can use the 'hash' property. Just make sure you have no other
-branch/tag properties in the repo description.
+Fix beaglebone boot issue with large kernel images overwriting Device Tree.
+See very detailed comments inside the patch.
 
-So, something like this should work:
+The original patch is being reviewed upstream and is targeting mainline U-boot
+version 2014.07. This is the adaptation of the patch for 2013.07 version we use
 
-repos: [{'poky':
-            {'repourl':'git://git.yoctoproject.org/poky',
-             'hash':'7831ae829103ab283645'}},
+Signed-off-by: Denys Dmytriyenko <denys@ti.com>
+---
+ ...h-Add-use-DEFAULT_LINUX_BOOT_ENV-environm.patch | 74 ++++++++++++++++++++++
+ meta/recipes-bsp/u-boot/u-boot_2013.07.bb          |  4 +-
+ 2 files changed, 77 insertions(+), 1 deletion(-)
+ create mode 100644 meta/recipes-bsp/u-boot/files/0001-am335x_evm.h-Add-use-DEFAULT_LINUX_BOOT_ENV-environm.patch
 
-
-On Thu, Apr 17, 2014 at 10:23 AM, Jate S <jatedev@gmail.com> wrote:
-> I am customizing the Yocto autobuilder for my own project. I would like to
-> specify a checksum for the repourl for poky. What property do I need to add?
-> I have tried adding the property commit, but it does not appear to work.
->
-> Thanks,
->
-> - Jate S.
->
-
-
-
+diff --git a/meta/recipes-bsp/u-boot/files/0001-am335x_evm.h-Add-use-DEFAULT_LINUX_BOOT_ENV-environm.patch b/meta/recipes-bsp/u-boot/files/0001-am335x_evm.h-Add-use-DEFAULT_LINUX_BOOT_ENV-environm.patch
+new file mode 100644
+index 0000000..77e35bb
+--- /dev/null
++++ b/meta/recipes-bsp/u-boot/files/0001-am335x_evm.h-Add-use-DEFAULT_LINUX_BOOT_ENV-environm.patch
+@@ -0,0 +1,74 @@
++From 5701384cea4a829b772bf7a96a74825b58c22385 Mon Sep 17 00:00:00 2001
++From: Denys Dmytriyenko <denys@ti.com>
++Date: Thu, 17 Apr 2014 12:25:40 -0400
++Subject: [PATCH] am335x_evm.h: Add, use DEFAULT_LINUX_BOOT_ENV environment
++ string
++
++Modified version of the patch currently being reviewed for mainline:
++http://patchwork.ozlabs.org/patch/334861/
++
++To deal with a reoccurring problem properly we need to specify addresses
++for the Linux kernel, Flatted Device Tree and ramdisk that obey the
++constraints within the kernel's Documentation/arm/Booting file but also
++make sure that we relocate things within a valid address range.
++
++Signed-off-by: Denys Dmytriyenko <denys@ti.com>
++Signed-off-by: Tom Rini <trini@ti.com>
++
++Upstream-Status: Pending
++---
++ include/configs/am335x_evm.h | 31 ++++++++++++++++++++++++++-----
++ 1 file changed, 26 insertions(+), 5 deletions(-)
++
++diff --git a/include/configs/am335x_evm.h b/include/configs/am335x_evm.h
++index c5a6d4b..01e32b3 100644
++--- a/include/configs/am335x_evm.h
+++++ b/include/configs/am335x_evm.h
++@@ -54,10 +54,7 @@
++ #define CONFIG_ENV_VARS_UBOOT_RUNTIME_CONFIG
++ #ifndef CONFIG_SPL_BUILD
++ #define CONFIG_EXTRA_ENV_SETTINGS \
++-	"loadaddr=0x80200000\0" \
++-	"fdtaddr=0x80F80000\0" \
++-	"fdt_high=0xffffffff\0" \
++-	"rdaddr=0x81000000\0" \
+++	DEFAULT_LINUX_BOOT_ENV \
++ 	"bootdir=/boot\0" \
++ 	"bootfile=uImage\0" \
++ 	"fdtfile=undefined\0" \
++@@ -197,7 +194,31 @@
++ #define CONFIG_SYS_MEMTEST_END		(CONFIG_SYS_MEMTEST_START \
++ 					+ (8 * 1024 * 1024))
++ 
++-#define CONFIG_SYS_LOAD_ADDR		0x81000000 /* Default load address */
+++/*
+++ * Our DDR memory always starts at 0x80000000 and U-Boot shall have
+++ * relocated itself to higher in memory by the time this value is used.
+++ * However, set this to a 32MB offset to allow for easier Linux kernel
+++ * booting as the default is often used as the kernel load address.
+++ */
+++#define CONFIG_SYS_LOAD_ADDR		0x82000000 /* Default load address */
+++
+++/*
+++ * We setup defaults based on constraints from the Linux kernel, which should
+++ * also be safe elsewhere.  We have the default load at 32MB into DDR (for
+++ * the kernel), FDT above 128MB (the maximum location for the end of the
+++ * kernel), and the ramdisk 512KB above that (allowing for hopefully never
+++ * seen large trees).  We say all of this must be within the first 256MB
+++ * as that will normally be within the kernel lowmem and thus visible via
+++ * bootm_size and we only run on platforms with 256MB or more of memory.
+++ */
+++#define DEFAULT_LINUX_BOOT_ENV \
+++	"loadaddr=0x82000000\0" \
+++	"kernel_addr_r=0x82000000\0" \
+++	"fdtaddr=0x88000000\0" \
+++	"fdt_addr_r=0x88000000\0" \
+++	"rdaddr=0x88080000\0" \
+++	"ramdisk_addr_r=0x88080000\0" \
+++	"bootm_size=0x10000000\0"
++ 
++ #define CONFIG_MMC
++ #define CONFIG_GENERIC_MMC
++-- 
++1.9.2
++
+diff --git a/meta/recipes-bsp/u-boot/u-boot_2013.07.bb b/meta/recipes-bsp/u-boot/u-boot_2013.07.bb
+index 3141a2d..f8a8856 100644
+--- a/meta/recipes-bsp/u-boot/u-boot_2013.07.bb
++++ b/meta/recipes-bsp/u-boot/u-boot_2013.07.bb
+@@ -16,7 +16,9 @@ SRCREV = "62c175fbb8a0f9a926c88294ea9f7e88eb898f6c"
+ 
+ PV = "v2013.07+git${SRCPV}"
+ 
+-SRC_URI = "git://git.denx.de/u-boot.git;branch=master"
++SRC_URI = "git://git.denx.de/u-boot.git;branch=master \
++           file://0001-am335x_evm.h-Add-use-DEFAULT_LINUX_BOOT_ENV-environm.patch \
++"
+ 
+ S = "${WORKDIR}/git"
+ 
 -- 
-Elizabeth Flanagan
-Yocto Project
-Build and Release
+1.9.2
+
 
