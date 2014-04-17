@@ -1,30 +1,35 @@
-Return-Path: <denis@denix.org>
-Received: from vms173017pub.verizon.net (vms173017pub.verizon.net
-	[206.46.173.17])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 48A0EE00C1B
-	for <yocto@yoctoproject.org>; Thu, 17 Apr 2014 12:11:05 -0700 (PDT)
-Received: from gandalf.denix.org ([unknown] [71.191.205.189])
-	by vms173017.mailsrvcs.net
-	(Sun Java(tm) System Messaging Server 7u2-7.02 32bit (built Apr 16
-	2009)) with ESMTPA id <0N46005OJVXUDI40@vms173017.mailsrvcs.net> for
-	yocto@yoctoproject.org; Thu, 17 Apr 2014 14:10:58 -0500 (CDT)
-Received: by gandalf.denix.org (Postfix, from userid 1000)	id 63E83201BF; Thu,
-	17 Apr 2014 15:10:42 -0400 (EDT)
-Date: Thu, 17 Apr 2014 15:10:42 -0400
-From: Denys Dmytriyenko <denis@denix.org>
-To: Gary Thomas <gary@mlbassoc.com>
-Message-id: <20140417191042.GK11339@denix.org>
-References: <534C0415.20701@mlbassoc.com>
-	<3130526.9zUpmp9SKQ@peggleto-mobl5.ger.corp.intel.com>
-	<20140415162639.GC11339@denix.org>
-	<16254891.OyPbf7clBT@peggleto-mobl5.ger.corp.intel.com>
-	<20140415171601.GD11339@denix.org> <20140415174112.GE11339@denix.org>
-	<20140415194307.GG11339@denix.org> <534DBB9E.2030608@mlbassoc.com>
-MIME-version: 1.0
-In-reply-to: <534DBB9E.2030608@mlbassoc.com>
-User-Agent: Mutt/1.5.20 (2009-06-14)
-Cc: yocto@yoctoproject.org
-Subject: Re: BBB doesn't boot
+Return-Path: <lschwab@xeralux.com>
+Received: from mail-yh0-f45.google.com (mail-yh0-f45.google.com
+	[209.85.213.45])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AB994E00C1B
+	for <yocto@yoctoproject.org>; Thu, 17 Apr 2014 12:54:47 -0700 (PDT)
+Received: by mail-yh0-f45.google.com with SMTP id a41so788088yho.18
+	for <yocto@yoctoproject.org>; Thu, 17 Apr 2014 12:54:46 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:date
+	:message-id:subject:from:to:cc:content-type;
+	bh=o08dLWQUoX4LwvtYSZqIj+Vcx3ednINv3S2vK8Bh/Rg=;
+	b=XMMOhmzu6E0hB5a38/Z8MYHfWXBiy67ca4XDbF9mlU28VphjQddj7pzldvSdE7BiG+
+	NHFEDpBy1ryBHGn39RKwp0s2TwmI64nGicq8OybIQElWFl0aBxsyZSZgvvAZQ6pjTisf
+	AytEVF4QrPEIFiRjXDkMhmq3KCbjKhdMvIidN1FCRUMuOp7L4I+zWVEECUIWJVxaacgr
+	L9NJ9abAoi6Sfyvrkty2d9dQNffrWkgvF9/etMLKvkPi3FkbC5vX8VdFwNRy3tx3nkxN
+	MJjWzK8ilyQxTcq756BtQzq5HNOm4rt/c3EP2GwhmnPTB02IE492hGtpJtx+9iCQ9oNk
+	oUUg==
+X-Gm-Message-State: ALoCoQnjgDF3gmr76f4tgGYhTG3YRIHGJYtU4Vx3VrxPyUQxGkO14A6TzhHmqAy418GVY+u92vYb
+MIME-Version: 1.0
+X-Received: by 10.236.20.194 with SMTP id p42mr25196743yhp.56.1397764486655;
+	Thu, 17 Apr 2014 12:54:46 -0700 (PDT)
+Received: by 10.170.71.131 with HTTP; Thu, 17 Apr 2014 12:54:46 -0700 (PDT)
+In-Reply-To: <534F9598.5050003@ge.com>
+References: <CALb2248grw7+NKWt8yfEpVR1_DYgkWEGYwhhr5N5ng_6JqU2mA@mail.gmail.com>
+	<534F9598.5050003@ge.com>
+Date: Thu, 17 Apr 2014 12:54:46 -0700
+Message-ID: <CALb2249LccFPUKvUSbU1Nax4LQc6Nc8iXqT9Cx24YOAcf6rv2g@mail.gmail.com>
+From: Leo Schwab <lschwab@sensity.com>
+To: Martin Donnelly <martin.donnelly@ge.com>
+Cc: yocto <yocto@yoctoproject.org>, Leo Schwab <lschwab@sensity.com>
+Subject: Re: Integrating Golang
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -36,62 +41,42 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 17 Apr 2014 19:11:06 -0000
-Content-type: text/plain; charset=us-ascii
-Content-disposition: inline
+X-List-Received-Date: Thu, 17 Apr 2014 19:54:50 -0000
+Content-Type: text/plain; charset=UTF-8
 
-On Tue, Apr 15, 2014 at 05:07:10PM -0600, Gary Thomas wrote:
-> On 2014-04-15 13:43, Denys Dmytriyenko wrote:
-> > On Tue, Apr 15, 2014 at 01:41:12PM -0400, Denys Dmytriyenko wrote:
-> >>>>>> Some other things I tried with a "long" TMPDIR path (note that it's the
-> >>>>>> TMPDIR path that makes the difference - in my tests I've been using
-> >>>>>> /home/paul/poky/build2/much/longer/path/to/tmp). None of this helped:
-> >>>>>>
-> >>>>>> * kernel built with gcc 4.7.2 and binutils 2.23.2
-> >>>>>> * u-boot built with gcc 4.7.2 and binutils 2.23.2
-> >>>>>> * u-boot from http://downloads.angstrom-distribution.org/demo/beaglebone/
-> >>>>>> * earlyprintk and CONFIG_DEBUG_LL - no additional output printed
-> >>>>>>
-> >>>>>> I think we're now at the point where we'd benefit from someone with better
-> >>>>>> knowledge debugging the issue.
-> >>>>>
-> >>>>> Ok, should we expand the search area? Since this is supposed to be vanilla
-> >>>>> 3.14 kernel, can we try other platforms and see if they are similarly
-> >>>>> affected? I'll try pinging our kernel guys for any ideas...
-> >>>>
-> >>>> As far as I know it has only been observed with beaglebone (both white and 
-> >>>> black, if it makes a difference). FWIW, qemuarm images from the autobuilder 
-> >>>> boot just fine, and apparently the same is true of edgerouter (different 
-> >>>> architecture but also uses u-boot).
-> >>>
-> >>> But do those other platforms use uImage or zImage?
-> > 
-> > I don't yet know what is going on, but building in the same directory with 
-> > sources (B = S) makes it work regarless of the path length:
-> > 
-> > /OE/RAM/poky-111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111/22222222222222222222222222222222222222222222222222222222222222222222/3333333333333333333333333333333333333333333333333333/tmp/work/beaglebone-poky-linux-gnueabi/linux-yocto/3.14+gitAUTOINC+928d7b2dda_0143c6ebb4-r0/linux
-> > 
-> > So, I just commented out setting kernel-specific B in linux-yocto.inc and any 
-> > kernel now boots with long path:
-> > 
-> > #B = "${WORKDIR}/linux-${PACKAGE_ARCH}-${LINUX_KERNEL_TYPE}-build"
-> > 
-> > I'm copying Richard and Bruce directly to see if they may have a quick insight 
-> > and/or accept it as a workaround for the release. I'll keep digging further, 
-> > but if anyone cares to verify the above workaround works for them, I would 
-> > appreciate. Thanks!
-> > 
-> 
-> Verified - I rebuilt the kernel in a working tree with a longer
-> path (one in fact that had failed before) and it boots fine.
-> 
-> Wonder what ${B} != ${S} is doing wacky...?
+On Thu, Apr 17, 2014 at 1:49 AM, Martin Donnelly <martin.donnelly@ge.com> wrote:
+> On 05/03/2014 21:55, Leo Schwab wrote:
+>> Has anyone else done any work here?  Is there anything that I can
+>> steal^H^H^H^H^Htake inspiration from?  Or am I in completely
+>> unexplored territory?
+>
+> I posted an RFC patch set last year but it didn't get any traction and
+> we subsequently ruled out use of go so I never followed up on it but it
+> might be a useful starting point.
+>
+> http://lists.openembedded.org/pipermail/openembedded-core/2013-May/078606.html
+>
+We cobbled together our own recipes to build the Go compiler
+(available upon request), which seem to be working well enough.  We
+didn't need to make any changes to the recipes building the GCC
+toolchain.
 
-Gary, et al,
+What I was more interested in learning was how people were integrating
+the building of Go applications into Yocto.  Specifically: 'go get
+foo' will build 'foo' and, in the process, fetch and build all its
+dependencies.  This conflicts directly with Yocto's duties -- fetching
+and building dependencies.
 
-I've just submitted a patch to oe-core and yocto MLs that fixes this issue - 
-could you please test it in your setup and confirm? Thanks!
+My current not-solution is rather ugly:  Create a repository that is a
+standard Go build environment pre-populated with the app source code
+and all of its dependencies.  The idea is that 'go get foo' will find
+everything it needs already there and won't try and fetch anything
+else.  Then create a simple Yocto recipe that fetches this repository
+and builds it using 'go get ...'.  The repository itself is maintained
+via rather delicate use of git-subtree.
 
--- 
-Denys
+This gets the job done, and prevents Go and Yocto having a fight about
+who fetches what and how, but it's damned ugly...
+
+Schwab
 
