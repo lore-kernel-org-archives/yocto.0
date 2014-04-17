@@ -1,23 +1,30 @@
 Return-Path: <denis@denix.org>
-Received: from vms173023pub.verizon.net (vms173023pub.verizon.net
-	[206.46.173.23])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8E601E00C1B
-	for <yocto@yoctoproject.org>; Thu, 17 Apr 2014 12:06:03 -0700 (PDT)
+Received: from vms173017pub.verizon.net (vms173017pub.verizon.net
+	[206.46.173.17])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 48A0EE00C1B
+	for <yocto@yoctoproject.org>; Thu, 17 Apr 2014 12:11:05 -0700 (PDT)
 Received: from gandalf.denix.org ([unknown] [71.191.205.189])
-	by vms173023.mailsrvcs.net
+	by vms173017.mailsrvcs.net
 	(Sun Java(tm) System Messaging Server 7u2-7.02 32bit (built Apr 16
-	2009)) with ESMTPA id <0N460082RVPMBE40@vms173023.mailsrvcs.net> for
-	yocto@yoctoproject.org; Thu, 17 Apr 2014 14:05:47 -0500 (CDT)
-Received: from localhost.localdomain (elrond [192.168.0.7])
-	by gandalf.denix.org (Postfix) with ESMTP id A066220091; Thu,
-	17 Apr 2014 15:05:46 -0400 (EDT)
+	2009)) with ESMTPA id <0N46005OJVXUDI40@vms173017.mailsrvcs.net> for
+	yocto@yoctoproject.org; Thu, 17 Apr 2014 14:10:58 -0500 (CDT)
+Received: by gandalf.denix.org (Postfix, from userid 1000)	id 63E83201BF; Thu,
+	17 Apr 2014 15:10:42 -0400 (EDT)
+Date: Thu, 17 Apr 2014 15:10:42 -0400
 From: Denys Dmytriyenko <denis@denix.org>
-To: openembedded-core@lists.openembedded.org,	yocto@yoctoproject.org
-Date: Thu, 17 Apr 2014 15:05:33 -0400
-Message-id: <1397761533-10634-1-git-send-email-denis@denix.org>
-X-Mailer: git-send-email 1.9.2
-Cc: Denys Dmytriyenko <denys@ti.com>
-Subject: [PATCH] u-boot: fix beaglebone boot issue with large kernel images
+To: Gary Thomas <gary@mlbassoc.com>
+Message-id: <20140417191042.GK11339@denix.org>
+References: <534C0415.20701@mlbassoc.com>
+	<3130526.9zUpmp9SKQ@peggleto-mobl5.ger.corp.intel.com>
+	<20140415162639.GC11339@denix.org>
+	<16254891.OyPbf7clBT@peggleto-mobl5.ger.corp.intel.com>
+	<20140415171601.GD11339@denix.org> <20140415174112.GE11339@denix.org>
+	<20140415194307.GG11339@denix.org> <534DBB9E.2030608@mlbassoc.com>
+MIME-version: 1.0
+In-reply-to: <534DBB9E.2030608@mlbassoc.com>
+User-Agent: Mutt/1.5.20 (2009-06-14)
+Cc: yocto@yoctoproject.org
+Subject: Re: BBB doesn't boot
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -29,119 +36,62 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 17 Apr 2014 19:06:05 -0000
+X-List-Received-Date: Thu, 17 Apr 2014 19:11:06 -0000
+Content-type: text/plain; charset=us-ascii
+Content-disposition: inline
 
-From: Denys Dmytriyenko <denys@ti.com>
+On Tue, Apr 15, 2014 at 05:07:10PM -0600, Gary Thomas wrote:
+> On 2014-04-15 13:43, Denys Dmytriyenko wrote:
+> > On Tue, Apr 15, 2014 at 01:41:12PM -0400, Denys Dmytriyenko wrote:
+> >>>>>> Some other things I tried with a "long" TMPDIR path (note that it's the
+> >>>>>> TMPDIR path that makes the difference - in my tests I've been using
+> >>>>>> /home/paul/poky/build2/much/longer/path/to/tmp). None of this helped:
+> >>>>>>
+> >>>>>> * kernel built with gcc 4.7.2 and binutils 2.23.2
+> >>>>>> * u-boot built with gcc 4.7.2 and binutils 2.23.2
+> >>>>>> * u-boot from http://downloads.angstrom-distribution.org/demo/beaglebone/
+> >>>>>> * earlyprintk and CONFIG_DEBUG_LL - no additional output printed
+> >>>>>>
+> >>>>>> I think we're now at the point where we'd benefit from someone with better
+> >>>>>> knowledge debugging the issue.
+> >>>>>
+> >>>>> Ok, should we expand the search area? Since this is supposed to be vanilla
+> >>>>> 3.14 kernel, can we try other platforms and see if they are similarly
+> >>>>> affected? I'll try pinging our kernel guys for any ideas...
+> >>>>
+> >>>> As far as I know it has only been observed with beaglebone (both white and 
+> >>>> black, if it makes a difference). FWIW, qemuarm images from the autobuilder 
+> >>>> boot just fine, and apparently the same is true of edgerouter (different 
+> >>>> architecture but also uses u-boot).
+> >>>
+> >>> But do those other platforms use uImage or zImage?
+> > 
+> > I don't yet know what is going on, but building in the same directory with 
+> > sources (B = S) makes it work regarless of the path length:
+> > 
+> > /OE/RAM/poky-111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111/22222222222222222222222222222222222222222222222222222222222222222222/3333333333333333333333333333333333333333333333333333/tmp/work/beaglebone-poky-linux-gnueabi/linux-yocto/3.14+gitAUTOINC+928d7b2dda_0143c6ebb4-r0/linux
+> > 
+> > So, I just commented out setting kernel-specific B in linux-yocto.inc and any 
+> > kernel now boots with long path:
+> > 
+> > #B = "${WORKDIR}/linux-${PACKAGE_ARCH}-${LINUX_KERNEL_TYPE}-build"
+> > 
+> > I'm copying Richard and Bruce directly to see if they may have a quick insight 
+> > and/or accept it as a workaround for the release. I'll keep digging further, 
+> > but if anyone cares to verify the above workaround works for them, I would 
+> > appreciate. Thanks!
+> > 
+> 
+> Verified - I rebuilt the kernel in a working tree with a longer
+> path (one in fact that had failed before) and it boots fine.
+> 
+> Wonder what ${B} != ${S} is doing wacky...?
 
-Fix beaglebone boot issue with large kernel images overwriting Device Tree.
-See very detailed comments inside the patch.
+Gary, et al,
 
-The original patch is being reviewed upstream and is targeting mainline U-boot
-version 2014.07. This is the adaptation of the patch for 2013.07 version we use
+I've just submitted a patch to oe-core and yocto MLs that fixes this issue - 
+could you please test it in your setup and confirm? Thanks!
 
-Signed-off-by: Denys Dmytriyenko <denys@ti.com>
----
- ...h-Add-use-DEFAULT_LINUX_BOOT_ENV-environm.patch | 74 ++++++++++++++++++++++
- meta/recipes-bsp/u-boot/u-boot_2013.07.bb          |  4 +-
- 2 files changed, 77 insertions(+), 1 deletion(-)
- create mode 100644 meta/recipes-bsp/u-boot/files/0001-am335x_evm.h-Add-use-DEFAULT_LINUX_BOOT_ENV-environm.patch
-
-diff --git a/meta/recipes-bsp/u-boot/files/0001-am335x_evm.h-Add-use-DEFAULT_LINUX_BOOT_ENV-environm.patch b/meta/recipes-bsp/u-boot/files/0001-am335x_evm.h-Add-use-DEFAULT_LINUX_BOOT_ENV-environm.patch
-new file mode 100644
-index 0000000..77e35bb
---- /dev/null
-+++ b/meta/recipes-bsp/u-boot/files/0001-am335x_evm.h-Add-use-DEFAULT_LINUX_BOOT_ENV-environm.patch
-@@ -0,0 +1,74 @@
-+From 5701384cea4a829b772bf7a96a74825b58c22385 Mon Sep 17 00:00:00 2001
-+From: Denys Dmytriyenko <denys@ti.com>
-+Date: Thu, 17 Apr 2014 12:25:40 -0400
-+Subject: [PATCH] am335x_evm.h: Add, use DEFAULT_LINUX_BOOT_ENV environment
-+ string
-+
-+Modified version of the patch currently being reviewed for mainline:
-+http://patchwork.ozlabs.org/patch/334861/
-+
-+To deal with a reoccurring problem properly we need to specify addresses
-+for the Linux kernel, Flatted Device Tree and ramdisk that obey the
-+constraints within the kernel's Documentation/arm/Booting file but also
-+make sure that we relocate things within a valid address range.
-+
-+Signed-off-by: Denys Dmytriyenko <denys@ti.com>
-+Signed-off-by: Tom Rini <trini@ti.com>
-+
-+Upstream-Status: Pending
-+---
-+ include/configs/am335x_evm.h | 31 ++++++++++++++++++++++++++-----
-+ 1 file changed, 26 insertions(+), 5 deletions(-)
-+
-+diff --git a/include/configs/am335x_evm.h b/include/configs/am335x_evm.h
-+index c5a6d4b..01e32b3 100644
-+--- a/include/configs/am335x_evm.h
-++++ b/include/configs/am335x_evm.h
-+@@ -54,10 +54,7 @@
-+ #define CONFIG_ENV_VARS_UBOOT_RUNTIME_CONFIG
-+ #ifndef CONFIG_SPL_BUILD
-+ #define CONFIG_EXTRA_ENV_SETTINGS \
-+-	"loadaddr=0x80200000\0" \
-+-	"fdtaddr=0x80F80000\0" \
-+-	"fdt_high=0xffffffff\0" \
-+-	"rdaddr=0x81000000\0" \
-++	DEFAULT_LINUX_BOOT_ENV \
-+ 	"bootdir=/boot\0" \
-+ 	"bootfile=uImage\0" \
-+ 	"fdtfile=undefined\0" \
-+@@ -197,7 +194,31 @@
-+ #define CONFIG_SYS_MEMTEST_END		(CONFIG_SYS_MEMTEST_START \
-+ 					+ (8 * 1024 * 1024))
-+ 
-+-#define CONFIG_SYS_LOAD_ADDR		0x81000000 /* Default load address */
-++/*
-++ * Our DDR memory always starts at 0x80000000 and U-Boot shall have
-++ * relocated itself to higher in memory by the time this value is used.
-++ * However, set this to a 32MB offset to allow for easier Linux kernel
-++ * booting as the default is often used as the kernel load address.
-++ */
-++#define CONFIG_SYS_LOAD_ADDR		0x82000000 /* Default load address */
-++
-++/*
-++ * We setup defaults based on constraints from the Linux kernel, which should
-++ * also be safe elsewhere.  We have the default load at 32MB into DDR (for
-++ * the kernel), FDT above 128MB (the maximum location for the end of the
-++ * kernel), and the ramdisk 512KB above that (allowing for hopefully never
-++ * seen large trees).  We say all of this must be within the first 256MB
-++ * as that will normally be within the kernel lowmem and thus visible via
-++ * bootm_size and we only run on platforms with 256MB or more of memory.
-++ */
-++#define DEFAULT_LINUX_BOOT_ENV \
-++	"loadaddr=0x82000000\0" \
-++	"kernel_addr_r=0x82000000\0" \
-++	"fdtaddr=0x88000000\0" \
-++	"fdt_addr_r=0x88000000\0" \
-++	"rdaddr=0x88080000\0" \
-++	"ramdisk_addr_r=0x88080000\0" \
-++	"bootm_size=0x10000000\0"
-+ 
-+ #define CONFIG_MMC
-+ #define CONFIG_GENERIC_MMC
-+-- 
-+1.9.2
-+
-diff --git a/meta/recipes-bsp/u-boot/u-boot_2013.07.bb b/meta/recipes-bsp/u-boot/u-boot_2013.07.bb
-index 3141a2d..f8a8856 100644
---- a/meta/recipes-bsp/u-boot/u-boot_2013.07.bb
-+++ b/meta/recipes-bsp/u-boot/u-boot_2013.07.bb
-@@ -16,7 +16,9 @@ SRCREV = "62c175fbb8a0f9a926c88294ea9f7e88eb898f6c"
- 
- PV = "v2013.07+git${SRCPV}"
- 
--SRC_URI = "git://git.denx.de/u-boot.git;branch=master"
-+SRC_URI = "git://git.denx.de/u-boot.git;branch=master \
-+           file://0001-am335x_evm.h-Add-use-DEFAULT_LINUX_BOOT_ENV-environm.patch \
-+"
- 
- S = "${WORKDIR}/git"
- 
 -- 
-1.9.2
-
+Denys
 
