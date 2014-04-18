@@ -1,35 +1,37 @@
-Return-Path: <fede.vitali@gmail.com>
-Received: from mail-ob0-f180.google.com (mail-ob0-f180.google.com
-	[209.85.214.180])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 633E8E00C1F
-	for <yocto@yoctoproject.org>; Fri, 18 Apr 2014 01:28:54 -0700 (PDT)
-Received: by mail-ob0-f180.google.com with SMTP id wm4so1541480obc.39
-	for <yocto@yoctoproject.org>; Fri, 18 Apr 2014 01:28:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type;
-	bh=PPkHBBbMgBjzEIVa5iStUkoKWEUqcpwtnX1ZFeqjL7k=;
-	b=vfD9iNNT20YqAK7HlIsjs1HLLTEGyq9GWfJdgZo5/CYClLNqqNP03o/0hnigiYPZYy
-	kk5yTe/77orvVGB7G18RUECm5u7JtKoGFVBm1JAZNJyVvQH2zl+vtTWOPqyyHIDurW20
-	bQAVJMFeWVwULC3h42heT9kSt5KZih+0W0Tn2wdn+JnI3S8R7h4bmXmIU4ryhNQM+j7J
-	i4Fw7DPNisGatlyqIaKtLBrwQSwJxSjIbrziy50YgYy6u3GrQLlTjh+h/mBruuO4Vr+E
-	QmRE/lbk5sCl4+/eeCKGVhqmQGN0IzkrH9QXTUsxqzUh3mw/FdIc3kmpeAxJF2Clkmw9
-	RjCA==
+Return-Path: <stefanx.stanacar@intel.com>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B964CE00C1F
+	for <yocto@yoctoproject.org>; Fri, 18 Apr 2014 04:24:23 -0700 (PDT)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by orsmga101.jf.intel.com with ESMTP; 18 Apr 2014 04:24:21 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.97,884,1389772800"; d="scan'208";a="515293566"
+Received: from irsmsx104.ger.corp.intel.com ([163.33.3.159])
+	by fmsmga001.fm.intel.com with ESMTP; 18 Apr 2014 04:23:52 -0700
+Received: from irsmsx107.ger.corp.intel.com (163.33.3.99) by
+	IRSMSX104.ger.corp.intel.com (163.33.3.159) with Microsoft SMTP Server
+	(TLS) id 14.3.123.3; Fri, 18 Apr 2014 12:23:51 +0100
+Received: from irsmsx105.ger.corp.intel.com ([169.254.7.78]) by
+	IRSMSX107.ger.corp.intel.com ([169.254.10.157]) with mapi id
+	14.03.0123.003; Fri, 18 Apr 2014 12:23:51 +0100
+From: "Stanacar, StefanX" <stefanx.stanacar@intel.com>
+To: "denis@denix.org" <denis@denix.org>
+Thread-Topic: [OE-core] [PATCH] u-boot: fix beaglebone boot issue with large
+	kernel images
+Thread-Index: AQHPWvisbjf6yBCsLUyhF0yWoPQ1Tw==
+Date: Fri, 18 Apr 2014 11:23:51 +0000
+Message-ID: <1397820262.9082.17.camel@firebird.rb.intel.com>
+References: <1397761533-10634-1-git-send-email-denis@denix.org>
+In-Reply-To: <1397761533-10634-1-git-send-email-denis@denix.org>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.237.105.38]
 MIME-Version: 1.0
-X-Received: by 10.60.125.195 with SMTP id ms3mr16075911oeb.3.1397809733968;
-	Fri, 18 Apr 2014 01:28:53 -0700 (PDT)
-Received: by 10.76.101.112 with HTTP; Fri, 18 Apr 2014 01:28:53 -0700 (PDT)
-In-Reply-To: <CA+gsK-ohM-Tg47h6gZmRRn3qmpFrBBVROTw5RHBS1fvgRdD88g@mail.gmail.com>
-References: <CAD78y+6HxrYWCyVh6xbGS=4MXB1WSBzQLSpBo2kKakJ8TZgghA@mail.gmail.com>
-	<CA+gsK-pDrPezFHvKKefiAFb+_YXnbadG2KkB7mQEC3JGMstUBg@mail.gmail.com>
-	<CAD78y+6zPm-NkcQr3v0dFem9Q6d63SLX9hc2heVnrwmQLNKxCA@mail.gmail.com>
-	<CA+gsK-ohM-Tg47h6gZmRRn3qmpFrBBVROTw5RHBS1fvgRdD88g@mail.gmail.com>
-Date: Fri, 18 Apr 2014 10:28:53 +0200
-Message-ID: <CAD78y+77SK9WzuUUSDcNVp+pkN46Q9SiM8OQkDQVMCGAkd4GPQ@mail.gmail.com>
-From: Federico Vitali <fede.vitali@gmail.com>
-To: Rudolf Streif <rstreif@linuxfoundation.org>
-Cc: Yocto list discussion <yocto@yoctoproject.org>
-Subject: Re: Question about remote debugging via gdbserver
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
+	"denys@ti.com" <denys@ti.com>, "openembedded-core@lists.openembedded.org"
+	<openembedded-core@lists.openembedded.org>
+Subject: Re: [OE-core] [PATCH] u-boot: fix beaglebone boot issue with large kernel images
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,101 +43,98 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 18 Apr 2014 08:28:55 -0000
-Content-Type: multipart/alternative; boundary=047d7b33cf28a8292e04f74cf02a
+X-List-Received-Date: Fri, 18 Apr 2014 11:24:23 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <BA7EA582E4BB9A49B8EDD1197C591029@intel.com>
+Content-Transfer-Encoding: base64
 
---047d7b33cf28a8292e04f74cf02a
-Content-Type: text/plain; charset=UTF-8
+DQoNCg0KT24gVGh1LCAyMDE0LTA0LTE3IGF0IDE1OjA1IC0wNDAwLCBEZW55cyBEbXl0cml5ZW5r
+byB3cm90ZToNCj4gRnJvbTogRGVueXMgRG15dHJpeWVua28gPGRlbnlzQHRpLmNvbT4NCj4gDQo+
+IEZpeCBiZWFnbGVib25lIGJvb3QgaXNzdWUgd2l0aCBsYXJnZSBrZXJuZWwgaW1hZ2VzIG92ZXJ3
+cml0aW5nIERldmljZSBUcmVlLg0KPiBTZWUgdmVyeSBkZXRhaWxlZCBjb21tZW50cyBpbnNpZGUg
+dGhlIHBhdGNoLg0KPiANCj4gVGhlIG9yaWdpbmFsIHBhdGNoIGlzIGJlaW5nIHJldmlld2VkIHVw
+c3RyZWFtIGFuZCBpcyB0YXJnZXRpbmcgbWFpbmxpbmUgVS1ib290DQo+IHZlcnNpb24gMjAxNC4w
+Ny4gVGhpcyBpcyB0aGUgYWRhcHRhdGlvbiBvZiB0aGUgcGF0Y2ggZm9yIDIwMTMuMDcgdmVyc2lv
+biB3ZSB1c2UNCj4gDQo+IFNpZ25lZC1vZmYtYnk6IERlbnlzIERteXRyaXllbmtvIDxkZW55c0B0
+aS5jb20+DQoNCg0KVGhhbmsgeW91IERlbnlzLCB0aGlzIHdvcmtzIGdyZWF0LiBXaXRoIGEgbmV3
+IHUtYm9vdC5pbWcgSSBjb3VsZCBib290DQphbnkga2VybmVsIHRoYXQgYmVmb3JlIHdvdWxkbid0
+IGJvb3QuDQoNCkNoZWVycywNClN0ZWZhbg0KDQoNCj4gLS0tDQo+ICAuLi5oLUFkZC11c2UtREVG
+QVVMVF9MSU5VWF9CT09UX0VOVi1lbnZpcm9ubS5wYXRjaCB8IDc0ICsrKysrKysrKysrKysrKysr
+KysrKysNCj4gIG1ldGEvcmVjaXBlcy1ic3AvdS1ib290L3UtYm9vdF8yMDEzLjA3LmJiICAgICAg
+ICAgIHwgIDQgKy0NCj4gIDIgZmlsZXMgY2hhbmdlZCwgNzcgaW5zZXJ0aW9ucygrKSwgMSBkZWxl
+dGlvbigtKQ0KPiAgY3JlYXRlIG1vZGUgMTAwNjQ0IG1ldGEvcmVjaXBlcy1ic3AvdS1ib290L2Zp
+bGVzLzAwMDEtYW0zMzV4X2V2bS5oLUFkZC11c2UtREVGQVVMVF9MSU5VWF9CT09UX0VOVi1lbnZp
+cm9ubS5wYXRjaA0KPiANCj4gZGlmZiAtLWdpdCBhL21ldGEvcmVjaXBlcy1ic3AvdS1ib290L2Zp
+bGVzLzAwMDEtYW0zMzV4X2V2bS5oLUFkZC11c2UtREVGQVVMVF9MSU5VWF9CT09UX0VOVi1lbnZp
+cm9ubS5wYXRjaCBiL21ldGEvcmVjaXBlcy1ic3AvdS1ib290L2ZpbGVzLzAwMDEtYW0zMzV4X2V2
+bS5oLUFkZC11c2UtREVGQVVMVF9MSU5VWF9CT09UX0VOVi1lbnZpcm9ubS5wYXRjaA0KPiBuZXcg
+ZmlsZSBtb2RlIDEwMDY0NA0KPiBpbmRleCAwMDAwMDAwLi43N2UzNWJiDQo+IC0tLSAvZGV2L251
+bGwNCj4gKysrIGIvbWV0YS9yZWNpcGVzLWJzcC91LWJvb3QvZmlsZXMvMDAwMS1hbTMzNXhfZXZt
+LmgtQWRkLXVzZS1ERUZBVUxUX0xJTlVYX0JPT1RfRU5WLWVudmlyb25tLnBhdGNoDQo+IEBAIC0w
+LDAgKzEsNzQgQEANCj4gK0Zyb20gNTcwMTM4NGNlYTRhODI5Yjc3MmJmN2E5NmE3NDgyNWI1OGMy
+MjM4NSBNb24gU2VwIDE3IDAwOjAwOjAwIDIwMDENCj4gK0Zyb206IERlbnlzIERteXRyaXllbmtv
+IDxkZW55c0B0aS5jb20+DQo+ICtEYXRlOiBUaHUsIDE3IEFwciAyMDE0IDEyOjI1OjQwIC0wNDAw
+DQo+ICtTdWJqZWN0OiBbUEFUQ0hdIGFtMzM1eF9ldm0uaDogQWRkLCB1c2UgREVGQVVMVF9MSU5V
+WF9CT09UX0VOViBlbnZpcm9ubWVudA0KPiArIHN0cmluZw0KPiArDQo+ICtNb2RpZmllZCB2ZXJz
+aW9uIG9mIHRoZSBwYXRjaCBjdXJyZW50bHkgYmVpbmcgcmV2aWV3ZWQgZm9yIG1haW5saW5lOg0K
+PiAraHR0cDovL3BhdGNod29yay5vemxhYnMub3JnL3BhdGNoLzMzNDg2MS8NCj4gKw0KPiArVG8g
+ZGVhbCB3aXRoIGEgcmVvY2N1cnJpbmcgcHJvYmxlbSBwcm9wZXJseSB3ZSBuZWVkIHRvIHNwZWNp
+ZnkgYWRkcmVzc2VzDQo+ICtmb3IgdGhlIExpbnV4IGtlcm5lbCwgRmxhdHRlZCBEZXZpY2UgVHJl
+ZSBhbmQgcmFtZGlzayB0aGF0IG9iZXkgdGhlDQo+ICtjb25zdHJhaW50cyB3aXRoaW4gdGhlIGtl
+cm5lbCdzIERvY3VtZW50YXRpb24vYXJtL0Jvb3RpbmcgZmlsZSBidXQgYWxzbw0KPiArbWFrZSBz
+dXJlIHRoYXQgd2UgcmVsb2NhdGUgdGhpbmdzIHdpdGhpbiBhIHZhbGlkIGFkZHJlc3MgcmFuZ2Uu
+DQo+ICsNCj4gK1NpZ25lZC1vZmYtYnk6IERlbnlzIERteXRyaXllbmtvIDxkZW55c0B0aS5jb20+
+DQo+ICtTaWduZWQtb2ZmLWJ5OiBUb20gUmluaSA8dHJpbmlAdGkuY29tPg0KPiArDQo+ICtVcHN0
+cmVhbS1TdGF0dXM6IFBlbmRpbmcNCj4gKy0tLQ0KPiArIGluY2x1ZGUvY29uZmlncy9hbTMzNXhf
+ZXZtLmggfCAzMSArKysrKysrKysrKysrKysrKysrKysrKysrKy0tLS0tDQo+ICsgMSBmaWxlIGNo
+YW5nZWQsIDI2IGluc2VydGlvbnMoKyksIDUgZGVsZXRpb25zKC0pDQo+ICsNCj4gK2RpZmYgLS1n
+aXQgYS9pbmNsdWRlL2NvbmZpZ3MvYW0zMzV4X2V2bS5oIGIvaW5jbHVkZS9jb25maWdzL2FtMzM1
+eF9ldm0uaA0KPiAraW5kZXggYzVhNmQ0Yi4uMDFlMzJiMyAxMDA2NDQNCj4gKy0tLSBhL2luY2x1
+ZGUvY29uZmlncy9hbTMzNXhfZXZtLmgNCj4gKysrKyBiL2luY2x1ZGUvY29uZmlncy9hbTMzNXhf
+ZXZtLmgNCj4gK0BAIC01NCwxMCArNTQsNyBAQA0KPiArICNkZWZpbmUgQ09ORklHX0VOVl9WQVJT
+X1VCT09UX1JVTlRJTUVfQ09ORklHDQo+ICsgI2lmbmRlZiBDT05GSUdfU1BMX0JVSUxEDQo+ICsg
+I2RlZmluZSBDT05GSUdfRVhUUkFfRU5WX1NFVFRJTkdTIFwNCj4gKy0JImxvYWRhZGRyPTB4ODAy
+MDAwMDBcMCIgXA0KPiArLQkiZmR0YWRkcj0weDgwRjgwMDAwXDAiIFwNCj4gKy0JImZkdF9oaWdo
+PTB4ZmZmZmZmZmZcMCIgXA0KPiArLQkicmRhZGRyPTB4ODEwMDAwMDBcMCIgXA0KPiArKwlERUZB
+VUxUX0xJTlVYX0JPT1RfRU5WIFwNCj4gKyAJImJvb3RkaXI9L2Jvb3RcMCIgXA0KPiArIAkiYm9v
+dGZpbGU9dUltYWdlXDAiIFwNCj4gKyAJImZkdGZpbGU9dW5kZWZpbmVkXDAiIFwNCj4gK0BAIC0x
+OTcsNyArMTk0LDMxIEBADQo+ICsgI2RlZmluZSBDT05GSUdfU1lTX01FTVRFU1RfRU5ECQkoQ09O
+RklHX1NZU19NRU1URVNUX1NUQVJUIFwNCj4gKyAJCQkJCSsgKDggKiAxMDI0ICogMTAyNCkpDQo+
+ICsgDQo+ICstI2RlZmluZSBDT05GSUdfU1lTX0xPQURfQUREUgkJMHg4MTAwMDAwMCAvKiBEZWZh
+dWx0IGxvYWQgYWRkcmVzcyAqLw0KPiArKy8qDQo+ICsrICogT3VyIEREUiBtZW1vcnkgYWx3YXlz
+IHN0YXJ0cyBhdCAweDgwMDAwMDAwIGFuZCBVLUJvb3Qgc2hhbGwgaGF2ZQ0KPiArKyAqIHJlbG9j
+YXRlZCBpdHNlbGYgdG8gaGlnaGVyIGluIG1lbW9yeSBieSB0aGUgdGltZSB0aGlzIHZhbHVlIGlz
+IHVzZWQuDQo+ICsrICogSG93ZXZlciwgc2V0IHRoaXMgdG8gYSAzMk1CIG9mZnNldCB0byBhbGxv
+dyBmb3IgZWFzaWVyIExpbnV4IGtlcm5lbA0KPiArKyAqIGJvb3RpbmcgYXMgdGhlIGRlZmF1bHQg
+aXMgb2Z0ZW4gdXNlZCBhcyB0aGUga2VybmVsIGxvYWQgYWRkcmVzcy4NCj4gKysgKi8NCj4gKysj
+ZGVmaW5lIENPTkZJR19TWVNfTE9BRF9BRERSCQkweDgyMDAwMDAwIC8qIERlZmF1bHQgbG9hZCBh
+ZGRyZXNzICovDQo+ICsrDQo+ICsrLyoNCj4gKysgKiBXZSBzZXR1cCBkZWZhdWx0cyBiYXNlZCBv
+biBjb25zdHJhaW50cyBmcm9tIHRoZSBMaW51eCBrZXJuZWwsIHdoaWNoIHNob3VsZA0KPiArKyAq
+IGFsc28gYmUgc2FmZSBlbHNld2hlcmUuICBXZSBoYXZlIHRoZSBkZWZhdWx0IGxvYWQgYXQgMzJN
+QiBpbnRvIEREUiAoZm9yDQo+ICsrICogdGhlIGtlcm5lbCksIEZEVCBhYm92ZSAxMjhNQiAodGhl
+IG1heGltdW0gbG9jYXRpb24gZm9yIHRoZSBlbmQgb2YgdGhlDQo+ICsrICoga2VybmVsKSwgYW5k
+IHRoZSByYW1kaXNrIDUxMktCIGFib3ZlIHRoYXQgKGFsbG93aW5nIGZvciBob3BlZnVsbHkgbmV2
+ZXINCj4gKysgKiBzZWVuIGxhcmdlIHRyZWVzKS4gIFdlIHNheSBhbGwgb2YgdGhpcyBtdXN0IGJl
+IHdpdGhpbiB0aGUgZmlyc3QgMjU2TUINCj4gKysgKiBhcyB0aGF0IHdpbGwgbm9ybWFsbHkgYmUg
+d2l0aGluIHRoZSBrZXJuZWwgbG93bWVtIGFuZCB0aHVzIHZpc2libGUgdmlhDQo+ICsrICogYm9v
+dG1fc2l6ZSBhbmQgd2Ugb25seSBydW4gb24gcGxhdGZvcm1zIHdpdGggMjU2TUIgb3IgbW9yZSBv
+ZiBtZW1vcnkuDQo+ICsrICovDQo+ICsrI2RlZmluZSBERUZBVUxUX0xJTlVYX0JPT1RfRU5WIFwN
+Cj4gKysJImxvYWRhZGRyPTB4ODIwMDAwMDBcMCIgXA0KPiArKwkia2VybmVsX2FkZHJfcj0weDgy
+MDAwMDAwXDAiIFwNCj4gKysJImZkdGFkZHI9MHg4ODAwMDAwMFwwIiBcDQo+ICsrCSJmZHRfYWRk
+cl9yPTB4ODgwMDAwMDBcMCIgXA0KPiArKwkicmRhZGRyPTB4ODgwODAwMDBcMCIgXA0KPiArKwki
+cmFtZGlza19hZGRyX3I9MHg4ODA4MDAwMFwwIiBcDQo+ICsrCSJib290bV9zaXplPTB4MTAwMDAw
+MDBcMCINCj4gKyANCj4gKyAjZGVmaW5lIENPTkZJR19NTUMNCj4gKyAjZGVmaW5lIENPTkZJR19H
+RU5FUklDX01NQw0KPiArLS0gDQo+ICsxLjkuMg0KPiArDQo+IGRpZmYgLS1naXQgYS9tZXRhL3Jl
+Y2lwZXMtYnNwL3UtYm9vdC91LWJvb3RfMjAxMy4wNy5iYiBiL21ldGEvcmVjaXBlcy1ic3AvdS1i
+b290L3UtYm9vdF8yMDEzLjA3LmJiDQo+IGluZGV4IDMxNDFhMmQuLmY4YTg4NTYgMTAwNjQ0DQo+
+IC0tLSBhL21ldGEvcmVjaXBlcy1ic3AvdS1ib290L3UtYm9vdF8yMDEzLjA3LmJiDQo+ICsrKyBi
+L21ldGEvcmVjaXBlcy1ic3AvdS1ib290L3UtYm9vdF8yMDEzLjA3LmJiDQo+IEBAIC0xNiw3ICsx
+Niw5IEBAIFNSQ1JFViA9ICI2MmMxNzVmYmI4YTBmOWE5MjZjODgyOTRlYTlmN2U4OGViODk4ZjZj
+Ig0KPiAgDQo+ICBQViA9ICJ2MjAxMy4wNytnaXQke1NSQ1BWfSINCj4gIA0KPiAtU1JDX1VSSSA9
+ICJnaXQ6Ly9naXQuZGVueC5kZS91LWJvb3QuZ2l0O2JyYW5jaD1tYXN0ZXIiDQo+ICtTUkNfVVJJ
+ID0gImdpdDovL2dpdC5kZW54LmRlL3UtYm9vdC5naXQ7YnJhbmNoPW1hc3RlciBcDQo+ICsgICAg
+ICAgICAgIGZpbGU6Ly8wMDAxLWFtMzM1eF9ldm0uaC1BZGQtdXNlLURFRkFVTFRfTElOVVhfQk9P
+VF9FTlYtZW52aXJvbm0ucGF0Y2ggXA0KPiArIg0KPiAgDQo+ICBTID0gIiR7V09SS0RJUn0vZ2l0
+Ig0KPiAgDQo+IC0tIA0KPiAxLjkuMg0KPiANCg0K
 
-Goodmorning Rudolf,
-
-thank you again for your time.
-
-I have not explained my goal very well, so I try to explain with a specific
-example.
-I'm working with gstreamer for a project I'm following for my company.
-Let's take
-the gstreamer "hello world" application, here is the source code:
-
-http://gstreamer.freedesktop.org/data/doc/gstreamer/head/manual/html/chapter-helloworld.html#section-helloworld
-
-I've succesfully built and deployed the application. I can debug and follow
-the code of the application line
-by line with eclipse. Now, if I want to enter into a function of gstreamer
-libs (e.g. gst_pipeline_new),
-what should I have to do?
-
-Federico
-
-
-
-
-
-2014-04-16 21:22 GMT+02:00 Rudolf Streif <rstreif@linuxfoundation.org>:
-
-> Hi Federico,
->
-> I knew that I can add source paths to the debugger.
->>
-> Ok, if that's not the issue what exactly is not working for you?
->
->
->> I see in your debug profiles that you have some binaries eg "ls". Did you
->> import that binary from sysrootfs on your build machine? Can you please
->> tell me the steps before adding the path?
->>
-> No, that's actually sample code of a simple ls application that I use for
-> teaching a class on Linux APIs.
->
-> Cheers,
-> Rudi
->
-
---047d7b33cf28a8292e04f74cf02a
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">Goodmorning Rudolf,<div><br></div><div>thank you again for=
- your time.<br><div><br></div><div>I have not explained my goal very well, =
-so I try to explain with a specific example.</div><div>I&#39;m working with=
- gstreamer for a project I&#39;m following for my company. Let&#39;s take</=
-div>
-<div>the gstreamer &quot;hello world&quot; application, here is the source =
-code:</div><div><br></div><div><a href=3D"http://gstreamer.freedesktop.org/=
-data/doc/gstreamer/head/manual/html/chapter-helloworld.html#section-hellowo=
-rld">http://gstreamer.freedesktop.org/data/doc/gstreamer/head/manual/html/c=
-hapter-helloworld.html#section-helloworld</a><br>
-</div><div><br></div><div>I&#39;ve succesfully built and deployed the appli=
-cation. I can debug and follow the code of the application line</div><div>b=
-y line with eclipse. Now, if I want to enter into a function of gstreamer l=
-ibs (e.g.=C2=A0<span style=3D"color:rgb(0,0,0)">gst_pipeline_new),</span></=
-div>
-<div><span style=3D"color:rgb(0,0,0)">what should I have to do?</span></div=
-><div><span style=3D"color:rgb(0,0,0)"><br></span></div><div><font color=3D=
-"#000000">Federico</font></div><div><br></div><div><br></div><div><br></div=
-></div>
-</div><div class=3D"gmail_extra"><br><br><div class=3D"gmail_quote">2014-04=
--16 21:22 GMT+02:00 Rudolf Streif <span dir=3D"ltr">&lt;<a href=3D"mailto:r=
-streif@linuxfoundation.org" target=3D"_blank">rstreif@linuxfoundation.org</=
-a>&gt;</span>:<br>
-<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
-x #ccc solid;padding-left:1ex"><div dir=3D"ltr">Hi Federico,<div><br></div>=
-<div class=3D"gmail_extra"><div class=3D"gmail_quote"><div class=3D""><bloc=
-kquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #cc=
-c solid;padding-left:1ex">
-<p>I knew that I can add source paths to the debugger.<br>
-
-</p></blockquote></div><div>Ok, if that&#39;s not the issue what exactly is=
- not working for you?</div><div class=3D""><div>=C2=A0</div><blockquote cla=
-ss=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;pa=
-dding-left:1ex">
-<p>I see in your debug profiles that you have some binaries eg &quot;ls&quo=
-t;. Did you import that binary from sysrootfs on your build machine? Can yo=
-u please tell me the steps before adding the path?</p>
-</blockquote></div><div>No, that&#39;s actually sample code of a simple ls =
-application that I use for teaching a class on Linux APIs.</div><div><br></=
-div><div>Cheers,</div><div>Rudi</div></div>
-</div></div>
-</blockquote></div><br></div>
-
---047d7b33cf28a8292e04f74cf02a--
