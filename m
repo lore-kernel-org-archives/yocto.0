@@ -1,21 +1,22 @@
-Return-Path: <elizabeth.flanagan@intel.com>
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 10D30E00C28
-	for <yocto@yoctoproject.org>; Fri, 18 Apr 2014 15:09:52 -0700 (PDT)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga101.jf.intel.com with ESMTP; 18 Apr 2014 15:09:34 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.97,886,1389772800"; d="scan'208";a="523598323"
-Received: from qana.jf.intel.com ([10.7.201.148])
-	by orsmga002.jf.intel.com with ESMTP; 18 Apr 2014 15:09:34 -0700
-Received: by qana.jf.intel.com (Postfix, from userid 1000)
-	id 5D9C65F82921; Fri, 18 Apr 2014 15:07:03 -0700 (PDT)
-From: Elizabeth Flanagan <elizabeth.flanagan@intel.com>
-To: yocto@yoctoproject.org
-Date: Fri, 18 Apr 2014 15:06:48 -0700
-Message-Id: <1397858808-10025-1-git-send-email-elizabeth.flanagan@intel.com>
-X-Mailer: git-send-email 1.8.1.2
-Subject: [PATCH][daisy] distro_alias.inc: update/sort alias information.
+Return-Path: <Randy.MacLeod@windriver.com>
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id ED160E00C2F
+	for <yocto@yoctoproject.org>; Sat, 19 Apr 2014 09:37:21 -0700 (PDT)
+Received: from ALA-HCB.corp.ad.wrs.com (ala-hcb.corp.ad.wrs.com
+	[147.11.189.41])
+	by mail.windriver.com (8.14.5/8.14.5) with ESMTP id s3JGbJ7Y010588
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL)
+	for <yocto@yoctoproject.org>; Sat, 19 Apr 2014 09:37:20 -0700 (PDT)
+Received: from fidler.corp.ad.wrs.com (128.224.20.137) by
+	ALA-HCB.corp.ad.wrs.com (147.11.189.41) with Microsoft SMTP Server id
+	14.3.169.1; Sat, 19 Apr 2014 09:37:19 -0700
+From: Randy MacLeod <Randy.MacLeod@windriver.com>
+To: <yocto@yoctoproject.org>
+Date: Sat, 19 Apr 2014 12:37:18 -0400
+Message-ID: <1397925438-10398-1-git-send-email-Randy.MacLeod@windriver.com>
+X-Mailer: git-send-email 1.8.4.1
+MIME-Version: 1.0
+Subject: [PATCH] Use BPN in SRC_URI to enable multilib builds
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -27,184 +28,84 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 18 Apr 2014 22:09:53 -0000
+X-List-Received-Date: Sat, 19 Apr 2014 16:37:24 -0000
+Content-Type: text/plain
 
-From: Beth Flanagan <elizabeth.flanagan@intel.com>
-
-Added new package data and resorted per
-http://article.gmane.org/gmane.linux.embedded.poky/9253
-
-Signed-off-by: Beth Flanagan <elizabeth.flanagan@intel.com>
+Signed-off-by: Randy MacLeod <Randy.MacLeod@windriver.com>
 ---
- meta-yocto/conf/distro/include/distro_alias.inc | 25 +++++++++++++++++++++++--
- 1 file changed, 23 insertions(+), 2 deletions(-)
+ recipes-security/libcap-ng/libcap-ng_0.7.3.bb   | 2 +-
+ recipes-security/libseccomp/libseccomp_2.1.1.bb | 2 +-
+ recipes-security/nikto/nikto_2.1.5.bb           | 2 +-
+ recipes-security/nmap/nmap_6.25.bb              | 2 +-
+ recipes-security/pinentry/pinentry_0.8.3.bb     | 2 +-
+ 5 files changed, 5 insertions(+), 5 deletions(-)
 
-diff --git a/meta-yocto/conf/distro/include/distro_alias.inc b/meta-yocto/conf/distro/include/distro_alias.inc
-index 96db5ba..68a82b7 100644
---- a/meta-yocto/conf/distro/include/distro_alias.inc
-+++ b/meta-yocto/conf/distro/include/distro_alias.inc
-@@ -71,6 +71,7 @@ DISTRO_PN_ALIAS_pn-core-image-sato-sdk = "OE-Core"
- DISTRO_PN_ALIAS_pn-core-image-weston = "OE-Core"
- DISTRO_PN_ALIAS_pn-core-image-x11 = "OE-Core"
- DISTRO_PN_ALIAS_pn-cross-localedef = "OSPDT"
-+DISTRO_PN_ALIAS_pn-cryptodev-linux = "OE-Core"
- DISTRO_PN_ALIAS_pn-cwautomacros = "OSPDT upstream=http://cwautomacros.berlios.de/"
- DISTRO_PN_ALIAS_pn-damageproto = "Meego=xorg-x11-proto-damageproto"
- DISTRO_PN_ALIAS_pn-db = "Debian=db5.1 Ubuntu=db5.1"
-@@ -122,7 +123,9 @@ DISTRO_PN_ALIAS_pn-gdk-pixbuf-csource-native = "Debian=libgdk-pixbuf2.0-0 Fedora
- DISTRO_PN_ALIAS_pn-gettext-minimal-native = "Debian=gettext Fedora=gettext"
- DISTRO_PN_ALIAS_pn-glib-2.0 = "Meego=glib2 Fedora=glib2 OpenSuSE=glib2 Ubuntu=glib2.0 Mandriva=glib2.0 Debian=glib2.0"
- DISTRO_PN_ALIAS_pn-glproto = "Meego=xorg-x11-proto-glproto"
-+DISTRO_PN_ALIAS_pn-gnome-desktop-testing = "Debian=gnome-desktop-testing Fedora=gnome-desktop-testing"
- DISTRO_PN_ALIAS_pn-gnu-config = "OpenedHand"
-+DISTRO_PN_ALIAS_pn-grub-efi = "Debian=grub-efi Fedora=grub2-efi"
- DISTRO_PN_ALIAS_pn-grub-efi-i586 = "Ubuntu=grub Fedora=grub"
- DISTRO_PN_ALIAS_pn-grub-efi-x86-64-native = "Ubuntu=grub Fedora=grub"
- DISTRO_PN_ALIAS_pn-gst-ffmpeg = "Mandriva=gstreamer0.10-ffmpeg Debian=gstreamer0.10-ffmpeg"
-@@ -137,6 +140,7 @@ DISTRO_PN_ALIAS_pn-gst-plugins-gl = "Debian=gstreamer0.10-plugins-gl OpenSuSE=gs
- DISTRO_PN_ALIAS_pn-gst-plugins-good = "Meego=gst-plugins-good Fedora=gstreamer-plugins-good OpenSuSE=gstreamer-plugins-good Ubuntu=gst-plugins-good0.10 Mandriva=gstreamer0.10-plugins-good Debian=gst-plugins-good0.10"
- DISTRO_PN_ALIAS_pn-gst-plugins-ugly = "OpenSuSE=gstreamer-plugins-ugly Mandriva=gstreamer0.10-plugins-ugly Debian=gst-plugins-ugly0.10"
- DISTRO_PN_ALIAS_pn-gstreamer1.0 = "Debian=gstreamer1.0 Ubuntu=gstreamer1.0"
-+DISTRO_PN_ALIAS_pn-gstreamer1.0-meta-base = "Meego=gstreamer Fedora=gstreamer OpenSuSE=gstreamer Ubuntu=gstreamer0.10"
- DISTRO_PN_ALIAS_pn-gstreamer1.0-plugins-bad = "Debian=gstreamer1.0-plugins-bad Ubuntu=gstreamer1.0-plugins-bad"
- DISTRO_PN_ALIAS_pn-gstreamer1.0-plugins-base = "Debian=gstreamer1.0-plugins-base Ubuntu=gstreamer1.0-plugins-base"
- DISTRO_PN_ALIAS_pn-gstreamer1.0-plugins-good = "Debian=gstreamer1.0-plugins-good Ubuntu=gstreamer1.0-plugins-bad"
-@@ -148,6 +152,7 @@ DISTRO_PN_ALIAS_pn-gtk-engines = "Fedora=gtk2-engines OpenSuSE=gtk2-engines Ubun
- DISTRO_PN_ALIAS_pn-gtk-sato-engine = "OpenedHand"
- DISTRO_PN_ALIAS_pn-gtk-theme-torturer = "OSPDT upstream=http://wiki.laptop.org/go/GTK_for_OLPC"
- DISTRO_PN_ALIAS_pn-gtk-update-icon-cache-native = "OSPDT"
-+DISTRO_PN_ALIAS_pn-gummiboot = "Debian=gummiboot Fedora=gummiboot"
- DISTRO_PN_ALIAS_pn-hello-mod = "OE-Core"
- DISTRO_PN_ALIAS_pn-hostap-conf = "OE-Core"
- DISTRO_PN_ALIAS_pn-hwlatdetect = "OSPDT"
-@@ -158,6 +163,8 @@ DISTRO_PN_ALIAS_pn-initramfs-framework = "OE-Core"
- DISTRO_PN_ALIAS_pn-initramfs-live-boot = "OE-Core"
- DISTRO_PN_ALIAS_pn-initramfs-live-install = "OE-Core"
- DISTRO_PN_ALIAS_pn-initramfs-live-install-efi = "OE-Core"
-+DISTRO_PN_ALIAS_pn-initramfs-live-install-efi-testfs = "OE-Core"
-+DISTRO_PN_ALIAS_pn-initramfs-live-install-testfs = "OE-Core"
- DISTRO_PN_ALIAS_pn-initscripts = "Fedora=initscripts Mandravia=initscripts"
- DISTRO_PN_ALIAS_pn-inputproto = "Meego=xorg-x11-proto-inputproto"
- DISTRO_PN_ALIAS_pn-iproute2 = "OSPDT"
-@@ -195,7 +202,9 @@ DISTRO_PN_ALIAS_pn-libical = "Ubuntu=libical Fedora=libical"
- DISTRO_PN_ALIAS_pn-libiconv = "Fedora=mingw-libiconv Opensuse=cross-mingw-libiconv"
- DISTRO_PN_ALIAS_pn-libjson = "Ubuntu=libjson0-dev Debian=libjson0-dev"
- DISTRO_PN_ALIAS_pn-libksba = "Fedora=libksba Debian=libksba8"
-+DISTRO_PN_ALIAS_pn-libksba = "Fedora=libksba Ubuntu=libksba"
- DISTRO_PN_ALIAS_pn-liblbxutil = "Mandriva=liblbxutil OpenSuse=xorg-x11-devel"
-+DISTRO_PN_ALIAS_pn-libmatchbox = "Ubuntu=libmatchbox Fedora=libmatchbox"
- DISTRO_PN_ALIAS_pn-libmpc = "Fedora=libmpc OpenSuse=libmpc2"
- DISTRO_PN_ALIAS_pn-libnewt = "Debian=libnewt0.52 Fedora=newt"
- DISTRO_PN_ALIAS_pn-libnewt-python = "Ubuntu=python-newt Fedora=newt-python"
-@@ -224,6 +233,7 @@ DISTRO_PN_ALIAS_pn-libx11-diet = "Debian=libx11-6 Fedora=libX11 Ubuntu=libx11-6
- DISTRO_PN_ALIAS_pn-libxcalibrate = "OSPDT upstream=http://cgit.freedesktop.org/xorg/lib/libXCalibrate/"
- DISTRO_PN_ALIAS_pn-libxfontcache = "Mandriva=libxfontcache Debian=libxfontcache"
- DISTRO_PN_ALIAS_pn-libxft = "Mandriva=libxft Debian=libxft2 Ubuntu=libxft2"
-+DISTRO_PN_ALIAS_pn-libxi = "Ubuntu=libxi Fedora=libXi"
- DISTRO_PN_ALIAS_pn-libxkbcommon = "Fedora=libxkbcommon Debian=libxkbcommon"
- DISTRO_PN_ALIAS_pn-libxprintapputil = "Debian=libxprintapputil Ubuntu=libxprintapputil1 Mandriva=libxprintapputil"
- DISTRO_PN_ALIAS_pn-libxscrnsaver = "Fedora=libXScrnSaver Ubuntu=libxss1 Mandriva=libxscrnsaver"
-@@ -243,6 +253,7 @@ DISTRO_PN_ALIAS_pn-ltp = "Mandriva=ltp Ubuntu=ltp"
- DISTRO_PN_ALIAS_pn-lttng-modules = "OSPDT upstream=http://lttng.org/"
- DISTRO_PN_ALIAS_pn-lttng-tools = "OSPDT upstream=http://lttng.org/"
- DISTRO_PN_ALIAS_pn-lttng-ust = "OSPDT upstream=http://lttng.org/"
-+DISTRO_PN_ALIAS_pn-lz4 = "Debian=lz4 Fedora=lz4"
- DISTRO_PN_ALIAS_pn-lzo = "Debian=liblzo Ubuntu=liblzo Fedora=lzp"
- DISTRO_PN_ALIAS_pn-lzo-native = "Debian=liblzo Ubuntu=liblzo Fedora=lzp"
- DISTRO_PN_ALIAS_pn-mailx = "Debian=bsd-mailx Ubuntu=bsd-mailx"
-@@ -277,6 +288,7 @@ DISTRO_PN_ALIAS_pn-mini-x-session = "OSPDT"
- DISTRO_PN_ALIAS_pn-mkfontdir = "Mandriva=mkfontdir Ubuntu=xfonts-utils Fedora=xorg-x11-font-utils"
- DISTRO_PN_ALIAS_pn-mkfontscale = "Mandriva=mkfontscale Ubuntu=xfonts-utils Fedora=xorg-x11-font-utils"
- DISTRO_PN_ALIAS_pn-mktemp = "Mandriva=mktemp Fedora=mktemp"
-+DISTRO_PN_ALIAS_pn-mmc-utils = "OE-Core"
- DISTRO_PN_ALIAS_pn-moblin-proto = "OE-Core"
- DISTRO_PN_ALIAS_pn-modutils-collateral = "OE-Core"
- DISTRO_PN_ALIAS_pn-modutils-initscripts = "OE-Core"
-@@ -303,18 +315,19 @@ DISTRO_PN_ALIAS_pn-opkg-collateral = "OE-Core"
- DISTRO_PN_ALIAS_pn-opkg-config-base = "OE-Core"
- DISTRO_PN_ALIAS_pn-opkg-nogpg = "OSPDT upstream=http://svn.openmoko.org/trunk/src/tar"
- DISTRO_PN_ALIAS_pn-opkg-utils = "OSPDT upstream=http://svn.openmoko.org/trunk/src/target/opkg/"
-+DISTRO_PN_ALIAS_pn-oprofile = "Debian=oprofile Fedora=oprofile"
- DISTRO_PN_ALIAS_pn-oprofileui = "Fedora=oprofileui Ubuntu=oprofile-gui Debian=oprofile-gui"
- DISTRO_PN_ALIAS_pn-oprofileui-server = "Fedora=oprofileui Ubuntu=oprofile-gui Debian=oprofile-gui"
- DISTRO_PN_ALIAS_pn-owl-video = "OpenedHand"
- DISTRO_PN_ALIAS_pn-packagegroup-base = "OE-Core"
- DISTRO_PN_ALIAS_pn-packagegroup-core = "OE-Core"
--DISTRO_PN_ALIAS_pn-packagegroup-core-full-cmdline = "OE-Core"
- DISTRO_PN_ALIAS_pn-packagegroup-core-boot = "OE-Core"
- DISTRO_PN_ALIAS_pn-packagegroup-core-buildessential = "OE-Core"
- DISTRO_PN_ALIAS_pn-packagegroup-core-clutter = "OE-Core"
- DISTRO_PN_ALIAS_pn-packagegroup-core-device-devel = "OE-Core"
- DISTRO_PN_ALIAS_pn-packagegroup-core-directfb = "OE-Core"
- DISTRO_PN_ALIAS_pn-packagegroup-core-eclipse-debug = "OE-Core"
-+DISTRO_PN_ALIAS_pn-packagegroup-core-full-cmdline = "OE-Core"
- DISTRO_PN_ALIAS_pn-packagegroup-core-lsb = "OE-Core"
- DISTRO_PN_ALIAS_pn-packagegroup-core-nfs = "OE-Core"
- DISTRO_PN_ALIAS_pn-packagegroup-core-qt = "OE-Core"
-@@ -343,6 +356,7 @@ DISTRO_PN_ALIAS_pn-packagegroup-sdk-host = "OE-Core"
- DISTRO_PN_ALIAS_pn-packagegroup-self-hosted = "OE-Core"
- DISTRO_PN_ALIAS_pn-package-index = "OE-Core"
- DISTRO_PN_ALIAS_pn-perf = "OSPDT"
-+DISTRO_PN_ALIAS_pn-piglit = "OE-Core"
- DISTRO_PN_ALIAS_pn-pkgconfig = "Ubuntu=pkg-config Fedora=pkgconfig"
- DISTRO_PN_ALIAS_pn-pkgconfig-native = "Ubuntu=pkg-config Fedora=pkgconfig"
- DISTRO_PN_ALIAS_pn-pointercal = "OE-Core"
-@@ -350,13 +364,17 @@ DISTRO_PN_ALIAS_pn-pointercal-xinput = "OE-Core"
- DISTRO_PN_ALIAS_pn-poky-feed-config-opkg = "OE-Core"
- DISTRO_PN_ALIAS_pn-pong-clock = "OpenedHand"
- DISTRO_PN_ALIAS_pn-portmap = "Debian=rpcbind Fedora=rpcbind"
-+DISTRO_PN_ALIAS_pn-postinst-intercept = "OE-Core"
- DISTRO_PN_ALIAS_pn-powertop = "Meego=powertop Fedora=powertop Debian=powertop OpenSuSE=powertop Mandriva=powertop"
- DISTRO_PN_ALIAS_pn-ppp-dialin = "OE-Core"
-+DISTRO_PN_ALIAS_pn-presentproto = "Debian=x11proto-present-dev Fedora=xorg-x11-proto-devel"
- DISTRO_PN_ALIAS_pn-printproto = "Debian=x11proto-print-dev Ubuntu=x11proto-print-dev Mandriva=x11-proto-devel"
- DISTRO_PN_ALIAS_pn-pseudo = "Windriver"
- DISTRO_PN_ALIAS_pn-psplash = "OpenedHand"
- DISTRO_PN_ALIAS_pn-ptest-runner = "OE-Core"
- DISTRO_PN_ALIAS_pn-puzzles = "Debian=sgt-puzzles Fedora=puzzles"
-+DISTRO_PN_ALIAS_pn-python3-distribute = "Debian=python3-setuptools Fedora=python3-setuptools"
-+DISTRO_PN_ALIAS_pn-python-ZSI = "OE-Core"
- DISTRO_PN_ALIAS_pn-python-argparse = "Fedora=python-argparse OpenSuSE=python-argparse"
- DISTRO_PN_ALIAS_pn-python-argparse-native = "Fedora=python-argparse OpenSuSE=python-argparse"
- DISTRO_PN_ALIAS_pn-python-dbus = "Ubuntu=python-dbus Debian=python-dbus Mandriva=python-dbus"
-@@ -370,7 +388,6 @@ DISTRO_PN_ALIAS_pn-python-pyrex = "Mandriva=python-pyrex Ubuntu=python-pyrex"
- DISTRO_PN_ALIAS_pn-python-scons = "Fedora=scons OpenSuSE=scons Ubuntu=scons Mandriva=scons Debian=scons"
- DISTRO_PN_ALIAS_pn-python-setuptools = "Mandriva=python-setup OpenSuSE=python-setup-git"
- DISTRO_PN_ALIAS_pn-python-smartpm = "Debian=smart OpenSuSE=smart"
--DISTRO_PN_ALIAS_pn-python-ZSI = "OE-Core"
- DISTRO_PN_ALIAS_pn-qemu-config = "OpenedHand"
- DISTRO_PN_ALIAS_pn-qemugl = "OpenedHand"
- DISTRO_PN_ALIAS_pn-qemu-helper = "OpenedHand"
-@@ -381,6 +398,7 @@ DISTRO_PN_ALIAS_pn-qmmp = "Fedora=qmmp Debian=qmmp"
- DISTRO_PN_ALIAS_pn-qt4e-demo-image = "OE-Core"
- DISTRO_PN_ALIAS_pn-qt4-embedded = "OSPDT"
- DISTRO_PN_ALIAS_pn-qt4-graphics-system = "OE-Core"
-+DISTRO_PN_ALIAS_pn-qt4-graphics-system = "OE-Core"
- DISTRO_PN_ALIAS_pn-qt4-native = "Mandriva=libqt4-devel Ubuntu=libqt4-dev"
- DISTRO_PN_ALIAS_pn-qt4-tools = "Mandriva=libqt4-devel Ubuntu=libqt4-dev"
- DISTRO_PN_ALIAS_pn-qt4-x11-free = "Ubuntu=qt-x11-free Debian=qt-x11-free"
-@@ -438,6 +456,7 @@ DISTRO_PN_ALIAS_pn-ubootchart = "OSPDT upstream=http://code.google.com/p/ubootch
- DISTRO_PN_ALIAS_pn-u-boot-fw-utils = "Ubuntu=u-boot-tools Debian=u-boot-tools"
- DISTRO_PN_ALIAS_pn-u-boot-mkimage = "Ubuntu=uboot-mkimage Debian=uboot-mkimage"
- DISTRO_PN_ALIAS_pn-udev-extraconf = "OE-Core"
-+DISTRO_PN_ALIAS_pn-unfs3 = "Debian=unfs3 Fedora=unfs3"
- DISTRO_PN_ALIAS_pn-unfs-server = "OE-Core"
- DISTRO_PN_ALIAS_pn-update-alternatives-dpkg = "Opensuse=update-alternatives Mandriva=update-alternatives"
- DISTRO_PN_ALIAS_pn-update-rc.d = "OE-Core"
-@@ -445,6 +464,7 @@ DISTRO_PN_ALIAS_pn-usbinit = "OE-Core"
- DISTRO_PN_ALIAS_pn-util-macros = "Meego=xorg-x11-util-macros Fedora=xorg-x11-util-macros Mandriva=x11-util-macros"
- DISTRO_PN_ALIAS_pn-v86d = "Debian=v86d Ubuntu=v86d"
- DISTRO_PN_ALIAS_pn-videoproto = "Meego=xorg-x11-proto-videoproto"
-+DISTRO_PN_ALIAS_pn-waffle = "OE-Core"
- DISTRO_PN_ALIAS_pn-watchdog = "Debian=watchdog Ubuntu=watchdog Mandriva=watchdog"
- DISTRO_PN_ALIAS_pn-webkit-gtk = "Fedora=webkitgtk Ubuntu=libwebkit"
- DISTRO_PN_ALIAS_pn-web-webkit = "OpenedHand"
-@@ -507,3 +527,4 @@ DISTRO_PN_ALIAS_pn-xwininfo = "Fedora=xorg-x11-utils Ubuntu=x11-utils"
- DISTRO_PN_ALIAS_pn-yaffs2-utils = "OSPDT upstream=http://www.yaffs.net"
- DISTRO_PN_ALIAS_pn-zaurusd = "OpenedHand"
- DISTRO_PN_ALIAS_pn-zeroconf = "OSPDT upstream=http://www.progsoc.org/~wildfire/zeroconf/"
-+DISTRO_PN_ALIAS_pn-zeroconf = "OSPDT upstream=http://www.progsoc.org/~wildfire/zeroconf/"
+diff --git a/recipes-security/libcap-ng/libcap-ng_0.7.3.bb b/recipes-security/libcap-ng/libcap-ng_0.7.3.bb
+index ef70207..91ee58b 100644
+--- a/recipes-security/libcap-ng/libcap-ng_0.7.3.bb
++++ b/recipes-security/libcap-ng/libcap-ng_0.7.3.bb
+@@ -3,7 +3,7 @@ HOMEPAGE = "http://people.redhat.com/sgrubb/libcap-ng/index.html"
+ LICENSE = "GPL-2.0"
+ LIC_FILES_CHKSUM = "file://COPYING;md5=94d55d512a9ba36caa9b7df079bae19f"
+ 
+-SRC_URI = "http://people.redhat.com/sgrubb/libcap-ng/${PN}-${PV}.tar.gz"
++SRC_URI = "http://people.redhat.com/sgrubb/libcap-ng/${BPN}-${PV}.tar.gz"
+ 
+ SRC_URI[md5sum] = "610afb774f80a8032b711281df126283"
+ SRC_URI[sha256sum] = "5ca441c8d3a1e4cfe8a8151907977662679457311ccaa7eaac91447c33a35bb1"
+diff --git a/recipes-security/libseccomp/libseccomp_2.1.1.bb b/recipes-security/libseccomp/libseccomp_2.1.1.bb
+index 27fa259..bd97a87 100644
+--- a/recipes-security/libseccomp/libseccomp_2.1.1.bb
++++ b/recipes-security/libseccomp/libseccomp_2.1.1.bb
+@@ -4,7 +4,7 @@ SECTION = "security"
+ LICENSE = "GPL-2.0"
+ LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/GPL-2.0;md5=801f80980d171dd6425610833a22dbe6"
+ 
+-SRC_URI = "http://sourceforge.net/projects/libseccomp/files/${PN}-${PV}.tar.gz \
++SRC_URI = "http://sourceforge.net/projects/libseccomp/files/${BPN}-${PV}.tar.gz \
+            file://compiler.patch \
+            file://0001-tests-create-install-tests-target.patch \
+            file://0002-tests-install-python-tests-if-appropriate.patch \
+diff --git a/recipes-security/nikto/nikto_2.1.5.bb b/recipes-security/nikto/nikto_2.1.5.bb
+index 4609717..b78a65c 100644
+--- a/recipes-security/nikto/nikto_2.1.5.bb
++++ b/recipes-security/nikto/nikto_2.1.5.bb
+@@ -6,7 +6,7 @@ LICENSE = "GPLv2"
+ LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/GPL-2.0;md5=801f80980d171dd6425610833a22dbe6"
+ RDEPENDS_${PN} = "perl libnet-ssleay-perl perl-module-getopt-long perl-module-time-local perl-module-io-socket nikto-doc"
+ 
+-SRC_URI = "http://cirt.net/nikto/${PN}-${PV}.tar.gz \
++SRC_URI = "http://cirt.net/nikto/${BPN}-${PV}.tar.gz \
+            file://location.patch"
+ 
+ SRC_URI[md5sum] = "efcc98a918becb77471ee9a5df0a7b1e"
+diff --git a/recipes-security/nmap/nmap_6.25.bb b/recipes-security/nmap/nmap_6.25.bb
+index aff5c63..db5f9b9 100644
+--- a/recipes-security/nmap/nmap_6.25.bb
++++ b/recipes-security/nmap/nmap_6.25.bb
+@@ -5,7 +5,7 @@ LICENSE = "GPL-2.0"
+ LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/GPL-2.0;md5=801f80980d171dd6425610833a22dbe6"
+ FILES_${PN} += "${target_datadir}/ncat"
+ 
+-SRC_URI = "http://nmap.org/dist/${PN}-${PV}.tar.bz2 \
++SRC_URI = "http://nmap.org/dist/${BPN}-${PV}.tar.bz2 \
+            file://lua.patch"
+ 
+ SRC_URI[md5sum] = "fcc80f94ff3adcb11eedf91092ea6f5e"
+diff --git a/recipes-security/pinentry/pinentry_0.8.3.bb b/recipes-security/pinentry/pinentry_0.8.3.bb
+index 0043c23..d681a6c 100644
+--- a/recipes-security/pinentry/pinentry_0.8.3.bb
++++ b/recipes-security/pinentry/pinentry_0.8.3.bb
+@@ -4,7 +4,7 @@ LICENSE = "GPL-2.0"
+ LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/GPL-2.0;md5=801f80980d171dd6425610833a22dbe6"
+ DEPENDS = "glib-2.0 ncurses"
+ 
+-SRC_URI = "ftp://ftp.gnupg.org/gcrypt/pinentry/${PN}-${PV}.tar.bz2"
++SRC_URI = "ftp://ftp.gnupg.org/gcrypt/pinentry/${BPN}-${PV}.tar.bz2"
+ 
+ SRC_URI[md5sum] = "2ae681cbca0d9fb774b2c90b11ebf56c"
+ SRC_URI[sha256sum] = "568b0b09b50b2388a4f94d704d5bcb28718ecd4654ed1acc43ab1f97d921a0ad"
 -- 
-1.8.1.2
+1.8.4.1
 
 
