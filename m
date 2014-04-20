@@ -1,29 +1,31 @@
-Return-Path: <richard.purdie@linuxfoundation.org>
-Received: from dan.rpsys.net (5751f4a1.skybroadband.com [87.81.244.161])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C1C2BE00B5C
-	for <yocto@yoctoproject.org>; Sun, 20 Apr 2014 05:00:41 -0700 (PDT)
-Received: from localhost (dan.rpsys.net [127.0.0.1])
-	by dan.rpsys.net (8.14.4/8.14.4/Debian-2.1ubuntu4) with ESMTP id
-	s3KC0Sl0009833; Sun, 20 Apr 2014 13:00:28 +0100
-X-Virus-Scanned: Debian amavisd-new at dan.rpsys.net
-Received: from dan.rpsys.net ([127.0.0.1])
-	by localhost (dan.rpsys.net [127.0.0.1]) (amavisd-new, port 10024)
-	with LMTP id QbkhsM43VC13; Sun, 20 Apr 2014 13:00:27 +0100 (BST)
-Received: from [192.168.3.10] (rpvlan0 [192.168.3.10]) (authenticated bits=0)
-	by dan.rpsys.net (8.14.4/8.14.4/Debian-2.1ubuntu1) with ESMTP id
-	s3KC0LWv009828
-	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES128-SHA bits=128 verify=NOT);
-	Sun, 20 Apr 2014 13:00:23 +0100
-Message-ID: <1397995216.16672.17.camel@ted>
-From: Richard Purdie <richard.purdie@linuxfoundation.org>
-To: Elizabeth Flanagan <elizabeth.flanagan@intel.com>
-Date: Sun, 20 Apr 2014 13:00:16 +0100
-In-Reply-To: <1397858808-10025-1-git-send-email-elizabeth.flanagan@intel.com>
-References: <1397858808-10025-1-git-send-email-elizabeth.flanagan@intel.com>
-X-Mailer: Evolution 3.8.4-0ubuntu1 
-Mime-Version: 1.0
-Cc: yocto@yoctoproject.org
-Subject: Re: [PATCH][daisy] distro_alias.inc: update/sort alias information.
+Return-Path: <ajlennon@dynamicdevices.co.uk>
+Received: from www.dynamicdevices.co.uk (www.dynamicdevices.co.uk
+	[89.200.136.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 35AA3E00B5C
+	for <yocto@yoctoproject.org>; Sun, 20 Apr 2014 05:16:26 -0700 (PDT)
+Received: from localhost (localhost [127.0.0.1])
+	by www.dynamicdevices.co.uk (Postfix) with ESMTP id A940427E00C
+	for <yocto@yoctoproject.org>; Sun, 20 Apr 2014 12:16:23 +0000 (UTC)
+X-Virus-Scanned: Debian amavisd-new at lennoab2.miniserver.com
+Received: from www.dynamicdevices.co.uk ([127.0.0.1])
+	by localhost (www.dynamicdevices.co.uk [127.0.0.1]) (amavisd-new,
+	port 10024) with ESMTP id gvxYVuKZHtj3 for <yocto@yoctoproject.org>;
+	Sun, 20 Apr 2014 12:15:57 +0000 (UTC)
+Received: from [127.0.0.1] (cpc32-live22-2-0-cust59.17-2.cable.virginm.net
+	[82.36.253.60])
+	(using TLSv1 with cipher ECDHE-RSA-AES128-SHA (128/128 bits))
+	(No client certificate requested)
+	by www.dynamicdevices.co.uk (Postfix) with ESMTPSA id 2653527E006
+	for <yocto@yoctoproject.org>; Sun, 20 Apr 2014 12:15:57 +0000 (UTC)
+Message-ID: <5353BA79.3060206@dynamicdevices.co.uk>
+Date: Sun, 20 Apr 2014 13:15:53 +0100
+From: Alex J Lennon <ajlennon@dynamicdevices.co.uk>
+User-Agent: Mozilla/5.0 (Windows NT 6.3; WOW64;
+	rv:24.0) Gecko/20100101 Thunderbird/24.4.0
+MIME-Version: 1.0
+To: Yocto <yocto@yoctoproject.org>
+X-Enigmail-Version: 1.6
+Subject: Question about rebuilding RPM package index for updated RPMs when bitbake completes
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -35,199 +37,86 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 20 Apr 2014 12:00:43 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Sun, 20 Apr 2014 12:16:27 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 Content-Transfer-Encoding: 7bit
 
-On Fri, 2014-04-18 at 15:06 -0700, Elizabeth Flanagan wrote:
-> From: Beth Flanagan <elizabeth.flanagan@intel.com>
-> 
-> Added new package data and resorted per
-> http://article.gmane.org/gmane.linux.embedded.poky/9253
-> 
-> Signed-off-by: Beth Flanagan <elizabeth.flanagan@intel.com>
-> ---
->  meta-yocto/conf/distro/include/distro_alias.inc | 25 +++++++++++++++++++++++--
->  1 file changed, 23 insertions(+), 2 deletions(-)
-> 
-> diff --git a/meta-yocto/conf/distro/include/distro_alias.inc b/meta-yocto/conf/distro/include/distro_alias.inc
-> index 96db5ba..68a82b7 100644
-> --- a/meta-yocto/conf/distro/include/distro_alias.inc
-> +++ b/meta-yocto/conf/distro/include/distro_alias.inc
-> @@ -71,6 +71,7 @@ DISTRO_PN_ALIAS_pn-core-image-sato-sdk = "OE-Core"
->  DISTRO_PN_ALIAS_pn-core-image-weston = "OE-Core"
->  DISTRO_PN_ALIAS_pn-core-image-x11 = "OE-Core"
->  DISTRO_PN_ALIAS_pn-cross-localedef = "OSPDT"
-> +DISTRO_PN_ALIAS_pn-cryptodev-linux = "OE-Core"
->  DISTRO_PN_ALIAS_pn-cwautomacros = "OSPDT upstream=http://cwautomacros.berlios.de/"
->  DISTRO_PN_ALIAS_pn-damageproto = "Meego=xorg-x11-proto-damageproto"
->  DISTRO_PN_ALIAS_pn-db = "Debian=db5.1 Ubuntu=db5.1"
-> @@ -122,7 +123,9 @@ DISTRO_PN_ALIAS_pn-gdk-pixbuf-csource-native = "Debian=libgdk-pixbuf2.0-0 Fedora
->  DISTRO_PN_ALIAS_pn-gettext-minimal-native = "Debian=gettext Fedora=gettext"
->  DISTRO_PN_ALIAS_pn-glib-2.0 = "Meego=glib2 Fedora=glib2 OpenSuSE=glib2 Ubuntu=glib2.0 Mandriva=glib2.0 Debian=glib2.0"
->  DISTRO_PN_ALIAS_pn-glproto = "Meego=xorg-x11-proto-glproto"
-> +DISTRO_PN_ALIAS_pn-gnome-desktop-testing = "Debian=gnome-desktop-testing Fedora=gnome-desktop-testing"
->  DISTRO_PN_ALIAS_pn-gnu-config = "OpenedHand"
-> +DISTRO_PN_ALIAS_pn-grub-efi = "Debian=grub-efi Fedora=grub2-efi"
->  DISTRO_PN_ALIAS_pn-grub-efi-i586 = "Ubuntu=grub Fedora=grub"
->  DISTRO_PN_ALIAS_pn-grub-efi-x86-64-native = "Ubuntu=grub Fedora=grub"
+Hi,
 
-Something doesn't add up above...
+I'm trying to put in place a development workflow using the PR server,
+RPM package feeds and smart update/install on a target.
 
->  DISTRO_PN_ALIAS_pn-gst-ffmpeg = "Mandriva=gstreamer0.10-ffmpeg Debian=gstreamer0.10-ffmpeg"
-> @@ -137,6 +140,7 @@ DISTRO_PN_ALIAS_pn-gst-plugins-gl = "Debian=gstreamer0.10-plugins-gl OpenSuSE=gs
->  DISTRO_PN_ALIAS_pn-gst-plugins-good = "Meego=gst-plugins-good Fedora=gstreamer-plugins-good OpenSuSE=gstreamer-plugins-good Ubuntu=gst-plugins-good0.10 Mandriva=gstreamer0.10-plugins-good Debian=gst-plugins-good0.10"
->  DISTRO_PN_ALIAS_pn-gst-plugins-ugly = "OpenSuSE=gstreamer-plugins-ugly Mandriva=gstreamer0.10-plugins-ugly Debian=gst-plugins-ugly0.10"
->  DISTRO_PN_ALIAS_pn-gstreamer1.0 = "Debian=gstreamer1.0 Ubuntu=gstreamer1.0"
-> +DISTRO_PN_ALIAS_pn-gstreamer1.0-meta-base = "Meego=gstreamer Fedora=gstreamer OpenSuSE=gstreamer Ubuntu=gstreamer0.10"
+I see that when I modify and rebuild my recipe, foo, the PR server
+increments its count within the RPM filename, but the RPM feed data
+doesn't seem to update.
 
-meta-base is just a meta package?
+e.g. in my deploy/rpm/cortexa9_vfp_neon folder I see a change (say) from
 
->  DISTRO_PN_ALIAS_pn-gstreamer1.0-plugins-bad = "Debian=gstreamer1.0-plugins-bad Ubuntu=gstreamer1.0-plugins-bad"
->  DISTRO_PN_ALIAS_pn-gstreamer1.0-plugins-base = "Debian=gstreamer1.0-plugins-base Ubuntu=gstreamer1.0-plugins-base"
->  DISTRO_PN_ALIAS_pn-gstreamer1.0-plugins-good = "Debian=gstreamer1.0-plugins-good Ubuntu=gstreamer1.0-plugins-bad"
-> @@ -148,6 +152,7 @@ DISTRO_PN_ALIAS_pn-gtk-engines = "Fedora=gtk2-engines OpenSuSE=gtk2-engines Ubun
->  DISTRO_PN_ALIAS_pn-gtk-sato-engine = "OpenedHand"
->  DISTRO_PN_ALIAS_pn-gtk-theme-torturer = "OSPDT upstream=http://wiki.laptop.org/go/GTK_for_OLPC"
->  DISTRO_PN_ALIAS_pn-gtk-update-icon-cache-native = "OSPDT"
-> +DISTRO_PN_ALIAS_pn-gummiboot = "Debian=gummiboot Fedora=gummiboot"
->  DISTRO_PN_ALIAS_pn-hello-mod = "OE-Core"
->  DISTRO_PN_ALIAS_pn-hostap-conf = "OE-Core"
->  DISTRO_PN_ALIAS_pn-hwlatdetect = "OSPDT"
-> @@ -158,6 +163,8 @@ DISTRO_PN_ALIAS_pn-initramfs-framework = "OE-Core"
->  DISTRO_PN_ALIAS_pn-initramfs-live-boot = "OE-Core"
->  DISTRO_PN_ALIAS_pn-initramfs-live-install = "OE-Core"
->  DISTRO_PN_ALIAS_pn-initramfs-live-install-efi = "OE-Core"
-> +DISTRO_PN_ALIAS_pn-initramfs-live-install-efi-testfs = "OE-Core"
-> +DISTRO_PN_ALIAS_pn-initramfs-live-install-testfs = "OE-Core"
->  DISTRO_PN_ALIAS_pn-initscripts = "Fedora=initscripts Mandravia=initscripts"
->  DISTRO_PN_ALIAS_pn-inputproto = "Meego=xorg-x11-proto-inputproto"
->  DISTRO_PN_ALIAS_pn-iproute2 = "OSPDT"
-> @@ -195,7 +202,9 @@ DISTRO_PN_ALIAS_pn-libical = "Ubuntu=libical Fedora=libical"
->  DISTRO_PN_ALIAS_pn-libiconv = "Fedora=mingw-libiconv Opensuse=cross-mingw-libiconv"
->  DISTRO_PN_ALIAS_pn-libjson = "Ubuntu=libjson0-dev Debian=libjson0-dev"
->  DISTRO_PN_ALIAS_pn-libksba = "Fedora=libksba Debian=libksba8"
-> +DISTRO_PN_ALIAS_pn-libksba = "Fedora=libksba Ubuntu=libksba"
+foo-1.7.11-r0.1.cortexa9_vfp_neon.rpm
 
-Duplicate?
+to
 
->  DISTRO_PN_ALIAS_pn-liblbxutil = "Mandriva=liblbxutil OpenSuse=xorg-x11-devel"
-> +DISTRO_PN_ALIAS_pn-libmatchbox = "Ubuntu=libmatchbox Fedora=libmatchbox"
->  DISTRO_PN_ALIAS_pn-libmpc = "Fedora=libmpc OpenSuse=libmpc2"
->  DISTRO_PN_ALIAS_pn-libnewt = "Debian=libnewt0.52 Fedora=newt"
->  DISTRO_PN_ALIAS_pn-libnewt-python = "Ubuntu=python-newt Fedora=newt-python"
-> @@ -224,6 +233,7 @@ DISTRO_PN_ALIAS_pn-libx11-diet = "Debian=libx11-6 Fedora=libX11 Ubuntu=libx11-6
->  DISTRO_PN_ALIAS_pn-libxcalibrate = "OSPDT upstream=http://cgit.freedesktop.org/xorg/lib/libXCalibrate/"
->  DISTRO_PN_ALIAS_pn-libxfontcache = "Mandriva=libxfontcache Debian=libxfontcache"
->  DISTRO_PN_ALIAS_pn-libxft = "Mandriva=libxft Debian=libxft2 Ubuntu=libxft2"
-> +DISTRO_PN_ALIAS_pn-libxi = "Ubuntu=libxi Fedora=libXi"
->  DISTRO_PN_ALIAS_pn-libxkbcommon = "Fedora=libxkbcommon Debian=libxkbcommon"
->  DISTRO_PN_ALIAS_pn-libxprintapputil = "Debian=libxprintapputil Ubuntu=libxprintapputil1 Mandriva=libxprintapputil"
->  DISTRO_PN_ALIAS_pn-libxscrnsaver = "Fedora=libXScrnSaver Ubuntu=libxss1 Mandriva=libxscrnsaver"
-> @@ -243,6 +253,7 @@ DISTRO_PN_ALIAS_pn-ltp = "Mandriva=ltp Ubuntu=ltp"
->  DISTRO_PN_ALIAS_pn-lttng-modules = "OSPDT upstream=http://lttng.org/"
->  DISTRO_PN_ALIAS_pn-lttng-tools = "OSPDT upstream=http://lttng.org/"
->  DISTRO_PN_ALIAS_pn-lttng-ust = "OSPDT upstream=http://lttng.org/"
-> +DISTRO_PN_ALIAS_pn-lz4 = "Debian=lz4 Fedora=lz4"
->  DISTRO_PN_ALIAS_pn-lzo = "Debian=liblzo Ubuntu=liblzo Fedora=lzp"
->  DISTRO_PN_ALIAS_pn-lzo-native = "Debian=liblzo Ubuntu=liblzo Fedora=lzp"
->  DISTRO_PN_ALIAS_pn-mailx = "Debian=bsd-mailx Ubuntu=bsd-mailx"
-> @@ -277,6 +288,7 @@ DISTRO_PN_ALIAS_pn-mini-x-session = "OSPDT"
->  DISTRO_PN_ALIAS_pn-mkfontdir = "Mandriva=mkfontdir Ubuntu=xfonts-utils Fedora=xorg-x11-font-utils"
->  DISTRO_PN_ALIAS_pn-mkfontscale = "Mandriva=mkfontscale Ubuntu=xfonts-utils Fedora=xorg-x11-font-utils"
->  DISTRO_PN_ALIAS_pn-mktemp = "Mandriva=mktemp Fedora=mktemp"
-> +DISTRO_PN_ALIAS_pn-mmc-utils = "OE-Core"
->  DISTRO_PN_ALIAS_pn-moblin-proto = "OE-Core"
->  DISTRO_PN_ALIAS_pn-modutils-collateral = "OE-Core"
->  DISTRO_PN_ALIAS_pn-modutils-initscripts = "OE-Core"
-> @@ -303,18 +315,19 @@ DISTRO_PN_ALIAS_pn-opkg-collateral = "OE-Core"
->  DISTRO_PN_ALIAS_pn-opkg-config-base = "OE-Core"
->  DISTRO_PN_ALIAS_pn-opkg-nogpg = "OSPDT upstream=http://svn.openmoko.org/trunk/src/tar"
->  DISTRO_PN_ALIAS_pn-opkg-utils = "OSPDT upstream=http://svn.openmoko.org/trunk/src/target/opkg/"
-> +DISTRO_PN_ALIAS_pn-oprofile = "Debian=oprofile Fedora=oprofile"
->  DISTRO_PN_ALIAS_pn-oprofileui = "Fedora=oprofileui Ubuntu=oprofile-gui Debian=oprofile-gui"
->  DISTRO_PN_ALIAS_pn-oprofileui-server = "Fedora=oprofileui Ubuntu=oprofile-gui Debian=oprofile-gui"
->  DISTRO_PN_ALIAS_pn-owl-video = "OpenedHand"
->  DISTRO_PN_ALIAS_pn-packagegroup-base = "OE-Core"
->  DISTRO_PN_ALIAS_pn-packagegroup-core = "OE-Core"
-> -DISTRO_PN_ALIAS_pn-packagegroup-core-full-cmdline = "OE-Core"
->  DISTRO_PN_ALIAS_pn-packagegroup-core-boot = "OE-Core"
->  DISTRO_PN_ALIAS_pn-packagegroup-core-buildessential = "OE-Core"
->  DISTRO_PN_ALIAS_pn-packagegroup-core-clutter = "OE-Core"
->  DISTRO_PN_ALIAS_pn-packagegroup-core-device-devel = "OE-Core"
->  DISTRO_PN_ALIAS_pn-packagegroup-core-directfb = "OE-Core"
->  DISTRO_PN_ALIAS_pn-packagegroup-core-eclipse-debug = "OE-Core"
-> +DISTRO_PN_ALIAS_pn-packagegroup-core-full-cmdline = "OE-Core"
->  DISTRO_PN_ALIAS_pn-packagegroup-core-lsb = "OE-Core"
->  DISTRO_PN_ALIAS_pn-packagegroup-core-nfs = "OE-Core"
->  DISTRO_PN_ALIAS_pn-packagegroup-core-qt = "OE-Core"
-> @@ -343,6 +356,7 @@ DISTRO_PN_ALIAS_pn-packagegroup-sdk-host = "OE-Core"
->  DISTRO_PN_ALIAS_pn-packagegroup-self-hosted = "OE-Core"
->  DISTRO_PN_ALIAS_pn-package-index = "OE-Core"
->  DISTRO_PN_ALIAS_pn-perf = "OSPDT"
-> +DISTRO_PN_ALIAS_pn-piglit = "OE-Core"
->  DISTRO_PN_ALIAS_pn-pkgconfig = "Ubuntu=pkg-config Fedora=pkgconfig"
->  DISTRO_PN_ALIAS_pn-pkgconfig-native = "Ubuntu=pkg-config Fedora=pkgconfig"
->  DISTRO_PN_ALIAS_pn-pointercal = "OE-Core"
-> @@ -350,13 +364,17 @@ DISTRO_PN_ALIAS_pn-pointercal-xinput = "OE-Core"
->  DISTRO_PN_ALIAS_pn-poky-feed-config-opkg = "OE-Core"
->  DISTRO_PN_ALIAS_pn-pong-clock = "OpenedHand"
->  DISTRO_PN_ALIAS_pn-portmap = "Debian=rpcbind Fedora=rpcbind"
-> +DISTRO_PN_ALIAS_pn-postinst-intercept = "OE-Core"
->  DISTRO_PN_ALIAS_pn-powertop = "Meego=powertop Fedora=powertop Debian=powertop OpenSuSE=powertop Mandriva=powertop"
->  DISTRO_PN_ALIAS_pn-ppp-dialin = "OE-Core"
-> +DISTRO_PN_ALIAS_pn-presentproto = "Debian=x11proto-present-dev Fedora=xorg-x11-proto-devel"
->  DISTRO_PN_ALIAS_pn-printproto = "Debian=x11proto-print-dev Ubuntu=x11proto-print-dev Mandriva=x11-proto-devel"
->  DISTRO_PN_ALIAS_pn-pseudo = "Windriver"
->  DISTRO_PN_ALIAS_pn-psplash = "OpenedHand"
->  DISTRO_PN_ALIAS_pn-ptest-runner = "OE-Core"
->  DISTRO_PN_ALIAS_pn-puzzles = "Debian=sgt-puzzles Fedora=puzzles"
-> +DISTRO_PN_ALIAS_pn-python3-distribute = "Debian=python3-setuptools Fedora=python3-setuptools"
-> +DISTRO_PN_ALIAS_pn-python-ZSI = "OE-Core"
->  DISTRO_PN_ALIAS_pn-python-argparse = "Fedora=python-argparse OpenSuSE=python-argparse"
->  DISTRO_PN_ALIAS_pn-python-argparse-native = "Fedora=python-argparse OpenSuSE=python-argparse"
->  DISTRO_PN_ALIAS_pn-python-dbus = "Ubuntu=python-dbus Debian=python-dbus Mandriva=python-dbus"
-> @@ -370,7 +388,6 @@ DISTRO_PN_ALIAS_pn-python-pyrex = "Mandriva=python-pyrex Ubuntu=python-pyrex"
->  DISTRO_PN_ALIAS_pn-python-scons = "Fedora=scons OpenSuSE=scons Ubuntu=scons Mandriva=scons Debian=scons"
->  DISTRO_PN_ALIAS_pn-python-setuptools = "Mandriva=python-setup OpenSuSE=python-setup-git"
->  DISTRO_PN_ALIAS_pn-python-smartpm = "Debian=smart OpenSuSE=smart"
-> -DISTRO_PN_ALIAS_pn-python-ZSI = "OE-Core"
->  DISTRO_PN_ALIAS_pn-qemu-config = "OpenedHand"
->  DISTRO_PN_ALIAS_pn-qemugl = "OpenedHand"
->  DISTRO_PN_ALIAS_pn-qemu-helper = "OpenedHand"
-> @@ -381,6 +398,7 @@ DISTRO_PN_ALIAS_pn-qmmp = "Fedora=qmmp Debian=qmmp"
->  DISTRO_PN_ALIAS_pn-qt4e-demo-image = "OE-Core"
->  DISTRO_PN_ALIAS_pn-qt4-embedded = "OSPDT"
->  DISTRO_PN_ALIAS_pn-qt4-graphics-system = "OE-Core"
-> +DISTRO_PN_ALIAS_pn-qt4-graphics-system = "OE-Core"
+foo-1.7.11-r0.2.cortexa9_vfp_neon.rpm
 
-Duplicate?
+However if I then run smart on the target (configured to use that rpm
+package feed) I don't see new packages
 
->  DISTRO_PN_ALIAS_pn-qt4-native = "Mandriva=libqt4-devel Ubuntu=libqt4-dev"
->  DISTRO_PN_ALIAS_pn-qt4-tools = "Mandriva=libqt4-devel Ubuntu=libqt4-dev"
->  DISTRO_PN_ALIAS_pn-qt4-x11-free = "Ubuntu=qt-x11-free Debian=qt-x11-free"
-> @@ -438,6 +456,7 @@ DISTRO_PN_ALIAS_pn-ubootchart = "OSPDT upstream=http://code.google.com/p/ubootch
->  DISTRO_PN_ALIAS_pn-u-boot-fw-utils = "Ubuntu=u-boot-tools Debian=u-boot-tools"
->  DISTRO_PN_ALIAS_pn-u-boot-mkimage = "Ubuntu=uboot-mkimage Debian=uboot-mkimage"
->  DISTRO_PN_ALIAS_pn-udev-extraconf = "OE-Core"
-> +DISTRO_PN_ALIAS_pn-unfs3 = "Debian=unfs3 Fedora=unfs3"
->  DISTRO_PN_ALIAS_pn-unfs-server = "OE-Core"
->  DISTRO_PN_ALIAS_pn-update-alternatives-dpkg = "Opensuse=update-alternatives Mandriva=update-alternatives"
->  DISTRO_PN_ALIAS_pn-update-rc.d = "OE-Core"
-> @@ -445,6 +464,7 @@ DISTRO_PN_ALIAS_pn-usbinit = "OE-Core"
->  DISTRO_PN_ALIAS_pn-util-macros = "Meego=xorg-x11-util-macros Fedora=xorg-x11-util-macros Mandriva=x11-util-macros"
->  DISTRO_PN_ALIAS_pn-v86d = "Debian=v86d Ubuntu=v86d"
->  DISTRO_PN_ALIAS_pn-videoproto = "Meego=xorg-x11-proto-videoproto"
-> +DISTRO_PN_ALIAS_pn-waffle = "OE-Core"
->  DISTRO_PN_ALIAS_pn-watchdog = "Debian=watchdog Ubuntu=watchdog Mandriva=watchdog"
->  DISTRO_PN_ALIAS_pn-webkit-gtk = "Fedora=webkitgtk Ubuntu=libwebkit"
->  DISTRO_PN_ALIAS_pn-web-webkit = "OpenedHand"
-> @@ -507,3 +527,4 @@ DISTRO_PN_ALIAS_pn-xwininfo = "Fedora=xorg-x11-utils Ubuntu=x11-utils"
->  DISTRO_PN_ALIAS_pn-yaffs2-utils = "OSPDT upstream=http://www.yaffs.net"
->  DISTRO_PN_ALIAS_pn-zaurusd = "OpenedHand"
->  DISTRO_PN_ALIAS_pn-zeroconf = "OSPDT upstream=http://www.progsoc.org/~wildfire/zeroconf/"
-> +DISTRO_PN_ALIAS_pn-zeroconf = "OSPDT upstream=http://www.progsoc.org/~wildfire/zeroconf/"
+smart update
 
-Duplicate?
+Similarly if I remove the package and reinstall it I get an error
+
+smart remove foo
+smart install foo
+
+Fetching packages...
+-> http://pkgrepo.my.local/.../foo-1.7.11-r0.1.cortexa9_vfp_neon.rpm
+foo-1.7.11-r0.1...                                          [  0%]
+
+error: Failed to download packages:
+error:    
+http://pkgrepo.my.local/cortexa9_vfp_neon/foo-1.7.11-r0.1.cortexa9_vfp_neon.rpm:
+File not found
+
+I believe this is because the old package has been removed, and the new
+package added to the folder,
+but the repodata has not been rebuilt, leaving the packages out of sync
+with the feed representation.
+
+If then try running
+
+bitbake package-index
+
+When I now run an update on the target it picks up the new package and I
+can fetch and install this
+
+smart update
+
+Updating cache...               ########################################
+[100%]
+
+Channels have 3 new packages:
+    foo-1.7.11-r0.3@cortexa9_vfp_neon
+...
+
+
+So if I am understanding the above correctly, when I make a change to a
+recipe and build it, PR automatically
+updates, the old RPM is removed and the new RPM added to the feed
+directory. However the package index
+for the feed is not updated.
+
+So if at that point I try to make use of the feed on a target I am
+likely to find something is broken.
+
+If that is true would it make sense to leave the old RPM in the feed
+directory until package-index
+is re-ran, or to run package-index automatically at the end of a build
+when RPMs have changed?
+
+Thanks,
+
+Alex
+
+
 
 
