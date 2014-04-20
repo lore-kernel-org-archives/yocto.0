@@ -1,29 +1,34 @@
-Return-Path: <jeremy@rhtech.co.nz>
-Received: from linuxplesk9.openhost.net.nz (linuxplesk9.openhost.net.nz
-	[119.47.118.13])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D224BE00B5C
-	for <yocto@yoctoproject.org>; Sat, 19 Apr 2014 22:37:27 -0700 (PDT)
-Received: (qmail 30566 invoked from network); 20 Apr 2014 17:37:25 +1200
-Received: from 122-61-40-229.jetstream.xtra.co.nz (HELO ?192.168.1.98?)
-	(122.61.40.229)
-	by linuxplesk9.openhost.net.nz with (DHE-RSA-AES128-SHA encrypted) SMTP;
-	20 Apr 2014 17:37:25 +1200
-Message-ID: <53535D16.8030008@rhtech.co.nz>
-Date: Sun, 20 Apr 2014 17:37:26 +1200
-From: Jeremy Cole-Baker <jeremy@rhtech.co.nz>
-Organization: Riverhead Technology
-User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64;
+Return-Path: <ajlennon@dynamicdevices.co.uk>
+Received: from www.dynamicdevices.co.uk (www.dynamicdevices.co.uk
+	[89.200.136.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 54CC1E00B5C
+	for <yocto@yoctoproject.org>; Sun, 20 Apr 2014 02:59:44 -0700 (PDT)
+Received: from localhost (localhost [127.0.0.1])
+	by www.dynamicdevices.co.uk (Postfix) with ESMTP id C042727E00C
+	for <yocto@yoctoproject.org>; Sun, 20 Apr 2014 09:59:42 +0000 (UTC)
+X-Virus-Scanned: Debian amavisd-new at lennoab2.miniserver.com
+Received: from www.dynamicdevices.co.uk ([127.0.0.1])
+	by localhost (www.dynamicdevices.co.uk [127.0.0.1]) (amavisd-new,
+	port 10024) with ESMTP id Wiw3G4pouSXe for <yocto@yoctoproject.org>;
+	Sun, 20 Apr 2014 09:59:23 +0000 (UTC)
+Received: from [127.0.0.1] (cpc32-live22-2-0-cust59.17-2.cable.virginm.net
+	[82.36.253.60])
+	(using TLSv1 with cipher ECDHE-RSA-AES128-SHA (128/128 bits))
+	(No client certificate requested)
+	by www.dynamicdevices.co.uk (Postfix) with ESMTPSA id CF61C27E006
+	for <yocto@yoctoproject.org>; Sun, 20 Apr 2014 09:59:23 +0000 (UTC)
+Message-ID: <53539A78.3020901@dynamicdevices.co.uk>
+Date: Sun, 20 Apr 2014 10:59:20 +0100
+From: Alex J Lennon <ajlennon@dynamicdevices.co.uk>
+User-Agent: Mozilla/5.0 (Windows NT 6.3; WOW64;
 	rv:24.0) Gecko/20100101 Thunderbird/24.4.0
 MIME-Version: 1.0
-To: yocto@yoctoproject.org
-References: <534DAEF0.2000501@rhtech.co.nz> <5352E049.8050604@rhtech.co.nz>
-	<20140419222452.GO11339@denix.org>
-In-Reply-To: <20140419222452.GO11339@denix.org>
-Subject: Re: No USB devices on BeagleBoard xM!
+To: Yocto <yocto@yoctoproject.org>
+X-Enigmail-Version: 1.6
+Subject: Best practice for adding smart package feed sources to an image
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
-Reply-To: jeremy@rhtech.co.nz
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -32,124 +37,37 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 20 Apr 2014 05:37:33 -0000
-Content-Type: text/plain; charset=windows-1252; format=flowed
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Sun, 20 Apr 2014 09:59:45 -0000
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: 7bit
 
-Hi, thanks for your reply.
+Hi all,
 
-I did have a modules file from the build, which I installed on my root 
-fs as follows:
+I'm currently looking at adding smart package management support to an
+image I'm building for i.MX6 based on RPMs.
 
-tar x -C _root/ -f 
-modules–3.10.11+git0+363bd856c8_702040ac7c-r0-beagleboard-20140415194907.tgz
+I've managed to work out how to expose the built packages with some
+helpful information here, although it presupposes use of opkg
 
-(_root is a link to the correct partition on the flash card). The file 
-contained a number of directories and files which were installed under 
-/lib/modules/3.10.11-yocto-standard/. I have verified that these were 
-copied correctly.
+https://communities.intel.com/thread/48408
 
-Could I be missing one or more modules, because I haven't selected some 
-option in the build somewhere?
+Then I've managed to manually add the feeds to the target with something
+along the lines of this with appropriate entry in /etc/hosts
 
-Is there any way to find out what module it is trying to load (i.e. when 
-it says "no such file or directory")?
+smart channel --add devel-imx6qsabresd name=devel-imx6qsabresd
+type=rpm-md baseurl=http://pkgrepo.my.local/coretexa9_vfp_neon_mx6  -y
 
+So now I'm wondering what best practice is for adding these feeds into
+an image automatically? Could anybody advise?
 
-On 20/04/2014 10:24 a.m., Denys Dmytriyenko wrote:
-> On Sun, Apr 20, 2014 at 08:44:57AM +1200, Jeremy Cole-Baker wrote:
->>
->> Hi, I still can't figure out how to get the USB hardware working on
->> my BeagelBoard xM.
->>
->> I've managed to build a couple of different recipes for my
->> BeagleBoard (BeagleBoard xM Rev C), and also had a go at customising
->> it.  I think I've tried core-image-minimal and core-image-basic.
->>
->> The build works OK, and I can set up my micro SD card and get it to
->> boot. I see lots of messages about loading drivers during boot, and
->> I can log in to linux.
->>
->> However, the USB devices don't seem to be working. The built in
->> USB-Ethernet isn't there, and when I plug in a USB stick nothing
->> happens - nothing in /dev/ and no messages in the system log.
->>
->> I don't know whether this is something I missed in the build, or
->> some configuration I need to do. I also don't know whether it is
->> specific to the Beagle or a general problem. Unfortunately I am new
->> to Kernel builds and device drivers.
->>
->> Here's what I've looked into:
->>
->> The boot-up messages indicate that the USB drivers are loaded, e.g.:
->>
->> <snip>
->> usbcore: registered new interface driver usbfs
->> usbcore: registered new interface driver hub
->> usbcore: registered new device driver usb
->> ...
->> usbcore: registered new interface driver smsc75xx
->> usbcore: registered new interface driver smsc95xx
->> ...etc
->>
->> (I think smsc95xx is the USB-Ethernet chip on the beagle board xM).
->>
->> ehci_hcd: USB 2.0 'Enhanced' Host Controller (EHCI) Driver
->> ehci-omap: OMAP-EHCI Host Controller driver
->> ehci-omap 48064800.ehci: EHCI Host Controller
->> ehci-omap 48064800.ehci: new USB bus registered, assigned bus number 1
->> ehci-omap 48064800.ehci: irq 93, io mem 0x48064800
->> ehci-omap 48064800.ehci: USB 2.0 started, EHCI 1.00
->> hub 1-0:1.0: USB hub found
->> hub 1-0:1.0: 3 ports detected
->> usbcore: registered new interface driver usb-storage
->> musb-hdrc musb-hdrc.0.auto: musb_init_controller failed with status -6
->> mousedev: PS/2 mouse device common for all mice
->> ...Etc
->>
->> There's a modprobe error which occurs a couple of times:
->>
->> udevd[71]: starting version 175
->> modprobe: chdir(3.10.11-yocto-standard): No such file or directory
->
-> Doesn't seem like you have modules installed in your rootfs ^^^
->
-> If you build core-image-minimal, you then need to extract the modules from a
-> tarball you got in the deplot area...
->
->
->> I also saw errors from the ethernet subsystem (?), along the lines
->> of "eth0: device not found" and "usb0: device not found". This
->> occurred during boot and also when I used "ifup eth0". I'm actually
->> seeing a different error now: "ifconfig: SIOCGIFFLAGS: No such
->> device". In either case, I think it's because something to do with
->> the actual USB hardware is missing or not configured.
->>
->> "lsmod" shows no modules loaded, i.e.:
->>
->> root@beagleboard:~# lsmod
->> Module Size Used by
->> root@beagleboard:~#
->>
->> Does this mean that the various device drivers, etc, above are built
->> in to the kernel?
->>
->> Any suggestions for how to diagnose / fix this problem? Anybody else
->> have experience with the BeagleBoard xM? I'm a bit lost.
->>
->> Thanks!
->>
->> Jeremy Cole-Baker
->>
->> --
->> _______________________________________________
->> yocto mailing list
->> yocto@yoctoproject.org
->> https://lists.yoctoproject.org/listinfo/yocto
->
+I had a look in the Wiki, and the manual but couldn't see anything
+detailing what's needed,
 
+https://wiki.yoctoproject.org/wiki/Smart
+http://www.yoctoproject.org/docs/current/ref-manual/ref-manual.html#migration-target-package-management-with-rpm
 
--- 
-Jeremy Cole-Baker
+Many thanks,
+
+Alex
 
 
