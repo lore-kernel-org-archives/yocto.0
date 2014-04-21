@@ -1,36 +1,30 @@
-Return-Path: <elizabeth.flanagan@intel.com>
-Received: from mail-vc0-f178.google.com (mail-vc0-f178.google.com
-	[209.85.220.178])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9B942E00C4A
-	for <yocto@yoctoproject.org>; Mon, 21 Apr 2014 11:36:59 -0700 (PDT)
-Received: by mail-vc0-f178.google.com with SMTP id im17so1425545vcb.9
-	for <yocto@yoctoproject.org>; Mon, 21 Apr 2014 11:36:59 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:date
-	:message-id:subject:from:to:cc:content-type;
-	bh=+m7jfgp0H432/u8klCtAhSr4Nirm9FAd8vPLYnAh0K0=;
-	b=AKtd6jAb3kmGnJTZFSG2NfKf+fSPdAqoUYAnxbivf32OMQ4ClOBFYEajYPxqv1O2Ll
-	5QdyD1UZ4LkQxK+hhDo8hxZMoDoQaQHrELVnscDtSpbfeEijKh8R1fUENdDAUCrKmHBJ
-	4O21eOH8yzzPr0KGfV9i+JowvHeJ4/U8GnobzJr/iKdQY1TQEyP8zf31u7pyANMTenoY
-	LV05gkvrQoAUsZGpBQbyWZpEwSvLhZ6Uf37Kq2L0JXstihYDNeQFpRMrjNXbeQCtTmCz
-	1MK0R3plVi23qvjVpaClxIT8hMEDA4DKLQjiwQ80fxilz5EaIKNblOFUExS+nnwhscIK
-	Bnjg==
-X-Gm-Message-State: ALoCoQmWtG4AkDDRCAjHLhAFW9G7zftXORKjUdVl69qLN4YTx6NtLHKou1ZXTk6xQibHmYyPg3v4
+Return-Path: <stephen.k.jolley@intel.com>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7F5DDE00C51
+	for <yocto@yoctoproject.org>; Mon, 21 Apr 2014 15:51:09 -0700 (PDT)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga101.jf.intel.com with ESMTP; 21 Apr 2014 15:51:09 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.97,898,1389772800"; 
+	d="scan'208,217";a="525012010"
+Received: from fmsmsx108.amr.corp.intel.com ([10.19.9.228])
+	by orsmga002.jf.intel.com with ESMTP; 21 Apr 2014 15:51:08 -0700
+Received: from fmsmsx111.amr.corp.intel.com ([169.254.2.77]) by
+	FMSMSX108.amr.corp.intel.com ([10.19.9.228]) with mapi id
+	14.03.0123.003; Mon, 21 Apr 2014 15:51:07 -0700
+From: "Jolley, Stephen K" <stephen.k.jolley@intel.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: Agenda: Yocto Project Technical Team Meeting - Tuesday, April
+	22, 2014 8:00 AM US Pacific Time
+Thread-Index: Ac9dtC3Ds6a2pk3USqeLWDkqhuCmKg==
+Date: Mon, 21 Apr 2014 22:51:07 +0000
+Message-ID: <9ADD3FDE8B189B4AA2F8A3C711F8155E55050ADF@fmsmsx111.amr.corp.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.1.200.106]
 MIME-Version: 1.0
-X-Received: by 10.220.4.132 with SMTP id 4mr32669040vcr.9.1398105417331; Mon,
-	21 Apr 2014 11:36:57 -0700 (PDT)
-Received: by 10.52.173.69 with HTTP; Mon, 21 Apr 2014 11:36:57 -0700 (PDT)
-In-Reply-To: <CAPhnLPDJP-UzA3wD_t43y=5xxci4r-AnDb_KZnE83Zs2oLRksA@mail.gmail.com>
-References: <1397858808-10025-1-git-send-email-elizabeth.flanagan@intel.com>
-	<1397995216.16672.17.camel@ted>
-	<CAPhnLPDJP-UzA3wD_t43y=5xxci4r-AnDb_KZnE83Zs2oLRksA@mail.gmail.com>
-Date: Mon, 21 Apr 2014 11:36:57 -0700
-Message-ID: <CAPhnLPAMRfXAp1_8nfZMzBCJ3XBs9s7MHztAOpHgKk0AJNaDGA@mail.gmail.com>
-From: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
-To: Richard Purdie <richard.purdie@linuxfoundation.org>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: [PATCH][daisy] distro_alias.inc: update/sort alias information.
+Subject: Agenda: Yocto Project Technical Team Meeting - Tuesday, April 22, 2014 8:00 AM US Pacific Time
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,249 +36,1071 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 21 Apr 2014 18:37:02 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Mon, 21 Apr 2014 22:51:10 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_9ADD3FDE8B189B4AA2F8A3C711F8155E55050ADFfmsmsx111amrcor_"
 
-More on this.
+--_000_9ADD3FDE8B189B4AA2F8A3C711F8155E55050ADFfmsmsx111amrcor_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-I ran a world distrodata (I normally run universe) and got the
-following packages with no upstream distros. Interesting results
-asterisked.
-
-gnome-desktop-testing
-presentproto
-python3-distribute
-unfs3
-cryptodev-linux
-postinst-intercept
-initramfs-live-install-efi-testfs
-*gstreamer1.0-meta-base
-piglit
-*grub-efi
-waffle
-gummiboot
-lz4
-initramfs-live-install-testfs
-mmc-utils
-
-Looking into it some more, but we may have an issue with distrodata
-spitting out inaccurate results.
-
--b
+Agenda:
 
 
-On Mon, Apr 21, 2014 at 11:07 AM, Flanagan, Elizabeth
-<elizabeth.flanagan@intel.com> wrote:
-> Looking at this again. It looks like something went odd either with
-> the scripts I hacked together to generate this or my commit.
+
+* Opens collection - 5 min (Stephen)
+
+* Yocto 1.6 status - 5 min (Stephen/team)
+
+  https://wiki.yoctoproject.org/wiki/Yocto_Project_v1.6_Status
+
+  https://wiki.yoctoproject.org/wiki/Yocto_1.6_Features
+
+* SWAT team rotation: Laurentiu -> Nitin
+
+  https://wiki.yoctoproject.org/wiki/Yocto_Build_Failure_Swat_Team
+
+* Opens - 10 min
+
+* Team Sharing - 10 min
+
+-----Original Appointment-----
+
+We encourage people attending the meeting to logon the Yocto Project IRC ch=
+ancel during the meeting (optional):
+
+
+
+Yocto IRC: http://webchat.freenode.net/?channels=3D#yocto
+
+IRC Tutorial: http://www.irchelp.org/irchelp/irctutorial.html
+
+Conference details
+
+Conference name:
+
+Yocto Project Technical Team
+
+Conference date/start time:
+
+Tue Jun 25, 2013 at 11:00 AM Eastern Daylight Time (GMT-0400)
+
+Participants:
+
+30
+
+Duration:
+
+30 minutes
+
+Participant passcode:
+
+42001078
+
+Dial-in number:
+
+1.972.995.7777
+
+US Toll Free number:
+
+1.877.561.6828
+
+BlackBerry users, click this link to join your conference as a participant:
+
+1.972.995.7777x42001078#
+
+
+
+Depending on where you are dialing from, either your BlackBerry will pause =
+and enter the passcode automatically or you will be prompted to click again=
+ to dial the passcode.
+
+
+Local and Global Access Numbers
+
+
+
+Country
+
+Dial-in number
+
+Australia:
+
+1800 636 843
+
+Czech Republic:
+
+242 430 350
+
+China (Beijing):
+
+From office dial 8-9957777 or 8784277
+Beijing Out of Office dial 5878 4277
+
+China (Shanghai):
+
+From office dial 8-9957777 or 3073322
+Shanghai Out of Office dial 2307 3322
+
+China (Shenzen):
+
+From office dial 8-9957777 or 6007877
+Shenzen Out of Office dial 2600 7877
+
+China (Other Cities):
+
+From IP phone dial 8-9957777
+Other cities - Non IP phone dial 021-23073322
+
+Denmark:
+
+8060 1400
+
+Finland:
+
+09 41333477
+
+France:
+
+0497 275888
+
+Germany:
+
+08161 803232
+
+Holland:
+
+030 2417490
+
+India:
+
+BSNL subscribers use 1800 425 9996 (Toll Free)
+Airtel subscribers use 0008 009 861 212 (Toll Free)
+From TI Campus use 89957777
+Others use 2509 9555 (Landline within Bangalore) or
+80 2509 9555 (Outside Bangalore)
+
+Israel:
+
+09 790 6715
+
+Italy:
+
+039 69061234 (039 is local city code not country code)
+
+Japan:
+
+From TI Campus use 8 995 7777
+Outside TI use 03 4331 3777
+
+Malaysia:
+
+From IP phone dial 2643799
+From Kuala Lumpur dial 4264 3799
+Outside Kuala Lumpur dial (03)4264 3799
+
+Norway:
+
+2 295 8744
+
+Philippines:
+
+From Baguio City use 4471177
+From Metro Manila area use 8702477
+
+Singapore:
+
+From IP phone dial 3894777
+Outside TI use 6389 4777
+
+South Korea:
+
+From IP phone dial 5606998
+From Seoul dial 5606998
+Outside Seoul dial (02)5606998
+
+Sweden:
+
+08 58755577
+
+Taiwan:
+
+From IP phone dial 1363
+From Taipei dial 2241 1363
+Outside Taipei dial (02)2241 1363
+
+Turkey:
+
+Landline Only dial 0811 288 0001
+then enter 877 633 1123
+
+UK:
+
+01908 355599
+
+US:
+
+972 995 7777 or 1877 561 6828
+
+
+Recurring conferences
+
+First scheduled conference:
+
+Tue Jun 25, 2013
+
+Recurrence frequency:
+
+Weekly - Every 1 week(s) on Tuesday
+
+Recurrence ends:
+
+End after 52 occurrences
+
+
+Thanks,
+
+Stephen K. Jolley
+Yocto Project Program Manager
+INTEL, MS JF1-255, 2111 N.E. 25th Avenue, Hillsboro, OR 97124
+*   Work Telephone:          (503) 712-0534
+*    Cell:                                (208) 244-4460
+* Email:                             stephen.k.jolley@intel.com
+
+
+--_000_9ADD3FDE8B189B4AA2F8A3C711F8155E55050ADFfmsmsx111amrcor_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:x=3D"urn:schemas-microsoft-com:office:excel" xmlns:m=3D"http://schema=
+s.microsoft.com/office/2004/12/omml" xmlns=3D"http://www.w3.org/TR/REC-html=
+40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
 >
-> -b
->
-> On Sun, Apr 20, 2014 at 5:00 AM, Richard Purdie
-> <richard.purdie@linuxfoundation.org> wrote:
->> On Fri, 2014-04-18 at 15:06 -0700, Elizabeth Flanagan wrote:
->>> From: Beth Flanagan <elizabeth.flanagan@intel.com>
->>>
->>> Added new package data and resorted per
->>> http://article.gmane.org/gmane.linux.embedded.poky/9253
->>>
->>> Signed-off-by: Beth Flanagan <elizabeth.flanagan@intel.com>
->>> ---
->>>  meta-yocto/conf/distro/include/distro_alias.inc | 25 +++++++++++++++++++++++--
->>>  1 file changed, 23 insertions(+), 2 deletions(-)
->>>
->>> diff --git a/meta-yocto/conf/distro/include/distro_alias.inc b/meta-yocto/conf/distro/include/distro_alias.inc
->>> index 96db5ba..68a82b7 100644
->>> --- a/meta-yocto/conf/distro/include/distro_alias.inc
->>> +++ b/meta-yocto/conf/distro/include/distro_alias.inc
->>> @@ -71,6 +71,7 @@ DISTRO_PN_ALIAS_pn-core-image-sato-sdk = "OE-Core"
->>>  DISTRO_PN_ALIAS_pn-core-image-weston = "OE-Core"
->>>  DISTRO_PN_ALIAS_pn-core-image-x11 = "OE-Core"
->>>  DISTRO_PN_ALIAS_pn-cross-localedef = "OSPDT"
->>> +DISTRO_PN_ALIAS_pn-cryptodev-linux = "OE-Core"
->>>  DISTRO_PN_ALIAS_pn-cwautomacros = "OSPDT upstream=http://cwautomacros.berlios.de/"
->>>  DISTRO_PN_ALIAS_pn-damageproto = "Meego=xorg-x11-proto-damageproto"
->>>  DISTRO_PN_ALIAS_pn-db = "Debian=db5.1 Ubuntu=db5.1"
->>> @@ -122,7 +123,9 @@ DISTRO_PN_ALIAS_pn-gdk-pixbuf-csource-native = "Debian=libgdk-pixbuf2.0-0 Fedora
->>>  DISTRO_PN_ALIAS_pn-gettext-minimal-native = "Debian=gettext Fedora=gettext"
->>>  DISTRO_PN_ALIAS_pn-glib-2.0 = "Meego=glib2 Fedora=glib2 OpenSuSE=glib2 Ubuntu=glib2.0 Mandriva=glib2.0 Debian=glib2.0"
->>>  DISTRO_PN_ALIAS_pn-glproto = "Meego=xorg-x11-proto-glproto"
->>> +DISTRO_PN_ALIAS_pn-gnome-desktop-testing = "Debian=gnome-desktop-testing Fedora=gnome-desktop-testing"
->>>  DISTRO_PN_ALIAS_pn-gnu-config = "OpenedHand"
->>> +DISTRO_PN_ALIAS_pn-grub-efi = "Debian=grub-efi Fedora=grub2-efi"
->>>  DISTRO_PN_ALIAS_pn-grub-efi-i586 = "Ubuntu=grub Fedora=grub"
->>>  DISTRO_PN_ALIAS_pn-grub-efi-x86-64-native = "Ubuntu=grub Fedora=grub"
->>
->> Something doesn't add up above...
->>
->>>  DISTRO_PN_ALIAS_pn-gst-ffmpeg = "Mandriva=gstreamer0.10-ffmpeg Debian=gstreamer0.10-ffmpeg"
->>> @@ -137,6 +140,7 @@ DISTRO_PN_ALIAS_pn-gst-plugins-gl = "Debian=gstreamer0.10-plugins-gl OpenSuSE=gs
->>>  DISTRO_PN_ALIAS_pn-gst-plugins-good = "Meego=gst-plugins-good Fedora=gstreamer-plugins-good OpenSuSE=gstreamer-plugins-good Ubuntu=gst-plugins-good0.10 Mandriva=gstreamer0.10-plugins-good Debian=gst-plugins-good0.10"
->>>  DISTRO_PN_ALIAS_pn-gst-plugins-ugly = "OpenSuSE=gstreamer-plugins-ugly Mandriva=gstreamer0.10-plugins-ugly Debian=gst-plugins-ugly0.10"
->>>  DISTRO_PN_ALIAS_pn-gstreamer1.0 = "Debian=gstreamer1.0 Ubuntu=gstreamer1.0"
->>> +DISTRO_PN_ALIAS_pn-gstreamer1.0-meta-base = "Meego=gstreamer Fedora=gstreamer OpenSuSE=gstreamer Ubuntu=gstreamer0.10"
->>
->> meta-base is just a meta package?
->>
->>>  DISTRO_PN_ALIAS_pn-gstreamer1.0-plugins-bad = "Debian=gstreamer1.0-plugins-bad Ubuntu=gstreamer1.0-plugins-bad"
->>>  DISTRO_PN_ALIAS_pn-gstreamer1.0-plugins-base = "Debian=gstreamer1.0-plugins-base Ubuntu=gstreamer1.0-plugins-base"
->>>  DISTRO_PN_ALIAS_pn-gstreamer1.0-plugins-good = "Debian=gstreamer1.0-plugins-good Ubuntu=gstreamer1.0-plugins-bad"
->>> @@ -148,6 +152,7 @@ DISTRO_PN_ALIAS_pn-gtk-engines = "Fedora=gtk2-engines OpenSuSE=gtk2-engines Ubun
->>>  DISTRO_PN_ALIAS_pn-gtk-sato-engine = "OpenedHand"
->>>  DISTRO_PN_ALIAS_pn-gtk-theme-torturer = "OSPDT upstream=http://wiki.laptop.org/go/GTK_for_OLPC"
->>>  DISTRO_PN_ALIAS_pn-gtk-update-icon-cache-native = "OSPDT"
->>> +DISTRO_PN_ALIAS_pn-gummiboot = "Debian=gummiboot Fedora=gummiboot"
->>>  DISTRO_PN_ALIAS_pn-hello-mod = "OE-Core"
->>>  DISTRO_PN_ALIAS_pn-hostap-conf = "OE-Core"
->>>  DISTRO_PN_ALIAS_pn-hwlatdetect = "OSPDT"
->>> @@ -158,6 +163,8 @@ DISTRO_PN_ALIAS_pn-initramfs-framework = "OE-Core"
->>>  DISTRO_PN_ALIAS_pn-initramfs-live-boot = "OE-Core"
->>>  DISTRO_PN_ALIAS_pn-initramfs-live-install = "OE-Core"
->>>  DISTRO_PN_ALIAS_pn-initramfs-live-install-efi = "OE-Core"
->>> +DISTRO_PN_ALIAS_pn-initramfs-live-install-efi-testfs = "OE-Core"
->>> +DISTRO_PN_ALIAS_pn-initramfs-live-install-testfs = "OE-Core"
->>>  DISTRO_PN_ALIAS_pn-initscripts = "Fedora=initscripts Mandravia=initscripts"
->>>  DISTRO_PN_ALIAS_pn-inputproto = "Meego=xorg-x11-proto-inputproto"
->>>  DISTRO_PN_ALIAS_pn-iproute2 = "OSPDT"
->>> @@ -195,7 +202,9 @@ DISTRO_PN_ALIAS_pn-libical = "Ubuntu=libical Fedora=libical"
->>>  DISTRO_PN_ALIAS_pn-libiconv = "Fedora=mingw-libiconv Opensuse=cross-mingw-libiconv"
->>>  DISTRO_PN_ALIAS_pn-libjson = "Ubuntu=libjson0-dev Debian=libjson0-dev"
->>>  DISTRO_PN_ALIAS_pn-libksba = "Fedora=libksba Debian=libksba8"
->>> +DISTRO_PN_ALIAS_pn-libksba = "Fedora=libksba Ubuntu=libksba"
->>
->> Duplicate?
->>
->>>  DISTRO_PN_ALIAS_pn-liblbxutil = "Mandriva=liblbxutil OpenSuse=xorg-x11-devel"
->>> +DISTRO_PN_ALIAS_pn-libmatchbox = "Ubuntu=libmatchbox Fedora=libmatchbox"
->>>  DISTRO_PN_ALIAS_pn-libmpc = "Fedora=libmpc OpenSuse=libmpc2"
->>>  DISTRO_PN_ALIAS_pn-libnewt = "Debian=libnewt0.52 Fedora=newt"
->>>  DISTRO_PN_ALIAS_pn-libnewt-python = "Ubuntu=python-newt Fedora=newt-python"
->>> @@ -224,6 +233,7 @@ DISTRO_PN_ALIAS_pn-libx11-diet = "Debian=libx11-6 Fedora=libX11 Ubuntu=libx11-6
->>>  DISTRO_PN_ALIAS_pn-libxcalibrate = "OSPDT upstream=http://cgit.freedesktop.org/xorg/lib/libXCalibrate/"
->>>  DISTRO_PN_ALIAS_pn-libxfontcache = "Mandriva=libxfontcache Debian=libxfontcache"
->>>  DISTRO_PN_ALIAS_pn-libxft = "Mandriva=libxft Debian=libxft2 Ubuntu=libxft2"
->>> +DISTRO_PN_ALIAS_pn-libxi = "Ubuntu=libxi Fedora=libXi"
->>>  DISTRO_PN_ALIAS_pn-libxkbcommon = "Fedora=libxkbcommon Debian=libxkbcommon"
->>>  DISTRO_PN_ALIAS_pn-libxprintapputil = "Debian=libxprintapputil Ubuntu=libxprintapputil1 Mandriva=libxprintapputil"
->>>  DISTRO_PN_ALIAS_pn-libxscrnsaver = "Fedora=libXScrnSaver Ubuntu=libxss1 Mandriva=libxscrnsaver"
->>> @@ -243,6 +253,7 @@ DISTRO_PN_ALIAS_pn-ltp = "Mandriva=ltp Ubuntu=ltp"
->>>  DISTRO_PN_ALIAS_pn-lttng-modules = "OSPDT upstream=http://lttng.org/"
->>>  DISTRO_PN_ALIAS_pn-lttng-tools = "OSPDT upstream=http://lttng.org/"
->>>  DISTRO_PN_ALIAS_pn-lttng-ust = "OSPDT upstream=http://lttng.org/"
->>> +DISTRO_PN_ALIAS_pn-lz4 = "Debian=lz4 Fedora=lz4"
->>>  DISTRO_PN_ALIAS_pn-lzo = "Debian=liblzo Ubuntu=liblzo Fedora=lzp"
->>>  DISTRO_PN_ALIAS_pn-lzo-native = "Debian=liblzo Ubuntu=liblzo Fedora=lzp"
->>>  DISTRO_PN_ALIAS_pn-mailx = "Debian=bsd-mailx Ubuntu=bsd-mailx"
->>> @@ -277,6 +288,7 @@ DISTRO_PN_ALIAS_pn-mini-x-session = "OSPDT"
->>>  DISTRO_PN_ALIAS_pn-mkfontdir = "Mandriva=mkfontdir Ubuntu=xfonts-utils Fedora=xorg-x11-font-utils"
->>>  DISTRO_PN_ALIAS_pn-mkfontscale = "Mandriva=mkfontscale Ubuntu=xfonts-utils Fedora=xorg-x11-font-utils"
->>>  DISTRO_PN_ALIAS_pn-mktemp = "Mandriva=mktemp Fedora=mktemp"
->>> +DISTRO_PN_ALIAS_pn-mmc-utils = "OE-Core"
->>>  DISTRO_PN_ALIAS_pn-moblin-proto = "OE-Core"
->>>  DISTRO_PN_ALIAS_pn-modutils-collateral = "OE-Core"
->>>  DISTRO_PN_ALIAS_pn-modutils-initscripts = "OE-Core"
->>> @@ -303,18 +315,19 @@ DISTRO_PN_ALIAS_pn-opkg-collateral = "OE-Core"
->>>  DISTRO_PN_ALIAS_pn-opkg-config-base = "OE-Core"
->>>  DISTRO_PN_ALIAS_pn-opkg-nogpg = "OSPDT upstream=http://svn.openmoko.org/trunk/src/tar"
->>>  DISTRO_PN_ALIAS_pn-opkg-utils = "OSPDT upstream=http://svn.openmoko.org/trunk/src/target/opkg/"
->>> +DISTRO_PN_ALIAS_pn-oprofile = "Debian=oprofile Fedora=oprofile"
->>>  DISTRO_PN_ALIAS_pn-oprofileui = "Fedora=oprofileui Ubuntu=oprofile-gui Debian=oprofile-gui"
->>>  DISTRO_PN_ALIAS_pn-oprofileui-server = "Fedora=oprofileui Ubuntu=oprofile-gui Debian=oprofile-gui"
->>>  DISTRO_PN_ALIAS_pn-owl-video = "OpenedHand"
->>>  DISTRO_PN_ALIAS_pn-packagegroup-base = "OE-Core"
->>>  DISTRO_PN_ALIAS_pn-packagegroup-core = "OE-Core"
->>> -DISTRO_PN_ALIAS_pn-packagegroup-core-full-cmdline = "OE-Core"
->>>  DISTRO_PN_ALIAS_pn-packagegroup-core-boot = "OE-Core"
->>>  DISTRO_PN_ALIAS_pn-packagegroup-core-buildessential = "OE-Core"
->>>  DISTRO_PN_ALIAS_pn-packagegroup-core-clutter = "OE-Core"
->>>  DISTRO_PN_ALIAS_pn-packagegroup-core-device-devel = "OE-Core"
->>>  DISTRO_PN_ALIAS_pn-packagegroup-core-directfb = "OE-Core"
->>>  DISTRO_PN_ALIAS_pn-packagegroup-core-eclipse-debug = "OE-Core"
->>> +DISTRO_PN_ALIAS_pn-packagegroup-core-full-cmdline = "OE-Core"
->>>  DISTRO_PN_ALIAS_pn-packagegroup-core-lsb = "OE-Core"
->>>  DISTRO_PN_ALIAS_pn-packagegroup-core-nfs = "OE-Core"
->>>  DISTRO_PN_ALIAS_pn-packagegroup-core-qt = "OE-Core"
->>> @@ -343,6 +356,7 @@ DISTRO_PN_ALIAS_pn-packagegroup-sdk-host = "OE-Core"
->>>  DISTRO_PN_ALIAS_pn-packagegroup-self-hosted = "OE-Core"
->>>  DISTRO_PN_ALIAS_pn-package-index = "OE-Core"
->>>  DISTRO_PN_ALIAS_pn-perf = "OSPDT"
->>> +DISTRO_PN_ALIAS_pn-piglit = "OE-Core"
->>>  DISTRO_PN_ALIAS_pn-pkgconfig = "Ubuntu=pkg-config Fedora=pkgconfig"
->>>  DISTRO_PN_ALIAS_pn-pkgconfig-native = "Ubuntu=pkg-config Fedora=pkgconfig"
->>>  DISTRO_PN_ALIAS_pn-pointercal = "OE-Core"
->>> @@ -350,13 +364,17 @@ DISTRO_PN_ALIAS_pn-pointercal-xinput = "OE-Core"
->>>  DISTRO_PN_ALIAS_pn-poky-feed-config-opkg = "OE-Core"
->>>  DISTRO_PN_ALIAS_pn-pong-clock = "OpenedHand"
->>>  DISTRO_PN_ALIAS_pn-portmap = "Debian=rpcbind Fedora=rpcbind"
->>> +DISTRO_PN_ALIAS_pn-postinst-intercept = "OE-Core"
->>>  DISTRO_PN_ALIAS_pn-powertop = "Meego=powertop Fedora=powertop Debian=powertop OpenSuSE=powertop Mandriva=powertop"
->>>  DISTRO_PN_ALIAS_pn-ppp-dialin = "OE-Core"
->>> +DISTRO_PN_ALIAS_pn-presentproto = "Debian=x11proto-present-dev Fedora=xorg-x11-proto-devel"
->>>  DISTRO_PN_ALIAS_pn-printproto = "Debian=x11proto-print-dev Ubuntu=x11proto-print-dev Mandriva=x11-proto-devel"
->>>  DISTRO_PN_ALIAS_pn-pseudo = "Windriver"
->>>  DISTRO_PN_ALIAS_pn-psplash = "OpenedHand"
->>>  DISTRO_PN_ALIAS_pn-ptest-runner = "OE-Core"
->>>  DISTRO_PN_ALIAS_pn-puzzles = "Debian=sgt-puzzles Fedora=puzzles"
->>> +DISTRO_PN_ALIAS_pn-python3-distribute = "Debian=python3-setuptools Fedora=python3-setuptools"
->>> +DISTRO_PN_ALIAS_pn-python-ZSI = "OE-Core"
->>>  DISTRO_PN_ALIAS_pn-python-argparse = "Fedora=python-argparse OpenSuSE=python-argparse"
->>>  DISTRO_PN_ALIAS_pn-python-argparse-native = "Fedora=python-argparse OpenSuSE=python-argparse"
->>>  DISTRO_PN_ALIAS_pn-python-dbus = "Ubuntu=python-dbus Debian=python-dbus Mandriva=python-dbus"
->>> @@ -370,7 +388,6 @@ DISTRO_PN_ALIAS_pn-python-pyrex = "Mandriva=python-pyrex Ubuntu=python-pyrex"
->>>  DISTRO_PN_ALIAS_pn-python-scons = "Fedora=scons OpenSuSE=scons Ubuntu=scons Mandriva=scons Debian=scons"
->>>  DISTRO_PN_ALIAS_pn-python-setuptools = "Mandriva=python-setup OpenSuSE=python-setup-git"
->>>  DISTRO_PN_ALIAS_pn-python-smartpm = "Debian=smart OpenSuSE=smart"
->>> -DISTRO_PN_ALIAS_pn-python-ZSI = "OE-Core"
->>>  DISTRO_PN_ALIAS_pn-qemu-config = "OpenedHand"
->>>  DISTRO_PN_ALIAS_pn-qemugl = "OpenedHand"
->>>  DISTRO_PN_ALIAS_pn-qemu-helper = "OpenedHand"
->>> @@ -381,6 +398,7 @@ DISTRO_PN_ALIAS_pn-qmmp = "Fedora=qmmp Debian=qmmp"
->>>  DISTRO_PN_ALIAS_pn-qt4e-demo-image = "OE-Core"
->>>  DISTRO_PN_ALIAS_pn-qt4-embedded = "OSPDT"
->>>  DISTRO_PN_ALIAS_pn-qt4-graphics-system = "OE-Core"
->>> +DISTRO_PN_ALIAS_pn-qt4-graphics-system = "OE-Core"
->>
->> Duplicate?
->>
->>>  DISTRO_PN_ALIAS_pn-qt4-native = "Mandriva=libqt4-devel Ubuntu=libqt4-dev"
->>>  DISTRO_PN_ALIAS_pn-qt4-tools = "Mandriva=libqt4-devel Ubuntu=libqt4-dev"
->>>  DISTRO_PN_ALIAS_pn-qt4-x11-free = "Ubuntu=qt-x11-free Debian=qt-x11-free"
->>> @@ -438,6 +456,7 @@ DISTRO_PN_ALIAS_pn-ubootchart = "OSPDT upstream=http://code.google.com/p/ubootch
->>>  DISTRO_PN_ALIAS_pn-u-boot-fw-utils = "Ubuntu=u-boot-tools Debian=u-boot-tools"
->>>  DISTRO_PN_ALIAS_pn-u-boot-mkimage = "Ubuntu=uboot-mkimage Debian=uboot-mkimage"
->>>  DISTRO_PN_ALIAS_pn-udev-extraconf = "OE-Core"
->>> +DISTRO_PN_ALIAS_pn-unfs3 = "Debian=unfs3 Fedora=unfs3"
->>>  DISTRO_PN_ALIAS_pn-unfs-server = "OE-Core"
->>>  DISTRO_PN_ALIAS_pn-update-alternatives-dpkg = "Opensuse=update-alternatives Mandriva=update-alternatives"
->>>  DISTRO_PN_ALIAS_pn-update-rc.d = "OE-Core"
->>> @@ -445,6 +464,7 @@ DISTRO_PN_ALIAS_pn-usbinit = "OE-Core"
->>>  DISTRO_PN_ALIAS_pn-util-macros = "Meego=xorg-x11-util-macros Fedora=xorg-x11-util-macros Mandriva=x11-util-macros"
->>>  DISTRO_PN_ALIAS_pn-v86d = "Debian=v86d Ubuntu=v86d"
->>>  DISTRO_PN_ALIAS_pn-videoproto = "Meego=xorg-x11-proto-videoproto"
->>> +DISTRO_PN_ALIAS_pn-waffle = "OE-Core"
->>>  DISTRO_PN_ALIAS_pn-watchdog = "Debian=watchdog Ubuntu=watchdog Mandriva=watchdog"
->>>  DISTRO_PN_ALIAS_pn-webkit-gtk = "Fedora=webkitgtk Ubuntu=libwebkit"
->>>  DISTRO_PN_ALIAS_pn-web-webkit = "OpenedHand"
->>> @@ -507,3 +527,4 @@ DISTRO_PN_ALIAS_pn-xwininfo = "Fedora=xorg-x11-utils Ubuntu=x11-utils"
->>>  DISTRO_PN_ALIAS_pn-yaffs2-utils = "OSPDT upstream=http://www.yaffs.net"
->>>  DISTRO_PN_ALIAS_pn-zaurusd = "OpenedHand"
->>>  DISTRO_PN_ALIAS_pn-zeroconf = "OSPDT upstream=http://www.progsoc.org/~wildfire/zeroconf/"
->>> +DISTRO_PN_ALIAS_pn-zeroconf = "OSPDT upstream=http://www.progsoc.org/~wildfire/zeroconf/"
->>
->> Duplicate?
->>
->
->
->
-> --
-> Elizabeth Flanagan
-> Yocto Project
-> Build and Release
+<meta name=3D"Generator" content=3D"Microsoft Word 14 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;}
+@font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:Tahoma;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
+@font-face
+	{font-family:"Comic Sans MS";
+	panose-1:3 15 7 2 3 3 2 2 2 4;}
+@font-face
+	{font-family:"MS Sans Serif";}
+@font-face
+	{font-family:Consolas;
+	panose-1:2 11 6 9 2 2 4 3 2 4;}
+@font-face
+	{font-family:Verdana;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";
+	mso-fareast-language:EN-US;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;}
+p.MsoPlainText, li.MsoPlainText, div.MsoPlainText
+	{mso-style-priority:99;
+	mso-style-link:"Plain Text Char";
+	margin:0in;
+	margin-bottom:.0001pt;
+	font-size:10.5pt;
+	font-family:Consolas;
+	mso-fareast-language:EN-US;}
+p
+	{mso-style-priority:99;
+	mso-margin-top-alt:auto;
+	margin-right:0in;
+	mso-margin-bottom-alt:auto;
+	margin-left:0in;
+	font-size:12.0pt;
+	font-family:"Times New Roman","serif";
+	mso-fareast-language:ZH-CN;}
+span.PlainTextChar
+	{mso-style-name:"Plain Text Char";
+	mso-style-priority:99;
+	mso-style-link:"Plain Text";
+	font-family:Consolas;}
+span.EmailStyle20
+	{mso-style-type:personal-compose;
+	font-family:"Calibri","sans-serif";
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
+<div class=3D"WordSection1">
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas">Agenda:<o:p></o:p></span></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas">&nbsp;<o:p></o:p></span></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas">* Opens collection - 5 min (Stephen)<o:p></o:p></s=
+pan></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas">* Yocto 1.6 status - 5 min (Stephen/team)<o:p></o:=
+p></span></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas">&nbsp;
+</span><span style=3D"font-size:11.0pt"><a href=3D"https://wiki.yoctoprojec=
+t.org/wiki/Yocto_Project_v1.6_Status"><span style=3D"font-family:&quot;Cali=
+bri&quot;,&quot;sans-serif&quot;">https://wiki.yoctoproject.org/wiki/Yocto_=
+Project_v1.6_Status</span></a><o:p></o:p></span></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas">&nbsp;
+</span><span style=3D"font-size:11.0pt"><a href=3D"https://wiki.yoctoprojec=
+t.org/wiki/Yocto_1.6_Features"><span style=3D"font-family:&quot;Calibri&quo=
+t;,&quot;sans-serif&quot;">https://wiki.yoctoproject.org/wiki/Yocto_1.6_Fea=
+tures</span></a><o:p></o:p></span></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas">* SWAT team rotation: Laurentiu -&gt; Nitin<o:p></=
+o:p></span></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas">&nbsp;
+<a href=3D"https://wiki.yoctoproject.org/wiki/Yocto_Build_Failure_Swat_Team=
+">https://wiki.yoctoproject.org/wiki/Yocto_Build_Failure_Swat_Team</a><o:p>=
+</o:p></span></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas">* Opens - 10 min
+<o:p></o:p></span></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas">* Team Sharing - 10 min<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D"><o:p>&nbsp;</o:p></spa=
+n></p>
+<p class=3D"MsoNormal" style=3D"margin-bottom:12.0pt"><span style=3D"font-s=
+ize:10.0pt;font-family:&quot;Tahoma&quot;,&quot;sans-serif&quot;">-----Orig=
+inal Appointment-----</span><o:p></o:p></p>
+<p class=3D"MsoPlainText">We encourage people attending the meeting to logo=
+n the Yocto Project IRC chancel during the meeting (optional):<o:p></o:p></=
+p>
+<p class=3D"MsoPlainText"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoPlainText">Yocto IRC: <a href=3D"http://webchat.freenode.net=
+/?channels=3D#yocto">
+http://webchat.freenode.net/?channels=3D#yocto</a><o:p></o:p></p>
+<p class=3D"MsoPlainText">IRC Tutorial: <a href=3D"http://www.irchelp.org/i=
+rchelp/irctutorial.html">
+http://www.irchelp.org/irchelp/irctutorial.html</a> <o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<table class=3D"MsoNormalTable" border=3D"0" cellspacing=3D"1" cellpadding=
+=3D"0" width=3D"580" style=3D"width:435.0pt">
+<tbody>
+<tr>
+<td colspan=3D"2" valign=3D"top" style=3D"border:solid #E8E8E8 1.0pt;backgr=
+ound:#E8E8E8;padding:2.25pt 2.25pt 2.25pt 3.75pt">
+<p class=3D"MsoNormal"><b><span style=3D"font-size:8.5pt;font-family:&quot;=
+Verdana&quot;,&quot;sans-serif&quot;;color:black">Conference details</span>=
+</b><span style=3D"font-size:8.5pt;font-family:&quot;Verdana&quot;,&quot;sa=
+ns-serif&quot;;color:black"><o:p></o:p></span></p>
+</td>
+</tr>
+<tr>
+<td valign=3D"top" style=3D"background:white;padding:2.25pt 2.25pt 2.25pt 2=
+.25pt">
+<p class=3D"MsoNormal"><span style=3D"font-size:8.5pt;font-family:&quot;Ver=
+dana&quot;,&quot;sans-serif&quot;;color:#666666">Conference name:<o:p></o:p=
+></span></p>
+</td>
+<td valign=3D"top" style=3D"background:white;padding:2.25pt 2.25pt 2.25pt 2=
+.25pt">
+<p class=3D"MsoNormal"><b><span style=3D"font-size:8.5pt;font-family:&quot;=
+Verdana&quot;,&quot;sans-serif&quot;;color:#666666">Yocto Project Technical=
+ Team<o:p></o:p></span></b></p>
+</td>
+</tr>
+<tr>
+<td valign=3D"top" style=3D"background:white;padding:2.25pt 2.25pt 2.25pt 2=
+.25pt">
+<p class=3D"MsoNormal"><span style=3D"font-size:8.5pt;font-family:&quot;Ver=
+dana&quot;,&quot;sans-serif&quot;;color:#666666">Conference date/start time=
+:<o:p></o:p></span></p>
+</td>
+<td valign=3D"top" style=3D"background:white;padding:2.25pt 2.25pt 2.25pt 2=
+.25pt">
+<p class=3D"MsoNormal"><b><span style=3D"font-size:8.5pt;font-family:&quot;=
+Verdana&quot;,&quot;sans-serif&quot;;color:#666666">Tue Jun 25, 2013 at 11:=
+00 AM Eastern Daylight Time (GMT-0400)<o:p></o:p></span></b></p>
+</td>
+</tr>
+<tr>
+<td valign=3D"top" style=3D"background:white;padding:2.25pt 2.25pt 2.25pt 2=
+.25pt">
+<p class=3D"MsoNormal"><span style=3D"font-size:8.5pt;font-family:&quot;Ver=
+dana&quot;,&quot;sans-serif&quot;;color:#666666">Participants:<o:p></o:p></=
+span></p>
+</td>
+<td valign=3D"top" style=3D"background:white;padding:2.25pt 2.25pt 2.25pt 2=
+.25pt">
+<p class=3D"MsoNormal"><b><span style=3D"font-size:8.5pt;font-family:&quot;=
+Verdana&quot;,&quot;sans-serif&quot;;color:#666666">30<o:p></o:p></span></b=
+></p>
+</td>
+</tr>
+<tr>
+<td valign=3D"top" style=3D"background:white;padding:2.25pt 2.25pt 2.25pt 2=
+.25pt">
+<p class=3D"MsoNormal"><span style=3D"font-size:8.5pt;font-family:&quot;Ver=
+dana&quot;,&quot;sans-serif&quot;;color:#666666">Duration:<o:p></o:p></span=
+></p>
+</td>
+<td valign=3D"top" style=3D"background:white;padding:2.25pt 2.25pt 2.25pt 2=
+.25pt">
+<p class=3D"MsoNormal"><b><span style=3D"font-size:8.5pt;font-family:&quot;=
+Verdana&quot;,&quot;sans-serif&quot;;color:#666666">30 minutes<o:p></o:p></=
+span></b></p>
+</td>
+</tr>
+<tr>
+<td valign=3D"top" style=3D"background:white;padding:2.25pt 2.25pt 2.25pt 2=
+.25pt">
+<p class=3D"MsoNormal"><span style=3D"font-size:8.5pt;font-family:&quot;Ver=
+dana&quot;,&quot;sans-serif&quot;;color:#666666">Participant passcode:<o:p>=
+</o:p></span></p>
+</td>
+<td valign=3D"top" style=3D"background:white;padding:2.25pt 2.25pt 2.25pt 2=
+.25pt">
+<p class=3D"MsoNormal"><b><span style=3D"font-size:8.5pt;font-family:&quot;=
+Verdana&quot;,&quot;sans-serif&quot;;color:#666666">42001078<o:p></o:p></sp=
+an></b></p>
+</td>
+</tr>
+<tr>
+<td valign=3D"top" style=3D"background:white;padding:2.25pt 2.25pt 2.25pt 2=
+.25pt">
+<p class=3D"MsoNormal"><span style=3D"font-size:8.5pt;font-family:&quot;Ver=
+dana&quot;,&quot;sans-serif&quot;;color:#666666">Dial-in number:<o:p></o:p>=
+</span></p>
+</td>
+<td valign=3D"top" style=3D"background:white;padding:2.25pt 2.25pt 2.25pt 2=
+.25pt">
+<p class=3D"MsoNormal"><b><span style=3D"font-size:8.5pt;font-family:&quot;=
+Verdana&quot;,&quot;sans-serif&quot;;color:#666666">1.972.995.7777<o:p></o:=
+p></span></b></p>
+</td>
+</tr>
+<tr>
+<td valign=3D"top" style=3D"background:white;padding:2.25pt 2.25pt 2.25pt 2=
+.25pt">
+<p class=3D"MsoNormal"><span style=3D"font-size:8.5pt;font-family:&quot;Ver=
+dana&quot;,&quot;sans-serif&quot;;color:#666666">US Toll Free number:<o:p><=
+/o:p></span></p>
+</td>
+<td valign=3D"top" style=3D"background:white;padding:2.25pt 2.25pt 2.25pt 2=
+.25pt">
+<p class=3D"MsoNormal"><b><span style=3D"font-size:8.5pt;font-family:&quot;=
+Verdana&quot;,&quot;sans-serif&quot;;color:#666666">1.877.561.6828<o:p></o:=
+p></span></b></p>
+</td>
+</tr>
+<tr>
+<td valign=3D"top" style=3D"background:white;padding:2.25pt 2.25pt 2.25pt 2=
+.25pt">
+<p class=3D"MsoNormal"><span style=3D"font-size:8.5pt;font-family:&quot;Ver=
+dana&quot;,&quot;sans-serif&quot;;color:#666666">BlackBerry users, click th=
+is link to join your conference as a&nbsp;<b>participant</b>:<o:p></o:p></s=
+pan></p>
+</td>
+<td style=3D"background:white;padding:2.25pt 2.25pt 2.25pt 2.25pt">
+<p class=3D"MsoNormal"><b><span style=3D"font-size:8.5pt;font-family:&quot;=
+Verdana&quot;,&quot;sans-serif&quot;;color:#666666">1.972.995.7777x42001078=
+#<o:p></o:p></span></b></p>
+</td>
+</tr>
+<tr>
+<td valign=3D"top" style=3D"background:white;padding:2.25pt 2.25pt 2.25pt 2=
+.25pt">
+<p class=3D"MsoNormal"><span style=3D"font-size:8.5pt;font-family:&quot;Ver=
+dana&quot;,&quot;sans-serif&quot;;color:#666666">&nbsp;<o:p></o:p></span></=
+p>
+</td>
+<td valign=3D"top" style=3D"background:white;padding:2.25pt 2.25pt 2.25pt 2=
+.25pt">
+<p class=3D"MsoNormal"><span style=3D"font-size:8.5pt;font-family:&quot;Ver=
+dana&quot;,&quot;sans-serif&quot;;color:#666666">Depending on where you are=
+ dialing from, either your BlackBerry will pause and enter the passcode aut=
+omatically or you will be prompted to click again to dial
+ the passcode.<o:p></o:p></span></p>
+</td>
+</tr>
+<tr>
+<td width=3D"100%" colspan=3D"2" style=3D"width:100.0%;padding:2.25pt 2.25p=
+t 2.25pt 2.25pt">
+<table class=3D"MsoNormalTable" border=3D"0" cellspacing=3D"0" cellpadding=
+=3D"0">
+<tbody>
+<tr>
+<td style=3D"border:solid #C6C6C6 1.0pt;background:white;padding:2.25pt 2.2=
+5pt 2.25pt 2.25pt">
+</td>
+</tr>
+<tr>
+<td valign=3D"top" style=3D"background:#428CC6;padding:2.25pt 2.25pt 2.25pt=
+ 2.25pt">
+<p class=3D"MsoNormal"><b><span style=3D"font-size:8.5pt;font-family:&quot;=
+Verdana&quot;,&quot;sans-serif&quot;;color:white">Local and Global Access N=
+umbers</span></b><span style=3D"font-size:8.5pt;font-family:&quot;Verdana&q=
+uot;,&quot;sans-serif&quot;;color:white"><o:p></o:p></span></p>
+</td>
+</tr>
+</tbody>
+</table>
+<p class=3D"MsoNormal"><span style=3D"font-size:8.5pt;font-family:&quot;Ver=
+dana&quot;,&quot;sans-serif&quot;;color:#666666;display:none"><o:p>&nbsp;</=
+o:p></span></p>
+<table class=3D"MsoNormalTable" border=3D"0" cellspacing=3D"0" cellpadding=
+=3D"0">
+<tbody>
+<tr>
+<td colspan=3D"2" style=3D"border:solid #C6C6C6 1.0pt;background:white;padd=
+ing:2.25pt 2.25pt 2.25pt 2.25pt">
+</td>
+</tr>
+<tr>
+<td valign=3D"top" style=3D"background:white;padding:2.25pt 2.25pt 2.25pt 2=
+.25pt">
+<p class=3D"MsoNormal"><b><span style=3D"font-size:8.5pt;font-family:&quot;=
+Verdana&quot;,&quot;sans-serif&quot;;color:black">Country</span></b><span s=
+tyle=3D"font-size:8.5pt;font-family:&quot;Verdana&quot;,&quot;sans-serif&qu=
+ot;;color:black"><o:p></o:p></span></p>
+</td>
+<td valign=3D"top" style=3D"background:white;padding:2.25pt 2.25pt 2.25pt 2=
+.25pt">
+<p class=3D"MsoNormal"><b><span style=3D"font-size:8.5pt;font-family:&quot;=
+Verdana&quot;,&quot;sans-serif&quot;;color:black">Dial-in number<o:p></o:p>=
+</span></b></p>
+</td>
+</tr>
+<tr>
+<td valign=3D"top" style=3D"background:#EBEBEB;padding:2.25pt 2.25pt 2.25pt=
+ 2.25pt">
+<p class=3D"MsoNormal"><b><span style=3D"font-size:8.5pt;font-family:&quot;=
+Verdana&quot;,&quot;sans-serif&quot;;color:#666666">Australia:</span></b><s=
+pan style=3D"font-size:8.5pt;font-family:&quot;Verdana&quot;,&quot;sans-ser=
+if&quot;;color:#666666"><o:p></o:p></span></p>
+</td>
+<td valign=3D"top" style=3D"background:#EBEBEB;padding:2.25pt 2.25pt 2.25pt=
+ 2.25pt">
+<p class=3D"MsoNormal"><span style=3D"font-size:8.5pt;font-family:&quot;Ver=
+dana&quot;,&quot;sans-serif&quot;;color:#666666">1800 636 843<o:p></o:p></s=
+pan></p>
+</td>
+</tr>
+<tr>
+<td valign=3D"top" style=3D"background:white;padding:2.25pt 2.25pt 2.25pt 2=
+.25pt">
+<p class=3D"MsoNormal"><b><span style=3D"font-size:8.5pt;font-family:&quot;=
+Verdana&quot;,&quot;sans-serif&quot;;color:#666666">Czech Republic:</span><=
+/b><span style=3D"font-size:8.5pt;font-family:&quot;Verdana&quot;,&quot;san=
+s-serif&quot;;color:#666666"><o:p></o:p></span></p>
+</td>
+<td valign=3D"top" style=3D"background:white;padding:2.25pt 2.25pt 2.25pt 2=
+.25pt">
+<p class=3D"MsoNormal"><span style=3D"font-size:8.5pt;font-family:&quot;Ver=
+dana&quot;,&quot;sans-serif&quot;;color:#666666">242 430 350<o:p></o:p></sp=
+an></p>
+</td>
+</tr>
+<tr>
+<td valign=3D"top" style=3D"background:#EBEBEB;padding:2.25pt 2.25pt 2.25pt=
+ 2.25pt">
+<p class=3D"MsoNormal"><b><span style=3D"font-size:8.5pt;font-family:&quot;=
+Verdana&quot;,&quot;sans-serif&quot;;color:#666666">China (Beijing):</span>=
+</b><span style=3D"font-size:8.5pt;font-family:&quot;Verdana&quot;,&quot;sa=
+ns-serif&quot;;color:#666666"><o:p></o:p></span></p>
+</td>
+<td style=3D"background:#EBEBEB;padding:2.25pt 2.25pt 2.25pt 2.25pt">
+<p class=3D"MsoNormal"><span style=3D"font-size:8.5pt;font-family:&quot;Ver=
+dana&quot;,&quot;sans-serif&quot;;color:#666666">From office dial 8-9957777=
+ or 8784277&nbsp;<br>
+Beijing Out of Office dial 5878 4277<o:p></o:p></span></p>
+</td>
+</tr>
+<tr>
+<td valign=3D"top" style=3D"background:#EBEBEB;padding:2.25pt 2.25pt 2.25pt=
+ 2.25pt">
+<p class=3D"MsoNormal"><b><span style=3D"font-size:8.5pt;font-family:&quot;=
+Verdana&quot;,&quot;sans-serif&quot;;color:#666666">China (Shanghai):</span=
+></b><span style=3D"font-size:8.5pt;font-family:&quot;Verdana&quot;,&quot;s=
+ans-serif&quot;;color:#666666"><o:p></o:p></span></p>
+</td>
+<td style=3D"background:#EBEBEB;padding:2.25pt 2.25pt 2.25pt 2.25pt">
+<p class=3D"MsoNormal"><span style=3D"font-size:8.5pt;font-family:&quot;Ver=
+dana&quot;,&quot;sans-serif&quot;;color:#666666">From office dial 8-9957777=
+ or 3073322&nbsp;<br>
+Shanghai Out of Office dial 2307 3322<o:p></o:p></span></p>
+</td>
+</tr>
+<tr>
+<td valign=3D"top" style=3D"background:#EBEBEB;padding:2.25pt 2.25pt 2.25pt=
+ 2.25pt">
+<p class=3D"MsoNormal"><b><span style=3D"font-size:8.5pt;font-family:&quot;=
+Verdana&quot;,&quot;sans-serif&quot;;color:#666666">China (Shenzen):</span>=
+</b><span style=3D"font-size:8.5pt;font-family:&quot;Verdana&quot;,&quot;sa=
+ns-serif&quot;;color:#666666"><o:p></o:p></span></p>
+</td>
+<td style=3D"background:#EBEBEB;padding:2.25pt 2.25pt 2.25pt 2.25pt">
+<p class=3D"MsoNormal"><span style=3D"font-size:8.5pt;font-family:&quot;Ver=
+dana&quot;,&quot;sans-serif&quot;;color:#666666">From office dial 8-9957777=
+ or 6007877&nbsp;<br>
+Shenzen Out of Office dial 2600 7877<o:p></o:p></span></p>
+</td>
+</tr>
+<tr>
+<td valign=3D"top" style=3D"background:#EBEBEB;padding:2.25pt 2.25pt 2.25pt=
+ 2.25pt">
+<p class=3D"MsoNormal"><b><span style=3D"font-size:8.5pt;font-family:&quot;=
+Verdana&quot;,&quot;sans-serif&quot;;color:#666666">China (Other Cities):</=
+span></b><span style=3D"font-size:8.5pt;font-family:&quot;Verdana&quot;,&qu=
+ot;sans-serif&quot;;color:#666666"><o:p></o:p></span></p>
+</td>
+<td style=3D"background:#EBEBEB;padding:2.25pt 2.25pt 2.25pt 2.25pt">
+<p class=3D"MsoNormal"><span style=3D"font-size:8.5pt;font-family:&quot;Ver=
+dana&quot;,&quot;sans-serif&quot;;color:#666666">From IP phone dial 8-99577=
+77&nbsp;<br>
+Other cities - Non IP phone dial 021-23073322<o:p></o:p></span></p>
+</td>
+</tr>
+<tr>
+<td style=3D"background:white;padding:2.25pt 2.25pt 2.25pt 2.25pt">
+<p class=3D"MsoNormal"><b><span style=3D"font-size:8.5pt;font-family:&quot;=
+Verdana&quot;,&quot;sans-serif&quot;;color:#666666">Denmark:</span></b><spa=
+n style=3D"font-size:8.5pt;font-family:&quot;Verdana&quot;,&quot;sans-serif=
+&quot;;color:#666666"><o:p></o:p></span></p>
+</td>
+<td style=3D"background:white;padding:2.25pt 2.25pt 2.25pt 2.25pt">
+<p class=3D"MsoNormal"><span style=3D"font-size:8.5pt;font-family:&quot;Ver=
+dana&quot;,&quot;sans-serif&quot;;color:#666666">8060 1400<o:p></o:p></span=
+></p>
+</td>
+</tr>
+<tr>
+<td valign=3D"top" style=3D"background:#EBEBEB;padding:2.25pt 2.25pt 2.25pt=
+ 2.25pt">
+<p class=3D"MsoNormal"><b><span style=3D"font-size:8.5pt;font-family:&quot;=
+Verdana&quot;,&quot;sans-serif&quot;;color:#666666">Finland:</span></b><spa=
+n style=3D"font-size:8.5pt;font-family:&quot;Verdana&quot;,&quot;sans-serif=
+&quot;;color:#666666"><o:p></o:p></span></p>
+</td>
+<td valign=3D"top" style=3D"background:#EBEBEB;padding:2.25pt 2.25pt 2.25pt=
+ 2.25pt">
+<p class=3D"MsoNormal"><span style=3D"font-size:8.5pt;font-family:&quot;Ver=
+dana&quot;,&quot;sans-serif&quot;;color:#666666">09 41333477<o:p></o:p></sp=
+an></p>
+</td>
+</tr>
+<tr>
+<td valign=3D"top" style=3D"background:white;padding:2.25pt 2.25pt 2.25pt 2=
+.25pt">
+<p class=3D"MsoNormal"><b><span style=3D"font-size:8.5pt;font-family:&quot;=
+Verdana&quot;,&quot;sans-serif&quot;;color:#666666">France:</span></b><span=
+ style=3D"font-size:8.5pt;font-family:&quot;Verdana&quot;,&quot;sans-serif&=
+quot;;color:#666666"><o:p></o:p></span></p>
+</td>
+<td valign=3D"top" style=3D"background:white;padding:2.25pt 2.25pt 2.25pt 2=
+.25pt">
+<p class=3D"MsoNormal"><span style=3D"font-size:8.5pt;font-family:&quot;Ver=
+dana&quot;,&quot;sans-serif&quot;;color:#666666">0497 275888<o:p></o:p></sp=
+an></p>
+</td>
+</tr>
+<tr>
+<td valign=3D"top" style=3D"background:#EBEBEB;padding:2.25pt 2.25pt 2.25pt=
+ 2.25pt">
+<p class=3D"MsoNormal"><b><span style=3D"font-size:8.5pt;font-family:&quot;=
+Verdana&quot;,&quot;sans-serif&quot;;color:#666666">Germany:</span></b><spa=
+n style=3D"font-size:8.5pt;font-family:&quot;Verdana&quot;,&quot;sans-serif=
+&quot;;color:#666666"><o:p></o:p></span></p>
+</td>
+<td valign=3D"top" style=3D"background:#EBEBEB;padding:2.25pt 2.25pt 2.25pt=
+ 2.25pt">
+<p class=3D"MsoNormal"><span style=3D"font-size:8.5pt;font-family:&quot;Ver=
+dana&quot;,&quot;sans-serif&quot;;color:#666666">08161 803232<o:p></o:p></s=
+pan></p>
+</td>
+</tr>
+<tr>
+<td valign=3D"top" style=3D"background:white;padding:2.25pt 2.25pt 2.25pt 2=
+.25pt">
+<p class=3D"MsoNormal"><b><span style=3D"font-size:8.5pt;font-family:&quot;=
+Verdana&quot;,&quot;sans-serif&quot;;color:#666666">Holland:</span></b><spa=
+n style=3D"font-size:8.5pt;font-family:&quot;Verdana&quot;,&quot;sans-serif=
+&quot;;color:#666666"><o:p></o:p></span></p>
+</td>
+<td valign=3D"top" style=3D"background:white;padding:2.25pt 2.25pt 2.25pt 2=
+.25pt">
+<p class=3D"MsoNormal"><span style=3D"font-size:8.5pt;font-family:&quot;Ver=
+dana&quot;,&quot;sans-serif&quot;;color:#666666">030 2417490<o:p></o:p></sp=
+an></p>
+</td>
+</tr>
+<tr>
+<td valign=3D"top" style=3D"background:#EBEBEB;padding:2.25pt 2.25pt 2.25pt=
+ 2.25pt">
+<p class=3D"MsoNormal"><b><span style=3D"font-size:8.5pt;font-family:&quot;=
+Verdana&quot;,&quot;sans-serif&quot;;color:#666666">India:</span></b><span =
+style=3D"font-size:8.5pt;font-family:&quot;Verdana&quot;,&quot;sans-serif&q=
+uot;;color:#666666"><o:p></o:p></span></p>
+</td>
+<td valign=3D"top" style=3D"background:#EBEBEB;padding:2.25pt 2.25pt 2.25pt=
+ 2.25pt">
+<p class=3D"MsoNormal"><span style=3D"font-size:8.5pt;font-family:&quot;Ver=
+dana&quot;,&quot;sans-serif&quot;;color:#666666">BSNL subscribers use 1800 =
+425 9996 (Toll Free)<br>
+Airtel subscribers use 0008 009 861 212 (Toll Free)<br>
+From TI Campus use 89957777<br>
+Others use 2509 9555 (Landline within Bangalore) or<br>
+80 2509 9555 (Outside Bangalore)<o:p></o:p></span></p>
+</td>
+</tr>
+<tr>
+<td valign=3D"top" style=3D"background:white;padding:2.25pt 2.25pt 2.25pt 2=
+.25pt">
+<p class=3D"MsoNormal"><b><span style=3D"font-size:8.5pt;font-family:&quot;=
+Verdana&quot;,&quot;sans-serif&quot;;color:#666666">Israel:</span></b><span=
+ style=3D"font-size:8.5pt;font-family:&quot;Verdana&quot;,&quot;sans-serif&=
+quot;;color:#666666"><o:p></o:p></span></p>
+</td>
+<td valign=3D"top" style=3D"background:white;padding:2.25pt 2.25pt 2.25pt 2=
+.25pt">
+<p class=3D"MsoNormal"><span style=3D"font-size:8.5pt;font-family:&quot;Ver=
+dana&quot;,&quot;sans-serif&quot;;color:#666666">09 790 6715<o:p></o:p></sp=
+an></p>
+</td>
+</tr>
+<tr>
+<td valign=3D"top" style=3D"background:#EBEBEB;padding:2.25pt 2.25pt 2.25pt=
+ 2.25pt">
+<p class=3D"MsoNormal"><b><span style=3D"font-size:8.5pt;font-family:&quot;=
+Verdana&quot;,&quot;sans-serif&quot;;color:#666666">Italy:</span></b><span =
+style=3D"font-size:8.5pt;font-family:&quot;Verdana&quot;,&quot;sans-serif&q=
+uot;;color:#666666"><o:p></o:p></span></p>
+</td>
+<td valign=3D"top" style=3D"background:#EBEBEB;padding:2.25pt 2.25pt 2.25pt=
+ 2.25pt">
+<p class=3D"MsoNormal"><span style=3D"font-size:8.5pt;font-family:&quot;Ver=
+dana&quot;,&quot;sans-serif&quot;;color:#666666">039 69061234 (039 is local=
+ city code not country code)<o:p></o:p></span></p>
+</td>
+</tr>
+<tr>
+<td valign=3D"top" style=3D"background:white;padding:2.25pt 2.25pt 2.25pt 2=
+.25pt">
+<p class=3D"MsoNormal"><b><span style=3D"font-size:8.5pt;font-family:&quot;=
+Verdana&quot;,&quot;sans-serif&quot;;color:#666666">Japan:</span></b><span =
+style=3D"font-size:8.5pt;font-family:&quot;Verdana&quot;,&quot;sans-serif&q=
+uot;;color:#666666"><o:p></o:p></span></p>
+</td>
+<td valign=3D"top" style=3D"background:white;padding:2.25pt 2.25pt 2.25pt 2=
+.25pt">
+<p class=3D"MsoNormal"><span style=3D"font-size:8.5pt;font-family:&quot;Ver=
+dana&quot;,&quot;sans-serif&quot;;color:#666666">From TI Campus use 8 995 7=
+777&nbsp;<br>
+Outside TI use 03 4331 3777<o:p></o:p></span></p>
+</td>
+</tr>
+<tr>
+<td valign=3D"top" style=3D"background:#EBEBEB;padding:2.25pt 2.25pt 2.25pt=
+ 2.25pt">
+<p class=3D"MsoNormal"><b><span style=3D"font-size:8.5pt;font-family:&quot;=
+Verdana&quot;,&quot;sans-serif&quot;;color:#666666">Malaysia:</span></b><sp=
+an style=3D"font-size:8.5pt;font-family:&quot;Verdana&quot;,&quot;sans-seri=
+f&quot;;color:#666666"><o:p></o:p></span></p>
+</td>
+<td valign=3D"top" style=3D"background:#EBEBEB;padding:2.25pt 2.25pt 2.25pt=
+ 2.25pt">
+<p class=3D"MsoNormal"><span style=3D"font-size:8.5pt;font-family:&quot;Ver=
+dana&quot;,&quot;sans-serif&quot;;color:#666666">From IP phone dial 2643799=
+&nbsp;<br>
+From Kuala Lumpur dial 4264 3799&nbsp;<br>
+Outside Kuala Lumpur dial (03)4264 3799<o:p></o:p></span></p>
+</td>
+</tr>
+<tr>
+<td valign=3D"top" style=3D"background:white;padding:2.25pt 2.25pt 2.25pt 2=
+.25pt">
+<p class=3D"MsoNormal"><b><span style=3D"font-size:8.5pt;font-family:&quot;=
+Verdana&quot;,&quot;sans-serif&quot;;color:#666666">Norway:</span></b><span=
+ style=3D"font-size:8.5pt;font-family:&quot;Verdana&quot;,&quot;sans-serif&=
+quot;;color:#666666"><o:p></o:p></span></p>
+</td>
+<td valign=3D"top" style=3D"background:white;padding:2.25pt 2.25pt 2.25pt 2=
+.25pt">
+<p class=3D"MsoNormal"><span style=3D"font-size:8.5pt;font-family:&quot;Ver=
+dana&quot;,&quot;sans-serif&quot;;color:#666666">2 295 8744<o:p></o:p></spa=
+n></p>
+</td>
+</tr>
+<tr>
+<td valign=3D"top" style=3D"background:#EBEBEB;padding:2.25pt 2.25pt 2.25pt=
+ 2.25pt">
+<p class=3D"MsoNormal"><b><span style=3D"font-size:8.5pt;font-family:&quot;=
+Verdana&quot;,&quot;sans-serif&quot;;color:#666666">Philippines:</span></b>=
+<span style=3D"font-size:8.5pt;font-family:&quot;Verdana&quot;,&quot;sans-s=
+erif&quot;;color:#666666"><o:p></o:p></span></p>
+</td>
+<td valign=3D"top" style=3D"background:#EBEBEB;padding:2.25pt 2.25pt 2.25pt=
+ 2.25pt">
+<p class=3D"MsoNormal"><span style=3D"font-size:8.5pt;font-family:&quot;Ver=
+dana&quot;,&quot;sans-serif&quot;;color:#666666">From Baguio City use 44711=
+77&nbsp;<br>
+From Metro Manila area use 8702477<o:p></o:p></span></p>
+</td>
+</tr>
+<tr>
+<td valign=3D"top" style=3D"background:white;padding:2.25pt 2.25pt 2.25pt 2=
+.25pt">
+<p class=3D"MsoNormal"><b><span style=3D"font-size:8.5pt;font-family:&quot;=
+Verdana&quot;,&quot;sans-serif&quot;;color:#666666">Singapore:</span></b><s=
+pan style=3D"font-size:8.5pt;font-family:&quot;Verdana&quot;,&quot;sans-ser=
+if&quot;;color:#666666"><o:p></o:p></span></p>
+</td>
+<td valign=3D"top" style=3D"background:white;padding:2.25pt 2.25pt 2.25pt 2=
+.25pt">
+<p class=3D"MsoNormal"><span style=3D"font-size:8.5pt;font-family:&quot;Ver=
+dana&quot;,&quot;sans-serif&quot;;color:#666666">From IP phone dial 3894777=
+&nbsp;<br>
+Outside TI use 6389 4777<o:p></o:p></span></p>
+</td>
+</tr>
+<tr>
+<td valign=3D"top" style=3D"background:#EBEBEB;padding:2.25pt 2.25pt 2.25pt=
+ 2.25pt">
+<p class=3D"MsoNormal"><b><span style=3D"font-size:8.5pt;font-family:&quot;=
+Verdana&quot;,&quot;sans-serif&quot;;color:#666666">South Korea:</span></b>=
+<span style=3D"font-size:8.5pt;font-family:&quot;Verdana&quot;,&quot;sans-s=
+erif&quot;;color:#666666"><o:p></o:p></span></p>
+</td>
+<td valign=3D"top" style=3D"background:#EBEBEB;padding:2.25pt 2.25pt 2.25pt=
+ 2.25pt">
+<p class=3D"MsoNormal"><span style=3D"font-size:8.5pt;font-family:&quot;Ver=
+dana&quot;,&quot;sans-serif&quot;;color:#666666">From IP phone dial 5606998=
+&nbsp;<br>
+From Seoul dial 5606998&nbsp;<br>
+Outside Seoul dial (02)5606998<o:p></o:p></span></p>
+</td>
+</tr>
+<tr>
+<td valign=3D"top" style=3D"background:white;padding:2.25pt 2.25pt 2.25pt 2=
+.25pt">
+<p class=3D"MsoNormal"><b><span style=3D"font-size:8.5pt;font-family:&quot;=
+Verdana&quot;,&quot;sans-serif&quot;;color:#666666">Sweden:</span></b><span=
+ style=3D"font-size:8.5pt;font-family:&quot;Verdana&quot;,&quot;sans-serif&=
+quot;;color:#666666"><o:p></o:p></span></p>
+</td>
+<td valign=3D"top" style=3D"background:white;padding:2.25pt 2.25pt 2.25pt 2=
+.25pt">
+<p class=3D"MsoNormal"><span style=3D"font-size:8.5pt;font-family:&quot;Ver=
+dana&quot;,&quot;sans-serif&quot;;color:#666666">08 58755577<o:p></o:p></sp=
+an></p>
+</td>
+</tr>
+<tr>
+<td valign=3D"top" style=3D"background:#EBEBEB;padding:2.25pt 2.25pt 2.25pt=
+ 2.25pt">
+<p class=3D"MsoNormal"><b><span style=3D"font-size:8.5pt;font-family:&quot;=
+Verdana&quot;,&quot;sans-serif&quot;;color:#666666">Taiwan:</span></b><span=
+ style=3D"font-size:8.5pt;font-family:&quot;Verdana&quot;,&quot;sans-serif&=
+quot;;color:#666666"><o:p></o:p></span></p>
+</td>
+<td valign=3D"top" style=3D"background:#EBEBEB;padding:2.25pt 2.25pt 2.25pt=
+ 2.25pt">
+<p class=3D"MsoNormal"><span style=3D"font-size:8.5pt;font-family:&quot;Ver=
+dana&quot;,&quot;sans-serif&quot;;color:#666666">From IP phone dial 1363&nb=
+sp;<br>
+From Taipei dial 2241 1363&nbsp;<br>
+Outside Taipei dial (02)2241 1363<o:p></o:p></span></p>
+</td>
+</tr>
+<tr>
+<td valign=3D"top" style=3D"background:white;padding:2.25pt 2.25pt 2.25pt 2=
+.25pt">
+<p class=3D"MsoNormal"><b><span style=3D"font-size:8.5pt;font-family:&quot;=
+Verdana&quot;,&quot;sans-serif&quot;;color:#666666">Turkey:</span></b><span=
+ style=3D"font-size:8.5pt;font-family:&quot;Verdana&quot;,&quot;sans-serif&=
+quot;;color:#666666"><o:p></o:p></span></p>
+</td>
+<td valign=3D"top" style=3D"background:white;padding:2.25pt 2.25pt 2.25pt 2=
+.25pt">
+<p class=3D"MsoNormal"><b><span style=3D"font-size:8.5pt;font-family:&quot;=
+Verdana&quot;,&quot;sans-serif&quot;;color:#666666">Landline Only</span></b=
+><span style=3D"font-size:8.5pt;font-family:&quot;Verdana&quot;,&quot;sans-=
+serif&quot;;color:#666666">&nbsp;dial 0811 288 0001&nbsp;<br>
+then enter 877 633 1123<o:p></o:p></span></p>
+</td>
+</tr>
+<tr>
+<td valign=3D"top" style=3D"background:#EBEBEB;padding:2.25pt 2.25pt 2.25pt=
+ 2.25pt">
+<p class=3D"MsoNormal"><b><span style=3D"font-size:8.5pt;font-family:&quot;=
+Verdana&quot;,&quot;sans-serif&quot;;color:#666666">UK:</span></b><span sty=
+le=3D"font-size:8.5pt;font-family:&quot;Verdana&quot;,&quot;sans-serif&quot=
+;;color:#666666"><o:p></o:p></span></p>
+</td>
+<td valign=3D"top" style=3D"background:#EBEBEB;padding:2.25pt 2.25pt 2.25pt=
+ 2.25pt">
+<p class=3D"MsoNormal"><span style=3D"font-size:8.5pt;font-family:&quot;Ver=
+dana&quot;,&quot;sans-serif&quot;;color:#666666">01908 355599<o:p></o:p></s=
+pan></p>
+</td>
+</tr>
+<tr>
+<td valign=3D"top" style=3D"background:white;padding:2.25pt 2.25pt 2.25pt 2=
+.25pt">
+<p class=3D"MsoNormal"><b><span style=3D"font-size:8.5pt;font-family:&quot;=
+Verdana&quot;,&quot;sans-serif&quot;;color:#666666">US:</span></b><span sty=
+le=3D"font-size:8.5pt;font-family:&quot;Verdana&quot;,&quot;sans-serif&quot=
+;;color:#666666"><o:p></o:p></span></p>
+</td>
+<td valign=3D"top" style=3D"background:white;padding:2.25pt 2.25pt 2.25pt 2=
+.25pt">
+<p class=3D"MsoNormal"><span style=3D"font-size:8.5pt;font-family:&quot;Ver=
+dana&quot;,&quot;sans-serif&quot;;color:#666666">972 995 7777 or 1877 561 6=
+828<o:p></o:p></span></p>
+</td>
+</tr>
+</tbody>
+</table>
+<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;font-family:&quot;Ti=
+mes New Roman&quot;,&quot;serif&quot;"><o:p></o:p></span></p>
+</td>
+</tr>
+<tr>
+<td colspan=3D"2" valign=3D"top" style=3D"background:#E8E8E8;padding:2.25pt=
+ 2.25pt 2.25pt 2.25pt">
+<p class=3D"MsoNormal"><b><span style=3D"font-size:8.5pt;font-family:&quot;=
+Verdana&quot;,&quot;sans-serif&quot;;color:black">Recurring conferences</sp=
+an></b><span style=3D"font-size:8.5pt;font-family:&quot;Verdana&quot;,&quot=
+;sans-serif&quot;;color:black"><o:p></o:p></span></p>
+</td>
+</tr>
+<tr>
+<td valign=3D"top" style=3D"background:white;padding:2.25pt 2.25pt 2.25pt 2=
+.25pt">
+<p class=3D"MsoNormal"><span style=3D"font-size:8.5pt;font-family:&quot;Ver=
+dana&quot;,&quot;sans-serif&quot;;color:#666666">First scheduled conference=
+:<o:p></o:p></span></p>
+</td>
+<td valign=3D"top" style=3D"background:white;padding:2.25pt 2.25pt 2.25pt 2=
+.25pt">
+<p class=3D"MsoNormal"><b><span style=3D"font-size:8.5pt;font-family:&quot;=
+Verdana&quot;,&quot;sans-serif&quot;;color:#666666">Tue Jun 25, 2013<o:p></=
+o:p></span></b></p>
+</td>
+</tr>
+<tr>
+<td valign=3D"top" style=3D"background:white;padding:2.25pt 2.25pt 2.25pt 2=
+.25pt">
+<p class=3D"MsoNormal"><span style=3D"font-size:8.5pt;font-family:&quot;Ver=
+dana&quot;,&quot;sans-serif&quot;;color:#666666">Recurrence frequency:<o:p>=
+</o:p></span></p>
+</td>
+<td valign=3D"top" style=3D"background:white;padding:2.25pt 2.25pt 2.25pt 2=
+.25pt">
+<p class=3D"MsoNormal"><b><span style=3D"font-size:8.5pt;font-family:&quot;=
+Verdana&quot;,&quot;sans-serif&quot;;color:#666666">Weekly - Every 1 week(s=
+) on Tuesday<o:p></o:p></span></b></p>
+</td>
+</tr>
+<tr>
+<td valign=3D"top" style=3D"background:white;padding:2.25pt 2.25pt 2.25pt 2=
+.25pt">
+<p class=3D"MsoNormal"><span style=3D"font-size:8.5pt;font-family:&quot;Ver=
+dana&quot;,&quot;sans-serif&quot;;color:#666666">Recurrence ends:<o:p></o:p=
+></span></p>
+</td>
+<td valign=3D"top" style=3D"background:white;padding:2.25pt 2.25pt 2.25pt 2=
+.25pt">
+<p class=3D"MsoNormal"><b><span style=3D"font-size:8.5pt;font-family:&quot;=
+Verdana&quot;,&quot;sans-serif&quot;;color:#666666">End after 52 occurrence=
+s<o:p></o:p></span></b></p>
+</td>
+</tr>
+</tbody>
+</table>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Thanks,<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal" style=3D"page-break-after:avoid;text-autospace:none"=
+><b><i><span style=3D"font-size:16.0pt;font-family:&quot;Times New Roman&qu=
+ot;,&quot;serif&quot;;color:purple">Stephen K. Jolley</span></i></b><b><i><=
+span style=3D"font-size:16.0pt;font-family:&quot;Tahoma&quot;,&quot;sans-se=
+rif&quot;;color:purple"><o:p></o:p></span></i></b></p>
+<p class=3D"MsoNormal"><b><span style=3D"font-size:8.0pt;font-family:&quot;=
+Courier New&quot;;color:blue">Yocto Project Program Manager<o:p></o:p></spa=
+n></b></p>
+<p class=3D"MsoNormal" style=3D"page-break-after:avoid;text-autospace:none"=
+><b><span style=3D"font-size:10.0pt;font-family:&quot;Courier New&quot;;col=
+or:fuchsia">INTEL, MS JF1-255, 2111 N.E. 25th Avenue, Hillsboro, OR 97124
+<o:p></o:p></span></b></p>
+<p class=3D"MsoNormal"><span style=3D"font-family:Wingdings;color:black">(<=
+/span><span style=3D"font-family:&quot;MS Sans Serif&quot;;color:teal">
+</span><span style=3D"font-size:8.0pt;font-family:&quot;MS Sans Serif&quot;=
+;color:teal">&nbsp;&nbsp;</span><b><span style=3D"font-size:8.0pt;font-fami=
+ly:&quot;Comic Sans MS&quot;,&quot;serif&quot;;color:teal">Work Telephone</=
+span></b><span style=3D"font-family:&quot;MS Sans Serif&quot;;color:teal">:=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span style=3D"font-size:9.0pt;font-family:&quot;MS Sans Serif&quot;=
+">(503) 712-0534<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt;font-family:Wingdings=
+;color:black">(</span><span style=3D"font-size:9.0pt;font-family:&quot;MS S=
+ans Serif&quot;;color:teal">&nbsp;&nbsp;&nbsp;
+</span><b><span style=3D"font-size:8.0pt;font-family:&quot;Comic Sans MS&qu=
+ot;,&quot;serif&quot;;color:teal">Cell</span></b><span style=3D"font-size:9=
+.0pt;font-family:&quot;MS Sans Serif&quot;;color:teal">:&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;
+</span><span style=3D"font-size:9.0pt;font-family:&quot;MS Sans Serif&quot;=
+">(208) 244-4460<span style=3D"color:black"><o:p></o:p></span></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt;font-family:Wingdings=
+">* </span>
+<b><span lang=3D"FR" style=3D"font-size:8.0pt;font-family:&quot;Comic Sans =
+MS&quot;,&quot;serif&quot;;color:teal">Email</span></b><span lang=3D"FR" st=
+yle=3D"font-size:9.0pt;font-family:&quot;MS Sans Serif&quot;;color:teal">:<=
+/span><span lang=3D"FR" style=3D"font-size:9.0pt;font-family:&quot;MS Sans =
+Serif&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<u><span style=3D"color:blue">stephen.k.jolley@intel.com</span></u></span><=
+span lang=3D"FR" style=3D"font-size:12.0pt;font-family:&quot;Arial&quot;,&q=
+uot;sans-serif&quot;"><o:p></o:p></span></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+</body>
+</html>
 
-
-
--- 
-Elizabeth Flanagan
-Yocto Project
-Build and Release
-
+--_000_9ADD3FDE8B189B4AA2F8A3C711F8155E55050ADFfmsmsx111amrcor_--
