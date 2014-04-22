@@ -1,26 +1,34 @@
-Return-Path: <mark.hatle@windriver.com>
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6C4C5E00AE2
-	for <yocto@yoctoproject.org>; Mon, 21 Apr 2014 18:36:39 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail.windriver.com (8.14.5/8.14.5) with ESMTP id s3M1acJX012442
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL)
-	for <yocto@yoctoproject.org>; Mon, 21 Apr 2014 18:36:39 -0700 (PDT)
-Received: from [147.11.117.86] (147.11.117.86) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server id 14.3.169.1;
-	Mon, 21 Apr 2014 18:36:31 -0700
-Message-ID: <5355C79C.1020704@windriver.com>
-Date: Mon, 21 Apr 2014 20:36:28 -0500
-From: Mark Hatle <mark.hatle@windriver.com>
-Organization: Wind River Systems
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.9;
-	rv:24.0) Gecko/20100101 Thunderbird/24.4.0
+Return-Path: <alexandru.c.georgescu@intel.com>
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 19649E00C02
+	for <yocto@yoctoproject.org>; Mon, 21 Apr 2014 23:11:19 -0700 (PDT)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga102.jf.intel.com with ESMTP; 21 Apr 2014 23:06:28 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.97,901,1389772800"; d="scan'208";a="497154323"
+Received: from irsmsx103.ger.corp.intel.com ([163.33.3.157])
+	by orsmga001.jf.intel.com with ESMTP; 21 Apr 2014 23:11:18 -0700
+Received: from irsmsx154.ger.corp.intel.com (163.33.192.96) by
+	IRSMSX103.ger.corp.intel.com (163.33.3.157) with Microsoft SMTP Server
+	(TLS) id 14.3.123.3; Tue, 22 Apr 2014 07:11:17 +0100
+Received: from irsmsx104.ger.corp.intel.com ([169.254.5.98]) by
+	IRSMSX154.ger.corp.intel.com ([169.254.12.210]) with mapi id
+	14.03.0123.003; Tue, 22 Apr 2014 07:11:17 +0100
+From: "Georgescu, Alexandru C" <alexandru.c.georgescu@intel.com>
+To: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: 1.6 retest of Beaglebone and Build appliance.
+Thread-Index: AQHPXceKUpzuB9Pt40ihFMnmSPQBnZsdJ6vA
+Date: Tue, 22 Apr 2014 06:11:17 +0000
+Message-ID: <1FFB62CE8AEB0D4298B51122D8903E961B6991CA@IRSMSX104.ger.corp.intel.com>
+References: <CAPhnLPBMZdWboqMPKNveSoq6TiW=vVkrAWb68+ccqa_iqdpsfQ@mail.gmail.com>
+In-Reply-To: <CAPhnLPBMZdWboqMPKNveSoq6TiW=vVkrAWb68+ccqa_iqdpsfQ@mail.gmail.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [163.33.239.182]
 MIME-Version: 1.0
-To: <yocto@yoctoproject.org>
-References: <5353BA79.3060206@dynamicdevices.co.uk>
-In-Reply-To: <5353BA79.3060206@dynamicdevices.co.uk>
-Subject: Re: Question about rebuilding RPM package index for updated RPMs when bitbake completes
+Subject: Re: 1.6 retest of Beaglebone and Build appliance.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,67 +40,37 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 22 Apr 2014 01:36:43 -0000
-Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Tue, 22 Apr 2014 06:11:21 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-On 4/20/14, 7:15 AM, Alex J Lennon wrote:
-> Hi,
->
-> I'm trying to put in place a development workflow using the PR server,
-> RPM package feeds and smart update/install on a target.
->
-> I see that when I modify and rebuild my recipe, foo, the PR server
-> increments its count within the RPM filename, but the RPM feed data
-> doesn't seem to update.
->
+Okay,
+We'll cover for BA and BBB.
 
-...
+Cheers,
+--
+Alexandru Georgescu
 
-> So if I am understanding the above correctly, when I make a change to a
-> recipe and build it, PR automatically
-> updates, the old RPM is removed and the new RPM added to the feed
-> directory. However the package index
-> for the feed is not updated.
->
-> So if at that point I try to make use of the feed on a target I am
-> likely to find something is broken.
+-----Original Message-----
+From: Flanagan, Elizabeth [mailto:elizabeth.flanagan@intel.com]=20
+Sent: Monday, April 21, 2014 6:09 PM
+To: yocto@yoctoproject.org; Georgescu, Alexandru C
+Subject: 1.6 retest of Beaglebone and Build appliance.
 
-The feed is normally indexed (createrepo) either when you manually run the 
-package-index operation, or when you construct a filesystem.  Until you do that, 
-the feed directories are transient.
+All,
 
-> If that is true would it make sense to leave the old RPM in the feed
-> directory until package-index
-> is re-ran, or to run package-index automatically at the end of a build
-> when RPMs have changed?
+With the changes to Beaglebone and Build appliance we're going to need a qu=
+ick retest of those components. They are located:
 
-I -never- export the feed directories from the project directory.  Instead, I 
-copy the packages from the feed directory to where I share them, and then run 
-the indexer against the external repository.  This preserves the older versions 
-and also makes the new ones available.
+http://autobuilder.yoctoproject.org/pub/nightly/20140420-2
 
-To run the indexer I have to configure and run it manually...
+I'll pull these into the release tomorrow as I pack things up.
 
-PATH=/home/mhatle/build-6.0-RCPL-test/build/tmp/sysroots/x86_64-linux/bin:/home/mhatle/build-6.0-RCPL-test/bitbake/tmp/sysroots/x86_64-linux/usr/bin:$PATH
-/home/mhatle/build-6.0-RCPL-test/bitbake/tmp/sysroots/x86_64-linux/usr/bin/createrepo 
---update -q <path to feed>
+-b
 
-So for qemux86_64, I end up running the above three times.  all, x86_64 and 
-qemux86_64.
-
-Then on the target I just do:
-
-smart update
-smart upgrade -y
-
---Mark
-
-> Thanks,
->
-> Alex
->
->
->
-
+--
+Elizabeth Flanagan
+Yocto Project
+Build and Release
 
