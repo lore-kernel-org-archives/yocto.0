@@ -1,24 +1,29 @@
-Return-Path: <sgh@sgh.dk>
-Received: from mx-aarh-1.stofanet.dk (mx-aarh-1.stofanet.dk [212.10.10.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D568DE00347
-	for <yocto@yoctoproject.org>; Tue, 22 Apr 2014 10:47:22 -0700 (PDT)
-Received: from 5634f347.rev.stofanet.dk ([86.52.243.71] helo=asrock)
-	by mx-aarh-1.stofanet.dk (envelope-from <sgh@sgh.dk>)
-	with esmtp id 1Wcemp-0003lN-1J; Tue, 22 Apr 2014 19:47:15 +0200
-Received: from koontz.localnet (localhost [127.0.0.1])
-	by asrock (Postfix) with ESMTPS id DCEBE7ECCE;
-	Tue, 22 Apr 2014 19:47:14 +0200 (CEST)
-From: =?ISO-8859-1?Q?S=F8ren?= Holm <sgh@sgh.dk>
-To: Richard Purdie <richard.purdie@linuxfoundation.org>
-Date: Tue, 22 Apr 2014 19:47:15 +0200
-Message-ID: <3958560.SHjE1nP4bO@koontz>
-User-Agent: KMail/4.13 (Linux/3.13.0-24-lowlatency; KDE/4.13.0; i686; ; )
-In-Reply-To: <1398156364.16672.29.camel@ted>
-References: <2489555.PeAzndN2bA@koontz> <2872826.V92YYLj4a2@koontz>
-	<1398156364.16672.29.camel@ted>
+Return-Path: <mark.hatle@windriver.com>
+Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4131FE00474
+	for <yocto@yoctoproject.org>; Tue, 22 Apr 2014 11:14:39 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
+	[147.11.189.40])
+	by mail1.windriver.com (8.14.5/8.14.5) with ESMTP id s3MIEZEi001518
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
+	Tue, 22 Apr 2014 11:14:36 -0700 (PDT)
+Received: from Marks-MacBook-Pro.local (172.25.36.235) by
+	ALA-HCA.corp.ad.wrs.com (147.11.189.50) with Microsoft SMTP Server id
+	14.3.169.1; Tue, 22 Apr 2014 11:14:35 -0700
+Message-ID: <5356B18A.40201@windriver.com>
+Date: Tue, 22 Apr 2014 13:14:34 -0500
+From: Mark Hatle <mark.hatle@windriver.com>
+Organization: Wind River Systems
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.9;
+	rv:24.0) Gecko/20100101 Thunderbird/24.4.0
 MIME-Version: 1.0
+To: Alex J Lennon <ajlennon@dynamicdevices.co.uk>
+References: <5353BA79.3060206@dynamicdevices.co.uk>
+	<5355C79C.1020704@windriver.com>
+	<5356112C.2050400@dynamicdevices.co.uk>
+In-Reply-To: <5356112C.2050400@dynamicdevices.co.uk>
 Cc: yocto@yoctoproject.org
-Subject: Re: defconfig on daisy
+Subject: Re: Question about rebuilding RPM package index for updated RPMs when bitbake completes
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -30,34 +35,137 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 22 Apr 2014 17:47:26 -0000
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"
+X-List-Received-Date: Tue, 22 Apr 2014 18:14:42 -0000
+Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Thanks Richard.
+On 4/22/14, 1:50 AM, Alex J Lennon wrote:
+>
+> On 22/04/2014 02:36, Mark Hatle wrote:
+>> On 4/20/14, 7:15 AM, Alex J Lennon wrote:
+>>> Hi,
+>>>
+>>> I'm trying to put in place a development workflow using the PR server,
+>>> RPM package feeds and smart update/install on a target.
+>>>
+>>> I see that when I modify and rebuild my recipe, foo, the PR server
+>>> increments its count within the RPM filename, but the RPM feed data
+>>> doesn't seem to update.
+>>>
+>>
+>> ...
+>>
+>>> So if I am understanding the above correctly, when I make a change to a
+>>> recipe and build it, PR automatically
+>>> updates, the old RPM is removed and the new RPM added to the feed
+>>> directory. However the package index
+>>> for the feed is not updated.
+>>>
+>>> So if at that point I try to make use of the feed on a target I am
+>>> likely to find something is broken.
+>>
+>> The feed is normally indexed (createrepo) either when you manually run the
+>> package-index operation, or when you construct a filesystem.  Until you do
+>> that, the feed directories are transient.
+>>
+>
+> Is there a reason for this? Surely having a package index that is out of sync
+> with the packages until a manual operation is performed isn't ideal?
 
-Tirsdag den 22. april 2014 09:46:04 skrev Richard Purdie:
-> On Tue, 2014-04-22 at 08:13 +0200, S=F8ren Holm wrote:
-> > Hi Bruce
-> >=20
-> > I've search the meta-data repos and kernel repo for a change matchi=
-ng
-> > this. Is it fixes or did you miss it?
->=20
-> The change is:
->=20
-> http://git.yoctoproject.org/cgit.cgi/poky-contrib/commit/?h=3Dzedd/ke=
-rnel&id=3Da
-> 112c85c02f161dc03bf71cdb9d2b3557999bbfd
->=20
-> It didn't make it into the 1.6 release branch, it will go in for 1.6.=
-1
-> and is queued for there and master.
->=20
-> Cheers,
->=20
-> Richard
+Yes, if you re-indexed the set of packages after each package, you will add 
+multiple minutes to the construction of each package, and introduce locking into 
+the system.  (You won't be able to generate multiple recipes in parallel due to 
+this.)  (I don't consider it a package feed until all of the packages are built 
+and the index is constructed.)
 
---=20
-S=F8ren Holm
+>>> If that is true would it make sense to leave the old RPM in the feed
+>>> directory until package-index
+>>> is re-ran, or to run package-index automatically at the end of a build
+>>> when RPMs have changed?
+>>
+>> I -never- export the feed directories from the project directory. Instead, I
+>> copy the packages from the feed directory to where I share them, and then run
+>> the indexer against the external repository.  This preserves the older
+>> versions and also makes the new ones available.
+>>
+>> To run the indexer I have to configure and run it manually...
+>>
+>> PATH=/home/mhatle/build-6.0-RCPL-test/build/tmp/sysroots/x86_64-linux/bin:/home/mhatle/build-6.0-RCPL-test/bitbake/tmp/sysroots/x86_64-linux/usr/bin:$PATH
+>>
+>> /home/mhatle/build-6.0-RCPL-test/bitbake/tmp/sysroots/x86_64-linux/usr/bin/createrepo
+>> --update -q <path to feed>
+>>
+>> So for qemux86_64, I end up running the above three times.  all, x86_64 and
+>> qemux86_64.
+>>
+>> Then on the target I just do:
+>>
+>> smart update
+>> smart upgrade -y
+>>
+>
+> Thanks, that's useful
+>
+> However I still believe the core question stands, which is why the package index
+> is out of sync, and why it's a good thing to have to run bitbake package-index
+
+The other option is to remove the repo indexes when packages are written. 
+Again, I don't consider these out of sync though, as the files have different 
+purposes and constraints.  They are simply constructed to enable the rootfs 
+generation.  Upgrades are external of the build system.
+
+> manually to bring the package index back into sync with the packages?
+>
+> I too export the feed directories to a server for 3rd party consumption via
+> compressed rsync over SSH. I don't want to expose more on the server than a
+> simple SSH endpoint, and rsync seems a sensible way to minimise copying times,
+> so either I need the package index to be correct prior to the rsync, I need to
+> export, say, an NFS filesystem which I don't want to do, or I need some
+> createrepo specifics on what I would prefer to be a dumb web-server.
+
+For an rsync, I would either index on the server using a cron-job.. so when new 
+packages appear they get added to the index, or have a local mirror of the 
+directory including the updated index... you just want to make sure the index 
+files are synced last somehow.
+
+--Mark
+
+> Best,
+>
+> Alex
+>
+>> --Mark
+>>
+>>> Thanks,
+>>>
+>>> Alex
+>>>
+>>>
+>>>
+>>
+>
+> --
+>
+> Dynamic Devices Ltd <http://www.dynamicdevices.co.uk/>
+>
+> Alex J Lennon / Director
+> 1 Queensway, Liverpool L22 4RA
+>
+> mobile: +44 (0)7956 668178
+>
+> Linkedin <http://www.linkedin.com/in/alexjlennon> Skype <skype:alexjlennon?add>
+>
+> This e-mail message may contain confidential or legally privileged information
+> and is intended only for the use of the intended recipient(s). Any unauthorized
+> disclosure, dissemination, distribution, copying or the taking of any action in
+> reliance on the information herein is prohibited. E-mails are not secure and
+> cannot be guaranteed to be error free as they can be intercepted, amended, or
+> contain viruses. Anyone who communicates with us by e-mail is deemed to have
+> accepted these risks. Company Name is not responsible for errors or omissions in
+> this message and denies any responsibility for any damage arising from the use
+> of e-mail. Any opinion and other statement contained in this message and any
+> attachment are solely those of the author and do not necessarily represent those
+> of the company.
+>
+
 
