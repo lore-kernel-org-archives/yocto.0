@@ -1,32 +1,25 @@
-Return-Path: <nicolas.dechesne@linaro.org>
-Received: from mail-oa0-f44.google.com (mail-oa0-f44.google.com
-	[209.85.219.44])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 53999E00C02
-	for <yocto@yoctoproject.org>; Tue, 22 Apr 2014 04:34:55 -0700 (PDT)
-Received: by mail-oa0-f44.google.com with SMTP id n16so2770278oag.31
-	for <yocto@yoctoproject.org>; Tue, 22 Apr 2014 04:34:54 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc:content-type;
-	bh=5EQGkEwfpY5JNkmvGln+Jl/gjI2tkRHeN36yn4EE0gE=;
-	b=iqKIDXJOeu3j1KOH+VFmOd0vy7H6PuYsuzuxMY9eYTJiSmbavy7TYmDFpHQcow5DKi
-	C8oJ6MHuNGwuNq7Kj5l1oMiD6gPG0ZsMimgwbM5lLDzkiK1cxvLyNQ5Ug+/jgK9i1p9q
-	jo5DifRNUo/Dteo/7RUF588OvhlEKaOVmVtXeIutE5UlfwavqMZQ7FLIyOh8dNkA8p9U
-	XcwsEqm5QnMe0gAWgIDtaTBdPBeGgwKNsYi4bbOM8vamHgcaptWNG4DjuvmMflDFgE9e
-	wlWzE8RjUGTKZJq/b29aYX7tKse2gxSYR5nkl7pmc8AOWcGBZpLeQvCkQ2KGD5I/wb6o
-	KnhA==
-X-Gm-Message-State: ALoCoQnN2S/niw5U3rZ77XQgxUfdx03/dRQtkfypDTdDnxoycR/Rq08hEgeXLIhvW3vRB4mBsuXf
-X-Received: by 10.182.118.169 with SMTP id kn9mr7200193obb.46.1398166494750;
-	Tue, 22 Apr 2014 04:34:54 -0700 (PDT)
-MIME-Version: 1.0
-Received: by 10.76.110.9 with HTTP; Tue, 22 Apr 2014 04:34:34 -0700 (PDT)
-In-Reply-To: <F7680723A1CA6840825A59020FA77064010BC709@sdexmbx1srv.skidata.net>
+Return-Path: <prvs=182b94058=Richard.Leitner@skidata.com>
+Received: from mail1.skidata.com (mail1.skidata.com [91.230.2.99])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 32DBEE00C02
+	for <yocto@yoctoproject.org>; Tue, 22 Apr 2014 05:11:04 -0700 (PDT)
+X-IronPort-Anti-Spam-Filtered: true
+X-IronPort-Anti-Spam-Result: AjwKAGhbVlOsEApK/2dsb2JhbABZg1VXgw+nVZkyGYEUdIIlAQEBBCMRRQwEAgEIDQQEAQEBAgIGHQMCAgIdExQBCAgBAQQOBQgMiDIIqQ+jKxMEgSmMfAYrBwQCgmk1gRQEjxCQYY8Cgis
+X-IPAS-Result: AjwKAGhbVlOsEApK/2dsb2JhbABZg1VXgw+nVZkyGYEUdIIlAQEBBCMRRQwEAgEIDQQEAQEBAgIGHQMCAgIdExQBCAgBAQQOBQgMiDIIqQ+jKxMEgSmMfAYrBwQCgmk1gRQEjxCQYY8Cgis
+From: Richard Leitner - SKIDATA <Richard.Leitner@skidata.com>
+To: Nicolas Dechesne <nicolas.dechesne@linaro.org>
+Thread-Topic: [yocto] Problem with own kernel recipe on Dora
+Thread-Index: Ac9d/6ScmbsBUwlWRTabvACrZE7qtgADm1IAAAVHr/A=
+Date: Tue, 22 Apr 2014 12:11:00 +0000
+Message-ID: <F7680723A1CA6840825A59020FA77064010BD996@sdexmbx1srv.skidata.net>
 References: <F7680723A1CA6840825A59020FA77064010BC709@sdexmbx1srv.skidata.net>
-From: Nicolas Dechesne <nicolas.dechesne@linaro.org>
-Date: Tue, 22 Apr 2014 13:34:34 +0200
-Message-ID: <CAP71WjyCK-JQMdDKh42VX2aXeUPTL0bb0ELpFHsRafpuwpcUpg@mail.gmail.com>
-To: Richard Leitner - SKIDATA <Richard.Leitner@skidata.com>
+	<CAP71WjyCK-JQMdDKh42VX2aXeUPTL0bb0ELpFHsRafpuwpcUpg@mail.gmail.com>
+Keywords: MailinglistFromMe
+In-Reply-To: <CAP71WjyCK-JQMdDKh42VX2aXeUPTL0bb0ELpFHsRafpuwpcUpg@mail.gmail.com>
+Accept-Language: en-US, de-AT
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [172.16.111.80]
+MIME-Version: 1.0
 Cc: "Yocto Project Discussion ML \(yocto@yoctoproject.org\)"
 	<yocto@yoctoproject.org>
 Subject: Re: Problem with own kernel recipe on Dora
@@ -41,69 +34,66 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 22 Apr 2014 11:34:59 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Tue, 22 Apr 2014 12:11:08 -0000
+Content-Language: de-DE
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-On Tue, Apr 22, 2014 at 9:52 AM, Richard Leitner - SKIDATA
-<Richard.Leitner@skidata.com> wrote:
-> Hi Yocto-Community,
-> as the subject already says I've a problem with my kernel recipe after the "migration" from the Dylan to the Dora (10.0.1) branch.
-> I've tried the 10.0.1 release tag as well as the current dora master (50e9ccb2aff7b9f9dca4fda99a6832c60f64de3b).
->
-> The kernel recipe I'm using is derived from the skeleton:
-> DESCRIPTION = "Linux Kernel"
-> SECTION = "kernel"
-> LICENSE = "GPLv2"
-> LIC_FILES_CHKSUM = "file://COPYING;md5=d7810fab7487fb0aad327b76f1be7cd7"
-> inherit kernel
-> KSRC = "/home/leri/VCS/git/linux"
-> KBRANCH = "master"
-> SRC_URI = "git://${KSRC};protocol=file;branch=${KBRANCH};name=kernel;nocheckout=1"
-> SRCREV = "2014_03_07"
-> PR = "sd_15.2"
-> LINUX_VERSION = "${PV}"
-> LINUX_VERSION_EXTENSION = "-${PR}+${SRCREV}"
-> COMPATIBLE_MACHINE = "skidata-harmony|smartcpu"
-> KERNEL_IMAGETYPE = "uImage"
-> SRC_URI += "file://defconfig"
-> require recipes-kernel/linux/linux-yocto.inc
->
->
-> This recipe was working well with the Dylan branch and following changes:
-> -SRC_URI = "git://${KSRC};protocol=file;branch=${KBRANCH};name=kernel;nocheckout=1"
-> +SRC_URI = "git://${KSRC};protocol=file;branch=${KBRANCH};name=kernel"
-> +S = "${WORKDIR}/git"
->
->
-> When compiled with the dora branch the kernel hangs at "Starting kernel..." and doesn't start:
-> ## Booting kernel from Legacy Image at 00000000 ...
->    Image Name:   Linux-3.1.10-sd_15.2
->    Image Type:   ARM Linux Kernel Image (uncompressed)
->    Data Size:    3181616 Bytes = 3 MiB
->    Load Address: 00008000
->    Entry Point:  00008000
->    Verifying Checksum ... OK
->    Loading Kernel Image ... OK
-> OK
->
-> Starting kernel ...
->
->
-> I've already looked through the migration notes in the manual but I'm unable to find any hints...
-> Are there any ideas why the kernel doesn't start with the Dora branch?
-
-you don't mention anything about gcc, so assuming you are using the
-'default' gcc for each release, dylan has 4.7, and dora has 4.8. On a
-couple of ARM platforms, i have seen similar issue when using gcc-4.8
-with old kernel (<v3.4).
-
-the following linux kernel patches were used to fix the boot problem:
-
-https://git.kernel.org/cgit/linux/kernel/git/torvalds/linux.git/commit/?id=455bd4c430b0c0a361f38e8658a0d6cb469942b5
-https://git.kernel.org/cgit/linux/kernel/git/torvalds/linux.git/commit/?id=418df63adac56841ef6b0f1fcf435bc64d4ed177
-
-They should cleanly apply to v3.1 which you seem to be using.
-
-cheers,
-nico
+PiAtLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KPiBGcm9tOiBOaWNvbGFzIERlY2hlc25lIFtt
+YWlsdG86bmljb2xhcy5kZWNoZXNuZUBsaW5hcm8ub3JnXQ0KPiBTZW50OiBUdWVzZGF5LCBBcHJp
+bCAyMiwgMjAxNCAxOjM1IFBNDQo+IFRvOiBSaWNoYXJkIExlaXRuZXIgLSBTS0lEQVRBDQo+IENj
+OiBZb2N0byBQcm9qZWN0IERpc2N1c3Npb24gTUwgKHlvY3RvQHlvY3RvcHJvamVjdC5vcmcpDQo+
+IFN1YmplY3Q6IFJlOiBbeW9jdG9dIFByb2JsZW0gd2l0aCBvd24ga2VybmVsIHJlY2lwZSBvbiBE
+b3JhDQo+IA0KPiBPbiBUdWUsIEFwciAyMiwgMjAxNCBhdCA5OjUyIEFNLCBSaWNoYXJkIExlaXRu
+ZXIgLSBTS0lEQVRBDQo+IDxSaWNoYXJkLkxlaXRuZXJAc2tpZGF0YS5jb20+IHdyb3RlOg0KPiA+
+IEhpIFlvY3RvLUNvbW11bml0eSwNCj4gPiBhcyB0aGUgc3ViamVjdCBhbHJlYWR5IHNheXMgSSd2
+ZSBhIHByb2JsZW0gd2l0aCBteSBrZXJuZWwgcmVjaXBlIGFmdGVyIHRoZQ0KPiAibWlncmF0aW9u
+IiBmcm9tIHRoZSBEeWxhbiB0byB0aGUgRG9yYSAoMTAuMC4xKSBicmFuY2guDQo+ID4gSSd2ZSB0
+cmllZCB0aGUgMTAuMC4xIHJlbGVhc2UgdGFnIGFzIHdlbGwgYXMgdGhlIGN1cnJlbnQgZG9yYSBt
+YXN0ZXINCj4gKDUwZTljY2IyYWZmN2I5ZjlkY2E0ZmRhOTlhNjgzMmM2MGY2NGRlM2IpLg0KPiA+
+DQo+ID4gVGhlIGtlcm5lbCByZWNpcGUgSSdtIHVzaW5nIGlzIGRlcml2ZWQgZnJvbSB0aGUgc2tl
+bGV0b246DQo+ID4gREVTQ1JJUFRJT04gPSAiTGludXggS2VybmVsIg0KPiA+IFNFQ1RJT04gPSAi
+a2VybmVsIg0KPiA+IExJQ0VOU0UgPSAiR1BMdjIiDQo+ID4gTElDX0ZJTEVTX0NIS1NVTSA9ICJm
+aWxlOi8vQ09QWUlORzttZDU9ZDc4MTBmYWI3NDg3ZmIwYWFkMzI3Yjc2ZjFiZTdjZDciDQo+ID4g
+aW5oZXJpdCBrZXJuZWwNCj4gPiBLU1JDID0gIi9ob21lL2xlcmkvVkNTL2dpdC9saW51eCINCj4g
+PiBLQlJBTkNIID0gIm1hc3RlciINCj4gPiBTUkNfVVJJID0NCj4gImdpdDovLyR7S1NSQ307cHJv
+dG9jb2w9ZmlsZTticmFuY2g9JHtLQlJBTkNIfTtuYW1lPWtlcm5lbDtub2NoZWNrb3V0PTEiDQo+
+ID4gU1JDUkVWID0gIjIwMTRfMDNfMDciDQo+ID4gUFIgPSAic2RfMTUuMiINCj4gPiBMSU5VWF9W
+RVJTSU9OID0gIiR7UFZ9Ig0KPiA+IExJTlVYX1ZFUlNJT05fRVhURU5TSU9OID0gIi0ke1BSfSsk
+e1NSQ1JFVn0iDQo+ID4gQ09NUEFUSUJMRV9NQUNISU5FID0gInNraWRhdGEtaGFybW9ueXxzbWFy
+dGNwdSINCj4gPiBLRVJORUxfSU1BR0VUWVBFID0gInVJbWFnZSINCj4gPiBTUkNfVVJJICs9ICJm
+aWxlOi8vZGVmY29uZmlnIg0KPiA+IHJlcXVpcmUgcmVjaXBlcy1rZXJuZWwvbGludXgvbGludXgt
+eW9jdG8uaW5jDQo+ID4NCj4gPg0KPiA+IFRoaXMgcmVjaXBlIHdhcyB3b3JraW5nIHdlbGwgd2l0
+aCB0aGUgRHlsYW4gYnJhbmNoIGFuZCBmb2xsb3dpbmcgY2hhbmdlczoNCj4gPiAtU1JDX1VSSSA9
+DQo+ICJnaXQ6Ly8ke0tTUkN9O3Byb3RvY29sPWZpbGU7YnJhbmNoPSR7S0JSQU5DSH07bmFtZT1r
+ZXJuZWw7bm9jaGVja291dD0xIg0KPiA+ICtTUkNfVVJJID0gImdpdDovLyR7S1NSQ307cHJvdG9j
+b2w9ZmlsZTticmFuY2g9JHtLQlJBTkNIfTtuYW1lPWtlcm5lbCINCj4gPiArUyA9ICIke1dPUktE
+SVJ9L2dpdCINCj4gPg0KPiA+DQo+ID4gV2hlbiBjb21waWxlZCB3aXRoIHRoZSBkb3JhIGJyYW5j
+aCB0aGUga2VybmVsIGhhbmdzIGF0ICJTdGFydGluZyBrZXJuZWwuLi4iIGFuZA0KPiBkb2Vzbid0
+IHN0YXJ0Og0KPiA+ICMjIEJvb3Rpbmcga2VybmVsIGZyb20gTGVnYWN5IEltYWdlIGF0IDAwMDAw
+MDAwIC4uLg0KPiA+ICAgIEltYWdlIE5hbWU6ICAgTGludXgtMy4xLjEwLXNkXzE1LjINCj4gPiAg
+ICBJbWFnZSBUeXBlOiAgIEFSTSBMaW51eCBLZXJuZWwgSW1hZ2UgKHVuY29tcHJlc3NlZCkNCj4g
+PiAgICBEYXRhIFNpemU6ICAgIDMxODE2MTYgQnl0ZXMgPSAzIE1pQg0KPiA+ICAgIExvYWQgQWRk
+cmVzczogMDAwMDgwMDANCj4gPiAgICBFbnRyeSBQb2ludDogIDAwMDA4MDAwDQo+ID4gICAgVmVy
+aWZ5aW5nIENoZWNrc3VtIC4uLiBPSw0KPiA+ICAgIExvYWRpbmcgS2VybmVsIEltYWdlIC4uLiBP
+Sw0KPiA+IE9LDQo+ID4NCj4gPiBTdGFydGluZyBrZXJuZWwgLi4uDQo+ID4NCj4gPg0KPiA+IEkn
+dmUgYWxyZWFkeSBsb29rZWQgdGhyb3VnaCB0aGUgbWlncmF0aW9uIG5vdGVzIGluIHRoZSBtYW51
+YWwgYnV0IEknbSB1bmFibGUgdG8gZmluZA0KPiBhbnkgaGludHMuLi4NCj4gPiBBcmUgdGhlcmUg
+YW55IGlkZWFzIHdoeSB0aGUga2VybmVsIGRvZXNuJ3Qgc3RhcnQgd2l0aCB0aGUgRG9yYSBicmFu
+Y2g/DQo+IA0KPiB5b3UgZG9uJ3QgbWVudGlvbiBhbnl0aGluZyBhYm91dCBnY2MsIHNvIGFzc3Vt
+aW5nIHlvdSBhcmUgdXNpbmcgdGhlICdkZWZhdWx0JyBnY2MgZm9yDQo+IGVhY2ggcmVsZWFzZSwg
+ZHlsYW4gaGFzIDQuNywgYW5kIGRvcmEgaGFzIDQuOC4gT24gYSBjb3VwbGUgb2YgQVJNIHBsYXRm
+b3JtcywgaSBoYXZlDQo+IHNlZW4gc2ltaWxhciBpc3N1ZSB3aGVuIHVzaW5nIGdjYy00Ljggd2l0
+aCBvbGQga2VybmVsICg8djMuNCkuDQo+IA0KPiB0aGUgZm9sbG93aW5nIGxpbnV4IGtlcm5lbCBw
+YXRjaGVzIHdlcmUgdXNlZCB0byBmaXggdGhlIGJvb3QgcHJvYmxlbToNCj4gDQo+IGh0dHBzOi8v
+Z2l0Lmtlcm5lbC5vcmcvY2dpdC9saW51eC9rZXJuZWwvZ2l0L3RvcnZhbGRzL2xpbnV4LmdpdC9j
+b21taXQvP2lkPTQ1NWJkNGM0MzBiMGMNCj4gMGEzNjFmMzhlODY1OGEwZDZjYjQ2OTk0MmI1DQo+
+IGh0dHBzOi8vZ2l0Lmtlcm5lbC5vcmcvY2dpdC9saW51eC9rZXJuZWwvZ2l0L3RvcnZhbGRzL2xp
+bnV4LmdpdC9jb21taXQvP2lkPTQxOGRmNjNhZGFjNTYNCj4gODQxZWY2YjBmMWZjZjQzNWJjNjRk
+NGVkMTc3DQo+IA0KPiBUaGV5IHNob3VsZCBjbGVhbmx5IGFwcGx5IHRvIHYzLjEgd2hpY2ggeW91
+IHNlZW0gdG8gYmUgdXNpbmcuDQo+IA0KDQpUaGFuayB5b3UgdmVyeSBtdWNoIE5pY28hDQpUaGVz
+ZSB0d28gcGF0Y2hlcyBmaXhlZCB0aGUgcHJvYmxlbSBhbmQgdGhlIGtlcm5lbCBpcyBib290aW5n
+IGFnYWluIDotKQ0KDQpKdXN0IGZvciBjb21wbGV0ZW5lc3M6IFllcywgSSdtIHVzaW5nIHRoZSAi
+ZGVmYXVsdCIgZ2NjIHZlcnNpb24gYW5kIHRoZSB0d28gcGF0Y2hlcyBhcHBsaWVkIGNsZWFubHkg
+dG8gbXkgMy4xIGJyYW5jaC4NCg0KcmVnYXJkcywNClJpY2hhcmQNCg==
 
