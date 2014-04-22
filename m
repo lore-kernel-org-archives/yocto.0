@@ -1,25 +1,29 @@
-Return-Path: <prvs=182b94058=Richard.Leitner@skidata.com>
-Received: from mail1.skidata.com (mail1.skidata.com [91.230.2.99])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BB1C1E00C02
-	for <yocto@yoctoproject.org>; Tue, 22 Apr 2014 02:08:23 -0700 (PDT)
-X-IronPort-Anti-Spam-Filtered: true
-X-IronPort-Anti-Spam-Result: AjoKAPswVlOsEApK/2dsb2JhbABZhCyDD6dVmTIZgRF0giUBAQEDASMRRQwEAgEIDQQEAQEBAgIGHQMCAgIdExQBCAgBAQQOBQgMiCUNqQWjGxeBKYx8FhsHBoJpNYEUBI8QkGGPAoIr
-X-IPAS-Result: AjoKAPswVlOsEApK/2dsb2JhbABZhCyDD6dVmTIZgRF0giUBAQEDASMRRQwEAgEIDQQEAQEBAgIGHQMCAgIdExQBCAgBAQQOBQgMiCUNqQWjGxeBKYx8FhsHBoJpNYEUBI8QkGGPAoIr
-From: Richard Leitner - SKIDATA <Richard.Leitner@skidata.com>
-To: Richard Purdie <richard.purdie@linuxfoundation.org>
-Thread-Topic: [yocto] Problem with own kernel recipe on Dora
-Thread-Index: Ac9d/6ScmbsBUwlWRTabvACrZE7qtv//51cA///S0YA=
-Date: Tue, 22 Apr 2014 09:08:20 +0000
-Message-ID: <F7680723A1CA6840825A59020FA77064010BD649@sdexmbx1srv.skidata.net>
+Return-Path: <richard.purdie@linuxfoundation.org>
+Received: from dan.rpsys.net (5751f4a1.skybroadband.com [87.81.244.161])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 94C3EE00C02
+	for <yocto@yoctoproject.org>; Tue, 22 Apr 2014 02:33:06 -0700 (PDT)
+Received: from localhost (dan.rpsys.net [127.0.0.1])
+	by dan.rpsys.net (8.14.4/8.14.4/Debian-2.1ubuntu4) with ESMTP id
+	s3M9UvNZ032591; Tue, 22 Apr 2014 10:30:59 +0100
+X-Virus-Scanned: Debian amavisd-new at dan.rpsys.net
+Received: from dan.rpsys.net ([127.0.0.1])
+	by localhost (dan.rpsys.net [127.0.0.1]) (amavisd-new, port 10024)
+	with LMTP id fnJEB-8sF0ig; Tue, 22 Apr 2014 10:30:59 +0100 (BST)
+Received: from [192.168.3.10] (rpvlan0 [192.168.3.10]) (authenticated bits=0)
+	by dan.rpsys.net (8.14.4/8.14.4/Debian-2.1ubuntu1) with ESMTP id
+	s3M9Uhrc032570
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES128-SHA bits=128 verify=NOT);
+	Tue, 22 Apr 2014 10:30:44 +0100
+Message-ID: <1398159037.16672.30.camel@ted>
+From: Richard Purdie <richard.purdie@linuxfoundation.org>
+To: Richard Leitner - SKIDATA <Richard.Leitner@skidata.com>
+Date: Tue, 22 Apr 2014 10:30:37 +0100
+In-Reply-To: <F7680723A1CA6840825A59020FA77064010BD649@sdexmbx1srv.skidata.net>
 References: <F7680723A1CA6840825A59020FA77064010BC709@sdexmbx1srv.skidata.net>
 	<1398154982.16672.25.camel@ted>
-Keywords: MailinglistFromMe
-In-Reply-To: <1398154982.16672.25.camel@ted>
-Accept-Language: en-US, de-AT
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [172.16.111.80]
-MIME-Version: 1.0
+	<F7680723A1CA6840825A59020FA77064010BD649@sdexmbx1srv.skidata.net>
+X-Mailer: Evolution 3.8.4-0ubuntu1 
+Mime-Version: 1.0
 Cc: "Yocto Project Discussion ML \(yocto@yoctoproject.org\)"
 	<yocto@yoctoproject.org>
 Subject: Re: Problem with own kernel recipe on Dora
@@ -34,59 +38,81 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 22 Apr 2014 09:08:26 -0000
-Content-Language: de-DE
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+X-List-Received-Date: Tue, 22 Apr 2014 09:33:10 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
-SGkgUmljaGFyZCwNCnRoYW5rcyBmb3IgeW91ciBxdWljayByZXNwb25zZS4NCg0KPiAtLS0tLU9y
-aWdpbmFsIE1lc3NhZ2UtLS0tLQ0KPiBGcm9tOiBSaWNoYXJkIFB1cmRpZSBbbWFpbHRvOnJpY2hh
-cmQucHVyZGllQGxpbnV4Zm91bmRhdGlvbi5vcmddDQo+IFNlbnQ6IFR1ZXNkYXksIEFwcmlsIDIy
-LCAyMDE0IDEwOjIzIEFNDQo+IFRvOiBSaWNoYXJkIExlaXRuZXIgLSBTS0lEQVRBDQo+IENjOiBZ
-b2N0byBQcm9qZWN0IERpc2N1c3Npb24gTUwgKHlvY3RvQHlvY3RvcHJvamVjdC5vcmcpDQo+IFN1
-YmplY3Q6IFJlOiBbeW9jdG9dIFByb2JsZW0gd2l0aCBvd24ga2VybmVsIHJlY2lwZSBvbiBEb3Jh
-DQo+IA0KPiBPbiBUdWUsIDIwMTQtMDQtMjIgYXQgMDc6NTIgKzAwMDAsIFJpY2hhcmQgTGVpdG5l
-ciAtIFNLSURBVEEgd3JvdGU6DQo+ID4gSGkgWW9jdG8tQ29tbXVuaXR5LA0KPiA+IGFzIHRoZSBz
-dWJqZWN0IGFscmVhZHkgc2F5cyBJJ3ZlIGEgcHJvYmxlbSB3aXRoIG15IGtlcm5lbCByZWNpcGUg
-YWZ0ZXIgdGhlDQo+ICJtaWdyYXRpb24iIGZyb20gdGhlIER5bGFuIHRvIHRoZSBEb3JhICgxMC4w
-LjEpIGJyYW5jaC4NCj4gPiBJJ3ZlIHRyaWVkIHRoZSAxMC4wLjEgcmVsZWFzZSB0YWcgYXMgd2Vs
-bCBhcyB0aGUgY3VycmVudCBkb3JhIG1hc3Rlcg0KPiAoNTBlOWNjYjJhZmY3YjlmOWRjYTRmZGE5
-OWE2ODMyYzYwZjY0ZGUzYikuDQo+ID4NCj4gPiBUaGUga2VybmVsIHJlY2lwZSBJJ20gdXNpbmcg
-aXMgZGVyaXZlZCBmcm9tIHRoZSBza2VsZXRvbjoNCj4gPiBERVNDUklQVElPTiA9ICJMaW51eCBL
-ZXJuZWwiDQo+ID4gU0VDVElPTiA9ICJrZXJuZWwiDQo+ID4gTElDRU5TRSA9ICJHUEx2MiINCj4g
-PiBMSUNfRklMRVNfQ0hLU1VNID0gImZpbGU6Ly9DT1BZSU5HO21kNT1kNzgxMGZhYjc0ODdmYjBh
-YWQzMjdiNzZmMWJlN2NkNyINCj4gPiBpbmhlcml0IGtlcm5lbA0KPiA+IEtTUkMgPSAiL2hvbWUv
-bGVyaS9WQ1MvZ2l0L2xpbnV4Ig0KPiA+IEtCUkFOQ0ggPSAibWFzdGVyIg0KPiA+IFNSQ19VUkkg
-PQ0KPiAiZ2l0Oi8vJHtLU1JDfTtwcm90b2NvbD1maWxlO2JyYW5jaD0ke0tCUkFOQ0h9O25hbWU9
-a2VybmVsO25vY2hlY2tvdXQ9MSINCj4gPiBTUkNSRVYgPSAiMjAxNF8wM18wNyINCj4gPiBQUiA9
-ICJzZF8xNS4yIg0KPiA+IExJTlVYX1ZFUlNJT04gPSAiJHtQVn0iDQo+ID4gTElOVVhfVkVSU0lP
-Tl9FWFRFTlNJT04gPSAiLSR7UFJ9KyR7U1JDUkVWfSINCj4gPiBDT01QQVRJQkxFX01BQ0hJTkUg
-PSAic2tpZGF0YS1oYXJtb255fHNtYXJ0Y3B1Ig0KPiA+IEtFUk5FTF9JTUFHRVRZUEUgPSAidUlt
-YWdlIg0KPiA+IFNSQ19VUkkgKz0gImZpbGU6Ly9kZWZjb25maWciDQo+ID4gcmVxdWlyZSByZWNp
-cGVzLWtlcm5lbC9saW51eC9saW51eC15b2N0by5pbmMNCj4gPg0KPiA+DQo+ID4gVGhpcyByZWNp
-cGUgd2FzIHdvcmtpbmcgd2VsbCB3aXRoIHRoZSBEeWxhbiBicmFuY2ggYW5kIGZvbGxvd2luZyBj
-aGFuZ2VzOg0KPiA+IC1TUkNfVVJJID0NCj4gImdpdDovLyR7S1NSQ307cHJvdG9jb2w9ZmlsZTti
-cmFuY2g9JHtLQlJBTkNIfTtuYW1lPWtlcm5lbDtub2NoZWNrb3V0PTEiDQo+ID4gK1NSQ19VUkkg
-PSAiZ2l0Oi8vJHtLU1JDfTtwcm90b2NvbD1maWxlO2JyYW5jaD0ke0tCUkFOQ0h9O25hbWU9a2Vy
-bmVsIg0KPiA+ICtTID0gIiR7V09SS0RJUn0vZ2l0Ig0KPiA+DQo+ID4NCj4gPiBXaGVuIGNvbXBp
-bGVkIHdpdGggdGhlIGRvcmEgYnJhbmNoIHRoZSBrZXJuZWwgaGFuZ3MgYXQgIlN0YXJ0aW5nIGtl
-cm5lbC4uLiIgYW5kDQo+IGRvZXNuJ3Qgc3RhcnQ6DQo+ID4gIyMgQm9vdGluZyBrZXJuZWwgZnJv
-bSBMZWdhY3kgSW1hZ2UgYXQgMDAwMDAwMDAgLi4uDQo+ID4gICAgSW1hZ2UgTmFtZTogICBMaW51
-eC0zLjEuMTAtc2RfMTUuMg0KPiA+ICAgIEltYWdlIFR5cGU6ICAgQVJNIExpbnV4IEtlcm5lbCBJ
-bWFnZSAodW5jb21wcmVzc2VkKQ0KPiA+ICAgIERhdGEgU2l6ZTogICAgMzE4MTYxNiBCeXRlcyA9
-IDMgTWlCDQo+ID4gICAgTG9hZCBBZGRyZXNzOiAwMDAwODAwMA0KPiA+ICAgIEVudHJ5IFBvaW50
-OiAgMDAwMDgwMDANCj4gPiAgICBWZXJpZnlpbmcgQ2hlY2tzdW0gLi4uIE9LDQo+ID4gICAgTG9h
-ZGluZyBLZXJuZWwgSW1hZ2UgLi4uIE9LDQo+ID4gT0sNCj4gPg0KPiA+IFN0YXJ0aW5nIGtlcm5l
-bCAuLi4NCj4gPg0KPiA+DQo+ID4gSSd2ZSBhbHJlYWR5IGxvb2tlZCB0aHJvdWdoIHRoZSBtaWdy
-YXRpb24gbm90ZXMgaW4gdGhlIG1hbnVhbCBidXQgSSdtIHVuYWJsZSB0byBmaW5kDQo+IGFueSBo
-aW50cy4uLg0KPiA+IEFyZSB0aGVyZSBhbnkgaWRlYXMgd2h5IHRoZSBrZXJuZWwgZG9lc24ndCBz
-dGFydCB3aXRoIHRoZSBEb3JhIGJyYW5jaD8NCj4gDQo+IFdlIHNhdyBhbiBpc3N1ZSByZWNlbnRs
-eSBvbiBiZWFnbGVib25lIHRoYXQgbG9va2VkIHZlcnkgbGlrZSB0aGlzLiBJdCB0dXJuZWQgb3V0
-IHRoZQ0KPiBsb2FkIGFkZHJlc3MgZm9yIHRoZSBrZXJuZWwgd2FzIGNvbmZsaWN0aW5nIGluIG1l
-bW9yeSB3aXRoIHRoZSBkZXZpY2UgdHJlZSBiaW5hcnkuDQoNCkRvIHlvdSBtZWFuIHRoYXQgdGhl
-IGJvb3Rsb2FkZXIgd2FzIGxvYWRpbmcgdGhlIGRldmljZSB0cmVlIGJpbmFyeSBpbnRvIHRoZSBs
-b2FkIGFkZHJlc3Mgb2YgdGhlIGtlcm5lbD8NCg0KPiANCj4gSXQgZWFzaWx5IGJlIHNvbWV0aGlu
-ZyBkaWZmZXJlbnQgYnV0IEkgdGhvdWdodCBJJ2QgbWVudGlvbiBpdC4NCg0KRG8geW91IGhhdmUg
-YW55IGlkZWEgaG93IHRvIGZ1cnRoZXIgZGVidWcgdGhlIHByb2JsZW0/DQoNCnJlZ2FyZHMsDQpS
-aWNoYXJkDQoNCg==
+On Tue, 2014-04-22 at 09:08 +0000, Richard Leitner - SKIDATA wrote:
+> > -----Original Message-----
+> > From: Richard Purdie [mailto:richard.purdie@linuxfoundation.org]
+> > Sent: Tuesday, April 22, 2014 10:23 AM
+> > To: Richard Leitner - SKIDATA
+> > Cc: Yocto Project Discussion ML (yocto@yoctoproject.org)
+> > Subject: Re: [yocto] Problem with own kernel recipe on Dora
+> > 
+> > On Tue, 2014-04-22 at 07:52 +0000, Richard Leitner - SKIDATA wrote:
+> > > Hi Yocto-Community,
+> > > as the subject already says I've a problem with my kernel recipe after the
+> > "migration" from the Dylan to the Dora (10.0.1) branch.
+> > > I've tried the 10.0.1 release tag as well as the current dora master
+> > (50e9ccb2aff7b9f9dca4fda99a6832c60f64de3b).
+> > >
+> > > The kernel recipe I'm using is derived from the skeleton:
+> > > DESCRIPTION = "Linux Kernel"
+> > > SECTION = "kernel"
+> > > LICENSE = "GPLv2"
+> > > LIC_FILES_CHKSUM = "file://COPYING;md5=d7810fab7487fb0aad327b76f1be7cd7"
+> > > inherit kernel
+> > > KSRC = "/home/leri/VCS/git/linux"
+> > > KBRANCH = "master"
+> > > SRC_URI =
+> > "git://${KSRC};protocol=file;branch=${KBRANCH};name=kernel;nocheckout=1"
+> > > SRCREV = "2014_03_07"
+> > > PR = "sd_15.2"
+> > > LINUX_VERSION = "${PV}"
+> > > LINUX_VERSION_EXTENSION = "-${PR}+${SRCREV}"
+> > > COMPATIBLE_MACHINE = "skidata-harmony|smartcpu"
+> > > KERNEL_IMAGETYPE = "uImage"
+> > > SRC_URI += "file://defconfig"
+> > > require recipes-kernel/linux/linux-yocto.inc
+> > >
+> > >
+> > > This recipe was working well with the Dylan branch and following changes:
+> > > -SRC_URI =
+> > "git://${KSRC};protocol=file;branch=${KBRANCH};name=kernel;nocheckout=1"
+> > > +SRC_URI = "git://${KSRC};protocol=file;branch=${KBRANCH};name=kernel"
+> > > +S = "${WORKDIR}/git"
+> > >
+> > >
+> > > When compiled with the dora branch the kernel hangs at "Starting kernel..." and
+> > doesn't start:
+> > > ## Booting kernel from Legacy Image at 00000000 ...
+> > >    Image Name:   Linux-3.1.10-sd_15.2
+> > >    Image Type:   ARM Linux Kernel Image (uncompressed)
+> > >    Data Size:    3181616 Bytes = 3 MiB
+> > >    Load Address: 00008000
+> > >    Entry Point:  00008000
+> > >    Verifying Checksum ... OK
+> > >    Loading Kernel Image ... OK
+> > > OK
+> > >
+> > > Starting kernel ...
+> > >
+> > >
+> > > I've already looked through the migration notes in the manual but I'm unable to find
+> > any hints...
+> > > Are there any ideas why the kernel doesn't start with the Dora branch?
+> > 
+> > We saw an issue recently on beaglebone that looked very like this. It turned out the
+> > load address for the kernel was conflicting in memory with the device tree binary.
+> 
+> Do you mean that the bootloader was loading the device tree binary into the load address of the kernel?
+
+The kernel was large enough it was overwriting the device tree data.
+
+Cheers,
+
+Richard
+
+
 
