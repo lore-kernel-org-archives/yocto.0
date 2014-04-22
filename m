@@ -1,21 +1,32 @@
 Return-Path: <elizabeth.flanagan@intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7FF39E00AE2
-	for <yocto@yoctoproject.org>; Mon, 21 Apr 2014 17:37:29 -0700 (PDT)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga102.jf.intel.com with ESMTP; 21 Apr 2014 17:32:39 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.97,899,1389772800"; d="scan'208";a="497039774"
-Received: from qana.jf.intel.com ([10.7.201.148])
-	by orsmga001.jf.intel.com with ESMTP; 21 Apr 2014 17:37:28 -0700
-Received: by qana.jf.intel.com (Postfix, from userid 1000)
-	id E8F505F825D3; Mon, 21 Apr 2014 17:34:54 -0700 (PDT)
-From: Elizabeth Flanagan <elizabeth.flanagan@intel.com>
-To: yocto@yoctoproject.org
-Date: Mon, 21 Apr 2014 17:34:48 -0700
-Message-Id: <1398126888-30313-1-git-send-email-elizabeth.flanagan@intel.com>
-X-Mailer: git-send-email 1.8.1.2
-Subject: [PATCH][daisy] distro_alias.inc: update/sort alias information.
+Received: from mail-ve0-f181.google.com (mail-ve0-f181.google.com
+	[209.85.128.181])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 07A2FE00AE2
+	for <yocto@yoctoproject.org>; Mon, 21 Apr 2014 18:09:13 -0700 (PDT)
+Received: by mail-ve0-f181.google.com with SMTP id oy12so8550853veb.40
+	for <yocto@yoctoproject.org>; Mon, 21 Apr 2014 18:09:12 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:date:message-id:subject:from:to
+	:content-type;
+	bh=OS0avQ2vqHeJRysXcRh5BqBXMjJ1tzcr7PJQNgfTXsw=;
+	b=jD6YAMRx1m8m18i7fB5JLZXAdcfSKhdWjBF884o/SGRnl3Aj6xIZOm5XIBP0x6Ds9m
+	xfDSFbfuclxSN9L1/aGsCvZggPCrBqSbbvsoywhGlcMesziInHkBlyfT85B/iQNvopep
+	nq0FCrE6vKyKSw+xVmfByO0oZ6MJChh/hKYM750fDtFAjoeGGudHg4y69ZPdSfGblx07
+	R/+d8PEUxxDLIz9JmLvOZD69N/hthBuUmDvjqE9lqMqeekwGJRTOtmaf+Aw9sXsXNkcQ
+	Bq3gV+ZtRqnNegYZgOA++5Knp3Dq5m9DVr/SEVkeyjjpJklZ2sDrTZeI8iLKXxavVGc4
+	2jZg==
+X-Gm-Message-State: ALoCoQlf+IYY+PCrHut5HqIoFK+RvNHbfMJqBYmjKzKSfs9ZU8fNDO9UgEGkPZEZXrcnCZZh6GTD
+MIME-Version: 1.0
+X-Received: by 10.58.211.69 with SMTP id na5mr3205241vec.30.1398128952510;
+	Mon, 21 Apr 2014 18:09:12 -0700 (PDT)
+Received: by 10.52.173.69 with HTTP; Mon, 21 Apr 2014 18:09:12 -0700 (PDT)
+Date: Mon, 21 Apr 2014 18:09:12 -0700
+Message-ID: <CAPhnLPBMZdWboqMPKNveSoq6TiW=vVkrAWb68+ccqa_iqdpsfQ@mail.gmail.com>
+From: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>, 
+	Alexandru C Georgescu <alexandru.c.georgescu@intel.com>
+Subject: 1.6 retest of Beaglebone and Build appliance.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -27,310 +38,22 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 22 Apr 2014 00:37:32 -0000
+X-List-Received-Date: Tue, 22 Apr 2014 01:09:14 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
-From: Beth Flanagan <elizabeth.flanagan@intel.com>
+All,
 
-Added new package data and resorted per
-http://article.gmane.org/gmane.linux.embedded.poky/9253
+With the changes to Beaglebone and Build appliance we're going to need
+a quick retest of those components. They are located:
 
-Removed -native packages as distrodata handles them in OVERRIDES.
+http://autobuilder.yoctoproject.org/pub/nightly/20140420-2
 
-However, meta packages and grub-efi are special and needs some
-handling within distrodata. I have a patch for this but for the
-release I'm leaving them within distro-alias.
+I'll pull these into the release tomorrow as I pack things up.
 
-Signed-off-by: Beth Flanagan <elizabeth.flanagan@intel.com>
----
- meta-yocto/conf/distro/include/distro_alias.inc | 69 +++++++++++++------------
- 1 file changed, 36 insertions(+), 33 deletions(-)
+-b
 
-diff --git a/meta-yocto/conf/distro/include/distro_alias.inc b/meta-yocto/conf/distro/include/distro_alias.inc
-index 96db5ba..48c1d92 100644
---- a/meta-yocto/conf/distro/include/distro_alias.inc
-+++ b/meta-yocto/conf/distro/include/distro_alias.inc
-@@ -15,13 +15,12 @@ DISTRO_PN_ALIAS_pn-adt-installer = "Intel"
- DISTRO_PN_ALIAS_pn-alsa-state = "OE-Core"
- DISTRO_PN_ALIAS_pn-alsa-utils-alsaconf = "OE-Core"
- DISTRO_PN_ALIAS_pn-atk = "Fedora=atk OpenSuSE=atk"
--DISTRO_PN_ALIAS_pn-atk-native = "Fedora=atk OpenSuSE=atk"
- DISTRO_PN_ALIAS_pn-augeas = "Ubuntu=libaugeas0 Debian=libaugeas0"
- DISTRO_PN_ALIAS_pn-avahi-ui = "Ubuntu=avahi-discover Debian=avahi-discover"
- DISTRO_PN_ALIAS_pn-babeltrace = "OSPDT"
- DISTRO_PN_ALIAS_pn-bdwgc = "OSPDT"
- DISTRO_PN_ALIAS_pn-bigreqsproto = "Meego=xorg-x11-proto-bigreqsproto"
--DISTRO_PN_ALIAS_pn-bjam-native = "OpenSuSE=boost-jam Debina=bjam"
-+DISTRO_PN_ALIAS_pn-bjam = "OpenSuSE=boost-jam Debina=bjam"
- DISTRO_PN_ALIAS_pn-blktool = "Debian=blktool Mandriva=blktool"
- DISTRO_PN_ALIAS_pn-bluez4 = "Ubuntu=bluez Debian=bluez-utils"
- DISTRO_PN_ALIAS_pn-bluez5 = "Fedora=bluez  Opensuse=bluez"
-@@ -32,7 +31,7 @@ DISTRO_PN_ALIAS_pn-builder = "OE-Core"
- DISTRO_PN_ALIAS_pn-buildtools-tarball = "OE-Core"
- DISTRO_PN_ALIAS_pn-calibrateproto = "OSPDT upstream=http://cgit.freedesktop.org/xorg/proto/calibrateproto"
- DISTRO_PN_ALIAS_pn-cdrtools = "OpenSUSE=cdrtools OSPDT"
--DISTRO_PN_ALIAS_pn-chkconfig-alternatives-native = "Mandriva=chkconfig Debian=chkconfig"
-+DISTRO_PN_ALIAS_pn-chkconfig-alternatives = "Mandriva=chkconfig Debian=chkconfig"
- DISTRO_PN_ALIAS_pn-claws-plugin-gtkhtml2-viewer = "Fedora=claws-mail-plugins OpenSuSE=claws-mail-extra-plugins Debian=claws-mail-extra-plugins"
- DISTRO_PN_ALIAS_pn-claws-plugin-maildir = "Fedora=claws-mail-plugins OpenSuSE=claws-mail-extra-plugins Debian=claws-mail-extra-plugins"
- DISTRO_PN_ALIAS_pn-claws-plugin-mailmbox = "Fedora=claws-mail-plugins OpenSuSE=claws-mail-extra-plugins Debian=claws-mail-extra-plugins"
-@@ -71,6 +70,7 @@ DISTRO_PN_ALIAS_pn-core-image-sato-sdk = "OE-Core"
- DISTRO_PN_ALIAS_pn-core-image-weston = "OE-Core"
- DISTRO_PN_ALIAS_pn-core-image-x11 = "OE-Core"
- DISTRO_PN_ALIAS_pn-cross-localedef = "OSPDT"
-+DISTRO_PN_ALIAS_pn-cryptodev-linux = "OE-Core"
- DISTRO_PN_ALIAS_pn-cwautomacros = "OSPDT upstream=http://cwautomacros.berlios.de/"
- DISTRO_PN_ALIAS_pn-damageproto = "Meego=xorg-x11-proto-damageproto"
- DISTRO_PN_ALIAS_pn-db = "Debian=db5.1 Ubuntu=db5.1"
-@@ -88,7 +88,6 @@ DISTRO_PN_ALIAS_pn-docbook-sgml-dtd-4.5 = "Fedora=docbook-dtds Mandriva=docbook-
- DISTRO_PN_ALIAS_pn-dri2proto = "Meego=xorg-x11-proto-dri2proto"
- DISTRO_PN_ALIAS_pn-dropbear = "Debian=dropbear Ubuntu=dropbear"
- DISTRO_PN_ALIAS_pn-dtc = "Fedora=dtc Ubuntu=dtc"
--DISTRO_PN_ALIAS_pn-dtc-native = "Fedora=dtc Ubuntu=dtc"
- DISTRO_PN_ALIAS_pn-eds-tools = "OpenedHand"
- DISTRO_PN_ALIAS_pn-eee-acpi-scripts = "Debian=eeepc-acpi-scripts Ubuntu=eeepc-acpi-scripts"
- DISTRO_PN_ALIAS_pn-eglibc = "OE-Core"
-@@ -118,13 +117,15 @@ DISTRO_PN_ALIAS_pn-gccmakedep = "Mandriva=gccmakedep Ubuntu=xutils-dev"
- DISTRO_PN_ALIAS_pn-gcc-runtime = "Ubuntu=gcc Fedora=gcc"
- DISTRO_PN_ALIAS_pn-gconf-dbus = "Meego=GConf-dbus"
- DISTRO_PN_ALIAS_pn-gdk-pixbuf = "Debian=libgdk-pixbuf2.0 Fedora=gdk-pixbuf"
--DISTRO_PN_ALIAS_pn-gdk-pixbuf-csource-native = "Debian=libgdk-pixbuf2.0-0 Fedora=gdk-pixbuf2"
--DISTRO_PN_ALIAS_pn-gettext-minimal-native = "Debian=gettext Fedora=gettext"
-+DISTRO_PN_ALIAS_pn-gdk-pixbuf-csource = "Debian=libgdk-pixbuf2.0-0 Fedora=gdk-pixbuf2"
-+DISTRO_PN_ALIAS_pn-gettext-minimal = "Debian=gettext Fedora=gettext"
- DISTRO_PN_ALIAS_pn-glib-2.0 = "Meego=glib2 Fedora=glib2 OpenSuSE=glib2 Ubuntu=glib2.0 Mandriva=glib2.0 Debian=glib2.0"
- DISTRO_PN_ALIAS_pn-glproto = "Meego=xorg-x11-proto-glproto"
-+DISTRO_PN_ALIAS_pn-gnome-desktop-testing = "Debian=gnome-desktop-testing Fedora=gnome-desktop-testing"
- DISTRO_PN_ALIAS_pn-gnu-config = "OpenedHand"
--DISTRO_PN_ALIAS_pn-grub-efi-i586 = "Ubuntu=grub Fedora=grub"
--DISTRO_PN_ALIAS_pn-grub-efi-x86-64-native = "Ubuntu=grub Fedora=grub"
-+DISTRO_PN_ALIAS_pn-grub-efi = "Debian=grub-efi Fedora=grub2-efi"
-+DISTRO_PN_ALIAS_pn-grub-efi-i586 = "Debian=grub-efi Fedora=grub2-efi"
-+DISTRO_PN_ALIAS_pn-grub-efi-x86-64 = "Debian=grub-efi Fedora=grub2-efi"
- DISTRO_PN_ALIAS_pn-gst-ffmpeg = "Mandriva=gstreamer0.10-ffmpeg Debian=gstreamer0.10-ffmpeg"
- DISTRO_PN_ALIAS_pn-gst-fluendo-mp3 = "Debian=gstreamer0.10-fluendo-mp3 Ubuntu=gstreamer0.10-fluendo-mp3"
- DISTRO_PN_ALIAS_pn-gst-fluendo-mpegdemux = "Ubuntu=gstreamer0.10-fluendo-mpegdemux Debian=gstreamer0.10-fluendo-mpegdemux"
-@@ -137,6 +138,7 @@ DISTRO_PN_ALIAS_pn-gst-plugins-gl = "Debian=gstreamer0.10-plugins-gl OpenSuSE=gs
- DISTRO_PN_ALIAS_pn-gst-plugins-good = "Meego=gst-plugins-good Fedora=gstreamer-plugins-good OpenSuSE=gstreamer-plugins-good Ubuntu=gst-plugins-good0.10 Mandriva=gstreamer0.10-plugins-good Debian=gst-plugins-good0.10"
- DISTRO_PN_ALIAS_pn-gst-plugins-ugly = "OpenSuSE=gstreamer-plugins-ugly Mandriva=gstreamer0.10-plugins-ugly Debian=gst-plugins-ugly0.10"
- DISTRO_PN_ALIAS_pn-gstreamer1.0 = "Debian=gstreamer1.0 Ubuntu=gstreamer1.0"
-+DISTRO_PN_ALIAS_pn-gstreamer1.0-meta-base = "Meego=gstreamer Fedora=gstreamer OpenSuSE=gstreamer Ubuntu=gstreamer0.10"
- DISTRO_PN_ALIAS_pn-gstreamer1.0-plugins-bad = "Debian=gstreamer1.0-plugins-bad Ubuntu=gstreamer1.0-plugins-bad"
- DISTRO_PN_ALIAS_pn-gstreamer1.0-plugins-base = "Debian=gstreamer1.0-plugins-base Ubuntu=gstreamer1.0-plugins-base"
- DISTRO_PN_ALIAS_pn-gstreamer1.0-plugins-good = "Debian=gstreamer1.0-plugins-good Ubuntu=gstreamer1.0-plugins-bad"
-@@ -148,6 +150,7 @@ DISTRO_PN_ALIAS_pn-gtk-engines = "Fedora=gtk2-engines OpenSuSE=gtk2-engines Ubun
- DISTRO_PN_ALIAS_pn-gtk-sato-engine = "OpenedHand"
- DISTRO_PN_ALIAS_pn-gtk-theme-torturer = "OSPDT upstream=http://wiki.laptop.org/go/GTK_for_OLPC"
- DISTRO_PN_ALIAS_pn-gtk-update-icon-cache-native = "OSPDT"
-+DISTRO_PN_ALIAS_pn-gummiboot = "Debian=gummiboot Fedora=gummiboot"
- DISTRO_PN_ALIAS_pn-hello-mod = "OE-Core"
- DISTRO_PN_ALIAS_pn-hostap-conf = "OE-Core"
- DISTRO_PN_ALIAS_pn-hwlatdetect = "OSPDT"
-@@ -158,6 +161,8 @@ DISTRO_PN_ALIAS_pn-initramfs-framework = "OE-Core"
- DISTRO_PN_ALIAS_pn-initramfs-live-boot = "OE-Core"
- DISTRO_PN_ALIAS_pn-initramfs-live-install = "OE-Core"
- DISTRO_PN_ALIAS_pn-initramfs-live-install-efi = "OE-Core"
-+DISTRO_PN_ALIAS_pn-initramfs-live-install-efi-testfs = "OE-Core"
-+DISTRO_PN_ALIAS_pn-initramfs-live-install-testfs = "OE-Core"
- DISTRO_PN_ALIAS_pn-initscripts = "Fedora=initscripts Mandravia=initscripts"
- DISTRO_PN_ALIAS_pn-inputproto = "Meego=xorg-x11-proto-inputproto"
- DISTRO_PN_ALIAS_pn-iproute2 = "OSPDT"
-@@ -194,8 +199,9 @@ DISTRO_PN_ALIAS_pn-libi18n-collate-perl = "OSPDT"
- DISTRO_PN_ALIAS_pn-libical = "Ubuntu=libical Fedora=libical"
- DISTRO_PN_ALIAS_pn-libiconv = "Fedora=mingw-libiconv Opensuse=cross-mingw-libiconv"
- DISTRO_PN_ALIAS_pn-libjson = "Ubuntu=libjson0-dev Debian=libjson0-dev"
--DISTRO_PN_ALIAS_pn-libksba = "Fedora=libksba Debian=libksba8"
-+DISTRO_PN_ALIAS_pn-libksba = "Fedora=libksba Debian=libksba8 Ubuntu=libksba"
- DISTRO_PN_ALIAS_pn-liblbxutil = "Mandriva=liblbxutil OpenSuse=xorg-x11-devel"
-+DISTRO_PN_ALIAS_pn-libmatchbox = "Ubuntu=libmatchbox Fedora=libmatchbox"
- DISTRO_PN_ALIAS_pn-libmpc = "Fedora=libmpc OpenSuse=libmpc2"
- DISTRO_PN_ALIAS_pn-libnewt = "Debian=libnewt0.52 Fedora=newt"
- DISTRO_PN_ALIAS_pn-libnewt-python = "Ubuntu=python-newt Fedora=newt-python"
-@@ -217,13 +223,13 @@ DISTRO_PN_ALIAS_pn-libtelepathy = "Debian=libtelepathy2 Ubuntu=libtelepathy2"
- DISTRO_PN_ALIAS_pn-libtimedate-perl = "Debian=libtimedate-perl Ubuntu=libtimedate-perl"
- DISTRO_PN_ALIAS_pn-liburcu = "Fedora=userspace-rcu Ubuntu=liburcu0"
- DISTRO_PN_ALIAS_pn-libusb1 = "Debian=libusb-1.0-0 Fedora=libusb1"
--DISTRO_PN_ALIAS_pn-libusb1-native = "Debian=libusb-1.0-0 Fedora=libusb1"
- DISTRO_PN_ALIAS_pn-libusb-compat = "OSPDT"
- DISTRO_PN_ALIAS_pn-libx11 = "Debian=libx11-6 Fedora=libX11 Ubuntu=libx11-6 OpenSuSE=xorg-x11-libX11"
- DISTRO_PN_ALIAS_pn-libx11-diet = "Debian=libx11-6 Fedora=libX11 Ubuntu=libx11-6 OpenSuSE=xorg-x11-libX11"
- DISTRO_PN_ALIAS_pn-libxcalibrate = "OSPDT upstream=http://cgit.freedesktop.org/xorg/lib/libXCalibrate/"
- DISTRO_PN_ALIAS_pn-libxfontcache = "Mandriva=libxfontcache Debian=libxfontcache"
- DISTRO_PN_ALIAS_pn-libxft = "Mandriva=libxft Debian=libxft2 Ubuntu=libxft2"
-+DISTRO_PN_ALIAS_pn-libxi = "Ubuntu=libxi Fedora=libXi"
- DISTRO_PN_ALIAS_pn-libxkbcommon = "Fedora=libxkbcommon Debian=libxkbcommon"
- DISTRO_PN_ALIAS_pn-libxprintapputil = "Debian=libxprintapputil Ubuntu=libxprintapputil1 Mandriva=libxprintapputil"
- DISTRO_PN_ALIAS_pn-libxscrnsaver = "Fedora=libXScrnSaver Ubuntu=libxss1 Mandriva=libxscrnsaver"
-@@ -243,8 +249,8 @@ DISTRO_PN_ALIAS_pn-ltp = "Mandriva=ltp Ubuntu=ltp"
- DISTRO_PN_ALIAS_pn-lttng-modules = "OSPDT upstream=http://lttng.org/"
- DISTRO_PN_ALIAS_pn-lttng-tools = "OSPDT upstream=http://lttng.org/"
- DISTRO_PN_ALIAS_pn-lttng-ust = "OSPDT upstream=http://lttng.org/"
-+DISTRO_PN_ALIAS_pn-lz4 = "Debian=lz4 Fedora=lz4"
- DISTRO_PN_ALIAS_pn-lzo = "Debian=liblzo Ubuntu=liblzo Fedora=lzp"
--DISTRO_PN_ALIAS_pn-lzo-native = "Debian=liblzo Ubuntu=liblzo Fedora=lzp"
- DISTRO_PN_ALIAS_pn-mailx = "Debian=bsd-mailx Ubuntu=bsd-mailx"
- DISTRO_PN_ALIAS_pn-makedepend = "Mandriva=makedepend Ubuntu=xutils-dev"
- DISTRO_PN_ALIAS_pn-makedevs = "OE-Core"
-@@ -265,7 +271,7 @@ DISTRO_PN_ALIAS_pn-matchbox-wm-2 = "Mandriva=matchbox-window-manager Debian=matc
- DISTRO_PN_ALIAS_pn-menu-cache = "OSPDT"
- DISTRO_PN_ALIAS_pn-mesa = "Fedora=mesa Ubuntu=libgl1-mesa-dri"
- DISTRO_PN_ALIAS_pn-mesa-gl = "Fedora=mesa Ubuntu=libgl1-mesa-dri"
--DISTRO_PN_ALIAS_pn-mesa-glsl-native = "Fedora=mesa Ubuntu=libgl1-mesa-dri"
-+DISTRO_PN_ALIAS_pn-mesa-glsl = "Fedora=mesa Ubuntu=libgl1-mesa-dri"
- DISTRO_PN_ALIAS_pn-meta-environment-i586 = "OE-Core"
- DISTRO_PN_ALIAS_pn-meta-environment-qemux86 = "OE-Core"
- DISTRO_PN_ALIAS_pn-meta-environment-qemux86-64 = "OE-Core"
-@@ -277,6 +283,7 @@ DISTRO_PN_ALIAS_pn-mini-x-session = "OSPDT"
- DISTRO_PN_ALIAS_pn-mkfontdir = "Mandriva=mkfontdir Ubuntu=xfonts-utils Fedora=xorg-x11-font-utils"
- DISTRO_PN_ALIAS_pn-mkfontscale = "Mandriva=mkfontscale Ubuntu=xfonts-utils Fedora=xorg-x11-font-utils"
- DISTRO_PN_ALIAS_pn-mktemp = "Mandriva=mktemp Fedora=mktemp"
-+DISTRO_PN_ALIAS_pn-mmc-utils = "OE-Core"
- DISTRO_PN_ALIAS_pn-moblin-proto = "OE-Core"
- DISTRO_PN_ALIAS_pn-modutils-collateral = "OE-Core"
- DISTRO_PN_ALIAS_pn-modutils-initscripts = "OE-Core"
-@@ -284,12 +291,6 @@ DISTRO_PN_ALIAS_pn-msynctool = "OpenSuse=msynctool Mandriva=msynctool"
- DISTRO_PN_ALIAS_pn-mtd-utils = "Debian=mtd-utils Ubuntu=mtd-utils"
- DISTRO_PN_ALIAS_pn-mx-1.0 = "Ubuntu=mx Debian=mx Fedora=mx"
- DISTRO_PN_ALIAS_pn-n450-audio = "Intel"
--DISTRO_PN_ALIAS_pn-nativesdk-libusb1 = "Debian=libusb-1.0-0 Fedora=libusb1"
--DISTRO_PN_ALIAS_pn-nativesdk-lzo = "Debian=liblzo Ubuntu=liblzo Fedora=lzp"
--DISTRO_PN_ALIAS_pn-nativesdk-packagegroup-qt-toolchain-host = "OE-Core"
--DISTRO_PN_ALIAS_pn-nativesdk-pkgconfig = "Ubuntu=pkg-config Fedora=pkgconfig"
--DISTRO_PN_ALIAS_pn-nativesdk-python-git = "Debian=python-git Fedora=GitPython"
--DISTRO_PN_ALIAS_pn-nativesdk-readline = "Fedora=readline Ubuntu=readline-common"
- DISTRO_PN_ALIAS_pn-neard = "Intel"
- DISTRO_PN_ALIAS_pn-network-suspend-scripts = "OE-Core"
- DISTRO_PN_ALIAS_pn-nfs-export-root = "OpenedHand"
-@@ -303,18 +304,19 @@ DISTRO_PN_ALIAS_pn-opkg-collateral = "OE-Core"
- DISTRO_PN_ALIAS_pn-opkg-config-base = "OE-Core"
- DISTRO_PN_ALIAS_pn-opkg-nogpg = "OSPDT upstream=http://svn.openmoko.org/trunk/src/tar"
- DISTRO_PN_ALIAS_pn-opkg-utils = "OSPDT upstream=http://svn.openmoko.org/trunk/src/target/opkg/"
-+DISTRO_PN_ALIAS_pn-oprofile = "Debian=oprofile Fedora=oprofile"
- DISTRO_PN_ALIAS_pn-oprofileui = "Fedora=oprofileui Ubuntu=oprofile-gui Debian=oprofile-gui"
- DISTRO_PN_ALIAS_pn-oprofileui-server = "Fedora=oprofileui Ubuntu=oprofile-gui Debian=oprofile-gui"
- DISTRO_PN_ALIAS_pn-owl-video = "OpenedHand"
- DISTRO_PN_ALIAS_pn-packagegroup-base = "OE-Core"
- DISTRO_PN_ALIAS_pn-packagegroup-core = "OE-Core"
--DISTRO_PN_ALIAS_pn-packagegroup-core-full-cmdline = "OE-Core"
- DISTRO_PN_ALIAS_pn-packagegroup-core-boot = "OE-Core"
- DISTRO_PN_ALIAS_pn-packagegroup-core-buildessential = "OE-Core"
- DISTRO_PN_ALIAS_pn-packagegroup-core-clutter = "OE-Core"
- DISTRO_PN_ALIAS_pn-packagegroup-core-device-devel = "OE-Core"
- DISTRO_PN_ALIAS_pn-packagegroup-core-directfb = "OE-Core"
- DISTRO_PN_ALIAS_pn-packagegroup-core-eclipse-debug = "OE-Core"
-+DISTRO_PN_ALIAS_pn-packagegroup-core-full-cmdline = "OE-Core"
- DISTRO_PN_ALIAS_pn-packagegroup-core-lsb = "OE-Core"
- DISTRO_PN_ALIAS_pn-packagegroup-core-nfs = "OE-Core"
- DISTRO_PN_ALIAS_pn-packagegroup-core-qt = "OE-Core"
-@@ -338,27 +340,31 @@ DISTRO_PN_ALIAS_pn-packagegroup-cross-canadian-qemux86-64 = "OE-Core"
- DISTRO_PN_ALIAS_pn-packagegroup-qt4e = "OE-Core"
- DISTRO_PN_ALIAS_pn-packagegroup-qte-toolchain-host = "OE-Core"
- DISTRO_PN_ALIAS_pn-packagegroup-qte-toolchain-target = "Intel"
-+DISTRO_PN_ALIAS_pn-packagegroup-qt-toolchain-host = "OE-Core"
- DISTRO_PN_ALIAS_pn-packagegroup-qt-toolchain-target = "OE-Core"
- DISTRO_PN_ALIAS_pn-packagegroup-sdk-host = "OE-Core"
- DISTRO_PN_ALIAS_pn-packagegroup-self-hosted = "OE-Core"
- DISTRO_PN_ALIAS_pn-package-index = "OE-Core"
- DISTRO_PN_ALIAS_pn-perf = "OSPDT"
-+DISTRO_PN_ALIAS_pn-piglit = "OE-Core"
- DISTRO_PN_ALIAS_pn-pkgconfig = "Ubuntu=pkg-config Fedora=pkgconfig"
--DISTRO_PN_ALIAS_pn-pkgconfig-native = "Ubuntu=pkg-config Fedora=pkgconfig"
- DISTRO_PN_ALIAS_pn-pointercal = "OE-Core"
- DISTRO_PN_ALIAS_pn-pointercal-xinput = "OE-Core"
- DISTRO_PN_ALIAS_pn-poky-feed-config-opkg = "OE-Core"
- DISTRO_PN_ALIAS_pn-pong-clock = "OpenedHand"
- DISTRO_PN_ALIAS_pn-portmap = "Debian=rpcbind Fedora=rpcbind"
-+DISTRO_PN_ALIAS_pn-postinst-intercept = "OE-Core"
- DISTRO_PN_ALIAS_pn-powertop = "Meego=powertop Fedora=powertop Debian=powertop OpenSuSE=powertop Mandriva=powertop"
- DISTRO_PN_ALIAS_pn-ppp-dialin = "OE-Core"
-+DISTRO_PN_ALIAS_pn-presentproto = "Debian=x11proto-present-dev Fedora=xorg-x11-proto-devel"
- DISTRO_PN_ALIAS_pn-printproto = "Debian=x11proto-print-dev Ubuntu=x11proto-print-dev Mandriva=x11-proto-devel"
- DISTRO_PN_ALIAS_pn-pseudo = "Windriver"
- DISTRO_PN_ALIAS_pn-psplash = "OpenedHand"
- DISTRO_PN_ALIAS_pn-ptest-runner = "OE-Core"
- DISTRO_PN_ALIAS_pn-puzzles = "Debian=sgt-puzzles Fedora=puzzles"
-+DISTRO_PN_ALIAS_pn-python3-distribute = "Debian=python3-setuptools Fedora=python3-setuptools"
-+DISTRO_PN_ALIAS_pn-python-ZSI = "OE-Core"
- DISTRO_PN_ALIAS_pn-python-argparse = "Fedora=python-argparse OpenSuSE=python-argparse"
--DISTRO_PN_ALIAS_pn-python-argparse-native = "Fedora=python-argparse OpenSuSE=python-argparse"
- DISTRO_PN_ALIAS_pn-python-dbus = "Ubuntu=python-dbus Debian=python-dbus Mandriva=python-dbus"
- DISTRO_PN_ALIAS_pn-python-git = "Debian=python-git Fedora=GitPython"
- DISTRO_PN_ALIAS_pn-python-gst = "OpenSuSE=python-gstreamer Ubuntu=gst0.10-python Debian=gst0.10-python"
-@@ -370,18 +376,15 @@ DISTRO_PN_ALIAS_pn-python-pyrex = "Mandriva=python-pyrex Ubuntu=python-pyrex"
- DISTRO_PN_ALIAS_pn-python-scons = "Fedora=scons OpenSuSE=scons Ubuntu=scons Mandriva=scons Debian=scons"
- DISTRO_PN_ALIAS_pn-python-setuptools = "Mandriva=python-setup OpenSuSE=python-setup-git"
- DISTRO_PN_ALIAS_pn-python-smartpm = "Debian=smart OpenSuSE=smart"
--DISTRO_PN_ALIAS_pn-python-ZSI = "OE-Core"
- DISTRO_PN_ALIAS_pn-qemu-config = "OpenedHand"
- DISTRO_PN_ALIAS_pn-qemugl = "OpenedHand"
- DISTRO_PN_ALIAS_pn-qemu-helper = "OpenedHand"
--DISTRO_PN_ALIAS_pn-qemu-helper-native = "OpenedHand"
--DISTRO_PN_ALIAS_pn-qemu-helper-nativesdk = "OpenedHand"
- DISTRO_PN_ALIAS_pn-qemuwrapper-cross = "OE-Core"
- DISTRO_PN_ALIAS_pn-qmmp = "Fedora=qmmp Debian=qmmp"
-+DISTRO_PN_ALIAS_pn-qt4 = "Mandriva=libqt4-devel Ubuntu=libqt4-dev"
- DISTRO_PN_ALIAS_pn-qt4e-demo-image = "OE-Core"
- DISTRO_PN_ALIAS_pn-qt4-embedded = "OSPDT"
- DISTRO_PN_ALIAS_pn-qt4-graphics-system = "OE-Core"
--DISTRO_PN_ALIAS_pn-qt4-native = "Mandriva=libqt4-devel Ubuntu=libqt4-dev"
- DISTRO_PN_ALIAS_pn-qt4-tools = "Mandriva=libqt4-devel Ubuntu=libqt4-dev"
- DISTRO_PN_ALIAS_pn-qt4-x11-free = "Ubuntu=qt-x11-free Debian=qt-x11-free"
- DISTRO_PN_ALIAS_pn-qt-demo-init = "OE-Core"
-@@ -390,7 +393,6 @@ DISTRO_PN_ALIAS_pn-qt-mobility-x11 = "Ubuntu=qtmobility-dev Debian=qtmobility-de
- DISTRO_PN_ALIAS_pn-quicky = "OSPDT"
- DISTRO_PN_ALIAS_pn-randrproto = "Meego=xorg-x11-proto-randrproto"
- DISTRO_PN_ALIAS_pn-readline = "Fedora=readline Debian=readline-common"
--DISTRO_PN_ALIAS_pn-readline-native = "Fedora=readline Debian=readline-common"
- DISTRO_PN_ALIAS_pn-recordproto = "Meego=xorg-x11-proto-recordproto"
- DISTRO_PN_ALIAS_pn-remake = "Mandriva=remake Debian=remake"
- DISTRO_PN_ALIAS_pn-renderproto = "Meego=xorg-x11-proto-renderproto"
-@@ -406,24 +408,23 @@ DISTRO_PN_ALIAS_pn-screenshot = "OpenedHand"
- DISTRO_PN_ALIAS_pn-scrnsaverproto = "Meego=xorg-x11-proto-scrnsaverproto Ubuntu=x11proto-scrnsaver-dev Debian=x11proto-scrnsaver-dev"
- DISTRO_PN_ALIAS_pn-settings-daemon = "OpenedHand"
- DISTRO_PN_ALIAS_pn-sgml-common = "OpenSuSE=sgml-common Fedora=sgml-common"
--DISTRO_PN_ALIAS_pn-sgml-common-native = "OpenSuSE=sgml-common Fedora=sgml-common"
- DISTRO_PN_ALIAS_pn-sgmlspl = "Debian=sgmlspl Ubuntu=sgmlspl"
- DISTRO_PN_ALIAS_pn-shadow-securetty = "Ubuntu=shadow Fedora=shadow"
- DISTRO_PN_ALIAS_pn-shadow-sysroot = "Ubuntu=shadow Fedora=shadow"
--DISTRO_PN_ALIAS_pn-shasum-native = "OE-Core"
-+DISTRO_PN_ALIAS_pn-shasum = "OE-Core"
- DISTRO_PN_ALIAS_pn-shutdown-desktop = "OpenedHand"
--DISTRO_PN_ALIAS_pn-signgp-native = "OE-Core"
-+DISTRO_PN_ALIAS_pn-signgp = "OE-Core"
- DISTRO_PN_ALIAS_pn-stat = "Debian=coreutils Fedora=coreutils"
--DISTRO_PN_ALIAS_pn-swabber-native = "OE-Core"
-+DISTRO_PN_ALIAS_pn-swabber = "OE-Core"
- DISTRO_PN_ALIAS_pn-sysklogd = "Debian=sysklogd Mandriva=sysklogd"
- DISTRO_PN_ALIAS_pn-sysprof = "Fedora=sysprof Debian=sysprof"
- DISTRO_PN_ALIAS_pn-systemd-compat-units = "Fedora=systemd Ubuntu=systemd"
--DISTRO_PN_ALIAS_pn-systemd-systemctl-native = "OE-Core"
--DISTRO_PN_ALIAS_pn-systemd-systemdctl-native = "Fedora=systemd Ubuntu=systemd"
-+DISTRO_PN_ALIAS_pn-systemd-systemctl = "OE-Core"
-+DISTRO_PN_ALIAS_pn-systemd-systemdctl = "Fedora=systemd Ubuntu=systemd"
- DISTRO_PN_ALIAS_pn-systemtap-uprobes = "Ubuntu=systemtap Debian=systemtap"
- DISTRO_PN_ALIAS_pn-sysvinit-inittab = "OE-Core"
- DISTRO_PN_ALIAS_pn-table = "Intel"
--DISTRO_PN_ALIAS_pn-tar-replacement-native = "OE-Core"
-+DISTRO_PN_ALIAS_pn-tar-replacement = "OE-Core"
- DISTRO_PN_ALIAS_pn-tcf-agent = "Windriver upstream=http://www.eclipse.org/dsdp/tm/"
- DISTRO_PN_ALIAS_pn-telepathy-python = "Debian=telepathy-python Ubuntu=telepathy-python"
- DISTRO_PN_ALIAS_pn-tiny-init = "OSPDT"
-@@ -438,6 +439,7 @@ DISTRO_PN_ALIAS_pn-ubootchart = "OSPDT upstream=http://code.google.com/p/ubootch
- DISTRO_PN_ALIAS_pn-u-boot-fw-utils = "Ubuntu=u-boot-tools Debian=u-boot-tools"
- DISTRO_PN_ALIAS_pn-u-boot-mkimage = "Ubuntu=uboot-mkimage Debian=uboot-mkimage"
- DISTRO_PN_ALIAS_pn-udev-extraconf = "OE-Core"
-+DISTRO_PN_ALIAS_pn-unfs3 = "Debian=unfs3 Fedora=unfs3"
- DISTRO_PN_ALIAS_pn-unfs-server = "OE-Core"
- DISTRO_PN_ALIAS_pn-update-alternatives-dpkg = "Opensuse=update-alternatives Mandriva=update-alternatives"
- DISTRO_PN_ALIAS_pn-update-rc.d = "OE-Core"
-@@ -445,6 +447,7 @@ DISTRO_PN_ALIAS_pn-usbinit = "OE-Core"
- DISTRO_PN_ALIAS_pn-util-macros = "Meego=xorg-x11-util-macros Fedora=xorg-x11-util-macros Mandriva=x11-util-macros"
- DISTRO_PN_ALIAS_pn-v86d = "Debian=v86d Ubuntu=v86d"
- DISTRO_PN_ALIAS_pn-videoproto = "Meego=xorg-x11-proto-videoproto"
-+DISTRO_PN_ALIAS_pn-waffle = "OE-Core"
- DISTRO_PN_ALIAS_pn-watchdog = "Debian=watchdog Ubuntu=watchdog Mandriva=watchdog"
- DISTRO_PN_ALIAS_pn-webkit-gtk = "Fedora=webkitgtk Ubuntu=libwebkit"
- DISTRO_PN_ALIAS_pn-web-webkit = "OpenedHand"
 -- 
-1.8.1.2
-
+Elizabeth Flanagan
+Yocto Project
+Build and Release
 
