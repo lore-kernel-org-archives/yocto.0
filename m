@@ -1,34 +1,24 @@
-Return-Path: <alexandru.c.georgescu@intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 19649E00C02
-	for <yocto@yoctoproject.org>; Mon, 21 Apr 2014 23:11:19 -0700 (PDT)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga102.jf.intel.com with ESMTP; 21 Apr 2014 23:06:28 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.97,901,1389772800"; d="scan'208";a="497154323"
-Received: from irsmsx103.ger.corp.intel.com ([163.33.3.157])
-	by orsmga001.jf.intel.com with ESMTP; 21 Apr 2014 23:11:18 -0700
-Received: from irsmsx154.ger.corp.intel.com (163.33.192.96) by
-	IRSMSX103.ger.corp.intel.com (163.33.3.157) with Microsoft SMTP Server
-	(TLS) id 14.3.123.3; Tue, 22 Apr 2014 07:11:17 +0100
-Received: from irsmsx104.ger.corp.intel.com ([169.254.5.98]) by
-	IRSMSX154.ger.corp.intel.com ([169.254.12.210]) with mapi id
-	14.03.0123.003; Tue, 22 Apr 2014 07:11:17 +0100
-From: "Georgescu, Alexandru C" <alexandru.c.georgescu@intel.com>
-To: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: 1.6 retest of Beaglebone and Build appliance.
-Thread-Index: AQHPXceKUpzuB9Pt40ihFMnmSPQBnZsdJ6vA
-Date: Tue, 22 Apr 2014 06:11:17 +0000
-Message-ID: <1FFB62CE8AEB0D4298B51122D8903E961B6991CA@IRSMSX104.ger.corp.intel.com>
-References: <CAPhnLPBMZdWboqMPKNveSoq6TiW=vVkrAWb68+ccqa_iqdpsfQ@mail.gmail.com>
-In-Reply-To: <CAPhnLPBMZdWboqMPKNveSoq6TiW=vVkrAWb68+ccqa_iqdpsfQ@mail.gmail.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [163.33.239.182]
+Return-Path: <sgh@sgh.dk>
+Received: from mx-aarh-2.stofanet.dk (mx-aarh-2.stofanet.dk [212.10.10.12])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 277E8E00C5B
+	for <yocto@yoctoproject.org>; Mon, 21 Apr 2014 23:13:51 -0700 (PDT)
+Received: from 5634f347.rev.stofanet.dk ([86.52.243.71] helo=asrock)
+	by mx-aarh-2.stofanet.dk (envelope-from <sgh@sgh.dk>)
+	with esmtp id 1WcTxj-0004mL-2u; Tue, 22 Apr 2014 08:13:47 +0200
+Received: from koontz.localnet (localhost [127.0.0.1])
+	by asrock (Postfix) with ESMTPS id 614167ECB5;
+	Tue, 22 Apr 2014 08:13:47 +0200 (CEST)
+From: =?ISO-8859-1?Q?S=F8ren?= Holm <sgh@sgh.dk>
+To: Bruce Ashfield <bruce.ashfield@windriver.com>
+Date: Tue, 22 Apr 2014 08:13:47 +0200
+Message-ID: <2872826.V92YYLj4a2@koontz>
+User-Agent: KMail/4.13 (Linux/3.13.0-24-lowlatency; KDE/4.13.0; i686; ; )
+In-Reply-To: <53483D14.7020807@windriver.com>
+References: <2489555.PeAzndN2bA@koontz> <7023738.t8MMlfpnim@koontz>
+	<53483D14.7020807@windriver.com>
 MIME-Version: 1.0
-Subject: Re: 1.6 retest of Beaglebone and Build appliance.
+Cc: yocto@yoctoproject.org
+Subject: Re: defconfig on daisy
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,37 +30,27 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 22 Apr 2014 06:11:21 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Tue, 22 Apr 2014 06:13:54 -0000
 Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="iso-8859-1"
 
-Okay,
-We'll cover for BA and BBB.
+Hi Bruce
 
-Cheers,
---
-Alexandru Georgescu
+I've search the meta-data repos and kernel repo for a change matching t=
+his. Is=20
+it fixes or did you miss it?
 
------Original Message-----
-From: Flanagan, Elizabeth [mailto:elizabeth.flanagan@intel.com]=20
-Sent: Monday, April 21, 2014 6:09 PM
-To: yocto@yoctoproject.org; Georgescu, Alexandru C
-Subject: 1.6 retest of Beaglebone and Build appliance.
 
-All,
+Fredag den 11. april 2014 15:05:56 skrev Bruce Ashfield:
+>=20
+> I am. There's a missing patch that I typically carry, it actually
+> links the fs/aufs directory into the build. Without it, the Kconfig
+> and code isn't processed .. hence why everything is dropped.
+>=20
+> I have it merged now, but have to build aufs for all architectures to=
 
-With the changes to Beaglebone and Build appliance we're going to need a qu=
-ick retest of those components. They are located:
-
-http://autobuilder.yoctoproject.org/pub/nightly/20140420-2
-
-I'll pull these into the release tomorrow as I pack things up.
-
--b
-
---
-Elizabeth Flanagan
-Yocto Project
-Build and Release
+> make sure nothing broke.
+>=20
+--=20
+S=F8ren Holm
 
