@@ -1,28 +1,30 @@
-Return-Path: <gley-yocto@m.gmane.org>
-Received: from plane.gmane.org (plane.gmane.org [80.91.229.3])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CE2D5E00C02
-	for <yocto@yoctoproject.org>; Tue, 22 Apr 2014 01:05:11 -0700 (PDT)
-Received: from list by plane.gmane.org with local (Exim 4.69)
-	(envelope-from <gley-yocto@m.gmane.org>) id 1WcVhP-0004rq-L1
-	for yocto@yoctoproject.org; Tue, 22 Apr 2014 10:05:03 +0200
-Received: from 80-218-32-173.dclient.hispeed.ch ([80.218.32.173])
-	by main.gmane.org with esmtp (Gmexim 0.1 (Debian))
-	id 1AlnuQ-0007hv-00
-	for <yocto@yoctoproject.org>; Tue, 22 Apr 2014 10:05:03 +0200
-Received: from auslands-kv by 80-218-32-173.dclient.hispeed.ch with local
-	(Gmexim 0.1 (Debian)) id 1AlnuQ-0007hv-00
-	for <yocto@yoctoproject.org>; Tue, 22 Apr 2014 10:05:03 +0200
-X-Injected-Via-Gmane: http://gmane.org/
-To: yocto@yoctoproject.org
-From: Neuer User <auslands-kv@gmx.de>
-Date: Tue, 22 Apr 2014 09:57:20 +0200
-Message-ID: <lj57d5$6ao$1@ger.gmane.org>
+Return-Path: <richard.purdie@linuxfoundation.org>
+Received: from dan.rpsys.net (5751f4a1.skybroadband.com [87.81.244.161])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4B644E00C02
+	for <yocto@yoctoproject.org>; Tue, 22 Apr 2014 01:23:24 -0700 (PDT)
+Received: from localhost (dan.rpsys.net [127.0.0.1])
+	by dan.rpsys.net (8.14.4/8.14.4/Debian-2.1ubuntu4) with ESMTP id
+	s3M8NCcD029111; Tue, 22 Apr 2014 09:23:12 +0100
+X-Virus-Scanned: Debian amavisd-new at dan.rpsys.net
+Received: from dan.rpsys.net ([127.0.0.1])
+	by localhost (dan.rpsys.net [127.0.0.1]) (amavisd-new, port 10024)
+	with LMTP id GR086tOztJrn; Tue, 22 Apr 2014 09:23:11 +0100 (BST)
+Received: from [192.168.3.10] (rpvlan0 [192.168.3.10]) (authenticated bits=0)
+	by dan.rpsys.net (8.14.4/8.14.4/Debian-2.1ubuntu1) with ESMTP id
+	s3M8N8lG029107
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES128-SHA bits=128 verify=NOT);
+	Tue, 22 Apr 2014 09:23:09 +0100
+Message-ID: <1398154982.16672.25.camel@ted>
+From: Richard Purdie <richard.purdie@linuxfoundation.org>
+To: Richard Leitner - SKIDATA <Richard.Leitner@skidata.com>
+Date: Tue, 22 Apr 2014 09:23:02 +0100
+In-Reply-To: <F7680723A1CA6840825A59020FA77064010BC709@sdexmbx1srv.skidata.net>
+References: <F7680723A1CA6840825A59020FA77064010BC709@sdexmbx1srv.skidata.net>
+X-Mailer: Evolution 3.8.4-0ubuntu1 
 Mime-Version: 1.0
-X-Complaints-To: usenet@ger.gmane.org
-X-Gmane-NNTP-Posting-Host: 80-218-32-173.dclient.hispeed.ch
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:24.0) Gecko/20100101 Thunderbird/24.3.0
-Subject: Newbie question: How to get dependencies into compile of custom recipe?
+Cc: "Yocto Project Discussion ML \(yocto@yoctoproject.org\)"
+	<yocto@yoctoproject.org>
+Subject: Re: Problem with own kernel recipe on Dora
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,95 +36,65 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 22 Apr 2014 08:05:15 -0000
-Content-Type: text/plain; charset=ISO-8859-15
+X-List-Received-Date: Tue, 22 Apr 2014 08:23:28 -0000
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
 
-Hi
+On Tue, 2014-04-22 at 07:52 +0000, Richard Leitner - SKIDATA wrote:
+> Hi Yocto-Community,
+> as the subject already says I've a problem with my kernel recipe after the "migration" from the Dylan to the Dora (10.0.1) branch.
+> I've tried the 10.0.1 release tag as well as the current dora master (50e9ccb2aff7b9f9dca4fda99a6832c60f64de3b).
+> 
+> The kernel recipe I'm using is derived from the skeleton:
+> DESCRIPTION = "Linux Kernel"
+> SECTION = "kernel"
+> LICENSE = "GPLv2"
+> LIC_FILES_CHKSUM = "file://COPYING;md5=d7810fab7487fb0aad327b76f1be7cd7"
+> inherit kernel
+> KSRC = "/home/leri/VCS/git/linux"
+> KBRANCH = "master"
+> SRC_URI = "git://${KSRC};protocol=file;branch=${KBRANCH};name=kernel;nocheckout=1"
+> SRCREV = "2014_03_07"
+> PR = "sd_15.2"
+> LINUX_VERSION = "${PV}"
+> LINUX_VERSION_EXTENSION = "-${PR}+${SRCREV}"
+> COMPATIBLE_MACHINE = "skidata-harmony|smartcpu"
+> KERNEL_IMAGETYPE = "uImage"
+> SRC_URI += "file://defconfig"
+> require recipes-kernel/linux/linux-yocto.inc
+> 
+> 
+> This recipe was working well with the Dylan branch and following changes:
+> -SRC_URI = "git://${KSRC};protocol=file;branch=${KBRANCH};name=kernel;nocheckout=1"
+> +SRC_URI = "git://${KSRC};protocol=file;branch=${KBRANCH};name=kernel"
+> +S = "${WORKDIR}/git"
+> 
+> 
+> When compiled with the dora branch the kernel hangs at "Starting kernel..." and doesn't start:
+> ## Booting kernel from Legacy Image at 00000000 ...
+>    Image Name:   Linux-3.1.10-sd_15.2
+>    Image Type:   ARM Linux Kernel Image (uncompressed)
+>    Data Size:    3181616 Bytes = 3 MiB
+>    Load Address: 00008000
+>    Entry Point:  00008000
+>    Verifying Checksum ... OK
+>    Loading Kernel Image ... OK
+> OK
+> 
+> Starting kernel ...
+> 
+> 
+> I've already looked through the migration notes in the manual but I'm unable to find any hints...
+> Are there any ideas why the kernel doesn't start with the Dora branch?
 
-Sorry for this simple question. I've just started building my first
-image with yocto and would now like to add a (very simple) own recipe.
+We saw an issue recently on beaglebone that looked very like this. It
+turned out the load address for the kernel was conflicting in memory
+with the device tree binary.
 
-I followed the Yocto Development guide, added my own layer and included
-the "helloworld" example.
+It easily be something different but I thought I'd mention it.
 
-Now I would like to exchange the helloworld.c code with a simple
-gstreamer-rtsp server code
-(http://cgit.freedesktop.org/gstreamer/gst-rtsp-server/tree/examples/test-launch.c).
+Cheers,
 
-I changed the bb file as follows, adding expecially the DEPENDS:
-
-#
-# This file was derived from the 'Hello World!' example recipe in the
-# Yocto Project Development Manual.
-#
-
-DESCRIPTION = "Simple helloworld application"
-SECTION = "multimedia"
-LICENSE = "MIT"
-LIC_FILES_CHKSUM =
-"file://${COMMON_LICENSE_DIR}/MIT;md5=0835ade698e0bcf8506ecda2f7b4f302"
-PR = "r0"
-
-SRC_URI = "file://cameraserver.c"
-
-DEPENDS = "gst-rtsp gstreamer"
-
-S = "${WORKDIR}"
-
-do_compile() {
-             ${CC} cameraserver.c -o cameraserver
-}
-
-do_install() {
-             install -d ${D}${bindir}
-             install -m 0755 cameraserver ${D}${bindir}
-}
-
-
-The package "gst-rtsp" is correctly built (as
-libgstrtspserver-0.10-0-0.10.8-r0@cortexa9hf_vfp_neon), but the
-compilation process of the "cameraserver.c" does not find the necessary
-header include files.
-
-NOTE: recipe camera-server-0.1-r0: task do_compile: Started
-Log data follows:
-| DEBUG: Executing shell function do_compile
-| cameraserver.c:20:21: fatal error: gst/gst.h: No such file or directory
-|  #include <gst/gst.h>
-|                      ^
-| compilation terminated.
-| WARNING: exit code 1 from a shell command.
-| ERROR: Function failed: do_compile (log file is located at
-/home/ubuntu/yocto/build/tmp/work/cortexa9hf-vfp-neon-poky-linux-gnueabi/camera-server/0.1-r0/temp/log.do_compile.26393)
-NOTE: recipe camera-server-0.1-r0: task do_compile: Failed
-
-
-The debug of bitbake shows, however, that it correctly identifies the
-dependent packages:
-
-DEBUG: providers for gst-rtsp are: ['gst-rtsp']
-DEBUG: sorted runtime providers for gst-rtsp are:
-['/home/ubuntu/yocto/sources/meta-openembedded/meta-multimedia/recipes-multimedia/gstreamer/gst-rtsp_0.10.8.bb']
-DEBUG: adding
-'/home/ubuntu/yocto/sources/meta-openembedded/meta-multimedia/recipes-multimedia/gstreamer/gst-rtsp_0.10.8.bb'
-to satisfy runtime 'gst-rtsp'
-DEBUG: providers for gstreamer are: ['gstreamer']
-DEBUG: sorted runtime providers for gstreamer are:
-['/home/ubuntu/yocto/sources/poky/meta/recipes-multimedia/gstreamer/gstreamer_0.10.36.bb']
-DEBUG: adding
-'/home/ubuntu/yocto/sources/poky/meta/recipes-multimedia/gstreamer/gstreamer_0.10.36.bb'
-to satisfy runtime 'gstreamer'
-
-
-So, what am I doing wrong? Do I explicitly need to add the dependencies
-to the compile environment somehow? If yes, where are the found
-directories stored?
-
-Or am I doing this all very wrong? I am really very new to Yocto.
-
-Thanks for any help!
-
-Michael
+Richard
 
 
