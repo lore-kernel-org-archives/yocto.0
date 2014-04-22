@@ -1,30 +1,28 @@
-Return-Path: <richard.purdie@linuxfoundation.org>
-Received: from dan.rpsys.net (5751f4a1.skybroadband.com [87.81.244.161])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2AF59E00C02
-	for <yocto@yoctoproject.org>; Tue, 22 Apr 2014 01:46:39 -0700 (PDT)
-Received: from localhost (dan.rpsys.net [127.0.0.1])
-	by dan.rpsys.net (8.14.4/8.14.4/Debian-2.1ubuntu4) with ESMTP id
-	s3M8kGcU030337; Tue, 22 Apr 2014 09:46:17 +0100
-X-Virus-Scanned: Debian amavisd-new at dan.rpsys.net
-Received: from dan.rpsys.net ([127.0.0.1])
-	by localhost (dan.rpsys.net [127.0.0.1]) (amavisd-new, port 10024)
-	with LMTP id uylBfJ7gL1hh; Tue, 22 Apr 2014 09:46:16 +0100 (BST)
-Received: from [192.168.3.10] (rpvlan0 [192.168.3.10]) (authenticated bits=0)
-	by dan.rpsys.net (8.14.4/8.14.4/Debian-2.1ubuntu1) with ESMTP id
-	s3M8kAYv030326
-	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES128-SHA bits=128 verify=NOT);
-	Tue, 22 Apr 2014 09:46:11 +0100
-Message-ID: <1398156364.16672.29.camel@ted>
-From: Richard Purdie <richard.purdie@linuxfoundation.org>
-To: =?ISO-8859-1?Q?S=F8ren?= Holm <sgh@sgh.dk>
-Date: Tue, 22 Apr 2014 09:46:04 +0100
-In-Reply-To: <2872826.V92YYLj4a2@koontz>
-References: <2489555.PeAzndN2bA@koontz> <7023738.t8MMlfpnim@koontz>
-	<53483D14.7020807@windriver.com> <2872826.V92YYLj4a2@koontz>
-X-Mailer: Evolution 3.8.4-0ubuntu1 
-Mime-Version: 1.0
-Cc: yocto@yoctoproject.org
-Subject: Re: defconfig on daisy
+Return-Path: <prvs=182b94058=Richard.Leitner@skidata.com>
+Received: from mail1.skidata.com (mail1.skidata.com [91.230.2.99])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BB1C1E00C02
+	for <yocto@yoctoproject.org>; Tue, 22 Apr 2014 02:08:23 -0700 (PDT)
+X-IronPort-Anti-Spam-Filtered: true
+X-IronPort-Anti-Spam-Result: AjoKAPswVlOsEApK/2dsb2JhbABZhCyDD6dVmTIZgRF0giUBAQEDASMRRQwEAgEIDQQEAQEBAgIGHQMCAgIdExQBCAgBAQQOBQgMiCUNqQWjGxeBKYx8FhsHBoJpNYEUBI8QkGGPAoIr
+X-IPAS-Result: AjoKAPswVlOsEApK/2dsb2JhbABZhCyDD6dVmTIZgRF0giUBAQEDASMRRQwEAgEIDQQEAQEBAgIGHQMCAgIdExQBCAgBAQQOBQgMiCUNqQWjGxeBKYx8FhsHBoJpNYEUBI8QkGGPAoIr
+From: Richard Leitner - SKIDATA <Richard.Leitner@skidata.com>
+To: Richard Purdie <richard.purdie@linuxfoundation.org>
+Thread-Topic: [yocto] Problem with own kernel recipe on Dora
+Thread-Index: Ac9d/6ScmbsBUwlWRTabvACrZE7qtv//51cA///S0YA=
+Date: Tue, 22 Apr 2014 09:08:20 +0000
+Message-ID: <F7680723A1CA6840825A59020FA77064010BD649@sdexmbx1srv.skidata.net>
+References: <F7680723A1CA6840825A59020FA77064010BC709@sdexmbx1srv.skidata.net>
+	<1398154982.16672.25.camel@ted>
+Keywords: MailinglistFromMe
+In-Reply-To: <1398154982.16672.25.camel@ted>
+Accept-Language: en-US, de-AT
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [172.16.111.80]
+MIME-Version: 1.0
+Cc: "Yocto Project Discussion ML \(yocto@yoctoproject.org\)"
+	<yocto@yoctoproject.org>
+Subject: Re: Problem with own kernel recipe on Dora
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -36,25 +34,59 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 22 Apr 2014 08:46:42 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Tue, 22 Apr 2014 09:08:26 -0000
+Content-Language: de-DE
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-On Tue, 2014-04-22 at 08:13 +0200, Søren Holm wrote:
-> Hi Bruce
-> 
-> I've search the meta-data repos and kernel repo for a change matching this. Is 
-> it fixes or did you miss it?
-
-The change is:
-
-http://git.yoctoproject.org/cgit.cgi/poky-contrib/commit/?h=zedd/kernel&id=a112c85c02f161dc03bf71cdb9d2b3557999bbfd
-
-It didn't make it into the 1.6 release branch, it will go in for 1.6.1
-and is queued for there and master.
-
-Cheers,
-
-Richard
-
+SGkgUmljaGFyZCwNCnRoYW5rcyBmb3IgeW91ciBxdWljayByZXNwb25zZS4NCg0KPiAtLS0tLU9y
+aWdpbmFsIE1lc3NhZ2UtLS0tLQ0KPiBGcm9tOiBSaWNoYXJkIFB1cmRpZSBbbWFpbHRvOnJpY2hh
+cmQucHVyZGllQGxpbnV4Zm91bmRhdGlvbi5vcmddDQo+IFNlbnQ6IFR1ZXNkYXksIEFwcmlsIDIy
+LCAyMDE0IDEwOjIzIEFNDQo+IFRvOiBSaWNoYXJkIExlaXRuZXIgLSBTS0lEQVRBDQo+IENjOiBZ
+b2N0byBQcm9qZWN0IERpc2N1c3Npb24gTUwgKHlvY3RvQHlvY3RvcHJvamVjdC5vcmcpDQo+IFN1
+YmplY3Q6IFJlOiBbeW9jdG9dIFByb2JsZW0gd2l0aCBvd24ga2VybmVsIHJlY2lwZSBvbiBEb3Jh
+DQo+IA0KPiBPbiBUdWUsIDIwMTQtMDQtMjIgYXQgMDc6NTIgKzAwMDAsIFJpY2hhcmQgTGVpdG5l
+ciAtIFNLSURBVEEgd3JvdGU6DQo+ID4gSGkgWW9jdG8tQ29tbXVuaXR5LA0KPiA+IGFzIHRoZSBz
+dWJqZWN0IGFscmVhZHkgc2F5cyBJJ3ZlIGEgcHJvYmxlbSB3aXRoIG15IGtlcm5lbCByZWNpcGUg
+YWZ0ZXIgdGhlDQo+ICJtaWdyYXRpb24iIGZyb20gdGhlIER5bGFuIHRvIHRoZSBEb3JhICgxMC4w
+LjEpIGJyYW5jaC4NCj4gPiBJJ3ZlIHRyaWVkIHRoZSAxMC4wLjEgcmVsZWFzZSB0YWcgYXMgd2Vs
+bCBhcyB0aGUgY3VycmVudCBkb3JhIG1hc3Rlcg0KPiAoNTBlOWNjYjJhZmY3YjlmOWRjYTRmZGE5
+OWE2ODMyYzYwZjY0ZGUzYikuDQo+ID4NCj4gPiBUaGUga2VybmVsIHJlY2lwZSBJJ20gdXNpbmcg
+aXMgZGVyaXZlZCBmcm9tIHRoZSBza2VsZXRvbjoNCj4gPiBERVNDUklQVElPTiA9ICJMaW51eCBL
+ZXJuZWwiDQo+ID4gU0VDVElPTiA9ICJrZXJuZWwiDQo+ID4gTElDRU5TRSA9ICJHUEx2MiINCj4g
+PiBMSUNfRklMRVNfQ0hLU1VNID0gImZpbGU6Ly9DT1BZSU5HO21kNT1kNzgxMGZhYjc0ODdmYjBh
+YWQzMjdiNzZmMWJlN2NkNyINCj4gPiBpbmhlcml0IGtlcm5lbA0KPiA+IEtTUkMgPSAiL2hvbWUv
+bGVyaS9WQ1MvZ2l0L2xpbnV4Ig0KPiA+IEtCUkFOQ0ggPSAibWFzdGVyIg0KPiA+IFNSQ19VUkkg
+PQ0KPiAiZ2l0Oi8vJHtLU1JDfTtwcm90b2NvbD1maWxlO2JyYW5jaD0ke0tCUkFOQ0h9O25hbWU9
+a2VybmVsO25vY2hlY2tvdXQ9MSINCj4gPiBTUkNSRVYgPSAiMjAxNF8wM18wNyINCj4gPiBQUiA9
+ICJzZF8xNS4yIg0KPiA+IExJTlVYX1ZFUlNJT04gPSAiJHtQVn0iDQo+ID4gTElOVVhfVkVSU0lP
+Tl9FWFRFTlNJT04gPSAiLSR7UFJ9KyR7U1JDUkVWfSINCj4gPiBDT01QQVRJQkxFX01BQ0hJTkUg
+PSAic2tpZGF0YS1oYXJtb255fHNtYXJ0Y3B1Ig0KPiA+IEtFUk5FTF9JTUFHRVRZUEUgPSAidUlt
+YWdlIg0KPiA+IFNSQ19VUkkgKz0gImZpbGU6Ly9kZWZjb25maWciDQo+ID4gcmVxdWlyZSByZWNp
+cGVzLWtlcm5lbC9saW51eC9saW51eC15b2N0by5pbmMNCj4gPg0KPiA+DQo+ID4gVGhpcyByZWNp
+cGUgd2FzIHdvcmtpbmcgd2VsbCB3aXRoIHRoZSBEeWxhbiBicmFuY2ggYW5kIGZvbGxvd2luZyBj
+aGFuZ2VzOg0KPiA+IC1TUkNfVVJJID0NCj4gImdpdDovLyR7S1NSQ307cHJvdG9jb2w9ZmlsZTti
+cmFuY2g9JHtLQlJBTkNIfTtuYW1lPWtlcm5lbDtub2NoZWNrb3V0PTEiDQo+ID4gK1NSQ19VUkkg
+PSAiZ2l0Oi8vJHtLU1JDfTtwcm90b2NvbD1maWxlO2JyYW5jaD0ke0tCUkFOQ0h9O25hbWU9a2Vy
+bmVsIg0KPiA+ICtTID0gIiR7V09SS0RJUn0vZ2l0Ig0KPiA+DQo+ID4NCj4gPiBXaGVuIGNvbXBp
+bGVkIHdpdGggdGhlIGRvcmEgYnJhbmNoIHRoZSBrZXJuZWwgaGFuZ3MgYXQgIlN0YXJ0aW5nIGtl
+cm5lbC4uLiIgYW5kDQo+IGRvZXNuJ3Qgc3RhcnQ6DQo+ID4gIyMgQm9vdGluZyBrZXJuZWwgZnJv
+bSBMZWdhY3kgSW1hZ2UgYXQgMDAwMDAwMDAgLi4uDQo+ID4gICAgSW1hZ2UgTmFtZTogICBMaW51
+eC0zLjEuMTAtc2RfMTUuMg0KPiA+ICAgIEltYWdlIFR5cGU6ICAgQVJNIExpbnV4IEtlcm5lbCBJ
+bWFnZSAodW5jb21wcmVzc2VkKQ0KPiA+ICAgIERhdGEgU2l6ZTogICAgMzE4MTYxNiBCeXRlcyA9
+IDMgTWlCDQo+ID4gICAgTG9hZCBBZGRyZXNzOiAwMDAwODAwMA0KPiA+ICAgIEVudHJ5IFBvaW50
+OiAgMDAwMDgwMDANCj4gPiAgICBWZXJpZnlpbmcgQ2hlY2tzdW0gLi4uIE9LDQo+ID4gICAgTG9h
+ZGluZyBLZXJuZWwgSW1hZ2UgLi4uIE9LDQo+ID4gT0sNCj4gPg0KPiA+IFN0YXJ0aW5nIGtlcm5l
+bCAuLi4NCj4gPg0KPiA+DQo+ID4gSSd2ZSBhbHJlYWR5IGxvb2tlZCB0aHJvdWdoIHRoZSBtaWdy
+YXRpb24gbm90ZXMgaW4gdGhlIG1hbnVhbCBidXQgSSdtIHVuYWJsZSB0byBmaW5kDQo+IGFueSBo
+aW50cy4uLg0KPiA+IEFyZSB0aGVyZSBhbnkgaWRlYXMgd2h5IHRoZSBrZXJuZWwgZG9lc24ndCBz
+dGFydCB3aXRoIHRoZSBEb3JhIGJyYW5jaD8NCj4gDQo+IFdlIHNhdyBhbiBpc3N1ZSByZWNlbnRs
+eSBvbiBiZWFnbGVib25lIHRoYXQgbG9va2VkIHZlcnkgbGlrZSB0aGlzLiBJdCB0dXJuZWQgb3V0
+IHRoZQ0KPiBsb2FkIGFkZHJlc3MgZm9yIHRoZSBrZXJuZWwgd2FzIGNvbmZsaWN0aW5nIGluIG1l
+bW9yeSB3aXRoIHRoZSBkZXZpY2UgdHJlZSBiaW5hcnkuDQoNCkRvIHlvdSBtZWFuIHRoYXQgdGhl
+IGJvb3Rsb2FkZXIgd2FzIGxvYWRpbmcgdGhlIGRldmljZSB0cmVlIGJpbmFyeSBpbnRvIHRoZSBs
+b2FkIGFkZHJlc3Mgb2YgdGhlIGtlcm5lbD8NCg0KPiANCj4gSXQgZWFzaWx5IGJlIHNvbWV0aGlu
+ZyBkaWZmZXJlbnQgYnV0IEkgdGhvdWdodCBJJ2QgbWVudGlvbiBpdC4NCg0KRG8geW91IGhhdmUg
+YW55IGlkZWEgaG93IHRvIGZ1cnRoZXIgZGVidWcgdGhlIHByb2JsZW0/DQoNCnJlZ2FyZHMsDQpS
+aWNoYXJkDQoNCg==
 
