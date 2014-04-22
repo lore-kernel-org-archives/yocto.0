@@ -1,27 +1,30 @@
-Return-Path: <gary@mlbassoc.com>
-Received: from mail.chez-thomas.org (mail.mlbassoc.com [65.100.170.105])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A7CA9E00C6B
-	for <yocto@yoctoproject.org>; Tue, 22 Apr 2014 07:42:02 -0700 (PDT)
-Received: by mail.chez-thomas.org (Postfix, from userid 1998)
-	id AC034F811E5; Tue, 22 Apr 2014 08:42:01 -0600 (MDT)
-X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on
-	hermes.chez-thomas.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=4.0 tests=ALL_TRUSTED,BAYES_00
-	autolearn=unavailable version=3.3.2
-Received: from [192.168.1.114] (zeus [192.168.1.114])
-	by mail.chez-thomas.org (Postfix) with ESMTP id A692EF811D8;
-	Tue, 22 Apr 2014 08:41:56 -0600 (MDT)
-Message-ID: <53567FB5.5080807@mlbassoc.com>
-Date: Tue, 22 Apr 2014 08:41:57 -0600
-From: Gary Thomas <gary@mlbassoc.com>
+Return-Path: <gley-yocto@m.gmane.org>
+Received: from plane.gmane.org (plane.gmane.org [80.91.229.3])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 95C56E00C71
+	for <yocto@yoctoproject.org>; Tue, 22 Apr 2014 07:49:04 -0700 (PDT)
+Received: from list by plane.gmane.org with local (Exim 4.69)
+	(envelope-from <gley-yocto@m.gmane.org>) id 1Wcc0I-0007jp-2L
+	for yocto@yoctoproject.org; Tue, 22 Apr 2014 16:48:58 +0200
+Received: from 80-218-32-173.dclient.hispeed.ch ([80.218.32.173])
+	by main.gmane.org with esmtp (Gmexim 0.1 (Debian))
+	id 1AlnuQ-0007hv-00
+	for <yocto@yoctoproject.org>; Tue, 22 Apr 2014 16:48:58 +0200
+Received: from auslands-kv by 80-218-32-173.dclient.hispeed.ch with local
+	(Gmexim 0.1 (Debian)) id 1AlnuQ-0007hv-00
+	for <yocto@yoctoproject.org>; Tue, 22 Apr 2014 16:48:58 +0200
+X-Injected-Via-Gmane: http://gmane.org/
+To: yocto@yoctoproject.org
+From: Neuer User <auslands-kv@gmx.de>
+Date: Tue, 22 Apr 2014 16:48:45 +0200
+Message-ID: <lj5vgd$njl$1@ger.gmane.org>
+References: <lj57d5$6ao$1@ger.gmane.org>
+	<CF7BEDE6.25E3D9%rcalhoun@shotspotter.com>
+Mime-Version: 1.0
+X-Complaints-To: usenet@ger.gmane.org
+X-Gmane-NNTP-Posting-Host: 80-218-32-173.dclient.hispeed.ch
 User-Agent: Mozilla/5.0 (X11; Linux x86_64;
 	rv:24.0) Gecko/20100101 Thunderbird/24.4.0
-MIME-Version: 1.0
-To: yocto@yoctoproject.org
-References: <lj57d5$6ao$1@ger.gmane.org> <1398156153.16672.28.camel@ted>
-	<lj5oue$t5b$1@ger.gmane.org>
-In-Reply-To: <lj5oue$t5b$1@ger.gmane.org>
+In-Reply-To: <CF7BEDE6.25E3D9%rcalhoun@shotspotter.com>
 Subject: Re: Newbie question: How to get dependencies into compile of custom recipe?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -34,95 +37,84 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 22 Apr 2014 14:42:07 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+X-List-Received-Date: Tue, 22 Apr 2014 14:49:07 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 Content-Transfer-Encoding: 7bit
 
-On 2014-04-22 06:56, Neuer User wrote:
-> Am 22.04.2014 10:42, schrieb Richard Purdie:
->>
->> Basically, you need to pass in the correct compiler and linker flags.
->>
->> http://gstreamer.freedesktop.org/data/doc/gstreamer/head/faq/html/chapter-developing.html
->>
->> Adding:
->>
->> `pkg-config --cflags --libs gstreamer`
->>
->> to your compiler line will probably help. The system will automatically
->> figure out things from there, the environment contains things that
->> pkg-config can use to generate the correct options.
->>
->> Cheers,
->>
->> Richard
->>
->
-> Thanks, that helped, but I'm still not through, I'm afraid.
->
-> My recipe look like this now:
->
->
-> DESCRIPTION = "Simple helloworld application"
-> SECTION = "multimedia"
-> LICENSE = "MIT"
-> LIC_FILES_CHKSUM =
-> "file://${COMMON_LICENSE_DIR}/MIT;md5=0835ade698e0bcf8506ecda2f7b4f302"
-> PR = "r0"
->
-> SRC_URI = "file://cameraserver.c"
->
-> DEPENDS = "gst-rtsp gstreamer"
+H Rob
 
-Try adding gst-plugins-good to DEPENDS - that's where the rtsp stuff lives.
+Thanks for the information.
 
->
-> S = "${WORKDIR}"
->
-> do_compile() {
->               ${CC} `pkg-config --cflags --libs gstreamer-0.10`
-> cameraserver.c -o cameraserver
-> }
->
-> do_install() {
->               install -d ${D}${bindir}
->               install -m 0755 cameraserver ${D}${bindir}
-> }
->
-> It only worked with "gstreamer-0.10". Now the compilation works, but
-> linking stops:
->
-> Log data follows:
-> | DEBUG: Executing shell function do_compile
-> | /tmp/cckmN8NC.o: In function `main':
-> | cameraserver.c:(.text+0x70): undefined reference to `gst_rtsp_server_new'
-> | cameraserver.c:(.text+0x7c): undefined reference to
-> `gst_rtsp_server_get_media_mapping'
-> | cameraserver.c:(.text+0x84): undefined reference to
-> `gst_rtsp_media_factory_new'
-> | cameraserver.c:(.text+0xa0): undefined reference to
-> `gst_rtsp_media_factory_set_launch'
-> | cameraserver.c:(.text+0xb4): undefined reference to
-> `gst_rtsp_media_mapping_add_factory'
-> | cameraserver.c:(.text+0xc8): undefined reference to
-> `gst_rtsp_server_attach'
-> | collect2: error: ld returned 1 exit status
->
-> As it seems only linking to gst-rtsp, not to gstreamer, if I see that
-> correctly.
->
-> I then tried to add "gst-rtsp" or "gst-rtsp-server" or "gst-rtsp-0.10"
-> or "gst-rtsp-server-0.10" to the pkg-config part, but none of them were
-> found.
->
-> I tell you, I feel extremely stupid. The solution is probably so simple,
-> yet I do not find a solution (even with using Google).
->
->
+To clarify: My recipe is a very simple one. It is just one c file with
+maybe 40 lines or so.
 
--- 
-------------------------------------------------------------
-Gary Thomas                 |  Consulting for the
-MLB Associates              |    Embedded world
-------------------------------------------------------------
+But it uses library functions from another recipe "gst-rtsp", which
+again uses "gstreamer".
+
+Both, "gstreamer" and "gst-rtsp" are compiled and working nicely, as far
+as I can tell.
+
+Now I have a simple c program file that needs to be compiled and linked
+against "gst-rtsp". Hmmm.
+
+I don't have a makefile. I don't use any autotools for this file. The bb
+recipe is based on the example in the Yocto Development guide for a
+simple c file.
+
+I have to admit: I am extremely new to Yocto. I am also not a c
+programmer. If I program, I typically use python or Qt5. :-)
+
+I guess, I try the "devshell" and see what variables are set and what
+pkg-config output is like.
+
+In the end, it is probably very simple to do, but for a Newbie like
+me... :-)
+
+Am 22.04.2014 16:32, schrieb Robert Calhoun:
+> 
+> 
+> On 4/22/14 3:57 AM, "Neuer User"
+> <auslands-kv@gmx.de> wrote:
+>> Sorry for this simple question. I've just started building my
+>> first image with yocto and would now like to add a (very simple)
+>> own recipe.
+> 
+> (I am not familiar with gstreamer, but it looks like a big project
+> and maybe not so simple!)
+> 
+> The yocto build system figures out dependencies and build order, sets
+> the environment, and generates shell scripts to do the actual tasks.
+> The actual "work" is done by these shell scripts, not by the python
+> code.
+> 
+> Your recipe explicitly defines some steps like do_compile(). When you
+> do this, you are saying "Let me control the compilation, I know what
+> I am doing!". Your do_compile() step is going to generate a
+> run.do_compile script, and that has to work just as if you were
+> running the script yourself.
+> 
+> 
+> If something doesn't work, try "bitbake {pkg} -c devshell".  That
+> will drop you into the environment the compiler is going to see. The
+> shell scripts are in ../temp. Each script is a single step
+> (do_compile etc). All of the substitutions that Richard described
+> will already have been made; and you will see all the environment
+> variables being set and the calls made to the compiler, linker etc.
+> This directory also contains the log files from recent executions.
+> 
+> You can run these manually, e.g. ../temp/run.do_compile. (The files 
+> without PIDs are symlinks to the latest script.) You can edit this
+> script and re-run the compile and link step until it works. Once
+> you've figured out what needs to be set or run, modify the recipe to
+> generate that environment or command.
+> 
+> An important thing to understand is that each step lives in its own
+> little world; an environment variable set in the do_compile is not
+> present in do_install unless you put it there. Avoidance of global
+> state allows the build system to run multiple tasks in parallel.
+> 
+> -Rob Calhoun (still figuring this stuff out myself)
+> 
+
+
 
