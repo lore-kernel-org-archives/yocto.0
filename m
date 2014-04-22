@@ -1,28 +1,30 @@
-Return-Path: <prvs=182b94058=Richard.Leitner@skidata.com>
-Received: from mail1.skidata.com (mail1.skidata.com [91.230.2.99])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 32DBEE00C02
-	for <yocto@yoctoproject.org>; Tue, 22 Apr 2014 05:11:04 -0700 (PDT)
-X-IronPort-Anti-Spam-Filtered: true
-X-IronPort-Anti-Spam-Result: AjwKAGhbVlOsEApK/2dsb2JhbABZg1VXgw+nVZkyGYEUdIIlAQEBBCMRRQwEAgEIDQQEAQEBAgIGHQMCAgIdExQBCAgBAQQOBQgMiDIIqQ+jKxMEgSmMfAYrBwQCgmk1gRQEjxCQYY8Cgis
-X-IPAS-Result: AjwKAGhbVlOsEApK/2dsb2JhbABZg1VXgw+nVZkyGYEUdIIlAQEBBCMRRQwEAgEIDQQEAQEBAgIGHQMCAgIdExQBCAgBAQQOBQgMiDIIqQ+jKxMEgSmMfAYrBwQCgmk1gRQEjxCQYY8Cgis
-From: Richard Leitner - SKIDATA <Richard.Leitner@skidata.com>
-To: Nicolas Dechesne <nicolas.dechesne@linaro.org>
-Thread-Topic: [yocto] Problem with own kernel recipe on Dora
-Thread-Index: Ac9d/6ScmbsBUwlWRTabvACrZE7qtgADm1IAAAVHr/A=
-Date: Tue, 22 Apr 2014 12:11:00 +0000
-Message-ID: <F7680723A1CA6840825A59020FA77064010BD996@sdexmbx1srv.skidata.net>
-References: <F7680723A1CA6840825A59020FA77064010BC709@sdexmbx1srv.skidata.net>
-	<CAP71WjyCK-JQMdDKh42VX2aXeUPTL0bb0ELpFHsRafpuwpcUpg@mail.gmail.com>
-Keywords: MailinglistFromMe
-In-Reply-To: <CAP71WjyCK-JQMdDKh42VX2aXeUPTL0bb0ELpFHsRafpuwpcUpg@mail.gmail.com>
-Accept-Language: en-US, de-AT
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [172.16.111.80]
-MIME-Version: 1.0
-Cc: "Yocto Project Discussion ML \(yocto@yoctoproject.org\)"
-	<yocto@yoctoproject.org>
-Subject: Re: Problem with own kernel recipe on Dora
+Return-Path: <gley-yocto@m.gmane.org>
+Received: from plane.gmane.org (plane.gmane.org [80.91.229.3])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 704EEE00C61
+	for <yocto@yoctoproject.org>; Tue, 22 Apr 2014 05:56:59 -0700 (PDT)
+Received: from list by plane.gmane.org with local (Exim 4.69)
+	(envelope-from <gley-yocto@m.gmane.org>) id 1WcaFs-000798-ED
+	for yocto@yoctoproject.org; Tue, 22 Apr 2014 14:56:56 +0200
+Received: from 80-218-32-173.dclient.hispeed.ch ([80.218.32.173])
+	by main.gmane.org with esmtp (Gmexim 0.1 (Debian))
+	id 1AlnuQ-0007hv-00
+	for <yocto@yoctoproject.org>; Tue, 22 Apr 2014 14:56:56 +0200
+Received: from auslands-kv by 80-218-32-173.dclient.hispeed.ch with local
+	(Gmexim 0.1 (Debian)) id 1AlnuQ-0007hv-00
+	for <yocto@yoctoproject.org>; Tue, 22 Apr 2014 14:56:56 +0200
+X-Injected-Via-Gmane: http://gmane.org/
+To: yocto@yoctoproject.org
+From: Neuer User <auslands-kv@gmx.de>
+Date: Tue, 22 Apr 2014 14:56:45 +0200
+Message-ID: <lj5oue$t5b$1@ger.gmane.org>
+References: <lj57d5$6ao$1@ger.gmane.org> <1398156153.16672.28.camel@ted>
+Mime-Version: 1.0
+X-Complaints-To: usenet@ger.gmane.org
+X-Gmane-NNTP-Posting-Host: 80-218-32-173.dclient.hispeed.ch
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:24.0) Gecko/20100101 Thunderbird/24.4.0
+In-Reply-To: <1398156153.16672.28.camel@ted>
+Subject: Re: Newbie question: How to get dependencies into compile of custom recipe?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,66 +36,85 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 22 Apr 2014 12:11:08 -0000
-Content-Language: de-DE
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+X-List-Received-Date: Tue, 22 Apr 2014 12:57:00 -0000
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: 7bit
 
-PiAtLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KPiBGcm9tOiBOaWNvbGFzIERlY2hlc25lIFtt
-YWlsdG86bmljb2xhcy5kZWNoZXNuZUBsaW5hcm8ub3JnXQ0KPiBTZW50OiBUdWVzZGF5LCBBcHJp
-bCAyMiwgMjAxNCAxOjM1IFBNDQo+IFRvOiBSaWNoYXJkIExlaXRuZXIgLSBTS0lEQVRBDQo+IENj
-OiBZb2N0byBQcm9qZWN0IERpc2N1c3Npb24gTUwgKHlvY3RvQHlvY3RvcHJvamVjdC5vcmcpDQo+
-IFN1YmplY3Q6IFJlOiBbeW9jdG9dIFByb2JsZW0gd2l0aCBvd24ga2VybmVsIHJlY2lwZSBvbiBE
-b3JhDQo+IA0KPiBPbiBUdWUsIEFwciAyMiwgMjAxNCBhdCA5OjUyIEFNLCBSaWNoYXJkIExlaXRu
-ZXIgLSBTS0lEQVRBDQo+IDxSaWNoYXJkLkxlaXRuZXJAc2tpZGF0YS5jb20+IHdyb3RlOg0KPiA+
-IEhpIFlvY3RvLUNvbW11bml0eSwNCj4gPiBhcyB0aGUgc3ViamVjdCBhbHJlYWR5IHNheXMgSSd2
-ZSBhIHByb2JsZW0gd2l0aCBteSBrZXJuZWwgcmVjaXBlIGFmdGVyIHRoZQ0KPiAibWlncmF0aW9u
-IiBmcm9tIHRoZSBEeWxhbiB0byB0aGUgRG9yYSAoMTAuMC4xKSBicmFuY2guDQo+ID4gSSd2ZSB0
-cmllZCB0aGUgMTAuMC4xIHJlbGVhc2UgdGFnIGFzIHdlbGwgYXMgdGhlIGN1cnJlbnQgZG9yYSBt
-YXN0ZXINCj4gKDUwZTljY2IyYWZmN2I5ZjlkY2E0ZmRhOTlhNjgzMmM2MGY2NGRlM2IpLg0KPiA+
-DQo+ID4gVGhlIGtlcm5lbCByZWNpcGUgSSdtIHVzaW5nIGlzIGRlcml2ZWQgZnJvbSB0aGUgc2tl
-bGV0b246DQo+ID4gREVTQ1JJUFRJT04gPSAiTGludXggS2VybmVsIg0KPiA+IFNFQ1RJT04gPSAi
-a2VybmVsIg0KPiA+IExJQ0VOU0UgPSAiR1BMdjIiDQo+ID4gTElDX0ZJTEVTX0NIS1NVTSA9ICJm
-aWxlOi8vQ09QWUlORzttZDU9ZDc4MTBmYWI3NDg3ZmIwYWFkMzI3Yjc2ZjFiZTdjZDciDQo+ID4g
-aW5oZXJpdCBrZXJuZWwNCj4gPiBLU1JDID0gIi9ob21lL2xlcmkvVkNTL2dpdC9saW51eCINCj4g
-PiBLQlJBTkNIID0gIm1hc3RlciINCj4gPiBTUkNfVVJJID0NCj4gImdpdDovLyR7S1NSQ307cHJv
-dG9jb2w9ZmlsZTticmFuY2g9JHtLQlJBTkNIfTtuYW1lPWtlcm5lbDtub2NoZWNrb3V0PTEiDQo+
-ID4gU1JDUkVWID0gIjIwMTRfMDNfMDciDQo+ID4gUFIgPSAic2RfMTUuMiINCj4gPiBMSU5VWF9W
-RVJTSU9OID0gIiR7UFZ9Ig0KPiA+IExJTlVYX1ZFUlNJT05fRVhURU5TSU9OID0gIi0ke1BSfSsk
-e1NSQ1JFVn0iDQo+ID4gQ09NUEFUSUJMRV9NQUNISU5FID0gInNraWRhdGEtaGFybW9ueXxzbWFy
-dGNwdSINCj4gPiBLRVJORUxfSU1BR0VUWVBFID0gInVJbWFnZSINCj4gPiBTUkNfVVJJICs9ICJm
-aWxlOi8vZGVmY29uZmlnIg0KPiA+IHJlcXVpcmUgcmVjaXBlcy1rZXJuZWwvbGludXgvbGludXgt
-eW9jdG8uaW5jDQo+ID4NCj4gPg0KPiA+IFRoaXMgcmVjaXBlIHdhcyB3b3JraW5nIHdlbGwgd2l0
-aCB0aGUgRHlsYW4gYnJhbmNoIGFuZCBmb2xsb3dpbmcgY2hhbmdlczoNCj4gPiAtU1JDX1VSSSA9
-DQo+ICJnaXQ6Ly8ke0tTUkN9O3Byb3RvY29sPWZpbGU7YnJhbmNoPSR7S0JSQU5DSH07bmFtZT1r
-ZXJuZWw7bm9jaGVja291dD0xIg0KPiA+ICtTUkNfVVJJID0gImdpdDovLyR7S1NSQ307cHJvdG9j
-b2w9ZmlsZTticmFuY2g9JHtLQlJBTkNIfTtuYW1lPWtlcm5lbCINCj4gPiArUyA9ICIke1dPUktE
-SVJ9L2dpdCINCj4gPg0KPiA+DQo+ID4gV2hlbiBjb21waWxlZCB3aXRoIHRoZSBkb3JhIGJyYW5j
-aCB0aGUga2VybmVsIGhhbmdzIGF0ICJTdGFydGluZyBrZXJuZWwuLi4iIGFuZA0KPiBkb2Vzbid0
-IHN0YXJ0Og0KPiA+ICMjIEJvb3Rpbmcga2VybmVsIGZyb20gTGVnYWN5IEltYWdlIGF0IDAwMDAw
-MDAwIC4uLg0KPiA+ICAgIEltYWdlIE5hbWU6ICAgTGludXgtMy4xLjEwLXNkXzE1LjINCj4gPiAg
-ICBJbWFnZSBUeXBlOiAgIEFSTSBMaW51eCBLZXJuZWwgSW1hZ2UgKHVuY29tcHJlc3NlZCkNCj4g
-PiAgICBEYXRhIFNpemU6ICAgIDMxODE2MTYgQnl0ZXMgPSAzIE1pQg0KPiA+ICAgIExvYWQgQWRk
-cmVzczogMDAwMDgwMDANCj4gPiAgICBFbnRyeSBQb2ludDogIDAwMDA4MDAwDQo+ID4gICAgVmVy
-aWZ5aW5nIENoZWNrc3VtIC4uLiBPSw0KPiA+ICAgIExvYWRpbmcgS2VybmVsIEltYWdlIC4uLiBP
-Sw0KPiA+IE9LDQo+ID4NCj4gPiBTdGFydGluZyBrZXJuZWwgLi4uDQo+ID4NCj4gPg0KPiA+IEkn
-dmUgYWxyZWFkeSBsb29rZWQgdGhyb3VnaCB0aGUgbWlncmF0aW9uIG5vdGVzIGluIHRoZSBtYW51
-YWwgYnV0IEknbSB1bmFibGUgdG8gZmluZA0KPiBhbnkgaGludHMuLi4NCj4gPiBBcmUgdGhlcmUg
-YW55IGlkZWFzIHdoeSB0aGUga2VybmVsIGRvZXNuJ3Qgc3RhcnQgd2l0aCB0aGUgRG9yYSBicmFu
-Y2g/DQo+IA0KPiB5b3UgZG9uJ3QgbWVudGlvbiBhbnl0aGluZyBhYm91dCBnY2MsIHNvIGFzc3Vt
-aW5nIHlvdSBhcmUgdXNpbmcgdGhlICdkZWZhdWx0JyBnY2MgZm9yDQo+IGVhY2ggcmVsZWFzZSwg
-ZHlsYW4gaGFzIDQuNywgYW5kIGRvcmEgaGFzIDQuOC4gT24gYSBjb3VwbGUgb2YgQVJNIHBsYXRm
-b3JtcywgaSBoYXZlDQo+IHNlZW4gc2ltaWxhciBpc3N1ZSB3aGVuIHVzaW5nIGdjYy00Ljggd2l0
-aCBvbGQga2VybmVsICg8djMuNCkuDQo+IA0KPiB0aGUgZm9sbG93aW5nIGxpbnV4IGtlcm5lbCBw
-YXRjaGVzIHdlcmUgdXNlZCB0byBmaXggdGhlIGJvb3QgcHJvYmxlbToNCj4gDQo+IGh0dHBzOi8v
-Z2l0Lmtlcm5lbC5vcmcvY2dpdC9saW51eC9rZXJuZWwvZ2l0L3RvcnZhbGRzL2xpbnV4LmdpdC9j
-b21taXQvP2lkPTQ1NWJkNGM0MzBiMGMNCj4gMGEzNjFmMzhlODY1OGEwZDZjYjQ2OTk0MmI1DQo+
-IGh0dHBzOi8vZ2l0Lmtlcm5lbC5vcmcvY2dpdC9saW51eC9rZXJuZWwvZ2l0L3RvcnZhbGRzL2xp
-bnV4LmdpdC9jb21taXQvP2lkPTQxOGRmNjNhZGFjNTYNCj4gODQxZWY2YjBmMWZjZjQzNWJjNjRk
-NGVkMTc3DQo+IA0KPiBUaGV5IHNob3VsZCBjbGVhbmx5IGFwcGx5IHRvIHYzLjEgd2hpY2ggeW91
-IHNlZW0gdG8gYmUgdXNpbmcuDQo+IA0KDQpUaGFuayB5b3UgdmVyeSBtdWNoIE5pY28hDQpUaGVz
-ZSB0d28gcGF0Y2hlcyBmaXhlZCB0aGUgcHJvYmxlbSBhbmQgdGhlIGtlcm5lbCBpcyBib290aW5n
-IGFnYWluIDotKQ0KDQpKdXN0IGZvciBjb21wbGV0ZW5lc3M6IFllcywgSSdtIHVzaW5nIHRoZSAi
-ZGVmYXVsdCIgZ2NjIHZlcnNpb24gYW5kIHRoZSB0d28gcGF0Y2hlcyBhcHBsaWVkIGNsZWFubHkg
-dG8gbXkgMy4xIGJyYW5jaC4NCg0KcmVnYXJkcywNClJpY2hhcmQNCg==
+Am 22.04.2014 10:42, schrieb Richard Purdie:
+> 
+> Basically, you need to pass in the correct compiler and linker flags.
+> 
+> http://gstreamer.freedesktop.org/data/doc/gstreamer/head/faq/html/chapter-developing.html
+> 
+> Adding:
+> 
+> `pkg-config --cflags --libs gstreamer`
+> 
+> to your compiler line will probably help. The system will automatically
+> figure out things from there, the environment contains things that
+> pkg-config can use to generate the correct options.
+> 
+> Cheers,
+> 
+> Richard
+> 
+
+Thanks, that helped, but I'm still not through, I'm afraid.
+
+My recipe look like this now:
+
+
+DESCRIPTION = "Simple helloworld application"
+SECTION = "multimedia"
+LICENSE = "MIT"
+LIC_FILES_CHKSUM =
+"file://${COMMON_LICENSE_DIR}/MIT;md5=0835ade698e0bcf8506ecda2f7b4f302"
+PR = "r0"
+
+SRC_URI = "file://cameraserver.c"
+
+DEPENDS = "gst-rtsp gstreamer"
+
+S = "${WORKDIR}"
+
+do_compile() {
+             ${CC} `pkg-config --cflags --libs gstreamer-0.10`
+cameraserver.c -o cameraserver
+}
+
+do_install() {
+             install -d ${D}${bindir}
+             install -m 0755 cameraserver ${D}${bindir}
+}
+
+It only worked with "gstreamer-0.10". Now the compilation works, but
+linking stops:
+
+Log data follows:
+| DEBUG: Executing shell function do_compile
+| /tmp/cckmN8NC.o: In function `main':
+| cameraserver.c:(.text+0x70): undefined reference to `gst_rtsp_server_new'
+| cameraserver.c:(.text+0x7c): undefined reference to
+`gst_rtsp_server_get_media_mapping'
+| cameraserver.c:(.text+0x84): undefined reference to
+`gst_rtsp_media_factory_new'
+| cameraserver.c:(.text+0xa0): undefined reference to
+`gst_rtsp_media_factory_set_launch'
+| cameraserver.c:(.text+0xb4): undefined reference to
+`gst_rtsp_media_mapping_add_factory'
+| cameraserver.c:(.text+0xc8): undefined reference to
+`gst_rtsp_server_attach'
+| collect2: error: ld returned 1 exit status
+
+As it seems only linking to gst-rtsp, not to gstreamer, if I see that
+correctly.
+
+I then tried to add "gst-rtsp" or "gst-rtsp-server" or "gst-rtsp-0.10"
+or "gst-rtsp-server-0.10" to the pkg-config part, but none of them were
+found.
+
+I tell you, I feel extremely stupid. The solution is probably so simple,
+yet I do not find a solution (even with using Google).
+
+
 
