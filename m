@@ -1,33 +1,32 @@
 Return-Path: <raj.khem@gmail.com>
-Received: from mail-ie0-f174.google.com (mail-ie0-f174.google.com
-	[209.85.223.174])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5DDEBE006C0
-	for <yocto@yoctoproject.org>; Tue, 22 Apr 2014 20:35:19 -0700 (PDT)
-Received: by mail-ie0-f174.google.com with SMTP id rp18so390993iec.33
-	for <yocto@yoctoproject.org>; Tue, 22 Apr 2014 20:35:19 -0700 (PDT)
+Received: from mail-ig0-f181.google.com (mail-ig0-f181.google.com
+	[209.85.213.181])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 07C76E006C0
+	for <yocto@yoctoproject.org>; Tue, 22 Apr 2014 21:21:12 -0700 (PDT)
+Received: by mail-ig0-f181.google.com with SMTP id h18so547734igc.2
+	for <yocto@yoctoproject.org>; Tue, 22 Apr 2014 21:21:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-type;
-	bh=nznzlGUCoaB0MyIxXpwaQxmnBvOMY+wvAnyOC595gm0=;
-	b=Lo8Zo+N8wwH58S7Q5rOItqdouyAnuyQWbX0gDlqvtGQugdsOzUv1ZEJNz6FVYcmnX6
-	RXRpK0a00QbQC7kJEjeN5nSsobknLfrndr5d6CdE+xxOzrMf6Eg60yB8So5AZSA+Yrpp
-	ZoGodQe+AOmmpWTaDXbOtsltZKyGxH8A+8iIuHEDs3Ly9qHZUdl2CMqXi/Oi/jwqO9Nz
-	5EX4bn1WG6KLZj/eVrE5X0HS6/Rr8DVn7VD77cmJ15WgwF8Ws1MIatET1FapirKVwVtK
-	4A1qEVfR/wB/v0pcE+XPsKstfqQB6CVs0Whn4k1euJFASzUDat0BYqP8LcL6lmc1sppq
-	pihA==
-X-Received: by 10.42.157.74 with SMTP id c10mr6431037icx.74.1398224119132;
-	Tue, 22 Apr 2014 20:35:19 -0700 (PDT)
+	:content-type; bh=xiXD8a4M0QWZeFXR6lxWdElv6p+2/0Aqkf+ccqeRMxg=;
+	b=yr8BdAG+8dD2+Fw7wiUkv6BUoHf1FKiAIz/9gXwcBbUDESy4ls4hvnjyBgKqrv7qEG
+	4/dou5Fx0TXRX3ep0CQj2d5Jn0sqC06BaA+X+qIkOXBXyGXOrMke4/e7tpAm+YSy+XiZ
+	s5NYrsRlQ5kn6QT89b6LJ6/rJhWajW92mraqbq9VYEPxhMSDF0HEh/TVaGjDBHvMA70q
+	gWrjYKkCoVzk5DmbMonGRtdDDcR3WauT1vOfCnOldxwEXiNIVR5gSc//SdYREfX9fKDz
+	mFQRHePjNAsK4+XedqQwlujh8z6liNCNjsteYi503lrvDxlPYOpOhyhH6AbSNkUesfYI
+	P0Kg==
+X-Received: by 10.43.140.144 with SMTP id ja16mr42074131icc.46.1398226872113; 
+	Tue, 22 Apr 2014 21:21:12 -0700 (PDT)
 MIME-Version: 1.0
-Received: by 10.50.229.14 with HTTP; Tue, 22 Apr 2014 20:34:49 -0700 (PDT)
-In-Reply-To: <1397635971-2345-1-git-send-email-sujith.h@gmail.com>
-References: <1397635971-2345-1-git-send-email-sujith.h@gmail.com>
+Received: by 10.50.229.14 with HTTP; Tue, 22 Apr 2014 21:20:42 -0700 (PDT)
+In-Reply-To: <E7466334-BD13-4847-948A-0885F4B4F987@gmail.com>
+References: <E7466334-BD13-4847-948A-0885F4B4F987@gmail.com>
 From: Khem Raj <raj.khem@gmail.com>
-Date: Tue, 22 Apr 2014 20:34:49 -0700
-Message-ID: <CAMKF1sqxhAVj1i6t7OTEv76a64Ov-LoHtED_pq5ufkxb-Ci3bQ@mail.gmail.com>
-To: Sujith H <sujith.h@gmail.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	Sujith H <Sujith_Haridasan@mentor.com>
-Subject: Re: [meta-ivi][PATCH] weston: Add weston.ini config file
+Date: Tue, 22 Apr 2014 21:20:42 -0700
+Message-ID: <CAMKF1spn=3YxzzJcYQs5RXya=eKJkMa=dPyU92awEPtmdRTvMQ@mail.gmail.com>
+To: openembedded-core <openembedded-core@lists.openembedded.org>, 
+	openembeded-devel <openembedded-devel@lists.openembedded.org>, 
+	Yocto Project <yocto@yoctoproject.org>
+Subject: Re: [RFT] gcc 4.9
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,48 +38,46 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 23 Apr 2014 03:35:22 -0000
+X-List-Received-Date: Wed, 23 Apr 2014 04:21:15 -0000
 Content-Type: text/plain; charset=UTF-8
 
-On Wed, Apr 16, 2014 at 1:12 AM, Sujith H <sujith.h@gmail.com> wrote:
-> Adding weston.ini to $ROOT_HOME/.config. With this change
-> user can login to $ROOT_HOME and launch weston with ivi-shell.
+On Sun, Mar 23, 2014 at 1:35 AM, Khem Raj <raj.khem@gmail.com> wrote:
+> Hi
+>
+> gcc 4.9 release is coming in summer therefore I have put together the recipes here
+>
+> http://git.openembedded.org/openembedded-core-contrib/log/?h=kraj/gcc-4.9
+>
+> So far my testing has been booting angstrom/systemd-image on all supported
+> qemu machines (except qemumips64 where there is a know kernel issue) both eglibc/uclibc
+> images
+>
+> we would like to target them for 1.7 release so if you have cycles to test out
+> your image/machine combos please do so I would be interested in feedback and would accumulate fixes in this branch
+>
+> If you run into some issues with some packages then its recommended to go through
+>
+> http://gcc.gnu.org/gcc-4.9/changes.html
+>
+> and especially http://gcc.gnu.org/gcc-4.9/porting_to.html
+>
+> Which could help in cooking patches
+>
 
-what if I am not root ? IOW is there more systemwide way of doing it ?
+Hi All
 
->
-> Signed-off-by: Sujith H <Sujith_Haridasan@mentor.com>
-> ---
->  recipes-graphics/wayland/weston_1.4.0.bbappend | 13 +++++++++++++
->  1 file changed, 13 insertions(+)
->
-> diff --git a/recipes-graphics/wayland/weston_1.4.0.bbappend b/recipes-graphics/wayland/weston_1.4.0.bbappend
-> index 7a8ba6f..a2713d6 100644
-> --- a/recipes-graphics/wayland/weston_1.4.0.bbappend
-> +++ b/recipes-graphics/wayland/weston_1.4.0.bbappend
-> @@ -12,3 +12,16 @@ PR = "r1"
->
->  FILES_${PN} += "${libdir}/weston/*"
->  FILES_${PN}-dbg += "${libdir}/weston/.debug/*"
-> +
-> +do_install_append() {
-> +   install -d ${D}${ROOT_HOME}/.config
-> +   install -m 0644 ${S}/ivi-shell/weston.ini.in ${D}${ROOT_HOME}/.config/weston.ini
-> +   sed -i -e  's/hmi-controller.so/hmi-controller.so, ivi-controller.so/' ${D}${ROOT_HOME}/.config/weston.ini
-> +   sed -i -e 's|\@libexecdir\@|${libexecdir}|' ${D}${ROOT_HOME}/.config/weston.ini
-> +   sed -i -e 's|\@abs_top_builddir\@\/data|${datadir}\/weston|' ${D}${ROOT_HOME}/.config/weston.ini
-> +   sed -i -e 's|\@abs_top_builddir\@\/clients|${bindir}|' ${D}${ROOT_HOME}/.config/weston.ini
-> +}
-> +
-> +PACKAGES += "${PN}-ini"
-> +
-> +FILES_${PN}-ini = "${ROOT_HOME}/.config"
-> --
-> 1.8.4
->
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+As you might have noticed gcc 4.9.0 was released today
+
+changed are here http://gcc.gnu.org/gcc-4.9/changes.html
+
+I have updated my contrib tree to use the release tar balls. Please
+test the branch out. If you are using OE-Core
+standalone you don't need to do anything once you apply the patches
+from contrib branch it should select 4.9
+I have left 4.8 still there since we want to phase it out only when we
+are sure that complete ecosystem is working
+fine with 4.9
+
+Thanks
+-Khem
 
