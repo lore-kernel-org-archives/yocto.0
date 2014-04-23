@@ -1,29 +1,36 @@
-Return-Path: <gary@mlbassoc.com>
-Received: from mail.chez-thomas.org (mail.mlbassoc.com [65.100.170.105])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 918EDE00AE2
-	for <yocto@yoctoproject.org>; Wed, 23 Apr 2014 08:44:51 -0700 (PDT)
-Received: by mail.chez-thomas.org (Postfix, from userid 1998)
-	id 486B0F811DD; Wed, 23 Apr 2014 09:44:51 -0600 (MDT)
-X-Spam-Checker-Version: SpamAssassin 3.3.2 (2011-06-06) on
-	hermes.chez-thomas.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=4.0 tests=ALL_TRUSTED,BAYES_00
-	autolearn=unavailable version=3.3.2
-Received: from [192.168.1.114] (zeus [192.168.1.114])
-	by mail.chez-thomas.org (Postfix) with ESMTP id 61668F81199;
-	Wed, 23 Apr 2014 09:44:49 -0600 (MDT)
-Message-ID: <5357DFF4.2060305@mlbassoc.com>
-Date: Wed, 23 Apr 2014 09:44:52 -0600
-From: Gary Thomas <gary@mlbassoc.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:24.0) Gecko/20100101 Thunderbird/24.4.0
+Return-Path: <kergoth@gmail.com>
+Received: from mail-lb0-f176.google.com (mail-lb0-f176.google.com
+	[209.85.217.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 22E2FE00AE2
+	for <yocto@yoctoproject.org>; Wed, 23 Apr 2014 08:51:53 -0700 (PDT)
+Received: by mail-lb0-f176.google.com with SMTP id 10so934812lbg.7
+	for <yocto@yoctoproject.org>; Wed, 23 Apr 2014 08:51:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:sender:in-reply-to:references:from:date:message-id
+	:subject:to:cc:content-type;
+	bh=nvBlF58TkKvrln07ZEFSRDRE4rtJhgogIWJkp27HSHk=;
+	b=GyI+tMNWDiztBTsjF05WZxfJWRpX9VtiyxaOvnendyUyYnbzZ1XU/S+qcnnym9k9mA
+	RuHj7sxmR+J/TRbaLpdoLw+F4h5qrztKPwZZDz2vITV7ZrN5B604JvRzlRakJy9lGLwQ
+	rRJtZewePeMAHXkAUSgpunGEwPGmQQIHlXP4up2Q12lR9klFEVWUneV3WCCFSAFDDjRr
+	N26QpxVNS9O0/TnTjsacniAcT9wgAUYCRYkjjzO6ekcGfSXVQa17M2FlvQ3JeRqwUUE6
+	OuEjz76zDQ5NZmoy+hRBDSpe28G0NC7nxlH+SVKAQWMgbhVIwXHcj805yamsymcHFBiv
+	7lXQ==
+X-Received: by 10.112.234.167 with SMTP id uf7mr503104lbc.66.1398268312265;
+	Wed, 23 Apr 2014 08:51:52 -0700 (PDT)
 MIME-Version: 1.0
-To: Chris Larson <clarson@kergoth.com>
+Sender: kergoth@gmail.com
+Received: by 10.112.35.194 with HTTP; Wed, 23 Apr 2014 08:51:32 -0700 (PDT)
+In-Reply-To: <5357DFF4.2060305@mlbassoc.com>
 References: <5357CAF3.1070702@mlbassoc.com>
 	<CABcZANmHUB-v=zek8jxLWtUjSEGYZCjqL2q=3a=fUKXiMn4nSw@mail.gmail.com>
 	<5357D4BE.6090309@mlbassoc.com>
 	<CABcZAN=n__L01vXz2Kup3C=Vej-qCXjzwOhY7HgNnsOq6xdfFw@mail.gmail.com>
-In-Reply-To: <CABcZAN=n__L01vXz2Kup3C=Vej-qCXjzwOhY7HgNnsOq6xdfFw@mail.gmail.com>
+	<5357DFF4.2060305@mlbassoc.com>
+From: Chris Larson <clarson@kergoth.com>
+Date: Wed, 23 Apr 2014 08:51:32 -0700
+X-Google-Sender-Auth: 8dN31n_f3gkvqtRAsnYGVSjqXEg
+Message-ID: <CABcZANm+zczfdsO6D5wt19UBjutQTXGS=ZAj34Scs=OqvUcaYA@mail.gmail.com>
+To: Gary Thomas <gary@mlbassoc.com>
 Cc: yocto <yocto@yoctoproject.org>
 Subject: Re: How does python-native work?
 X-BeenThere: yocto@yoctoproject.org
@@ -37,67 +44,93 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 23 Apr 2014 15:44:52 -0000
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 23 Apr 2014 15:51:54 -0000
+Content-Type: multipart/alternative; boundary=001a11c3c2280da9ff04f7b7b604
 
-On 2014-04-23 09:37, Chris Larson wrote:
->
-> On Wed, Apr 23, 2014 at 7:57 AM, Gary Thomas <gary@mlbassoc.com <mailto:gary@mlbassoc.com>> wrote:
->
->     On 2014-04-23 08:21, Chris Larson wrote:
->
->         On Wed, Apr 23, 2014 at 7:15 AM, Gary Thomas <gary@mlbassoc.com <mailto:gary@mlbassoc.com> <mailto:gary@mlbassoc.com <mailto:gary@mlbassoc.com>>> wrote:
->
->              How is python-native supposed to work?  I can see that it's
->              built and installed in my tmp/sysroots/HOST but it's installed
->              in a sub-directory which is not found by normal means.
->
->
->         inherit pythonnative (or one of the classes that inherit it)
->
->
->     Thanks, I imported 'distutils' and that helped, but I still have problems with it.  Looking
->     at log.do_configure:
->        checking for python... /local/rpi_2014-04-10/tmp/__sysroots/x86_64-linux/usr/bin/__python-native/python
->        checking for python-config... /local/rpi_2014-04-10/tmp/__sysroots/x86_64-linux/usr/bin/__python-native/python-config
->        Traceback (most recent call last):
->          File "/local/rpi_2014-04-10/tmp/__sysroots/x86_64-linux/usr/bin/__python-native/python-config", line 6, in <module>
->            from distutils import sysconfig
->          File "/local/rpi_2014-04-10/tmp/__sysroots/x86_64-linux/usr/lib/__python2.7/distutils/sysconfig.__py", line 22, in <module>
->            PREFIX = os.path.normpath(sys.prefix).__replace( os.getenv("BUILD_SYS"), os.getenv("HOST_SYS") )
->        TypeError: expected a character buffer object
->
->     When I ran python-config before (original email), the results
->     were from outside the build environment, i.e. the command line
->     where I run 'bitbake'.  When do_configure() runs in my recipe,
->     the environment seems to be quite different.  If I try to run
->     python-config from devshell (for my recipe), it fails as above.
->
->
-> First, it's a bit worrisome that you're inheriting a class for distutils when your build doesn't actually use distutils.. but beyond that, I don't think the classes inherited by
-> distutils assume you'll be running python-config. Add this:
->
->      export BUILD_SYS
->      export HOST_SYS
+--001a11c3c2280da9ff04f7b7b604
+Content-Type: text/plain; charset=UTF-8
 
-I went back to only inheriting pythonnative (I was a bit
-overzealous to follow your 'or a class that inherits it').
+On Wed, Apr 23, 2014 at 8:44 AM, Gary Thomas <gary@mlbassoc.com> wrote:
 
-I found that I also needed:
-   export STAGING_INCDIR
-   export STAGING_LIBDIR
+> First, it's a bit worrisome that you're inheriting a class for distutils
+>> when your build doesn't actually use distutils.. but beyond that, I don't
+>> think the classes inherited by
+>> distutils assume you'll be running python-config. Add this:
+>>
+>>      export BUILD_SYS
+>>      export HOST_SYS
+>>
+>
+> I went back to only inheriting pythonnative (I was a bit
+> overzealous to follow your 'or a class that inherits it').
+>
+> I found that I also needed:
+>   export STAGING_INCDIR
+>   export STAGING_LIBDIR
+>
+> Perhaps pythonnative should imply those exports, as without
+> them, python-config is useless.
+>
+> Anyway, now the recipe successfully builds the python interface!!
 
-Perhaps pythonnative should imply those exports, as without
-them, python-config is useless.
 
-Anyway, now the recipe successfully builds the python interface!!
-
-Thanks for the help
-
+Ah! I knew there was exports needed, but apparently I remembered them
+wrong. Sorry about that. Glad you got it going, though. I don't think
+pythonnative exporting those would necessarily be appropriate, though. Not
+everyone inheriting pythonnative needs to do anything more than run python
+itself :) Perhaps we need a new class.. though the class proliferation is
+already a bit much.
 -- 
-------------------------------------------------------------
-Gary Thomas                 |  Consulting for the
-MLB Associates              |    Embedded world
-------------------------------------------------------------
+Christopher Larson
+clarson at kergoth dot com
+Founder - BitBake, OpenEmbedded, OpenZaurus
+Maintainer - Tslib
+Senior Software Engineer, Mentor Graphics
 
+--001a11c3c2280da9ff04f7b7b604
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
+On Wed, Apr 23, 2014 at 8:44 AM, Gary Thomas <span dir=3D"ltr">&lt;<a href=
+=3D"mailto:gary@mlbassoc.com" target=3D"_blank">gary@mlbassoc.com</a>&gt;</=
+span> wrote:<br>
+
+<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
+x #ccc solid;padding-left:1ex"><blockquote class=3D"gmail_quote" style=3D"m=
+argin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div class=3D=
+"">First, it&#39;s a bit worrisome that you&#39;re inheriting a class for d=
+istutils when your build doesn&#39;t actually use distutils.. but beyond th=
+at, I don&#39;t think the classes inherited by<br>
+
+
+distutils assume you&#39;ll be running python-config. Add this:<br>
+<br>
+=C2=A0 =C2=A0 =C2=A0export BUILD_SYS<br>
+=C2=A0 =C2=A0 =C2=A0export HOST_SYS<br>
+</div></blockquote>
+<br>
+I went back to only inheriting pythonnative (I was a bit<br>
+overzealous to follow your &#39;or a class that inherits it&#39;).<br>
+<br>
+I found that I also needed:<br>
+=C2=A0 export STAGING_INCDIR<br>
+=C2=A0 export STAGING_LIBDIR<br>
+<br>
+Perhaps pythonnative should imply those exports, as without<br>
+them, python-config is useless.<br>
+<br>
+Anyway, now the recipe successfully builds the python interface!!</blockquo=
+te></div><br>Ah! I knew there was exports needed, but apparently I remember=
+ed them wrong. Sorry about that. Glad you got it going, though. I don&#39;t=
+ think pythonnative exporting those would necessarily be appropriate, thoug=
+h. Not everyone inheriting pythonnative needs to do anything more than run =
+python itself :) Perhaps we need a new class.. though the class proliferati=
+on is already a bit much.<br>
+
+-- <br>Christopher Larson<br>clarson at kergoth dot com<br>Founder - BitBak=
+e, OpenEmbedded, OpenZaurus<br>Maintainer - Tslib<br>Senior Software Engine=
+er, Mentor Graphics
+</div></div>
+
+--001a11c3c2280da9ff04f7b7b604--
