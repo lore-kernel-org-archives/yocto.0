@@ -1,36 +1,22 @@
-Return-Path: <sujith.h@gmail.com>
-Received: from mail-qa0-f46.google.com (mail-qa0-f46.google.com
-	[209.85.216.46])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C1A9EE006EC
-	for <yocto@yoctoproject.org>; Wed, 23 Apr 2014 00:14:13 -0700 (PDT)
-Received: by mail-qa0-f46.google.com with SMTP id i13so486888qae.5
-	for <yocto@yoctoproject.org>; Wed, 23 Apr 2014 00:14:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-type;
-	bh=P2VZtQlErmGm+9x2k0uyIAxGWlWUpBhYHis7Z6gmiF8=;
-	b=dEJqoqQ//soABWZPcDcnfj8KJ/Vi0XFvMO16nHCazM6gdaqy0GOvo7oTxrtmAKPF5t
-	F+VBnklZP73mRuv823NQZHpGsnCEy/7J+qR0gV1zFjQRyMYFELIDx+oUB+kbwTkb11s3
-	T43v5UMS2hLraiuxlxI2ZpvVW9QIqIexZcnxcDxjq/tLTbfe/7EG01gv50Aj6einAylM
-	5969GdpIrzd2Pb+28Yu1FaiDcjMfMw7tthxAPdd2vjnofTAF8FhZdnZo4/JK9fknIlfk
-	p129mEJ4iMPZCbAz5cZGWHXmk0LYLSVmWxK2cQlfr1pk1pDZfHt2Z/8e0Aka3bmvMNJa
-	8etA==
-X-Received: by 10.140.101.45 with SMTP id t42mr38948459qge.32.1398237252993;
-	Wed, 23 Apr 2014 00:14:12 -0700 (PDT)
+Return-Path: <Wenzong.Fan@windriver.com>
+Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8BDE7E006EC
+	for <yocto@yoctoproject.org>; Wed, 23 Apr 2014 00:42:09 -0700 (PDT)
+Received: from ALA-HCB.corp.ad.wrs.com (ala-hcb.corp.ad.wrs.com
+	[147.11.189.41])
+	by mail1.windriver.com (8.14.5/8.14.5) with ESMTP id s3N7g9UN007648
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL)
+	for <yocto@yoctoproject.org>; Wed, 23 Apr 2014 00:42:09 -0700 (PDT)
+Received: from pek-hostel-vm12.wrs.com (128.224.153.182) by
+	ALA-HCB.corp.ad.wrs.com (147.11.189.41) with Microsoft SMTP Server id
+	14.3.169.1; Wed, 23 Apr 2014 00:42:08 -0700
+From: <wenzong.fan@windriver.com>
+To: <yocto@yoctoproject.org>
+Date: Wed, 23 Apr 2014 03:42:03 -0400
+Message-ID: <cover.1398238471.git.wenzong.fan@windriver.com>
+X-Mailer: git-send-email 1.7.9.5
 MIME-Version: 1.0
-Received: by 10.140.101.231 with HTTP; Wed, 23 Apr 2014 00:13:52 -0700 (PDT)
-In-Reply-To: <CAMKF1srL_9d9dhRS02cg2XBBSZz3bq=WS5Xs89cqsEiKsb-hTg@mail.gmail.com>
-References: <1397635971-2345-1-git-send-email-sujith.h@gmail.com>
-	<CAMKF1sqxhAVj1i6t7OTEv76a64Ov-LoHtED_pq5ufkxb-Ci3bQ@mail.gmail.com>
-	<CADyYWL==UjRm5hGTaSaBj8NJLYELBgaA_0t0_sA-hMrzsfrcdw@mail.gmail.com>
-	<CAMKF1srL_9d9dhRS02cg2XBBSZz3bq=WS5Xs89cqsEiKsb-hTg@mail.gmail.com>
-From: sujith h <sujith.h@gmail.com>
-Date: Wed, 23 Apr 2014 12:43:52 +0530
-Message-ID: <CADyYWLk7LziUanBCGhyp1x=YRTmpVRzSTtGw6UTDMwj5a1MMaQ@mail.gmail.com>
-To: Khem Raj <raj.khem@gmail.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	Sujith H <Sujith_Haridasan@mentor.com>
-Subject: Re: [meta-ivi][PATCH] weston: Add weston.ini config file
+Subject: [meta-selinux][PATCH 0/4] some minor fixes to udevd, initscripts, policycoreutils
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,77 +28,42 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 23 Apr 2014 07:14:18 -0000
-Content-Type: multipart/alternative; boundary=001a11c160a0c6c7aa04f7b07a11
+X-List-Received-Date: Wed, 23 Apr 2014 07:42:10 -0000
+Content-Type: text/plain
 
---001a11c160a0c6c7aa04f7b07a11
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+From: Wenzong Fan <wenzong.fan@windriver.com>
 
-On Wed, Apr 23, 2014 at 11:34 AM, Khem Raj <raj.khem@gmail.com> wrote:
+* udevd: it creates /dev/shm, /dev/pts, restorecon for them as well;
+* initscripts: always force to restore file contexts for /var/lib
+* policycoreutils:
+  get semanage process the ValueError from sepolicy, seobject;
+  fix TypeError from seobject.py
 
-> On Tue, Apr 22, 2014 at 10:59 PM, sujith h <sujith.h@gmail.com> wrote:
-> >> what if I am not root ? IOW is there more systemwide way of doing it ?
-> >
-> >
-> > I couldn't find any other login variable( like $ROOT_HOME) in
-> bitbake.conf.
-> > I agree that if we can do it in a more systemwide
-> > way then it would be a clean solution. Any pointers to look at?
->
-> well, its not really OE issue. see if weston can read configuration
-> files somewhere in /etc/
->
+The following changes since commit 0362287928bc0a58b755488ebd74441c28eeeee2:
+policycoreutils
+  audit: Fix lack of a default audit.rules (2014-04-07 09:55:49 -0400)
 
-I had updated the new patch with weston.ini file in /etc/xdg/weston
-directory.
+are available in the git repository at:
 
+  git://git.pokylinux.org/poky-contrib wenzong/several-fixes
+  http://git.pokylinux.org/cgit.cgi/poky-contrib/log/?h=wenzong/several-fixes
 
+Wenzong Fan (4):
+  udev init: restorecon for /dev/shm, /dev/pts
+  always force to restore file contexts for /var/lib
+  semanage: process ValueError for sepolicy, seobject
+  policycoreutils: fix TypeError for seobject.py
 
---=20
-=E0=B4=B8=E0=B5=81=E0=B4=9C=E0=B4=BF=E0=B4=A4=E0=B5=8D =E0=B4=B9=E0=B4=B0=
-=E0=B4=BF=E0=B4=A6=E0=B4=BE=E0=B4=B8=E0=B4=A8=E0=B5=8D
-Bangalore
-<Project>Contributor to KDE project
-http://fci.wikia.com/wiki/Anti-DRM-Campaign
-<Blog> http://sujithh.info
+ recipes-core/initscripts/initscripts_1.0.bbappend  |    2 +-
+ recipes-core/udev/udev/init                        |    2 +-
+ ...cycoreutils-fix-TypeError-for-seobject.py.patch |   32 +++++++++++++
+ ...-process-ValueError-for-sepolicy-seobject.patch |   48 ++++++++++++++++++++
+ recipes-security/selinux/policycoreutils_2.2.5.bb  |    2 +
+ 5 files changed, 84 insertions(+), 2 deletions(-)
+ create mode 100644 recipes-security/selinux/policycoreutils/policycoreutils-fix-TypeError-for-seobject.py.patch
+ create mode 100644 recipes-security/selinux/policycoreutils/policycoreutils-process-ValueError-for-sepolicy-seobject.patch
 
---001a11c160a0c6c7aa04f7b07a11
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><br><div class=3D"gmail_extra"><br><br><div class=3D"gmail=
-_quote">On Wed, Apr 23, 2014 at 11:34 AM, Khem Raj <span dir=3D"ltr">&lt;<a=
- href=3D"mailto:raj.khem@gmail.com" target=3D"_blank">raj.khem@gmail.com</a=
->&gt;</span> wrote:<br>
-
-<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
-x #ccc solid;padding-left:1ex"><div class=3D"">On Tue, Apr 22, 2014 at 10:5=
-9 PM, sujith h &lt;<a href=3D"mailto:sujith.h@gmail.com">sujith.h@gmail.com=
-</a>&gt; wrote:<br>
+-- 
+1.7.9.5
 
 
-&gt;&gt; what if I am not root ? IOW is there more systemwide way of doing =
-it ?<br>
-&gt;<br>
-&gt;<br>
-&gt; I couldn&#39;t find any other login variable( like $ROOT_HOME) in bitb=
-ake.conf.<br>
-&gt; I agree that if we can do it in a more systemwide<br>
-&gt; way then it would be a clean solution. Any pointers to look at?<br>
-<br>
-</div>well, its not really OE issue. see if weston can read configuration<b=
-r>
-files somewhere in /etc/<br></blockquote><div><br></div><div>I had updated =
-the new patch with weston.ini file in /etc/xdg/weston directory. <br></div>=
-</div><br><br clear=3D"all"><br>-- <br>=E0=B4=B8=E0=B5=81=E0=B4=9C=E0=B4=BF=
-=E0=B4=A4=E0=B5=8D =E0=B4=B9=E0=B4=B0=E0=B4=BF=E0=B4=A6=E0=B4=BE=E0=B4=B8=
-=E0=B4=A8=E0=B5=8D<br>Bangalore<br>&lt;Project&gt;Contributor to KDE projec=
-t<br>
-
-<a href=3D"http://fci.wikia.com/wiki/Anti-DRM-Campaign" target=3D"_blank">h=
-ttp://fci.wikia.com/wiki/Anti-DRM-Campaign</a><br>&lt;Blog&gt; <a href=3D"h=
-ttp://sujithh.info" target=3D"_blank">http://sujithh.info</a><br>
-</div></div>
-
---001a11c160a0c6c7aa04f7b07a11--
