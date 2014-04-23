@@ -1,20 +1,32 @@
-Return-Path: <dv@pseudoterminal.org>
-Received: from ptmx.org (ptmx.org [178.63.28.110])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E9C6FE006EC
-	for <yocto@yoctoproject.org>; Wed, 23 Apr 2014 01:36:45 -0700 (PDT)
-Received: from [192.168.178.14] (chello080108088242.14.11.vie.surfer.at
-	[80.108.88.242]) by ptmx.org (Postfix) with ESMTPSA id 867A229E5D;
-	Wed, 23 Apr 2014 10:36:41 +0200 (CEST)
-Message-ID: <53577B99.2090904@pseudoterminal.org>
-Date: Wed, 23 Apr 2014 10:36:41 +0200
-From: Carlos Rafael Giani <dv@pseudoterminal.org>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:24.0) Gecko/20100101 Thunderbird/24.4.0
-MIME-Version: 1.0
-To: Dipesh Karmakar <Dipesh.Karmakar@hcl.com>, 
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Return-Path: <Dipesh.Karmakar@hcl.com>
+Received: from GWS07.hcl.com (gws07.hcl.com [192.8.186.130])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E814DE006EC
+	for <yocto@yoctoproject.org>; Wed, 23 Apr 2014 03:29:50 -0700 (PDT)
+X-IronPort-AV: E=Sophos;i="4.97,911,1389724200"; d="scan'208";a="20185686"
+Received: from unknown (HELO CHN-CORP-HT02.CORP.HCL.IN) ([10.249.2.34])
+	by GWS07.hcl.com with ESMTP/TLS/AES128-SHA; 23 Apr 2014 15:54:31 +0530
+Received: from CHN-HCLT-CSHT04.HCLT.CORP.HCL.IN (10.150.12.29) by
+	CHN-CORP-HT02.CORP.HCL.IN (10.249.2.34) with Microsoft SMTP Server
+	(TLS) id 14.3.123.3; Wed, 23 Apr 2014 15:59:47 +0530
+Received: from CHN-HCLT-MBS06.HCLT.CORP.HCL.IN ([10.150.12.21]) by
+	CHN-HCLT-CSHT04.HCLT.CORP.HCL.IN ([::1]) with mapi id 14.03.0123.003;
+	Wed, 23 Apr 2014 15:59:46 +0530
+From: Dipesh Karmakar <Dipesh.Karmakar@hcl.com>
+To: Carlos Rafael Giani <dv@pseudoterminal.org>
+Thread-Topic: [yocto] Rgardring GSTreamer1.0 integration on Yocto Dora
+Thread-Index: Ac9d+MKqisnKvBogTdCza2JCCG0m6AA0O0hg//+uuYD//5QjcA==
+Date: Wed, 23 Apr 2014 10:29:40 +0000
+Message-ID: <97272D6808818244BD88BD72F19D658B03CAD719@chn-hclt-mbs06.HCLT.CORP.HCL.IN>
 References: <97272D6808818244BD88BD72F19D658B03CAD664@chn-hclt-mbs06.HCLT.CORP.HCL.IN>
-In-Reply-To: <97272D6808818244BD88BD72F19D658B03CAD664@chn-hclt-mbs06.HCLT.CORP.HCL.IN>
+	<53577B99.2090904@pseudoterminal.org>
+In-Reply-To: <53577B99.2090904@pseudoterminal.org>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.150.5.114]
+MIME-Version: 1.0
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
+	Meenakumari Shedole <meenakumari.s@hcl.com>
 Subject: Re: Rgardring GSTreamer1.0 integration on Yocto Dora
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -27,73 +39,78 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 23 Apr 2014 08:36:48 -0000
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 23 Apr 2014 10:29:53 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-Hi Dipesh,
-
-why not just use the dora branch of the meta-gstreamer1.0 layer?
-
-Carlos
-
-On 2014-04-23 10:06, Dipesh Karmakar wrote:
-> Hi All,
->
-> Can we integrate GST-1.2.3 to Dora? Is there any document available? We need it badly.
->
-> Thanks,
-> Dipesh
->
-> -----Original Message-----
-> From: Dipesh Karmakar
-> Sent: Tuesday, April 22, 2014 12:41 PM
-> To: 'Carlos Rafael Giani'
-> Cc: yocto@yoctoproject.org; Meenakumari Shedole
-> Subject: [yocto] Rgardring GSTreamer1.0 integration on Yocto Dora
->
-> Hi Carlos,
->
-> Do you have any plan to integrate Gstreamer-1.2.3 to Dora? I believe current Dora10.0.1 has GST-1.0.9.
->
-> Thanks,
-> Dipesh
->
-> -----Original Message-----
-> From: Carlos Rafael Giani [mailto:dv@pseudoterminal.org]
-> Sent: Sunday, February 02, 2014 9:14 PM
-> To: Khaja Hussain Shaik
-> Cc: Nicolas Dechesne; yocto@yoctoproject.org; Dipesh Karmakar; Paul Eggleton; Kishore Divvela -ERS, HCL Tech
-> Subject: Re: [yocto] Rgardring GSTreamer1.0 integration on Yocto dylan
->
-> On 2014-01-28 13:49, Khaja Hussain Shaik wrote:
->> Hi Carlos,
->>
->> Did you get a chance to look into the porting of gst1.0 to Dylan?
->>
->> Regards
->> Khaja
->>
-> I have now upgraded the recipes in meta-gstreamer1.0 to version 1.2.2.
-> It is a backport from the current OE-core recipes. Furthermore, I added the Orc OE-core recipes to this layer. This way, gstreamer is built with Orc support by default, even for danny and dylan.
->
-> cheers,
-> Carlos
->
->
-> ::DISCLAIMER::
-> ----------------------------------------------------------------------------------------------------------------------------------------------------
->
-> The contents of this e-mail and any attachment(s) are confidential and intended for the named recipient(s) only.
-> E-mail transmission is not guaranteed to be secure or error-free as information could be intercepted, corrupted,
-> lost, destroyed, arrive late or incomplete, or may contain viruses in transmission. The e mail and its contents
-> (with or without referred errors) shall therefore not attach any liability on the originator or HCL or its affiliates.
-> Views or opinions, if any, presented in this email are solely those of the author and may not necessarily reflect the
-> views or opinions of HCL or its affiliates. Any form of reproduction, dissemination, copying, disclosure, modification,
-> distribution and / or publication of this message without the prior written consent of authorized representative of
-> HCL is strictly prohibited. If you have received this email in error please delete it and notify the sender immediately.
-> Before opening any email and/or attachments, please check them for viruses and other defects.
->
-> ----------------------------------------------------------------------------------------------------------------------------------------------------
-
+SGkgQ2FybG9zLA0KDQpUaGFua3MgZm9yIHlvdXIgcmVwbHkuDQoNCkFjdHVhbGx5IHdlIGhhdmUg
+YnVpbHQgR3N0LTEuMi4zIGFuZCBhbGwgaXRzIHBsdWdpbnMgaW4gVWJ1bnR1IDEyLjEwIHdpdGgg
+bGliZHJtLTIuNC41MywgbGlidmEtMS4zLjAsIGdzdC1saWJhdi0xLjIuMywgbGlidmEtaW50ZWwt
+ZHJpdmVyLTEuMy4wLCBnc3RyZWFtZXItdmFhcGktMC41LjggdG8gdGVzdCB4MjY0IHZhYXBpIHdp
+dGggZm9yZWlnbiB3aW5kb3cgKGFzIHN1Z2dlc3RlZCBieSB0aGUgdmFhcGkgbWFpbnRhaW5lciku
+DQpJdHMgd29ya2luZyBxdWl0ZSBuaWNlIHNvIGZhciwgc28gd2UgYXJlIHRoaW5raW5nIHRvIGFk
+ZCBndC0xLjIuMyB0byBkb3JhLg0KDQpBcyB5b3UgaGF2ZSBzdWdnZXN0ZWQsDQoNCj4+IHdoeSBu
+b3QganVzdCB1c2UgdGhlIGRvcmEgYnJhbmNoIG9mIHRoZSBtZXRhLWdzdHJlYW1lcjEuMCBsYXll
+cj8NCg0KSSBiZWxpZXZlIGRvcmEgYnJhbmNoIG9mIHRoZSBtZXRhLWdzdHJlYW1lcjEuMCBoYXMg
+MS4yLjIuIFdpbGwgaXQgd29yayB3aXRoIHZhYXBpID8NCg0KQmVjYXVzZSB3ZSBoYXZlIGEgd29y
+a2luZyBHU1QtMS4yLjMsIHNvIHdlIGRvIG5vdCB3YW50IHRvIHRha2Ugcmlzay4NCg0KSSB3aWxs
+IGRlZmluaXRlbHkgdHJ5IHlvdXIgc3VnZ2VzdGlvbiBhbmQgaW4gcGFyYWxsZWwgd2UgbmVlZCB0
+byBrbm93IGhvdyB3ZSBjYW4gYWRkIEdTVC0xLjIuMyBsb2NhbGx5IHRvIERvcmEuDQoNClRoYW5r
+cywNCkRpcGVzaA0KDQotLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KRnJvbTogQ2FybG9zIFJh
+ZmFlbCBHaWFuaSBbbWFpbHRvOmR2QHBzZXVkb3Rlcm1pbmFsLm9yZ10gDQpTZW50OiBXZWRuZXNk
+YXksIEFwcmlsIDIzLCAyMDE0IDI6MDcgUE0NClRvOiBEaXBlc2ggS2FybWFrYXI7IHlvY3RvQHlv
+Y3RvcHJvamVjdC5vcmcNClN1YmplY3Q6IFJlOiBbeW9jdG9dIFJnYXJkcmluZyBHU1RyZWFtZXIx
+LjAgaW50ZWdyYXRpb24gb24gWW9jdG8gRG9yYQ0KDQpIaSBEaXBlc2gsDQoNCndoeSBub3QganVz
+dCB1c2UgdGhlIGRvcmEgYnJhbmNoIG9mIHRoZSBtZXRhLWdzdHJlYW1lcjEuMCBsYXllcj8NCg0K
+Q2FybG9zDQoNCk9uIDIwMTQtMDQtMjMgMTA6MDYsIERpcGVzaCBLYXJtYWthciB3cm90ZToNCj4g
+SGkgQWxsLA0KPg0KPiBDYW4gd2UgaW50ZWdyYXRlIEdTVC0xLjIuMyB0byBEb3JhPyBJcyB0aGVy
+ZSBhbnkgZG9jdW1lbnQgYXZhaWxhYmxlPyBXZSBuZWVkIGl0IGJhZGx5Lg0KPg0KPiBUaGFua3Ms
+DQo+IERpcGVzaA0KPg0KPiAtLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KPiBGcm9tOiBEaXBl
+c2ggS2FybWFrYXINCj4gU2VudDogVHVlc2RheSwgQXByaWwgMjIsIDIwMTQgMTI6NDEgUE0NCj4g
+VG86ICdDYXJsb3MgUmFmYWVsIEdpYW5pJw0KPiBDYzogeW9jdG9AeW9jdG9wcm9qZWN0Lm9yZzsg
+TWVlbmFrdW1hcmkgU2hlZG9sZQ0KPiBTdWJqZWN0OiBbeW9jdG9dIFJnYXJkcmluZyBHU1RyZWFt
+ZXIxLjAgaW50ZWdyYXRpb24gb24gWW9jdG8gRG9yYQ0KPg0KPiBIaSBDYXJsb3MsDQo+DQo+IERv
+IHlvdSBoYXZlIGFueSBwbGFuIHRvIGludGVncmF0ZSBHc3RyZWFtZXItMS4yLjMgdG8gRG9yYT8g
+SSBiZWxpZXZlIGN1cnJlbnQgRG9yYTEwLjAuMSBoYXMgR1NULTEuMC45Lg0KPg0KPiBUaGFua3Ms
+DQo+IERpcGVzaA0KPg0KPiAtLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KPiBGcm9tOiBDYXJs
+b3MgUmFmYWVsIEdpYW5pIFttYWlsdG86ZHZAcHNldWRvdGVybWluYWwub3JnXQ0KPiBTZW50OiBT
+dW5kYXksIEZlYnJ1YXJ5IDAyLCAyMDE0IDk6MTQgUE0NCj4gVG86IEtoYWphIEh1c3NhaW4gU2hh
+aWsNCj4gQ2M6IE5pY29sYXMgRGVjaGVzbmU7IHlvY3RvQHlvY3RvcHJvamVjdC5vcmc7IERpcGVz
+aCBLYXJtYWthcjsgUGF1bCANCj4gRWdnbGV0b247IEtpc2hvcmUgRGl2dmVsYSAtRVJTLCBIQ0wg
+VGVjaA0KPiBTdWJqZWN0OiBSZTogW3lvY3RvXSBSZ2FyZHJpbmcgR1NUcmVhbWVyMS4wIGludGVn
+cmF0aW9uIG9uIFlvY3RvIGR5bGFuDQo+DQo+IE9uIDIwMTQtMDEtMjggMTM6NDksIEtoYWphIEh1
+c3NhaW4gU2hhaWsgd3JvdGU6DQo+PiBIaSBDYXJsb3MsDQo+Pg0KPj4gRGlkIHlvdSBnZXQgYSBj
+aGFuY2UgdG8gbG9vayBpbnRvIHRoZSBwb3J0aW5nIG9mIGdzdDEuMCB0byBEeWxhbj8NCj4+DQo+
+PiBSZWdhcmRzDQo+PiBLaGFqYQ0KPj4NCj4gSSBoYXZlIG5vdyB1cGdyYWRlZCB0aGUgcmVjaXBl
+cyBpbiBtZXRhLWdzdHJlYW1lcjEuMCB0byB2ZXJzaW9uIDEuMi4yLg0KPiBJdCBpcyBhIGJhY2tw
+b3J0IGZyb20gdGhlIGN1cnJlbnQgT0UtY29yZSByZWNpcGVzLiBGdXJ0aGVybW9yZSwgSSBhZGRl
+ZCB0aGUgT3JjIE9FLWNvcmUgcmVjaXBlcyB0byB0aGlzIGxheWVyLiBUaGlzIHdheSwgZ3N0cmVh
+bWVyIGlzIGJ1aWx0IHdpdGggT3JjIHN1cHBvcnQgYnkgZGVmYXVsdCwgZXZlbiBmb3IgZGFubnkg
+YW5kIGR5bGFuLg0KPg0KPiBjaGVlcnMsDQo+IENhcmxvcw0KPg0KPg0KPiA6OkRJU0NMQUlNRVI6
+Og0KPiAtLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tDQo+IC0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0NCj4gLS0tLS0tLS0NCj4NCj4gVGhl
+IGNvbnRlbnRzIG9mIHRoaXMgZS1tYWlsIGFuZCBhbnkgYXR0YWNobWVudChzKSBhcmUgY29uZmlk
+ZW50aWFsIGFuZCBpbnRlbmRlZCBmb3IgdGhlIG5hbWVkIHJlY2lwaWVudChzKSBvbmx5Lg0KPiBF
+LW1haWwgdHJhbnNtaXNzaW9uIGlzIG5vdCBndWFyYW50ZWVkIHRvIGJlIHNlY3VyZSBvciBlcnJv
+ci1mcmVlIGFzIA0KPiBpbmZvcm1hdGlvbiBjb3VsZCBiZSBpbnRlcmNlcHRlZCwgY29ycnVwdGVk
+LCBsb3N0LCBkZXN0cm95ZWQsIGFycml2ZSANCj4gbGF0ZSBvciBpbmNvbXBsZXRlLCBvciBtYXkg
+Y29udGFpbiB2aXJ1c2VzIGluIHRyYW5zbWlzc2lvbi4gVGhlIGUgbWFpbCBhbmQgaXRzIGNvbnRl
+bnRzICh3aXRoIG9yIHdpdGhvdXQgcmVmZXJyZWQgZXJyb3JzKSBzaGFsbCB0aGVyZWZvcmUgbm90
+IGF0dGFjaCBhbnkgbGlhYmlsaXR5IG9uIHRoZSBvcmlnaW5hdG9yIG9yIEhDTCBvciBpdHMgYWZm
+aWxpYXRlcy4NCj4gVmlld3Mgb3Igb3BpbmlvbnMsIGlmIGFueSwgcHJlc2VudGVkIGluIHRoaXMg
+ZW1haWwgYXJlIHNvbGVseSB0aG9zZSBvZiANCj4gdGhlIGF1dGhvciBhbmQgbWF5IG5vdCBuZWNl
+c3NhcmlseSByZWZsZWN0IHRoZSB2aWV3cyBvciBvcGluaW9ucyBvZiANCj4gSENMIG9yIGl0cyBh
+ZmZpbGlhdGVzLiBBbnkgZm9ybSBvZiByZXByb2R1Y3Rpb24sIGRpc3NlbWluYXRpb24sIA0KPiBj
+b3B5aW5nLCBkaXNjbG9zdXJlLCBtb2RpZmljYXRpb24sIGRpc3RyaWJ1dGlvbiBhbmQgLyBvciBw
+dWJsaWNhdGlvbiBvZiB0aGlzIG1lc3NhZ2Ugd2l0aG91dCB0aGUgcHJpb3Igd3JpdHRlbiBjb25z
+ZW50IG9mIGF1dGhvcml6ZWQgcmVwcmVzZW50YXRpdmUgb2YgSENMIGlzIHN0cmljdGx5IHByb2hp
+Yml0ZWQuIElmIHlvdSBoYXZlIHJlY2VpdmVkIHRoaXMgZW1haWwgaW4gZXJyb3IgcGxlYXNlIGRl
+bGV0ZSBpdCBhbmQgbm90aWZ5IHRoZSBzZW5kZXIgaW1tZWRpYXRlbHkuDQo+IEJlZm9yZSBvcGVu
+aW5nIGFueSBlbWFpbCBhbmQvb3IgYXR0YWNobWVudHMsIHBsZWFzZSBjaGVjayB0aGVtIGZvciB2
+aXJ1c2VzIGFuZCBvdGhlciBkZWZlY3RzLg0KPg0KPiAtLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tDQo+IC0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0NCj4gLS0tLS0tLS0NCg0K
 
