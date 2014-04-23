@@ -1,34 +1,36 @@
 Return-Path: <sujith.h@gmail.com>
-Received: from mail-pa0-f43.google.com (mail-pa0-f43.google.com
-	[209.85.220.43])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1FE8CE006EC
-	for <yocto@yoctoproject.org>; Wed, 23 Apr 2014 00:12:04 -0700 (PDT)
-Received: by mail-pa0-f43.google.com with SMTP id bj1so474757pad.30
-	for <yocto@yoctoproject.org>; Wed, 23 Apr 2014 00:12:04 -0700 (PDT)
+Received: from mail-qa0-f46.google.com (mail-qa0-f46.google.com
+	[209.85.216.46])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C1A9EE006EC
+	for <yocto@yoctoproject.org>; Wed, 23 Apr 2014 00:14:13 -0700 (PDT)
+Received: by mail-qa0-f46.google.com with SMTP id i13so486888qae.5
+	for <yocto@yoctoproject.org>; Wed, 23 Apr 2014 00:14:13 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=from:to:cc:subject:date:message-id;
-	bh=v6V75DZkbHqnfNZg8OW4V8ogLdp6wnm6YIkP0Q2D6XA=;
-	b=jrNMw+Jeyf8ykNXkaMkjpCWq+IYzk1udIX+y7xMfDpt9iQajoIAJ9QHPwpQ1PuJ0sl
-	PR8b+8O7t231z5zlgPuzIDrRkGhDeBYv4EyHccsMiCeNbluBLZ2D+p1l7eHLkrCdd4ZY
-	klLTbo0Nf8Bmwm+XJNFe3iIAPSL1c/dNY7zCbR0ya8XH3OEzaPNxc5ldjaQ5kw4UEXzP
-	YN7jngsE7w1EEfAr3Mt5rVYAYvoVIQA7FgYQdfjn74kXINnuZu9iXNZrauBQwIIYJ+My
-	UTdA81p2vOLZlowU3ipYrnjROuH02HxmoTVU+GepWkIrvZz5LQknLdreKp8JqdjKfUYO
-	Tmvg==
-X-Received: by 10.68.226.197 with SMTP id ru5mr51623961pbc.77.1398237124313;
-	Wed, 23 Apr 2014 00:12:04 -0700 (PDT)
-Received: from linux-z8xt.inp.mentorg.com ([139.181.35.34])
-	by mx.google.com with ESMTPSA id tu3sm579850pab.1.2014.04.23.00.12.00
-	for <multiple recipients>
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Wed, 23 Apr 2014 00:12:03 -0700 (PDT)
-From: Sujith H <sujith.h@gmail.com>
-To: holger.behrens@windriver.com,
-	florin.sarbu@windriver.com
-Date: Wed, 23 Apr 2014 12:42:13 +0530
-Message-Id: <1398237133-16494-1-git-send-email-sujith.h@gmail.com>
-X-Mailer: git-send-email 1.8.4
-Cc: yocto@yoctoproject.org, Sujith H <Sujith_Haridasan@mentor.com>
-Subject: [meta-ivi][PATCH] weston: Add weston.ini config file
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-type;
+	bh=P2VZtQlErmGm+9x2k0uyIAxGWlWUpBhYHis7Z6gmiF8=;
+	b=dEJqoqQ//soABWZPcDcnfj8KJ/Vi0XFvMO16nHCazM6gdaqy0GOvo7oTxrtmAKPF5t
+	F+VBnklZP73mRuv823NQZHpGsnCEy/7J+qR0gV1zFjQRyMYFELIDx+oUB+kbwTkb11s3
+	T43v5UMS2hLraiuxlxI2ZpvVW9QIqIexZcnxcDxjq/tLTbfe/7EG01gv50Aj6einAylM
+	5969GdpIrzd2Pb+28Yu1FaiDcjMfMw7tthxAPdd2vjnofTAF8FhZdnZo4/JK9fknIlfk
+	p129mEJ4iMPZCbAz5cZGWHXmk0LYLSVmWxK2cQlfr1pk1pDZfHt2Z/8e0Aka3bmvMNJa
+	8etA==
+X-Received: by 10.140.101.45 with SMTP id t42mr38948459qge.32.1398237252993;
+	Wed, 23 Apr 2014 00:14:12 -0700 (PDT)
+MIME-Version: 1.0
+Received: by 10.140.101.231 with HTTP; Wed, 23 Apr 2014 00:13:52 -0700 (PDT)
+In-Reply-To: <CAMKF1srL_9d9dhRS02cg2XBBSZz3bq=WS5Xs89cqsEiKsb-hTg@mail.gmail.com>
+References: <1397635971-2345-1-git-send-email-sujith.h@gmail.com>
+	<CAMKF1sqxhAVj1i6t7OTEv76a64Ov-LoHtED_pq5ufkxb-Ci3bQ@mail.gmail.com>
+	<CADyYWL==UjRm5hGTaSaBj8NJLYELBgaA_0t0_sA-hMrzsfrcdw@mail.gmail.com>
+	<CAMKF1srL_9d9dhRS02cg2XBBSZz3bq=WS5Xs89cqsEiKsb-hTg@mail.gmail.com>
+From: sujith h <sujith.h@gmail.com>
+Date: Wed, 23 Apr 2014 12:43:52 +0530
+Message-ID: <CADyYWLk7LziUanBCGhyp1x=YRTmpVRzSTtGw6UTDMwj5a1MMaQ@mail.gmail.com>
+To: Khem Raj <raj.khem@gmail.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
+	Sujith H <Sujith_Haridasan@mentor.com>
+Subject: Re: [meta-ivi][PATCH] weston: Add weston.ini config file
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,39 +42,77 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 23 Apr 2014 07:12:05 -0000
+X-List-Received-Date: Wed, 23 Apr 2014 07:14:18 -0000
+Content-Type: multipart/alternative; boundary=001a11c160a0c6c7aa04f7b07a11
 
-Adding weston.ini to /etc/xdg. With this change
-user can login and launch weston with ivi-shell.
+--001a11c160a0c6c7aa04f7b07a11
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-Signed-off-by: Sujith H <Sujith_Haridasan@mentor.com>
----
- recipes-graphics/wayland/weston_1.4.0.bbappend | 14 ++++++++++++++
- 1 file changed, 14 insertions(+)
+On Wed, Apr 23, 2014 at 11:34 AM, Khem Raj <raj.khem@gmail.com> wrote:
 
-diff --git a/recipes-graphics/wayland/weston_1.4.0.bbappend b/recipes-graphics/wayland/weston_1.4.0.bbappend
-index 7a8ba6f..b839be4 100644
---- a/recipes-graphics/wayland/weston_1.4.0.bbappend
-+++ b/recipes-graphics/wayland/weston_1.4.0.bbappend
-@@ -12,3 +12,17 @@ PR = "r1"
- 
- FILES_${PN} += "${libdir}/weston/*"
- FILES_${PN}-dbg += "${libdir}/weston/.debug/*"
-+
-+do_install_append() {
-+   WESTON_INI_CONFIG=${sysconfdir}/xdg/weston
-+   install -d ${D}${WESTON_INI_CONFIG}
-+   install -m 0644 ${S}/ivi-shell/weston.ini.in ${D}${WESTON_INI_CONFIG}/weston.ini
-+   sed -i -e  's/hmi-controller.so/hmi-controller.so, ivi-controller.so/' ${D}${WESTON_INI_CONFIG}/weston.ini
-+   sed -i -e 's|\@libexecdir\@|${libexecdir}|' ${D}${WESTON_INI_CONFIG}/weston.ini
-+   sed -i -e 's|\@abs_top_builddir\@\/data|${datadir}\/weston|' ${D}${WESTON_INI_CONFIG}/weston.ini
-+   sed -i -e 's|\@abs_top_builddir\@\/clients|${bindir}|' ${D}${WESTON_INI_CONFIG}/weston.ini
-+}
-+
-+PACKAGES += "${PN}-ini"
-+
-+FILES_${PN}-ini = "${sysconfdir}/xdg"
--- 
-1.8.4
+> On Tue, Apr 22, 2014 at 10:59 PM, sujith h <sujith.h@gmail.com> wrote:
+> >> what if I am not root ? IOW is there more systemwide way of doing it ?
+> >
+> >
+> > I couldn't find any other login variable( like $ROOT_HOME) in
+> bitbake.conf.
+> > I agree that if we can do it in a more systemwide
+> > way then it would be a clean solution. Any pointers to look at?
+>
+> well, its not really OE issue. see if weston can read configuration
+> files somewhere in /etc/
+>
+
+I had updated the new patch with weston.ini file in /etc/xdg/weston
+directory.
 
 
+
+--=20
+=E0=B4=B8=E0=B5=81=E0=B4=9C=E0=B4=BF=E0=B4=A4=E0=B5=8D =E0=B4=B9=E0=B4=B0=
+=E0=B4=BF=E0=B4=A6=E0=B4=BE=E0=B4=B8=E0=B4=A8=E0=B5=8D
+Bangalore
+<Project>Contributor to KDE project
+http://fci.wikia.com/wiki/Anti-DRM-Campaign
+<Blog> http://sujithh.info
+
+--001a11c160a0c6c7aa04f7b07a11
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><br><div class=3D"gmail_extra"><br><br><div class=3D"gmail=
+_quote">On Wed, Apr 23, 2014 at 11:34 AM, Khem Raj <span dir=3D"ltr">&lt;<a=
+ href=3D"mailto:raj.khem@gmail.com" target=3D"_blank">raj.khem@gmail.com</a=
+>&gt;</span> wrote:<br>
+
+<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
+x #ccc solid;padding-left:1ex"><div class=3D"">On Tue, Apr 22, 2014 at 10:5=
+9 PM, sujith h &lt;<a href=3D"mailto:sujith.h@gmail.com">sujith.h@gmail.com=
+</a>&gt; wrote:<br>
+
+
+&gt;&gt; what if I am not root ? IOW is there more systemwide way of doing =
+it ?<br>
+&gt;<br>
+&gt;<br>
+&gt; I couldn&#39;t find any other login variable( like $ROOT_HOME) in bitb=
+ake.conf.<br>
+&gt; I agree that if we can do it in a more systemwide<br>
+&gt; way then it would be a clean solution. Any pointers to look at?<br>
+<br>
+</div>well, its not really OE issue. see if weston can read configuration<b=
+r>
+files somewhere in /etc/<br></blockquote><div><br></div><div>I had updated =
+the new patch with weston.ini file in /etc/xdg/weston directory. <br></div>=
+</div><br><br clear=3D"all"><br>-- <br>=E0=B4=B8=E0=B5=81=E0=B4=9C=E0=B4=BF=
+=E0=B4=A4=E0=B5=8D =E0=B4=B9=E0=B4=B0=E0=B4=BF=E0=B4=A6=E0=B4=BE=E0=B4=B8=
+=E0=B4=A8=E0=B5=8D<br>Bangalore<br>&lt;Project&gt;Contributor to KDE projec=
+t<br>
+
+<a href=3D"http://fci.wikia.com/wiki/Anti-DRM-Campaign" target=3D"_blank">h=
+ttp://fci.wikia.com/wiki/Anti-DRM-Campaign</a><br>&lt;Blog&gt; <a href=3D"h=
+ttp://sujithh.info" target=3D"_blank">http://sujithh.info</a><br>
+</div></div>
+
+--001a11c160a0c6c7aa04f7b07a11--
