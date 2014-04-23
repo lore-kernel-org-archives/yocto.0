@@ -1,87 +1,33 @@
-Return-Path: <stephen.k.jolley@intel.com>
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9E6D4E006C0
-	for <yocto@yoctoproject.org>; Tue, 22 Apr 2014 14:32:21 -0700 (PDT)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga102.jf.intel.com with ESMTP; 22 Apr 2014 14:27:30 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.97,906,1389772800"; 
-	d="scan'208,217";a="525687671"
-Received: from fmsmsx107.amr.corp.intel.com ([10.19.9.54])
-	by orsmga002.jf.intel.com with ESMTP; 22 Apr 2014 14:32:11 -0700
-Received: from fmsmsx116.amr.corp.intel.com (10.18.116.20) by
-	FMSMSX107.amr.corp.intel.com (10.19.9.54) with Microsoft SMTP Server
-	(TLS) id 14.3.123.3; Tue, 22 Apr 2014 14:32:09 -0700
-Received: from fmsmsx111.amr.corp.intel.com ([169.254.2.77]) by
-	fmsmsx116.amr.corp.intel.com ([169.254.14.204]) with mapi id
-	14.03.0123.003; Tue, 22 Apr 2014 14:32:08 -0700
-From: "Jolley, Stephen K" <stephen.k.jolley@intel.com>
-To: "'achaudha@mvista.com'" <achaudha@mvista.com>, 'Anders Darander'
-	<anders@chargestorm.se>, "Arce Moreno, Abraham"
-	<abraham.arce.moreno@intel.com>, "Ashfield, Bruce (Wind River)"
-	<bruce.ashfield@windriver.com>, "Barros Pena, Belen"
-	<belen.barros.pena@intel.com>, "Burton, Ross" <ross.burton@intel.com>, 
-	"Butler, Paul A (Wind River)" <paul.butler@windriver.com>, "Chisanovici,
-	IonutX" <ionutx.chisanovici@intel.com>, 'Chris Kaminski'
-	<chris.kaminski@tobias.tv>, "Damian,
-	Alexandru" <alexandru.damian@intel.com>, 
-	'Daniel Cauchy' <dcauchy@mvista.com>, "DeVries, Alex (Wind River)"
-	<alex.devries@windriver.com>, "Dmytriyenko, Denys" <denys@ti.com>, "Erway, 
-	Tracey M" <tracey.m.erway@intel.com>, "Flanagan, Elizabeth"
-	<elizabeth.flanagan@intel.com>, "Gavaz,
-	Ionut A" <ionut.a.gavaz@intel.com>, 
-	"Georgescu, Alexandru C" <alexandru.c.georgescu@intel.com>, "Hart, Darren"
-	<darren.hart@intel.com>, "Harvey, Michael" <michael.harvey@intel.com>, 
-	"Hatle, Mark G (Wind River)" <mark.hatle@windriver.com>, "'Hudson, Sean'"
-	<Sean_Hudson@mentor.com>, "Iorga, Cristian" <cristian.iorga@intel.com>, 
-	'Jeremy Puhlman' <jpuhlman@gmail.com>, "Kamble, Nitin A"
-	<nitin.a.kamble@intel.com>, "Kridner, Jason" <jdk@ti.com>, "Letnes,
-	Thaddeus
-	C" <thaddeus.c.letnes@intel.com>, "Liu, Song" <song.liu@intel.com>, "Long, 
-	Stephen J (Wind River)" <steve.long@windriver.com>, "'Long, Yanren'"
-	<ylong@WPI.EDU>, "'Maupin, Chase'" <chase.maupin@ti.com>, "Moeller,
-	Thorsten"
-	<thorsten.moeller@intel.com>, "Moses, Fred" <fred.moses@intel.com>,
-	"Mueller, Robert" <robert.mueller@intel.com>, Olivia Salisbury
-	<olivia.salisbury@tobias.tv>, "Ong,
-	Boon Leong" <boon.leong.ong@intel.com>, 
-	"Osier-mixon, Jeffrey" <jeffrey.osier-mixon@intel.com>, "Palalau,
-	AlexandruX" <alexandrux.palalau@intel.com>, "Patel,
-	Keyur R" <keyur.r.patel@intel.com>, 
-	"Petrisor, Ileana" <ileana.petrisor@intel.com>, "Polk,
-	Jeffrey (Wind River)"
-	<jeff.polk@windriver.com>, "Popa, Valentin" <valentin.popa@intel.com>, 
-	"Pruteanu, Codrin C" <codrin.c.pruteanu@intel.com>, "Purdie, Richard"
-	<richard.purdie@intel.com>, "Ranslam, Robert E (Wind River)"
-	<rob.ranslam@windriver.com>, 'Ravi Vompolu' <Ravi.Vompolu@mathworks.com>,
-	"Rifenbark, Scott M" <scott.m.rifenbark@intel.com>, "'Sadiq, Irfan'"
-	<Irfan_Sadiq@mentor.com>, 'Sanjay Raina' <sraina@mvista.com>, "Santana
-	Lopez, Mario A" <mario.a.santana.lopez@intel.com>, "Sarmiento, Sara F"
-	<sara.f.sarmiento@intel.com>, "Seow,
-	Chen Yong" <chen.yong.seow@intel.com>, 
-	"Serban, Laurentiu" <laurentiu.serban@intel.com>, "Stewart, David C"
-	<david.c.stewart@intel.com>, "Stoicescu, CorneliuX"
-	<corneliux.stoicescu@intel.com>, "Stukov, Lina" <lina.stukov@intel.com>,
-	"Szankin, Maciej" <maciej.szankin@intel.com>, "Ta, Lieu T (Wind River)"
-	<lieu.ta@windriver.com>, 'Valentin Cobelea' <Valentin.Cobelea@enea.com>,
-	"Voicu, Cristiana" <cristiana.voicu@intel.com>, "Wold, Saul"
-	<saul.wold@intel.com>, "Woodyatt, James" <james.woodyatt@intel.com>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>, "Zanussi, Tom"
-	<tom.zanussi@intel.com>, "Zhang, Jessica" <jessica.zhang@intel.com>
-Thread-Topic: Yocto Project Technical Team Meeting
-Thread-Index: Ac9SiFT57LU3eYgUSpSwNgCb0wLihQL6fnhA
-Importance: high
-X-Priority: 1
-Date: Tue, 22 Apr 2014 21:32:07 +0000
-Message-ID: <9ADD3FDE8B189B4AA2F8A3C711F8155E55054526@fmsmsx111.amr.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.1.200.106]
+Return-Path: <sujith.h@gmail.com>
+Received: from mail-qa0-f54.google.com (mail-qa0-f54.google.com
+	[209.85.216.54])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BBAD0E006C0
+	for <yocto@yoctoproject.org>; Tue, 22 Apr 2014 19:24:31 -0700 (PDT)
+Received: by mail-qa0-f54.google.com with SMTP id w8so311019qac.13
+	for <yocto@yoctoproject.org>; Tue, 22 Apr 2014 19:24:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-type;
+	bh=tNkNdiN1f1AQiKco5Kmpv1stLtc+fLcufrqMSyJbWiA=;
+	b=iOsb59zf2m2yYC2EbeyM3bgGjgFEenDGIZJBHwJy5LHU4QunriyAiyW5kcZ/WxW0I/
+	DIQXx0KSg5kqFC+GEjHF2XWTGrflKKUjSOVY9Ggft7edu3gvRa1QKVnxiiHbSovX750t
+	V2CrIGFfRUvJrUuviYV6MRB7V2rrn3E/fH4f3m4oKvUesDGeQt3zKKv4ydgbHQAkziQ+
+	0AKe6nfKZPbMGRiwdhuDJ5qyf9lpCWqQn981uq1FqBptP6fgSxHa5ZJJMhHFbrb9X6uR
+	0B+tjkl+hghL6/hGb6vRDkSxbfmXY8c0f64mSHuv15rfSg7+7SeRxiGsfv6rHKu/ik/x
+	Lz8w==
+X-Received: by 10.140.92.99 with SMTP id a90mr38295354qge.34.1398219870407;
+	Tue, 22 Apr 2014 19:24:30 -0700 (PDT)
 MIME-Version: 1.0
-X-Mailman-Approved-At: Tue, 22 Apr 2014 16:02:48 -0700
-Cc: 'Paul Eggleton' <paul.eggleton@linux.intel.com>
-Subject: Canceled: Yocto Project Technical Team Meeting
+Received: by 10.140.101.231 with HTTP; Tue, 22 Apr 2014 19:24:10 -0700 (PDT)
+In-Reply-To: <1397635971-2345-1-git-send-email-sujith.h@gmail.com>
+References: <1397635971-2345-1-git-send-email-sujith.h@gmail.com>
+From: sujith h <sujith.h@gmail.com>
+Date: Wed, 23 Apr 2014 07:54:10 +0530
+Message-ID: <CADyYWLmASDDpq7kyTP=Q5cuupWd+LoKKtfe73_ncc-tvY8xcQQ@mail.gmail.com>
+To: "Behrens, Holger" <holger.behrens@windriver.com>,
+	Florin Sarbu <florin.sarbu@windriver.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: [meta-ivi][PATCH] weston: Add weston.ini config file
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -93,229 +39,137 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 22 Apr 2014 21:32:24 -0000
-X-Groupsio-MsgNum: 19150
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_9ADD3FDE8B189B4AA2F8A3C711F8155E55054526fmsmsx111amrcor_"
+X-List-Received-Date: Wed, 23 Apr 2014 02:24:34 -0000
+Content-Type: multipart/alternative; boundary=001a113abfd8b1916404f7ac6e86
 
---_000_9ADD3FDE8B189B4AA2F8A3C711F8155E55054526fmsmsx111amrcor_
-Content-Type: text/plain; charset="iso-8859-1"
+--001a113abfd8b1916404f7ac6e86
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
+Hi,
+
+Any comments about this patch?
+
+Thanks,
+Sujith H
 
 
+On Wed, Apr 16, 2014 at 1:42 PM, Sujith H <sujith.h@gmail.com> wrote:
 
---_000_9ADD3FDE8B189B4AA2F8A3C711F8155E55054526fmsmsx111amrcor_
-Content-Type: text/html; charset="iso-8859-1"
+> Adding weston.ini to $ROOT_HOME/.config. With this change
+> user can login to $ROOT_HOME and launch weston with ivi-shell.
+>
+> Signed-off-by: Sujith H <Sujith_Haridasan@mentor.com>
+> ---
+>  recipes-graphics/wayland/weston_1.4.0.bbappend | 13 +++++++++++++
+>  1 file changed, 13 insertions(+)
+>
+> diff --git a/recipes-graphics/wayland/weston_1.4.0.bbappend
+> b/recipes-graphics/wayland/weston_1.4.0.bbappend
+> index 7a8ba6f..a2713d6 100644
+> --- a/recipes-graphics/wayland/weston_1.4.0.bbappend
+> +++ b/recipes-graphics/wayland/weston_1.4.0.bbappend
+> @@ -12,3 +12,16 @@ PR =3D "r1"
+>
+>  FILES_${PN} +=3D "${libdir}/weston/*"
+>  FILES_${PN}-dbg +=3D "${libdir}/weston/.debug/*"
+> +
+> +do_install_append() {
+> +   install -d ${D}${ROOT_HOME}/.config
+> +   install -m 0644 ${S}/ivi-shell/weston.ini.in${D}${ROOT_HOME}/.config/=
+weston.ini
+> +   sed -i -e  's/hmi-controller.so/hmi-controller.so, ivi-controller.so/=
+'
+> ${D}${ROOT_HOME}/.config/weston.ini
+> +   sed -i -e 's|\@libexecdir\@|${libexecdir}|'
+> ${D}${ROOT_HOME}/.config/weston.ini
+> +   sed -i -e 's|\@abs_top_builddir\@\/data|${datadir}\/weston|'
+> ${D}${ROOT_HOME}/.config/weston.ini
+> +   sed -i -e 's|\@abs_top_builddir\@\/clients|${bindir}|'
+> ${D}${ROOT_HOME}/.config/weston.ini
+> +}
+> +
+> +PACKAGES +=3D "${PN}-ini"
+> +
+> +FILES_${PN}-ini =3D "${ROOT_HOME}/.config"
+> --
+> 1.8.4
+>
+>
+
+
+--=20
+=E0=B4=B8=E0=B5=81=E0=B4=9C=E0=B4=BF=E0=B4=A4=E0=B5=8D =E0=B4=B9=E0=B4=B0=
+=E0=B4=BF=E0=B4=A6=E0=B4=BE=E0=B4=B8=E0=B4=A8=E0=B5=8D
+Bangalore
+<Project>Contributor to KDE project
+http://fci.wikia.com/wiki/Anti-DRM-Campaign
+<Blog> http://sujithh.info
+
+--001a113abfd8b1916404f7ac6e86
+Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-<html>
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
-1">
-<meta name=3D"Generator" content=3D"Microsoft Exchange Server">
-<!-- converted from rtf -->
-<style><!-- .EmailQuote { margin-left: 1pt; padding-left: 4pt; border-left:=
- #800000 2px solid; } --></style>
-</head>
-<body>
-<font face=3D"Calibri" size=3D"2"><span style=3D"font-size:11pt;">
-<div>&nbsp;</div>
-<div>&nbsp;</div>
-</span></font>
-</body>
-</html>
+<div dir=3D"ltr"><div>Hi,<br><br>Any comments about this patch?<br><br></di=
+v>Thanks,<br>Sujith H<br><div><div><div class=3D"gmail_extra"><br><br><div =
+class=3D"gmail_quote">On Wed, Apr 16, 2014 at 1:42 PM, Sujith H <span dir=
+=3D"ltr">&lt;<a href=3D"mailto:sujith.h@gmail.com" target=3D"_blank">sujith=
+.h@gmail.com</a>&gt;</span> wrote:<br>
 
---_000_9ADD3FDE8B189B4AA2F8A3C711F8155E55054526fmsmsx111amrcor_
-Content-Type: text/calendar; charset="utf-8"; method=CANCEL
-Content-Transfer-Encoding: base64
+<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
+x #ccc solid;padding-left:1ex">Adding weston.ini to $ROOT_HOME/.config. Wit=
+h this change<br>
+user can login to $ROOT_HOME and launch weston with ivi-shell.<br>
+<div class=3D"HOEnZb"><div class=3D"h5"><br>
+Signed-off-by: Sujith H &lt;<a href=3D"mailto:Sujith_Haridasan@mentor.com">=
+Sujith_Haridasan@mentor.com</a>&gt;<br>
+---<br>
+=C2=A0recipes-graphics/wayland/weston_1.4.0.bbappend | 13 +++++++++++++<br>
+=C2=A01 file changed, 13 insertions(+)<br>
+<br>
+diff --git a/recipes-graphics/wayland/weston_1.4.0.bbappend b/recipes-graph=
+ics/wayland/weston_1.4.0.bbappend<br>
+index 7a8ba6f..a2713d6 100644<br>
+--- a/recipes-graphics/wayland/weston_1.4.0.bbappend<br>
++++ b/recipes-graphics/wayland/weston_1.4.0.bbappend<br>
+@@ -12,3 +12,16 @@ PR =3D &quot;r1&quot;<br>
+<br>
+=C2=A0FILES_${PN} +=3D &quot;${libdir}/weston/*&quot;<br>
+=C2=A0FILES_${PN}-dbg +=3D &quot;${libdir}/weston/.debug/*&quot;<br>
++<br>
++do_install_append() {<br>
++ =C2=A0 install -d ${D}${ROOT_HOME}/.config<br>
++ =C2=A0 install -m 0644 ${S}/ivi-shell/<a href=3D"http://weston.ini.in" ta=
+rget=3D"_blank">weston.ini.in</a> ${D}${ROOT_HOME}/.config/weston.ini<br>
++ =C2=A0 sed -i -e =C2=A0&#39;s/<a href=3D"http://hmi-controller.so/hmi-con=
+troller.so" target=3D"_blank">hmi-controller.so/hmi-controller.so</a>, <a h=
+ref=3D"http://ivi-controller.so/" target=3D"_blank">ivi-controller.so/</a>&=
+#39; ${D}${ROOT_HOME}/.config/weston.ini<br>
 
-QkVHSU46VkNBTEVOREFSDQpNRVRIT0Q6Q0FOQ0VMDQpQUk9ESUQ6TWljcm9zb2Z0IEV4Y2hhbmdl
-IFNlcnZlciAyMDEwDQpWRVJTSU9OOjIuMA0KQkVHSU46VlRJTUVaT05FDQpUWklEOlBhY2lmaWMg
-U3RhbmRhcmQgVGltZQ0KQkVHSU46U1RBTkRBUkQNCkRUU1RBUlQ6MTYwMTAxMDFUMDIwMDAwDQpU
-Wk9GRlNFVEZST006LTA3MDANClRaT0ZGU0VUVE86LTA4MDANClJSVUxFOkZSRVE9WUVBUkxZO0lO
-VEVSVkFMPTE7QllEQVk9MVNVO0JZTU9OVEg9MTENCkVORDpTVEFOREFSRA0KQkVHSU46REFZTElH
-SFQNCkRUU1RBUlQ6MTYwMTAxMDFUMDIwMDAwDQpUWk9GRlNFVEZST006LTA4MDANClRaT0ZGU0VU
-VE86LTA3MDANClJSVUxFOkZSRVE9WUVBUkxZO0lOVEVSVkFMPTE7QllEQVk9MlNVO0JZTU9OVEg9
-Mw0KRU5EOkRBWUxJR0hUDQpFTkQ6VlRJTUVaT05FDQpCRUdJTjpWRVZFTlQNCk9SR0FOSVpFUjtD
-Tj0iSm9sbGV5LCBTdGVwaGVuIEsiOk1BSUxUTzpzdGVwaGVuLmsuam9sbGV5QGludGVsLmNvbQ0K
-QVRURU5ERUU7Uk9MRT1SRVEtUEFSVElDSVBBTlQ7UEFSVFNUQVQ9TkVFRFMtQUNUSU9OO1JTVlA9
-VFJVRTtDTj0nYWNoYXVkaGFADQogbXZpc3RhLmNvbSc6TUFJTFRPOmFjaGF1ZGhhQG12aXN0YS5j
-b20NCkFUVEVOREVFO1JPTEU9UkVRLVBBUlRJQ0lQQU5UO1BBUlRTVEFUPU5FRURTLUFDVElPTjtS
-U1ZQPVRSVUU7Q049J0FuZGVycyBEYQ0KIHJhbmRlcic6TUFJTFRPOmFuZGVyc0BjaGFyZ2VzdG9y
-bS5zZQ0KQVRURU5ERUU7Uk9MRT1SRVEtUEFSVElDSVBBTlQ7UEFSVFNUQVQ9TkVFRFMtQUNUSU9O
-O1JTVlA9VFJVRTtDTj0iQXJjZSBNb3Jlbg0KIG8sIEFicmFoYW0iOk1BSUxUTzphYnJhaGFtLmFy
-Y2UubW9yZW5vQGludGVsLmNvbQ0KQVRURU5ERUU7Uk9MRT1SRVEtUEFSVElDSVBBTlQ7UEFSVFNU
-QVQ9TkVFRFMtQUNUSU9OO1JTVlA9VFJVRTtDTj0iQXNoZmllbGQsIA0KIEJydWNlIChXaW5kIFJp
-dmVyKSI6TUFJTFRPOmJydWNlLmFzaGZpZWxkQHdpbmRyaXZlci5jb20NCkFUVEVOREVFO1JPTEU9
-UkVRLVBBUlRJQ0lQQU5UO1BBUlRTVEFUPU5FRURTLUFDVElPTjtSU1ZQPVRSVUU7Q049IkJhcnJv
-cyBQZW4NCiBhLCBCZWxlbiI6TUFJTFRPOmJlbGVuLmJhcnJvcy5wZW5hQGludGVsLmNvbQ0KQVRU
-RU5ERUU7Uk9MRT1SRVEtUEFSVElDSVBBTlQ7UEFSVFNUQVQ9TkVFRFMtQUNUSU9OO1JTVlA9VFJV
-RTtDTj0iQnVydG9uLCBSbw0KIHNzIjpNQUlMVE86cm9zcy5idXJ0b25AaW50ZWwuY29tDQpBVFRF
-TkRFRTtST0xFPVJFUS1QQVJUSUNJUEFOVDtQQVJUU1RBVD1ORUVEUy1BQ1RJT047UlNWUD1UUlVF
-O0NOPSJCdXRsZXIsIFBhDQogdWwgQSAoV2luZCBSaXZlcikiOk1BSUxUTzpwYXVsLmJ1dGxlckB3
-aW5kcml2ZXIuY29tDQpBVFRFTkRFRTtST0xFPVJFUS1QQVJUSUNJUEFOVDtQQVJUU1RBVD1ORUVE
-Uy1BQ1RJT047UlNWUD1UUlVFO0NOPSJDaGlzYW5vdmljDQogaSwgSW9udXRYIjpNQUlMVE86aW9u
-dXR4LmNoaXNhbm92aWNpQGludGVsLmNvbQ0KQVRURU5ERUU7Uk9MRT1SRVEtUEFSVElDSVBBTlQ7
-UEFSVFNUQVQ9TkVFRFMtQUNUSU9OO1JTVlA9VFJVRTtDTj0nQ2hyaXMgS2FtDQogaW5za2knOk1B
-SUxUTzpjaHJpcy5rYW1pbnNraUB0b2JpYXMudHYNCkFUVEVOREVFO1JPTEU9UkVRLVBBUlRJQ0lQ
-QU5UO1BBUlRTVEFUPU5FRURTLUFDVElPTjtSU1ZQPVRSVUU7Q049IkRhbWlhbiwgQWwNCiBleGFu
-ZHJ1IjpNQUlMVE86YWxleGFuZHJ1LmRhbWlhbkBpbnRlbC5jb20NCkFUVEVOREVFO1JPTEU9UkVR
-LVBBUlRJQ0lQQU5UO1BBUlRTVEFUPU5FRURTLUFDVElPTjtSU1ZQPVRSVUU7Q049J0RhbmllbCBD
-YQ0KIHVjaHknOk1BSUxUTzpkY2F1Y2h5QG12aXN0YS5jb20NCkFUVEVOREVFO1JPTEU9UkVRLVBB
-UlRJQ0lQQU5UO1BBUlRTVEFUPU5FRURTLUFDVElPTjtSU1ZQPVRSVUU7Q049IkRlVnJpZXMsIEEN
-CiBsZXggKFdpbmQgUml2ZXIpIjpNQUlMVE86YWxleC5kZXZyaWVzQHdpbmRyaXZlci5jb20NCkFU
-VEVOREVFO1JPTEU9UkVRLVBBUlRJQ0lQQU5UO1BBUlRTVEFUPU5FRURTLUFDVElPTjtSU1ZQPVRS
-VUU7Q049IkRteXRyaXllbmsNCiBvLCBEZW55cyI6TUFJTFRPOmRlbnlzQHRpLmNvbQ0KQVRURU5E
-RUU7Uk9MRT1SRVEtUEFSVElDSVBBTlQ7UEFSVFNUQVQ9TkVFRFMtQUNUSU9OO1JTVlA9VFJVRTtD
-Tj0iRXJ3YXksIFRyYQ0KIGNleSBNIjpNQUlMVE86dHJhY2V5Lm0uZXJ3YXlAaW50ZWwuY29tDQpB
-VFRFTkRFRTtST0xFPVJFUS1QQVJUSUNJUEFOVDtQQVJUU1RBVD1ORUVEUy1BQ1RJT047UlNWUD1U
-UlVFO0NOPSJGbGFuYWdhbiwgDQogRWxpemFiZXRoIjpNQUlMVE86ZWxpemFiZXRoLmZsYW5hZ2Fu
-QGludGVsLmNvbQ0KQVRURU5ERUU7Uk9MRT1SRVEtUEFSVElDSVBBTlQ7UEFSVFNUQVQ9TkVFRFMt
-QUNUSU9OO1JTVlA9VFJVRTtDTj0iR2F2YXosIElvbg0KIHV0IEEiOk1BSUxUTzppb251dC5hLmdh
-dmF6QGludGVsLmNvbQ0KQVRURU5ERUU7Uk9MRT1SRVEtUEFSVElDSVBBTlQ7UEFSVFNUQVQ9TkVF
-RFMtQUNUSU9OO1JTVlA9VFJVRTtDTj0iR2Vvcmdlc2N1LA0KICBBbGV4YW5kcnUgQyI6TUFJTFRP
-OmFsZXhhbmRydS5jLmdlb3JnZXNjdUBpbnRlbC5jb20NCkFUVEVOREVFO1JPTEU9UkVRLVBBUlRJ
-Q0lQQU5UO1BBUlRTVEFUPU5FRURTLUFDVElPTjtSU1ZQPVRSVUU7Q049IkhhcnQsIERhcnINCiBl
-biI6TUFJTFRPOmRhcnJlbi5oYXJ0QGludGVsLmNvbQ0KQVRURU5ERUU7Uk9MRT1SRVEtUEFSVElD
-SVBBTlQ7UEFSVFNUQVQ9TkVFRFMtQUNUSU9OO1JTVlA9VFJVRTtDTj0iSGFydmV5LCBNaQ0KIGNo
-YWVsIjpNQUlMVE86bWljaGFlbC5oYXJ2ZXlAaW50ZWwuY29tDQpBVFRFTkRFRTtST0xFPVJFUS1Q
-QVJUSUNJUEFOVDtQQVJUU1RBVD1ORUVEUy1BQ1RJT047UlNWUD1UUlVFO0NOPSJIYXRsZSwgTWFy
-DQogayBHIChXaW5kIFJpdmVyKSI6TUFJTFRPOm1hcmsuaGF0bGVAd2luZHJpdmVyLmNvbQ0KQVRU
-RU5ERUU7Uk9MRT1SRVEtUEFSVElDSVBBTlQ7UEFSVFNUQVQ9TkVFRFMtQUNUSU9OO1JTVlA9VFJV
-RTtDTj0iJ0h1ZHNvbiwgUw0KIGVhbiciOk1BSUxUTzpTZWFuX0h1ZHNvbkBtZW50b3IuY29tDQpB
-VFRFTkRFRTtST0xFPVJFUS1QQVJUSUNJUEFOVDtQQVJUU1RBVD1ORUVEUy1BQ1RJT047UlNWUD1U
-UlVFO0NOPSJJb3JnYSwgQ3JpDQogc3RpYW4iOk1BSUxUTzpjcmlzdGlhbi5pb3JnYUBpbnRlbC5j
-b20NCkFUVEVOREVFO1JPTEU9UkVRLVBBUlRJQ0lQQU5UO1BBUlRTVEFUPU5FRURTLUFDVElPTjtS
-U1ZQPVRSVUU7Q049J0plcmVteSBQdQ0KIGhsbWFuJzpNQUlMVE86anB1aGxtYW5AZ21haWwuY29t
-DQpBVFRFTkRFRTtST0xFPVJFUS1QQVJUSUNJUEFOVDtQQVJUU1RBVD1ORUVEUy1BQ1RJT047UlNW
-UD1UUlVFO0NOPSJLYW1ibGUsIE5pDQogdGluIEEiOk1BSUxUTzpuaXRpbi5hLmthbWJsZUBpbnRl
-bC5jb20NCkFUVEVOREVFO1JPTEU9UkVRLVBBUlRJQ0lQQU5UO1BBUlRTVEFUPU5FRURTLUFDVElP
-TjtSU1ZQPVRSVUU7Q049IktyaWRuZXIsIEoNCiBhc29uIjpNQUlMVE86amRrQHRpLmNvbQ0KQVRU
-RU5ERUU7Uk9MRT1SRVEtUEFSVElDSVBBTlQ7UEFSVFNUQVQ9TkVFRFMtQUNUSU9OO1JTVlA9VFJV
-RTtDTj0iTGV0bmVzLCBUaA0KIGFkZGV1cyBDIjpNQUlMVE86dGhhZGRldXMuYy5sZXRuZXNAaW50
-ZWwuY29tDQpBVFRFTkRFRTtST0xFPVJFUS1QQVJUSUNJUEFOVDtQQVJUU1RBVD1ORUVEUy1BQ1RJ
-T047UlNWUD1UUlVFO0NOPSJMaXUsIFNvbmciOg0KIE1BSUxUTzpzb25nLmxpdUBpbnRlbC5jb20N
-CkFUVEVOREVFO1JPTEU9UkVRLVBBUlRJQ0lQQU5UO1BBUlRTVEFUPU5FRURTLUFDVElPTjtSU1ZQ
-PVRSVUU7Q049IkxvbmcsIFN0ZXANCiBoZW4gSiAoV2luZCBSaXZlcikiOk1BSUxUTzpzdGV2ZS5s
-b25nQHdpbmRyaXZlci5jb20NCkFUVEVOREVFO1JPTEU9UkVRLVBBUlRJQ0lQQU5UO1BBUlRTVEFU
-PU5FRURTLUFDVElPTjtSU1ZQPVRSVUU7Q049IidMb25nLCBZYW4NCiByZW4nIjpNQUlMVE86eWxv
-bmdAV1BJLkVEVQ0KQVRURU5ERUU7Uk9MRT1SRVEtUEFSVElDSVBBTlQ7UEFSVFNUQVQ9TkVFRFMt
-QUNUSU9OO1JTVlA9VFJVRTtDTj0iJ01hdXBpbiwgQw0KIGhhc2UnIjpNQUlMVE86Y2hhc2UubWF1
-cGluQHRpLmNvbQ0KQVRURU5ERUU7Uk9MRT1SRVEtUEFSVElDSVBBTlQ7UEFSVFNUQVQ9TkVFRFMt
-QUNUSU9OO1JTVlA9VFJVRTtDTj0iTW9lbGxlciwgVA0KIGhvcnN0ZW4iOk1BSUxUTzp0aG9yc3Rl
-bi5tb2VsbGVyQGludGVsLmNvbQ0KQVRURU5ERUU7Uk9MRT1SRVEtUEFSVElDSVBBTlQ7UEFSVFNU
-QVQ9TkVFRFMtQUNUSU9OO1JTVlA9VFJVRTtDTj0iTW9zZXMsIEZyZQ0KIGQiOk1BSUxUTzpmcmVk
-Lm1vc2VzQGludGVsLmNvbQ0KQVRURU5ERUU7Uk9MRT1SRVEtUEFSVElDSVBBTlQ7UEFSVFNUQVQ9
-TkVFRFMtQUNUSU9OO1JTVlA9VFJVRTtDTj0iTXVlbGxlciwgUg0KIG9iZXJ0IjpNQUlMVE86cm9i
-ZXJ0Lm11ZWxsZXJAaW50ZWwuY29tDQpBVFRFTkRFRTtST0xFPVJFUS1QQVJUSUNJUEFOVDtQQVJU
-U1RBVD1ORUVEUy1BQ1RJT047UlNWUD1UUlVFO0NOPU9saXZpYSBTYWwNCiBpc2J1cnk6TUFJTFRP
-Om9saXZpYS5zYWxpc2J1cnlAdG9iaWFzLnR2DQpBVFRFTkRFRTtST0xFPVJFUS1QQVJUSUNJUEFO
-VDtQQVJUU1RBVD1ORUVEUy1BQ1RJT047UlNWUD1UUlVFO0NOPSJPbmcsIEJvb24gDQogTGVvbmci
-Ok1BSUxUTzpib29uLmxlb25nLm9uZ0BpbnRlbC5jb20NCkFUVEVOREVFO1JPTEU9UkVRLVBBUlRJ
-Q0lQQU5UO1BBUlRTVEFUPU5FRURTLUFDVElPTjtSU1ZQPVRSVUU7Q049Ik9zaWVyLW1peG8NCiBu
-LCBKZWZmcmV5IjpNQUlMVE86amVmZnJleS5vc2llci1taXhvbkBpbnRlbC5jb20NCkFUVEVOREVF
-O1JPTEU9UkVRLVBBUlRJQ0lQQU5UO1BBUlRTVEFUPU5FRURTLUFDVElPTjtSU1ZQPVRSVUU7Q049
-IlBhbGFsYXUsIEENCiBsZXhhbmRydVgiOk1BSUxUTzphbGV4YW5kcnV4LnBhbGFsYXVAaW50ZWwu
-Y29tDQpBVFRFTkRFRTtST0xFPVJFUS1QQVJUSUNJUEFOVDtQQVJUU1RBVD1ORUVEUy1BQ1RJT047
-UlNWUD1UUlVFO0NOPSJQYXRlbCwgS2V5DQogdXIgUiI6TUFJTFRPOmtleXVyLnIucGF0ZWxAaW50
-ZWwuY29tDQpBVFRFTkRFRTtST0xFPVJFUS1QQVJUSUNJUEFOVDtQQVJUU1RBVD1ORUVEUy1BQ1RJ
-T047UlNWUD1UUlVFO0NOPSJQZXRyaXNvciwgDQogSWxlYW5hIjpNQUlMVE86aWxlYW5hLnBldHJp
-c29yQGludGVsLmNvbQ0KQVRURU5ERUU7Uk9MRT1SRVEtUEFSVElDSVBBTlQ7UEFSVFNUQVQ9TkVF
-RFMtQUNUSU9OO1JTVlA9VFJVRTtDTj0iUG9saywgSmVmZg0KIHJleSAoV2luZCBSaXZlcikiOk1B
-SUxUTzpqZWZmLnBvbGtAd2luZHJpdmVyLmNvbQ0KQVRURU5ERUU7Uk9MRT1SRVEtUEFSVElDSVBB
-TlQ7UEFSVFNUQVQ9TkVFRFMtQUNUSU9OO1JTVlA9VFJVRTtDTj0iUG9wYSwgVmFsZQ0KIG50aW4i
-Ok1BSUxUTzp2YWxlbnRpbi5wb3BhQGludGVsLmNvbQ0KQVRURU5ERUU7Uk9MRT1SRVEtUEFSVElD
-SVBBTlQ7UEFSVFNUQVQ9TkVFRFMtQUNUSU9OO1JTVlA9VFJVRTtDTj0iUHJ1dGVhbnUsIA0KIENv
-ZHJpbiBDIjpNQUlMVE86Y29kcmluLmMucHJ1dGVhbnVAaW50ZWwuY29tDQpBVFRFTkRFRTtST0xF
-PVJFUS1QQVJUSUNJUEFOVDtQQVJUU1RBVD1ORUVEUy1BQ1RJT047UlNWUD1UUlVFO0NOPSJQdXJk
-aWUsIFJpDQogY2hhcmQiOk1BSUxUTzpyaWNoYXJkLnB1cmRpZUBpbnRlbC5jb20NCkFUVEVOREVF
-O1JPTEU9UkVRLVBBUlRJQ0lQQU5UO1BBUlRTVEFUPU5FRURTLUFDVElPTjtSU1ZQPVRSVUU7Q049
-IlJhbnNsYW0sIFINCiBvYmVydCBFIChXaW5kIFJpdmVyKSI6TUFJTFRPOnJvYi5yYW5zbGFtQHdp
-bmRyaXZlci5jb20NCkFUVEVOREVFO1JPTEU9UkVRLVBBUlRJQ0lQQU5UO1BBUlRTVEFUPU5FRURT
-LUFDVElPTjtSU1ZQPVRSVUU7Q049J1JhdmkgVm9tcA0KIG9sdSc6TUFJTFRPOlJhdmkuVm9tcG9s
-dUBtYXRod29ya3MuY29tDQpBVFRFTkRFRTtST0xFPVJFUS1QQVJUSUNJUEFOVDtQQVJUU1RBVD1O
-RUVEUy1BQ1RJT047UlNWUD1UUlVFO0NOPSJSaWZlbmJhcmssDQogIFNjb3R0IE0iOk1BSUxUTzpz
-Y290dC5tLnJpZmVuYmFya0BpbnRlbC5jb20NCkFUVEVOREVFO1JPTEU9UkVRLVBBUlRJQ0lQQU5U
-O1BBUlRTVEFUPU5FRURTLUFDVElPTjtSU1ZQPVRSVUU7Q049IidTYWRpcSwgSXINCiBmYW4nIjpN
-QUlMVE86SXJmYW5fU2FkaXFAbWVudG9yLmNvbQ0KQVRURU5ERUU7Uk9MRT1SRVEtUEFSVElDSVBB
-TlQ7UEFSVFNUQVQ9TkVFRFMtQUNUSU9OO1JTVlA9VFJVRTtDTj0nU2FuamF5IFJhDQogaW5hJzpN
-QUlMVE86c3JhaW5hQG12aXN0YS5jb20NCkFUVEVOREVFO1JPTEU9UkVRLVBBUlRJQ0lQQU5UO1BB
-UlRTVEFUPU5FRURTLUFDVElPTjtSU1ZQPVRSVUU7Q049IlNhbnRhbmEgTG8NCiBwZXosIE1hcmlv
-IEEiOk1BSUxUTzptYXJpby5hLnNhbnRhbmEubG9wZXpAaW50ZWwuY29tDQpBVFRFTkRFRTtST0xF
-PVJFUS1QQVJUSUNJUEFOVDtQQVJUU1RBVD1ORUVEUy1BQ1RJT047UlNWUD1UUlVFO0NOPSJTYXJt
-aWVudG8sDQogIFNhcmEgRiI6TUFJTFRPOnNhcmEuZi5zYXJtaWVudG9AaW50ZWwuY29tDQpBVFRF
-TkRFRTtST0xFPVJFUS1QQVJUSUNJUEFOVDtQQVJUU1RBVD1ORUVEUy1BQ1RJT047UlNWUD1UUlVF
-O0NOPSJTZW93LCBDaGVuDQogIFlvbmciOk1BSUxUTzpjaGVuLnlvbmcuc2Vvd0BpbnRlbC5jb20N
-CkFUVEVOREVFO1JPTEU9UkVRLVBBUlRJQ0lQQU5UO1BBUlRTVEFUPU5FRURTLUFDVElPTjtSU1ZQ
-PVRSVUU7Q049IlNlcmJhbiwgTGENCiB1cmVudGl1IjpNQUlMVE86bGF1cmVudGl1LnNlcmJhbkBp
-bnRlbC5jb20NCkFUVEVOREVFO1JPTEU9UkVRLVBBUlRJQ0lQQU5UO1BBUlRTVEFUPU5FRURTLUFD
-VElPTjtSU1ZQPVRSVUU7Q049IlN0ZXdhcnQsIEQNCiBhdmlkIEMiOk1BSUxUTzpkYXZpZC5jLnN0
-ZXdhcnRAaW50ZWwuY29tDQpBVFRFTkRFRTtST0xFPVJFUS1QQVJUSUNJUEFOVDtQQVJUU1RBVD1O
-RUVEUy1BQ1RJT047UlNWUD1UUlVFO0NOPSJTdG9pY2VzY3UsDQogIENvcm5lbGl1WCI6TUFJTFRP
-OmNvcm5lbGl1eC5zdG9pY2VzY3VAaW50ZWwuY29tDQpBVFRFTkRFRTtST0xFPVJFUS1QQVJUSUNJ
-UEFOVDtQQVJUU1RBVD1ORUVEUy1BQ1RJT047UlNWUD1UUlVFO0NOPSJTdHVrb3YsIExpDQogbmEi
-Ok1BSUxUTzpsaW5hLnN0dWtvdkBpbnRlbC5jb20NCkFUVEVOREVFO1JPTEU9UkVRLVBBUlRJQ0lQ
-QU5UO1BBUlRTVEFUPU5FRURTLUFDVElPTjtSU1ZQPVRSVUU7Q049IlN6YW5raW4sIE0NCiBhY2ll
-aiI6TUFJTFRPOm1hY2llai5zemFua2luQGludGVsLmNvbQ0KQVRURU5ERUU7Uk9MRT1SRVEtUEFS
-VElDSVBBTlQ7UEFSVFNUQVQ9TkVFRFMtQUNUSU9OO1JTVlA9VFJVRTtDTj0iVGEsIExpZXUgVA0K
-ICAoV2luZCBSaXZlcikiOk1BSUxUTzpsaWV1LnRhQHdpbmRyaXZlci5jb20NCkFUVEVOREVFO1JP
-TEU9UkVRLVBBUlRJQ0lQQU5UO1BBUlRTVEFUPU5FRURTLUFDVElPTjtSU1ZQPVRSVUU7Q049J1Zh
-bGVudGluIA0KIENvYmVsZWEnOk1BSUxUTzpWYWxlbnRpbi5Db2JlbGVhQGVuZWEuY29tDQpBVFRF
-TkRFRTtST0xFPVJFUS1QQVJUSUNJUEFOVDtQQVJUU1RBVD1ORUVEUy1BQ1RJT047UlNWUD1UUlVF
-O0NOPSJWb2ljdSwgQ3JpDQogc3RpYW5hIjpNQUlMVE86Y3Jpc3RpYW5hLnZvaWN1QGludGVsLmNv
-bQ0KQVRURU5ERUU7Uk9MRT1SRVEtUEFSVElDSVBBTlQ7UEFSVFNUQVQ9TkVFRFMtQUNUSU9OO1JT
-VlA9VFJVRTtDTj0iV29sZCwgU2F1bCINCiA6TUFJTFRPOnNhdWwud29sZEBpbnRlbC5jb20NCkFU
-VEVOREVFO1JPTEU9UkVRLVBBUlRJQ0lQQU5UO1BBUlRTVEFUPU5FRURTLUFDVElPTjtSU1ZQPVRS
-VUU7Q049Ildvb2R5YXR0LCANCiBKYW1lcyI6TUFJTFRPOmphbWVzLndvb2R5YXR0QGludGVsLmNv
-bQ0KQVRURU5ERUU7Uk9MRT1SRVEtUEFSVElDSVBBTlQ7UEFSVFNUQVQ9TkVFRFMtQUNUSU9OO1JT
-VlA9VFJVRTtDTj15b2N0b0B5b2N0DQogb3Byb2plY3Qub3JnOk1BSUxUTzp5b2N0b0B5b2N0b3By
-b2plY3Qub3JnDQpBVFRFTkRFRTtST0xFPVJFUS1QQVJUSUNJUEFOVDtQQVJUU1RBVD1ORUVEUy1B
-Q1RJT047UlNWUD1UUlVFO0NOPSJaYW51c3NpLCBUDQogb20iOk1BSUxUTzp0b20uemFudXNzaUBp
-bnRlbC5jb20NCkFUVEVOREVFO1JPTEU9UkVRLVBBUlRJQ0lQQU5UO1BBUlRTVEFUPU5FRURTLUFD
-VElPTjtSU1ZQPVRSVUU7Q049IlpoYW5nLCBKZXMNCiBzaWNhIjpNQUlMVE86amVzc2ljYS56aGFu
-Z0BpbnRlbC5jb20NCkFUVEVOREVFO1JPTEU9T1BULVBBUlRJQ0lQQU5UO1BBUlRTVEFUPU5FRURT
-LUFDVElPTjtSU1ZQPVRSVUU7Q049J1BhdWwgRWdnbA0KIGV0b24nOk1BSUxUTzpwYXVsLmVnZ2xl
-dG9uQGxpbnV4LmludGVsLmNvbQ0KQVRURU5ERUU7Uk9MRT1PUFQtUEFSVElDSVBBTlQ7UEFSVFNU
-QVQ9TkVFRFMtQUNUSU9OO1JTVlA9VFJVRTtDTj0iQnV0bGVyLCBQYQ0KIHVsIEEgKFdpbmQgUml2
-ZXIpIjpNQUlMVE86cGF1bC5idXRsZXJAd2luZHJpdmVyLmNvbQ0KQVRURU5ERUU7Uk9MRT1PUFQt
-UEFSVElDSVBBTlQ7UEFSVFNUQVQ9TkVFRFMtQUNUSU9OO1JTVlA9VFJVRTtDTj0nRmVsaXgwMSBG
-DQogaXNjaGVyJzpNQUlMVE86ZmVsaXgwMS5maXNjaGVyQGlhdi5kZQ0KQVRURU5ERUU7Uk9MRT1P
-UFQtUEFSVElDSVBBTlQ7UEFSVFNUQVQ9TkVFRFMtQUNUSU9OO1JTVlA9VFJVRTtDTj0iWmhhbywg
-Wmhlbg0KIGZlbmcgKFdpbmQgUml2ZXIpIjpNQUlMVE86emhlbmZlbmcuemhhb0B3aW5kcml2ZXIu
-Y29tDQpBVFRFTkRFRTtST0xFPU9QVC1QQVJUSUNJUEFOVDtQQVJUU1RBVD1ORUVEUy1BQ1RJT047
-UlNWUD1UUlVFO0NOPSJQb2xrLCBKZWZmDQogcmV5IChXaW5kIFJpdmVyKSI6TUFJTFRPOmplZmYu
-cG9sa0B3aW5kcml2ZXIuY29tDQpBVFRFTkRFRTtST0xFPU9QVC1QQVJUSUNJUEFOVDtQQVJUU1RB
-VD1ORUVEUy1BQ1RJT047UlNWUD1UUlVFO0NOPSJCdXJ0b24sIFJvDQogc3MiOk1BSUxUTzpyb3Nz
-LmJ1cnRvbkBpbnRlbC5jb20NCkFUVEVOREVFO1JPTEU9T1BULVBBUlRJQ0lQQU5UO1BBUlRTVEFU
-PU5FRURTLUFDVElPTjtSU1ZQPVRSVUU7Q049J0FsZXhhbmRyYQ0KICBTYWZ0YSc6TUFJTFRPOkFs
-ZXhhbmRyYS5TYWZ0YUBlbmVhLmNvbQ0KQVRURU5ERUU7Uk9MRT1PUFQtUEFSVElDSVBBTlQ7UEFS
-VFNUQVQ9TkVFRFMtQUNUSU9OO1JTVlA9VFJVRTtDTj0nTWF0dGhldyBXDQogZWlnZWwnOk1BSUxU
-TzpNYXR0aGV3LldlaWdlbEBmcmVlc2NhbGUuY29tDQpBVFRFTkRFRTtST0xFPU9QVC1QQVJUSUNJ
-UEFOVDtQQVJUU1RBVD1ORUVEUy1BQ1RJT047UlNWUD1UUlVFO0NOPSJQYXRyaWFyY2hlDQogLCBI
-ZXJ2ZSAoV2luZCBSaXZlcikiOk1BSUxUTzpoZXJ2ZS5wYXRyaWFyY2hlQHdpbmRyaXZlci5jb20N
-CkFUVEVOREVFO1JPTEU9T1BULVBBUlRJQ0lQQU5UO1BBUlRTVEFUPU5FRURTLUFDVElPTjtSU1ZQ
-PVRSVUU7Q049IkhhdGxlLCBNYXINCiBrIEcgKFdpbmQgUml2ZXIpIjpNQUlMVE86bWFyay5oYXRs
-ZUB3aW5kcml2ZXIuY29tDQpBVFRFTkRFRTtST0xFPU9QVC1QQVJUSUNJUEFOVDtQQVJUU1RBVD1O
-RUVEUy1BQ1RJT047UlNWUD1UUlVFO0NOPSJaaGFvLCBaaGVuDQogZmVuZyAoV2luZCBSaXZlciki
-Ok1BSUxUTzp6aGVuZmVuZy56aGFvQHdpbmRyaXZlci5jb20NCkFUVEVOREVFO1JPTEU9T1BULVBB
-UlRJQ0lQQU5UO1BBUlRTVEFUPU5FRURTLUFDVElPTjtSU1ZQPVRSVUU7Q049IlBhdHJpYXJjaGUN
-CiAsIEhlcnZlIChXaW5kIFJpdmVyKSI6TUFJTFRPOmhlcnZlLnBhdHJpYXJjaGVAd2luZHJpdmVy
-LmNvbQ0KREVTQ1JJUFRJT047TEFOR1VBR0U9ZW4tVVM6XG5cbg0KU1VNTUFSWTtMQU5HVUFHRT1l
-bi1VUzpDYW5jZWxlZDogWW9jdG8gUHJvamVjdCBUZWNobmljYWwgVGVhbSBNZWV0aW5nDQpEVFNU
-QVJUO1RaSUQ9UGFjaWZpYyBTdGFuZGFyZCBUaW1lOjIwMTQwNDI5VDA4MDAwMA0KRFRFTkQ7VFpJ
-RD1QYWNpZmljIFN0YW5kYXJkIFRpbWU6MjAxNDA0MjlUMDgzMDAwDQpVSUQ6MDQwMDAwMDA4MjAw
-RTAwMDc0QzVCNzEwMUE4MkUwMDgwMDAwMDAwMDIwQUNEQTY1OUQxNkNGMDEwMDAwMDAwMDAwMDAw
-MDANCiAwMTAwMDAwMDAxRUY1OTg3Nzg1RkE0NjQyQTVBNzk1MjdBRjUxMDI5Rg0KUkVDVVJSRU5D
-RS1JRDtUWklEPVBhY2lmaWMgU3RhbmRhcmQgVGltZToyMDE0MDQyOVQwODAwMDANCkNMQVNTOlBV
-QkxJQw0KUFJJT1JJVFk6MQ0KRFRTVEFNUDoyMDE0MDQyMlQyMTMyMDZaDQpUUkFOU1A6T1BBUVVF
-DQpTVEFUVVM6Q0FOQ0VMTEVEDQpTRVFVRU5DRTo2DQpMT0NBVElPTjtMQU5HVUFHRT1lbi1VUzpC
-cmlkZ2UgSW5mbyBFbmNsb3NlZA0KWC1NSUNST1NPRlQtQ0RPLUFQUFQtU0VRVUVOQ0U6Ng0KWC1N
-SUNST1NPRlQtQ0RPLU9XTkVSQVBQVElEOjEyNjU5NjUwMjINClgtTUlDUk9TT0ZULUNETy1CVVNZ
-U1RBVFVTOkZSRUUNClgtTUlDUk9TT0ZULUNETy1JTlRFTkRFRFNUQVRVUzpGUkVFDQpYLU1JQ1JP
-U09GVC1DRE8tQUxMREFZRVZFTlQ6RkFMU0UNClgtTUlDUk9TT0ZULUNETy1JTVBPUlRBTkNFOjIN
-ClgtTUlDUk9TT0ZULUNETy1JTlNUVFlQRTozDQpYLU1JQ1JPU09GVC1ESVNBTExPVy1DT1VOVEVS
-OkZBTFNFDQpFTkQ6VkVWRU5UDQpFTkQ6VkNBTEVOREFSDQo=
 
---_000_9ADD3FDE8B189B4AA2F8A3C711F8155E55054526fmsmsx111amrcor_--
++ =C2=A0 sed -i -e &#39;s|\@libexecdir\@|${libexecdir}|&#39; ${D}${ROOT_HOM=
+E}/.config/weston.ini<br>
++ =C2=A0 sed -i -e &#39;s|\@abs_top_builddir\@\/data|${datadir}\/weston|&#3=
+9; ${D}${ROOT_HOME}/.config/weston.ini<br>
++ =C2=A0 sed -i -e &#39;s|\@abs_top_builddir\@\/clients|${bindir}|&#39; ${D=
+}${ROOT_HOME}/.config/weston.ini<br>
++}<br>
++<br>
++PACKAGES +=3D &quot;${PN}-ini&quot;<br>
++<br>
++FILES_${PN}-ini =3D &quot;${ROOT_HOME}/.config&quot;<br>
+--<br>
+1.8.4<br>
+<br>
+</div></div></blockquote></div><br><br clear=3D"all"><br>-- <br>=E0=B4=B8=
+=E0=B5=81=E0=B4=9C=E0=B4=BF=E0=B4=A4=E0=B5=8D =E0=B4=B9=E0=B4=B0=E0=B4=BF=
+=E0=B4=A6=E0=B4=BE=E0=B4=B8=E0=B4=A8=E0=B5=8D<br>Bangalore<br>&lt;Project&g=
+t;Contributor to KDE project<br><a href=3D"http://fci.wikia.com/wiki/Anti-D=
+RM-Campaign" target=3D"_blank">http://fci.wikia.com/wiki/Anti-DRM-Campaign<=
+/a><br>
+
+&lt;Blog&gt; <a href=3D"http://sujithh.info" target=3D"_blank">http://sujit=
+hh.info</a><br>
+</div></div></div></div>
+
+--001a113abfd8b1916404f7ac6e86--
