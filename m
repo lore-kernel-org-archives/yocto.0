@@ -1,24 +1,29 @@
-Return-Path: <Wenzong.Fan@windriver.com>
-Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DFC94E0098E
-	for <yocto@yoctoproject.org>; Wed, 23 Apr 2014 00:42:14 -0700 (PDT)
-Received: from ALA-HCB.corp.ad.wrs.com (ala-hcb.corp.ad.wrs.com
-	[147.11.189.41])
-	by mail1.windriver.com (8.14.5/8.14.5) with ESMTP id s3N7gEdZ007654
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL)
-	for <yocto@yoctoproject.org>; Wed, 23 Apr 2014 00:42:14 -0700 (PDT)
-Received: from pek-hostel-vm12.wrs.com (128.224.153.182) by
-	ALA-HCB.corp.ad.wrs.com (147.11.189.41) with Microsoft SMTP Server id
-	14.3.169.1; Wed, 23 Apr 2014 00:42:13 -0700
-From: <wenzong.fan@windriver.com>
-To: <yocto@yoctoproject.org>
-Date: Wed, 23 Apr 2014 03:42:07 -0400
-Message-ID: <66a44572333fa07f07d140b8585d742e4498b4c5.1398238471.git.wenzong.fan@windriver.com>
-X-Mailer: git-send-email 1.7.9.5
-In-Reply-To: <cover.1398238471.git.wenzong.fan@windriver.com>
-References: <cover.1398238471.git.wenzong.fan@windriver.com>
+Return-Path: <Dipesh.Karmakar@hcl.com>
+Received: from GWS08.hcl.com (gws08.hcl.com [192.8.186.131])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6614EE006EC
+	for <yocto@yoctoproject.org>; Wed, 23 Apr 2014 01:06:42 -0700 (PDT)
+X-IronPort-AV: E=Sophos;i="4.97,910,1389724200"; d="scan'208";a="21354293"
+Received: from unknown (HELO CHN-CORP-HT01.CORP.HCL.IN) ([10.249.2.33])
+	by GWS08.hcl.com with ESMTP/TLS/AES128-SHA; 23 Apr 2014 13:30:44 +0530
+Received: from CHN-HCLT-CSHT04.HCLT.CORP.HCL.IN (10.150.12.29) by
+	CHN-CORP-HT01.CORP.HCL.IN (10.249.2.33) with Microsoft SMTP Server
+	(TLS) id 14.3.123.3; Wed, 23 Apr 2014 13:36:38 +0530
+Received: from CHN-HCLT-MBS06.HCLT.CORP.HCL.IN ([10.150.12.21]) by
+	CHN-HCLT-CSHT04.HCLT.CORP.HCL.IN ([::1]) with mapi id 14.03.0123.003;
+	Wed, 23 Apr 2014 13:36:31 +0530
+From: Dipesh Karmakar <Dipesh.Karmakar@hcl.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: [yocto] Rgardring GSTreamer1.0 integration on Yocto Dora
+Thread-Index: Ac9d+MKqisnKvBogTdCza2JCCG0m6AA0O0hg
+Date: Wed, 23 Apr 2014 08:06:25 +0000
+Message-ID: <97272D6808818244BD88BD72F19D658B03CAD664@chn-hclt-mbs06.HCLT.CORP.HCL.IN>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.150.5.114]
 MIME-Version: 1.0
-Subject: [meta-selinux][PATCH 4/4] policycoreutils: fix TypeError for seobject.py
+Cc: Carlos Rafael Giani <dv@pseudoterminal.org>
+Subject: Re: Rgardring GSTreamer1.0 integration on Yocto Dora
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -30,73 +35,57 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 23 Apr 2014 07:42:15 -0000
-Content-Type: text/plain
+X-List-Received-Date: Wed, 23 Apr 2014 08:06:44 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-From: Wenzong Fan <wenzong.fan@windriver.com>
-
-Fix python error about:
-
-File "/usr/lib64/python2.7/site-packages/seobject.py", line 109, in log
-  message += " sename=" + sename
-TypeError: cannot concatenate 'str' and 'NoneType' objects
-
-Signed-off-by: Wenzong Fan <wenzong.fan@windriver.com>
----
- ...cycoreutils-fix-TypeError-for-seobject.py.patch |   32 ++++++++++++++++++++
- recipes-security/selinux/policycoreutils_2.2.5.bb  |    1 +
- 2 files changed, 33 insertions(+)
- create mode 100644 recipes-security/selinux/policycoreutils/policycoreutils-fix-TypeError-for-seobject.py.patch
-
-diff --git a/recipes-security/selinux/policycoreutils/policycoreutils-fix-TypeError-for-seobject.py.patch b/recipes-security/selinux/policycoreutils/policycoreutils-fix-TypeError-for-seobject.py.patch
-new file mode 100644
-index 0000000..dd6ca6d
---- /dev/null
-+++ b/recipes-security/selinux/policycoreutils/policycoreutils-fix-TypeError-for-seobject.py.patch
-@@ -0,0 +1,32 @@
-+From a66c50c0e8cd3799fc2819835b872ab62419f684 Mon Sep 17 00:00:00 2001
-+From: Wenzong Fan <wenzong.fan@windriver.com>
-+Date: Tue, 1 Apr 2014 02:53:36 -0400
-+Subject: [PATCH] policycoreutils: fix TypeError for seobject.py
-+
-+File "/usr/lib64/python2.7/site-packages/seobject.py", line 109, in log
-+  message += " sename=" + sename
-+TypeError: cannot concatenate 'str' and 'NoneType' objects
-+
-+Uptream-Status: pending
-+
-+Signed-off-by: Wenzong Fan <wenzong.fan@windriver.com>
-+---
-+ semanage/seobject.py |    2 +-
-+ 1 file changed, 1 insertion(+), 1 deletion(-)
-+
-+diff --git a/semanage/seobject.py b/semanage/seobject.py
-+index f8d2243..66653e6 100644
-+--- a/semanage/seobject.py
-++++ b/semanage/seobject.py
-+@@ -105,7 +105,7 @@ except:
-+ 
-+ 		def log(self, msg, name = "", sename = "", serole = "", serange = "", oldsename = "", oldserole = "", oldserange = ""):
-+ 			message = " %s name=%s" % (msg, name)
-+-			if sename != "":
-++			if sename != "" and sename != None:
-+ 				message += " sename=" + sename
-+ 			if oldsename != "":
-+ 				message += " oldsename=" + oldsename
-+-- 
-+1.7.9.5
-+
-diff --git a/recipes-security/selinux/policycoreutils_2.2.5.bb b/recipes-security/selinux/policycoreutils_2.2.5.bb
-index 7c32064..560cee6 100644
---- a/recipes-security/selinux/policycoreutils_2.2.5.bb
-+++ b/recipes-security/selinux/policycoreutils_2.2.5.bb
-@@ -14,4 +14,5 @@ SRC_URI += "\
- 	file://policycoreutils-loadpolicy-symlink.patch \
- 	file://policycoreutils-semanage-edit-user.patch \
- 	file://policycoreutils-process-ValueError-for-sepolicy-seobject.patch \
-+	file://policycoreutils-fix-TypeError-for-seobject.py.patch \
- 	"
--- 
-1.7.9.5
+SGkgQWxsLA0KDQpDYW4gd2UgaW50ZWdyYXRlIEdTVC0xLjIuMyB0byBEb3JhPyBJcyB0aGVyZSBh
+bnkgZG9jdW1lbnQgYXZhaWxhYmxlPyBXZSBuZWVkIGl0IGJhZGx5Lg0KDQpUaGFua3MsDQpEaXBl
+c2gNCg0KLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCkZyb206IERpcGVzaCBLYXJtYWthciAN
+ClNlbnQ6IFR1ZXNkYXksIEFwcmlsIDIyLCAyMDE0IDEyOjQxIFBNDQpUbzogJ0NhcmxvcyBSYWZh
+ZWwgR2lhbmknDQpDYzogeW9jdG9AeW9jdG9wcm9qZWN0Lm9yZzsgTWVlbmFrdW1hcmkgU2hlZG9s
+ZQ0KU3ViamVjdDogW3lvY3RvXSBSZ2FyZHJpbmcgR1NUcmVhbWVyMS4wIGludGVncmF0aW9uIG9u
+IFlvY3RvIERvcmENCg0KSGkgQ2FybG9zLA0KDQpEbyB5b3UgaGF2ZSBhbnkgcGxhbiB0byBpbnRl
+Z3JhdGUgR3N0cmVhbWVyLTEuMi4zIHRvIERvcmE/IEkgYmVsaWV2ZSBjdXJyZW50IERvcmExMC4w
+LjEgaGFzIEdTVC0xLjAuOS4NCg0KVGhhbmtzLA0KRGlwZXNoDQoNCi0tLS0tT3JpZ2luYWwgTWVz
+c2FnZS0tLS0tDQpGcm9tOiBDYXJsb3MgUmFmYWVsIEdpYW5pIFttYWlsdG86ZHZAcHNldWRvdGVy
+bWluYWwub3JnXSANClNlbnQ6IFN1bmRheSwgRmVicnVhcnkgMDIsIDIwMTQgOToxNCBQTQ0KVG86
+IEtoYWphIEh1c3NhaW4gU2hhaWsNCkNjOiBOaWNvbGFzIERlY2hlc25lOyB5b2N0b0B5b2N0b3By
+b2plY3Qub3JnOyBEaXBlc2ggS2FybWFrYXI7IFBhdWwgRWdnbGV0b247IEtpc2hvcmUgRGl2dmVs
+YSAtRVJTLCBIQ0wgVGVjaA0KU3ViamVjdDogUmU6IFt5b2N0b10gUmdhcmRyaW5nIEdTVHJlYW1l
+cjEuMCBpbnRlZ3JhdGlvbiBvbiBZb2N0byBkeWxhbg0KDQpPbiAyMDE0LTAxLTI4IDEzOjQ5LCBL
+aGFqYSBIdXNzYWluIFNoYWlrIHdyb3RlOg0KPiBIaSBDYXJsb3MsDQo+DQo+IERpZCB5b3UgZ2V0
+IGEgY2hhbmNlIHRvIGxvb2sgaW50byB0aGUgcG9ydGluZyBvZiBnc3QxLjAgdG8gRHlsYW4/DQo+
+DQo+IFJlZ2FyZHMNCj4gS2hhamENCj4NCg0KSSBoYXZlIG5vdyB1cGdyYWRlZCB0aGUgcmVjaXBl
+cyBpbiBtZXRhLWdzdHJlYW1lcjEuMCB0byB2ZXJzaW9uIDEuMi4yLiANCkl0IGlzIGEgYmFja3Bv
+cnQgZnJvbSB0aGUgY3VycmVudCBPRS1jb3JlIHJlY2lwZXMuIEZ1cnRoZXJtb3JlLCBJIGFkZGVk
+IHRoZSBPcmMgT0UtY29yZSByZWNpcGVzIHRvIHRoaXMgbGF5ZXIuIFRoaXMgd2F5LCBnc3RyZWFt
+ZXIgaXMgYnVpbHQgd2l0aCBPcmMgc3VwcG9ydCBieSBkZWZhdWx0LCBldmVuIGZvciBkYW5ueSBh
+bmQgZHlsYW4uDQoNCmNoZWVycywNCkNhcmxvcw0KCgo6OkRJU0NMQUlNRVI6OgotLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tCgpUaGUgY29udGVudHMgb2YgdGhpcyBlLW1haWwgYW5k
+IGFueSBhdHRhY2htZW50KHMpIGFyZSBjb25maWRlbnRpYWwgYW5kIGludGVuZGVkIGZvciB0aGUg
+bmFtZWQgcmVjaXBpZW50KHMpIG9ubHkuCkUtbWFpbCB0cmFuc21pc3Npb24gaXMgbm90IGd1YXJh
+bnRlZWQgdG8gYmUgc2VjdXJlIG9yIGVycm9yLWZyZWUgYXMgaW5mb3JtYXRpb24gY291bGQgYmUg
+aW50ZXJjZXB0ZWQsIGNvcnJ1cHRlZCwKbG9zdCwgZGVzdHJveWVkLCBhcnJpdmUgbGF0ZSBvciBp
+bmNvbXBsZXRlLCBvciBtYXkgY29udGFpbiB2aXJ1c2VzIGluIHRyYW5zbWlzc2lvbi4gVGhlIGUg
+bWFpbCBhbmQgaXRzIGNvbnRlbnRzCih3aXRoIG9yIHdpdGhvdXQgcmVmZXJyZWQgZXJyb3JzKSBz
+aGFsbCB0aGVyZWZvcmUgbm90IGF0dGFjaCBhbnkgbGlhYmlsaXR5IG9uIHRoZSBvcmlnaW5hdG9y
+IG9yIEhDTCBvciBpdHMgYWZmaWxpYXRlcy4KVmlld3Mgb3Igb3BpbmlvbnMsIGlmIGFueSwgcHJl
+c2VudGVkIGluIHRoaXMgZW1haWwgYXJlIHNvbGVseSB0aG9zZSBvZiB0aGUgYXV0aG9yIGFuZCBt
+YXkgbm90IG5lY2Vzc2FyaWx5IHJlZmxlY3QgdGhlCnZpZXdzIG9yIG9waW5pb25zIG9mIEhDTCBv
+ciBpdHMgYWZmaWxpYXRlcy4gQW55IGZvcm0gb2YgcmVwcm9kdWN0aW9uLCBkaXNzZW1pbmF0aW9u
+LCBjb3B5aW5nLCBkaXNjbG9zdXJlLCBtb2RpZmljYXRpb24sCmRpc3RyaWJ1dGlvbiBhbmQgLyBv
+ciBwdWJsaWNhdGlvbiBvZiB0aGlzIG1lc3NhZ2Ugd2l0aG91dCB0aGUgcHJpb3Igd3JpdHRlbiBj
+b25zZW50IG9mIGF1dGhvcml6ZWQgcmVwcmVzZW50YXRpdmUgb2YKSENMIGlzIHN0cmljdGx5IHBy
+b2hpYml0ZWQuIElmIHlvdSBoYXZlIHJlY2VpdmVkIHRoaXMgZW1haWwgaW4gZXJyb3IgcGxlYXNl
+IGRlbGV0ZSBpdCBhbmQgbm90aWZ5IHRoZSBzZW5kZXIgaW1tZWRpYXRlbHkuCkJlZm9yZSBvcGVu
+aW5nIGFueSBlbWFpbCBhbmQvb3IgYXR0YWNobWVudHMsIHBsZWFzZSBjaGVjayB0aGVtIGZvciB2
+aXJ1c2VzIGFuZCBvdGhlciBkZWZlY3RzLgoKLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLQo=
 
 
