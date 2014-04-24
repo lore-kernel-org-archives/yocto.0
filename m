@@ -1,33 +1,35 @@
-Return-Path: <k4230r6@gmail.com>
-Received: from mail-ig0-f182.google.com (mail-ig0-f182.google.com
-	[209.85.213.182])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5100EE00716
-	for <yocto@yoctoproject.org>; Wed, 23 Apr 2014 20:55:54 -0700 (PDT)
-Received: by mail-ig0-f182.google.com with SMTP id uy17so421129igb.15
-	for <yocto@yoctoproject.org>; Wed, 23 Apr 2014 20:55:54 -0700 (PDT)
+Return-Path: <jatedev@gmail.com>
+Received: from mail-qg0-f44.google.com (mail-qg0-f44.google.com
+	[209.85.192.44])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D53B4E00939
+	for <yocto@yoctoproject.org>; Wed, 23 Apr 2014 21:17:11 -0700 (PDT)
+Received: by mail-qg0-f44.google.com with SMTP id q108so1995527qgd.3
+	for <yocto@yoctoproject.org>; Wed, 23 Apr 2014 21:17:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
 	:cc:content-type;
-	bh=WvRUsWmLc5JxogLrzSZqWc9qUQOQHO1/lJ5kTrALgms=;
-	b=PAIDsr2kTYiWf1BVYwuekUPdOPrRyfz3AttP81GWGNa8awLUzSGc4CaIG0rFsiFleP
-	OEllMF1KlvexzGyf5YZ02l2k41LfhCblTXjpdrRYfCuKnsssUTVLPo88ldBTzCzCT3d1
-	E+98cMeqjuShS7EbAzSbxeRslIls0OCJe8GZOjz0nXBPSdNw43qJAAbZqAvKdKr73fbl
-	9sTS8K9Cqd1QtYVX01yLJ6EbDd5PTClOB5gP/kMedrPvo8qf7s43cXuf1YiUaOKHH0Jb
-	sbxRGQKNGoZiqrBYGRYsJtOCm/OwY8bS1LDOBAHuZv8jAdTcTJGKUzHQm7LsNOyxvjqL
-	Jc2g==
+	bh=aRBeMFZKSBUrRXfxrcETB7RJKmlkKENUKdiCi13EHXQ=;
+	b=Es7TGep5lbpGBrcztSJUweSnrUtZXXuy+emU6pHjj1bibZlQQdR3m6fRbsZ+ps69SJ
+	osenzpTE/S2JsTi57Izcf/xIMSoXFdcy3JbYOsIZKsiJlbigb62NVBs4ePr0QfMLkfXr
+	KdRLmCXaqK47PD3VVw9gBdNv1t90gflAc6Fl5ge8S4kW9DYnJWUhRm40vXgQkOW9eWqD
+	BbvUKBurDRZjF2KA65tsJWNgQ0j+NhmdsXWQws+OZ3AhWSkH+38tkAbuyqlHOqmVH4nx
+	WoNw9KMFj4gUZsawzZydlZYNIzR/OpIEyP3LS7wJ+1g3LLv3ZKw4c5QXq5rnSVeet3AR
+	ukZA==
 MIME-Version: 1.0
-X-Received: by 10.50.47.12 with SMTP id z12mr6679585igm.37.1398311753980; Wed,
-	23 Apr 2014 20:55:53 -0700 (PDT)
-Received: by 10.64.252.166 with HTTP; Wed, 23 Apr 2014 20:55:52 -0700 (PDT)
-Received: by 10.64.252.166 with HTTP; Wed, 23 Apr 2014 20:55:52 -0700 (PDT)
-In-Reply-To: <CAPTvksA3s+7SVVqjJ1Vu7U-VcFYmxQYKk0V0UV78po86CCwyeA@mail.gmail.com>
-References: <CAPTvksA3s+7SVVqjJ1Vu7U-VcFYmxQYKk0V0UV78po86CCwyeA@mail.gmail.com>
-Date: Thu, 24 Apr 2014 05:55:52 +0200
-Message-ID: <CAALGJZZu6ZrYdPGzxJ0jhxdDWciqzs1S0SUiy8eUVB15_0xb=w@mail.gmail.com>
-From: Christian Ege <k4230r6@gmail.com>
-To: Rich Wilson <richaw@gmail.com>
-Cc: yocto@yoctoproject.org
-Subject: Re: How to run c++ programs?
+X-Received: by 10.140.46.53 with SMTP id j50mr25572609qga.27.1398313030275;
+	Wed, 23 Apr 2014 21:17:10 -0700 (PDT)
+Received: by 10.140.95.111 with HTTP; Wed, 23 Apr 2014 21:17:10 -0700 (PDT)
+In-Reply-To: <CAPhnLPCH8ysKMg5+d-_W9A5+j+DKpusJCCEXTs6zegSRCRkWmA@mail.gmail.com>
+References: <CAPphmgbuaWBpsSszJ=5e+g=pjeE97_9XU5a7JQbzOfM-VQTQrQ@mail.gmail.com>
+	<CAPhnLPAOc2mN3-QhG0BM5jN5ENCHXfP52hi6ETbrj=OLOU8jWQ@mail.gmail.com>
+	<CAPphmgb=b=Wuz05tKRt6NGQ6AWHioRw=gwOhWDAGai7G++JPCw@mail.gmail.com>
+	<CAPhnLPCH8ysKMg5+d-_W9A5+j+DKpusJCCEXTs6zegSRCRkWmA@mail.gmail.com>
+Date: Thu, 24 Apr 2014 00:17:10 -0400
+Message-ID: <CAPphmgbE-9uTURv6A_w5P7YyVimP4j4N_Uk9S8H=3ev=Uzy_sw@mail.gmail.com>
+From: Jate S <jatedev@gmail.com>
+To: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
+Cc: Yocto Project <yocto@yoctoproject.org>
+Subject: Re: autobuilder repourl by commit
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,107 +41,105 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 24 Apr 2014 03:55:55 -0000
-Content-Type: multipart/alternative; boundary=089e013cc63e61a05e04f7c1d3f7
-
---089e013cc63e61a05e04f7c1d3f7
+X-List-Received-Date: Thu, 24 Apr 2014 04:17:12 -0000
 Content-Type: text/plain; charset=UTF-8
 
-Am 24.04.2014 04:46 schrieb "Rich Wilson" <richaw@gmail.com>:
->
-> I have my core-image-minimal distribution working.
-> Now, I would like to compile and run c++ programs.
-> How do get there from here?
->
+I checked out branch master, and I went with your suggestions on the
+updated GIT environment variables.
 
-I think bitbake -c populate_sdk is what you are looking for. This creates
-an SDK with the required headers and libs to compile your c++ code against.
+On the dora branch of the autobuilder, a forced build from the web
+interface would use the 'hash' properties of the repos successfully.
 
-> I'm a newbie here, so please be gentle :-)
+In the master branch, this no longer seems to be the case. Now the
+forced build does checkout the current head of poky known from  the
+result of ResolveLayerHead.
+
+I just noticed that the hash from your example happened to match the
+HEAD of poky/master at the time. Perhaps you could try it again now.
+The current master is now at 68ef727cdcef439e9bfc57996f3cebfc0e07789e.
+
+
+- Jate S.
+
+On Wed, Apr 23, 2014 at 1:16 PM, Flanagan, Elizabeth
+<elizabeth.flanagan@intel.com> wrote:
+> Hi Jate,
 >
-> (I'm hoping I can use the Xilinx SDK for the compiler and
-> debugger; I think I just need the libraries)
+> So, I'm going off current master. I would probably check out the
+> current master branch as we made a lot of changes in how we dealt with
+> source stamps between now and dora.
 >
-The approach above generates a complete SDK.
-> Build Configuration:
-> BB_VERSION        = "1.20.0"
-> BUILD_SYS         = "x86_64-linux"
-> NATIVELSBSTRING   = "openSUSE-project-12.3"
-> TARGET_SYS        = "arm-poky-linux-gnueabi"
-> MACHINE           = "zedboard-zynq7"
-> DISTRO            = "poky"
-> DISTRO_VERSION    = "1.5.1"
-> TUNE_FEATURES     = " armv7a vfp neon zynq"
-> TARGET_FPU        = "vfp-neon"
-> meta
-> meta-yocto
-> meta-yocto-bsp    = "<unknown>:<unknown>"
-> meta-xilinx       = "dora:aa7d677515ab7d45bbd3bdd6c5383f4143147c6d"
+> On Wed, Apr 23, 2014 at 9:20 AM, Jate S <jatedev@gmail.com> wrote:
+>> I am on yocto-autobuilder dora branch. I would like my Nightly
+>> scheduler check out some layers using the 'hash' repo setting. The
+>> default behavior seems to be that a nightly build does not receive
+>> 'commit_layername' information, and thus the CheckOutLayers object
+>> just uses the HEAD.
+>
+> So, in master on my dev cluster at
+> http://dev-ab-master.yoctodev.org:8010/builders/nightly/builds/9
+>
+> I'm using a buildset-config/nightly.conf that contains:
+>
+> [nightly]
+> ....
+> repos: [{'poky':
+>             {'repourl':'git://git.yoctoproject.org/poky',
+>              'layerversion':{'core':'meta', 'yoctobsp':'meta-yocto-bsp'},
+>              'hash': '4b5e855670bddb0ffc4cc7b24005e53e3eefcd69'}},
+>
+> That *seems* to be working ok. If you can update to master, that
+> should fix things, although this should also work in the dora branch.
+>
+> Be warned, if you do update, there are some additional
+> autobuilder.conf options you'll need to add:
+>
+> [GitSettings]
+> OPTIMIZED_GIT_CLONE = True
+> OGIT_TRASH_DIR = /tmp/yocto-autobuilder/git/trash
+> OGIT_MIRROR_DIR = /tmp/yocto-autobuilder/git/mirror
+>
+>>
+>> Where might I go about passing these properties in so that
+>> CheckOutLayers will use my 'hash' setting?
+>>
+>> - Jate S.
+>>
+>> On Thu, Apr 17, 2014 at 2:09 PM, Flanagan, Elizabeth
+>> <elizabeth.flanagan@intel.com> wrote:
+>>> Jate,
+>>>
+>>> You can use the 'hash' property. Just make sure you have no other
+>>> branch/tag properties in the repo description.
+>>>
+>>> So, something like this should work:
+>>>
+>>> repos: [{'poky':
+>>>             {'repourl':'git://git.yoctoproject.org/poky',
+>>>              'hash':'7831ae829103ab283645'}},
+>>>
+>>>
+>>> On Thu, Apr 17, 2014 at 10:23 AM, Jate S <jatedev@gmail.com> wrote:
+>>>> I am customizing the Yocto autobuilder for my own project. I would like to
+>>>> specify a checksum for the repourl for poky. What property do I need to add?
+>>>> I have tried adding the property commit, but it does not appear to work.
+>>>>
+>>>> Thanks,
+>>>>
+>>>> - Jate S.
+>>>>
+>>>
+>>>
+>>>
+>>> --
+>>> Elizabeth Flanagan
+>>> Yocto Project
+>>> Build and Release
+>
+>
 >
 > --
-> Rich Wilson
->
->
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
->
+> Elizabeth Flanagan
+> Yocto Project
+> Build and Release
 
---089e013cc63e61a05e04f7c1d3f7
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<p dir=3D"ltr"><br>
-Am 24.04.2014 04:46 schrieb &quot;Rich Wilson&quot; &lt;<a href=3D"mailto:r=
-ichaw@gmail.com">richaw@gmail.com</a>&gt;:<br>
-&gt;<br>
-&gt; I have my core-image-minimal distribution working.<br>
-&gt; Now, I would like to compile and run c++ programs.<br>
-&gt; How do get there from here?<br>
-&gt;</p>
-<p dir=3D"ltr">I think bitbake -c populate_sdk is what you are looking for.=
- This creates an SDK with the required headers and libs to compile your c++=
- code against.</p>
-<p dir=3D"ltr">&gt; I&#39;m a newbie here, so please be gentle :-)<br>
-&gt;<br>
-&gt; (I&#39;m hoping I can use the Xilinx SDK for the compiler and<br>
-&gt; debugger; I think I just need the libraries)<br>
-&gt;<br>
-The approach above generates a complete SDK.<br>
-&gt; Build Configuration:<br>
-&gt; BB_VERSION =C2=A0 =C2=A0 =C2=A0 =C2=A0=3D &quot;1.20.0&quot;<br>
-&gt; BUILD_SYS =C2=A0 =C2=A0 =C2=A0 =C2=A0 =3D &quot;x86_64-linux&quot;<br>
-&gt; NATIVELSBSTRING =C2=A0 =3D &quot;openSUSE-project-12.3&quot;<br>
-&gt; TARGET_SYS =C2=A0 =C2=A0 =C2=A0 =C2=A0=3D &quot;arm-poky-linux-gnueabi=
-&quot;<br>
-&gt; MACHINE =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =3D &quot;zedboard-zynq7&qu=
-ot;<br>
-&gt; DISTRO =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=3D &quot;poky&quot;<b=
-r>
-&gt; DISTRO_VERSION =C2=A0 =C2=A0=3D &quot;1.5.1&quot;<br>
-&gt; TUNE_FEATURES =C2=A0 =C2=A0 =3D &quot; armv7a vfp neon zynq&quot;<br>
-&gt; TARGET_FPU =C2=A0 =C2=A0 =C2=A0 =C2=A0=3D &quot;vfp-neon&quot;<br>
-&gt; meta =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0<br>
-&gt; meta-yocto =C2=A0 =C2=A0 =C2=A0 =C2=A0<br>
-&gt; meta-yocto-bsp =C2=A0 =C2=A0=3D &quot;&lt;unknown&gt;:&lt;unknown&gt;&=
-quot;<br>
-&gt; meta-xilinx =C2=A0 =C2=A0 =C2=A0 =3D &quot;dora:aa7d677515ab7d45bbd3bd=
-d6c5383f4143147c6d&quot;<br>
-&gt;<br>
-&gt; -- <br>
-&gt; Rich Wilson<br>
-&gt;<br>
-&gt;<br>
-&gt; --<br>
-&gt; _______________________________________________<br>
-&gt; yocto mailing list<br>
-&gt; <a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><b=
-r>
-&gt; <a href=3D"https://lists.yoctoproject.org/listinfo/yocto">https://list=
-s.yoctoproject.org/listinfo/yocto</a><br>
-&gt;<br>
-</p>
-
---089e013cc63e61a05e04f7c1d3f7--
