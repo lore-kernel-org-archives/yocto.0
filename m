@@ -1,23 +1,35 @@
-Return-Path: <Kai.Kang@windriver.com>
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 985AEE006EC
-	for <yocto@yoctoproject.org>; Thu, 24 Apr 2014 01:34:47 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail.windriver.com (8.14.5/8.14.5) with ESMTP id s3O8YkUL006771
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL)
-	for <yocto@yoctoproject.org>; Thu, 24 Apr 2014 01:34:46 -0700 (PDT)
-Received: from pek-kkang-d1.wrs.com (128.224.162.231) by
-	ALA-HCA.corp.ad.wrs.com (147.11.189.50) with Microsoft SMTP Server
-	(TLS) id 14.3.169.1; Thu, 24 Apr 2014 01:34:46 -0700
-From: Kai Kang <kai.kang@windriver.com>
-To: <yocto@yoctoproject.org>
-Date: Thu, 24 Apr 2014 16:34:37 +0800
-Message-ID: <1398328477-20192-1-git-send-email-kai.kang@windriver.com>
-X-Mailer: git-send-email 1.9.1
+Return-Path: <cristian.iorga@intel.com>
+Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 43603E006EC
+	for <yocto@yoctoproject.org>; Thu, 24 Apr 2014 01:45:46 -0700 (PDT)
+Received: from azsmga001.ch.intel.com ([10.2.17.19])
+	by azsmga101.ch.intel.com with ESMTP; 24 Apr 2014 01:45:45 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.97,917,1389772800"; d="scan'208";a="423044501"
+Received: from irsmsx103.ger.corp.intel.com ([163.33.3.157])
+	by azsmga001.ch.intel.com with ESMTP; 24 Apr 2014 01:45:43 -0700
+Received: from irsmsx107.ger.corp.intel.com (163.33.3.99) by
+	IRSMSX103.ger.corp.intel.com (163.33.3.157) with Microsoft SMTP Server
+	(TLS) id 14.3.123.3; Thu, 24 Apr 2014 09:45:02 +0100
+Received: from irsmsx105.ger.corp.intel.com ([169.254.7.70]) by
+	IRSMSX107.ger.corp.intel.com ([169.254.10.172]) with mapi id
+	14.03.0123.003; Thu, 24 Apr 2014 09:45:01 +0100
+From: "Iorga, Cristian" <cristian.iorga@intel.com>
+To: Dipesh Karmakar <Dipesh.Karmakar@hcl.com>, "yocto@yoctoproject.org"
+	<yocto@yoctoproject.org>
+Thread-Topic: [yocto] Rgardring GSTreamer1.0 integration on Yocto Dora
+Thread-Index: Ac9d+MKqisnKvBogTdCza2JCCG0m6AA0O0hgADPGdAA=
+Date: Thu, 24 Apr 2014 08:45:01 +0000
+Message-ID: <969F26A8BAB325438E7EB80D3C3134FB1CE9D8DD@IRSMSX105.ger.corp.intel.com>
+References: <97272D6808818244BD88BD72F19D658B03CAD664@chn-hclt-mbs06.HCLT.CORP.HCL.IN>
+In-Reply-To: <97272D6808818244BD88BD72F19D658B03CAD664@chn-hclt-mbs06.HCLT.CORP.HCL.IN>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [163.33.239.180]
 MIME-Version: 1.0
-X-Originating-IP: [128.224.162.231]
-Subject: [meta-selinux][PATCH] audit: Enable ARM System Call Audit in user space.
+Cc: Carlos Rafael Giani <dv@pseudoterminal.org>
+Subject: Re: Rgardring GSTreamer1.0 integration on Yocto Dora
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -29,98 +41,109 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 24 Apr 2014 08:34:50 -0000
-Content-Type: text/plain
+X-List-Received-Date: Thu, 24 Apr 2014 08:45:49 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-From: Han Chao <chan@windriver.com>
+Hello Dipesh,
+YP dora is already released, as such, won't receive any new features or pac=
+kage upgrades.
+And if you need GStreamer upgrade that badly, well, why don't do it yoursel=
+f??
+What kind of documentation you need?
 
-Audit System Call needs kernel and user space support.
+There are companies that can help you in this kind of endeavor, offering co=
+mmercial Yocto Project support, I assume that's a solution also, right?
 
-In user space it needs system call table for ARM. It also needs a
-configure option --with-armeb for build audit. Audit system call also
-needs enable kernel config CONFIG_AUDITSYSCALL.
+Regards,
+Cristian Iorga
+YP
+Intel Corporation
 
-Signed-off-by: Han Chao <chan@windriver.com>
-Signed-off-by: Kai Kang <kai.kang@windriver.com>
----
- .../audit/add-system-call-table-for-ARM.patch      | 46 ++++++++++++++++++++++
- recipes-security/audit/audit_2.3.2.bb              |  2 +
- 2 files changed, 48 insertions(+)
- create mode 100644 recipes-security/audit/audit/add-system-call-table-for-ARM.patch
+-----Original Message-----
+From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org=
+] On Behalf Of Dipesh Karmakar
+Sent: Wednesday, April 23, 2014 11:06 AM
+To: yocto@yoctoproject.org
+Cc: Carlos Rafael Giani
+Subject: Re: [yocto] Rgardring GSTreamer1.0 integration on Yocto Dora
 
-diff --git a/recipes-security/audit/audit/add-system-call-table-for-ARM.patch b/recipes-security/audit/audit/add-system-call-table-for-ARM.patch
-new file mode 100644
-index 0000000..ad94d11
---- /dev/null
-+++ b/recipes-security/audit/audit/add-system-call-table-for-ARM.patch
-@@ -0,0 +1,46 @@
-+From 52ff74be2f01182ed9d4fcc3da059512fad63d72 Mon Sep 17 00:00:00 2001
-+From: Han Chao <chan@windriver.com>
-+Date: Thu, 27 Feb 2014 14:58:57 +0800
-+Subject: [PATCH] add system call table for ARM.
-+
-+This change enable audit system call on ARM.
-+Add arm System call table on machinetabs.h.
-+Audit system call need enable kernel config CONFIG_AUDITSYSCALL.
-+
-+Signed-off-by: Han Chao <chan@windriver.com>
-+---
-+ lib/machinetabs.h |   11 ++++++-----
-+ 1 file changed, 6 insertions(+), 5 deletions(-)
-+
-+diff --git a/lib/machinetabs.h b/lib/machinetabs.h
-+index ec2d033..1c2e284 100644
-+--- a/lib/machinetabs.h
-++++ b/lib/machinetabs.h
-+@@ -1,10 +1,11 @@
-+-/* This is a generated file, see Makefile.am for its inputs. */
-+-static const char machine_strings[] = "i386\0i486\0i586\0i686\0ia64\0ppc\0ppc64\0s390\0s390x\0x86_64";
-++/* Such is aways generated file, see Makefile.am for its inputs.
-++ * But this version is not generated file, which is for ARM. */
-++static const char machine_strings[] = "armeb\0armv5tejl\0armv5tel\0armv6l\0armv7l";
-+ static const unsigned machine_s2i_s[] = {
-+-	0,5,10,15,20,25,29,35,40,46,
-++	0,6,16,25,32,
-+ };
-+ static const int machine_s2i_i[] = {
-+-	0,0,0,0,2,4,3,6,5,1,
-++	8,8,8,8,8,
-+ };
-+ static int machine_s2i(const char *s, int *value) {
-+ 	size_t len, i;
-+@@ -19,7 +20,7 @@ static int machine_s2i(const char *s, int *value) {
-+ 	}
-+ }
-+ static const unsigned machine_i2s_direct[] = {
-+-	0,46,20,29,25,40,35,
-++    39,85,59,68,64,
-+ };
-+ static const char *machine_i2s(int v) {
-+ 	return i2s_direct__(machine_strings, machine_i2s_direct, 0, 6, v);
-+-- 
-+1.7.9.5
-+
-diff --git a/recipes-security/audit/audit_2.3.2.bb b/recipes-security/audit/audit_2.3.2.bb
-index ae6556f..4baf7a0 100644
---- a/recipes-security/audit/audit_2.3.2.bb
-+++ b/recipes-security/audit/audit_2.3.2.bb
-@@ -18,6 +18,7 @@ SRC_URI = "http://people.redhat.com/sgrubb/audit/audit-${PV}.tar.gz \
- 	   file://auditd.service \
- 	   file://audit-volatile.conf \
- "
-+SRC_URI_append_arm = "file://add-system-call-table-for-ARM.patch"
- 
- inherit autotools pythonnative update-rc.d systemd
- 
-@@ -41,6 +42,7 @@ EXTRA_OECONF += "--without-prelude \
- 	--libdir=${base_libdir} \
- 	--sbindir=${base_sbindir} \
- 	"
-+EXTRA_OECONF_append_arm = " --with-armeb=yes"
- 
- EXTRA_OEMAKE += "PYLIBVER='python${PYTHON_BASEVERSION}' \
- 	PYINC='${STAGING_INCDIR}/$(PYLIBVER)' \
--- 
-1.8.4
+Hi All,
 
+Can we integrate GST-1.2.3 to Dora? Is there any document available? We nee=
+d it badly.
+
+Thanks,
+Dipesh
+
+-----Original Message-----
+From: Dipesh Karmakar
+Sent: Tuesday, April 22, 2014 12:41 PM
+To: 'Carlos Rafael Giani'
+Cc: yocto@yoctoproject.org; Meenakumari Shedole
+Subject: [yocto] Rgardring GSTreamer1.0 integration on Yocto Dora
+
+Hi Carlos,
+
+Do you have any plan to integrate Gstreamer-1.2.3 to Dora? I believe curren=
+t Dora10.0.1 has GST-1.0.9.
+
+Thanks,
+Dipesh
+
+-----Original Message-----
+From: Carlos Rafael Giani [mailto:dv@pseudoterminal.org]
+Sent: Sunday, February 02, 2014 9:14 PM
+To: Khaja Hussain Shaik
+Cc: Nicolas Dechesne; yocto@yoctoproject.org; Dipesh Karmakar; Paul Eggleto=
+n; Kishore Divvela -ERS, HCL Tech
+Subject: Re: [yocto] Rgardring GSTreamer1.0 integration on Yocto dylan
+
+On 2014-01-28 13:49, Khaja Hussain Shaik wrote:
+> Hi Carlos,
+>
+> Did you get a chance to look into the porting of gst1.0 to Dylan?
+>
+> Regards
+> Khaja
+>
+
+I have now upgraded the recipes in meta-gstreamer1.0 to version 1.2.2.=20
+It is a backport from the current OE-core recipes. Furthermore, I added the=
+ Orc OE-core recipes to this layer. This way, gstreamer is built with Orc s=
+upport by default, even for danny and dylan.
+
+cheers,
+Carlos
+
+
+::DISCLAIMER::
+---------------------------------------------------------------------------=
+-------------------------------------------------------------------------
+
+The contents of this e-mail and any attachment(s) are confidential and inte=
+nded for the named recipient(s) only.
+E-mail transmission is not guaranteed to be secure or error-free as informa=
+tion could be intercepted, corrupted, lost, destroyed, arrive late or incom=
+plete, or may contain viruses in transmission. The e mail and its contents =
+(with or without referred errors) shall therefore not attach any liability =
+on the originator or HCL or its affiliates.
+Views or opinions, if any, presented in this email are solely those of the =
+author and may not necessarily reflect the views or opinions of HCL or its =
+affiliates. Any form of reproduction, dissemination, copying, disclosure, m=
+odification, distribution and / or publication of this message without the =
+prior written consent of authorized representative of HCL is strictly prohi=
+bited. If you have received this email in error please delete it and notify=
+ the sender immediately.
+Before opening any email and/or attachments, please check them for viruses =
+and other defects.
+
+---------------------------------------------------------------------------=
+-------------------------------------------------------------------------
+--
+_______________________________________________
+yocto mailing list
+yocto@yoctoproject.org
+https://lists.yoctoproject.org/listinfo/yocto
 
