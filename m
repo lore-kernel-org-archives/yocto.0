@@ -1,31 +1,36 @@
-Return-Path: <Bruce.Ashfield@windriver.com>
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CE67AE00B75
-	for <yocto@yoctoproject.org>; Thu, 24 Apr 2014 11:01:09 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail.windriver.com (8.14.5/8.14.5) with ESMTP id s3OI14tA024312
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Thu, 24 Apr 2014 11:01:04 -0700 (PDT)
-Received: from [128.224.56.48] (128.224.56.48) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server id 14.3.169.1;
-	Thu, 24 Apr 2014 11:01:03 -0700
-Message-ID: <53595154.4080302@windriver.com>
-Date: Thu, 24 Apr 2014 14:00:52 -0400
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:24.0) Gecko/20100101 Thunderbird/24.4.0
+Return-Path: <kaiu@gmx.de>
+Received: from mout.gmx.net (mout.gmx.net [212.227.15.18])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 42D20E00B76
+	for <yocto@yoctoproject.org>; Thu, 24 Apr 2014 11:14:40 -0700 (PDT)
+Received: from mail-ve0-f170.google.com ([209.85.128.170]) by mail.gmx.com
+	(mrgmx003) with ESMTPSA (Nemesis) id 0Mg42v-1WI7tT205l-00NU9V for
+	<yocto@yoctoproject.org>; Thu, 24 Apr 2014 20:14:38 +0200
+Received: by mail-ve0-f170.google.com with SMTP id pa12so3443703veb.29
+	for <yocto@yoctoproject.org>; Thu, 24 Apr 2014 11:14:37 -0700 (PDT)
 MIME-Version: 1.0
-To: "Vuille, Martin (Martin)" <vmartin@avaya.com>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>
-References: <30C2D590D16A5C46ADFE65219103779820B77A65@AZ-US1EXMB03.global.avaya.com>
-	<53594AA0.7020603@windriver.com>
-	<30C2D590D16A5C46ADFE65219103779820B77AA1@AZ-US1EXMB03.global.avaya.com>
-In-Reply-To: <30C2D590D16A5C46ADFE65219103779820B77AA1@AZ-US1EXMB03.global.avaya.com>
-Subject: Re: Exporting kernel header from patch
+X-Received: by 10.220.249.6 with SMTP id mi6mr1595047vcb.33.1398363277216;
+	Thu, 24 Apr 2014 11:14:37 -0700 (PDT)
+Received: by 10.58.54.67 with HTTP; Thu, 24 Apr 2014 11:14:37 -0700 (PDT)
+In-Reply-To: <CAAKMwiqnkO26HmhknTziT99T7=P=QBcGTs+jqAXKaWj3r2RkgA@mail.gmail.com>
+References: <CAAKMwiouz+=PX1A=Z8x61C7VcOaVQCCVf8P_kvY9HEaK-PHDPQ@mail.gmail.com>
+	<CAMKF1srqDaZ_JkdBZLST-rSsCP70m0Q6xuifY3Qxg+cm8v+JAQ@mail.gmail.com>
+	<CAAKMwioYCwPRP94j-N3UBELJxX2uSmf_yOjGCCaLuZRWsouiCw@mail.gmail.com>
+	<CAMKF1sr6sSdinsXyA6SFKkCfnyBAK=iwWX=3fMKtV_mQ9hcKAQ@mail.gmail.com>
+	<CAAKMwiqnkO26HmhknTziT99T7=P=QBcGTs+jqAXKaWj3r2RkgA@mail.gmail.com>
+Date: Thu, 24 Apr 2014 20:14:37 +0200
+Message-ID: <CAAKMwioQgwSZr5rf+1rd_PWO14ts8j=YgAbn2LOrRr6ViRjE4g@mail.gmail.com>
+From: Kai Ulrich <kaiu@gmx.de>
+To: Khem Raj <raj.khem@gmail.com>
+X-Provags-ID: V03:K0:SNvMZAnKlNU/MVrRax43bx5c62ALV8dV9rBSigd5GchVEJZ1Smu
+	geYSItfIomAin3fNJlRXECLMxx/W4ni6TYA7BF4AUvv4ADP07r6rsU0fuT+fqhQhpqJEuct
+	DOEjKULuw0x8u8J1O4x/EXlD6LJog6s4uAIoVCLHjWSARR9E8w4sK+EKtsFu8tks5vgwIqx
+	aCiKbIqPq8rxiC8GJpKxw==
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: eglibc-2.18 is not compiling
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
+Reply-To: kaiu@gmx.de
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -34,118 +39,135 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 24 Apr 2014 18:01:12 -0000
-Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Thu, 24 Apr 2014 18:14:40 -0000
+Content-Type: multipart/alternative; boundary=089e013a062c67d19904f7cdd208
 
-On 14-04-24 01:52 PM, Vuille, Martin (Martin) wrote:
->> From: Bruce Ashfield [mailto:bruce.ashfield@windriver.com]
->> Sent: April 24, 2014 1:32 PM
->>
->> On 14-04-24 11:57 AM, Vuille, Martin (Martin) wrote:
->>> I have a custom layer to add patches to my vendor's BSP layer
->>>
->>> (based on Linux 3.4, if it matters) and a .bbappend to list the
->>>
->>> patches.
->>>
->>> One of the patches adds a header, and this header needs to
->>>
->>> be exported to the sysroot.
->>>
->>> I added the following to my .bbappend, based on a discussion
->>>
->>> I found:
->>>
->>> do_install_append() {
->>>
->>>       install -d ${D}${includedir}/linux
->>>
->>>       install -m 644 ${S}/include/linux/uc1698u.h
->>> ${D}${includedir}/linux/uc1698u.h
->>>
->>> }
->>>
->>> It "works" (i.e., the header is installed in the sysroot) but there
->>> must
->>>
->>> be more to it than that because I also get a warning about the header
->>>
->>> being "installed but not shipped in any package".
->>>
->>> What's the correct way to do this?
->>
->> Not answering the question directly, but I can say that kernel's shouldn't be
->> exporting their header files over the sysroot's
->> include/linux/* directory structure, since that is where linux-libc-headers
->> installs and manages the userspace safe headers for the c-library.
->>
->> Sure you are probably installing a new file, and one that doesn't conflict
->> with the existing libc-headers, but as soon as you start working in that
->> directory structure .. you will eventually clobber an existing file.
->>
->> There have been quite a few discussions on this topic over time on the oe-
->> core and yocto lists. Look at the comment in the linux-libc-headers.inc file,
->> and you'll see a note from Richard explaining why this shouldn't be done
->> (searches on the mailing list archives will also find more hits).
->>
->> When you install into the sysroot, the header file should also be in a
->> FILES_<package> as part of your recipe .. and that is why you are seeing the
->> warning. packaging it would remove the warning, but you'll still have the
->> problem I mention above.
->>
->> The right way is for your application to look at the STAGING_KERNEL_DIR,
->> which will have a copy of that same header file.
->>
->> Alternatively, you can stage your header file at a different sysroot location
->> than include/linux/* and have your application look there.
->>
->> I have an open enhancement that I'm doing for yocto 1.7 which automates
->> the alternate header file structure, but doing it explicitly in your recipes will
->> work for now.
+--089e013a062c67d19904f7cdd208
+Content-Type: text/plain; charset=UTF-8
+
+Hi,
+
+good news  tried it with
+- GNU Awk 4.1.1, API: 1.1
+- GNU Make 4.0
+
+it worked fine.
+Thanx
+
+
+2014-04-23 10:33 GMT+02:00 Kai Ulrich <kaiu@gmx.de>:
+
+> I am using GNU Awk 4.0.2
 >
-> Hi Bruce,
 >
-> Thanks for your response. But I'm afraid I'm not entirely following you. I am
-> quite new to Yocto/OE, so I may be missing something fundamental/obvious.
 >
-> Leaving aside the patch and .bbappend for the moment, presumably it is
-> normal for the kernel in the BSP layer to export headers for userland's
-> consumption. How is that specified? Where is the FILES_<package> that
-> lists those headers?
-
-Actually, in the yocto world, it isn't. At least not in the sense that
-you are looking for.
-
-The kernel's source tree is staged for consumption by other packages
-in the sysroot, accessible via the variable STAGING_KERNEL_DIR. That's
-the first choice for an application to look for kernel header files.
-
-The sysroots /usr/include/linux/* is strictly for the linux-libc-headers
-package, and nothing else should be installing into that structure.
-
-If you do need to export something to the sysroot, that isn't already
-in the libc-headers, and you can't use the STAGING_KERNEL_DIR, then you
-should be installing it to another directory structure like: 
-/usr-alt/include/linux/*
-and have your applications look there. You'd export and install them 
-similarly
-to what you are doing, and you'd need to package them similarly.
-
-i.e. in the recipe:
-
-PACKAGES += " kernel-extra-headers"
-FILES_kernel-extra-headers = "/usr-alt/linux/*'
-
-And you'd get the header in the sysroot, and avoid the QA warning about
-it not being packaged.
-
-Bruce
-
-
-
+> 2014-04-22 22:01 GMT+02:00 Khem Raj <raj.khem@gmail.com>:
 >
-> MV
+>
+>> On Apr 22, 2014 12:47 PM, "Kai Ulrich" <kaiu@gmx.de> wrote:
+>> >
+>> > thanx for your interest
+>> > yes, it seams all right
+>> > gcc-Version 4.7.3 (Gentoo 4.7.3-r1 p1.4, pie-0.5.5)
+>> > make-Version GNU Make 3.82 Built for x86_64-pc-linux-gnu
+>> >
+>> >
+>> >
+>> > 2014-04-22 18:10 GMT+02:00 Khem Raj <raj.khem@gmail.com>:
+>> >
+>> >> On Tue, Apr 22, 2014 at 7:08 AM, Kai Ulrich <kaiu@gmx.de> wrote:
+>> >> >
+>> tmp/work/armv7a-vfp-neon-poky-linux-gnueabi/eglibc/2.18-r0/build-arm-poky-linux-gnueabi/shlib.lds:150:
+>> >> > syntax error
+>> >> > collect2: error: ld returned 1 exit status
+>> >> > make[2]: ***
+>> >> >
+>> [/home/kulrich/Development/yocto_dora/poky/build_beagle_xm_ml/tmp/work/armv7a-vfp-neon-poky-linux-gnueabi/eglibc/2.18-r0/build-arm-poky-linux-gnueabi/libc.so]
+>> >> > Error 1
+>> >> > make[2]: Leaving directory
+>> >> >
+>> `/home/kulrich/Development/yocto_dora/poky/build_beagle_xm_ml/tmp/work/armv7a-vfp-neon-poky-linux-gnueabi/eglibc/2.18-r0/eglibc-2.18/libc/elf'
+>> >> > make[1]: *** [elf/subdir_lib] Error 2
+>> >> > make[1]: Leaving directory
+>> >> >
+>> `/home/kulrich/Development/yocto_dora/poky/build_beagle_xm_ml/tmp/work/armv7a-vfp-neon-poky-linux-gnueabi/eglibc/2.18-r0/eglibc-2.18/libc'
+>> >> > make: *** [all] Error 2
+>> >>
+>> >>
+>> >> whats the make version on your build host which is being used here. I
+>> >> hope its 3.82 or newer.
+>> >
+>> >
+>>
+>> and you are using gawk and not mawk or something else
+>>
+>
 >
 
+--089e013a062c67d19904f7cdd208
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
+<div dir=3D"ltr"><div><div><div>Hi,<br><br></div>good news=C2=A0 tried it w=
+ith <br>- GNU Awk 4.1.1, API: 1.1<br>- GNU Make 4.0<br><br></div>it worked =
+fine.<br></div>Thanx <div class=3D"gmail_extra"><br><br><div class=3D"gmail=
+_quote">
+2014-04-23 10:33 GMT+02:00 Kai Ulrich <span dir=3D"ltr">&lt;<a href=3D"mail=
+to:kaiu@gmx.de" target=3D"_blank">kaiu@gmx.de</a>&gt;</span>:<br><blockquot=
+e class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc sol=
+id;padding-left:1ex">
+<div class=3D""><div dir=3D"ltr"><div dir=3D"ltr">I am using GNU Awk 4.0.2<=
+br></div><br></div></div><div class=3D"gmail_extra"><br><br><div class=3D"g=
+mail_quote">2014-04-22 22:01 GMT+02:00 Khem Raj <span dir=3D"ltr">&lt;<a hr=
+ef=3D"mailto:raj.khem@gmail.com" target=3D"_blank">raj.khem@gmail.com</a>&g=
+t;</span>:<div>
+<div class=3D"h5"><br>
+<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
+x #ccc solid;padding-left:1ex"><div><div><p dir=3D"ltr"><br>
+On Apr 22, 2014 12:47 PM, &quot;Kai Ulrich&quot; &lt;<a href=3D"mailto:kaiu=
+@gmx.de" target=3D"_blank">kaiu@gmx.de</a>&gt; wrote:<br>
+&gt;<br>
+&gt; thanx for your interest <br>
+&gt; yes, it seams all right<br>
+&gt; gcc-Version 4.7.3 (Gentoo 4.7.3-r1 p1.4, pie-0.5.5) <br>
+&gt; make-Version GNU Make 3.82 Built for x86_64-pc-linux-gnu<br>
+&gt;<br>
+&gt;<br>
+&gt;<br>
+&gt; 2014-04-22 18:10 GMT+02:00 Khem Raj &lt;<a href=3D"mailto:raj.khem@gma=
+il.com" target=3D"_blank">raj.khem@gmail.com</a>&gt;:<br>
+&gt;<br>
+&gt;&gt; On Tue, Apr 22, 2014 at 7:08 AM, Kai Ulrich &lt;<a href=3D"mailto:=
+kaiu@gmx.de" target=3D"_blank">kaiu@gmx.de</a>&gt; wrote:<br>
+&gt;&gt; &gt; tmp/work/armv7a-vfp-neon-poky-linux-gnueabi/eglibc/2.18-r0/bu=
+ild-arm-poky-linux-gnueabi/shlib.lds:150:<br>
+&gt;&gt; &gt; syntax error<br>
+&gt;&gt; &gt; collect2: error: ld returned 1 exit status<br>
+&gt;&gt; &gt; make[2]: ***<br>
+&gt;&gt; &gt; [/home/kulrich/Development/yocto_dora/poky/build_beagle_xm_ml=
+/tmp/work/armv7a-vfp-neon-poky-linux-gnueabi/eglibc/2.18-r0/build-arm-poky-=
+linux-gnueabi/libc.so]<br>
+&gt;&gt; &gt; Error 1<br>
+&gt;&gt; &gt; make[2]: Leaving directory<br>
+&gt;&gt; &gt; `/home/kulrich/Development/yocto_dora/poky/build_beagle_xm_ml=
+/tmp/work/armv7a-vfp-neon-poky-linux-gnueabi/eglibc/2.18-r0/eglibc-2.18/lib=
+c/elf&#39;<br>
+&gt;&gt; &gt; make[1]: *** [elf/subdir_lib] Error 2<br>
+&gt;&gt; &gt; make[1]: Leaving directory<br>
+&gt;&gt; &gt; `/home/kulrich/Development/yocto_dora/poky/build_beagle_xm_ml=
+/tmp/work/armv7a-vfp-neon-poky-linux-gnueabi/eglibc/2.18-r0/eglibc-2.18/lib=
+c&#39;<br>
+&gt;&gt; &gt; make: *** [all] Error 2<br>
+&gt;&gt;<br>
+&gt;&gt;<br>
+&gt;&gt; whats the make version on your build host which is being used here=
+. I<br>
+&gt;&gt; hope its 3.82 or newer.<br>
+&gt;<br>
+&gt;</p>
+</div></div><p dir=3D"ltr">and you are using gawk and not mawk or something=
+ else</p>
+</blockquote></div></div></div><br></div>
+</blockquote></div><br></div></div>
+
+--089e013a062c67d19904f7cdd208--
