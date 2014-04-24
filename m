@@ -1,45 +1,28 @@
-Return-Path: <billie.alsup@ericsson.com>
-Received: from usevmg21.ericsson.net (usevmg21.ericsson.net [198.24.6.65])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DF031E006EC
-	for <yocto@yoctoproject.org>; Thu, 24 Apr 2014 05:25:11 -0700 (PDT)
-X-AuditID: c6180641-f79a26d000001830-50-5358b1c8f853
-Received: from EUSAAHC003.ericsson.se (Unknown_Domain [147.117.188.81])
-	by usevmg21.ericsson.net (Symantec Mail Security) with SMTP id
-	16.3C.06192.8C1B8535; Thu, 24 Apr 2014 08:40:09 +0200 (CEST)
-Received: from EUSAAMB105.ericsson.se ([147.117.188.122]) by
-	EUSAAHC003.ericsson.se ([147.117.188.81]) with mapi id 14.03.0174.001;
-	Thu, 24 Apr 2014 08:25:07 -0400
-From: Billie Alsup <billie.alsup@ericsson.com>
-To: sujith h <sujith.h@gmail.com>, "Behrens, Holger"
-	<holger.behrens@windriver.com>, Florin Sarbu <florin.sarbu@windriver.com>
-Thread-Topic: [yocto] [meta-ivi][PATCH] weston: Add weston.ini config file
-Thread-Index: AQHPX7eDwj3VlZX8b0e3J83//i8ct5shFZsA
-Date: Thu, 24 Apr 2014 12:25:07 +0000
-Message-ID: <CF7ECEC6.2FD5F%billie.alsup@ericsson.com>
-References: <1398237133-16494-1-git-send-email-sujith.h@gmail.com>
-	<CADyYWLk0ERtaW=PgHhu6V-w9rQd5AJ75OzKcBjXhdipcD-qPXg@mail.gmail.com>
-In-Reply-To: <CADyYWLk0ERtaW=PgHhu6V-w9rQd5AJ75OzKcBjXhdipcD-qPXg@mail.gmail.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-user-agent: Microsoft-MacOutlook/14.4.1.140326
-x-originating-ip: [147.117.188.10]
+Return-Path: <vidal.develone@gmail.com>
+Received: from mail-qg0-f51.google.com (mail-qg0-f51.google.com
+	[209.85.192.51])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D691FE006EC
+	for <yocto@yoctoproject.org>; Thu, 24 Apr 2014 05:26:45 -0700 (PDT)
+Received: by mail-qg0-f51.google.com with SMTP id f51so2422288qge.10
+	for <yocto@yoctoproject.org>; Thu, 24 Apr 2014 05:26:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=x+xPFM3sa8ZiMvEv9fJoQ+CcslOI3K+KO8vRYQ6Guvk=;
+	b=E1uxnONbjBob/yLKkF0j52cPYHQ3l5MWZkvDCyh9UyKED+C5s/StmcwvT31n6TXK6s
+	qwxTOmWN401FroNGjTRKg2eBGCG5s5AXSQK5tyGZd0jJ12WOdPJL4eDAIMUgm5xd32TS
+	bJVYlcFgctq+qpcRo8SLgoYF40E333x7hvyQwsp7RRIppd06sNTpuNLeUCpF2vrqJ3g2
+	E8jItb8W97C2JEz+YfPzNZdwOf+ZjndlCmProKEfvfDfDarlIJj5yazYFf+0oX5LmZSP
+	w9sj/5dxLethL3gh9rzTic+rkqLnaWm8T9iWi/y3ioZCLya/BRpSckRcecm4kxt/q/dB
+	4s0Q==
 MIME-Version: 1.0
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFlrFIsWRmVeSWpSXmKPExsUyuXRPoO7JjRHBBj3HmCxWfj3IanH64G5m
-	i9ZlPUwWL1fNZbGY9HINmwOrx85Zd9k9dn9tYvRYv2Urk0f7iT62AJYoLpuU1JzMstQifbsE
-	royLSxczFmz1r7h6YQ1zA+Ms3y5GTg4JAROJS68Ps0PYYhIX7q1n62Lk4hASOMoo8XbeGhYI
-	ZzmjxOK5S8Cq2AT0JL7fvsoOkhARaGCU2P/yAWsXIwcHs0C8xPrZSiA1wgKeElNbO5lBbBEB
-	L4nWm4/YIGwjicMXO8BsFgFViUfvj4LN5BUwk3gwdT4zxLJORol1z0+BJTgFAiVO7/rGCGIz
-	Ap33/dQaJhCbWUBc4taT+UwQZwtILNlznhnCFpV4+fgfK4gtCnTou+MwNUoSk5aeY4XojZb4
-	f3oO1GJBiZMzn7BMYBSbhWTsLCRls5CUzQJ7U1Ni/S59iBJFiSndD9khbA2J1jlzoWxriSub
-	N7Egq1nAyLGKkaO0OLUsN93IcBMjMHKPSbA57mBc8MnyEKMAB6MSD6/WVd9gIdbEsuLK3EOM
-	0hwsSuK8X946BwkJpCeWpGanphakFsUXleakFh9iZOLglGpgLMwu798pe9aSMefqLjZT480C
-	a+9y7D96Q2KiytNdDRdmvppxILTBYNKtnwwaZg/ZHX/amei+t56S15KhsI3X8Da/6Bqj6R19
-	xzOPSeabBcoll8mw6ZeeCJM2qCzfouYc7MVrw3WYefUfq7Oqax/f3/H21SepX5cYr2g3m8sp
-	t/SFX0k/ELJOiaU4I9FQi7moOBEAC+aVa70CAAA=
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	Sujith H <Sujith_Haridasan@mentor.com>
-Subject: Re: [meta-ivi][PATCH] weston: Add weston.ini config file
+X-Received: by 10.140.41.49 with SMTP id y46mr1960674qgy.104.1398342403968;
+	Thu, 24 Apr 2014 05:26:43 -0700 (PDT)
+Received: by 10.140.109.246 with HTTP; Thu, 24 Apr 2014 05:26:43 -0700 (PDT)
+Date: Thu, 24 Apr 2014 06:26:43 -0600
+Message-ID: <CANwz6nwr9=W=63L45Z-8GsW200pO5qKOTgE3E_jQA_-FY3TNww@mail.gmail.com>
+From: Edward Vidal <vidal.develone@gmail.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: How to run c++ programs?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -51,146 +34,54 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 24 Apr 2014 12:25:12 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_CF7ECEC62FD5Fbilliealsupericssoncom_"
+X-List-Received-Date: Thu, 24 Apr 2014 12:26:46 -0000
+Content-Type: multipart/alternative; boundary=001a11c152e843863604f7c8f61c
 
---_000_CF7ECEC62FD5Fbilliealsupericssoncom_
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+--001a11c152e843863604f7c8f61c
+Content-Type: text/plain; charset=UTF-8
 
-SSBrbm93IG5vdGhpbmcgYWJvdXQgeW9jdG8gcmVjaXBlcywgYnV0IHdoeSB3b3VsZCB5b3UgaW52
-b2tlIHNlZCA0IHRpbWVzLCByYXRoZXIgdGhhbiBvbmNlIHdpdGggNCBkaWZmZXJlbnQgLWUgYXJn
-dW1lbnRzPw0KdGhpcyBraW5kIG9mIGFwcHJvYWNoIHJlYWxseSBhZGRzIHVwIGluIGxhcmdlIGJ1
-aWxkIHN5c3RlbXMuDQoNCg0KRnJvbTogc3VqaXRoIGggPHN1aml0aC5oQGdtYWlsLmNvbTxtYWls
-dG86c3VqaXRoLmhAZ21haWwuY29tPj4NCkRhdGU6IFRodXJzZGF5LCBBcHJpbCAyNCwgMjAxNCAy
-OjE4IFBNDQpUbzogIkJlaHJlbnMsIEhvbGdlciIgPGhvbGdlci5iZWhyZW5zQHdpbmRyaXZlci5j
-b208bWFpbHRvOmhvbGdlci5iZWhyZW5zQHdpbmRyaXZlci5jb20+PiwgRmxvcmluIFNhcmJ1IDxm
-bG9yaW4uc2FyYnVAd2luZHJpdmVyLmNvbTxtYWlsdG86ZmxvcmluLnNhcmJ1QHdpbmRyaXZlci5j
-b20+Pg0KQ2M6ICJ5b2N0b0B5b2N0b3Byb2plY3Qub3JnPG1haWx0bzp5b2N0b0B5b2N0b3Byb2pl
-Y3Qub3JnPiIgPHlvY3RvQHlvY3RvcHJvamVjdC5vcmc8bWFpbHRvOnlvY3RvQHlvY3RvcHJvamVj
-dC5vcmc+PiwgU3VqaXRoIEggPFN1aml0aF9IYXJpZGFzYW5AbWVudG9yLmNvbTxtYWlsdG86U3Vq
-aXRoX0hhcmlkYXNhbkBtZW50b3IuY29tPj4NClN1YmplY3Q6IFJlOiBbeW9jdG9dIFttZXRhLWl2
-aV1bUEFUQ0hdIHdlc3RvbjogQWRkIHdlc3Rvbi5pbmkgY29uZmlnIGZpbGUNCg0KSGksDQoNCkFu
-eSBjb21tZW50cyBmb3IgdGhpcyBwYXRjaD8NCg0KDQpPbiBXZWQsIEFwciAyMywgMjAxNCBhdCAx
-Mjo0MiBQTSwgU3VqaXRoIEggPHN1aml0aC5oQGdtYWlsLmNvbTxtYWlsdG86c3VqaXRoLmhAZ21h
-aWwuY29tPj4gd3JvdGU6DQpBZGRpbmcgd2VzdG9uLmluaSB0byAvZXRjL3hkZy4gV2l0aCB0aGlz
-IGNoYW5nZQ0KdXNlciBjYW4gbG9naW4gYW5kIGxhdW5jaCB3ZXN0b24gd2l0aCBpdmktc2hlbGwu
-DQoNClNpZ25lZC1vZmYtYnk6IFN1aml0aCBIIDxTdWppdGhfSGFyaWRhc2FuQG1lbnRvci5jb208
-bWFpbHRvOlN1aml0aF9IYXJpZGFzYW5AbWVudG9yLmNvbT4+DQotLS0NCiByZWNpcGVzLWdyYXBo
-aWNzL3dheWxhbmQvd2VzdG9uXzEuNC4wLmJiYXBwZW5kIHwgMTQgKysrKysrKysrKysrKysNCiAx
-IGZpbGUgY2hhbmdlZCwgMTQgaW5zZXJ0aW9ucygrKQ0KDQpkaWZmIC0tZ2l0IGEvcmVjaXBlcy1n
-cmFwaGljcy93YXlsYW5kL3dlc3Rvbl8xLjQuMC5iYmFwcGVuZCBiL3JlY2lwZXMtZ3JhcGhpY3Mv
-d2F5bGFuZC93ZXN0b25fMS40LjAuYmJhcHBlbmQNCmluZGV4IDdhOGJhNmYuLmI4MzliZTQgMTAw
-NjQ0DQotLS0gYS9yZWNpcGVzLWdyYXBoaWNzL3dheWxhbmQvd2VzdG9uXzEuNC4wLmJiYXBwZW5k
-DQorKysgYi9yZWNpcGVzLWdyYXBoaWNzL3dheWxhbmQvd2VzdG9uXzEuNC4wLmJiYXBwZW5kDQpA
-QCAtMTIsMyArMTIsMTcgQEAgUFIgPSAicjEiDQoNCiBGSUxFU18ke1BOfSArPSAiJHtsaWJkaXJ9
-L3dlc3Rvbi8qIg0KIEZJTEVTXyR7UE59LWRiZyArPSAiJHtsaWJkaXJ9L3dlc3Rvbi8uZGVidWcv
-KiINCisNCitkb19pbnN0YWxsX2FwcGVuZCgpIHsNCisgICBXRVNUT05fSU5JX0NPTkZJRz0ke3N5
-c2NvbmZkaXJ9L3hkZy93ZXN0b24NCisgICBpbnN0YWxsIC1kICR7RH0ke1dFU1RPTl9JTklfQ09O
-RklHfQ0KKyAgIGluc3RhbGwgLW0gMDY0NCAke1N9L2l2aS1zaGVsbC93ZXN0b24uaW5pLmluPGh0
-dHA6Ly93ZXN0b24uaW5pLmluPiAke0R9JHtXRVNUT05fSU5JX0NPTkZJR30vd2VzdG9uLmluaQ0K
-KyAgIHNlZCAtaSAtZSAgJ3MvaG1pLWNvbnRyb2xsZXIuc28vaG1pLWNvbnRyb2xsZXIuc288aHR0
-cDovL2htaS1jb250cm9sbGVyLnNvL2htaS1jb250cm9sbGVyLnNvPiwgaXZpLWNvbnRyb2xsZXIu
-c28vPGh0dHA6Ly9pdmktY29udHJvbGxlci5zby8+JyAke0R9JHtXRVNUT05fSU5JX0NPTkZJR30v
-d2VzdG9uLmluaQ0KKyAgIHNlZCAtaSAtZSAnc3xcQGxpYmV4ZWNkaXJcQHwke2xpYmV4ZWNkaXJ9
-fCcgJHtEfSR7V0VTVE9OX0lOSV9DT05GSUd9L3dlc3Rvbi5pbmkNCisgICBzZWQgLWkgLWUgJ3N8
-XEBhYnNfdG9wX2J1aWxkZGlyXEBcL2RhdGF8JHtkYXRhZGlyfVwvd2VzdG9ufCcgJHtEfSR7V0VT
-VE9OX0lOSV9DT05GSUd9L3dlc3Rvbi5pbmkNCisgICBzZWQgLWkgLWUgJ3N8XEBhYnNfdG9wX2J1
-aWxkZGlyXEBcL2NsaWVudHN8JHtiaW5kaXJ9fCcgJHtEfSR7V0VTVE9OX0lOSV9DT05GSUd9L3dl
-c3Rvbi5pbmkNCit9DQorDQorUEFDS0FHRVMgKz0gIiR7UE59LWluaSINCisNCitGSUxFU18ke1BO
-fS1pbmkgPSAiJHtzeXNjb25mZGlyfS94ZGciDQotLQ0KMS44LjQNCg0KDQoNCg0KLS0NCuC0uOC1
-geC0nOC0v+C0pOC1jSDgtLngtLDgtL/gtKbgtL7gtLjgtKjgtY0NCkJhbmdhbG9yZQ0KPFByb2pl
-Y3Q+Q29udHJpYnV0b3IgdG8gS0RFIHByb2plY3QNCmh0dHA6Ly9mY2kud2lraWEuY29tL3dpa2kv
-QW50aS1EUk0tQ2FtcGFpZ24NCjxCbG9nPiBodHRwOi8vc3VqaXRoaC5pbmZvDQo=
+Hello,
+In the poky/documentation folder I execute the following:
+#!/bin/bash
+make DOC=adt-manual
+make DOC=kernel-dev
+make DOC=mega-manual
+make DOC=bsp-guide
+make DOC=kernel-manual
+make DOC=ref-manual
+make DOC=yocto-project-qs
+make DOC=dev-manual
+make DOC=profile-manual
+find . -name *.pdf
+This generates my documentation for yocto .
+What you need is the adt-manual. see Chapter 4. Using the Command
+Line.
+You also need to build SDK with bitbake.  Then a script in images/sdk
+which you installs in /opt/poky/1.xxxx
+Hope this helps.  I also am using a zedboard.  I recently got sound, 2 C920
+cameras, openCV, gnuplot, gsl, vlc, and gnuradio working with meta-topic
+instead of meta-xilinx thanks to Mike Looijmans on the meta-xilinx mailing
+list.
 
---_000_CF7ECEC62FD5Fbilliealsupericssoncom_
-Content-Type: text/html; charset="utf-8"
-Content-ID: <0C2DEEFD9B903E4CA617EAE1CEF6D2B5@ericsson.com>
-Content-Transfer-Encoding: base64
+--001a11c152e843863604f7c8f61c
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-PGh0bWw+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIgY29udGVudD0i
-dGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjwvaGVhZD4NCjxib2R5IHN0eWxlPSJ3b3JkLXdy
-YXA6IGJyZWFrLXdvcmQ7IC13ZWJraXQtbmJzcC1tb2RlOiBzcGFjZTsgLXdlYmtpdC1saW5lLWJy
-ZWFrOiBhZnRlci13aGl0ZS1zcGFjZTsgY29sb3I6IHJnYigwLCAwLCAwKTsgZm9udC1zaXplOiAx
-NHB4OyBmb250LWZhbWlseTogQXJpYWwsIHNhbnMtc2VyaWY7ICI+DQo8ZGl2Pkkga25vdyBub3Ro
-aW5nIGFib3V0IHlvY3RvIHJlY2lwZXMsIGJ1dCB3aHkgd291bGQgeW91IGludm9rZSBzZWQgNCB0
-aW1lcywgcmF0aGVyIHRoYW4gb25jZSB3aXRoIDQgZGlmZmVyZW50IC1lIGFyZ3VtZW50cz88L2Rp
-dj4NCjxkaXY+dGhpcyBraW5kIG9mIGFwcHJvYWNoIHJlYWxseSBhZGRzIHVwIGluIGxhcmdlIGJ1
-aWxkIHN5c3RlbXMuPC9kaXY+DQo8ZGl2Pjxicj4NCjwvZGl2Pg0KPGRpdj48YnI+DQo8L2Rpdj4N
-CjxzcGFuIGlkPSJPTEtfU1JDX0JPRFlfU0VDVElPTiI+DQo8ZGl2IHN0eWxlPSJmb250LWZhbWls
-eTpDYWxpYnJpOyBmb250LXNpemU6MTFwdDsgdGV4dC1hbGlnbjpsZWZ0OyBjb2xvcjpibGFjazsg
-Qk9SREVSLUJPVFRPTTogbWVkaXVtIG5vbmU7IEJPUkRFUi1MRUZUOiBtZWRpdW0gbm9uZTsgUEFE
-RElORy1CT1RUT006IDBpbjsgUEFERElORy1MRUZUOiAwaW47IFBBRERJTkctUklHSFQ6IDBpbjsg
-Qk9SREVSLVRPUDogI2I1YzRkZiAxcHQgc29saWQ7IEJPUkRFUi1SSUdIVDogbWVkaXVtIG5vbmU7
-IFBBRERJTkctVE9QOiAzcHQiPg0KPHNwYW4gc3R5bGU9ImZvbnQtd2VpZ2h0OmJvbGQiPkZyb206
-IDwvc3Bhbj5zdWppdGggaCAmbHQ7PGEgaHJlZj0ibWFpbHRvOnN1aml0aC5oQGdtYWlsLmNvbSI+
-c3VqaXRoLmhAZ21haWwuY29tPC9hPiZndDs8YnI+DQo8c3BhbiBzdHlsZT0iZm9udC13ZWlnaHQ6
-Ym9sZCI+RGF0ZTogPC9zcGFuPlRodXJzZGF5LCBBcHJpbCAyNCwgMjAxNCAyOjE4IFBNPGJyPg0K
-PHNwYW4gc3R5bGU9ImZvbnQtd2VpZ2h0OmJvbGQiPlRvOiA8L3NwYW4+JnF1b3Q7QmVocmVucywg
-SG9sZ2VyJnF1b3Q7ICZsdDs8YSBocmVmPSJtYWlsdG86aG9sZ2VyLmJlaHJlbnNAd2luZHJpdmVy
-LmNvbSI+aG9sZ2VyLmJlaHJlbnNAd2luZHJpdmVyLmNvbTwvYT4mZ3Q7LCBGbG9yaW4gU2FyYnUg
-Jmx0OzxhIGhyZWY9Im1haWx0bzpmbG9yaW4uc2FyYnVAd2luZHJpdmVyLmNvbSI+ZmxvcmluLnNh
-cmJ1QHdpbmRyaXZlci5jb208L2E+Jmd0Ozxicj4NCjxzcGFuIHN0eWxlPSJmb250LXdlaWdodDpi
-b2xkIj5DYzogPC9zcGFuPiZxdW90OzxhIGhyZWY9Im1haWx0bzp5b2N0b0B5b2N0b3Byb2plY3Qu
-b3JnIj55b2N0b0B5b2N0b3Byb2plY3Qub3JnPC9hPiZxdW90OyAmbHQ7PGEgaHJlZj0ibWFpbHRv
-OnlvY3RvQHlvY3RvcHJvamVjdC5vcmciPnlvY3RvQHlvY3RvcHJvamVjdC5vcmc8L2E+Jmd0Oywg
-U3VqaXRoIEggJmx0OzxhIGhyZWY9Im1haWx0bzpTdWppdGhfSGFyaWRhc2FuQG1lbnRvci5jb20i
-PlN1aml0aF9IYXJpZGFzYW5AbWVudG9yLmNvbTwvYT4mZ3Q7PGJyPg0KPHNwYW4gc3R5bGU9ImZv
-bnQtd2VpZ2h0OmJvbGQiPlN1YmplY3Q6IDwvc3Bhbj5SZTogW3lvY3RvXSBbbWV0YS1pdmldW1BB
-VENIXSB3ZXN0b246IEFkZCB3ZXN0b24uaW5pIGNvbmZpZyBmaWxlPGJyPg0KPC9kaXY+DQo8ZGl2
-Pjxicj4NCjwvZGl2Pg0KPGRpdj4NCjxkaXY+DQo8ZGl2IGRpcj0ibHRyIj4NCjxkaXY+DQo8ZGl2
-PkhpLDxicj4NCjwvZGl2Pg0KPGJyPg0KPC9kaXY+DQpBbnkgY29tbWVudHMgZm9yIHRoaXMgcGF0
-Y2g/PGJyPg0KPGRpdj4NCjxkaXY+DQo8ZGl2Pg0KPGRpdj4NCjxkaXYgY2xhc3M9ImdtYWlsX2V4
-dHJhIj48YnI+DQo8YnI+DQo8ZGl2IGNsYXNzPSJnbWFpbF9xdW90ZSI+T24gV2VkLCBBcHIgMjMs
-IDIwMTQgYXQgMTI6NDIgUE0sIFN1aml0aCBIIDxzcGFuIGRpcj0ibHRyIj4NCiZsdDs8YSBocmVm
-PSJtYWlsdG86c3VqaXRoLmhAZ21haWwuY29tIiB0YXJnZXQ9Il9ibGFuayI+c3VqaXRoLmhAZ21h
-aWwuY29tPC9hPiZndDs8L3NwYW4+IHdyb3RlOjxicj4NCjxibG9ja3F1b3RlIGNsYXNzPSJnbWFp
-bF9xdW90ZSIgc3R5bGU9Im1hcmdpbjowIDAgMCAuOGV4O2JvcmRlci1sZWZ0OjFweCAjY2NjIHNv
-bGlkO3BhZGRpbmctbGVmdDoxZXgiPg0KQWRkaW5nIHdlc3Rvbi5pbmkgdG8gL2V0Yy94ZGcuIFdp
-dGggdGhpcyBjaGFuZ2U8YnI+DQp1c2VyIGNhbiBsb2dpbiBhbmQgbGF1bmNoIHdlc3RvbiB3aXRo
-IGl2aS1zaGVsbC48YnI+DQo8YnI+DQpTaWduZWQtb2ZmLWJ5OiBTdWppdGggSCAmbHQ7PGEgaHJl
-Zj0ibWFpbHRvOlN1aml0aF9IYXJpZGFzYW5AbWVudG9yLmNvbSI+U3VqaXRoX0hhcmlkYXNhbkBt
-ZW50b3IuY29tPC9hPiZndDs8YnI+DQotLS08YnI+DQombmJzcDtyZWNpcGVzLWdyYXBoaWNzL3dh
-eWxhbmQvd2VzdG9uXzEuNC4wLmJiYXBwZW5kIHwgMTQgJiM0MzsmIzQzOyYjNDM7JiM0MzsmIzQz
-OyYjNDM7JiM0MzsmIzQzOyYjNDM7JiM0MzsmIzQzOyYjNDM7JiM0MzsmIzQzOzxicj4NCiZuYnNw
-OzEgZmlsZSBjaGFuZ2VkLCAxNCBpbnNlcnRpb25zKCYjNDM7KTxicj4NCjxicj4NCmRpZmYgLS1n
-aXQgYS9yZWNpcGVzLWdyYXBoaWNzL3dheWxhbmQvd2VzdG9uXzEuNC4wLmJiYXBwZW5kIGIvcmVj
-aXBlcy1ncmFwaGljcy93YXlsYW5kL3dlc3Rvbl8xLjQuMC5iYmFwcGVuZDxicj4NCmluZGV4IDdh
-OGJhNmYuLmI4MzliZTQgMTAwNjQ0PGJyPg0KLS0tIGEvcmVjaXBlcy1ncmFwaGljcy93YXlsYW5k
-L3dlc3Rvbl8xLjQuMC5iYmFwcGVuZDxicj4NCiYjNDM7JiM0MzsmIzQzOyBiL3JlY2lwZXMtZ3Jh
-cGhpY3Mvd2F5bGFuZC93ZXN0b25fMS40LjAuYmJhcHBlbmQ8YnI+DQpAQCAtMTIsMyAmIzQzOzEy
-LDE3IEBAIFBSID0gJnF1b3Q7cjEmcXVvdDs8YnI+DQo8YnI+DQombmJzcDtGSUxFU18ke1BOfSAm
-IzQzOz0gJnF1b3Q7JHtsaWJkaXJ9L3dlc3Rvbi8qJnF1b3Q7PGJyPg0KJm5ic3A7RklMRVNfJHtQ
-Tn0tZGJnICYjNDM7PSAmcXVvdDske2xpYmRpcn0vd2VzdG9uLy5kZWJ1Zy8qJnF1b3Q7PGJyPg0K
-JiM0Mzs8YnI+DQomIzQzO2RvX2luc3RhbGxfYXBwZW5kKCkgezxicj4NCiYjNDM7ICZuYnNwOyBX
-RVNUT05fSU5JX0NPTkZJRz0ke3N5c2NvbmZkaXJ9L3hkZy93ZXN0b248YnI+DQomIzQzOyAmbmJz
-cDsgaW5zdGFsbCAtZCAke0R9JHtXRVNUT05fSU5JX0NPTkZJR308YnI+DQomIzQzOyAmbmJzcDsg
-aW5zdGFsbCAtbSAwNjQ0ICR7U30vaXZpLXNoZWxsLzxhIGhyZWY9Imh0dHA6Ly93ZXN0b24uaW5p
-LmluIiB0YXJnZXQ9Il9ibGFuayI+d2VzdG9uLmluaS5pbjwvYT4gJHtEfSR7V0VTVE9OX0lOSV9D
-T05GSUd9L3dlc3Rvbi5pbmk8YnI+DQomIzQzOyAmbmJzcDsgc2VkIC1pIC1lICZuYnNwOydzLzxh
-IGhyZWY9Imh0dHA6Ly9obWktY29udHJvbGxlci5zby9obWktY29udHJvbGxlci5zbyIgdGFyZ2V0
-PSJfYmxhbmsiPmhtaS1jb250cm9sbGVyLnNvL2htaS1jb250cm9sbGVyLnNvPC9hPiwNCjxhIGhy
-ZWY9Imh0dHA6Ly9pdmktY29udHJvbGxlci5zby8iIHRhcmdldD0iX2JsYW5rIj5pdmktY29udHJv
-bGxlci5zby88L2E+JyAke0R9JHtXRVNUT05fSU5JX0NPTkZJR30vd2VzdG9uLmluaTxicj4NCiYj
-NDM7ICZuYnNwOyBzZWQgLWkgLWUgJ3N8XEBsaWJleGVjZGlyXEB8JHtsaWJleGVjZGlyfXwnICR7
-RH0ke1dFU1RPTl9JTklfQ09ORklHfS93ZXN0b24uaW5pPGJyPg0KJiM0MzsgJm5ic3A7IHNlZCAt
-aSAtZSAnc3xcQGFic190b3BfYnVpbGRkaXJcQFwvZGF0YXwke2RhdGFkaXJ9XC93ZXN0b258JyAk
-e0R9JHtXRVNUT05fSU5JX0NPTkZJR30vd2VzdG9uLmluaTxicj4NCiYjNDM7ICZuYnNwOyBzZWQg
-LWkgLWUgJ3N8XEBhYnNfdG9wX2J1aWxkZGlyXEBcL2NsaWVudHN8JHtiaW5kaXJ9fCcgJHtEfSR7
-V0VTVE9OX0lOSV9DT05GSUd9L3dlc3Rvbi5pbmk8YnI+DQomIzQzO308YnI+DQomIzQzOzxicj4N
-CiYjNDM7UEFDS0FHRVMgJiM0Mzs9ICZxdW90OyR7UE59LWluaSZxdW90Ozxicj4NCiYjNDM7PGJy
-Pg0KJiM0MztGSUxFU18ke1BOfS1pbmkgPSAmcXVvdDske3N5c2NvbmZkaXJ9L3hkZyZxdW90Ozxi
-cj4NCjxzcGFuIGNsYXNzPSJIT0VuWmIiPjxmb250IGNvbG9yPSIjODg4ODg4Ij4tLTxicj4NCjEu
-OC40PGJyPg0KPGJyPg0KPC9mb250Pjwvc3Bhbj48L2Jsb2NrcXVvdGU+DQo8L2Rpdj4NCjxicj4N
-CjxiciBjbGVhcj0iYWxsIj4NCjxicj4NCi0tIDxicj4NCuC0uOC1geC0nOC0v+C0pOC1jSDgtLng
-tLDgtL/gtKbgtL7gtLjgtKjgtY08YnI+DQpCYW5nYWxvcmU8YnI+DQombHQ7UHJvamVjdCZndDtD
-b250cmlidXRvciB0byBLREUgcHJvamVjdDxicj4NCjxhIGhyZWY9Imh0dHA6Ly9mY2kud2lraWEu
-Y29tL3dpa2kvQW50aS1EUk0tQ2FtcGFpZ24iIHRhcmdldD0iX2JsYW5rIj5odHRwOi8vZmNpLndp
-a2lhLmNvbS93aWtpL0FudGktRFJNLUNhbXBhaWduPC9hPjxicj4NCiZsdDtCbG9nJmd0OyA8YSBo
-cmVmPSJodHRwOi8vc3VqaXRoaC5pbmZvIiB0YXJnZXQ9Il9ibGFuayI+aHR0cDovL3N1aml0aGgu
-aW5mbzwvYT48YnI+DQo8L2Rpdj4NCjwvZGl2Pg0KPC9kaXY+DQo8L2Rpdj4NCjwvZGl2Pg0KPC9k
-aXY+DQo8L2Rpdj4NCjwvZGl2Pg0KPC9zcGFuPg0KPC9ib2R5Pg0KPC9odG1sPg0K
+<div dir=3D"ltr"><div><div><div><div><div>Hello,<br></div>In the poky/docum=
+entation folder I execute the following:<br>#!/bin/bash<br>make DOC=3Dadt-m=
+anual=C2=A0 <br>make DOC=3Dkernel-dev=C2=A0=C2=A0=C2=A0=C2=A0 <br>make DOC=
+=3Dmega-manual<br>make DOC=3Dbsp-guide=C2=A0=C2=A0 <br>
+make DOC=3Dkernel-manual=C2=A0 <br>make DOC=3Dref-manual=C2=A0 <br>make DOC=
+=3Dyocto-project-qs<br>make DOC=3Ddev-manual=C2=A0 <br>make DOC=3Dprofile-m=
+anual=C2=A0 <br>find . -name *.pdf<br></div>This generates my documentation=
+ for yocto .<br></div>What you need is the adt-manual. see Chapter 4. Using=
+ the Command<br>
+Line.<br></div>You also need to build SDK with bitbake.=C2=A0 Then a script=
+ in images/sdk=C2=A0 which you installs in /opt/poky/1.xxxx<br></div>Hope t=
+his helps.=C2=A0 I also am using a zedboard.=C2=A0 I recently got sound, 2 =
+C920 cameras, openCV, gnuplot, gsl, vlc, and gnuradio working with meta-top=
+ic instead of meta-xilinx thanks to Mike Looijmans on the meta-xilinx maili=
+ng list.<br>
+<br></div>
 
---_000_CF7ECEC62FD5Fbilliealsupericssoncom_--
+--001a11c152e843863604f7c8f61c--
