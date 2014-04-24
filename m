@@ -1,28 +1,33 @@
-Return-Path: <vidal.develone@gmail.com>
-Received: from mail-qg0-f51.google.com (mail-qg0-f51.google.com
-	[209.85.192.51])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D691FE006EC
-	for <yocto@yoctoproject.org>; Thu, 24 Apr 2014 05:26:45 -0700 (PDT)
-Received: by mail-qg0-f51.google.com with SMTP id f51so2422288qge.10
-	for <yocto@yoctoproject.org>; Thu, 24 Apr 2014 05:26:44 -0700 (PDT)
+Return-Path: <sujith.h@gmail.com>
+Received: from mail-ee0-f47.google.com (mail-ee0-f47.google.com [74.125.83.47])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EA809E006EC
+	for <yocto@yoctoproject.org>; Thu, 24 Apr 2014 05:39:06 -0700 (PDT)
+Received: by mail-ee0-f47.google.com with SMTP id b15so1819942eek.20
+	for <yocto@yoctoproject.org>; Thu, 24 Apr 2014 05:39:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=x+xPFM3sa8ZiMvEv9fJoQ+CcslOI3K+KO8vRYQ6Guvk=;
-	b=E1uxnONbjBob/yLKkF0j52cPYHQ3l5MWZkvDCyh9UyKED+C5s/StmcwvT31n6TXK6s
-	qwxTOmWN401FroNGjTRKg2eBGCG5s5AXSQK5tyGZd0jJ12WOdPJL4eDAIMUgm5xd32TS
-	bJVYlcFgctq+qpcRo8SLgoYF40E333x7hvyQwsp7RRIppd06sNTpuNLeUCpF2vrqJ3g2
-	E8jItb8W97C2JEz+YfPzNZdwOf+ZjndlCmProKEfvfDfDarlIJj5yazYFf+0oX5LmZSP
-	w9sj/5dxLethL3gh9rzTic+rkqLnaWm8T9iWi/y3ioZCLya/BRpSckRcecm4kxt/q/dB
-	4s0Q==
-MIME-Version: 1.0
-X-Received: by 10.140.41.49 with SMTP id y46mr1960674qgy.104.1398342403968;
-	Thu, 24 Apr 2014 05:26:43 -0700 (PDT)
-Received: by 10.140.109.246 with HTTP; Thu, 24 Apr 2014 05:26:43 -0700 (PDT)
-Date: Thu, 24 Apr 2014 06:26:43 -0600
-Message-ID: <CANwz6nwr9=W=63L45Z-8GsW200pO5qKOTgE3E_jQA_-FY3TNww@mail.gmail.com>
-From: Edward Vidal <vidal.develone@gmail.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: How to run c++ programs?
+	h=from:to:cc:subject:date:message-id;
+	bh=GoRtC6xxk3+LWN/qT56iLTIkkkEXpVA/glu2UMv2FaU=;
+	b=G96YrZmnCjnS9xZHlgg/V76r0WiskYnh0fwrGNC/zPfOnV2IObF88H4r9xfEm2uZjo
+	zPGpY33FRqkZU0P2NpAVWiy3WLS7XrG8UOLFmgV6z+SqTCHqLvPgrDq/dG9MpEhLgCUD
+	CQWpqMBlm4kbj7JBX7uGCIErQn2++utBdXlwaRXyaFb7xnq1qHi9LUyNJx9uw+KGo9DC
+	L3fmI14CPWTOv7fK1H+5L1zAbn2szs+qdVnqS292v+45xhcJU6cVgRXHhJyg4/od+vYg
+	L3RoB1nliXjtVjLzVvrV/40FOxZ61IDySJjSxXqyiFswmWwhatLwh++QnhFE7VYsBcsF
+	rzDg==
+X-Received: by 10.15.82.132 with SMTP id a4mr2069082eez.47.1398343144655;
+	Thu, 24 Apr 2014 05:39:04 -0700 (PDT)
+Received: from linux-z8xt.inp.mentorg.com ([139.181.35.34])
+	by mx.google.com with ESMTPSA id
+	h47sm15462066eey.13.2014.04.24.05.39.01 for <multiple recipients>
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Thu, 24 Apr 2014 05:39:03 -0700 (PDT)
+From: Sujith H <sujith.h@gmail.com>
+To: holger.behrens@windriver.com,
+	florin.sarbu@windriver.com
+Date: Thu, 24 Apr 2014 18:09:20 +0530
+Message-Id: <1398343160-4516-1-git-send-email-sujith.h@gmail.com>
+X-Mailer: git-send-email 1.8.4
+Cc: yocto@yoctoproject.org, Sujith H <Sujith_Haridasan@mentor.com>
+Subject: [meta-ivi][PATCH] weston: Add weston.ini config file
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,54 +39,40 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 24 Apr 2014 12:26:46 -0000
-Content-Type: multipart/alternative; boundary=001a11c152e843863604f7c8f61c
+X-List-Received-Date: Thu, 24 Apr 2014 12:39:08 -0000
 
---001a11c152e843863604f7c8f61c
-Content-Type: text/plain; charset=UTF-8
+Adding weston.ini to /etc/xdg. With this change
+user can login and launch weston with ivi-shell.
 
-Hello,
-In the poky/documentation folder I execute the following:
-#!/bin/bash
-make DOC=adt-manual
-make DOC=kernel-dev
-make DOC=mega-manual
-make DOC=bsp-guide
-make DOC=kernel-manual
-make DOC=ref-manual
-make DOC=yocto-project-qs
-make DOC=dev-manual
-make DOC=profile-manual
-find . -name *.pdf
-This generates my documentation for yocto .
-What you need is the adt-manual. see Chapter 4. Using the Command
-Line.
-You also need to build SDK with bitbake.  Then a script in images/sdk
-which you installs in /opt/poky/1.xxxx
-Hope this helps.  I also am using a zedboard.  I recently got sound, 2 C920
-cameras, openCV, gnuplot, gsl, vlc, and gnuradio working with meta-topic
-instead of meta-xilinx thanks to Mike Looijmans on the meta-xilinx mailing
-list.
+Signed-off-by: Sujith H <Sujith_Haridasan@mentor.com>
+---
+ recipes-graphics/wayland/weston_1.4.0.bbappend | 15 +++++++++++++++
+ 1 file changed, 15 insertions(+)
 
---001a11c152e843863604f7c8f61c
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+diff --git a/recipes-graphics/wayland/weston_1.4.0.bbappend b/recipes-graphics/wayland/weston_1.4.0.bbappend
+index 7a8ba6f..1bcb327 100644
+--- a/recipes-graphics/wayland/weston_1.4.0.bbappend
++++ b/recipes-graphics/wayland/weston_1.4.0.bbappend
+@@ -12,3 +12,18 @@ PR = "r1"
+ 
+ FILES_${PN} += "${libdir}/weston/*"
+ FILES_${PN}-dbg += "${libdir}/weston/.debug/*"
++
++do_install_append() {
++   WESTON_INI_CONFIG=${sysconfdir}/xdg/weston
++   install -d ${D}${WESTON_INI_CONFIG}
++   install -m 0644 ${S}/ivi-shell/weston.ini.in ${D}${WESTON_INI_CONFIG}/weston.ini
++   sed -i -e 's/hmi-controller.so/hmi-controller.so,ivi-controller.so/' \
++          -e 's|\@libexecdir\@|${libexecdir}|' \
++          -e 's|\@abs_top_builddir\@\/data|${datadir}\/weston|' \
++          -e 's|\@abs_top_builddir\@\/clients|${bindir}|' ${D}${WESTON_INI_CONFIG}/weston.ini
++
++}
++
++PACKAGES += "${PN}-ini"
++
++FILES_${PN}-ini = "${sysconfdir}/xdg"
+-- 
+1.8.4
 
-<div dir=3D"ltr"><div><div><div><div><div>Hello,<br></div>In the poky/docum=
-entation folder I execute the following:<br>#!/bin/bash<br>make DOC=3Dadt-m=
-anual=C2=A0 <br>make DOC=3Dkernel-dev=C2=A0=C2=A0=C2=A0=C2=A0 <br>make DOC=
-=3Dmega-manual<br>make DOC=3Dbsp-guide=C2=A0=C2=A0 <br>
-make DOC=3Dkernel-manual=C2=A0 <br>make DOC=3Dref-manual=C2=A0 <br>make DOC=
-=3Dyocto-project-qs<br>make DOC=3Ddev-manual=C2=A0 <br>make DOC=3Dprofile-m=
-anual=C2=A0 <br>find . -name *.pdf<br></div>This generates my documentation=
- for yocto .<br></div>What you need is the adt-manual. see Chapter 4. Using=
- the Command<br>
-Line.<br></div>You also need to build SDK with bitbake.=C2=A0 Then a script=
- in images/sdk=C2=A0 which you installs in /opt/poky/1.xxxx<br></div>Hope t=
-his helps.=C2=A0 I also am using a zedboard.=C2=A0 I recently got sound, 2 =
-C920 cameras, openCV, gnuplot, gsl, vlc, and gnuradio working with meta-top=
-ic instead of meta-xilinx thanks to Mike Looijmans on the meta-xilinx maili=
-ng list.<br>
-<br></div>
 
---001a11c152e843863604f7c8f61c--
