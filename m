@@ -1,37 +1,32 @@
-Return-Path: <rohit2.jindal@aricent.com>
-Received: from jaguar.aricent.com (jaguar.aricent.com [180.151.2.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 41D53E00B6E
-	for <yocto@yoctoproject.org>; Thu, 24 Apr 2014 08:28:14 -0700 (PDT)
-Received: from jaguar.aricent.com (localhost [127.0.0.1])
-	by postfix.imss71 (Postfix) with ESMTP id 23C7336B33;
-	Thu, 24 Apr 2014 20:57:51 +0530 (IST)
-Received: from GURCASV01.AD.ARICENT.COM (unknown [10.203.26.91])
-	(using TLSv1 with cipher RC4-SHA (128/128 bits))
-	(No client certificate requested)
-	by jaguar.aricent.com (Postfix) with ESMTP id 150BC36B32;
-	Thu, 24 Apr 2014 20:57:50 +0530 (IST)
-Received: from GURMBXV03.AD.ARICENT.COM (10.203.26.98) by
-	GURMBXV03.AD.ARICENT.COM (10.203.26.98) with Microsoft SMTP Server
-	(TLS) id 15.0.775.38; Thu, 24 Apr 2014 20:57:50 +0530
-Received: from GURMBXV03.AD.ARICENT.COM ([fe80::3d22:6544:3caf:514]) by
-	GURMBXV03.AD.ARICENT.COM ([fe80::3d22:6544:3caf:514%15]) with mapi id
-	15.00.0775.031; Thu, 24 Apr 2014 20:57:50 +0530
-From: Rohit2 Jindal <rohit2.jindal@aricent.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>, Paul Eggleton
-	<paul.eggleton@linux.intel.com>, Khem Raj <raj.khem@gmail.com>
-Thread-Topic: patching issue
-Thread-Index: AQHPX9HAHFl90/naf0ON+89DB3i5/g==
-Date: Thu, 24 Apr 2014 15:27:49 +0000
-Message-ID: <27e070ca16304830944c61965e3a919e@GURMBXV03.AD.ARICENT.COM>
-References: <mailman.16937.1398342313.26702.yocto@yoctoproject.org>
-In-Reply-To: <mailman.16937.1398342313.26702.yocto@yoctoproject.org>
+Return-Path: <vmartin@avaya.com>
+Received: from co300216-co-outbound.net.avaya.com
+	(co300216-co-outbound.net.avaya.com [198.152.13.100])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 14201E00B6E
+	for <yocto@yoctoproject.org>; Thu, 24 Apr 2014 08:57:17 -0700 (PDT)
+X-IronPort-Anti-Spam-Filtered: true
+X-IronPort-Anti-Spam-Result: AgUFAKwzWVPGmAcV/2dsb2JhbABZgkIjIU9XxDWBHBZ0gicBAQMSG14BDAkVViYBBBsaiB8BmSOEWa1QF44ng1yBFQSfeItTgzGCKw
+X-IronPort-AV: E=Sophos;i="4.97,919,1389762000"; d="scan'208,217";a="59465356"
+Received: from unknown (HELO co300216-co-erhwest-exch.avaya.com)
+	([198.152.7.21]) by co300216-co-outbound.net.avaya.com with ESMTP;
+	24 Apr 2014 11:57:16 -0400
+Received: from unknown (HELO AZ-US1EXHC02.global.avaya.com) ([135.11.85.13])
+	by co300216-co-erhwest-out.avaya.com with ESMTP/TLS/AES128-SHA;
+	24 Apr 2014 11:41:42 -0400
+Received: from AZ-US1EXMB03.global.avaya.com ([fe80::a5d3:ad50:5be9:1922]) by
+	AZ-US1EXHC02.global.avaya.com ([::1]) with mapi id 14.03.0174.001;
+	Thu, 24 Apr 2014 11:57:15 -0400
+From: "Vuille, Martin (Martin)" <vmartin@avaya.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: Exporting kernel header from patch
+Thread-Index: Ac9f1VoEjF/wfPWZSACSxkzGYHPoeA==
+Date: Thu, 24 Apr 2014 15:57:15 +0000
+Message-ID: <30C2D590D16A5C46ADFE65219103779820B77A65@AZ-US1EXMB03.global.avaya.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-x-originating-ip: [10.203.143.37]
+x-originating-ip: [135.11.85.49]
 MIME-Version: 1.0
-X-TM-AS-MML: No
-Subject: patching issue
+Subject: Exporting kernel header from patch
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,63 +38,125 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 24 Apr 2014 15:28:15 -0000
+X-List-Received-Date: Thu, 24 Apr 2014 15:57:20 -0000
 Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_30C2D590D16A5C46ADFE65219103779820B77A65AZUS1EXMB03glob_"
+
+--_000_30C2D590D16A5C46ADFE65219103779820B77A65AZUS1EXMB03glob_
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-Hi,
+I have a custom layer to add patches to my vendor's BSP layer
+(based on Linux 3.4, if it matters) and a .bbappend to list the
+patches.
 
-I have scenario like the following:
+One of the patches adds a header, and this header needs to
+be exported to the sysroot.
 
-SRC_URI =3D "\
-     http://ftp.gnu.org/gnu/glibc/glibc-ports-2.13.tar.gz;name=3Dports \
-        http://ftp.gnu.org/gnu/glibc/glibc-2.13.tar.gz;name=3Dglibc \
-        file://glibc.patch \
-         file://newlib.patch
-"
-SRC_URI[ports.md5sum] =3D "094e3c9b57da605917a780ab24575187"
-SRC_URI[ports.sha256sum] =3D "41cbdc05bd7b233464d649b59b34405e5bf3998522640=
-b9f98f2c4eb91e87322"
-SRC_URI[glibc.md5sum] =3D "fafabe01cb9748acb0a11a6879ebaa7e"
-SRC_URI[glibc.sha256sum] =3D "bd90d6119bcc2898befd6e1bbb2cb1ed3bb1c2997d5ea=
-a6fdbca4ee16191a906"
+I added the following to my .bbappend, based on a discussion
+I found:
 
-LIC_FILES_CHKSUM =3D "file://LICENSES;md5=3D98a1128c4b58120182cbea3b1752d8b=
-9"
+do_install_append() {
+    install -d ${D}${includedir}/linux
+    install -m 644 ${S}/include/linux/uc1698u.h ${D}${includedir}/linux/uc1=
+698u.h
+}
 
-#newlib source fetching
-SRC_URI[newlib.md5sum] =3D "e5488f545c46287d360e68a801d470e8"
-SRC_URI[newlib.sha256sum] =3D "c644b2847244278c57bec2ddda69d8fab5a7c767f3b9=
-af69aa7aa3da823ff692"
+It "works" (i.e., the header is installed in the sysroot) but there must
+be more to it than that because I also get a warning about the header
+being "installed but not shipped in any package".
 
-SRC_URI_newlib =3D "\
-        http://sourceforge.net/projects/devkitpro/files/sources/newlib/newl=
-ib-1.20.0.tar.gz;name=3Dnewlib"
+What's the correct way to do this?
 
-I have two patches and two different source as shown with fetching controll=
-ed using SRC_URI_newlib and SRC_URI and I want to apply patches conditional=
-ly on SRC_URI and SRC_URI_newlib . But fails to do so.
-Can u help how to apply newlib.patch in SRC_URI_newlib and glibc.patch in S=
-RC_URI.
+MV
 
-If I keep newlib.patch in SRC_URI_newlib it is not considered and ignored.
+--_000_30C2D590D16A5C46ADFE65219103779820B77A65AZUS1EXMB03glob_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-Please help me out
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 14 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri","sans-serif";
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri","sans-serif";}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal">I have a custom layer to add patches to my vendor&#8=
+217;s BSP layer<o:p></o:p></p>
+<p class=3D"MsoNormal">(based on Linux 3.4, if it matters) and a .bbappend =
+to list the<o:p></o:p></p>
+<p class=3D"MsoNormal">patches.<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">One of the patches adds a header, and this header ne=
+eds to<o:p></o:p></p>
+<p class=3D"MsoNormal">be exported to the sysroot.<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">I added the following to my .bbappend, based on a di=
+scussion<o:p></o:p></p>
+<p class=3D"MsoNormal">I found:<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">do_install_append() {<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp; install -d ${D}${includedir}/linu=
+x<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp; install -m 644 ${S}/include/linux=
+/uc1698u.h ${D}${includedir}/linux/uc1698u.h<o:p></o:p></p>
+<p class=3D"MsoNormal">}<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">It &#8220;works&#8221; (i.e., the header is installe=
+d in the sysroot) but there must<o:p></o:p></p>
+<p class=3D"MsoNormal">be more to it than that because I also get a warning=
+ about the header<o:p></o:p></p>
+<p class=3D"MsoNormal">being &#8220;installed but not shipped in any packag=
+e&#8221;.<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">What&#8217;s the correct way to do this?<o:p></o:p><=
+/p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">MV<o:p></o:p></p>
+</div>
+</body>
+</html>
 
-Thanks in advance!!
-
-
-Regards,
-Rohit Jindal
-
-"DISCLAIMER: This message is proprietary to Aricent and is intended solely =
-for the use of the individual to whom it is addressed. It may contain privi=
-leged or confidential information and should not be circulated or used for =
-any purpose other than for what it is intended. If you have received this m=
-essage in error, please notify the originator immediately. If you are not t=
-he intended recipient, you are notified that you are strictly prohibited fr=
-om using, copying, altering, or disclosing the contents of this message. Ar=
-icent accepts no responsibility for loss or damage arising from the use of =
-the information transmitted by this email including damage from virus."
-
+--_000_30C2D590D16A5C46ADFE65219103779820B77A65AZUS1EXMB03glob_--
