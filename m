@@ -1,25 +1,23 @@
-Return-Path: <Wenzong.Fan@windriver.com>
-Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2CBFBE00A1D
-	for <yocto@yoctoproject.org>; Thu, 24 Apr 2014 00:02:59 -0700 (PDT)
-Received: from ALA-HCB.corp.ad.wrs.com (ala-hcb.corp.ad.wrs.com
-	[147.11.189.41])
-	by mail1.windriver.com (8.14.5/8.14.5) with ESMTP id s3O72wsF006067
+Return-Path: <Kai.Kang@windriver.com>
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 985AEE006EC
+	for <yocto@yoctoproject.org>; Thu, 24 Apr 2014 01:34:47 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
+	[147.11.189.40])
+	by mail.windriver.com (8.14.5/8.14.5) with ESMTP id s3O8YkUL006771
 	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL)
-	for <yocto@yoctoproject.org>; Thu, 24 Apr 2014 00:02:58 -0700 (PDT)
-Received: from pek-hostel-vm12.wrs.com (128.224.153.182) by
-	ALA-HCB.corp.ad.wrs.com (147.11.189.41) with Microsoft SMTP Server id
-	14.3.169.1; Thu, 24 Apr 2014 00:02:58 -0700
-From: <wenzong.fan@windriver.com>
-To: <yocto@yoctoproject.org>, <xin.ouyang@windriver.com>,
-	<mark.hatle@windriver.com>
-Date: Thu, 24 Apr 2014 03:02:52 -0400
-Message-ID: <af4069707309ea5d7398ceec2248d1d4b0da5643.1398322678.git.wenzong.fan@windriver.com>
-X-Mailer: git-send-email 1.7.9.5
-In-Reply-To: <cover.1398322678.git.wenzong.fan@windriver.com>
-References: <cover.1398322678.git.wenzong.fan@windriver.com>
+	for <yocto@yoctoproject.org>; Thu, 24 Apr 2014 01:34:46 -0700 (PDT)
+Received: from pek-kkang-d1.wrs.com (128.224.162.231) by
+	ALA-HCA.corp.ad.wrs.com (147.11.189.50) with Microsoft SMTP Server
+	(TLS) id 14.3.169.1; Thu, 24 Apr 2014 01:34:46 -0700
+From: Kai Kang <kai.kang@windriver.com>
+To: <yocto@yoctoproject.org>
+Date: Thu, 24 Apr 2014 16:34:37 +0800
+Message-ID: <1398328477-20192-1-git-send-email-kai.kang@windriver.com>
+X-Mailer: git-send-email 1.9.1
 MIME-Version: 1.0
-Subject: [meta-selinux][PATCH 1/1] refpolicy: add setrans.conf for mcs/mls policy
+X-Originating-IP: [128.224.162.231]
+Subject: [meta-selinux][PATCH] audit: Enable ARM System Call Audit in user space.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -31,138 +29,98 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 24 Apr 2014 07:03:02 -0000
+X-List-Received-Date: Thu, 24 Apr 2014 08:34:50 -0000
 Content-Type: text/plain
 
-From: Wenzong Fan <wenzong.fan@windriver.com>
+From: Han Chao <chan@windriver.com>
 
-Add initial version for setrans.conf:
-- setrans-mls.conf: copied from \
-  policycoreutils/mcstrans/share/examples/default/setrans.conf
-- setrans-mcs.conf: copied from radhat policy.
+Audit System Call needs kernel and user space support.
 
-This fixes below issue:
-  $ chcat -L
-  IOError: No such file or directory: \
-    '/etc/selinux/$POLICY_NAME/setrans.conf'
+In user space it needs system call table for ARM. It also needs a
+configure option --with-armeb for build audit. Audit system call also
+needs enable kernel config CONFIG_AUDITSYSCALL.
 
-Signed-off-by: Wenzong Fan <wenzong.fan@windriver.com>
+Signed-off-by: Han Chao <chan@windriver.com>
+Signed-off-by: Kai Kang <kai.kang@windriver.com>
 ---
- recipes-security/refpolicy/files/setrans-mcs.conf |   17 +++++++
- recipes-security/refpolicy/files/setrans-mls.conf |   52 +++++++++++++++++++++
- recipes-security/refpolicy/refpolicy_common.inc   |    8 ++++
- 3 files changed, 77 insertions(+)
- create mode 100644 recipes-security/refpolicy/files/setrans-mcs.conf
- create mode 100644 recipes-security/refpolicy/files/setrans-mls.conf
+ .../audit/add-system-call-table-for-ARM.patch      | 46 ++++++++++++++++++++++
+ recipes-security/audit/audit_2.3.2.bb              |  2 +
+ 2 files changed, 48 insertions(+)
+ create mode 100644 recipes-security/audit/audit/add-system-call-table-for-ARM.patch
 
-diff --git a/recipes-security/refpolicy/files/setrans-mcs.conf b/recipes-security/refpolicy/files/setrans-mcs.conf
+diff --git a/recipes-security/audit/audit/add-system-call-table-for-ARM.patch b/recipes-security/audit/audit/add-system-call-table-for-ARM.patch
 new file mode 100644
-index 0000000..0ac9c90
+index 0000000..ad94d11
 --- /dev/null
-+++ b/recipes-security/refpolicy/files/setrans-mcs.conf
-@@ -0,0 +1,17 @@
-+#
-+# Multi-Category Security translation table for SELinux
-+# 
-+#
-+# Objects can be categorized with 0-1023 categories defined by the admin.
-+# Objects can be in more than one category at a time.
-+# Categories are stored in the system as c0-c1023.  Users can use this
-+# table to translate the categories into a more meaningful output.
-+# Examples:
-+# s0:c0=CompanyConfidential
-+# s0:c1=PatientRecord
-+# s0:c2=Unclassified
-+# s0:c3=TopSecret
-+# s0:c1,c3=CompanyConfidentialRedHat
-+s0=SystemLow
-+s0-s0:c0.c1023=SystemLow-SystemHigh
-+s0:c0.c1023=SystemHigh
-diff --git a/recipes-security/refpolicy/files/setrans-mls.conf b/recipes-security/refpolicy/files/setrans-mls.conf
-new file mode 100644
-index 0000000..eb181d2
---- /dev/null
-+++ b/recipes-security/refpolicy/files/setrans-mls.conf
-@@ -0,0 +1,52 @@
-+#
-+# Multi-Level Security translation table for SELinux
-+# 
-+# Uncomment the following to disable translation libary
-+# disable=1
-+#
-+# Objects can be labeled with one of 16 levels and be categorized with 0-1023 
-+# categories defined by the admin.
-+# Objects can be in more than one category at a time.
-+# Users can modify this table to translate the MLS labels for different purpose.
-+#
-+# Assumptions: using below MLS labels.
-+#  SystemLow
-+#  SystemHigh
-+#  Unclassified 
-+#  Secret with compartments A and B.
-+# 
-+# SystemLow and SystemHigh
-+s0=SystemLow
-+s15:c0.c1023=SystemHigh
-+s0-s15:c0.c1023=SystemLow-SystemHigh
++++ b/recipes-security/audit/audit/add-system-call-table-for-ARM.patch
+@@ -0,0 +1,46 @@
++From 52ff74be2f01182ed9d4fcc3da059512fad63d72 Mon Sep 17 00:00:00 2001
++From: Han Chao <chan@windriver.com>
++Date: Thu, 27 Feb 2014 14:58:57 +0800
++Subject: [PATCH] add system call table for ARM.
 +
-+# Unclassified level
-+s1=Unclassified
++This change enable audit system call on ARM.
++Add arm System call table on machinetabs.h.
++Audit system call need enable kernel config CONFIG_AUDITSYSCALL.
 +
-+# Secret level with compartments
-+s2=Secret
-+s2:c0=A
-+s2:c1=B
++Signed-off-by: Han Chao <chan@windriver.com>
++---
++ lib/machinetabs.h |   11 ++++++-----
++ 1 file changed, 6 insertions(+), 5 deletions(-)
 +
-+# ranges for Unclassified
-+s0-s1=SystemLow-Unclassified
-+s1-s2=Unclassified-Secret
-+s1-s15:c0.c1023=Unclassified-SystemHigh
++diff --git a/lib/machinetabs.h b/lib/machinetabs.h
++index ec2d033..1c2e284 100644
++--- a/lib/machinetabs.h
+++++ b/lib/machinetabs.h
++@@ -1,10 +1,11 @@
++-/* This is a generated file, see Makefile.am for its inputs. */
++-static const char machine_strings[] = "i386\0i486\0i586\0i686\0ia64\0ppc\0ppc64\0s390\0s390x\0x86_64";
+++/* Such is aways generated file, see Makefile.am for its inputs.
+++ * But this version is not generated file, which is for ARM. */
+++static const char machine_strings[] = "armeb\0armv5tejl\0armv5tel\0armv6l\0armv7l";
++ static const unsigned machine_s2i_s[] = {
++-	0,5,10,15,20,25,29,35,40,46,
+++	0,6,16,25,32,
++ };
++ static const int machine_s2i_i[] = {
++-	0,0,0,0,2,4,3,6,5,1,
+++	8,8,8,8,8,
++ };
++ static int machine_s2i(const char *s, int *value) {
++ 	size_t len, i;
++@@ -19,7 +20,7 @@ static int machine_s2i(const char *s, int *value) {
++ 	}
++ }
++ static const unsigned machine_i2s_direct[] = {
++-	0,46,20,29,25,40,35,
+++    39,85,59,68,64,
++ };
++ static const char *machine_i2s(int v) {
++ 	return i2s_direct__(machine_strings, machine_i2s_direct, 0, 6, v);
++-- 
++1.7.9.5
 +
-+# ranges for Secret with compartments
-+s0-s2=SystemLow-Secret
-+s0-s2:c0=SystemLow-Secret:A
-+s0-s2:c1=SystemLow-Secret:B
-+s0-s2:c0,c1=SystemLow-Secret:AB
-+s1-s2:c0=Unclassified-Secret:A
-+s1-s2:c1=Unclassified-Secret:B
-+s1-s2:c0,c1=Unclassified-Secret:AB
-+s2-s2:c0=Secret-Secret:A
-+s2-s2:c1=Secret-Secret:B
-+s2-s2:c0,c1=Secret-Secret:AB
-+s2-s15:c0.c1023=Secret-SystemHigh
-+s2:c0-s2:c0,c1=Secret:A-Secret:AB
-+s2:c0-s15:c0.c1023=Secret:A-SystemHigh
-+s2:c1-s2:c0,c1=Secret:B-Secret:AB
-+s2:c1-s15:c0.c1023=Secret:B-SystemHigh
-+s2:c0,c1-s15:c0.c1023=Secret:AB-SystemHigh
-diff --git a/recipes-security/refpolicy/refpolicy_common.inc b/recipes-security/refpolicy/refpolicy_common.inc
-index fbf9441..76c3efb 100644
---- a/recipes-security/refpolicy/refpolicy_common.inc
-+++ b/recipes-security/refpolicy/refpolicy_common.inc
-@@ -7,6 +7,8 @@ LIC_FILES_CHKSUM = "file://${S}/COPYING;md5=393a5ca445f6965873eca0259a17f833"
+diff --git a/recipes-security/audit/audit_2.3.2.bb b/recipes-security/audit/audit_2.3.2.bb
+index ae6556f..4baf7a0 100644
+--- a/recipes-security/audit/audit_2.3.2.bb
++++ b/recipes-security/audit/audit_2.3.2.bb
+@@ -18,6 +18,7 @@ SRC_URI = "http://people.redhat.com/sgrubb/audit/audit-${PV}.tar.gz \
+ 	   file://auditd.service \
+ 	   file://audit-volatile.conf \
+ "
++SRC_URI_append_arm = "file://add-system-call-table-for-ARM.patch"
  
- # Specific config files for Poky
- SRC_URI += "file://customizable_types \
-+            file://setrans-mls.conf \
-+            file://setrans-mcs.conf \
- 	   "
+ inherit autotools pythonnative update-rc.d systemd
  
- S = "${WORKDIR}/refpolicy"
-@@ -109,6 +111,12 @@ EOF
- 	cat ${WORKDIR}/customizable_types >> \
- 		${D}${sysconfdir}/selinux/${POLICY_NAME}/contexts/customizable_types
+@@ -41,6 +42,7 @@ EXTRA_OECONF += "--without-prelude \
+ 	--libdir=${base_libdir} \
+ 	--sbindir=${base_sbindir} \
+ 	"
++EXTRA_OECONF_append_arm = " --with-armeb=yes"
  
-+	# install setrans.conf for mls/mcs policy
-+	if [ -f ${WORKDIR}/setrans-${POLICY_TYPE}.conf ]; then
-+		install -m 0644 ${WORKDIR}/setrans-${POLICY_TYPE}.conf \
-+			${D}${sysconfdir}/selinux/${POLICY_NAME}/setrans.conf
-+	fi
-+
- 	# install policy headers
- 	oe_runmake install-headers DESTDIR=${D}
- 
+ EXTRA_OEMAKE += "PYLIBVER='python${PYTHON_BASEVERSION}' \
+ 	PYINC='${STAGING_INCDIR}/$(PYLIBVER)' \
 -- 
-1.7.9.5
+1.8.4
 
 
