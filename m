@@ -1,17 +1,17 @@
 Return-Path: <packages@packages.i.yoctoproject.org>
 Received: from packages.i.yoctoproject.org (packages.i.yoctoproject.org
 	[10.0.10.47])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 40EE9E00BAA
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7E504E00BAA
 	for <yocto@yoctoproject.org>; Sun, 27 Apr 2014 19:01:33 -0700 (PDT)
 Received: by packages.i.yoctoproject.org (Postfix, from userid 802)
-	id 3A02EA4048; Mon, 28 Apr 2014 02:01:33 +0000 (UTC)
+	id 7C9B5A4048; Mon, 28 Apr 2014 02:01:33 +0000 (UTC)
 Date: Mon, 28 Apr 2014 02:01:33 +0000
 From: "package-report@yoctoproject.org" <packages@packages.i.yoctoproject.org>
 To: yocto@yoctoproject.org
-Message-ID: <20140428020132.GA17937@packages.i.yoctoproject.org>
+Message-ID: <20140428020133.GA17952@packages.i.yoctoproject.org>
 MIME-Version: 1.0
 User-Agent: Mutt/1.5.21 (2010-09-15)
-Subject: [Package Report System]Upgrade recipes name list
+Subject: [Package Report System]Manual check recipes name list
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -24,134 +24,567 @@ List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
 X-List-Received-Date: Mon, 28 Apr 2014 02:01:33 -0000
-X-Groupsio-MsgNum: 19220
-Content-Type: multipart/mixed; boundary="UugvWAfsgieZRqgk"
-Content-Disposition: inline
-
---UugvWAfsgieZRqgk
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 
 This mail was sent out by Package Report System.
-This message list those recipes which need to be upgraded. If maintainers believe some of them needn't to upgrade this time, they can fill in RECIPE_NO_UPDATE_REASON_pn-"xxx" in upstream_tracking files to ignore this recipe remainder until newer upstream version was detected.
-Example:
-RECIPE_NO_UPDATE_REASON_pn-"xxx" = "Not upgrade to 2.0 because the new version is unstable"
-You can check the detail information at http://packages.yoctoproject.org/upgradepkgname
+It will list all the recipes which can't check upstream version by script, and will show how long it is since their last mannual version check.
+You can check the detail information at http://packages.yoctoproject.org/manuallychkinfo
 
 
-PackageName                   Version                       UpVersion                     Maintainer                                        NoUpgradeReason               
-puzzles                       r10116                        N/A                           Valentin Popa <valentin.popa@intel.com>           
-matchbox-panel-2              2.0+gitAUTOINC+26a3a67b41     2.0+gitAUTOINC+1a7304d        Valentin Popa <valentin.popa@intel.com>           
-matchbox-desktop              2.0+gitAUTOINC+71e3e6e042     2.0+gitAUTOINC+09170f4        Valentin Popa <valentin.popa@intel.com>           
-matchbox-keyboard             0.0+gitAUTOINC+217f1bfe14     0.0+gitAUTOINC+0899b02        Valentin Popa <valentin.popa@intel.com>           
-blktrace                      1.0.5+gitAUTOINC+d6918c8      1.0.5+gitAUTOINC+ce9ded7      Tom Zanussi <tom.zanussi@intel.com>               
-systemtap-uprobes             2.5+gitAUTOINC+ae91e3d552     2.5+gitAUTOINC+3d0ad80        Tom Zanussi <tom.zanussi@intel.com>               
-sysprof                       1.2.0+gitAUTOINC+cd44ee6      1.2.0+gitAUTOINC+6901897      Tom Zanussi <tom.zanussi@intel.com>               
-mkelfimage                    4.0+gitAUTOINC+686a48a339     4.0+gitAUTOINC+cf7b498        Saul Wold <sgw@linux.intel.com>                   
-oprofileui-server             0.0+gitAUTOINC+f168b8bfdc     0.0+gitAUTOINC+389e187        Saul Wold <sgw@linux.intel.com>                   PRS Reports Incorrectly       
-mx-1.0                        1.4.7+gitAUTOINC+9b1db6b      1.99.4+gitAUTOINC+63da1f2     Saul Wold <sgw@linux.intel.com>                   PRS 1.99 is dev version       
-x264                          r2265+gitAUTOINC+585324f      r2265+gitAUTOINC+ac76440      Paul Eggleton <paul.eggleton@linux.intel.com>     
-lz4                           r112                          N/A                           No Maintainer info                                
-gummiboot                     43+gitAUTOINC+4062c51075      44+gitAUTOINC+ac4a587         No Maintainer info                                
-piglit                        1.0+gitrAUTOINC+bbeff5d2      1.0+gitrAUTOINC+6cb822d       No Maintainer info                                
-unfs3                         0.9.22.r490                   N/A                           No Maintainer info                                
-xf86-video-omap               0.4.2+gitrAUTOINC+ae0394      0.4.3+gitrAUTOINC+d48d09c     Laurentiu Palcu <laurentiu.palcu@intel.com>       
-tcf-agent                     0.4.0+gitAUTOINC+4ef94ec      8.0+gitAUTOINC+addb230        Laurentiu Palcu <laurentiu.palcu@intel.com>       
-btrfs-tools                   3.12+gitAUTOINC+8cae1840      3.14.1+gitAUTOINC+f2d42b7     Laurentiu Palcu <laurentiu.palcu@intel.com>       
-xinput-calibrator             0.7.5+gitAUTOINC+c01c5af      0.7.5+gitAUTOINC+03dadf5      Laurentiu Palcu <laurentiu.palcu@intel.com>       
-oprofileui                    0.0+gitAUTOINC+f168b8bfdc     0.0+gitAUTOINC+389e187        Laurentiu Palcu <laurentiu.palcu@intel.com>       
-trace-cmd                     1.2+gitAUTOINC+7055ffd37b     2.3.2+gitAUTOINC+8435f51      Darren Hart <dvhart@linux.intel.com>              
-kernelshark                   1.2+gitAUTOINC+7055ffd37b     2.3.2+gitAUTOINC+8435f51      Darren Hart <dvhart@linux.intel.com>              0.2 is the latest version.    
-mtd-utils                     1.5.1+gitAUTOINC+9f10713      1.5.1+gitAUTOINC+5923077      Cristiana Voicu <cristiana.voicu@intel.com>       
-u-boot-mkimage                v2013.07+gitAUTOINC+62c1      v2013.07+gitAUTOINC+8854      Cristiana Voicu <cristiana.voicu@intel.com>       
-kmod                          17+gitAUTOINC+49d8e0b590      17+gitAUTOINC+f5cdd57         Cristiana Voicu <cristiana.voicu@intel.com>       
-ubootchart                    0.0+r12                       N/A                           Cristiana Voicu <cristiana.voicu@intel.com>       
-systemtap                     2.5+gitAUTOINC+ae91e3d552     2.5+gitAUTOINC+3d0ad80        Cristiana Voicu <cristiana.voicu@intel.com>       
-babeltrace                    1.1.1+gitAUTOINC+a386e24      1.2.1+gitAUTOINC+62f11f7      Cristiana Voicu <cristiana.voicu@intel.com>       
-mobile-broadband-provider-info20120614+gitrAUTOINC+4ed      20120614+gitrAUTOINC+35d      Cristiana Voicu <cristiana.voicu@intel.com>       
-tremor                        20120314                      N/A                           Cristian Iorga <cristian.iorga@intel.com>         Same revision on different SV...
-linux-firmware                0.0+gitAUTOINC+600caefd83     0.0+gitAUTOINC+dec41bc        Cristian Iorga <cristian.iorga@intel.com>         
-kern-tools-native             0.2+gitAUTOINC+a42509b01c     0.2+gitAUTOINC+a212a4a        Bruce Ashfield <bruce.ashfield@windriver.com>     
-Upgradable Count: 28
-Upgrade Total Count: 32
-The based commit merge time is:
-Sun Apr 27 01:27:55 2014 +0100
-The based commit is:
-commit a688c9cbab43179a92c8115cae5095817cafc0ea
-Author: Jacob Kroon <jacob.kroon@mikrodidakt.se>
-Date:   Sat Apr 26 17:05:30 2014 +0200
+PackageName              Version             LastChkVersion      LastChkTime              Maintainer                              NoUpgradeReason               
+ccache                   3.1.9               N/A                 41755 d                  Wenzong Fan <wenzong.fan@wind...        No data                       
+chkconfig                1.3.58              N/A                 41755 d                  Wenzong Fan <wenzong.fan@wind...        No data                       
+gettext                  0.18.3.2            N/A                 41755 d                  Wenzong Fan <wenzong.fan@wind...        No data                       
+gnome-common             3.7.4               N/A                 41755 d                  Valentin Popa <valentin.popa@...        No data                       
+puzzles                  r10116              N/A                 41755 d                  Valentin Popa <valentin.popa@...        No data                       
+gtk+                     2.24.22             N/A                 41755 d                  Valentin Popa <valentin.popa@...        Do not upgrade to version: 2.9...
+gnutls                   2.12.23             N/A                 41755 d                  Valentin Popa <valentin.popa@...        No data                       
+libxscrnsaver            1.2.2               N/A                 41755 d                  Valentin Popa <valentin.popa@...        No data                       
+gtk+3                    3.10.7              N/A                 41755 d                  Valentin Popa <valentin.popa@...        No data                       
+resourceproto            1.2.0               N/A                 41755 d                  Valentin Popa <valentin.popa@...        No data                       
+libpam                   1.1.6               N/A                 41755 d                  Valentin Popa <valentin.popa@...        No data                       
+libxsettings-client      0.10                N/A                 41755 d                  Valentin Popa <valentin.popa@...        No data                       
+libtasn1                 3.4                 N/A                 41755 d                  Valentin Popa <valentin.popa@...        No data                       
+libxvmc                  1.0.8               N/A                 41755 d                  Valentin Popa <valentin.popa@...        No data                       
+gsettings-desktop-sc...  3.10.1              N/A                 41755 d                  Valentin Popa <valentin.popa@...        No data                       
+videoproto               2.3.2               N/A                 41755 d                  Valentin Popa <valentin.popa@...        No data                       
+gtk-engines              2.20.2              2.91.1              419 day                  Valentin Popa <valentin.popa@...        2.91.1 is a 3.0 beta release  
+gperf                    3.0.4               N/A                 41755 d                  Valentin Popa <valentin.popa@...        No data                       
+libx11                   1.6.2               N/A                 41755 d                  Valentin Popa <valentin.popa@...        No data                       
+pciutils                 3.2.1               N/A                 41755 d                  Valentin Popa <valentin.popa@...        No data                       
+libsoup-2.4              2.45.3              N/A                 41755 d                  Valentin Popa <valentin.popa@...        No data                       
+gnome-mime-data          2.18.0              N/A                 41755 d                  Valentin Popa <valentin.popa@...        No data                       
+ttf-bitstream-vera       1.10                N/A                 41755 d                  Valentin Popa <valentin.popa@...        No data                       
+leafpad                  0.8.18.1            N/A                 41755 d                  Valentin Popa <valentin.popa@...        No data                       
+mesa                     9.2.5               N/A                 41755 d                  Valentin Popa <valentin.popa@...        No data                       
+lighttpd                 1.4.33              N/A                 41755 d                  Valentin Popa <valentin.popa@...        No data                       
+libxv                    1.0.10              N/A                 41755 d                  Valentin Popa <valentin.popa@...        No data                       
+gtk-update-icon-cach...  3.4.4               N/A                 41755 d                  Valentin Popa <valentin.popa@...        No data                       
+hicolor-icon-theme       0.12                N/A                 41755 d                  Valentin Popa <valentin.popa@...        No data                       
+libcroco                 0.6.8               N/A                 41755 d                  Valentin Popa <valentin.popa@...        No data                       
+matchbox-theme-sato      0.1                 N/A                 41755 d                  Valentin Popa <valentin.popa@...        No data                       
+gnome-icon-theme         2.31.0              3.7.4               419 day                  Valentin Popa <valentin.popa@...        waiting for the sato gtk3 port
+liberation-fonts         1.04                N/A                 41755 d                  Valentin Popa <valentin.popa@...        2.00.0 - fontforge package req...
+libpng                   1.6.10              1.6.6               208 day                  Valentin Popa <valentin.popa@...        No data                       
+screen                   4.0.3               N/A                 41755 d                  Valentin Popa <valentin.popa@...        No data                       
+xdg-utils                1.1.0-rc1           N/A                 41755 d                  Valentin Popa <valentin.popa@...        only release candidates availa...
+libpng12                 1.2.50              1.2.50              208 day                  Valentin Popa <valentin.popa@...        No data                       
+pcmanfm                  1.1.2               N/A                 41755 d                  Valentin Popa <valentin.popa@...        No data                       
+webkit-gtk               1.8.3               1.10.2              419 day                  Valentin Popa <valentin.popa@...        >= 1.10.2 needs ruby          
+gnome-doc-utils          0.20.10             N/A                 41755 d                  Valentin Popa <valentin.popa@...        No data                       
+randrproto               1.4.0               N/A                 41755 d                  Valentin Popa <valentin.popa@...        No data                       
+libglade                 2.6.4               N/A                 41755 d                  Valentin Popa <valentin.popa@...        No data                       
+shared-mime-info         1.2                 N/A                 41755 d                  Valentin Popa <valentin.popa@...        No data                       
+gnome-desktop            2.32.1              3.7.90              419 day                  Valentin Popa <valentin.popa@...        waiting for the sato gtk3 port
+renderproto              0.11.1              N/A                 41755 d                  Valentin Popa <valentin.popa@...        No data                       
+icu                      51.2                4.8.1.1             607 day                  Valentin Popa <valentin.popa@...        No data                       
+pcmciautils              018                 N/A                 41755 d                  Valentin Popa <valentin.popa@...        No data                       
+menu-cache               0.4.1               N/A                 41755 d                  Valentin Popa <valentin.popa@...        No data                       
+libfm                    1.1.2.2             N/A                 41755 d                  Valentin Popa <valentin.popa@...        No data                       
+sato-icon-theme          0.4.1               N/A                 41755 d                  Valentin Popa <valentin.popa@...        No data                       
+pth                      2.0.7               N/A                 41755 d                  Saul Wold <sgw@linux.intel.co...        No data                       
+gdbm                     1.11                N/A                 41755 d                  Saul Wold <sgw@linux.intel.co...        No data                       
+libusb-compat            0.1.5               N/A                 41755 d                  Saul Wold <sgw@linux.intel.co...        No data                       
+npth                     0.91                N/A                 41755 d                  Saul Wold <sgw@linux.intel.co...        No data                       
+sysvinit                 2.88dsf             N/A                 41755 d                  Saul Wold <sgw@linux.intel.co...        No data                       
+util-macros              1.19.0              N/A                 41755 d                  Saul Wold <sgw@linux.intel.co...        No data                       
+boost                    1.55.0              N/A                 41755 d                  Saul Wold <sgw@linux.intel.co...        No data                       
+libpod-plainer-perl      1.03                N/A                 41755 d                  Saul Wold <sgw@linux.intel.co...        No data                       
+lsbinitscripts           9.53                N/A                 41755 d                  Saul Wold <sgw@linux.intel.co...        No data                       
+foomatic-filters         4.0.17              N/A                 41755 d                  Saul Wold <sgw@linux.intel.co...        No data                       
+libusb1                  1.0.9               N/A                 41755 d                  Saul Wold <sgw@linux.intel.co...        No data                       
+libclass-isa-perl        0.36                N/A                 41755 d                  Saul Wold <sgw@linux.intel.co...        No data                       
+mc                       4.8.10              N/A                 41755 d                  Saul Wold <sgw@linux.intel.co...        No data                       
+xcb-util-renderutil      0.3.8               N/A                 41755 d                  Saul Wold <sgw@linux.intel.co...        No data                       
+ossp-uuid                1.6.2               N/A                 41755 d                  Saul Wold <sgw@linux.intel.co...        No data                       
+libcheck                 0.9.12              N/A                 41755 d                  Saul Wold <sgw@linux.intel.co...        No data                       
+mpeg2dec                 0.4.1               N/A                 41755 d                  Saul Wold <sgw@linux.intel.co...        Why are we currently at 0.4.1?
+pigz                     2.3.1               N/A                 41755 d                  Saul Wold <sgw@linux.intel.co...        No data                       
+man                      1.6g                N/A                 41755 d                  Saul Wold <sgw@linux.intel.co...        No data                       
+libfile-checktree-pe...  4.41                N/A                 41755 d                  Saul Wold <sgw@linux.intel.co...        No data                       
+util-linux               2.24.1              N/A                 41755 d                  Saul Wold <sgw@linux.intel.co...        No data                       
+mesa-demos               8.1.0               N/A                 41755 d                  Saul Wold <sgw@linux.intel.co...        No data                       
+consolekit               0.4.6               N/A                 41755 d                  Saul Wold <sgw@linux.intel.co...        No data                       
+tiff                     4.0.3               N/A                 41755 d                  Saul Wold <sgw@linux.intel.co...        No data                       
+glew                     1.10.0              N/A                 41755 d                  Saul Wold <sgw@linux.intel.co...        No data                       
+libidn                   1.28                N/A                 41755 d                  Saul Wold <sgw@linux.intel.co...        No data                       
+nspr                     4.10.3              N/A                 41755 d                  Saul Wold <sgw@linux.intel.co...        No data                       
+psmisc                   22.21               N/A                 41755 d                  Saul Wold <sgw@linux.intel.co...        No data                       
+console-tools            0.3.2               N/A                 41755 d                  Saul Wold <sgw@linux.intel.co...        No data                       
+libi18n-collate-perl...  1.02                N/A                 41755 d                  Saul Wold <sgw@linux.intel.co...        No data                       
+gconf                    3.2.6               N/A                 41755 d                  Saul Wold <sgw@linux.intel.co...        No data                       
+libxml-simple-perl       2.20                N/A                 41755 d                  Saul Wold <sgw@linux.intel.co...        No data                       
+cups                     1.7.2               1.6.2               321 day                  Saul Wold <sgw@linux.intel.co...        No data                       
+pkgconfig                0.28                N/A                 41755 d                  Saul Wold <sgw@linux.intel.co...        removes glib-conf, adds circul...
+kconfig-frontends        3.12.0.0            N/A                 41755 d                  Saul Wold <sgw@linux.intel.co...        PRS Reports Incorrectly       
+dpkg                     1.17.4              N/A                 41755 d                  Saul Wold <sgw@linux.intel.co...        No data                       
+libglu                   9.0.0               N/A                 41755 d                  Saul Wold <sgw@linux.intel.co...        No data                       
+libcap                   2.22                N/A                 41755 d                  Saul Wold <sgw@linux.intel.co...        No data                       
+libaio                   0.3.109             N/A                 41755 d                  Saul Wold <sgw@linux.intel.co...        No data                       
+kbd                      2.0.1               N/A                 41755 d                  Saul Wold <sgw@linux.intel.co...        No data                       
+libdaemon                0.14                N/A                 41755 d                  Saul Wold <sgw@linux.intel.co...        No data                       
+libxml-namespacesupp...  1.11                N/A                 41755 d                  Saul Wold <sgw@linux.intel.co...        No data                       
+libnss-mdns              0.10                N/A                 41755 d                  Saul Wold <sgw@linux.intel.co...        No data                       
+glib-networking          2.38.0              N/A                 41755 d                  Saul Wold <sgw@linux.intel.co...        Pending Glib-2.0 Update       
+help2man-native          1.45.1              N/A                 41755 d                  Saul Wold <sgw@linux.intel.co...        No data                       
+msmtp                    1.4.32              N/A                 41755 d                  Saul Wold <sgw@linux.intel.co...        No data                       
+gnupg                    2.0.22              N/A                 41755 d                  Saul Wold <sgw@linux.intel.co...        No data                       
+vte                      0.28.2              N/A                 41755 d                  Saul Wold <sgw@linux.intel.co...        Pending Glib-2.0 Update       
+libgcrypt                1.5.3               N/A                 41755 d                  Saul Wold <sgw@linux.intel.co...        No data                       
+cross-localedef-nati...  2.19                N/A                 41755 d                  Saul Wold <sgw@linux.intel.co...        No data                       
+libxkbcommon             0.4.1               N/A                 41755 d                  Saul Wold <sgw@linux.intel.co...        No data                       
+libmad                   0.15.1b             N/A                 41755 d                  Saul Wold <sgw@linux.intel.co...        No data                       
+libnl                    3.2.24              N/A                 41755 d                  Saul Wold <sgw@linux.intel.co...        libnl-3.2.2 is incompatible wi...
+resolvconf               1.74                N/A                 41755 d                  Saul Wold <sgw@linux.intel.co...        No data                       
+procps                   3.2.8               N/A                 41755 d                  Saul Wold <sgw@linux.intel.co...        No data                       
+texinfo                  5.2                 N/A                 41755 d                  Saul Wold <sgw@linux.intel.co...        Checking script parses directo...
+libbsd                   0.6.0               N/A                 41755 d                  Saul Wold <sgw@linux.intel.co...        No data                       
+libpthread-stubs         0.3                 N/A                 41755 d                  Saul Wold <sgw@linux.intel.co...        No data                       
+sqlite3                  3080403             3.8.0.2             208 day                  Saul Wold <sgw@linux.intel.co...        No data                       
+dhcp                     4.3.0               N/A                 41755 d                  Saul Wold <sgw@linux.intel.co...        No data                       
+less                     458                 N/A                 41755 d                  Saul Wold <sgw@linux.intel.co...        No data                       
+rgb                      1.0.5               N/A                 41755 d                  Saul Wold <sgw@linux.intel.co...        No data                       
+lzop                     1.03                N/A                 41755 d                  Saul Wold <sgw@linux.intel.co...        No data                       
+desktop-file-utils-n...  0.22                N/A                 41755 d                  Saul Wold <sgw@linux.intel.co...        No data                       
+man-pages                3.64                N/A                 41755 d                  Saul Wold <sgw@linux.intel.co...        No data                       
+tcp-wrappers             7.6                 N/A                 41755 d                  Saul Wold <sgw@linux.intel.co...        No data                       
+texi2html                5.0                 N/A                 41755 d                  Saul Wold <sgw@linux.intel.co...        No data                       
+libcgroup                0.41                N/A                 41755 d                  Saul Wold <sgw@linux.intel.co...        No data                       
+libexif                  0.6.21              N/A                 41755 d                  Saul Wold <sgw@linux.intel.co...        No data                       
+libxml-perl              0.08                N/A                 41755 d                  Saul Wold <sgw@linux.intel.co...        No data                       
+libacpi                  0.2                 N/A                 41755 d                  Saul Wold <sgw@linux.intel.co...        No data                       
+libtheora                1.1.1               N/A                 41755 d                  Saul Wold <sgw@linux.intel.co...        1.1.1 is latest stable release...
+libenv-perl              1.04                N/A                 41755 d                  Saul Wold <sgw@linux.intel.co...        No data                       
+portmap                  6.0                 N/A                 41755 d                  Saul Wold <sgw@linux.intel.co...        No data                       
+libffi                   3.0.13              N/A                 41755 d                  Saul Wold <sgw@linux.intel.co...        No data                       
+libdumpvalue-perl        1.17                N/A                 41755 d                  Saul Wold <sgw@linux.intel.co...        No data                       
+libksba                  1.3.0               N/A                 41755 d                  Saul Wold <sgw@linux.intel.co...        No data                       
+base-passwd              3.5.29              N/A                 41755 d                  Saul Wold <sgw@linux.intel.co...        No data                       
+libice                   1.0.8               N/A                 41755 d                  Ross Burton <ross.burton@inte...        No data                       
+libxfont                 1.4.7               N/A                 41755 d                  Ross Burton <ross.burton@inte...        No data                       
+libxslt                  1.1.28              N/A                 41755 d                  Ross Burton <ross.burton@inte...        No data                       
+libxext                  1.3.2               N/A                 41755 d                  Ross Burton <ross.burton@inte...        No data                       
+vala                     0.16.0              N/A                 41755 d                  Ross Burton <ross.burton@inte...        No data                       
+clutter-1.0              1.16.2              N/A                 41755 d                  Ross Burton <ross.burton@inte...        No data                       
+libxcb                   1.10                N/A                 41755 d                  Ross Burton <ross.burton@inte...        No data                       
+libxrandr                1.4.2               N/A                 41755 d                  Ross Burton <ross.burton@inte...        No data                       
+librsvg                  2.40.1              N/A                 41755 d                  Ross Burton <ross.burton@inte...        No data                       
+clutter-gtk-1.0          1.4.4               N/A                 41755 d                  Ross Burton <ross.burton@inte...        No data                       
+compositeproto           0.4.2               N/A                 41755 d                  Ross Burton <ross.burton@inte...        No data                       
+jpeg                     8d                  9                   419 day                  Ross Burton <ross.burton@inte...        webkit-gtk 1.8.3 doesn't work ...
+gdk-pixbuf               2.30.3              2.27.2              419 day                  Ross Burton <ross.burton@inte...        2.27.2 is unstable            
+pixman                   0.32.4              N/A                 41755 d                  Ross Burton <ross.burton@inte...        No data                       
+damageproto              1.2.1               N/A                 41755 d                  Ross Burton <ross.burton@inte...        No data                       
+libsm                    1.2.2               N/A                 41755 d                  Ross Burton <ross.burton@inte...        No data                       
+encodings                1.0.4               N/A                 41755 d                  Ross Burton <ross.burton@inte...        No data                       
+libxcomposite            0.4.4               N/A                 41755 d                  Ross Burton <ross.burton@inte...        No data                       
+libxft                   2.3.1               N/A                 41755 d                  Ross Burton <ross.burton@inte...        No data                       
+libxfixes                5.0.1               N/A                 41755 d                  Ross Burton <ross.burton@inte...        No data                       
+libxpm                   3.5.11              N/A                 41755 d                  Ross Burton <ross.burton@inte...        No data                       
+libxkbfile               1.0.8               N/A                 41755 d                  Ross Burton <ross.burton@inte...        No data                       
+fixesproto               5.0                 N/A                 41755 d                  Ross Burton <ross.burton@inte...        No data                       
+libxxf86dga              1.1.4               N/A                 41755 d                  Ross Burton <ross.burton@inte...        No data                       
+cogl-1.0                 1.16.2              N/A                 41755 d                  Ross Burton <ross.burton@inte...        No data                       
+freetype                 2.5.2               N/A                 41755 d                  Ross Burton <ross.burton@inte...        No data                       
+libnotify                0.6.0               N/A                 41755 d                  Ross Burton <ross.burton@inte...        No data                       
+midori                   0.5.5               N/A                 41755 d                  Ross Burton <ross.burton@inte...        No data                       
+libxau                   1.0.8               N/A                 41755 d                  Ross Burton <ross.burton@inte...        No data                       
+mtdev                    1.1.5               N/A                 41755 d                  Ross Burton <ross.burton@inte...        No data                       
+wayland                  1.4.0               N/A                 41755 d                  Ross Burton <ross.burton@inte...        No data                       
+libxxf86misc             1.0.3               N/A                 41755 d                  Ross Burton <ross.burton@inte...        No data                       
+libxi                    1.7.2               N/A                 41755 d                  Ross Burton <ross.burton@inte...        No data                       
+font-util                1.3.0               N/A                 41755 d                  Ross Burton <ross.burton@inte...        No data                       
+libxdamage               1.1.4               N/A                 41755 d                  Ross Burton <ross.burton@inte...        No data                       
+libxxf86vm               1.1.3               N/A                 41755 d                  Ross Burton <ross.burton@inte...        No data                       
+libxtst                  1.2.2               N/A                 41755 d                  Ross Burton <ross.burton@inte...        No data                       
+clutter-gst-1.0          1.6.0               N/A                 41755 d                  Ross Burton <ross.burton@inte...        No data                       
+dri2proto                2.8                 N/A                 41755 d                  Ross Burton <ross.burton@inte...        No data                       
+libxdmcp                 1.1.1               N/A                 41755 d                  Ross Burton <ross.burton@inte...        No data                       
+libxmu                   1.1.2               N/A                 41755 d                  Ross Burton <ross.burton@inte...        No data                       
+font-alias               1.0.3               N/A                 41755 d                  Ross Burton <ross.burton@inte...        No data                       
+libfontenc               1.1.2               N/A                 41755 d                  Ross Burton <ross.burton@inte...        No data                       
+libxres                  1.0.7               N/A                 41755 d                  Ross Burton <ross.burton@inte...        No data                       
+libxcursor               1.1.14              N/A                 41755 d                  Ross Burton <ross.burton@inte...        No data                       
+libxinerama              1.1.3               N/A                 41755 d                  Ross Burton <ross.burton@inte...        No data                       
+cairo                    1.12.16             N/A                 41755 d                  Ross Burton <ross.burton@inte...        No data                       
+libart-lgpl              2.3.21              N/A                 41755 d                  Ross Burton <ross.burton@inte...        No data                       
+libxrender               0.9.8               N/A                 41755 d                  Ross Burton <ross.burton@inte...        No data                       
+json-glib                0.16.2              N/A                 41755 d                  Ross Burton <ross.burton@inte...        No data                       
+weston                   1.4.0               N/A                 41755 d                  Ross Burton <ross.burton@inte...        No data                       
+glproto                  1.4.17              N/A                 41755 d                  Ross Burton <ross.burton@inte...        No data                       
+inputproto               2.3                 2.2.99.1            419 day                  Ross Burton <ross.burton@inte...        2.2.99.1 is unstable          
+dmxproto                 2.3.1               N/A                 41755 d                  Ross Burton <ross.burton@inte...        No data                       
+libmatchbox              1.11                N/A                 41755 d                  Ross Burton <ross.burton@inte...        No data                       
+automake                 1.14.1              N/A                 41755 d                  Robert Yang <liezhi.yang@wind...        No data                       
+gnu-config               20120814            N/A                 41755 d                  Robert Yang <liezhi.yang@wind...        No data                       
+glib-2.0                 2.38.2              N/A                 41755 d                  Robert Yang <liezhi.yang@wind...        No data                       
+tzdata                   2013i               N/A                 41755 d                  Robert Yang <liezhi.yang@wind...        No data                       
+m4                       1.4.17              N/A                 41755 d                  Robert Yang <liezhi.yang@wind...        No data                       
+logrotate                3.8.7               N/A                 41755 d                  Robert Yang <liezhi.yang@wind...        No data                       
+binutils                 2.24                N/A                 41755 d                  Robert Yang <liezhi.yang@wind...        No data                       
+autogen-native           5.18.2              N/A                 41755 d                  Robert Yang <liezhi.yang@wind...        No data                       
+make                     4.0                 N/A                 41755 d                  Robert Yang <liezhi.yang@wind...        No data                       
+mklibs-native            0.1.39              N/A                 41755 d                  Robert Yang <liezhi.yang@wind...        No data                       
+tzcode-native            2013i               N/A                 41755 d                  Robert Yang <liezhi.yang@wind...        No data                       
+gmp                      5.1.1               N/A                 41755 d                  Robert Yang <liezhi.yang@wind...        No data                       
+nativesdk-libtool        2.4.2               N/A                 41755 d                  Robert Yang <liezhi.yang@wind...        No data                       
+makedepend               1.0.5               N/A                 41755 d                  Robert Yang <liezhi.yang@wind...        No data                       
+rsync                    3.1.0               N/A                 41755 d                  Robert Yang <liezhi.yang@wind...        No data                       
+wget                     1.15                N/A                 41755 d                  Robert Yang <liezhi.yang@wind...        No data                       
+libtool                  2.4.2               N/A                 41755 d                  Robert Yang <liezhi.yang@wind...        No data                       
+git                      1.9.0               N/A                 41755 d                  Robert Yang <liezhi.yang@wind...        No data                       
+autoconf                 2.69                N/A                 41755 d                  Robert Yang <liezhi.yang@wind...        No data                       
+file                     5.17                N/A                 41755 d                  Robert Yang <liezhi.yang@wind...        No data                       
+e2fsprogs                1.42.9              N/A                 41755 d                  Robert Yang <liezhi.yang@wind...        No data                       
+time                     1.7                 N/A                 41755 d                  Robert Yang <liezhi.yang@wind...        No data                       
+gpgme                    1.4.3               N/A                 41755 d                  Paul Eggleton <paul.eggleton@...        No data                       
+dropbear                 2014.63             N/A                 41755 d                  Paul Eggleton <paul.eggleton@...        No data                       
+libgpg-error             1.12                N/A                 41755 d                  Paul Eggleton <paul.eggleton@...        No data                       
+quicky                   0.4                 N/A                 41755 d                  Paul Eggleton <paul.eggleton@...        No data                       
+tslib                    1.1                 N/A                 41755 d                  Paul Eggleton <paul.eggleton@...        No data                       
+expat                    2.1.0               N/A                 41755 d                  Paul Eggleton <paul.eggleton@...        No data                       
+sgmlspl-native           1.03ii              N/A                 41755 d                  Paul Eggleton <paul.eggleton@...        No data                       
+nativesdk-qt4-tools      4.8.5               N/A                 41755 d                  Paul Eggleton <paul.eggleton@...        No data                       
+ethtool                  3.13                N/A                 41755 d                  Paul Eggleton <paul.eggleton@...        No data                       
+fotowall                 0.9                 N/A                 41755 d                  Paul Eggleton <paul.eggleton@...        No data                       
+qt-mobility-embedded...  1.2.0               N/A                 41755 d                  Paul Eggleton <paul.eggleton@...        No data                       
+opensp                   1.5.2               N/A                 41755 d                  Paul Eggleton <paul.eggleton@...        No data                       
+libav                    0.8.9               N/A                 41755 d                  Paul Eggleton <paul.eggleton@...        No data                       
+qt4-x11-free             4.8.5               N/A                 41755 d                  Paul Eggleton <paul.eggleton@...        No data                       
+docbook-utils-native...  0.6.14              N/A                 41755 d                  Paul Eggleton <paul.eggleton@...        No data                       
+augeas                   1.2.0               N/A                 41755 d                  Paul Eggleton <paul.eggleton@...        No data                       
+openjade-native          1.3.2               N/A                 41755 d                  Paul Eggleton <paul.eggleton@...        No data                       
+openssh                  6.5p1               N/A                 41755 d                  Paul Eggleton <paul.eggleton@...        No data                       
+chrpath                  0.16                N/A                 41755 d                  Paul Eggleton <paul.eggleton@...        No data                       
+mtools                   4.0.18              N/A                 41755 d                  Paul Eggleton <paul.eggleton@...        No data                       
+dosfstools               2.11                N/A                 41755 d                  Paul Eggleton <paul.eggleton@...        No data                       
+libevent                 2.0.21              N/A                 41755 d                  Paul Eggleton <paul.eggleton@...        No data                       
+docbook-sgml-dtd-4.1...  41                  N/A                 41755 d                  Paul Eggleton <paul.eggleton@...        PRS Reports Incorrectly       
+linuxdoc-tools-nativ...  0.9.69              0.9.66              605 day                  Paul Eggleton <paul.eggleton@...        No data                       
+popt                     1.16                N/A                 41755 d                  Paul Eggleton <paul.eggleton@...        No data                       
+blktool                  4-6.1               N/A                 41755 d                  Paul Eggleton <paul.eggleton@...        No data                       
+docbook-sgml-dtd-3.1...  31                  N/A                 41755 d                  Paul Eggleton <paul.eggleton@...        PRS Reports Incorrectly       
+createrepo               0.4.11              N/A                 41755 d                  Paul Eggleton <paul.eggleton@...        Versions after 0.9.* use YUM, ...
+yasm                     1.2.0               N/A                 41755 d                  Paul Eggleton <paul.eggleton@...        No data                       
+qt4-native               4.8.5               N/A                 41755 d                  Paul Eggleton <paul.eggleton@...        No data                       
+qt-mobility-x11          1.2.0               N/A                 41755 d                  Paul Eggleton <paul.eggleton@...        No data                       
+nfs-utils                1.2.9               N/A                 41755 d                  Paul Eggleton <paul.eggleton@...        No data                       
+avahi                    0.6.31              0.6.31              41755 d                  Paul Eggleton <paul.eggleton@...        No data                       
+avahi-ui                 0.6.31              N/A                 41755 d                  Paul Eggleton <paul.eggleton@...        No data                       
+python-smartpm           1.4.1               N/A                 41755 d                  Paul Eggleton <paul.eggleton@...        No data                       
+docbook-dsssl-styles...  1.79                N/A                 41755 d                  Paul Eggleton <paul.eggleton@...        No data                       
+grub                     2.00                N/A                 41755 d                  Paul Eggleton <paul.eggleton@...        grub2 is a different thing    
+docbook-sgml-dtd-4.5...  4.5                 N/A                 41755 d                  Paul Eggleton <paul.eggleton@...        PRS Reports Incorrectly       
+sgml-common              0.6.3               N/A                 41755 d                  Paul Eggleton <paul.eggleton@...        No data                       
+libnfsidmap              0.25                N/A                 41755 d                  Paul Eggleton <paul.eggleton@...        No data                       
+cmake                    2.8.12.2            N/A                 41755 d                  Paul Eggleton <paul.eggleton@...        No data                       
+cdrtools-native          3.01a20             N/A                 41755 d                  Paul Eggleton <paul.eggleton@...        No data                       
+python-nose              1.2.1               N/A                 41755 d                  No Maintainer info                      No data                       
+libsdl2                  2.0.1               N/A                 41755 d                  No Maintainer info                      No data                       
+dbus-test                1.6.18              N/A                 41755 d                  No Maintainer info                      No data                       
+libnewt-python           0.52.14             N/A                 41755 d                  No Maintainer info                      No data                       
+python-git               0.3.2.RC1           N/A                 41755 d                  No Maintainer info                      No data                       
+mesa-gl                  9.2.5               N/A                 41755 d                  No Maintainer info                      No data                       
+python-smmap             0.8.2               N/A                 41755 d                  No Maintainer info                      No data                       
+lz4                      r112                N/A                 41755 d                  No Maintainer info                      No data                       
+python-gitdb             0.5.4               N/A                 41755 d                  No Maintainer info                      No data                       
+waffle                   1.3.0               N/A                 41755 d                  No Maintainer info                      No data                       
+expect                   5.45                N/A                 41755 d                  No Maintainer info                      No data                       
+libxml-sax-base-perl...  1.08                N/A                 41755 d                  No Maintainer info                      No data                       
+gnu-efi                  3.0u                N/A                 41755 d                  No Maintainer info                      No data                       
+orc                      0.4.18              N/A                 41755 d                  No Maintainer info                      No data                       
+grub-efi                 2.00                N/A                 41755 d                  No Maintainer info                      No data                       
+gstreamer1.0-omx         1.0.0               N/A                 41755 d                  No Maintainer info                      No data                       
+python-mako              0.9.1               N/A                 41755 d                  No Maintainer info                      No data                       
+xf86-video-modesetti...  0.8.1               N/A                 41755 d                  No Maintainer info                      No data                       
+nss-myhostname           0.3                 N/A                 41755 d                  No Maintainer info                      No data                       
+liberror-perl            0.17022             N/A                 41755 d                  No Maintainer info                      No data                       
+json-c                   0.11                N/A                 41755 d                  No Maintainer info                      No data                       
+python-distribute        0.6.32              N/A                 41755 d                  No Maintainer info                      No data                       
+libical                  0.48                N/A                 41755 d                  No Maintainer info                      No data                       
+python-numpy             1.7.0               N/A                 41755 d                  No Maintainer info                      No data                       
+icon-naming-utils        0.8.90              N/A                 41755 d                  No Maintainer info                      No data                       
+python-async             0.6.1               N/A                 41755 d                  No Maintainer info                      No data                       
+gst-plugins-gl           0.10.3              N/A                 41755 d                  No Maintainer info                      No data                       
+cryptodev-module         1.6                 N/A                 41755 d                  No Maintainer info                      No data                       
+python3                  3.3.3               N/A                 41755 d                  No Maintainer info                      No data                       
+unfs3                    0.9.22.r490         N/A                 41755 d                  No Maintainer info                      No data                       
+bjam-native              1.55.0              N/A                 41755 d                  No Maintainer info                      No data                       
+dmidecode                2.12                N/A                 41755 d                  No Maintainer info                      No data                       
+cryptodev-linux          1.6                 N/A                 41755 d                  No Maintainer info                      No data                       
+zisofs-tools-native      1.0.8               N/A                 41755 d                  No Maintainer info                      No data                       
+nss                      3.15.1              N/A                 41755 d                  No Maintainer info                      No data                       
+python3-distribute       0.6.32              N/A                 41755 d                  No Maintainer info                      No data                       
+cryptodev-tests          1.6                 N/A                 41755 d                  No Maintainer info                      No data                       
+gnome-desktop-testin...  2014.1              N/A                 41755 d                  No Maintainer info                      No data                       
+rpm                      5.4.9               5.4.10              602 day                  Mark Hatle <mark.hatle@windri...        No data                       
+pseudo                   1.5.1               N/A                 41755 d                  Mark Hatle <mark.hatle@windri...        No data                       
+python-dbus              1.2.0               N/A                 41755 d                  Laurentiu Palcu <laurentiu.pa...        No data                       
+xserver-xorg             1.15.0              N/A                 41755 d                  Laurentiu Palcu <laurentiu.pa...        No data                       
+xset                     1.2.3               N/A                 41755 d                  Laurentiu Palcu <laurentiu.pa...        No data                       
+libxt                    1.1.4               N/A                 41755 d                  Laurentiu Palcu <laurentiu.pa...        No data                       
+kbproto                  1.0.6               N/A                 41755 d                  Laurentiu Palcu <laurentiu.pa...        No data                       
+xauth                    1.0.8               N/A                 41755 d                  Laurentiu Palcu <laurentiu.pa...        No data                       
+python-docutils          0.11                N/A                 41755 d                  Laurentiu Palcu <laurentiu.pa...        No data                       
+python-pyrex             0.9.9               N/A                 41755 d                  Laurentiu Palcu <laurentiu.pa...        No data                       
+xcb-util-image           0.3.9               N/A                 41755 d                  Laurentiu Palcu <laurentiu.pa...        No data                       
+python-pycairo           1.10.0              N/A                 41755 d                  Laurentiu Palcu <laurentiu.pa...        No data                       
+xf86-video-vmware        13.0.1              N/A                 41755 d                  Laurentiu Palcu <laurentiu.pa...        No data                       
+libunistring             0.9.3               N/A                 41755 d                  Laurentiu Palcu <laurentiu.pa...        No data                       
+xf86-video-intel         2.99.910            N/A                 41755 d                  Laurentiu Palcu <laurentiu.pa...        No data                       
+xinetd                   2.3.15              N/A                 41755 d                  Laurentiu Palcu <laurentiu.pa...        No data                       
+python-gst               0.10.22             N/A                 41755 d                  Laurentiu Palcu <laurentiu.pa...        No data                       
+gccmakedep               1.0.2               N/A                 41755 d                  Laurentiu Palcu <laurentiu.pa...        No data                       
+xcb-util-wm              0.4.0               N/A                 41755 d                  Laurentiu Palcu <laurentiu.pa...        No data                       
+xkbcomp                  1.2.4               N/A                 41755 d                  Laurentiu Palcu <laurentiu.pa...        No data                       
+xf86miscproto            0.9.3               N/A                 41755 d                  Laurentiu Palcu <laurentiu.pa...        No data                       
+xcb-util                 0.3.9               N/A                 41755 d                  Laurentiu Palcu <laurentiu.pa...        No data                       
+xineramaproto            1.2.1               N/A                 41755 d                  Laurentiu Palcu <laurentiu.pa...        No data                       
+gcc                      4.8.2               N/A                 41755 d                  Laurentiu Palcu <laurentiu.pa...        No data                       
+xf86vidmodeproto         2.3.1               N/A                 41755 d                  Laurentiu Palcu <laurentiu.pa...        No data                       
+powertop                 2.5                 N/A                 41755 d                  Laurentiu Palcu <laurentiu.pa...        Do not upgrade to version 1.97...
+libconvert-asn1-perl...  0.26                N/A                 41755 d                  Laurentiu Palcu <laurentiu.pa...        No data                       
+kexec-tools              2.0.4               N/A                 41755 d                  Laurentiu Palcu <laurentiu.pa...        No data                       
+xprop                    1.2.2               N/A                 41755 d                  Laurentiu Palcu <laurentiu.pa...        No data                       
+xf86-input-keyboard      1.8.0               N/A                 41755 d                  Laurentiu Palcu <laurentiu.pa...        No data                       
+python                   2.7.3               N/A                 41755 d                  Laurentiu Palcu <laurentiu.pa...        No data                       
+python-imaging           1.1.7               N/A                 41755 d                  Laurentiu Palcu <laurentiu.pa...        No data                       
+x11perf                  1.5.4               N/A                 41755 d                  Laurentiu Palcu <laurentiu.pa...        No data                       
+gdb                      7.6.2               N/A                 41755 d                  Laurentiu Palcu <laurentiu.pa...        No data                       
+xinput                   1.6.1               N/A                 41755 d                  Laurentiu Palcu <laurentiu.pa...        No data                       
+v86d                     0.1.10              N/A                 41755 d                  Laurentiu Palcu <laurentiu.pa...        No data                       
+xcb-proto                1.10                N/A                 41755 d                  Laurentiu Palcu <laurentiu.pa...        No data                       
+xmodmap                  1.0.8               N/A                 41755 d                  Laurentiu Palcu <laurentiu.pa...        No data                       
+xf86-video-fbdev         0.4.4               N/A                 41755 d                  Laurentiu Palcu <laurentiu.pa...        No data                       
+xcmiscproto              1.2.2               N/A                 41755 d                  Laurentiu Palcu <laurentiu.pa...        No data                       
+latencytop               0.5                 N/A                 41755 d                  Laurentiu Palcu <laurentiu.pa...        No data                       
+xf86-input-vmmouse       13.0.0              N/A                 41755 d                  Laurentiu Palcu <laurentiu.pa...        No data                       
+python-scons             2.3.0               N/A                 41755 d                  Laurentiu Palcu <laurentiu.pa...        No data                       
+xf86-input-mouse         1.9.0               N/A                 41755 d                  Laurentiu Palcu <laurentiu.pa...        No data                       
+xrandr                   1.4.1               N/A                 41755 d                  Laurentiu Palcu <laurentiu.pa...        No data                       
+xinit                    1.3.3               N/A                 41755 d                  Laurentiu Palcu <laurentiu.pa...        No data                       
+fontconfig               2.11.0              N/A                 41755 d                  Laurentiu Palcu <laurentiu.pa...        No data                       
+python-pygtk             2.24.0              N/A                 41755 d                  Laurentiu Palcu <laurentiu.pa...        No data                       
+recordproto              1.14.2              N/A                 41755 d                  Laurentiu Palcu <laurentiu.pa...        No data                       
+xf86driproto             2.1.1               N/A                 41755 d                  Laurentiu Palcu <laurentiu.pa...        No data                       
+xextproto                7.3.0               N/A                 41755 d                  Laurentiu Palcu <laurentiu.pa...        No data                       
+libpciaccess             0.13.2              N/A                 41755 d                  Laurentiu Palcu <laurentiu.pa...        No data                       
+mdadm                    3.3                 N/A                 41755 d                  Laurentiu Palcu <laurentiu.pa...        No data                       
+xkeyboard-config         2.11                N/A                 41755 d                  Laurentiu Palcu <laurentiu.pa...        No data                       
+x11vnc                   0.9.13              N/A                 41755 d                  Laurentiu Palcu <laurentiu.pa...        No data                       
+xf86-input-synaptics...  1.7.3               N/A                 41755 d                  Laurentiu Palcu <laurentiu.pa...        No data                       
+xcursor-transparent-...  0.1.1               N/A                 41755 d                  Laurentiu Palcu <laurentiu.pa...        No data                       
+xrestop                  0.4                 N/A                 41755 d                  Laurentiu Palcu <laurentiu.pa...        No data                       
+xtrans                   1.3.3               N/A                 41755 d                  Laurentiu Palcu <laurentiu.pa...        No data                       
+xf86-input-evdev         2.8.2               N/A                 41755 d                  Laurentiu Palcu <laurentiu.pa...        No data                       
+python-pygobject         2.27.91             N/A                 41755 d                  Laurentiu Palcu <laurentiu.pa...        Newer versions of python-pygob...
+lsof                     4.87                N/A                 41755 d                  Laurentiu Palcu <laurentiu.pa...        No data                       
+fontsproto               2.1.2               N/A                 41755 d                  Laurentiu Palcu <laurentiu.pa...        No data                       
+libdrm                   2.4.52              N/A                 41755 d                  Laurentiu Palcu <laurentiu.pa...        No data                       
+python-argparse          1.2.1               N/A                 41755 d                  Laurentiu Palcu <laurentiu.pa...        No data                       
+bdwgc                    7.2d                gc-7.2d             609 day                  Laurentiu Palcu <laurentiu.pa...        No data                       
+xev                      1.2.1               1.0.4               601 day                  Laurentiu Palcu <laurentiu.pa...        No data                       
+subversion               1.7.10              N/A                 41755 d                  Laurentiu Palcu <laurentiu.pa...        No data                       
+xwininfo                 1.1.3               N/A                 41755 d                  Laurentiu Palcu <laurentiu.pa...        No data                       
+xproto                   7.0.25              N/A                 41755 d                  Laurentiu Palcu <laurentiu.pa...        No data                       
+xf86dgaproto             2.1                 N/A                 41755 d                  Laurentiu Palcu <laurentiu.pa...        No data                       
+xeyes                    1.1.1               N/A                 41755 d                  Laurentiu Palcu <laurentiu.pa...        No data                       
+eglibc                   2.19                N/A                 41755 d                  Laurentiu Palcu <laurentiu.pa...        No data                       
+xf86-video-vesa          2.3.3               N/A                 41755 d                  Laurentiu Palcu <laurentiu.pa...        No data                       
+xdpyinfo                 1.3.1               N/A                 41755 d                  Laurentiu Palcu <laurentiu.pa...        No data                       
+xcb-util-keysyms         0.3.9               N/A                 41755 d                  Laurentiu Palcu <laurentiu.pa...        No data                       
+xtscal                   0.6.3               N/A                 41755 d                  Laurentiu Palcu <laurentiu.pa...        No data                       
+xvinfo                   1.1.2               N/A                 41755 d                  Laurentiu Palcu <laurentiu.pa...        No data                       
+python-pycurl            7.19.3              N/A                 41755 d                  Laurentiu Palcu <laurentiu.pa...        No data                       
+xhost                    1.0.6               N/A                 41755 d                  Laurentiu Palcu <laurentiu.pa...        No data                       
+libmpc                   1.0.2               N/A                 41755 d                  Laurentiu Palcu <laurentiu.pa...        No data                       
+scrnsaverproto           1.2.2               N/A                 41755 d                  Laurentiu Palcu <laurentiu.pa...        No data                       
+nasm                     2.11                N/A                 41755 d                  Laurentiu Palcu <laurentiu.pa...        No data                       
+libtimedate-perl         2.30                N/A                 41755 d                  Laurentiu Palcu <laurentiu.pa...        No data                       
+intltool                 0.50.2              N/A                 41755 d                  Laurentiu Palcu <laurentiu.pa...        No data                       
+oprofile                 0.9.8               N/A                 41755 d                  Laurentiu Palcu <laurentiu.pa...        No data                       
+mpfr                     3.1.2               N/A                 41755 d                  Laurentiu Palcu <laurentiu.pa...        No data                       
+ghostscript              9.07                N/A                 41755 d                  Kai Kang <kai.kang@windriver....        No data                       
+libxml-sax-perl          0.99                N/A                 41755 d                  Kai Kang <kai.kang@windriver....        No data                       
+liburi-perl              1.60                N/A                 41755 d                  Kai Kang <kai.kang@windriver....        No data                       
+bind                     9.9.5               N/A                 41755 d                  Kai Kang <kai.kang@windriver....        No data                       
+libarchive               3.1.2               N/A                 41755 d                  Kai Kang <kai.kang@windriver....        No data                       
+libsdl                   1.2.15              N/A                 41755 d                  Kai Kang <kai.kang@windriver....        No data                       
+qmmp                     0.7.5               N/A                 41755 d                  Kai Kang <kai.kang@windriver....        No data                       
+mingetty                 1.08                N/A                 41755 d                  Kai Kang <kai.kang@windriver....        No data                       
+libnewt                  0.52.14             N/A                 41755 d                  Kai Kang <kai.kang@windriver....        No data                       
+alsa-tools               1.0.27              N/A                 41755 d                  Kai Kang <kai.kang@windriver....        No data                       
+libx11-diet              1.6.2               N/A                 41755 d                  Kai Kang <kai.kang@windriver....        No data                       
+directfb                 1.7.1               N/A                 41755 d                  Kai Kang <kai.kang@windriver....        No data                       
+directfb-examples        1.7.0               N/A                 41755 d                  Kai Kang <kai.kang@windriver....        No data                       
+mailx                    12.5                N/A                 41755 d                  Kai Kang <kai.kang@windriver....        No data                       
+slang                    2.2.4               N/A                 41755 d                  Kai Kang <kai.kang@windriver....        No data                       
+adt-installer            0.2.0               1.1                 594 day                  Jessica Zhang <jessica.zhang@...        No data                       
+parted                   3.1                 N/A                 41755 d                  Hongxu Jia <hongxu.jia@windri...        No data                       
+elfutils                 0.148               N/A                 41755 d                  Hongxu Jia <hongxu.jia@windri...        No data                       
+perl                     5.14.3              N/A                 41755 d                  Hongxu Jia <hongxu.jia@windri...        No data                       
+lsb                      4.1                 N/A                 41755 d                  Hongxu Jia <hongxu.jia@windri...        No data                       
+bash                     4.3                 4.2                 41755 d                  Hongxu Jia <hongxu.jia@windri...        No data                       
+patch                    2.7.1               N/A                 41755 d                  Hongxu Jia <hongxu.jia@windri...        No data                       
+rpcbind                  0.2.1               N/A                 41755 d                  Hongxu Jia <hongxu.jia@windri...        No data                       
+cracklib                 2.9.1               N/A                 41755 d                  Hongxu Jia <hongxu.jia@windri...        No data                       
+ncurses                  5.9                 N/A                 41755 d                  Hongxu Jia <hongxu.jia@windri...        No data                       
+libxml2                  2.9.1               N/A                 41755 d                  Hongxu Jia <hongxu.jia@windri...        No data                       
+pax                      3.4                 N/A                 41755 d                  Hongxu Jia <hongxu.jia@windri...        No data                       
+apr                      1.4.8               N/A                 41755 d                  Hongxu Jia <hongxu.jia@windri...        No data                       
+socat                    1.7.2.3             N/A                 41755 d                  Hongxu Jia <hongxu.jia@windri...        2.0.0 is beta                 
+apr-util                 1.5.2               N/A                 41755 d                  Hongxu Jia <hongxu.jia@windri...        No data                       
+libxml-parser-perl       2.41                N/A                 41755 d                  Hongxu Jia <hongxu.jia@windri...        No data                       
+pax-utils                0.7                 N/A                 41755 d                  Hongxu Jia <hongxu.jia@windri...        No data                       
+ppp                      2.4.6               N/A                 41755 d                  Hongxu Jia <hongxu.jia@windri...        No data                       
+groff                    1.22.2              N/A                 41755 d                  Hongxu Jia <hongxu.jia@windri...        1.18.1.4 is latest GPLv2 Versi...
+distcc                   3.1                 N/A                 41755 d                  Hongxu Jia <hongxu.jia@windri...        No data                       
+readline                 6.3                 N/A                 41755 d                  Hongxu Jia <hongxu.jia@windri...        No data                       
+syslinux                 6.01                N/A                 41755 d                  Darren Hart <dvhart@linux.int...        Waiting for 4.06 for 3.3 kerne...
+iputils                  s20121221           N/A                 41755 d                  Cristiana Voicu <cristiana.vo...        No data                       
+unzip                    60                  6.0                 602 day                  Cristiana Voicu <cristiana.vo...        No data                       
+squashfs-tools           4.2                 4.2                 535 day                  Cristiana Voicu <cristiana.vo...        No data                       
+rxvt-unicode             9.19                N/A                 41755 d                  Cristiana Voicu <cristiana.vo...        No data                       
+apt                      0.9.9.4             N/A                 41755 d                  Cristiana Voicu <cristiana.vo...        No data                       
+startup-notification...  0.12                N/A                 41755 d                  Cristiana Voicu <cristiana.vo...        No data                       
+openssl                  1.0.1g              N/A                 41755 d                  Cristiana Voicu <cristiana.vo...        1.0.1 is beta 1.0.0c is latest
+lame                     3.99.5              N/A                 41755 d                  Cristiana Voicu <cristiana.vo...        No data                       
+acpid                    1.0.10              N/A                 41755 d                  Cristiana Voicu <cristiana.vo...        No data                       
+lzo                      2.06                N/A                 41755 d                  Cristiana Voicu <cristiana.vo...        No data                       
+pango                    1.36.3              N/A                 41755 d                  Cristiana Voicu <cristiana.vo...        No data                       
+aspell                   0.60.6.1            N/A                 41755 d                  Cristiana Voicu <cristiana.vo...        No data                       
+opkg                     0.2.2               0.1.8               605 day                  Cristiana Voicu <cristiana.vo...        No data                       
+ed                       1.9                 N/A                 41755 d                  Cristiana Voicu <cristiana.vo...        No data                       
+mkfontscale              1.1.1               N/A                 41755 d                  Cristiana Voicu <cristiana.vo...        No data                       
+at-spi2-core             2.12.0              N/A                 41755 d                  Cristiana Voicu <cristiana.vo...        No data                       
+atk                      2.12.0              N/A                 41755 d                  Cristiana Voicu <cristiana.vo...        No data                       
+hdparm                   9.43                N/A                 41755 d                  Cristiana Voicu <cristiana.vo...        No data                       
+which                    2.20                N/A                 41755 d                  Cristiana Voicu <cristiana.vo...        No data                       
+bigreqsproto             1.1.2               N/A                 41755 d                  Cristiana Voicu <cristiana.vo...        No data                       
+liboil                   0.3.17              N/A                 41755 d                  Cristiana Voicu <cristiana.vo...        No data                       
+setserial                2.17                N/A                 41755 d                  Cristiana Voicu <cristiana.vo...        No data                       
+mkfontdir                1.0.7               N/A                 41755 d                  Cristiana Voicu <cristiana.vo...        No data                       
+ubootchart               0.0+r12             0.0+r12             594 day                  Cristiana Voicu <cristiana.vo...        No data                       
+valgrind                 3.9.0               N/A                 41755 d                  Cristiana Voicu <cristiana.vo...        No data                       
+at-spi2-atk              2.12.0              N/A                 41755 d                  Cristiana Voicu <cristiana.vo...        No data                       
+libassuan                2.1.1               N/A                 41755 d                  Cristiana Voicu <cristiana.vo...        No data                       
+libunique                1.1.6               N/A                 41755 d                  Cristiana Voicu <cristiana.vo...        Do not upgrade to version: 2.9...
+gamin                    0.1.10              N/A                 41755 d                  Cristiana Voicu <cristiana.vo...        No data                       
+liburcu                  0.8.1               0.7.0               606 day                  Cristiana Voicu <cristiana.vo...        No data                       
+libdmx                   1.1.3               N/A                 41755 d                  Cristiana Voicu <cristiana.vo...        No data                       
+udev                     182                 N/A                 41755 d                  Cristiana Voicu <cristiana.vo...        No data                       
+bc                       1.06                1.06                41755 d                  Cristiana Voicu <cristiana.vo...        No data                       
+watchdog                 5.13                N/A                 41755 d                  Cristiana Voicu <cristiana.vo...        No data                       
+cronie                   1.4.11              N/A                 41755 d                  Cristiana Voicu <cristiana.vo...        No data                       
+usbutils                 007                 006                 602 day                  Cristiana Voicu <cristiana.vo...        No data                       
+at                       3.1.14              N/A                 41755 d                  Cristiana Voicu <cristiana.vo...        No data                       
+curl                     7.36.0              N/A                 41755 d                  Cristiana Voicu <cristiana.vo...        No data                       
+telepathy-mission-co...  5.16.1              N/A                 41755 d                  Cristian Iorga <cristian.iorg...        No data                       
+gstreamer1.0-plugins...  1.2.3               N/A                 41755 d                  Cristian Iorga <cristian.iorg...        No data                       
+bluez-hcidump            2.5                 N/A                 41755 d                  Cristian Iorga <cristian.iorg...        No data                       
+apmd                     3.2.2-14            N/A                 41755 d                  Cristian Iorga <cristian.iorg...        No data                       
+gst-plugins-bad          0.10.23             N/A                 41755 d                  Cristian Iorga <cristian.iorg...        not compatible with gst-fluend...
+telepathy-idle           0.2.0               N/A                 41755 d                  Cristian Iorga <cristian.iorg...        No data                       
+gst-plugins-good         0.10.31             N/A                 41755 d                  Cristian Iorga <cristian.iorg...        not compatible with gst-fluend...
+libid3tag                0.15.1b             N/A                 41755 d                  Cristian Iorga <cristian.iorg...        No data                       
+gstreamer1.0-libav       1.2.3               N/A                 41755 d                  Cristian Iorga <cristian.iorg...        No data                       
+libproxy                 0.4.11              N/A                 41755 d                  Cristian Iorga <cristian.iorg...        No data                       
+tremor                   20120314            20120122            413 day                  Cristian Iorga <cristian.iorg...        Same revision on different SVN...
+alsa-utils               1.0.27.2            N/A                 41755 d                  Cristian Iorga <cristian.iorg...        No data                       
+qemu                     1.7.0               N/A                 41755 d                  Cristian Iorga <cristian.iorg...        No data                       
+libsamplerate0           0.1.8               N/A                 41755 d                  Cristian Iorga <cristian.iorg...        No data                       
+flac                     1.3.0               N/A                 41755 d                  Cristian Iorga <cristian.iorg...        No data                       
+bluez4                   4.101               N/A                 41755 d                  Cristian Iorga <cristian.iorg...        BlueZ 5.x is not backward-comp...
+bluez5                   5.18                N/A                 41755 d                  Cristian Iorga <cristian.iorg...        No data                       
+neard                    0.14                N/A                 41755 d                  Cristian Iorga <cristian.iorg...        No data                       
+gstreamer1.0-plugins...  1.2.3               N/A                 41755 d                  Cristian Iorga <cristian.iorg...        No data                       
+alsa-lib                 1.0.27.2            N/A                 41755 d                  Cristian Iorga <cristian.iorg...        No data                       
+libsndfile1              1.0.25              N/A                 41755 d                  Cristian Iorga <cristian.iorg...        No data                       
+alsa-utils-alsaconf      1.0.27.2            N/A                 41755 d                  Cristian Iorga <cristian.iorg...        No data                       
+connman                  1.23                N/A                 41755 d                  Cristian Iorga <cristian.iorg...        No data                       
+sbc                      1.2                 N/A                 41755 d                  Cristian Iorga <cristian.iorg...        No data                       
+gst-openmax              0.10.1              N/A                 41755 d                  Cristian Iorga <cristian.iorg...        No data                       
+harfbuzz                 0.9.27              N/A                 41755 d                  Cristian Iorga <cristian.iorg...        No data                       
+lrzsz                    0.12.20             N/A                 41755 d                  Cristian Iorga <cristian.iorg...        No data                       
+gst-ffmpeg               0.10.13             N/A                 41755 d                  Cristian Iorga <cristian.iorg...        not compatible with gst-fluend...
+pm-utils                 1.4.1               N/A                 41755 d                  Cristian Iorga <cristian.iorg...        No data                       
+telepathy-python         0.15.19             N/A                 41755 d                  Cristian Iorga <cristian.iorg...        No data                       
+telepathy-glib           0.23.2              N/A                 41755 d                  Cristian Iorga <cristian.iorg...        No data                       
+wireless-tools           30.pre9             N/A                 41755 d                  Cristian Iorga <cristian.iorg...        No data                       
+quota                    4.01                N/A                 41755 d                  Cristian Iorga <cristian.iorg...        No data                       
+iproute2                 3.14.0              N/A                 41755 d                  Cristian Iorga <cristian.iorg...        No data                       
+cwautomacros             20110201            N/A                 41755 d                  Cristian Iorga <cristian.iorg...        No data                       
+wpa-supplicant           2.1                 N/A                 41755 d                  Cristian Iorga <cristian.iorg...        No data                       
+hostap-utils             0.4.7               N/A                 41755 d                  Cristian Iorga <cristian.iorg...        No data                       
+gstreamer1.0             1.2.3               N/A                 41755 d                  Cristian Iorga <cristian.iorg...        No data                       
+libtirpc                 0.2.4               N/A                 41755 d                  Cristian Iorga <cristian.iorg...        No data                       
+gstreamer1.0-plugins...  1.2.3               N/A                 41755 d                  Cristian Iorga <cristian.iorg...        No data                       
+iptables                 1.4.21              N/A                 41755 d                  Cristian Iorga <cristian.iorg...        No data                       
+db                       5.3.21              N/A                 41755 d                  Cristian Iorga <cristian.iorg...        API compatibility issue       
+libomxil                 0.9.3               N/A                 41755 d                  Cristian Iorga <cristian.iorg...        No data                       
+gst-plugin-bluetooth...  4.101               N/A                 41755 d                  Cristian Iorga <cristian.iorg...        No data                       
+net-tools                1.60-25             N/A                 41755 d                  Cristian Iorga <cristian.iorg...        No data                       
+libvorbis                1.3.4               N/A                 41755 d                  Cristian Iorga <cristian.iorg...        No data                       
+enchant                  1.6.0               N/A                 41755 d                  Cristian Iorga <cristian.iorg...        No data                       
+gst-fluendo-mp3          0.10.19             N/A                 41755 d                  Cristian Iorga <cristian.iorg...        No data                       
+gstreamer1.0-plugins...  1.2.3               N/A                 41755 d                  Cristian Iorga <cristian.iorg...        No data                       
+libatomics-ops           7.2                 N/A                 41755 d                  Cristian Iorga <cristian.iorg...        No data                       
+libpcap                  1.5.3               N/A                 41755 d                  Cristian Iorga <cristian.iorg...        No data                       
+liba52                   0.7.4               N/A                 41755 d                  Cristian Iorga <cristian.iorg...        No data                       
+ofono                    1.14                1.6                 605 day                  Cristian Iorga <cristian.iorg...        No data                       
+netbase                  5.2                 N/A                 41755 d                  Cristian Iorga <cristian.iorg...        No data                       
+gst-fluendo-mpegdemu...  0.10.72             N/A                 41755 d                  Cristian Iorga <cristian.iorg...        No data                       
+libtelepathy             0.3.3               N/A                 41755 d                  Cristian Iorga <cristian.iorg...        No data                       
+speex                    1.2rc1              N/A                 41755 d                  Cristian Iorga <cristian.iorg...        No data                       
+neon                     0.30.0              N/A                 41755 d                  Cristian Iorga <cristian.iorg...        No data                       
+minicom                  2.7                 2.6.2               188 day                  Cristian Iorga <cristian.iorg...        No data                       
+irda-utils               0.9.18              N/A                 41755 d                  Cristian Iorga <cristian.iorg...        No data                       
+gst-plugins-base         0.10.36             N/A                 41755 d                  Cristian Iorga <cristian.iorg...        not compatible with gst-fluend...
+taglib                   1.8                 N/A                 41755 d                  Cristian Iorga <cristian.iorg...        No data                       
+gst-plugins-ugly         0.10.19             N/A                 41755 d                  Cristian Iorga <cristian.iorg...        not compatible with gst-fluend...
+gstreamer                0.10.36             N/A                 41755 d                  Cristian Iorga <cristian.iorg...         not compatible with gst-fluen...
+libogg                   1.3.1               N/A                 41755 d                  Cristian Iorga <cristian.iorg...        No data                       
+pulseaudio               5.0                 N/A                 41755 d                  Cristian Iorga <cristian.iorg...        No data                       
+mktemp                   1.7                 N/A                 41755 d                  Chong Lu <Chong.Lu@windriver....        No data                       
+diffstat                 1.58                N/A                 41755 d                  Chong Lu <Chong.Lu@windriver....        No data                       
+libuser                  0.60                N/A                 41755 d                  Chong Lu <Chong.Lu@windriver....        No data                       
+tcl                      8.6.1               N/A                 41755 d                  Chong Lu <Chong.Lu@windriver....        No data                       
+flex                     2.5.38              N/A                 41755 d                  Chong Lu <Chong.Lu@windriver....        No data                       
+dbus                     1.6.18              N/A                 41755 d                  Chong Lu <Chong.Lu@windriver....        D-BUS 1.7.x is the development...
+insserv                  1.14.0              N/A                 41755 d                  Chong Lu <Chong.Lu@windriver....        No data                       
+quilt                    0.61                N/A                 41755 d                  Chong Lu <Chong.Lu@windriver....        No data                       
+libpcre                  8.34                N/A                 41755 d                  Chong Lu <Chong.Lu@windriver....        No data                       
+beecrypt                 4.2.1               N/A                 41755 d                  Chong Lu <Chong.Lu@windriver....        No data                       
+guile                    2.0.9               N/A                 41755 d                  Chong Lu <Chong.Lu@windriver....        No data                       
+dbus-glib                0.100.2             N/A                 41755 d                  Chong Lu <Chong.Lu@windriver....        No data                       
+strace                   4.8                 N/A                 41755 d                  Chong Lu <Chong.Lu@windriver....        No data                       
+bison                    2.7.1               N/A                 41755 d                  Chong Lu <Chong.Lu@windriver....        No data                       
+byacc                    20140101            N/A                 41755 d                  Chong Lu <Chong.Lu@windriver....        No data                       
+acl                      2.2.52              N/A                 41755 d                  Chong Lu <Chong.Lu@windriver....        No data                       
+attr                     2.4.47              N/A                 41755 d                  Chong Lu <Chong.Lu@windriver....        No data                       
+diffutils                3.3                 N/A                 41755 d                  Chong Lu <Chong.Lu@windriver....        No data                       
+busybox                  1.22.1              N/A                 41755 d                  Chen Qi <Qi.Chen@windriver.co...        No data                       
+sysfsutils               2.1.0               N/A                 41755 d                  Chen Qi <Qi.Chen@windriver.co...        No data                       
+gawk                     4.0.2               N/A                 41755 d                  Chen Qi <Qi.Chen@windriver.co...        Version 4.1.0 requires Automak...
+zip                      30                  3.0                 601 day                  Chen Qi <Qi.Chen@windriver.co...        No data                       
+tar                      1.27.1              N/A                 41755 d                  Chen Qi <Qi.Chen@windriver.co...        No data                       
+sudo                     1.8.9p5             N/A                 41755 d                  Chen Qi <Qi.Chen@windriver.co...        No data                       
+xz                       5.1.3alpha          5.0.4               601 day                  Chen Qi <Qi.Chen@windriver.co...        No data                       
+grep                     2.18                N/A                 41755 d                  Chen Qi <Qi.Chen@windriver.co...        No data                       
+findutils                4.4.2               N/A                 41755 d                  Chen Qi <Qi.Chen@windriver.co...        No data                       
+cpio                     2.11                N/A                 41755 d                  Chen Qi <Qi.Chen@windriver.co...        No data                       
+sed                      4.2.2               N/A                 41755 d                  Chen Qi <Qi.Chen@windriver.co...        No data                       
+sysstat                  10.2.1              N/A                 41755 d                  Chen Qi <Qi.Chen@windriver.co...        No data                       
+zlib                     1.2.8               N/A                 41755 d                  Chen Qi <Qi.Chen@windriver.co...        No data                       
+coreutils                8.22                N/A                 41755 d                  Chen Qi <Qi.Chen@windriver.co...        No data                       
+gzip                     1.6                 N/A                 41755 d                  Chen Qi <Qi.Chen@windriver.co...        No data                       
+shadow                   4.1.4.3             N/A                 41755 d                  Chen Qi <Qi.Chen@windriver.co...        No data                       
+bzip2                    1.0.6               N/A                 41755 d                  Chen Qi <Qi.Chen@windriver.co...        No data                       
+sysklogd                 1.5                 N/A                 41755 d                  Chen Qi <Qi.Chen@windriver.co...        No data                       
+stat                     3.3                 N/A                 41755 d                  Chen Qi <Qi.Chen@windriver.co...        No data                       
+linux-libc-headers       3.14                N/A                 41755 d                  Bruce Ashfield <bruce.ashfiel...        No data                       
+Manual Check Count: 551
+Manual Need Check Count: 551
 Any problem, please contact Saul Wold <sgw@linux.intel.com> 
 
---UugvWAfsgieZRqgk
-Content-Type: image/png
-Content-Disposition: attachment; filename="weekly_upgrde_history_chart.png"
-Content-Transfer-Encoding: base64
-
-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
-
---UugvWAfsgieZRqgk
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: attachment; filename="potential_format_problem.log"
-
-recipe_color.inc/17: RECIPE_COLOR = "green"
-
---UugvWAfsgieZRqgk--
