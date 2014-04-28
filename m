@@ -1,29 +1,17 @@
-Return-Path: <Florin.Sarbu@windriver.com>
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A2DBFE00BA7
-	for <yocto@yoctoproject.org>; Sun, 27 Apr 2014 13:35:22 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail.windriver.com (8.14.5/8.14.5) with ESMTP id s3RKZGRf003762
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Sun, 27 Apr 2014 13:35:16 -0700 (PDT)
-Received: from [128.224.19.56] (128.224.19.56) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server id 14.3.169.1;
-	Sun, 27 Apr 2014 13:35:16 -0700
-Message-ID: <535D6A03.5000102@windriver.com>
-Date: Sun, 27 Apr 2014 23:35:15 +0300
-From: Florin Sarbu <florin.sarbu@windriver.com>
-User-Agent: Mozilla/5.0 (X11; Linux i686;
-	rv:24.0) Gecko/20100101 Thunderbird/24.4.0
+Return-Path: <packages@packages.i.yoctoproject.org>
+Received: from packages.i.yoctoproject.org (packages.i.yoctoproject.org
+	[10.0.10.47])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 40EE9E00BAA
+	for <yocto@yoctoproject.org>; Sun, 27 Apr 2014 19:01:33 -0700 (PDT)
+Received: by packages.i.yoctoproject.org (Postfix, from userid 802)
+	id 3A02EA4048; Mon, 28 Apr 2014 02:01:33 +0000 (UTC)
+Date: Mon, 28 Apr 2014 02:01:33 +0000
+From: "package-report@yoctoproject.org" <packages@packages.i.yoctoproject.org>
+To: yocto@yoctoproject.org
+Message-ID: <20140428020132.GA17937@packages.i.yoctoproject.org>
 MIME-Version: 1.0
-To: sujith h <sujith.h@gmail.com>, "Behrens, Holger"
-	<holger.behrens@windriver.com>
-References: <1398343160-4516-1-git-send-email-sujith.h@gmail.com>
-	<CADyYWLn2GX=jYZJFjb6f2gabUsjBw5s30KM8h33WViSDiAAwtw@mail.gmail.com>
-In-Reply-To: <CADyYWLn2GX=jYZJFjb6f2gabUsjBw5s30KM8h33WViSDiAAwtw@mail.gmail.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	Sujith H <Sujith_Haridasan@mentor.com>
-Subject: Re: [meta-ivi][PATCH] weston: Add weston.ini config file
+User-Agent: Mutt/1.5.21 (2010-09-15)
+Subject: [Package Report System]Upgrade recipes name list
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -35,186 +23,135 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 27 Apr 2014 20:35:25 -0000
-Content-Type: multipart/alternative;
-	boundary="------------030701030700080909070009"
+X-List-Received-Date: Mon, 28 Apr 2014 02:01:33 -0000
+X-Groupsio-MsgNum: 19220
+Content-Type: multipart/mixed; boundary="UugvWAfsgieZRqgk"
+Content-Disposition: inline
 
---------------030701030700080909070009
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
+--UugvWAfsgieZRqgk
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-Hi Sujith,
-please modify the patch to contain the .ini file in the main rpm.
-Also, please make sure you increment the PR variable.
-
-Thank you,
-Florin
-
-On 04/25/2014 03:59 PM, sujith h wrote:
-> Hi,
->
-> Any comment for the new patch?
->
->
-> On Thu, Apr 24, 2014 at 6:09 PM, Sujith H <sujith.h@gmail.com 
-> <mailto:sujith.h@gmail.com>> wrote:
->
->     Adding weston.ini to /etc/xdg. With this change
->     user can login and launch weston with ivi-shell.
->
->     Signed-off-by: Sujith H <Sujith_Haridasan@mentor.com
->     <mailto:Sujith_Haridasan@mentor.com>>
->     ---
->      recipes-graphics/wayland/weston_1.4.0.bbappend | 15 +++++++++++++++
->      1 file changed, 15 insertions(+)
->
->     diff --git a/recipes-graphics/wayland/weston_1.4.0.bbappend
->     b/recipes-graphics/wayland/weston_1.4.0.bbappend
->     index 7a8ba6f..1bcb327 100644
->     --- a/recipes-graphics/wayland/weston_1.4.0.bbappend
->     +++ b/recipes-graphics/wayland/weston_1.4.0.bbappend
->     @@ -12,3 +12,18 @@ PR = "r1"
->
->      FILES_${PN} += "${libdir}/weston/*"
->      FILES_${PN}-dbg += "${libdir}/weston/.debug/*"
->     +
->     +do_install_append() {
->     +   WESTON_INI_CONFIG=${sysconfdir}/xdg/weston
->     +   install -d ${D}${WESTON_INI_CONFIG}
->     +   install -m 0644 ${S}/ivi-shell/weston.ini.in
->     <http://weston.ini.in> ${D}${WESTON_INI_CONFIG}/weston.ini
->     +   sed -i -e
->     's/hmi-controller.so/hmi-controller.so,ivi-controller.so/
->     <http://hmi-controller.so/hmi-controller.so,ivi-controller.so/>' \
->     +          -e 's|\@libexecdir\@|${libexecdir}|' \
->     +          -e 's|\@abs_top_builddir\@\/data|${datadir}\/weston|' \
->     +          -e 's|\@abs_top_builddir\@\/clients|${bindir}|'
->     ${D}${WESTON_INI_CONFIG}/weston.ini
->     +
->     +}
->     +
->     +PACKAGES += "${PN}-ini"
->     +
->     +FILES_${PN}-ini = "${sysconfdir}/xdg"
->     --
->     1.8.4
->
->
->
->
-> -- 
-> സുജിത് ഹരിദാസന്
-> Bangalore
-> <Project>Contributor to KDE project
-> http://fci.wikia.com/wiki/Anti-DRM-Campaign
-> <Blog> http://sujithh.info
+This mail was sent out by Package Report System.
+This message list those recipes which need to be upgraded. If maintainers believe some of them needn't to upgrade this time, they can fill in RECIPE_NO_UPDATE_REASON_pn-"xxx" in upstream_tracking files to ignore this recipe remainder until newer upstream version was detected.
+Example:
+RECIPE_NO_UPDATE_REASON_pn-"xxx" = "Not upgrade to 2.0 because the new version is unstable"
+You can check the detail information at http://packages.yoctoproject.org/upgradepkgname
 
 
---------------030701030700080909070009
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
+PackageName                   Version                       UpVersion                     Maintainer                                        NoUpgradeReason               
+puzzles                       r10116                        N/A                           Valentin Popa <valentin.popa@intel.com>           
+matchbox-panel-2              2.0+gitAUTOINC+26a3a67b41     2.0+gitAUTOINC+1a7304d        Valentin Popa <valentin.popa@intel.com>           
+matchbox-desktop              2.0+gitAUTOINC+71e3e6e042     2.0+gitAUTOINC+09170f4        Valentin Popa <valentin.popa@intel.com>           
+matchbox-keyboard             0.0+gitAUTOINC+217f1bfe14     0.0+gitAUTOINC+0899b02        Valentin Popa <valentin.popa@intel.com>           
+blktrace                      1.0.5+gitAUTOINC+d6918c8      1.0.5+gitAUTOINC+ce9ded7      Tom Zanussi <tom.zanussi@intel.com>               
+systemtap-uprobes             2.5+gitAUTOINC+ae91e3d552     2.5+gitAUTOINC+3d0ad80        Tom Zanussi <tom.zanussi@intel.com>               
+sysprof                       1.2.0+gitAUTOINC+cd44ee6      1.2.0+gitAUTOINC+6901897      Tom Zanussi <tom.zanussi@intel.com>               
+mkelfimage                    4.0+gitAUTOINC+686a48a339     4.0+gitAUTOINC+cf7b498        Saul Wold <sgw@linux.intel.com>                   
+oprofileui-server             0.0+gitAUTOINC+f168b8bfdc     0.0+gitAUTOINC+389e187        Saul Wold <sgw@linux.intel.com>                   PRS Reports Incorrectly       
+mx-1.0                        1.4.7+gitAUTOINC+9b1db6b      1.99.4+gitAUTOINC+63da1f2     Saul Wold <sgw@linux.intel.com>                   PRS 1.99 is dev version       
+x264                          r2265+gitAUTOINC+585324f      r2265+gitAUTOINC+ac76440      Paul Eggleton <paul.eggleton@linux.intel.com>     
+lz4                           r112                          N/A                           No Maintainer info                                
+gummiboot                     43+gitAUTOINC+4062c51075      44+gitAUTOINC+ac4a587         No Maintainer info                                
+piglit                        1.0+gitrAUTOINC+bbeff5d2      1.0+gitrAUTOINC+6cb822d       No Maintainer info                                
+unfs3                         0.9.22.r490                   N/A                           No Maintainer info                                
+xf86-video-omap               0.4.2+gitrAUTOINC+ae0394      0.4.3+gitrAUTOINC+d48d09c     Laurentiu Palcu <laurentiu.palcu@intel.com>       
+tcf-agent                     0.4.0+gitAUTOINC+4ef94ec      8.0+gitAUTOINC+addb230        Laurentiu Palcu <laurentiu.palcu@intel.com>       
+btrfs-tools                   3.12+gitAUTOINC+8cae1840      3.14.1+gitAUTOINC+f2d42b7     Laurentiu Palcu <laurentiu.palcu@intel.com>       
+xinput-calibrator             0.7.5+gitAUTOINC+c01c5af      0.7.5+gitAUTOINC+03dadf5      Laurentiu Palcu <laurentiu.palcu@intel.com>       
+oprofileui                    0.0+gitAUTOINC+f168b8bfdc     0.0+gitAUTOINC+389e187        Laurentiu Palcu <laurentiu.palcu@intel.com>       
+trace-cmd                     1.2+gitAUTOINC+7055ffd37b     2.3.2+gitAUTOINC+8435f51      Darren Hart <dvhart@linux.intel.com>              
+kernelshark                   1.2+gitAUTOINC+7055ffd37b     2.3.2+gitAUTOINC+8435f51      Darren Hart <dvhart@linux.intel.com>              0.2 is the latest version.    
+mtd-utils                     1.5.1+gitAUTOINC+9f10713      1.5.1+gitAUTOINC+5923077      Cristiana Voicu <cristiana.voicu@intel.com>       
+u-boot-mkimage                v2013.07+gitAUTOINC+62c1      v2013.07+gitAUTOINC+8854      Cristiana Voicu <cristiana.voicu@intel.com>       
+kmod                          17+gitAUTOINC+49d8e0b590      17+gitAUTOINC+f5cdd57         Cristiana Voicu <cristiana.voicu@intel.com>       
+ubootchart                    0.0+r12                       N/A                           Cristiana Voicu <cristiana.voicu@intel.com>       
+systemtap                     2.5+gitAUTOINC+ae91e3d552     2.5+gitAUTOINC+3d0ad80        Cristiana Voicu <cristiana.voicu@intel.com>       
+babeltrace                    1.1.1+gitAUTOINC+a386e24      1.2.1+gitAUTOINC+62f11f7      Cristiana Voicu <cristiana.voicu@intel.com>       
+mobile-broadband-provider-info20120614+gitrAUTOINC+4ed      20120614+gitrAUTOINC+35d      Cristiana Voicu <cristiana.voicu@intel.com>       
+tremor                        20120314                      N/A                           Cristian Iorga <cristian.iorga@intel.com>         Same revision on different SV...
+linux-firmware                0.0+gitAUTOINC+600caefd83     0.0+gitAUTOINC+dec41bc        Cristian Iorga <cristian.iorga@intel.com>         
+kern-tools-native             0.2+gitAUTOINC+a42509b01c     0.2+gitAUTOINC+a212a4a        Bruce Ashfield <bruce.ashfield@windriver.com>     
+Upgradable Count: 28
+Upgrade Total Count: 32
+The based commit merge time is:
+Sun Apr 27 01:27:55 2014 +0100
+The based commit is:
+commit a688c9cbab43179a92c8115cae5095817cafc0ea
+Author: Jacob Kroon <jacob.kroon@mikrodidakt.se>
+Date:   Sat Apr 26 17:05:30 2014 +0200
+Any problem, please contact Saul Wold <sgw@linux.intel.com> 
 
-<html>
-  <head>
-    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
-  </head>
-  <body bgcolor="#FFFFFF" text="#000000">
-    <div class="moz-cite-prefix">Hi Sujith,<br>
-      please modify the patch to contain the .ini file in the main rpm.<br>
-      Also, please make sure you increment the PR variable.<br>
-      <br>
-      Thank you,<br>
-      Florin<br>
-      <br>
-      On 04/25/2014 03:59 PM, sujith h wrote:<br>
-    </div>
-    <blockquote
-cite="mid:CADyYWLn2GX=jYZJFjb6f2gabUsjBw5s30KM8h33WViSDiAAwtw@mail.gmail.com"
-      type="cite">
-      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-      <div dir="ltr">
-        <div>Hi,<br>
-          <br>
-        </div>
-        Any comment for the new patch?<br>
-        <div>
-          <div>
-            <div class="gmail_extra"><br>
-              <br>
-              <div class="gmail_quote">On Thu, Apr 24, 2014 at 6:09 PM,
-                Sujith H <span dir="ltr">&lt;<a moz-do-not-send="true"
-                    href="mailto:sujith.h@gmail.com" target="_blank">sujith.h@gmail.com</a>&gt;</span>
-                wrote:<br>
-                <blockquote class="gmail_quote" style="margin:0 0 0
-                  .8ex;border-left:1px #ccc solid;padding-left:1ex">Adding
-                  weston.ini to /etc/xdg. With this change<br>
-                  user can login and launch weston with ivi-shell.<br>
-                  <br>
-                  Signed-off-by: Sujith H &lt;<a moz-do-not-send="true"
-                    href="mailto:Sujith_Haridasan@mentor.com">Sujith_Haridasan@mentor.com</a>&gt;<br>
-                  ---<br>
-                   recipes-graphics/wayland/weston_1.4.0.bbappend | 15
-                  +++++++++++++++<br>
-                   1 file changed, 15 insertions(+)<br>
-                  <br>
-                  diff --git
-                  a/recipes-graphics/wayland/weston_1.4.0.bbappend
-                  b/recipes-graphics/wayland/weston_1.4.0.bbappend<br>
-                  index 7a8ba6f..1bcb327 100644<br>
-                  --- a/recipes-graphics/wayland/weston_1.4.0.bbappend<br>
-                  +++ b/recipes-graphics/wayland/weston_1.4.0.bbappend<br>
-                  @@ -12,3 +12,18 @@ PR = "r1"<br>
-                  <br>
-                   FILES_${PN} += "${libdir}/weston/*"<br>
-                   FILES_${PN}-dbg += "${libdir}/weston/.debug/*"<br>
-                  +<br>
-                  +do_install_append() {<br>
-                  +   WESTON_INI_CONFIG=${sysconfdir}/xdg/weston<br>
-                  +   install -d ${D}${WESTON_INI_CONFIG}<br>
-                  +   install -m 0644 ${S}/ivi-shell/<a
-                    moz-do-not-send="true" href="http://weston.ini.in"
-                    target="_blank">weston.ini.in</a>
-                  ${D}${WESTON_INI_CONFIG}/weston.ini<br>
-                  +   sed -i -e 's/<a moz-do-not-send="true"
-                    href="http://hmi-controller.so/hmi-controller.so,ivi-controller.so/"
-                    target="_blank">hmi-controller.so/hmi-controller.so,ivi-controller.so/</a>'
-                  \<br>
-                  +          -e 's|\@libexecdir\@|${libexecdir}|' \<br>
-                  +          -e
-                  's|\@abs_top_builddir\@\/data|${datadir}\/weston|' \<br>
-                  +          -e
-                  's|\@abs_top_builddir\@\/clients|${bindir}|'
-                  ${D}${WESTON_INI_CONFIG}/weston.ini<br>
-                  +<br>
-                  +}<br>
-                  +<br>
-                  +PACKAGES += "${PN}-ini"<br>
-                  +<br>
-                  +FILES_${PN}-ini = "${sysconfdir}/xdg"<br>
-                  <span class="HOEnZb"><font color="#888888">--<br>
-                      1.8.4<br>
-                      <br>
-                    </font></span></blockquote>
-              </div>
-              <br>
-              <br clear="all">
-              <br>
-              -- <br>
-              സുജിത് ഹരിദാസന്<br>
-              Bangalore<br>
-              &lt;Project&gt;Contributor to KDE project<br>
-              <a moz-do-not-send="true"
-                href="http://fci.wikia.com/wiki/Anti-DRM-Campaign"
-                target="_blank">http://fci.wikia.com/wiki/Anti-DRM-Campaign</a><br>
-              &lt;Blog&gt; <a moz-do-not-send="true"
-                href="http://sujithh.info" target="_blank">http://sujithh.info</a><br>
-            </div>
-          </div>
-        </div>
-      </div>
-    </blockquote>
-    <br>
-  </body>
-</html>
+--UugvWAfsgieZRqgk
+Content-Type: image/png
+Content-Disposition: attachment; filename="weekly_upgrde_history_chart.png"
+Content-Transfer-Encoding: base64
 
---------------030701030700080909070009--
+iVBORw0KGgoAAAANSUhEUgAAAEYAAAEsCAIAAADxVFJbAAAABmJLR0QA/wD/AP+gvaeTAAANAUlE
+QVR4nO2de0xTVxjAP1yxrJWXCEwe8jItMIq4utE5YC1gHfGx4TLHyLK5JcOMGEk2/1jmthiTLbpH
+sg2NqMliBOboNkwEjbJAxnjDdDyVPgidoMIohZa164O2++OQCxR5I/iR8/vrntPLd78f5/a093I/
+jovD4YDVxZqVTmDpoUoYWIVKrLnvmpeXV1RUxDRdXV0jIyPFYvG+ffseQWKTsNvta9Y85LdvNBqP
+Hj168+bNoqKijRs3ks55KJnNZjc3t6NHj5Lm8PBwVVXVF198weFwXnrppcXnPQMHDhxIS0t74403
+nPpra2sbGhqOHz/u7+/PdE5SstlsTzzxxAyh3dzcEhISmOauXbv27Nlz+fJlJ6Xp4oyOjrJYD/kl
+Tre/w+EwmUxPPvnkdPlotdrg4ODU1NSJnWOj2dbW9vHHH0skkpSUlC+//NJqtc4gxuDi4hIdHc1m
+s0lTr9d///33e/fuTUxMzMrK6unpIf2ZmZl1dXVZWVkJCQl79+7Nz89nItTU1JD+l19+OTc3l3Sa
+zeb09PSOjo7MzMwPP/zw4MGDKpXqhx9+OHbs2MSjFxcXnz9/vqenJz09vb+/HwCuXLny1ltvgcPh
+ePDggUQiyc3N7enpKS8vl0gkn3zyiWMK33777SuvvMI0rVZrVVWVSCS6ceMG6cnJyXnnnXc6Ojo6
+Ojref//91NRUvV7vcDgSExNffPHF/Px8tVpdWFj47LPPlpSUOBwOuVyekJBw+vTpnp6eysrKxMTE
+c+fOORwOo9EoFArT09Pz8vJaWlp6e3v3799/+vTp/v7+ifnodLozZ86kp6er1erR0dGqqqrnnnuu
+qKiIBQCFhYXh4eGHDh0CgKCgIIVCcfHixePHj7u4uDgNy7179yQSCdk2mUxWqzU7O1sqlZJxrq6u
+vnbtmp+fHwAcOXIkIyOjqakpOTkZAOLj4998800ACAkJ6e3t/e2333bv3l1cXBwdHZ2dnU2Oe/jw
+4XPnzr333nskfmpq6sGDB8k2m8329vYmkRk8PDzWr1/v6uoaEhICAJcuXdqzZ8/+/ftZAKBUKkdH
+R0+dOkV2HR4etlgsAwMDTiEAwMfHh5ke7HZ7WVlZYWGhWCwODw9XKpUcDkcmkzE7e3l53b9/n2wL
+hUKmXygUlpWVAYBKpXrmmWeYfoFAoNVqBwYG1q1bBwBxcXEwH1Qq1c6dO4FMDxaLhc1mczgc8hqH
+w8nOzn7o+9VpekhKStqxY0d9fX14eLjVanV1dWWCAEBGRgafzyfb7u7uTD+bzdbr9Var1WKxuLm5
+Mf1cLhcARkZGiJKHh8e8lJhoLADYsmVLd3f3u+++S17r6+tramry8fGZS6DQ0FAyDcTGxo6MjLz+
++uskMwC4evVqYGAg2VYqlWlpaWS7vb09ICCAfKypVComlEKhIGeRxWKZlwyBRJNKpWsAQCQSNTU1
+NTY2AoDBYPj0008rKirmGIjD4Wg0GgDg8/leXl55eXkOh8Nut1+8ePHzzz9n9GQyWVtbGwB0dXXJ
+ZDIy7cbHx1dUVNTV1QGAXq/Py8tLTEyc7lPEaDTOnEl8fLxMJlOpVCzSyMrKOnTokK+vr1arDQsL
+c5ouZyAiIqK4uPiff/7x8/M7depUdnZ2SUkJi8WyWCzHjh3z9PQku0ml0uzsbC6Xq9FoRCIRed+n
+pKTI5fKcnBw/Pz+NRhMVFfXZZ5899CjBwcEFBQVDQ0NHjhyZLpO3335bqVRmZmYCMyfq9fq6urrb
+t2+Pjo5OncHnyOjoaHt7e2Njo06nYzoTExOrqqp0Ol1tbW1nZ6fTj+j1+vr6eqcJ2gmj0VhXV3fn
+zp1ZE9BoNDDrTouHKC3DgQir8Ju4i+PRX6jfunUrIiKCeV89apZDaZlZhSceVcIAVcLAKlRyvhPQ
+1NSk1+tTUlIAwGAw3Lhxw2AwpKWlbdiwYSXSWwiTRmlgYODSpUtarZY0v/nmGzabLRAIvvrqK4PB
+sBLpLYTxUbLb7fn5+SKRiDS7u7utVuuuXbsAoLOzU6FQbN26dWVynCfjo3TlypVt27YxN/gGBweZ
+7Y0bN8rl8hXIbkGMKcnl8r6+vqSkJOYFk8nEXMB5enoajUaFQlFaWlpaWjr3C8QVYezE+/3337Va
+7XfffTc0NGSxWFxdXcPDw8nNMQAYHh729/fn8Xg8Hg8ASktLVyzfOTCmlJmZSW5HNjQ0DAwMpKSk
+rF27ViaTGY1GDofT0tIiFotXMs35MKbE3MFZt27dv//+S5qpqaknT5709PT08fHZsmXLiuU4X2a+
+QjSZTPfv37fb7RM7yb3Sx5ZZ/nLBZrOZeQ8Lq/AL0SpUmsefzKbD80Lz4oPoDszvDvgMLIGS3mJb
+fJAlZBWeeFQJA1QJA1QJA1QJA1QJA1QJA1QJA1QJA1QJA1QJA1QJA1QJA1QJA1QJA1QJA1QJA1QJ
+A1QJA1QJA1QJA1QJA1QJA1QJA1QJA+NPTcrl8vLy8jVr1rzwwgsCgQCwF/sMDQ39+OOPycnJEonk
+7NmzpN4Hd7FPX1+fVCqNjIwEgNDQUI1Go9PpkBb7jClFRUUBgFwur62tZbFYYWFhLS0tTsU+mzZt
+GhwcBID//vtvpdKdC5OmBxaLxeVy2Wy23W6fWuyzEukthPETj8PhRERERERE/PLLL2VlZSEhIU7F
+Pj4+PuRfdSgUihXLdw6MjdLt27evX78OAFarVavVenh48Pl8vV5PBqelpSUoKGgl05wPY6OUlJT0
+9ddf5+bmPnjwwNfXVyQSsdlspMU+Y0osFuujjz7SarUsFov51zJisfj555/XarVPPfXUymU4byYV
+KKxfv97pZVrs81hAlTBAlTBAlTBAlTBAlTBAlTBAlTBAlTBAlTBAlTBAlTBAlTBAlTBAlTBAlTBA
+lTBAlTBAlTBAlTBAlTBAlTBAlTBAlTBAlTBAlTCwCpUmVcZUVlay2WyJRLJp0ybAXhmj1+svXLgg
+FAp37tx55swZsjgl7soYtVq9bds2sgRrUlLS3bt3fX19kVbGjI1SbGzsq6++CgAmk6m1tTUqKgrv
+MjiTHn1vbW399ddfd+zY8fTTT1dXV0+sjOnq6lIoFKSAhJT8PLaMK12+fFmtVufk5JBn+j08PJAu
+gzN24vX29t69e/fw4cNMjQL6ypi2tjalUvnBBx+QplgsTk9PR1oZM8sam2azmVTGTFytu7S0dPfu
+3eMhzt1cfB6OLOHsO80NugwOBqgSBqgSBqgSBqgSBqgSBqgSBqgSBqgSBqgSBqgSBqgSBqgSBqgS
+BqgSBqgSBqgSBqgSBqgSBqgSBqgSBqgSBqgSBqgSBqgSBqgSBqgSBiYpmc3mgoICpmkwGIqLi/Pz
+8zUazbIntnDGlZqbm8+fP//3338zPUiLfcaVjEZjcHAw0+zu7ibFPnFxcVu3bn3MVyCZyPij79u3
+b+/v729vbyfNqcU+KJfBmQj6ZXCmMrXYB9kyOFNBX+wzFbzL4NBiHwys9i9EqwOqhAGqhAGqhAGq
+hAGqhAGqhAGqhAGqhAGqhAGqhAGqhAGqhAGqhAGqhAGqhAGqhAGqhAGqhAGqhAGqhAGqhAGqhAGq
+hAGqhAGqhIGZHtfV6XRXr151dXWVSqWenp7LltMimXaUrFbriRMnAgICgoKCTpw4MfOz148V045S
+e3u7r6+vWCwGgObmZrVaHRYWtnx5LYJpR0mj0TBPiAcEBGBdBmciZrN5YmXM0NDQxGVwJi4bUxIw
+yzEGBwdJ/ckMLHgdmqnBp1Vyd3dnKmCGhoYmLoMzX5wKGpaWqcGnPfFiY2Pv3btnsVgAoLW1dTVU
+xnh7ewuFwpMnT7JYrLi4OLK62cJY2NguOPgslTEGg8FgMPj5+T26nJacWZSWnOHh4YqKin379gHA
+H3/8UVNTw7y0efPm1157bfHBZyn2WVpqa2tramrc3d1JUygU8vl8sn39+vVFVhUxwRf+He/ChQuk
+hPjnn38uLy8HgM7OzpKSkrNnz46MjABAQUFBdXU1ALS0tJSVlQGAyWQKDAxkInC5XH9/f39/f5vN
+ptVqExISliT4wpU4HM6dO3ccDkdzczNZR7C1tdXLy4vNZsvlcqvV2tra+ueffwLAX3/9RdYTS05O
+jouLmxrqp59+ysjIWKrgC1eKiYnp7Ozs6enZvHmz2Ww2mUxyuTwmJob0d3V1CYVCjUZjs9lUKlV0
+dPR0cdRqtYeHh9NZt5jgC1fi8Xjd3d1yuZzP5/N4vFu3brm4uHh7e0dHRyuVSqVSyePxQkNDGxoa
+vL29ORzOdHHq6+u3b9++hMEXrsRisQIDAysrK3k8Hp/Pv3btWkxMDABwOBx3d/fGxkamXyAQTBfE
+ZrMplcqoqKglDL6oS0CBQGCz2TZs2MDj8QYHB8lRASAmJmbt2rVcLjcyMlKj0TD9U2lrawsODp5Y
+Drr44Mv9ubQMrMILdaqEAaqEgf8BsYU9UPRGHsYAAAAASUVORK5CYII=
+
+--UugvWAfsgieZRqgk
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: attachment; filename="potential_format_problem.log"
+
+recipe_color.inc/17: RECIPE_COLOR = "green"
+
+--UugvWAfsgieZRqgk--
