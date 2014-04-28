@@ -1,28 +1,26 @@
-Return-Path: <gley-yocto@m.gmane.org>
-Received: from plane.gmane.org (plane.gmane.org [80.91.229.3])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C3CB8E00BD5
-	for <yocto@yoctoproject.org>; Mon, 28 Apr 2014 01:03:26 -0700 (PDT)
-Received: from list by plane.gmane.org with local (Exim 4.69)
-	(envelope-from <gley-yocto@m.gmane.org>) id 1WegX5-0007nS-J0
-	for yocto@yoctoproject.org; Mon, 28 Apr 2014 10:03:23 +0200
-Received: from 80-218-32-173.dclient.hispeed.ch ([80.218.32.173])
-	by main.gmane.org with esmtp (Gmexim 0.1 (Debian))
-	id 1AlnuQ-0007hv-00
-	for <yocto@yoctoproject.org>; Mon, 28 Apr 2014 10:03:23 +0200
-Received: from auslands-kv by 80-218-32-173.dclient.hispeed.ch with local
-	(Gmexim 0.1 (Debian)) id 1AlnuQ-0007hv-00
-	for <yocto@yoctoproject.org>; Mon, 28 Apr 2014 10:03:23 +0200
-X-Injected-Via-Gmane: http://gmane.org/
+Return-Path: <paul.eggleton@linux.intel.com>
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E890AE00BDA
+	for <yocto@yoctoproject.org>; Mon, 28 Apr 2014 01:55:11 -0700 (PDT)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by fmsmga102.fm.intel.com with ESMTP; 28 Apr 2014 01:55:10 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.97,942,1389772800"; d="scan'208";a="522253844"
+Received: from unknown (HELO peggleto-mobl5.ger.corp.intel.com)
+	([10.252.122.52])
+	by fmsmga001.fm.intel.com with ESMTP; 28 Apr 2014 01:55:08 -0700
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
 To: yocto@yoctoproject.org
-From: Neuer User <auslands-kv@gmx.de>
-Date: Mon, 28 Apr 2014 10:03:08 +0200
-Message-ID: <ljl1vt$ink$1@ger.gmane.org>
-Mime-Version: 1.0
-X-Complaints-To: usenet@ger.gmane.org
-X-Gmane-NNTP-Posting-Host: 80-218-32-173.dclient.hispeed.ch
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:24.0) Gecko/20100101 Thunderbird/24.4.0
-Subject: Kernel config fragments are not applied
+Date: Mon, 28 Apr 2014 09:55:07 +0100
+Message-ID: <1601429.lthDfqCfEQ@peggleto-mobl5.ger.corp.intel.com>
+Organization: Intel Corporation
+User-Agent: KMail/4.12.4 (Linux/3.13.10-200.fc20.x86_64; KDE/4.12.4; x86_64; ;
+	)
+In-Reply-To: <B5D983FF-3763-41F5-ADD7-E56C1CA5B697@techne-dev.se>
+References: <9E5EB55B-A539-4A2C-AD5C-719137E4C1C9@techne-dev.se>
+	<B5D983FF-3763-41F5-ADD7-E56C1CA5B697@techne-dev.se>
+MIME-Version: 1.0
+Subject: Re: Modify RFS before final image is created
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,52 +32,55 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 28 Apr 2014 08:03:29 -0000
-Content-Type: text/plain; charset=ISO-8859-15
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Mon, 28 Apr 2014 08:55:13 -0000
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
 
-Hello
+Hi Tobias,
 
-I am trying to add a custom kernel config to my layer. I followed the
-following guide:
-http://www.yoctoproject.org/docs/1.6/dev-manual/dev-manual.html#creating-config-fragments
+On Friday 25 April 2014 11:16:20 Tobias Blom wrote:
+> On 25 apr 2014, at 09:22, Tobias Blom <tobias.blom@techne-dev.se> wro=
+te:
+> > I have run into a problem that I=E2=80=99m not able to figure out h=
+ow to solve,
+> > and turn to the list to ask for general directions.
+> >=20
+> > I need to modify my root FS just before the final image is created.=
+ The
+> > problem is that I do now know where to implement my code.
+> >=20
+> > More specific, I want to copy a couple of RPM-packages to the final=
+ RFS,
+> > packages that have just been installed. The reason is to be able to=
 
-I have the following files in my layer:
+> > perform a rollback later on.
+>
+> I=E2=80=99ll answer my own question. It seem ROOTFS_POSTPROCESS_COMMA=
+ND or
+> ROOTFS_POSTINSTALL_COMMAND is the way to go.
 
-recipes-kernel/linux/linux-cubox-i_3.0.35.bbappend:
+Yep, adding to ROOTFS_POSTPROCESS_COMMAND is the expected way to do thi=
+s.
+=20
+> I did however run into a problem when running my script. Using variab=
+le ${D}
+> in my ROOTFS_POSTINSTALL_COMMAND gives the =E2=80=9Cwrong=E2=80=9D pa=
+th - it points to
+> =E2=80=A6/image and I=E2=80=99d expect it to contain the path to =E2=80=
+=A6/rootfs. It seem the
+> variable is replaced before my function is executed.
+>=20
+> I solved this by using variable ${IMAGE_ROOTFS} instead.
 
-FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}-${PV}:"
+Right, IMAGE_ROOTFS is the variable that points to the directory struct=
+ure=20
+being created for the image.
 
-inherit kernel
-COMPATIBLE_MACHINE_cubox-i = "(cubox-i)"
+Cheers,
+Paul
 
-SRC_URI += "file://videoin.cfg"
+--=20
 
-
-recipes-kernel/linux/linux-cubox-i-3.0.35/videoin.cfg:
-
-CONFIG_VIDEOBUF_VMALLOC=y
-CONFIG_VIDEO_TVEEPROM=y
-CONFIG_VIDEO_TUNER=y
-CONFIG_VIDEO_ADV7180=y
-CONFIG_VIDEO_MXC_CAMERA=y
-CONFIG_MXC_TVIN_ADV7180=y
-CONFIG_USB_VIDEO_CLASS=y
-CONFIG_USB_GSPCA=y
-CONFIG_USB_M5602=y
-CONFIG_USB_STV06XX=y
-...
-
-The layer is included in conf/bblayers.conf. The file videoin.cfg is
-found and "installed" in the correct tmp/work directory. However the
-config is never added to the kernel config file.
-
-What am I doing wrong?
-
-I use Yocto "master-next", cubox-i4pro.
-
-Thanks
-
-Michael
-
+Paul Eggleton
+Intel Open Source Technology Centre
 
