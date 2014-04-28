@@ -1,28 +1,47 @@
-Return-Path: <gley-yocto@m.gmane.org>
-Received: from plane.gmane.org (plane.gmane.org [80.91.229.3])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DA263E00A13
-	for <yocto@yoctoproject.org>; Mon, 28 Apr 2014 08:11:54 -0700 (PDT)
-Received: from list by plane.gmane.org with local (Exim 4.69)
-	(envelope-from <gley-yocto@m.gmane.org>) id 1WenDh-0005iQ-JH
-	for yocto@yoctoproject.org; Mon, 28 Apr 2014 17:11:49 +0200
-Received: from 80-218-32-173.dclient.hispeed.ch ([80.218.32.173])
-	by main.gmane.org with esmtp (Gmexim 0.1 (Debian))
-	id 1AlnuQ-0007hv-00
-	for <yocto@yoctoproject.org>; Mon, 28 Apr 2014 17:11:49 +0200
-Received: from auslands-kv by 80-218-32-173.dclient.hispeed.ch with local
-	(Gmexim 0.1 (Debian)) id 1AlnuQ-0007hv-00
-	for <yocto@yoctoproject.org>; Mon, 28 Apr 2014 17:11:49 +0200
-X-Injected-Via-Gmane: http://gmane.org/
-To: yocto@yoctoproject.org
-From: Neuer User <auslands-kv@gmx.de>
-Date: Mon, 28 Apr 2014 17:11:36 +0200
-Message-ID: <ljlr38$lu5$1@ger.gmane.org>
-Mime-Version: 1.0
-X-Complaints-To: usenet@ger.gmane.org
-X-Gmane-NNTP-Posting-Host: 80-218-32-173.dclient.hispeed.ch
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:24.0) Gecko/20100101 Thunderbird/24.4.0
-Subject: libav without X ?
+Return-Path: <raj.khem@gmail.com>
+Received: from mail-ig0-f176.google.com (mail-ig0-f176.google.com
+	[209.85.213.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5F8D8E00AD2
+	for <yocto@yoctoproject.org>; Mon, 28 Apr 2014 10:17:34 -0700 (PDT)
+Received: by mail-ig0-f176.google.com with SMTP id uy17so5026103igb.15
+	for <yocto@yoctoproject.org>; Mon, 28 Apr 2014 10:17:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-type;
+	bh=Xw4/6ozNE1jdM6tt/Yv7CdJr+gg76NEHz73XHtzsS8I=;
+	b=DMUcJ36JeqEL7UnGDi1LAGPpVgbSMChnMpk1370YZbW+ZFIOcZAOzFelsP9ncecyHl
+	S7cVxg7P2IrvHHgnV113cnBzAjuS8W8v+npKXZMHBBtsJKm5Q3zVviSoeLumgjZ0JlNK
+	FqHJiLvYnpdAHch/obkp/Ji38Ry7HoaEZT2IUGdgcR77bnASsozp3XaHIDvmsRa/pd/T
+	qoFVPtrMRTDSw/+l6CnUJIBdcCUx9VNW2tg/q17ccxwAwTwTl8fuyaG6qroRPdaLqV++
+	3l8y/QFhQFu4SAzbf+PS4ZnJ6cR3vpWVHirl73IOX3jYI3aV6UNW5674uNdYEYVcXz4f
+	8EoQ==
+X-Received: by 10.51.17.5 with SMTP id ga5mr25467974igd.2.1398705454239; Mon,
+	28 Apr 2014 10:17:34 -0700 (PDT)
+MIME-Version: 1.0
+Received: by 10.50.229.14 with HTTP; Mon, 28 Apr 2014 10:17:04 -0700 (PDT)
+In-Reply-To: <CANyK_8caB3XLyY5QvDdDGF5i8kQbN7GV+zBz1x7OzxkzV7P6mg@mail.gmail.com>
+References: <CAMKF1soKZqqmQUVCQnUqS1GV1FO5KictTO+=up=d7Jw3+QhXMw@mail.gmail.com>
+	<CAJTo0LYF0VNwy7=rhmr7U_=tXwJtPOax3AKttn66q3qD_QXd2w@mail.gmail.com>
+	<CANyK_8deVKbC6xOUQHubvphfwQCQefHGWCt7Mp1QM4DUVXja5g@mail.gmail.com>
+	<CAMKF1sqPB+QCvPHHcxsU+ExBmNWg9jPXajkAR_FdKpJ76-x9dg@mail.gmail.com>
+	<CANyK_8er+2sjvU1csLOEpZ06qCL4h+bP2ecUYYGzyiEw0kXzQw@mail.gmail.com>
+	<CAMKF1spno7Np8FXr3JXw3_W72+vRkchzZ8J5X+3e4RCFY+6nLg@mail.gmail.com>
+	<CANyK_8f_V247P1UWaeG-7YwBq4MrHQ=+69NOgW8LUZ4_Xgx2qA@mail.gmail.com>
+	<CAP9ODKp-+31rJmK6uY1QA6nvG4hDuNT79JVeeivY5XeOCu2etw@mail.gmail.com>
+	<CAMKF1sqOCs_OYkZU2ng9FmViPyJx1AjdViSquZWzbgFT=XZdoA@mail.gmail.com>
+	<CANyK_8fC4kkDgqovwuTx5kN0Y2hcyDT7HStii4hxz_CN3D=atA@mail.gmail.com>
+	<CAMKF1sorF5M0oxq9gaZEDeV5Td2pydEE0zZjqJdM8n0hyGbuyQ@mail.gmail.com>
+	<CANyK_8caB3XLyY5QvDdDGF5i8kQbN7GV+zBz1x7OzxkzV7P6mg@mail.gmail.com>
+From: Khem Raj <raj.khem@gmail.com>
+Date: Mon, 28 Apr 2014 10:17:04 -0700
+Message-ID: <CAMKF1sqbwwTQoVEBgaTAtRhLVFkrUTfzF63H09aEayAvNgZG9A@mail.gmail.com>
+To: Paul Barker <paul@paulbarker.me.uk>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
+	OE-devel <openembedded-devel@lists.openembedded.org>,
+	Otavio Salvador <otavio@ossystems.com.br>,
+	Patches and discussions about the oe-core layer
+	<openembedded-core@lists.openembedded.org>
+Subject: Re: [OE-core] [oe] initial support for musl libc with OE/Yocto Project
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -34,116 +53,65 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 28 Apr 2014 15:11:57 -0000
-Content-Type: text/plain; charset=ISO-8859-15
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Mon, 28 Apr 2014 17:17:37 -0000
+Content-Type: text/plain; charset=UTF-8
 
-Hi
+Update
 
-I want to include the package sox_14.4.0.bb in my distro. Should be
-straight forward, I thought. But I am having problems as the package
-always wants GL as a requirement, which my distro does not have (without X).
+Now I have core-image-minimal building and booting for all of the
+supported QEMU targets in OE-Core with musl/gcc-4.9. The updates are
+all available on contrib tree branch kraj/musl, try it out for your
+machine/distro if you are interested in musl
 
-the sox recipe looks like this:
+http://git.openembedded.org/openembedded-core-contrib/log/?h=kraj/musl
 
-DESCRIPTION="SoX is the Swiss Army knife of sound processing tools. \
-It converts audio files among various standard audio file formats \
-and can apply different effects and filters to the audio data."
-HOMEPAGE = "http://sox.sourceforge.net"
-SECTION = "audio"
-
-DEPENDS = "libpng libav libsndfile1"
-
-PR = "r2"
-
-PACKAGECONFIG ??= "${@base_contains('DISTRO_FEATURES', 'pulseaudio',
-'pulseaudio', '', d)} \
-                   ${@base_contains('DISTRO_FEATURES', 'alsa', 'alsa',
-'', d)} \
-                   magic \
-"
-PACKAGECONFIG[pulseaudio] =
-"--with-pulseaudio=dyn,--with-pulseaudio=no,pulseaudio,"
-PACKAGECONFIG[alsa] = "--with-alsa=dyn,--with-alsa=no,alsa-lib,"
-PACKAGECONFIG[wavpack] = "--with-wavpack=dyn,--with-wavpack=no,wavpack,"
-PACKAGECONFIG[magic] = "--with-magic,--without-magic,file,"
-PACKAGECONFIG[mad] = "--with-mad,--without-mad,libmad,"
-PACKAGECONFIG[id3tag] = "--with-id3tag,--without-id3tag,libid3tag,"
-PACKAGECONFIG[lame] = "--with-lame,--without-lame,lame,"
-
-LICENSE = "GPLv2 & LGPLv2.1"
-LIC_FILES_CHKSUM =
-"file://LICENSE.GPL;md5=751419260aa954499f7abaabaa882bbe \
-
-file://LICENSE.LGPL;md5=fbc093901857fcd118f065f900982c24"
-
-SRC_URI = "${SOURCEFORGE_MIRROR}/sox/sox-${PV}.tar.gz"
-SRC_URI[md5sum] = "b0c15cff7a4ba0ec17fdc74e6a1f9cf1"
-SRC_URI[sha256sum] =
-"3ee34b14dd267de378e8a117aae81ec4cae330772342e6a55bbf6520a0a88aa3"
-
-inherit autotools
-
-BBCLASSEXTEND = "native"
-
-
-So,it depends on libav. Libav.inc looks like this (just the important part):
-
-DEPENDS = "virtual/libsdl zlib libogg libvorbis libtheora yasm-native"
-
-INC_PR = "r8"
-
-inherit autotools pkgconfig
-
-B = "${S}/build.${HOST_SYS}.${TARGET_SYS}"
-
-FULL_OPTIMIZATION_armv7a = "-fexpensive-optimizations
--fomit-frame-pointer -O4 -ffast-math"
-BUILD_OPTIMIZATION = "${FULL_OPTIMIZATION}"
-
-EXTRA_FFCONF_armv7a = "--cpu=cortex-a8"
-EXTRA_FFCONF ?= ""
-
-PACKAGECONFIG ??= "bzip2 x264 ${@base_contains('DISTRO_FEATURES', 'x11',
-'x11', '', d)}"
-PACKAGECONFIG[jack] = "--enable-indev=jack,--disable-indev=jack,jack"
-PACKAGECONFIG[bzip2] = "--enable-bzlib,--disable-bzlib,bzip2"
-PACKAGECONFIG[schroedinger] =
-"--enable-libschroedinger,--disable-libschroedinger,schroedinger"
-PACKAGECONFIG[gsm] = "--enable-libgsm,--disable-libgsm,libgsm"
-PACKAGECONFIG[x264] = "--enable-libx264,--disable-libx264,x264"
-PACKAGECONFIG[vpx] = "--enable-libvpx,--disable-libvpx,libvpx"
-PACKAGECONFIG[mp3lame] = "--enable-libmp3lame,--disable-libmp3lame,lame"
-PACKAGECONFIG[faac] = "--enable-libfaac,--disable-libfaac,faac"
-PACKAGECONFIG[x11] = "--enable-x11grab,--disable-x11grab,virtual/libx11
-libxfixes libxext xproto"
-
-
-My local.conf has:
-
-DISTRO_FEATURES_remove = "x11 wayland"
-
-
-So, I don't understand why it always wants to build
-recipe libglu-2_9.0.0-0: task do_configure: Started
-
-Which fails, of course:
-| checking for GL/gl.h... no
-| configure: error: GL not found
-| Configure failed. The contents of all config.log files follows to aid
-debugging
-| ERROR: oe_runconf failed
-| WARNING: exit code 1 from a shell command.
-| ERROR: Function failed: do_configure (log file is located at
-/home/ubuntu/yocto/build/tmp/work/cortexa9hf-vfp-neon-mx6-poky-linux-gnueabi/libglu/2_9.0.0-0/temp/log.do_configure.13955)
-NOTE: recipe libglu-2_9.0.0-0: task do_configure: Failed
-
-
-I seem to be missing something. Can anybody help me how I can build sox
-without x11 dependency (which it shouldn't have)?
-
-Thanks
-
-Michael
-
+On Wed, Apr 2, 2014 at 10:27 AM, Paul Barker <paul@paulbarker.me.uk> wrote:
+> On 2 April 2014 18:13, Khem Raj <raj.khem@gmail.com> wrote:
+>> On Wed, Apr 2, 2014 at 10:03 AM, Paul Barker <paul@paulbarker.me.uk> wrote:
+>>> You've fixed util-linux in a different way to me, I added qsort_r to
+>>> musl
+>>
+>> this won't fly in musl community.
+>>
+>> whereas you've removed it's use from util-linux. I'm not bothered
+>>> which one we use if both work. We do now have 4 people looking at
+>>> util-linux fixes: Me, you and Robert Yang (as util-linux-native
+>>> doesn't build on Centos 5.10 due to the same qsort_r usage) here in
+>>> oe-core and Karel Zak from upstream (as they want to fix it for their
+>>> next release). I think we need to pick one fix (probably yours if it's
+>>> tested and working in another distro) and get it applied to oe-core
+>>> master.
+>>
+>> yes, I think not using qsort_r is common solution for all these issues.
+>
+> Ok, sounds good. Could we split this out and send it to the mailing
+> list on its own for now? It's much better than the patch that's
+> currently in oe-core.
+>
+>>
+>>>
+>>> Your latest commit "glibc-2.0: Fix build issues that arise on musl"
+>>> should say glib not glibc. Other than that, your glib fix is better
+>>> than mine (I did add <string.h> but didn't add the
+>>> '--with-libiconv=gnu' option, instead I set musl as the provider of
+>>> virtual/libiconv).
+>>
+>> in order to build a lot of software we would need some sort of iconv
+>> implementation
+>> letting musl to provide it is probably ok too but I wanted  to take
+>> the tested path to get
+>> to an image to build and then we have a known baseline and we could
+>> experiment more.
+>
+> I'd like to see both as options but I agree we should get an image
+> working in the simplest way possible first.
+>
+> I'm really impressed with how fast this is moving forward so don't
+> take my comments as in any way negative!
+>
+> --
+> Paul Barker
+>
+> Email: paul@paulbarker.me.uk
+> http://www.paulbarker.me.uk
 
