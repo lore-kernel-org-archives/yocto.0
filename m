@@ -1,23 +1,28 @@
-Return-Path: <prvs=1888a555c=Richard.Leitner@skidata.com>
-Received: from mail1.skidata.com (mail1.skidata.com [91.230.2.99])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DA90DE00BD5
-	for <yocto@yoctoproject.org>; Mon, 28 Apr 2014 00:59:17 -0700 (PDT)
-X-IronPort-Anti-Spam-Filtered: true
-X-IronPort-Anti-Spam-Result: AqAEANsJXlOsEApK/2dsb2JhbABZhCzEZoEidIInBTpRARUVFC8TJgEEGxOIK8llF44og1yBFQSPIYV6BYpxjwqCKw
-X-IPAS-Result: AqAEANsJXlOsEApK/2dsb2JhbABZhCzEZoEidIInBTpRARUVFC8TJgEEGxOIK8llF44og1yBFQSPIYV6BYpxjwqCKw
-From: Richard Leitner - SKIDATA <Richard.Leitner@skidata.com>
-To: "Yocto Project Discussion ML (yocto@yoctoproject.org)"
-	<yocto@yoctoproject.org>
-Thread-Topic: Binary {deb,rpm} package install without repackaging
-Thread-Index: Ac9it78gwedlVLWVTQCx5IBAnL2Dtw==
-Date: Mon, 28 Apr 2014 07:59:14 +0000
-Message-ID: <F7680723A1CA6840825A59020FA77064010C6F9F@sdexmbx1srv.skidata.net>
-Accept-Language: en-US, de-AT
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [172.16.111.80]
-MIME-Version: 1.0
-Subject: Binary {deb,rpm} package install without repackaging
+Return-Path: <gley-yocto@m.gmane.org>
+Received: from plane.gmane.org (plane.gmane.org [80.91.229.3])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C3CB8E00BD5
+	for <yocto@yoctoproject.org>; Mon, 28 Apr 2014 01:03:26 -0700 (PDT)
+Received: from list by plane.gmane.org with local (Exim 4.69)
+	(envelope-from <gley-yocto@m.gmane.org>) id 1WegX5-0007nS-J0
+	for yocto@yoctoproject.org; Mon, 28 Apr 2014 10:03:23 +0200
+Received: from 80-218-32-173.dclient.hispeed.ch ([80.218.32.173])
+	by main.gmane.org with esmtp (Gmexim 0.1 (Debian))
+	id 1AlnuQ-0007hv-00
+	for <yocto@yoctoproject.org>; Mon, 28 Apr 2014 10:03:23 +0200
+Received: from auslands-kv by 80-218-32-173.dclient.hispeed.ch with local
+	(Gmexim 0.1 (Debian)) id 1AlnuQ-0007hv-00
+	for <yocto@yoctoproject.org>; Mon, 28 Apr 2014 10:03:23 +0200
+X-Injected-Via-Gmane: http://gmane.org/
+To: yocto@yoctoproject.org
+From: Neuer User <auslands-kv@gmx.de>
+Date: Mon, 28 Apr 2014 10:03:08 +0200
+Message-ID: <ljl1vt$ink$1@ger.gmane.org>
+Mime-Version: 1.0
+X-Complaints-To: usenet@ger.gmane.org
+X-Gmane-NNTP-Posting-Host: 80-218-32-173.dclient.hispeed.ch
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:24.0) Gecko/20100101 Thunderbird/24.4.0
+Subject: Kernel config fragments are not applied
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -29,28 +34,52 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 28 Apr 2014 07:59:19 -0000
-Content-Language: de-DE
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Mon, 28 Apr 2014 08:03:29 -0000
+Content-Type: text/plain; charset=ISO-8859-15
+Content-Transfer-Encoding: 7bit
 
-Hi everybody,
-I've got a question regarding the binary deb/rpm packages in yocto.
+Hello
 
-Is there any possibility to install a binary deb/rpm package in the rootfs =
-build without repackaging it?
-Naively I'm for example thinking of an option in the image recipe like:
-ADDITIONAL_PACKAGES +=3D "/path/to/package.{deb,rpm}"
+I am trying to add a custom kernel config to my layer. I followed the
+following guide:
+http://www.yoctoproject.org/docs/1.6/dev-manual/dev-manual.html#creating-config-fragments
 
-The point is that all possible solutions I found using recipes are extracti=
-ng and then repackaging the package.
-Due to the fact that during the repackaging all meta data and {pre,post}{rm=
-,inst} scripts of the original package are lost this is a "no-go" for me.
+I have the following files in my layer:
 
-I'd appreciate any help and hints!
+recipes-kernel/linux/linux-cubox-i_3.0.35.bbappend:
 
-Thanks!
+FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}-${PV}:"
 
-best regards,
-Richard
+inherit kernel
+COMPATIBLE_MACHINE_cubox-i = "(cubox-i)"
+
+SRC_URI += "file://videoin.cfg"
+
+
+recipes-kernel/linux/linux-cubox-i-3.0.35/videoin.cfg:
+
+CONFIG_VIDEOBUF_VMALLOC=y
+CONFIG_VIDEO_TVEEPROM=y
+CONFIG_VIDEO_TUNER=y
+CONFIG_VIDEO_ADV7180=y
+CONFIG_VIDEO_MXC_CAMERA=y
+CONFIG_MXC_TVIN_ADV7180=y
+CONFIG_USB_VIDEO_CLASS=y
+CONFIG_USB_GSPCA=y
+CONFIG_USB_M5602=y
+CONFIG_USB_STV06XX=y
+...
+
+The layer is included in conf/bblayers.conf. The file videoin.cfg is
+found and "installed" in the correct tmp/work directory. However the
+config is never added to the kernel config file.
+
+What am I doing wrong?
+
+I use Yocto "master-next", cubox-i4pro.
+
+Thanks
+
+Michael
+
 
