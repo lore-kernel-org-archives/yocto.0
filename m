@@ -1,27 +1,32 @@
-Return-Path: <prvs=189e02318=Richard.Leitner@skidata.com>
-Received: from mail1.skidata.com (mail1.skidata.com [91.230.2.99])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A224DE009EB
-	for <yocto@yoctoproject.org>; Tue, 29 Apr 2014 00:51:56 -0700 (PDT)
-X-IronPort-Anti-Spam-Filtered: true
-X-IronPort-Anti-Spam-Result: AqYEALhZX1OsEApK/2dsb2JhbABZg1VXgmW6WIc5GYEadIIlAQEBAwEBAQEgEToLBQsCAQgNBAQBAQECAgYdAwICAh0CBgEKFAEICAEBBA4FCAESiBIDCQ0IpTedBA2GNBeBKYsPgWYWGwcCAoJrNYEVBI8ihXoFgRJpAYMshUuGBYkGgis
-X-IPAS-Result: AqYEALhZX1OsEApK/2dsb2JhbABZg1VXgmW6WIc5GYEadIIlAQEBAwEBAQEgEToLBQsCAQgNBAQBAQECAgYdAwICAh0CBgEKFAEICAEBBA4FCAESiBIDCQ0IpTedBA2GNBeBKYsPgWYWGwcCAoJrNYEVBI8ihXoFgRJpAYMshUuGBYkGgis
-From: Richard Leitner - SKIDATA <Richard.Leitner@skidata.com>
-To: "Yocto Project Discussion ML (yocto@yoctoproject.org)"
-	<yocto@yoctoproject.org>
-Thread-Topic: [yocto] Binary {deb,rpm} package install without repackaging
-Thread-Index: Ac9it78gwedlVLWVTQCx5IBAnL2Dt///++yA//+6d+A=
-Date: Tue, 29 Apr 2014 07:51:52 +0000
-Message-ID: <F7680723A1CA6840825A59020FA77064010C8577@sdexmbx1srv.skidata.net>
-References: <F7680723A1CA6840825A59020FA77064010C6F9F@sdexmbx1srv.skidata.net>
-	<CAE_REAsfRB2=NUcb8dMPj8+=S-FYELU-x8=19+0+XE6XXgNAUQ@mail.gmail.com>
-Keywords: MailinglistFromMe
-In-Reply-To: <CAE_REAsfRB2=NUcb8dMPj8+=S-FYELU-x8=19+0+XE6XXgNAUQ@mail.gmail.com>
-Accept-Language: en-US, de-AT
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [172.16.111.80]
+Return-Path: <pcjegan@gmail.com>
+Received: from mail-vc0-f181.google.com (mail-vc0-f181.google.com
+	[209.85.220.181])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 600D7E00B67
+	for <yocto@yoctoproject.org>; Tue, 29 Apr 2014 00:53:57 -0700 (PDT)
+Received: by mail-vc0-f181.google.com with SMTP id hy4so3683526vcb.12
+	for <yocto@yoctoproject.org>; Tue, 29 Apr 2014 00:53:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-type;
+	bh=nTq6wSfAamQMylOKYot9hIvD4BmUdDrmH/wwlcwu1uM=;
+	b=SmBFTANBevLI0sfivlcdDm8JNDLK5xzFW2CHLEWvOKppGulubCt/oGUJAp15EHDi3B
+	S/6scgAI/hevZEWZ2f6hOBahgfr0P70eP3wY80ns21lkm2VPQn1d7zJ8D95OqQFTh8L2
+	dwxAZZZWmLzoYKa0yO2hppaF/REJXJIIGxz5tgdZEHm5Qw30jKdQ51uTDLsGhhUU3KmU
+	u4IKkZi32QU8D1C1fbwH/+3v3Qmiu0hPVOk2MqIM0/XYpBckkhN8GMd+VIQ0sTjnN4jS
+	E8MfceGBMIRhdP0QQxUaOQr+oFrwilJWW3hfw+ahKocXMiGFXzbimolOUCXldxJzB+pV
+	sCfg==
+X-Received: by 10.220.105.130 with SMTP id t2mr28208131vco.18.1398758037214;
+	Tue, 29 Apr 2014 00:53:57 -0700 (PDT)
 MIME-Version: 1.0
-Subject: Re: Binary {deb,rpm} package install without repackaging
+Received: by 10.220.172.65 with HTTP; Tue, 29 Apr 2014 00:53:36 -0700 (PDT)
+In-Reply-To: <535F3FFD.1080403@hostmobility.com>
+References: <535F3FFD.1080403@hostmobility.com>
+From: Jegan Chandru <pcjegan@gmail.com>
+Date: Tue, 29 Apr 2014 13:23:36 +0530
+Message-ID: <CAAA4K6LApkJ=LVpGqrNQ_GGBuM9WJN8MuLEJrXyut8yGi7uZXA@mail.gmail.com>
+To: Mirza Krak <mirza.krak@hostmobility.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: quilt-native fails on tar version 1.27.1
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -33,64 +38,197 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 29 Apr 2014 07:51:58 -0000
-Content-Language: de-DE
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+X-List-Received-Date: Tue, 29 Apr 2014 07:54:06 -0000
+Content-Type: multipart/alternative; boundary=047d7b343752ef5b4804f829bb10
 
-SGksDQp0aGFua3MgZm9yIHRoYXQgaGludCENCkkgZmluYWxseSBtYW5hZ2VkIHRvIGluc3RhbGwg
-YSAidGhpcmQgcGFydHkiIGRlYiBwYWNrYWdlIHVzaW5nIHRoZSBST09URlNfUE9TVFBST0NFU1Nf
-Q09NTUFORCBbMV0gaW4gbXkgcm9vdGZzLmJiIHJlY2lwZS4NCkFsdGhvdWdoIEkgbm90IGZ1bGx5
-IHVuZGVyc3RhbmQgd2h5IHRoZSAiLS1hZG1pbmRpciIgcGFyYW1ldGVyIGlzIHJlcXVpcmVkIHdo
-ZW4gdGhlICItLXJvb3QiIHBhcmFtZXRlciBpcyBnaXZlbi4NCg0KVGhlIFJPT1RGU19QT1NUUFJP
-Q0VTU19DT01NQU5EIEknbSB1c2luZyBpczoNClJPT1RGU19QT1NUUFJPQ0VTU19DT01NQU5EICs9
-ICIke1NUQUdJTkdfQklORElSX05BVElWRX0vZHBrZyAtLXJvb3Q9JHtJTUFHRV9ST09URlN9LyAt
-LWFkbWluZGlyPSR7SU1BR0VfUk9PVEZTfS92YXIvbGliL2Rwa2cvICAtaSAvcGF0aC90by9wYWNr
-YWdlLmRlYiINCg0KSSB0aGluayBwcmV0dHkgdGhlIHNhbWUgY29tbWFuZCB3aWxsIHdvcmsgZm9y
-IHJwbSBwYWNrYWdlcy4NCg0KQ2FuIGFueWJvZHkgb2YgeW91IGV4cGxhaW4gdG8gbWUgd2h5ICIt
-LXJvb3QiIEFORCAiLS1hZG1pbmRpciIgYXJlIHJlcXVpcmVkIGZvciBkcGtnIHRvIHdvcmsgY29y
-cmVjdGx5Pw0KDQpBY2NvcmRpbmcgdG8gdGhlIGRwa2cgbWFucGFnZSAtLWFkbWluZGlyIHNob3Vs
-ZG4ndCBiZSByZXF1aXJlZCB3aGVuIC0tcm9vdCBpcyBnaXZlbjoNCi0tYWRtaW5kaXI9ZGlyDQog
-ICAgICAgICAgICAgIENoYW5nZSBkZWZhdWx0IGFkbWluaXN0cmF0aXZlIGRpcmVjdG9yeSwgIHdo
-aWNoICBjb250YWlucw0KICAgICAgICAgICAgICBtYW55ICAgZmlsZXMgICB0aGF0ICBnaXZlICBp
-bmZvcm1hdGlvbiAgYWJvdXQgIHN0YXR1cyAgb2YNCiAgICAgICAgICAgICAgaW5zdGFsbGVkIG9y
-IHVuaW5zdGFsbGVkICBwYWNrYWdlcywgIGV0Yy4gICAoRGVmYXVsdHMgIHRvDQogICAgICAgICAg
-ICAgIC92YXIvbGliL2Rwa2cpDQoNCi0tcm9vdD1kaXINCiAgICAgICAgICAgICAgQ2hhbmdpbmcg
-cm9vdCBjaGFuZ2VzIGluc3RkaXIgIHRvICBkaXIgIGFuZCAgYWRtaW5kaXIgIHRvDQogICAgICAg
-ICAgICAgIGRpci92YXIvbGliL2Rwa2cuDQoNCmJlc3QgcmVnYXJkcywNClJpY2hhcmQNCg0KWzFd
-IGh0dHA6Ly93d3cueW9jdG9wcm9qZWN0Lm9yZy9kb2NzL2N1cnJlbnQvbWVnYS1tYW51YWwvbWVn
-YS1tYW51YWwuaHRtbCN2YXItUk9PVEZTX1BPU1RQUk9DRVNTX0NPTU1BTkQNCg0KPiBGcm9tOiBH
-YXVyYW5nIFNoYXN0cmkgW21haWx0bzpnbXNoYXN0cmlAZ21haWwuY29tXSANCj4gU2VudDogTW9u
-ZGF5LCBBcHJpbCAyOCwgMjAxNCAxMTo0NSBBTQ0KPiBUbzogUmljaGFyZCBMZWl0bmVyIC0gU0tJ
-REFUQQ0KPiBTdWJqZWN0OiBSZTogW3lvY3RvXSBCaW5hcnkge2RlYixycG19IHBhY2thZ2UgaW5z
-dGFsbCB3aXRob3V0IHJlcGFja2FnaW5nDQo+DQo+IERlYXIgUmljaGFyZCwNCj4gDQo+IERvIHlv
-dSB3YW50IHRvIGNvcHkgc29tZSBvZiB0aGUgUlBNIHRvIGZpbmFsIFJPT1RGUyBpbWFnZSBiZWZv
-cmUgUk9PVEZTIGltYWdlIGlzIGNyZWF0ZWQgwqBvciB5b3Ugd2FudCB0byBpbnN0YWxsIHNvbWUg
-b2YgdGhlIFJQTSBwYWNrYWdlIGJlZm9yZSBST09URlMgaW1hZ2UgaXMgY3JlYXRlZCA/Pw0KPiAN
-Cj4gUk9PVEZTX1BPU1RQUk9DRVNTX0NPTU1BTkQgb3IgUk9PVEZTX1BPU1RJTlNUQUxMX0NPTU1B
-TkQgaXMgdGhlIHdheSB0byBnby4NCj4gDQo+IEkgZGlkIGhvd2V2ZXIgcnVuIGludG8gYSBwcm9i
-bGVtIHdoZW4gcnVubmluZyBteSBzY3JpcHQuIFVzaW5nIHZhcmlhYmxlICR7RH0gaW4gbXkgUk9P
-VEZTX1BPU1RJTlNUQUxMX0NPTU1BTkQgZ2l2ZXMgdGhlIOKAnHdyb25n4oCdIHBhdGggLSBpdCBw
-b2ludHMgdG8g4oCmL2ltYWdlIGFuZCBJ4oCZZCBleHBlY3QgaXQgdG8gY29udGFpbiB0aGUgcGF0
-aCB0byDigKYvcm9vdGZzLg0KPiBJdCBzZWVtIHRoZSB2YXJpYWJsZSBpc3JlcGxhY2VkIGJlZm9y
-ZSBteSBmdW5jdGlvbiBpcyBleGVjdXRlZC4NCj4gDQo+IEkgc29sdmVkIHRoaXMgYnkgdXNpbmcg
-dmFyaWFibGUgJHtJTUFHRV9ST09URlN9IGluc3RlYWQuDQo+IA0KPiAvL0dhdXJhbmcgU2hhc3Ry
-aQ0KPiANCj4gDQo+IA0KPiBPbiBNb24sIEFwciAyOCwgMjAxNCBhdCAxOjI5IFBNLCBSaWNoYXJk
-IExlaXRuZXIgLSBTS0lEQVRBIDxSaWNoYXJkLkxlaXRuZXJAc2tpZGF0YS5jb20+IHdyb3RlOg0K
-PiA+IEhpIGV2ZXJ5Ym9keSwNCj4gPiBJJ3ZlIGdvdCBhIHF1ZXN0aW9uIHJlZ2FyZGluZyB0aGUg
-YmluYXJ5IGRlYi9ycG0gcGFja2FnZXMgaW4geW9jdG8uDQo+ID4gDQo+ID4gSXMgdGhlcmUgYW55
-IHBvc3NpYmlsaXR5IHRvIGluc3RhbGwgYSBiaW5hcnkgZGViL3JwbSBwYWNrYWdlIGluIHRoZSBy
-b290ZnMgYnVpbGQgd2l0aG91dCByZXBhY2thZ2luZyBpdD8NCj4gPiBOYWl2ZWx5IEknbSBmb3Ig
-ZXhhbXBsZSB0aGlua2luZyBvZiBhbiBvcHRpb24gaW4gdGhlIGltYWdlIHJlY2lwZSBsaWtlOg0K
-PiA+IEFERElUSU9OQUxfUEFDS0FHRVMgKz0gIi9wYXRoL3RvL3BhY2thZ2Uue2RlYixycG19Ig0K
-PiA+IA0KPiA+IFRoZSBwb2ludCBpcyB0aGF0IGFsbCBwb3NzaWJsZSBzb2x1dGlvbnMgSSBmb3Vu
-ZCB1c2luZyByZWNpcGVzIGFyZSBleHRyYWN0aW5nIGFuZCB0aGVuIHJlcGFja2FnaW5nIHRoZSBw
-YWNrYWdlLg0KPiA+IER1ZSB0byB0aGUgZmFjdCB0aGF0IGR1cmluZyB0aGUgcmVwYWNrYWdpbmcg
-YWxsIG1ldGEgZGF0YSBhbmQge3ByZSxwb3N0fXtybSxpbnN0fSBzY3JpcHRzIG9mIHRoZSBvcmln
-aW5hbCBwYWNrYWdlIGFyZSBsb3N0IHRoaXMgaXMgYSAibm8tZ28iIGZvciBtZS4NCj4gPiANCj4g
-PiBJJ2QgYXBwcmVjaWF0ZSBhbnkgaGVscCBhbmQgaGludHMhDQo+ID4gDQo+ID4gVGhhbmtzIQ0K
-PiA+IA0KPiA+IGJlc3QgcmVnYXJkcywNCj4gPiBSaWNoYXJkDQotLQ0KX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX18NCnlvY3RvIG1haWxpbmcgbGlzdA0KeW9j
-dG9AeW9jdG9wcm9qZWN0Lm9yZw0KaHR0cHM6Ly9saXN0cy55b2N0b3Byb2plY3Qub3JnL2xpc3Rp
-bmZvL3lvY3RvDQoNCg==
+--047d7b343752ef5b4804f829bb10
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
+Hi,
+
+Only Yocto version 1.6 supports Ubuntu 14.04 LTS. I hope you are using
+that. if you are using <1.6 Ubuntu 14.04 LTS is not in supported distros.
+
+http://www.yoctoproject.org/docs/1.6/ref-manual/ref-manual.html#detailed-su=
+pported-distros
+http://www.yoctoproject.org/docs/1.5/ref-manual/ref-manual.html#detailed-su=
+pported-distros
+http://www.yoctoproject.org/docs/1.4/ref-manual/ref-manual.html#detailed-su=
+pported-distros
+
+Also I found this,
+https://lists.yoctoproject.org/pipermail/yocto/2013-October/016540.html
+which makes ur problem a known issue.
+
+HTH.
+
+-JC
+
+
+On Tue, Apr 29, 2014 at 11:30 AM, Mirza Krak <mirza.krak@hostmobility.com>w=
+rote:
+
+> Hi.
+>
+> I recently updated my Ubuntu PC to 14.04 LTS which broke yocto builds.
+>
+> From what I can see is that there seems to be an issue with the tar
+> command and quilt-native recipe. But I am to newb to fix this. Do you guy=
+s
+> have any ideas?
+>
+> uname -a
+> Linux mirza-hm 3.11.0-20-generic #34-Ubuntu SMP Tue Apr 1 20:40:25 UTC
+> 2014 x86_64 x86_64 x86_64 GNU/Linux
+>
+> tar --version
+> tar (GNU tar) 1.27.1
+> Copyright (C) 2013 Free Software Foundation, Inc.
+> License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.
+> html>.
+> This is free software: you are free to change and redistribute it.
+> There is NO WARRANTY, to the extent permitted by law.
+>
+> Written by John Gilmore and Jay Fenlason.
+>
+> Attached log.
+>
+> --
+> Med V=C3=A4nliga H=C3=A4lsningar / Best Regards
+>
+> *******************************************************************
+> Mirza Krak
+> Host Mobility AB
+> mirza.krak@hostmobility.com
+> Anders Personsgatan 12, 416 64 G=C3=B6teborg
+> Sweden
+> http://www.hostmobility.com
+> Direct: +46 31 31 32 704
+> Phone: +46 31 31 32 700
+> Fax: +46 31 80 67 51
+> Mobile: +46 730 28 06 22
+> *******************************************************************
+>
+>
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
+>
+
+
+--=20
+JCP
+
+--047d7b343752ef5b4804f829bb10
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div class=3D"gmail_default" style=3D"font-family:&#39;tre=
+buchet ms&#39;,sans-serif">Hi,</div><div class=3D"gmail_default" style=3D"f=
+ont-family:&#39;trebuchet ms&#39;,sans-serif"><br></div><div class=3D"gmail=
+_default" style=3D"font-family:&#39;trebuchet ms&#39;,sans-serif">
+
+Only Yocto version 1.6 supports Ubuntu 14.04 LTS. I hope you are using that=
+. if you are using &lt;1.6 Ubuntu 14.04 LTS is not in supported distros.</d=
+iv><div class=3D"gmail_default" style=3D"font-family:&#39;trebuchet ms&#39;=
+,sans-serif">
+
+<br></div><div class=3D"gmail_default" style><font face=3D"trebuchet ms, sa=
+ns-serif"><a href=3D"http://www.yoctoproject.org/docs/1.6/ref-manual/ref-ma=
+nual.html#detailed-supported-distros">http://www.yoctoproject.org/docs/1.6/=
+ref-manual/ref-manual.html#detailed-supported-distros</a></font><br>
+
+</div><div class=3D"gmail_default" style><font face=3D"trebuchet ms, sans-s=
+erif"><a href=3D"http://www.yoctoproject.org/docs/1.5/ref-manual/ref-manual=
+.html#detailed-supported-distros">http://www.yoctoproject.org/docs/1.5/ref-=
+manual/ref-manual.html#detailed-supported-distros</a><br>
+
+</font></div><div class=3D"gmail_default" style><font face=3D"trebuchet ms,=
+ sans-serif"><a href=3D"http://www.yoctoproject.org/docs/1.4/ref-manual/ref=
+-manual.html#detailed-supported-distros">http://www.yoctoproject.org/docs/1=
+.4/ref-manual/ref-manual.html#detailed-supported-distros</a><br>
+
+</font></div><div class=3D"gmail_default" style><font face=3D"trebuchet ms,=
+ sans-serif"><br></font></div><div class=3D"gmail_default" style><font face=
+=3D"trebuchet ms, sans-serif">Also I found this,</font></div><div class=3D"=
+gmail_default" style>
+
+<font face=3D"trebuchet ms, sans-serif"><a href=3D"https://lists.yoctoproje=
+ct.org/pipermail/yocto/2013-October/016540.html">https://lists.yoctoproject=
+.org/pipermail/yocto/2013-October/016540.html</a><br></font></div><div clas=
+s=3D"gmail_default" style>
+
+which makes ur problem a known issue.</div><div class=3D"gmail_default" sty=
+le><br></div><div class=3D"gmail_default" style>HTH.</div><div class=3D"gma=
+il_default" style><br></div><div class=3D"gmail_default" style>-JC</div></d=
+iv>
+<div class=3D"gmail_extra">
+<br><br><div class=3D"gmail_quote">On Tue, Apr 29, 2014 at 11:30 AM, Mirza =
+Krak <span dir=3D"ltr">&lt;<a href=3D"mailto:mirza.krak@hostmobility.com" t=
+arget=3D"_blank">mirza.krak@hostmobility.com</a>&gt;</span> wrote:<br><bloc=
+kquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #cc=
+c solid;padding-left:1ex">
+
+Hi.<br>
+<br>
+I recently updated my Ubuntu PC to 14.04 LTS which broke yocto builds.<br>
+<br>
+From what I can see is that there seems to be an issue with the tar command=
+ and quilt-native recipe. But I am to newb to fix this. Do you guys have an=
+y ideas?<br>
+<br>
+uname -a<br>
+Linux mirza-hm 3.11.0-20-generic #34-Ubuntu SMP Tue Apr 1 20:40:25 UTC 2014=
+ x86_64 x86_64 x86_64 GNU/Linux<br>
+<br>
+tar --version<br>
+tar (GNU tar) 1.27.1<br>
+Copyright (C) 2013 Free Software Foundation, Inc.<br>
+License GPLv3+: GNU GPL version 3 or later &lt;<a href=3D"http://gnu.org/li=
+censes/gpl.html" target=3D"_blank">http://gnu.org/licenses/gpl.<u></u>html<=
+/a>&gt;.<br>
+This is free software: you are free to change and redistribute it.<br>
+There is NO WARRANTY, to the extent permitted by law.<br>
+<br>
+Written by John Gilmore and Jay Fenlason.<br>
+<br>
+Attached log.<br>
+<br>
+-- <br>
+Med V=C3=A4nliga H=C3=A4lsningar / Best Regards<br>
+<br>
+******************************<u></u>******************************<u></u>*=
+******<br>
+Mirza Krak<br>
+Host Mobility AB<br>
+<a href=3D"mailto:mirza.krak@hostmobility.com" target=3D"_blank">mirza.krak=
+@hostmobility.com</a><br>
+Anders Personsgatan 12, 416 64 G=C3=B6teborg<br>
+Sweden<br>
+<a href=3D"http://www.hostmobility.com" target=3D"_blank">http://www.hostmo=
+bility.com</a><br>
+Direct: <a href=3D"tel:%2B46%2031%2031%2032%20704" value=3D"+46313132704" t=
+arget=3D"_blank">+46 31 31 32 704</a><br>
+Phone: <a href=3D"tel:%2B46%2031%2031%2032%20700" value=3D"+46313132700" ta=
+rget=3D"_blank">+46 31 31 32 700</a><br>
+Fax: <a href=3D"tel:%2B46%2031%2080%2067%2051" value=3D"+4631806751" target=
+=3D"_blank">+46 31 80 67 51</a><br>
+Mobile: <a href=3D"tel:%2B46%20730%2028%2006%2022" value=3D"+46730280622" t=
+arget=3D"_blank">+46 730 28 06 22</a><br>
+******************************<u></u>******************************<u></u>*=
+******<br>
+<br>
+<br>--<br>
+_______________________________________________<br>
+yocto mailing list<br>
+<a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br>
+<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" target=3D"_blank"=
+>https://lists.yoctoproject.org/listinfo/yocto</a><br>
+<br></blockquote></div><br><br clear=3D"all"><div><br></div>-- <br>JCP
+</div>
+
+--047d7b343752ef5b4804f829bb10--
