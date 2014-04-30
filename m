@@ -1,44 +1,38 @@
-Return-Path: <gley-yocto@m.gmane.org>
+Return-Path: <Qi.Chen@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id D7988E004EB; Wed, 30 Apr 2014 03:25:08 -0700 (PDT)
+	id 53ADCE004EB; Wed, 30 Apr 2014 04:15:25 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=0.0 required=5.0 tests=FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE,SPF_HELO_PASS autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [80.91.229.3 listed in list.dnswl.org]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (auslands-kv[at]gmx.de)
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
-Received: from plane.gmane.org (plane.gmane.org [80.91.229.3])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2E25DE003C7
-	for <yocto@yoctoproject.org>; Wed, 30 Apr 2014 03:25:02 -0700 (PDT)
-Received: from list by plane.gmane.org with local (Exim 4.69)
-	(envelope-from <gley-yocto@m.gmane.org>) id 1WfRhD-0003Ql-Vf
-	for yocto@yoctoproject.org; Wed, 30 Apr 2014 12:24:59 +0200
-Received: from 80-218-32-173.dclient.hispeed.ch ([80.218.32.173])
-	by main.gmane.org with esmtp (Gmexim 0.1 (Debian))
-	id 1AlnuQ-0007hv-00
-	for <yocto@yoctoproject.org>; Wed, 30 Apr 2014 12:24:59 +0200
-Received: from auslands-kv by 80-218-32-173.dclient.hispeed.ch with local
-	(Gmexim 0.1 (Debian)) id 1AlnuQ-0007hv-00
-	for <yocto@yoctoproject.org>; Wed, 30 Apr 2014 12:24:59 +0200
-X-Injected-Via-Gmane: http://gmane.org/
-To: yocto@yoctoproject.org
-From: Neuer User <auslands-kv@gmx.de>
-Date: Wed, 30 Apr 2014 12:24:43 +0200
-Message-ID: <5360CF6B.1020007@gmx.de>
-References: <ljl1vt$ink$1@ger.gmane.org>	<535E5198.60709@windriver.com>	<ljlk6u$pd6$1@ger.gmane.org>	<535E54BB.7060701@windriver.com>	<ljllf9$frh$1@ger.gmane.org>
-	<535E59A1.1080808@windriver.com>
-Mime-Version: 1.0
-X-Complaints-To: usenet@ger.gmane.org
-X-Gmane-NNTP-Posting-Host: 80-218-32-173.dclient.hispeed.ch
+X-Spam-Status: No, score=-2.3 required=5.0 tests=RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [147.11.1.11 listed in list.dnswl.org]
+X-Greylist: delayed 6088 seconds by postgrey-1.32 at yocto-www;
+	Wed, 30 Apr 2014 04:15:20 PDT
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 98ED4E003C7
+	for <yocto@yoctoproject.org>; Wed, 30 Apr 2014 04:15:20 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
+	[147.11.189.40])
+	by mail.windriver.com (8.14.5/8.14.5) with ESMTP id s3U9Xo2s008326
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL)
+	for <yocto@yoctoproject.org>; Wed, 30 Apr 2014 02:33:51 -0700 (PDT)
+Received: from [128.224.162.187] (128.224.162.187) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server (TLS) id 14.3.169.1;
+	Wed, 30 Apr 2014 02:33:50 -0700
+Message-ID: <5360C37F.9010302@windriver.com>
+Date: Wed, 30 Apr 2014 17:33:51 +0800
+From: ChenQi <Qi.Chen@windriver.com>
 User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:24.0) Gecko/20100101 Thunderbird/24.4.0
-In-Reply-To: <535E59A1.1080808@windriver.com>
-Subject: Re: Kernel config fragments are not applied
+	rv:24.0) Gecko/20100101 Thunderbird/24.3.0
+MIME-Version: 1.0
+To: <yocto@yoctoproject.org>
+References: <2019960.0Ttd8yjkFA@localhost.localdomain>
+In-Reply-To: <2019960.0Ttd8yjkFA@localhost.localdomain>
+X-Originating-IP: [128.224.162.187]
+Subject: Re: PACKAGECONFIG and related parameters
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -50,74 +44,40 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 30 Apr 2014 10:25:08 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Wed, 30 Apr 2014 11:15:25 -0000
+Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
 Content-Transfer-Encoding: 7bit
 
-Hi Bruce
+On 04/23/2014 09:24 PM, Diego wrote:
+> Hi,
+>
+> I'd like to update the glmark2 recipe:
+> http://git.openembedded.org/meta-openembedded/tree/meta-oe/recipes-benchmark/glmark2/glmark2_2012.12.bb
+> to latest upstream version.
+>
+> The problem is the configure step is done with:
+> ./waf configure --with-flavors=x11-gl,x11-glesv2
+> instead of the previous release's syntax:
+> ./waf configure --enable-gl --enable-glesv2
+> Unfortunately:
+> ./waf configure --with-flavors=x11-gl --with-flavors=x11-glesv2
+> is not an accepted syntax.
+>
+> How can I express the PACKAGECONFIG[...] parameters, so that if both gl and
+> gles2 are present I obtain "--with-flavors=x11-gl,x11-glesv2" as the configure
+> parameter?
+>
+> Thanks,
+> Diego
+>
 
-Have you got any further?
+I don't think that's achievable with PACKAGECONFIG alone.
+I would suggest you write a do_configure_prepend and adjust the 
+configure options there.
+For example, if you get '--with-flavors=x11-gl 
+--with-flavors=x11-glesv2', you adjust it to 
+'-with-flavors=x11-gl,x11-glesv2'.
 
-I currently use a "defconfig" replacement, but honestly, it feels very
-dumb. Fragments seem to be much smarter to combine and test different
-configurations.
-
-Cheers
-
-Michael
-
-Am 28.04.2014 15:37, schrieb Bruce Ashfield:
-> On 14-04-28 09:35 AM, Neuer User wrote:
->> Am 28.04.2014 15:16, schrieb Bruce Ashfield:
->>> It all depends on how adventurous you are today :) Using a defconfig
->>> will work, and you can generate one without much trouble. Using
->>> fragments will allow you to keep your changes separate from the
->>> baseline configuration, but you'll need to tweak the recipe .. which
->>> always carries a risk of some unexpected side effects.
->>>
->>> I'm around to help regardless of which way you chose.
->>>
->>> Cheers,
->>>
->>> Bruce
->>>
->>
->> Well, I looked at the linux-yocto file and tried a couple of
->> combinations in my bbappend. All of them geenrated lots of different
->> errors.
-> 
-> If you send me pointers to your bblayers and local.conf settings, I'll
-> run a build to see what happens here as well.
-> 
-> I'm always interested in tracking these down regardless.
-> 
-> Bruce
-> 
->>
->> e.g. I used:
->>
->> FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}-${PV}:"
->>
->> COMPATIBLE_MACHINE_cubox-i = "(cubox-i)"
->>
->> SRC_URI += "file://videoin.cfg"
->>
->> addtask kernel_configme before do_configure after do_patch
->>
->> # Pick up shared functions
->> inherit kernel
->> inherit kernel-yocto
->> #require linux-dtb.inc
->>
->> # extra tasks
->> addtask kernel_configcheck after do_configure before do_compile
->>
->>
->> The error messages are too long to include here :-/
->>
->> Guess, it is probably best to go the defconfig way.
->>
-> 
-
-
+Best Regards,
+Chen Qi
 
