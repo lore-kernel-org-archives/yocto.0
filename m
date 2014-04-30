@@ -1,47 +1,38 @@
-Return-Path: <diego.ml@zoho.com>
+Return-Path: <paul.eggleton@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 1CDB5E004EB; Wed, 30 Apr 2014 02:25:55 -0700 (PDT)
+	id 03463E004EB; Wed, 30 Apr 2014 02:28:03 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-0.8 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-	DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (diego.ml[at]zoho.com)
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [72.5.230.103 listed in list.dnswl.org]
-X-Greylist: delayed 1176 seconds by postgrey-1.32 at yocto-www;
-	Wed, 30 Apr 2014 02:25:51 PDT
-Received: from sender1.zohomail.com (sender1.zohomail.com [72.5.230.103])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BBBA9E003C7
-	for <yocto@yoctoproject.org>; Wed, 30 Apr 2014 02:25:51 -0700 (PDT)
-DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws; s=zapps768; d=zoho.com; 
-	h=from:to:subject:date:message-id:user-agent:in-reply-to:mime-version:content-type;
-	b=iF25IMFf/SdV0C3vmadCV6xv8hbyyGarBd2QnliEwFp7iKnWT089o9PRZClnuWQjttU1A0jc7+Es
-	GU9MuIR706cwou2Lrv+iH04ic7Xjs/XmZGMZrygQXrKzcc6YdjB0  
-Received: from localhost.localdomain
-	(host65-246-static.10-188-b.business.telecomitalia.it
-	[188.10.246.65]) by mx.zohomail.com
-	with SMTPS id 1398848748786402.2683790002085;
-	Wed, 30 Apr 2014 02:05:48 -0700 (PDT)
-From: Diego <diego.ml@zoho.com>
-To: yocto@yoctoproject.org
-Date: Wed, 30 Apr 2014 11:05:45 +0200
-Message-ID: <2326013.q8IGgAdBSl@localhost.localdomain>
-User-Agent: KMail/4.12.4 (Linux/3.13.10-200.fc20.x86_64; KDE/4.12.4; x86_64; ;
+X-Spam-Status: No, score=-5.0 required=5.0 tests=RCVD_IN_DNSWL_HI
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [143.182.124.21 listed in list.dnswl.org]
+X-Greylist: delayed 64 seconds by postgrey-1.32 at yocto-www;
+	Wed, 30 Apr 2014 02:28:02 PDT
+Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5FF34E003C7
+	for <yocto@yoctoproject.org>; Wed, 30 Apr 2014 02:28:02 -0700 (PDT)
+Received: from azsmga001.ch.intel.com ([10.2.17.19])
+	by azsmga101.ch.intel.com with ESMTP; 30 Apr 2014 02:26:57 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.97,957,1389772800"; d="scan'208";a="425818378"
+Received: from cgwithan-mobl.gar.corp.intel.com (HELO
+	peggleto-mobl5.ger.corp.intel.com) ([10.252.122.50])
+	by azsmga001.ch.intel.com with ESMTP; 30 Apr 2014 02:26:54 -0700
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: Neuer User <auslands-kv@gmx.de>
+Date: Wed, 30 Apr 2014 10:26:52 +0100
+Message-ID: <3168751.XnymYhvUcQ@peggleto-mobl5.ger.corp.intel.com>
+Organization: Intel Corporation
+User-Agent: KMail/4.12.5 (Linux/3.13.10-200.fc20.x86_64; KDE/4.12.4; x86_64; ;
 	)
-In-Reply-To: <2019960.0Ttd8yjkFA@localhost.localdomain>
+In-Reply-To: <ljlr38$lu5$1@ger.gmane.org>
+References: <ljlr38$lu5$1@ger.gmane.org>
 MIME-Version: 1.0
-X-ZohoMailClient: External
-X-Zoho-Virus-Status: 2
-Subject: Re: PACKAGECONFIG and related parameters
+Cc: yocto@yoctoproject.org
+Subject: Re: libav without X ?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -53,31 +44,131 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 30 Apr 2014 09:25:55 -0000
+X-List-Received-Date: Wed, 30 Apr 2014 09:28:03 -0000
 Content-Transfer-Encoding: 7Bit
 Content-Type: text/plain; charset="us-ascii"
 
-> I'd like to update the glmark2 recipe:
-> http://git.openembedded.org/meta-openembedded/tree/meta-oe/recipes-benchmark
-> /glmark2/glmark2_2012.12.bb to latest upstream version.
+Hi Michael,
+
+On Monday 28 April 2014 17:11:36 Neuer User wrote:
+> I want to include the package sox_14.4.0.bb in my distro. Should be
+> straight forward, I thought. But I am having problems as the package
+> always wants GL as a requirement, which my distro does not have (without X).
 > 
-> The problem is the configure step is done with:
-> ./waf configure --with-flavors=x11-gl,x11-glesv2
-> instead of the previous release's syntax:
-> ./waf configure --enable-gl --enable-glesv2
-> Unfortunately:
-> ./waf configure --with-flavors=x11-gl --with-flavors=x11-glesv2
-> is not an accepted syntax.
+> the sox recipe looks like this:
 > 
-> How can I express the PACKAGECONFIG[...] parameters, so that if both gl and
-> gles2 are present I obtain "--with-flavors=x11-gl,x11-glesv2" as the
-> configure parameter?
+> DESCRIPTION="SoX is the Swiss Army knife of sound processing tools. \
+> It converts audio files among various standard audio file formats \
+> and can apply different effects and filters to the audio data."
+> HOMEPAGE = "http://sox.sourceforge.net"
+> SECTION = "audio"
+> 
+> DEPENDS = "libpng libav libsndfile1"
+> 
+> PR = "r2"
+> 
+> PACKAGECONFIG ??= "${@base_contains('DISTRO_FEATURES', 'pulseaudio',
+> 'pulseaudio', '', d)} \
+>                    ${@base_contains('DISTRO_FEATURES', 'alsa', 'alsa',
+> '', d)} \
+>                    magic \
+> "
+> PACKAGECONFIG[pulseaudio] =
+> "--with-pulseaudio=dyn,--with-pulseaudio=no,pulseaudio,"
+> PACKAGECONFIG[alsa] = "--with-alsa=dyn,--with-alsa=no,alsa-lib,"
+> PACKAGECONFIG[wavpack] = "--with-wavpack=dyn,--with-wavpack=no,wavpack,"
+> PACKAGECONFIG[magic] = "--with-magic,--without-magic,file,"
+> PACKAGECONFIG[mad] = "--with-mad,--without-mad,libmad,"
+> PACKAGECONFIG[id3tag] = "--with-id3tag,--without-id3tag,libid3tag,"
+> PACKAGECONFIG[lame] = "--with-lame,--without-lame,lame,"
+> 
+> LICENSE = "GPLv2 & LGPLv2.1"
+> LIC_FILES_CHKSUM =
+> "file://LICENSE.GPL;md5=751419260aa954499f7abaabaa882bbe \
+> 
+> file://LICENSE.LGPL;md5=fbc093901857fcd118f065f900982c24"
+> 
+> SRC_URI = "${SOURCEFORGE_MIRROR}/sox/sox-${PV}.tar.gz"
+> SRC_URI[md5sum] = "b0c15cff7a4ba0ec17fdc74e6a1f9cf1"
+> SRC_URI[sha256sum] =
+> "3ee34b14dd267de378e8a117aae81ec4cae330772342e6a55bbf6520a0a88aa3"
+> 
+> inherit autotools
+> 
+> BBCLASSEXTEND = "native"
+> 
+> 
+> So,it depends on libav. Libav.inc looks like this (just the important part):
+> 
+> DEPENDS = "virtual/libsdl zlib libogg libvorbis libtheora yasm-native"
+> 
+> INC_PR = "r8"
+> 
+> inherit autotools pkgconfig
+> 
+> B = "${S}/build.${HOST_SYS}.${TARGET_SYS}"
+> 
+> FULL_OPTIMIZATION_armv7a = "-fexpensive-optimizations
+> -fomit-frame-pointer -O4 -ffast-math"
+> BUILD_OPTIMIZATION = "${FULL_OPTIMIZATION}"
+> 
+> EXTRA_FFCONF_armv7a = "--cpu=cortex-a8"
+> EXTRA_FFCONF ?= ""
+> 
+> PACKAGECONFIG ??= "bzip2 x264 ${@base_contains('DISTRO_FEATURES', 'x11',
+> 'x11', '', d)}"
+> PACKAGECONFIG[jack] = "--enable-indev=jack,--disable-indev=jack,jack"
+> PACKAGECONFIG[bzip2] = "--enable-bzlib,--disable-bzlib,bzip2"
+> PACKAGECONFIG[schroedinger] =
+> "--enable-libschroedinger,--disable-libschroedinger,schroedinger"
+> PACKAGECONFIG[gsm] = "--enable-libgsm,--disable-libgsm,libgsm"
+> PACKAGECONFIG[x264] = "--enable-libx264,--disable-libx264,x264"
+> PACKAGECONFIG[vpx] = "--enable-libvpx,--disable-libvpx,libvpx"
+> PACKAGECONFIG[mp3lame] = "--enable-libmp3lame,--disable-libmp3lame,lame"
+> PACKAGECONFIG[faac] = "--enable-libfaac,--disable-libfaac,faac"
+> PACKAGECONFIG[x11] = "--enable-x11grab,--disable-x11grab,virtual/libx11
+> libxfixes libxext xproto"
+> 
+> 
+> My local.conf has:
+> 
+> DISTRO_FEATURES_remove = "x11 wayland"
+> 
+> 
+> So, I don't understand why it always wants to build
+> recipe libglu-2_9.0.0-0: task do_configure: Started
+> 
+> Which fails, of course:
+> | checking for GL/gl.h... no
+> | configure: error: GL not found
+> | Configure failed. The contents of all config.log files follows to aid
+> debugging
+> | ERROR: oe_runconf failed
+> | WARNING: exit code 1 from a shell command.
+> | ERROR: Function failed: do_configure (log file is located at
+> 
+> /home/ubuntu/yocto/build/tmp/work/cortexa9hf-vfp-neon-mx6-poky-linux-gnueabi
+> /libglu/2_9.0.0-0/temp/log.do_configure.13955) NOTE: recipe
+> libglu-2_9.0.0-0: task do_configure: Failed
+> 
+> 
+> I seem to be missing something. Can anybody help me how I can build sox
+> without x11 dependency (which it shouldn't have)?
 
-Hi,
+The problem here is not that it's requiring X, but that it's requiring OpenGL, 
+since you almost certainly still have opengl in DISTRO_FEATURES. The 
+dependency chain is:
 
-Can anybody help me with that?
+libav -> virtual/sdl (libsdl) -> libglu [if opengl is in DISTRO_FEATURES]
 
-Thanks,
-Diego
+Just add opengl to your DISTRO_FEATURES_remove value and it should build 
+without trying to build libglu.
 
+Cheers,
+Paul
+
+-- 
+
+Paul Eggleton
+Intel Open Source Technology Centre
 
