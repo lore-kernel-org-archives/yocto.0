@@ -1,46 +1,44 @@
 Return-Path: <gley-yocto@m.gmane.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id D6499E004EB; Wed, 30 Apr 2014 03:09:54 -0700 (PDT)
+	id D7988E004EB; Wed, 30 Apr 2014 03:25:08 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=0.0 required=5.0 tests=FREEMAIL_FROM,
 	RCVD_IN_DNSWL_NONE,SPF_HELO_PASS autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (auslands-kv[at]gmx.de)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
 	*      [80.91.229.3 listed in list.dnswl.org]
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (auslands-kv[at]gmx.de)
 	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
-X-Greylist: delayed 904 seconds by postgrey-1.32 at yocto-www;
-	Wed, 30 Apr 2014 03:09:45 PDT
 Received: from plane.gmane.org (plane.gmane.org [80.91.229.3])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A16DEE003C7
-	for <yocto@yoctoproject.org>; Wed, 30 Apr 2014 03:09:45 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2E25DE003C7
+	for <yocto@yoctoproject.org>; Wed, 30 Apr 2014 03:25:02 -0700 (PDT)
 Received: from list by plane.gmane.org with local (Exim 4.69)
-	(envelope-from <gley-yocto@m.gmane.org>) id 1WfRDp-00070j-PM
-	for yocto@yoctoproject.org; Wed, 30 Apr 2014 11:54:37 +0200
+	(envelope-from <gley-yocto@m.gmane.org>) id 1WfRhD-0003Ql-Vf
+	for yocto@yoctoproject.org; Wed, 30 Apr 2014 12:24:59 +0200
 Received: from 80-218-32-173.dclient.hispeed.ch ([80.218.32.173])
 	by main.gmane.org with esmtp (Gmexim 0.1 (Debian))
 	id 1AlnuQ-0007hv-00
-	for <yocto@yoctoproject.org>; Wed, 30 Apr 2014 11:54:37 +0200
+	for <yocto@yoctoproject.org>; Wed, 30 Apr 2014 12:24:59 +0200
 Received: from auslands-kv by 80-218-32-173.dclient.hispeed.ch with local
 	(Gmexim 0.1 (Debian)) id 1AlnuQ-0007hv-00
-	for <yocto@yoctoproject.org>; Wed, 30 Apr 2014 11:54:37 +0200
+	for <yocto@yoctoproject.org>; Wed, 30 Apr 2014 12:24:59 +0200
 X-Injected-Via-Gmane: http://gmane.org/
 To: yocto@yoctoproject.org
 From: Neuer User <auslands-kv@gmx.de>
-Date: Wed, 30 Apr 2014 11:54:23 +0200
-Message-ID: <ljqh8f$pf7$1@ger.gmane.org>
-References: <ljlr38$lu5$1@ger.gmane.org>
-	<3168751.XnymYhvUcQ@peggleto-mobl5.ger.corp.intel.com>
+Date: Wed, 30 Apr 2014 12:24:43 +0200
+Message-ID: <5360CF6B.1020007@gmx.de>
+References: <ljl1vt$ink$1@ger.gmane.org>	<535E5198.60709@windriver.com>	<ljlk6u$pd6$1@ger.gmane.org>	<535E54BB.7060701@windriver.com>	<ljllf9$frh$1@ger.gmane.org>
+	<535E59A1.1080808@windriver.com>
 Mime-Version: 1.0
 X-Complaints-To: usenet@ger.gmane.org
 X-Gmane-NNTP-Posting-Host: 80-218-32-173.dclient.hispeed.ch
 User-Agent: Mozilla/5.0 (X11; Linux x86_64;
 	rv:24.0) Gecko/20100101 Thunderbird/24.4.0
-In-Reply-To: <3168751.XnymYhvUcQ@peggleto-mobl5.ger.corp.intel.com>
-Subject: Re: libav without X ?
+In-Reply-To: <535E59A1.1080808@windriver.com>
+Subject: Re: Kernel config fragments are not applied
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -52,135 +50,73 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 30 Apr 2014 10:09:54 -0000
+X-List-Received-Date: Wed, 30 Apr 2014 10:25:08 -0000
 Content-Type: text/plain; charset=ISO-8859-1
 Content-Transfer-Encoding: 7bit
 
-Thanks for the hint. I will try this today.
+Hi Bruce
+
+Have you got any further?
+
+I currently use a "defconfig" replacement, but honestly, it feels very
+dumb. Fragments seem to be much smarter to combine and test different
+configurations.
 
 Cheers
 
 Michael
 
-Am 30.04.2014 11:26, schrieb Paul Eggleton:
-> Hi Michael,
+Am 28.04.2014 15:37, schrieb Bruce Ashfield:
+> On 14-04-28 09:35 AM, Neuer User wrote:
+>> Am 28.04.2014 15:16, schrieb Bruce Ashfield:
+>>> It all depends on how adventurous you are today :) Using a defconfig
+>>> will work, and you can generate one without much trouble. Using
+>>> fragments will allow you to keep your changes separate from the
+>>> baseline configuration, but you'll need to tweak the recipe .. which
+>>> always carries a risk of some unexpected side effects.
+>>>
+>>> I'm around to help regardless of which way you chose.
+>>>
+>>> Cheers,
+>>>
+>>> Bruce
+>>>
+>>
+>> Well, I looked at the linux-yocto file and tried a couple of
+>> combinations in my bbappend. All of them geenrated lots of different
+>> errors.
 > 
-> On Monday 28 April 2014 17:11:36 Neuer User wrote:
->> I want to include the package sox_14.4.0.bb in my distro. Should be
->> straight forward, I thought. But I am having problems as the package
->> always wants GL as a requirement, which my distro does not have (without X).
->>
->> the sox recipe looks like this:
->>
->> DESCRIPTION="SoX is the Swiss Army knife of sound processing tools. \
->> It converts audio files among various standard audio file formats \
->> and can apply different effects and filters to the audio data."
->> HOMEPAGE = "http://sox.sourceforge.net"
->> SECTION = "audio"
->>
->> DEPENDS = "libpng libav libsndfile1"
->>
->> PR = "r2"
->>
->> PACKAGECONFIG ??= "${@base_contains('DISTRO_FEATURES', 'pulseaudio',
->> 'pulseaudio', '', d)} \
->>                    ${@base_contains('DISTRO_FEATURES', 'alsa', 'alsa',
->> '', d)} \
->>                    magic \
->> "
->> PACKAGECONFIG[pulseaudio] =
->> "--with-pulseaudio=dyn,--with-pulseaudio=no,pulseaudio,"
->> PACKAGECONFIG[alsa] = "--with-alsa=dyn,--with-alsa=no,alsa-lib,"
->> PACKAGECONFIG[wavpack] = "--with-wavpack=dyn,--with-wavpack=no,wavpack,"
->> PACKAGECONFIG[magic] = "--with-magic,--without-magic,file,"
->> PACKAGECONFIG[mad] = "--with-mad,--without-mad,libmad,"
->> PACKAGECONFIG[id3tag] = "--with-id3tag,--without-id3tag,libid3tag,"
->> PACKAGECONFIG[lame] = "--with-lame,--without-lame,lame,"
->>
->> LICENSE = "GPLv2 & LGPLv2.1"
->> LIC_FILES_CHKSUM =
->> "file://LICENSE.GPL;md5=751419260aa954499f7abaabaa882bbe \
->>
->> file://LICENSE.LGPL;md5=fbc093901857fcd118f065f900982c24"
->>
->> SRC_URI = "${SOURCEFORGE_MIRROR}/sox/sox-${PV}.tar.gz"
->> SRC_URI[md5sum] = "b0c15cff7a4ba0ec17fdc74e6a1f9cf1"
->> SRC_URI[sha256sum] =
->> "3ee34b14dd267de378e8a117aae81ec4cae330772342e6a55bbf6520a0a88aa3"
->>
->> inherit autotools
->>
->> BBCLASSEXTEND = "native"
->>
->>
->> So,it depends on libav. Libav.inc looks like this (just the important part):
->>
->> DEPENDS = "virtual/libsdl zlib libogg libvorbis libtheora yasm-native"
->>
->> INC_PR = "r8"
->>
->> inherit autotools pkgconfig
->>
->> B = "${S}/build.${HOST_SYS}.${TARGET_SYS}"
->>
->> FULL_OPTIMIZATION_armv7a = "-fexpensive-optimizations
->> -fomit-frame-pointer -O4 -ffast-math"
->> BUILD_OPTIMIZATION = "${FULL_OPTIMIZATION}"
->>
->> EXTRA_FFCONF_armv7a = "--cpu=cortex-a8"
->> EXTRA_FFCONF ?= ""
->>
->> PACKAGECONFIG ??= "bzip2 x264 ${@base_contains('DISTRO_FEATURES', 'x11',
->> 'x11', '', d)}"
->> PACKAGECONFIG[jack] = "--enable-indev=jack,--disable-indev=jack,jack"
->> PACKAGECONFIG[bzip2] = "--enable-bzlib,--disable-bzlib,bzip2"
->> PACKAGECONFIG[schroedinger] =
->> "--enable-libschroedinger,--disable-libschroedinger,schroedinger"
->> PACKAGECONFIG[gsm] = "--enable-libgsm,--disable-libgsm,libgsm"
->> PACKAGECONFIG[x264] = "--enable-libx264,--disable-libx264,x264"
->> PACKAGECONFIG[vpx] = "--enable-libvpx,--disable-libvpx,libvpx"
->> PACKAGECONFIG[mp3lame] = "--enable-libmp3lame,--disable-libmp3lame,lame"
->> PACKAGECONFIG[faac] = "--enable-libfaac,--disable-libfaac,faac"
->> PACKAGECONFIG[x11] = "--enable-x11grab,--disable-x11grab,virtual/libx11
->> libxfixes libxext xproto"
->>
->>
->> My local.conf has:
->>
->> DISTRO_FEATURES_remove = "x11 wayland"
->>
->>
->> So, I don't understand why it always wants to build
->> recipe libglu-2_9.0.0-0: task do_configure: Started
->>
->> Which fails, of course:
->> | checking for GL/gl.h... no
->> | configure: error: GL not found
->> | Configure failed. The contents of all config.log files follows to aid
->> debugging
->> | ERROR: oe_runconf failed
->> | WARNING: exit code 1 from a shell command.
->> | ERROR: Function failed: do_configure (log file is located at
->>
->> /home/ubuntu/yocto/build/tmp/work/cortexa9hf-vfp-neon-mx6-poky-linux-gnueabi
->> /libglu/2_9.0.0-0/temp/log.do_configure.13955) NOTE: recipe
->> libglu-2_9.0.0-0: task do_configure: Failed
->>
->>
->> I seem to be missing something. Can anybody help me how I can build sox
->> without x11 dependency (which it shouldn't have)?
+> If you send me pointers to your bblayers and local.conf settings, I'll
+> run a build to see what happens here as well.
 > 
-> The problem here is not that it's requiring X, but that it's requiring OpenGL, 
-> since you almost certainly still have opengl in DISTRO_FEATURES. The 
-> dependency chain is:
+> I'm always interested in tracking these down regardless.
 > 
-> libav -> virtual/sdl (libsdl) -> libglu [if opengl is in DISTRO_FEATURES]
+> Bruce
 > 
-> Just add opengl to your DISTRO_FEATURES_remove value and it should build 
-> without trying to build libglu.
-> 
-> Cheers,
-> Paul
+>>
+>> e.g. I used:
+>>
+>> FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}-${PV}:"
+>>
+>> COMPATIBLE_MACHINE_cubox-i = "(cubox-i)"
+>>
+>> SRC_URI += "file://videoin.cfg"
+>>
+>> addtask kernel_configme before do_configure after do_patch
+>>
+>> # Pick up shared functions
+>> inherit kernel
+>> inherit kernel-yocto
+>> #require linux-dtb.inc
+>>
+>> # extra tasks
+>> addtask kernel_configcheck after do_configure before do_compile
+>>
+>>
+>> The error messages are too long to include here :-/
+>>
+>> Guess, it is probably best to go the defconfig way.
+>>
 > 
 
 
