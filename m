@@ -1,6 +1,6 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <diego.ml@zoho.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 298E2E004EB; Wed, 30 Apr 2014 01:15:10 -0700 (PDT)
+	id 1CDB5E004EB; Wed, 30 Apr 2014 02:25:55 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -8,7 +8,7 @@ X-Spam-Status: No, score=-0.8 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
 	DKIM_VALID_AU, FREEMAIL_FROM,
 	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (raj.khem[at]gmail.com)
+	mail provider *      (diego.ml[at]zoho.com)
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
@@ -16,36 +16,32 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
 	low *      trust
-	*      [209.85.223.170 listed in list.dnswl.org]
-Received: from mail-ie0-f170.google.com (mail-ie0-f170.google.com
-	[209.85.223.170])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C4D54E003C7
-	for <yocto@yoctoproject.org>; Wed, 30 Apr 2014 01:15:07 -0700 (PDT)
-Received: by mail-ie0-f170.google.com with SMTP id rd18so1535582iec.1
-	for <yocto@yoctoproject.org>; Wed, 30 Apr 2014 01:15:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-type;
-	bh=KpI9zY6Wqt9nMJVIEmGt0OjUjPTzFLjGBwYsDaquamE=;
-	b=R+k8EeWgpGWOaECtyzes4p34hF9ffbjUKdMbA/if0tcdM+QZz3T8OArTSIGSPGX/zb
-	HtsmSQxxygV+XRgWIZr8t/td3MQfpkZaEWFPcgeE3Tdc0/s01L0l9JefzBLwI2p9/jSO
-	Yc+KPuYdqbWisZBpeW4pKJ+QD0PvYS9xLqdE4mfHu/aJWlmgbRee+urZ5eJSliKyutQ9
-	iyCS2xVxbMREIqHsTGIf8FY6GHJoE4koTn4W/Hp2dR1yqVQZrUMGaLfoQ6mCb6ZB3Xkc
-	umjXhwSr0lbHmb2rnFfwPk6PKt/UG2DErxubE4aYYfbsj8VISNHIkO8JpwAYPy2NRBmm
-	hM9w==
-X-Received: by 10.50.60.72 with SMTP id f8mr36327249igr.20.1398845700065; Wed,
-	30 Apr 2014 01:15:00 -0700 (PDT)
+	*      [72.5.230.103 listed in list.dnswl.org]
+X-Greylist: delayed 1176 seconds by postgrey-1.32 at yocto-www;
+	Wed, 30 Apr 2014 02:25:51 PDT
+Received: from sender1.zohomail.com (sender1.zohomail.com [72.5.230.103])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BBBA9E003C7
+	for <yocto@yoctoproject.org>; Wed, 30 Apr 2014 02:25:51 -0700 (PDT)
+DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws; s=zapps768; d=zoho.com; 
+	h=from:to:subject:date:message-id:user-agent:in-reply-to:mime-version:content-type;
+	b=iF25IMFf/SdV0C3vmadCV6xv8hbyyGarBd2QnliEwFp7iKnWT089o9PRZClnuWQjttU1A0jc7+Es
+	GU9MuIR706cwou2Lrv+iH04ic7Xjs/XmZGMZrygQXrKzcc6YdjB0  
+Received: from localhost.localdomain
+	(host65-246-static.10-188-b.business.telecomitalia.it
+	[188.10.246.65]) by mx.zohomail.com
+	with SMTPS id 1398848748786402.2683790002085;
+	Wed, 30 Apr 2014 02:05:48 -0700 (PDT)
+From: Diego <diego.ml@zoho.com>
+To: yocto@yoctoproject.org
+Date: Wed, 30 Apr 2014 11:05:45 +0200
+Message-ID: <2326013.q8IGgAdBSl@localhost.localdomain>
+User-Agent: KMail/4.12.4 (Linux/3.13.10-200.fc20.x86_64; KDE/4.12.4; x86_64; ;
+	)
+In-Reply-To: <2019960.0Ttd8yjkFA@localhost.localdomain>
 MIME-Version: 1.0
-Received: by 10.50.229.14 with HTTP; Wed, 30 Apr 2014 01:14:29 -0700 (PDT)
-In-Reply-To: <OF92054C10.827CF0FE-ONC1257CC9.003ED681-C1257CC9.003FD0E4@retarus.de>
-References: <OFE6AAA3CB.F2E905AC-ONC1257CC5.0035C1A6-C1257CC5.003C7A9B@retarus.de>
-	<OF92054C10.827CF0FE-ONC1257CC9.003ED681-C1257CC9.003FD0E4@retarus.de>
-From: Khem Raj <raj.khem@gmail.com>
-Date: Wed, 30 Apr 2014 01:14:29 -0700
-Message-ID: <CAMKF1soDsZyB1mUg7pJ89XYowMQeNvvtRtcyDuFBmEumfY9E3A@mail.gmail.com>
-To: Felix01 Fischer <felix01.fischer@iav.de>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: building qtbase for raspberry pi fails
+X-ZohoMailClient: External
+X-Zoho-Virus-Status: 2
+Subject: Re: PACKAGECONFIG and related parameters
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -57,18 +53,31 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 30 Apr 2014 08:15:10 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Wed, 30 Apr 2014 09:25:55 -0000
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-On Tue, Apr 29, 2014 at 4:37 AM, Felix01 Fischer <felix01.fischer@iav.de> wrote:
-> But still I haven't figured out how to get this build correctly so qtbase
-> can find and use it.
+> I'd like to update the glmark2 recipe:
+> http://git.openembedded.org/meta-openembedded/tree/meta-oe/recipes-benchmark
+> /glmark2/glmark2_2012.12.bb to latest upstream version.
+> 
+> The problem is the configure step is done with:
+> ./waf configure --with-flavors=x11-gl,x11-glesv2
+> instead of the previous release's syntax:
+> ./waf configure --enable-gl --enable-glesv2
+> Unfortunately:
+> ./waf configure --with-flavors=x11-gl --with-flavors=x11-glesv2
+> is not an accepted syntax.
+> 
+> How can I express the PACKAGECONFIG[...] parameters, so that if both gl and
+> gles2 are present I obtain "--with-flavors=x11-gl,x11-glesv2" as the
+> configure parameter?
 
-I am assuming you need to select this user land recipe to provide
-virtual/libgles2 virtual/egl
+Hi,
 
-PREFERRED_PROVIDER_virtual/egl = "userland"
-PREFERRED_PROVIDER_virtual/libgres2 = "user land"
+Can anybody help me with that?
 
-in config metadata
+Thanks,
+Diego
+
 
