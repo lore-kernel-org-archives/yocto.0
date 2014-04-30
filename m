@@ -1,39 +1,48 @@
-Return-Path: <Bruce.Ashfield@windriver.com>
+Return-Path: <diego.ml@zoho.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 08B23E0096C; Wed, 30 Apr 2014 08:22:34 -0700 (PDT)
+	id 3E07AE0096C; Wed, 30 Apr 2014 08:25:23 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.3 required=5.0 tests=RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [147.11.1.11 listed in list.dnswl.org]
-X-Greylist: delayed 6907 seconds by postgrey-1.32 at yocto-www;
-	Wed, 30 Apr 2014 08:22:31 PDT
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C538FE003C7
-	for <yocto@yoctoproject.org>; Wed, 30 Apr 2014 08:22:31 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail.windriver.com (8.14.5/8.14.5) with ESMTP id s3UDRFoq016338
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Wed, 30 Apr 2014 06:27:15 -0700 (PDT)
-Received: from [128.224.56.48] (128.224.56.48) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server id 14.3.169.1;
-	Wed, 30 Apr 2014 06:27:15 -0700
-Message-ID: <5360FA25.40006@windriver.com>
-Date: Wed, 30 Apr 2014 09:27:01 -0400
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:24.0) Gecko/20100101 Thunderbird/24.4.0
+X-Spam-Status: No, score=-0.8 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+	DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (diego.ml[at]zoho.com)
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [72.5.230.95 listed in list.dnswl.org]
+Received: from sender1.zohomail.com (sender1.zohomail.com [72.5.230.95])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CA156E003C7
+	for <yocto@yoctoproject.org>; Wed, 30 Apr 2014 08:25:19 -0700 (PDT)
+DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws; s=zapps768; d=zoho.com; 
+	h=from:to:cc:subject:date:message-id:user-agent:in-reply-to:references:mime-version:content-type;
+	b=mrw3BSjLcCHkZzFo9wbTFBxOWwhKm+Vys0Qw6xgX/ndYkz1zZhzApKXI7NshtAIp9Swo4j3NaZ/P
+	jV1vqEKvIghziP9WoAUGhHQap4yJUkBzYDE1mYEkjyGD0arPkQEN  
+Received: from localhost.localdomain
+	(host65-246-static.10-188-b.business.telecomitalia.it
+	[188.10.246.65]) by mx.zohomail.com
+	with SMTPS id 1398871514310198.07399201111616;
+	Wed, 30 Apr 2014 08:25:14 -0700 (PDT)
+From: Diego <diego.ml@zoho.com>
+To: Paul Eggleton <paul.eggleton@linux.intel.com>
+Date: Wed, 30 Apr 2014 17:25:10 +0200
+Message-ID: <1887615.4ieHDOx65x@localhost.localdomain>
+User-Agent: KMail/4.12.4 (Linux/3.13.10-200.fc20.x86_64; KDE/4.12.4; x86_64; ;
+	)
+In-Reply-To: <3051539.ZH0eHouhiy@peggleto-mobl5.ger.corp.intel.com>
+References: <2326013.q8IGgAdBSl@localhost.localdomain>
+	<3051539.ZH0eHouhiy@peggleto-mobl5.ger.corp.intel.com>
 MIME-Version: 1.0
-To: Sudhangathan B S <sudhangathan@gmail.com>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>, "General mailing list for gumstix users."
-	<gumstix-users@lists.sourceforge.net>
-References: <CAGX3a9_GzmU_f2RZPHdWM2SQVOdNkBMwxf8t84ri0xuzsmNmfg@mail.gmail.com>
-In-Reply-To: <CAGX3a9_GzmU_f2RZPHdWM2SQVOdNkBMwxf8t84ri0xuzsmNmfg@mail.gmail.com>
-Subject: Re: Blacklisting drivers in poky or in yocto project
+X-ZohoMailClient: External
+X-Zoho-Virus-Status: 2
+Cc: yocto@yoctoproject.org
+Subject: Re: PACKAGECONFIG and related parameters
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,43 +54,49 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 30 Apr 2014 15:22:34 -0000
-Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 30 Apr 2014 15:25:23 -0000
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="iso-8859-1"
 
-On 14-04-30 03:40 AM, Sudhangathan B S wrote:
-> Hi all,
->
-> I need to prevent my wifi drivers auto loading during boot time. How do
-> we do it in the Poky OS or in the Yocto project..?
+Hi Paul,
 
-Are you actually seeing a confirmed auto load of modules ?
+In data mercoled=EC 30 aprile 2014 10:57:18, Paul Eggleton ha scritto:
+> Hi Diego,
+>=20
+> <snip>
+>=20
+> You can't do this with PACKAGECONFIG alone, you'd need to use Python,=
+ i.e.
+> something like this:
+>=20
+> PACKAGECONFIG ?=3D "gl gles2"
+> PACKAGECONFIG[gl] =3D "..."
+> PACKAGECONFIG[gles2] =3D "..."
+> ...
+>=20
+> python __anonymous() {
+>     packageconfig =3D (d.getVar("PACKAGECONFIG", True) or "").split()=
 
-In a standard image kernel modules will not be autoloaded unless
-specifically requested via a recipe with : module_autoload_<module name>.
+>     flavors =3D []
+>     if "gles2" in packageconfig:
+>         flavors.append("x11-gles2")
+>     if "gl" in packageconfig:
+>         flavors.append("x11-gl")
+>     if flavors:
+>         d.appendVar("EXTRA_OECONF", " --with-flavors=3D%s" %
+> ",".join(flavors)) }
+>=20
 
-I'm not talking about a usermode helper / on demand load, but
-an explicit autoload + dependencies.
+I tried that solution and it works, thank you so much.
 
-Bruce
+For newcomers like me, this may help explaining how that works:
+http://stackoverflow.com/a/17857952/813810
 
+I'll do some testings and then I'll submit the patch for the new glmark=
+=20
+release.
 
-
->
-> I tried both the fedora way and debian way, neither worked.! this is as
-> given in this website..:
-> http://www.cyberciti.biz/tips/avoid-linux-kernel-module-driver-autoloading.html
->
->
-> I'm using gumstix overo hardware..! Poky version 9.0.2, Yocto Project
-> 1.4 Reference Distro, 1.4.2 overo.
->
->
-> ---------------------------------
-> Sudhangathan BS
-> Ph:(+91) 9731-905-205
-> ---------------------------------
->
->
+Bests,
+Diego
 
 
