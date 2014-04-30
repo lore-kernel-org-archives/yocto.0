@@ -1,35 +1,43 @@
-Return-Path: <Bruce.Ashfield@windriver.com>
+Return-Path: <gley-yocto@m.gmane.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 08E1AE0098E; Wed, 30 Apr 2014 12:21:58 -0700 (PDT)
+	id D38AEE0098E; Wed, 30 Apr 2014 12:24:01 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=0.0 required=5.0 tests=RCVD_IN_DNSWL_NONE
-	autolearn=ham version=3.3.1
+X-Spam-Status: No, score=0.0 required=5.0 tests=FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE,SPF_HELO_PASS autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
 	http://www.dnswl.org/, no *      trust
-	*      [147.11.146.13 listed in list.dnswl.org]
-Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D847FE0096C
-	for <yocto@yoctoproject.org>; Wed, 30 Apr 2014 12:21:54 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail1.windriver.com (8.14.5/8.14.5) with ESMTP id s3UJLnrj018272
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Wed, 30 Apr 2014 12:21:49 -0700 (PDT)
-Received: from [128.224.56.48] (128.224.56.48) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server id 14.3.169.1;
-	Wed, 30 Apr 2014 12:21:49 -0700
-Message-ID: <53614D3F.6040005@windriver.com>
-Date: Wed, 30 Apr 2014 15:21:35 -0400
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
+	*      [80.91.229.3 listed in list.dnswl.org]
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (auslands-kv[at]gmx.de)
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+Received: from plane.gmane.org (plane.gmane.org [80.91.229.3])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 36D61E0096C
+	for <yocto@yoctoproject.org>; Wed, 30 Apr 2014 12:23:58 -0700 (PDT)
+Received: from list by plane.gmane.org with local (Exim 4.69)
+	(envelope-from <gley-yocto@m.gmane.org>) id 1Wfa6n-0001zk-B5
+	for yocto@yoctoproject.org; Wed, 30 Apr 2014 21:23:57 +0200
+Received: from 80-218-32-173.dclient.hispeed.ch ([80.218.32.173])
+	by main.gmane.org with esmtp (Gmexim 0.1 (Debian))
+	id 1AlnuQ-0007hv-00
+	for <yocto@yoctoproject.org>; Wed, 30 Apr 2014 21:23:57 +0200
+Received: from auslands-kv by 80-218-32-173.dclient.hispeed.ch with local
+	(Gmexim 0.1 (Debian)) id 1AlnuQ-0007hv-00
+	for <yocto@yoctoproject.org>; Wed, 30 Apr 2014 21:23:57 +0200
+X-Injected-Via-Gmane: http://gmane.org/
+To: yocto@yoctoproject.org
+From: Neuer User <auslands-kv@gmx.de>
+Date: Wed, 30 Apr 2014 21:23:43 +0200
+Message-ID: <53614DBF.2040000@gmx.de>
+References: <ljl1vt$ink$1@ger.gmane.org>	<535E5198.60709@windriver.com>	<ljlk6u$pd6$1@ger.gmane.org>	<535E54BB.7060701@windriver.com>	<ljllf9$frh$1@ger.gmane.org>	<535E59A1.1080808@windriver.com>	<ljlmib$45t$1@ger.gmane.org>	<53614482.8010102@windriver.com>	<53614BFB.3070100@gmx.de>
+	<53614D3F.6040005@windriver.com>
+Mime-Version: 1.0
+X-Complaints-To: usenet@ger.gmane.org
+X-Gmane-NNTP-Posting-Host: 80-218-32-173.dclient.hispeed.ch
 User-Agent: Mozilla/5.0 (X11; Linux x86_64;
 	rv:24.0) Gecko/20100101 Thunderbird/24.4.0
-MIME-Version: 1.0
-To: Neuer User <auslands-kv@gmx.de>, <yocto@yoctoproject.org>
-References: <ljl1vt$ink$1@ger.gmane.org>	<535E5198.60709@windriver.com>	<ljlk6u$pd6$1@ger.gmane.org>	<535E54BB.7060701@windriver.com>	<ljllf9$frh$1@ger.gmane.org>	<535E59A1.1080808@windriver.com>	<ljlmib$45t$1@ger.gmane.org>	<53614482.8010102@windriver.com>
-	<53614BFB.3070100@gmx.de>
-In-Reply-To: <53614BFB.3070100@gmx.de>
+In-Reply-To: <53614D3F.6040005@windriver.com>
 Subject: Re: Kernel config fragments are not applied
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -42,52 +50,20 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 30 Apr 2014 19:21:58 -0000
-Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
+X-List-Received-Date: Wed, 30 Apr 2014 19:24:01 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 Content-Transfer-Encoding: 7bit
 
-On 14-04-30 03:16 PM, Neuer User wrote:
-> Am 30.04.2014 20:44, schrieb Bruce Ashfield:
->> Can you send me your bblayers out of band ? I'm using meta-fsl-arm
->> and meta-fsl-arm-extra to get a build going, and running into
->> expansion errors in the kernel recipes. Rather than hunt around
->> more than necessary, I'll check against your layers.
->>
->> Bruce
->>
-> Sure:
->
-> LCONF_VERSION = "6"
->
-> BBPATH = "${TOPDIR}"
-> BSPDIR := "${@os.path.abspath(os.path.dirname(d.getVar('FILE', True)) +
-> '/../..')}"
->
-> BBFILES ?= ""
-> BBLAYERS = " \
->    ${BSPDIR}/sources/poky/meta \
->    ${BSPDIR}/sources/poky/meta-yocto \
->    \
->    ${BSPDIR}/sources/meta-openembedded/meta-oe \
->    ${BSPDIR}/sources/meta-openembedded/meta-multimedia \
->    \
->    ${BSPDIR}/sources/meta-fsl-arm \
->    ${BSPDIR}/sources/meta-fsl-arm-extra \
->    ${BSPDIR}/sources/meta-fsl-demos \
->    ${BSPDIR}/sources/meta-openembedded/meta-ruby \
->    ${BSPDIR}/sources/meta-qt5 \
->    ${BSPDIR}/sources/meta-mylayer \
-> "
+Am 30.04.2014 21:21, schrieb Bruce Ashfield:
+> 
+> Hrm. I have all the key layers right, which leaves me with the expansion
+> issue. The README indicates the danny branch for the meta-fsl-* layers,
+> is that what you are using ?
+> 
+> Bruce
+> 
+No, I'm using master-next. Only in master-next you can find the cubox-i
+machine definition.
 
-Hrm. I have all the key layers right, which leaves me with the expansion
-issue. The README indicates the danny branch for the meta-fsl-* layers,
-is that what you are using ?
-
-Bruce
-
->
->   Not sure that you need all. meta-ruby and qt5 is needed for my application.
->
->
 
 
