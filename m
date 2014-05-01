@@ -1,44 +1,43 @@
-Return-Path: <ajlennon@dynamicdevices.co.uk>
+Return-Path: <james.woodyatt@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 12CD4E00A44; Thu,  1 May 2014 11:35:06 -0700 (PDT)
+	id BD699E00A71; Thu,  1 May 2014 12:04:54 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=0.0 required=5.0 tests=none autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: 
-Received: from www.dynamicdevices.co.uk (www.dynamicdevices.co.uk
-	[89.200.136.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CB04FE009C5
-	for <yocto@yoctoproject.org>; Thu,  1 May 2014 11:35:00 -0700 (PDT)
-Received: from localhost (localhost [127.0.0.1])
-	by www.dynamicdevices.co.uk (Postfix) with ESMTP id 2103E27E015;
-	Thu,  1 May 2014 18:34:59 +0000 (UTC)
-X-Virus-Scanned: Debian amavisd-new at lennoab2.miniserver.com
-Received: from www.dynamicdevices.co.uk ([127.0.0.1])
-	by localhost (www.dynamicdevices.co.uk [127.0.0.1]) (amavisd-new,
-	port 10024)
-	with ESMTP id j_Pk7f-Mpcr8; Thu,  1 May 2014 18:34:58 +0000 (UTC)
-Received: from [127.0.0.1] (cpc32-live22-2-0-cust59.17-2.cable.virginm.net
-	[82.36.253.60])
-	(using TLSv1 with cipher ECDHE-RSA-AES128-SHA (128/128 bits))
-	(No client certificate requested)
-	by www.dynamicdevices.co.uk (Postfix) with ESMTPSA id 149B727E006;
-	Thu,  1 May 2014 18:34:58 +0000 (UTC)
-Message-ID: <536293D0.2010605@dynamicdevices.co.uk>
-Date: Thu, 01 May 2014 19:34:56 +0100
-From: Alex J Lennon <ajlennon@dynamicdevices.co.uk>
-User-Agent: Mozilla/5.0 (Windows NT 6.3; WOW64;
-	rv:24.0) Gecko/20100101 Thunderbird/24.5.0
+X-Spam-Status: No, score=-5.0 required=5.0 tests=RCVD_IN_DNSWL_HI
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [143.182.124.21 listed in list.dnswl.org]
+X-Greylist: delayed 65 seconds by postgrey-1.32 at yocto-www;
+	Thu, 01 May 2014 12:04:52 PDT
+Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 69640E009C5
+	for <yocto@yoctoproject.org>; Thu,  1 May 2014 12:04:52 -0700 (PDT)
+Received: from azsmga001.ch.intel.com ([10.2.17.19])
+	by azsmga101.ch.intel.com with ESMTP; 01 May 2014 12:03:39 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.97,966,1389772800"; d="scan'208";a="426489138"
+Received: from orsmsx105.amr.corp.intel.com ([10.22.225.132])
+	by azsmga001.ch.intel.com with ESMTP; 01 May 2014 12:03:39 -0700
+Received: from orsmsx113.amr.corp.intel.com (10.22.240.9) by
+	ORSMSX105.amr.corp.intel.com (10.22.225.132) with Microsoft SMTP Server
+	(TLS) id 14.3.123.3; Thu, 1 May 2014 12:03:39 -0700
+Received: from orsmsx105.amr.corp.intel.com ([169.254.4.80]) by
+	ORSMSX113.amr.corp.intel.com ([169.254.7.62]) with mapi id
+	14.03.0123.003; Thu, 1 May 2014 12:03:39 -0700
+From: "Woodyatt, James" <james.woodyatt@intel.com>
+To: Yocto Project Main <yocto@yoctoproject.org>
+Thread-Topic: [PATCH 0/2] meta-darwin on dylan branch
+Thread-Index: AQHPZXAPla/wwU6zeEyEzIsrJ6U/rw==
+Date: Thu, 1 May 2014 19:03:38 +0000
+Message-ID: <AEB6E6A7-4CD1-478D-8F31-429512AEF59F@intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.232.24.19]
 MIME-Version: 1.0
-To: Otavio Salvador <otavio@ossystems.com.br>
-References: <5362171B.8010000@dynamicdevices.co.uk>	<5577559.2gRHFt1x94@peggleto-mobl5.ger.corp.intel.com>	<536285BC.8010200@dynamicdevices.co.uk>
-	<CAP9ODKrgW5+pPsS51QLwd+9j0q2xMd+j-Q6bjKgZdV7ho_D0WA@mail.gmail.com>
-In-Reply-To: <CAP9ODKrgW5+pPsS51QLwd+9j0q2xMd+j-Q6bjKgZdV7ho_D0WA@mail.gmail.com>
-X-Enigmail-Version: 1.6
-Cc: Paul Eggleton <paul.eggleton@linux.intel.com>,
-	yocto <yocto@yoctoproject.org>
-Subject: Re: Undefining a variable in a recipe?
+Subject: [PATCH 0/2] meta-darwin on dylan branch
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -50,67 +49,30 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 01 May 2014 18:35:06 -0000
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Thu, 01 May 2014 19:04:54 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="Windows-1252"
+Content-ID: <A4CDE47F838ABE479A975E11B3EAED20@intel.com>
+Content-Transfer-Encoding: quoted-printable
+
+Everyone=97
+
+I=92ve discovered some errors in the meta-darwin layer on the dylan branch =
+that currently prevent the meta-toolchain target from building the componen=
+ts included in the OS X variant of the Arduino for Intel Galileo IDE.  Foll=
+ow-ups to comprise the two patches that solve the problem.  These changes m=
+ay need to be merged upstream, but I haven=92t looked.
+
+Here are summary descriptions of the patches:
+
+1. Properly configure util-linux when ncurses is configured =97with-libterm=
+=3Dtinfo.
+2. Remove usage of =91new typename=92 constructors in ld64 part of odcctool=
+s2 package.
 
 
-On 01/05/2014 18:54, Otavio Salvador wrote:
-> On Thu, May 1, 2014 at 2:34 PM, Alex J Lennon
-> <ajlennon@dynamicdevices.co.uk> wrote:
->> On 01/05/2014 14:54, Paul Eggleton wrote:
->>> Hi Alex,
->>>
->>> On Thursday 01 May 2014 10:42:51 Alex J Lennon wrote:
->>>> I have an issue with the build of an old u-boot (2009.08) which is
->>>> failing a check in poky as both UBOOT_CONFIG and UBOOT_MACHINE are being
->>>> defined for some reason.
->>>>
->>>> poky/meta/classes/uboot-config.bbclass
->>>>
->>>>  ubootmachine = d.getVar("UBOOT_MACHINE", True)
->>>>  ubootconfigflags = d.getVarFlags('UBOOT_CONFIG')
->>>>
->>>> ..
->>>>
->>>>  if ubootmachine and ubootconfigflags:
->>>>        raise bb.parse.SkipPackage("You cannot use UBOOT_MACHINE and
->>>> UBOOT_CONFIG at the same time.")
->>>>
->>>>
->>>> I have a .bbappend on the original u-boot recipe and could solve the
->>>> problem by undefining UBOOT_MACHINE if I could work out how to do this
->>>> in the .bbappend
->>>>
->>>> I've tried setting it to None or an empty string, and I tried an
->>>> anonymous python function but those approaches didn't help,
->>>>
->>>> e.g. (in the .bbappend
->>>>
->>>> UBOOT_MACHINE = ""
->>> This should work - the python code above is checking if the value evaluates to
->>> True, and that shouldn't be the case for an empty string. I suspect something
->>> else is at work here - either the check is running before your value gets set,
->>> or the value is being set using an override somewhere and therefore your value
->>> isn't being used.
->>>
->>> (adding Otavio on CC since these are his checks and his layer)
->> Thanks for coming back to me on this Paul. OK, I must be
->> misunderstanding something.
->>
->> I was outputting the UBOOT_MACHINE to test and it's not a True value at
->> any point as you
->> might expect as it's set to the machine type if set, but my build was
->> still failing to pick up
->> my preferred recipe version unless I commented out the if/raise, in
->> which case all worked
->> as expected.
->>
->> Caught up with something at the minute but I will go through this  again
->> first thing tomorrow.
-> When you debug it let me know and I can try to help in solve it.
->
-
-Much appreciated thanks Otavio. Will do.
+=97
+james woodyatt <james.woodyatt@intel.com>
+Software Architect, New Devices Group
 
 
