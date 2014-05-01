@@ -1,44 +1,41 @@
-Return-Path: <gley-yocto@m.gmane.org>
+Return-Path: <ajlennon@dynamicdevices.co.uk>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 1AB5BE00997; Wed, 30 Apr 2014 23:32:53 -0700 (PDT)
+	id 041C8E00997; Thu,  1 May 2014 02:51:59 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=0.0 required=5.0 tests=FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE,SPF_HELO_PASS autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (auslands-kv[at]gmx.de)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [80.91.229.3 listed in list.dnswl.org]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
-Received: from plane.gmane.org (plane.gmane.org [80.91.229.3])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F2B2BE00985
-	for <yocto@yoctoproject.org>; Wed, 30 Apr 2014 23:32:39 -0700 (PDT)
-Received: from list by plane.gmane.org with local (Exim 4.69)
-	(envelope-from <gley-yocto@m.gmane.org>) id 1WfkXr-0000Pk-MQ
-	for yocto@yoctoproject.org; Thu, 01 May 2014 08:32:35 +0200
-Received: from 80-218-32-173.dclient.hispeed.ch ([80.218.32.173])
-	by main.gmane.org with esmtp (Gmexim 0.1 (Debian))
-	id 1AlnuQ-0007hv-00
-	for <yocto@yoctoproject.org>; Thu, 01 May 2014 08:32:35 +0200
-Received: from auslands-kv by 80-218-32-173.dclient.hispeed.ch with local
-	(Gmexim 0.1 (Debian)) id 1AlnuQ-0007hv-00
-	for <yocto@yoctoproject.org>; Thu, 01 May 2014 08:32:35 +0200
-X-Injected-Via-Gmane: http://gmane.org/
-To: yocto@yoctoproject.org
-From: Neuer User <auslands-kv@gmx.de>
-Date: Thu, 01 May 2014 08:32:22 +0200
-Message-ID: <5361EA76.1080604@gmx.de>
-References: <ljl1vt$ink$1@ger.gmane.org>	<535E5198.60709@windriver.com>	<ljlk6u$pd6$1@ger.gmane.org>	<535E54BB.7060701@windriver.com>	<ljllf9$frh$1@ger.gmane.org>	<535E59A1.1080808@windriver.com>	<ljlmib$45t$1@ger.gmane.org>	<53616636.5000509@windriver.com>
-	<5361CDAE.8050206@windriver.com>
-Mime-Version: 1.0
-X-Complaints-To: usenet@ger.gmane.org
-X-Gmane-NNTP-Posting-Host: 80-218-32-173.dclient.hispeed.ch
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:24.0) Gecko/20100101 Thunderbird/24.4.0
-In-Reply-To: <5361CDAE.8050206@windriver.com>
-Subject: Re: Kernel config fragments are not applied
+X-Spam-Status: No, score=0.0 required=5.0 tests=none autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: 
+X-Greylist: delayed 516 seconds by postgrey-1.32 at yocto-www;
+	Thu, 01 May 2014 02:51:54 PDT
+Received: from www.dynamicdevices.co.uk (www.dynamicdevices.co.uk
+	[89.200.136.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 29156E00985
+	for <yocto@yoctoproject.org>; Thu,  1 May 2014 02:51:54 -0700 (PDT)
+Received: from localhost (localhost [127.0.0.1])
+	by www.dynamicdevices.co.uk (Postfix) with ESMTP id B07AF27E016
+	for <yocto@yoctoproject.org>; Thu,  1 May 2014 09:43:15 +0000 (UTC)
+X-Virus-Scanned: Debian amavisd-new at lennoab2.miniserver.com
+Received: from www.dynamicdevices.co.uk ([127.0.0.1])
+	by localhost (www.dynamicdevices.co.uk [127.0.0.1]) (amavisd-new,
+	port 10024) with ESMTP id WS43Rm_awuZI for <yocto@yoctoproject.org>;
+	Thu,  1 May 2014 09:42:55 +0000 (UTC)
+Received: from [127.0.0.1] (cpc32-live22-2-0-cust59.17-2.cable.virginm.net
+	[82.36.253.60])
+	(using TLSv1 with cipher ECDHE-RSA-AES128-SHA (128/128 bits))
+	(No client certificate requested)
+	by www.dynamicdevices.co.uk (Postfix) with ESMTPSA id E58AD27E006
+	for <yocto@yoctoproject.org>; Thu,  1 May 2014 09:42:54 +0000 (UTC)
+Message-ID: <5362171B.8010000@dynamicdevices.co.uk>
+Date: Thu, 01 May 2014 10:42:51 +0100
+From: Alex J Lennon <ajlennon@dynamicdevices.co.uk>
+User-Agent: Mozilla/5.0 (Windows NT 6.3; WOW64;
+	rv:24.0) Gecko/20100101 Thunderbird/24.5.0
+MIME-Version: 1.0
+To: Yocto <yocto@yoctoproject.org>
+X-Enigmail-Version: 1.6
+Subject: Undefining a variable in a recipe?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -50,65 +47,55 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 01 May 2014 06:32:53 -0000
+X-List-Received-Date: Thu, 01 May 2014 09:51:59 -0000
 Content-Type: text/plain; charset=ISO-8859-1
 Content-Transfer-Encoding: 7bit
 
-Hi Bruce
+Hi,
 
-Here is the error messega, I get after a "bitbake linux-cubox-i -c
-cleansstate; bitbake linux-cubox-i" using the recipe you posted:
+I have an issue with the build of an old u-boot (2009.08) which is
+failing a check in poky as both UBOOT_CONFIG and UBOOT_MACHINE are being
+defined for some reason.
 
-ERROR: Function failed: do_patch (log file is located at
-/home/ubuntu/yocto/build/tmp/work/cubox_i-poky-linux-gnueabi/linux-cubox-i/3.0.35-r0/temp/log.do_patch.5660)
-ERROR: Logfile of failure stored in:
-/home/ubuntu/yocto/build/tmp/work/cubox_i-poky-linux-gnueabi/linux-cubox-i/3.0.35-r0/temp/log.do_patch.5660
-Log data follows:
-| DEBUG: Executing shell function do_patch
-| WARNING: no meta data branch found ...
-| ls: cannot access .meta*: No such file or directory
-| Already on 'imx_3.0.35_4.1.0'
-| [INFO] validating against known patches  (cubox-i-standard-meta)
-error: patch failed: arch/arm/lib/memset.S:19#############] (/)(110 %)
-| error: arch/arm/lib/memset.S: patch does not apply
-| ERROR. could not update git tree
-| ERROR. Could not apply patches for cubox-i.
-|        Patch failures can be resolved in the devshell (bitbake -c
-devshell linux-cubox-i)
-| WARNING: exit code 1 from a shell command.
-| ERROR: Function failed: do_patch (log file is located at
-/home/ubuntu/yocto/build/tmp/work/cubox_i-poky-linux-gnueabi/linux-cubox-i/3.0.35-r0/temp/log.do_patch.5660)
-ERROR: Task 3
-(/home/ubuntu/yocto/sources/meta-fsl-arm-extra/recipes-kernel/linux/linux-cubox-i_3.0.35.bb,
-do_patch) failed with exit code '1'
+poky/meta/classes/uboot-config.bbclass
 
-Hope, it helps!
+ ubootmachine = d.getVar("UBOOT_MACHINE", True)
+ ubootconfigflags = d.getVarFlags('UBOOT_CONFIG')
 
-Michael
+..
 
-Am 01.05.2014 06:29, schrieb Bruce Ashfield:
-> I'm glad that I looked again, I though there was an error without my
-> clean up series .. but what I was seeing was a legitimate double
-> application of the patch.
-> 
-> What error where you seeing when you tried a bbappend like so:
-> 
-> ------------
-> FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}-${PV}:"
-> 
-> inherit kernel
-> require recipes-kernel/linux/linux-yocto.inc
-> 
-> COMPATIBLE_MACHINE_cubox-i = "(cubox-i)"
-> 
-> SRC_URI += "file://videoin.cfg"
-> --------------
-> 
-> Your error message will set me straight .. and tell me if it is just
-> the late night hacking fooling my eyes .. or not!
-> 
-> 
-> Bruce
+ if ubootmachine and ubootconfigflags:
+       raise bb.parse.SkipPackage("You cannot use UBOOT_MACHINE and
+UBOOT_CONFIG at the same time.")
 
+
+I have a .bbappend on the original u-boot recipe and could solve the
+problem by undefining UBOOT_MACHINE if I could work out how to do this
+in the .bbappend
+
+I've tried setting it to None or an empty string, and I tried an
+anonymous python function but those approaches didn't help,
+
+e.g. (in the .bbappend
+
+UBOOT_MACHINE = ""
+
+or
+
+UBOOT_MACHINE = None
+
+or
+
+python __anonymous () {
+  bb.data.delVar('UBOOT_MACHINE_imx6qsabresd')
+}
+
+I could just copy the original recipe from metal-fsl-arm into my own
+layer and change it there I guess but I'd like to understand how to
+achieve this with a .bbappend if it is possible as it seems cleaner.
+
+Many thanks,
+
+Alex
 
 
