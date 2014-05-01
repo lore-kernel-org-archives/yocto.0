@@ -1,36 +1,43 @@
-Return-Path: <Bruce.Ashfield@windriver.com>
+Return-Path: <ajlennon@dynamicdevices.co.uk>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id DF8CAE00A44; Thu,  1 May 2014 10:12:29 -0700 (PDT)
+	id 7DE2CE00A44; Thu,  1 May 2014 10:35:02 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=0.0 required=5.0 tests=RCVD_IN_DNSWL_NONE
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [147.11.146.13 listed in list.dnswl.org]
-Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9FB58E009C5
-	for <yocto@yoctoproject.org>; Thu,  1 May 2014 10:12:25 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail1.windriver.com (8.14.5/8.14.5) with ESMTP id s41HCL89029014
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Thu, 1 May 2014 10:12:21 -0700 (PDT)
-Received: from [128.224.56.48] (128.224.56.48) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server id 14.3.169.1;
-	Thu, 1 May 2014 10:12:20 -0700
-Message-ID: <53628066.7060300@windriver.com>
-Date: Thu, 1 May 2014 13:12:06 -0400
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:24.0) Gecko/20100101 Thunderbird/24.4.0
+X-Spam-Status: No, score=0.0 required=5.0 tests=none autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: 
+Received: from www.dynamicdevices.co.uk (www.dynamicdevices.co.uk
+	[89.200.136.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F198DE009C5
+	for <yocto@yoctoproject.org>; Thu,  1 May 2014 10:34:57 -0700 (PDT)
+Received: from localhost (localhost [127.0.0.1])
+	by www.dynamicdevices.co.uk (Postfix) with ESMTP id C9B0227E015;
+	Thu,  1 May 2014 17:34:55 +0000 (UTC)
+X-Virus-Scanned: Debian amavisd-new at lennoab2.miniserver.com
+Received: from www.dynamicdevices.co.uk ([127.0.0.1])
+	by localhost (www.dynamicdevices.co.uk [127.0.0.1]) (amavisd-new,
+	port 10024)
+	with ESMTP id 0lwrud8_fUEP; Thu,  1 May 2014 17:34:54 +0000 (UTC)
+Received: from [127.0.0.1] (cpc32-live22-2-0-cust59.17-2.cable.virginm.net
+	[82.36.253.60])
+	(using TLSv1 with cipher ECDHE-RSA-AES128-SHA (128/128 bits))
+	(No client certificate requested)
+	by www.dynamicdevices.co.uk (Postfix) with ESMTPSA id 8112327E006;
+	Thu,  1 May 2014 17:34:54 +0000 (UTC)
+Message-ID: <536285BC.8010200@dynamicdevices.co.uk>
+Date: Thu, 01 May 2014 18:34:52 +0100
+From: Alex J Lennon <ajlennon@dynamicdevices.co.uk>
+User-Agent: Mozilla/5.0 (Windows NT 6.3; WOW64;
+	rv:24.0) Gecko/20100101 Thunderbird/24.5.0
 MIME-Version: 1.0
-To: Neuer User <auslands-kv@gmx.de>, <yocto@yoctoproject.org>
-References: <ljl1vt$ink$1@ger.gmane.org>	<535E5198.60709@windriver.com>	<ljlk6u$pd6$1@ger.gmane.org>	<535E54BB.7060701@windriver.com>	<ljllf9$frh$1@ger.gmane.org>	<535E59A1.1080808@windriver.com>	<ljlmib$45t$1@ger.gmane.org>	<53616636.5000509@windriver.com>	<5361CDAE.8050206@windriver.com>
-	<5361EA76.1080604@gmx.de>
-In-Reply-To: <5361EA76.1080604@gmx.de>
-Subject: Re: Kernel config fragments are not applied
+To: Paul Eggleton <paul.eggleton@linux.intel.com>
+References: <5362171B.8010000@dynamicdevices.co.uk>
+	<5577559.2gRHFt1x94@peggleto-mobl5.ger.corp.intel.com>
+In-Reply-To: <5577559.2gRHFt1x94@peggleto-mobl5.ger.corp.intel.com>
+X-Enigmail-Version: 1.6
+Cc: yocto@yoctoproject.org, Otavio Salvador <otavio@ossystems.com.br>
+Subject: Re: Undefining a variable in a recipe?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,90 +49,69 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 01 May 2014 17:12:29 -0000
-Content-Type: text/plain; charset="windows-1252"; format=flowed
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Thu, 01 May 2014 17:35:02 -0000
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: 7bit
 
-On 14-05-01 02:32 AM, Neuer User wrote:
-> Hi Bruce
+
+On 01/05/2014 14:54, Paul Eggleton wrote:
+> Hi Alex,
 >
-> Here is the error messega, I get after a "bitbake linux-cubox-i -c
-> cleansstate; bitbake linux-cubox-i" using the recipe you posted:
-
-Aha. This is what I was seeing as well, and there's some issues and 
-assumptions
-that are built into those kernel recipes that are causing the yocto
-tools to attempt a patch (which is already on the branch) and hence
-the failure (the recipes should really be tweaked .. but I digress).
-
-I'm prepping a small patch that will have this particular recipe and
-use case working out of the box.
-
-Bruce
-
+> On Thursday 01 May 2014 10:42:51 Alex J Lennon wrote:
+>> I have an issue with the build of an old u-boot (2009.08) which is
+>> failing a check in poky as both UBOOT_CONFIG and UBOOT_MACHINE are being
+>> defined for some reason.
+>>
+>> poky/meta/classes/uboot-config.bbclass
+>>
+>>  ubootmachine = d.getVar("UBOOT_MACHINE", True)
+>>  ubootconfigflags = d.getVarFlags('UBOOT_CONFIG')
+>>
+>> ..
+>>
+>>  if ubootmachine and ubootconfigflags:
+>>        raise bb.parse.SkipPackage("You cannot use UBOOT_MACHINE and
+>> UBOOT_CONFIG at the same time.")
+>>
+>>
+>> I have a .bbappend on the original u-boot recipe and could solve the
+>> problem by undefining UBOOT_MACHINE if I could work out how to do this
+>> in the .bbappend
+>>
+>> I've tried setting it to None or an empty string, and I tried an
+>> anonymous python function but those approaches didn't help,
+>>
+>> e.g. (in the .bbappend
+>>
+>> UBOOT_MACHINE = ""
+> This should work - the python code above is checking if the value evaluates to 
+> True, and that shouldn't be the case for an empty string. I suspect something 
+> else is at work here - either the check is running before your value gets set, 
+> or the value is being set using an override somewhere and therefore your value 
+> isn't being used.
 >
-> ERROR: Function failed: do_patch (log file is located at
-> /home/ubuntu/yocto/build/tmp/work/cubox_i-poky-linux-gnueabi/linux-cubox-i/3.0.35-r0/temp/log.do_patch.5660)
-> ERROR: Logfile of failure stored in:
-> /home/ubuntu/yocto/build/tmp/work/cubox_i-poky-linux-gnueabi/linux-cubox-i/3.0.35-r0/temp/log.do_patch.5660
-> Log data follows:
-> | DEBUG: Executing shell function do_patch
-> | WARNING: no meta data branch found ...
-> | ls: cannot access .meta*: No such file or directory
-> | Already on 'imx_3.0.35_4.1.0'
-> | [INFO] validating against known patches  (cubox-i-standard-meta)
-> error: patch failed: arch/arm/lib/memset.S:19#############] (/)(110 %)
-> | error: arch/arm/lib/memset.S: patch does not apply
-> | ERROR. could not update git tree
-> | ERROR. Could not apply patches for cubox-i.
-> |        Patch failures can be resolved in the devshell (bitbake -c
-> devshell linux-cubox-i)
-> | WARNING: exit code 1 from a shell command.
-> | ERROR: Function failed: do_patch (log file is located at
-> /home/ubuntu/yocto/build/tmp/work/cubox_i-poky-linux-gnueabi/linux-cubox-i/3.0.35-r0/temp/log.do_patch.5660)
-> ERROR: Task 3
-> (/home/ubuntu/yocto/sources/meta-fsl-arm-extra/recipes-kernel/linux/linux-cubox-i_3.0.35.bb,
-> do_patch) failed with exit code '1'
->
-> Hope, it helps!
->
-> Michael
->
-> Am 01.05.2014 06:29, schrieb Bruce Ashfield:
->> I'm glad that I looked again, I though there was an error without my
->> clean up series .. but what I was seeing was a legitimate double
->> application of the patch.
->>
->> What error where you seeing when you tried a bbappend like so:
->>ll ticking.. ;-)
+> (adding Otavio on CC since these are his checks and his layer)
 
-If anyone has more suggestions or info, please let me know! I’ll keep 
-you posted.
+Thanks for coming back to me on this Paul. OK, I must be
+misunderstanding something.
 
-Update: Just reached 4 days of uptime!
+I was outputting the UBOOT_MACHINE to test and it's not a True value at
+any point as you
+might expect as it's set to the machine type if set, but my build was
+still failing to pick up
+my preferred recipe version unless I commented out the if/raise, in
+which case all worked
+as expected.
 
-Update 2: Today it’s 4 month’s after I wrote this blog. The machine is 
-still up & running and has reached 106 days of uptime!
+Caught up with something at the minute but I will go through this  again
+first thing tomorrow.
 
-Update 3: After 7 months (222 days of uptime) I finally retired the 
-machine since we migrated to our CloudStack cloud. The fix described ab
->> ------------
->> FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}-${PV}:"
->>
->> inherit kernel
->> require recipes-kernel/linux/linux-yocto.inc
->>
->> COMPATIBLE_MACHINE_cubox-i = "(cubox-i)"
->>
->> SRC_URI += "file://videoin.cfg"
->> --------------
->>
->> Your error message will set me straight .. and tell me if it is just
->> the late night hacking fooling my eyes .. or not!
->>
->>
->> Bruce
->
+Thanks again,
+
+Alex
+
+> Cheers,
+> Paul
 >
 
 
