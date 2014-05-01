@@ -1,30 +1,36 @@
-Return-Path: <gary@mlbassoc.com>
+Return-Path: <Bruce.Ashfield@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 9EE5FE009C5; Thu,  1 May 2014 08:14:40 -0700 (PDT)
+	id DF8CAE00A44; Thu,  1 May 2014 10:12:29 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=0.0 required=5.0 tests=none autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: 
-X-Greylist: delayed 493 seconds by postgrey-1.32 at yocto-www;
-	Thu, 01 May 2014 08:14:31 PDT
-Received: from mail.chez-thomas.org (mail.mlbassoc.com [65.100.170.105])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 98705E009BA
-	for <yocto@yoctoproject.org>; Thu,  1 May 2014 08:14:31 -0700 (PDT)
-Received: by mail.chez-thomas.org (Postfix, from userid 1998)
-	id E2E21F811EC; Thu,  1 May 2014 09:06:17 -0600 (MDT)
-Received: from [192.168.1.114] (zeus [192.168.1.114])
-	by mail.chez-thomas.org (Postfix) with ESMTP id 08749F811E9;
-	Thu,  1 May 2014 09:06:14 -0600 (MDT)
-Message-ID: <536262F6.3040702@mlbassoc.com>
-Date: Thu, 01 May 2014 09:06:30 -0600
-From: Gary Thomas <gary@mlbassoc.com>
+X-Spam-Status: No, score=0.0 required=5.0 tests=RCVD_IN_DNSWL_NONE
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [147.11.146.13 listed in list.dnswl.org]
+Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9FB58E009C5
+	for <yocto@yoctoproject.org>; Thu,  1 May 2014 10:12:25 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
+	[147.11.189.40])
+	by mail1.windriver.com (8.14.5/8.14.5) with ESMTP id s41HCL89029014
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
+	Thu, 1 May 2014 10:12:21 -0700 (PDT)
+Received: from [128.224.56.48] (128.224.56.48) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server id 14.3.169.1;
+	Thu, 1 May 2014 10:12:20 -0700
+Message-ID: <53628066.7060300@windriver.com>
+Date: Thu, 1 May 2014 13:12:06 -0400
+From: Bruce Ashfield <bruce.ashfield@windriver.com>
 User-Agent: Mozilla/5.0 (X11; Linux x86_64;
 	rv:24.0) Gecko/20100101 Thunderbird/24.4.0
 MIME-Version: 1.0
-To: Yocto Project <yocto@yoctoproject.org>
-Subject: Build problem with current master
+To: Neuer User <auslands-kv@gmx.de>, <yocto@yoctoproject.org>
+References: <ljl1vt$ink$1@ger.gmane.org>	<535E5198.60709@windriver.com>	<ljlk6u$pd6$1@ger.gmane.org>	<535E54BB.7060701@windriver.com>	<ljllf9$frh$1@ger.gmane.org>	<535E59A1.1080808@windriver.com>	<ljlmib$45t$1@ger.gmane.org>	<53616636.5000509@windriver.com>	<5361CDAE.8050206@windriver.com>
+	<5361EA76.1080604@gmx.de>
+In-Reply-To: <5361EA76.1080604@gmx.de>
+Subject: Re: Kernel config fragments are not applied
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -36,39 +42,90 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 01 May 2014 15:14:40 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Thu, 01 May 2014 17:12:29 -0000
+Content-Type: text/plain; charset="windows-1252"; format=flowed
+Content-Transfer-Encoding: 8bit
 
-I'm trying to build using the latest master ().
+On 14-05-01 02:32 AM, Neuer User wrote:
+> Hi Bruce
+>
+> Here is the error messega, I get after a "bitbake linux-cubox-i -c
+> cleansstate; bitbake linux-cubox-i" using the recipe you posted:
 
-For historical (hysterical? customers), I'm maintaining some
-old versions of GCC in my own layers.  Recent changes are causing
-these recipes to throw errors:
+Aha. This is what I was seeing as well, and there's some issues and 
+assumptions
+that are built into those kernel recipes that are causing the yocto
+tools to attempt a patch (which is already on the branch) and hence
+the failure (the recipes should really be tweaked .. but I digress).
 
-NOTE: Error during finalise of /home/local/poky-cutting-edge/meta-amltd/recipes-devtools/gcc/gcc_4.7.bb
-ERROR: ExpansionError during parsing /home/local/poky-cutting-edge/meta-amltd/recipes-devtools/gcc/gcc_4.7.bb: Failure expanding variable oe_runconf: ExpansionError: Failure 
-expanding variable EXTRA_OECONF, expression was ${@['--enable-clocale=generic', ''][d.getVar('USE_NLS', True) != 'no']}                 --with-gnu-ld 
---enable-shared                 --enable-languages=c,c++                 --enable-threads=posix                 --enable-multilib                 --enable-c99 
---enable-long-long                 --enable-symvers=gnu                 --enable-libstdcxx-pch                 --program-prefix=arm-amltd-linux-gnueabi- 
---without-local-prefix                 --enable-target-optspace                  --enable-lto                    --enable-libssp                         --disable-bootstrap 
-               --disable-libmudflap                    --with-system-zlib                      --with-linker-hash-style=gnu                     --enable-linker-build-id 
-             --with-ppl=no                   --with-cloog=no                  --enable-checking=release                       --enable-cheaders=c_global 
---with-float=hard                      --with-sysroot=/     --with-build-sysroot=/home/local/imx6-cutting-edge_2014-05-01/tmp/sysroots/nitrogen6x 
---with-native-system-header-dir=/home/local/imx6-cutting-edge_2014-05-01/tmp/sysroots/nitrogen6x/usr/include     --with-gxx-include-dir=/usr/include/c++/ 
-${@get_gcc_mips_plt_setting(bb, d)}                 ${@get_gcc_multiarch_setting(bb, d)} ${@gettext_oeconf(d)} which triggered exception AttributeError: 'module' object has no 
-attribute 'contains'
+I'm prepping a small patch that will have this particular recipe and
+use case working out of the box.
 
-I've noticed recent discussions about moving/renaming 'contains',
-but it's not clear to me what I might need to do to get these old
-GCC recipes (and maybe others?) going again.  Sadly, just abandoning
-them isn't practical, at least not today.
+Bruce
 
-Thanks for any ideas/pointers.
+>
+> ERROR: Function failed: do_patch (log file is located at
+> /home/ubuntu/yocto/build/tmp/work/cubox_i-poky-linux-gnueabi/linux-cubox-i/3.0.35-r0/temp/log.do_patch.5660)
+> ERROR: Logfile of failure stored in:
+> /home/ubuntu/yocto/build/tmp/work/cubox_i-poky-linux-gnueabi/linux-cubox-i/3.0.35-r0/temp/log.do_patch.5660
+> Log data follows:
+> | DEBUG: Executing shell function do_patch
+> | WARNING: no meta data branch found ...
+> | ls: cannot access .meta*: No such file or directory
+> | Already on 'imx_3.0.35_4.1.0'
+> | [INFO] validating against known patches  (cubox-i-standard-meta)
+> error: patch failed: arch/arm/lib/memset.S:19#############] (/)(110 %)
+> | error: arch/arm/lib/memset.S: patch does not apply
+> | ERROR. could not update git tree
+> | ERROR. Could not apply patches for cubox-i.
+> |        Patch failures can be resolved in the devshell (bitbake -c
+> devshell linux-cubox-i)
+> | WARNING: exit code 1 from a shell command.
+> | ERROR: Function failed: do_patch (log file is located at
+> /home/ubuntu/yocto/build/tmp/work/cubox_i-poky-linux-gnueabi/linux-cubox-i/3.0.35-r0/temp/log.do_patch.5660)
+> ERROR: Task 3
+> (/home/ubuntu/yocto/sources/meta-fsl-arm-extra/recipes-kernel/linux/linux-cubox-i_3.0.35.bb,
+> do_patch) failed with exit code '1'
+>
+> Hope, it helps!
+>
+> Michael
+>
+> Am 01.05.2014 06:29, schrieb Bruce Ashfield:
+>> I'm glad that I looked again, I though there was an error without my
+>> clean up series .. but what I was seeing was a legitimate double
+>> application of the patch.
+>>
+>> What error where you seeing when you tried a bbappend like so:
+>>ll ticking.. ;-)
 
--- 
-------------------------------------------------------------
-Gary Thomas                 |  Consulting for the
-MLB Associates              |    Embedded world
-------------------------------------------------------------
+If anyone has more suggestions or info, please let me know! I’ll keep 
+you posted.
+
+Update: Just reached 4 days of uptime!
+
+Update 2: Today it’s 4 month’s after I wrote this blog. The machine is 
+still up & running and has reached 106 days of uptime!
+
+Update 3: After 7 months (222 days of uptime) I finally retired the 
+machine since we migrated to our CloudStack cloud. The fix described ab
+>> ------------
+>> FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}-${PV}:"
+>>
+>> inherit kernel
+>> require recipes-kernel/linux/linux-yocto.inc
+>>
+>> COMPATIBLE_MACHINE_cubox-i = "(cubox-i)"
+>>
+>> SRC_URI += "file://videoin.cfg"
+>> --------------
+>>
+>> Your error message will set me straight .. and tell me if it is just
+>> the late night hacking fooling my eyes .. or not!
+>>
+>>
+>> Bruce
+>
+>
+
 
