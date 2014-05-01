@@ -1,41 +1,41 @@
-Return-Path: <ajlennon@dynamicdevices.co.uk>
+Return-Path: <gley-yocto@m.gmane.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 041C8E00997; Thu,  1 May 2014 02:51:59 -0700 (PDT)
+	id 8A5E2E00997; Thu,  1 May 2014 03:20:02 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=0.0 required=5.0 tests=none autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: 
-X-Greylist: delayed 516 seconds by postgrey-1.32 at yocto-www;
-	Thu, 01 May 2014 02:51:54 PDT
-Received: from www.dynamicdevices.co.uk (www.dynamicdevices.co.uk
-	[89.200.136.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 29156E00985
-	for <yocto@yoctoproject.org>; Thu,  1 May 2014 02:51:54 -0700 (PDT)
-Received: from localhost (localhost [127.0.0.1])
-	by www.dynamicdevices.co.uk (Postfix) with ESMTP id B07AF27E016
-	for <yocto@yoctoproject.org>; Thu,  1 May 2014 09:43:15 +0000 (UTC)
-X-Virus-Scanned: Debian amavisd-new at lennoab2.miniserver.com
-Received: from www.dynamicdevices.co.uk ([127.0.0.1])
-	by localhost (www.dynamicdevices.co.uk [127.0.0.1]) (amavisd-new,
-	port 10024) with ESMTP id WS43Rm_awuZI for <yocto@yoctoproject.org>;
-	Thu,  1 May 2014 09:42:55 +0000 (UTC)
-Received: from [127.0.0.1] (cpc32-live22-2-0-cust59.17-2.cable.virginm.net
-	[82.36.253.60])
-	(using TLSv1 with cipher ECDHE-RSA-AES128-SHA (128/128 bits))
-	(No client certificate requested)
-	by www.dynamicdevices.co.uk (Postfix) with ESMTPSA id E58AD27E006
-	for <yocto@yoctoproject.org>; Thu,  1 May 2014 09:42:54 +0000 (UTC)
-Message-ID: <5362171B.8010000@dynamicdevices.co.uk>
-Date: Thu, 01 May 2014 10:42:51 +0100
-From: Alex J Lennon <ajlennon@dynamicdevices.co.uk>
-User-Agent: Mozilla/5.0 (Windows NT 6.3; WOW64;
-	rv:24.0) Gecko/20100101 Thunderbird/24.5.0
-MIME-Version: 1.0
-To: Yocto <yocto@yoctoproject.org>
-X-Enigmail-Version: 1.6
-Subject: Undefining a variable in a recipe?
+X-Spam-Status: No, score=0.0 required=5.0 tests=FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE,SPF_HELO_PASS autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [80.91.229.3 listed in list.dnswl.org]
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (auslands-kv[at]gmx.de)
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+Received: from plane.gmane.org (plane.gmane.org [80.91.229.3])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 23DC0E00985
+	for <yocto@yoctoproject.org>; Thu,  1 May 2014 03:19:55 -0700 (PDT)
+Received: from list by plane.gmane.org with local (Exim 4.69)
+	(envelope-from <gley-yocto@m.gmane.org>) id 1Wfo5p-000187-Ph
+	for yocto@yoctoproject.org; Thu, 01 May 2014 12:19:53 +0200
+Received: from 80-218-32-173.dclient.hispeed.ch ([80.218.32.173])
+	by main.gmane.org with esmtp (Gmexim 0.1 (Debian))
+	id 1AlnuQ-0007hv-00
+	for <yocto@yoctoproject.org>; Thu, 01 May 2014 12:19:53 +0200
+Received: from auslands-kv by 80-218-32-173.dclient.hispeed.ch with local
+	(Gmexim 0.1 (Debian)) id 1AlnuQ-0007hv-00
+	for <yocto@yoctoproject.org>; Thu, 01 May 2014 12:19:53 +0200
+X-Injected-Via-Gmane: http://gmane.org/
+To: yocto@yoctoproject.org
+From: Neuer User <auslands-kv@gmx.de>
+Date: Thu, 01 May 2014 12:19:37 +0200
+Message-ID: <ljt73p$k5f$1@ger.gmane.org>
+Mime-Version: 1.0
+X-Complaints-To: usenet@ger.gmane.org
+X-Gmane-NNTP-Posting-Host: 80-218-32-173.dclient.hispeed.ch
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:24.0) Gecko/20100101 Thunderbird/24.4.0
+Subject: quilt-native do_populate_sysroot error
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -47,55 +47,47 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 01 May 2014 09:51:59 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Thu, 01 May 2014 10:20:02 -0000
+Content-Type: text/plain; charset=ISO-8859-15
 Content-Transfer-Encoding: 7bit
 
-Hi,
+Hi
 
-I have an issue with the build of an old u-boot (2009.08) which is
-failing a check in poky as both UBOOT_CONFIG and UBOOT_MACHINE are being
-defined for some reason.
+I needed to re-setup my yocto directory due to a fs error (was using
+btrfs). Before I used master-next. Now I checked out daisy.
 
-poky/meta/classes/uboot-config.bbclass
+When I start bitbaking, I already get an error ["File not found"] when
+building quilt-native. The error is in the step do_populate_sysroot. The
+problem is pretty clear:
 
- ubootmachine = d.getVar("UBOOT_MACHINE", True)
- ubootconfigflags = d.getVarFlags('UBOOT_CONFIG')
+run.do_populate_sysroot:
 
-..
+def do_populate_sysroot(d):
+    bb.build.exec_func("sysroot_stage_all", d)
+    for f in (d.getVar('SYSROOT_PREPROCESS_FUNCS', True) or '').split():
+        bb.build.exec_func(f, d)
+    pn = d.getVar("PN", True)
+    multiprov = d.getVar("MULTI_PROVIDER_WHITELIST", True).split()
+    provdir =
+d.expand("/home/ubuntu/yocto/build/tmp/work/x86_64-linux/quilt-native/0.61-r0/sysroot-destdir//home/ubuntu/yocto/build/tmp/sysroots/x86_64-linux/sysroot-providers/")
+    bb.utils.mkdirhier(provdir)
+    for p in d.getVar("PROVIDES", True).split():
+        if p in multiprov:
+            continue
+        p = p.replace("/", "_")
+        with open(provdir + p, "w") as f:
+            f.write(pn)
 
- if ubootmachine and ubootconfigflags:
-       raise bb.parse.SkipPackage("You cannot use UBOOT_MACHINE and
-UBOOT_CONFIG at the same time.")
+
+do_populate_sysroot(d)
 
 
-I have a .bbappend on the original u-boot recipe and could solve the
-problem by undefining UBOOT_MACHINE if I could work out how to do this
-in the .bbappend
+Well, the provdir variable is definitely wrong!
 
-I've tried setting it to None or an empty string, and I tried an
-anonymous python function but those approaches didn't help,
+How should I fix this?
 
-e.g. (in the .bbappend
+Thanks
 
-UBOOT_MACHINE = ""
-
-or
-
-UBOOT_MACHINE = None
-
-or
-
-python __anonymous () {
-  bb.data.delVar('UBOOT_MACHINE_imx6qsabresd')
-}
-
-I could just copy the original recipe from metal-fsl-arm into my own
-layer and change it there I guess but I'd like to understand how to
-achieve this with a .bbappend if it is possible as it seems cleaner.
-
-Many thanks,
-
-Alex
+Michael
 
 
