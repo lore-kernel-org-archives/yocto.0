@@ -1,43 +1,56 @@
-Return-Path: <gley-yocto@m.gmane.org>
+Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 2152FE0096C; Thu,  1 May 2014 23:07:21 -0700 (PDT)
+	id CCB0DE0096C; Thu,  1 May 2014 23:40:12 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=0.0 required=5.0 tests=FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE,SPF_HELO_PASS autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-0.8 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+	DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (auslands-kv[at]gmx.de)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [80.91.229.3 listed in list.dnswl.org]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
-Received: from plane.gmane.org (plane.gmane.org [80.91.229.3])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 72C50E00478
-	for <yocto@yoctoproject.org>; Thu,  1 May 2014 23:07:11 -0700 (PDT)
-Received: from list by plane.gmane.org with local (Exim 4.69)
-	(envelope-from <gley-yocto@m.gmane.org>) id 1Wg6co-0000vD-08
-	for yocto@yoctoproject.org; Fri, 02 May 2014 08:07:10 +0200
-Received: from 80-218-32-173.dclient.hispeed.ch ([80.218.32.173])
-	by main.gmane.org with esmtp (Gmexim 0.1 (Debian))
-	id 1AlnuQ-0007hv-00
-	for <yocto@yoctoproject.org>; Fri, 02 May 2014 08:07:09 +0200
-Received: from auslands-kv by 80-218-32-173.dclient.hispeed.ch with local
-	(Gmexim 0.1 (Debian)) id 1AlnuQ-0007hv-00
-	for <yocto@yoctoproject.org>; Fri, 02 May 2014 08:07:09 +0200
-X-Injected-Via-Gmane: http://gmane.org/
-To: yocto@yoctoproject.org
-From: Neuer User <auslands-kv@gmx.de>
-Date: Fri, 02 May 2014 08:06:58 +0200
-Message-ID: <ljvcm2$jfs$1@ger.gmane.org>
-References: <ljt73p$k5f$1@ger.gmane.org>
-Mime-Version: 1.0
-X-Complaints-To: usenet@ger.gmane.org
-X-Gmane-NNTP-Posting-Host: 80-218-32-173.dclient.hispeed.ch
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:24.0) Gecko/20100101 Thunderbird/24.4.0
-In-Reply-To: <ljt73p$k5f$1@ger.gmane.org>
-Subject: Re: quilt-native do_populate_sysroot error [solved]
+	mail provider *      (raj.khem[at]gmail.com)
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.223.180 listed in list.dnswl.org]
+Received: from mail-ie0-f180.google.com (mail-ie0-f180.google.com
+	[209.85.223.180])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E3557E00478
+	for <yocto@yoctoproject.org>; Thu,  1 May 2014 23:40:09 -0700 (PDT)
+Received: by mail-ie0-f180.google.com with SMTP id as1so4679505iec.11
+	for <yocto@yoctoproject.org>; Thu, 01 May 2014 23:40:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-type;
+	bh=2BcaDL11/OPutA3lSwzN/xevHIxrYxfJ8TXqgLVacC0=;
+	b=Zdt5R/YP441yq0NHhPavbBxWJBcPx0/Xkr5YSgcwEzN7eZQnivZ0/p9DO/YkLGtokX
+	sdg0dm9pnCGQoq+2ghmDXWVbvIlG5flK6lCKszCmRdfejSJHdOVxW81Bn3n+cZpxqGxM
+	5zouIcfCN9rGOjrt38fnuzMcKn9uyCyAJNttf6H1WNNhNiMiEtUoXIeQZSB/SeeOQXaE
+	Fp4CXaH0wizjnf1aOtPDP2pIt1uiRCWo5bqgwLb7W8pQnvJeC9c26EM+gCL5lrpIQagE
+	3LC5FWTQn7EceRsnHsyRU1NxaWckzz4zgeNTjTLYEo2O6Jmuqmw9i/io+r7ljWTPFUCa
+	JtNw==
+X-Received: by 10.42.235.197 with SMTP id kh5mr14298197icb.25.1399012808706;
+	Thu, 01 May 2014 23:40:08 -0700 (PDT)
+MIME-Version: 1.0
+Received: by 10.50.74.228 with HTTP; Thu, 1 May 2014 23:39:38 -0700 (PDT)
+In-Reply-To: <53632357.1070904@windriver.com>
+References: <CAGX3a9_GzmU_f2RZPHdWM2SQVOdNkBMwxf8t84ri0xuzsmNmfg@mail.gmail.com>
+	<5360FA25.40006@windriver.com>
+	<CAGX3a98E2GzTEOcBLfV_FmxqoqTuHr75t0TmNn+RJAVOnvPXKw@mail.gmail.com>
+	<CAGX3a99ixL0CvRQLmxLCaK0Zrdd22ET25S=OCKpk+AJnQxRmOQ@mail.gmail.com>
+	<53632357.1070904@windriver.com>
+From: Khem Raj <raj.khem@gmail.com>
+Date: Thu, 1 May 2014 23:39:38 -0700
+Message-ID: <CAMKF1sp0s0+j2WJR09NdX6tvgY2-PRbZ4ePYTBY96+rmms_1-g@mail.gmail.com>
+To: Bruce Ashfield <bruce.ashfield@windriver.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
+	"General mailing list for gumstix users."
+	<gumstix-users@lists.sourceforge.net>
+Subject: Re: Blacklisting drivers in poky or in yocto project
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -49,74 +62,36 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 02 May 2014 06:07:21 -0000
-Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Fri, 02 May 2014 06:40:12 -0000
+Content-Type: text/plain; charset=UTF-8
 
-This made me crazy, so after lots of tries I thought I should try to do
-it *without* my own conf files, although I couldn't imagine why my conf
-files produce such an error.
+On Thu, May 1, 2014 at 9:47 PM, Bruce Ashfield
+<bruce.ashfield@windriver.com> wrote:
+>>
+>> The method I used: in the file /etc/modprobe.d/blacklist.conf, i added
+>> these following lines:
+>> blacklist ipv6
+>> blacklist cfg80211
+>> blacklist libertas
+>> blacklist libertas_sdio
+>
+>
+> I can't recall if yocto 1.4 had switched to kmod, or if it was still
+> the legacy mod-utils ? Can you confirm with one is in play here ?
+>
 
-Before I copied the whole conf dir back from a backup. This time I tried
-with a completely new conf dir. I did that and strangely got another
-error message by "sanity-check" saying that I am missing two files
-(makeinfo, chrpath).
+we use kmod but that should not affect anything since it is backward
+compatible with m-i-t
+I think the problem here could be one of following
 
-So, I now understand that there is a file called "sanity-check" in the
-conf folder that is not a config file but a state file, declaring if my
-installation is complete. As I copied this also in my first attempts, it
-did no longer check and so the problem that I am missing a tool was not
-reported.
+there is another module which is not blacklisted dependent on the
+blacklisted one. In this case kmod will have to load it.
 
-Now, it seems, everything is working. Nonetheless, I would like to
-suggest that the sanity-check file should be moved out of the conf
-folder into the state folder in a future yocto revision.
+Or you have initiramfs where its getting loaded in that case you have
+to modiy initramfs any changes in /etc/modules* on main rootfs won't
+help.
 
-Cheers
-
-Michael
-
-
-Am 01.05.2014 12:19, schrieb Neuer User:
-> Hi
-> 
-> I needed to re-setup my yocto directory due to a fs error (was using
-> btrfs). Before I used master-next. Now I checked out daisy.
-> 
-> When I start bitbaking, I already get an error ["File not found"] when
-> building quilt-native. The error is in the step do_populate_sysroot. The
-> problem is pretty clear:
-> 
-> run.do_populate_sysroot:
-> 
-> def do_populate_sysroot(d):
->     bb.build.exec_func("sysroot_stage_all", d)
->     for f in (d.getVar('SYSROOT_PREPROCESS_FUNCS', True) or '').split():
->         bb.build.exec_func(f, d)
->     pn = d.getVar("PN", True)
->     multiprov = d.getVar("MULTI_PROVIDER_WHITELIST", True).split()
->     provdir =
-> d.expand("/home/ubuntu/yocto/build/tmp/work/x86_64-linux/quilt-native/0.61-r0/sysroot-destdir//home/ubuntu/yocto/build/tmp/sysroots/x86_64-linux/sysroot-providers/")
->     bb.utils.mkdirhier(provdir)
->     for p in d.getVar("PROVIDES", True).split():
->         if p in multiprov:
->             continue
->         p = p.replace("/", "_")
->         with open(provdir + p, "w") as f:
->             f.write(pn)
-> 
-> 
-> do_populate_sysroot(d)
-> 
-> 
-> Well, the provdir variable is definitely wrong!
-> 
-> How should I fix this?
-> 
-> Thanks
-> 
-> Michael
-> 
-
-
+check if feature( e.g. ipv6) is built into kernel proper and not as a
+module. if its builtin then kmod won't be able to help but I guess
+this you might already have verified.
 
