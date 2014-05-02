@@ -1,48 +1,46 @@
-Return-Path: <tarek.elsherbiny@gmail.com>
+Return-Path: <cristian.iorga@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 035EEE0096C; Fri,  2 May 2014 04:04:37 -0700 (PDT)
+	id 26105E0096C; Fri,  2 May 2014 05:02:39 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-0.8 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-	DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (tarek.elsherbiny[at]gmail.com)
+X-Spam-Status: No, score=-5.0 required=5.0 tests=HTML_MESSAGE, RCVD_IN_DNSWL_HI
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [134.134.136.20 listed in list.dnswl.org]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.160.181 listed in list.dnswl.org]
-Received: from mail-yk0-f181.google.com (mail-yk0-f181.google.com
-	[209.85.160.181])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B3EB5E00478
-	for <yocto@yoctoproject.org>; Fri,  2 May 2014 04:04:32 -0700 (PDT)
-Received: by mail-yk0-f181.google.com with SMTP id q200so3662306ykb.12
-	for <yocto@yoctoproject.org>; Fri, 02 May 2014 04:04:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=gOo3OWYeeW4LbdUeHcUcoUJhJxx20ktT7ziRwIcv3TQ=;
-	b=EdiW5FOHbF9iUouYd7nzzIZjqNHxkk4OTeNwYyjKOhK4GRhlwWoBRUK3KKmrYUZx+2
-	0ZiOn/OJQKrcrufgjKq0eFiv9wemQp2OZhtKMKHf0WOy43yynSd2zE1IOA3DsQz3P1+I
-	QRifozRd4Nyz1QaRAWbJ2Cg7m7HfHoq1i41cw5fwpEiuw/dCYlzdSsMk82Fy8cqKNNBu
-	WL6mIRbVABafbvBvEk8obzzQ+6i5gG2QQqGS/wZVsa5TvBdw6sq6nyYOeuWg4dJR0DG0
-	oBuJQpuvnRNACLocH89bDkPXwjxYt99gndG4wYlbR0QmQM12VnwbFxM97cBUxgiixg20
-	mUqg==
-MIME-Version: 1.0
-X-Received: by 10.236.209.68 with SMTP id r44mr3946753yho.152.1399028672203;
-	Fri, 02 May 2014 04:04:32 -0700 (PDT)
-Received: by 10.170.71.65 with HTTP; Fri, 2 May 2014 04:04:32 -0700 (PDT)
-Date: Fri, 2 May 2014 12:04:32 +0100
-Message-ID: <CAB3sqtZbtJGsh_jMUnvJAyFmXJVHZT2bvZ=DJ0N-fSB-VYu4Tg@mail.gmail.com>
-From: Tarek El-Sherbiny <tarek.elsherbiny@gmail.com>
-To: yocto@yoctoproject.org, "openembedded-core@lists.openembedded.org"
+X-Greylist: delayed 64 seconds by postgrey-1.32 at yocto-www;
+	Fri, 02 May 2014 05:02:37 PDT
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7C10DE00478
+	for <yocto@yoctoproject.org>; Fri,  2 May 2014 05:02:37 -0700 (PDT)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga101.jf.intel.com with ESMTP; 02 May 2014 05:01:30 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.97,972,1389772800"; 
+	d="scan'208,217";a="504857191"
+Received: from irsmsx103.ger.corp.intel.com ([163.33.3.157])
+	by orsmga001.jf.intel.com with ESMTP; 02 May 2014 05:01:22 -0700
+Received: from irsmsx105.ger.corp.intel.com ([169.254.7.70]) by
+	IRSMSX103.ger.corp.intel.com ([163.33.3.157]) with mapi id
+	14.03.0123.003; Fri, 2 May 2014 13:01:21 +0100
+From: "Iorga, Cristian" <cristian.iorga@intel.com>
+To: Tarek El-Sherbiny <tarek.elsherbiny@gmail.com>, "yocto@yoctoproject.org"
+	<yocto@yoctoproject.org>, "openembedded-core@lists.openembedded.org"
 	<openembedded-core@lists.openembedded.org>
-Subject: DNS when using Static IP
+Thread-Topic: [OE-core] DNS when using Static IP
+Thread-Index: AQHPZfZ3cgrM/KGiWU+GRRsgAF/qcpstMAqA
+Date: Fri, 2 May 2014 12:01:20 +0000
+Message-ID: <969F26A8BAB325438E7EB80D3C3134FB1CEA4705@IRSMSX105.ger.corp.intel.com>
+References: <CAB3sqtZbtJGsh_jMUnvJAyFmXJVHZT2bvZ=DJ0N-fSB-VYu4Tg@mail.gmail.com>
+In-Reply-To: <CAB3sqtZbtJGsh_jMUnvJAyFmXJVHZT2bvZ=DJ0N-fSB-VYu4Tg@mail.gmail.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [163.33.239.181]
+MIME-Version: 1.0
+Subject: Re: [OE-core] DNS when using Static IP
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -54,52 +52,147 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 02 May 2014 11:04:37 -0000
-Content-Type: multipart/alternative; boundary=001a11c2a77e099a7b04f868bfdc
+X-List-Received-Date: Fri, 02 May 2014 12:02:39 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_969F26A8BAB325438E7EB80D3C3134FB1CEA4705IRSMSX105gercor_"
 
---001a11c2a77e099a7b04f868bfdc
-Content-Type: text/plain; charset=UTF-8
+--_000_969F26A8BAB325438E7EB80D3C3134FB1CEA4705IRSMSX105gercor_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-Hi.
+SGVsbG8sDQoNCldoYXQgaW1hZ2UgZGlkIHlvdSBzdGFydCBmcm9tLCBpZiBhbnk/DQppLmUuLCBj
+b3JlLWltYWdlLW1pbmltYWwsIGNvcmUtaW1hZ2Utc2F0bywgZXRj4oCmDQpJcyBjb25ubWFuIGlu
+Y2x1ZGVkPw0KDQpSZWdhcmRzLA0KQ3Jpc3RpYW4gSW9yZ2ENCllQDQpJbnRlbCBDb3Jwb3JhdGlv
+bg0KDQpGcm9tOiBvcGVuZW1iZWRkZWQtY29yZS1ib3VuY2VzQGxpc3RzLm9wZW5lbWJlZGRlZC5v
+cmcgW21haWx0bzpvcGVuZW1iZWRkZWQtY29yZS1ib3VuY2VzQGxpc3RzLm9wZW5lbWJlZGRlZC5v
+cmddIE9uIEJlaGFsZiBPZiBUYXJlayBFbC1TaGVyYmlueQ0KU2VudDogRnJpZGF5LCBNYXkgMiwg
+MjAxNCAyOjA1IFBNDQpUbzogeW9jdG9AeW9jdG9wcm9qZWN0Lm9yZzsgb3BlbmVtYmVkZGVkLWNv
+cmVAbGlzdHMub3BlbmVtYmVkZGVkLm9yZw0KU3ViamVjdDogW09FLWNvcmVdIEROUyB3aGVuIHVz
+aW5nIFN0YXRpYyBJUA0KDQpIaS4NCg0KSSdtIHRyeWluZyB0byBzZXQgbXkgSVAgY29uZmlnIHRv
+IGEgc3RhdGljIGFkZHJlc3MuDQoNCmlmYWNlIGV0aDAgaW5ldCBzdGF0aWMNCiAgICAgYWRkcmVz
+cyAxOTIuMTY4LjU1LjQ1DQogICAgIG5ldHdvcmsgMTkyLjE2OC41NS4wDQogICAgIG5ldG1hc2sg
+MjU1LjI1NS4yNTUuMA0KICAgICBicm9hZGNhc3QgMTkyLjE2OC41NS4yNTUNCiAgICAgZ2F0ZXdh
+eSAxOTIuMTY4LjU1LjENCiAgICAgZG5zLW5hbWVzZXJ2ZXJzIDE5Mi4xNjguMTAuMg0KDQpCdXQg
+SSBkb24ndCBnZXQgdGhlIEROUyBzZXJ2ZXIgYWRkcmVzcyB0byBiZSBpbmNsdWRlZCBpbiAvZXRj
+L3Jlc29sdi5jb25mDQoNCklmIEkgcnVuIGluIGRjaHAgbW9kZSwgdGhlbiB0aGUgcmVzb2x2LmNv
+bmYgaXMgdXBkYXRlZCB3aXRoIG15IEROUyBhZGRyZXNzLg0KSXMgdGhlcmUgc29tZXRoaW5nIEkn
+bSBtaXNzaW5nIGhlcmUgaW4gbXkgc2V0dXA/DQoNCg0KLS0NClRhcmVrDQo=
 
-I'm trying to set my IP config to a static address.
+--_000_969F26A8BAB325438E7EB80D3C3134FB1CEA4705IRSMSX105gercor_
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-iface eth0 inet static
-     address 192.168.55.45
-     network 192.168.55.0
-     netmask 255.255.255.0
-     broadcast 192.168.55.255
-     gateway 192.168.55.1
-     dns-nameservers 192.168.10.2
+PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
+bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
+YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
+cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
+VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
+Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
+ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTUgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
+PjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
+IkNhbWJyaWEgTWF0aCI7DQoJcGFub3NlLTE6MiA0IDUgMyA1IDQgNiAzIDIgNDt9DQpAZm9udC1m
+YWNlDQoJe2ZvbnQtZmFtaWx5OkNhbGlicmk7DQoJcGFub3NlLTE6MiAxNSA1IDIgMiAyIDQgMyAy
+IDQ7fQ0KLyogU3R5bGUgRGVmaW5pdGlvbnMgKi8NCnAuTXNvTm9ybWFsLCBsaS5Nc29Ob3JtYWws
+IGRpdi5Nc29Ob3JtYWwNCgl7bWFyZ2luOjBpbjsNCgltYXJnaW4tYm90dG9tOi4wMDAxcHQ7DQoJ
+Zm9udC1zaXplOjEyLjBwdDsNCglmb250LWZhbWlseToiVGltZXMgTmV3IFJvbWFuIiwic2VyaWYi
+O30NCmE6bGluaywgc3Bhbi5Nc29IeXBlcmxpbmsNCgl7bXNvLXN0eWxlLXByaW9yaXR5Ojk5Ow0K
+CWNvbG9yOiMwNTYzQzE7DQoJdGV4dC1kZWNvcmF0aW9uOnVuZGVybGluZTt9DQphOnZpc2l0ZWQs
+IHNwYW4uTXNvSHlwZXJsaW5rRm9sbG93ZWQNCgl7bXNvLXN0eWxlLXByaW9yaXR5Ojk5Ow0KCWNv
+bG9yOiM5NTRGNzI7DQoJdGV4dC1kZWNvcmF0aW9uOnVuZGVybGluZTt9DQpzcGFuLkVtYWlsU3R5
+bGUxNw0KCXttc28tc3R5bGUtdHlwZTpwZXJzb25hbC1yZXBseTsNCglmb250LWZhbWlseToiQ2Fs
+aWJyaSIsInNhbnMtc2VyaWYiOw0KCWNvbG9yOiMxRjQ5N0Q7fQ0KLk1zb0NocERlZmF1bHQNCgl7
+bXNvLXN0eWxlLXR5cGU6ZXhwb3J0LW9ubHk7DQoJZm9udC1mYW1pbHk6IkNhbGlicmkiLCJzYW5z
+LXNlcmlmIjt9DQpAcGFnZSBXb3JkU2VjdGlvbjENCgl7c2l6ZTo4LjVpbiAxMS4waW47DQoJbWFy
+Z2luOjEuMGluIDEuMGluIDEuMGluIDEuMGluO30NCmRpdi5Xb3JkU2VjdGlvbjENCgl7cGFnZTpX
+b3JkU2VjdGlvbjE7fQ0KLS0+PC9zdHlsZT48IS0tW2lmIGd0ZSBtc28gOV0+PHhtbD4NCjxvOnNo
+YXBlZGVmYXVsdHMgdjpleHQ9ImVkaXQiIHNwaWRtYXg9IjEwMjYiIC8+DQo8L3htbD48IVtlbmRp
+Zl0tLT48IS0tW2lmIGd0ZSBtc28gOV0+PHhtbD4NCjxvOnNoYXBlbGF5b3V0IHY6ZXh0PSJlZGl0
+Ij4NCjxvOmlkbWFwIHY6ZXh0PSJlZGl0IiBkYXRhPSIxIiAvPg0KPC9vOnNoYXBlbGF5b3V0Pjwv
+eG1sPjwhW2VuZGlmXS0tPg0KPC9oZWFkPg0KPGJvZHkgbGFuZz0iRU4tVVMiIGxpbms9IiMwNTYz
+QzEiIHZsaW5rPSIjOTU0RjcyIj4NCjxkaXYgY2xhc3M9IldvcmRTZWN0aW9uMSI+DQo8cCBjbGFz
+cz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTom
+cXVvdDtDYWxpYnJpJnF1b3Q7LCZxdW90O3NhbnMtc2VyaWYmcXVvdDs7Y29sb3I6IzFGNDk3RCI+
+SGVsbG8sPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4g
+c3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90Oywm
+cXVvdDtzYW5zLXNlcmlmJnF1b3Q7O2NvbG9yOiMxRjQ5N0QiPjxvOnA+Jm5ic3A7PC9vOnA+PC9z
+cGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEu
+MHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssJnF1b3Q7c2Fucy1zZXJpZiZxdW90
+Oztjb2xvcjojMUY0OTdEIj5XaGF0IGltYWdlIGRpZCB5b3Ugc3RhcnQgZnJvbSwgaWYgYW55Pzxv
+OnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJm
+b250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssJnF1b3Q7c2Fu
+cy1zZXJpZiZxdW90Oztjb2xvcjojMUY0OTdEIj5pLmUuLCBjb3JlLWltYWdlLW1pbmltYWwsIGNv
+cmUtaW1hZ2Utc2F0bywgZXRj4oCmPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1z
+b05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7
+Q2FsaWJyaSZxdW90OywmcXVvdDtzYW5zLXNlcmlmJnF1b3Q7O2NvbG9yOiMxRjQ5N0QiPklzIGNv
+bm5tYW4gaW5jbHVkZWQ/PG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1h
+bCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJy
+aSZxdW90OywmcXVvdDtzYW5zLXNlcmlmJnF1b3Q7O2NvbG9yOiMxRjQ5N0QiPjxvOnA+Jm5ic3A7
+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250
+LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssJnF1b3Q7c2Fucy1z
+ZXJpZiZxdW90Oztjb2xvcjojMUY0OTdEIj5SZWdhcmRzLDxvOnA+PC9vOnA+PC9zcGFuPjwvcD4N
+CjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQt
+ZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssJnF1b3Q7c2Fucy1zZXJpZiZxdW90Oztjb2xvcjoj
+MUY0OTdEIj5DcmlzdGlhbiBJb3JnYTxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJN
+c29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90
+O0NhbGlicmkmcXVvdDssJnF1b3Q7c2Fucy1zZXJpZiZxdW90Oztjb2xvcjojMUY0OTdEIj5ZUDxv
+OnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJm
+b250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssJnF1b3Q7c2Fu
+cy1zZXJpZiZxdW90Oztjb2xvcjojMUY0OTdEIj5JbnRlbCBDb3Jwb3JhdGlvbjxvOnA+PC9vOnA+
+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxhIG5hbWU9Il9NYWlsRW5kQ29tcG9z
+ZSI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJy
+aSZxdW90OywmcXVvdDtzYW5zLXNlcmlmJnF1b3Q7O2NvbG9yOiMxRjQ5N0QiPjxvOnA+Jm5ic3A7
+PC9vOnA+PC9zcGFuPjwvYT48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0ibWFyZ2lu
+LWxlZnQ6LjVpbiI+PGI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6
+JnF1b3Q7Q2FsaWJyaSZxdW90OywmcXVvdDtzYW5zLXNlcmlmJnF1b3Q7Ij5Gcm9tOjwvc3Bhbj48
+L2I+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJy
+aSZxdW90OywmcXVvdDtzYW5zLXNlcmlmJnF1b3Q7Ij4gb3BlbmVtYmVkZGVkLWNvcmUtYm91bmNl
+c0BsaXN0cy5vcGVuZW1iZWRkZWQub3JnIFttYWlsdG86b3BlbmVtYmVkZGVkLWNvcmUtYm91bmNl
+c0BsaXN0cy5vcGVuZW1iZWRkZWQub3JnXQ0KPGI+T24gQmVoYWxmIE9mIDwvYj5UYXJlayBFbC1T
+aGVyYmlueTxicj4NCjxiPlNlbnQ6PC9iPiBGcmlkYXksIE1heSAyLCAyMDE0IDI6MDUgUE08YnI+
+DQo8Yj5Ubzo8L2I+IHlvY3RvQHlvY3RvcHJvamVjdC5vcmc7IG9wZW5lbWJlZGRlZC1jb3JlQGxp
+c3RzLm9wZW5lbWJlZGRlZC5vcmc8YnI+DQo8Yj5TdWJqZWN0OjwvYj4gW09FLWNvcmVdIEROUyB3
+aGVuIHVzaW5nIFN0YXRpYyBJUDxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29O
+b3JtYWwiIHN0eWxlPSJtYXJnaW4tbGVmdDouNWluIj48bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjxk
+aXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9Im1hcmdpbi1sZWZ0Oi41aW4i
+PkhpLjxvOnA+PC9vOnA+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIg
+c3R5bGU9Im1hcmdpbi1sZWZ0Oi41aW4iPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPC9kaXY+DQo8
+ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9Im1hcmdpbi1sZWZ0Oi41aW4iPkknbSB0
+cnlpbmcgdG8gc2V0IG15IElQIGNvbmZpZyB0byBhIHN0YXRpYyBhZGRyZXNzLjxvOnA+PC9vOnA+
+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9Im1hcmdpbi1s
+ZWZ0Oi41aW4iPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9
+Ik1zb05vcm1hbCIgc3R5bGU9Im1hcmdpbi1sZWZ0Oi41aW4iPmlmYWNlIGV0aDAgaW5ldCBzdGF0
+aWM8bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0
+eWxlPSJtYXJnaW4tbGVmdDouNWluIj4mbmJzcDsgJm5ic3A7ICZuYnNwO2FkZHJlc3MgMTkyLjE2
+OC41NS40NTxvOnA+PC9vOnA+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1h
+bCIgc3R5bGU9Im1hcmdpbi1sZWZ0Oi41aW4iPiZuYnNwOyAmbmJzcDsgJm5ic3A7bmV0d29yayAx
+OTIuMTY4LjU1LjA8bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29O
+b3JtYWwiIHN0eWxlPSJtYXJnaW4tbGVmdDouNWluIj4mbmJzcDsgJm5ic3A7ICZuYnNwO25ldG1h
+c2sgMjU1LjI1NS4yNTUuMDxvOnA+PC9vOnA+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9
+Ik1zb05vcm1hbCIgc3R5bGU9Im1hcmdpbi1sZWZ0Oi41aW4iPiZuYnNwOyAmbmJzcDsgJm5ic3A7
+YnJvYWRjYXN0IDE5Mi4xNjguNTUuMjU1PG86cD48L286cD48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8
+cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0ibWFyZ2luLWxlZnQ6LjVpbiI+Jm5ic3A7ICZuYnNw
+OyAmbmJzcDtnYXRld2F5IDE5Mi4xNjguNTUuMTxvOnA+PC9vOnA+PC9wPg0KPC9kaXY+DQo8ZGl2
+Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9Im1hcmdpbi1sZWZ0Oi41aW4iPiZuYnNwOyAm
+bmJzcDsgJm5ic3A7ZG5zLW5hbWVzZXJ2ZXJzIDE5Mi4xNjguMTAuMjxvOnA+PC9vOnA+PC9wPg0K
+PC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5bGU9Im1hcmdpbi1sZWZ0Oi41
+aW4iPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05v
+cm1hbCIgc3R5bGU9Im1hcmdpbi1sZWZ0Oi41aW4iPkJ1dCBJIGRvbid0IGdldCB0aGUgRE5TIHNl
+cnZlciBhZGRyZXNzIHRvIGJlIGluY2x1ZGVkIGluIC9ldGMvcmVzb2x2LmNvbmY8bzpwPjwvbzpw
+PjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJtYXJnaW4t
+bGVmdDouNWluIj48bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNz
+PSJNc29Ob3JtYWwiIHN0eWxlPSJtYXJnaW4tbGVmdDouNWluIj5JZiBJIHJ1biBpbiBkY2hwIG1v
+ZGUsIHRoZW4gdGhlIHJlc29sdi5jb25mIGlzIHVwZGF0ZWQgd2l0aCBteSBETlMgYWRkcmVzcy48
+bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxl
+PSJtYXJnaW4tbGVmdDouNWluIj5JcyB0aGVyZSBzb21ldGhpbmcgSSdtIG1pc3NpbmcgaGVyZSBp
+biBteSBzZXR1cD88bzpwPjwvbzpwPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29O
+b3JtYWwiIHN0eWxlPSJtYXJnaW4tbGVmdDouNWluIj48bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjwv
+ZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJtYXJnaW4tbGVmdDouNWlu
+Ij48bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjwvZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCIgc3R5
+bGU9Im1hcmdpbi1sZWZ0Oi41aW4iPi0tIDxvOnA+PC9vOnA+PC9wPg0KPGRpdj4NCjxwIGNsYXNz
+PSJNc29Ob3JtYWwiIHN0eWxlPSJtYXJnaW4tbGVmdDouNWluIj48aT48c3BhbiBzdHlsZT0iZm9u
+dC1mYW1pbHk6JnF1b3Q7QXJpYWwmcXVvdDssJnF1b3Q7c2Fucy1zZXJpZiZxdW90Oztjb2xvcjoj
+NjY2NjY2Ij5UYXJlazwvc3Bhbj48L2k+PG86cD48L286cD48L3A+DQo8L2Rpdj4NCjwvZGl2Pg0K
+PC9kaXY+DQo8L2JvZHk+DQo8L2h0bWw+DQo=
 
-But I don't get the DNS server address to be included in /etc/resolv.conf
-
-If I run in dchp mode, then the resolv.conf is updated with my DNS address.
-Is there something I'm missing here in my setup?
-
-
--- 
-*Tarek*
-
---001a11c2a77e099a7b04f868bfdc
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div>Hi.</div><div><br></div><div>I&#39;m trying to set my=
- IP config to a static address.</div><div><br></div><div>iface eth0 inet st=
-atic</div><div>=C2=A0 =C2=A0 =C2=A0address 192.168.55.45</div><div>=C2=A0 =
-=C2=A0 =C2=A0network 192.168.55.0</div>
-<div>=C2=A0 =C2=A0 =C2=A0netmask 255.255.255.0</div><div>=C2=A0 =C2=A0 =C2=
-=A0broadcast 192.168.55.255</div><div>=C2=A0 =C2=A0 =C2=A0gateway 192.168.5=
-5.1</div><div>=C2=A0 =C2=A0 =C2=A0dns-nameservers 192.168.10.2</div><div><b=
-r></div><div>But I don&#39;t get the DNS server address to be included in /=
-etc/resolv.conf</div>
-<div><br></div><div>If I run in dchp mode, then the resolv.conf is updated =
-with my DNS address.</div><div>Is there something I&#39;m missing here in m=
-y setup?</div><div><br></div><div><br></div>-- <br><div dir=3D"ltr"><i><fon=
-t color=3D"#666666" face=3D"arial, helvetica, sans-serif">Tarek</font></i><=
-/div>
-
-</div>
-
---001a11c2a77e099a7b04f868bfdc--
+--_000_969F26A8BAB325438E7EB80D3C3134FB1CEA4705IRSMSX105gercor_--
