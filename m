@@ -1,45 +1,44 @@
-Return-Path: <paul.betafive@gmail.com>
+Return-Path: <rpjday@crashcourse.ca>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 38B13E00A44; Fri,  2 May 2014 08:46:53 -0700 (PDT)
+	id 19261E009C5; Fri,  2 May 2014 09:00:09 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-0.7 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [74.125.83.54 listed in list.dnswl.org]
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-ee0-f54.google.com (mail-ee0-f54.google.com [74.125.83.54])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 874CCE00939
-	for <yocto@yoctoproject.org>; Fri,  2 May 2014 08:46:49 -0700 (PDT)
-Received: by mail-ee0-f54.google.com with SMTP id b57so1363970eek.13
-	for <yocto@yoctoproject.org>; Fri, 02 May 2014 08:46:48 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=sender:from:to:cc:subject:date:message-id;
-	bh=W3OoaqA8FyMBck1EDQWGmGeRQnIQnqHm9BmMdpco1Do=;
-	b=CjmNH+aP9/eG/RFn/sxvoHARU9Yh7szbMaLnRTgOT6nUi+jn/wFtBXJKemUFFXXTDV
-	Lhdi99dBxGNNvn7dfl/4OIbQEc0CjBctYSBSjEsUjM9z1cIiGWN8a5tm1CiVR6P5JzNZ
-	wtYpxwYhLl4JmCjKari357z4YzzdXh8V8JdpWZJwDfBz3GE8C0BmV+4u4jYUBAoXp+0a
-	Tb8Fegp/lUrgqo2F0NkIAJzjR/oPwMBn7kbV2Y71q9Yf7p/j5cCG20kt5D6tWvj3Ix3w
-	Wfw2TcfNtF/GqxHYW5rAU9j8UvrDT7qTuyGbmUqXsRM32+8goD6FxaBuTssD2aEUYCD6
-	dPqg==
-X-Received: by 10.14.218.193 with SMTP id k41mr15881664eep.16.1399045608452;
-	Fri, 02 May 2014 08:46:48 -0700 (PDT)
-Received: from localhost.localdomain (ygg.betafive.co.uk. [5.9.90.21])
-	by mx.google.com with ESMTPSA id q41sm5496021eez.7.2014.05.02.08.46.46
-	for <multiple recipients>
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-	Fri, 02 May 2014 08:46:46 -0700 (PDT)
-Sender: Paul Barker <paul.betafive@gmail.com>
-From: Paul Barker <paul@paulbarker.me.uk>
-To: yocto@yoctoproject.org
-Date: Fri,  2 May 2014 15:46:44 +0000
-Message-Id: <1399045604-8469-1-git-send-email-paul@paulbarker.me.uk>
-X-Mailer: git-send-email 1.9.2
-Subject: [meta-raspberrypi][PATCH] Remove uses of PRINC
+X-Spam-Status: No, score=0.0 required=5.0 tests=none autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: 
+Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
+	[64.235.106.9])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4F8FAE00939
+	for <yocto@yoctoproject.org>; Fri,  2 May 2014 09:00:03 -0700 (PDT)
+Received: from [99.241.140.117] (port=44598 helo=crashcourse.ca)
+	by astoria.ccjclearline.com with esmtpsa (TLSv1:DHE-RSA-AES256-SHA:256)
+	(Exim 4.80) (envelope-from <rpjday@crashcourse.ca>)
+	id 1WgFsb-0002JB-BR; Fri, 02 May 2014 12:00:05 -0400
+Date: Fri, 2 May 2014 11:58:15 -0400 (EDT)
+From: "Robert P. J. Day" <rpjday@crashcourse.ca>
+X-X-Sender: rpjday@localhost
+To: Rudolf Streif <rstreif@linuxfoundation.org>
+In-Reply-To: <CA+gsK-o_oE7iXx9iv_Zw0iW9GYSGAEaqxePgJK4uoMi=RhHZ4g@mail.gmail.com>
+Message-ID: <alpine.LFD.2.11.1405021154260.6139@localhost>
+References: <alpine.LFD.2.11.1405011731520.3588@localhost>
+	<CA+gsK-otGEfVxRyOtH+SXf+wCjZGcPhDWJZZ_esfKO_tQL43dA@mail.gmail.com>
+	<alpine.LFD.2.11.1405012032460.2904@localhost>
+	<CAMKF1spG-vMRCh+0MHKsRq6D4qoj6qQ9VhfAevsASJ2YvN=9CA@mail.gmail.com>
+	<CA+gsK-o_oE7iXx9iv_Zw0iW9GYSGAEaqxePgJK4uoMi=RhHZ4g@mail.gmail.com>
+User-Agent: Alpine 2.11 (LFD 23 2013-08-11)
+MIME-Version: 1.0
+X-AntiAbuse: This header was added to track abuse,
+	please include it with any abuse report
+X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - crashcourse.ca
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+Cc: Yocto discussion list <yocto@yoctoproject.org>
+Subject: Re: is anyone giving a yocto talk at linuxcon in chicago in august?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -51,44 +50,64 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 02 May 2014 15:46:53 -0000
+X-List-Received-Date: Fri, 02 May 2014 16:00:09 -0000
+Content-Type: MULTIPART/MIXED; BOUNDARY="8323328-852822586-1399046296=:6139"
 
-PRINC is now obsolete and the PR Service should be used instead to keep PR
-values incrementing on change.
+--8323328-852822586-1399046296=:6139
+Content-Type: TEXT/PLAIN; charset=UTF-8
+Content-Transfer-Encoding: 8BIT
 
-A patch has also been submitted to openembedded-core to bump the appropriate PR
-values so that PR doesn't move backwards. This patch should only be applied
-after that patch, and only to branches which include that patch (ie. if that
-patch doesn't go into daisy in oe-core, this patch shouldn't go into daisy in
-meta-raspberrypi).
+On Fri, 2 May 2014, Rudolf Streif wrote:
 
-Signed-off-by: Paul Barker <paul@paulbarker.me.uk>
----
- recipes-bsp/formfactor/formfactor_0.0.bbappend                 | 1 -
- recipes-graphics/xorg-xserver/xserver-xf86-config_0.1.bbappend | 3 ---
- 2 files changed, 4 deletions(-)
+>
+>               i think that's what i'm going to submit.
+>             tomorrow's the submission
+>             deadline so i have to get something in quick. i
+>             figure i'll submit
+>             something like "Building an Embedded Linux System
+>             Using YoctoProject",
+>             using the BeagleBone Black as the platform
+>             example.
+>
+>
+> I have done a POC generating very small specific appliances using
+> OE and lxc, in previous life which you then launch in thousands on
+> demands on a big server to do specific jobs like subscriber
+> connections etc. I think such a topic would definitely
+> interest linuxcon attendees, I don't plan to attend this one but if
+> someone wants to take this and develop into a talk I can help.
+>  
+>
+> +1, a presentation like that would be more relevant (and more likely to
+> be accepted by the program committee) for LinuxCon than one that evolves
+> around the BeagleBone. That has a better fit for ELC.
+>
+> It would also be a good opportunity that YP is not limited to embedded
+> devices.
 
-diff --git a/recipes-bsp/formfactor/formfactor_0.0.bbappend b/recipes-bsp/formfactor/formfactor_0.0.bbappend
-index 0003480..72d991c 100644
---- a/recipes-bsp/formfactor/formfactor_0.0.bbappend
-+++ b/recipes-bsp/formfactor/formfactor_0.0.bbappend
-@@ -1,2 +1 @@
- FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
--PRINC = "1"
-diff --git a/recipes-graphics/xorg-xserver/xserver-xf86-config_0.1.bbappend b/recipes-graphics/xorg-xserver/xserver-xf86-config_0.1.bbappend
-index 3e86645..e37f942 100644
---- a/recipes-graphics/xorg-xserver/xserver-xf86-config_0.1.bbappend
-+++ b/recipes-graphics/xorg-xserver/xserver-xf86-config_0.1.bbappend
-@@ -1,8 +1,5 @@
- FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
- 
--# Don't forget to bump PRINC if you update the extra files.
--PRINC := "${@int(PRINC) + 5}"
--
- THISDIR := "${@os.path.dirname(bb.data.getVar('FILE', d, True))}"
- FILESPATH =. "${@base_set_filespath(["${THISDIR}/${PN}"], d)}:"
- 
+  i'll have to wait until i get home and think about this, the
+submission deadline is end of today so i need to decide quickly. i
+like the above idea, and i would have until august to put something
+together. so expect another post after work today, after which i need
+to make a snap decision.
+
+  at the risk of asking for help so quickly, since i've never used OE
+and lxc, what would a short abstract of that look like? since all i
+need is a suitable abstract for the submission, then i can put the
+whole thing together between now and then.
+
+  and now, back into the classroom ...
+
+rday
+
 -- 
-1.9.2
 
+========================================================================
+Robert P. J. Day                                 Ottawa, Ontario, CANADA
+                        http://crashcourse.ca
 
+Twitter:                                       http://twitter.com/rpjday
+LinkedIn:                               http://ca.linkedin.com/in/rpjday
+========================================================================
+
+--8323328-852822586-1399046296=:6139--
