@@ -1,44 +1,48 @@
-Return-Path: <gley-yocto@m.gmane.org>
+Return-Path: <tarek.elsherbiny@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 83B0AE0096C; Thu,  1 May 2014 23:49:44 -0700 (PDT)
+	id 035EEE0096C; Fri,  2 May 2014 04:04:37 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=0.0 required=5.0 tests=FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE,SPF_HELO_PASS autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [80.91.229.3 listed in list.dnswl.org]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (auslands-kv[at]gmx.de)
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
-Received: from plane.gmane.org (plane.gmane.org [80.91.229.3])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6F657E00478
-	for <yocto@yoctoproject.org>; Thu,  1 May 2014 23:49:38 -0700 (PDT)
-Received: from list by plane.gmane.org with local (Exim 4.69)
-	(envelope-from <gley-yocto@m.gmane.org>) id 1Wg7Hs-0008V4-0Z
-	for yocto@yoctoproject.org; Fri, 02 May 2014 08:49:36 +0200
-Received: from 80-218-32-173.dclient.hispeed.ch ([80.218.32.173])
-	by main.gmane.org with esmtp (Gmexim 0.1 (Debian))
-	id 1AlnuQ-0007hv-00
-	for <yocto@yoctoproject.org>; Fri, 02 May 2014 08:49:36 +0200
-Received: from auslands-kv by 80-218-32-173.dclient.hispeed.ch with local
-	(Gmexim 0.1 (Debian)) id 1AlnuQ-0007hv-00
-	for <yocto@yoctoproject.org>; Fri, 02 May 2014 08:49:36 +0200
-X-Injected-Via-Gmane: http://gmane.org/
-To: yocto@yoctoproject.org
-From: Neuer User <auslands-kv@gmx.de>
-Date: Fri, 02 May 2014 08:49:22 +0200
-Message-ID: <ljvf5i$g7o$1@ger.gmane.org>
-References: <ljt73p$k5f$1@ger.gmane.org> <ljvcm2$jfs$1@ger.gmane.org>
-	<CAMKF1sqshMJd7Mejm78nUMb7Kdn50Bmr=NJ0VFNjyYAgkGb1Sg@mail.gmail.com>
-Mime-Version: 1.0
-X-Complaints-To: usenet@ger.gmane.org
-X-Gmane-NNTP-Posting-Host: 80-218-32-173.dclient.hispeed.ch
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:24.0) Gecko/20100101 Thunderbird/24.4.0
-In-Reply-To: <CAMKF1sqshMJd7Mejm78nUMb7Kdn50Bmr=NJ0VFNjyYAgkGb1Sg@mail.gmail.com>
-Subject: Re: quilt-native do_populate_sysroot error [solved]
+X-Spam-Status: No, score=-0.8 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+	DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (tarek.elsherbiny[at]gmail.com)
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.160.181 listed in list.dnswl.org]
+Received: from mail-yk0-f181.google.com (mail-yk0-f181.google.com
+	[209.85.160.181])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B3EB5E00478
+	for <yocto@yoctoproject.org>; Fri,  2 May 2014 04:04:32 -0700 (PDT)
+Received: by mail-yk0-f181.google.com with SMTP id q200so3662306ykb.12
+	for <yocto@yoctoproject.org>; Fri, 02 May 2014 04:04:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=gOo3OWYeeW4LbdUeHcUcoUJhJxx20ktT7ziRwIcv3TQ=;
+	b=EdiW5FOHbF9iUouYd7nzzIZjqNHxkk4OTeNwYyjKOhK4GRhlwWoBRUK3KKmrYUZx+2
+	0ZiOn/OJQKrcrufgjKq0eFiv9wemQp2OZhtKMKHf0WOy43yynSd2zE1IOA3DsQz3P1+I
+	QRifozRd4Nyz1QaRAWbJ2Cg7m7HfHoq1i41cw5fwpEiuw/dCYlzdSsMk82Fy8cqKNNBu
+	WL6mIRbVABafbvBvEk8obzzQ+6i5gG2QQqGS/wZVsa5TvBdw6sq6nyYOeuWg4dJR0DG0
+	oBuJQpuvnRNACLocH89bDkPXwjxYt99gndG4wYlbR0QmQM12VnwbFxM97cBUxgiixg20
+	mUqg==
+MIME-Version: 1.0
+X-Received: by 10.236.209.68 with SMTP id r44mr3946753yho.152.1399028672203;
+	Fri, 02 May 2014 04:04:32 -0700 (PDT)
+Received: by 10.170.71.65 with HTTP; Fri, 2 May 2014 04:04:32 -0700 (PDT)
+Date: Fri, 2 May 2014 12:04:32 +0100
+Message-ID: <CAB3sqtZbtJGsh_jMUnvJAyFmXJVHZT2bvZ=DJ0N-fSB-VYu4Tg@mail.gmail.com>
+From: Tarek El-Sherbiny <tarek.elsherbiny@gmail.com>
+To: yocto@yoctoproject.org, "openembedded-core@lists.openembedded.org"
+	<openembedded-core@lists.openembedded.org>
+Subject: DNS when using Static IP
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -50,31 +54,52 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 02 May 2014 06:49:44 -0000
-Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Fri, 02 May 2014 11:04:37 -0000
+Content-Type: multipart/alternative; boundary=001a11c2a77e099a7b04f868bfdc
 
-Am 02.05.2014 08:43, schrieb Khem Raj:
-> On Thu, May 1, 2014 at 11:06 PM, Neuer User <auslands-kv@gmx.de> wrote:
->> Before I copied the whole conf dir back from a backup. This time I tried
->> with a completely new conf dir. I did that and strangely got another
->> error message by "sanity-check" saying that I am missing two files
->> (makeinfo, chrpath).
-> 
-> well, conf/ dir is generated when you setup the workspace for firs
-> time and then we do version checks if it needs to be updated. no idea
-> what you backed up but usually keeping
-> your changes applied on top of regenerated conf/ dir is a better
-> option when you move
-> from one version of YP release to another
-> 
+--001a11c2a77e099a7b04f868bfdc
+Content-Type: text/plain; charset=UTF-8
 
-I backup up the whole conf dir, as I wanted to make sure that all
-configuration is backed up. The problem I see is that the conf dir does
-not only include configuration data, but also state data, namely the
-state "system requirements have been checked" (sanity-check).
+Hi.
 
-It seems to be no problem to completely restore the conf dir, when you
-don't restore this one file.
+I'm trying to set my IP config to a static address.
+
+iface eth0 inet static
+     address 192.168.55.45
+     network 192.168.55.0
+     netmask 255.255.255.0
+     broadcast 192.168.55.255
+     gateway 192.168.55.1
+     dns-nameservers 192.168.10.2
+
+But I don't get the DNS server address to be included in /etc/resolv.conf
+
+If I run in dchp mode, then the resolv.conf is updated with my DNS address.
+Is there something I'm missing here in my setup?
 
 
+-- 
+*Tarek*
+
+--001a11c2a77e099a7b04f868bfdc
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div>Hi.</div><div><br></div><div>I&#39;m trying to set my=
+ IP config to a static address.</div><div><br></div><div>iface eth0 inet st=
+atic</div><div>=C2=A0 =C2=A0 =C2=A0address 192.168.55.45</div><div>=C2=A0 =
+=C2=A0 =C2=A0network 192.168.55.0</div>
+<div>=C2=A0 =C2=A0 =C2=A0netmask 255.255.255.0</div><div>=C2=A0 =C2=A0 =C2=
+=A0broadcast 192.168.55.255</div><div>=C2=A0 =C2=A0 =C2=A0gateway 192.168.5=
+5.1</div><div>=C2=A0 =C2=A0 =C2=A0dns-nameservers 192.168.10.2</div><div><b=
+r></div><div>But I don&#39;t get the DNS server address to be included in /=
+etc/resolv.conf</div>
+<div><br></div><div>If I run in dchp mode, then the resolv.conf is updated =
+with my DNS address.</div><div>Is there something I&#39;m missing here in m=
+y setup?</div><div><br></div><div><br></div>-- <br><div dir=3D"ltr"><i><fon=
+t color=3D"#666666" face=3D"arial, helvetica, sans-serif">Tarek</font></i><=
+/div>
+
+</div>
+
+--001a11c2a77e099a7b04f868bfdc--
