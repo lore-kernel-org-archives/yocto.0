@@ -1,54 +1,38 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <Bruce.Ashfield@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 40D4DE009BA; Thu,  1 May 2014 21:43:42 -0700 (PDT)
+	id 08EDAE009C1; Thu,  1 May 2014 21:46:38 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-0.8 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-	DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (raj.khem[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.213.181 listed in list.dnswl.org]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-ig0-f181.google.com (mail-ig0-f181.google.com
-	[209.85.213.181])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3B8A0E0096C
-	for <yocto@yoctoproject.org>; Thu,  1 May 2014 21:43:40 -0700 (PDT)
-Received: by mail-ig0-f181.google.com with SMTP id h18so1398690igc.14
-	for <yocto@yoctoproject.org>; Thu, 01 May 2014 21:43:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type;
-	bh=gDPP7jZfa82ptPNI1hIXzKf4Qibf2UmvXG1Y5zbYY9k=;
-	b=CKYFAYvwbT05b3xC3SFtUkIoWhmjUQc6Xo0UXbG3vZcFvOH3aEmJzxULOgjnu8hW42
-	sxNjwyZdnwVCYgL8a0DdwaqIKOHZ/o5A67pPtzjcHlF+djv2P8UYj0exXDqNWREUPghX
-	6eALEoan1Hhi2Wrma5ecGwfYGXZnoVq/Y/7pzVGrmPLjlaWc4F/Gs+xB2cply/YAqiIP
-	/Q02tWn6aaD1b1PzV85BOcZqHBV6whXw09gqSfYuPBzMOCeXJBzjBDPKtQCwb68q0QGT
-	0mhbsq6MITsPyVVhxZ0GWK17iq5rqRzHnvsocFcrzz7d6aanAF8fbfG6fpg54dtrwFAY
-	o3pA==
+X-Spam-Status: No, score=-2.3 required=5.0 tests=RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [147.11.1.11 listed in list.dnswl.org]
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C5203E0096C
+	for <yocto@yoctoproject.org>; Thu,  1 May 2014 21:46:35 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
+	[147.11.189.40])
+	by mail.windriver.com (8.14.5/8.14.5) with ESMTP id s424kO5A003608
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
+	Thu, 1 May 2014 21:46:24 -0700 (PDT)
+Received: from server.local (128.224.21.52) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.40) with Microsoft SMTP Server id 14.3.169.1;
+	Thu, 1 May 2014 21:46:24 -0700
+Message-ID: <53632357.1070904@windriver.com>
+Date: Fri, 2 May 2014 00:47:19 -0400
+From: Bruce Ashfield <bruce.ashfield@windriver.com>
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.9;
+	rv:24.0) Gecko/20100101 Thunderbird/24.5.0
 MIME-Version: 1.0
-X-Received: by 10.50.78.201 with SMTP id d9mr1366328igx.17.1399005819625; Thu,
-	01 May 2014 21:43:39 -0700 (PDT)
-Received: by 10.50.74.228 with HTTP; Thu, 1 May 2014 21:43:39 -0700 (PDT)
-In-Reply-To: <alpine.LFD.2.11.1405012032460.2904@localhost>
-References: <alpine.LFD.2.11.1405011731520.3588@localhost>
-	<CA+gsK-otGEfVxRyOtH+SXf+wCjZGcPhDWJZZ_esfKO_tQL43dA@mail.gmail.com>
-	<alpine.LFD.2.11.1405012032460.2904@localhost>
-Date: Thu, 1 May 2014 21:43:39 -0700
-Message-ID: <CAMKF1spG-vMRCh+0MHKsRq6D4qoj6qQ9VhfAevsASJ2YvN=9CA@mail.gmail.com>
-From: Khem Raj <raj.khem@gmail.com>
-To: "Robert P. J. Day" <rpjday@crashcourse.ca>
-Cc: Yocto discussion list <yocto@yoctoproject.org>,
-	Rudolf Streif <rstreif@linuxfoundation.org>
-Subject: Re: is anyone giving a yocto talk at linuxcon in chicago in august?
+To: Sudhangathan B S <sudhangathan@gmail.com>, "General mailing list for
+	gumstix users." <gumstix-users@lists.sourceforge.net>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+References: <CAGX3a9_GzmU_f2RZPHdWM2SQVOdNkBMwxf8t84ri0xuzsmNmfg@mail.gmail.com>	<5360FA25.40006@windriver.com>	<CAGX3a98E2GzTEOcBLfV_FmxqoqTuHr75t0TmNn+RJAVOnvPXKw@mail.gmail.com>
+	<CAGX3a99ixL0CvRQLmxLCaK0Zrdd22ET25S=OCKpk+AJnQxRmOQ@mail.gmail.com>
+In-Reply-To: <CAGX3a99ixL0CvRQLmxLCaK0Zrdd22ET25S=OCKpk+AJnQxRmOQ@mail.gmail.com>
+Subject: Re: Blacklisting drivers in poky or in yocto project
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -60,126 +44,126 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 02 May 2014 04:43:42 -0000
-Content-Type: multipart/alternative; boundary=089e0122f09ceae7b204f8636ce6
+X-List-Received-Date: Fri, 02 May 2014 04:46:38 -0000
+Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
+Content-Transfer-Encoding: 7bit
 
---089e0122f09ceae7b204f8636ce6
-Content-Type: text/plain; charset=UTF-8
+On 2014-05-01, 2:24 PM, Sudhangathan B S wrote:
+> The Update:
+> I blacklisted all related drivers, i.e., libertas, libertas_sdio,
+> cfg80211 and ipv6, but still all these driver modules got autoloaded..!!
+>
+> The method I used: in the file /etc/modprobe.d/blacklist.conf, i added
+> these following lines:
+> blacklist ipv6
+> blacklist cfg80211
+> blacklist libertas
+> blacklist libertas_sdio
 
-On Thursday, May 1, 2014, Robert P. J. Day <rpjday@crashcourse.ca> wrote:
+I can't recall if yocto 1.4 had switched to kmod, or if it was still
+the legacy mod-utils ? Can you confirm with one is in play here ?
 
-> On Thu, 1 May 2014, Rudolf Streif wrote:
 >
-> >
-> >         i would think *someone* would be doing a yocto talk at linuxcon
-> in
-> >       august. if not, i'll propose one since i need an excuse to go. if
-> one
-> >       is already on the schedule, i'll propose something else.
-> >
-> > The typical target for YP (and the YP Dev Day) were the Embedded
-> > Linux Conferences not that much the more general LinuxCon. However,
-> > during a conversation at LinuxCon NA last year in NOLA I learned
-> > from a company that they are using YP to build custom stacks for
-> > their cloud servers. From that perspective having a YP talk at LCNA
-> > would actually be a good idea. A talk how one could use YP to build
-> > your own desktop or server distro may be interesting and extend the
-> > reach of the YP.
+> I also tried the same in /lib/modprobe.d/blacklist.conf, but to no
+> avail. Every time the modules were getting autoloaded..!!!
+
+Have you looked for /etc/modules ? Or any other references to them
+on the filesystem ?
+
 >
->   i think that's what i'm going to submit. tomorrow's the submission
-> deadline so i have to get something in quick. i figure i'll submit
-> something like "Building an Embedded Linux System Using YoctoProject",
-> using the BeagleBone Black as the platform example.
+> And also where can I look for this autoload feature..?
+
+I'm not familiar with the kernel you are using, but have you confirmed
+that either hotplug events or uevents and a helper are not being
+triggered and loading the modules ?
+
+Bruce
+
+>
+> Best,
 >
 >
-I have done a POC generating very small specific appliances using OE and
-lxc, in previous life which you then launch in thousands on demands on a
-big server to do specific jobs like subscriber connections etc. I think
-such a topic would definitely interest linuxcon attendees, I don't plan to
-attend this one but if someone wants to take this and develop into a talk I
-can help.
+>
+> ---------------------------------
+> Sudhangathan BS
+> Ph:(+91) 9731-905-205
+> ---------------------------------
+>
+>
+> On Thu, May 1, 2014 at 1:46 AM, Sudhangathan B S <sudhangathan@gmail.com
+> <mailto:sudhangathan@gmail.com>> wrote:
+>
+>     Yes i confirm the loading of modules everytime using lsmod.
+>
+>     I'm using the standard installation of yocto project from Gumstix
+>     Repo, and also the PM branch kernel from Kevin Hilman's repo. Kernel
+>     version is 3.4. So i did not specify autoloading of modules anywhere.
+>
+>     A grep of module_autoload showed kernel-module-split.bbclass as a
+>     reference. Is this the file you are talking about..? It will be good
+>     to know if it is because this module_autoload..!!
+>
+>     And moreover I now have a doubt if the blaclisting is not working
+>     because of the dependencies. I will reply again after blacklisting
+>     all related drivers. Esp. the cfg802 driver.
+>
+>     Thanks Bruce,
+>
+>     Sudhangathan BS.
+>
+>     Working on a MMX Android 110.
+>     --If you have not travelled, you have not lived.
+>
+>     On 30-Apr-2014 6:57 PM, "Bruce Ashfield"
+>     <bruce.ashfield@windriver.com <mailto:bruce.ashfield@windriver.com>>
+>     wrote:
+>      >
+>      > On 14-04-30 03:40 AM, Sudhangathan B S wrote:
+>      >>
+>      >> Hi all,
+>      >>
+>      >> I need to prevent my wifi drivers auto loading during boot time.
+>     How do
+>      >> we do it in the Poky OS or in the Yocto project..?
+>      >
+>      >
+>      > Are you actually seeing a confirmed auto load of modules ?
+>      >
+>      > In a standard image kernel modules will not be autoloaded unless
+>      > specifically requested via a recipe with :
+>     module_autoload_<module name>.
+>      >
+>      > I'm not talking about a usermode helper / on demand load, but
+>      > an explicit autoload + dependencies.
+>      >
+>      > Bruce
+>      >
+>      >
+>      >
+>      >
+>      >>
+>      >> I tried both the fedora way and debian way, neither worked.!
+>     this is as
+>      >> given in this website..:
+>      >>
+>     http://www.cyberciti.biz/tips/avoid-linux-kernel-module-driver-autoloading.html
+>      >>
+>      >>
+>      >> I'm using gumstix overo hardware..! Poky version 9.0.2, Yocto
+>     Project
+>      >> 1.4 Reference Distro, 1.4.2 overo.
+>      >>
+>      >>
+>      >> ---------------------------------
+>      >> Sudhangathan BS
+>      >> Ph:(+91) 9731-905-205 <tel:%28%2B91%29%209731-905-205>
+>      >> ---------------------------------
+>      >>
+>      >>
+>      >
+>
+>
+>
+>
 
 
-> rday
->
-> --
->
-> ========================================================================
-> Robert P. J. Day                                 Ottawa, Ontario, CANADA
->                         http://crashcourse.ca
->
-> Twitter:                                       http://twitter.com/rpjday
-> LinkedIn:                               http://ca.linkedin.com/in/rpjday
-> =============================================================
-
---089e0122f09ceae7b204f8636ce6
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<br><br>On Thursday, May 1, 2014, Robert P. J. Day &lt;<a href=3D"mailto:rp=
-jday@crashcourse.ca">rpjday@crashcourse.ca</a>&gt; wrote:<br><blockquote cl=
-ass=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;p=
-adding-left:1ex">
-On Thu, 1 May 2014, Rudolf Streif wrote:<br>
-<br>
-&gt;<br>
-&gt; =C2=A0 =C2=A0 =C2=A0 =C2=A0 i would think *someone* would be doing a y=
-octo talk at linuxcon in<br>
-&gt; =C2=A0 =C2=A0 =C2=A0 august. if not, i&#39;ll propose one since i need=
- an excuse to go. if one<br>
-&gt; =C2=A0 =C2=A0 =C2=A0 is already on the schedule, i&#39;ll propose some=
-thing else.<br>
-&gt;<br>
-&gt; The typical target for YP (and the YP Dev Day) were the Embedded<br>
-&gt; Linux Conferences not that much the more general LinuxCon. However,<br=
->
-&gt; during a conversation at LinuxCon NA last year in NOLA I learned<br>
-&gt; from a company that they are using YP to build custom stacks for<br>
-&gt; their cloud servers. From that perspective having a YP talk at LCNA<br=
->
-&gt; would actually be a good idea. A talk how one could use YP to build<br=
->
-&gt; your own desktop or server distro may be interesting and extend the<br=
->
-&gt; reach of the YP.<br>
-<br>
-=C2=A0 i think that&#39;s what i&#39;m going to submit. tomorrow&#39;s the =
-submission<br>
-deadline so i have to get something in quick. i figure i&#39;ll submit<br>
-something like &quot;Building an Embedded Linux System Using YoctoProject&q=
-uot;,<br>
-using the BeagleBone Black as the platform example.<br>
-<br></blockquote><div><br></div><div>I have done a POC generating very=C2=
-=A0small specific=C2=A0appliances using OE and lxc, in previous life which =
-you then launch in thousands on demands on a big server to do specific jobs=
- like subscriber connections etc. I think such a topic would definitely int=
-erest=C2=A0linuxcon attendees, I don&#39;t plan to attend this one but if s=
-omeone wants=C2=A0to take this and develop into a talk I can help.</div>
-<div>=C2=A0</div><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8=
-ex;border-left:1px #ccc solid;padding-left:1ex">
-rday<br>
-<br>
---<br>
-<br>
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D<br>
-Robert P. J. Day =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 Ottawa, Ontario, CA=
-NADA<br>
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 <a href=3D"http://crashcourse.ca" target=3D"_blank">http://crash=
-course.ca</a><br>
-<br>
-Twitter: =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 <a href=
-=3D"http://twitter.com/rpjday" target=3D"_blank">http://twitter.com/rpjday<=
-/a><br>
-LinkedIn: =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 <a href=3D"http://ca.linkedin.com=
-/in/rpjday" target=3D"_blank">http://ca.linkedin.com/in/rpjday</a><br>
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D</blockquote>
-
---089e0122f09ceae7b204f8636ce6--
