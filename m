@@ -1,44 +1,57 @@
-Return-Path: <ajlennon@dynamicdevices.co.uk>
+Return-Path: <tarek.elsherbiny@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 49463E009C5; Fri,  2 May 2014 07:09:06 -0700 (PDT)
+	id C75EAE009D1; Fri,  2 May 2014 07:56:09 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=0.0 required=5.0 tests=none autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: 
-Received: from www.dynamicdevices.co.uk (www.dynamicdevices.co.uk
-	[89.200.136.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EC791E00939
-	for <yocto@yoctoproject.org>; Fri,  2 May 2014 07:09:01 -0700 (PDT)
-Received: from localhost (localhost [127.0.0.1])
-	by www.dynamicdevices.co.uk (Postfix) with ESMTP id B653427E015;
-	Fri,  2 May 2014 14:08:58 +0000 (UTC)
-X-Virus-Scanned: Debian amavisd-new at lennoab2.miniserver.com
-Received: from www.dynamicdevices.co.uk ([127.0.0.1])
-	by localhost (www.dynamicdevices.co.uk [127.0.0.1]) (amavisd-new,
-	port 10024)
-	with ESMTP id wyfu7ke4Vbqd; Fri,  2 May 2014 14:08:56 +0000 (UTC)
-Received: from [127.0.0.1] (cpc32-live22-2-0-cust59.17-2.cable.virginm.net
-	[82.36.253.60])
-	(using TLSv1 with cipher ECDHE-RSA-AES128-SHA (128/128 bits))
-	(No client certificate requested)
-	by www.dynamicdevices.co.uk (Postfix) with ESMTPSA id B58B327E006;
-	Fri,  2 May 2014 14:08:56 +0000 (UTC)
-Message-ID: <5363A6F6.5040507@dynamicdevices.co.uk>
-Date: Fri, 02 May 2014 15:08:54 +0100
-From: Alex J Lennon <ajlennon@dynamicdevices.co.uk>
-User-Agent: Mozilla/5.0 (Windows NT 6.3; WOW64;
-	rv:24.0) Gecko/20100101 Thunderbird/24.5.0
+X-Spam-Status: No, score=-0.8 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+	DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (tarek.elsherbiny[at]gmail.com)
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.160.174 listed in list.dnswl.org]
+Received: from mail-yk0-f174.google.com (mail-yk0-f174.google.com
+	[209.85.160.174])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C3BA0E009BA
+	for <yocto@yoctoproject.org>; Fri,  2 May 2014 07:56:06 -0700 (PDT)
+Received: by mail-yk0-f174.google.com with SMTP id 9so1491687ykp.5
+	for <yocto@yoctoproject.org>; Fri, 02 May 2014 07:56:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type;
+	bh=h5phhXktHNtOQMjHPatlPUEzqHZKRc/CAlEZFVaZlJc=;
+	b=vZEMWd1Gbnd+DeCNYnWcXGRSYgqUNpvEdcFM6jy0B0Ut+pPljU9e1STwvtCH+l824b
+	VSLQBq62/SQeDIs6VtnmWhow3sWKSDS8AKhJ+JWOKpUxt+yhM7kGHeDMPVnmJyoM20BP
+	cJSn2wrdoiBm5bCFo90X31WS6n9njhKrD5I/BkWQVN666Snp3m9PQ08wDSySjoCcfPPC
+	Se7R5tOoO6E3+tzL80g70QZwNdAylZeLwo+UFhrKU8+0T4cqG+YcD6iBg4qQCOKyBuz6
+	p71RFY4GHDsnA6usxgP1E9LhHShPaIIRs00lNTPBps25dmtaHkPGB+7qiaRq7mnI1JfE
+	QIMQ==
 MIME-Version: 1.0
-To: Otavio Salvador <otavio@ossystems.com.br>
-References: <5362171B.8010000@dynamicdevices.co.uk>	<5577559.2gRHFt1x94@peggleto-mobl5.ger.corp.intel.com>	<536285BC.8010200@dynamicdevices.co.uk>	<CAP9ODKrgW5+pPsS51QLwd+9j0q2xMd+j-Q6bjKgZdV7ho_D0WA@mail.gmail.com>	<53632C0B.1010401@dynamicdevices.co.uk>	<CAP9ODKpRF27T7ROz-fLidRb6R=jwzp-EW6Wd44N_hZgiNHJmSg@mail.gmail.com>	<5363973A.6020106@dynamicdevices.co.uk>	<CAP9ODKpi7p+oZ09XyVxAB+2Xv36YWVf4d4iO4jLEhEegzUQodA@mail.gmail.com>	<53639996.4090604@dynamicdevices.co.uk>	<CAP9ODKopDnkSC8mPsDMk95n_Ws+KOoFEeD1YUWyPojnmS2Xzjw@mail.gmail.com>
-	<CAP9ODKpg3+SyhU9+KPqPgUyKSGb1pU2_601cK8eq1-b-KG_Hcg@mail.gmail.com>
-In-Reply-To: <CAP9ODKpg3+SyhU9+KPqPgUyKSGb1pU2_601cK8eq1-b-KG_Hcg@mail.gmail.com>
-X-Enigmail-Version: 1.6
-Cc: Paul Eggleton <paul.eggleton@linux.intel.com>,
-	yocto <yocto@yoctoproject.org>
-Subject: Re: Undefining a variable in a recipe?
+X-Received: by 10.236.177.100 with SMTP id c64mr24299117yhm.30.1399042565913; 
+	Fri, 02 May 2014 07:56:05 -0700 (PDT)
+Received: by 10.170.71.65 with HTTP; Fri, 2 May 2014 07:56:05 -0700 (PDT)
+In-Reply-To: <5363A89F.6060709@topic.nl>
+References: <CAB3sqtZbtJGsh_jMUnvJAyFmXJVHZT2bvZ=DJ0N-fSB-VYu4Tg@mail.gmail.com>
+	<969F26A8BAB325438E7EB80D3C3134FB1CEA4705@IRSMSX105.ger.corp.intel.com>
+	<CAB3sqta0_u-Uv4EKXd6Y9upxyQfDEQ9_m_H=OL=tmMFKRb_14w@mail.gmail.com>
+	<969F26A8BAB325438E7EB80D3C3134FB1CEA474F@IRSMSX105.ger.corp.intel.com>
+	<5363A89F.6060709@topic.nl>
+Date: Fri, 2 May 2014 15:56:05 +0100
+Message-ID: <CAB3sqtZjEU_WntKYh6SBKO7M+5gBTc2yJ9KtUu-Bf=mR_E=TpA@mail.gmail.com>
+From: Tarek El-Sherbiny <tarek.elsherbiny@gmail.com>
+To: Mike Looijmans <mike.looijmans@topic.nl>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
+	"openembedded-core@lists.openembedded.org"
+	<openembedded-core@lists.openembedded.org>
+Subject: Re: [OE-core] DNS when using Static IP
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -50,45 +63,262 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 02 May 2014 14:09:06 -0000
+X-List-Received-Date: Fri, 02 May 2014 14:56:09 -0000
+Content-Type: multipart/alternative; boundary=20cf303f656a2ac20c04f86bfbac
+
+--20cf303f656a2ac20c04f86bfbac
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: quoted-printable
+
+I have created  resolv.conf  manually using vi but every time I do a reboot
+the file comes back empty. and the dns function is not working.
+
+What is the best solution to this?
 
 
-On 02/05/2014 14:25, Otavio Salvador wrote:
-> On Fri, May 2, 2014 at 10:23 AM, Otavio Salvador
-> <otavio@ossystems.com.br> wrote:
->> On Fri, May 2, 2014 at 10:11 AM, Alex J Lennon
->> <ajlennon@dynamicdevices.co.uk> wrote:
->>> Or indeed, would be not be reasonable to modify the uboot-config.bbclass
->>> such that
->>> it tested for and discarded empty strings in UBOOT_MACHINE / UBOOT_CONFIG
->>> which would seem to be a more complete test and would eliminate the
->>> problem ?
->> Like: http://privatepaste.com/8046479967
-> Fixed: http://privatepaste.com/3ffec754d4
+On Fri, May 2, 2014 at 3:15 PM, Mike Looijmans <mike.looijmans@topic.nl>wro=
+te:
+
+> When using DHCP, busybox's udhcpc script will write the DNS entries that
+> the server returned into the resolv.conf file.
+>
+> In this case, I think you'll have to "provide" resolv.conf in some other
+> way, there's nothing in ifup/ifdown that will modify resolv.conf based on
+> keywords in the interfaces file.
+>
+> Mike.
+>
+>
+>
+> On 05/02/2014 02:49 PM, Iorga, Cristian wrote:
+>
+>> Not really, I just wanted to get a better overview of the issue that you
+>> are facing.
+>>
+>> What image did you started from, if any?
+>>
+>> *From:*Tarek El-Sherbiny [mailto:tarek.elsherbiny@gmail.com]
+>> *Sent:* Friday, May 2, 2014 3:31 PM
+>> *To:* Iorga, Cristian
+>> *Cc:* openembedded-core@lists.openembedded.org; yocto@yoctoproject.org
+>> *Subject:* RE: [OE-core] DNS when using Static IP
+>>
+>>
+>> No connman is not included.  Shall I include it and try?
+>>
+>> On 2 May 2014 13:01, "Iorga, Cristian" <cristian.iorga@intel.com
+>> <mailto:cristian.iorga@intel.com>> wrote:
+>>
+>>     Hello,
+>>
+>>     What image did you start from, if any?
+>>
+>>     i.e., core-image-minimal, core-image-sato, etc=E2=80=A6
+>>
+>>     Is connman included?
+>>
+>>     Regards,
+>>
+>>     Cristian Iorga
+>>
+>>     YP
+>>
+>>     Intel Corporation
+>>
+>>     *From:*openembedded-core-bounces@lists.openembedded.org
+>>     <mailto:openembedded-core-bounces@lists.openembedded.org>
+>>     [mailto:openembedded-core-bounces@lists.openembedded.org
+>>     <mailto:openembedded-core-bounces@lists.openembedded.org>] *On
+>>     Behalf Of *Tarek El-Sherbiny
+>>     *Sent:* Friday, May 2, 2014 2:05 PM
+>>     *To:* yocto@yoctoproject.org <mailto:yocto@yoctoproject.org>;
+>>     openembedded-core@lists.openembedded.org
+>>     <mailto:openembedded-core@lists.openembedded.org>
+>>     *Subject:* [OE-core] DNS when using Static IP
+>>
+>>
+>>     Hi.
+>>
+>>     I'm trying to set my IP config to a static address.
+>>
+>>     iface eth0 inet static
+>>
+>>           address 192.168.55.45
+>>
+>>           network 192.168.55.0
+>>
+>>           netmask 255.255.255.0
+>>
+>>           broadcast 192.168.55.255
+>>
+>>           gateway 192.168.55.1
+>>
+>>           dns-nameservers 192.168.10.2
+>>
+>>     But I don't get the DNS server address to be included in
+>>     /etc/resolv.conf
+>>
+>>     If I run in dchp mode, then the resolv.conf is updated with my DNS
+>>     address.
+>>
+>>     Is there something I'm missing here in my setup?
+>>
+>>     --
+>>
+>>     /Tarek/
+>>
+>>
+>>
+>>
+>
+> --
+> Mike Looijmans
 >
 
-Otavio, thanks for that. Python is not my métier and I had assumed that
-the check on  'if ubootmachine' and so forth would check for definition
-rather than be a check on a  zero length string.
-
-However given Paul's pointer on Python I've revisited this,
-
-"if len(x) > 0", "if len(x)",  and "if x" are all equivalent tests for empty strings in Python"
-
-I had tried setting UBOOT_CONFIG = "" and UBOOT_MACHINE = "" as that's
-what I saw used in the getVar(). This which didn't work for me, and I
-wrongly assuming this was because  of the test.
-
-If instead I set the appended machine type, e.g.
-UBOOT_MACHINE_im6qsabresd = "", then that works (!) I guess it's being
-copied across somewhere.
-
-So thanks again for the advice. I think we've cracked it :)
-
-Cheers,
-
-Alex
 
 
+--=20
+*Tarek*
+
+--20cf303f656a2ac20c04f86bfbac
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">I have created=C2=A0<span style=3D"font-family:arial,sans-=
+serif;font-size:12.800000190734863px">=C2=A0resolv.conf =C2=A0manually usin=
+g vi but every time I do a reboot the file comes back empty. and the dns fu=
+nction is not working.</span><div>
+<span style=3D"font-family:arial,sans-serif;font-size:12.800000190734863px"=
+><br></span></div><div><span style=3D"font-family:arial,sans-serif;font-siz=
+e:12.800000190734863px">What is the best solution to this?</span></div></di=
+v>
+<div class=3D"gmail_extra"><br><br><div class=3D"gmail_quote">On Fri, May 2=
+, 2014 at 3:15 PM, Mike Looijmans <span dir=3D"ltr">&lt;<a href=3D"mailto:m=
+ike.looijmans@topic.nl" target=3D"_blank">mike.looijmans@topic.nl</a>&gt;</=
+span> wrote:<br>
+<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
+x #ccc solid;padding-left:1ex">When using DHCP, busybox&#39;s udhcpc script=
+ will write the DNS entries that the server returned into the resolv.conf f=
+ile.<br>
+
+<br>
+In this case, I think you&#39;ll have to &quot;provide&quot; resolv.conf in=
+ some other way, there&#39;s nothing in ifup/ifdown that will modify resolv=
+.conf based on keywords in the interfaces file.<br>
+<br>
+Mike.<div class=3D""><br>
+<br>
+<br>
+On 05/02/2014 02:49 PM, Iorga, Cristian wrote:<br>
+</div><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-l=
+eft:1px #ccc solid;padding-left:1ex"><div class=3D"">
+Not really, I just wanted to get a better overview of the issue that you<br=
+>
+are facing.<br>
+<br>
+What image did you started from, if any?<br>
+<br></div>
+*From:*Tarek El-Sherbiny [mailto:<a href=3D"mailto:tarek.elsherbiny@gmail.c=
+om" target=3D"_blank">tarek.elsherbiny@<u></u>gmail.com</a>]<br>
+*Sent:* Friday, May 2, 2014 3:31 PM<br>
+*To:* Iorga, Cristian<br>
+*Cc:* <a href=3D"mailto:openembedded-core@lists.openembedded.org" target=3D=
+"_blank">openembedded-core@lists.<u></u>openembedded.org</a>; <a href=3D"ma=
+ilto:yocto@yoctoproject.org" target=3D"_blank">yocto@yoctoproject.org</a><b=
+r>
+*Subject:* RE: [OE-core] DNS when using Static IP<div class=3D""><br>
+<br>
+No connman is not included. =C2=A0Shall I include it and try?<br>
+<br>
+On 2 May 2014 13:01, &quot;Iorga, Cristian&quot; &lt;<a href=3D"mailto:cris=
+tian.iorga@intel.com" target=3D"_blank">cristian.iorga@intel.com</a><br></d=
+iv><div class=3D"">
+&lt;mailto:<a href=3D"mailto:cristian.iorga@intel.com" target=3D"_blank">cr=
+istian.iorga@intel.<u></u>com</a>&gt;&gt; wrote:<br>
+<br>
+=C2=A0 =C2=A0 Hello,<br>
+<br>
+=C2=A0 =C2=A0 What image did you start from, if any?<br>
+<br>
+=C2=A0 =C2=A0 i.e., core-image-minimal, core-image-sato, etc=E2=80=A6<br>
+<br>
+=C2=A0 =C2=A0 Is connman included?<br>
+<br>
+=C2=A0 =C2=A0 Regards,<br>
+<br>
+=C2=A0 =C2=A0 Cristian Iorga<br>
+<br>
+=C2=A0 =C2=A0 YP<br>
+<br>
+=C2=A0 =C2=A0 Intel Corporation<br>
+<br></div>
+=C2=A0 =C2=A0 *From:*<a href=3D"mailto:openembedded-core-bounces@lists.open=
+embedded.org" target=3D"_blank">openembedded-core-<u></u>bounces@lists.open=
+embedded.org</a><br>
+=C2=A0 =C2=A0 &lt;mailto:<a href=3D"mailto:openembedded-core-bounces@lists.=
+openembedded.org" target=3D"_blank">openembedded-core-<u></u>bounces@lists.=
+openembedded.org</a><u></u>&gt;<br>
+=C2=A0 =C2=A0 [mailto:<a href=3D"mailto:openembedded-core-bounces@lists.ope=
+nembedded.org" target=3D"_blank">openembedded-core-<u></u>bounces@lists.ope=
+nembedded.org</a><br>
+=C2=A0 =C2=A0 &lt;mailto:<a href=3D"mailto:openembedded-core-bounces@lists.=
+openembedded.org" target=3D"_blank">openembedded-core-<u></u>bounces@lists.=
+openembedded.org</a><u></u>&gt;] *On<br>
+=C2=A0 =C2=A0 Behalf Of *Tarek El-Sherbiny<br>
+=C2=A0 =C2=A0 *Sent:* Friday, May 2, 2014 2:05 PM<br>
+=C2=A0 =C2=A0 *To:* <a href=3D"mailto:yocto@yoctoproject.org" target=3D"_bl=
+ank">yocto@yoctoproject.org</a> &lt;mailto:<a href=3D"mailto:yocto@yoctopro=
+ject.org" target=3D"_blank">yocto@yoctoproject.org</a><u></u>&gt;;<br>
+=C2=A0 =C2=A0 <a href=3D"mailto:openembedded-core@lists.openembedded.org" t=
+arget=3D"_blank">openembedded-core@lists.<u></u>openembedded.org</a><br>
+=C2=A0 =C2=A0 &lt;mailto:<a href=3D"mailto:openembedded-core@lists.openembe=
+dded.org" target=3D"_blank">openembedded-core@<u></u>lists.openembedded.org=
+</a>&gt;<br>
+=C2=A0 =C2=A0 *Subject:* [OE-core] DNS when using Static IP<div class=3D"">=
+<br>
+<br>
+=C2=A0 =C2=A0 Hi.<br>
+<br>
+=C2=A0 =C2=A0 I&#39;m trying to set my IP config to a static address.<br>
+<br>
+=C2=A0 =C2=A0 iface eth0 inet static<br>
+<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 address 192.168.55.45<br>
+<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 network 192.168.55.0<br>
+<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 netmask 255.255.255.0<br>
+<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 broadcast 192.168.55.255<br>
+<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 gateway 192.168.55.1<br>
+<br>
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 dns-nameservers 192.168.10.2<br>
+<br>
+=C2=A0 =C2=A0 But I don&#39;t get the DNS server address to be included in<=
+br>
+=C2=A0 =C2=A0 /etc/resolv.conf<br>
+<br>
+=C2=A0 =C2=A0 If I run in dchp mode, then the resolv.conf is updated with m=
+y DNS<br>
+=C2=A0 =C2=A0 address.<br>
+<br>
+=C2=A0 =C2=A0 Is there something I&#39;m missing here in my setup?<br>
+<br>
+=C2=A0 =C2=A0 --<br>
+<br></div>
+=C2=A0 =C2=A0 /Tarek/<br>
+<br>
+<br>
+<br><span class=3D"HOEnZb"><font color=3D"#888888">
+</font></span></blockquote><span class=3D"HOEnZb"><font color=3D"#888888">
+<br>
+<br>
+-- <br>
+Mike Looijmans<br>
+</font></span></blockquote></div><br><br clear=3D"all"><div><br></div>-- <b=
+r><div dir=3D"ltr"><i><font color=3D"#666666" face=3D"arial, helvetica, san=
+s-serif">Tarek</font></i></div>
+</div>
+
+--20cf303f656a2ac20c04f86bfbac--
