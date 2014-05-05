@@ -1,43 +1,45 @@
 Return-Path: <james.woodyatt@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 1C390E00BC1; Mon,  5 May 2014 16:00:20 -0700 (PDT)
+	id 47B06E00B7C; Mon,  5 May 2014 16:07:26 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-5.0 required=5.0 tests=RCVD_IN_DNSWL_HI
+X-Spam-Status: No, score=-3.3 required=5.0 tests=RCVD_IN_DNSWL_HI, URIBL_BLACK
 	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
 	http://www.dnswl.org/, high *      trust
-	*      [134.134.136.20 listed in list.dnswl.org]
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A6F88E00B5D
-	for <yocto@yoctoproject.org>; Mon,  5 May 2014 16:00:14 -0700 (PDT)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga101.jf.intel.com with ESMTP; 05 May 2014 16:00:13 -0700
+	*      [134.134.136.24 listed in list.dnswl.org]
+	*  1.7 URIBL_BLACK Contains an URL listed in the URIBL blacklist
+	*      [URIs: configure.ac]
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 24B22E00B5D
+	for <yocto@yoctoproject.org>; Mon,  5 May 2014 16:07:21 -0700 (PDT)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga102.jf.intel.com with ESMTP; 05 May 2014 16:02:22 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.97,992,1389772800"; d="scan'208";a="506373340"
-Received: from orsmsx102.amr.corp.intel.com ([10.22.225.129])
-	by orsmga001.jf.intel.com with ESMTP; 05 May 2014 16:00:08 -0700
+X-IronPort-AV: E=Sophos;i="4.97,992,1389772800"; d="scan'208";a="535131305"
+Received: from orsmsx101.amr.corp.intel.com ([10.22.225.128])
+	by orsmga002.jf.intel.com with ESMTP; 05 May 2014 16:07:19 -0700
+Received: from orsmsx156.amr.corp.intel.com (10.22.240.22) by
+	ORSMSX101.amr.corp.intel.com (10.22.225.128) with Microsoft SMTP Server
+	(TLS) id 14.3.123.3; Mon, 5 May 2014 16:07:19 -0700
 Received: from orsmsx105.amr.corp.intel.com ([169.254.4.80]) by
-	ORSMSX102.amr.corp.intel.com ([169.254.1.200]) with mapi id
-	14.03.0123.003; Mon, 5 May 2014 16:00:08 -0700
+	ORSMSX156.amr.corp.intel.com ([169.254.8.176]) with mapi id
+	14.03.0123.003; Mon, 5 May 2014 16:07:19 -0700
 From: "Woodyatt, James" <james.woodyatt@intel.com>
-To: Richard Purdie <richard.purdie@linuxfoundation.org>
-Thread-Topic: [yocto] [PATCH 1/1] dylan: fix C++ standard library headers on
-	OS X
-Thread-Index: AQHPZZF9y6Ed61iBiEeKazT6i7KYyJsuHmgAgAT3aAA=
-Date: Mon, 5 May 2014 23:00:08 +0000
-Message-ID: <0C2F47D8-E3E0-4FB1-8BEB-4FBAB54DF976@intel.com>
-References: <9B489023-F966-4C06-ACD4-A5028E46D5F1@intel.com>
-	<1399057794.12731.61.camel@ted>
-In-Reply-To: <1399057794.12731.61.camel@ted>
+To: Yocto Project Main <yocto@yoctoproject.org>
+Thread-Topic: [PATCH 1/1] dylan: fix kconfig-frontends for ncurses
+	--with-libterm
+Thread-Index: AQHPaLbDsW8cMeNtJ0C8sikX6BcbwQ==
+Date: Mon, 5 May 2014 23:07:18 +0000
+Message-ID: <1E0A4378-38DB-4043-A6AD-C07F6BDC7444@intel.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
 x-originating-ip: [10.232.24.28]
 MIME-Version: 1.0
-Cc: Yocto Project Main <yocto@yoctoproject.org>
-Subject: Re: [PATCH 1/1] dylan: fix C++ standard library headers on OS X
+Cc: "Purdie, Richard" <richard.purdie@intel.com>
+Subject: [PATCH 1/1] dylan: fix kconfig-frontends for ncurses --with-libterm
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -49,57 +51,78 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 05 May 2014 23:00:20 -0000
+X-List-Received-Date: Mon, 05 May 2014 23:07:26 -0000
 Content-Language: en-US
 Content-Type: text/plain; charset="Windows-1252"
-Content-ID: <0CF40E17E8208740A2DE5CCAD52BE6F5@intel.com>
+Content-ID: <CE4DB424A7C4804A8D512CD0596B61DA@intel.com>
 Content-Transfer-Encoding: quoted-printable
 
-Nice. I will resend, along with the one I just discovered for the meta-ming=
-w layer, which needs a similar fix for kconfig-frontends-native.
+commit 939c9feca3c26d4603b573d887324d6220e93819
+Author: james woodyatt <james.woodyatt@intel.com>
+Date:   Mon May 5 15:54:29 2014 -0700
+
+    kconfig-frontends-native: add support for --with-libterm.
+   =20
+    This is a cherry-pick of cefcd4b655c2b7efdc6313740f3c8af89dd8f670 from
+    the kconfig-frontends project authoritative Git repository for a change
+    that went into 3.9 and later revisions that enables building on hosts
+    configurations where libncurses uses libtinfo.
+
+diff --git a/oecore.patch b/oecore.patch
+index 7371244..ec2fc8b 100644
+--- a/oecore.patch
++++ b/oecore.patch
+@@ -3272,3 +3272,38 @@ index 43a55a6..5553411 100644
+  "
+ =20
+  SRC_URI[md5sum] =3D "3e379b4d8b9693948d751c154614c73e"
++diff --git a/meta/recipes-devtools/kconfig-frontends/files/kconfig-fronten=
+ds-tinfo.patch b/meta/recipes-devtools/kconfig-frontends/files/kconfig-fron=
+tends-tinfo.patch
++new file mode 100644
++index 0000000..1da643a
++--- /dev/null
+++++ b/meta/recipes-devtools/kconfig-frontends/files/kconfig-frontends-tinf=
+o.patch
++@@ -0,0 +1,14 @@
+++diff --git a/configure.ac b/configure.ac
+++index 8b5bc5d..e90fd17 100644
+++--- a/configure.ac
++++++ b/configure.ac
+++@@ -283,6 +283,10 @@ AS_IF(
+++             [test "$need_curses" =3D "yes"],
+++             [AC_MSG_ERROR([could not find curses library (frontends: mco=
+nf/nconf)])],
+++             [has_curses=3Dno])])
++++     AC_SEARCH_LIBS(
++++        [setupterm],
++++        [tinfo],
++++        [break])
+++      ncurses_LIBS=3D"$LIBS"
+++      LIBS=3D$LIBS_old])
++diff --git a/meta/recipes-devtools/kconfig-frontends/kconfig-frontends_3.8=
+.0.bb b/meta/recipes-devtools/kconfig-frontends/kconfig-frontends_3.8.0.bb
++index b9960f9..a1e7572 100644
++--- a/meta/recipes-devtools/kconfig-frontends/kconfig-frontends_3.8.0.bb
+++++ b/meta/recipes-devtools/kconfig-frontends/kconfig-frontends_3.8.0.bb
++@@ -13,7 +13,9 @@ SECTION =3D "devel"
++ DEPENDS +=3D "ncurses flex bison gperf pkgconfig-native"
++ PR =3D "r0"
++ SPIN =3D ".0"
++-SRC_URI =3D "http://ymorin.is-a-geek.org/download/${BPN}/${BPN}-${PV}${SP=
+IN}.tar.xz"
+++SRC_URI =3D "http://ymorin.is-a-geek.org/download/${BPN}/${BPN}-${PV}${SP=
+IN}.tar.xz \
+++	   file://kconfig-frontends-tinfo.patch \
+++"
++=20
++ SRC_URI[md5sum] =3D "73598aea99d01d9c422b335e9b963271"
++ SRC_URI[sha256sum] =3D "b3ff325338aa291c9129dbf33c69ff321e30105aa06ff957b=
+e6f958acdc72b42"
+
 
 =97
 james woodyatt <james.woodyatt@intel.com>
 Software Architect, New Devices Group
-
-On May 2, 2014, at 12:09, Richard Purdie <richard.purdie@linuxfoundation.or=
-g> wrote:
-
-> On Thu, 2014-05-01 at 23:02 +0000, Woodyatt, James wrote:
->> commit 562fa987cea60d61c256195adce7e83bf1c1a8c9
->> Author: james woodyatt <james.woodyatt@intel.com>
->> Date:   Thu May 1 14:44:39 2014 -0700
->>=20
->>    Fix C++ standard library header directory configuration.
->>=20
->>    Remove the 4.2.1 directory from the --with-gxx-include-dir path provi=
-ded
->>    to the configure script for GCC 4.7 in the cross-canadian build.
->>=20
->> diff --git a/recipes-devtools/gcc/gcc-cross-canadian_4.7.bbappend b/reci=
-pes-devt
->> index 3fcc012..083b930 100644
->> --- a/recipes-devtools/gcc/gcc-cross-canadian_4.7.bbappend
->> +++ b/recipes-devtools/gcc/gcc-cross-canadian_4.7.bbappend
->> @@ -4,7 +4,7 @@ INSANE_SKIP_${PN}_append_darwinsdk =3D " staticdev"
->> LDFLAGS_darwinsdk =3D "${BUILDSDK_LDFLAGS} -L${libdir}/.."
->>=20
->> # Change gxx-include-dir
->> -EXTRA_OECONF_PATHS_darwinsdk =3D "--with-gxx-include-dir=3D${SDKPATH}/s=
-ysroots/${TU
->> +EXTRA_OECONF_PATHS_darwinsdk =3D "--with-gxx-include-dir=3D${SDKPATH}/s=
-ysroots/${TU
->>                       --with-build-time-tools=3D${STAGING_DIR_NATIVE}${p=
-refix_nat
->>                       --with-sysroot=3D${SDKPATH}/sysroots/${TUNE_PKGARC=
-H}${TARGE
->>                       --with-build-sysroot=3D${STAGING_DIR_TARGET}"
->>=20
->=20
-> This patch is truncated at the linewrap unfortunately :(
->=20
-> Cheers,
->=20
-> Richard
 
 
