@@ -1,50 +1,33 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <fabio@bertux.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 694C7E00B3A; Sun,  4 May 2014 19:27:25 -0700 (PDT)
+	id 42595E00B3A; Sun,  4 May 2014 20:12:51 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-0.8 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-	DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (raj.khem[at]gmail.com)
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.213.178 listed in list.dnswl.org]
-Received: from mail-ig0-f178.google.com (mail-ig0-f178.google.com
-	[209.85.213.178])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0D5A5E00B21
-	for <yocto@yoctoproject.org>; Sun,  4 May 2014 19:27:20 -0700 (PDT)
-Received: by mail-ig0-f178.google.com with SMTP id hl10so4157494igb.5
-	for <yocto@yoctoproject.org>; Sun, 04 May 2014 19:27:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-type;
-	bh=yTAzXwjJI7a3qDfv96/ESRK38tAHUIL7P18Bsypj7ag=;
-	b=OJV2jX4Uv5PGmQWAg3RWocazEbZgxR/kfUZoM8u5IpY93vQUrNbFfWOsIZ/Iwi7lQk
-	WlQWSZ01Xn0JQYk5TDSzpHVdu1fD9dihHP+bVg/i3IkUqD2KXaj1QJw1W6KQeVkcVPsg
-	do0H/ZbFncICkjNaYBbnZP9ziKxkrca4jva6HIaPFctxJrNqrp66gfGyuyJvM3sC6s0W
-	jJk+oa0PdIy/GZrqjSyT2Pl5oqg/0hTPBmGLDiCQBzAAyJ5rzCjOO+5J5L+oAOgwjxaj
-	e3iKqdOx88jT6N48hrKIZhW7MYEcBkv94H+p+TN5J8OllUyPBz5au/l3Yuxkiz8z2Qc1
-	RFGA==
-X-Received: by 10.50.30.167 with SMTP id t7mr20058101igh.17.1399256840007;
-	Sun, 04 May 2014 19:27:20 -0700 (PDT)
-MIME-Version: 1.0
-Received: by 10.50.74.228 with HTTP; Sun, 4 May 2014 19:26:49 -0700 (PDT)
-In-Reply-To: <145c9eda0c3.-6257502610317357460.4904635757040864643@bertux.com>
+X-Spam-Status: No, score=0.0 required=5.0 tests=HTML_MESSAGE autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: *  0.0 HTML_MESSAGE BODY: HTML included in message
+X-Greylist: delayed 47938 seconds by postgrey-1.32 at yocto-www;
+	Sun, 04 May 2014 20:12:39 PDT
+Received: from sender1.zohomail.com (sender1.zohomail.com [74.201.84.155])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B5E01E00B21
+	for <yocto@yoctoproject.org>; Sun,  4 May 2014 20:12:39 -0700 (PDT)
+Received: from mail.zoho.com by mx.zohomail.com
+	with SMTP id 1399259556907308.9477415161655;
+	Sun, 4 May 2014 20:12:36 -0700 (PDT)
+Date: Mon, 05 May 2014 00:12:36 -0300
+From: Fabio Berton <fabio@bertux.com>
+To: Khem Raj <raj.khem@gmail.com>
+Message-ID: <145ca595d1b.-5475895297793030920.-4677149822827285423@bertux.com>
+In-Reply-To: <CAMKF1sp7WC7Q7xwkY3k0Pkwcpv_3VYDmO=fKV+oRFJCBHZyyHw@mail.gmail.com>
 References: <145c7800870.-1835694984789055059.-6439308093863957623@bertux.com>
 	<CAMKF1sozckAboRv3sxuCbuYv1G5EYNk_O8wcbmSFMXphY6H8Ww@mail.gmail.com>
 	<145c9eda0c3.-6257502610317357460.4904635757040864643@bertux.com>
-From: Khem Raj <raj.khem@gmail.com>
-Date: Sun, 4 May 2014 19:26:49 -0700
-Message-ID: <CAMKF1sp7WC7Q7xwkY3k0Pkwcpv_3VYDmO=fKV+oRFJCBHZyyHw@mail.gmail.com>
-To: Fabio Berton <fabio@bertux.com>
+	<CAMKF1sp7WC7Q7xwkY3k0Pkwcpv_3VYDmO=fKV+oRFJCBHZyyHw@mail.gmail.com>
+MIME-Version: 1.0
+X-Priority: Medium
+User-Agent: Zoho Mail
+X-Mailer: Zoho Mail
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: PySide
 X-BeenThere: yocto@yoctoproject.org
@@ -58,32 +41,80 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 05 May 2014 02:27:25 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Mon, 05 May 2014 03:12:51 -0000
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_121959_1537556724.1399259556856"
 
-On Sun, May 4, 2014 at 6:09 PM, Fabio Berton <fabio@bertux.com> wrote:
-> I get this error http://pastebin.com/S5hyDvBd
+------=_Part_121959_1537556724.1399259556856
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
-/bin/sh: 1: shiboken: not found
-
-so as you are cross compiling here this package seems to be needed on
-build host. This seems to be provided by shiboken/pyside
-so you need to add a native package may be just adding
-
-BBCLASSEXTEND += "native" and adding DEPENDS += "pyside-native"  to
-pysize recipe is enough but there might be more needed
+Installing shiboken on my machine the fix the error, but I get this http://pastebin.com/J5GrFvdp.
+On line 169 the system didn't recognize a .so file.
 
 
->
-> ---- On Sun, 04 May 2014 22:04:10 -0300 Khem Raj <raj.khem@gmail.com> wrote
-> ----
->
-> On Sun, May 4, 2014 at 6:53 AM, Fabio Berton <fabio@bertux.com> wrote:
->> I need to run PySide and I can't compile any version of PySide. I'm using
->> this meta-pyside https://github.com/svolpe/meta-pyside. Does anyone knows
->> how I get PySide work on Yocto?
->
-> whats the error ?
->
->
+---- On Sun, 04 May 2014 23:26:49 -0300 Khem Raj&lt;raj.khem@gmail.com&gt; wrote ---- 
 
+
+On Sun, May 4, 2014 at 6:09 PM, Fabio Berton &lt;fabio@bertux.com&gt; wrote: 
+&gt; I get this error http://pastebin.com/S5hyDvBd 
+ 
+/bin/sh: 1: shiboken: not found 
+ 
+so as you are cross compiling here this package seems to be needed on 
+build host. This seems to be provided by shiboken/pyside 
+so you need to add a native package may be just adding 
+ 
+BBCLASSEXTEND += "native" and adding DEPENDS += "pyside-native" to 
+pysize recipe is enough but there might be more needed 
+ 
+ 
+&gt; 
+&gt; ---- On Sun, 04 May 2014 22:04:10 -0300 Khem Raj &lt;raj.khem@gmail.com&gt; wrote 
+&gt; ---- 
+&gt; 
+&gt; On Sun, May 4, 2014 at 6:53 AM, Fabio Berton &lt;fabio@bertux.com&gt; wrote: 
+&gt;&gt; I need to run PySide and I can't compile any version of PySide. I'm using 
+&gt;&gt; this meta-pyside https://github.com/svolpe/meta-pyside. Does anyone knows 
+&gt;&gt; how I get PySide work on Yocto? 
+&gt; 
+&gt; whats the error ? 
+&gt; 
+&gt; 
+
+
+
+------=_Part_121959_1537556724.1399259556856
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html><head>=
+<meta content=3D"text/html;charset=3DUTF-8" http-equiv=3D"Content-Type"></h=
+ead><body ><div style=3D'font-size:10pt;font-family:Verdana,Arial,Helvetica=
+,sans-serif;'>Installing shiboken on my machine the fix the error, but I ge=
+t this http://pastebin.com/J5GrFvdp.<br>On line 169 the system didn't recog=
+nize a .so file.<br><br><div id=3D"1"><br>---- On Sun, 04 May 2014 23:26:49=
+ -0300 <b>Khem Raj&lt;raj.khem@gmail.com&gt;</b> wrote ---- <br></div><br><=
+blockquote style=3D"border-left: 1px solid #0000FF; padding-left: 6px; marg=
+in:0 0 0 5px">On Sun, May 4, 2014 at 6:09 PM, Fabio Berton &lt;<a subj=3D""=
+ mailid=3D"fabio%40bertux.com" href=3D"mailto:fabio@bertux.com" target=3D"_=
+blank">fabio@bertux.com</a>&gt; wrote: <br>&gt; I get this error <a href=3D=
+"http://pastebin.com/S5hyDvBd" target=3D"_blank">http://pastebin.com/S5hyDv=
+Bd</a> <br> <br>/bin/sh: 1: shiboken: not found <br> <br>so as you are cros=
+s compiling here this package seems to be needed on <br>build host. This se=
+ems to be provided by shiboken/pyside <br>so you need to add a native packa=
+ge may be just adding <br> <br>BBCLASSEXTEND +=3D "native" and adding DEPEN=
+DS +=3D "pyside-native"  to <br>pysize recipe is enough but there might be =
+more needed <br> <br> <br>&gt; <br>&gt; ---- On Sun, 04 May 2014 22:04:10 -=
+0300 Khem Raj &lt;<a subj=3D"" mailid=3D"raj.khem%40gmail.com" href=3D"mail=
+to:raj.khem@gmail.com" target=3D"_blank">raj.khem@gmail.com</a>&gt; wrote <=
+br>&gt; ---- <br>&gt; <br>&gt; On Sun, May 4, 2014 at 6:53 AM, Fabio Berton=
+ &lt;<a subj=3D"" mailid=3D"fabio%40bertux.com" href=3D"mailto:fabio@bertux=
+.com" target=3D"_blank">fabio@bertux.com</a>&gt; wrote: <br>&gt;&gt; I need=
+ to run PySide and I can't compile any version of PySide. I'm using <br>&gt=
+;&gt; this meta-pyside <a href=3D"https://github.com/svolpe/meta-pyside" ta=
+rget=3D"_blank">https://github.com/svolpe/meta-pyside</a>. Does anyone know=
+s <br>&gt;&gt; how I get PySide work on Yocto? <br>&gt; <br>&gt; whats the =
+error ? <br>&gt; <br>&gt; <br></blockquote><br></div></body></html>
+
+------=_Part_121959_1537556724.1399259556856--
