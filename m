@@ -1,47 +1,43 @@
-Return-Path: <elizabeth.flanagan@intel.com>
+Return-Path: <james.woodyatt@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 5E159E00B7C; Mon,  5 May 2014 10:50:38 -0700 (PDT)
+	id 1C390E00BC1; Mon,  5 May 2014 16:00:20 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-0.7 required=5.0 tests=RCVD_IN_DNSWL_LOW
+X-Spam-Status: No, score=-5.0 required=5.0 tests=RCVD_IN_DNSWL_HI
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [209.85.220.180 listed in list.dnswl.org]
-Received: from mail-vc0-f180.google.com (mail-vc0-f180.google.com
-	[209.85.220.180])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0E992E00B62
-	for <yocto@yoctoproject.org>; Mon,  5 May 2014 10:50:36 -0700 (PDT)
-Received: by mail-vc0-f180.google.com with SMTP id hq16so8837073vcb.25
-	for <yocto@yoctoproject.org>; Mon, 05 May 2014 10:50:35 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:date
-	:message-id:subject:from:to:cc:content-type
-	:content-transfer-encoding;
-	bh=F6C2FacRK7cfabj0S+9lwkN9+zzCD+r92LU4LddmtUo=;
-	b=Oeta279vIgkGggCOP0Cwrb3QQ7m0SnKXgzFqU+3hxni1fLCudQGyND4s1uhffPXqwd
-	uLvV0PvQiCC52CG24mCNfRL3NG1+NzpDgeBG8HocIjZSlRMaisEgosUPRJg4gcwn5E/5
-	HUDOpKMQ0zeSxUYRMjRP+g5XUHKRXyPRcdRKvwKZDI3MMIQGCUu4S8HAbIydeDhDAt4Q
-	VCpI2m/rF2aVVMDEvN5/fH04mEhzA6q3EfTHsJwu79NC6fEd2Ig6KY+CrnocwpZXKgtd
-	qJ6jvoJ4TxNGTQMonUHDQFrdamrEJQWXIMPpdnoHVnqtuiUrOyssB13z1dN5I1CkUjDI
-	Q4Og==
-X-Gm-Message-State: ALoCoQnW80l4HlMvi/poRmqm6nhp7RAt2uSrJ2/cy71DBncjOrsHeV7J2+M3Wc3n+pP7R4vC+lLP
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [134.134.136.20 listed in list.dnswl.org]
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A6F88E00B5D
+	for <yocto@yoctoproject.org>; Mon,  5 May 2014 16:00:14 -0700 (PDT)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga101.jf.intel.com with ESMTP; 05 May 2014 16:00:13 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.97,992,1389772800"; d="scan'208";a="506373340"
+Received: from orsmsx102.amr.corp.intel.com ([10.22.225.129])
+	by orsmga001.jf.intel.com with ESMTP; 05 May 2014 16:00:08 -0700
+Received: from orsmsx105.amr.corp.intel.com ([169.254.4.80]) by
+	ORSMSX102.amr.corp.intel.com ([169.254.1.200]) with mapi id
+	14.03.0123.003; Mon, 5 May 2014 16:00:08 -0700
+From: "Woodyatt, James" <james.woodyatt@intel.com>
+To: Richard Purdie <richard.purdie@linuxfoundation.org>
+Thread-Topic: [yocto] [PATCH 1/1] dylan: fix C++ standard library headers on
+	OS X
+Thread-Index: AQHPZZF9y6Ed61iBiEeKazT6i7KYyJsuHmgAgAT3aAA=
+Date: Mon, 5 May 2014 23:00:08 +0000
+Message-ID: <0C2F47D8-E3E0-4FB1-8BEB-4FBAB54DF976@intel.com>
+References: <9B489023-F966-4C06-ACD4-A5028E46D5F1@intel.com>
+	<1399057794.12731.61.camel@ted>
+In-Reply-To: <1399057794.12731.61.camel@ted>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.232.24.28]
 MIME-Version: 1.0
-X-Received: by 10.220.59.65 with SMTP id k1mr4193414vch.22.1399312235406; Mon,
-	05 May 2014 10:50:35 -0700 (PDT)
-Received: by 10.52.164.111 with HTTP; Mon, 5 May 2014 10:50:35 -0700 (PDT)
-In-Reply-To: <CABcZANm6aOq19bag-1oWNs_88BhaN-dq6hS=PZ8EqPvJQveTFg@mail.gmail.com>
-References: <CF8CE2C0.8C7E%seth.bollinger@digi.com>
-	<CABcZANm6aOq19bag-1oWNs_88BhaN-dq6hS=PZ8EqPvJQveTFg@mail.gmail.com>
-Date: Mon, 5 May 2014 10:50:35 -0700
-Message-ID: <CAPhnLPDCn6-stkBr2rSvYNQbgg6Z7+ijmZLFHkiJHuXs8WL-Rw@mail.gmail.com>
-From: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
-To: Christopher Larson <clarson@kergoth.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>, "Bollinger,
-	Seth" <Seth.Bollinger@digi.com>
-Subject: Re: DL_DIR problems
+Cc: Yocto Project Main <yocto@yoctoproject.org>
+Subject: Re: [PATCH 1/1] dylan: fix C++ standard library headers on OS X
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -53,62 +49,57 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 05 May 2014 17:50:38 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Mon, 05 May 2014 23:00:20 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="Windows-1252"
+Content-ID: <0CF40E17E8208740A2DE5CCAD52BE6F5@intel.com>
 Content-Transfer-Encoding: quoted-printable
 
-On Mon, May 5, 2014 at 10:41 AM, Christopher Larson <clarson@kergoth.com> w=
-rote:
-> On Mon, May 5, 2014 at 4:40 AM, Bollinger, Seth <Seth.Bollinger@digi.com>
-> wrote:
->>
->> We=E2=80=99re trying to share a DL_DIR over NFS so all developers don=E2=
-=80=99t have to
->> re-download source files every time they want to do a clean build.
->> Unfortunately we=E2=80=99re running into problems with lock files that a=
-re left
->> behind by (sometimes) terminated processes.  This will block users who a=
-re
->> trying subsequent builds.  How are others approaching this problem?
->
->
-> One option would be to maintain an internal downloads mirror, either
-> populated by an autobuilder or by an rsync after engineer builds to the
-> server hosting it. There'd be duplication in local disk space, but you'd
-> avoid the NFS locking issues.
+Nice. I will resend, along with the one I just discovered for the meta-ming=
+w layer, which needs a similar fix for kconfig-frontends-native.
 
-This is similar how the project infrastructure works.
+=97
+james woodyatt <james.woodyatt@intel.com>
+Software Architect, New Devices Group
 
-nfs:/dl_dir
-nfs:/rsynced_dl_dir
+On May 2, 2014, at 12:09, Richard Purdie <richard.purdie@linuxfoundation.or=
+g> wrote:
 
-autobuilder uses the nfs:/dl_dir and a period rsync syncs to
-rsync_dl_dir. We can then use the rsync dir as our mirror. It ends up
-solving a few issues. If you don't want to run a full autobuilder,
-just a bitbake universe -c fetch on a cron job with all your layers
-would do it.
+> On Thu, 2014-05-01 at 23:02 +0000, Woodyatt, James wrote:
+>> commit 562fa987cea60d61c256195adce7e83bf1c1a8c9
+>> Author: james woodyatt <james.woodyatt@intel.com>
+>> Date:   Thu May 1 14:44:39 2014 -0700
+>>=20
+>>    Fix C++ standard library header directory configuration.
+>>=20
+>>    Remove the 4.2.1 directory from the --with-gxx-include-dir path provi=
+ded
+>>    to the configure script for GCC 4.7 in the cross-canadian build.
+>>=20
+>> diff --git a/recipes-devtools/gcc/gcc-cross-canadian_4.7.bbappend b/reci=
+pes-devt
+>> index 3fcc012..083b930 100644
+>> --- a/recipes-devtools/gcc/gcc-cross-canadian_4.7.bbappend
+>> +++ b/recipes-devtools/gcc/gcc-cross-canadian_4.7.bbappend
+>> @@ -4,7 +4,7 @@ INSANE_SKIP_${PN}_append_darwinsdk =3D " staticdev"
+>> LDFLAGS_darwinsdk =3D "${BUILDSDK_LDFLAGS} -L${libdir}/.."
+>>=20
+>> # Change gxx-include-dir
+>> -EXTRA_OECONF_PATHS_darwinsdk =3D "--with-gxx-include-dir=3D${SDKPATH}/s=
+ysroots/${TU
+>> +EXTRA_OECONF_PATHS_darwinsdk =3D "--with-gxx-include-dir=3D${SDKPATH}/s=
+ysroots/${TU
+>>                       --with-build-time-tools=3D${STAGING_DIR_NATIVE}${p=
+refix_nat
+>>                       --with-sysroot=3D${SDKPATH}/sysroots/${TUNE_PKGARC=
+H}${TARGE
+>>                       --with-build-sysroot=3D${STAGING_DIR_TARGET}"
+>>=20
+>=20
+> This patch is truncated at the linewrap unfortunately :(
+>=20
+> Cheers,
+>=20
+> Richard
 
--b
-
-
-> --
-> Christopher Larson
-> clarson at kergoth dot com
-> Founder - BitBake, OpenEmbedded, OpenZaurus
-> Maintainer - Tslib
-> Senior Software Engineer, Mentor Graphics
->
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
->
-
-
-
---=20
-Elizabeth Flanagan
-Yocto Project
-Build and Release
 
