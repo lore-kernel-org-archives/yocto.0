@@ -1,48 +1,45 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <vmartin@avaya.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 4B532E00A44; Mon,  5 May 2014 09:34:49 -0700 (PDT)
+	id 14C64E00A44; Mon,  5 May 2014 09:37:13 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-0.8 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-	DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (raj.khem[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.223.170 listed in list.dnswl.org]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-ie0-f170.google.com (mail-ie0-f170.google.com
-	[209.85.223.170])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3A5EEE003C7
-	for <yocto@yoctoproject.org>; Mon,  5 May 2014 09:34:44 -0700 (PDT)
-Received: by mail-ie0-f170.google.com with SMTP id rd18so8347553iec.15
-	for <yocto@yoctoproject.org>; Mon, 05 May 2014 09:34:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-type:content-transfer-encoding;
-	bh=aXd4d/n6t9XP7kxapJkD8p1euaeOUP646ICm5kgq71M=;
-	b=j7BAoNpozBSp21ic7y969n/CgFHozE4h+0nJCRcPVrKevQDJMiOioGSQvku8T4uWJW
-	piI1eNbz5Y19lxCWhobQURlG0OBiQwiXvIDIIv0Xlzq5+CYwO+IUU86kIwD0nYLg1DEf
-	V4V3+/YZreF1zXUxkDCLVZKG3zNKj/GNreL5Lu4WKR77iV+SjaxwAa8ocvQVBdszmmwF
-	QUDetZr4DXBVVIpy4hs80wTtIIY13LFzUAsedxucMv4/L94FajYr+teCauSuYXKtfXJS
-	svwP1g4qtusHjxv/u1K3OfYWD1iKT0kWcyBFRjSAmrDjUQnpqLBs5n+J6snN4ScUVhm9
-	4GUw==
-X-Received: by 10.42.136.130 with SMTP id u2mr8504981ict.51.1399307683740;
-	Mon, 05 May 2014 09:34:43 -0700 (PDT)
-MIME-Version: 1.0
-Received: by 10.50.74.228 with HTTP; Mon, 5 May 2014 09:34:13 -0700 (PDT)
-In-Reply-To: <30C2D590D16A5C46ADFE65219103779820B845A8@AZ-US1EXMB03.global.avaya.com>
+X-Spam-Status: No, score=0.0 required=5.0 tests=none autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: 
+X-Greylist: delayed 67 seconds by postgrey-1.32 at yocto-www;
+	Mon, 05 May 2014 09:37:11 PDT
+Received: from p-us1-iereast-outbound.us1.avaya.com
+	(p-us1-iereast-outbound.us1.avaya.com [135.11.29.13])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2887EE003C7
+	for <yocto@yoctoproject.org>; Mon,  5 May 2014 09:37:11 -0700 (PDT)
+X-IronPort-Anti-Spam-Filtered: true
+X-IronPort-Anti-Spam-Result: AgsFAJW8Z1PGmAcV/2dsb2JhbABZgmUhT1iCZ7oKGYc7GX8WdIIlAQEBAQMBAQEPERE6CwwEAgEIDQQEAQEBAgIGHQMCAgIfBgEKFAEICAEBBA4FCBqICwMRAQydGIpHnS4NhkIXgSqLEYFmFhsHBoJuNoEVBJZXagGIfoNyghmFXYM0gi8
+X-IronPort-AV: E=Sophos;i="4.97,989,1389762000"; d="scan'208";a="61740155"
+Received: from unknown (HELO co300216-co-erhwest-exch.avaya.com)
+	([198.152.7.21]) by p-us1-iereast-outbound.us1.avaya.com with ESMTP;
+	05 May 2014 12:36:03 -0400
+X-OutboundMail_SMTP: 1
+Received: from unknown (HELO AZ-US1EXHC01.global.avaya.com) ([135.11.85.12])
+	by co300216-co-erhwest-out.avaya.com with ESMTP/TLS/AES128-SHA;
+	05 May 2014 12:19:49 -0400
+Received: from AZ-US1EXMB03.global.avaya.com ([fe80::a5d3:ad50:5be9:1922]) by
+	AZ-US1EXHC01.global.avaya.com ([135.11.85.12]) with mapi id
+	14.03.0174.001; Mon, 5 May 2014 12:36:02 -0400
+From: "Vuille, Martin (Martin)" <vmartin@avaya.com>
+To: Khem Raj <raj.khem@gmail.com>
+Thread-Topic: [yocto] Migrating LDAT fs_final.sh to Yocto
+Thread-Index: Ac9oZm7EkUQLUgzqSqKg26dIjLxVtgAOvFuAAAhTuEA=
+Date: Mon, 5 May 2014 16:36:01 +0000
+Message-ID: <30C2D590D16A5C46ADFE65219103779820B8463D@AZ-US1EXMB03.global.avaya.com>
 References: <30C2D590D16A5C46ADFE65219103779820B845A8@AZ-US1EXMB03.global.avaya.com>
-From: Khem Raj <raj.khem@gmail.com>
-Date: Mon, 5 May 2014 09:34:13 -0700
-Message-ID: <CAMKF1sqYj4=8O3zZMGTdn3111-kRx3jb-oHp2Q9ODfUxjRC2-Q@mail.gmail.com>
-To: "Vuille, Martin (Martin)" <vmartin@avaya.com>
+	<CAMKF1sqYj4=8O3zZMGTdn3111-kRx3jb-oHp2Q9ODfUxjRC2-Q@mail.gmail.com>
+In-Reply-To: <CAMKF1sqYj4=8O3zZMGTdn3111-kRx3jb-oHp2Q9ODfUxjRC2-Q@mail.gmail.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [135.11.85.50]
+MIME-Version: 1.0
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: Migrating LDAT fs_final.sh to Yocto
 X-BeenThere: yocto@yoctoproject.org
@@ -56,36 +53,27 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 05 May 2014 16:34:49 -0000
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Mon, 05 May 2014 16:37:13 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-On Mon, May 5, 2014 at 6:34 AM, Vuille, Martin (Martin)
-<vmartin@avaya.com> wrote:
-> Migrating from LDAT to Yocto, and wondering whether
->
-> there is an equivalent to LDAT=E2=80=99s fs_final.sh script?
->
-
-Don't know what that is but you can use image post processing hooks in yoct=
-o
-to do tweaks to images. see IMAGE_POSTPROCESS_COMMAND
-
->
->
-> The objective is to do some post-processing on the
->
-> rootfs =E2=80=9Ctree=E2=80=9D before it is packaged into the UBIFS image.
->
->
->
-> MV
->
->
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
->
+RXhhY3RseSB3aGF0IEkgYW0gbG9va2luZyBmb3IuDQoNClRoYW5rcyENCk1WDQoNCj4gLS0tLS1P
+cmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJvbTogS2hlbSBSYWogW21haWx0bzpyYWoua2hlbUBn
+bWFpbC5jb21dDQo+IFNlbnQ6IE1heSAwNSwgMjAxNCAxMjozNCBQTQ0KPiBUbzogVnVpbGxlLCBN
+YXJ0aW4gKE1hcnRpbikNCj4gQ2M6IHlvY3RvQHlvY3RvcHJvamVjdC5vcmcNCj4gU3ViamVjdDog
+UmU6IFt5b2N0b10gTWlncmF0aW5nIExEQVQgZnNfZmluYWwuc2ggdG8gWW9jdG8NCj4gDQo+IE9u
+IE1vbiwgTWF5IDUsIDIwMTQgYXQgNjozNCBBTSwgVnVpbGxlLCBNYXJ0aW4gKE1hcnRpbikNCj4g
+PHZtYXJ0aW5AYXZheWEuY29tPiB3cm90ZToNCj4gPiBNaWdyYXRpbmcgZnJvbSBMREFUIHRvIFlv
+Y3RvLCBhbmQgd29uZGVyaW5nIHdoZXRoZXINCj4gPg0KPiA+IHRoZXJlIGlzIGFuIGVxdWl2YWxl
+bnQgdG8gTERBVOKAmXMgZnNfZmluYWwuc2ggc2NyaXB0Pw0KPiA+DQo+IA0KPiBEb24ndCBrbm93
+IHdoYXQgdGhhdCBpcyBidXQgeW91IGNhbiB1c2UgaW1hZ2UgcG9zdCBwcm9jZXNzaW5nIGhvb2tz
+IGluDQo+IHlvY3RvIHRvIGRvIHR3ZWFrcyB0byBpbWFnZXMuIHNlZSBJTUFHRV9QT1NUUFJPQ0VT
+U19DT01NQU5EDQo+IA0KPiA+DQo+ID4NCj4gPiBUaGUgb2JqZWN0aXZlIGlzIHRvIGRvIHNvbWUg
+cG9zdC1wcm9jZXNzaW5nIG9uIHRoZQ0KPiA+DQo+ID4gcm9vdGZzIOKAnHRyZWXigJ0gYmVmb3Jl
+IGl0IGlzIHBhY2thZ2VkIGludG8gdGhlIFVCSUZTIGltYWdlLg0KPiA+DQo+ID4NCj4gPg0KPiA+
+IE1WDQo+ID4NCj4gPg0KPiA+IC0tDQo+ID4gX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX18NCj4gPiB5b2N0byBtYWlsaW5nIGxpc3QNCj4gPiB5b2N0b0B5b2N0
+b3Byb2plY3Qub3JnDQo+ID4gaHR0cHM6Ly9saXN0cy55b2N0b3Byb2plY3Qub3JnL2xpc3RpbmZv
+L3lvY3RvDQo+ID4NCg==
 
