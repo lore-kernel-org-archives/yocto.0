@@ -1,44 +1,56 @@
-Return-Path: <obi@opendreambox.org>
+Return-Path: <Seth.Bollinger@digi.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id DA8E0E003C7; Fri,  2 May 2014 08:46:42 -0700 (PDT)
+	id 2DEBFE00B20; Mon,  5 May 2014 04:46:56 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=0.0 required=5.0 tests=none autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: 
-X-Greylist: delayed 481 seconds by postgrey-1.32 at yocto-www;
-	Fri, 02 May 2014 08:46:37 PDT
-Received: from mail.dream-property.net (mail.dream-property.net
-	[82.149.226.172])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6EC3BE003C7
-	for <yocto@yoctoproject.org>; Fri,  2 May 2014 08:46:37 -0700 (PDT)
-Received: from localhost (localhost [127.0.0.1])
-	by mail.dream-property.net (Postfix) with ESMTP id 3277B314BDB5;
-	Fri,  2 May 2014 17:38:34 +0200 (CEST)
-X-Virus-Scanned: Debian amavisd-new at mail.dream-property.net
-Received: from mail.dream-property.net ([127.0.0.1])
-	by localhost (mail.dream-property.net [127.0.0.1]) (amavisd-new,
-	port 10024)
-	with LMTP id kNeSH7KFX-S7; Fri,  2 May 2014 17:38:25 +0200 (CEST)
-Received: from [10.200.6.10] (unknown [82.149.226.166])
-	(using TLSv1 with cipher ECDHE-RSA-AES128-SHA (128/128 bits))
-	(No client certificate requested)
-	by mail.dream-property.net (Postfix) with ESMTPSA id BD6D2314BDB4;
-	Fri,  2 May 2014 17:38:24 +0200 (CEST)
-Message-ID: <5363BBEF.4090706@opendreambox.org>
-Date: Fri, 02 May 2014 17:38:23 +0200
-From: Andreas Oberritter <obi@opendreambox.org>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:24.0) Gecko/20100101 Thunderbird/24.4.0
+X-Spam-Status: No, score=-0.7 required=5.0 tests=RCVD_IN_DNSWL_LOW,
+	UNPARSEABLE_RELAY autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [216.82.254.106 listed in list.dnswl.org]
+	* 0.0 UNPARSEABLE_RELAY Informational: message has unparseable relay
+	lines
+X-Greylist: delayed 411 seconds by postgrey-1.32 at yocto-www;
+	Mon, 05 May 2014 04:46:55 PDT
+Received: from mail1.bemta7.messagelabs.com (mail1.bemta7.messagelabs.com
+	[216.82.254.106])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A8FC4E00975
+	for <yocto@yoctoproject.org>; Mon,  5 May 2014 04:46:54 -0700 (PDT)
+Received: from [216.82.254.195:22792] by server-10.bemta-7.messagelabs.com id
+	4D/82-15082-29877635; Mon, 05 May 2014 11:40:02 +0000
+X-Env-Sender: Seth.Bollinger@digi.com
+X-Msg-Ref: server-7.tower-200.messagelabs.com!1399290002!13502602!1
+X-Originating-IP: [66.77.174.13]
+X-StarScan-Received: 
+X-StarScan-Version: 6.11.3; banners=-,-,-
+X-VirusChecked: Checked
+Received: (qmail 31154 invoked from network); 5 May 2014 11:40:02 -0000
+Received: from mail.mx3.digi.com (HELO mcl-sms-ns1.digi.com) (66.77.174.13)
+	by server-7.tower-200.messagelabs.com with RC4-SHA encrypted SMTP;
+	5 May 2014 11:40:02 -0000
+Received: from MTK-SMS-XCH02.digi.com (10.10.8.196) by mail.mx1.digi.com
+	(172.16.1.13) with Microsoft SMTP Server (TLS) id 8.3.342.0;
+	Mon, 5 May 2014 06:40:16 -0500
+Received: from MTK-SMS-XCH01.digi.com ([fe80::cca7:5299:c88e:1c40]) by
+	MTK-SMS-XCH02.digi.com ([fe80::4960:cfbf:ad5e:3cdb%20]) with mapi id
+	14.03.0174.001; Mon, 5 May 2014 06:40:01 -0500
+From: "Bollinger, Seth" <Seth.Bollinger@digi.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: DL_DIR problems
+Thread-Index: AQHPaFa/OWC9df7F40Oc5Ndjet7N6w==
+Date: Mon, 5 May 2014 11:40:00 +0000
+Message-ID: <CF8CE2C0.8C7E%seth.bollinger@digi.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+user-agent: Microsoft-MacOutlook/14.4.1.140326
+x-originating-ip: [10.10.32.60]
+x-kse-antivirus-interceptor-info: scan successful
+x-kse-antivirus-info: Clean
 MIME-Version: 1.0
-To: Tarek El-Sherbiny <tarek.elsherbiny@gmail.com>, yocto@yoctoproject.org, 
-	"openembedded-core@lists.openembedded.org"
-	<openembedded-core@lists.openembedded.org>
-References: <CAB3sqtZbtJGsh_jMUnvJAyFmXJVHZT2bvZ=DJ0N-fSB-VYu4Tg@mail.gmail.com>
-In-Reply-To: <CAB3sqtZbtJGsh_jMUnvJAyFmXJVHZT2bvZ=DJ0N-fSB-VYu4Tg@mail.gmail.com>
 X-Mailman-Approved-At: Mon, 05 May 2014 08:05:44 -0700
-Subject: Re: [OE-core] DNS when using Static IP
+Subject: DL_DIR problems
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -50,43 +62,21 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 02 May 2014 15:46:42 -0000
-Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Mon, 05 May 2014 11:46:56 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="Windows-1252"
+Content-ID: <F596E70058C587459743FBF20981E8C2@digi.com>
+Content-Transfer-Encoding: quoted-printable
 
-Hello Tarek,
+Hello All,
 
-On 02.05.2014 13:04, Tarek El-Sherbiny wrote:
-> Hi.
-> 
-> I'm trying to set my IP config to a static address.
-> 
-> iface eth0 inet static
->      address 192.168.55.45
->      network 192.168.55.0
->      netmask 255.255.255.0
->      broadcast 192.168.55.255
->      gateway 192.168.55.1
->      dns-nameservers 192.168.10.2
+We=92re trying to share a DL_DIR over NFS so all developers don=92t have to=
+ re-download source files every time they want to do a clean build.  Unfort=
+unately we=92re running into problems with lock files that are left behind =
+by (sometimes) terminated processes.  This will block users who are trying =
+subsequent builds.  How are others approaching this problem?
 
-FWIW, in Debian-based systems, which is where ifupdown comes from, you
-need to install the resolvconf package in order to handle
-dns-nameservers entries. I don't know whether that's compatible with
-busybox' implementation of ifupdown, though.
+Thanks,
 
-Regards,
-Andreas
-
-> 
-> But I don't get the DNS server address to be included in /etc/resolv.conf
-> 
-> If I run in dchp mode, then the resolv.conf is updated with my DNS address.
-> Is there something I'm missing here in my setup?
-> 
-> 
-> -- 
-> /Tarek/
-> 
-> 
-
+Seth
 
