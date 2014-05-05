@@ -1,47 +1,44 @@
-Return-Path: <vmartin@avaya.com>
+Return-Path: <elizabeth.flanagan@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 14C64E00A44; Mon,  5 May 2014 09:37:13 -0700 (PDT)
+	id 4DB87E00A44; Mon,  5 May 2014 09:50:07 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=0.0 required=5.0 tests=none autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: 
-X-Greylist: delayed 67 seconds by postgrey-1.32 at yocto-www;
-	Mon, 05 May 2014 09:37:11 PDT
-Received: from p-us1-iereast-outbound.us1.avaya.com
-	(p-us1-iereast-outbound.us1.avaya.com [135.11.29.13])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2887EE003C7
-	for <yocto@yoctoproject.org>; Mon,  5 May 2014 09:37:11 -0700 (PDT)
-X-IronPort-Anti-Spam-Filtered: true
-X-IronPort-Anti-Spam-Result: AgsFAJW8Z1PGmAcV/2dsb2JhbABZgmUhT1iCZ7oKGYc7GX8WdIIlAQEBAQMBAQEPERE6CwwEAgEIDQQEAQEBAgIGHQMCAgIfBgEKFAEICAEBBA4FCBqICwMRAQydGIpHnS4NhkIXgSqLEYFmFhsHBoJuNoEVBJZXagGIfoNyghmFXYM0gi8
-X-IronPort-AV: E=Sophos;i="4.97,989,1389762000"; d="scan'208";a="61740155"
-Received: from unknown (HELO co300216-co-erhwest-exch.avaya.com)
-	([198.152.7.21]) by p-us1-iereast-outbound.us1.avaya.com with ESMTP;
-	05 May 2014 12:36:03 -0400
-X-OutboundMail_SMTP: 1
-Received: from unknown (HELO AZ-US1EXHC01.global.avaya.com) ([135.11.85.12])
-	by co300216-co-erhwest-out.avaya.com with ESMTP/TLS/AES128-SHA;
-	05 May 2014 12:19:49 -0400
-Received: from AZ-US1EXMB03.global.avaya.com ([fe80::a5d3:ad50:5be9:1922]) by
-	AZ-US1EXHC01.global.avaya.com ([135.11.85.12]) with mapi id
-	14.03.0174.001; Mon, 5 May 2014 12:36:02 -0400
-From: "Vuille, Martin (Martin)" <vmartin@avaya.com>
-To: Khem Raj <raj.khem@gmail.com>
-Thread-Topic: [yocto] Migrating LDAT fs_final.sh to Yocto
-Thread-Index: Ac9oZm7EkUQLUgzqSqKg26dIjLxVtgAOvFuAAAhTuEA=
-Date: Mon, 5 May 2014 16:36:01 +0000
-Message-ID: <30C2D590D16A5C46ADFE65219103779820B8463D@AZ-US1EXMB03.global.avaya.com>
-References: <30C2D590D16A5C46ADFE65219103779820B845A8@AZ-US1EXMB03.global.avaya.com>
-	<CAMKF1sqYj4=8O3zZMGTdn3111-kRx3jb-oHp2Q9ODfUxjRC2-Q@mail.gmail.com>
-In-Reply-To: <CAMKF1sqYj4=8O3zZMGTdn3111-kRx3jb-oHp2Q9ODfUxjRC2-Q@mail.gmail.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [135.11.85.50]
+X-Spam-Status: No, score=-0.7 required=5.0 tests=RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [209.85.220.181 listed in list.dnswl.org]
+Received: from mail-vc0-f181.google.com (mail-vc0-f181.google.com
+	[209.85.220.181])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DDF2DE003C7
+	for <yocto@yoctoproject.org>; Mon,  5 May 2014 09:50:02 -0700 (PDT)
+Received: by mail-vc0-f181.google.com with SMTP id hy4so8830466vcb.40
+	for <yocto@yoctoproject.org>; Mon, 05 May 2014 09:50:02 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:date
+	:message-id:subject:from:to:cc:content-type;
+	bh=Hg75UNuYiCm2VABY4emidHPqMMuhpqupjQ8v8x2W3Nc=;
+	b=Kpa+BXqAeXe47jerT/Sur0AcB/wd8F/579dw7JDPD88LtBCKHTWF9A2lHSkxf7ADDM
+	Jap8srqWZ40A+HdD8A/KYsMoAgeHj6TkIY/yz9fQiKrUVyml4ty0mMLQbAh+bV3T5uU8
+	OLh4tPN58S3tOrVeJiqQt2WAIafVFdR3E+wB6RojvPW2V2v4ei7euq0dYAP3KbKh3jbT
+	7UXrry931nGgFOg2vkTBzpfGNZUkw4z6z49na4uFJMX7cPatLshw6F7rIxm7SLekRBzb
+	wPYXnjdbhwpu/jC02CuUBSv00zNKm7SQPzci4OXn2d9TmPdJeB3LubmdseJSsJZRizK8
+	yfEQ==
+X-Gm-Message-State: ALoCoQnRrh9HqijPevmDn53/kEKCU8sIR7MVc8eqWtW+KmGAS6vWJ3Kr57QfN1JbSecp8b1Xe45C
 MIME-Version: 1.0
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Migrating LDAT fs_final.sh to Yocto
+X-Received: by 10.58.143.72 with SMTP id sc8mr999700veb.46.1399308602067; Mon,
+	05 May 2014 09:50:02 -0700 (PDT)
+Received: by 10.52.164.111 with HTTP; Mon, 5 May 2014 09:50:01 -0700 (PDT)
+In-Reply-To: <CAPphmgbrwfYffyF6KpKo+0C2VL5BQ4vbnH8wLv1ZKw0Rz2uo4A@mail.gmail.com>
+References: <CAPphmgbrwfYffyF6KpKo+0C2VL5BQ4vbnH8wLv1ZKw0Rz2uo4A@mail.gmail.com>
+Date: Mon, 5 May 2014 09:50:01 -0700
+Message-ID: <CAPhnLPDRt_XYnm_jcRAUY7x2QT8gVgc_smr0Mu-9FnfjbyD0sw@mail.gmail.com>
+From: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
+To: Jate S <jatedev@gmail.com>
+Cc: Yocto Project <yocto@yoctoproject.org>
+Subject: Re: [AB] PublishLayerTarballs "git archives" the wrong directory
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -53,27 +50,46 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 05 May 2014 16:37:13 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+X-List-Received-Date: Mon, 05 May 2014 16:50:07 -0000
+Content-Type: text/plain; charset=UTF-8
 
-RXhhY3RseSB3aGF0IEkgYW0gbG9va2luZyBmb3IuDQoNClRoYW5rcyENCk1WDQoNCj4gLS0tLS1P
-cmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJvbTogS2hlbSBSYWogW21haWx0bzpyYWoua2hlbUBn
-bWFpbC5jb21dDQo+IFNlbnQ6IE1heSAwNSwgMjAxNCAxMjozNCBQTQ0KPiBUbzogVnVpbGxlLCBN
-YXJ0aW4gKE1hcnRpbikNCj4gQ2M6IHlvY3RvQHlvY3RvcHJvamVjdC5vcmcNCj4gU3ViamVjdDog
-UmU6IFt5b2N0b10gTWlncmF0aW5nIExEQVQgZnNfZmluYWwuc2ggdG8gWW9jdG8NCj4gDQo+IE9u
-IE1vbiwgTWF5IDUsIDIwMTQgYXQgNjozNCBBTSwgVnVpbGxlLCBNYXJ0aW4gKE1hcnRpbikNCj4g
-PHZtYXJ0aW5AYXZheWEuY29tPiB3cm90ZToNCj4gPiBNaWdyYXRpbmcgZnJvbSBMREFUIHRvIFlv
-Y3RvLCBhbmQgd29uZGVyaW5nIHdoZXRoZXINCj4gPg0KPiA+IHRoZXJlIGlzIGFuIGVxdWl2YWxl
-bnQgdG8gTERBVOKAmXMgZnNfZmluYWwuc2ggc2NyaXB0Pw0KPiA+DQo+IA0KPiBEb24ndCBrbm93
-IHdoYXQgdGhhdCBpcyBidXQgeW91IGNhbiB1c2UgaW1hZ2UgcG9zdCBwcm9jZXNzaW5nIGhvb2tz
-IGluDQo+IHlvY3RvIHRvIGRvIHR3ZWFrcyB0byBpbWFnZXMuIHNlZSBJTUFHRV9QT1NUUFJPQ0VT
-U19DT01NQU5EDQo+IA0KPiA+DQo+ID4NCj4gPiBUaGUgb2JqZWN0aXZlIGlzIHRvIGRvIHNvbWUg
-cG9zdC1wcm9jZXNzaW5nIG9uIHRoZQ0KPiA+DQo+ID4gcm9vdGZzIOKAnHRyZWXigJ0gYmVmb3Jl
-IGl0IGlzIHBhY2thZ2VkIGludG8gdGhlIFVCSUZTIGltYWdlLg0KPiA+DQo+ID4NCj4gPg0KPiA+
-IE1WDQo+ID4NCj4gPg0KPiA+IC0tDQo+ID4gX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX18NCj4gPiB5b2N0byBtYWlsaW5nIGxpc3QNCj4gPiB5b2N0b0B5b2N0
-b3Byb2plY3Qub3JnDQo+ID4gaHR0cHM6Ly9saXN0cy55b2N0b3Byb2plY3Qub3JnL2xpc3RpbmZv
-L3lvY3RvDQo+ID4NCg==
+On Fri, May 2, 2014 at 1:16 PM, Jate S <jatedev@gmail.com> wrote:
+> I am running off of the master branch.
+>
+> I hope this log message is readable. The key is to know that I have a
+> meta-oe repo in the build directory and that the last line shows it's
+> running in build instead of build/meta-oe.
+>
+>  git archive --format=tar HEAD
+> --prefix=meta-oe-40e0f371f3eb1628655c484feac0cebf810737b4/ | bzip2 -c
+>> meta-oe-40e0f371f3eb1628655c484feac0cebf810737b4.tar.bz2; md5sum
+> meta-oe-40e0f371f3eb1628655c484feac0cebf810737b4.tar.bz2 >>
+> meta-oe-40e0f371f3eb1628655c484feac0cebf810737b4.tar.bz2.md5sum; mkdir
+> -p /home/jate/tmp/yab/publish/builds/qemux86/20140501-1; rsync -av
+> meta-oe-40e0f371f3eb1628655c484feac0cebf810737b4.tar.bz2*
+> /home/jate/tmp/yab/publish/builds/qemux86/20140501-1
+>  in dir /home/jate/yocto-autobuilder/yocto-slave/qemux86/build
+> (timeout 100000 secs)
+>
+> I think that it should be changing directory to meta-oe, but the code
+> is just missing that. This happens with all the other repourl's in my
+> config too. The generated tarballs are of the same size (of poky).
+
+You are correct. Patch in the works.
+
+-b
+
+>
+>
+> Cheers
+>
+>
+> - Jate S.
+
+
+
+-- 
+Elizabeth Flanagan
+Yocto Project
+Build and Release
 
