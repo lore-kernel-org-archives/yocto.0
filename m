@@ -1,37 +1,51 @@
-Return-Path: <paul.eggleton@linux.intel.com>
+Return-Path: <nickdademo@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id C5FA8E00480; Tue,  6 May 2014 02:38:27 -0700 (PDT)
+	id CE6E3E00B7A; Tue,  6 May 2014 04:25:13 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-5.0 required=5.0 tests=RCVD_IN_DNSWL_HI
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [192.55.52.88 listed in list.dnswl.org]
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 64785E00480
-	for <yocto@yoctoproject.org>; Tue,  6 May 2014 02:38:17 -0700 (PDT)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga101.fm.intel.com with ESMTP; 06 May 2014 02:38:17 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.97,996,1389772800"; d="scan'208";a="534223529"
-Received: from kcathuko-mobl.gar.corp.intel.com (HELO
-	peggleto-mobl5.ger.corp.intel.com) ([10.252.122.115])
-	by fmsmga002.fm.intel.com with ESMTP; 06 May 2014 02:38:15 -0700
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: Bob Feretich <bob.feretich@rafresearch.com>, "Rifenbark,
-	Scott M" <scott.m.rifenbark@intel.com>
-Date: Tue, 06 May 2014 10:38:11 +0100
-Message-ID: <14430763.86LsjAOQil@peggleto-mobl5.ger.corp.intel.com>
-Organization: Intel Corporation
-User-Agent: KMail/4.12.5 (Linux/3.14.2-200.fc20.x86_64; KDE/4.12.4; x86_64; ; )
-In-Reply-To: <41DEA4B02DBDEF40A0F3B6D0DDB1237983F962F9@ORSMSX101.amr.corp.intel.com>
-References: <53682429.6070103@rafresearch.com>
-	<41DEA4B02DBDEF40A0F3B6D0DDB1237983F962F9@ORSMSX101.amr.corp.intel.com>
-MIME-Version: 1.0
-Cc: yocto@yoctoproject.org
-Subject: Re: Definition of Yocto tasks
+X-Spam-Status: No, score=-0.1 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+	DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (nickdademo[at]gmail.com)
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.192.178 listed in list.dnswl.org]
+Received: from mail-pd0-f178.google.com (mail-pd0-f178.google.com
+	[209.85.192.178])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 88B05E00480
+	for <yocto@yoctoproject.org>; Tue,  6 May 2014 04:25:08 -0700 (PDT)
+Received: by mail-pd0-f178.google.com with SMTP id r10so5465603pdi.9
+	for <yocto@yoctoproject.org>; Tue, 06 May 2014 04:25:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=from:to:cc:subject:date:message-id;
+	bh=RTpYchFTEIxVbRqADsOoPxztOXGQEe3/ra9v/Xw2zoM=;
+	b=qK6bfePrwoyCOQIeNU0uzumAr8Ws3CoUA6fi4E/5IpxwPVFgvMTenwNxWiE79HLrLa
+	qyk51hGi8SiiZ++31l9aCcXR8qoBTJzlS5WsOxnVxTrxpzfuc+WDl2+AKR2WDNWQTYlO
+	C2iNAeBUZdk7FDIEP4/bXBk3xSJPFXyoXS4W4/Zg7F6PxfZuZWoXOLrsRYlu8qVpsfPq
+	MyVdMlW1fczO0zZgqNmzi1Nnt7efkbwxUNv7sUR1wnE9wOtvi4KnqQbG18w35qxTDQlh
+	acBYTbvjME7LD9zTeRbPfjKeIPmMKTfbCl/3sY74WF6kuqMMQcTMc54BgJEbVLdyuuzk
+	Hx3g==
+X-Received: by 10.66.249.233 with SMTP id yx9mr5293573pac.3.1399375508030;
+	Tue, 06 May 2014 04:25:08 -0700 (PDT)
+Received: from localhost.localdomain
+	(d122-111-84-3.meb803.vic.optusnet.com.au. [122.111.84.3])
+	by mx.google.com with ESMTPSA id xr9sm95226365pab.5.2014.05.06.04.25.05
+	for <multiple recipients>
+	(version=TLSv1.1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
+	Tue, 06 May 2014 04:25:07 -0700 (PDT)
+From: Nick D'Ademo <nickdademo@gmail.com>
+To: yocto@yoctoproject.org
+Date: Tue,  6 May 2014 21:24:40 +1000
+Message-Id: <1399375480-20211-1-git-send-email-nickdademo@gmail.com>
+X-Mailer: git-send-email 1.7.9.5
+Subject: [meta-security][PATCH] nmap: inherit autotools-brokensep to allow B=S build. Signed-off-by: Nick D'Ademo <nickdademo@gmail.com>
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,109 +57,34 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 06 May 2014 09:38:27 -0000
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Tue, 06 May 2014 11:25:13 -0000
 
-On Tuesday 06 May 2014 06:47:08 Rifenbark, Scott M wrote:
-> >-----Original Message-----
-> >From: yocto-bounces@yoctoproject.org [mailto:yocto-
-> >bounces@yoctoproject.org] On Behalf Of Bob Feretich
-> >Sent: Monday, May 05, 2014 4:52 PM
-> >To: yocto@yoctoproject.org
-> >Subject: [yocto] Definition of Yocto tasks
-> >
-> >Is there a document that provides a detailed definition of what each these
-> >tasks do?
-> >Yocto, OE, and bitbake manuals tell us how to command a specific task to be
-> >run, but not what they do.
-> >
-> >The task name provides a good hint sometimes, but often that is not enough.
-> >Users shouldn't have to read the python code for this information. These
-> >descriptions should be a part of the yocto manual.
-> >
-> >Sections 5.3.4 to 5.3.11 of the Yocto mega-manual provide a good overview
-> >of some of these tasks in the context of a workflow, but doesn't mention
-> >most of these tasks and doesn't go into enough detail on the tasks it
-> >discusses.
-> >
-> >It wouldn't be appropriate to add more detail at that point in the manual,
-> >but it would be appropriate to include details regarding all of the tasks
-> >in an appendix.
-> >
-> >Examples...
-> >The manual states that do_fetch fetches source, but doesn't state that when
-> >git is used whether it performs a pull, fetch, or clone. What are the
-> >common failure conditions of do_fetch? And what should the user do to fix
-> >the problem?
-> >
-> >do_build is mentioned a few times, but there is no reference to it being
-> >the default task or what tasks are invoked by do_build and which are
-> >omitted.
-> >
-> >do_rm_work and do_wm_work_all are not mentioned at all.
-> >
-> >Result of listtasks:
-> >do_fetchall
-> >do_build
-> >do_devshell
-> >do_package_write_ipk
-> >do_cleansstate
-> >do_savedefconfig
-> >do_uboot_mkimage
-> >do_sizecheck
-> >do_strip
-> >do_packagedata_setscene
-> >do_configure
-> >do_clean
-> >do_deploy_setscene
-> >do_cleanall
-> >do_populate_lic
-> >do_populate_sysroot
-> >do_devicetree_image
-> >do_deploy
-> >do_menuconfig
-> >do_patch
-> >do_bundle_initramfs
-> >do_packagedata
-> >do_listtasks
-> >do_compile
-> >do_package_setscene
-> >do_populate_lic_setscene
-> >do_fetch
-> >do_checkuri
-> >do_compile_kernelmodules
-> >do_package_write_ipk_setscene
-> >do_package_write
-> >do_rm_work
-> >do_package
-> >do_unpack
-> >do_install
-> >do_checkuriall
-> >do_populate_sysroot_setscene
-> >do_rm_work_all
-> >
-> >I don't have the knowledge to create such an appendix, but I volunteer to
-> >be a proofreader.
->
-> An appendix for a reference of these tasks seems like a good idea.
+---
+ recipes-security/nmap/nmap_6.25.bb |    5 ++---
+ 1 file changed, 2 insertions(+), 3 deletions(-)
 
-FYI, you may already have seen it but we have a bit of coverage for the common
-tasks in the following section of the manual:
-
-  http://www.yoctoproject.org/docs/current/ref-manual/ref-manual.html#closer-look
-
-If we wanted to add an appendix to list them all (and it might be worth us
-doing so) a good starting point would be the task descriptions in
-documentation.conf:
-
-  http://cgit.openembedded.org/openembedded-core/tree/meta/conf/documentation.conf
-
-Cheers,
-Paul
-
+diff --git a/recipes-security/nmap/nmap_6.25.bb b/recipes-security/nmap/nmap_6.25.bb
+index aff5c63..0c70fd3 100644
+--- a/recipes-security/nmap/nmap_6.25.bb
++++ b/recipes-security/nmap/nmap_6.25.bb
+@@ -11,7 +11,7 @@ SRC_URI = "http://nmap.org/dist/${PN}-${PV}.tar.bz2 \
+ SRC_URI[md5sum] = "fcc80f94ff3adcb11eedf91092ea6f5e"
+ SRC_URI[sha256sum] = "3349cc6d36b86b95ca2b8075d16615a3a598cef494920d6652f9a8bf9f7660b5"
+ 
+-inherit autotools
++inherit autotools-brokensep
+ 
+ DEPENDS = "libpcap"
+ 
+@@ -20,5 +20,4 @@ EXTRA_OECONF = "--without-liblua --without-zenmap --without-subversion --with-pc
+ do_configure() {
+     autoconf
+     oe_runconf
+-}
+-
++}
+\ No newline at end of file
 -- 
+1.7.9.5
 
-Paul Eggleton
-Intel Open Source Technology Centre
 
