@@ -1,31 +1,50 @@
-Return-Path: <sgw@linux.intel.com>
+Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id E9524E00B1E; Tue,  6 May 2014 12:28:36 -0700 (PDT)
+	id 1C714E00B1E; Tue,  6 May 2014 12:36:03 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-5.0 required=5.0 tests=RCVD_IN_DNSWL_HI
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [192.55.52.93 listed in list.dnswl.org]
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C8C1EE00975
-	for <yocto@yoctoproject.org>; Tue,  6 May 2014 12:28:30 -0700 (PDT)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga102.fm.intel.com with ESMTP; 06 May 2014 12:28:30 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.97,998,1389772800"; d="scan'208";a="534648563"
-Received: from unknown (HELO [10.255.12.214]) ([10.255.12.214])
-	by fmsmga002.fm.intel.com with ESMTP; 06 May 2014 12:28:30 -0700
-Message-ID: <536937DE.2020705@linux.intel.com>
-Date: Tue, 06 May 2014 12:28:30 -0700
-From: Saul Wold <sgw@linux.intel.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:24.0) Gecko/20100101 Thunderbird/24.4.0
+X-Spam-Status: No, score=-0.8 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+	DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (raj.khem[at]gmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.213.182 listed in list.dnswl.org]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-ig0-f182.google.com (mail-ig0-f182.google.com
+	[209.85.213.182])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 45667E00975
+	for <yocto@yoctoproject.org>; Tue,  6 May 2014 12:35:51 -0700 (PDT)
+Received: by mail-ig0-f182.google.com with SMTP id uy17so113319igb.9
+	for <yocto@yoctoproject.org>; Tue, 06 May 2014 12:35:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-type;
+	bh=KlPyRUSQmIiwylUWKWZEK55LEHN/0MmfGmZbIIYSLRw=;
+	b=cx9zc+q42fy4vJcqu8QtUXHvsxNOjE91vDiwJXykRDpS3KYYXEbO7NHBEjApd8nqCB
+	FdaSA6ghYeqqB8+4vu32zKoUowGDrjqcI40lqLrlwj+OaiUTgv4aaB+EHjiovtzpVwqu
+	olAlQ4J2EeDZqWTKEGmwc5zvuf/Hi8z0Mvxjwt+sFmfDEb5GGCe0ukQnPoJNHsg4UWgc
+	DOzy3hO3JBvUpwJ00qVZ8stsSf6kCpQQJ/LM2tQfBLqBfqfGsY4bb3I1r7ViAX8KD4PO
+	izKQquC0gxusc+yP1Crkprnovo3nfYK2BV+DrESCJ2nGNBGt1PrdgFT+RLWXVONMnxP5
+	EfIw==
+X-Received: by 10.50.43.225 with SMTP id z1mr34642957igl.29.1399404950759;
+	Tue, 06 May 2014 12:35:50 -0700 (PDT)
 MIME-Version: 1.0
-To: Yocto Project Discussion <yocto@yoctoproject.org>
-Subject: Asia Yocto Project Tech Call Meeting
+Received: by 10.50.74.228 with HTTP; Tue, 6 May 2014 12:35:20 -0700 (PDT)
+In-Reply-To: <536937DE.2020705@linux.intel.com>
+References: <536937DE.2020705@linux.intel.com>
+From: Khem Raj <raj.khem@gmail.com>
+Date: Tue, 6 May 2014 12:35:20 -0700
+Message-ID: <CAMKF1spdERsg1=p0nFPKW0Gc_fwNN4OOcHdz1jvvjz=YGxjVrw@mail.gmail.com>
+To: Saul Wold <sgw@linux.intel.com>
+Cc: Yocto Project Discussion <yocto@yoctoproject.org>
+Subject: Re: Asia Yocto Project Tech Call Meeting
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,54 +56,13 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 06 May 2014 19:28:37 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Tue, 06 May 2014 19:36:03 -0000
+Content-Type: text/plain; charset=UTF-8
 
+On Tue, May 6, 2014 at 12:28 PM, Saul Wold <sgw@linux.intel.com> wrote:
+> Dial-in number: +1 916 356-2663
+> Bridge #: 1
+> Passcode: 5000157
 
-Folks,
-
-We have folks located around the world, currently we have have one Tech 
-Team meeting on Tuesday Morning (US Time) to coordinate with the 
-European afternoon.
-
-I will host a Asia Tech Call weekly initially
-
-The agenda will be to discuss Status of the Yocto Project and address 
-any technical issues people might have.
-
-First meeting will be this week 5/7 US Evening & 5/8 Asia Morning
-
-Conference date/start time:
-Wednesday: 19:30 Pacific Time
-Thursday: 02:30 UTC
-           10:30 Beijing
-           11:30 Tokyo
-
-
-Agenda:
-
-* Opens collection
-* Engineering Status
-   - Yocto 1.7
-   - Yocto 1.6.1
-   - Yocto 1.5.2
-https://wiki.yoctoproject.org/wiki/Yocto_Project_v1.7_Status
-
-* Opens - 10 min
-
-* Team Sharing / Technical Discussion
-
-Dial-in number: +1 916 356-2663
-Bridge #: 1
-Passcode: 5000157
-
-
--- 
-     Sau!
-
-Saul Wold
-Yocto Component Wrangler @ Intel
-Yocto Project / Poky Build System
-
+shouldn't there be a dialin number local to Asian regions as well ?
 
