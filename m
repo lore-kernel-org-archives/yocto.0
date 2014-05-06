@@ -1,43 +1,52 @@
-Return-Path: <james.woodyatt@intel.com>
+Return-Path: <diego.sueiro@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 1137EE00B1E; Tue,  6 May 2014 11:34:18 -0700 (PDT)
+	id 226DFE00A44; Tue,  6 May 2014 11:34:51 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-5.0 required=5.0 tests=RCVD_IN_DNSWL_HI
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [134.134.136.24 listed in list.dnswl.org]
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AFABCE00975
-	for <yocto@yoctoproject.org>; Tue,  6 May 2014 11:34:16 -0700 (PDT)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga102.jf.intel.com with ESMTP; 06 May 2014 11:29:17 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.97,998,1389772800"; d="scan'208";a="535752395"
-Received: from orsmsx106.amr.corp.intel.com ([10.22.225.133])
-	by orsmga002.jf.intel.com with ESMTP; 06 May 2014 11:33:43 -0700
-Received: from orsmsx113.amr.corp.intel.com (10.22.240.9) by
-	ORSMSX106.amr.corp.intel.com (10.22.225.133) with Microsoft SMTP Server
-	(TLS) id 14.3.123.3; Tue, 6 May 2014 11:33:43 -0700
-Received: from orsmsx105.amr.corp.intel.com ([169.254.4.80]) by
-	ORSMSX113.amr.corp.intel.com ([169.254.7.62]) with mapi id
-	14.03.0123.003; Tue, 6 May 2014 11:33:43 -0700
-From: "Woodyatt, James" <james.woodyatt@intel.com>
-To: Yocto Project Main <yocto@yoctoproject.org>
-Thread-Topic: [yocto] [PATCH 1/2] meta-darwin on dylan branch
-Thread-Index: AQHPZXAPhl8owFkq0kOkPmA62349Bps0XfwA
-Date: Tue, 6 May 2014 18:33:42 +0000
-Message-ID: <894F0159-AF8C-4524-A77F-4ADADB6101A8@intel.com>
-References: <470950EC-4779-4EB8-9EDF-938AB38DD50C@intel.com>
-In-Reply-To: <470950EC-4779-4EB8-9EDF-938AB38DD50C@intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.232.24.22]
+X-Spam-Status: No, score=-0.8 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+	DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (diego.sueiro[at]gmail.com)
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.216.178 listed in list.dnswl.org]
+Received: from mail-qc0-f178.google.com (mail-qc0-f178.google.com
+	[209.85.216.178])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4F047E00B4C
+	for <yocto@yoctoproject.org>; Tue,  6 May 2014 11:34:47 -0700 (PDT)
+Received: by mail-qc0-f178.google.com with SMTP id l6so5071950qcy.37
+	for <yocto@yoctoproject.org>; Tue, 06 May 2014 11:34:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-type;
+	bh=Ff4PiwyCUlDl3KKohqyuLhzzUFygIjZ+7XHeLJoRqZw=;
+	b=rF6nSh4bi3Xh6ahaX+tOyAy162V1ZzQ4Ck0HHLVzzyywjCMzwUyudazTNIghDLRpbW
+	er7DlQLH0L12srenCH3JtNsNORKlBcugAYnKGK9TbuH2BKQL+vP7j4l32dqdghj4pKUY
+	6hkkwO5yswhaEzwxXH9Lvx9Z25Nu5xtUIA1N2vALInv15KnO9lW6rBdC5jiNs3/RHxpN
+	xnT/cyODLf+zFDQCUtsXA//QcKcnQ0xOgzdVTs8kkwgybizYFXq2ZwttmUBE1kWLVhCH
+	5q6ZF/XbN5v9efJrItRtM/AYnwwTSanz3gXhfCY0UbnC4ZFFO0rSMcJha4+p6k2SkL87
+	UwXA==
+X-Received: by 10.140.101.170 with SMTP id u39mr29846584qge.32.1399401287256; 
+	Tue, 06 May 2014 11:34:47 -0700 (PDT)
 MIME-Version: 1.0
-Subject: Re: [PATCH 1/2] meta-darwin on dylan branch
+Received: by 10.140.48.112 with HTTP; Tue, 6 May 2014 11:34:27 -0700 (PDT)
+In-Reply-To: <CAMKF1spVm46k7s+xm0BKCu6=sHR4npEbHLfAUVfQDOve9thc0A@mail.gmail.com>
+References: <CAMCfZKH4u4oix7Ks_8CtyZJYPdyyPB_ECNMYJK=r3KzL0_FZ5Q@mail.gmail.com>
+	<CAMKF1spVm46k7s+xm0BKCu6=sHR4npEbHLfAUVfQDOve9thc0A@mail.gmail.com>
+From: Diego Sueiro <diego.sueiro@gmail.com>
+Date: Tue, 6 May 2014 15:34:27 -0300
+Message-ID: <CAMCfZKGF=dftUZ2AEwmUBCaGjBLOn5PAnrWuf4hDviu_3anNrw@mail.gmail.com>
+To: Khem Raj <raj.khem@gmail.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: RPM to Verify Installed Packages
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -49,88 +58,62 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 06 May 2014 18:34:18 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="Windows-1252"
-Content-ID: <F726152C69D08147BDB46CF3237DE8C6@intel.com>
+X-List-Received-Date: Tue, 06 May 2014 18:34:51 -0000
+Content-Type: multipart/alternative; boundary=001a11c16fc6a0125904f8bf8091
+
+--001a11c16fc6a0125904f8bf8091
+Content-Type: text/plain; charset=ISO-8859-1
+
+Hi Khem,
+On Tue, May 6, 2014 at 3:29 PM, Khem Raj <raj.khem@gmail.com> wrote:
+
+> what kind of corruption ?
+
+
+It's hard to say. But when I try to execute it I receive: "cannot execute
+binary file".
+And the output of "file" command is: "data".
+
+My bet is that the system was powered down during the update process.
+
+Regards,
+
+--
+*dS
+Diego Sueiro
+
+Administrador do Embarcados
+www.embarcados.com.br<http://www.embarcados.com.br/?utm_source=assinatura_diego&utm_medium=e-mail&utm_campaign=Assinatura%20Email%20Diego>
+
+/*long live rock 'n roll*/
+
+--001a11c16fc6a0125904f8bf8091
+Content-Type: text/html; charset=ISO-8859-1
 Content-Transfer-Encoding: quoted-printable
 
-Everyone=97
+<div dir=3D"ltr"><div class=3D"gmail_extra">Hi Khem,<br><div class=3D"gmail=
+_quote">On Tue, May 6, 2014 at 3:29 PM, Khem Raj <span dir=3D"ltr">&lt;<a h=
+ref=3D"mailto:raj.khem@gmail.com" target=3D"_blank">raj.khem@gmail.com</a>&=
+gt;</span> wrote:<br>
 
-It looks like this one needs to be applied to the OpenEmbedded core on the =
-=91dylan=92 branch to make the Linux meta-toolchain build work.
+<blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-=
+left-width:1px;border-left-color:rgb(204,204,204);border-left-style:solid;p=
+adding-left:1ex">what kind of corruption ?</blockquote></div><br>It&#39;s h=
+ard to say. But when I try to execute it I receive: &quot;cannot execute bi=
+nary file&quot;.</div>
 
-=97
-james woodyatt <james.woodyatt@intel.com>
-Software Architect, New Devices Group
+<div class=3D"gmail_extra">And the output of &quot;file&quot; command is: &=
+quot;data&quot;.</div><div class=3D"gmail_extra"><br></div><div class=3D"gm=
+ail_extra">My bet is that the system was powered down during the update pro=
+cess.<br>
 
-On May 1, 2014, at 12:03, Woodyatt, James <james.woodyatt@intel.com> wrote:
+<br clear=3D"all"><div><div dir=3D"ltr"><div>Regards,</div><div><br></div>-=
+-<br>*dS<br>Diego Sueiro<br><br>Administrador do Embarcados<br><a href=3D"h=
+ttp://www.embarcados.com.br/?utm_source=3Dassinatura_diego&amp;utm_medium=
+=3De-mail&amp;utm_campaign=3DAssinatura%20Email%20Diego" target=3D"_blank">=
+www.embarcados.com.br</a><br>
 
-> commit 980fb673e887f321d6b417b3aecbb380fa2561d3
-> Author: james woodyatt <james.woodyatt@intel.com>
-> Date:   Thu May 1 11:57:05 2014 -0700
->=20
->    Properly configure util-linux when ncurses is configured =97with-libte=
-rm=3Dtinfo.
->=20
->    Amend oecore.patch to modify the util-linux recipe so that it applies =
-a patch
->    to the fdisk/Makemodule.am file to add -ltinfo to the linker command l=
-ine when
->    HAVE_TINFO and HAVE_NCURSES are both defined.
->=20
-> diff --git a/oecore.patch b/oecore.patch
-> index 333b715..7371244 100644
-> --- a/oecore.patch
-> +++ b/oecore.patch
-> @@ -3242,3 +3242,33 @@ index b1d2612..1ba0d12 100644
-> +
-> +BBCLASSEXTEND =3D "nativesdk"
-> \ No newline at end of file
-> +diff --git a/meta/recipes-core/util-linux/util-linux/cfdisk-makemodule.p=
-atch b/meta/recipes-core/util-linux/util-linux/cfdisk-makemodule.patch
-> +new file mode 100644
-> +index 0000000..df196b5
-> +--- /dev/null
-> ++++ b/meta/recipes-core/util-linux/util-linux/cfdisk-makemodule.patch
-> +@@ -0,0 +1,12 @@
-> ++--- util-linux-2.22.2.orig/fdisks/Makemodule.am	2014-04-30 17:02:21.469=
-000162 -0700
-> +++++ util-linux-2.22.2/fdisks/Makemodule.am	2014-04-30 17:02:55.39099997=
-3 -0700
-> ++@@ -78,6 +78,9 @@
-> ++ cfdisk_LDADD +=3D -lslang
-> ++ else
-> ++ if HAVE_NCURSES
-> +++if HAVE_TINFO
-> +++cfdisk_LDADD +=3D -ltinfo
-> +++endif
-> ++ cfdisk_LDADD +=3D @NCURSES_LIBS@
-> ++ endif
-> ++ endif
-> +diff --git a/meta/recipes-core/util-linux/util-linux_2.22.2.bb b/meta/re=
-cipes-core/util-linux/util-linux_2.22.2.bb
-> +index 43a55a6..5553411 100644
-> +--- a/meta/recipes-core/util-linux/util-linux_2.22.2.bb
-> ++++ b/meta/recipes-core/util-linux/util-linux_2.22.2.bb
-> +@@ -8,6 +8,7 @@ SRC_URI +=3D "file://util-linux-ng-replace-siginterrupt.=
-patch \
-> +             file://configure-sbindir.patch \
-> +             file://fix-configure.patch \
-> +             file://mbsalign-license.patch \
-> ++            file://cfdisk-makemodule.patch \
-> + "
-> +=20
-> + SRC_URI[md5sum] =3D "3e379b4d8b9693948d751c154614c73e"
->=20
-> =97
-> james woodyatt <james.woodyatt@intel.com>
-> Software Architect, New Devices Group
->=20
-> --=20
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+<br>/*long live rock &#39;n roll*/<br></div></div>
+</div></div>
 
-
+--001a11c16fc6a0125904f8bf8091--
