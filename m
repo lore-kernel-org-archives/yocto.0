@@ -1,62 +1,47 @@
-Return-Path: <martin.jansa@gmail.com>
+Return-Path: <diego.sueiro@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id CCDB8E00A44; Tue,  6 May 2014 11:09:09 -0700 (PDT)
+	id 11BA6E00A44; Tue,  6 May 2014 11:16:38 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-0.8 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-	DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-0.1 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+	DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (martin.jansa[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.220.181 listed in list.dnswl.org]
+	mail provider *      (diego.sueiro[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.192.42 listed in list.dnswl.org]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-vc0-f181.google.com (mail-vc0-f181.google.com
-	[209.85.220.181])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 41DC1E006EF;
-	Tue,  6 May 2014 11:09:07 -0700 (PDT)
-Received: by mail-vc0-f181.google.com with SMTP id hy4so1472956vcb.12
-	for <multiple recipients>; Tue, 06 May 2014 11:09:07 -0700 (PDT)
+Received: from mail-qg0-f42.google.com (mail-qg0-f42.google.com
+	[209.85.192.42])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0A9F2E006EF
+	for <yocto@yoctoproject.org>; Tue,  6 May 2014 11:16:34 -0700 (PDT)
+Received: by mail-qg0-f42.google.com with SMTP id q107so5262503qgd.15
+	for <yocto@yoctoproject.org>; Tue, 06 May 2014 11:16:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=date:from:to:cc:subject:message-id:references:mime-version
-	:content-type:content-disposition:in-reply-to:user-agent;
-	bh=J9ENx/wUtye5UCGmeCN3scVT5wMDfc/8nofhZzUxoGE=;
-	b=q2mclvJ6g1nbI/R2AUQeGZVBpb0kJDMqHifb0fT5DuGntosb2VO097FSVVhsYgSn6P
-	RzOK00nwDJZB6cQqvhmUmTo7tqpLhI6uUWrrl3/6EewjHd9aQCXVePKYKvahywD+44XV
-	QNXf2r8xRe+PdgYKjTeL4LLiL75qwqpWxlknSXpMpJWzsrQxied0FRis41//vwXD8hYK
-	+iJIijR4/9blyZvOMIT+ykk5Wj/npt+RYN3doYKXR0u8yWuPI1XPCDz8R0F+X6aJpD1m
-	GxVgIGjiesMb6rsAshyUn7sngNr9YJSGLZZr+Rc5uYEbd2nq0baClfsgikgMeu2y70mr
-	YK4A==
-X-Received: by 10.52.72.4 with SMTP id z4mr1618194vdu.71.1399399747118;
-	Tue, 06 May 2014 11:09:07 -0700 (PDT)
-Received: from localhost (ip-89-176-104-3.net.upcbroadband.cz. [89.176.104.3])
-	by mx.google.com with ESMTPSA id
-	xr10sm17305670vec.2.2014.05.06.11.09.05 for <multiple recipients>
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Tue, 06 May 2014 11:09:06 -0700 (PDT)
-X-Google-Original-From: Martin Jansa <Martin.Jansa@gmail.com>
-Date: Tue, 6 May 2014 20:09:26 +0200
-From: Martin Jansa <martin.jansa@gmail.com>
-To: Khem Raj <raj.khem@gmail.com>
-Message-ID: <20140506180926.GB30955@jama>
-References: <53691266.2090107@intel.com>
-	<CAMKF1so2Zrx0D39wkGj0xYSbGOKu7Kd3iMS6D=6_+yjj2vGYXA@mail.gmail.com>
+	h=mime-version:from:date:message-id:subject:to:content-type;
+	bh=9PO3moRSL0/gROiOBCnv/ANHKpar3EvSc85/2aZ3ahQ=;
+	b=x2kuM9PoCyfiKP+Uz4WiO1JU8fzFaLrQGg2Be22nhUoqa3lXiQl8uhpDafb8WgFJN4
+	Ju1xJzIuwAEtbk5cKu1pEV9GFgv+7UXrAPuKfnjbPiPp9KUj/m3ygXeGwUp4zpNDjssZ
+	aWKJW6q71bLW3bKuWskE/9+JZf73rb7yZXlaTSIEY9+FNKynYV4oTRjpa9GBuedQ6Cym
+	GWoWhv/0MVhNdM+9ntgVPgggFNvNRrpTsvlLbFMmQmOcIFo/iMlP+aWQH3mQM3x67FMh
+	yKVFoH2vmrurdTyWzX8mS4PtEJG1/xgarwayQ5vX/Ns7Bkzn4QQ6rP8RUFjnY1iOkztX
+	dYDQ==
+X-Received: by 10.140.104.16 with SMTP id z16mr53567996qge.76.1399400193849;
+	Tue, 06 May 2014 11:16:33 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <CAMKF1so2Zrx0D39wkGj0xYSbGOKu7Kd3iMS6D=6_+yjj2vGYXA@mail.gmail.com>
-User-Agent: Mutt/1.5.23 (2014-03-12)
-Cc: Patches and discussions about the oe-core layer
-	<openembedded-core@lists.openembedded.org>,
-	Yocto Project Discussion <yocto@yoctoproject.org>,
-	"poky@yoctoproject.org" <poky@yoctoproject.org>,
-	bitbake-devel <bitbake-devel@lists.openembedded.org>,
-	Saul Wold <saul.wold@intel.com>
-Subject: Re: [bitbake-devel] [OE-core] Daisy Stable Branch - open for patch suggestions
+Received: by 10.140.48.112 with HTTP; Tue, 6 May 2014 11:16:12 -0700 (PDT)
+From: Diego Sueiro <diego.sueiro@gmail.com>
+Date: Tue, 6 May 2014 15:16:12 -0300
+Message-ID: <CAMCfZKH4u4oix7Ks_8CtyZJYPdyyPB_ECNMYJK=r3KzL0_FZ5Q@mail.gmail.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: RPM to Verify Installed Packages
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -68,83 +53,67 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 06 May 2014 18:09:09 -0000
-X-Groupsio-MsgNum: 19390
-Content-Type: multipart/signed; micalg=pgp-sha1;
-	protocol="application/pgp-signature"; boundary="MW5yreqqjyrRcusr"
-Content-Disposition: inline
+X-List-Received-Date: Tue, 06 May 2014 18:16:38 -0000
+Content-Type: multipart/alternative; boundary=001a11354fa673ff3204f8bf3fa6
 
---MW5yreqqjyrRcusr
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+--001a11354fa673ff3204f8bf3fa6
+Content-Type: text/plain; charset=ISO-8859-1
+
+Folks,
+
+I'm using Yocto on dora branch.
+We got a binary corrupted after a package update using rpm.
+But "rpm -V" [1][2] command doesn't show any errors.
+Is there any limitation for rpm (5.4.9) built from Yocto?
+The rpm database is not corrupted.
+
+I took a look on rpm recipe and didn't found anything related to a specific
+PACKAGECONFIG.
+
+Any help is welcome.
+
+
+[1] - http://www.rpm.org/max-rpm/ch-rpm-verify.html
+[2] - http://www.rpm.org/max-rpm/s1-rpm-verify-output.html
+
+Regards,
+
+--
+*dS
+Diego Sueiro
+
+Administrador do Embarcados
+www.embarcados.com.br<http://www.embarcados.com.br/?utm_source=assinatura_diego&utm_medium=e-mail&utm_campaign=Assinatura%20Email%20Diego>
+
+/*long live rock 'n roll*/
+
+--001a11354fa673ff3204f8bf3fa6
+Content-Type: text/html; charset=ISO-8859-1
 Content-Transfer-Encoding: quoted-printable
 
-On Tue, May 06, 2014 at 10:55:59AM -0700, Khem Raj wrote:
-> Saul
->=20
-> On Tue, May 6, 2014 at 9:48 AM, Saul Wold <saul.wold@intel.com> wrote:
-> >
-> > [Sorry for the overlap, want to make sure I hit a broad audience]
-> >
-> > Hi Everyone!
-> >
-> > I will be the stable maintainer for the Daisy branch, and it is now ope=
-n for
-> > suggestions of backport patches.  I am starting to generate a list of
-> > patches that are already in master.
->=20
-> Thanks for helping with 1.6/daisy
->=20
-> >
-> > The following wiki page has the Policies and process for requesting a f=
-ix in
-> > a stable branch, please review that before sending a patch.
-> >
-> > https://wiki.yoctoproject.org/wiki/Stable_branch_maintenance
-> >
-> > Please remember to include [daisy] in any request (backport or commit).
-> >
->=20
-> I already have a patch posted for daisy back port.
-> see http://comments.gmane.org/gmane.comp.handhelds.openembedded.core/50627
+<div dir=3D"ltr">Folks,<div><br></div><div style>I&#39;m using Yocto on dor=
+a branch.</div><div style>We got a binary corrupted after a package update =
+using rpm.<br></div><div style>But &quot;rpm -V&quot; [1][2] command doesn&=
+#39;t show any errors.</div>
 
-I'm preparing patches I would like to see in daisy in
-contrib/jansa/daisy-backports branch, I'll send it to ML when I consider
-them ready, e.g. top 7 commits:
-http://git.openembedded.org/openembedded-core-contrib/log/?h=3Djansa/daisy-=
-backports
+<div style>Is there any limitation for rpm (5.4.9) built from Yocto?</div><=
+div style>The rpm database is not corrupted.</div><div><br></div><div style=
+>I took a look on rpm recipe and didn&#39;t found anything related to a spe=
+cific PACKAGECONFIG.</div>
 
-> > We do not have a hard date for this yet, but likely be in late May - ea=
-rly
-> > June time frame for the 1.6.1 release.
-> >
-> > Thanks to all for your efforts.
-> >
-> > Sau!
-> > --
-> > _______________________________________________
-> > Openembedded-core mailing list
-> > Openembedded-core@lists.openembedded.org
-> > http://lists.openembedded.org/mailman/listinfo/openembedded-core
-> --=20
-> _______________________________________________
-> bitbake-devel mailing list
-> bitbake-devel@lists.openembedded.org
-> http://lists.openembedded.org/mailman/listinfo/bitbake-devel
+<div style><br></div><div style>Any help is welcome.</div><div><br></div><d=
+iv><br></div><div>[1] -=A0<a href=3D"http://www.rpm.org/max-rpm/ch-rpm-veri=
+fy.html">http://www.rpm.org/max-rpm/ch-rpm-verify.html</a></div><div>[2] -=
+=A0<a href=3D"http://www.rpm.org/max-rpm/s1-rpm-verify-output.html">http://=
+www.rpm.org/max-rpm/s1-rpm-verify-output.html</a></div>
 
---=20
-Martin 'JaMa' Jansa     jabber: Martin.Jansa@gmail.com
+<div><br clear=3D"all"><div><div dir=3D"ltr"><div>Regards,</div><div><br></=
+div>--<br>*dS<br>Diego Sueiro<br><br>Administrador do Embarcados<br><a href=
+=3D"http://www.embarcados.com.br/?utm_source=3Dassinatura_diego&amp;utm_med=
+ium=3De-mail&amp;utm_campaign=3DAssinatura%20Email%20Diego" target=3D"_blan=
+k">www.embarcados.com.br</a><br>
 
---MW5yreqqjyrRcusr
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: Digital signature
+<br>/*long live rock &#39;n roll*/<br></div></div>
+</div></div>
 
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v2.0.22 (GNU/Linux)
-
-iEYEARECAAYFAlNpJVYACgkQN1Ujt2V2gBzEVQCfcZ3wSzmF4QQcwPmLccmGy57x
-NvMAoIgXLZPhU5UDYTpfdutvfB0yY9Tz
-=MM9P
------END PGP SIGNATURE-----
-
---MW5yreqqjyrRcusr--
+--001a11354fa673ff3204f8bf3fa6--
