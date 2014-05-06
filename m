@@ -1,57 +1,66 @@
-Return-Path: <koansoftware@gmail.com>
+Return-Path: <vaduvajanalexandru@yahoo.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 4D373E00B7A; Tue,  6 May 2014 00:42:00 -0700 (PDT)
+	id 0BA84E00B7A; Tue,  6 May 2014 01:26:09 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-0.8 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-	DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-0.1 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+	DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (koansoftware[at]gmail.com)
+	mail provider *      (vaduvajanalexandru[at]yahoo.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [98.138.91.235 listed in list.dnswl.org]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [74.125.83.53 listed in list.dnswl.org]
-Received: from mail-ee0-f53.google.com (mail-ee0-f53.google.com [74.125.83.53])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B8C8AE00480
-	for <yocto@yoctoproject.org>; Tue,  6 May 2014 00:41:56 -0700 (PDT)
-Received: by mail-ee0-f53.google.com with SMTP id c13so355368eek.12
-	for <yocto@yoctoproject.org>; Tue, 06 May 2014 00:41:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=message-id:date:from:reply-to:user-agent:mime-version:to:subject
-	:content-type:content-transfer-encoding;
-	bh=MluToyL34ZqUwc36Rvz5R0NqnMEdTbuvATp0db4d31M=;
-	b=XU/zA2pZ9w1kW73RzOfVgnqmc9ZQJ8da/eQ7I5DUSO9NrX/7USDBiZJvFAmRnOw4JY
-	am2ykKldC/NCF2D/f5I8MdMvPw9a+eGqld0DFc7XXtvQhAwd4fsXFDPR3ryS22zGvMek
-	053ts8WHf/bTjBSv4BfwGRpU69EdR2vhoBfYFhJtYDKXDWRcJyblZrlfVzJ+qEFNOzSv
-	qNnzvXx/dduz6S4iESsTqBE8dPzK8HvJ3v/mpEpSvBB7DV0Wl8lhymS6frLGo3BJ+6hm
-	4O9vPZGikH3FO+1X484Z/9xPqsveDEuMDc+W61VXod3lnSSN9wps5qXd2VV8za8J/QQC
-	BExg==
-X-Received: by 10.14.95.8 with SMTP id o8mr37296862eef.15.1399362114855;
-	Tue, 06 May 2014 00:41:54 -0700 (PDT)
-Received: from [192.168.0.5]
-	(host56-7-static.30-87-b.business.telecomitalia.it. [87.30.7.56])
-	by mx.google.com with ESMTPSA id t4sm36168546eeb.29.2014.05.06.00.41.53
-	for <yocto@yoctoproject.org>
-	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
-	Tue, 06 May 2014 00:41:53 -0700 (PDT)
-Message-ID: <5368923F.9060003@gmail.com>
-Date: Tue, 06 May 2014 09:41:51 +0200
-From: Marco <koansoftware@gmail.com>
-User-Agent: Mozilla/5.0 (X11; Linux i686;
-	rv:24.0) Gecko/20100101 Thunderbird/24.5.0
-MIME-Version: 1.0
+Received: from nm13-vm5.bullet.mail.ne1.yahoo.com
+	(nm13-vm5.bullet.mail.ne1.yahoo.com [98.138.91.235])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E4FB9E00480
+	for <yocto@yoctoproject.org>; Tue,  6 May 2014 01:26:06 -0700 (PDT)
+Received: from [98.138.101.128] by nm13.bullet.mail.ne1.yahoo.com with NNFMP;
+	06 May 2014 08:26:04 -0000
+Received: from [98.138.226.162] by tm16.bullet.mail.ne1.yahoo.com with NNFMP;
+	06 May 2014 08:26:04 -0000
+Received: from [127.0.0.1] by omp1063.mail.ne1.yahoo.com with NNFMP;
+	06 May 2014 08:26:04 -0000
+X-Yahoo-Newman-Property: ymail-3
+X-Yahoo-Newman-Id: 602968.35505.bm@omp1063.mail.ne1.yahoo.com
+Received: (qmail 55660 invoked by uid 60001); 6 May 2014 08:26:04 -0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s1024;
+	t=1399364764; bh=qkZV10HdKpNibYR8vY7XRDXfTx1n850ZStmqJz4U6qU=;
+	h=Message-ID:Date:From:Reply-To:Subject:To:MIME-Version:Content-Type;
+	b=AJjZKydKxlPXj2sulYifOs6gR2EpHV0zslsGVxOies4QALB93+77XARd0Y/ZFid4+WlRkr1XfdyTMYbTXUT+6kdg3/PLJV1qLj9Dmflaedu4sqyZSvJ4JP8WAsdIOlkjR1M4n3DBMH76z131SBLSDeKPfFDkpj8I9HVasLCroNE=
+X-YMail-OSG: LBCWSZgVM1mNPenGRhA9YbXfFDzaQOKYSvuiNJtt6umW0u2
+	I3T83qXKfGNGH_b57mpYG799j_uy54AVCjP3a0WytQHX5D2gtVygHp8OpkqZ
+	RcuumOBJpfOqftBgm9oCoKsfAJpm45M_NRXqDtZ4FaqX3lF_rdSeX570wtNF
+	N4A.on_R_4Q_mJoChAiFb8qTSWRKnx14TK9ugEbwuj6QQE6qT_1m8cMYTn8W
+	Ajm50jxxzByshKaRwBlvECA2uDm7oC8PLpifNK1o7V4e1tHAyAM5f9ozu8fl
+	HJYrPvUP1Df3TviLR0mHWZ7gyOlcYuDJgQ_Zt9_ln7o0_IPFH645q2utourh
+	3OkHboFi7xP9qPhw3Xmg5cRViNUmeNOo9ryxgKNadSSShDq3bdBe.k8bDfyl
+	HyoZVa8KaXR.a6fDlgDKqBiiCBRh1zW6fzquf0xxGyNx25v0tyjqaXjbqDH0
+	VV8eWfxspzmj4EF9VabbBq0N.DuwiTM4FQyfKxM.BkP4aOtFXkckioxocPYL
+	tB2ikiSVjdoaCjY1yOsGXm9MVX6CT6o6lv4L8xuBVEQYCRBj.a3aiFnGkt7w
+	x22Yy9M5D9Bgb
+Received: from [193.202.22.66] by web122501.mail.ne1.yahoo.com via HTTP;
+	Tue, 06 May 2014 01:26:04 PDT
+X-Rocket-MIMEInfo: 002.001,
+	SGVsbG8gZ3V5cywKCldoYXQgaXMgdGhlIGlkZWVhIHdpdGggdGhlIHdpYyB0b29sLgpJcyB0aGVlIGFueSBkb2N1bWVudGF0aW9uIGZvciB0aGlzIHRvb2w_CldoYXQgYXJlIGZ1dHVyZSBwbGFucyBmb3IgaXQ_CgoKQWxleAoBMAEBAQE-
+X-Mailer: YahooMailWebService/0.8.188.663
+Message-ID: <1399364764.57848.YahooMailNeo@web122501.mail.ne1.yahoo.com>
+Date: Tue, 6 May 2014 01:26:04 -0700 (PDT)
+From: Vaduva alexandru <vaduvajanalexandru@yahoo.com>
 To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: [RFC] Upgrade to a package with all its dependency without network
+MIME-Version: 1.0
+Subject: wic questions
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
-Reply-To: koansoftware@gmail.com
+Reply-To: Vaduva alexandru <vaduvajanalexandru@yahoo.com>
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -60,34 +69,26 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 06 May 2014 07:42:00 -0000
-Content-Type: text/plain; charset=ISO-8859-15; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Tue, 06 May 2014 08:26:09 -0000
+Content-Type: multipart/alternative;
+	boundary="-1149815241-770653190-1399364764=:57848"
 
-Hello,
-I need to be able to upgrade to a package with all its dependency chain 
-on a target system that does not have access to the network.
+---1149815241-770653190-1399364764=:57848
+Content-Type: text/plain; charset=us-ascii
 
-I'm trying to understand what may be the best and also the simplest 
-solution.
-Perhaps there is already this functionality in OE/Yocto?
+Hello guys,
 
-I thought to implement a new opkg feture so that I can to generate the 
-list of dependencies of a package and then extract the packages from 
-OE/Yocto using a script or an application.
+What is the ideea with the wic tool.
+Is thee any documentation for this tool?
+What are future plans for it?
 
-Another possibility would be to extend the operation of bitbake so I 
-pull out the package and dependencies putting them in a dedicated 
-directory to be moved on the target for the update.
 
-For now I'm just analyzing what may be the possibilities and I'd love to 
-have any comments or advice from someone more experienced than me on 
-this topic.
+Alex
 
-Thanks
--- 
-Marco Cavallini | KOAN sas | Bergamo - Italia
-  embedded and real-time software engineering
-Phone:+39-035-255.235 - Fax:+39-178-22.39.748
-       http://www.KoanSoftware.com
+---1149815241-770653190-1399364764=:57848
+Content-Type: text/html; charset=us-ascii
 
+<html><body><div style="color:#000; background-color:#fff; font-family:HelveticaNeue, Helvetica Neue, Helvetica, Arial, Lucida Grande, sans-serif;font-size:12pt"><div>Hello guys,</div><div><br></div><div style="color: rgb(0, 0, 0); font-size: 16px; font-family: HelveticaNeue,Helvetica Neue,Helvetica,Arial,Lucida Grande,sans-serif; background-color: transparent; font-style: normal;">What is the ideea with the wic tool.</div><div style="color: rgb(0, 0, 0); font-size: 16px; font-family: HelveticaNeue,Helvetica Neue,Helvetica,Arial,Lucida Grande,sans-serif; background-color: transparent; font-style: normal;">Is thee any documentation for this tool?</div><div style="color: rgb(0, 0, 0); font-size: 16px; font-family: HelveticaNeue,Helvetica Neue,Helvetica,Arial,Lucida Grande,sans-serif; background-color: transparent; font-style: normal;">What are future plans for it?</div><div style="color: rgb(0, 0, 0); font-size: 16px; font-family: HelveticaNeue,Helvetica
+ Neue,Helvetica,Arial,Lucida Grande,sans-serif; background-color: transparent; font-style: normal;"><br></div><div style="color: rgb(0, 0, 0); font-size: 16px; font-family: HelveticaNeue,Helvetica Neue,Helvetica,Arial,Lucida Grande,sans-serif; background-color: transparent; font-style: normal;"><br></div><div style="color: rgb(0, 0, 0); font-size: 16px; font-family: HelveticaNeue,Helvetica Neue,Helvetica,Arial,Lucida Grande,sans-serif; background-color: transparent; font-style: normal;">Alex<br></div></div></body></html>
+
+---1149815241-770653190-1399364764=:57848--
