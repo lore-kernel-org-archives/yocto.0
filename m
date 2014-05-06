@@ -1,66 +1,48 @@
-Return-Path: <vaduvajanalexandru@yahoo.com>
+Return-Path: <scott.m.rifenbark@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 0BA84E00B7A; Tue,  6 May 2014 01:26:09 -0700 (PDT)
+	id 8DC6DE00B7A; Tue,  6 May 2014 01:34:18 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-0.1 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-	DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (vaduvajanalexandru[at]yahoo.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [98.138.91.235 listed in list.dnswl.org]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from nm13-vm5.bullet.mail.ne1.yahoo.com
-	(nm13-vm5.bullet.mail.ne1.yahoo.com [98.138.91.235])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E4FB9E00480
-	for <yocto@yoctoproject.org>; Tue,  6 May 2014 01:26:06 -0700 (PDT)
-Received: from [98.138.101.128] by nm13.bullet.mail.ne1.yahoo.com with NNFMP;
-	06 May 2014 08:26:04 -0000
-Received: from [98.138.226.162] by tm16.bullet.mail.ne1.yahoo.com with NNFMP;
-	06 May 2014 08:26:04 -0000
-Received: from [127.0.0.1] by omp1063.mail.ne1.yahoo.com with NNFMP;
-	06 May 2014 08:26:04 -0000
-X-Yahoo-Newman-Property: ymail-3
-X-Yahoo-Newman-Id: 602968.35505.bm@omp1063.mail.ne1.yahoo.com
-Received: (qmail 55660 invoked by uid 60001); 6 May 2014 08:26:04 -0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s1024;
-	t=1399364764; bh=qkZV10HdKpNibYR8vY7XRDXfTx1n850ZStmqJz4U6qU=;
-	h=Message-ID:Date:From:Reply-To:Subject:To:MIME-Version:Content-Type;
-	b=AJjZKydKxlPXj2sulYifOs6gR2EpHV0zslsGVxOies4QALB93+77XARd0Y/ZFid4+WlRkr1XfdyTMYbTXUT+6kdg3/PLJV1qLj9Dmflaedu4sqyZSvJ4JP8WAsdIOlkjR1M4n3DBMH76z131SBLSDeKPfFDkpj8I9HVasLCroNE=
-X-YMail-OSG: LBCWSZgVM1mNPenGRhA9YbXfFDzaQOKYSvuiNJtt6umW0u2
-	I3T83qXKfGNGH_b57mpYG799j_uy54AVCjP3a0WytQHX5D2gtVygHp8OpkqZ
-	RcuumOBJpfOqftBgm9oCoKsfAJpm45M_NRXqDtZ4FaqX3lF_rdSeX570wtNF
-	N4A.on_R_4Q_mJoChAiFb8qTSWRKnx14TK9ugEbwuj6QQE6qT_1m8cMYTn8W
-	Ajm50jxxzByshKaRwBlvECA2uDm7oC8PLpifNK1o7V4e1tHAyAM5f9ozu8fl
-	HJYrPvUP1Df3TviLR0mHWZ7gyOlcYuDJgQ_Zt9_ln7o0_IPFH645q2utourh
-	3OkHboFi7xP9qPhw3Xmg5cRViNUmeNOo9ryxgKNadSSShDq3bdBe.k8bDfyl
-	HyoZVa8KaXR.a6fDlgDKqBiiCBRh1zW6fzquf0xxGyNx25v0tyjqaXjbqDH0
-	VV8eWfxspzmj4EF9VabbBq0N.DuwiTM4FQyfKxM.BkP4aOtFXkckioxocPYL
-	tB2ikiSVjdoaCjY1yOsGXm9MVX6CT6o6lv4L8xuBVEQYCRBj.a3aiFnGkt7w
-	x22Yy9M5D9Bgb
-Received: from [193.202.22.66] by web122501.mail.ne1.yahoo.com via HTTP;
-	Tue, 06 May 2014 01:26:04 PDT
-X-Rocket-MIMEInfo: 002.001,
-	SGVsbG8gZ3V5cywKCldoYXQgaXMgdGhlIGlkZWVhIHdpdGggdGhlIHdpYyB0b29sLgpJcyB0aGVlIGFueSBkb2N1bWVudGF0aW9uIGZvciB0aGlzIHRvb2w_CldoYXQgYXJlIGZ1dHVyZSBwbGFucyBmb3IgaXQ_CgoKQWxleAoBMAEBAQE-
-X-Mailer: YahooMailWebService/0.8.188.663
-Message-ID: <1399364764.57848.YahooMailNeo@web122501.mail.ne1.yahoo.com>
-Date: Tue, 6 May 2014 01:26:04 -0700 (PDT)
-From: Vaduva alexandru <vaduvajanalexandru@yahoo.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+X-Spam-Status: No, score=-5.0 required=5.0 tests=HTML_MESSAGE, RCVD_IN_DNSWL_HI
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: *  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at http://www.dnswl.org/,
+	high *      trust
+	*      [192.55.52.88 listed in list.dnswl.org]
+X-Greylist: delayed 63 seconds by postgrey-1.32 at yocto-www;
+	Tue, 06 May 2014 01:34:17 PDT
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7F1F8E00480
+	for <yocto@yoctoproject.org>; Tue,  6 May 2014 01:34:17 -0700 (PDT)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga101.fm.intel.com with ESMTP; 06 May 2014 01:33:14 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.97,995,1389772800"; 
+	d="scan'208,217";a="534196520"
+Received: from orsmsx105.amr.corp.intel.com ([10.22.225.132])
+	by fmsmga002.fm.intel.com with ESMTP; 06 May 2014 01:33:13 -0700
+Received: from orsmsx101.amr.corp.intel.com ([169.254.8.192]) by
+	ORSMSX105.amr.corp.intel.com ([169.254.4.80]) with mapi id
+	14.03.0123.003; Tue, 6 May 2014 01:33:13 -0700
+From: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
+To: Vaduva alexandru <vaduvajanalexandru@yahoo.com>, "yocto@yoctoproject.org"
+	<yocto@yoctoproject.org>
+Thread-Topic: [yocto] wic questions
+Thread-Index: AQHPaQT3faJeBb0g0EmciJsxrCrxjJszOTfA
+Date: Tue, 6 May 2014 08:33:13 +0000
+Message-ID: <41DEA4B02DBDEF40A0F3B6D0DDB1237983F9634C@ORSMSX101.amr.corp.intel.com>
+References: <1399364764.57848.YahooMailNeo@web122501.mail.ne1.yahoo.com>
+In-Reply-To: <1399364764.57848.YahooMailNeo@web122501.mail.ne1.yahoo.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.138]
 MIME-Version: 1.0
-Subject: wic questions
+Subject: Re: wic questions
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
-Reply-To: Vaduva alexandru <vaduvajanalexandru@yahoo.com>
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -69,12 +51,27 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 06 May 2014 08:26:09 -0000
+X-List-Received-Date: Tue, 06 May 2014 08:34:18 -0000
+Content-Language: en-US
 Content-Type: multipart/alternative;
-	boundary="-1149815241-770653190-1399364764=:57848"
+	boundary="_000_41DEA4B02DBDEF40A0F3B6D0DDB1237983F9634CORSMSX101amrcor_"
 
----1149815241-770653190-1399364764=:57848
-Content-Type: text/plain; charset=us-ascii
+--_000_41DEA4B02DBDEF40A0F3B6D0DDB1237983F9634CORSMSX101amrcor_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+Hi,
+
+See section 5.6 in the YP 1.5.2 release of the YP Development Manual (http:=
+//www.yoctoproject.org/docs/1.5.2/dev-manual/dev-manual.html).
+
+Scott
+
+From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org=
+] On Behalf Of Vaduva alexandru
+Sent: Tuesday, May 06, 2014 1:26 AM
+To: yocto@yoctoproject.org
+Subject: [yocto] wic questions
 
 Hello guys,
 
@@ -85,10 +82,145 @@ What are future plans for it?
 
 Alex
 
----1149815241-770653190-1399364764=:57848
-Content-Type: text/html; charset=us-ascii
+--_000_41DEA4B02DBDEF40A0F3B6D0DDB1237983F9634CORSMSX101amrcor_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-<html><body><div style="color:#000; background-color:#fff; font-family:HelveticaNeue, Helvetica Neue, Helvetica, Arial, Lucida Grande, sans-serif;font-size:12pt"><div>Hello guys,</div><div><br></div><div style="color: rgb(0, 0, 0); font-size: 16px; font-family: HelveticaNeue,Helvetica Neue,Helvetica,Arial,Lucida Grande,sans-serif; background-color: transparent; font-style: normal;">What is the ideea with the wic tool.</div><div style="color: rgb(0, 0, 0); font-size: 16px; font-family: HelveticaNeue,Helvetica Neue,Helvetica,Arial,Lucida Grande,sans-serif; background-color: transparent; font-style: normal;">Is thee any documentation for this tool?</div><div style="color: rgb(0, 0, 0); font-size: 16px; font-family: HelveticaNeue,Helvetica Neue,Helvetica,Arial,Lucida Grande,sans-serif; background-color: transparent; font-style: normal;">What are future plans for it?</div><div style="color: rgb(0, 0, 0); font-size: 16px; font-family: HelveticaNeue,Helvetica
- Neue,Helvetica,Arial,Lucida Grande,sans-serif; background-color: transparent; font-style: normal;"><br></div><div style="color: rgb(0, 0, 0); font-size: 16px; font-family: HelveticaNeue,Helvetica Neue,Helvetica,Arial,Lucida Grande,sans-serif; background-color: transparent; font-style: normal;"><br></div><div style="color: rgb(0, 0, 0); font-size: 16px; font-family: HelveticaNeue,Helvetica Neue,Helvetica,Arial,Lucida Grande,sans-serif; background-color: transparent; font-style: normal;">Alex<br></div></div></body></html>
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 14 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:Helvetica;
+	panose-1:2 11 6 4 2 2 2 2 2 4;}
+@font-face
+	{font-family:Helvetica;
+	panose-1:2 11 6 4 2 2 2 2 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:Tahoma;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:12.0pt;
+	font-family:"Times New Roman","serif";}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;}
+span.EmailStyle17
+	{mso-style-type:personal-reply;
+	font-family:"Calibri","sans-serif";
+	color:#1F497D;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1F497D">Hi,
+<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1F497D"><o:p>&nbsp;</o:p></span><=
+/p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1F497D">See section 5.6 in the YP=
+ 1.5.2 release of the YP Development Manual (<a href=3D"http://www.yoctopro=
+ject.org/docs/1.5.2/dev-manual/dev-manual.html">http://www.yoctoproject.org=
+/docs/1.5.2/dev-manual/dev-manual.html</a>).<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1F497D"><o:p>&nbsp;</o:p></span><=
+/p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1F497D">Scott<o:p></o:p></span></=
+p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1F497D"><o:p>&nbsp;</o:p></span><=
+/p>
+<div style=3D"border:none;border-left:solid blue 1.5pt;padding:0in 0in 0in =
+4.0pt">
+<div>
+<div style=3D"border:none;border-top:solid #B5C4DF 1.0pt;padding:3.0pt 0in =
+0in 0in">
+<p class=3D"MsoNormal"><b><span style=3D"font-size:10.0pt;font-family:&quot=
+;Tahoma&quot;,&quot;sans-serif&quot;">From:</span></b><span style=3D"font-s=
+ize:10.0pt;font-family:&quot;Tahoma&quot;,&quot;sans-serif&quot;"> yocto-bo=
+unces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org]
+<b>On Behalf Of </b>Vaduva alexandru<br>
+<b>Sent:</b> Tuesday, May 06, 2014 1:26 AM<br>
+<b>To:</b> yocto@yoctoproject.org<br>
+<b>Subject:</b> [yocto] wic questions<o:p></o:p></span></p>
+</div>
+</div>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<div>
+<div>
+<p class=3D"MsoNormal" style=3D"background:white"><span style=3D"font-famil=
+y:&quot;Helvetica&quot;,&quot;sans-serif&quot;;color:black">Hello guys,<o:p=
+></o:p></span></p>
+</div>
+<div>
+<p class=3D"MsoNormal" style=3D"background:white"><span style=3D"font-famil=
+y:&quot;Helvetica&quot;,&quot;sans-serif&quot;;color:black"><o:p>&nbsp;</o:=
+p></span></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Helvetica&quot;,&qu=
+ot;sans-serif&quot;;color:black">What is the ideea with the wic tool.<o:p><=
+/o:p></span></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Helvetica&quot;,&qu=
+ot;sans-serif&quot;;color:black">Is thee any documentation for this tool?<o=
+:p></o:p></span></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Helvetica&quot;,&qu=
+ot;sans-serif&quot;;color:black">What are future plans for it?<o:p></o:p></=
+span></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Helvetica&quot;,&qu=
+ot;sans-serif&quot;;color:black"><o:p>&nbsp;</o:p></span></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Helvetica&quot;,&qu=
+ot;sans-serif&quot;;color:black"><o:p>&nbsp;</o:p></span></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Helvetica&quot;,&qu=
+ot;sans-serif&quot;;color:black">Alex<o:p></o:p></span></p>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>
 
----1149815241-770653190-1399364764=:57848--
+--_000_41DEA4B02DBDEF40A0F3B6D0DDB1237983F9634CORSMSX101amrcor_--
