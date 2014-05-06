@@ -1,53 +1,39 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <jeremy@rhtech.co.nz>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 1C714E00B1E; Tue,  6 May 2014 12:36:03 -0700 (PDT)
+	id 97817E00A44; Tue,  6 May 2014 15:10:38 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-0.8 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-	DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (raj.khem[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.213.182 listed in list.dnswl.org]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-ig0-f182.google.com (mail-ig0-f182.google.com
-	[209.85.213.182])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 45667E00975
-	for <yocto@yoctoproject.org>; Tue,  6 May 2014 12:35:51 -0700 (PDT)
-Received: by mail-ig0-f182.google.com with SMTP id uy17so113319igb.9
-	for <yocto@yoctoproject.org>; Tue, 06 May 2014 12:35:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-type;
-	bh=KlPyRUSQmIiwylUWKWZEK55LEHN/0MmfGmZbIIYSLRw=;
-	b=cx9zc+q42fy4vJcqu8QtUXHvsxNOjE91vDiwJXykRDpS3KYYXEbO7NHBEjApd8nqCB
-	FdaSA6ghYeqqB8+4vu32zKoUowGDrjqcI40lqLrlwj+OaiUTgv4aaB+EHjiovtzpVwqu
-	olAlQ4J2EeDZqWTKEGmwc5zvuf/Hi8z0Mvxjwt+sFmfDEb5GGCe0ukQnPoJNHsg4UWgc
-	DOzy3hO3JBvUpwJ00qVZ8stsSf6kCpQQJ/LM2tQfBLqBfqfGsY4bb3I1r7ViAX8KD4PO
-	izKQquC0gxusc+yP1Crkprnovo3nfYK2BV+DrESCJ2nGNBGt1PrdgFT+RLWXVONMnxP5
-	EfIw==
-X-Received: by 10.50.43.225 with SMTP id z1mr34642957igl.29.1399404950759;
-	Tue, 06 May 2014 12:35:50 -0700 (PDT)
+X-Spam-Status: No, score=0.0 required=5.0 tests=RCVD_IN_DNSWL_NONE
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [119.47.118.13 listed in list.dnswl.org]
+Received: from linuxplesk9.openhost.net.nz (linuxplesk9.openhost.net.nz
+	[119.47.118.13])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EC3B5E00480
+	for <yocto@yoctoproject.org>; Tue,  6 May 2014 15:10:32 -0700 (PDT)
+Received: (qmail 10226 invoked from network); 7 May 2014 10:10:30 +1200
+Received: from 122-61-40-229.jetstream.xtra.co.nz (HELO ?192.168.1.98?)
+	(122.61.40.229)
+	by linuxplesk9.openhost.net.nz with (DHE-RSA-AES128-SHA encrypted) SMTP;
+	7 May 2014 10:10:30 +1200
+Message-ID: <53695DDA.1020204@rhtech.co.nz>
+Date: Wed, 07 May 2014 10:10:34 +1200
+From: Jeremy Cole-Baker <jeremy@rhtech.co.nz>
+Organization: Riverhead Technology
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64;
+	rv:24.0) Gecko/20100101 Thunderbird/24.5.0
 MIME-Version: 1.0
-Received: by 10.50.74.228 with HTTP; Tue, 6 May 2014 12:35:20 -0700 (PDT)
-In-Reply-To: <536937DE.2020705@linux.intel.com>
-References: <536937DE.2020705@linux.intel.com>
-From: Khem Raj <raj.khem@gmail.com>
-Date: Tue, 6 May 2014 12:35:20 -0700
-Message-ID: <CAMKF1spdERsg1=p0nFPKW0Gc_fwNN4OOcHdz1jvvjz=YGxjVrw@mail.gmail.com>
-To: Saul Wold <sgw@linux.intel.com>
-Cc: Yocto Project Discussion <yocto@yoctoproject.org>
-Subject: Re: Asia Yocto Project Tech Call Meeting
+To: yocto@yoctoproject.org
+References: <mailman.16489.1397995243.26702.yocto@yoctoproject.org>
+	<53684B1B.7030804@rhtech.co.nz> <5368EB3B.6080503@windriver.com>
+In-Reply-To: <5368EB3B.6080503@windriver.com>
+Subject: Re: Anybody managed to get Beagleboard xM to work?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
+Reply-To: jeremy@rhtech.co.nz
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -56,13 +42,40 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 06 May 2014 19:36:03 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Tue, 06 May 2014 22:10:38 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Tue, May 6, 2014 at 12:28 PM, Saul Wold <sgw@linux.intel.com> wrote:
-> Dial-in number: +1 916 356-2663
-> Bridge #: 1
-> Passcode: 5000157
+On 7/05/2014 2:01 a.m., Bruce Ashfield wrote:
 
-shouldn't there be a dialin number local to Asian regions as well ?
+>> Anything else I am missing? Some configuration I need to set up? I have
+>> no idea where to look! It is frustrating because it seems to be very
+>> close to working.
+>
+> As an alternative to using the Yocto reference BSP (Which I mentioned
+> has moved onto the BBB with a better focus on core functionality), the
+> meta-beagleboard layer has a more complete feature focus and should
+> solve the problem (via a different kernel and configuration).
+>
+
+
+Hi, can you explain how to use the meta-beagleboard layer? My build was 
+done using the BSP for "Texas Instruments ARM Cortex-A8 development 
+board (Beagleboard)" (10.0.0 Dora). I downloaded it, and I think I built 
+it with Hob the first time. I also used 'bitbake' to adjust the 
+configuration and build from the command line to try different options.
+
+I just downloaded the latest Yocto project 1.6 (11.0.0 Daisy), and had a 
+look around including running Hob. However, I couldn't find a 
+meta-beagleboard layer.
+
+I also downloaded and installed binaries for the latest build from:
+
+autobuilder.yoctoproject.org/pub/releases/CURRENT/machines/beagleboard/
+
+These worked but showed the same behaviour (i.e. no USB). Maybe it has 
+something to do with the way I set up the boot environment?
+
+Thanks,
+Jeremy
 
