@@ -1,47 +1,50 @@
-Return-Path: <diego.sueiro@gmail.com>
+Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 11BA6E00A44; Tue,  6 May 2014 11:16:38 -0700 (PDT)
+	id E5F37E00B1E; Tue,  6 May 2014 11:30:01 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-0.1 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-	DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-0.8 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+	DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (diego.sueiro[at]gmail.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.192.42 listed in list.dnswl.org]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	mail provider *      (raj.khem[at]gmail.com)
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-qg0-f42.google.com (mail-qg0-f42.google.com
-	[209.85.192.42])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0A9F2E006EF
-	for <yocto@yoctoproject.org>; Tue,  6 May 2014 11:16:34 -0700 (PDT)
-Received: by mail-qg0-f42.google.com with SMTP id q107so5262503qgd.15
-	for <yocto@yoctoproject.org>; Tue, 06 May 2014 11:16:34 -0700 (PDT)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.213.178 listed in list.dnswl.org]
+Received: from mail-ig0-f178.google.com (mail-ig0-f178.google.com
+	[209.85.213.178])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BD4CCE00975
+	for <yocto@yoctoproject.org>; Tue,  6 May 2014 11:29:55 -0700 (PDT)
+Received: by mail-ig0-f178.google.com with SMTP id hl10so29866igb.11
+	for <yocto@yoctoproject.org>; Tue, 06 May 2014 11:29:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:from:date:message-id:subject:to:content-type;
-	bh=9PO3moRSL0/gROiOBCnv/ANHKpar3EvSc85/2aZ3ahQ=;
-	b=x2kuM9PoCyfiKP+Uz4WiO1JU8fzFaLrQGg2Be22nhUoqa3lXiQl8uhpDafb8WgFJN4
-	Ju1xJzIuwAEtbk5cKu1pEV9GFgv+7UXrAPuKfnjbPiPp9KUj/m3ygXeGwUp4zpNDjssZ
-	aWKJW6q71bLW3bKuWskE/9+JZf73rb7yZXlaTSIEY9+FNKynYV4oTRjpa9GBuedQ6Cym
-	GWoWhv/0MVhNdM+9ntgVPgggFNvNRrpTsvlLbFMmQmOcIFo/iMlP+aWQH3mQM3x67FMh
-	yKVFoH2vmrurdTyWzX8mS4PtEJG1/xgarwayQ5vX/Ns7Bkzn4QQ6rP8RUFjnY1iOkztX
-	dYDQ==
-X-Received: by 10.140.104.16 with SMTP id z16mr53567996qge.76.1399400193849;
-	Tue, 06 May 2014 11:16:33 -0700 (PDT)
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-type;
+	bh=CBo6glOyFeztYN8bL05g0f6obvSwkvX787eJ3LO8wxk=;
+	b=EGjX/E9o5tM+fXZlWCD8MO0jUjvrpOGXJ2NsahfMYHx23FNANCzbRJY5SdjWrzUOEs
+	UCvvTNRIH8Mdw6TzL4cQ3FEzyXs8xGWvuJgkYWpC/OnqlrIIiZO1O68VPhjuIXgRzez9
+	3IgvNoSmrFBonJvc9wlmda0Gl7TF+mu1HYRcekWS+mtBj1A2b8CMJC0kEQ3TjN0db9V4
+	jmtpG9W0dp/T/YvsMuS9rcQXueJj8SUVAkn0Gvf8tTXv/75P0XNOpGmyaBRRucO8QtSw
+	bQ1nAaE5NUpQjvS8NeekLMrAmpSnysIBeI1erFNENwgnuE46BmE68ak5Vadj155nvscB
+	eLNg==
+X-Received: by 10.43.62.204 with SMTP id xb12mr4754403icb.51.1399400995208;
+	Tue, 06 May 2014 11:29:55 -0700 (PDT)
 MIME-Version: 1.0
-Received: by 10.140.48.112 with HTTP; Tue, 6 May 2014 11:16:12 -0700 (PDT)
-From: Diego Sueiro <diego.sueiro@gmail.com>
-Date: Tue, 6 May 2014 15:16:12 -0300
-Message-ID: <CAMCfZKH4u4oix7Ks_8CtyZJYPdyyPB_ECNMYJK=r3KzL0_FZ5Q@mail.gmail.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: RPM to Verify Installed Packages
+Received: by 10.50.74.228 with HTTP; Tue, 6 May 2014 11:29:25 -0700 (PDT)
+In-Reply-To: <CAMCfZKH4u4oix7Ks_8CtyZJYPdyyPB_ECNMYJK=r3KzL0_FZ5Q@mail.gmail.com>
+References: <CAMCfZKH4u4oix7Ks_8CtyZJYPdyyPB_ECNMYJK=r3KzL0_FZ5Q@mail.gmail.com>
+From: Khem Raj <raj.khem@gmail.com>
+Date: Tue, 6 May 2014 11:29:25 -0700
+Message-ID: <CAMKF1spVm46k7s+xm0BKCu6=sHR4npEbHLfAUVfQDOve9thc0A@mail.gmail.com>
+To: Diego Sueiro <diego.sueiro@gmail.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: RPM to Verify Installed Packages
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -53,67 +56,11 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 06 May 2014 18:16:38 -0000
-Content-Type: multipart/alternative; boundary=001a11354fa673ff3204f8bf3fa6
+X-List-Received-Date: Tue, 06 May 2014 18:30:02 -0000
+Content-Type: text/plain; charset=UTF-8
 
---001a11354fa673ff3204f8bf3fa6
-Content-Type: text/plain; charset=ISO-8859-1
+On Tue, May 6, 2014 at 11:16 AM, Diego Sueiro <diego.sueiro@gmail.com> wrote:
+> We got a binary corrupted after a package update using rpm.
 
-Folks,
+what kind of corruption ?
 
-I'm using Yocto on dora branch.
-We got a binary corrupted after a package update using rpm.
-But "rpm -V" [1][2] command doesn't show any errors.
-Is there any limitation for rpm (5.4.9) built from Yocto?
-The rpm database is not corrupted.
-
-I took a look on rpm recipe and didn't found anything related to a specific
-PACKAGECONFIG.
-
-Any help is welcome.
-
-
-[1] - http://www.rpm.org/max-rpm/ch-rpm-verify.html
-[2] - http://www.rpm.org/max-rpm/s1-rpm-verify-output.html
-
-Regards,
-
---
-*dS
-Diego Sueiro
-
-Administrador do Embarcados
-www.embarcados.com.br<http://www.embarcados.com.br/?utm_source=assinatura_diego&utm_medium=e-mail&utm_campaign=Assinatura%20Email%20Diego>
-
-/*long live rock 'n roll*/
-
---001a11354fa673ff3204f8bf3fa6
-Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">Folks,<div><br></div><div style>I&#39;m using Yocto on dor=
-a branch.</div><div style>We got a binary corrupted after a package update =
-using rpm.<br></div><div style>But &quot;rpm -V&quot; [1][2] command doesn&=
-#39;t show any errors.</div>
-
-<div style>Is there any limitation for rpm (5.4.9) built from Yocto?</div><=
-div style>The rpm database is not corrupted.</div><div><br></div><div style=
->I took a look on rpm recipe and didn&#39;t found anything related to a spe=
-cific PACKAGECONFIG.</div>
-
-<div style><br></div><div style>Any help is welcome.</div><div><br></div><d=
-iv><br></div><div>[1] -=A0<a href=3D"http://www.rpm.org/max-rpm/ch-rpm-veri=
-fy.html">http://www.rpm.org/max-rpm/ch-rpm-verify.html</a></div><div>[2] -=
-=A0<a href=3D"http://www.rpm.org/max-rpm/s1-rpm-verify-output.html">http://=
-www.rpm.org/max-rpm/s1-rpm-verify-output.html</a></div>
-
-<div><br clear=3D"all"><div><div dir=3D"ltr"><div>Regards,</div><div><br></=
-div>--<br>*dS<br>Diego Sueiro<br><br>Administrador do Embarcados<br><a href=
-=3D"http://www.embarcados.com.br/?utm_source=3Dassinatura_diego&amp;utm_med=
-ium=3De-mail&amp;utm_campaign=3DAssinatura%20Email%20Diego" target=3D"_blan=
-k">www.embarcados.com.br</a><br>
-
-<br>/*long live rock &#39;n roll*/<br></div></div>
-</div></div>
-
---001a11354fa673ff3204f8bf3fa6--
