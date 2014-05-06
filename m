@@ -1,54 +1,31 @@
-Return-Path: <diego.sueiro@gmail.com>
+Return-Path: <sgw@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 97F44E00B1E; Tue,  6 May 2014 11:49:05 -0700 (PDT)
+	id E9524E00B1E; Tue,  6 May 2014 12:28:36 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-0.8 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-	DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (diego.sueiro[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.216.52 listed in list.dnswl.org]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-qa0-f52.google.com (mail-qa0-f52.google.com
-	[209.85.216.52])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D8481E00975
-	for <yocto@yoctoproject.org>; Tue,  6 May 2014 11:49:04 -0700 (PDT)
-Received: by mail-qa0-f52.google.com with SMTP id cm18so7800500qab.25
-	for <yocto@yoctoproject.org>; Tue, 06 May 2014 11:49:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-type;
-	bh=xUIagl78a2UIKJD7XFwUR921SX4YrwayDk7NvTNYsd4=;
-	b=Hc8TD+xsetb7tl8Aw5jA4xZrvRVVjvisEn3VUJLK8yIaAhRP1zTK5fRpLaRyBLwy7m
-	x0ojNrmC+yLq9XyKDpO3XkrGb/UV5ULgh65/rMRYl2HujKZycRGReM35AFLMoqSyzxzn
-	mTxm/qILmpwTDu2Yj5kbv6+9/VXLMmoO4tTRpGO3EGiROgojY1OhtZ9n/41Pth5h0EnC
-	mJ3hD8wrtTr5mgDDxh1B3/n3TFixSxRMk3xIjmHMOc+RjYXLYZPpma/HHVj0SOxxSQjl
-	DapoDpvfzlPb7esCIBxGKPO01tbIDeRf475wt/YRifSI0rj7IjYXphOGX4Pd7zx8L6ac
-	OliQ==
-X-Received: by 10.224.29.68 with SMTP id p4mr59246159qac.42.1399402143619;
-	Tue, 06 May 2014 11:49:03 -0700 (PDT)
+X-Spam-Status: No, score=-5.0 required=5.0 tests=RCVD_IN_DNSWL_HI
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [192.55.52.93 listed in list.dnswl.org]
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C8C1EE00975
+	for <yocto@yoctoproject.org>; Tue,  6 May 2014 12:28:30 -0700 (PDT)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga102.fm.intel.com with ESMTP; 06 May 2014 12:28:30 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.97,998,1389772800"; d="scan'208";a="534648563"
+Received: from unknown (HELO [10.255.12.214]) ([10.255.12.214])
+	by fmsmga002.fm.intel.com with ESMTP; 06 May 2014 12:28:30 -0700
+Message-ID: <536937DE.2020705@linux.intel.com>
+Date: Tue, 06 May 2014 12:28:30 -0700
+From: Saul Wold <sgw@linux.intel.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:24.0) Gecko/20100101 Thunderbird/24.4.0
 MIME-Version: 1.0
-Received: by 10.140.48.112 with HTTP; Tue, 6 May 2014 11:48:43 -0700 (PDT)
-In-Reply-To: <CAMKF1sqfnZnMVufmitCS-C1QU6PCzOcqqJWmNrYE1J7JnBf5fg@mail.gmail.com>
-References: <CAMCfZKH4u4oix7Ks_8CtyZJYPdyyPB_ECNMYJK=r3KzL0_FZ5Q@mail.gmail.com>
-	<CAMKF1spVm46k7s+xm0BKCu6=sHR4npEbHLfAUVfQDOve9thc0A@mail.gmail.com>
-	<CAMCfZKGF=dftUZ2AEwmUBCaGjBLOn5PAnrWuf4hDviu_3anNrw@mail.gmail.com>
-	<CAMKF1sqfnZnMVufmitCS-C1QU6PCzOcqqJWmNrYE1J7JnBf5fg@mail.gmail.com>
-From: Diego Sueiro <diego.sueiro@gmail.com>
-Date: Tue, 6 May 2014 15:48:43 -0300
-Message-ID: <CAMCfZKEZgu_o1fqK3jR8kTxmMKVVStuskM7AcmQJXzdkaP7Z-A@mail.gmail.com>
-To: Khem Raj <raj.khem@gmail.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: RPM to Verify Installed Packages
+To: Yocto Project Discussion <yocto@yoctoproject.org>
+Subject: Asia Yocto Project Tech Call Meeting
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -60,78 +37,54 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 06 May 2014 18:49:05 -0000
-Content-Type: multipart/alternative; boundary=047d7bf0ca64ab205104f8bfb35d
-
---047d7bf0ca64ab205104f8bfb35d
-Content-Type: text/plain; charset=ISO-8859-1
-
-On Tue, May 6, 2014 at 3:39 PM, Khem Raj <raj.khem@gmail.com> wrote:
-
-> On Tue, May 6, 2014 at 11:34 AM, Diego Sueiro <diego.sueiro@gmail.com>
-> wrote:
-> >
-> > It's hard to say. But when I try to execute it I receive: "cannot execute
-> > binary file".
-> > And the output of "file" command is: "data".
-> >
-> > My bet is that the system was powered down during the update process.
->
-> what happens if you reinstall it ?
+X-List-Received-Date: Tue, 06 May 2014 19:28:37 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
 
 
-It works.
-But the problem is that --verify option is not working.
-Even if I remove a file from the installed package it did not point for a
-missing file.
+Folks,
 
-Regards,
+We have folks located around the world, currently we have have one Tech 
+Team meeting on Tuesday Morning (US Time) to coordinate with the 
+European afternoon.
 
---
-*dS
-Diego Sueiro
+I will host a Asia Tech Call weekly initially
 
-Administrador do Embarcados
-www.embarcados.com.br<http://www.embarcados.com.br/?utm_source=assinatura_diego&utm_medium=e-mail&utm_campaign=Assinatura%20Email%20Diego>
+The agenda will be to discuss Status of the Yocto Project and address 
+any technical issues people might have.
 
-/*long live rock 'n roll*/
+First meeting will be this week 5/7 US Evening & 5/8 Asia Morning
 
---047d7bf0ca64ab205104f8bfb35d
-Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
-On Tue, May 6, 2014 at 3:39 PM, Khem Raj <span dir=3D"ltr">&lt;<a href=3D"m=
-ailto:raj.khem@gmail.com" target=3D"_blank">raj.khem@gmail.com</a>&gt;</spa=
-n> wrote:<br>
-
-<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
-x #ccc solid;padding-left:1ex"><div class=3D"">On Tue, May 6, 2014 at 11:34=
- AM, Diego Sueiro &lt;<a href=3D"mailto:diego.sueiro@gmail.com">diego.sueir=
-o@gmail.com</a>&gt; wrote:<br>
+Conference date/start time:
+Wednesday: 19:30 Pacific Time
+Thursday: 02:30 UTC
+           10:30 Beijing
+           11:30 Tokyo
 
 
-&gt;<br>
-&gt; It&#39;s hard to say. But when I try to execute it I receive: &quot;ca=
-nnot execute<br>
-&gt; binary file&quot;.<br>
-&gt; And the output of &quot;file&quot; command is: &quot;data&quot;.<br>
-&gt;<br>
-&gt; My bet is that the system was powered down during the update process.<=
-br>
-<br>
-</div>what happens if you reinstall it ?</blockquote></div><br>It works.</d=
-iv><div class=3D"gmail_extra">But the problem is that --verify option is no=
-t working.</div><div class=3D"gmail_extra">Even if I remove a file from the=
- installed package it did not point for a missing file.<br>
+Agenda:
 
-<br clear=3D"all"><div><div dir=3D"ltr"><div>Regards,</div><div><br></div>-=
--<br>*dS<br>Diego Sueiro<br><br>Administrador do Embarcados<br><a href=3D"h=
-ttp://www.embarcados.com.br/?utm_source=3Dassinatura_diego&amp;utm_medium=
-=3De-mail&amp;utm_campaign=3DAssinatura%20Email%20Diego" target=3D"_blank">=
-www.embarcados.com.br</a><br>
+* Opens collection
+* Engineering Status
+   - Yocto 1.7
+   - Yocto 1.6.1
+   - Yocto 1.5.2
+https://wiki.yoctoproject.org/wiki/Yocto_Project_v1.7_Status
 
-<br>/*long live rock &#39;n roll*/<br></div></div>
-</div></div>
+* Opens - 10 min
 
---047d7bf0ca64ab205104f8bfb35d--
+* Team Sharing / Technical Discussion
+
+Dial-in number: +1 916 356-2663
+Bridge #: 1
+Passcode: 5000157
+
+
+-- 
+     Sau!
+
+Saul Wold
+Yocto Component Wrangler @ Intel
+Yocto Project / Poky Build System
+
+
