@@ -1,6 +1,6 @@
-Return-Path: <sgh@sgh.dk>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 2E944E006EC; Wed,  7 May 2014 02:36:57 -0700 (PDT)
+	id 6EB26E006EC; Wed,  7 May 2014 03:24:49 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -8,24 +8,37 @@ X-Spam-Status: No, score=0.0 required=5.0 tests=RCVD_IN_DNSWL_NONE
 	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
 	http://www.dnswl.org/, no *      trust
-	*      [212.10.10.11 listed in list.dnswl.org]
-Received: from mx-aarh-1.stofanet.dk (mx-aarh-1.stofanet.dk [212.10.10.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 99A08E003C7
-	for <yocto@yoctoproject.org>; Wed,  7 May 2014 02:36:53 -0700 (PDT)
-Received: from 5634f347.rev.stofanet.dk ([86.52.243.71] helo=asrock)
-	by mx-aarh-2.stofanet.dk (envelope-from <sgh@sgh.dk>)
-	with esmtp id 1Why7H-0008Kr-19; Wed, 07 May 2014 11:26:19 +0200
-Received: from koontz.lgs-net.com (localhost [127.0.0.1])
-	by asrock (Postfix) with ESMTP id 1C7A87EC22;
-	Wed,  7 May 2014 11:26:19 +0200 (CEST)
-From: =?UTF-8?q?S=C3=B8ren=20Holm?= <sgh@sgh.dk>
-To: openembedded-devel@lists.openembedded.org
-Date: Wed,  7 May 2014 11:26:17 +0200
-Message-Id: <1399454777-2868-1-git-send-email-sgh@sgh.dk>
-X-Mailer: git-send-email 1.9.1
+	*      [209.85.192.44 listed in list.dnswl.org]
+Received: from mail-qg0-f44.google.com (mail-qg0-f44.google.com
+	[209.85.192.44])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0E012E003C7
+	for <yocto@yoctoproject.org>; Wed,  7 May 2014 03:24:44 -0700 (PDT)
+Received: by mail-qg0-f44.google.com with SMTP id i50so825825qgf.31
+	for <yocto@yoctoproject.org>; Wed, 07 May 2014 03:24:43 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc:content-type;
+	bh=b/EffmJC5OEXRbIl/OWECogp56S+ExIjQH9w5fmwiEs=;
+	b=ie4e0LC93K9pn0GzI9+HBUZrPfpY7VUL3R4kq6j+WcOhawRK8K0OsDNSV96UlPrZHW
+	GtgwVGF8WB0V/OXgV+qfkuhLDXVuPaVRxBHvfsn3/v+homvTFVTpwE/6uvk9pAANwZuV
+	S+vART4ipl1zA32R/PnIPS8lKsug9I1KysvCeATjj4R+2Rlm79xJfCcjXMLsSIfa5Rb0
+	ASw2DS4PlevVzUr0r948+kEWHRbXSlwL4MfrVkU1jYfq93UnmdtFD0YYkJHHRieFNaiW
+	gSGiZFVboYpksCQOQq1vJ0P9u2OkRi4PpIl7892fbh5DJZ6IfDdt+wDlxwFA3rovUwjI
+	J04A==
+X-Gm-Message-State: ALoCoQnQBZhUGs/ClXMNcAkOfsMsph2fDrVncg2+EFa0GeCx+9uPQIFjfTkJAZB2ESm93DuNL7Cd
+X-Received: by 10.140.48.161 with SMTP id o30mr59509798qga.68.1399458283494;
+	Wed, 07 May 2014 03:24:43 -0700 (PDT)
 MIME-Version: 1.0
-Cc: yocto@yoctoproject.org
-Subject: [meta-networking][PATCH] ifplugd: Added ifplugd recipe.
+Received: by 10.140.101.77 with HTTP; Wed, 7 May 2014 03:24:23 -0700 (PDT)
+In-Reply-To: <lkcshi$dep$1@ger.gmane.org>
+References: <lkcshi$dep$1@ger.gmane.org>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Wed, 7 May 2014 11:24:23 +0100
+Message-ID: <CAJTo0LZ7=Zs3pcP30htX7_GfpWoOvfYU-Cg-71T7pTuLkazGLQ@mail.gmail.com>
+To: Neuer User <auslands-kv@gmx.de>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: replace udhcpc
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,106 +50,16 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 07 May 2014 09:36:57 -0000
+X-List-Received-Date: Wed, 07 May 2014 10:24:49 -0000
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
 
-Signed-off-by: S=C3=B8ren Holm <sgh@sgh.dk>
----
- .../ifplugd/files/ifplugd.conf                     | 42 ++++++++++++++++=
-++++++
- .../recipes-connectivity/ifplugd/ifplugd_0.28.bb   | 23 ++++++++++++
- 2 files changed, 65 insertions(+)
- create mode 100644 meta-networking/recipes-connectivity/ifplugd/files/if=
-plugd.conf
- create mode 100644 meta-networking/recipes-connectivity/ifplugd/ifplugd_=
-0.28.bb
+On 7 May 2014 09:57, Neuer User <auslands-kv@gmx.de> wrote:
+> What should I do best on Yocto? Replace udhcpc with dhclient? If so, how
+> should that be done?
 
-diff --git a/meta-networking/recipes-connectivity/ifplugd/files/ifplugd.c=
-onf b/meta-networking/recipes-connectivity/ifplugd/files/ifplugd.conf
-new file mode 100644
-index 0000000..1e0f83a
---- /dev/null
-+++ b/meta-networking/recipes-connectivity/ifplugd/files/ifplugd.conf
-@@ -0,0 +1,42 @@
-+# -*-sh-*-
-+# $Id: ifplugd.conf 43 2003-09-13 11:25:11Z lennart $
-+
-+# This file is part of ifplugd.
-+#
-+# ifplugd is free software; you can redistribute it and/or modify it und=
-er
-+# the terms of the GNU General Public License as published by the Free
-+# Software Foundation; either version 2 of the License, or (at your
-+# option) any later version.
-+#
-+# ifplugd is distributed in the hope that it will be useful, but WITHOUT
-+# ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
-+# FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License
-+# for more details.
-+#
-+# You should have received a copy of the GNU General Public License
-+# along with ifplugd; if not, write to the Free Software Foundation,
-+# Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA.
-+
-+# ifplugd configuration file
-+
-+# Please note that this is a bourne shell fragment sourced by the
-+# init script of ifplugd.
-+
-+# Specify the interfaces to control here, separated by spaces.
-+# Ifplugd processes will be started for each of these interfaces when
-+# the ifplugd init script is called with the "start" argument. You may
-+# use the magic string "auto" to make the init script start or stop
-+# ifplugd processes for ALL eth and wlan interfaces that are available
-+# according to /proc/net/dev. Note that the list of interfaces
-+# appearing in /proc/net/dev may depend on which kernel modules you
-+# have loaded.
-+INTERFACES=3D"eth0"
-+
-+# Additional parameters for ifplugd.
-+# (Run "ifplugd -h" for further information.)
-+ARGS=3D"-fwI -u0 -d10"
-+
-+# Additional parameters for ifplugd for the specified interface.  Note
-+# that $ARGS is ignored, when a variable like this is set for an
-+# interface
-+#ARGS_wlan0=3D"-MwI -u5 -d5"
-diff --git a/meta-networking/recipes-connectivity/ifplugd/ifplugd_0.28.bb=
- b/meta-networking/recipes-connectivity/ifplugd/ifplugd_0.28.bb
-new file mode 100644
-index 0000000..340d5f4
---- /dev/null
-+++ b/meta-networking/recipes-connectivity/ifplugd/ifplugd_0.28.bb
-@@ -0,0 +1,23 @@
-+DESCRIPTION =3D "Daemon for monitoring ethernet device link state"
-+SRC_URI     =3D "http://0pointer.de/lennart/projects/ifplugd/ifplugd-0.2=
-8.tar.gz \
-+               file://ifplugd.conf"
-+DEPENDS     =3D "libdaemon"
-+LICENSE     =3D "GPLv2"
-+
-+LIC_FILES_CHKSUM =3D "file://LICENSE;md5=3D94d55d512a9ba36caa9b7df079bae=
-19f"
-+
-+SRC_URI[md5sum] =3D "df6f4bab52f46ffd6eb1f5912d4ccee3"
-+SRC_URI[sha256sum] =3D "474754ac4ab32d738cbf2a4a3e87ee0a2c71b9048a38bdcd=
-7df1e4f9fd6541f0"
-+
-+EXTRA_OECONF_append =3D "--disable-lynx"
-+
-+
-+INITSCRIPT_PACKAGES =3D "${PN}"
-+INITSCRIPT_NAME_${PN} =3D "${PN}"
-+INITSCRIPT_PARAMS_${PN} =3D "defaults 90"
-+
-+do_install_append() {
-+	install -m 644 ${WORKDIR}/ifplugd.conf ${D}${sysconfdir}/ifplugd/
-+}
-+
-+inherit autotools update-rc.d
-\ No newline at end of file
---=20
-1.9.1
+Personally I prefer using connman for this, it does all the usual
+hotplug and connect magic.  If size is an issue, you can disable the
+3g and wifi DISTRO_FEATURES if you don't need support for that.
 
+Ross
 
