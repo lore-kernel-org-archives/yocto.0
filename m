@@ -1,31 +1,55 @@
-Return-Path: <gary@mlbassoc.com>
+Return-Path: <diego.sueiro@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 55B5DE006EC; Wed,  7 May 2014 03:46:04 -0700 (PDT)
+	id 031C4E00770; Wed,  7 May 2014 05:46:38 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=0.0 required=5.0 tests=none autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: 
-Received: from mail.chez-thomas.org (mail.mlbassoc.com [65.100.170.105])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2AA84E003C7
-	for <yocto@yoctoproject.org>; Wed,  7 May 2014 03:45:58 -0700 (PDT)
-Received: by mail.chez-thomas.org (Postfix, from userid 1998)
-	id 13DB2F81213; Wed,  7 May 2014 04:45:57 -0600 (MDT)
-Received: from [192.168.1.114] (zeus [192.168.1.114])
-	by mail.chez-thomas.org (Postfix) with ESMTP id DB981F81212;
-	Wed,  7 May 2014 04:45:55 -0600 (MDT)
-Message-ID: <536A0EFE.70305@mlbassoc.com>
-Date: Wed, 07 May 2014 04:46:22 -0600
-From: Gary Thomas <gary@mlbassoc.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:24.0) Gecko/20100101 Thunderbird/24.5.0
+X-Spam-Status: No, score=-0.1 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+	DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [209.85.192.44 listed in list.dnswl.org]
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (diego.sueiro[at]gmail.com)
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-qg0-f44.google.com (mail-qg0-f44.google.com
+	[209.85.192.44])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F0A13E00B1E
+	for <yocto@yoctoproject.org>; Wed,  7 May 2014 05:46:31 -0700 (PDT)
+Received: by mail-qg0-f44.google.com with SMTP id i50so960947qgf.17
+	for <yocto@yoctoproject.org>; Wed, 07 May 2014 05:46:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-type;
+	bh=qPE5/3kGtGRPtBZcHsEytykGfDGeTKsk0TM7lr4PmOA=;
+	b=jlpTJ3WTBf994TJaTw4K5w1o+6TkVKreVWosYwGLIwXgHJJaw4ENsK18JwJP909kLv
+	4uIStgSf0HOAQkwt5q6Z4vBGxH1CP6h5RULorNyrNTDxKcedCgdnZYeHdudAAG8G9rz/
+	JpMntWGjKjTOArt2deLtpxC4el8x4Gf8MnZUvDRlhE4jc4KkYI2W6UP0goBEQSLQhbV1
+	zmPGOGS9eUAXvjlihRXxLk8ssZEMBUb3WOnTjJ0U0X6VmlPm1DQU2lbia89k3g8ZtjSF
+	hIbH36d7pG04FfzrrCdkzVXdEtDD8R0JJvuHsOrpo4JfGpz9sbCGKVmDWRAPToHnJMlP
+	e4Sw==
+X-Received: by 10.140.103.74 with SMTP id x68mr59270086qge.82.1399466790131;
+	Wed, 07 May 2014 05:46:30 -0700 (PDT)
 MIME-Version: 1.0
-To: yocto@yoctoproject.org
-References: <536962D8.1040007@rafresearch.com> <53696616.90502@mlbassoc.com>
-	<53699F12.5010400@rafresearch.com>
-In-Reply-To: <53699F12.5010400@rafresearch.com>
-Subject: Re: A simpler way of creating an using a local kernel repository - BeagleBone example
+Received: by 10.140.48.112 with HTTP; Wed, 7 May 2014 05:46:10 -0700 (PDT)
+In-Reply-To: <CAMCfZKEZgu_o1fqK3jR8kTxmMKVVStuskM7AcmQJXzdkaP7Z-A@mail.gmail.com>
+References: <CAMCfZKH4u4oix7Ks_8CtyZJYPdyyPB_ECNMYJK=r3KzL0_FZ5Q@mail.gmail.com>
+	<CAMKF1spVm46k7s+xm0BKCu6=sHR4npEbHLfAUVfQDOve9thc0A@mail.gmail.com>
+	<CAMCfZKGF=dftUZ2AEwmUBCaGjBLOn5PAnrWuf4hDviu_3anNrw@mail.gmail.com>
+	<CAMKF1sqfnZnMVufmitCS-C1QU6PCzOcqqJWmNrYE1J7JnBf5fg@mail.gmail.com>
+	<CAMCfZKEZgu_o1fqK3jR8kTxmMKVVStuskM7AcmQJXzdkaP7Z-A@mail.gmail.com>
+From: Diego Sueiro <diego.sueiro@gmail.com>
+Date: Wed, 7 May 2014 09:46:10 -0300
+Message-ID: <CAMCfZKFHkaAHV0mUZeYoDuS1V5VvBx_7z4BRO27UoGqpO=vJ0w@mail.gmail.com>
+To: Khem Raj <raj.khem@gmail.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: RPM to Verify Installed Packages
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,69 +61,100 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 07 May 2014 10:46:04 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 07 May 2014 12:46:38 -0000
+Content-Type: multipart/alternative; boundary=001a1134eda8e69ee904f8cec046
 
-On 2014-05-06 20:48, Bob Feretich wrote:
+--001a1134eda8e69ee904f8cec046
+Content-Type: text/plain; charset=ISO-8859-1
+
+Folks,
+
+On Tue, May 6, 2014 at 3:48 PM, Diego Sueiro <diego.sueiro@gmail.com> wrote:
+
+> On Tue, May 6, 2014 at 3:39 PM, Khem Raj <raj.khem@gmail.com> wrote:
 >
-> On 5/6/2014 3:45 PM, Gary Thomas wrote:
->> On 2014-05-06 16:31, Bob Feretich wrote:
->>> I have had problems getting good download performance when accessing the kernels at kernel.org. Since I expect to build the kernel several times, I decided to create a copy of the
->>> kernel repository locally and use that for my builds.
->>>
->>> There are instructions on how to create a local repository in the Yocto manuals, but those are more complex than I needed. (I don't plan on checking anything into the repository.)
->>>
->>> The below is a simpler way of creating and using the repository.
->>> I'm publishing this because my search though the Yocto/OE/Angstrom yielded only the more complicated or incomplete methods.
->>>
->>> // First set up local kernel repository
->>> mkdir ~/ksrc3-8
->>> cd ~/ksrc3-8
->>> git clone --bare git://git.kernel.org/pub/scm/linux/kernel/git/stable/linux-stable.git stable-work-bare.git
->>>
->>> // Then modify the kernel recipe to use the local repository instead of the the one at kernel.org.
->>> // The beaglebone recipe for the 3.8 kernel is at...
->>> setup-scripts/sources/meta-beagleboard/common-bsp/recipes-kernel/linux/linux-mainline_3.8.bb
->>>
->>> // Replace the file's SRC_URI with one that points to your local repository.
->>> #SRC_URI = "git://git.kernel.org/pub/scm/linux/kernel/git/stable/linux-stable.git;branch=linux-3.8.y"
->>> SRC_URI = "git:///home/Bob/ksrc3-8/stable-work-bare.git;branch=linux-3.8.y"
+>> On Tue, May 6, 2014 at 11:34 AM, Diego Sueiro <diego.sueiro@gmail.com>
+>> wrote:
+>> >
+>> > It's hard to say. But when I try to execute it I receive: "cannot
+>> execute
+>> > binary file".
+>> > And the output of "file" command is: "data".
+>> >
+>> > My bet is that the system was powered down during the update process.
 >>
->> IMO a much simpler (and certainly less invasive) way is to just
->> use your own local source mirrors.  Add these lines to your local.conf:
->>   SOURCE_MIRROR_URL = "file:///some-mirror-directory/"
->>   INHERIT += "own-mirrors "
->>   BB_GENERATE_MIRROR_TARBALLS ?= "1"
->>
->> Once the git repository has been downloaded, it will be packed up in a
->> tarball, e.g.
->> git2_git.kernel.org.pub.scm.linux.kernel.git.stable.linux-stable.git.tar.gz
->> If you then put this file into your SOURCE_MIRROR, the next time bitbake will
->> fetch from there [first].  It's even smart enough that if you need a revision
->> which is not in the tarball, it will update the git repository and rebuild the
->> tarball, which you can then move to your mirror.
-> Better!
-> Questions:
-> Is     INHERIT += "own-mirrors "
-> coded as you state it, or am I supposed to substitute something for "own-mirrors " ?
-
-This line is used as written.
-
+>> what happens if you reinstall it ?
 >
-> Where does      BB_GENERATE_MIRROR_TARBALLS ?= "1"
-> put the tarball?
-
-In your downloads directory.
-
 >
-> Does do_rm_work remove them?
+> It works.
+> But the problem is that --verify option is not working.
+> Even if I remove a file from the installed package it did not point for a
+> missing file.
+>
 
-No (since that only touches files in tmp/work/...)
+Any thoughts?
 
--- 
-------------------------------------------------------------
-Gary Thomas                 |  Consulting for the
-MLB Associates              |    Embedded world
-------------------------------------------------------------
 
+
+Regards,
+
+--
+*dS
+Diego Sueiro
+
+Administrador do Embarcados
+www.embarcados.com.br<http://www.embarcados.com.br/?utm_source=assinatura_diego&utm_medium=e-mail&utm_campaign=Assinatura%20Email%20Diego>
+
+/*long live rock 'n roll*/
+
+--001a1134eda8e69ee904f8cec046
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div class=3D"gmail_extra">Folks,</div><div class=3D"gmail=
+_extra"><br><div class=3D"gmail_quote">On Tue, May 6, 2014 at 3:48 PM, Dieg=
+o Sueiro <span dir=3D"ltr">&lt;<a href=3D"mailto:diego.sueiro@gmail.com" ta=
+rget=3D"_blank">diego.sueiro@gmail.com</a>&gt;</span> wrote:<br>
+
+<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
+x #ccc solid;padding-left:1ex"><div class=3D"gmail_extra"><div class=3D"adM=
+"><div class=3D""><div class=3D"gmail_quote">On Tue, May 6, 2014 at 3:39 PM=
+, Khem Raj <span dir=3D"ltr">&lt;<a href=3D"mailto:raj.khem@gmail.com" targ=
+et=3D"_blank">raj.khem@gmail.com</a>&gt;</span> wrote:<br>
+
+
+<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
+x #ccc solid;padding-left:1ex"><div>On Tue, May 6, 2014 at 11:34 AM, Diego =
+Sueiro &lt;<a href=3D"mailto:diego.sueiro@gmail.com" target=3D"_blank">dieg=
+o.sueiro@gmail.com</a>&gt; wrote:<br>
+
+
+
+&gt;<br>
+&gt; It&#39;s hard to say. But when I try to execute it I receive: &quot;ca=
+nnot execute<br>
+&gt; binary file&quot;.<br>
+&gt; And the output of &quot;file&quot; command is: &quot;data&quot;.<br>
+&gt;<br>
+&gt; My bet is that the system was powered down during the update process.<=
+br>
+<br>
+</div>what happens if you reinstall it ?</blockquote></div><br></div></div>=
+It works.</div><div class=3D"gmail_extra">But the problem is that --verify =
+option is not working.</div><div class=3D"gmail_extra">Even if I remove a f=
+ile from the installed package it did not point for a missing file.</div>
+
+</blockquote></div><br>Any thoughts?</div><div class=3D"gmail_extra"><br></=
+div><div class=3D"gmail_extra"><br><br clear=3D"all"><div><div dir=3D"ltr">=
+<div>Regards,</div><div><br></div>--<br>*dS<br>Diego Sueiro<br><br>Administ=
+rador do Embarcados<br>
+
+<a href=3D"http://www.embarcados.com.br/?utm_source=3Dassinatura_diego&amp;=
+utm_medium=3De-mail&amp;utm_campaign=3DAssinatura%20Email%20Diego" target=
+=3D"_blank">www.embarcados.com.br</a><br><br>/*long live rock &#39;n roll*/=
+<br></div>
+
+</div>
+</div></div>
+
+--001a1134eda8e69ee904f8cec046--
