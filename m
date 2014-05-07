@@ -1,6 +1,6 @@
-Return-Path: <joe@deserted.net>
+Return-Path: <denis@denix.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id B0EB5E009A6; Wed,  7 May 2014 16:01:09 -0700 (PDT)
+	id A50ADE00724; Wed,  7 May 2014 17:18:37 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: *
@@ -8,28 +8,31 @@ X-Spam-Status: No, score=1.3 required=5.0 tests=RCVD_IN_DNSWL_NONE,RDNS_NONE
 	autolearn=no version=3.3.1
 X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
 	http://www.dnswl.org/, no *      trust
-	*      [147.11.146.13 listed in list.dnswl.org]
+	*      [206.46.173.25 listed in list.dnswl.org]
 	*  1.3 RDNS_NONE Delivered to internal network by a host with no rDNS
-Received: from mail1.windriver.com (unknown [147.11.146.13])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5753CE009A7
-	for <yocto@yoctoproject.org>; Wed,  7 May 2014 16:01:06 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail1.windriver.com (8.14.5/8.14.5) with ESMTP id s47JnYOK005632
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL)
-	for <yocto@yoctoproject.org>; Wed, 7 May 2014 12:49:36 -0700 (PDT)
-Received: from yow-asskicker.wrs.com (128.224.56.79) by
-	ALA-HCA.corp.ad.wrs.com (147.11.189.40) with Microsoft SMTP Server id
-	14.3.169.1; Wed, 7 May 2014 12:49:34 -0700
-From: Joe MacDonald <joe@deserted.net>
-To: <yocto@yoctoproject.org>, <hongxu.jia@windriver.com>
-Date: Wed, 7 May 2014 15:49:20 -0400
-Message-ID: <1399492168-13096-2-git-send-email-joe@deserted.net>
-X-Mailer: git-send-email 1.7.10.4
-In-Reply-To: <1399492168-13096-1-git-send-email-joe@deserted.net>
-References: <1399492168-13096-1-git-send-email-joe@deserted.net>
-MIME-Version: 1.0
-Subject: [meta-selinux][PATCH 1/9] policycoreutils: remove PRINC warning
+X-Greylist: delayed 3602 seconds by postgrey-1.32 at yocto-www;
+	Wed, 07 May 2014 17:18:35 PDT
+Received: from vms173025pub.verizon.net (unknown [206.46.173.25])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 037D6E006EF
+	for <yocto@yoctoproject.org>; Wed,  7 May 2014 17:18:35 -0700 (PDT)
+Received: from gandalf.denix.org ([unknown] [71.191.205.189])
+	by vms173025.mailsrvcs.net
+	(Sun Java(tm) System Messaging Server 7u2-7.02 32bit (built Apr 16
+	2009)) with ESMTPA id <0N5800D1V8Q8P880@vms173025.mailsrvcs.net> for
+	yocto@yoctoproject.org; Wed, 07 May 2014 18:18:23 -0500 (CDT)
+Received: by gandalf.denix.org (Postfix, from userid 1000)	id 5F28F20363; Wed,
+	07 May 2014 19:18:08 -0400 (EDT)
+Date: Wed, 07 May 2014 19:18:08 -0400
+From: Denys Dmytriyenko <denis@denix.org>
+To: openembedded-devel@lists.openembedded.org,
+	openembedded-core@lists.openembedded.org, yocto@yoctoproject.org,
+	openembedded-members@lists.openembedded.org
+Message-id: <20140507231808.GM11339@denix.org>
+References: <530697CC.5050402@balister.org>
+MIME-version: 1.0
+In-reply-to: <530697CC.5050402@balister.org>
+User-Agent: Mutt/1.5.20 (2009-06-14)
+Subject: Re: OEDAM: OpenEmbedded Developers (Americas) Meeting
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,55 +44,57 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 07 May 2014 23:01:09 -0000
-Content-Type: text/plain
+X-List-Received-Date: Thu, 08 May 2014 00:18:37 -0000
+Content-type: text/plain; charset=us-ascii
+Content-disposition: inline
 
-From: Hongxu Jia <hongxu.jia@windriver.com>
+The OpenEmbedded Board of Directors would like to thank everyone who was able 
+to participate (either in person in Santa Clara or online) in our first OEDAM 
+OpenEmbedded Developers (Americas) Meeting on May 2nd and 3rd! The meeting was 
+a huge success and a lot of fun!
 
-Bump up PR and remove PRINC.  Set it to something suitably large that it's
-unlikely to break anyone's package feed and so that it shows it's clearly
-an exception case.  Obviously this is just a staging activity until the
-next update when we don't include anything of the sort.
+We would also like to thank Ettus Research/NI for providing the premises, as 
+well as Jefro and the Yocto Project for sponsoring the event and providing 
+food!
 
-Signed-off-by: Hongxu Jia <hongxu.jia@windriver.com>
-Signed-off-by: Joe MacDonald <joe@deserted.net>
----
- recipes-security/selinux/policycoreutils.inc      |    2 --
- recipes-security/selinux/policycoreutils_2.2.5.bb |    2 +-
- recipes-security/selinux/policycoreutils_git.bb   |    2 +-
- 3 files changed, 2 insertions(+), 4 deletions(-)
+The meeting minutes should be published shortly.
 
-diff --git a/recipes-security/selinux/policycoreutils.inc b/recipes-security/selinux/policycoreutils.inc
-index 521e70b..a4d174c 100644
---- a/recipes-security/selinux/policycoreutils.inc
-+++ b/recipes-security/selinux/policycoreutils.inc
-@@ -1,5 +1,3 @@
--PRINC = "1"
--
- SUMMARY = "SELinux policy core utilities"
- DESCRIPTION = "policycoreutils contains the policy core utilities that are required \
- for basic operation of a SELinux system.  These utilities include \
-diff --git a/recipes-security/selinux/policycoreutils_2.2.5.bb b/recipes-security/selinux/policycoreutils_2.2.5.bb
-index 560cee6..2bbf541 100644
---- a/recipes-security/selinux/policycoreutils_2.2.5.bb
-+++ b/recipes-security/selinux/policycoreutils_2.2.5.bb
-@@ -1,4 +1,4 @@
--PR = "r1"
-+PR = "r99"
- 
- include selinux_20131030.inc
- include ${BPN}.inc
-diff --git a/recipes-security/selinux/policycoreutils_git.bb b/recipes-security/selinux/policycoreutils_git.bb
-index 92f6c26..823edb2 100644
---- a/recipes-security/selinux/policycoreutils_git.bb
-+++ b/recipes-security/selinux/policycoreutils_git.bb
-@@ -1,4 +1,4 @@
--PR = "r0"
-+PR = "r99"
- PV = "2.2.5+git${SRCPV}"
- 
- include selinux_git.inc
 -- 
-1.7.10.4
+Denys
 
+
+On Thu, Feb 20, 2014 at 07:03:24PM -0500, Philip Balister wrote:
+> The OpenEmbedded Project is holding a developers meeting May 2-3,
+> 2014, in Santa Clara, CA. This meeting is immediately after the Embedded
+> Linux Conference North America. All active OpenEmbedded and Yocto
+> Project developers are invited to attend.
+> 
+> NOTE: this is a development meeting for the project itself, not a
+> training session.
+> 
+> May 2-3, 2014
+> time TBD
+> 
+> Ettus Research/National Instruments
+> 4600 Patrick Henry Drive
+> Santa Clara, CA 95054 USA
+> 
+> Lunch will be provided on both days.
+> 
+> For more information and to add yourself to the list of attendees, see
+> the wiki page at
+> http://openembedded.org/wiki/OEDAM
+> 
+> Here are a couple of photos from 2009:
+> 
+> http://www.flickr.com/photos/32615155@N00/sets/72157622653686647/
+> 
+> I'd like to thank Jefro for help with this announcement. Any errors are
+> mine though.
+> 
+> Philip, OpenEmbedded eV Chair.
+> _______________________________________________
+> Openembedded-core mailing list
+> Openembedded-core@lists.openembedded.org
+> http://lists.openembedded.org/mailman/listinfo/openembedded-core
 
