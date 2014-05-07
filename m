@@ -1,43 +1,39 @@
-Return-Path: <elizabeth.flanagan@intel.com>
+Return-Path: <ajlennon@dynamicdevices.co.uk>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 65DD0E006EC; Tue,  6 May 2014 23:34:23 -0700 (PDT)
+	id BC3DDE006EC; Tue,  6 May 2014 23:49:18 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-0.7 required=5.0 tests=RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [209.85.220.178 listed in list.dnswl.org]
-Received: from mail-vc0-f178.google.com (mail-vc0-f178.google.com
-	[209.85.220.178])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 87D21E003C7
-	for <yocto@yoctoproject.org>; Tue,  6 May 2014 23:34:19 -0700 (PDT)
-Received: by mail-vc0-f178.google.com with SMTP id hu19so681399vcb.23
-	for <yocto@yoctoproject.org>; Tue, 06 May 2014 23:34:19 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:date:message-id:subject:from:to
-	:content-type;
-	bh=IFuDSNAJ+Eq/xJ6AP/KZW/1wDrxXTq8wsdmaRrgB/OE=;
-	b=BxDH7oSWf6SpG/rxMWVnH3eBwpA2LNXoI9l1lRm6UPds1R5QyYik0977dFOQeMvqkd
-	ybOuq8mpLHBNAQU0c57AjhCgKINQa7At7LW/fOyGZIUXuTbp5/OqCiFBpbXOYm2g06Ne
-	ieee7+ddd2LtFepvRXj9nS/ru8RRl0nzX0MbiJg3/nJ27zZ7fM12GukBZKNOwjvhlGVx
-	bL/2FFtkwDeA4hn1gGzqqyExWaih2eZfHm/KryxzLCjV0I6pkzIuFwg5wJXHlf8OnfAE
-	5Yf9X8kepKmlkkCrL8LXVCMrvy8SBhWstzNd6vIEb0Gq/ynzmyiXm6w6IM/schtnet02
-	qQog==
-X-Gm-Message-State: ALoCoQlzKYMtsHtMaJLpQycg37xEdwaq4By5r2qy31z0k55BJg5p4ZXzNczbSxfeMw07Qtihk9BW
+X-Spam-Status: No, score=0.0 required=5.0 tests=none autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: 
+Received: from www.dynamicdevices.co.uk (www.dynamicdevices.co.uk
+	[89.200.136.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 89DBCE003C7
+	for <yocto@yoctoproject.org>; Tue,  6 May 2014 23:49:12 -0700 (PDT)
+Received: from localhost (localhost [127.0.0.1])
+	by www.dynamicdevices.co.uk (Postfix) with ESMTP id E7FE227E010
+	for <yocto@yoctoproject.org>; Wed,  7 May 2014 06:49:10 +0000 (UTC)
+X-Virus-Scanned: Debian amavisd-new at lennoab2.miniserver.com
+Received: from www.dynamicdevices.co.uk ([127.0.0.1])
+	by localhost (www.dynamicdevices.co.uk [127.0.0.1]) (amavisd-new,
+	port 10024) with ESMTP id rskMYtxzkPjt for <yocto@yoctoproject.org>;
+	Wed,  7 May 2014 06:49:10 +0000 (UTC)
+Received: from [127.0.0.1] (cpc32-live22-2-0-cust59.17-2.cable.virginm.net
+	[82.36.253.60])
+	(using TLSv1 with cipher ECDHE-RSA-AES128-SHA (128/128 bits))
+	(No client certificate requested)
+	by www.dynamicdevices.co.uk (Postfix) with ESMTPSA id E3CD927E006
+	for <yocto@yoctoproject.org>; Wed,  7 May 2014 06:49:09 +0000 (UTC)
+Message-ID: <5369D763.6050806@dynamicdevices.co.uk>
+Date: Wed, 07 May 2014 07:49:07 +0100
+From: Alex J Lennon <ajlennon@dynamicdevices.co.uk>
+User-Agent: Mozilla/5.0 (Windows NT 6.3; WOW64;
+	rv:24.0) Gecko/20100101 Thunderbird/24.5.0
 MIME-Version: 1.0
-X-Received: by 10.52.185.105 with SMTP id fb9mr5048787vdc.12.1399444459333;
-	Tue, 06 May 2014 23:34:19 -0700 (PDT)
-Received: by 10.52.164.111 with HTTP; Tue, 6 May 2014 23:34:19 -0700 (PDT)
-Date: Tue, 6 May 2014 23:34:19 -0700
-Message-ID: <CAPhnLPBPjaGTzttRQrh+zS1Gh4QZbubZ1FBL3X7DmL25ZQcMaA@mail.gmail.com>
-From: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>, 
-	Alexandru C Georgescu <alexandru.c.georgescu@intel.com>,
-	Zhao Yi <yi.zhao@windriver.com>, Otavio Salvador <otavio@ossystems.com.br>
-Subject: Weekly build soon available
+To: Yocto <yocto@yoctoproject.org>
+X-Enigmail-Version: 1.6
+Subject: Smart/RPM automatic feed configuration
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -49,26 +45,21 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 07 May 2014 06:34:23 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Wed, 07 May 2014 06:49:18 -0000
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: 7bit
 
-The most recent weekly will soon be available at:
 
-http://autobuilder.yoctoproject.org/pub/nightly/20140506-3
+I'm using RPM package feeds with smart, and am wondering how to
+configure up the feed sources easily at build time?
 
-bitbake 4eb2dc8048e2722d64d589f453df1ce6262c71b8
-eclipse-poky-juno 26bfc407781aa185f244a47ba63120343cee4a37
-eclipse-poky-kepler 1dfe1d2f1322b5fda8e1a7637c447b0e060efb3e
-meta-fsl-arm e9971b67b893cb345386cc38d774edff07f86b2a
-meta-fsl-ppc 913fc371e9976cc95fc1b2ee2deb87efd13faafb
-meta-intel 67300efd13626ac711c28f409b7e984c9a52b8dc
-meta-minnow 7bdcd1140b729598bae6246a4bbc21c3950aadd8
-meta-qt3 3016129d90b7ac8517a5227d819f10ad417b5b45
-oecore 82813d27640549255dc81a15d7fb63688431f747
-poky 59ef9768399f50ecc10e148950bb434698cac3c0
+I see in 3.4.5 of the reference manual it talks about base-feeds.conf
+for opkg but I'm wondering if there's a variable
+I can set in local.conf to correct setup, say, the URL prefix for the
+needed feed sources for the image?
 
--- 
-Elizabeth Flanagan
-Yocto Project
-Build and Release
+Thanks,
+
+Alex
+
 
