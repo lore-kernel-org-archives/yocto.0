@@ -1,41 +1,41 @@
-Return-Path: <gley-yocto@m.gmane.org>
+Return-Path: <ajlennon@dynamicdevices.co.uk>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 7E5F7E006EC; Wed,  7 May 2014 01:57:50 -0700 (PDT)
+	id D0F15E006EC; Wed,  7 May 2014 02:16:35 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=0.0 required=5.0 tests=FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE,SPF_HELO_PASS autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (auslands-kv[at]gmx.de)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [80.91.229.3 listed in list.dnswl.org]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
-Received: from plane.gmane.org (plane.gmane.org [80.91.229.3])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 398B2E003C7
-	for <yocto@yoctoproject.org>; Wed,  7 May 2014 01:57:38 -0700 (PDT)
-Received: from list by plane.gmane.org with local (Exim 4.69)
-	(envelope-from <gley-yocto@m.gmane.org>) id 1WhxfT-0005bR-3O
-	for yocto@yoctoproject.org; Wed, 07 May 2014 10:57:35 +0200
-Received: from 80-218-32-173.dclient.hispeed.ch ([80.218.32.173])
-	by main.gmane.org with esmtp (Gmexim 0.1 (Debian))
-	id 1AlnuQ-0007hv-00
-	for <yocto@yoctoproject.org>; Wed, 07 May 2014 10:57:35 +0200
-Received: from auslands-kv by 80-218-32-173.dclient.hispeed.ch with local
-	(Gmexim 0.1 (Debian)) id 1AlnuQ-0007hv-00
-	for <yocto@yoctoproject.org>; Wed, 07 May 2014 10:57:35 +0200
-X-Injected-Via-Gmane: http://gmane.org/
+X-Spam-Status: No, score=0.0 required=5.0 tests=none autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: 
+Received: from www.dynamicdevices.co.uk (www.dynamicdevices.co.uk
+	[89.200.136.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 65391E003C7
+	for <yocto@yoctoproject.org>; Wed,  7 May 2014 02:16:29 -0700 (PDT)
+Received: from localhost (localhost [127.0.0.1])
+	by www.dynamicdevices.co.uk (Postfix) with ESMTP id 9018627E010
+	for <yocto@yoctoproject.org>; Wed,  7 May 2014 09:16:27 +0000 (UTC)
+X-Virus-Scanned: Debian amavisd-new at lennoab2.miniserver.com
+Received: from www.dynamicdevices.co.uk ([127.0.0.1])
+	by localhost (www.dynamicdevices.co.uk [127.0.0.1]) (amavisd-new,
+	port 10024) with ESMTP id DzAsM8aWAGq5 for <yocto@yoctoproject.org>;
+	Wed,  7 May 2014 09:16:27 +0000 (UTC)
+Received: from [127.0.0.1] (cpc32-live22-2-0-cust59.17-2.cable.virginm.net
+	[82.36.253.60])
+	(using TLSv1 with cipher ECDHE-RSA-AES128-SHA (128/128 bits))
+	(No client certificate requested)
+	by www.dynamicdevices.co.uk (Postfix) with ESMTPSA id EA63027E006
+	for <yocto@yoctoproject.org>; Wed,  7 May 2014 09:16:26 +0000 (UTC)
+Message-ID: <5369F9E7.4020709@dynamicdevices.co.uk>
+Date: Wed, 07 May 2014 10:16:23 +0100
+From: Alex J Lennon <ajlennon@dynamicdevices.co.uk>
+User-Agent: Mozilla/5.0 (Windows NT 6.3; WOW64;
+	rv:24.0) Gecko/20100101 Thunderbird/24.5.0
+MIME-Version: 1.0
 To: yocto@yoctoproject.org
-From: Neuer User <auslands-kv@gmx.de>
-Date: Wed, 07 May 2014 10:57:22 +0200
-Message-ID: <lkcshi$dep$1@ger.gmane.org>
-Mime-Version: 1.0
-X-Complaints-To: usenet@ger.gmane.org
-X-Gmane-NNTP-Posting-Host: 80-218-32-173.dclient.hispeed.ch
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:24.0) Gecko/20100101 Thunderbird/24.4.0
-Subject: replace udhcpc
+References: <5369D763.6050806@dynamicdevices.co.uk>
+In-Reply-To: <5369D763.6050806@dynamicdevices.co.uk>
+X-Enigmail-Version: 1.6
+Subject: Re: Smart/RPM automatic feed configuration
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -47,30 +47,27 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 07 May 2014 08:57:50 -0000
-Content-Type: text/plain; charset=ISO-8859-15
+X-List-Received-Date: Wed, 07 May 2014 09:16:35 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 Content-Transfer-Encoding: 7bit
 
-Hi
 
-I encounter a problem with the DHCP network setup during boot:
+On 07/05/2014 07:49, Alex J Lennon wrote:
+> I'm using RPM package feeds with smart, and am wondering how to
+> configure up the feed sources easily at build time?
+>
+> I see in 3.4.5 of the reference manual it talks about base-feeds.conf
+> for opkg but I'm wondering if there's a variable
+> I can set in local.conf to correct setup, say, the URL prefix for the
+> needed feed sources for the image?
 
-System starts. During start ifup is called. ifup calls udhcpc. Network
-is, however, not yet up! udhcpc exits with failure. Then network is up.
-But, of course, no connection, because no IP address.
+I discovered FEED_DEPLOYDIR_BASE_URI in the reference manual glossary,
+with some notes on OPKG usage.
 
-In earlier times I used debian based system, which seem to rely on
-dhclient3. My experiences here were that dhclient remained as a deamon
-continuing trying to get a dhcp address.
+This looks ideal but it doesn't appear to be implemented yet for RPM?
+(as least setting that seems to have
+no effect on my smart channels in a built image)
 
-What should I do best on Yocto? Replace udhcpc with dhclient? If so, how
-should that be done?
-
-Or can udhcpc be configured to remain in the background and try to get
-an IP address when network is finally up?
-
-Thanks for any help
-
-Michael
+Alex
 
 
