@@ -1,41 +1,50 @@
-Return-Path: <rpjday@crashcourse.ca>
+Return-Path: <andrei@gherzan.ro>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id C91CFE00B3F; Thu,  8 May 2014 11:00:34 -0700 (PDT)
+	id 077D0E00B3F; Thu,  8 May 2014 11:05:01 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
-X-Spam-Level: *
-X-Spam-Status: No, score=1.3 required=5.0 tests=RDNS_NONE autolearn=no
-	version=3.3.1
-X-Spam-HAM-Report: * 1.3 RDNS_NONE Delivered to internal network by a host
-	with no rDNS
-Received: from astoria.ccjclearline.com (unknown [64.235.106.9])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 55BEAE00B30
-	for <yocto@yoctoproject.org>; Thu,  8 May 2014 11:00:30 -0700 (PDT)
-Received: from [99.240.204.5] (port=42849 helo=crashcourse.ca)
-	by astoria.ccjclearline.com with esmtpsa (TLSv1:DHE-RSA-AES256-SHA:256)
-	(Exim 4.80) (envelope-from <rpjday@crashcourse.ca>)
-	id 1WiScU-0005V9-1D; Thu, 08 May 2014 14:00:34 -0400
-Date: Thu, 8 May 2014 13:58:28 -0400 (EDT)
-From: "Robert P. J. Day" <rpjday@crashcourse.ca>
-X-X-Sender: rpjday@localhost
-To: Diego Sueiro <diego.sueiro@gmail.com>
-In-Reply-To: <CAMCfZKFHCLp2aJJQU4LEQ7nd4_NtNuOgy-ghYFaqAzO5-qtzkw@mail.gmail.com>
-Message-ID: <alpine.LFD.2.11.1405081346150.9802@localhost>
-References: <alpine.LFD.2.11.1405080318520.27694@localhost>
-	<CAMCfZKFHCLp2aJJQU4LEQ7nd4_NtNuOgy-ghYFaqAzO5-qtzkw@mail.gmail.com>
-User-Agent: Alpine 2.11 (LFD 23 2013-08-11)
+X-Spam-Level: 
+X-Spam-Status: No, score=0.6 required=5.0 tests=RCVD_IN_DNSWL_LOW,RDNS_NONE
+	autolearn=no version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [74.125.83.47 listed in list.dnswl.org]
+	*  1.3 RDNS_NONE Delivered to internal network by a host with no rDNS
+Received: from mail-ee0-f47.google.com (unknown [74.125.83.47])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7A4F0E00B30
+	for <yocto@yoctoproject.org>; Thu,  8 May 2014 11:04:55 -0700 (PDT)
+Received: by mail-ee0-f47.google.com with SMTP id c13so1957934eek.34
+	for <yocto@yoctoproject.org>; Thu, 08 May 2014 11:04:54 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+	:mime-version:content-type:content-disposition:in-reply-to
+	:user-agent;
+	bh=SjRmE13ccjyZW5JBcpb/tlEg02DuJO2h+84Cynadlw8=;
+	b=WN8qgSPT6NacxG8WXAytYb+SGxgeB2zd6sOewLHIa5Sboo0Js/04YVx8SM14bhWowx
+	Ancw56ZfLbt/psG6vmrYm1KxdF15WcuLXi0WYDrOgLC20nQhpplJ+eT8qkKFQ2GF7CIU
+	qwvp7BmDwZFFJsmyyKBHouaV6nOmU7ql38yRjhrUfdNa5uYr/VPb3hED+vKGoREVdaGE
+	StiZ/e9P39k1yzlAcAoTCSD+ddOOA7Y11DKS+ncqwUm0uo6Zhk/5YiSr0a8NhGn1Jj5i
+	bt8i/G6cV4JA/BQJClVgXaht3sCM7PG0uk1d2cCBwZBCWcnNox90d6/vDGL6kek8oT50
+	vfZA==
+X-Gm-Message-State: ALoCoQkLFWRCoS4z423FDXvjM3KbXFOza+KbWMpnsHWa51R7M4fFx0GvY5+rMXin+PLNPVTj+9yU
+X-Received: by 10.15.93.142 with SMTP id w14mr7396848eez.1.1399572294708;
+	Thu, 08 May 2014 11:04:54 -0700 (PDT)
+Received: from gmail.com (5-13-208-17.residential.rdsnet.ro. [5.13.208.17])
+	by mx.google.com with ESMTPSA id p9sm5770052eeg.32.2014.05.08.11.04.53
+	for <multiple recipients>
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Thu, 08 May 2014 11:04:54 -0700 (PDT)
+Date: Thu, 8 May 2014 21:04:47 +0300
+From: Andrei Gherzan <andrei@gherzan.ro>
+To: Paul Barker <paul@paulbarker.me.uk>
+Message-ID: <20140508180447.GA29498@gmail.com>
+References: <1399045604-8469-1-git-send-email-paul@paulbarker.me.uk>
 MIME-Version: 1.0
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - crashcourse.ca
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-Cc: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: couple simple questions on building for intel galileo
+In-Reply-To: <1399045604-8469-1-git-send-email-paul@paulbarker.me.uk>
+User-Agent: Mutt/1.5.21 (2010-09-15)
+Cc: yocto@yoctoproject.org
+Subject: Re: [meta-raspberrypi][PATCH] Remove uses of PRINC
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -47,68 +56,50 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 08 May 2014 18:00:34 -0000
-Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-List-Received-Date: Thu, 08 May 2014 18:05:01 -0000
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-On Thu, 8 May 2014, Diego Sueiro wrote:
-
-> Robert,
-> Here is some instructions with some workarounds:
-> http://www.malinov.com/Home/sergey-s-blog/intelgalileo-buildinglinuximage
+On Fri, May 02, 2014 at 03:46:44PM +0000, Paul Barker wrote:
+> PRINC is now obsolete and the PR Service should be used instead to keep PR
+> values incrementing on change.
 >
-> And I think that you already saw meta-intel-iot-devkit:
-> http://git.yoctoproject.org/cgit/cgit.cgi/meta-intel-iot-devkit/
+> A patch has also been submitted to openembedded-core to bump the appropriate PR
+> values so that PR doesn't move backwards. This patch should only be applied
+> after that patch, and only to branches which include that patch (ie. if that
+> patch doesn't go into daisy in oe-core, this patch shouldn't go into daisy in
+> meta-raspberrypi).
+>
+> Signed-off-by: Paul Barker <paul@paulbarker.me.uk>
+> ---
+>  recipes-bsp/formfactor/formfactor_0.0.bbappend                 | 1 -
+>  recipes-graphics/xorg-xserver/xserver-xf86-config_0.1.bbappend | 3 ---
+>  2 files changed, 4 deletions(-)
+>
+> diff --git a/recipes-bsp/formfactor/formfactor_0.0.bbappend b/recipes-bsp/formfactor/formfactor_0.0.bbappend
+> index 0003480..72d991c 100644
+> --- a/recipes-bsp/formfactor/formfactor_0.0.bbappend
+> +++ b/recipes-bsp/formfactor/formfactor_0.0.bbappend
+> @@ -1,2 +1 @@
+>  FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+> -PRINC = "1"
+> diff --git a/recipes-graphics/xorg-xserver/xserver-xf86-config_0.1.bbappend b/recipes-graphics/xorg-xserver/xserver-xf86-config_0.1.bbappend
+> index 3e86645..e37f942 100644
+> --- a/recipes-graphics/xorg-xserver/xserver-xf86-config_0.1.bbappend
+> +++ b/recipes-graphics/xorg-xserver/xserver-xf86-config_0.1.bbappend
+> @@ -1,8 +1,5 @@
+>  FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+>
+> -# Don't forget to bump PRINC if you update the extra files.
+> -PRINC := "${@int(PRINC) + 5}"
+> -
+>  THISDIR := "${@os.path.dirname(bb.data.getVar('FILE', d, True))}"
+>  FILESPATH =. "${@base_set_filespath(["${THISDIR}/${PN}"], d)}:"
+>
 
-  at the moment, i am at my wit's end trying to build a simple
-bootable SD card for the galileo, and since i need one of those to
-boot my eventual yocto build, i figure this is at least remotely on
-topic.
+Merged. Thanks.
 
-  what is the proper and acceptable format for a bootable SD card for
-the galileo, and how does one boot from it? i have read *numerous*
-online recipes, all of which differ subtlely but maddeningly from one
-another. there is an alleged linux image file one can download:
-
-  LINUX_IMAGE_FOR_SD_Intel_Galileo_v0.7.5.7z
-
-which uncompresses and unloads into the following:
-
-./core-image-minimal-initramfs-clanton.cpio.gz
-./bzImage
-./image-full-clanton.ext3
-./boot
-./boot/grub
-./boot/grub/grub.conf
-
-but how one "installs" that on an SD card that is bootable by a
-galileo board is a mystery i have yet to fathom, and various recipes
-online differ in what they think is required:
-
-* some recipes insist the filesystem must be FAT or FAT16, while
-others claim FAT or FAT32
-* one recipe will claim that the partition must be bootable, another
-insists it works without that
-* some recipes explain that the SD card should contain one partition
-(as in, you know, /dev/sdc1), while another recipe *appears* to claim
-that you need to format the *raw* SD card as a FAT partition
-
-  i have tried various incantations of fdisk and mkfs and so on, to
-the point where i am quite prepared to toss this board out a second
-story window.
-
-  can anyone point me at a set of instructions that will give me a
-bootable SD card for this board?
-
-rday
-
--- 
-
-========================================================================
-Robert P. J. Day                                 Ottawa, Ontario, CANADA
-                        http://crashcourse.ca
-
-Twitter:                                       http://twitter.com/rpjday
-LinkedIn:                               http://ca.linkedin.com/in/rpjday
-========================================================================
-
+--
+Andrei Gherzan
+m: +40.744.478.414 | f: +40.31.816.28.12
 
