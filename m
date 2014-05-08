@@ -1,41 +1,38 @@
-Return-Path: <rpjday@crashcourse.ca>
+Return-Path: <richard.purdie@linuxfoundation.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 9E9A4E009A7; Thu,  8 May 2014 04:38:12 -0700 (PDT)
+	id C72D0E009A6; Thu,  8 May 2014 04:47:16 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
-X-Spam-Level: *
-X-Spam-Status: No, score=1.3 required=5.0 tests=RDNS_NONE autolearn=no
+X-Spam-Level: 
+X-Spam-Status: No, score=0.0 required=5.0 tests=none autolearn=ham
 	version=3.3.1
-X-Spam-HAM-Report: * 1.3 RDNS_NONE Delivered to internal network by a host
-	with no rDNS
-Received: from astoria.ccjclearline.com (unknown [64.235.106.9])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id ECF5FE006EF
-	for <yocto@yoctoproject.org>; Thu,  8 May 2014 04:38:09 -0700 (PDT)
-Received: from [99.240.204.5] (port=37716 helo=crashcourse.ca)
-	by astoria.ccjclearline.com with esmtpsa (TLSv1:DHE-RSA-AES256-SHA:256)
-	(Exim 4.80) (envelope-from <rpjday@crashcourse.ca>)
-	id 1WiMeR-0007Pw-VS; Thu, 08 May 2014 07:38:12 -0400
-Date: Thu, 8 May 2014 07:36:05 -0400 (EDT)
-From: "Robert P. J. Day" <rpjday@crashcourse.ca>
-X-X-Sender: rpjday@localhost
-To: Diego Sueiro <diego.sueiro@gmail.com>
-In-Reply-To: <CAMCfZKFHCLp2aJJQU4LEQ7nd4_NtNuOgy-ghYFaqAzO5-qtzkw@mail.gmail.com>
-Message-ID: <alpine.LFD.2.11.1405080721510.4769@localhost>
-References: <alpine.LFD.2.11.1405080318520.27694@localhost>
-	<CAMCfZKFHCLp2aJJQU4LEQ7nd4_NtNuOgy-ghYFaqAzO5-qtzkw@mail.gmail.com>
-User-Agent: Alpine 2.11 (LFD 23 2013-08-11)
-MIME-Version: 1.0
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - crashcourse.ca
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-Cc: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: couple simple questions on building for intel galileo
+X-Spam-HAM-Report: 
+Received: from dan.rpsys.net (5751f4a1.skybroadband.com [87.81.244.161])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4E871E006EF
+	for <yocto@yoctoproject.org>; Thu,  8 May 2014 04:47:12 -0700 (PDT)
+Received: from localhost (dan.rpsys.net [127.0.0.1])
+	by dan.rpsys.net (8.14.4/8.14.4/Debian-2.1ubuntu4) with ESMTP id
+	s48Bkx96011595; Thu, 8 May 2014 12:46:59 +0100
+X-Virus-Scanned: Debian amavisd-new at dan.rpsys.net
+Received: from dan.rpsys.net ([127.0.0.1])
+	by localhost (dan.rpsys.net [127.0.0.1]) (amavisd-new, port 10024)
+	with LMTP id UtDWJEMrEJdM; Thu,  8 May 2014 12:46:59 +0100 (BST)
+Received: from [192.168.3.10] (rpvlan0 [192.168.3.10]) (authenticated bits=0)
+	by dan.rpsys.net (8.14.4/8.14.4/Debian-2.1ubuntu1) with ESMTP id
+	s48BkqjE011591
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES128-SHA bits=128 verify=NOT);
+	Thu, 8 May 2014 12:46:54 +0100
+Message-ID: <1399549606.31891.54.camel@ted>
+From: Richard Purdie <richard.purdie@linuxfoundation.org>
+To: "Woodyatt, James" <james.woodyatt@intel.com>
+Date: Thu, 08 May 2014 12:46:46 +0100
+In-Reply-To: <E6278F08-161F-41AF-B417-756C0B2DA6A2@intel.com>
+References: <9B489023-F966-4C06-ACD4-A5028E46D5F1@intel.com>
+	<E6278F08-161F-41AF-B417-756C0B2DA6A2@intel.com>
+X-Mailer: Evolution 3.8.4-0ubuntu1 
+Mime-Version: 1.0
+Cc: Yocto Project Main <yocto@yoctoproject.org>
+Subject: Re: [PATCH 1/1] dylan: fix C++ standard library headers on OS X
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -47,79 +44,42 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 08 May 2014 11:38:12 -0000
-Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-List-Received-Date: Thu, 08 May 2014 11:47:16 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
-On Thu, 8 May 2014, Diego Sueiro wrote:
+On Mon, 2014-05-05 at 23:12 +0000, Woodyatt, James wrote:
+> Resend, this time with all contents.
+> 
+> commit 562fa987cea60d61c256195adce7e83bf1c1a8c9
+> Author: james woodyatt <james.woodyatt@intel.com>
+> Date:   Thu May 1 14:44:39 2014 -0700
+> 
+>     Fix C++ standard library header directory configuration.
+>     
+>     Remove the 4.2.1 directory from the --with-gxx-include-dir path provided
+>     to the configure script for GCC 4.7 in the cross-canadian build.
+> 
+> diff --git a/recipes-devtools/gcc/gcc-cross-canadian_4.7.bbappend b/recipes-devtools/gcc/gcc-cross-canadian_4.7.bbappend
+> index 3fcc012..083b930 100644
+> --- a/recipes-devtools/gcc/gcc-cross-canadian_4.7.bbappend
+> +++ b/recipes-devtools/gcc/gcc-cross-canadian_4.7.bbappend
+> @@ -4,7 +4,7 @@ INSANE_SKIP_${PN}_append_darwinsdk = " staticdev"
+>  LDFLAGS_darwinsdk = "${BUILDSDK_LDFLAGS} -L${libdir}/.."
+>  
+>  # Change gxx-include-dir
+> -EXTRA_OECONF_PATHS_darwinsdk = "--with-gxx-include-dir=${SDKPATH}/sysroots/${TUNE_PKGARCH}${TARGET_VENDOR}-${TARGET_OS}/usr/include/c++/4.2.1 \
+> +EXTRA_OECONF_PATHS_darwinsdk = "--with-gxx-include-dir=${SDKPATH}/sysroots/${TUNE_PKGARCH}${TARGET_VENDOR}-${TARGET_OS}/usr/include/c++ \
+>                        --with-build-time-tools=${STAGING_DIR_NATIVE}${prefix_native}/${TARGET_SYS}/bin \
+>                        --with-sysroot=${SDKPATH}/sysroots/${TUNE_PKGARCH}${TARGET_VENDOR}-${TARGET_OS} \
+>                        --with-build-sysroot=${STAGING_DIR_TARGET}"
+> 
 
-> Robert,
-> Here is some instructions with some workarounds:
-> http://www.malinov.com/Home/sergey-s-blog/intelgalileo-buildinglinuximage
->
-> And I think that you already saw meta-intel-iot-devkit:
-> http://git.yoctoproject.org/cgit/cgit.cgi/meta-intel-iot-devkit/
->
-> As soon as I get my Galileo I'll try to put Yocto on it.
->
-> Please, share your results with us.
+I've applied this fix to the dylan, dora, daisy and master branches. I
+tweaked the commit message a little to match the guidelines.
 
-  oh, i'm currently writing all this up and, at the risk of going
-*slightly* off-topic, before i set up for a yocto build for this
-board, i'm just trying to clarify the boot process, both without and
-with the SD card, so i know i'm bulding my SD card properly.
+Cheers,
 
-  first, without an SD card, the board apparently boots a minimal
-linux image from SPI flash. so far, so good.
+Richard
 
-  as for creating a bootable SD card, i see two possibilities. the
-first is explained at sparkfun:
-
-https://learn.sparkfun.com/tutorials/galileo-getting-started-guide/bigger-linux-image
-
-where one can download a file called
-LINUX_IMAGE_FOR_SD_Intel_Galileo_v0.7.5.7z, which uncompresses into a
-simple directory structure that you copy to a FAT-formatted SD card.
-so this SD card, apparently, contains a single FAT partition.
-
-  on the other hand, over at intel's developer zone:
-
-https://software.intel.com/en-us/iotdevkit
-
-one can download what is described as "SD card (200MB zipped)", which
-i unzipped into a file "iot-devkit-201402201605-mmcblkp0.direct",
-almost 8G in size, and which "fdisk" shows me has the following
-structure:
-
-Units: sectors of 1 * 512 = 512 bytes
-Sector size (logical/physical): 512 bytes / 512 bytes
-I/O size (minimum/optimal): 512 bytes / 512 bytes
-Disklabel type: dos
-Disk identifier: 0x0007eabb
-
-Device                                   Boot     Start       End
-Blocks  Id System
-iot-devkit-201402201605-mmcblkp0.direct1 *         2048    106493   52223  83 Linux
-iot-devkit-201402201605-mmcblkp0.direct2         106496  14442495 7168000  83 Linux
-
-  which is more what i'm used to. so am i reading both of these
-correctly? there are two possible formats for the bootable SD card:
-
-* simple, single FAT partition, or
-* more "standard" pair of bootable FAT partition, and linux ext
-partition.
-
-  many thanks.
-
-rday
-
-
--- 
-
-========================================================================
-Robert P. J. Day                                 Ottawa, Ontario, CANADA
-                        http://crashcourse.ca
-
-Twitter:                                       http://twitter.com/rpjday
-LinkedIn:                               http://ca.linkedin.com/in/rpjday
-========================================================================
 
