@@ -1,43 +1,63 @@
-Return-Path: <briank@RUSSOUND.COM>
+Return-Path: <ticotimo@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 0A5CDE009EB; Fri,  9 May 2014 07:58:56 -0700 (PDT)
+	id 20A07E0073A; Thu,  8 May 2014 09:32:25 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: *
-X-Spam-Status: No, score=1.3 required=5.0 tests=RDNS_NONE autolearn=no
-	version=3.3.1
-X-Spam-HAM-Report: * 1.3 RDNS_NONE Delivered to internal network by a host
-	with no rDNS
-Received: from Pegasus.RUSSOUND.COM (unknown [64.223.142.81])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E083EE009BA
-	for <yocto@yoctoproject.org>; Fri,  9 May 2014 07:58:53 -0700 (PDT)
-Received: from HERMES.RUSSOUND.com (10.0.0.14) by pegasus.RUSSOUND.COM
-	(10.0.0.15) with Microsoft SMTP Server (TLS) id 8.3.298.1;
-	Fri, 9 May 2014 10:58:46 -0400
-Received: from HERMES.RUSSOUND.com (10.0.0.30) by HERMES.RUSSOUND.com
-	(10.0.0.30) with Microsoft SMTP Server (TLS) id 15.0.620.29;
-	Fri, 9 May 2014 10:58:45 -0400
-Received: from HERMES.RUSSOUND.com ([fe80::3946:4b97:77b1:c1c5]) by
-	HERMES.RUSSOUND.com ([fe80::3946:4b97:77b1:c1c5%12]) with mapi id
-	15.00.0620.020; Fri, 9 May 2014 10:58:45 -0400
-From: Brian Karcz <briank@RUSSOUND.COM>
-To: Bruce Ashfield <bruce.ashfield@windriver.com>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>
-Thread-Topic: [yocto] [meta-atmel] at91sam9x5ek: "no machine record defined"
-	failure for core-image-minimal
-Thread-Index: Ac9riCi/qecn3Y3qQzK51aCH65HnbgAJ5HKAAAc038A=
-Date: Fri, 9 May 2014 14:58:45 +0000
-Message-ID: <bab902e58d8041a793958d1432e41e86@HERMES.RUSSOUND.com>
-References: <f9f1c263a9ab4a3085bf1a696f31aec6@HERMES.RUSSOUND.com>
-	<536CDE17.40806@windriver.com>
-In-Reply-To: <536CDE17.40806@windriver.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.0.3.60]
-x-brightmail-tracker: H4sIAAAAAAAAC+NgFnrJqsTGxcLFwCCnq/o2J9jg6JYXXzgt7l87zWIxYWkrkwNTAEMUa2ZeUn5FAmtGf+NB1oLpexgrZn/IaGBcto6xi5GLQ0hgKaPE8wVLWCGcHYwSJ5ZvAHI4OZgFTCWufG1kgbAVJS7cawCz2QTUJV7snQJUw8EhIpAmcb4nGiQsLJAjcWTlXkYQW0QgV+Lh/hnMELaVxPOODjYQm0VAReLntYVgcV4BJ4m597+BxYUEkiWOXb0ONpJTQFvi0IkYkDCjgJjE91NrmCAuEJe49WQ+mC0hICCxZM95ZghbSaL39juouI/ExekPWSHGC0qcnPmEBSJuJrH3wRKoGj2J1RtPQtmBEh8PLWUDWSsB9O3V98EQYVuJPTMmMkGEnSXm3aiHCFtJXDs/lRXC1pbY/moflK0jsenaKqhN8hL/791ngRkz4fIyqCtlJU5fW8QGYQdILFt8jWUCo9ospGCehRTMs5A8PAvJMwsYWVYxCnu4Bvm6BusFhQYH+4f6uegl5+duYoQmgx2Mf2/YH2KU5GBSEuUV3ZITLMSXlJ9SmZFYnBFfVJqTWnyIUYKDR0mEl+cNUI63uCAxtzgzHSYlw8GhJMH78DVQSrAoNT21Ii0zpyS1CCJ9ilFSSpz3MkhSAKQvozQPLneJUVRKmPcmSI6nILUoN7MEIn6LUZjjIZMQS15+XqoU0IkMQKDB+IpRnINRSZj3Plh9Zl4J3AmvgK5jArrOVz8b5LqSRISUVANj1nf9qS+e8E/j2CipF6LTtP1OyC2tuNPxx9tklbl1Cj8Vsk3um+27S27Xqw6+xGndSw93zpJYmtzd6nHl9DNOy/XbX4WHmHk/PijBdvqrdFHWJYstt7axK1z9+dnjUKteymveImVrQd5f7abJ5iITM+erKJ4OTvPNW8NnIrz3YeVF13cCDNeVWIozEg21mIuKEwG9g55UfAMAAA==
-MIME-Version: 1.0
-Subject: Re: [meta-atmel] at91sam9x5ek: "no machine record defined" failure for core-image-minimal
+X-Spam-Status: No, score=1.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+	DKIM_VALID_AU, FREEMAIL_FROM, MIME_QP_LONG_LINE, RCVD_IN_DNSWL_NONE,
+	RDNS_NONE autolearn=no version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (ticotimo[at]gmail.com)
+	* 0.0 MIME_QP_LONG_LINE RAW: Quoted-printable line longer than 76 chars
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.192.175 listed in list.dnswl.org]
+	*  1.3 RDNS_NONE Delivered to internal network by a host with no rDNS
+X-Greylist: delayed 1651 seconds by postgrey-1.32 at yocto-www;
+	Thu, 08 May 2014 09:32:23 PDT
+Received: from mail-pd0-f175.google.com (unknown [209.85.192.175])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 89116E00478
+	for <yocto@yoctoproject.org>; Thu,  8 May 2014 09:32:23 -0700 (PDT)
+Received: by mail-pd0-f175.google.com with SMTP id x10so2503423pdj.6
+	for <yocto@yoctoproject.org>; Thu, 08 May 2014 09:32:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=references:mime-version:in-reply-to:content-type
+	:content-transfer-encoding:message-id:cc:from:subject:date:to;
+	bh=LDOdKCkv6ZjpjVcR6ZUJVMe7pui7wE9hnQLr7Wrc8jc=;
+	b=rDCyQleG0AdBlrzCQkbnwdpJ1Epmlz35WGpBVNYRdgkp0Vxnz/bOVaU2CyuAuVqcU5
+	NLPvW+Ftr1FdnODvOXZQCZkGY1RXoMFrrsOOVRPrAum/elNE2yL9Yy8ojfh3NJCAYmob
+	Ho+SS2BczTHXJBCamffm+P7Zz/BBKPlAdn+fY8B2jjn8jvuH87mh3kE6aZGsE5VvIkCl
+	miKcQSjfYA72Rx1oqCT3rvJTrC1zPbAk9NvTkNg3Lk96xOJnXSIpa4WxJW/mMA3rR2r8
+	IyyhCRHikVDW8D0TO+ZlvB6qnl5Rw7KhpTJQcdK1KEzgZdv6aCe3jQgKb0HcGLUSwV44
+	bylQ==
+X-Received: by 10.66.172.167 with SMTP id bd7mr2935714pac.72.1399565092377;
+	Thu, 08 May 2014 09:04:52 -0700 (PDT)
+Received: from [30.38.35.7] (m910436d0.tmodns.net. [208.54.4.145])
+	by mx.google.com with ESMTPSA id lr3sm6315605pab.4.2014.05.08.09.04.50
+	for <multiple recipients>
+	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
+	Thu, 08 May 2014 09:04:50 -0700 (PDT)
+X-Google-Original-From: Tim Orling <TicoTimo@gmail.com>
+References: <CAJTo0LZbPXzXyvKXGZZYDT1BDWg3XYrRO_NXsXmuHLMmmW_S3Q@mail.gmail.com>
+	<4880759.hcBN3hRDv1@peggleto-mobl5.ger.corp.intel.com>
+Mime-Version: 1.0 (1.0)
+In-Reply-To: <4880759.hcBN3hRDv1@peggleto-mobl5.ger.corp.intel.com>
+Message-Id: <0906179D-0519-4C3E-B269-ABC8B1857021@gmail.com>
+X-Mailer: iPhone Mail (11D201)
+From: Tim Orling <ticotimo@gmail.com>
+Date: Thu, 8 May 2014 09:04:45 -0700
+To: "openembedded-core@lists.openembedded.org"
+	<openembedded-core@lists.openembedded.org>, 
+	OE-devel <openembedded-devel@lists.openembedded.org>
+X-Mailman-Approved-At: Fri, 09 May 2014 08:12:07 -0700
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: [OE-core] GStreamer 0.10's future
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -49,296 +69,48 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 09 May 2014 14:58:56 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Thu, 08 May 2014 16:32:25 -0000
+Content-Type: text/plain;
+	charset=us-ascii
 Content-Transfer-Encoding: quoted-printable
 
-Hi Bruce,
-
-I'm not entirely familiar with the mechanism that gets the defconfig from t=
-he BSP to the .config in work area, but here is how things currently look. =
-The two files aren't a direct match as there appear to be some formatting d=
-ifferences, but the variables in the SOC/ARCH section seem to correlate par=
-tially (ie. it knows its trying to build for an at91sam9x5 SOC).
-
-defconfig:
-	CONFIG_ARCH_AT91=3Dy
-	CONFIG_SOC_AT91SAM9260=3Dy
-	CONFIG_SOC_AT91SAM9263=3Dy
-	CONFIG_SOC_AT91SAM9G45=3Dy
-	CONFIG_SOC_AT91SAM9X5=3Dy
-	CONFIG_MACH_AT91SAM_DT=3Dy
-
-.config:
-	#
-	# Atmel AT91 Processor
-	#
-	# CONFIG_SOC_AT91RM9200 is not set
-	CONFIG_SOC_AT91SAM9260=3Dy
-	# CONFIG_SOC_AT91SAM9261 is not set
-	CONFIG_SOC_AT91SAM9263=3Dy
-	# CONFIG_SOC_AT91SAM9RL is not set
-	CONFIG_SOC_AT91SAM9G45=3Dy
-	CONFIG_SOC_AT91SAM9X5=3Dy
-	# CONFIG_SOC_AT91SAM9N12 is not set
-
-	#
-	# Atmel Non-DT world
-	#
-	CONFIG_ARCH_AT91_NONE=3Dy
-	# CONFIG_ARCH_AT91RM9200 is not set
-	# CONFIG_ARCH_AT91SAM9260 is not set
-	# CONFIG_ARCH_AT91SAM9261 is not set
-	# CONFIG_ARCH_AT91SAM9263 is not set
-	# CONFIG_ARCH_AT91SAM9RL is not set
-	# CONFIG_ARCH_AT91SAM9G45 is not set
-
-	#
-	# AT91 Board Options
-	#
-
-	#
-	# Generic Board Type
-	#
-	# CONFIG_MACH_AT91SAM9_DT is not set
-
-Given the fact that the ARCH and DT variables don't appear to match, it loo=
-ks like this might be device tree related.
-
-I was hoping the code out of the box was going to be able to provide a demo=
- image that I could build and poke around in for some guidance. My ultimate=
- goal is to port the at91sam9x5ek machine definition to one for the at91sam=
-9g20ek demo board and then port THAT over to a custom machine based roughly=
- off that reference design.
 
 
------Original Message-----
-From: Bruce Ashfield [mailto:bruce.ashfield@windriver.com]=20
-Sent: Friday, May 09, 2014 9:55 AM
-To: Brian Karcz; yocto@yoctoproject.org
-Subject: Re: [yocto] [meta-atmel] at91sam9x5ek: "no machine record defined"=
- failure for core-image-minimal
+> On May 8, 2014, at 8:07 AM, Paul Eggleton <paul.eggleton@linux.intel.com> w=
+rote:
+>=20
+>> On Thursday 08 May 2014 15:48:40 Burton, Ross wrote:
+>> Hi all,
+>>=20
+>> Sorry for the cross-post but I want this to have a wide audience.
+>>=20
+>> For the 1.7 release I want to move GStreamer 0.10 from oe-core into
+>> meta-multimedia, and ensure everything in oe-core has ported to
+>> GStreamer 1.x.  GStreamer 0.10 is considered dead upstream and is
+>> unmaintained so we don't need to be shipping both versions anymore.
+>>=20
+>> Everyone in agreement?  Should I expect any hate mail over this?
+>=20
+> +1
+>=20
++1 as well
+> The next question is does that mean for the "old" libav (which gst-ffmpeg=20=
 
-On 14-05-09 09:44 AM, Brian Karcz wrote:
-> Hi,
->
-> Not sure if this is the correct place to email this, but I've seen a=20
-> few other meta-atmel references so I figured I'd give it a shot.
->
-> I'm attempting to setup a core-image-minimal build using the=20
-> guidelines in the meta-atmel README for the at91sam9x5ek machine type.=20
-> When the kernel build goes to link, I get a "no machine record=20
-> defined" error. Is this something others are seeing in the meta-atmel dem=
-o builds?
->
-> It's a pretty benign build setup according to the README:
->
-> git clone git://git.yoctoproject.org/poky
->
-> cd poky
->
-> git checkout dora-10.0.1 -b dora-10.0.1
->
-> git clone git://git.openembedded.org/meta-openembedded
->
-> cd meta-openembedded
->
-> git checkout 6572316557e742c2dc93848e4d560242bf0c3995 -b my_branch
->
-> cd ..
->
-> git clone http://github.com/linux4sam/meta-atmel
->
-> source oe-init-build-env /workspace/build-atmel
->
-> modify local.conf:
->
-> MACHINE ??=3D "at91sam9x5ek"
->
-> PACKAGE_CLASSES ?=3D "package_ipk"
->
-> modify bblayers.conf:
->
-> BBLAYERS ?=3D " \
->
->    /opt/poky/meta-atmel \
->
->    /opt/poky/meta \
->
->    /opt/poky/meta-yocto \
->
->    /opt/poky/meta-yocto-bsp \
->
->    /opt/poky/meta-openembedded/meta-oe \
->
->    /opt/poky/meta-openembedded/meta-networking \
->
->    "
->
-> bitbake core-image-minimal
->
-> Setting this up, I get the following build configuration and error:
->
-> /workspace/build-atmel$ bitbake core-image-minimal
->
-> Loading cache: 100%
-> |#####################################################################
-> |#################|
-> ETA:  00:00:00
->
-> Loaded 1782 entries from dependency cache.
->
-> NOTE: Resolving any missing task queue dependencies
->
-> Build Configuration:
->
-> BB_VERSION        =3D "1.20.0"
->
-> BUILD_SYS         =3D "x86_64-linux"
->
-> NATIVELSBSTRING   =3D "Ubuntu-12.04"
->
-> TARGET_SYS        =3D "arm-poky-linux-gnueabi"
->
-> MACHINE           =3D "at91sam9x5ek"
->
-> DISTRO            =3D "poky"
->
-> DISTRO_VERSION    =3D "1.5.1"
->
-> TUNE_FEATURES     =3D "armv5 thumb dsp"
->
-> TARGET_FPU        =3D "soft"
->
-> meta-atmel        =3D "master:269066a8128d1e767deee64854a142e67451a5f2"
->
-> meta
->
-> meta-yocto
->
-> meta-yocto-bsp    =3D "dora-10.0.1:8e410e9e46e3335458a7747cdd32e05f5c19cc=
-bb"
->
-> meta-oe
->
-> meta-networking   =3D "my_branch:6572316557e742c2dc93848e4d560242bf0c3995=
-"
->
-> NOTE: Preparing runqueue
->
-> NOTE: Executing SetScene Tasks
->
-> NOTE: Executing RunQueue Tasks
->
-> ERROR: Function failed: do_compile (log file is located at
-> /workspace/build-atmel/tmp/work/at91sam9x5ek-poky-linux-gnueabi/linux-
-> yocto-custom/3.10+AUTOINC+68f2c28207-r5/temp/log.do_compile.2291)
->
-> ERROR: Logfile of failure stored in:
-> /workspace/build-atmel/tmp/work/at91sam9x5ek-poky-linux-gnueabi/linux-
-> yocto-custom/3.10+AUTOINC+68f2c28207-r5/temp/log.do_compile.2291
->
-> Log data follows:
->
-> | DEBUG: Executing shell function do_compile
->
-> | NOTE: make -j 2 zImage CC=3Darm-poky-linux-gnueabi-gcc
-> -mno-thumb-interwork -marm LD=3Darm-poky-linux-gnueabi-ld.bfd
->
-> |   GEN
-> /workspace/build-atmel/tmp/work/at91sam9x5ek-poky-linux-gnueabi/linux-
-> yocto-custom/3.10+AUTOINC+68f2c28207-r5/linux-at91sam9x5ek-standard-bu
-> ild/Makefile
->
-> |   CHK     include/generated/uapi/linux/version.h
->
-> |   CHK     include/generated/utsrelease.h
->
-> |   Using
-> /workspace/build-atmel/tmp/work/at91sam9x5ek-poky-linux-gnueabi/linux-
-> yocto-custom/3.10+AUTOINC+68f2c28207-r5/linux
-> as source for kernel
->
-> | make[3]: `include/generated/mach-types.h' is up to date.
->
-> |   CC      scripts/mod/devicetable-offsets.s
->
-> |   GEN     scripts/mod/devicetable-offsets.h
->
-> |   HOSTCC  scripts/mod/file2alias.o
->
-> |   CALL
-> /workspace/build-atmel/tmp/work/at91sam9x5ek-poky-linux-gnueabi/linux-
-> yocto-custom/3.10+AUTOINC+68f2c28207-r5/linux/scripts/checksyscalls.sh
->
-> |   HOSTLD  scripts/mod/modpost
->
-> |   CHK     include/generated/compile.h
->
-> |   LINK    vmlinux
->
-> |   LD      vmlinux.o
->
-> |   MODPOST vmlinux.o
->
-> |   GEN     .version
->
-> |   CHK     include/generated/compile.h
->
-> |   UPD     include/generated/compile.h
->
-> |   CC      init/version.o
->
-> |   LD      init/built-in.o
->
-> | arm-poky-linux-gnueabi-ld.bfd: no machine record defined
->
-> | make[2]: *** [vmlinux] Error 1
->
-> | make[1]: *** [sub-make] Error 2
->
-> | make: *** [all] Error 2
->
-> | ERROR: oe_runmake failed
->
-> | WARNING: exit code 1 from a shell command.
->
-> | ERROR: Function failed: do_compile (log file is located at
-> /workspace/build-atmel/tmp/work/at91sam9x5ek-poky-linux-gnueabi/linux-
-> yocto-custom/3.10+AUTOINC+68f2c28207-r5/temp/log.do_compile.2291)
->
-> ERROR: Task 208
-> (/opt/poky/meta-atmel/recipes-kernel/linux/linux-yocto-custom_3.10.bb,
-> do_compile) failed with exit code '1'
->
-> NOTE: Tasks Summary: Attempted 793 tasks of which 785 didn't need to=20
-> be rerun and 1 failed.
->
-> Waiting for 0 running tasks to finish:
->
-> Summary: 1 task failed:
->
->   =20
-> /opt/poky/meta-atmel/recipes-kernel/linux/linux-yocto-custom_3.10.bb,
-> do_compile
->
-> Summary: There was 1 ERROR message shown, returning a non-zero exit code.
->
-> Any thoughts on what might be missing from the README or my=20
-> implementation of it to get this demo build working?
+> depends upon), do we move that as well or drop it?
 
-Can you confirm that the final .config for the board has the machine defini=
-tions that you'd expect for the board ?
+If xbmc is ever going to work, it will need to be updated to build ffmpeg in=
+ternally. Unless we can get upstream to improve things.
 
-Bruce
-
->
-> Thanks,
->
-> Brian
->
->
->
-
+> Cheers,
+> Paul
+>=20
+> --=20
+>=20
+> Paul Eggleton
+> Intel Open Source Technology Centre
+> --=20
+> _______________________________________________
+> Openembedded-core mailing list
+> Openembedded-core@lists.openembedded.org
+> http://lists.openembedded.org/mailman/listinfo/openembedded-core
 
