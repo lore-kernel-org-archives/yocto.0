@@ -1,6 +1,6 @@
 Return-Path: <richard.purdie@linuxfoundation.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id C72D0E009A6; Thu,  8 May 2014 04:47:16 -0700 (PDT)
+	id 4D96EE009A6; Thu,  8 May 2014 04:48:22 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -8,31 +8,30 @@ X-Spam-Status: No, score=0.0 required=5.0 tests=none autolearn=ham
 	version=3.3.1
 X-Spam-HAM-Report: 
 Received: from dan.rpsys.net (5751f4a1.skybroadband.com [87.81.244.161])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4E871E006EF
-	for <yocto@yoctoproject.org>; Thu,  8 May 2014 04:47:12 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 83F95E006EF
+	for <yocto@yoctoproject.org>; Thu,  8 May 2014 04:48:21 -0700 (PDT)
 Received: from localhost (dan.rpsys.net [127.0.0.1])
 	by dan.rpsys.net (8.14.4/8.14.4/Debian-2.1ubuntu4) with ESMTP id
-	s48Bkx96011595; Thu, 8 May 2014 12:46:59 +0100
+	s48Bm7SJ011614; Thu, 8 May 2014 12:48:07 +0100
 X-Virus-Scanned: Debian amavisd-new at dan.rpsys.net
 Received: from dan.rpsys.net ([127.0.0.1])
 	by localhost (dan.rpsys.net [127.0.0.1]) (amavisd-new, port 10024)
-	with LMTP id UtDWJEMrEJdM; Thu,  8 May 2014 12:46:59 +0100 (BST)
+	with LMTP id rcGzQRwSWgI8; Thu,  8 May 2014 12:48:07 +0100 (BST)
 Received: from [192.168.3.10] (rpvlan0 [192.168.3.10]) (authenticated bits=0)
 	by dan.rpsys.net (8.14.4/8.14.4/Debian-2.1ubuntu1) with ESMTP id
-	s48BkqjE011591
+	s48Bm4Ff011610
 	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES128-SHA bits=128 verify=NOT);
-	Thu, 8 May 2014 12:46:54 +0100
-Message-ID: <1399549606.31891.54.camel@ted>
+	Thu, 8 May 2014 12:48:05 +0100
+Message-ID: <1399549677.31891.56.camel@ted>
 From: Richard Purdie <richard.purdie@linuxfoundation.org>
 To: "Woodyatt, James" <james.woodyatt@intel.com>
-Date: Thu, 08 May 2014 12:46:46 +0100
-In-Reply-To: <E6278F08-161F-41AF-B417-756C0B2DA6A2@intel.com>
-References: <9B489023-F966-4C06-ACD4-A5028E46D5F1@intel.com>
-	<E6278F08-161F-41AF-B417-756C0B2DA6A2@intel.com>
+Date: Thu, 08 May 2014 12:47:57 +0100
+In-Reply-To: <882B2198-C1C5-4239-86D5-6FE7F36D75CB@intel.com>
+References: <882B2198-C1C5-4239-86D5-6FE7F36D75CB@intel.com>
 X-Mailer: Evolution 3.8.4-0ubuntu1 
 Mime-Version: 1.0
 Cc: Yocto Project Main <yocto@yoctoproject.org>
-Subject: Re: [PATCH 1/1] dylan: fix C++ standard library headers on OS X
+Subject: Re: [PATCH 2/2] meta-darwin on dylan branch
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -44,39 +43,22 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 08 May 2014 11:47:16 -0000
+X-List-Received-Date: Thu, 08 May 2014 11:48:22 -0000
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On Mon, 2014-05-05 at 23:12 +0000, Woodyatt, James wrote:
-> Resend, this time with all contents.
-> 
-> commit 562fa987cea60d61c256195adce7e83bf1c1a8c9
+On Thu, 2014-05-01 at 19:03 +0000, Woodyatt, James wrote:
+> commit 4c50f7bd62a675dd1f034bc6730f833c6dca0c19
 > Author: james woodyatt <james.woodyatt@intel.com>
-> Date:   Thu May 1 14:44:39 2014 -0700
+> Date:   Thu May 1 11:57:41 2014 -0700
 > 
->     Fix C++ standard library header directory configuration.
->     
->     Remove the 4.2.1 directory from the --with-gxx-include-dir path provided
->     to the configure script for GCC 4.7 in the cross-canadian build.
-> 
-> diff --git a/recipes-devtools/gcc/gcc-cross-canadian_4.7.bbappend b/recipes-devtools/gcc/gcc-cross-canadian_4.7.bbappend
-> index 3fcc012..083b930 100644
-> --- a/recipes-devtools/gcc/gcc-cross-canadian_4.7.bbappend
-> +++ b/recipes-devtools/gcc/gcc-cross-canadian_4.7.bbappend
-> @@ -4,7 +4,7 @@ INSANE_SKIP_${PN}_append_darwinsdk = " staticdev"
->  LDFLAGS_darwinsdk = "${BUILDSDK_LDFLAGS} -L${libdir}/.."
->  
->  # Change gxx-include-dir
-> -EXTRA_OECONF_PATHS_darwinsdk = "--with-gxx-include-dir=${SDKPATH}/sysroots/${TUNE_PKGARCH}${TARGET_VENDOR}-${TARGET_OS}/usr/include/c++/4.2.1 \
-> +EXTRA_OECONF_PATHS_darwinsdk = "--with-gxx-include-dir=${SDKPATH}/sysroots/${TUNE_PKGARCH}${TARGET_VENDOR}-${TARGET_OS}/usr/include/c++ \
->                        --with-build-time-tools=${STAGING_DIR_NATIVE}${prefix_native}/${TARGET_SYS}/bin \
->                        --with-sysroot=${SDKPATH}/sysroots/${TUNE_PKGARCH}${TARGET_VENDOR}-${TARGET_OS} \
->                        --with-build-sysroot=${STAGING_DIR_TARGET}"
+>     Remove usage of ‘new typename’ constructors in ld64 part of odcctools2 package.
 > 
 
 I've applied this fix to the dylan, dora, daisy and master branches. I
-tweaked the commit message a little to match the guidelines.
+tweaked the commit message to include the fact that this is a gcc 4.7
+verses 4.8 issue and to match the guidelines (shortlog needed to start
+oddctools2: for example).
 
 Cheers,
 
