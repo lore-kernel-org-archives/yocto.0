@@ -1,6 +1,6 @@
 Return-Path: <stefan@agner.ch>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 0EB2CE00B43; Thu,  8 May 2014 09:53:39 -0700 (PDT)
+	id 1F858E00B3D; Thu,  8 May 2014 09:53:39 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: *
@@ -8,37 +8,35 @@ X-Spam-Status: No, score=1.3 required=5.0 tests=RDNS_NONE autolearn=no
 	version=3.3.1
 X-Spam-HAM-Report: * 1.3 RDNS_NONE Delivered to internal network by a host
 	with no rDNS
-X-Greylist: delayed 535 seconds by postgrey-1.32 at yocto-www;
-	Thu, 08 May 2014 09:53:32 PDT
 Received: from mail.kmu-office.ch (unknown [178.209.48.102])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4CB0EE0070F
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5049FE0077C
 	for <yocto@yoctoproject.org>; Thu,  8 May 2014 09:53:32 -0700 (PDT)
 Received: from localhost (localhost [127.0.0.1])
-	by mail.kmu-office.ch (Postfix) with ESMTP id A44A061964
+	by mail.kmu-office.ch (Postfix) with ESMTP id CD972615DB
 	for <yocto@yoctoproject.org>; Thu,  8 May 2014 18:40:08 +0200 (CEST)
 X-Virus-Scanned: by amavisd-new at kmu-office.ch
 Received: from mail.kmu-office.ch ([127.0.0.1])
 	by localhost (mail.kmu-office.ch [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id ivWRdvDyoNOG for <yocto@yoctoproject.org>;
+	with ESMTP id 1W63fmM0Jurr for <yocto@yoctoproject.org>;
 	Thu,  8 May 2014 18:40:08 +0200 (CEST)
 Received: from localhost (localhost [127.0.0.1])
-	by mail.kmu-office.ch (Postfix) with ESMTP id 7D05F61966
-	for <yocto@yoctoproject.org>; Thu,  8 May 2014 18:40:04 +0200 (CEST)
+	by mail.kmu-office.ch (Postfix) with ESMTP id 99A046196D
+	for <yocto@yoctoproject.org>; Thu,  8 May 2014 18:40:05 +0200 (CEST)
 Received: from linuxdev.toradex.int (unknown [46.140.72.82])
 	(Authenticated sender: stefan@agner.ch)
-	by mail.kmu-office.ch (Postfix) with ESMTPSA id B48F661955;
+	by mail.kmu-office.ch (Postfix) with ESMTPSA id 430E461961;
 	Thu,  8 May 2014 18:40:02 +0200 (CEST)
 From: stefan@agner.ch
 To: yocto@yoctoproject.org,
 	elizabeth.flanagan@intel.com
-Date: Thu,  8 May 2014 18:44:26 +0200
-Message-Id: <5aacc12602f370052ad86affd34033c6b77bd5cc.1399561605.git.stefan@agner.ch>
+Date: Thu,  8 May 2014 18:44:27 +0200
+Message-Id: <5903b02d2d1f2121ac07c48fe6f3ecadf3cee57b.1399561605.git.stefan@agner.ch>
 X-Mailer: git-send-email 1.9.0
 In-Reply-To: <cover.1399561605.git.stefan@agner.ch>
 References: <cover.1399561605.git.stefan@agner.ch>
 X-Mailman-Approved-At: Fri, 09 May 2014 08:12:07 -0700
 Cc: stefan@agner.ch
-Subject: [yocto-autobuilder][PATCH v1 2/4] README: add high level overview, fix build slave description
+Subject: [yocto-autobuilder][PATCH v1 3/4] master.py/botmaster.py: use builders list for builders order
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -54,78 +52,94 @@ X-List-Received-Date: Thu, 08 May 2014 16:53:39 -0000
 
 From: Stefan Agner <stefan@agner.ch>
 
-Replace builders with build slaves, since this are different things
-in BuildBot world. Also add a section with some high level view
-what Autobuilder actually is.
+This patch uses the order of the list builderNames when requesting
+builder names. This order is relevant for the Waterfall order.
+
+However, the order of builderNames is not meaningful by default,
+hence the change in botmaster.py makes sure the builderNames is
+taken form the configuration files list of builder.
+
+Hence we can get rid of the environment work around (which also
+did not honor non Autobuilder builders).
 
 Signed-off-by: Stefan Agner <stefan@agner.ch>
 ---
- README                 |  8 ++++----
- README-NEW-AUTOBUILDER | 11 +++++++++++
- 2 files changed, 15 insertions(+), 4 deletions(-)
+ lib/python2.7/site-packages/autobuilder/Autobuilder.py  | 17 +++++++++--------
+ .../buildbot/process/botmaster.py                       |  3 ++-
+ .../buildbot-0.8.8-py2.7.egg/buildbot/status/master.py  | 12 ++----------
+ 3 files changed, 13 insertions(+), 19 deletions(-)
 
-diff --git a/README b/README
-index c7c9acf..3b418fd 100644
---- a/README
-+++ b/README
-@@ -26,7 +26,7 @@ Setup
-        connection that I haven't figured out yet. Manually connecting seems to 
-        set up the session correctly.)
+diff --git a/lib/python2.7/site-packages/autobuilder/Autobuilder.py b/lib/python2.7/site-packages/autobuilder/Autobuilder.py
+index 4c33489..cf8672f 100644
+--- a/lib/python2.7/site-packages/autobuilder/Autobuilder.py
++++ b/lib/python2.7/site-packages/autobuilder/Autobuilder.py
+@@ -38,20 +38,21 @@ class Autobuilder:
+                 self.cfile = "./buildset-config/yoctoAB.conf"
  
--2. Adding additional builders
-+2. Adding additional build slaves
- 
-     The production yocto autobuilder uses a cluster of build slaves, all sharing
-     the same SSTATE_DIR and DL_DIR via an NFS4 mounted NAS. The main nightly 
-@@ -36,7 +36,7 @@ Setup
-     In theory you could also run your build slaves with NO_NETWORK to enforce a 
-     single point of populating DL_DIR.
- 
--    Running multiple builders is fairly simple, but does require some setup.
-+    Running multiple build slaves is fairly simple, but does require some setup.
- 
-     1. Ensure the autobuilder.conf for each build slave is appropriate. As
-        certain variables are set within this file that are local to each builder
-@@ -45,7 +45,7 @@ Setup
-     2. Within yocto-master/master.cfg make the following changes substituing 
-        <PASS> for your debug password and  max_builds for the number of builds 
-        you wish to run on each builder. Your main builder that will run the 
--       nightly trigger buildset should have at least 2 builders running.
-+       nightly trigger buildset should have at least 2 build slaves running.
- 
- 
- c['slaves'] = [BuildSlave("builder1", "<PASS>", max_builds=3),
-@@ -53,7 +53,7 @@ c['slaves'] = [BuildSlave("builder1", "<PASS>", max_builds=3),
-                BuildSlave("builder3", "<PASS>", max_builds=3),
-                BuildSlave("builder4", "<PASS>", max_builds=3)]
- 
--    3. For each buildslave change yocto-slave/buildbot.tac to point to the 
-+    3. For each build slave change yocto-slave/buildbot.tac to point to the 
-        correct build master and port. The default setup points to local host.
- 
- buildmaster_host = 'builder1.myproject.org'
-diff --git a/README-NEW-AUTOBUILDER b/README-NEW-AUTOBUILDER
-index 1e46f5b..acb5387 100644
---- a/README-NEW-AUTOBUILDER
-+++ b/README-NEW-AUTOBUILDER
-@@ -23,6 +23,17 @@ TODO
- - deploy stuff
- - killing triggers. this has been a long standing issue. look into
- 
-+What is it
-+------------
-+Yocto Autobuilder is essentially some extension to the vanilla build bot.
-+This extension mainly addresses configuration file handling and Yocto specific
-+build steps.
-+For better maintainability, the Autobuilder (see Autobuilder.py located at
-+lib/python2.7/site-packages/autobuilder/), handles configuration from multiple
-+files.
-+Additional build steps such as CheckOutLayers.py or CreateBBLayersConf are
-+Yocto specific and simplify the bulders configuration.
+     def createBuildsets(self):
+-        beenHere=[]
++        buildersSorted=[]
+         sort = True
+         if self.config.has_option('BuildSets', 'order'):
+             sort = False
+             for set in ast.literal_eval(self.config.get('BuildSets', 'order')):
+-                beenHere.append(set)
++                buildersSorted.append(set)
 +
- Setup
- ------------
- Nothing here has changed much. 
+         for key in self.configdict:
+-            if key not in beenHere and key != "BuildSets":
+-                beenHere.append(key)
++            if key not in buildersSorted and key != "BuildSets":
++                buildersSorted.append(key)
++
+         if sort:
+-            beenHere.sort()
+-        # REALLY crappy way to do this, but better than setting globals.
+-        os.environ["YOCTO_SORTED_BUILDERS"]= str(beenHere)
+-        for buildset in beenHere:
++            util.naturalSort(buildersSorted)
++
++        for buildset in buildersSorted:
+             self.schedprops = []
+             self.checkoutprops={}
+             self.set_props = {}
+diff --git a/lib/python2.7/site-packages/buildbot-0.8.8-py2.7.egg/buildbot/process/botmaster.py b/lib/python2.7/site-packages/buildbot-0.8.8-py2.7.egg/buildbot/process/botmaster.py
+index d5597f7..f2c3b9f 100644
+--- a/lib/python2.7/site-packages/buildbot-0.8.8-py2.7.egg/buildbot/process/botmaster.py
++++ b/lib/python2.7/site-packages/buildbot-0.8.8-py2.7.egg/buildbot/process/botmaster.py
+@@ -262,7 +262,8 @@ class BotMaster(config.ReconfigurableServiceMixin, service.MultiService):
+                 builder.master = self.master
+                 builder.setServiceParent(self)
+ 
+-        self.builderNames = self.builders.keys()
++        # Use order according to configuration files builders list
++        self.builderNames = list([ (bc.name) for bc in new_config.builders ])
+ 
+         metrics.MetricCountEvent.log("num_builders",
+                 len(self.builders), absolute=True)
+diff --git a/lib/python2.7/site-packages/buildbot-0.8.8-py2.7.egg/buildbot/status/master.py b/lib/python2.7/site-packages/buildbot-0.8.8-py2.7.egg/buildbot/status/master.py
+index b5fe741..df122b4 100644
+--- a/lib/python2.7/site-packages/buildbot-0.8.8-py2.7.egg/buildbot/status/master.py
++++ b/lib/python2.7/site-packages/buildbot-0.8.8-py2.7.egg/buildbot/status/master.py
+@@ -221,16 +221,8 @@ class Status(config.ReconfigurableServiceMixin, service.MultiService):
+ 
+     def getBuilderNames(self, categories=None):
+         if categories == None:
+-            #YOCTO PROJECT ADDITION
+-            import os
+-            import ast
+-            sortbuilders=""
+-            sortbuilders=ast.literal_eval(os.environ.get('YOCTO_SORTED_BUILDERS'))
+-            #I hate the way this is sorted. This is the laziest way to get this
+-            #in the format I want.
+-            return sortbuilders
+-            #YOCTO PROJECT ADDITION
+-            #return util.naturalSort(self.botmaster.builderNames) # don't let them break it
++            # assume this is already sorted...
++            return self.botmaster.builderNames
+         
+         l = []
+         # respect addition order
 -- 
 1.9.0
 
