@@ -1,40 +1,50 @@
-Return-Path: <paul.eggleton@linux.intel.com>
+Return-Path: <andrei@gherzan.ro>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id D3C03E00B47; Thu,  8 May 2014 10:29:29 -0700 (PDT)
+	id 1787DE00B3F; Thu,  8 May 2014 10:32:18 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-3.7 required=5.0 tests=RCVD_IN_DNSWL_HI,RDNS_NONE
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [134.134.136.24 listed in list.dnswl.org]
+X-Spam-Status: No, score=0.6 required=5.0 tests=RCVD_IN_DNSWL_LOW,RDNS_NONE
+	autolearn=no version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [74.125.83.42 listed in list.dnswl.org]
 	*  1.3 RDNS_NONE Delivered to internal network by a host with no rDNS
-Received: from mga09.intel.com (unknown [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B3C03E00B30
-	for <yocto@yoctoproject.org>; Thu,  8 May 2014 10:29:28 -0700 (PDT)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga102.jf.intel.com with ESMTP; 08 May 2014 10:24:28 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.97,1012,1389772800"; d="scan'208";a="508524859"
-Received: from paulonei-mobl.ger.corp.intel.com (HELO
-	peggleto-mobl5.ger.corp.intel.com) ([10.252.122.94])
-	by orsmga001.jf.intel.com with ESMTP; 08 May 2014 10:29:25 -0700
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: Martin Jansa <martin.jansa@gmail.com>
-Date: Thu, 08 May 2014 18:29:23 +0100
-Message-ID: <1409428.2ccCPSfTzN@peggleto-mobl5.ger.corp.intel.com>
-Organization: Intel Corporation
-User-Agent: KMail/4.12.5 (Linux/3.14.2-200.fc20.x86_64; KDE/4.12.4; x86_64; ; )
-In-Reply-To: <20140508172144.GR30955@jama>
-References: <CAJTo0LZbPXzXyvKXGZZYDT1BDWg3XYrRO_NXsXmuHLMmmW_S3Q@mail.gmail.com>
-	<2287383.nOAQ2ykZqg@peggleto-mobl5.ger.corp.intel.com>
-	<20140508172144.GR30955@jama>
-MIME-Version: 1.0
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	openembedded-core@lists.openembedded.org,
-	OE-devel <openembedded-devel@lists.openembedded.org>
-Subject: Re: [OE-core] GStreamer 0.10's future
+X-Greylist: delayed 309 seconds by postgrey-1.32 at yocto-www;
+	Thu, 08 May 2014 10:32:14 PDT
+Received: from mail-ee0-f42.google.com (unknown [74.125.83.42])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 36428E00B30
+	for <yocto@yoctoproject.org>; Thu,  8 May 2014 10:32:14 -0700 (PDT)
+Received: by mail-ee0-f42.google.com with SMTP id d49so1908036eek.15
+	for <yocto@yoctoproject.org>; Thu, 08 May 2014 10:32:13 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+	:references;
+	bh=C/UnhX1LYvU6BU7sgW+XXQqi/yFQgFk5uWFDGCkQ/mQ=;
+	b=l828xWUy53fNmUvre593/0kyMtPLW6ZNF4bWwHUTB4+owNVXy5xGQDXaKF2W1VBcCG
+	YMNJT79q9eq4oWqiJtLXKhJnlPL+ty6YRTdyNkAFIHmZJypna6fNXAjdqLHdkCLtsqEU
+	lNuVJR6rRui/lpvsXQwJLd90hmmbLxg2+iYd/FPcFNYqkMwsmm1QfHDpHQTjH8W4npgp
+	Z2STEhdrPkCh7q/hHQgH+0NgJdIBRq0fGrKGHwqCDEEXYXvfLTGeildpqGv4/5IMuBMA
+	c/x+DkJ08pDv/erRHrWvLZ76VCb72YVCS/ZptLTEFyOjjPtjVTKtr+6Nm4T4dM6SVHSZ
+	ir/A==
+X-Gm-Message-State: ALoCoQlhJyvJliBoP7+0ttfMw4Fy34Zsy830bA365fxCm0HvWin2L+Q/oDBx3YYWuYoOSElP6d9A
+X-Received: by 10.14.4.201 with SMTP id 49mr7293644eej.13.1399570024758;
+	Thu, 08 May 2014 10:27:04 -0700 (PDT)
+Received: from localhost.localdomain (5-13-208-17.residential.rdsnet.ro.
+	[5.13.208.17])
+	by mx.google.com with ESMTPSA id s46sm5593126ees.3.2014.05.08.10.27.03
+	for <multiple recipients>
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Thu, 08 May 2014 10:27:04 -0700 (PDT)
+From: Andrei Gherzan <andrei@gherzan.ro>
+To: yocto@yoctoproject.org
+Date: Thu,  8 May 2014 20:26:54 +0300
+Message-Id: <1399570014-28808-2-git-send-email-andrei@gherzan.ro>
+X-Mailer: git-send-email 1.8.5.3
+In-Reply-To: <1399570014-28808-1-git-send-email-andrei@gherzan.ro>
+References: <1399570014-28808-1-git-send-email-andrei@gherzan.ro>
+Subject: [meta-raspberrypi][PATCH 2/2] omxplayer: Separate build directory is broken for this package
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -46,94 +56,28 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 08 May 2014 17:29:29 -0000
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Thu, 08 May 2014 17:32:18 -0000
 
-On Thursday 08 May 2014 19:21:44 Martin Jansa wrote:
-> On Thu, May 08, 2014 at 05:57:54PM +0100, Paul Eggleton wrote:
-> > On Thursday 08 May 2014 18:19:08 Martin Jansa wrote:
-> > > On Thu, May 08, 2014 at 04:07:19PM +0100, Paul Eggleton wrote:
-> > > > On Thursday 08 May 2014 15:48:40 Burton, Ross wrote:
-> > > > > Hi all,
-> > > > > 
-> > > > > Sorry for the cross-post but I want this to have a wide audience.
-> > > > > 
-> > > > > For the 1.7 release I want to move GStreamer 0.10 from oe-core into
-> > > > > meta-multimedia, and ensure everything in oe-core has ported to
-> > > > > GStreamer 1.x.  GStreamer 0.10 is considered dead upstream and is
-> > > > > unmaintained so we don't need to be shipping both versions anymore.
-> > > > > 
-> > > > > Everyone in agreement?  Should I expect any hate mail over this?
-> > > > 
-> > > > +1
-> > > > 
-> > > > The next question is does that mean for the "old" libav (which
-> > > > gst-ffmpeg
-> > > > depends upon), do we move that as well or drop it?
-> > > 
-> > > libav was migrated to oe-core quite recently and there is couple of
-> > > recipes in meta-oe, meta-webserver depending on it/ffmpeg so moving to
-> > > meta-multimedia wouldn't be very easy.
-> > > 
-> > > meta-multimedia/recipes-multimedia/sox/sox_14.4.0.bb:DEPENDS = "libpng
-> > > libav libsndfile1"
-> > > meta-multimedia/recipes-mediacentre/xbmc/xbmc_git.bb:DEPENDS = "libusb1
-> > > libcec libplist expat yajl gperf-native libxmu fribidi mpeg2dec ffmpeg
-> > > samba fontconfig curl python libass libmodplug libmicrohttpd wavpack
-> > > libmms cmake-native libsdl-image libsdl-mixer virtual/egl mysql5
-> > > sqlite3 libmms faad2 libcdio libpcre boost lzo enca avahi
-> > > libsamplerate0
-> > > libxinerama libxrandr libxtst bzip2 virtual/libsdl jasper zip-native
-> > > zlib
-> > > libtinyxml libmad"
-> > > meta-multimedia/recipes-multimedia/musicpd/mpd_0.18.9.bb:DEPENDS =
-> > > "alsa-lib libsamplerate0 libsndfile1 libvorbis libogg faad2 ffmpeg curl
-> > > sqlite bzip2 pulseaudio" meta-multimedia/recipes-multimedia/vlc/vlc.inc:
-> > > faad2 ffmpeg flac libxpm libxinerama fluidsynth alsa-lib libdvdcss \
-> > > 
-> > > meta-oe/recipes-multimedia/nonworking/minidlna/minidlna_1.0.25.bb:DEPEND
-> > > S =
-> > > "flac libav jpeg sqlite3 libexif libogg libid3tag"
-> > > meta-oe/recipes-support/opencv/opencv_2.4.bb:PACKAGECONFIG ??= "eigen
-> > > gtk
-> > > jpeg libav png tiff v4l"
-> > > meta-oe/recipes-graphics/gegl/gegl_0.2.0.bb:PACKAGECONFIG[avformat] =
-> > > "--with-libavformat,--without-libavformat,libav"
-> > > meta-oe/recipes-multimedia/libpostproc/libpostproc_git.bb:DEPENDS =
-> > > "libav"
-> > > meta-oe/recipes-multimedia/mplayer/mplayer2_git.bb:DEPENDS = "libvpx
-> > > libdvdread libtheora virtual/libsdl ffmpeg xsp zlib \
-> > > 
-> > > meta-webserver/recipes-httpd/cherokee/cherokee_1.2.98.bb:PACKAGECONFIG[f
-> > > fmpe g] = "--with-ffmpeg,--without-ffmpeg,libav"
-> > > 
-> > > But I would like to see migration to libav-9 which currently has
-> > > negative
-> > > D_P (mplayer2 already depends on 9*, but there are few recipes which
-> > > fails
-> > > with libav-9 too - see earlier world builds for list).
-> > 
-> > Yes, I'm just talking about libav 0.8 here - libav 9 would remain where it
-> > is. That might still be problematic though given that their PN is the
-> > same. I'm open to better suggestions, but I think we have to do
-> > *something* here.
-> Ah ok, I though you meant both versions.
-> 
-> Then I would rather drop 0.8 completely, otherwise it will be preferred
-> even with negative D_P from meta-multimedia (YOCTO #2964) and we cannot
-> expect people which happen to have meta-multimedia layer to know that
-> they are expected to update P_V everytime libav is updated in oe-core.
+Change-Id: If08395ecd79c1d8e9a269ba03efba863de8dbe9d
+Signed-off-by: Andrei Gherzan <andrei@gherzan.ro>
+---
+ recipes-multimedia/omxplayer/omxplayer_git.bb | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Hmm. Perhaps a less intrusive solution then would be to create a completely 
-separate meta-gstreamer0.10 layer for those that still really need it rather 
-than putting it in meta-multimedia?
-
-Cheers,
-Paul
-
+diff --git a/recipes-multimedia/omxplayer/omxplayer_git.bb b/recipes-multimedia/omxplayer/omxplayer_git.bb
+index b878fb3..cee68e1 100644
+--- a/recipes-multimedia/omxplayer/omxplayer_git.bb
++++ b/recipes-multimedia/omxplayer/omxplayer_git.bb
+@@ -21,7 +21,7 @@ S = "${WORKDIR}/git"
+ 
+ COMPATIBLE_MACHINE = "raspberrypi"
+ 
+-inherit autotools
++inherit autotools-brokensep
+ 
+ # Needed in ffmpeg configure
+ export TEMPDIR = "${S}/tmp"
 -- 
+1.8.5.3
 
-Paul Eggleton
-Intel Open Source Technology Centre
 
