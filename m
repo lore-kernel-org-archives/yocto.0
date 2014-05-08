@@ -1,50 +1,63 @@
-Return-Path: <opensource@keylevel.com>
+Return-Path: <martin.jansa@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 56D2AE00B3D; Thu,  8 May 2014 10:03:14 -0700 (PDT)
+	id 8854EE00B3F; Thu,  8 May 2014 10:28:28 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
-X-Spam-Level: *
-X-Spam-Status: No, score=1.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-	DKIM_VALID_AU,RDNS_NONE autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -0.1 DKIM_VALID_AU Message has a valid DKIM or DK
-	signature from author's *       domain
+X-Spam-Level: 
+X-Spam-Status: No, score=0.5 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+	DKIM_VALID_AU,FREEMAIL_FROM,RCVD_IN_DNSWL_LOW,RDNS_NONE autolearn=no
+	version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (martin.jansa[at]gmail.com)
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.217.181 listed in list.dnswl.org]
 	*  1.3 RDNS_NONE Delivered to internal network by a host with no rDNS
-X-Greylist: delayed 1408 seconds by postgrey-1.32 at yocto-www;
-	Thu, 08 May 2014 10:03:09 PDT
-Received: from a180.4uh.net (unknown [89.248.60.180])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9F0B2E0073D
-	for <yocto@yoctoproject.org>; Thu,  8 May 2014 10:03:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=keylevel.com;
-	s=default; 
-	h=To:References:Message-Id:Content-Transfer-Encoding:Cc:Date:In-Reply-To:From:Subject:Mime-Version:Content-Type;
-	bh=fBbT9OVCRwcEgg6F+/4XVx7Y1g2hEXb1utVo6hKe9AE=; 
-	b=BKUVewRFZLC2VZPEy2Qktt8t7TiDIWdJSgL49Qo53QLxvj/UX3gZVVNi0KKKsRRXCdxfyPLbpcO+cAPaJmKnMxYuIeirtca8x5aqZeWWsw9UwrAQkixh4TlTMUZKxiUhI26vkZLeOOGio7x3PGUjsA/XHVkMs4iFyc1MESZgM6Y=;
-Received: from [109.224.171.0] (port=2697 helo=srv-192-168-1-40.ukfast.net)
-	by a180.4uh.net with esmtpsa (TLSv1:AES128-SHA:128) (Exim 4.82)
-	(envelope-from <opensource@keylevel.com>)
-	id 1WiRM6-0037xJ-FH; Thu, 08 May 2014 17:39:36 +0100
-Mime-Version: 1.0 (Mac OS X Mail 7.2 \(1874\))
-From: Chris Tapp <opensource@keylevel.com>
-In-Reply-To: <CAE8H0+VttZYHVgAPtfTtEWS9TEJX1jC_jWRtH=gicSLkJuODWg@mail.gmail.com>
-Date: Thu, 8 May 2014 17:39:35 +0100
-Message-Id: <503552D1-6274-4FEC-AC5F-6EB0F411A58E@keylevel.com>
-References: <CAE8H0+VttZYHVgAPtfTtEWS9TEJX1jC_jWRtH=gicSLkJuODWg@mail.gmail.com>
-To: r10kindsofpeople <r10kindsofpeople@gmail.com>
-X-Mailer: Apple Mail (2.1874)
-X-OutGoing-Spam-Status: No, score=-1.0
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - a180.4uh.net
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - keylevel.com
-X-Get-Message-Sender-Via: a180.4uh.net: authenticated_id:
-	chris.tapp@keylevel.com
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: SATO on Intel DN2800MT
+X-Greylist: delayed 417 seconds by postgrey-1.32 at yocto-www;
+	Thu, 08 May 2014 10:28:23 PDT
+Received: from mail-lb0-f181.google.com (unknown [209.85.217.181])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 15EF3E00B30
+	for <yocto@yoctoproject.org>; Thu,  8 May 2014 10:28:23 -0700 (PDT)
+Received: by mail-lb0-f181.google.com with SMTP id u14so4047448lbd.12
+	for <yocto@yoctoproject.org>; Thu, 08 May 2014 10:28:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=date:from:to:cc:subject:message-id:references:mime-version
+	:content-type:content-disposition:in-reply-to:user-agent;
+	bh=gTWh9mX7H6cW+XxzZPvXXE4/H57dLfCi7tOkJrraJPo=;
+	b=Vrr+iP2dxEPvtCBPF/BIWc555Z159BWeGHRGbqhHDF4bGWlQOTeurDK2ZxB/C7rPRg
+	tBQFcaF3P2htSXhjUVf2PxwkgkAkGc3m8G39Fhv9WstBqoicVsv5Tg4LL6m83/v4evXT
+	0K4YMpUQs83gKRiF1YkVSVwomcz9vY06AGJkBp7ad3+gW/wgw9Bps7Rtcsln2QDTmUw7
+	sivjWGv56a+Qg5lWisqpXgHAgH+f1AdawnxtYAmQAl/Ww3CT557UXznn0PFsMZfV+bRC
+	+gfJmJsqvtMSkOS2MrdVaBUC/1DWrnCjT9Oo+3/BUt+VL61ibD8iAjNlrNyu7duDMTi9
+	0gAg==
+X-Received: by 10.112.135.106 with SMTP id pr10mr5775240lbb.24.1399569685208; 
+	Thu, 08 May 2014 10:21:25 -0700 (PDT)
+Received: from localhost (ip-89-176-104-3.net.upcbroadband.cz. [89.176.104.3])
+	by mx.google.com with ESMTPSA id
+	cr6sm1623204lbb.19.2014.05.08.10.21.20 for <multiple recipients>
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Thu, 08 May 2014 10:21:21 -0700 (PDT)
+X-Google-Original-From: Martin Jansa <Martin.Jansa@gmail.com>
+Date: Thu, 8 May 2014 19:21:44 +0200
+From: Martin Jansa <martin.jansa@gmail.com>
+To: Paul Eggleton <paul.eggleton@linux.intel.com>
+Message-ID: <20140508172144.GR30955@jama>
+References: <CAJTo0LZbPXzXyvKXGZZYDT1BDWg3XYrRO_NXsXmuHLMmmW_S3Q@mail.gmail.com>
+	<4880759.hcBN3hRDv1@peggleto-mobl5.ger.corp.intel.com>
+	<20140508161908.GQ30955@jama>
+	<2287383.nOAQ2ykZqg@peggleto-mobl5.ger.corp.intel.com>
+MIME-Version: 1.0
+In-Reply-To: <2287383.nOAQ2ykZqg@peggleto-mobl5.ger.corp.intel.com>
+User-Agent: Mutt/1.5.23 (2014-03-12)
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
+	openembedded-core@lists.openembedded.org,
+	OE-devel <openembedded-devel@lists.openembedded.org>
+Subject: Re: [OE-core] GStreamer 0.10's future
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -56,63 +69,109 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 08 May 2014 17:03:14 -0000
+X-List-Received-Date: Thu, 08 May 2014 17:28:28 -0000
+X-Groupsio-MsgNum: 19466
+Content-Type: multipart/signed; micalg=pgp-sha1;
+	protocol="application/pgp-signature"; boundary="gMqNd2jlyJQcupG/"
+Content-Disposition: inline
+
+--gMqNd2jlyJQcupG/
 Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-Hi John,
-
-On 8 May 2014, at 16:25, r10kindsofpeople <r10kindsofpeople@gmail.com> =
-wrote:
-
-> I'm trying to experiment with the SATO build on a DN2800MT with a VGA =
-monitor, but can't seem to get going.  The binaries from Daisy and =
-genericX86 get as far as the Yocto progress bar complete, and then go =
-black.  Any quick hints?
-
-Have a look in the README file for the cedartrail BSP. At the bottom you =
-will find:
-
-Work Around for VGA and LVDS Display issue in PVR driver
---------------------------------------------------------
-
-The PVR driver has a issue that for some systems it causes
-it to incorrectly assume that a LVDS display is connected
-while infact a VGA display is connected and Vice Versa.
-If your VGA or LVDS display does not work with
-"cedartrail" MACHINE, then if you have connected a VGA display,
-add the following to the kernel command line:
-
-video=3DLVDS-1:d video=3DVGA-1:e
-
-<snip>
-
-I suspect it's this. Watch out if you use HDMI as well - the VGA fix =
-seems to break HDMI. On my systems the VGA then works, but the HDMI =
-pauses a lot running the same image! I think you can use similar magic =
-for HDMI (or did I just take it out?).
-
-> I note also that genericX86 looks like a complete Yocto tree rather =
-than just BSP layers.  Am I right, and are there hints on how to combine =
-this with a generic Daisy tree for other processors/projects?
+On Thu, May 08, 2014 at 05:57:54PM +0100, Paul Eggleton wrote:
+> On Thursday 08 May 2014 18:19:08 Martin Jansa wrote:
+> > On Thu, May 08, 2014 at 04:07:19PM +0100, Paul Eggleton wrote:
+> > > On Thursday 08 May 2014 15:48:40 Burton, Ross wrote:
+> > > > Hi all,
+> > > >=20
+> > > > Sorry for the cross-post but I want this to have a wide audience.
+> > > >=20
+> > > > For the 1.7 release I want to move GStreamer 0.10 from oe-core into
+> > > > meta-multimedia, and ensure everything in oe-core has ported to
+> > > > GStreamer 1.x.  GStreamer 0.10 is considered dead upstream and is
+> > > > unmaintained so we don't need to be shipping both versions anymore.
+> > > >=20
+> > > > Everyone in agreement?  Should I expect any hate mail over this?
+> > >=20
+> > > +1
+> > >=20
+> > > The next question is does that mean for the "old" libav (which gst-ff=
+mpeg
+> > > depends upon), do we move that as well or drop it?
+> >=20
+> > libav was migrated to oe-core quite recently and there is couple of
+> > recipes in meta-oe, meta-webserver depending on it/ffmpeg so moving to
+> > meta-multimedia wouldn't be very easy.
+> >=20
+> > meta-multimedia/recipes-multimedia/sox/sox_14.4.0.bb:DEPENDS =3D "libpn=
+g libav
+> > libsndfile1" meta-multimedia/recipes-mediacentre/xbmc/xbmc_git.bb:DEPEN=
+DS =3D
+> > "libusb1 libcec libplist expat yajl gperf-native libxmu fribidi mpeg2dec
+> > ffmpeg samba fontconfig curl python libass libmodplug libmicrohttpd wav=
+pack
+> > libmms cmake-native libsdl-image libsdl-mixer virtual/egl mysql5 sqlite3
+> > libmms faad2 libcdio libpcre boost lzo enca avahi libsamplerate0
+> > libxinerama libxrandr libxtst bzip2 virtual/libsdl jasper zip-native zl=
+ib
+> > libtinyxml libmad"
+> > meta-multimedia/recipes-multimedia/musicpd/mpd_0.18.9.bb:DEPENDS =3D
+> > "alsa-lib libsamplerate0 libsndfile1 libvorbis libogg faad2 ffmpeg curl
+> > sqlite bzip2 pulseaudio" meta-multimedia/recipes-multimedia/vlc/vlc.inc=
+: =20
+> > faad2 ffmpeg flac libxpm libxinerama fluidsynth alsa-lib libdvdcss \
+> >=20
+> > meta-oe/recipes-multimedia/nonworking/minidlna/minidlna_1.0.25.bb:DEPEN=
+DS =3D
+> > "flac libav jpeg sqlite3 libexif libogg libid3tag"
+> > meta-oe/recipes-support/opencv/opencv_2.4.bb:PACKAGECONFIG ??=3D "eigen=
+ gtk
+> > jpeg libav png tiff v4l"
+> > meta-oe/recipes-graphics/gegl/gegl_0.2.0.bb:PACKAGECONFIG[avformat] =3D
+> > "--with-libavformat,--without-libavformat,libav"
+> > meta-oe/recipes-multimedia/libpostproc/libpostproc_git.bb:DEPENDS =3D "=
+libav"
+> > meta-oe/recipes-multimedia/mplayer/mplayer2_git.bb:DEPENDS =3D "libvpx
+> > libdvdread libtheora virtual/libsdl ffmpeg xsp zlib \
+> >=20
+> > meta-webserver/recipes-httpd/cherokee/cherokee_1.2.98.bb:PACKAGECONFIG[=
+ffmpe
+> > g] =3D "--with-ffmpeg,--without-ffmpeg,libav"
+> >=20
+> > But I would like to see migration to libav-9 which currently has negati=
+ve
+> > D_P (mplayer2 already depends on 9*, but there are few recipes which fa=
+ils
+> > with libav-9 too - see earlier world builds for list).
 >=20
-> =
-Yocto_11_0_0/genericx86-daisy-11.0.0/meta-yocto-bsp/recipes-graphics/xorg-=
-xserver/xserver-xf86-config/genericx86/xorg.conf is a zero length file.  =
- ?
->=20
-> John
-> --=20
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+> Yes, I'm just talking about libav 0.8 here - libav 9 would remain where i=
+t is.=20
+> That might still be problematic though given that their PN is the same. I=
+'m=20
+> open to better suggestions, but I think we have to do *something* here.
 
-Chris Tapp
+Ah ok, I though you meant both versions.
 
-opensource@keylevel.com
-www.keylevel.com
+Then I would rather drop 0.8 completely, otherwise it will be preferred
+even with negative D_P from meta-multimedia (YOCTO #2964) and we cannot
+expect people which happen to have meta-multimedia layer to know that
+they are expected to update P_V everytime libav is updated in oe-core.
 
+--=20
+Martin 'JaMa' Jansa     jabber: Martin.Jansa@gmail.com
 
+--gMqNd2jlyJQcupG/
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: Digital signature
 
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v2.0.22 (GNU/Linux)
 
+iEYEARECAAYFAlNrvSgACgkQN1Ujt2V2gBz9ngCfSKbTMoan3fr+fS4GPtF19NyB
+ExoAn0IeYSDslbd/6vcCbf2pKwSW6/mE
+=AzpD
+-----END PGP SIGNATURE-----
+
+--gMqNd2jlyJQcupG/--
