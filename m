@@ -1,46 +1,39 @@
-Return-Path: <r2djoe@gmail.com>
+Return-Path: <ajlennon@dynamicdevices.co.uk>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 432FFE00B68; Fri,  9 May 2014 03:33:56 -0700 (PDT)
+	id C7A22E00B68; Fri,  9 May 2014 03:39:34 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
-X-Spam-Level: 
-X-Spam-Status: No, score=0.6 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-	HTML_MESSAGE,RCVD_IN_DNSWL_LOW,RDNS_NONE autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [209.85.216.50 listed in list.dnswl.org]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  1.3 RDNS_NONE Delivered to internal network by a host with no rDNS
-X-Greylist: delayed 405 seconds by postgrey-1.32 at yocto-www;
-	Fri, 09 May 2014 03:33:54 PDT
-Received: from mail-qa0-f50.google.com (unknown [209.85.216.50])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 51029E00B66
-	for <yocto@yoctoproject.org>; Fri,  9 May 2014 03:33:54 -0700 (PDT)
-Received: by mail-qa0-f50.google.com with SMTP id j15so3810544qaq.23
-	for <yocto@yoctoproject.org>; Fri, 09 May 2014 03:33:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:sender:date:message-id:subject:from:to:content-type;
-	bh=gXE9KvOHNO0obQt38VC9uoIWu5mYGRvVQ+4F3Z05+Eg=;
-	b=UowvzZnahKHqEK4E1StYxFbkusefExaMQ5rsZ/NHdH9yOMW0u5CoivYZLwmLXkEU/i
-	vS7+kBFeVIepifGPKxKKouJo6u3mWz8md736BaHfwga/JAiRsJSOEdilJzq1O1dIZwb1
-	fhemn+72RBR0ntX846gTd0yFJTCRrbRFwxju/EW2Fn4ATeGPYcv0kLzdXrlBLxQIw1kB
-	vR56Ni8y7T2SIi00Bh+9BgfE94aBtteYiHrwAbL78kSRgv1hxCjIIqup8KPxzKgnA9EZ
-	RG8YCgIk1s5q9GiOk/bYVtHwfSV6Vd3WOktqBYnCIU084DSHciC1LZGLAJ6a9IaR/HnR
-	R8qA==
+X-Spam-Level: *
+X-Spam-Status: No, score=1.3 required=5.0 tests=RDNS_NONE autolearn=no
+	version=3.3.1
+X-Spam-HAM-Report: * 1.3 RDNS_NONE Delivered to internal network by a host
+	with no rDNS
+Received: from www.dynamicdevices.co.uk (unknown [89.200.136.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D6454E00B66
+	for <yocto@yoctoproject.org>; Fri,  9 May 2014 03:39:28 -0700 (PDT)
+Received: from localhost (localhost [127.0.0.1])
+	by www.dynamicdevices.co.uk (Postfix) with ESMTP id 9AA7C27E006
+	for <yocto@yoctoproject.org>; Fri,  9 May 2014 10:39:27 +0000 (UTC)
+X-Virus-Scanned: Debian amavisd-new at lennoab2.miniserver.com
+Received: from www.dynamicdevices.co.uk ([127.0.0.1])
+	by localhost (www.dynamicdevices.co.uk [127.0.0.1]) (amavisd-new,
+	port 10024) with ESMTP id 5KB4OI68cYyX for <yocto@yoctoproject.org>;
+	Fri,  9 May 2014 10:38:57 +0000 (UTC)
+Received: from [127.0.0.1] (cpc32-live22-2-0-cust59.17-2.cable.virginm.net
+	[82.36.253.60])
+	(using TLSv1 with cipher ECDHE-RSA-AES128-SHA (128/128 bits))
+	(No client certificate requested)
+	by www.dynamicdevices.co.uk (Postfix) with ESMTPSA id 8036E27E019
+	for <yocto@yoctoproject.org>; Fri,  9 May 2014 10:38:57 +0000 (UTC)
+Message-ID: <536CB03F.1020005@dynamicdevices.co.uk>
+Date: Fri, 09 May 2014 11:38:55 +0100
+From: Alex J Lennon <ajlennon@dynamicdevices.co.uk>
+User-Agent: Mozilla/5.0 (Windows NT 6.3; WOW64;
+	rv:24.0) Gecko/20100101 Thunderbird/24.5.0
 MIME-Version: 1.0
-X-Received: by 10.229.171.193 with SMTP id i1mr12929636qcz.15.1399631228718;
-	Fri, 09 May 2014 03:27:08 -0700 (PDT)
-Sender: r2djoe@gmail.com
-Received: by 10.96.41.229 with HTTP; Fri, 9 May 2014 03:27:08 -0700 (PDT)
-Date: Fri, 9 May 2014 11:27:08 +0100
-X-Google-Sender-Auth: o_qZTQkalyu46dHN3Euavgp1O4o
-Message-ID: <CAJgJR162J=mDGSMQzsqz7DyrpUD0MCbbQ=1icW4robSsLg8Kqw@mail.gmail.com>
-From: Joe D <joe@radix2design.co.uk>
-To: yocto@yoctoproject.org
-Subject: WiPi on meta-raspberrypi
+To: Yocto <yocto@yoctoproject.org>
+X-Enigmail-Version: 1.6
+Subject: Issue with download cache tarball uniqueness?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -52,19 +45,65 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 09 May 2014 10:33:56 -0000
-Content-Type: multipart/alternative; boundary=001a11c3066834538104f8f50ab0
+X-List-Received-Date: Fri, 09 May 2014 10:39:34 -0000
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: 7bit
 
---001a11c3066834538104f8f50ab0
-Content-Type: text/plain; charset=UTF-8
+Hi,
 
-Would anyone be able to help me set up a recipe for using the WiPi dongle
-on the meta-raspberrypi backend?
+I'm putting together a simple example recipe and have run into an issue
+with an incorrect tarball being used from the download cache.
 
---001a11c3066834538104f8f50ab0
-Content-Type: text/html; charset=UTF-8
+e.g. I have some code committed to github here
 
-<div dir="ltr"><div>Would anyone be able to help me set up a recipe for using the WiPi dongle on the meta-raspberrypi backend?</div>
-</div>
+https://github.com/DynamicDevices/bbexample/
 
---001a11c3066834538104f8f50ab0--
+It's tagged v1.0 so github generates a source tarball for me here
+
+https://github.com/DynamicDevices/bbexample/archive/bbexample-v1.0.tar.gz
+
+I use a SRC_URI in my recipe something like this
+
+SRC_URI =
+"https://github.com/DynamicDevices/bbexample/archive/${PN}-v${PV}.tar.gz"
+
+That should result in the file being downloaded, or pulled from cache,
+unpacked and so forth.
+
+When I build this recipe I get the wrong source code unpacked (from a
+mono-helloworld project I created a while ago)
+
+The mono-helloworld project is also at github and also tagged v1.0
+
+https://github.com/DynamicDevices/mono-helloworld
+
+https://github.com/DynamicDevices/mono-helloworld/archive/v1.0.tar.gz
+
+If I look in my downloads folder I see there is a v1.0.tar.gz file and a
+corresponding .done file.
+
+This contains the mono-helloworld sources.
+
+Thus I believe that bitbake is incorrectly assuming that the
+mono-helloworld tarball is the cached bbexample tarball as there's no
+URI information there.
+
+I was able to show this by removing the v1.0.tar.gz file containing the
+mono-helloworld sources in which case a rebuild of my bbexample recipe
+results in the correct sources being pulled down, although of course
+then the mono-helloworld recipe is broken
+
+...
+
+It doesn't seem unreasonable to use github or the simple vX.X tagging
+mechanism, but if I understand what is happening correctly it seems this
+will result in cache collisions with downloaded tarballs because of the
+naming convention employed by github and the lack of full URI
+information in the download cache?
+
+Alex
+
+
+
+
+
