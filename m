@@ -1,47 +1,58 @@
-Return-Path: <andrei@gherzan.ro>
+Return-Path: <gizero@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id D7221E00BEF; Fri,  9 May 2014 06:09:36 -0700 (PDT)
+	id BF57AE00B6C; Fri,  9 May 2014 06:13:52 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=0.6 required=5.0 tests=RCVD_IN_DNSWL_LOW,RDNS_NONE
-	autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [74.125.83.53 listed in list.dnswl.org]
+X-Spam-Status: No, score=0.5 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+	DKIM_VALID_AU,FREEMAIL_FROM,RCVD_IN_DNSWL_LOW,RDNS_NONE autolearn=no
+	version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (gizero[at]gmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.128.170 listed in list.dnswl.org]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  1.3 RDNS_NONE Delivered to internal network by a host with no rDNS
-Received: from mail-ee0-f53.google.com (unknown [74.125.83.53])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 03DDDE00B99
-	for <yocto@yoctoproject.org>; Fri,  9 May 2014 06:09:21 -0700 (PDT)
-Received: by mail-ee0-f53.google.com with SMTP id c13so2634981eek.26
-	for <yocto@yoctoproject.org>; Fri, 09 May 2014 06:09:20 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-	:references;
-	bh=gyNnG3T3qHRnzBAzAVMiRa+TlaHo3cVLo/wHFlyIdD4=;
-	b=BZAlkVEhDmPAJPhK79Snsk1ziX1khXNX1jGZcfPqcvvuk7PPN8ohEAe+nEfeeF1f9N
-	orBL397q1GLZz2dqEyw/ppSeAdjfNTtBYfUKeLluHaJvw5z3wT9vOiqGeHdyn3/0o0lM
-	RQyMDmKUmMLz2+yLZk7hbDhmRp4bdz3IEJ7kIv5ndublMW4IWQRThfVBF6Bz7IyS+J0K
-	BXIF5FgixoFZXQByE4RSD4ZEq8Yj6q9OLo+rynQCL72Gh+GbtL5dKC4qtja/b9eXGJGs
-	5zetvJtQRc9pAqbS31qhsROOvr37kVKHYzWBEhRP7udbyflgcOqpCPUM4RyVIsTG6vbm
-	745w==
-X-Gm-Message-State: ALoCoQl84cCiXN4XJ9cSP1FjDJw23ZRXfyptFVxDJb9oWUOJ0cNZsNoOLGQeHqqO/vTV80seQkga
-X-Received: by 10.15.49.8 with SMTP id i8mr10834814eew.33.1399640960616;
-	Fri, 09 May 2014 06:09:20 -0700 (PDT)
-Received: from localhost.localdomain (5-13-208-17.residential.rdsnet.ro.
-	[5.13.208.17]) by mx.google.com with ESMTPSA id
-	x45sm11341136eef.15.2014.05.09.06.09.19 for <multiple recipients>
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Fri, 09 May 2014 06:09:20 -0700 (PDT)
-From: Andrei Gherzan <andrei@gherzan.ro>
-To: yocto@yoctoproject.org
-Date: Fri,  9 May 2014 16:09:04 +0300
-Message-Id: <1399640946-21680-7-git-send-email-andrei@gherzan.ro>
-X-Mailer: git-send-email 1.8.5.3
-In-Reply-To: <1399640946-21680-1-git-send-email-andrei@gherzan.ro>
-References: <1399640946-21680-1-git-send-email-andrei@gherzan.ro>
-Subject: [meta-raspberrypi][PATCH 7/9] userland: Update to remote's HEAD
+X-Greylist: delayed 421 seconds by postgrey-1.32 at yocto-www;
+	Fri, 09 May 2014 06:13:47 PDT
+Received: from mail-ve0-f170.google.com (unknown [209.85.128.170])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1ECD9E00B66
+	for <yocto@yoctoproject.org>; Fri,  9 May 2014 06:13:47 -0700 (PDT)
+Received: by mail-ve0-f170.google.com with SMTP id db11so5256259veb.1
+	for <yocto@yoctoproject.org>; Fri, 09 May 2014 06:13:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type;
+	bh=q6iabdWHUSjoBCcS0wHl3ezs+YPgzI2na2IAwyCdpWM=;
+	b=Z6l8sIHEjqtOjUHP0Xvik+/nHxOyxUEUIiDQj5qJRVIpABApsByEsPVMC18KMj2Pry
+	oQL9Brgj6aBgy/EPVTiRe0FaiTua4RUJp/5ifIPN5Kbj1p/Q3wlYmqEBZiACWQ4aR7Xt
+	fvO8WII920lTp03LlEe8Bp1lFDUv/YQR5bUIz4akyKorAJrjSnEI/hay9U+z6YRAyObJ
+	HddxraqKfHWCDHfgX8sBBlZssMl+PMKQeom47xNB6cPj0LELBHJ8igthGo9Mcl5mqO6u
+	GU0ma/nWE7hgtMmqSK92khvMuo/+BiCSg9Jss164AkHdqAB9gFp0GjyjszVmbx7t6/zf
+	2rFg==
+MIME-Version: 1.0
+X-Received: by 10.52.237.228 with SMTP id vf4mr291242vdc.47.1399640805948;
+	Fri, 09 May 2014 06:06:45 -0700 (PDT)
+Received: by 10.220.0.67 with HTTP; Fri, 9 May 2014 06:06:45 -0700 (PDT)
+In-Reply-To: <536CADD1.1040402@gmx.de>
+References: <lkcshi$dep$1@ger.gmane.org>
+	<CAJTo0LZ7=Zs3pcP30htX7_GfpWoOvfYU-Cg-71T7pTuLkazGLQ@mail.gmail.com>
+	<lkevco$bl6$1@ger.gmane.org>
+	<CAJTo0LZDzH3aQBiwMM=cR06CEqthVQycaSWsM8jAyEHxwYiRWQ@mail.gmail.com>
+	<536CADD1.1040402@gmx.de>
+Date: Fri, 9 May 2014 15:06:45 +0200
+Message-ID: <CAC+thW3_DhKGai3kRXo+HnHOJeWDYdC7_zEg4Z2-wRZhn6iTfw@mail.gmail.com>
+From: Andrea Galbusera <gizero@gmail.com>
+To: Neuer User <auslands-kv@gmx.de>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
+	"yocto-EtnWKYl6rD/WsZ/bQMPhNw@public.gmane.org"
+	<public-yocto-EtnWKYl6rD/WsZ/bQMPhNw@plane.gmane.org>
+Subject: Re: replace udhcpc
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -53,28 +64,76 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 09 May 2014 13:09:36 -0000
+X-List-Received-Date: Fri, 09 May 2014 13:13:52 -0000
+Content-Type: text/plain; charset=UTF-8
 
-Change-Id: If0e36184c741da5d68c158e1fb582050f5835bf9
-Signed-off-by: Andrei Gherzan <andrei@gherzan.ro>
----
- recipes-graphics/userland/userland_git.bb | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Hi,
 
-diff --git a/recipes-graphics/userland/userland_git.bb b/recipes-graphics/userland/userland_git.bb
-index 07c8381..a348090 100644
---- a/recipes-graphics/userland/userland_git.bb
-+++ b/recipes-graphics/userland/userland_git.bb
-@@ -11,7 +11,7 @@ PROVIDES = "virtual/libgles2 \
-             virtual/egl"
- COMPATIBLE_MACHINE = "raspberrypi"
- 
--SRCREV = "8181677fc08814cd5fcd1475ab73046f89f8dc80"
-+SRCREV = "eccb81050afd177da1923404b366c6226f29bfe0"
- SRC_URI = "git://github.com/raspberrypi/userland.git;protocol=git;branch=master \
-           "
- S = "${WORKDIR}/git"
--- 
-1.8.5.3
+On Fri, May 9, 2014 at 12:28 PM, Neuer User <auslands-kv@gmx.de> wrote:
+> Connman is really a problem without documentation. :-(
+>
+> I tried it out and first I noticed that it depends on the creation of an
+> xuser account. It also needs iptables, so probably can configure these, too.
+>
+> I also found that it does not correctly configure the dns entries:
+>
+> cat /etc/resolv.conf:
+> # Generated by Connection Manager
+> nameserver 127.0.0.1
+> nameserver ::1
 
+This is in fact a working configuration for the DNS proxy feature that
+connman offers built-in. See [1].
+I personally went through your same frustration when trying to
+understand how connman is supposed to work in order to evaluate its
+maturity. Not yet an expert at all, but [2] and [3] gave me a
+reasonable bootstrap into connman's main logic. Beside this, "git
+grepping" the source tree is your best friend.
+Angstrom distribution, i.e. available on the beaglebone boards is also
+a good example of a real connman based system.
+
+> I really would like to understand what it does with these and how I can
+> change or modify it's behaviour.
+>
+> It's definitely not just "when ethernet cable inserted, bring up the
+> interface using DHCP".
+>
+> I even can't find a config file for connman. Is there one?
+
+Yes, there usually is one for each service handled by connman. See [4]
+for details on configuration file format and their default location.
+As you can see from previously suggested references, you'll usually
+modify configurations by using the connmanctl client tool instead of
+editing those files by hand.
+
+[1] http://git.kernel.org/cgit/network/connman/connman.git/tree/README
+[2] http://derekmolloy.ie/set-ip-address-to-be-static-on-the-beaglebone-black/
+[3] http://www.ptrackapp.com/apclassys-notes/embedded-linux-using-connma/
+[4] http://git.kernel.org/cgit/network/connman/connman.git/tree/doc/config-format.txt
+
+>
+> Thanks
+>
+> Michael
+>
+> Am 08.05.2014 12:27, schrieb Burton, Ross:
+>> On 8 May 2014 04:58, Neuer User <auslands-kv@gmx.de> wrote:
+>>> I had a brief look at connman half a year ago, but that time I was
+>>> unable to find a good documentation about it. Do you have by chance a
+>>> link to some tutorial or at least man entry for the configuration?
+>>
+>> What do you need to configure?  For "when ethernet cable inserted,
+>> bring up the interface using DHCP" this is default behaviour and won't
+>> need any configuring.  connman is sadly under-documented but the IRC
+>> channel is fairly responsive.
+>>
+>> Ross
+>>
+>
+>
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
