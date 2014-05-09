@@ -1,52 +1,39 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <Bruce.Ashfield@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 09F3DE0073A; Fri,  9 May 2014 11:38:07 -0700 (PDT)
+	id E97D6E0073A; Fri,  9 May 2014 11:42:06 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
-X-Spam-Level: 
-X-Spam-Status: No, score=0.6 required=5.0 tests=RCVD_IN_DNSWL_LOW,RDNS_NONE
+X-Spam-Level: *
+X-Spam-Status: No, score=1.3 required=5.0 tests=RCVD_IN_DNSWL_NONE,RDNS_NONE
 	autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [209.85.216.50 listed in list.dnswl.org]
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [147.11.146.13 listed in list.dnswl.org]
 	*  1.3 RDNS_NONE Delivered to internal network by a host with no rDNS
-Received: from mail-qa0-f50.google.com (unknown [209.85.216.50])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9A558E00478
-	for <yocto@yoctoproject.org>; Fri,  9 May 2014 11:38:02 -0700 (PDT)
-Received: by mail-qa0-f50.google.com with SMTP id j15so4484953qaq.9
-	for <yocto@yoctoproject.org>; Fri, 09 May 2014 11:38:01 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc:content-type;
-	bh=FV1CxGcETzgzb/LWYA2R7gteilvgYpakGgQDKmhq+YA=;
-	b=inebn4AVlIewAffoQ3LBJjbRq/6soAOMKBCjlUd8tBz008NGJyVC23L9GPOIm8dqFB
-	BP1cR0WrdWM5EVnDiQuzU6BckpD/YN7aWv+YvxjU3GxIWuEA1B2QvyXMlJU/4cvR+IoH
-	sVz15zE9wOQjOce9FK11YdSpdvOANhH4Az/MOfA2uJ/5bTh33caLLQ9toW2DfQMJSUMC
-	TRWNVkcUhuzNE4Yh8agYaTDLOamUY3gIW3pk8N7fTjehUu+56WEs722QalRzjuCGiSW5
-	Hy3/GViHzaPNVJUjV19L/K6nNeeusL3rNImC9MKGgg4sxg8p+5BCpgmIOJG1NgWh96WF
-	IMRQ==
-X-Gm-Message-State: ALoCoQnz6faI1jdoz9KUyUkxphd45MasDtGzuk2qrVk/eSUlaE8HBRWiu/8dqoWxmf7B6bx1bK9g
-X-Received: by 10.140.91.161 with SMTP id z30mr16289230qgd.65.1399660681487;
-	Fri, 09 May 2014 11:38:01 -0700 (PDT)
+Received: from mail1.windriver.com (unknown [147.11.146.13])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9020BE00478
+	for <yocto@yoctoproject.org>; Fri,  9 May 2014 11:42:04 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
+	[147.11.189.40])
+	by mail1.windriver.com (8.14.5/8.14.5) with ESMTP id s49Ifnqe002637
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
+	Fri, 9 May 2014 11:41:49 -0700 (PDT)
+Received: from [128.224.56.48] (128.224.56.48) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server id 14.3.169.1;
+	Fri, 9 May 2014 11:41:49 -0700
+Message-ID: <536D2169.80103@windriver.com>
+Date: Fri, 9 May 2014 14:41:45 -0400
+From: Bruce Ashfield <bruce.ashfield@windriver.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:24.0) Gecko/20100101 Thunderbird/24.5.0
 MIME-Version: 1.0
-Received: by 10.140.101.77 with HTTP; Fri, 9 May 2014 11:37:41 -0700 (PDT)
-In-Reply-To: <lkj1d5$s27$1@ger.gmane.org>
-References: <lkcshi$dep$1@ger.gmane.org>
-	<CAJTo0LZ7=Zs3pcP30htX7_GfpWoOvfYU-Cg-71T7pTuLkazGLQ@mail.gmail.com>
-	<lkevco$bl6$1@ger.gmane.org>
-	<CAJTo0LZDzH3aQBiwMM=cR06CEqthVQycaSWsM8jAyEHxwYiRWQ@mail.gmail.com>
-	<536CADD1.1040402@gmx.de>
-	<CAC+thW3_DhKGai3kRXo+HnHOJeWDYdC7_zEg4Z2-wRZhn6iTfw@mail.gmail.com>
-	<536CD642.70700@gmx.de>
-	<CAC+thW39rt=BEuo3SVa2mvFx0hHXGk=VW9rxUymR-i4jDNJpyw@mail.gmail.com>
-	<lkj12c$mij$1@ger.gmane.org> <lkj1d5$s27$1@ger.gmane.org>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Fri, 9 May 2014 19:37:41 +0100
-Message-ID: <CAJTo0LbvSFTR7_=fbbqJVc_NeMU7Kj8jTCs2-dt5h61q25n0QQ@mail.gmail.com>
-To: Neuer User <auslands-kv@gmx.de>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: replace udhcpc
+To: Brian Karcz <briank@russound.com>, "yocto@yoctoproject.org"
+	<yocto@yoctoproject.org>
+References: <f9f1c263a9ab4a3085bf1a696f31aec6@HERMES.RUSSOUND.com>
+	<536CDE17.40806@windriver.com>
+	<bab902e58d8041a793958d1432e41e86@HERMES.RUSSOUND.com>
+In-Reply-To: <bab902e58d8041a793958d1432e41e86@HERMES.RUSSOUND.com>
+Subject: Re: [meta-atmel] at91sam9x5ek: "no machine record defined" failure for core-image-minimal
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -58,27 +45,299 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 09 May 2014 18:38:07 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Fri, 09 May 2014 18:42:07 -0000
+Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On 9 May 2014 17:57, Neuer User <auslands-kv@gmx.de> wrote:
-> Seems, I am not the only one wondering why connman phones home:
+On 14-05-09 10:58 AM, Brian Karcz wrote:
+> Hi Bruce,
+>
+> I'm not entirely familiar with the mechanism that gets the defconfig from the BSP to the .config in work area, but here is how things currently look. The two files aren't a direct match as there appear to be some formatting differences, but the variables in the SOC/ARCH section seem to correlate partially (ie. it knows its trying to build for an at91sam9x5 SOC).
+>
+> defconfig:
+> 	CONFIG_ARCH_AT91=y
+> 	CONFIG_SOC_AT91SAM9260=y
+> 	CONFIG_SOC_AT91SAM9263=y
+> 	CONFIG_SOC_AT91SAM9G45=y
+> 	CONFIG_SOC_AT91SAM9X5=y
+> 	CONFIG_MACH_AT91SAM_DT=y
+>
+> .config:
+> 	#
+> 	# Atmel AT91 Processor
+> 	#
+> 	# CONFIG_SOC_AT91RM9200 is not set
+> 	CONFIG_SOC_AT91SAM9260=y
+> 	# CONFIG_SOC_AT91SAM9261 is not set
+> 	CONFIG_SOC_AT91SAM9263=y
+> 	# CONFIG_SOC_AT91SAM9RL is not set
+> 	CONFIG_SOC_AT91SAM9G45=y
+> 	CONFIG_SOC_AT91SAM9X5=y
+> 	# CONFIG_SOC_AT91SAM9N12 is not set
+>
+> 	#
+> 	# Atmel Non-DT world
+> 	#
+> 	CONFIG_ARCH_AT91_NONE=y
+> 	# CONFIG_ARCH_AT91RM9200 is not set
+> 	# CONFIG_ARCH_AT91SAM9260 is not set
+> 	# CONFIG_ARCH_AT91SAM9261 is not set
+> 	# CONFIG_ARCH_AT91SAM9263 is not set
+> 	# CONFIG_ARCH_AT91SAM9RL is not set
+> 	# CONFIG_ARCH_AT91SAM9G45 is not set
+>
+> 	#
+> 	# AT91 Board Options
+> 	#
+>
+> 	#
+> 	# Generic Board Type
+> 	#
+> 	# CONFIG_MACH_AT91SAM9_DT is not set
+>
+> Given the fact that the ARCH and DT variables don't appear to match, it looks like this might be device tree related.
 
-The "ask the author" approach works quite well.  The hostname it's
-looking up is connman.net.  This is the captive portal detection:
-pretty much every major platform does something similar and it's to
-detect the situation that you have something that looks like a network
-connection, but actually you're not routed anywhere (i.e. you're in a
-hotel and need to pay for connectivity).  ConnMan makes a trivial
-request to it's home page and if it gets back the response it was
-expecting you have internet, captive portals tend to include
-machine-readable links in the response that ConnMan will tell the UI
-to open.  If you've ever joined an iOS (and probably Android, but I've
-not got one) device to a hotel's wifi and seen a login page open
-immediately the same you've seen this behaviour in action.
+The reason I asked is that in the past, the error you are seeing
+was related to the machine not being properly defined in the
+kernel's .config.
 
-The response also includes some basic geo-ip so your machine knows
-roughly where it is, useful for automatic timezone updating.
+FWIW, assuming you have a full "defconfig", and not a "save_defconfig"
+variant, the path from it to the final .config is pretty much a copy
+into the kernel and a "make oldconfig", so nothing is thrown away
+unless there is a missing dependency, or the Kconfig doesn't exist in
+the given kernel.
 
-Ross
+It's worth checking via menuconfig to see if anything obvious is
+missing, and trying some quick builds to rule out a bad configuration.
+
+Bruce
+
+>
+> I was hoping the code out of the box was going to be able to provide a demo image that I could build and poke around in for some guidance. My ultimate goal is to port the at91sam9x5ek machine definition to one for the at91sam9g20ek demo board and then port THAT over to a custom machine based roughly off that reference design.
+>
+>
+> -----Original Message-----
+> From: Bruce Ashfield [mailto:bruce.ashfield@windriver.com]
+> Sent: Friday, May 09, 2014 9:55 AM
+> To: Brian Karcz; yocto@yoctoproject.org
+> Subject: Re: [yocto] [meta-atmel] at91sam9x5ek: "no machine record defined" failure for core-image-minimal
+>
+> On 14-05-09 09:44 AM, Brian Karcz wrote:
+>> Hi,
+>>
+>> Not sure if this is the correct place to email this, but I've seen a
+>> few other meta-atmel references so I figured I'd give it a shot.
+>>
+>> I'm attempting to setup a core-image-minimal build using the
+>> guidelines in the meta-atmel README for the at91sam9x5ek machine type.
+>> When the kernel build goes to link, I get a "no machine record
+>> defined" error. Is this something others are seeing in the meta-atmel demo builds?
+>>
+>> It's a pretty benign build setup according to the README:
+>>
+>> git clone git://git.yoctoproject.org/poky
+>>
+>> cd poky
+>>
+>> git checkout dora-10.0.1 -b dora-10.0.1
+>>
+>> git clone git://git.openembedded.org/meta-openembedded
+>>
+>> cd meta-openembedded
+>>
+>> git checkout 6572316557e742c2dc93848e4d560242bf0c3995 -b my_branch
+>>
+>> cd ..
+>>
+>> git clone http://github.com/linux4sam/meta-atmel
+>>
+>> source oe-init-build-env /workspace/build-atmel
+>>
+>> modify local.conf:
+>>
+>> MACHINE ??= "at91sam9x5ek"
+>>
+>> PACKAGE_CLASSES ?= "package_ipk"
+>>
+>> modify bblayers.conf:
+>>
+>> BBLAYERS ?= " \
+>>
+>>     /opt/poky/meta-atmel \
+>>
+>>     /opt/poky/meta \
+>>
+>>     /opt/poky/meta-yocto \
+>>
+>>     /opt/poky/meta-yocto-bsp \
+>>
+>>     /opt/poky/meta-openembedded/meta-oe \
+>>
+>>     /opt/poky/meta-openembedded/meta-networking \
+>>
+>>     "
+>>
+>> bitbake core-image-minimal
+>>
+>> Setting this up, I get the following build configuration and error:
+>>
+>> /workspace/build-atmel$ bitbake core-image-minimal
+>>
+>> Loading cache: 100%
+>> |#####################################################################
+>> |#################|
+>> ETA:  00:00:00
+>>
+>> Loaded 1782 entries from dependency cache.
+>>
+>> NOTE: Resolving any missing task queue dependencies
+>>
+>> Build Configuration:
+>>
+>> BB_VERSION        = "1.20.0"
+>>
+>> BUILD_SYS         = "x86_64-linux"
+>>
+>> NATIVELSBSTRING   = "Ubuntu-12.04"
+>>
+>> TARGET_SYS        = "arm-poky-linux-gnueabi"
+>>
+>> MACHINE           = "at91sam9x5ek"
+>>
+>> DISTRO            = "poky"
+>>
+>> DISTRO_VERSION    = "1.5.1"
+>>
+>> TUNE_FEATURES     = "armv5 thumb dsp"
+>>
+>> TARGET_FPU        = "soft"
+>>
+>> meta-atmel        = "master:269066a8128d1e767deee64854a142e67451a5f2"
+>>
+>> meta
+>>
+>> meta-yocto
+>>
+>> meta-yocto-bsp    = "dora-10.0.1:8e410e9e46e3335458a7747cdd32e05f5c19ccbb"
+>>
+>> meta-oe
+>>
+>> meta-networking   = "my_branch:6572316557e742c2dc93848e4d560242bf0c3995"
+>>
+>> NOTE: Preparing runqueue
+>>
+>> NOTE: Executing SetScene Tasks
+>>
+>> NOTE: Executing RunQueue Tasks
+>>
+>> ERROR: Function failed: do_compile (log file is located at
+>> /workspace/build-atmel/tmp/work/at91sam9x5ek-poky-linux-gnueabi/linux-
+>> yocto-custom/3.10+AUTOINC+68f2c28207-r5/temp/log.do_compile.2291)
+>>
+>> ERROR: Logfile of failure stored in:
+>> /workspace/build-atmel/tmp/work/at91sam9x5ek-poky-linux-gnueabi/linux-
+>> yocto-custom/3.10+AUTOINC+68f2c28207-r5/temp/log.do_compile.2291
+>>
+>> Log data follows:
+>>
+>> | DEBUG: Executing shell function do_compile
+>>
+>> | NOTE: make -j 2 zImage CC=arm-poky-linux-gnueabi-gcc
+>> -mno-thumb-interwork -marm LD=arm-poky-linux-gnueabi-ld.bfd
+>>
+>> |   GEN
+>> /workspace/build-atmel/tmp/work/at91sam9x5ek-poky-linux-gnueabi/linux-
+>> yocto-custom/3.10+AUTOINC+68f2c28207-r5/linux-at91sam9x5ek-standard-bu
+>> ild/Makefile
+>>
+>> |   CHK     include/generated/uapi/linux/version.h
+>>
+>> |   CHK     include/generated/utsrelease.h
+>>
+>> |   Using
+>> /workspace/build-atmel/tmp/work/at91sam9x5ek-poky-linux-gnueabi/linux-
+>> yocto-custom/3.10+AUTOINC+68f2c28207-r5/linux
+>> as source for kernel
+>>
+>> | make[3]: `include/generated/mach-types.h' is up to date.
+>>
+>> |   CC      scripts/mod/devicetable-offsets.s
+>>
+>> |   GEN     scripts/mod/devicetable-offsets.h
+>>
+>> |   HOSTCC  scripts/mod/file2alias.o
+>>
+>> |   CALL
+>> /workspace/build-atmel/tmp/work/at91sam9x5ek-poky-linux-gnueabi/linux-
+>> yocto-custom/3.10+AUTOINC+68f2c28207-r5/linux/scripts/checksyscalls.sh
+>>
+>> |   HOSTLD  scripts/mod/modpost
+>>
+>> |   CHK     include/generated/compile.h
+>>
+>> |   LINK    vmlinux
+>>
+>> |   LD      vmlinux.o
+>>
+>> |   MODPOST vmlinux.o
+>>
+>> |   GEN     .version
+>>
+>> |   CHK     include/generated/compile.h
+>>
+>> |   UPD     include/generated/compile.h
+>>
+>> |   CC      init/version.o
+>>
+>> |   LD      init/built-in.o
+>>
+>> | arm-poky-linux-gnueabi-ld.bfd: no machine record defined
+>>
+>> | make[2]: *** [vmlinux] Error 1
+>>
+>> | make[1]: *** [sub-make] Error 2
+>>
+>> | make: *** [all] Error 2
+>>
+>> | ERROR: oe_runmake failed
+>>
+>> | WARNING: exit code 1 from a shell command.
+>>
+>> | ERROR: Function failed: do_compile (log file is located at
+>> /workspace/build-atmel/tmp/work/at91sam9x5ek-poky-linux-gnueabi/linux-
+>> yocto-custom/3.10+AUTOINC+68f2c28207-r5/temp/log.do_compile.2291)
+>>
+>> ERROR: Task 208
+>> (/opt/poky/meta-atmel/recipes-kernel/linux/linux-yocto-custom_3.10.bb,
+>> do_compile) failed with exit code '1'
+>>
+>> NOTE: Tasks Summary: Attempted 793 tasks of which 785 didn't need to
+>> be rerun and 1 failed.
+>>
+>> Waiting for 0 running tasks to finish:
+>>
+>> Summary: 1 task failed:
+>>
+>>
+>> /opt/poky/meta-atmel/recipes-kernel/linux/linux-yocto-custom_3.10.bb,
+>> do_compile
+>>
+>> Summary: There was 1 ERROR message shown, returning a non-zero exit code.
+>>
+>> Any thoughts on what might be missing from the README or my
+>> implementation of it to get this demo build working?
+>
+> Can you confirm that the final .config for the board has the machine definitions that you'd expect for the board ?
+>
+> Bruce
+>
+>>
+>> Thanks,
+>>
+>> Brian
+>>
+>>
+>>
+>
+
 
