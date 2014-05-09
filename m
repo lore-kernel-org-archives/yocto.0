@@ -1,37 +1,38 @@
 Return-Path: <Bruce.Ashfield@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 1AEBCE009D1; Fri,  9 May 2014 06:55:00 -0700 (PDT)
+	id AC9A5E00B70; Fri,  9 May 2014 07:44:15 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: *
-X-Spam-Status: No, score=1.3 required=5.0 tests=RCVD_IN_DNSWL_NONE,RDNS_NONE
-	autolearn=no version=3.3.1
+X-Spam-Status: No, score=1.3 required=5.0 tests=HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE,RDNS_NONE autolearn=no version=3.3.1
 X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
 	http://www.dnswl.org/, no *      trust
 	*      [147.11.146.13 listed in list.dnswl.org]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	*  1.3 RDNS_NONE Delivered to internal network by a host with no rDNS
 Received: from mail1.windriver.com (unknown [147.11.146.13])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CC912E009BA
-	for <yocto@yoctoproject.org>; Fri,  9 May 2014 06:54:58 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9DE5AE009BA
+	for <yocto@yoctoproject.org>; Fri,  9 May 2014 07:44:11 -0700 (PDT)
 Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
 	[147.11.189.40])
-	by mail1.windriver.com (8.14.5/8.14.5) with ESMTP id s49DsZDo029281
+	by mail1.windriver.com (8.14.5/8.14.5) with ESMTP id s49Ei8xQ029771
 	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Fri, 9 May 2014 06:54:35 -0700 (PDT)
+	Fri, 9 May 2014 07:44:08 -0700 (PDT)
 Received: from [128.224.56.48] (128.224.56.48) by ALA-HCA.corp.ad.wrs.com
 	(147.11.189.50) with Microsoft SMTP Server id 14.3.169.1;
-	Fri, 9 May 2014 06:54:35 -0700
-Message-ID: <536CDE17.40806@windriver.com>
-Date: Fri, 9 May 2014 09:54:31 -0400
+	Fri, 9 May 2014 07:44:08 -0700
+Message-ID: <536CE9B4.6050303@windriver.com>
+Date: Fri, 9 May 2014 10:44:04 -0400
 From: Bruce Ashfield <bruce.ashfield@windriver.com>
 User-Agent: Mozilla/5.0 (X11; Linux x86_64;
 	rv:24.0) Gecko/20100101 Thunderbird/24.5.0
 MIME-Version: 1.0
-To: Brian Karcz <briank@RUSSOUND.COM>, "yocto@yoctoproject.org"
+To: Paul McGougan <PMcGougan@topcon.com>, "yocto@yoctoproject.org"
 	<yocto@yoctoproject.org>
-References: <f9f1c263a9ab4a3085bf1a696f31aec6@HERMES.RUSSOUND.com>
-In-Reply-To: <f9f1c263a9ab4a3085bf1a696f31aec6@HERMES.RUSSOUND.com>
-Subject: Re: [meta-atmel] at91sam9x5ek: "no machine record defined" failure for core-image-minimal
+References: <C7589FE7B0DE58488F2B9BF79840E9D90D66F51F@ADL-EXCHMBX1.TOPCON.com>
+In-Reply-To: <C7589FE7B0DE58488F2B9BF79840E9D90D66F51F@ADL-EXCHMBX1.TOPCON.com>
+Subject: Re: Question / issue
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,217 +44,255 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 09 May 2014 13:55:00 -0000
-Content-Type: text/plain; charset="windows-1252"; format=flowed
+X-List-Received-Date: Fri, 09 May 2014 14:44:15 -0000
+Content-Type: multipart/alternative;
+	boundary="------------000204000306080708070908"
+
+--------------000204000306080708070908
+Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
 Content-Transfer-Encoding: 8bit
 
-On 14-05-09 09:44 AM, Brian Karcz wrote:
-> Hi,
+On 14-05-09 01:14 AM, Paul McGougan wrote:
 >
-> Not sure if this is the correct place to email this, but I’ve seen a few
-> other meta-atmel references so I figured I’d give it a shot.
+> Hi all.
 >
-> I’m attempting to setup a core-image-minimal build using the guidelines
-> in the meta-atmel README for the at91sam9x5ek machine type. When the
-> kernel build goes to link, I get a “no machine record defined” error. Is
-> this something others are seeing in the meta-atmel demo builds?
+> We are currently using Poky 1.5.0.
 >
-> It’s a pretty benign build setup according to the README:
+> We have created our own custom layer for our powerpc-based board.
 >
-> git clone git://git.yoctoproject.org/poky
+> We are running u-boot as our bootloader and want to use the new FIT 
+> (FDT) style kernel/dtb image blob.
 >
-> cd poky
+> To that end, in our custom layer we have a file 
+> poky/meta-OURS/recipes-kernel/linux/linux-yocto_3.10.bbappend, and in 
+> that file I have a function do_install_append() in which I call 
+> u-boot's mkimage passing it the kernel and DTB files that we want 
+> stored in the FIT image that we will use to boot from u-boot.
 >
-> git checkout dora-10.0.1 -b dora-10.0.1
+> My first question is, is there a better place to be making the FIT image?
 >
-> git clone git://git.openembedded.org/meta-openembedded
->
-> cd meta-openembedded
->
-> git checkout 6572316557e742c2dc93848e4d560242bf0c3995 -b my_branch
->
-> cd ..
->
-> git clone http://github.com/linux4sam/meta-atmel
->
-> source oe-init-build-env /workspace/build-atmel
->
-> modify local.conf:
->
-> MACHINE ??= ”at91sam9x5ek”
->
-> PACKAGE_CLASSES ?= “package_ipk”
->
-> modify bblayers.conf:
->
-> BBLAYERS ?= " \
->
->    /opt/poky/meta-atmel \
->
->    /opt/poky/meta \
->
->    /opt/poky/meta-yocto \
->
->    /opt/poky/meta-yocto-bsp \
->
->    /opt/poky/meta-openembedded/meta-oe \
->
->    /opt/poky/meta-openembedded/meta-networking \
->
->    "
->
-> bitbake core-image-minimal
->
-> Setting this up, I get the following build configuration and error:
->
-> /workspace/build-atmel$ bitbake core-image-minimal
->
-> Loading cache: 100%
-> |######################################################################################|
-> ETA:  00:00:00
->
-> Loaded 1782 entries from dependency cache.
->
-> NOTE: Resolving any missing task queue dependencies
->
-> Build Configuration:
->
-> BB_VERSION        = "1.20.0"
->
-> BUILD_SYS         = "x86_64-linux"
->
-> NATIVELSBSTRING   = "Ubuntu-12.04"
->
-> TARGET_SYS        = "arm-poky-linux-gnueabi"
->
-> MACHINE           = "at91sam9x5ek"
->
-> DISTRO            = "poky"
->
-> DISTRO_VERSION    = "1.5.1"
->
-> TUNE_FEATURES     = "armv5 thumb dsp"
->
-> TARGET_FPU        = "soft"
->
-> meta-atmel        = "master:269066a8128d1e767deee64854a142e67451a5f2"
->
-> meta
->
-> meta-yocto
->
-> meta-yocto-bsp    = "dora-10.0.1:8e410e9e46e3335458a7747cdd32e05f5c19ccbb"
->
-> meta-oe
->
-> meta-networking   = "my_branch:6572316557e742c2dc93848e4d560242bf0c3995"
->
-> NOTE: Preparing runqueue
->
-> NOTE: Executing SetScene Tasks
->
-> NOTE: Executing RunQueue Tasks
->
-> ERROR: Function failed: do_compile (log file is located at
-> /workspace/build-atmel/tmp/work/at91sam9x5ek-poky-linux-gnueabi/linux-yocto-custom/3.10+AUTOINC+68f2c28207-r5/temp/log.do_compile.2291)
->
-> ERROR: Logfile of failure stored in:
-> /workspace/build-atmel/tmp/work/at91sam9x5ek-poky-linux-gnueabi/linux-yocto-custom/3.10+AUTOINC+68f2c28207-r5/temp/log.do_compile.2291
->
-> Log data follows:
->
-> | DEBUG: Executing shell function do_compile
->
-> | NOTE: make -j 2 zImage CC=arm-poky-linux-gnueabi-gcc
-> -mno-thumb-interwork -marm LD=arm-poky-linux-gnueabi-ld.bfd
->
-> |   GEN
-> /workspace/build-atmel/tmp/work/at91sam9x5ek-poky-linux-gnueabi/linux-yocto-custom/3.10+AUTOINC+68f2c28207-r5/linux-at91sam9x5ek-standard-build/Makefile
->
-> |   CHK     include/generated/uapi/linux/version.h
->
-> |   CHK     include/generated/utsrelease.h
->
-> |   Using
-> /workspace/build-atmel/tmp/work/at91sam9x5ek-poky-linux-gnueabi/linux-yocto-custom/3.10+AUTOINC+68f2c28207-r5/linux
-> as source for kernel
->
-> | make[3]: `include/generated/mach-types.h' is up to date.
->
-> |   CC      scripts/mod/devicetable-offsets.s
->
-> |   GEN     scripts/mod/devicetable-offsets.h
->
-> |   HOSTCC  scripts/mod/file2alias.o
->
-> |   CALL
-> /workspace/build-atmel/tmp/work/at91sam9x5ek-poky-linux-gnueabi/linux-yocto-custom/3.10+AUTOINC+68f2c28207-r5/linux/scripts/checksyscalls.sh
->
-> |   HOSTLD  scripts/mod/modpost
->
-> |   CHK     include/generated/compile.h
->
-> |   LINK    vmlinux
->
-> |   LD      vmlinux.o
->
-> |   MODPOST vmlinux.o
->
-> |   GEN     .version
->
-> |   CHK     include/generated/compile.h
->
-> |   UPD     include/generated/compile.h
->
-> |   CC      init/version.o
->
-> |   LD      init/built-in.o
->
-> | arm-poky-linux-gnueabi-ld.bfd: no machine record defined
->
-> | make[2]: *** [vmlinux] Error 1
->
-> | make[1]: *** [sub-make] Error 2
->
-> | make: *** [all] Error 2
->
-> | ERROR: oe_runmake failed
->
-> | WARNING: exit code 1 from a shell command.
->
-> | ERROR: Function failed: do_compile (log file is located at
-> /workspace/build-atmel/tmp/work/at91sam9x5ek-poky-linux-gnueabi/linux-yocto-custom/3.10+AUTOINC+68f2c28207-r5/temp/log.do_compile.2291)
->
-> ERROR: Task 208
-> (/opt/poky/meta-atmel/recipes-kernel/linux/linux-yocto-custom_3.10.bb,
-> do_compile) failed with exit code '1'
->
-> NOTE: Tasks Summary: Attempted 793 tasks of which 785 didn't need to be
-> rerun and 1 failed.
->
-> Waiting for 0 running tasks to finish:
->
-> Summary: 1 task failed:
->
->    /opt/poky/meta-atmel/recipes-kernel/linux/linux-yocto-custom_3.10.bb,
-> do_compile
->
-> Summary: There was 1 ERROR message shown, returning a non-zero exit code.
->
-> Any thoughts on what might be missing from the README or my
-> implementation of it to get this demo build working?
 
-Can you confirm that the final .config for the board has the machine
-definitions that you'd expect for the board ?
+It depends on if everything you need to construct the FIT image is
+in the kernel's build directory, or also available in the sysroot/deploy
+directories.
+
+If you need kernel build artifacts, doing it in the bbappend (or a .inc,
+.bbclass, etc) of the kernel recipe is the right place.
+
+> As a side-question to that, I was surprised that there isn't native 
+> support already for creating this type of u-boot image considering how 
+> useful it is, does anyone know if there is a specific reason no one 
+> has done this yet?
+>
+
+None that I know of (but I haven't checked all the SDK, vendor
+and distro layers in the ecosystem).
+
+Either a image_types bbclass or something like the existing linux-dtb.inc
+could fill the roll. It just depends on what is needed to build the uImage.
+
+> Secondly, (and this is our main issue) I have found that by adding the 
+> do_install_append function, even if it is completely empty, whenever I 
+> try to bitbake anything that depends on the kernel, that bitbake 
+> always re-runs the kernel install stage, even when there have been no 
+> changes. Literally I can run a bitbake, then run the same bitbake 
+> command again, and both times the kernel install stage gets run (this 
+> is a problem because it takes a long time to run). It appears to be 
+> happening because the stampfile is not found every time (the hash 
+> appears to be wrong). Is this a bug? Is there a fix or work-around for 
+> this problem?
+>
+
+In this front, I'm not the best reference. Checking the sstate signature
+might help, it should show which variables are being used .. and possibly
+invalidating the signature, triggering the steps to run again.
 
 Bruce
 
+> Thanks.
 >
-> Thanks,
+> Paul.
 >
-> Brian
 >
+> Confidentiality Notice: This message (including attachments) is a 
+> private communication solely for use of the intended recipient(s). If 
+> you are not the intended recipient(s) or believe you received this 
+> message in error, notify the sender immediately and then delete this 
+> message. Any other use, retention, dissemination or copying is 
+> prohibited and may be a violation of law, including the Electronic 
+> Communication Privacy Act of 1986."   ­­
 >
 >
 
 
+--------------000204000306080708070908
+Content-Type: text/html; charset="ISO-8859-1"
+Content-Transfer-Encoding: 7bit
+
+<html>
+  <head>
+    <meta content="text/html; charset=ISO-8859-1"
+      http-equiv="Content-Type">
+  </head>
+  <body bgcolor="#FFFFFF" text="#000000">
+    <div class="moz-cite-prefix">On 14-05-09 01:14 AM, Paul McGougan
+      wrote:<br>
+    </div>
+    <blockquote
+cite="mid:C7589FE7B0DE58488F2B9BF79840E9D90D66F51F@ADL-EXCHMBX1.TOPCON.com"
+      type="cite">
+      <meta http-equiv="Content-Type" content="text/html;
+        charset=ISO-8859-1">
+      <meta name="Generator" content="Microsoft Word 15 (filtered
+        medium)">
+      <style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";
+	mso-fareast-language:EN-US;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:#954F72;
+	text-decoration:underline;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri","sans-serif";
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri","sans-serif";
+	mso-fareast-language:EN-US;}
+@page WordSection1
+	{size:612.0pt 792.0pt;
+	margin:72.0pt 72.0pt 72.0pt 72.0pt;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext="edit" spidmax="1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext="edit">
+<o:idmap v:ext="edit" data="1" />
+</o:shapelayout></xml><![endif]-->
+      <div class="WordSection1">
+        <p class="MsoNormal">Hi all.<o:p></o:p></p>
+        <p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+        <p class="MsoNormal">We are currently using Poky 1.5.0.<o:p></o:p></p>
+        <p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+        <p class="MsoNormal">We have created our own custom layer for
+          our powerpc-based board.<o:p></o:p></p>
+        <p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+        <p class="MsoNormal">We are running u-boot as our bootloader and
+          want to use the new FIT (FDT) style kernel/dtb image blob.<o:p></o:p></p>
+        <p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+        <p class="MsoNormal">To that end, in our custom layer we have a
+          file
+          poky/meta-OURS/recipes-kernel/linux/linux-yocto_3.10.bbappend,
+          and in that file I have a function do_install_append() in
+          which I call u-boot&#8217;s mkimage passing it the kernel and DTB
+          files that we want stored in the FIT image that we will use to
+          boot from u-boot.<o:p></o:p></p>
+        <p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+        <p class="MsoNormal">My first question is, is there a better
+          place to be making the FIT image?</p>
+      </div>
+    </blockquote>
+    <br>
+    It depends on if everything you need to construct the FIT image is<br>
+    in the kernel's build directory, or also available in the
+    sysroot/deploy<br>
+    directories.<br>
+    <br>
+    If you need kernel build artifacts, doing it in the bbappend (or a
+    .inc,<br>
+    .bbclass, etc) of the kernel recipe is the right place.<br>
+    <br>
+    <blockquote
+cite="mid:C7589FE7B0DE58488F2B9BF79840E9D90D66F51F@ADL-EXCHMBX1.TOPCON.com"
+      type="cite">
+      <div class="WordSection1">
+        <p class="MsoNormal"><o:p></o:p></p>
+        <p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+        <p class="MsoNormal">As a side-question to that, I was surprised
+          that there isn&#8217;t native support already for creating this type
+          of u-boot image considering how useful it is, does anyone know
+          if there is a specific reason no one has done this yet?<o:p></o:p></p>
+      </div>
+    </blockquote>
+    <br>
+    None that I know of (but I haven't checked all the SDK, vendor<br>
+    and distro layers in the ecosystem). <br>
+    <br>
+    Either a image_types bbclass or something like the existing
+    linux-dtb.inc<br>
+    could fill the roll. It just depends on what is needed to build the
+    uImage.<br>
+    <br>
+    <blockquote
+cite="mid:C7589FE7B0DE58488F2B9BF79840E9D90D66F51F@ADL-EXCHMBX1.TOPCON.com"
+      type="cite">
+      <div class="WordSection1">
+        <p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+        <p class="MsoNormal">Secondly, (and this is our main issue) I
+          have found that by adding the do_install_append function, even
+          if it is completely empty, whenever I try to bitbake anything
+          that depends on the kernel, that bitbake always re-runs the
+          kernel install stage, even when there have been no changes.
+          Literally I can run a bitbake, then run the same bitbake
+          command again, and both times the kernel install stage gets
+          run (this is a problem because it takes a long time to run).
+          It appears to be happening because the stampfile is not found
+          every time (the hash appears to be wrong). Is this a bug? Is
+          there a fix or work-around for this problem?</p>
+      </div>
+    </blockquote>
+    <br>
+    In this front, I'm not the best reference. Checking the sstate
+    signature<br>
+    might help, it should show which variables are being used .. and
+    possibly<br>
+    invalidating the signature, triggering the steps to run again.<br>
+    <br>
+    Bruce<br>
+    <br>
+    <blockquote
+cite="mid:C7589FE7B0DE58488F2B9BF79840E9D90D66F51F@ADL-EXCHMBX1.TOPCON.com"
+      type="cite">
+      <div class="WordSection1">
+        <p class="MsoNormal"><o:p></o:p></p>
+        <p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+        <p class="MsoNormal">Thanks.<o:p></o:p></p>
+        <p class="MsoNormal"><o:p>&nbsp;</o:p></p>
+        <p class="MsoNormal">Paul.<o:p></o:p></p>
+      </div>
+      <br>
+      Confidentiality Notice: This message (including attachments) is a
+      private communication solely for use of the intended recipient(s).
+      If you are not the intended recipient(s) or believe you received
+      this message in error, notify the sender immediately and then
+      delete this message. Any other use, retention, dissemination or
+      copying is prohibited and may be a violation of law, including the
+      Electronic Communication Privacy Act of 1986."
+      &nbsp;&nbsp;&shy;&shy;&nbsp;&nbsp;
+      <br>
+      <fieldset class="mimeAttachmentHeader"></fieldset>
+      <br>
+    </blockquote>
+    <br>
+  </body>
+</html>
+
+--------------000204000306080708070908--
