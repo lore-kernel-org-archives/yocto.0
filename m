@@ -1,43 +1,59 @@
-Return-Path: <stefan@agner.ch>
+Return-Path: <auslands-kv@gmx.de>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id D0FD7E00B66; Thu,  8 May 2014 09:53:39 -0700 (PDT)
+	id 62C96E00B6A; Fri,  9 May 2014 06:34:09 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: *
-X-Spam-Status: No, score=1.3 required=5.0 tests=RDNS_NONE autolearn=no
-	version=3.3.1
-X-Spam-HAM-Report: * 1.3 RDNS_NONE Delivered to internal network by a host
-	with no rDNS
-Received: from mail.kmu-office.ch (unknown [178.209.48.102])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4F161E0073D
-	for <yocto@yoctoproject.org>; Thu,  8 May 2014 09:53:32 -0700 (PDT)
-Received: from localhost (localhost [127.0.0.1])
-	by mail.kmu-office.ch (Postfix) with ESMTP id AEBAB61969
-	for <yocto@yoctoproject.org>; Thu,  8 May 2014 18:40:09 +0200 (CEST)
-X-Virus-Scanned: by amavisd-new at kmu-office.ch
-Received: from mail.kmu-office.ch ([127.0.0.1])
-	by localhost (mail.kmu-office.ch [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id mSwROYZVR69d for <yocto@yoctoproject.org>;
-	Thu,  8 May 2014 18:40:09 +0200 (CEST)
-Received: from localhost (localhost [127.0.0.1])
-	by mail.kmu-office.ch (Postfix) with ESMTP id F05B761971
-	for <yocto@yoctoproject.org>; Thu,  8 May 2014 18:40:05 +0200 (CEST)
-Received: from linuxdev.toradex.int (unknown [46.140.72.82])
-	(Authenticated sender: stefan@agner.ch)
-	by mail.kmu-office.ch (Postfix) with ESMTPSA id 8C3296195B;
-	Thu,  8 May 2014 18:40:04 +0200 (CEST)
-From: stefan@agner.ch
-To: yocto@yoctoproject.org,
-	elizabeth.flanagan@intel.com
-Date: Thu,  8 May 2014 18:44:28 +0200
-Message-Id: <fd5736c2b8f79d2af363af719a8c707decd978e9.1399561605.git.stefan@agner.ch>
-X-Mailer: git-send-email 1.9.0
-In-Reply-To: <cover.1399561605.git.stefan@agner.ch>
-References: <cover.1399561605.git.stefan@agner.ch>
+X-Spam-Status: No, score=1.3 required=5.0 tests=FREEMAIL_FROM,RDNS_NONE
+	autolearn=no version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (auslands-kv[at]gmx.de)
+	*  1.3 RDNS_NONE Delivered to internal network by a host with no rDNS
+X-Greylist: delayed 778 seconds by postgrey-1.32 at yocto-www;
+	Fri, 09 May 2014 06:34:06 PDT
+Received: from mail.banditt-management.com (unknown [176.28.28.35])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E2B76E00B66
+	for <yocto@yoctoproject.org>; Fri,  9 May 2014 06:34:06 -0700 (PDT)
+Received: from localhost (localhost.localdomain [127.0.0.1])
+	by mail.banditt-management.com (Postfix) with SMTP id 73A4714E061C
+	for <yocto@yoctoproject.org>; Fri,  9 May 2014 15:21:07 +0200 (CEST)
+Received: from [172.17.2.61] (80-218-32-173.dclient.hispeed.ch [80.218.32.173])
+	(using TLSv1 with cipher DHE-RSA-AES128-SHA (128/128 bits))
+	(No client certificate requested)
+	by mail.banditt-management.com (Postfix) with ESMTPSA id AF10214E0588; 
+	Fri,  9 May 2014 15:21:06 +0200 (CEST)
+Message-ID: <536CD642.70700@gmx.de>
+Date: Fri, 09 May 2014 15:21:06 +0200
+From: Auslands-KV <auslands-kv@gmx.de>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:24.0) Gecko/20100101 Thunderbird/24.5.0
 MIME-Version: 1.0
+To: Andrea Galbusera <gizero@gmail.com>
+References: <lkcshi$dep$1@ger.gmane.org>	<CAJTo0LZ7=Zs3pcP30htX7_GfpWoOvfYU-Cg-71T7pTuLkazGLQ@mail.gmail.com>	<lkevco$bl6$1@ger.gmane.org>	<CAJTo0LZDzH3aQBiwMM=cR06CEqthVQycaSWsM8jAyEHxwYiRWQ@mail.gmail.com>	<536CADD1.1040402@gmx.de>
+	<CAC+thW3_DhKGai3kRXo+HnHOJeWDYdC7_zEg4Z2-wRZhn6iTfw@mail.gmail.com>
+In-Reply-To: <CAC+thW3_DhKGai3kRXo+HnHOJeWDYdC7_zEg4Z2-wRZhn6iTfw@mail.gmail.com>
+X-DSPAM-Result: Whitelisted
+X-DSPAM-Processed: Fri May  9 15:21:07 2014
+X-DSPAM-Confidence: 0.9905
+X-DSPAM-Improbability: 1 in 10451 chance of being spam
+X-DSPAM-Probability: 0.0000
+X-DSPAM-Signature: 536cd6438826256935038
+X-DSPAM-Factors: 27, schrieb, 0.00213, schrieb, 0.00213, IRC, 0.01000,
+	txt, 0.01000, Burton, 0.01000, linux, 0.01000,
+	ethernet, 0.01000, ethernet, 0.01000, iptables, 0.01000,
+	From*KV, 0.01000, maturity, 0.01000,
+	org/listinfo/yocto, 0.01000, Beside, 0.01000,
+	beaglebone, 0.01000, beaglebone, 0.01000, "git, 0.01000,
+	connma/, 0.01000, configure?, 0.01000, ie/set, 0.01000,
+	entry, 0.01000, connman's, 0.01000, //derekmolloy, 0.01000,
+	CC*<yocto, 0.01000, Ross, 0.01000, Ross, 0.01000,
+	CC*public.gmane.org", 0.01000,
+	org/cgit/network/connman/connman, 0.01000
 X-Mailman-Approved-At: Fri, 09 May 2014 08:12:07 -0700
-Cc: stefan@agner.ch
-Subject: [yocto-autobuilder][PATCH v1 4/4] GetDeployDir.py/PublishArtifacts.py: get deploy dir from bitbake
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
+	"yocto-EtnWKYl6rD/WsZ/bQMPhNw@public.gmane.org"
+	<public-yocto-EtnWKYl6rD/WsZ/bQMPhNw@plane.gmane.org>
+Subject: Re: replace udhcpc
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -49,221 +65,89 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 08 May 2014 16:53:39 -0000
+X-List-Received-Date: Fri, 09 May 2014 13:34:09 -0000
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-From: Stefan Agner <stefan@agner.ch>
+Thanks a lot. I will look through these links and hope I will understand
+better then :-)
 
-Since the deploy dir is configureable (also through TMPDIR), we
-need to have a more generic variant to get that path. Also the
-Ångstrom distribution adds "-eglibc" to the TMPDIR. Hence, the
-safest way to get the deployment dir is to parse buildbots
-environment.
+I hope it works nicely with a read-only rootfs. It seems to write to its
+own config data (which is a strange behaviour).
 
-Signed-off-by: Stefan Agner <stefan@agner.ch>
----
- .../autobuilder/buildsteps/GetDeployDir.py         | 47 +++++++++++++++++++++
- .../autobuilder/buildsteps/PublishArtifacts.py     | 48 ++++++++++++----------
- 2 files changed, 73 insertions(+), 22 deletions(-)
- create mode 100644 lib/python2.7/site-packages/autobuilder/buildsteps/GetDeployDir.py
+Do you by chance know, why it depends on the xuser-account package? I
+don't want any additional user accounts on my system. If it is not
+essential I would remove it.
 
-diff --git a/lib/python2.7/site-packages/autobuilder/buildsteps/GetDeployDir.py b/lib/python2.7/site-packages/autobuilder/buildsteps/GetDeployDir.py
-new file mode 100644
-index 0000000..944fcf0
---- /dev/null
-+++ b/lib/python2.7/site-packages/autobuilder/buildsteps/GetDeployDir.py
-@@ -0,0 +1,47 @@
-+'''
-+Created on Mai 8, 2014
-+
-+__author__ = "Stefan Agner"
-+__copyright__ = "Copyright 2014, Toradex AG"
-+__credits__ = ["Stefan Agner"]
-+__license__ = "GPL"
-+__version__ = "2.0"
-+__maintainer__ = "Stefan Agner"
-+__email__ = "stefan@agner.ch"
-+'''
-+from buildbot.steps.shell import ShellCommand
-+from buildbot.status import progress
-+from buildbot.status.results import SUCCESS, FAILURE, WARNINGS
-+from buildbot.process.properties import WithProperties
-+from twisted.python import log
-+from autobuilder.config import *
-+
-+class GetDeployDir(ShellCommand):
-+    haltOnFailure = False
-+    flunkOnFailure = True
-+    name = "GetDeployDir"
-+    def __init__(self, factory, argdict=None, **kwargs):
-+        for k, v in argdict.iteritems():
-+            setattr(self, k, v)
-+        self.description = "Get Deploy Directory"
-+        self.deploydir = None
-+        ShellCommand.__init__(self, **kwargs)
-+
-+    def start(self):
-+        cmd = '. ./oe-init-build-env; bitbake -e | grep "^DEPLOY_DIR="'
-+        self.command = cmd
-+        ShellCommand.start(self)
-+
-+    def commandComplete(self, cmd):
-+        if cmd.didFail():
-+            return
-+        result = cmd.logs['stdio'].getText()
-+        if "=" not in result:
-+            self.finished(FAILURE)
-+        param, value = result.split("=")
-+        deploydir = value.replace('"', '').strip()
-+        self.setProperty('deploydir', deploydir, "Setting Deploy Directory")
-+        self.finished(SUCCESS)
-+
-+    def getText(self, cmd, results):
-+        return ShellCommand.getText(self, cmd, results)
-diff --git a/lib/python2.7/site-packages/autobuilder/buildsteps/PublishArtifacts.py b/lib/python2.7/site-packages/autobuilder/buildsteps/PublishArtifacts.py
-index ebc761f..303df36 100644
---- a/lib/python2.7/site-packages/autobuilder/buildsteps/PublishArtifacts.py
-+++ b/lib/python2.7/site-packages/autobuilder/buildsteps/PublishArtifacts.py
-@@ -19,10 +19,10 @@ class PublishArtifacts(ShellCommand):
- 
-     haltOnFailure = False
-     flunkOnFailure = True
--    name = "Publishing Artifacts"
-+    name = "PublishArtifacts"
-+    description = "Publishing Artifacts"
-     def __init__(self, factory, argdict=None, **kwargs):
-         self.factory = factory
--        self.description = "Publishing Artifacts"
-         self.slavedir=os.path.join(os.path.join(YOCTO_ABBASE, "yocto-slave"))
-         for k, v in argdict.iteritems():
-             if type(v) is bool:
-@@ -42,10 +42,14 @@ class PublishArtifacts(ShellCommand):
-         self.layerversion_yoctobsp = self.getProperty("layerversion_yoctobsp")
-         self.layerversion_yocto = self.getProperty("layerversion_yocto")
-         self.layerversion_core = self.getProperty("layerversion_core")
-+        self.deploydir = self.getProperty("deploydir")
-         log.msg(layerversion_yoctobsp)
--        self.basedir=os.path.join(os.path.join(
--                                    self.slavedir, buildername),
--                                    "build/build/")
-+        self.basedir = os.path.join(self.slavedir, buildername, "build/build/")
-+
-+        # Deploydir might not be set in case the step did not run, fallback to default
-+        if self.deploydir is None:
-+            self.deploydir = os.path.join(self.basedir, "tmp/deploy/")
-+
-         command=""
-         DATESTAMP=datetime.datetime.now().strftime("%Y%m%d")
-         if str(os.environ.get('PUBLISH_BUILDS')) == "True":
-@@ -70,17 +74,17 @@ class PublishArtifacts(ShellCommand):
-                 if artifact == "adt-installer":
-                     command=command+"mkdir -p " + os.path.join(DEST, ADT_INST_PUBLISH_DIR) + ";"
-                     command=command+"cp -R --no-dereference --preserve=links " + \
--                                    os.path.join(self.basedir, "tmp/deploy/sdk/") + \
-+                                    os.path.join(self.deploydir, "sdk/") + \
-                                     "*adt* " + os.path.join(DEST, ADT_INST_PUBLISH_DIR) + ";"
-                 elif artifact == "adt-installer-QA":
-                     command=command+"mkdir -p " + os.path.join(DEST, ADTQA_INST_PUBLISH_DIR) + ";"
-                     command=command+"cp -R --no-dereference --preserve=links " + \
--                                    os.path.join(self.basedir, "tmp/deploy/sdk/") + \
-+                                    os.path.join(self.deploydir, "sdk/") + \
-                                     "*adt* " + os.path.join(DEST, ADTQA_INST_PUBLISH_DIR)+ ";"
-                 elif artifact == "adtrepo-dev":
-                     adt_dev_dest= os.environ.get("ADTREPO_DEV_PATH") + "/" + distroversion + "-" + got_revision_poky + '-' + self.getProperty("branch_poky")
-                     command=command+"mkdir -p " + adt_dev_dest + "/adt-ipk;"
--                    command=command+"rsync -av " + os.path.join(self.basedir, "tmp/deploy/ipk/") + " " +  adt_dev_dest + "/adt-ipk;"
-+                    command=command+"rsync -av " + os.path.join(self.deploydir, "ipk/") + " " +  adt_dev_dest + "/adt-ipk;"
-                     command=command+"rm -rf " + adt_dev_dest + "/rootfs; mkdir -p " + adt_dev_dest + "/rootfs;"
-                     command=command+"for x in `ls " + DEST + "/machines/qemu/|grep -v tiny`; do ln -s " + DEST + "/machines/qemu/$x " + adt_dev_dest + "/rootfs/$x; done;"
-                     if self.layerversion_yocto is not None and int(self.layerversion_yocto) < 2:
-@@ -101,49 +105,49 @@ class PublishArtifacts(ShellCommand):
-                     command=command+"mkdir -p " + DEST + "/" + BA_PUBLISH_DIR + ";"
-                     if self.layerversion_core is not None and int(self.layerversion_core) > 2:
-                         command=command+"cp -R --no-dereference --preserve=links " + \
--                                        os.path.join(self.basedir, "tmp/deploy/images/qemux86-64/*.zip") + \
-+                                        os.path.join(self.deploydir, "images/qemux86-64/*.zip") + \
-                                         " " + DEST + "/" + BA_PUBLISH_DIR + ";"
-                     else:
-                         command=command+"cp -R --no-dereference --preserve=links " + \
--                                        os.path.join(self.basedir, "tmp/deploy/images/*.zip") + \
-+                                        os.path.join(self.deploydir, "images/*.zip") + \
-                                         " " + DEST + "/" + BA_PUBLISH_DIR + ";"
-                 elif artifact == "buildtools-tarball":
-                     command=command+"mkdir -p " + DEST + "/buildtools;"
-                     command=command+"cp -R --no-dereference --preserve=links " + \
--                                    os.path.join(self.basedir, "tmp/deploy/sdk/*.sh") + \
-+                                    os.path.join(self.deploydir, "sdk/*.sh") + \
-                                     " " + DEST + "/buildtools;"
-                 elif artifact == "rpm":
-                     command=command+"mkdir -p " + os.path.join(DEST, RPM_PUBLISH_DIR) + ";"
-                     command=command+"cp -R --no-dereference --preserve=links " + \
--                                    os.path.join(self.basedir, "tmp/deploy/rpm/* ") + \
-+                                    os.path.join(self.deploydir, "rpm/* ") + \
-                                     os.path.join(DEST, RPM_PUBLISH_DIR) + ";"
-                 elif artifact == "deb":
-                     command=command+"mkdir -p " + os.path.join(DEST, DEB_PUBLISH_DIR) + ";"
-                     command=command+"cp -R --no-dereference --preserve=links " + \
--                                    os.path.join(self.basedir, "tmp/deploy/deb/* ") + \
-+                                    os.path.join(self.deploydir, "deb/* ") + \
-                                     os.path.join(DEST, DEB_PUBLISH_DIR) + ";"
-                 elif artifact == "ipk":
-                     command=command+"mkdir -p " + os.path.join(DEST, IPK_PUBLISH_DIR) + ";"
-                     command=command+"cp -R --no-dereference --preserve=links " + \
--                                    os.path.join(self.basedir, "tmp/deploy/ipk/* ") + \
-+                                    os.path.join(self.deploydir, "ipk/* ") + \
-                                     os.path.join(DEST, IPK_PUBLISH_DIR) + ";"
-                 elif artifact == "toolchain":
-                     command=command+"mkdir -p " + os.path.join(DEST, X86TC_PUBLISH_DIR) + ";"
-                     command=command+"cp -R --no-dereference --preserve=links " + \
--                                    os.path.join(self.basedir, "tmp/deploy/sdk/poky-eglibc-i686* ") + \
-+                                    os.path.join(self.deploydir, "sdk/poky-eglibc-i686* ") + \
-                                     os.path.join(DEST, X86TC_PUBLISH_DIR) + ";"
-                     command=command+"mkdir -p " + os.path.join(DEST, X8664TC_PUBLISH_DIR) + ";"
-                     command=command+"cp -R --no-dereference --preserve=links " + \
--                                    os.path.join(self.basedir, "tmp/deploy/sdk/poky-eglibc-x86_64* ") + \
-+                                    os.path.join(self.deploydir, "sdk/poky-eglibc-x86_64* ") + \
-                                     os.path.join(DEST, X8664TC_PUBLISH_DIR) + ";"
-                 elif artifact == "oe-toolchain":
-                     command=command+"mkdir -p " + os.path.join(DEST, X86TC_PUBLISH_DIR) + ";"
-                     command=command+"cp -R --no-dereference --preserve=links " + \
--                                    os.path.join(self.basedir, "tmp/deploy/sdk/oecore-i686* ") + \
-+                                    os.path.join(self.deploydir, "sdk/oecore-i686* ") + \
-                                     os.path.join(DEST, X86TC_PUBLISH_DIR) + ";"
-                     command=command+"mkdir -p " + os.path.join(DEST, X8664TC_PUBLISH_DIR) + ";"
-                     command=command+"cp -R --no-dereference --preserve=links " + \
--                                    os.path.join(self.basedir, "tmp/deploy/sdk/oecore-x86_64* ") + \
-+                                    os.path.join(self.deploydir, "sdk/oecore-x86_64* ") + \
-                                     os.path.join(DEST, X8664TC_PUBLISH_DIR) + ";"
- 
-                 elif "qemu" in artifact:
-@@ -162,11 +166,11 @@ class PublishArtifacts(ShellCommand):
-                     command=command+"mkdir -p " + DEST + "/" + QEMU_PUBLISH_DIR + "/qemu-tiny;"
-                     if self.layerversion_core is not None and int(self.layerversion_core) > 2:
-                         command=command+"cp -R --no-dereference --preserve=links " + \
--                                        os.path.join(self.basedir, "tmp/deploy/images/qemux86/* ") + \
-+                                        os.path.join(self.deploydir, "images/qemux86/* ") + \
-                                         " " + DEST + "/" + QEMU_PUBLISH_DIR + "/qemu-tiny;"
-                     else:
-                         command=command+"cp -R --no-dereference --preserve=links " + \
--                                        os.path.join(self.basedir, "tmp/deploy/images/*") + \
-+                                        os.path.join(self.deploydir, "images/*") + \
-                                         DEST + "/" + QEMU_PUBLISH_DIR + "/qemu-tiny;"
-                 elif artifact == "conf":
-                     artifact_name, deploy_image_dir = self.getDeployNames(artifact, buildername)
-@@ -208,9 +212,9 @@ class PublishArtifacts(ShellCommand):
-         if "-lsb" in buildername:
-             artifact_name = artifact_name + "-lsb"
-         if self.layerversion_core is not None and int(self.layerversion_core) > 2:
--            deploy_dir_image = os.path.join(os.path.join(self.basedir, "tmp/deploy/images/"), artifact)
-+            deploy_dir_image = os.path.join(os.path.join(self.deploydir, "images/"), artifact)
-         else:
--            deploy_dir_image = os.path.join(self.basedir, "tmp/deploy/images/")
-+            deploy_dir_image = os.path.join(self.deploydir, "images/")
-         return artifact_name, deploy_dir_image
- 
-     def describe(self, done=False):
--- 
-1.9.0
+Thanks
+
+Michael
+
+Am 09.05.2014 15:06, schrieb Andrea Galbusera:
+> Hi,
+>
+> On Fri, May 9, 2014 at 12:28 PM, Neuer User <auslands-kv@gmx.de> wrote:
+>> Connman is really a problem without documentation. :-(
+>>
+>> I tried it out and first I noticed that it depends on the creation of an
+>> xuser account. It also needs iptables, so probably can configure these, too.
+>>
+>> I also found that it does not correctly configure the dns entries:
+>>
+>> cat /etc/resolv.conf:
+>> # Generated by Connection Manager
+>> nameserver 127.0.0.1
+>> nameserver ::1
+> This is in fact a working configuration for the DNS proxy feature that
+> connman offers built-in. See [1].
+> I personally went through your same frustration when trying to
+> understand how connman is supposed to work in order to evaluate its
+> maturity. Not yet an expert at all, but [2] and [3] gave me a
+> reasonable bootstrap into connman's main logic. Beside this, "git
+> grepping" the source tree is your best friend.
+> Angstrom distribution, i.e. available on the beaglebone boards is also
+> a good example of a real connman based system.
+>
+>> I really would like to understand what it does with these and how I can
+>> change or modify it's behaviour.
+>>
+>> It's definitely not just "when ethernet cable inserted, bring up the
+>> interface using DHCP".
+>>
+>> I even can't find a config file for connman. Is there one?
+> Yes, there usually is one for each service handled by connman. See [4]
+> for details on configuration file format and their default location.
+> As you can see from previously suggested references, you'll usually
+> modify configurations by using the connmanctl client tool instead of
+> editing those files by hand.
+>
+> [1] http://git.kernel.org/cgit/network/connman/connman.git/tree/README
+> [2] http://derekmolloy.ie/set-ip-address-to-be-static-on-the-beaglebone-black/
+> [3] http://www.ptrackapp.com/apclassys-notes/embedded-linux-using-connma/
+> [4] http://git.kernel.org/cgit/network/connman/connman.git/tree/doc/config-format.txt
+>
+>> Thanks
+>>
+>> Michael
+>>
+>> Am 08.05.2014 12:27, schrieb Burton, Ross:
+>>> On 8 May 2014 04:58, Neuer User <auslands-kv@gmx.de> wrote:
+>>>> I had a brief look at connman half a year ago, but that time I was
+>>>> unable to find a good documentation about it. Do you have by chance a
+>>>> link to some tutorial or at least man entry for the configuration?
+>>> What do you need to configure?  For "when ethernet cable inserted,
+>>> bring up the interface using DHCP" this is default behaviour and won't
+>>> need any configuring.  connman is sadly under-documented but the IRC
+>>> channel is fairly responsive.
+>>>
+>>> Ross
+>>>
+>>
+>> --
+>> _______________________________________________
+>> yocto mailing list
+>> yocto@yoctoproject.org
+>> https://lists.yoctoproject.org/listinfo/yocto
+
 
 
