@@ -1,58 +1,53 @@
-Return-Path: <gizero@gmail.com>
+Return-Path: <joe@deserted.net>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id BF57AE00B6C; Fri,  9 May 2014 06:13:52 -0700 (PDT)
+	id 87306E00B6A; Fri,  9 May 2014 06:23:02 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=0.5 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-	DKIM_VALID_AU,FREEMAIL_FROM,RCVD_IN_DNSWL_LOW,RDNS_NONE autolearn=no
-	version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (gizero[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.128.170 listed in list.dnswl.org]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+X-Spam-Status: No, score=0.6 required=5.0 tests=RCVD_IN_DNSWL_LOW,RDNS_NONE
+	autolearn=no version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [209.85.216.174 listed in list.dnswl.org]
 	*  1.3 RDNS_NONE Delivered to internal network by a host with no rDNS
-X-Greylist: delayed 421 seconds by postgrey-1.32 at yocto-www;
-	Fri, 09 May 2014 06:13:47 PDT
-Received: from mail-ve0-f170.google.com (unknown [209.85.128.170])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1ECD9E00B66
-	for <yocto@yoctoproject.org>; Fri,  9 May 2014 06:13:47 -0700 (PDT)
-Received: by mail-ve0-f170.google.com with SMTP id db11so5256259veb.1
-	for <yocto@yoctoproject.org>; Fri, 09 May 2014 06:13:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type;
-	bh=q6iabdWHUSjoBCcS0wHl3ezs+YPgzI2na2IAwyCdpWM=;
-	b=Z6l8sIHEjqtOjUHP0Xvik+/nHxOyxUEUIiDQj5qJRVIpABApsByEsPVMC18KMj2Pry
-	oQL9Brgj6aBgy/EPVTiRe0FaiTua4RUJp/5ifIPN5Kbj1p/Q3wlYmqEBZiACWQ4aR7Xt
-	fvO8WII920lTp03LlEe8Bp1lFDUv/YQR5bUIz4akyKorAJrjSnEI/hay9U+z6YRAyObJ
-	HddxraqKfHWCDHfgX8sBBlZssMl+PMKQeom47xNB6cPj0LELBHJ8igthGo9Mcl5mqO6u
-	GU0ma/nWE7hgtMmqSK92khvMuo/+BiCSg9Jss164AkHdqAB9gFp0GjyjszVmbx7t6/zf
-	2rFg==
+Received: from mail-qc0-f174.google.com (unknown [209.85.216.174])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id ADF66E00B66
+	for <yocto@yoctoproject.org>; Fri,  9 May 2014 06:22:58 -0700 (PDT)
+Received: by mail-qc0-f174.google.com with SMTP id x13so4554304qcv.33
+	for <yocto@yoctoproject.org>; Fri, 09 May 2014 06:22:58 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+	:mime-version:content-type:content-disposition:in-reply-to
+	:user-agent;
+	bh=VCQVKwtmOs8xZLxSr4EbZV8hGVjbN+JwLYGceWzzIfw=;
+	b=C1TTPtOlDcfkaIhJI3aAj4S6C/i5z1Qua5oSBzNTeX19H/8O1L5T69e4sN2aLCgog8
+	A0jkLpS0UdF5QzIhfaWoQqnSVQxXfPKhyTJegaxncVqdpBNYu5gF9gFw+m/9soNpS/y4
+	e1jxIn+1O+yWDfzPt+WdKlxReZVXFWZBo97SJvMnhiaos2XewXsSL0NhE3YIUKwUd56X
+	154sxDMMLEbsRX7OVAaTleEfQqn3/ZQxwMfWmz1Jx4d/jeSaf+oUQ9N3TxIBuBYIgvjW
+	RM3HRIds0bHk6Xu9iM0oD3IWrzphfKitAsdBsFi824TxWW1Gdh4vmWNAP99ux+M18mye
+	k6Mg==
+X-Gm-Message-State: ALoCoQltQDcvnUNUorV/NUfTGe6xGxoCoSvy264pDQPuSNJS61am/6hkT7UKwiSWiH89FTMrNYoR
+X-Received: by 10.224.103.129 with SMTP id k1mr14623293qao.62.1399641777773;
+	Fri, 09 May 2014 06:22:57 -0700 (PDT)
+Received: from deserted.net ([128.224.252.2])
+	by mx.google.com with ESMTPSA id 60sm1348768qgr.29.2014.05.09.06.22.56
+	for <multiple recipients>
+	(version=TLSv1.2 cipher=RC4-SHA bits=128/128);
+	Fri, 09 May 2014 06:22:56 -0700 (PDT)
+Date: Fri, 9 May 2014 09:22:54 -0400
+From: Joe MacDonald <joe@deserted.net>
+To: jackie.huang@windriver.com
+Message-ID: <20140509132252.GA3770@deserted.net>
+References: <1399629018-9192-1-git-send-email-jackie.huang@windriver.com>
 MIME-Version: 1.0
-X-Received: by 10.52.237.228 with SMTP id vf4mr291242vdc.47.1399640805948;
-	Fri, 09 May 2014 06:06:45 -0700 (PDT)
-Received: by 10.220.0.67 with HTTP; Fri, 9 May 2014 06:06:45 -0700 (PDT)
-In-Reply-To: <536CADD1.1040402@gmx.de>
-References: <lkcshi$dep$1@ger.gmane.org>
-	<CAJTo0LZ7=Zs3pcP30htX7_GfpWoOvfYU-Cg-71T7pTuLkazGLQ@mail.gmail.com>
-	<lkevco$bl6$1@ger.gmane.org>
-	<CAJTo0LZDzH3aQBiwMM=cR06CEqthVQycaSWsM8jAyEHxwYiRWQ@mail.gmail.com>
-	<536CADD1.1040402@gmx.de>
-Date: Fri, 9 May 2014 15:06:45 +0200
-Message-ID: <CAC+thW3_DhKGai3kRXo+HnHOJeWDYdC7_zEg4Z2-wRZhn6iTfw@mail.gmail.com>
-From: Andrea Galbusera <gizero@gmail.com>
-To: Neuer User <auslands-kv@gmx.de>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	"yocto-EtnWKYl6rD/WsZ/bQMPhNw@public.gmane.org"
-	<public-yocto-EtnWKYl6rD/WsZ/bQMPhNw@plane.gmane.org>
-Subject: Re: replace udhcpc
+In-Reply-To: <1399629018-9192-1-git-send-email-jackie.huang@windriver.com>
+X-URL: http://github.com/joeythesaint/joe-s-common-environment/tree/master
+X-Configuration: git://github.com/joeythesaint/joe-s-common-environment.git
+X-Editor: Vim-703 http://www.vim.org
+User-Agent: Mutt/1.5.22 (2013-10-16)
+Cc: yocto@yoctoproject.org
+Subject: Re: [meta-selinux][PATCH] initscripts/checkroot.sh: restore file contexts for /run
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -64,76 +59,66 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 09 May 2014 13:13:52 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Fri, 09 May 2014 13:23:02 -0000
+X-Groupsio-MsgNum: 19510
+Content-Type: multipart/signed; micalg=pgp-sha1;
+	protocol="application/pgp-signature"; boundary="vtzGhvizbBRQ85DL"
+Content-Disposition: inline
 
-Hi,
+--vtzGhvizbBRQ85DL
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-On Fri, May 9, 2014 at 12:28 PM, Neuer User <auslands-kv@gmx.de> wrote:
-> Connman is really a problem without documentation. :-(
->
-> I tried it out and first I noticed that it depends on the creation of an
-> xuser account. It also needs iptables, so probably can configure these, too.
->
-> I also found that it does not correctly configure the dns entries:
->
-> cat /etc/resolv.conf:
-> # Generated by Connection Manager
-> nameserver 127.0.0.1
-> nameserver ::1
+Merged, thanks Jackie.
 
-This is in fact a working configuration for the DNS proxy feature that
-connman offers built-in. See [1].
-I personally went through your same frustration when trying to
-understand how connman is supposed to work in order to evaluate its
-maturity. Not yet an expert at all, but [2] and [3] gave me a
-reasonable bootstrap into connman's main logic. Beside this, "git
-grepping" the source tree is your best friend.
-Angstrom distribution, i.e. available on the beaglebone boards is also
-a good example of a real connman based system.
+-J.
 
-> I really would like to understand what it does with these and how I can
-> change or modify it's behaviour.
->
-> It's definitely not just "when ethernet cable inserted, bring up the
-> interface using DHCP".
->
-> I even can't find a config file for connman. Is there one?
+[[yocto] [meta-selinux][PATCH] initscripts/checkroot.sh: restore file conte=
+xts for /run] On 14.05.09 (Fri 05:50) jackie.huang@windriver.com wrote:
 
-Yes, there usually is one for each service handled by connman. See [4]
-for details on configuration file format and their default location.
-As you can see from previously suggested references, you'll usually
-modify configurations by using the connmanctl client tool instead of
-editing those files by hand.
+> From: Jackie Huang <jackie.huang@windriver.com>
+>=20
+> The file contexts for /run is incorrect while running checkroot.sh
+> in boot time which causes mount fail to create new dir and file
+> in /run, so restore the security contexts in it.
+>=20
+> Signed-off-by: Jackie Huang <jackie.huang@windriver.com>
+> ---
+>  recipes-core/initscripts/initscripts_1.0.bbappend |    2 ++
+>  1 file changed, 2 insertions(+)
+>=20
+> diff --git a/recipes-core/initscripts/initscripts_1.0.bbappend b/recipes-=
+core/initscripts/initscripts_1.0.bbappend
+> index 7ec66ea..367cd6b 100644
+> --- a/recipes-core/initscripts/initscripts_1.0.bbappend
+> +++ b/recipes-core/initscripts/initscripts_1.0.bbappend
+> @@ -5,4 +5,6 @@ do_install_append () {
+>  touch /var/log/lastlog
+>  test ! -x /sbin/restorecon || /sbin/restorecon -RF /var/volatile/ /var/l=
+ib /run
+>  EOF
+> +	sed -i '/mount -n -o remount,$rootmode/i\test ! -x /sbin/restorecon || =
+/sbin/restorecon -RF /run' \
+> +	    ${D}${sysconfdir}/init.d/checkroot.sh
+>  }
+> --=20
+> 1.7.9.5
+>=20
+--=20
+-Joe MacDonald.
+:wq
 
-[1] http://git.kernel.org/cgit/network/connman/connman.git/tree/README
-[2] http://derekmolloy.ie/set-ip-address-to-be-static-on-the-beaglebone-black/
-[3] http://www.ptrackapp.com/apclassys-notes/embedded-linux-using-connma/
-[4] http://git.kernel.org/cgit/network/connman/connman.git/tree/doc/config-format.txt
+--vtzGhvizbBRQ85DL
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: Digital signature
 
->
-> Thanks
->
-> Michael
->
-> Am 08.05.2014 12:27, schrieb Burton, Ross:
->> On 8 May 2014 04:58, Neuer User <auslands-kv@gmx.de> wrote:
->>> I had a brief look at connman half a year ago, but that time I was
->>> unable to find a good documentation about it. Do you have by chance a
->>> link to some tutorial or at least man entry for the configuration?
->>
->> What do you need to configure?  For "when ethernet cable inserted,
->> bring up the interface using DHCP" this is default behaviour and won't
->> need any configuring.  connman is sadly under-documented but the IRC
->> channel is fairly responsive.
->>
->> Ross
->>
->
->
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1.4.12 (GNU/Linux)
 
+iEYEARECAAYFAlNs1pQACgkQwFvcllog0XwEWACfd2Jw6ajxHCrRF4L1edr03yWp
++lsAoIGdhQaKtNRA49iv6Lbjb6hPlV91
+=l87V
+-----END PGP SIGNATURE-----
+
+--vtzGhvizbBRQ85DL--
