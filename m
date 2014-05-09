@@ -1,38 +1,52 @@
-Return-Path: <mark.hatle@windriver.com>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id A1794E0073A; Fri,  9 May 2014 10:14:30 -0700 (PDT)
+	id 09F3DE0073A; Fri,  9 May 2014 11:38:07 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
-X-Spam-Level: *
-X-Spam-Status: No, score=1.3 required=5.0 tests=RCVD_IN_DNSWL_NONE,RDNS_NONE
+X-Spam-Level: 
+X-Spam-Status: No, score=0.6 required=5.0 tests=RCVD_IN_DNSWL_LOW,RDNS_NONE
 	autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [147.11.146.13 listed in list.dnswl.org]
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [209.85.216.50 listed in list.dnswl.org]
 	*  1.3 RDNS_NONE Delivered to internal network by a host with no rDNS
-Received: from mail1.windriver.com (unknown [147.11.146.13])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B8139E00478
-	for <yocto@yoctoproject.org>; Fri,  9 May 2014 10:14:27 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail1.windriver.com (8.14.5/8.14.5) with ESMTP id s49HERAV001588
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL)
-	for <yocto@yoctoproject.org>; Fri, 9 May 2014 10:14:27 -0700 (PDT)
-Received: from Marks-MacBook-Pro.local (172.25.36.227) by
-	ALA-HCA.corp.ad.wrs.com (147.11.189.50) with Microsoft SMTP Server id
-	14.3.169.1; Fri, 9 May 2014 10:14:27 -0700
-Message-ID: <536D0CF4.6030107@windriver.com>
-Date: Fri, 9 May 2014 12:14:28 -0500
-From: Mark Hatle <mark.hatle@windriver.com>
-Organization: Wind River Systems
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.9;
-	rv:24.0) Gecko/20100101 Thunderbird/24.5.0
+Received: from mail-qa0-f50.google.com (unknown [209.85.216.50])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9A558E00478
+	for <yocto@yoctoproject.org>; Fri,  9 May 2014 11:38:02 -0700 (PDT)
+Received: by mail-qa0-f50.google.com with SMTP id j15so4484953qaq.9
+	for <yocto@yoctoproject.org>; Fri, 09 May 2014 11:38:01 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc:content-type;
+	bh=FV1CxGcETzgzb/LWYA2R7gteilvgYpakGgQDKmhq+YA=;
+	b=inebn4AVlIewAffoQ3LBJjbRq/6soAOMKBCjlUd8tBz008NGJyVC23L9GPOIm8dqFB
+	BP1cR0WrdWM5EVnDiQuzU6BckpD/YN7aWv+YvxjU3GxIWuEA1B2QvyXMlJU/4cvR+IoH
+	sVz15zE9wOQjOce9FK11YdSpdvOANhH4Az/MOfA2uJ/5bTh33caLLQ9toW2DfQMJSUMC
+	TRWNVkcUhuzNE4Yh8agYaTDLOamUY3gIW3pk8N7fTjehUu+56WEs722QalRzjuCGiSW5
+	Hy3/GViHzaPNVJUjV19L/K6nNeeusL3rNImC9MKGgg4sxg8p+5BCpgmIOJG1NgWh96WF
+	IMRQ==
+X-Gm-Message-State: ALoCoQnz6faI1jdoz9KUyUkxphd45MasDtGzuk2qrVk/eSUlaE8HBRWiu/8dqoWxmf7B6bx1bK9g
+X-Received: by 10.140.91.161 with SMTP id z30mr16289230qgd.65.1399660681487;
+	Fri, 09 May 2014 11:38:01 -0700 (PDT)
 MIME-Version: 1.0
-To: <yocto@yoctoproject.org>
-References: <CAMCfZKH4u4oix7Ks_8CtyZJYPdyyPB_ECNMYJK=r3KzL0_FZ5Q@mail.gmail.com>	<CAMKF1spVm46k7s+xm0BKCu6=sHR4npEbHLfAUVfQDOve9thc0A@mail.gmail.com>	<CAMCfZKGF=dftUZ2AEwmUBCaGjBLOn5PAnrWuf4hDviu_3anNrw@mail.gmail.com>	<CAMKF1sqfnZnMVufmitCS-C1QU6PCzOcqqJWmNrYE1J7JnBf5fg@mail.gmail.com>	<CAMCfZKEZgu_o1fqK3jR8kTxmMKVVStuskM7AcmQJXzdkaP7Z-A@mail.gmail.com>
-	<CAMCfZKFHkaAHV0mUZeYoDuS1V5VvBx_7z4BRO27UoGqpO=vJ0w@mail.gmail.com>
-In-Reply-To: <CAMCfZKFHkaAHV0mUZeYoDuS1V5VvBx_7z4BRO27UoGqpO=vJ0w@mail.gmail.com>
-Subject: Re: RPM to Verify Installed Packages
+Received: by 10.140.101.77 with HTTP; Fri, 9 May 2014 11:37:41 -0700 (PDT)
+In-Reply-To: <lkj1d5$s27$1@ger.gmane.org>
+References: <lkcshi$dep$1@ger.gmane.org>
+	<CAJTo0LZ7=Zs3pcP30htX7_GfpWoOvfYU-Cg-71T7pTuLkazGLQ@mail.gmail.com>
+	<lkevco$bl6$1@ger.gmane.org>
+	<CAJTo0LZDzH3aQBiwMM=cR06CEqthVQycaSWsM8jAyEHxwYiRWQ@mail.gmail.com>
+	<536CADD1.1040402@gmx.de>
+	<CAC+thW3_DhKGai3kRXo+HnHOJeWDYdC7_zEg4Z2-wRZhn6iTfw@mail.gmail.com>
+	<536CD642.70700@gmx.de>
+	<CAC+thW39rt=BEuo3SVa2mvFx0hHXGk=VW9rxUymR-i4jDNJpyw@mail.gmail.com>
+	<lkj12c$mij$1@ger.gmane.org> <lkj1d5$s27$1@ger.gmane.org>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Fri, 9 May 2014 19:37:41 +0100
+Message-ID: <CAJTo0LbvSFTR7_=fbbqJVc_NeMU7Kj8jTCs2-dt5h61q25n0QQ@mail.gmail.com>
+To: Neuer User <auslands-kv@gmx.de>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: replace udhcpc
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -44,58 +58,27 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 09 May 2014 17:14:30 -0000
-Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Fri, 09 May 2014 18:38:07 -0000
+Content-Type: text/plain; charset=UTF-8
 
-On 5/7/14, 7:46 AM, Diego Sueiro wrote:
-> Folks,
+On 9 May 2014 17:57, Neuer User <auslands-kv@gmx.de> wrote:
+> Seems, I am not the only one wondering why connman phones home:
 
-I'm looking at this issue.  I'd suggest you open a bug in the Yocto Project 
-bugzilla.  Feel free to assign it to me.  (I'll end up with it anyway...)
+The "ask the author" approach works quite well.  The hostname it's
+looking up is connman.net.  This is the captive portal detection:
+pretty much every major platform does something similar and it's to
+detect the situation that you have something that looks like a network
+connection, but actually you're not routed anywhere (i.e. you're in a
+hotel and need to pay for connectivity).  ConnMan makes a trivial
+request to it's home page and if it gets back the response it was
+expecting you have internet, captive portals tend to include
+machine-readable links in the response that ConnMan will tell the UI
+to open.  If you've ever joined an iOS (and probably Android, but I've
+not got one) device to a hotel's wifi and seen a login page open
+immediately the same you've seen this behaviour in action.
 
---Mark
+The response also includes some basic geo-ip so your machine knows
+roughly where it is, useful for automatic timezone updating.
 
-> On Tue, May 6, 2014 at 3:48 PM, Diego Sueiro <diego.sueiro@gmail.com
-> <mailto:diego.sueiro@gmail.com>> wrote:
->
->     On Tue, May 6, 2014 at 3:39 PM, Khem Raj <raj.khem@gmail.com
->     <mailto:raj.khem@gmail.com>> wrote:
->
->         On Tue, May 6, 2014 at 11:34 AM, Diego Sueiro <diego.sueiro@gmail.com
->         <mailto:diego.sueiro@gmail.com>> wrote:
->          >
->          > It's hard to say. But when I try to execute it I receive: "cannot execute
->          > binary file".
->          > And the output of "file" command is: "data".
->          >
->          > My bet is that the system was powered down during the update process.
->
->         what happens if you reinstall it ?
->
->
->     It works.
->     But the problem is that --verify option is not working.
->     Even if I remove a file from the installed package it did not point for a
->     missing file.
->
->
-> Any thoughts?
->
->
->
-> Regards,
->
-> --
-> *dS
-> Diego Sueiro
->
-> Administrador do Embarcados
-> www.embarcados.com.br
-> <http://www.embarcados.com.br/?utm_source=assinatura_diego&utm_medium=e-mail&utm_campaign=Assinatura%20Email%20Diego>
->
-> /*long live rock 'n roll*/
->
->
-
+Ross
 
