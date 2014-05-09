@@ -1,45 +1,57 @@
-Return-Path: <gley-yocto@m.gmane.org>
+Return-Path: <auslands-kv@gmx.de>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 86F73E00BBF; Fri,  9 May 2014 08:15:52 -0700 (PDT)
+	id E05FEE0073A; Fri,  9 May 2014 08:19:39 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: *
-X-Spam-Status: No, score=1.3 required=5.0 tests=FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE,RDNS_NONE,SPF_HELO_PASS autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [80.91.229.3 listed in list.dnswl.org]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (auslands-kv[at]gmx.de)
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+X-Spam-Status: No, score=1.3 required=5.0 tests=FREEMAIL_FROM,RDNS_NONE
+	autolearn=no version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (auslands-kv[at]gmx.de)
 	*  1.3 RDNS_NONE Delivered to internal network by a host with no rDNS
-Received: from plane.gmane.org (unknown [80.91.229.3])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DC3C6E00B62
-	for <yocto@yoctoproject.org>; Fri,  9 May 2014 08:15:41 -0700 (PDT)
-Received: from list by plane.gmane.org with local (Exim 4.69)
-	(envelope-from <gley-yocto@m.gmane.org>) id 1WimWL-0005i4-Mb
-	for yocto@yoctoproject.org; Fri, 09 May 2014 17:15:33 +0200
-Received: from 80-218-32-173.dclient.hispeed.ch ([80.218.32.173])
-	by main.gmane.org with esmtp (Gmexim 0.1 (Debian))
-	id 1AlnuQ-0007hv-00
-	for <yocto@yoctoproject.org>; Fri, 09 May 2014 17:15:33 +0200
-Received: from auslands-kv by 80-218-32-173.dclient.hispeed.ch with local
-	(Gmexim 0.1 (Debian)) id 1AlnuQ-0007hv-00
-	for <yocto@yoctoproject.org>; Fri, 09 May 2014 17:15:33 +0200
-X-Injected-Via-Gmane: http://gmane.org/
-To: yocto@yoctoproject.org
+Received: from mail.banditt-management.com (unknown [176.28.28.35])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3F11BE00478
+	for <yocto@yoctoproject.org>; Fri,  9 May 2014 08:19:39 -0700 (PDT)
+Received: from localhost (localhost.localdomain [127.0.0.1])
+	by mail.banditt-management.com (Postfix) with SMTP id 05A1714E061A
+	for <yocto@yoctoproject.org>; Fri,  9 May 2014 17:19:37 +0200 (CEST)
+Received: from [172.17.2.61] (80-218-32-173.dclient.hispeed.ch [80.218.32.173])
+	(using TLSv1 with cipher DHE-RSA-AES128-SHA (128/128 bits))
+	(No client certificate requested)
+	by mail.banditt-management.com (Postfix) with ESMTPSA id 43EB614E0267; 
+	Fri,  9 May 2014 17:19:37 +0200 (CEST)
+Message-ID: <536CF208.3000400@gmx.de>
+Date: Fri, 09 May 2014 17:19:36 +0200
 From: Neuer User <auslands-kv@gmx.de>
-Date: Fri, 09 May 2014 17:15:22 +0200
-Message-ID: <lkirea$jo7$1@ger.gmane.org>
-References: <lkcshi$dep$1@ger.gmane.org>	<CAJTo0LZ7=Zs3pcP30htX7_GfpWoOvfYU-Cg-71T7pTuLkazGLQ@mail.gmail.com>	<lkevco$bl6$1@ger.gmane.org>	<CAJTo0LZDzH3aQBiwMM=cR06CEqthVQycaSWsM8jAyEHxwYiRWQ@mail.gmail.com>	<536CADD1.1040402@gmx.de>
-	<CAC+thW3_DhKGai3kRXo+HnHOJeWDYdC7_zEg4Z2-wRZhn6iTfw@mail.gmail.com>
-Mime-Version: 1.0
-X-Complaints-To: usenet@ger.gmane.org
-X-Gmane-NNTP-Posting-Host: 80-218-32-173.dclient.hispeed.ch
 User-Agent: Mozilla/5.0 (X11; Linux x86_64;
 	rv:24.0) Gecko/20100101 Thunderbird/24.5.0
-In-Reply-To: <CAC+thW3_DhKGai3kRXo+HnHOJeWDYdC7_zEg4Z2-wRZhn6iTfw@mail.gmail.com>
-Subject: Re: replace udhcpc
+MIME-Version: 1.0
+Newsgroups: gmane.comp.handhelds.openembedded,
+	gmane.comp.handhelds.openembedded.core,
+	gmane.linux.embedded.yocto.general
+To: openembedded-devel@lists.openembedded.org, 
+	OE-core <openembedded-core@lists.openembedded.org>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+References: <CAJTo0LZbPXzXyvKXGZZYDT1BDWg3XYrRO_NXsXmuHLMmmW_S3Q@mail.gmail.com>
+	<CAJTo0LZ_S=mNgM6gtPSfYf=AVRxdLcJ_CO31c+emmQrib80hjw@mail.gmail.com>
+In-Reply-To: <CAJTo0LZ_S=mNgM6gtPSfYf=AVRxdLcJ_CO31c+emmQrib80hjw@mail.gmail.com>
+X-DSPAM-Result: Whitelisted
+X-DSPAM-Processed: Fri May  9 17:19:37 2014
+X-DSPAM-Confidence: 0.9902
+X-DSPAM-Improbability: 1 in 10120 chance of being spam
+X-DSPAM-Probability: 0.0000
+X-DSPAM-Signature: 536cf2098825458110516
+X-DSPAM-Factors: 27, schrieb, 0.00213, Burton, 0.01000, Burton, 0.01000,
+	GStreamer, 0.01000, GStreamer, 0.01000, Ross, 0.01000,
+	Ross, 0.01000, QtMultimedia, 0.01000, disable, 0.01000,
+	To*yoctoproject.org>, 0.01000, upstream, 0.01000,
+	Qt4, 0.01000, Qt4, 0.01000, ported, 0.01000, Qt5, 0.01000,
+	From*Neuer User <auslands-kv@gmx.de>, 0.01000,
+	From*kv, 0.01000, From*Neuer, 0.01000, intel, 0.01000,
+	meta, 0.01000, From*User, 0.01000, To*<yocto, 0.01000,
+	oe, 0.01000, oe, 0.01000, Same, 0.01000, Qt, 0.01000,
+	wrote, 0.02597
+Subject: Re: [oe] GStreamer 0.10's future
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -51,93 +63,31 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 09 May 2014 15:15:52 -0000
+X-List-Received-Date: Fri, 09 May 2014 15:19:39 -0000
 Content-Type: text/plain; charset=ISO-8859-1
 Content-Transfer-Encoding: 7bit
 
-Thanks a lot. I will look through these links and hope I will understand
-better then :-)
+Am 08.05.2014 17:54, schrieb Burton, Ross:
+> On 8 May 2014 15:48, Burton, Ross <ross.burton@intel.com> wrote:
+>> For the 1.7 release I want to move GStreamer 0.10 from oe-core into
+>> meta-multimedia, and ensure everything in oe-core has ported to
+>> GStreamer 1.x.  GStreamer 0.10 is considered dead upstream and is
+>> unmaintained so we don't need to be shipping both versions anymore.
+> 
+> So the catch here is that Qt4 currently depends on GStreamer 0.10.
+> 
+Yes, it does, as long as you need QtMultimedia. Same applies to Qt5.
+There was a discussion on the Qt mailing list about moving to
+gstreamer1.0, but this seems to be rather some time in the future was my
+impression.
 
-I hope it works nicely with a read-only rootfs. It seems to write to its
-own config data (which is a strange behaviour).
-
-Do you by chance know, why it depends on the xuser-account package? I
-don't want any additional user accounts on my system. If it is not
-essential I would remove it.
-
-Thanks
-
-Michael
-Am 09.05.2014 15:06, schrieb Andrea Galbusera:
-> Hi,
+> Can someone who doesn't come out in a rash when looking at C++ code
+> spend two minutes to tell if me Qt4 supports GStreamer 1.0 (unlikely)
+> and whether we can make GStreamer 0.10 support a build-time
+> configuration and simply disable it in oe-core.
 > 
-> On Fri, May 9, 2014 at 12:28 PM, Neuer User <auslands-kv@gmx.de> wrote:
->> Connman is really a problem without documentation. :-(
->>
->> I tried it out and first I noticed that it depends on the creation of an
->> xuser account. It also needs iptables, so probably can configure these, too.
->>
->> I also found that it does not correctly configure the dns entries:
->>
->> cat /etc/resolv.conf:
->> # Generated by Connection Manager
->> nameserver 127.0.0.1
->> nameserver ::1
+> Ross
 > 
-> This is in fact a working configuration for the DNS proxy feature that
-> connman offers built-in. See [1].
-> I personally went through your same frustration when trying to
-> understand how connman is supposed to work in order to evaluate its
-> maturity. Not yet an expert at all, but [2] and [3] gave me a
-> reasonable bootstrap into connman's main logic. Beside this, "git
-> grepping" the source tree is your best friend.
-> Angstrom distribution, i.e. available on the beaglebone boards is also
-> a good example of a real connman based system.
-> 
->> I really would like to understand what it does with these and how I can
->> change or modify it's behaviour.
->>
->> It's definitely not just "when ethernet cable inserted, bring up the
->> interface using DHCP".
->>
->> I even can't find a config file for connman. Is there one?
-> 
-> Yes, there usually is one for each service handled by connman. See [4]
-> for details on configuration file format and their default location.
-> As you can see from previously suggested references, you'll usually
-> modify configurations by using the connmanctl client tool instead of
-> editing those files by hand.
-> 
-> [1] http://git.kernel.org/cgit/network/connman/connman.git/tree/README
-> [2] http://derekmolloy.ie/set-ip-address-to-be-static-on-the-beaglebone-black/
-> [3] http://www.ptrackapp.com/apclassys-notes/embedded-linux-using-connma/
-> [4] http://git.kernel.org/cgit/network/connman/connman.git/tree/doc/config-format.txt
-> 
->>
->> Thanks
->>
->> Michael
->>
->> Am 08.05.2014 12:27, schrieb Burton, Ross:
->>> On 8 May 2014 04:58, Neuer User <auslands-kv@gmx.de> wrote:
->>>> I had a brief look at connman half a year ago, but that time I was
->>>> unable to find a good documentation about it. Do you have by chance a
->>>> link to some tutorial or at least man entry for the configuration?
->>>
->>> What do you need to configure?  For "when ethernet cable inserted,
->>> bring up the interface using DHCP" this is default behaviour and won't
->>> need any configuring.  connman is sadly under-documented but the IRC
->>> channel is fairly responsive.
->>>
->>> Ross
->>>
->>
->>
->> --
->> _______________________________________________
->> yocto mailing list
->> yocto@yoctoproject.org
->> https://lists.yoctoproject.org/listinfo/yocto
 
 
 
