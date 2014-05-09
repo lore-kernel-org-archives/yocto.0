@@ -1,47 +1,45 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <briank@RUSSOUND.COM>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id B413CE0073A; Fri,  9 May 2014 12:23:02 -0700 (PDT)
+	id 43391E0073A; Fri,  9 May 2014 12:35:02 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
-X-Spam-Level: 
-X-Spam-Status: No, score=0.6 required=5.0 tests=RCVD_IN_DNSWL_LOW,RDNS_NONE
-	autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [209.85.216.53 listed in list.dnswl.org]
-	*  1.3 RDNS_NONE Delivered to internal network by a host with no rDNS
-Received: from mail-qa0-f53.google.com (unknown [209.85.216.53])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0BC74E00478
-	for <yocto@yoctoproject.org>; Fri,  9 May 2014 12:22:59 -0700 (PDT)
-Received: by mail-qa0-f53.google.com with SMTP id ih12so4472573qab.12
-	for <yocto@yoctoproject.org>; Fri, 09 May 2014 12:22:58 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc:content-type;
-	bh=ZwQ4m/9n4M9aQ+ARiE7ItycNiBCWhT3YKR1EV9ZOHXQ=;
-	b=ae3nNV8xe7ECVmpZBXUBh1F9jG6DxcVqjsTy7rue5cDZLdeLm/JPWIUSFe9dFMm/3f
-	grrywz6stLSZrow0tOCCh+A8eu3o1j+bdDlUQSCCtn/uLAuWDQlNDUAcZvaL0DNLF7wU
-	kBQMuOAjrAql22++tj9F3dLmjnP9BIDeSUsEwg4bRFXYkmVbUQ/HqcwE+yUFSIWo2BkA
-	0RAThkrBHCnOmEes6wPZWfRdGtP6nTBi4IGtssIzxgBda1NoFO6abnQRkexHSJEQtHva
-	b0ef6DWOtoR3icCjmhk8QQTqdVRvntwC8H03JP0y7qGyXS+ROG8WnNZWuAEUvyrV8If/
-	f2oA==
-X-Gm-Message-State: ALoCoQmLjDXsdBaVEU3rdmsjl5jvEAHpB8M3eenJl9OlFKZAS3K8cRKetA4brVjJlOg84HqpcWgf
-X-Received: by 10.140.48.161 with SMTP id o30mr16953829qga.68.1399663368341;
-	Fri, 09 May 2014 12:22:48 -0700 (PDT)
+X-Spam-Level: *
+X-Spam-Status: No, score=1.3 required=5.0 tests=RDNS_NONE autolearn=no
+	version=3.3.1
+X-Spam-HAM-Report: * 1.3 RDNS_NONE Delivered to internal network by a host
+	with no rDNS
+Received: from Pegasus.RUSSOUND.COM (unknown [64.223.142.81])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B81E0E00478
+	for <yocto@yoctoproject.org>; Fri,  9 May 2014 12:34:59 -0700 (PDT)
+Received: from HERMES.RUSSOUND.com (10.0.0.14) by pegasus.RUSSOUND.COM
+	(10.0.0.15) with Microsoft SMTP Server (TLS) id 8.3.298.1;
+	Fri, 9 May 2014 15:34:52 -0400
+Received: from HERMES.RUSSOUND.com (10.0.0.30) by HERMES.RUSSOUND.com
+	(10.0.0.30) with Microsoft SMTP Server (TLS) id 15.0.620.29;
+	Fri, 9 May 2014 15:34:51 -0400
+Received: from HERMES.RUSSOUND.com ([fe80::3946:4b97:77b1:c1c5]) by
+	HERMES.RUSSOUND.com ([fe80::3946:4b97:77b1:c1c5%12]) with mapi id
+	15.00.0620.020; Fri, 9 May 2014 15:34:51 -0400
+From: Brian Karcz <briank@RUSSOUND.COM>
+To: Bruce Ashfield <bruce.ashfield@windriver.com>, "yocto@yoctoproject.org"
+	<yocto@yoctoproject.org>
+Thread-Topic: [yocto] [meta-atmel] at91sam9x5ek: "no machine record defined"
+	failure for core-image-minimal
+Thread-Index: Ac9riCi/qecn3Y3qQzK51aCH65HnbgAJ5HKAAAc038AAAtMygAAHWbqg
+Date: Fri, 9 May 2014 19:34:51 +0000
+Message-ID: <d86cce8551614add921e40f5899eda8c@HERMES.RUSSOUND.com>
+References: <f9f1c263a9ab4a3085bf1a696f31aec6@HERMES.RUSSOUND.com>
+	<536CDE17.40806@windriver.com>
+	<bab902e58d8041a793958d1432e41e86@HERMES.RUSSOUND.com>
+	<536D2169.80103@windriver.com>
+In-Reply-To: <536D2169.80103@windriver.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.0.3.60]
+x-brightmail-tracker: H4sIAAAAAAAAC+NgFnrJqsTGxcLFwCCne1s3N9jg5pHbfzgt7l87zWIxYWkrkwNTAEMUa2ZeUn5FAmvG5E87mQsuB1acWbuYtYFxhm8XIxeHkMBSRoklf1azQTg7GCW2tx9j7WLk5GAWMJW48rWRBcJWlLhwrwHMZhNQl3ixdwpQDQeHiECaxPmeaJCwsECOxJGVexlBbBGBXImH+2cwQ9huEgvvPwZrZRFQkVh2/jJYnFfASWLp3S1g9UICexklTtxzALE5BbQlXr9pAqtnFBCT+H5qDRPECeISt57MB7MlBAQkluw5zwxhK0n03n4HFfeReP9oMtR8QYmTM5+wQMTNJPY+WAJVoyexuuUelB0ocW3TYhaQVySA3r36PhgibCuxZ8ZEJoiws8S8G/UQYSuJa+enskLY2hLbX+2DsnUkNl1bBbVJXuL/vfssMGMmXF4GdaWsxOlri9gg7ACJZYuvsUxgVJuFFM6zkMJ5FpKHZyF5ZgEjyypGYQ/XIF/XYL2g0OBg/1A/F73k/NxNjNBksIPx7w37Q4ySHExKorxrNXKDhfiS8lMqMxKLM+KLSnNSiw8xSnDwKInwSgCTixBvcUFibnFmOkxKhoNDSYKXAyQlWJSanlqRlplTkloEkT7FKCklzvtbBygpANKXUZoHl7vEKColzKuqCZTjKUgtys0sgYjfYhTmeMgkxJKXn5cqBXQiAxBoML5iFOdgVBLmfQ8yiyczrwTuhFdA1zEBXeernw1yXUkiQkqqgbGXLfJtmcRj46Rv6qpqomfzGQ/p1Zw3yPP4sUTp42/bzxdyC3bXByac21d7JvK78yv9myVX2r6uYl5eevN26iL5RcsyNtuuVpw+aU3xm2UpzV9fLBJldw14ue3C++nHGMoncSz3lg6uX7p/T3PF8g8dh9ID7xet2xv6PEG/4PBVyaO75kjLaEcosRRnJBpqMRcVJwIAcmMQ4nwDAAA=
 MIME-Version: 1.0
-Received: by 10.140.101.77 with HTTP; Fri, 9 May 2014 12:22:27 -0700 (PDT)
-In-Reply-To: <536CF208.3000400@gmx.de>
-References: <CAJTo0LZbPXzXyvKXGZZYDT1BDWg3XYrRO_NXsXmuHLMmmW_S3Q@mail.gmail.com>
-	<CAJTo0LZ_S=mNgM6gtPSfYf=AVRxdLcJ_CO31c+emmQrib80hjw@mail.gmail.com>
-	<536CF208.3000400@gmx.de>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Fri, 9 May 2014 20:22:27 +0100
-Message-ID: <CAJTo0LZJ-cLjvGH5YZA1Tu-Wz6biKn=A2mVp5rrkwzkFB-ggTg@mail.gmail.com>
-To: OE-core <openembedded-core@lists.openembedded.org>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	OE-devel <openembedded-devel@lists.openembedded.org>
-Subject: Re: [oe] GStreamer 0.10's future
+Subject: Re: [meta-atmel] at91sam9x5ek: "no machine record defined" failure for core-image-minimal
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -53,28 +51,52 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 09 May 2014 19:23:02 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Fri, 09 May 2014 19:35:02 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-On 9 May 2014 16:19, Neuer User <auslands-kv@gmx.de> wrote:
-> Yes, it does, as long as you need QtMultimedia. Same applies to Qt5.
-> There was a discussion on the Qt mailing list about moving to
-> gstreamer1.0, but this seems to be rather some time in the future was my
-> impression.
+Hi Bruce,
 
-So Qt 5.3 won't have GStreamer 1.0 support.  The port is being done in
-a branch so it's possible that it will land in Qt 5.4, which is due to
-be released in the September/October timeframe.
+Yeah, that's the avenue I'm going to have to go down. I was hoping to avoid=
+ the trial by fire approach and learn by making small mods to an existing w=
+orking build, but it looks like that might not be in the cards. I was hopin=
+g that one of the at91/linux4sam people or someone familiar with meta-atmel=
+ might be lurking in here and have seen the same issue when following the i=
+nstructions in the layer's README file and have a "oh yeah, just tweak this=
+..." fix.
 
-One option would be to move GStreamer 0.10 into another layer, give
-Qt4/Qt5 disabled-by-default GStreamer 0.10 options and hope that by
-the time Yocto 1.7 is released, Qt5.4 with GStreamer 1.0 is also
-released.  Even as someone who's rather keen on removing cruft from
-oe-core that's a bit too eager for my liking.
+I'll have to take a look through some of the linux-yocto-custom log files t=
+o see where the .config is getting generated from and whether the defconfig=
+ from the BSP kernel recipe is playing a roll in it. I'm guessing without a=
+n explicit board file (which there isn't) and the CONFIG_MACH_AT91SAM9_DT p=
+arameter not making its way from defconfig to the .config, that would expla=
+in why there is no machine record macro being declared.
 
-Revised plan unless anyone has a better idea: in 1.7 we'll move
-everything possible away from GStreamer 0.10 but keep 0.10 around
-until the 1.8 cycle, and then revisit the Qt situation.
+I'll keep digging...
 
-Ross
+Thanks,
+Brian
+
+-----Original Message-----
+From: Bruce Ashfield [mailto:bruce.ashfield@windriver.com]=20
+Sent: Friday, May 09, 2014 2:42 PM
+To: Brian Karcz; yocto@yoctoproject.org
+Subject: Re: [yocto] [meta-atmel] at91sam9x5ek: "no machine record defined"=
+ failure for core-image-minimal
+
+The reason I asked is that in the past, the error you are seeing was relate=
+d to the machine not being properly defined in the kernel's .config.
+
+FWIW, assuming you have a full "defconfig", and not a "save_defconfig"
+variant, the path from it to the final .config is pretty much a copy into t=
+he kernel and a "make oldconfig", so nothing is thrown away unless there is=
+ a missing dependency, or the Kconfig doesn't exist in the given kernel.
+
+It's worth checking via menuconfig to see if anything obvious is missing, a=
+nd trying some quick builds to rule out a bad configuration.
+
+Bruce
+
+
 
