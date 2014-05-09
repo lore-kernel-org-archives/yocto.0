@@ -1,43 +1,47 @@
-Return-Path: <rpjday@crashcourse.ca>
+Return-Path: <gley-yocto@m.gmane.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 4A7DFE00B66; Fri,  9 May 2014 03:11:36 -0700 (PDT)
+	id 44026E00B66; Fri,  9 May 2014 03:28:52 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: *
-X-Spam-Status: No, score=1.3 required=5.0 tests=RDNS_NONE autolearn=no
-	version=3.3.1
-X-Spam-HAM-Report: * 1.3 RDNS_NONE Delivered to internal network by a host
-	with no rDNS
-Received: from astoria.ccjclearline.com (unknown [64.235.106.9])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 06BF5E00B60
-	for <yocto@yoctoproject.org>; Fri,  9 May 2014 03:11:31 -0700 (PDT)
-Received: from [69.196.158.250] (port=40082 helo=crashcourse.ca)
-	by astoria.ccjclearline.com with esmtpsa (TLSv1:DHE-RSA-AES256-SHA:256)
-	(Exim 4.80) (envelope-from <rpjday@crashcourse.ca>)
-	id 1WihmA-0001LC-0d; Fri, 09 May 2014 06:11:34 -0400
-Date: Fri, 9 May 2014 06:09:25 -0400 (EDT)
-From: "Robert P. J. Day" <rpjday@crashcourse.ca>
-X-X-Sender: rpjday@localhost
-To: Rob Woolley <rob.woolleywr@gmail.com>
-In-Reply-To: <CAGAhMBxYGSKLeNvNqTH9g5-Fm+0hpOM3ysAx-AOXRZSAaabbww@mail.gmail.com>
-Message-ID: <alpine.LFD.2.11.1405090607320.3255@localhost>
-References: <alpine.LFD.2.11.1405080318520.27694@localhost>
-	<CAMCfZKFHCLp2aJJQU4LEQ7nd4_NtNuOgy-ghYFaqAzO5-qtzkw@mail.gmail.com>
-	<alpine.LFD.2.11.1405081346150.9802@localhost>
-	<CAGAhMBxYGSKLeNvNqTH9g5-Fm+0hpOM3ysAx-AOXRZSAaabbww@mail.gmail.com>
-User-Agent: Alpine 2.11 (LFD 23 2013-08-11)
-MIME-Version: 1.0
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - crashcourse.ca
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-Cc: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: couple simple questions on building for intel galileo
+X-Spam-Status: No, score=1.3 required=5.0 tests=FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE,RDNS_NONE,SPF_HELO_PASS autolearn=no version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (auslands-kv[at]gmx.de)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [80.91.229.3 listed in list.dnswl.org]
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+	*  1.3 RDNS_NONE Delivered to internal network by a host with no rDNS
+Received: from plane.gmane.org (unknown [80.91.229.3])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E29CFE00B60
+	for <yocto@yoctoproject.org>; Fri,  9 May 2014 03:28:48 -0700 (PDT)
+Received: from list by plane.gmane.org with local (Exim 4.69)
+	(envelope-from <gley-yocto@m.gmane.org>) id 1Wii2o-0002g7-Ag
+	for yocto@yoctoproject.org; Fri, 09 May 2014 12:28:46 +0200
+Received: from 80-218-32-173.dclient.hispeed.ch ([80.218.32.173])
+	by main.gmane.org with esmtp (Gmexim 0.1 (Debian))
+	id 1AlnuQ-0007hv-00
+	for <yocto@yoctoproject.org>; Fri, 09 May 2014 12:28:46 +0200
+Received: from auslands-kv by 80-218-32-173.dclient.hispeed.ch with local
+	(Gmexim 0.1 (Debian)) id 1AlnuQ-0007hv-00
+	for <yocto@yoctoproject.org>; Fri, 09 May 2014 12:28:46 +0200
+X-Injected-Via-Gmane: http://gmane.org/
+To: yocto@yoctoproject.org
+From: Neuer User <auslands-kv@gmx.de>
+Date: Fri, 09 May 2014 12:28:33 +0200
+Message-ID: <536CADD1.1040402@gmx.de>
+References: <lkcshi$dep$1@ger.gmane.org>	<CAJTo0LZ7=Zs3pcP30htX7_GfpWoOvfYU-Cg-71T7pTuLkazGLQ@mail.gmail.com>	<lkevco$bl6$1@ger.gmane.org>
+	<CAJTo0LZDzH3aQBiwMM=cR06CEqthVQycaSWsM8jAyEHxwYiRWQ@mail.gmail.com>
+Mime-Version: 1.0
+X-Complaints-To: usenet@ger.gmane.org
+X-Gmane-NNTP-Posting-Host: 80-218-32-173.dclient.hispeed.ch
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:24.0) Gecko/20100101 Thunderbird/24.5.0
+In-Reply-To: <CAJTo0LZDzH3aQBiwMM=cR06CEqthVQycaSWsM8jAyEHxwYiRWQ@mail.gmail.com>
+Cc: "yocto-EtnWKYl6rD/WsZ/bQMPhNw@public.gmane.org"
+	<public-yocto-EtnWKYl6rD/WsZ/bQMPhNw@plane.gmane.org>
+Subject: Re: replace udhcpc
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -49,33 +53,47 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 09 May 2014 10:11:36 -0000
-Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-List-Received-Date: Fri, 09 May 2014 10:28:52 -0000
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: 7bit
 
-On Thu, 8 May 2014, Rob Woolley wrote:
+Connman is really a problem without documentation. :-(
 
-> Hi Rob,
-> Have you seen the Quark BSP Build Guide?
->
-> https://communities.intel.com/servlet/JiveServlet/previewBody/21882-102-1-25153/Quark_BSPBuildGuide_329687_001.pdf
+I tried it out and first I noticed that it depends on the creation of an
+xuser account. It also needs iptables, so probably can configure these, too.
 
-  i believe there is a much newer release of that doc here:
+I also found that it does not correctly configure the dns entries:
 
-https://communities.intel.com/servlet/JiveServlet/previewBody/22476-102-2-26020/Quark_BSP_BuildandSWUserGuide_329687_005.pdf
+cat /etc/resolv.conf:
+# Generated by Connection Manager
+nameserver 127.0.0.1
+nameserver ::1
 
-in my travels around the intertoobz, a few people made it clear they
-weren't impressed with the 0.7.5 release, so a newer release is
-definitely a good thing.
+I really would like to understand what it does with these and how I can
+change or modify it's behaviour.
 
-rday
+It's definitely not just "when ethernet cable inserted, bring up the
+interface using DHCP".
 
--- 
+I even can't find a config file for connman. Is there one?
 
-========================================================================
-Robert P. J. Day                                 Ottawa, Ontario, CANADA
-                        http://crashcourse.ca
+Thanks
 
-Twitter:                                       http://twitter.com/rpjday
-LinkedIn:                               http://ca.linkedin.com/in/rpjday
-========================================================================
+Michael
+
+Am 08.05.2014 12:27, schrieb Burton, Ross:
+> On 8 May 2014 04:58, Neuer User <auslands-kv@gmx.de> wrote:
+>> I had a brief look at connman half a year ago, but that time I was
+>> unable to find a good documentation about it. Do you have by chance a
+>> link to some tutorial or at least man entry for the configuration?
+> 
+> What do you need to configure?  For "when ethernet cable inserted,
+> bring up the interface using DHCP" this is default behaviour and won't
+> need any configuring.  connman is sadly under-documented but the IRC
+> channel is fairly responsive.
+> 
+> Ross
+> 
+
+
 
