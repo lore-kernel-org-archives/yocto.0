@@ -1,45 +1,46 @@
-Return-Path: <jessica.zhang@intel.com>
+Return-Path: <gley-yocto@m.gmane.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id E3471E0073A; Fri,  9 May 2014 13:43:18 -0700 (PDT)
+	id 6F95CE0073D; Sat, 10 May 2014 01:56:10 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-3.7 required=5.0 tests=RCVD_IN_DNSWL_HI,RDNS_NONE
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [143.182.124.21 listed in list.dnswl.org]
+X-Spam-Level: *
+X-Spam-Status: No, score=1.3 required=5.0 tests=FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE,RDNS_NONE,SPF_HELO_PASS autolearn=no version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (auslands-kv[at]gmx.de)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [80.91.229.3 listed in list.dnswl.org]
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
 	*  1.3 RDNS_NONE Delivered to internal network by a host with no rDNS
-Received: from mga03.intel.com (unknown [143.182.124.21])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 860CAE00478
-	for <yocto@yoctoproject.org>; Fri,  9 May 2014 13:43:15 -0700 (PDT)
-Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by azsmga101.ch.intel.com with ESMTP; 09 May 2014 13:43:15 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.97,1020,1389772800"; d="scan'208";a="430130333"
-Received: from orsmsx104.amr.corp.intel.com ([10.22.225.131])
-	by azsmga001.ch.intel.com with ESMTP; 09 May 2014 13:43:09 -0700
-Received: from orsmsx153.amr.corp.intel.com (10.22.226.247) by
-	ORSMSX104.amr.corp.intel.com (10.22.225.131) with Microsoft SMTP Server
-	(TLS) id 14.3.123.3; Fri, 9 May 2014 13:43:08 -0700
-Received: from orsmsx103.amr.corp.intel.com ([169.254.2.198]) by
-	ORSMSX153.amr.corp.intel.com ([169.254.12.138]) with mapi id
-	14.03.0123.003; Fri, 9 May 2014 13:43:08 -0700
-From: "Zhang, Jessica" <jessica.zhang@intel.com>
-To: =?iso-8859-1?Q?S=E9bastien_Taylor?= <me@staylor.ca>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: [yocto] Eclipse CMake Errors
-Thread-Index: AQHPa7ijbesH0/AEY0+GJ5XRyF1jxps4twDA
-Date: Fri, 9 May 2014 20:43:07 +0000
-Message-ID: <C6510F6D410BB64A8C15398EDC6B847C805C6AF6@ORSMSX103.amr.corp.intel.com>
-References: <68F4E435-B3B6-4E88-A17E-76391406923B@staylor.ca>
-In-Reply-To: <68F4E435-B3B6-4E88-A17E-76391406923B@staylor.ca>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.138]
-MIME-Version: 1.0
-Subject: Re: Eclipse CMake Errors
+Received: from plane.gmane.org (unknown [80.91.229.3])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 88BDFE0070F
+	for <yocto@yoctoproject.org>; Sat, 10 May 2014 01:56:03 -0700 (PDT)
+Received: from list by plane.gmane.org with local (Exim 4.69)
+	(envelope-from <gley-yocto@m.gmane.org>) id 1Wj34b-0001kL-3t
+	for yocto@yoctoproject.org; Sat, 10 May 2014 10:56:01 +0200
+Received: from 80-218-32-173.dclient.hispeed.ch ([80.218.32.173])
+	by main.gmane.org with esmtp (Gmexim 0.1 (Debian))
+	id 1AlnuQ-0007hv-00
+	for <yocto@yoctoproject.org>; Sat, 10 May 2014 10:56:01 +0200
+Received: from auslands-kv by 80-218-32-173.dclient.hispeed.ch with local
+	(Gmexim 0.1 (Debian)) id 1AlnuQ-0007hv-00
+	for <yocto@yoctoproject.org>; Sat, 10 May 2014 10:56:01 +0200
+X-Injected-Via-Gmane: http://gmane.org/
+To: yocto@yoctoproject.org
+From: Neuer User <auslands-kv@gmx.de>
+Date: Sat, 10 May 2014 10:55:49 +0200
+Message-ID: <lkkpim$i16$1@ger.gmane.org>
+References: <lkcshi$dep$1@ger.gmane.org>	<CAJTo0LZ7=Zs3pcP30htX7_GfpWoOvfYU-Cg-71T7pTuLkazGLQ@mail.gmail.com>	<lkevco$bl6$1@ger.gmane.org>	<CAJTo0LZDzH3aQBiwMM=cR06CEqthVQycaSWsM8jAyEHxwYiRWQ@mail.gmail.com>	<536CADD1.1040402@gmx.de>	<CAC+thW3_DhKGai3kRXo+HnHOJeWDYdC7_zEg4Z2-wRZhn6iTfw@mail.gmail.com>	<536CD642.70700@gmx.de>	<CAC+thW39rt=BEuo3SVa2mvFx0hHXGk=VW9rxUymR-i4jDNJpyw@mail.gmail.com>	<lkj12c$mij$1@ger.gmane.org>
+	<lkj1d5$s27$1@ger.gmane.org>
+	<CAJTo0LbvSFTR7_=fbbqJVc_NeMU7Kj8jTCs2-dt5h61q25n0QQ@mail.gmail.com>
+Mime-Version: 1.0
+X-Complaints-To: usenet@ger.gmane.org
+X-Gmane-NNTP-Posting-Host: 80-218-32-173.dclient.hispeed.ch
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:24.0) Gecko/20100101 Thunderbird/24.5.0
+In-Reply-To: <CAJTo0LbvSFTR7_=fbbqJVc_NeMU7Kj8jTCs2-dt5h61q25n0QQ@mail.gmail.com>
+Subject: Re: replace udhcpc
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -51,34 +52,44 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 09 May 2014 20:43:19 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Sat, 10 May 2014 08:56:10 -0000
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: 7bit
 
-Could you please file a bug for this in yocto project bugzilla?
+Thanks for the informative answer.
 
-Thanks,
-Jessica
+As I said, I like the idea of a small and lightweigth, but still
+powerful daemon. But in addition to the described behaviour and the lack
+of documentation, it is also not working correctly on my system. After
+the first dhcp lease is expired, connman segfaults and the system is
+again without ip.
 
------Original Message-----
-From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org=
-] On Behalf Of S=E9bastien Taylor
-Sent: Friday, May 09, 2014 11:27 AM
-To: yocto@yoctoproject.org
-Subject: [yocto] Eclipse CMake Errors
-
-When using an Eclipse Yocto CMake project, errors in cmake are simply repor=
-ted as a generic error.  Is there an existing method of having the plugin d=
-isplay the detailed cmake stdout/stderr output instead?
-
-Example error, 'Configuring project' has encountered a problem.  Build of p=
-roject failed 1.
+Found this on the internet:
+https://www.mail-archive.com/connman@connman.net/msg15637.html
 
 
---=20
-_______________________________________________
-yocto mailing list
-yocto@yoctoproject.org
-https://lists.yoctoproject.org/listinfo/yocto
+Am 09.05.2014 20:37, schrieb Burton, Ross:
+> On 9 May 2014 17:57, Neuer User <auslands-kv@gmx.de> wrote:
+>> Seems, I am not the only one wondering why connman phones home:
+> 
+> The "ask the author" approach works quite well.  The hostname it's
+> looking up is connman.net.  This is the captive portal detection:
+> pretty much every major platform does something similar and it's to
+> detect the situation that you have something that looks like a network
+> connection, but actually you're not routed anywhere (i.e. you're in a
+> hotel and need to pay for connectivity).  ConnMan makes a trivial
+> request to it's home page and if it gets back the response it was
+> expecting you have internet, captive portals tend to include
+> machine-readable links in the response that ConnMan will tell the UI
+> to open.  If you've ever joined an iOS (and probably Android, but I've
+> not got one) device to a hotel's wifi and seen a login page open
+> immediately the same you've seen this behaviour in action.
+> 
+> The response also includes some basic geo-ip so your machine knows
+> roughly where it is, useful for automatic timezone updating.
+> 
+> Ross
+> 
+
+
 
