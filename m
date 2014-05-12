@@ -1,38 +1,38 @@
-Return-Path: <paul.eggleton@linux.intel.com>
+Return-Path: <mark.hatle@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id C6C07E00B76; Mon, 12 May 2014 04:10:43 -0700 (PDT)
+	id 4B7D6E00B00; Mon, 12 May 2014 08:37:45 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-3.7 required=5.0 tests=RCVD_IN_DNSWL_HI,RDNS_NONE
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [143.182.124.21 listed in list.dnswl.org]
+X-Spam-Level: *
+X-Spam-Status: No, score=1.3 required=5.0 tests=RCVD_IN_DNSWL_NONE,RDNS_NONE
+	autolearn=no version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [147.11.146.13 listed in list.dnswl.org]
 	*  1.3 RDNS_NONE Delivered to internal network by a host with no rDNS
-Received: from mga03.intel.com (unknown [143.182.124.21])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0DB55E00B88
-	for <yocto@yoctoproject.org>; Mon, 12 May 2014 04:10:30 -0700 (PDT)
-Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by azsmga101.ch.intel.com with ESMTP; 12 May 2014 04:10:29 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.97,1034,1389772800"; d="scan'208";a="430897511"
-Received: from unknown (HELO peggleto-mobl5.ger.corp.intel.com)
-	([10.252.123.14])
-	by azsmga001.ch.intel.com with ESMTP; 12 May 2014 04:10:25 -0700
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: Bruce Ashfield <bruce.ashfield@windriver.com>
-Date: Mon, 12 May 2014 12:10:24 +0100
-Message-ID: <1818117.JRLN250oSp@peggleto-mobl5.ger.corp.intel.com>
-Organization: Intel Corporation
-User-Agent: KMail/4.12.5 (Linux/3.14.3-200.fc20.x86_64; KDE/4.12.5; x86_64; ; )
-In-Reply-To: <5370AA9B.3040308@windriver.com>
-References: <C7589FE7B0DE58488F2B9BF79840E9D90D66F51F@ADL-EXCHMBX1.TOPCON.com>
-	<C7589FE7B0DE58488F2B9BF79840E9D90D66F94E@ADL-EXCHMBX1.TOPCON.com>
-	<5370AA9B.3040308@windriver.com>
+Received: from mail1.windriver.com (unknown [147.11.146.13])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4DC5CE00985
+	for <yocto@yoctoproject.org>; Mon, 12 May 2014 08:37:39 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
+	[147.11.189.40])
+	by mail1.windriver.com (8.14.5/8.14.5) with ESMTP id s4CFaxKo007508
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL)
+	for <yocto@yoctoproject.org>; Mon, 12 May 2014 08:37:39 -0700 (PDT)
+Received: from Marks-MacBook-Pro.local (172.25.36.229) by
+	ALA-HCA.corp.ad.wrs.com (147.11.189.50) with Microsoft SMTP Server id
+	14.3.169.1; Mon, 12 May 2014 08:37:01 -0700
+Message-ID: <5370EAA2.8060104@windriver.com>
+Date: Mon, 12 May 2014 10:37:06 -0500
+From: Mark Hatle <mark.hatle@windriver.com>
+Organization: Wind River Systems
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.9;
+	rv:24.0) Gecko/20100101 Thunderbird/24.5.0
 MIME-Version: 1.0
-Cc: yocto@yoctoproject.org
-Subject: Re: Question / issue
+To: <yocto@yoctoproject.org>
+References: <CAMCfZKH4u4oix7Ks_8CtyZJYPdyyPB_ECNMYJK=r3KzL0_FZ5Q@mail.gmail.com>	<CAMKF1spVm46k7s+xm0BKCu6=sHR4npEbHLfAUVfQDOve9thc0A@mail.gmail.com>	<CAMCfZKGF=dftUZ2AEwmUBCaGjBLOn5PAnrWuf4hDviu_3anNrw@mail.gmail.com>	<CAMKF1sqfnZnMVufmitCS-C1QU6PCzOcqqJWmNrYE1J7JnBf5fg@mail.gmail.com>	<CAMCfZKEZgu_o1fqK3jR8kTxmMKVVStuskM7AcmQJXzdkaP7Z-A@mail.gmail.com>	<CAMCfZKFHkaAHV0mUZeYoDuS1V5VvBx_7z4BRO27UoGqpO=vJ0w@mail.gmail.com>
+	<536D0CF4.6030107@windriver.com>
+In-Reply-To: <536D0CF4.6030107@windriver.com>
+Subject: Re: RPM to Verify Installed Packages
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -44,58 +44,65 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 12 May 2014 11:10:43 -0000
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Mon, 12 May 2014 15:37:45 -0000
+Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Monday 12 May 2014 07:03:55 Bruce Ashfield wrote:
-> On 14-05-12 01:56 AM, Paul McGougan wrote:
-> > From: Bruce Ashfield [mailto:bruce.ashfield@windriver.com]
-> > 
-> >>> Secondly, (and this is our main issue) I have found that by adding the
-> >>> do_install_append function, even if it is completely empty, whenever I
-> >>> try to bitbake anything that depends on the kernel, that bitbake always
-> >>> re-runs the kernel install stage, even when there have been no changes.
-> >>> Literally I can run a bitbake, then run the same bitbake command again,
-> >>> and both times the kernel install stage gets run (this is a problem
-> >>> because it takes a long time to run). It appears to be happening because
-> >>> the stampfile is not found every time (the hash appears to be wrong).
-> >>> Is this a bug? Is there a fix or work-around for this problem?
-> >> 
-> >> In this front, I'm not the best reference. Checking the sstate signature
-> >> might help, it should show which variables are being used .. and possibly
-> >> invalidating the signature, triggering the steps to run again.
-> > 
-> > Thanks Bruce.
-> > 
-> > Just for reference of anyone else who runs into a similar issue our issue
-> > was: 1. The do_install_append function was not *really* empty, the
-> > content of it was commented out.
-> > 2. The dependency parser when parsing recipes not only looks for content
-> > changes, but for also for changes to the values of referenced variables,
-> > and unfortunately it still performs variable-value substitution in
-> > commented-out code. In our case, we had the variable $DATETIME in there
-> > (but commented out), this caused the dependency checker to substitute in
-> > the current value for DATETIME which of course changed on each run.
-> 
-> Aha. That's what I thought it might be (and what I've been hit by
-> before in the past), sstate signature checking showed the variable
-> in these other cases .. so I thought I'd suggest it.
-> 
-> Glad to hear you have a working solution.
-> 
-> > The fix was to add:
-> > do_install[vardepsexclude] += "DATETIME"
+On 5/9/14, 12:14 PM, Mark Hatle wrote:
+> On 5/7/14, 7:46 AM, Diego Sueiro wrote:
+>> Folks,
+>
+> I'm looking at this issue.  I'd suggest you open a bug in the Yocto Project
+> bugzilla.  Feel free to assign it to me.  (I'll end up with it anyway...)
 
-Er, if DATETIME is in the dependencies for this task and that is a bug in the 
-core recipe, we should fix it in the core. The question is how is it getting in 
-there?
+I opened a bug, 6309.  I've sent a fix for master, and we can work it back into 
+previous versions once approved by oe-core.
 
-Cheers,
-Paul
+--Mark
 
--- 
+> --Mark
+>
+>> On Tue, May 6, 2014 at 3:48 PM, Diego Sueiro <diego.sueiro@gmail.com
+>> <mailto:diego.sueiro@gmail.com>> wrote:
+>>
+>>      On Tue, May 6, 2014 at 3:39 PM, Khem Raj <raj.khem@gmail.com
+>>      <mailto:raj.khem@gmail.com>> wrote:
+>>
+>>          On Tue, May 6, 2014 at 11:34 AM, Diego Sueiro <diego.sueiro@gmail.com
+>>          <mailto:diego.sueiro@gmail.com>> wrote:
+>>           >
+>>           > It's hard to say. But when I try to execute it I receive: "cannot execute
+>>           > binary file".
+>>           > And the output of "file" command is: "data".
+>>           >
+>>           > My bet is that the system was powered down during the update process.
+>>
+>>          what happens if you reinstall it ?
+>>
+>>
+>>      It works.
+>>      But the problem is that --verify option is not working.
+>>      Even if I remove a file from the installed package it did not point for a
+>>      missing file.
+>>
+>>
+>> Any thoughts?
+>>
+>>
+>>
+>> Regards,
+>>
+>> --
+>> *dS
+>> Diego Sueiro
+>>
+>> Administrador do Embarcados
+>> www.embarcados.com.br
+>> <http://www.embarcados.com.br/?utm_source=assinatura_diego&utm_medium=e-mail&utm_campaign=Assinatura%20Email%20Diego>
+>>
+>> /*long live rock 'n roll*/
+>>
+>>
+>
 
-Paul Eggleton
-Intel Open Source Technology Centre
 
