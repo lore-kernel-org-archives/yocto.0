@@ -1,6 +1,6 @@
 Return-Path: <koansoftware@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 51F2CE00B00; Mon, 12 May 2014 08:59:45 -0700 (PDT)
+	id 9362FE00B73; Mon, 12 May 2014 09:01:22 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -9,47 +9,45 @@ X-Spam-Status: No, score=0.5 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
 	version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	mail provider *      (koansoftware[at]gmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [74.125.83.47 listed in list.dnswl.org]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [74.125.83.54 listed in list.dnswl.org]
 	*  1.3 RDNS_NONE Delivered to internal network by a host with no rDNS
-X-Greylist: delayed 398 seconds by postgrey-1.32 at yocto-www;
-	Mon, 12 May 2014 08:59:41 PDT
-Received: from mail-ee0-f54.google.com (unknown [74.125.83.54])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BF54FE00985
-	for <yocto@yoctoproject.org>; Mon, 12 May 2014 08:59:41 -0700 (PDT)
-Received: by mail-ee0-f54.google.com with SMTP id b57so4873415eek.13
-	for <yocto@yoctoproject.org>; Mon, 12 May 2014 08:59:40 -0700 (PDT)
+Received: from mail-ee0-f47.google.com (unknown [74.125.83.47])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 40C4FE00985
+	for <yocto@yoctoproject.org>; Mon, 12 May 2014 09:01:15 -0700 (PDT)
+Received: by mail-ee0-f47.google.com with SMTP id c13so4835997eek.34
+	for <yocto@yoctoproject.org>; Mon, 12 May 2014 09:01:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=message-id:date:from:reply-to:user-agent:mime-version:to:subject
-	:content-type; bh=5ITKHuEtYOlyaNL9h0Xy/XQY9PSc1scb6qRKxoxO6IA=;
-	b=V+NCuwNYgYDXWc/sW+JQRKfTB1VHuWJ7ox1VRqOsf6Ocx0vMYxO0Nk1FR6old+4jEc
-	KGldMdg14qIq8cFkW/5Pz1N0gJThbjYzOl7pj47XUh9NqK3qUT7D1/muZn9qtDpLiGHl
-	8aBBukDNDuUphUsZw/3Y5okwDcUWAfB/Oqn8y9Ha+/1CIpyGJh5ay5U+5V34EGBm4J6t
-	ORsSLTItWBoMo7MQ5obULAl4cLCzQsln3HBo97sgp7QvUxjvtt7uNA36MQsj5IUgT2Bw
-	SywT+a9J2LV5Vid4bK/gkmgai6WiJjnS9FmZxeDzmc8JYh1POgo2krQoc83M2nt+50PH
-	j/Mg==
-X-Received: by 10.14.213.6 with SMTP id z6mr10890105eeo.98.1399909982060;
-	Mon, 12 May 2014 08:53:02 -0700 (PDT)
+	:content-type; bh=qnYA+JuArBKVbLlMiVYWvY1Eoj+Q+0QuavX0WDtWQQI=;
+	b=JabmFILmOAFuOqD4ApamsmDQ0mwh9tB5AYN8IKYE2OXkuROzpQi3SiIdJCW8fyWL2b
+	V/2mqt03XpV6IMHPIJmh0si5zjoY59VBcTAKLtSLfznYFOGHP9qFOdy5FNLSJxrnhOng
+	NyziiHVt2akLxegDtxkls37bHvyO1kAvmlUrjbTfKNeo6Cq5QePjJ+u9AUI+CSUHXOh1
+	ZlVevYXvycQb0YLQBnHaGgpmu2EJcVGoV5lF0Ydfe1J3Ju9joZCEcTgF46s8dHoFJsw3
+	Y6dj1gkcfErJ4Qsp4WmVOzMpj+M0cu97GAdmGZSU5DQai/OzRGO6VaFj1CxF03CwlOjS
+	mDEA==
+X-Received: by 10.14.99.68 with SMTP id w44mr33349677eef.82.1399910024904;
+	Mon, 12 May 2014 08:53:44 -0700 (PDT)
 Received: from [192.168.0.5]
 	(host56-7-static.30-87-b.business.telecomitalia.it. [87.30.7.56])
 	by mx.google.com with ESMTPSA id
-	m44sm33747052eeh.14.2014.05.12.08.53.00 for <yocto@yoctoproject.org>
+	e44sm24770093eeg.24.2014.05.12.08.53.43 for <yocto@yoctoproject.org>
 	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
-	Mon, 12 May 2014 08:53:00 -0700 (PDT)
-Message-ID: <5370EE5A.3070901@gmail.com>
-Date: Mon, 12 May 2014 17:52:58 +0200
+	Mon, 12 May 2014 08:53:43 -0700 (PDT)
+Message-ID: <5370EE85.30809@gmail.com>
+Date: Mon, 12 May 2014 17:53:41 +0200
 From: Marco <koansoftware@gmail.com>
 User-Agent: Mozilla/5.0 (X11; Linux i686;
 	rv:24.0) Gecko/20100101 Thunderbird/24.5.0
 MIME-Version: 1.0
 To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: [meta-atmel] automatic bootloaders generation
+Subject: [meta-atmel] Unified IMAGE_POSTPROCESS_COMMAND in image recipes
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -62,18 +60,18 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 12 May 2014 15:59:45 -0000
-X-Groupsio-MsgNum: 19561
-Content-Type: multipart/mixed; boundary="------------050000000104060606090706"
+X-List-Received-Date: Mon, 12 May 2014 16:01:22 -0000
+X-Groupsio-MsgNum: 19562
+Content-Type: multipart/mixed; boundary="------------070706040807020707060303"
 
---------------050000000104060606090706
+--------------070706040807020707060303
 Content-Type: text/plain; charset=ISO-8859-15; format=flowed
 Content-Transfer-Encoding: 7bit
 
 please find attached patches for
 
-- automatic bootloaders generation
-https://github.com/linux4sam/meta-atmel/pull/16
+- Unified IMAGE_POSTPROCESS_COMMAND in your image recipes
+https://github.com/linux4sam/meta-atmel/pull/11
 
 Ciao
 -- 
@@ -82,100 +80,97 @@ Marco Cavallini | KOAN sas | Bergamo - Italia
 Phone:+39-035-255.235 - Fax:+39-178-22.39.748
        http://www.KoanSoftware.com
 
---------------050000000104060606090706
+--------------070706040807020707060303
 Content-Type: text/x-patch;
- name="0001-Added-bootloaders-to-the-recipe-of-every-machine.patch"
+ name="0002-Unified-usba_udc-and-g_serial-setting-for-all-atmel-.patch"
 Content-Transfer-Encoding: 7bit
 Content-Disposition: attachment;
- filename*0="0001-Added-bootloaders-to-the-recipe-of-every-machine.patch"
+ filename*0="0002-Unified-usba_udc-and-g_serial-setting-for-all-atmel-.pa";
+ filename*1="tch"
 
-From cc08f5529a08498b07482f80cd0d99a391af034d Mon Sep 17 00:00:00 2001
+From 0050a6a7fa34930f587c07b1c7ae9a73b4c3ba91 Mon Sep 17 00:00:00 2001
 From: Marco Cavallini <m.cavallini@koansoftware.com>
-Date: Mon, 12 May 2014 17:32:24 +0200
-Subject: [meta-atmel 1/2] Added bootloaders to the recipe of every machine
+Date: Mon, 12 May 2014 17:34:20 +0200
+Subject: [meta-atmel 2/2] Unified usba_udc and g_serial setting for all
+ atmel-xplained-*-image.bb
 
- * Include file with
- * EXTRA_IMAGEDEPENDS += "at91bootstrap u-boot"
+ * Moved common parts in atmel-demo-image.inc
 
 Signed-off-by: Marco Cavallini <m.cavallini@koansoftware.com>
 ---
- conf/machine/at91sam9rlek.conf       | 1 +
- conf/machine/at91sam9x5ek.conf       | 1 +
- conf/machine/include/bootloaders.inc | 2 ++
- conf/machine/sama5d3_xplained.conf   | 8 +-------
- conf/machine/sama5d3xek.conf         | 1 +
- 5 files changed, 6 insertions(+), 7 deletions(-)
- create mode 100644 conf/machine/include/bootloaders.inc
+ recipes-core/images/atmel-demo-image.inc             | 18 ++++++++++++++++++
+ recipes-core/images/atmel-xplained-demo-image.bb     | 12 ------------
+ recipes-core/images/atmel-xplained-lcd-demo-image.bb | 12 ------------
+ 3 files changed, 18 insertions(+), 24 deletions(-)
 
-diff --git a/conf/machine/at91sam9rlek.conf b/conf/machine/at91sam9rlek.conf
-index 6ed6f81..4a41b19 100644
---- a/conf/machine/at91sam9rlek.conf
-+++ b/conf/machine/at91sam9rlek.conf
-@@ -3,6 +3,7 @@
- #@DESCRIPTION: Machine configuration for Atmel's evaluation board
+diff --git a/recipes-core/images/atmel-demo-image.inc b/recipes-core/images/atmel-demo-image.inc
+index 3101e20..394bebe 100644
+--- a/recipes-core/images/atmel-demo-image.inc
++++ b/recipes-core/images/atmel-demo-image.inc
+@@ -35,3 +35,21 @@ inherit core-image
  
- require conf/machine/include/tune-arm926ejs.inc
-+require conf/machine/include/bootloaders.inc
- 
- MACHINE_FEATURES = "kernel26 apm alsa ext2 ext3 usbgadget screen touchscreen ppp"
- 
-diff --git a/conf/machine/at91sam9x5ek.conf b/conf/machine/at91sam9x5ek.conf
-index 5308536..de5598a 100644
---- a/conf/machine/at91sam9x5ek.conf
-+++ b/conf/machine/at91sam9x5ek.conf
-@@ -3,6 +3,7 @@
- #@DESCRIPTION: Machine configuration for Atmel's evaluation board
- 
- require conf/machine/include/tune-arm926ejs.inc
-+require conf/machine/include/bootloaders.inc
- 
- MACHINE_FEATURES = "kernel26 apm alsa ext2 ext3 usbhost usbgadget screen camera can touchscreen ppp"
- KERNEL_DEVICETREE = "${S}/arch/arm/boot/dts/at91sam9g25ek.dts \
-diff --git a/conf/machine/include/bootloaders.inc b/conf/machine/include/bootloaders.inc
-new file mode 100644
-index 0000000..162b7a1
---- /dev/null
-+++ b/conf/machine/include/bootloaders.inc
-@@ -0,0 +1,2 @@
-+# Add bootloaders to the images of every machine
-+EXTRA_IMAGEDEPENDS += "at91bootstrap u-boot"
-diff --git a/conf/machine/sama5d3_xplained.conf b/conf/machine/sama5d3_xplained.conf
-index dcbcedb..24fe2a2 100644
---- a/conf/machine/sama5d3_xplained.conf
-+++ b/conf/machine/sama5d3_xplained.conf
-@@ -3,6 +3,7 @@
- #@DESCRIPTION: Machine configuration for Atmel's evaluation board
- 
- require conf/machine/include/tune-cortexa5.inc
-+require conf/machine/include/bootloaders.inc
- 
- MACHINE_FEATURES = "kernel26 apm alsa ext2 ext3 usbhost usbgadget screen camera can touchscreen ppp wifi"
- KERNEL_DEVICETREE = " \
-@@ -34,10 +35,3 @@ UBI_VOLNAME = "rootfs"
- UBOOT_MACHINE = "sama5d3xek_nandflash_config"
- UBOOT_ENTRYPOINT = "0x20008000"
- UBOOT_LOADADDRESS = "0x20008000"
+ # we don't need the kernel in the image
+ ROOTFS_POSTPROCESS_COMMAND += "rm -f ${IMAGE_ROOTFS}/boot/*Image*; "
++
++# Unified usba_udc and g_serial
++module_autoload_atmel_usba_udc = "atmel_usba_udc"
++module_autoload_g_serial = "g_serial"
++
++sama5d3_xplained_rootfs_postprocess() {
++    curdir=$PWD
++    cd ${IMAGE_ROOTFS}
++
++    # autoload needed modules
++    cd etc
++    echo "atmel_usba_udc" >> modules
++    echo "g_serial" >> modules
++
++    cd $curdir
++}
++
++ROOTFS_POSTPROCESS_COMMAND += "sama5d3_xplained_rootfs_postprocess; "
+diff --git a/recipes-core/images/atmel-xplained-demo-image.bb b/recipes-core/images/atmel-xplained-demo-image.bb
+index 5a88add..59b4572 100644
+--- a/recipes-core/images/atmel-xplained-demo-image.bb
++++ b/recipes-core/images/atmel-xplained-demo-image.bb
+@@ -8,15 +8,3 @@ IMAGE_INSTALL += "\
+     packagegroup-base-3g \
+     packagegroup-base-usbhost \
+     "
 -
--EXTRA_IMAGEDEPENDS += "at91bootstrap u-boot-at91"
+-sama5d3_xplained_rootfs_postprocess() {
+-    curdir=$PWD
+-    cd ${IMAGE_ROOTFS}
 -
--module_autoload_atmel_usba_udc = "atmel_usba_udc"
--module_autoload_g_serial = "g_serial"
+-    # autoload needed modules
+-    cd etc
+-    echo "atmel_usba_udc" >> modules
+-    echo "g_serial" >> modules
 -
--ROOTFS_POSTPROCESS_COMMAND += "sama5d3_xplained_rootfs_postprocess; "
-diff --git a/conf/machine/sama5d3xek.conf b/conf/machine/sama5d3xek.conf
-index 65487be..07d967d 100644
---- a/conf/machine/sama5d3xek.conf
-+++ b/conf/machine/sama5d3xek.conf
-@@ -3,6 +3,7 @@
- #@DESCRIPTION: Machine configuration for Atmel's evaluation board
- 
- require conf/machine/include/tune-cortexa5.inc
-+require conf/machine/include/bootloaders.inc
- 
- MACHINE_FEATURES = "kernel26 apm alsa ext2 ext3 usbhost usbgadget screen camera can touchscreen ppp"
- KERNEL_DEVICETREE = " \
+-    cd $curdir
+-}
+diff --git a/recipes-core/images/atmel-xplained-lcd-demo-image.bb b/recipes-core/images/atmel-xplained-lcd-demo-image.bb
+index cecd4c3..6cda1c3 100644
+--- a/recipes-core/images/atmel-xplained-lcd-demo-image.bb
++++ b/recipes-core/images/atmel-xplained-lcd-demo-image.bb
+@@ -15,15 +15,3 @@ IMAGE_INSTALL += "\
+     tslib-tests \
+     tslib-calibrate \
+     "
+-
+-sama5d3_xplained_rootfs_postprocess() {
+-    curdir=$PWD
+-    cd ${IMAGE_ROOTFS}
+-
+-    # autoload needed modules
+-    cd etc
+-    echo "atmel_usba_udc" >> modules
+-    echo "g_serial" >> modules
+-
+-    cd $curdir
+-}
 -- 
 1.8.4
 
 
---------------050000000104060606090706--
+--------------070706040807020707060303--
