@@ -1,41 +1,59 @@
-Return-Path: <mark.hatle@windriver.com>
+Return-Path: <koansoftware@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 4B7D6E00B00; Mon, 12 May 2014 08:37:45 -0700 (PDT)
+	id 51F2CE00B00; Mon, 12 May 2014 08:59:45 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
-X-Spam-Level: *
-X-Spam-Status: No, score=1.3 required=5.0 tests=RCVD_IN_DNSWL_NONE,RDNS_NONE
-	autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [147.11.146.13 listed in list.dnswl.org]
+X-Spam-Level: 
+X-Spam-Status: No, score=0.5 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+	DKIM_VALID_AU,FREEMAIL_FROM,RCVD_IN_DNSWL_LOW,RDNS_NONE autolearn=no
+	version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (koansoftware[at]gmail.com)
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [74.125.83.54 listed in list.dnswl.org]
 	*  1.3 RDNS_NONE Delivered to internal network by a host with no rDNS
-Received: from mail1.windriver.com (unknown [147.11.146.13])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4DC5CE00985
-	for <yocto@yoctoproject.org>; Mon, 12 May 2014 08:37:39 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail1.windriver.com (8.14.5/8.14.5) with ESMTP id s4CFaxKo007508
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL)
-	for <yocto@yoctoproject.org>; Mon, 12 May 2014 08:37:39 -0700 (PDT)
-Received: from Marks-MacBook-Pro.local (172.25.36.229) by
-	ALA-HCA.corp.ad.wrs.com (147.11.189.50) with Microsoft SMTP Server id
-	14.3.169.1; Mon, 12 May 2014 08:37:01 -0700
-Message-ID: <5370EAA2.8060104@windriver.com>
-Date: Mon, 12 May 2014 10:37:06 -0500
-From: Mark Hatle <mark.hatle@windriver.com>
-Organization: Wind River Systems
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.9;
+X-Greylist: delayed 398 seconds by postgrey-1.32 at yocto-www;
+	Mon, 12 May 2014 08:59:41 PDT
+Received: from mail-ee0-f54.google.com (unknown [74.125.83.54])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BF54FE00985
+	for <yocto@yoctoproject.org>; Mon, 12 May 2014 08:59:41 -0700 (PDT)
+Received: by mail-ee0-f54.google.com with SMTP id b57so4873415eek.13
+	for <yocto@yoctoproject.org>; Mon, 12 May 2014 08:59:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=message-id:date:from:reply-to:user-agent:mime-version:to:subject
+	:content-type; bh=5ITKHuEtYOlyaNL9h0Xy/XQY9PSc1scb6qRKxoxO6IA=;
+	b=V+NCuwNYgYDXWc/sW+JQRKfTB1VHuWJ7ox1VRqOsf6Ocx0vMYxO0Nk1FR6old+4jEc
+	KGldMdg14qIq8cFkW/5Pz1N0gJThbjYzOl7pj47XUh9NqK3qUT7D1/muZn9qtDpLiGHl
+	8aBBukDNDuUphUsZw/3Y5okwDcUWAfB/Oqn8y9Ha+/1CIpyGJh5ay5U+5V34EGBm4J6t
+	ORsSLTItWBoMo7MQ5obULAl4cLCzQsln3HBo97sgp7QvUxjvtt7uNA36MQsj5IUgT2Bw
+	SywT+a9J2LV5Vid4bK/gkmgai6WiJjnS9FmZxeDzmc8JYh1POgo2krQoc83M2nt+50PH
+	j/Mg==
+X-Received: by 10.14.213.6 with SMTP id z6mr10890105eeo.98.1399909982060;
+	Mon, 12 May 2014 08:53:02 -0700 (PDT)
+Received: from [192.168.0.5]
+	(host56-7-static.30-87-b.business.telecomitalia.it. [87.30.7.56])
+	by mx.google.com with ESMTPSA id
+	m44sm33747052eeh.14.2014.05.12.08.53.00 for <yocto@yoctoproject.org>
+	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
+	Mon, 12 May 2014 08:53:00 -0700 (PDT)
+Message-ID: <5370EE5A.3070901@gmail.com>
+Date: Mon, 12 May 2014 17:52:58 +0200
+From: Marco <koansoftware@gmail.com>
+User-Agent: Mozilla/5.0 (X11; Linux i686;
 	rv:24.0) Gecko/20100101 Thunderbird/24.5.0
 MIME-Version: 1.0
-To: <yocto@yoctoproject.org>
-References: <CAMCfZKH4u4oix7Ks_8CtyZJYPdyyPB_ECNMYJK=r3KzL0_FZ5Q@mail.gmail.com>	<CAMKF1spVm46k7s+xm0BKCu6=sHR4npEbHLfAUVfQDOve9thc0A@mail.gmail.com>	<CAMCfZKGF=dftUZ2AEwmUBCaGjBLOn5PAnrWuf4hDviu_3anNrw@mail.gmail.com>	<CAMKF1sqfnZnMVufmitCS-C1QU6PCzOcqqJWmNrYE1J7JnBf5fg@mail.gmail.com>	<CAMCfZKEZgu_o1fqK3jR8kTxmMKVVStuskM7AcmQJXzdkaP7Z-A@mail.gmail.com>	<CAMCfZKFHkaAHV0mUZeYoDuS1V5VvBx_7z4BRO27UoGqpO=vJ0w@mail.gmail.com>
-	<536D0CF4.6030107@windriver.com>
-In-Reply-To: <536D0CF4.6030107@windriver.com>
-Subject: Re: RPM to Verify Installed Packages
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: [meta-atmel] automatic bootloaders generation
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
+Reply-To: koansoftware@gmail.com
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -44,65 +62,120 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 12 May 2014 15:37:45 -0000
-Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
+X-List-Received-Date: Mon, 12 May 2014 15:59:45 -0000
+X-Groupsio-MsgNum: 19561
+Content-Type: multipart/mixed; boundary="------------050000000104060606090706"
+
+--------------050000000104060606090706
+Content-Type: text/plain; charset=ISO-8859-15; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 5/9/14, 12:14 PM, Mark Hatle wrote:
-> On 5/7/14, 7:46 AM, Diego Sueiro wrote:
->> Folks,
->
-> I'm looking at this issue.  I'd suggest you open a bug in the Yocto Project
-> bugzilla.  Feel free to assign it to me.  (I'll end up with it anyway...)
+please find attached patches for
 
-I opened a bug, 6309.  I've sent a fix for master, and we can work it back into 
-previous versions once approved by oe-core.
+- automatic bootloaders generation
+https://github.com/linux4sam/meta-atmel/pull/16
 
---Mark
+Ciao
+-- 
+Marco Cavallini | KOAN sas | Bergamo - Italia
+  embedded and real-time software engineering
+Phone:+39-035-255.235 - Fax:+39-178-22.39.748
+       http://www.KoanSoftware.com
 
-> --Mark
->
->> On Tue, May 6, 2014 at 3:48 PM, Diego Sueiro <diego.sueiro@gmail.com
->> <mailto:diego.sueiro@gmail.com>> wrote:
->>
->>      On Tue, May 6, 2014 at 3:39 PM, Khem Raj <raj.khem@gmail.com
->>      <mailto:raj.khem@gmail.com>> wrote:
->>
->>          On Tue, May 6, 2014 at 11:34 AM, Diego Sueiro <diego.sueiro@gmail.com
->>          <mailto:diego.sueiro@gmail.com>> wrote:
->>           >
->>           > It's hard to say. But when I try to execute it I receive: "cannot execute
->>           > binary file".
->>           > And the output of "file" command is: "data".
->>           >
->>           > My bet is that the system was powered down during the update process.
->>
->>          what happens if you reinstall it ?
->>
->>
->>      It works.
->>      But the problem is that --verify option is not working.
->>      Even if I remove a file from the installed package it did not point for a
->>      missing file.
->>
->>
->> Any thoughts?
->>
->>
->>
->> Regards,
->>
->> --
->> *dS
->> Diego Sueiro
->>
->> Administrador do Embarcados
->> www.embarcados.com.br
->> <http://www.embarcados.com.br/?utm_source=assinatura_diego&utm_medium=e-mail&utm_campaign=Assinatura%20Email%20Diego>
->>
->> /*long live rock 'n roll*/
->>
->>
->
+--------------050000000104060606090706
+Content-Type: text/x-patch;
+ name="0001-Added-bootloaders-to-the-recipe-of-every-machine.patch"
+Content-Transfer-Encoding: 7bit
+Content-Disposition: attachment;
+ filename*0="0001-Added-bootloaders-to-the-recipe-of-every-machine.patch"
+
+From cc08f5529a08498b07482f80cd0d99a391af034d Mon Sep 17 00:00:00 2001
+From: Marco Cavallini <m.cavallini@koansoftware.com>
+Date: Mon, 12 May 2014 17:32:24 +0200
+Subject: [meta-atmel 1/2] Added bootloaders to the recipe of every machine
+
+ * Include file with
+ * EXTRA_IMAGEDEPENDS += "at91bootstrap u-boot"
+
+Signed-off-by: Marco Cavallini <m.cavallini@koansoftware.com>
+---
+ conf/machine/at91sam9rlek.conf       | 1 +
+ conf/machine/at91sam9x5ek.conf       | 1 +
+ conf/machine/include/bootloaders.inc | 2 ++
+ conf/machine/sama5d3_xplained.conf   | 8 +-------
+ conf/machine/sama5d3xek.conf         | 1 +
+ 5 files changed, 6 insertions(+), 7 deletions(-)
+ create mode 100644 conf/machine/include/bootloaders.inc
+
+diff --git a/conf/machine/at91sam9rlek.conf b/conf/machine/at91sam9rlek.conf
+index 6ed6f81..4a41b19 100644
+--- a/conf/machine/at91sam9rlek.conf
++++ b/conf/machine/at91sam9rlek.conf
+@@ -3,6 +3,7 @@
+ #@DESCRIPTION: Machine configuration for Atmel's evaluation board
+ 
+ require conf/machine/include/tune-arm926ejs.inc
++require conf/machine/include/bootloaders.inc
+ 
+ MACHINE_FEATURES = "kernel26 apm alsa ext2 ext3 usbgadget screen touchscreen ppp"
+ 
+diff --git a/conf/machine/at91sam9x5ek.conf b/conf/machine/at91sam9x5ek.conf
+index 5308536..de5598a 100644
+--- a/conf/machine/at91sam9x5ek.conf
++++ b/conf/machine/at91sam9x5ek.conf
+@@ -3,6 +3,7 @@
+ #@DESCRIPTION: Machine configuration for Atmel's evaluation board
+ 
+ require conf/machine/include/tune-arm926ejs.inc
++require conf/machine/include/bootloaders.inc
+ 
+ MACHINE_FEATURES = "kernel26 apm alsa ext2 ext3 usbhost usbgadget screen camera can touchscreen ppp"
+ KERNEL_DEVICETREE = "${S}/arch/arm/boot/dts/at91sam9g25ek.dts \
+diff --git a/conf/machine/include/bootloaders.inc b/conf/machine/include/bootloaders.inc
+new file mode 100644
+index 0000000..162b7a1
+--- /dev/null
++++ b/conf/machine/include/bootloaders.inc
+@@ -0,0 +1,2 @@
++# Add bootloaders to the images of every machine
++EXTRA_IMAGEDEPENDS += "at91bootstrap u-boot"
+diff --git a/conf/machine/sama5d3_xplained.conf b/conf/machine/sama5d3_xplained.conf
+index dcbcedb..24fe2a2 100644
+--- a/conf/machine/sama5d3_xplained.conf
++++ b/conf/machine/sama5d3_xplained.conf
+@@ -3,6 +3,7 @@
+ #@DESCRIPTION: Machine configuration for Atmel's evaluation board
+ 
+ require conf/machine/include/tune-cortexa5.inc
++require conf/machine/include/bootloaders.inc
+ 
+ MACHINE_FEATURES = "kernel26 apm alsa ext2 ext3 usbhost usbgadget screen camera can touchscreen ppp wifi"
+ KERNEL_DEVICETREE = " \
+@@ -34,10 +35,3 @@ UBI_VOLNAME = "rootfs"
+ UBOOT_MACHINE = "sama5d3xek_nandflash_config"
+ UBOOT_ENTRYPOINT = "0x20008000"
+ UBOOT_LOADADDRESS = "0x20008000"
+-
+-EXTRA_IMAGEDEPENDS += "at91bootstrap u-boot-at91"
+-
+-module_autoload_atmel_usba_udc = "atmel_usba_udc"
+-module_autoload_g_serial = "g_serial"
+-
+-ROOTFS_POSTPROCESS_COMMAND += "sama5d3_xplained_rootfs_postprocess; "
+diff --git a/conf/machine/sama5d3xek.conf b/conf/machine/sama5d3xek.conf
+index 65487be..07d967d 100644
+--- a/conf/machine/sama5d3xek.conf
++++ b/conf/machine/sama5d3xek.conf
+@@ -3,6 +3,7 @@
+ #@DESCRIPTION: Machine configuration for Atmel's evaluation board
+ 
+ require conf/machine/include/tune-cortexa5.inc
++require conf/machine/include/bootloaders.inc
+ 
+ MACHINE_FEATURES = "kernel26 apm alsa ext2 ext3 usbhost usbgadget screen camera can touchscreen ppp"
+ KERNEL_DEVICETREE = " \
+-- 
+1.8.4
 
 
+--------------050000000104060606090706--
