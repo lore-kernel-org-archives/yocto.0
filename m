@@ -1,63 +1,76 @@
-Return-Path: <david.c.nystrom@gmail.com>
+Return-Path: <vaduvajanalexandru@yahoo.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id E0FB1E00B5D; Mon, 12 May 2014 12:05:42 -0700 (PDT)
+	id 526CBE00B5D; Mon, 12 May 2014 12:37:48 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
-X-Spam-Level: 
-X-Spam-Status: No, score=0.5 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-	DKIM_VALID_AU,FREEMAIL_FROM,RCVD_IN_DNSWL_LOW,RDNS_NONE autolearn=no
-	version=3.3.1
+X-Spam-Level: *
+X-Spam-Status: No, score=1.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+	DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_NONE,RDNS_NONE
+	autolearn=no version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (david.c.nystrom[at]gmail.com)
+	mail provider *      (vaduvajanalexandru[at]yahoo.com)
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.215.46 listed in list.dnswl.org]
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [98.138.90.67 listed in list.dnswl.org]
 	*  1.3 RDNS_NONE Delivered to internal network by a host with no rDNS
-X-Greylist: delayed 1349 seconds by postgrey-1.32 at yocto-www;
-	Mon, 12 May 2014 12:05:37 PDT
-Received: from mail-la0-f46.google.com (unknown [209.85.215.46])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 80C98E00AE8
-	for <yocto@yoctoproject.org>; Mon, 12 May 2014 12:05:36 -0700 (PDT)
-Received: by mail-la0-f46.google.com with SMTP id ec20so2281350lab.33
-	for <yocto@yoctoproject.org>; Mon, 12 May 2014 12:05:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=message-id:date:from:user-agent:mime-version:to:subject:references
-	:in-reply-to:content-type:content-transfer-encoding;
-	bh=0/bYkrEQXZSp0VVf/f8yMt3EoijrTgrQ+wi7ZOeOGTw=;
-	b=BO7C9ABtBBLKHM7LuAIOWhObVcLYzviPeMGCf0bMIkIh4Q/GU5zxyQFLKcTyvGw6nh
-	5KftDRABvMTBWJQXEf9yXue6LYP1uH9ciXHyN6eTUT5EkRqAAgdHHQ1d69SmcA4uuZxY
-	MXwqVPmCoIxZnuvAR9rdUX8LhIIY7GkSwgsuqC5aHQ/4FLZBjXkByl7tuXmoOI1oPGfW
-	pGt6RXcQZG9g1QevbLkh5QE0BGBRs0gE/FNkyG19sS5KDElJE+lwSXBvbPLrML3evrpu
-	qg3db5mNKYdNIE8Bmrpk69Fwv/UqvS/jmo170MDqJVpAxJmGfVh1vSBbV+q8vg8nrvLn
-	82mg==
-X-Received: by 10.152.5.202 with SMTP id u10mr2961732lau.42.1399920186838;
-	Mon, 12 May 2014 11:43:06 -0700 (PDT)
-Received: from [192.168.43.169] (c-5eeaaa34-74736162.cust.telenor.se.
-	[94.234.170.52])
-	by mx.google.com with ESMTPSA id f9sm12599262lae.16.2014.05.12.11.43.05
-	for <multiple recipients>
-	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
-	Mon, 12 May 2014 11:43:05 -0700 (PDT)
-Message-ID: <53711637.7070105@gmail.com>
-Date: Mon, 12 May 2014 20:43:03 +0200
-From: =?ISO-8859-1?Q?David_Nystr=F6m?= <david.c.nystrom@gmail.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:24.0) Gecko/20100101 Thunderbird/24.4.0
+X-Greylist: delayed 113 seconds by postgrey-1.32 at yocto-www;
+	Mon, 12 May 2014 12:37:42 PDT
+Received: from nm4.bullet.mail.ne1.yahoo.com (unknown [98.138.90.67])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0F17CE00AE8
+	for <yocto@yoctoproject.org>; Mon, 12 May 2014 12:37:42 -0700 (PDT)
+Received: from [98.138.100.115] by nm4.bullet.mail.ne1.yahoo.com with NNFMP;
+	12 May 2014 19:35:49 -0000
+Received: from [98.138.89.175] by tm106.bullet.mail.ne1.yahoo.com with NNFMP;
+	12 May 2014 19:35:49 -0000
+Received: from [127.0.0.1] by omp1031.mail.ne1.yahoo.com with NNFMP;
+	12 May 2014 19:35:49 -0000
+X-Yahoo-Newman-Property: ymail-5
+X-Yahoo-Newman-Id: 275340.40821.bm@omp1031.mail.ne1.yahoo.com
+Received: (qmail 71929 invoked by uid 60001); 12 May 2014 19:35:49 -0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s1024;
+	t=1399923348; bh=whmAC1it+9VomyRqjsemfLayQdAVDwnQ8HYELOAG4ck=;
+	h=References:Message-ID:Date:From:Reply-To:Subject:To:Cc:In-Reply-To:MIME-Version:Content-Type;
+	b=RMqFavr3ebnGkXBME53tp6I3b9/Pz9yRsF14+B7rDICBo93tYbXKQN3bysV1g5WNa6Aa6l7TEK+el0hfmuJ1dBe1/StehRm42G7EkHw+6nmNFnlpfn6JFsJD/3xD4An7n9N9lZSos7BHrt0SoQ3eicg7sCdGLCHriI7JbfjIQ58=
+X-YMail-OSG: iaml1v4VM1kz.KHPsi7jTDrgjDYlsCykpQnF43RITUDpR6.
+	x4dF6vcIAodeEEL6UiN27rQwOnOH1oe8DYzO5o4Cc8cdgadqklZbgnrRzJUy
+	i4SHhlxwhukChURAOdYnFmREkzbN3hfiB7GG5MS1CrzMpXTD8BA1uM1kZOF.
+	oSuNi8l_b.j8NL3NOXjPkNz6v4mx89BEmPeLQjZoWJMlPhEsf7OLxvtmKzJQ
+	YCClJaKSk36avmHPD01cXu_v3DDYVqzoX8uCx0nA_6QCfFmeQ0bVO80vhPQG
+	r.NaQKeESb79uTA5ab3AhI1qwksYsJa2fnizdAMMMlgMqE7U2XP3WHrFg7Ru
+	TzPGX5KeknA49W9_PfkJPvYGwOBFMLh.DIwKQ0KSP6f3ZhYktKniWXP9z_c_
+	fo.c358ua8UKqIlo3DzdG5KH8qL9JHHBLm4_4ieJy_rrEVdbard7fXMm_Vgm
+	SsOPU.1tbyiz2VAo2IgaF9JrYPTN3mwrkelO.2GlxS8A9_o6CrirzdPWIxdc
+	0gGeBhk5Zcm621u6s4bRpGryHfw5qdT6hyQvbDCZufm2vDK37F5EvQSPAXFQ gdQ--
+Received: from [141.85.0.106] by web122501.mail.ne1.yahoo.com via HTTP;
+	Mon, 12 May 2014 12:35:48 PDT
+X-Rocket-MIMEInfo: 002.001,
+	R29vZyBpbml0aWF0aXZlIGd1eXMuCk9uZSBxdWljayBxdWVzdGlvbihvdXQgb2YgY3VyaW9zaXR5KTogd2hhdCBpcyB3aXRoIHRoZSBiYmFwcGVuZCBuZWFyIHRoZSBiYiBmaWxlPwoKCkFsZXgKCk9uIE1vbmRheSwgTWF5IDEyLCAyMDE0IDk6MzIgUE0sIFNlYW4gSHVkc29uIDxzZWFuX2h1ZHNvbkBtZW50b3IuY29tPiB3cm90ZToKIApUaGVyZSBpcyBhIG5ldyBtYWlsaW5nIGxpc3QgZm9yIEFNRCBwbGF0Zm9ybS9ib2FyZCByZWxhdGVkIHBhdGNoZXMgYW5kCmRpc2N1c3Npb24uCllvdSBjYW4gc2lnbiB1cCABMAEBAQE-
+X-Mailer: YahooMailWebService/0.8.188.663
+References: <53710BDA.10306@mentor.com>
+Message-ID: <1399923348.67286.YahooMailNeo@web122501.mail.ne1.yahoo.com>
+Date: Mon, 12 May 2014 12:35:48 -0700 (PDT)
+From: Vaduva alexandru <vaduvajanalexandru@yahoo.com>
+To: Sean Hudson <sean_hudson@mentor.com>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>,
+	"yocto-announce@yoctoproject.org" <yocto-announce@yoctoproject.org>,
+	"poky@yoctoproject.org" <poky@yoctoproject.org>,
+	"openembedded-core@lists.openembedded.org"
+	<openembedded-core@lists.openembedded.org>, 
+	"yocto-bsp@yoctoproject.org" <yocto-bsp@yoctoproject.org>
+In-Reply-To: <53710BDA.10306@mentor.com>
 MIME-Version: 1.0
-To: Paul McGougan <PMcGougan@topcon.com>, 
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
-References: <C7589FE7B0DE58488F2B9BF79840E9D90D66F51F@ADL-EXCHMBX1.TOPCON.com>	<536CE9B4.6050303@windriver.com>
-	<C7589FE7B0DE58488F2B9BF79840E9D90D66F94E@ADL-EXCHMBX1.TOPCON.com>
-In-Reply-To: <C7589FE7B0DE58488F2B9BF79840E9D90D66F94E@ADL-EXCHMBX1.TOPCON.com>
-Subject: Re: Question / issue
+Cc: "meta-amd@yoctoproject.org" <meta-amd@yoctoproject.org>
+Subject: Re: New meta-amd mailing list announcement
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
+Reply-To: Vaduva alexandru <vaduvajanalexandru@yahoo.com>
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -66,40 +79,43 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 12 May 2014 19:05:43 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Mon, 12 May 2014 19:37:48 -0000
+Content-Type: multipart/alternative;
+	boundary="-1149815241-54768896-1399923348=:67286"
+
+---1149815241-54768896-1399923348=:67286
+Content-Type: text/plain; charset=us-ascii
+
+Goog initiative guys.
+One quick question(out of curiosity): what is with the bbappend near the bb file?
 
 
-On 2014-05-12 07:56, Paul McGougan wrote:
-> From: Bruce Ashfield [mailto:bruce.ashfield@windriver.com]
->   
->>> Secondly, (and this is our main issue) I have found that by adding the
->>> do_install_append function, even if it is completely empty, whenever I
->>> try to bitbake anything that depends on the kernel, that bitbake always
->>> re-runs the kernel install stage, even when there have been no changes.
->>> Literally I can run a bitbake, then run the same bitbake command again,
->>> and both times the kernel install stage gets run (this is a problem
->>> because it takes a long time to run). It appears to be happening because
->>> the stampfile is not found every time (the hash appears to be wrong).
->>> Is this a bug? Is there a fix or work-around for this problem?
->> In this front, I'm not the best reference. Checking the sstate signature
->> might help, it should show which variables are being used .. and possibly
->> invalidating the signature, triggering the steps to run again.
-> Thanks Bruce.
->
-> Just for reference of anyone else who runs into a similar issue our issue was:
-> 1. The do_install_append function was not *really* empty, the content of it
-> was commented out.
+Alex
 
-To me, Thats sound like a bug in the dependency parser.
-It should not parse for changes in comments, i.e. in this case 
-do_install_append comments.
+On Monday, May 12, 2014 9:32 PM, Sean Hudson <sean_hudson@mentor.com> wrote:
+ 
+There is a new mailing list for AMD platform/board related patches and
+discussion.
+You can sign up here: https://lists.yoctoproject.org/listinfo/meta-amd
 
-Or perhaps in variable expansion, which could be avoided in commented 
-sections.
+The meta-amd layer git repository is publicly available here:
+git://git.yoctoproject.org/meta-amd
+(cgit web interface here:
+http://git.yoctoproject.org/cgit/cgit.cgi/meta-amd/)
 
-Br,
-David
+Please checkout the README at the top level for details on submitting
+patches.
+-- 
+_______________________________________________
+yocto mailing list
+yocto@yoctoproject.org
+https://lists.yoctoproject.org/listinfo/yocto
 
+---1149815241-54768896-1399923348=:67286
+Content-Type: text/html; charset=us-ascii
 
+<html><body><div style="color:#000; background-color:#fff; font-family:HelveticaNeue, Helvetica Neue, Helvetica, Arial, Lucida Grande, sans-serif;font-size:12pt"><div><span>Goog initiative guys.</span></div><div style="color: rgb(0, 0, 0); font-size: 16px; font-family: HelveticaNeue,Helvetica Neue,Helvetica,Arial,Lucida Grande,sans-serif; background-color: transparent; font-style: normal;"><span>One quick question(out of curiosity): what is with the bbappend near the bb file?</span></div><div style="color: rgb(0, 0, 0); font-size: 16px; font-family: HelveticaNeue,Helvetica Neue,Helvetica,Arial,Lucida Grande,sans-serif; background-color: transparent; font-style: normal;"><br><span></span></div><div style="color: rgb(0, 0, 0); font-size: 16px; font-family: HelveticaNeue,Helvetica Neue,Helvetica,Arial,Lucida Grande,sans-serif; background-color: transparent; font-style: normal;"><br><span></span></div><div style="color: rgb(0, 0, 0); font-size: 16px;
+ font-family: HelveticaNeue,Helvetica Neue,Helvetica,Arial,Lucida Grande,sans-serif; background-color: transparent; font-style: normal;"><span>Alex<br></span></div><div style="display: block;" class="yahoo_quoted"> <div style="font-family: HelveticaNeue, Helvetica Neue, Helvetica, Arial, Lucida Grande, sans-serif; font-size: 12pt;"> <div style="font-family: HelveticaNeue, Helvetica Neue, Helvetica, Arial, Lucida Grande, sans-serif; font-size: 12pt;"> <div dir="ltr"> <font face="Arial" size="2"> On Monday, May 12, 2014 9:32 PM, Sean Hudson &lt;sean_hudson@mentor.com&gt; wrote:<br> </font> </div>  <div class="y_msg_container">There is a new mailing list for AMD platform/board related patches and<br>discussion.<br>You can sign up here: <a href="https://lists.yoctoproject.org/listinfo/meta-amd" target="_blank">https://lists.yoctoproject.org/listinfo/meta-amd</a><br><br>The meta-amd layer git repository is publicly available
+ here:<br>git://git.yoctoproject.org/meta-amd<br>(cgit web interface here:<br><a href="http://git.yoctoproject.org/cgit/cgit.cgi/meta-amd/" target="_blank">http://git.yoctoproject.org/cgit/cgit.cgi/meta-amd/</a>)<br><br>Please checkout the README at the top level for details on submitting<br>patches.<br>-- <br>_______________________________________________<br>yocto mailing list<br><a ymailto="mailto:yocto@yoctoproject.org" href="mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br><a href="https://lists.yoctoproject.org/listinfo/yocto" target="_blank">https://lists.yoctoproject.org/listinfo/yocto</a><br><br><br></div>  </div> </div>  </div> </div></body></html>
+
+---1149815241-54768896-1399923348=:67286--
