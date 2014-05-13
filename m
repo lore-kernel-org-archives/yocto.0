@@ -1,45 +1,44 @@
-Return-Path: <stephen.k.jolley@intel.com>
+Return-Path: <ajlennon@dynamicdevices.co.uk>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 763F8E00B8A; Tue, 13 May 2014 09:10:39 -0700 (PDT)
+	id 91F8DE00B74; Tue, 13 May 2014 13:12:57 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-3.7 required=5.0 tests=HTML_MESSAGE, RCVD_IN_DNSWL_HI,
-	RDNS_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [134.134.136.20 listed in list.dnswl.org]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	*  1.3 RDNS_NONE Delivered to internal network by a host with no rDNS
-Received: from mga02.intel.com (unknown [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 385D3E00770
-	for <yocto@yoctoproject.org>; Tue, 13 May 2014 09:10:35 -0700 (PDT)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga101.jf.intel.com with ESMTP; 13 May 2014 09:10:34 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.97,1044,1389772800"; 
-	d="scan'208,217";a="510978480"
-Received: from orsmsx105.amr.corp.intel.com ([10.22.225.132])
-	by orsmga001.jf.intel.com with ESMTP; 13 May 2014 09:10:32 -0700
-Received: from orsmsx151.amr.corp.intel.com (10.22.226.38) by
-	ORSMSX105.amr.corp.intel.com (10.22.225.132) with Microsoft SMTP Server
-	(TLS) id 14.3.123.3; Tue, 13 May 2014 09:10:31 -0700
-Received: from orsmsx155.amr.corp.intel.com ([169.254.7.180]) by
-	ORSMSX151.amr.corp.intel.com ([169.254.7.229]) with mapi id
-	14.03.0123.003; Tue, 13 May 2014 09:10:24 -0700
-From: "Jolley, Stephen K" <stephen.k.jolley@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Minutes: Yocto Project Technical Team Meeting - Tuesday, May
-	6, 2014 8:00 AM US Pacific Time
-Thread-Index: Ac9uxdjsdNOtdxADR3GLE6gHK3hI5w==
-Date: Tue, 13 May 2014 16:10:24 +0000
-Message-ID: <9ADD3FDE8B189B4AA2F8A3C711F8155E5507A54C@ORSMSX155.amr.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.139]
+X-Spam-Level: *
+X-Spam-Status: No, score=1.3 required=5.0 tests=RDNS_NONE autolearn=no
+	version=3.3.1
+X-Spam-HAM-Report: * 1.3 RDNS_NONE Delivered to internal network by a host
+	with no rDNS
+Received: from www.dynamicdevices.co.uk (unknown [89.200.136.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5AE96E00770
+	for <yocto@yoctoproject.org>; Tue, 13 May 2014 13:12:46 -0700 (PDT)
+Received: from localhost (localhost [127.0.0.1])
+	by www.dynamicdevices.co.uk (Postfix) with ESMTP id 89EA327E01E;
+	Tue, 13 May 2014 20:12:44 +0000 (UTC)
+X-Virus-Scanned: Debian amavisd-new at lennoab2.miniserver.com
+Received: from www.dynamicdevices.co.uk ([127.0.0.1])
+	by localhost (www.dynamicdevices.co.uk [127.0.0.1]) (amavisd-new,
+	port 10024)
+	with ESMTP id tM967R9Vai3S; Tue, 13 May 2014 20:12:43 +0000 (UTC)
+Received: from [127.0.0.1] (cpc32-live22-2-0-cust59.17-2.cable.virginm.net
+	[82.36.253.60])
+	(using TLSv1 with cipher ECDHE-RSA-AES128-SHA (128/128 bits))
+	(No client certificate requested)
+	by www.dynamicdevices.co.uk (Postfix) with ESMTPSA id D977027E01A;
+	Tue, 13 May 2014 20:12:42 +0000 (UTC)
+Message-ID: <53727CB3.3050908@dynamicdevices.co.uk>
+Date: Tue, 13 May 2014 21:12:35 +0100
+From: Alex J Lennon <ajlennon@dynamicdevices.co.uk>
+User-Agent: Mozilla/5.0 (Windows NT 6.3; WOW64;
+	rv:24.0) Gecko/20100101 Thunderbird/24.5.0
 MIME-Version: 1.0
-Subject: Minutes: Yocto Project Technical Team Meeting - Tuesday, May 6, 2014 8:00 AM US Pacific Time
+To: "Robert P. J. Day" <rpjday@crashcourse.ca>
+References: <alpine.LFD.2.11.1404291231440.3997@localhost>
+	<535FD6BF.4040004@dynamicdevices.co.uk>
+	<alpine.LFD.2.11.1405130954351.7299@localhost>
+In-Reply-To: <alpine.LFD.2.11.1405130954351.7299@localhost>
+X-Enigmail-Version: 1.6
+Cc: yocto@yoctoproject.org
+Subject: Re: can one lay hands on a galileo-based dev kit?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -51,315 +50,115 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 13 May 2014 16:10:39 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_9ADD3FDE8B189B4AA2F8A3C711F8155E5507A54CORSMSX155amrcor_"
-
---_000_9ADD3FDE8B189B4AA2F8A3C711F8155E5507A54CORSMSX155amrcor_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-Attendees: Stephen, Ross, Sean, Tom Z, Richard, Scott, Belen, Cristian, Pau=
-l, AlexG, Cristiana, Jessica, Nitin, Michael, Saul,
+X-List-Received-Date: Tue, 13 May 2014 20:12:57 -0000
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: 7bit
 
 
+On 13/05/2014 14:56, Robert P. J. Day wrote:
+> i finally have time to play with this, and am interested in using
+> yocto to build a bootable system for the galileo. i see that there is
+> a version "1.0.0" of the firmware for this board -- is there a
+> convenient yocto recipe that involves just downloading the layer info
+> and not what looks like the current entire tarball that's stuffed with
+> all the sources? i suspect that, within a day or two, i'll figure that
+> out once i start digging around. if it's already documented somewhere,
+> that would be even better. :-) rday 
 
-* Opens collection - 5 min (Stephen)
+I've made some progress with this Robert, although I confess it was more
+challenging than I had expected.
 
-Sean - Meta AMD mailing list
+I suspect I am using components that are out of sync, maybe the
+installed grub loader vs the images I'm trying to build and boot, or
+perhaps because I'm trying to target a poky distribution instead of the
+iot one. Maybe I'm just missing something blindingly obvious and making
+a rod for my back.
 
+The Galileo didn't seem to want to play nicely from the start. I wasn't
+able to do the simple Arduino IDE firmware update the docs suggest - no
+response to query - and couldn't get any life out of UART0 on the TTL
+pins. The USB client was enumerating as a serial gadget once I copied
+across the 'magic' usbser.sys driver file on my Windows host though, so
+there was some proof of life at least.
 
+(I was a bit concerned for a while I might have bricked the thing when I
+spotted the caveats about not powering USB without +V from the PSU.
+Seems a bit like an accident waiting to happen, particularly if this is
+being marketed as an Arduino replacement. Big red sticker on the box
+needed for us software engineers at the very least).
 
-* Yocto 1.7 status - 5 min (Stephen/team)
+I finally realised that I needed to wire up a 3.5mm jack cable to see
+the Linux console (at RS232-C line levels no less....) A shame that
+wasn't included in the box, but I guess if you just want an
+Arduino-a-like (and the USB comms. actually works...) then maybe you
+don't need to see what's really going on.
 
-We are deep into doing the planning 1.7 and will being work on milestone 1 =
-shortly.
+I worked through the Quark_BSPBuildGuide as it says that "you must
+update the firmware the first time you use the board", which has been
+superceded, so I wondered if maybe I was running some old code in the
+supplied board that needed updating.
 
-We have completed QA for 1.5.2 and are reviewing releasing the point releas=
-e.
+The capsule files from the
+LITTLE_LINUX_IMAGE_FirmwareUpdate_Intel_Galileo download installed OK
+and that got me to a shell with Poky 1.4
 
-We are reviewing if we can do a 1.4.4 due to the Heartbleed issue.
+"Poky 9.0.2 (Yocto Project 1.4 Reference Distro) 1.4.2 clanton /dev/ttyS1"
 
-https://wiki.yoctoproject.org/wiki/Yocto_Project_v1.7_Status
+It was picking up an IP address, I could SSH in and all was good.
 
-https://wiki.yoctoproject.org/wiki/Yocto_1.7_Schedule
+...
 
-https://wiki.yoctoproject.org/wiki/Yocto_1.7_Features
+So then I had a look at what was involved in booting from the uSD
+instead of the image that I presume the capsule installed to the SPI flash.
 
-* SWAT team rotation: Paul -> Saul
+As I mentioned earlier I had grabbed meta-intel-iot-devkit. Perhaps that
+was my mistake. I had built up an image with the packaged layers to
+start, and I then tried to copy across my new build so I could boot it.
 
-  https://wiki.yoctoproject.org/wiki/Yocto_Build_Failure_Swat_Team
+I was hoping for something a little like what is offered out of the
+meta-fsl-arm builds, i.e. a FAT boot partition and then an ext3 rootfs
+partition, but this layer seems to be using a single FAT partition with
+an initrd and an ext3 file mounted as root.
 
-* Opens - 10 min
+First I tried dd'ing the .hddimg file I had generated but that seemed to
+result in an EFI boot configuration that the Galileo bootloader wasn't
+picking up.
 
-Sean - Meta AMD mailing list has been created.  Sign up if you have interes=
-t and participation is welcome.
+So I reverted to copying across my new bzImage and
+iot-devkit-image-clanton.ext3 as per the BSP Build docs and that at
+least did boot the kernel.
 
+It then failed to mount the rootfs as it couldn't find /media/realroot
+in the .ext3 file. Maybe this is because I'm targeting poky not the iot
+distro?
 
+With that added to my image I was able to boot to a Poky 1.5.1 shell,
+and I had mono 3.4.0 up and running on poky which was what I wanted to
+achieve.
 
-* Team Sharing - 10 min
-Ross - Discussed that Valentin has sent a patch series to oe-core to upgrad=
-e Mesa to version 10.  This is a major version upgrade and I suspect this i=
-s going to break BSPs.  Can anyone who maintains a BSP that uses Mesa pleas=
-e test it, in particular BSPs that use mesa-gl.
-AlexD - Toaster has finished its automated test infrastructure that test an=
-y patch sent for review/integration;
-this should drive up code quality for toaster, since it prevents regression=
-s, and sets up the basis for test-driven development.
+That said I seem to have lost the ethernet interface along the way so
+will need to see where that has gone.
+...
 
------Original Appointment-----
+Lastly I've tried to eliminate use of the bblayers from
+meta-intel-iot-devkit in favour of my day to day Poky 1.6 daisy layers.
 
-We encourage people attending the meeting to logon the Yocto Project IRC ch=
-ancel during the meeting (optional):
+I needed to copy across 
+./meta-intel-iot-devkit/meta/conf/machine/include/ia32-base.inc to
+poky/meta, remove dependencies on meta-iot-devkit and meta-hob from
+bblayers, and remove a couple of orphaned .bbappends in meta-galileo
+(iot-devkit-spi-image.bbappend, iot-devkit-image.bbappend) but it seems
+to be building now at least.
 
+I'm waiting to see how far that gets.
 
+...
 
-Yocto IRC: http://webchat.freenode.net/?channels=3D#yocto
+Apologies for the length of this, but perhaps some of it is useful. If
+there's an easier way to build a poky daisy distro for Galileo I'd love
+to hear it :)
 
-IRC Tutorial: http://www.irchelp.org/irchelp/irctutorial.html
+Cheers, Alex
 
-Thanks,
+ 
 
-Stephen K. Jolley
-Yocto Project Program Manager
-INTEL, MS JF1-255, 2111 N.E. 25th Avenue, Hillsboro, OR 97124
-*   Work Telephone:          (503) 712-0534
-*    Cell:                                (208) 244-4460
-* Email:                             stephen.k.jolley@intel.com
-
-
---_000_9ADD3FDE8B189B4AA2F8A3C711F8155E5507A54CORSMSX155amrcor_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:x=3D"urn:schemas-microsoft-com:office:excel" xmlns:m=3D"http://schema=
-s.microsoft.com/office/2004/12/omml" xmlns=3D"http://www.w3.org/TR/REC-html=
-40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<meta name=3D"Generator" content=3D"Microsoft Word 14 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:Wingdings;
-	panose-1:5 0 0 0 0 0 0 0 0 0;}
-@font-face
-	{font-family:Wingdings;
-	panose-1:5 0 0 0 0 0 0 0 0 0;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-@font-face
-	{font-family:Tahoma;
-	panose-1:2 11 6 4 3 5 4 4 2 4;}
-@font-face
-	{font-family:Consolas;
-	panose-1:2 11 6 9 2 2 4 3 2 4;}
-@font-face
-	{font-family:"Comic Sans MS";
-	panose-1:3 15 7 2 3 3 2 2 2 4;}
-@font-face
-	{font-family:"MS Sans Serif";}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri","sans-serif";
-	mso-fareast-language:EN-US;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:purple;
-	text-decoration:underline;}
-p.MsoPlainText, li.MsoPlainText, div.MsoPlainText
-	{mso-style-priority:99;
-	mso-style-link:"Plain Text Char";
-	margin:0in;
-	margin-bottom:.0001pt;
-	font-size:10.5pt;
-	font-family:Consolas;
-	mso-fareast-language:EN-US;}
-p
-	{mso-style-priority:99;
-	mso-margin-top-alt:auto;
-	margin-right:0in;
-	mso-margin-bottom-alt:auto;
-	margin-left:0in;
-	font-size:12.0pt;
-	font-family:"Times New Roman","serif";
-	mso-fareast-language:ZH-CN;}
-span.PlainTextChar
-	{mso-style-name:"Plain Text Char";
-	mso-style-priority:99;
-	mso-style-link:"Plain Text";
-	font-family:Consolas;}
-span.EmailStyle20
-	{mso-style-type:personal-compose;
-	font-family:"Calibri","sans-serif";
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-size:10.0pt;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
-<div class=3D"WordSection1">
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas">Attendees: Stephen, Ross, Sean, Tom Z, Richard, Sc=
-ott, Belen, Cristian, Paul, AlexG, Cristiana, Jessica, Nitin, Michael, Saul=
-,
-<o:p></o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas">&nbsp;<o:p></o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas">* Opens collection - 5 min (Stephen)<o:p></o:p></s=
-pan></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas">Sean &#8211; Meta AMD mailing list
-<o:p></o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas"><o:p>&nbsp;</o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas">* Yocto 1.7 status - 5 min (Stephen/team)<o:p></o:=
-p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas">We are deep into doing the planning 1.7 and will b=
-eing work on milestone 1 shortly.
-<o:p></o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas">We have completed QA for 1.5.2 and are reviewing r=
-eleasing the point release.<o:p></o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas">We are reviewing if we can do a 1.4.4 due to the H=
-eartbleed issue.<o:p></o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas"><a href=3D"https://wiki.yoctoproject.org/wiki/Yoct=
-o_Project_v1.7_Status">https://wiki.yoctoproject.org/wiki/Yocto_Project_v1.=
-7_Status</a><o:p></o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas"><a href=3D"https://wiki.yoctoproject.org/wiki/Yoct=
-o_1.7_Schedule">https://wiki.yoctoproject.org/wiki/Yocto_1.7_Schedule</a><o=
-:p></o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas"><a href=3D"https://wiki.yoctoproject.org/wiki/Yoct=
-o_1.7_Features">https://wiki.yoctoproject.org/wiki/Yocto_1.7_Features</a><o=
-:p></o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas">* SWAT team rotation: Paul -&gt; Saul<o:p></o:p></=
-span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas">&nbsp;
-<a href=3D"https://wiki.yoctoproject.org/wiki/Yocto_Build_Failure_Swat_Team=
-">https://wiki.yoctoproject.org/wiki/Yocto_Build_Failure_Swat_Team</a><o:p>=
-</o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas">* Opens - 10 min
-<o:p></o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas">Sean &#8211; Meta AMD mailing list has been create=
-d.&nbsp; Sign up if you have interest and participation is welcome.&nbsp;&n=
-bsp;
-<o:p></o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas"><o:p>&nbsp;</o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas">* Team Sharing - 10 min<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:Consolas;mso-fareast-lang=
-uage:ZH-CN">Ross &#8211; Discussed that Valentin has sent a patch series to=
- oe-core to upgrade Mesa to version 10.&nbsp; This is a major version upgra=
-de and I suspect this is going to break BSPs.&nbsp;
- Can anyone who maintains a BSP that uses Mesa please test it, in particula=
-r BSPs that use mesa-gl.<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:Consolas;mso-fareast-lang=
-uage:ZH-CN">AlexD &#8211; Toaster has finished its automated test infrastru=
-cture that test any patch sent for review/integration;<o:p></o:p></span></p=
->
-<p class=3D"MsoNormal"><span style=3D"font-family:Consolas;mso-fareast-lang=
-uage:ZH-CN">this should drive up code quality for toaster, since it prevent=
-s regressions, and sets up the basis for test-driven development.<o:p></o:p=
-></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:Consolas;mso-fareast-lang=
-uage:ZH-CN"><o:p>&nbsp;</o:p></span></p>
-<p class=3D"MsoNormal" style=3D"margin-bottom:12.0pt"><span style=3D"font-s=
-ize:10.0pt;font-family:&quot;Tahoma&quot;,&quot;sans-serif&quot;">-----Orig=
-inal Appointment-----</span><o:p></o:p></p>
-<p class=3D"MsoPlainText">We encourage people attending the meeting to logo=
-n the Yocto Project IRC chancel during the meeting (optional):<o:p></o:p></=
-p>
-<p class=3D"MsoPlainText"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoPlainText">Yocto IRC: <a href=3D"http://webchat.freenode.net=
-/?channels=3D#yocto">
-http://webchat.freenode.net/?channels=3D#yocto</a><o:p></o:p></p>
-<p class=3D"MsoPlainText">IRC Tutorial: <a href=3D"http://www.irchelp.org/i=
-rchelp/irctutorial.html">
-http://www.irchelp.org/irchelp/irctutorial.html</a> <o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Thanks,<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal" style=3D"page-break-after:avoid;text-autospace:none"=
-><b><i><span style=3D"font-size:16.0pt;font-family:&quot;Times New Roman&qu=
-ot;,&quot;serif&quot;;color:purple">Stephen K. Jolley</span></i></b><b><i><=
-span style=3D"font-size:16.0pt;font-family:&quot;Tahoma&quot;,&quot;sans-se=
-rif&quot;;color:purple"><o:p></o:p></span></i></b></p>
-<p class=3D"MsoNormal"><b><span style=3D"font-size:8.0pt;font-family:&quot;=
-Courier New&quot;;color:blue">Yocto Project Program Manager<o:p></o:p></spa=
-n></b></p>
-<p class=3D"MsoNormal" style=3D"page-break-after:avoid;text-autospace:none"=
-><b><span style=3D"font-size:10.0pt;font-family:&quot;Courier New&quot;;col=
-or:fuchsia">INTEL, MS JF1-255, 2111 N.E. 25th Avenue, Hillsboro, OR 97124
-<o:p></o:p></span></b></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:Wingdings;color:black">(<=
-/span><span style=3D"font-family:&quot;MS Sans Serif&quot;;color:teal">
-</span><span style=3D"font-size:8.0pt;font-family:&quot;MS Sans Serif&quot;=
-;color:teal">&nbsp;&nbsp;</span><b><span style=3D"font-size:8.0pt;font-fami=
-ly:&quot;Comic Sans MS&quot;;color:teal">Work Telephone</span></b><span sty=
-le=3D"font-family:&quot;MS Sans Serif&quot;;color:teal">:&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span><span style=3D"font-size:9.0pt;font-family:&quot;MS Sans Serif&quot;=
-">(503) 712-0534<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt;font-family:Wingdings=
-;color:black">(</span><span style=3D"font-size:9.0pt;font-family:&quot;MS S=
-ans Serif&quot;;color:teal">&nbsp;&nbsp;&nbsp;
-</span><b><span style=3D"font-size:8.0pt;font-family:&quot;Comic Sans MS&qu=
-ot;;color:teal">Cell</span></b><span style=3D"font-size:9.0pt;font-family:&=
-quot;MS Sans Serif&quot;;color:teal">:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span><span style=3D"font-size:9.0pt;font-family:&quot;MS Sans Serif&quot;=
-">(208) 244-4460<span style=3D"color:black"><o:p></o:p></span></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt;font-family:Wingdings=
-">* </span>
-<b><span lang=3D"FR" style=3D"font-size:8.0pt;font-family:&quot;Comic Sans =
-MS&quot;;color:teal">Email</span></b><span lang=3D"FR" style=3D"font-size:9=
-.0pt;font-family:&quot;MS Sans Serif&quot;;color:teal">:</span><span lang=
-=3D"FR" style=3D"font-size:9.0pt;font-family:&quot;MS Sans Serif&quot;">&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;
-<u><span style=3D"color:blue">stephen.k.jolley@intel.com</span></u></span><=
-span lang=3D"FR" style=3D"font-size:12.0pt;font-family:&quot;Arial&quot;,&q=
-uot;sans-serif&quot;"><o:p></o:p></span></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-</div>
-</body>
-</html>
-
---_000_9ADD3FDE8B189B4AA2F8A3C711F8155E5507A54CORSMSX155amrcor_--
