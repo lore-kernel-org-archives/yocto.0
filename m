@@ -1,33 +1,41 @@
-Return-Path: <Jackie.Huang@windriver.com>
+Return-Path: <rpjday@crashcourse.ca>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 25A85E00B7A; Tue, 13 May 2014 03:01:32 -0700 (PDT)
+	id 76628E00770; Tue, 13 May 2014 06:59:04 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-1.0 required=5.0 tests=RCVD_IN_DNSWL_MED,RDNS_NONE
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [147.11.1.11 listed in list.dnswl.org]
-	*  1.3 RDNS_NONE Delivered to internal network by a host with no rDNS
-Received: from mail.windriver.com (unknown [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 52426E00B76
-	for <yocto@yoctoproject.org>; Tue, 13 May 2014 03:01:17 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail.windriver.com (8.14.5/8.14.5) with ESMTP id s4DA1Gtg016662
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL)
-	for <yocto@yoctoproject.org>; Tue, 13 May 2014 03:01:16 -0700 (PDT)
-Received: from pek-hostel-vm11.wrs.com (128.224.153.181) by
-	ALA-HCA.corp.ad.wrs.com (147.11.189.40) with Microsoft SMTP Server id
-	14.3.169.1; Tue, 13 May 2014 03:01:15 -0700
-From: <jackie.huang@windriver.com>
-To: <yocto@yoctoproject.org>
-Date: Tue, 13 May 2014 06:01:13 -0400
-Message-ID: <1399975273-12971-1-git-send-email-jackie.huang@windriver.com>
-X-Mailer: git-send-email 1.7.9.5
+X-Spam-Level: *
+X-Spam-Status: No, score=1.3 required=5.0 tests=RDNS_NONE autolearn=no
+	version=3.3.1
+X-Spam-HAM-Report: * 1.3 RDNS_NONE Delivered to internal network by a host
+	with no rDNS
+Received: from astoria.ccjclearline.com (unknown [64.235.106.9])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 16145E003C7
+	for <yocto@yoctoproject.org>; Tue, 13 May 2014 06:58:58 -0700 (PDT)
+Received: from [99.240.204.5] (port=54541 helo=crashcourse.ca)
+	by astoria.ccjclearline.com with esmtpsa (TLSv1:DHE-RSA-AES256-SHA:256)
+	(Exim 4.80) (envelope-from <rpjday@crashcourse.ca>)
+	id 1WkDET-0000cX-2Q; Tue, 13 May 2014 09:59:01 -0400
+Date: Tue, 13 May 2014 09:56:50 -0400 (EDT)
+From: "Robert P. J. Day" <rpjday@crashcourse.ca>
+X-X-Sender: rpjday@localhost
+To: Alex J Lennon <ajlennon@dynamicdevices.co.uk>
+In-Reply-To: <535FD6BF.4040004@dynamicdevices.co.uk>
+Message-ID: <alpine.LFD.2.11.1405130954351.7299@localhost>
+References: <alpine.LFD.2.11.1404291231440.3997@localhost>
+	<535FD6BF.4040004@dynamicdevices.co.uk>
+User-Agent: Alpine 2.11 (LFD 23 2013-08-11)
 MIME-Version: 1.0
-Subject: [meta-selinux][PATCH] refpolicy: Allow udev the block_suspend capability
+X-AntiAbuse: This header was added to track abuse,
+	please include it with any abuse report
+X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - crashcourse.ca
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+Cc: yocto@yoctoproject.org
+Subject: Re: can one lay hands on a galileo-based dev kit?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,67 +47,56 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 13 May 2014 10:01:32 -0000
-Content-Type: text/plain
+X-List-Received-Date: Tue, 13 May 2014 13:59:04 -0000
+Content-Type: TEXT/PLAIN; charset=US-ASCII
 
-From: Jackie Huang <jackie.huang@windriver.com>
+On Tue, 29 Apr 2014, Alex J Lennon wrote:
 
-Fix the avc denied issue:
-type=1400 audit(1399440994.656:14): avc: denied { block_suspend } for pid=80 comm="udevd" capability=36 scontext=system_u:system_r:udev_t:s0-s15:c0.c1023 tcontext=system_u:system_r:udev_t:s0-s15:c0.c1023 tclass=capability2
+>
+> On 29/04/2014 17:34, Robert P. J. Day wrote:
+> >   i've just been asked to design a linux device drivers course based
+> > on the arduino-compatible intel galileo processor, so my first TODO
+> > item is to lay hands on a galileo-based dev kit, for which this looks
+> > like the obvious choice:
+> >
+> > https://software.intel.com/en-us/iotdevkit
+> >
+> > but that page says "upcoming". does it exist? my normal go-to source
+> > up here, digikey.ca, shows zero in stock. where can i lay hands on
+> > one (if possible)? thanks.
+>
+> If it helps I had a Galileo Dev Kit delivered from RS (UK) a couple of
+> days ago.
+>
+> http://uk.rs-online.com/web/p/processor-microcontroller-development-kits/7919611/
+>
+> (I'm actually a bit confused about how the Galileo IoT collection of
+> meta-foo layers relates to the primary meta-foo
+>  sources, as I can't seem to find an independent meta-clanton ;ayer
+> which I guess I'd need. Early days yet, but am planning
+>  on working through this as soon as I get some time as I want to test a
+> build with meta-moo support on Galileo)
 
-The patch is backported from upstream
+  i finally have time to play with this, and am interested in using
+yocto to build a bootable system for the galileo. i see that there is
+a version "1.0.0" of the firmware for this board -- is there a
+convenient yocto recipe that involves just downloading the layer info
+and not what looks like the current entire tarball that's stuffed with
+all the sources?
 
-Signed-off-by: Jackie Huang <jackie.huang@windriver.com>
----
- .../Allow-udev-the-block_suspend-capability.patch  |   25 ++++++++++++++++++++
- .../refpolicy/refpolicy_2.20130424.inc             |    1 +
- 2 files changed, 26 insertions(+)
- create mode 100644 recipes-security/refpolicy/refpolicy-2.20130424/Allow-udev-the-block_suspend-capability.patch
+  i suspect that, within a day or two, i'll figure that out once i
+start digging around. if it's already documented somewhere, that would
+be even better. :-)
 
-diff --git a/recipes-security/refpolicy/refpolicy-2.20130424/Allow-udev-the-block_suspend-capability.patch b/recipes-security/refpolicy/refpolicy-2.20130424/Allow-udev-the-block_suspend-capability.patch
-new file mode 100644
-index 0000000..3c6a979
---- /dev/null
-+++ b/recipes-security/refpolicy/refpolicy-2.20130424/Allow-udev-the-block_suspend-capability.patch
-@@ -0,0 +1,25 @@
-+Allow udev the block_suspend capability
-+
-+Upstream-Status: backport
-+upstream commit: 5905067f2acf710ffbb13ba32575e6316619ddd8
-+
-+Signed-off-by: Jackie Huang <jackie.huang@windriver.com>
-+---
-+ policy/modules/system/udev.te |    1 +
-+ 1 file changed, 1 insertion(+)
-+
-+diff --git a/policy/modules/system/udev.te b/policy/modules/system/udev.te
-+index 90e4ab3..efe6c02 100644
-+--- a/policy/modules/system/udev.te
-++++ b/policy/modules/system/udev.te
-+@@ -39,6 +39,7 @@ ifdef(`enable_mcs',`
-+ 
-+ allow udev_t self:capability { chown dac_override dac_read_search fowner fsetid sys_admin mknod net_raw net_admin sys_nice sys_rawio sys_resource setuid setgid sys_nice sys_ptrace };
-+ dontaudit udev_t self:capability sys_tty_config;
-++allow udev_t self:capability2 block_suspend;
-+ allow udev_t self:process ~{ setcurrent setexec setfscreate setrlimit execmem execstack execheap };
-+ allow udev_t self:process { execmem setfscreate };
-+ allow udev_t self:fd use;
-+-- 
-+1.7.9.5
-+
-diff --git a/recipes-security/refpolicy/refpolicy_2.20130424.inc b/recipes-security/refpolicy/refpolicy_2.20130424.inc
-index 5dbb2dc..0e7419d 100644
---- a/recipes-security/refpolicy/refpolicy_2.20130424.inc
-+++ b/recipes-security/refpolicy/refpolicy_2.20130424.inc
-@@ -61,6 +61,7 @@ SRC_URI += "file://poky-policy-fix-xconsole_device_t-as-a-dev_node.patch \
- # Backport from upstream
- SRC_URI += "file://Allow-ping-to-get-set-capabilities.patch \
-             file://filesystem-associate-tmpfs_t-shm-to-device_t-devtmpf.patch \
-+            file://Allow-udev-the-block_suspend-capability.patch \
-            "
- 
- include refpolicy_common.inc
+rday
+
 -- 
-1.7.9.5
 
+========================================================================
+Robert P. J. Day                                 Ottawa, Ontario, CANADA
+                        http://crashcourse.ca
+
+Twitter:                                       http://twitter.com/rpjday
+LinkedIn:                               http://ca.linkedin.com/in/rpjday
+========================================================================
 
