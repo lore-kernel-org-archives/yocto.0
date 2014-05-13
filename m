@@ -1,52 +1,33 @@
-Return-Path: <koen@dominion.thruhere.net>
+Return-Path: <Jackie.Huang@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 82585E00B76; Tue, 13 May 2014 00:45:42 -0700 (PDT)
+	id 25A85E00B7A; Tue, 13 May 2014 03:01:32 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=0.6 required=5.0 tests=RCVD_IN_DNSWL_LOW,RDNS_NONE
-	autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [74.125.82.49 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.0 required=5.0 tests=RCVD_IN_DNSWL_MED,RDNS_NONE
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [147.11.1.11 listed in list.dnswl.org]
 	*  1.3 RDNS_NONE Delivered to internal network by a host with no rDNS
-Received: from mail-wg0-f49.google.com (unknown [74.125.82.49])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6EB72E00B5D
-	for <yocto@yoctoproject.org>; Tue, 13 May 2014 00:45:33 -0700 (PDT)
-Received: by mail-wg0-f49.google.com with SMTP id m15so7824194wgh.8
-	for <yocto@yoctoproject.org>; Tue, 13 May 2014 00:45:33 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:content-type:mime-version:subject:from
-	:in-reply-to:date:cc:content-transfer-encoding:message-id:references
-	:to; bh=+7aDRPD94PU3sUR0IBQk2/3osOPoL+1tHWu7m+jH/DA=;
-	b=S8kIlRh6EWON83Qm5TTbHvo9HuNaEbk3LQ+VJ3wOQ1GbClApfb5T/GxkjaLiDu+2tv
-	46XYxGWElS8QTInjw8tH19/ie0dKYR5UrH2XO7dtkYlR+8oOlG4RjH0+LjcJhuBMrj8J
-	0+CH3JDY3A/Vna84EjpO0GsiEkr8HDVk9hiYeIUK0sR5dc3MSS2SK9zqIxk9icXEmoYj
-	1Ds4Fs/9uqDaKjHYn+AuRLeQ2XM0iNZZthwOvSEq0VuGbwT/Lq3ARK5tvQciPYwFDHJd
-	43e4aAMDfvek47QrQ2YwD0oBV+EpXPWnzXAxo+kfv/zXfvYRxtgdMkZr0dCEsP0LwNo2
-	yvzQ==
-X-Gm-Message-State: ALoCoQnwjz8K9s8hFQUd7uewP/KD52Vg0zVMeLzfUE5IqqIa+0fGlTDtsJHq7nPjWTNCQQ4ZBX4Y
-X-Received: by 10.180.107.97 with SMTP id hb1mr19735877wib.20.1399967132784;
-	Tue, 13 May 2014 00:45:32 -0700 (PDT)
-Received: from ?IPv6:2001:610:612::d55c:c67d:d4e:7aee?
-	([2001:610:612:0:d55c:c67d:d4e:7aee])
-	by mx.google.com with ESMTPSA id bj5sm20463091wib.3.2014.05.13.00.45.31
-	for <multiple recipients>
-	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
-	Tue, 13 May 2014 00:45:31 -0700 (PDT)
-Mime-Version: 1.0 (Mac OS X Mail 7.2 \(1874\))
-From: Koen Kooi <koen@dominion.thruhere.net>
-In-Reply-To: <53710BDA.10306@mentor.com>
-Date: Tue, 13 May 2014 09:45:30 +0200
-Message-Id: <AA1395AD-4FF5-4EF8-ACB1-8DFDE52EB8BF@dominion.thruhere.net>
-References: <53710BDA.10306@mentor.com>
-To: Sean Hudson <sean_hudson@mentor.com>
-X-Mailer: Apple Mail (2.1874)
-Cc: yocto-announce@yoctoproject.org, yocto-bsp@yoctoproject.org,
-	yocto@yoctoproject.org, openembedded-core@lists.openembedded.org,
-	meta-amd@yoctoproject.org, poky@yoctoproject.org
-Subject: Re: [OE-core] New meta-amd mailing list announcement
+Received: from mail.windriver.com (unknown [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 52426E00B76
+	for <yocto@yoctoproject.org>; Tue, 13 May 2014 03:01:17 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
+	[147.11.189.40])
+	by mail.windriver.com (8.14.5/8.14.5) with ESMTP id s4DA1Gtg016662
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL)
+	for <yocto@yoctoproject.org>; Tue, 13 May 2014 03:01:16 -0700 (PDT)
+Received: from pek-hostel-vm11.wrs.com (128.224.153.181) by
+	ALA-HCA.corp.ad.wrs.com (147.11.189.40) with Microsoft SMTP Server id
+	14.3.169.1; Tue, 13 May 2014 03:01:15 -0700
+From: <jackie.huang@windriver.com>
+To: <yocto@yoctoproject.org>
+Date: Tue, 13 May 2014 06:01:13 -0400
+Message-ID: <1399975273-12971-1-git-send-email-jackie.huang@windriver.com>
+X-Mailer: git-send-email 1.7.9.5
+MIME-Version: 1.0
+Subject: [meta-selinux][PATCH] refpolicy: Allow udev the block_suspend capability
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -58,22 +39,67 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 13 May 2014 07:45:42 -0000
-Content-Type: text/plain; charset=us-ascii
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Tue, 13 May 2014 10:01:32 -0000
+Content-Type: text/plain
 
+From: Jackie Huang <jackie.huang@windriver.com>
 
-Op 12 mei 2014, om 19:58 heeft Sean Hudson <sean_hudson@mentor.com> het =
-volgende geschreven:
+Fix the avc denied issue:
+type=1400 audit(1399440994.656:14): avc: denied { block_suspend } for pid=80 comm="udevd" capability=36 scontext=system_u:system_r:udev_t:s0-s15:c0.c1023 tcontext=system_u:system_r:udev_t:s0-s15:c0.c1023 tclass=capability2
 
-> There is a new mailing list for AMD platform/board related patches and
-> discussion.
-> You can sign up here: https://lists.yoctoproject.org/listinfo/meta-amd
->=20
-> The meta-amd layer git repository is publicly available here:
-> git://git.yoctoproject.org/meta-amd
-> (cgit web interface here:
-> http://git.yoctoproject.org/cgit/cgit.cgi/meta-amd/)
+The patch is backported from upstream
 
-Your machine.conf violates good practices by setting DISTRO vars.=
+Signed-off-by: Jackie Huang <jackie.huang@windriver.com>
+---
+ .../Allow-udev-the-block_suspend-capability.patch  |   25 ++++++++++++++++++++
+ .../refpolicy/refpolicy_2.20130424.inc             |    1 +
+ 2 files changed, 26 insertions(+)
+ create mode 100644 recipes-security/refpolicy/refpolicy-2.20130424/Allow-udev-the-block_suspend-capability.patch
+
+diff --git a/recipes-security/refpolicy/refpolicy-2.20130424/Allow-udev-the-block_suspend-capability.patch b/recipes-security/refpolicy/refpolicy-2.20130424/Allow-udev-the-block_suspend-capability.patch
+new file mode 100644
+index 0000000..3c6a979
+--- /dev/null
++++ b/recipes-security/refpolicy/refpolicy-2.20130424/Allow-udev-the-block_suspend-capability.patch
+@@ -0,0 +1,25 @@
++Allow udev the block_suspend capability
++
++Upstream-Status: backport
++upstream commit: 5905067f2acf710ffbb13ba32575e6316619ddd8
++
++Signed-off-by: Jackie Huang <jackie.huang@windriver.com>
++---
++ policy/modules/system/udev.te |    1 +
++ 1 file changed, 1 insertion(+)
++
++diff --git a/policy/modules/system/udev.te b/policy/modules/system/udev.te
++index 90e4ab3..efe6c02 100644
++--- a/policy/modules/system/udev.te
+++++ b/policy/modules/system/udev.te
++@@ -39,6 +39,7 @@ ifdef(`enable_mcs',`
++ 
++ allow udev_t self:capability { chown dac_override dac_read_search fowner fsetid sys_admin mknod net_raw net_admin sys_nice sys_rawio sys_resource setuid setgid sys_nice sys_ptrace };
++ dontaudit udev_t self:capability sys_tty_config;
+++allow udev_t self:capability2 block_suspend;
++ allow udev_t self:process ~{ setcurrent setexec setfscreate setrlimit execmem execstack execheap };
++ allow udev_t self:process { execmem setfscreate };
++ allow udev_t self:fd use;
++-- 
++1.7.9.5
++
+diff --git a/recipes-security/refpolicy/refpolicy_2.20130424.inc b/recipes-security/refpolicy/refpolicy_2.20130424.inc
+index 5dbb2dc..0e7419d 100644
+--- a/recipes-security/refpolicy/refpolicy_2.20130424.inc
++++ b/recipes-security/refpolicy/refpolicy_2.20130424.inc
+@@ -61,6 +61,7 @@ SRC_URI += "file://poky-policy-fix-xconsole_device_t-as-a-dev_node.patch \
+ # Backport from upstream
+ SRC_URI += "file://Allow-ping-to-get-set-capabilities.patch \
+             file://filesystem-associate-tmpfs_t-shm-to-device_t-devtmpf.patch \
++            file://Allow-udev-the-block_suspend-capability.patch \
+            "
+ 
+ include refpolicy_common.inc
+-- 
+1.7.9.5
+
 
