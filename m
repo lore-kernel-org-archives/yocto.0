@@ -1,48 +1,29 @@
-Return-Path: <hans.beckerus@gmail.com>
+Return-Path: <gary@mlbassoc.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 24744E00975; Wed, 14 May 2014 10:40:16 -0700 (PDT)
+	id 97AFDE00975; Wed, 14 May 2014 11:06:32 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
-X-Spam-Level: 
-X-Spam-Status: No, score=0.5 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-	DKIM_VALID_AU,FREEMAIL_FROM,RCVD_IN_DNSWL_LOW,RDNS_NONE autolearn=no
+X-Spam-Level: *
+X-Spam-Status: No, score=1.3 required=5.0 tests=RDNS_NONE autolearn=no
 	version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (hans.beckerus[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.214.178 listed in list.dnswl.org]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  1.3 RDNS_NONE Delivered to internal network by a host with no rDNS
-X-Greylist: delayed 475 seconds by postgrey-1.32 at yocto-www;
-	Wed, 14 May 2014 10:40:10 PDT
-Received: from mail-ob0-f178.google.com (unknown [209.85.214.178])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 978F8E006EF
-	for <yocto@yoctoproject.org>; Wed, 14 May 2014 10:40:10 -0700 (PDT)
-Received: by mail-ob0-f178.google.com with SMTP id va2so2537350obc.9
-	for <yocto@yoctoproject.org>; Wed, 14 May 2014 10:40:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=u7eLKRYWwfYdI7BFFTs4VfGm4gVk6pO5M2UITSQfVVQ=;
-	b=HFN2XMSErejJV4yetxQlCgvACEpxAGXJuVVvZuM/hLCd691Hn+LUMiphA1SagXJmYg
-	3FlrkoWd2Edhruhh0OLfLmu/y8US+ruAuJEnRRa7Lb7B91YuK7DWg/62swXv6X6GV3yj
-	LMEsK5lGPZQzSuluUU6CbfA5QW/G5KQPs94Pi1p/DNphS5up44vCZLDBOqGXchdd8sV/
-	A5ffKlxP28gZRgsXJg48Rt4zA1mJAhHHjpCasd5yooGClUNW+6pMRGcLdXCGAznL+rYH
-	LNcpTKRxozeup7b/n+7L6D5YWdj3pA0G4ahcWwrSbb4xYxd7y1tSU6l8qujdx+gu3vLM
-	eLxg==
+X-Spam-HAM-Report: * 1.3 RDNS_NONE Delivered to internal network by a host
+	with no rDNS
+Received: from mail.chez-thomas.org (unknown [65.100.170.105])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CEFE1E006EF
+	for <yocto@yoctoproject.org>; Wed, 14 May 2014 11:06:27 -0700 (PDT)
+Received: by mail.chez-thomas.org (Postfix, from userid 1998)
+	id 90C20F811F5; Wed, 14 May 2014 12:06:27 -0600 (MDT)
+Received: from [192.168.1.114] (zeus [192.168.1.114])
+	by mail.chez-thomas.org (Postfix) with ESMTP id CC02FF811F4;
+	Wed, 14 May 2014 12:06:26 -0600 (MDT)
+Message-ID: <5373B0AB.4070204@mlbassoc.com>
+Date: Wed, 14 May 2014 12:06:35 -0600
+From: Gary Thomas <gary@mlbassoc.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:24.0) Gecko/20100101 Thunderbird/24.5.0
 MIME-Version: 1.0
-X-Received: by 10.182.144.194 with SMTP id so2mr4751094obb.31.1400088734634;
-	Wed, 14 May 2014 10:32:14 -0700 (PDT)
-Received: by 10.182.24.106 with HTTP; Wed, 14 May 2014 10:32:14 -0700 (PDT)
-Date: Wed, 14 May 2014 19:32:14 +0200
-Message-ID: <CAFyqS9q2-dJ-ZSTz9OMDAQjGMwWrCmtGbLzS1+ZmQsb8D=axWQ@mail.gmail.com>
-From: =?UTF-8?Q?Hans_Beck=C3=A9rus?= <hans.beckerus@gmail.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: procps_3.2.8: problem with install of a user defined package split
+To: Yocto Project <yocto@yoctoproject.org>
+Subject: Where did my preferred version go?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -54,72 +35,43 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 14 May 2014 17:40:16 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Wed, 14 May 2014 18:06:32 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Hi. We have problem with one of our .bbappend files that tries to
-split procps in some more fine grained packages.
-Currently this is only done for 'top' and 'ps'. The actual issue here
-is that /usr/bin/top.procps gets installed on our image but *not*
-/bin/ps.procps?
+I have a number of platforms which [for whatever reason]
+need older versions of GCC.  I've been supporting this by
+keeping the older code around in my own layers - I need
+4.7.x for some targets, even 4.6.x for others.
 
-The IMAGE_INSTALL sets both procps-ps and procps-top.
-The .bbappend looks like this:
+With the changes in the latest master (post 1.6/daisy), I
+am no longer able to build those older compilers :-(  First
+I had to fix up some core changes to just get the recipes to
+even parse (bb.utils.contains), but now I get a slew of errors
+like these:
 
---
+   NOTE: preferred version 4.7% of libgcc-initial not available (for item libgcc-initial)
+   NOTE: versions of libgcc-initial available: 4.8.2 4.9.0
 
-FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+I looked at the old recipes and they don't provide these
+packages which make them unsuitable.
 
-PRINC = "0"
+I know I should move these targets to the newer GCC, but at
+this moment there simply are not the resources to do so, but
+we still want to benefit from other improvements in OE-core
+(and Poky/Yocto).
 
-PACKAGES =+ "${PN}-lib ${PN}-top ${PN}-ps "
+How can I move forward?  Is there some way to retrofit the
+older compilers into the new [required] structures?  Perhaps
+I could use the older compilers as external tool chain, but
+the last time I tried to use this (in place of the internal,
+build in place) tools, I could never make things happy :-(
 
-# Make sure base package installs ${PN}-lib
-RDEPENDS_${PN} = "${PN}-lib"
+Any suggestions more than welcome, thanks
 
-FILES_${PN}-top = "${bindir}/top.procps"
-FILES_${PN}-ps = "${base_bindir}/ps.procps"
-FILES_${PN}-lib = "${libdir}/*-${PV}.so ${base_libdir}/*-${PV}.so"
-
---
-
-As simple as it can be  ;) The packages-split folder contains both
-packages, and they both contain the proper files after a build. That
-is, procps-ps/bin/ps.procps and procps-top/usr/bin/top.procps.
-
-If we instead change to the below it works!?
-
---
-
-FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
-
-PRINC = "0"
-
-PACKAGES =+ "${PN}-lib ${PN}-top_ps "
-
-# Make sure base package installs ${PN}-lib
-RDEPENDS_${PN} = "${PN}-lib"
-
-FILES_${PN}-top_ps = "${bindir}/top.procps ${base_bindir}/ps.procps"
-FILES_${PN}-lib = "${libdir}/*-${PV}.so ${base_libdir}/*-${PV}.so"
-
---
-
-Using the latter recipe and after updating IMAGE_INSTALL both
-ps.procps and top.procps ends up in our image.
-But, due to all the frustration we have had with this, we would really
-like to understand why things seems to fail miserably when using the
-first variant of  it.
-Using both recipes the lib package get installed correctly. We also
-have busybox applets enabled for 'ps' and 'top' but that we will take
-care of using the already existing logic in procps for
-update-alternatives. But since '/bin/ps.procps' does not get installed
-there is no point in even trying.
-
-Anyone that has a clue?
-
-We are on a very early Yocto/poky 1.5 baseline.
-
-Thanks.
-Hans
+-- 
+------------------------------------------------------------
+Gary Thomas                 |  Consulting for the
+MLB Associates              |    Embedded world
+------------------------------------------------------------
 
