@@ -1,35 +1,33 @@
-Return-Path: <sgw@linux.intel.com>
+Return-Path: <ezekiel@sanborndeasis.net>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id BBB03E006EF; Wed, 14 May 2014 14:38:53 -0700 (PDT)
+	id 71F28E006EF; Wed, 14 May 2014 15:18:10 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-3.7 required=5.0 tests=RCVD_IN_DNSWL_HI,RDNS_NONE
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [134.134.136.24 listed in list.dnswl.org]
+X-Spam-Level: **
+X-Spam-Status: No, score=2.4 required=5.0 tests=HTML_MESSAGE,MIME_HTML_ONLY,
+	RDNS_NONE autolearn=no version=3.3.1
+X-Spam-HAM-Report: *  0.0 HTML_MESSAGE BODY: HTML included in message
+	*  1.1 MIME_HTML_ONLY BODY: Message only has text/html MIME parts
 	*  1.3 RDNS_NONE Delivered to internal network by a host with no rDNS
-Received: from mga09.intel.com (unknown [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 226C7E0053B
-	for <yocto@yoctoproject.org>; Wed, 14 May 2014 14:38:52 -0700 (PDT)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga102.jf.intel.com with ESMTP; 14 May 2014 14:33:49 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.97,1054,1389772800"; d="scan'208";a="511779488"
-Received: from unknown (HELO [10.255.12.90]) ([10.255.12.90])
-	by orsmga001.jf.intel.com with ESMTP; 14 May 2014 14:38:51 -0700
-Message-ID: <5373E26A.6060509@linux.intel.com>
-Date: Wed, 14 May 2014 14:38:50 -0700
-From: Saul Wold <sgw@linux.intel.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:24.0) Gecko/20100101 Thunderbird/24.4.0
-MIME-Version: 1.0
-To: Lucas Pirolla <lucas.pirolla@gmail.com>
-References: <CAK4xyAmvGw7dYHhMEcUCHxBSzMiM+9Hk_SedN5huG5hc=BHcNg@mail.gmail.com>
-In-Reply-To: <CAK4xyAmvGw7dYHhMEcUCHxBSzMiM+9Hk_SedN5huG5hc=BHcNg@mail.gmail.com>
-Cc: Yocto Project Discussion <yocto@yoctoproject.org>
-Subject: Re: meta-web-kiosk: bad fonts in high resolution
+X-Greylist: delayed 120 seconds by postgrey-1.32 at yocto-www;
+	Wed, 14 May 2014 15:18:08 PDT
+Received: from p3plwbeout14-02.prod.phx3.secureserver.net (unknown
+	[173.201.192.184])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2DF3BE0053B
+	for <yocto@yoctoproject.org>; Wed, 14 May 2014 15:18:08 -0700 (PDT)
+Received: from localhost ([173.201.192.244])
+	by p3plwbeout14-02.prod.phx3.secureserver.net with bizsmtp
+	id 1yG41o0015GqY0l01yG4CX; Wed, 14 May 2014 15:16:04 -0700
+X-SID: 1yG41o0015GqY0l01
+Received: (qmail 8879 invoked by uid 99); 14 May 2014 22:16:04 -0000
+X-Originating-IP: 54.240.196.169
+User-Agent: Workspace Webmail 5.6.47
+Message-Id: <20140514151603.8c4e4b9406b77e1e78d5069819454ed7.d51cb4e19e.wbe@email14.secureserver.net>
+From: <ezekiel@sanborndeasis.net>
+To: yocto@yoctoproject.org
+Date: Wed, 14 May 2014 15:16:03 -0700
+Mime-Version: 1.0
+Subject: devshell: what am I missing?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,34 +39,20 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 14 May 2014 21:38:53 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 14 May 2014 22:18:10 -0000
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html; charset="utf-8"
 
-On 05/14/2014 01:25 PM, Lucas Pirolla wrote:
-> Hello, Saul.
->
-> I'm new to Yocto, and I made an Image meta-web-kiosk, and when I run it,
-> the fonts in browser  are getting messed up, as you can see in these images:
->
-> https://drive.google.com/folderview?id=0Bw1B-mbeX0tbRnc0OHZSaDVuQlE&usp=sharing
->
-> This happened in FullHD output.  But when I low the resolution to VGA,
-> fonts are totally ok.
->
-Hm, I think I have tested it with HD before, it's been a while since I 
-touched that layer.
-
-What device are you using it with?
-
-Adding in yocto@yoctoproject.com in case other folks have any idea.
-
-Sau!
-
-
-> Any ideas?
->
-> Kind regards
-> Lucas
->
+<html><body><span style=3D"font-family:Verdana; color:#000000; font-size:10=
+pt;"><div>OE newbie here, so I may just be missing something.</div><div><br=
+></div><div>I am running in latest pocky-daisy-11.0.0. I created my own sim=
+ple layer with the helloworld sample in it. I am building for machine qemua=
+rm. The build itself is working fine, the packages I have added are showing=
+ up in the image etc.</div><div><br></div><div>But when I try to use the de=
+vshell, I dont see the ability to run the tasks 1 by 1 (ex. compile or conf=
+igure).<br></div><div><br></div><div>After </div><div><br></div><div>bitbak=
+e sample -c devshell</div><div><br></div><div>I get a shell, fine. But neit=
+her "compile" or "do_compile" is a recognized command. I can run them via t=
+he temp dir.</div><div><br></div><div>temp/run.do_compile<br></div><div><br=
+></div><div>-ezekiel<br></div></span></body></html>
 
