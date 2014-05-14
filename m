@@ -1,34 +1,39 @@
-Return-Path: <philip@balister.org>
+Return-Path: <anders@chargestorm.se>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 62F82E00975; Wed, 14 May 2014 07:02:30 -0700 (PDT)
+	id 3EB6CE00B8B; Wed, 14 May 2014 07:02:50 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
-X-Spam-Level: *
-X-Spam-Status: No, score=1.3 required=5.0 tests=RDNS_NONE autolearn=no
-	version=3.3.1
-X-Spam-HAM-Report: * 1.3 RDNS_NONE Delivered to internal network by a host
-	with no rDNS
-Received: from sanddollar.geekisp.com (unknown [216.168.135.167])
-	by yocto-www.yoctoproject.org (Postfix) with SMTP id 3B04EE006EF
-	for <yocto@yoctoproject.org>; Wed, 14 May 2014 07:02:26 -0700 (PDT)
-Received: (qmail 3417 invoked by uid 1003); 14 May 2014 14:02:25 -0000
-Received: from unknown (HELO ?192.168.1.122?)
-	(philip@opensdr.com@71.171.37.254)
-	by mail.geekisp.com with (DHE-RSA-AES128-SHA encrypted) SMTP;
-	14 May 2014 14:02:25 -0000
-Message-ID: <53737770.5060704@balister.org>
-Date: Wed, 14 May 2014 10:02:24 -0400
-From: Philip Balister <philip@balister.org>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:24.0) Gecko/20100101 Thunderbird/24.4.0
+X-Spam-Level: 
+X-Spam-Status: No, score=0.6 required=5.0 tests=RCVD_IN_DNSWL_LOW,RDNS_NONE
+	autolearn=no version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [83.145.59.142 listed in list.dnswl.org]
+	*  1.3 RDNS_NONE Delivered to internal network by a host with no rDNS
+X-Greylist: delayed 65 seconds by postgrey-1.32 at yocto-www;
+	Wed, 14 May 2014 07:02:40 PDT
+Received: from STOEXHUB01.domain01.net (unknown [83.145.59.142])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B2078E00B85
+	for <yocto@yoctoproject.org>; Wed, 14 May 2014 07:02:40 -0700 (PDT)
+Received: from ad.chargestorm.se (213.114.64.43) by STOEXHUB01.domain01.net
+	(10.12.10.1) with Microsoft SMTP Server (TLS) id 8.3.279.1;
+	Wed, 14 May 2014 16:01:33 +0200
+Date: Wed, 14 May 2014 16:01:30 +0200
+From: Anders Darander <anders@chargestorm.se>
+To: <yocto@yoctoproject.org>
+Message-ID: <20140514140129.GC3649@ad.chargestorm.se>
+Mail-Followup-To: yocto@yoctoproject.org
+References: <lkvpl2$e8q$1@ger.gmane.org>
+	<1400074572.84934.YahooMailNeo@web122502.mail.ne1.yahoo.com>
+	<lkvsj2$vof$1@ger.gmane.org>
 MIME-Version: 1.0
-To: "Burton, Ross" <ross.burton@intel.com>, 
- Neuer User <auslands-kv@gmx.de>
-References: <lkvpl2$e8q$1@ger.gmane.org>	<1400074572.84934.YahooMailNeo@web122502.mail.ne1.yahoo.com>	<lkvsj2$vof$1@ger.gmane.org>
-	<CAJTo0Laq27nBx+vPbch=PQigAhvRTMKiM7jkKUYHWgxDfgnSEw@mail.gmail.com>
-In-Reply-To: <CAJTo0Laq27nBx+vPbch=PQigAhvRTMKiM7jkKUYHWgxDfgnSEw@mail.gmail.com>
-X-Enigmail-Version: 1.6
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+In-Reply-To: <lkvsj2$vof$1@ger.gmane.org>
+X-Accept-Language: sv, en, de
+X-GPG-Fingerprint: 5AF0 B2E9 78FE 9D75 D110  6F8F 3E31 84D7 920E 938C
+X-GPG-Key-Id: 0x920E938C
+X-GPG-Keyserver: hkp://keys.gnupg.net
+Organization: ChargeStorm AB
+User-Agent: Mutt/1.5.23 (2014-03-12)
 Subject: Re: Best way to remove DISTRO_FEATURES?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -41,23 +46,26 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 14 May 2014 14:02:30 -0000
-Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 14 May 2014 14:02:50 -0000
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
 
-On 05/14/2014 09:58 AM, Burton, Ross wrote:
-> On 14 May 2014 14:54, Neuer User <auslands-kv@gmx.de> wrote:
->> to my image.bb file. Guess, this is then the recommended way to go?
-> 
-> Not in your image recipe, no, as then e.g. connman will still think
-> that you need 3g and nfc.
+* Neuer User <auslands-kv@gmx.de> [140514 15:56]:
+> Well, no, not a one-time job. So I rather added
+> DISTRO_FEATURES_remove = " 3g bluetooth irda nfc zeroconf x11 wayland"
+> to my image.bb file. Guess, this is then the recommended way to go?
 
-What Ross said. DISTRO features should only be changed in distro conf
-file (or local conf files for testing/local changes).
+Well, the quick solution is to add that line to local.conf.
 
-Philip
+The image.bb file is far to late to change the distro configuration.
 
-> 
-> Ross
-> 
+The better, long term solution would be to define your own distro. Which
+really isn't that hard.
+
+Cheers,
+Anders
+
+-- 
+Anders Darander
+ChargeStorm AB / eStorm AB
 
