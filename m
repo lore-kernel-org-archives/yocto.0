@@ -1,6 +1,6 @@
 Return-Path: <akuster808@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 021A1E006EC; Wed, 14 May 2014 15:30:23 -0700 (PDT)
+	id 219AEE00724; Wed, 14 May 2014 15:30:54 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -16,39 +16,41 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
 	low *      trust
-	*      [209.85.220.45 listed in list.dnswl.org]
+	*      [209.85.160.42 listed in list.dnswl.org]
 	*  1.3 RDNS_NONE Delivered to internal network by a host with no rDNS
-Received: from mail-pa0-f45.google.com (unknown [209.85.220.45])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 076F9E00975
-	for <yocto@yoctoproject.org>; Wed, 14 May 2014 15:30:15 -0700 (PDT)
-Received: by mail-pa0-f45.google.com with SMTP id ey11so181294pad.18
-	for <yocto@yoctoproject.org>; Wed, 14 May 2014 15:30:15 -0700 (PDT)
+X-Greylist: delayed 382 seconds by postgrey-1.32 at yocto-www;
+	Wed, 14 May 2014 15:30:48 PDT
+Received: from mail-pb0-f42.google.com (unknown [209.85.160.42])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F1652E00B9D
+	for <yocto@yoctoproject.org>; Wed, 14 May 2014 15:30:48 -0700 (PDT)
+Received: by mail-pb0-f42.google.com with SMTP id md12so184732pbc.15
+	for <yocto@yoctoproject.org>; Wed, 14 May 2014 15:30:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=from:to:cc:subject:date:message-id:in-reply-to:references;
-	bh=zG0oR8h72QSEPHKmzC7S3Klcfj+FOH4ngeWHCtTUVu8=;
-	b=xgmTTYgBOU1QkgQNyBFmu6tz7noRx4Zh4ImIR2jQ0Yw3Sq6sL4lGDBiqbubKUF0ymz
-	NefKyO5msiVf6iwMATByNEAmbAGsrCO0w5Anr34+c9JvI85hsyMmL8Pqj4+pqVoROy0C
-	ZEmYQdFCY86UxqOh2TsqixW34k54F02XhQsOdbztKzdbHwkrSWpJnf0M7cPfWOdAfRyq
-	ho6eD9vGlr3KTKg9y6K4geD/imTYnl5We1SFLLLkNjOBI3XylMaIvyGvZX7buxm3kd81
-	YfTzBko1KV6AHK5vTj5kk0k0/tkXQJyTznJ2ifteY84CQF3T5OYNMMFs3h13p/BpHXQH
-	Yxww==
-X-Received: by 10.68.132.68 with SMTP id os4mr7506909pbb.129.1400106272698;
-	Wed, 14 May 2014 15:24:32 -0700 (PDT)
+	bh=MEZtjfTUrCkimm2Z8oLlLfZOv6RdJ97VwUEuebOA5y4=;
+	b=AAthagJMQx9AKt94hV6AgnKZ0NkViZoAIo0E5OvYYQg/390Iyw8PUpempDQi6BvlII
+	dOVjAeWgiAvC2xr4GqvDWNyWi+BulBhiyCNYOROTtrKtPBWSE/suPG5NAMd5rbH4SqQ0
+	K15sAw9EA0qvP0rl2tpNaxkrO9IFZ2rSA/h8b3qVLDHbW2mt/ev6QdA53U0D0aaHizZI
+	5AXkFXmVUkVsqeXKA59QzrsTOiAgS4GqO4W9aVP6k1hUy2/GTtexmukKo0nulDgoJe+i
+	aDz7LE1AyHrj87Vz0yXDQ/u+ziapLM/7E7GZCtDymxjYc6bYFIaIWrlDIck9cL3iUx7c
+	Io1g==
+X-Received: by 10.68.163.100 with SMTP id yh4mr7858819pbb.122.1400106285893;
+	Wed, 14 May 2014 15:24:45 -0700 (PDT)
 Received: from Pahoa2.hsd1.ca.comcast.net (c-98-239-95-55.hsd1.ca.comcast.net.
 	[98.239.95.55])
-	by mx.google.com with ESMTPSA id jd5sm5364684pbb.18.2014.05.14.15.24.30
+	by mx.google.com with ESMTPSA id jd5sm5364684pbb.18.2014.05.14.15.24.44
 	for <multiple recipients>
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-	Wed, 14 May 2014 15:24:31 -0700 (PDT)
+	Wed, 14 May 2014 15:24:45 -0700 (PDT)
 From: Armin Kuster <akuster808@gmail.com>
 To: mark.hatle@windriver.com
-Date: Wed, 14 May 2014 15:24:17 -0700
-Message-Id: <1400106263-25100-4-git-send-email-akuster808@gmail.com>
+Date: Wed, 14 May 2014 15:24:23 -0700
+Message-Id: <1400106263-25100-10-git-send-email-akuster808@gmail.com>
 X-Mailer: git-send-email 1.9.1
 In-Reply-To: <1400106263-25100-1-git-send-email-akuster808@gmail.com>
 References: <1400106263-25100-1-git-send-email-akuster808@gmail.com>
 Cc: yocto@yoctoproject.org
-Subject: [PATCH 3/9] Use wildcard in bind bbappend name
+Subject: [PATCH 9/9] setools fix do_configure
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -60,57 +62,37 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 14 May 2014 22:30:23 -0000
+X-List-Received-Date: Wed, 14 May 2014 22:30:54 -0000
 
-    bind: Use wildcard to minimize the need to keep in-sync 
-    with poky.
+	setools: change autotools to autotools-brokensep and bump rev.
 
 Signed-off-by: Armin Kuster <akuster808@gmail.com>
 ---
- recipes-connectivity/bind/bind_9.%.bbappend   | 13 +++++++++++++
- recipes-connectivity/bind/bind_9.8.1.bbappend | 13 -------------
- 2 files changed, 13 insertions(+), 13 deletions(-)
- create mode 100644 recipes-connectivity/bind/bind_9.%.bbappend
- delete mode 100644 recipes-connectivity/bind/bind_9.8.1.bbappend
+ recipes-security/setools/setools_3.3.8.bb | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
 
-diff --git a/recipes-connectivity/bind/bind_9.%.bbappend b/recipes-connectivity/bind/bind_9.%.bbappend
-new file mode 100644
-index 0000000..3500b9a
---- /dev/null
-+++ b/recipes-connectivity/bind/bind_9.%.bbappend
-@@ -0,0 +1,13 @@
+diff --git a/recipes-security/setools/setools_3.3.8.bb b/recipes-security/setools/setools_3.3.8.bb
+index 78ed06d..b3bad6b 100644
+--- a/recipes-security/setools/setools_3.3.8.bb
++++ b/recipes-security/setools/setools_3.3.8.bb
+@@ -12,6 +12,8 @@ SRC_URI = "http://oss.tresys.com/projects/setools/chrome/site/dists/setools-${PV
+ SRC_URI[md5sum] = "d68d0d4e4da0f01da0f208782ff04b91"
+ SRC_URI[sha256sum] = "44387ecc9a231ec536a937783440cd8960a72c51f14bffc1604b7525e341e999"
+ 
 +PR .= ".1"
 +
-+FILESEXTRAPATHS_prepend := "${THISDIR}/files:"
-+
-+SRC_URI += "file://volatiles.04_bind"
-+
-+do_install_append() {
-+	install -d ${D}${sysconfdir}/default/volatiles
-+	install -m 0644 ${WORKDIR}/volatiles.04_bind ${D}${sysconfdir}/default/volatiles/volatiles.04_bind
-+
-+	sed -i '/^\s*\/usr\/sbin\/rndc-confgen/a\
-+	    [ -x /sbin/restorecon ] && /sbin/restorecon -F /etc/bind/rndc.key' ${D}${sysconfdir}/init.d/bind
-+}
-diff --git a/recipes-connectivity/bind/bind_9.8.1.bbappend b/recipes-connectivity/bind/bind_9.8.1.bbappend
-deleted file mode 100644
-index a15e045..0000000
---- a/recipes-connectivity/bind/bind_9.8.1.bbappend
-+++ /dev/null
-@@ -1,13 +0,0 @@
--PR .= ".3"
--
--FILESEXTRAPATHS_prepend := "${THISDIR}/files:"
--
--SRC_URI += "file://volatiles.04_bind"
--
--do_install_append() {
--	install -d ${D}${sysconfdir}/default/volatiles
--	install -m 0644 ${WORKDIR}/volatiles.04_bind ${D}${sysconfdir}/default/volatiles/volatiles.04_bind
--
--	sed -i '/^\s*\/usr\/sbin\/rndc-confgen/a\
--	    [ -x /sbin/restorecon ] && /sbin/restorecon -F /etc/bind/rndc.key' ${D}${sysconfdir}/init.d/bind
--}
+ SRC_URI += "file://setools-neverallow-rules-all-always-fail.patch"
+ SRC_URI += "file://setools-Fix-sepol-calls-to-work-with-latest-libsepol.patch"
+ #SRC_URI += "file://setools-Changes-to-support-named-file_trans-rules.patch"
+@@ -69,7 +71,7 @@ FILES_${PN} += "\
+ 	${mandir}/man1/sesearch.1.gz \
+ 	"
+ 
+-inherit autotools pythonnative
++inherit autotools-brokensep pythonnative
+ 
+ # need to export these variables for python-config to work
+ export BUILD_SYS
 -- 
 1.9.1
 
