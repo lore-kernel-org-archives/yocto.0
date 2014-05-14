@@ -1,39 +1,44 @@
-Return-Path: <anders@chargestorm.se>
+Return-Path: <gley-yocto@m.gmane.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 3EB6CE00B8B; Wed, 14 May 2014 07:02:50 -0700 (PDT)
+	id 2FAC1E00B9F; Wed, 14 May 2014 07:04:02 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
-X-Spam-Level: 
-X-Spam-Status: No, score=0.6 required=5.0 tests=RCVD_IN_DNSWL_LOW,RDNS_NONE
-	autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [83.145.59.142 listed in list.dnswl.org]
+X-Spam-Level: *
+X-Spam-Status: No, score=1.3 required=5.0 tests=FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE,RDNS_NONE,SPF_HELO_PASS autolearn=no version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [80.91.229.3 listed in list.dnswl.org]
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (auslands-kv[at]gmx.de)
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
 	*  1.3 RDNS_NONE Delivered to internal network by a host with no rDNS
-X-Greylist: delayed 65 seconds by postgrey-1.32 at yocto-www;
-	Wed, 14 May 2014 07:02:40 PDT
-Received: from STOEXHUB01.domain01.net (unknown [83.145.59.142])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B2078E00B85
-	for <yocto@yoctoproject.org>; Wed, 14 May 2014 07:02:40 -0700 (PDT)
-Received: from ad.chargestorm.se (213.114.64.43) by STOEXHUB01.domain01.net
-	(10.12.10.1) with Microsoft SMTP Server (TLS) id 8.3.279.1;
-	Wed, 14 May 2014 16:01:33 +0200
-Date: Wed, 14 May 2014 16:01:30 +0200
-From: Anders Darander <anders@chargestorm.se>
-To: <yocto@yoctoproject.org>
-Message-ID: <20140514140129.GC3649@ad.chargestorm.se>
-Mail-Followup-To: yocto@yoctoproject.org
-References: <lkvpl2$e8q$1@ger.gmane.org>
-	<1400074572.84934.YahooMailNeo@web122502.mail.ne1.yahoo.com>
-	<lkvsj2$vof$1@ger.gmane.org>
-MIME-Version: 1.0
-In-Reply-To: <lkvsj2$vof$1@ger.gmane.org>
-X-Accept-Language: sv, en, de
-X-GPG-Fingerprint: 5AF0 B2E9 78FE 9D75 D110  6F8F 3E31 84D7 920E 938C
-X-GPG-Key-Id: 0x920E938C
-X-GPG-Keyserver: hkp://keys.gnupg.net
-Organization: ChargeStorm AB
-User-Agent: Mutt/1.5.23 (2014-03-12)
+Received: from plane.gmane.org (unknown [80.91.229.3])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 09FB3E006EF
+	for <yocto@yoctoproject.org>; Wed, 14 May 2014 07:03:43 -0700 (PDT)
+Received: from list by plane.gmane.org with local (Exim 4.69)
+	(envelope-from <gley-yocto@m.gmane.org>) id 1WkZmW-0002Hg-VW
+	for yocto@yoctoproject.org; Wed, 14 May 2014 16:03:40 +0200
+Received: from 80-218-32-173.dclient.hispeed.ch ([80.218.32.173])
+	by main.gmane.org with esmtp (Gmexim 0.1 (Debian))
+	id 1AlnuQ-0007hv-00
+	for <yocto@yoctoproject.org>; Wed, 14 May 2014 16:03:40 +0200
+Received: from auslands-kv by 80-218-32-173.dclient.hispeed.ch with local
+	(Gmexim 0.1 (Debian)) id 1AlnuQ-0007hv-00
+	for <yocto@yoctoproject.org>; Wed, 14 May 2014 16:03:40 +0200
+X-Injected-Via-Gmane: http://gmane.org/
+To: yocto@yoctoproject.org
+From: Neuer User <auslands-kv@gmx.de>
+Date: Wed, 14 May 2014 16:03:29 +0200
+Message-ID: <lkvt3i$bhu$1@ger.gmane.org>
+References: <lkvpl2$e8q$1@ger.gmane.org>	<1400074572.84934.YahooMailNeo@web122502.mail.ne1.yahoo.com>	<lkvsj2$vof$1@ger.gmane.org>
+	<CAJTo0Laq27nBx+vPbch=PQigAhvRTMKiM7jkKUYHWgxDfgnSEw@mail.gmail.com>
+Mime-Version: 1.0
+X-Complaints-To: usenet@ger.gmane.org
+X-Gmane-NNTP-Posting-Host: 80-218-32-173.dclient.hispeed.ch
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:24.0) Gecko/20100101 Thunderbird/24.5.0
+In-Reply-To: <CAJTo0Laq27nBx+vPbch=PQigAhvRTMKiM7jkKUYHWgxDfgnSEw@mail.gmail.com>
 Subject: Re: Best way to remove DISTRO_FEATURES?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -46,26 +51,35 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 14 May 2014 14:02:50 -0000
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
+X-List-Received-Date: Wed, 14 May 2014 14:04:02 -0000
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: 7bit
 
-* Neuer User <auslands-kv@gmx.de> [140514 15:56]:
-> Well, no, not a one-time job. So I rather added
-> DISTRO_FEATURES_remove = " 3g bluetooth irda nfc zeroconf x11 wayland"
-> to my image.bb file. Guess, this is then the recommended way to go?
+Am 14.05.2014 15:58, schrieb Burton, Ross:
+> On 14 May 2014 14:54, Neuer User <auslands-kv@gmx.de> wrote:
+>> to my image.bb file. Guess, this is then the recommended way to go?
+> 
+> Not in your image recipe, no, as then e.g. connman will still think
+> that you need 3g and nfc.
+> 
+> Ross
+> 
+Right. It doesn't work.
 
-Well, the quick solution is to add that line to local.conf.
+Hmm, so I need my own distro?
 
-The image.bb file is far to late to change the distro configuration.
+Actually, it is not 100% clear to me what the difference and the
+interaction of "distro" and "image" is.
 
-The better, long term solution would be to define your own distro. Which
-really isn't that hard.
+What I need is several (slightly to strongly) different images for my
+system. Some are for testing only (include some debug apps), some are
+for production purposes, some are used as initramfs (very minimal).
 
-Cheers,
-Anders
+So, I should build my own distro, include poky.conf and add the
+DISTRO_FEATURES_remove there?
 
--- 
-Anders Darander
-ChargeStorm AB / eStorm AB
+Thanks
+
+Michael
+
 
