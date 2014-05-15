@@ -1,45 +1,53 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <bevenson@melinkcorp.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id B752FE00B85; Thu, 15 May 2014 02:58:24 -0700 (PDT)
+	id ACAF3E00B97; Thu, 15 May 2014 05:47:17 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
-X-Spam-Level: 
-X-Spam-Status: No, score=0.6 required=5.0 tests=RCVD_IN_DNSWL_LOW,RDNS_NONE
-	autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [209.85.216.176 listed in list.dnswl.org]
+X-Spam-Level: *
+X-Spam-Status: No, score=1.3 required=5.0 tests=RCVD_IN_DNSWL_NONE, RDNS_NONE, 
+	SPF_HELO_PASS autolearn=no version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [207.46.163.187 listed in list.dnswl.org]
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
 	*  1.3 RDNS_NONE Delivered to internal network by a host with no rDNS
-Received: from mail-qc0-f176.google.com (unknown [209.85.216.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 173FAE009A7
-	for <yocto@yoctoproject.org>; Thu, 15 May 2014 02:58:21 -0700 (PDT)
-Received: by mail-qc0-f176.google.com with SMTP id r5so1340205qcx.21
-	for <yocto@yoctoproject.org>; Thu, 15 May 2014 02:58:20 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc:content-type;
-	bh=dUBnf6Ob4kHUXrKBvjg/t1FxR8y+n4wpN4/qfl6yTCE=;
-	b=f21r2Qfirx6Dxv48X1X7wuPGX263C0YuVg1iRqRDj2ib+TCs4tk9MS6Q+H/WB7aERa
-	zNvGWzOYxvWqLUcqwtS+ch641J7wBr8EPcAesyf0WZl9Xv1FyhledK1zDqq/Ci28KE+M
-	5QA75qeIv27M1uVDSc54VCqD+CKZdA5O82x00HPBCoG4CPIsoaWVEb06NX9WjQTTGuv3
-	h43jhN4g6ipSLjxTpSify2n2qrKnGw8FoAc44OBV0Hj++ihmtaHCm4tdvZpJ36PVxSC1
-	kY188zSVT5uVlVyDNPcfl1EvHTbdvyAspsi9O56c2hqqk7mMupgf7JvrsbLjtxGj8ko2
-	FUjQ==
-X-Gm-Message-State: ALoCoQld50j+RniT5BSqJ+qeVveCCBfgUYcavn24QAwrCDUWjnRiUoiuhdfqGSSkRIuYuVBHr85f
-X-Received: by 10.224.32.138 with SMTP id c10mr1710837qad.35.1400147899187;
-	Thu, 15 May 2014 02:58:19 -0700 (PDT)
+Received: from na01-bn1-obe.outbound.protection.outlook.com (unknown
+	[207.46.163.187])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A98E8E00B85
+	for <yocto@yoctoproject.org>; Thu, 15 May 2014 05:47:13 -0700 (PDT)
+Received: from BLUPR05MB037.namprd05.prod.outlook.com (10.255.210.145) by
+	BLUPR05MB038.namprd05.prod.outlook.com (10.255.210.147) with Microsoft
+	SMTP Server (TLS) id 15.0.944.11; Thu, 15 May 2014 12:47:11 +0000
+Received: from BLUPR05MB037.namprd05.prod.outlook.com ([169.254.15.171]) by
+	BLUPR05MB037.namprd05.prod.outlook.com ([169.254.15.171]) with mapi id
+	15.00.0944.000; Thu, 15 May 2014 12:47:11 +0000
+From: Bryan Evenson <bevenson@melinkcorp.com>
+To: "koansoftware@gmail.com" <koansoftware@gmail.com>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: [yocto] [RFC] Upgrade to a package with all its dependency
+	without network
+Thread-Index: AQHPaP7AQCVbk7O/OkuSSab0artvsJtBoFvw
+Date: Thu, 15 May 2014 12:47:10 +0000
+Message-ID: <1f5d2d355cc24295adadefbffcd7677f@BLUPR05MB037.namprd05.prod.outlook.com>
+References: <5368923F.9060003@gmail.com>
+In-Reply-To: <5368923F.9060003@gmail.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-vipre-scanned: 0038BC3D00722E0038BD8A
+x-originating-ip: [98.100.91.242]
+x-forefront-prvs: 0212BDE3BE
+x-forefront-antispam-report: SFV:NSPM;
+	SFS:(6009001)(428001)(199002)(189002)(13464003)(51704005)(377454003)(76576001)(92566001)(50986999)(77982001)(15202345003)(83072002)(99396002)(2656002)(4396001)(87936001)(99286001)(74316001)(54356999)(76176999)(46102001)(16601075003)(21056001)(101416001)(15975445006)(85852003)(19580405001)(76482001)(19580395003)(66066001)(83322001)(80022001)(79102001)(74662001)(31966008)(33646001)(81542001)(86362001)(74502001)(20776003)(81342001)(64706001)(24736002);
+	DIR:OUT; SFP:; SCL:1; SRVR:BLUPR05MB038;
+	H:BLUPR05MB037.namprd05.prod.outlook.com; FPR:; MLV:sfv;
+	PTR:InfoNoRecords; A:1; MX:1; LANG:en; 
+received-spf: None (: melinkcorp.com does not designate permitted sender hosts)
+authentication-results: spf=none (sender IP is )
+	smtp.mailfrom=bevenson@melinkcorp.com; 
 MIME-Version: 1.0
-Received: by 10.140.101.77 with HTTP; Thu, 15 May 2014 02:57:58 -0700 (PDT)
-In-Reply-To: <5373E26A.6060509@linux.intel.com>
-References: <CAK4xyAmvGw7dYHhMEcUCHxBSzMiM+9Hk_SedN5huG5hc=BHcNg@mail.gmail.com>
-	<5373E26A.6060509@linux.intel.com>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Thu, 15 May 2014 10:57:58 +0100
-Message-ID: <CAJTo0LaEm3_JXSe=XXfsYUyZPgceSRZfP0+_5zDpvuhcZSzdJQ@mail.gmail.com>
-To: Saul Wold <sgw@linux.intel.com>
-Cc: Yocto Project Discussion <yocto@yoctoproject.org>
-Subject: Re: meta-web-kiosk: bad fonts in high resolution
+X-OriginatorOrg: melinkcorp.com
+Subject: Re: [RFC] Upgrade to a package with all its dependency without network
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -51,22 +59,75 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 15 May 2014 09:58:24 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Thu, 15 May 2014 12:47:17 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-On 14 May 2014 22:38, Saul Wold <sgw@linux.intel.com> wrote:
->> I'm new to Yocto, and I made an Image meta-web-kiosk, and when I run it,
->> the fonts in browser  are getting messed up, as you can see in these
->> images:
->>
->>
->> https://drive.google.com/folderview?id=0Bw1B-mbeX0tbRnc0OHZSaDVuQlE&usp=sharing
->>
->> This happened in FullHD output.  But when I low the resolution to VGA,
->> fonts are totally ok.
+Marco,
 
-It would be interesting to see the output of xdpyinfo and xrandr, to
-check that X isn't being lied to about the screen.
+> -----Original Message-----
+> From: yocto-bounces@yoctoproject.org [mailto:yocto-
+> bounces@yoctoproject.org] On Behalf Of Marco
+> Sent: Tuesday, May 06, 2014 3:42 AM
+> To: yocto@yoctoproject.org
+> Subject: [yocto] [RFC] Upgrade to a package with all its dependency witho=
+ut
+> network
+>=20
+> Hello,
+> I need to be able to upgrade to a package with all its dependency chain o=
+n a
+> target system that does not have access to the network.
+>=20
+> I'm trying to understand what may be the best and also the simplest solut=
+ion.
+> Perhaps there is already this functionality in OE/Yocto?
+>=20
+> I thought to implement a new opkg feture so that I can to generate the li=
+st of
+> dependencies of a package and then extract the packages from OE/Yocto
+> using a script or an application.
+>=20
+> Another possibility would be to extend the operation of bitbake so I pull=
+ out
+> the package and dependencies putting them in a dedicated directory to be
+> moved on the target for the update.
 
-Ross
+Go to your local.conf and add the following:
+
+INHERIT +=3D "buildhistory"
+BUILDHISTORY_COMMIT =3D "1"
+
+This will generate build history information for each image you build.  Inc=
+luded in that build history is the list of packages installed in the image.=
+  So if you are building core-image-minimal, there will be a file called "t=
+mp/buildhistory/images/{arch}/eglibc/core-image-minimal/installed-packages.=
+txt" under your Yocto temp directory that lists all the packages installed =
+on that image.  I have a script that I am using to build a package feed fol=
+der that only contains the packages I have installed on that image.  The sc=
+ript is highly customized for my use (almost everything is hardcoded) but I=
+'d be willing to work with someone to make it useful for more people if som=
+eone thinks it would be useful.
+
+Regards,
+Bryan
+
+>=20
+> For now I'm just analyzing what may be the possibilities and I'd love to =
+have
+> any comments or advice from someone more experienced than me on this
+> topic.
+>=20
+> Thanks
+> --
+> Marco Cavallini | KOAN sas | Bergamo - Italia
+>   embedded and real-time software engineering
+> Phone:+39-035-255.235 - Fax:+39-178-22.39.748
+>        http://www.KoanSoftware.com
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
