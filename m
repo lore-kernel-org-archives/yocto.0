@@ -1,6 +1,6 @@
 Return-Path: <paul.eggleton@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id EDCC9E00B68; Fri, 16 May 2014 01:44:53 -0700 (PDT)
+	id 389E2E00B68; Fri, 16 May 2014 03:11:42 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -8,29 +8,32 @@ X-Spam-Status: No, score=-3.7 required=5.0 tests=RCVD_IN_DNSWL_HI,RDNS_NONE
 	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
 	http://www.dnswl.org/, high *      trust
-	*      [192.55.52.93 listed in list.dnswl.org]
+	*      [192.55.52.88 listed in list.dnswl.org]
 	*  1.3 RDNS_NONE Delivered to internal network by a host with no rDNS
-Received: from mga11.intel.com (unknown [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AE7AAE00975
-	for <yocto@yoctoproject.org>; Fri, 16 May 2014 01:44:48 -0700 (PDT)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by fmsmga102.fm.intel.com with ESMTP; 16 May 2014 01:44:47 -0700
+Received: from mga01.intel.com (unknown [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D20D2E00975
+	for <yocto@yoctoproject.org>; Fri, 16 May 2014 03:11:37 -0700 (PDT)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga101.fm.intel.com with ESMTP; 16 May 2014 03:11:37 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.97,1065,1389772800"; d="scan'208";a="532939207"
+X-IronPort-AV: E=Sophos;i="4.97,1066,1389772800"; d="scan'208";a="540152646"
 Received: from unknown (HELO peggleto-mobl5.ger.corp.intel.com)
 	([10.252.123.87])
-	by fmsmga001.fm.intel.com with ESMTP; 16 May 2014 01:44:17 -0700
+	by fmsmga002.fm.intel.com with ESMTP; 16 May 2014 03:11:34 -0700
 From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: Ash Charles <ashcharles@gmail.com>
-Date: Fri, 16 May 2014 09:44:15 +0100
-Message-ID: <4686879.VJmSxtD7Wv@peggleto-mobl5.ger.corp.intel.com>
+To: Alex J Lennon <ajlennon@dynamicdevices.co.uk>,
+	"Robert P. J. Day" <rpjday@crashcourse.ca>
+Date: Fri, 16 May 2014 11:11:32 +0100
+Message-ID: <1628239.GfKczbckvq@peggleto-mobl5.ger.corp.intel.com>
 Organization: Intel Corporation
 User-Agent: KMail/4.12.5 (Linux/3.14.3-200.fc20.x86_64; KDE/4.12.5; x86_64; ; )
-In-Reply-To: <CAK8F28mMgkyf2Ho5x7s7B1BTJH-kJP+fMuqwOCwggnNx+YHe7Q@mail.gmail.com>
-References: <CAK8F28mMgkyf2Ho5x7s7B1BTJH-kJP+fMuqwOCwggnNx+YHe7Q@mail.gmail.com>
+In-Reply-To: <53722D3D.4030902@dynamicdevices.co.uk>
+References: <alpine.LFD.2.11.1404291231440.3997@localhost>
+	<alpine.LFD.2.11.1405130954351.7299@localhost>
+	<53722D3D.4030902@dynamicdevices.co.uk>
 MIME-Version: 1.0
 Cc: yocto@yoctoproject.org
-Subject: Re: Changing metadata during bitbaking
+Subject: Re: can one lay hands on a galileo-based dev kit?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,36 +45,113 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 16 May 2014 08:44:54 -0000
+X-List-Received-Date: Fri, 16 May 2014 10:11:42 -0000
 Content-Transfer-Encoding: 7Bit
 Content-Type: text/plain; charset="us-ascii"
 
-Hi Ash,
-
-On Thursday 15 May 2014 21:41:55 Ash Charles wrote:
-> Under what conditions can I change the content of layers without
-> affecting an ongoing bitbake?
+On Tuesday 13 May 2014 15:33:33 Alex J Lennon wrote:
+> On 13/05/2014 14:56, Robert P. J. Day wrote:
+> > On Tue, 29 Apr 2014, Alex J Lennon wrote:
+> >> On 29/04/2014 17:34, Robert P. J. Day wrote:
+> >>>   i've just been asked to design a linux device drivers course based
+> >>> 
+> >>> on the arduino-compatible intel galileo processor, so my first TODO
+> >>> item is to lay hands on a galileo-based dev kit, for which this looks
+> >>> like the obvious choice:
+> >>> 
+> >>> https://software.intel.com/en-us/iotdevkit
+> >>> 
+> >>> but that page says "upcoming". does it exist? my normal go-to source
+> >>> up here, digikey.ca, shows zero in stock. where can i lay hands on
+> >>> one (if possible)? thanks.
+> >> 
+> >> If it helps I had a Galileo Dev Kit delivered from RS (UK) a couple of
+> >> days ago.
+> >> 
+> >> http://uk.rs-online.com/web/p/processor-microcontroller-development-kits/
+> >> 7919611/
+> >> 
+> >> (I'm actually a bit confused about how the Galileo IoT collection of
+> >> meta-foo layers relates to the primary meta-foo
+> >> 
+> >>  sources, as I can't seem to find an independent meta-clanton ;ayer
+> >> 
+> >> which I guess I'd need. Early days yet, but am planning
+> >> 
+> >>  on working through this as soon as I get some time as I want to test a
+> >> 
+> >> build with meta-moo support on Galileo)
+> >> 
+> >   i finally have time to play with this, and am interested in using
+> > 
+> > yocto to build a bootable system for the galileo. i see that there is
+> > a version "1.0.0" of the firmware for this board -- is there a
+> > convenient yocto recipe that involves just downloading the layer info
+> > and not what looks like the current entire tarball that's stuffed with
+> > all the sources?
+> > 
+> >   i suspect that, within a day or two, i'll figure that out once i
+> > 
+> > start digging around. if it's already documented somewhere, that would
+> > be even better. :-)
 > 
-> On occasion, I find myself wanting to do git operations on my layers
-> while I've got a build going on.  I've typically assumed this might
-> screw up bitbake but was wondering that my assumption isn't really
-> accurate.  Specifically, are these rules reasonable?
-> - don't mess around with the content of layers while bitbake is parsing
-> - once bitbake has parsed and started baking, playing around with
-> metadata should not affect the current build
-> - source/config files (i.e. any file:// in SRC_URI) may be fetched at
-> any time therefore don't mess around with files that might be used in
-> a build
+> Still a bit up in the air with this here Robert.
+> 
+> I've not been able to work out if there's a primary source for
+> meta-clanton independent
+> of the packaged iot layer, so I grabbed meta-intel-iot-devkit in its
+> entirety from
+>  git://git.yoctoproject.org/meta-intel-iot-devkit
+> 
+> I built one of my own custom mono images based on core-image-sato
+> thinking I could
+> put that on a uSD and it would "just boot" (oh the optimism... :)
+> 
+> No joy there so I took a quick look through that Quark BSP guide and it
+> seemed to be
+> talking about booting some odd kind of image format from a file on uSD.
+> 
+> I stepped back and had it build the iot-devkit-image which seemed to
+> need be to make a
+> change to an image dependency on python to python-core.
+> 
+> That's where I had to leave it as I ran out of time. I was planning on
+> hooking up serial to the
+> Tx/Rx pins to see if anything is happening there, getting something
+> building, then replacing
+> the meta-intel-iot-devkit references in BBLAYERS (aside from
+> meta-clanton) with the daisy
+> layers I'm using on a day to day basis.
 
-That's pretty much what I follow, although I try to avoid modifying recipes at 
-all while there's a chance they might be built - recipes *do* get re-parsed 
-during execution, not just when parsing to populate the cache at the start 
-(since the cache doesn't contain all variables and functions, just the ones 
-that BitBake needs to look up quickly).
+So apologies for not replying earlier - I've not been directly involved in the
+BSP for Galileo, but I have been providing support for the team doing the IoT
+DevKit work. You should be able to build images for Galileo using what's in
+meta-intel-iot-devkit directly; you could also use the layers within it
+separately using your own separate OE-Core / Poky tree, but it's not really
+designed to be used in that way. If you really want to do it separately you
+should take care to use all three layers (meta-clanton-bsp, meta-galileo, and
+meta-iot-devkit) and set your DISTRO = "iot-devkit".
 
-Whether or not it's safe to do really depends on what kind of build you're 
-doing. If you're just in the middle of development, no big deal; if you're 
-doing your final build for a release then you probably shouldn't risk it.
+FYI as of yesterday there is also now a "devkit-daisy" branch which is
+updated on top of the daisy branch, but it is a work-in-progress at the
+moment so don't be too surprised if something breaks (although it did work
+well for me here).
+
+To create a partitioned image file suitable for dd'ing to an SD card, the
+easiest way is to use the wic tool - for example, to build a final image 
+from an image called "iot-devkit-image" that you just built using the build
+system:
+
+  wic create iot-devkit -e iot-devkit-image
+
+("iot-devkit" here points to scripts/lib/image/canned-wks/iot-devkit.wks which
+tells wic how to format the image).
+
+I'd recommend you then use the ddimage helper script that we have since it
+provides a measure of assurance that you've got the right device before
+overwriting its contents, for example:
+
+  sudo ../scripts/contrib/ddimage /var/tmp/wic/build/iot-devkit-NNNNN-mmcblkp0.direct /dev/mmcblk0
 
 Cheers,
 Paul
