@@ -1,37 +1,45 @@
-Return-Path: <paul.eggleton@linux.intel.com>
+Return-Path: <ajlennon@dynamicdevices.co.uk>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id DF6EEE00B68; Fri, 16 May 2014 04:16:32 -0700 (PDT)
+	id 4B1E8E00B9E; Fri, 16 May 2014 04:17:40 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-3.7 required=5.0 tests=RCVD_IN_DNSWL_HI,RDNS_NONE
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [143.182.124.21 listed in list.dnswl.org]
-	*  1.3 RDNS_NONE Delivered to internal network by a host with no rDNS
-Received: from mga03.intel.com (unknown [143.182.124.21])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9B4F4E00975
-	for <yocto@yoctoproject.org>; Fri, 16 May 2014 04:16:29 -0700 (PDT)
-Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by azsmga101.ch.intel.com with ESMTP; 16 May 2014 04:16:28 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.97,1066,1389772800"; d="scan'208";a="433011114"
-Received: from unknown (HELO peggleto-mobl5.ger.corp.intel.com)
-	([10.252.123.87])
-	by azsmga001.ch.intel.com with ESMTP; 16 May 2014 04:16:27 -0700
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: Gary Thomas <gary@mlbassoc.com>
-Date: Fri, 16 May 2014 12:16:26 +0100
-Message-ID: <70015786.1gtbouFiKb@peggleto-mobl5.ger.corp.intel.com>
-Organization: Intel Corporation
-User-Agent: KMail/4.12.5 (Linux/3.14.3-200.fc20.x86_64; KDE/4.12.5; x86_64; ; )
-In-Reply-To: <5375ED87.1000605@mlbassoc.com>
-References: <5373B0AB.4070204@mlbassoc.com> <1400187220.28353.15.camel@ted>
-	<5375ED87.1000605@mlbassoc.com>
+X-Spam-Level: *
+X-Spam-Status: No, score=1.3 required=5.0 tests=RDNS_NONE autolearn=no
+	version=3.3.1
+X-Spam-HAM-Report: * 1.3 RDNS_NONE Delivered to internal network by a host
+	with no rDNS
+Received: from www.dynamicdevices.co.uk (unknown [89.200.136.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D8EF7E00BAF
+	for <yocto@yoctoproject.org>; Fri, 16 May 2014 04:17:36 -0700 (PDT)
+Received: from localhost (localhost [127.0.0.1])
+	by www.dynamicdevices.co.uk (Postfix) with ESMTP id 955A327E01A;
+	Fri, 16 May 2014 11:17:34 +0000 (UTC)
+X-Virus-Scanned: Debian amavisd-new at lennoab2.miniserver.com
+Received: from www.dynamicdevices.co.uk ([127.0.0.1])
+	by localhost (www.dynamicdevices.co.uk [127.0.0.1]) (amavisd-new,
+	port 10024)
+	with ESMTP id tRwiRUUAOpjD; Fri, 16 May 2014 11:17:33 +0000 (UTC)
+Received: from [127.0.0.1] (cpc32-live22-2-0-cust59.17-2.cable.virginm.net
+	[82.36.253.60])
+	(using TLSv1 with cipher ECDHE-RSA-AES128-SHA (128/128 bits))
+	(No client certificate requested)
+	by www.dynamicdevices.co.uk (Postfix) with ESMTPSA id A60A327E015;
+	Fri, 16 May 2014 11:17:33 +0000 (UTC)
+Message-ID: <5375F3CD.5000701@dynamicdevices.co.uk>
+Date: Fri, 16 May 2014 12:17:33 +0100
+From: Alex J Lennon <ajlennon@dynamicdevices.co.uk>
+User-Agent: Mozilla/5.0 (Windows NT 6.3; WOW64;
+	rv:24.0) Gecko/20100101 Thunderbird/24.5.0
 MIME-Version: 1.0
+To: Paul Eggleton <paul.eggleton@linux.intel.com>
+References: <alpine.LFD.2.11.1404291231440.3997@localhost>
+	<1628239.GfKczbckvq@peggleto-mobl5.ger.corp.intel.com>
+	<5375E88E.9010204@dynamicdevices.co.uk>
+	<1534150.uaW2O1Usg6@peggleto-mobl5.ger.corp.intel.com>
+In-Reply-To: <1534150.uaW2O1Usg6@peggleto-mobl5.ger.corp.intel.com>
+X-Enigmail-Version: 1.6
 Cc: yocto@yoctoproject.org
-Subject: Re: Where did my preferred version go?
+Subject: Re: can one lay hands on a galileo-based dev kit?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,107 +51,51 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 16 May 2014 11:16:32 -0000
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Fri, 16 May 2014 11:17:40 -0000
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: 7bit
 
-Hi Gary,
 
-On Friday 16 May 2014 04:50:47 Gary Thomas wrote:
-> On 2014-05-15 14:53, Richard Purdie wrote:
-> > On Wed, 2014-05-14 at 12:06 -0600, Gary Thomas wrote:
-> >> I have a number of platforms which [for whatever reason]
-> >> need older versions of GCC.  I've been supporting this by
-> >> keeping the older code around in my own layers - I need
-> >> 4.7.x for some targets, even 4.6.x for others.
-> >> 
-> >> With the changes in the latest master (post 1.6/daisy), I
-> >> am no longer able to build those older compilers :-(  First
-> >> I had to fix up some core changes to just get the recipes to
-> >> even parse (bb.utils.contains), but now I get a slew of errors
-> >> 
-> >> like these:
-> >>     NOTE: preferred version 4.7% of libgcc-initial not available (for
-> >>     item libgcc-initial) NOTE: versions of libgcc-initial available:
-> >>     4.8.2 4.9.0
-> >> 
-> >> I looked at the old recipes and they don't provide these
-> >> packages which make them unsuitable.
-> >> 
-> >> I know I should move these targets to the newer GCC, but at
-> >> this moment there simply are not the resources to do so, but
-> >> we still want to benefit from other improvements in OE-core
-> >> (and Poky/Yocto).
-> >> 
-> >> How can I move forward?  Is there some way to retrofit the
-> >> older compilers into the new [required] structures?  Perhaps
-> >> I could use the older compilers as external tool chain, but
-> >> the last time I tried to use this (in place of the internal,
-> >> build in place) tools, I could never make things happy :-(
-> >> 
-> >> Any suggestions more than welcome, thanks
-> > 
-> > How are you doing this? Have you a completely separate set of gcc
-> > recipes including the include files or is this using the current include
-> 
-> > files. You basically have two options:
-> I made a complete copy of recipes-devtools/gcc before the original 4.8
-> recipes were added.
-> 
-> > a) Apply the changes that were made in master gcc to the 4.7 recipes,
-> > you can then probably share includes.
-> > 
-> > b) Use a separate set of 4.7 files and "undo" some of the changes in
-> > master using creative variable names. E.g., libgcc-initial was added:
-> > 
-> > recipes-core/eglibc/eglibc-initial.inc:DEPENDS = "linux-libc-headers
-> > virtual/${TARGET_PREFIX}gcc-initial libgcc-initial"
-> > recipes-core/eglibc/eglibc.inc:DEPENDS =
-> > "virtual/${TARGET_PREFIX}gcc-initial libgcc-initial linux-libc-headers
-> > virtual/${TARGET_PREFIX}libc-initial"
-> > 
-> > so you could do a:
-> > 
-> > DEPENDS_remove_pn-eglibc-initial - "libgcc-initial"
-> > DEPENDS_remove_pn-eglibc - "libgcc-initial"
-> > 
-> > Thinking a bit more, the issue that is going to hit you hard are the -PN
-> > additions to the cross recipe changes (and their change in arch). My
-> > strong recommendation is therefore a) and then replaying the gcc changes
-> > made in master against the 4.7 version. These were:
-> > 
-> > http://git.yoctoproject.org/cgit.cgi/poky/log/meta/recipes-devtools/gcc
-> > 
-> > there are about 10 or so changes there you'd need to check in your 4.7
-> > recipes (since the 25th April) but nothing particularly difficult.
-> 
-> Thanks for these pointers.  I've given them a quick look and indeed
-> they look manageable, so I'll probably give them a go.
-> 
-> Do you know if anyone has ever [successfully!] used an existing
-> Poky/Yocto toolchain via the EXTERNAL_TOOLCHAIN method, like is
-> done by the meta-sourcery layers/tools?  I would think that would
-> be my safest bet - capture a working toolchain (I use both 4.6.3
-> and 4.7.2) and then enable the external support with the appropriate
-> toolchain/version (captured and managed out of band) for the targets
-> that need them.  How hard might this be?
+> I think you should probably have meta-iot-devkit as well even if you don't use 
+> DISTRO = "iot-devkit".
 
-We don't support this usage at the moment in OE; if you use the OE toolchain 
-we recommend you let the system build it, and it will then be restored from 
-shared state for subsequent builds. I searched around for discussion on this 
-and coincidentally I turned up a thread you were on a few years ago:
+I added meta-iot-devkit in to bblayers and when I bitbake
+iot-devkit-image (MACHINE=clanton, DISTRO=iot-devkit) I get orphaned
+bbappends.
 
-  http://comments.gmane.org/gmane.linux.embedded.poky/7049
+ERROR: No recipes available for:
+ 
+/data_drive/imx6/rootfs_builder/sources/meta-intel-iot-devkit/meta-iot-devkit/recipes-extended/ethtool/ethtool_3.10.bbappend
+ 
+/data_drive/imx6/rootfs_builder/sources/meta-intel-iot-devkit/meta-iot-devkit/recipes-core/busybox/busybox_1.21.1.bbappend
+ERROR: Command execution failed: Exited with 1
 
-There was some discussion at the OEDAM meeting recently about trying to bring 
-this back, but I'm pretty sure Richard is keen to avoid going down that path 
-for the same reasons we've been avoiding it so far.
+>> The latest build failure was a missing grub which I suppose is to be
+>> expected as I'm not using the correct/recommended distro (?)
+> When you say "missing grub" can you be more specific about the error?
+
+When I take out meta-iot-devkit and build core-image-minimal for
+MACHINE=clanton, DISTRO=iot-devkit I get
+
+ERROR: Unable to install packages. Command
+'/data_drive/imx6/rootfs_builder/buildgalileoiot2/tmp/sysroots/i686-linux/usr/bin/smart
+--data-dir=/data_drive/imx6/rootfs_builder/buildgalileoiot2/tmp/work/clanton-poky-linux/core-image-minimal-initramfs/1.0-r0/rootfs/var/lib/smart
+install -y busybox@i586 initramfs-live-install-efi@i586
+run-postinsts@all initramfs-live-install@i586 udev@i586
+initramfs-live-boot@clanton base-passwd@i586' returned 1:
+Loading cache...
+Updating cache...               ########################################
+[100%]
+
+Computing transaction...error: Can't install
+initramfs-live-install-1.0-r9@i586: no package provides grub
+
+There seem to be some grub recipes in meta-clanton-bsp though so... (?)
+Maybe if I put meta-intel-iot-devkit back in and sort out the
+bbappends... (?)
 
 Cheers,
-Paul
 
--- 
+Alex
 
-Paul Eggleton
-Intel Open Source Technology Centre
 
