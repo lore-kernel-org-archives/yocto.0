@@ -1,32 +1,46 @@
-Return-Path: <gary@mlbassoc.com>
+Return-Path: <elizabeth.flanagan@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id AF99BE0070F; Fri, 16 May 2014 10:11:05 -0700 (PDT)
+	id A1126E009A7; Fri, 16 May 2014 10:11:24 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
-X-Spam-Level: *
-X-Spam-Status: No, score=1.3 required=5.0 tests=RDNS_NONE autolearn=no
-	version=3.3.1
-X-Spam-HAM-Report: * 1.3 RDNS_NONE Delivered to internal network by a host
-	with no rDNS
-Received: from mail.chez-thomas.org (unknown [65.100.170.105])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5AF07E0053B
-	for <yocto@yoctoproject.org>; Fri, 16 May 2014 10:11:02 -0700 (PDT)
-Received: by mail.chez-thomas.org (Postfix, from userid 1998)
-	id 32E6CF811F9; Fri, 16 May 2014 11:11:02 -0600 (MDT)
-Received: from [192.168.1.114] (zeus [192.168.1.114])
-	by mail.chez-thomas.org (Postfix) with ESMTP id 52BC2F811E0;
-	Fri, 16 May 2014 11:11:00 -0600 (MDT)
-Message-ID: <537646B0.1020906@mlbassoc.com>
-Date: Fri, 16 May 2014 11:11:12 -0600
-From: Gary Thomas <gary@mlbassoc.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:24.0) Gecko/20100101 Thunderbird/24.5.0
+X-Spam-Level: 
+X-Spam-Status: No, score=0.6 required=5.0 tests=RCVD_IN_DNSWL_LOW,RDNS_NONE
+	autolearn=no version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [209.85.128.175 listed in list.dnswl.org]
+	*  1.3 RDNS_NONE Delivered to internal network by a host with no rDNS
+Received: from mail-ve0-f175.google.com (unknown [209.85.128.175])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 35CE1E006EC
+	for <yocto@yoctoproject.org>; Fri, 16 May 2014 10:11:19 -0700 (PDT)
+Received: by mail-ve0-f175.google.com with SMTP id jw12so3396263veb.6
+	for <yocto@yoctoproject.org>; Fri, 16 May 2014 10:11:18 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:date
+	:message-id:subject:from:to:cc:content-type
+	:content-transfer-encoding;
+	bh=woFFNn0dc5F2yFeqJuIUyffhXpWgxtSv2EHehpUsxXI=;
+	b=BmNE7mxYDdCmjvSDDOQZ3la5Q7GJ9ONEpmo6rF4iqtr7/gyzr34JN5TZ3sFuTE0dNb
+	cDKtucrSZXZXXp0HwhNIu1wApd5ag0tcs3b6X1e9RiNWJ/Jaf11+aFC/iWw8dvBX2REk
+	gyZLdEbRsWL/sv2m9RG+hzlFTF3HH3oV4A1k5juBr4CGWm2O739i/ejGLJ+BVSho9KUV
+	/3msD+mKZ+CziqJP6gQCh2frYAR6s8dmVN4huy7aQALXwbnAQISHqMKUAB2GT93CVbFE
+	chWa22QsVFVTNf4DPt0MAygIAwYsfe4K5d7J826jxYFFYdXuh+WS64oplDdd0CmuFyyJ
+	YZ7g==
+X-Gm-Message-State: ALoCoQn83f02wiITOw+v+r5QcoSaFnDPmXnJaMeoCH+VXuXCRSxSFOPUxf6Iuj72SQoteOmmRaju
 MIME-Version: 1.0
-To: yocto@yoctoproject.org
-References: <5373B0AB.4070204@mlbassoc.com>	<70015786.1gtbouFiKb@peggleto-mobl5.ger.corp.intel.com>	<5375F71D.3020607@mlbassoc.com>
-	<70016045.BsQrnv4ilV@peggleto-mobl5.ger.corp.intel.com>
-In-Reply-To: <70016045.BsQrnv4ilV@peggleto-mobl5.ger.corp.intel.com>
-Subject: Re: Where did my preferred version go?
+X-Received: by 10.52.53.69 with SMTP id z5mr1526280vdo.42.1400260278814; Fri,
+	16 May 2014 10:11:18 -0700 (PDT)
+Received: by 10.52.164.111 with HTTP; Fri, 16 May 2014 10:11:18 -0700 (PDT)
+In-Reply-To: <fd5736c2b8f79d2af363af719a8c707decd978e9.1399561605.git.stefan@agner.ch>
+References: <cover.1399561605.git.stefan@agner.ch>
+	<fd5736c2b8f79d2af363af719a8c707decd978e9.1399561605.git.stefan@agner.ch>
+Date: Fri, 16 May 2014 10:11:18 -0700
+Message-ID: <CAPhnLPA645SzYJb=1_BxqAeC+4vwE8G0Cc+T8pv2=1MS2=H8jg@mail.gmail.com>
+From: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
+To: Stefan Agner <stefan@agner.ch>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: [yocto-autobuilder][PATCH v1 4/4] GetDeployDir.py/PublishArtifacts.py: get deploy dir from bitbake
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,133 +52,340 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 16 May 2014 17:11:05 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Fri, 16 May 2014 17:11:24 -0000
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-On 2014-05-16 06:42, Paul Eggleton wrote:
-> On Friday 16 May 2014 05:31:41 Gary Thomas wrote:
->> On 2014-05-16 05:16, Paul Eggleton wrote:
->>> On Friday 16 May 2014 04:50:47 Gary Thomas wrote:
->>>> On 2014-05-15 14:53, Richard Purdie wrote:
->>>>> On Wed, 2014-05-14 at 12:06 -0600, Gary Thomas wrote:
->>>>>> I have a number of platforms which [for whatever reason]
->>>>>> need older versions of GCC.  I've been supporting this by
->>>>>> keeping the older code around in my own layers - I need
->>>>>> 4.7.x for some targets, even 4.6.x for others.
->>>>>>
->>>>>> With the changes in the latest master (post 1.6/daisy), I
->>>>>> am no longer able to build those older compilers :-(  First
->>>>>> I had to fix up some core changes to just get the recipes to
->>>>>> even parse (bb.utils.contains), but now I get a slew of errors
->>>>>>
->>>>>> like these:
->>>>>>       NOTE: preferred version 4.7% of libgcc-initial not available (for
->>>>>>       item libgcc-initial) NOTE: versions of libgcc-initial available:
->>>>>>       4.8.2 4.9.0
->>>>>>
->>>>>> I looked at the old recipes and they don't provide these
->>>>>> packages which make them unsuitable.
->>>>>>
->>>>>> I know I should move these targets to the newer GCC, but at
->>>>>> this moment there simply are not the resources to do so, but
->>>>>> we still want to benefit from other improvements in OE-core
->>>>>> (and Poky/Yocto).
->>>>>>
->>>>>> How can I move forward?  Is there some way to retrofit the
->>>>>> older compilers into the new [required] structures?  Perhaps
->>>>>> I could use the older compilers as external tool chain, but
->>>>>> the last time I tried to use this (in place of the internal,
->>>>>> build in place) tools, I could never make things happy :-(
->>>>>>
->>>>>> Any suggestions more than welcome, thanks
->>>>>
->>>>> How are you doing this? Have you a completely separate set of gcc
->>>>> recipes including the include files or is this using the current include
->>>>
->>>>> files. You basically have two options:
->>>> I made a complete copy of recipes-devtools/gcc before the original 4.8
->>>> recipes were added.
->>>>
->>>>> a) Apply the changes that were made in master gcc to the 4.7 recipes,
->>>>> you can then probably share includes.
->>>>>
->>>>> b) Use a separate set of 4.7 files and "undo" some of the changes in
->>>>> master using creative variable names. E.g., libgcc-initial was added:
->>>>>
->>>>> recipes-core/eglibc/eglibc-initial.inc:DEPENDS = "linux-libc-headers
->>>>> virtual/${TARGET_PREFIX}gcc-initial libgcc-initial"
->>>>> recipes-core/eglibc/eglibc.inc:DEPENDS =
->>>>> "virtual/${TARGET_PREFIX}gcc-initial libgcc-initial linux-libc-headers
->>>>> virtual/${TARGET_PREFIX}libc-initial"
->>>>>
->>>>> so you could do a:
->>>>>
->>>>> DEPENDS_remove_pn-eglibc-initial - "libgcc-initial"
->>>>> DEPENDS_remove_pn-eglibc - "libgcc-initial"
->>>>>
->>>>> Thinking a bit more, the issue that is going to hit you hard are the -PN
->>>>> additions to the cross recipe changes (and their change in arch). My
->>>>> strong recommendation is therefore a) and then replaying the gcc changes
->>>>> made in master against the 4.7 version. These were:
->>>>>
->>>>> http://git.yoctoproject.org/cgit.cgi/poky/log/meta/recipes-devtools/gcc
->>>>>
->>>>> there are about 10 or so changes there you'd need to check in your 4.7
->>>>> recipes (since the 25th April) but nothing particularly difficult.
->>>>
->>>> Thanks for these pointers.  I've given them a quick look and indeed
->>>> they look manageable, so I'll probably give them a go.
->>>>
->>>> Do you know if anyone has ever [successfully!] used an existing
->>>> Poky/Yocto toolchain via the EXTERNAL_TOOLCHAIN method, like is
->>>> done by the meta-sourcery layers/tools?  I would think that would
->>>> be my safest bet - capture a working toolchain (I use both 4.6.3
->>>> and 4.7.2) and then enable the external support with the appropriate
->>>> toolchain/version (captured and managed out of band) for the targets
->>>> that need them.  How hard might this be?
->>>
->>> We don't support this usage at the moment in OE; if you use the OE
->>> toolchain we recommend you let the system build it, and it will then be
->>> restored from shared state for subsequent builds. I searched around for
->>> discussion on this>
->>> and coincidentally I turned up a thread you were on a few years ago:
->>>     http://comments.gmane.org/gmane.linux.embedded.poky/7049
->>>
->>> There was some discussion at the OEDAM meeting recently about trying to
->>> bring this back, but I'm pretty sure Richard is keen to avoid going down
->>> that path for the same reasons we've been avoiding it so far.
->>
->> I looked back through this thread and the enhancement bug I filed
->> (which for everyone but Richard seemed to be the way to go).  The
->> result was to reuse sstate, but I don't see how that can solve the
->> problem I have today.  How can I possibly create sstate cache files
->> for my old GCC/4.6.3 toolchain and allow them to be used with the
->> latest builds?
+Ok, so looking at this a bit more and I think we need to look at how
+we set up the deploydir in PublishArtifacts a bit more.
+
+I think what we can do here is pull the functionality that we have in
+getDeployNames out, and put it into GetDeployDir (layerversion here
+matters as the default deploy for oe-core changes at LAYERVERSION_core
+=3D3) . So, yeah, if you could resubmit that I think we can pull the
+last patch in. The other three are under test right now.
+
+Thanks,
+
+-b
+
+On Thu, May 8, 2014 at 9:44 AM,  <stefan@agner.ch> wrote:
+> From: Stefan Agner <stefan@agner.ch>
 >
-> Well, it's true that sstate won't help you solve that problem since the recipe
-> still needs to be buildable (i.e. all dependencies need to be satisfied);
-> sstate is rather the answer to "I want an external toolchain to avoid having
-> to build the toolchain on every new build" which is a different problem.
-> However, the recipes for an external toolchain must satisfy the exact same
-> dependencies, so maintaining your old toolchain recipes isn't a whole lot
-> different than an external toolchain at least in that respect, although you
-> might argue that that maintenance would be taken care of by someone else
-> rather you having to do it.
+> Since the deploy dir is configureable (also through TMPDIR), we
+> need to have a more generic variant to get that path. Also the
+> =C3=85ngstrom distribution adds "-eglibc" to the TMPDIR. Hence, the
+> safest way to get the deployment dir is to parse buildbots
+> environment.
 >
-> BTW, in the meta-openembedded repository there is a toolchain-layer layer that
-> was intended to provide older versions of gcc; I think it hasn't been used
-> much lately so it may have bitrotted, but it may be helpful for people like
-> yourself who need older toolchains to club together and bring it up-to-date.
+> Signed-off-by: Stefan Agner <stefan@agner.ch>
+> ---
+>  .../autobuilder/buildsteps/GetDeployDir.py         | 47 ++++++++++++++++=
++++++
+>  .../autobuilder/buildsteps/PublishArtifacts.py     | 48 ++++++++++++----=
+------
+>  2 files changed, 73 insertions(+), 22 deletions(-)
+>  create mode 100644 lib/python2.7/site-packages/autobuilder/buildsteps/Ge=
+tDeployDir.py
+>
+> diff --git a/lib/python2.7/site-packages/autobuilder/buildsteps/GetDeploy=
+Dir.py b/lib/python2.7/site-packages/autobuilder/buildsteps/GetDeployDir.py
+> new file mode 100644
+> index 0000000..944fcf0
+> --- /dev/null
+> +++ b/lib/python2.7/site-packages/autobuilder/buildsteps/GetDeployDir.py
+> @@ -0,0 +1,47 @@
+> +'''
+> +Created on Mai 8, 2014
+> +
+> +__author__ =3D "Stefan Agner"
+> +__copyright__ =3D "Copyright 2014, Toradex AG"
+> +__credits__ =3D ["Stefan Agner"]
+> +__license__ =3D "GPL"
+> +__version__ =3D "2.0"
+> +__maintainer__ =3D "Stefan Agner"
+> +__email__ =3D "stefan@agner.ch"
+> +'''
+> +from buildbot.steps.shell import ShellCommand
+> +from buildbot.status import progress
+> +from buildbot.status.results import SUCCESS, FAILURE, WARNINGS
+> +from buildbot.process.properties import WithProperties
+> +from twisted.python import log
+> +from autobuilder.config import *
+> +
+> +class GetDeployDir(ShellCommand):
+> +    haltOnFailure =3D False
+> +    flunkOnFailure =3D True
+> +    name =3D "GetDeployDir"
+> +    def __init__(self, factory, argdict=3DNone, **kwargs):
+> +        for k, v in argdict.iteritems():
+> +            setattr(self, k, v)
+> +        self.description =3D "Get Deploy Directory"
+> +        self.deploydir =3D None
+> +        ShellCommand.__init__(self, **kwargs)
+> +
+> +    def start(self):
+> +        cmd =3D '. ./oe-init-build-env; bitbake -e | grep "^DEPLOY_DIR=
+=3D"'
+> +        self.command =3D cmd
+> +        ShellCommand.start(self)
+> +
+> +    def commandComplete(self, cmd):
+> +        if cmd.didFail():
+> +            return
+> +        result =3D cmd.logs['stdio'].getText()
+> +        if "=3D" not in result:
+> +            self.finished(FAILURE)
+> +        param, value =3D result.split("=3D")
+> +        deploydir =3D value.replace('"', '').strip()
+> +        self.setProperty('deploydir', deploydir, "Setting Deploy Directo=
+ry")
+> +        self.finished(SUCCESS)
+> +
+> +    def getText(self, cmd, results):
+> +        return ShellCommand.getText(self, cmd, results)
+> diff --git a/lib/python2.7/site-packages/autobuilder/buildsteps/PublishAr=
+tifacts.py b/lib/python2.7/site-packages/autobuilder/buildsteps/PublishArti=
+facts.py
+> index ebc761f..303df36 100644
+> --- a/lib/python2.7/site-packages/autobuilder/buildsteps/PublishArtifacts=
+.py
+> +++ b/lib/python2.7/site-packages/autobuilder/buildsteps/PublishArtifacts=
+.py
+> @@ -19,10 +19,10 @@ class PublishArtifacts(ShellCommand):
+>
+>      haltOnFailure =3D False
+>      flunkOnFailure =3D True
+> -    name =3D "Publishing Artifacts"
+> +    name =3D "PublishArtifacts"
+> +    description =3D "Publishing Artifacts"
+>      def __init__(self, factory, argdict=3DNone, **kwargs):
+>          self.factory =3D factory
+> -        self.description =3D "Publishing Artifacts"
+>          self.slavedir=3Dos.path.join(os.path.join(YOCTO_ABBASE, "yocto-s=
+lave"))
+>          for k, v in argdict.iteritems():
+>              if type(v) is bool:
+> @@ -42,10 +42,14 @@ class PublishArtifacts(ShellCommand):
+>          self.layerversion_yoctobsp =3D self.getProperty("layerversion_yo=
+ctobsp")
+>          self.layerversion_yocto =3D self.getProperty("layerversion_yocto=
+")
+>          self.layerversion_core =3D self.getProperty("layerversion_core")
+> +        self.deploydir =3D self.getProperty("deploydir")
+>          log.msg(layerversion_yoctobsp)
+> -        self.basedir=3Dos.path.join(os.path.join(
+> -                                    self.slavedir, buildername),
+> -                                    "build/build/")
+> +        self.basedir =3D os.path.join(self.slavedir, buildername, "build=
+/build/")
+> +
+> +        # Deploydir might not be set in case the step did not run, fallb=
+ack to default
+> +        if self.deploydir is None:
+> +            self.deploydir =3D os.path.join(self.basedir, "tmp/deploy/")
+> +
+>          command=3D""
+>          DATESTAMP=3Ddatetime.datetime.now().strftime("%Y%m%d")
+>          if str(os.environ.get('PUBLISH_BUILDS')) =3D=3D "True":
+> @@ -70,17 +74,17 @@ class PublishArtifacts(ShellCommand):
+>                  if artifact =3D=3D "adt-installer":
+>                      command=3Dcommand+"mkdir -p " + os.path.join(DEST, A=
+DT_INST_PUBLISH_DIR) + ";"
+>                      command=3Dcommand+"cp -R --no-dereference --preserve=
+=3Dlinks " + \
+> -                                    os.path.join(self.basedir, "tmp/depl=
+oy/sdk/") + \
+> +                                    os.path.join(self.deploydir, "sdk/")=
+ + \
+>                                      "*adt* " + os.path.join(DEST, ADT_IN=
+ST_PUBLISH_DIR) + ";"
+>                  elif artifact =3D=3D "adt-installer-QA":
+>                      command=3Dcommand+"mkdir -p " + os.path.join(DEST, A=
+DTQA_INST_PUBLISH_DIR) + ";"
+>                      command=3Dcommand+"cp -R --no-dereference --preserve=
+=3Dlinks " + \
+> -                                    os.path.join(self.basedir, "tmp/depl=
+oy/sdk/") + \
+> +                                    os.path.join(self.deploydir, "sdk/")=
+ + \
+>                                      "*adt* " + os.path.join(DEST, ADTQA_=
+INST_PUBLISH_DIR)+ ";"
+>                  elif artifact =3D=3D "adtrepo-dev":
+>                      adt_dev_dest=3D os.environ.get("ADTREPO_DEV_PATH") +=
+ "/" + distroversion + "-" + got_revision_poky + '-' + self.getProperty("br=
+anch_poky")
+>                      command=3Dcommand+"mkdir -p " + adt_dev_dest + "/adt=
+-ipk;"
+> -                    command=3Dcommand+"rsync -av " + os.path.join(self.b=
+asedir, "tmp/deploy/ipk/") + " " +  adt_dev_dest + "/adt-ipk;"
+> +                    command=3Dcommand+"rsync -av " + os.path.join(self.d=
+eploydir, "ipk/") + " " +  adt_dev_dest + "/adt-ipk;"
+>                      command=3Dcommand+"rm -rf " + adt_dev_dest + "/rootf=
+s; mkdir -p " + adt_dev_dest + "/rootfs;"
+>                      command=3Dcommand+"for x in `ls " + DEST + "/machine=
+s/qemu/|grep -v tiny`; do ln -s " + DEST + "/machines/qemu/$x " + adt_dev_d=
+est + "/rootfs/$x; done;"
+>                      if self.layerversion_yocto is not None and int(self.=
+layerversion_yocto) < 2:
+> @@ -101,49 +105,49 @@ class PublishArtifacts(ShellCommand):
+>                      command=3Dcommand+"mkdir -p " + DEST + "/" + BA_PUBL=
+ISH_DIR + ";"
+>                      if self.layerversion_core is not None and int(self.l=
+ayerversion_core) > 2:
+>                          command=3Dcommand+"cp -R --no-dereference --pres=
+erve=3Dlinks " + \
+> -                                        os.path.join(self.basedir, "tmp/=
+deploy/images/qemux86-64/*.zip") + \
+> +                                        os.path.join(self.deploydir, "im=
+ages/qemux86-64/*.zip") + \
+>                                          " " + DEST + "/" + BA_PUBLISH_DI=
+R + ";"
+>                      else:
+>                          command=3Dcommand+"cp -R --no-dereference --pres=
+erve=3Dlinks " + \
+> -                                        os.path.join(self.basedir, "tmp/=
+deploy/images/*.zip") + \
+> +                                        os.path.join(self.deploydir, "im=
+ages/*.zip") + \
+>                                          " " + DEST + "/" + BA_PUBLISH_DI=
+R + ";"
+>                  elif artifact =3D=3D "buildtools-tarball":
+>                      command=3Dcommand+"mkdir -p " + DEST + "/buildtools;=
+"
+>                      command=3Dcommand+"cp -R --no-dereference --preserve=
+=3Dlinks " + \
+> -                                    os.path.join(self.basedir, "tmp/depl=
+oy/sdk/*.sh") + \
+> +                                    os.path.join(self.deploydir, "sdk/*.=
+sh") + \
+>                                      " " + DEST + "/buildtools;"
+>                  elif artifact =3D=3D "rpm":
+>                      command=3Dcommand+"mkdir -p " + os.path.join(DEST, R=
+PM_PUBLISH_DIR) + ";"
+>                      command=3Dcommand+"cp -R --no-dereference --preserve=
+=3Dlinks " + \
+> -                                    os.path.join(self.basedir, "tmp/depl=
+oy/rpm/* ") + \
+> +                                    os.path.join(self.deploydir, "rpm/* =
+") + \
+>                                      os.path.join(DEST, RPM_PUBLISH_DIR) =
++ ";"
+>                  elif artifact =3D=3D "deb":
+>                      command=3Dcommand+"mkdir -p " + os.path.join(DEST, D=
+EB_PUBLISH_DIR) + ";"
+>                      command=3Dcommand+"cp -R --no-dereference --preserve=
+=3Dlinks " + \
+> -                                    os.path.join(self.basedir, "tmp/depl=
+oy/deb/* ") + \
+> +                                    os.path.join(self.deploydir, "deb/* =
+") + \
+>                                      os.path.join(DEST, DEB_PUBLISH_DIR) =
++ ";"
+>                  elif artifact =3D=3D "ipk":
+>                      command=3Dcommand+"mkdir -p " + os.path.join(DEST, I=
+PK_PUBLISH_DIR) + ";"
+>                      command=3Dcommand+"cp -R --no-dereference --preserve=
+=3Dlinks " + \
+> -                                    os.path.join(self.basedir, "tmp/depl=
+oy/ipk/* ") + \
+> +                                    os.path.join(self.deploydir, "ipk/* =
+") + \
+>                                      os.path.join(DEST, IPK_PUBLISH_DIR) =
++ ";"
+>                  elif artifact =3D=3D "toolchain":
+>                      command=3Dcommand+"mkdir -p " + os.path.join(DEST, X=
+86TC_PUBLISH_DIR) + ";"
+>                      command=3Dcommand+"cp -R --no-dereference --preserve=
+=3Dlinks " + \
+> -                                    os.path.join(self.basedir, "tmp/depl=
+oy/sdk/poky-eglibc-i686* ") + \
+> +                                    os.path.join(self.deploydir, "sdk/po=
+ky-eglibc-i686* ") + \
+>                                      os.path.join(DEST, X86TC_PUBLISH_DIR=
+) + ";"
+>                      command=3Dcommand+"mkdir -p " + os.path.join(DEST, X=
+8664TC_PUBLISH_DIR) + ";"
+>                      command=3Dcommand+"cp -R --no-dereference --preserve=
+=3Dlinks " + \
+> -                                    os.path.join(self.basedir, "tmp/depl=
+oy/sdk/poky-eglibc-x86_64* ") + \
+> +                                    os.path.join(self.deploydir, "sdk/po=
+ky-eglibc-x86_64* ") + \
+>                                      os.path.join(DEST, X8664TC_PUBLISH_D=
+IR) + ";"
+>                  elif artifact =3D=3D "oe-toolchain":
+>                      command=3Dcommand+"mkdir -p " + os.path.join(DEST, X=
+86TC_PUBLISH_DIR) + ";"
+>                      command=3Dcommand+"cp -R --no-dereference --preserve=
+=3Dlinks " + \
+> -                                    os.path.join(self.basedir, "tmp/depl=
+oy/sdk/oecore-i686* ") + \
+> +                                    os.path.join(self.deploydir, "sdk/oe=
+core-i686* ") + \
+>                                      os.path.join(DEST, X86TC_PUBLISH_DIR=
+) + ";"
+>                      command=3Dcommand+"mkdir -p " + os.path.join(DEST, X=
+8664TC_PUBLISH_DIR) + ";"
+>                      command=3Dcommand+"cp -R --no-dereference --preserve=
+=3Dlinks " + \
+> -                                    os.path.join(self.basedir, "tmp/depl=
+oy/sdk/oecore-x86_64* ") + \
+> +                                    os.path.join(self.deploydir, "sdk/oe=
+core-x86_64* ") + \
+>                                      os.path.join(DEST, X8664TC_PUBLISH_D=
+IR) + ";"
+>
+>                  elif "qemu" in artifact:
+> @@ -162,11 +166,11 @@ class PublishArtifacts(ShellCommand):
+>                      command=3Dcommand+"mkdir -p " + DEST + "/" + QEMU_PU=
+BLISH_DIR + "/qemu-tiny;"
+>                      if self.layerversion_core is not None and int(self.l=
+ayerversion_core) > 2:
+>                          command=3Dcommand+"cp -R --no-dereference --pres=
+erve=3Dlinks " + \
+> -                                        os.path.join(self.basedir, "tmp/=
+deploy/images/qemux86/* ") + \
+> +                                        os.path.join(self.deploydir, "im=
+ages/qemux86/* ") + \
+>                                          " " + DEST + "/" + QEMU_PUBLISH_=
+DIR + "/qemu-tiny;"
+>                      else:
+>                          command=3Dcommand+"cp -R --no-dereference --pres=
+erve=3Dlinks " + \
+> -                                        os.path.join(self.basedir, "tmp/=
+deploy/images/*") + \
+> +                                        os.path.join(self.deploydir, "im=
+ages/*") + \
+>                                          DEST + "/" + QEMU_PUBLISH_DIR + =
+"/qemu-tiny;"
+>                  elif artifact =3D=3D "conf":
+>                      artifact_name, deploy_image_dir =3D self.getDeployNa=
+mes(artifact, buildername)
+> @@ -208,9 +212,9 @@ class PublishArtifacts(ShellCommand):
+>          if "-lsb" in buildername:
+>              artifact_name =3D artifact_name + "-lsb"
+>          if self.layerversion_core is not None and int(self.layerversion_=
+core) > 2:
+> -            deploy_dir_image =3D os.path.join(os.path.join(self.basedir,=
+ "tmp/deploy/images/"), artifact)
+> +            deploy_dir_image =3D os.path.join(os.path.join(self.deploydi=
+r, "images/"), artifact)
+>          else:
+> -            deploy_dir_image =3D os.path.join(self.basedir, "tmp/deploy/=
+images/")
+> +            deploy_dir_image =3D os.path.join(self.deploydir, "images/")
+>          return artifact_name, deploy_dir_image
+>
+>      def describe(self, done=3DFalse):
+> --
+> 1.9.0
+>
 
-I just tried the meta-sourcery (old CSL) layer and it worked a treat.
-I only had to add that layer and define a single variable to point to
-their tools.  Next week, I think I'll have a go at adapting their layer
-to use an OE derived toolchain.
 
--- 
-------------------------------------------------------------
-Gary Thomas                 |  Consulting for the
-MLB Associates              |    Embedded world
-------------------------------------------------------------
+
+--=20
+Elizabeth Flanagan
+Yocto Project
+Build and Release
 
