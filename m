@@ -1,34 +1,38 @@
-Return-Path: <gary@mlbassoc.com>
+Return-Path: <paul.eggleton@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id A4D3FE00B68; Fri, 16 May 2014 04:31:35 -0700 (PDT)
+	id 3A7DFE00B68; Fri, 16 May 2014 04:32:46 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
-X-Spam-Level: *
-X-Spam-Status: No, score=1.3 required=5.0 tests=RDNS_NONE autolearn=no
-	version=3.3.1
-X-Spam-HAM-Report: * 1.3 RDNS_NONE Delivered to internal network by a host
-	with no rDNS
-Received: from mail.chez-thomas.org (unknown [65.100.170.105])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3CE82E00975
-	for <yocto@yoctoproject.org>; Fri, 16 May 2014 04:31:30 -0700 (PDT)
-Received: by mail.chez-thomas.org (Postfix, from userid 1998)
-	id 89B34F811F8; Fri, 16 May 2014 05:31:30 -0600 (MDT)
-Received: from [192.168.1.114] (zeus [192.168.1.114])
-	by mail.chez-thomas.org (Postfix) with ESMTP id 47D9CF811E0;
-	Fri, 16 May 2014 05:31:29 -0600 (MDT)
-Message-ID: <5375F71D.3020607@mlbassoc.com>
-Date: Fri, 16 May 2014 05:31:41 -0600
-From: Gary Thomas <gary@mlbassoc.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:24.0) Gecko/20100101 Thunderbird/24.5.0
+X-Spam-Level: 
+X-Spam-Status: No, score=-3.7 required=5.0 tests=RCVD_IN_DNSWL_HI,RDNS_NONE
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [134.134.136.24 listed in list.dnswl.org]
+	*  1.3 RDNS_NONE Delivered to internal network by a host with no rDNS
+Received: from mga09.intel.com (unknown [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B8569E00975
+	for <yocto@yoctoproject.org>; Fri, 16 May 2014 04:32:42 -0700 (PDT)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga102.jf.intel.com with ESMTP; 16 May 2014 04:27:16 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.97,1067,1389772800"; d="scan'208";a="512722208"
+Received: from unknown (HELO peggleto-mobl5.ger.corp.intel.com)
+	([10.252.123.87])
+	by orsmga001.jf.intel.com with ESMTP; 16 May 2014 04:32:19 -0700
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: Alex J Lennon <ajlennon@dynamicdevices.co.uk>
+Date: Fri, 16 May 2014 12:32:18 +0100
+Message-ID: <2554365.06todV85Gf@peggleto-mobl5.ger.corp.intel.com>
+Organization: Intel Corporation
+User-Agent: KMail/4.12.5 (Linux/3.14.3-200.fc20.x86_64; KDE/4.12.5; x86_64; ; )
+In-Reply-To: <5375F3CD.5000701@dynamicdevices.co.uk>
+References: <alpine.LFD.2.11.1404291231440.3997@localhost>
+	<1534150.uaW2O1Usg6@peggleto-mobl5.ger.corp.intel.com>
+	<5375F3CD.5000701@dynamicdevices.co.uk>
 MIME-Version: 1.0
-To: Paul Eggleton <paul.eggleton@linux.intel.com>
-References: <5373B0AB.4070204@mlbassoc.com> <1400187220.28353.15.camel@ted>
-	<5375ED87.1000605@mlbassoc.com>
-	<70015786.1gtbouFiKb@peggleto-mobl5.ger.corp.intel.com>
-In-Reply-To: <70015786.1gtbouFiKb@peggleto-mobl5.ger.corp.intel.com>
 Cc: yocto@yoctoproject.org
-Subject: Re: Where did my preferred version go?
+Subject: Re: can one lay hands on a galileo-based dev kit?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,113 +44,67 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 16 May 2014 11:31:35 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Fri, 16 May 2014 11:32:46 -0000
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-On 2014-05-16 05:16, Paul Eggleton wrote:
-> Hi Gary,
->
-> On Friday 16 May 2014 04:50:47 Gary Thomas wrote:
->> On 2014-05-15 14:53, Richard Purdie wrote:
->>> On Wed, 2014-05-14 at 12:06 -0600, Gary Thomas wrote:
->>>> I have a number of platforms which [for whatever reason]
->>>> need older versions of GCC.  I've been supporting this by
->>>> keeping the older code around in my own layers - I need
->>>> 4.7.x for some targets, even 4.6.x for others.
->>>>
->>>> With the changes in the latest master (post 1.6/daisy), I
->>>> am no longer able to build those older compilers :-(  First
->>>> I had to fix up some core changes to just get the recipes to
->>>> even parse (bb.utils.contains), but now I get a slew of errors
->>>>
->>>> like these:
->>>>      NOTE: preferred version 4.7% of libgcc-initial not available (for
->>>>      item libgcc-initial) NOTE: versions of libgcc-initial available:
->>>>      4.8.2 4.9.0
->>>>
->>>> I looked at the old recipes and they don't provide these
->>>> packages which make them unsuitable.
->>>>
->>>> I know I should move these targets to the newer GCC, but at
->>>> this moment there simply are not the resources to do so, but
->>>> we still want to benefit from other improvements in OE-core
->>>> (and Poky/Yocto).
->>>>
->>>> How can I move forward?  Is there some way to retrofit the
->>>> older compilers into the new [required] structures?  Perhaps
->>>> I could use the older compilers as external tool chain, but
->>>> the last time I tried to use this (in place of the internal,
->>>> build in place) tools, I could never make things happy :-(
->>>>
->>>> Any suggestions more than welcome, thanks
->>>
->>> How are you doing this? Have you a completely separate set of gcc
->>> recipes including the include files or is this using the current include
->>
->>> files. You basically have two options:
->> I made a complete copy of recipes-devtools/gcc before the original 4.8
->> recipes were added.
->>
->>> a) Apply the changes that were made in master gcc to the 4.7 recipes,
->>> you can then probably share includes.
->>>
->>> b) Use a separate set of 4.7 files and "undo" some of the changes in
->>> master using creative variable names. E.g., libgcc-initial was added:
->>>
->>> recipes-core/eglibc/eglibc-initial.inc:DEPENDS = "linux-libc-headers
->>> virtual/${TARGET_PREFIX}gcc-initial libgcc-initial"
->>> recipes-core/eglibc/eglibc.inc:DEPENDS =
->>> "virtual/${TARGET_PREFIX}gcc-initial libgcc-initial linux-libc-headers
->>> virtual/${TARGET_PREFIX}libc-initial"
->>>
->>> so you could do a:
->>>
->>> DEPENDS_remove_pn-eglibc-initial - "libgcc-initial"
->>> DEPENDS_remove_pn-eglibc - "libgcc-initial"
->>>
->>> Thinking a bit more, the issue that is going to hit you hard are the -PN
->>> additions to the cross recipe changes (and their change in arch). My
->>> strong recommendation is therefore a) and then replaying the gcc changes
->>> made in master against the 4.7 version. These were:
->>>
->>> http://git.yoctoproject.org/cgit.cgi/poky/log/meta/recipes-devtools/gcc
->>>
->>> there are about 10 or so changes there you'd need to check in your 4.7
->>> recipes (since the 25th April) but nothing particularly difficult.
->>
->> Thanks for these pointers.  I've given them a quick look and indeed
->> they look manageable, so I'll probably give them a go.
->>
->> Do you know if anyone has ever [successfully!] used an existing
->> Poky/Yocto toolchain via the EXTERNAL_TOOLCHAIN method, like is
->> done by the meta-sourcery layers/tools?  I would think that would
->> be my safest bet - capture a working toolchain (I use both 4.6.3
->> and 4.7.2) and then enable the external support with the appropriate
->> toolchain/version (captured and managed out of band) for the targets
->> that need them.  How hard might this be?
->
-> We don't support this usage at the moment in OE; if you use the OE toolchain
-> we recommend you let the system build it, and it will then be restored from
-> shared state for subsequent builds. I searched around for discussion on this
-> and coincidentally I turned up a thread you were on a few years ago:
->
->    http://comments.gmane.org/gmane.linux.embedded.poky/7049
->
-> There was some discussion at the OEDAM meeting recently about trying to bring
-> this back, but I'm pretty sure Richard is keen to avoid going down that path
-> for the same reasons we've been avoiding it so far.
+On Friday 16 May 2014 12:17:33 Alex J Lennon wrote:
+> > I think you should probably have meta-iot-devkit as well even if you don't
+> > use DISTRO = "iot-devkit".
+> 
+> I added meta-iot-devkit in to bblayers and when I bitbake
+> iot-devkit-image (MACHINE=clanton, DISTRO=iot-devkit) I get orphaned
+> bbappends.
+> 
+> ERROR: No recipes available for:
+> 
+> /data_drive/imx6/rootfs_builder/sources/meta-intel-iot-devkit/meta-iot-devki
+> t/recipes-extended/ethtool/ethtool_3.10.bbappend
+> 
+> /data_drive/imx6/rootfs_builder/sources/meta-intel-iot-devkit/meta-iot-devki
+> t/recipes-core/busybox/busybox_1.21.1.bbappend ERROR: Command execution
+> failed: Exited with 1
 
-I looked back through this thread and the enhancement bug I filed
-(which for everyone but Richard seemed to be the way to go).  The
-result was to reuse sstate, but I don't see how that can solve the
-problem I have today.  How can I possibly create sstate cache files
-for my old GCC/4.6.3 toolchain and allow them to be used with the
-latest builds?
+Are you trying to use these layers with 1.6 / master? Until the devkit-daisy 
+branch was pushed, the devkit was based on 1.5 (dora).
+
+> >> The latest build failure was a missing grub which I suppose is to be
+> >> expected as I'm not using the correct/recommended distro (?)
+> > 
+> > When you say "missing grub" can you be more specific about the error?
+> 
+> When I take out meta-iot-devkit and build core-image-minimal for
+> MACHINE=clanton, DISTRO=iot-devkit I get
+> 
+> ERROR: Unable to install packages. Command
+> '/data_drive/imx6/rootfs_builder/buildgalileoiot2/tmp/sysroots/i686-linux/us
+> r/bin/smart
+> --data-dir=/data_drive/imx6/rootfs_builder/buildgalileoiot2/tmp/work/clanto
+> n-poky-linux/core-image-minimal-initramfs/1.0-r0/rootfs/var/lib/smart
+> install -y busybox@i586 initramfs-live-install-efi@i586
+> run-postinsts@all initramfs-live-install@i586 udev@i586
+> initramfs-live-boot@clanton base-passwd@i586' returned 1:
+> Loading cache...
+> Updating cache...               ########################################
+> [100%]
+> 
+> Computing transaction...error: Can't install
+> initramfs-live-install-1.0-r9@i586: no package provides grub
+> 
+> There seem to be some grub recipes in meta-clanton-bsp though so... (?)
+> Maybe if I put meta-intel-iot-devkit back in and sort out the
+> bbappends... (?)
+
+If you get this error, it means there is a grub recipe but no package called 
+"grub" was produced. I don't recieve this error here, but FWIW I don't have a 
+grub ipk package in tmp/deploy/ipk either, so this is expected and it 
+shouldn't be looking for the package.
+
+Cheers,
+Paul
 
 -- 
-------------------------------------------------------------
-Gary Thomas                 |  Consulting for the
-MLB Associates              |    Embedded world
-------------------------------------------------------------
+
+Paul Eggleton
+Intel Open Source Technology Centre
 
