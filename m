@@ -1,44 +1,50 @@
-Return-Path: <stefan@agner.ch>
+Return-Path: <chmorgan@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 45D6EE0073A; Sat, 17 May 2014 06:32:17 -0700 (PDT)
+	id 163E0E00B65; Sat, 17 May 2014 10:19:40 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
-X-Spam-Level: *
-X-Spam-Status: No, score=1.3 required=5.0 tests=RDNS_NONE autolearn=no
-	version=3.3.1
-X-Spam-HAM-Report: * 1.3 RDNS_NONE Delivered to internal network by a host
-	with no rDNS
-Received: from mail.kmu-office.ch (unknown [178.209.48.102])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D4BC8E00716
-	for <yocto@yoctoproject.org>; Sat, 17 May 2014 06:32:08 -0700 (PDT)
-Received: from localhost (localhost [127.0.0.1])
-	by mail.kmu-office.ch (Postfix) with ESMTP id 70634446A22
-	for <yocto@yoctoproject.org>; Sat, 17 May 2014 15:27:24 +0200 (CEST)
-X-Virus-Scanned: by amavisd-new at kmu-office.ch
-Received: from mail.kmu-office.ch ([127.0.0.1])
-	by localhost (mail.kmu-office.ch [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id E+inxhb49roo for <yocto@yoctoproject.org>;
-	Sat, 17 May 2014 15:27:23 +0200 (CEST)
-Received: from localhost (localhost [127.0.0.1])
-	by mail.kmu-office.ch (Postfix) with ESMTP id C9C98446DCA
-	for <yocto@yoctoproject.org>; Sat, 17 May 2014 15:27:23 +0200 (CEST)
-Received: from webmail.kmu-office.ch (unknown [178.209.48.103])
-	(Authenticated sender: stefan@agner.ch)
-	by mail.kmu-office.ch (Postfix) with ESMTPSA id AEAAF446A22;
-	Sat, 17 May 2014 15:27:23 +0200 (CEST)
+X-Spam-Level: 
+X-Spam-Status: No, score=0.5 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+	DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW,RDNS_NONE
+	autolearn=no version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (chmorgan[at]gmail.com)
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.223.176 listed in list.dnswl.org]
+	*  1.3 RDNS_NONE Delivered to internal network by a host with no rDNS
+X-Greylist: delayed 386 seconds by postgrey-1.32 at yocto-www;
+	Sat, 17 May 2014 10:19:33 PDT
+Received: from mail-ie0-f176.google.com (unknown [209.85.223.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EA762E00B20
+	for <yocto@yoctoproject.org>; Sat, 17 May 2014 10:19:33 -0700 (PDT)
+Received: by mail-ie0-f176.google.com with SMTP id rl12so685746iec.7
+	for <yocto@yoctoproject.org>; Sat, 17 May 2014 10:19:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=6gFnbue/6CmoYqi1SYT7+fXJoKOkn0NH8s+s+rT0ilQ=;
+	b=j6NtI6qx9ZeqhZUyPD4P2dSOHk6zOkJnCU+lEwH5LT4AXLmdDsEGItFdOM7U2OAr38
+	xo6bVgiyrWHwbKvtWbxmf/J/mfq0jfZbsHPTgFT8FJGv6ucMtU9qFMe9GRocBTh5pt+m
+	nyb0w4eQu9sviX6HhvJ1olu3VbolL7ICO62qJe7FlwR9j6zVYRvHycYiNHVQK+qRh4E0
+	xcwk3VNw2uoaDmzeTaDmTQZTWxNXtIHjvIpXK8Rq6/nzEY3SVctvxryLqsx6z5AwD6cv
+	Dda4jS4QgAATgeTDkKfMh1JtODcCxwoRREPV/Efm4remTm/JA0/9wD+u8tVGCXeCbWe0
+	7NDw==
 MIME-Version: 1.0
-Date: Sat, 17 May 2014 15:31:41 +0200
-From: Stefan Agner <stefan@agner.ch>
-To: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
-In-Reply-To: <CAPhnLPCBpvCwzqAue_qakxbbZQRiRxeDTqY-D6UPDmrEn78S-Q@mail.gmail.com>
-References: <cover.1399561605.git.stefan@agner.ch>
-	<31cd125eb073f74ce6383396ad8df696@agner.ch>
-	<CAPhnLPCBpvCwzqAue_qakxbbZQRiRxeDTqY-D6UPDmrEn78S-Q@mail.gmail.com>
-Message-ID: <2c357cd27e84335c93041af0451cc643@agner.ch>
-X-Sender: stefan@agner.ch
-User-Agent: Roundcube Webmail/1.0.1
-Cc: yocto@yoctoproject.org
-Subject: Re: [yocto-autobuilder][PATCH v1 0/4] fixes for use with Angstrom
+X-Received: by 10.43.137.5 with SMTP id im5mr2936708icc.69.1400346787299; Sat,
+	17 May 2014 10:13:07 -0700 (PDT)
+Received: by 10.64.228.141 with HTTP; Sat, 17 May 2014 10:13:07 -0700 (PDT)
+Received: by 10.64.228.141 with HTTP; Sat, 17 May 2014 10:13:07 -0700 (PDT)
+Date: Sat, 17 May 2014 13:13:07 -0400
+Message-ID: <CAAPegz1-8Xq2wwq1jM+k9O1qaPn_NO7N_8fNA5C_8twQ7+9t_A@mail.gmail.com>
+From: Chris Morgan <chmorgan@gmail.com>
+To: yocto@yoctoproject.org
+Subject: git.py support for submodules
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -50,98 +56,33 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 17 May 2014 13:32:17 -0000
-Content-Type: text/plain; charset=
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Sat, 17 May 2014 17:19:40 -0000
+Content-Type: multipart/alternative; boundary=001a11c2205cd1ca7b04f99ba41a
 
-Hi Beth,
+--001a11c2205cd1ca7b04f99ba41a
+Content-Type: text/plain; charset=UTF-8
 
-Am 2014-05-15 17:32, schrieb Flanagan, Elizabeth:
->> Today I had troubles with our builder. After removing the whole source
->> directory and restart the build, the autobuilder somehow checked out and
->> resetted the autobuilder git! (the dora branch was checked out, which I
->> tried to checkout from a source branch). So far I could not reconstruct
->> what exactly happend, but the builder must have been in the wrong
->> directory when issuing some commands... Ugly. Calls for sandboxes :-)
->>
-> 
-> Ah. Please switch to master. There was a VERY VERY nasty bug that is
-> probably still in dora caused by the yoctogit fetcher. I'll look at
-> dora today and backport the patch.
+Hello.
 
+I noticed that git.py doesn't seem to have support for submodules. I worked
+around this in my recipe by adding a pre configure step but I was wondering
+if a patch to add another option to git.py to fetch submodules would make
+sense and be welcomed (pending it's implementation of course).
 
-Actually I was running master of Autobuilder. However, somehow
-Autobuilder checked the branch dora out (its the branch I tried to
-build, hence all my layers had "dora" as branch name).
+Chris
 
-> 
->> Anyway, I lost my custom master.cfg since git restored the version from
->> the dora branch (always remember to backup!)...
-> 
-> Yeah, when I was debugging it, I ended up scripting my setup just to
-> figure out what was wrong.
+--001a11c2205cd1ca7b04f99ba41a
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-Inbetween I figured out what happened: A git repository (fsl-arm-extra)
-was somehow broken in my download folder. Hence the clone from the
-download folder to the source directory failed. However, the git fetch
-was done anyway, but since the clone failed that folder was not a valid
-git repository. But since the yocto-slave lives under the Yocto
-Autobuilder repository, git checked out the dora branch of the Yocto
-Autobuilder repository...
+<p dir=3D"ltr">Hello.</p>
+<p dir=3D"ltr">I noticed that git.py doesn&#39;t seem to have support for s=
+ubmodules. I worked around this in my recipe by adding a pre configure step=
+ but I was wondering if a patch to add another option to git.py to fetch su=
+bmodules would make sense and be welcomed (pending it&#39;s implementation =
+of course).</p>
 
-Its crucial to check the return status of the git clone command and
-don't call further commands if clone fails. If those two commands would
-be two BuildBot steps, wouldn't it do this automatically?
+<p dir=3D"ltr">Chris<br>
+</p>
 
-First command:
-
-git clone -s -n
-/tmp/yocto-autobuilder/git/mirror/git.yoctoproject.org/meta-fsl-arm/ .
- in dir
-/build/linuxdev/yocto-autobuilder/yocto-slave/toradex/source/git://git.yoctoproject.org/meta-fsl-arm
-(timeout 100000 secs)
- watching logfiles {}
- argv: ['git', 'clone', '-s', '-n',
-'/tmp/yocto-autobuilder/git/mirror/git.yoctoproject.org/meta-fsl-arm/',
-'.']
-
-Output:
-Cloning into '.'...
-error: refs/heads/master does not point to a valid object!
-error: refs/remotes/origin/1.4_M3 does not point to a valid object!
-error: refs/remotes/origin/1.4_M5 does not point to a valid object!
-error: refs/remotes/origin/danny does not point to a valid object!
-error: refs/remotes/origin/danny-next does not point to a valid object!
-error: refs/remotes/origin/denzil does not point to a valid object!
-error: refs/remotes/origin/dora does not point to a valid object!
-error: refs/remotes/origin/dora-next does not point to a valid object!
-error: refs/remotes/origin/dylan does not point to a valid object!
-error: refs/remotes/origin/dylan-next does not point to a valid object!
-error: refs/tags/1.2 does not point to a valid object!
-error: refs/tags/1.2-rc1 does not point to a valid object!
-error: refs/tags/1.3 does not point to a valid object!
-error: refs/tags/1.4 does not point to a valid object!
-error: refs/tags/1.5 does not point to a valid object!
-done.
-error: Trying to write ref HEAD with nonexistent object
-c91ef2d2a12cd51af20011a4de8d9438e2d4890e
-fatal: Cannot update the ref 'HEAD'.
-fatal: The remote end hung up unexpectedly
-
-Then, the second command:
-git fetch -t --prune git://git.yoctoproject.org/meta-fsl-arm
-+refs/heads/dora:refs/remotes/dora
- in dir
-/build/linuxdev/yocto-autobuilder/yocto-slave/toradex/source/git://git.yoctoproject.org/meta-fsl-arm
-(timeout 100000 secs)
- watching logfiles {}
- argv: ['git', 'fetch', '-t', '--prune',
-'git://git.yoctoproject.org/meta-fsl-arm',
-'+refs/heads/dora:refs/remotes/dora']
-...
-
-This resetted my head of the Yocto Autobuilder to dora...
-
---
-Stefan
-
+--001a11c2205cd1ca7b04f99ba41a--
