@@ -1,40 +1,39 @@
-Return-Path: <meenakumari.s@hcl.com>
+Return-Path: <ajlennon@dynamicdevices.co.uk>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 53166E00B65; Sat, 17 May 2014 22:33:28 -0700 (PDT)
+	id E6082E00B65; Sun, 18 May 2014 01:49:04 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
-X-Spam-Level: **
-X-Spam-Status: No, score=2.4 required=5.0 tests=HTML_MESSAGE,MIME_HTML_ONLY,
-	RDNS_NONE autolearn=no version=3.3.1
-X-Spam-HAM-Report: *  0.0 HTML_MESSAGE BODY: HTML included in message
-	*  1.1 MIME_HTML_ONLY BODY: Message only has text/html MIME parts
-	*  1.3 RDNS_NONE Delivered to internal network by a host with no rDNS
-Received: from GWS06.hcl.com (unknown [203.105.185.25])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8E694E00B20
-	for <yocto@yoctoproject.org>; Sat, 17 May 2014 22:33:16 -0700 (PDT)
-X-IronPort-AV: E=Sophos;i="4.98,861,1392143400"; d="scan'208,217";a="69913063"
-Received: from unknown (HELO NDA-CORP-HT03.CORP.HCL.IN) ([10.248.64.35])
-	by GWS06.hcl.com with ESMTP/TLS/AES128-SHA; 18 May 2014 10:56:32 +0530
-Received: from NDA-HCLT-CSHT05.HCLT.CORP.HCL.IN (10.98.132.30) by
-	NDA-CORP-HT03.CORP.HCL.IN (10.248.64.35) with Microsoft SMTP Server
-	(TLS) id 14.3.123.3; Sun, 18 May 2014 11:03:14 +0530
-Received: from NDA-HCLT-MBS02.HCLT.CORP.HCL.IN ([10.98.132.17]) by
-	NDA-HCLT-CSHT05.HCLT.CORP.HCL.IN ([10.98.132.30]) with mapi id
-	14.03.0123.003; Sun, 18 May 2014 11:03:14 +0530
-From: Meenakumari Shedole <meenakumari.s@hcl.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	"yocto-bounces@yoctoproject.org" <yocto-bounces@yoctoproject.org>
-Thread-Topic: Qt5 Integration in Yocto Dora Branch--Issue in qtquickcontrols
-	build
-Thread-Index: AQHPclqo/Zg9FPK+X0myCtt+XRxp4w==
-Date: Sun, 18 May 2014 05:33:13 +0000
-Message-ID: <E4938C0D959B3445943720B88F0721341563020D@NDA-HCLT-MBS02.hclt.corp.hcl.in>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.96.4.252]
+X-Spam-Level: *
+X-Spam-Status: No, score=1.3 required=5.0 tests=RDNS_NONE autolearn=no
+	version=3.3.1
+X-Spam-HAM-Report: * 1.3 RDNS_NONE Delivered to internal network by a host
+	with no rDNS
+Received: from www.dynamicdevices.co.uk (unknown [89.200.136.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7178FE00B20;
+	Sun, 18 May 2014 01:49:02 -0700 (PDT)
+Received: from localhost (localhost [127.0.0.1])
+	by www.dynamicdevices.co.uk (Postfix) with ESMTP id 86D53860E7;
+	Sun, 18 May 2014 08:49:01 +0000 (UTC)
+X-Virus-Scanned: Debian amavisd-new at lennoab2.miniserver.com
+Received: from www.dynamicdevices.co.uk ([127.0.0.1])
+	by localhost (www.dynamicdevices.co.uk [127.0.0.1]) (amavisd-new,
+	port 10024)
+	with ESMTP id MqLNYW2zZcFb; Sun, 18 May 2014 08:49:00 +0000 (UTC)
+Received: from [127.0.0.1] (cpc32-live22-2-0-cust59.17-2.cable.virginm.net
+	[82.36.253.60])
+	(using TLSv1 with cipher ECDHE-RSA-AES128-SHA (128/128 bits))
+	(No client certificate requested)
+	by www.dynamicdevices.co.uk (Postfix) with ESMTPSA id 14E79860E6;
+	Sun, 18 May 2014 08:48:59 +0000 (UTC)
+Message-ID: <537873F8.2020402@dynamicdevices.co.uk>
+Date: Sun, 18 May 2014 09:48:56 +0100
+From: Alex J Lennon <ajlennon@dynamicdevices.co.uk>
+User-Agent: Mozilla/5.0 (Windows NT 6.3; WOW64;
+	rv:24.0) Gecko/20100101 Thunderbird/24.5.0
 MIME-Version: 1.0
-Subject: Qt5 Integration in Yocto Dora Branch--Issue in qtquickcontrols build
+To: Yocto <yocto@yoctoproject.org>
+X-Enigmail-Version: 1.6
+Subject: [meta-mono] Git push fails. No space left
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -46,248 +45,29 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 18 May 2014 05:33:28 -0000
-Content-Language: en-US
-Content-Type: text/html; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Sun, 18 May 2014 08:49:05 -0000
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: 7bit
 
-<html dir=3D"ltr">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
-1">
-<style type=3D"text/css" id=3D"owaParaStyle"></style>
-</head>
-<body fpstyle=3D"1" ocsi=3D"0">
-<div style=3D"direction: ltr;font-family: Tahoma;color: #000000;font-size: =
-10pt;">
-<p class=3D"MsoNormal"><span style=3D"mso-ascii-font-family:Calibri;mso-han=
-si-font-family:
-Calibri;color:#4F81BD;mso-themecolor:accent1">HI.<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"mso-ascii-font-family:Calibri;mso-han=
-si-font-family:
-Calibri;color:#4F81BD;mso-themecolor:accent1">&nbsp;</span></p>
-<p class=3D"MsoNormal"><span style=3D"mso-ascii-font-family:Calibri;mso-han=
-si-font-family:
-Calibri;color:#4F81BD;mso-themecolor:accent1">We integrating the Qt5 in yoc=
-to Dora branch, all dependents plugins are installed and get executed with =
-their libraries expect
- the qtquickcontrols while building this I am getting following error messa=
-ge. <o:p>
-</o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"mso-ascii-font-family:Calibri;mso-han=
-si-font-family:
-Calibri;color:#4F81BD;mso-themecolor:accent1">&nbsp;</span></p>
-<p class=3D"MsoNormal"><span style=3D"mso-ascii-font-family:Calibri;mso-han=
-si-font-family:
-Calibri;color:#4F81BD;mso-themecolor:accent1">Below are the steps, download=
-ed link and build error message.<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"mso-ascii-font-family:Calibri;mso-han=
-si-font-family:
-Calibri;color:#4F81BD;mso-themecolor:accent1">&nbsp;</span></p>
-<p class=3D"MsoNormal"><span style=3D"mso-ascii-font-family:Calibri;mso-han=
-si-font-family:
-Calibri;color:#4F81BD;mso-themecolor:accent1">1. git clone https://github.c=
-om/meta-qt5<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"mso-ascii-font-family:Calibri;mso-han=
-si-font-family:
-Calibri;color:#4F81BD;mso-themecolor:accent1">2. modified local.conf and bb=
-layer.conf file<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"mso-ascii-font-family:Calibri;mso-han=
-si-font-family:
-Calibri;color:#4F81BD;mso-themecolor:accent1">3. downloaded qtquickcontrols=
- source from http://download.qt-project.org/official_releases/qt/5.2/5.2.1/=
-submodules/qtquickcontrols-opensource-src-5.2.1.tar.xz<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"mso-ascii-font-family:Calibri;mso-han=
-si-font-family:
-Calibri;color:#4F81BD;mso-themecolor:accent1">4. At yocto build getting bel=
-ow error.<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"mso-ascii-font-family:Calibri;mso-han=
-si-font-family:
-Calibri;color:#4F81BD;mso-themecolor:accent1">&nbsp;</span></p>
-<p class=3D"MsoNormal"><span style=3D"mso-ascii-font-family:Calibri;mso-han=
-si-font-family:
-Calibri;color:#4F81BD;mso-themecolor:accent1">| &#43; grep -q ^qtquickcontr=
-ols-[^-]*-[^-]*@noarch$ /home/user1/poky/build/tmp/work/baytrail32-poky-lin=
-ux/core-image-sato/1.0-r0/rootfs/install/tmp/fullpkglist.query<o:p></o:p></=
-span></p>
-<p class=3D"MsoNormal"><span style=3D"mso-ascii-font-family:Calibri;mso-han=
-si-font-family:
-Calibri;color:#4F81BD;mso-themecolor:accent1">| &#43; grep -q ^qtquickcontr=
-ols-[^-]*-[^-]*@any$ /home/user1/poky/build/tmp/work/baytrail32-poky-linux/=
-core-image-sato/1.0-r0/rootfs/install/tmp/fullpkglist.query<o:p></o:p></spa=
-n></p>
-<p class=3D"MsoNormal"><span style=3D"mso-ascii-font-family:Calibri;mso-han=
-si-font-family:
-Calibri;color:#4F81BD;mso-themecolor:accent1">| &#43; grep -q ^qtquickcontr=
-ols-[^-]*-[^-]*@all$ /home/user1/poky/build/tmp/work/baytrail32-poky-linux/=
-core-image-sato/1.0-r0/rootfs/install/tmp/fullpkglist.query<o:p></o:p></spa=
-n></p>
-<p class=3D"MsoNormal"><span style=3D"mso-ascii-font-family:Calibri;mso-han=
-si-font-family:
-Calibri;color:#4F81BD;mso-themecolor:accent1">| &#43; [ qtquickcontrols =3D=
- qtquickcontrols ]<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"mso-ascii-font-family:Calibri;mso-han=
-si-font-family:
-Calibri;color:#4F81BD;mso-themecolor:accent1">| &#43; echo Error: qtquickco=
-ntrols not found in the base feeds (baytrail32 core2 i686 i586 i486 i386 x8=
-6 noarch any all).<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"mso-ascii-font-family:Calibri;mso-han=
-si-font-family:
-Calibri;color:#4F81BD;mso-themecolor:accent1">| Error: qtquickcontrols not =
-found in the base feeds (baytrail32 core2 i686 i586 i486 i386 x86 noarch an=
-y all).<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"mso-ascii-font-family:Calibri;mso-han=
-si-font-family:
-Calibri;color:#4F81BD;mso-themecolor:accent1">| &#43; [ Error =3D Error ]<o=
-:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"mso-ascii-font-family:Calibri;mso-han=
-si-font-family:
-Calibri;color:#4F81BD;mso-themecolor:accent1">| &#43; exit 1<o:p></o:p></sp=
-an></p>
-<p class=3D"MsoNormal"><span style=3D"mso-ascii-font-family:Calibri;mso-han=
-si-font-family:
-Calibri;color:#4F81BD;mso-themecolor:accent1">| &#43; bb_exit_handler<o:p><=
-/o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"mso-ascii-font-family:Calibri;mso-han=
-si-font-family:
-Calibri;color:#4F81BD;mso-themecolor:accent1">| &#43; ret=3D1<o:p></o:p></s=
-pan></p>
-<p class=3D"MsoNormal"><span style=3D"mso-ascii-font-family:Calibri;mso-han=
-si-font-family:
-Calibri;color:#4F81BD;mso-themecolor:accent1">| &#43; echo WARNING: exit co=
-de 1 from a shell command.<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"mso-ascii-font-family:Calibri;mso-han=
-si-font-family:
-Calibri;color:#4F81BD;mso-themecolor:accent1">| WARNING: exit code 1 from a=
- shell command.<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"mso-ascii-font-family:Calibri;mso-han=
-si-font-family:
-Calibri;color:#4F81BD;mso-themecolor:accent1">| &#43; exit 1<o:p></o:p></sp=
-an></p>
-<p class=3D"MsoNormal"><span style=3D"mso-ascii-font-family:Calibri;mso-han=
-si-font-family:
-Calibri;color:#4F81BD;mso-themecolor:accent1">| ERROR: Function failed: do_=
-rootfs (log file is located at /home/user1/poky/build/tmp/work/baytrail32-p=
-oky-linux/core-image-sato/1.0-r0/temp/log.do_rootfs.7098)<o:p></o:p></span>=
-</p>
-<p class=3D"MsoNormal"><span style=3D"mso-ascii-font-family:Calibri;mso-han=
-si-font-family:
-Calibri;color:#4F81BD;mso-themecolor:accent1">&nbsp;</span></p>
-<p class=3D"MsoNormal"><span style=3D"mso-ascii-font-family:Calibri;mso-han=
-si-font-family:
-Calibri;color:#4F81BD;mso-themecolor:accent1">5. Verified /home/user1/poky/=
-build/tmp/work/core2-poky-linux/qtquickcontrols/5.2.1-ro/build.....(empty)<=
-o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"mso-ascii-font-family:Calibri;mso-han=
-si-font-family:
-Calibri;color:#4F81BD;mso-themecolor:accent1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;
- &nbsp;&nbsp;&nbsp;&nbsp; /image/....(empty)<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"mso-ascii-font-family:Calibri;mso-han=
-si-font-family:
-Calibri;color:#4F81BD;mso-themecolor:accent1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;
- &nbsp;&nbsp;&nbsp;&nbsp; /deploy-rpms/core2/qtquickcontrols-dbg-5.2.1.core=
-2.rpm/...(empty)<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"mso-ascii-font-family:Calibri;mso-han=
-si-font-family:
-Calibri;color:#4F81BD;mso-themecolor:accent1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;
- &nbsp;&nbsp;&nbsp;&nbsp; /deploy-rpms/core2/qtquickcontrols-dev-5.2.1.core=
-2.rpm/...(empty)<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"mso-ascii-font-family:Calibri;mso-han=
-si-font-family:
-Calibri;color:#4F81BD;mso-themecolor:accent1">6. Compared with other plugin=
-s BB files.<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"mso-ascii-font-family:Calibri;mso-han=
-si-font-family:
-Calibri;color:#4F81BD;mso-themecolor:accent1">&nbsp;</span></p>
-<p class=3D"MsoNormal"><span style=3D"mso-ascii-font-family:Calibri;mso-han=
-si-font-family:
-Calibri;color:#4F81BD;mso-themecolor:accent1">Please suggest me why I am no=
-t able to build qtquickcontrols plugins , Is there any dependency for this =
-plugins.<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"mso-ascii-font-family:Calibri;mso-han=
-si-font-family:
-Calibri;color:#4F81BD;mso-themecolor:accent1">&nbsp;</span></p>
-<p class=3D"MsoNormal"><span style=3D"mso-ascii-font-family:Calibri;mso-han=
-si-font-family:
-Calibri;color:#4F81BD;mso-themecolor:accent1">Thanks in Advance.<o:p></o:p>=
-</span></p>
-<p class=3D"MsoNormal"><span style=3D"mso-ascii-font-family:Calibri;mso-han=
-si-font-family:
-Calibri;color:#4F81BD;mso-themecolor:accent1">&nbsp;</span></p>
-<p class=3D"MsoNormal"><span style=3D"mso-ascii-font-family:Calibri;mso-han=
-si-font-family:
-Calibri;color:#4F81BD;mso-themecolor:accent1">Regards<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"mso-ascii-font-family:Calibri;mso-han=
-si-font-family:
-Calibri;color:#4F81BD;mso-themecolor:accent1">Meena<o:p></o:p></span></p>
-</div>
-<span style=3D"FONT-FAMILY: 'Arial','sans-serif'; COLOR: gray; FONT-SIZE: 7=
-.5pt; mso-fareast-font-family: 'Times New Roman'">
-<P style=3D"MARGIN: 0in 0in 0pt" class=3DMsoNormal><br><br><font style=3D"F=
-ONT-FAMILY: 'Arial','sans-serif'; COLOR: gray; FONT-SIZE: 9px">::DISCLAIMER=
-::<br>---------------------------------------------------------------------=
----------------------------------------------------------------------------=
-----</font></P>
-<P style=3D"MARGIN: 0in 0in 0pt" class=3DMsoNormal><font style=3D"FONT-FAMI=
-LY: 'Arial','sans-serif'; COLOR: gray; FONT-SIZE: 11px">The contents of thi=
-s e-mail and any attachment(s) are confidential and intended for the named =
-recipient(s) only.<br>E-mail transmission is not guaranteed to be secure or=
- error-free as information could be intercepted, corrupted, <br>lost, destr=
-oyed, arrive late or incomplete, or may contain viruses in transmission. Th=
-e e mail and its contents <br>(with or without referred errors) shall there=
-fore not attach any liability on the originator or HCL or its affiliates. <=
-br>Views or opinions, if any, presented in this email are solely those of t=
-he author and may not necessarily reflect the <br>views or opinions of HCL =
-or its affiliates. Any form of reproduction, dissemination, copying, disclo=
-sure, modification, <br>distribution and / or publication of this message w=
-ithout the prior written consent of authorized representative of <br>HCL is=
- strictly prohibited. If you have received this email in error please delet=
-e it and notify the sender immediately. <br>Before opening any email and/or=
- attachments, please check them for viruses and other defects.</font></P>
-<P style=3D"MARGIN: 0in 0in 0pt" class=3DMsoNormal><font style=3D"FONT-FAMI=
-LY: 'Arial','sans-serif'; COLOR: gray; FONT-SIZE: 11px">-------------------=
----------------------------------------------------------------------------=
-------------------------------------------------------</font></span></P></b=
-ody>
-</html>
+Hi,
+
+I'm trying to push a commit to meta-mono and it's failing due to lack of
+space, it says,
+
+Counting objects: 12, done.
+Delta compression using up to 2 threads.
+Compressing objects: 100% (5/5), done.
+Writing objects: 100% (5/5), 477 bytes | 0 bytes/s, done.
+Total 5 (delta 4), reused 0 (delta 0)
+error: file write error (No space left on device)
+fatal: unable to write sha1 file
+error: unpack failed: unpack-objects abnormal exit
+To git@git.yoctoproject.org:meta-mono
+ ! [remote rejected] master -> master (n/a (unpacker error))
+error: failed to push some refs to 'git@git.yoctoproject.org:meta-mono'
+
+Cheers,
+
+Alex
 
 
