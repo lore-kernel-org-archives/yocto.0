@@ -1,45 +1,41 @@
-Return-Path: <james.woodyatt@intel.com>
+Return-Path: <elizabeth.flanagan@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 5157EE0070F; Mon, 19 May 2014 13:37:11 -0700 (PDT)
+	id 56A50E0073D; Mon, 19 May 2014 14:57:29 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-3.7 required=5.0 tests=RCVD_IN_DNSWL_HI,RDNS_NONE
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [143.182.124.21 listed in list.dnswl.org]
+X-Spam-Status: No, score=0.6 required=5.0 tests=RCVD_IN_DNSWL_LOW,RDNS_NONE
+	autolearn=no version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [209.85.128.174 listed in list.dnswl.org]
 	*  1.3 RDNS_NONE Delivered to internal network by a host with no rDNS
-Received: from mga03.intel.com (unknown [143.182.124.21])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E12FCE00342
-	for <yocto@yoctoproject.org>; Mon, 19 May 2014 13:37:06 -0700 (PDT)
-Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by azsmga101.ch.intel.com with ESMTP; 19 May 2014 13:37:05 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.98,869,1392192000"; d="scan'208";a="434140891"
-Received: from orsmsx104.amr.corp.intel.com ([10.22.225.131])
-	by azsmga001.ch.intel.com with ESMTP; 19 May 2014 13:37:04 -0700
-Received: from orsmsx156.amr.corp.intel.com (10.22.240.22) by
-	ORSMSX104.amr.corp.intel.com (10.22.225.131) with Microsoft SMTP Server
-	(TLS) id 14.3.123.3; Mon, 19 May 2014 13:36:59 -0700
-Received: from orsmsx105.amr.corp.intel.com ([169.254.4.80]) by
-	ORSMSX156.amr.corp.intel.com ([169.254.8.176]) with mapi id
-	14.03.0123.003; Mon, 19 May 2014 13:36:58 -0700
-From: "Woodyatt, James" <james.woodyatt@intel.com>
-To: "Purdie, Richard" <richard.purdie@intel.com>
-Thread-Topic: [yocto] my recent change to the dylan branch of meta-darwin
-Thread-Index: AQHPb9NAMzlWwZxry02Z1CZflmMYu5tI2doA
-Date: Mon, 19 May 2014 20:36:58 +0000
-Message-ID: <6DC0AFF1-BFCA-4233-A655-0B3E87C2F1FA@intel.com>
-References: <B6C50B5A-EFE4-4865-B40C-794A237D1A75@intel.com>
-In-Reply-To: <B6C50B5A-EFE4-4865-B40C-794A237D1A75@intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.3.113.53]
+Received: from mail-ve0-f174.google.com (unknown [209.85.128.174])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8AF23E006EC
+	for <yocto@yoctoproject.org>; Mon, 19 May 2014 14:57:25 -0700 (PDT)
+Received: by mail-ve0-f174.google.com with SMTP id jw12so7152828veb.5
+	for <yocto@yoctoproject.org>; Mon, 19 May 2014 14:57:24 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:date:message-id:subject:from:to
+	:content-type;
+	bh=zu8t/zbZPIbNry3fXTUZEQ0HSn/TSqZbJVlvtmMq4VE=;
+	b=c6fhJW4KxSrHe4DQ75556uNzxcg/EFuXBJuzkWabLiVaLI8QU25Xlc9df0u8QQ+aV9
+	rSP+HWhn+JoV61xgE+iyNhfLin8SCX9DrcceQ9SP+Xenhh4kjNzL1GCYlv719/Tms+cW
+	7bsdVScuCNoFmpNNJLfvMesim9kPm1yHm5lmVOcbvVcsea7wrSFJrynkqDl10NowxZkc
+	2sjUAUQNnbsGo6rvVWm9EtTxTKBl2hzyQpJ14v6Y7jr1vFuPn55PW34MtkStOjOS6VCZ
+	WJByIeGj4+TOdAfQwwvwYCAVl5w+yKlx0R6l1tNXOrsvFjDdQxIt3EuPq6yhOeZb9vma
+	Ky+w==
+X-Gm-Message-State: ALoCoQlg9q89NdkYbT5DmjvcUELZTvsmNWRKpiioSrqlV2FVy64QnaBhQwidBYmxhMf9qhEp8GoQ
 MIME-Version: 1.0
-Cc: Yocto Project Main <yocto@yoctoproject.org>
-Subject: Re: my recent change to the dylan branch of meta-darwin
+X-Received: by 10.52.191.36 with SMTP id gv4mr95916vdc.1.1400531432332; Mon,
+	19 May 2014 13:30:32 -0700 (PDT)
+Received: by 10.52.243.73 with HTTP; Mon, 19 May 2014 13:30:32 -0700 (PDT)
+Date: Mon, 19 May 2014 13:30:32 -0700
+Message-ID: <CAPhnLPC0=syJsEjo1=NQ22tdkcVLY4s=J-ULXHE0iFNVvbiE6g@mail.gmail.com>
+From: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
+To: lynncyrin@gmail.com, "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Welcome Lynn Cyrin, OPW intern.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -51,54 +47,30 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 19 May 2014 20:37:11 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="Windows-1252"
-Content-ID: <584D6F58F0A92D4EA4122D0BD870703E@intel.com>
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Mon, 19 May 2014 21:57:29 -0000
+Content-Type: text/plain; charset=UTF-8
 
-Richard, et al=97
+All,
 
-Ping? I=92m working on this, but it would help to know whether I should pre=
-pare a patch against the current (bad) head of branch or if I should prepar=
-e a patch against the previous revision?
+I am pleased to introduce our new Gnome Foundation Outreach Program
+for Women Intern, Lynn Cyrin.
 
+Lynn is a computer science student and Dean's Scholar at Mills
+College. Her academic history includes studying Materials Science and
+Engineering at Drexel University and Astronautical Engineering at
+Capitol College. She has worked as an intern at NASA Goddard and as an
+assistant to a PhD student doing semiconducting polymers research.
 
-=97
-james woodyatt <james.woodyatt@intel.com>
-Software Architect, New Devices Group
+Lynn will be working on documenting and extending the
+yocto-autobuilder over the next couple of months, helping to implement
+some cloud building functionality as well as picking up some random
+release engineering duties. She will be blogging about her experiences
+at http://lynncyrin.me.
 
-On May 14, 2014, at 17:18, Woodyatt, James <james.woodyatt@intel.com> wrote=
-:
+Welcome Lynn!
 
-> Richard=97
->=20
-> I think I broke the meta-darwin layer with this commit.
->=20
->> commit f4122e22257c784e9eb1b564e8ef16cd2e83cd03
->> Author: Woodyatt, James <james.woodyatt@intel.com>
->> Date:   Thu May 1 19:03:41 2014 +0000
->>=20
->>    odcctools2: Remove use of "new typename" constructors
->>=20
->>    These are specific to gcc 4.8 and removing these allows the build
->>    to succeed on host systemd with have gcc 4.7.
->>=20
->>    Signed-off-by: Richard Purdie <richard.purdie@linuxfoundation.org>
->=20
-> This fixes the build on GCC 4.4, but it now breaks with GCC 4.6.3.  Not a=
-n improvement.  I think this change should be rolled back in the Yocto proj=
-ect =91dylan=92 branch.  My sincere apologies for this error.  I will work =
-on a better patch that more precisely addresses the issue.
->=20
-> =97
-> james woodyatt <james.woodyatt@intel.com>
-> Software Architect, New Devices Group
->=20
-> --=20
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
-
+-- 
+Elizabeth Flanagan
+Yocto Project
+Build and Release
 
