@@ -1,45 +1,49 @@
-Return-Path: <gley-yocto@m.gmane.org>
+Return-Path: <sbabic@denx.de>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id E740EE00BEF; Mon, 19 May 2014 05:02:58 -0700 (PDT)
+	id 44D4FE00B6C; Mon, 19 May 2014 06:48:20 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: *
-X-Spam-Status: No, score=1.3 required=5.0 tests=FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE,RDNS_NONE,SPF_HELO_PASS autolearn=no version=3.3.1
+X-Spam-Status: No, score=1.3 required=5.0 tests=RCVD_IN_DNSWL_NONE,RDNS_NONE
+	autolearn=no version=3.3.1
 X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
 	http://www.dnswl.org/, no *      trust
-	*      [80.91.229.3 listed in list.dnswl.org]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (auslands-kv[at]gmx.de)
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+	*      [212.18.0.9 listed in list.dnswl.org]
 	*  1.3 RDNS_NONE Delivered to internal network by a host with no rDNS
-Received: from plane.gmane.org (unknown [80.91.229.3])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3E1E9E00BE6
-	for <yocto@yoctoproject.org>; Mon, 19 May 2014 05:02:48 -0700 (PDT)
-Received: from list by plane.gmane.org with local (Exim 4.69)
-	(envelope-from <gley-yocto@m.gmane.org>) id 1WmMHH-0002Xr-U8
-	for yocto@yoctoproject.org; Mon, 19 May 2014 14:02:47 +0200
-Received: from 80-218-32-173.dclient.hispeed.ch ([80.218.32.173])
-	by main.gmane.org with esmtp (Gmexim 0.1 (Debian))
-	id 1AlnuQ-0007hv-00
-	for <yocto@yoctoproject.org>; Mon, 19 May 2014 14:02:47 +0200
-Received: from auslands-kv by 80-218-32-173.dclient.hispeed.ch with local
-	(Gmexim 0.1 (Debian)) id 1AlnuQ-0007hv-00
-	for <yocto@yoctoproject.org>; Mon, 19 May 2014 14:02:47 +0200
-X-Injected-Via-Gmane: http://gmane.org/
-To: yocto@yoctoproject.org
-From: Neuer User <auslands-kv@gmx.de>
-Date: Mon, 19 May 2014 14:02:37 +0200
-Message-ID: <llcrst$jsc$1@ger.gmane.org>
-References: <llcim8$3rn$1@ger.gmane.org>	<CAJTo0Laf+EEiBAcmKwtU08LLPYynDavNbfuC3TaGKLe2oBtR+w@mail.gmail.com>	<llcj8i$cfi$1@ger.gmane.org>
-	<CANyK_8fjtaN6iXOXm9YqLxK25_VUbYqH8_83GOYm81GjRc9wyA@mail.gmail.com>
-Mime-Version: 1.0
-X-Complaints-To: usenet@ger.gmane.org
-X-Gmane-NNTP-Posting-Host: 80-218-32-173.dclient.hispeed.ch
+X-Greylist: delayed 408 seconds by postgrey-1.32 at yocto-www;
+	Mon, 19 May 2014 06:48:14 PDT
+Received: from mail-out.m-online.net (unknown [212.18.0.9])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D6A89E00B66
+	for <yocto@yoctoproject.org>; Mon, 19 May 2014 06:48:14 -0700 (PDT)
+Received: from frontend1.mail.m-online.net (frontend1.mail.intern.m-online.net
+	[192.168.8.180])
+	by mail-out.m-online.net (Postfix) with ESMTP id 3gXLwj20mmz3hhYq;
+	Mon, 19 May 2014 15:41:24 +0200 (CEST)
+Received: from localhost (dynscan1.mnet-online.de [192.168.6.68])
+	by mail.m-online.net (Postfix) with ESMTP id 3gXLwh4Yyrzbbkh;
+	Mon, 19 May 2014 15:41:24 +0200 (CEST)
+X-Virus-Scanned: amavisd-new at mnet-online.de
+Received: from mail.mnet-online.de ([192.168.8.180])
+	by localhost (dynscan1.mail.m-online.net [192.168.6.68]) (amavisd-new,
+	port 10024)
+	with ESMTP id 33wyMv91_MaN; Mon, 19 May 2014 15:41:10 +0200 (CEST)
+X-Auth-Info: mqfu9FvqkvuBwgkxjUKxKm9pcMxLx1v+DBng9QMHVG4=
+Received: from [192.168.2.247] (88-149-182-160.v4.ngi.it [88.149.182.160])
+	by smtp-auth.mnet-online.de (Postfix) with ESMTPA;
+	Mon, 19 May 2014 15:41:10 +0200 (CEST)
+Message-ID: <537A09F5.2050809@denx.de>
+Date: Mon, 19 May 2014 15:41:09 +0200
+From: Stefano Babic <sbabic@denx.de>
 User-Agent: Mozilla/5.0 (X11; Linux x86_64;
 	rv:24.0) Gecko/20100101 Thunderbird/24.5.0
-In-Reply-To: <CANyK_8fjtaN6iXOXm9YqLxK25_VUbYqH8_83GOYm81GjRc9wyA@mail.gmail.com>
-Subject: Re: Strange certificate problem with wget
+MIME-Version: 1.0
+To: Paul McGougan <PMcGougan@topcon.com>, 
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+References: <C7589FE7B0DE58488F2B9BF79840E9D90D66F51F@ADL-EXCHMBX1.TOPCON.com>
+	<536CE9B4.6050303@windriver.com>
+In-Reply-To: <536CE9B4.6050303@windriver.com>
+X-Enigmail-Version: 1.5.2
+Subject: Re: Question / issue
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -51,73 +55,103 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 19 May 2014 12:02:59 -0000
+X-List-Received-Date: Mon, 19 May 2014 13:48:20 -0000
+X-Groupsio-MsgNum: 19698
+Content-Type: multipart/mixed; boundary="------------000508000000020604000709"
+
+--------------000508000000020604000709
 Content-Type: text/plain; charset=ISO-8859-1
 Content-Transfer-Encoding: 7bit
 
-Am 19.05.2014 12:56, schrieb Paul Barker:
-> On 19 May 2014 10:35, Neuer User <auslands-kv@gmx.de> wrote:
->> Am 19.05.2014 11:32, schrieb Burton, Ross:
->>> On 19 May 2014 10:25, Neuer User <auslands-kv@gmx.de> wrote:
->>>> I need to use wget with https support in my image. So I added "wget" to
->>>> my packages.
->>>>
->>>> The problem is that it doesn't seem to find the installed certificates:
->>>
->>> By "installed certificates" you mean that you installed
->>> ca-certificates into the image, right?
->>>
->>> Ross
->>>
->> Yeah, exactly.
+Hi Paul,
+
+sorry for late answer - I read only now you are talking about FIT.
+
+On 09/05/2014 16:44, Bruce Ashfield wrote:
+>>
+>>  
+>>
+>> My first question is, is there a better place to be making the FIT image?
 >>
 > 
-> If you run 'wget --version' you should be able to find out if you're
-> running busybox wget or gnu wget. I assume you're expecting gnu wget
-> as you added wget to your packages, but it's worth quickly checking
-> that the correct binary is being executed.
+> It depends on if everything you need to construct the FIT image is
+> in the kernel's build directory, or also available in the sysroot/deploy
+> directories.
 > 
-> Thanks,
+> If you need kernel build artifacts, doing it in the bbappend (or a .inc,
+> .bbclass, etc) of the kernel recipe is the right place.
 > 
-~# wget --version
-GNU Wget 1.14 built on linux-gnueabi.
 
-+digest +https +ipv6 -iri -large-file +nls +ntlm +opie +ssl/openssl
+Indeed. This is what I did in a couple of projects. I added an
+image_types_itb.bbclass to produce the FIT image. The IMAGE_FIT_ITS
+variable contains the filename of the description file to be passed to
+the mkimage tool, and can be overwritten by the image receipe.
+Compressions are not needed for this image type, and I should be removed.
 
-Wgetrc:
-    /etc/wgetrc (system)
-Locale: /usr/share/locale
-Compile: arm-poky-linux-gnueabi-gcc -march=armv7-a -mthumb-interwork
-    -mfloat-abi=hard -mfpu=neon -mtune=cortex-a9
-    --sysroot=/home/ubuntu/yocto/build/tmp/sysroots/cubox-i
-    -DHAVE_CONFIG_H -DSYSTEM_WGETRC="/etc/wgetrc"
-    -DLOCALEDIR="/usr/share/locale" -I.
+Is this the right place to post the patch ? Or should be addressed to
+meta-oe ?
 
--I/home/ubuntu/yocto/build/tmp/work/cortexa9hf-vfp-neon-poky-linux-gnueabi/wget/1.14-r16.0/wget-1.14/src
--I../lib
--I/home/ubuntu/yocto/build/tmp/work/cortexa9hf-vfp-neon-poky-linux-gnueabi/wget/1.14-r16.0/wget-1.14/lib
--O2 -pipe -g -feliminate-unused-debug-types
-Link: arm-poky-linux-gnueabi-gcc -march=armv7-a -mthumb-interwork
-    -mfloat-abi=hard -mfpu=neon -mtune=cortex-a9
-    --sysroot=/home/ubuntu/yocto/build/tmp/sysroots/cubox-i -O2 -pipe
-    -g -feliminate-unused-debug-types -Wl,-O1 -Wl,--hash-style=gnu
-    -Wl,--as-needed -lssl
-    /home/ubuntu/yocto/build/tmp/sysroots/cubox-i/lib/libcrypto.so -lz
-    -ldl -lz -lz -lpcre ftp-opie.o openssl.o http-ntlm.o
-    ../lib/libgnu.a
+Best regards,
+Stefano
 
-Copyright (C) 2011 Free Software Foundation, Inc.
-License GPLv3+: GNU GPL version 3 or later
-<http://www.gnu.org/licenses/gpl.html>.
-This is free software: you are free to change and redistribute it.
-There is NO WARRANTY, to the extent permitted by law.
+-- 
+=====================================================================
+DENX Software Engineering GmbH,     MD: Wolfgang Denk & Detlev Zundel
+HRB 165235 Munich, Office: Kirchenstr.5, D-82194 Groebenzell, Germany
+Phone: +49-8142-66989-53 Fax: +49-8142-66989-80 Email: sbabic@denx.de
+=====================================================================
 
-Originally written by Hrvoje Niksic <hniksic@xemacs.org>.
-Please send bug reports and questions to <bug-wget@gnu.org>.
+--------------000508000000020604000709
+Content-Type: text/x-patch;
+ name="0001-meta-add-support-for-FIT-images.patch"
+Content-Transfer-Encoding: 7bit
+Content-Disposition: attachment;
+ filename="0001-meta-add-support-for-FIT-images.patch"
+
+From 0cb68067149657079cad88b029f04cddcadf613a Mon Sep 17 00:00:00 2001
+From: Stefano Babic <sbabic@denx.de>
+Date: Thu, 26 Sep 2013 17:21:00 +0200
+Subject: [PATCH] meta: add support for FIT images
+
+Signed-off-by: Stefano Babic <sbabic@denx.de>
+---
+ meta/classes/image_types_itb.bbclass | 25 +++++++++++++++++++++++++
+ 1 file changed, 25 insertions(+)
+ create mode 100644 meta/classes/image_types_itb.bbclass
+
+diff --git a/meta/classes/image_types_itb.bbclass b/meta/classes/image_types_itb.bbclass
+new file mode 100644
+index 0000000..1c43c79
+--- /dev/null
++++ b/meta/classes/image_types_itb.bbclass
+@@ -0,0 +1,25 @@
++inherit image_types kernel-arch
++
++oe_mkimage () {
++	cp ${IMAGE_FIT_ITS}  ${DEPLOY_DIR_IMAGE}/.
++
++	FIT_ITS=`basename ${IMAGE_FIT_ITS}`
++	mkimage -f ${FIT_ITS} ${DEPLOY_DIR_IMAGE}/$1.itb
++}
++
++COMPRESSIONTYPES += "gz.u-boot bz2.u-boot lzma.u-boot u-boot"
++
++COMPRESS_DEPENDS_u-boot = "u-boot-mkimage-native"
++COMPRESS_CMD_u-boot      = "oe_mkimage ${IMAGE_NAME}.rootfs.${type} none"
++
++COMPRESS_DEPENDS_gz.u-boot = "u-boot-mkimage-native"
++COMPRESS_CMD_gz.u-boot      = "${COMPRESS_CMD_gz}; oe_mkimage ${IMAGE_NAME}.rootfs.${type}.gz gzip"
++
++COMPRESS_DEPENDS_bz2.u-boot = "u-boot-mkimage-native"
++COMPRESS_CMD_bz2.u-boot      = "${COMPRESS_CMD_bz2}; oe_mkimage ${IMAGE_NAME}.rootfs.${type}.bz2 bzip2"
++
++COMPRESS_DEPENDS_lzma.u-boot = "u-boot-mkimage-native"
++COMPRESS_CMD_lzma.u-boot      = "${COMPRESS_CMD_lzma}; oe_mkimage ${IMAGE_NAME}.rootfs.${type}.lzma lzma"
++
++IMAGE_TYPES += "ext2.itb ext2.gz.itb ext2.bz2.itb ext2.lzma.itb ext3.gz.itb ext4.gz.itb"
++
+-- 
+1.9.1
 
 
-Looks, as if I get the right one, but strangely without working
-certificates check...
-
-
-
+--------------000508000000020604000709--
