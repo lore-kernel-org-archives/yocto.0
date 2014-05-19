@@ -1,41 +1,51 @@
-Return-Path: <richard.purdie@linuxfoundation.org>
+Return-Path: <paul.betafive@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id B29ECE00BEF; Mon, 19 May 2014 04:13:22 -0700 (PDT)
+	id EF6A7E00BEF; Mon, 19 May 2014 04:25:52 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
-X-Spam-Level: *
-X-Spam-Status: No, score=1.3 required=5.0 tests=RDNS_NONE autolearn=no
-	version=3.3.1
-X-Spam-HAM-Report: * 1.3 RDNS_NONE Delivered to internal network by a host
-	with no rDNS
-Received: from dan.rpsys.net (unknown [87.81.244.161])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 44579E00BE6
-	for <yocto@yoctoproject.org>; Mon, 19 May 2014 04:13:20 -0700 (PDT)
-Received: from localhost (dan.rpsys.net [127.0.0.1])
-	by dan.rpsys.net (8.14.4/8.14.4/Debian-2.1ubuntu4) with ESMTP id
-	s4JBDB8x011213; Mon, 19 May 2014 12:13:11 +0100
-X-Virus-Scanned: Debian amavisd-new at dan.rpsys.net
-Received: from dan.rpsys.net ([127.0.0.1])
-	by localhost (dan.rpsys.net [127.0.0.1]) (amavisd-new, port 10024)
-	with LMTP id vIC7nDbVhLRl; Mon, 19 May 2014 12:13:11 +0100 (BST)
-Received: from [192.168.3.10] (rpvlan0 [192.168.3.10]) (authenticated bits=0)
-	by dan.rpsys.net (8.14.4/8.14.4/Debian-2.1ubuntu1) with ESMTP id
-	s4JBD4Sw011197
-	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES128-SHA bits=128 verify=NOT);
-	Mon, 19 May 2014 12:13:06 +0100
-Message-ID: <1400497977.28353.168.camel@ted>
-From: Richard Purdie <richard.purdie@linuxfoundation.org>
-To: Christopher Larson <clarson@kergoth.com>
-Date: Mon, 19 May 2014 12:12:57 +0100
-In-Reply-To: <CABcZAN=LmEaxJ5OLJ1h4y3r6WxacSZdAEp09eu-gEVkUcseHbw@mail.gmail.com>
-References: <CAAPegz1-8Xq2wwq1jM+k9O1qaPn_NO7N_8fNA5C_8twQ7+9t_A@mail.gmail.com>
-	<CABcZANknNHPuikqAgOe=0WWgDON9mb=TTdyqX5Ap30Jh+v+epQ@mail.gmail.com>
-	<CAAPegz1nmK+A0ECf7oKNPkTS+MkU5pPm7Dy-+nELM=uzO+q5Pw@mail.gmail.com>
-	<CABcZAN=LmEaxJ5OLJ1h4y3r6WxacSZdAEp09eu-gEVkUcseHbw@mail.gmail.com>
-X-Mailer: Evolution 3.8.4-0ubuntu1 
-Mime-Version: 1.0
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: git.py support for submodules
+X-Spam-Level: 
+X-Spam-Status: No, score=0.6 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+	RCVD_IN_DNSWL_LOW,RDNS_NONE autolearn=no version=3.3.1
+X-Spam-HAM-Report: *  0.1 DKIM_SIGNED Message has a DKIM or DK signature,
+	not necessarily *      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.212.178 listed in list.dnswl.org]
+	*  1.3 RDNS_NONE Delivered to internal network by a host with no rDNS
+X-Greylist: delayed 1212 seconds by postgrey-1.32 at yocto-www;
+	Mon, 19 May 2014 04:25:48 PDT
+Received: from mail-wi0-f178.google.com (unknown [209.85.212.178])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9ACA5E00BE6
+	for <yocto@yoctoproject.org>; Mon, 19 May 2014 04:25:48 -0700 (PDT)
+Received: by mail-wi0-f178.google.com with SMTP id cc10so1305463wib.11
+	for <yocto@yoctoproject.org>; Mon, 19 May 2014 04:25:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:sender:in-reply-to:references:from:date:message-id
+	:subject:to:cc:content-type;
+	bh=iDtHjh5ggmxjXD7Jc5v3mxPHGVtDgq7E+wrbpX3BwDw=;
+	b=LoafbvQG/3+/2ihoWNVJtztwEquLoYjrwjHtujYzx/xFsMW5X+seLJFPKLSE0jJ81M
+	7dAnNlSkdFA8fiTsc2/37YSkr/phI0a27eNiz7JdmP1iTbfQ4IksvSrhs6Jh0mNsmSRH
+	lS/sYDOpKqV13SqExxNieqeNTB8h1lXz/u+HSpizAjRJ/rRlM4I3lsItzGeAaqv7kphS
+	k4eRyIR6b1Y/BQtelr74zrY6qtApCHvSyjmKq9FOR7YxSTAo/9zVXHWCOP7Kq/9uJFpO
+	fjW2TqF3iDo5j5gJTQ8W/M0CeZ3VbtEdV8sWym78hKpJqiKdR7aLqo+NVixp0yK/Pji2
+	IAeg==
+X-Received: by 10.180.72.179 with SMTP id e19mr12104120wiv.61.1400497041724;
+	Mon, 19 May 2014 03:57:21 -0700 (PDT)
+MIME-Version: 1.0
+Sender: paul.betafive@gmail.com
+Received: by 10.194.38.129 with HTTP; Mon, 19 May 2014 03:56:41 -0700 (PDT)
+In-Reply-To: <llcj8i$cfi$1@ger.gmane.org>
+References: <llcim8$3rn$1@ger.gmane.org>
+	<CAJTo0Laf+EEiBAcmKwtU08LLPYynDavNbfuC3TaGKLe2oBtR+w@mail.gmail.com>
+	<llcj8i$cfi$1@ger.gmane.org>
+From: Paul Barker <paul@paulbarker.me.uk>
+Date: Mon, 19 May 2014 11:56:41 +0100
+X-Google-Sender-Auth: Wl9j6GG8h7QdRx7qcgnb1mCm9O4
+Message-ID: <CANyK_8fjtaN6iXOXm9YqLxK25_VUbYqH8_83GOYm81GjRc9wyA@mail.gmail.com>
+To: Neuer User <auslands-kv@gmx.de>
+Cc: Yocto discussion list <yocto@yoctoproject.org>
+Subject: Re: Strange certificate problem with wget
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -47,65 +57,35 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 19 May 2014 11:13:22 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Mon, 19 May 2014 11:25:53 -0000
+Content-Type: text/plain; charset=UTF-8
 
-On Sat, 2014-05-17 at 13:19 -0700, Christopher Larson wrote:
-> 
-> 
-> On Saturday, May 17, 2014, Chris Morgan <chmorgan@gmail.com> wrote:
->         
->         On May 17, 2014 3:58 PM, "Christopher Larson"
->         <clarson@kergoth.com> wrote:
->         >
->         >
->         >
->         > On Saturday, May 17, 2014, Chris Morgan <chmorgan@gmail.com>
->         wrote:
->         >>
->         >> Hello.
->         >>
->         >> I noticed that git.py doesn't seem to have support for
->         submodules. I worked around this in my recipe by adding a pre
->         configure step but I was wondering if a patch to add another
->         option to git.py to fetch submodules would make sense and be
->         welcomed (pending it's implementation of course).
->         >
->         >
->         >  See gitsm.py.
->         >
->         >
->         > -- 
->         > Christopher Larson
->         > clarson at kergoth dot com
->         > Founder - BitBake, OpenEmbedded, OpenZaurus
->         > Maintainer - Tslib
->         > Senior Software Engineer, Mentor Graphics
->   >
->         I couldn't actually figure out how to use it. I looked at the
->         code and wasn't sure how it war supposed to do or what it was
->         for.
+On 19 May 2014 10:35, Neuer User <auslands-kv@gmx.de> wrote:
+> Am 19.05.2014 11:32, schrieb Burton, Ross:
+>> On 19 May 2014 10:25, Neuer User <auslands-kv@gmx.de> wrote:
+>>> I need to use wget with https support in my image. So I added "wget" to
+>>> my packages.
+>>>
+>>> The problem is that it doesn't seem to find the installed certificates:
+>>
+>> By "installed certificates" you mean that you installed
+>> ca-certificates into the image, right?
+>>
+>> Ross
+>>
+> Yeah, exactly.
 >
-> You use it exactly the way you use git.py - gitsm:// instead of
-> git://.  It's basically git fetching plus submodule handling. I
-> personally would rather see it merged into git.py, but I can see the
-> reasoning. 
 
-FWIW the reason its separate is that mirroring is not in a good state
-with submodules since git is doing magic things behind the scenes that
-the fetcher and its mirror infrastructure have no knowledge of. We
-should probably document that somewhere though.
+If you run 'wget --version' you should be able to find out if you're
+running busybox wget or gnu wget. I assume you're expecting gnu wget
+as you added wget to your packages, but it's worth quickly checking
+that the correct binary is being executed.
 
-There are a few ways it can be fixed but its ugly and I'd prefer to have
-that code isolated for now. It could easily be merged later and it needs
-someone who cares about submodules to fix it up to be a first class
-citizen before that can happen. 
+Thanks,
 
-Cheers,
+-- 
+Paul Barker
 
-Richard
-
-
-
+Email: paul@paulbarker.me.uk
+http://www.paulbarker.me.uk
 
