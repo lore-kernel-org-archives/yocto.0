@@ -1,33 +1,59 @@
-Return-Path: <kangkai.yin@intel.com>
+Return-Path: <btv1==217dfdbf641==Matt.Schuckmann@planar.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id CA5BCE00B66; Mon, 19 May 2014 19:17:27 -0700 (PDT)
+	id B6EBBE00B66; Mon, 19 May 2014 20:01:23 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-3.7 required=5.0 tests=RCVD_IN_DNSWL_HI,RDNS_NONE
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [134.134.136.24 listed in list.dnswl.org]
-	*  1.3 RDNS_NONE Delivered to internal network by a host with no rDNS
-Received: from mga09.intel.com (unknown [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0EB6BE0073D
-	for <yocto@yoctoproject.org>; Mon, 19 May 2014 19:17:22 -0700 (PDT)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga102.jf.intel.com with ESMTP; 19 May 2014 19:12:17 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.98,870,1392192000"; d="scan'208";a="514504578"
-Received: from kai-gentoo.bj.intel.com (HELO kai-gentoo) ([10.238.154.67])
-	by orsmga001.jf.intel.com with ESMTP; 19 May 2014 19:17:21 -0700
-Date: Tue, 20 May 2014 10:15:10 +0800
-From: Yin Kangkai <kangkai.yin@intel.com>
-To: yocto@yoctoproject.org
-Message-ID: <20140520021510.GE4465@kai-gentoo.bj.intel.com>
-References: <1400552217-15047-1-git-send-email-kangkai.yin@intel.com>
+X-Spam-Level: *
+X-Spam-Status: No, score=1.3 required=5.0 tests=RDNS_NONE autolearn=no
+	version=3.3.1
+X-Spam-HAM-Report: * 1.3 RDNS_NONE Delivered to internal network by a host
+	with no rDNS
+X-Greylist: delayed 812 seconds by postgrey-1.32 at yocto-www;
+	Mon, 19 May 2014 20:01:17 PDT
+Received: from barbvt10.planar.com (unknown [199.244.172.52])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A59E0E00985
+	for <yocto@yoctoproject.org>; Mon, 19 May 2014 20:01:17 -0700 (PDT)
+X-ASG-Debug-ID: 1400554063-04b02b2fd0cb2c50001-yzSStA
+Received: from msxbvt03.planar.net (msxbvt03.planar.net [172.16.0.147]) by
+	barbvt10.planar.com with ESMTP id 7dABVqCb4TvL6Rfa for
+	<yocto@yoctoproject.org>; Mon, 19 May 2014 19:47:43 -0700 (PDT)
+X-Barracuda-Envelope-From: Matt.Schuckmann@planar.com
+Received: from MSXBEBVT12.planar.net ([::1]) by msxbvt03.planar.net ([::1])
+	with mapi; Mon, 19 May 2014 19:47:42 -0700
+From: Matt Schuckmann <Matt.Schuckmann@planar.com>
+To: Matt Schuckmann <Matt.Schuckmann@planar.com>, "yocto@yoctoproject.org"
+	<yocto@yoctoproject.org>
+Date: Mon, 19 May 2014 19:47:42 -0700
+Thread-Topic: Can't boot poky-tiny in qemu
+X-ASG-Orig-Subj: RE: Can't boot poky-tiny in qemu
+Thread-Index: Ac9zvKexK1sJ/v7iSHKuKVUKQof0UAAGNpKA
+Message-ID: <4B07ADD556F70043925DA2E9C5D4346D2FD6CF7568@MSXBEBVT12.planar.net>
+References: <4B07ADD556F70043925DA2E9C5D4346D2FD6CF755F@MSXBEBVT12.planar.net>
+In-Reply-To: <4B07ADD556F70043925DA2E9C5D4346D2FD6CF755F@MSXBEBVT12.planar.net>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+acceptlanguage: en-US
 MIME-Version: 1.0
-In-Reply-To: <1400552217-15047-1-git-send-email-kangkai.yin@intel.com>
-User-Agent: Mutt/1.5.21 (2010-09-15)
-Subject: Re: [PATCH 1/3] SingleBranchScheduler: check each repo but not only the first one
+X-Barracuda-Connect: msxbvt03.planar.net[172.16.0.147]
+X-Barracuda-Start-Time: 1400554063
+X-Barracuda-URL: http://10.10.111.112:8000/cgi-mod/mark.cgi
+X-Virus-Scanned: by bsmtpd at planar.com
+X-Barracuda-BRTS-Status: 1
+X-Barracuda-Bayes: INNOCENT GLOBAL 0.0000 1.0000 -2.0210
+X-Barracuda-Spam-Score: -1.52
+X-Barracuda-Spam-Status: No,
+	SCORE=-1.52 using per-user scores of TAG_LEVEL=1000.0
+	QUARANTINE_LEVEL=1000.0 KILL_LEVEL=1000.0
+	tests=BSF_SC0_SA_TO_FROM_ADDR_MATCH
+X-Barracuda-Spam-Report: Code version 3.2, rules version 3.2.3.5950
+	Rule breakdown below
+	pts rule name              description
+	---- ----------------------
+	--------------------------------------------------
+	0.50 BSF_SC0_SA_TO_FROM_ADDR_MATCH Sender Address Matches Recipient
+	Address
+Subject: Re: Can't boot poky-tiny in qemu
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,27 +65,21 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 20 May 2014 02:17:27 -0000
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+X-List-Received-Date: Tue, 20 May 2014 03:01:23 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-[up post intentionally]
+Some additional information, I've been testing with Yocto 1.6 (daisy), I ju=
+st tried it with 1.5 (dora) and it does better I actually see some output, =
+but it gets stuck in the init script with the repeating messages:=20
 
-I was trying to setup yocto-autobuilder in my local env, and customize
-it to my needs (i.e. watch git/gerrit event and only build my
-images). It is a little bit of struggle for me to make it finally work
-(due to the fact I am little knowledge to both buildbot and python.)
+[    3.379021] Freeing unused kernel memory: 284k freed
+/init: line 26: setsid: not found
+Console sh exited with 127, respawning...
+/init: line 26: setsid: not found
+Console sh exited with 127, respawning...
 
-Anyway, these several patches are needed in my setup. Please review
-and considering merge.
 
-If this is not the right mailing list, please let me know. Thanks.
 
-Regards,
-Kangkai
-
-On 2014-05-20, 10:16 +0800, Yin Kangkai wrote:
-> Without this patch, when you set a SingleBranchScheduler scheduler,
-> code will only check against the first repo in repos list. e.g.:
-...
 
