@@ -1,6 +1,6 @@
-Return-Path: <btv1==217dfdbf641==Matt.Schuckmann@planar.com>
+Return-Path: <dirk.hohndel@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id B6EBBE00B66; Mon, 19 May 2014 20:01:23 -0700 (PDT)
+	id 0E3D3E00B87; Mon, 19 May 2014 21:12:48 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: *
@@ -8,52 +8,36 @@ X-Spam-Status: No, score=1.3 required=5.0 tests=RDNS_NONE autolearn=no
 	version=3.3.1
 X-Spam-HAM-Report: * 1.3 RDNS_NONE Delivered to internal network by a host
 	with no rDNS
-X-Greylist: delayed 812 seconds by postgrey-1.32 at yocto-www;
-	Mon, 19 May 2014 20:01:17 PDT
-Received: from barbvt10.planar.com (unknown [199.244.172.52])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A59E0E00985
-	for <yocto@yoctoproject.org>; Mon, 19 May 2014 20:01:17 -0700 (PDT)
-X-ASG-Debug-ID: 1400554063-04b02b2fd0cb2c50001-yzSStA
-Received: from msxbvt03.planar.net (msxbvt03.planar.net [172.16.0.147]) by
-	barbvt10.planar.com with ESMTP id 7dABVqCb4TvL6Rfa for
-	<yocto@yoctoproject.org>; Mon, 19 May 2014 19:47:43 -0700 (PDT)
-X-Barracuda-Envelope-From: Matt.Schuckmann@planar.com
-Received: from MSXBEBVT12.planar.net ([::1]) by msxbvt03.planar.net ([::1])
-	with mapi; Mon, 19 May 2014 19:47:42 -0700
-From: Matt Schuckmann <Matt.Schuckmann@planar.com>
-To: Matt Schuckmann <Matt.Schuckmann@planar.com>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>
-Date: Mon, 19 May 2014 19:47:42 -0700
-Thread-Topic: Can't boot poky-tiny in qemu
-X-ASG-Orig-Subj: RE: Can't boot poky-tiny in qemu
-Thread-Index: Ac9zvKexK1sJ/v7iSHKuKVUKQof0UAAGNpKA
-Message-ID: <4B07ADD556F70043925DA2E9C5D4346D2FD6CF7568@MSXBEBVT12.planar.net>
-References: <4B07ADD556F70043925DA2E9C5D4346D2FD6CF755F@MSXBEBVT12.planar.net>
-In-Reply-To: <4B07ADD556F70043925DA2E9C5D4346D2FD6CF755F@MSXBEBVT12.planar.net>
+X-Greylist: delayed 65 seconds by postgrey-1.32 at yocto-www;
+	Mon, 19 May 2014 21:12:43 PDT
+Received: from mga14.intel.com (unknown [192.55.52.115])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8E34CE00B74
+	for <yocto@yoctoproject.org>; Mon, 19 May 2014 21:12:43 -0700 (PDT)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by fmsmga103.fm.intel.com with ESMTP; 19 May 2014 21:07:40 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.98,871,1392192000"; d="scan'208";a="534590779"
+Received: from orsmsx104.amr.corp.intel.com ([10.22.225.131])
+	by fmsmga001.fm.intel.com with ESMTP; 19 May 2014 21:11:20 -0700
+Received: from orsmsx114.amr.corp.intel.com ([169.254.8.17]) by
+	ORSMSX104.amr.corp.intel.com ([169.254.3.217]) with mapi id
+	14.03.0123.003; Mon, 19 May 2014 21:11:20 -0700
+From: "Hohndel, Dirk" <dirk.hohndel@intel.com>
+To: Yocto Project Discussions <yocto@linux.intel.com>
+Thread-Topic: [Yocto] Welcome Lynn Cyrin, OPW intern.
+Thread-Index: AQHPc+ELUds9eW/QPEGL/VC5sO2dB5tI21lT
+Date: Tue, 20 May 2014 04:11:19 +0000
+Message-ID: <218F33553E0E5746A2B1F6973CC748B8538339C3@ORSMSX114.amr.corp.intel.com>
+References: <CAPhnLPC0=syJsEjo1=NQ22tdkcVLY4s=J-ULXHE0iFNVvbiE6g@mail.gmail.com>
+In-Reply-To: <CAPhnLPC0=syJsEjo1=NQ22tdkcVLY4s=J-ULXHE0iFNVvbiE6g@mail.gmail.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-acceptlanguage: en-US
 MIME-Version: 1.0
-X-Barracuda-Connect: msxbvt03.planar.net[172.16.0.147]
-X-Barracuda-Start-Time: 1400554063
-X-Barracuda-URL: http://10.10.111.112:8000/cgi-mod/mark.cgi
-X-Virus-Scanned: by bsmtpd at planar.com
-X-Barracuda-BRTS-Status: 1
-X-Barracuda-Bayes: INNOCENT GLOBAL 0.0000 1.0000 -2.0210
-X-Barracuda-Spam-Score: -1.52
-X-Barracuda-Spam-Status: No,
-	SCORE=-1.52 using per-user scores of TAG_LEVEL=1000.0
-	QUARANTINE_LEVEL=1000.0 KILL_LEVEL=1000.0
-	tests=BSF_SC0_SA_TO_FROM_ADDR_MATCH
-X-Barracuda-Spam-Report: Code version 3.2, rules version 3.2.3.5950
-	Rule breakdown below
-	pts rule name              description
-	---- ----------------------
-	--------------------------------------------------
-	0.50 BSF_SC0_SA_TO_FROM_ADDR_MATCH Sender Address Matches Recipient
-	Address
-Subject: Re: Can't boot poky-tiny in qemu
+X-Mailman-Approved-At: Mon, 19 May 2014 23:37:28 -0700
+Cc: "lynncyrin@gmail.com" <lynncyrin@gmail.com>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Welcome Lynn Cyrin, OPW intern.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -65,21 +49,47 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 20 May 2014 03:01:23 -0000
+X-List-Received-Date: Tue, 20 May 2014 04:12:48 -0000
 Content-Language: en-US
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-Some additional information, I've been testing with Yocto 1.6 (daisy), I ju=
-st tried it with 1.5 (dora) and it does better I actually see some output, =
-but it gets stuck in the init script with the repeating messages:=20
+Welcome Lynn.
 
-[    3.379021] Freeing unused kernel memory: 284k freed
-/init: line 26: setsid: not found
-Console sh exited with 127, respawning...
-/init: line 26: setsid: not found
-Console sh exited with 127, respawning...
+Great to have you join the team.
 
+/D
 
+--
+Dirk Hohndel
+Chief Linux and Open Source Technologist
+Intel Corporation
+Sent from my phone
+
+On May 20, 2014 1:07 PM, "Flanagan, Elizabeth" <elizabeth.flanagan@intel.co=
+m> wrote:
+All,
+
+I am pleased to introduce our new Gnome Foundation Outreach Program
+for Women Intern, Lynn Cyrin.
+
+Lynn is a computer science student and Dean's Scholar at Mills
+College. Her academic history includes studying Materials Science and
+Engineering at Drexel University and Astronautical Engineering at
+Capitol College. She has worked as an intern at NASA Goddard and as an
+assistant to a PhD student doing semiconducting polymers research.
+
+Lynn will be working on documenting and extending the
+yocto-autobuilder over the next couple of months, helping to implement
+some cloud building functionality as well as picking up some random
+release engineering duties. She will be blogging about her experiences
+at http://lynncyrin.me.
+
+Welcome Lynn!
+
+--
+Elizabeth Flanagan
+Yocto Project
+Build and Release
 
 
