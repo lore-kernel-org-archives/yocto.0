@@ -1,43 +1,55 @@
-Return-Path: <dirk.hohndel@intel.com>
+Return-Path: <stephen.arnold42@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 0E3D3E00B87; Mon, 19 May 2014 21:12:48 -0700 (PDT)
+	id 087A5E0073D; Mon, 19 May 2014 18:05:11 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
-X-Spam-Level: *
-X-Spam-Status: No, score=1.3 required=5.0 tests=RDNS_NONE autolearn=no
-	version=3.3.1
-X-Spam-HAM-Report: * 1.3 RDNS_NONE Delivered to internal network by a host
-	with no rDNS
-X-Greylist: delayed 65 seconds by postgrey-1.32 at yocto-www;
-	Mon, 19 May 2014 21:12:43 PDT
-Received: from mga14.intel.com (unknown [192.55.52.115])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8E34CE00B74
-	for <yocto@yoctoproject.org>; Mon, 19 May 2014 21:12:43 -0700 (PDT)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by fmsmga103.fm.intel.com with ESMTP; 19 May 2014 21:07:40 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.98,871,1392192000"; d="scan'208";a="534590779"
-Received: from orsmsx104.amr.corp.intel.com ([10.22.225.131])
-	by fmsmga001.fm.intel.com with ESMTP; 19 May 2014 21:11:20 -0700
-Received: from orsmsx114.amr.corp.intel.com ([169.254.8.17]) by
-	ORSMSX104.amr.corp.intel.com ([169.254.3.217]) with mapi id
-	14.03.0123.003; Mon, 19 May 2014 21:11:20 -0700
-From: "Hohndel, Dirk" <dirk.hohndel@intel.com>
-To: Yocto Project Discussions <yocto@linux.intel.com>
-Thread-Topic: [Yocto] Welcome Lynn Cyrin, OPW intern.
-Thread-Index: AQHPc+ELUds9eW/QPEGL/VC5sO2dB5tI21lT
-Date: Tue, 20 May 2014 04:11:19 +0000
-Message-ID: <218F33553E0E5746A2B1F6973CC748B8538339C3@ORSMSX114.amr.corp.intel.com>
-References: <CAPhnLPC0=syJsEjo1=NQ22tdkcVLY4s=J-ULXHE0iFNVvbiE6g@mail.gmail.com>
-In-Reply-To: <CAPhnLPC0=syJsEjo1=NQ22tdkcVLY4s=J-ULXHE0iFNVvbiE6g@mail.gmail.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
+X-Spam-Level: 
+X-Spam-Status: No, score=0.5 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+	DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW,RDNS_NONE
+	autolearn=no version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (stephen.arnold42[at]gmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [74.125.82.44 listed in list.dnswl.org]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	*  1.3 RDNS_NONE Delivered to internal network by a host with no rDNS
+X-Greylist: delayed 442 seconds by postgrey-1.32 at yocto-www;
+	Mon, 19 May 2014 18:05:08 PDT
+Received: from mail-wg0-f44.google.com (unknown [74.125.82.44])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0BAD8E006EC
+	for <yocto@yoctoproject.org>; Mon, 19 May 2014 18:05:07 -0700 (PDT)
+Received: by mail-wg0-f44.google.com with SMTP id a1so8503792wgh.15
+	for <yocto@yoctoproject.org>; Mon, 19 May 2014 18:05:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type;
+	bh=nrYGzKZmEet89wajFgV6PKYSqLPlFedCXLAaqH+meNk=;
+	b=P/xgGgJtU7tGQVT7t4C2epaZcM1JBFtP/JW3m0669zyx0pQGugIhw3tsvBaeF0Mxli
+	mjoFKenXPJT3WrVtu+rYZRuFnAZzyfj55Aq+ZEqfEk47OKW/3ZxNPVIvlN5XU+BgC9kn
+	xlThTtkkYzqO5S0FLwMWndAS6OY0T43Wz0FqYRv/YLJ9A3AaohWLzSGqrlKWnFnpvgd5
+	ete7urbbv/7XqLFQMFL8d81jVcawvJlPrPTCtpX3kzDfU+pxmbBkqm5OSoOE4VOOR0vh
+	JcflID1bKu+K5habG0WTvbfnWOYD/e6OB3rjeG3f3dql8tE54zo58JdNn8QIo1GG5ns/
+	McXQ==
 MIME-Version: 1.0
-X-Mailman-Approved-At: Mon, 19 May 2014 23:37:28 -0700
-Cc: "lynncyrin@gmail.com" <lynncyrin@gmail.com>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Welcome Lynn Cyrin, OPW intern.
+X-Received: by 10.194.8.170 with SMTP id s10mr8395012wja.6.1400547465330; Mon,
+	19 May 2014 17:57:45 -0700 (PDT)
+Received: by 10.194.34.65 with HTTP; Mon, 19 May 2014 17:57:45 -0700 (PDT)
+In-Reply-To: <CA+YB3raM8kDp_K259c-ao=nSgfvgXTmi5vpju5wAnA0WwGHH3A@mail.gmail.com>
+References: <530697CC.5050402@balister.org> <20140507231808.GM11339@denix.org>
+	<CA+YB3raM8kDp_K259c-ao=nSgfvgXTmi5vpju5wAnA0WwGHH3A@mail.gmail.com>
+Date: Mon, 19 May 2014 17:57:45 -0700
+Message-ID: <CAOLEWZV87Ld5ek1mAGBpC57UpUSBT+VkJK0QBqoLhfbquGY=0g@mail.gmail.com>
+From: Stephen Arnold <stephen.arnold42@gmail.com>
+To: openembedded-core@lists.openembedded.org
+X-Mailman-Approved-At: Mon, 19 May 2014 23:38:00 -0700
+Cc: Yocto Project <yocto@yoctoproject.org>
+Subject: Re: [OE-core] OEDAM: OpenEmbedded Developers (Americas) Meeting
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -49,47 +61,215 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 20 May 2014 04:12:48 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Tue, 20 May 2014 01:05:11 -0000
+Content-Type: multipart/alternative; boundary=047d7b5d5b9e29870504f9ca5ec1
+
+--047d7b5d5b9e29870504f9ca5ec1
+Content-Type: text/plain; charset=UTF-8
+
+And a special thanks to everyone for letting the Gentoo dev crash the
+meeting.  The meeting *was* fun and educational (especially for me).  So
+far both the community and technology have been a lot of fun getting custom
+builds for various machines, as well as educational (is there an echo in
+here? ;)
+
+Thanks again, Steve  (aka mr_science)
+
+
+On Mon, May 12, 2014 at 4:19 PM, Jeff Osier-Mixon <jefro@jefro.net> wrote:
+
+> Meeting notes have been published on the OEDAM page:
+>
+> http://openembedded.org/wiki/OEDAM#Minutes
+>
+> Jefro takes the blame for typos and other reporting errors.
+>
+> On Wed, May 7, 2014 at 4:18 PM, Denys Dmytriyenko <denis@denix.org> wrote:
+> > The OpenEmbedded Board of Directors would like to thank everyone who was
+> able
+> > to participate (either in person in Santa Clara or online) in our first
+> OEDAM
+> > OpenEmbedded Developers (Americas) Meeting on May 2nd and 3rd! The
+> meeting was
+> > a huge success and a lot of fun!
+> >
+> > We would also like to thank Ettus Research/NI for providing the
+> premises, as
+> > well as Jefro and the Yocto Project for sponsoring the event and
+> providing
+> > food!
+> >
+> > The meeting minutes should be published shortly.
+> >
+> > --
+> > Denys
+> >
+> >
+> > On Thu, Feb 20, 2014 at 07:03:24PM -0500, Philip Balister wrote:
+> >> The OpenEmbedded Project is holding a developers meeting May 2-3,
+> >> 2014, in Santa Clara, CA. This meeting is immediately after the Embedded
+> >> Linux Conference North America. All active OpenEmbedded and Yocto
+> >> Project developers are invited to attend.
+> >>
+> >> NOTE: this is a development meeting for the project itself, not a
+> >> training session.
+> >>
+> >> May 2-3, 2014
+> >> time TBD
+> >>
+> >> Ettus Research/National Instruments
+> >> 4600 Patrick Henry Drive
+> >> Santa Clara, CA 95054 USA
+> >>
+> >> Lunch will be provided on both days.
+> >>
+> >> For more information and to add yourself to the list of attendees, see
+> >> the wiki page at
+> >> http://openembedded.org/wiki/OEDAM
+> >>
+> >> Here are a couple of photos from 2009:
+> >>
+> >> http://www.flickr.com/photos/32615155@N00/sets/72157622653686647/
+> >>
+> >> I'd like to thank Jefro for help with this announcement. Any errors are
+> >> mine though.
+> >>
+> >> Philip, OpenEmbedded eV Chair.
+> >> _______________________________________________
+> >> Openembedded-core mailing list
+> >> Openembedded-core@lists.openembedded.org
+> >> http://lists.openembedded.org/mailman/listinfo/openembedded-core
+> > --
+> > _______________________________________________
+> > Openembedded-core mailing list
+> > Openembedded-core@lists.openembedded.org
+> > http://lists.openembedded.org/mailman/listinfo/openembedded-core
+>
+>
+>
+> --
+> Jeff Osier-Mixon @Intel
+> Yocto Project Community Manager http://yoctoproject.org
+> --
+> _______________________________________________
+> Openembedded-core mailing list
+> Openembedded-core@lists.openembedded.org
+> http://lists.openembedded.org/mailman/listinfo/openembedded-core
+>
+
+--047d7b5d5b9e29870504f9ca5ec1
+Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-Welcome Lynn.
+<div dir=3D"ltr"><div>And a special thanks to everyone for letting the Gent=
+oo dev crash the meeting.=C2=A0 The meeting *was* fun and educational (espe=
+cially for me).=C2=A0 So far both the community and technology have been a =
+lot of fun getting custom builds for various machines, as well as education=
+al (is there an echo in here? ;)<br>
+<br></div>Thanks again, Steve=C2=A0 (aka mr_science)<br></div><div class=3D=
+"gmail_extra"><br><br><div class=3D"gmail_quote">On Mon, May 12, 2014 at 4:=
+19 PM, Jeff Osier-Mixon <span dir=3D"ltr">&lt;<a href=3D"mailto:jefro@jefro=
+.net" target=3D"_blank">jefro@jefro.net</a>&gt;</span> wrote:<br>
+<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
+x #ccc solid;padding-left:1ex">Meeting notes have been published on the OED=
+AM page:<br>
+<br>
+<a href=3D"http://openembedded.org/wiki/OEDAM#Minutes" target=3D"_blank">ht=
+tp://openembedded.org/wiki/OEDAM#Minutes</a><br>
+<br>
+Jefro takes the blame for typos and other reporting errors.<br>
+<div class=3D"HOEnZb"><div class=3D"h5"><br>
+On Wed, May 7, 2014 at 4:18 PM, Denys Dmytriyenko &lt;<a href=3D"mailto:den=
+is@denix.org">denis@denix.org</a>&gt; wrote:<br>
+&gt; The OpenEmbedded Board of Directors would like to thank everyone who w=
+as able<br>
+&gt; to participate (either in person in Santa Clara or online) in our firs=
+t OEDAM<br>
+&gt; OpenEmbedded Developers (Americas) Meeting on May 2nd and 3rd! The mee=
+ting was<br>
+&gt; a huge success and a lot of fun!<br>
+&gt;<br>
+&gt; We would also like to thank Ettus Research/NI for providing the premis=
+es, as<br>
+&gt; well as Jefro and the Yocto Project for sponsoring the event and provi=
+ding<br>
+&gt; food!<br>
+&gt;<br>
+&gt; The meeting minutes should be published shortly.<br>
+&gt;<br>
+&gt; --<br>
+&gt; Denys<br>
+&gt;<br>
+&gt;<br>
+&gt; On Thu, Feb 20, 2014 at 07:03:24PM -0500, Philip Balister wrote:<br>
+&gt;&gt; The OpenEmbedded Project is holding a developers meeting May 2-3,<=
+br>
+&gt;&gt; 2014, in Santa Clara, CA. This meeting is immediately after the Em=
+bedded<br>
+&gt;&gt; Linux Conference North America. All active OpenEmbedded and Yocto<=
+br>
+&gt;&gt; Project developers are invited to attend.<br>
+&gt;&gt;<br>
+&gt;&gt; NOTE: this is a development meeting for the project itself, not a<=
+br>
+&gt;&gt; training session.<br>
+&gt;&gt;<br>
+&gt;&gt; May 2-3, 2014<br>
+&gt;&gt; time TBD<br>
+&gt;&gt;<br>
+&gt;&gt; Ettus Research/National Instruments<br>
+&gt;&gt; 4600 Patrick Henry Drive<br>
+&gt;&gt; Santa Clara, CA 95054 USA<br>
+&gt;&gt;<br>
+&gt;&gt; Lunch will be provided on both days.<br>
+&gt;&gt;<br>
+&gt;&gt; For more information and to add yourself to the list of attendees,=
+ see<br>
+&gt;&gt; the wiki page at<br>
+&gt;&gt; <a href=3D"http://openembedded.org/wiki/OEDAM" target=3D"_blank">h=
+ttp://openembedded.org/wiki/OEDAM</a><br>
+&gt;&gt;<br>
+&gt;&gt; Here are a couple of photos from 2009:<br>
+&gt;&gt;<br>
+&gt;&gt; <a href=3D"http://www.flickr.com/photos/32615155@N00/sets/72157622=
+653686647/" target=3D"_blank">http://www.flickr.com/photos/32615155@N00/set=
+s/72157622653686647/</a><br>
+&gt;&gt;<br>
+&gt;&gt; I&#39;d like to thank Jefro for help with this announcement. Any e=
+rrors are<br>
+&gt;&gt; mine though.<br>
+&gt;&gt;<br>
+&gt;&gt; Philip, OpenEmbedded eV Chair.<br>
+&gt;&gt; _______________________________________________<br>
+&gt;&gt; Openembedded-core mailing list<br>
+&gt;&gt; <a href=3D"mailto:Openembedded-core@lists.openembedded.org">Openem=
+bedded-core@lists.openembedded.org</a><br>
+&gt;&gt; <a href=3D"http://lists.openembedded.org/mailman/listinfo/openembe=
+dded-core" target=3D"_blank">http://lists.openembedded.org/mailman/listinfo=
+/openembedded-core</a><br>
+&gt; --<br>
+&gt; _______________________________________________<br>
+&gt; Openembedded-core mailing list<br>
+&gt; <a href=3D"mailto:Openembedded-core@lists.openembedded.org">Openembedd=
+ed-core@lists.openembedded.org</a><br>
+&gt; <a href=3D"http://lists.openembedded.org/mailman/listinfo/openembedded=
+-core" target=3D"_blank">http://lists.openembedded.org/mailman/listinfo/ope=
+nembedded-core</a><br>
+<br>
+<br>
+<br>
+</div></div><span class=3D"HOEnZb"><font color=3D"#888888">--<br>
+Jeff Osier-Mixon @Intel<br>
+Yocto Project Community Manager <a href=3D"http://yoctoproject.org" target=
+=3D"_blank">http://yoctoproject.org</a><br>
+</font></span><div class=3D"HOEnZb"><div class=3D"h5">--<br>
+_______________________________________________<br>
+Openembedded-core mailing list<br>
+<a href=3D"mailto:Openembedded-core@lists.openembedded.org">Openembedded-co=
+re@lists.openembedded.org</a><br>
+<a href=3D"http://lists.openembedded.org/mailman/listinfo/openembedded-core=
+" target=3D"_blank">http://lists.openembedded.org/mailman/listinfo/openembe=
+dded-core</a><br>
+</div></div></blockquote></div><br></div>
 
-Great to have you join the team.
-
-/D
-
---
-Dirk Hohndel
-Chief Linux and Open Source Technologist
-Intel Corporation
-Sent from my phone
-
-On May 20, 2014 1:07 PM, "Flanagan, Elizabeth" <elizabeth.flanagan@intel.co=
-m> wrote:
-All,
-
-I am pleased to introduce our new Gnome Foundation Outreach Program
-for Women Intern, Lynn Cyrin.
-
-Lynn is a computer science student and Dean's Scholar at Mills
-College. Her academic history includes studying Materials Science and
-Engineering at Drexel University and Astronautical Engineering at
-Capitol College. She has worked as an intern at NASA Goddard and as an
-assistant to a PhD student doing semiconducting polymers research.
-
-Lynn will be working on documenting and extending the
-yocto-autobuilder over the next couple of months, helping to implement
-some cloud building functionality as well as picking up some random
-release engineering duties. She will be blogging about her experiences
-at http://lynncyrin.me.
-
-Welcome Lynn!
-
---
-Elizabeth Flanagan
-Yocto Project
-Build and Release
-
-
+--047d7b5d5b9e29870504f9ca5ec1--
