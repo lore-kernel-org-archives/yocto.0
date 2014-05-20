@@ -1,55 +1,30 @@
-Return-Path: <stephen.arnold42@gmail.com>
+Return-Path: <kangkai.yin@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 087A5E0073D; Mon, 19 May 2014 18:05:11 -0700 (PDT)
+	id 41BDFE0070F; Mon, 19 May 2014 23:39:57 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=0.5 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-	DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW,RDNS_NONE
-	autolearn=no version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (stephen.arnold42[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [74.125.82.44 listed in list.dnswl.org]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+X-Spam-Status: No, score=-3.7 required=5.0 tests=RCVD_IN_DNSWL_HI,RDNS_NONE
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [192.55.52.88 listed in list.dnswl.org]
 	*  1.3 RDNS_NONE Delivered to internal network by a host with no rDNS
-X-Greylist: delayed 442 seconds by postgrey-1.32 at yocto-www;
-	Mon, 19 May 2014 18:05:08 PDT
-Received: from mail-wg0-f44.google.com (unknown [74.125.82.44])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0BAD8E006EC
-	for <yocto@yoctoproject.org>; Mon, 19 May 2014 18:05:07 -0700 (PDT)
-Received: by mail-wg0-f44.google.com with SMTP id a1so8503792wgh.15
-	for <yocto@yoctoproject.org>; Mon, 19 May 2014 18:05:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type;
-	bh=nrYGzKZmEet89wajFgV6PKYSqLPlFedCXLAaqH+meNk=;
-	b=P/xgGgJtU7tGQVT7t4C2epaZcM1JBFtP/JW3m0669zyx0pQGugIhw3tsvBaeF0Mxli
-	mjoFKenXPJT3WrVtu+rYZRuFnAZzyfj55Aq+ZEqfEk47OKW/3ZxNPVIvlN5XU+BgC9kn
-	xlThTtkkYzqO5S0FLwMWndAS6OY0T43Wz0FqYRv/YLJ9A3AaohWLzSGqrlKWnFnpvgd5
-	ete7urbbv/7XqLFQMFL8d81jVcawvJlPrPTCtpX3kzDfU+pxmbBkqm5OSoOE4VOOR0vh
-	JcflID1bKu+K5habG0WTvbfnWOYD/e6OB3rjeG3f3dql8tE54zo58JdNn8QIo1GG5ns/
-	McXQ==
-MIME-Version: 1.0
-X-Received: by 10.194.8.170 with SMTP id s10mr8395012wja.6.1400547465330; Mon,
-	19 May 2014 17:57:45 -0700 (PDT)
-Received: by 10.194.34.65 with HTTP; Mon, 19 May 2014 17:57:45 -0700 (PDT)
-In-Reply-To: <CA+YB3raM8kDp_K259c-ao=nSgfvgXTmi5vpju5wAnA0WwGHH3A@mail.gmail.com>
-References: <530697CC.5050402@balister.org> <20140507231808.GM11339@denix.org>
-	<CA+YB3raM8kDp_K259c-ao=nSgfvgXTmi5vpju5wAnA0WwGHH3A@mail.gmail.com>
-Date: Mon, 19 May 2014 17:57:45 -0700
-Message-ID: <CAOLEWZV87Ld5ek1mAGBpC57UpUSBT+VkJK0QBqoLhfbquGY=0g@mail.gmail.com>
-From: Stephen Arnold <stephen.arnold42@gmail.com>
-To: openembedded-core@lists.openembedded.org
-X-Mailman-Approved-At: Mon, 19 May 2014 23:38:00 -0700
-Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: [OE-core] OEDAM: OpenEmbedded Developers (Americas) Meeting
+Received: from mga01.intel.com (unknown [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 180C1E00342
+	for <yocto@yoctoproject.org>; Mon, 19 May 2014 23:39:53 -0700 (PDT)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by fmsmga101.fm.intel.com with ESMTP; 19 May 2014 23:39:52 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.98,872,1392192000"; d="scan'208";a="534660020"
+Received: from kai-fedora.bj.intel.com ([10.238.154.79])
+	by fmsmga001.fm.intel.com with ESMTP; 19 May 2014 23:39:51 -0700
+From: Yin Kangkai <kangkai.yin@intel.com>
+To: yocto@yoctoproject.org
+Date: Tue, 20 May 2014 14:45:37 +0800
+Message-Id: <1400568337-19253-1-git-send-email-kangkai.yin@intel.com>
+X-Mailer: git-send-email 1.8.2.1
+Subject: [PATCH] PublishArtifacts.py: check files before copy
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -61,215 +36,72 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 20 May 2014 01:05:11 -0000
-Content-Type: multipart/alternative; boundary=047d7b5d5b9e29870504f9ca5ec1
+X-List-Received-Date: Tue, 20 May 2014 06:39:57 -0000
 
---047d7b5d5b9e29870504f9ca5ec1
-Content-Type: text/plain; charset=UTF-8
+Check files existence before copy, otherwise might fail.  For example,
+if I do not enable "MakeImageMD5s" step, "PublishArtifacts" will fail.
 
-And a special thanks to everyone for letting the Gentoo dev crash the
-meeting.  The meeting *was* fun and educational (especially for me).  So
-far both the community and technology have been a lot of fun getting custom
-builds for various machines, as well as educational (is there an echo in
-here? ;)
+Signed-off-by: Yin Kangkai <kangkai.yin@intel.com>
+---
+ .../autobuilder/buildsteps/PublishArtifacts.py           | 16 +++++++++++-----
+ 1 file changed, 11 insertions(+), 5 deletions(-)
 
-Thanks again, Steve  (aka mr_science)
+diff --git a/lib/python2.7/site-packages/autobuilder/buildsteps/PublishArtifacts.py b/lib/python2.7/site-packages/autobuilder/buildsteps/PublishArtifacts.py
+index 2080030..95276a4 100644
+--- a/lib/python2.7/site-packages/autobuilder/buildsteps/PublishArtifacts.py
++++ b/lib/python2.7/site-packages/autobuilder/buildsteps/PublishArtifacts.py
+@@ -12,7 +12,7 @@ __email__ = "elizabeth.flanagan@intel.com"
+ 
+ from buildbot.steps.shell import ShellCommand
+ from twisted.python import log
+-import os, datetime
++import os, datetime, glob
+ from autobuilder.config import *
+ 
+ class PublishArtifacts(ShellCommand):
+@@ -152,7 +152,8 @@ class PublishArtifacts(ShellCommand):
+                     command=command+"cp -R --no-dereference --preserve=links " + \
+                                     deploy_image_dir + \
+                                     "/*" + artifact + "* " + DEST + "/" + QEMU_PUBLISH_DIR + "/" + artifact_name + ";"
+-                    command=command+"cp -R --no-dereference --preserve=links " + \
++                    if glob.glob(os.path.join(self.basedir, "tmp/deploy/images/") + "*.md5sum"):
++                        command=command+"cp -R --no-dereference --preserve=links " + \
+                                     os.path.join(self.basedir, "tmp/deploy/images/") + \
+                                     "/*.md5sum " + DEST + "/" + QEMU_PUBLISH_DIR + "/" + artifact_name + ";"
+                 elif "mpc8315e" in artifact:
+@@ -161,7 +162,8 @@ class PublishArtifacts(ShellCommand):
+                     command=command+"cp -R --no-dereference --preserve=links " + \
+                                     deploy_image_dir + \
+                                     "/*mpc8315* " + DEST + "/" + MACHINE_PUBLISH_DIR + "/" + artifact_name + ";"
+-                    command=command+"cp -R --no-dereference --preserve=links " + \
++                    if glob.glob(os.path.join(self.basedir, "tmp/deploy/images/") + "*.md5sum"):
++                        command=command+"cp -R --no-dereference --preserve=links " + \
+                                     os.path.join(self.basedir, "tmp/deploy/images/") + \
+                                     "/*.md5sum " + DEST + "/" + MACHINE_PUBLISH_DIR + "/" + artifact_name + ";"
+                 elif artifact == "tiny":
+@@ -174,7 +176,9 @@ class PublishArtifacts(ShellCommand):
+                         command=command+"cp -R --no-dereference --preserve=links " + \
+                                         os.path.join(self.basedir, "tmp/deploy/images/*") + \
+                                         DEST + "/" + QEMU_PUBLISH_DIR + "/qemu-tiny;"
+-                    command=command+"cp -R --no-dereference --preserve=links " + \
++
++                    if glob.glob(os.path.join(self.basedir, "tmp/deploy/images/") + "*.md5sum"):
++                        command=command+"cp -R --no-dereference --preserve=links " + \
+                                     os.path.join(self.basedir, "tmp/deploy/images/") + \
+                                     "/*.md5sum " + DEST + "/" + QEMU_PUBLISH_DIR + "/qemu-tiny;"
+ 
+@@ -205,7 +209,9 @@ class PublishArtifacts(ShellCommand):
+                         command=command+"cp -R --no-dereference --preserve=links " + \
+                                          deploy_image_dir + \
+                                          "/*"+artifact+"* " + DEST + "/" + MACHINE_PUBLISH_DIR +"/" + artifact_name + ";"
+-                        command=command+"cp -R --no-dereference --preserve=links " + \
++
++                        if glob.glob(os.path.join(self.basedir, "tmp/deploy/images/") + "*.md5sum"):
++                            command=command+"cp -R --no-dereference --preserve=links " + \
+                                         os.path.join(self.basedir, "tmp/deploy/images/") + \
+                                         "/*.md5sum " + DEST + "/" + MACHINE_PUBLISH_DIR + "/" + artifact_name + ";"
+ 
+-- 
+1.8.2.1
 
 
-On Mon, May 12, 2014 at 4:19 PM, Jeff Osier-Mixon <jefro@jefro.net> wrote:
-
-> Meeting notes have been published on the OEDAM page:
->
-> http://openembedded.org/wiki/OEDAM#Minutes
->
-> Jefro takes the blame for typos and other reporting errors.
->
-> On Wed, May 7, 2014 at 4:18 PM, Denys Dmytriyenko <denis@denix.org> wrote:
-> > The OpenEmbedded Board of Directors would like to thank everyone who was
-> able
-> > to participate (either in person in Santa Clara or online) in our first
-> OEDAM
-> > OpenEmbedded Developers (Americas) Meeting on May 2nd and 3rd! The
-> meeting was
-> > a huge success and a lot of fun!
-> >
-> > We would also like to thank Ettus Research/NI for providing the
-> premises, as
-> > well as Jefro and the Yocto Project for sponsoring the event and
-> providing
-> > food!
-> >
-> > The meeting minutes should be published shortly.
-> >
-> > --
-> > Denys
-> >
-> >
-> > On Thu, Feb 20, 2014 at 07:03:24PM -0500, Philip Balister wrote:
-> >> The OpenEmbedded Project is holding a developers meeting May 2-3,
-> >> 2014, in Santa Clara, CA. This meeting is immediately after the Embedded
-> >> Linux Conference North America. All active OpenEmbedded and Yocto
-> >> Project developers are invited to attend.
-> >>
-> >> NOTE: this is a development meeting for the project itself, not a
-> >> training session.
-> >>
-> >> May 2-3, 2014
-> >> time TBD
-> >>
-> >> Ettus Research/National Instruments
-> >> 4600 Patrick Henry Drive
-> >> Santa Clara, CA 95054 USA
-> >>
-> >> Lunch will be provided on both days.
-> >>
-> >> For more information and to add yourself to the list of attendees, see
-> >> the wiki page at
-> >> http://openembedded.org/wiki/OEDAM
-> >>
-> >> Here are a couple of photos from 2009:
-> >>
-> >> http://www.flickr.com/photos/32615155@N00/sets/72157622653686647/
-> >>
-> >> I'd like to thank Jefro for help with this announcement. Any errors are
-> >> mine though.
-> >>
-> >> Philip, OpenEmbedded eV Chair.
-> >> _______________________________________________
-> >> Openembedded-core mailing list
-> >> Openembedded-core@lists.openembedded.org
-> >> http://lists.openembedded.org/mailman/listinfo/openembedded-core
-> > --
-> > _______________________________________________
-> > Openembedded-core mailing list
-> > Openembedded-core@lists.openembedded.org
-> > http://lists.openembedded.org/mailman/listinfo/openembedded-core
->
->
->
-> --
-> Jeff Osier-Mixon @Intel
-> Yocto Project Community Manager http://yoctoproject.org
-> --
-> _______________________________________________
-> Openembedded-core mailing list
-> Openembedded-core@lists.openembedded.org
-> http://lists.openembedded.org/mailman/listinfo/openembedded-core
->
-
---047d7b5d5b9e29870504f9ca5ec1
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div>And a special thanks to everyone for letting the Gent=
-oo dev crash the meeting.=C2=A0 The meeting *was* fun and educational (espe=
-cially for me).=C2=A0 So far both the community and technology have been a =
-lot of fun getting custom builds for various machines, as well as education=
-al (is there an echo in here? ;)<br>
-<br></div>Thanks again, Steve=C2=A0 (aka mr_science)<br></div><div class=3D=
-"gmail_extra"><br><br><div class=3D"gmail_quote">On Mon, May 12, 2014 at 4:=
-19 PM, Jeff Osier-Mixon <span dir=3D"ltr">&lt;<a href=3D"mailto:jefro@jefro=
-.net" target=3D"_blank">jefro@jefro.net</a>&gt;</span> wrote:<br>
-<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
-x #ccc solid;padding-left:1ex">Meeting notes have been published on the OED=
-AM page:<br>
-<br>
-<a href=3D"http://openembedded.org/wiki/OEDAM#Minutes" target=3D"_blank">ht=
-tp://openembedded.org/wiki/OEDAM#Minutes</a><br>
-<br>
-Jefro takes the blame for typos and other reporting errors.<br>
-<div class=3D"HOEnZb"><div class=3D"h5"><br>
-On Wed, May 7, 2014 at 4:18 PM, Denys Dmytriyenko &lt;<a href=3D"mailto:den=
-is@denix.org">denis@denix.org</a>&gt; wrote:<br>
-&gt; The OpenEmbedded Board of Directors would like to thank everyone who w=
-as able<br>
-&gt; to participate (either in person in Santa Clara or online) in our firs=
-t OEDAM<br>
-&gt; OpenEmbedded Developers (Americas) Meeting on May 2nd and 3rd! The mee=
-ting was<br>
-&gt; a huge success and a lot of fun!<br>
-&gt;<br>
-&gt; We would also like to thank Ettus Research/NI for providing the premis=
-es, as<br>
-&gt; well as Jefro and the Yocto Project for sponsoring the event and provi=
-ding<br>
-&gt; food!<br>
-&gt;<br>
-&gt; The meeting minutes should be published shortly.<br>
-&gt;<br>
-&gt; --<br>
-&gt; Denys<br>
-&gt;<br>
-&gt;<br>
-&gt; On Thu, Feb 20, 2014 at 07:03:24PM -0500, Philip Balister wrote:<br>
-&gt;&gt; The OpenEmbedded Project is holding a developers meeting May 2-3,<=
-br>
-&gt;&gt; 2014, in Santa Clara, CA. This meeting is immediately after the Em=
-bedded<br>
-&gt;&gt; Linux Conference North America. All active OpenEmbedded and Yocto<=
-br>
-&gt;&gt; Project developers are invited to attend.<br>
-&gt;&gt;<br>
-&gt;&gt; NOTE: this is a development meeting for the project itself, not a<=
-br>
-&gt;&gt; training session.<br>
-&gt;&gt;<br>
-&gt;&gt; May 2-3, 2014<br>
-&gt;&gt; time TBD<br>
-&gt;&gt;<br>
-&gt;&gt; Ettus Research/National Instruments<br>
-&gt;&gt; 4600 Patrick Henry Drive<br>
-&gt;&gt; Santa Clara, CA 95054 USA<br>
-&gt;&gt;<br>
-&gt;&gt; Lunch will be provided on both days.<br>
-&gt;&gt;<br>
-&gt;&gt; For more information and to add yourself to the list of attendees,=
- see<br>
-&gt;&gt; the wiki page at<br>
-&gt;&gt; <a href=3D"http://openembedded.org/wiki/OEDAM" target=3D"_blank">h=
-ttp://openembedded.org/wiki/OEDAM</a><br>
-&gt;&gt;<br>
-&gt;&gt; Here are a couple of photos from 2009:<br>
-&gt;&gt;<br>
-&gt;&gt; <a href=3D"http://www.flickr.com/photos/32615155@N00/sets/72157622=
-653686647/" target=3D"_blank">http://www.flickr.com/photos/32615155@N00/set=
-s/72157622653686647/</a><br>
-&gt;&gt;<br>
-&gt;&gt; I&#39;d like to thank Jefro for help with this announcement. Any e=
-rrors are<br>
-&gt;&gt; mine though.<br>
-&gt;&gt;<br>
-&gt;&gt; Philip, OpenEmbedded eV Chair.<br>
-&gt;&gt; _______________________________________________<br>
-&gt;&gt; Openembedded-core mailing list<br>
-&gt;&gt; <a href=3D"mailto:Openembedded-core@lists.openembedded.org">Openem=
-bedded-core@lists.openembedded.org</a><br>
-&gt;&gt; <a href=3D"http://lists.openembedded.org/mailman/listinfo/openembe=
-dded-core" target=3D"_blank">http://lists.openembedded.org/mailman/listinfo=
-/openembedded-core</a><br>
-&gt; --<br>
-&gt; _______________________________________________<br>
-&gt; Openembedded-core mailing list<br>
-&gt; <a href=3D"mailto:Openembedded-core@lists.openembedded.org">Openembedd=
-ed-core@lists.openembedded.org</a><br>
-&gt; <a href=3D"http://lists.openembedded.org/mailman/listinfo/openembedded=
--core" target=3D"_blank">http://lists.openembedded.org/mailman/listinfo/ope=
-nembedded-core</a><br>
-<br>
-<br>
-<br>
-</div></div><span class=3D"HOEnZb"><font color=3D"#888888">--<br>
-Jeff Osier-Mixon @Intel<br>
-Yocto Project Community Manager <a href=3D"http://yoctoproject.org" target=
-=3D"_blank">http://yoctoproject.org</a><br>
-</font></span><div class=3D"HOEnZb"><div class=3D"h5">--<br>
-_______________________________________________<br>
-Openembedded-core mailing list<br>
-<a href=3D"mailto:Openembedded-core@lists.openembedded.org">Openembedded-co=
-re@lists.openembedded.org</a><br>
-<a href=3D"http://lists.openembedded.org/mailman/listinfo/openembedded-core=
-" target=3D"_blank">http://lists.openembedded.org/mailman/listinfo/openembe=
-dded-core</a><br>
-</div></div></blockquote></div><br></div>
-
---047d7b5d5b9e29870504f9ca5ec1--
