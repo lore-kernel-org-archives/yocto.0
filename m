@@ -1,47 +1,49 @@
-Return-Path: <elizabeth.flanagan@intel.com>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 0C29EE00B88; Wed, 21 May 2014 07:54:59 -0700 (PDT)
+	id 3A7F9E00B85; Wed, 21 May 2014 08:02:45 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
-X-Spam-Level: 
-X-Spam-Status: No, score=0.6 required=5.0 tests=RCVD_IN_DNSWL_LOW,RDNS_NONE
+X-Spam-Level: *
+X-Spam-Status: No, score=1.3 required=5.0 tests=RCVD_IN_DNSWL_NONE,RDNS_NONE
 	autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [209.85.128.179 listed in list.dnswl.org]
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [209.85.192.46 listed in list.dnswl.org]
 	*  1.3 RDNS_NONE Delivered to internal network by a host with no rDNS
-Received: from mail-ve0-f179.google.com (unknown [209.85.128.179])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B5DD6E00B6F
-	for <yocto@yoctoproject.org>; Wed, 21 May 2014 07:54:55 -0700 (PDT)
-Received: by mail-ve0-f179.google.com with SMTP id oy12so2651023veb.38
-	for <yocto@yoctoproject.org>; Wed, 21 May 2014 07:54:55 -0700 (PDT)
+Received: from mail-qg0-f46.google.com (unknown [209.85.192.46])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EA0D8E00B6F
+	for <yocto@yoctoproject.org>; Wed, 21 May 2014 08:02:42 -0700 (PDT)
+Received: by mail-qg0-f46.google.com with SMTP id q108so3369776qgd.33
+	for <yocto@yoctoproject.org>; Wed, 21 May 2014 08:02:41 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:date
-	:message-id:subject:from:to:cc:content-type
-	:content-transfer-encoding;
-	bh=E19P0VOnot5L6bHdw7QlahI0tA5q7M5BaYYSElVpejw=;
-	b=foZroPfWi0e1+ZGyRYSrm+f7S22i1zFK+gauedSRvd8gkpXA9Onvo0sgqJH1jlBCjz
-	8AaEJNjks98+M9ENX2hpNNFNZYtK4wE+UOvGKSUxVK+jrEYSgMdpXIkiZhMrUIJd3ec1
-	h7MR60JM8JbAVTvCSFO0u8a1ZvL06uFI2szRD2dD4l913RVYcsW22QG+BiPJxwkh+CPM
-	wFykLxY5rP87QVdI3OR7SYaL6Z0cR/bLMKSSfJFRSVi7e1KKTbHU95qI/MpFv9NQaRDX
-	6pXBI1RdMZgp2wDThMDVafBSksIX+asqHMCgmx5YgI6GDdgUpLxB7YDx52bhpXGNge5P
-	tZ7Q==
-X-Gm-Message-State: ALoCoQms2cz2VzvXb0BznxqySH9hYkdag8wdbt5rIRGPYc5HL4t0V/uIRvmBNX4stsdIcKL0cCBC
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:content-type;
+	bh=mFbkbX+9ZZT/PXnjAgxQjoxa2Tj7eW1rjA0tMUyVk5E=;
+	b=DU7mL1+5zOn8PWGz6UZS2IC4V215YHxAB9+KUYH+6YhsuJ2YwG2pRCWXl8nVfZbpjX
+	Yk169T7q5WcSrjXGOLof3+KgN5r96iiFHcn+rmdItNdqcAz3G3js8ied05Tg+1DIbFcu
+	ITdEMrUBi9vrbjTH6svnhzSXF6CZOZqL6pNOIEO7M7N4zAMg3qQi1qB76fx94r6JvCyo
+	fAF2+C4Ymeul1k4aDiIcREJUvOFUtacMkMqqSyvkBibKHPRMTPTXI3cGZ37AEXcpNzNn
+	0AR/cTcX4MvwThB3DQijQBLygFmSanhal1TPYAjRx4aSgMZdDmAyBOXBthef3j9fVJaC
+	ntuA==
+X-Gm-Message-State: ALoCoQkMONZ9PJ+gf8St7etBVQbq3ObG3uGYo5Ynjt8XhxmZ5etNnYfmU2anWZz7aE8XsNIoxld+
+X-Received: by 10.224.32.138 with SMTP id c10mr58450040qad.35.1400684561674;
+	Wed, 21 May 2014 08:02:41 -0700 (PDT)
 MIME-Version: 1.0
-X-Received: by 10.220.7.131 with SMTP id d3mr1118562vcd.45.1400684095229; Wed,
-	21 May 2014 07:54:55 -0700 (PDT)
-Received: by 10.52.243.73 with HTTP; Wed, 21 May 2014 07:54:55 -0700 (PDT)
-In-Reply-To: <537C5B12.4030007@windriver.com>
-References: <CAPhnLPC1zcDhDq51msiME4zyQq3hBx=24m016XY8J4e7_q3uiw@mail.gmail.com>
-	<537C5B12.4030007@windriver.com>
-Date: Wed, 21 May 2014 07:54:55 -0700
-Message-ID: <CAPhnLPD23NfwMnG+PFyXjUmwaDcH70uUHDBwdDOZfQarUXwbLA@mail.gmail.com>
-From: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
-To: Yi Zhao <yi.zhao@windriver.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	Otavio Salvador <otavio@ossystems.com.br>
-Subject: Re: Weekly build available
+Received: by 10.140.101.77 with HTTP; Wed, 21 May 2014 08:02:21 -0700 (PDT)
+In-Reply-To: <537C84D4.3030302@gmx.de>
+References: <llcim8$3rn$1@ger.gmane.org>
+	<CAJTo0Laf+EEiBAcmKwtU08LLPYynDavNbfuC3TaGKLe2oBtR+w@mail.gmail.com>
+	<llcj8i$cfi$1@ger.gmane.org>
+	<CANyK_8fjtaN6iXOXm9YqLxK25_VUbYqH8_83GOYm81GjRc9wyA@mail.gmail.com>
+	<llcrst$jsc$1@ger.gmane.org> <llhs5e$jt8$1@ger.gmane.org>
+	<CAJTo0LbV1AoU=qmb0S=dtbsaor4jWGckGPM80g=tETFi3Ri0sQ@mail.gmail.com>
+	<537C84D4.3030302@gmx.de>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Wed, 21 May 2014 16:02:21 +0100
+Message-ID: <CAJTo0LZCTV0uEeXy+zOo31NnYSgGHv=4tphusb3Nj-VMv5JacA@mail.gmail.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Strange certificate problem with wget
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -53,46 +55,22 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 21 May 2014 14:54:59 -0000
+X-List-Received-Date: Wed, 21 May 2014 15:02:45 -0000
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
 
-Found an AB bug. I'll have weekly synced up in a moment and the AB
-patched soon after. Give me 20 or so.
+On 21 May 2014 11:49, Auslands-KV <auslands-kv@gmx.de> wrote:
+> That's it. It does't seem to know where they are. If I add the option
+> with the path, it works.
+>
+> Do I miss something in my local.conf?
 
--b
+No, OpenSSL should know where they are out of this, this is probably a
+problem with the OpenSSL recipe.
 
-On Wed, May 21, 2014 at 12:51 AM, Yi Zhao <yi.zhao@windriver.com> wrote:
-> Hi Beth,
->
-> Seems many artifacts are not copied to the publish directory. Would  you
-> please check it ?
->
-> Thanks,
-> Yi
->
-> =E4=BA=8E 2014=E5=B9=B405=E6=9C=8821=E6=97=A5 14:10, Flanagan, Elizabeth =
-=E5=86=99=E9=81=93:
->
-> http://autobuilder.yoctoproject.org/pub/nightly/20140520-2
->
-> bitbake     ef2bf63e56b87e19d1a9059dd2d81a9a1a537254
-> eclipse-poky-juno     26bfc407781aa185f244a47ba63120343cee4a37
-> eclipse-poky-kepler     1dfe1d2f1322b5fda8e1a7637c447b0e060efb3e
-> meta-fsl-arm     3336ef362109eef14f9e73cdededb43caefedb2f
-> meta-fsl-ppc     913fc371e9976cc95fc1b2ee2deb87efd13faafb
-> meta-intel     cb0f5fbd614ec6a9052539416734ca1ab26a1892
-> meta-minnow     7bdcd1140b729598bae6246a4bbc21c3950aadd8
-> meta-qt3     3016129d90b7ac8517a5227d819f10ad417b5b45
-> oecore     be0327b6a900be5434b6b1f08277faf2f65d5da8
-> poky     8293f564685d0f587ab63a107285625dc4f98f1c
->
->
+GnuTLS is known to integrate better in general, so you might want to
+try applying this patch to switch wget to GnuTLS:
 
+http://git.yoctoproject.org/cgit/cgit.cgi/poky-contrib/commit/?id=8f42471e4bd5505a1f2766bbc675d23e078dfdc7
 
-
---=20
-Elizabeth Flanagan
-Yocto Project
-Build and Release
+Ross
 
