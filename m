@@ -1,42 +1,43 @@
-Return-Path: <elizabeth.flanagan@intel.com>
+Return-Path: <ajlennon@dynamicdevices.co.uk>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 9C190E00B85; Wed, 21 May 2014 13:08:25 -0700 (PDT)
+	id 34289E0077C; Wed, 21 May 2014 13:15:49 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
-X-Spam-Level: 
-X-Spam-Status: No, score=0.6 required=5.0 tests=RCVD_IN_DNSWL_LOW,RDNS_NONE
-	autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [209.85.128.170 listed in list.dnswl.org]
-	*  1.3 RDNS_NONE Delivered to internal network by a host with no rDNS
-Received: from mail-ve0-f170.google.com (unknown [209.85.128.170])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 66963E0077C
-	for <yocto@yoctoproject.org>; Wed, 21 May 2014 13:08:21 -0700 (PDT)
-Received: by mail-ve0-f170.google.com with SMTP id db11so3208322veb.1
-	for <yocto@yoctoproject.org>; Wed, 21 May 2014 13:08:21 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:date:message-id:subject:from:to
-	:content-type;
-	bh=9d+LA2EdzDzBrrGzLS7xSNQRbJmpYRG1YTG0l4dRBEY=;
-	b=ScSeoRGtCvrKpsJQMyuzCmihlRrk48wQfKDyKKn1cDm8OEqOsPlINF3fWcIwD07FQu
-	L28KDT+3ccxexHIrjZB7eOlet4sFWrWus71Awa7QYyXXlFsfGlD7Cn4hbtgSqzfAUBZF
-	YPSxBEJNMLvXbT18+LTkuXhxhKtJJKxCUXyE1z3UdtgJwEnvlmS2YSlLE1r5i+9Me482
-	FmaxYP39XftkvDroqfjINl46IIMxKBC14jw752efDonHcbKE2YAv5o3SYbpQfmu41go5
-	CoiPTxV41xumk45j5wv0OiwKWaDhmwWi1rnld6CtUKQxkZ5L1WnXc/MejKJcZJ+9powS
-	RaUw==
-X-Gm-Message-State: ALoCoQmMpk68Njn7lRUztiPNT78QzQ0dGnrdfvsecHlkX6W6v7OMGm4rvH/QlsKG/i1tgvHFkLoV
+X-Spam-Level: *
+X-Spam-Status: No, score=1.3 required=5.0 tests=RDNS_NONE autolearn=no
+	version=3.3.1
+X-Spam-HAM-Report: * 1.3 RDNS_NONE Delivered to internal network by a host
+	with no rDNS
+Received: from www.dynamicdevices.co.uk (unknown [89.200.136.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D7670E0077C
+	for <yocto@yoctoproject.org>; Wed, 21 May 2014 13:15:43 -0700 (PDT)
+Received: from localhost (localhost [127.0.0.1])
+	by www.dynamicdevices.co.uk (Postfix) with ESMTP id 92796860E7;
+	Wed, 21 May 2014 20:15:41 +0000 (UTC)
+X-Virus-Scanned: Debian amavisd-new at lennoab2.miniserver.com
+Received: from www.dynamicdevices.co.uk ([127.0.0.1])
+	by localhost (www.dynamicdevices.co.uk [127.0.0.1]) (amavisd-new,
+	port 10024)
+	with ESMTP id Ihvd7u3ylMwt; Wed, 21 May 2014 20:15:34 +0000 (UTC)
+Received: from [127.0.0.1] (cpc32-live22-2-0-cust59.17-2.cable.virginm.net
+	[82.36.253.60])
+	(using TLSv1 with cipher ECDHE-RSA-AES128-SHA (128/128 bits))
+	(No client certificate requested)
+	by www.dynamicdevices.co.uk (Postfix) with ESMTPSA id 7CBA7860E6;
+	Wed, 21 May 2014 20:15:34 +0000 (UTC)
+Message-ID: <537D0964.9090208@dynamicdevices.co.uk>
+Date: Wed, 21 May 2014 21:15:32 +0100
+From: Alex J Lennon <ajlennon@dynamicdevices.co.uk>
+User-Agent: Mozilla/5.0 (Windows NT 6.3; WOW64;
+	rv:24.0) Gecko/20100101 Thunderbird/24.5.0
 MIME-Version: 1.0
-X-Received: by 10.58.132.228 with SMTP id ox4mr2275127veb.54.1400702900701;
-	Wed, 21 May 2014 13:08:20 -0700 (PDT)
-Received: by 10.52.243.73 with HTTP; Wed, 21 May 2014 13:08:20 -0700 (PDT)
-Date: Wed, 21 May 2014 13:08:20 -0700
-Message-ID: <CAPhnLPDY6GHZrWjfdVd1Ac_4hXfmejUkVnPx6oKtLEYp0WPBJA@mail.gmail.com>
-From: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	yocto-announce@yoctoproject.org
-Subject: Yocto Project 1.5.2 (dora 10.0.2) Released
+To: chmorgan@gmail.com
+References: <CAAPegz1dWJAG0R_wVZs8_BtD4CO5YBk7=oT1V-ud40xzkTx+yw@mail.gmail.com>	<537CF707.4060506@mlbassoc.com>
+	<CAAPegz23RjycTjy0_81=PM2m47c-vJ+1vL75fO6LbfvJAoBX2w@mail.gmail.com>
+In-Reply-To: <CAAPegz23RjycTjy0_81=PM2m47c-vJ+1vL75fO6LbfvJAoBX2w@mail.gmail.com>
+X-Enigmail-Version: 1.6
+Cc: yocto@yoctoproject.org, gary@mlbassoc.com
+Subject: Re: meta-mono core-image-mono failing
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -48,228 +49,107 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 21 May 2014 20:08:25 -0000
-Content-Type: text/plain; charset=UTF-8
-
-Hello,
-
-The latest point release of the Yocto Project, 1.5.2 (dora 10.0.2) is now
-available for download at:
-
-http://downloads.yoctoproject.org/releases/yocto/yocto-1.5.2/poky-dora-10.0.2.tar.bz2
-http://mirrors.kernel.org/yocto/yocto/yocto-1.5.2/poky-dora-10.0.2.tar.gz
-
-A gpg signed version of these release notes is available at:
-
-http://downloads.yoctoproject.org/releases/yocto/yocto-1.5.2/RELEASENOTES
-
-Thanks go out to everyone for all their hard work during this release!
-
-Sincerely,
-
-Elizabeth Flanagan
-Yocto Build and Release
-<elizabeth.flanagan@intel.com>
+X-List-Received-Date: Wed, 21 May 2014 20:15:49 -0000
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: 7bit
 
 
---------------------
-yocto-1.5.2 Errata
---------------------
+On 21/05/2014 20:07, Chris Morgan wrote:
+> On Wed, May 21, 2014 at 2:57 PM, Gary Thomas <gary@mlbassoc.com> wrote:
+>> On 2014-05-21 12:25, Chris Morgan wrote:
+>>> Hello.
+>>>
+>>> I'm trying to build core-image-mono for the bbb. Layers configuration:
+>>>
+>>> Build Configuration:
+>>> BB_VERSION        = "1.23.1"
+>>> BUILD_SYS         = "x86_64-linux"
+>>> NATIVELSBSTRING   = "Fedora-20"
+>>> TARGET_SYS        = "arm-poky-linux-gnueabi"
+>>> MACHINE           = "beaglebone"
+>>> DISTRO            = "poky"
+>>> DISTRO_VERSION    = "1.6+snapshot-20140521"
+>>> TUNE_FEATURES     = "arm armv7a vfp neon"
+>>> TARGET_FPU        = "vfp-neon"
+>>> meta              = "master:8293f564685d0f587ab63a107285625dc4f98f1c"
+>>> meta-bbb          = "master:8318556523a747b7e9c97326bef14922a154e8a2"
+>>> common-bsp        =
+>>> "(detachedfrome7dc54e):e7dc54e66f4b5c2982a30bef5c67d734e9c759f5"
+>>> meta-yocto
+>>> meta-yocto-bsp    = "master:8293f564685d0f587ab63a107285625dc4f98f1c"
+>>> meta-mono         = "master:e2d2b8a518403a255822022c9e15f116c91b5dd1"
+>>>
+>>> This is basically master of Poky and meta-mono.
+>>>
+>>>
+>>> | DEBUG: Executing shell function do_configure
+>>> | grep: configure.in: No such file or directory
+>>> |
+>>> /home/cmorgan/projects/yocto_poky/build/tmp/work/x86_64-linux/mono-native/3.4.0-r0/mono-3.4.0/autogen.sh:
+>>> line 125: mono/mini/Makefile.am: No such file or directory
+>>> |
+>>> /home/cmorgan/projects/yocto_poky/build/tmp/work/x86_64-linux/mono-native/3.4.0-r0/mono-3.4.0/autogen.sh:
+>>> line 126: mono/metadata/Makefile.am: No such file or directory
+>>> | Running aclocal -I m4 -I .  ...
+>>> | aclocal: error: 'configure.ac' is required
+>>> |
+>>> | **Error**: aclocal failed. This may mean that you have not
+>>> | installed all of the packages you need, or you may need to
+>>> | set ACLOCAL_FLAGS to include "-I $prefix/share/aclocal"
+>>> | for the prefix where you installed the packages whose
+>>> | macros were not found
+>>> | NOTE: mono-native failed to autogen.sh
+>>> | sed: can't read acinclude.m4: No such file or directory
+>>> | WARNING:
+>>> /home/cmorgan/projects/yocto_poky/build/tmp/work/x86_64-linux/mono-native/3.4.0-r0/temp/run.do_configure.24402:1
+>>> exit 2 from
+>>> |   sed -e "s|slash\}libtool|slash\}x86_64-linux-libtool|" -i acinclude.m4
+>>> | ERROR: Function failed: do_configure (log file is located at
+>>>
+>>> /home/cmorgan/projects/yocto_poky/build/tmp/work/x86_64-linux/mono-native/3.4.0-r0/temp/log.do_configure.24402)
+>>> ERROR: Task 687
+>>>
+>>> (/home/cmorgan/projects/yocto_poky/meta-mono/recipes-mono/mono/mono-native_3.4.0.bb,
+>>> do_configure) failed with exit code '1'
+>>>
+>>>
+>>> It looks like the issue is due to autogen.sh assuming several files
+>>> are located in the current working directory, for instance on lines
+>>> 102, 129 and 130 of autogen.sh there is no use of the $srcdir variable
+>>> before files like configure.in or mono/metadata/Makefile.am.in etc.
+>>>
+>>> Not sure if something has changed on the yocto side to change this
+>>> assumption about where autogen.sh is being run from.
+>>
+>> Look at your recipe(s).  The simple way to fix this is to change
+>> 'inherit autotools' to 'inherit autotools-brokensep'
+>>
+>> You could also look at the recipe more deeply and figure out
+>> where it assumes that ${S} == ${B} because of a recent change
+>> in OE-core, this is no longer true when you inherit autotools.
+>>
+> Testing now with autotools-brokensep in mono-3.4.0.inc.
+>
+> I did look a bit and it looked like there were several places where
+> source and build were assumed but I'm not confident that it would be
+> easy to figure out what to fix and then create a patch for it but I
+> could look at that and feeding it back to the mono guys. Let me do
+> that and see how I make out.
+>
+> Chris
 
-Release Name: poky-dora-10.0.2
-Branch:  dora
-Tag:  dora-10.0.2
-Hash:  0a6f0dbf9476dcb4a17a210af90e2dd1a43b61aa
-md5:  b52d13ef0ad4d520ffe2aa718a561a54
-Download Locations:
-http://downloads.yoctoproject.org/releases/yocto/yocto-1.5.2/poky-dora-10.0.2.tar.bz2
-http://mirrors.kernel.org/yocto/yocto/yocto-1.5.2/poky-dora-10.0.2.tar.bz2
+Strange. I've been building pretty regularly recently with daisy on
+Ubuntu 12.04 without problems.
 
-Release Name: eclipse-poky-juno-dora-10.0.2
-Branch:  dora
-Tag:  dora-10.0.2
-Hash:  79cd3c6ff119526f3f85567253450d2e857afed0
-md5:  c7a4b94223ae0bcb857f63f514e9bf71
-Download Locations:
-http://downloads.yoctoproject.org/releases/yocto/yocto-1.5.2/eclipse-poky-juno-dora-10.0.2.tar.bz2
-http://mirrors.kernel.org/yocto/yocto/yocto-1.5.2/eclipse-poky-juno-dora-10.0.2.tar.bz2
+There have been issues with Linux Mint, x64 hosts, and host
+installations of Mono, but I thought I had finally addressed those. It's
+starting to feel a little like a game of whack-a-mole.
 
-Release Name: eclipse-poky-kepler-dora-10.0.2
-Branch:  dora
-Tag:  dora-10.0.2
-Hash:  e842d41f05066df1533a2788e650f0be213ad5b5
-md5:  d84dcd5b8bf00493ab2344a1d42309f5
-Download Locations:
-http://downloads.yoctoproject.org/releases/yocto/yocto-1.5.2/eclipse-poky-kepler-dora-10.0.2.tar.bz2
-http://mirrors.kernel.org/yocto/yocto/yocto-1.5.2/eclipse-poky-kepler-dora-10.0.2.tar.bz2
+Can you provide me your local.conf and I'll have a look at what happens
+here with your hashes for  bbb on a Fedora box.
 
-Release Name: meta-qt3-dora-10.0.2
-Branch:  dora
-Tag:  dora-10.0.2
-Hash:  4772424ab69908d4e3b9d6d4717ca889468e6acd
-md5:  1ed48e11662ac5998d301534afa9ede9
-Download Locations:
-http://downloads.yoctoproject.org/releases/yocto/yocto-1.5.2/meta-qt3-dora-10.0.2.tar.bz2
-http://mirrors.kernel.org/yocto/yocto/yocto-1.5.2/meta-qt3-dora-10.0.2.tar.bz2
+Thanks,
 
---------------------
-Security Fixes
---------------------
-- openssl: backport fix for CVE-2014-0160
-- Security Advisory - openssl - CVE-2013-6449
-- Security Advisory - openssl - CVE-2013-6450
-- Security Advisory - openssl - CVE-2013-4353
-- gnutls: CVE-2014-0092 correct return codes
-- icu: CVE-2013-2924
-- acpid: CVE-2011-1159
-- xinetd: CVE-2013-4342
+Alex
 
---------------------
-Bitbake Fixes
---------------------
-- bitbake: fetch2/__init__.py: let try_mirror_url return correct value
-- bitbake: fetch2: Fix mirror repo tarball creation
-- bitbake: bitbake: fetch2/git: Anchor names when using ls-remote
-- bitbake: fetch2: Don't allow '/' in user:pass, fix branch containing '@'
-- bitbake: hob/hoblistmodel: check if vals of packages/recipes names
-are not None
-- bitbake: imagedetailspage: Fix crash with more than 15 layers
-- bitbake: parse/ConfHander/BBHandler/utils: Fix cache dependency bugs
-- bitbake: data: Fix output inconsistencies for emit_var
-- bitbake: runqueue/bitbake-worker: Fix dry run fakeroot issues
-
---------------------
-Changelog
---------------------
-- mega-manual.sed: Updated the link version to 1.5.2
-- documentation: Updated the manual revision history tables for 1.5.2
-- poky.ent: Updated the variables to support the 1.5.2 point release.
-- bitbake: fetch2/__init__.py: let try_mirror_url return correct value
-- bitbake: fetch2: Fix mirror repo tarball creation
-- build-appliance: Update to Dora 1.5.2
-- build-appliance-image: Update to head revision
-- make: fix invoking makeinfo failed at do_install time
-- bitbake: bitbake: fetch2/git: Anchor names when using ls-remote
-- mesa: double check for eglplatform.h
-- openssl: bump PR
-- sstatesig: Anchor inherits class tests
-- classes/image: ignore modules.* changing during multilib image construction
-- classes/kernel: move module postinst commands to kernel-base
-- sstatesig.py: Fix image regeneration issue
-- openssl: backport fix for CVE-2014-0160
-- Security Advisory - openssl - CVE-2013-6449
-- Security Advisory - openssl - CVE-2013-6450
-- Security Advisory - openssl - CVE-2013-4353
-- Revert "buildhistory_analysis: fix error when comparing image contents"
-- eglibc 2.18: powerpc: Fix time related syscalls
-- mesa: build fix for gallium-egl
-- image_types.bbclass: use 4096 instead of 8192 bytes-per-inode
-- Revert "poky.ent, ref-manual: Updated list of Fedora packages"
-- poky.ent, ref-manual: Updated list of Fedora packages
-- ref-manual: Fixed error in example for export XDG_RUNTIME_DIR
-- ref-manual: Added directfb to DISTRO_FEATURES list chapter.
-- license.bbclass: fix copying license directories failed
-- lsbtest: fix comparison bashism
-- iproute2: de-bash its scripts to remove the bash dependency
-- libomxil: Fix link issue for gst-omx
-- grub: move xz to DEPENDS list from RDEPENDS list
-- avahi: handle SO_REUSEPORT not being available
-- Revert "license.bbclass: fix copying license directories failed"
-- gnutls: fix failure during do_compile
-- gnutls: Fixed bug that prevented the rejection of v1 intermediate CA
-certificates.
-- gnutls: CVE-2014-0092 correct return codes
-- dev-manual: Fixed code block example for ARCHIVER.
-- bitbake: fetch2: Don't allow '/' in user:pass, fix branch containing '@'
-- systemd: journald fix ignored disk space restrictions
-- gcc: Include patch scheduled for GCC 4.8.3 to fix epilogue on ARM
-- pulseaudio: only package consolekit module when x11 is enabled
-- cpan-base: Add vardepvalue to get_perl_version function
-- binconfig: mangle ${base_libdir}
-- poky.conf: add Debian 7.3 to SANITY_TESTED_DISTROS
-- poky.conf: add Debian 7.2 to SANITY_TESTED_DISTROS
-- base.bbclass: pull in file-native for src.rpm
-- x11vnc: fix CAPS_LOCK issues
-- wpa-supplicant-2.0: don't exit in pkg_postinst
-- eglibc-locale: Fix multilib builds to depend on the correct binutils
-- eglibc-locale: Fix previous dependency change to properly work in
-nativesdk case
-- eglibc-locale: Fix depends on binutils
-- terminal.bbclass: do not export PS1
-- binutils: Also add autoconf-native to DEPENDS
-- libsoup: Remove libproxy from DEPENDS
-- grub: add PACKAGECONFIG for device-mapper
-- guile: fix the depends for target recipes
-- libpthread-stubs: should set ALLOW_EMPTY
-- kconfig-frontends: fix the incorrect depends on gperf
-- dbus: use PACKAGECONFIG for X11 and systemd
-- meta/lib/oe/terminal.py: Don't pass non-supported
-'--disable-factory' flag to gnome-terminal
-- openssl: use PACKAGECONFIG to disable perl bits
-- libav: add libpostproc to PROVIDES (for 0.8.x version only)
-- gcc-4.8: Backport PR c++/57532 fix from 4.8.2
-- systemtap: Add --enable-prologues to configuration
-- runqemu: remove core-image-* whitelist
-- Minicom depends on libiconv
-- useradd.bbclass: add dependency on base-files
-- openssl.inc: Install c_rehash utility with openssl
-- gcc-4.8/libstdc++-v3: disable sdt
-- xz: make the LICENSE info more accurate
-- gcc-crosssdk.inc: Fix missing dependencies (such as libmpc-native)
-- linux-libc-headers: fix MIPS klibc build error
-- icu: CVE-2013-2924
-- acpid: CVE-2011-1159
-- xinetd: CVE-2013-4342
-- multilib: Ensure we map the SYSTEMD_PACKAGES variable
-- nativesdk.bbclass: support nativesdk to override with the
-PACKAGES_DYNAMIC statement
-- license.bbclass: fix copying license directories failed
-- qemu: add bash and python to qemu's RDEPENDS
-- grub: add explicit dependency on bison-native
-- cogl-1.0: explicitly disable cairo
-- pulseaudio: fix RDEPENDS traversal for consolekit
-- ptest: ensure do_install_ptest_base task runs in fakeroot context
-- populate_sdk: verify executable or dynamically linked library
-- cairo: add/use packageconfig for valgrind support
-- python, python-native: fix PARALLEL_MAKEINST failure
-- subversion: fix build problem when sysroot contains '-D' or '-I'
-- python: do not replace ccache in the middle of a path
-- babeltrace: correct PV variable
-- gcc-cross-canadian: Fix fortran build
-- image.bbclass: Depend on virtual/kernel:do_deploy
-- base/gcc-common: Ensure umask setting is consistent for shared workdir
-- base.bbclass: Set umask 022 also for do_unpack task
-- xinput-calibrator: add formfactor to RDEPENDS
-- libav: install libraries to right directory when multilib is enabled
-- coreutils 6.9: fix coreutils.texi
-- qemu: add PACKAGECONFIG for vnc, libcurl, nss, uuid, curses, gtk+, libcap-ng
-- qemu: explicitly disable xen support
-- qemu: use PACKAGECONFIG to address xfsprogs dependency
-- linux-firmware: add missing linux-firmware-iwlwifi-7260-7 package
-- bluez4: added dependency on 'libsndfile1'
-- avahi: add leading space to RRECOMMENDS append
-- x264: install libraries to right directory when enable multilib
-- kconfig-frontends: add python to kconfig-frontends's RDEPENDS
-- poky: Add Fedora-20 to supported distros list
-- poky: Add Ubuntu-13.10 to supported distros list
-- ltp: set PREFERRED_PROVIDER and rename runtests_noltp.sh script
-- kernel.bbclass: Stop bundle_initramfs thwarting sstate cache and fix race
-- Revert "kernel.bbclass: move bundle_initramfs after kernel_link_vmlinux"
-- poky.ent: Fixed broken OE_LISTS_URL.
-- poky.ent: Updated lists.linuxtogo.org with lists.openembedded.org
-- eglibc-initial.inc: Drop duplicate include
-- bitbake: hob/hoblistmodel: check if vals of packages/recipes names
-are not None
-- adt-manual: Deleted mis-leading sentence from configure section.
-- poky.ent, documentation: Updated manual release dates.
-- bitbake: imagedetailspage: Fix crash with more than 15 layers
-- bitbake: parse/ConfHander/BBHandler/utils: Fix cache dependency bugs
-- bitbake: data: Fix output inconsistencies for emit_var
-- bitbake: runqueue/bitbake-worker: Fix dry run fakeroot issues
-- libsoup-2.4: add intltool-native to DEPENDS
-
--- 
-Elizabeth Flanagan
-Yocto Project
-Build and Release
 
