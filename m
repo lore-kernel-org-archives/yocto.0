@@ -1,45 +1,30 @@
-Return-Path: <gley-yocto@m.gmane.org>
+Return-Path: <gaurav.chaturvedi@nsl.eu.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id C6E7DE00B70; Wed, 21 May 2014 02:38:15 -0700 (PDT)
+	id ED634E00B70; Wed, 21 May 2014 03:11:48 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: *
-X-Spam-Status: No, score=1.3 required=5.0 tests=FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE,RDNS_NONE,SPF_HELO_PASS autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [80.91.229.3 listed in list.dnswl.org]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (auslands-kv[at]gmx.de)
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
-	*  1.3 RDNS_NONE Delivered to internal network by a host with no rDNS
-Received: from plane.gmane.org (unknown [80.91.229.3])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 50978E00AFD
-	for <yocto@yoctoproject.org>; Wed, 21 May 2014 02:38:03 -0700 (PDT)
-Received: from list by plane.gmane.org with local (Exim 4.69)
-	(envelope-from <gley-yocto@m.gmane.org>) id 1Wn2yI-0005Tw-EE
-	for yocto@yoctoproject.org; Wed, 21 May 2014 11:38:02 +0200
-Received: from 80-218-32-173.dclient.hispeed.ch ([80.218.32.173])
-	by main.gmane.org with esmtp (Gmexim 0.1 (Debian))
-	id 1AlnuQ-0007hv-00
-	for <yocto@yoctoproject.org>; Wed, 21 May 2014 11:38:02 +0200
-Received: from auslands-kv by 80-218-32-173.dclient.hispeed.ch with local
-	(Gmexim 0.1 (Debian)) id 1AlnuQ-0007hv-00
-	for <yocto@yoctoproject.org>; Wed, 21 May 2014 11:38:02 +0200
-X-Injected-Via-Gmane: http://gmane.org/
-To: yocto@yoctoproject.org
-From: Neuer User <auslands-kv@gmx.de>
-Date: Wed, 21 May 2014 11:37:50 +0200
-Message-ID: <llhs5e$jt8$1@ger.gmane.org>
-References: <llcim8$3rn$1@ger.gmane.org>	<CAJTo0Laf+EEiBAcmKwtU08LLPYynDavNbfuC3TaGKLe2oBtR+w@mail.gmail.com>	<llcj8i$cfi$1@ger.gmane.org>	<CANyK_8fjtaN6iXOXm9YqLxK25_VUbYqH8_83GOYm81GjRc9wyA@mail.gmail.com>
-	<llcrst$jsc$1@ger.gmane.org>
-Mime-Version: 1.0
-X-Complaints-To: usenet@ger.gmane.org
-X-Gmane-NNTP-Posting-Host: 80-218-32-173.dclient.hispeed.ch
+X-Spam-Status: No, score=1.3 required=5.0 tests=RDNS_NONE autolearn=no
+	version=3.3.1
+X-Spam-HAM-Report: * 1.3 RDNS_NONE Delivered to internal network by a host
+	with no rDNS
+X-Greylist: delayed 1792 seconds by postgrey-1.32 at yocto-www;
+	Wed, 21 May 2014 03:11:43 PDT
+Received: from mailgate.nsl.eu.com (unknown [80.177.211.207])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5F6E0E00AFD
+	for <yocto@yoctoproject.org>; Wed, 21 May 2014 03:11:43 -0700 (PDT)
+Received: from ojpc.nsl ([192.168.17.67])
+	by mailgate.nsl.eu.com with esmtp (Exim 4.76)
+	(envelope-from <gaurav.chaturvedi@nsl.eu.com>) id 1Wn31y-0008C7-2U
+	for yocto@yoctoproject.org; Wed, 21 May 2014 10:41:50 +0100
+Message-ID: <537C74E1.1000307@nsl.eu.com>
+Date: Wed, 21 May 2014 10:41:53 +0100
+From: Gaurav Chaturvedi <gaurav.chaturvedi@nsl.eu.com>
 User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:24.0) Gecko/20100101 Thunderbird/24.5.0
-In-Reply-To: <llcrst$jsc$1@ger.gmane.org>
-Subject: Re: Strange certificate problem with wget
+	rv:24.0) Gecko/20100101 Thunderbird/24.2.0
+MIME-Version: 1.0
+To: yocto@yoctoproject.org
+Subject: [Yocto 9.0.2 over Overo/Beagleboard] "screen" utility not working as expected
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -51,84 +36,33 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 21 May 2014 09:38:15 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Wed, 21 May 2014 10:11:49 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
 Content-Transfer-Encoding: 7bit
 
-Nobody any idea?
+Hi,
 
-I really need certificate support in wget. What am I missing? I guess,
-it is a very stupid error on my side, but I just don't know which.
+I am using Yocto dylan 9.0.2 code to generate Ubuntu kernel and images 
+for Gumstix Overo/Beagleboard. Everything is working fine except the 
+utility "screen" that I am using to ssh to board, running an application 
+and logout.
+This is what it is used for, but unfortunately it is not working that 
+way. The application also exits once I logout from the board/terminate 
+the ssh session.
 
-Michael
+I have tried different arguments of screen, but no use. Is anybody aware 
+of similar issue with "screen" utility with any kernel version.
 
+I read on some forums and Yocto help pages about 2 versions of SSH: 
+Dropbear and OpenSSH. The Dropbear version seem to have this issue, but 
+not sure. I tried compiling OpenSSH from source and including that in 
+the filesystem on my Overo board, but the issue remains.
 
-Am 19.05.2014 14:02, schrieb Neuer User:
-> Am 19.05.2014 12:56, schrieb Paul Barker:
->> On 19 May 2014 10:35, Neuer User <auslands-kv@gmx.de> wrote:
->>> Am 19.05.2014 11:32, schrieb Burton, Ross:
->>>> On 19 May 2014 10:25, Neuer User <auslands-kv@gmx.de> wrote:
->>>>> I need to use wget with https support in my image. So I added "wget" to
->>>>> my packages.
->>>>>
->>>>> The problem is that it doesn't seem to find the installed certificates:
->>>>
->>>> By "installed certificates" you mean that you installed
->>>> ca-certificates into the image, right?
->>>>
->>>> Ross
->>>>
->>> Yeah, exactly.
->>>
->>
->> If you run 'wget --version' you should be able to find out if you're
->> running busybox wget or gnu wget. I assume you're expecting gnu wget
->> as you added wget to your packages, but it's worth quickly checking
->> that the correct binary is being executed.
->>
->> Thanks,
->>
-> ~# wget --version
-> GNU Wget 1.14 built on linux-gnueabi.
-> 
-> +digest +https +ipv6 -iri -large-file +nls +ntlm +opie +ssl/openssl
-> 
-> Wgetrc:
->     /etc/wgetrc (system)
-> Locale: /usr/share/locale
-> Compile: arm-poky-linux-gnueabi-gcc -march=armv7-a -mthumb-interwork
->     -mfloat-abi=hard -mfpu=neon -mtune=cortex-a9
->     --sysroot=/home/ubuntu/yocto/build/tmp/sysroots/cubox-i
->     -DHAVE_CONFIG_H -DSYSTEM_WGETRC="/etc/wgetrc"
->     -DLOCALEDIR="/usr/share/locale" -I.
-> 
-> -I/home/ubuntu/yocto/build/tmp/work/cortexa9hf-vfp-neon-poky-linux-gnueabi/wget/1.14-r16.0/wget-1.14/src
-> -I../lib
-> -I/home/ubuntu/yocto/build/tmp/work/cortexa9hf-vfp-neon-poky-linux-gnueabi/wget/1.14-r16.0/wget-1.14/lib
-> -O2 -pipe -g -feliminate-unused-debug-types
-> Link: arm-poky-linux-gnueabi-gcc -march=armv7-a -mthumb-interwork
->     -mfloat-abi=hard -mfpu=neon -mtune=cortex-a9
->     --sysroot=/home/ubuntu/yocto/build/tmp/sysroots/cubox-i -O2 -pipe
->     -g -feliminate-unused-debug-types -Wl,-O1 -Wl,--hash-style=gnu
->     -Wl,--as-needed -lssl
->     /home/ubuntu/yocto/build/tmp/sysroots/cubox-i/lib/libcrypto.so -lz
->     -ldl -lz -lz -lpcre ftp-opie.o openssl.o http-ntlm.o
->     ../lib/libgnu.a
-> 
-> Copyright (C) 2011 Free Software Foundation, Inc.
-> License GPLv3+: GNU GPL version 3 or later
-> <http://www.gnu.org/licenses/gpl.html>.
-> This is free software: you are free to change and redistribute it.
-> There is NO WARRANTY, to the extent permitted by law.
-> 
-> Originally written by Hrvoje Niksic <hniksic@xemacs.org>.
-> Please send bug reports and questions to <bug-wget@gnu.org>.
-> 
-> 
-> Looks, as if I get the right one, but strangely without working
-> certificates check...
-> 
-> 
+Any suggestion or information regarding this issue would be very helpful.
 
+Thanks in advance.
+
+Cheers
+Gaurav
 
 
