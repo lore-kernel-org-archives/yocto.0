@@ -1,44 +1,45 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <gley-yocto@m.gmane.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 5C1DBE00B1E; Wed, 21 May 2014 01:52:38 -0700 (PDT)
+	id C6E7DE00B70; Wed, 21 May 2014 02:38:15 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: *
-X-Spam-Status: No, score=1.3 required=5.0 tests=RCVD_IN_DNSWL_NONE,RDNS_NONE
-	autolearn=no version=3.3.1
+X-Spam-Status: No, score=1.3 required=5.0 tests=FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE,RDNS_NONE,SPF_HELO_PASS autolearn=no version=3.3.1
 X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
 	http://www.dnswl.org/, no *      trust
-	*      [209.85.192.51 listed in list.dnswl.org]
+	*      [80.91.229.3 listed in list.dnswl.org]
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (auslands-kv[at]gmx.de)
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
 	*  1.3 RDNS_NONE Delivered to internal network by a host with no rDNS
-Received: from mail-qg0-f51.google.com (unknown [209.85.192.51])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 05AECE009E7
-	for <yocto@yoctoproject.org>; Wed, 21 May 2014 01:52:35 -0700 (PDT)
-Received: by mail-qg0-f51.google.com with SMTP id q107so2714610qgd.10
-	for <yocto@yoctoproject.org>; Wed, 21 May 2014 01:52:34 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc:content-type;
-	bh=R2No/Gx+7cgs4Twa33Tk3x/ZrjETaqGBdqVXg4Jj9w4=;
-	b=TDl0v6nuRnqU6ZgFc8HYJyc9/sMxYQztB9Z1ft3C8vhLRHMhSS37yDRaZuPZTyBUf0
-	bQKwXOhYgMXRoTIu8GJL5QWhdMQE4HRLwIxu+ih+ksU8KvZ8CKWofr7cE9W+bv1dli/h
-	qzZgSQyl22IIGoisu7Ii77sStKlm9V7L6j/wAR40MpATesb5ct9UHGSY3/G6tghG69OJ
-	GsevNcns8Fm9sXTFXX40nK4IZlS/shDLiRwRIvK7w04av5n30RxJOyyPFhOevsb7q7MR
-	sYcSaWs1+A7yyHcNIJbEhZCOzLiS/tlHLRo9tPIPVzWD1qn7NxXwcN0LrLpkeNAessvh
-	wdWg==
-X-Gm-Message-State: ALoCoQkZ4u1Y3s3c/4og08PPVGisdAsaJ8A256ZkWe2zc3KqN8VOqi1nOz4rf7hgqePlXpgQuCm/
-X-Received: by 10.229.213.66 with SMTP id gv2mr35753893qcb.13.1400662354547;
-	Wed, 21 May 2014 01:52:34 -0700 (PDT)
-MIME-Version: 1.0
-Received: by 10.140.101.77 with HTTP; Wed, 21 May 2014 01:52:14 -0700 (PDT)
-In-Reply-To: <20140520144423.8c4e4b9406b77e1e78d5069819454ed7.8cac11663f.wbe@email14.secureserver.net>
-References: <20140520144423.8c4e4b9406b77e1e78d5069819454ed7.8cac11663f.wbe@email14.secureserver.net>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Wed, 21 May 2014 09:52:14 +0100
-Message-ID: <CAJTo0La2_WU=gg--xFz1JEST87qWKX-8x1pGDL_EcVhTTPaihA@mail.gmail.com>
-To: ezekiel@sanborndeasis.net
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: headers only recipe
+Received: from plane.gmane.org (unknown [80.91.229.3])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 50978E00AFD
+	for <yocto@yoctoproject.org>; Wed, 21 May 2014 02:38:03 -0700 (PDT)
+Received: from list by plane.gmane.org with local (Exim 4.69)
+	(envelope-from <gley-yocto@m.gmane.org>) id 1Wn2yI-0005Tw-EE
+	for yocto@yoctoproject.org; Wed, 21 May 2014 11:38:02 +0200
+Received: from 80-218-32-173.dclient.hispeed.ch ([80.218.32.173])
+	by main.gmane.org with esmtp (Gmexim 0.1 (Debian))
+	id 1AlnuQ-0007hv-00
+	for <yocto@yoctoproject.org>; Wed, 21 May 2014 11:38:02 +0200
+Received: from auslands-kv by 80-218-32-173.dclient.hispeed.ch with local
+	(Gmexim 0.1 (Debian)) id 1AlnuQ-0007hv-00
+	for <yocto@yoctoproject.org>; Wed, 21 May 2014 11:38:02 +0200
+X-Injected-Via-Gmane: http://gmane.org/
+To: yocto@yoctoproject.org
+From: Neuer User <auslands-kv@gmx.de>
+Date: Wed, 21 May 2014 11:37:50 +0200
+Message-ID: <llhs5e$jt8$1@ger.gmane.org>
+References: <llcim8$3rn$1@ger.gmane.org>	<CAJTo0Laf+EEiBAcmKwtU08LLPYynDavNbfuC3TaGKLe2oBtR+w@mail.gmail.com>	<llcj8i$cfi$1@ger.gmane.org>	<CANyK_8fjtaN6iXOXm9YqLxK25_VUbYqH8_83GOYm81GjRc9wyA@mail.gmail.com>
+	<llcrst$jsc$1@ger.gmane.org>
+Mime-Version: 1.0
+X-Complaints-To: usenet@ger.gmane.org
+X-Gmane-NNTP-Posting-Host: 80-218-32-173.dclient.hispeed.ch
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:24.0) Gecko/20100101 Thunderbird/24.5.0
+In-Reply-To: <llcrst$jsc$1@ger.gmane.org>
+Subject: Re: Strange certificate problem with wget
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -50,29 +51,84 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 21 May 2014 08:52:38 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Wed, 21 May 2014 09:38:15 -0000
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: 7bit
 
-On 20 May 2014 22:44,  <ezekiel@sanborndeasis.net> wrote:
-> I have a recipe that only produces dev headers (macros, constants, etc).
-> Builds fine, and recipes dependent on these headers are fine as well. The
-> problem is that only a dev and dbg ipkg get produced for deploy (makes
-> sense, there is no device side content). But then do_rootfs fails because it
-> expects an ipkg for this recipe
->
-> opkg_install_cmd: Cannot install package foobar
->
-> I am working around it by throwing down a dummy conf file as output from
-> this recipe so there is something to build an ipkg around. But how do I
-> indicate that there is no normal device side content from this recipe.
+Nobody any idea?
 
-Whilst using ALLOW_EMPTY works, to me using that is a kludge.  This
-isn't like package groups where the empty package serves a purpose,
-the empty foobar package's sole purpose is to satisfy the foobar
-dependency in foobar-dev.  This dependency is a default dependency
-from bitbake.conf and is trivially removed in your recipe:
+I really need certificate support in wget. What am I missing? I guess,
+it is a very stupid error on my side, but I just don't know which.
 
-RDEPENDS_${PN}-dev = ""
+Michael
 
-Ross
+
+Am 19.05.2014 14:02, schrieb Neuer User:
+> Am 19.05.2014 12:56, schrieb Paul Barker:
+>> On 19 May 2014 10:35, Neuer User <auslands-kv@gmx.de> wrote:
+>>> Am 19.05.2014 11:32, schrieb Burton, Ross:
+>>>> On 19 May 2014 10:25, Neuer User <auslands-kv@gmx.de> wrote:
+>>>>> I need to use wget with https support in my image. So I added "wget" to
+>>>>> my packages.
+>>>>>
+>>>>> The problem is that it doesn't seem to find the installed certificates:
+>>>>
+>>>> By "installed certificates" you mean that you installed
+>>>> ca-certificates into the image, right?
+>>>>
+>>>> Ross
+>>>>
+>>> Yeah, exactly.
+>>>
+>>
+>> If you run 'wget --version' you should be able to find out if you're
+>> running busybox wget or gnu wget. I assume you're expecting gnu wget
+>> as you added wget to your packages, but it's worth quickly checking
+>> that the correct binary is being executed.
+>>
+>> Thanks,
+>>
+> ~# wget --version
+> GNU Wget 1.14 built on linux-gnueabi.
+> 
+> +digest +https +ipv6 -iri -large-file +nls +ntlm +opie +ssl/openssl
+> 
+> Wgetrc:
+>     /etc/wgetrc (system)
+> Locale: /usr/share/locale
+> Compile: arm-poky-linux-gnueabi-gcc -march=armv7-a -mthumb-interwork
+>     -mfloat-abi=hard -mfpu=neon -mtune=cortex-a9
+>     --sysroot=/home/ubuntu/yocto/build/tmp/sysroots/cubox-i
+>     -DHAVE_CONFIG_H -DSYSTEM_WGETRC="/etc/wgetrc"
+>     -DLOCALEDIR="/usr/share/locale" -I.
+> 
+> -I/home/ubuntu/yocto/build/tmp/work/cortexa9hf-vfp-neon-poky-linux-gnueabi/wget/1.14-r16.0/wget-1.14/src
+> -I../lib
+> -I/home/ubuntu/yocto/build/tmp/work/cortexa9hf-vfp-neon-poky-linux-gnueabi/wget/1.14-r16.0/wget-1.14/lib
+> -O2 -pipe -g -feliminate-unused-debug-types
+> Link: arm-poky-linux-gnueabi-gcc -march=armv7-a -mthumb-interwork
+>     -mfloat-abi=hard -mfpu=neon -mtune=cortex-a9
+>     --sysroot=/home/ubuntu/yocto/build/tmp/sysroots/cubox-i -O2 -pipe
+>     -g -feliminate-unused-debug-types -Wl,-O1 -Wl,--hash-style=gnu
+>     -Wl,--as-needed -lssl
+>     /home/ubuntu/yocto/build/tmp/sysroots/cubox-i/lib/libcrypto.so -lz
+>     -ldl -lz -lz -lpcre ftp-opie.o openssl.o http-ntlm.o
+>     ../lib/libgnu.a
+> 
+> Copyright (C) 2011 Free Software Foundation, Inc.
+> License GPLv3+: GNU GPL version 3 or later
+> <http://www.gnu.org/licenses/gpl.html>.
+> This is free software: you are free to change and redistribute it.
+> There is NO WARRANTY, to the extent permitted by law.
+> 
+> Originally written by Hrvoje Niksic <hniksic@xemacs.org>.
+> Please send bug reports and questions to <bug-wget@gnu.org>.
+> 
+> 
+> Looks, as if I get the right one, but strangely without working
+> certificates check...
+> 
+> 
+
+
 
