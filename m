@@ -1,39 +1,46 @@
-Return-Path: <ajlennon@dynamicdevices.co.uk>
+Return-Path: <gley-yocto@m.gmane.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 5CF2CE00B70; Wed, 21 May 2014 03:51:21 -0700 (PDT)
+	id A7D24E00B70; Wed, 21 May 2014 03:56:41 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: *
-X-Spam-Status: No, score=1.3 required=5.0 tests=RDNS_NONE autolearn=no
-	version=3.3.1
-X-Spam-HAM-Report: * 1.3 RDNS_NONE Delivered to internal network by a host
-	with no rDNS
-Received: from www.dynamicdevices.co.uk (unknown [89.200.136.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0872DE00AFD
-	for <yocto@yoctoproject.org>; Wed, 21 May 2014 03:51:16 -0700 (PDT)
-Received: from localhost (localhost [127.0.0.1])
-	by www.dynamicdevices.co.uk (Postfix) with ESMTP id 7158E860E7
-	for <yocto@yoctoproject.org>; Wed, 21 May 2014 10:51:15 +0000 (UTC)
-X-Virus-Scanned: Debian amavisd-new at lennoab2.miniserver.com
-Received: from www.dynamicdevices.co.uk ([127.0.0.1])
-	by localhost (www.dynamicdevices.co.uk [127.0.0.1]) (amavisd-new,
-	port 10024) with ESMTP id V0Fx12jDcXKj for <yocto@yoctoproject.org>;
-	Wed, 21 May 2014 10:51:15 +0000 (UTC)
-Received: from [127.0.0.1] (cpc32-live22-2-0-cust59.17-2.cable.virginm.net
-	[82.36.253.60])
-	(using TLSv1 with cipher ECDHE-RSA-AES128-SHA (128/128 bits))
-	(No client certificate requested)
-	by www.dynamicdevices.co.uk (Postfix) with ESMTPSA id D4396860E6
-	for <yocto@yoctoproject.org>; Wed, 21 May 2014 10:51:14 +0000 (UTC)
-Message-ID: <537C8522.4090405@dynamicdevices.co.uk>
-Date: Wed, 21 May 2014 11:51:14 +0100
-From: Alex J Lennon <ajlennon@dynamicdevices.co.uk>
-User-Agent: Mozilla/5.0 (Windows NT 6.3; WOW64;
+X-Spam-Status: No, score=1.3 required=5.0 tests=FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE,RDNS_NONE,SPF_HELO_PASS autolearn=no version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [80.91.229.3 listed in list.dnswl.org]
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (auslands-kv[at]gmx.de)
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+	*  1.3 RDNS_NONE Delivered to internal network by a host with no rDNS
+Received: from plane.gmane.org (unknown [80.91.229.3])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 47C42E00AFD
+	for <yocto@yoctoproject.org>; Wed, 21 May 2014 03:56:36 -0700 (PDT)
+Received: from list by plane.gmane.org with local (Exim 4.69)
+	(envelope-from <gley-yocto@m.gmane.org>) id 1Wn4CI-0002F9-Do
+	for yocto@yoctoproject.org; Wed, 21 May 2014 12:56:34 +0200
+Received: from 80-218-32-173.dclient.hispeed.ch ([80.218.32.173])
+	by main.gmane.org with esmtp (Gmexim 0.1 (Debian))
+	id 1AlnuQ-0007hv-00
+	for <yocto@yoctoproject.org>; Wed, 21 May 2014 12:56:34 +0200
+Received: from auslands-kv by 80-218-32-173.dclient.hispeed.ch with local
+	(Gmexim 0.1 (Debian)) id 1AlnuQ-0007hv-00
+	for <yocto@yoctoproject.org>; Wed, 21 May 2014 12:56:34 +0200
+X-Injected-Via-Gmane: http://gmane.org/
+To: yocto@yoctoproject.org
+From: Neuer User <auslands-kv@gmx.de>
+Date: Wed, 21 May 2014 12:56:20 +0200
+Message-ID: <lli0ok$14k$1@ger.gmane.org>
+References: <llcim8$3rn$1@ger.gmane.org>	<CAJTo0Laf+EEiBAcmKwtU08LLPYynDavNbfuC3TaGKLe2oBtR+w@mail.gmail.com>	<llcj8i$cfi$1@ger.gmane.org>	<CANyK_8fjtaN6iXOXm9YqLxK25_VUbYqH8_83GOYm81GjRc9wyA@mail.gmail.com>	<llcrst$jsc$1@ger.gmane.org>
+	<llhs5e$jt8$1@ger.gmane.org>
+	<CAJTo0LbV1AoU=qmb0S=dtbsaor4jWGckGPM80g=tETFi3Ri0sQ@mail.gmail.com>
+Mime-Version: 1.0
+X-Complaints-To: usenet@ger.gmane.org
+X-Gmane-NNTP-Posting-Host: 80-218-32-173.dclient.hispeed.ch
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
 	rv:24.0) Gecko/20100101 Thunderbird/24.5.0
-MIME-Version: 1.0
-To: Yocto <yocto@yoctoproject.org>
-X-Enigmail-Version: 1.6
-Subject: [meta-raspberrypi] Raspberry Pi Camera + kernel driver + gstreamer
+In-Reply-To: <CAJTo0LbV1AoU=qmb0S=dtbsaor4jWGckGPM80g=tETFi3Ri0sQ@mail.gmail.com>
+Subject: Re: Strange certificate problem with wget
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,36 +52,32 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 21 May 2014 10:51:21 -0000
+X-List-Received-Date: Wed, 21 May 2014 10:56:41 -0000
 Content-Type: text/plain; charset=ISO-8859-1
 Content-Transfer-Encoding: 7bit
 
-Hi,
+Thanks Paul.
 
-Has anybody had any luck with the PiCam and Gstreamer?
+That's it. It does't seem to know where they are. If I add the option
+with the path, it works.
 
-I had the bcm2835_v4l2 kernel driver detecting the camera and
-mjpg-streamer is working for me.
+Do I miss something in my local.conf?
 
-Now I'd like to have gstreamer doing the streaming instead of
-mjpeg-streamer.
+Cheers
 
-I've had something like the following pipeline working with USB webcams
-but can't seem to get the right incantation for the PiCam:
+Michael
 
-gst-launch\
-  v4l2src !\
-  ffmpegcolorspace !\
-  video/x-raw-yuv,width=640,height=480,framerate=\(fraction\)30/1 !\
-  queue !\
-  videorate !\
-  video/x-raw-yuv,framerate=10/1 !\
-  jpegenc !\
-  multipartmux !\
-  tcpserversink host=192.168.0.21 port=1010 sync=false
+Am 21.05.2014 12:27, schrieb Burton, Ross:
+> On 21 May 2014 10:37, Neuer User <auslands-kv@gmx.de> wrote:
+>> I really need certificate support in wget. What am I missing? I guess,
+>> it is a very stupid error on my side, but I just don't know which.
+> 
+> Try passing --ca-certificate=/etc/ssl/certs/ca-certificates.crt to
+> verify that wget works if you tell it exactly where the certificate
+> bundle is.
+> 
+> Ross
+> 
 
-Thanks,
-
-Alex
 
 
