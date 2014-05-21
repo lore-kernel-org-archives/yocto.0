@@ -1,46 +1,38 @@
-Return-Path: <elizabeth.flanagan@intel.com>
+Return-Path: <Stefan_Seefeld@mentor.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id B13A3E00BDA; Wed, 21 May 2014 13:40:48 -0700 (PDT)
+	id 6EDCEE00B87; Wed, 21 May 2014 13:54:06 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
-X-Spam-Level: 
-X-Spam-Status: No, score=0.6 required=5.0 tests=RCVD_IN_DNSWL_LOW,RDNS_NONE
-	autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [209.85.128.180 listed in list.dnswl.org]
-	*  1.3 RDNS_NONE Delivered to internal network by a host with no rDNS
-Received: from mail-ve0-f180.google.com (unknown [209.85.128.180])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9E969E00BE0
-	for <yocto@yoctoproject.org>; Wed, 21 May 2014 13:40:37 -0700 (PDT)
-Received: by mail-ve0-f180.google.com with SMTP id db12so3204193veb.39
-	for <yocto@yoctoproject.org>; Wed, 21 May 2014 13:40:36 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:date
-	:message-id:subject:from:to:cc:content-type;
-	bh=papJU+NK0lQcqwkQgBYTLEt1RcSHmRUkQy8vhfNADQ0=;
-	b=YaOwgagJ0EgLee9oIAPSCNNVeQYm4q+EmwFKmH4U1z2uuH5XmG45w+DniXRTjoOVCA
-	P5Wp78blWBXeIYeYBhbwyf2I/Fb49KkuL0e2sxyXJHV6qEGgDtNgsYhfaaATF9KT+nbb
-	bQZdqCYOORAQqRIiWfWcNapBXaUAqHoEQU51lkENz/kUqV3FnugeY0J9YfVbzTHiYdRU
-	RGTpIesOYQWdc8DjI3JW3cPh+lKrSOGCwt5atFsslf2IEGTNI/EW0LAEv9BmGkKsIfYW
-	fWt/+aaQXWK5JPxvayqIwBpaU/NXusu6IiftYfE+jE4oupNZDowxg3Oj7fZe4U0mppeZ
-	6N9Q==
-X-Gm-Message-State: ALoCoQn47xFxfSQxfKZ6VU6Jvdiia6m+XtAXLCiTzLLfScSEf36IyTozD5gakGJml8UbN0Iev9d6
+X-Spam-Level: *
+X-Spam-Status: No, score=1.3 required=5.0 tests=RDNS_NONE autolearn=no
+	version=3.3.1
+X-Spam-HAM-Report: * 1.3 RDNS_NONE Delivered to internal network by a host
+	with no rDNS
+X-Greylist: delayed 486 seconds by postgrey-1.32 at yocto-www;
+	Wed, 21 May 2014 13:54:04 PDT
+Received: from relay1.mentorg.com (unknown [192.94.38.131])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 97C15E0077C
+	for <yocto@yoctoproject.org>; Wed, 21 May 2014 13:54:04 -0700 (PDT)
+Received: from svr-orw-fem-01.mgc.mentorg.com ([147.34.98.93])
+	by relay1.mentorg.com with esmtp 
+	id 1WnDOg-0002je-1R from Stefan_Seefeld@mentor.com 
+	for yocto@yoctoproject.org; Wed, 21 May 2014 13:45:58 -0700
+Received: from SVR-ORW-FEM-02.mgc.mentorg.com ([147.34.96.206]) by
+	svr-orw-fem-01.mgc.mentorg.com over TLS secured channel with
+	Microsoft SMTPSVC(6.0.3790.4675); Wed, 21 May 2014 13:45:57 -0700
+Received: from [0.0.0.0] (147.34.91.1) by svr-orw-fem-02.mgc.mentorg.com
+	(147.34.96.168) with Microsoft SMTP Server id 14.2.247.3;
+	Wed, 21 May 2014 13:45:57 -0700
+Message-ID: <537D1084.4000705@mentor.com>
+Date: Wed, 21 May 2014 16:45:56 -0400
+From: Stefan Seefeld <stefan_seefeld@mentor.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:24.0) Gecko/20100101 Thunderbird/24.5.0
 MIME-Version: 1.0
-X-Received: by 10.52.190.138 with SMTP id gq10mr2710195vdc.47.1400704836501;
-	Wed, 21 May 2014 13:40:36 -0700 (PDT)
-Received: by 10.52.243.73 with HTTP; Wed, 21 May 2014 13:40:36 -0700 (PDT)
-In-Reply-To: <1400704210.17834.9.camel@ted>
-References: <CAPhnLPAoA+z4OfO_HXVNOmbVk9cXcbOEtMZOhzYZbfMqw_9g=Q@mail.gmail.com>
-	<CAJTo0La6PT=gUpvp+Fsh1QpOx1H147HgiVT4nmCrKvLFRroiEA@mail.gmail.com>
-	<1400704210.17834.9.camel@ted>
-Date: Wed, 21 May 2014 13:40:36 -0700
-Message-ID: <CAPhnLPD0-zR5DR9d=QWwqK3ZXpcngkeBXAoWt_Q0W+_vSnenRA@mail.gmail.com>
-From: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
-To: Richard Purdie <richard.purdie@linuxfoundation.org>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Reducing size of the weekly build
+To: <yocto@yoctoproject.org>
+X-OriginalArrivalTime: 21 May 2014 20:45:57.0941 (UTC)
+	FILETIME=[AAFC4650:01CF7535]
+Subject: [meta-mingw] build error
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -52,46 +44,33 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 21 May 2014 20:40:48 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Wed, 21 May 2014 20:54:06 -0000
+Content-Type: text/plain; charset="ISO-8859-1"
+Content-Transfer-Encoding: 7bit
 
-On Wed, May 21, 2014 at 1:30 PM, Richard Purdie
-<richard.purdie@linuxfoundation.org> wrote:
-> On Wed, 2014-05-21 at 19:58 +0100, Burton, Ross wrote:
->> On 21 May 2014 17:22, Flanagan, Elizabeth <elizabeth.flanagan@intel.com> wrote:
->> > One thing I'm thinking of and I want some feedback here is setting the
->> > package type on the main builds to just ipk and running a special
->> > deb/rpm test being to ensure those package types are functional. This
->> > should give us a bit of a speed increase for build times, without
->> > introducing too much risk. Thoughts?
->>
->> The reduced coverage is something to consider, but if the other builds
->> were world and also built images then the reduction shouldn't be too
->> bad.  I wonder what the speed difference between ipk and ipkg+rpm is:
->> this is probably worth measuring.
->
-> We do need to be careful about coverage here. We have seen bugs where
-> things failed in deb or rpm but not ipk and maybe only on some
-> architectures.
->
-> I'm fine with being more selective about what we publish however in the
-> builds it may be worth leaving this enabled.
+Hello,
 
-Yeah, I can see that. If we had a world rpm/deb as Ross suggests, I'm
-not sure that would actually give us a speed increase, so for now, I'm
-ok with leaving what we build alone. But yeah, let's not publish the
-rpm/debs.
+I started experimenting with the meta-mingw layer today, using the
+'daisy' branch for both, poky as well as meta-mingw.
 
->
-> Cheers,
->
-> Richard
->
+Running `bitbake meta-toolchain`, the build process failed in one of the
+last steps (1003 of 1005) with:
 
+ERROR: nativesdk-packagegroup-sdk-host not found in the base feeds
+(x86_64-nativesdk-mingw32 noarch any all).
+
+Any idea what I may be missing ? I'm using
+
+MACHINE ??= "qemux86"
+SDKMACHINE ?= "x86_64-mingw32"
+
+Thanks,
+
+		Stefan
 
 
 -- 
-Elizabeth Flanagan
-Yocto Project
-Build and Release
+Stefan Seefeld
+CodeSourcery / Mentor Embedded
+http://www.mentor.com/embedded-software/
 
