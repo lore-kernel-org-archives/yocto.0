@@ -1,48 +1,48 @@
-Return-Path: <gley-yocto@m.gmane.org>
+Return-Path: <wd@denx.de>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 74716E00B70; Wed, 21 May 2014 04:26:06 -0700 (PDT)
+	id AE739E00B70; Wed, 21 May 2014 05:41:17 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: *
-X-Spam-Status: No, score=1.3 required=5.0 tests=FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE,RDNS_NONE,SPF_HELO_PASS autolearn=no version=3.3.1
+X-Spam-Status: No, score=1.3 required=5.0 tests=RCVD_IN_DNSWL_NONE,RDNS_NONE
+	autolearn=no version=3.3.1
 X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
 	http://www.dnswl.org/, no *      trust
-	*      [80.91.229.3 listed in list.dnswl.org]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (auslands-kv[at]gmx.de)
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+	*      [212.18.0.10 listed in list.dnswl.org]
 	*  1.3 RDNS_NONE Delivered to internal network by a host with no rDNS
-Received: from plane.gmane.org (unknown [80.91.229.3])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BA512E00AFD
-	for <yocto@yoctoproject.org>; Wed, 21 May 2014 04:25:59 -0700 (PDT)
-Received: from list by plane.gmane.org with local (Exim 4.69)
-	(envelope-from <gley-yocto@m.gmane.org>) id 1Wn4ei-0000ex-Tp
-	for yocto@yoctoproject.org; Wed, 21 May 2014 13:25:56 +0200
-Received: from 80-218-32-173.dclient.hispeed.ch ([80.218.32.173])
-	by main.gmane.org with esmtp (Gmexim 0.1 (Debian))
-	id 1AlnuQ-0007hv-00
-	for <yocto@yoctoproject.org>; Wed, 21 May 2014 13:25:56 +0200
-Received: from auslands-kv by 80-218-32-173.dclient.hispeed.ch with local
-	(Gmexim 0.1 (Debian)) id 1AlnuQ-0007hv-00
-	for <yocto@yoctoproject.org>; Wed, 21 May 2014 13:25:56 +0200
-X-Injected-Via-Gmane: http://gmane.org/
+X-Greylist: delayed 457 seconds by postgrey-1.32 at yocto-www;
+	Wed, 21 May 2014 05:41:14 PDT
+Received: from mail-out.m-online.net (unknown [212.18.0.10])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id ABF0EE00AFD
+	for <yocto@yoctoproject.org>; Wed, 21 May 2014 05:41:14 -0700 (PDT)
+Received: from frontend1.mail.m-online.net (frontend1.mail.intern.m-online.net
+	[192.168.8.180])
+	by mail-out.m-online.net (Postfix) with ESMTP id 3gYYKX3wnGz3hhgV
+	for <yocto@yoctoproject.org>; Wed, 21 May 2014 14:33:36 +0200 (CEST)
+Received: from localhost (dynscan1.mnet-online.de [192.168.6.68])
+	by mail.m-online.net (Postfix) with ESMTP id 3gYYKW6YwczbbrM
+	for <yocto@yoctoproject.org>; Wed, 21 May 2014 14:33:35 +0200 (CEST)
+X-Virus-Scanned: amavisd-new at mnet-online.de
+Received: from smtp-auth.mnet-online.de ([192.168.8.180])
+	by localhost (dynscan1.mail.m-online.net [192.168.6.68]) (amavisd-new,
+	port 10024) with ESMTP id uLvlKApnUHex for <yocto@yoctoproject.org>;
+	Wed, 21 May 2014 14:33:34 +0200 (CEST)
+X-Auth-Info: lPQQIVuKY/H+Dhl+8RQktp/tDREzLOc40Hbc9nKSX7I=
+Received: from diddl.denx.de (host-80-81-18-216.customer.m-online.net
+	[80.81.18.216]) by smtp-auth.mnet-online.de (Postfix) with ESMTPA
+	for <yocto@yoctoproject.org>; Wed, 21 May 2014 14:33:34 +0200 (CEST)
+Received: from gemini.denx.de (gemini.denx.de [10.0.0.2])
+	by diddl.denx.de (Postfix) with ESMTP id 6E4281AAA77
+	for <yocto@yoctoproject.org>; Wed, 21 May 2014 14:33:34 +0200 (CEST)
+Received: from gemini.denx.de (localhost [IPv6:::1])
+	by gemini.denx.de (Postfix) with ESMTP id 3B0AA3803F4
+	for <yocto@yoctoproject.org>; Wed, 21 May 2014 14:33:34 +0200 (MEST)
 To: yocto@yoctoproject.org
-From: Neuer User <auslands-kv@gmx.de>
-Date: Wed, 21 May 2014 13:25:45 +0200
-Message-ID: <537C8D39.8070202@gmx.de>
-References: <llcim8$3rn$1@ger.gmane.org>	<CAJTo0Laf+EEiBAcmKwtU08LLPYynDavNbfuC3TaGKLe2oBtR+w@mail.gmail.com>	<llcj8i$cfi$1@ger.gmane.org>	<CANyK_8fjtaN6iXOXm9YqLxK25_VUbYqH8_83GOYm81GjRc9wyA@mail.gmail.com>	<llcrst$jsc$1@ger.gmane.org>
-	<llhs5e$jt8$1@ger.gmane.org>
-	<CAJTo0LbV1AoU=qmb0S=dtbsaor4jWGckGPM80g=tETFi3Ri0sQ@mail.gmail.com>
-Mime-Version: 1.0
-X-Complaints-To: usenet@ger.gmane.org
-X-Gmane-NNTP-Posting-Host: 80-218-32-173.dclient.hispeed.ch
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:24.0) Gecko/20100101 Thunderbird/24.5.0
-In-Reply-To: <CAJTo0LbV1AoU=qmb0S=dtbsaor4jWGckGPM80g=tETFi3Ri0sQ@mail.gmail.com>
-Cc: "yocto-EtnWKYl6rD/WsZ/bQMPhNw@public.gmane.org"
-	<public-yocto-EtnWKYl6rD/WsZ/bQMPhNw@plane.gmane.org>
-Subject: Re: Strange certificate problem with wget
+From: Wolfgang Denk <wd@denx.de>
+MIME-Version: 1.0
+Date: Wed, 21 May 2014 14:33:34 +0200
+Message-Id: <20140521123334.3B0AA3803F4@gemini.denx.de>
+Subject: kernel-yocto.bbclass ignoring SRCREV?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -54,41 +54,42 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 21 May 2014 11:26:06 -0000
-Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 21 May 2014 12:41:17 -0000
+Content-type: text/plain; charset=UTF-8
+Content-transfer-encoding: 8bit
 
-Very sorry for mixing up your name with Pauls, Ross.
+Hi,
 
-Sorry,
+is my understanding of kernel-yocto.bbclass correct that it
+effectively completely ignores any specific git commit ID that was
+gien in SRCREV, but instead always checks out and uses the HEAD of the
+respective branch?
 
-Michael
+Or am I missing something here?  My expectation was that we specify a
+git commit ID (as the only reliable, truly unique identifier for a
+specific source code version) in SRCREV, but instead it appears that
+this information is effectively being ignored?
 
-------------------------------------------------------
+I can understand that there are situations where automatically using
+the top commit of a branch (say, the latest stable version of some
+package) may be useful, but should there not be some different way to
+do that?
 
-Thanks Paul.
+I mean, how can we make sure to ever be able to reproduce the very
+same build if the git commit ID specified in SRCREV will not be used
+for the checkout?
 
-That's it. It does't seem to know where they are. If I add the option
-with the path, it works.
+Thanks in advance.
 
-Do I miss something in my local.conf?
+Best regards,
 
-Cheers
+Wolfgang Denk
 
-Michael
-
-
-Am 21.05.2014 12:27, schrieb Burton, Ross:
-> On 21 May 2014 10:37, Neuer User <auslands-kv@gmx.de> wrote:
->> I really need certificate support in wget. What am I missing? I guess,
->> it is a very stupid error on my side, but I just don't know which.
-> 
-> Try passing --ca-certificate=/etc/ssl/certs/ca-certificates.crt to
-> verify that wget works if you tell it exactly where the certificate
-> bundle is.
-> 
-> Ross
-> 
-
-
+-- 
+DENX Software Engineering GmbH,     MD: Wolfgang Denk & Detlev Zundel
+HRB 165235 Munich, Office: Kirchenstr.5, D-82194 Groebenzell, Germany
+Phone: (+49)-8142-66989-10 Fax: (+49)-8142-66989-80 Email: wd@denx.de
+"More software projects have gone awry for lack of calendar time than
+for all other causes combined."
+                         - Fred Brooks, Jr., _The Mythical Man Month_
 
