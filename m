@@ -1,47 +1,47 @@
-Return-Path: <ajlennon@dynamicdevices.co.uk>
+Return-Path: <mail@timomueller.eu>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id B72CBE00B8B; Thu, 22 May 2014 02:56:31 -0700 (PDT)
+	id B2C4AE00B85; Thu, 22 May 2014 03:03:45 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
-X-Spam-Level: *
-X-Spam-Status: No, score=1.3 required=5.0 tests=RDNS_NONE autolearn=no
-	version=3.3.1
-X-Spam-HAM-Report: * 1.3 RDNS_NONE Delivered to internal network by a host
-	with no rDNS
-Received: from www.dynamicdevices.co.uk (unknown [89.200.136.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E4407E00B6F
-	for <yocto@yoctoproject.org>; Thu, 22 May 2014 02:56:29 -0700 (PDT)
-Received: from localhost (localhost [127.0.0.1])
-	by www.dynamicdevices.co.uk (Postfix) with ESMTP id A531C860E7;
-	Thu, 22 May 2014 09:56:26 +0000 (UTC)
-X-Virus-Scanned: Debian amavisd-new at lennoab2.miniserver.com
-Received: from www.dynamicdevices.co.uk ([127.0.0.1])
-	by localhost (www.dynamicdevices.co.uk [127.0.0.1]) (amavisd-new,
-	port 10024)
-	with ESMTP id BFNlzZXOI1Uy; Thu, 22 May 2014 09:56:25 +0000 (UTC)
-Received: from [127.0.0.1] (cpc32-live22-2-0-cust59.17-2.cable.virginm.net
-	[82.36.253.60])
-	(using TLSv1 with cipher ECDHE-RSA-AES128-SHA (128/128 bits))
-	(No client certificate requested)
-	by www.dynamicdevices.co.uk (Postfix) with ESMTPSA id 9EE27860E6;
-	Thu, 22 May 2014 09:56:25 +0000 (UTC)
-Message-ID: <537DC9C8.6080002@dynamicdevices.co.uk>
-Date: Thu, 22 May 2014 10:56:24 +0100
-From: Alex J Lennon <ajlennon@dynamicdevices.co.uk>
-User-Agent: Mozilla/5.0 (Windows NT 6.3; WOW64;
-	rv:24.0) Gecko/20100101 Thunderbird/24.5.0
-MIME-Version: 1.0
-To: Richard Purdie <richard.purdie@linuxfoundation.org>
-References: <CAAPegz1dWJAG0R_wVZs8_BtD4CO5YBk7=oT1V-ud40xzkTx+yw@mail.gmail.com>			<537CF707.4060506@mlbassoc.com>			<CAAPegz23RjycTjy0_81=PM2m47c-vJ+1vL75fO6LbfvJAoBX2w@mail.gmail.com>			<537D0964.9090208@dynamicdevices.co.uk>		
-	<CANr+NRsnNeBtkJOB-EVNzsGWOOH6YG1cnw11FOcbo9V78-8vPg@mail.gmail.com>		
-	<537D3560.2040702@dynamicdevices.co.uk>
-	<1400746996.17834.26.camel@ted>	
-	<537DB568.4060904@dynamicdevices.co.uk>
-	<1400748019.17834.37.camel@ted>
-In-Reply-To: <1400748019.17834.37.camel@ted>
-X-Enigmail-Version: 1.6
-Cc: yocto@yoctoproject.org, gary@mlbassoc.com
-Subject: Re: meta-mono core-image-mono failing
+X-Spam-Level: 
+X-Spam-Status: No, score=0.6 required=5.0 tests=RCVD_IN_DNSWL_LOW,RDNS_NONE
+	autolearn=no version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [74.125.83.50 listed in list.dnswl.org]
+	*  1.3 RDNS_NONE Delivered to internal network by a host with no rDNS
+X-Greylist: delayed 314 seconds by postgrey-1.32 at yocto-www;
+	Thu, 22 May 2014 03:03:39 PDT
+Received: from mail-ee0-f50.google.com (unknown [74.125.83.50])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 30CCEE0077C
+	for <yocto@yoctoproject.org>; Thu, 22 May 2014 03:03:39 -0700 (PDT)
+Received: by mail-ee0-f50.google.com with SMTP id e51so2437081eek.37
+	for <yocto@yoctoproject.org>; Thu, 22 May 2014 03:03:38 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:from:to:cc:subject:date:message-id;
+	bh=53vhlyCa2DCQM/gN6S0EQpD1ZW+PzUtMgVYJiA1OssE=;
+	b=mwJWyvn8ZKEovyJ/NLrX2bgfDTcnDhiGYWuo9Mi80BOptaPjG39IF/86oX16il9T6R
+	YavFAMxvZGmRHJsER+O6YYw9v65Eomodmb1DMT6qt7JCPXhbCVuMQVHeX55hXAyWX3OP
+	Yn57mX/ROMOSfDFft8o3NMqXMw9ewrXIJd75SXT0zNzqYW8vKl4eQGuOn3sV5oyEJXQ+
+	cwAxH2yiPT9uNn5T/QKcT9OmNc7uDGMB6letLUv9VtSUbGcU/dGETFKEKpvlZnqde9VR
+	gyF+CJDakKGlSFh99oOSqTlvycE79m8PQu6QOD8IXQTZV0pajS5kXfkTdb+63gRToROr
+	l5zw==
+X-Gm-Message-State: ALoCoQnJM6M48kH235t4vGCCc6ZziGb3MsIv5PJ6ARZN1C4kYp1Rltz//j86vGdsxBsRJwzaMWxN
+X-Received: by 10.14.225.65 with SMTP id y41mr12228517eep.75.1400752704596;
+	Thu, 22 May 2014 02:58:24 -0700 (PDT)
+Received: from localhost (mail.bmw-carit.de. [62.245.222.98])
+	by mx.google.com with ESMTPSA id 44sm18526404eer.35.2014.05.22.02.58.23
+	for <multiple recipients>
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Thu, 22 May 2014 02:58:23 -0700 (PDT)
+From: Timo Mueller <mail@timomueller.eu>
+To: yocto@yoctoproject.org
+Date: Thu, 22 May 2014 11:58:18 +0200
+Message-Id: <cover.1400744551.git.timo.mueller@bmw-carit.de>
+X-Mailer: git-send-email 1.9.0
+Cc: Timo Mueller <timo.mueller@bmw-carit.de>
+Subject: [eclipse][PATCH 0/4] Add cmake error to build failure dialog
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -53,94 +53,45 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 22 May 2014 09:56:31 -0000
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Thu, 22 May 2014 10:03:45 -0000
 
+From: Timo Mueller <timo.mueller@bmw-carit.de>
 
-On 22/05/2014 09:40, Richard Purdie wrote:
-> On Thu, 2014-05-22 at 09:29 +0100, Alex J Lennon wrote:
->> On 22/05/2014 09:23, Richard Purdie wrote:
->>> On Thu, 2014-05-22 at 00:23 +0100, Alex J Lennon wrote:
->>>> Thanks Stefan.  > daisy was my suspicion but that seemed unlikely so I
->>>> have a clean Fedora build underway with daisy / meta-mono /
->>>> core-image-mono to prove it to myself as a first pass before trying master.
->>>>
->>>> As I do this I am thinking it would be nice if there were canonical
->>>> images of Yocto-X.Y available to run up on Amazon/Azure/elsewhere to
->>>> prove these things out in the background without mashing my SSDs.
->>>>
->>>> I am guessing somebody has done this already but I hunted around Amazon
->>>> and couldn't see any community images that looked useful (?)
->>>>
->>>> Similarly (and I confess I haven't yet had time to understand
->>>> AutoBuilder as I should) presumably there are a number of daily builds
->>>> in the cloud, on each of the supported host platforms, for each of the
->>>> advertised layers, and if they fail then maintainers are kicked? Is that
->>>> how things work? If so, can you advise how I request to add meta-mono to
->>>> the kick-list?
->>> Its a nice idea but right now we struggle to test and keep OE-Core
->>> building, let alone trying to define tests for every other layer :(. The
->>> amount of time I and others spend on this for OE-Core is phenomenal.
->> I can well imagine Richard! I've often wondered how the team(s) manage
->> to keep everything running along so smoothly.
->>
->>> If we had more people and resources, sure but right now there is no such
->>> setup.
->> Like you I'm very time constrained here unfortunately, but I like the
->> idea of having some baseline VM images ready to go on Amazon or Azure as
->> a starting point for testing at least.
->>
->> If such a thing hasn't already been done I might try to put those
->> together. If I do get around to it I'll you know (if of interest)
-> FWIW we do have the build-appliance image and that is able to run builds
-> within it. It sounds like you just need a slightly different version of
-> that (with the UI removed).
+Hi,
 
-Thanks Richard. That sounds useful.
+when problems occured during configuring the project with CMake we
+showed a messge dialog with a generic 'build failed' method. In
+parallel the reason for the error was captured in the configuration
+console. But as the dialog did not contain any note on the existence
+of this console the user might end up with no hint on what went wrong
+and how he can fix it.
 
-So, I have the build-appliance image running in VMWare. I was also
-looking at the design document here,
+To help the user fix syntax errors or other errors with CMake the
+error is captured and added to the message dialog. While complete
+CMake log is still available in the configuration console, the dialog
+now contains all information on what went wrong, e.g.
+CMake Error at CMakeLists.txt:8 (include_directoriesBOGUS):
+  Unknown CMake command "include_directoriesBOGUS".
 
-https://wiki.yoctoproject.org/wiki/Build_Appliance_Design
+01..03: Enable logging the stderr from CMake to a console while
+capturing it in a string
+04: Add the reported CMake error to the configuration error dialog
 
-The appliance image seems quite large, at 4GB for the vmdk or so
-uncompressed, in the context of aiming for a 100MB download?
+Best regards,
+Timo
 
-Looking at the f/s it seems most of this is because the sources have
-already been downloaded and the native recipes built?
+Timo Mueller (4):
+  plugins/cmake: Allow multiple targets when logging process output
+  plugins/cmake: Enable separate capturing of cmake stderr
+  plugins/cmake: Use generic output stream
+  plugins/cmake: Add cmake error message to error dialog
 
-3.5G    ./build/downloads
-1.3G    ./build/tmp/work
-2.1G    ./build/tmp
-5.5G    ./build
-5.6G    .
+ .../managedbuilder/YoctoCMakeMessages.properties   |  2 +-
+ .../managedbuilder/job/ExecuteConfigureJob.java    | 12 +++++---
+ .../cmake/managedbuilder/util/SystemProcess.java   | 34 ++++++++++++++++++----
+ 3 files changed, 38 insertions(+), 10 deletions(-)
 
-I guess there's a tradeoff here between getting started building images
-within the appliance quickly and the size of the appliance download?
-
-Then, looking at the running virtual machine, it seems that if I do
-something like bitbake build-appliance on my own Ubuntu 12.04 host I
-would generate an appliance targetted at qemux86-64?
-
-What I'd believe I'd like to have is ready-to-run images of the vanilla
-host installations ( Fedora, OpenSUSE, Debian, and Ubuntu, x32 x64),
-prepped with needed Yocto dependencies and a baseline daisy tree, to
-verify Yocto build in those host environments.
-
-I don't quite understand what elements of "my" build host actually get
-pulled into the appliance image that is built (I suspect none?)
-
-So I wonder if there's a way with the appliance to build something that
-I can then sit on top of those vanilla host installations (possibly with
-a separate block store image somewhere in AWS containing all the
-downloads so I don't have that replicated across the images).
-
-Does that make sense? Can you offer any advice on how to achieve that?
-
-Thanks,
-
-Alex
-
+-- 
+1.9.0
 
 
