@@ -1,44 +1,33 @@
-Return-Path: <richard.purdie@linuxfoundation.org>
+Return-Path: <timo.mueller@oss.bmw-carit.de>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 5DE8DE00B85; Thu, 22 May 2014 01:40:59 -0700 (PDT)
+	id 50FF2E00B85; Thu, 22 May 2014 02:04:02 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
-X-Spam-Level: *
-X-Spam-Status: No, score=1.3 required=5.0 tests=RDNS_NONE autolearn=no
-	version=3.3.1
-X-Spam-HAM-Report: * 1.3 RDNS_NONE Delivered to internal network by a host
-	with no rDNS
-Received: from dan.rpsys.net (unknown [87.81.244.161])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 31617E0077C
-	for <yocto@yoctoproject.org>; Thu, 22 May 2014 01:40:54 -0700 (PDT)
-Received: from localhost (dan.rpsys.net [127.0.0.1])
-	by dan.rpsys.net (8.14.4/8.14.4/Debian-2.1ubuntu4) with ESMTP id
-	s4M8eY7P023016; Thu, 22 May 2014 09:40:34 +0100
-X-Virus-Scanned: Debian amavisd-new at dan.rpsys.net
-Received: from dan.rpsys.net ([127.0.0.1])
-	by localhost (dan.rpsys.net [127.0.0.1]) (amavisd-new, port 10024)
-	with LMTP id KIC1x4sqYXTb; Thu, 22 May 2014 09:40:33 +0100 (BST)
-Received: from [192.168.3.10] (rpvlan0 [192.168.3.10]) (authenticated bits=0)
-	by dan.rpsys.net (8.14.4/8.14.4/Debian-2.1ubuntu1) with ESMTP id
-	s4M8eQua023003
-	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES128-SHA bits=128 verify=NOT);
-	Thu, 22 May 2014 09:40:28 +0100
-Message-ID: <1400748019.17834.37.camel@ted>
-From: Richard Purdie <richard.purdie@linuxfoundation.org>
-To: Alex J Lennon <ajlennon@dynamicdevices.co.uk>
-Date: Thu, 22 May 2014 09:40:19 +0100
-In-Reply-To: <537DB568.4060904@dynamicdevices.co.uk>
-References: <CAAPegz1dWJAG0R_wVZs8_BtD4CO5YBk7=oT1V-ud40xzkTx+yw@mail.gmail.com>
-	<537CF707.4060506@mlbassoc.com>
-	<CAAPegz23RjycTjy0_81=PM2m47c-vJ+1vL75fO6LbfvJAoBX2w@mail.gmail.com>
-	<537D0964.9090208@dynamicdevices.co.uk>
-	<CANr+NRsnNeBtkJOB-EVNzsGWOOH6YG1cnw11FOcbo9V78-8vPg@mail.gmail.com>
-	<537D3560.2040702@dynamicdevices.co.uk> <1400746996.17834.26.camel@ted>
-	<537DB568.4060904@dynamicdevices.co.uk>
-X-Mailer: Evolution 3.8.4-0ubuntu1 
-Mime-Version: 1.0
-Cc: yocto@yoctoproject.org, gary@mlbassoc.com
-Subject: Re: meta-mono core-image-mono failing
+X-Spam-Level: 
+X-Spam-Status: No, score=0.6 required=5.0 tests=RCVD_IN_DNSWL_LOW,RDNS_NONE
+	autolearn=no version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [62.245.222.98 listed in list.dnswl.org]
+	*  1.3 RDNS_NONE Delivered to internal network by a host with no rDNS
+X-Greylist: delayed 429 seconds by postgrey-1.32 at yocto-www;
+	Thu, 22 May 2014 02:03:56 PDT
+Received: from linuxmail.bmw-carit.de (unknown [62.245.222.98])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 88A3FE0077C
+	for <yocto@yoctoproject.org>; Thu, 22 May 2014 02:03:56 -0700 (PDT)
+Received: from localhost (unknown [10.242.2.10])
+	(using TLSv1 with cipher AES128-SHA (128/128 bits))
+	(No client certificate requested)
+	(Authenticated sender: timo.mueller)
+	by linuxmail.bmw-carit.de (Postfix) with ESMTPSA id A6A9D40043;
+	Thu, 22 May 2014 09:13:46 +0200 (CEST)
+From: Timo Mueller <timo.mueller@oss.bmw-carit.de>
+To: yocto@yoctoproject.org
+Date: Thu, 22 May 2014 10:56:46 +0200
+Message-Id: <a6e139dcaa3985049e715b122b53f4cd36e81456.1400743176.git.timo.mueller@bmw-carit.de>
+X-Mailer: git-send-email 1.9.0
+Cc: Timo Mueller <timo.mueller@bmw-carit.de>
+Subject: [eclipse][PATCH] plugins/cmake: Add sysroot specific include paths
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -50,56 +39,62 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 22 May 2014 08:40:59 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Thu, 22 May 2014 09:04:02 -0000
 
-On Thu, 2014-05-22 at 09:29 +0100, Alex J Lennon wrote:
-> On 22/05/2014 09:23, Richard Purdie wrote:
-> > On Thu, 2014-05-22 at 00:23 +0100, Alex J Lennon wrote:
-> >> Thanks Stefan.  > daisy was my suspicion but that seemed unlikely so I
-> >> have a clean Fedora build underway with daisy / meta-mono /
-> >> core-image-mono to prove it to myself as a first pass before trying master.
-> >>
-> >> As I do this I am thinking it would be nice if there were canonical
-> >> images of Yocto-X.Y available to run up on Amazon/Azure/elsewhere to
-> >> prove these things out in the background without mashing my SSDs.
-> >>
-> >> I am guessing somebody has done this already but I hunted around Amazon
-> >> and couldn't see any community images that looked useful (?)
-> >>
-> >> Similarly (and I confess I haven't yet had time to understand
-> >> AutoBuilder as I should) presumably there are a number of daily builds
-> >> in the cloud, on each of the supported host platforms, for each of the
-> >> advertised layers, and if they fail then maintainers are kicked? Is that
-> >> how things work? If so, can you advise how I request to add meta-mono to
-> >> the kick-list?
-> > Its a nice idea but right now we struggle to test and keep OE-Core
-> > building, let alone trying to define tests for every other layer :(. The
-> > amount of time I and others spend on this for OE-Core is phenomenal.
-> 
-> I can well imagine Richard! I've often wondered how the team(s) manage
-> to keep everything running along so smoothly.
-> 
-> >
-> > If we had more people and resources, sure but right now there is no such
-> > setup.
-> 
-> Like you I'm very time constrained here unfortunately, but I like the
-> idea of having some baseline VM images ready to go on Amazon or Azure as
-> a starting point for testing at least.
-> 
-> If such a thing hasn't already been done I might try to put those
-> together. If I do get around to it I'll you know (if of interest)
+From: Timo Mueller <timo.mueller@bmw-carit.de>
 
-FWIW we do have the build-appliance image and that is able to run builds
-within it. It sounds like you just need a slightly different version of
-that (with the UI removed).
+CDT sets default include paths when a defined toolchain does not provide
+include paths of its own. The default include paths point to the host
+system which does not make sense for cross compiled projects.
 
-Cheers,
+Instead of using the default include paths we provide our own path that
+points to the usr/include folder in the defined sysroot. Once this
+custom include path is defined CDT does not add any additional include
+paths.
 
-Richard
+[BUGFIX #5544]
 
+Signed-off-by: Timo Mueller <timo.mueller@bmw-carit.de>
+---
+ plugins/org.yocto.cmake.managedbuilder/plugin.xml | 19 ++++++++++++++++---
+ 1 file changed, 16 insertions(+), 3 deletions(-)
 
+diff --git a/plugins/org.yocto.cmake.managedbuilder/plugin.xml b/plugins/org.yocto.cmake.managedbuilder/plugin.xml
+index 7aa6671..431de6e 100644
+--- a/plugins/org.yocto.cmake.managedbuilder/plugin.xml
++++ b/plugins/org.yocto.cmake.managedbuilder/plugin.xml
+@@ -178,9 +178,10 @@
+                 name="%config.debug.name"
+                 parent="cdt.managedbuild.config.gnu.base">
+                 <toolChain
+-                    id="org.yocto.cmake.managedbuilder.toolchain.gnu.exe.debug"
+-                    superClass="org.yocto.cmake.managedbuilder.toolchain.gnu.exe"
+-                    supportsManagedBuild="true">
++                      id="org.yocto.cmake.managedbuilder.toolchain.gnu.exe.debug"
++                      languageSettingsProviders="org.yocto.cmake.managedbuilder.includeProvider"
++                      superClass="org.yocto.cmake.managedbuilder.toolchain.gnu.exe"
++                      supportsManagedBuild="true">
+                     <targetPlatform
+                         id="org.yocto.cmake.managedbuilder.target.gnu.exe.debug"
+                         isAbstract="false"
+@@ -280,4 +281,16 @@
+             projectType="org.yocto.sdk.ide.buildArtefact.cmake.exe">
+         </template>
+     </extension>
++    <extension
++          point="org.eclipse.cdt.core.LanguageSettingsProvider">
++       <provider
++             id="org.yocto.cmake.managedbuilder.includeProvider"
++             name="IncludeProvider"
++             prefer-non-shared="false">
++          <entry
++                kind="includePath"
++                name="${Sysroot}/usr/include">
++          </entry>
++       </provider>
++    </extension>
+ </plugin>
+-- 
+1.9.0
 
 
