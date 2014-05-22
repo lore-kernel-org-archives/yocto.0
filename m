@@ -1,17 +1,17 @@
-Return-Path: <vaduvajanalexandru@yahoo.com>
+Return-Path: <diego.sueiro@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 1CAFCE00B85; Thu, 22 May 2014 06:25:03 -0700 (PDT)
+	id 2A235E00B85; Thu, 22 May 2014 06:50:27 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
-X-Spam-Level: *
-X-Spam-Status: No, score=1.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-	DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_NONE,RDNS_NONE
+X-Spam-Level: 
+X-Spam-Status: No, score=0.5 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+	DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW,RDNS_NONE
 	autolearn=no version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (vaduvajanalexandru[at]yahoo.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [98.138.90.59 listed in list.dnswl.org]
+	mail provider *      (diego.sueiro[at]gmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.216.169 listed in list.dnswl.org]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
@@ -19,55 +19,40 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	*  1.3 RDNS_NONE Delivered to internal network by a host with no rDNS
-Received: from nm27-vm1.bullet.mail.ne1.yahoo.com (unknown [98.138.90.59])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4A2D7E0077C
-	for <yocto@yoctoproject.org>; Thu, 22 May 2014 06:24:59 -0700 (PDT)
-Received: from [98.138.100.116] by nm27.bullet.mail.ne1.yahoo.com with NNFMP;
-	22 May 2014 13:24:59 -0000
-Received: from [98.138.89.249] by tm107.bullet.mail.ne1.yahoo.com with NNFMP;
-	22 May 2014 13:24:59 -0000
-Received: from [127.0.0.1] by omp1041.mail.ne1.yahoo.com with NNFMP;
-	22 May 2014 13:24:59 -0000
-X-Yahoo-Newman-Property: ymail-5
-X-Yahoo-Newman-Id: 153572.90810.bm@omp1041.mail.ne1.yahoo.com
-Received: (qmail 17782 invoked by uid 60001); 22 May 2014 13:24:59 -0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s1024;
-	t=1400765099; bh=jmV6+V9XIZnSLFfRynJzzQJz5RJD1O8AczUIxqMIvJ0=;
-	h=References:Message-ID:Date:From:Reply-To:Subject:To:Cc:In-Reply-To:MIME-Version:Content-Type;
-	b=187MqUg6/CKTHZraExlMmnIOMjWPL/DO0DVtQJBq5dSvZm0rwUwnTDHPcqRzmYged2O90eLTkhbG3Z1zfHJ9ZzguCJAJZe1Ef274uqhglc+oM9JPmT/YQ/5VYiWZIwCeJlM0wwEWrzk7B+u6dMhJl6DdSEsCKcqFdNknLZ1mg8E=
-X-YMail-OSG: d611z9oVM1nPANMOwxa0s9ZD0_VTIDkL0aIiJYlT9fuLXcd
-	xvg8MZNAh7tv2cWun5jXHbmnfFr57I2R4.j35qD57ItpMr_Quze6KxWd..qw
-	CZRwWnnXaUggyqQXXWFn57MFR6dJ.ah3ur.q6zF3iHABQYlqT6nG3.se377Y
-	KEarC4LNpGwuBcKBSOiFhn90kIaPQ1E_3An72T5p6OWOGNwo3bXBE0beotYC
-	EHEPZ95cGwKm1_Iwe.MDRsrz5z50h1u.lbzzlz0dbrTqo3x69wh9y0.9qG3i
-	7rHo9_NuR.VmXBBvpjIeF.FG.gua4Xd5AaHJJgmWLP6tMv.JvYdNADYIzQLi
-	D39FEK7A9jm6.ScgHDxEvBK.cNUadbF8OuwmhSqikmJ5fQhcmN1gu_ZrOgJY
-	fjjYSG_qiRgTWOU.GuNiG3.oqW4W6qbjNQj.K_FCUmRBi_BHbpIra0LOKsLv
-	ssIsgkucReT_iTAmtWOGCDKW7f3yD8gHSDAfAJG8brCC_wQN88YS2xFt756_
-	BFk9nwwlinmoDkcHs1sa7IFbz7ntzd.58hE9.0hM1KRj6jQ_wgAwE3rrUuKS
-	oLMttFhnlbmROwxx9x550AsjL66yVodfUroYh3tWDXhmeNtuhiw7OEK56eEb
-	nx1yn0vuZPQaIv0sSNQ--
-Received: from [193.202.22.66] by web122502.mail.ne1.yahoo.com via HTTP;
-	Thu, 22 May 2014 06:24:58 PDT
-X-Rocket-MIMEInfo: 002.001,
-	SSBhdHRhY2hlZCB0aGUgZGVwZW5kcyAuZG90IGZpbGUgYW5kIGFsc28gYSBzbWFsbCBwZXJsLXB0ZXN0LmluZm8gZmlsZSB3aXRoIG9ubHkgdGhlIHBlcmwtcHRlc3Qgb2NjdXJlbmNlcy4KCk9uIFRodXJzZGF5LCBNYXkgMjIsIDIwMTQgNDoxNSBQTSwgUGF1bCBFZ2dsZXRvbiA8cGF1bC5lZ2dsZXRvbkBsaW51eC5pbnRlbC5jb20.IHdyb3RlOgogCgoKT24gVGh1cnNkYXkgMjIgTWF5IDIwMTQgMDY6MDA6MDIgQWxleGFuZHJ1IFZhZHV2YSB3cm90ZToKPiBPbiBUaHVyc2RheSwgTWF5IDIyLCAyMDE0IDM6NDMBMAEBAQE-
-X-Mailer: YahooMailWebService/0.8.188.663
-References: <1400754665.64074.YahooMailNeo@web122506.mail.ne1.yahoo.com>
-	<9159150.KsUY2KZbMf@peggleto-mobl5.ger.corp.intel.com>
-	<1400763602.12423.YahooMailNeo@web122506.mail.ne1.yahoo.com>
-	<1965694.z39UhZdkqB@peggleto-mobl5.ger.corp.intel.com>
-Message-ID: <1400765098.42556.YahooMailNeo@web122502.mail.ne1.yahoo.com>
-Date: Thu, 22 May 2014 06:24:58 -0700 (PDT)
-From: Alexandru Vaduva <vaduvajanalexandru@yahoo.com>
-To: Paul Eggleton <paul.eggleton@linux.intel.com>
-In-Reply-To: <1965694.z39UhZdkqB@peggleto-mobl5.ger.corp.intel.com>
+Received: from mail-qc0-f169.google.com (unknown [209.85.216.169])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C0C41E0077C
+	for <yocto@yoctoproject.org>; Thu, 22 May 2014 06:50:23 -0700 (PDT)
+Received: by mail-qc0-f169.google.com with SMTP id e16so5786955qcx.0
+	for <yocto@yoctoproject.org>; Thu, 22 May 2014 06:50:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-type;
+	bh=YQbk0aXv4rUqSpx/Lp7rwl/4WjDdm1iZMceZ18DDBCY=;
+	b=lIRX8yHU+9KdZwFf3fPeVYD/aDOag1dtFWEMTcxdRN4gd5oqunvnLSS3eQzFJhp6Ww
+	g3Xua3zRnVIxnGNlamGSB+6s5US76HOYRrdAJlC/gXIsyFUeKLgYvSWAZObM6Nh9o/Zw
+	v6jrQXOMG6K86wTrhfDwvibhjpQn0ysNjUEBy6Ktwo2+Nm1i1vwTWSUA4vQVo5asrvUo
+	KeSbgPtAftQdKZTrmu7KHVXueBU6Aq4qN82NN2o72G4eXs5oK+I4itxBfDnXLrGO1WAh
+	8dDy22plZHGK0vLOUz0/xKQoSRmMgEXpOwesUbXXywho6dEXo4RZu+Jsoy3zwT4tkoJe
+	4Ezw==
+X-Received: by 10.140.19.76 with SMTP id 70mr32281981qgg.82.1400766623309;
+	Thu, 22 May 2014 06:50:23 -0700 (PDT)
 MIME-Version: 1.0
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: help needed
+Received: by 10.140.48.112 with HTTP; Thu, 22 May 2014 06:50:03 -0700 (PDT)
+In-Reply-To: <CAMKF1srHA4_sdwUJk2dfsHet6HkV5MZOEhqZrkp5QST4-kWmcQ@mail.gmail.com>
+References: <ll4sg1$jb0$1@ger.gmane.org>
+	<20140516120420.GA3995@ad.chargestorm.se>
+	<ll4vid$196$1@ger.gmane.org> <ll50j2$f2p$1@ger.gmane.org>
+	<CAMKF1srHA4_sdwUJk2dfsHet6HkV5MZOEhqZrkp5QST4-kWmcQ@mail.gmail.com>
+From: Diego Sueiro <diego.sueiro@gmail.com>
+Date: Thu, 22 May 2014 10:50:03 -0300
+Message-ID: <CAMCfZKGM7JmHRvLYpeAeZukOUGDyEzzvvuQ9a_RpJS0t7r9wCw@mail.gmail.com>
+To: Khem Raj <raj.khem@gmail.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
+	Neuer User <auslands-kv@gmx.de>
+Subject: Re: Help with building app recipe
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
-Reply-To: Alexandru Vaduva <vaduvajanalexandru@yahoo.com>
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -76,52 +61,174 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 22 May 2014 13:25:03 -0000
-Content-Type: multipart/alternative;
-	boundary="-1396834546-478578140-1400765098=:42556"
+X-List-Received-Date: Thu, 22 May 2014 13:50:27 -0000
+Content-Type: multipart/alternative; boundary=001a1134f3bcfeeb7e04f9fd6456
 
----1396834546-478578140-1400765098=:42556
-Content-Type: text/plain; charset=us-ascii
+--001a1134f3bcfeeb7e04f9fd6456
+Content-Type: text/plain; charset=ISO-8859-1
 
-I attached the depends .dot file and also a small perl-ptest.info file with only the perl-ptest occurences.
+Folks,
 
-On Thursday, May 22, 2014 4:15 PM, Paul Eggleton <paul.eggleton@linux.intel.com> wrote:
- 
+I'm trying to accomplish this in a 64bits host machine. But I'm getting
+errors the following error on compile task:
+
+| In file included from
+/<snip>/tmp/sysroots/x86_64-linux/usr/include/python3.3m/Python.h:50:0,
+|                  from ../../git/src/qpython_priv.h:22,
+|                  from moc_qpython_priv.cpp:9:
+| /<snip>/sysroots/x86_64-linux/usr/include/python3.3m/pyport.h:820:2:
+error: #error "LONG_BIT definition appears wrong for platform (bad
+gcc/glibc config?)."
+|  #error "LONG_BIT definition appears wrong for platform (bad gcc/glibc
+config?)."
+|   ^
 
 
-On Thursday 22 May 2014 06:00:02 Alexandru Vaduva wrote:
-> On Thursday, May 22, 2014 3:43 PM, Paul Eggleton
-> <paul.eggleton@linux.intel.com> wrote:
-> > On Thursday 22 May 2014 05:38:41 Alexandru Vaduva wrote:
-> > > it appear, it shouldn`t I believe.
-> > > I have a hack to include the perl-ptest module only when
-> > > ptest enabled on image_featuresbut it does not look nice.
-> > > I do not believe this solves the problem.
-> > 
-> > Sorry, I'm not quite following. What is this hack?
+Searching on Google it says that this is a known bug when trying to
+cross-compile Python stuff for 32bits machines on 64bits hosts.
+
+It seems that the guys from Buildroot could get this solved:
+http://lists.busybox.net/pipermail/buildroot/2011-August/045257.html
+I'm trying to find the "magical" patch to how to get this fixed.
+
+Also found this link too:
+http://blog.devork.be/2009/02/compiling-32-bit-python-on-amd64.html
+
+But I'm not quite sure how to get this fixed on Yocto. Should it need to be
+fixed on the pyotherside, or python3, or python3-native recipe?
+
+
+Any directions are appreciated.
+
+
+
+Regards,
+
+--
+*dS
+Diego Sueiro
+
+Administrador do Embarcados
+www.embarcados.com.br<http://www.embarcados.com.br/?utm_source=assinatura_diego&utm_medium=e-mail&utm_campaign=Assinatura%20Email%20Diego>
+
+/*long live rock 'n roll*/
+
+
+On Sat, May 17, 2014 at 2:18 AM, Khem Raj <raj.khem@gmail.com> wrote:
+
+> On Fri, May 16, 2014 at 5:33 AM, Neuer User <auslands-kv@gmx.de> wrote:
+> > If I change the sed line to "#!/usr/bin/env python3", that would
+> > probably work then. But would it break something else?
 >
-> The hack will put the line: require perl-ptest.incinside a if structure.
-> The if will test if ptest is in the image-features or not.
+> would be fine.
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
 
-There's nothing in that file that explicitly adds a dependency from perl (or 
-any other package) on the perl-ptest package. So far as far as I know, nobody 
-has yet reproduced the issue you're reporting. Are you building the exact same 
-version of the perl recipe? Have you modified the recipe at all?
+--001a1134f3bcfeeb7e04f9fd6456
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
 
+<div dir=3D"ltr">Folks,<div><br></div><div>I&#39;m trying to accomplish thi=
+s in a 64bits host machine. But I&#39;m getting errors the following error =
+on compile task:</div><div><br></div><div><blockquote style=3D"margin:0px 0=
+px 0px 40px;border:none;padding:0px">
 
-Cheers,
-Paul
+<div><div class=3D"gmail_extra" style=3D"font-family:arial,sans-serif;font-=
+size:13px"><div class=3D"gmail_extra"><font face=3D"arial, sans-serif">| In=
+ file included from /&lt;snip&gt;/tmp/sysroots/x86_64-linux/usr/include/pyt=
+hon3.3m/Python.h:50:0,</font></div>
 
--- 
+</div><div class=3D"gmail_extra" style=3D"font-family:arial,sans-serif;font=
+-size:13px"><div class=3D"gmail_extra"><font face=3D"arial, sans-serif">| =
+=A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0 =A0from ../../git/src/qpython_priv.h:22,</f=
+ont></div></div><div class=3D"gmail_extra" style=3D"font-family:arial,sans-=
+serif;font-size:13px">
 
-Paul Eggleton
-Intel Open Source Technology Centre
+<div class=3D"gmail_extra"><font face=3D"arial, sans-serif">| =A0 =A0 =A0 =
+=A0 =A0 =A0 =A0 =A0 =A0from moc_qpython_priv.cpp:9:</font></div></div><div =
+class=3D"gmail_extra" style=3D"font-family:arial,sans-serif;font-size:13px"=
+><div class=3D"gmail_extra">
 
----1396834546-478578140-1400765098=:42556
-Content-Type: text/html; charset=us-ascii
+<font face=3D"arial, sans-serif">| /</font>&lt;snip&gt;<font face=3D"arial,=
+ sans-serif">/sysroots/x86_64-linux/usr/include/python3.3m/pyport.h:820:2: =
+error: #error &quot;LONG_BIT definition appears wrong for platform (bad gcc=
+/glibc config?).&quot;</font></div>
 
-<html><body><div style="color:#000; background-color:#fff; font-family:HelveticaNeue, Helvetica Neue, Helvetica, Arial, Lucida Grande, sans-serif;font-size:12pt"><div><span>I attached the depends .dot file and also a small perl-ptest.info file with only the perl-ptest occurences.<br></span></div><div style="display: block;" class="yahoo_quoted"> <div style="font-family: HelveticaNeue, Helvetica Neue, Helvetica, Arial, Lucida Grande, sans-serif; font-size: 12pt;"> <div style="font-family: HelveticaNeue, Helvetica Neue, Helvetica, Arial, Lucida Grande, sans-serif; font-size: 12pt;"> <div dir="ltr"> <font face="Arial" size="2"> On Thursday, May 22, 2014 4:15 PM, Paul Eggleton &lt;paul.eggleton@linux.intel.com&gt; wrote:<br> </font> </div>  <br><br> <div class="y_msg_container">On Thursday 22 May 2014 06:00:02 Alexandru Vaduva wrote:<br clear="none">&gt; On Thursday, May 22, 2014 3:43 PM, Paul Eggleton<br clear="none">&gt; &lt;<a shape="rect"
- ymailto="mailto:paul.eggleton@linux.intel.com" href="mailto:paul.eggleton@linux.intel.com">paul.eggleton@linux.intel.com</a>&gt; wrote:<br clear="none">&gt; &gt; On Thursday 22 May 2014 05:38:41 Alexandru Vaduva wrote:<br clear="none">&gt; &gt; &gt; it appear, it shouldn`t I believe.<br clear="none">&gt; &gt; &gt; I have a hack to include the perl-ptest module only when<br clear="none">&gt; &gt; &gt; ptest enabled on image_featuresbut it does not look nice.<br clear="none">&gt; &gt; &gt; I do not believe this solves the problem.<br clear="none">&gt; &gt; <br clear="none">&gt; &gt; Sorry, I'm not quite following. What is this hack?<br clear="none">&gt;<br clear="none">&gt; The hack will put the line: require perl-ptest.incinside a if structure.<br clear="none">&gt; The if will test if ptest is in the image-features or not.<br clear="none"><br clear="none">There's nothing in that file that explicitly adds a dependency from perl (or <br clear="none">any
- other package) on the perl-ptest package. So far as far as I know, nobody <br clear="none">has yet reproduced the issue you're reporting. Are you building the exact same <br clear="none">version of the perl recipe? Have you modified the recipe at all?<div class="yqt6096445069" id="yqtfd97114"><br clear="none"><br clear="none">Cheers,<br clear="none">Paul<br clear="none"><br clear="none">-- <br clear="none"><br clear="none">Paul Eggleton<br clear="none">Intel Open Source Technology Centre<br clear="none"></div><br><br></div>  </div> </div>  </div> </div></body></html>
+</div><div class=3D"gmail_extra" style=3D"font-family:arial,sans-serif;font=
+-size:13px"><div class=3D"gmail_extra"><font face=3D"arial, sans-serif">| =
+=A0#error &quot;LONG_BIT definition appears wrong for platform (bad gcc/gli=
+bc config?).&quot;</font></div>
 
----1396834546-478578140-1400765098=:42556--
+</div><div class=3D"gmail_extra" style=3D"font-family:arial,sans-serif;font=
+-size:13px"><div class=3D"gmail_extra"><font face=3D"arial, sans-serif">| =
+=A0 ^</font></div></div></div></blockquote><font face=3D"arial, sans-serif"=
+><div><font face=3D"arial, sans-serif"><br>
+
+</font></div>Searching on Google it says that this is a known bug when tryi=
+ng to cross-compile Python stuff for 32bits machines on 64bits hosts.</font=
+></div><div><font face=3D"arial, sans-serif"><br></font><div><div class=3D"=
+gmail_extra" style>
+
+<div class=3D"gmail_extra" style=3D"font-family:arial,sans-serif;font-size:=
+13px"><font face=3D"arial, sans-serif">It seems that the guys from Buildroo=
+t could get this solved:</font></div><div class=3D"gmail_extra" style><font=
+ face=3D"arial, sans-serif" style><a href=3D"http://lists.busybox.net/piper=
+mail/buildroot/2011-August/045257.html">http://lists.busybox.net/pipermail/=
+buildroot/2011-August/045257.html</a><br>
+
+</font></div><div class=3D"gmail_extra" style>I&#39;m trying to find the &q=
+uot;magical&quot; patch to how to get this fixed.</div><div class=3D"gmail_=
+extra" style><br></div><div class=3D"gmail_extra" style>Also found this lin=
+k too:</div>
+
+<div class=3D"gmail_extra" style><a href=3D"http://blog.devork.be/2009/02/c=
+ompiling-32-bit-python-on-amd64.html">http://blog.devork.be/2009/02/compili=
+ng-32-bit-python-on-amd64.html</a><br></div><div class=3D"gmail_extra" styl=
+e>
+
+<br></div><div class=3D"gmail_extra" style>But I&#39;m not quite sure how t=
+o get this fixed on Yocto. Should it need to be fixed on the pyotherside, o=
+r python3, or python3-native recipe?</div><div class=3D"gmail_extra" style>
+
+<br></div><div class=3D"gmail_extra" style><br></div><div class=3D"gmail_ex=
+tra" style>Any directions are appreciated.</div><div class=3D"gmail_extra" =
+style><br></div><div class=3D"gmail_extra" style><font face=3D"arial, sans-=
+serif" style><br>
+
+</font></div><div class=3D"gmail_extra" style><font face=3D"arial, sans-ser=
+if" style><br></font></div></div></div></div><div class=3D"gmail_extra"><di=
+v><div dir=3D"ltr"><div>Regards,</div><div><br></div>--<br>*dS<br>Diego Sue=
+iro<br>
+
+<br>Administrador do Embarcados<br><a href=3D"http://www.embarcados.com.br/=
+?utm_source=3Dassinatura_diego&amp;utm_medium=3De-mail&amp;utm_campaign=3DA=
+ssinatura%20Email%20Diego" target=3D"_blank">www.embarcados.com.br</a><br><=
+br>/*long live rock &#39;n roll*/<br>
+
+</div></div>
+<br><br><div class=3D"gmail_quote">On Sat, May 17, 2014 at 2:18 AM, Khem Ra=
+j <span dir=3D"ltr">&lt;<a href=3D"mailto:raj.khem@gmail.com" target=3D"_bl=
+ank">raj.khem@gmail.com</a>&gt;</span> wrote:<br><blockquote class=3D"gmail=
+_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:=
+1ex">
+
+<div class=3D"">On Fri, May 16, 2014 at 5:33 AM, Neuer User &lt;<a href=3D"=
+mailto:auslands-kv@gmx.de">auslands-kv@gmx.de</a>&gt; wrote:<br>
+&gt; If I change the sed line to &quot;#!/usr/bin/env python3&quot;, that w=
+ould<br>
+&gt; probably work then. But would it break something else?<br>
+<br>
+</div>would be fine.<br>
+<div class=3D"HOEnZb"><div class=3D"h5">--<br>
+_______________________________________________<br>
+yocto mailing list<br>
+<a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br>
+<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" target=3D"_blank"=
+>https://lists.yoctoproject.org/listinfo/yocto</a><br>
+</div></div></blockquote></div><br></div></div>
+
+--001a1134f3bcfeeb7e04f9fd6456--
