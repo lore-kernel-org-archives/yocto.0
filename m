@@ -1,37 +1,49 @@
-Return-Path: <mark.hatle@windriver.com>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 437F9E00A44; Thu, 22 May 2014 06:56:20 -0700 (PDT)
+	id 9EE4CE00A44; Thu, 22 May 2014 07:05:34 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.0 required=5.0 tests=RCVD_IN_DNSWL_MED,RDNS_NONE
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [147.11.1.11 listed in list.dnswl.org]
+X-Spam-Status: No, score=0.6 required=5.0 tests=RCVD_IN_DNSWL_LOW,RDNS_NONE
+	autolearn=no version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [209.85.216.179 listed in list.dnswl.org]
 	*  1.3 RDNS_NONE Delivered to internal network by a host with no rDNS
-Received: from mail.windriver.com (unknown [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8C58DE0077C
-	for <yocto@yoctoproject.org>; Thu, 22 May 2014 06:56:15 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail.windriver.com (8.14.5/8.14.5) with ESMTP id s4MDuEu0006751
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL)
-	for <yocto@yoctoproject.org>; Thu, 22 May 2014 06:56:15 -0700 (PDT)
-Received: from Marks-MacBook-Pro.local (172.25.36.232) by
-	ALA-HCA.corp.ad.wrs.com (147.11.189.50) with Microsoft SMTP Server id
-	14.3.169.1; Thu, 22 May 2014 06:56:14 -0700
-Message-ID: <537E01FE.9010804@windriver.com>
-Date: Thu, 22 May 2014 08:56:14 -0500
-From: Mark Hatle <mark.hatle@windriver.com>
-Organization: Wind River Systems
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.9;
-	rv:24.0) Gecko/20100101 Thunderbird/24.5.0
+Received: from mail-qc0-f179.google.com (unknown [209.85.216.179])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3BC39E0077C
+	for <yocto@yoctoproject.org>; Thu, 22 May 2014 07:05:31 -0700 (PDT)
+Received: by mail-qc0-f179.google.com with SMTP id x3so5725785qcv.38
+	for <yocto@yoctoproject.org>; Thu, 22 May 2014 07:05:31 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc:content-type;
+	bh=cr+cyKFcDZdBwKs4kKVs1KO4vpEBQ6yKwmbBTAnl6qw=;
+	b=XLGAIm+PP7HWul8Wvqc9C3XW7b4oLNL038lDCCaPYLz8YUfP/couG+8S4KZLUKnuiC
+	ZCrbX8xEIWdwfFwK+YkZXsBevnAIZN1/dZIi9Vg7fCW7JqVnPCF/AN8ZnuIxFy6BAQoI
+	C5IZLN/LAe2CxOSCYgjEwRkWdkijy4DknNPcenz4HcGuKPkNIAwm5bOgnAjxjxr1BO2k
+	QV3ZjnJVD33mOKpOjGv6v55xd0Mm2YjINJkZxvYph8yXjUSdH3UarBFMRitZVzlLjkvo
+	TEOtnz4HNQIaQoywfDqwq17W8mZju+J+JDuu8abuv1NgzAGTgG564bkdNQvQYNQldig7
+	SjCw==
+X-Gm-Message-State: ALoCoQkV6m+KF+PnLvvRWf+D1YEgXDJREFnxdSUIoqhvOsmw7YZ7H8+e/rAbL3sBQp0hpuR7iXGc
+X-Received: by 10.229.198.2 with SMTP id em2mr14037578qcb.21.1400767530949;
+	Thu, 22 May 2014 07:05:30 -0700 (PDT)
 MIME-Version: 1.0
-To: <yocto@yoctoproject.org>
-References: <1400729319-1099-1-git-send-email-Chong.Lu@windriver.com>
-In-Reply-To: <1400729319-1099-1-git-send-email-Chong.Lu@windriver.com>
-Subject: Re: [meta-selinux][PATCH] setools: Add bison and flex to DEPENDS
+Received: by 10.140.101.77 with HTTP; Thu, 22 May 2014 07:05:10 -0700 (PDT)
+In-Reply-To: <1400765098.42556.YahooMailNeo@web122502.mail.ne1.yahoo.com>
+References: <1400754665.64074.YahooMailNeo@web122506.mail.ne1.yahoo.com>
+	<9159150.KsUY2KZbMf@peggleto-mobl5.ger.corp.intel.com>
+	<1400763602.12423.YahooMailNeo@web122506.mail.ne1.yahoo.com>
+	<1965694.z39UhZdkqB@peggleto-mobl5.ger.corp.intel.com>
+	<1400765098.42556.YahooMailNeo@web122502.mail.ne1.yahoo.com>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Thu, 22 May 2014 15:05:10 +0100
+Message-ID: <CAJTo0LZE+y95EY+TJZs177+xHFxjBsvx18vVvdTN8wa4p7z9Ag@mail.gmail.com>
+To: Alexandru Vaduva <vaduvajanalexandru@yahoo.com>
+Cc: Paul Eggleton <paul.eggleton@linux.intel.com>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: help needed
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,39 +55,18 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 22 May 2014 13:56:20 -0000
-Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Thu, 22 May 2014 14:05:34 -0000
+Content-Type: text/plain; charset=UTF-8
 
-On 5/21/14, 10:28 PM, Chong Lu wrote:
-> Avoid policy_scan.c: No such file or directory
->
-> Signed-off-by: Chong Lu <Chong.Lu@windriver.com>
-> ---
->   recipes-security/setools/setools_3.3.8.bb |    2 +-
->   1 file changed, 1 insertion(+), 1 deletion(-)
->
-> diff --git a/recipes-security/setools/setools_3.3.8.bb b/recipes-security/setools/setools_3.3.8.bb
-> index 1e95a60..3425064 100644
-> --- a/recipes-security/setools/setools_3.3.8.bb
-> +++ b/recipes-security/setools/setools_3.3.8.bb
-> @@ -27,7 +27,7 @@ LIC_FILES_CHKSUM = "file://${S}/COPYING;md5=26035c503c68ae1098177934ac0cc795 \
->                       file://${S}/COPYING.GPL;md5=751419260aa954499f7abaabaa882bbe \
->                       file://${S}/COPYING.LGPL;md5=fbc093901857fcd118f065f900982c24"
->
-> -DEPENDS += "python libsepol libselinux libxml2"
-> +DEPENDS += "bison flex python libsepol libselinux libxml2"
+On 22 May 2014 14:24, Alexandru Vaduva <vaduvajanalexandru@yahoo.com> wrote:
+> I attached the depends .dot file and also a small perl-ptest.info file with
+> only the perl-ptest occurences.
 
-I suspect the above is incorrect, shouldn't this be "bison-native" (or 
-"bison-native bison")?
+Right, so the dependency comes from perl-modules.  This is a meta
+package that depends on all the modules, and clearly perl-ptest
+shouldn't be in that list.
 
-During cross compilation, it's the native bison that produces the .c code.
+(I've almost got a fix sorted)
 
---Mark
-
->
->   PACKAGE_BEFORE_PN += "${PN}-libs"
->
->
-
+Ross
 
