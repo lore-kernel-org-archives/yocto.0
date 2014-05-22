@@ -1,6 +1,6 @@
 Return-Path: <mail@timomueller.eu>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 3E65FE00B87; Thu, 22 May 2014 03:06:41 -0700 (PDT)
+	id 3FD67E00BC2; Thu, 22 May 2014 03:07:07 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -8,43 +8,46 @@ X-Spam-Status: No, score=0.6 required=5.0 tests=RCVD_IN_DNSWL_LOW,RDNS_NONE
 	autolearn=no version=3.3.1
 X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
 	http://www.dnswl.org/, low *      trust
-	*      [74.125.83.43 listed in list.dnswl.org]
+	*      [74.125.83.54 listed in list.dnswl.org]
 	*  1.3 RDNS_NONE Delivered to internal network by a host with no rDNS
-Received: from mail-ee0-f43.google.com (unknown [74.125.83.43])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 01DFFE00B8A
-	for <yocto@yoctoproject.org>; Thu, 22 May 2014 03:06:08 -0700 (PDT)
-Received: by mail-ee0-f43.google.com with SMTP id d17so2421241eek.16
-	for <yocto@yoctoproject.org>; Thu, 22 May 2014 03:06:07 -0700 (PDT)
+Received: from mail-ee0-f54.google.com (unknown [74.125.83.54])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 29E16E00B94
+	for <yocto@yoctoproject.org>; Thu, 22 May 2014 03:06:42 -0700 (PDT)
+Received: by mail-ee0-f54.google.com with SMTP id b57so2493616eek.27
+	for <yocto@yoctoproject.org>; Thu, 22 May 2014 03:06:42 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
 	h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
 	:references:in-reply-to:references;
-	bh=lcqXrUfMcVPMM1c/i89gy6lE7k62kJK8/aDVlQyv35s=;
-	b=Mf2afWm4PE1SEhpiVPwZ7d+haCjoqPuXkyXj8clqAk48/jpCXWSEqTb/NB6IXxxQVy
-	3Owjauo1QxjbV6SXdBjufrphQXwywGuhxGX0GyfKwdtOeXWA1OTj55MWWYXz/uS7l+mX
-	AWWW0G9vUljPuuED10FFqFwwUYhHqo/kdW2IvGfnz16/7eUFuqQU4JvgJA9blKYbZZ49
-	vjk6UwJvWAmS/G2TI9+gRHNYXBv9vYYiwexR+beICncFTGqRilNAQIJplkcBGVUXUZjB
-	20pW/m2wbbrV6b4jTi1vD0DNh9BKwR4UceRV5Xg07xJPDOySEilmNazMdTyWVCoDbyKP
-	yJ8Q==
-X-Gm-Message-State: ALoCoQkXu+XwanT/N/Iv72Eyi1v6cIVygbVjSE16mFKXnkrXV2FWZJN4FlezEoniiG5mNJmWtHKi
-X-Received: by 10.14.213.193 with SMTP id a41mr12244527eep.68.1400752706138;
-	Thu, 22 May 2014 02:58:26 -0700 (PDT)
+	bh=uiZeDuLTY3d8JIGpWD+cjHxaiQTxFDonq/QHk96tM1E=;
+	b=ByMwC0yDlh0cAfJlKIFTtiwa6apdLpa5DQ7JDb5vwmfmZL2vDvyUE6u3Df5Epcb154
+	NkHq55o5RihHx8Yh+HGYQ8A1mw+w08mbJa86zdyQ9WQzOFg3TJQSE331rHU+Jd6bKD2L
+	UKk8dK+RzAPBXKpBylL2dUBT+Bt+rjwja80XQ6McIXJ0ohX+OfeQuS7klVtgp7X6LRJ5
+	ORO3CVT7M9G8984dWHGrbOrzS9l20W1NDp9nGzDYcGYJD5E3EYSQ7vF5tX12iB6w1ZiA
+	xt2GdP64kaJvrCJrsjlsovHyRsnJ5aHxLEmgY8hFQzoO9b+ojt7SGfcylgxXbSqPw8n5
+	Ke9g==
+X-Gm-Message-State: ALoCoQk+UYBISiHMrVCfbMMoNFex+gLDeCb5ru7/4EybIqVnvXanvqKL02IJcYu8GU42zeZR8TGj
+X-Received: by 10.15.25.65 with SMTP id k41mr12104818eeu.36.1400752711195;
+	Thu, 22 May 2014 02:58:31 -0700 (PDT)
 Received: from localhost (mail.bmw-carit.de. [62.245.222.98])
-	by mx.google.com with ESMTPSA id i2sm18543199eem.11.2014.05.22.02.58.25
+	by mx.google.com with ESMTPSA id z5sm18530275eee.31.2014.05.22.02.58.30
 	for <multiple recipients>
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Thu, 22 May 2014 02:58:25 -0700 (PDT)
+	Thu, 22 May 2014 02:58:30 -0700 (PDT)
 From: Timo Mueller <mail@timomueller.eu>
 To: yocto@yoctoproject.org
-Date: Thu, 22 May 2014 11:58:19 +0200
-Message-Id: <7e2473c54ae347856e64731a3fa6d69bdb34505e.1400744551.git.timo.mueller@bmw-carit.de>
+Date: Thu, 22 May 2014 11:58:22 +0200
+Message-Id: <496c43b71ab9320d145b1894dd6a02a9552ac2cb.1400744551.git.timo.mueller@bmw-carit.de>
 X-Mailer: git-send-email 1.9.0
-In-Reply-To: <cover.1400744551.git.timo.mueller@bmw-carit.de>
+In-Reply-To: <23b5b63ebd014d8bbdcbb5f66d8445aa1813bf78.1400744551.git.timo.mueller@bmw-carit.de>
 References: <cover.1400744551.git.timo.mueller@bmw-carit.de>
+	<7e2473c54ae347856e64731a3fa6d69bdb34505e.1400744551.git.timo.mueller@bmw-carit.de>
+	<4b3c0ee5bfc6268b5540b6bdd1f6da7672108915.1400744551.git.timo.mueller@bmw-carit.de>
+	<23b5b63ebd014d8bbdcbb5f66d8445aa1813bf78.1400744551.git.timo.mueller@bmw-carit.de>
 In-Reply-To: <cover.1400744551.git.timo.mueller@bmw-carit.de>
 References: <cover.1400744551.git.timo.mueller@bmw-carit.de>
 Cc: Timo Mueller <timo.mueller@bmw-carit.de>
-Subject: [eclipse][PATCH 1/4] plugins/cmake: Allow multiple targets when logging process output
+Subject: [eclipse][PATCH 4/4] plugins/cmake: Add cmake error message to error dialog
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -56,56 +59,85 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 22 May 2014 10:06:41 -0000
+X-List-Received-Date: Thu, 22 May 2014 10:07:07 -0000
 
 From: Timo Mueller <timo.mueller@bmw-carit.de>
 
-Until now the stream pipe was connecting one input stream with one
-output stream. This for example allowed showing the output of a process
-in an eclipse console. If the output is required elsewhere, e.g. in a
-message dialog, the only possiblity was to read out the whole console
-afterwards.
+In case cmake reported an error during project configuration the
+resulting error dialog showed a generic 'build failed' message. The
+specific error message which can help the user find the problem was
+hidden in cmake console.
 
-The stream pipe is extended so that we can now write the process output
-to multiple target while the process is running, e.g. a eclipse console
-and a byte stream.
+Along with logging the cmake error to the configure console it is now also
+captured and added to the error dialog.
+
+[BUGFIX #6313]
 
 Signed-off-by: Timo Mueller <timo.mueller@bmw-carit.de>
 ---
- .../src/org/yocto/cmake/managedbuilder/util/SystemProcess.java | 10 ++++++----
- 1 file changed, 6 insertions(+), 4 deletions(-)
+ .../yocto/cmake/managedbuilder/YoctoCMakeMessages.properties  |  2 +-
+ .../yocto/cmake/managedbuilder/job/ExecuteConfigureJob.java   | 11 +++++++----
+ 2 files changed, 8 insertions(+), 5 deletions(-)
 
-diff --git a/plugins/org.yocto.cmake.managedbuilder/src/org/yocto/cmake/managedbuilder/util/SystemProcess.java b/plugins/org.yocto.cmake.managedbuilder/src/org/yocto/cmake/managedbuilder/util/SystemProcess.java
-index 9ca6e60..764a1f6 100644
---- a/plugins/org.yocto.cmake.managedbuilder/src/org/yocto/cmake/managedbuilder/util/SystemProcess.java
-+++ b/plugins/org.yocto.cmake.managedbuilder/src/org/yocto/cmake/managedbuilder/util/SystemProcess.java
-@@ -87,12 +87,12 @@ public class SystemProcess {
+diff --git a/plugins/org.yocto.cmake.managedbuilder/src/org/yocto/cmake/managedbuilder/YoctoCMakeMessages.properties b/plugins/org.yocto.cmake.managedbuilder/src/org/yocto/cmake/managedbuilder/YoctoCMakeMessages.properties
+index 55773ac..651ace5 100644
+--- a/plugins/org.yocto.cmake.managedbuilder/src/org/yocto/cmake/managedbuilder/YoctoCMakeMessages.properties
++++ b/plugins/org.yocto.cmake.managedbuilder/src/org/yocto/cmake/managedbuilder/YoctoCMakeMessages.properties
+@@ -15,7 +15,7 @@ ExecuteConfigureJob.consoleName=Configure using CMake [{0}]
+ ExecuteConfigureJob.buildingMakefile=Building Makefile
+ ExecuteConfigureJob.warning.aborted=Build of project has been aborted
+ ExecuteConfigureJob.error.couldNotStart=Build of project could not be started
+-ExecuteConfigureJob.error.buildFailed=Build of project failed
++ExecuteConfigureJob.error.buildFailed=Build of project failed with the following error:\n{0}
+ ExecuteConfigureJob.cmakeWarning.dialogTitle=Unable to run command "cmake"
+ ExecuteConfigureJob.cmakeWarning.dialogMessage=Please make sure that cmake is installed properly on this machine.
  
- 	private class StreamPipe extends Thread {
- 		private InputStream in;
--		private OutputStream out;
-+		private OutputStream[] outputs;
- 		boolean shutdown = false;
+diff --git a/plugins/org.yocto.cmake.managedbuilder/src/org/yocto/cmake/managedbuilder/job/ExecuteConfigureJob.java b/plugins/org.yocto.cmake.managedbuilder/src/org/yocto/cmake/managedbuilder/job/ExecuteConfigureJob.java
+index f90a2d7..84e8c62 100644
+--- a/plugins/org.yocto.cmake.managedbuilder/src/org/yocto/cmake/managedbuilder/job/ExecuteConfigureJob.java
++++ b/plugins/org.yocto.cmake.managedbuilder/src/org/yocto/cmake/managedbuilder/job/ExecuteConfigureJob.java
+@@ -10,6 +10,7 @@
+  *******************************************************************************/
+ package org.yocto.cmake.managedbuilder.job;
  
--		public StreamPipe(InputStream in, OutputStream out) {
-+		public StreamPipe(InputStream in, OutputStream... outputs) {
- 			this.in = in;
--			this.out = out;
-+			this.outputs = outputs;
++import java.io.ByteArrayOutputStream;
+ import java.io.IOException;
+ import java.io.OutputStream;
+ import java.util.Arrays;
+@@ -124,10 +125,11 @@ public class ExecuteConfigureJob extends Job {
+ 		IOConsoleOutputStream cos =
+ 				ConsoleUtility.getConsoleOutput(YoctoCMakeMessages.getFormattedString("ExecuteConfigureJob.consoleName", //$NON-NLS-1$
+ 						project.getName()));
++		ByteArrayOutputStream ces = new ByteArrayOutputStream();
+ 		monitor.worked(1);
+ 
+ 		try {
+-			return buildProject(monitor, cos);
++			return buildProject(monitor, cos, ces);
+ 		} catch (IOException e) {
+ 			if(e.getMessage().startsWith("Cannot run program \"cmake\"")) { //$NON-NLS-1$
+ 				Display.getDefault().asyncExec(new Runnable() {
+@@ -158,16 +160,17 @@ public class ExecuteConfigureJob extends Job {
+ 	}
+ 
+ 	private IStatus buildProject(IProgressMonitor monitor,
+-			OutputStream cos) throws IOException, InterruptedException {
++			OutputStream stdout, OutputStream stderr) throws IOException, InterruptedException {
+ 		monitor.subTask(
+ 				YoctoCMakeMessages.getString("ExecuteConfigureJob.buildingMakefile")); //$NON-NLS-1$
+-		configureProcess.start(cos);
++		configureProcess.start(stdout, stderr);
+ 		int exitValue = configureProcess.waitForResultAndStop();
+ 		monitor.worked(15);
+ 
+ 		if (exitValue != 0) {
+ 			return new Status(Status.ERROR, Activator.PLUGIN_ID,
+-					YoctoCMakeMessages.getString("ExecuteConfigureJob.error.buildFailed") + " " + exitValue); //$NON-NLS-1$ //$NON-NLS-2$
++					YoctoCMakeMessages.getFormattedString("ExecuteConfigureJob.error.buildFailed", //$NON-NLS-1$
++															stderr.toString().trim()));
  		}
  
- 		@Override
-@@ -102,7 +102,9 @@ public class SystemProcess {
- 
- 			try {
- 				while(!shutdown && ((length = in.read(buffer)) > -1)) {
--					out.write(buffer, 0, length);
-+					for (OutputStream out : outputs) {
-+						out.write(buffer, 0, length);
-+					}
- 				}
- 			} catch (IOException e) {
- 				e.printStackTrace();
+ 		return Status.OK_STATUS;
 -- 
 1.9.0
 
