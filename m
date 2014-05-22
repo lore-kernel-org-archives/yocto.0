@@ -1,32 +1,51 @@
-Return-Path: <gary@mlbassoc.com>
+Return-Path: <diego.sueiro@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id A5E98E00A44; Thu, 22 May 2014 13:01:06 -0700 (PDT)
+	id E0F09E00A44; Thu, 22 May 2014 13:45:24 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: *
-X-Spam-Status: No, score=1.3 required=5.0 tests=RDNS_NONE autolearn=no
-	version=3.3.1
-X-Spam-HAM-Report: * 1.3 RDNS_NONE Delivered to internal network by a host
-	with no rDNS
-Received: from mail.chez-thomas.org (unknown [65.100.170.105])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 92446E00975
-	for <yocto@yoctoproject.org>; Thu, 22 May 2014 13:00:58 -0700 (PDT)
-Received: by mail.chez-thomas.org (Postfix, from userid 1998)
-	id 95B53F811FE; Thu, 22 May 2014 14:00:57 -0600 (MDT)
-Received: from [192.168.1.114] (zeus [192.168.1.114])
-	by mail.chez-thomas.org (Postfix) with ESMTP id A870AF811F9;
-	Thu, 22 May 2014 14:00:56 -0600 (MDT)
-Message-ID: <537E5791.7010606@mlbassoc.com>
-Date: Thu, 22 May 2014 14:01:21 -0600
-From: Gary Thomas <gary@mlbassoc.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:24.0) Gecko/20100101 Thunderbird/24.5.0
+X-Spam-Status: No, score=1.2 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+	DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_NONE,RDNS_NONE
+	autolearn=no version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (diego.sueiro[at]gmail.com)
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.192.47 listed in list.dnswl.org]
+	*  1.3 RDNS_NONE Delivered to internal network by a host with no rDNS
+Received: from mail-qg0-f47.google.com (unknown [209.85.192.47])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A0D24E00975
+	for <yocto@yoctoproject.org>; Thu, 22 May 2014 13:45:21 -0700 (PDT)
+Received: by mail-qg0-f47.google.com with SMTP id j107so6648111qga.34
+	for <yocto@yoctoproject.org>; Thu, 22 May 2014 13:45:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-type;
+	bh=Y+vDG0qxn+Zh59I8WJ+bWaRRpxTcrS2MJH+Om5z8zQ4=;
+	b=idEBgYT4QXPkig28Brgd1sVNmpq3a12QBagxKLmULBZQMf3b6JDK2mWE+8+IDMBw7s
+	fkrWxexWTllyDeEhx+gwV7cDyQshGTZw/W99ii8D9Y6rZrxJkf58Ln2Hq7GvyB43NptO
+	h1tmOx4+XENcwBi+o9hUcgd41CN53Uym3ac5ua86BTmtwgIvULbpXYd2P2ykTbvdh4Kk
+	M6AgvrHhVLcslIXIMF96ppLq4DueoOULeB7AixOd7zeoszeXfYa2P00qDAI5+bt0JpW/
+	jzy/s1yIc/GBiAEybYXKFDR43rpAh+5j0mR5ekp7FhRE4Eb1tX6QJLL/U+hfQdNrSPgK
+	yC4w==
+X-Received: by 10.140.101.212 with SMTP id u78mr436878qge.32.1400791521277;
+	Thu, 22 May 2014 13:45:21 -0700 (PDT)
 MIME-Version: 1.0
-To: yocto@yoctoproject.org
-References: <537E111B.3010506@jenslucius.de> <537E1390.1090909@mlbassoc.com>
-	<537E4B0E.8060407@jenslucius.de>
-In-Reply-To: <537E4B0E.8060407@jenslucius.de>
-Subject: Re: Building pjproject with python module
+Received: by 10.140.48.112 with HTTP; Thu, 22 May 2014 13:45:00 -0700 (PDT)
+In-Reply-To: <CAJhyh6m8NuB0V=KOqCOscpDZm_m8X=OQGF4HAn39KR+Etjud8A@mail.gmail.com>
+References: <CAJhyh6m8NuB0V=KOqCOscpDZm_m8X=OQGF4HAn39KR+Etjud8A@mail.gmail.com>
+From: Diego Sueiro <diego.sueiro@gmail.com>
+Date: Thu, 22 May 2014 17:45:00 -0300
+Message-ID: <CAMCfZKGMAN3ZgKQa3s-yN2kOY5BJni-5yT9LbeD-TsK_sxz38g@mail.gmail.com>
+To: =?ISO-8859-1?Q?Bastian_Wei=DFbach?= <b.weissbach@gmail.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: QT5 for gernericX86
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,140 +57,122 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 22 May 2014 20:01:06 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Thu, 22 May 2014 20:45:25 -0000
+Content-Type: multipart/alternative; boundary=001a11c16cfe07bdba04fa0331e2
 
-On 2014-05-22 13:07, Jens Lucius wrote:
-> Now I am getting this error:
+--001a11c16cfe07bdba04fa0331e2
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
+
+Bastian,
+
+
+On Thu, May 22, 2014 at 12:32 PM, Bastian Wei=DFbach <b.weissbach@gmail.com=
+>wrote:
+
+> Hey Guys,
 >
-> | Traceback (most recent call last):
-> |   File "setup.py", line 111, in <module>
-> |     py_modules=["pjsua"]
-> |   File "/home/server/poky-daisy-11.0.0/build/tmp/sysroots/i686-linux/usr/lib/python2.7/distutils/core.py", line 152, in setup
-> |     dist.run_commands()
-> |   File "/home/server/poky-daisy-11.0.0/build/tmp/sysroots/i686-linux/usr/lib/python2.7/distutils/dist.py", line 953, in run_commands
-> |     self.run_command(cmd)
-> |   File "/home/server/poky-daisy-11.0.0/build/tmp/sysroots/i686-linux/usr/lib/python2.7/distutils/dist.py", line 972, in run_command
-> |     cmd_obj.run()
-> |   File "/home/server/poky-daisy-11.0.0/build/tmp/sysroots/i686-linux/usr/lib/python2.7/distutils/command/build.py", line 127, in run
-> |     self.run_command(cmd_name)
-> |   File "/home/server/poky-daisy-11.0.0/build/tmp/sysroots/i686-linux/usr/lib/python2.7/distutils/cmd.py", line 326, in run_command
-> |     self.distribution.run_command(command)
-> |   File "/home/server/poky-daisy-11.0.0/build/tmp/sysroots/i686-linux/usr/lib/python2.7/distutils/dist.py", line 970, in run_command
-> |     cmd_obj = self.get_command_obj(command)
-> |   File "/home/server/poky-daisy-11.0.0/build/tmp/sysroots/i686-linux/usr/lib/python2.7/distutils/dist.py", line 845, in get_command_obj
-> |     klass = self.get_command_class(command)
-> |   File "/home/server/poky-daisy-11.0.0/build/tmp/sysroots/i686-linux/usr/lib/python2.7/distutils/dist.py", line 815, in get_command_class
-> |     __import__ (module_name)
-> |   File "/home/server/poky-daisy-11.0.0/build/tmp/sysroots/i686-linux/usr/lib/python2.7/distutils/command/build_ext.py", line 16, in <module>
-> |     from distutils.sysconfig import customize_compiler, get_python_version
-> |   File "/home/server/poky-daisy-11.0.0/build/tmp/sysroots/i686-linux/usr/lib/python2.7/distutils/sysconfig.py", line 22, in <module>
-> |     PREFIX = os.path.normpath(sys.prefix).replace( os.getenv("BUILD_SYS"), os.getenv("HOST_SYS") )
-> | TypeError: expected a character buffer object
-> | make: *** [all] Error 1
-> | ERROR: oe_runmake failed
+> I'm trying to build a Linux for a generic X86 system with QT5.
 >
-> Am 22.05.2014 17:11, schrieb Gary Thomas:
->> On 2014-05-22 09:00, Jens Lucius wrote:
->>> Hi
->>>
->>> I already asked this question before (got no answer) and thought I had it running,
->>> but since I had to re-setup my yocto installation it runs into errors again.
->>> Maybe somebody can help me with this issue?
->>>
->>> I am trying to bitbake pjproject including the python module. I manged
->>> to write a working .bb recipe for the latest pjproject, which compiles
->>> and installes correctly. But I also want to build the python module.
->>>
->>> The documentation of pjproject says about building the python module:
->>>
->>>   1. Build the PJSIP libraries first with the usual "./configure && make
->>>      dep && make" commands.
->>>   2. Go to pjsip-apps/src/python directory.
->>>   3. Run *'sudo python ./setup.py install'* or just *'sudo make'*
->>>
->>> So I guess with the working recipe I got part 1. I tried to do stepts 2
->>> and 3 by adding the following:
->>>
->>> do_compile_append() {
->>> export BUILD_SYS
->>> export HOST_SYS
->>> export STAGING_INCDIR
->>> export STAGING_LIBDIR
-
-Put these exports at the outermost level of your recipe, not inside any function,
-i.e. like this:
-   EXTRA_OECONF += "STAGING_DIR=${STAGING_DIR_NATIVE}"
-   export BUILD_SYS
-   export HOST_SYS
-   export STAGING_INCDIR
-   export STAGING_LIBDIR
-
->>>
->>> cd ${S}/pjsip-apps/src/python
->>> oe_runmake
->>> }
->>>
->>> which starts the building process but then terminates with:
->>>
->>> |/  cc1: warning: include location "/usr/include/python2.7" is unsafe for
->>> /cross-compilation [-Wpoison-system-directories]
->>> |/  In file included from _pjsua.c:20:0:
->>> /|/  _pjsua.h:25:20: fatal error: Python.h: No such file or directory
->>> /
->>> So can I build them both in one recipe and how? And if built correctly
->>> how to install the modules? I also tried to split the build into two .bb files.
->>>
->>> Thanks for your help.
->>
->> Try adding 'inherit pythonnative' to your recipe
->>
->>>
->>> (Here is the pjproject bb)
->>> --------
->>> DESCRIPTION = "Open source SIP stack and media stack for presence, im/instant \
->>>                 messaging, and multimedia communication"
->>> SECTION = "libs"
->>> HOMEPAGE ="http://www.pjsip.org/"
->>> LICENSE = "GPLv2"
->>> LIC_FILES_CHKSUM ="file://COPYING;md5=b234ee4d69f5fce4486a80fdaf4a4263"
->>> DEPENDS = "alsa-lib openssl python"
->>>
->>> PARALLEL_MAKE = ""
->>>
->>> SRC_URI ="http://www.pjsip.org/release/${PV}/pjproject-${PV}.tar.bz2"
->>> SRC_URI[md5sum] = "6ed4bb7750c827dc1d881e209a3b62db"
->>> SRC_URI[sha256sum] = "da1933336b38b65ff2254bed05ea1076531b16915777a252ea999cf7f3284cb3"
->>> S = "${WORKDIR}/pjproject-${PV}"
->>>
->>> inherit autotools pkgconfig
->>>
->>> EXTRA_OECONF += "STAGING_DIR=${STAGING_DIR_NATIVE}"
->>>
->>> do_configure_prepend () {
->>>          export LD="${CC}"
->>> }
->>>
->>> do_compile_prepend() {
->>>          oe_runmake dep
->>> }
->>>
->>>
->>> do_install_prepend() {
->>>      install -d ${D}/usr/bin
->>>      install -m 755 ${S}/pjsip-apps/bin/pj* ${D}/usr/bin
->>> }
->>>
->>>
->>>
->>>
->>
+> I've tried to go the simple way. I cloned the nessesary layers (meta-inte=
+l
+> and meta-qt5). Then I selected  "intel-corei7-64" as MACHINE and
+> added cinematicexperience to my image. Then I build core-image-minimal.
+>
+> But when I try to start Qt5_CinematicExperience (on the target) it failed
+> because of the missing xcb plugin.
+>
+> Is there anything I missed?
+>
+> Thanks for your help!
 >
 
--- 
-------------------------------------------------------------
-Gary Thomas                 |  Consulting for the
-MLB Associates              |    Embedded world
-------------------------------------------------------------
+If you want to use qt5 with X11 you need to add DISTRO_FEATURES_append onto
+your local.conf
+But if tou want to use opengl or famebuffer take a look at PACKAGECONFIG
+options on:
 
+meta-qt5/recipes-qt/qt5/qtbase.inc
+
+
+I would recommend you to you core-image-x11 or core-image-base.
+
+Regards,
+
+--
+*dS
+Diego Sueiro
+
+Administrador do Embarcados
+www.embarcados.com.br<http://www.embarcados.com.br/?utm_source=3Dassinatura=
+_diego&utm_medium=3De-mail&utm_campaign=3DAssinatura%20Email%20Diego>
+
+/*long live rock 'n roll*/
+
+--001a11c16cfe07bdba04fa0331e2
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Bastian,<div><br><div class=3D"gmail_extra"><br><div class=
+=3D"gmail_quote">On Thu, May 22, 2014 at 12:32 PM, Bastian Wei=DFbach <span=
+ dir=3D"ltr">&lt;<a href=3D"mailto:b.weissbach@gmail.com" target=3D"_blank"=
+>b.weissbach@gmail.com</a>&gt;</span> wrote:<br>
+
+<blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-=
+left-width:1px;border-left-color:rgb(204,204,204);border-left-style:solid;p=
+adding-left:1ex"><div dir=3D"ltr">Hey Guys,<div><br></div><div>I&#39;m tryi=
+ng to build a Linux for a generic X86 system with QT5.=A0</div>
+
+<div><br></div><div>I&#39;ve tried to go the simple way. I cloned the nesse=
+sary layers (meta-intel and meta-qt5). Then I selected =A0&quot;intel-corei=
+7-64&quot; as MACHINE and added=A0cinematicexperience to my image. Then I b=
+uild core-image-minimal.=A0</div>
+
+
+
+<div><br></div><div>But when I try to start=A0<span style=3D"background-col=
+or:rgb(249,249,249)"><font color=3D"#000000" face=3D"monospace, Courier"><s=
+pan style=3D"line-height:1.1em">Qt5_CinematicExperience (on the target) it =
+failed=A0</span><span style=3D"line-height:14.300000190734863px">because</s=
+pan><span style=3D"line-height:1.1em">=A0of the missing xcb plugin.=A0</spa=
+n></font></span></div>
+
+
+
+<div><span style=3D"background-color:rgb(249,249,249)"><font color=3D"#0000=
+00" face=3D"monospace, Courier"><span style=3D"line-height:1.1em"><br></spa=
+n></font></span></div><div><span style=3D"background-color:rgb(249,249,249)=
+"><font color=3D"#000000" face=3D"monospace, Courier"><span style=3D"line-h=
+eight:1.1em">Is there anything I missed?=A0</span></font></span></div>
+
+
+
+<div><span style=3D"background-color:rgb(249,249,249)"><font color=3D"#0000=
+00" face=3D"monospace, Courier"><span style=3D"line-height:1.1em"><br></spa=
+n></font></span></div><div><span style=3D"background-color:rgb(249,249,249)=
+"><font color=3D"#000000" face=3D"monospace, Courier"><span style=3D"line-h=
+eight:1.1em">Thanks for your help!<br>
+
+
+
+</span></font></span></div></div>
+</blockquote></div><br>If you want to use qt5 with X11 you need to add=A0DI=
+STRO_FEATURES_append onto your local.conf</div><div class=3D"gmail_extra">B=
+ut if tou want to use opengl or famebuffer take a look at PACKAGECONFIG opt=
+ions on:</div>
+
+</div><blockquote style=3D"margin:0px 0px 0px 40px;border:none;padding:0px"=
+><div><div class=3D"gmail_extra">meta-qt5/recipes-qt/qt5/qtbase.inc</div></=
+div></blockquote><div><div class=3D"gmail_extra"><br>I would recommend you =
+to you core-image-x11 or=A0core-image-base.<br>
+
+<br clear=3D"all"><div><div dir=3D"ltr"><div>Regards,</div><div><br></div>-=
+-<br>*dS<br>Diego Sueiro<br><br>Administrador do Embarcados<br><a href=3D"h=
+ttp://www.embarcados.com.br/?utm_source=3Dassinatura_diego&amp;utm_medium=
+=3De-mail&amp;utm_campaign=3DAssinatura%20Email%20Diego" target=3D"_blank">=
+www.embarcados.com.br</a><br>
+
+<br>/*long live rock &#39;n roll*/<br></div></div>
+</div></div></div>
+
+--001a11c16cfe07bdba04fa0331e2--
