@@ -1,49 +1,39 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <Stefan_Seefeld@mentor.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 46910E00B87; Thu, 22 May 2014 06:09:51 -0700 (PDT)
+	id A3ED9E00B88; Thu, 22 May 2014 06:11:05 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: *
-X-Spam-Status: No, score=1.3 required=5.0 tests=RCVD_IN_DNSWL_NONE,RDNS_NONE
-	autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [209.85.192.52 listed in list.dnswl.org]
-	*  1.3 RDNS_NONE Delivered to internal network by a host with no rDNS
-Received: from mail-qg0-f52.google.com (unknown [209.85.192.52])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BC986E0077C
-	for <yocto@yoctoproject.org>; Thu, 22 May 2014 06:09:46 -0700 (PDT)
-Received: by mail-qg0-f52.google.com with SMTP id a108so5532845qge.39
-	for <yocto@yoctoproject.org>; Thu, 22 May 2014 06:09:45 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc:content-type;
-	bh=jLG/20fqKTMl+X+468RBuxNnlsDC3/GVhKB1KWWQK1M=;
-	b=haMeEKBODD2pZIyCEaWpyw4o7AgpyRWT6xPbkuJgq83m/9RD5ZKFfqqj7Elc1/NKhh
-	0gYAVo7rMcevca4iw+4BR5hG3K75p5vq0xbGV1JQ0O+dh2C7L2xOcU6Qc14dUSAbC/y+
-	rdcoJiZi9MDJQwmYZypBXyexC72LJ80IwyfMR7cDsd1HQqbNdQN3oWiqrVg6/YNEzAYL
-	YUvn7zfSub4oh4TMwQgIrsSlFy6nBDxXDKqZcxnwa9vmB6/hDTITMTTEBnEUiJeTrCLV
-	IMfDaZzHx8qkTaj8CfDaz8SudjTtwXpdVLWq+95MS9e4tOSvdzjwTTIW5JseHUGJzAKz
-	5H0Q==
-X-Gm-Message-State: ALoCoQkzXJoAV7lb3n/j6PcWUowsYdbkOIqHgcX+S+by62E/JwQ3IuNv0DGgT7cgCmcrRc7hYCjp
-X-Received: by 10.140.109.70 with SMTP id k64mr76148079qgf.92.1400764185607;
-	Thu, 22 May 2014 06:09:45 -0700 (PDT)
+X-Spam-Status: No, score=1.3 required=5.0 tests=RDNS_NONE autolearn=no
+	version=3.3.1
+X-Spam-HAM-Report: * 1.3 RDNS_NONE Delivered to internal network by a host
+	with no rDNS
+Received: from relay1.mentorg.com (unknown [192.94.38.131])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 21C3EE00B95
+	for <yocto@yoctoproject.org>; Thu, 22 May 2014 06:10:32 -0700 (PDT)
+Received: from svr-orw-fem-01.mgc.mentorg.com ([147.34.98.93])
+	by relay1.mentorg.com with esmtp 
+	id 1WnSlU-0003Sd-D3 from Stefan_Seefeld@mentor.com ;
+	Thu, 22 May 2014 06:10:32 -0700
+Received: from SVR-ORW-FEM-05.mgc.mentorg.com ([147.34.97.43]) by
+	svr-orw-fem-01.mgc.mentorg.com over TLS secured channel with
+	Microsoft SMTPSVC(6.0.3790.4675); Thu, 22 May 2014 06:10:32 -0700
+Received: from [0.0.0.0] (147.34.91.1) by svr-orw-fem-05.mgc.mentorg.com
+	(147.34.97.43) with Microsoft SMTP Server id 14.2.247.3;
+	Thu, 22 May 2014 06:09:49 -0700
+Message-ID: <537DF746.6060700@mentor.com>
+Date: Thu, 22 May 2014 09:10:30 -0400
+From: Stefan Seefeld <stefan_seefeld@mentor.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:24.0) Gecko/20100101 Thunderbird/24.5.0
 MIME-Version: 1.0
-Received: by 10.140.101.77 with HTTP; Thu, 22 May 2014 06:09:24 -0700 (PDT)
-In-Reply-To: <1400762321.57091.YahooMailNeo@web122502.mail.ne1.yahoo.com>
-References: <1400754665.64074.YahooMailNeo@web122506.mail.ne1.yahoo.com>
-	<8100724.KhZTyC37g9@peggleto-mobl5.ger.corp.intel.com>
-	<1400761572.79188.YahooMailNeo@web122505.mail.ne1.yahoo.com>
-	<1560241.kjtZFe1g9j@peggleto-mobl5.ger.corp.intel.com>
-	<1400762321.57091.YahooMailNeo@web122502.mail.ne1.yahoo.com>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Thu, 22 May 2014 14:09:24 +0100
-Message-ID: <CAJTo0LaA9S1gJyO0g3nCn3vzyuVLON4-SyP9KUv0Gj+9KG16Aw@mail.gmail.com>
-To: Alexandru Vaduva <vaduvajanalexandru@yahoo.com>
-Cc: Paul Eggleton <paul.eggleton@linux.intel.com>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: help needed
+To: Richard Purdie <richard.purdie@linuxfoundation.org>
+References: <537D1084.4000705@mentor.com> <1400739010.17834.10.camel@ted>
+In-Reply-To: <1400739010.17834.10.camel@ted>
+X-OriginalArrivalTime: 22 May 2014 13:10:32.0349 (UTC)
+	FILETIME=[361394D0:01CF75BF]
+Cc: yocto@yoctoproject.org
+Subject: Re: [meta-mingw] build error
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -55,14 +45,74 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 22 May 2014 13:09:51 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Thu, 22 May 2014 13:11:05 -0000
+X-Groupsio-MsgNum: 19779
+Content-Type: multipart/mixed; boundary="------------060007020408020308080102"
 
-On 22 May 2014 13:38, Alexandru Vaduva <vaduvajanalexandru@yahoo.com> wrote:
-> it appear, it shouldn`t I believe.
+--------------060007020408020308080102
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
-Can you share this depends.dot file please?  For what it's worth, I
-can't replicate this with oe-core master
+On 2014-05-22 02:10, Richard Purdie wrote:
+> On Wed, 2014-05-21 at 16:45 -0400, Stefan Seefeld wrote:
+>> Hello,
+>>
+>> I started experimenting with the meta-mingw layer today, using the
+>> 'daisy' branch for both, poky as well as meta-mingw.
+>>
+>> Running `bitbake meta-toolchain`, the build process failed in one of the
+>> last steps (1003 of 1005) with:
+>>
+>> ERROR: nativesdk-packagegroup-sdk-host not found in the base feeds
+>> (x86_64-nativesdk-mingw32 noarch any all).
+>>
+>> Any idea what I may be missing ? I'm using
+>>
+>> MACHINE ??= "qemux86"
+>> SDKMACHINE ?= "x86_64-mingw32"
+> 
+> Which pacxkage backend were you using? If you didn't use ipk, I'd
+> suggest trying it. In theory others should work but its ipk I've been
+> using when working with those layers.
 
-Ross
+OK, I was using rpm (the default), but now switched to ipk. That results
+in a different error in meta/lib/oe/sdk.py:55, where do_populate() tries
+to link ld.so.cache into a non-existent directory.
+I have attempted a fix with the attached patch.
 
+With that, things now appear to be working. (I think things should also
+work with 'rpm' as package backend, though, right ? Should I file a bug
+report somewhere to put that on record ?)
+
+Thanks,
+		Stefan
+
+
+-- 
+Stefan Seefeld
+CodeSourcery / Mentor Embedded
+http://www.mentor.com/embedded-software/
+
+--------------060007020408020308080102
+Content-Type: text/x-patch; name="sdk.py.diff"
+Content-Transfer-Encoding: 7bit
+Content-Disposition: attachment; filename="sdk.py.diff"
+
+diff --git a/meta/lib/oe/sdk.py b/meta/lib/oe/sdk.py
+index 5643199..4a03e96 100644
+--- a/meta/lib/oe/sdk.py
++++ b/meta/lib/oe/sdk.py
+@@ -50,8 +50,9 @@ class Sdk(object):
+                                      "*.la"))
+ 
+         # Link the ld.so.cache file into the hosts filesystem
+-        link_name = os.path.join(self.sdk_output, self.sdk_native_path,
+-                                 self.sysconfdir, "ld.so.cache")
++        sysconfdir = os.path.join(self.sdk_output, self.sdk_native_path, self.sysconfdir)
++        bb.utils.mkdirhier(sysconfdir)
++        link_name = os.path.join(sysconfdir, "ld.so.cache")
+         os.symlink("/etc/ld.so.cache", link_name)
+ 
+         execute_pre_post_process(self.d, self.d.getVar('SDK_POSTPROCESS_COMMAND', True))
+
+--------------060007020408020308080102--
