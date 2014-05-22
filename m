@@ -1,49 +1,39 @@
-Return-Path: <b.weissbach@gmail.com>
+Return-Path: <richard.purdie@linuxfoundation.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 69166E00A2F; Thu, 22 May 2014 08:38:45 -0700 (PDT)
+	id 95CFDE00B71; Thu, 22 May 2014 08:47:05 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
-X-Spam-Level: 
-X-Spam-Status: No, score=0.5 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-	DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW,RDNS_NONE
-	autolearn=no version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (b.weissbach[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [74.125.82.48 listed in list.dnswl.org]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  1.3 RDNS_NONE Delivered to internal network by a host with no rDNS
-X-Greylist: delayed 358 seconds by postgrey-1.32 at yocto-www;
-	Thu, 22 May 2014 08:38:41 PDT
-Received: from mail-wg0-f48.google.com (unknown [74.125.82.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D6DA6E0077C
-	for <yocto@yoctoproject.org>; Thu, 22 May 2014 08:38:41 -0700 (PDT)
-Received: by mail-wg0-f48.google.com with SMTP id b13so3507846wgh.31
-	for <yocto@yoctoproject.org>; Thu, 22 May 2014 08:38:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:from:date:message-id:subject:to:content-type;
-	bh=0kZc0gu7MJg7o1sbpXqvYtOy4B17rPIhWjCoeRBTDFE=;
-	b=Is5hcO4qFQ1JapBcEyhSg09vuKNHkO0D7BG0F2OXDmaQU8oYI08C5jK8k6TRJlm7Rv
-	deo5KnpjWOy7wEWiyhMafFrMuamLZzsR8jhle5CcQqHtnMeQubgjlgg2e941QdCwik7S
-	4zk9OgzucULu+apFdD5HxhJh+vnt3JGwl0/0zEo5IcyCeVCsjKdqnUDewunGI4QLj4Rn
-	LKGdpvPUEhwuB0+V3xnGDudii5JCP+8LEYwxPDtRNz9pz5UlZCHCV0yC1ZkuX2jaHzxw
-	8yy9EGhGi6dK1aZ55GF5qkMaI1e9bhttPkPuXZNA5TRwIY6BMr+BmsyA4257WKb+z5TP
-	YYhw==
-X-Received: by 10.180.206.205 with SMTP id lq13mr17267951wic.11.1400772761781; 
-	Thu, 22 May 2014 08:32:41 -0700 (PDT)
-MIME-Version: 1.0
-Received: by 10.217.129.74 with HTTP; Thu, 22 May 2014 08:32:21 -0700 (PDT)
-From: =?UTF-8?Q?Bastian_Wei=C3=9Fbach?= <b.weissbach@gmail.com>
-Date: Thu, 22 May 2014 17:32:21 +0200
-Message-ID: <CAJhyh6m8NuB0V=KOqCOscpDZm_m8X=OQGF4HAn39KR+Etjud8A@mail.gmail.com>
-To: yocto@yoctoproject.org
-Subject: QT5 for gernericX86
+X-Spam-Level: *
+X-Spam-Status: No, score=1.3 required=5.0 tests=RDNS_NONE autolearn=no
+	version=3.3.1
+X-Spam-HAM-Report: * 1.3 RDNS_NONE Delivered to internal network by a host
+	with no rDNS
+Received: from dan.rpsys.net (unknown [87.81.244.161])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9FEFAE0077C
+	for <yocto@yoctoproject.org>; Thu, 22 May 2014 08:47:03 -0700 (PDT)
+Received: from localhost (dan.rpsys.net [127.0.0.1])
+	by dan.rpsys.net (8.14.4/8.14.4/Debian-2.1ubuntu4) with ESMTP id
+	s4MFkYRB009104; Thu, 22 May 2014 16:46:45 +0100
+X-Virus-Scanned: Debian amavisd-new at dan.rpsys.net
+Received: from dan.rpsys.net ([127.0.0.1])
+	by localhost (dan.rpsys.net [127.0.0.1]) (amavisd-new, port 10024)
+	with LMTP id Bms0J7Dyo1Wa; Thu, 22 May 2014 16:46:45 +0100 (BST)
+Received: from [192.168.3.10] (rpvlan0 [192.168.3.10]) (authenticated bits=0)
+	by dan.rpsys.net (8.14.4/8.14.4/Debian-2.1ubuntu1) with ESMTP id
+	s4MFkdMc009100
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES128-SHA bits=128 verify=NOT);
+	Thu, 22 May 2014 16:46:40 +0100
+Message-ID: <1400773591.17834.73.camel@ted>
+From: Richard Purdie <richard.purdie@linuxfoundation.org>
+To: Stefan Seefeld <stefan_seefeld@mentor.com>
+Date: Thu, 22 May 2014 16:46:31 +0100
+In-Reply-To: <537DF746.6060700@mentor.com>
+References: <537D1084.4000705@mentor.com> <1400739010.17834.10.camel@ted>
+	<537DF746.6060700@mentor.com>
+X-Mailer: Evolution 3.8.4-0ubuntu1 
+Mime-Version: 1.0
+Cc: yocto@yoctoproject.org
+Subject: Re: [meta-mingw] build error
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -55,57 +45,49 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 22 May 2014 15:38:45 -0000
-Content-Type: multipart/alternative; boundary=001a11c382d4e0900404f9fed22d
+X-List-Received-Date: Thu, 22 May 2014 15:47:05 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
---001a11c382d4e0900404f9fed22d
-Content-Type: text/plain; charset=UTF-8
+On Thu, 2014-05-22 at 09:10 -0400, Stefan Seefeld wrote:
+> On 2014-05-22 02:10, Richard Purdie wrote:
+> > On Wed, 2014-05-21 at 16:45 -0400, Stefan Seefeld wrote:
+> >> Hello,
+> >>
+> >> I started experimenting with the meta-mingw layer today, using the
+> >> 'daisy' branch for both, poky as well as meta-mingw.
+> >>
+> >> Running `bitbake meta-toolchain`, the build process failed in one of the
+> >> last steps (1003 of 1005) with:
+> >>
+> >> ERROR: nativesdk-packagegroup-sdk-host not found in the base feeds
+> >> (x86_64-nativesdk-mingw32 noarch any all).
+> >>
+> >> Any idea what I may be missing ? I'm using
+> >>
+> >> MACHINE ??= "qemux86"
+> >> SDKMACHINE ?= "x86_64-mingw32"
+> > 
+> > Which pacxkage backend were you using? If you didn't use ipk, I'd
+> > suggest trying it. In theory others should work but its ipk I've been
+> > using when working with those layers.
+> 
+> OK, I was using rpm (the default), but now switched to ipk. That results
+> in a different error in meta/lib/oe/sdk.py:55, where do_populate() tries
+> to link ld.so.cache into a non-existent directory.
+> I have attempted a fix with the attached patch.
 
-Hey Guys,
+I think this was fixed on master, there is a patch we need to backport
+to daisy. I've just done that since I've been aware of that issue.
 
-I'm trying to build a Linux for a generic X86 system with QT5.
+> With that, things now appear to be working. (I think things should also
+> work with 'rpm' as package backend, though, right ? Should I file a bug
+> report somewhere to put that on record ?)
 
-I've tried to go the simple way. I cloned the nessesary layers (meta-intel
-and meta-qt5). Then I selected  "intel-corei7-64" as MACHINE and
-added cinematicexperience to my image. Then I build core-image-minimal.
+You can file a bug in the bugzilla for it, yes.
 
-But when I try to start Qt5_CinematicExperience (on the target) it failed
-because of the missing xcb plugin.
+Cheers,
 
-Is there anything I missed?
+Richard
 
-Thanks for your help!
 
---001a11c382d4e0900404f9fed22d
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">Hey Guys,<div><br></div><div>I&#39;m trying to build a Lin=
-ux for a generic X86 system with QT5.=C2=A0</div><div><br></div><div>I&#39;=
-ve tried to go the simple way. I cloned the nessesary layers (meta-intel an=
-d meta-qt5). Then I selected =C2=A0&quot;intel-corei7-64&quot; as MACHINE a=
-nd added=C2=A0cinematicexperience to my image. Then I build core-image-mini=
-mal.=C2=A0</div>
-
-<div><br></div><div>But when I try to start=C2=A0<span style=3D"background-=
-color:rgb(249,249,249)"><font color=3D"#000000" face=3D"monospace, Courier"=
-><span style=3D"line-height:1.1em">Qt5_CinematicExperience (on the target) =
-it failed=C2=A0</span><span style=3D"line-height:14.300000190734863px">beca=
-use</span><span style=3D"line-height:1.1em">=C2=A0of the missing xcb plugin=
-.=C2=A0</span></font></span></div>
-
-<div><span style=3D"background-color:rgb(249,249,249)"><font color=3D"#0000=
-00" face=3D"monospace, Courier"><span style=3D"line-height:1.1em"><br></spa=
-n></font></span></div><div><span style=3D"background-color:rgb(249,249,249)=
-"><font color=3D"#000000" face=3D"monospace, Courier"><span style=3D"line-h=
-eight:1.1em">Is there anything I missed?=C2=A0</span></font></span></div>
-
-<div><span style=3D"background-color:rgb(249,249,249)"><font color=3D"#0000=
-00" face=3D"monospace, Courier"><span style=3D"line-height:1.1em"><br></spa=
-n></font></span></div><div><span style=3D"background-color:rgb(249,249,249)=
-"><font color=3D"#000000" face=3D"monospace, Courier"><span style=3D"line-h=
-eight:1.1em">Thanks for your help!<br>
-
-</span></font></span></div></div>
-
---001a11c382d4e0900404f9fed22d--
