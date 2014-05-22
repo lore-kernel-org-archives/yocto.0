@@ -1,6 +1,6 @@
-Return-Path: <richard.purdie@linuxfoundation.org>
+Return-Path: <gary@mlbassoc.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 95CFDE00B71; Thu, 22 May 2014 08:47:05 -0700 (PDT)
+	id 387ABE00A44; Thu, 22 May 2014 08:59:41 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: *
@@ -8,32 +8,24 @@ X-Spam-Status: No, score=1.3 required=5.0 tests=RDNS_NONE autolearn=no
 	version=3.3.1
 X-Spam-HAM-Report: * 1.3 RDNS_NONE Delivered to internal network by a host
 	with no rDNS
-Received: from dan.rpsys.net (unknown [87.81.244.161])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9FEFAE0077C
-	for <yocto@yoctoproject.org>; Thu, 22 May 2014 08:47:03 -0700 (PDT)
-Received: from localhost (dan.rpsys.net [127.0.0.1])
-	by dan.rpsys.net (8.14.4/8.14.4/Debian-2.1ubuntu4) with ESMTP id
-	s4MFkYRB009104; Thu, 22 May 2014 16:46:45 +0100
-X-Virus-Scanned: Debian amavisd-new at dan.rpsys.net
-Received: from dan.rpsys.net ([127.0.0.1])
-	by localhost (dan.rpsys.net [127.0.0.1]) (amavisd-new, port 10024)
-	with LMTP id Bms0J7Dyo1Wa; Thu, 22 May 2014 16:46:45 +0100 (BST)
-Received: from [192.168.3.10] (rpvlan0 [192.168.3.10]) (authenticated bits=0)
-	by dan.rpsys.net (8.14.4/8.14.4/Debian-2.1ubuntu1) with ESMTP id
-	s4MFkdMc009100
-	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES128-SHA bits=128 verify=NOT);
-	Thu, 22 May 2014 16:46:40 +0100
-Message-ID: <1400773591.17834.73.camel@ted>
-From: Richard Purdie <richard.purdie@linuxfoundation.org>
-To: Stefan Seefeld <stefan_seefeld@mentor.com>
-Date: Thu, 22 May 2014 16:46:31 +0100
-In-Reply-To: <537DF746.6060700@mentor.com>
-References: <537D1084.4000705@mentor.com> <1400739010.17834.10.camel@ted>
-	<537DF746.6060700@mentor.com>
-X-Mailer: Evolution 3.8.4-0ubuntu1 
-Mime-Version: 1.0
-Cc: yocto@yoctoproject.org
-Subject: Re: [meta-mingw] build error
+Received: from mail.chez-thomas.org (unknown [65.100.170.105])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 567DBE0077C
+	for <yocto@yoctoproject.org>; Thu, 22 May 2014 08:59:38 -0700 (PDT)
+Received: by mail.chez-thomas.org (Postfix, from userid 1998)
+	id 243F0F811F9; Thu, 22 May 2014 09:59:38 -0600 (MDT)
+Received: from [192.168.1.114] (zeus [192.168.1.114])
+	by mail.chez-thomas.org (Postfix) with ESMTP id DE7B9F811F7;
+	Thu, 22 May 2014 09:59:36 -0600 (MDT)
+Message-ID: <537E1F01.8080401@mlbassoc.com>
+Date: Thu, 22 May 2014 10:00:01 -0600
+From: Gary Thomas <gary@mlbassoc.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:24.0) Gecko/20100101 Thunderbird/24.5.0
+MIME-Version: 1.0
+To: yocto@yoctoproject.org
+References: <5373B0AB.4070204@mlbassoc.com> <1400187220.28353.15.camel@ted>
+In-Reply-To: <1400187220.28353.15.camel@ted>
+Subject: Re: Where did my preferred version go?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,49 +37,89 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 22 May 2014 15:47:05 -0000
-Content-Type: text/plain; charset="UTF-8"
+X-List-Received-Date: Thu, 22 May 2014 15:59:41 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On Thu, 2014-05-22 at 09:10 -0400, Stefan Seefeld wrote:
-> On 2014-05-22 02:10, Richard Purdie wrote:
-> > On Wed, 2014-05-21 at 16:45 -0400, Stefan Seefeld wrote:
-> >> Hello,
-> >>
-> >> I started experimenting with the meta-mingw layer today, using the
-> >> 'daisy' branch for both, poky as well as meta-mingw.
-> >>
-> >> Running `bitbake meta-toolchain`, the build process failed in one of the
-> >> last steps (1003 of 1005) with:
-> >>
-> >> ERROR: nativesdk-packagegroup-sdk-host not found in the base feeds
-> >> (x86_64-nativesdk-mingw32 noarch any all).
-> >>
-> >> Any idea what I may be missing ? I'm using
-> >>
-> >> MACHINE ??= "qemux86"
-> >> SDKMACHINE ?= "x86_64-mingw32"
-> > 
-> > Which pacxkage backend were you using? If you didn't use ipk, I'd
-> > suggest trying it. In theory others should work but its ipk I've been
-> > using when working with those layers.
-> 
-> OK, I was using rpm (the default), but now switched to ipk. That results
-> in a different error in meta/lib/oe/sdk.py:55, where do_populate() tries
-> to link ld.so.cache into a non-existent directory.
-> I have attempted a fix with the attached patch.
+On 2014-05-15 14:53, Richard Purdie wrote:
+> On Wed, 2014-05-14 at 12:06 -0600, Gary Thomas wrote:
+>> I have a number of platforms which [for whatever reason]
+>> need older versions of GCC.  I've been supporting this by
+>> keeping the older code around in my own layers - I need
+>> 4.7.x for some targets, even 4.6.x for others.
+>>
+>> With the changes in the latest master (post 1.6/daisy), I
+>> am no longer able to build those older compilers :-(  First
+>> I had to fix up some core changes to just get the recipes to
+>> even parse (bb.utils.contains), but now I get a slew of errors
+>> like these:
+>>
+>>     NOTE: preferred version 4.7% of libgcc-initial not available (for item libgcc-initial)
+>>     NOTE: versions of libgcc-initial available: 4.8.2 4.9.0
+>>
+>> I looked at the old recipes and they don't provide these
+>> packages which make them unsuitable.
+>>
+>> I know I should move these targets to the newer GCC, but at
+>> this moment there simply are not the resources to do so, but
+>> we still want to benefit from other improvements in OE-core
+>> (and Poky/Yocto).
+>>
+>> How can I move forward?  Is there some way to retrofit the
+>> older compilers into the new [required] structures?  Perhaps
+>> I could use the older compilers as external tool chain, but
+>> the last time I tried to use this (in place of the internal,
+>> build in place) tools, I could never make things happy :-(
+>>
+>> Any suggestions more than welcome, thanks
+>
+> How are you doing this? Have you a completely separate set of gcc
+> recipes including the include files or is this using the current include
+> files. You basically have two options:
+>
+> a) Apply the changes that were made in master gcc to the 4.7 recipes,
+> you can then probably share includes.
+>
+> b) Use a separate set of 4.7 files and "undo" some of the changes in
+> master using creative variable names. E.g., libgcc-initial was added:
+>
+> recipes-core/eglibc/eglibc-initial.inc:DEPENDS = "linux-libc-headers virtual/${TARGET_PREFIX}gcc-initial libgcc-initial"
+> recipes-core/eglibc/eglibc.inc:DEPENDS = "virtual/${TARGET_PREFIX}gcc-initial libgcc-initial linux-libc-headers virtual/${TARGET_PREFIX}libc-initial"
+>
+> so you could do a:
+>
+> DEPENDS_remove_pn-eglibc-initial - "libgcc-initial"
+> DEPENDS_remove_pn-eglibc - "libgcc-initial"
+>
+> Thinking a bit more, the issue that is going to hit you hard are the -PN
+> additions to the cross recipe changes (and their change in arch). My
+> strong recommendation is therefore a) and then replaying the gcc changes
+> made in master against the 4.7 version. These were:
+>
+> http://git.yoctoproject.org/cgit.cgi/poky/log/meta/recipes-devtools/gcc
+>
+> there are about 10 or so changes there you'd need to check in your 4.7
+> recipes (since the 25th April) but nothing particularly difficult.
 
-I think this was fixed on master, there is a patch we need to backport
-to daisy. I've just done that since I've been aware of that issue.
+I've done this (as you said, nothing too difficult) and it seems to
+be working.  My only issue is that I had a deep copy of the old
+recipes-devtools/gcc with both the 4.6 and 4.7 recipes included.
+This seemed to cause some conflicts if my layer with these recipes
+was included when building with GCC 4.8+, in particular when building
+the most recent eglibc as pre 4.8 there was no unwind (or different)
+support and this is now required.  My solution was to move these
+older recipes to a separate layer which is only included for targets
+that need the ancient tools, which seems reasonable anyway.
 
-> With that, things now appear to be working. (I think things should also
-> work with 'rpm' as package backend, though, right ? Should I file a bug
-> report somewhere to put that on record ?)
+My hope is to find time to move those targets to newer compilers
+before I have to do this after the next big toolchain shake-up,
+whenever that may be :-)
 
-You can file a bug in the bugzilla for it, yes.
+Thanks for the help
 
-Cheers,
-
-Richard
-
+-- 
+------------------------------------------------------------
+Gary Thomas                 |  Consulting for the
+MLB Associates              |    Embedded world
+------------------------------------------------------------
 
