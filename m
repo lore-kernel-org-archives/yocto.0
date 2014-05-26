@@ -1,52 +1,45 @@
-Return-Path: <diego.sueiro@gmail.com>
+Return-Path: <ajlennon@dynamicdevices.co.uk>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id DF1C0E00BAE; Mon, 26 May 2014 03:27:55 -0700 (PDT)
+	id 430AEE00BB7; Mon, 26 May 2014 03:39:37 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
-X-Spam-Level: 
-X-Spam-Status: No, score=0.5 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-	DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW,RDNS_NONE
+X-Spam-Level: *
+X-Spam-Status: No, score=1.3 required=5.0 tests=HTML_MESSAGE,RDNS_NONE
 	autolearn=no version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (diego.sueiro[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.216.182 listed in list.dnswl.org]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+X-Spam-HAM-Report: *  0.0 HTML_MESSAGE BODY: HTML included in message
 	*  1.3 RDNS_NONE Delivered to internal network by a host with no rDNS
-Received: from mail-qc0-f182.google.com (unknown [209.85.216.182])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AB2BCE00BAE
-	for <yocto@yoctoproject.org>; Mon, 26 May 2014 03:27:53 -0700 (PDT)
-Received: by mail-qc0-f182.google.com with SMTP id e16so11854029qcx.27
-	for <yocto@yoctoproject.org>; Mon, 26 May 2014 03:27:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-type;
-	bh=qJY0avqk9cJfBCbeF2fPypfwDQ0iwCqAfHwwIKZ/l2U=;
-	b=S1/HoYUwi/HPpUs1DOAK83xm00hbW5xIgz6W62rfYOKU02aF6aDzesewtefnY0wYJs
-	NYjcBpIqRuy5N70lVKEqB6Z1M8TakJ+R0O2GREkhmkgk2jbsT1vNONgNExkzV2Egyukc
-	afKJYdyGTTSjwI67DxAQ1kx4LwC38q2o+6DdY2uG+ImVF2RzcEnz85ETVls7zwoBZ7tk
-	/XEo7WMtWdKCU4YJr2xFzOIWCfV/N1zMZrjuvkZUkXccRJdOYXXcY4Y28zqehlrhwJVH
-	OvkefyJYlDn08OmImkYKY3oDGapeiYydQoegYIvp89mVZwnV27B6LZu+yijYanqhrypC
-	DmNQ==
-X-Received: by 10.224.37.130 with SMTP id x2mr31676421qad.36.1401100073283;
-	Mon, 26 May 2014 03:27:53 -0700 (PDT)
+Received: from www.dynamicdevices.co.uk (unknown [89.200.136.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0C4EEE00BB1
+	for <yocto@yoctoproject.org>; Mon, 26 May 2014 03:39:31 -0700 (PDT)
+Received: from localhost (localhost [127.0.0.1])
+	by www.dynamicdevices.co.uk (Postfix) with ESMTP id 7CA2727E01E;
+	Mon, 26 May 2014 10:39:29 +0000 (UTC)
+X-Virus-Scanned: Debian amavisd-new at lennoab2.miniserver.com
+Received: from www.dynamicdevices.co.uk ([127.0.0.1])
+	by localhost (www.dynamicdevices.co.uk [127.0.0.1]) (amavisd-new,
+	port 10024)
+	with ESMTP id s9IMXP13Hpda; Mon, 26 May 2014 10:39:28 +0000 (UTC)
+Received: from [127.0.0.1] (cpc32-live22-2-0-cust59.17-2.cable.virginm.net
+	[82.36.253.60])
+	(using TLSv1 with cipher ECDHE-RSA-AES128-SHA (128/128 bits))
+	(No client certificate requested)
+	by www.dynamicdevices.co.uk (Postfix) with ESMTPSA id 17A7327E019;
+	Mon, 26 May 2014 10:39:27 +0000 (UTC)
+Message-ID: <538319DB.40309@dynamicdevices.co.uk>
+Date: Mon, 26 May 2014 11:39:23 +0100
+From: Alex J Lennon <ajlennon@dynamicdevices.co.uk>
+User-Agent: Mozilla/5.0 (Windows NT 6.3; WOW64;
+	rv:24.0) Gecko/20100101 Thunderbird/24.5.0
 MIME-Version: 1.0
-Received: by 10.140.48.112 with HTTP; Mon, 26 May 2014 03:27:33 -0700 (PDT)
-In-Reply-To: <CAAA4K6LsLF+fJRoAx_z01JW8QTutC2SEC2HdZw_G9Xz94CUz7w@mail.gmail.com>
-References: <CAMCfZKHhg9NzCr-DMyX2PAo4qzSYmgiiwwzrukit0T1u+G6LcQ@mail.gmail.com>
-	<CAAA4K6LsLF+fJRoAx_z01JW8QTutC2SEC2HdZw_G9Xz94CUz7w@mail.gmail.com>
-From: Diego Sueiro <diego.sueiro@gmail.com>
-Date: Mon, 26 May 2014 07:27:33 -0300
-Message-ID: <CAMCfZKGSy7W-Z5uvH0WJF2CGJpJso0xBpyEhsjjnp7sqki4mQg@mail.gmail.com>
-To: Jegan Chandru <pcjegan@gmail.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Setting default system python version
+To: Alexandru Vaduva <vaduvajanalexandru@yahoo.com>, 
+	jan alexandru vaduva <vaduva.jan.alexandru@gmail.com>
+References: <CANwz6nzE64e0hiEm_D-m_Z27X0M1NJSwLAxTS1koy3mPqfkUwg@mail.gmail.com>	<528B9049.7010704@mlbassoc.com>	<CAK18fxFgx_d2wdwEG+WTknqFynKHKU1Hd7p7h1T+gXgtXqXNGQ@mail.gmail.com>	<CABwVrCrvXJvMspai9GVf0eJCXhEXZpyk2ibDwKiMPKxRFJzt7g@mail.gmail.com>
+	<5381D5B3.1070509@dynamicdevices.co.uk>
+	<1401051077.12067.YahooMailNeo@web122504.mail.ne1.yahoo.com>
+In-Reply-To: <1401051077.12067.YahooMailNeo@web122504.mail.ne1.yahoo.com>
+X-Enigmail-Version: 1.6
+Cc: Yocto Project <yocto@yoctoproject.org>, Gary Thomas <gary@mlbassoc.com>
+Subject: Re: [meta-raspberrypi] Using the camera
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -58,92 +51,104 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 26 May 2014 10:27:56 -0000
-Content-Type: multipart/alternative; boundary=001a11c2b28229b68904fa4b0842
+X-List-Received-Date: Mon, 26 May 2014 10:39:37 -0000
+Content-Type: multipart/alternative;
+	boundary="------------020809010903030701050807"
 
---001a11c2b28229b68904fa4b0842
+--------------020809010903030701050807
 Content-Type: text/plain; charset=ISO-8859-1
-
-Jegan,
-
-On Mon, May 26, 2014 at 3:06 AM, Jegan Chandru <pcjegan@gmail.com> wrote:
-
-> There is variable called PREFERRED_VERSION_pkgname ?= "version" where you
-> can set the desired version of any packages available.(if thats what you
-> are looking for) Try adding it in your image recipe or conf file. Also once
-> added, you can check by executing 'bitbake -s' and see preferred version
-> tab.
+Content-Transfer-Encoding: 7bit
 
 
+On 25/05/2014 21:51, Alexandru Vaduva wrote:
+> Hello,
+>
+> Sorry for my late response, I put on pause the investigation with this
+> bug.
+> Hope to return to it next month (or at least after 13 June).
+> Right now in my head there are more questions then answers regarding
+> this bug, so I cannot really help.
+> A quick suggestion would be to inspect the config.txt for raspbian for
+> example
+> and investigate the differences.
+> Also try GPU_MEM = "256" just to make a confirmation of my assumption
+> that
+> something is missing.
+>
 
-Actually I don't think that it's going to work for python3, since
-python(2.7) and python3 are separate recipes that does not provide the same
-package (python). They provide two different packages: python and python3,
-respectively.
-And I believe that PREFERRED_VERSION just have effects on local.conf,
-machine.conf and distro.conf, not on image recipes.
+Thanks Alex. I will try that. I'm going to have another look today and
+see if I can get to the bottom of it
 
-Maybe using update-alternatives class can help me to achieve this:
-http://www.yoctoproject.org/docs/current/mega-manual/mega-manual.html#ref-classes-update-alternatives<http://git.yoctoproject.org/cgit/cgit.cgi/poky/tree/meta/classes/update-alternatives.bbclass>
+Best Regards,
 
+Alex
 
-
-Regards,
-
---
-*dS
-Diego Sueiro
-
-Administrador do Embarcados
-www.embarcados.com.br<http://www.embarcados.com.br/?utm_source=assinatura_diego&utm_medium=e-mail&utm_campaign=Assinatura%20Email%20Diego>
-
-/*long live rock 'n roll*/
-
---001a11c2b28229b68904fa4b0842
+--------------020809010903030701050807
 Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 7bit
 
-<div dir=3D"ltr"><div class=3D"gmail_extra">Jegan,</div><div class=3D"gmail=
-_extra"><br><div class=3D"gmail_quote">On Mon, May 26, 2014 at 3:06 AM, Jeg=
-an Chandru <span dir=3D"ltr">&lt;<a href=3D"mailto:pcjegan@gmail.com" targe=
-t=3D"_blank">pcjegan@gmail.com</a>&gt;</span> wrote:<br>
+<html>
+  <head>
+    <meta content="text/html; charset=ISO-8859-1"
+      http-equiv="Content-Type">
+  </head>
+  <body text="#000000" bgcolor="#FFFFFF">
+    <br>
+    <div class="moz-cite-prefix">On 25/05/2014 21:51, Alexandru Vaduva
+      wrote:<br>
+    </div>
+    <blockquote
+      cite="mid:1401051077.12067.YahooMailNeo@web122504.mail.ne1.yahoo.com"
+      type="cite">
+      <div style="color:#000; background-color:#fff;
+        font-family:HelveticaNeue, Helvetica Neue, Helvetica, Arial,
+        Lucida Grande, sans-serif;font-size:12pt">
+        <div style="" class=""><span style="" class="">Hello,</span></div>
+        <div class="" style="color: rgb(0, 0, 0); font-size: 16px;
+          font-family: HelveticaNeue,Helvetica
+          Neue,Helvetica,Arial,Lucida Grande,sans-serif;
+          background-color: transparent; font-style: normal;"><br
+            style="" class="">
+          <span style="" class=""></span></div>
+        <div class="" style="color: rgb(0, 0, 0); font-size: 16px;
+          font-family: HelveticaNeue,Helvetica
+          Neue,Helvetica,Arial,Lucida Grande,sans-serif;
+          background-color: transparent; font-style: normal;"><span
+            style="" class="">Sorry for my late response, I put on pause
+            the investigation with this bug.</span></div>
+        <div class="" style="color: rgb(0, 0, 0); font-size: 16px;
+          font-family: HelveticaNeue,Helvetica
+          Neue,Helvetica,Arial,Lucida Grande,sans-serif;
+          background-color: transparent; font-style: normal;"><span
+            style="" class="">Hope to return to it next month (or at
+            least after 13 June).</span></div>
+        <div class="" style="color: rgb(0, 0, 0); font-size: 16px;
+          font-family: HelveticaNeue,Helvetica
+          Neue,Helvetica,Arial,Lucida Grande,sans-serif;
+          background-color: transparent; font-style: normal;"><span
+            style="" class="">Right now in my head there are more
+            questions then answers regarding<br style="" class="">
+            this bug, so I cannot really help.</span></div>
+        A quick suggestion would be to inspect the config.txt for
+        raspbian for example <br>
+        and investigate the differences. <br style="" class="">
+        Also try GPU_MEM = "256" just to make a confirmation of my
+        assumption that <br>
+        something is missing.<br>
+        <br>
+      </div>
+    </blockquote>
+    <br>
+    Thanks Alex. I will try that. I'm going to have another look today
+    and see if I can get to the bottom of it<br>
+    <br>
+    Best Regards,<br>
+    <br>
+    Alex<br>
+    <div class="moz-signature">
+      <div class="preview"> </div>
+    </div>
+  </body>
+</html>
 
-
-<blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-=
-left-width:1px;border-left-color:rgb(204,204,204);border-left-style:solid;p=
-adding-left:1ex">There is variable called PREFERRED_VERSION_pkgname ?=3D &q=
-uot;version&quot; where you can set the desired version of any packages ava=
-ilable.(if thats what you are looking for) Try adding it in your image reci=
-pe or conf file. Also once added, you can check by executing &#39;bitbake -=
-s&#39; and see preferred version tab.</blockquote>
-
-
-</div><br><br>Actually I don&#39;t think that it&#39;s going to work for py=
-thon3, since python(2.7) and python3 are separate recipes that does not pro=
-vide the same package (python). They provide two different packages: python=
- and python3, respectively.</div>
-
-
-<div class=3D"gmail_extra">And I believe that PREFERRED_VERSION just have e=
-ffects on local.conf, machine.conf and distro.conf, not on image recipes.</=
-div><div class=3D"gmail_extra"><br>Maybe using update-alternatives class ca=
-n help me to achieve this:</div>
-
-<div class=3D"gmail_extra"><a href=3D"http://git.yoctoproject.org/cgit/cgit=
-.cgi/poky/tree/meta/classes/update-alternatives.bbclass">http://www.yoctopr=
-oject.org/docs/current/mega-manual/mega-manual.html#ref-classes-update-alte=
-rnatives</a><br>
-
-</div><div class=3D"gmail_extra"><br></div><div class=3D"gmail_extra"><br><=
-/div><div class=3D"gmail_extra"><br clear=3D"all"><div><div dir=3D"ltr"><di=
-v>
-Regards,</div><div><br></div>--<br>*dS<br>Diego Sueiro<br><br>Administrador=
- do Embarcados<br><a href=3D"http://www.embarcados.com.br/?utm_source=3Dass=
-inatura_diego&amp;utm_medium=3De-mail&amp;utm_campaign=3DAssinatura%20Email=
-%20Diego" target=3D"_blank">www.embarcados.com.br</a><br>
-
-
-<br>/*long live rock &#39;n roll*/<br></div></div>
-</div></div>
-
---001a11c2b28229b68904fa4b0842--
+--------------020809010903030701050807--
