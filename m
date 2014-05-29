@@ -1,34 +1,33 @@
-Return-Path: <sgw@linux.intel.com>
+Return-Path: <sgh@sgh.dk>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id ADB5DE00B68; Thu, 29 May 2014 10:08:15 -0700 (PDT)
+	id A312DE00B68; Thu, 29 May 2014 12:38:10 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-3.7 required=5.0 tests=RCVD_IN_DNSWL_HI,RDNS_NONE
+X-Spam-Status: No, score=0.0 required=5.0 tests=RCVD_IN_DNSWL_NONE
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [192.55.52.88 listed in list.dnswl.org]
-	*  1.3 RDNS_NONE Delivered to internal network by a host with no rDNS
-Received: from mga01.intel.com (unknown [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D176FE00A2F
-	for <yocto@yoctoproject.org>; Thu, 29 May 2014 10:08:10 -0700 (PDT)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga101.fm.intel.com with ESMTP; 29 May 2014 10:08:10 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.98,935,1392192000"; d="scan'208";a="546851633"
-Received: from unknown (HELO [10.255.12.174]) ([10.255.12.174])
-	by fmsmga002.fm.intel.com with ESMTP; 29 May 2014 10:08:09 -0700
-Message-ID: <53876979.1020100@linux.intel.com>
-Date: Thu, 29 May 2014 10:08:09 -0700
-From: Saul Wold <sgw@linux.intel.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:24.0) Gecko/20100101 Thunderbird/24.5.0
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [212.10.10.12 listed in list.dnswl.org]
+Received: from mx-aarh-2.stofanet.dk (mx-aarh-2.stofanet.dk [212.10.10.12])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 62724E00A2F
+	for <yocto@yoctoproject.org>; Thu, 29 May 2014 12:38:04 -0700 (PDT)
+Received: from 5634f347.rev.stofanet.dk ([86.52.243.71] helo=asrock)
+	by mx-aarh-2.stofanet.dk (envelope-from <sgh@sgh.dk>)
+	with esmtp id 1Wq69I-0002RT-0T; Thu, 29 May 2014 21:38:00 +0200
+Received: from koontz.localnet (localhost [127.0.0.1])
+	by asrock (Postfix) with ESMTPS id D90C57ED56;
+	Thu, 29 May 2014 21:37:59 +0200 (CEST)
+From: =?ISO-8859-1?Q?S=F8ren?= Holm <sgh@sgh.dk>
+To: yocto@yoctoproject.org
+Date: Thu, 29 May 2014 21:38:01 +0200
+Message-ID: <2207252.t1leCgR7Kn@koontz>
+User-Agent: KMail/4.13 (Linux/3.13.0-27-lowlatency; KDE/4.13.0; i686; ; )
+In-Reply-To: <53876533.7080306@bsmucker.eu.org>
+References: <537F9583.50407@bsmucker.eu.org> <2317978.pEesILAVCv@koontz>
+	<53876533.7080306@bsmucker.eu.org>
 MIME-Version: 1.0
-To: 'Patches and discussions about the oe-core layer'
-	<openembedded-core@lists.openembedded.org>, 
-	Yocto Project Discussion <yocto@yoctoproject.org>
-Subject: HEADS-UP: Master now has GCC 4.9 as default
+Subject: Re: Yocto with Initial RamFS
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,27 +39,31 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 29 May 2014 17:08:15 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Thu, 29 May 2014 19:38:10 -0000
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="iso-8859-1"
 
+Torsdag den 29. maj 2014 09:49:55 skrev Brian Smucker:
+> Thanks Soren,
+>=20
+> My followup question is: Can I mix toolchains in this situation?
+>=20
+> Can I compile the initramfs binaries with the uclibc toolchain based =
+on
+> the poky-tiny distro and the regular file system binaries with the
+> glibc-based toolchain (based on a different distro)?
+>=20
+> If this is possible, how would I begin to do it?
 
-Folks,
+I don't know, but I've got a simmilar need. Basically I was a very mini=
+mal=20
+busybox-static for the initramfs, but a "full-fledged" version for the =
+main=20
+rootfs. I guess that's somehow the same thing.
 
-We have been testing with GCC 4.9 in master_under_test for sometime now 
-and it's been passing local testing and sanity testing on the 
-autobuilder.  Since we have the final fix for a PPC ICE issue in place 
-now, we are moving to GCC 4.9 as the default in master for the 1.7 release.
+Maybe you have an idea on how to do that?
 
-Please be aware if this if you find some package failing unexpectedly.
-
-Thanks to Khem and other for this effort!
-
--- 
-     Sau!
-
-Saul Wold
-Yocto Component Wrangler @ Intel
-Yocto Project / Poky Build System
-
+=20
+--=20
+S=F8ren Holm
 
