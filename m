@@ -1,46 +1,44 @@
-Return-Path: <elizabeth.flanagan@intel.com>
+Return-Path: <hui.qing.chong@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id DFE97E00BBF; Thu, 29 May 2014 21:50:37 -0700 (PDT)
+	id 5B96EE00BBC; Fri, 30 May 2014 02:41:01 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-0.7 required=5.0 tests=RCVD_IN_DNSWL_LOW
+X-Spam-Status: No, score=-5.0 required=5.0 tests=RCVD_IN_DNSWL_HI
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [209.85.128.179 listed in list.dnswl.org]
-Received: from mail-ve0-f179.google.com (mail-ve0-f179.google.com
-	[209.85.128.179])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 87E8FE00B71
-	for <yocto@yoctoproject.org>; Thu, 29 May 2014 21:50:25 -0700 (PDT)
-Received: by mail-ve0-f179.google.com with SMTP id oy12so1515542veb.24
-	for <yocto@yoctoproject.org>; Thu, 29 May 2014 21:50:25 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:date
-	:message-id:subject:from:to:cc:content-type;
-	bh=vQK1aJLFoioRZShjj+uMmPen9MzaZXku4qop670xtWg=;
-	b=CCZh90sY216sUzzcFCGuX1p7fx5rgdbDL/FEaBFVZEQ34qxFdg4UlHkHWxXBSSx3VN
-	rNFUypLW3+Doq5rrqnoVY+iv4XPQoM4byQcaYerB0WEyhVCSiVHWjUzCNkJVOaXkrDxq
-	FyHz7G3UHtVWVe+XkLn8IYeHfAEwmmIXR3b0tMvm5Q1Esr7kgeYe0A2qlurCykRvkGDr
-	hWXEW8gYZ3PLe9LL72Oeri8JLXT0cO0AoUs52tVsB2as9JA0sl5lO7+BDQPvH5YaSL/0
-	29lqQGejkrjUqdO8bHg2JshC4tCtIVkZ51J2EeicnZUe9kjhfMqITIDCA+rUp+gcLFic
-	roUw==
-X-Gm-Message-State: ALoCoQntMRcNf4vv6j3cDiUrSw77VCPVAD4RsybWqGdTWQyBY7cDfvfRDdLCupFkN5gpzCWJ9jzT
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [143.182.124.21 listed in list.dnswl.org]
+Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 81499E00A44
+	for <yocto@yoctoproject.org>; Fri, 30 May 2014 02:40:55 -0700 (PDT)
+Received: from azsmga001.ch.intel.com ([10.2.17.19])
+	by azsmga101.ch.intel.com with ESMTP; 30 May 2014 02:40:34 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.98,940,1392192000"; d="scan'208";a="438939019"
+Received: from pgsmsx103.gar.corp.intel.com ([10.221.44.82])
+	by azsmga001.ch.intel.com with ESMTP; 30 May 2014 02:40:32 -0700
+Received: from pgsmsx108.gar.corp.intel.com (10.221.44.103) by
+	PGSMSX103.gar.corp.intel.com (10.221.44.82) with Microsoft SMTP Server
+	(TLS) id 14.3.123.3; Fri, 30 May 2014 17:39:46 +0800
+Received: from pgsmsx104.gar.corp.intel.com ([169.254.3.123]) by
+	PGSMSX108.gar.corp.intel.com ([169.254.8.69]) with mapi id
+	14.03.0123.003; Fri, 30 May 2014 17:39:46 +0800
+From: "Chong, Hui Qing" <hui.qing.chong@intel.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: [Repo Issue] x264: Unable to find revision 
+Thread-Index: Ac976iPX7mQHDD8nRnuAwLnZW5cePg==
+Date: Fri, 30 May 2014 09:39:46 +0000
+Message-ID: <4D2B74E594FF4C4A97424079247E473A17DC8258@PGSMSX104.gar.corp.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [172.30.20.205]
 MIME-Version: 1.0
-X-Received: by 10.220.69.72 with SMTP id y8mr11301328vci.21.1401425425168;
-	Thu, 29 May 2014 21:50:25 -0700 (PDT)
-Received: by 10.52.28.235 with HTTP; Thu, 29 May 2014 21:50:25 -0700 (PDT)
-In-Reply-To: <20140530040912.GR31444@kai-gentoo.bj.intel.com>
-References: <1400552217-15047-1-git-send-email-kangkai.yin@intel.com>
-	<20140520021510.GE4465@kai-gentoo.bj.intel.com>
-	<20140530040912.GR31444@kai-gentoo.bj.intel.com>
-Date: Thu, 29 May 2014 21:50:25 -0700
-Message-ID: <CAPhnLPBQwsWGRK847eFjPUyj=3zeL76PWBt6Uo6c+dPuopg7ww@mail.gmail.com>
-From: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
-To: Yin Kangkai <kangkai.yin@intel.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: [PATCH 1/3] SingleBranchScheduler: check each repo but not only the first one
+Cc: "x264-devel@videolan.org" <x264-devel@videolan.org>,
+	"openembedded-core@lists.openembedded.org"
+	<openembedded-core@lists.openembedded.org>
+Subject: [Repo Issue] x264: Unable to find revision
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -52,39 +50,30 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 30 May 2014 04:50:37 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Fri, 30 May 2014 09:41:01 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-Sorry Yin, I've been backlogged. I have it in my preproduction test
-setup. I should pull tomorrow if all goes well.
+Hi, I am working on Yocto Project 1.6, Daisy branch. Previously I am able t=
+o build the image successfully, but now I have errors as follow:
 
--b
+ERROR: Fetcher failure: Unable to find revision 585324fee380109acd9986388f8=
+57f413a60b896 in branch master even from upstream
+ERROR: Function failed: Fetcher failure for URL: 'git://git.videolan.org/x2=
+64.git'. Unable to fetch URL from any source.
 
-On Thu, May 29, 2014 at 9:09 PM, Yin Kangkai <kangkai.yin@intel.com> wrote:
-> On 2014-05-20, 10:15 +0800, Yin Kangkai wrote:
->> [up post intentionally]
->>
->> I was trying to setup yocto-autobuilder in my local env, and customize
->> it to my needs (i.e. watch git/gerrit event and only build my
->> images). It is a little bit of struggle for me to make it finally work
->> (due to the fact I am little knowledge to both buildbot and python.)
->>
->> Anyway, these several patches are needed in my setup. Please review
->> and considering merge.
->>
->> If this is not the right mailing list, please let me know. Thanks.
->
-> Sorry, any response on this patch set?
->
->> On 2014-05-20, 10:16 +0800, Yin Kangkai wrote:
->> > Without this patch, when you set a SingleBranchScheduler scheduler,
->> > code will only check against the first repo in repos list. e.g.:
->> ...
+In the x264_git.bb file, the SRC_URI and SRCREV are:
 
+SRC_URI =3D "git://git.videolan.org/x264.git \
+	        file://don-t-default-to-cortex-a9-with-neon.patch \
+	        "
+SRCREV =3D "585324fee380109acd9986388f857f413a60b896"
 
+Does anyone notice this and is there any solution for this error? Thank you=
+.
 
--- 
-Elizabeth Flanagan
-Yocto Project
-Build and Release
+Regards,
+Hui Qing
+
 
