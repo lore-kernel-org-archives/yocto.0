@@ -1,34 +1,44 @@
-Return-Path: <paul.eggleton@linux.intel.com>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 26EA0E00BBF; Fri, 30 May 2014 03:56:14 -0700 (PDT)
+	id A1338E00BC1; Fri, 30 May 2014 04:11:17 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-5.0 required=5.0 tests=RCVD_IN_DNSWL_HI
+X-Spam-Status: No, score=0.0 required=5.0 tests=RCVD_IN_DNSWL_NONE
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [143.182.124.21 listed in list.dnswl.org]
-Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E76F3E00A44
-	for <yocto@yoctoproject.org>; Fri, 30 May 2014 03:56:07 -0700 (PDT)
-Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by azsmga101.ch.intel.com with ESMTP; 30 May 2014 03:55:49 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.98,940,1392192000"; d="scan'208";a="438958917"
-Received: from acdivito-mobl2.gar.corp.intel.com (HELO
-	peggleto-mobl5.ger.corp.intel.com) ([10.252.123.223])
-	by azsmga001.ch.intel.com with ESMTP; 30 May 2014 03:55:48 -0700
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: yocto@yoctoproject.org
-Date: Fri, 30 May 2014 11:55:47 +0100
-Message-ID: <1678042.dqjeM3hNZI@peggleto-mobl5.ger.corp.intel.com>
-Organization: Intel Corporation
-User-Agent: KMail/4.12.5 (Linux/3.14.4-200.fc20.x86_64; KDE/4.12.5; x86_64; ; )
-In-Reply-To: <4D2B74E594FF4C4A97424079247E473A17DC8288@PGSMSX104.gar.corp.intel.com>
-References: <4D2B74E594FF4C4A97424079247E473A17DC8288@PGSMSX104.gar.corp.intel.com>
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [209.85.192.52 listed in list.dnswl.org]
+Received: from mail-qg0-f52.google.com (mail-qg0-f52.google.com
+	[209.85.192.52])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D3BCFE00BBC
+	for <yocto@yoctoproject.org>; Fri, 30 May 2014 04:11:11 -0700 (PDT)
+Received: by mail-qg0-f52.google.com with SMTP id a108so4863459qge.11
+	for <yocto@yoctoproject.org>; Fri, 30 May 2014 04:11:11 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc:content-type;
+	bh=YNotEbxS63l/+Yo9qbT+Lt9QXa9v7SQ8Adpb3xqQ39s=;
+	b=BJ9VzeDGliFbgkqsKmuKud71aXYsTKM2v21xmy5fA5B124Ma6NKbHhBc8TFedhfnzU
+	VMEngFlR+xVNgj5N6TIahTbq1FA9RvDoAqJiONzHU8KF4utPoK0X1Lnh/RKWvE6icH3S
+	iZMeAVkgitc3Gv2f/JV62X4FpZrBGc7f4s/lxk5ckmBggkSd13veROAJ+XZY4+PBAcyR
+	EkZrrAvv/Y1aHqdjiR6EmMyXXpqvIQ/G++3+QXlI5lbIyo70KmBBjGrB0cL15gS2pQFQ
+	ljHCNFnKxj/RBN+e8Hqe1mNsadC/Vdc/5qvPF/PEYvtr2rCaVAdxyPzBW/R5ZqVTMFxv
+	bUeg==
+X-Gm-Message-State: ALoCoQmxgcqLMjSOK4uIEJkA0S0Mf/7JeoIXdHvbBwP8+NBltmrU5XtearYBva/6nZAhflAlQcIl
+X-Received: by 10.140.91.161 with SMTP id z30mr18442279qgd.65.1401448270891;
+	Fri, 30 May 2014 04:11:10 -0700 (PDT)
 MIME-Version: 1.0
-Subject: Re: [OE-core] [Repo Issue] x264: Unable to find revision
+Received: by 10.140.101.77 with HTTP; Fri, 30 May 2014 04:10:50 -0700 (PDT)
+In-Reply-To: <CANJXcUap4aox3bhkxzq+EqTtZHokfMX6cqaao5o0oLqqRE+4SA@mail.gmail.com>
+References: <CANJXcUap4aox3bhkxzq+EqTtZHokfMX6cqaao5o0oLqqRE+4SA@mail.gmail.com>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Fri, 30 May 2014 12:10:50 +0100
+Message-ID: <CAJTo0LaNbvwf+2yEnPorOj81N4fSJwfYOxppqHcrX-hUHabBeA@mail.gmail.com>
+To: Kashyap Gada <gada.kashyap@gmail.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Source Command Permission Denied
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,42 +50,18 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 30 May 2014 10:56:14 -0000
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Fri, 30 May 2014 11:11:17 -0000
+Content-Type: text/plain; charset=UTF-8
 
-Hi Hui Qing,
+On 30 May 2014 05:06, Kashyap Gada <gada.kashyap@gmail.com> wrote:
+>> bash:
+>> /media/kashyap/3E0800DC08009555/yocto/poky/scripts/oe-setup-builddir:
+>> Permission denied
 
-On Friday 30 May 2014 09:44:31 Chong, Hui Qing wrote:
-> Hi, I am working on Yocto Project 1.6, Daisy branch. Previously I am able to
-> build the image successfully, but now I have errors as follow:
-> 
-> ERROR: Fetcher failure: Unable to find revision
-> 585324fee380109acd9986388f857f413a60b896 in branch master even from
-> upstream ERROR: Function failed: Fetcher failure for URL:
-> 'git://git.videolan.org/x264.git'. Unable to fetch URL from any source.
-> 
-> In the x264_git.bb file, the SRC_URI and SRCREV are:
-> 
-> SRC_URI = "git://git.videolan.org/x264.git \
-> 	        file://don-t-default-to-cortex-a9-with-neon.patch \
-> 	        "
-> SRCREV = "585324fee380109acd9986388f857f413a60b896"
-> 
-> Does anyone notice this and is there any solution for this error? Thank you.
+You appear to be running Yocto on external media and your system has
+likely mounted it with the "noexec" flags to prevent malicious
+programs.  You'll want to remount it with the "exec" flag, using mount
+-o exec,remount /media/kashyap/3E0800DC08009555 should do the trick.
 
-Yes, there is a patch here:
-
-http://patchwork.openembedded.org/patch/72933/
-
-It should be merged fairly soon I would think, but in the mean time you can 
-apply it locally.
-
-Cheers,
-Paul
-
--- 
-
-Paul Eggleton
-Intel Open Source Technology Centre
+Ross
 
