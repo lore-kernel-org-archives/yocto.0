@@ -1,32 +1,45 @@
-Return-Path: <kangkai.yin@intel.com>
+Return-Path: <elizabeth.flanagan@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 970AFE00BBF; Thu, 29 May 2014 21:09:16 -0700 (PDT)
+	id DFE97E00BBF; Thu, 29 May 2014 21:50:37 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-5.0 required=5.0 tests=RCVD_IN_DNSWL_HI
+X-Spam-Status: No, score=-0.7 required=5.0 tests=RCVD_IN_DNSWL_LOW
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [192.55.52.93 listed in list.dnswl.org]
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 29C0BE00B71
-	for <yocto@yoctoproject.org>; Thu, 29 May 2014 21:09:14 -0700 (PDT)
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
-	by fmsmga102.fm.intel.com with ESMTP; 29 May 2014 21:09:14 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.97,862,1389772800"; d="scan'208";a="349804088"
-Received: from kai-gentoo.bj.intel.com (HELO kai-gentoo) ([10.238.154.67])
-	by FMSMGA003.fm.intel.com with ESMTP; 29 May 2014 21:06:05 -0700
-Date: Fri, 30 May 2014 12:09:12 +0800
-From: Yin Kangkai <kangkai.yin@intel.com>
-To: yocto@yoctoproject.org
-Message-ID: <20140530040912.GR31444@kai-gentoo.bj.intel.com>
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [209.85.128.179 listed in list.dnswl.org]
+Received: from mail-ve0-f179.google.com (mail-ve0-f179.google.com
+	[209.85.128.179])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 87E8FE00B71
+	for <yocto@yoctoproject.org>; Thu, 29 May 2014 21:50:25 -0700 (PDT)
+Received: by mail-ve0-f179.google.com with SMTP id oy12so1515542veb.24
+	for <yocto@yoctoproject.org>; Thu, 29 May 2014 21:50:25 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:date
+	:message-id:subject:from:to:cc:content-type;
+	bh=vQK1aJLFoioRZShjj+uMmPen9MzaZXku4qop670xtWg=;
+	b=CCZh90sY216sUzzcFCGuX1p7fx5rgdbDL/FEaBFVZEQ34qxFdg4UlHkHWxXBSSx3VN
+	rNFUypLW3+Doq5rrqnoVY+iv4XPQoM4byQcaYerB0WEyhVCSiVHWjUzCNkJVOaXkrDxq
+	FyHz7G3UHtVWVe+XkLn8IYeHfAEwmmIXR3b0tMvm5Q1Esr7kgeYe0A2qlurCykRvkGDr
+	hWXEW8gYZ3PLe9LL72Oeri8JLXT0cO0AoUs52tVsB2as9JA0sl5lO7+BDQPvH5YaSL/0
+	29lqQGejkrjUqdO8bHg2JshC4tCtIVkZ51J2EeicnZUe9kjhfMqITIDCA+rUp+gcLFic
+	roUw==
+X-Gm-Message-State: ALoCoQntMRcNf4vv6j3cDiUrSw77VCPVAD4RsybWqGdTWQyBY7cDfvfRDdLCupFkN5gpzCWJ9jzT
+MIME-Version: 1.0
+X-Received: by 10.220.69.72 with SMTP id y8mr11301328vci.21.1401425425168;
+	Thu, 29 May 2014 21:50:25 -0700 (PDT)
+Received: by 10.52.28.235 with HTTP; Thu, 29 May 2014 21:50:25 -0700 (PDT)
+In-Reply-To: <20140530040912.GR31444@kai-gentoo.bj.intel.com>
 References: <1400552217-15047-1-git-send-email-kangkai.yin@intel.com>
 	<20140520021510.GE4465@kai-gentoo.bj.intel.com>
-MIME-Version: 1.0
-In-Reply-To: <20140520021510.GE4465@kai-gentoo.bj.intel.com>
-User-Agent: Mutt/1.5.21 (2010-09-15)
+	<20140530040912.GR31444@kai-gentoo.bj.intel.com>
+Date: Thu, 29 May 2014 21:50:25 -0700
+Message-ID: <CAPhnLPBQwsWGRK847eFjPUyj=3zeL76PWBt6Uo6c+dPuopg7ww@mail.gmail.com>
+From: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
+To: Yin Kangkai <kangkai.yin@intel.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: [PATCH 1/3] SingleBranchScheduler: check each repo but not only the first one
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -39,27 +52,39 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 30 May 2014 04:09:16 -0000
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+X-List-Received-Date: Fri, 30 May 2014 04:50:37 -0000
+Content-Type: text/plain; charset=UTF-8
 
-On 2014-05-20, 10:15 +0800, Yin Kangkai wrote:
-> [up post intentionally]
-> 
-> I was trying to setup yocto-autobuilder in my local env, and customize
-> it to my needs (i.e. watch git/gerrit event and only build my
-> images). It is a little bit of struggle for me to make it finally work
-> (due to the fact I am little knowledge to both buildbot and python.)
-> 
-> Anyway, these several patches are needed in my setup. Please review
-> and considering merge.
-> 
-> If this is not the right mailing list, please let me know. Thanks.
+Sorry Yin, I've been backlogged. I have it in my preproduction test
+setup. I should pull tomorrow if all goes well.
 
-Sorry, any response on this patch set?
+-b
 
-> On 2014-05-20, 10:16 +0800, Yin Kangkai wrote:
-> > Without this patch, when you set a SingleBranchScheduler scheduler,
-> > code will only check against the first repo in repos list. e.g.:
-> ...
+On Thu, May 29, 2014 at 9:09 PM, Yin Kangkai <kangkai.yin@intel.com> wrote:
+> On 2014-05-20, 10:15 +0800, Yin Kangkai wrote:
+>> [up post intentionally]
+>>
+>> I was trying to setup yocto-autobuilder in my local env, and customize
+>> it to my needs (i.e. watch git/gerrit event and only build my
+>> images). It is a little bit of struggle for me to make it finally work
+>> (due to the fact I am little knowledge to both buildbot and python.)
+>>
+>> Anyway, these several patches are needed in my setup. Please review
+>> and considering merge.
+>>
+>> If this is not the right mailing list, please let me know. Thanks.
+>
+> Sorry, any response on this patch set?
+>
+>> On 2014-05-20, 10:16 +0800, Yin Kangkai wrote:
+>> > Without this patch, when you set a SingleBranchScheduler scheduler,
+>> > code will only check against the first repo in repos list. e.g.:
+>> ...
+
+
+
+-- 
+Elizabeth Flanagan
+Yocto Project
+Build and Release
 
