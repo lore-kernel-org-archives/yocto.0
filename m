@@ -1,44 +1,39 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <ajlennon@dynamicdevices.co.uk>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id A1338E00BC1; Fri, 30 May 2014 04:11:17 -0700 (PDT)
+	id AB4A8E00BBF; Fri, 30 May 2014 04:39:52 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=0.0 required=5.0 tests=RCVD_IN_DNSWL_NONE
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [209.85.192.52 listed in list.dnswl.org]
-Received: from mail-qg0-f52.google.com (mail-qg0-f52.google.com
-	[209.85.192.52])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D3BCFE00BBC
-	for <yocto@yoctoproject.org>; Fri, 30 May 2014 04:11:11 -0700 (PDT)
-Received: by mail-qg0-f52.google.com with SMTP id a108so4863459qge.11
-	for <yocto@yoctoproject.org>; Fri, 30 May 2014 04:11:11 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc:content-type;
-	bh=YNotEbxS63l/+Yo9qbT+Lt9QXa9v7SQ8Adpb3xqQ39s=;
-	b=BJ9VzeDGliFbgkqsKmuKud71aXYsTKM2v21xmy5fA5B124Ma6NKbHhBc8TFedhfnzU
-	VMEngFlR+xVNgj5N6TIahTbq1FA9RvDoAqJiONzHU8KF4utPoK0X1Lnh/RKWvE6icH3S
-	iZMeAVkgitc3Gv2f/JV62X4FpZrBGc7f4s/lxk5ckmBggkSd13veROAJ+XZY4+PBAcyR
-	EkZrrAvv/Y1aHqdjiR6EmMyXXpqvIQ/G++3+QXlI5lbIyo70KmBBjGrB0cL15gS2pQFQ
-	ljHCNFnKxj/RBN+e8Hqe1mNsadC/Vdc/5qvPF/PEYvtr2rCaVAdxyPzBW/R5ZqVTMFxv
-	bUeg==
-X-Gm-Message-State: ALoCoQmxgcqLMjSOK4uIEJkA0S0Mf/7JeoIXdHvbBwP8+NBltmrU5XtearYBva/6nZAhflAlQcIl
-X-Received: by 10.140.91.161 with SMTP id z30mr18442279qgd.65.1401448270891;
-	Fri, 30 May 2014 04:11:10 -0700 (PDT)
+X-Spam-Status: No, score=0.0 required=5.0 tests=none autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: 
+Received: from www.dynamicdevices.co.uk (www.dynamicdevices.co.uk
+	[89.200.136.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 797F4E00A44
+	for <yocto@yoctoproject.org>; Fri, 30 May 2014 04:39:47 -0700 (PDT)
+Received: from localhost (localhost [127.0.0.1])
+	by www.dynamicdevices.co.uk (Postfix) with ESMTP id A9A3227E029
+	for <yocto@yoctoproject.org>; Fri, 30 May 2014 11:39:44 +0000 (UTC)
+X-Virus-Scanned: Debian amavisd-new at lennoab2.miniserver.com
+Received: from www.dynamicdevices.co.uk ([127.0.0.1])
+	by localhost (www.dynamicdevices.co.uk [127.0.0.1]) (amavisd-new,
+	port 10024) with ESMTP id JquFzKDyAt_Q for <yocto@yoctoproject.org>;
+	Fri, 30 May 2014 11:39:23 +0000 (UTC)
+Received: from [127.0.0.1] (cpc32-live22-2-0-cust59.17-2.cable.virginm.net
+	[82.36.253.60])
+	(using TLSv1 with cipher ECDHE-RSA-AES128-SHA (128/128 bits))
+	(No client certificate requested)
+	by www.dynamicdevices.co.uk (Postfix) with ESMTPSA id 3436227E019
+	for <yocto@yoctoproject.org>; Fri, 30 May 2014 11:39:23 +0000 (UTC)
+Message-ID: <53886DE1.3040906@dynamicdevices.co.uk>
+Date: Fri, 30 May 2014 12:39:13 +0100
+From: Alex J Lennon <ajlennon@dynamicdevices.co.uk>
+User-Agent: Mozilla/5.0 (Windows NT 6.3; WOW64;
+	rv:24.0) Gecko/20100101 Thunderbird/24.5.0
 MIME-Version: 1.0
-Received: by 10.140.101.77 with HTTP; Fri, 30 May 2014 04:10:50 -0700 (PDT)
-In-Reply-To: <CANJXcUap4aox3bhkxzq+EqTtZHokfMX6cqaao5o0oLqqRE+4SA@mail.gmail.com>
-References: <CANJXcUap4aox3bhkxzq+EqTtZHokfMX6cqaao5o0oLqqRE+4SA@mail.gmail.com>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Fri, 30 May 2014 12:10:50 +0100
-Message-ID: <CAJTo0LaNbvwf+2yEnPorOj81N4fSJwfYOxppqHcrX-hUHabBeA@mail.gmail.com>
-To: Kashyap Gada <gada.kashyap@gmail.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Source Command Permission Denied
+To: Yocto <yocto@yoctoproject.org>
+X-Enigmail-Version: 1.6
+Subject: How to leave original git remote in unpacked repository?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -50,18 +45,23 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 30 May 2014 11:11:17 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Fri, 30 May 2014 11:39:52 -0000
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: 7bit
 
-On 30 May 2014 05:06, Kashyap Gada <gada.kashyap@gmail.com> wrote:
->> bash:
->> /media/kashyap/3E0800DC08009555/yocto/poky/scripts/oe-setup-builddir:
->> Permission denied
+Hi,
 
-You appear to be running Yocto on external media and your system has
-likely mounted it with the "noexec" flags to prevent malicious
-programs.  You'll want to remount it with the "exec" flag, using mount
--o exec,remount /media/kashyap/3E0800DC08009555 should do the trick.
+When I drop into a devshell for an unpacked SRV_REV from a particular
+git SRC_URI I have the git remote origin set to a local archive in the
+~/downloads tree.
 
-Ross
+Is there a build variable, say, I can set to leave the original git
+remote set as well so that I can more easily push back changes I make?
+
+(Or is that a bad idea for some reason?)
+
+Thanks,
+
+Alex
+
 
