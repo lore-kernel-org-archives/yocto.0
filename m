@@ -1,53 +1,43 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <ajlennon@dynamicdevices.co.uk>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 026BCE00AD5; Sat, 31 May 2014 19:49:18 -0700 (PDT)
+	id 99177E00B78; Sun,  1 Jun 2014 14:07:27 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
-X-Spam-Level: *
-X-Spam-Status: No, score=1.7 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-	DKIM_VALID_AU, DRUGS_MUSCLE, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_LOW autolearn=no version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (raj.khem[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.223.173 listed in list.dnswl.org]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  2.5 DRUGS_MUSCLE Refers to a muscle relaxant
-Received: from mail-ie0-f173.google.com (mail-ie0-f173.google.com
-	[209.85.223.173])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6C0F0E009A7
-	for <yocto@yoctoproject.org>; Sat, 31 May 2014 19:49:09 -0700 (PDT)
-Received: by mail-ie0-f173.google.com with SMTP id lx4so3222473iec.18
-	for <yocto@yoctoproject.org>; Sat, 31 May 2014 19:49:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type;
-	bh=2ep7kKaxozLv1XkhVxmRqmWchXqN7ySq2V+DYmJ5+ow=;
-	b=JnPAdc8jxK25wUdW0H7R1HkW15Zie2JAdLDYhboUB/C30KxmGWiMYH+pAe42k1T7RS
-	+qPI/whb7U+Qam1qFPCU/wj/8qfvlrRt4JjGCUMIuIS8/1MKxnw3UaEIqmSVdhW9PNX+
-	RiY9HJ1B2y+kfbfO4/G32H3zyCWfIQDSvrKp+iQIxvmiUGpNFR13QsCe7T+YjwqTCnb9
-	8jCGkmwDoDHkKQDEfVHiBbq9EZ2eMiGynqXW2qFCVza9IL3la9BEVaCM1iV5/Ic2ZZUq
-	gH5nPDWbS0FOmVuvqKZ6qhriCogtPimukYiMk7kW35rLL46p1Nnr7CB+CEHA9727dx7a
-	A1tw==
+X-Spam-Level: 
+X-Spam-Status: No, score=0.0 required=5.0 tests=none autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: 
+Received: from www.dynamicdevices.co.uk (www.dynamicdevices.co.uk
+	[89.200.136.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C4D0DE00B0B
+	for <yocto@yoctoproject.org>; Sun,  1 Jun 2014 14:07:11 -0700 (PDT)
+Received: from localhost (localhost [127.0.0.1])
+	by www.dynamicdevices.co.uk (Postfix) with ESMTP id 8808427E024;
+	Sun,  1 Jun 2014 21:07:08 +0000 (UTC)
+X-Virus-Scanned: Debian amavisd-new at lennoab2.miniserver.com
+Received: from www.dynamicdevices.co.uk ([127.0.0.1])
+	by localhost (www.dynamicdevices.co.uk [127.0.0.1]) (amavisd-new,
+	port 10024)
+	with ESMTP id gYDhfW46e99T; Sun,  1 Jun 2014 21:07:05 +0000 (UTC)
+Received: from [127.0.0.1] (cpc32-live22-2-0-cust59.17-2.cable.virginm.net
+	[82.36.253.60])
+	(using TLSv1 with cipher ECDHE-RSA-AES128-SHA (128/128 bits))
+	(No client certificate requested)
+	by www.dynamicdevices.co.uk (Postfix) with ESMTPSA id 48E3027E019;
+	Sun,  1 Jun 2014 21:07:05 +0000 (UTC)
+Message-ID: <538B95F6.6070008@dynamicdevices.co.uk>
+Date: Sun, 01 Jun 2014 22:07:02 +0100
+From: Alex J Lennon <ajlennon@dynamicdevices.co.uk>
+User-Agent: Mozilla/5.0 (Windows NT 6.3; WOW64;
+	rv:24.0) Gecko/20100101 Thunderbird/24.5.0
 MIME-Version: 1.0
-X-Received: by 10.50.43.136 with SMTP id w8mr9239667igl.20.1401590949061; Sat,
-	31 May 2014 19:49:09 -0700 (PDT)
-Received: by 10.50.117.33 with HTTP; Sat, 31 May 2014 19:49:09 -0700 (PDT)
-Received: by 10.50.117.33 with HTTP; Sat, 31 May 2014 19:49:09 -0700 (PDT)
-In-Reply-To: <OFD5EA41E8.B3B2A295-ONC1257CE8.004C09F4-C1257CE8.004E22D1@alpine.de>
-References: <OFD5EA41E8.B3B2A295-ONC1257CE8.004C09F4-C1257CE8.004E22D1@alpine.de>
-Date: Sat, 31 May 2014 19:49:09 -0700
-Message-ID: <CAMKF1spDE3pO8nXaiMGDGZKbOTXYB0wn_g7Vh0gtEMBR=7=d3Q@mail.gmail.com>
-From: Khem Raj <raj.khem@gmail.com>
-To: Anooj Gopi <Anooj.Gopi@alpine.de>
-Cc: yocto@yoctoproject.org
-Subject: Re: Detailed steps involved in populate_sdk
+To: Alexandru Vaduva <vaduva.jan.alexandru@gmail.com>
+References: <CANwz6nzE64e0hiEm_D-m_Z27X0M1NJSwLAxTS1koy3mPqfkUwg@mail.gmail.com>	<528B9049.7010704@mlbassoc.com>	<CAK18fxFgx_d2wdwEG+WTknqFynKHKU1Hd7p7h1T+gXgtXqXNGQ@mail.gmail.com>	<CABwVrCrvXJvMspai9GVf0eJCXhEXZpyk2ibDwKiMPKxRFJzt7g@mail.gmail.com>	<5381D5B3.1070509@dynamicdevices.co.uk>	<1401051077.12067.YahooMailNeo@web122504.mail.ne1.yahoo.com>	<538319DB.40309@dynamicdevices.co.uk>	<5383805E.4020603@dynamicdevices.co.uk>	<CABwVrCp-mCsYZiWiLV_LMzKRgaoSoRVhftwAvqq-9Cx+KiiYcw@mail.gmail.com>	<5383891A.4050109@dynamicdevices.co.uk>
+	<CABwVrCoNRULO9xBFLeXMfrX7sc+dHCb1o-t_oR5vBtuc+Jeiww@mail.gmail.com>
+In-Reply-To: <CABwVrCoNRULO9xBFLeXMfrX7sc+dHCb1o-t_oR5vBtuc+Jeiww@mail.gmail.com>
+X-Enigmail-Version: 1.6
+Cc: Gary Thomas <gary@mlbassoc.com>, Yocto Project <yocto@yoctoproject.org>
+Subject: Re: [meta-raspberrypi] Using the camera
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -59,103 +49,104 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 01 Jun 2014 02:49:18 -0000
-Content-Type: multipart/alternative; boundary=089e011602a8a3a9ab04fabd52f2
-
---089e011602a8a3a9ab04fabd52f2
+X-List-Received-Date: Sun, 01 Jun 2014 21:07:27 -0000
 Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On May 30, 2014 7:15 AM, "Anooj Gopi" <Anooj.Gopi@alpine.de> wrote:
+
+On 26/05/2014 19:40, Alexandru Vaduva wrote:
+> It`s really hard to just offer impressions or suggestion.
+> Also I agree with the fact that the camera is ok cause I also tested
+> it with raspbian. No problems there.
+> But never the less I hope to keep me posted on any progress and
+> observations.
+> When I will have the time I will try some things of my own.
 >
-> Hello,
->
-> I am new to yocto project and learning about the project step by step for
-one of our project.
->
-> For study purpose, I'm currently using the latest yocto git clone and
-built "bitbake core-image-minimal" successfully for "beaglebone". I have
-got all the target images to boot. At this point I assume that all the
-native tool chain binaries required to build the target image is already
-generated by yocto.
->
-> Now when I try to create the SDK with the command "bitbake
-core-image-minimal -c populate_sdk", I can see there is again native
-packages being configured and compiled. As per my understanding about yocto
-I was expecting this would have already done during "bitbake
-core-image-minimal" because all these tools are required to build the
-images. In my understanding populate_sdk would just install the "native
-package deb files" already created during "bitbake core-image-minimal". I
-know there is something wrong in my understanding. Could you please explain
-bit in detail.
+> Alex
 
-sdks are supposed to run on different hosts too which we call sdkhost there
-fore it has to build native sdk packages to insulate itself from build
-host. for normal build these consideration is not needed
+I've made a certain amount of progress with this Alex.
 
->
-> Best Regards,
-> Anooj Gopi
-> Alpine Electronics R&D Europe GmbH, Vor dem Lauch 14, 70567 Stuttgart,
-> Registergericht Stuttgart, HRB 25265
-> Geschaeftsfuehrer: Satoshi Soma, Shuji Taguchi
-> Working office: Vor dem Lauch 14, 70567 Stuttgart
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
->
+1) I've been comparing Raspbian with a Yocto meta-raspberrypi armhf
+build, as raspivid works for me with Raspbian, but not with my
+meta-raspberrypi poky build.
 
---089e011602a8a3a9ab04fabd52f2
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+     To cut a long story short the raspivid in Raspian is v1.3.9 and it
+comes from raspiberrypi/firmware which as you know is the binary-only
+release
 
-<p dir=3D"ltr"><br>
-On May 30, 2014 7:15 AM, &quot;Anooj Gopi&quot; &lt;<a href=3D"mailto:Anooj=
-.Gopi@alpine.de">Anooj.Gopi@alpine.de</a>&gt; wrote:<br>
-&gt;<br>
-&gt; Hello, <br>
-&gt;<br>
-&gt; I am new to yocto project and learning about the project step by step =
-for one of our project. <br>
-&gt;<br>
-&gt; For study purpose, I&#39;m currently using the latest yocto git clone =
-and built &quot;bitbake core-image-minimal&quot; successfully for &quot;bea=
-glebone&quot;. I have got all the target images to boot. At this point I as=
-sume that all the native tool chain binaries required to build the target i=
-mage is already generated by yocto. <br>
+     If I copy only the raspivid executable from the Raspbian
+installation over to the Yocto installation then raspivid runs up ok,
+shows the cam onscreen and so forth.
+     (so shared libs, config and so forth all would seem to be fine)
 
-&gt;<br>
-&gt; Now when I try to create the SDK with the command &quot;bitbake core-i=
-mage-minimal -c populate_sdk&quot;, I can see there is again native package=
-s being configured and compiled. As per my understanding about yocto I was =
-expecting this would have already done during &quot;bitbake core-image-mini=
-mal&quot; because all these tools are required to build the images. In my u=
-nderstanding populate_sdk would just install the &quot;native package deb f=
-iles&quot; already created during &quot;bitbake core-image-minimal&quot;. I=
- know there is something wrong in my understanding. Could you please explai=
-n bit in detail. </p>
+     I tried building the same v1.3.9 version of raspivid from the
+userland repository, but I get the same error as before,
 
-<p dir=3D"ltr">sdks are supposed to run on different hosts too which we cal=
-l sdkhost there fore it has to build native sdk packages to insulate itself=
- from build host. for normal build these consideration is not needed</p>
+root@raspberrypi:~# raspivid -o test
+mmal: mmal_component_create_core: could not find component 'vc.ril.camera'
+mmal: Failed to create camera component
+mmal: main: Failed to create camera component
+mmal: Failed to run camera app. Please check for firmware updates
 
-<p dir=3D"ltr">&gt;<br>
-&gt; Best Regards, <br>
-&gt; Anooj Gopi <br>
-&gt; Alpine Electronics R&amp;D Europe GmbH, Vor dem Lauch 14, 70567 Stuttg=
-art,<br>
-&gt; Registergericht Stuttgart, HRB 25265<br>
-&gt; Geschaeftsfuehrer: Satoshi Soma, Shuji Taguchi <br>
-&gt; Working office: Vor dem Lauch 14, 70567 Stuttgart<br>
-&gt; --<br>
-&gt; _______________________________________________<br>
-&gt; yocto mailing list<br>
-&gt; <a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><b=
-r>
-&gt; <a href=3D"https://lists.yoctoproject.org/listinfo/yocto">https://list=
-s.yoctoproject.org/listinfo/yocto</a><br>
-&gt;<br>
-</p>
+     So it looks to me as though there's something different between the
+firmware binary release and the more recent open-sourced userland code
 
---089e011602a8a3a9ab04fabd52f2--
+    I can show that by just doing my armhf build then pulling down the
+binary, which runs up,
+  
+   
+https://github.com/raspberrypi/firmware/raw/master/hardfp/opt/vc/bin/raspivid
+
+    Looking back through the meta-raspberrypi commit logs it looks as
+though userland replaced vc-graphics-hardfp back at 33d2e1d7
+
+-PREFERRED_PROVIDER_virtual/egl ?= "vc-graphics-hardfp"
+-PREFERRED_PROVIDER_virtual/libgles2 ?= "vc-graphics-hardfp"
++PREFERRED_PROVIDER_virtual/egl ?= "userland"
++PREFERRED_PROVIDER_virtual/libgles2 ?= "userland"
+
+    If I build with vc-graphics-hardfp I get a raspivid that runs up
+
+2) I was wrong about the Bellagio support. Instead there are a set of
+library mappings in /etc/xdg/gstomx.conf
+  These need to be modified to point to libopenmaxil.so not the bellagio
+library
+
+e.g.
+
+[omxh264enc]
+type-name=GstOMXH264Enc
+core-name=/opt/vc/lib/libopenmaxil.so
+component-name=OMX.broadcom.video_encode
+rank=256
+in-port-index=200
+out-port-index=201
+hacks=no-component-role
+ 
+  With this in place we can do some hardware encoding of h.264 video
+with gstreamer-1.0, both to file and via RTP over UDP.
+
+3) I believe gstreamer1.0-omx may need to be configured to target RPi
+not Bellagio
+
+e.g. GSTREAMER_1_0_OMX_TARGET="rpi"
+
+https://github.com/openembedded/oe-core/blob/master/meta/recipes-multimedia/gstreamer/gstreamer1.0-omx.inc
+
+There's also a patch needed in gstreamer1.0-omx.inc as the RPi headers
+are as incomplete as the Bellagio headers .
+
+4) There are some issues using the v4l2 driver with gstreamer. It seems
+to block on polling
+
+As v4l2src doesn't currently support h.264 for Gstreamer1.0 inherently
+(my reading is that there's some uvch264_src code for this in
+development) I'm concentrating on getting raspivid working for now and
+then piping into an Gstreamer1.0 fdsrc which works for me on Raspbian,
+and I'll see what the overhead is with that approach.
+
+Cheers,
+
+Alex
+
+
