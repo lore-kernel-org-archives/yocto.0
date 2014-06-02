@@ -1,36 +1,30 @@
-Return-Path: <mark.hatle@windriver.com>
+Return-Path: <Adrian.Dudau@enea.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id A0777E00BC2; Mon,  2 Jun 2014 07:18:43 -0700 (PDT)
+	id 650BFE00B66; Mon,  2 Jun 2014 07:44:26 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=0.0 required=5.0 tests=RCVD_IN_DNSWL_NONE
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [147.11.146.13 listed in list.dnswl.org]
-Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2B7ECE00B20
-	for <yocto@yoctoproject.org>; Mon,  2 Jun 2014 07:18:43 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail1.windriver.com (8.14.5/8.14.5) with ESMTP id s52EIgdI003994
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL)
-	for <yocto@yoctoproject.org>; Mon, 2 Jun 2014 07:18:42 -0700 (PDT)
-Received: from Marks-MacBook-Pro.local (172.25.36.228) by
-	ALA-HCA.corp.ad.wrs.com (147.11.189.50) with Microsoft SMTP Server id
-	14.3.169.1; Mon, 2 Jun 2014 07:18:42 -0700
-Message-ID: <538C87C1.7070404@windriver.com>
-Date: Mon, 2 Jun 2014 09:18:41 -0500
-From: Mark Hatle <mark.hatle@windriver.com>
-Organization: Wind River Systems
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.9;
-	rv:24.0) Gecko/20100101 Thunderbird/24.5.0
+X-Spam-Status: No, score=0.0 required=5.0 tests=none autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: 
+Received: from mx-3.enea.com (sestofw01.enea.se [192.36.1.252])
+	by yocto-www.yoctoproject.org (Postfix) with SMTP id E54C3E00985
+	for <yocto@yoctoproject.org>; Mon,  2 Jun 2014 07:44:17 -0700 (PDT)
+Received: from SESTOEX04.enea.se ([fe80::bc2d:9299:d6b2:d0b7]) by
+	SESTOEX08.enea.se ([fe80::1c3:4003:dc47:23c0%11]) with mapi id
+	14.03.0158.001; Mon, 2 Jun 2014 16:44:12 +0200
+From: Adrian Dudau <Adrian.Dudau@enea.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: bitbake virtual/kernel -c devshell doesn't build the sdk
+Thread-Index: AQHPfnEeuB3G5C+g6EOpPKejOhOvtg==
+Date: Mon, 2 Jun 2014 14:44:11 +0000
+Message-ID: <1401720252.7631.19.camel@sestows129.enea.se>
+Accept-Language: en-US, sv-SE
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [172.16.141.146]
 MIME-Version: 1.0
-To: Chong Lu <Chong.Lu@windriver.com>, <yocto@yoctoproject.org>
-References: <1400810369-14634-1-git-send-email-Chong.Lu@windriver.com>
-In-Reply-To: <1400810369-14634-1-git-send-email-Chong.Lu@windriver.com>
-Subject: Re: [meta-selinux][PATCH][V2] setools: Add bison-native and flex-native to DEPENDS
+Subject: bitbake virtual/kernel -c devshell doesn't build the sdk
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,33 +36,19 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 02 Jun 2014 14:18:43 -0000
-Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Mon, 02 Jun 2014 14:44:26 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <8B739CA18F0B544E97F7675F7137372C@local>
+Content-Transfer-Encoding: base64
 
-Merged to master.
-
-On 5/22/14, 8:59 PM, Chong Lu wrote:
-> Avoid policy_scan.c: No such file or directory
->
-> Signed-off-by: Chong Lu <Chong.Lu@windriver.com>
-> ---
->   recipes-security/setools/setools_3.3.8.bb |    2 +-
->   1 file changed, 1 insertion(+), 1 deletion(-)
->
-> diff --git a/recipes-security/setools/setools_3.3.8.bb b/recipes-security/setools/setools_3.3.8.bb
-> index 1e95a60..ba1802a 100644
-> --- a/recipes-security/setools/setools_3.3.8.bb
-> +++ b/recipes-security/setools/setools_3.3.8.bb
-> @@ -27,7 +27,7 @@ LIC_FILES_CHKSUM = "file://${S}/COPYING;md5=26035c503c68ae1098177934ac0cc795 \
->                       file://${S}/COPYING.GPL;md5=751419260aa954499f7abaabaa882bbe \
->                       file://${S}/COPYING.LGPL;md5=fbc093901857fcd118f065f900982c24"
->
-> -DEPENDS += "python libsepol libselinux libxml2"
-> +DEPENDS += "bison-native flex-native python libsepol libselinux libxml2"
->
->   PACKAGE_BEFORE_PN += "${PN}-libs"
->
->
-
+SGksDQoNClN0YXJ0aW5nIGZyb20gYSBmcmVzaCBidWlsZCBmb2xkZXIsIEkgcnVuICJiaXRiYWtl
+IC1jIGRldnNoZWxsDQp2aXJ0dWFsL2tlcm5lbCIgYW5kIGV4cGVjdCB0byBoYXZlIHRoZSBjcm9z
+cyBTREsgc291cmNlZCBhbmQgYmUgYWJsZSB0bw0KYnVpbGQgdGhlIGtlcm5lbCBpbiB0aGUgZGV2
+c2hlbGwuIFRoZSBpc3N1ZSBpcyB0aGF0IGV2ZW4gdGhvdWdoIFBBVEggaXMNCnByZXBwZW5kZWQg
+Y29ycmVjdGx5IHdpdGggdGhlIGV4cGVjdGVkIGxvY2F0aW9uIG9mIHRoZSBTREsgKGluIG15IGNh
+c2UNCnRtcC9zeXNyb290cy94ODZfNjQtbGludXgvdXNyL2Jpbi9wcGNlNTAwdjItZW5lYS1saW51
+eC1nbnVzcGUpLCB0aGUNCmNyb3NzIFNESyBpcyBub3QgYnVpbHQuICBBbSBJIHdyb25nIGFzc3Vt
+aW5nIHRoYXQgIC1jIGRldnNoZWxsDQp2aXJ0dWFsL2tlcm5lbCBzaG91bGQgZGVwZW5kIG9uIHRo
+ZSBjcm9zc3Nkaz8NCg0KYmVzdCByZWdhcmRzLA0KLS1BZHJpYW4NCg==
 
