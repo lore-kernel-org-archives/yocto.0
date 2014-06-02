@@ -1,51 +1,48 @@
-Return-Path: <tom@ewsting.org>
+Return-Path: <jwenxi@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 7851AE00B78; Mon,  2 Jun 2014 03:51:05 -0700 (PDT)
+	id 06D7BE00B66; Mon,  2 Jun 2014 08:06:08 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-0.7 required=5.0 tests=RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [74.125.82.52 listed in list.dnswl.org]
-Received: from mail-wg0-f52.google.com (mail-wg0-f52.google.com [74.125.82.52])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D52DDE00B6C
-	for <yocto@yoctoproject.org>; Mon,  2 Jun 2014 03:51:04 -0700 (PDT)
-Received: by mail-wg0-f52.google.com with SMTP id l18so4933250wgh.35
-	for <yocto@yoctoproject.org>; Mon, 02 Jun 2014 03:51:03 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-	:references;
-	bh=P2WxgTT7wE9jMXp9MzOKaBgibIJdHUb555VSBm0tHfM=;
-	b=fMuv/2sxAzBK1y5vAwe40kb/AsM+/yKnZGD5EwN68t8XlFkVQraMlzEfYqDv0kosz4
-	1cx5i3xgzMtlS1mINDkjYlDLvYr7mUfBm3jBJRxvLIEqcKoNAGQ/59m88NPjCLlPLRzX
-	H0wPE4f/jsKfK38UI9HfdJfe5wniLt5WhmRbh4EqO+2VkGJz0WpYn+toEgU9lUq2MkeE
-	U3uvTAwtwohb2uW79DUMjexvZOUjpZHNgVn3SYndixqUJIKOvbQGgGUaWeHmUlrTr15P
-	dlYnBNCnMsPS5gBNvTKpjQA/WvXlgcxSIMF3m17RvVD2BIVAznmu7aOC8Sfu4itVzsTd
-	c9QQ==
-X-Gm-Message-State: ALoCoQmOTt3TfzgBefcr08yyE/mnUAKFWeJ7jbPe2FChd2u25gNTRXl1OjSRquFFG8TtXAGD+P5h
-X-Received: by 10.180.98.163 with SMTP id ej3mr21232491wib.9.1401706263309;
-	Mon, 02 Jun 2014 03:51:03 -0700 (PDT)
-Received: from localhost.localdomain
-	(cpc9-rdng24-2-0-cust272.15-3.cable.virginm.net. [81.99.113.17])
-	by mx.google.com with ESMTPSA id
-	gd5sm34465656wjb.40.2014.06.02.03.51.01 for <multiple recipients>
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-	Mon, 02 Jun 2014 03:51:02 -0700 (PDT)
-From: tom@ewsting.org
-To: opkg-devel@googlegroups.com,
-	yocto@yoctoproject.org
-Date: Mon,  2 Jun 2014 11:50:48 +0100
-Message-Id: <1401706248-32605-2-git-send-email-tom@ewsting.org>
-X-Mailer: git-send-email 1.9.2
-In-Reply-To: <1401706248-32605-1-git-send-email-tom@ewsting.org>
-References: <1401706248-32605-1-git-send-email-tom@ewsting.org>
+X-Spam-Status: No, score=-0.1 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+	DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (jwenxi[at]gmail.com)
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.192.41 listed in list.dnswl.org]
+Received: from mail-qg0-f41.google.com (mail-qg0-f41.google.com
+	[209.85.192.41])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C2D1CE00985
+	for <yocto@yoctoproject.org>; Mon,  2 Jun 2014 08:05:49 -0700 (PDT)
+Received: by mail-qg0-f41.google.com with SMTP id j5so10830035qga.14
+	for <yocto@yoctoproject.org>; Mon, 02 Jun 2014 08:05:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:from:date:message-id:subject:to:content-type;
+	bh=mE0rQKPBn0uuX1fjmBsX9CQRvhquHbUKtqUfd4ciAZE=;
+	b=fxWMKVx7/FlYzNkyB3LcPQTPjNnos5FxBaGqAxrgYkbkQHBXwDKfNPbIa+699mfG8f
+	/FYBLGTvnQUHcDEpHVuieVTsJn/dVcM7GaOA5yqx121zCGg2SVNsIJQ5dUmI1C1/nw3y
+	QMcRuYRsWKJZ5QJK0F3znxbSsuw98k+X5hc8fx3EqBnMp/9vXqd0TVu5RwvJ0xfBbelQ
+	5ZGgkiXywWg/B/znIWQ6zGx7mRyRgKAgq/gE6PPNDNF1khE8wgrUxYeTW/B7DqVUdy/G
+	gkLfANm/B9D/JL/Dc2UiToTSYFnHRlc5SuRDtfmMq5no/aWvBy/cJEOwxmz0T1QFMVtI
+	U8Rw==
+X-Received: by 10.224.124.67 with SMTP id t3mr51053937qar.70.1401721548474;
+	Mon, 02 Jun 2014 08:05:48 -0700 (PDT)
+MIME-Version: 1.0
+Received: by 10.140.47.109 with HTTP; Mon, 2 Jun 2014 08:05:28 -0700 (PDT)
+From: Wenxi Jin <jwenxi@gmail.com>
+Date: Mon, 2 Jun 2014 17:05:28 +0200
+Message-ID: <CAEsi-O6EKoUqH4Yc05Wt3eo6w7gBgaq5SF3w_1vVf3ZJEkEmhw@mail.gmail.com>
+To: yocto@yoctoproject.org
 X-Mailman-Approved-At: Mon, 02 Jun 2014 08:17:01 -0700
-Cc: brendan.le.foll@intel.com, paul.eggleton@linux.intel.com,
-	Thomas Ingleby <thomas.c.ingleby@intel.com>
-Subject: [opkg-utils PATCH] opkg-build: add detection if using GNU tar.
+Subject: How to change linux kernel to my own linux kernel repository in poky-tiny
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -57,60 +54,54 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 02 Jun 2014 10:51:05 -0000
+X-List-Received-Date: Mon, 02 Jun 2014 15:06:08 -0000
+Content-Type: multipart/alternative; boundary=001a11c3ac1ef89a0c04fadbba5f
 
-From: Thomas Ingleby <thomas.c.ingleby@intel.com>
+--001a11c3ac1ef89a0c04fadbba5f
+Content-Type: text/plain; charset=UTF-8
 
-* Some options of GNU tar do not exist on other implementations
+Hi,
 
-Signed-off-by: Thomas Ingleby <thomas.c.ingleby@intel.com>
----
- opkg-build | 17 ++++++++++++++---
- 1 file changed, 14 insertions(+), 3 deletions(-)
+1. By following "Hands-on kernel lab" meta-lab4-qemux86 tutorial, I managed
+to use my own linux kernel repository. And then I realized the bzImage.bin
+file is around 87M which is totally not acceptable on my target platform
+MIPS.
 
-diff --git a/opkg-build b/opkg-build
-index e314712..8abc14d 100755
---- a/opkg-build
-+++ b/opkg-build
-@@ -159,6 +159,17 @@ ogargs=""
- outer=ar
- noclean=0
- opkext=0
-+
-+tarformat=""
-+#Probably not the best way to detect if running on a system without full GNU tar
-+set +e
-+tar --help | grep "format" &> /dev/null
-+if [ $? -eq 0 ]
-+then
-+    tarformat="--format=gnu"
-+fi
-+set -e
-+
- usage="Usage: $0 [-c] [-C] [-O] [-o owner] [-g group] <pkg_directory> [<destination_directory>]"
- while getopts "cCg:ho:vO" opt; do
-     case $opt in
-@@ -233,8 +244,8 @@ tmp_dir=$dest_dir/IPKG_BUILD.$$
- mkdir $tmp_dir
- 
- echo $CONTROL > $tmp_dir/tarX
--( cd $pkg_dir && tar $ogargs -X $tmp_dir/tarX -cz --format=gnu -f $tmp_dir/data.tar.gz . )
--( cd $pkg_dir/$CONTROL && tar $ogargs -cz --format=gnu -f $tmp_dir/control.tar.gz . )
-+( cd $pkg_dir && tar $ogargs -X $tmp_dir/tarX -cz $tarformat -f $tmp_dir/data.tar.gz . )
-+( cd $pkg_dir/$CONTROL && tar $ogargs -cz $tarformat -f $tmp_dir/control.tar.gz . )
- rm $tmp_dir/tarX
- 
- echo "2.0" > $tmp_dir/debian-binary
-@@ -249,7 +260,7 @@ rm -f $pkg_file
- if [ "$outer" = "ar" ] ; then
-   ( cd $tmp_dir && ar -crf $pkg_file ./debian-binary ./control.tar.gz ./data.tar.gz )
- else
--  ( cd $tmp_dir && tar -cz --format=gnu -f $pkg_file ./debian-binary ./control.tar.gz ./data.tar.gz )
-+  ( cd $tmp_dir && tar -cz $tarformat -f $pkg_file ./debian-binary ./control.tar.gz ./data.tar.gz )
- fi
- 
- rm $tmp_dir/debian-binary $tmp_dir/data.tar.gz $tmp_dir/control.tar.gz
--- 
-1.9.2
+Q1: How should I reduce the kernel size?
 
+2. Then I found out there is linux-tiny which is giving <4M kernel image.
+But I could not figure out how to make it pointing to my own linux kernel
+repository.
 
+Q2: Should I use linux-tiny? Or should I stick with the 1. method?
+
+Basically what I want is to use my own linux kernel repository and <4M
+kernel size.
+
+Any help would be so much appreciated! :)
+
+BR
+Wenxi
+
+--001a11c3ac1ef89a0c04fadbba5f
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Hi,<div><br></div><div>1. By following &quot;Hands-on kern=
+el lab&quot; meta-lab4-qemux86 tutorial, I managed to use my own linux kern=
+el repository. And then I realized the bzImage.bin file is around 87M which=
+ is totally not acceptable on my target platform MIPS.</div>
+
+<div><br></div><div>Q1: How should I reduce the kernel size?</div><div><br>=
+</div><div>2. Then I found out there is linux-tiny which is giving &lt;4M k=
+ernel image. But I could not figure out how to make it pointing to my own l=
+inux kernel repository.</div>
+
+<div><br></div><div>Q2: Should I use linux-tiny? Or should I stick with the=
+ 1. method?</div><div><br></div><div>Basically what I want is to use my own=
+ linux kernel repository and &lt;4M kernel size.</div><div><br></div><div>
+
+Any help would be so much appreciated! :)</div><div><br></div><div>BR</div>=
+<div>Wenxi</div></div>
+
+--001a11c3ac1ef89a0c04fadbba5f--
