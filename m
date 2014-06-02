@@ -1,26 +1,51 @@
-Return-Path: <packages@packages.i.yoctoproject.org>
+Return-Path: <b.weissbach@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 47131E00724; Sun,  1 Jun 2014 19:01:09 -0700 (PDT)
+	id C024BE00B4C; Mon,  2 Jun 2014 00:05:15 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.0 required=5.0 tests=ALL_TRUSTED autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.0 ALL_TRUSTED Passed through trusted hosts only via
-	SMTP
-Received: from packages.i.yoctoproject.org (packages.i.yoctoproject.org
-	[10.0.10.47])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A7118E00724
-	for <yocto@yoctoproject.org>; Sun,  1 Jun 2014 19:01:06 -0700 (PDT)
-Received: by packages.i.yoctoproject.org (Postfix, from userid 802)
-	id A4FC9A4048; Mon,  2 Jun 2014 02:01:06 +0000 (UTC)
-Date: Mon, 2 Jun 2014 02:01:06 +0000
-From: "package-report@yoctoproject.org" <packages@packages.i.yoctoproject.org>
-To: yocto@yoctoproject.org
-Message-ID: <20140602020106.GA20143@packages.i.yoctoproject.org>
+X-Spam-Status: No, score=-0.8 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+	DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (b.weissbach[at]gmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [74.125.82.44 listed in list.dnswl.org]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-wg0-f44.google.com (mail-wg0-f44.google.com [74.125.82.44])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 38087E00A2F
+	for <yocto@yoctoproject.org>; Mon,  2 Jun 2014 00:05:11 -0700 (PDT)
+Received: by mail-wg0-f44.google.com with SMTP id a1so4550034wgh.15
+	for <yocto@yoctoproject.org>; Mon, 02 Jun 2014 00:05:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:content-type; bh=QF9Fuf8otzcT0oBtRipBEFNrTPYpe1iK1XNtdc8LTDI=;
+	b=FjGUpWhlk+KbYerR5iDtvJFw/lC4g+xJRSJY2OHBoIzyFxImch/iWQrkvvpPO0D/De
+	7j2yq/A0b35hEJD7xKbjnB7nAicQdT1I2XOusYj4CqEk8+aAByoy1hV0mmOhyE9YO5zi
+	o1a3n+jeXjrzGrId19wt9zsjueFWihXDz3fFM/xuYuIMNTQbrlxlcXmvLZt0Wd2KvaEO
+	kjJ8cDNh0mcsUs1hb1HL2keDUOX1zQfYHGUms8qJAqfiXDfyqGFRebVJVfGBQvbpR3tU
+	zLvDq7L0/vjh/wApyFn2kl5LR2qXJeMj065t3PvWUq9DlsVRv6Y/evv3RDZ6H9fWMiM6
+	+2XA==
+X-Received: by 10.180.185.100 with SMTP id fb4mr19599146wic.11.1401692710618; 
+	Mon, 02 Jun 2014 00:05:10 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mutt/1.5.21 (2010-09-15)
-Subject: [Package Report System]Upgrade recipes name list
+Received: by 10.217.129.74 with HTTP; Mon, 2 Jun 2014 00:04:50 -0700 (PDT)
+In-Reply-To: <CAB=cyLZcLyGccCehBpA7vvvR2NaKPsKLKP1Snz=XGa29c92CYA@mail.gmail.com>
+References: <CAJhyh6m8NuB0V=KOqCOscpDZm_m8X=OQGF4HAn39KR+Etjud8A@mail.gmail.com>
+	<CAMCfZKGMAN3ZgKQa3s-yN2kOY5BJni-5yT9LbeD-TsK_sxz38g@mail.gmail.com>
+	<CAJhyh6=rXfS8xH-X_zbQruwhULGJAi=fApbvBMqP2SXCRYT42g@mail.gmail.com>
+	<CAB=cyLZcLyGccCehBpA7vvvR2NaKPsKLKP1Snz=XGa29c92CYA@mail.gmail.com>
+From: =?UTF-8?Q?Bastian_Wei=C3=9Fbach?= <b.weissbach@gmail.com>
+Date: Mon, 2 Jun 2014 09:04:50 +0200
+Message-ID: <CAJhyh6=sCpmpXbdxz7iRLCJoTapktrezvnopDz_WqAAvA2rGYw@mail.gmail.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: QT5 for gernericX86
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -32,182 +57,270 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 02 Jun 2014 02:01:09 -0000
-X-Groupsio-MsgNum: 19870
-Content-Type: multipart/mixed; boundary="LZvS9be/3tNcYl/X"
-Content-Disposition: inline
+X-List-Received-Date: Mon, 02 Jun 2014 07:05:15 -0000
+Content-Type: multipart/alternative; boundary=001a11c23ff619cbd804fad504ba
 
---LZvS9be/3tNcYl/X
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+--001a11c23ff619cbd804fad504ba
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-This mail was sent out by Package Report System.
-This message list those recipes which need to be upgraded. If maintainers believe some of them needn't to upgrade this time, they can fill in RECIPE_NO_UPDATE_REASON_pn-"xxx" in upstream_tracking files to ignore this recipe remainder until newer upstream version was detected.
-Example:
-RECIPE_NO_UPDATE_REASON_pn-"xxx" = "Not upgrade to 2.0 because the new version is unstable"
-You can check the detail information at http://packages.yoctoproject.org/upgradepkgname
+Hi,
+
+still no luck for this. My current configuration is:
+
+IMAGE_INSTALL_append =3D " cinematicexperience "
+DISTRO_FEATURES_append =3D " opengl "
+DISTRO_FEATURES_remove =3D " x11 wayland "
+
+Also I added a .bbappend to the qtbase package:
+
+PACKAGECONFIG =3D " release dbus udev evdev widgets tools libs openssl jpeg
+libpng zlib gles2 "
+
+This seems to work for QT5. But I think mesa does not install any DRI
+drivers into the image. The DRI drivers are build (because they are into
+the deploy-rpms folder) but not installed.
+
+Another question is:
+
+Is it possible to build QT5 without X11 and wayland (so that QT only uses
+egl)?
+
+Best regards,
 
 
-PackageName                   Version                       UpVersion                     Maintainer                                        NoUpgradeReason               
-gnome-common                  3.7.4                         3.12.0                        Valentin Popa <valentin.popa@intel.com>           
-puzzles                       r10116                        N/A                           Valentin Popa <valentin.popa@intel.com>           
-gtk+                          2.24.22                       3.13.2                        Valentin Popa <valentin.popa@intel.com>           Do not upgrade to version: 2....
-gnutls                        3.2.13                        3.2.15                        Valentin Popa <valentin.popa@intel.com>           
-gtk+3                         3.10.7                        3.13.2                        Valentin Popa <valentin.popa@intel.com>           
-libpam                        1.1.6                         1.1.8                         Valentin Popa <valentin.popa@intel.com>           
-libtasn1                      3.5                           3.6                           Valentin Popa <valentin.popa@intel.com>           
-gsettings-desktop-schemas     3.10.1                        3.13.2                        Valentin Popa <valentin.popa@intel.com>           
-gtk-update-icon-cache-native  3.4.4                         3.13.2                        Valentin Popa <valentin.popa@intel.com>           
-hicolor-icon-theme            0.12                          0.13                          Valentin Popa <valentin.popa@intel.com>           
-gnome-icon-theme              2.31.0                        3.12.0                        Valentin Popa <valentin.popa@intel.com>           waiting for the sato gtk3 port
-liberation-fonts              1.04                          2.00.1                        Valentin Popa <valentin.popa@intel.com>           2.00.0 - fontforge package re...
-screen                        4.0.3                         4.2.1                         Valentin Popa <valentin.popa@intel.com>           
-xdg-utils                     1.1.0-rc1                     1.0.2                         Valentin Popa <valentin.popa@intel.com>           only release candidates avail...
-matchbox-panel-2              2.0+gitAUTOINC+26a3a67b41     2.0+gitAUTOINC+1a7304d        Valentin Popa <valentin.popa@intel.com>           
-webkit-gtk                    1.8.3                         2.4.3                         Valentin Popa <valentin.popa@intel.com>           >= 1.10.2 needs ruby          
-matchbox-desktop              2.0+gitAUTOINC+71e3e6e042     2.0+gitAUTOINC+09170f4        Valentin Popa <valentin.popa@intel.com>           
-shared-mime-info              1.2                           1.3                           Valentin Popa <valentin.popa@intel.com>           
-gnome-desktop                 2.32.1                        3.13.2                        Valentin Popa <valentin.popa@intel.com>           waiting for the sato gtk3 port
-matchbox-keyboard             0.0+gitAUTOINC+217f1bfe14     0.0+gitAUTOINC+0899b02        Valentin Popa <valentin.popa@intel.com>           
-blktrace                      1.0.5+gitAUTOINC+d6918c8      1.0.5+gitAUTOINC+ce9ded7      Tom Zanussi <tom.zanussi@intel.com>               
-systemtap-uprobes             2.5+gitAUTOINC+8f0fcd995f     2.5+gitAUTOINC+3db4196        Tom Zanussi <tom.zanussi@intel.com>               
-sysprof                       1.2.0+gitAUTOINC+cd44ee6      1.2.0+gitAUTOINC+6901897      Tom Zanussi <tom.zanussi@intel.com>               
-libusb1                       1.0.18                        1.0.19                        Saul Wold <sgw@linux.intel.com>                   
-mkelfimage                    4.0+gitAUTOINC+686a48a339     4.0+gitAUTOINC+25b55f3        Saul Wold <sgw@linux.intel.com>                   
-libcheck                      0.9.12                        0.9.13                        Saul Wold <sgw@linux.intel.com>                   
-cups                          1.7.2                         1.7.3                         Saul Wold <sgw@linux.intel.com>                   
-dpkg                          1.17.4                        1.17.9                        Saul Wold <sgw@linux.intel.com>                   
-glib-networking               2.38.0                        2.40.1                        Saul Wold <sgw@linux.intel.com>                   Pending Glib-2.0 Update       
-vte                           0.28.2                        0.37.1                        Saul Wold <sgw@linux.intel.com>                   Pending Glib-2.0 Update       
-libxkbcommon                  0.4.1                         0.4.2                         Saul Wold <sgw@linux.intel.com>                   
-resolvconf                    1.74                          1.75                          Saul Wold <sgw@linux.intel.com>                   
-sqlite3                       3.8.4.3                       3080403                       Saul Wold <sgw@linux.intel.com>                   
-man-pages                     3.65                          3.68                          Saul Wold <sgw@linux.intel.com>                   
-mx-1.0                        1.4.7+gitAUTOINC+9b1db6b      1.99.4+gitAUTOINC+63da1f2     Saul Wold <sgw@linux.intel.com>                   PRS 1.99 is dev version       
-base-passwd                   3.5.29                        3.5.33                        Saul Wold <sgw@linux.intel.com>                   
-libxfont                      1.4.7                         1.4.8                         Ross Burton <ross.burton@intel.com>               
-vala                          0.16.0                        0.24.0                        Ross Burton <ross.burton@intel.com>               
-clutter-1.0                   1.16.2                        1.19.2                        Ross Burton <ross.burton@intel.com>               
-clutter-gtk-1.0               1.4.4                         1.5.2                         Ross Burton <ross.burton@intel.com>               
-jpeg                          8d                            9a                            Ross Burton <ross.burton@intel.com>               webkit-gtk 1.8.3 doesn't work...
-gdk-pixbuf                    2.30.7                        2.30.8                        Ross Burton <ross.burton@intel.com>               2.27.2 is unstable            
-cogl-1.0                      1.16.2                        1.18.0                        Ross Burton <ross.burton@intel.com>               
-libnotify                     0.6.0                         0.7.6                         Ross Burton <ross.burton@intel.com>               
-clutter-gst-1.0               1.6.0                         2.99.0                        Ross Burton <ross.burton@intel.com>               
-json-glib                     1.0.0                         1.0.2                         Ross Burton <ross.burton@intel.com>               
-inputproto                    2.3                           2.3.1                         Ross Burton <ross.burton@intel.com>               2.2.99.1 is unstable          
-glib-2.0                      2.40.0                        2.41.0                        Robert Yang <liezhi.yang@windriver.com>           
-autogen-native                5.18.2                        5.18.2-5                      Robert Yang <liezhi.yang@windriver.com>           
-file                          5.17                          5.18                          Robert Yang <liezhi.yang@windriver.com>           
-e2fsprogs                     1.42.9                        1.42.10                       Robert Yang <liezhi.yang@windriver.com>           
-gpgme                         1.4.3                         1.5.0                         Paul Eggleton <paul.eggleton@linux.intel.com>     
-libgpg-error                  1.12                          1.13                          Paul Eggleton <paul.eggleton@linux.intel.com>     
-libav                         0.8.11                        10.1                          Paul Eggleton <paul.eggleton@linux.intel.com>     
-openjade-native               1.3.2                         1.3.3                         Paul Eggleton <paul.eggleton@linux.intel.com>     
-x264                          r2265+gitAUTOINC+585324f      r2265+gitAUTOINC+a5831aa      Paul Eggleton <paul.eggleton@linux.intel.com>     
-createrepo                    0.4.11                        0.10.3                        Paul Eggleton <paul.eggleton@linux.intel.com>     Versions after 0.9.* use YUM,...
-cdrtools-native               3.01a20                       3.01a23                       Paul Eggleton <paul.eggleton@linux.intel.com>     
-python-nose                   1.2.1                         1.3.3                         No Maintainer info                                
-libnewt-python                0.52.14                       0.52.17                       No Maintainer info                                
-lz4                           r112                          N/A                           No Maintainer info                                
-gummiboot                     43+gitAUTOINC+4062c51075      45+gitAUTOINC+eb3daf2         No Maintainer info                                
-python-distribute             0.6.32                        0.7.3                         No Maintainer info                                
-python-numpy                  1.7.0                         1.8.1                         No Maintainer info                                
-piglit                        1.0+gitrAUTOINC+bbeff5d2      1.0+gitrAUTOINC+fe8b9c7       No Maintainer info                                
-python3                       3.3.3                         3.4.1rc1                      No Maintainer info                                
-unfs3                         0.9.22.r490                   N/A                           No Maintainer info                                
-python3-distribute            0.6.32                        0.7.3                         No Maintainer info                                
-rpm                           5.4.9                         5.4.14-0.20131024             Mark Hatle <mark.hatle@windriver.com>             
-xserver-xorg                  1.15.1                        1.15.99.902                   Laurentiu Palcu <laurentiu.palcu@intel.com>       
-xf86-video-vmware             13.0.1                        13.0.2                        Laurentiu Palcu <laurentiu.palcu@intel.com>       
-xf86-video-intel              2.99.910                      2.99.911                      Laurentiu Palcu <laurentiu.palcu@intel.com>       
-python-gst                    0.10.22                       1.2.1                         Laurentiu Palcu <laurentiu.palcu@intel.com>       
-gccmakedep                    1.0.2                         1.0.3                         Laurentiu Palcu <laurentiu.palcu@intel.com>       
-xcb-util-wm                   0.4.0                         0.4.1                         Laurentiu Palcu <laurentiu.palcu@intel.com>       
-powertop                      2.5                           2.6                           Laurentiu Palcu <laurentiu.palcu@intel.com>       Do not upgrade to version 1.9...
-python                        2.7.3                         3.4.1rc1                      Laurentiu Palcu <laurentiu.palcu@intel.com>       
-gdb                           7.7                           7.7.1                         Laurentiu Palcu <laurentiu.palcu@intel.com>       
-python-scons                  2.3.0                         2.3.1                         Laurentiu Palcu <laurentiu.palcu@intel.com>       
-xf86-video-omap               0.4.2+gitrAUTOINC+ae0394      0.4.3+gitrAUTOINC+d48d09c     Laurentiu Palcu <laurentiu.palcu@intel.com>       
-tcf-agent                     0.4.0+gitAUTOINC+4ef94ec      8.0+gitAUTOINC+b6ce173        Laurentiu Palcu <laurentiu.palcu@intel.com>       
-btrfs-tools                   3.12+gitAUTOINC+8cae1840      3.14.2+gitAUTOINC+24cf4d8     Laurentiu Palcu <laurentiu.palcu@intel.com>       
-xkeyboard-config              2.11                          2.12                          Laurentiu Palcu <laurentiu.palcu@intel.com>       
-xf86-input-synaptics          1.7.4                         1.8.0                         Laurentiu Palcu <laurentiu.palcu@intel.com>       
-xf86-input-evdev              2.8.2                         2.9.0                         Laurentiu Palcu <laurentiu.palcu@intel.com>       
-python-pygobject              2.28.3                        3.13.2                        Laurentiu Palcu <laurentiu.palcu@intel.com>       Newer versions of python-pygo...
-fontsproto                    2.1.2                         2.1.3                         Laurentiu Palcu <laurentiu.palcu@intel.com>       
-libdrm                        2.4.53                        2.4.54                        Laurentiu Palcu <laurentiu.palcu@intel.com>       
-subversion                    1.7.10                        1.8.9                         Laurentiu Palcu <laurentiu.palcu@intel.com>       
-python-pycurl                 7.19.3                        7.19.3.1                      Laurentiu Palcu <laurentiu.palcu@intel.com>       
-xinput-calibrator             0.7.5+gitAUTOINC+c01c5af      0.7.5+gitAUTOINC+03dadf5      Laurentiu Palcu <laurentiu.palcu@intel.com>       
-nasm                          2.11.02                       2.11.05                       Laurentiu Palcu <laurentiu.palcu@intel.com>       
-ghostscript                   9.07                          9.14                          Kai Kang <kai.kang@windriver.com>                 
-qmmp                          0.7.5                         0.7.7                         Kai Kang <kai.kang@windriver.com>                 
-libnewt                       0.52.14                       0.52.17                       Kai Kang <kai.kang@windriver.com>                 
-directfb                      1.7.1                         1.7.4                         Kai Kang <kai.kang@windriver.com>                 
-elfutils                      0.148                         0.159                         Hongxu Jia <hongxu.jia@windriver.com>             
-lsb                           4.1                           1.4                           Hongxu Jia <hongxu.jia@windriver.com>             
-apr                           1.4.8                         1.5.1                         Hongxu Jia <hongxu.jia@windriver.com>             
-socat                         1.7.2.3                       1.7.2.4                       Hongxu Jia <hongxu.jia@windriver.com>             2.0.0 is beta                 
-apr-util                      1.5.2                         1.5.3                         Hongxu Jia <hongxu.jia@windriver.com>             
-trace-cmd                     1.2+gitAUTOINC+7055ffd37b     2.3.2+gitAUTOINC+8435f51      Darren Hart <dvhart@linux.intel.com>              
-kernelshark                   1.2+gitAUTOINC+7055ffd37b     2.3.2+gitAUTOINC+8435f51      Darren Hart <dvhart@linux.intel.com>              0.2 is the latest version.    
-syslinux                      6.01                          6.02                          Darren Hart <dvhart@linux.intel.com>              Waiting for 4.06 for 3.3 kern...
-squashfs-tools                4.2                           4.3                           Cristiana Voicu <cristiana.voicu@intel.com>       
-apt                           0.9.9.4                       1.0.3                         Cristiana Voicu <cristiana.voicu@intel.com>       
-opkg-utils                    0.1.8+gitAUTOINC+c33b217      0.1.8+gitAUTOINC+d144584      Cristiana Voicu <cristiana.voicu@intel.com>       
-mtd-utils                     1.5.1+gitAUTOINC+9f10713      1.5.1+gitAUTOINC+b7455d8      Cristiana Voicu <cristiana.voicu@intel.com>       
-at-spi2-core                  2.12.0                        2.13.1                        Cristiana Voicu <cristiana.voicu@intel.com>       
-atk                           2.12.0                        2.13.2                        Cristiana Voicu <cristiana.voicu@intel.com>       
-u-boot-mkimage                v2013.07+gitAUTOINC+62c1      v2013.07+gitAUTOINC+90b5      Cristiana Voicu <cristiana.voicu@intel.com>       
-kmod                          17+gitAUTOINC+49d8e0b590      17+gitAUTOINC+7a2d0e6         Cristiana Voicu <cristiana.voicu@intel.com>       
-ubootchart                    0.0+r12                       N/A                           Cristiana Voicu <cristiana.voicu@intel.com>       
-systemtap                     2.5+gitAUTOINC+8f0fcd995f     2.5+gitAUTOINC+3db4196        Cristiana Voicu <cristiana.voicu@intel.com>       
-at-spi2-atk                   2.12.0                        2.13.1                        Cristiana Voicu <cristiana.voicu@intel.com>       
-libunique                     1.1.6                         3.0.2                         Cristiana Voicu <cristiana.voicu@intel.com>       Do not upgrade to version: 2....
-liburcu                       0.8.1                         0.8.4                         Cristiana Voicu <cristiana.voicu@intel.com>       
-babeltrace                    1.2.1+gitAUTOINC+66c2a20      1.2.1+gitAUTOINC+92757c3      Cristiana Voicu <cristiana.voicu@intel.com>       
-curl                          7.36.0                        7.37.0                        Cristiana Voicu <cristiana.voicu@intel.com>       
-mobile-broadband-provider-info20120614+gitrAUTOINC+4ed      20120614+gitrAUTOINC+44c      Cristiana Voicu <cristiana.voicu@intel.com>       
-telepathy-mission-control     5.16.1                        5.99.11                       Cristian Iorga <cristian.iorga@intel.com>         
-apmd                          3.2.2-14                      3.2.2                         Cristian Iorga <cristian.iorga@intel.com>         
-telepathy-idle                0.2.0                         0.99.11                       Cristian Iorga <cristian.iorga@intel.com>         
-tremor                        20120314                      N/A                           Cristian Iorga <cristian.iorga@intel.com>         Same revision on different SV...
-qemu                          1.7.0                         2.0.0                         Cristian Iorga <cristian.iorga@intel.com>         
-bluez4                        4.101                         5.19                          Cristian Iorga <cristian.iorga@intel.com>         BlueZ 5.x is not backward-com...
-harfbuzz                      0.9.28                        0.9.29                        Cristian Iorga <cristian.iorga@intel.com>         
-telepathy-glib                0.24.0                        0.99.11                       Cristian Iorga <cristian.iorga@intel.com>         
-wireless-tools                30.pre9                       29                            Cristian Iorga <cristian.iorga@intel.com>         
-db                            5.3.21                        6.0.30                        Cristian Iorga <cristian.iorga@intel.com>         API compatibility issue       
-gst-plugin-bluetooth          4.101                         5.19                          Cristian Iorga <cristian.iorga@intel.com>         
-net-tools                     1.60-25                       1.60                          Cristian Iorga <cristian.iorga@intel.com>         
-gst-fluendo-mp3               0.10.19                       0.10.27                       Cristian Iorga <cristian.iorga@intel.com>         
-gst-fluendo-mpegdemux         0.10.72                       0.10.80                       Cristian Iorga <cristian.iorga@intel.com>         
-linux-firmware                0.0+gitAUTOINC+dec41bce44     0.0+gitAUTOINC+4a050f5        Cristian Iorga <cristian.iorga@intel.com>         
-libogg                        1.3.1                         1.3.2                         Cristian Iorga <cristian.iorga@intel.com>         
-dbus-glib                     0.100.2                       0.102                         Chong Lu <Chong.Lu@windriver.com>                 
-bison                         2.7.1                         3.0.2                         Chong Lu <Chong.Lu@windriver.com>                 
-gawk                          4.0.2                         4.1.1                         Chen Qi <Qi.Chen@windriver.com>                   Version 4.1.0 requires Automa...
-sudo                          1.8.10p2                      1.8.10p3                      Chen Qi <Qi.Chen@windriver.com>                   
-grep                          2.18                          2.19                          Chen Qi <Qi.Chen@windriver.com>                   
-sysstat                       10.2.1                        10.3.1                        Chen Qi <Qi.Chen@windriver.com>                   
-shadow                        4.1.4.3                       4.2.1                         Chen Qi <Qi.Chen@windriver.com>                   
-linux-libc-headers            3.14                          3.14.5                        Bruce Ashfield <bruce.ashfield@windriver.com>     
-kern-tools-native             0.2+gitAUTOINC+a42509b01c     0.2+gitAUTOINC+a212a4a        Bruce Ashfield <bruce.ashfield@windriver.com>     
-Upgradable Count: 122
-Upgrade Total Count: 145
-The based commit merge time is:
-Sun Jun 1 14:30:40 2014 +0100
-The based commit is:
-commit ae642d3fadb83f641034148d833a5c1deb3a1f10
-Author: Ross Burton <ross.burton@intel.com>
-Date:   Sat May 31 01:11:55 2014 +0100
-Any problem, please contact Saul Wold <sgw@linux.intel.com> 
 
---LZvS9be/3tNcYl/X
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: attachment; filename="potential_format_problem.log"
 
-recipe_color.inc/17: RECIPE_COLOR = "green"
+2014-05-27 11:47 GMT+02:00 Falk Niebuhr <niebuhrf@gmail.com>:
 
---LZvS9be/3tNcYl/X--
+> Hi,
+>
+> I had build a little self made Qt App with poky for an ARM target and
+> had the same issue. I'm not sure, but I think I added 'qtbase-plugins'
+> to IMAGE_INSTALL_append.
+> Perhaps you want to try this.
+>
+> Best regards
+> Falk
+>
+>
+> 2014-05-27 10:48 GMT+02:00 Bastian Wei=C3=9Fbach <b.weissbach@gmail.com>:
+> > Hi,
+> >
+> > in the future I would like to use egl instead of x11. But for the momen=
+t
+> I
+> > would be happy if I could get any results ;).
+> >
+> > This time I added those lines to my conf/local.conf:
+> >
+> > IMAGE_INSTALL_append =3D " cinematicexperience "
+> > DISTRO_FEATURES_append =3D " x11 "
+> >
+> > then I build core-image-x11. The QT5 CinematicExperience still tells me
+> that
+> > xcb plugin is missing.
+> >
+> > Regards,
+> >
+> >
+> >
+> >
+> >
+> >
+> >
+> > 2014-05-22 22:45 GMT+02:00 Diego Sueiro <diego.sueiro@gmail.com>:
+> >
+> >> Bastian,
+> >>
+> >>
+> >> On Thu, May 22, 2014 at 12:32 PM, Bastian Wei=C3=9Fbach <
+> b.weissbach@gmail.com>
+> >> wrote:
+> >>>
+> >>> Hey Guys,
+> >>>
+> >>> I'm trying to build a Linux for a generic X86 system with QT5.
+> >>>
+> >>> I've tried to go the simple way. I cloned the nessesary layers
+> >>> (meta-intel and meta-qt5). Then I selected  "intel-corei7-64" as
+> MACHINE and
+> >>> added cinematicexperience to my image. Then I build core-image-minima=
+l.
+> >>>
+> >>> But when I try to start Qt5_CinematicExperience (on the target) it
+> failed
+> >>> because of the missing xcb plugin.
+> >>>
+> >>> Is there anything I missed?
+> >>>
+> >>> Thanks for your help!
+> >>
+> >>
+> >> If you want to use qt5 with X11 you need to add DISTRO_FEATURES_append
+> >> onto your local.conf
+> >> But if tou want to use opengl or famebuffer take a look at PACKAGECONF=
+IG
+> >> options on:
+> >>
+> >> meta-qt5/recipes-qt/qt5/qtbase.inc
+> >>
+> >>
+> >> I would recommend you to you core-image-x11 or core-image-base.
+> >>
+> >> Regards,
+> >>
+> >> --
+> >> *dS
+> >> Diego Sueiro
+> >>
+> >> Administrador do Embarcados
+> >> www.embarcados.com.br
+> >>
+> >> /*long live rock 'n roll*/
+> >
+> >
+> >
+> > --
+> > _______________________________________________
+> > yocto mailing list
+> > yocto@yoctoproject.org
+> > https://lists.yoctoproject.org/listinfo/yocto
+> >
+>
+
+--001a11c23ff619cbd804fad504ba
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Hi,<div><br></div><div>still no luck for this. My current =
+configuration is:</div><div><br></div><div><div>IMAGE_INSTALL_append =3D &q=
+uot; cinematicexperience &quot;</div><div>DISTRO_FEATURES_append =3D &quot;=
+ opengl &quot;</div>
+
+<div>DISTRO_FEATURES_remove =3D &quot; x11 wayland &quot;</div></div><div><=
+br></div><div>Also I added a .bbappend to the qtbase package:=C2=A0</div><d=
+iv><br></div><div>PACKAGECONFIG =3D &quot; release dbus udev evdev widgets =
+tools libs openssl jpeg libpng zlib gles2 &quot;<br>
+
+</div><div><br></div><div>This seems to work for QT5. But I think mesa does=
+ not install any DRI drivers into the image. The DRI drivers are build (bec=
+ause they are into the deploy-rpms folder) but not installed.=C2=A0</div><d=
+iv>
+
+<br></div><div>Another question is:</div><div><br></div><div>Is it possible=
+ to build QT5 without X11 and wayland (so that QT only uses egl)?</div><div=
+><br></div><div>Best regards,</div><div><br></div><div><br></div></div>
+
+<div class=3D"gmail_extra"><br><br><div class=3D"gmail_quote">2014-05-27 11=
+:47 GMT+02:00 Falk Niebuhr <span dir=3D"ltr">&lt;<a href=3D"mailto:niebuhrf=
+@gmail.com" target=3D"_blank">niebuhrf@gmail.com</a>&gt;</span>:<br><blockq=
+uote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc =
+solid;padding-left:1ex">
+
+Hi,<br>
+<br>
+I had build a little self made Qt App with poky for an ARM target and<br>
+had the same issue. I&#39;m not sure, but I think I added &#39;qtbase-plugi=
+ns&#39;<br>
+to IMAGE_INSTALL_append.<br>
+Perhaps you want to try this.<br>
+<br>
+Best regards<br>
+Falk<br>
+<br>
+<br>
+2014-05-27 10:48 GMT+02:00 Bastian Wei=C3=9Fbach &lt;<a href=3D"mailto:b.we=
+issbach@gmail.com">b.weissbach@gmail.com</a>&gt;:<br>
+<div class=3D"HOEnZb"><div class=3D"h5">&gt; Hi,<br>
+&gt;<br>
+&gt; in the future I would like to use egl instead of x11. But for the mome=
+nt I<br>
+&gt; would be happy if I could get any results ;).<br>
+&gt;<br>
+&gt; This time I added those lines to my conf/local.conf:<br>
+&gt;<br>
+&gt; IMAGE_INSTALL_append =3D &quot; cinematicexperience &quot;<br>
+&gt; DISTRO_FEATURES_append =3D &quot; x11 &quot;<br>
+&gt;<br>
+&gt; then I build core-image-x11. The QT5 CinematicExperience still tells m=
+e that<br>
+&gt; xcb plugin is missing.<br>
+&gt;<br>
+&gt; Regards,<br>
+&gt;<br>
+&gt;<br>
+&gt;<br>
+&gt;<br>
+&gt;<br>
+&gt;<br>
+&gt;<br>
+&gt; 2014-05-22 22:45 GMT+02:00 Diego Sueiro &lt;<a href=3D"mailto:diego.su=
+eiro@gmail.com">diego.sueiro@gmail.com</a>&gt;:<br>
+&gt;<br>
+&gt;&gt; Bastian,<br>
+&gt;&gt;<br>
+&gt;&gt;<br>
+&gt;&gt; On Thu, May 22, 2014 at 12:32 PM, Bastian Wei=C3=9Fbach &lt;<a hre=
+f=3D"mailto:b.weissbach@gmail.com">b.weissbach@gmail.com</a>&gt;<br>
+&gt;&gt; wrote:<br>
+&gt;&gt;&gt;<br>
+&gt;&gt;&gt; Hey Guys,<br>
+&gt;&gt;&gt;<br>
+&gt;&gt;&gt; I&#39;m trying to build a Linux for a generic X86 system with =
+QT5.<br>
+&gt;&gt;&gt;<br>
+&gt;&gt;&gt; I&#39;ve tried to go the simple way. I cloned the nessesary la=
+yers<br>
+&gt;&gt;&gt; (meta-intel and meta-qt5). Then I selected =C2=A0&quot;intel-c=
+orei7-64&quot; as MACHINE and<br>
+&gt;&gt;&gt; added cinematicexperience to my image. Then I build core-image=
+-minimal.<br>
+&gt;&gt;&gt;<br>
+&gt;&gt;&gt; But when I try to start Qt5_CinematicExperience (on the target=
+) it failed<br>
+&gt;&gt;&gt; because of the missing xcb plugin.<br>
+&gt;&gt;&gt;<br>
+&gt;&gt;&gt; Is there anything I missed?<br>
+&gt;&gt;&gt;<br>
+&gt;&gt;&gt; Thanks for your help!<br>
+&gt;&gt;<br>
+&gt;&gt;<br>
+&gt;&gt; If you want to use qt5 with X11 you need to add DISTRO_FEATURES_ap=
+pend<br>
+&gt;&gt; onto your local.conf<br>
+&gt;&gt; But if tou want to use opengl or famebuffer take a look at PACKAGE=
+CONFIG<br>
+&gt;&gt; options on:<br>
+&gt;&gt;<br>
+&gt;&gt; meta-qt5/recipes-qt/qt5/qtbase.inc<br>
+&gt;&gt;<br>
+&gt;&gt;<br>
+&gt;&gt; I would recommend you to you core-image-x11 or core-image-base.<br=
+>
+&gt;&gt;<br>
+&gt;&gt; Regards,<br>
+&gt;&gt;<br>
+&gt;&gt; --<br>
+&gt;&gt; *dS<br>
+&gt;&gt; Diego Sueiro<br>
+&gt;&gt;<br>
+&gt;&gt; Administrador do Embarcados<br>
+&gt;&gt; <a href=3D"http://www.embarcados.com.br" target=3D"_blank">www.emb=
+arcados.com.br</a><br>
+&gt;&gt;<br>
+&gt;&gt; /*long live rock &#39;n roll*/<br>
+&gt;<br>
+&gt;<br>
+&gt;<br>
+</div></div><span class=3D"HOEnZb"><font color=3D"#888888">&gt; --<br>
+&gt; _______________________________________________<br>
+&gt; yocto mailing list<br>
+&gt; <a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><b=
+r>
+&gt; <a href=3D"https://lists.yoctoproject.org/listinfo/yocto" target=3D"_b=
+lank">https://lists.yoctoproject.org/listinfo/yocto</a><br>
+&gt;<br>
+</font></span></blockquote></div><br></div>
+
+--001a11c23ff619cbd804fad504ba--
