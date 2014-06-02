@@ -1,68 +1,55 @@
-Return-Path: <vaduvajanalexandru@yahoo.com>
+Return-Path: <paul.betafive@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 0B12CE00B20; Mon,  2 Jun 2014 12:50:32 -0700 (PDT)
+	id 30F1CE00B0B; Mon,  2 Jun 2014 13:48:30 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-0.1 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-	DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (vaduvajanalexandru[at]yahoo.com)
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
+X-Spam-Status: No, score=-0.7 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [74.125.82.48 listed in list.dnswl.org]
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [98.138.91.23 listed in list.dnswl.org]
-Received: from nm8-vm0.bullet.mail.ne1.yahoo.com
-	(nm8-vm0.bullet.mail.ne1.yahoo.com [98.138.91.23])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A8CFEE00985
-	for <yocto@yoctoproject.org>; Mon,  2 Jun 2014 12:50:27 -0700 (PDT)
-Received: from [98.138.100.103] by nm8.bullet.mail.ne1.yahoo.com with NNFMP;
-	02 Jun 2014 19:50:26 -0000
-Received: from [98.138.89.167] by tm102.bullet.mail.ne1.yahoo.com with NNFMP;
-	02 Jun 2014 19:50:26 -0000
-Received: from [127.0.0.1] by omp1023.mail.ne1.yahoo.com with NNFMP;
-	02 Jun 2014 19:50:26 -0000
-X-Yahoo-Newman-Property: ymail-3
-X-Yahoo-Newman-Id: 116501.63388.bm@omp1023.mail.ne1.yahoo.com
-Received: (qmail 19688 invoked by uid 60001); 2 Jun 2014 19:50:25 -0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s1024;
-	t=1401738625; bh=o3HX0DZ+QXUfyo9cb8cPPbXkFt1wbK057EysLyWzgqc=;
-	h=References:Message-ID:Date:From:Reply-To:Subject:To:In-Reply-To:MIME-Version:Content-Type;
-	b=UqEY4uUPMmrcedVz4Z/oB+VstJgmP9PDUVEFEdv8jU78J34dcEeb11DNSZg0whg1Mig/YMV1KASex7cJj2hfgv0GPg4vSVsT4rmfVhmNkoXVAwU554iozWY4XZYRA85bG6D2P4dssZEFCurcI+ctQ4AZuRT8qSstq6WJ+ZTEWQ0=
-X-YMail-OSG: nvleSjEVM1mRpXEVvseZJIBzGcBBdkZoXg80rcNAMIqREWV
-	UwS_8OLaR72CCahllw1.Wwab7Fj59wctCCvSmRNAI2ILMLXGFxJE1KnxLfUK
-	3B8YzSug.20HF8ybVPBurShmTbyHAv6ht9s1oQk4j1mZvg0rWZXTNEQo0xET
-	YappwnmEhuvuK976zTlLSfTKy_ycbMSruy9lGYCFzlavvWxW3ANelbrdtH92
-	_6LnsWecVC7GXsztQIYouPRxF1ZdU16FsKP_uV_qmK_1DXnhUBwj6cr.XuIK
-	9o087VJFxmhmNNpM8CVlTiO118uM1fXKRSeyVkCqcVV1SyhtqoLmikanAl2G
-	SkD2IQaA8p9Yu8vgPoRD7uolpOZdClO2NeYM.fB58fc3ZnCf080yIjJrqJNI
-	GRq.wwGRoxXPuki7Skt4l0KkZr8mIJDClE0NZ9ZOyACMDXn1P0TwWaIjqs1J
-	N9YgcSCUU9bfypyf.knwhq9kZ4pBlmVkFWAc_lQF8NTFZomHdWQPNg7g7K6A
-	v7aUl1T6vRmiSnj4JtPjz0L.xcio2sOMD1g3dJxNRYBkcIC5TzlwqXdf90Jv W5g--
-Received: from [141.85.0.106] by web122502.mail.ne1.yahoo.com via HTTP;
-	Mon, 02 Jun 2014 12:50:25 PDT
-X-Rocket-MIMEInfo: 002.001,
-	CkFkcmlhbiBkaWQgeW91IHJ1biBhIC1jIGNvbXBpbGUgYmVmb3JlIC1jIGRldnNoZWxsPwpJIGRvIG5vdCBiZWxpZXZlIHlvdSBzaG91bGQgaGF2ZSBhIGNyb3Nzc2RrIHdpdGggb25seSBjYWxsaW5nIC1jIGRldnNoZWxsIG9uIGEgcGFjaGFnZS9yZWNpcGUuCgpBbGV4CgoKCk9uIE1vbmRheSwgSnVuZSAyLCAyMDE0IDg6MjEgUE0sIEFkcmlhbiBEdWRhdSA8QWRyaWFuLkR1ZGF1QGVuZWEuY29tPiB3cm90ZToKIAoKCkhpLAoKU3RhcnRpbmcgZnJvbSBhIGZyZXNoIGJ1aWxkIGZvbGRlciwgSSBydW4gImJpdGIBMAEBAQE-
-X-Mailer: YahooMailWebService/0.8.188.663
-References: <1401720252.7631.19.camel@sestows129.enea.se>
-Message-ID: <1401738625.64137.YahooMailNeo@web122502.mail.ne1.yahoo.com>
-Date: Mon, 2 Jun 2014 12:50:25 -0700 (PDT)
-From: Alexandru Vaduva <vaduvajanalexandru@yahoo.com>
-To: Adrian Dudau <Adrian.Dudau@enea.com>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
-In-Reply-To: <1401720252.7631.19.camel@sestows129.enea.se>
+Received: from mail-wg0-f48.google.com (mail-wg0-f48.google.com [74.125.82.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AF401E00985
+	for <yocto@yoctoproject.org>; Mon,  2 Jun 2014 13:48:24 -0700 (PDT)
+Received: by mail-wg0-f48.google.com with SMTP id k14so5771688wgh.7
+	for <yocto@yoctoproject.org>; Mon, 02 Jun 2014 13:48:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=sender:date:from:to:cc:subject:message-id:references:mime-version
+	:content-type:content-disposition:in-reply-to:user-agent;
+	bh=7d509rTHupMeQdJeblgx9lCyAU+7Yebnn1reKyydGrg=;
+	b=gfW4YGKZKaHw9qsLqSs+uDp4YK35+f2MzTBvmsNTWLggiBTqGK9MQZnS0SxwrOCftk
+	BNI1TKnH89ka015tUVyDMVLW+gZedCQHYVl0H9it+5CaEXQkUSDPACSkWBkdM9FE+9hc
+	2noCBI2zdmOhjoTYoWOEzHF2ilBbaF0XBGyd3xLnloFE3BYNGTp2J5/6PPbGTb6hX+f0
+	1Sy9VHooCgkLrgpNe34+OkF5RvvU2MX0uGmNNFLDji1gHhmsfYRc1BOG7z5CqGDTEwJP
+	3LNDoqWXqGVXwCoWFIP6EE1UaZ40HCV0gSx7zgOVzx6xK90BhhDF8lBAwLD+QXi8ol8m
+	C5aQ==
+X-Received: by 10.180.74.78 with SMTP id r14mr25614220wiv.2.1401742103629;
+	Mon, 02 Jun 2014 13:48:23 -0700 (PDT)
+Received: from gmail.com (ygg.betafive.co.uk. [5.9.90.21])
+	by mx.google.com with ESMTPSA id
+	vp5sm38189992wjc.31.2014.06.02.13.48.22 for <multiple recipients>
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Mon, 02 Jun 2014 13:48:22 -0700 (PDT)
+Sender: Paul Barker <paul.betafive@gmail.com>
+Date: Mon, 2 Jun 2014 20:48:20 +0000
+From: Paul Barker <paul@paulbarker.me.uk>
+To: opkg-devel@googlegroups.com
+Message-ID: <20140602204820.GG7521@gmail.com>
+References: <1401706248-32605-1-git-send-email-tom@ewsting.org>
+	<1401706248-32605-2-git-send-email-tom@ewsting.org>
 MIME-Version: 1.0
-Subject: Re: bitbake virtual/kernel -c devshell doesn't build the sdk
+In-Reply-To: <1401706248-32605-2-git-send-email-tom@ewsting.org>
+User-Agent: Mutt/1.5.23 (2014-03-12)
+Cc: brendan.le.foll@intel.com, yocto@yoctoproject.org,
+	Thomas Ingleby <thomas.c.ingleby@intel.com>, paul.eggleton@linux.intel.com
+Subject: Re: [opkg-devel] [opkg-utils PATCH] opkg-build: add detection if using GNU tar.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
-Reply-To: Alexandru Vaduva <vaduvajanalexandru@yahoo.com>
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -71,64 +58,126 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 02 Jun 2014 19:50:32 -0000
-Content-Type: multipart/alternative;
-	boundary="-1396834546-957002235-1401738625=:64137"
+X-List-Received-Date: Mon, 02 Jun 2014 20:48:30 -0000
+X-Groupsio-MsgNum: 19888
+Content-Type: multipart/signed; micalg=pgp-sha1;
+	protocol="application/pgp-signature"; boundary="JbKQpFqZXJ2T76Sg"
+Content-Disposition: inline
 
----1396834546-957002235-1401738625=:64137
-Content-Type: text/plain; charset=iso-8859-1
+--JbKQpFqZXJ2T76Sg
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-=0AAdrian did you run a -c compile before -c devshell?=0AI do not believe y=
-ou should have a crosssdk with only calling -c devshell on a pachage/recipe=
-.=0A=0AAlex=0A=0A=0A=0AOn Monday, June 2, 2014 8:21 PM, Adrian Dudau <Adria=
-n.Dudau@enea.com> wrote:=0A =0A=0A=0AHi,=0A=0AStarting from a fresh build f=
-older, I run "bitbake -c devshell=0Avirtual/kernel" and expect to have the =
-cross SDK sourced and be able to=0Abuild the kernel in the devshell. The is=
-sue is that even though PATH is=0Apreppended correctly with the expected lo=
-cation of the SDK (in my case=0Atmp/sysroots/x86_64-linux/usr/bin/ppce500v2=
--enea-linux-gnuspe), the=0Across SDK is not built.=A0 Am I wrong assuming t=
-hat=A0 -c devshell=0Avirtual/kernel should depend on the crosssdk?=0A=0Abes=
-t regards,=0A--Adrian=0A-- =0A_____________________________________________=
-__=0Ayocto mailing list=0Ayocto@yoctoproject.org=0Ahttps://lists.yoctoproje=
-ct.org/listinfo/yocto
+On Mon, Jun 02, 2014 at 11:50:48AM +0100, tom@ewsting.org wrote:
+> From: Thomas Ingleby <thomas.c.ingleby@intel.com>
+>=20
+> * Some options of GNU tar do not exist on other implementations
+>=20
+> Signed-off-by: Thomas Ingleby <thomas.c.ingleby@intel.com>
+> ---
+>  opkg-build | 17 ++++++++++++++---
+>  1 file changed, 14 insertions(+), 3 deletions(-)
+>=20
+> diff --git a/opkg-build b/opkg-build
+> index e314712..8abc14d 100755
+> --- a/opkg-build
+> +++ b/opkg-build
+> @@ -159,6 +159,17 @@ ogargs=3D""
+>  outer=3Dar
+>  noclean=3D0
+>  opkext=3D0
+> +
+> +tarformat=3D""
+> +#Probably not the best way to detect if running on a system without full=
+ GNU tar
+> +set +e
+> +tar --help | grep "format" &> /dev/null
+> +if [ $? -eq 0 ]
+> +then
+> +    tarformat=3D"--format=3Dgnu"
+> +fi
+> +set -e
+> +
 
----1396834546-957002235-1401738625=:64137
-Content-Type: text/html; charset=iso-8859-1
-Content-Transfer-Encoding: quoted-printable
+I wouldn't trust that the word 'format' won't occur in some other context w=
+ithin
+the help output of tar. I'd search for '--format' instead, both bsdtar and =
+gnu
+tar include that in the help output but busybox tar does not. The output of
+busybox tar also seems to be printed on stderr, so I'd include '2>&1' befor=
+e the
+pipe.
 
-<html><body><div style=3D"color:#000; background-color:#fff; font-family:He=
-lveticaNeue, Helvetica Neue, Helvetica, Arial, Lucida Grande, sans-serif;fo=
-nt-size:12pt"><div><span><br>Adrian did you run a -c compile before -c devs=
-hell?</span></div><div style=3D"color: rgb(0, 0, 0); font-size: 16px; font-=
-family: HelveticaNeue,Helvetica Neue,Helvetica,Arial,Lucida Grande,sans-ser=
-if; background-color: transparent; font-style: normal;"><span>I do not beli=
-eve you should have a crosssdk with only calling -c devshell on a pachage/r=
-ecipe.</span></div><div style=3D"color: rgb(0, 0, 0); font-size: 16px; font=
--family: HelveticaNeue,Helvetica Neue,Helvetica,Arial,Lucida Grande,sans-se=
-rif; background-color: transparent; font-style: normal;"><br><span></span><=
-/div><div style=3D"color: rgb(0, 0, 0); font-size: 16px; font-family: Helve=
-ticaNeue,Helvetica Neue,Helvetica,Arial,Lucida Grande,sans-serif; backgroun=
-d-color: transparent; font-style: normal;"><span>Alex<br></span></div> <div
- class=3D"qtdSeparateBR"><br><br></div><div style=3D"display: block;" class=
-=3D"yahoo_quoted"> <div style=3D"font-family: HelveticaNeue, Helvetica Neue=
-, Helvetica, Arial, Lucida Grande, sans-serif; font-size: 12pt;"> <div styl=
-e=3D"font-family: HelveticaNeue, Helvetica Neue, Helvetica, Arial, Lucida G=
-rande, sans-serif; font-size: 12pt;"> <div dir=3D"ltr"> <font face=3D"Arial=
-" size=3D"2"> On Monday, June 2, 2014 8:21 PM, Adrian Dudau &lt;Adrian.Duda=
-u@enea.com&gt; wrote:<br> </font> </div>  <br><br> <div class=3D"y_msg_cont=
-ainer">Hi,<br><br>Starting from a fresh build folder, I run "bitbake -c dev=
-shell<br>virtual/kernel" and expect to have the cross SDK sourced and be ab=
-le to<br>build the kernel in the devshell. The issue is that even though PA=
-TH is<br>preppended correctly with the expected location of the SDK (in my =
-case<br>tmp/sysroots/x86_64-linux/usr/bin/ppce500v2-enea-linux-gnuspe), the=
-<br>cross SDK is not built.&nbsp; Am I wrong assuming that&nbsp; -c
- devshell<br>virtual/kernel should depend on the crosssdk?<br><br>best rega=
-rds,<br>--Adrian<br>-- <br>_______________________________________________<=
-br>yocto mailing list<br><a ymailto=3D"mailto:yocto@yoctoproject.org" href=
-=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br><a href=3D=
-"https://lists.yoctoproject.org/listinfo/yocto" target=3D"_blank">https://l=
-ists.yoctoproject.org/listinfo/yocto</a><br><br><br></div>  </div> </div>  =
-</div> </div></body></html>
+You also shouldn't need the 'set +e' magic, if you move the command which c=
+ould
+fail into the if statement then an error should not cause the script to abo=
+rt.
+Maybe try something like:
+    if tar --help 2>&1 | grep -- --format > /dev/null; then ...
 
----1396834546-957002235-1401738625=:64137--
+The rest of this looks good to me.
+
+>  usage=3D"Usage: $0 [-c] [-C] [-O] [-o owner] [-g group] <pkg_directory> =
+[<destination_directory>]"
+>  while getopts "cCg:ho:vO" opt; do
+>      case $opt in
+> @@ -233,8 +244,8 @@ tmp_dir=3D$dest_dir/IPKG_BUILD.$$
+>  mkdir $tmp_dir
+> =20
+>  echo $CONTROL > $tmp_dir/tarX
+> -( cd $pkg_dir && tar $ogargs -X $tmp_dir/tarX -cz --format=3Dgnu -f $tmp=
+_dir/data.tar.gz . )
+> -( cd $pkg_dir/$CONTROL && tar $ogargs -cz --format=3Dgnu -f $tmp_dir/con=
+trol.tar.gz . )
+> +( cd $pkg_dir && tar $ogargs -X $tmp_dir/tarX -cz $tarformat -f $tmp_dir=
+/data.tar.gz . )
+> +( cd $pkg_dir/$CONTROL && tar $ogargs -cz $tarformat -f $tmp_dir/control=
+=2Etar.gz . )
+>  rm $tmp_dir/tarX
+> =20
+>  echo "2.0" > $tmp_dir/debian-binary
+> @@ -249,7 +260,7 @@ rm -f $pkg_file
+>  if [ "$outer" =3D "ar" ] ; then
+>    ( cd $tmp_dir && ar -crf $pkg_file ./debian-binary ./control.tar.gz ./=
+data.tar.gz )
+>  else
+> -  ( cd $tmp_dir && tar -cz --format=3Dgnu -f $pkg_file ./debian-binary .=
+/control.tar.gz ./data.tar.gz )
+> +  ( cd $tmp_dir && tar -cz $tarformat -f $pkg_file ./debian-binary ./con=
+trol.tar.gz ./data.tar.gz )
+>  fi
+> =20
+>  rm $tmp_dir/debian-binary $tmp_dir/data.tar.gz $tmp_dir/control.tar.gz
+> --=20
+> 1.9.2
+>=20
+> --=20
+> You received this message because you are subscribed to the Google Groups=
+ "opkg-devel" group.
+> To unsubscribe from this group and stop receiving emails from it, send an=
+ email to opkg-devel+unsubscribe@googlegroups.com.
+> For more options, visit https://groups.google.com/d/optout.
+
+--=20
+Paul Barker
+
+Email: paul@paulbarker.me.uk
+http://www.paulbarker.me.uk
+
+--JbKQpFqZXJ2T76Sg
+Content-Type: application/pgp-signature
+
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v2.0.22 (GNU/Linux)
+
+iQEcBAEBAgAGBQJTjOMUAAoJEBwoJlo7UPQDAyEH/RVsC4mD8o3yx9Wo3Cj/semP
+aAJ7iB8qPl77wrxTN3zqErT00Xm/uAGcI8F2eu78PB0Vr+hI4unnx8Ng+SCtix0j
+2sw1IOz+OjaMEXExB50hoTlN/tjMbdfd4RSCu/HLT5zKA7TJclp+AtQq6McCLlJf
+HS3L3F4dG0kxeAPYDICmPujUqj8dqAAd2GjW42e6qxaWaYST/L0qGtAWYQg21lLg
+WFOI440VjpQcvE9a/ZmuxZCy37a14WJ9l6sGcZP+98GnXouCx7lJ7GLcBQoAlmDm
+xZeU1MiXvBBTlP2SAKGwyTDHkdMTnrMK7Pc1ZMbHiFRz9BwcMU7eSMfEW3v45F4=
+=nNIT
+-----END PGP SIGNATURE-----
+
+--JbKQpFqZXJ2T76Sg--
