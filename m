@@ -1,51 +1,45 @@
-Return-Path: <gada.kashyap@gmail.com>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 880E5E00B20; Tue,  3 Jun 2014 08:39:29 -0700 (PDT)
+	id 02B02E00B20; Tue,  3 Jun 2014 08:46:41 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-0.8 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-	DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (gada.kashyap[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.160.176 listed in list.dnswl.org]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-yk0-f176.google.com (mail-yk0-f176.google.com
-	[209.85.160.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 925A9E0073D
-	for <yocto@yoctoproject.org>; Tue,  3 Jun 2014 08:39:23 -0700 (PDT)
-Received: by mail-yk0-f176.google.com with SMTP id q9so4970563ykb.21
-	for <yocto@yoctoproject.org>; Tue, 03 Jun 2014 08:39:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type;
-	bh=hvO4uZ2XqHNzNhKewxcYo+VQAzbjW1uVczlLfbwBc+Y=;
-	b=ZrmRPO+7zCgkpGt1zD37t/GVqbbMbgSaHdU5ZO1MYGD6ow89DPbkCqep8taauT4e38
-	pO8VFKFHAkQ1cBwLhhPfUTQ5/9Gaaur8umN9BzIjkAN/au7olYuL6CTK97WiOb9QcqfD
-	lpblcQmSHtH3R/IIxBCzxI8IA6y5+TfgFKtdJMs5ptItul+3lm5kWSX85hccUTy9om1X
-	R1QJHBHbyv696VBWKy1oXD5ZNHXAGD63L1xt/QGlGUzOctQ8CxIEN+6urvRwKXsULn9z
-	0gu1lPOcI2EvtU8mT9PSmsIKG6YGtmqYTZRYVRM9J1Jo3Z7UG1v4hMEJ1vXDMWcx1PiU
-	TMUA==
+X-Spam-Status: No, score=-0.7 required=5.0 tests=RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [209.85.216.44 listed in list.dnswl.org]
+Received: from mail-qa0-f44.google.com (mail-qa0-f44.google.com
+	[209.85.216.44])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EAE88E0073D
+	for <yocto@yoctoproject.org>; Tue,  3 Jun 2014 08:46:31 -0700 (PDT)
+Received: by mail-qa0-f44.google.com with SMTP id j7so5019481qaq.17
+	for <yocto@yoctoproject.org>; Tue, 03 Jun 2014 08:46:30 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc:content-type;
+	bh=efMOR2lRa34VoVUThHGEmJEnjrz8fi15CyUQwJj6EOI=;
+	b=OWy7JDW0Uk2VLnHZ6zoWAo37+3TwaL44/DLHae1Se3/SiP35iVIFt+BSUVL/4WD7S5
+	vI5dWF4f5E9lVY9Th5H8Z+YJTNu/zsAE3OyX9+T10wxGVcd+I80DqaTmdMlNrp+g/AJT
+	Rs6Qu3+dz+sOgbi6uY8uyeHJlaOd2hFUGOd6n0Iu2/vaiXRl+R0UMXmbphRuQZLSUc9/
+	6FdIi7dV/vFYjU9NzyKHdY9wmcLRT4unANgGjZeUzZ8D1LCk7IeF3zaZ3tVjbYOeYE8f
+	ptWrqE+mcT1XSa/v5wvWSpc7AY1s/cE4HvNOY/oohLG4lcSmSER/2Xn5OU8ZwamshHDi
+	qkSQ==
+X-Gm-Message-State: ALoCoQkTQR/DJSJc3uF4OvosocbLRBIiNFeGANLVpAQlG/vWpDvoyBhiBnIhyyXQyjGQUWjcO6PD
+X-Received: by 10.140.25.37 with SMTP id 34mr58494088qgs.60.1401810390593;
+	Tue, 03 Jun 2014 08:46:30 -0700 (PDT)
 MIME-Version: 1.0
-X-Received: by 10.236.220.197 with SMTP id o65mr15853170yhp.125.1401809962536; 
-	Tue, 03 Jun 2014 08:39:22 -0700 (PDT)
-Received: by 10.170.143.138 with HTTP; Tue, 3 Jun 2014 08:39:22 -0700 (PDT)
-In-Reply-To: <CANJXcUaZm=4XeG4PDZwbaX+DtCo-fh+-aWWD49EsjOVmOuiN0Q@mail.gmail.com>
+Received: by 10.140.101.77 with HTTP; Tue, 3 Jun 2014 08:46:10 -0700 (PDT)
+In-Reply-To: <CANJXcUZOwrAuMjkt_RfBuSU3fyyDbay024qvf1KEfuPkOuJBew@mail.gmail.com>
 References: <CANJXcUap4aox3bhkxzq+EqTtZHokfMX6cqaao5o0oLqqRE+4SA@mail.gmail.com>
 	<CAJTo0LaNbvwf+2yEnPorOj81N4fSJwfYOxppqHcrX-hUHabBeA@mail.gmail.com>
 	<CANJXcUaZm=4XeG4PDZwbaX+DtCo-fh+-aWWD49EsjOVmOuiN0Q@mail.gmail.com>
-Date: Tue, 3 Jun 2014 21:09:22 +0530
-Message-ID: <CANJXcUZOwrAuMjkt_RfBuSU3fyyDbay024qvf1KEfuPkOuJBew@mail.gmail.com>
-From: Kashyap Gada <gada.kashyap@gmail.com>
-To: "Burton, Ross" <ross.burton@intel.com>
+	<CANJXcUZOwrAuMjkt_RfBuSU3fyyDbay024qvf1KEfuPkOuJBew@mail.gmail.com>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Tue, 3 Jun 2014 16:46:10 +0100
+Message-ID: <CAJTo0Lbd257SN_SmwD=2MKYrw0LYODnhJoPhCPCSpdhxf7Nixw@mail.gmail.com>
+To: Kashyap Gada <gada.kashyap@gmail.com>
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: Source Command Permission Denied
 X-BeenThere: yocto@yoctoproject.org
@@ -59,180 +53,14 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 03 Jun 2014 15:39:29 -0000
-Content-Type: multipart/alternative; boundary=001a11c2c27cdc2fc604faf050c2
-
---001a11c2c27cdc2fc604faf050c2
+X-List-Received-Date: Tue, 03 Jun 2014 15:46:41 -0000
 Content-Type: text/plain; charset=UTF-8
 
-Hello,
+On 3 June 2014 16:39, Kashyap Gada <gada.kashyap@gmail.com> wrote:
+> bash: /home/kashyap/yocto/poky/scripts/oe-setup-builddir: Permission denied
 
-I was trying to again do the
+The permissions on that file don't involve +x.  Is that a fresh
+checkout of poky or copied from the removable media?
 
-$ source oe-init-build-env
+Ross
 
-on a new system where the yocto folder is not on an external media but in
-the home directory and I still get the same problem.
-
-kashyap@aditya:~/yocto/poky$ ll total 88 drwxrwxr-x 11 root kashyap 4096
-Jun 3 20:56 ./ drwxrwxr-x 3 root kashyap 4096 Jun 3 21:00 ../ drwxrwxr-x 6
-kashyap kashyap 4096 May 30 08:36 bitbake/ drwxrwxr-x 12 kashyap kashyap
-4096 May 30 08:36 documentation/ drwxrwxr-x 8 kashyap kashyap 4096 May 30
-17:45 .git/ -rw-rw-r-- 1 kashyap kashyap 341 May 30 08:35 .gitignore
--rw-rw-r-- 1 kashyap kashyap 515 May 30 08:35 LICENSE drwxrwxr-x 21 kashyap
-kashyap 4096 May 30 08:35 meta/ drwxrwxr-x 5 kashyap kashyap 4096 May 30
-08:35 meta-selftest/ drwxrwxr-x 7 kashyap kashyap 4096 May 30 08:35
-meta-skeleton/ drwxrwxr-x 5 kashyap kashyap 4096 May 30 08:35 meta-yocto/
-drwxrwxr-x 7 kashyap kashyap 4096 May 30 08:36 meta-yocto-bsp/ -rwxrwxrwx 1
-root kashyap 2000 May 30 08:35 oe-init-build-env* -rw-rw-r-- 1 kashyap
-kashyap 2449 May 30 08:35 oe-init-build-env-memres -rw-rw-r-- 1 kashyap
-kashyap 2046 May 30 08:35 README -rw-rw-r-- 1 kashyap kashyap 18500 May 30
-08:36 README.hardware drwxrwxr-x 9 kashyap kashyap 4096 May 30 08:36
-scripts/ -rw-rw-r-- 1 kashyap kashyap 66 May 30 08:35 .templateconf
-kashyap@aditya:~/yocto/poky$ source oe-init-build-env bash:
-/home/kashyap/yocto/poky/scripts/oe-setup-builddir: Permission denied
-kashyap@aditya:~/yocto/poky$
-
-
-Please Help
-
-
-On Fri, May 30, 2014 at 6:06 PM, Kashyap Gada <gada.kashyap@gmail.com>
-wrote:
-
-> Thank You. I did the following and it worked.
->
-> First Found the drive using
->
-> $ sudo fdisk -l
->
-> Then Selected the desired drive and create a directory in the /mnt path
->
-> $ sudo mkdir hda
->
-> Now Mount the sda5(can be different for you)
->
-> $ sudo mount -t auto -v /dev/sda5 /mnt/hda
->
-> after the work is done can unmount using
->
-> sudo unmount /dev/sda5 (not checked this part yet)
->
-> Thanks
-> Kashyap Gada
-> smartsys india
-> gada(.)kashyap(@)gmail(.)com
->
-> $sudo mount -t
->
->
-> On Fri, May 30, 2014 at 4:40 PM, Burton, Ross <ross.burton@intel.com>
-> wrote:
->
->> On 30 May 2014 05:06, Kashyap Gada <gada.kashyap@gmail.com> wrote:
->> >> bash:
->> >> /media/kashyap/3E0800DC08009555/yocto/poky/scripts/oe-setup-builddir:
->> >> Permission denied
->>
->> You appear to be running Yocto on external media and your system has
->> likely mounted it with the "noexec" flags to prevent malicious
->> programs.  You'll want to remount it with the "exec" flag, using mount
->> -o exec,remount /media/kashyap/3E0800DC08009555 should do the trick.
->>
->> Ross
->>
->
->
-
---001a11c2c27cdc2fc604faf050c2
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">Hello,<div><br></div><div>I was trying to again do the=C2=
-=A0</div><div><br></div><div>$ source=C2=A0<span style=3D"color:rgb(51,51,5=
-1);font-size:13px;white-space:pre-wrap">oe-init-build-env</span></div><div>=
-<span style=3D"color:rgb(51,51,51);font-size:13px;white-space:pre-wrap"><br=
->
-</span></div><div><span style=3D"color:rgb(51,51,51);font-size:13px;white-s=
-pace:pre-wrap">on a new system where the yocto folder is not on an external=
- media but in the home directory and I still get the same problem.</span></=
-div>
-<div><span style=3D"color:rgb(51,51,51);font-size:13px;white-space:pre-wrap=
-"><br></span></div><div><font color=3D"#333333"><span style=3D"white-space:=
-pre-wrap">kashyap@aditya:~/yocto/poky$ ll
-total 88
-drwxrwxr-x 11 root    kashyap  4096 Jun  3 20:56 ./
-drwxrwxr-x  3 root    kashyap  4096 Jun  3 21:00 ../
-drwxrwxr-x  6 kashyap kashyap  4096 May 30 08:36 bitbake/
-drwxrwxr-x 12 kashyap kashyap  4096 May 30 08:36 documentation/
-drwxrwxr-x  8 kashyap kashyap  4096 May 30 17:45 .git/
--rw-rw-r--  1 kashyap kashyap   341 May 30 08:35 .gitignore
--rw-rw-r--  1 kashyap kashyap   515 May 30 08:35 LICENSE
-drwxrwxr-x 21 kashyap kashyap  4096 May 30 08:35 meta/
-drwxrwxr-x  5 kashyap kashyap  4096 May 30 08:35 meta-selftest/
-drwxrwxr-x  7 kashyap kashyap  4096 May 30 08:35 meta-skeleton/
-drwxrwxr-x  5 kashyap kashyap  4096 May 30 08:35 meta-yocto/
-drwxrwxr-x  7 kashyap kashyap  4096 May 30 08:36 meta-yocto-bsp/
--rwxrwxrwx  1 root    kashyap  2000 May 30 08:35 oe-init-build-env*
--rw-rw-r--  1 kashyap kashyap  2449 May 30 08:35 oe-init-build-env-memres
--rw-rw-r--  1 kashyap kashyap  2046 May 30 08:35 README
--rw-rw-r--  1 kashyap kashyap 18500 May 30 08:36 README.hardware
-drwxrwxr-x  9 kashyap kashyap  4096 May 30 08:36 scripts/
--rw-rw-r--  1 kashyap kashyap    66 May 30 08:35 .templateconf
-kashyap@aditya:~/yocto/poky$ source oe-init-build-env
-bash: /home/kashyap/yocto/poky/scripts/oe-setup-builddir: Permission denied
-kashyap@aditya:~/yocto/poky$ </span></font><span style=3D"color:rgb(51,51,5=
-1);font-size:13px;white-space:pre-wrap">
-</span></div><div><span style=3D"color:rgb(51,51,51);font-size:13px;white-s=
-pace:pre-wrap"><br></span></div><div><span style=3D"color:rgb(51,51,51);fon=
-t-size:13px;white-space:pre-wrap"><br></span></div><div><span style=3D"colo=
-r:rgb(51,51,51);font-size:13px;white-space:pre-wrap">Please Help</span></di=
-v>
-</div><div class=3D"gmail_extra"><br><br><div class=3D"gmail_quote">On Fri,=
- May 30, 2014 at 6:06 PM, Kashyap Gada <span dir=3D"ltr">&lt;<a href=3D"mai=
-lto:gada.kashyap@gmail.com" target=3D"_blank">gada.kashyap@gmail.com</a>&gt=
-;</span> wrote:<br>
-<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
-x #ccc solid;padding-left:1ex"><div dir=3D"ltr">Thank You. I did the follow=
-ing and it worked.<div><br></div><div>First Found the drive using</div><div=
-><br>
-</div><div>$ sudo fdisk -l</div><div><br></div><div>Then Selected the desir=
-ed drive and create a directory in the /mnt path</div>
-<div><br></div><div>$ sudo mkdir hda</div><div><br></div><div>Now Mount the=
- sda5(can be different for you)</div><div><br></div><div>$ sudo mount -t au=
-to -v /dev/sda5 /mnt/hda</div><div><br></div><div>after the work is done ca=
-n unmount using=C2=A0</div>
-
-<div><br></div><div>sudo unmount /dev/sda5 (not checked this part yet)</div=
-><div><br></div><div>Thanks <br>Kashyap Gada</div><div>smartsys india</div>=
-<div>gada(.)kashyap(@)gmail(.)com</div><div><br></div><div>$sudo mount -t=
-=C2=A0</div>
-
-</div><div class=3D"HOEnZb"><div class=3D"h5"><div class=3D"gmail_extra"><b=
-r><br><div class=3D"gmail_quote">On Fri, May 30, 2014 at 4:40 PM, Burton, R=
-oss <span dir=3D"ltr">&lt;<a href=3D"mailto:ross.burton@intel.com" target=
-=3D"_blank">ross.burton@intel.com</a>&gt;</span> wrote:<br>
-
-<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
-x #ccc solid;padding-left:1ex">On 30 May 2014 05:06, Kashyap Gada &lt;<a hr=
-ef=3D"mailto:gada.kashyap@gmail.com" target=3D"_blank">gada.kashyap@gmail.c=
-om</a>&gt; wrote:<br>
-
-
-&gt;&gt; bash:<br>
-&gt;&gt; /media/kashyap/3E0800DC08009555/yocto/poky/scripts/oe-setup-buildd=
-ir:<br>
-&gt;&gt; Permission denied<br>
-<br>
-You appear to be running Yocto on external media and your system has<br>
-likely mounted it with the &quot;noexec&quot; flags to prevent malicious<br=
->
-programs. =C2=A0You&#39;ll want to remount it with the &quot;exec&quot; fla=
-g, using mount<br>
--o exec,remount /media/kashyap/3E0800DC08009555 should do the trick.<br>
-<span><font color=3D"#888888"><br>
-Ross<br>
-</font></span></blockquote></div><br></div>
-</div></div></blockquote></div><br></div>
-
---001a11c2c27cdc2fc604faf050c2--
