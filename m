@@ -1,42 +1,34 @@
-Return-Path: <Anooj.Gopi@alpine.de>
+Return-Path: <Adrian.Dudau@enea.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 5B704E00B66; Tue,  3 Jun 2014 05:55:02 -0700 (PDT)
+	id 07077E00B20; Tue,  3 Jun 2014 07:30:42 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
-X-Spam-Level: **
-X-Spam-Status: No, score=2.5 required=5.0 tests=DRUGS_MUSCLE, HTML_MESSAGE,
-	X_IP autolearn=no version=3.3.1
-X-Spam-HAM-Report: *  0.0 X_IP Message has X-IP header
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	*  2.5 DRUGS_MUSCLE Refers to a muscle relaxant
-Received: from ipmx01.kddinet.de (ipmx01.kddinet.de [195.82.33.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C25EEE00B0B
-	for <yocto@yoctoproject.org>; Tue,  3 Jun 2014 05:54:56 -0700 (PDT)
-X-SBRS: None
-X-Policy: $RELAYED_Alpine
-X-Group: Alpine_RLY
-X-IP: 195.82.37.17
-X-MID: 9341033
-X-IronPort-AV: E=Sophos;i="4.98,965,1392159600"; 
-   d="scan'208";a="9341033"
-Received: from unknown (HELO destln01.corp.alpine.eu) ([195.82.37.17])
-	by ipmx01.kddinet.de with ESMTP; 03 Jun 2014 14:54:54 +0200
-In-Reply-To: <CAMKF1spDE3pO8nXaiMGDGZKbOTXYB0wn_g7Vh0gtEMBR=7=d3Q@mail.gmail.com>
-References: <OFD5EA41E8.B3B2A295-ONC1257CE8.004C09F4-C1257CE8.004E22D1@alpine.de>
-	<CAMKF1spDE3pO8nXaiMGDGZKbOTXYB0wn_g7Vh0gtEMBR=7=d3Q@mail.gmail.com>
-To: Khem Raj <raj.khem@gmail.com>
+X-Spam-Level: 
+X-Spam-Status: No, score=0.0 required=5.0 tests=none autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: 
+Received: from mx-3.enea.com (sestofw01.enea.se [192.36.1.252])
+	by yocto-www.yoctoproject.org (Postfix) with SMTP id 0A7C0E0073D
+	for <yocto@yoctoproject.org>; Tue,  3 Jun 2014 07:30:31 -0700 (PDT)
+Received: from SESTOEX04.enea.se ([fe80::bc2d:9299:d6b2:d0b7]) by
+	SESTOEX03.enea.se ([fe80::6ce7:7b51:1edf:e245%17]) with mapi id
+	14.03.0158.001; Tue, 3 Jun 2014 16:30:23 +0200
+From: Adrian Dudau <Adrian.Dudau@enea.com>
+To: "vaduvajanalexandru@yahoo.com" <vaduvajanalexandru@yahoo.com>
+Thread-Topic: [yocto] bitbake virtual/kernel -c devshell doesn't build the sdk
+Thread-Index: AQHPfnEe8iYlL7JsrUeovmxWOf1Bk5teGWGAgAE47YA=
+Date: Tue, 3 Jun 2014 14:30:23 +0000
+Message-ID: <1401805825.28197.2.camel@sestows129.enea.se>
+References: <1401720252.7631.19.camel@sestows129.enea.se>
+	<1401738625.64137.YahooMailNeo@web122502.mail.ne1.yahoo.com>
+In-Reply-To: <1401738625.64137.YahooMailNeo@web122502.mail.ne1.yahoo.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [172.16.141.146]
 MIME-Version: 1.0
-X-KeepSent: 78987838:ED2425C4-C1257CEC:0045117A;
- type=4; name=$KeepSent
-X-Mailer: Lotus Notes Release 8.5.3 September 15, 2011
-From: Anooj Gopi <Anooj.Gopi@alpine.de>
-Message-ID: <OF78987838.ED2425C4-ONC1257CEC.0045117A-C1257CEC.0046F17C@alpine.de>
-Date: Tue, 3 Jun 2014 14:54:52 +0200
-X-MIMETrack: Serialize by Router on AOGSLN001/SRV/AOGS/SPEED(Release
-	8.5.3FP5|July 31, 2013) at 03.06.2014 14:54:54,
-	Serialize complete at 03.06.2014 14:54:54
-Cc: yocto@yoctoproject.org
-Subject: Re: Detailed steps involved in populate_sdk
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: bitbake virtual/kernel -c devshell doesn't build the sdk
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -48,173 +40,32 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 03 Jun 2014 12:55:02 -0000
-Content-Type: multipart/alternative;
-	boundary="=_alternative 0046F17CC1257CEC_="
+X-List-Received-Date: Tue, 03 Jun 2014 14:30:42 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <FCA92027C5020B4696962A260AE09FBE@local>
+Content-Transfer-Encoding: base64
 
---=_alternative 0046F17CC1257CEC_=
-Content-Type: text/plain; charset="US-ASCII"
+aGksDQoNCk9uIG3DpW4sIDIwMTQtMDYtMDIgYXQgMTI6NTAgLTA3MDAsIEFsZXhhbmRydSBWYWR1
+dmEgd3JvdGU6DQo+IA0KPiBBZHJpYW4gZGlkIHlvdSBydW4gYSAtYyBjb21waWxlIGJlZm9yZSAt
+YyBkZXZzaGVsbD8NCg0KTm8gSSBoYXZlIG5vdC4gQW5kIGl0IHdhcyBpbnRlbnRpb25hbC4gSSBr
+bm93IHRoYXQgaWYgSSBjb21waWxlIGFueXRoaW5nDQpJIHdpbGwgZ2V0IHRoZSBjcm9zc2RrLg0K
+DQo+IEkgZG8gbm90IGJlbGlldmUgeW91IHNob3VsZCBoYXZlIGEgY3Jvc3NzZGsgd2l0aCBvbmx5
+IGNhbGxpbmcgLWMNCj4gZGV2c2hlbGwgb24gYSBwYWNoYWdlL3JlY2lwZS4NCg0KTXkgdW5kZXJz
+dGFuZGluZyB3YXMgdGhlIG9wcG9zaXRlLiBCdXQgaWYgdGhpcyBpcyBub3JtYWwgYmVoYXZpb3Vy
+IHRoYW4NCkkgYW0gb2sgd2l0aCBpdC4gDQo+IA0KPiANCj4gQWxleA0KDQotLUFkcmlhbg0KPiAN
+Cj4gT24gTW9uZGF5LCBKdW5lIDIsIDIwMTQgODoyMSBQTSwgQWRyaWFuIER1ZGF1IDxBZHJpYW4u
+RHVkYXVAZW5lYS5jb20+DQo+IHdyb3RlOg0KPiANCj4gDQo+IA0KPiBIaSwNCj4gDQo+IFN0YXJ0
+aW5nIGZyb20gYSBmcmVzaCBidWlsZCBmb2xkZXIsIEkgcnVuICJiaXRiYWtlIC1jIGRldnNoZWxs
+DQo+IHZpcnR1YWwva2VybmVsIiBhbmQgZXhwZWN0IHRvIGhhdmUgdGhlIGNyb3NzIFNESyBzb3Vy
+Y2VkIGFuZCBiZSBhYmxlDQo+IHRvDQo+IGJ1aWxkIHRoZSBrZXJuZWwgaW4gdGhlIGRldnNoZWxs
+LiBUaGUgaXNzdWUgaXMgdGhhdCBldmVuIHRob3VnaCBQQVRIDQo+IGlzDQo+IHByZXBwZW5kZWQg
+Y29ycmVjdGx5IHdpdGggdGhlIGV4cGVjdGVkIGxvY2F0aW9uIG9mIHRoZSBTREsgKGluIG15IGNh
+c2UNCj4gdG1wL3N5c3Jvb3RzL3g4Nl82NC1saW51eC91c3IvYmluL3BwY2U1MDB2Mi1lbmVhLWxp
+bnV4LWdudXNwZSksIHRoZQ0KPiBjcm9zcyBTREsgaXMgbm90IGJ1aWx0LiAgQW0gSSB3cm9uZyBh
+c3N1bWluZyB0aGF0ICAtYyBkZXZzaGVsbA0KPiB2aXJ0dWFsL2tlcm5lbCBzaG91bGQgZGVwZW5k
+IG9uIHRoZSBjcm9zc3Nkaz8NCj4gDQo+IGJlc3QgcmVnYXJkcywNCj4gLS1BZHJpYW4NCj4gLS0g
+DQo+IF9fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fDQo+IHlv
+Y3RvIG1haWxpbmcgbGlzdA0KPiB5b2N0b0B5b2N0b3Byb2plY3Qub3JnDQo+IGh0dHBzOi8vbGlz
+dHMueW9jdG9wcm9qZWN0Lm9yZy9saXN0aW5mby95b2N0bw0KPiANCj4gDQo+IA0KDQo=
 
-Hello Raj,
-
-Thank you for your reply. May be I because I don't know about it but I am 
-still not convinced about the on thing.
-
-When we say 'for normal build these consideration is not needed', this 
-means the tools used in 'build host' and 'sdk hosts' are different (may be 
-similar versions but different binary builds) right? (Even in the case 
-when both 'build host' and 'sdk host' are exactly same for eg. basic 
-Ubuntu 14.04 x86_64 with basic additional tools installed as suggested in 
-yocto user manual).
-
-Would there be any option for me to tell yocto to generate all the tools 
-and use exactly the same for 'build host' as well as 'sdk host'?
-
-Best Regards,
-Anooj
-
-
-
-From:   Khem Raj <raj.khem@gmail.com>
-To:     Anooj Gopi <Anooj.Gopi@alpine.de>, 
-Cc:     yocto@yoctoproject.org
-Date:   01.06.2014 04:49
-Subject:        Re: [yocto] Detailed steps involved in populate_sdk
-
-
-
-
-On May 30, 2014 7:15 AM, "Anooj Gopi" <Anooj.Gopi@alpine.de> wrote:
->
-> Hello, 
->
-> I am new to yocto project and learning about the project step by step 
-for one of our project. 
->
-> For study purpose, I'm currently using the latest yocto git clone and 
-built "bitbake core-image-minimal" successfully for "beaglebone". I have 
-got all the target images to boot. At this point I assume that all the 
-native tool chain binaries required to build the target image is already 
-generated by yocto. 
->
-> Now when I try to create the SDK with the command "bitbake 
-core-image-minimal -c populate_sdk", I can see there is again native 
-packages being configured and compiled. As per my understanding about 
-yocto I was expecting this would have already done during "bitbake 
-core-image-minimal" because all these tools are required to build the 
-images. In my understanding populate_sdk would just install the "native 
-package deb files" already created during "bitbake core-image-minimal". I 
-know there is something wrong in my understanding. Could you please 
-explain bit in detail. 
-sdks are supposed to run on different hosts too which we call sdkhost 
-there fore it has to build native sdk packages to insulate itself from 
-build host. for normal build these consideration is not needed
->
-> Best Regards, 
-> Anooj Gopi 
-> Alpine Electronics R&D Europe GmbH, Vor dem Lauch 14, 70567 Stuttgart,
-> Registergericht Stuttgart, HRB 25265
-> Geschaeftsfuehrer: Satoshi Soma, Shuji Taguchi 
-> Working office: Vor dem Lauch 14, 70567 Stuttgart
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
->
-
-
-
-Alpine Electronics R&D Europe GmbH, Vor dem Lauch 14, 70567 Stuttgart,
-Registergericht Stuttgart, HRB 25265
-Geschaeftsfuehrer: Satoshi Soma, Shuji Taguchi 
-Working office: Vor dem Lauch 14, 70567 Stuttgart
-
---=_alternative 0046F17CC1257CEC_=
-Content-Type: text/html; charset="US-ASCII"
-
-<font size=2 face="sans-serif">Hello Raj,</font>
-<br>
-<br><font size=2 face="sans-serif">Thank you for your reply. May be I because
-I don't know about it but I am still not convinced about the on thing.</font>
-<br>
-<br><font size=2 face="sans-serif">When we say '</font><font size=3>for
-normal build these consideration is not needed</font><font size=2 face="sans-serif">',
-this means the tools used in 'build host' and 'sdk hosts' are different
-(may be similar versions but different binary builds) right? (Even in the
-case when both 'build host' and 'sdk host' are exactly same for eg. basic
-Ubuntu 14.04 x86_64 with basic additional tools installed as suggested
-in yocto user manual).</font>
-<br>
-<br><font size=2 face="sans-serif">Would there be any option for me to
-tell yocto to generate all the tools and use exactly the same for 'build
-host' as well as 'sdk host'?</font>
-<br>
-<br><font size=2 face="sans-serif">Best Regards,</font>
-<br><font size=2 face="sans-serif">Anooj</font>
-<br>
-<br>
-<br>
-<br><font size=1 color=#5f5f5f face="sans-serif">From: &nbsp; &nbsp; &nbsp;
-&nbsp;</font><font size=1 face="sans-serif">Khem Raj &lt;raj.khem@gmail.com&gt;</font>
-<br><font size=1 color=#5f5f5f face="sans-serif">To: &nbsp; &nbsp; &nbsp;
-&nbsp;</font><font size=1 face="sans-serif">Anooj Gopi &lt;Anooj.Gopi@alpine.de&gt;,
-</font>
-<br><font size=1 color=#5f5f5f face="sans-serif">Cc: &nbsp; &nbsp; &nbsp;
-&nbsp;</font><font size=1 face="sans-serif">yocto@yoctoproject.org</font>
-<br><font size=1 color=#5f5f5f face="sans-serif">Date: &nbsp; &nbsp; &nbsp;
-&nbsp;</font><font size=1 face="sans-serif">01.06.2014 04:49</font>
-<br><font size=1 color=#5f5f5f face="sans-serif">Subject: &nbsp; &nbsp;
-&nbsp; &nbsp;</font><font size=1 face="sans-serif">Re: [yocto]
-Detailed steps involved in populate_sdk</font>
-<br>
-<hr noshade>
-<br>
-<br>
-<br><font size=3><br>
-On May 30, 2014 7:15 AM, &quot;Anooj Gopi&quot; &lt;</font><a href=mailto:Anooj.Gopi@alpine.de><font size=3 color=blue><u>Anooj.Gopi@alpine.de</u></font></a><font size=3>&gt;
-wrote:<br>
-&gt;<br>
-&gt; Hello, <br>
-&gt;<br>
-&gt; I am new to yocto project and learning about the project step by step
-for one of our project. <br>
-&gt;<br>
-&gt; For study purpose, I'm currently using the latest yocto git clone
-and built &quot;bitbake core-image-minimal&quot; successfully for &quot;beaglebone&quot;.
-I have got all the target images to boot. At this point I assume that all
-the native tool chain binaries required to build the target image is already
-generated by yocto. <br>
-&gt;<br>
-&gt; Now when I try to create the SDK with the command &quot;bitbake core-image-minimal
--c populate_sdk&quot;, I can see there is again native packages being configured
-and compiled. As per my understanding about yocto I was expecting this
-would have already done during &quot;bitbake core-image-minimal&quot; because
-all these tools are required to build the images. In my understanding populate_sdk
-would just install the &quot;native package deb files&quot; already created
-during &quot;bitbake core-image-minimal&quot;. I know there is something
-wrong in my understanding. Could you please explain bit in detail. </font>
-<p><font size=3>sdks are supposed to run on different hosts too which we
-call sdkhost there fore it has to build native sdk packages to insulate
-itself from build host. for normal build these consideration is not needed</font>
-<p><font size=3>&gt;<br>
-&gt; Best Regards, <br>
-&gt; Anooj Gopi <br>
-&gt; Alpine Electronics R&amp;D Europe GmbH, Vor dem Lauch 14, 70567 Stuttgart,<br>
-&gt; Registergericht Stuttgart, HRB 25265<br>
-&gt; Geschaeftsfuehrer: Satoshi Soma, Shuji Taguchi <br>
-&gt; Working office: Vor dem Lauch 14, 70567 Stuttgart<br>
-&gt; --<br>
-&gt; _______________________________________________<br>
-&gt; yocto mailing list<br>
-&gt; </font><a href=mailto:yocto@yoctoproject.org><font size=3 color=blue><u>yocto@yoctoproject.org</u></font></a><font size=3><br>
-&gt; </font><a href=https://lists.yoctoproject.org/listinfo/yocto><font size=3 color=blue><u>https://lists.yoctoproject.org/listinfo/yocto</u></font></a><font size=3><br>
-&gt;</font>
-<p>
-<br>
-<font size="2" face="Arial">Alpine Electronics R&amp;D Europe GmbH, Vor dem Lauch 14, 70567 Stuttgart,</font><br>
-<font size="2" face="Arial">Registergericht Stuttgart, HRB 25265</font><br>
-<font size="2" face="Arial">Geschaeftsfuehrer: </font><font size="2" face="Arial">Satoshi Soma, Shuji Taguchi </font><br>
-<font size="2" face="Arial">Working office: Vor dem Lauch 14, 70567 Stuttgart</font>
-
---=_alternative 0046F17CC1257CEC_=--
