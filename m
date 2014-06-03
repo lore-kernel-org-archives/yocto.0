@@ -1,31 +1,47 @@
-Return-Path: <gary@mlbassoc.com>
+Return-Path: <hock.leong.kweh@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id BA03FE00B95; Fri,  6 Jun 2014 09:42:00 -0700 (PDT)
+	id 5AD5DE00AFD; Mon,  2 Jun 2014 23:27:22 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=0.0 required=5.0 tests=none autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: 
-Received: from mail.chez-thomas.org (mail.mlbassoc.com [65.100.170.105])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6AE75E009E7
-	for <yocto@yoctoproject.org>; Fri,  6 Jun 2014 09:41:53 -0700 (PDT)
-Received: by mail.chez-thomas.org (Postfix, from userid 1998)
-	id 6BFB9F811EF; Fri,  6 Jun 2014 10:41:53 -0600 (MDT)
-Received: from [192.168.1.114] (zeus [192.168.1.114])
-	by mail.chez-thomas.org (Postfix) with ESMTP id 2C288F811EE;
-	Fri,  6 Jun 2014 10:41:52 -0600 (MDT)
-Message-ID: <5391EF58.5080601@mlbassoc.com>
-Date: Fri, 06 Jun 2014 10:42:00 -0600
-From: Gary Thomas <gary@mlbassoc.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:24.0) Gecko/20100101 Thunderbird/24.5.0
+X-Spam-Status: No, score=-5.0 required=5.0 tests=RCVD_IN_DNSWL_HI
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [134.134.136.20 listed in list.dnswl.org]
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 62748E00985;
+	Mon,  2 Jun 2014 23:27:19 -0700 (PDT)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga101.jf.intel.com with ESMTP; 02 Jun 2014 23:27:19 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.98,963,1392192000"; d="scan'208";a="550677217"
+Received: from pgsmsx103.gar.corp.intel.com ([10.221.44.82])
+	by orsmga002.jf.intel.com with ESMTP; 02 Jun 2014 23:27:17 -0700
+Received: from kmsmsx151.gar.corp.intel.com (172.21.73.86) by
+	PGSMSX103.gar.corp.intel.com (10.221.44.82) with Microsoft SMTP Server
+	(TLS) id 14.3.123.3; Tue, 3 Jun 2014 14:25:42 +0800
+Received: from pgsmsx102.gar.corp.intel.com ([169.254.6.101]) by
+	KMSMSX151.gar.corp.intel.com ([169.254.10.227]) with mapi id
+	14.03.0123.003; Tue, 3 Jun 2014 14:25:42 +0800
+From: "Kweh, Hock Leong" <hock.leong.kweh@intel.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
+	"yocto-bounces@yoctoproject.org" <yocto-bounces@yoctoproject.org>
+Thread-Topic: [yocto] [OE-core] [Repo Issue] x264: Unable to find revision
+Thread-Index: Ac9768FBpew9lhsRQAKr3WglFQX35v//jc2A//nQfuD/807WIA==
+Date: Tue, 3 Jun 2014 06:25:41 +0000
+Message-ID: <F54AEECA5E2B9541821D670476DAE19C2B6AD91A@PGSMSX102.gar.corp.intel.com>
+References: <4D2B74E594FF4C4A97424079247E473A17DC8288@PGSMSX104.gar.corp.intel.com>
+	<1678042.dqjeM3hNZI@peggleto-mobl5.ger.corp.intel.com>
+	<AF233D1473C1364ABD51D28909A1B1B7241489D1@pgsmsx105.gar.corp.intel.com>
+In-Reply-To: <AF233D1473C1364ABD51D28909A1B1B7241489D1@pgsmsx105.gar.corp.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [172.30.20.206]
 MIME-Version: 1.0
-To: yocto@yoctoproject.org
-References: <53906B96.300@mlbassoc.com>	<2865499.mMpv2bqsZi@peggleto-mobl5.ger.corp.intel.com>	<5390A607.9010106@mlbassoc.com>	<6944853.hSHdg7euvW@peggleto-mobl5.ger.corp.intel.com>	<5390C088.2020006@mlbassoc.com>
-	<5390EA6E.6040908@mlbassoc.com>
-In-Reply-To: <5390EA6E.6040908@mlbassoc.com>
-Subject: Re: Live images?
+X-Mailman-Approved-At: Fri, 06 Jun 2014 11:32:24 -0700
+Subject: Re: [OE-core] [Repo Issue] x264: Unable to find revision
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,155 +53,72 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 06 Jun 2014 16:42:00 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Tue, 03 Jun 2014 06:27:22 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-On 2014-06-05 16:08, Gary Thomas wrote:
-> On 2014-06-05 13:10, Gary Thomas wrote:
->> On 2014-06-05 11:24, Paul Eggleton wrote:
->>> On Thursday 05 June 2014 11:16:55 Gary Thomas wrote:
->>>> On 2014-06-05 09:07, Paul Eggleton wrote:
->>>>> On Thursday 05 June 2014 08:41:57 Gary Thomas wrote:
->>>>>> On 2014-06-05 08:32, Paul Eggleton wrote:
->>>>>>> On Thursday 05 June 2014 15:26:28 Paul Eggleton wrote:
->>>>>>>> Hi Gary,
->>>>>>>>
->>>>>>>> On Thursday 05 June 2014 07:07:34 Gary Thomas wrote:
->>>>>>>>> Looking through the Poky/Yocto sources, there seems to be
->>>>>>>>> some support for Live CD/USB images.  However, I can't find
->>>>>>>>> any examples nor documentation for how to use this.
->>>>>>>>>
->>>>>>>>> Can anyone provide some pointers?
->>>>>>>>
->>>>>>>> You're right, we seem to be missing that in our documentation; I'm not
->>>>>>>> sure
->>>>>>>> where the best place to document it would be though.
->>>>>>>>
->>>>>>>> FYI, you should just need to ensure "live" is in IMAGE_FSTYPES; then
->>>>>>>> you
->>>>>>>> should get a .directdisk image that you can just dd to a USB stick.
->>>>>>>
->>>>>>> Of course I meant to say .hddimg, not .directdisk.
->>>>>>
->>>>>> Thanks, I'll give that a try.
->>>>>>
->>>>>> What if I needed to boot from an actual CD?  I have an old
->>>>>> box here I'd like to try, but it doesn't boot from USB.
->>>>>
->>>>> We can produce ISO images but I don't think that they work quite as well,
->>>>> e.g.:
->>>>>
->>>>> https://bugzilla.yoctoproject.org/show_bug.cgi?id=5282
->>>>>
->>>>> You could always try it though.
->>>>
->>>> Bummer, when I tried to build core-image-minimal and/or core-image-x11, it
->>> failed:
->>>> | DEBUG: Executing shell function read_only_rootfs_hook
->>>> | sed: can't read
->>>> | /home/local/x86_live_2014-06-05/tmp/work/genericx86-poky-linux/core-image
->>>> | -minimal-initramfs/1.0-r0/rootfs/etc/fstab: No such file or directory
->>>> | WARNING:
->>>> | /home/local/x86_live_2014-06-05/tmp/work/genericx86-poky-linux/core-image
->>>> | -minimal-initramfs/1.0-r0/temp/run.read_only_rootfs_hook.30446:1 exit 2
->>>> | from|
->>>> |   sed -i -e
->>>> |   '/^[#[:space:]]*\/dev\/root/{s/defaults/ro/;s/\([[:space:]]*[[:digit:]]
->>>> |   \)\([[:space:]]*\)[[:digit:]]$/\1\20/}'
->>>> /home/local/x86_live_2014-06-05/tmp/work/genericx86-poky-linux/core-image-mi
->>>> nimal-initramfs/1.0-r0/rootfs/etc/fstab
->>>> | DEBUG: Python function do_rootfs finished
->>>> | ERROR: Function failed: read_only_rootfs_hook (log file is located at
->>>>
->>>> /home/local/x86_live_2014-06-05/tmp/work/genericx86-poky-linux/core-image-mi
->>>> nimal-initramfs/1.0-r0/temp/log.do_rootfs.30446)
->>>>
->>>> Using these settings:
->>>> Build Configuration:
->>>> BB_VERSION        = "1.23.1"
->>>> BUILD_SYS         = "i686-linux"
->>>> NATIVELSBSTRING   = "Fedora-13"
->>>> TARGET_SYS        = "i586-poky-linux"
->>>> MACHINE           = "genericx86"
->>>> DISTRO            = "poky"
->>>> DISTRO_VERSION    = "1.6+snapshot-20140605"
->>>> TUNE_FEATURES     = "m32 core2"
->>>> TARGET_FPU        = ""
->>>> meta
->>>> meta-yocto
->>>> meta-yocto-bsp    = "master:e7114046be6e71fb326477dc882adb814ef6a751"
->>>>
->>>> Extra settings in conf/local.conf
->>>> # Live CD setup
->>>> IMAGE_FSTYPES_append = " hddimg live"
->>>
->>> "hddimg" isn't a valid IMAGE_FSTYPES item.
->>>
->>> Also, try IMAGE_FSTYPES += rather than _append, that allows the initramfs
->>> image to have its own value (because it's not really valid to make a live
->>> initramfs...)
->>
->> Sorry, I misread/misapplied your previous suggestions.
->>
->>>
->>>> IMAGE_FEATURES_append = " read-only-rootfs"
->>>
->>> Try EXTRA_IMAGE_FEATURES += instead of IMAGE_FEATURES_append
->>
->> I've changed both of these and it still fails if I enable the
->> read-only-rootfs.
->>
->> If I leave that option out, I can build an .hddimg which I dd'd
->> to my USB stick.  It tried to boot, finds /vmlinuz but fails to
->> find /initrd
->>
->> My local.conf settings are now:
->> # Live CD setup
->> IMAGE_FSTYPES += " live"
->> #IMAGE_FEATURES += " read-only-rootfs"
->> CORE_IMAGE_EXTRA_INSTALL += " python-core python-modules"
->>
->> Finally, during one of my builds, I ended up with a core-image-minimal*.iso
->> I tried burning this to a CD an it booted up, albeit with a couple of
->> complaints about a read-only rootfs.  Sadly, I no longer get any .iso
->> results when I 'bitbake core-image-minimal'
->>
->
-> BTW, I tried this with daisy and the CD version (read-only)
-> worked just fine for me - the ISO and .hddimg files built with
-> no errors.
->
-> I'm bisecting now to see what broke...
->
+Hi, understand the patch below is to fix the x264 yocto build issue but it =
+is for "Daisy" branch. How about the "Dylan" branch?=20
+Can we use the same commit id on the SRCREV?
 
-Truly odd.  After doing around a dozen bisected builds (some of
-which were pretty messed up), all in the same tree as the original,
-I could not reproduce the problem.  So, I tried 100% from scratch,
-with the proper settings as above, including the read-only-rootfs,
-and it builds & works perfectly(*), both on CD and USB.
 
-Not that I want to find the answer to this, but somehow when I
-tried the builds with my errant settings (from early on above),
-my build got so messed up that the errors persisted, even when
-I fixed the configuration settings.  I thought that it should
-be more robust than this.  Is this something I should pursue,
-or just treat it as "Doctor, Doctor, it hurts when I ..." and
-be happy that it works if you start afresh (which sadly takes
-at least 90 minutes on my pretty-fast build server)?
+-----Original Message-----
+From: Ong, Boon Leong=20
+Sent: Tuesday, June 03, 2014 9:25 AM
+To: Tan, Raymond; Chew, Kean Ho; Kweh, Hock Leong; Chen, Alvin
+Subject: FW: [yocto] [OE-core] [Repo Issue] x264: Unable to find revision
 
-(*) Not a lot was tested and I only used core-image-minimal
-which served my needs (to build a stand-alone CD/USB setup
-to hand a QA tech).  I did see some complaints about the
-read-only file system (e.g. can't save the timestamp on reboot),
-but overall worked OK and good enough for this task.
+Pleae take note on this patch that is reported on x264 issue when you build=
+.
+The issue is related to the remote git has be rebased/changed that cause co=
+mmit id not found by the YP metadata script.=20
 
-Thanks for the time and sorry for the noise.  Looking forward
-to some documentation on this showing up in the future :-)
+-----Original Message-----
+From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org=
+] On Behalf Of Paul Eggleton
+Sent: Friday, May 30, 2014 6:56 PM
+To: yocto@yoctoproject.org
+Subject: Re: [yocto] [OE-core] [Repo Issue] x264: Unable to find revision
 
--- 
-------------------------------------------------------------
-Gary Thomas                 |  Consulting for the
-MLB Associates              |    Embedded world
-------------------------------------------------------------
+Hi Hui Qing,
+
+On Friday 30 May 2014 09:44:31 Chong, Hui Qing wrote:
+> Hi, I am working on Yocto Project 1.6, Daisy branch. Previously I am=20
+> able to build the image successfully, but now I have errors as follow:
+>=20
+> ERROR: Fetcher failure: Unable to find revision
+> 585324fee380109acd9986388f857f413a60b896 in branch master even from=20
+> upstream ERROR: Function failed: Fetcher failure for URL:
+> 'git://git.videolan.org/x264.git'. Unable to fetch URL from any source.
+>=20
+> In the x264_git.bb file, the SRC_URI and SRCREV are:
+>=20
+> SRC_URI =3D "git://git.videolan.org/x264.git \
+> 	        file://don-t-default-to-cortex-a9-with-neon.patch \
+> 	        "
+> SRCREV =3D "585324fee380109acd9986388f857f413a60b896"
+>=20
+> Does anyone notice this and is there any solution for this error? Thank y=
+ou.
+
+Yes, there is a patch here:
+
+http://patchwork.openembedded.org/patch/72933/
+
+It should be merged fairly soon I would think, but in the mean time you can=
+ apply it locally.
+
+Cheers,
+Paul
+
+--=20
+
+Paul Eggleton
+Intel Open Source Technology Centre
+--
+_______________________________________________
+yocto mailing list
+yocto@yoctoproject.org
+https://lists.yoctoproject.org/listinfo/yocto
 
