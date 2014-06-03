@@ -1,49 +1,38 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <Anooj.Gopi@alpine.de>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 52D51E00B20; Tue,  3 Jun 2014 08:51:20 -0700 (PDT)
+	id 43AA4E00B20; Tue,  3 Jun 2014 08:54:27 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
-X-Spam-Level: 
-X-Spam-Status: No, score=0.0 required=5.0 tests=RCVD_IN_DNSWL_NONE
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [209.85.192.43 listed in list.dnswl.org]
-Received: from mail-qg0-f43.google.com (mail-qg0-f43.google.com
-	[209.85.192.43])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 770CAE0073D
-	for <yocto@yoctoproject.org>; Tue,  3 Jun 2014 08:51:10 -0700 (PDT)
-Received: by mail-qg0-f43.google.com with SMTP id 63so13516887qgz.2
-	for <yocto@yoctoproject.org>; Tue, 03 Jun 2014 08:51:10 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc:content-type;
-	bh=eLaNx9aEYw9/3ldzqHeaBh0OcDZfrZYzEhCv7139kXs=;
-	b=lsZSVFXMD70yvpXilw6qePjXymdCGwV7UiPZqOgxRHJ0Qt8SvWrnvTE5u4ZmYXhKQF
-	vAMrKpRIPay6hh12B/efZp/iUre146Zc13HM4EckUR522lJV73ut//Zn+XHeVclwvyoK
-	Shi8vVktqkX8SucAp85Notm0enW03ciKeX2IVcERZQH6i2/U+QN9ZmPfC43R54cP4Fxq
-	I33omI3H4bI6OVAbO1Iu0QbVcEKOcRsmYa3oDC4dpjwesCaoUuHiLqtYpioKMnWrJACx
-	ACoxQgkXLEyF1WqeB9gOeZbcnNoi15nvlU8sZg74KEa0g3OdE7GEfbLxZCXmqbMYOxsZ
-	Vjfw==
-X-Gm-Message-State: ALoCoQnwP8Q9xuyrj5xnZ4etjg9K5M0dOz0QVgTol3aXsPSw/1wLmTevxdExq4d/u7425JcRkxSg
-X-Received: by 10.224.151.206 with SMTP id d14mr61909355qaw.35.1401810670553; 
-	Tue, 03 Jun 2014 08:51:10 -0700 (PDT)
+X-Spam-Level: **
+X-Spam-Status: No, score=2.5 required=5.0 tests=DRUGS_MUSCLE, HTML_MESSAGE,
+	X_IP autolearn=no version=3.3.1
+X-Spam-HAM-Report: *  0.0 X_IP Message has X-IP header
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	*  2.5 DRUGS_MUSCLE Refers to a muscle relaxant
+Received: from ipmx01.kddinet.de (ipmx01.kddinet.de [195.82.33.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B977DE0073D
+	for <yocto@yoctoproject.org>; Tue,  3 Jun 2014 08:54:25 -0700 (PDT)
+X-SBRS: None
+X-Policy: $RELAYED_Alpine
+X-Group: Alpine_RLY
+X-IP: 195.82.37.17
+X-MID: 9349174
+X-IronPort-AV: E=Sophos;i="4.98,966,1392159600"; 
+   d="scan'208";a="9349174"
+Received: from unknown (HELO destln01.corp.alpine.eu) ([195.82.37.17])
+	by ipmx01.kddinet.de with ESMTP; 03 Jun 2014 17:54:22 +0200
+To: yocto@yoctoproject.org
 MIME-Version: 1.0
-Received: by 10.140.101.77 with HTTP; Tue, 3 Jun 2014 08:50:50 -0700 (PDT)
-In-Reply-To: <CANJXcUYEdbSf1Fo5kZAw5GE+36fnz=EgzZojXxr44WdnCtC1Qg@mail.gmail.com>
-References: <CANJXcUap4aox3bhkxzq+EqTtZHokfMX6cqaao5o0oLqqRE+4SA@mail.gmail.com>
-	<CAJTo0LaNbvwf+2yEnPorOj81N4fSJwfYOxppqHcrX-hUHabBeA@mail.gmail.com>
-	<CANJXcUaZm=4XeG4PDZwbaX+DtCo-fh+-aWWD49EsjOVmOuiN0Q@mail.gmail.com>
-	<CANJXcUZOwrAuMjkt_RfBuSU3fyyDbay024qvf1KEfuPkOuJBew@mail.gmail.com>
-	<CAJTo0Lbd257SN_SmwD=2MKYrw0LYODnhJoPhCPCSpdhxf7Nixw@mail.gmail.com>
-	<CANJXcUYEdbSf1Fo5kZAw5GE+36fnz=EgzZojXxr44WdnCtC1Qg@mail.gmail.com>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Tue, 3 Jun 2014 16:50:50 +0100
-Message-ID: <CAJTo0LbKNeujMacRb-O3RHq5LfWZ01axS-TYTwhScjFnm-uu8g@mail.gmail.com>
-To: Kashyap Gada <gada.kashyap@gmail.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Source Command Permission Denied
+X-KeepSent: 610A841C:679DDE21-C1257CEC:0056DCB5;
+ type=4; name=$KeepSent
+X-Mailer: Lotus Notes Release 8.5.3 September 15, 2011
+From: Anooj Gopi <Anooj.Gopi@alpine.de>
+Message-ID: <OF610A841C.679DDE21-ONC1257CEC.0056DCB5-C1257CEC.00576031@alpine.de>
+Date: Tue, 3 Jun 2014 17:54:22 +0200
+X-MIMETrack: Serialize by Router on AOGSLN001/SRV/AOGS/SPEED(Release
+	8.5.3FP5|July 31, 2013) at 03.06.2014 17:54:22,
+	Serialize complete at 03.06.2014 17:54:22
+Subject: external-linaro-sdk-toolchain.bb, do_package_write_rpm) failed with exit code '1'
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -55,29 +44,83 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 03 Jun 2014 15:51:20 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Tue, 03 Jun 2014 15:54:27 -0000
+Content-Type: multipart/alternative;
+	boundary="=_alternative 00576031C1257CEC_="
 
-So you probably lost every executable mode when you did that.  Make a
-fresh clone and reapply your changes, that will be easier than finding
-every file that isn't executable when it should be.
+--=_alternative 00576031C1257CEC_=
+Content-Type: text/plain; charset="US-ASCII"
 
-Ross
+When try to build in Ubuntu 14.04 x86_64 machine following failure occurs. 
 
-On 3 June 2014 16:49, Kashyap Gada <gada.kashyap@gmail.com> wrote:
-> its copied!
->
->
-> On Tue, Jun 3, 2014 at 9:16 PM, Burton, Ross <ross.burton@intel.com> wrote:
->>
->> On 3 June 2014 16:39, Kashyap Gada <gada.kashyap@gmail.com> wrote:
->> > bash: /home/kashyap/yocto/poky/scripts/oe-setup-builddir: Permission
->> > denied
->>
->> The permissions on that file don't involve +x.  Is that a fresh
->> checkout of poky or copied from the removable media?
->>
->> Ross
->
->
 
+| error: line 24: invalid tag value("^[A-Za-z0-9+._]+$") Version: Version: 
+'libpseudo.so'
+| error: Package has no %description: 
+binutils-cross-canadian-arm.x86_64_nativesdk
+
+I doubt following part of the bitbake fails due to some unknown issue
+
+inherit cross-canadian
+
+# ensure variable exists to avoid build error without external toolchain
+TOOLCHAIN_PATH ?= ""
+
+def elt_get_bfd_version(d):
+        import subprocess,os,bb
+        if os.path.exists(d.getVar('TOOLCHAIN_PATH', d, 
+1)+'/bin/'+d.getVar('TARGET_PREFIX', d, 1)+'as'):
+                return subprocess.Popen([d.getVar('TOOLCHAIN_PATH', d, 
+1)+'/bin/'+d.getVar('TARGET_PREFIX', d, 1)+'as', '-v', '--version'], 
+stderr=subprocess.STDOUT,stdout=subprocess.PIPE).communicate()[0].splitlines()[0].split()[3]
+
+ELT_VER_BFD := "${@elt_get_bfd_version(d)}"
+
+Is any one face this issue in the past?
+
+
+Alpine Electronics R&D Europe GmbH, Vor dem Lauch 14, 70567 Stuttgart,
+Registergericht Stuttgart, HRB 25265
+Geschaeftsfuehrer: Satoshi Soma, Shuji Taguchi 
+Working office: Vor dem Lauch 14, 70567 Stuttgart
+
+--=_alternative 00576031C1257CEC_=
+Content-Type: text/html; charset="US-ASCII"
+
+<font size=2 face="sans-serif">When try to build in Ubuntu 14.04 x86_64
+machine following failure occurs. </font>
+<br>
+<br><font size=2 face="sans-serif">| error: line 24: invalid tag value(&quot;^[A-Za-z0-9+._]+$&quot;)
+Version: Version: 'libpseudo.so'</font>
+<br><font size=2 face="sans-serif">| error: Package has no %description:
+binutils-cross-canadian-arm.x86_64_nativesdk</font>
+<br>
+<br><font size=2 face="sans-serif">I doubt following part of the bitbake
+fails due to some unknown issue</font>
+<br>
+<br><font size=2 face="sans-serif"><i>inherit cross-canadian</i></font>
+<br>
+<br><font size=2 face="sans-serif"><i># ensure variable exists to avoid
+build error without external toolchain</i></font>
+<br><font size=2 face="sans-serif"><i>TOOLCHAIN_PATH ?= &quot;&quot;</i></font>
+<br>
+<br><font size=2 face="sans-serif"><i>def elt_get_bfd_version(d):</i></font>
+<br><font size=2 face="sans-serif"><i>&nbsp; &nbsp; &nbsp; &nbsp; import
+subprocess,os,bb</i></font>
+<br><font size=2 face="sans-serif"><i>&nbsp; &nbsp; &nbsp; &nbsp; if os.path.exists(d.getVar('TOOLCHAIN_PATH',
+d, 1)+'/bin/'+d.getVar('TARGET_PREFIX', d, 1)+'as'):</i></font>
+<br><font size=2 face="sans-serif"><i>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+&nbsp; &nbsp; &nbsp; return subprocess.Popen([d.getVar('TOOLCHAIN_PATH',
+d, 1)+'/bin/'+d.getVar('TARGET_PREFIX', d, 1)+'as', '-v', '--version'],
+stderr=subprocess.STDOUT,stdout=subprocess.PIPE).communicate()[0].splitlines()[0].split()[3]</i></font>
+<br>
+<br><font size=2 face="sans-serif"><i>ELT_VER_BFD := &quot;${@elt_get_bfd_version(d)}&quot;</i></font>
+<br>
+<br><font size=2 face="sans-serif">Is any one face this issue in the past?</font>
+<br>
+<font size="2" face="Arial">Alpine Electronics R&amp;D Europe GmbH, Vor dem Lauch 14, 70567 Stuttgart,</font><br>
+<font size="2" face="Arial">Registergericht Stuttgart, HRB 25265</font><br>
+<font size="2" face="Arial">Geschaeftsfuehrer: </font><font size="2" face="Arial">Satoshi Soma, Shuji Taguchi </font><br>
+<font size="2" face="Arial">Working office: Vor dem Lauch 14, 70567 Stuttgart</font>
+
+--=_alternative 00576031C1257CEC_=--
