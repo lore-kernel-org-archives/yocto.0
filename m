@@ -1,48 +1,42 @@
-Return-Path: <tom@ewsting.org>
+Return-Path: <Anooj.Gopi@alpine.de>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 04E3EE00B66; Tue,  3 Jun 2014 03:25:48 -0700 (PDT)
+	id 5B704E00B66; Tue,  3 Jun 2014 05:55:02 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-0.7 required=5.0 tests=RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [74.125.82.172 listed in list.dnswl.org]
-Received: from mail-we0-f172.google.com (mail-we0-f172.google.com
-	[74.125.82.172])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 00C87E00B0B
-	for <yocto@yoctoproject.org>; Tue,  3 Jun 2014 03:25:42 -0700 (PDT)
-Received: by mail-we0-f172.google.com with SMTP id k48so6606994wev.3
-	for <yocto@yoctoproject.org>; Tue, 03 Jun 2014 03:25:41 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:from:to:cc:subject:date:message-id;
-	bh=7BbhgZFc8lRY5JJhST7S8clM8JIN7oHYUJVTXkuDi+g=;
-	b=GD4PgdcsudmOrmjuDQfjNm4JlfYeXu/VX5B3SMlrNIE0tigRDhEidVqCgYspBL//g3
-	gXI57HeFwOzkuNSrjb7c1ChB8ZVPITrnWl91EvogbT/H2mh/oLuX4U5+/688yHQAw8qK
-	JOXdLtLeZhjO+YOcme94sYHlm5nDmXUQO6ijz+NKkUtk3XCczuU6VPcD/5HgEpyKTXWs
-	AjTvoV1VX5Tut7C9zN4+TKDrAHfC7iBr+W2dA2JWwx9njTaINn33JVKtRmVbz1ZHvttp
-	tLVi1SN4utP+Sz1H8b7sBiJjy8HzaOtAm/wLf8G/K6wws/kuGsLq+vB+y1MmJ48mITev
-	3Jzw==
-X-Gm-Message-State: ALoCoQlfO332aYdzBVj+gikfzj4aUVB5AQlzHebEGUMFC5Dvq3HCO87AJYOYwg73L+/PHH+lPWPg
-X-Received: by 10.194.8.229 with SMTP id u5mr58974817wja.65.1401791140477;
-	Tue, 03 Jun 2014 03:25:40 -0700 (PDT)
-Received: from localhost.localdomain
-	(cpc9-rdng24-2-0-cust272.15-3.cable.virginm.net. [81.99.113.17])
-	by mx.google.com with ESMTPSA id ho2sm1694170wib.15.2014.06.03.03.25.39
-	for <multiple recipients>
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-	Tue, 03 Jun 2014 03:25:39 -0700 (PDT)
-From: tom@ewsting.org
-To: opkg-devel@googlegroups.com,
-	yocto@yoctoproject.org
-Date: Tue,  3 Jun 2014 11:25:35 +0100
-Message-Id: <1401791135-11672-1-git-send-email-tom@ewsting.org>
-X-Mailer: git-send-email 1.9.2
-Cc: brendan.le.foll@intel.com, paul.eggleton@linux.intel.com,
-	Thomas Ingleby <thomas.c.ingleby@intel.com>
-Subject: [PATCH V2] opkg-build: add detection if using GNU tar.
+X-Spam-Level: **
+X-Spam-Status: No, score=2.5 required=5.0 tests=DRUGS_MUSCLE, HTML_MESSAGE,
+	X_IP autolearn=no version=3.3.1
+X-Spam-HAM-Report: *  0.0 X_IP Message has X-IP header
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	*  2.5 DRUGS_MUSCLE Refers to a muscle relaxant
+Received: from ipmx01.kddinet.de (ipmx01.kddinet.de [195.82.33.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C25EEE00B0B
+	for <yocto@yoctoproject.org>; Tue,  3 Jun 2014 05:54:56 -0700 (PDT)
+X-SBRS: None
+X-Policy: $RELAYED_Alpine
+X-Group: Alpine_RLY
+X-IP: 195.82.37.17
+X-MID: 9341033
+X-IronPort-AV: E=Sophos;i="4.98,965,1392159600"; 
+   d="scan'208";a="9341033"
+Received: from unknown (HELO destln01.corp.alpine.eu) ([195.82.37.17])
+	by ipmx01.kddinet.de with ESMTP; 03 Jun 2014 14:54:54 +0200
+In-Reply-To: <CAMKF1spDE3pO8nXaiMGDGZKbOTXYB0wn_g7Vh0gtEMBR=7=d3Q@mail.gmail.com>
+References: <OFD5EA41E8.B3B2A295-ONC1257CE8.004C09F4-C1257CE8.004E22D1@alpine.de>
+	<CAMKF1spDE3pO8nXaiMGDGZKbOTXYB0wn_g7Vh0gtEMBR=7=d3Q@mail.gmail.com>
+To: Khem Raj <raj.khem@gmail.com>
+MIME-Version: 1.0
+X-KeepSent: 78987838:ED2425C4-C1257CEC:0045117A;
+ type=4; name=$KeepSent
+X-Mailer: Lotus Notes Release 8.5.3 September 15, 2011
+From: Anooj Gopi <Anooj.Gopi@alpine.de>
+Message-ID: <OF78987838.ED2425C4-ONC1257CEC.0045117A-C1257CEC.0046F17C@alpine.de>
+Date: Tue, 3 Jun 2014 14:54:52 +0200
+X-MIMETrack: Serialize by Router on AOGSLN001/SRV/AOGS/SPEED(Release
+	8.5.3FP5|July 31, 2013) at 03.06.2014 14:54:54,
+	Serialize complete at 03.06.2014 14:54:54
+Cc: yocto@yoctoproject.org
+Subject: Re: Detailed steps involved in populate_sdk
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -54,56 +48,173 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 03 Jun 2014 10:25:48 -0000
+X-List-Received-Date: Tue, 03 Jun 2014 12:55:02 -0000
+Content-Type: multipart/alternative;
+	boundary="=_alternative 0046F17CC1257CEC_="
 
-From: Thomas Ingleby <thomas.c.ingleby@intel.com>
+--=_alternative 0046F17CC1257CEC_=
+Content-Type: text/plain; charset="US-ASCII"
 
-* Some options of GNU tar do not exist on other implementations
+Hello Raj,
 
-Signed-off-by: Thomas Ingleby <thomas.c.ingleby@intel.com>
----
- opkg-build | 13 ++++++++++---
- 1 file changed, 10 insertions(+), 3 deletions(-)
+Thank you for your reply. May be I because I don't know about it but I am 
+still not convinced about the on thing.
 
-diff --git a/opkg-build b/opkg-build
-index e314712..ed1c93b 100755
---- a/opkg-build
-+++ b/opkg-build
-@@ -159,6 +159,13 @@ ogargs=""
- outer=ar
- noclean=0
- opkext=0
-+
-+tarformat=""
-+if tar --help 2>&1 | grep -- "--format" > /dev/null;
-+then
-+    tarformat="--format=gnu"
-+fi
-+
- usage="Usage: $0 [-c] [-C] [-O] [-o owner] [-g group] <pkg_directory> [<destination_directory>]"
- while getopts "cCg:ho:vO" opt; do
-     case $opt in
-@@ -233,8 +240,8 @@ tmp_dir=$dest_dir/IPKG_BUILD.$$
- mkdir $tmp_dir
- 
- echo $CONTROL > $tmp_dir/tarX
--( cd $pkg_dir && tar $ogargs -X $tmp_dir/tarX -cz --format=gnu -f $tmp_dir/data.tar.gz . )
--( cd $pkg_dir/$CONTROL && tar $ogargs -cz --format=gnu -f $tmp_dir/control.tar.gz . )
-+( cd $pkg_dir && tar $ogargs -X $tmp_dir/tarX -cz $tarformat -f $tmp_dir/data.tar.gz . )
-+( cd $pkg_dir/$CONTROL && tar $ogargs -cz $tarformat -f $tmp_dir/control.tar.gz . )
- rm $tmp_dir/tarX
- 
- echo "2.0" > $tmp_dir/debian-binary
-@@ -249,7 +256,7 @@ rm -f $pkg_file
- if [ "$outer" = "ar" ] ; then
-   ( cd $tmp_dir && ar -crf $pkg_file ./debian-binary ./control.tar.gz ./data.tar.gz )
- else
--  ( cd $tmp_dir && tar -cz --format=gnu -f $pkg_file ./debian-binary ./control.tar.gz ./data.tar.gz )
-+  ( cd $tmp_dir && tar -cz $tarformat -f $pkg_file ./debian-binary ./control.tar.gz ./data.tar.gz )
- fi
- 
- rm $tmp_dir/debian-binary $tmp_dir/data.tar.gz $tmp_dir/control.tar.gz
--- 
-1.9.2
+When we say 'for normal build these consideration is not needed', this 
+means the tools used in 'build host' and 'sdk hosts' are different (may be 
+similar versions but different binary builds) right? (Even in the case 
+when both 'build host' and 'sdk host' are exactly same for eg. basic 
+Ubuntu 14.04 x86_64 with basic additional tools installed as suggested in 
+yocto user manual).
+
+Would there be any option for me to tell yocto to generate all the tools 
+and use exactly the same for 'build host' as well as 'sdk host'?
+
+Best Regards,
+Anooj
 
 
+
+From:   Khem Raj <raj.khem@gmail.com>
+To:     Anooj Gopi <Anooj.Gopi@alpine.de>, 
+Cc:     yocto@yoctoproject.org
+Date:   01.06.2014 04:49
+Subject:        Re: [yocto] Detailed steps involved in populate_sdk
+
+
+
+
+On May 30, 2014 7:15 AM, "Anooj Gopi" <Anooj.Gopi@alpine.de> wrote:
+>
+> Hello, 
+>
+> I am new to yocto project and learning about the project step by step 
+for one of our project. 
+>
+> For study purpose, I'm currently using the latest yocto git clone and 
+built "bitbake core-image-minimal" successfully for "beaglebone". I have 
+got all the target images to boot. At this point I assume that all the 
+native tool chain binaries required to build the target image is already 
+generated by yocto. 
+>
+> Now when I try to create the SDK with the command "bitbake 
+core-image-minimal -c populate_sdk", I can see there is again native 
+packages being configured and compiled. As per my understanding about 
+yocto I was expecting this would have already done during "bitbake 
+core-image-minimal" because all these tools are required to build the 
+images. In my understanding populate_sdk would just install the "native 
+package deb files" already created during "bitbake core-image-minimal". I 
+know there is something wrong in my understanding. Could you please 
+explain bit in detail. 
+sdks are supposed to run on different hosts too which we call sdkhost 
+there fore it has to build native sdk packages to insulate itself from 
+build host. for normal build these consideration is not needed
+>
+> Best Regards, 
+> Anooj Gopi 
+> Alpine Electronics R&D Europe GmbH, Vor dem Lauch 14, 70567 Stuttgart,
+> Registergericht Stuttgart, HRB 25265
+> Geschaeftsfuehrer: Satoshi Soma, Shuji Taguchi 
+> Working office: Vor dem Lauch 14, 70567 Stuttgart
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
+
+
+
+Alpine Electronics R&D Europe GmbH, Vor dem Lauch 14, 70567 Stuttgart,
+Registergericht Stuttgart, HRB 25265
+Geschaeftsfuehrer: Satoshi Soma, Shuji Taguchi 
+Working office: Vor dem Lauch 14, 70567 Stuttgart
+
+--=_alternative 0046F17CC1257CEC_=
+Content-Type: text/html; charset="US-ASCII"
+
+<font size=2 face="sans-serif">Hello Raj,</font>
+<br>
+<br><font size=2 face="sans-serif">Thank you for your reply. May be I because
+I don't know about it but I am still not convinced about the on thing.</font>
+<br>
+<br><font size=2 face="sans-serif">When we say '</font><font size=3>for
+normal build these consideration is not needed</font><font size=2 face="sans-serif">',
+this means the tools used in 'build host' and 'sdk hosts' are different
+(may be similar versions but different binary builds) right? (Even in the
+case when both 'build host' and 'sdk host' are exactly same for eg. basic
+Ubuntu 14.04 x86_64 with basic additional tools installed as suggested
+in yocto user manual).</font>
+<br>
+<br><font size=2 face="sans-serif">Would there be any option for me to
+tell yocto to generate all the tools and use exactly the same for 'build
+host' as well as 'sdk host'?</font>
+<br>
+<br><font size=2 face="sans-serif">Best Regards,</font>
+<br><font size=2 face="sans-serif">Anooj</font>
+<br>
+<br>
+<br>
+<br><font size=1 color=#5f5f5f face="sans-serif">From: &nbsp; &nbsp; &nbsp;
+&nbsp;</font><font size=1 face="sans-serif">Khem Raj &lt;raj.khem@gmail.com&gt;</font>
+<br><font size=1 color=#5f5f5f face="sans-serif">To: &nbsp; &nbsp; &nbsp;
+&nbsp;</font><font size=1 face="sans-serif">Anooj Gopi &lt;Anooj.Gopi@alpine.de&gt;,
+</font>
+<br><font size=1 color=#5f5f5f face="sans-serif">Cc: &nbsp; &nbsp; &nbsp;
+&nbsp;</font><font size=1 face="sans-serif">yocto@yoctoproject.org</font>
+<br><font size=1 color=#5f5f5f face="sans-serif">Date: &nbsp; &nbsp; &nbsp;
+&nbsp;</font><font size=1 face="sans-serif">01.06.2014 04:49</font>
+<br><font size=1 color=#5f5f5f face="sans-serif">Subject: &nbsp; &nbsp;
+&nbsp; &nbsp;</font><font size=1 face="sans-serif">Re: [yocto]
+Detailed steps involved in populate_sdk</font>
+<br>
+<hr noshade>
+<br>
+<br>
+<br><font size=3><br>
+On May 30, 2014 7:15 AM, &quot;Anooj Gopi&quot; &lt;</font><a href=mailto:Anooj.Gopi@alpine.de><font size=3 color=blue><u>Anooj.Gopi@alpine.de</u></font></a><font size=3>&gt;
+wrote:<br>
+&gt;<br>
+&gt; Hello, <br>
+&gt;<br>
+&gt; I am new to yocto project and learning about the project step by step
+for one of our project. <br>
+&gt;<br>
+&gt; For study purpose, I'm currently using the latest yocto git clone
+and built &quot;bitbake core-image-minimal&quot; successfully for &quot;beaglebone&quot;.
+I have got all the target images to boot. At this point I assume that all
+the native tool chain binaries required to build the target image is already
+generated by yocto. <br>
+&gt;<br>
+&gt; Now when I try to create the SDK with the command &quot;bitbake core-image-minimal
+-c populate_sdk&quot;, I can see there is again native packages being configured
+and compiled. As per my understanding about yocto I was expecting this
+would have already done during &quot;bitbake core-image-minimal&quot; because
+all these tools are required to build the images. In my understanding populate_sdk
+would just install the &quot;native package deb files&quot; already created
+during &quot;bitbake core-image-minimal&quot;. I know there is something
+wrong in my understanding. Could you please explain bit in detail. </font>
+<p><font size=3>sdks are supposed to run on different hosts too which we
+call sdkhost there fore it has to build native sdk packages to insulate
+itself from build host. for normal build these consideration is not needed</font>
+<p><font size=3>&gt;<br>
+&gt; Best Regards, <br>
+&gt; Anooj Gopi <br>
+&gt; Alpine Electronics R&amp;D Europe GmbH, Vor dem Lauch 14, 70567 Stuttgart,<br>
+&gt; Registergericht Stuttgart, HRB 25265<br>
+&gt; Geschaeftsfuehrer: Satoshi Soma, Shuji Taguchi <br>
+&gt; Working office: Vor dem Lauch 14, 70567 Stuttgart<br>
+&gt; --<br>
+&gt; _______________________________________________<br>
+&gt; yocto mailing list<br>
+&gt; </font><a href=mailto:yocto@yoctoproject.org><font size=3 color=blue><u>yocto@yoctoproject.org</u></font></a><font size=3><br>
+&gt; </font><a href=https://lists.yoctoproject.org/listinfo/yocto><font size=3 color=blue><u>https://lists.yoctoproject.org/listinfo/yocto</u></font></a><font size=3><br>
+&gt;</font>
+<p>
+<br>
+<font size="2" face="Arial">Alpine Electronics R&amp;D Europe GmbH, Vor dem Lauch 14, 70567 Stuttgart,</font><br>
+<font size="2" face="Arial">Registergericht Stuttgart, HRB 25265</font><br>
+<font size="2" face="Arial">Geschaeftsfuehrer: </font><font size="2" face="Arial">Satoshi Soma, Shuji Taguchi </font><br>
+<font size="2" face="Arial">Working office: Vor dem Lauch 14, 70567 Stuttgart</font>
+
+--=_alternative 0046F17CC1257CEC_=--
