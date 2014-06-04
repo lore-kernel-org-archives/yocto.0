@@ -1,49 +1,44 @@
-Return-Path: <marek.andrus@wp.pl>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 2ED46E00B68; Wed,  4 Jun 2014 00:54:18 -0700 (PDT)
+	id 1D07FE00BDF; Wed,  4 Jun 2014 01:28:09 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-0.1 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-	DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (marek.andrus[at]wp.pl)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [212.77.101.12 listed in list.dnswl.org]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-X-Greylist: delayed 399 seconds by postgrey-1.32 at yocto-www;
-	Wed, 04 Jun 2014 00:54:12 PDT
-Received: from mx4.wp.pl (mx4.wp.pl [212.77.101.12])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 809B8E00B20
-	for <yocto@yoctoproject.org>; Wed,  4 Jun 2014 00:54:12 -0700 (PDT)
-Received: (wp-smtpd smtp.wp.pl 7540 invoked from network);
-	4 Jun 2014 09:47:29 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wp.pl; s=1024a;
-	t=1401868050; bh=iBABA3a9zVpUNv0YZyCA9HrM/yZG2HYVUtBL/1EC0Ls=;
-	h=From:To:Subject;
-	b=wJFoY3UQp/mNEaqVIlTic9Ifocle9p4YpPxKyqTCMjs294XwIDIx/hOpKAPZ2vtbL
-	PMvVBnzUfsQpIktuCqJDh9YVpcBefBWnx3pMEb3DjM7qM7FXA3+93BKItBLZX6aYao
-	+M/CSgFwDAarwZ417qfsnA5mGOtTaYVJQpyM18lY=
-Received: from unknown (HELO [62.159.77.167]) (marek.andrus@[62.159.77.167])
-	(envelope-sender <marek.andrus@wp.pl>)
-	by smtp.wp.pl (WP-SMTPD) with AES128-SHA encrypted SMTP
-	for <yocto@yoctoproject.org>; 4 Jun 2014 09:47:29 +0200
-Message-ID: <538ECF10.1060300@wp.pl>
-Date: Wed, 04 Jun 2014 09:47:28 +0200
-From: Marek Andrus <marek.andrus@wp.pl>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:24.0) Gecko/20100101 Icedove/24.5.0
+X-Spam-Status: No, score=0.0 required=5.0 tests=RCVD_IN_DNSWL_NONE
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [209.85.192.47 listed in list.dnswl.org]
+Received: from mail-qg0-f47.google.com (mail-qg0-f47.google.com
+	[209.85.192.47])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D97F2E00B20
+	for <yocto@yoctoproject.org>; Wed,  4 Jun 2014 01:28:01 -0700 (PDT)
+Received: by mail-qg0-f47.google.com with SMTP id j107so14838404qga.6
+	for <yocto@yoctoproject.org>; Wed, 04 Jun 2014 01:28:01 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc:content-type;
+	bh=eqAJRxQ/61VuoTr2W18KTpyAdUU/8NHdarXYyiePgy4=;
+	b=AD4BKYSTXhMpMdPFnCxyhYRMYG3gHariy2jMT/HSomqv9f6CfpL294bcTp2n/73oxr
+	tRe7H/sHc2Qe9tS2/1dg1sIhHLTNjP5XLHq7Xra2iB0tGn+OwxtnIaOSBwtufmBvMTGT
+	TSk3z04N5jWYz+SPvbDsWw4JE2s6RVomTdKIFMGh1tLkw2TRr/bshPBZCP1ScIKdVghn
+	FdQl81xqCWw+6PB5kXb/IqMyupSfia+pvJBgvXK2xc8xAAic3BOHKflUpaIwYc1zwe5p
+	x2GCvu5NkdnqbteWoO6z+4UQ/06DXP4TDbdHndsA6lu1jZzV8AWDcITdlZ38hxGJApu/
+	y+5Q==
+X-Gm-Message-State: ALoCoQkC1S9mpmlEeUcKvsfNIkHeLOnCTKiwpComoy47JCDf2/KFqcecfvBNFJGphRc3NlpvRIw+
+X-Received: by 10.224.121.72 with SMTP id g8mr3412251qar.79.1401870481259;
+	Wed, 04 Jun 2014 01:28:01 -0700 (PDT)
 MIME-Version: 1.0
-To: yocto@yoctoproject.org
-X-WP-AV: skaner antywirusowy poczty Wirtualnej Polski S. A.
-X-WP-SPAM: NO 0000000 [UdNH]                               
-Subject: creating sdk for my own packages - how?
+Received: by 10.140.101.77 with HTTP; Wed, 4 Jun 2014 01:27:41 -0700 (PDT)
+In-Reply-To: <538ECF10.1060300@wp.pl>
+References: <538ECF10.1060300@wp.pl>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Wed, 4 Jun 2014 09:27:41 +0100
+Message-ID: <CAJTo0LYTvFdLiq23rS=tvbwodTosgb12se-0d5KQmaj3JrSYEg@mail.gmail.com>
+To: Marek Andrus <marek.andrus@wp.pl>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: creating sdk for my own packages - how?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -55,22 +50,17 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 04 Jun 2014 07:54:18 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 04 Jun 2014 08:28:09 -0000
+Content-Type: text/plain; charset=UTF-8
 
-Hi,
+On 4 June 2014 08:47, Marek Andrus <marek.andrus@wp.pl> wrote:
+> I believe I'll be able to create the sdk with command like bitbake
+> <my_application> -c populate_sdk. I added "inherit populate_sdk_base" to
+> <my_application>.bb. Is that a correct way?
 
-I'm new to Yocto and I've just created a few recipes for my project 
-(main application and some needed libraries). Now I'd like to create sdk 
-for my application so it should contain toolchain and the needed 
-libraries/headers. What should I include in my recipes to get result 
-like that? I can't find anything about that in Yocto docs.
+You use -c populate_sdk on an *image* recipe so that your SDK contains
+everything that is in the corresponding image.  You don't need to do
+anything to the image recipe itself.
 
-I believe I'll be able to create the sdk with command like bitbake 
-<my_application> -c populate_sdk. I added "inherit populate_sdk_base" to 
-<my_application>.bb. Is that a correct way?
-
-BR,
-Marek Andrus
+Ross
 
