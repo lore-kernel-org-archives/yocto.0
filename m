@@ -1,6 +1,6 @@
 Return-Path: <sasikanth.v19@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id CE078E00B74; Wed,  4 Jun 2014 16:20:45 -0700 (PDT)
+	id DD3A8E00BDF; Wed,  4 Jun 2014 16:37:05 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -17,28 +17,28 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
 	low *      trust
-	*      [209.85.219.44 listed in list.dnswl.org]
-Received: from mail-oa0-f44.google.com (mail-oa0-f44.google.com
-	[209.85.219.44])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DC11BE00B20
-	for <yocto@yoctoproject.org>; Wed,  4 Jun 2014 16:20:42 -0700 (PDT)
-Received: by mail-oa0-f44.google.com with SMTP id o6so243522oag.3
-	for <yocto@yoctoproject.org>; Wed, 04 Jun 2014 16:20:41 -0700 (PDT)
+	*      [209.85.214.173 listed in list.dnswl.org]
+Received: from mail-ob0-f173.google.com (mail-ob0-f173.google.com
+	[209.85.214.173])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6B165E00B6F
+	for <yocto@yoctoproject.org>; Wed,  4 Jun 2014 16:37:03 -0700 (PDT)
+Received: by mail-ob0-f173.google.com with SMTP id wm4so252382obc.18
+	for <yocto@yoctoproject.org>; Wed, 04 Jun 2014 16:37:02 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=ckQseNXOF6cRMDF0rBPHbWdQ+8OcExjVXmZaduiw/6c=;
-	b=lR+/Tv1b45hd5t0YtOgj0P6oNNG0AjO/bcsfZTwq2nABqsTmybPG3Q25dYaaT6pMfH
-	XF7WcvPXaJWoLJ+bsr4sJ3YNsD094OzvRFcaqoH/EuGbqa+F7EoZvHBmcNEAhZRAYSG7
-	VRWNWchYML+7lm3A/uv5lC4lh8xmg+4ju6NiJc9gG9nkzYgjB0OHv/FvshWyV8NPmg2T
-	Tcv6bd6E/37WfhWW1OaX4mjVd56xtrx+ZozimyM8kfbCNkj6e6sG9UzF4HNwlD/e4vVW
-	ZEM5Z9XIyuME9O5NtDQJyQ6mCIbyeNo9LLyaPAiFPpfyevYYxGzArKMsgyPWekB0BzwT
-	Rrxw==
+	bh=YBUxI5tbdGgorMT2bpWRw1O0cEu6r6jT2jLbUs3m14Y=;
+	b=a/NA+DpzEUvnJzl2sMdMo8X2ioWmku5xYcNjxvpmgM5F4SEIepAb0Muw04A7nmUX23
+	MxneviqSDyPdMmsCGuYz+fNUVAKDg//ODJTY3Jo+OJ9AXKC/EXPzJerGbAHR/cs+cfAf
+	ytN7MkYutvGIrZL09iA2yJ2/5MkZLllH6bR/FwhLj34iit/ZxxK8MKm9sCW/dfdLzAlO
+	8epNL+mySJ06RZBf8k6e+ZdvvNQRaIaEDogbG/ir9oTLKadZCt70oghSAshNFSzVFnTD
+	yh4EGpVwUKtgXqziVOMvycVzF3MP1tmuaqh3A+U0PW2NXIU6u1QXkxtKOJbYddzKmIu3
+	5MWQ==
 MIME-Version: 1.0
-X-Received: by 10.60.173.228 with SMTP id bn4mr63396397oec.27.1401924041328;
-	Wed, 04 Jun 2014 16:20:41 -0700 (PDT)
-Received: by 10.76.22.193 with HTTP; Wed, 4 Jun 2014 16:20:41 -0700 (PDT)
-Date: Thu, 5 Jun 2014 04:50:41 +0530
-Message-ID: <CAOJFanU-Fvwha9VFo-nxrLb-CQF8Cb3WDWt-20z3Y_1BvhpfiA@mail.gmail.com>
+X-Received: by 10.60.159.234 with SMTP id xf10mr63526297oeb.15.1401925022165; 
+	Wed, 04 Jun 2014 16:37:02 -0700 (PDT)
+Received: by 10.76.22.193 with HTTP; Wed, 4 Jun 2014 16:37:02 -0700 (PDT)
+Date: Thu, 5 Jun 2014 05:07:02 +0530
+Message-ID: <CAOJFanVBJm4N5n0jongvS5AORA9At9dAq4QhZSeKbdxo+zABKQ@mail.gmail.com>
 From: Sasikanth babu <sasikanth.v19@gmail.com>
 To: yocto@yoctoproject.org
 X-Mailman-Approved-At: Fri, 06 Jun 2014 11:32:24 -0700
@@ -54,10 +54,10 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 04 Jun 2014 23:20:45 -0000
-Content-Type: multipart/alternative; boundary=089e0118254a7c4de104fb0ae032
+X-List-Received-Date: Wed, 04 Jun 2014 23:37:05 -0000
+Content-Type: multipart/alternative; boundary=047d7bd6c514f2fe1e04fb0b1a92
 
---089e0118254a7c4de104fb0ae032
+--047d7bd6c514f2fe1e04fb0b1a92
 Content-Type: text/plain; charset=ISO-8859-1
 
 Hi all,
@@ -80,23 +80,20 @@ Thanks in advance.
 
 - Sasi
 
---089e0118254a7c4de104fb0ae032
+--047d7bd6c514f2fe1e04fb0b1a92
 Content-Type: text/html; charset=ISO-8859-1
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div id=3D":4vv" class=3D""><div id=3D":4vu" class=3D"" st=
-yle=3D"overflow:hidden"><div dir=3D"ltr"><div><div><div><div>Hi all,<br><br=
-></div>=A0=A0=A0
- How to build initramfs image (rootfs embedded in kernel - uimage)?. I=20
-know it has been asked several time on this mailing list=A0 but could find
- a solution?.<br><br>
+<div dir=3D"ltr"><div><div><div><div>Hi all,<br><br></div>=A0=A0=A0 How to =
+build initramfs=20
+image (rootfs embedded in kernel - uimage)?. I know it has been asked=20
+several time on this mailing list=A0 but could find a solution?.<br><br>
 <br>I tried steps mentioned in the below link<br><br><a href=3D"http://kexe=
 cboot.org/documentation/crosscompiling/oe-yocto" target=3D"_blank">http://k=
 execboot.org/documentation/crosscompiling/oe-yocto</a><br><br></div>but I g=
 ot rootfs.cpio.gz and uimage no initramfs(rootfs embedded in kernel);<br>
 
 <br><br></div>Any suggestions or links on how to build initamfs image.<br><=
-br></div><div>Thanks in advance. <br></div><div><br></div>- Sasi</div></div=
-></div><br></div>
+br></div><div>Thanks in advance. <br></div><div><br></div>- Sasi</div>
 
---089e0118254a7c4de104fb0ae032--
+--047d7bd6c514f2fe1e04fb0b1a92--
