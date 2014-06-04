@@ -1,45 +1,44 @@
-Return-Path: <gley-yocto@m.gmane.org>
+Return-Path: <Anooj.Gopi@alpine.de>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 0F6E2E00BE2; Wed,  4 Jun 2014 03:02:09 -0700 (PDT)
+	id 9223FE00B6F; Wed,  4 Jun 2014 07:22:36 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
-X-Spam-Level: 
-X-Spam-Status: No, score=0.0 required=5.0 tests=FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE,SPF_HELO_PASS autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [80.91.229.3 listed in list.dnswl.org]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (auslands-kv[at]gmx.de)
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
-Received: from plane.gmane.org (plane.gmane.org [80.91.229.3])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AE2D7E00B5C
-	for <yocto@yoctoproject.org>; Wed,  4 Jun 2014 03:01:05 -0700 (PDT)
-Received: from list by plane.gmane.org with local (Exim 4.69)
-	(envelope-from <gley-yocto@m.gmane.org>) id 1Ws80G-0002lp-A6
-	for yocto@yoctoproject.org; Wed, 04 Jun 2014 12:01:04 +0200
-Received: from 80-218-32-173.dclient.hispeed.ch ([80.218.32.173])
-	by main.gmane.org with esmtp (Gmexim 0.1 (Debian))
-	id 1AlnuQ-0007hv-00
-	for <yocto@yoctoproject.org>; Wed, 04 Jun 2014 12:01:04 +0200
-Received: from auslands-kv by 80-218-32-173.dclient.hispeed.ch with local
-	(Gmexim 0.1 (Debian)) id 1AlnuQ-0007hv-00
-	for <yocto@yoctoproject.org>; Wed, 04 Jun 2014 12:01:04 +0200
-X-Injected-Via-Gmane: http://gmane.org/
-To: yocto@yoctoproject.org
-From: Neuer User <auslands-kv@gmx.de>
-Date: Wed, 04 Jun 2014 12:00:48 +0200
-Message-ID: <lmmqog$dif$1@ger.gmane.org>
-References: <lmmmm6$o20$1@ger.gmane.org>
-	<lmmoff$hkl$1@ger.gmane.org>	<lmmokk$hkl$2@ger.gmane.org>
-	<1441499.7MxWvtiUat@peggleto-mobl5.ger.corp.intel.com>
-Mime-Version: 1.0
-X-Complaints-To: usenet@ger.gmane.org
-X-Gmane-NNTP-Posting-Host: 80-218-32-173.dclient.hispeed.ch
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:24.0) Gecko/20100101 Thunderbird/24.5.0
-In-Reply-To: <1441499.7MxWvtiUat@peggleto-mobl5.ger.corp.intel.com>
-Subject: Re: best way to add conditional configure option
+X-Spam-Level: **
+X-Spam-Status: No, score=2.5 required=5.0 tests=DRUGS_MUSCLE, HTML_MESSAGE,
+	X_IP autolearn=no version=3.3.1
+X-Spam-HAM-Report: *  0.0 X_IP Message has X-IP header
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	*  2.5 DRUGS_MUSCLE Refers to a muscle relaxant
+Received: from ipmx01.kddinet.de (ipmx01.kddinet.de [195.82.33.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 32248E00B68
+	for <yocto@yoctoproject.org>; Wed,  4 Jun 2014 07:22:32 -0700 (PDT)
+X-SBRS: None
+X-Policy: $RELAYED_Alpine
+X-Group: Alpine_RLY
+X-IP: 195.82.37.17
+X-MID: 9386488
+X-IronPort-AV: E=Sophos;i="4.98,973,1392159600"; 
+   d="scan'208";a="9386488"
+Received: from unknown (HELO destln01.corp.alpine.eu) ([195.82.37.17])
+	by ipmx01.kddinet.de with ESMTP; 04 Jun 2014 16:22:04 +0200
+In-Reply-To: <CAMKF1socvoTCDN_=GkZz-ec4KrAt9Lknkt9_dN4sE5i0_EFbuQ@mail.gmail.com>
+References: <OFD5EA41E8.B3B2A295-ONC1257CE8.004C09F4-C1257CE8.004E22D1@alpine.de>
+	<CAMKF1spDE3pO8nXaiMGDGZKbOTXYB0wn_g7Vh0gtEMBR=7=d3Q@mail.gmail.com>
+	<OF78987838.ED2425C4-ONC1257CEC.0045117A-C1257CEC.0046F17C@alpine.de>
+	<CAMKF1socvoTCDN_=GkZz-ec4KrAt9Lknkt9_dN4sE5i0_EFbuQ@mail.gmail.com>
+To: Khem Raj <raj.khem@gmail.com>
+MIME-Version: 1.0
+X-KeepSent: 83B6AA56:F6123696-C1257CED:004E7A85;
+ type=4; name=$KeepSent
+X-Mailer: Lotus Notes Release 8.5.3 September 15, 2011
+From: Anooj Gopi <Anooj.Gopi@alpine.de>
+Message-ID: <OF83B6AA56.F6123696-ONC1257CED.004E7A85-C1257CED.004EECA6@alpine.de>
+Date: Wed, 4 Jun 2014 16:22:03 +0200
+X-MIMETrack: Serialize by Router on AOGSLN001/SRV/AOGS/SPEED(Release
+	8.5.3FP5|July 31, 2013) at 04.06.2014 16:22:04,
+	Serialize complete at 04.06.2014 16:22:04
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Detailed steps involved in populate_sdk
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -51,24 +50,105 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 04 Jun 2014 10:02:09 -0000
-Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 04 Jun 2014 14:22:36 -0000
+Content-Type: multipart/alternative;
+	boundary="=_alternative 004EECA6C1257CED_="
 
-Am 04.06.2014 11:59, schrieb Paul Eggleton:
-> On Wednesday 04 June 2014 11:24:36 Neuer User wrote:
->> I searched through other recipes for "EXTRA_OECONF_" and found somehting
->> that worked:
->>
->> EXTRA_OECONF_append_mx6 = "--enable-imx6"
-> 
-> BTW I'd suggest a leading space in the value, since _append won't add one for 
-> you. You might have got away with not adding one this time if the original 
-> value already had a trailing space, but it's good practice to add one.
-> 
-> Cheers,
-> Paul
-> 
-Thanks, will add that :-)
+--=_alternative 004EECA6C1257CED_=
+Content-Type: text/plain; charset="US-ASCII"
+
+Hello,
+
+Could you please tell me how to control/select the packages to be 
+installed in SDK Machine.
+
+For example I have an hmi application based on qt. I can see qmake is 
+available in "./tmp/sysroots/i686-linux/usr/bin/qt5/qmake" at Build host, 
+but it is not available in sdk machine after installing sdk. 
+How yocto decide which host packages to be included in sdk?
+
+Thanks in advance.
+
+Regards,
+Anooj Gopi
 
 
+
+From:   Khem Raj <raj.khem@gmail.com>
+To:     Anooj Gopi <Anooj.Gopi@alpine.de>, 
+Cc:     "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Date:   03.06.2014 21:24
+Subject:        Re: [yocto] Detailed steps involved in populate_sdk
+
+
+
+On Tue, Jun 3, 2014 at 5:54 AM, Anooj Gopi <Anooj.Gopi@alpine.de> wrote:
+> Would there be any option for me to tell yocto to generate all the tools 
+and
+> use exactly the same for 'build host' as well as 'sdk host'?
+
+I don't think so
+
+
+
+
+Alpine Electronics R&D Europe GmbH, Vor dem Lauch 14, 70567 Stuttgart,
+Registergericht Stuttgart, HRB 25265
+Geschaeftsfuehrer: Satoshi Soma, Shuji Taguchi 
+Working office: Vor dem Lauch 14, 70567 Stuttgart
+
+--=_alternative 004EECA6C1257CED_=
+Content-Type: text/html; charset="US-ASCII"
+
+<font size=2 face="sans-serif">Hello,</font>
+<br>
+<br><font size=2 face="sans-serif">Could you please tell me how to control/select
+the packages to be installed in SDK Machine.</font>
+<br>
+<br><font size=2 face="sans-serif">For example I have an hmi application
+based on qt. I can see qmake is available in &quot;./tmp/sysroots/i686-linux/usr/bin/qt5/qmake&quot;
+at Build host, but it is not available in sdk machine after installing
+sdk. </font>
+<br><font size=2 face="sans-serif">How yocto decide which host packages
+to be included in sdk?</font>
+<br>
+<br><font size=2 face="sans-serif">Thanks in advance.</font>
+<br>
+<br><font size=2 face="sans-serif">Regards,</font>
+<br><font size=2 face="sans-serif">Anooj Gopi</font>
+<br>
+<br>
+<br>
+<br><font size=1 color=#5f5f5f face="sans-serif">From: &nbsp; &nbsp; &nbsp;
+&nbsp;</font><font size=1 face="sans-serif">Khem Raj &lt;raj.khem@gmail.com&gt;</font>
+<br><font size=1 color=#5f5f5f face="sans-serif">To: &nbsp; &nbsp; &nbsp;
+&nbsp;</font><font size=1 face="sans-serif">Anooj Gopi &lt;Anooj.Gopi@alpine.de&gt;,
+</font>
+<br><font size=1 color=#5f5f5f face="sans-serif">Cc: &nbsp; &nbsp; &nbsp;
+&nbsp;</font><font size=1 face="sans-serif">&quot;yocto@yoctoproject.org&quot;
+&lt;yocto@yoctoproject.org&gt;</font>
+<br><font size=1 color=#5f5f5f face="sans-serif">Date: &nbsp; &nbsp; &nbsp;
+&nbsp;</font><font size=1 face="sans-serif">03.06.2014 21:24</font>
+<br><font size=1 color=#5f5f5f face="sans-serif">Subject: &nbsp; &nbsp;
+&nbsp; &nbsp;</font><font size=1 face="sans-serif">Re: [yocto]
+Detailed steps involved in populate_sdk</font>
+<br>
+<hr noshade>
+<br>
+<br>
+<br><tt><font size=2>On Tue, Jun 3, 2014 at 5:54 AM, Anooj Gopi &lt;Anooj.Gopi@alpine.de&gt;
+wrote:<br>
+&gt; Would there be any option for me to tell yocto to generate all the
+tools and<br>
+&gt; use exactly the same for 'build host' as well as 'sdk host'?<br>
+<br>
+I don't think so<br>
+</font></tt>
+<br>
+<br>
+<font size="2" face="Arial">Alpine Electronics R&amp;D Europe GmbH, Vor dem Lauch 14, 70567 Stuttgart,</font><br>
+<font size="2" face="Arial">Registergericht Stuttgart, HRB 25265</font><br>
+<font size="2" face="Arial">Geschaeftsfuehrer: </font><font size="2" face="Arial">Satoshi Soma, Shuji Taguchi </font><br>
+<font size="2" face="Arial">Working office: Vor dem Lauch 14, 70567 Stuttgart</font>
+
+--=_alternative 004EECA6C1257CED_=--
