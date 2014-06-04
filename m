@@ -1,43 +1,43 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <gley-yocto@m.gmane.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 00F9FE00B68; Wed,  4 Jun 2014 01:59:23 -0700 (PDT)
+	id 35C05E00B68; Wed,  4 Jun 2014 02:14:05 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=0.0 required=5.0 tests=RCVD_IN_DNSWL_NONE
-	autolearn=ham version=3.3.1
+X-Spam-Status: No, score=0.0 required=5.0 tests=FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE,SPF_HELO_PASS autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
 	http://www.dnswl.org/, no *      trust
-	*      [209.85.192.43 listed in list.dnswl.org]
-Received: from mail-qg0-f43.google.com (mail-qg0-f43.google.com
-	[209.85.192.43])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8C6BBE00B20
-	for <yocto@yoctoproject.org>; Wed,  4 Jun 2014 01:59:21 -0700 (PDT)
-Received: by mail-qg0-f43.google.com with SMTP id 63so15455108qgz.30
-	for <yocto@yoctoproject.org>; Wed, 04 Jun 2014 01:59:21 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc:content-type;
-	bh=80D4Lyiw4GJWrtA67t1nbY5ayXv9M6YNfVJq8LFRBbg=;
-	b=SIFcIGndiW96K72g+Ance60BQC3RN3ro/kH8g2W1FBEXy/r/B+sN6eP4ZQYzORTAFb
-	jURjuT9WxPxG4/0lEV3eBThcPBNtcx+/1uvraIywXga18VxPDDaOt6nA9te/lk4IfVMv
-	TgnqtvwhyxrQGNn8pwXNLpW+I1PF0L5U41U4N41jOAyfg3H+RPjdh//1AUknnMNeVUky
-	C6B7oVMDn1KavHRUYKIoVaTEeFrUnzSWoGRPcQdRR01JyWb0ZEKMJvwtElU//qiEKoVD
-	6Lz4Z88BuIN2dU5k1fLAVDkX+++9zcLJxB5OUReKEG8+lA5+eu2zLxQ/4OkDeYLQOw1o
-	lb6A==
-X-Gm-Message-State: ALoCoQmP1G5qhh34V9qMtSm+6bA0DT4zXtLm+nsvftpnMrwoNlDLdQ98lwnEe4OwRYsESy1jAoH7
-X-Received: by 10.224.166.73 with SMTP id l9mr3612209qay.34.1401872361338;
-	Wed, 04 Jun 2014 01:59:21 -0700 (PDT)
-MIME-Version: 1.0
-Received: by 10.140.101.77 with HTTP; Wed, 4 Jun 2014 01:59:01 -0700 (PDT)
-In-Reply-To: <lmmmm6$o20$1@ger.gmane.org>
+	*      [80.91.229.3 listed in list.dnswl.org]
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (auslands-kv[at]gmx.de)
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+Received: from plane.gmane.org (plane.gmane.org [80.91.229.3])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D59BBE00B20
+	for <yocto@yoctoproject.org>; Wed,  4 Jun 2014 02:14:01 -0700 (PDT)
+Received: from list by plane.gmane.org with local (Exim 4.69)
+	(envelope-from <gley-yocto@m.gmane.org>) id 1Ws7Gi-00047A-2I
+	for yocto@yoctoproject.org; Wed, 04 Jun 2014 11:14:00 +0200
+Received: from 80-218-32-173.dclient.hispeed.ch ([80.218.32.173])
+	by main.gmane.org with esmtp (Gmexim 0.1 (Debian))
+	id 1AlnuQ-0007hv-00
+	for <yocto@yoctoproject.org>; Wed, 04 Jun 2014 11:14:00 +0200
+Received: from auslands-kv by 80-218-32-173.dclient.hispeed.ch with local
+	(Gmexim 0.1 (Debian)) id 1AlnuQ-0007hv-00
+	for <yocto@yoctoproject.org>; Wed, 04 Jun 2014 11:14:00 +0200
+X-Injected-Via-Gmane: http://gmane.org/
+To: yocto@yoctoproject.org
+From: Neuer User <auslands-kv@gmx.de>
+Date: Wed, 04 Jun 2014 11:13:48 +0200
+Message-ID: <lmmo0c$bda$1@ger.gmane.org>
 References: <lmmmm6$o20$1@ger.gmane.org>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Wed, 4 Jun 2014 09:59:01 +0100
-Message-ID: <CAJTo0LZsgxt9des=d=WQJy1E0VsJh_e9+8RCcHscodG=_V=woA@mail.gmail.com>
-To: Neuer User <auslands-kv@gmx.de>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+	<CAJTo0LZsgxt9des=d=WQJy1E0VsJh_e9+8RCcHscodG=_V=woA@mail.gmail.com>
+Mime-Version: 1.0
+X-Complaints-To: usenet@ger.gmane.org
+X-Gmane-NNTP-Posting-Host: 80-218-32-173.dclient.hispeed.ch
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:24.0) Gecko/20100101 Thunderbird/24.5.0
+In-Reply-To: <CAJTo0LZsgxt9des=d=WQJy1E0VsJh_e9+8RCcHscodG=_V=woA@mail.gmail.com>
 Subject: Re: best way to add conditional configure option
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -50,19 +50,99 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 04 Jun 2014 08:59:24 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Wed, 04 Jun 2014 09:14:05 -0000
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: 7bit
 
-On 4 June 2014 09:51, Neuer User <auslands-kv@gmx.de> wrote:
-> The conditional configure option is "--enable-imx6".
+Hmm, like this?
 
-You can use a machine override, along the lines of:
+-----------------------------
+SUMMARY = "USB CEC Adaptor communication Library with patches for imx6"
+HOMEPAGE = "http://libcec.pulse-eight.com/"
 
-EXTRA_OECONF_ixm6 = "--enable-imx6"
+LICENSE = "GPLv2+"
+LIC_FILES_CHKSUM = "file://COPYING;md5=5e8e16396992369f73f3d28875f846da"
 
-This will set EXTRA_OECONF to --enable-imx6 if the MACHINE is ixm6.
-It gets a little complicated when you've general and machine-specific
-options but for a single option that works just fine.
+DEPENDS = "udev lockdev"
 
-Ross
+PV = "2.4.1"
+
+SRCREV = "42c3c07a79b8155635851c2eed9558b221b89047"
+SRC_URI = "git://github.com/xbmc-imx6/libcec.git"
+
+S = "${WORKDIR}/git"
+
+inherit autotools pkgconfig
+
+# cec-client and xbmc need the .so present to work :(
+FILES_${PN} += "${libdir}/*.so"
+INSANE_SKIP_${PN} = "dev-so"
+
+EXTRA_OECONF_imx6 = "--enable-imx6"
+-------------------------------
+
+That doesn't seem to work?!
+
+Extracts from log.do_configure:
+
+...
+autoreconf: Leaving directory `.'
+NOTE: Running
+/home/ubuntu/yocto/build/tmp/work/cortexa9hf-vfp-neon-poky-linux-gnueabi/libcec/2.4.1-r0/git/configure
+ --build=i686-linux                  --host=arm-poky-linux-gnueabi
+             --target=arm-poky-linux-gnueabi                 --prefix=/usr
+                  --exec_prefix=/usr              --bindir=/usr/bin
+          --sbindir=/usr/sbin             --libexecdir=/usr/lib/libcec
+          --datadir=/usr/share            --sysconfdir=/etc
+  --sharedstatedir=/com                   --localstatedir=/var
+  --libdir=/usr/lib               --includedir=/usr/include
+  --oldincludedir=/usr/include
+          --infodir=/usr/share/info
+--mandir=/usr/share/man                 --disable-silent-rules
+        --disable-dependency-tracking
+--with-libtool-sysroot=/home/ubuntu/yocto/build/tmp/sysroots/cubox-i
+configure: loading site script
+/home/ubuntu/yocto/sources/poky/meta/site/endian-little
+...
+
+...
+libCEC version 2:1:0 configured
+
+Compilation flags:
+  CXXFLAGS :        -O2 -pipe -g -feliminate-unused-debug-types
+-fvisibility-inlines-hidden -fPIC -Wall -Wextra
+-Wno-missing-field-initializers  -Wno-psabi
+  libCEC LDFLAGS : -llockdev -ldl -lpthread  -ludev -lrt
+  client LDFLAGS : -ldl -lpthread
+
+Configured features:
+  Pulse-Eight CEC Adapter :             yes
+  Pulse-Eight CEC Adapter detection :   yes
+  Raspberry Pi support :                no
+  TDA995x support :                     no
+  i.MX6 support :                       no
+
+...
+
+What am I missing?
+
+Michael
+
+
+Am 04.06.2014 10:59, schrieb Burton, Ross:
+> On 4 June 2014 09:51, Neuer User <auslands-kv@gmx.de> wrote:
+>> The conditional configure option is "--enable-imx6".
+> 
+> You can use a machine override, along the lines of:
+> 
+> EXTRA_OECONF_ixm6 = "--enable-imx6"
+> 
+> This will set EXTRA_OECONF to --enable-imx6 if the MACHINE is ixm6.
+> It gets a little complicated when you've general and machine-specific
+> options but for a single option that works just fine.
+> 
+> Ross
+> 
+
+
 
