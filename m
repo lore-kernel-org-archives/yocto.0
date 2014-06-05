@@ -1,48 +1,47 @@
-Return-Path: <tom@ewsting.org>
+Return-Path: <ellurubharath29@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 0717AE00B85; Thu,  5 Jun 2014 13:09:43 -0700 (PDT)
+	id 01A88E00B85; Thu,  5 Jun 2014 13:50:06 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-0.7 required=5.0 tests=RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [209.85.214.177 listed in list.dnswl.org]
-Received: from mail-ob0-f177.google.com (mail-ob0-f177.google.com
-	[209.85.214.177])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A783AE00A44
-	for <yocto@yoctoproject.org>; Thu,  5 Jun 2014 13:09:37 -0700 (PDT)
-Received: by mail-ob0-f177.google.com with SMTP id wp4so1609582obc.8
-	for <yocto@yoctoproject.org>; Thu, 05 Jun 2014 13:09:37 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:date
-	:message-id:subject:from:to:cc:content-type;
-	bh=SN9eIzroTDM9p4ZDNFxjMTmYwFOG8iYT4Y53xYCqQmY=;
-	b=eD2L3cNff3SSuLdc4DGI7TuGdLbCK7jwrmWirJRNkyOaFVL8fO/6eWcqPjqWSfew6L
-	VhRW4ERDbv4Q+NQa2xSYIvpgRgDKaZhgBiFfzJKFmAWxM1LU3bHm7UdkZ2DgWS+MBdsm
-	0WZD34JKgbrhzis8Y/0FSJW8FQPKPUcOVDwkU56dETu8EfDiFUEl3/qMDJODoiFtLOoF
-	hNU6Sbwa2yEgrr9AnB67qj6wAnmJ3QoNt/ZaEVDW57oNkI9sxzRx2AOz6f1X0LXObsHH
-	Np8rR6XZ213Vf424QRj/tPlpEtb7Lx+QfhljS91veYAYUDDgQ5P+qTXG97J5kT74CIwv
-	VtwQ==
-X-Gm-Message-State: ALoCoQlCn3AlDpEOdgqcwX/srQhqm4y/DAOUi1D28BVTJKpOxQtf3GGaBdG1CfIjM2IUJAoSQiRm
+X-Spam-Status: No, score=-0.8 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+	DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (ellurubharath29[at]gmail.com)
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [74.125.82.179 listed in list.dnswl.org]
+Received: from mail-we0-f179.google.com (mail-we0-f179.google.com
+	[74.125.82.179])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BCF08E00A44
+	for <yocto@yoctoproject.org>; Thu,  5 Jun 2014 13:50:04 -0700 (PDT)
+Received: by mail-we0-f179.google.com with SMTP id q59so1799408wes.38
+	for <yocto@yoctoproject.org>; Thu, 05 Jun 2014 13:50:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=RxHXL2k3tkKYMzBiWcTVUVHtChdJpOVSHV7wPqTSOvU=;
+	b=eB6nN0HdB9U3OhYjZ+yUZxt8kFnCegXCWH+0fp1JSWNM38MZbIWCknOmfWDpHb9rB9
+	xRFOFb8WAnSUWg5cOtZZsH0JhgaSHzlIVg7ovEsVo/SDuMN4GZHvfPGV7+fEOZPCM6HL
+	I906SI4DeqCR+7qSizHkqV7lobE6PNZlNdS48PDRkNm3MqU60OHwoJHdl3U9kALRh6ee
+	OP6SligB5ZFRwEfdMKWw4o/xPvJ7VY5DgR0UHdmeMrO4CQCSc49EtaV6hbouHAeNxG1Q
+	djBstn3pe9BUGF37KYocXx4yUZAXlDw1Igdy+cTlhRzRQzIHv+t8tqriPNtF9Xtq0hDO
+	kpGg==
 MIME-Version: 1.0
-X-Received: by 10.60.52.207 with SMTP id v15mr71040307oeo.19.1401998977113;
-	Thu, 05 Jun 2014 13:09:37 -0700 (PDT)
-Received: by 10.202.84.67 with HTTP; Thu, 5 Jun 2014 13:09:37 -0700 (PDT)
-X-Originating-IP: [81.99.113.17]
-In-Reply-To: <20140605195602.GN7521@gmail.com>
-References: <1401791135-11672-1-git-send-email-tom@ewsting.org>
-	<20140605195602.GN7521@gmail.com>
-Date: Thu, 5 Jun 2014 21:09:37 +0100
-Message-ID: <CAMNOm+gNDiJd2BT9omKUGj=A5z00yWCA7qd7YDLqvZSL+k6fLw@mail.gmail.com>
-From: Tom Ingleby <tom@ewsting.org>
-To: Paul Barker <paul@paulbarker.me.uk>
-Cc: "Le Foll, Brendan" <brendan.le.foll@intel.com>, yocto@yoctoproject.org,
-	opkg-devel@googlegroups.com, Thomas Ingleby <thomas.c.ingleby@intel.com>,
-	paul.eggleton@linux.intel.com
-Subject: Re: [PATCH V2] opkg-build: add detection if using GNU tar.
+X-Received: by 10.180.101.98 with SMTP id ff2mr1703621wib.40.1402001403222;
+	Thu, 05 Jun 2014 13:50:03 -0700 (PDT)
+Received: by 10.194.172.164 with HTTP; Thu, 5 Jun 2014 13:50:03 -0700 (PDT)
+Date: Thu, 5 Jun 2014 15:50:03 -0500
+Message-ID: <CAGM0ZdRC1fBMcVjBXdeV5bG7Pe7LcFACzhTP0J2fvRdaMYSiGg@mail.gmail.com>
+From: Bharath Chandra <ellurubharath29@gmail.com>
+To: yocto@yoctoproject.org
+Subject: List of Binary Files from a recipe
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -54,49 +53,34 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 05 Jun 2014 20:09:43 -0000
+X-List-Received-Date: Thu, 05 Jun 2014 20:50:06 -0000
+Content-Type: multipart/alternative; boundary=f46d041826229d26e504fb1ce38d
+
+--f46d041826229d26e504fb1ce38d
 Content-Type: text/plain; charset=UTF-8
 
-Great!,
+Hi,
 
-Have a good evening,
-Tom
+I am working on a reverse enginnering project and I want to know by looking
+at an executable , the recipe file from which it is generated. So, first I
+need to understand by using what commands in a recipe file, we can generate
+an executable.
 
-On 5 June 2014 20:56, Paul Barker <paul@paulbarker.me.uk> wrote:
-> On Tue, Jun 03, 2014 at 11:25:35AM +0100, tom@ewsting.org wrote:
->> From: Thomas Ingleby <thomas.c.ingleby@intel.com>
->>
->> * Some options of GNU tar do not exist on other implementations
->>
->> Signed-off-by: Thomas Ingleby <thomas.c.ingleby@intel.com>
->
-> I've made a couple of slight further changes, hope you don't mind.
->
-> I've changed the subject to:
->
->     opkg-build: Detect if tar supports '--format' option
->
-> I've also added a comment before the block of code which sets tarformat:
->
-> +# Determine if tar supports the --format argument by checking the help output.
-> +#
-> +# This is needed because:
-> +#    - Busybox tar doesn't support '--format'
-> +#    - On some Linux distros, tar now defaults to posix format if '--format'
-> +#      isn't explictly specified
-> +#    - Opkg doesn't currently support posix format archives
-> +#
-> +# It's easier to check for mention of the '--format' option than to detect the
-> +# tar implementation and maintain a list of which support '--format'.
->
-> I've merged this to master with those changes. Sadly I made an error writing the
-> comment and pushed too soon so I've pushed another commit to fix that.
->
-> Many thanks,
->
-> --
-> Paul Barker
->
-> Email: paul@paulbarker.me.uk
-> http://www.paulbarker.me.uk
+-- 
+Thanks & Regards,
+Bharath Chandra Elluru.
+Contact Number:785-979-4875.
 
+--f46d041826229d26e504fb1ce38d
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Hi,<br><br>I am working on a reverse enginnering project a=
+nd I want to know by looking at an executable , the recipe file from which =
+it is generated. So, first I need to understand by using what commands in a=
+ recipe file, we can generate an executable. <br clear=3D"all">
+<div><br>-- <br><div dir=3D"ltr">Thanks &amp; Regards,<div>Bharath Chandra =
+Elluru.</div><div>Contact Number:785-979-4875.</div></div>
+</div></div>
+
+--f46d041826229d26e504fb1ce38d--
