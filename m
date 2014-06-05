@@ -1,43 +1,52 @@
-Return-Path: <elizabeth.flanagan@intel.com>
+Return-Path: <insop.song@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 7525AE00B74; Wed,  4 Jun 2014 15:05:45 -0700 (PDT)
+	id E6789E00BE0; Wed,  4 Jun 2014 17:58:14 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-0.7 required=5.0 tests=RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [209.85.220.181 listed in list.dnswl.org]
-Received: from mail-vc0-f181.google.com (mail-vc0-f181.google.com
-	[209.85.220.181])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AB476E00B6A
-	for <yocto@yoctoproject.org>; Wed,  4 Jun 2014 15:05:42 -0700 (PDT)
-Received: by mail-vc0-f181.google.com with SMTP id hq11so167677vcb.12
-	for <yocto@yoctoproject.org>; Wed, 04 Jun 2014 15:05:42 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:date:message-id:subject:from:to
-	:content-type;
-	bh=JOTU5p1jg76gSYu0+4JfrA/1BhuufFkF5FunbNl9v4U=;
-	b=aAiLyGmiUDNgcF7ELq9inR/bix3nuyBpFwLN89NITQzQ9wULGw9mUcLG7vyjhNlkNJ
-	NvLe/R2Va9utcI/+qLyP7aWp35L/MnnD/qGmubmV4YoD5Bqtq4ghLnStQMA3LmCrY9WC
-	msG8APkaUbsl1rMqtmVKn6/sVyPW8DKG/84kwiNPPuWdHVoB8+nrcK6xQVrW7i3UNy7F
-	MD5DTWP1qCbbVV5szHns0FSpwHoXPLmHuwakhy4l3H0D66bk5+JpX8VpHqaJaiu0k5qg
-	qau4Tgd7y2xt+zQlnF8wZw8nAicPIJQdz4NqQrTwjSCUdautUPcO1mIaRDCM9pml8rVu
-	aCtw==
-X-Gm-Message-State: ALoCoQnVLjW6WISrKsrvHeScmOfm5KT+kG2fYRSBiiqat3mQ7+TQBRL2BkakbIAto14Fqjp3sNA0
+X-Spam-Status: No, score=-0.8 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+	DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (insop.song[at]gmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [74.125.82.47 listed in list.dnswl.org]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-wg0-f47.google.com (mail-wg0-f47.google.com [74.125.82.47])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 894C7E00B74
+	for <yocto@yoctoproject.org>; Wed,  4 Jun 2014 17:58:09 -0700 (PDT)
+Received: by mail-wg0-f47.google.com with SMTP id x12so266181wgg.18
+	for <yocto@yoctoproject.org>; Wed, 04 Jun 2014 17:58:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-type;
+	bh=Uj1XI/8NqULeqWbQb6G159CADYjPaVZcZ0DJE4HC9zs=;
+	b=GcgdjQkyN5pWqVOdzJZotyfqEJg0ZNwrCw+Ftd4yMnaBkJjQ0yocZZtuvgg+k4wNAW
+	44dB1GwFExRHbxHgOW/RUsRJU5SFTxFE1sdUZejudNW+2lPf4Jrfr2Q0nAJBdhTwccPi
+	zQ7Gx/yvZ992puJPf5vzPbCOh7FaCan8N5mFzPvU2H9QRZ4rT8ivyvSxlyXvnGAgddbJ
+	//EyT7zzrrM6ownWvGoW9OnawRQeotLubVDTEIvfpkJOv6Vf5akkz2tevINRCG59o+1Z
+	knSwT6MhMSOUPvYIzW/5yC0C0aOklq0RoPkhAMN9cgol0ARqG70gVaS99Nm15H/V9Ygt
+	yl1Q==
+X-Received: by 10.180.186.8 with SMTP id fg8mr10537443wic.39.1401929888383;
+	Wed, 04 Jun 2014 17:58:08 -0700 (PDT)
 MIME-Version: 1.0
-X-Received: by 10.52.125.198 with SMTP id ms6mr38608115vdb.28.1401919542144;
-	Wed, 04 Jun 2014 15:05:42 -0700 (PDT)
-Received: by 10.52.28.235 with HTTP; Wed, 4 Jun 2014 15:05:42 -0700 (PDT)
-Date: Wed, 4 Jun 2014 15:05:42 -0700
-Message-ID: <CAPhnLPB5gotpQ27iJ8XRgs=0DOTF-z1KnVbmYKL5RJpYqAZ-Pw@mail.gmail.com>
-From: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>, 
-	Alexandru C Georgescu <alexandru.c.georgescu@intel.com>,
-	Otavio Salvador <otavio@ossystems.com.br>, Zhao Yi <yi.zhao@windriver.com>
-Subject: Weekly build now available.
+Received: by 10.194.89.5 with HTTP; Wed, 4 Jun 2014 17:57:48 -0700 (PDT)
+In-Reply-To: <1732254.XhvqkHGoUp@peggleto-mobl5.ger.corp.intel.com>
+References: <CACzyEJ-RYx+jw9Brqf5kGDivLFJGpD2ZWDRyMbqES=VsTNrWcQ@mail.gmail.com>
+	<20140602230303.GH7521@gmail.com>
+	<CACzyEJ-6+L9XjqcsmDovCDzj+MWy8YNoSoGXXbAFYgxcX598gg@mail.gmail.com>
+	<1732254.XhvqkHGoUp@peggleto-mobl5.ger.corp.intel.com>
+From: Insop Song <insop.song@gmail.com>
+Date: Wed, 4 Jun 2014 17:57:48 -0700
+Message-ID: <CACzyEJ-sso4E-5yvFLRJ4r=azvUdi1siwg2HA13pLbOUdnwmGg@mail.gmail.com>
+To: Paul Eggleton <paul.eggleton@linux.intel.com>
+Cc: Yocto Project Discussion <yocto@yoctoproject.org>
+Subject: Re: [yocto and jenkins]
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -49,23 +58,32 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 04 Jun 2014 22:05:45 -0000
+X-List-Received-Date: Thu, 05 Jun 2014 00:58:15 -0000
 Content-Type: text/plain; charset=UTF-8
 
-http://autobuilder.yoctoproject.org/pub/nightly/20140603-2
+Thank you for the corection Paul, yes you are right.
 
-bitbake     18f9bcbad059608e22fca20309314e1c399acec7
-eclipse-poky-juno     26bfc407781aa185f244a47ba63120343cee4a37
-eclipse-poky-kepler     984d050eb5aa82d944dcca28c07c07876a36a061
-meta-fsl-arm     849e0a68105961f8a02ddd7fb635eb3792e34464
-meta-fsl-ppc     b920491d60752ffc38098266f260dacaa2c35e7a
-meta-intel     50023dc8955390460bd7dd540bf9688dc7050b2d
-meta-minnow     7bdcd1140b729598bae6246a4bbc21c3950aadd8
-meta-qt3     3016129d90b7ac8517a5227d819f10ad417b5b45
-oecore     f8125a1e9b6893a12355d55d4df584a8d97f0bff
-poky     e7114046be6e71fb326477dc882adb814ef6a751
--- 
-Elizabeth Flanagan
-Yocto Project
-Build and Release
+I actually run the following from jenkins job
+
+export BB_ENV_EXTRAWHITE="BUILD_NUMBER"
+source SOURCE_THIS
+bitbake our_image
+
+On Wed, Jun 4, 2014 at 2:53 AM, Paul Eggleton
+<paul.eggleton@linux.intel.com> wrote:
+> On Monday 02 June 2014 17:26:08 Insop Song wrote:
+>> Thank you very much Paul.
+>>
+>> Setting "export BB_ENV_EXTRAWHITE=${BUILD_NUMBER}" fixed the issue.
+>
+> I think that should be "export BB_ENV_EXTRAWHITE=BUILD_NUMBER" (since it's the
+> variable name you're allowing through, not just the value).
+>
+> Cheers,
+> Paul
+>
+> --
+>
+> Paul Eggleton
+> Intel Open Source Technology Centre
 
