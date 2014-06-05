@@ -1,37 +1,52 @@
-Return-Path: <paul.eggleton@linux.intel.com>
+Return-Path: <insop.song@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id A6FA0E00B88; Thu,  5 Jun 2014 10:30:11 -0700 (PDT)
+	id F24F9E00B85; Thu,  5 Jun 2014 11:11:28 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-5.0 required=5.0 tests=RCVD_IN_DNSWL_HI
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [134.134.136.20 listed in list.dnswl.org]
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5DC7FE00B68
-	for <yocto@yoctoproject.org>; Thu,  5 Jun 2014 10:30:09 -0700 (PDT)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga101.jf.intel.com with ESMTP; 05 Jun 2014 10:30:09 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.98,982,1392192000"; d="scan'208";a="523299695"
-Received: from smoffitt-mobl.ger.corp.intel.com (HELO
-	peggleto-mobl5.ger.corp.intel.com) ([10.252.120.113])
-	by orsmga001.jf.intel.com with ESMTP; 05 Jun 2014 10:24:33 -0700
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: Gary Thomas <gary@mlbassoc.com>
-Date: Thu, 05 Jun 2014 18:24:32 +0100
-Message-ID: <6944853.hSHdg7euvW@peggleto-mobl5.ger.corp.intel.com>
-Organization: Intel Corporation
-User-Agent: KMail/4.12.5 (Linux/3.14.4-200.fc20.x86_64; KDE/4.12.5; x86_64; ; )
-In-Reply-To: <5390A607.9010106@mlbassoc.com>
-References: <53906B96.300@mlbassoc.com>
-	<2865499.mMpv2bqsZi@peggleto-mobl5.ger.corp.intel.com>
-	<5390A607.9010106@mlbassoc.com>
+X-Spam-Status: No, score=-0.8 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+	DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (insop.song[at]gmail.com)
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.212.176 listed in list.dnswl.org]
+Received: from mail-wi0-f176.google.com (mail-wi0-f176.google.com
+	[209.85.212.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 75AA3E00A44
+	for <yocto@yoctoproject.org>; Thu,  5 Jun 2014 11:11:24 -0700 (PDT)
+Received: by mail-wi0-f176.google.com with SMTP id n15so11078891wiw.3
+	for <yocto@yoctoproject.org>; Thu, 05 Jun 2014 11:11:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-type;
+	bh=9qhT+GydoobuuyCqJdtBj0bDBUozFxZiEkJN4YcFCLA=;
+	b=N+n+uedR7De/YSP3Z9F1nCBTb+cVV1yU0GhWMGz7ixRrvtzqvBNwYTfLdb/IR4c0w7
+	JSCRovKXhiYvOrLvZI9AoF4zUx1GBDIJrd91cycCgQdHs3HNsGZPFelEmiBjJp8VONJu
+	fINyyYH+RTBS/XwSmw+dP+WNzbTupQG92d3AZBBn9EPgVhx4YdYxqxj05ApFNSg1XEfR
+	yrY8bPGPqR2y6+48/zfl7NkcreVq1JNGAyzVTiFKDKkHCvHwsbMJdZUM0BsAT+MFqM83
+	77nQF3Nq2kS3SCCIwCI8uooaIj2juB/QeyDPn9LiSE2LAae2D8m6IAZ1pBG8Qj+o5wbK
+	/qyA==
+X-Received: by 10.180.186.8 with SMTP id fg8mr18234067wic.39.1401991883831;
+	Thu, 05 Jun 2014 11:11:23 -0700 (PDT)
 MIME-Version: 1.0
-Cc: yocto@yoctoproject.org, Scott Rifenbark <srifenbark@gmail.com>
-Subject: Re: Live images?
+Received: by 10.194.89.5 with HTTP; Thu, 5 Jun 2014 11:11:03 -0700 (PDT)
+In-Reply-To: <CACzyEJ_tfEmYhR6+p_M8xPUj+n_UYvaG+Sj1ErfAJXCXjyFZEw@mail.gmail.com>
+References: <CACzyEJ-WoUrc+Cvib3XHasdZPO1gk7rcyepTE1Xj5G2ndxaB+Q@mail.gmail.com>
+	<CA+gsK-pQz1TeXzfbP0tMMfwdWQcHoCme4PdUM3s+vRbe3oT4EA@mail.gmail.com>
+	<CACzyEJ_tfEmYhR6+p_M8xPUj+n_UYvaG+Sj1ErfAJXCXjyFZEw@mail.gmail.com>
+From: Insop Song <insop.song@gmail.com>
+Date: Thu, 5 Jun 2014 11:11:03 -0700
+Message-ID: <CACzyEJ_sD+Uwuacrf6SuM2h8+4oCkxg_OY0wTu48Op9-nfcx8Q@mail.gmail.com>
+To: Rudolf Streif <rstreif@linuxfoundation.org>
+Cc: Yocto Project Discussion <yocto@yoctoproject.org>
+Subject: Re: how to specify if multiple bb files are existing
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,101 +58,43 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 05 Jun 2014 17:30:11 -0000
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Thu, 05 Jun 2014 18:11:29 -0000
+Content-Type: text/plain; charset=UTF-8
 
-On Thursday 05 June 2014 11:16:55 Gary Thomas wrote:
-> On 2014-06-05 09:07, Paul Eggleton wrote:
-> > On Thursday 05 June 2014 08:41:57 Gary Thomas wrote:
-> >> On 2014-06-05 08:32, Paul Eggleton wrote:
-> >>> On Thursday 05 June 2014 15:26:28 Paul Eggleton wrote:
-> >>>> Hi Gary,
-> >>>> 
-> >>>> On Thursday 05 June 2014 07:07:34 Gary Thomas wrote:
-> >>>>> Looking through the Poky/Yocto sources, there seems to be
-> >>>>> some support for Live CD/USB images.  However, I can't find
-> >>>>> any examples nor documentation for how to use this.
-> >>>>> 
-> >>>>> Can anyone provide some pointers?
-> >>>> 
-> >>>> You're right, we seem to be missing that in our documentation; I'm not
-> >>>> sure
-> >>>> where the best place to document it would be though.
-> >>>> 
-> >>>> FYI, you should just need to ensure "live" is in IMAGE_FSTYPES; then
-> >>>> you
-> >>>> should get a .directdisk image that you can just dd to a USB stick.
-> >>> 
-> >>> Of course I meant to say .hddimg, not .directdisk.
-> >> 
-> >> Thanks, I'll give that a try.
-> >> 
-> >> What if I needed to boot from an actual CD?  I have an old
-> >> box here I'd like to try, but it doesn't boot from USB.
-> > 
-> > We can produce ISO images but I don't think that they work quite as well,
-> > e.g.:
-> > 
-> > https://bugzilla.yoctoproject.org/show_bug.cgi?id=5282
-> > 
-> > You could always try it though.
-> 
-> Bummer, when I tried to build core-image-minimal and/or core-image-x11, it 
-failed:
-> | DEBUG: Executing shell function read_only_rootfs_hook
-> | sed: can't read
-> | /home/local/x86_live_2014-06-05/tmp/work/genericx86-poky-linux/core-image
-> | -minimal-initramfs/1.0-r0/rootfs/etc/fstab: No such file or directory
-> | WARNING:
-> | /home/local/x86_live_2014-06-05/tmp/work/genericx86-poky-linux/core-image
-> | -minimal-initramfs/1.0-r0/temp/run.read_only_rootfs_hook.30446:1 exit 2
-> | from| 
-> |   sed -i -e
-> |   '/^[#[:space:]]*\/dev\/root/{s/defaults/ro/;s/\([[:space:]]*[[:digit:]]
-> |   \)\([[:space:]]*\)[[:digit:]]$/\1\20/}'
-> /home/local/x86_live_2014-06-05/tmp/work/genericx86-poky-linux/core-image-mi
-> nimal-initramfs/1.0-r0/rootfs/etc/fstab
-> | DEBUG: Python function do_rootfs finished
-> | ERROR: Function failed: read_only_rootfs_hook (log file is located at
-> 
-> /home/local/x86_live_2014-06-05/tmp/work/genericx86-poky-linux/core-image-mi
-> nimal-initramfs/1.0-r0/temp/log.do_rootfs.30446)
-> 
-> Using these settings:
-> Build Configuration:
-> BB_VERSION        = "1.23.1"
-> BUILD_SYS         = "i686-linux"
-> NATIVELSBSTRING   = "Fedora-13"
-> TARGET_SYS        = "i586-poky-linux"
-> MACHINE           = "genericx86"
-> DISTRO            = "poky"
-> DISTRO_VERSION    = "1.6+snapshot-20140605"
-> TUNE_FEATURES     = "m32 core2"
-> TARGET_FPU        = ""
-> meta
-> meta-yocto
-> meta-yocto-bsp    = "master:e7114046be6e71fb326477dc882adb814ef6a751"
-> 
-> Extra settings in conf/local.conf
-> # Live CD setup
-> IMAGE_FSTYPES_append = " hddimg live"
+Hi Rudi,
 
-"hddimg" isn't a valid IMAGE_FSTYPES item.
 
-Also, try IMAGE_FSTYPES += rather than _append, that allows the initramfs 
-image to have its own value (because it's not really valid to make a live 
-initramfs...)
+I looked more and found out that the reason why 2013.01.01.bb, which
+is the latest, was not picked was due to "DEFAULT_PREFERENCE = -1" in
+that file.
 
-> IMAGE_FEATURES_append = " read-only-rootfs"
+I was using this file from here :
+http://git.freescale.com/git/cgit.cgi/ppc/sdk/poky.git/tree/meta/recipes-bsp/u-boot/u-boot-fw-utils_2013.01.01.bb?h=dylan
 
-Try EXTRA_IMAGE_FEATURES += instead of IMAGE_FEATURES_append
+Thank you.
 
-Cheers,
-Paul
+ISS
 
--- 
-
-Paul Eggleton
-Intel Open Source Technology Centre
+On Wed, Jun 4, 2014 at 7:27 PM, Insop Song <insop.song@gmail.com> wrote:
+> Hi Rudi,
+>
+> Thank you very much for your help.
+> I've added PREFERRED_VERSION and started build.
+>
+> Regards,
+>
+> Insop
+>
+> On Wed, Jun 4, 2014 at 6:37 PM, Rudolf Streif
+> <rstreif@linuxfoundation.org> wrote:
+>> Hi Insop,
+>>
+>> Technically u-boot-fw-utils_2013.01.01 should be used because it's the newer
+>> version. However, you can explicitly specify
+>>
+>> PREFERRED_VERSION_u-boot-fw-utils = "2013.01.01"
+>>
+>> Cheers,
+>> Rudi
+>>
 
