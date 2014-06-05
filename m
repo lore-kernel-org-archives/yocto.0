@@ -1,47 +1,49 @@
-Return-Path: <gada.kashyap@gmail.com>
+Return-Path: <marek.andrus@wp.pl>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 1FC61E00BE0; Thu,  5 Jun 2014 04:28:27 -0700 (PDT)
+	id 4489AE00BE0; Thu,  5 Jun 2014 05:06:35 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-0.8 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-	DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-0.1 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+	DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (gada.kashyap[at]gmail.com)
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	mail provider *      (marek.andrus[at]wp.pl)
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.215.47 listed in list.dnswl.org]
-Received: from mail-la0-f47.google.com (mail-la0-f47.google.com
-	[209.85.215.47])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 34022E00B74
-	for <yocto@yoctoproject.org>; Thu,  5 Jun 2014 04:28:21 -0700 (PDT)
-Received: by mail-la0-f47.google.com with SMTP id pn19so478680lab.20
-	for <yocto@yoctoproject.org>; Thu, 05 Jun 2014 04:28:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=SnlciAZHhIhvFjln6PReZ6CZ1+/YbSuh5oEmpLSlLWs=;
-	b=ekLwImSZ5LpqXeKOl6WU/GoHYMhpX2LkPwQtQuAKvy2BnVNf3jTIznSeGadhYlUMe/
-	G53SaLXwgAQ1LOMm4hjwK4XgF7JcD3wQMcYC74EAAHEF6bkDynzFKPZOiRcNg1ThhuQV
-	9akECfw8jXWAAiAUqXroS6uu+wRaPxjzGbhAXuTla8BL6Ai3yc6HvfU11dBS3kPirJTd
-	RGyVzf4f30bTH44LPz1AJc2NbKmcGiCxQF5a9tLsBTRkRwwk7SPYvTIC4N2LjNiOK2Pn
-	MYhpDJRKEbmBXYZirx/gMlHH8VMgQ2/AgIoV2PVTIeJUh/WOf1eeRIn4CoVixCP0aHCT
-	Pg8Q==
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [212.77.101.11 listed in list.dnswl.org]
+Received: from mx4.wp.pl (mx4.wp.pl [212.77.101.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BCE4BE00B74
+	for <yocto@yoctoproject.org>; Thu,  5 Jun 2014 05:06:28 -0700 (PDT)
+Received: (wp-smtpd smtp.wp.pl 27494 invoked from network);
+	5 Jun 2014 14:06:26 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wp.pl; s=1024a;
+	t=1401969986; bh=WeRfpAyuXJkbOsXataYEpymkQAVVV1yA2u3Of4bKSyQ=;
+	h=From:To:Subject;
+	b=ZUCxo8wOwSk0v4xjT5NiZXGWZB4Nlp0LOQzKjG57o0QuCftlq/A8MyIeHCAP1RB2J
+	4T/M9LdIxTeQrvWM0Hzst+xNeuScnvCTjSRQbT2WjGKfW8K1TV8Jo6spPMpZubX4rT
+	bAaQT/5calgKonFCllvNJ/bkg8UrS5ro07HhZuGk=
+Received: from unknown (HELO [62.159.77.167]) (marek.andrus@[62.159.77.167])
+	(envelope-sender <marek.andrus@wp.pl>)
+	by smtp.wp.pl (WP-SMTPD) with AES128-SHA encrypted SMTP
+	for <yocto@yoctoproject.org>; 5 Jun 2014 14:06:26 +0200
+Message-ID: <53905D40.5040009@wp.pl>
+Date: Thu, 05 Jun 2014 14:06:24 +0200
+From: Marek Andrus <marek.andrus@wp.pl>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:24.0) Gecko/20100101 Icedove/24.5.0
 MIME-Version: 1.0
-X-Received: by 10.112.143.98 with SMTP id sd2mr42525440lbb.15.1401967699736;
-	Thu, 05 Jun 2014 04:28:19 -0700 (PDT)
-Received: by 10.114.29.132 with HTTP; Thu, 5 Jun 2014 04:28:19 -0700 (PDT)
-Date: Thu, 5 Jun 2014 16:58:19 +0530
-Message-ID: <CANJXcUYmMp5SzgBsr3icysjVqBDr8Ksz41141r1KQ6rtKSAUMQ@mail.gmail.com>
-From: Kashyap Gada <gada.kashyap@gmail.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Building for Boards not supported by Yocto Project
+To: yocto@yoctoproject.org
+References: <53904E36.7020609@wp.pl>
+In-Reply-To: <53904E36.7020609@wp.pl>
+X-WP-AV: skaner antywirusowy poczty Wirtualnej Polski S. A.
+X-WP-SPAM: NO 0000000 [oSP0]                               
+Subject: Re: TARGET_ARCH in external toolchain
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -53,36 +55,34 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 05 Jun 2014 11:28:27 -0000
-Content-Type: multipart/alternative; boundary=089e0115fb1ababf8904fb150a51
+X-List-Received-Date: Thu, 05 Jun 2014 12:06:35 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
 
---089e0115fb1ababf8904fb150a51
-Content-Type: text/plain; charset=UTF-8
+I've found a problem. TARGET_ARCH in fact isn't set but I can still use 
+conditional syntax. The problem was I was trying with ppc architecture 
+(TARGET_ARCH is later set to ppc) but here I had to use "powerpc" instead.
 
-Hello.
+BR,
+Marek Andrus
 
-I have successfully built and tested core-image-sato through the process
-given by the quick start guide at the yocto project website. Now I intend
-to build an image for a board which is not officially supported by yocto
-project. I have a FriendlyArm mini6410 whose BSP is available for linux.
 
-I would like to know how should I proceed further.
-Is it possible to use the same BSP without any changes and make an image
-using Yocto?
+On 05.06.2014 13:02, Marek Andrus wrote:
+> Hi,
+>
+> I'd like to provide one meta for a 4 external toolchains (for 4 
+> different architectures). I wanted it to select appropriate toolchain 
+> accroding to a TARGET_ARCH variable. Unfortunately TARGET_ARCH looks 
+> like not being set at the time of parsing my tcmode-external-mytc.inc 
+> file (where preffered providers are set). Of course OVERRIDES variable 
+> is not set either.
+>
+> What do you recommend?
+>
+> Of course I can change the toolchain layer manually but I wanted to 
+> change machine/architecture in just one place. Is there any method?
+>
+> BR,
+> Marek Andrus
 
-Kashyap Gada
 
---089e0115fb1ababf8904fb150a51
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">Hello.<div><br></div><div>I have successfully built and te=
-sted core-image-sato through the process given by the quick start guide at =
-the yocto project website. Now I intend to build an image for a board which=
- is not officially supported by yocto project. I have a FriendlyArm mini641=
-0 whose BSP is available for linux.</div>
-<div><br></div><div>I would like to know how should I proceed further.</div=
-><div>Is it possible to use the same BSP without any changes and make an im=
-age using Yocto?</div><div><br></div><div>Kashyap Gada</div></div>
-
---089e0115fb1ababf8904fb150a51--
