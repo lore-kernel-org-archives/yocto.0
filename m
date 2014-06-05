@@ -1,34 +1,63 @@
-Return-Path: <gary@mlbassoc.com>
+Return-Path: <rstreif@linuxfoundation.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 9A610E00B85; Thu,  5 Jun 2014 12:10:01 -0700 (PDT)
+	id 2BE25E00B88; Thu,  5 Jun 2014 12:12:18 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=0.0 required=5.0 tests=none autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: 
-Received: from mail.chez-thomas.org (mail.mlbassoc.com [65.100.170.105])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6E221E00A44
-	for <yocto@yoctoproject.org>; Thu,  5 Jun 2014 12:09:56 -0700 (PDT)
-Received: by mail.chez-thomas.org (Postfix, from userid 1998)
-	id AF3DAF811EC; Thu,  5 Jun 2014 13:09:55 -0600 (MDT)
-Received: from [192.168.1.114] (zeus [192.168.1.114])
-	by mail.chez-thomas.org (Postfix) with ESMTP id 65FEAF811DE;
-	Thu,  5 Jun 2014 13:09:54 -0600 (MDT)
-Message-ID: <5390C088.2020006@mlbassoc.com>
-Date: Thu, 05 Jun 2014 13:10:00 -0600
-From: Gary Thomas <gary@mlbassoc.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:24.0) Gecko/20100101 Thunderbird/24.5.0
+X-Spam-Status: No, score=-0.8 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+	DKIM_VALID_AU, HTML_MESSAGE,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [209.85.223.173 listed in list.dnswl.org]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-ie0-f173.google.com (mail-ie0-f173.google.com
+	[209.85.223.173])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 18BBBE00BF4
+	for <yocto@yoctoproject.org>; Thu,  5 Jun 2014 12:12:07 -0700 (PDT)
+Received: by mail-ie0-f173.google.com with SMTP id lx4so1324072iec.18
+	for <yocto@yoctoproject.org>; Thu, 05 Jun 2014 12:12:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=linuxfoundation.org; s=google;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type;
+	bh=CbysCZcEkQxiSg0qW3HSFpHEcexafzUF5XJ9qtOa9OI=;
+	b=WWlF/8kOwkS1pNcbgoObfV1IUZVj+4Smm+Pe2U/WlDj7gOurodmhXZZ6pOh971LOqV
+	LYtBRW5vR2rz7H1mLvtDRtXZnHM59xWCl0pMQ/kBGdA6QEwwcXwa4i9AZv3D1wxBn0DD
+	H3MDnNbZc7Ol70iw9VCFMOIonmPELcqH/qADM=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:date
+	:message-id:subject:from:to:cc:content-type;
+	bh=CbysCZcEkQxiSg0qW3HSFpHEcexafzUF5XJ9qtOa9OI=;
+	b=Krkgi2C6upE/jOAaiAD8o9G5E7GbT6wQ0lJPWYMO+cNBaMtY4cPNF0iWOgnaHMm8nV
+	DLuxGbgzE1QzEEHOYsfVOjKJQ2RwPxNL0IW9uDpSucvXiQR1rixUiajvfN7/tIcNP8Iv
+	J90CO1jmpOt9Dg6fVsBM1rys4PhkZHixB78e2gobSM11YDuRs8r33IAln5dNfh3kw1Sg
+	T4WIrtS9MxOhhhPAT9jmNPwmuU7NIpNN299vRB1t77VXFK9nMz7lNYMZxGmmAf/tFH79
+	Ut0hBnxWE2vG+qnarW9K3cYX1gwhVNPaJea7+iMAqUh2Ye9LJw4fvIsVxmUFObLiNAjH
+	Xi/g==
+X-Gm-Message-State: ALoCoQnVHOx+dRPkx4vf34/EOEna5N4ewsCQ79xrxTJ7CHQrWRkciqpHbJgic5vDObOmA/7Ggeo1
 MIME-Version: 1.0
-To: Paul Eggleton <paul.eggleton@linux.intel.com>
-References: <53906B96.300@mlbassoc.com>
-	<2865499.mMpv2bqsZi@peggleto-mobl5.ger.corp.intel.com>
-	<5390A607.9010106@mlbassoc.com>
-	<6944853.hSHdg7euvW@peggleto-mobl5.ger.corp.intel.com>
-In-Reply-To: <6944853.hSHdg7euvW@peggleto-mobl5.ger.corp.intel.com>
-Cc: yocto@yoctoproject.org, Scott Rifenbark <srifenbark@gmail.com>
-Subject: Re: Live images?
+X-Received: by 10.42.25.210 with SMTP id b18mr18207icc.74.1401995526612; Thu,
+	05 Jun 2014 12:12:06 -0700 (PDT)
+Received: by 10.50.224.136 with HTTP; Thu, 5 Jun 2014 12:12:06 -0700 (PDT)
+Received: by 10.50.224.136 with HTTP; Thu, 5 Jun 2014 12:12:06 -0700 (PDT)
+In-Reply-To: <CACzyEJ_sD+Uwuacrf6SuM2h8+4oCkxg_OY0wTu48Op9-nfcx8Q@mail.gmail.com>
+References: <CACzyEJ-WoUrc+Cvib3XHasdZPO1gk7rcyepTE1Xj5G2ndxaB+Q@mail.gmail.com>
+	<CA+gsK-pQz1TeXzfbP0tMMfwdWQcHoCme4PdUM3s+vRbe3oT4EA@mail.gmail.com>
+	<CACzyEJ_tfEmYhR6+p_M8xPUj+n_UYvaG+Sj1ErfAJXCXjyFZEw@mail.gmail.com>
+	<CACzyEJ_sD+Uwuacrf6SuM2h8+4oCkxg_OY0wTu48Op9-nfcx8Q@mail.gmail.com>
+Date: Thu, 5 Jun 2014 12:12:06 -0700
+Message-ID: <CA+gsK-rPO7Kq=2DpZv_K4gR02WJR1yfdnqJVwR8fpZ7_UJsC4g@mail.gmail.com>
+From: Rudolf Streif <rstreif@linuxfoundation.org>
+To: Insop Song <insop.song@gmail.com>
+Cc: Yocto Discussion Mailing List <yocto@yoctoproject.org>
+Subject: Re: how to specify if multiple bb files are existing
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,121 +69,113 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 05 Jun 2014 19:10:01 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Thu, 05 Jun 2014 19:12:18 -0000
+Content-Type: multipart/alternative; boundary=20cf303ea7b8573fb204fb1b85ac
 
-On 2014-06-05 11:24, Paul Eggleton wrote:
-> On Thursday 05 June 2014 11:16:55 Gary Thomas wrote:
->> On 2014-06-05 09:07, Paul Eggleton wrote:
->>> On Thursday 05 June 2014 08:41:57 Gary Thomas wrote:
->>>> On 2014-06-05 08:32, Paul Eggleton wrote:
->>>>> On Thursday 05 June 2014 15:26:28 Paul Eggleton wrote:
->>>>>> Hi Gary,
->>>>>>
->>>>>> On Thursday 05 June 2014 07:07:34 Gary Thomas wrote:
->>>>>>> Looking through the Poky/Yocto sources, there seems to be
->>>>>>> some support for Live CD/USB images.  However, I can't find
->>>>>>> any examples nor documentation for how to use this.
->>>>>>>
->>>>>>> Can anyone provide some pointers?
->>>>>>
->>>>>> You're right, we seem to be missing that in our documentation; I'm not
->>>>>> sure
->>>>>> where the best place to document it would be though.
->>>>>>
->>>>>> FYI, you should just need to ensure "live" is in IMAGE_FSTYPES; then
->>>>>> you
->>>>>> should get a .directdisk image that you can just dd to a USB stick.
->>>>>
->>>>> Of course I meant to say .hddimg, not .directdisk.
->>>>
->>>> Thanks, I'll give that a try.
->>>>
->>>> What if I needed to boot from an actual CD?  I have an old
->>>> box here I'd like to try, but it doesn't boot from USB.
->>>
->>> We can produce ISO images but I don't think that they work quite as well,
->>> e.g.:
->>>
->>> https://bugzilla.yoctoproject.org/show_bug.cgi?id=5282
->>>
->>> You could always try it though.
->>
->> Bummer, when I tried to build core-image-minimal and/or core-image-x11, it
-> failed:
->> | DEBUG: Executing shell function read_only_rootfs_hook
->> | sed: can't read
->> | /home/local/x86_live_2014-06-05/tmp/work/genericx86-poky-linux/core-image
->> | -minimal-initramfs/1.0-r0/rootfs/etc/fstab: No such file or directory
->> | WARNING:
->> | /home/local/x86_live_2014-06-05/tmp/work/genericx86-poky-linux/core-image
->> | -minimal-initramfs/1.0-r0/temp/run.read_only_rootfs_hook.30446:1 exit 2
->> | from|
->> |   sed -i -e
->> |   '/^[#[:space:]]*\/dev\/root/{s/defaults/ro/;s/\([[:space:]]*[[:digit:]]
->> |   \)\([[:space:]]*\)[[:digit:]]$/\1\20/}'
->> /home/local/x86_live_2014-06-05/tmp/work/genericx86-poky-linux/core-image-mi
->> nimal-initramfs/1.0-r0/rootfs/etc/fstab
->> | DEBUG: Python function do_rootfs finished
->> | ERROR: Function failed: read_only_rootfs_hook (log file is located at
->>
->> /home/local/x86_live_2014-06-05/tmp/work/genericx86-poky-linux/core-image-mi
->> nimal-initramfs/1.0-r0/temp/log.do_rootfs.30446)
->>
->> Using these settings:
->> Build Configuration:
->> BB_VERSION        = "1.23.1"
->> BUILD_SYS         = "i686-linux"
->> NATIVELSBSTRING   = "Fedora-13"
->> TARGET_SYS        = "i586-poky-linux"
->> MACHINE           = "genericx86"
->> DISTRO            = "poky"
->> DISTRO_VERSION    = "1.6+snapshot-20140605"
->> TUNE_FEATURES     = "m32 core2"
->> TARGET_FPU        = ""
->> meta
->> meta-yocto
->> meta-yocto-bsp    = "master:e7114046be6e71fb326477dc882adb814ef6a751"
->>
->> Extra settings in conf/local.conf
->> # Live CD setup
->> IMAGE_FSTYPES_append = " hddimg live"
+--20cf303ea7b8573fb204fb1b85ac
+Content-Type: text/plain; charset=UTF-8
+
+Excellent, that is what I expected. Glad you found the root cause. I am not
+exactly a friend of setting DEFAULT_PREFERRENCE  in a recipe because it
+leads to these confusing issues.
+On Jun 5, 2014 11:11 AM, "Insop Song" <insop.song@gmail.com> wrote:
+
+> Hi Rudi,
 >
-> "hddimg" isn't a valid IMAGE_FSTYPES item.
 >
-> Also, try IMAGE_FSTYPES += rather than _append, that allows the initramfs
-> image to have its own value (because it's not really valid to make a live
-> initramfs...)
-
-Sorry, I misread/misapplied your previous suggestions.
-
+> I looked more and found out that the reason why 2013.01.01.bb, which
+> is the latest, was not picked was due to "DEFAULT_PREFERENCE = -1" in
+> that file.
 >
->> IMAGE_FEATURES_append = " read-only-rootfs"
+> I was using this file from here :
 >
-> Try EXTRA_IMAGE_FEATURES += instead of IMAGE_FEATURES_append
+> http://git.freescale.com/git/cgit.cgi/ppc/sdk/poky.git/tree/meta/recipes-bsp/u-boot/u-boot-fw-utils_2013.01.01.bb?h=dylan
+>
+> Thank you.
+>
+> ISS
+>
+> On Wed, Jun 4, 2014 at 7:27 PM, Insop Song <insop.song@gmail.com> wrote:
+> > Hi Rudi,
+> >
+> > Thank you very much for your help.
+> > I've added PREFERRED_VERSION and started build.
+> >
+> > Regards,
+> >
+> > Insop
+> >
+> > On Wed, Jun 4, 2014 at 6:37 PM, Rudolf Streif
+> > <rstreif@linuxfoundation.org> wrote:
+> >> Hi Insop,
+> >>
+> >> Technically u-boot-fw-utils_2013.01.01 should be used because it's the
+> newer
+> >> version. However, you can explicitly specify
+> >>
+> >> PREFERRED_VERSION_u-boot-fw-utils = "2013.01.01"
+> >>
+> >> Cheers,
+> >> Rudi
+> >>
+>
 
-I've changed both of these and it still fails if I enable the
-read-only-rootfs.
+--20cf303ea7b8573fb204fb1b85ac
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-If I leave that option out, I can build an .hddimg which I dd'd
-to my USB stick.  It tried to boot, finds /vmlinuz but fails to
-find /initrd
+<p dir=3D"ltr">Excellent, that is what I expected. Glad you found the root =
+cause. I am not exactly a friend of setting DEFAULT_PREFERRENCE=C2=A0 in a =
+recipe because it leads to these confusing issues.</p>
+<div class=3D"gmail_quote">On Jun 5, 2014 11:11 AM, &quot;Insop Song&quot; =
+&lt;<a href=3D"mailto:insop.song@gmail.com">insop.song@gmail.com</a>&gt; wr=
+ote:<br type=3D"attribution"><blockquote class=3D"gmail_quote" style=3D"mar=
+gin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">
+Hi Rudi,<br>
+<br>
+<br>
+I looked more and found out that the reason why <a href=3D"http://2013.01.0=
+1.bb" target=3D"_blank">2013.01.01.bb</a>, which<br>
+is the latest, was not picked was due to &quot;DEFAULT_PREFERENCE =3D -1&qu=
+ot; in<br>
+that file.<br>
+<br>
+I was using this file from here :<br>
+<a href=3D"http://git.freescale.com/git/cgit.cgi/ppc/sdk/poky.git/tree/meta=
+/recipes-bsp/u-boot/u-boot-fw-utils_2013.01.01.bb?h=3Ddylan" target=3D"_bla=
+nk">http://git.freescale.com/git/cgit.cgi/ppc/sdk/poky.git/tree/meta/recipe=
+s-bsp/u-boot/u-boot-fw-utils_2013.01.01.bb?h=3Ddylan</a><br>
 
-My local.conf settings are now:
-# Live CD setup
-IMAGE_FSTYPES += " live"
-#IMAGE_FEATURES += " read-only-rootfs"
-CORE_IMAGE_EXTRA_INSTALL += " python-core python-modules"
+<br>
+Thank you.<br>
+<br>
+ISS<br>
+<br>
+On Wed, Jun 4, 2014 at 7:27 PM, Insop Song &lt;<a href=3D"mailto:insop.song=
+@gmail.com">insop.song@gmail.com</a>&gt; wrote:<br>
+&gt; Hi Rudi,<br>
+&gt;<br>
+&gt; Thank you very much for your help.<br>
+&gt; I&#39;ve added PREFERRED_VERSION and started build.<br>
+&gt;<br>
+&gt; Regards,<br>
+&gt;<br>
+&gt; Insop<br>
+&gt;<br>
+&gt; On Wed, Jun 4, 2014 at 6:37 PM, Rudolf Streif<br>
+&gt; &lt;<a href=3D"mailto:rstreif@linuxfoundation.org">rstreif@linuxfounda=
+tion.org</a>&gt; wrote:<br>
+&gt;&gt; Hi Insop,<br>
+&gt;&gt;<br>
+&gt;&gt; Technically u-boot-fw-utils_2013.01.01 should be used because it&#=
+39;s the newer<br>
+&gt;&gt; version. However, you can explicitly specify<br>
+&gt;&gt;<br>
+&gt;&gt; PREFERRED_VERSION_u-boot-fw-utils =3D &quot;2013.01.01&quot;<br>
+&gt;&gt;<br>
+&gt;&gt; Cheers,<br>
+&gt;&gt; Rudi<br>
+&gt;&gt;<br>
+</blockquote></div>
 
-Finally, during one of my builds, I ended up with a core-image-minimal*.iso
-I tried burning this to a CD an it booted up, albeit with a couple of
-complaints about a read-only rootfs.  Sadly, I no longer get any .iso
-results when I 'bitbake core-image-minimal'
-
--- 
-------------------------------------------------------------
-Gary Thomas                 |  Consulting for the
-MLB Associates              |    Embedded world
-------------------------------------------------------------
-
+--20cf303ea7b8573fb204fb1b85ac--
