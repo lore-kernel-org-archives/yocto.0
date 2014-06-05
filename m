@@ -1,33 +1,36 @@
-Return-Path: <gary@mlbassoc.com>
+Return-Path: <Bruce.Ashfield@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id EAB6BE00BE3; Thu,  5 Jun 2014 07:41:56 -0700 (PDT)
+	id 71004E00BB1; Thu,  5 Jun 2014 07:44:41 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=0.0 required=5.0 tests=none autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: 
-Received: from mail.chez-thomas.org (mail.mlbassoc.com [65.100.170.105])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 26BEEE00A44
-	for <yocto@yoctoproject.org>; Thu,  5 Jun 2014 07:41:52 -0700 (PDT)
-Received: by mail.chez-thomas.org (Postfix, from userid 1998)
-	id 328D8F811EA; Thu,  5 Jun 2014 08:41:52 -0600 (MDT)
-Received: from [192.168.1.114] (zeus [192.168.1.114])
-	by mail.chez-thomas.org (Postfix) with ESMTP id 18DDCF811DF;
-	Thu,  5 Jun 2014 08:41:51 -0600 (MDT)
-Message-ID: <539081B5.6020905@mlbassoc.com>
-Date: Thu, 05 Jun 2014 08:41:57 -0600
-From: Gary Thomas <gary@mlbassoc.com>
+X-Spam-Status: No, score=-2.3 required=5.0 tests=RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [147.11.1.11 listed in list.dnswl.org]
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 353C0E00B85
+	for <yocto@yoctoproject.org>; Thu,  5 Jun 2014 07:44:36 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
+	[147.11.189.40])
+	by mail.windriver.com (8.14.5/8.14.5) with ESMTP id s55EiYAl011648
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
+	Thu, 5 Jun 2014 07:44:34 -0700 (PDT)
+Received: from [128.224.56.48] (128.224.56.48) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server id 14.3.169.1;
+	Thu, 5 Jun 2014 07:44:33 -0700
+Message-ID: <53908241.1060003@windriver.com>
+Date: Thu, 5 Jun 2014 10:44:17 -0400
+From: Bruce Ashfield <bruce.ashfield@windriver.com>
 User-Agent: Mozilla/5.0 (X11; Linux x86_64;
 	rv:24.0) Gecko/20100101 Thunderbird/24.5.0
 MIME-Version: 1.0
-To: Paul Eggleton <paul.eggleton@linux.intel.com>
-References: <53906B96.300@mlbassoc.com>
-	<4993560.6EjrQmr5SY@peggleto-mobl5.ger.corp.intel.com>
-	<1461672.ni0uDSAuWr@peggleto-mobl5.ger.corp.intel.com>
-In-Reply-To: <1461672.ni0uDSAuWr@peggleto-mobl5.ger.corp.intel.com>
-Cc: yocto@yoctoproject.org, Scott Rifenbark <srifenbark@gmail.com>
-Subject: Re: Live images?
+To: Kashyap Gada <gada.kashyap@gmail.com>, "yocto@yoctoproject.org"
+	<yocto@yoctoproject.org>
+References: <CANJXcUYmMp5SzgBsr3icysjVqBDr8Ksz41141r1KQ6rtKSAUMQ@mail.gmail.com>
+In-Reply-To: <CANJXcUYmMp5SzgBsr3icysjVqBDr8Ksz41141r1KQ6rtKSAUMQ@mail.gmail.com>
+Subject: Re: Building for Boards not supported by Yocto Project
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,37 +42,43 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 05 Jun 2014 14:41:57 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+X-List-Received-Date: Thu, 05 Jun 2014 14:44:41 -0000
+Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 2014-06-05 08:32, Paul Eggleton wrote:
-> On Thursday 05 June 2014 15:26:28 Paul Eggleton wrote:
->> Hi Gary,
->>
->> On Thursday 05 June 2014 07:07:34 Gary Thomas wrote:
->>> Looking through the Poky/Yocto sources, there seems to be
->>> some support for Live CD/USB images.  However, I can't find
->>> any examples nor documentation for how to use this.
->>>
->>> Can anyone provide some pointers?
->>
->> You're right, we seem to be missing that in our documentation; I'm not sure
->> where the best place to document it would be though.
->>
->> FYI, you should just need to ensure "live" is in IMAGE_FSTYPES; then you
->> should get a .directdisk image that you can just dd to a USB stick.
+On 14-06-05 07:28 AM, Kashyap Gada wrote:
+> Hello.
 >
-> Of course I meant to say .hddimg, not .directdisk.
+> I have successfully built and tested core-image-sato through the process
+> given by the quick start guide at the yocto project website. Now I
+> intend to build an image for a board which is not officially supported
+> by yocto project. I have a FriendlyArm mini6410 whose BSP is available
+> for linux.
+>
+> I would like to know how should I proceed further.
+> Is it possible to use the same BSP without any changes and make an image
+> using Yocto?
 
-Thanks, I'll give that a try.
+Using the Yocto BSP guide 
+(http://www.yoctoproject.org/docs/current/bsp-guide/bsp-guide.html)
+as a reference, you can create a minimal BSP layer for the board.
 
-What if I needed to boot from an actual CD?  I have an old
-box here I'd like to try, but it doesn't boot from USB.
+You don't have to do everything in the guide, but you do need to
+have a machine definition, the userspace tuning and a custom kernel
+recipe for the platform (i.e. you point at some vendor or project
+tree that has all the required patches).
 
--- 
-------------------------------------------------------------
-Gary Thomas                 |  Consulting for the
-MLB Associates              |    Embedded world
-------------------------------------------------------------
+Unless the support for the board is already in the mainline kernel, and
+then you can have a custom linux-yocto recipe to leverage the existing
+configuration and code in the linux-yocto repository.
+
+Cheers,
+
+Bruce
+
+>
+> Kashyap Gada
+>
+>
+
 
