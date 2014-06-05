@@ -1,41 +1,47 @@
-Return-Path: <gley-yocto@m.gmane.org>
+Return-Path: <marek.andrus@wp.pl>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 0C0E6E00BE0; Thu,  5 Jun 2014 03:44:39 -0700 (PDT)
+	id 4BCEDE00B74; Thu,  5 Jun 2014 04:02:24 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=0.0 required=5.0 tests=FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE,SPF_HELO_PASS autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-0.1 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+	DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (auslands-kv[at]gmx.de)
+	mail provider *      (marek.andrus[at]wp.pl)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [80.91.229.3 listed in list.dnswl.org]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
-Received: from plane.gmane.org (plane.gmane.org [80.91.229.3])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A67BFE00B74
-	for <yocto@yoctoproject.org>; Thu,  5 Jun 2014 03:44:32 -0700 (PDT)
-Received: from list by plane.gmane.org with local (Exim 4.69)
-	(envelope-from <gley-yocto@m.gmane.org>) id 1WsV9p-000798-P8
-	for yocto@yoctoproject.org; Thu, 05 Jun 2014 12:44:29 +0200
-Received: from 80-218-32-173.dclient.hispeed.ch ([80.218.32.173])
-	by main.gmane.org with esmtp (Gmexim 0.1 (Debian))
-	id 1AlnuQ-0007hv-00
-	for <yocto@yoctoproject.org>; Thu, 05 Jun 2014 12:44:29 +0200
-Received: from auslands-kv by 80-218-32-173.dclient.hispeed.ch with local
-	(Gmexim 0.1 (Debian)) id 1AlnuQ-0007hv-00
-	for <yocto@yoctoproject.org>; Thu, 05 Jun 2014 12:44:29 +0200
-X-Injected-Via-Gmane: http://gmane.org/
-To: yocto@yoctoproject.org
-From: Neuer User <auslands-kv@gmx.de>
-Date: Thu, 05 Jun 2014 12:44:17 +0200
-Message-ID: <lmphm1$2bk$1@ger.gmane.org>
-Mime-Version: 1.0
-X-Complaints-To: usenet@ger.gmane.org
-X-Gmane-NNTP-Posting-Host: 80-218-32-173.dclient.hispeed.ch
+	*      [212.77.101.9 listed in list.dnswl.org]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mx3.wp.pl (mx3.wp.pl [212.77.101.9])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C41A3E00B74
+	for <yocto@yoctoproject.org>; Thu,  5 Jun 2014 04:02:17 -0700 (PDT)
+Received: (wp-smtpd smtp.wp.pl 22442 invoked from network);
+	5 Jun 2014 13:02:15 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wp.pl; s=1024a;
+	t=1401966135; bh=c1h1a+xEscJtGmXEgYouuGiaAB03kLcTh2N1eH4PEiM=;
+	h=From:To:Subject;
+	b=ewUmBxINfYLd7PK7XxcGqNfsC4i+UkY9EmPfMDQuCrjmT621n0cLFqQxNY+KN7gXQ
+	rYhRoiKf0oNisRJgN0LhhWRKqiS4nAIw8sWaGizxdQhUV/2WjNcOWKxo2gxbEEAHlU
+	ELvyxEgPoXfM//jqUPmP5+LmfnFjL7kiVzQi4rqk=
+Received: from unknown (HELO [62.159.77.167]) (marek.andrus@[62.159.77.167])
+	(envelope-sender <marek.andrus@wp.pl>)
+	by smtp.wp.pl (WP-SMTPD) with AES128-SHA encrypted SMTP
+	for <yocto@yoctoproject.org>; 5 Jun 2014 13:02:15 +0200
+Message-ID: <53904E36.7020609@wp.pl>
+Date: Thu, 05 Jun 2014 13:02:14 +0200
+From: Marek Andrus <marek.andrus@wp.pl>
 User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:24.0) Gecko/20100101 Thunderbird/24.5.0
-Subject: Problems with postinstall
+	rv:24.0) Gecko/20100101 Icedove/24.5.0
+MIME-Version: 1.0
+To: yocto@yoctoproject.org
+X-WP-AV: skaner antywirusowy poczty Wirtualnej Polski S. A.
+X-WP-SPAM: NO 0000000 [seME]                               
+Subject: TARGET_ARCH in external toolchain
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -47,58 +53,24 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 05 Jun 2014 10:44:39 -0000
-Content-Type: text/plain; charset=ISO-8859-15
+X-List-Received-Date: Thu, 05 Jun 2014 11:02:24 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
 Content-Transfer-Encoding: 7bit
 
-Hi
+Hi,
 
-I am desperately trying to get some postinstall scripts working. They
-should replace some defualt files with custom files I have. They are all
-in one package. The package looks like this:
+I'd like to provide one meta for a 4 external toolchains (for 4 
+different architectures). I wanted it to select appropriate toolchain 
+accroding to a TARGET_ARCH variable. Unfortunately TARGET_ARCH looks 
+like not being set at the time of parsing my tcmode-external-mytc.inc 
+file (where preffered providers are set). Of course OVERRIDES variable 
+is not set either.
 
-do_install() {
-    install -d ${D}${sbindir}
-    install -m 0700 ${S}/sbin/* ${D}${sbindir}
+What do you recommend?
 
-    install -d ${D}${bindir}
-    install -m 0755 ${S}/bin/LEDstatus ${D}${bindir}
+Of course I can change the toolchain layer manually but I wanted to 
+change machine/architecture in just one place. Is there any method?
 
-    install -d ${D}/etc/udev/rules.d
-    install -m 0644 ${S}/udev/* ${D}/etc/udev/rules.d/
-
-    install -d ${D}/etc/ssh
-    install -m 0600 ${S}/ssh/ssh_* ${D}/etc/ssh/
-    install -m 0644 ${S}/ssh/authorized_keys ${D}/etc/ssh/
-
-    install -d ${D}/etc/gnupg
-    install -m 0600 ${S}/gnupg/trustedkeys.gpg ${D}/etc/gnupg/
-}
-
-# Overwrite some configuration data with specific files
-pkg_postinst_${PN} () {
-    install -o root -g root -m 0600 ${S}/ssh/sshd_config ${D}/etc/ssh/
-    install -m 0755 ${S}/etc/rc.local ${D}/etc/
-    install -m 0644 ${S}/etc/watchdog.conf ${D}/etc/
-    install -m 0400 ${S}/etc/shadow ${D}/etc/
-    install -m 0440 ${S}/etc/sudoers ${D}/etc/
-    install -d ${D}/etc/default
-    install -o root -g root -m 0644 ${S}/etc/default-ntpdate
-${D}/etc/default/ntpdate
-}
-
-RDEPENDS_${PN} += "ntpdate udev ssh sudo"
-
-FILES_${PN} += "/*"
-
-
-I even tried changing the ownership of the files, but that did not
-change aything.
-
-Am I doing this completely wrong?
-
-Thanks for any hints
-
-Michael
-
+BR,
+Marek Andrus
 
