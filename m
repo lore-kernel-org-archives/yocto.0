@@ -1,36 +1,42 @@
-Return-Path: <tom.zanussi@intel.com>
+Return-Path: <kaiu@gmx.de>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id D47DBE00985; Fri,  6 Jun 2014 12:48:57 -0700 (PDT)
+	id D33EEE00985; Fri,  6 Jun 2014 13:00:33 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-5.0 required=5.0 tests=RCVD_IN_DNSWL_HI
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [134.134.136.20 listed in list.dnswl.org]
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B4557E0070F
-	for <yocto@yoctoproject.org>; Fri,  6 Jun 2014 12:48:46 -0700 (PDT)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga101.jf.intel.com with ESMTP; 06 Jun 2014 12:48:45 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.98,991,1392192000"; d="scan'208";a="553042574"
-Received: from unknown (HELO [10.255.12.127]) ([10.255.12.127])
-	by orsmga002.jf.intel.com with ESMTP; 06 Jun 2014 12:48:45 -0700
-Message-ID: <1402084124.19708.81.camel@empanada>
-From: Tom Zanussi <tom.zanussi@intel.com>
-To: Matthew Keeter <matt.j.keeter@gmail.com>
-Date: Fri, 06 Jun 2014 14:48:44 -0500
-In-Reply-To: <AC4CBFE4-ECFA-4D03-A414-CA8749943F5E@gmail.com>
-References: <AC4CBFE4-ECFA-4D03-A414-CA8749943F5E@gmail.com>
-X-Mailer: Evolution 3.8.5 (3.8.5-2.fc19) 
-Mime-Version: 1.0
-Cc: yocto@yoctoproject.org
-Subject: Re: yocto-bsp treats beaglebone as omap3 device
+X-Spam-Status: No, score=0.0 required=5.0 tests=FREEMAIL_FROM,HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (kaiu[at]gmx.de)
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [212.227.15.19 listed in list.dnswl.org]
+Received: from mout.gmx.net (mout.gmx.net [212.227.15.19])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DEA56E0070F
+	for <yocto@yoctoproject.org>; Fri,  6 Jun 2014 13:00:30 -0700 (PDT)
+Received: from mail-wg0-f47.google.com ([74.125.82.47]) by mail.gmx.com
+	(mrgmx103) with ESMTPSA (Nemesis) id 0MFctN-1Wyn4j3Y7J-00EbNX for
+	<yocto@yoctoproject.org>; Fri, 06 Jun 2014 22:00:28 +0200
+Received: by mail-wg0-f47.google.com with SMTP id k14so2336005wgh.18
+	for <yocto@yoctoproject.org>; Fri, 06 Jun 2014 13:00:28 -0700 (PDT)
+MIME-Version: 1.0
+X-Received: by 10.180.90.141 with SMTP id bw13mr10922260wib.23.1402084828552; 
+	Fri, 06 Jun 2014 13:00:28 -0700 (PDT)
+Received: by 10.194.25.65 with HTTP; Fri, 6 Jun 2014 13:00:28 -0700 (PDT)
+Date: Fri, 6 Jun 2014 22:00:28 +0200
+Message-ID: <CAAKMwiq_erB=aq=n4nAQSM39U5UtW6D7QoNNETwSGQBTNG+UNg@mail.gmail.com>
+From: Kai Ulrich <kaiu@gmx.de>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+X-Provags-ID: V03:K0:ZZfnvuk46CKlgtABRrp4xqsCCvSZDLD94RKA0tR7MZFV6bUBZAi
+	GKbz4R3Jc41KkqVbn4iAn0pnwXaoLOHHLESYsfqDdcIKxKCT1LZhszrOUCBMXIbaVnGPHjg
+	59J8+ySib/dFy0vziFxg9ZsnpzAlV3TV1VQKHSlN5ivu/TIe9YiAZzkslzQbWnHQU0T7Jv2
+	x1w2y5m0Gi7l3Z1rl5NtQ==
+Subject: Newbee - patching kernel
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
+Reply-To: kaiu@gmx.de
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -39,53 +45,65 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 06 Jun 2014 19:48:57 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Fri, 06 Jun 2014 20:00:33 -0000
+Content-Type: multipart/alternative; boundary=f46d043be1a626a5af04fb305079
 
-Hi,
+--f46d043be1a626a5af04fb305079
+Content-Type: text/plain; charset=UTF-8
 
-On Fri, 2014-06-06 at 14:28 -0400, Matthew Keeter wrote:
-> I’ve got a quick question about using the yocto-bsp tool (release 1.6):
-> 
-> Using it to create an ARM BSP from the beaglebone machine branch results in a BSP
-> that targets the OMAP3 processor (which is on the beagleboard, not the beaglebone).
-> 
-> I say this because the default value for UBOOT_MACHINE is “omap3_beagle_config” and
-> the kernel device tree in conf/machine/my-bbb.conf points to an omap3 device tree.
-> 
-> This appears to be incorrect behavior and disagrees with the default beaglebone machine
-> configuration in meta-yocto-bsp/conf/machine/beaglebone.conf
-> 
-> Am I missing something, or is the tool doing the wrong thing?
+Hi Bruce,
 
-It's not really doing the wrong thing, it's just sort of outdated and
-not doing what I guess you'd expect, which is to match the reference
-board in meta-yocto-bsp (note that the yocto-bsp tool doesn't really
-have anything to do with meta-yocto-bsp, though the names are similar).
+Thanx for your answer.
 
-The old arm reference board was the beagleboard, and that's what the
-yocto-bsp template reflects, and should probably be updated to use the
-beaglebone settings.
-
-> Any suggested work-arounds?
-
-I'd suggest just manually modifying the generated BSP to match your
-hardware; technically the output of yocto-bsp is only guaranteed to
-build, not necessarily successfully boot on a given board.  The Intel
-boards have been boot-tested, but that's just because I have the
-necessary hardware, and nobody's actually paid much attention to the arm
-output, as far as I can tell.  If you have suggestions other than that
-that the output should match the beaglebone reference in meta-yocto-bsp,
-I'd be happy to make those changes in the next iteration of the tool.
-
-Thanks,
-
-Tom
-
-> 
-> Regards,
-> Matt Keeter
+So can I write a recipe which just contains the patches an extends an
+kernel-recipe?
 
 
+k.
 
+>* Hi,
+*>>* Is there a way to create a separate layer that adds kernel patches to an
+*>* existing machine?
+*>* Is there a example to learn from?
+*
+Patching the kernel works just like patching any package, but there is a
+specific section in the manual (which perhaps you've already read):
+http://www.yoctoproject.org/docs/1.6/dev-manual/dev-manual.html#patching-the-kernel
+
+It contains examples as well as explanations.
+
+Bruce
+
+
+>>* friendly regards
+*>* Kai Ulrich
+*>>
+
+--f46d043be1a626a5af04fb305079
+Content-Type: text/html; charset=UTF-8
+
+<div dir="ltr"><pre>Hi Bruce,<br><br></pre><pre>Thanx for your answer.<br></pre><pre>So can I write a recipe which just contains the patches an extends an kernel-recipe?</pre><pre><br>k.<br><br>&gt;<i> Hi,
+</i>&gt;<i>
+</i>&gt;<i> Is there a way to create a separate layer that adds kernel patches to an
+</i>&gt;<i> existing machine?
+</i>&gt;<i> Is there a example to learn from?
+</i>
+Patching the kernel works just like patching any package, but there is a
+specific section in the manual (which perhaps you&#39;ve already read):
+
+<a href="http://www.yoctoproject.org/docs/1.6/dev-manual/dev-manual.html#patching-the-kernel">http://www.yoctoproject.org/docs/1.6/dev-manual/dev-manual.html#patching-the-kernel</a>
+
+It contains examples as well as explanations.
+
+Bruce
+
+
+&gt;<i>
+</i>&gt;<i> friendly regards
+</i>&gt;<i> Kai Ulrich
+</i>&gt;<i>
+</i>&gt;<i>
+</i>
+</pre></div>
+
+--f46d043be1a626a5af04fb305079--
