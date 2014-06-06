@@ -1,45 +1,31 @@
-Return-Path: <gley-yocto@m.gmane.org>
+Return-Path: <gary@mlbassoc.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 2672AE00B9F; Fri,  6 Jun 2014 08:37:33 -0700 (PDT)
+	id BA03FE00B95; Fri,  6 Jun 2014 09:42:00 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=0.0 required=5.0 tests=FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE,SPF_HELO_PASS autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [80.91.229.3 listed in list.dnswl.org]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (auslands-kv[at]gmx.de)
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
-Received: from plane.gmane.org (plane.gmane.org [80.91.229.3])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D1ED4E00B88
-	for <yocto@yoctoproject.org>; Fri,  6 Jun 2014 08:37:16 -0700 (PDT)
-Received: from list by plane.gmane.org with local (Exim 4.69)
-	(envelope-from <gley-yocto@m.gmane.org>) id 1WswCg-0007Od-TZ
-	for yocto@yoctoproject.org; Fri, 06 Jun 2014 17:37:14 +0200
-Received: from 80-218-32-173.dclient.hispeed.ch ([80.218.32.173])
-	by main.gmane.org with esmtp (Gmexim 0.1 (Debian))
-	id 1AlnuQ-0007hv-00
-	for <yocto@yoctoproject.org>; Fri, 06 Jun 2014 17:37:14 +0200
-Received: from auslands-kv by 80-218-32-173.dclient.hispeed.ch with local
-	(Gmexim 0.1 (Debian)) id 1AlnuQ-0007hv-00
-	for <yocto@yoctoproject.org>; Fri, 06 Jun 2014 17:37:14 +0200
-X-Injected-Via-Gmane: http://gmane.org/
-To: yocto@yoctoproject.org
-From: Neuer User <auslands-kv@gmx.de>
-Date: Fri, 06 Jun 2014 17:36:57 +0200
-Message-ID: <lmsn6p$dkl$1@ger.gmane.org>
-References: <lms7v8$cp2$1@ger.gmane.org>
-	<5391D2CB.20704@windriver.com>	<lmskqt$fee$1@ger.gmane.org>
-	<5391DA71.90402@mlbassoc.com>
-Mime-Version: 1.0
-X-Complaints-To: usenet@ger.gmane.org
-X-Gmane-NNTP-Posting-Host: 80-218-32-173.dclient.hispeed.ch
+X-Spam-Status: No, score=0.0 required=5.0 tests=none autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: 
+Received: from mail.chez-thomas.org (mail.mlbassoc.com [65.100.170.105])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6AE75E009E7
+	for <yocto@yoctoproject.org>; Fri,  6 Jun 2014 09:41:53 -0700 (PDT)
+Received: by mail.chez-thomas.org (Postfix, from userid 1998)
+	id 6BFB9F811EF; Fri,  6 Jun 2014 10:41:53 -0600 (MDT)
+Received: from [192.168.1.114] (zeus [192.168.1.114])
+	by mail.chez-thomas.org (Postfix) with ESMTP id 2C288F811EE;
+	Fri,  6 Jun 2014 10:41:52 -0600 (MDT)
+Message-ID: <5391EF58.5080601@mlbassoc.com>
+Date: Fri, 06 Jun 2014 10:42:00 -0600
+From: Gary Thomas <gary@mlbassoc.com>
 User-Agent: Mozilla/5.0 (X11; Linux x86_64;
 	rv:24.0) Gecko/20100101 Thunderbird/24.5.0
-In-Reply-To: <5391DA71.90402@mlbassoc.com>
-Subject: Re: Hmm, possible bug in poky?
+MIME-Version: 1.0
+To: yocto@yoctoproject.org
+References: <53906B96.300@mlbassoc.com>	<2865499.mMpv2bqsZi@peggleto-mobl5.ger.corp.intel.com>	<5390A607.9010106@mlbassoc.com>	<6944853.hSHdg7euvW@peggleto-mobl5.ger.corp.intel.com>	<5390C088.2020006@mlbassoc.com>
+	<5390EA6E.6040908@mlbassoc.com>
+In-Reply-To: <5390EA6E.6040908@mlbassoc.com>
+Subject: Re: Live images?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -51,220 +37,155 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 06 Jun 2014 15:37:33 -0000
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Fri, 06 Jun 2014 16:42:00 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Hi Gary, Hi Bruce
-
-This is the directory layout:
-
-Both recipes are extremely similar, only differ by a different git repo
-and SRCREV. I might need to later have different patches for both
-recipes, but currently everthing is identical. That's why I made an
-include file.
-
-.
-├── linux-cubox-i-3.10.30
-│   ├── brcmfmac4330-sdio.bin
-│   ├── brcmfmac4330-sdio.txt
-│   ├── defconfig
-│   ├── dm-crypt.cfg
-│   ├── leds.cfg
-│   ├── mod-to-builtin.cfg
-│   ├── networking.cfg
-│   ├── no-caam.cfg
-│   ├── touchscreen.cfg
-│   ├── videoin.cfg
-│   └── wlan.cfg
-├── linux-cubox-i_3.10.30.bb
-├── linux-cubox-i_3.10.30.inc
-└── linux-cubox-i_3.10.30-linux4kix.bb
-
-
-
-
-
-
-Am 06.06.2014 17:12, schrieb Gary Thomas:
-> On 2014-06-06 08:56, Neuer User wrote:
->> Hi Bruce
->>
->> Thanks for the hint. I changed it, but the result is the same.
->>
->> Strange is really that it shows the directory as being searched through
->> but does not find the file that's contained?!
->>
->> Also, there are two "main" recipes, which both include the inc file.
->> This one throws warnings, but works:
->>
->> linux-cubox-i_3.10.30.bb
->>
->> This one throws warnings and then the error shown:
->>
->> linux-cubox-i_3.10.30-linux4kix.bb
-> 
-> It's a bit hard to see what files you have where.  Perhaps you
-> could send a listing, e.g. for the standard Yocto kernel:
->   $ tree meta/recipes-kernel/linux
->   meta/recipes-kernel/linux
->   ├── linux-dtb.inc
->   ├── linux-dummy
->   │   └── COPYING.GPL
->   ├── linux-dummy.bb
->   ├── linux-yocto_3.10.bb
->   ├── linux-yocto_3.14.bb
->   ├── linux-yocto_3.4.bb
->   ├── linux-yocto-dev.bb
->   ├── linux-yocto.inc
->   ├── linux-yocto-rt_3.10.bb
->   ├── linux-yocto-rt_3.14.bb
->   ├── linux-yocto-rt_3.4.bb
->   ├── linux-yocto-tiny_3.10.bb
->   ├── linux-yocto-tiny_3.14.bb
->   └── linux-yocto-tiny_3.4.bb
-> 
-> Do this for each of the kernel recipes you are trying to use.
-> 
->>
->> Am I doing it right (now with the :=), or is there something
->> fundamentally wrong with the two recipes and the include file?
->>
->> Michael
->>
->> Am 06.06.2014 16:40, schrieb Bruce Ashfield:
->>> On 14-06-06 07:16 AM, Neuer User wrote:
->>>> I get the following error:
+On 2014-06-05 16:08, Gary Thomas wrote:
+> On 2014-06-05 13:10, Gary Thomas wrote:
+>> On 2014-06-05 11:24, Paul Eggleton wrote:
+>>> On Thursday 05 June 2014 11:16:55 Gary Thomas wrote:
+>>>> On 2014-06-05 09:07, Paul Eggleton wrote:
+>>>>> On Thursday 05 June 2014 08:41:57 Gary Thomas wrote:
+>>>>>> On 2014-06-05 08:32, Paul Eggleton wrote:
+>>>>>>> On Thursday 05 June 2014 15:26:28 Paul Eggleton wrote:
+>>>>>>>> Hi Gary,
+>>>>>>>>
+>>>>>>>> On Thursday 05 June 2014 07:07:34 Gary Thomas wrote:
+>>>>>>>>> Looking through the Poky/Yocto sources, there seems to be
+>>>>>>>>> some support for Live CD/USB images.  However, I can't find
+>>>>>>>>> any examples nor documentation for how to use this.
+>>>>>>>>>
+>>>>>>>>> Can anyone provide some pointers?
+>>>>>>>>
+>>>>>>>> You're right, we seem to be missing that in our documentation; I'm not
+>>>>>>>> sure
+>>>>>>>> where the best place to document it would be though.
+>>>>>>>>
+>>>>>>>> FYI, you should just need to ensure "live" is in IMAGE_FSTYPES; then
+>>>>>>>> you
+>>>>>>>> should get a .directdisk image that you can just dd to a USB stick.
+>>>>>>>
+>>>>>>> Of course I meant to say .hddimg, not .directdisk.
+>>>>>>
+>>>>>> Thanks, I'll give that a try.
+>>>>>>
+>>>>>> What if I needed to boot from an actual CD?  I have an old
+>>>>>> box here I'd like to try, but it doesn't boot from USB.
+>>>>>
+>>>>> We can produce ISO images but I don't think that they work quite as well,
+>>>>> e.g.:
+>>>>>
+>>>>> https://bugzilla.yoctoproject.org/show_bug.cgi?id=5282
+>>>>>
+>>>>> You could always try it though.
 >>>>
->>>> WARNING: Failed to fetch URL file://defconfig, attempting MIRRORS if
->>>> available
->>>> ERROR: Fetcher failure: Unable to find file file://defconfig anywhere.
->>>> The paths that were searched were:
+>>>> Bummer, when I tried to build core-image-minimal and/or core-image-x11, it
+>>> failed:
+>>>> | DEBUG: Executing shell function read_only_rootfs_hook
+>>>> | sed: can't read
+>>>> | /home/local/x86_live_2014-06-05/tmp/work/genericx86-poky-linux/core-image
+>>>> | -minimal-initramfs/1.0-r0/rootfs/etc/fstab: No such file or directory
+>>>> | WARNING:
+>>>> | /home/local/x86_live_2014-06-05/tmp/work/genericx86-poky-linux/core-image
+>>>> | -minimal-initramfs/1.0-r0/temp/run.read_only_rootfs_hook.30446:1 exit 2
+>>>> | from|
+>>>> |   sed -i -e
+>>>> |   '/^[#[:space:]]*\/dev\/root/{s/defaults/ro/;s/\([[:space:]]*[[:digit:]]
+>>>> |   \)\([[:space:]]*\)[[:digit:]]$/\1\20/}'
+>>>> /home/local/x86_live_2014-06-05/tmp/work/genericx86-poky-linux/core-image-mi
+>>>> nimal-initramfs/1.0-r0/rootfs/etc/fstab
+>>>> | DEBUG: Python function do_rootfs finished
+>>>> | ERROR: Function failed: read_only_rootfs_hook (log file is located at
 >>>>
->>>> /home/ubuntu/yocto/sources/meta-omnisonix/recipes-kernel/linux/linux-cubox-i-3.10.30/poky
+>>>> /home/local/x86_live_2014-06-05/tmp/work/genericx86-poky-linux/core-image-mi
+>>>> nimal-initramfs/1.0-r0/temp/log.do_rootfs.30446)
 >>>>
+>>>> Using these settings:
+>>>> Build Configuration:
+>>>> BB_VERSION        = "1.23.1"
+>>>> BUILD_SYS         = "i686-linux"
+>>>> NATIVELSBSTRING   = "Fedora-13"
+>>>> TARGET_SYS        = "i586-poky-linux"
+>>>> MACHINE           = "genericx86"
+>>>> DISTRO            = "poky"
+>>>> DISTRO_VERSION    = "1.6+snapshot-20140605"
+>>>> TUNE_FEATURES     = "m32 core2"
+>>>> TARGET_FPU        = ""
+>>>> meta
+>>>> meta-yocto
+>>>> meta-yocto-bsp    = "master:e7114046be6e71fb326477dc882adb814ef6a751"
 >>>>
->>>> ...
->>>>
->>>> /home/ubuntu/yocto/sources/meta-omnisonix/recipes-kernel/linux/files/arm
->>>>
->>>>
->>>> /home/ubuntu/yocto/sources/meta-omnisonix/recipes-kernel/linux/linux-cubox-i-3.10.30/
->>>>
->>>>
->>>>
->>>> /home/ubuntu/yocto/sources/meta-omnisonix/recipes-kernel/linux/linux-cubox-i-3.10.30-linux4kix/
->>>>
->>>>
->>>>
->>>> /home/ubuntu/yocto/sources/meta-omnisonix/recipes-kernel/linux/linux-cubox-i/
->>>>
->>>>
->>>>
->>>> /home/ubuntu/yocto/sources/meta-omnisonix/recipes-kernel/linux/files/
->>>>       /home/ubuntu/yocto/downloads/
->>>> ERROR: Function failed: Fetcher failure for URL: 'file://defconfig'.
->>>> Unable to fetch URL from any source.
->>>>
->>>>
->>>> Now, the directory:
->>>>
->>>>
->>>> /home/ubuntu/yocto/sources/meta-omnisonix/recipes-kernel/linux/linux-cubox-i-3.10.30/
->>>>
->>>>
->>>>
->>>> which is listed above, contains the "missing" file ("defconfig").
->>>>
->>>> Hmm, strange...
->>>>
->>>>
->>>>
->>>> Here are my recipes:
->>>>
->>>> linux-cubox-i_3.10.30.inc:
->>>> ------------------------------------
->>>> inherit kernel
->>>> require recipes-kernel/linux/linux-yocto.inc
->>>>
->>>> SUMMARY = "Linaro Kernel 3.10.30 with additional machine specific
->>>> patches"
->>>>
->>>> SRCBRANCH ?= "linux-linaro-lsk-mx6"
->>>>
->>>> FILESEXTRAPATHS_prepend += "${THISDIR}/${PN}-3.10.30:"
+>>>> Extra settings in conf/local.conf
+>>>> # Live CD setup
+>>>> IMAGE_FSTYPES_append = " hddimg live"
 >>>
->>> Have you tried this variant ?
+>>> "hddimg" isn't a valid IMAGE_FSTYPES item.
 >>>
->>> FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}-3.10.30:"
->>>
->>> You need the := in the assignment to have it evaluate immediately and
->>> pick up the directory of your bbappend (who's subdir is the one that
->>> contains the defconfig).
->>>
->>> Bruce
->>>
->>>
->>>>
->>>> SRC_URI = "file://defconfig \
->>>>              file://videoin.cfg \
->>>>              file://networking.cfg \
->>>>              file://wlan.cfg \
->>>>              file://dm-crypt.cfg \
->>>>              file://no-caam.cfg \
->>>>              file://leds.cfg \
->>>>              file://mod-to-builtin.cfg \
->>>>              file://brcmfmac4330-sdio.bin \
->>>>              file://brcmfmac4330-sdio.txt \
->>>> "
->>>>
->>>> do_configure_append () {
->>>>       cd ${S}
->>>>       mkdir firmware/brcm
->>>>       cp ../brcmfmac4330-sdio.bin ./firmware/brcm/
->>>>       cp ../brcmfmac4330-sdio.txt ./firmware/brcm/
->>>> }
->>>>
->>>> COMPATIBLE_MACHINE = "(cubox-i)"
->>>>
->>>> KERNEL_IMAGETYPE_cubox-i = "zImage"
->>>> KERNEL_DEVICETREE_cubox-i = "imx6dl-cubox-i.dtb imx6q-cubox-i.dtb"
->>>>
->>>> SRCREV_machine = "${SRCREV}"
->>>> ------------------------------------
->>>>
->>>>
->>>> linux-cubox-i_3.10.30.bb:
->>>> ------------------------------------
->>>> include linux-cubox-i_3.10.30.inc
->>>>
->>>> SRCREV = "592b2d941dc3ecb6335d6820757340ffb5a192c8"
->>>> #SRCREV = "860304ab6e749777523f3714d18c4c7d39b728fa"
->>>> LOCALVERSION = "-cubox-i+SolidRun+${SRCPV}"
->>>>
->>>> SRC_URI +=
->>>> "git://github.com/SolidRun/linux-linaro-stable-mx6;branch=${SRCBRANCH}"
->>>> -------------------------------
->>>>
->>>>
->>>> linux-cubox-i_3.10.30-linux4kix.bb:
->>>> ------------------------------------
->>>> include linux-cubox-i_3.10.30.inc
->>>>
->>>> SRCREV = "a4ed70040f9dfdcdd6546a85c0477ecd1030e065"
->>>> LOCALVERSION = "-cubox-i+linux4kix+${SRCPV}"
->>>>
->>>> SRC_URI +=
->>>> "git://github.com/linux4kix/linux-linaro-stable-mx6.git;branch=${SRCBRANCH}"
->>>>
->>>>
->>>> ------------------------------------
->>>>
->>>>
->>>
+>>> Also, try IMAGE_FSTYPES += rather than _append, that allows the initramfs
+>>> image to have its own value (because it's not really valid to make a live
+>>> initramfs...)
 >>
+>> Sorry, I misread/misapplied your previous suggestions.
 >>
-> 
+>>>
+>>>> IMAGE_FEATURES_append = " read-only-rootfs"
+>>>
+>>> Try EXTRA_IMAGE_FEATURES += instead of IMAGE_FEATURES_append
+>>
+>> I've changed both of these and it still fails if I enable the
+>> read-only-rootfs.
+>>
+>> If I leave that option out, I can build an .hddimg which I dd'd
+>> to my USB stick.  It tried to boot, finds /vmlinuz but fails to
+>> find /initrd
+>>
+>> My local.conf settings are now:
+>> # Live CD setup
+>> IMAGE_FSTYPES += " live"
+>> #IMAGE_FEATURES += " read-only-rootfs"
+>> CORE_IMAGE_EXTRA_INSTALL += " python-core python-modules"
+>>
+>> Finally, during one of my builds, I ended up with a core-image-minimal*.iso
+>> I tried burning this to a CD an it booted up, albeit with a couple of
+>> complaints about a read-only rootfs.  Sadly, I no longer get any .iso
+>> results when I 'bitbake core-image-minimal'
+>>
+>
+> BTW, I tried this with daisy and the CD version (read-only)
+> worked just fine for me - the ISO and .hddimg files built with
+> no errors.
+>
+> I'm bisecting now to see what broke...
+>
 
+Truly odd.  After doing around a dozen bisected builds (some of
+which were pretty messed up), all in the same tree as the original,
+I could not reproduce the problem.  So, I tried 100% from scratch,
+with the proper settings as above, including the read-only-rootfs,
+and it builds & works perfectly(*), both on CD and USB.
 
+Not that I want to find the answer to this, but somehow when I
+tried the builds with my errant settings (from early on above),
+my build got so messed up that the errors persisted, even when
+I fixed the configuration settings.  I thought that it should
+be more robust than this.  Is this something I should pursue,
+or just treat it as "Doctor, Doctor, it hurts when I ..." and
+be happy that it works if you start afresh (which sadly takes
+at least 90 minutes on my pretty-fast build server)?
+
+(*) Not a lot was tested and I only used core-image-minimal
+which served my needs (to build a stand-alone CD/USB setup
+to hand a QA tech).  I did see some complaints about the
+read-only file system (e.g. can't save the timestamp on reboot),
+but overall worked OK and good enough for this task.
+
+Thanks for the time and sorry for the noise.  Looking forward
+to some documentation on this showing up in the future :-)
+
+-- 
+------------------------------------------------------------
+Gary Thomas                 |  Consulting for the
+MLB Associates              |    Embedded world
+------------------------------------------------------------
 
