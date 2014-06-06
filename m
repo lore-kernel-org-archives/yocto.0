@@ -1,52 +1,33 @@
-Return-Path: <matt.j.keeter@gmail.com>
+Return-Path: <tom.zanussi@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id AD09BE00B95; Fri,  6 Jun 2014 11:28:42 -0700 (PDT)
+	id D47DBE00985; Fri,  6 Jun 2014 12:48:57 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-0.8 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-	DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [209.85.216.46 listed in list.dnswl.org]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (matt.j.keeter[at]gmail.com)
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-qa0-f46.google.com (mail-qa0-f46.google.com
-	[209.85.216.46])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 54FB5E009E7
-	for <yocto@yoctoproject.org>; Fri,  6 Jun 2014 11:28:39 -0700 (PDT)
-Received: by mail-qa0-f46.google.com with SMTP id w8so4375587qac.19
-	for <yocto@yoctoproject.org>; Fri, 06 Jun 2014 11:28:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=from:content-type:content-transfer-encoding:subject:message-id:date
-	:to:mime-version;
-	bh=MMNaLxBEzWppWlByjOSRvjq9XCy2mKGkptgxNG+U6is=;
-	b=ZdASflmyIatgeJwG87AGzwbKTxfshfiSSZD7HptkicIPCYV2qJc9Y/zyaKDb/aHOBt
-	PCdmUa0T7nSWQP1HHZWvRfvrAwqcsMoIFU+5Jt2E3Em9LVCqXcUfioY8nM/iZ7bu7ZGM
-	HDxEGXYwA5oblOOo/+U5k4I0cD0U8bvfCrD2amPYJQV4gp1SkpTaih0nuAOiNNMud28r
-	e8gmMPGTp0PhPuDKAtCGIQEz82MmYcgLfU34GNltMrNaEP4k8KfshUkkO2ohIj6+rkY/
-	gZ15LRD8BqJJQylDnCYTKzQbSjiRmbiExyjtD5FZwQFt4FLmDtXuy5pCCQwjHMzxQOUs
-	5nyQ==
-X-Received: by 10.140.85.166 with SMTP id n35mr10566540qgd.67.1402079319075;
-	Fri, 06 Jun 2014 11:28:39 -0700 (PDT)
-Received: from [10.0.0.64] ([50.245.9.77]) by mx.google.com with ESMTPSA id
-	r12sm15964650qax.33.2014.06.06.11.28.38 for <yocto@yoctoproject.org>
-	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
-	Fri, 06 Jun 2014 11:28:38 -0700 (PDT)
-From: Matthew Keeter <matt.j.keeter@gmail.com>
-Message-Id: <AC4CBFE4-ECFA-4D03-A414-CA8749943F5E@gmail.com>
-Date: Fri, 6 Jun 2014 14:28:07 -0400
-To: yocto@yoctoproject.org
-Mime-Version: 1.0 (Mac OS X Mail 7.3 \(1878.2\))
-X-Mailer: Apple Mail (2.1878.2)
-X-Mailman-Approved-At: Fri, 06 Jun 2014 11:32:24 -0700
-Subject: yocto-bsp treats beaglebone as omap3 device
+X-Spam-Status: No, score=-5.0 required=5.0 tests=RCVD_IN_DNSWL_HI
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [134.134.136.20 listed in list.dnswl.org]
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B4557E0070F
+	for <yocto@yoctoproject.org>; Fri,  6 Jun 2014 12:48:46 -0700 (PDT)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga101.jf.intel.com with ESMTP; 06 Jun 2014 12:48:45 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.98,991,1392192000"; d="scan'208";a="553042574"
+Received: from unknown (HELO [10.255.12.127]) ([10.255.12.127])
+	by orsmga002.jf.intel.com with ESMTP; 06 Jun 2014 12:48:45 -0700
+Message-ID: <1402084124.19708.81.camel@empanada>
+From: Tom Zanussi <tom.zanussi@intel.com>
+To: Matthew Keeter <matt.j.keeter@gmail.com>
+Date: Fri, 06 Jun 2014 14:48:44 -0500
+In-Reply-To: <AC4CBFE4-ECFA-4D03-A414-CA8749943F5E@gmail.com>
+References: <AC4CBFE4-ECFA-4D03-A414-CA8749943F5E@gmail.com>
+X-Mailer: Evolution 3.8.5 (3.8.5-2.fc19) 
+Mime-Version: 1.0
+Cc: yocto@yoctoproject.org
+Subject: Re: yocto-bsp treats beaglebone as omap3 device
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -58,30 +39,53 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 06 Jun 2014 18:28:42 -0000
-Content-Type: text/plain; charset=windows-1252
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Fri, 06 Jun 2014 19:48:57 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 
-I=92ve got a quick question about using the yocto-bsp tool (release =
-1.6):
+Hi,
 
-Using it to create an ARM BSP from the beaglebone machine branch results =
-in a BSP
-that targets the OMAP3 processor (which is on the beagleboard, not the =
-beaglebone).
+On Fri, 2014-06-06 at 14:28 -0400, Matthew Keeter wrote:
+> I’ve got a quick question about using the yocto-bsp tool (release 1.6):
+> 
+> Using it to create an ARM BSP from the beaglebone machine branch results in a BSP
+> that targets the OMAP3 processor (which is on the beagleboard, not the beaglebone).
+> 
+> I say this because the default value for UBOOT_MACHINE is “omap3_beagle_config” and
+> the kernel device tree in conf/machine/my-bbb.conf points to an omap3 device tree.
+> 
+> This appears to be incorrect behavior and disagrees with the default beaglebone machine
+> configuration in meta-yocto-bsp/conf/machine/beaglebone.conf
+> 
+> Am I missing something, or is the tool doing the wrong thing?
 
-I say this because the default value for UBOOT_MACHINE is =
-=93omap3_beagle_config=94 and
-the kernel device tree in conf/machine/my-bbb.conf points to an omap3 =
-device tree.
+It's not really doing the wrong thing, it's just sort of outdated and
+not doing what I guess you'd expect, which is to match the reference
+board in meta-yocto-bsp (note that the yocto-bsp tool doesn't really
+have anything to do with meta-yocto-bsp, though the names are similar).
 
-This appears to be incorrect behavior and disagrees with the default =
-beaglebone machine
-configuration in meta-yocto-bsp/conf/machine/beaglebone.conf
+The old arm reference board was the beagleboard, and that's what the
+yocto-bsp template reflects, and should probably be updated to use the
+beaglebone settings.
 
-Am I missing something, or is the tool doing the wrong thing?
-Any suggested work-arounds?
+> Any suggested work-arounds?
 
-Regards,
-Matt Keeter=
+I'd suggest just manually modifying the generated BSP to match your
+hardware; technically the output of yocto-bsp is only guaranteed to
+build, not necessarily successfully boot on a given board.  The Intel
+boards have been boot-tested, but that's just because I have the
+necessary hardware, and nobody's actually paid much attention to the arm
+output, as far as I can tell.  If you have suggestions other than that
+that the output should match the beaglebone reference in meta-yocto-bsp,
+I'd be happy to make those changes in the next iteration of the tool.
+
+Thanks,
+
+Tom
+
+> 
+> Regards,
+> Matt Keeter
+
+
 
