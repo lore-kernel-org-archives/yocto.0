@@ -1,27 +1,32 @@
-Return-Path: <gary@mlbassoc.com>
+Return-Path: <Bruce.Ashfield@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 801D1E00BA0; Fri,  6 Jun 2014 08:12:58 -0700 (PDT)
+	id 79BDAE00B95; Fri,  6 Jun 2014 08:16:58 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=0.0 required=5.0 tests=none autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: 
-Received: from mail.chez-thomas.org (mail.mlbassoc.com [65.100.170.105])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D43CEE00B95
-	for <yocto@yoctoproject.org>; Fri,  6 Jun 2014 08:12:43 -0700 (PDT)
-Received: by mail.chez-thomas.org (Postfix, from userid 1998)
-	id 3DD25F811EF; Fri,  6 Jun 2014 09:12:43 -0600 (MDT)
-Received: from [192.168.1.114] (zeus [192.168.1.114])
-	by mail.chez-thomas.org (Postfix) with ESMTP id 9BBA3F811EE;
-	Fri,  6 Jun 2014 09:12:41 -0600 (MDT)
-Message-ID: <5391DA71.90402@mlbassoc.com>
-Date: Fri, 06 Jun 2014 09:12:49 -0600
-From: Gary Thomas <gary@mlbassoc.com>
+X-Spam-Status: No, score=0.0 required=5.0 tests=RCVD_IN_DNSWL_NONE
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [147.11.146.13 listed in list.dnswl.org]
+Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 36A56E009E7
+	for <yocto@yoctoproject.org>; Fri,  6 Jun 2014 08:16:48 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
+	[147.11.189.40])
+	by mail1.windriver.com (8.14.5/8.14.5) with ESMTP id s56FGiY6029953
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
+	Fri, 6 Jun 2014 08:16:44 -0700 (PDT)
+Received: from [128.224.56.48] (128.224.56.48) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server id 14.3.169.1;
+	Fri, 6 Jun 2014 08:16:43 -0700
+Message-ID: <5391DB4A.2040201@windriver.com>
+Date: Fri, 6 Jun 2014 11:16:26 -0400
+From: Bruce Ashfield <bruce.ashfield@windriver.com>
 User-Agent: Mozilla/5.0 (X11; Linux x86_64;
 	rv:24.0) Gecko/20100101 Thunderbird/24.5.0
 MIME-Version: 1.0
-To: yocto@yoctoproject.org
+To: Neuer User <auslands-kv@gmx.de>, <yocto@yoctoproject.org>
 References: <lms7v8$cp2$1@ger.gmane.org> <5391D2CB.20704@windriver.com>
 	<lmskqt$fee$1@ger.gmane.org>
 In-Reply-To: <lmskqt$fee$1@ger.gmane.org>
@@ -37,11 +42,11 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 06 Jun 2014 15:12:58 -0000
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Fri, 06 Jun 2014 15:16:58 -0000
+Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On 2014-06-06 08:56, Neuer User wrote:
+On 14-06-06 10:56 AM, Neuer User wrote:
 > Hi Bruce
 >
 > Thanks for the hint. I changed it, but the result is the same.
@@ -58,27 +63,13 @@ On 2014-06-06 08:56, Neuer User wrote:
 >
 > linux-cubox-i_3.10.30-linux4kix.bb
 
-It's a bit hard to see what files you have where.  Perhaps you
-could send a listing, e.g. for the standard Yocto kernel:
-   $ tree meta/recipes-kernel/linux
-   meta/recipes-kernel/linux
-   ├── linux-dtb.inc
-   ├── linux-dummy
-   │   └── COPYING.GPL
-   ├── linux-dummy.bb
-   ├── linux-yocto_3.10.bb
-   ├── linux-yocto_3.14.bb
-   ├── linux-yocto_3.4.bb
-   ├── linux-yocto-dev.bb
-   ├── linux-yocto.inc
-   ├── linux-yocto-rt_3.10.bb
-   ├── linux-yocto-rt_3.14.bb
-   ├── linux-yocto-rt_3.4.bb
-   ├── linux-yocto-tiny_3.10.bb
-   ├── linux-yocto-tiny_3.14.bb
-   └── linux-yocto-tiny_3.4.bb
+${PN} is going to change between those two recipes, so the defconfig
+will need to be in a different directory for each recipe.
 
-Do this for each of the kernel recipes you are trying to use.
+But as Gary just suggested, getting a full directory listing in
+tree format would help clarify they layout you are using.
+
+Bruce
 
 >
 > Am I doing it right (now with the :=), or is there something
@@ -212,9 +203,4 @@ Do this for each of the kernel recipes you are trying to use.
 >
 >
 
--- 
-------------------------------------------------------------
-Gary Thomas                 |  Consulting for the
-MLB Associates              |    Embedded world
-------------------------------------------------------------
 
