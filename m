@@ -1,36 +1,52 @@
-Return-Path: <Bruce.Ashfield@windriver.com>
+Return-Path: <jatedev@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 191EBE00985; Fri,  6 Jun 2014 14:00:19 -0700 (PDT)
+	id 3179FE00985; Fri,  6 Jun 2014 14:07:06 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=0.0 required=5.0 tests=RCVD_IN_DNSWL_NONE
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [147.11.146.13 listed in list.dnswl.org]
-Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 67F30E0070F
-	for <yocto@yoctoproject.org>; Fri,  6 Jun 2014 14:00:06 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail1.windriver.com (8.14.5/8.14.5) with ESMTP id s56L019u003096
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Fri, 6 Jun 2014 14:00:02 -0700 (PDT)
-Received: from [128.224.56.48] (128.224.56.48) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server id 14.3.169.1;
-	Fri, 6 Jun 2014 14:00:01 -0700
-Message-ID: <53922BBF.8080406@windriver.com>
-Date: Fri, 6 Jun 2014 16:59:43 -0400
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:24.0) Gecko/20100101 Thunderbird/24.5.0
+X-Spam-Status: No, score=-0.1 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+	DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (jatedev[at]gmail.com)
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.192.52 listed in list.dnswl.org]
+Received: from mail-qg0-f52.google.com (mail-qg0-f52.google.com
+	[209.85.192.52])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E2B21E0070F
+	for <yocto@yoctoproject.org>; Fri,  6 Jun 2014 14:06:50 -0700 (PDT)
+Received: by mail-qg0-f52.google.com with SMTP id a108so5541280qge.39
+	for <yocto@yoctoproject.org>; Fri, 06 Jun 2014 14:06:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type;
+	bh=AcafW7t0IMAsOv3ztAO7Y67DwmWgKDpdxmoZv0i0jeI=;
+	b=ri1GwtxFaijqBLsDW+QuTg6KwnM7oDA4vrnhWFEPixHILMjUPPQHzEhRacdB/ITORS
+	m3zOo643DytT3/ZUfxFSBVUsuySRsQRqNTQwCEP7mQc6aTrKyqMQDxlQ+ybLQYH4y5zL
+	SzpeNQoE4O7RJwsqkx2L3JRgNxprsV8PwEfQ10qrubxewea40rQo8H9wbaPsnaQro/QQ
+	ScJ9Mi09JY6G90VBPw3cqUylLEB/OSgozLuA9FafLyByruKn50wrd9U19U3mgvWrrx0U
+	3esi0Rzqph6tbmIaV8AX8Z2lxFJBH4tlcBU9Oo+lN01GA2B4QShY6bbSknJ/3QmXiSul
+	SiHg==
 MIME-Version: 1.0
-To: Neuer User <auslands-kv@gmx.de>, <yocto@yoctoproject.org>
-References: <lms7v8$cp2$1@ger.gmane.org>	<5391D2CB.20704@windriver.com>	<lmskqt$fee$1@ger.gmane.org>	<5391DA71.90402@mlbassoc.com>
-	<lmsn6p$dkl$1@ger.gmane.org>
-In-Reply-To: <lmsn6p$dkl$1@ger.gmane.org>
-Subject: Re: Hmm, possible bug in poky?
+X-Received: by 10.140.46.53 with SMTP id j50mr12317680qga.27.1402088810604;
+	Fri, 06 Jun 2014 14:06:50 -0700 (PDT)
+Received: by 10.140.107.198 with HTTP; Fri, 6 Jun 2014 14:06:50 -0700 (PDT)
+In-Reply-To: <1401843822-13967-3-git-send-email-lynncyrin@gmail.com>
+References: <1401843822-13967-1-git-send-email-lynncyrin@gmail.com>
+	<1401843822-13967-2-git-send-email-lynncyrin@gmail.com>
+	<1401843822-13967-3-git-send-email-lynncyrin@gmail.com>
+Date: Fri, 6 Jun 2014 17:06:50 -0400
+Message-ID: <CAPphmgb_NPGOu0dxP0b+0gr4zmE2D+SMuXCTvnO91kB6wAbaHA@mail.gmail.com>
+From: Jate S <jatedev@gmail.com>
+To: "Lynn 'Cyrin' Conway" <lynncyrin@gmail.com>
+Cc: Yocto Project <yocto@yoctoproject.org>
+Subject: Re: [PATCH 3/3] PublishArtifacts: add md5sums artifact
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,233 +58,81 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 06 Jun 2014 21:00:19 -0000
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Fri, 06 Jun 2014 21:07:06 -0000
+Content-Type: text/plain; charset=UTF-8
 
-On 14-06-06 11:36 AM, Neuer User wrote:
-> Hi Gary, Hi Bruce
->
-> This is the directory layout:
->
-> Both recipes are extremely similar, only differ by a different git repo
-> and SRCREV. I might need to later have different patches for both
-> recipes, but currently everthing is identical. That's why I made an
-> include file.
->
-> .
-> ├── linux-cubox-i-3.10.30
-> │   ├── brcmfmac4330-sdio.bin
-> │   ├── brcmfmac4330-sdio.txt
-> │   ├── defconfig
-> │   ├── dm-crypt.cfg
-> │   ├── leds.cfg
-> │   ├── mod-to-builtin.cfg
-> │   ├── networking.cfg
-> │   ├── no-caam.cfg
-> │   ├── touchscreen.cfg
-> │   ├── videoin.cfg
-> │   └── wlan.cfg
-> ├── linux-cubox-i_3.10.30.bb
-> ├── linux-cubox-i_3.10.30.inc
-> └── linux-cubox-i_3.10.30-linux4kix.bb
+I just grabbed the current master.
 
-I looks to be what I mentioned in my other reply. If you are using
-${PN} to add the directories for searching, then the two recipes
-shouldn't result in the same ${PN} value, even if they are using a
-common .inc.
+I changed my local conf definition so it would do the MakeImageMD5s.
+It creates them inside of the build directory by default.
 
-Check the output of bitbake -e when you build the non-working
-recipe, what does it have for PN ?
+After doing this, the PublishArtifacts was still failing because the
+cp command could not find the md5sum files. It looks in the
+tmp/deploy/images directory.
 
-Bruce
+I applied this patch so that the MakeImageMD5s step would generate
+them in the temp/deploy/images directory and allow the PublishArtifact
+build step to work.
 
->
->
->
->
->
->
-> Am 06.06.2014 17:12, schrieb Gary Thomas:
->> On 2014-06-06 08:56, Neuer User wrote:
->>> Hi Bruce
->>>
->>> Thanks for the hint. I changed it, but the result is the same.
->>>
->>> Strange is really that it shows the directory as being searched through
->>> but does not find the file that's contained?!
->>>
->>> Also, there are two "main" recipes, which both include the inc file.
->>> This one throws warnings, but works:
->>>
->>> linux-cubox-i_3.10.30.bb
->>>
->>> This one throws warnings and then the error shown:
->>>
->>> linux-cubox-i_3.10.30-linux4kix.bb
->>
->> It's a bit hard to see what files you have where.  Perhaps you
->> could send a listing, e.g. for the standard Yocto kernel:
->>    $ tree meta/recipes-kernel/linux
->>    meta/recipes-kernel/linux
->>    ├── linux-dtb.inc
->>    ├── linux-dummy
->>    │   └── COPYING.GPL
->>    ├── linux-dummy.bb
->>    ├── linux-yocto_3.10.bb
->>    ├── linux-yocto_3.14.bb
->>    ├── linux-yocto_3.4.bb
->>    ├── linux-yocto-dev.bb
->>    ├── linux-yocto.inc
->>    ├── linux-yocto-rt_3.10.bb
->>    ├── linux-yocto-rt_3.14.bb
->>    ├── linux-yocto-rt_3.4.bb
->>    ├── linux-yocto-tiny_3.10.bb
->>    ├── linux-yocto-tiny_3.14.bb
->>    └── linux-yocto-tiny_3.4.bb
->>
->> Do this for each of the kernel recipes you are trying to use.
->>
->>>
->>> Am I doing it right (now with the :=), or is there something
->>> fundamentally wrong with the two recipes and the include file?
->>>
->>> Michael
->>>
->>> Am 06.06.2014 16:40, schrieb Bruce Ashfield:
->>>> On 14-06-06 07:16 AM, Neuer User wrote:
->>>>> I get the following error:
->>>>>
->>>>> WARNING: Failed to fetch URL file://defconfig, attempting MIRRORS if
->>>>> available
->>>>> ERROR: Fetcher failure: Unable to find file file://defconfig anywhere.
->>>>> The paths that were searched were:
->>>>>
->>>>> /home/ubuntu/yocto/sources/meta-omnisonix/recipes-kernel/linux/linux-cubox-i-3.10.30/poky
->>>>>
->>>>>
->>>>> ...
->>>>>
->>>>> /home/ubuntu/yocto/sources/meta-omnisonix/recipes-kernel/linux/files/arm
->>>>>
->>>>>
->>>>> /home/ubuntu/yocto/sources/meta-omnisonix/recipes-kernel/linux/linux-cubox-i-3.10.30/
->>>>>
->>>>>
->>>>>
->>>>> /home/ubuntu/yocto/sources/meta-omnisonix/recipes-kernel/linux/linux-cubox-i-3.10.30-linux4kix/
->>>>>
->>>>>
->>>>>
->>>>> /home/ubuntu/yocto/sources/meta-omnisonix/recipes-kernel/linux/linux-cubox-i/
->>>>>
->>>>>
->>>>>
->>>>> /home/ubuntu/yocto/sources/meta-omnisonix/recipes-kernel/linux/files/
->>>>>        /home/ubuntu/yocto/downloads/
->>>>> ERROR: Function failed: Fetcher failure for URL: 'file://defconfig'.
->>>>> Unable to fetch URL from any source.
->>>>>
->>>>>
->>>>> Now, the directory:
->>>>>
->>>>>
->>>>> /home/ubuntu/yocto/sources/meta-omnisonix/recipes-kernel/linux/linux-cubox-i-3.10.30/
->>>>>
->>>>>
->>>>>
->>>>> which is listed above, contains the "missing" file ("defconfig").
->>>>>
->>>>> Hmm, strange...
->>>>>
->>>>>
->>>>>
->>>>> Here are my recipes:
->>>>>
->>>>> linux-cubox-i_3.10.30.inc:
->>>>> ------------------------------------
->>>>> inherit kernel
->>>>> require recipes-kernel/linux/linux-yocto.inc
->>>>>
->>>>> SUMMARY = "Linaro Kernel 3.10.30 with additional machine specific
->>>>> patches"
->>>>>
->>>>> SRCBRANCH ?= "linux-linaro-lsk-mx6"
->>>>>
->>>>> FILESEXTRAPATHS_prepend += "${THISDIR}/${PN}-3.10.30:"
->>>>
->>>> Have you tried this variant ?
->>>>
->>>> FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}-3.10.30:"
->>>>
->>>> You need the := in the assignment to have it evaluate immediately and
->>>> pick up the directory of your bbappend (who's subdir is the one that
->>>> contains the defconfig).
->>>>
->>>> Bruce
->>>>
->>>>
->>>>>
->>>>> SRC_URI = "file://defconfig \
->>>>>               file://videoin.cfg \
->>>>>               file://networking.cfg \
->>>>>               file://wlan.cfg \
->>>>>               file://dm-crypt.cfg \
->>>>>               file://no-caam.cfg \
->>>>>               file://leds.cfg \
->>>>>               file://mod-to-builtin.cfg \
->>>>>               file://brcmfmac4330-sdio.bin \
->>>>>               file://brcmfmac4330-sdio.txt \
->>>>> "
->>>>>
->>>>> do_configure_append () {
->>>>>        cd ${S}
->>>>>        mkdir firmware/brcm
->>>>>        cp ../brcmfmac4330-sdio.bin ./firmware/brcm/
->>>>>        cp ../brcmfmac4330-sdio.txt ./firmware/brcm/
->>>>> }
->>>>>
->>>>> COMPATIBLE_MACHINE = "(cubox-i)"
->>>>>
->>>>> KERNEL_IMAGETYPE_cubox-i = "zImage"
->>>>> KERNEL_DEVICETREE_cubox-i = "imx6dl-cubox-i.dtb imx6q-cubox-i.dtb"
->>>>>
->>>>> SRCREV_machine = "${SRCREV}"
->>>>> ------------------------------------
->>>>>
->>>>>
->>>>> linux-cubox-i_3.10.30.bb:
->>>>> ------------------------------------
->>>>> include linux-cubox-i_3.10.30.inc
->>>>>
->>>>> SRCREV = "592b2d941dc3ecb6335d6820757340ffb5a192c8"
->>>>> #SRCREV = "860304ab6e749777523f3714d18c4c7d39b728fa"
->>>>> LOCALVERSION = "-cubox-i+SolidRun+${SRCPV}"
->>>>>
->>>>> SRC_URI +=
->>>>> "git://github.com/SolidRun/linux-linaro-stable-mx6;branch=${SRCBRANCH}"
->>>>> -------------------------------
->>>>>
->>>>>
->>>>> linux-cubox-i_3.10.30-linux4kix.bb:
->>>>> ------------------------------------
->>>>> include linux-cubox-i_3.10.30.inc
->>>>>
->>>>> SRCREV = "a4ed70040f9dfdcdd6546a85c0477ecd1030e065"
->>>>> LOCALVERSION = "-cubox-i+linux4kix+${SRCPV}"
->>>>>
->>>>> SRC_URI +=
->>>>> "git://github.com/linux4kix/linux-linaro-stable-mx6.git;branch=${SRCBRANCH}"
->>>>>
->>>>>
->>>>> ------------------------------------
->>>>>
->>>>>
->>>>
->>>
->>>
->>
->
->
+diff --git a/lib/python2.7/site-packages/autobuilder/buildsteps/MakeImageMD5s.py
+index 84839fb..7bfb2b3 100644
+--- a/lib/python2.7/site-packages/autobuilder/buildsteps/MakeImageMD5s.py
++++ b/lib/python2.7/site-packages/autobuilder/buildsteps/MakeImageMD5s.py
+@@ -35,7 +35,7 @@ class MakeImageMD5s(ShellCommand):
+         command=""
+         if str(os.environ.get('PUBLISH_BUILDS')) == "True":
+             command = command + "for x in `find build/tmp/deploy/images -type f
+-            command = command + "filenm=`basename $x`; md5sum $x >> $filenm.md5
++            command = command + "md5sum $x >> $x.md5sum; done"
+         else:
+             command="echo 'Not publishing build, skipping step'"
+         self.command = command
 
+After seeing this patch, I wonder if this should be applied to
+PublishArtifacts now.
+
+- Jate S.
+
+On Tue, Jun 3, 2014 at 9:03 PM, Lynn 'Cyrin' Conway <lynncyrin@gmail.com> wrote:
+> REF: Bug ID 6354
+>
+> Added a md5sums artifact into PublishArtifacts
+>
+> Signed-off-by: Lynn 'Cyrin' Conway <lynncyrin@gmail.com>
+> ---
+>  .../autobuilder/buildsteps/PublishArtifacts.py     |    6 +++++-
+>  1 file changed, 5 insertions(+), 1 deletion(-)
+>
+> diff --git a/lib/python2.7/site-packages/autobuilder/buildsteps/PublishArtifacts.py b/lib/python2.7/site-packages/autobuilder/buildsteps/PublishArtifacts.py
+> index db86ec2..bb69d18 100644
+> --- a/lib/python2.7/site-packages/autobuilder/buildsteps/PublishArtifacts.py
+> +++ b/lib/python2.7/site-packages/autobuilder/buildsteps/PublishArtifacts.py
+> @@ -180,6 +180,10 @@ class PublishArtifacts(ShellCommand):
+>                      command=command+"cp -R --no-dereference " + \
+>                                       os.path.join(self.basedir, "conf/") + \
+>                                       "/* " + DEST + "/" + MACHINE_PUBLISH_DIR + "/" + artifact_name + "/conf;"
+> +                elif artifact == "md5sums":
+> +                    artifact_name, deploy_image_dir = self.getDeployNames(artifact, buildername)
+> +                    command = command + "for x in `find " + deploy_image_dir + " -type f`; do "
+> +                    command = command + "filenm=`basename $x`; md5sum $x >> $filenm.md5sum; done"
+>                  elif artifact == "None":
+>                      command=command+"echo 'Skipping copy of " + artifact + ".'"
+>                  else:
+> @@ -216,7 +220,7 @@ class PublishArtifacts(ShellCommand):
+>              artifact_name = artifact_name + "-lsb"
+>          if self.layerversion_core is not None and int(self.layerversion_core) > 2:
+>              deploy_dir_image = os.path.join(os.path.join(self.basedir, "tmp/deploy/images/"), artifact)
+> -        else:
+> +        else:1
+>              deploy_dir_image = os.path.join(self.basedir, "tmp/deploy/images/")
+>          return artifact_name, deploy_dir_image
+>
+> --
+> 1.7.9.5
+>
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
