@@ -1,42 +1,48 @@
-Return-Path: <kaiu@gmx.de>
+Return-Path: <belen.barros.pena@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 06429E00B9F; Fri,  6 Jun 2014 06:44:58 -0700 (PDT)
+	id BDC20E00B9F; Fri,  6 Jun 2014 06:47:42 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=0.0 required=5.0 tests=FREEMAIL_FROM,HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (kaiu[at]gmx.de)
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [212.227.15.18 listed in list.dnswl.org]
-Received: from mout.gmx.net (mout.gmx.net [212.227.15.18])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C6066E009E7
-	for <yocto@yoctoproject.org>; Fri,  6 Jun 2014 06:44:42 -0700 (PDT)
-Received: from mail-wg0-f48.google.com ([74.125.82.48]) by mail.gmx.com
-	(mrgmx101) with ESMTPSA (Nemesis) id 0LmfKJ-1WJqnS25Ux-00aFi6 for
-	<yocto@yoctoproject.org>; Fri, 06 Jun 2014 15:39:29 +0200
-Received: by mail-wg0-f48.google.com with SMTP id n12so2618435wgh.7
-	for <yocto@yoctoproject.org>; Fri, 06 Jun 2014 06:39:29 -0700 (PDT)
+X-Spam-Status: No, score=-5.0 required=5.0 tests=RCVD_IN_DNSWL_HI
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [192.55.52.93 listed in list.dnswl.org]
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8B97CE009E7
+	for <yocto@yoctoproject.org>; Fri,  6 Jun 2014 06:47:30 -0700 (PDT)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga102.fm.intel.com with ESMTP; 06 Jun 2014 06:47:29 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.98,989,1392192000"; d="scan'208";a="550900555"
+Received: from irsmsx104.ger.corp.intel.com ([163.33.3.159])
+	by fmsmga002.fm.intel.com with ESMTP; 06 Jun 2014 06:47:29 -0700
+Received: from irsmsx108.ger.corp.intel.com (163.33.3.3) by
+	IRSMSX104.ger.corp.intel.com (163.33.3.159) with Microsoft SMTP Server
+	(TLS) id 14.3.123.3; Fri, 6 Jun 2014 14:47:26 +0100
+Received: from irsmsx106.ger.corp.intel.com ([169.254.8.14]) by
+	IRSMSX108.ger.corp.intel.com ([169.254.11.221]) with mapi id
+	14.03.0123.003; Fri, 6 Jun 2014 14:47:26 +0100
+From: "Barros Pena, Belen" <belen.barros.pena@intel.com>
+To: Bharath Chandra <ellurubharath29@gmail.com>, "yocto@yoctoproject.org"
+	<yocto@yoctoproject.org>
+Thread-Topic: [yocto] Query in yocto
+Thread-Index: AQHPgY3ZOzCMpXEu2EObHFlJEmHDug==
+Date: Fri, 6 Jun 2014 13:47:25 +0000
+Message-ID: <CFB7817F.45A32%belen.barros.pena@intel.com>
+References: <CAGM0ZdSUpbeA3grSA5OZ5Y7cFesqKYBfRAc8genYCV2pWPjLKA@mail.gmail.com>
+In-Reply-To: <CAGM0ZdSUpbeA3grSA5OZ5Y7cFesqKYBfRAc8genYCV2pWPjLKA@mail.gmail.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+user-agent: Microsoft-MacOutlook/14.4.2.140509
+x-originating-ip: [10.237.224.30]
 MIME-Version: 1.0
-X-Received: by 10.194.82.170 with SMTP id j10mr7031187wjy.63.1402061969169;
-	Fri, 06 Jun 2014 06:39:29 -0700 (PDT)
-Received: by 10.194.25.65 with HTTP; Fri, 6 Jun 2014 06:39:29 -0700 (PDT)
-Date: Fri, 6 Jun 2014 15:39:29 +0200
-Message-ID: <CAAKMwirNP_YqD_9vawKqy-MHQ+RZ2QBm-BaxiZ2wzj21=68Yuw@mail.gmail.com>
-From: Kai Ulrich <kaiu@gmx.de>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-X-Provags-ID: V03:K0:fJLItR8yffh/Tz9nLZPnuUIZwM/vYZ1T4PChIypqV1ih8P0jZvY
-	gsMAMKcyl1cGjM+79mwJLSHPOiAifk9CFoBgj1jYBSjXnQczyS+QxMuXEfP8i+Sp9p13C1G
-	sXYIFSN+qK+xO1Foet3izS0QZZ00fm+eS/yyMOw/79By9/0JywjH8z5xP7OTKkatdJTnrgA
-	BqKylt2f3Bo4knvhb8BDA==
-Subject: Newbee - patching kernel
+Subject: Re: Query in yocto
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
-Reply-To: kaiu@gmx.de
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -45,25 +51,51 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 06 Jun 2014 13:44:58 -0000
-Content-Type: multipart/alternative; boundary=047d7bb04feea0267704fb2afd79
+X-List-Received-Date: Fri, 06 Jun 2014 13:47:42 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="iso-8859-1"
+Content-ID: <FBF931FAE44D9541B87C681604175CEF@intel.com>
+Content-Transfer-Encoding: quoted-printable
 
---047d7bb04feea0267704fb2afd79
-Content-Type: text/plain; charset=UTF-8
 
-Hi,
+On 03/06/2014 00:51, "Bharath Chandra" <ellurubharath29@gmail.com> wrote:
 
-Is there a way to create a separate layer that adds kernel patches to an
-existing machine?
-Is there a example to learn from?
+>Hi,
+>
+>
+>I am new to yocto and have been working on customizing a recipe and
+>building a new image. I have a small query. By looking at a binary file
+>on the target machine, I want to know from which recipe it has been
+>generated??.=20
 
-friendly regards
-Kai Ulrich
+Hi Bharath,
 
---047d7bb04feea0267704fb2afd79
-Content-Type: text/html; charset=UTF-8
+Toaster, the web-based interface, is one way to figure this out. It shows
+you a list of all the binary files in your root file system, which package
+generated them, and which recipe produced the package. This video (kind
+of) shows how:
 
-<div dir="ltr">Hi,<div><br></div><div>Is there a way to create a separate layer that adds kernel patches to an existing machine?</div><div>Is there a example to learn from?</div><div><br></div><div>friendly regards</div><div>
-Kai Ulrich</div></div>
+https://wiki.yoctoproject.org/wiki/images/e/ef/Toaster-manual-v3.webmhd.web
+m
 
---047d7bb04feea0267704fb2afd79--
+More details about the tool here:
+
+https://wiki.yoctoproject.org/wiki/Toaster
+
+Cheers
+
+Bel=E9n
+
+>Came to know that someone is working
+> on a similar kind of tool called as bb tool. Any help on this topic
+>would be appreciated.
+>
+>
+>--=20
+>Thanks & Regards,
+>Bharath Chandra Elluru.
+>Contact Number:785-979-4875.
+>
+>
+
+
