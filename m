@@ -1,40 +1,37 @@
-Return-Path: <kapare@rogue-research.com>
+Return-Path: <paul.eggleton@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 02A8EE00B71; Mon,  9 Jun 2014 09:47:38 -0700 (PDT)
+	id 15C69E00BBA; Mon,  9 Jun 2014 09:56:34 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=0.0 required=5.0 tests=none autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: 
-X-Greylist: delayed 331 seconds by postgrey-1.32 at yocto-www;
-	Mon, 09 Jun 2014 09:47:34 PDT
-Received: from mail.rogue-research.com (mail.rogue-research.com [68.67.54.10])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 42AFEE00B0B
-	for <yocto@yoctoproject.org>; Mon,  9 Jun 2014 09:47:34 -0700 (PDT)
-Received: from localhost (localhost [127.0.0.1])
-	by mail.rogue-research.com (Postfix) with ESMTP id 6A354398995E
-	for <yocto@yoctoproject.org>; Mon,  9 Jun 2014 12:42:02 -0400 (EDT)
-X-Virus-Scanned: amavisd-new at rogue-research.com
-Received: from mail.rogue-research.com ([127.0.0.1])
-	by localhost (kingu.rogue-research.com [127.0.0.1]) (amavisd-new,
-	port 10024) with ESMTP id 9WzjP2SioRlN for <yocto@yoctoproject.org>;
-	Mon,  9 Jun 2014 12:41:58 -0400 (EDT)
-Received: from mail-ve0-f169.google.com (mail-ve0-f169.google.com
-	[209.85.128.169])
-	by mail.rogue-research.com (Postfix) with ESMTPSA id 0840B3989951
-	for <yocto@yoctoproject.org>; Mon,  9 Jun 2014 12:41:57 -0400 (EDT)
-Received: by mail-ve0-f169.google.com with SMTP id pa12so439961veb.14
-	for <yocto@yoctoproject.org>; Mon, 09 Jun 2014 09:41:57 -0700 (PDT)
+X-Spam-Status: No, score=-5.0 required=5.0 tests=RCVD_IN_DNSWL_HI
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [143.182.124.21 listed in list.dnswl.org]
+Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 79236E00B66
+	for <yocto@yoctoproject.org>; Mon,  9 Jun 2014 09:56:23 -0700 (PDT)
+Received: from azsmga001.ch.intel.com ([10.2.17.19])
+	by azsmga101.ch.intel.com with ESMTP; 09 Jun 2014 09:56:22 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.98,1003,1392192000"; d="scan'208";a="443416328"
+Received: from mmckenna-mobl2.ger.corp.intel.com (HELO
+	peggleto-mobl5.ger.corp.intel.com) ([10.252.121.49])
+	by azsmga001.ch.intel.com with ESMTP; 09 Jun 2014 09:56:21 -0700
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: Bruce Ashfield <bruce.ashfield@windriver.com>,
+	Pierre Yves MORDRET <pierre-yves.mordret@st.com>
+Date: Mon, 09 Jun 2014 17:56:20 +0100
+Message-ID: <5377311.3J0LvGUs1Q@peggleto-mobl5.ger.corp.intel.com>
+Organization: Intel Corporation
+User-Agent: KMail/4.12.5 (Linux/3.14.5-200.fc20.x86_64; KDE/4.12.5; x86_64; ; )
+In-Reply-To: <5395E3C0.2010206@windriver.com>
+References: <888B7DC5D4899F46A9721989283666969C1E50A1DC@SAFEX1MAIL5.st.com>
+	<5395E3C0.2010206@windriver.com>
 MIME-Version: 1.0
-X-Received: by 10.52.249.76 with SMTP id ys12mr2287382vdc.63.1402332117385;
-	Mon, 09 Jun 2014 09:41:57 -0700 (PDT)
-Received: by 10.58.46.129 with HTTP; Mon, 9 Jun 2014 09:41:57 -0700 (PDT)
-Date: Mon, 9 Jun 2014 12:41:57 -0400
-Message-ID: <CACgAsMc0XGYRvr8+Y-3DFdTOhonvACuV3K60MkqD59vRp+EWkA@mail.gmail.com>
-From: =?UTF-8?Q?Kevyn=2DAlexandre_Par=C3=A9?= <kapare@rogue-research.com>
-To: Yocto discussion list <yocto@yoctoproject.org>
-Subject: How to add the same recipe twice?
+Cc: yocto@yoctoproject.org
+Subject: Re: Conditional Configuration Fragments
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -46,57 +43,74 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 09 Jun 2014 16:47:38 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Mon, 09 Jun 2014 16:56:34 -0000
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
 
-Hi,
+On Monday 09 June 2014 12:41:36 Bruce Ashfield wrote:
+> On 14-06-09 11:26 AM, Pierre Yves MORDRET wrote:
+> > Hello,
+> >=20
+> > I really don=E2=80=99t know whether this is feasible or not, but I=E2=
+=80=99m trying to
+> > build a yocto image (custom image) with conditional configuration
+> > fragments.
+> >=20
+> > Today I have 2 image type: one for deployment purpose and another f=
+or
+> > debug purpose. Debug images is only a superset of deployment image =
+with
+> > additional debug capabilities: nothing else.
+> >=20
+> > However now I would like to add additional linux kernel features to=
+ this
+> > debug image (ex: CONFIG_DEBUG_INFO=3Dy).
+> >=20
+> > I want to add this feature into debug image, but NOT in deployment =
+image.
+> >=20
+> > I was thinking to create a .bbappend to my linux .bb file, but agai=
+n I
+> > don=E2=80=99t see how to use .bbappend in a conditional way (based =
+on image name
+> > for instance)
+> >=20
+> > Do you have any idea to perform such request ?
+>=20
+> Fragments are either just added to the SRC_URI or KERNEL_FEATURES via=
 
-Here what I want to do:
-- Have 2 different psplash in my image.
+> the normal variable assignment rules.
+>=20
+> So if you have something that you can test on (image/distro feature a=
+s
+> an example), you can use anonymous python and do a conditional
+> assignment.
+>=20
+> Others on the list may have more elegant suggestions!
 
-Here what I have done:
-- Copy and rename the psplash recipe to psplash-desktop and modify
-couple of things.
+This can't work for what Pierre is asking for. You can't have a single =
+recipe=20
+built differently depending on what image is being built - our system d=
+oes not=20
+work that way. At a basic level, recipes create packages, and then the =
+image=20
+recipe selects which packages should go into the image.
 
+Given that the kernel does not produce named packages in our system, I'=
+m not=20
+sure we currently have a way to build two different kernel recipes and =
+select=20
+one in one image and another in another image (which is the way we norm=
+ally=20
+handle this kind of requirement with other recipes.) Probably the only =
+way to=20
+do this is to have two completely separate build directories.
 
-Here the warning I'm having:
-WARNING: The recipe psplash-desktop is trying to install files into a
-shared area when those files already exist. Those files and their
-manifest location are:
-   /home/knight/SVN/rogue/3rdParty/Yocto/trunk/starting_point/yocto_build/src/build/tmp/sysroots/overo/pkgdata/runtime/psplash-default
-   Matched in manifest-overo-psplash.packagedata
-manifest-overo-psplash-second.packagedata
-   /home/knight/SVN/rogue/3rdParty/Yocto/trunk/starting_point/yocto_build/src/build/tmp/sysroots/overo/pkgdata/runtime/psplash-default.packaged
-   Matched in manifest-overo-psplash.packagedata
-   /home/knight/SVN/rogue/3rdParty/Yocto/trunk/starting_point/yocto_build/src/build/tmp/sysroots/overo/pkgdata/runtime-reverse/psplash-default
-   Matched in manifest-overo-psplash.packagedata
-manifest-overo-psplash-second.packagedata
-Please verify which package should provide the above files.
-WARNING: The recipe psplash-desktop is trying to install files into a
-shared area when those files already exist. Those files and their
-manifest location are:
-   /home/knight/SVN/rogue/3rdParty/Yocto/trunk/starting_point/yocto_build/src/build/tmp/deploy/rpm/armv7a_vfp_neon/psplash-default-0.1+git0+afd4e228c6-r15.armv7a_vfp_neon.rpm
-   Matched in manifest-armv7a-vfp-neon-psplash.package_write_rpm
-Please verify which package should provide the above files.
+Cheers,
+Paul
 
-Here the error:
-http://pastebin.com/t2gYs3WT
+--=20
 
-Here the diff of my psplash recipe compare to psplash original:
-http://pastebin.com/8TrQRFkQ
-
-In the chat sgw_ recommended my to use:...
-sgw_> kapare, now that I better understand, you want to mv your binary
-in the do_install_append(), and keep the update-alternative code and
-FILES_${PN} bin, but use the renamed binary in the
-ALTERNATIVE_LINK_NAME, but you also need ALTNATIVE_TARGET[psplash] =
-${bindir}/psplash-default
-
-There is something that I'm missing...
-
-Any idea what?
-
-BR,
-
--KA
+Paul Eggleton
+Intel Open Source Technology Centre
 
