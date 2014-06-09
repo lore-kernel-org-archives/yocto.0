@@ -1,29 +1,52 @@
-Return-Path: <jimr@spectralogic.com>
+Return-Path: <marlon.smith10@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 99FCBE00BE3; Mon,  9 Jun 2014 14:45:12 -0700 (PDT)
+	id 5DAC5E00BEB; Mon,  9 Jun 2014 15:52:58 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=0.0 required=5.0 tests=HTML_MESSAGE autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: *  0.0 HTML_MESSAGE BODY: HTML included in message
-X-Greylist: delayed 70 seconds by postgrey-1.32 at yocto-www;
-	Mon, 09 Jun 2014 14:45:11 PDT
-Received: from mail5.spectralogic.com (mail5.spectralogic.com [192.30.190.19])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6216DE00B71
-	for <yocto@yoctoproject.org>; Mon,  9 Jun 2014 14:45:11 -0700 (PDT)
-From: Jim Rafert <jimr@spectralogic.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: How do I create a recipe for laying down post-build config files?
-Thread-Index: Ac+EKkd3vwrVsXp6TcSh5ralFOydog==
-Date: Mon, 9 Jun 2014 21:44:00 +0000
-Message-ID: <86196249137E0843B2E0673D4F731E0CAB521799@reactor.sldomain.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [207.225.98.3]
-MIME-Version: 1.0
-Subject: How do I create a recipe for laying down post-build config files?
+X-Spam-Status: No, score=-0.1 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+	DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (marlon.smith10[at]gmail.com)
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.192.173 listed in list.dnswl.org]
+Received: from mail-pd0-f173.google.com (mail-pd0-f173.google.com
+	[209.85.192.173])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 15E44E00B7B
+	for <yocto@yoctoproject.org>; Mon,  9 Jun 2014 15:52:53 -0700 (PDT)
+Received: by mail-pd0-f173.google.com with SMTP id v10so5389926pde.4
+	for <yocto@yoctoproject.org>; Mon, 09 Jun 2014 15:52:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=message-id:subject:from:to:date:content-type:mime-version;
+	bh=fltBChWEp8hGWWIBiKLDfmaLpOPLhpkOwGgz15VDzaw=;
+	b=mukxe/X9KYxwWeFEFE+OjDh7xTwXq4MeN8cxgetr9oyPJiIGoOTAR5ZRNp/n0wFY0c
+	tgHniNtoK+TUF+kp/348V57mXwq8v7m9GcdAQUffIw1NQ/pFP/cNl7z7iQfPgZIX8l8P
+	+zx1mVsP2IWLVf7pgeoNvXzmOVfk08wFGAHgbKLBwd2njJRpuRqi5AH4Y7t4H+/LH4L6
+	JY25nhgFGOeot9B/SLcn8yRNHSZXzRnRudPKSyeHFeu4Ybro+utWCr8IVZE5xUleL4IH
+	dVyEBdILkPSPvGKcsnqY1nCSubhJi2EhUSg/7wmrAan0aDxi2FwcibRX2RSuYm1FquJr
+	4Auw==
+X-Received: by 10.69.15.2 with SMTP id fk2mr7515477pbd.123.1402354373235;
+	Mon, 09 Jun 2014 15:52:53 -0700 (PDT)
+Received: from [192.168.0.10] (S0106602ad07d0544.gv.shawcable.net.
+	[184.66.138.43]) by mx.google.com with ESMTPSA id
+	jh2sm65820649pbd.93.2014.06.09.15.52.52 for <yocto@yoctoproject.org>
+	(version=SSLv3 cipher=RC4-SHA bits=128/128);
+	Mon, 09 Jun 2014 15:52:52 -0700 (PDT)
+Message-ID: <1402354370.9385.9.camel@marlon-Z68X-UD3H-B3>
+From: Marlon Smith <marlon.smith10@gmail.com>
+To: yocto@yoctoproject.org
+Date: Mon, 09 Jun 2014 15:52:50 -0700
+X-Mailer: Evolution 3.10.4-0ubuntu1 
+Mime-Version: 1.0
+Subject: Why use Yocto?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -35,270 +58,60 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 09 Jun 2014 21:45:12 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_86196249137E0843B2E0673D4F731E0CAB521799reactorsldomain_"
+X-List-Received-Date: Mon, 09 Jun 2014 22:52:58 -0000
+Content-Type: multipart/alternative; boundary="=-Ay/copIaxJixmYxTGDAj"
 
---_000_86196249137E0843B2E0673D4F731E0CAB521799reactorsldomain_
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+--=-Ay/copIaxJixmYxTGDAj
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
-I'm trying to gather all my post-build tweaks into a recipe that will be bu=
-ilt as part of an upper-level layer, so that they are installed after the m=
-eta layer is processed.  Many of these could be accomplished as part of .bb=
-append files for the recipes that originally supply the config files, but I=
- wanted to gather all my customizations in one spot, so that they're easy t=
-o find.
+Hi everyone,
 
-The recipe doesn't actually build anything, so there's no do_build task.
+I'm developing a product that will run on a custom i.MX6 board and I'm
+trying to decide whether to use Yocto or Ubuntu (there's a version of
+Ubuntu packaged for the Wandboard that will run on our board).  The
+board will run our own custom app, and we'll modify the Linux kernel to
+support our hardware.
 
-This is surely something that is commonly wanted.
+Ubuntu seems like it would be ready to go - just put it on an SD card,
+boot the board, compile the app and create a new SD card image from the
+result to use for manufacturing.
 
-Here's my current recipe, in spectra-postbuild_0.1.bb.
+Yocto seems like it would be easier to remove unneeded packages from,
+and easier to cross-compile the application for.  This means we could
+have a smaller SD card image in the end.
 
-When I try to build an image, the build fails with
-ERROR: QA Issue: spectra-postbuild: Files/directories were installed but no=
-t shipped
-  /RELEASE-NOTES.txt
+What are your thoughts on this?
 
-When I disable the installed-vs-shipped QA test,  it fails later when it ca=
-n't find a package file.
+Thanks
 
-I must be missing something critical here?
-SUMMARY =3D "Post processing of configuration files for SpectraOS"
-SECTION =3D "base"
-LICENSE =3D "GPLv2"
-LIC_FILES_CHKSUM =3D "file://${WORKDIR}/COPYRIGHT;md5=3D349c872e0066155e181=
-8b786938876a4"
-RDEPENDS_${PN} =3D "initscripts"
-PR =3D "r0"
+Marlon
 
-SRC_URI =3D "file://inittab \
-       file://fstab \
-       file://rsyslog.conf \
-       file://grub.cfg \
-       file://mount.sh \
-       file://RELEASE-NOTES.txt \
-       file://Spectra-OS-Version \
-       file://initializeCustomKernelModules \
-       file://firewall \
-       file://sysctl.conf \
-       file://COPYRIGHT \
-       "
+--=-Ay/copIaxJixmYxTGDAj
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: 7bit
 
-CONFFILES_${PN} +=3D "${sysconfdir}/init.d/firewall "
-CONFFILES_${PN} +=3D "${sysconfdir}/init.d/initializeCustomKernelModules "
-FILES_${PN} =3D  "/RELEASE_NOTES.txt /Spectra-OS-Version "
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 TRANSITIONAL//EN">
+<HTML>
+<HEAD>
+  <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=UTF-8">
+  <META NAME="GENERATOR" CONTENT="GtkHTML/4.6.6">
+</HEAD>
+<BODY>
+Hi everyone,<BR>
+<BR>
+I'm developing a product that will run on a custom i.MX6 board and I'm trying to decide whether to use Yocto or Ubuntu (there's a version of Ubuntu packaged for the Wandboard that will run on our board).&nbsp; The board will run our own custom app, and we'll modify the Linux kernel to support our hardware.<BR>
+<BR>
+Ubuntu seems like it would be ready to go - just put it on an SD card, boot the board, compile the app and create a new SD card image from the result to use for manufacturing.<BR>
+<BR>
+Yocto seems like it would be easier to remove unneeded packages from, and easier to cross-compile the application for.&nbsp; This means we could have a smaller SD card image in the end.<BR>
+<BR>
+What are your thoughts on this?<BR>
+<BR>
+Thanks<BR>
+<BR>
+Marlon
+</BODY>
+</HTML>
 
-#INSANE_SKIP_${PN} =3D "installed-vs-shipped"
-
-do_install () {
-    install -m 755 ${WORKDIR}/RELEASE-NOTES.txt ${D}
-    install -m 755 ${WORKDIR}/Spectra-OS-Version ${D}
-}
-
-pkg_postinst_${PN} () {
-    install -d ${D}${sysconfdir}/init.d
-    install -d ${D}${sbindir}
-
-    #Install our inittab and fstab
-    echo Install our inittab and fstab
-    install -m 544 ${WORKDIR}/inittab ${D}/etc/inittab
-    install -m 755 ${WORKDIR}/fstab ${D}/etc/fstab
-    install -m 755 ${WORKDIR}/rsyslog.conf ${D}/etc/rsyslog.conf
-    mkdir -p ${D}/boot/grub
-    install -m 755 ${WORKDIR}/grub.cfg ${D}/boot/grub/grub.cfg
-        install -d ${D}/etc/udev/scripts
-    install -m 755 ${WORKDIR}/mount.sh ${D}/etc/udev/scripts/mount.sh
-    chmod 755 ${D}/etc/udev/scripts/mount.sh
-    install -m 755 ${WORKDIR}/RELEASE-NOTES.txt ${D}
-    install -m 755 ${WORKDIR}/Spectra-OS-Version ${D}
-
-    #Remove unneeded services from startup
-    echo Remove unneeded services from startup
-    rm ${D}/etc/rc5.d/S20nfsserver
-    rm ${D}/etc/rc5.d/S20syslog
-    rm ${D}/etc/rc5.d/S70lighttpd
-
-    #Add /dev/sdd to the auto mount blacklist
-    chmod 777 ${D}/etc/udev/mount.blacklist
-    echo "/dev/sda*" >> ${D}/etc/udev/mount.blacklist
-    echo "/dev/sdd*" >> ${D}/etc/udev/mount.blacklist
-    echo "/dev/sde*" >> ${D}/etc/udev/mount.blacklist
-    chmod 644 ${D}/etc/udev/mount.blacklist
-
-    #Remove /var/log link to /var/volatile/log, persist log.
-    rm ${D}/var/log
-    mkdir ${D}/var/log
-    mv ${D}/etc/default/volatiles/00_core ${D}/etc/default/volatiles/00_cor=
-e.orig
-    grep -v volatile/log ${D}/etc/default/volatiles/00_core.orig |  tee ${D=
-}/etc/default/volatiles/00_core >/dev/null
-    rm ${D}/etc/default/volatiles/00_core.orig
-
-    #Create directory for SCST
-    mkdir -p ${D}/var/lib/scst/pr
-    mkdir -p ${D}/usr/local/bin
-    mkdir -p ${D}/etc/logrotate.d
-    #Install drivers load script
-    echo Install drivers load script
-    install -m 755 ${WORKDIR}initializeCustomKernelModules ${D}/etc/init.d
-    ln -s ${D}/etc/init.d/initializeCustomKernelModules ${D}/etc/rc5.d/S70i=
-nitializeCustomKernelModules
-    echo Install firewall configuration boot script
-    install -m 755 ${WORKDIR}firewall ${D}/etc/init.d
-    chmod +x ${D}/etc/init.d/firewall
-    ln -s ${D}/etc/init.d/firewall ${D}/etc/rc5.d/S80firewall
-    #copy config change for console log level
-    install -m 755 ${WORKDIR}sysctl.conf ${D}/etc/sysctl.conf
-}
-
-
-
---_000_86196249137E0843B2E0673D4F731E0CAB521799reactorsldomain_
-Content-Type: text/html; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
-
-<html dir=3D"ltr">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
-1">
-<style id=3D"owaParaStyle" type=3D"text/css">P {margin-top:0;margin-bottom:=
-0;}</style>
-</head>
-<body ocsi=3D"0" fpstyle=3D"1">
-<div style=3D"direction: ltr;font-family: Tahoma;color: #000000;font-size: =
-10pt;">I'm trying to gather all my post-build tweaks into a recipe that wil=
-l be built as part of an upper-level layer, so that they are installed afte=
-r the meta layer is processed.&nbsp; Many
- of these could be accomplished as part of .bbappend files for the recipes =
-that originally supply the config files, but I wanted to gather all my cust=
-omizations in one spot, so that they're easy to find.<br>
-<br>
-The recipe doesn't actually build anything, so there's no do_build task.<br=
->
-<br>
-This is surely something that is commonly wanted.<br>
-<br>
-Here's my current recipe, in spectra-postbuild_0.1.bb.<br>
-<br>
-When I try to build an image, the build fails with <br>
-ERROR: QA Issue: spectra-postbuild: Files/directories were installed but no=
-t shipped<br>
-&nbsp; /RELEASE-NOTES.txt<br>
-<br>
-When I disable the installed-vs-shipped QA test,&nbsp; it fails later when =
-it can't find a package file.<br>
-<br>
-I must be missing something critical here?<br>
-<div>SUMMARY =3D &quot;Post processing of configuration files for SpectraOS=
-&quot;<br>
-SECTION =3D &quot;base&quot;<br>
-LICENSE =3D &quot;GPLv2&quot;<br>
-LIC_FILES_CHKSUM =3D &quot;file://${WORKDIR}/COPYRIGHT;md5=3D349c872e006615=
-5e1818b786938876a4&quot;<br>
-RDEPENDS_${PN} =3D &quot;initscripts&quot;<br>
-PR =3D &quot;r0&quot;<br>
-<br>
-SRC_URI =3D &quot;file://inittab \<br>
-&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; file://fstab \<br>
-&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; file://rsyslog.conf \<br>
-&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; file://grub.cfg \<br>
-&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; file://mount.sh \<br>
-&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; file://RELEASE-NOTES.txt \<br>
-&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; file://Spectra-OS-Version \<br>
-&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; file://initializeCustomKernelModules \<br>
-&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; file://firewall \<br>
-&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; file://sysctl.conf \<br>
-&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; file://COPYRIGHT \<br>
-&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &quot;<br>
-<br>
-CONFFILES_${PN} &#43;=3D &quot;${sysconfdir}/init.d/firewall &quot;<br>
-CONFFILES_${PN} &#43;=3D &quot;${sysconfdir}/init.d/initializeCustomKernelM=
-odules &quot;<br>
-FILES_${PN} =3D&nbsp; &quot;/RELEASE_NOTES.txt /Spectra-OS-Version &quot;<b=
-r>
-<br>
-#INSANE_SKIP_${PN} =3D &quot;installed-vs-shipped&quot;<br>
-<br>
-do_install () {<br>
-&nbsp;&nbsp;&nbsp; install -m 755 ${WORKDIR}/RELEASE-NOTES.txt ${D}<br>
-&nbsp;&nbsp;&nbsp; install -m 755 ${WORKDIR}/Spectra-OS-Version ${D}<br>
-}<br>
-<br>
-pkg_postinst_${PN} () {<br>
-&nbsp;&nbsp;&nbsp; install -d ${D}${sysconfdir}/init.d<br>
-&nbsp;&nbsp;&nbsp; install -d ${D}${sbindir}<br>
-<br>
-&nbsp;&nbsp;&nbsp; #Install our inittab and fstab<br>
-&nbsp;&nbsp;&nbsp; echo Install our inittab and fstab<br>
-&nbsp;&nbsp;&nbsp; install -m 544 ${WORKDIR}/inittab ${D}/etc/inittab<br>
-&nbsp;&nbsp;&nbsp; install -m 755 ${WORKDIR}/fstab ${D}/etc/fstab<br>
-&nbsp;&nbsp;&nbsp; install -m 755 ${WORKDIR}/rsyslog.conf ${D}/etc/rsyslog.=
-conf<br>
-&nbsp;&nbsp;&nbsp; mkdir -p ${D}/boot/grub<br>
-&nbsp;&nbsp;&nbsp; install -m 755 ${WORKDIR}/grub.cfg ${D}/boot/grub/grub.c=
-fg<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; install -d ${D}/etc/udev/scripts=
-<br>
-&nbsp;&nbsp;&nbsp; install -m 755 ${WORKDIR}/mount.sh ${D}/etc/udev/scripts=
-/mount.sh<br>
-&nbsp;&nbsp;&nbsp; chmod 755 ${D}/etc/udev/scripts/mount.sh<br>
-&nbsp;&nbsp;&nbsp; install -m 755 ${WORKDIR}/RELEASE-NOTES.txt ${D}<br>
-&nbsp;&nbsp;&nbsp; install -m 755 ${WORKDIR}/Spectra-OS-Version ${D}<br>
-<br>
-&nbsp;&nbsp;&nbsp; #Remove unneeded services from startup<br>
-&nbsp;&nbsp;&nbsp; echo Remove unneeded services from startup<br>
-&nbsp;&nbsp;&nbsp; rm ${D}/etc/rc5.d/S20nfsserver<br>
-&nbsp;&nbsp;&nbsp; rm ${D}/etc/rc5.d/S20syslog<br>
-&nbsp;&nbsp;&nbsp; rm ${D}/etc/rc5.d/S70lighttpd<br>
-<br>
-&nbsp;&nbsp;&nbsp; #Add /dev/sdd to the auto mount blacklist<br>
-&nbsp;&nbsp;&nbsp; chmod 777 ${D}/etc/udev/mount.blacklist<br>
-&nbsp;&nbsp;&nbsp; echo &quot;/dev/sda*&quot; &gt;&gt; ${D}/etc/udev/mount.=
-blacklist<br>
-&nbsp;&nbsp;&nbsp; echo &quot;/dev/sdd*&quot; &gt;&gt; ${D}/etc/udev/mount.=
-blacklist<br>
-&nbsp;&nbsp;&nbsp; echo &quot;/dev/sde*&quot; &gt;&gt; ${D}/etc/udev/mount.=
-blacklist<br>
-&nbsp;&nbsp;&nbsp; chmod 644 ${D}/etc/udev/mount.blacklist<br>
-<br>
-&nbsp;&nbsp;&nbsp; #Remove /var/log link to /var/volatile/log, persist log.=
-<br>
-&nbsp;&nbsp;&nbsp; rm ${D}/var/log<br>
-&nbsp;&nbsp;&nbsp; mkdir ${D}/var/log<br>
-&nbsp;&nbsp;&nbsp; mv ${D}/etc/default/volatiles/00_core ${D}/etc/default/v=
-olatiles/00_core.orig<br>
-&nbsp;&nbsp;&nbsp; grep -v volatile/log ${D}/etc/default/volatiles/00_core.=
-orig |&nbsp; tee ${D}/etc/default/volatiles/00_core &gt;/dev/null<br>
-&nbsp;&nbsp;&nbsp; rm ${D}/etc/default/volatiles/00_core.orig<br>
-<br>
-&nbsp;&nbsp;&nbsp; #Create directory for SCST<br>
-&nbsp;&nbsp;&nbsp; mkdir -p ${D}/var/lib/scst/pr<br>
-&nbsp;&nbsp;&nbsp; mkdir -p ${D}/usr/local/bin<br>
-&nbsp;&nbsp;&nbsp; mkdir -p ${D}/etc/logrotate.d<br>
-&nbsp;&nbsp;&nbsp; #Install drivers load script<br>
-&nbsp;&nbsp;&nbsp; echo Install drivers load script<br>
-&nbsp;&nbsp;&nbsp; install -m 755 ${WORKDIR}initializeCustomKernelModules $=
-{D}/etc/init.d<br>
-&nbsp;&nbsp;&nbsp; ln -s ${D}/etc/init.d/initializeCustomKernelModules ${D}=
-/etc/rc5.d/S70initializeCustomKernelModules<br>
-&nbsp;&nbsp;&nbsp; echo Install firewall configuration boot script<br>
-&nbsp;&nbsp;&nbsp; install -m 755 ${WORKDIR}firewall ${D}/etc/init.d<br>
-&nbsp;&nbsp;&nbsp; chmod &#43;x ${D}/etc/init.d/firewall<br>
-&nbsp;&nbsp;&nbsp; ln -s ${D}/etc/init.d/firewall ${D}/etc/rc5.d/S80firewal=
-l<br>
-&nbsp;&nbsp;&nbsp; #copy config change for console log level<br>
-&nbsp;&nbsp;&nbsp; install -m 755 ${WORKDIR}sysctl.conf ${D}/etc/sysctl.con=
-f<br>
-}<br>
-<br>
-<div style=3D"font-family:Tahoma; font-size:13px"><br>
-</div>
-</div>
-</div>
-</body>
-</html>
-
---_000_86196249137E0843B2E0673D4F731E0CAB521799reactorsldomain_--
+--=-Ay/copIaxJixmYxTGDAj--
