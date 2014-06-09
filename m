@@ -1,36 +1,36 @@
-Return-Path: <Bruce.Ashfield@windriver.com>
+Return-Path: <yaoxp@cn.fujitsu.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 361D0E00B6C; Sun,  8 Jun 2014 20:42:44 -0700 (PDT)
+	id 54D61E00B6C; Sun,  8 Jun 2014 21:33:03 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.3 required=5.0 tests=RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [147.11.1.11 listed in list.dnswl.org]
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CF3CCE00A44
-	for <yocto@yoctoproject.org>; Sun,  8 Jun 2014 20:42:41 -0700 (PDT)
-Received: from ALA-HCB.corp.ad.wrs.com (ala-hcb.corp.ad.wrs.com
-	[147.11.189.41])
-	by mail.windriver.com (8.14.5/8.14.5) with ESMTP id s593gcu9014632
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Sun, 8 Jun 2014 20:42:38 -0700 (PDT)
-Received: from server.local (128.224.22.209) by ALA-HCB.corp.ad.wrs.com
-	(147.11.189.41) with Microsoft SMTP Server id 14.3.174.1;
-	Sun, 8 Jun 2014 20:42:38 -0700
-Message-ID: <53952DEE.6030907@windriver.com>
-Date: Sun, 8 Jun 2014 23:45:50 -0400
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.9;
-	rv:24.0) Gecko/20100101 Thunderbird/24.5.0
+X-Spam-Level: *
+X-Spam-Status: No, score=1.3 required=5.0 tests=RDNS_NONE autolearn=no
+	version=3.3.1
+X-Spam-HAM-Report: * 1.3 RDNS_NONE Delivered to internal network by a host
+	with no rDNS
+X-Greylist: delayed 70 seconds by postgrey-1.32 at yocto-www;
+	Sun, 08 Jun 2014 21:32:59 PDT
+Received: from heian.cn.fujitsu.com (unknown [59.151.112.132])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B6051E00A44
+	for <yocto@yoctoproject.org>; Sun,  8 Jun 2014 21:32:59 -0700 (PDT)
+X-IronPort-AV: E=Sophos;i="4.98,1001,1392134400"; d="scan'208";a="31635194"
+Received: from unknown (HELO edo.cn.fujitsu.com) ([10.167.33.5])
+	by heian.cn.fujitsu.com with ESMTP; 09 Jun 2014 12:29:06 +0800
+Received: from G08CNEXCHPEKD03.g08.fujitsu.local (localhost.localdomain
+	[127.0.0.1])
+	by edo.cn.fujitsu.com (8.14.3/8.13.1) with ESMTP id s594Vhal031417
+	for <yocto@yoctoproject.org>; Mon, 9 Jun 2014 12:31:43 +0800
+Received: from FEDORA20.fnst.cn.fujitsu.com (10.167.226.101) by
+	G08CNEXCHPEKD03.g08.fujitsu.local (10.167.33.89) with Microsoft SMTP
+	Server (TLS) id 14.3.181.6; Mon, 9 Jun 2014 12:31:44 +0800
+From: Yao Xinpan <yaoxp@cn.fujitsu.com>
+To: <yocto@yoctoproject.org>
+Date: Mon, 9 Jun 2014 12:31:34 +0800
+Message-ID: <1402288294-19549-1-git-send-email-yaoxp@cn.fujitsu.com>
+X-Mailer: git-send-email 1.8.4.2
 MIME-Version: 1.0
-To: =?ISO-8859-1?Q?Daniel_Gro=DF?= <dgross@intronik.de>,
-	<yocto@yoctoproject.org>
-References: <CAJ0JmfWKrLGXAB+7PmRK-dw013kU_ASQpqvchc5nY34eMYhtwA@mail.gmail.com>
-In-Reply-To: <CAJ0JmfWKrLGXAB+7PmRK-dw013kU_ASQpqvchc5nY34eMYhtwA@mail.gmail.com>
-Subject: Re: beaglebone black usb device problem (daisy)
+X-Originating-IP: [10.167.226.101]
+Subject: [PATCH] add license file: DMTF
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,80 +42,63 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 09 Jun 2014 03:42:44 -0000
-Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Mon, 09 Jun 2014 04:33:03 -0000
+Content-Type: text/plain
 
-On 2014-06-03, 6:06 AM, Daniel Groß wrote:
-> Hello there,
-> I have successfully build several beaglebone (qt4embedded demo and
-> sato+mono hard float) images using yocto 1.6 (daisy) for the beagle bone
-> black.
->
-> However USB devices (mouse, keyboard, anything) are only found during
-> the first boot.
->
-> I narrowed the problem down to the file "/etc/udev/cache.data". If I
-> remove this file and boot again (using the serial console), USB works
-> once for the next boot process.
->
-> After some try and error, I was able to restart the USB enumeration by
-> issuing a "udevadm trigger" command again using the serial console. That
-> always works. To me it seems that USB root hub is not loaded by udev if
-> the /etc/udev/cache.data file exists.
->
-> The output of the trigger command is:
-> root@beaglebone:~# udevadm trigger
-> udevadm trigger
-> 47401300.usb-phy supply vcc not found, using dummy regulator
-> 47401b00.usb-phy supply vcc not found, using dummy regulator
-> omap_rng 48310000.rng: OMAP Random Number Generator ver. 20
-> root@beaglebone:~# musb-hdrc musb-hdrc.0.auto: MUSB HDRC host driver
-> musb-hdrc musb-hdrc.0.auto: new USB bus registered, assigned bus number 1
-> hub 1-0:1.0: USB hub found
-> hub 1-0:1.0: 1 port detected
-> musb-hdrc musb-hdrc.1.auto: MUSB HDRC host driver
-> musb-hdrc musb-hdrc.1.auto: new USB bus registered, assigned bus number 2
-> hub 2-0:1.0: USB hub found
-> hub 2-0:1.0: 1 port detected
-> usb 2-1: new low-speed USB device number 2 using musb-hdrc
-> input: Logitech USB Optical Mouse as
-> /devices/ocp.3/47400000.usb/47401c00.usb/musb-hdrc.1.auto/usb2/2-1/2-1:1.0/0003:046D:C00C.0001/input/input0
-> hid-generic 0003:046D:C00C.0001: input: USB HID v1.10 Mouse [Logitech
-> USB Optical Mouse] on usb-musb-hdrc.1.auto-1/input0
->
-> The content of the /etc/udev/cache.data file is:
-> root@beaglebone:~# cat /etc/udev/cache.data
-> cat /etc/udev/cache.data
-> Linux version 3.14.0-yocto-standard (daniel@daniel-ubuntu) (gcc version
-> 4.8.2 (GCC) ) #1 PREEMPT Sat May 24 16:40:23 CEST
-> 2014console=ttyO0,115200n8 root=/dev/mmcblk0p2 ro rootfstype=ext4
-> rootwaitCharacter devices:1 mem2 pty3 ttyp4 /dev/vc/04 tty5 /dev/tty5
-> /dev/console5 /dev/ptmx7 vcs10 misc13 input29 fb89 i2c90 mtd128 ptm136
-> pts180 usb189 usb_device226 drm250 ttySDIO251 ttyO252 bsg253 watchdog254
-> rtcBlock devices:1 ramdisk259 blkext8 sd31 mtdblock65 sd66 sd67 sd68
-> sd69 sd70 sd71 sd128 sd129 sd130 sd131 sd132 sd133 sd134 sd135 sd179 mmc
->
->
-> For the sake of completeness:
-> root@beaglebone:~# uname -a
-> uname -a
-> Linux beaglebone 3.14.0-yocto-standard #1 PREEMPT Sat May 24 16:40:23
-> CEST 2014 armv7l GNU/Linux
->
->
-> Did anyone else see these problems? And is this a bug - or a feature?
+hi all
+I want to add software which associates with DMTF into rootfs.
+There is WARNING as follows when build:
+"WARNING: cim-schema: No generic license file exists for: DMTF in any provider"
 
-I've never seen this myself. But it is worth logging this in the Yocto
-bugzilla with a request for the QA team to confirm that they don't see
-this during beaglebone testing.
+Could add license DMTF into yocto?
 
-Bruce
+Signed-off-by: Yao Xinpan <yaoxp@cn.fujitsu.com>
+---
+ meta/files/common-licenses/DMTF | 34 ++++++++++++++++++++++++++++++++++
+ 1 file changed, 34 insertions(+)
+ create mode 100644 meta/files/common-licenses/DMTF
 
->
->
-> Daniel
->
->
+diff --git a/meta/files/common-licenses/DMTF b/meta/files/common-licenses/DMTF
+new file mode 100644
+index 0000000..54a2812
+--- /dev/null
++++ b/meta/files/common-licenses/DMTF
+@@ -0,0 +1,34 @@
++// Copyright 1998-2008 Distributed Management Task Force, Inc. (DMTF).
++// All rights reserved.
++// DMTF is a not-for-profit association of industry members dedicated
++// to promoting enterprise and systems management and interoperability.
++// DMTF specifications and documents may be reproduced by
++// members and non-members, provided that correct attribution is given.
++// As DMTF specifications may be revised from time to time,
++// the particular version and release date should always be noted.
++// 
++// Implementation of certain elements of this standard or proposed
++// standard may be subject to third party patent rights, including
++// provisional patent rights (herein "patent rights"). DMTF makes
++// no representations to users of the standard as to the existence
++// of such rights, and is not responsible to recognize, disclose, or
++// identify any or all such third party patent right, owners or
++// claimants, nor for any incomplete or inaccurate identification or
++// disclosure of such rights, owners or claimants. DMTF shall have no
++// liability to any party, in any manner or circumstance, under any
++// legal theory whatsoever, for failure to recognize, disclose, or
++// identify any such third party patent rights, or for such party's
++// reliance on the standard or incorporation thereof in its product,
++// protocols or testing procedures. DMTF shall have no liability to
++// any party implementing such standard, whether such implementation
++// is foreseeable or not, nor to any patent owner or claimant, and shall
++// have no liability or responsibility for costs or losses incurred if
++// a standard is withdrawn or modified after publication, and shall be
++// indemnified and held harmless by any party implementing the
++// standard from any and all claims of infringement by a patent owner
++// for such implementations.
++// 
++// For information about patents held by third-parties which have
++// notified the DMTF that, in their opinion, such patent may relate to
++// or impact implementations of DMTF standards, visit
++// http://www.dmtf.org/about/policies/disclosures.php.
+-- 
+1.8.4.2
 
 
