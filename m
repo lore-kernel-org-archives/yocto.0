@@ -1,36 +1,40 @@
-Return-Path: <Bruce.Ashfield@windriver.com>
+Return-Path: <kapare@rogue-research.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 59B10E00B71; Mon,  9 Jun 2014 09:42:15 -0700 (PDT)
+	id 02A8EE00B71; Mon,  9 Jun 2014 09:47:38 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.3 required=5.0 tests=RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [147.11.1.11 listed in list.dnswl.org]
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EE019E00B0B
-	for <yocto@yoctoproject.org>; Mon,  9 Jun 2014 09:42:04 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail.windriver.com (8.14.5/8.14.5) with ESMTP id s59GfthR016754
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Mon, 9 Jun 2014 09:41:55 -0700 (PDT)
-Received: from [128.224.56.48] (128.224.56.48) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server id 14.3.169.1;
-	Mon, 9 Jun 2014 09:41:55 -0700
-Message-ID: <5395E3C0.2010206@windriver.com>
-Date: Mon, 9 Jun 2014 12:41:36 -0400
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:24.0) Gecko/20100101 Thunderbird/24.5.0
+X-Spam-Status: No, score=0.0 required=5.0 tests=none autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: 
+X-Greylist: delayed 331 seconds by postgrey-1.32 at yocto-www;
+	Mon, 09 Jun 2014 09:47:34 PDT
+Received: from mail.rogue-research.com (mail.rogue-research.com [68.67.54.10])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 42AFEE00B0B
+	for <yocto@yoctoproject.org>; Mon,  9 Jun 2014 09:47:34 -0700 (PDT)
+Received: from localhost (localhost [127.0.0.1])
+	by mail.rogue-research.com (Postfix) with ESMTP id 6A354398995E
+	for <yocto@yoctoproject.org>; Mon,  9 Jun 2014 12:42:02 -0400 (EDT)
+X-Virus-Scanned: amavisd-new at rogue-research.com
+Received: from mail.rogue-research.com ([127.0.0.1])
+	by localhost (kingu.rogue-research.com [127.0.0.1]) (amavisd-new,
+	port 10024) with ESMTP id 9WzjP2SioRlN for <yocto@yoctoproject.org>;
+	Mon,  9 Jun 2014 12:41:58 -0400 (EDT)
+Received: from mail-ve0-f169.google.com (mail-ve0-f169.google.com
+	[209.85.128.169])
+	by mail.rogue-research.com (Postfix) with ESMTPSA id 0840B3989951
+	for <yocto@yoctoproject.org>; Mon,  9 Jun 2014 12:41:57 -0400 (EDT)
+Received: by mail-ve0-f169.google.com with SMTP id pa12so439961veb.14
+	for <yocto@yoctoproject.org>; Mon, 09 Jun 2014 09:41:57 -0700 (PDT)
 MIME-Version: 1.0
-To: Pierre Yves MORDRET <pierre-yves.mordret@st.com>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>
-References: <888B7DC5D4899F46A9721989283666969C1E50A1DC@SAFEX1MAIL5.st.com>
-In-Reply-To: <888B7DC5D4899F46A9721989283666969C1E50A1DC@SAFEX1MAIL5.st.com>
-Subject: Re: Conditional Configuration Fragments
+X-Received: by 10.52.249.76 with SMTP id ys12mr2287382vdc.63.1402332117385;
+	Mon, 09 Jun 2014 09:41:57 -0700 (PDT)
+Received: by 10.58.46.129 with HTTP; Mon, 9 Jun 2014 09:41:57 -0700 (PDT)
+Date: Mon, 9 Jun 2014 12:41:57 -0400
+Message-ID: <CACgAsMc0XGYRvr8+Y-3DFdTOhonvACuV3K60MkqD59vRp+EWkA@mail.gmail.com>
+From: =?UTF-8?Q?Kevyn=2DAlexandre_Par=C3=A9?= <kapare@rogue-research.com>
+To: Yocto discussion list <yocto@yoctoproject.org>
+Subject: How to add the same recipe twice?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,56 +46,57 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 09 Jun 2014 16:42:15 -0000
-Content-Type: text/plain; charset="windows-1252"; format=flowed
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Mon, 09 Jun 2014 16:47:38 -0000
+Content-Type: text/plain; charset=UTF-8
 
-On 14-06-09 11:26 AM, Pierre Yves MORDRET wrote:
-> Hello,
->
-> I really don’t know whether this is feasible or not, but I’m trying to
-> build a yocto image (custom image) with conditional configuration fragments.
->
-> Today I have 2 image type: one for deployment purpose and another for
-> debug purpose. Debug images is only a superset of deployment image with
-> additional debug capabilities: nothing else.
->
-> However now I would like to add additional linux kernel features to this
-> debug image (ex: CONFIG_DEBUG_INFO=y).
->
-> I want to add this feature into debug image, but NOT in deployment image.
->
-> I was thinking to create a .bbappend to my linux .bb file, but again I
-> don’t see how to use .bbappend in a conditional way (based on image name
-> for instance)
->
-> Do you have any idea to perform such request ?
+Hi,
 
-Fragments are either just added to the SRC_URI or KERNEL_FEATURES via
-the normal variable assignment rules.
+Here what I want to do:
+- Have 2 different psplash in my image.
 
-So if you have something that you can test on (image/distro feature as
-an example), you can use anonymous python and do a conditional
-assignment.
-
-Others on the list may have more elegant suggestions!
-
-Bruce
+Here what I have done:
+- Copy and rename the psplash recipe to psplash-desktop and modify
+couple of things.
 
 
->
-> Many thanks in advance
->
-> Description: Description: Description: Description: Description:
-> Description: Description: Description: Description: Description:
-> Description: Description: logo_big5
->
-> Pierre-Yves MORDRET |TINA: 166 7286 |Tel: +33 244027286 | Mobile: +33
-> 611091514
->
-> UPD | Middleware Integrator
->
->
->
+Here the warning I'm having:
+WARNING: The recipe psplash-desktop is trying to install files into a
+shared area when those files already exist. Those files and their
+manifest location are:
+   /home/knight/SVN/rogue/3rdParty/Yocto/trunk/starting_point/yocto_build/src/build/tmp/sysroots/overo/pkgdata/runtime/psplash-default
+   Matched in manifest-overo-psplash.packagedata
+manifest-overo-psplash-second.packagedata
+   /home/knight/SVN/rogue/3rdParty/Yocto/trunk/starting_point/yocto_build/src/build/tmp/sysroots/overo/pkgdata/runtime/psplash-default.packaged
+   Matched in manifest-overo-psplash.packagedata
+   /home/knight/SVN/rogue/3rdParty/Yocto/trunk/starting_point/yocto_build/src/build/tmp/sysroots/overo/pkgdata/runtime-reverse/psplash-default
+   Matched in manifest-overo-psplash.packagedata
+manifest-overo-psplash-second.packagedata
+Please verify which package should provide the above files.
+WARNING: The recipe psplash-desktop is trying to install files into a
+shared area when those files already exist. Those files and their
+manifest location are:
+   /home/knight/SVN/rogue/3rdParty/Yocto/trunk/starting_point/yocto_build/src/build/tmp/deploy/rpm/armv7a_vfp_neon/psplash-default-0.1+git0+afd4e228c6-r15.armv7a_vfp_neon.rpm
+   Matched in manifest-armv7a-vfp-neon-psplash.package_write_rpm
+Please verify which package should provide the above files.
 
+Here the error:
+http://pastebin.com/t2gYs3WT
+
+Here the diff of my psplash recipe compare to psplash original:
+http://pastebin.com/8TrQRFkQ
+
+In the chat sgw_ recommended my to use:...
+sgw_> kapare, now that I better understand, you want to mv your binary
+in the do_install_append(), and keep the update-alternative code and
+FILES_${PN} bin, but use the renamed binary in the
+ALTERNATIVE_LINK_NAME, but you also need ALTNATIVE_TARGET[psplash] =
+${bindir}/psplash-default
+
+There is something that I'm missing...
+
+Any idea what?
+
+BR,
+
+-KA
 
