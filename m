@@ -1,47 +1,34 @@
-Return-Path: <nicolas.dechesne@linaro.org>
+Return-Path: <paul.eggleton@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 3B003E00BEC; Tue, 10 Jun 2014 08:42:26 -0700 (PDT)
+	id 6F486E00BE1; Tue, 10 Jun 2014 09:04:07 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-0.7 required=5.0 tests=RCVD_IN_DNSWL_LOW
+X-Spam-Status: No, score=-5.0 required=5.0 tests=RCVD_IN_DNSWL_HI
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [209.85.214.181 listed in list.dnswl.org]
-Received: from mail-ob0-f181.google.com (mail-ob0-f181.google.com
-	[209.85.214.181])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CDD21E00B78
-	for <yocto@yoctoproject.org>; Tue, 10 Jun 2014 08:42:23 -0700 (PDT)
-Received: by mail-ob0-f181.google.com with SMTP id wm4so7719987obc.40
-	for <yocto@yoctoproject.org>; Tue, 10 Jun 2014 08:42:22 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc:content-type:content-transfer-encoding;
-	bh=zoM+QQVTrUWS5R/TxBiD8HguIyzxZi3n7Q5mA9IlekI=;
-	b=UiPQHlz3zWENMjB3oGukpTK0SjEiBptToSzpfqatO5zGEjXi9Qr/z/glsZvLAaVwc2
-	3r5KxC26na7qXw6CWWVNT4ZWNl7p8xsqse18LtnCRqeJgmLW9XBZa8WvLh1GAffuTlZT
-	EXJTZw+lJV8VzOe8Z59QsbZdU3MSlTW4tyC7DVg1hRsLN4NppAdVoIg8Vj8AMS+NAQLT
-	WYOYQmJvLGJ+/P2ST6vfRXlngeiQSIx1aMPGn5pJZUGuX0XHgeRwo5pXFset9MGsQCe8
-	TAZfXSwTfsjXss1eA1gHx0CF48HXOp9UWusMR0IxCElp5aXdt5SYJB2etPWlJjlVM/Uo
-	TNcw==
-X-Gm-Message-State: ALoCoQn2LC1GY+XP3RQ0r2R75TWvcteSf45nJ3zaIdwbazySz0X05n+pAhS5hCv1dyBw987aEtRV
-X-Received: by 10.182.171.7 with SMTP id aq7mr10370070obc.67.1402414942168;
-	Tue, 10 Jun 2014 08:42:22 -0700 (PDT)
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [192.55.52.88 listed in list.dnswl.org]
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2D5F8E00B83
+	for <yocto@yoctoproject.org>; Tue, 10 Jun 2014 09:03:52 -0700 (PDT)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by fmsmga101.fm.intel.com with ESMTP; 10 Jun 2014 09:03:45 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.98,1009,1392192000"; d="scan'208";a="545778007"
+Received: from cgwithan-mobl.gar.corp.intel.com (HELO
+	peggleto-mobl5.ger.corp.intel.com) ([10.252.120.176])
+	by fmsmga001.fm.intel.com with ESMTP; 10 Jun 2014 09:03:32 -0700
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: yocto@yoctoproject.org
+Date: Tue, 10 Jun 2014 17:03:30 +0100
+Message-ID: <1948853.WUEUBQNsJX@peggleto-mobl5.ger.corp.intel.com>
+Organization: Intel Corporation
+User-Agent: KMail/4.12.5 (Linux/3.14.5-200.fc20.x86_64; KDE/4.12.5; x86_64; ; )
+In-Reply-To: <CACgAsMdmdZO6-jePAyHJVSFJg6ntXDzSr2xmx6OqHh5qvVcB-g@mail.gmail.com>
+References: <CACgAsMdmdZO6-jePAyHJVSFJg6ntXDzSr2xmx6OqHh5qvVcB-g@mail.gmail.com>
 MIME-Version: 1.0
-Received: by 10.76.115.164 with HTTP; Tue, 10 Jun 2014 08:42:02 -0700 (PDT)
-In-Reply-To: <539718B9.9030604@mindchasers.com>
-References: <1402354370.9385.9.camel@marlon-Z68X-UD3H-B3>
-	<20140610103736.GC24880@gmail.com>
-	<CAALGJZaBFLsX3Knt35fGkvxh0uTz0-TQMZnveQh7paPZ9h438g@mail.gmail.com>
-	<539718B9.9030604@mindchasers.com>
-From: Nicolas Dechesne <nicolas.dechesne@linaro.org>
-Date: Tue, 10 Jun 2014 17:42:02 +0200
-Message-ID: <CAP71Wjy3uBiWuzPgaT7pfAd=rW2qh0R44srPY41GAPG9CMMD2Q@mail.gmail.com>
-To: Bob Cochran <yocto@mindchasers.com>
-Cc: Yocto list discussion <yocto@yoctoproject.org>
-Subject: Re: Why use Yocto?
+Subject: Re: [oe] How to add the same recipe twice?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -53,66 +40,98 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 10 Jun 2014 15:42:26 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Tue, 10 Jun 2014 16:04:07 -0000
 Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="iso-8859-1"
 
-On Tue, Jun 10, 2014 at 4:39 PM, Bob Cochran <yocto@mindchasers.com> wrote:
->
-> How dp you plan to sell/market/license your Ubuntu based machine?
->
-> Would you become an Ubuntu hardware partner?
-> http://www.ubuntu.com/partners/find-a-partner/hardware
->
-> The scope of this partnership seems to be servers and desktops.  I assume
-> they also have something in the works for smart phone partners.
->
-> However, I'm guessing you're building something that doesn't fit these
-> categories.
->
-> I remember seeing various demo images over the years of Ubuntu running on
-> embedded hardware, but it always seems to fizzle out.  EmbeddedUbuntu on =
-the
-> Ubuntu Wiki was last updated in 2009.
->
-> But maybe you're talking with people at Canonical and they are telling yo=
-u
-> something different? If so, please share.
+Hi Kevyn-Alexandre,
 
-i guess this is of interest for the discussion (from [1]):
+On Monday 09 June 2014 14:26:53 Kevyn-Alexandre Par=E9 wrote:
+> Here what I want to do:
+> - Have 2 different psplash in my image.
+>=20
+> Here what I have done:
+> - Copy and rename the psplash recipe to psplash-desktop and modify
+> couple of things.
+>=20
+>=20
+> Here the warning I'm having:
+> WARNING: The recipe psplash-desktop is trying to install files into a=
 
-=3D=3D=3D
-2. Your use of Ubuntu
+> shared area when those files already exist. Those files and their
+> manifest location are:
+>  =20
+> /home/knight/SVN/rogue/3rdParty/Yocto/trunk/starting_point/yocto_buil=
+d/src/
+> build/tmp/sysroots/overo/pkgdata/runtime/psplash-default Matched in
+> manifest-overo-psplash.packagedata
+> manifest-overo-psplash-second.packagedata
+>  =20
+> /home/knight/SVN/rogue/3rdParty/Yocto/trunk/starting_point/yocto_buil=
+d/src/
+> build/tmp/sysroots/overo/pkgdata/runtime/psplash-default.packaged Mat=
+ched in
+> manifest-overo-psplash.packagedata
+>  =20
+> /home/knight/SVN/rogue/3rdParty/Yocto/trunk/starting_point/yocto_buil=
+d/src/
+> build/tmp/sysroots/overo/pkgdata/runtime-reverse/psplash-default Matc=
+hed in
+> manifest-overo-psplash.packagedata
+> manifest-overo-psplash-second.packagedata
+> Please verify which package should provide the above files.
+> WARNING: The recipe psplash-desktop is trying to install files into a=
 
-You can download, install and receive updates to Ubuntu for free.
-Ubuntu is freely available to all users for personal, or in the case
-of organisations, internal use. It is provided for this use without
-warranty. All implied warranties are disclaimed to the fullest extent
-permitted at law.
+> shared area when those files already exist. Those files and their
+> manifest location are:
+>  =20
+> /home/knight/SVN/rogue/3rdParty/Yocto/trunk/starting_point/yocto_buil=
+d/src/
+> build/tmp/deploy/rpm/armv7a_vfp_neon/psplash-default-0.1+git0+afd4e22=
+8c6-r15
+> .armv7a_vfp_neon.rpm Matched in
+> manifest-armv7a-vfp-neon-psplash.package_write_rpm
+> Please verify which package should provide the above files.
+>=20
+> Here the error:
+> http://pastebin.com/t2gYs3WT
+>=20
+> Here the diff of my psplash recipe compare to psplash original:
+> http://pastebin.com/8TrQRFkQ
+>=20
+> In the chat sgw_ recommended my to use:...
+> sgw_> kapare, now that I better understand, you want to mv your binar=
+y
+> in the do_install_append(), and keep the update-alternative code and
+> FILES_${PN} bin, but use the renamed binary in the
+> ALTERNATIVE_LINK_NAME, but you also need ALTNATIVE_TARGET[psplash] =3D=
 
-You can modify Ubuntu for personal or internal use.
-You can make changes to Ubuntu for your own personal use or for your
-organisation=E2=80=99s own internal use.
+> ${bindir}/psplash-default
 
-You can redistribute Ubuntu, but only where there has been no
-modification to it.
-You can redistribute Ubuntu in its unmodified form, complete with the
-installer images and packages provided by Canonical (this includes the
-publication or launch of virtual machine images).
+FYI, our psplash recipe has built-in handling for multiple splash image=
+s, so=20
+you don't need to add multiple recipes to use this. You just need a=20
+psplash_git.bbappend in your own layer which does something like this:
 
-Any redistribution of modified versions of Ubuntu must be approved,
-certified or provided by Canonical if you are going to associate it
-with the Trademarks. Otherwise you must remove and replace the
-Trademarks and will need to recompile the source code to create your
-own binaries. This does not affect your rights under any open source
-licence applicable to any of the components of Ubuntu. If you need us
-to approve, certify or provide modified versions for redistribution
-you will require a licence agreement from Canonical, for which you may
-be required to pay. For further information, please contact us (as set
-out below).
-=3D=3D=3D
+FILESEXTRAPATHS_prepend :=3D "${THISDIR}/files:"
+SPLASH_IMAGES =3D "file://splash-file-one.h;outsuffix=3Done \
+                          file://splash-file-two.h;outsuffix=3Dtwo"
 
-IANAL... but i guess the last paragraph clarifies what you can do (or not).
+This will automatically create psplash-<outsuffix> packages for each sp=
+lash=20
+image entry (i.e. psplash-one and psplash-two in this case), and set up=
+=20
+update-alternatives alternatives for each one.
 
-[1] http://www.canonical.com/intellectual-property-rights-policy
+(I realise we don't have this documented anywhere, I've added a todo li=
+st item=20
+for me to document it.)
+
+Cheers,
+Paul
+
+--=20
+
+Paul Eggleton
+Intel Open Source Technology Centre
 
