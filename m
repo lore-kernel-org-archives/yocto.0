@@ -1,6 +1,6 @@
-Return-Path: <pierre-yves.mordret@st.com>
+Return-Path: <nicolas.dechesne@linaro.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id AB9A2E00C14; Tue, 10 Jun 2014 08:36:07 -0700 (PDT)
+	id 3B003E00BEC; Tue, 10 Jun 2014 08:42:26 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -8,45 +8,40 @@ X-Spam-Status: No, score=-0.7 required=5.0 tests=RCVD_IN_DNSWL_LOW
 	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
 	http://www.dnswl.org/, low *      trust
-	*      [91.207.212.93 listed in list.dnswl.org]
-X-Greylist: delayed 1421 seconds by postgrey-1.32 at yocto-www;
-	Tue, 10 Jun 2014 08:35:52 PDT
-Received: from mx08-00178001.pphosted.com (mx08-00178001.pphosted.com
-	[91.207.212.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8A6EFE00BF5
-	for <yocto@yoctoproject.org>; Tue, 10 Jun 2014 08:35:52 -0700 (PDT)
-Received: from pps.filterd (m0046660.ppops.net [127.0.0.1])
-	by mx08-00178001.pphosted.com (8.14.5/8.14.5) with SMTP id
-	s5AF9Cv6016731; Tue, 10 Jun 2014 17:12:07 +0200
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-	by mx08-00178001.pphosted.com with ESMTP id 1mdc41xyq9-1
-	(version=TLSv1/SSLv3 cipher=AES256-SHA bits=256 verify=NOT);
-	Tue, 10 Jun 2014 17:12:07 +0200
-Received: from zeta.dmz-eu.st.com (zeta.dmz-eu.st.com [164.129.230.9])
-	by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 4816851;
-	Tue, 10 Jun 2014 15:12:01 +0000 (GMT)
-Received: from Webmail-eu.st.com (safex1hubcas5.st.com [10.75.90.71])
-	by zeta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 8292C2D1B6;
-	Tue, 10 Jun 2014 15:12:01 +0000 (GMT)
-Received: from SAFEX1MAIL5.st.com ([10.75.90.28]) by Safex1hubcas5.st.com
-	([10.75.90.71]) with mapi; Tue, 10 Jun 2014 17:12:01 +0200
-From: Pierre Yves MORDRET <pierre-yves.mordret@st.com>
-To: Paul Eggleton <paul.eggleton@linux.intel.com>
-Date: Tue, 10 Jun 2014 17:11:59 +0200
-Thread-Topic: [yocto] Conditional Configuration Fragments
-Thread-Index: Ac+EvQMTZ9ZLd1ktQH2x8DggKfP3nQ==
-Message-ID: <888B7DC5D4899F46A9721989283666969C1E50A2A2@SAFEX1MAIL5.st.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-acceptlanguage: en-US
+	*      [209.85.214.181 listed in list.dnswl.org]
+Received: from mail-ob0-f181.google.com (mail-ob0-f181.google.com
+	[209.85.214.181])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CDD21E00B78
+	for <yocto@yoctoproject.org>; Tue, 10 Jun 2014 08:42:23 -0700 (PDT)
+Received: by mail-ob0-f181.google.com with SMTP id wm4so7719987obc.40
+	for <yocto@yoctoproject.org>; Tue, 10 Jun 2014 08:42:22 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc:content-type:content-transfer-encoding;
+	bh=zoM+QQVTrUWS5R/TxBiD8HguIyzxZi3n7Q5mA9IlekI=;
+	b=UiPQHlz3zWENMjB3oGukpTK0SjEiBptToSzpfqatO5zGEjXi9Qr/z/glsZvLAaVwc2
+	3r5KxC26na7qXw6CWWVNT4ZWNl7p8xsqse18LtnCRqeJgmLW9XBZa8WvLh1GAffuTlZT
+	EXJTZw+lJV8VzOe8Z59QsbZdU3MSlTW4tyC7DVg1hRsLN4NppAdVoIg8Vj8AMS+NAQLT
+	WYOYQmJvLGJ+/P2ST6vfRXlngeiQSIx1aMPGn5pJZUGuX0XHgeRwo5pXFset9MGsQCe8
+	TAZfXSwTfsjXss1eA1gHx0CF48HXOp9UWusMR0IxCElp5aXdt5SYJB2etPWlJjlVM/Uo
+	TNcw==
+X-Gm-Message-State: ALoCoQn2LC1GY+XP3RQ0r2R75TWvcteSf45nJ3zaIdwbazySz0X05n+pAhS5hCv1dyBw987aEtRV
+X-Received: by 10.182.171.7 with SMTP id aq7mr10370070obc.67.1402414942168;
+	Tue, 10 Jun 2014 08:42:22 -0700 (PDT)
 MIME-Version: 1.0
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10432:5.12.52, 1.0.14,
-	0.0.0000
-	definitions=2014-06-10_05:2014-06-10, 2014-06-10,
-	1970-01-01 signatures=0
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Conditional Configuration Fragments
+Received: by 10.76.115.164 with HTTP; Tue, 10 Jun 2014 08:42:02 -0700 (PDT)
+In-Reply-To: <539718B9.9030604@mindchasers.com>
+References: <1402354370.9385.9.camel@marlon-Z68X-UD3H-B3>
+	<20140610103736.GC24880@gmail.com>
+	<CAALGJZaBFLsX3Knt35fGkvxh0uTz0-TQMZnveQh7paPZ9h438g@mail.gmail.com>
+	<539718B9.9030604@mindchasers.com>
+From: Nicolas Dechesne <nicolas.dechesne@linaro.org>
+Date: Tue, 10 Jun 2014 17:42:02 +0200
+Message-ID: <CAP71Wjy3uBiWuzPgaT7pfAd=rW2qh0R44srPY41GAPG9CMMD2Q@mail.gmail.com>
+To: Bob Cochran <yocto@mindchasers.com>
+Cc: Yocto list discussion <yocto@yoctoproject.org>
+Subject: Re: Why use Yocto?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -58,81 +53,66 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 10 Jun 2014 15:36:07 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Tue, 10 Jun 2014 15:42:26 -0000
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-On Monday 09 June 2014 09:56:20 Paul Eggleton <paul.eggleton@linux.intel.co=
-m> wrote:
-> On Monday 09 June 2014 12:41:36 Bruce Ashfield wrote:
-> > On 14-06-09 11:26 AM, Pierre Yves MORDRET wrote:
-> > > Hello,
-> > >=20
-> > > I really don't know whether this is feasible or not, but I'm trying t=
-o
-> > > build a yocto image (custom image) with conditional configuration
-> > > fragments.
-> > >=20
-> > > Today I have 2 image type: one for deployment purpose and another for
-> > > debug purpose. Debug images is only a superset of deployment image wi=
-th
-> > > additional debug capabilities: nothing else.
-> > >=20
-> > > However now I would like to add additional linux kernel features to t=
-his
-> > > debug image (ex: CONFIG_DEBUG_INFO=3Dy).
-> > >=20
-> > > I want to add this feature into debug image, but NOT in deployment im=
-age.
-> > >=20
-> > > I was thinking to create a .bbappend to my linux .bb file, but again =
-I
-> > > don't see how to use .bbappend in a conditional way (based on image n=
-ame
-> > > for instance)
-> > >=20
-> > > Do you have any idea to perform such request ?
-> >=20
-> > Fragments are either just added to the SRC_URI or KERNEL_FEATURES via
-> > the normal variable assignment rules.
-> >=20
-> > So if you have something that you can test on (image/distro feature as
-> > an example), you can use anonymous python and do a conditional
-> > assignment.
-> >=20
-> > Others on the list may have more elegant suggestions!
->=20
-> This can't work for what Pierre is asking for. You can't have a single re=
-cipe=20
-> built differently depending on what image is being built - our system doe=
-s not=20
-> work that way. At a basic level, recipes create packages, and then the im=
-age=20
-> recipe selects which packages should go into the image.
->=20
-> Given that the kernel does not produce named packages in our system, I'm =
-not=20
-> sure we currently have a way to build two different kernel recipes and se=
-lect=20
-> one in one image and another in another image (which is the way we normal=
-ly=20
-> handle this kind of requirement with other recipes.) Probably the only wa=
-y to=20
-> do this is to have two completely separate build directories.
+On Tue, Jun 10, 2014 at 4:39 PM, Bob Cochran <yocto@mindchasers.com> wrote:
+>
+> How dp you plan to sell/market/license your Ubuntu based machine?
+>
+> Would you become an Ubuntu hardware partner?
+> http://www.ubuntu.com/partners/find-a-partner/hardware
+>
+> The scope of this partnership seems to be servers and desktops.  I assume
+> they also have something in the works for smart phone partners.
+>
+> However, I'm guessing you're building something that doesn't fit these
+> categories.
+>
+> I remember seeing various demo images over the years of Ubuntu running on
+> embedded hardware, but it always seems to fizzle out.  EmbeddedUbuntu on =
+the
+> Ubuntu Wiki was last updated in 2009.
+>
+> But maybe you're talking with people at Canonical and they are telling yo=
+u
+> something different? If so, please share.
 
-Many Thanks for your answers.
-Thus I was thinking of making 2 separate linux.bb, one for deployment and t=
-he other for debug (i.e. linux-debug.bb) and update PREFERRED_PROVIDER_virt=
-ual/kernel accordingly.
-But is there an automatic way to select proper .bb (linux.bb or linux-debug=
-.bb) file like setting this variable(PREFERRED_PROVIDER_virtual/kernel) wit=
-hin the .bb image file ? Won't it work ?
+i guess this is of interest for the discussion (from [1]):
 
-Another option which is coming on top of my mind:
-SRC_URI_append_<image-name> =3D " file://configuration_segment.cfg"
-Is it something realistic and working ?=20
+=3D=3D=3D
+2. Your use of Ubuntu
 
-Please advise
-Many thanks in advance
+You can download, install and receive updates to Ubuntu for free.
+Ubuntu is freely available to all users for personal, or in the case
+of organisations, internal use. It is provided for this use without
+warranty. All implied warranties are disclaimed to the fullest extent
+permitted at law.
+
+You can modify Ubuntu for personal or internal use.
+You can make changes to Ubuntu for your own personal use or for your
+organisation=E2=80=99s own internal use.
+
+You can redistribute Ubuntu, but only where there has been no
+modification to it.
+You can redistribute Ubuntu in its unmodified form, complete with the
+installer images and packages provided by Canonical (this includes the
+publication or launch of virtual machine images).
+
+Any redistribution of modified versions of Ubuntu must be approved,
+certified or provided by Canonical if you are going to associate it
+with the Trademarks. Otherwise you must remove and replace the
+Trademarks and will need to recompile the source code to create your
+own binaries. This does not affect your rights under any open source
+licence applicable to any of the components of Ubuntu. If you need us
+to approve, certify or provide modified versions for redistribution
+you will require a licence agreement from Canonical, for which you may
+be required to pay. For further information, please contact us (as set
+out below).
+=3D=3D=3D
+
+IANAL... but i guess the last paragraph clarifies what you can do (or not).
+
+[1] http://www.canonical.com/intellectual-property-rights-policy
 
