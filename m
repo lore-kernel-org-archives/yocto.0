@@ -1,45 +1,48 @@
-Return-Path: <kapare@rogue-research.com>
+Return-Path: <steve.strobel3@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 87B18E00BF8; Tue, 10 Jun 2014 10:32:34 -0700 (PDT)
+	id 2ECE9E00BAE; Tue, 10 Jun 2014 10:51:31 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=0.0 required=5.0 tests=none autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: 
-Received: from mail.rogue-research.com (mail.rogue-research.com [68.67.54.10])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BA17FE00BF6
-	for <yocto@yoctoproject.org>; Tue, 10 Jun 2014 10:32:31 -0700 (PDT)
-Received: from localhost (localhost [127.0.0.1])
-	by mail.rogue-research.com (Postfix) with ESMTP id BD6DD3997043
-	for <yocto@yoctoproject.org>; Tue, 10 Jun 2014 13:32:30 -0400 (EDT)
-X-Virus-Scanned: amavisd-new at rogue-research.com
-Received: from mail.rogue-research.com ([127.0.0.1])
-	by localhost (kingu.rogue-research.com [127.0.0.1]) (amavisd-new,
-	port 10024) with ESMTP id S97Mh+nLYIr0 for <yocto@yoctoproject.org>;
-	Tue, 10 Jun 2014 13:32:22 -0400 (EDT)
-Received: from mail-vc0-f182.google.com (mail-vc0-f182.google.com
-	[209.85.220.182])
-	by mail.rogue-research.com (Postfix) with ESMTPSA id 6EB61399702D
-	for <yocto@yoctoproject.org>; Tue, 10 Jun 2014 13:32:22 -0400 (EDT)
-Received: by mail-vc0-f182.google.com with SMTP id il7so8272902vcb.13
-	for <yocto@yoctoproject.org>; Tue, 10 Jun 2014 10:32:21 -0700 (PDT)
+X-Spam-Status: No, score=-0.7 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+	HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: *  0.0 HTML_MESSAGE BODY: HTML included in message
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [74.125.82.171 listed in list.dnswl.org]
+Received: from mail-we0-f171.google.com (mail-we0-f171.google.com
+	[74.125.82.171])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AADCAE00B78
+	for <yocto@yoctoproject.org>; Tue, 10 Jun 2014 10:51:24 -0700 (PDT)
+Received: by mail-we0-f171.google.com with SMTP id q58so4284538wes.16
+	for <yocto@yoctoproject.org>; Tue, 10 Jun 2014 10:51:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:reply-to:sender:from:date:message-id:subject:to
+	:content-type; bh=qTkdLBc+05CQvtTXRT/DEGUBi97kyn2aDIiS5Kzitp0=;
+	b=ovp/ZvS2V/va7FYQB1E0uCzRWoiNJdOctGb4Db65c+QiyIOKqHDOvdYXn8Tg0D52Ra
+	tC8ucRHexXUbpPIwcuJnQM5O2Mr1nZP6d640hvzVk78E6IwjtSzgu83BOSIIWDReiLM5
+	CtvEimrYSrCLRet5dQqavltQ+hPACnHxkjdyO/+ZTAQWoEY8gUj/M8X/s1CNm3JZ5ITv
+	e2fuslxcFWR//06NFWieKa+u+g+WTrgxUCw+zj1K+kfQ7cIA4t0MRRnpcn+jtGIMwd8I
+	uDdj69P7llIaJoToMqt8/SyI9rmbB9UmcJgKkjOyooCG8K8N1Uv/EDWHNC/O2kpcgvtC
+	MdnQ==
+X-Received: by 10.180.14.40 with SMTP id m8mr40651797wic.50.1402422683177;
+	Tue, 10 Jun 2014 10:51:23 -0700 (PDT)
 MIME-Version: 1.0
-X-Received: by 10.58.186.207 with SMTP id fm15mr34632315vec.4.1402421541712;
-	Tue, 10 Jun 2014 10:32:21 -0700 (PDT)
-Received: by 10.58.46.129 with HTTP; Tue, 10 Jun 2014 10:32:21 -0700 (PDT)
-In-Reply-To: <1948853.WUEUBQNsJX@peggleto-mobl5.ger.corp.intel.com>
-References: <CACgAsMdmdZO6-jePAyHJVSFJg6ntXDzSr2xmx6OqHh5qvVcB-g@mail.gmail.com>
-	<1948853.WUEUBQNsJX@peggleto-mobl5.ger.corp.intel.com>
-Date: Tue, 10 Jun 2014 13:32:21 -0400
-Message-ID: <CACgAsMeVmQe6iG0qD1KVatZYsvQCuO21Ymj=0oZCVVbyHFwVzQ@mail.gmail.com>
-From: =?UTF-8?Q?Kevyn=2DAlexandre_Par=C3=A9?= <kapare@rogue-research.com>
-To: Paul Eggleton <paul.eggleton@linux.intel.com>
-Cc: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: [oe] How to add the same recipe twice?
+Sender: steve.strobel3@gmail.com
+Received: by 10.194.246.69 with HTTP; Tue, 10 Jun 2014 10:51:08 -0700 (PDT)
+From: Steve Strobel <steve.strobel@link-comm.com>
+Date: Tue, 10 Jun 2014 11:51:08 -0600
+X-Google-Sender-Auth: 4xxW_hYtbPglCmm9pbWxQOaIQd4
+Message-ID: <CAGrmWbw1TPogQ=7x0MN3PAEc9S3XFrz0hR0Nsaixs2VRku4uNw@mail.gmail.com>
+To: yocto@yoctoproject.org
+Subject: Yocto support for TX28 module from Karo Electronics?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
+Reply-To: steve.strobel@link-comm.com
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -48,43 +51,73 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 10 Jun 2014 17:32:34 -0000
+X-List-Received-Date: Tue, 10 Jun 2014 17:51:31 -0000
+Content-Type: multipart/alternative; boundary=f46d04138cbfdb1a6304fb7ef983
+
+--f46d04138cbfdb1a6304fb7ef983
 Content-Type: text/plain; charset=UTF-8
 
-Hi Paul,
+My company is considering incorporating the TX28 module (Freescale i.MX287)
+[1] into a new project.  I would like to use Yocto with it, and wondered if
+there was a BSP already set up for it.  I didn't find one here [2], but I
+did find a reference to it here [3] and here [4].  Does that just indicate
+that someone set up Yocto for it on their own, but that support has not
+been incorporated into the standard release?
 
+Thanks for any pointers,
+Steve
+
+[1] - <http://www.karo-electronics.com/tx28.html>
+[2] - <https://www.yoctoproject.org/downloads/bsp>
+[3] - <
+http://stash.imko.de/projects/GLOBLOG/repos/meta-tx28/commits/04e94025c9af14f6ecc1f13959b33f038230b3ce#conf/machine/tx28.conf
 >
-> FYI, our psplash recipe has built-in handling for multiple splash images, so
-> you don't need to add multiple recipes to use this. You just need a
-> psplash_git.bbappend in your own layer which does something like this:
->
+[4] - <https://bitbucket.org/imko/meta-tx28>
 
-Notice after sending my email....
+-- 
+Steve Strobel
+Link Communications, Inc.
+1035 Cerise Rd
+Billings, MT 59101-7378
+(406) 245-5002 ext 102
+(406) 245-4889 (fax)
+WWW: http://www.link-comm.com
+MailTo:steve.strobel@link-comm.com
 
-> FILESEXTRAPATHS_prepend := "${THISDIR}/files:"
-> SPLASH_IMAGES = "file://splash-file-one.h;outsuffix=one \
->                           file://splash-file-two.h;outsuffix=two"
->
-> This will automatically create psplash-<outsuffix> packages for each splash
-> image entry (i.e. psplash-one and psplash-two in this case), and set up
-> update-alternatives alternatives for each one.
->
-> (I realise we don't have this documented anywhere, I've added a todo list item
-> for me to document it.)
+--f46d04138cbfdb1a6304fb7ef983
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-AAAA thank you very much for the detail explanation! I didn't
-understand properly the outsuffix option and change/remove it without
-success. You should simply add in the main recipe something like
-that?:
+<div dir=3D"ltr">My company is considering incorporating the TX28 module (F=
+reescale i.MX287) [1] into a new project. =C2=A0I would like to use Yocto w=
+ith it, and wondered if there was a BSP already set up for it. =C2=A0I didn=
+&#39;t find one here [2], but I did find a reference to it here [3] and her=
+e [4]. =C2=A0Does that just indicate that someone set up Yocto for it on th=
+eir own, but that support has not been incorporated into the standard relea=
+se? =C2=A0<div>
 
-# To have multiple psplash append with:
-# FILESEXTRAPATHS_prepend := "${THISDIR}/files:"
-# SPLASH_IMAGES = "file://splash-file-one.h;outsuffix=one \
-#                           file://splash-file-two.h;outsuffix=two"
+<br></div><div>Thanks for any pointers,</div><div>Steve<div><br></div><div>=
+[1] - &lt;<a href=3D"http://www.karo-electronics.com/tx28.html">http://www.=
+karo-electronics.com/tx28.html</a>&gt;</div><div>[2] - &lt;<a href=3D"https=
+://www.yoctoproject.org/downloads/bsp">https://www.yoctoproject.org/downloa=
+ds/bsp</a>&gt;</div>
 
-Will try your solution
+<div>[3] - &lt;<a href=3D"http://stash.imko.de/projects/GLOBLOG/repos/meta-=
+tx28/commits/04e94025c9af14f6ecc1f13959b33f038230b3ce#conf/machine/tx28.con=
+f">http://stash.imko.de/projects/GLOBLOG/repos/meta-tx28/commits/04e94025c9=
+af14f6ecc1f13959b33f038230b3ce#conf/machine/tx28.conf</a>&gt;</div>
 
-thx,
+<div>[4] - &lt;<a href=3D"https://bitbucket.org/imko/meta-tx28">https://bit=
+bucket.org/imko/meta-tx28</a>&gt;<br clear=3D"all"><div><br></div>-- <br>St=
+eve Strobel<br>Link Communications, Inc.<br>1035 Cerise Rd<br>Billings, MT =
+59101-7378<br>
 
--KA
+(406) 245-5002 ext 102<br>(406) 245-4889 (fax)<br>WWW: <a href=3D"http://ww=
+w.link-comm.com" target=3D"_blank">http://www.link-comm.com</a><br>MailTo:<=
+a href=3D"mailto:steve.strobel@link-comm.com" target=3D"_blank">steve.strob=
+el@link-comm.com</a><br>
 
+
+</div></div></div>
+
+--f46d04138cbfdb1a6304fb7ef983--
