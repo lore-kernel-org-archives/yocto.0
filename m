@@ -1,43 +1,42 @@
-Return-Path: <ajlennon@dynamicdevices.co.uk>
+Return-Path: <kapare@rogue-research.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 2F473E00BAE; Tue, 10 Jun 2014 10:17:11 -0700 (PDT)
+	id 9142EE00BAE; Tue, 10 Jun 2014 10:25:16 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=0.0 required=5.0 tests=HTML_MESSAGE autolearn=ham
+X-Spam-Status: No, score=0.0 required=5.0 tests=none autolearn=ham
 	version=3.3.1
-X-Spam-HAM-Report: *  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from www.dynamicdevices.co.uk (www.dynamicdevices.co.uk
-	[89.200.136.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A73DBE00B78
-	for <yocto@yoctoproject.org>; Tue, 10 Jun 2014 10:17:04 -0700 (PDT)
+X-Spam-HAM-Report: 
+Received: from mail.rogue-research.com (mail.rogue-research.com [68.67.54.10])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4C939E00B78
+	for <yocto@yoctoproject.org>; Tue, 10 Jun 2014 10:25:12 -0700 (PDT)
 Received: from localhost (localhost [127.0.0.1])
-	by www.dynamicdevices.co.uk (Postfix) with ESMTP id 675AE27E036;
-	Tue, 10 Jun 2014 17:17:02 +0000 (UTC)
-X-Virus-Scanned: Debian amavisd-new at lennoab2.miniserver.com
-Received: from www.dynamicdevices.co.uk ([127.0.0.1])
-	by localhost (www.dynamicdevices.co.uk [127.0.0.1]) (amavisd-new,
-	port 10024)
-	with ESMTP id VFrlqqBM4Ff2; Tue, 10 Jun 2014 17:16:34 +0000 (UTC)
-Received: from [127.0.0.1] (cpc32-live22-2-0-cust59.17-2.cable.virginm.net
-	[82.36.253.60])
-	(using TLSv1 with cipher ECDHE-RSA-AES128-SHA (128/128 bits))
-	(No client certificate requested)
-	by www.dynamicdevices.co.uk (Postfix) with ESMTPSA id 8381B27E02F;
-	Tue, 10 Jun 2014 17:16:34 +0000 (UTC)
-Message-ID: <53973D6F.70201@dynamicdevices.co.uk>
-Date: Tue, 10 Jun 2014 18:16:31 +0100
-From: Alex J Lennon <ajlennon@dynamicdevices.co.uk>
-User-Agent: Mozilla/5.0 (Windows NT 6.3; WOW64;
-	rv:24.0) Gecko/20100101 Thunderbird/24.5.0
+	by mail.rogue-research.com (Postfix) with ESMTP id B3C353996E9D
+	for <yocto@yoctoproject.org>; Tue, 10 Jun 2014 13:25:10 -0400 (EDT)
+X-Virus-Scanned: amavisd-new at rogue-research.com
+Received: from mail.rogue-research.com ([127.0.0.1])
+	by localhost (kingu.rogue-research.com [127.0.0.1]) (amavisd-new,
+	port 10024) with ESMTP id 1dQrL2bMIHNa for <yocto@yoctoproject.org>;
+	Tue, 10 Jun 2014 13:25:02 -0400 (EDT)
+Received: from mail-ve0-f177.google.com (mail-ve0-f177.google.com
+	[209.85.128.177])
+	by mail.rogue-research.com (Postfix) with ESMTPSA id CBB9F3996E7A
+	for <yocto@yoctoproject.org>; Tue, 10 Jun 2014 13:25:02 -0400 (EDT)
+Received: by mail-ve0-f177.google.com with SMTP id oz11so3837671veb.22
+	for <yocto@yoctoproject.org>; Tue, 10 Jun 2014 10:25:02 -0700 (PDT)
 MIME-Version: 1.0
-To: Marlon Smith <marlon.smith10@gmail.com>
-References: <1402354370.9385.9.camel@marlon-Z68X-UD3H-B3>	<20140610103736.GC24880@gmail.com>	<CAALGJZaBFLsX3Knt35fGkvxh0uTz0-TQMZnveQh7paPZ9h438g@mail.gmail.com>	<539718B9.9030604@mindchasers.com>	<CAP71Wjy3uBiWuzPgaT7pfAd=rW2qh0R44srPY41GAPG9CMMD2Q@mail.gmail.com>
-	<1402419009.2402.4.camel@marlon-Z68X-UD3H-B3>
-In-Reply-To: <1402419009.2402.4.camel@marlon-Z68X-UD3H-B3>
-X-Enigmail-Version: 1.6
-Cc: yocto@yoctoproject.org
-Subject: Re: Why use Yocto?
+X-Received: by 10.52.185.72 with SMTP id fa8mr28620879vdc.12.1402421102189;
+	Tue, 10 Jun 2014 10:25:02 -0700 (PDT)
+Received: by 10.58.46.129 with HTTP; Tue, 10 Jun 2014 10:25:02 -0700 (PDT)
+In-Reply-To: <539725A6.6020407@linux.intel.com>
+References: <CACgAsMc0XGYRvr8+Y-3DFdTOhonvACuV3K60MkqD59vRp+EWkA@mail.gmail.com>
+	<539725A6.6020407@linux.intel.com>
+Date: Tue, 10 Jun 2014 13:25:02 -0400
+Message-ID: <CACgAsMe_vf3LfcVDjy0GOy=nEBAr8LxCTpDaPhxBg9Rhh0jFFA@mail.gmail.com>
+From: =?UTF-8?Q?Kevyn=2DAlexandre_Par=C3=A9?= <kapare@rogue-research.com>
+To: Saul Wold <sgw@linux.intel.com>
+Cc: Yocto discussion list <yocto@yoctoproject.org>
+Subject: Re: How to add the same recipe twice?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -49,81 +48,58 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 10 Jun 2014 17:17:11 -0000
-Content-Type: multipart/alternative;
-	boundary="------------040100040500040609010308"
+X-List-Received-Date: Tue, 10 Jun 2014 17:25:16 -0000
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
---------------040100040500040609010308
-Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: 7bit
+Hi,
 
+On Tue, Jun 10, 2014 at 11:35 AM, Saul Wold <sgw@linux.intel.com> wrote:
+> On 06/09/2014 09:41 AM, Kevyn-Alexandre Par=C3=A9 wrote:
+>>
+>> Hi,
+>>
+>> Here what I want to do:
+>> - Have 2 different psplash in my image.
+>>
+>> Here what I have done:
+>> - Copy and rename the psplash recipe to psplash-desktop and modify
+>> couple of things.
+>>
+> psplash does some interesting package name manipulation, based on what
+> additional splash files are being provided.
 
-On 10/06/2014 17:50, Marlon Smith wrote:
-> Wow, thanks everyone for the excellent replies.  I am a developer and
-> not much of a legal guy, so pointing out the licensing issues with
-> Ubuntu was especially helpful.
+Notice that after pressing send... but I didn't get the outsufix
+option properly... I will try the explanation that Paul gave me:
+http://thread.gmane.org/gmane.comp.handhelds.openembedded
+
+sorry for same post on different mailling list forgot to cc it.
+
 >
-> It sounds like we are going to choose Yocto for our product.
+> I am not sure if you are trying to change more than the splash image or n=
+ot.
 
-Further to the excellent points made by others, presumably Freescale are
-providing commercial support on Yocto for i.MX6 now too.
+Ok so let me try to clarify my explanation:
+Let's say I want to have psplash recipe psplash2 receipe on the same
+image. Let say that one psplash have progress bar and the other one
+doesn't. Both will be install on /usr/bin/psplash* and this is why I'm
+having these error / warning.
 
-I know they have a developer day coming up in the UK shortly at which
-Yocto is on the agenda.
+What will be the recommended way to behave in that case?
 
-I also suspect they will have some "ready to run" binaries somewhere for
-download, although I can't spot them in the walled garden.
+My mistake was maybe simply to reuse the entire receipe of psplash and
+not simply append and change what I needed from?
 
-They usually do, and that might even be enough for you, depending on
-your needs, and how custom the board variant is...
+>
+> This seems to indicate that you might have another recipe called
+> psplash-second (maybe a past attempt at this) and it's causing some issue=
+s?
+>
 
-Regards,
+thx will retry from scratch? but every time I was using bibake
+<recipes list> -f -c clean and checking that build folder there
+nothing related to psplash...
 
-Alex
 
+-KA
 
---------------040100040500040609010308
-Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: 7bit
-
-<html>
-  <head>
-    <meta content="text/html; charset=ISO-8859-1"
-      http-equiv="Content-Type">
-  </head>
-  <body text="#000000" bgcolor="#FFFFFF">
-    <br>
-    <div class="moz-cite-prefix">On 10/06/2014 17:50, Marlon Smith
-      wrote:<br>
-    </div>
-    <blockquote cite="mid:1402419009.2402.4.camel@marlon-Z68X-UD3H-B3"
-      type="cite">
-      <meta http-equiv="Content-Type" content="text/html;
-        charset=ISO-8859-1">
-      <meta name="GENERATOR" content="GtkHTML/4.6.6">
-      Wow, thanks everyone for the excellent replies.&nbsp; I am a developer
-      and not much of a legal guy, so pointing out the licensing issues
-      with Ubuntu was especially helpful.<br>
-      <br>
-      It sounds like we are going to choose Yocto for our product.</blockquote>
-    <br>
-    Further to the excellent points made by others, presumably Freescale
-    are providing commercial support on Yocto for i.MX6 now too.<br>
-    <br>
-    I know they have a developer day coming up in the UK shortly at
-    which Yocto is on the agenda.<br>
-    <br>
-    I also suspect they will have some "ready to run" binaries somewhere
-    for download, although I can't spot them in the walled garden. <br>
-    <br>
-    They usually do, and that might even be enough for you, depending on
-    your needs, and how custom the board variant is...<br>
-    <br>
-    Regards,<br>
-    <br>
-    Alex<br>
-    <br>
-  </body>
-</html>
-
---------------040100040500040609010308--
