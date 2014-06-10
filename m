@@ -1,42 +1,49 @@
-Return-Path: <ajlennon@dynamicdevices.co.uk>
+Return-Path: <ajlennon@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id B839AE00BBA; Tue, 10 Jun 2014 02:00:06 -0700 (PDT)
+	id 83B48E00BBA; Tue, 10 Jun 2014 02:45:53 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=0.0 required=5.0 tests=HTML_MESSAGE autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: *  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from www.dynamicdevices.co.uk (www.dynamicdevices.co.uk
-	[89.200.136.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 53574E00B0B
-	for <yocto@yoctoproject.org>; Tue, 10 Jun 2014 01:59:55 -0700 (PDT)
-Received: from localhost (localhost [127.0.0.1])
-	by www.dynamicdevices.co.uk (Postfix) with ESMTP id 69D9D27E036;
-	Tue, 10 Jun 2014 08:59:53 +0000 (UTC)
-X-Virus-Scanned: Debian amavisd-new at lennoab2.miniserver.com
-Received: from www.dynamicdevices.co.uk ([127.0.0.1])
-	by localhost (www.dynamicdevices.co.uk [127.0.0.1]) (amavisd-new,
-	port 10024)
-	with ESMTP id 3ut6AQxpBdy0; Tue, 10 Jun 2014 08:58:51 +0000 (UTC)
-Received: from [127.0.0.1] (cpc32-live22-2-0-cust59.17-2.cable.virginm.net
-	[82.36.253.60])
-	(using TLSv1 with cipher ECDHE-RSA-AES128-SHA (128/128 bits))
-	(No client certificate requested)
-	by www.dynamicdevices.co.uk (Postfix) with ESMTPSA id 2462A27E02F;
-	Tue, 10 Jun 2014 08:58:51 +0000 (UTC)
-Message-ID: <5396C8C8.4060303@dynamicdevices.co.uk>
-Date: Tue, 10 Jun 2014 09:58:48 +0100
+X-Spam-Status: No, score=-0.7 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: *  0.1 DKIM_SIGNED Message has a DKIM or DK signature,
+	not necessarily *      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [74.125.82.169 listed in list.dnswl.org]
+Received: from mail-we0-f169.google.com (mail-we0-f169.google.com
+	[74.125.82.169])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 26762E00B0B
+	for <yocto@yoctoproject.org>; Tue, 10 Jun 2014 02:45:47 -0700 (PDT)
+Received: by mail-we0-f169.google.com with SMTP id t60so1926633wes.28
+	for <yocto@yoctoproject.org>; Tue, 10 Jun 2014 02:45:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=sender:from:to:subject:date:message-id:in-reply-to:references;
+	bh=51nydbrPtGElYiEiImaiPemKOiPqM8yLDqvOfvhQqko=;
+	b=PVtVXh0eX22XgQ5/6sGJz+ZEB7VbNYcesVEaxJmplEu/xJuQfdPAFmeUo61e6Yxkyz
+	iufNIR2YGUW328L0oVm25HmzKSsN6pV+rMiFRQQF0Txn2EI9vcNpAfJdbSfkaBz/rAB+
+	ouy5rLT1Cn4FgqSQM/JqyDmc5uM8fi+raWBx9i5a0v4Xdx7DwNukwEZJ6XYQfmIDeHgq
+	6m8kvW1cShHq1cd+EtYyC38zYdfI+jzvXfbov0Da76Hca/r5Ler3WGQ5PP7QCnYrTNDC
+	3aT5Qaz2OJojUDEfffTwXrLhBV1VYIuSaPfPJ7CTan+zEvfOX4+8FHcb25z3WnsDngi0
+	Xwyg==
+X-Received: by 10.180.77.70 with SMTP id q6mr36245721wiw.28.1402393546496;
+	Tue, 10 Jun 2014 02:45:46 -0700 (PDT)
+Received: from localhost.localdomain
+	(cpc32-live22-2-0-cust59.17-2.cable.virginm.net. [82.36.253.60])
+	by mx.google.com with ESMTPSA id
+	hi6sm28770488wjc.32.2014.06.10.02.45.45 for <yocto@yoctoproject.org>
+	(version=TLSv1.1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
+	Tue, 10 Jun 2014 02:45:45 -0700 (PDT)
+Sender: Alex Lennon <ajlennon@gmail.com>
 From: Alex J Lennon <ajlennon@dynamicdevices.co.uk>
-User-Agent: Mozilla/5.0 (Windows NT 6.3; WOW64;
-	rv:24.0) Gecko/20100101 Thunderbird/24.5.0
-MIME-Version: 1.0
-To: Jim Rafert <jimr@spectralogic.com>
-References: <86196249137E0843B2E0673D4F731E0CAB521799@reactor.sldomain.com>
-In-Reply-To: <86196249137E0843B2E0673D4F731E0CAB521799@reactor.sldomain.com>
-X-Enigmail-Version: 1.6
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: How do I create a recipe for laying down post-build config files?
+To: yocto@yoctoproject.org
+Date: Tue, 10 Jun 2014 10:45:16 +0100
+Message-Id: <08a914fef41e8dd5e70057fc6add16c75b3618a0.1402393381.git.ajlennon@dynamicdevices.co.uk>
+X-Mailer: git-send-email 2.0.0
+In-Reply-To: <cover.1402393381.git.ajlennon@dynamicdevices.co.uk>
+References: <cover.1402393381.git.ajlennon@dynamicdevices.co.uk>
+Subject: [PATCH 1/1] README: Add link to best practice when providing patches
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -48,132 +55,29 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 10 Jun 2014 09:00:06 -0000
-Content-Type: multipart/alternative;
-	boundary="------------040601000204000009000703"
+X-List-Received-Date: Tue, 10 Jun 2014 09:45:53 -0000
 
---------------040601000204000009000703
-Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: 7bit
+Signed-off-by: Alex J Lennon <ajlennon@dynamicdevices.co.uk>
+---
+ README | 7 +++++++
+ 1 file changed, 7 insertions(+)
+
+diff --git a/README b/README
+index 0a18c9c..425ccd5 100644
+--- a/README
++++ b/README
+@@ -47,3 +47,10 @@ repository.
+ 
+ Note: The scripts directory should be treated with extra care as it is a mix
+       of oe-core and poky-specific files.
++
++Patch Creation
++==============
++
++Prior to providing a patch, please review the Best Known Methods for Package Updating
++
++https://wiki.yoctoproject.org/wiki/Best_Known_Methods_(BKMs)_for_Package_Updating#Patches
+-- 
+2.0.0
 
 
-On 09/06/2014 22:44, Jim Rafert wrote:
-> I'm trying to gather all my post-build tweaks into a recipe that will
-> be built as part of an upper-level layer, so that they are installed
-> after the meta layer is processed.  Many of these could be
-> accomplished as part of .bbappend files for the recipes that
-> originally supply the config files, but I wanted to gather all my
-> customizations in one spot, so that they're easy to find.
->
-> The recipe doesn't actually build anything, so there's no do_build task.
->
-> This is surely something that is commonly wanted.
->
-> Here's my current recipe, in spectra-postbuild_0.1.bb.
->
-> When I try to build an image, the build fails with
-> ERROR: QA Issue: spectra-postbuild: Files/directories were installed
-> but not shipped
->   /RELEASE-NOTES.txt
->
-> When I disable the installed-vs-shipped QA test,  it fails later when
-> it can't find a package file.
->
-> I must be missing something critical here?
-> SUMMARY = "Post processing of configuration files for SpectraOS"
-> SECTION = "base"
-> LICENSE = "GPLv2"
-> LIC_FILES_CHKSUM =
-> "file://${WORKDIR}/COPYRIGHT;md5=349c872e0066155e1818b786938876a4"
-> RDEPENDS_${PN} = "initscripts"
-> PR = "r0"
->
-> SRC_URI = "file://inittab \
->        file://fstab \
->        file://rsyslog.conf \
->        file://grub.cfg \
->        file://mount.sh \
->        file://RELEASE-NOTES.txt \
-
-FILES_${PN} =  "/RELEASE_NOTES.txt /Spectra-OS-Version "
-
-RELEASE-NOTES vs RELEASE_NOTES
-
-Cheers,
-
-Alex
-
---------------040601000204000009000703
-Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: 7bit
-
-<html>
-  <head>
-    <meta content="text/html; charset=ISO-8859-1"
-      http-equiv="Content-Type">
-  </head>
-  <body text="#000000" bgcolor="#FFFFFF">
-    <br>
-    <div class="moz-cite-prefix">On 09/06/2014 22:44, Jim Rafert wrote:<br>
-    </div>
-    <blockquote
-      cite="mid:86196249137E0843B2E0673D4F731E0CAB521799@reactor.sldomain.com"
-      type="cite">
-      <meta http-equiv="Content-Type" content="text/html;
-        charset=ISO-8859-1">
-      <style id="owaParaStyle" type="text/css">P {margin-top:0;margin-bottom:0;}</style>
-      <div style="direction: ltr;font-family: Tahoma;color:
-        #000000;font-size: 10pt;">I'm trying to gather all my post-build
-        tweaks into a recipe that will be built as part of an
-        upper-level layer, so that they are installed after the meta
-        layer is processed.&nbsp; Many of these could be accomplished as part
-        of .bbappend files for the recipes that originally supply the
-        config files, but I wanted to gather all my customizations in
-        one spot, so that they're easy to find.<br>
-        <br>
-        The recipe doesn't actually build anything, so there's no
-        do_build task.<br>
-        <br>
-        This is surely something that is commonly wanted.<br>
-        <br>
-        Here's my current recipe, in spectra-postbuild_0.1.bb.<br>
-        <br>
-        When I try to build an image, the build fails with <br>
-        ERROR: QA Issue: spectra-postbuild: Files/directories were
-        installed but not shipped<br>
-        &nbsp; /RELEASE-NOTES.txt<br>
-        <br>
-        When I disable the installed-vs-shipped QA test,&nbsp; it fails later
-        when it can't find a package file.<br>
-        <br>
-        I must be missing something critical here?<br>
-        <div>SUMMARY = "Post processing of configuration files for
-          SpectraOS"<br>
-          SECTION = "base"<br>
-          LICENSE = "GPLv2"<br>
-          LIC_FILES_CHKSUM =
-          <a class="moz-txt-link-rfc2396E" href="file://${WORKDIR}/COPYRIGHT;md5=349c872e0066155e1818b786938876a4">"file://${WORKDIR}/COPYRIGHT;md5=349c872e0066155e1818b786938876a4"</a><br>
-          RDEPENDS_${PN} = "initscripts"<br>
-          PR = "r0"<br>
-          <br>
-          SRC_URI = "<a class="moz-txt-link-freetext" href="file://inittab">file://inittab</a> \<br>
-          &nbsp;&nbsp;&nbsp; &nbsp;&nbsp; <a class="moz-txt-link-freetext" href="file://fstab">file://fstab</a> \<br>
-          &nbsp;&nbsp;&nbsp; &nbsp;&nbsp; <a class="moz-txt-link-freetext" href="file://rsyslog.conf">file://rsyslog.conf</a> \<br>
-          &nbsp;&nbsp;&nbsp; &nbsp;&nbsp; <a class="moz-txt-link-freetext" href="file://grub.cfg">file://grub.cfg</a> \<br>
-          &nbsp;&nbsp;&nbsp; &nbsp;&nbsp; <a class="moz-txt-link-freetext" href="file://mount.sh">file://mount.sh</a> \<br>
-          &nbsp;&nbsp;&nbsp; &nbsp;&nbsp; <a class="moz-txt-link-freetext" href="file://RELEASE-NOTES.txt">file://RELEASE-NOTES.txt</a> \<br>
-        </div>
-      </div>
-    </blockquote>
-    <br>
-    FILES_${PN} =&nbsp; "/RELEASE_NOTES.txt /Spectra-OS-Version "<br>
-    <br>
-    RELEASE-NOTES vs RELEASE_NOTES<br>
-    <br>
-    Cheers,<br>
-    <br>
-    Alex
-  </body>
-</html>
-
---------------040601000204000009000703--
