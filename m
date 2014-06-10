@@ -1,6 +1,6 @@
 Return-Path: <ajlennon@dynamicdevices.co.uk>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 26628E00BE1; Tue, 10 Jun 2014 16:23:26 -0700 (PDT)
+	id 48FC0E00BE1; Tue, 10 Jun 2014 16:28:28 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -9,36 +9,36 @@ X-Spam-Status: No, score=0.0 required=5.0 tests=HTML_MESSAGE autolearn=ham
 X-Spam-HAM-Report: *  0.0 HTML_MESSAGE BODY: HTML included in message
 Received: from www.dynamicdevices.co.uk (www.dynamicdevices.co.uk
 	[89.200.136.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 14CB3E00B83
-	for <yocto@yoctoproject.org>; Tue, 10 Jun 2014 16:23:25 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 98724E00B83
+	for <yocto@yoctoproject.org>; Tue, 10 Jun 2014 16:28:23 -0700 (PDT)
 Received: from localhost (localhost [127.0.0.1])
-	by www.dynamicdevices.co.uk (Postfix) with ESMTP id 1DB9727E03A;
-	Tue, 10 Jun 2014 23:23:24 +0000 (UTC)
+	by www.dynamicdevices.co.uk (Postfix) with ESMTP id A560427E039;
+	Tue, 10 Jun 2014 23:28:22 +0000 (UTC)
 X-Virus-Scanned: Debian amavisd-new at lennoab2.miniserver.com
 Received: from www.dynamicdevices.co.uk ([127.0.0.1])
 	by localhost (www.dynamicdevices.co.uk [127.0.0.1]) (amavisd-new,
 	port 10024)
-	with ESMTP id rP4j5_7BQDQG; Tue, 10 Jun 2014 23:23:00 +0000 (UTC)
+	with ESMTP id JecEP7yhcoCq; Tue, 10 Jun 2014 23:27:56 +0000 (UTC)
 Received: from [127.0.0.1] (cpc32-live22-2-0-cust59.17-2.cable.virginm.net
 	[82.36.253.60])
 	(using TLSv1 with cipher ECDHE-RSA-AES128-SHA (128/128 bits))
 	(No client certificate requested)
-	by www.dynamicdevices.co.uk (Postfix) with ESMTPSA id A12F727E036;
-	Tue, 10 Jun 2014 23:23:00 +0000 (UTC)
-Message-ID: <53979352.6040909@dynamicdevices.co.uk>
-Date: Wed, 11 Jun 2014 00:22:58 +0100
+	by www.dynamicdevices.co.uk (Postfix) with ESMTPSA id 75E6E27E036;
+	Tue, 10 Jun 2014 23:27:56 +0000 (UTC)
+Message-ID: <5397947A.6050605@dynamicdevices.co.uk>
+Date: Wed, 11 Jun 2014 00:27:54 +0100
 From: Alex J Lennon <ajlennon@dynamicdevices.co.uk>
 User-Agent: Mozilla/5.0 (Windows NT 6.3; WOW64;
 	rv:24.0) Gecko/20100101 Thunderbird/24.5.0
 MIME-Version: 1.0
 To: Andrei Gherzan <andrei@gherzan.ro>
-References: <cover.1402296985.git.ajlennon@dynamicdevices.co.uk>
-	<9c061d514d5c846032c672ae42b6a1119e4e69db.1402296985.git.ajlennon@dynamicdevices.co.uk>
-	<CAK18fxGg1sCKbsKS=Qg4n8==sJJgEME4_N11CriNa+irL-ziBg@mail.gmail.com>
-In-Reply-To: <CAK18fxGg1sCKbsKS=Qg4n8==sJJgEME4_N11CriNa+irL-ziBg@mail.gmail.com>
+References: <cover.1402224537.git.ajlennon@dynamicdevices.co.uk>
+	<e68eff99bd1d5efac6eb532a8f0b73ab673fceb7.1402224537.git.ajlennon@dynamicdevices.co.uk>
+	<CAK18fxHboa0uRC0YfeGZmuFGUzWHnzTy8F25S6xtpWb+2UdRXw@mail.gmail.com>
+In-Reply-To: <CAK18fxHboa0uRC0YfeGZmuFGUzWHnzTy8F25S6xtpWb+2UdRXw@mail.gmail.com>
 X-Enigmail-Version: 1.6
 Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: [meta-raspberrypi][PATCH 1/1] gstreamer1.0-plugins-bad: Build eglglessink for Raspberry Pi
+Subject: Re: [meta-raspberrypi][PATCH 1/1] gstreamer1.0-omx: Target Raspberry Pi instead of Bellagio.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -50,88 +50,58 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 10 Jun 2014 23:23:26 -0000
+X-List-Received-Date: Tue, 10 Jun 2014 23:28:28 -0000
 Content-Type: multipart/alternative;
-	boundary="------------070402060301090009090800"
+	boundary="------------040101080205000400040501"
 
---------------070402060301090009090800
+--------------040101080205000400040501
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 
-On 10/06/2014 19:48, Andrei Gherzan wrote:
-> Hi Alex,
+On 10/06/2014 19:59, Andrei Gherzan wrote:
+> Hello Alex.
 >
->
-> On Mon, Jun 9, 2014 at 10:23 AM, Alex J Lennon
+> On Sun, Jun 8, 2014 at 1:50 PM, Alex J Lennon
 > <ajlennon@dynamicdevices.co.uk <mailto:ajlennon@dynamicdevices.co.uk>>
 > wrote:
 >
->     The eglglessink needs to be built to target the Raspberry Pi or it
->     will seg-fault in use.
+>     This changes the build slightly as there are some #ifdefs in there
+>     for Raspberry Pi.
 >
->     Autoconf attempts to detect whether to build for RPi but there are
->     some include files needed, the search path to which must be specified.
+>     Also the codec configuration file used by gstreamer1.0-omx codecs,
+>     /etc/xdg/gstomx.conf,  is set correctly to
+>     core-name=/usr/lib/libopenmaxil.so
 >
->
-> Format lines - max 78 chars per line.
->  
->
->
->     ref: https://github.com/raspberrypi/firmware/issues/34
->
->     ref: https://github.com/raspberrypi/firmware/issues/99
->
->     This patch adds the needed include paths and forces the plugin to
->     be built for Raspberry Pi.
->
->     With this patch the following pipeline works on RPi,
->
->     modprobe bcm2835-v4l2 gst_v4l2src_is_broken=1
->     gst-launch-1.0 --gst-debug-no-color v4l2src !
->     'video/x-raw,format=RGB,width=1280,height=720,framerate=(fraction)30/1'
->     ! eglglessink max-lateness=-1
->
->     Change-Id: I80826a43a428199b2a05ea51404ead24a815c38f
+>     Change-Id: I2352ecabfd053717d9ccd2d22422e7d4b7588ce4
 >     Signed-off-by: Alex J Lennon <ajlennon@dynamicdevices.co.uk
 >     <mailto:ajlennon@dynamicdevices.co.uk>>
 >     ---
->      recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_1.2.3.bbappend
->     | 1 +
->      1 file changed, 1 insertion(+)
->      create mode 100644
->     recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_1.2.3.bbappend
->
->     diff --git
->     a/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_1.2.3.bbappend
->     b/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_1.2.3.bbappend
->     new file mode 100644
->     index 0000000..199e0c1
->     --- /dev/null
->     +++
->     b/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_1.2.3.bbappend
->     @@ -0,0 +1 @@
->     +EXTRA_OECONF += "
->     CPPFLAGS='-I${STAGING_DIR_TARGET}/usr/include/interface/vcos/pthreads
->     -I${STAGING_DIR_TARGET}/usr/include/interface/vmcs_host/linux'
->     --with-egl-window-system=rpi"
+>      recipes-multimedia/gstreamer/gstreamer1.0-omx.inc            | 2 ++
+>      recipes-multimedia/gstreamer/gstreamer1.0-omx_1.0.0.bbappend | 1 +
 >
 >
-> This append should be done only for raspberrypi machine. Having this
-> append (EXTRA_OECONF) for other machines too would
-> break gstreamer1.0-plugins-bad as most of the times bblayers.conf
-> includes many layers not always related to the MACHINE selected.
+> I was thinking we we really need two files for this... I know that
+> yocto has an inc too. But i don't know if that really makes sense for
+> one line. What do you think? 
+>  
 
-Absolutely. Our emails may have crossed here and if so my apologies, but
-this is why I directed the .bbappend to [meta-raspberrypi] as that's
-where it's needed.
+I came across Yocto best practice here. This is more or less why I
+provided a patch for consideration into Poky on this earlier today. It
+would help me, and I suspect other newbies, to have best practice
+expectations on how to put patches together somewhere up front, say in
+the README.
+
+"Do not merge .inc / .bb files"
+
+https://wiki.yoctoproject.org/wiki/Best_Known_Methods_(BKMs)_for_Package_Updating
 
 Cheers,
 
 Alex
 
 
---------------070402060301090009090800
+--------------040101080205000400040501
 Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
@@ -141,99 +111,59 @@ Content-Transfer-Encoding: 8bit
   </head>
   <body text="#000000" bgcolor="#FFFFFF">
     <br>
-    <div class="moz-cite-prefix">On 10/06/2014 19:48, Andrei Gherzan
+    <div class="moz-cite-prefix">On 10/06/2014 19:59, Andrei Gherzan
       wrote:<br>
     </div>
     <blockquote
-cite="mid:CAK18fxGg1sCKbsKS=Qg4n8==sJJgEME4_N11CriNa+irL-ziBg@mail.gmail.com"
+cite="mid:CAK18fxHboa0uRC0YfeGZmuFGUzWHnzTy8F25S6xtpWb+2UdRXw@mail.gmail.com"
       type="cite">
-      <div dir="ltr">Hi Alex,<br>
+      <div dir="ltr">
+        <div class="gmail_extra">Hello Alex.</div>
         <div class="gmail_extra"><br>
-          <br>
-          <div class="gmail_quote">On Mon, Jun 9, 2014 at 10:23 AM, Alex
+          <div class="gmail_quote">On Sun, Jun 8, 2014 at 1:50 PM, Alex
             J Lennon <span dir="ltr">&lt;<a moz-do-not-send="true"
                 href="mailto:ajlennon@dynamicdevices.co.uk"
                 target="_blank">ajlennon@dynamicdevices.co.uk</a>&gt;</span>
             wrote:<br>
-            <blockquote class="gmail_quote" style="margin:0px 0px 0px
-0.8ex;border-left-width:1px;border-left-color:rgb(204,204,204);border-left-style:solid;padding-left:1ex">
-              <div class="im">The eglglessink needs to be built to
-                target the Raspberry Pi or it will seg-fault in use.<br>
-                <br>
-                Autoconf attempts to detect whether to build for RPi but
-                there are some include files needed, the search path to
-                which must be specified.<br>
-              </div>
-            </blockquote>
-            <div><br>
-            </div>
-            <div>Format lines - max 78 chars per line.</div>
-            <div> </div>
-            <blockquote class="gmail_quote" style="margin:0px 0px 0px
-0.8ex;border-left-width:1px;border-left-color:rgb(204,204,204);border-left-style:solid;padding-left:1ex">
-              <div class="im">
-                <br>
-                ref: <a moz-do-not-send="true"
-                  href="https://github.com/raspberrypi/firmware/issues/34"
-                  target="_blank">https://github.com/raspberrypi/firmware/issues/34</a><br>
-                <br>
-                ref: <a moz-do-not-send="true"
-                  href="https://github.com/raspberrypi/firmware/issues/99"
-                  target="_blank">https://github.com/raspberrypi/firmware/issues/99</a><br>
-                <br>
-                This patch adds the needed include paths and forces the
-                plugin to be built for Raspberry Pi.<br>
-                <br>
-                With this patch the following pipeline works on RPi,<br>
-                <br>
-                modprobe bcm2835-v4l2 gst_v4l2src_is_broken=1<br>
-                gst-launch-1.0 --gst-debug-no-color v4l2src !
-                'video/x-raw,format=RGB,width=1280,height=720,framerate=(fraction)30/1'
-                ! eglglessink max-lateness=-1<br>
-                <br>
-                Change-Id: I80826a43a428199b2a05ea51404ead24a815c38f<br>
-                Signed-off-by: Alex J Lennon &lt;<a
-                  moz-do-not-send="true"
-                  href="mailto:ajlennon@dynamicdevices.co.uk">ajlennon@dynamicdevices.co.uk</a>&gt;<br>
-                ---<br>
-              </div>
-              <div class="im"> recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_1.2.3.bbappend
+            <blockquote class="gmail_quote" style="margin:0 0 0
+              .8ex;border-left:1px #ccc solid;padding-left:1ex">This
+              changes the build slightly as there are some #ifdefs in
+              there for Raspberry Pi.<br>
+              <br>
+              Also the codec configuration file used by gstreamer1.0-omx
+              codecs, /etc/xdg/gstomx.conf,  is set correctly to
+              core-name=/usr/lib/libopenmaxil.so<br>
+              <br>
+              Change-Id: I2352ecabfd053717d9ccd2d22422e7d4b7588ce4<br>
+              Signed-off-by: Alex J Lennon &lt;<a moz-do-not-send="true"
+                href="mailto:ajlennon@dynamicdevices.co.uk">ajlennon@dynamicdevices.co.uk</a>&gt;<br>
+              ---<br>
+              <div class=""> recipes-multimedia/gstreamer/gstreamer1.0-omx.inc
+                           | 2 ++<br>
+                 recipes-multimedia/gstreamer/gstreamer1.0-omx_1.0.0.bbappend
                 | 1 +<br>
-                 1 file changed, 1 insertion(+)<br>
-                 create mode 100644
-                recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_1.2.3.bbappend<br>
-                <br>
-              </div>
-              <div class="im">diff --git
-                a/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_1.2.3.bbappend
-b/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_1.2.3.bbappend<br>
-                new file mode 100644<br>
-                index 0000000..199e0c1<br>
-                --- /dev/null<br>
-                +++
-                b/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_1.2.3.bbappend<br>
-                @@ -0,0 +1 @@<br>
-                +EXTRA_OECONF += "
-                CPPFLAGS='-I${STAGING_DIR_TARGET}/usr/include/interface/vcos/pthreads
-                -I${STAGING_DIR_TARGET}/usr/include/interface/vmcs_host/linux'
-                --with-egl-window-system=rpi"<br>
               </div>
             </blockquote>
             <div><br>
             </div>
-            <div>This append should be done only for raspberrypi
-              machine. Having this append (EXTRA_OECONF) for other
-              machines too would break gstreamer1.0-plugins-bad as most
-              of the times bblayers.conf includes many layers not always
-              related to the MACHINE selected.</div>
+            <div>I was thinking we we really need two files for this...
+              I know that yocto has an inc too. But i don't know if that
+              really makes sense for one line. What do you think? </div>
+            <div> </div>
           </div>
         </div>
       </div>
     </blockquote>
     <br>
-    Absolutely. Our emails may have crossed here and if so my apologies,
-    but this is why I directed the .bbappend to [meta-raspberrypi] as
-    that's where it's needed.<br>
+    I came across Yocto best practice here. This is more or less why I
+    provided a patch for consideration into Poky on this earlier today.
+    It would help me, and I suspect other newbies, to have best practice
+    expectations on how to put patches together somewhere up front, say
+    in the README.<br>
+    <br>
+    "Do not merge .inc / .bb files" <br>
+    <br>
+<a class="moz-txt-link-freetext" href="https://wiki.yoctoproject.org/wiki/Best_Known_Methods_(BKMs)_for_Package_Updating">https://wiki.yoctoproject.org/wiki/Best_Known_Methods_(BKMs)_for_Package_Updating</a><br>
     <br>
     Cheers,<br>
     <br>
@@ -242,4 +172,4 @@ b/recipes-multimedia/gstreamer/gstreamer1.0-plugins-bad_1.2.3.bbappend<br>
   </body>
 </html>
 
---------------070402060301090009090800--
+--------------040101080205000400040501--
