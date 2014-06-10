@@ -1,44 +1,44 @@
 Return-Path: <ajlennon@dynamicdevices.co.uk>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 48FC0E00BE1; Tue, 10 Jun 2014 16:28:28 -0700 (PDT)
+	id 2CF18E00BE1; Tue, 10 Jun 2014 16:41:34 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=0.0 required=5.0 tests=HTML_MESSAGE autolearn=ham
+X-Spam-Status: No, score=0.0 required=5.0 tests=none autolearn=ham
 	version=3.3.1
-X-Spam-HAM-Report: *  0.0 HTML_MESSAGE BODY: HTML included in message
+X-Spam-HAM-Report: 
 Received: from www.dynamicdevices.co.uk (www.dynamicdevices.co.uk
 	[89.200.136.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 98724E00B83
-	for <yocto@yoctoproject.org>; Tue, 10 Jun 2014 16:28:23 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D5D1EE00B83
+	for <yocto@yoctoproject.org>; Tue, 10 Jun 2014 16:41:21 -0700 (PDT)
 Received: from localhost (localhost [127.0.0.1])
-	by www.dynamicdevices.co.uk (Postfix) with ESMTP id A560427E039;
-	Tue, 10 Jun 2014 23:28:22 +0000 (UTC)
+	by www.dynamicdevices.co.uk (Postfix) with ESMTP id 5A65C27E039;
+	Tue, 10 Jun 2014 23:41:19 +0000 (UTC)
 X-Virus-Scanned: Debian amavisd-new at lennoab2.miniserver.com
 Received: from www.dynamicdevices.co.uk ([127.0.0.1])
 	by localhost (www.dynamicdevices.co.uk [127.0.0.1]) (amavisd-new,
 	port 10024)
-	with ESMTP id JecEP7yhcoCq; Tue, 10 Jun 2014 23:27:56 +0000 (UTC)
+	with ESMTP id eVozw1hT9IJl; Tue, 10 Jun 2014 23:40:55 +0000 (UTC)
 Received: from [127.0.0.1] (cpc32-live22-2-0-cust59.17-2.cable.virginm.net
 	[82.36.253.60])
 	(using TLSv1 with cipher ECDHE-RSA-AES128-SHA (128/128 bits))
 	(No client certificate requested)
-	by www.dynamicdevices.co.uk (Postfix) with ESMTPSA id 75E6E27E036;
-	Tue, 10 Jun 2014 23:27:56 +0000 (UTC)
-Message-ID: <5397947A.6050605@dynamicdevices.co.uk>
-Date: Wed, 11 Jun 2014 00:27:54 +0100
+	by www.dynamicdevices.co.uk (Postfix) with ESMTPSA id 8586927E036;
+	Tue, 10 Jun 2014 23:40:55 +0000 (UTC)
+Message-ID: <53979785.3070306@dynamicdevices.co.uk>
+Date: Wed, 11 Jun 2014 00:40:53 +0100
 From: Alex J Lennon <ajlennon@dynamicdevices.co.uk>
 User-Agent: Mozilla/5.0 (Windows NT 6.3; WOW64;
 	rv:24.0) Gecko/20100101 Thunderbird/24.5.0
 MIME-Version: 1.0
 To: Andrei Gherzan <andrei@gherzan.ro>
-References: <cover.1402224537.git.ajlennon@dynamicdevices.co.uk>
-	<e68eff99bd1d5efac6eb532a8f0b73ab673fceb7.1402224537.git.ajlennon@dynamicdevices.co.uk>
-	<CAK18fxHboa0uRC0YfeGZmuFGUzWHnzTy8F25S6xtpWb+2UdRXw@mail.gmail.com>
-In-Reply-To: <CAK18fxHboa0uRC0YfeGZmuFGUzWHnzTy8F25S6xtpWb+2UdRXw@mail.gmail.com>
+References: <cover.1400594463.git.ajlennon@dynamicdevices.co.uk>
+	<ba540e1080aef15beea1ccb15129f80222e9cb06.1400594463.git.ajlennon@dynamicdevices.co.uk>
+	<CAK18fxFixNCCVRt7An58rZSukfmcziprGitd6fFywkfeiupAww@mail.gmail.com>
+In-Reply-To: <CAK18fxFixNCCVRt7An58rZSukfmcziprGitd6fFywkfeiupAww@mail.gmail.com>
 X-Enigmail-Version: 1.6
-Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: [meta-raspberrypi][PATCH 1/1] gstreamer1.0-omx: Target Raspberry Pi instead of Bellagio.
+Cc: Yocto <yocto@yoctoproject.org>
+Subject: Re: [meta-raspberrypi][PATCH 1/1] pi-blaster: Added recipe
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -50,126 +50,25 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 10 Jun 2014 23:28:28 -0000
-Content-Type: multipart/alternative;
-	boundary="------------040101080205000400040501"
-
---------------040101080205000400040501
+X-List-Received-Date: Tue, 10 Jun 2014 23:41:34 -0000
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 
-On 10/06/2014 19:59, Andrei Gherzan wrote:
-> Hello Alex.
+On 10/06/2014 20:52, Andrei Gherzan wrote:
+> Hello,
 >
-> On Sun, Jun 8, 2014 at 1:50 PM, Alex J Lennon
-> <ajlennon@dynamicdevices.co.uk <mailto:ajlennon@dynamicdevices.co.uk>>
-> wrote:
->
->     This changes the build slightly as there are some #ifdefs in there
->     for Raspberry Pi.
->
->     Also the codec configuration file used by gstreamer1.0-omx codecs,
->     /etc/xdg/gstomx.conf,  is set correctly to
->     core-name=/usr/lib/libopenmaxil.so
->
->     Change-Id: I2352ecabfd053717d9ccd2d22422e7d4b7588ce4
->     Signed-off-by: Alex J Lennon <ajlennon@dynamicdevices.co.uk
->     <mailto:ajlennon@dynamicdevices.co.uk>>
->     ---
->      recipes-multimedia/gstreamer/gstreamer1.0-omx.inc            | 2 ++
->      recipes-multimedia/gstreamer/gstreamer1.0-omx_1.0.0.bbappend | 1 +
+> Found this "guy" here in the meanwhile. Sorry for missing it.
 >
 >
-> I was thinking we we really need two files for this... I know that
-> yocto has an inc too. But i don't know if that really makes sense for
-> one line. What do you think? 
->  
 
-I came across Yocto best practice here. This is more or less why I
-provided a patch for consideration into Poky on this earlier today. It
-would help me, and I suspect other newbies, to have best practice
-expectations on how to put patches together somewhere up front, say in
-the README.
-
-"Do not merge .inc / .bb files"
-
-https://wiki.yoctoproject.org/wiki/Best_Known_Methods_(BKMs)_for_Package_Updating
+Fair comment. I am somewhat in the dark as to the usefulness of the 0/1
+covernote myself. I usually provide it as that's what seems to be
+required by use of the recommended create-pull-request but sometimes I
+feel it's overkill (?)
 
 Cheers,
 
 Alex
 
 
---------------040101080205000400040501
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-
-<html>
-  <head>
-    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
-  </head>
-  <body text="#000000" bgcolor="#FFFFFF">
-    <br>
-    <div class="moz-cite-prefix">On 10/06/2014 19:59, Andrei Gherzan
-      wrote:<br>
-    </div>
-    <blockquote
-cite="mid:CAK18fxHboa0uRC0YfeGZmuFGUzWHnzTy8F25S6xtpWb+2UdRXw@mail.gmail.com"
-      type="cite">
-      <div dir="ltr">
-        <div class="gmail_extra">Hello Alex.</div>
-        <div class="gmail_extra"><br>
-          <div class="gmail_quote">On Sun, Jun 8, 2014 at 1:50 PM, Alex
-            J Lennon <span dir="ltr">&lt;<a moz-do-not-send="true"
-                href="mailto:ajlennon@dynamicdevices.co.uk"
-                target="_blank">ajlennon@dynamicdevices.co.uk</a>&gt;</span>
-            wrote:<br>
-            <blockquote class="gmail_quote" style="margin:0 0 0
-              .8ex;border-left:1px #ccc solid;padding-left:1ex">This
-              changes the build slightly as there are some #ifdefs in
-              there for Raspberry Pi.<br>
-              <br>
-              Also the codec configuration file used by gstreamer1.0-omx
-              codecs, /etc/xdg/gstomx.conf,  is set correctly to
-              core-name=/usr/lib/libopenmaxil.so<br>
-              <br>
-              Change-Id: I2352ecabfd053717d9ccd2d22422e7d4b7588ce4<br>
-              Signed-off-by: Alex J Lennon &lt;<a moz-do-not-send="true"
-                href="mailto:ajlennon@dynamicdevices.co.uk">ajlennon@dynamicdevices.co.uk</a>&gt;<br>
-              ---<br>
-              <div class=""> recipes-multimedia/gstreamer/gstreamer1.0-omx.inc
-                           | 2 ++<br>
-                 recipes-multimedia/gstreamer/gstreamer1.0-omx_1.0.0.bbappend
-                | 1 +<br>
-              </div>
-            </blockquote>
-            <div><br>
-            </div>
-            <div>I was thinking we we really need two files for this...
-              I know that yocto has an inc too. But i don't know if that
-              really makes sense for one line. What do you think? </div>
-            <div> </div>
-          </div>
-        </div>
-      </div>
-    </blockquote>
-    <br>
-    I came across Yocto best practice here. This is more or less why I
-    provided a patch for consideration into Poky on this earlier today.
-    It would help me, and I suspect other newbies, to have best practice
-    expectations on how to put patches together somewhere up front, say
-    in the README.<br>
-    <br>
-    "Do not merge .inc / .bb files" <br>
-    <br>
-<a class="moz-txt-link-freetext" href="https://wiki.yoctoproject.org/wiki/Best_Known_Methods_(BKMs)_for_Package_Updating">https://wiki.yoctoproject.org/wiki/Best_Known_Methods_(BKMs)_for_Package_Updating</a><br>
-    <br>
-    Cheers,<br>
-    <br>
-    Alex<br>
-    <br>
-  </body>
-</html>
-
---------------040101080205000400040501--
