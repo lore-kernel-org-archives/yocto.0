@@ -1,47 +1,45 @@
 Return-Path: <andrei@gherzan.ro>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 72BFFE00BE6; Tue, 10 Jun 2014 12:26:40 -0700 (PDT)
+	id 98851E00BAE; Tue, 10 Jun 2014 12:38:44 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-0.7 required=5.0 tests=HTML_MESSAGE,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: *  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [74.125.82.169 listed in list.dnswl.org]
-Received: from mail-we0-f169.google.com (mail-we0-f169.google.com
-	[74.125.82.169])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A800EE00B78
-	for <yocto@yoctoproject.org>; Tue, 10 Jun 2014 12:26:28 -0700 (PDT)
-Received: by mail-we0-f169.google.com with SMTP id t60so2787065wes.14
-	for <yocto@yoctoproject.org>; Tue, 10 Jun 2014 12:26:27 -0700 (PDT)
+	RCVD_IN_DNSWL_LOW,WEIRD_PORT autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [209.85.212.179 listed in list.dnswl.org]
+	*  0.0 WEIRD_PORT URI: Uses non-standard port number for HTTP
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+Received: from mail-wi0-f179.google.com (mail-wi0-f179.google.com
+	[209.85.212.179])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F2C7DE00B78
+	for <yocto@yoctoproject.org>; Tue, 10 Jun 2014 12:38:35 -0700 (PDT)
+Received: by mail-wi0-f179.google.com with SMTP id cc10so2425846wib.6
+	for <yocto@yoctoproject.org>; Tue, 10 Jun 2014 12:38:34 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc:content-type;
-	bh=SsG9avMrUg4P23tljWp+VJZlANscqydbQe97p/NAAtE=;
-	b=G9yE/M2xAq47PteZpPFikhOUaWhQaEKiGO0IWvSftcfSyOTDtoipzQL+wf590emxlh
-	4HPzwkvKz65GhdpAQSr8R3w6OaVvT8CaKy1/VhRrt9I4joZKCOplbjVBngLw68M9CjdW
-	anU8ceaOqjRFNRlYMdIfJNSsalgMoWpMWzK7UoBOTNcTxV/sr5ziNE6knSQhUVgTb3tA
-	+/4hzhNgsoneJVdBaXq9n4tEIwir9gQSDFh7umaeE2yDibEJTLrX3i/dN3QvkreydStQ
-	9pzXYKqJ+q3GciXs7R8Ku/byhwvmWYo7N4TaR5ZffVYR8Um0iNHkbpGCgIMJubk5vKuK
-	+Lkg==
-X-Gm-Message-State: ALoCoQnVBkmiWaVpOe5LpEkOAsz216GgH/X7Y1BbGGAmGPkmyEE/1PsNgc+aZw4nTXIMIcGdr+mr
-X-Received: by 10.194.222.197 with SMTP id qo5mr17977076wjc.78.1402428387646; 
-	Tue, 10 Jun 2014 12:26:27 -0700 (PDT)
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to:cc
+	:content-type;
+	bh=fUNTR5W+bKo4q9qbkVsJFwCkRaCm3HeTIqjAWC6mCiw=;
+	b=l49GaUOqILOVHKJXuH+pqh83iBxG5v2aVZ3zZRz0imt/9oMGv6PaaRDBBdEVGcg1LE
+	NNnm41tbDe0HO9vqON9LUG7AYVIXRXvsbkIhMo3HuWoI/VQkKBvzxK8oq6j5cpMFQ3g4
+	EeBZ+w3Lm0NV2iQ13Dkx08lNTLYcuPLsjY1mFg9Pryh9T2e7vrPthz24QAQubET7H5i/
+	aTRtXrfMrgtVPGaQIdQHAODrO/9wjhg8slAfR0uF+5+wirCdLHv84a2iPgDhM2OLJLoB
+	0VjtYBIQI8R96+bEtnDz9Bq5UVY6HbPuEE+NYYMsgZdyKtYUdYKcXEQ/WLkJNFZZv1ZI
+	EDSA==
+X-Gm-Message-State: ALoCoQmTOu/Ej6VYUNZ4Zb1JwDbQYWlWmstXYdaipNo7xIlQ6u+1PYUVfsA6Le2Rhu8/ZRMliOSd
+X-Received: by 10.194.222.197 with SMTP id qo5mr18062639wjc.78.1402429114373; 
+	Tue, 10 Jun 2014 12:38:34 -0700 (PDT)
 MIME-Version: 1.0
-Received: by 10.216.31.129 with HTTP; Tue, 10 Jun 2014 12:26:07 -0700 (PDT)
+Received: by 10.216.31.129 with HTTP; Tue, 10 Jun 2014 12:38:14 -0700 (PDT)
 X-Originating-IP: [89.121.200.106]
-In-Reply-To: <538DDE1F.9060709@dynamicdevices.co.uk>
-References: <OFCEE12F28.34E41662-ONC1257CEC.004E5863-C1257CEC.004FD096@retarus.de>
-	<538DDE1F.9060709@dynamicdevices.co.uk>
 From: Andrei Gherzan <andrei@gherzan.ro>
-Date: Tue, 10 Jun 2014 22:26:07 +0300
-Message-ID: <CAK18fxEHHULPQUTYqXXaMa4wpX1HHy0x2k7NfXM3+juYykF4tg@mail.gmail.com>
-To: Alex J Lennon <ajlennon@dynamicdevices.co.uk>
+Date: Tue, 10 Jun 2014 22:38:14 +0300
+Message-ID: <CAK18fxHapxALS2JxN_DgPQEKgO8tne5Fk6rJOqT0_TrUEsdWbw@mail.gmail.com>
+To: mr.isdn@googlemail.com
 Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: [meta-raspberrypi] Purpose of vc-graphics-hardfp.bb & vc-graphics.bb unclear
+Subject: [meta-raspberrypi] Re: Change in meta-raspberrypi[master]: Fix build error of bcm2835
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -53,175 +51,137 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 10 Jun 2014 19:26:40 -0000
-Content-Type: multipart/alternative; boundary=001a11c3a99ade796a04fb804dc4
+X-List-Received-Date: Tue, 10 Jun 2014 19:38:44 -0000
+Content-Type: multipart/alternative; boundary=001a11c3a99a2f6a8104fb807918
 
---001a11c3a99ade796a04fb804dc4
+--001a11c3a99a2f6a8104fb807918
 Content-Type: text/plain; charset=UTF-8
 
-On Tue, Jun 3, 2014 at 5:39 PM, Alex J Lennon <ajlennon@dynamicdevices.co.uk
-> wrote:
+Hello Karsten,
 
+
+On Sat, May 31, 2014 at 5:56 PM, Karsten Keil (Code Review) <
+gerrit2@gherzan.ro> wrote:
+
+> Karsten Keil has uploaded a new change for review.
 >
-> On 03/06/2014 15:31, Felix01 Fischer wrote:
->
-> Hello all,
->
-> my ongoing struggle to get qt5 working on the raspberrypi led me to a
-> question unrelated to qt5.
->
-> why do vc-graphics-hardfp.bb & vc-graphics.bb exist? [1]
-> There is no recipe which uses on of this files.
-> If I add one of them to my image via IMAGE_INSTALL_append I get errors
-> that userland.git and vc-grapics-hardfp both provide virtual/egl and
-> virtual/libgles2.
-> (Which they obviously do.) [2]
->
-> My question is: What is the reason for having userland_git.bb &
-> vc-graphics.bb/vc-graphics-hardfp ?
+>   https://review.gherzan.ro:8443/97
 >
 >
-> Hi Felix,
+> Change subject: Fix build error of bcm2835
+> ......................................................................
 >
-> I'm not sure, but I've been looking at userland vs vc-graphics recently
-> and I believe it is historical.
+> Fix build error of bcm2835
 >
-> Originally the intermediate layer between userspace and the videocore was
-> distributed as binaries
-> which is what vc-graphics pulls down
->
-> ref: https://github.com/raspberrypi/firmware/tree/master/opt/vc
->
-> More recently Broadcom opened up the source and provided it under a more
-> relaxed license, and this
-> is what userland provides:
->
-> ref: http://www.raspberrypi.org/open-source-arm-userspace/
-> ref: https://github.com/raspberrypi/userland
->
-> Somebody will no doubt correct me if my guess is wrong :)
->
-> I have been using userland + gstreamer reasonably sucessfully here
-> although my patch is needed for some
-> of the userspace apps (e.g. raspivid), and there are some configuration
-> issues that need patching still
-> relating to gstreamer1.0-omx
->
-> ref: https://github.com/raspberrypi/userland/pull/179
->
-> Cheers,
->
-> Alex
+> It did complain about:
+> ld: cannot open output file /.../bcm2835-1.36/examples/blink: Is a
+> directory
+> collect2: error: ld returned 1 exit status
+> Tested on openSUSE 13.1
 >
 >
-Exactly. We used to have binaries in the first place and we keep them so
-people can test / use the binaries in their configurations.
-If for whatever reason somebody wants to use the binaries (we still update
-the repos for binaries too) the only thing needed is to redefine
- PREFERRED_PROVIDER_*.
+I can't replicate this issue. You get this error at build time you said.
+Would you please give us some more info? In the compile append we build
+every example in B/examples. No sub-directories there.
+
+
+> Change-Id: I3feff26031b7368527f4506a5b98f3840f430815
+> Signed-off-by: Karsten Keil <keil@b1-systems.de>
+> ---
+> M recipes-bcm/bcm2835/bcm2835_1.36.bb
+> 1 file changed, 5 insertions(+), 3 deletions(-)
+>
+>
+>   git pull ssh://review.gherzan.ro:29418/meta-raspberrypi
+> refs/changes/97/97/1
+> --
+> To view, visit https://review.gherzan.ro:8443/97
+> To unsubscribe, visit https://review.gherzan.ro:8443/settings
+>
+> Gerrit-MessageType: newchange
+> Gerrit-Change-Id: I3feff26031b7368527f4506a5b98f3840f430815
+> Gerrit-PatchSet: 1
+> Gerrit-Project: meta-raspberrypi
+> Gerrit-Branch: master
+> Gerrit-Owner: Karsten Keil <mr.isdn@googlemail.com>
+>
+
+
+
 -- 
 *Andrei Gherzan*
 m: +40.744.478.414 |  f: +40.31.816.28.12
 
---001a11c3a99ade796a04fb804dc4
+--001a11c3a99a2f6a8104fb807918
 Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><br><div class=3D"gmail_extra"><br><br><div class=3D"gmail=
-_quote">On Tue, Jun 3, 2014 at 5:39 PM, Alex J Lennon <span dir=3D"ltr">&lt=
-;<a href=3D"mailto:ajlennon@dynamicdevices.co.uk" target=3D"_blank">ajlenno=
-n@dynamicdevices.co.uk</a>&gt;</span> wrote:<br>
+<div dir=3D"ltr">Hello Karsten,<br><div class=3D"gmail_extra"><br><br><div =
+class=3D"gmail_quote">On Sat, May 31, 2014 at 5:56 PM, Karsten Keil (Code R=
+eview) <span dir=3D"ltr">&lt;<a href=3D"mailto:gerrit2@gherzan.ro" target=
+=3D"_blank">gerrit2@gherzan.ro</a>&gt;</span> wrote:<br>
 
-<blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-=
-left-width:1px;border-left-color:rgb(204,204,204);border-left-style:solid;p=
-adding-left:1ex">
- =20
-   =20
- =20
-  <div text=3D"#000000" bgcolor=3D"#FFFFFF"><div class=3D"">
-    <br>
-    <div>On 03/06/2014 15:31, Felix01 Fischer
-      wrote:<br>
-    </div>
-    <blockquote type=3D"cite"><font face=3D"sans-serif">Hello all,</font>
-      <br>
-      <br>
-      <font face=3D"sans-serif">my ongoing struggle to get qt5
-        working
-        on the raspberrypi led me to a question unrelated to qt5.<br>
-        <br>
-        why do <a href=3D"http://vc-graphics-hardfp.bb" target=3D"_blank">v=
-c-graphics-hardfp.bb</a> &amp; <a href=3D"http://vc-graphics.bb" target=3D"=
-_blank">vc-graphics.bb</a> exist? [1]<br>
-        There is no recipe which uses on of this files.<br>
-        If I add one of them to my image via IMAGE_INSTALL_append I get
-        errors
-        that userland.git and vc-grapics-hardfp both provide virtual/egl
-        and virtual/libgles2.<br>
-        (Which they obviously do.) [2]<br>
-        <br>
-        My question is: What is the reason for having <a href=3D"http://use=
-rland_git.bb" target=3D"_blank">userland_git.bb</a>
-        &amp; <a href=3D"http://vc-graphics.bb/vc-graphics-hardfp" target=
-=3D"_blank">vc-graphics.bb/vc-graphics-hardfp</a>
-        ?</font>
-      <br>
-      <br>
-    </blockquote>
-    <br></div>
-    Hi Felix,<br>
-    <br>
-    I&#39;m not sure, but I&#39;ve been looking at userland vs vc-graphics
-    recently and I believe it is historical.<br>
-    <br>
-    Originally the intermediate layer between userspace and the
-    videocore was distributed as binaries<br>
-    which is what vc-graphics pulls down <br>
-    <br>
-    ref: <a href=3D"https://github.com/raspberrypi/firmware/tree/master/opt=
-/vc" target=3D"_blank">https://github.com/raspberrypi/firmware/tree/master/=
-opt/vc</a><br>
-    <br>
-    More recently Broadcom opened up the source and provided it under a
-    more relaxed license, and this<br>
-    is what userland provides: <br>
-    <br>
-    ref: <a href=3D"http://www.raspberrypi.org/open-source-arm-userspace/" =
-target=3D"_blank">http://www.raspberrypi.org/open-source-arm-userspace/</a>=
+<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
+x #ccc solid;padding-left:1ex">Karsten Keil has uploaded a new change for r=
+eview.<br>
 <br>
-    ref: <a href=3D"https://github.com/raspberrypi/userland" target=3D"_bla=
-nk">https://github.com/raspberrypi/userland</a><br>
-    <br>
-    Somebody will no doubt correct me if my guess is wrong :)<br>
-    <br>
-    I have been using userland + gstreamer reasonably sucessfully here
-    although my patch is needed for some<br>
-    of the userspace apps (e.g. raspivid), and there are some
-    configuration issues that need patching still <br>
-    relating to gstreamer1.0-omx<br>
-    <br>
-    ref: <a href=3D"https://github.com/raspberrypi/userland/pull/179" targe=
-t=3D"_blank">https://github.com/raspberrypi/userland/pull/179</a><br>
-    <br>
-    Cheers,<br>
-    <br>
-    Alex<div><div class=3D"h5"><br></div></div></div></blockquote><div><br>=
-</div><div>Exactly. We used to have binaries in the first place and we keep=
- them so people can test / use the binaries in their configurations.=C2=A0<=
-/div>
+=C2=A0 <a href=3D"https://review.gherzan.ro:8443/97" target=3D"_blank">http=
+s://review.gherzan.ro:8443/97</a><br>
+<br>
+<br>
+Change subject: Fix build error of bcm2835<br>
+......................................................................<br>
+<br>
+Fix build error of bcm2835<br>
+<br>
+It did complain about:<br>
+ld: cannot open output file /.../bcm2835-1.36/examples/blink: Is a director=
+y<br>
+collect2: error: ld returned 1 exit status<br>
+Tested on openSUSE 13.1<br>
+<br></blockquote><div><br></div><div>I can&#39;t replicate this issue. You =
+get this error at build time you said. Would you please give us some more i=
+nfo? In the compile append we build every example in B/examples. No sub-dir=
+ectories there.=C2=A0</div>
 
-</div><div>If for whatever reason somebody wants to use the binaries (we st=
-ill update the repos for binaries too) the only thing needed is to redefine=
- =C2=A0PREFERRED_PROVIDER_*. =C2=A0</div>-- <br><div dir=3D"ltr"><div style=
-=3D"text-align:center">
+<div>=C2=A0</div><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8=
+ex;border-left:1px #ccc solid;padding-left:1ex">
+Change-Id: I3feff26031b7368527f4506a5b98f3840f430815<br>
+Signed-off-by: Karsten Keil &lt;<a href=3D"mailto:keil@b1-systems.de">keil@=
+b1-systems.de</a>&gt;<br>
+---<br>
+M recipes-bcm/bcm2835/<a href=3D"http://bcm2835_1.36.bb" target=3D"_blank">=
+bcm2835_1.36.bb</a><br>
+1 file changed, 5 insertions(+), 3 deletions(-)<br>
+<br>
+<br>
+=C2=A0 git pull ssh://<a href=3D"http://review.gherzan.ro:29418/meta-raspbe=
+rrypi" target=3D"_blank">review.gherzan.ro:29418/meta-raspberrypi</a> refs/=
+changes/97/97/1<br>
+<span class=3D"HOEnZb"><font color=3D"#888888">--<br>
+To view, visit <a href=3D"https://review.gherzan.ro:8443/97" target=3D"_bla=
+nk">https://review.gherzan.ro:8443/97</a><br>
+To unsubscribe, visit <a href=3D"https://review.gherzan.ro:8443/settings" t=
+arget=3D"_blank">https://review.gherzan.ro:8443/settings</a><br>
+<br>
+Gerrit-MessageType: newchange<br>
+Gerrit-Change-Id: I3feff26031b7368527f4506a5b98f3840f430815<br>
+Gerrit-PatchSet: 1<br>
+Gerrit-Project: meta-raspberrypi<br>
+Gerrit-Branch: master<br>
+Gerrit-Owner: Karsten Keil &lt;<a href=3D"mailto:mr.isdn@googlemail.com">mr=
+.isdn@googlemail.com</a>&gt;<br>
+</font></span></blockquote></div><br><br clear=3D"all"><div><br></div>-- <b=
+r><div dir=3D"ltr"><div style=3D"text-align:center"></div><div style=3D"tex=
+t-align:center"><div align=3D"left" style=3D"font-family:&#39;Times New Rom=
+an&#39;;font-size:medium">
 
-</div><div style=3D"text-align:center"><div align=3D"left" style=3D"font-fa=
-mily:&#39;Times New Roman&#39;;font-size:medium"><b style=3D"color:rgb(51,5=
-1,51);font-family:Arial;font-size:small;text-align:center">Andrei Gherzan</=
-b><font face=3D"Arial" color=3D"#333333" size=3D"-1"><br>
+<b style=3D"color:rgb(51,51,51);font-family:Arial;font-size:small;text-alig=
+n:center">Andrei Gherzan</b><font face=3D"Arial" color=3D"#333333" size=3D"=
+-1"><br></font><font face=3D"Arial" color=3D"#333333" size=3D"-1">m: +40.74=
+4.478.414 | =C2=A0f: +40.31.816.28.12</font><br>
 
-</font><font face=3D"Arial" color=3D"#333333" size=3D"-1">m: +40.744.478.41=
-4 | =C2=A0f: +40.31.816.28.12</font><br></div></div></div>
+</div></div></div>
 </div></div>
 
---001a11c3a99ade796a04fb804dc4--
+--001a11c3a99a2f6a8104fb807918--
