@@ -1,46 +1,54 @@
-Return-Path: <ajlennon@dynamicdevices.co.uk>
+Return-Path: <wpdster@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 721AFE00B83; Wed, 11 Jun 2014 01:19:36 -0700 (PDT)
+	id 39977E00B83; Wed, 11 Jun 2014 04:21:45 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=0.0 required=5.0 tests=HTML_MESSAGE autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: *  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from www.dynamicdevices.co.uk (www.dynamicdevices.co.uk
-	[89.200.136.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0FC62E0082A
-	for <yocto@yoctoproject.org>; Wed, 11 Jun 2014 01:19:28 -0700 (PDT)
-Received: from localhost (localhost [127.0.0.1])
-	by www.dynamicdevices.co.uk (Postfix) with ESMTP id 241B227E036;
-	Wed, 11 Jun 2014 08:19:27 +0000 (UTC)
-X-Virus-Scanned: Debian amavisd-new at lennoab2.miniserver.com
-Received: from www.dynamicdevices.co.uk ([127.0.0.1])
-	by localhost (www.dynamicdevices.co.uk [127.0.0.1]) (amavisd-new,
-	port 10024)
-	with ESMTP id AZmO1N1rLjtJ; Wed, 11 Jun 2014 08:19:04 +0000 (UTC)
-Received: from [127.0.0.1] (cpc32-live22-2-0-cust59.17-2.cable.virginm.net
-	[82.36.253.60])
-	(using TLSv1 with cipher ECDHE-RSA-AES128-SHA (128/128 bits))
-	(No client certificate requested)
-	by www.dynamicdevices.co.uk (Postfix) with ESMTPSA id 5FB5B27E02A;
-	Wed, 11 Jun 2014 08:19:04 +0000 (UTC)
-Message-ID: <539810F4.3090601@dynamicdevices.co.uk>
-Date: Wed, 11 Jun 2014 09:19:00 +0100
-From: Alex J Lennon <ajlennon@dynamicdevices.co.uk>
-User-Agent: Mozilla/5.0 (Windows NT 6.3; WOW64;
-	rv:24.0) Gecko/20100101 Thunderbird/24.5.0
+X-Spam-Status: No, score=-0.8 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+	DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (wpdster[at]gmail.com)
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.128.170 listed in list.dnswl.org]
+Received: from mail-ve0-f170.google.com (mail-ve0-f170.google.com
+	[209.85.128.170])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C51DEE0082A
+	for <yocto@yoctoproject.org>; Wed, 11 Jun 2014 04:21:34 -0700 (PDT)
+Received: by mail-ve0-f170.google.com with SMTP id oz11so5996868veb.29
+	for <yocto@yoctoproject.org>; Wed, 11 Jun 2014 04:21:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:content-type:content-transfer-encoding;
+	bh=hTl7+HTveuTv0Sk9h7ig3kzXnC/V9NkCoqbblHEnZtc=;
+	b=jdAFeeYBjSqX4NJrFu/owoCjhMAxAb/YykGSRbaNfj9P541+rtNbEwei2GAEjMVZXX
+	LmMQngKheoDhTYYFdDkBtQa3McwrrRE+aeTpWZcr13bkbcT3m/Gkl3Yruq7TOScFhK2+
+	/njcHl7ts5rropdvbA07wOxTX0pxz9CX3OLz5rxAtdurpstcSjrD+nbKhDOxbI+wf3/J
+	6GDBck4tMkMXsvMYCTH1cfY8mPNs9UWrnnBGprckNf8SG+/lsPwbp3Fm7Q52byU2C3F/
+	EXPrdkjKqwKoa0rcmWwc6PucX5cSbocZQIzslDlwndxIf2IdKyquxHNztkTRkNxCGhOt
+	IxCw==
+X-Received: by 10.52.182.163 with SMTP id ef3mr2749912vdc.22.1402485693376;
+	Wed, 11 Jun 2014 04:21:33 -0700 (PDT)
 MIME-Version: 1.0
-To: Andrei Gherzan <andrei@gherzan.ro>
-References: <cover.1402224537.git.ajlennon@dynamicdevices.co.uk>
-	<e68eff99bd1d5efac6eb532a8f0b73ab673fceb7.1402224537.git.ajlennon@dynamicdevices.co.uk>
-	<CAK18fxHboa0uRC0YfeGZmuFGUzWHnzTy8F25S6xtpWb+2UdRXw@mail.gmail.com>
-	<5397947A.6050605@dynamicdevices.co.uk>
-	<CAK18fxGgMPMY_zdtRnr0nHk9Dc4siGWY-dat-tw9uXVZwZW-qA@mail.gmail.com>
-In-Reply-To: <CAK18fxGgMPMY_zdtRnr0nHk9Dc4siGWY-dat-tw9uXVZwZW-qA@mail.gmail.com>
-X-Enigmail-Version: 1.6
-Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: ***UNCHECKED*** Re: [meta-raspberrypi][PATCH 1/1] gstreamer1.0-omx: Target Raspberry Pi instead of Bellagio.
+Received: by 10.58.32.74 with HTTP; Wed, 11 Jun 2014 04:21:02 -0700 (PDT)
+In-Reply-To: <CAJTo0La_P6YDR5EK8oKOuk3zTqY8qSfOCxPfJfFxew5wBghBhQ@mail.gmail.com>
+References: <CAF_dkJCPkO1vRb9d8S=C-rP=TS+GBphJGGt_srmbA4L5kRokMA@mail.gmail.com>
+	<3311327.j4RKns8jMV@peggleto-mobl5.ger.corp.intel.com>
+	<CAJTo0Lb4_Th8+_MPCkOt_z4_4-2sby5uqqCZXAEOvZ6skCtqsA@mail.gmail.com>
+	<CAF_dkJAVphqmrZ5=u-dxyJSbGz-Cg5o3CVU3yx9WYxzReVNX7w@mail.gmail.com>
+	<CAJTo0La_P6YDR5EK8oKOuk3zTqY8qSfOCxPfJfFxew5wBghBhQ@mail.gmail.com>
+From: Patrick Doyle <wpdster@gmail.com>
+Date: Wed, 11 Jun 2014 07:21:02 -0400
+Message-ID: <CAF_dkJCwi-7noF_bP=pn4W3G-pLv1ww-k6mP31wJsPgMbV30=A@mail.gmail.com>
+To: "Burton, Ross" <ross.burton@intel.com>, 
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: QA Issue: non -dev/-dbg/-nativesdk package contains symlink .so
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -52,187 +60,43 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 11 Jun 2014 08:19:36 -0000
-Content-Type: multipart/alternative;
-	boundary="------------010800020103060803090602"
-
---------------010800020103060803090602
+X-List-Received-Date: Wed, 11 Jun 2014 11:21:45 -0000
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: quoted-printable
+
+I found the "libtool related change" for which I was looking, fixed
+it, submitted a patch upstream, saw the patch approved and applied to
+master, and now my Yocto build works once again.
+
+Hooray for Open Source!
+
+(Boo for my lack of ability to keep an email stream on list.)
+
+Thanks everybody for the help.
+
+--wpd
 
 
-On 11/06/2014 08:47, Andrei Gherzan wrote:
->
->
->
-> On Wed, Jun 11, 2014 at 2:27 AM, Alex J Lennon
-> <ajlennon@dynamicdevices.co.uk <mailto:ajlennon@dynamicdevices.co.uk>>
-> wrote:
->
->
->     On 10/06/2014 19:59, Andrei Gherzan wrote:
->>     Hello Alex.
+On Tue, Jun 10, 2014 at 12:05 PM, Burton, Ross <ross.burton@intel.com> wrot=
+e:
+> On 10 June 2014 16:29, Patrick Doyle <wpdster@gmail.com> wrote:
+>> Hmmm=E2=80=A6. Thanks Ross, I think you're probably onto something there=
+,
+>> since the Aravis package is generating a shared library plugin that
+>> can be loaded with gstreamer.
 >>
->>     On Sun, Jun 8, 2014 at 1:50 PM, Alex J Lennon
->>     <ajlennon@dynamicdevices.co.uk
->>     <mailto:ajlennon@dynamicdevices.co.uk>> wrote:
->>
->>         This changes the build slightly as there are some #ifdefs in
->>         there for Raspberry Pi.
->>
->>         Also the codec configuration file used by gstreamer1.0-omx
->>         codecs, /etc/xdg/gstomx.conf,  is set correctly to
->>         core-name=/usr/lib/libopenmaxil.so
->>
->>         Change-Id: I2352ecabfd053717d9ccd2d22422e7d4b7588ce4
->>         Signed-off-by: Alex J Lennon <ajlennon@dynamicdevices.co.uk
->>         <mailto:ajlennon@dynamicdevices.co.uk>>
->>         ---
->>          recipes-multimedia/gstreamer/gstreamer1.0-omx.inc          
->>          | 2 ++
->>          recipes-multimedia/gstreamer/gstreamer1.0-omx_1.0.0.bbappend
->>         | 1 +
->>
->>
->>     I was thinking we we really need two files for this... I know
->>     that yocto has an inc too. But i don't know if that really makes
->>     sense for one line. What do you think? 
->>      
+>> The confusing thing is=E2=80=A6 this used to work (as of mumble revision=
+s ago
+>> on the master branch), and I don't see any libtool related changes in
+>> the diffs.  I'll go check again, and read the Building-modules.html
+>> page to which you directed me, and see if I can figure out what went
+>> wrong where/how.
 >
->     I came across Yocto best practice here. This is more or less why I
->     provided a patch for consideration into Poky on this earlier
->     today. It would help me, and I suspect other newbies, to have best
->     practice expectations on how to put patches together somewhere up
->     front, say in the README.
+> Right, that's exactly whats happening then.  Yocto has had this QA
+> warning for a long time, so possibly your distro has done something
+> that enabled it?  In this case it's trivial to either fix the Makefile
+> (and push the fix upstream) or short-term fix by disabling that QA
+> test with INSANE_SKIP.
 >
->     "Do not merge .inc / .bb files"
->
->     https://wiki.yoctoproject.org/wiki/Best_Known_Methods_(BKMs)_for_Package_Updating
->     <https://wiki.yoctoproject.org/wiki/Best_Known_Methods_%28BKMs%29_for_Package_Updating>
->
->
-> I understand. But I think that this is the case only for bb files. We
-> are talking here about a bbappend in which case this would be pretty
-> useless. Nobody reuses an inc for a bbappend - never seen something
-> like that. 
+> Ross
 
-e.g. I have gstreamer1.0-omx_git.bbappend here which reuses the .inc
-file. I didn't contribute it as for some reason the git build breaks and
-I need to look at why this is
-
-
---------------010800020103060803090602
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-
-<html>
-  <head>
-    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
-  </head>
-  <body text="#000000" bgcolor="#FFFFFF">
-    <br>
-    <div class="moz-cite-prefix">On 11/06/2014 08:47, Andrei Gherzan
-      wrote:<br>
-    </div>
-    <blockquote
-cite="mid:CAK18fxGgMPMY_zdtRnr0nHk9Dc4siGWY-dat-tw9uXVZwZW-qA@mail.gmail.com"
-      type="cite">
-      <div dir="ltr"><br>
-        <div class="gmail_extra"><br>
-          <br>
-          <div class="gmail_quote">On Wed, Jun 11, 2014 at 2:27 AM, Alex
-            J Lennon <span dir="ltr">&lt;<a moz-do-not-send="true"
-                href="mailto:ajlennon@dynamicdevices.co.uk"
-                target="_blank">ajlennon@dynamicdevices.co.uk</a>&gt;</span>
-            wrote:<br>
-            <blockquote class="gmail_quote" style="margin:0 0 0
-              .8ex;border-left:1px #ccc solid;padding-left:1ex">
-              <div text="#000000" bgcolor="#FFFFFF">
-                <div class=""> <br>
-                  <div>On 10/06/2014 19:59, Andrei Gherzan wrote:<br>
-                  </div>
-                  <blockquote type="cite">
-                    <div dir="ltr">
-                      <div class="gmail_extra">Hello Alex.</div>
-                      <div class="gmail_extra"><br>
-                        <div class="gmail_quote">On Sun, Jun 8, 2014 at
-                          1:50 PM, Alex J Lennon <span dir="ltr">&lt;<a
-                              moz-do-not-send="true"
-                              href="mailto:ajlennon@dynamicdevices.co.uk"
-                              target="_blank">ajlennon@dynamicdevices.co.uk</a>&gt;</span>
-                          wrote:<br>
-                          <blockquote class="gmail_quote"
-                            style="margin:0 0 0 .8ex;border-left:1px
-                            #ccc solid;padding-left:1ex">This changes
-                            the build slightly as there are some #ifdefs
-                            in there for Raspberry Pi.<br>
-                            <br>
-                            Also the codec configuration file used by
-                            gstreamer1.0-omx codecs,
-                            /etc/xdg/gstomx.conf,  is set correctly to
-                            core-name=/usr/lib/libopenmaxil.so<br>
-                            <br>
-                            Change-Id:
-                            I2352ecabfd053717d9ccd2d22422e7d4b7588ce4<br>
-                            Signed-off-by: Alex J Lennon &lt;<a
-                              moz-do-not-send="true"
-                              href="mailto:ajlennon@dynamicdevices.co.uk"
-                              target="_blank">ajlennon@dynamicdevices.co.uk</a>&gt;<br>
-                            ---<br>
-                            <div> recipes-multimedia/gstreamer/gstreamer1.0-omx.inc
-
-                                         | 2 ++<br>
-                               recipes-multimedia/gstreamer/gstreamer1.0-omx_1.0.0.bbappend
-
-                              | 1 +<br>
-                            </div>
-                          </blockquote>
-                          <div><br>
-                          </div>
-                          <div>I was thinking we we really need two
-                            files for this... I know that yocto has an
-                            inc too. But i don't know if that really
-                            makes sense for one line. What do you
-                            think? </div>
-                          <div> </div>
-                        </div>
-                      </div>
-                    </div>
-                  </blockquote>
-                  <br>
-                </div>
-                I came across Yocto best practice here. This is more or
-                less why I provided a patch for consideration into Poky
-                on this earlier today. It would help me, and I suspect
-                other newbies, to have best practice expectations on how
-                to put patches together somewhere up front, say in the
-                README.<br>
-                <br>
-                "Do not merge .inc / .bb files" <br>
-                <br>
-                <a moz-do-not-send="true"
-href="https://wiki.yoctoproject.org/wiki/Best_Known_Methods_%28BKMs%29_for_Package_Updating"
-                  target="_blank">https://wiki.yoctoproject.org/wiki/Best_Known_Methods_(BKMs)_for_Package_Updating</a></div>
-            </blockquote>
-            <div><br>
-            </div>
-            <div>I understand. But I think that this is the case only
-              for bb files. We are talking here about a bbappend in
-              which case this would be pretty useless. Nobody reuses an
-              inc for a bbappend - never seen something like that. </div>
-          </div>
-        </div>
-      </div>
-    </blockquote>
-    <br>
-    e.g. I have gstreamer1.0-omx_git.bbappend here which reuses the .inc
-    file. I didn't contribute it as for some reason the git build breaks
-    and I need to look at why this is<br>
-    <br>
-    <div class="moz-signature">
-      <div class="preview"> </div>
-    </div>
-  </body>
-</html>
-
---------------010800020103060803090602--
