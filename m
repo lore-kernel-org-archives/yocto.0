@@ -1,54 +1,47 @@
-Return-Path: <wpdster@gmail.com>
+Return-Path: <marek.andrus@wp.pl>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 39977E00B83; Wed, 11 Jun 2014 04:21:45 -0700 (PDT)
+	id 7EC93E00BAE; Wed, 11 Jun 2014 04:33:30 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-0.8 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+X-Spam-Status: No, score=-0.1 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
 	DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (wpdster[at]gmail.com)
+	mail provider *      (marek.andrus[at]wp.pl)
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.128.170 listed in list.dnswl.org]
-Received: from mail-ve0-f170.google.com (mail-ve0-f170.google.com
-	[209.85.128.170])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C51DEE0082A
-	for <yocto@yoctoproject.org>; Wed, 11 Jun 2014 04:21:34 -0700 (PDT)
-Received: by mail-ve0-f170.google.com with SMTP id oz11so5996868veb.29
-	for <yocto@yoctoproject.org>; Wed, 11 Jun 2014 04:21:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:content-type:content-transfer-encoding;
-	bh=hTl7+HTveuTv0Sk9h7ig3kzXnC/V9NkCoqbblHEnZtc=;
-	b=jdAFeeYBjSqX4NJrFu/owoCjhMAxAb/YykGSRbaNfj9P541+rtNbEwei2GAEjMVZXX
-	LmMQngKheoDhTYYFdDkBtQa3McwrrRE+aeTpWZcr13bkbcT3m/Gkl3Yruq7TOScFhK2+
-	/njcHl7ts5rropdvbA07wOxTX0pxz9CX3OLz5rxAtdurpstcSjrD+nbKhDOxbI+wf3/J
-	6GDBck4tMkMXsvMYCTH1cfY8mPNs9UWrnnBGprckNf8SG+/lsPwbp3Fm7Q52byU2C3F/
-	EXPrdkjKqwKoa0rcmWwc6PucX5cSbocZQIzslDlwndxIf2IdKyquxHNztkTRkNxCGhOt
-	IxCw==
-X-Received: by 10.52.182.163 with SMTP id ef3mr2749912vdc.22.1402485693376;
-	Wed, 11 Jun 2014 04:21:33 -0700 (PDT)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [212.77.101.12 listed in list.dnswl.org]
+Received: from mx4.wp.pl (mx4.wp.pl [212.77.101.12])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2C592E0082A
+	for <yocto@yoctoproject.org>; Wed, 11 Jun 2014 04:33:20 -0700 (PDT)
+Received: (wp-smtpd smtp.wp.pl 7118 invoked from network);
+	11 Jun 2014 13:33:16 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wp.pl; s=1024a;
+	t=1402486396; bh=yOb5WzcjSq7yOui8+Y1BD0Z6N1Lb7/thQwPbWMjcx7Q=;
+	h=From:To:Subject;
+	b=P+a7nzEraabXw6TcMbTVghfr+gR9qTX9aJLe+mKZcqP1Xppiv3vAoX+PksHOXvMu9
+	Tp3J2q5agiwJ+GCG4OTa9jfo659NAnP00EWH+B/qAUKPMxFXDxxtRgqas86aUkwxAC
+	44mq4P3/Ts/r7V45iULXDzkEyCpYOa6q3rHiSU6U=
+Received: from unknown (HELO [62.159.77.164]) (marek.andrus@[62.159.77.164])
+	(envelope-sender <marek.andrus@wp.pl>)
+	by smtp.wp.pl (WP-SMTPD) with AES128-SHA encrypted SMTP
+	for <yocto@yoctoproject.org>; 11 Jun 2014 13:33:16 +0200
+Message-ID: <53983E7B.6070001@wp.pl>
+Date: Wed, 11 Jun 2014 13:33:15 +0200
+From: Marek Andrus <marek.andrus@wp.pl>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:24.0) Gecko/20100101 Icedove/24.5.0
 MIME-Version: 1.0
-Received: by 10.58.32.74 with HTTP; Wed, 11 Jun 2014 04:21:02 -0700 (PDT)
-In-Reply-To: <CAJTo0La_P6YDR5EK8oKOuk3zTqY8qSfOCxPfJfFxew5wBghBhQ@mail.gmail.com>
-References: <CAF_dkJCPkO1vRb9d8S=C-rP=TS+GBphJGGt_srmbA4L5kRokMA@mail.gmail.com>
-	<3311327.j4RKns8jMV@peggleto-mobl5.ger.corp.intel.com>
-	<CAJTo0Lb4_Th8+_MPCkOt_z4_4-2sby5uqqCZXAEOvZ6skCtqsA@mail.gmail.com>
-	<CAF_dkJAVphqmrZ5=u-dxyJSbGz-Cg5o3CVU3yx9WYxzReVNX7w@mail.gmail.com>
-	<CAJTo0La_P6YDR5EK8oKOuk3zTqY8qSfOCxPfJfFxew5wBghBhQ@mail.gmail.com>
-From: Patrick Doyle <wpdster@gmail.com>
-Date: Wed, 11 Jun 2014 07:21:02 -0400
-Message-ID: <CAF_dkJCwi-7noF_bP=pn4W3G-pLv1ww-k6mP31wJsPgMbV30=A@mail.gmail.com>
-To: "Burton, Ross" <ross.burton@intel.com>, 
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: QA Issue: non -dev/-dbg/-nativesdk package contains symlink .so
+To: yocto@yoctoproject.org
+X-WP-AV: skaner antywirusowy poczty Wirtualnej Polski S. A.
+X-WP-SPAM: NO 0000000 [AUOU]                               
+Subject: put symlink into /usr in sysroot
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -60,43 +53,19 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 11 Jun 2014 11:21:45 -0000
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Wed, 11 Jun 2014 11:33:30 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
 
-I found the "libtool related change" for which I was looking, fixed
-it, submitted a patch upstream, saw the patch approved and applied to
-master, and now my Yocto build works once again.
+Hi,
 
-Hooray for Open Source!
+I have to make symbolic link /usr/lib64 to /usr/lib in target sysroot. I 
+create it in install phase and it appears in output rpm package. 
+Unfortunately it doesn't appear in sysroot. I've found that if I create 
+links/files inside eg. /usr/lib the same way, they appear in sysroot. So 
+probably the question should be like this: how to put anything into /usr 
+or / in sysroot?
 
-(Boo for my lack of ability to keep an email stream on list.)
-
-Thanks everybody for the help.
-
---wpd
-
-
-On Tue, Jun 10, 2014 at 12:05 PM, Burton, Ross <ross.burton@intel.com> wrot=
-e:
-> On 10 June 2014 16:29, Patrick Doyle <wpdster@gmail.com> wrote:
->> Hmmm=E2=80=A6. Thanks Ross, I think you're probably onto something there=
-,
->> since the Aravis package is generating a shared library plugin that
->> can be loaded with gstreamer.
->>
->> The confusing thing is=E2=80=A6 this used to work (as of mumble revision=
-s ago
->> on the master branch), and I don't see any libtool related changes in
->> the diffs.  I'll go check again, and read the Building-modules.html
->> page to which you directed me, and see if I can figure out what went
->> wrong where/how.
->
-> Right, that's exactly whats happening then.  Yocto has had this QA
-> warning for a long time, so possibly your distro has done something
-> that enabled it?  In this case it's trivial to either fix the Makefile
-> (and push the fix upstream) or short-term fix by disabling that QA
-> test with INSANE_SKIP.
->
-> Ross
+BR,
+Marek Andrus
 
