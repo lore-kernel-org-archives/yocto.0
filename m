@@ -1,49 +1,46 @@
-Return-Path: <andrei@gherzan.ro>
+Return-Path: <ajlennon@dynamicdevices.co.uk>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 682E2E00BE1; Wed, 11 Jun 2014 00:52:34 -0700 (PDT)
+	id 721AFE00B83; Wed, 11 Jun 2014 01:19:36 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-0.7 required=5.0 tests=HTML_MESSAGE,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [74.125.82.47 listed in list.dnswl.org]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from mail-wg0-f47.google.com (mail-wg0-f47.google.com [74.125.82.47])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 984ECE00B78
-	for <yocto@yoctoproject.org>; Wed, 11 Jun 2014 00:52:29 -0700 (PDT)
-Received: by mail-wg0-f47.google.com with SMTP id k14so7672971wgh.30
-	for <yocto@yoctoproject.org>; Wed, 11 Jun 2014 00:52:28 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc:content-type;
-	bh=LRtCw8Lfe8cmJJyGFppd6IJ+2T5JLpsqueciCqykSS4=;
-	b=E7NOeCQJtfpZtWXa6gpXacsDw1SPZgWj4medhJaKAlZqtYt653B1nk3A0jHV5IpWN/
-	zV0oogY787gj91zcHCeo7fPD14JWMrOM9A3Z8dsqw8fcD4LcET/4ZeSa71o1Ksfl2AZN
-	teUWQUqSMxozsEl3Ki4igVJI7t+cWxIQJHOLRpf/DDECatI0CQG63nX9L9ruNtnBFGzv
-	ubGVm5BFn5nNHkVGedx4BQpLyrAezdE807RsJNcLfembxt8VwSMHyCiRensqORog3+FP
-	8yk5wZlvjW5fVtfSVH/MlhdQcAlmEy6Bxnyp/v/uexYq2/KXQVpXX9c5CV/qHoUtULid
-	hHWg==
-X-Gm-Message-State: ALoCoQmlcD+2QiAk43Xw3la/6uyGsa8OOWawqZJWAWNfqI6cs3zjSSW1FVEXfcMEOJMz7eSHrOj2
-X-Received: by 10.194.189.116 with SMTP id gh20mr48623252wjc.41.1402473148475; 
-	Wed, 11 Jun 2014 00:52:28 -0700 (PDT)
+X-Spam-Status: No, score=0.0 required=5.0 tests=HTML_MESSAGE autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: *  0.0 HTML_MESSAGE BODY: HTML included in message
+Received: from www.dynamicdevices.co.uk (www.dynamicdevices.co.uk
+	[89.200.136.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0FC62E0082A
+	for <yocto@yoctoproject.org>; Wed, 11 Jun 2014 01:19:28 -0700 (PDT)
+Received: from localhost (localhost [127.0.0.1])
+	by www.dynamicdevices.co.uk (Postfix) with ESMTP id 241B227E036;
+	Wed, 11 Jun 2014 08:19:27 +0000 (UTC)
+X-Virus-Scanned: Debian amavisd-new at lennoab2.miniserver.com
+Received: from www.dynamicdevices.co.uk ([127.0.0.1])
+	by localhost (www.dynamicdevices.co.uk [127.0.0.1]) (amavisd-new,
+	port 10024)
+	with ESMTP id AZmO1N1rLjtJ; Wed, 11 Jun 2014 08:19:04 +0000 (UTC)
+Received: from [127.0.0.1] (cpc32-live22-2-0-cust59.17-2.cable.virginm.net
+	[82.36.253.60])
+	(using TLSv1 with cipher ECDHE-RSA-AES128-SHA (128/128 bits))
+	(No client certificate requested)
+	by www.dynamicdevices.co.uk (Postfix) with ESMTPSA id 5FB5B27E02A;
+	Wed, 11 Jun 2014 08:19:04 +0000 (UTC)
+Message-ID: <539810F4.3090601@dynamicdevices.co.uk>
+Date: Wed, 11 Jun 2014 09:19:00 +0100
+From: Alex J Lennon <ajlennon@dynamicdevices.co.uk>
+User-Agent: Mozilla/5.0 (Windows NT 6.3; WOW64;
+	rv:24.0) Gecko/20100101 Thunderbird/24.5.0
 MIME-Version: 1.0
-Received: by 10.216.31.129 with HTTP; Wed, 11 Jun 2014 00:52:08 -0700 (PDT)
-X-Originating-IP: [89.121.200.106]
-In-Reply-To: <539792BD.60804@dynamicdevices.co.uk>
-References: <cover.1401706333.git.ajlennon@dynamicdevices.co.uk>
-	<f4ebcded14c4f0d1cf509ad58e3ba02a2ad71a89.1401706333.git.ajlennon@dynamicdevices.co.uk>
-	<CAK18fxHD-SvL=6df=aW6LWG03Qb0rUCSHeS5F+LVgW5SCWj4KQ@mail.gmail.com>
-	<539792BD.60804@dynamicdevices.co.uk>
-From: Andrei Gherzan <andrei@gherzan.ro>
-Date: Wed, 11 Jun 2014 10:52:08 +0300
-Message-ID: <CAK18fxHry2q9hrQLj7VdfVReBij9smU0VRJ-8U34sgga+A0MjQ@mail.gmail.com>
-To: Alex J Lennon <ajlennon@dynamicdevices.co.uk>
-Cc: Yocto Project <yocto@yoctoproject.org>, Gary Thomas <gary@mlbassoc.com>,
-	jan alexandru vaduva <vaduva.jan.alexandru@gmail.com>
-Subject: Re: [meta-raspberrypi][PATCH 1/2] userland: Add '--no-as-needed' linker flag to ensure all specified shared libraries are linked against applications (e.g. raspivid)
+To: Andrei Gherzan <andrei@gherzan.ro>
+References: <cover.1402224537.git.ajlennon@dynamicdevices.co.uk>
+	<e68eff99bd1d5efac6eb532a8f0b73ab673fceb7.1402224537.git.ajlennon@dynamicdevices.co.uk>
+	<CAK18fxHboa0uRC0YfeGZmuFGUzWHnzTy8F25S6xtpWb+2UdRXw@mail.gmail.com>
+	<5397947A.6050605@dynamicdevices.co.uk>
+	<CAK18fxGgMPMY_zdtRnr0nHk9Dc4siGWY-dat-tw9uXVZwZW-qA@mail.gmail.com>
+In-Reply-To: <CAK18fxGgMPMY_zdtRnr0nHk9Dc4siGWY-dat-tw9uXVZwZW-qA@mail.gmail.com>
+X-Enigmail-Version: 1.6
+Cc: Yocto Project <yocto@yoctoproject.org>
+Subject: Re: ***UNCHECKED*** Re: [meta-raspberrypi][PATCH 1/1] gstreamer1.0-omx: Target Raspberry Pi instead of Bellagio.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -55,121 +52,187 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 11 Jun 2014 07:52:34 -0000
-Content-Type: multipart/alternative; boundary=047d7b622426d2840b04fb8ab987
+X-List-Received-Date: Wed, 11 Jun 2014 08:19:36 -0000
+Content-Type: multipart/alternative;
+	boundary="------------010800020103060803090602"
 
---047d7b622426d2840b04fb8ab987
+--------------010800020103060803090602
 Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Wed, Jun 11, 2014 at 2:20 AM, Alex J Lennon <
-ajlennon@dynamicdevices.co.uk> wrote:
 
->
-> On 10/06/2014 19:22, Andrei Gherzan wrote:
->
+On 11/06/2014 08:47, Andrei Gherzan wrote:
 >
 >
-> On Mon, Jun 2, 2014 at 1:58 PM, Alex J Lennon <
-> ajlennon@dynamicdevices.co.uk> wrote:
 >
->> libmmal_vc_client.so makes use of __attribute__(constructor) to ensure
->> that supplier components (e.g. camera) are loaded when the static library
->> is loaded.
+> On Wed, Jun 11, 2014 at 2:27 AM, Alex J Lennon
+> <ajlennon@dynamicdevices.co.uk <mailto:ajlennon@dynamicdevices.co.uk>>
+> wrote:
+>
+>
+>     On 10/06/2014 19:59, Andrei Gherzan wrote:
+>>     Hello Alex.
 >>
+>>     On Sun, Jun 8, 2014 at 1:50 PM, Alex J Lennon
+>>     <ajlennon@dynamicdevices.co.uk
+>>     <mailto:ajlennon@dynamicdevices.co.uk>> wrote:
+>>
+>>         This changes the build slightly as there are some #ifdefs in
+>>         there for Raspberry Pi.
+>>
+>>         Also the codec configuration file used by gstreamer1.0-omx
+>>         codecs, /etc/xdg/gstomx.conf,  is set correctly to
+>>         core-name=/usr/lib/libopenmaxil.so
+>>
+>>         Change-Id: I2352ecabfd053717d9ccd2d22422e7d4b7588ce4
+>>         Signed-off-by: Alex J Lennon <ajlennon@dynamicdevices.co.uk
+>>         <mailto:ajlennon@dynamicdevices.co.uk>>
+>>         ---
+>>          recipes-multimedia/gstreamer/gstreamer1.0-omx.inc          
+>>          | 2 ++
+>>          recipes-multimedia/gstreamer/gstreamer1.0-omx_1.0.0.bbappend
+>>         | 1 +
+>>
+>>
+>>     I was thinking we we really need two files for this... I know
+>>     that yocto has an inc too. But i don't know if that really makes
+>>     sense for one line. What do you think? 
+>>      
 >
->  There shouldn't be more than 78 characters per line. I did this change
-> for this patch (the other you already submited). More info:
->  http://www.openembedded.org/wiki/Commit_Patch_Message_Guidelines
+>     I came across Yocto best practice here. This is more or less why I
+>     provided a patch for consideration into Poky on this earlier
+>     today. It would help me, and I suspect other newbies, to have best
+>     practice expectations on how to put patches together somewhere up
+>     front, say in the README.
+>
+>     "Do not merge .inc / .bb files"
+>
+>     https://wiki.yoctoproject.org/wiki/Best_Known_Methods_(BKMs)_for_Package_Updating
+>     <https://wiki.yoctoproject.org/wiki/Best_Known_Methods_%28BKMs%29_for_Package_Updating>
 >
 >
-> Understood - thanks Andrei, I'll try to bear that in mind.
->
-> Perhaps you'd be open to the idea of a patch to add these requirements
-> into the meta-raspberrypi README in-between 5A/5B.
->
-> I believe it would help contributors like myself, who are new to the
-> process requirements, to understand how to put a patch together correctly,
-> as well as where to sent it.
->
+> I understand. But I think that this is the case only for bb files. We
+> are talking here about a bbappend in which case this would be pretty
+> useless. Nobody reuses an inc for a bbappend - never seen something
+> like that. 
 
-That's a good idea. Will send a patch.
+e.g. I have gstreamer1.0-omx_git.bbappend here which reuses the .inc
+file. I didn't contribute it as for some reason the git build breaks and
+I need to look at why this is
 
 
--- 
-*Andrei Gherzan*
-m: +40.744.478.414 |  f: +40.31.816.28.12
-
---047d7b622426d2840b04fb8ab987
+--------------010800020103060803090602
 Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 
-<div dir=3D"ltr"><br><div class=3D"gmail_extra"><br><br><div class=3D"gmail=
-_quote">On Wed, Jun 11, 2014 at 2:20 AM, Alex J Lennon <span dir=3D"ltr">&l=
-t;<a href=3D"mailto:ajlennon@dynamicdevices.co.uk" target=3D"_blank">ajlenn=
-on@dynamicdevices.co.uk</a>&gt;</span> wrote:<br>
-
-<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
-x #ccc solid;padding-left:1ex">
- =20
-   =20
- =20
-  <div text=3D"#000000" bgcolor=3D"#FFFFFF">
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+  </head>
+  <body text="#000000" bgcolor="#FFFFFF">
     <br>
-    <div>On 10/06/2014 19:22, Andrei Gherzan
+    <div class="moz-cite-prefix">On 11/06/2014 08:47, Andrei Gherzan
       wrote:<br>
     </div>
-    <blockquote type=3D"cite">
-      <div dir=3D"ltr">
-        <div class=3D"gmail_extra"><br>
+    <blockquote
+cite="mid:CAK18fxGgMPMY_zdtRnr0nHk9Dc4siGWY-dat-tw9uXVZwZW-qA@mail.gmail.com"
+      type="cite">
+      <div dir="ltr"><br>
+        <div class="gmail_extra"><br>
           <br>
-          <div class=3D"gmail_quote">On Mon, Jun 2, 2014 at 1:58 PM, Alex
-            J Lennon <span dir=3D"ltr">&lt;<a href=3D"mailto:ajlennon@dynam=
-icdevices.co.uk" target=3D"_blank">ajlennon@dynamicdevices.co.uk</a>&gt;</s=
-pan>
+          <div class="gmail_quote">On Wed, Jun 11, 2014 at 2:27 AM, Alex
+            J Lennon <span dir="ltr">&lt;<a moz-do-not-send="true"
+                href="mailto:ajlennon@dynamicdevices.co.uk"
+                target="_blank">ajlennon@dynamicdevices.co.uk</a>&gt;</span>
             wrote:<br>
-            <blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0=
-.8ex;border-left-width:1px;border-left-color:rgb(204,204,204);border-left-s=
-tyle:solid;padding-left:1ex">
-              <div>libmmal_vc_client.so makes use of
-                __attribute__(constructor) to ensure that supplier
-                components (e.g. camera) are loaded when the static
-                library is loaded.<br>
-              </div>
+            <blockquote class="gmail_quote" style="margin:0 0 0
+              .8ex;border-left:1px #ccc solid;padding-left:1ex">
+              <div text="#000000" bgcolor="#FFFFFF">
+                <div class=""> <br>
+                  <div>On 10/06/2014 19:59, Andrei Gherzan wrote:<br>
+                  </div>
+                  <blockquote type="cite">
+                    <div dir="ltr">
+                      <div class="gmail_extra">Hello Alex.</div>
+                      <div class="gmail_extra"><br>
+                        <div class="gmail_quote">On Sun, Jun 8, 2014 at
+                          1:50 PM, Alex J Lennon <span dir="ltr">&lt;<a
+                              moz-do-not-send="true"
+                              href="mailto:ajlennon@dynamicdevices.co.uk"
+                              target="_blank">ajlennon@dynamicdevices.co.uk</a>&gt;</span>
+                          wrote:<br>
+                          <blockquote class="gmail_quote"
+                            style="margin:0 0 0 .8ex;border-left:1px
+                            #ccc solid;padding-left:1ex">This changes
+                            the build slightly as there are some #ifdefs
+                            in there for Raspberry Pi.<br>
+                            <br>
+                            Also the codec configuration file used by
+                            gstreamer1.0-omx codecs,
+                            /etc/xdg/gstomx.conf,  is set correctly to
+                            core-name=/usr/lib/libopenmaxil.so<br>
+                            <br>
+                            Change-Id:
+                            I2352ecabfd053717d9ccd2d22422e7d4b7588ce4<br>
+                            Signed-off-by: Alex J Lennon &lt;<a
+                              moz-do-not-send="true"
+                              href="mailto:ajlennon@dynamicdevices.co.uk"
+                              target="_blank">ajlennon@dynamicdevices.co.uk</a>&gt;<br>
+                            ---<br>
+                            <div> recipes-multimedia/gstreamer/gstreamer1.0-omx.inc
+
+                                         | 2 ++<br>
+                               recipes-multimedia/gstreamer/gstreamer1.0-omx_1.0.0.bbappend
+
+                              | 1 +<br>
+                            </div>
+                          </blockquote>
+                          <div><br>
+                          </div>
+                          <div>I was thinking we we really need two
+                            files for this... I know that yocto has an
+                            inc too. But i don't know if that really
+                            makes sense for one line. What do you
+                            think? </div>
+                          <div> </div>
+                        </div>
+                      </div>
+                    </div>
+                  </blockquote>
+                  <br>
+                </div>
+                I came across Yocto best practice here. This is more or
+                less why I provided a patch for consideration into Poky
+                on this earlier today. It would help me, and I suspect
+                other newbies, to have best practice expectations on how
+                to put patches together somewhere up front, say in the
+                README.<br>
+                <br>
+                "Do not merge .inc / .bb files" <br>
+                <br>
+                <a moz-do-not-send="true"
+href="https://wiki.yoctoproject.org/wiki/Best_Known_Methods_%28BKMs%29_for_Package_Updating"
+                  target="_blank">https://wiki.yoctoproject.org/wiki/Best_Known_Methods_(BKMs)_for_Package_Updating</a></div>
             </blockquote>
             <div><br>
             </div>
-            <div>There shouldn&#39;t be more than 78 characters per line. I
-              did this change for this patch (the other you already
-              submited). More info:<br>
-            </div>
-            <div><a href=3D"http://www.openembedded.org/wiki/Commit_Patch_M=
-essage_Guidelines" target=3D"_blank">http://www.openembedded.org/wiki/Commi=
-t_Patch_Message_Guidelines</a><br>
-            </div>
+            <div>I understand. But I think that this is the case only
+              for bb files. We are talking here about a bbappend in
+              which case this would be pretty useless. Nobody reuses an
+              inc for a bbappend - never seen something like that. </div>
           </div>
         </div>
       </div>
     </blockquote>
     <br>
-    Understood - thanks Andrei, I&#39;ll try to bear that in mind. <br>
+    e.g. I have gstreamer1.0-omx_git.bbappend here which reuses the .inc
+    file. I didn't contribute it as for some reason the git build breaks
+    and I need to look at why this is<br>
     <br>
-    Perhaps you&#39;d be open to the idea of a patch to add these
-    requirements into the meta-raspberrypi README in-between 5A/5B.<br>
-    <br>
-    I believe it would help contributors like myself, who are new to the
-    process requirements, to understand how to put a patch together
-    correctly, as well as where to sent it.<br></div></blockquote><div><br>=
-</div><div>That&#39;s a good idea. Will send a patch.=C2=A0</div></div><br =
-clear=3D"all"><div><br></div>-- <br><div dir=3D"ltr"><div style=3D"text-ali=
-gn:center">
+    <div class="moz-signature">
+      <div class="preview"> </div>
+    </div>
+  </body>
+</html>
 
-</div><div style=3D"text-align:center"><div align=3D"left" style=3D"font-fa=
-mily:&#39;Times New Roman&#39;;font-size:medium"><b style=3D"color:rgb(51,5=
-1,51);font-family:Arial;font-size:small;text-align:center">Andrei Gherzan</=
-b><font face=3D"Arial" color=3D"#333333" size=3D"-1"><br>
-
-</font><font face=3D"Arial" color=3D"#333333" size=3D"-1">m: +40.744.478.41=
-4 | =C2=A0f: +40.31.816.28.12</font><br></div></div></div>
-</div></div>
-
---047d7b622426d2840b04fb8ab987--
+--------------010800020103060803090602--
