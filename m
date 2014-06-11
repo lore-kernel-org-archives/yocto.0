@@ -1,45 +1,49 @@
-Return-Path: <ajlennon@dynamicdevices.co.uk>
+Return-Path: <andrei@gherzan.ro>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 1B184E00C24; Wed, 11 Jun 2014 10:44:08 -0700 (PDT)
+	id C786EE00BC2; Wed, 11 Jun 2014 10:50:58 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=0.0 required=5.0 tests=HTML_MESSAGE autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: *  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from www.dynamicdevices.co.uk (www.dynamicdevices.co.uk
-	[89.200.136.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4F042E0082A
-	for <yocto@yoctoproject.org>; Wed, 11 Jun 2014 10:44:01 -0700 (PDT)
-Received: from localhost (localhost [127.0.0.1])
-	by www.dynamicdevices.co.uk (Postfix) with ESMTP id 934A827E02B;
-	Wed, 11 Jun 2014 17:44:00 +0000 (UTC)
-X-Virus-Scanned: Debian amavisd-new at lennoab2.miniserver.com
-Received: from www.dynamicdevices.co.uk ([127.0.0.1])
-	by localhost (www.dynamicdevices.co.uk [127.0.0.1]) (amavisd-new,
-	port 10024)
-	with ESMTP id BkddWatBc47U; Wed, 11 Jun 2014 17:43:58 +0000 (UTC)
-Received: from [127.0.0.1] (cpc32-live22-2-0-cust59.17-2.cable.virginm.net
-	[82.36.253.60])
-	(using TLSv1 with cipher ECDHE-RSA-AES128-SHA (128/128 bits))
-	(No client certificate requested)
-	by www.dynamicdevices.co.uk (Postfix) with ESMTPSA id 52EE427E02A;
-	Wed, 11 Jun 2014 17:43:58 +0000 (UTC)
-Message-ID: <5398955A.1090006@dynamicdevices.co.uk>
-Date: Wed, 11 Jun 2014 18:43:54 +0100
-From: Alex J Lennon <ajlennon@dynamicdevices.co.uk>
-User-Agent: Mozilla/5.0 (Windows NT 6.3; WOW64;
-	rv:24.0) Gecko/20100101 Thunderbird/24.5.0
+X-Spam-Status: No, score=-0.7 required=5.0 tests=HTML_MESSAGE,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [74.125.82.50 listed in list.dnswl.org]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+Received: from mail-wg0-f50.google.com (mail-wg0-f50.google.com [74.125.82.50])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2929CE0070F
+	for <yocto@yoctoproject.org>; Wed, 11 Jun 2014 10:50:50 -0700 (PDT)
+Received: by mail-wg0-f50.google.com with SMTP id x13so91425wgg.9
+	for <yocto@yoctoproject.org>; Wed, 11 Jun 2014 10:50:49 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc:content-type;
+	bh=1erx0UrYZjqeF5+rS/QD8v4TJ2yTGNZeIgwBfJcEXKM=;
+	b=hLZcHKvFYFMMhe0+OGhMSEX/7BZCp2vQNNs5KwLMakQNc+/Mht5DB5eTwQ+ThzpVZX
+	X4sM5/SYmKfqu/UA+HxFGhbERs65UgEa3olC01RXo3rASwkkFih+ibSkBoloqCr+jaed
+	6Cp+sJb44HwxQYnzjrw0gB3TFWY/vZqWr+kBLgVS3ALFSBm/TmXyoR6RPoNoIvhk1BMi
+	GfQkN2d2sD1UKv+Kl6FcMhP00J4P5JQpG4FjiG+r8wD6tsA25MKHjO2qarvpMhUNI3Qx
+	3i0KMik0n1gNIWPAd1qVPMAPvQHNElT1aw0SGBiBN/ononEkngHO+EGSjsplAvzddO7O
+	xnpw==
+X-Gm-Message-State: ALoCoQlpog0ie7Cv1MjswpvUpKsepmnEEFn+PKf56vDFaFZdnukTYZX+XQvYTq6Ndae7RXfIyiyT
+X-Received: by 10.180.81.1 with SMTP id v1mr12481790wix.10.1402509049802; Wed,
+	11 Jun 2014 10:50:49 -0700 (PDT)
 MIME-Version: 1.0
-To: Andrei Gherzan <andrei@gherzan.ro>
+Received: by 10.216.31.129 with HTTP; Wed, 11 Jun 2014 10:50:29 -0700 (PDT)
+X-Originating-IP: [82.137.12.98]
+In-Reply-To: <5398955A.1090006@dynamicdevices.co.uk>
 References: <cover.1402224537.git.ajlennon@dynamicdevices.co.uk>
 	<e68eff99bd1d5efac6eb532a8f0b73ab673fceb7.1402224537.git.ajlennon@dynamicdevices.co.uk>
 	<CAK18fxHboa0uRC0YfeGZmuFGUzWHnzTy8F25S6xtpWb+2UdRXw@mail.gmail.com>
 	<5397947A.6050605@dynamicdevices.co.uk>
 	<CAK18fxGgMPMY_zdtRnr0nHk9Dc4siGWY-dat-tw9uXVZwZW-qA@mail.gmail.com>
 	<CAK18fxFiJPtF0oBmYzSb-kvARnSAkFu0uZ5T-8ipO8bCkpG2Vw@mail.gmail.com>
-In-Reply-To: <CAK18fxFiJPtF0oBmYzSb-kvARnSAkFu0uZ5T-8ipO8bCkpG2Vw@mail.gmail.com>
-X-Enigmail-Version: 1.6
+	<5398955A.1090006@dynamicdevices.co.uk>
+From: Andrei Gherzan <andrei@gherzan.ro>
+Date: Wed, 11 Jun 2014 20:50:29 +0300
+Message-ID: <CAK18fxGBj6rs1CsLgDJV4cNKbGTP+btJfc=pN24OW8So0=O29A@mail.gmail.com>
+To: Alex J Lennon <ajlennon@dynamicdevices.co.uk>
 Cc: Yocto Project <yocto@yoctoproject.org>
 Subject: Re: [meta-raspberrypi][PATCH 1/1] gstreamer1.0-omx: Target Raspberry Pi instead of Bellagio.
 X-BeenThere: yocto@yoctoproject.org
@@ -53,208 +57,219 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 11 Jun 2014 17:44:08 -0000
-Content-Type: multipart/alternative;
-	boundary="------------040202030702040108080301"
+X-List-Received-Date: Wed, 11 Jun 2014 17:50:58 -0000
+Content-Type: multipart/alternative; boundary=f46d044306a0b5419904fb931546
 
---------------040202030702040108080301
+--f46d044306a0b5419904fb931546
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
 
+On Wed, Jun 11, 2014 at 8:43 PM, Alex J Lennon <
+ajlennon@dynamicdevices.co.uk> wrote:
 
-On 11/06/2014 18:24, Andrei Gherzan wrote:
+>
+> On 11/06/2014 18:24, Andrei Gherzan wrote:
 >
 >
-> On Wed, Jun 11, 2014 at 11:19 AM, Alex J Lennon
-> <ajlennon@dynamicdevices.co.uk <mailto:ajlennon@dynamicdevices.co.uk>>
-> wrote:
 >
+> On Wed, Jun 11, 2014 at 11:19 AM, Alex J Lennon <
+> ajlennon@dynamicdevices.co.uk> wrote:
 >
->     On 11/06/2014 08:47, Andrei Gherzan wrote:
+>>
+>> On 11/06/2014 08:47, Andrei Gherzan wrote:
 >>
 >>
 >>
->>     On Wed, Jun 11, 2014 at 2:27 AM, Alex J Lennon
->>     <ajlennon@dynamicdevices.co.uk
->>     <mailto:ajlennon@dynamicdevices.co.uk>> wrote:
 >>
+>> On Wed, Jun 11, 2014 at 2:27 AM, Alex J Lennon <
+>> ajlennon@dynamicdevices.co.uk> wrote:
 >>
->>         On 10/06/2014 19:59, Andrei Gherzan wrote:
->>>         Hello Alex.
 >>>
->>>         On Sun, Jun 8, 2014 at 1:50 PM, Alex J Lennon
->>>         <ajlennon@dynamicdevices.co.uk
->>>         <mailto:ajlennon@dynamicdevices.co.uk>> wrote:
+>>> On 10/06/2014 19:59, Andrei Gherzan wrote:
 >>>
->>>             This changes the build slightly as there are some
->>>             #ifdefs in there for Raspberry Pi.
+>>>  Hello Alex.
 >>>
->>>             Also the codec configuration file used by
->>>             gstreamer1.0-omx codecs, /etc/xdg/gstomx.conf,  is set
->>>             correctly to core-name=/usr/lib/libopenmaxil.so
+>>> On Sun, Jun 8, 2014 at 1:50 PM, Alex J Lennon <
+>>> ajlennon@dynamicdevices.co.uk> wrote:
 >>>
->>>             Change-Id: I2352ecabfd053717d9ccd2d22422e7d4b7588ce4
->>>             Signed-off-by: Alex J Lennon
->>>             <ajlennon@dynamicdevices.co.uk
->>>             <mailto:ajlennon@dynamicdevices.co.uk>>
->>>             ---
->>>              recipes-multimedia/gstreamer/gstreamer1.0-omx.inc      
->>>                  | 2 ++
->>>              recipes-multimedia/gstreamer/gstreamer1.0-omx_1.0.0.bbappend
->>>             | 1 +
+>>>> This changes the build slightly as there are some #ifdefs in there for
+>>>> Raspberry Pi.
+>>>>
+>>>> Also the codec configuration file used by gstreamer1.0-omx codecs,
+>>>> /etc/xdg/gstomx.conf,  is set correctly to
+>>>> core-name=/usr/lib/libopenmaxil.so
+>>>>
+>>>> Change-Id: I2352ecabfd053717d9ccd2d22422e7d4b7588ce4
+>>>> Signed-off-by: Alex J Lennon <ajlennon@dynamicdevices.co.uk>
+>>>> ---
+>>>>  recipes-multimedia/gstreamer/gstreamer1.0-omx.inc            | 2 ++
+>>>>  recipes-multimedia/gstreamer/gstreamer1.0-omx_1.0.0.bbappend | 1 +
+>>>>
+>>>
+>>>  I was thinking we we really need two files for this... I know that
+>>> yocto has an inc too. But i don't know if that really makes sense for one
+>>> line. What do you think?
 >>>
 >>>
->>>         I was thinking we we really need two files for this... I
->>>         know that yocto has an inc too. But i don't know if that
->>>         really makes sense for one line. What do you think? 
->>>          
+>>>
+>>>  I came across Yocto best practice here. This is more or less why I
+>>> provided a patch for consideration into Poky on this earlier today. It
+>>> would help me, and I suspect other newbies, to have best practice
+>>> expectations on how to put patches together somewhere up front, say in the
+>>> README.
+>>>
+>>> "Do not merge .inc / .bb files"
+>>>
+>>>
+>>> https://wiki.yoctoproject.org/wiki/Best_Known_Methods_(BKMs)_for_Package_Updating
+>>>
 >>
->>         I came across Yocto best practice here. This is more or less
->>         why I provided a patch for consideration into Poky on this
->>         earlier today. It would help me, and I suspect other newbies,
->>         to have best practice expectations on how to put patches
->>         together somewhere up front, say in the README.
->>
->>         "Do not merge .inc / .bb files"
->>
->>         https://wiki.yoctoproject.org/wiki/Best_Known_Methods_(BKMs)_for_Package_Updating
->>         <https://wiki.yoctoproject.org/wiki/Best_Known_Methods_%28BKMs%29_for_Package_Updating>
+>>  I understand. But I think that this is the case only for bb files. We
+>> are talking here about a bbappend in which case this would be pretty
+>> useless. Nobody reuses an inc for a bbappend - never seen something like
+>> that.
 >>
 >>
->>     I understand. But I think that this is the case only for bb
->>     files. We are talking here about a bbappend in which case this
->>     would be pretty useless. Nobody reuses an inc for a bbappend -
->>     never seen something like that. 
->
->     e.g. I have gstreamer1.0-omx_git.bbappend here which reuses the
->     .inc file. I didn't contribute it as for some reason the git build
->     breaks and I need to look at why this is
->
->
-> So, you say that if you merge your inc file in the bbappend one, the
-> build breaks? It shouldn't really. I just tested and for me it works. 
->
-
-Not quite. I mean that I am reusing the code in the .inc file in another
-.bbappend file, called gstreamer1.0-omx_git.bbappend
-
-This is identical to gstreamer1.0-omx_1.0.0.bbappend in that it just
-requires the inc file, so I don't have duplication of code.
-
-Targetting gstreamer-omx 1.0.0 at the RPi works fine, but when I tried
-targetting the git source at RPi the build broke, so I didn't provide
-that recipe to you.
-
-e.g. with my local.conf set to PREFERRED_VERSION_gstreamer1.0-omx =
-"git" the git build gives this
-
-cc1: error: .../tmp/sysroots/raspberrypi/usr/include/vc: No such file or
-directory [-Werror]
-cc1: error: .../tmp/sysroots/raspberrypi/usr/include/interface: No such
-file or directory [-Werror]
-cc1: error: .../tmp/sysroots/raspberrypi/usr/include/interface/vcos: No
-such file or directory [-Werror]
-cc1: error:
-.../tmp/sysroots/raspberrypi/usr/include/interface/vcos/pthreads: No
-such file or directory $
-cc1: all warnings being treated as errors
-make[2]: *** [libgstomx_la-gstomxvideoenc.lo] Error 1
-make[2]: *** Waiting for unfinished jobs....
-
-I think there's something missing or some path not set correctly for the
-more recent gstreamer-omx code, but I haven't had a chance to look into it.
-
-> By the way, I would use _append_raspberrypi for this one too.
+>> e.g. I have gstreamer1.0-omx_git.bbappend here which reuses the .inc
+>> file. I didn't contribute it as for some reason the git build breaks and I
+>> need to look at why this is
+>>
+>>
+>    So, you say that if you merge your inc file in the bbappend one, the
+> build breaks? It shouldn't really. I just tested and for me it works.
 >
 >
+> Not quite. I mean that I am reusing the code in the .inc file in another
+> .bbappend file, called gstreamer1.0-omx_git.bbappend
 >
-
-OK, I just tried this instead of the anonymous python method I created
-in the last patch-set.
-
-Perhaps I'm misunderstanding but, for example, we need
-GSTREAMER_1_0_OMX_TARGET set to 'rpi" when machine is raspberrypi
-
-When I try,
-
-GSTREAMER_1_0_OMX_TARGET_append_raspberrypi = "rpi"
-
-I end up with the original value 'bellagio' appended with 'rpi' to give
-'bellagiorpi'
-
-Maybe I need something more like this?
-
-GSTREAMER_1_0_OMX_TARGET_override_raspberrypi = "rpi"
-
-Does such a mechanism exist in bitbake?
-
-Regards,
-
-Alex
+>
+Got it now. Makes sense in this case, agreed.
 
 
---------------040202030702040108080301
+> This is identical to gstreamer1.0-omx_1.0.0.bbappend in that it just
+> requires the inc file, so I don't have duplication of code.
+>
+> Targetting gstreamer-omx 1.0.0 at the RPi works fine, but when I tried
+> targetting the git source at RPi the build broke, so I didn't provide that
+> recipe to you.
+>
+> e.g. with my local.conf set to PREFERRED_VERSION_gstreamer1.0-omx = "git"
+> the git build gives this
+>
+> cc1: error: .../tmp/sysroots/raspberrypi/usr/include/vc: No such file or
+> directory [-Werror]
+> cc1: error: .../tmp/sysroots/raspberrypi/usr/include/interface: No such
+> file or directory [-Werror]
+> cc1: error: .../tmp/sysroots/raspberrypi/usr/include/interface/vcos: No
+> such file or directory [-Werror]
+> cc1: error:
+> .../tmp/sysroots/raspberrypi/usr/include/interface/vcos/pthreads: No such
+> file or directory $
+> cc1: all warnings being treated as errors
+> make[2]: *** [libgstomx_la-gstomxvideoenc.lo] Error 1
+> make[2]: *** Waiting for unfinished jobs....
+>
+> I think there's something missing or some path not set correctly for the
+> more recent gstreamer-omx code, but I haven't had a chance to look into it.
+>
+>
+> Most probably you mangle some paths there. Needs some investigation.
+
+>   By the way, I would use _append_raspberrypi for this one too.
+>
+>
+>
+>
+> OK, I just tried this instead of the anonymous python method I created in
+> the last patch-set.
+>
+> Perhaps I'm misunderstanding but, for example, we need
+> GSTREAMER_1_0_OMX_TARGET set to 'rpi" when machine is raspberrypi
+>
+> When I try,
+>
+> GSTREAMER_1_0_OMX_TARGET_append_raspberrypi = "rpi"
+>
+> I end up with the original value 'bellagio' appended with 'rpi' to give
+> 'bellagiorpi'
+>
+> Maybe I need something more like this?
+>
+> GSTREAMER_1_0_OMX_TARGET_override_raspberrypi = "rpi"
+>
+> Does such a mechanism exist in bitbake?
+>
+>
+Yes. To override a variable you just don't use "append":
+VARIABLE_mymachine = "my value"
+
+
+-- 
+*Andrei Gherzan*
+m: +40.744.478.414 |  f: +40.31.816.28.12
+
+--f46d044306a0b5419904fb931546
 Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: quoted-printable
 
-<html>
-  <head>
-    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
-  </head>
-  <body text="#000000" bgcolor="#FFFFFF">
+<div dir=3D"ltr"><br><div class=3D"gmail_extra"><br><br><div class=3D"gmail=
+_quote">On Wed, Jun 11, 2014 at 8:43 PM, Alex J Lennon <span dir=3D"ltr">&l=
+t;<a href=3D"mailto:ajlennon@dynamicdevices.co.uk" target=3D"_blank">ajlenn=
+on@dynamicdevices.co.uk</a>&gt;</span> wrote:<br>
+
+
+<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
+x #ccc solid;padding-left:1ex">
+ =20
+   =20
+ =20
+  <div text=3D"#000000" bgcolor=3D"#FFFFFF"><div><div>
     <br>
-    <div class="moz-cite-prefix">On 11/06/2014 18:24, Andrei Gherzan
+    <div>On 11/06/2014 18:24, Andrei Gherzan
       wrote:<br>
     </div>
-    <blockquote
-cite="mid:CAK18fxFiJPtF0oBmYzSb-kvARnSAkFu0uZ5T-8ipO8bCkpG2Vw@mail.gmail.com"
-      type="cite">
-      <div dir="ltr">
-        <div class="gmail_extra"><br>
+    <blockquote type=3D"cite">
+      <div dir=3D"ltr">
+        <div class=3D"gmail_extra"><br>
           <br>
-          <div class="gmail_quote">On Wed, Jun 11, 2014 at 11:19 AM,
-            Alex J Lennon <span dir="ltr">&lt;<a moz-do-not-send="true"
-                href="mailto:ajlennon@dynamicdevices.co.uk"
-                target="_blank">ajlennon@dynamicdevices.co.uk</a>&gt;</span>
+          <div class=3D"gmail_quote">On Wed, Jun 11, 2014 at 11:19 AM,
+            Alex J Lennon <span dir=3D"ltr">&lt;<a href=3D"mailto:ajlennon@=
+dynamicdevices.co.uk" target=3D"_blank">ajlennon@dynamicdevices.co.uk</a>&g=
+t;</span>
             wrote:<br>
-            <blockquote class="gmail_quote" style="margin:0 0 0
-              .8ex;border-left:1px #ccc solid;padding-left:1ex">
-              <div text="#000000" bgcolor="#FFFFFF"> <br>
+            <blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;bo=
+rder-left:1px #ccc solid;padding-left:1ex">
+              <div text=3D"#000000" bgcolor=3D"#FFFFFF"> <br>
                 <div>On 11/06/2014 08:47, Andrei Gherzan wrote:<br>
                 </div>
-                <blockquote type="cite">
-                  <div dir="ltr"><br>
-                    <div class="gmail_extra"><br>
+                <blockquote type=3D"cite">
+                  <div dir=3D"ltr"><br>
+                    <div class=3D"gmail_extra"><br>
                       <br>
-                      <div class="gmail_quote">On Wed, Jun 11, 2014 at
-                        2:27 AM, Alex J Lennon <span dir="ltr">&lt;<a
-                            moz-do-not-send="true"
-                            href="mailto:ajlennon@dynamicdevices.co.uk"
-                            target="_blank">ajlennon@dynamicdevices.co.uk</a>&gt;</span>
+                      <div class=3D"gmail_quote">On Wed, Jun 11, 2014 at
+                        2:27 AM, Alex J Lennon <span dir=3D"ltr">&lt;<a hre=
+f=3D"mailto:ajlennon@dynamicdevices.co.uk" target=3D"_blank">ajlennon@dynam=
+icdevices.co.uk</a>&gt;</span>
                         wrote:<br>
-                        <blockquote class="gmail_quote" style="margin:0
-                          0 0 .8ex;border-left:1px #ccc
-                          solid;padding-left:1ex">
-                          <div text="#000000" bgcolor="#FFFFFF">
+                        <blockquote class=3D"gmail_quote" style=3D"margin:0=
+ 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">
+                          <div text=3D"#000000" bgcolor=3D"#FFFFFF">
                             <div> <br>
                               <div>On 10/06/2014 19:59, Andrei Gherzan
                                 wrote:<br>
                               </div>
-                              <blockquote type="cite">
-                                <div dir="ltr">
-                                  <div class="gmail_extra">Hello Alex.</div>
-                                  <div class="gmail_extra"><br>
-                                    <div class="gmail_quote">On Sun, Jun
+                              <blockquote type=3D"cite">
+                                <div dir=3D"ltr">
+                                  <div class=3D"gmail_extra">Hello Alex.</d=
+iv>
+                                  <div class=3D"gmail_extra"><br>
+                                    <div class=3D"gmail_quote">On Sun, Jun
                                       8, 2014 at 1:50 PM, Alex J Lennon
-                                      <span dir="ltr">&lt;<a
-                                          moz-do-not-send="true"
-                                          href="mailto:ajlennon@dynamicdevices.co.uk"
-                                          target="_blank">ajlennon@dynamicdevices.co.uk</a>&gt;</span>
+                                      <span dir=3D"ltr">&lt;<a href=3D"mail=
+to:ajlennon@dynamicdevices.co.uk" target=3D"_blank">ajlennon@dynamicdevices=
+.co.uk</a>&gt;</span>
                                       wrote:<br>
-                                      <blockquote class="gmail_quote"
-                                        style="margin:0 0 0
-                                        .8ex;border-left:1px #ccc
-                                        solid;padding-left:1ex">This
+                                      <blockquote class=3D"gmail_quote" sty=
+le=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">This
                                         changes the build slightly as
                                         there are some #ifdefs in there
                                         for Raspberry Pi.<br>
@@ -262,21 +277,26 @@ cite="mid:CAK18fxFiJPtF0oBmYzSb-kvARnSAkFu0uZ5T-8ipO8bCkpG2Vw@mail.gmail.com"
                                         Also the codec configuration
                                         file used by gstreamer1.0-omx
                                         codecs, /etc/xdg/gstomx.conf,
-                                         is set correctly to
-                                        core-name=/usr/lib/libopenmaxil.so<br>
+                                        =C2=A0is set correctly to
+                                        core-name=3D/usr/lib/libopenmaxil.s=
+o<br>
                                         <br>
                                         Change-Id:
-                                        I2352ecabfd053717d9ccd2d22422e7d4b7588ce4<br>
+                                        I2352ecabfd053717d9ccd2d22422e7d4b7=
+588ce4<br>
                                         Signed-off-by: Alex J Lennon
-                                        &lt;<a moz-do-not-send="true"
-                                          href="mailto:ajlennon@dynamicdevices.co.uk"
-                                          target="_blank">ajlennon@dynamicdevices.co.uk</a>&gt;<br>
+                                        &lt;<a href=3D"mailto:ajlennon@dyna=
+micdevices.co.uk" target=3D"_blank">ajlennon@dynamicdevices.co.uk</a>&gt;<b=
+r>
                                         ---<br>
-                                        <div> recipes-multimedia/gstreamer/gstreamer1.0-omx.inc
+                                        <div>=C2=A0recipes-multimedia/gstre=
+amer/gstreamer1.0-omx.inc
 
 
-                                                     | 2 ++<br>
-                                           recipes-multimedia/gstreamer/gstreamer1.0-omx_1.0.0.bbappend
+                                          =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
+=A0 =C2=A0| 2 ++<br>
+                                          =C2=A0recipes-multimedia/gstreame=
+r/gstreamer1.0-omx_1.0.0.bbappend
 
 
                                           | 1 +<br>
@@ -287,10 +307,10 @@ cite="mid:CAK18fxFiJPtF0oBmYzSb-kvARnSAkFu0uZ5T-8ipO8bCkpG2Vw@mail.gmail.com"
                                       <div>I was thinking we we really
                                         need two files for this... I
                                         know that yocto has an inc too.
-                                        But i don't know if that really
+                                        But i don&#39;t know if that really
                                         makes sense for one line. What
-                                        do you think? </div>
-                                      <div> </div>
+                                        do you think?=C2=A0</div>
+                                      <div>=C2=A0</div>
                                     </div>
                                   </div>
                                 </div>
@@ -305,11 +325,15 @@ cite="mid:CAK18fxFiJPtF0oBmYzSb-kvARnSAkFu0uZ5T-8ipO8bCkpG2Vw@mail.gmail.com"
                             on how to put patches together somewhere up
                             front, say in the README.<br>
                             <br>
-                            "Do not merge .inc / .bb files" <br>
+                            &quot;Do not merge .inc / .bb files&quot; <br>
                             <br>
-                            <a moz-do-not-send="true"
-href="https://wiki.yoctoproject.org/wiki/Best_Known_Methods_%28BKMs%29_for_Package_Updating"
-                              target="_blank">https://wiki.yoctoproject.org/wiki/Best_Known_Methods_(BKMs)_for_Package_Updating</a></div>
+                            <a href=3D"https://wiki.yoctoproject.org/wiki/B=
+est_Known_Methods_%28BKMs%29_for_Package_Updating" target=3D"_blank">https:=
+//wiki.yoctoproject.org/wiki/Best_Known_Methods_(BKMs)_for_Package_Updating=
+</a></div>
+
+
+
                         </blockquote>
                         <div><br>
                         </div>
@@ -317,14 +341,16 @@ href="https://wiki.yoctoproject.org/wiki/Best_Known_Methods_%28BKMs%29_for_Packa
                           case only for bb files. We are talking here
                           about a bbappend in which case this would be
                           pretty useless. Nobody reuses an inc for a
-                          bbappend - never seen something like that. </div>
+                          bbappend - never seen something like that.=C2=A0<=
+/div>
                       </div>
                     </div>
                   </div>
                 </blockquote>
                 <br>
                 e.g. I have gstreamer1.0-omx_git.bbappend here which
-                reuses the .inc file. I didn't contribute it as for some
+                reuses the .inc file. I didn&#39;t contribute it as for som=
+e
                 reason the git build breaks and I need to look at why
                 this is<br>
                 <br>
@@ -334,36 +360,40 @@ href="https://wiki.yoctoproject.org/wiki/Best_Known_Methods_%28BKMs%29_for_Packa
               </div>
             </blockquote>
           </div>
-          <div class="gmail_extra"><br>
+          <div class=3D"gmail_extra"><br>
           </div>
         </div>
       </div>
     </blockquote>
-    <blockquote
-cite="mid:CAK18fxFiJPtF0oBmYzSb-kvARnSAkFu0uZ5T-8ipO8bCkpG2Vw@mail.gmail.com"
-      type="cite">
-      <div dir="ltr">
-        <div class="gmail_extra">So, you say that if you merge your inc
-          file in the bbappend one, the build breaks? It shouldn't
-          really. I just tested and for me it works. </div>
-        <div class="gmail_extra">
+    <blockquote type=3D"cite">
+      <div dir=3D"ltr">
+        <div class=3D"gmail_extra">So, you say that if you merge your inc
+          file in the bbappend one, the build breaks? It shouldn&#39;t
+          really. I just tested and for me it works.=C2=A0</div>
+        <div class=3D"gmail_extra">
           <br>
         </div>
       </div>
     </blockquote>
-    <br>
+    <br></div></div>
     Not quite. I mean that I am reusing the code in the .inc file in
     another .bbappend file, called gstreamer1.0-omx_git.bbappend <br>
-    <br>
+    <br></div></blockquote><div><br></div><div>Got it now. Makes sense in t=
+his case, agreed.</div><div>=C2=A0</div><blockquote class=3D"gmail_quote" s=
+tyle=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><div=
+ text=3D"#000000" bgcolor=3D"#FFFFFF">
+
+
+
     This is identical to gstreamer1.0-omx_1.0.0.bbappend in that it just
-    requires the inc file, so I don't have duplication of code.<br>
+    requires the inc file, so I don&#39;t have duplication of code.<br>
     <br>
     Targetting gstreamer-omx 1.0.0 at the RPi works fine, but when I
-    tried targetting the git source at RPi the build broke, so I didn't
+    tried targetting the git source at RPi the build broke, so I didn&#39;t
     provide that recipe to you.<br>
     <br>
-    e.g. with my local.conf set to PREFERRED_VERSION_gstreamer1.0-omx =
-    "git" the git build gives this<br>
+    e.g. with my local.conf set to PREFERRED_VERSION_gstreamer1.0-omx =3D
+    &quot;git&quot; the git build gives this<br>
     <br>
     cc1: error: .../tmp/sysroots/raspberrypi/usr/include/vc: No such
     file or directory [-Werror]<br>
@@ -378,51 +408,68 @@ cite="mid:CAK18fxFiJPtF0oBmYzSb-kvARnSAkFu0uZ5T-8ipO8bCkpG2Vw@mail.gmail.com"
     make[2]: *** [libgstomx_la-gstomxvideoenc.lo] Error 1<br>
     make[2]: *** Waiting for unfinished jobs....<br>
     <br>
-    I think there's something missing or some path not set correctly for
-    the more recent gstreamer-omx code, but I haven't had a chance to
-    look into it.<br>
-    <br>
-    <blockquote
-cite="mid:CAK18fxFiJPtF0oBmYzSb-kvARnSAkFu0uZ5T-8ipO8bCkpG2Vw@mail.gmail.com"
-      type="cite">
-      <div dir="ltr">
-        <div class="gmail_extra">By the way, I would use
+    I think there&#39;s something missing or some path not set correctly fo=
+r
+    the more recent gstreamer-omx code, but I haven&#39;t had a chance to
+    look into it.<div><br>
+    <br></div></div></blockquote><div>Most probably you mangle some paths t=
+here. Needs some investigation.=C2=A0</div><blockquote class=3D"gmail_quote=
+" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"><=
+div text=3D"#000000" bgcolor=3D"#FFFFFF">
+
+
+<div>
+    <blockquote type=3D"cite">
+      <div dir=3D"ltr">
+        <div class=3D"gmail_extra">By the way, I would use
           _append_raspberrypi for this one too.<br>
-          <br clear="all">
+          <br clear=3D"all">
           <div><br>
           </div>
           <br>
         </div>
       </div>
     </blockquote>
-    <br>
+    <br></div>
     OK, I just tried this instead of the anonymous python method I
     created in the last patch-set.<br>
     <br>
-    Perhaps I'm misunderstanding but, for example, we need
-    GSTREAMER_1_0_OMX_TARGET set to 'rpi" when machine is raspberrypi<br>
+    Perhaps I&#39;m misunderstanding but, for example, we need
+    GSTREAMER_1_0_OMX_TARGET set to &#39;rpi&quot; when machine is raspberr=
+ypi<br>
     <br>
     When I try,<br>
     <br>
-    GSTREAMER_1_0_OMX_TARGET_append_raspberrypi = "rpi"<br>
+    GSTREAMER_1_0_OMX_TARGET_append_raspberrypi =3D &quot;rpi&quot;<br>
     <br>
-    I end up with the original value 'bellagio' appended with 'rpi' to
-    give 'bellagiorpi'<br>
+    I end up with the original value &#39;bellagio&#39; appended with &#39;=
+rpi&#39; to
+    give &#39;bellagiorpi&#39;<br>
     <br>
     Maybe I need something more like this?<br>
     <br>
-    GSTREAMER_1_0_OMX_TARGET_override_raspberrypi = "rpi"<br>
+    GSTREAMER_1_0_OMX_TARGET_override_raspberrypi =3D &quot;rpi&quot;<br>
     <br>
     Does such a mechanism exist in bitbake?<br>
-    <br>
-    Regards,<br>
-    <br>
-    Alex<br>
-    <br>
-    <div class="moz-signature">
-      <div class="preview"> </div>
-    </div>
-  </body>
-</html>
+    <br></div></blockquote><div><br></div><div>Yes. To override a variable =
+you just don&#39;t use &quot;append&quot;:</div><div>VARIABLE_mymachine =3D=
+ &quot;my value&quot;</div></div><br clear=3D"all"><div><br></div>-- <br><d=
+iv dir=3D"ltr">
 
---------------040202030702040108080301--
+
+<div style=3D"text-align:center"></div><div style=3D"text-align:center"><di=
+v align=3D"left" style=3D"font-family:&#39;Times New Roman&#39;;font-size:m=
+edium"><b style=3D"color:rgb(51,51,51);font-family:Arial;font-size:small;te=
+xt-align:center">Andrei Gherzan</b><font face=3D"Arial" color=3D"#333333" s=
+ize=3D"-1"><br>
+
+
+</font><font face=3D"Arial" color=3D"#333333" size=3D"-1">m: <a href=3D"tel=
+:%2B40.744.478.414" value=3D"+40744478414" target=3D"_blank">+40.744.478.41=
+4</a> | =C2=A0f: <a href=3D"tel:%2B40.31.816.28.12" value=3D"+40318162812" =
+target=3D"_blank">+40.31.816.28.12</a></font><br>
+
+</div></div></div>
+</div></div>
+
+--f46d044306a0b5419904fb931546--
