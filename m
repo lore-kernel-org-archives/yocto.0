@@ -1,30 +1,47 @@
-Return-Path: <gary@mlbassoc.com>
+Return-Path: <lukas@dramiel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 899D7E00B7B; Wed, 11 Jun 2014 11:28:34 -0700 (PDT)
+	id B87F4E00B7B; Wed, 11 Jun 2014 11:46:22 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
-X-Spam-Level: *
-X-Spam-Status: No, score=1.3 required=5.0 tests=URI_HEX autolearn=no
-	version=3.3.1
-X-Spam-HAM-Report: * 1.3 URI_HEX URI: URI hostname has long hexadecimal
-	sequence
-Received: from mail.chez-thomas.org (mail.mlbassoc.com [65.100.170.105])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 191F4E0070F
-	for <yocto@yoctoproject.org>; Wed, 11 Jun 2014 11:28:20 -0700 (PDT)
-Received: by mail.chez-thomas.org (Postfix, from userid 1998)
-	id 6F3B2F811DA; Wed, 11 Jun 2014 12:28:19 -0600 (MDT)
-Received: from [192.168.1.114] (zeus [192.168.1.114])
-	by mail.chez-thomas.org (Postfix) with ESMTP id 9F53BF81188;
-	Wed, 11 Jun 2014 12:28:16 -0600 (MDT)
-Message-ID: <53989FC8.7080905@mlbassoc.com>
-Date: Wed, 11 Jun 2014 12:28:24 -0600
-From: Gary Thomas <gary@mlbassoc.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:24.0) Gecko/20100101 Thunderbird/24.5.0
+X-Spam-Level: 
+X-Spam-Status: No, score=0.6 required=5.0 tests=RCVD_IN_DNSWL_LOW,URI_HEX
+	autolearn=no version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [209.85.128.175 listed in list.dnswl.org]
+	*  1.3 URI_HEX URI: URI hostname has long hexadecimal sequence
+Received: from mail-ve0-f175.google.com (mail-ve0-f175.google.com
+	[209.85.128.175])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 866AEE0070F
+	for <yocto@yoctoproject.org>; Wed, 11 Jun 2014 11:46:08 -0700 (PDT)
+Received: by mail-ve0-f175.google.com with SMTP id us18so343279veb.20
+	for <yocto@yoctoproject.org>; Wed, 11 Jun 2014 11:46:08 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:date
+	:message-id:subject:from:to:cc:content-type
+	:content-transfer-encoding;
+	bh=HjtK9JfziOQni5Qda2rW9Ea2PsYROdSiYN3sn0jiyAc=;
+	b=Zp8PtZmsK2y27wFCIogEGcxPw1FTzD8CTGh12lCeiZXsWcfVc35zW3Kdo5CtHH7yaI
+	AxfEBL/PFIl0nipfbeiXzYF61Xbip6uPSLJ7H8GqFnJoUojWU0pBfyun3l9KsvDGvb9x
+	tdcnuEoeiomBO8ft0b8ibI/YIxqF3jbQuTVnOwJbPzYJU6+1Bxy9+2c1g9nyku/IaAVP
+	yUVXIwYMJ4nKNm9UbB57fSNN4IIwqcTmwOgA7cpwb0BPdT4cuiFGNQlREF1EN9fBzDhU
+	+1V2mDwvty6A40ZdVPXwv3bSTNgpOA9bq8LmAwdArW9HdvhzSKq7zUYsKK5OyfFZap+k
+	VwDQ==
+X-Gm-Message-State: ALoCoQlqygGn4Glis+lkAlHOT0ReP6BkDunVmVO47om9rYbv66PhroguYYHx5fozdvaoafRYarN6
 MIME-Version: 1.0
-To: yocto@yoctoproject.org
+X-Received: by 10.220.12.66 with SMTP id w2mr39369261vcw.15.1402512365991;
+	Wed, 11 Jun 2014 11:46:05 -0700 (PDT)
+Received: by 10.52.34.178 with HTTP; Wed, 11 Jun 2014 11:46:05 -0700 (PDT)
+X-Originating-IP: [46.16.120.77]
+In-Reply-To: <53989FC8.7080905@mlbassoc.com>
 References: <CACwkBCTTVA7YCaxZ7UdTB6dDEjr+96PCzYsSHkJ+k-QC7MvMPw@mail.gmail.com>
-In-Reply-To: <CACwkBCTTVA7YCaxZ7UdTB6dDEjr+96PCzYsSHkJ+k-QC7MvMPw@mail.gmail.com>
+	<53989FC8.7080905@mlbassoc.com>
+Date: Wed, 11 Jun 2014 20:46:05 +0200
+Message-ID: <CACwkBCSa5LSc+6+1sXhb5NOFRTwuD0+ty1ShO2O91DWx2_MNGA@mail.gmail.com>
+From: =?UTF-8?B?THVrw6HFoSBOb3ZvdG7DvQ==?= <lukas@dramiel.com>
+To: Gary Thomas <gary@mlbassoc.com>
+Cc: yocto@yoctoproject.org
 Subject: Re: [meta-raspberrypi] Nothing RPROVIDES 'liborc-0.4'
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -37,38 +54,56 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 11 Jun 2014 18:28:34 -0000
-Content-Type: text/plain; charset=windows-1252; format=flowed
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Wed, 11 Jun 2014 18:46:22 -0000
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-On 2014-06-11 12:17, Lukáš Novotný wrote:
-> Hello everyone,
->
-> I'm trying to build raspberry pi image that includes gstreamer1.0 and
-> it's plugins. Packages built successfully, however when trying to
-> build the image itself I get error:
->
-> Nothing RPROVIDES 'liborc-0.4' (but
-> /home/lukas/opt/yocto-daisy/poky/build-raspberrypi/recipes/images/rpi-retail-player-edited-20140611-195509.bb
-> RDEPENDS on or otherwise requires it)
->
-> Full output when using bitbake directly: http://pastebin.com/2mcUwzAm
->
-> Searching for "liborc*" within tmp/deploy returns:
->
-> ./rpm/armv6_vfp/liborc-test-0.4-0-0.4.18-r2.0.armv6_vfp.rpm
-> ./rpm/armv6_vfp/liborc-0.4-0-0.4.18-r2.0.armv6_vfp.rpm
->
-> I have tried also building from 'master' branch of both poky and
-> meta-raspberrypi and I'm getting the same error. Any idea on what's
-> going on and how to fix it?
+I'm using meta, meta-yocto, meta-yocto-bsp, meta-raspberrypi
 
-What layer are these recipes (liborc,  rpi-retail-player-edited)
-coming from?
+The image itself is just rpi-basic-image with additional packages -
+file generated by hob.
 
--- 
-------------------------------------------------------------
-Gary Thomas                 |  Consulting for the
-MLB Associates              |    Embedded world
-------------------------------------------------------------
+bblayers.conf: http://pastebin.com/gb8w7myE
+rpi-retail-player-edited-20140611-195509.bb: http://pastebin.com/LJvEUpgz
+
+On Wed, Jun 11, 2014 at 8:28 PM, Gary Thomas <gary@mlbassoc.com> wrote:
+> On 2014-06-11 12:17, Luk=C3=A1=C5=A1 Novotn=C3=BD wrote:
+>>
+>> Hello everyone,
+>>
+>> I'm trying to build raspberry pi image that includes gstreamer1.0 and
+>> it's plugins. Packages built successfully, however when trying to
+>> build the image itself I get error:
+>>
+>> Nothing RPROVIDES 'liborc-0.4' (but
+>>
+>> /home/lukas/opt/yocto-daisy/poky/build-raspberrypi/recipes/images/rpi-re=
+tail-player-edited-20140611-195509.bb
+>> RDEPENDS on or otherwise requires it)
+>>
+>> Full output when using bitbake directly: http://pastebin.com/2mcUwzAm
+>>
+>> Searching for "liborc*" within tmp/deploy returns:
+>>
+>> ./rpm/armv6_vfp/liborc-test-0.4-0-0.4.18-r2.0.armv6_vfp.rpm
+>> ./rpm/armv6_vfp/liborc-0.4-0-0.4.18-r2.0.armv6_vfp.rpm
+>>
+>> I have tried also building from 'master' branch of both poky and
+>> meta-raspberrypi and I'm getting the same error. Any idea on what's
+>> going on and how to fix it?
+>
+>
+> What layer are these recipes (liborc,  rpi-retail-player-edited)
+> coming from?
+>
+> --
+> ------------------------------------------------------------
+> Gary Thomas                 |  Consulting for the
+> MLB Associates              |    Embedded world
+> ------------------------------------------------------------
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
