@@ -1,31 +1,50 @@
-Return-Path: <sgw@linux.intel.com>
+Return-Path: <andrei@gherzan.ro>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id E073EE00BC2; Wed, 11 Jun 2014 10:06:32 -0700 (PDT)
+	id 92D31E00BC2; Wed, 11 Jun 2014 10:24:27 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-5.0 required=5.0 tests=RCVD_IN_DNSWL_HI
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [143.182.124.21 listed in list.dnswl.org]
-Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6F8E3E0070F
-	for <yocto@yoctoproject.org>; Wed, 11 Jun 2014 10:06:28 -0700 (PDT)
-Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by azsmga101.ch.intel.com with ESMTP; 11 Jun 2014 10:06:27 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.01,459,1400050800"; d="scan'208";a="444364819"
-Received: from unknown (HELO [10.255.12.166]) ([10.255.12.166])
-	by azsmga001.ch.intel.com with ESMTP; 11 Jun 2014 10:06:26 -0700
-Message-ID: <53988C92.8030808@linux.intel.com>
-Date: Wed, 11 Jun 2014 10:06:26 -0700
-From: Saul Wold <sgw@linux.intel.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:24.0) Gecko/20100101 Thunderbird/24.5.0
+X-Spam-Status: No, score=-0.7 required=5.0 tests=HTML_MESSAGE,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [209.85.212.181 listed in list.dnswl.org]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+Received: from mail-wi0-f181.google.com (mail-wi0-f181.google.com
+	[209.85.212.181])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EA2C5E0070F
+	for <yocto@yoctoproject.org>; Wed, 11 Jun 2014 10:24:24 -0700 (PDT)
+Received: by mail-wi0-f181.google.com with SMTP id n3so1572067wiv.2
+	for <yocto@yoctoproject.org>; Wed, 11 Jun 2014 10:24:23 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc:content-type;
+	bh=gVRsuyQtdd3cvjMPIqpsZ2dVEK2C5pnzLclKgvVxeAE=;
+	b=EvRB6birJfXdzq297UByuuFmuWrjolt0IMcIhQT8JbQCIiCHlq+H3+slk9rxvh5lBL
+	b73Bj7BfoZcCaB3ni/klcYJdf0eh8MJCX9OKIz95gVzoac0UPHPMpe68iu3fytLsu6sD
+	KliAWFA/bw4SBA8IeMsonsrIh6B222iyUEejarrEQBhE3DgiPcxbSZPQsQXMtWTVsJW1
+	G3q5f28GNex4I8xx/kb476AyUNSQZeoTb5LXbMyVmhEKd0TfPab0J1KIbmGPUYz5tj/+
+	zz9qQMjsmwmqEY9zfWhO3a+fkgvG3eA01EO+I4E4jN9EWqSsOfy4F0Tc36BfZAQZ90QS
+	FsLw==
+X-Gm-Message-State: ALoCoQnWgvZkS4/umRp2rj7lpJOX2L5/6k+2ylRHCFbdd86m8DNBFAAYmLd2vYe8tst6OJqDLZTA
+X-Received: by 10.180.94.163 with SMTP id dd3mr49122929wib.26.1402507463436;
+	Wed, 11 Jun 2014 10:24:23 -0700 (PDT)
 MIME-Version: 1.0
-To: Yocto Project Discussion <yocto@yoctoproject.org>
-Subject: 6/12 Asia Yocto Project Tech Call Meeting (6/11 America)
+Received: by 10.216.31.129 with HTTP; Wed, 11 Jun 2014 10:24:03 -0700 (PDT)
+X-Originating-IP: [82.137.12.98]
+In-Reply-To: <CAK18fxGgMPMY_zdtRnr0nHk9Dc4siGWY-dat-tw9uXVZwZW-qA@mail.gmail.com>
+References: <cover.1402224537.git.ajlennon@dynamicdevices.co.uk>
+	<e68eff99bd1d5efac6eb532a8f0b73ab673fceb7.1402224537.git.ajlennon@dynamicdevices.co.uk>
+	<CAK18fxHboa0uRC0YfeGZmuFGUzWHnzTy8F25S6xtpWb+2UdRXw@mail.gmail.com>
+	<5397947A.6050605@dynamicdevices.co.uk>
+	<CAK18fxGgMPMY_zdtRnr0nHk9Dc4siGWY-dat-tw9uXVZwZW-qA@mail.gmail.com>
+From: Andrei Gherzan <andrei@gherzan.ro>
+Date: Wed, 11 Jun 2014 20:24:03 +0300
+Message-ID: <CAK18fxFiJPtF0oBmYzSb-kvARnSAkFu0uZ5T-8ipO8bCkpG2Vw@mail.gmail.com>
+To: Alex J Lennon <ajlennon@dynamicdevices.co.uk>
+Cc: Yocto Project <yocto@yoctoproject.org>
+Subject: Re: [meta-raspberrypi][PATCH 1/1] gstreamer1.0-omx: Target Raspberry Pi instead of Bellagio.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,86 +56,229 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 11 Jun 2014 17:06:33 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 11 Jun 2014 17:24:27 -0000
+Content-Type: multipart/alternative; boundary=f46d04462e5e273c8a04fb92b7cb
 
+--f46d04462e5e273c8a04fb92b7cb
+Content-Type: text/plain; charset=UTF-8
 
-Folks,
+On Wed, Jun 11, 2014 at 11:19 AM, Alex J Lennon <
+ajlennon@dynamicdevices.co.uk> wrote:
 
-We have folks located around the world, currently we have have one Tech 
-Team meeting on Tuesday Morning (US Time) to coordinate with the 
-European afternoon.
+>
+> On 11/06/2014 08:47, Andrei Gherzan wrote:
+>
+>
+>
+>
+> On Wed, Jun 11, 2014 at 2:27 AM, Alex J Lennon <
+> ajlennon@dynamicdevices.co.uk> wrote:
+>
+>>
+>> On 10/06/2014 19:59, Andrei Gherzan wrote:
+>>
+>>  Hello Alex.
+>>
+>> On Sun, Jun 8, 2014 at 1:50 PM, Alex J Lennon <
+>> ajlennon@dynamicdevices.co.uk> wrote:
+>>
+>>> This changes the build slightly as there are some #ifdefs in there for
+>>> Raspberry Pi.
+>>>
+>>> Also the codec configuration file used by gstreamer1.0-omx codecs,
+>>> /etc/xdg/gstomx.conf,  is set correctly to
+>>> core-name=/usr/lib/libopenmaxil.so
+>>>
+>>> Change-Id: I2352ecabfd053717d9ccd2d22422e7d4b7588ce4
+>>> Signed-off-by: Alex J Lennon <ajlennon@dynamicdevices.co.uk>
+>>> ---
+>>>  recipes-multimedia/gstreamer/gstreamer1.0-omx.inc            | 2 ++
+>>>  recipes-multimedia/gstreamer/gstreamer1.0-omx_1.0.0.bbappend | 1 +
+>>>
+>>
+>>  I was thinking we we really need two files for this... I know that
+>> yocto has an inc too. But i don't know if that really makes sense for one
+>> line. What do you think?
+>>
+>>
+>>
+>>  I came across Yocto best practice here. This is more or less why I
+>> provided a patch for consideration into Poky on this earlier today. It
+>> would help me, and I suspect other newbies, to have best practice
+>> expectations on how to put patches together somewhere up front, say in the
+>> README.
+>>
+>> "Do not merge .inc / .bb files"
+>>
+>>
+>> https://wiki.yoctoproject.org/wiki/Best_Known_Methods_(BKMs)_for_Package_Updating
+>>
+>
+>  I understand. But I think that this is the case only for bb files. We
+> are talking here about a bbappend in which case this would be pretty
+> useless. Nobody reuses an inc for a bbappend - never seen something like
+> that.
+>
+>
+> e.g. I have gstreamer1.0-omx_git.bbappend here which reuses the .inc file.
+> I didn't contribute it as for some reason the git build breaks and I need
+> to look at why this is
+>
+>
+So, you say that if you merge your inc file in the bbappend one, the build
+breaks? It shouldn't really. I just tested and for me it works.
 
-
-The agenda will be to discuss Status of the Yocto Project and address 
-any technical issues people might have.
-
-Conference date/start time:
-Wednesday: 6/11 19:30 Pacific Time
-Thursday:  6/12 02:30 UTC
-            6/12 10:30 Beijing
-            6/12 11:30 Tokyo
-
-
-Agenda:
-
-* Opens collection
-* Engineering Status
-   - Yocto 1.7
-    - https://wiki.yoctoproject.org/wiki/Yocto_Project_v1.7_Status
-   - Yocto 1.6.1
-   - Yocto 1.5.3 - Dora Updates
-
-* Opens - 10 min
-
-* Team Sharing / Technical Discussion
-
-Dial-in number: +1 916 356-2663
-Bridge #: 1
-Passcode: 5000157
-
-Additional International Bridge Info:
-
-Australia
-- Sydney 9937 5905
-- Toll free (+61)1300 365 946
-
-China: 010-8217-1112
-
-Japan: 0120-074-749 or 0120-074-759 (toll free within Japan)
-
-Korea: Toll free 0807-6724-90
-
-Malaysia - Kulim/Penang
-   *   1800-880-833
-   *   1800-880-733
-   *   1800-880-633
-   *   1800-880-533
-   *   04 - 2535481
-(PG)
-   *   04 - 4335481
-
-Taiwan Taipei 0800064123 or (02) 25144268
-
-Thailand: +(66)264-86067
-
-Singapore: Toll free 1800-213-1221
-
+By the way, I would use _append_raspberrypi for this one too.
 
 
 -- 
-     Sau!
+*Andrei Gherzan*
+m: +40.744.478.414 |  f: +40.31.816.28.12
 
-Saul Wold
-Yocto Component Wrangler @ Intel
-Yocto Project / Poky Build System
+--f46d04462e5e273c8a04fb92b7cb
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
--- 
-_______________________________________________
-yocto mailing list
-yocto@yoctoproject.org
-https://lists.yoctoproject.org/listinfo/yocto
-
+<div dir=3D"ltr"><div class=3D"gmail_extra"><br><br><div class=3D"gmail_quo=
+te">On Wed, Jun 11, 2014 at 11:19 AM, Alex J Lennon <span dir=3D"ltr">&lt;<=
+a href=3D"mailto:ajlennon@dynamicdevices.co.uk" target=3D"_blank">ajlennon@=
+dynamicdevices.co.uk</a>&gt;</span> wrote:<br>
 
 
+<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
+x #ccc solid;padding-left:1ex">
+ =20
+   =20
+ =20
+  <div text=3D"#000000" bgcolor=3D"#FFFFFF">
+    <br>
+    <div>On 11/06/2014 08:47, Andrei Gherzan
+      wrote:<br>
+    </div>
+    <blockquote type=3D"cite">
+      <div dir=3D"ltr"><br>
+        <div class=3D"gmail_extra"><br>
+          <br>
+          <div class=3D"gmail_quote">On Wed, Jun 11, 2014 at 2:27 AM, Alex
+            J Lennon <span dir=3D"ltr">&lt;<a href=3D"mailto:ajlennon@dynam=
+icdevices.co.uk" target=3D"_blank">ajlennon@dynamicdevices.co.uk</a>&gt;</s=
+pan>
+            wrote:<br>
+            <blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;bo=
+rder-left:1px #ccc solid;padding-left:1ex">
+              <div text=3D"#000000" bgcolor=3D"#FFFFFF">
+                <div> <br>
+                  <div>On 10/06/2014 19:59, Andrei Gherzan wrote:<br>
+                  </div>
+                  <blockquote type=3D"cite">
+                    <div dir=3D"ltr">
+                      <div class=3D"gmail_extra">Hello Alex.</div>
+                      <div class=3D"gmail_extra"><br>
+                        <div class=3D"gmail_quote">On Sun, Jun 8, 2014 at
+                          1:50 PM, Alex J Lennon <span dir=3D"ltr">&lt;<a h=
+ref=3D"mailto:ajlennon@dynamicdevices.co.uk" target=3D"_blank">ajlennon@dyn=
+amicdevices.co.uk</a>&gt;</span>
+                          wrote:<br>
+                          <blockquote class=3D"gmail_quote" style=3D"margin=
+:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">This changes
+                            the build slightly as there are some #ifdefs
+                            in there for Raspberry Pi.<br>
+                            <br>
+                            Also the codec configuration file used by
+                            gstreamer1.0-omx codecs,
+                            /etc/xdg/gstomx.conf, =C2=A0is set correctly to
+                            core-name=3D/usr/lib/libopenmaxil.so<br>
+                            <br>
+                            Change-Id:
+                            I2352ecabfd053717d9ccd2d22422e7d4b7588ce4<br>
+                            Signed-off-by: Alex J Lennon &lt;<a href=3D"mai=
+lto:ajlennon@dynamicdevices.co.uk" target=3D"_blank">ajlennon@dynamicdevice=
+s.co.uk</a>&gt;<br>
+                            ---<br>
+                            <div>=C2=A0recipes-multimedia/gstreamer/gstream=
+er1.0-omx.inc
+
+                              =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0| 2 =
+++<br>
+                              =C2=A0recipes-multimedia/gstreamer/gstreamer1=
+.0-omx_1.0.0.bbappend
+
+                              | 1 +<br>
+                            </div>
+                          </blockquote>
+                          <div><br>
+                          </div>
+                          <div>I was thinking we we really need two
+                            files for this... I know that yocto has an
+                            inc too. But i don&#39;t know if that really
+                            makes sense for one line. What do you
+                            think?=C2=A0</div>
+                          <div>=C2=A0</div>
+                        </div>
+                      </div>
+                    </div>
+                  </blockquote>
+                  <br>
+                </div>
+                I came across Yocto best practice here. This is more or
+                less why I provided a patch for consideration into Poky
+                on this earlier today. It would help me, and I suspect
+                other newbies, to have best practice expectations on how
+                to put patches together somewhere up front, say in the
+                README.<br>
+                <br>
+                &quot;Do not merge .inc / .bb files&quot; <br>
+                <br>
+                <a href=3D"https://wiki.yoctoproject.org/wiki/Best_Known_Me=
+thods_%28BKMs%29_for_Package_Updating" target=3D"_blank">https://wiki.yocto=
+project.org/wiki/Best_Known_Methods_(BKMs)_for_Package_Updating</a></div>
+            </blockquote>
+            <div><br>
+            </div>
+            <div>I understand. But I think that this is the case only
+              for bb files. We are talking here about a bbappend in
+              which case this would be pretty useless. Nobody reuses an
+              inc for a bbappend - never seen something like that.=C2=A0</d=
+iv>
+          </div>
+        </div>
+      </div>
+    </blockquote>
+    <br>
+    e.g. I have gstreamer1.0-omx_git.bbappend here which reuses the .inc
+    file. I didn&#39;t contribute it as for some reason the git build break=
+s
+    and I need to look at why this is<br>
+    <br>
+    <div>
+      <div> </div>
+    </div>
+  </div>
+
+</blockquote></div><div class=3D"gmail_extra"><br></div>So, you say that if=
+ you merge your inc file in the bbappend one, the build breaks? It shouldn&=
+#39;t really. I just tested and for me it works.=C2=A0</div><div class=3D"g=
+mail_extra">
+
+
+<br></div><div class=3D"gmail_extra">By the way, I would use _append_raspbe=
+rrypi for this one too.<br><br clear=3D"all"><div><br></div>-- <br><div dir=
+=3D"ltr"><div style=3D"text-align:center"></div><div style=3D"text-align:ce=
+nter">
+
+
+<div align=3D"left" style=3D"font-family:&#39;Times New Roman&#39;;font-siz=
+e:medium"><b style=3D"color:rgb(51,51,51);font-family:Arial;font-size:small=
+;text-align:center">Andrei Gherzan</b><font face=3D"Arial" color=3D"#333333=
+" size=3D"-1"><br>
+
+
+</font><font face=3D"Arial" color=3D"#333333" size=3D"-1">m: <a href=3D"tel=
+:%2B40.744.478.414" value=3D"+40744478414" target=3D"_blank">+40.744.478.41=
+4</a> | =C2=A0f: <a href=3D"tel:%2B40.31.816.28.12" value=3D"+40318162812" =
+target=3D"_blank">+40.31.816.28.12</a></font><br>
+
+</div></div></div>
+</div></div>
+
+--f46d04462e5e273c8a04fb92b7cb--
