@@ -1,47 +1,43 @@
-Return-Path: <andrei@gherzan.ro>
+Return-Path: <ajlennon@dynamicdevices.co.uk>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id C92C7E00B7B; Wed, 11 Jun 2014 11:58:14 -0700 (PDT)
+	id 2A02AE00B7B; Wed, 11 Jun 2014 13:44:25 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
-X-Spam-Level: 
-X-Spam-Status: No, score=0.6 required=5.0 tests=HTML_MESSAGE, RCVD_IN_DNSWL_LOW,
-	URI_HEX autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [74.125.82.174 listed in list.dnswl.org]
-	*  1.3 URI_HEX URI: URI hostname has long hexadecimal sequence
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from mail-we0-f174.google.com (mail-we0-f174.google.com
-	[74.125.82.174])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6D462E0070F
-	for <yocto@yoctoproject.org>; Wed, 11 Jun 2014 11:58:01 -0700 (PDT)
-Received: by mail-we0-f174.google.com with SMTP id u57so174270wes.19
-	for <yocto@yoctoproject.org>; Wed, 11 Jun 2014 11:58:00 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc:content-type;
-	bh=ehH/QoifLkG5TaZnxzsn/7LC84Iogr4U1iOH8RiTh2M=;
-	b=f2TOSdQ2QcV19ytUgZjMrg7m5X7b/b4yGxhfFFi1iKIghDZ9q7X19Dn8t9z5Gl+6+L
-	26sW7NRh8nIjZ+q1TnO7GwRZ2G/NpZBnIZirvsaML/WsWTPA1b0E3I0HseE0jKtUgbhv
-	w+LIYnD+qfl5WvRBU/WDM8PmfH7qDo3cnFHblEcGvqFddxZjhGIbtKKeLTYxNHa3PRnV
-	ODmnSL/QbAS8I/Vw0J4tB8fnLHZRNAKKnsQ4JF50dq0Y2IML10hVS0SeWfVLYl0FSONF
-	7F1dO5l4fpWeeDyO/i1sjF0J8vzXp5xqqn6QFbidR0rvOpmnSH8zIFJDITSnYttTGMqP
-	08jA==
-X-Gm-Message-State: ALoCoQm9gnsq2exjg1elGEjHFyB87ZA/XTZInxVBiyr69MzzmFpLyFFqbzhEZUKuCf82pqmprC0u
-X-Received: by 10.195.13.79 with SMTP id ew15mr54241542wjd.19.1402513079444;
-	Wed, 11 Jun 2014 11:57:59 -0700 (PDT)
+X-Spam-Level: *
+X-Spam-Status: No, score=1.3 required=5.0 tests=HTML_MESSAGE,URI_HEX
+	autolearn=no version=3.3.1
+X-Spam-HAM-Report: * 1.3 URI_HEX URI: URI hostname has long hexadecimal
+	sequence *  0.0 HTML_MESSAGE BODY: HTML included in message
+Received: from www.dynamicdevices.co.uk (www.dynamicdevices.co.uk
+	[89.200.136.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D1397E0070F
+	for <yocto@yoctoproject.org>; Wed, 11 Jun 2014 13:44:12 -0700 (PDT)
+Received: from localhost (localhost [127.0.0.1])
+	by www.dynamicdevices.co.uk (Postfix) with ESMTP id 3E7DD27E02B;
+	Wed, 11 Jun 2014 20:44:11 +0000 (UTC)
+X-Virus-Scanned: Debian amavisd-new at lennoab2.miniserver.com
+Received: from www.dynamicdevices.co.uk ([127.0.0.1])
+	by localhost (www.dynamicdevices.co.uk [127.0.0.1]) (amavisd-new,
+	port 10024)
+	with ESMTP id Ho7E41e-9K38; Wed, 11 Jun 2014 20:44:07 +0000 (UTC)
+Received: from [127.0.0.1] (cpc32-live22-2-0-cust59.17-2.cable.virginm.net
+	[82.36.253.60])
+	(using TLSv1 with cipher ECDHE-RSA-AES128-SHA (128/128 bits))
+	(No client certificate requested)
+	by www.dynamicdevices.co.uk (Postfix) with ESMTPSA id C0E2227E02A;
+	Wed, 11 Jun 2014 20:44:06 +0000 (UTC)
+Message-ID: <5398BF93.30808@dynamicdevices.co.uk>
+Date: Wed, 11 Jun 2014 21:44:03 +0100
+From: Alex J Lennon <ajlennon@dynamicdevices.co.uk>
+User-Agent: Mozilla/5.0 (Windows NT 6.3; WOW64;
+	rv:24.0) Gecko/20100101 Thunderbird/24.5.0
 MIME-Version: 1.0
-Received: by 10.216.31.129 with HTTP; Wed, 11 Jun 2014 11:57:39 -0700 (PDT)
-X-Originating-IP: [82.137.12.98]
-In-Reply-To: <CACwkBCSa5LSc+6+1sXhb5NOFRTwuD0+ty1ShO2O91DWx2_MNGA@mail.gmail.com>
-References: <CACwkBCTTVA7YCaxZ7UdTB6dDEjr+96PCzYsSHkJ+k-QC7MvMPw@mail.gmail.com>
-	<53989FC8.7080905@mlbassoc.com>
-	<CACwkBCSa5LSc+6+1sXhb5NOFRTwuD0+ty1ShO2O91DWx2_MNGA@mail.gmail.com>
-From: Andrei Gherzan <andrei@gherzan.ro>
-Date: Wed, 11 Jun 2014 21:57:39 +0300
-Message-ID: <CAK18fxG79LtC7cTaU4RWS=TR8BF2nc3hd7RpB68FXaeuzeY-Mg@mail.gmail.com>
-To: =?UTF-8?B?THVrw6HFoSBOb3ZvdG7DvQ==?= <lukas@dramiel.com>
+To: Andrei Gherzan <andrei@gherzan.ro>, =?windows-1252?Q?Luk=E1=9A_Novo?=
+	=?windows-1252?Q?tn=FD?= <lukas@dramiel.com>
+References: <CACwkBCTTVA7YCaxZ7UdTB6dDEjr+96PCzYsSHkJ+k-QC7MvMPw@mail.gmail.com>	<53989FC8.7080905@mlbassoc.com>	<CACwkBCSa5LSc+6+1sXhb5NOFRTwuD0+ty1ShO2O91DWx2_MNGA@mail.gmail.com>
+	<CAK18fxG79LtC7cTaU4RWS=TR8BF2nc3hd7RpB68FXaeuzeY-Mg@mail.gmail.com>
+In-Reply-To: <CAK18fxG79LtC7cTaU4RWS=TR8BF2nc3hd7RpB68FXaeuzeY-Mg@mail.gmail.com>
+X-Enigmail-Version: 1.6
 Cc: Yocto Project <yocto@yoctoproject.org>, Gary Thomas <gary@mlbassoc.com>
 Subject: Re: [meta-raspberrypi] Nothing RPROVIDES 'liborc-0.4'
 X-BeenThere: yocto@yoctoproject.org
@@ -55,61 +51,117 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 11 Jun 2014 18:58:14 -0000
-Content-Type: multipart/alternative; boundary=047d7bfd093ae4bdb904fb940522
+X-List-Received-Date: Wed, 11 Jun 2014 20:44:25 -0000
+Content-Type: multipart/alternative;
+	boundary="------------010306040607020206020708"
 
---047d7bfd093ae4bdb904fb940522
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+--------------010306040607020206020708
+Content-Type: text/plain; charset=windows-1252
+Content-Transfer-Encoding: 8bit
 
-On Wed, Jun 11, 2014 at 9:46 PM, Luk=C3=A1=C5=A1 Novotn=C3=BD <lukas@dramie=
-l.com> wrote:
 
-> I'm using meta, meta-yocto, meta-yocto-bsp, meta-raspberrypi
+On 11/06/2014 19:57, Andrei Gherzan wrote:
 >
-> The image itself is just rpi-basic-image with additional packages -
-> file generated by hob.
 >
-> bblayers.conf: http://pastebin.com/gb8w7myE
-> rpi-retail-player-edited-20140611-195509.bb: http://pastebin.com/LJvEUpgz
+>
+> On Wed, Jun 11, 2014 at 9:46 PM, Lukáš Novotný <lukas@dramiel.com
+> <mailto:lukas@dramiel.com>> wrote:
+>
+>     I'm using meta, meta-yocto, meta-yocto-bsp, meta-raspberrypi
+>
+>     The image itself is just rpi-basic-image with additional packages -
+>     file generated by hob.
+>
+>     bblayers.conf: http://pastebin.com/gb8w7myE
+>     rpi-retail-player-edited-20140611-195509.bb
+>     <http://rpi-retail-player-edited-20140611-195509.bb>:
+>     http://pastebin.com/LJvEUpgz
+>
+>
+> In that huge IMAGE_INSTALL you have liborc-0.4. That's why the image
+> needs that package. IMAGE_INSTALL is included in RDEPENDS (as i
+> remember). Try replace liborc-0.4 with liborc. or orc. 
+
+I don't know if it is coincidental but with poky-latest, as I try to
+build gstreamer1.0_plugins_bad, it's failing on an orc 0.4.18 recipe
+dependency
+
+...
+conftest.c:38:31: fatal error: valgrind/valgrind.h: No such file or
+directory
+ #include <valgrind/valgrind.h>
+...
+
+Regards,
+
+Alex
 
 
-In that huge IMAGE_INSTALL you have liborc-0.4. That's why the image needs
-that package. IMAGE_INSTALL is included in RDEPENDS (as i remember). Try
-replace liborc-0.4 with liborc. or orc.
+--------------010306040607020206020708
+Content-Type: text/html; charset=windows-1252
+Content-Transfer-Encoding: 8bit
 
---047d7bfd093ae4bdb904fb940522
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+<html>
+  <head>
+    <meta content="text/html; charset=windows-1252"
+      http-equiv="Content-Type">
+  </head>
+  <body text="#000000" bgcolor="#FFFFFF">
+    <br>
+    <div class="moz-cite-prefix">On 11/06/2014 19:57, Andrei Gherzan
+      wrote:<br>
+    </div>
+    <blockquote
+cite="mid:CAK18fxG79LtC7cTaU4RWS=TR8BF2nc3hd7RpB68FXaeuzeY-Mg@mail.gmail.com"
+      type="cite">
+      <div dir="ltr"><br>
+        <div class="gmail_extra"><br>
+          <br>
+          <div class="gmail_quote">On Wed, Jun 11, 2014 at 9:46 PM,
+            Lukáš Novotný <span dir="ltr">&lt;<a moz-do-not-send="true"
+                href="mailto:lukas@dramiel.com" target="_blank">lukas@dramiel.com</a>&gt;</span>
+            wrote:<br>
+            <blockquote class="gmail_quote" style="margin:0px 0px 0px
+0.8ex;border-left-width:1px;border-left-color:rgb(204,204,204);border-left-style:solid;padding-left:1ex">I'm
+              using meta, meta-yocto, meta-yocto-bsp, meta-raspberrypi<br>
+              <br>
+              The image itself is just rpi-basic-image with additional
+              packages -<br>
+              file generated by hob.<br>
+              <br>
+              bblayers.conf: <a moz-do-not-send="true"
+                href="http://pastebin.com/gb8w7myE" target="_blank">http://pastebin.com/gb8w7myE</a><br>
+              <a moz-do-not-send="true"
+                href="http://rpi-retail-player-edited-20140611-195509.bb"
+                target="_blank">rpi-retail-player-edited-20140611-195509.bb</a>:
+              <a moz-do-not-send="true"
+                href="http://pastebin.com/LJvEUpgz" target="_blank">http://pastebin.com/LJvEUpgz</a></blockquote>
+            <div><br>
+            </div>
+            <div>In that huge IMAGE_INSTALL you have liborc-0.4. That's
+              why the image needs that package. IMAGE_INSTALL is
+              included in RDEPENDS (as i remember). Try replace
+              liborc-0.4 with liborc. or orc. </div>
+          </div>
+        </div>
+      </div>
+    </blockquote>
+    <br>
+    I don't know if it is coincidental but with poky-latest, as I try to
+    build gstreamer1.0_plugins_bad, it's failing on an orc 0.4.18 recipe
+    dependency<br>
+    <br>
+    ...<br>
+    conftest.c:38:31: fatal error: valgrind/valgrind.h: No such file or
+    directory<br>
+     #include &lt;valgrind/valgrind.h&gt;<br>
+    ...<br>
+    <br>
+    Regards,<br>
+    <br>
+    Alex<br>
+    <br>
+  </body>
+</html>
 
-<div dir=3D"ltr"><br><div class=3D"gmail_extra"><br><br><div class=3D"gmail=
-_quote">On Wed, Jun 11, 2014 at 9:46 PM, Luk=C3=A1=C5=A1 Novotn=C3=BD <span=
- dir=3D"ltr">&lt;<a href=3D"mailto:lukas@dramiel.com" target=3D"_blank">luk=
-as@dramiel.com</a>&gt;</span> wrote:<br>
-
-<blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-=
-left-width:1px;border-left-color:rgb(204,204,204);border-left-style:solid;p=
-adding-left:1ex">I&#39;m using meta, meta-yocto, meta-yocto-bsp, meta-raspb=
-errypi<br>
-
-
-<br>
-The image itself is just rpi-basic-image with additional packages -<br>
-file generated by hob.<br>
-<br>
-bblayers.conf: <a href=3D"http://pastebin.com/gb8w7myE" target=3D"_blank">h=
-ttp://pastebin.com/gb8w7myE</a><br>
-<a href=3D"http://rpi-retail-player-edited-20140611-195509.bb" target=3D"_b=
-lank">rpi-retail-player-edited-20140611-195509.bb</a>: <a href=3D"http://pa=
-stebin.com/LJvEUpgz" target=3D"_blank">http://pastebin.com/LJvEUpgz</a></bl=
-ockquote>
-
-<div><br></div><div>In that huge IMAGE_INSTALL you have liborc-0.4. That&#3=
-9;s why the image needs that package. IMAGE_INSTALL is included in RDEPENDS=
- (as i remember). Try replace liborc-0.4 with liborc. or orc.=C2=A0</div></=
-div>
-
-
-</div></div>
-
---047d7bfd093ae4bdb904fb940522--
+--------------010306040607020206020708--
