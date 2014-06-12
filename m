@@ -1,48 +1,41 @@
-Return-Path: <incnews@jenslucius.de>
+Return-Path: <ajlennon@dynamicdevices.co.uk>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 9D7B4E00B7B; Wed, 11 Jun 2014 23:56:27 -0700 (PDT)
+	id 572ADE00B74; Thu, 12 Jun 2014 00:31:28 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-0.1 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-	DKIM_VALID_AU,RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [81.169.146.218 listed in list.dnswl.org]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mo4-p00-ob.smtp.rzone.de (mo4-p00-ob.smtp.rzone.de
-	[81.169.146.218])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 235ECE0070F
-	for <yocto@yoctoproject.org>; Wed, 11 Jun 2014 23:56:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha1; c=relaxed/relaxed; t=1402556174; l=1588;
-	s=domk; d=jenslucius.de;
-	h=Content-Transfer-Encoding:Content-Type:In-Reply-To:References:
-	Subject:To:MIME-Version:From:Date:X-RZG-CLASS-ID:X-RZG-AUTH;
-	bh=Qkwzk49wEqr1yEeUfxQpCHWWEF4=;
-	b=Yp6e/+CtUW8jtsgjnfeUNW8evLBd87pcD3ekA7FLPFsNfy0IprSkY/FcXP2lECrqWwd
-	l5jQA6rvNijicrY8yaoYylnV2yz4rJlpjG1tUROFYvGoevi6POAXVL2NDE9i319LOk7kR
-	ppyfmuzRgNBxSovUC3nSPRUWRWFTMqLPQ6I=
-X-RZG-AUTH: :JWIHe0W/aN/Hg12BLSzL3z7LlaxFnIKmofguyxtBBEzwL1PfgBcHsubAgpng8lA5cA==
-X-RZG-CLASS-ID: mo00
-Received: from [192.168.2.12] (p57915710.dip0.t-ipconnect.de [87.145.87.16])
-	by smtp.strato.de (RZmta 34.3 DYNA|AUTH)
-	with ESMTPSA id Y019c1q5C6uE7fu
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(Client did not present a certificate) for <yocto@yoctoproject.org>;
-	Thu, 12 Jun 2014 08:56:14 +0200 (CEST)
-Message-ID: <53994EFE.7020201@jenslucius.de>
-Date: Thu, 12 Jun 2014 08:55:58 +0200
-From: Jens Lucius <incnews@jenslucius.de>
-User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64;
-	rv:24.0) Gecko/20100101 Thunderbird/24.6.0
+X-Spam-Status: No, score=0.0 required=5.0 tests=none autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: 
+Received: from www.dynamicdevices.co.uk (www.dynamicdevices.co.uk
+	[89.200.136.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E5791E0070F
+	for <yocto@yoctoproject.org>; Thu, 12 Jun 2014 00:31:16 -0700 (PDT)
+Received: from localhost (localhost [127.0.0.1])
+	by www.dynamicdevices.co.uk (Postfix) with ESMTP id 95FD927E02B;
+	Thu, 12 Jun 2014 07:31:14 +0000 (UTC)
+X-Virus-Scanned: Debian amavisd-new at lennoab2.miniserver.com
+Received: from www.dynamicdevices.co.uk ([127.0.0.1])
+	by localhost (www.dynamicdevices.co.uk [127.0.0.1]) (amavisd-new,
+	port 10024)
+	with ESMTP id T2McdTbRR6uq; Thu, 12 Jun 2014 07:31:10 +0000 (UTC)
+Received: from [127.0.0.1] (cpc32-live22-2-0-cust59.17-2.cable.virginm.net
+	[82.36.253.60])
+	(using TLSv1 with cipher ECDHE-RSA-AES128-SHA (128/128 bits))
+	(No client certificate requested)
+	by www.dynamicdevices.co.uk (Postfix) with ESMTPSA id 3EACB27E02A;
+	Thu, 12 Jun 2014 07:31:10 +0000 (UTC)
+Message-ID: <53995739.9030701@dynamicdevices.co.uk>
+Date: Thu, 12 Jun 2014 08:31:05 +0100
+From: Alex J Lennon <ajlennon@dynamicdevices.co.uk>
+User-Agent: Mozilla/5.0 (Windows NT 6.3; WOW64;
+	rv:24.0) Gecko/20100101 Thunderbird/24.5.0
 MIME-Version: 1.0
-To: yocto@yoctoproject.org
+To: Jonatan Magnusson <jonatan.magnusson@gmail.com>
 References: <17C5D232-0433-4ADB-AA99-40D08E56A436@cmteknik.se>
 In-Reply-To: <17C5D232-0433-4ADB-AA99-40D08E56A436@cmteknik.se>
+X-Enigmail-Version: 1.6
+Cc: yocto@yoctoproject.org
 Subject: Re: [meta-raspberrypi] how to customize kernel config?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -55,23 +48,12 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 12 Jun 2014 06:56:27 -0000
-Content-Type: text/plain; charset=windows-1252; format=flowed
+X-List-Received-Date: Thu, 12 Jun 2014 07:31:28 -0000
+Content-Type: text/plain; charset=windows-1252
 Content-Transfer-Encoding: 8bit
 
-Hi
 
-Had the same problem. The problem is in file linux-raspberrpi.inc the 
-following line:
-
-install -m 0644 ${S}/arch/${ARCH}/configs/${KERNEL_DEFCONFIG} 
-${WORKDIR}/defconfig || die "No default configuration for ${MACHINE} / 
-${KERNEL_DEFCONFIG} available."
-
-it installs always the defconfig at the path above. I changed that and 
-it works.
-
-Am 12.06.2014 08:48, schrieb Jonatan Magnusson:
+On 12/06/2014 07:48, Jonatan Magnusson wrote:
 > Hi
 >
 > I’m trying to use the meta-raspberrypi BSP with Yocto (1.6, Daisy).
@@ -87,20 +69,46 @@ Am 12.06.2014 08:48, schrieb Jonatan Magnusson:
 > Example:
 >
 > do_configure_append() {
->    kernel_configure_variable SPI_SPIDEV n
+>   kernel_configure_variable SPI_SPIDEV n
 > }
 >
 > So I wonder: how is this supposed to work?
 >
-> In my case I need to enable CONFIG_IEEE802154_MRF24J40 and it’s dependencies and disable CONFIG_SPI_SPIDEV and a few more.
->
-> I’ve found no help on IRC and all Google comes up with is this old discussion, which does not lead to a solution:
->
-> https://lists.yoctoproject.org/pipermail/yocto/2013-November/017113.html
->
-> I would be very happy to get any hints on how this is supposed to work!
->
-> Regards,
-> Jonatan Magnusson
+
+I don't think the RPi kernel recipe supports the linux-yocto include and
+thus kernel fragments, which would be the preferred way to do things.
+
+(At least if it does I didn't manage to get it working - I am
+considering trying to add support for this in).
+
+In the meantime to create a configuration I
+
+bitbake -c menuconfig virtual/kernel
+
+Edit the settings and save the resulting .config file
+
+Then if you go to
+
+bitbake -c devshell virtual/kernel
+
+You can copy the .config file out of there to your source tree
+
+Then the recipe I use to build with that configuration is something like
+this, with my_defconfig in a patch
+containing linux-raspberrypi folder set for searching with the path prepend,
+
+FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
+
+KERNEL_DEFCONFIG = "my_defconfig"
+
+SRC_URI += "file://rov_defconfig"
+
+do_configure_prepend() {
+        cp ${WORKDIR}/my_defconfig ${S}/arch/arm/configs
+}
+
+Regards,
+
+Alex
 
 
