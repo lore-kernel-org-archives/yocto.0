@@ -1,39 +1,35 @@
-Return-Path: <ajlennon@dynamicdevices.co.uk>
+Return-Path: <paul.eggleton@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 699E0E00BDF; Thu, 12 Jun 2014 06:47:13 -0700 (PDT)
+	id 9AC54E00BDF; Thu, 12 Jun 2014 06:53:22 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=0.0 required=5.0 tests=none autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: 
-Received: from www.dynamicdevices.co.uk (www.dynamicdevices.co.uk
-	[89.200.136.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2E0BFE00BB1
-	for <yocto@yoctoproject.org>; Thu, 12 Jun 2014 06:47:06 -0700 (PDT)
-Received: from localhost (localhost [127.0.0.1])
-	by www.dynamicdevices.co.uk (Postfix) with ESMTP id ED82627E02B
-	for <yocto@yoctoproject.org>; Thu, 12 Jun 2014 13:47:02 +0000 (UTC)
-X-Virus-Scanned: Debian amavisd-new at lennoab2.miniserver.com
-Received: from www.dynamicdevices.co.uk ([127.0.0.1])
-	by localhost (www.dynamicdevices.co.uk [127.0.0.1]) (amavisd-new,
-	port 10024) with ESMTP id htls_WaD33OX for <yocto@yoctoproject.org>;
-	Thu, 12 Jun 2014 13:47:02 +0000 (UTC)
-Received: from [127.0.0.1] (cpc32-live22-2-0-cust59.17-2.cable.virginm.net
-	[82.36.253.60])
-	(using TLSv1 with cipher ECDHE-RSA-AES128-SHA (128/128 bits))
-	(No client certificate requested)
-	by www.dynamicdevices.co.uk (Postfix) with ESMTPSA id 2575E27E02A
-	for <yocto@yoctoproject.org>; Thu, 12 Jun 2014 13:47:02 +0000 (UTC)
-Message-ID: <5399AF51.1030605@dynamicdevices.co.uk>
-Date: Thu, 12 Jun 2014 14:46:57 +0100
-From: Alex J Lennon <ajlennon@dynamicdevices.co.uk>
-User-Agent: Mozilla/5.0 (Windows NT 6.3; WOW64;
-	rv:24.0) Gecko/20100101 Thunderbird/24.6.0
+X-Spam-Status: No, score=-5.0 required=5.0 tests=RCVD_IN_DNSWL_HI
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [134.134.136.20 listed in list.dnswl.org]
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1F4F8E00BB1
+	for <yocto@yoctoproject.org>; Thu, 12 Jun 2014 06:53:17 -0700 (PDT)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga101.jf.intel.com with ESMTP; 12 Jun 2014 06:53:17 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.01,465,1400050800"; d="scan'208";a="556336729"
+Received: from nithyasr-mobl.ger.corp.intel.com (HELO
+	peggleto-mobl5.ger.corp.intel.com) ([10.252.121.63])
+	by orsmga002.jf.intel.com with ESMTP; 12 Jun 2014 06:53:16 -0700
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: Holger Freyther <holger@freyther.de>
+Date: Thu, 12 Jun 2014 14:53:15 +0100
+Message-ID: <2178194.8ak3tKtQ3M@peggleto-mobl5.ger.corp.intel.com>
+Organization: Intel Corporation
+User-Agent: KMail/4.12.5 (Linux/3.14.5-200.fc20.x86_64; KDE/4.12.5; x86_64; ; )
+In-Reply-To: <loom.20140611T081745-106@post.gmane.org>
+References: <loom.20140611T081745-106@post.gmane.org>
 MIME-Version: 1.0
-To: Yocto <yocto@yoctoproject.org>
-X-Enigmail-Version: 1.6
-Subject: Linux Yocto style kernel errors with no config fragments
+Cc: yocto@yoctoproject.org
+Subject: Re: pseudo source gone missing?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,46 +41,29 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 12 Jun 2014 13:47:13 -0000
-Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Thu, 12 Jun 2014 13:53:22 -0000
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-Hi,
+Hi Holger,
 
-I was taking a quick look at converting the meta-raspberrypi kernel
-recipes to be linux-yocto style, to provide config frag support.
+On Wednesday 11 June 2014 06:19:49 Holger Freyther wrote:
+> pseudo_1.5.1.bb refers to a URL like this
+> http://www.yoctoproject.org/downloads/${BPN}/${BPN}-${PV}.tar.bz2
+> but that is not were the sourcecode is located anymore. It looks
+> like an infrastructure problem? Should I report a bug somewhere
+> or can this be easily fixed?
 
-I'm working with poky master, referencing linux-yocto-custom.bb in
-meta-skeleton
+I know you've already seen this but just to round this off, the issue is now 
+fixed:
 
-This seems to be working as far as it goes, but I get an error when
-there are no configuration fragments supplied on the SRC_URI.
+https://bugzilla.yoctoproject.org/show_bug.cgi?id=6426
 
-| DEBUG: Executing shell function do_kernel_configme
-| [INFO] doing kernel configme
-| [INFO] Configuring target/machine combo: "standard/raspberrypi"
-| [INFO] collecting configs in ./.meta/meta-series
-| cat: .meta/cfg/standard/raspberrypi/config_frag.txt: No such file or
-directory
-| cat: .meta/cfg/standard/raspberrypi/config_frag.txt: No such file or
-directory
-| mv: cannot stat
-`[.....]/tmp/work/raspberrypi-poky-linux-gnueabi/linux-raspberrypi/3.12.21+gitcb53ea88f75180cc1ba74f7f197c8e3fd4f47cfe-r0/linux-raspberrypi-standard-build/.tmp.config*':
-No such file or directory
-| creation of pre-processed config data failed
-| config of "standard/raspberrypi" failed
+Cheers,
+Paul
 
-When I add an empty file://dummy.cfg file to the SRC_URI then I can
-build successfully.
+-- 
 
-When I add a dummy option CONFIG_DUMMY=y into that fragment file
-do_kernel_configcheck correctly flags up that this is an unknown option
-for the kernel so it seems to be pulled in ok.
-
-Can anybody advise?
-
-Thanks,
-
-Alex
-
+Paul Eggleton
+Intel Open Source Technology Centre
 
