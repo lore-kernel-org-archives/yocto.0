@@ -1,52 +1,42 @@
-Return-Path: <wpdster@gmail.com>
+Return-Path: <ajlennon@dynamicdevices.co.uk>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 1162EE00BE0; Thu, 12 Jun 2014 12:52:51 -0700 (PDT)
+	id 0B943E00BEA; Thu, 12 Jun 2014 13:47:31 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-0.8 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-	DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (wpdster[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.128.171 listed in list.dnswl.org]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-ve0-f171.google.com (mail-ve0-f171.google.com
-	[209.85.128.171])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AAD9BE00BB3
-	for <yocto@yoctoproject.org>; Thu, 12 Jun 2014 12:52:41 -0700 (PDT)
-Received: by mail-ve0-f171.google.com with SMTP id jz11so2369479veb.30
-	for <yocto@yoctoproject.org>; Thu, 12 Jun 2014 12:52:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-type:content-transfer-encoding;
-	bh=2zVGfXUME/vSmSDjENXXFfuO25HS+6nBLkvl/jYbwe0=;
-	b=N0jX1BjZ7TO7edlxTNFp3bP0xGB1+2RSPJ5UM5W5qYua+Gw62Oiy6WR144wFp/cSLq
-	60fIPoxsVTA7zbTHcrZR1SECojWCjdWojIexd1EsnHozlX8ep6ZoEDygRJ+tCxA120OI
-	VHagC/ULUxU9M01apK8aMVZpqo8hu6Cvl5Z9hRUoEbihg5Ok7zbJ0iQlpLHfzIqWxHat
-	rPzyml44hj5j0zJKu07IKR0QmVvWu4d89CB3zOoCzqIlEYbzsmQqYTcw0U/ByQRlnOw5
-	W3scGK2Ylnj4eaQI6xJEWq3FxDRLc7CQ1Hu+7ehTiDrCNiPWx199Zx21aoqqGGZVTQmp
-	I/4A==
-X-Received: by 10.58.208.228 with SMTP id mh4mr32285884vec.22.1402602760921;
-	Thu, 12 Jun 2014 12:52:40 -0700 (PDT)
+X-Spam-Status: No, score=0.0 required=5.0 tests=none autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: 
+Received: from www.dynamicdevices.co.uk (www.dynamicdevices.co.uk
+	[89.200.136.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C471EE00BDF
+	for <yocto@yoctoproject.org>; Thu, 12 Jun 2014 13:47:26 -0700 (PDT)
+Received: from localhost (localhost [127.0.0.1])
+	by www.dynamicdevices.co.uk (Postfix) with ESMTP id 27F4727E02B;
+	Thu, 12 Jun 2014 20:47:25 +0000 (UTC)
+X-Virus-Scanned: Debian amavisd-new at lennoab2.miniserver.com
+Received: from www.dynamicdevices.co.uk ([127.0.0.1])
+	by localhost (www.dynamicdevices.co.uk [127.0.0.1]) (amavisd-new,
+	port 10024)
+	with ESMTP id sgP_PZ0Fn9vZ; Thu, 12 Jun 2014 20:47:22 +0000 (UTC)
+Received: from [127.0.0.1] (cpc32-live22-2-0-cust59.17-2.cable.virginm.net
+	[82.36.253.60])
+	(using TLSv1 with cipher ECDHE-RSA-AES128-SHA (128/128 bits))
+	(No client certificate requested)
+	by www.dynamicdevices.co.uk (Postfix) with ESMTPSA id 6624127E02A;
+	Thu, 12 Jun 2014 20:47:22 +0000 (UTC)
+Message-ID: <539A11D5.5030805@dynamicdevices.co.uk>
+Date: Thu, 12 Jun 2014 21:47:17 +0100
+From: Alex J Lennon <ajlennon@dynamicdevices.co.uk>
+User-Agent: Mozilla/5.0 (Windows NT 6.3; WOW64;
+	rv:24.0) Gecko/20100101 Thunderbird/24.6.0
 MIME-Version: 1.0
-Received: by 10.58.32.74 with HTTP; Thu, 12 Jun 2014 12:52:10 -0700 (PDT)
-In-Reply-To: <CABcZAN=dqyUpOmmFjFifnsyD-RMWP7OkD4NSvqh6RvNA_wKYGQ@mail.gmail.com>
-References: <CAF_dkJAy-nn0SyUNUNMdSiqpkXHFPZoOeNFgME8w6U4BqMWp-g@mail.gmail.com>
-	<CAJTo0Lb6mRt6H0fpVVXT_PW8SX1pWrKdE8Z3Avbp7SpY420UGw@mail.gmail.com>
-	<CABcZAN=dqyUpOmmFjFifnsyD-RMWP7OkD4NSvqh6RvNA_wKYGQ@mail.gmail.com>
-From: Patrick Doyle <wpdster@gmail.com>
-Date: Thu, 12 Jun 2014 15:52:10 -0400
-Message-ID: <CAF_dkJDanXGehdznOiZPnyL9Fyq4Zon5JPZ4oS6Cg0ken=ZFJA@mail.gmail.com>
-To: Christopher Larson <clarson@kergoth.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: How to determine which tasks bitbake just ran?
+To: Jonatan Magnusson <jonatan.magnusson@gmail.com>, 
+ yocto@yoctoproject.org
+References: <17C5D232-0433-4ADB-AA99-40D08E56A436@cmteknik.se>
+In-Reply-To: <17C5D232-0433-4ADB-AA99-40D08E56A436@cmteknik.se>
+X-Enigmail-Version: 1.6
+Subject: Re: [meta-raspberrypi] how to customize kernel config?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -58,65 +48,61 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 12 Jun 2014 19:52:51 -0000
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-Thanks.
-
-bitbake foo | cat
-
-is most likely to be what I was looking for.  I found the cooker log
-shortly after I asked my question.  I'll go look through bitbake and
-see what it would take to create a symbolic link to the most recent
-logfile, as is done with the logfiles for the individual tasks.
-
-I'll also go see what I can learn about Toaster.
-
---wpd
+X-List-Received-Date: Thu, 12 Jun 2014 20:47:31 -0000
+Content-Type: text/plain; charset=windows-1252
+Content-Transfer-Encoding: 8bit
 
 
-On Thu, Jun 12, 2014 at 3:06 PM, Christopher Larson <clarson@kergoth.com> w=
-rote:
+On 12/06/2014 07:48, Jonatan Magnusson wrote:
+> Hi
 >
-> On Thu, Jun 12, 2014 at 12:00 PM, Burton, Ross <ross.burton@intel.com>
-> wrote:
->>
->> On 12 June 2014 19:53, Patrick Doyle <wpdster@gmail.com> wrote:
->> > As you know, when we bitbake a recipe, we see lots of messages about
->> > individual tasks that are run as they are being run (do_fetch,
->> > do_configure, etc=E2=80=A6), and then a final summary message that rea=
-ds
->> > something like:
->> >
->> > NOTE: Tasks Summary: Attempted 690 tasks of which 677 didn't need to
->> > be rerun and all succeeded.
->> >
->> > I'm curious:
->> > 1) What were the 13 tasks that ran?
->> > 2) Why are there 690 tasks for my simple recipe anyway?
->>
->> You want to see the cooker log.
->>
->> If you want to see that as it happens, then for a one-off you can
->> convince bitbake that it's not running on a vt (bitbake foo | cat -).
->>
->> After the event, the cooker logs are in
->> tmp/logs/cooker/[machine]/[timestamp].log.  For convenience, Chris
->> Larson's excellent 'bb' command has a 'log' mode that if given no
->> arguments will display the latest cooker log.
+> I’m trying to use the meta-raspberrypi BSP with Yocto (1.6, Daisy).
 >
+> It works great, except I have no idea how to use a custom kernel config!
 >
-> The new Toaster is pretty great at examining what your build did, if you =
-ran
-> your build in toaster context, afaik. I haven't spent much time playing w=
-ith
-> it, but it does seem like it's intended to answer just these sort of
-> questions.
-> --
-> Christopher Larson
-> clarson at kergoth dot com
-> Founder - BitBake, OpenEmbedded, OpenZaurus
-> Maintainer - Tslib
-> Senior Software Engineer, Mentor Graphics
+> I have a custom kernel recipe that bbappends to the meta-raspberrypi kernel recipe.
+>
+> I’ve tried using defconfig as well as configuration fragments, but neither work.
+>
+> I’ve also tried using the kernel_configure_variable function, and that almost works, except if I try to disable an option that is enabled earlier in the the config file, the option is still enabled since kernel_configure_variable only appends to the config file.
+>
+> Example:
+>
+> do_configure_append() {
+>   kernel_configure_variable SPI_SPIDEV n
+> }
+>
+> So I wonder: how is this supposed to work?
+>
+> In my case I need to enable CONFIG_IEEE802154_MRF24J40 and it’s dependencies and disable CONFIG_SPI_SPIDEV and a few more.
+>
+> I’ve found no help on IRC and all Google comes up with is this old discussion, which does not lead to a solution:
+>
+> https://lists.yoctoproject.org/pipermail/yocto/2013-November/017113.html
+>
+> I would be very happy to get any hints on how this is supposed to work!
+
+Jonatan,
+
+I have a patch set here which I believe will enable configuration
+fragment support (yocto-ization) for the RPi as detailed in the Yocto
+Kernel Development Manual.
+
+It needs more testing before I would be comfortable releasing it, and I
+am short of time right now. The kernel builds and my testing shows that
+the config and config. fragments seem to get picked up, but I haven't
+tested on a board yet as I have run into trouble moving up from Yocto
+daisy to master.
+
+I wonder if you would be interested in taking a look at it with me?
+If/when it worked/works you should be able to simply add a foo.cfg file
+with your CONFIG_foo to SRC_URI in a .bbappend and that should get
+pulled in as you need.
+
+Cheers,
+
+Alex
+
+
+Cheer
 
