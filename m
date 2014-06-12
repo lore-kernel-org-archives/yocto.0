@@ -1,43 +1,53 @@
-Return-Path: <ajlennon@dynamicdevices.co.uk>
+Return-Path: <danielhilst@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id AC20BE00B74; Thu, 12 Jun 2014 04:10:04 -0700 (PDT)
+	id F30FDE009E7; Thu, 12 Jun 2014 04:55:21 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=0.0 required=5.0 tests=none autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: 
-Received: from www.dynamicdevices.co.uk (www.dynamicdevices.co.uk
-	[89.200.136.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 49C85E0070F
-	for <yocto@yoctoproject.org>; Thu, 12 Jun 2014 04:09:50 -0700 (PDT)
-Received: from localhost (localhost [127.0.0.1])
-	by www.dynamicdevices.co.uk (Postfix) with ESMTP id 5469B27E02B;
-	Thu, 12 Jun 2014 11:09:49 +0000 (UTC)
-X-Virus-Scanned: Debian amavisd-new at lennoab2.miniserver.com
-Received: from www.dynamicdevices.co.uk ([127.0.0.1])
-	by localhost (www.dynamicdevices.co.uk [127.0.0.1]) (amavisd-new,
-	port 10024)
-	with ESMTP id UfAaxSsAeVy2; Thu, 12 Jun 2014 11:09:48 +0000 (UTC)
-Received: from [127.0.0.1] (cpc32-live22-2-0-cust59.17-2.cable.virginm.net
-	[82.36.253.60])
-	(using TLSv1 with cipher ECDHE-RSA-AES128-SHA (128/128 bits))
-	(No client certificate requested)
-	by www.dynamicdevices.co.uk (Postfix) with ESMTPSA id A55E227E02A;
-	Thu, 12 Jun 2014 11:09:48 +0000 (UTC)
-Message-ID: <53998A78.9000106@dynamicdevices.co.uk>
-Date: Thu, 12 Jun 2014 12:09:44 +0100
-From: Alex J Lennon <ajlennon@dynamicdevices.co.uk>
-User-Agent: Mozilla/5.0 (Windows NT 6.3; WOW64;
-	rv:24.0) Gecko/20100101 Thunderbird/24.6.0
+X-Spam-Status: No, score=-0.8 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+	DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (danielhilst[at]gmail.com)
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.160.181 listed in list.dnswl.org]
+Received: from mail-yk0-f181.google.com (mail-yk0-f181.google.com
+	[209.85.160.181])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 023C4E0070F
+	for <yocto@yoctoproject.org>; Thu, 12 Jun 2014 04:55:18 -0700 (PDT)
+Received: by mail-yk0-f181.google.com with SMTP id 9so854844ykp.40
+	for <yocto@yoctoproject.org>; Thu, 12 Jun 2014 04:55:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=message-id:date:from:user-agent:mime-version:to:subject
+	:content-type:content-transfer-encoding;
+	bh=uKTQLq5zDRji6b15KjreyJtSTmysdWTh44qrrFDgdB8=;
+	b=fAeX+ZJlgE2FOmY55EuJrCcNpT0D84zsXUzERtaljTVwtRHzB5zNglPMfZUPNzwRpr
+	AX0MCZxbPOP/NpZ3V+jXjCb7TLdhPMNlTTDD5gtuhGfMmRVb7qXezSIVQ7FnzJRYMect
+	aSlT85PzYNByF3Uqva9lIuzsucD3qah0WanVYvqPaMm19UCjJq1o23WfSsl0FYkpcqLG
+	P85UKNl6/iM+yDGEPivb3gmUHROx1mQB7ir6UNYP+4LZXMG9yvAQVuAAn5hd+OoQt8Ui
+	uSgBwXuCQ92hVv7mi3c1N8edDyOUWiWrCZXwcUjXBmbVwOJrBYojMNLxqqJJOVAU8lNi
+	2VkQ==
+X-Received: by 10.236.113.69 with SMTP id z45mr15227563yhg.0.1402574118134;
+	Thu, 12 Jun 2014 04:55:18 -0700 (PDT)
+Received: from [155.1.1.163] ([187.11.221.17])
+	by mx.google.com with ESMTPSA id k66sm1024229yhg.39.2014.06.12.04.55.17
+	for <yocto@yoctoproject.org>
+	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
+	Thu, 12 Jun 2014 04:55:17 -0700 (PDT)
+Message-ID: <53999502.1050802@gmail.com>
+Date: Thu, 12 Jun 2014 08:54:42 -0300
+From: Daniel Hilst Selli <danielhilst@gmail.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:24.0) Gecko/20100101 Thunderbird/24.5.0
 MIME-Version: 1.0
-To: Paul Eggleton <paul.eggleton@linux.intel.com>
-References: <53886DE1.3040906@dynamicdevices.co.uk>
-	<10094086.6Vrxdyfy9P@peggleto-mobl5.ger.corp.intel.com>
-In-Reply-To: <10094086.6Vrxdyfy9P@peggleto-mobl5.ger.corp.intel.com>
-X-Enigmail-Version: 1.6
-Cc: yocto@yoctoproject.org
-Subject: Re: How to leave original git remote in unpacked repository?
+To: yocto@yoctoproject.org
+Subject: Conditional patches on kernel depending on board, how to maintain?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -49,44 +59,29 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 12 Jun 2014 11:10:04 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Thu, 12 Jun 2014 11:55:22 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
 Content-Transfer-Encoding: 7bit
 
+I have a SoM which will be used on several boards, this SoM has a base 
+kernel for it, with its board-*.c file. In each board I may have 
+different peripherals, so I have to patch the same board-*.c file 
+depending on my target board, and that patches may be conflicting one 
+each other. For example, I could have a RF on first SPI bus on one 
+board, and on another board a SD card on same first SPI bus.
 
-On 12/06/2014 11:58, Paul Eggleton wrote:
-> Hi Alex,
->
-> On Friday 30 May 2014 12:39:13 Alex J Lennon wrote:
->> When I drop into a devshell for an unpacked SRV_REV from a particular
->> git SRC_URI I have the git remote origin set to a local archive in the
->> ~/downloads tree.
->>
->> Is there a build variable, say, I can set to leave the original git
->> remote set as well so that I can more easily push back changes I make?
->>
->> (Or is that a bad idea for some reason?)
-> There isn't a way to do this, and to be honest with the discussions we've had
-> recently about developer workflow, I'm not sure we want to encourage doing
-> development within the workdir for a recipe because it's managed by the build
-> system, and if you're not careful (e.g. with -c clean, rm_work or just
-> changing SRC_URI) the sources can vanish taking your changes with it. Our
-> alternative at the moment is to use externalsrc [1]. This is a little more
-> work though and at the OEDAM meeting [2] there was some discussion about how
-> we could make this easier in future.
->
+So basically I will have a different kernel(uImage) and rootfs (with 
+kernel modules) for each board.
 
-OK thanks Paul. I understand what you mean, having wiped various changes
-out in the past with inadvertent -c clean 'ing
+I think to create a layer for each target board, with the 
+linux-SoM.bbappend including the patches for that board..., so I enable 
+the layer depending on target board I'm creating, but is too much file 
+editions, or have a build directory for each target board, enabling the 
+right layer on each local.conf, but this means mantaining build 
+directories, or at last local.conf, which doesn't seem a good idea for me...
 
-That said I do find it quite productive to work in-tree with a
-development git fork, ${AUTOREV} in the recipe and frequent work in
-progress pushes to the remote repo just in case.
+Would be possible to do this relying only new layers and its configurations?
 
-I'll take a look at what's involved in externalsrc as you recommend.
-
-Thanks again,
-
-Alex
- 
+Thanks in advance
+Cheers!
 
