@@ -1,40 +1,47 @@
-Return-Path: <prvs=234195dd2=Richard.Leitner@skidata.com>
+Return-Path: <gada.kashyap@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id DC4B7E00BE2; Fri, 13 Jun 2014 00:10:42 -0700 (PDT)
+	id 12CD6E00BE9; Fri, 13 Jun 2014 01:06:41 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=0.0 required=5.0 tests=none autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: 
-X-Greylist: delayed 72 seconds by postgrey-1.32 at yocto-www;
-	Fri, 13 Jun 2014 00:10:39 PDT
-Received: from mail1.skidata.com (mail1.skidata.com [91.230.2.99])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C8392E00B66
-	for <yocto@yoctoproject.org>; Fri, 13 Jun 2014 00:10:39 -0700 (PDT)
-X-IronPort-Anti-Spam-Filtered: true
-X-IronPort-Anti-Spam-Result: AhsKAKmimlOsEApK/2dsb2JhbABag19ZlVmlbYc8AYEadYQDAQEBBAEBAWsLDAQCAQgNBAQBAQsdBx8IAQoUCQgBAQQOBQgTiCwI0X4TBI1xKRExBwaDJYEWBIoBhhCHQIoIji2BQIFvQA
-X-IPAS-Result: AhsKAKmimlOsEApK/2dsb2JhbABag19ZlVmlbYc8AYEadYQDAQEBBAEBAWsLDAQCAQgNBAQBAQsdBx8IAQoUCQgBAQQOBQgTiCwI0X4TBI1xKRExBwaDJYEWBIoBhhCHQIoIji2BQIFvQA
-From: Richard Leitner - SKIDATA <Richard.Leitner@skidata.com>
-To: "Yocto Project Discussion ML (yocto@yoctoproject.org)"
-	<yocto@yoctoproject.org>
-Thread-Topic: [yocto] Errors with update-rc.d: /etc/init.d/XXX exists during
-	rc.d purge (use -f to force)
-Thread-Index: Ac7riB/iN8kVuR9nQV2la7Le6ji4swAADzjwAACwME0AHvsQMCazsbpQ
-Date: Fri, 13 Jun 2014 07:09:22 +0000
-Message-ID: <F7680723A1CA6840825A59020FA770640111D7CC@sdexmbx1srv.skidata.net>
-References: <5B5D636C5F0AA747B37D0EFC72B563C422292F1E@RIC-MS02.MWSG.int>,
-	<F7680723A1CA6840825A59020FA77064FCDE02@sdexmbx1srv.skidata.net>
-	<5B5D636C5F0AA747B37D0EFC72B563C422293F86@RIC-MS02.MWSG.int>
-	<F7680723A1CA6840825A59020FA77064FCEA6A@sdexmbx1srv.skidata.net>
-In-Reply-To: <F7680723A1CA6840825A59020FA77064FCEA6A@sdexmbx1srv.skidata.net>
-Accept-Language: en-US, de-AT
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [172.16.111.80]
+X-Spam-Status: No, score=-0.8 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+	DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (gada.kashyap[at]gmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.217.171 listed in list.dnswl.org]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-lb0-f171.google.com (mail-lb0-f171.google.com
+	[209.85.217.171])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 682E3E00BB3
+	for <yocto@yoctoproject.org>; Fri, 13 Jun 2014 01:06:37 -0700 (PDT)
+Received: by mail-lb0-f171.google.com with SMTP id s7so1136968lbd.30
+	for <yocto@yoctoproject.org>; Fri, 13 Jun 2014 01:06:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=ctMEJQqTCujRq9q5ZV2LmmXtB4+d5Dz7sAz8myj93RE=;
+	b=UQCs+0RTLMJNTyRohsM35lPCEgyxictAF5fkubQemzmaa8E9smu1f2SG6ZK71tpOV2
+	BBNDxYXvNbnnsTApurcYdvqVz7a3EmlQ5zCuPEhF/jMD5lD6BnebS8SeBTRvpRVMuG3q
+	GvMjrgkE3FIIzWWCqI9BIlYPRC1LO+mHk76jE2bqQjbJOUZNa5lylSAgYKcXafZP9xLY
+	ShCPYzR2dhipPZCsthxuizzgC4xC7/8VY7D05iiivJpZ4yToLpu9X6Xig+d0YgiUwrVV
+	1jnS8f+8rspHsi4VU3nphRwHckxSI4vAXOVOnwSomrme8g3YhV8yMfltm+uWUErJLQSz
+	5F2Q==
 MIME-Version: 1.0
-Cc: "Stath, Paul \(PStath@Axxcelera.com\)" <PStath@Axxcelera.com>
-Subject: Re: Errors with update-rc.d: /etc/init.d/XXX exists during rc.d purge (use -f to force)
+X-Received: by 10.152.6.37 with SMTP id x5mr789882lax.15.1402646796579; Fri,
+	13 Jun 2014 01:06:36 -0700 (PDT)
+Received: by 10.114.29.132 with HTTP; Fri, 13 Jun 2014 01:06:36 -0700 (PDT)
+Date: Fri, 13 Jun 2014 13:36:36 +0530
+Message-ID: <CANJXcUbO=3PdRN_Z6SuucoNNkr6K91H38M6vC=2Wd3K5HWpxNQ@mail.gmail.com>
+From: Kashyap Gada <gada.kashyap@gmail.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Rasperry Pi bcm2835-bootfiles-20140221-r3 do_fetch
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -46,168 +53,42 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 13 Jun 2014 07:10:42 -0000
-Content-Language: de-DE
-Content-Type: text/plain; charset="iso-8859-1"
+X-List-Received-Date: Fri, 13 Jun 2014 08:06:41 -0000
+Content-Type: multipart/alternative; boundary=089e014940260e3ae204fbb328b6
+
+--089e014940260e3ae204fbb328b6
+Content-Type: text/plain; charset=UTF-8
+
+Hello,
+The following do_fetch of bcm28353-bootfiles-20140221-r3 is taking
+considerable amount of time. I have kept system monitor applcation on on my
+ubuntu workstation which shows download at about 114KBps.
+
+I want to know if this do_fetch task is interrupted and bitbake is stopped
+as I have to close down my office, will bitbaking the next time i start the
+process continue download from where I stopped or will start fetching for
+the package from 0 again.
+
+
+Also can it be downloaded separately, if yes where can I find the link to
+it and where do i have to store it once its downloaded.
+
+Kashyap
+
+--089e014940260e3ae204fbb328b6
+Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-Hi everybody again,
-is there any update on this?
-I'm facing the same issue with the 1.5.2 release.
+<div dir=3D"ltr">Hello,<div>The following do_fetch of bcm28353-bootfiles-20=
+140221-r3 is taking considerable amount of time. I have kept system monitor=
+ applcation on on my ubuntu workstation which shows download at about 114KB=
+ps.=C2=A0</div>
+<div><br></div><div>I want to know if this do_fetch task is interrupted and=
+ bitbake is stopped as I have to close down my office, will bitbaking the n=
+ext time i start the process continue download from where I stopped or will=
+ start fetching for the package from 0 again.</div>
+<div><br></div><div><br>Also can it be downloaded separately, if yes where =
+can I find the link to it and where do i have to store it once its download=
+ed.=C2=A0</div><div><br></div><div>Kashyap</div></div>
 
-I don't want to add that "-f" in meta/classes/update-rc.d.bbclass if there =
-is a better solution. (And I'm quite sure there must be a better one ;-) )
-Maybe overriding the postrm function in my own meta-layer with some kind of=
- bbclassappend?
-
-regards,
-Richard
-
-> -----Original Message-----
-> From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.o=
-rg] On
-> Behalf Of Richard Leitner - SKIDATA
-> Sent: Thursday, November 28, 2013 3:02 PM
-> To: Stath, Paul
-> Cc: Yocto Project Discussion ML (yocto@yoctoproject.org)
-> Subject: Re: [yocto] Errors with update-rc.d: /etc/init.d/XXX exists duri=
-ng rc.d purge
-> (use -f to force)
->=20
-> Hi Paul,
-> thank you for that hint and description of your workaround!
-> Looks like you've invested a little bit more time into working around thi=
-s issue than me
-> :-)
->=20
-> I've added "-f" to the update-rc.d.bbclass and now it's working like a ch=
-arm:
->=20
-> diff --git a/meta/classes/update-rc.d.bbclass b/meta/classes/update-rc.d.=
-bbclass
-> index d8cc342..dbb5781 100644
-> --- a/meta/classes/update-rc.d.bbclass
-> +++ b/meta/classes/update-rc.d.bbclass
-> @@ -33,7 +33,7 @@ updatercd_postrm() {
->  if test "$D" !=3D ""; then
->         OPT=3D"-f -r $D"
->  else
-> -       OPT=3D""
-> +       OPT=3D"-f"
->  fi
->  if type update-rc.d >/dev/null 2>/dev/null; then
->         update-rc.d $OPT ${INITSCRIPT_NAME} remove
->=20
->=20
-> Nonetheless, I think there have to be a "cleaner" way to solve this issue=
- than forcing
-> the update-rc.d.
-> Maybe someone else has an idea how to solve this problem?
->=20
-> regards,
-> Richard
->=20
->=20
-> > -----Original Message-----
-> > From: Stath, Paul [mailto:PStath@Axxcelera.com]
-> > Sent: Wednesday, November 27, 2013 5:40 PM
-> > To: Richard Leitner - SKIDATA
-> > Cc: Yocto Project Discussion ML (yocto@yoctoproject.org)
-> > Subject: RE: Errors with update-rc.d: /etc/init.d/XXX exists during
-> > rc.d purge (use -f to
-> > force)
-> >
-> > Richard --
-> >
-> > My "workaround" was a little less drastic than yours.  (grin)
-> >
-> > Before upgrading to the new package via 'dpkg -i', I would edit the
-> > postrm script in /var/lib/dpkg/info/<pkg-name>,postrm, adding the "-f"
-> > argument to "force" the symlink removal, as suggested by the error mess=
-age.
-> >
-> > Then the upgrade install works correctly.  (With only a warning from
-> > the postrm script of the previous package.)
-> >
-> > I believe that the issue is that when installing a package over an
-> > earlier release, dpkg performs the following steps:
-> >
-> > 1) Extract control files of new package
-> > 2) Execute "prerm" script of previous package if applicable.
-> > 3) Execute "preinst" script of new package.
-> > 4) Unpack new files and backup old files.
-> > 5) Execute "postrm" script of previous package if applicable.
-> > 6) Configure the package
-> >
-> > When installing a newer version of the package, the "postrm" in step 5
-> > fails, because the initscript from the new package is extracted in step=
- 4, and update-
-> rc.d w/o the "-f"
-> > argument exits with a non-zero return code.
-> >
-> > I would argue that the "updatercd_postrm()" stanza in the
-> > update-rc.d.bbclass should include the "-f" flag.
-> > (Anyone on the list want to chime in on this?)
-> >
-> > In the meantime, I have added my own "updatercd_postrm()" stanza in
-> > the .bbappend file for the package I'm having issues with, which
-> > overrides the one provided by update-rc.d.bbclass.
-> >
-> > updatercd_postrm() {
-> >        update-rc.d $D -f ${INITSCRIPT_NAME} remove }
-> >
-> > --
-> > Paul Stath
-> > Axxcelera Broadband Wireless
-> >
-> > >From: Richard Leitner - SKIDATA [Richard.Leitner@skidata.com]
-> > >Sent: Wednesday, November 27, 2013 11:02 AM
-> > >To: Stath, Paul
-> > >Cc: Yocto Project Discussion ML (yocto@yoctoproject.org)
-> > >Subject: RE: Errors with update-rc.d: /etc/init.d/XXX exists during
-> > >rc.d purge (use -f to force)
-> > >
-> > >Hi Paul,
-> > >good to hear I'm not the only one suffering from this issue...
-> > >No, I've received no response on the mailing list yet, but maybe
-> > >someone has a hint
-> > for us now?
-> > >
-> > >The only "workaround" I found is to purge the package and afterwards
-> > >install the
-> > new version.
-> > >I know this is a really dirty workaround, but it's the only "solution"=
- I found.
-> > >
-> > >Have you discovered any other workarounds, Paul?
-> > >
-> > >regards
-> > >Richard
-> > >
-> > >>-----Original Message-----
-> > >>From: Stath, Paul [mailto:PStath@Axxcelera.com]
-> > >>Sent: Wednesday, November 27, 2013 4:49 PM
-> > >>To: Richard Leitner - SKIDATA
-> > >>Subject: RE: Errors with update-rc.d: /etc/init.d/XXX exists during
-> > >>rc.d purge (use -f to force)
-> > >>
-> > >>Richard --
-> > >>
-> > >>I am also getting the "update-rc.d: /etc/init.d/XXX exists during
-> > >>rc.d purge"=A0 error
-> > when I attempt to install a newer version of one of my packages.
-> > >>
-> > >>It doesn't look like you received any response to your post to the yo=
-cto mailing
-> list.
-> > >>
-> > >>Did you get any response, or did you discover a workaround?
-> > >>
-> > >>--
-> > >>Paul Stath
-> > >>Axxcelera Broadband Wireless
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
-
+--089e014940260e3ae204fbb328b6--
