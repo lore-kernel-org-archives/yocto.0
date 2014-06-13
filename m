@@ -1,42 +1,29 @@
-Return-Path: <wpdster@gmail.com>
+Return-Path: <ruud.den.bekker@cordis.nl>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 14411E00BE2; Fri, 13 Jun 2014 06:09:28 -0700 (PDT)
+	id 173F2E00BE2; Fri, 13 Jun 2014 06:43:20 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-0.1 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-	DKIM_VALID_AU,FREEMAIL_FROM autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (wpdster[at]gmail.com)
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-ve0-f176.google.com (mail-ve0-f176.google.com
-	[209.85.128.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D0AF7E00BDF
-	for <yocto@yoctoproject.org>; Fri, 13 Jun 2014 06:09:12 -0700 (PDT)
-Received: by mail-ve0-f176.google.com with SMTP id db12so3271040veb.35
-	for <yocto@yoctoproject.org>; Fri, 13 Jun 2014 06:09:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:from:date:message-id:subject:to:content-type;
-	bh=M3HiwSfxWq4JNWn/lkYNwiBeMDl1A29uaW/z2jgGjnA=;
-	b=YILrNZFzgX1HgE9ckURYtSqLb7ua++uaXq6xuoUMDrLYs7C6GMPmMNuz93/uiBL0od
-	h488TpO+c8lR5ApyhbnsoEddtqhmQsk4jJ/mGiro60AqX+Efg6L0BvlobGEGvHVDeVgc
-	Og+WxYS9z1uu0orQkCOEUuReQ/3gORj1kZRRfjhHBlkdCfx4iP/YQdAeETSpusFIUDYS
-	V3lqbmv+JzXnfmra8w6ThfJ+HsRGCphyuqoU+YNteYaITFbST4hS0V8KK3mFR8fvTf3T
-	hax7gqsVBieng1s/8N3Jy3JilOfgnMrWZ9z3dpfq9x6uOKBPBCBYJsLoIpPy0xqzvlz6
-	3f9g==
-X-Received: by 10.52.4.40 with SMTP id h8mr105332vdh.95.1402664951427; Fri, 13
-	Jun 2014 06:09:11 -0700 (PDT)
+X-Spam-Status: No, score=0.0 required=5.0 tests=HTML_MESSAGE,SPF_HELO_PASS
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+X-Greylist: delayed 63 seconds by postgrey-1.32 at yocto-www;
+	Fri, 13 Jun 2014 06:43:10 PDT
+Received: from cordis.nl (smtp.cordis.nl [212.61.137.161])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C8ACCE00BDF
+	for <yocto@yoctoproject.org>; Fri, 13 Jun 2014 06:43:10 -0700 (PDT)
 MIME-Version: 1.0
-Received: by 10.58.32.74 with HTTP; Fri, 13 Jun 2014 06:08:41 -0700 (PDT)
-From: Patrick Doyle <wpdster@gmail.com>
-Date: Fri, 13 Jun 2014 09:08:41 -0400
-Message-ID: <CAF_dkJB9T4VWSOma0sTeaec8js4-Bp58=s4AKRxT0JryCHp8NA@mail.gmail.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: How to specify a default value for a variable in a recipe
+x-mimeole: Produced By Microsoft Exchange V6.5
+Date: Fri, 13 Jun 2014 15:41:11 +0200
+Message-ID: <21598C768CAB7B46B75C18783A59ACEE271D0C@cordissvr01.Cordis.local>
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+Thread-Topic: using ADT with hard float?
+Thread-Index: Ac+HDSNx2ga2WGpwTzSTdDPDj3WQyA==
+From: "Ruud den Bekker" <ruud.den.bekker@cordis.nl>
+To: <yocto@yoctoproject.org>
+Subject: using ADT with hard float?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -48,36 +35,114 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 13 Jun 2014 13:09:28 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Fri, 13 Jun 2014 13:43:20 -0000
+Content-class: urn:content-classes:message
+Content-Type: multipart/alternative;
+	boundary="----_=_NextPart_001_01CF870D.23B68071"
 
-OK, I've got to ask this, because it totally confuses me.  I wrote a
-recipe to build a custom application (gstreamer plugin, actually) that
-I wanted to fetch from our SCM.  Bitbake told me I needed to specify a
-source revision and even gave me a clue of what to put in.  Looking at
-the development manual, I decided I wanted to use the latest revision
-from our repository by default, so I added the following line to my
-recipe:
+------_=_NextPart_001_01CF870D.23B68071
+Content-Type: text/plain;
+	charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-SRCREV_default_pn-gstxbac = "${AUTOREV}"
+L.S.,
 
-But now I'm curious.  Why couldn't I use (I haven't tried this yet)
+=20
 
-SRCREV_pn-gstxbac ?= "${AUTOREV}"
+Can I use the ADT tools to compile for ARM using hardware floating
+point?
 
-and even more confusingly, why isn't the syntax something more like:
+/usr/arm-linux-gnueabihf/lib/sf is linked to /usr/arm-linux-gnueabi/lib
 
-SRCREV_pn-gstxbac_default = "${AUTOREV}"
+=20
 
-What's going on here?
+regards,
 
-Does one syntax (BLAH_default vs BLAH ?=) get evaluated early in the
-bitbake process and the other get evaluated late?
+=20
 
-Does the location of the letters "default" in a variable name matter?
+Ruud
 
-At some point, I really need to wrap my head around Bitbake, it's
-syntax, and how it operates and internalize all of that.
+=20
 
---wpd
+Ruud den Bekker
 
+Cordis Automation B.V.
+
+High Tech Campus 9
+
+5656 AE Eindhoven
+
+=20
+
+
+------_=_NextPart_001_01CF870D.23B68071
+Content-Type: text/html;
+	charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
+xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
+xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
+xmlns=3D"http://www.w3.org/TR/REC-html40"><head><meta =
+http-equiv=3DContent-Type content=3D"text/html; =
+charset=3Dus-ascii"><meta name=3DGenerator content=3D"Microsoft Word 12 =
+(filtered medium)"><style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri","sans-serif";
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]--></head><body lang=3DNL link=3Dblue =
+vlink=3Dpurple><div class=3DWordSection1><p =
+class=3DMsoNormal>L.S.,<o:p></o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal><span =
+lang=3DEN-US>Can I use the ADT tools to compile for ARM using hardware =
+floating point?<o:p></o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US>/usr/arm-linux-gnueabihf/lib/sf is linked to =
+/usr/arm-linux-gnueabi/lib<o:p></o:p></span></p><p =
+class=3DMsoNormal><span lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p =
+class=3DMsoNormal>regards,<o:p></o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p =
+class=3DMsoNormal>Ruud<o:p></o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal><span =
+lang=3DDA>Ruud den Bekker<o:p></o:p></span></p><p =
+class=3DMsoNormal><span lang=3DDA>Cordis Automation =
+B.V.<o:p></o:p></span></p><p class=3DMsoNormal><span lang=3DEN-US>High =
+Tech Campus 9<o:p></o:p></span></p><p class=3DMsoNormal>5656 AE =
+Eindhoven<span lang=3DEN-US><o:p></o:p></span></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p></div></body></html>
+
+------_=_NextPart_001_01CF870D.23B68071--
