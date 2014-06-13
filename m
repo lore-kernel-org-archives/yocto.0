@@ -1,42 +1,51 @@
-Return-Path: <akini@synapticon.com>
+Return-Path: <paul.betafive@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id DAD4CE00BEA; Fri, 13 Jun 2014 01:14:06 -0700 (PDT)
+	id 47945E00BEB; Fri, 13 Jun 2014 01:23:11 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-0.7 required=5.0 tests=HTML_MESSAGE,
+X-Spam-Status: No, score=-0.7 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
 	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
 	http://www.dnswl.org/, low *      trust
-	*      [209.85.216.43 listed in list.dnswl.org]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from mail-qa0-f43.google.com (mail-qa0-f43.google.com
-	[209.85.216.43])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A2214E00BB3
-	for <yocto@yoctoproject.org>; Fri, 13 Jun 2014 01:13:55 -0700 (PDT)
-Received: by mail-qa0-f43.google.com with SMTP id k15so3080349qaq.30
-	for <yocto@yoctoproject.org>; Fri, 13 Jun 2014 01:13:54 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:date:message-id:subject:from:to
-	:content-type;
-	bh=i0bTsOAzZmP8MS7LgmIwnUSNpS2lY6q3QGB02cdjMeY=;
-	b=i10eEWs5qaFVdz92iYCWwg+gyX600mIu54MmakUA5jrhqpx7Jm9PaLCiJ9iVi7s5+7
-	SihThJroUR89fHVzW8mE8LE3cS6E7mv2JJk7LrbEabx3x03XcvFNN+qSHggw6tYG8B5j
-	tb+h4PfTgY81KacAmpDYg+D9ihW/k5xcLs42l5Bv5g9Hs/73/s1z6u2Q2VnQxrvqgZ/l
-	truX3Ik2pyHnRDTQhqa6YknKOeS9BonZXje365LxEPNM1VdEWZED9GGLyAGYZ4WkPpHo
-	t1TcBMa6euYulXf1qMiMCXCAzN8fHf9hWxmxwjdx5Qp2xX7wOdkI6wRiA1bsB9m68pWL
-	YaIg==
-X-Gm-Message-State: ALoCoQm33SjUmAw+/J4io9+zilLiPpWg46AGPGqPHH8h/gsCVaDAxyC65H/sVURDJdxpORN3yMjG
+	*      [74.125.82.171 listed in list.dnswl.org]
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-we0-f171.google.com (mail-we0-f171.google.com
+	[74.125.82.171])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6A8E3E00BB3
+	for <yocto@yoctoproject.org>; Fri, 13 Jun 2014 01:22:59 -0700 (PDT)
+Received: by mail-we0-f171.google.com with SMTP id q58so2418101wes.30
+	for <yocto@yoctoproject.org>; Fri, 13 Jun 2014 01:22:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=sender:date:from:to:cc:subject:message-id:references:mime-version
+	:content-type:content-disposition:in-reply-to:user-agent;
+	bh=4M7yi6hnLJ0UfJPKRNa+hSMV0AmeEN4X6tcllUu+oRA=;
+	b=R60mMk/RCfzEF9SnfSp26vgLESErmkA3NFhbwW5x3kY+RZ03DMmrm5JQ6MlJyhXJyC
+	GZNTQvaB6WbVh/gggymubU75DIGGHk0hBj9rd5GJ/F7YBFKxkOqhZeQ/u6EEglEt4tV3
+	1KJZiclkkWjtQINRR4KGPSC31qa3dlwtlklu0hizmW1pKsQSUnn3doY1B5hR2DK/oSL7
+	Nf5XLeLfTX1O2Vf4+Dvfe1a/DLoGXHosYal8LinI6WExN6k3aeFwWTG6OzJraQreVMkA
+	QDHdak2hnrXNAm9xF1ZHT1+9MtiBj/hzPENH1h+lpdGuNL6grIMHBCo4HkfPKJuOePWa
+	paLQ==
+X-Received: by 10.194.204.170 with SMTP id kz10mr2076101wjc.38.1402647778591; 
+	Fri, 13 Jun 2014 01:22:58 -0700 (PDT)
+Received: from gmail.com (ygg.betafive.co.uk. [5.9.90.21])
+	by mx.google.com with ESMTPSA id a1sm10367336eep.3.2014.06.13.01.22.57
+	for <multiple recipients>
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Fri, 13 Jun 2014 01:22:57 -0700 (PDT)
+Sender: Paul Barker <paul.betafive@gmail.com>
+Date: Fri, 13 Jun 2014 08:22:55 +0000
+From: Paul Barker <paul@paulbarker.me.uk>
+To: Anup Kini <akini@synapticon.com>
+Message-ID: <20140613082255.GH24880@gmail.com>
+References: <CAKS01o=UeW1WYTAkAnKrvazMV+4kSgULOJW17tG+3M1RxmDgtg@mail.gmail.com>
 MIME-Version: 1.0
-X-Received: by 10.140.81.16 with SMTP id e16mr841202qgd.110.1402647234847;
-	Fri, 13 Jun 2014 01:13:54 -0700 (PDT)
-Received: by 10.140.93.244 with HTTP; Fri, 13 Jun 2014 01:13:54 -0700 (PDT)
-Date: Fri, 13 Jun 2014 10:13:54 +0200
-Message-ID: <CAKS01o=UeW1WYTAkAnKrvazMV+4kSgULOJW17tG+3M1RxmDgtg@mail.gmail.com>
-From: Anup Kini <akini@synapticon.com>
-To: yocto@yoctoproject.org
-Subject: building armhf deb with Yocto Daisy
+In-Reply-To: <CAKS01o=UeW1WYTAkAnKrvazMV+4kSgULOJW17tG+3M1RxmDgtg@mail.gmail.com>
+User-Agent: Mutt/1.5.23 (2014-03-12)
+Cc: yocto@yoctoproject.org
+Subject: Re: building armhf deb with Yocto Daisy
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -48,67 +57,60 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 13 Jun 2014 08:14:06 -0000
-Content-Type: multipart/alternative; boundary=001a11c119e22dbd3f04fbb342bc
+X-List-Received-Date: Fri, 13 Jun 2014 08:23:11 -0000
+X-Groupsio-MsgNum: 20142
+Content-Type: multipart/signed; micalg=pgp-sha1;
+	protocol="application/pgp-signature"; boundary="YrlhzR9YrZtruaFS"
+Content-Disposition: inline
 
---001a11c119e22dbd3f04fbb342bc
-Content-Type: text/plain; charset=UTF-8
-
-Dear All,
-
-I am currently trying to build armhf debs using Yocto.
-
-I use the machine tune = "cortexa9hf-neon" for an iMX6 Dual Lite Dev board.
-All the debs built in the build/tmp/deploy/deb/ folder are XYZ_armel.deb
-
-How do i build XYZ_armhf.deb using Yocto ?
-
-Any suggestions or pointer will be helpful.
-
-
-
-Thanks & Regards
--- 
-
-
-*Anup Kini*Systems Engineer
-*------------------------------*
-
-*Synapticon*  |  Cyber-Physical System Solutions
-
---001a11c119e22dbd3f04fbb342bc
-Content-Type: text/html; charset=UTF-8
+--YrlhzR9YrZtruaFS
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Dear All,<div><br></div><div>I am currently trying to buil=
-d armhf debs using Yocto.</div><div><br></div><div>I use the machine tune =
-=3D &quot;cortexa9hf-neon&quot; for an iMX6 Dual Lite Dev board.</div><div>=
-All the debs built in the build/tmp/deploy/deb/ folder are XYZ_armel.deb</d=
-iv>
-<div><br></div><div>How do i build XYZ_armhf.deb using Yocto ?</div><div><b=
-r></div><div>Any suggestions or pointer will be helpful.</div><div><br></di=
-v><div><br></div><div><br></div><div><div>Thanks &amp; Regards</div>-- <br>
-<div dir=3D"ltr"><p style=3D"margin:0px;color:rgb(34,34,34);font-family:ari=
-al,sans-serif;font-size:13px;background-color:rgb(255,255,255)"><b><span st=
-yle=3D"font-size:10pt;font-family:Arial,sans-serif" lang=3D"EN-US">Anup Kin=
-i<br>
-</span></b><span style=3D"font-size:10pt;font-family:Arial,sans-serif" lang=
-=3D"EN-US">Systems Engineer</span><span lang=3D"EN-US"><u></u><u></u></span=
-></p><div style=3D"margin:0px;color:rgb(34,34,34);font-family:arial,sans-se=
-rif;font-size:13px;background-color:rgb(255,255,255);text-align:center" ali=
-gn=3D"center">
-<b><span style=3D"font-size:12pt;font-family:Arial,sans-serif" lang=3D"EN-U=
-S"><hr align=3D"center" size=3D"2" width=3D"100%"></span></b></div><p style=
-=3D"margin:0px 0px 8pt;color:rgb(34,34,34);font-family:arial,sans-serif;fon=
-t-size:13px;background-color:rgb(255,255,255)">
-<b><span style=3D"font-size:12pt;font-family:Arial,sans-serif" lang=3D"EN-U=
-S">Synapticon</span></b><b><span style=3D"font-size:12pt;font-family:&#39;T=
-imes New Roman&#39;,serif" lang=3D"EN-US">=C2=A0</span></b><span style=3D"f=
-ont-size:12pt;font-family:Arial,sans-serif" lang=3D"EN-US">=C2=A0|=C2=A0=C2=
-=A0</span><span style=3D"font-size:10pt;font-family:Arial,sans-serif" lang=
-=3D"EN-US">Cyber-Physical System Solutions</span><span style=3D"font-size:1=
-0pt;font-family:Verdana,sans-serif" lang=3D"EN-US">=C2=A0</span></p>
-</div>
-</div></div>
+On Fri, Jun 13, 2014 at 10:13:54AM +0200, Anup Kini wrote:
+> Dear All,
+>=20
+> I am currently trying to build armhf debs using Yocto.
+>=20
+> I use the machine tune =3D "cortexa9hf-neon" for an iMX6 Dual Lite Dev bo=
+ard.
+> All the debs built in the build/tmp/deploy/deb/ folder are XYZ_armel.deb
+>=20
+> How do i build XYZ_armhf.deb using Yocto ?
+>=20
 
---001a11c119e22dbd3f04fbb342bc--
+For my the Beagleboard xM I enabled hard float ABI by setting DEFAULTTUNE i=
+n my
+local.conf:
+
+    DEFAULTTUNE =3D "cortexa8hf-neon"
+
+You could give that a try with the appropriate value. I assume it will work=
+ in a
+machine conf file as well as in local.conf.
+
+Thanks,
+
+--=20
+Paul Barker
+
+Email: paul@paulbarker.me.uk
+http://www.paulbarker.me.uk
+
+--YrlhzR9YrZtruaFS
+Content-Type: application/pgp-signature
+
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v2
+
+iQEcBAEBAgAGBQJTmrTfAAoJEBwoJlo7UPQDfOwIAJ2OVEsdI3UTxKSowX1S9VN1
+bUpveeiBKuWoFZ9W7arEYIzx07WMGTqVw+Y7KEJ2ex5VuSE76l23txZPO41LAn2W
+4ewOSIv+Pk/uz9zJvkVFNsDGge2YrzyCnSkIxko+fzJt43ro02dzpJ+2+uYcasor
+ndLeWUKpo9UFTkCdrxGamZRvaUIQln6RGj4b4+TgoaQ46IkJ8CCZzUlGuXKZCgK5
+YCNW9jh9nyPY2c5/O0mbqvoW9+1cXhnWHwLagRJo3f9o5lcO9fQYdoTYds1xPLON
+LCm8RK27WgoNS/vH9lsEDhcDq/k/SeSfYMk4z1xbXbs/Z79MWaafJ875Pd8/CiM=
+=r1FR
+-----END PGP SIGNATURE-----
+
+--YrlhzR9YrZtruaFS--
