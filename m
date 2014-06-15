@@ -1,47 +1,39 @@
-Return-Path: <wpdster@gmail.com>
+Return-Path: <ajlennon@dynamicdevices.co.uk>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id CDE40E00AEC; Sat, 14 Jun 2014 09:48:40 -0700 (PDT)
+	id EFC13E00BC6; Sun, 15 Jun 2014 03:20:56 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-0.8 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-	DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (wpdster[at]gmail.com)
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.128.176 listed in list.dnswl.org]
-Received: from mail-ve0-f176.google.com (mail-ve0-f176.google.com
-	[209.85.128.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 69F12E003DA
-	for <yocto@yoctoproject.org>; Sat, 14 Jun 2014 09:48:34 -0700 (PDT)
-Received: by mail-ve0-f176.google.com with SMTP id db12so4532704veb.35
-	for <yocto@yoctoproject.org>; Sat, 14 Jun 2014 09:48:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:from:date:message-id:subject:to:content-type
-	:content-transfer-encoding;
-	bh=36CQYIxOfh8EjAfdaEuY7NYeSwQlltEfKXwk91wlboY=;
-	b=NW/JcrAL/Hdz0QXmmRDeO9oiQspeO4QgHT9FhMvPmyjaE90ktvxqsoXVlLLOG1AtNT
-	/Kese6jaDo7cRXJ5oGv1M6TPnlBG04x5w2Pta1HvlyG+w+8FkG//UTaOVu1R63xxY4hn
-	LCItcbsvPOLGSj04qPVZ+JgOVYO9guFpe53caIqkEAzNtNnA9SqqttkCcX9cAeW7r+nK
-	cgsouXP6+51kafFF2mup0hAEzA/GAhehXNi4COt0laR/OhoafOjQ4W6jL2Etjj/ofGQD
-	0MOKZObW9sEF3rvfxedsP/B3p6DgNJreDEDsycYrgB/xKIb4CkXcVsWltJW/lYfVE+Vi
-	VKOQ==
-X-Received: by 10.221.7.71 with SMTP id on7mr7347372vcb.18.1402764512455; Sat,
-	14 Jun 2014 09:48:32 -0700 (PDT)
+X-Spam-Status: No, score=0.0 required=5.0 tests=none autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: 
+Received: from www.dynamicdevices.co.uk (www.dynamicdevices.co.uk
+	[89.200.136.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9816BE00AE4
+	for <yocto@yoctoproject.org>; Sun, 15 Jun 2014 03:20:52 -0700 (PDT)
+Received: from localhost (localhost [127.0.0.1])
+	by www.dynamicdevices.co.uk (Postfix) with ESMTP id 3FE6E27E030
+	for <yocto@yoctoproject.org>; Sun, 15 Jun 2014 10:20:49 +0000 (UTC)
+X-Virus-Scanned: Debian amavisd-new at lennoab2.miniserver.com
+Received: from www.dynamicdevices.co.uk ([127.0.0.1])
+	by localhost (www.dynamicdevices.co.uk [127.0.0.1]) (amavisd-new,
+	port 10024) with ESMTP id Cq7WAwYaz4pI for <yocto@yoctoproject.org>;
+	Sun, 15 Jun 2014 10:20:45 +0000 (UTC)
+Received: from [127.0.0.1] (cpc32-live22-2-0-cust59.17-2.cable.virginm.net
+	[82.36.253.60])
+	(using TLSv1 with cipher ECDHE-RSA-AES128-SHA (128/128 bits))
+	(No client certificate requested)
+	by www.dynamicdevices.co.uk (Postfix) with ESMTPSA id F11B527E02A
+	for <yocto@yoctoproject.org>; Sun, 15 Jun 2014 10:20:44 +0000 (UTC)
+Message-ID: <539D7379.5000907@dynamicdevices.co.uk>
+Date: Sun, 15 Jun 2014 11:20:41 +0100
+From: Alex J Lennon <ajlennon@dynamicdevices.co.uk>
+User-Agent: Mozilla/5.0 (Windows NT 6.3; WOW64;
+	rv:24.0) Gecko/20100101 Thunderbird/24.6.0
 MIME-Version: 1.0
-Received: by 10.58.32.74 with HTTP; Sat, 14 Jun 2014 09:48:02 -0700 (PDT)
-From: Patrick Doyle <wpdster@gmail.com>
-Date: Sat, 14 Jun 2014 12:48:02 -0400
-Message-ID: <CAF_dkJCKsqqhrZiWXkirc018mX+jJ2fs-Gdyc9SN2tsm=Q71dw@mail.gmail.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: What is the best process for applying patches to dora?
+To: Yocto <yocto@yoctoproject.org>
+X-Enigmail-Version: 1.6
+Subject: Autotools, Init Script templates and configure.ac
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -53,43 +45,57 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 14 Jun 2014 16:48:40 -0000
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Sun, 15 Jun 2014 10:20:57 -0000
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: 7bit
 
-=E2=80=A6either locally (i.e. in my build environment), or globally so that
-others can benefit?
+Hi all,
 
-My build from scratch no longer works.  It fails the build the x264_git rec=
-ipe.
+Script Installation -
 
-Tracking things down, I see that it fails because the revision in that
-recipe referenced by SRCREV (585324fee380109acd9986388f857f413a60b896)
-is no longer in the git repository.
+I've been looking at autotools recipes and from the various
+examples/tutorials I've seen there
+doesn't appear to be a baked-in way of using and installing initscripts
+on different platforms.
 
-Tracking things down even more, I see that this has been fixed in
-daisy with commit a714cf870046d736d45aa1c3f891bdc877a3ca0e:
+The recommendation I eventually went with was something like this in
+Makefile.am
 
-Author: Khem Raj <raj.khem@gmail.com>
-Date:   Wed May 28 22:22:54 2014 -0700
+install-data-hook:
+        update-rc.d pi-blaster.boot.sh defaults
+        $(init_ddir)/pi-blaster.boot.sh start
 
-    x264: Update SRCREV to match commit in upstream git repo
+uninstall-hook:
+        update-rc.d pi-blaster.boot.sh remove
+        killall pi-blaster
 
-    It seems that 585324fee380109acd9986388f857f413a60b896 is no
-    longer there in git and it has been rewritten to
-    ffc3ad4945da69f3caa2b40e4eed715a9a8d9526
+update-rc.d doesn't seem to account for the sysroot properly, even if I
+add $(sysconfdir)/init.d and
+I'm wondering if there is a better, best practice, way to handle script
+installation with Autotools such
+that Yocto is happy without patches?
 
-    Change-Id: I9ffe8bd9bcef0d2dc5e6f6d3a6e4317bada8f4be
-    (From OE-Core rev: b193c7f251542aa76cb5a4d6dcb71d15b27005eb)
+(I also had a look at adding -r into update-rc.d but I am guessing there
+is a better, more host transparent,
+way I should be using?)
 
-    (From OE-Core rev: f2b20b169a462cf4c6e6f341b76add8a0f4d6e3f)
+Script Templates -
 
-    Signed-off-by: Khem Raj <raj.khem@gmail.com>
-    Signed-off-by: Saul Wold <sgw@linux.intel.com>
-    Signed-off-by: Richard Purdie <richard.purdie@linuxfoundation.org>
+A few times now I have encountered init scripts which assume LSB
+functions are present. I've patched
+these  so they work with Yocto images without LSB. I am aware that there
+is a LSB image for Yocto but
+I don't use it.
 
+I have hunted around and seen many and varied init script templates, but
+can anybody recommend
+a "gold standard" init script that would work happily either in a Yocto
+image with no LSB or make
+use of LSB functions when present.
 
-What is the best way to get this applied to dora?
+I'd like to standardise on and use such a script moving forward.
 
---wpd
+Thanks,
+
+Alex
 
