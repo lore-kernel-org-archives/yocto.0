@@ -1,37 +1,36 @@
 Return-Path: <tocallaghan@meyn.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 1663BE00B4C; Mon, 16 Jun 2014 02:57:35 -0700 (PDT)
+	id 46EA4E00B4C; Mon, 16 Jun 2014 03:50:47 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-0.0 required=5.0 tests=RCVD_IN_DNSWL_NONE,
+X-Spam-Status: No, score=-0.7 required=5.0 tests=RCVD_IN_DNSWL_LOW,
 	SPF_HELO_PASS autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [213.199.154.75 listed in list.dnswl.org]
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [213.199.154.14 listed in list.dnswl.org]
 	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
-X-Greylist: delayed 932 seconds by postgrey-1.32 at yocto-www;
-	Mon, 16 Jun 2014 02:57:27 PDT
-Received: from emea01-db3-obe.outbound.protection.outlook.com
-	(mail-db3lp0075.outbound.protection.outlook.com [213.199.154.75])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4672FE00AEE
-	for <yocto@yoctoproject.org>; Mon, 16 Jun 2014 02:57:27 -0700 (PDT)
+Received: from emea01-am1-obe.outbound.protection.outlook.com
+	(mail-am1lp0014.outbound.protection.outlook.com [213.199.154.14])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B3078E00AEE
+	for <yocto@yoctoproject.org>; Mon, 16 Jun 2014 03:50:35 -0700 (PDT)
 Received: from AM3PR05MB308.eurprd05.prod.outlook.com (10.242.247.153) by
-	AM3PR05MB308.eurprd05.prod.outlook.com (10.242.247.153) with Microsoft
-	SMTP Server (TLS) id 15.0.959.24; Mon, 16 Jun 2014 09:41:53 +0000
+	AM3PR05MB307.eurprd05.prod.outlook.com (10.242.247.152) with Microsoft
+	SMTP Server (TLS) id 15.0.959.24; Mon, 16 Jun 2014 10:50:33 +0000
 Received: from AM3PR05MB308.eurprd05.prod.outlook.com ([10.242.247.153]) by
 	AM3PR05MB308.eurprd05.prod.outlook.com ([10.242.247.153]) with mapi id
-	15.00.0959.000; Mon, 16 Jun 2014 09:41:53 +0000
+	15.00.0959.000; Mon, 16 Jun 2014 10:50:33 +0000
 From: Tim O' Callaghan <tocallaghan@meyn.com>
 To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: [yocto] Conditional Configuration Fragments (Build Flavours)
-Thread-Index: AQHPiUTTDKxWbGXo7EG8Dxs6YQ4tJQ==
-Date: Mon, 16 Jun 2014 09:41:53 +0000
-Message-ID: <3643e80fcec242308faf0c59b47ce0d2@AM3PR05MB308.eurprd05.prod.outlook.com>
+Thread-Topic: [yocto] Build Flavours: was Conditional Configuration Fragments 
+Thread-Index: AQHPiVDMiLtGyD7oTka0vfp9d9q01A==
+Date: Mon, 16 Jun 2014 10:50:33 +0000
+Message-ID: <cce28b8fd3934eff848ba235501bf3c0@AM3PR05MB308.eurprd05.prod.outlook.com>
 References: <888B7DC5D4899F46A9721989283666969C1E50A2A2@SAFEX1MAIL5.st.com>
 	<53972C83.2090100@windriver.com>
 	<7086666.QbsYtmnLcv@peggleto-mobl5.ger.corp.intel.com>
-In-Reply-To: <7086666.QbsYtmnLcv@peggleto-mobl5.ger.corp.intel.com>
+	<3643e80fcec242308faf0c59b47ce0d2@AM3PR05MB308.eurprd05.prod.outlook.com>
+In-Reply-To: <3643e80fcec242308faf0c59b47ce0d2@AM3PR05MB308.eurprd05.prod.outlook.com>
 Accept-Language: en-GB, en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
@@ -39,16 +38,16 @@ x-originating-ip: [93.154.102.135]
 x-microsoft-antispam: BCL:0;PCL:0;RULEID:
 x-forefront-prvs: 0244637DEA
 x-forefront-antispam-report: SFV:NSPM;
-	SFS:(6009001)(428001)(199002)(13464003)(189002)(51704005)(24454002)(377454003)(377424004)(66654002)(54356999)(87936001)(86362001)(83322001)(21056001)(2656002)(77982001)(99396002)(74316001)(81542001)(76576001)(4396001)(101416001)(76176999)(15975445006)(83072002)(46102001)(76482001)(20776003)(19580405001)(74502001)(19580395003)(81342001)(74662001)(66066001)(33646001)(80022001)(64706001)(31966008)(85852003)(92566001)(85306003)(105586001)(50986999)(24736002);
-	DIR:OUT; SFP:; SCL:1; SRVR:AM3PR05MB308;
+	SFS:(6009001)(428001)(377454003)(51704005)(377424004)(66654002)(189002)(199002)(13464003)(24454002)(66066001)(85852003)(64706001)(33646001)(80022001)(81342001)(76576001)(99396002)(77982001)(85306003)(4396001)(83322001)(79102001)(83072002)(2656002)(20776003)(76176999)(21056001)(74662001)(76482001)(81542001)(93886003)(101416001)(15975445006)(74316001)(86362001)(19580395003)(19580405001)(87936001)(54356999)(50986999)(31966008)(92566001)(46102001)(105586001)(74502001)(24736002);
+	DIR:OUT; SFP:; SCL:1; SRVR:AM3PR05MB307;
 	H:AM3PR05MB308.eurprd05.prod.outlook.com; FPR:; MLV:sfv;
-	PTR:InfoNoRecords; A:1; MX:1; LANG:en; 
+	PTR:InfoNoRecords; MX:1; A:1; LANG:en; 
 received-spf: None (: meyn.com does not designate permitted sender hosts)
 authentication-results: spf=none (sender IP is )
 	smtp.mailfrom=tocallaghan@meyn.com; 
 MIME-Version: 1.0
 X-OriginatorOrg: meyn.com
-Subject: Re: Conditional Configuration Fragments (Build Flavours)
+Subject: Re: Build Flavours: was Conditional Configuration Fragments
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -60,10 +59,47 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 16 Jun 2014 09:57:35 -0000
+X-List-Received-Date: Mon, 16 Jun 2014 10:50:47 -0000
 Content-Language: en-US
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
+
+The flavor file appears to have been broken by my mail client. Here is the =
+example again for clarity.=20
+
+------ build/conf/flavor.inc -----
+# create variable for flavouring
+FLAVOUR_IMAGE_KERNELTYPE=3D"DEBUG"
+
+# IIRC export into global namespace, so that the build system uses is
+# in hash generation and the variable is exported into the shell
+# environment during build
+export FLAVOUR_IMAGE_KERNELTYPE
+------ cut -------
+
+Essentially it sets a bitbake recipe variable then exports it. The export m=
+akes sure the recipe build shell environment has it set, and also that that=
+ build caching works, because the build environment variables are part of t=
+he hash creation. You need to manage flavour includes for every level of gr=
+anularity, image, package-group, and recipes. Changing a flavour can cause =
+a full rebuild if that flavour is included at image level.
+
+Yocto currently manages the build infrastructure part of flavouring, I need=
+ to run external tooling to properly manage specific flavour includes at th=
+e moment, so that I can track what flavour is in what build.
+
+Am I right in assuming that 'build flavours' or something like it is not ye=
+t a yocto feature?
+
+Regards,
+
+Tim.
+-----Original Message-----
+From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org=
+] On Behalf Of Tim O' Callaghan
+Sent: maandag 16 juni 2014 11:42
+To: yocto@yoctoproject.org
+Subject: Re: [yocto] Conditional Configuration Fragments (Build Flavours)
 
 Hi,
 
@@ -81,9 +117,8 @@ e.g. a sample flavour include file:
 # create variable for flavouring
 FLAVOUR_IMAGE_KERNELTYPE=3D"DEBUG"
 # IIRC export into global namespace, to that the build system uses is in ha=
-sh generation,=20
-# and the variable is exported into the shell environment during build
-export FLAVOUR_IMAGE_KERNELTYPE
+sh generation, # and the variable is exported into the shell environment du=
+ring build export FLAVOUR_IMAGE_KERNELTYPE
 ------ cut -------
 
 Then in the recipes that require flavouring you add:
@@ -193,6 +228,11 @@ Paul
 
 Paul Eggleton
 Intel Open Source Technology Centre
+--
+_______________________________________________
+yocto mailing list
+yocto@yoctoproject.org
+https://lists.yoctoproject.org/listinfo/yocto
 --
 _______________________________________________
 yocto mailing list
