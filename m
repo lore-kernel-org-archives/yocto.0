@@ -1,35 +1,26 @@
-Return-Path: <Wenzong.Fan@windriver.com>
+Return-Path: <packages@packages.i.yoctoproject.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id A4E38E00AEC; Sun, 15 Jun 2014 18:38:43 -0700 (PDT)
+	id D3D65E00B88; Sun, 15 Jun 2014 19:21:08 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.3 required=5.0 tests=RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [147.11.1.11 listed in list.dnswl.org]
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3A269E00AEC
-	for <yocto@yoctoproject.org>; Sun, 15 Jun 2014 18:38:43 -0700 (PDT)
-Received: from ALA-HCB.corp.ad.wrs.com (ala-hcb.corp.ad.wrs.com
-	[147.11.189.41])
-	by mail.windriver.com (8.14.5/8.14.5) with ESMTP id s5G1cgII001055
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL)
-	for <yocto@yoctoproject.org>; Sun, 15 Jun 2014 18:38:42 -0700 (PDT)
-Received: from pek-hostel-vm12.wrs.com (128.224.153.182) by
-	ALA-HCB.corp.ad.wrs.com (147.11.189.41) with Microsoft SMTP Server id
-	14.3.174.1; Sun, 15 Jun 2014 18:38:42 -0700
-From: <wenzong.fan@windriver.com>
-To: <yocto@yoctoproject.org>, <Xin.Ouyang@windriver.com>,
-	<mark.hatle@windriver.com>
-Date: Sun, 15 Jun 2014 21:38:38 -0400
-Message-ID: <1402882718-31154-2-git-send-email-wenzong.fan@windriver.com>
-X-Mailer: git-send-email 1.7.9.5
-In-Reply-To: <1402882718-31154-1-git-send-email-wenzong.fan@windriver.com>
-References: <1402882718-31154-1-git-send-email-wenzong.fan@windriver.com>
+X-Spam-Status: No, score=-1.0 required=5.0 tests=ALL_TRUSTED autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: * -1.0 ALL_TRUSTED Passed through trusted hosts only via
+	SMTP
+Received: from packages.i.yoctoproject.org (packages.i.yoctoproject.org
+	[10.0.10.47])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0CC03E00B20
+	for <yocto@yoctoproject.org>; Sun, 15 Jun 2014 19:21:07 -0700 (PDT)
+Received: by packages.i.yoctoproject.org (Postfix, from userid 802)
+	id 0BB16A4048; Mon, 16 Jun 2014 02:21:07 +0000 (UTC)
+Date: Mon, 16 Jun 2014 02:21:07 +0000
+From: "package-report@yoctoproject.org" <packages@packages.i.yoctoproject.org>
+To: yocto@yoctoproject.org
+Message-ID: <20140616022106.GA17066@packages.i.yoctoproject.org>
 MIME-Version: 1.0
-Subject: [meta-selinux][PATCH 2/2] dhcp/init-server: restorecon for dhcpd*.leases
+User-Agent: Mutt/1.5.21 (2010-09-15)
+Subject: [Package Report System]Manual check recipes name list
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,51 +32,49 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 16 Jun 2014 01:38:43 -0000
-Content-Type: text/plain
+X-List-Received-Date: Mon, 16 Jun 2014 02:21:08 -0000
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-From: Wenzong Fan <wenzong.fan@windriver.com>
+This mail was sent out by Package Report System.
+It will list all the recipes which can't check upstream version by script, and will show how long it is since their last mannual version check.
+You can check the detail information at http://packages.yoctoproject.org/manuallychkinfo
 
-dhcp-server fails to start with avc denied error:
 
-  avc: denied { read } for pid=571 comm="dhcpd" \
-  name="dhcpd.leases" dev="hda" ino=63911 \
-  scontext=system_u:system_r:dhcpd_t:s0-s15:c0.c1023 \
-  tcontext=system_u:object_r:dhcp_state_t:s0 tclass=file
-
-The type for dhcpd.leases is not correct, just fix it before dhcp-
-server started.
-
-Signed-off-by: Wenzong Fan <wenzong.fan@windriver.com>
----
- recipes-connectivity/dhcp/files/init-server |    8 ++++++++
- 1 file changed, 8 insertions(+)
-
-diff --git a/recipes-connectivity/dhcp/files/init-server b/recipes-connectivity/dhcp/files/init-server
-index 34c2085..1d03d7e 100644
---- a/recipes-connectivity/dhcp/files/init-server
-+++ b/recipes-connectivity/dhcp/files/init-server
-@@ -15,11 +15,19 @@ fi
- # should listen on.)
- . /etc/default/dhcp-server
- 
-+# Restorecon for /var/lib/dhcp/{dhcpd.leases,dhcpd6.leases}
-+restorecon_dhcpd_leases(){
-+	test ! -x /sbin/restorecon || for x in dhcpd.leases dhcpd6.leases; do
-+		[ -f /var/lib/dhcp/$x ] && /sbin/restorecon -F /var/lib/dhcp/$x
-+	done
-+}
-+
- case "$1" in
- 	start)
- 		echo -n "Starting DHCP server: "
- 		test -d /var/lib/dhcp/ || mkdir -p /var/lib/dhcp/
- 		test -f /var/lib/dhcp/dhcpd.leases || touch /var/lib/dhcp/dhcpd.leases	
-+		restorecon_dhcpd_leases
- 		start-stop-daemon -S -x /usr/sbin/dhcpd -- -q $INTERFACES
- 		echo "."
- 		;;
--- 
-1.7.9.5
-
+PackageName              Version             LastChkVersion      LastChkTime              Maintainer                              NoUpgradeReason               
+man                      1.6g                N/A                 41804 d                  Saul Wold <sgw@linux.intel.co...        No data                       
+ubootchart               0.0+r12             0.0+r12             643 day                  Saul Wold <sgw@linux.intel.co...        No data                       
+libffi                   3.1                 N/A                 41804 d                  Saul Wold <sgw@linux.intel.co...        No data                       
+puzzles                  r10116              N/A                 41804 d                  Ross Burton <ross.burton@inte...        No data                       
+libxslt                  1.1.28              N/A                 41804 d                  Ross Burton <ross.burton@inte...        No data                       
+mesa                     10.1.3              N/A                 41804 d                  Ross Burton <ross.burton@inte...        No data                       
+midori                   0.5.5               N/A                 41804 d                  Ross Burton <ross.burton@inte...        No data                       
+libpng                   1.6.10              1.6.6               257 day                  Ross Burton <ross.burton@inte...        No data                       
+tzdata                   2014d               N/A                 41804 d                  Robert Yang <liezhi.yang@wind...        No data                       
+xinetd                   2.3.15              N/A                 41804 d                  Richard Purdie <richard.purdi...        No data                       
+latencytop               0.5                 N/A                 41804 d                  Richard Purdie <richard.purdi...        No data                       
+lsof                     4.87                N/A                 41804 d                  Richard Purdie <richard.purdi...        No data                       
+bdwgc                    7.2d                gc-7.2d             658 day                  Richard Purdie <richard.purdi...        No data                       
+quicky                   0.4                 N/A                 41804 d                  Paul Eggleton <paul.eggleton@...        No data                       
+nativesdk-qt4-tools      4.8.6               N/A                 41804 d                  Paul Eggleton <paul.eggleton@...        No data                       
+qt-mobility-embedded...  1.2.0               N/A                 41804 d                  Paul Eggleton <paul.eggleton@...        No data                       
+qt4-x11-free             4.8.6               N/A                 41804 d                  Paul Eggleton <paul.eggleton@...        No data                       
+dosfstools               2.11                N/A                 41804 d                  Paul Eggleton <paul.eggleton@...        No data                       
+blktool                  4-6.1               N/A                 41804 d                  Paul Eggleton <paul.eggleton@...        No data                       
+qt4-native               4.8.6               N/A                 41804 d                  Paul Eggleton <paul.eggleton@...        No data                       
+qt-mobility-x11          1.2.0               N/A                 41804 d                  Paul Eggleton <paul.eggleton@...        No data                       
+python-smartpm           1.4.1               N/A                 41804 d                  Paul Eggleton <paul.eggleton@...        No data                       
+unfs3                    0.9.22.r490         N/A                 41804 d                  Paul Eggleton <paul.eggleton@...        No data                       
+cdrtools-native          3.01a20             N/A                 41804 d                  Paul Eggleton <paul.eggleton@...        No data                       
+lz4                      r112                N/A                 41804 d                  No Maintainer info                      No data                       
+waffle                   1.3.0               N/A                 41804 d                  No Maintainer info                      No data                       
+nettle                   2.7.1               N/A                 41804 d                  No Maintainer info                      No data                       
+pseudo                   1.5.1               N/A                 41804 d                  Mark Hatle <mark.hatle@windri...        No data                       
+bind                     9.9.5               N/A                 41804 d                  Kai Kang <kai.kang@windriver....        No data                       
+pax                      3.4                 N/A                 41804 d                  Hongxu Jia <hongxu.jia@windri...        No data                       
+tremor                   20120314            20120122            462 day                  Cristian Iorga <cristian.iorg...        Same revision on different SVN...
+libatomics-ops           7.2                 N/A                 41804 d                  Cristian Iorga <cristian.iorg...        No data                       
+Manual Check Count: 32
+Manual Need Check Count: 32
+Any problem, please contact Saul Wold <sgw@linux.intel.com> 
 
