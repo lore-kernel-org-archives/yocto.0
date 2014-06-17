@@ -1,42 +1,38 @@
-Return-Path: <scott.m.rifenbark@intel.com>
+Return-Path: <Henric.Eriksson@brv.se>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id CAF28E00C64; Tue, 17 Jun 2014 06:57:04 -0700 (PDT)
+	id 0A2DFE00B78; Tue, 17 Jun 2014 07:04:03 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-5.0 required=5.0 tests=RCVD_IN_DNSWL_HI
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [192.55.52.88 listed in list.dnswl.org]
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AE17FE00C52
-	for <yocto@yoctoproject.org>; Tue, 17 Jun 2014 06:56:08 -0700 (PDT)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga101.fm.intel.com with ESMTP; 17 Jun 2014 06:56:08 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.01,494,1400050800"; d="scan'208";a="556800450"
-Received: from orsmsx107.amr.corp.intel.com ([10.22.240.5])
-	by fmsmga002.fm.intel.com with ESMTP; 17 Jun 2014 06:53:09 -0700
-Received: from orsmsx101.amr.corp.intel.com ([169.254.8.105]) by
-	ORSMSX107.amr.corp.intel.com ([169.254.1.159]) with mapi id
-	14.03.0123.003; Tue, 17 Jun 2014 06:52:52 -0700
-From: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
-To: "Robert P. J. Day" <rpjday@crashcourse.ca>, Yocto discussion list
-	<yocto@yoctoproject.org>
-Thread-Topic: [yocto] should yocto ref manual variable glossary include
-	bitbake variables?
-Thread-Index: AQHPiiTPJ+5294BdnkeWmoH9+5EXqZt1Uhfg
-Date: Tue, 17 Jun 2014 13:52:52 +0000
-Message-ID: <41DEA4B02DBDEF40A0F3B6D0DDB1237983FA8BD6@ORSMSX101.amr.corp.intel.com>
-References: <alpine.LFD.2.11.1406170800160.30459@localhost>
-In-Reply-To: <alpine.LFD.2.11.1406170800160.30459@localhost>
-Accept-Language: en-US
+X-Spam-Status: No, score=0.0 required=5.0 tests=none autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: 
+Received: from brvmst.brv.se (brvmst.brv.se [148.160.26.95])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8B227E00B5C
+	for <yocto@yoctoproject.org>; Tue, 17 Jun 2014 07:03:58 -0700 (PDT)
+Received: from sbs.brv.local ([192.168.100.20] helo=remote.brv.se)
+	by brvmst.brv.se with esmtp (Exim 4.82)
+	(envelope-from <Henric.Eriksson@brv.se>)
+	id 1WwtzE-00075v-CP; Tue, 17 Jun 2014 16:03:52 +0200
+Received: from SBS.brv.local ([fe80::a92d:db17:ceaf:ef89]) by SBS.brv.local
+	([fe80::a92d:db17:ceaf:ef89%10]) with mapi id 14.01.0438.000;
+	Tue, 17 Jun 2014 16:03:42 +0200
+From: Henric Eriksson <Henric.Eriksson@brv.se>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: [yocto] Problems creating recipe, "no package provides"
+Thread-Index: AQHPiifwmaCp6hTI402872ekzfu6vZt1LzSAgAAE04A=
+Date: Tue, 17 Jun 2014 14:03:41 +0000
+Message-ID: <53A04AB9.10807@brv.se>
+References: <53A034E9.2090406@brv.se> <4393962.vBKmSVoclE@koontz>
+In-Reply-To: <4393962.vBKmSVoclE@koontz>
+Accept-Language: sv-SE, en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.139]
+user-agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:24.0) Gecko/20100101
+	Thunderbird/24.6.0
+x-originating-ip: [192.168.100.98]
 MIME-Version: 1.0
-Subject: Re: should yocto ref manual variable glossary include bitbake variables?
+Subject: Re: Problems creating recipe, "no package provides"
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -48,61 +44,83 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 17 Jun 2014 13:57:04 -0000
+X-List-Received-Date: Tue, 17 Jun 2014 14:04:03 -0000
 Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset="iso-8859-1"
+Content-ID: <79E2327538CA984CA2F3A0B8F1DDC6FD@brv.se>
 Content-Transfer-Encoding: quoted-printable
 
-These two glossaries are not replicates of each other by design.  You might=
- notice also that some definitions for the same variable differ as well.  T=
-he intent is to have the variables in ref-manual be specific (if possible) =
-for YP and the ones in bitbake-user-manual to be specific for that context.
+S=F8ren Holm skrev:
+> Hi
+>
+> I guess the file should be named  libmongoose_5.3.bb and not
+> libmongoose-5.3.bb
 
-Scott
+My bad. Typo in the email, the actual file is called libmongoose_5.3.bb.
 
->-----Original Message-----
->From: yocto-bounces@yoctoproject.org [mailto:yocto-
->bounces@yoctoproject.org] On Behalf Of Robert P. J. Day
->Sent: Tuesday, June 17, 2014 5:03 AM
->To: Yocto discussion list
->Subject: [yocto] should yocto ref manual variable glossary include bitbake
->variables?
 >
+> Tirsdag den 17. juni 2014 12:30:36 skrev Henric Eriksson:
+>> Hello,
+>>
+>> I've been working on creating a recipe for the library mongoose for use
+>> in a custom layer in Yocto. The library provides a .so in /usr/lib and a
+>> .h in /usr/include and is depended (DEPENDS=3D"libmongoose") on in anoth=
+er
+>> recipe for a my main application. When trying to bitbake my image though
+>> it fails on the last stage do_rootfs.
+>>
+>> The recipe is quite simple:
+>>
+>> libmongoose-5.3.bb:
+>> -------------
+>> DESCRIPTION =3D "Mongoose is the most easy to use web server on the plan=
+et"
+>> SECTION =3D "libs"
+>> LICENSE =3D "GPLv2"
+>> HOMEPAGE =3D "http://code.google.com/p/mongoose"
+>> LIC_FILES_CHKSUM =3D
+>> "file://${COREBASE}/meta/COPYING.GPLv2;md5=3D751419260aa954499f7abaabaa8=
+82bbe"
+>> PR =3D "r0"
+>>
+>> SRC_URI =3D "git://github.com/cesanta/mongoose.git"
+>> SRCREV =3D "30a79651356e28fec240e921f8cd01c9a0a21388"
+>>
+>> S =3D "${WORKDIR}/git"
+>>
+>> CFLAGS +=3D "-W -Wall -I.. -pthread -g -pipe -fpic"
+>>
+>> do_compile() {
+>>       ${CC} ${CFLAGS} -c mongoose.c -o mongoose.o
+>>       ${CC} -shared -o libmongoose.so mongoose.o
+>> }
+>>
+>> do_install() {
+>>      install -d ${D}${libdir}
+>>      install -d ${D}${includedir}
+>>      install -m 0755 libmongoose.so ${D}${libdir}
+>>      install -m 0755 mongoose.h ${D}${includedir}
+>> }
+>> -------------
+>>
+>> Eventually though during do_rootfs, this error pops up:
+>>
+>> error: Can't install libmongoose-dev-5.3-r0@armv5te: no package provides
+>> libmongoose =3D 5.3-r0
+>>
+>> I have tried to add both PACKAGES +=3D "libmongoose" and PACKAGES +=3D
+>> "libmongoose-dev" in the recipe but nothing seems to help.
+>>
+>> Looking through Yocto I can see that it appends -dev and such based on
+>> what files are provided by the package. But I guess since all the files
+>> from the package is provided by libmongoose-dev it dumps libmongoose.
+>>
+>> I'm at a loss of where to go from here. What have I missed in my recipe?
+>>
+>> Regards,
+>>
+>> Henric Eriksson
 >
->  more pedantry -- reading both the bitbake user manual and the yocto
->reference manual variable glossaries:
->
->http://www.yoctoproject.org/docs/latest/bitbake-user-manual/bitbake-
->user-manual.html#ref-variables-glossary
->http://www.yoctoproject.org/docs/latest/ref-manual/ref-manual.html#ref-
->variables-glos
->
->and i notice, as a single example, the first mentions the variable
->ASSUME_PROVIDED while the second does not. is this deliberate? is there an
->explicit distinguishing of variables that belong to different layers of th=
-e build
->system across the variable glossaries in different manuals?
->
->rday
->
->--
->
->=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
->=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
->Robert P. J. Day                                 Ottawa, Ontario, CANADA
->                        http://crashcourse.ca
->
->Twitter:                                       http://twitter.com/rpjday
->LinkedIn:                               http://ca.linkedin.com/in/rpjday
->=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
->=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
->--
->_______________________________________________
->yocto mailing list
->yocto@yoctoproject.org
->https://lists.yoctoproject.org/listinfo/yocto
+
+/Henric=
 
