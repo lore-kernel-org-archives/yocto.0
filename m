@@ -1,32 +1,45 @@
-Return-Path: <sgh@sgh.dk>
+Return-Path: <scott.m.rifenbark@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id C44C7E00B78; Tue, 17 Jun 2014 06:46:31 -0700 (PDT)
+	id 73B57E00B78; Tue, 17 Jun 2014 06:55:09 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=0.0 required=5.0 tests=RCVD_IN_DNSWL_NONE
+X-Spam-Status: No, score=-5.0 required=5.0 tests=RCVD_IN_DNSWL_HI
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [212.10.10.13 listed in list.dnswl.org]
-Received: from mx-aarh-3.stofanet.dk (mx-aarh-3.stofanet.dk [212.10.10.13])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7CC8FE00B5C
-	for <yocto@yoctoproject.org>; Tue, 17 Jun 2014 06:46:28 -0700 (PDT)
-Received: from 5634f347.rev.stofanet.dk ([86.52.243.71] helo=asrock)
-	by mx-aarh-3.stofanet.dk (envelope-from <sgh@sgh.dk>)
-	with esmtp id 1WwtiV-0003tp-2I; Tue, 17 Jun 2014 15:46:27 +0200
-Received: from koontz.localnet (localhost [127.0.0.1])
-	by asrock (Postfix) with ESMTPS id 633D17ECE2;
-	Tue, 17 Jun 2014 15:46:22 +0200 (CEST)
-From: =?ISO-8859-1?Q?S=F8ren?= Holm <sgh@sgh.dk>
-To: yocto@yoctoproject.org
-Date: Tue, 17 Jun 2014 15:46:21 +0200
-Message-ID: <4393962.vBKmSVoclE@koontz>
-User-Agent: KMail/4.13 (Linux/3.13.0-29-generic; KDE/4.13.0; i686; ; )
-In-Reply-To: <53A034E9.2090406@brv.se>
-References: <53A034E9.2090406@brv.se>
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [192.55.52.93 listed in list.dnswl.org]
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4C70CE00B5C
+	for <yocto@yoctoproject.org>; Tue, 17 Jun 2014 06:54:51 -0700 (PDT)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga102.fm.intel.com with ESMTP; 17 Jun 2014 06:54:50 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.01,494,1400050800"; d="scan'208";a="556799293"
+Received: from orsmsx107.amr.corp.intel.com ([10.22.240.5])
+	by fmsmga002.fm.intel.com with ESMTP; 17 Jun 2014 06:50:27 -0700
+Received: from orsmsx153.amr.corp.intel.com (10.22.226.247) by
+	ORSMSX107.amr.corp.intel.com (10.22.240.5) with Microsoft SMTP Server
+	(TLS) id 14.3.123.3; Tue, 17 Jun 2014 06:50:26 -0700
+Received: from orsmsx101.amr.corp.intel.com ([169.254.8.105]) by
+	ORSMSX153.amr.corp.intel.com ([169.254.12.243]) with mapi id
+	14.03.0123.003; Tue, 17 Jun 2014 06:50:26 -0700
+From: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
+To: "Robert P. J. Day" <rpjday@crashcourse.ca>, Yocto discussion list
+	<yocto@yoctoproject.org>
+Thread-Topic: [yocto] any plans on more carefully distinguishing docbook
+	markup in yocto docs?
+Thread-Index: AQHPiit8FZM81QgOjk2tWuRPriOHhJt1UZtg
+Date: Tue, 17 Jun 2014 13:50:26 +0000
+Message-ID: <41DEA4B02DBDEF40A0F3B6D0DDB1237983FA8BC2@ORSMSX101.amr.corp.intel.com>
+References: <alpine.LFD.2.11.1406170847080.31619@localhost>
+In-Reply-To: <alpine.LFD.2.11.1406170847080.31619@localhost>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.139]
 MIME-Version: 1.0
-Subject: Re: Problems creating recipe, "no package provides"
+Subject: Re: any plans on more carefully distinguishing docbook markup in yocto docs?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,86 +51,62 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 17 Jun 2014 13:46:31 -0000
+X-List-Received-Date: Tue, 17 Jun 2014 13:55:09 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"
 
-Hi
+I could look at this... low on the priority list right now though but good =
+point.
 
-I guess the file should be named  libmongoose_5.3.bb and not=20
-libmongoose-5.3.bb
+Thanks,=20
+Scott
 
-Tirsdag den 17. juni 2014 12:30:36 skrev Henric Eriksson:
-> Hello,
->=20
-> I've been working on creating a recipe for the library mongoose for u=
-se
-> in a custom layer in Yocto. The library provides a .so in /usr/lib an=
-d a
-> .h in /usr/include and is depended (DEPENDS=3D"libmongoose") on in an=
-other
-> recipe for a my main application. When trying to bitbake my image tho=
-ugh
-> it fails on the last stage do_rootfs.
->=20
-> The recipe is quite simple:
->=20
-> libmongoose-5.3.bb:
-> -------------
-> DESCRIPTION =3D "Mongoose is the most easy to use web server on the p=
-lanet"
-> SECTION =3D "libs"
-> LICENSE =3D "GPLv2"
-> HOMEPAGE =3D "http://code.google.com/p/mongoose"
-> LIC_FILES_CHKSUM =3D
-> "file://${COREBASE}/meta/COPYING.GPLv2;md5=3D751419260aa954499f7abaab=
-aa882bbe"
-> PR =3D "r0"
->=20
-> SRC_URI =3D "git://github.com/cesanta/mongoose.git"
-> SRCREV =3D "30a79651356e28fec240e921f8cd01c9a0a21388"
->=20
-> S =3D "${WORKDIR}/git"
->=20
-> CFLAGS +=3D "-W -Wall -I.. -pthread -g -pipe -fpic"
->=20
-> do_compile() {
->      ${CC} ${CFLAGS} -c mongoose.c -o mongoose.o
->      ${CC} -shared -o libmongoose.so mongoose.o
-> }
->=20
-> do_install() {
->     install -d ${D}${libdir}
->     install -d ${D}${includedir}
->     install -m 0755 libmongoose.so ${D}${libdir}
->     install -m 0755 mongoose.h ${D}${includedir}
-> }
-> -------------
->=20
-> Eventually though during do_rootfs, this error pops up:
->=20
-> error: Can't install libmongoose-dev-5.3-r0@armv5te: no package provi=
-des
-> libmongoose =3D 5.3-r0
->=20
-> I have tried to add both PACKAGES +=3D "libmongoose" and PACKAGES +=3D=
-
-> "libmongoose-dev" in the recipe but nothing seems to help.
->=20
-> Looking through Yocto I can see that it appends -dev and such based o=
-n
-> what files are provided by the package. But I guess since all the fil=
-es
-> from the package is provided by libmongoose-dev it dumps libmongoose.=
-
->=20
-> I'm at a loss of where to go from here. What have I missed in my reci=
-pe?
->=20
-> Regards,
->=20
-> Henric Eriksson
-
---=20
-S=F8ren Holm
+>-----Original Message-----
+>From: yocto-bounces@yoctoproject.org [mailto:yocto-
+>bounces@yoctoproject.org] On Behalf Of Robert P. J. Day
+>Sent: Tuesday, June 17, 2014 5:51 AM
+>To: Yocto discussion list
+>Subject: [yocto] any plans on more carefully distinguishing docbook markup=
+ in
+>yocto docs?
+>
+>
+>  i'm sure i asked this once before, but is there any long-term plan for m=
+ore
+>carefully marking up the yocto docs semantically? as in, most things that
+>represent filenames or variables or commands or code are simply tagged as
+><filename>, even when this is not really appropriate.
+>
+>  to be semantically precise, one should be more carefully selecting among
+>tags such as <filename>, <varname>, <command>, <code> and so on.
+>for now, i suspect the rendering toolchain wouldn't change what's eventual=
+ly
+>produced, but in the future, i think more careful markup would allow the
+>generation of much prettier docs.
+>
+>  thoughts?
+>
+>rday
+>
+>--
+>
+>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+>Robert P. J. Day                                 Ottawa, Ontario, CANADA
+>                        http://crashcourse.ca
+>
+>Twitter:                                       http://twitter.com/rpjday
+>LinkedIn:                               http://ca.linkedin.com/in/rpjday
+>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+>--
+>_______________________________________________
+>yocto mailing list
+>yocto@yoctoproject.org
+>https://lists.yoctoproject.org/listinfo/yocto
 
