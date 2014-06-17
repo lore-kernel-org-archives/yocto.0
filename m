@@ -1,52 +1,35 @@
-Return-Path: <andrea.adami@gmail.com>
+Return-Path: <paul.eggleton@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 4FE04E00B78; Tue, 17 Jun 2014 09:31:18 -0700 (PDT)
+	id E7946E00B5C; Tue, 17 Jun 2014 09:34:44 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-0.8 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-	DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (andrea.adami[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.217.180 listed in list.dnswl.org]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-lb0-f180.google.com (mail-lb0-f180.google.com
-	[209.85.217.180])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CF7D5E00AFD
-	for <yocto@yoctoproject.org>; Tue, 17 Jun 2014 09:31:10 -0700 (PDT)
-Received: by mail-lb0-f180.google.com with SMTP id w7so2210377lbi.25
-	for <yocto@yoctoproject.org>; Tue, 17 Jun 2014 09:31:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type;
-	bh=12/mqvf+gsUVhg5J3B4TRX/XnZdSEuZ8Doo20rhz3T8=;
-	b=eTXblTG0QcR4qlChsb6svDc8jFNhm0mVHuxNhlZOQprbgTaefpWWgl80YCt6OyXYQq
-	oNp73KQ2CVz8NtlD7ZkY+/EeGChsv+azfls0tlTZ7UaQ2xm/6D0kSorKHQ8X3KHUUEsb
-	trLp8jxKTjsJR9PWGsV6MRZNRWBeR4wBblx4yZsp2357Uai671yyKZt49ajj3qAT9060
-	NDOjc7bp4+rJXR4GCBJVs4xSejY9/lwmi5cmevm9TWVWTA5VO3wGHyCP/QTFy/bOXuq4
-	R6uHLOxU+0yXw3NiQWaBWN9kknNIW/lKg1AphlU0kRzcLe9B9Gfs1OhydA/HukxGIF1x
-	zphw==
-MIME-Version: 1.0
-X-Received: by 10.112.198.102 with SMTP id jb6mr17952628lbc.18.1403022669102; 
-	Tue, 17 Jun 2014 09:31:09 -0700 (PDT)
-Received: by 10.112.16.227 with HTTP; Tue, 17 Jun 2014 09:31:09 -0700 (PDT)
-In-Reply-To: <53A061C1.9040906@bsmucker.eu.org>
+X-Spam-Status: No, score=0.0 required=5.0 tests=none autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: 
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BD218E00C73
+	for <yocto@yoctoproject.org>; Tue, 17 Jun 2014 09:33:48 -0700 (PDT)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by fmsmga103.fm.intel.com with ESMTP; 17 Jun 2014 09:28:40 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.01,495,1400050800"; d="scan'208";a="549286435"
+Received: from garethcl-mobl.ger.corp.intel.com (HELO
+	peggleto-mobl5.ger.corp.intel.com) ([10.252.121.19])
+	by fmsmga001.fm.intel.com with ESMTP; 17 Jun 2014 09:33:45 -0700
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: Robert Yang <liezhi.yang@windriver.com>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Date: Tue, 17 Jun 2014 17:33:43 +0100
+Message-ID: <140306441.YChD424aDp@peggleto-mobl5.ger.corp.intel.com>
+Organization: Intel Corporation
+User-Agent: KMail/4.12.5 (Linux/3.14.6-200.fc20.x86_64; KDE/4.12.5; x86_64; ; )
+In-Reply-To: <53A0654A.5060606@windriver.com>
 References: <CAF_dkJB6mJjhtZHZmo6bX+q611zSyij4OvXg+Yxv5At-RpWdOA@mail.gmail.com>
-	<2289204.UWFViZiKz6@peggleto-mobl5.ger.corp.intel.com>
-	<53A061C1.9040906@bsmucker.eu.org>
-Date: Tue, 17 Jun 2014 18:31:09 +0200
-Message-ID: <CAAQYJAv_U5a=umUMs1cTQudDktxYdGKco92WcgxrH-r+bAfBoA@mail.gmail.com>
-From: Andrea Adami <andrea.adami@gmail.com>
-To: Brian Smucker <bds@bsmucker.eu.org>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: How to copy recipe and have different target names
+	<CAF_dkJDCDGLsYFDWJgOaXZwkiRLFE8XSkLAT-Knx-eX_qbH7tA@mail.gmail.com>
+	<53A0654A.5060606@windriver.com>
+MIME-Version: 1.0
+Subject: Re: [dora] x264: Update SRCREV to match commit in upstream git repo
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -58,48 +41,32 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 17 Jun 2014 16:31:18 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Tue, 17 Jun 2014 16:34:45 -0000
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-On Tue, Jun 17, 2014 at 5:41 PM, Brian Smucker <bds@bsmucker.eu.org> wrote:
-> Hello,
->
-> I would like to have yocto generate two copies of busybox, one
-> statically-linked and one dynamically linked. So I try to make a copy of the
-> busybox recipe and give it a new name like busybox-s_xxxxx.bb
->
-> But my knowlege of yocto comes up short and I get lots of errors.
->
-> Is there a way to do this cleanly?  Or should I be trying to do a different
-> approach?
->
-> Thanks,
->
-> Brian
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+On Tuesday 17 June 2014 23:56:58 Robert Yang wrote:
+> > Do you have any guesses as to when this might show up in the official
+> > dora branch?
+> 
+> I've resend it oe-core, and will ping RP sooner.
 
-Brian,
+Thanks.
 
-I don't think there is an 'official' way to do that.
-For a similar purpose (buidling static binaries against klibc) I have
-developed two solutions, both using a custom class:
+> 
+> @Paul,
+> I'm sorry, seems that I missed your email, but I still can't find it
+> when I searched again.
 
-1) for easy-to-adapt recipes, BBCLASSEXTEND +  the custom class
-http://cgit.openembedded.org/meta-openembedded/tree/meta-initramfs/recipes-bsp/kexecboot/kexecboot_0.6.bb
+No problem - I think it was some kind of transmission problem between my email 
+system and yours since I received a delivery failure response; looks like it 
+has now been fixed :)
 
-2) for the stubborn cases, create a copy of the recipe and may need to
-adjust some vars (S, FILESPATH or better FILESEXTRAPATHS, ...)
-see  i.e.
-http://cgit.openembedded.org/meta-openembedded/tree/meta-initramfs/recipes-devtools/mtd/ubi-utils-klibc_1.5.0.bb
-http://cgit.openembedded.org/meta-openembedded/tree/meta-initramfs/recipes-kernel/kexec/kexec-tools-klibc_2.0.2.bb
+Cheers,
+Paul
 
-I guess busybox belongs to the heavy ones...
+-- 
 
-Cheers
-
-Andrea
+Paul Eggleton
+Intel Open Source Technology Centre
 
