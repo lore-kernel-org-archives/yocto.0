@@ -1,38 +1,46 @@
-Return-Path: <Henric.Eriksson@brv.se>
+Return-Path: <wpdster@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 31E57E00C1B; Tue, 17 Jun 2014 06:16:41 -0700 (PDT)
+	id 66969E00B6F; Tue, 17 Jun 2014 06:36:46 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=0.0 required=5.0 tests=none autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: 
-X-Greylist: delayed 2741 seconds by postgrey-1.32 at yocto-www;
-	Tue, 17 Jun 2014 06:16:29 PDT
-Received: from brvmst.brv.se (brvmst.brv.se [148.160.26.95])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9161BE00C12
-	for <yocto@yoctoproject.org>; Tue, 17 Jun 2014 06:16:29 -0700 (PDT)
-Received: from sbs.brv.local ([192.168.100.20] helo=remote.brv.se)
-	by brvmst.brv.se with esmtp (Exim 4.82)
-	(envelope-from <Henric.Eriksson@brv.se>) id 1WwsX8-000742-Pw
-	for yocto@yoctoproject.org; Tue, 17 Jun 2014 14:30:46 +0200
-Received: from SBS.brv.local ([fe80::a92d:db17:ceaf:ef89]) by SBS.brv.local
-	([fe80::a92d:db17:ceaf:ef89%10]) with mapi id 14.01.0438.000;
-	Tue, 17 Jun 2014 14:30:37 +0200
-From: Henric Eriksson <Henric.Eriksson@brv.se>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Problems creating recipe, "no package provides"
-Thread-Index: AQHPiifwmaCp6hTI402872ekzfu6vQ==
-Date: Tue, 17 Jun 2014 12:30:36 +0000
-Message-ID: <53A034E9.2090406@brv.se>
-Accept-Language: sv-SE, en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-user-agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:24.0) Gecko/20100101
-	Thunderbird/24.6.0
-x-originating-ip: [192.168.100.98]
+X-Spam-Status: No, score=-0.8 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+	DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (wpdster[at]gmail.com)
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.220.173 listed in list.dnswl.org]
+Received: from mail-vc0-f173.google.com (mail-vc0-f173.google.com
+	[209.85.220.173])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2B9A8E00B5C
+	for <yocto@yoctoproject.org>; Tue, 17 Jun 2014 06:36:36 -0700 (PDT)
+Received: by mail-vc0-f173.google.com with SMTP id lf12so6469747vcb.32
+	for <yocto@yoctoproject.org>; Tue, 17 Jun 2014 06:36:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:from:date:message-id:subject:to:content-type;
+	bh=WatjOE3jkh633TBCgE2KSfUMTgv4AgAd1QxjBVE1c+w=;
+	b=I4JUJKUbY1VvY8Ync15u46TE40YrEhjOvfyRFsJllKWVK6NEiwH5aEj7Aq7umbgD+U
+	zPrbskQhMW+vi0fEe5U7XOYsYIjSucwJtuHkAdcud22p0bTSGyK5x86CyAY9vR31LpJb
+	CqO5MQlzqnYAKqycg26x64ki5VOR0J40skQLyqpn5I0chSGlQO/nsMHRVxoNwP2Gx4GT
+	EwPSsIIFVoH9uUFr8P0dHE5KyTTgLE1Mtjxa4IHN8G0LHy6lN3G+3XCyqtZZWnj9eum6
+	kL5D5wggT8oC6tddlCtmDwL2uNEIUv65Kw9ivGRmI7X3BFgyVAAeMYmwal7kBdNYE29c
+	NRag==
+X-Received: by 10.220.99.73 with SMTP id t9mr368731vcn.76.1403012196012; Tue,
+	17 Jun 2014 06:36:36 -0700 (PDT)
 MIME-Version: 1.0
-Subject: Problems creating recipe, "no package provides"
+Received: by 10.58.32.74 with HTTP; Tue, 17 Jun 2014 06:36:05 -0700 (PDT)
+From: Patrick Doyle <wpdster@gmail.com>
+Date: Tue, 17 Jun 2014 09:36:05 -0400
+Message-ID: <CAF_dkJB6mJjhtZHZmo6bX+q611zSyij4OvXg+Yxv5At-RpWdOA@mail.gmail.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: [dora] x264: Update SRCREV to match commit in upstream git repo
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -44,69 +52,39 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 17 Jun 2014 13:16:41 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="iso-8859-1"
-Content-ID: <E150DABA5293FE48B1803196037E7D4E@brv.se>
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Tue, 17 Jun 2014 13:36:46 -0000
+Content-Type: text/plain; charset=UTF-8
 
-Hello,
+It seems that 585324fee380109acd9986388f857f413a60b896 is no
+longer there in git and it has been rewritten to
+ffc3ad4945da69f3caa2b40e4eed715a9a8d9526
 
-I've been working on creating a recipe for the library mongoose for use=20
-in a custom layer in Yocto. The library provides a .so in /usr/lib and a=20
-.h in /usr/include and is depended (DEPENDS=3D"libmongoose") on in another=
-=20
-recipe for a my main application. When trying to bitbake my image though=20
-it fails on the last stage do_rootfs.
+Change-Id: I9ffe8bd9bcef0d2dc5e6f6d3a6e4317bada8f4be
+(From OE-Core rev: b193c7f251542aa76cb5a4d6dcb71d15b27005eb)
 
-The recipe is quite simple:
+(From OE-Core rev: f2b20b169a462cf4c6e6f341b76add8a0f4d6e3f)
 
-libmongoose-5.3.bb:
--------------
-DESCRIPTION =3D "Mongoose is the most easy to use web server on the planet"
-SECTION =3D "libs"
-LICENSE =3D "GPLv2"
-HOMEPAGE =3D "http://code.google.com/p/mongoose"
-LIC_FILES_CHKSUM =3D=20
-"file://${COREBASE}/meta/COPYING.GPLv2;md5=3D751419260aa954499f7abaabaa882b=
-be"
-PR =3D "r0"
+Signed-off-by: Khem Raj <raj.khem@gmail.com>
+Signed-off-by: Saul Wold <sgw@linux.intel.com>
+Signed-off-by: Richard Purdie <richard.purdie@linuxfoundation.org>
+---
+ meta/recipes-multimedia/x264/x264_git.bb |    2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-SRC_URI =3D "git://github.com/cesanta/mongoose.git"
-SRCREV =3D "30a79651356e28fec240e921f8cd01c9a0a21388"
+diff --git a/meta/recipes-multimedia/x264/x264_git.bb
+b/meta/recipes-multimedia/x264/x264_git.bb
+index 406df30..e40290f 100644
+--- a/meta/recipes-multimedia/x264/x264_git.bb
++++ b/meta/recipes-multimedia/x264/x264_git.bb
+@@ -11,7 +11,7 @@ SRC_URI = "git://git.videolan.org/x264.git \
+            file://don-t-default-to-cortex-a9-with-neon.patch \
+            "
 
-S =3D "${WORKDIR}/git"
+-SRCREV = "585324fee380109acd9986388f857f413a60b896"
++SRCREV = "ffc3ad4945da69f3caa2b40e4eed715a9a8d9526"
 
-CFLAGS +=3D "-W -Wall -I.. -pthread -g -pipe -fpic"
+ PV = "r2265+git${SRCPV}"
 
-do_compile() {
-     ${CC} ${CFLAGS} -c mongoose.c -o mongoose.o
-     ${CC} -shared -o libmongoose.so mongoose.o
-}
-
-do_install() {
-    install -d ${D}${libdir}
-    install -d ${D}${includedir}
-    install -m 0755 libmongoose.so ${D}${libdir}
-    install -m 0755 mongoose.h ${D}${includedir}
-}
--------------
-
-Eventually though during do_rootfs, this error pops up:
-
-error: Can't install libmongoose-dev-5.3-r0@armv5te: no package provides=20
-libmongoose =3D 5.3-r0
-
-I have tried to add both PACKAGES +=3D "libmongoose" and PACKAGES +=3D=20
-"libmongoose-dev" in the recipe but nothing seems to help.
-
-Looking through Yocto I can see that it appends -dev and such based on=20
-what files are provided by the package. But I guess since all the files=20
-from the package is provided by libmongoose-dev it dumps libmongoose.
-
-I'm at a loss of where to go from here. What have I missed in my recipe?
-
-Regards,
-
-Henric Eriksson
+-- 
+1.7.9.5
 
