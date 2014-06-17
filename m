@@ -1,42 +1,38 @@
-Return-Path: <yaoxp@cn.fujitsu.com>
+Return-Path: <rpjday@crashcourse.ca>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 1DA11E00BDE; Mon, 16 Jun 2014 18:27:26 -0700 (PDT)
+	id 5E1BAE00C02; Tue, 17 Jun 2014 05:01:29 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
-X-Spam-Level: *
-X-Spam-Status: No, score=1.3 required=5.0 tests=RDNS_NONE autolearn=no
+X-Spam-Level: 
+X-Spam-Status: No, score=0.0 required=5.0 tests=none autolearn=ham
 	version=3.3.1
-X-Spam-HAM-Report: * 1.3 RDNS_NONE Delivered to internal network by a host
-	with no rDNS
-Received: from heian.cn.fujitsu.com (unknown [59.151.112.132])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9A1F5E00B71
-	for <yocto@yoctoproject.org>; Mon, 16 Jun 2014 18:27:18 -0700 (PDT)
-X-IronPort-AV: E=Sophos;i="5.00,721,1396972800"; d="scan'208";a="31996678"
-Received: from localhost (HELO edo.cn.fujitsu.com) ([10.167.33.5])
-	by heian.cn.fujitsu.com with ESMTP; 17 Jun 2014 09:24:37 +0800
-Received: from G08CNEXCHPEKD02.g08.fujitsu.local (localhost.localdomain
-	[127.0.0.1])
-	by edo.cn.fujitsu.com (8.14.3/8.13.1) with ESMTP id s5H1RFhT006554;
-	Tue, 17 Jun 2014 09:27:15 +0800
-Received: from G08CNEXMBPEKD03.g08.fujitsu.local ([10.167.33.86]) by
-	G08CNEXCHPEKD02.g08.fujitsu.local ([10.167.33.83]) with mapi id
-	14.03.0181.006; Tue, 17 Jun 2014 09:27:20 +0800
-From: "yaoxp@cn.fujitsu.com" <yaoxp@cn.fujitsu.com>
-To: Nicolas Dechesne <nicolas.dechesne@linaro.org>
-Thread-Topic: [yocto] I want to know which BB files were compiled
-Thread-Index: Ac+JEqxxfZMGsAUVS+SBWMcn1xHf5P//w8WA//5Te5A=
-Date: Tue, 17 Jun 2014 01:27:17 +0000
-Message-ID: <9AD1F2A584A7644C9605656D538412FEAA5517@G08CNEXMBPEKD03.g08.fujitsu.local>
-References: <9AD1F2A584A7644C9605656D538412FEAA5214@G08CNEXMBPEKD03.g08.fujitsu.local>
-	<CAP71Wjwn9eHV2w05w1wF5sNWb68v=tkf4v0a0M+iGQgO59oySA@mail.gmail.com>
-In-Reply-To: <CAP71Wjwn9eHV2w05w1wF5sNWb68v=tkf4v0a0M+iGQgO59oySA@mail.gmail.com>
-Accept-Language: zh-CN, en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.167.226.206]
+X-Spam-HAM-Report: 
+Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
+	[64.235.106.9])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 809ABE00BDE
+	for <yocto@yoctoproject.org>; Tue, 17 Jun 2014 05:01:13 -0700 (PDT)
+Received: from [69.196.158.250] (port=47291 helo=crashcourse.ca)
+	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES128-SHA:128)
+	(Exim 4.80) (envelope-from <rpjday@crashcourse.ca>)
+	id 1Wws4d-0001Fc-Ox
+	for yocto@yoctoproject.org; Tue, 17 Jun 2014 08:01:11 -0400
+Date: Tue, 17 Jun 2014 07:57:37 -0400 (EDT)
+From: "Robert P. J. Day" <rpjday@crashcourse.ca>
+X-X-Sender: rpjday@localhost
+To: Yocto discussion list <yocto@yoctoproject.org>
+Message-ID: <alpine.LFD.2.11.1406170746340.30240@localhost>
+User-Agent: Alpine 2.11 (LFD 23 2013-08-11)
 MIME-Version: 1.0
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: I want to know which BB files were compiled
+X-AntiAbuse: This header was added to track abuse,
+	please include it with any abuse report
+X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - crashcourse.ca
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+Subject: [OT?] some inconsistencies in listing required build software
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -48,21 +44,80 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 17 Jun 2014 01:27:26 -0000
-Content-Language: zh-CN
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+X-List-Received-Date: Tue, 17 Jun 2014 12:01:29 -0000
+Content-Type: TEXT/PLAIN; charset=US-ASCII
 
-dGhhbmsgeW91IHZlcnkgbXVjaC4NCg0KPiANCj4gT24gTW9uLCBKdW4gMTYsIDIwMTQgYXQgNToy
-NyBBTSwgeWFveHBAY24uZnVqaXRzdS5jb20NCj4gPHlhb3hwQGNuLmZ1aml0c3UuY29tPiB3cm90
-ZToNCj4gPiBIaSBldmVyeW9uZSwNCj4gPg0KPiA+IEkgd2FudCB0byBrbm93IHdoaWNoIEJCIGZp
-bGVzIHdlcmUgY29tcGlsZWQgd2hlbiBJIHJ1biAnIGJpdGJha2UgPHRhcmdldD4nLg0KPiA+IEhv
-dyB0byBhY2hpZXZlIGl0Pw0KPiA+DQo+ID4gZS5nLg0KPiA+ICMgYml0YmFrZSBjb3JlLWltYWdl
-LW1pbmltYWwNCj4gPg0KPiA+IEkgd2FudCB0byBrbm93IGFsbCB0aGUgY29tcGlsZWQgQkIgZmls
-ZXMsIGluY2x1ZGluZyBuYXRpdmUgQkIgZmlsZS4NCj4gDQo+IHBsZWFzZSBoYXZlIGEgbG9vayBh
-dCB0aGlzIHRocmVhZCBmcm9tIGxhc3Qgd2VlazoNCj4gDQo+IGh0dHA6Ly93d3cubWFpbC1hcmNo
-aXZlLmNvbS95b2N0b0B5b2N0b3Byb2plY3Qub3JnL21zZzE5NTgzLmh0bWwNCj4gDQo+IGJpdGJh
-a2UgY3JlYXRlcyB0aGUgJ2Nvb2tlci5sb2cnIGZpbGUgdGhhdCBjb250YWlucyBsb2cgZm9yIGFs
-bCB0YXNrcyBpdCBoYXMNCj4gZXhlY3V0ZWQgZHVyaW5nIGEgYnVpbGQuIHlvdSBjYW4gZ2V0IHRo
-ZSBpbmZvcm1hdGlvbiB5b3Ugd2FudCBmcm9tIHRoZXJlLg0K
+
+  not sure if this is the right list (oe/poky/yocto?), but since it
+involves yocto docs, i'll ask here.
+
+  there seem to be some (admittedly minor) inconsistencies in both the
+docs and code for checking the sanity of a build environment (i'm
+basing this off the current yocto docs and the current poky master
+branch).
+
+  first, over at the QS guide:
+
+http://www.yoctoproject.org/docs/latest/yocto-project-qs/yocto-project-qs.html
+
+there are, of course, the list of required packages for the common
+distros, and these lists refer to *packages* to be installed. this is
+fine, but the wording suggests that the developer is responsible for
+manually installing them, without mentioning that yocto itself will
+help them out later with the sanity checking. i think that's useful to
+know, but there's more.
+
+  over in meta/conf/bitbake.conf, there is what i assume is the
+default list of ASSUME_PROVIDED commands:
+
+ASSUME_PROVIDED = "\
+    bzip2-native \
+    chrpath-native \
+    git-native \
+    grep-native \
+    diffstat-native \
+    patch-native \
+    perl-native-runtime \
+    python-native-runtime \
+    tar-native \
+    virtual/libintl-native \
+    texinfo-native\
+    "
+# gzip-native should be listed above?
+
+  so the first question is, given that the QS guide suggests gzip is a
+*required* package (see fedora and centos package lists), why *isn't*
+gzip part of ASSUME_PROVIDED above? it seems that the QS packages list
+and the above should match, no?
+
+  finally, over in meta/classes/sanity.bbclass, there's:
+
+#
+# Sanity check the users setup for common misconfigurations
+#
+
+SANITY_REQUIRED_UTILITIES ?= "patch diffstat makeinfo git bzip2 tar \
+    gzip gawk chrpath wget cpio perl"
+
+  silly question -- is this list supposed to represent the utilities
+that must be on the machine *before* any OE processing is done?
+because, again , there seems to be an inconsistency in that this seems
+to require gzip, while ASSUME_PROVIDED doesn't mention it. it also
+doesn't mention unzip, which the QS packages lists refer to as
+required.
+
+  none of this is a big deal, of course, but it would be nice if it
+were consistent.
+
+rday
+
+-- 
+
+========================================================================
+Robert P. J. Day                                 Ottawa, Ontario, CANADA
+                        http://crashcourse.ca
+
+Twitter:                                       http://twitter.com/rpjday
+LinkedIn:                               http://ca.linkedin.com/in/rpjday
+========================================================================
 
