@@ -1,35 +1,57 @@
-Return-Path: <bds@bsmucker.eu.org>
+Return-Path: <insop.song@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 58274E00B5D; Tue, 17 Jun 2014 13:12:11 -0700 (PDT)
+	id 3683FE00B66; Tue, 17 Jun 2014 13:18:09 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-0.7 required=5.0 tests=RCVD_IN_DNSWL_LOW,
-	SPF_HELO_PASS autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-0.8 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+	DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
 	http://www.dnswl.org/, low *      trust
-	*      [216.86.168.183 listed in list.dnswl.org]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
-Received: from mxout-08.mxes.net (mxout-08.mxes.net [216.86.168.183])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F37D6E00B0B
-	for <yocto@yoctoproject.org>; Tue, 17 Jun 2014 13:11:59 -0700 (PDT)
-Received: from [192.168.0.11] (unknown [50.52.53.248])
-	(using TLSv1 with cipher DHE-RSA-AES128-SHA (128/128 bits))
-	(No client certificate requested)
-	by smtp.mxes.net (Postfix) with ESMTPSA id 5ADA050A73;
-	Tue, 17 Jun 2014 16:11:58 -0400 (EDT)
-Message-ID: <53A0A107.4000300@bsmucker.eu.org>
-Date: Tue, 17 Jun 2014 13:11:51 -0700
-From: Brian Smucker <bds@bsmucker.eu.org>
-User-Agent: Mozilla/5.0 (Windows NT 5.1;
-	rv:24.0) Gecko/20100101 Thunderbird/24.6.0
+	*      [74.125.82.170 listed in list.dnswl.org]
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (insop.song[at]gmail.com)
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-we0-f170.google.com (mail-we0-f170.google.com
+	[74.125.82.170])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B0F3AE00B0B
+	for <yocto@yoctoproject.org>; Tue, 17 Jun 2014 13:18:06 -0700 (PDT)
+Received: by mail-we0-f170.google.com with SMTP id w61so7915185wes.15
+	for <yocto@yoctoproject.org>; Tue, 17 Jun 2014 13:18:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-type;
+	bh=o+2oP/6dzQW4zk6fV12OTWGyli/tjYBQNSoKUXyVzGI=;
+	b=sCQjTfhmOwDZy14/qpxXYAZ4uGHEm2T3xv856eIpKPGXt2WHKEtmLXNPVMMYLmNzJ/
+	dOHjXv46Y12b1h5PPCBhkuh8S3rYNgbqaJd/HlcACfCs1UtTqdinM2tEdz47R9Tk0daJ
+	djQX6z7u3SF9XOAVq57ey4nWSBppVdoMmXN+ApYTI3XMVRN7VzuuybmV/ZZbDMDu+J4Q
+	ti5oCiGsJnaqcvH8cjCzKxd3RxVV0/JR7WpKyO3hALU/NvJcssgwK0ZTdidubVykJCDd
+	3ANImv4EtBZHtR32awufBJpqAogfYQpZsVgMwjYkjf0Fmxs/nCWpeXtOLeed9OtSCPA9
+	TA5w==
+X-Received: by 10.180.90.145 with SMTP id bw17mr39847921wib.43.1403036286017; 
+	Tue, 17 Jun 2014 13:18:06 -0700 (PDT)
 MIME-Version: 1.0
-To: Andrea Adami <andrea.adami@gmail.com>
-References: <CAF_dkJB6mJjhtZHZmo6bX+q611zSyij4OvXg+Yxv5At-RpWdOA@mail.gmail.com>	<2289204.UWFViZiKz6@peggleto-mobl5.ger.corp.intel.com>	<53A061C1.9040906@bsmucker.eu.org>
-	<CAAQYJAv_U5a=umUMs1cTQudDktxYdGKco92WcgxrH-r+bAfBoA@mail.gmail.com>
-In-Reply-To: <CAAQYJAv_U5a=umUMs1cTQudDktxYdGKco92WcgxrH-r+bAfBoA@mail.gmail.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: How to copy recipe and have different target names
+Received: by 10.194.44.136 with HTTP; Tue, 17 Jun 2014 13:17:45 -0700 (PDT)
+In-Reply-To: <53973D6F.70201@dynamicdevices.co.uk>
+References: <1402354370.9385.9.camel@marlon-Z68X-UD3H-B3>
+	<20140610103736.GC24880@gmail.com>
+	<CAALGJZaBFLsX3Knt35fGkvxh0uTz0-TQMZnveQh7paPZ9h438g@mail.gmail.com>
+	<539718B9.9030604@mindchasers.com>
+	<CAP71Wjy3uBiWuzPgaT7pfAd=rW2qh0R44srPY41GAPG9CMMD2Q@mail.gmail.com>
+	<1402419009.2402.4.camel@marlon-Z68X-UD3H-B3>
+	<53973D6F.70201@dynamicdevices.co.uk>
+From: Insop Song <insop.song@gmail.com>
+Date: Tue, 17 Jun 2014 13:17:45 -0700
+Message-ID: <CACzyEJ9Q+7poUmckJwREMzBWmtBefOvPs2m-3dOMXBon118GgA@mail.gmail.com>
+To: Alex J Lennon <ajlennon@dynamicdevices.co.uk>
+Cc: Marlon Smith <marlon.smith10@gmail.com>,
+	Yocto Project Discussion <yocto@yoctoproject.org>
+Subject: Re: Why use Yocto?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,69 +63,63 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 17 Jun 2014 20:12:11 -0000
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Tue, 17 Jun 2014 20:18:09 -0000
+Content-Type: text/plain; charset=UTF-8
 
-Hi Andrea and all,
+Just add my few cents of using Yocto.
 
-So I am using your suggestion to make another variant of busybox: 
-busybox-static, and I add the static.bblcass file.
+Since yocto is tailored towards embedded system, normally it includes
+light weight (strip-down version/flavor) software and servers, such as
+sysklogd instead of syslogd and busybox cron instead of crond.
 
-So when I try to do bitbake busybox-static, it ends up unpacking to 
-busybox-static-1.20.2-r2/busybox-1.20.2 (which does not correspond to 
-the S variable).
-And it errors out when it attempts to patch to 
-busybox-static-1.20.2-r2/busybox-static-1.20.2 (the S variable path).
+Which is not a bad thing at all, as this make sure your system is less bloated.
 
-What am I missing?
+However, just be aware that when you want to make some changes to
+these server configurations, you need more debugging time since some
+of this strip-down servers does not behave as other full blown
+servers. Also this means that google search wont' give you good
+answers either since most of the answers to the existing distribution
+(ubuntu, debian,,,) targeted.
 
-Thanks,
+On the other hand, this mailing list is very active, and you will get
+answers from other developers quickly.
 
-Brian
+ISS
 
 
-
-On 6/17/2014 9:31 AM, Andrea Adami wrote:
-> On Tue, Jun 17, 2014 at 5:41 PM, Brian Smucker <bds@bsmucker.eu.org> wrote:
->> Hello,
->>
->> I would like to have yocto generate two copies of busybox, one
->> statically-linked and one dynamically linked. So I try to make a copy of the
->> busybox recipe and give it a new name like busybox-s_xxxxx.bb
->>
->> But my knowlege of yocto comes up short and I get lots of errors.
->>
->> Is there a way to do this cleanly?  Or should I be trying to do a different
->> approach?
->>
->> Thanks,
->>
->> Brian
->> --
->> _______________________________________________
->> yocto mailing list
->> yocto@yoctoproject.org
->> https://lists.yoctoproject.org/listinfo/yocto
-> Brian,
+On Tue, Jun 10, 2014 at 10:16 AM, Alex J Lennon
+<ajlennon@dynamicdevices.co.uk> wrote:
 >
-> I don't think there is an 'official' way to do that.
-> For a similar purpose (buidling static binaries against klibc) I have
-> developed two solutions, both using a custom class:
+> On 10/06/2014 17:50, Marlon Smith wrote:
 >
-> 1) for easy-to-adapt recipes, BBCLASSEXTEND +  the custom class
-> http://cgit.openembedded.org/meta-openembedded/tree/meta-initramfs/recipes-bsp/kexecboot/kexecboot_0.6.bb
+> Wow, thanks everyone for the excellent replies.  I am a developer and not
+> much of a legal guy, so pointing out the licensing issues with Ubuntu was
+> especially helpful.
 >
-> 2) for the stubborn cases, create a copy of the recipe and may need to
-> adjust some vars (S, FILESPATH or better FILESEXTRAPATHS, ...)
-> see  i.e.
-> http://cgit.openembedded.org/meta-openembedded/tree/meta-initramfs/recipes-devtools/mtd/ubi-utils-klibc_1.5.0.bb
-> http://cgit.openembedded.org/meta-openembedded/tree/meta-initramfs/recipes-kernel/kexec/kexec-tools-klibc_2.0.2.bb
+> It sounds like we are going to choose Yocto for our product.
 >
-> I guess busybox belongs to the heavy ones...
 >
-> Cheers
+> Further to the excellent points made by others, presumably Freescale are
+> providing commercial support on Yocto for i.MX6 now too.
 >
-> Andrea
-
+> I know they have a developer day coming up in the UK shortly at which Yocto
+> is on the agenda.
+>
+> I also suspect they will have some "ready to run" binaries somewhere for
+> download, although I can't spot them in the walled garden.
+>
+> They usually do, and that might even be enough for you, depending on your
+> needs, and how custom the board variant is...
+>
+> Regards,
+>
+> Alex
+>
+>
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
 
