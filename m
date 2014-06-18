@@ -1,54 +1,27 @@
-Return-Path: <andrea.adami@gmail.com>
+Return-Path: <ruud.den.bekker@cordis.nl>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id B7973E00B66; Wed, 18 Jun 2014 01:25:40 -0700 (PDT)
+	id 01858E00B67; Wed, 18 Jun 2014 01:39:23 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-0.8 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-	DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (andrea.adami[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.217.169 listed in list.dnswl.org]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-lb0-f169.google.com (mail-lb0-f169.google.com
-	[209.85.217.169])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3C947E00AFD
-	for <yocto@yoctoproject.org>; Wed, 18 Jun 2014 01:25:25 -0700 (PDT)
-Received: by mail-lb0-f169.google.com with SMTP id l4so292011lbv.14
-	for <yocto@yoctoproject.org>; Wed, 18 Jun 2014 01:25:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type;
-	bh=I9tD7BCNNhkCybjNLEb7O7QRmG/NMVHe/VgCPt1G80E=;
-	b=kydtQzJK9LuobGKriXaI/PrmHUzolERM54zf02hupXJdNaYuP75wf0xOAMqymPthNm
-	EuOIiEwV+Fy+L14/GjqiJ3F4bpF2gw+4GWTtPYKQOnFYz+MgNa8DchHdWXiLvfNOKL7d
-	35PIVI23IfI7zkRE/7PWIfwXB6+gW0LMtFCKgJN7kQhgMj3m5eLyGU5zy/dqO8iT2aYL
-	BT2PPPh6o7B7eioVQY7wbnzRLXmYilmnwS6YndNU8lnMVYWB+ptK6zqCwFqhfP0fGAS0
-	LjH0c6BBR3CcPaxy6tzXNVwbv4wHBR6YQoewrYtMpRmOc+2WIvlgavj2tBtKY3hE0kuE
-	SbIQ==
+X-Spam-Status: No, score=0.0 required=5.0 tests=HTML_MESSAGE,SPF_HELO_PASS
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+Received: from cordis.nl (smtp.cordis.nl [212.61.137.161])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 63677E00AFD
+	for <yocto@yoctoproject.org>; Wed, 18 Jun 2014 01:39:18 -0700 (PDT)
 MIME-Version: 1.0
-X-Received: by 10.152.36.38 with SMTP id n6mr412673laj.0.1403079924035; Wed,
-	18 Jun 2014 01:25:24 -0700 (PDT)
-Received: by 10.112.16.227 with HTTP; Wed, 18 Jun 2014 01:25:23 -0700 (PDT)
-In-Reply-To: <53A0A107.4000300@bsmucker.eu.org>
-References: <CAF_dkJB6mJjhtZHZmo6bX+q611zSyij4OvXg+Yxv5At-RpWdOA@mail.gmail.com>
-	<2289204.UWFViZiKz6@peggleto-mobl5.ger.corp.intel.com>
-	<53A061C1.9040906@bsmucker.eu.org>
-	<CAAQYJAv_U5a=umUMs1cTQudDktxYdGKco92WcgxrH-r+bAfBoA@mail.gmail.com>
-	<53A0A107.4000300@bsmucker.eu.org>
-Date: Wed, 18 Jun 2014 10:25:23 +0200
-Message-ID: <CAAQYJAuKCoAEWSohRVixnXyakb=JBE5Fks5Vi-+7jvELkoLsCQ@mail.gmail.com>
-From: Andrea Adami <andrea.adami@gmail.com>
-To: Brian Smucker <bds@bsmucker.eu.org>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: How to copy recipe and have different target names
+x-mimeole: Produced By Microsoft Exchange V6.5
+Date: Wed, 18 Jun 2014 10:38:14 +0200
+Message-ID: <21598C768CAB7B46B75C18783A59ACEE271D1A@cordissvr01.Cordis.local>
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+Thread-Topic: build error
+Thread-Index: Ac+K0KUNwtVJxB8MTSW+J4ngrgU49g==
+From: "Ruud den Bekker" <ruud.den.bekker@cordis.nl>
+To: <yocto@yoctoproject.org>
+Subject: build error
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -60,106 +33,180 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 18 Jun 2014 08:25:40 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Wed, 18 Jun 2014 08:39:24 -0000
+Content-class: urn:content-classes:message
+Content-Type: multipart/alternative;
+	boundary="----_=_NextPart_001_01CF8AD0.A55B719C"
 
-On Tue, Jun 17, 2014 at 10:11 PM, Brian Smucker <bds@bsmucker.eu.org> wrote:
-> Hi Andrea and all,
->
-> So I am using your suggestion to make another variant of busybox:
-> busybox-static, and I add the static.bblcass file.
->
-> So when I try to do bitbake busybox-static, it ends up unpacking to
-> busybox-static-1.20.2-r2/busybox-1.20.2 (which does not correspond to the S
-> variable).
-> And it errors out when it attempts to patch to
-> busybox-static-1.20.2-r2/busybox-static-1.20.2 (the S variable path).
->
-> What am I missing?
->
+------_=_NextPart_001_01CF8AD0.A55B719C
+Content-Type: text/plain;
+	charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-Hi,
-sorry but I couldn't do a build-test yet so take my observations with
-a grain of salt.
-As I prevously hinted there are cases like this requiring some vars
-adjustements because you have changed the BPN and PN (base/package
-name).
+L.S.,
 
-In your -static recipe you could try to redefine
+=20
 
-S = "${WORKDIR}/busybox-${PV}
+I followed the directions on
+http://www.codeproject.com/Articles/774826/Adding-rd-party-components-to
+-Yocto-OpenEmbedded-L
 
-Neverthless, busybox recipe is a special one because it is used
-instead of a lot of single utilities.
-This implies there are special cares to take to avoid conflicts with
-busybox when a recipe is providing the same stuff.
+to add an example project to my yocto-poky build tree.
 
-AFAIS packaging should work because the recipe is using ${PN} so
-you'll get distinct packages but check the manual about U_A (update
-alternatives) and provider conflicts.
+=20
 
-You have chosen one of the most complicate recipes to play with ;)
+a strange thing happens:
 
-Cheers
+when using bitbake bbexample-lt  for "qemuarm" or "edgerouter", it
+builds ok.
 
-Andrea
->
-> Thanks,
->
-> Brian
->
->
->
-> On 6/17/2014 9:31 AM, Andrea Adami wrote:
->>
->> On Tue, Jun 17, 2014 at 5:41 PM, Brian Smucker <bds@bsmucker.eu.org>
->> wrote:
->>>
->>> Hello,
->>>
->>> I would like to have yocto generate two copies of busybox, one
->>> statically-linked and one dynamically linked. So I try to make a copy of
->>> the
->>> busybox recipe and give it a new name like busybox-s_xxxxx.bb
->>>
->>> But my knowlege of yocto comes up short and I get lots of errors.
->>>
->>> Is there a way to do this cleanly?  Or should I be trying to do a
->>> different
->>> approach?
->>>
->>> Thanks,
->>>
->>> Brian
->>> --
->>> _______________________________________________
->>> yocto mailing list
->>> yocto@yoctoproject.org
->>> https://lists.yoctoproject.org/listinfo/yocto
->>
->> Brian,
->>
->> I don't think there is an 'official' way to do that.
->> For a similar purpose (buidling static binaries against klibc) I have
->> developed two solutions, both using a custom class:
->>
->> 1) for easy-to-adapt recipes, BBCLASSEXTEND +  the custom class
->>
->> http://cgit.openembedded.org/meta-openembedded/tree/meta-initramfs/recipes-bsp/kexecboot/kexecboot_0.6.bb
->>
->> 2) for the stubborn cases, create a copy of the recipe and may need to
->> adjust some vars (S, FILESPATH or better FILESEXTRAPATHS, ...)
->> see  i.e.
->>
->> http://cgit.openembedded.org/meta-openembedded/tree/meta-initramfs/recipes-devtools/mtd/ubi-utils-klibc_1.5.0.bb
->>
->> http://cgit.openembedded.org/meta-openembedded/tree/meta-initramfs/recipes-kernel/kexec/kexec-tools-klibc_2.0.2.bb
->>
->> I guess busybox belongs to the heavy ones...
->>
->> Cheers
->>
->> Andrea
->
->
+however,if I select "beaglebone" for "MACHINE", I get a configure error
+in my log file:
 
+=20
+
+"configure:3024: checking for C compiler version
+
+configure:3033: arm-poky-linux-gnueabi-gcc  -march=3Darmv7-a
+-mthumb-interwork -mfloat-abi=3Dhard -mfpu=3Dneon -mtune=3Dcortex-a8
+--sysroot=3D/home/ruud/poky-daisy-11.0.0/build/tmp/sysroots/beaglebone
+--version >&5
+
+/home/ruud/poky-daisy-11.0.0/build/tmp/work/cortexa8hf-vfp-neon-poky-lin
+ux-gnueabi/bbexample-lt/1.0-r0/bbexample-1.0/configure: line 3035:
+arm-poky-linux-gnueabi-gcc: command not found"
+
+=20
+
+However, the building e.g. a "core-image-minimal" or my added
+"core-image-mono" for a "beaglebone" builds fine and I can use the RFS
+on a "real" hardware board.
+
+=20
+
+What can be the cause of this?
+
+=20
+
+Best regards,
+
+=20
+
+Ruud
+
+=20
+
+Ruud den Bekker
+
+Cordis Automation B.V.
+
+High Tech Campus 9
+
+5656 AE Eindhoven
+
+=20
+
+
+------_=_NextPart_001_01CF8AD0.A55B719C
+Content-Type: text/html;
+	charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
+xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
+xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
+xmlns=3D"http://www.w3.org/TR/REC-html40"><head><meta =
+http-equiv=3DContent-Type content=3D"text/html; =
+charset=3Dus-ascii"><meta name=3DGenerator content=3D"Microsoft Word 12 =
+(filtered medium)"><style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri","sans-serif";
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]--></head><body lang=3DNL link=3Dblue =
+vlink=3Dpurple><div class=3DWordSection1><p class=3DMsoNormal><span =
+lang=3DEN-US>L.S.,<o:p></o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US>I followed the directions on <a =
+href=3D"http://www.codeproject.com/Articles/774826/Adding-rd-party-compon=
+ents-to-Yocto-OpenEmbedded-L">http://www.codeproject.com/Articles/774826/=
+Adding-rd-party-components-to-Yocto-OpenEmbedded-L</a><o:p></o:p></span><=
+/p><p class=3DMsoNormal><span lang=3DEN-US>to add an example project to =
+my yocto-poky build tree.<o:p></o:p></span></p><p =
+class=3DMsoNormal><span lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p =
+class=3DMsoNormal><span lang=3DEN-US>a strange thing =
+happens:<o:p></o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US>when using bitbake bbexample-lt&nbsp; for =
+&#8220;qemuarm&#8221; or &#8220;edgerouter&#8221;, it builds =
+ok.<o:p></o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US>however,if I select &#8220;beaglebone&#8221; for =
+&#8220;MACHINE&#8221;, I get a configure error in my log =
+file:<o:p></o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US>&#8220;configure:3024: checking for C compiler =
+version<o:p></o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US>configure:3033: arm-poky-linux-gnueabi-gcc&nbsp; =
+-march=3Darmv7-a -mthumb-interwork -mfloat-abi=3Dhard -mfpu=3Dneon =
+-mtune=3Dcortex-a8 =
+--sysroot=3D/home/ruud/poky-daisy-11.0.0/build/tmp/sysroots/beaglebone =
+--version &gt;&amp;5<o:p></o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US>/home/ruud/poky-daisy-11.0.0/build/tmp/work/cortexa8hf-vfp-n=
+eon-poky-linux-gnueabi/bbexample-lt/1.0-r0/bbexample-1.0/configure: line =
+3035: arm-poky-linux-gnueabi-gcc: command not =
+found&#8221;<o:p></o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US>However, the building e.g. a =
+&#8220;core-image-minimal&#8221; or my added =
+&#8220;core-image-mono&#8221; for a &#8220;beaglebone&#8221; builds fine =
+and I can use the RFS on a &#8220;real&#8221; hardware =
+board.<o:p></o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US>What can be the cause of this?<o:p></o:p></span></p><p =
+class=3DMsoNormal><span lang=3DEN-US><o:p>&nbsp;</o:p></span></p><p =
+class=3DMsoNormal>Best regards,<o:p></o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p =
+class=3DMsoNormal>Ruud<o:p></o:p></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p><p class=3DMsoNormal>Ruud den =
+Bekker<o:p></o:p></p><p class=3DMsoNormal><span lang=3DEN-US>Cordis =
+Automation B.V.<o:p></o:p></span></p><p class=3DMsoNormal><span =
+lang=3DEN-US>High Tech Campus 9<o:p></o:p></span></p><p =
+class=3DMsoNormal>5656 AE Eindhoven<span =
+lang=3DEN-US><o:p></o:p></span></p><p =
+class=3DMsoNormal><o:p>&nbsp;</o:p></p></div></body></html>
+
+------_=_NextPart_001_01CF8AD0.A55B719C--
