@@ -1,41 +1,33 @@
-Return-Path: <rpjday@crashcourse.ca>
+Return-Path: <CWernham@Airspan.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 7FF06E00B66; Wed, 18 Jun 2014 04:53:36 -0700 (PDT)
+	id 9F802E00B67; Wed, 18 Jun 2014 05:31:36 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=0.0 required=5.0 tests=none autolearn=ham
+X-Spam-Status: No, score=0.0 required=5.0 tests=HTML_MESSAGE autolearn=ham
 	version=3.3.1
-X-Spam-HAM-Report: 
-Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
-	[64.235.106.9])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 35A0FE00AFD
-	for <yocto@yoctoproject.org>; Wed, 18 Jun 2014 04:53:32 -0700 (PDT)
-Received: from [69.196.158.250] (port=37442 helo=crashcourse.ca)
-	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES128-SHA:128)
-	(Exim 4.80) (envelope-from <rpjday@crashcourse.ca>)
-	id 1WxEQl-0003OZ-88; Wed, 18 Jun 2014 07:53:31 -0400
-Date: Wed, 18 Jun 2014 07:49:49 -0400 (EDT)
-From: "Robert P. J. Day" <rpjday@crashcourse.ca>
-X-X-Sender: rpjday@localhost
-To: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
-In-Reply-To: <41DEA4B02DBDEF40A0F3B6D0DDB1237983FA8BC2@ORSMSX101.amr.corp.intel.com>
-Message-ID: <alpine.LFD.2.11.1406180748290.6593@localhost>
-References: <alpine.LFD.2.11.1406170847080.31619@localhost>
-	<41DEA4B02DBDEF40A0F3B6D0DDB1237983FA8BC2@ORSMSX101.amr.corp.intel.com>
-User-Agent: Alpine 2.11 (LFD 23 2013-08-11)
+X-Spam-HAM-Report: *  0.0 HTML_MESSAGE BODY: HTML included in message
+X-Greylist: delayed 70 seconds by postgrey-1.32 at yocto-www;
+	Wed, 18 Jun 2014 05:31:33 PDT
+Received: from mail.airspan.com (mail.airspan.com [188.39.32.15])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D3B27E00AFD
+	for <yocto@yoctoproject.org>; Wed, 18 Jun 2014 05:31:33 -0700 (PDT)
+Received: from FS7.airspan.com ([fe80::b06e:8f73:fac6:89c]) by FS7.airspan.com
+	([fe80::b06e:8f73:fac6:89c%12]) with mapi id 14.03.0181.006;
+	Wed, 18 Jun 2014 13:30:21 +0100
+From: Colin Wernham <CWernham@Airspan.com>
+To: "'yocto@yoctoproject.org'" <yocto@yoctoproject.org>
+Thread-Topic: ExpansionError during parsing busybox 1.21.1 name 'find_cfgs'
+	is not defined
+Thread-Index: Ac+K8FJb0KD23oS6RPmnrxiGsZwEMg==
+Date: Wed, 18 Jun 2014 12:30:20 +0000
+Message-ID: <40141B299C8BE144ADF87C350BD9A61604336F@FS7.airspan.com>
+Accept-Language: en-GB, en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.2.35.30]
 MIME-Version: 1.0
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - crashcourse.ca
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-Cc: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: any plans on more carefully distinguishing docbook markup in yocto docs?
+Subject: ExpansionError during parsing busybox 1.21.1 name 'find_cfgs' is not defined
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -47,52 +39,135 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 18 Jun 2014 11:53:36 -0000
-Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-List-Received-Date: Wed, 18 Jun 2014 12:31:36 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_40141B299C8BE144ADF87C350BD9A61604336FFS7airspancom_"
 
-On Tue, 17 Jun 2014, Rifenbark, Scott M wrote:
+--_000_40141B299C8BE144ADF87C350BD9A61604336FFS7airspancom_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-> I could look at this... low on the priority list right now though
-> but good point.
+I'm getting the following intermittent error when I run a bitbake recipe to=
+ build an entire filesystem (after removing all temporary files, sstate cac=
+he etc):
+
+ERROR: ExpansionError during parsing /home/cwernham/git/TiTarget/sources/oe=
+-core/meta/recipes-core/busybox/busybox_1.21.1.bb: Failure expanding variab=
+le do_configure: ExpansionError: Failure expanding variable do_configure, e=
+xpression was  do_prepare_config
+
+   merge_config.sh -m .config ${@" ".join(find_cfgs(d))}
+
+   cml1_do_configure
+
+which triggered exception NameError: name 'find_cfgs' is not defined
+
+ERROR: Command execution failed: Exited with 1
+
+Running the same command again (after removing all temporary files, sstate =
+cache etc) usually works ok, so why this problem?
+Is it because  of a script race condition (I have BB_NUMBER_THREADS =3D 4),=
+ or slow internet server connection? I have tarballs of all packages needed=
+.
+
+--_000_40141B299C8BE144ADF87C350BD9A61604336FFS7airspancom_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
 >
-> Thanks,
-> Scott
->
-> >-----Original Message-----
-> >From: yocto-bounces@yoctoproject.org [mailto:yocto-
-> >bounces@yoctoproject.org] On Behalf Of Robert P. J. Day
-> >Sent: Tuesday, June 17, 2014 5:51 AM
-> >To: Yocto discussion list
-> >Subject: [yocto] any plans on more carefully distinguishing docbook markup in
-> >yocto docs?
-> >
-> >
-> >  i'm sure i asked this once before, but is there any long-term plan for more
-> >carefully marking up the yocto docs semantically? as in, most things that
-> >represent filenames or variables or commands or code are simply tagged as
-> ><filename>, even when this is not really appropriate.
-> >
-> >  to be semantically precise, one should be more carefully selecting among
-> >tags such as <filename>, <varname>, <command>, <code> and so on.
-> >for now, i suspect the rendering toolchain wouldn't change what's eventually
-> >produced, but in the future, i think more careful markup would allow the
-> >generation of much prettier docs.
-> >
-> >  thoughts?
+<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";
+	mso-fareast-language:EN-US;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:#954F72;
+	text-decoration:underline;}
+p
+	{mso-style-priority:99;
+	mso-margin-top-alt:auto;
+	margin-right:0cm;
+	mso-margin-bottom-alt:auto;
+	margin-left:0cm;
+	font-size:12.0pt;
+	font-family:"Times New Roman","serif";}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri","sans-serif";
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri","sans-serif";
+	mso-fareast-language:EN-US;}
+@page WordSection1
+	{size:612.0pt 792.0pt;
+	margin:72.0pt 72.0pt 72.0pt 72.0pt;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-GB" link=3D"#0563C1" vlink=3D"#954F72">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal">I&#8217;m getting the following intermittent error w=
+hen I run a bitbake recipe to build an entire filesystem (after removing al=
+l temporary files, sstate cache etc):<o:p></o:p></p>
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><span style=3D"font-size:11.5=
+pt;font-family:&quot;Courier New&quot;;color:black">ERROR: ExpansionError d=
+uring parsing /home/cwernham/git/TiTarget/sources/oe-core/meta/recipes-core=
+/busybox/busybox_1.21.1.bb: Failure expanding
+ variable do_configure: ExpansionError: Failure expanding variable do_confi=
+gure, expression was &nbsp;do_prepare_config</span><o:p></o:p></p>
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><span style=3D"font-size:11.5=
+pt;font-family:&quot;Courier New&quot;;color:black">&nbsp;&nbsp;&nbsp;merge=
+_config.sh -m .config ${@&quot; &quot;.join(find_cfgs(d))}</span><o:p></o:p=
+></p>
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><span style=3D"font-size:11.5=
+pt;font-family:&quot;Courier New&quot;;color:black">&nbsp;&nbsp;&nbsp;cml1_=
+do_configure</span><o:p></o:p></p>
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><span style=3D"font-size:11.5=
+pt;font-family:&quot;Courier New&quot;;color:black">which triggered excepti=
+on NameError: name 'find_cfgs' is not defined</span><o:p></o:p></p>
+<p style=3D"margin:0cm;margin-bottom:.0001pt"><span style=3D"font-size:11.5=
+pt;font-family:&quot;Courier New&quot;;color:black">ERROR: Command executio=
+n failed: Exited with 1</span><o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Running the same command again (after removing all t=
+emporary files, sstate cache etc) usually works ok, so why this problem?<o:=
+p></o:p></p>
+<p class=3D"MsoNormal">Is it because &nbsp;of a script race condition (I ha=
+ve BB_NUMBER_THREADS =3D 4), or slow internet server connection? I have tar=
+balls of all packages needed.<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p></o:p></p>
+</div>
+</body>
+</html>
 
-  oh, i totally agree that it's low priority -- it would make sense to
-decide on proper semantic markup and do one massive change, say, after
-the next major release. i'd be willing to help with that.
-
-rday
-
--- 
-
-========================================================================
-Robert P. J. Day                                 Ottawa, Ontario, CANADA
-                        http://crashcourse.ca
-
-Twitter:                                       http://twitter.com/rpjday
-LinkedIn:                               http://ca.linkedin.com/in/rpjday
-========================================================================
-
+--_000_40141B299C8BE144ADF87C350BD9A61604336FFS7airspancom_--
