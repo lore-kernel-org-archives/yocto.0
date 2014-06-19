@@ -1,27 +1,27 @@
 Return-Path: <Pavel_Shumeika@epam.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id DC44FE00BF4; Thu, 19 Jun 2014 02:13:07 -0700 (PDT)
+	id A24D8E00BF6; Thu, 19 Jun 2014 02:43:34 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=0.0 required=5.0 tests=HTML_MESSAGE autolearn=ham
 	version=3.3.1
 X-Spam-HAM-Report: *  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from EVBYMINSA0101.epam.com (evbyminsa0101.epam.com [217.21.63.36])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C3E30E00BE9
-	for <yocto@yoctoproject.org>; Thu, 19 Jun 2014 02:13:01 -0700 (PDT)
+Received: from EVBYMINSA0102.epam.com (evbyminsa0102.epam.com [217.21.63.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1B1CBE00BE9
+	for <yocto@yoctoproject.org>; Thu, 19 Jun 2014 02:43:21 -0700 (PDT)
 Received: from EPBYMINSA0001.epam.com (10.6.110.2) by EPBYMINSA0001.epam.com
 	(10.6.110.2) with Microsoft SMTP Server (TLS) id 15.0.913.22;
-	Thu, 19 Jun 2014 12:12:28 +0300
+	Thu, 19 Jun 2014 12:43:06 +0300
 Received: from EPBYMINSA0001.epam.com ([::1]) by EPBYMINSA0001.epam.com
-	([::1]) with mapi id 15.00.0913.011; Thu, 19 Jun 2014 12:12:28 +0300
+	([::1]) with mapi id 15.00.0913.011; Thu, 19 Jun 2014 12:43:05 +0300
 From: Pavel Shumeika <Pavel_Shumeika@epam.com>
 To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: [yocto][meta-oracle-java][PATCH] java: version update and Java
-	for ARM
-Thread-Index: AQHPi56X3zxcSoFDd0Wjcw2p6/AFUg==
-Date: Thu, 19 Jun 2014 09:12:28 +0000
-Message-ID: <f6e7d3ad24fe439b9ee9957066a4fe7b@EPBYMINSA0001.epam.com>
+Thread-Topic: [yocto] [meta-oracle-java][PATCH] java: version update and
+	Java for ARM
+Thread-Index: AQHPi6LeKLASnmP6nUeaeVhNovgmUg==
+Date: Thu, 19 Jun 2014 09:43:05 +0000
+Message-ID: <46d0f69a0a0a4a20bf1bf1864248bde2@EPBYMINSA0001.epam.com>
 References: <5323c871b64c43d0bb0ab349b96a6d70@EPBYMINSA0001.epam.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
@@ -40,17 +40,20 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 19 Jun 2014 09:13:07 -0000
+X-List-Received-Date: Thu, 19 Jun 2014 09:43:34 -0000
 Content-Language: en-US
 Content-Type: multipart/alternative;
-	boundary="_000_f6e7d3ad24fe439b9ee9957066a4fe7bEPBYMINSA0001epamcom_"
+	boundary="_000_46d0f69a0a0a4a20bf1bf1864248bde2EPBYMINSA0001epamcom_"
 
---_000_f6e7d3ad24fe439b9ee9957066a4fe7bEPBYMINSA0001epamcom_
+--_000_46d0f69a0a0a4a20bf1bf1864248bde2EPBYMINSA0001epamcom_
 Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
+
 Updated oracle jre and jdk recipes to the latest update 60.
+
 Also added recipe for ejre to support ARM.
+
 Signed-off-by: Pavel Shumeika <pavel_shumeika@epam.com><mailto:pavel_shumei=
 ka@epam.com>
 ---
@@ -282,7 +285,7 @@ ICENSEREADME.txt;md5=3Df3a388961d24b8b72d412a079a878cdb \
 
 
 
---_000_f6e7d3ad24fe439b9ee9957066a4fe7bEPBYMINSA0001epamcom_
+--_000_46d0f69a0a0a4a20bf1bf1864248bde2EPBYMINSA0001epamcom_
 Content-Type: text/html; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
@@ -292,13 +295,55 @@ Content-Transfer-Encoding: quoted-printable
 >
 </head>
 <body text=3D"#000000" bgcolor=3D"#FFFFFF">
-Updated oracle jre and jdk recipes to the latest update 60.<o:p></o:p>
+<br>
 <div class=3D"moz-forward-container">
 <div class=3D"moz-forward-container">
 <div class=3D"moz-forward-container">
+<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered=0A=
+            medium)">
+<style><!--=0A=
+/* Font Definitions */=0A=
+@font-face=0A=
+	{font-family:"Cambria Math";=0A=
+	panose-1:2 4 5 3 5 4 6 3 2 4;}=0A=
+@font-face=0A=
+	{font-family:Calibri;=0A=
+	panose-1:2 15 5 2 2 2 4 3 2 4;}=0A=
+/* Style Definitions */=0A=
+p.MsoNormal, li.MsoNormal, div.MsoNormal=0A=
+	{margin:0in;=0A=
+	margin-bottom:.0001pt;=0A=
+	font-size:11.0pt;=0A=
+	font-family:"Calibri","sans-serif";}=0A=
+a:link, span.MsoHyperlink=0A=
+	{mso-style-priority:99;=0A=
+	color:#0563C1;=0A=
+	text-decoration:underline;}=0A=
+a:visited, span.MsoHyperlinkFollowed=0A=
+	{mso-style-priority:99;=0A=
+	color:#954F72;=0A=
+	text-decoration:underline;}=0A=
+span.EmailStyle17=0A=
+	{mso-style-type:personal-compose;=0A=
+	font-family:"Calibri","sans-serif";=0A=
+	color:windowtext;}=0A=
+.MsoChpDefault=0A=
+	{mso-style-type:export-only;=0A=
+	font-family:"Calibri","sans-serif";}=0A=
+@page WordSection1=0A=
+	{size:8.5in 11.0in;=0A=
+	margin:56.7pt 42.5pt 56.7pt 85.05pt;}=0A=
+div.WordSection1=0A=
+	{page:WordSection1;}=0A=
+--></style><!--[if gte mso 9]><xml>=0A=
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />=0A=
+</xml><![endif]-->Updated
+ oracle jre and jdk recipes to the latest update 60.<o:p></o:p>
 <div class=3D"WordSection1">
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
 <p class=3D"MsoNormal">Also added recipe for ejre to support ARM.<o:p></o:p=
 ></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
 <p class=3D"MsoNormal">Signed-off-by: Pavel Shumeika <a moz-do-not-send=3D"=
 true" class=3D"moz-txt-link-rfc2396E" href=3D"mailto:pavel_shumeika@epam.co=
 m">
@@ -671,4 +716,4 @@ p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &quot;<o:p></o:p></p>
 </body>
 </html>
 
---_000_f6e7d3ad24fe439b9ee9957066a4fe7bEPBYMINSA0001epamcom_--
+--_000_46d0f69a0a0a4a20bf1bf1864248bde2EPBYMINSA0001epamcom_--
