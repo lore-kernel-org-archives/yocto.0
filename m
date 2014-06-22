@@ -1,42 +1,38 @@
-Return-Path: <ajlennon@dynamicdevices.co.uk>
+Return-Path: <rpjday@crashcourse.ca>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id EC35BE00444; Sun, 22 Jun 2014 01:54:38 -0700 (PDT)
+	id 55ECFE0044F; Sun, 22 Jun 2014 06:24:09 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=0.0 required=5.0 tests=KHOP_DYNAMIC autolearn=ham
+X-Spam-Status: No, score=0.0 required=5.0 tests=none autolearn=ham
 	version=3.3.1
-X-Spam-HAM-Report: *  0.0 KHOP_DYNAMIC Relay looks like a dynamic address
-Received: from www.dynamicdevices.co.uk (www.dynamicdevices.co.uk
-	[89.200.136.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 62619E00404
-	for <yocto@yoctoproject.org>; Sun, 22 Jun 2014 01:54:33 -0700 (PDT)
-Received: from localhost (localhost [127.0.0.1])
-	by www.dynamicdevices.co.uk (Postfix) with ESMTP id E83A927E032;
-	Sun, 22 Jun 2014 08:54:30 +0000 (UTC)
-X-Virus-Scanned: Debian amavisd-new at lennoab2.miniserver.com
-Received: from www.dynamicdevices.co.uk ([127.0.0.1])
-	by localhost (www.dynamicdevices.co.uk [127.0.0.1]) (amavisd-new,
-	port 10024)
-	with ESMTP id gPJdJ5M3knz9; Sun, 22 Jun 2014 08:54:29 +0000 (UTC)
-Received: from [127.0.0.1] (cpc32-live22-2-0-cust59.17-2.cable.virginm.net
-	[82.36.253.60])
-	(using TLSv1 with cipher ECDHE-RSA-AES128-SHA (128/128 bits))
-	(No client certificate requested)
-	by www.dynamicdevices.co.uk (Postfix) with ESMTPSA id 5D24F27E031;
-	Sun, 22 Jun 2014 08:54:29 +0000 (UTC)
-Message-ID: <53A699C1.4040405@dynamicdevices.co.uk>
-Date: Sun, 22 Jun 2014 09:54:25 +0100
-From: Alex J Lennon <ajlennon@dynamicdevices.co.uk>
-User-Agent: Mozilla/5.0 (Windows NT 6.3; WOW64;
-	rv:24.0) Gecko/20100101 Thunderbird/24.6.0
+X-Spam-HAM-Report: 
+Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
+	[64.235.106.9])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CE1F1E002A7
+	for <yocto@yoctoproject.org>; Sun, 22 Jun 2014 06:24:04 -0700 (PDT)
+Received: from [99.240.204.5] (port=60476 helo=crashcourse.ca)
+	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES128-SHA:128)
+	(Exim 4.80) (envelope-from <rpjday@crashcourse.ca>)
+	id 1WyhkX-0005AS-Ed
+	for yocto@yoctoproject.org; Sun, 22 Jun 2014 09:24:01 -0400
+Date: Sun, 22 Jun 2014 09:20:15 -0400 (EDT)
+From: "Robert P. J. Day" <rpjday@crashcourse.ca>
+X-X-Sender: rpjday@localhost
+To: Yocto discussion list <yocto@yoctoproject.org>
+Message-ID: <alpine.LFD.2.11.1406220901500.2299@localhost>
+User-Agent: Alpine 2.11 (LFD 23 2013-08-11)
 MIME-Version: 1.0
-To: Arun Kumar <arunkr.linux@gmail.com>, 
-	Yocto Mailing List <yocto@yoctoproject.org>
-References: <53A62476.2080008@gmail.com>
-In-Reply-To: <53A62476.2080008@gmail.com>
-X-Enigmail-Version: 1.6
-Subject: Re: Yocto Labs
+X-AntiAbuse: This header was added to track abuse,
+	please include it with any abuse report
+X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - crashcourse.ca
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+Subject: the apparent need for docbook <replaceable> tag in manual examples
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -48,33 +44,85 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 22 Jun 2014 08:54:39 -0000
-Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Sun, 22 Jun 2014 13:24:09 -0000
+Content-Type: TEXT/PLAIN; charset=US-ASCII
 
 
-On 22/06/2014 01:33, Arun Kumar wrote:
-> Hi,
->
->     I am new to Yocto project and have been following the
-> documentation for familiarity.
-> I am looking for hands on lab sessions for the yocto project.
-> I am unable to find the same on INTERNET, all i find is conference
-> videos and presentation.
->
-> If anyone can share links to online tutorial videos / pdfs it would be
-> really useful.
-> content like creating and deploying own recipe files, layers. The
-> Documentation describes these tasks at a very abstract level, an
-> little more advanced version of the same would be appreciated.
-> Thanks in advance...
+  something poor scott rifenbark can ponder in his copious free time
+:-), but i think some of the current examples in the various manuals
+need to be enhanced with the use of the docbook <replaceable> tag to
+emphasize that they are generic references meant to be replaced by
+specific values; otherwise, there's potential confusion.
 
-Might be of some use Arun,
+  as a concrete example, i remember *way* back when i was reading
+about conditional metadata in the bitbake user manual, particularly
+this verbatim example:
 
-https://wiki.yoctoproject.org/wiki/Building_your_own_recipes_from_first_principles
+  OVERRIDES = "architecture:os:machine"
+  TEST = "default"
+  TEST_os = "osspecific"
+  TEST_nooverride = "othercondvalue"
 
-Regards,
+  because all of the above is currently rendered in the same (courier)
+font in the generated manual, i mistakenly thought that all of the
+above was to somehow be typed exactly that way, and i was completely
+baffled as to what the qualifiers "_os" and "_nooverride" would do. it
+was only after searching for examples in the codebase that it dawned
+that those strings were meant to be replaced by actual examples of the
+current architecture, os, machine and so on.
 
-Alex
+  duh.
 
+  this can be made more obvious fairly simply with the following
+tweak of using the docbook <replaceable> tag:
+
+diff --git a/doc/bitbake-user-manual/bitbake-user-manual-metadata.xml
+b/doc/bitbake-user-manual/bitbake-user-manual-metadata.xml
+index a9f5072..f8be373 100644
+--- a/doc/bitbake-user-manual/bitbake-user-manual-metadata.xml
++++ b/doc/bitbake-user-manual/bitbake-user-manual-metadata.xml
+@@ -359,7 +359,7 @@
+                         version.
+                         Here is an example:
+                         <literallayout class='monospaced'>
+-     OVERRIDES = "architecture:os:machine"
++     OVERRIDES = "<replaceable>architecture</replaceable>:<replaceable>os</replaceable>:<replaceable>machine</replaceable>"
+      TEST = "default"
+      TEST_os = "osspecific"
+      TEST_nooverride = "othercondvalue"
+
+i've confirmed that that tag is processed properly within a
+<literallayout>, and renders in italicized courier font, which is the
+visual clue that it's not meant to be read literally.
+
+  oh, and one more related point ... i think it would be more useful
+to replace generic manual examples that use meaningless phrases such
+as "foo" and "bar" with specific examples yanked from the actual OE
+codebase.
+
+  as i said, it took me a few minutes to figure out what the
+conditional metadata example above was trying to demonstrate, but as
+soon as i saw a real example in the codebase, it was perfectly clear.
+to this end, i'm creating wiki pages that show stuff like that
+exactly, like this one for conditional overrides:
+
+http://www.crashcourse.ca/wiki/index.php/BitBake_Overrides
+
+so rather than try to explain the generic concept, i can just bring up
+the wiki page and say, "see? that's how it works." and everyone
+understands immediately.
+
+  anyway, just my $0.02. back to work ...
+
+rday
+
+-- 
+
+========================================================================
+Robert P. J. Day                                 Ottawa, Ontario, CANADA
+                        http://crashcourse.ca
+
+Twitter:                                       http://twitter.com/rpjday
+LinkedIn:                               http://ca.linkedin.com/in/rpjday
+========================================================================
 
