@@ -1,53 +1,42 @@
-Return-Path: <arunkr.linux@gmail.com>
+Return-Path: <ajlennon@dynamicdevices.co.uk>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id B2D43E0043A; Sat, 21 Jun 2014 17:34:08 -0700 (PDT)
+	id EC35BE00444; Sun, 22 Jun 2014 01:54:38 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-0.1 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-	DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (arunkr.linux[at]gmail.com)
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [209.85.192.170 listed in list.dnswl.org]
-Received: from mail-pd0-f170.google.com (mail-pd0-f170.google.com
-	[209.85.192.170])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6C55CE00404
-	for <yocto@yoctoproject.org>; Sat, 21 Jun 2014 17:34:03 -0700 (PDT)
-Received: by mail-pd0-f170.google.com with SMTP id z10so4273349pdj.1
-	for <yocto@yoctoproject.org>; Sat, 21 Jun 2014 17:34:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=message-id:date:from:user-agent:mime-version:to:subject
-	:content-type:content-transfer-encoding;
-	bh=bRVdE+LCcUzIgZYc243BaGuJetjePu39N+bmIR94+Bs=;
-	b=o3DfVxqUQKfFuZ3oBBlqZobzgMXpM2fyHAM+BVjmuGcL5cvA+EDior8zrO4PDiwtJE
-	2nZvbxiqSEdXIrWtc4op90fLxPBcQrUgqAHIhE3Qcwad+KAIDW3C6S5i049YxlK7KALP
-	JeIYz+921TlM8JnE71nfKsC5D7cJrzECBEX12RGojbEbmEXTrdtUaJTwz/jkY69iSH7y
-	YMAc+Et0QLSE1YVzZYRgT5iBO8GwbZ8E7B/McpDjqVVcT544yW3OnUWu0ypW7ZfVxsRJ
-	Erh7xUVhBX/ahrSn3a+xOG7CBUXfjtTM/at78g8BU63rKwP1ISBnTJr9b76ae9qvfTwe
-	KTJQ==
-X-Received: by 10.68.220.137 with SMTP id pw9mr16990849pbc.24.1403397243287;
-	Sat, 21 Jun 2014 17:34:03 -0700 (PDT)
-Received: from [192.168.0.103] ([123.201.32.72])
-	by mx.google.com with ESMTPSA id js3sm4173912pbb.50.2014.06.21.17.34.01
-	for <yocto@yoctoproject.org>
-	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
-	Sat, 21 Jun 2014 17:34:02 -0700 (PDT)
-Message-ID: <53A62476.2080008@gmail.com>
-Date: Sun, 22 Jun 2014 06:03:58 +0530
-From: Arun Kumar <arunkr.linux@gmail.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+X-Spam-Status: No, score=0.0 required=5.0 tests=KHOP_DYNAMIC autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: *  0.0 KHOP_DYNAMIC Relay looks like a dynamic address
+Received: from www.dynamicdevices.co.uk (www.dynamicdevices.co.uk
+	[89.200.136.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 62619E00404
+	for <yocto@yoctoproject.org>; Sun, 22 Jun 2014 01:54:33 -0700 (PDT)
+Received: from localhost (localhost [127.0.0.1])
+	by www.dynamicdevices.co.uk (Postfix) with ESMTP id E83A927E032;
+	Sun, 22 Jun 2014 08:54:30 +0000 (UTC)
+X-Virus-Scanned: Debian amavisd-new at lennoab2.miniserver.com
+Received: from www.dynamicdevices.co.uk ([127.0.0.1])
+	by localhost (www.dynamicdevices.co.uk [127.0.0.1]) (amavisd-new,
+	port 10024)
+	with ESMTP id gPJdJ5M3knz9; Sun, 22 Jun 2014 08:54:29 +0000 (UTC)
+Received: from [127.0.0.1] (cpc32-live22-2-0-cust59.17-2.cable.virginm.net
+	[82.36.253.60])
+	(using TLSv1 with cipher ECDHE-RSA-AES128-SHA (128/128 bits))
+	(No client certificate requested)
+	by www.dynamicdevices.co.uk (Postfix) with ESMTPSA id 5D24F27E031;
+	Sun, 22 Jun 2014 08:54:29 +0000 (UTC)
+Message-ID: <53A699C1.4040405@dynamicdevices.co.uk>
+Date: Sun, 22 Jun 2014 09:54:25 +0100
+From: Alex J Lennon <ajlennon@dynamicdevices.co.uk>
+User-Agent: Mozilla/5.0 (Windows NT 6.3; WOW64;
 	rv:24.0) Gecko/20100101 Thunderbird/24.6.0
 MIME-Version: 1.0
-To: Yocto Mailing List <yocto@yoctoproject.org>
-Subject: Yocto Labs
+To: Arun Kumar <arunkr.linux@gmail.com>, 
+	Yocto Mailing List <yocto@yoctoproject.org>
+References: <53A62476.2080008@gmail.com>
+In-Reply-To: <53A62476.2080008@gmail.com>
+X-Enigmail-Version: 1.6
+Subject: Re: Yocto Labs
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -59,22 +48,33 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 22 Jun 2014 00:34:08 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+X-List-Received-Date: Sun, 22 Jun 2014 08:54:39 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 Content-Transfer-Encoding: 7bit
 
-Hi,
 
-     I am new to Yocto project and have been following the documentation 
-for familiarity.
-I am looking for hands on lab sessions for the yocto project.
-I am unable to find the same on INTERNET, all i find is conference 
-videos and presentation.
+On 22/06/2014 01:33, Arun Kumar wrote:
+> Hi,
+>
+>     I am new to Yocto project and have been following the
+> documentation for familiarity.
+> I am looking for hands on lab sessions for the yocto project.
+> I am unable to find the same on INTERNET, all i find is conference
+> videos and presentation.
+>
+> If anyone can share links to online tutorial videos / pdfs it would be
+> really useful.
+> content like creating and deploying own recipe files, layers. The
+> Documentation describes these tasks at a very abstract level, an
+> little more advanced version of the same would be appreciated.
+> Thanks in advance...
 
-If anyone can share links to online tutorial videos / pdfs it would be 
-really useful.
-content like creating and deploying own recipe files, layers. The 
-Documentation describes these tasks at a very abstract level, an little 
-more advanced version of the same would be appreciated.
-Thanks in advance...
+Might be of some use Arun,
+
+https://wiki.yoctoproject.org/wiki/Building_your_own_recipes_from_first_principles
+
+Regards,
+
+Alex
+
 
