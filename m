@@ -1,37 +1,37 @@
 Return-Path: <Xin.Ouyang@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id B272AE0054C; Sun, 22 Jun 2014 23:29:16 -0700 (PDT)
+	id A0F1CE0054C; Sun, 22 Jun 2014 23:30:55 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.3 required=5.0 tests=RCVD_IN_DNSWL_MED
+X-Spam-Status: No, score=0.0 required=5.0 tests=RCVD_IN_DNSWL_NONE
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [147.11.1.11 listed in list.dnswl.org]
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 50770E00543
-	for <yocto@yoctoproject.org>; Sun, 22 Jun 2014 23:29:14 -0700 (PDT)
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [147.11.146.13 listed in list.dnswl.org]
+Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 24368E00543
+	for <yocto@yoctoproject.org>; Sun, 22 Jun 2014 23:30:53 -0700 (PDT)
 Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
 	[147.11.189.40])
-	by mail.windriver.com (8.14.5/8.14.5) with ESMTP id s5N6TD38029092
+	by mail1.windriver.com (8.14.5/8.14.5) with ESMTP id s5N6Ur20028015
 	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL)
-	for <yocto@yoctoproject.org>; Sun, 22 Jun 2014 23:29:13 -0700 (PDT)
+	for <yocto@yoctoproject.org>; Sun, 22 Jun 2014 23:30:53 -0700 (PDT)
 Received: from Pascal-MacBookPro.local (128.224.159.159) by
 	ALA-HCA.corp.ad.wrs.com (147.11.189.50) with Microsoft SMTP Server id
-	14.3.169.1; Sun, 22 Jun 2014 23:29:12 -0700
-Message-ID: <53A7C937.5000703@windriver.com>
-Date: Mon, 23 Jun 2014 14:29:11 +0800
+	14.3.169.1; Sun, 22 Jun 2014 23:30:52 -0700
+Message-ID: <53A7C99A.2070609@windriver.com>
+Date: Mon, 23 Jun 2014 14:30:50 +0800
 From: Pascal Ouyang <xin.ouyang@windriver.com>
 User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.8;
 	rv:24.0) Gecko/20100101 Thunderbird/24.6.0
 MIME-Version: 1.0
 To: <wenzong.fan@windriver.com>, <yocto@yoctoproject.org>,
 	<mark.hatle@windriver.com>
-References: <cover.1399879397.git.wenzong.fan@windriver.com>
-In-Reply-To: <cover.1399879397.git.wenzong.fan@windriver.com>
-X-TagToolbar-Keys: D20140623142910958
-Subject: Re: [meta-selinux][PATCH 0/2] initscripts/devpts.sh: fix context for /dev/pts
+References: <1402882648-31107-1-git-send-email-wenzong.fan@windriver.com>
+In-Reply-To: <1402882648-31107-1-git-send-email-wenzong.fan@windriver.com>
+X-TagToolbar-Keys: D20140623143050919
+Subject: Re: [meta-selinux][PATCH] libpcre: update bbappend to 8.35
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,41 +43,65 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 23 Jun 2014 06:29:16 -0000
+X-List-Received-Date: Mon, 23 Jun 2014 06:30:55 -0000
 Content-Type: text/plain; charset="GB2312"
 Content-Transfer-Encoding: 8bit
 
-于 14-5-12 下午3:31, wenzong.fan@windriver.com 写道:
+于 14-6-16 上午9:37, wenzong.fan@windriver.com 写道:
 > From: Wenzong Fan <wenzong.fan@windriver.com>
 > 
-> devpts use file_use_trans to allocate security contexts. As there are no
-> range_trans rules for initrc_t mounting devpts, the security level of
-> mountpoint will be derived from the initrc process, to be systemhigh
-> (s15:c0.c1023), instead of expected systemlow(s0).
->      
-> This will block login shells to search PTYs, so use restorecon to fix
-> this.
+> * rename libpcre_8.34.bbappend to libpcre_8.35.bbappend
+> * remove 'PR' from libpcre_8.35.bbappend
 > 
-> The following changes since commit 368f65a475069ed384d82be09c2515fb765e22ec:
+> Signed-off-by: Wenzong Fan <wenzong.fan@windriver.com>
+> ---
+>   recipes-support/libpcre/libpcre_8.34.bbappend |   13 -------------
+>   recipes-support/libpcre/libpcre_8.35.bbappend |   11 +++++++++++
+>   2 files changed, 11 insertions(+), 13 deletions(-)
+>   delete mode 100644 recipes-support/libpcre/libpcre_8.34.bbappend
+>   create mode 100644 recipes-support/libpcre/libpcre_8.35.bbappend
 > 
->    initscripts/checkroot.sh: restore file contexts for /run (2014-05-09 08:59:54 -0400)
-> 
-> are available in the git repository at:
-> 
->    git://git.pokylinux.org/poky-contrib wenzong/fix-pts
->    http://git.pokylinux.org/cgit.cgi/poky-contrib/log/?h=wenzong/fix-pts
-> 
-> Wenzong Fan (2):
->    initscripts: add a local copy of devpts.sh
->    initscripts/devpts.sh: fix context for /dev/pts
-> 
->   recipes-core/initscripts/initscripts/devpts.sh    |   29 +++++++++++++++++++++
->   recipes-core/initscripts/initscripts_1.0.bbappend |    2 ++
->   2 files changed, 31 insertions(+)
->   create mode 100755 recipes-core/initscripts/initscripts/devpts.sh
+> diff --git a/recipes-support/libpcre/libpcre_8.34.bbappend b/recipes-support/libpcre/libpcre_8.34.bbappend
+> deleted file mode 100644
+> index 9131f8d..0000000
+> --- a/recipes-support/libpcre/libpcre_8.34.bbappend
+> +++ /dev/null
+> @@ -1,13 +0,0 @@
+> -PR .= "9"
+> -
+> -do_install_append () {
+> -	if [ ! ${D}${libdir} -ef ${D}${base_libdir} ]; then
+> -		realsofile=`readlink ${D}${libdir}/libpcre.so`
+> -		mkdir -p ${D}/${base_libdir}/
+> -		mv -f ${D}${libdir}/libpcre.so.* ${D}${base_libdir}/
+> -		relpath=${@os.path.relpath("${base_libdir}", "${libdir}")}
+> -		ln -sf ${relpath}/${realsofile} ${D}${libdir}/libpcre.so
+> -	fi
+> -}
+> -
+> -FILES_${PN} += "${base_libdir}/libpcre.so.*"
+> diff --git a/recipes-support/libpcre/libpcre_8.35.bbappend b/recipes-support/libpcre/libpcre_8.35.bbappend
+> new file mode 100644
+> index 0000000..558644e
+> --- /dev/null
+> +++ b/recipes-support/libpcre/libpcre_8.35.bbappend
+> @@ -0,0 +1,11 @@
+> +do_install_append () {
+> +	if [ ! ${D}${libdir} -ef ${D}${base_libdir} ]; then
+> +		realsofile=`readlink ${D}${libdir}/libpcre.so`
+> +		mkdir -p ${D}/${base_libdir}/
+> +		mv -f ${D}${libdir}/libpcre.so.* ${D}${base_libdir}/
+> +		relpath=${@os.path.relpath("${base_libdir}", "${libdir}")}
+> +		ln -sf ${relpath}/${realsofile} ${D}${libdir}/libpcre.so
+> +	fi
+> +}
+> +
+> +FILES_${PN} += "${base_libdir}/libpcre.so.*"
 > 
 
-Merged, thanks. :)
+Have commited using wildcard instead of version number.
+
+Thanks :)
 
 -- 
 - Pascal
