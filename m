@@ -1,29 +1,56 @@
-Return-Path: <ruud.den.bekker@cordis.nl>
+Return-Path: <Seth.Bollinger@digi.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 19A11E00558; Mon, 23 Jun 2014 04:21:56 -0700 (PDT)
+	id 165FDE00547; Mon, 23 Jun 2014 05:06:03 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-0.0 required=5.0 tests=SPF_HELO_PASS autolearn=ham
-	version=3.3.1
+X-Spam-Status: No, score=-0.7 required=5.0 tests=RCVD_IN_DNSWL_LOW,
+	SPF_HELO_PASS,UNPARSEABLE_RELAY autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
-Received: from cordis.nl (smtp.cordis.nl [212.61.137.161])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 964E7E00547
-	for <yocto@yoctoproject.org>; Mon, 23 Jun 2014 04:21:52 -0700 (PDT)
-MIME-Version: 1.0
-x-mimeole: Produced By Microsoft Exchange V6.5
-Date: Mon, 23 Jun 2014 13:20:39 +0200
-Message-ID: <21598C768CAB7B46B75C18783A59ACEE271D29@cordissvr01.Cordis.local>
-In-Reply-To: <53A699C1.4040405@dynamicdevices.co.uk>
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [216.82.254.97 listed in list.dnswl.org]
+	* 0.0 UNPARSEABLE_RELAY Informational: message has unparseable relay
+	lines
+X-Greylist: delayed 384 seconds by postgrey-1.32 at yocto-www;
+	Mon, 23 Jun 2014 05:05:59 PDT
+Received: from mail1.bemta7.messagelabs.com (mail1.bemta7.messagelabs.com
+	[216.82.254.97])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1D7B1E00283
+	for <yocto@yoctoproject.org>; Mon, 23 Jun 2014 05:05:59 -0700 (PDT)
+Received: from [216.82.254.211:31241] by server-1.bemta-7.messagelabs.com id
+	A7/6F-01656-5A618A35; Mon, 23 Jun 2014 11:59:33 +0000
+X-Env-Sender: Seth.Bollinger@digi.com
+X-Msg-Ref: server-2.tower-201.messagelabs.com!1403524772!8610306!1
+X-Originating-IP: [66.77.174.14]
+X-StarScan-Received: 
+X-StarScan-Version: 6.11.3; banners=-,-,-
+X-VirusChecked: Checked
+Received: (qmail 401 invoked from network); 23 Jun 2014 11:59:32 -0000
+Received: from mail.mx4.digi.com (HELO mcl-sms-ns2.DIGI.COM) (66.77.174.14)
+	by server-2.tower-201.messagelabs.com with RC4-SHA encrypted SMTP;
+	23 Jun 2014 11:59:32 -0000
+Received: from MTK-SMS-XCH02.digi.com (10.10.8.196) by mail.mx2.digi.com
+	(172.16.1.14) with Microsoft SMTP Server (TLS) id 8.3.342.0;
+	Mon, 23 Jun 2014 06:59:29 -0500
+Received: from MTK-SMS-XCH01.digi.com ([fe80::cca7:5299:c88e:1c40]) by
+	MTK-SMS-XCH02.digi.com ([fe80::4960:cfbf:ad5e:3cdb%20]) with mapi id
+	14.03.0174.001; Mon, 23 Jun 2014 06:59:31 -0500
+From: "Bollinger, Seth" <Seth.Bollinger@digi.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: File system for alternate partition
+Thread-Index: AQHPjtqWRmuyvuyvDkCgHEP3jjXJpQ==
+Date: Mon, 23 Jun 2014 11:59:30 +0000
+Message-ID: <CFCD80D1.95CB%seth.bollinger@digi.com>
+Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-Thread-Topic: [yocto] Yocto Labs
-Thread-Index: Ac+N98oIACWdzJMcTeiWT9rUzKwkzAA2vBKA
-References: <53A62476.2080008@gmail.com>
-	<53A699C1.4040405@dynamicdevices.co.uk>
-From: "Ruud den Bekker" <ruud.den.bekker@cordis.nl>
-To: "Yocto Mailing List" <yocto@yoctoproject.org>
-Subject: Re: Yocto Labs
+user-agent: Microsoft-MacOutlook/14.4.1.140326
+x-originating-ip: [172.26.1.22]
+x-kse-antivirus-interceptor-info: scan successful
+x-kse-antivirus-info: Clean
+MIME-Version: 1.0
+Subject: File system for alternate partition
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -35,97 +62,20 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 23 Jun 2014 11:21:56 -0000
-Content-class: urn:content-classes:message
-Content-Type: text/plain;
-	charset="us-ascii"
+X-List-Received-Date: Mon, 23 Jun 2014 12:06:03 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="Windows-1252"
+Content-ID: <0FFAF0B42C48C848A9A6EA453ED05094@digi.com>
 Content-Transfer-Encoding: quoted-printable
 
-Hi Arun,
+Hello All,
 
-The link mentioned by Alex,is really a good starting point.
-I was completely unaware of yocto until 5 weeks ago and started=20
-using this URL.
+I need to generate a new file system for an alternate partition (not rootfs=
+).  What=92s the best way to go about this?  I may need to create files wit=
+h all different users/permission (perhaps root).  Do I need to use pseudo? =
+ Are there any examples of this out there?
 
-In the meantime, I have achieved:
-- running an ARM kernel + RFS + Mono running in Qemu using NFS (to be
-reached from any other PC)
-- running an ARM kernel + RFS + Mono running using NFS running on an ARM
-development board.
-- added 2 custom drivers to the yocto build environment (source code in
-a local tarball for now)
+Thanks!
 
-The kernel (2.6.37) is being build separately from the yocto generated
-RFS.
-(since the board manufacturer does not support the V3.x kernel for it)
-
-I have two NFS trees, one with soft float routines and one with
-hard float routines (using ARM hardware) that both work on the board.
-
-I had some problems building with hard float of which the cause is
-still unknown.
-
-Major issues that I encountered were:
-- adapting our x86 mono build environment to ARM (some compiler issues)
-- a corrupted U-boot on my development board
-- getting qemu to run with NFS properly
-- difference between ttyO0 and ttyAMA0 for physical board and Qemu!
-- how to convert a make project to an automake project (for the drivers)
-
-So it takes a bit of time, depending on what you need to do and your
-level of experience.
-
-The ONE thing that I did not find was how to setup my environment for=20
-ARM hard float so I can build test applications for the board.
-Turned out to be also no big deal once everything else was up and
-running.
-
-FYI: my development environment: Ubuntu-14.04 in Vmware Player on a
-Window 7 machine.
-
-Best regards,
-
-Ruud
-
-
-
------Original Message-----
-From: yocto-bounces@yoctoproject.org
-[mailto:yocto-bounces@yoctoproject.org] On Behalf Of Alex J Lennon
-Sent: Sunday, June 22, 2014 10:54 AM
-To: Arun Kumar; Yocto Mailing List
-Subject: Re: [yocto] Yocto Labs
-
-
-On 22/06/2014 01:33, Arun Kumar wrote:
-> Hi,
->
->     I am new to Yocto project and have been following the=20
-> documentation for familiarity.
-> I am looking for hands on lab sessions for the yocto project.
-> I am unable to find the same on INTERNET, all i find is conference=20
-> videos and presentation.
->
-> If anyone can share links to online tutorial videos / pdfs it would be
-
-> really useful.
-> content like creating and deploying own recipe files, layers. The=20
-> Documentation describes these tasks at a very abstract level, an=20
-> little more advanced version of the same would be appreciated.
-> Thanks in advance...
-
-Might be of some use Arun,
-
-https://wiki.yoctoproject.org/wiki/Building_your_own_recipes_from_first_
-principles
-
-Regards,
-
-Alex
-
---
-_______________________________________________
-yocto mailing list
-yocto@yoctoproject.org
-https://lists.yoctoproject.org/listinfo/yocto
+Seth
 
