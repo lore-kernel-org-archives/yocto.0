@@ -1,56 +1,46 @@
-Return-Path: <Seth.Bollinger@digi.com>
+Return-Path: <anders@chargestorm.se>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 165FDE00547; Mon, 23 Jun 2014 05:06:03 -0700 (PDT)
+	id DED22E00547; Mon, 23 Jun 2014 05:27:34 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-0.7 required=5.0 tests=RCVD_IN_DNSWL_LOW,
-	SPF_HELO_PASS,UNPARSEABLE_RELAY autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [216.82.254.97 listed in list.dnswl.org]
-	* 0.0 UNPARSEABLE_RELAY Informational: message has unparseable relay
-	lines
-X-Greylist: delayed 384 seconds by postgrey-1.32 at yocto-www;
-	Mon, 23 Jun 2014 05:05:59 PDT
-Received: from mail1.bemta7.messagelabs.com (mail1.bemta7.messagelabs.com
-	[216.82.254.97])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1D7B1E00283
-	for <yocto@yoctoproject.org>; Mon, 23 Jun 2014 05:05:59 -0700 (PDT)
-Received: from [216.82.254.211:31241] by server-1.bemta-7.messagelabs.com id
-	A7/6F-01656-5A618A35; Mon, 23 Jun 2014 11:59:33 +0000
-X-Env-Sender: Seth.Bollinger@digi.com
-X-Msg-Ref: server-2.tower-201.messagelabs.com!1403524772!8610306!1
-X-Originating-IP: [66.77.174.14]
-X-StarScan-Received: 
-X-StarScan-Version: 6.11.3; banners=-,-,-
-X-VirusChecked: Checked
-Received: (qmail 401 invoked from network); 23 Jun 2014 11:59:32 -0000
-Received: from mail.mx4.digi.com (HELO mcl-sms-ns2.DIGI.COM) (66.77.174.14)
-	by server-2.tower-201.messagelabs.com with RC4-SHA encrypted SMTP;
-	23 Jun 2014 11:59:32 -0000
-Received: from MTK-SMS-XCH02.digi.com (10.10.8.196) by mail.mx2.digi.com
-	(172.16.1.14) with Microsoft SMTP Server (TLS) id 8.3.342.0;
-	Mon, 23 Jun 2014 06:59:29 -0500
-Received: from MTK-SMS-XCH01.digi.com ([fe80::cca7:5299:c88e:1c40]) by
-	MTK-SMS-XCH02.digi.com ([fe80::4960:cfbf:ad5e:3cdb%20]) with mapi id
-	14.03.0174.001; Mon, 23 Jun 2014 06:59:31 -0500
-From: "Bollinger, Seth" <Seth.Bollinger@digi.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: File system for alternate partition
-Thread-Index: AQHPjtqWRmuyvuyvDkCgHEP3jjXJpQ==
-Date: Mon, 23 Jun 2014 11:59:30 +0000
-Message-ID: <CFCD80D1.95CB%seth.bollinger@digi.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-user-agent: Microsoft-MacOutlook/14.4.1.140326
-x-originating-ip: [172.26.1.22]
-x-kse-antivirus-interceptor-info: scan successful
-x-kse-antivirus-info: Clean
+X-Spam-Status: No, score=-0.7 required=5.0 tests=RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [83.145.59.141 listed in list.dnswl.org]
+X-Greylist: delayed 64 seconds by postgrey-1.32 at yocto-www;
+	Mon, 23 Jun 2014 05:27:32 PDT
+Received: from stoexhubfe02.domain01.net (STOEXHUBFE02.domain01.net
+	[83.145.59.141])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 94AB1E00283
+	for <yocto@yoctoproject.org>; Mon, 23 Jun 2014 05:27:32 -0700 (PDT)
+Received: from ad.chargestorm.se (213.114.64.43) by stoexhubfe02.domain01.net
+	(10.12.10.7) with Microsoft SMTP Server (TLS) id 8.3.279.1;
+	Mon, 23 Jun 2014 14:26:26 +0200
+Date: Mon, 23 Jun 2014 14:26:12 +0200
+From: Anders Darander <anders@chargestorm.se>
+To: "Francois P. Gallichand" <francois.p.gallichand@ca.abb.com>
+Message-ID: <20140623122612.GB16414@ad.chargestorm.se>
+Mail-Followup-To: "Francois P. Gallichand" <francois.p.gallichand@ca.abb.com>, 
+	Paul Eggleton <paul.eggleton@linux.intel.com>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+References: <d57f9ee937d1459388fbd840265567ea@AM3PR06MB195.eurprd06.prod.outlook.com>
+	<da5185e814af4fd8830f3de7896e453d@AM3PR06MB195.eurprd06.prod.outlook.com>
+	<4294568.gQz8zEimiU@peggleto-mobl5.ger.corp.intel.com>
+	<2ea31a38a69545438c772962d47c792d@AM3PR06MB195.eurprd06.prod.outlook.com>
 MIME-Version: 1.0
-Subject: File system for alternate partition
+In-Reply-To: <2ea31a38a69545438c772962d47c792d@AM3PR06MB195.eurprd06.prod.outlook.com>
+X-Accept-Language: sv, en, de
+X-GPG-Fingerprint: 5AF0 B2E9 78FE 9D75 D110  6F8F 3E31 84D7 920E 938C
+X-GPG-Key-Id: 0x920E938C
+X-GPG-Keyserver: hkp://keys.gnupg.net
+Organization: ChargeStorm AB
+User-Agent: Mutt/1.5.23 (2014-03-12)
+X-GFI-SMTP-Submission: 1
+Cc: Paul Eggleton <paul.eggleton@linux.intel.com>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Adding files to the hddimg
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -62,20 +52,33 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 23 Jun 2014 12:06:03 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="Windows-1252"
-Content-ID: <0FFAF0B42C48C848A9A6EA453ED05094@digi.com>
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Mon, 23 Jun 2014 12:27:34 -0000
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
 
-Hello All,
+* Francois P. Gallichand <francois.p.gallichand@ca.abb.com> [140618 19:22]:
 
-I need to generate a new file system for an alternate partition (not rootfs=
-).  What=92s the best way to go about this?  I may need to create files wit=
-h all different users/permission (perhaps root).  Do I need to use pseudo? =
- Are there any examples of this out there?
+> Thanks for the reply. But that's not really what I want to achieve.
+> Really, I just want to copy some files into the .hddimg file that is
+> built as a result of running bitbake. Like I said, I tried to extend
+> the bootimg.bbclass, which is responsible for creating the .hddimg
+> file, but it's not working and I don't know why.
 
-Thanks!
+Well, then I guess the question if what kinds of file is it, and how do
+you want to copy them into the .hddimg?
 
-Seth
+Should they be copied into the rootfs in the .hddimg? If so, I'd suggest
+to create a standard bitbake recipe and just install those files into
+the rootfs. 
+
+If it's something else, I think you need to explain it a little bit
+more. 
+
+Cheers,
+Anders
+
+> Any suggestions?
+-- 
+Anders Darander
+ChargeStorm AB / eStorm AB
 
