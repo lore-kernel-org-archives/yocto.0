@@ -1,51 +1,48 @@
-Return-Path: <jefro.net@gmail.com>
+Return-Path: <kergoth@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 323F5E003D8; Mon, 23 Jun 2014 09:25:06 -0700 (PDT)
+	id 6871AE003C1; Mon, 23 Jun 2014 09:50:10 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-0.7 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-	HTML_IMAGE_ONLY_32,HTML_MESSAGE,RCVD_IN_DNSWL_LOW,T_REMOTE_IMAGE
-	autolearn=ham version=3.3.1
+	HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
 	http://www.dnswl.org/, low *      trust
-	*      [209.85.217.179 listed in list.dnswl.org]
-	* 0.0 HTML_IMAGE_ONLY_32 BODY: HTML: images with 2800-3200 bytes of
-	words *  0.0 HTML_MESSAGE BODY: HTML included in message
+	*      [209.85.217.177 listed in list.dnswl.org]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	*  0.0 T_REMOTE_IMAGE Message contains an external image
-Received: from mail-lb0-f179.google.com (mail-lb0-f179.google.com
-	[209.85.217.179])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AE019E00282
-	for <yocto@yoctoproject.org>; Mon, 23 Jun 2014 09:25:01 -0700 (PDT)
-Received: by mail-lb0-f179.google.com with SMTP id z11so4844477lbi.38
-	for <yocto@yoctoproject.org>; Mon, 23 Jun 2014 09:25:00 -0700 (PDT)
+Received: from mail-lb0-f177.google.com (mail-lb0-f177.google.com
+	[209.85.217.177])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E3283E00282
+	for <yocto@yoctoproject.org>; Mon, 23 Jun 2014 09:50:03 -0700 (PDT)
+Received: by mail-lb0-f177.google.com with SMTP id u10so4928410lbd.36
+	for <yocto@yoctoproject.org>; Mon, 23 Jun 2014 09:50:02 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=mime-version:sender:in-reply-to:references:from:date:message-id
 	:subject:to:cc:content-type;
-	bh=yXEG7K7WEuZ0tftO7ubwQJHCJQFq61FLCtdpN7Nvb+0=;
-	b=ckBVFb5/r+Xn79Jd4Rv6S35ylRIdSf76OU+u21ooxQMYPz+PcnnkMtwV4pmDr8F26+
-	b+GqKbw5u05rOqv5q0/oSnDsmqq9AbNaUPgnyEifGrd22lUBWD7kPaSIckmPI0INO3n4
-	8b2WOWjQljg9gLASIWj9Y4SjYy3n9r2bme5Ft5k4Wk3CiFa5eOGvSjeOnibDcicTmLKL
-	TGN1EtVvAcO1eVD9pTttMW+3AGiP1Jdzi801bqWdRdHNI0UJcEAoAbxAQcOzOfWf1zPJ
-	ONNGBuMVWEBIKLBi8ZYRF7gS70KwpXyqjBO/vafclKlPC7EGPqYAYGQtBTADJyTnTJIS
-	yuLw==
-X-Received: by 10.152.206.11 with SMTP id lk11mr2433710lac.72.1403540700574;
-	Mon, 23 Jun 2014 09:25:00 -0700 (PDT)
+	bh=02TFJAJM4WgpT8GThkJEFp5gA6RLimZeL64j4gwX/2E=;
+	b=vJ9RnalgF/jUle0WGOQJC7CC5DBs2YaTTdpY97HQDCJR5Gcc0ll0c5YGQFxTHMdlfl
+	wprw4geJwBH3qhH3X4DhKOumKkwu4cWhII8CiBYpUGPCI22z5fU3357yYmW5ks97s39X
+	N9igZQefmdX/9v3vgqXHs+8iqsn6QdwqnvbinH0+EwcKmssW3Budtfn6xje6RSz0mH1W
+	QxVxatrWdPyNFLTzgmzXc4dnztEGDiDH2gCweEme320uVMkCShJ0BwLmI9Uo3P7h1+z6
+	3Mz1GI80ds6GdGeeU3xLtjFJkADy3aQfBh9tl2ALc4iJEdj+QMScLfRLygD9YFJ30cuK
+	3Onw==
+X-Received: by 10.112.13.137 with SMTP id h9mr17293196lbc.33.1403542202091;
+	Mon, 23 Jun 2014 09:50:02 -0700 (PDT)
 MIME-Version: 1.0
-Sender: jefro.net@gmail.com
-Received: by 10.112.89.135 with HTTP; Mon, 23 Jun 2014 09:24:40 -0700 (PDT)
-In-Reply-To: <20140621065542.3653.qmail@f4mail-235-236.rediffmail.com>
-References: <20140621065542.3653.qmail@f4mail-235-236.rediffmail.com>
-From: Jeff Osier-Mixon <jefro@jefro.net>
-Date: Mon, 23 Jun 2014 09:24:40 -0700
-X-Google-Sender-Auth: UgjJfHodaVdocujN2C7faKO2_DA
-Message-ID: <CA+YB3raRmo2Do_CXuy2nK4oB_2QdngeyCzvd8ib_psTSj772zA@mail.gmail.com>
-To: Himanshu Pandey <pandey_himanshu80@rediffmail.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Hi
+Sender: kergoth@gmail.com
+Received: by 10.112.31.165 with HTTP; Mon, 23 Jun 2014 09:49:41 -0700 (PDT)
+In-Reply-To: <alpine.LFD.2.11.1406220901500.2299@localhost>
+References: <alpine.LFD.2.11.1406220901500.2299@localhost>
+From: Christopher Larson <clarson@kergoth.com>
+Date: Mon, 23 Jun 2014 09:49:41 -0700
+X-Google-Sender-Auth: mmXr1iIbbm2a9EJX8uFHN5ZxA40
+Message-ID: <CABcZANkjcW8-3fG9VpzEzGTnz401uXAuXumTCdU0QO9s5MemFQ@mail.gmail.com>
+To: "Robert P. J. Day" <rpjday@crashcourse.ca>
+Cc: Yocto discussion list <yocto@yoctoproject.org>
+Subject: Re: the apparent need for docbook <replaceable> tag in manual examples
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -57,126 +54,90 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 23 Jun 2014 16:25:06 -0000
-Content-Type: multipart/alternative; boundary=001a11349392e2be6404fc83489a
+X-List-Received-Date: Mon, 23 Jun 2014 16:50:10 -0000
+Content-Type: multipart/alternative; boundary=001a11c3d10a620ec104fc83a2ef
 
---001a11349392e2be6404fc83489a
+--001a11c3d10a620ec104fc83a2ef
 Content-Type: text/plain; charset=UTF-8
 
-Hello - these are questions with a very large set of answers. I think you
-probably want to start with the documentation:
+On Sun, Jun 22, 2014 at 6:20 AM, Robert P. J. Day <rpjday@crashcourse.ca>
+wrote:
 
-https://www.yoctoproject.org/documentation/current
-
-best of luck
-
-
-On Fri, Jun 20, 2014 at 11:55 PM, Himanshu Pandey <
-pandey_himanshu80@rediffmail.com> wrote:
-
-> Hi,
->
-> I am a starter in yocto.
->
-> I have a couple of  questions:
->
-> 1. Please explain me in yocto the exact steps involved in creating a final
-> image. That means what all scripts are used,used receipes,used bbclasses
-> etc.
->
-> 2. What are the steps involved in creating a final .tar.bz2. Please
-> explain all the scripts,receipes,bbclasses etc. that are involved.
->
-> 3. I have a requirement that once the .tar.bz2 is created I want my shell
-> script to be executed finally. So what I have to do in order to achieve
-> this.
->
-> Regards,
-> Himanshu Pandey
->
->
->
->
->
->
-> <http://sigads.rediff.com/RealMedia/ads/click_nx.ads/www.rediffmail.com/signatureline.htm@Middle?>
-> Get your own *FREE* website, *FREE* domain & *FREE* mobile app with
-> Company email.
-> *Know More >*
-> <http://track.rediff.com/click?url=___http://businessemail.rediff.com/email-ids-for-companies-with-less-than-50-employees?sc_cid=sign-1-10-13___&cmp=host&lnk=sign-1-10-13&nsrv1=host>
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
->
+>   as i said, it took me a few minutes to figure out what the
+> conditional metadata example above was trying to demonstrate, but as
+> soon as i saw a real example in the codebase, it was perfectly clear.
+> to this end, i'm creating wiki pages that show stuff like that
+> exactly, like this one for conditional overrides:
 >
 
+It's not directly related, but here's some background if it helps anyone at
+all.
 
+Conceptually, when we designed overrides, it was created to let us
+implement layering of metadata (note: not layers as in yocto layers, but
+conceptual layers), to let us always let more specific information be used
+in preference to less specific information. Machine information will be
+used in preference to Architecture which is used in preference to the
+default. This lets us ensure that we're always using the most accurate
+information available about the configuration in question.
+
+I've always thought that thinking of it this way helps one see the purpose
+behind the mechanism (and you can see that the order of the
+includes/requires in bitbake.conf essentially implements the same ordering
+where possible, to provide the same capability based on load order of the
+config files). I'm not sure if any of our docs talk about it this way, and
+I'm not sure if it helps anyone else wrap their heads around it, but I'm
+throwing it out there since I've found that some folks seem to find it a
+useful way of looking at it.
 -- 
-Jeff Osier-Mixon @Intel
-Yocto Project Community Manager http://yoctoproject.org
+Christopher Larson
+clarson at kergoth dot com
+Founder - BitBake, OpenEmbedded, OpenZaurus
+Maintainer - Tslib
+Senior Software Engineer, Mentor Graphics
 
---001a11349392e2be6404fc83489a
+--001a11c3d10a620ec104fc83a2ef
 Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Hello - these are questions with a very large set of answe=
-rs. I think you probably want to start with the documentation:<div><br></di=
-v><div><a href=3D"https://www.yoctoproject.org/documentation/current">https=
-://www.yoctoproject.org/documentation/current</a><br>
-
-</div><div><br></div><div>best of luck</div></div><div class=3D"gmail_extra=
-"><br><br><div class=3D"gmail_quote">On Fri, Jun 20, 2014 at 11:55 PM, Hima=
-nshu  Pandey <span dir=3D"ltr">&lt;<a href=3D"mailto:pandey_himanshu80@redi=
-ffmail.com" target=3D"_blank">pandey_himanshu80@rediffmail.com</a>&gt;</spa=
-n> wrote:<br>
+<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
+On Sun, Jun 22, 2014 at 6:20 AM, Robert P. J. Day <span dir=3D"ltr">&lt;<a =
+href=3D"mailto:rpjday@crashcourse.ca" target=3D"_blank">rpjday@crashcourse.=
+ca</a>&gt;</span> wrote:<br>
 
 <blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
-x #ccc solid;padding-left:1ex">Hi,<br><br>I am a starter in yocto.<br><br>I=
- have a couple of=C2=A0 questions:<br><br>1. Please explain me in yocto the=
- exact steps involved in creating a final image. That means what all script=
-s are used,used receipes,used bbclasses etc.<br>
+x #ccc solid;padding-left:1ex"><div id=3D":1k4" class=3D"a3s" style=3D"over=
+flow:hidden">=C2=A0 as i said, it took me a few minutes to figure out what =
+the<br>
+conditional metadata example above was trying to demonstrate, but as<br>
+soon as i saw a real example in the codebase, it was perfectly clear.<br>
+to this end, i&#39;m creating wiki pages that show stuff like that<br>
+exactly, like this one for conditional overrides:</div></blockquote></div><=
+br></div><div class=3D"gmail_extra">It&#39;s not directly related, but here=
+&#39;s some background if it helps anyone at all.<br></div><div class=3D"gm=
+ail_extra">
 
-<br>2. What are the steps involved in creating a final .tar.bz2. Please exp=
-lain all the scripts,receipes,bbclasses etc. that are involved. <br><br>3. =
-I have a requirement that once the .tar.bz2 is created I want my shell scri=
-pt to be executed finally. So what I have to do in order to achieve this.=
-=C2=A0 <br>
+<br></div><div class=3D"gmail_extra">Conceptually, when we designed overrid=
+es, it was created to let us implement layering of metadata (note: not laye=
+rs as in yocto layers, but conceptual layers), to let us always let more sp=
+ecific information be used in preference to less specific information. Mach=
+ine information will be used in preference to Architecture which is used in=
+ preference to the default. This lets us ensure that we&#39;re always using=
+ the most accurate information available about the configuration in questio=
+n.<br>
 
-<br>Regards,<br>Himanshu Pandey <br><br>=C2=A0 <br><br>=C2=A0 <br><br><a hr=
-ef=3D"http://sigads.rediff.com/RealMedia/ads/click_nx.ads/www.rediffmail.co=
-m/signatureline.htm@Middle?" target=3D"_blank"><img src=3D"http://sigads.re=
-diff.com/RealMedia/ads/adstream_nx.ads/www.rediffmail.com/signatureline.htm=
-@Middle"></a><table cellpadding=3D"0" cellspacing=3D"0">
+<br></div><div class=3D"gmail_extra">I&#39;ve always thought that thinking =
+of it this way helps one see the purpose behind the mechanism (and you can =
+see that the order of the includes/requires in bitbake.conf essentially imp=
+lements the same ordering where possible, to provide the same capability ba=
+sed on load order of the config files). I&#39;m not sure if any of our docs=
+ talk about it this way, and I&#39;m not sure if it helps anyone else wrap =
+their heads around it, but I&#39;m throwing it out there since I&#39;ve fou=
+nd that some folks seem to find it a useful way of looking at it.<br>
 
-<tbody><tr><td><div style=3D"font-family:Arial,Helvetica,sans-serif;font-si=
-ze:14px">Get your own <span style=3D"padding-bottom:0px;background-color:#c=
-c0000;padding-left:3px;padding-RIGHT:3px;font-family:Arial,Helvetica,sans-s=
-erif;color:#ffffff;font-size:12px;padding-top:0px"><b>FREE</b></span> websi=
-te,  <span style=3D"padding-bottom:0px;background-color:#c00;padding-left:3=
-px;padding-RIGHT:3px;font-family:Arial,Helvetica,sans-serif;color:#ffffff;f=
-ont-size:12px;padding-top:0px"><b>FREE</b></span> domain &amp; <span style=
-=3D"padding-bottom:0px;background-color:#c00;padding-left:3px;padding-RIGHT=
-:3px;font-family:Arial,Helvetica,sans-serif;color:#ffffff;font-size:12px;pa=
-dding-top:0px"><b>FREE</b></span> mobile app with Company email. =C2=A0</di=
-v>
+-- <br>Christopher Larson<br>clarson at kergoth dot com<br>Founder - BitBak=
+e, OpenEmbedded, OpenZaurus<br>Maintainer - Tslib<br>Senior Software Engine=
+er, Mentor Graphics
+</div></div>
 
-</td><td><a href=3D"http://track.rediff.com/click?url=3D___http://businesse=
-mail.rediff.com/email-ids-for-companies-with-less-than-50-employees?sc_cid=
-=3Dsign-1-10-13___&amp;cmp=3Dhost&amp;lnk=3Dsign-1-10-13&amp;nsrv1=3Dhost" =
-style=3D"font-family:Arial,Helvetica,sans-serif;color:#fff;font-size:14px;c=
-olor:#0000cc" target=3D"_blank"><b>Know More &gt;</b></a></td>
-
-</tr></tbody></table><br>--<br>
-_______________________________________________<br>
-yocto mailing list<br>
-<a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br>
-<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" target=3D"_blank"=
->https://lists.yoctoproject.org/listinfo/yocto</a><br>
-<br></blockquote></div><br><br clear=3D"all"><div><br></div>-- <br>Jeff Osi=
-er-Mixon @Intel<br>Yocto Project Community Manager <a href=3D"http://yoctop=
-roject.org" target=3D"_blank">http://yoctoproject.org</a>
-</div>
-
---001a11349392e2be6404fc83489a--
+--001a11c3d10a620ec104fc83a2ef--
