@@ -1,47 +1,42 @@
-Return-Path: <ellurubharath29@gmail.com>
+Return-Path: <ajlennon@dynamicdevices.co.uk>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id E4A42E00283; Mon, 23 Jun 2014 10:29:05 -0700 (PDT)
+	id 13063E00283; Mon, 23 Jun 2014 10:42:57 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-0.8 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-	DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (ellurubharath29[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.212.172 listed in list.dnswl.org]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-wi0-f172.google.com (mail-wi0-f172.google.com
-	[209.85.212.172])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8B189E0027B
-	for <yocto@yoctoproject.org>; Mon, 23 Jun 2014 10:28:52 -0700 (PDT)
-Received: by mail-wi0-f172.google.com with SMTP id hi2so4702039wib.5
-	for <yocto@yoctoproject.org>; Mon, 23 Jun 2014 10:28:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=QFNb2NHdReNHFp2dzDsb7MFqa6+EY2/oCUPmDlGjvqk=;
-	b=BXkVreONzBvFSQ0amQHIqpxqQK/nsjHy6wLvYt+iwz/jQCKmOhawCNfHdd+xp2HFL1
-	nuURMVrbquK/72Zk4hF78ylrwaB6EsPMwB3mwTrFGIltUkQ/pb20prL4Jrla+xjKUkjN
-	3fNM1Z4CXrHPxj82NJuIrO64PwiBpbn0RZXqzw+5Ef9b0+jtgmI6Nuq75Wq/9w8JGBEj
-	dq7yFYCQZqlvUs4Ff5iF69FBeg1Li4GPVRleBleXNqdbiAY6xM5NkDoumNjh0F98uIQH
-	j1haohSF6z74rxUAS943Wf39IGpVvC0Qgd9yUYqmkABUYIintdQOPNCc3ojzIRId+nyS
-	AQ/w==
+X-Spam-Status: No, score=0.2 required=5.0 tests=KHOP_DYNAMIC autolearn=no
+	version=3.3.1
+X-Spam-HAM-Report: *  0.2 KHOP_DYNAMIC Relay looks like a dynamic address
+Received: from www.dynamicdevices.co.uk (www.dynamicdevices.co.uk
+	[89.200.136.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D92AFE0027B
+	for <yocto@yoctoproject.org>; Mon, 23 Jun 2014 10:42:49 -0700 (PDT)
+Received: from localhost (localhost [127.0.0.1])
+	by www.dynamicdevices.co.uk (Postfix) with ESMTP id DC73A27E03B;
+	Mon, 23 Jun 2014 17:42:46 +0000 (UTC)
+X-Virus-Scanned: Debian amavisd-new at lennoab2.miniserver.com
+Received: from www.dynamicdevices.co.uk ([127.0.0.1])
+	by localhost (www.dynamicdevices.co.uk [127.0.0.1]) (amavisd-new,
+	port 10024)
+	with ESMTP id Mz_QzogYmDQd; Mon, 23 Jun 2014 17:42:45 +0000 (UTC)
+Received: from [127.0.0.1] (cpc32-live22-2-0-cust59.17-2.cable.virginm.net
+	[82.36.253.60])
+	(using TLSv1 with cipher ECDHE-RSA-AES128-SHA (128/128 bits))
+	(No client certificate requested)
+	by www.dynamicdevices.co.uk (Postfix) with ESMTPSA id B03DC27E031;
+	Mon, 23 Jun 2014 17:42:45 +0000 (UTC)
+Message-ID: <53A8670D.5020401@dynamicdevices.co.uk>
+Date: Mon, 23 Jun 2014 18:42:37 +0100
+From: Alex J Lennon <ajlennon@dynamicdevices.co.uk>
+User-Agent: Mozilla/5.0 (Windows NT 6.3; WOW64;
+	rv:24.0) Gecko/20100101 Thunderbird/24.6.0
 MIME-Version: 1.0
-X-Received: by 10.180.96.6 with SMTP id do6mr27648837wib.44.1403544532244;
-	Mon, 23 Jun 2014 10:28:52 -0700 (PDT)
-Received: by 10.194.0.19 with HTTP; Mon, 23 Jun 2014 10:28:52 -0700 (PDT)
-Date: Mon, 23 Jun 2014 12:28:52 -0500
-Message-ID: <CAGM0ZdR+Ud1zFOmta09FOX4s=LT9Tr3DC+m1a6VEA3oF1dpPGw@mail.gmail.com>
-From: Bharath Chandra <ellurubharath29@gmail.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Cross compiler in yocto
+To: Bharath Chandra <ellurubharath29@gmail.com>, 
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+References: <CAGM0ZdR+Ud1zFOmta09FOX4s=LT9Tr3DC+m1a6VEA3oF1dpPGw@mail.gmail.com>
+In-Reply-To: <CAGM0ZdR+Ud1zFOmta09FOX4s=LT9Tr3DC+m1a6VEA3oF1dpPGw@mail.gmail.com>
+X-Enigmail-Version: 1.6
+Subject: Re: Cross compiler in yocto
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -53,36 +48,58 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 23 Jun 2014 17:29:06 -0000
-Content-Type: multipart/alternative; boundary=f46d04447fc14560ac04fc842dd9
+X-List-Received-Date: Mon, 23 Jun 2014 17:42:57 -0000
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: 7bit
 
---f46d04447fc14560ac04fc842dd9
-Content-Type: text/plain; charset=UTF-8
 
-Hi,
+On 23/06/2014 18:28, Bharath Chandra wrote:
+> Hi,
+>
+> I am new to yocto. I have a gumstix board which is up and running, but
+> it does not have GCC on it. I have to compile and run some c programs
+> on my image. What is the process to do that?? Is there any
+> documentation available about the cross compiler. Kindly provide me
+> any pointer which would help.
+>
 
-I am new to yocto. I have a gumstix board which is up and running, but it
-does not have GCC on it. I have to compile and run some c programs on my
-image. What is the process to do that?? Is there any documentation
-available about the cross compiler. Kindly provide me any pointer which
-would help.
+The beauty of Yocto is that it handles this for you. When you first run
+Yocto bitbake for a particular MACHINE target it will build a
+cross-compiler, and associated supporting utilities from source for that
+target. These are the -native packages that are built. 'Native' in Yocto
+terminology means "something that run on the build host".
 
--- 
-Thanks & Regards,
-Bharath Chandra Elluru.
-Contact Number:785-979-4875.
+It'll then move onto cross-compiling other configured packages for the
+target, which is all driven by meta-data and meta-data dependencies
+which are encapsulated in the 'recipes'.
 
---f46d04447fc14560ac04fc842dd9
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+My personal experience fwiw is that the easiest way to cross-compile
+projects to run on the target of your choice is to create an autotools
+configuration for your project, which then makes it fairly trivial to
+create a Yocto recipe to cross-compile that project and to package it up
+into the target image.
 
-<div dir=3D"ltr"><div>Hi,<br><br></div>I am new to yocto. I have a gumstix =
-board which is up and running, but it does not have GCC on it. I have to co=
-mpile and run some c programs on my image. What is the process to do that??=
- Is there any documentation available about the cross compiler. Kindly prov=
-ide me any pointer which would help.<br clear=3D"all">
-<div><div><br>-- <br><div dir=3D"ltr">Thanks &amp; Regards,<div>Bharath Cha=
-ndra Elluru.</div><div>Contact Number:785-979-4875.</div></div>
-</div></div></div>
+I have already mentioned this link today, and at the risk of repeating
+myself I would hope that this walkthrough would show you how to use
+various flavours of an autotooled project and associated recipe to
+cross-compile and package your application.
 
---f46d04447fc14560ac04fc842dd9--
+https://wiki.yoctoproject.org/wiki/index.php?title=Building_your_own_recipes_from_first_principles
+
+The example used is here
+
+https://github.com/DynamicDevices/bbexample
+
+This is loosely based on the documentation here
+
+http://www.niksula.hut.fi/~mkomu/docs/autohowto.html
+
+You will of course wish to spend some time with the Yocto Quickstart too
+I imagine
+
+http://www.yoctoproject.org/docs/current/yocto-project-qs/yocto-project-qs.html
+
+Regards,
+
+Alex
+
