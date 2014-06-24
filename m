@@ -1,51 +1,30 @@
-Return-Path: <wpdster@gmail.com>
+Return-Path: <jack.lovell@durham.ac.uk>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 32C97E00572; Tue, 24 Jun 2014 06:03:01 -0700 (PDT)
+	id 43283E00571; Tue, 24 Jun 2014 06:39:58 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-0.8 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
-	DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (wpdster[at]gmail.com)
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.220.179 listed in list.dnswl.org]
-Received: from mail-vc0-f179.google.com (mail-vc0-f179.google.com
-	[209.85.220.179])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E8D04E00507
-	for <yocto@yoctoproject.org>; Tue, 24 Jun 2014 06:02:57 -0700 (PDT)
-Received: by mail-vc0-f179.google.com with SMTP id id10so253474vcb.38
-	for <yocto@yoctoproject.org>; Tue, 24 Jun 2014 06:02:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-type:content-transfer-encoding;
-	bh=t6WSFRXD+uHUco4Nh8RbeT5HnQvbMBXN45pRkg/rbjk=;
-	b=wx9koOS8VWtag7A+AWhPYZhLGJcTBcjMcOmPLfckIDYKspsnOiQQbVY+cohXMJyDKw
-	k38rMCuY/RH8nVjMZdQPOfpMLbiFDKirqG2nTg8yX7SQ82zSclxVcKW2fADxyCb8p4oI
-	eYFS3N4CJqri9+uOZlCU5hPS5AXCyW+3bV6q9nck+EKLcdxflQjsyJgzfUtvWdqSFkpl
-	n1lbXd0f2OPuYdKG0t7jBZcfVNd85NhaIFL9/TUWzQvTe3Qqn6GKZjov8B9nQ3CobmeN
-	1k4Ro1iW4hfp/j7viJRyMyo4semiHtGdu/NwnHPIcM6sMZb9bvyDMzOJLWKzoZ/+zMCG
-	v+qw==
-X-Received: by 10.220.143.81 with SMTP id t17mr131261vcu.76.1403614976552;
-	Tue, 24 Jun 2014 06:02:56 -0700 (PDT)
+X-Spam-Status: No, score=-2.3 required=5.0 tests=RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [194.81.223.71 listed in list.dnswl.org]
+X-Greylist: delayed 1776 seconds by postgrey-1.32 at yocto-www;
+	Tue, 24 Jun 2014 06:39:45 PDT
+Received: from mx0.ccfe.ac.uk (mx0.ccfe.ac.uk [194.81.223.71])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3953AE00507
+	for <yocto@yoctoproject.org>; Tue, 24 Jun 2014 06:39:45 -0700 (PDT)
+Received: from [194.131.174.89] by mx0.ccfe.ac.uk (Post.Office MTA v3.5.3
+	release 223 ID# 1001-66693U3500L400S0V35) with ESMTP id uk
+	for <yocto@yoctoproject.org>; Tue, 24 Jun 2014 14:10:03 +0100
+Message-ID: <53A978AB.5020808@durham.ac.uk>
+Date: Tue, 24 Jun 2014 14:10:03 +0100
+From: Jack Lovell <jack.lovell@durham.ac.uk>
+User-Agent: Mozilla/5.0 (X11; Linux i686;
+	rv:24.0) Gecko/20100101 Thunderbird/24.6.0
 MIME-Version: 1.0
-Received: by 10.58.105.233 with HTTP; Tue, 24 Jun 2014 06:02:25 -0700 (PDT)
-In-Reply-To: <CAJTo0Lbwhi88Qx4K3Q=bYAkv044KPYrEVFGCRsW9=uG4Qd7hOg@mail.gmail.com>
-References: <CAF_dkJActcO2Yje0EAN7bO2zaPKP9DZA9D1pqCwp3oJbA8-cFw@mail.gmail.com>
-	<CAJTo0Lbwhi88Qx4K3Q=bYAkv044KPYrEVFGCRsW9=uG4Qd7hOg@mail.gmail.com>
-From: Patrick Doyle <wpdster@gmail.com>
-Date: Tue, 24 Jun 2014 09:02:25 -0400
-Message-ID: <CAF_dkJC0omi65BkJOiFH=P5FoeWsY0VP_f-hz_HSO-9GFup_wA@mail.gmail.com>
-To: "Burton, Ross" <ross.burton@intel.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: What is the simplest, or better yet, canonical way to add a shell script to core-image-minimal?
+To: yocto@yoctoproject.org
+Subject: Compiling Pseudo on Scientific Linux 6.4
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -57,55 +36,78 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 24 Jun 2014 13:03:01 -0000
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Tue, 24 Jun 2014 13:39:58 -0000
+X-Groupsio-MsgNum: 20285
+Content-Type: multipart/mixed; boundary="------------070209040009030202000502"
 
-Hello Gaurang, Ross, and Nicolas,
-Thank you for your suggestions.  I ended up implementing Ross's
-suggestion (before I got even got his suggestion) because it was the
-only answer I could come with on my own where all the pieces made
-sense.  I originally asked the question out of a (most likely
-misguided) sense that creating a recipe simply to install a shell
-script was too heavyweight.  I thought there might be a simpler way to
-do that than writing a recipe like:
+--------------070209040009030202000502
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
 
-<code>
-DESCRIPTION =3D "My specific shell script[s] that get installed in the root=
-fs."
-LICENSE =3D "CLOSED"
+Hi
 
-SRC_URI =3D "file://my_script.sh"
+I'm having issues running bitbake on SL 6.4. I'm trying to build U-boot, 
+but before I even get to that stage, Pseudo fails on do_install for 
+quilt-native. I keep getting the error message:
+|     The current directory must be set to the ITT directory.
+|     Change the default to the ITT directory and re-run
+|     this script.
 
-do_install () {
-    install -d ${D}${bindir}
-    install -m 755 ${WORKDIR}/my_script.sh ${D}${bindir}
-}
-</code>
+Attached is the log file. I'm using a precompiled tarball of the 
+required binaries, and have sourced its settings script before sourcing 
+the oe-build-env script required for openembedded.
 
-=E2=80=A6 and then adding  custom-scripts recipe to CORE_IMAGE_EXTRA_INSTAL=
-L.
+--------------070209040009030202000502
+Content-Type: text/plain; charset=UTF-8;
+ name="log.do_install.13552"
+Content-Transfer-Encoding: 7bit
+Content-Disposition: attachment;
+ filename="log.do_install.13552"
 
-Once I finished writing the recipe, I realized it was much simpler
-than I thought it would be.  Thanks for providing the infrastructure
-that made that so easy.
+DEBUG: Executing shell function do_install
+NOTE: make -j 4 BUILD_ROOT=/home/jlovell/FPGA/Enclustra/Mars_ZX3/Yocto/poky/build/tmp/work/i686-linux/quilt-native-0.60-r0/image install
+/usr/bin/install -c -d /home/jlovell/FPGA/Enclustra/Mars_ZX3/Yocto/poky/build/tmp/work/i686-linux/quilt-native-0.60-r0/image/usr/local/bin
+rm -rf /home/jlovell/FPGA/Enclustra/Mars_ZX3/Yocto/poky/build/tmp/work/i686-linux/quilt-native-0.60-r0/image/usr/local/share/quilt/compat
+/usr/bin/install -c -m 755 bin/quilt bin/guards /home/jlovell/FPGA/Enclustra/Mars_ZX3/Yocto/poky/build/tmp/work/i686-linux/quilt-native-0.60-r0/image/usr/local/bin/
+/usr/bin/install -c -d /home/jlovell/FPGA/Enclustra/Mars_ZX3/Yocto/poky/build/tmp/work/i686-linux/quilt-native-0.60-r0/image/usr/local/share/quilt/compat
+/usr/bin/install -c -d /home/jlovell/FPGA/Enclustra/Mars_ZX3/Yocto/poky/build/tmp/work/i686-linux/quilt-native-0.60-r0/image/usr/local/share/quilt
+/usr/bin/install -c -m 755 quilt/add quilt/annotate quilt/applied quilt/delete quilt/diff quilt/edit quilt/files quilt/fold quilt/fork quilt/graph quilt/grep quilt/header quilt/import quilt/mail quilt/new quilt/next quilt/patches quilt/pop quilt/previous quilt/push quilt/refresh quilt/remove quilt/rename quilt/revert quilt/series quilt/setup quilt/snapshot quilt/top quilt/unapplied quilt/upgrade /home/jlovell/FPGA/Enclustra/Mars_ZX3/Yocto/poky/build/tmp/work/i686-linux/quilt-native-0.60-r0/image/usr/local/share/quilt/
+ln -sf /usr/bin/gawk	\
+	       /home/jlovell/FPGA/Enclustra/Mars_ZX3/Yocto/poky/build/tmp/work/i686-linux/quilt-native-0.60-r0/image/usr/local/share/quilt/compat/awk
+ln -sf /usr/sbin/sendmail	\
+	       /home/jlovell/FPGA/Enclustra/Mars_ZX3/Yocto/poky/build/tmp/work/i686-linux/quilt-native-0.60-r0/image/usr/local/share/quilt/compat/sendmail
+/usr/bin/install -c -d /home/jlovell/FPGA/Enclustra/Mars_ZX3/Yocto/poky/build/tmp/work/i686-linux/quilt-native-0.60-r0/image/usr/local/share/quilt/scripts
+ln -sf /bin/rpm	\
+	       /home/jlovell/FPGA/Enclustra/Mars_ZX3/Yocto/poky/build/tmp/work/i686-linux/quilt-native-0.60-r0/image/usr/local/share/quilt/compat/rpmbuild
+/usr/bin/install -c -m 755 quilt/scripts/inspect quilt/scripts/dependency-graph quilt/scripts/edmail quilt/scripts/remove-trailing-ws quilt/scripts/backup-files		\
+		   /home/jlovell/FPGA/Enclustra/Mars_ZX3/Yocto/poky/build/tmp/work/i686-linux/quilt-native-0.60-r0/image/usr/local/share/quilt/scripts
+/usr/bin/install -c -m 644 quilt/scripts/patchfns quilt/scripts/utilfns	\
+		   /home/jlovell/FPGA/Enclustra/Mars_ZX3/Yocto/poky/build/tmp/work/i686-linux/quilt-native-0.60-r0/image/usr/local/share/quilt/scripts
+/usr/bin/install -c -d /home/jlovell/FPGA/Enclustra/Mars_ZX3/Yocto/poky/build/tmp/work/i686-linux/quilt-native-0.60-r0/image/usr/local/share/doc/quilt/
+/usr/bin/install -c -m 644 doc/README					\
+		   /home/jlovell/FPGA/Enclustra/Mars_ZX3/Yocto/poky/build/tmp/work/i686-linux/quilt-native-0.60-r0/image/usr/local/share/doc/quilt/
+/usr/bin/install -c -m 644 doc/quilt.pdf doc/README.MAIL			\
+		   /home/jlovell/FPGA/Enclustra/Mars_ZX3/Yocto/poky/build/tmp/work/i686-linux/quilt-native-0.60-r0/image/usr/local/share/doc/quilt/
+/usr/bin/install -c -d /home/jlovell/FPGA/Enclustra/Mars_ZX3/Yocto/poky/build/tmp/work/i686-linux/quilt-native-0.60-r0/image/usr/local/share/man/man1
+/usr/bin/install -c -m 644 doc/quilt.1 bin/guards.1 /home/jlovell/FPGA/Enclustra/Mars_ZX3/Yocto/poky/build/tmp/work/i686-linux/quilt-native-0.60-r0/image/usr/local/share/man/man1/
+/usr/bin/install -c -d /home/jlovell/FPGA/Enclustra/Mars_ZX3/Yocto/poky/build/tmp/work/i686-linux/quilt-native-0.60-r0/image/usr/local/etc
+/usr/bin/install -c -d /home/jlovell/FPGA/Enclustra/Mars_ZX3/Yocto/poky/build/tmp/work/i686-linux/quilt-native-0.60-r0/image/usr/local/etc/bash_completion.d
+/usr/bin/install -c -m 644 bash_completion				\
+		   /home/jlovell/FPGA/Enclustra/Mars_ZX3/Yocto/poky/build/tmp/work/i686-linux/quilt-native-0.60-r0/image/usr/local/etc/bash_completion.d/quilt
+/usr/bin/install -c -m 644 quilt.quiltrc /home/jlovell/FPGA/Enclustra/Mars_ZX3/Yocto/poky/build/tmp/work/i686-linux/quilt-native-0.60-r0/image/usr/local/etc/
+/usr/bin/install -c -d /home/jlovell/FPGA/Enclustra/Mars_ZX3/Yocto/poky/build/tmp/work/i686-linux/quilt-native-0.60-r0/image/usr/local/share/emacs/site-lisp/
+/usr/bin/install -c -m 644 lib/quilt.el /home/jlovell/FPGA/Enclustra/Mars_ZX3/Yocto/poky/build/tmp/work/i686-linux/quilt-native-0.60-r0/image/usr/local/share/emacs/site-lisp/
+for lang in fr de ja ru ; do					\
+		dir=/home/jlovell/FPGA/Enclustra/Mars_ZX3/Yocto/poky/build/tmp/work/i686-linux/quilt-native-0.60-r0/image/usr/local/share/locale/$lang/LC_MESSAGES;	\
+		/usr/bin/install -c -d $dir;					\
+		/usr/bin/install -c -m 644 po/$lang.mo				\
+		    $dir/quilt.mo ;					\
+	done
 
---wpd
+    The current directory must be set to the ITT directory.
+    Change the default to the ITT directory and re-run
+    this script.
+        
+ERROR: Function failed: do_install (see /home/jlovell/FPGA/Enclustra/Mars_ZX3/Yocto/poky/build/tmp/work/i686-linux/quilt-native-0.60-r0/temp/log.do_install.13552 for further information)
 
-
-
-
-On Tue, Jun 24, 2014 at 5:50 AM, Burton, Ross <ross.burton@intel.com> wrote=
-:
-> On 23 June 2014 16:56, Patrick Doyle <wpdster@gmail.com> wrote:
->> Should I create a core-image-minimal.bbappend file with a SRC_URI
->> pointing to my script and a do_install rule to install it?
->
-> Create a new recipe for the script and then add it to the image.
->
-> The documentation is useful:
-> http://www.yoctoproject.org/docs/current/dev-manual/dev-manual.html#exten=
-dpoky
->
-> Ross
-
+--------------070209040009030202000502--
