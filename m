@@ -1,44 +1,59 @@
-Return-Path: <stephen.k.jolley@intel.com>
+Return-Path: <Seth.Bollinger@digi.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 9E853E00282; Tue, 24 Jun 2014 08:19:43 -0700 (PDT)
+	id 0656DE00509; Tue, 24 Jun 2014 10:16:33 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-5.0 required=5.0 tests=HTML_MESSAGE, RCVD_IN_DNSWL_HI
-	autolearn=unavailable version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [143.182.124.21 listed in list.dnswl.org]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C38BAE00282
-	for <yocto@yoctoproject.org>; Tue, 24 Jun 2014 08:19:40 -0700 (PDT)
-Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by azsmga101.ch.intel.com with ESMTP; 24 Jun 2014 08:19:40 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.01,538,1400050800"; 
-	d="scan'208,217";a="449366149"
-Received: from fmsmsx108.amr.corp.intel.com ([10.19.9.228])
-	by azsmga001.ch.intel.com with ESMTP; 24 Jun 2014 08:19:37 -0700
-Received: from fmsmsx102.amr.corp.intel.com (10.19.9.53) by
-	FMSMSX108.amr.corp.intel.com (10.19.9.228) with Microsoft SMTP Server
-	(TLS) id 14.3.123.3; Tue, 24 Jun 2014 08:19:37 -0700
-Received: from fmsmsx111.amr.corp.intel.com ([169.254.12.83]) by
-	FMSMSX102.amr.corp.intel.com ([169.254.2.147]) with mapi id
-	14.03.0123.003; Tue, 24 Jun 2014 08:19:35 -0700
-From: "Jolley, Stephen K" <stephen.k.jolley@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Minutes: Yocto Project Technical Team Meeting - Tuesday, June
-	24, 2014 8:00 AM US Pacific Time
-Thread-Index: Ac+Pv7I+gjYnf4LTTR2xSWVPJ2RoFQ==
-Date: Tue, 24 Jun 2014 15:19:35 +0000
-Message-ID: <9ADD3FDE8B189B4AA2F8A3C711F8155E551CD9EF@fmsmsx111.amr.corp.intel.com>
+X-Spam-Status: No, score=0.0 required=5.0 tests=RCVD_IN_DNSWL_NONE,
+	UNPARSEABLE_RELAY autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [216.82.251.12 listed in list.dnswl.org]
+	* 0.0 UNPARSEABLE_RELAY Informational: message has unparseable relay
+	lines
+X-Greylist: delayed 415 seconds by postgrey-1.32 at yocto-www;
+	Tue, 24 Jun 2014 10:16:29 PDT
+Received: from mail1.bemta12.messagelabs.com (mail1.bemta12.messagelabs.com
+	[216.82.251.12])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9BF1CE00282
+	for <yocto@yoctoproject.org>; Tue, 24 Jun 2014 10:16:29 -0700 (PDT)
+Received: from [216.82.249.131:53087] by server-12.bemta-12.messagelabs.com id
+	95/98-29721-CC0B9A35; Tue, 24 Jun 2014 17:09:32 +0000
+X-Env-Sender: Seth.Bollinger@digi.com
+X-Msg-Ref: server-16.tower-28.messagelabs.com!1403629771!32730500!1
+X-Originating-IP: [66.77.174.14]
+X-StarScan-Received: 
+X-StarScan-Version: 6.11.3; banners=-,-,-
+X-VirusChecked: Checked
+Received: (qmail 4992 invoked from network); 24 Jun 2014 17:09:32 -0000
+Received: from mail.mx4.digi.com (HELO mcl-sms-ns2.DIGI.COM) (66.77.174.14)
+	by server-16.tower-28.messagelabs.com with RC4-SHA encrypted SMTP;
+	24 Jun 2014 17:09:32 -0000
+Received: from MTK-SMS-XCH03.digi.com (10.10.8.197) by mail.mx2.digi.com
+	(172.16.1.14) with Microsoft SMTP Server (TLS) id 8.3.342.0;
+	Tue, 24 Jun 2014 12:09:27 -0500
+Received: from MTK-SMS-XCH01.digi.com ([fe80::cca7:5299:c88e:1c40]) by
+	MTK-SMS-XCH03.digi.com ([fe80::484d:c326:e7f1:a9fd%25]) with mapi id
+	14.03.0174.001; Tue, 24 Jun 2014 12:09:30 -0500
+From: "Bollinger, Seth" <Seth.Bollinger@digi.com>
+To: =?euc-kr?B?U6mqcmVuIEhvbG0=?= <sgh@sgh.dk>, "yocto@yoctoproject.org"
+	<yocto@yoctoproject.org>
+Thread-Topic: [yocto] File system for alternate partition
+Thread-Index: AQHPjtqWRmuyvuyvDkCgHEP3jjXJpZt+9h4A///bqoCAAa6fAA==
+Date: Tue, 24 Jun 2014 17:09:29 +0000
+Message-ID: <CFCF191E.9615%seth.bollinger@digi.com>
+References: <CFCD80D1.95CB%seth.bollinger@digi.com>
+	<1786383.3DlYgSqWZF@koontz> <CFCDB10A.95E3%seth.bollinger@digi.com>
+In-Reply-To: <CFCDB10A.95E3%seth.bollinger@digi.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-x-originating-ip: [10.1.200.107]
+user-agent: Microsoft-MacOutlook/14.4.1.140326
+x-originating-ip: [10.10.32.62]
+x-kse-antivirus-interceptor-info: scan successful
+x-kse-antivirus-info: Clean
 MIME-Version: 1.0
-Subject: Minutes: Yocto Project Technical Team Meeting - Tuesday, June 24, 2014 8:00 AM US Pacific Time
+Subject: Re: File system for alternate partition
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -50,362 +65,22 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 24 Jun 2014 15:19:43 -0000
+X-List-Received-Date: Tue, 24 Jun 2014 17:16:33 -0000
 Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_9ADD3FDE8B189B4AA2F8A3C711F8155E551CD9EFfmsmsx111amrcor_"
+Content-Type: text/plain; charset="euc-kr"
+Content-ID: <F876AC8DFCC7FB4C86C9D653D20E772F@digi.com>
+Content-Transfer-Encoding: base64
 
---_000_9ADD3FDE8B189B4AA2F8A3C711F8155E551CD9EFfmsmsx111amrcor_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+DQo+SSBndWVzcyBJIGRpZG6p9nQgdGhpbmsgYWJvdXQgdXNpbmcgYSBmdWxsIGltYWdlIGFzIEkg
+d291bGQgbmVlZCB0byByZW1vdmUNCj5hIGJ1bmNoIG9mIHN0dWZmLCBidXQgbWF5YmUgdGhhdCBp
+cyB0aGUgYmVzdCB3YXkuICBUaGF0IHdheSBJIGNhbiBrZWVwIHRoZQ0KPmZsZXhpYmlsaXR5IG9m
+IGRlZmluaW5nIHJlY2lwZXMgdGhhdCB3b3VsZCBiZSBpbnN0YWxsZWQgdG8gbXkgZGF0YQ0KPnBh
+cnRpdGlvbiBpbWFnZS4gIEkgd2lsbCBnaXZlIGl0IGEgdHJ5Lg0KDQpTbyBJIGNyZWF0ZWQgYW4g
+ZW1wdHkgaW1hZ2Ugd2l0aG91dCBhbnkgcGFja2FnZXMgYmVpbmcgYWRkZWQuICBBcyBJDQpzdXNw
+ZWN0ZWQsIHRoZXJloa9zIGNydWZ0IHRoYXQgSSBkb26hr3QgcmVhbGx5IG5lZWQgaW4gdGhlIEZT
+LiAgV2hhdKGvcyB0aGUNCmJlc3Qgd2F5IHRvIHJlbW92ZSB0aGVzZSwgcG9zdCBwcm9jZXNzaW5n
+Pw0KDQpkYXRhLWltYWdlLWJhc2UvMS4wLXIwL3Jvb3Rmcy8NCqanpqGmoSBldGMNCqaiICAgpqam
+oaahIHJjUy5kDQqmp6ahpqEgbGliDQqmoiAgIKampqGmoSBtb2R1bGVzDQqmoiAgICAgICCmpqah
+pqEgMy4xMC4xNi1kZXkrZ2YxNjc2NDANCqampqGmoSB2YXINCiAgICCmpqahpqEgbGliDQogICAg
+ICAgIKampqGmoSBvcGtnDQoNClRoYW5rcywNCg0KU2V0aA0KDQoNCg0K
 
-Attendees: Armin, Stephen, Melissa, Tom, Jefro, Herb, Saul, Michael, Richar=
-d, Mark, Bruce, Mathew, Nitin, Christian,
-
-
-
-* Opens collection - 5 min (Stephen)
-
-* Yocto 1.7 status - 5 min (Stephen/team)
-
-https://wiki.yoctoproject.org/wiki/Yocto_Project_v1.7_Status
-
-https://wiki.yoctoproject.org/wiki/Yocto_1.7_Schedule
-
-https://wiki.yoctoproject.org/wiki/Yocto_1.7_Features
-
-Stephen -
-
-YP 1.7 M1 rc1 - QA will start doing a full QA on this after they finish YP =
-1.6.1 rc3.
-
-YP 1.6.1 rc3 -  QA will be doing a very limited test run on the changes bui=
-lt.
-
-YP 1.5.3 - This release is planned for right after YP 1.7 M1 is released.
-
-YP 1.4.5 - We are not planning a release for 1.4.5 at this time.
-
-
-
-* SWAT team rotation: Beth -> Richard
-
-https://wiki.yoctoproject.org/wiki/Yocto_Build_Failure_Swat_Team
-
-
-
-* Opens - 10 min
-
-Stephen - Discussed moving this meeting to every other week.  It was agreed=
- to do so.
-
-For Outlook Calendar users the links are:
-The YP Development Calendar link is: https://www.google.com/calendar/ical/m=
-g0m150m30gs891eqqhtfu5jgg%40group.calendar.google.com/public/basic.ics
-The YP Point Release Calendar link is: https://www.google.com/calendar/ical=
-/mg0m150m30gs891eqqhtfu5jgg%40group.calendar.google.com/public/basic.ics
-
-For Google Calendar users the links are:
-The YP Development Calendar link is: 3a0927ctps51u8rs2jv1uligdc@group.calen=
-dar.google.com<mailto:3a0927ctps51u8rs2jv1uligdc@group.calendar.google.com>
-The YP Point Release Calendar link is: mg0m150m30gs891eqqhtfu5jgg@group.cal=
-endar.google.com<mailto:mg0m150m30gs891eqqhtfu5jgg@group.calendar.google.co=
-m>
-
-Mark - Started work on RPM for meta-mingw and will have some patches to rel=
-ease on it.
-
-
-
-* Team Sharing - 10 min
-Michael -  Just got back from vacation and is trying to work through the st=
-ack of e-mail, if something is urgent to get worked on, please send it agai=
-n.
-Michael - Now we have both a weekly and daily bug tracking web site:
-Weekly - https://wiki.yoctoproject.org/charts/combo.html
-Daily - https://wiki.yoctoproject.org/charts/daily/combo.html
-
-Richard - performance metrics - Performance has slowing gotten longer on 1.=
-7 build times.  But, after a reboot they all times went back to similar to =
-1.6 times.  We would like to have a look at this since not clear what the r=
-eason for them getting longer.  Alex will investigate this build stats for =
-the runs to see if anything.
-
-Thanks,
-
-Stephen K. Jolley
-Yocto Project Program Manager
-INTEL, MS JF1-255, 2111 N.E. 25th Avenue, Hillsboro, OR 97124
-*   Work Telephone:          (503) 712-0534
-*    Cell:                                (208) 244-4460
-* Email:                             stephen.k.jolley@intel.com
-
-
---_000_9ADD3FDE8B189B4AA2F8A3C711F8155E551CD9EFfmsmsx111amrcor_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:x=3D"urn:schemas-microsoft-com:office:excel" xmlns:m=3D"http://schema=
-s.microsoft.com/office/2004/12/omml" xmlns=3D"http://www.w3.org/TR/REC-html=
-40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<meta name=3D"Generator" content=3D"Microsoft Word 14 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:Wingdings;
-	panose-1:5 0 0 0 0 0 0 0 0 0;}
-@font-face
-	{font-family:Wingdings;
-	panose-1:5 0 0 0 0 0 0 0 0 0;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-@font-face
-	{font-family:Tahoma;
-	panose-1:2 11 6 4 3 5 4 4 2 4;}
-@font-face
-	{font-family:"Comic Sans MS";
-	panose-1:3 15 7 2 3 3 2 2 2 4;}
-@font-face
-	{font-family:"MS Sans Serif";}
-@font-face
-	{font-family:Consolas;
-	panose-1:2 11 6 9 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri","sans-serif";
-	mso-fareast-language:EN-US;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:purple;
-	text-decoration:underline;}
-p.MsoPlainText, li.MsoPlainText, div.MsoPlainText
-	{mso-style-priority:99;
-	mso-style-link:"Plain Text Char";
-	margin:0in;
-	margin-bottom:.0001pt;
-	font-size:10.5pt;
-	font-family:Consolas;
-	mso-fareast-language:EN-US;}
-p
-	{mso-style-priority:99;
-	mso-margin-top-alt:auto;
-	margin-right:0in;
-	mso-margin-bottom-alt:auto;
-	margin-left:0in;
-	font-size:12.0pt;
-	font-family:"Times New Roman","serif";
-	mso-fareast-language:ZH-CN;}
-span.PlainTextChar
-	{mso-style-name:"Plain Text Char";
-	mso-style-priority:99;
-	mso-style-link:"Plain Text";
-	font-family:Consolas;}
-span.EmailStyle20
-	{mso-style-type:personal-compose;
-	font-family:"Calibri","sans-serif";
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-size:10.0pt;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
-<div class=3D"WordSection1">
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas">Attendees: Armin, Stephen, Melissa, Tom, Jefro, He=
-rb, Saul, Michael, Richard, Mark, Bruce, Mathew, Nitin, Christian,
-<o:p></o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas">&nbsp;<o:p></o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas">* Opens collection - 5 min (Stephen)<o:p></o:p></s=
-pan></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas">* Yocto 1.7 status - 5 min (Stephen/team)<o:p></o:=
-p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas"><a href=3D"https://wiki.yoctoproject.org/wiki/Yoct=
-o_Project_v1.7_Status">https://wiki.yoctoproject.org/wiki/Yocto_Project_v1.=
-7_Status</a><o:p></o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas"><a href=3D"https://wiki.yoctoproject.org/wiki/Yoct=
-o_1.7_Schedule">https://wiki.yoctoproject.org/wiki/Yocto_1.7_Schedule</a><o=
-:p></o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas"><a href=3D"https://wiki.yoctoproject.org/wiki/Yoct=
-o_1.7_Features">https://wiki.yoctoproject.org/wiki/Yocto_1.7_Features</a><o=
-:p></o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas">Stephen &#8211;
-<o:p></o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas">YP 1.7 M1 rc1 &#8211; QA will start doing a full Q=
-A on this after they finish YP 1.6.1 rc3.&nbsp;
-<o:p></o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas">YP 1.6.1 rc3 &#8211;&nbsp; QA will be doing a very=
- limited test run on the changes built.&nbsp;
-<o:p></o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas">YP 1.5.3 &#8211; This release is planned for right=
- after YP 1.7 M1 is released.<o:p></o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas">YP 1.4.5 &#8211; We are not planning a release for=
- 1.4.5 at this time.<o:p></o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas"><o:p>&nbsp;</o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas">* SWAT team rotation: Beth -&gt; Richard<o:p></o:p=
-></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas"><a href=3D"https://wiki.yoctoproject.org/wiki/Yoct=
-o_Build_Failure_Swat_Team">https://wiki.yoctoproject.org/wiki/Yocto_Build_F=
-ailure_Swat_Team</a><o:p></o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas"><o:p>&nbsp;</o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas">* Opens - 10 min
-<o:p></o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas">Stephen &#8211; Discussed moving this meeting to e=
-very other week.&nbsp; It was agreed to do so.<o:p></o:p></span></p>
-<p style=3D"mso-margin-top-alt:0in;margin-right:0in;margin-bottom:0in;margi=
-n-left:.5in;margin-bottom:.0001pt">
-<span style=3D"font-size:11.0pt;font-family:Consolas">For Outlook Calendar =
-users the links are:<o:p></o:p></span></p>
-<p class=3D"MsoNormal" style=3D"margin-left:.5in"><span style=3D"font-famil=
-y:Consolas;mso-fareast-language:ZH-CN">The YP Development Calendar link is:=
-</span>
-<a href=3D"https://www.google.com/calendar/ical/mg0m150m30gs891eqqhtfu5jgg%=
-40group.calendar.google.com/public/basic.ics">
-https://www.google.com/calendar/ical/mg0m150m30gs891eqqhtfu5jgg%40group.cal=
-endar.google.com/public/basic.ics</a><o:p></o:p></p>
-<p class=3D"MsoNormal" style=3D"margin-left:.5in"><span style=3D"font-famil=
-y:Consolas;mso-fareast-language:ZH-CN">The YP Point Release Calendar link i=
-s:</span>
-<a href=3D"https://www.google.com/calendar/ical/mg0m150m30gs891eqqhtfu5jgg%=
-40group.calendar.google.com/public/basic.ics">
-https://www.google.com/calendar/ical/mg0m150m30gs891eqqhtfu5jgg%40group.cal=
-endar.google.com/public/basic.ics</a><o:p></o:p></p>
-<p style=3D"mso-margin-top-alt:0in;margin-right:0in;margin-bottom:0in;margi=
-n-left:.5in;margin-bottom:.0001pt">
-<span style=3D"font-size:11.0pt;font-family:Consolas">For Google Calendar u=
-sers the links are:
-<o:p></o:p></span></p>
-<p class=3D"MsoNormal" style=3D"margin-left:.5in"><span style=3D"font-famil=
-y:Consolas;mso-fareast-language:ZH-CN">The YP Development Calendar link is:=
-</span><span style=3D"font-size:9.0pt;font-family:&quot;Arial&quot;,&quot;s=
-ans-serif&quot;;color:black;background:white">
-<a href=3D"mailto:3a0927ctps51u8rs2jv1uligdc@group.calendar.google.com">3a0=
-927ctps51u8rs2jv1uligdc@group.calendar.google.com</a><o:p></o:p></span></p>
-<p class=3D"MsoNormal" style=3D"margin-left:.5in">Th<span style=3D"font-fam=
-ily:Consolas;mso-fareast-language:ZH-CN">e YP Point Release Calendar link i=
-s:
-</span><span style=3D"font-size:9.0pt;font-family:&quot;Arial&quot;,&quot;s=
-ans-serif&quot;;color:black;background:white"><a href=3D"mailto:mg0m150m30g=
-s891eqqhtfu5jgg@group.calendar.google.com">mg0m150m30gs891eqqhtfu5jgg@group=
-.calendar.google.com</a><o:p></o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas">Mark &#8211; Started work on RPM for meta-mingw an=
-d will have some patches to release on it.<o:p></o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas"><o:p>&nbsp;</o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas">* Team Sharing - 10 min<o:p></o:p></span></p>
-<p class=3D"MsoNormal">Michael &#8211;&nbsp; Just got back from vacation an=
-d is trying to work through the stack of e-mail, if something is urgent to =
-get worked on, please send it again.<o:p></o:p></p>
-<p class=3D"MsoNormal">Michael &#8211; Now we have both a weekly and daily =
-bug tracking web site:<o:p></o:p></p>
-<p class=3D"MsoNormal" style=3D"margin-left:.5in">Weekly -<span style=3D"fo=
-nt-size:12.0pt;font-family:&quot;Times New Roman&quot;,&quot;serif&quot;">
-<span lang=3D"EN"><a href=3D"https://wiki.yoctoproject.org/charts/combo.htm=
-l">https://wiki.yoctoproject.org/charts/combo.html</a>
-<o:p></o:p></span></span></p>
-<p class=3D"MsoNormal" style=3D"margin-left:.5in">Daily -<span style=3D"fon=
-t-size:12.0pt;font-family:&quot;Times New Roman&quot;,&quot;serif&quot;">
-<span lang=3D"EN"><a href=3D"https://wiki.yoctoproject.org/charts/daily/com=
-bo.html">https://wiki.yoctoproject.org/charts/daily/combo.html</a>
-<o:p></o:p></span></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:&quot;Calibri&quot;,&quot;sans-serif&quot;">Richard &#8211; =
-performance metrics &#8211; Performance has slowing gotten longer on 1.7 bu=
-ild times.&nbsp; But, after a reboot they all times went back to similar
- to 1.6 times.&nbsp; We would like to have a look at this since not clear w=
-hat the reason for them getting longer. &nbsp;Alex will investigate this bu=
-ild stats for the runs to see if anything.<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Thanks,<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal" style=3D"page-break-after:avoid;text-autospace:none"=
-><b><i><span style=3D"font-size:16.0pt;font-family:&quot;Times New Roman&qu=
-ot;,&quot;serif&quot;;color:purple">Stephen K. Jolley</span></i></b><b><i><=
-span style=3D"font-size:16.0pt;font-family:&quot;Tahoma&quot;,&quot;sans-se=
-rif&quot;;color:purple"><o:p></o:p></span></i></b></p>
-<p class=3D"MsoNormal"><b><span style=3D"font-size:8.0pt;font-family:&quot;=
-Courier New&quot;;color:blue">Yocto Project Program Manager<o:p></o:p></spa=
-n></b></p>
-<p class=3D"MsoNormal" style=3D"page-break-after:avoid;text-autospace:none"=
-><b><span style=3D"font-size:10.0pt;font-family:&quot;Courier New&quot;;col=
-or:fuchsia">INTEL, MS JF1-255, 2111 N.E. 25th Avenue, Hillsboro, OR 97124
-<o:p></o:p></span></b></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:Wingdings;color:black">(<=
-/span><span style=3D"font-family:&quot;MS Sans Serif&quot;;color:teal">
-</span><span style=3D"font-size:8.0pt;font-family:&quot;MS Sans Serif&quot;=
-;color:teal">&nbsp;&nbsp;</span><b><span style=3D"font-size:8.0pt;font-fami=
-ly:&quot;Comic Sans MS&quot;;color:teal">Work Telephone</span></b><span sty=
-le=3D"font-family:&quot;MS Sans Serif&quot;;color:teal">:&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span><span style=3D"font-size:9.0pt;font-family:&quot;MS Sans Serif&quot;=
-">(503) 712-0534<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt;font-family:Wingdings=
-;color:black">(</span><span style=3D"font-size:9.0pt;font-family:&quot;MS S=
-ans Serif&quot;;color:teal">&nbsp;&nbsp;&nbsp;
-</span><b><span style=3D"font-size:8.0pt;font-family:&quot;Comic Sans MS&qu=
-ot;;color:teal">Cell</span></b><span style=3D"font-size:9.0pt;font-family:&=
-quot;MS Sans Serif&quot;;color:teal">:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span><span style=3D"font-size:9.0pt;font-family:&quot;MS Sans Serif&quot;=
-">(208) 244-4460<span style=3D"color:black"><o:p></o:p></span></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt;font-family:Wingdings=
-">* </span>
-<b><span lang=3D"FR" style=3D"font-size:8.0pt;font-family:&quot;Comic Sans =
-MS&quot;;color:teal">Email</span></b><span lang=3D"FR" style=3D"font-size:9=
-.0pt;font-family:&quot;MS Sans Serif&quot;;color:teal">:</span><span lang=
-=3D"FR" style=3D"font-size:9.0pt;font-family:&quot;MS Sans Serif&quot;">&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;
-<u><span style=3D"color:blue">stephen.k.jolley@intel.com</span></u></span><=
-span lang=3D"FR" style=3D"font-size:12.0pt;font-family:&quot;Arial&quot;,&q=
-uot;sans-serif&quot;"><o:p></o:p></span></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-</div>
-</body>
-</html>
-
---_000_9ADD3FDE8B189B4AA2F8A3C711F8155E551CD9EFfmsmsx111amrcor_--
