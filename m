@@ -1,43 +1,37 @@
-Return-Path: <elizabeth.flanagan@intel.com>
+Return-Path: <anders@chargestorm.se>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 5213BE00283; Mon, 23 Jun 2014 16:57:33 -0700 (PDT)
+	id E99E4E003D2; Tue, 24 Jun 2014 01:28:19 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-0.7 required=5.0 tests=RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [209.85.220.170 listed in list.dnswl.org]
-Received: from mail-vc0-f170.google.com (mail-vc0-f170.google.com
-	[209.85.220.170])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E60BBE0027B
-	for <yocto@yoctoproject.org>; Mon, 23 Jun 2014 16:57:26 -0700 (PDT)
-Received: by mail-vc0-f170.google.com with SMTP id hy10so6894453vcb.29
-	for <yocto@yoctoproject.org>; Mon, 23 Jun 2014 16:57:25 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:date:message-id:subject:from:to
-	:content-type;
-	bh=/jQzJ8A63ilfo0npywqU/Dhp4PvmnwBx/uwK9PSKIww=;
-	b=NRsrrBTJDXzneAZNdjJ81qIxwnHr2G7ziWEyteESSOA4HHLSmH5Iz3+jz7lUbml6J6
-	dK7gn+wReTEx/t/BcaAJNkMo9urvQ5l3UhX33zXZD2MswTTxA7ulJ6N6QbBEG2dtsSBO
-	XMCRXRgjYoowf97PRTISkQa0Ig5KP+xgJ8u225xl0jgF38RInkZ/jeN2MArc7BnPQFLa
-	P3hth173CC0nAwEw9aujoZVEjBjd7MXEBPSp8AWZ3Z9CcB++70J/qDls2+9+Fmu3yAQi
-	rTSOtBmPNDbviTmEYmGYZwtn4X2ngWX8VKoqhNcbkf0BJ4LlqbwugddaAVT4+eze7hzo
-	s+YQ==
-X-Gm-Message-State: ALoCoQntuH8xpmf+fys9FOPTANvB3uAsykdw13qO3Bj4F8nDpYVJndahIM5thXwOjXz1shPrKE1i
+X-Spam-Status: No, score=0.0 required=5.0 tests=none autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: 
+Received: from STOEXHUB02.domain01.net (STOEXHUB02.domain01.net
+	[83.145.59.143])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3F330E00282
+	for <yocto@yoctoproject.org>; Tue, 24 Jun 2014 01:28:12 -0700 (PDT)
+Received: from ad.chargestorm.se (213.114.64.43) by stoexhub02.domain01.net
+	(10.12.10.2) with Microsoft SMTP Server (TLS) id 8.3.279.1;
+	Tue, 24 Jun 2014 10:28:09 +0200
+Date: Tue, 24 Jun 2014 10:27:56 +0200
+From: Anders Darander <anders@chargestorm.se>
+To: Pourya Shirazian <pourya.shirazian@gmail.com>
+Message-ID: <20140624082756.GD22071@ad.chargestorm.se>
+Mail-Followup-To: Pourya Shirazian <pourya.shirazian@gmail.com>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+References: <CAFjJ7KbgxzjNu4ScnDHhHTYv8rft_AKrp72nj-+zT6JOdKE-mA@mail.gmail.com>
 MIME-Version: 1.0
-X-Received: by 10.58.1.9 with SMTP id 9mr22413177vei.14.1403567845321; Mon, 23
-	Jun 2014 16:57:25 -0700 (PDT)
-Received: by 10.52.28.235 with HTTP; Mon, 23 Jun 2014 16:57:25 -0700 (PDT)
-Date: Mon, 23 Jun 2014 16:57:25 -0700
-Message-ID: <CAPhnLPDXsM_to9YEo2xEirK1s9L7sLPXHN8G2JPKp5w4q68fkA@mail.gmail.com>
-From: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>, 
-	Alexandru C Georgescu <alexandru.c.georgescu@intel.com>,
-	Zhao Yi <yi.zhao@windriver.com>, Otavio Salvador <otavio@ossystems.com.br>
-Subject: Yocto Project 1.6.1 rc3 available for test
+In-Reply-To: <CAFjJ7KbgxzjNu4ScnDHhHTYv8rft_AKrp72nj-+zT6JOdKE-mA@mail.gmail.com>
+X-Accept-Language: sv, en, de
+X-GPG-Fingerprint: 5AF0 B2E9 78FE 9D75 D110  6F8F 3E31 84D7 920E 938C
+X-GPG-Key-Id: 0x920E938C
+X-GPG-Keyserver: hkp://keys.gnupg.net
+Organization: ChargeStorm AB
+User-Agent: Mutt/1.5.23 (2014-03-12)
+X-GFI-SMTP-Submission: 1
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: SRC_URI issue in recipe writing
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -49,27 +43,70 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 23 Jun 2014 23:57:33 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Tue, 24 Jun 2014 08:28:20 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Please begin testing:
+* Pourya Shirazian <pourya.shirazian@gmail.com> [140624 00:58]:
 
-http://autobuilder.yoctoproject.org/pub/releases/yocto-1.6.1
+> Hi,
 
-bitbake    2ae1fa629acf1a37f2c8ad929285cc7c76a9a40b
-eclipse-poky-juno    26bfc407781aa185f244a47ba63120343cee4a37
-eclipse-poky-kepler    1dfe1d2f1322b5fda8e1a7637c447b0e060efb3e
-meta-fsl-arm    f5bf277a5a5fba2c3b64ed7d2dbec1903d96386b
-meta-fsl-ppc    299f84cceccacd84651c1cefc1c34e66fb598a96
-meta-intel    50d1afd52a612dbf9a190bf869c37253864886cc
-meta-minnow    7bdcd1140b729598bae6246a4bbc21c3950aadd8
-meta-qt3    3016129d90b7ac8517a5227d819f10ad417b5b45
-oecore    09f7ef16bbfbdfee25f0be3fd829924a6042fae9
-poky    c4f1f0f491f988901bfd6965f7d10f60cb94a76f
+> When writing a recipe the SRC_URI is supposed to accept git repository
+> addresses but the following fails to build for me:
+
+> 1. With http URL: It also does not allow my credentials to be embedded in=
+ the
+> URI
+
+> SRC_URI =3D "http://mygitserver.net/myproject.git;protocol=3Dhttp;branch=
+=3Dmaster"
+
+You should use git:// here. This is to inform bitbake that this is a git
+URL. You should keep protocol=3Dhttp, as this will tell bitbake that git
+should use the http protocol.
+
+Do you need to supply credentials together with your http-URL?
+
+> Exception: ExpansionError: Failure expanding variable SRCPV, expression w=
+as $
+> {@bb.fetch2.get_srcrev(d)} which triggered exception FetchError: Fetcher
+> failure: SRCREV was used yet no valid SCM was found in SRC_URI
+
+Well, as you used http://... in SRC_URI, bitbake think's it has to
+download a file from the webserver.
 
 
--- 
-Elizabeth Flanagan
-Yocto Project
-Build and Release
+> 2. With ssh URL
+
+> SRC_URI =3D "git@mygitserver.net:me/myproject.git;protocol=3Dssh;branch=
+=3Dmaster"
+
+> Exception: ExpansionError: Failure expanding variable SRCPV, expression w=
+as $
+> {@bb.fetch2.get_srcrev(d)} which triggered exception MalformedUrl: The UR=
+L:=C2=A0"
+> git@mygitserver.net:me/myproject.git;protocol=3Dssh;branch=3Dmaster"=C2=
+=A0is invalid and
+> cannot be interpreted
+
+You still need to start the URI with git://...
+
+> After checking the documentation it seems it only expects the git protoco=
+l only
+> and it worked in this example, however, our internal enterprise github on=
+ly
+> supports http and ssh URIs.
+
+No, the protocol is specified by adding protocol=3Dxxx.=20
+
+> SRC_URI =3D "git://github.com/GraphicsEmpire/gridvisualization.git;branch=
+=3Dmaster=E2=80=9D
+
+Cheers,
+Anders
+
+--=20
+Anders Darander
+ChargeStorm AB / eStorm AB
 
