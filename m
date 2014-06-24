@@ -1,40 +1,51 @@
-Return-Path: <markus.eich@dfki.de>
+Return-Path: <gmshastri@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id E8745E003D2; Tue, 24 Jun 2014 02:31:32 -0700 (PDT)
+	id E5FC4E00566; Tue, 24 Jun 2014 02:32:06 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=0.0 required=5.0 tests=T_HK_NAME_DR autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: *  0.0 T_HK_NAME_DR T_HK_NAME_DR
-X-Greylist: delayed 220 seconds by postgrey-1.32 at yocto-www;
-	Tue, 24 Jun 2014 02:31:29 PDT
-Received: from sea-mail.dfki.de (sea-mail.dfki.de [134.96.191.185])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 47EB4E00282
-	for <yocto@yoctoproject.org>; Tue, 24 Jun 2014 02:31:29 -0700 (PDT)
-Received: from sea-mail.dfki.de (localhost.localdomain [127.0.0.1])
-	by localhost (Email Security Appliance) with SMTP id
-	DE2C49BF46_3A94492B
-	for <yocto@yoctoproject.org>; Tue, 24 Jun 2014 09:27:46 +0000 (GMT)
-Received: from mail.dfki.de (lnv-104.sb.dfki.de [134.96.191.146])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(Client did not present a certificate)
-	by sea-mail.dfki.de (Sophos Email Appliance) with ESMTPS id
-	AFD389BDB1_3A94492F
-	for <yocto@yoctoproject.org>; Tue, 24 Jun 2014 09:27:46 +0000 (GMT)
-Received: from [10.250.3.99] (unknown [10.250.3.99])
-	(using TLSv1 with cipher DHE-RSA-AES128-SHA (128/128 bits))
-	(No client certificate requested)
-	by mail.dfki.de (Postfix) with ESMTPSA id 9214B310AE
-	for <yocto@yoctoproject.org>; Tue, 24 Jun 2014 11:27:46 +0200 (CEST)
-Message-ID: <53A94492.2010202@dfki.de>
-Date: Tue, 24 Jun 2014 11:27:46 +0200
-From: "Dr. Markus Eich" <markus.eich@dfki.de>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:24.0) Gecko/20100101 Thunderbird/24.6.0
+X-Spam-Status: No, score=-0.8 required=5.0 tests=DKIM_SIGNED,DKIM_VALID,
+	DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (gmshastri[at]gmail.com)
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.214.179 listed in list.dnswl.org]
+Received: from mail-ob0-f179.google.com (mail-ob0-f179.google.com
+	[209.85.214.179])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E1103E003D2
+	for <yocto@yoctoproject.org>; Tue, 24 Jun 2014 02:31:56 -0700 (PDT)
+Received: by mail-ob0-f179.google.com with SMTP id uz6so16539obc.24
+	for <yocto@yoctoproject.org>; Tue, 24 Jun 2014 02:31:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type;
+	bh=qk2D36fapzIAp+JiBtbrM+24ukiiG1C4QzEMe06QCGE=;
+	b=lVmiQV7fD2cEdArQOu3W9uvt99T+pTosbWNC6ZBm58/xYpguwqRQ0cFhQ0fgrK/Pb/
+	arDAXeCLqWTH4s+Jwqzb9CuBhm7yjHwB67kGEwo4nHn6CLnE/GV25vKhCC+BYpcAtnrk
+	O6UqE0A/Xxky8GH4EdCdBMHZZUJE8sK5hS8UlCZg/AjyYsrtvvRNPPIGqygMucLetzWD
+	d1kKxWoR5bHN1ag9CWf7QEhMwCG+05xuYxnkQ19qCVhYFstz0xeN5p62HTS+QyOrW2YJ
+	yMmWMADwzfKG9p0ycPoZgWBXSV0C1iBaKAVmIU/xGtsSD6r/366HMpMimIa0XQ8mxtoM
+	I4ww==
 MIME-Version: 1.0
-To: yocto@yoctoproject.org
-Subject: Error in Yocto do_package (cachedpath.py)
+X-Received: by 10.60.173.146 with SMTP id bk18mr70233oec.29.1403602315968;
+	Tue, 24 Jun 2014 02:31:55 -0700 (PDT)
+Received: by 10.202.188.134 with HTTP; Tue, 24 Jun 2014 02:31:55 -0700 (PDT)
+In-Reply-To: <CACG32bCxxVXKDHqaUaf7fNg=BWdpbe1zZoKiqVr8jFMmDUV4dQ@mail.gmail.com>
+References: <CACG32bCxxVXKDHqaUaf7fNg=BWdpbe1zZoKiqVr8jFMmDUV4dQ@mail.gmail.com>
+Date: Tue, 24 Jun 2014 15:01:55 +0530
+Message-ID: <CAE_REAuqKcAVoyppz6Uo++yuqjraBrkCH-fPFRrdFpDxQNR_ZQ@mail.gmail.com>
+From: Gaurang Shastri <gmshastri@gmail.com>
+To: Pradeep kumar <topradeepyaduvanshi@gmail.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Compiling openvswitch module in yocto
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -46,146 +57,172 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 24 Jun 2014 09:31:32 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Tue, 24 Jun 2014 09:32:07 -0000
+Content-Type: multipart/alternative; boundary=089e011777d973047104fc91a12b
 
-Dear all,
+--089e011777d973047104fc91a12b
+Content-Type: text/plain; charset=UTF-8
 
-I am setting up Yocto to compile my kernel for odroid xu. During the 
-package phase of building the kernel, I get an error in cachedpath.py
+Hi,
 
-================
+In your recipe, you just need to enable,
 
-DEBUG: Executing python function sstate_task_prefunc
-DEBUG: Python function sstate_task_prefunc finished
-DEBUG: Executing python function do_package
-DEBUG: Executing python function package_get_auto_pr
-DEBUG: Python function package_get_auto_pr finished
-DEBUG: Executing python function perform_packagecopy
-DEBUG: Python function perform_packagecopy finished
-DEBUG: Executing python function split_and_strip_files
-ERROR: Error executing a python function in 
-/home/eich/yocto/poky/meta-odroid/recipes-kernel/linux/linux-hardkernel_3.4.bb:
+EXTRA_OECONF = "--with-linux=${STAGING_KERNEL_DIR} KARCH=${TARGET_ARCH}"
 
-The stack trace of python calls that resulted in this exception/failure was:
-File: 'split_and_strip_files', lineno: 222, function: <module>
-      0218:    # End of strip
-      0219:    #
-      0220:
-      0221:
-  *** 0222:split_and_strip_files(d)
-      0223:
-File: 'split_and_strip_files', lineno: 85, function: split_and_strip_files
-      0081:                if debugdir and debugdir in 
-os.path.dirname(file[len(dvar):]):
-      0082:                    continue
-      0083:
-      0084:                try:
-  *** 0085:                    ltarget = cpath.realpath(file, dvar, False)
-      0086:                    s = cpath.lstat(ltarget)
-      0087:                except OSError as e:
-      0088:                    (err, strerror) = e.args
-      0089:                    if err != errno.ENOENT:
-File: '/home/eich/yocto/poky/meta/lib/oe/cachedpath.py', lineno: 229, 
-function: realpath
-      0225:                # be printed a backtrace with 100s of OSError 
-exceptions
-      0226:                # else
-      0227:                raise OSError(errno.ELOOP,
-      0228:                              "too much recursions while 
-resolving '%s'; loop in '%s'" %
-  *** 0229:                              (file, e.strerror))
-      0230:
-      0231:            raise
-      0232:
-      0233:        return file
-Exception: OSError: [Errno 40] too much recursions while resolving 
-'/home/eich/odroid/build/tmp/work/odroid_xu-poky-linux-gnueabi/linux-hardkernel/3.4-r0/package/usr/src/kernel/drivers/gpu/arm/mali400/ump/arch/arch-release'; 
-loop in 
-'/home/eich/odroid/build/tmp/work/odroid_xu-poky-linux-gnueabi/linux-hardkernel/3.4-r0/package/usr/src/kernel/drivers/gpu/arm/mali400/ump/arch/arch-release'
+This will build openvswitch module against your kernel source. I did this
+and I did not find any issues and it built module against my kernel.
 
-DEBUG: Python function split_and_strip_files finished
-DEBUG: Python function do_package finished
-ERROR: Function failed: split_and_strip_files
+Can you paste more logs here ??
 
-====================
-
-Seems that the path is to deep?
-
-To track the error, I have attached my kernel.bb
+//Gaurang Shastri
 
 
-==================
-require recipes-kernel/linux/linux-yocto.inc
+On Tue, Jun 24, 2014 at 2:19 PM, Pradeep kumar <
+topradeepyaduvanshi@gmail.com> wrote:
 
-KERNEL_IMAGETYPE = "uImage"
+> *on x-86 openvswitch compiling steps are as follows:*
+> ->./boot.sh
+> ->./configure --with-linux=/lib/modules/`uname -r`/build
+> ->make
+> ->make install
+>  by following these steps an openvswitch kernel  module get built in
+> *openvswitch-1.10.0/datapath/linux/openvswitch.ko*
+>
+> *i Am using following steps to cross-compile openvswitch for power pc*
+>
+> ->export
+> PATH=$PATH:/home/nova/new_yocto1.4/QorIQ-SDK-V1.4-20130814-yocto/board/tmp/sysroots/x86_64-linux/usr/bin/ppc64e6500-fsl_networking-linux
+>
+> ->./boot.sh
+>
+>
+> ->./configure --host=x86 --target=powerpc KARCH=powerpc
+> CC=powerpc64-fsl_networking-linux-gcc
+> --with-linux=/home/nova/new_yocto1.4/QorIQ-SDK-V1.4-20130814-yocto/build_t4240rdb_release/tmp/work/t4240rdb-fsl_networking-linux/linux-qoriq-sdk/3.8-r17.3/git/
+>  --enable-ssl=no --prefix=/openvswitch_utils
+>
+>
+> ->make ARCH=powerpc CROSS_COMPILE=powerpc-fsl_networking-linux-
+>
+> ->sudo make ARCH=powerpc CROSS_COMPILE=powerpc-fsl_networking-linux-
+> install
+> .
+> .
+> .
+> By following these steps an *openvswitch kernel  module get built in
+> openvswitch-2.1.2/datapath/linux/openvswitch.ko for powerpc arch.*
+>
+> *Now i want to do the same thing using openvswitch_1.10.0.bb
+> <http://openvswitch_2.1.2.bb> file*.
+> # Don't compile kernel modules by default since it heavily depends on
+>  30 # kernel version. Use the in-kernel module for now.
+>  31 # distro layers can enable with EXTRA_OECONF_pn_openvswitch += ""
+>  32 # *EXTRA_OECONF = "--with-linux=${STAGING_KERNEL_DIR}
+> KARCH=${TARGET_ARCH}"*
+>
+> acc. to my understanding which can be achieved by uncommenting this line
+> and passing kernel source directory path in openvswitch_1.10.0.bb  :
+> *EXTRA_OECONF =
+> "--with-linux=/home/nova/new_yocto1.4/QorIQ-SDK-V1.4-20130814-yocto/build_t4240rdb_release/tmp/work/t4240rdb-fsl_networking-linux/linux-qoriq-sdk/3.8-r17.3/git KARCH=powerpc
+> in openvswitch_1.10.0.bb <http://openvswitch_1.10.0.bb>*
+>
+> *bitbake -c compile openvswitch*
+>
+> but it is showing error:*do_compile failed,oe_runmake failed*
+> and showing .../git/x86/include/asm/unistd...files are missing...
+> i am new to yocto kindly help me regarding above described issue.thanks in
+> advance.ITZ URGENT.if u need to see full logs plz ask for the same.
+> Regards
+> Pradeep Kumar
+>
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
+>
 
-COMPATIBLE_MACHINE = "odroid-xu"
+--089e011777d973047104fc91a12b
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-LINUX_VERSION = "3.4.91"
-LINUX_VERSION_EXTENSION = "-custom"
+<div dir=3D"ltr">Hi,<div><br></div><div>In your recipe, you just need to en=
+able,</div><div><br></div><div>EXTRA_OECONF =3D &quot;--with-linux=3D${STAG=
+ING_KERNEL_DIR} KARCH=3D${TARGET_ARCH}&quot;<br></div><div><br></div><div>T=
+his will build openvswitch module against your kernel source. I did this an=
+d I did not find any issues and it built module against my kernel.</div>
+<div><br></div><div>Can you paste more logs here ??</div><div><br></div><di=
+v>//Gaurang Shastri</div></div><div class=3D"gmail_extra"><br><br><div clas=
+s=3D"gmail_quote">On Tue, Jun 24, 2014 at 2:19 PM, Pradeep kumar <span dir=
+=3D"ltr">&lt;<a href=3D"mailto:topradeepyaduvanshi@gmail.com" target=3D"_bl=
+ank">topradeepyaduvanshi@gmail.com</a>&gt;</span> wrote:<br>
+<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
+x #ccc solid;padding-left:1ex"><div dir=3D"ltr"><div><div><div><div><div><d=
+iv><div><div><b>on x-86 openvswitch compiling steps are as follows:</b><br>=
+</div>
+-&gt;./boot.sh<br></div>-&gt;./configure --with-linux=3D/lib/modules/`uname=
+ -r`/build<br></div>-&gt;make <br>
+</div>-&gt;make install<br></div>
+=C2=A0by following these steps an openvswitch kernel=C2=A0 module get built=
+ in <b>openvswitch-1.10.0/datapath/linux/openvswitch.ko</b><br><br></div><d=
+iv><b>i Am using following steps to cross-compile openvswitch for power pc<=
+/b><br>
 
-FILESEXTRAPATHS_prepend := "${THISDIR}/linux-hardkernel-3.4:"
+<div><br></div><div>-&gt;export PATH=3D$PATH:/home/nova/new_yocto1.4/QorIQ-=
+SDK-V1.4-20130814-yocto/board/tmp/sysroots/x86_64-linux/usr/bin/ppc64e6500-=
+fsl_networking-linux</div><div><br></div><div>-&gt;./boot.sh=C2=A0</div><di=
+v>
+<br>
+</div><div><br></div><div>-&gt;./configure --host=3Dx86 --target=3Dpowerpc =
+KARCH=3Dpowerpc CC=3Dpowerpc64-fsl_networking-linux-gcc --with-linux=3D/hom=
+e/nova/new_yocto1.4/QorIQ-SDK-V1.4-20130814-yocto/build_t4240rdb_release/tm=
+p/work/t4240rdb-fsl_networking-linux/linux-qoriq-sdk/3.8-r17.3/git/ =C2=A0-=
+-enable-ssl=3Dno --prefix=3D/openvswitch_utils</div>
 
-S = "${WORKDIR}/git"
+<div><br></div><div><br></div><div>-&gt;make ARCH=3Dpowerpc CROSS_COMPILE=
+=3Dpowerpc-fsl_networking-linux-</div><div><br></div><div>-&gt;sudo make AR=
+CH=3Dpowerpc CROSS_COMPILE=3Dpowerpc-fsl_networking-linux- install</div>.<b=
+r>.<br>
 
-# from where to fetch the kernel
-KERNEL_REPO_OWNER ??= "hardkernel"
-KERNEL_REPO_URI ??= "git://github.com/${KERNEL_REPO_OWNER}/linux.git"
-KBRANCH = "odroidxu-3.4.y"
+.<br></div><div>By following these steps an <b>openvswitch kernel=C2=A0 mod=
+ule get built in openvswitch-2.1.2/datapath/linux/openvswitch.ko for powerp=
+c arch.</b><br></div><div><br></div><b>Now i want to do the same thing usin=
+g <a href=3D"http://openvswitch_2.1.2.bb" target=3D"_blank">openvswitch_1.1=
+0.0.bb</a> file</b>.<br>
 
-SRCREV = "${AUTOREV}"
+# Don&#39;t compile kernel modules by default since it heavily depends on<b=
+r>=C2=A030 # kernel version. Use the in-kernel module for now.<br>=C2=A031 =
+# distro layers can enable with EXTRA_OECONF_pn_openvswitch +=3D &quot;&quo=
+t;<br>=C2=A032 # <b>EXTRA_OECONF =3D &quot;--with-linux=3D${STAGING_KERNEL_=
+DIR} KARCH=3D${TARGET_ARCH}&quot;</b><br>
 
-SRC_URI = " \
-   ${KERNEL_REPO_URI};nocheckout=1;branch=${KBRANCH} \
-   file://defconfig \
-"
+<br></div>acc. to my understanding which can be achieved by uncommenting th=
+is line and passing kernel source directory path in <a href=3D"http://openv=
+switch_1.10.0.bb" target=3D"_blank">openvswitch_1.10.0.bb</a> =C2=A0:<br><b=
+>EXTRA_OECONF =3D &quot;--with-linux=3D/home/nova/new_yocto1.4/QorIQ-SDK-V1=
+.4-20130814-yocto/build_t4240rdb_release/tmp/work/t4240rdb-fsl_networking-l=
+inux/linux-qoriq-sdk/3.8-r17.3/git=C2=A0KARCH=3Dpowerpc in <a href=3D"http:=
+//openvswitch_1.10.0.bb" target=3D"_blank">openvswitch_1.10.0.bb</a></b></d=
+iv>
 
+<div><br></div><div><b>bitbake -c compile openvswitch</b><br><br></div>but =
+it is showing error:<b>do_compile failed,oe_runmake failed</b><div>and show=
+ing .../git/x86/include/asm/unistd...files are missing...</div><div>i am ne=
+w to yocto kindly help me regarding above described issue.thanks in advance=
+.ITZ URGENT.if u need to see full logs plz ask for the same.<br clear=3D"al=
+l">
 
-Any ideas ?
+<div><div dir=3D"ltr"><div><div>Regards<span class=3D"HOEnZb"><font color=
+=3D"#888888"><br></font></span></div><span class=3D"HOEnZb"><font color=3D"=
+#888888">Pradeep Kumar<br></font></span></div></div></div>
+</div></div>
+<br>--<br>
+_______________________________________________<br>
+yocto mailing list<br>
+<a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br>
+<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" target=3D"_blank"=
+>https://lists.yoctoproject.org/listinfo/yocto</a><br>
+<br></blockquote></div><br></div>
 
-Cheers,
-
-Markus
-
-
-
--- 
-Dr.-Ing. Markus Eich
-
-  Senior Researcher
-  Marine Inspection Robotics
-  Space Robotics
-  
-  Besuchsadresse der Nebengesch‰ftstelle:
-  DFKI GmbH
-  Robotics Innovation Center
-  Robert-Hooke-Straﬂe 5
-  28359 Bremen, Germany
-  
-  Postadresse der Hauptgesch‰ftsstelle Standort Bremen:
-  DFKI GmbH
-  Robotics Innovation Center
-  Robert-Hooke-Straﬂe 1
-  28359 Bremen, Germany
-
-  Tel.:     +49 421 178 45-4105
-  Zentrale: +49 421 178 45-0
-  Fax:      +49 421 178 45-4150 (Faxe bitte namentlich kennzeichnen)
-  E-Mail:   markus.eich@dfki.de
-
-  Weitere Informationen: http://www.dfki.de/robotik
-  -----------------------------------------------------------------------
-  Deutsches Forschungszentrum fuer Kuenstliche Intelligenz GmbH
-  Firmensitz: Trippstadter Straﬂe 122, D-67663 Kaiserslautern
-  Geschaeftsfuehrung: Prof. Dr. Dr. h.c. mult. Wolfgang Wahlster
-  (Vorsitzender) Dr. Walter Olthoff
-  Vorsitzender des Aufsichtsrats: Prof. Dr. h.c. Hans A. Aukes
-  Amtsgericht Kaiserslautern, HRB 2313
-  Sitz der Gesellschaft: Kaiserslautern (HRB 2313)
-  USt-Id.Nr.:    DE 148646973
-  Steuernummer:  19/673/0060/3
-  -----------------------------------------------------------------------
-
-
+--089e011777d973047104fc91a12b--
