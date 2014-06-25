@@ -1,52 +1,52 @@
 Return-Path: <Seth.Bollinger@digi.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id C6515E00559; Wed, 25 Jun 2014 05:58:34 -0700 (PDT)
+	id 1092BE00524; Wed, 25 Jun 2014 06:33:53 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00, RCVD_IN_DNSWL_NONE, 
-	SPF_HELO_PASS,UNPARSEABLE_RELAY autolearn=ham version=3.3.1
+	UNPARSEABLE_RELAY autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
 	http://www.dnswl.org/, no *      trust
-	*      [216.82.243.198 listed in list.dnswl.org]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+	*      [216.82.251.2 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* 0.0 UNPARSEABLE_RELAY Informational: message has unparseable relay
 	lines
-Received: from mail1.bemta8.messagelabs.com (mail1.bemta8.messagelabs.com
-	[216.82.243.198])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CAB25E003FA
-	for <yocto@yoctoproject.org>; Wed, 25 Jun 2014 05:58:22 -0700 (PDT)
-Received: from [216.82.241.196:60433] by server-6.bemta-8.messagelabs.com id
-	41/28-08185-A67CAA35; Wed, 25 Jun 2014 12:58:18 +0000
+Received: from mail1.bemta12.messagelabs.com (mail1.bemta12.messagelabs.com
+	[216.82.251.2])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A7A05E003FA
+	for <yocto@yoctoproject.org>; Wed, 25 Jun 2014 06:33:50 -0700 (PDT)
+Received: from [216.82.249.147:43377] by server-2.bemta-12.messagelabs.com id
+	D7/4C-20646-CBFCAA35; Wed, 25 Jun 2014 13:33:48 +0000
 X-Env-Sender: Seth.Bollinger@digi.com
-X-Msg-Ref: server-13.tower-46.messagelabs.com!1403701098!36349314!1
+X-Msg-Ref: server-8.tower-29.messagelabs.com!1403703227!32664497!1
 X-Originating-IP: [66.77.174.13]
 X-StarScan-Received: 
 X-StarScan-Version: 6.11.3; banners=-,-,-
 X-VirusChecked: Checked
-Received: (qmail 23578 invoked from network); 25 Jun 2014 12:58:18 -0000
-Received: from mail.mx1.digi.com (HELO mcl-sms-ns1.digi.com) (66.77.174.13)
-	by server-13.tower-46.messagelabs.com with RC4-SHA encrypted SMTP;
-	25 Jun 2014 12:58:18 -0000
+Received: (qmail 29034 invoked from network); 25 Jun 2014 13:33:48 -0000
+Received: from mail.mx3.digi.com (HELO mcl-sms-ns1.digi.com) (66.77.174.13)
+	by server-8.tower-29.messagelabs.com with RC4-SHA encrypted SMTP;
+	25 Jun 2014 13:33:48 -0000
 Received: from MTK-SMS-XCH02.digi.com (10.10.8.196) by mail.mx1.digi.com
 	(172.16.1.13) with Microsoft SMTP Server (TLS) id 8.3.342.0;
-	Wed, 25 Jun 2014 07:58:07 -0500
+	Wed, 25 Jun 2014 08:33:36 -0500
 Received: from MTK-SMS-XCH01.digi.com ([fe80::cca7:5299:c88e:1c40]) by
 	MTK-SMS-XCH02.digi.com ([fe80::4960:cfbf:ad5e:3cdb%20]) with mapi id
-	14.03.0174.001; Wed, 25 Jun 2014 07:58:17 -0500
+	14.03.0174.001; Wed, 25 Jun 2014 08:33:46 -0500
 From: "Bollinger, Seth" <Seth.Bollinger@digi.com>
 To: Paul Eggleton <paul.eggleton@linux.intel.com>
 Thread-Topic: [yocto] File system for alternate partition
-Thread-Index: AQHPjtqWRmuyvuyvDkCgHEP3jjXJpZt+9h4A///bqoCAAa6fAIABeREA///TFwA=
-Date: Wed, 25 Jun 2014 12:58:16 +0000
-Message-ID: <CFD02FD0.962B%seth.bollinger@digi.com>
+Thread-Index: AQHPjtqWRmuyvuyvDkCgHEP3jjXJpZt+9h4A///bqoCAAa6fAIABeREA///TFwCAAAnqgA==
+Date: Wed, 25 Jun 2014 13:33:46 +0000
+Message-ID: <CFD03993.963D%seth.bollinger@digi.com>
 References: <CFCD80D1.95CB%seth.bollinger@digi.com>
 	<CFCDB10A.95E3%seth.bollinger@digi.com>
 	<CFCF191E.9615%seth.bollinger@digi.com>
 	<1766239.kehHZp5Wf7@peggleto-mobl5.ger.corp.intel.com>
-In-Reply-To: <1766239.kehHZp5Wf7@peggleto-mobl5.ger.corp.intel.com>
+	<CFD02FD0.962B%seth.bollinger@digi.com>
+In-Reply-To: <CFD02FD0.962B%seth.bollinger@digi.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
@@ -68,27 +68,22 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 25 Jun 2014 12:58:34 -0000
+X-List-Received-Date: Wed, 25 Jun 2014 13:33:53 -0000
 Content-Language: en-US
 Content-Type: text/plain; charset="iso-8859-1"
-Content-ID: <A4BA19EEC6BB864781647C12A2087B3C@digi.com>
+Content-ID: <9B13E6557D509B4A958FDAAE3C9B574A@digi.com>
 Content-Transfer-Encoding: quoted-printable
 
 
->You could just delete these within a function added to
->ROOTFS_POSTPROCESS_COMMAND, and that's probably the way to deal with it
->for=20
->now; however for the future I do think the build system ought to be able
->to=20
->clean these files up itself if they aren't supposed to be there. I've
->created a=20
->bug to track the issue:
->
->https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D6478
+>It looks like the POSTPROCESS commands are run too early.  Subsequent
+>actions depend on that directory structure (pre-linking, etc.).  It looks
+>like I would need some way to hook _cleanup() in the RootFS subclass.
 
-It looks like the POSTPROCESS commands are run too early.  Subsequent
-actions depend on that directory structure (pre-linking, etc.).  It looks
-like I would need some way to hook _cleanup() in the RootFS subclass.
+Actually scratch the above comment.  I wasn=B9t reading the log spew
+correctly.  The problem comes in at the image process.  So, I was able to
+add an IMAGE_POSTPROCESS_COMMAND and that works.
+
+Thanks!
 
 Seth
 
