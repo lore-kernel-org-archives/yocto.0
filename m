@@ -1,49 +1,62 @@
-Return-Path: <lukas@dramiel.com>
+Return-Path: <Seth.Bollinger@digi.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 48B8DE00509; Wed, 25 Jun 2014 07:43:23 -0700 (PDT)
+	id A608FE00524; Wed, 25 Jun 2014 08:22:38 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00, RCVD_IN_DNSWL_NONE, 
+	SPF_HELO_PASS,UNPARSEABLE_RELAY autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [216.82.243.203 listed in list.dnswl.org]
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [74.125.82.44 listed in list.dnswl.org]
-Received: from mail-wg0-f44.google.com (mail-wg0-f44.google.com [74.125.82.44])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0469CE006B7
-	for <yocto@yoctoproject.org>; Wed, 25 Jun 2014 07:43:00 -0700 (PDT)
-Received: by mail-wg0-f44.google.com with SMTP id x13so2148135wgg.15
-	for <yocto@yoctoproject.org>; Wed, 25 Jun 2014 07:42:58 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:content-type:mime-version:subject:from
-	:in-reply-to:date:cc:content-transfer-encoding:message-id:references
-	:to; bh=QyzEmZM/k02nzOzYt9oht1vbV1yMx12p81LAmByFkHM=;
-	b=jGOB/MW2SeByo0bBYJ/CQ6U9oi8yQHCuNrJbX4guDX2CnG/QoWP+KH3FsASsbY8MCR
-	MWhtWwLpEMl+Oi1nDP5LTaIDNgohEfe4yC6ddyIKY1QzALBcxK/RkPBuMUVsLlP8shH4
-	Cc89OOlcfczlFKx7PiuF1gUYJBeGh8dJXnzajlCG6ogJxNAH18UKT7C7KlfemxBh1gBh
-	e9+z0EZW38lL7nkP0HWDp4e/lXYCEUKf4tKSBtkHPl86Ss7BJ/pEkXcMx6eFNQBIzXry
-	Z2KpXP6D9KMcflm6dItvkCFRrD+PgaS0oGzSxIbUhUWSbk3IkJmB3218Qn4RhEArnNcA
-	Y3Zw==
-X-Gm-Message-State: ALoCoQm7jhYrH+XBOTzsqyBWEjq6rnjfTnjqzPzP6Cq8YIhjtRJCbsL4/HjQzpxipGa6hkTcMLJD
-X-Received: by 10.194.80.161 with SMTP id s1mr9937343wjx.47.1403707378129;
-	Wed, 25 Jun 2014 07:42:58 -0700 (PDT)
-Received: from [192.168.1.6] ([46.16.120.77]) by mx.google.com with ESMTPSA id
-	hb8sm46074286wib.12.2014.06.25.07.42.56 for <multiple recipients>
-	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
-	Wed, 25 Jun 2014 07:42:57 -0700 (PDT)
-Mime-Version: 1.0 (Mac OS X Mail 7.3 \(1878.2\))
-From: =?windows-1252?Q?Luk=E1=9A_Novotn=FD?= <lukas@dramiel.com>
-In-Reply-To: <91B4C1B91AAEFD42AC985EA0F3D4E66886162A9F@kihagwinex01.int.kistler.com>
-Date: Wed, 25 Jun 2014 16:42:49 +0200
-Message-Id: <CC238BE1-8835-4D0B-9A22-45CBC530F7EF@dramiel.com>
-References: <91B4C1B91AAEFD42AC985EA0F3D4E66886162A9F@kihagwinex01.int.kistler.com>
-To: Isak Lichtenstein <Isak.Lichtenstein@kistler.com>
-X-Mailer: Apple Mail (2.1878.2)
+	* 0.0 UNPARSEABLE_RELAY Informational: message has unparseable relay
+	lines
+Received: from mail1.bemta8.messagelabs.com (mail1.bemta8.messagelabs.com
+	[216.82.243.203])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 97755E003FA
+	for <yocto@yoctoproject.org>; Wed, 25 Jun 2014 08:22:34 -0700 (PDT)
+Received: from [216.82.241.132:32145] by server-11.bemta-8.messagelabs.com id
+	36/48-14220-739EAA35; Wed, 25 Jun 2014 15:22:31 +0000
+X-Env-Sender: Seth.Bollinger@digi.com
+X-Msg-Ref: server-12.tower-45.messagelabs.com!1403709750!35965720!1
+X-Originating-IP: [66.77.174.14]
+X-StarScan-Received: 
+X-StarScan-Version: 6.11.3; banners=-,-,-
+X-VirusChecked: Checked
+Received: (qmail 9219 invoked from network); 25 Jun 2014 15:22:31 -0000
+Received: from mail.mx2.digi.com (HELO mcl-sms-ns2.DIGI.COM) (66.77.174.14)
+	by server-12.tower-45.messagelabs.com with RC4-SHA encrypted SMTP;
+	25 Jun 2014 15:22:31 -0000
+Received: from MTK-SMS-XCH03.digi.com (10.10.8.197) by mail.mx2.digi.com
+	(172.16.1.14) with Microsoft SMTP Server (TLS) id 8.3.342.0;
+	Wed, 25 Jun 2014 10:22:25 -0500
+Received: from MTK-SMS-XCH01.digi.com ([fe80::cca7:5299:c88e:1c40]) by
+	MTK-SMS-XCH03.digi.com ([fe80::484d:c326:e7f1:a9fd%25]) with mapi id
+	14.03.0174.001; Wed, 25 Jun 2014 10:22:30 -0500
+From: "Bollinger, Seth" <Seth.Bollinger@digi.com>
+To: Paul Eggleton <paul.eggleton@linux.intel.com>
+Thread-Topic: [yocto] File system for alternate partition
+Thread-Index: AQHPjtqWRmuyvuyvDkCgHEP3jjXJpZt+9h4A///bqoCAAa6fAIABeREA///TFwCAAAnqgIAAXsaA//+/mgA=
+Date: Wed, 25 Jun 2014 15:22:29 +0000
+Message-ID: <CFD04364.9642%seth.bollinger@digi.com>
+References: <CFCD80D1.95CB%seth.bollinger@digi.com>
+	<CFD02FD0.962B%seth.bollinger@digi.com>
+	<CFD03993.963D%seth.bollinger@digi.com>
+	<1746880.Dvn3uyFT8K@peggleto-mobl5.ger.corp.intel.com>
+In-Reply-To: <1746880.Dvn3uyFT8K@peggleto-mobl5.ger.corp.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+user-agent: Microsoft-MacOutlook/14.4.1.140326
+x-originating-ip: [10.10.32.63]
+x-kse-antivirus-interceptor-info: scan successful
+x-kse-antivirus-info: Clean
+MIME-Version: 1.0
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Create own image type
+Subject: Re: File system for alternate partition
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -55,40 +68,24 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 25 Jun 2014 14:43:23 -0000
-Content-Type: text/plain; charset=windows-1252
+X-List-Received-Date: Wed, 25 Jun 2014 15:22:38 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="iso-8859-1"
+Content-ID: <00A49043C57D7847814D0C10CD01F6A7@digi.com>
 Content-Transfer-Encoding: quoted-printable
 
-Hello,
 
-I can=92t directly help you with this, however I recommend taking a look =
-at meta-raspberrypi ( https://github.com/djwillis/meta-raspberrypi ) as =
-it adds it=92s own image type =93rpi-sdimg=94.
+>Are you sure? IMAGE_POSTPROCESS_COMMAND runs after all of the image files
+>have=20
+>been created; at that time, the contents of the image has already been
+>compressed or otherwise combined into the final output file(s), so I
+>would think=20
+>that would be too late to modify the contents.
 
-Lukas
+I just unzipped the bz2 and most dirs were removed, only /var/lib/opkg
+remains.  Is there any workaround for this, or should I wait for the bug
+fix?
 
-On 25 Jun 2014, at 16:04, Isak Lichtenstein =
-<Isak.Lichtenstein@kistler.com> wrote:
-
-> Hi all,
-> =20
-> I=92m trying to create my own image type. I thought that it would be =
-enough to create a myImage.bbclass file implementing IMAGE_CMD_myImage =
-and extending IMAGE_TYPES +=3D =93 myImage=94.
-> =20
-> But this isn=92t working and I didn=92t find anything in the manual.
-> =20
-> It this possible at all ( can=92t imagine that it isn=92t) ?
-> =20
-> Would appreciate any hint possible.
-> =20
-> Best regards
-> =20
-> Isak
-> --=20
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+Seth
 
 
