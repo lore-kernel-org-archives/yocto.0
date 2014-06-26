@@ -1,15 +1,12 @@
-Return-Path: <ashcharles@gmail.com>
+Return-Path: <dev@codyps.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id B6B87E0056E; Thu, 26 Jun 2014 14:52:04 -0700 (PDT)
+	id BBBAAE0056A; Thu, 26 Jun 2014 16:36:12 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (ashcharles[at]gmail.com)
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+	DKIM_VALID, DKIM_VALID_AU, RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
@@ -18,39 +15,44 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
 	low *      trust
-	*      [209.85.128.182 listed in list.dnswl.org]
-Received: from mail-ve0-f182.google.com (mail-ve0-f182.google.com
-	[209.85.128.182])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 998AAE00509
-	for <yocto@yoctoproject.org>; Thu, 26 Jun 2014 14:51:52 -0700 (PDT)
-Received: by mail-ve0-f182.google.com with SMTP id oy12so4437554veb.13
-	for <yocto@yoctoproject.org>; Thu, 26 Jun 2014 14:51:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-type;
-	bh=6ARNFWtJNnqY8mH1R+0eauPUyVe8ZXPGOP6ipe9Kz0I=;
-	b=Q+XapSG+ngcwVjJcNtbP103NenbjQf37iuzCtZsEiHFlerkdxDmhAYpIuprPbNTz5q
-	4uC40eExF4RXLdPXjbdIG67IaXhSjJkmOLOMFLXuJUTTAViwu4gVKr0KBzG63ATJq9YA
-	i9+yz1f5x/9OyNbOlUefzVo5ROC3eATIdVvavZGKafzYu53nnuJeYHzeoUchS57Hof16
-	unRMePQf/Q5spMVts6t7hYqy3mB9Ln7YC7RDUyHO2UfG3KTv74mfTzPkAvY8cQoKZ/VK
-	AdGbQ+H3f5UnTI5TFfTfaXMD1CmM5uDVYg5WLuFdFBCHUmdodj6hJ/t/wi2/r8QzVpvi
-	n5xA==
-X-Received: by 10.220.203.134 with SMTP id fi6mr6043108vcb.18.1403819511268;
-	Thu, 26 Jun 2014 14:51:51 -0700 (PDT)
-MIME-Version: 1.0
-Received: by 10.58.196.229 with HTTP; Thu, 26 Jun 2014 14:51:20 -0700 (PDT)
-In-Reply-To: <539B63C4.1030309@dynamicdevices.co.uk>
-References: <CAAPegz2DCZGTKfyJBGMytu_zofk2K9CSJMbVtiKHdS2eysZgrQ@mail.gmail.com>
-	<CAMKF1sr_LaaVnd8U_7XP3QmAn6Q7OTuVmkb+G3zxz3edXEkRkw@mail.gmail.com>
-	<539B54CF.90603@dynamicdevices.co.uk>
-	<CAAPegz0HCvT9fNMfp0smuuLLTf0XU0zeD0G=picxNNbquEA5og@mail.gmail.com>
-	<539B63C4.1030309@dynamicdevices.co.uk>
-From: Ash Charles <ashcharles@gmail.com>
-Date: Thu, 26 Jun 2014 14:51:20 -0700
-Message-ID: <CAK8F28=CotBOqPE30quGM_k5aQG7sYnw8kPmNtn6i+6DtCNwfQ@mail.gmail.com>
-To: Alex J Lennon <ajlennon@dynamicdevices.co.uk>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: virtual/mesa, virtual/libgl provided by multiple packages
+	*      [209.85.216.194 listed in list.dnswl.org]
+Received: from mail-qc0-f194.google.com (mail-qc0-f194.google.com
+	[209.85.216.194])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 527C8E00563
+	for <yocto@yoctoproject.org>; Thu, 26 Jun 2014 16:36:07 -0700 (PDT)
+Received: by mail-qc0-f194.google.com with SMTP id i8so1170124qcq.9
+	for <yocto@yoctoproject.org>; Thu, 26 Jun 2014 16:36:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=codyps.com; s=google;
+	h=from:to:cc:subject:date:message-id;
+	bh=frnAHIJyx8n3DX9CfflD+SzKOHPqISKvW8f0ZvVhuwQ=;
+	b=IVw+fF15GW0Yk1ELZdODgn8n4fvbT8pGwYaOrvPm/zr325Ub3XX5CX/8YAmOTg3zia
+	3d3fJ/iVlDyhrVi5Tzuaml5D9/myGCT0C1fR+OwWusR9F19FtPAkCzX+BsaHFwWRVi7Z
+	agqwr0qd0f1fV5WPVs4Zw6DlgFojN3Mx6GD9M=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:from:to:cc:subject:date:message-id;
+	bh=frnAHIJyx8n3DX9CfflD+SzKOHPqISKvW8f0ZvVhuwQ=;
+	b=SA2lqyP02/guRy4BGGswZEADYy/FHVt1Rak4m/FghelB5CtnswYSJll7bNWGkMNesB
+	U8CaHu/Rnka/AV5BD3iaAJAgSQq3eLxOGEYq9XA/HfQMIWwws2AIJ4JUu4ucBF7jGF2H
+	om7lHXgC7KeCtjOlqgePsatpk3Lv5t3g8mgqEy2mF023sTfuBGKCLavvetX4fywtcxM7
+	dl8Asm9Wt3ST0HmSLEnhEXRjRgzdgPVk7L8HWKHs2rOgVpHj2LIwwDt36RTHKXRqoWv1
+	wjAKIp74PNYM1aOujthKVMC2b3qnaayQkz0usy3YJgEfw27Y8cV/UVw/AdP+7yWnb2r2
+	SWkQ==
+X-Gm-Message-State: ALoCoQnQAUl+SpoyWRFNq0HuhcLoV7UcRPeXxmq21JyfPdXgj5DTWZOPMxf6ku2M/ZlqiLXHjTs4
+X-Received: by 10.140.85.102 with SMTP id m93mr26158415qgd.26.1403825766533;
+	Thu, 26 Jun 2014 16:36:06 -0700 (PDT)
+Received: from localhost (96-39-66-162.static.oxfr.ma.charter.com.
+	[96.39.66.162]) by mx.google.com with ESMTPSA id
+	l10sm13535593qae.41.2014.06.26.16.36.04 for <multiple recipients>
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Thu, 26 Jun 2014 16:36:05 -0700 (PDT)
+From: Cody P Schafer <dev@codyps.com>
+To: ajlennon@dynamicdevices.co.uk, autif.mlist@gmail.com,
+	yocto@yoctoproject.org
+Date: Thu, 26 Jun 2014 19:35:58 -0400
+Message-Id: <1403825758-16139-1-git-send-email-dev@codyps.com>
+X-Mailer: git-send-email 2.0.0
+Subject: [PATCH] libgdiplus: uses giflib
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -62,29 +64,30 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 26 Jun 2014 21:52:04 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Thu, 26 Jun 2014 23:36:12 -0000
 
-Hi Alex,
-On Fri, Jun 13, 2014 at 1:49 PM, Alex J Lennon
-<ajlennon@dynamicdevices.co.uk> wrote:
-> I think these two lines in cogl-1.0.inc are causing mesa to be pulled in
-> incorrectly, but I'm not sure what ERDEPENDS does...
->
-> # Extra RDEPENDS for PACKAGECONFIG
-> # This has to be explictly listed, because cogl dlopens the backends
-> ERDEPENDS_GL    = "libgl"
-> ERDEPENDS_GLES2 = "libgles2"
-I'm seeing the same issue.  I'm guessing that 'virtual/*' is not a
-valid target for an RDEPEND.  It looks like your libgles2 provider
-should RPROVIDE libgles2.  The receipe for SGX (graphics core)
-libraries, for example, contains lines like this:
-RREPLACES_${PN} = "libegl libgles1 libgles2"
-RPROVIDES_${PN} = "libegl libgles1 libgles2"
-RCONFLICTS_${PN} = "libegl libgles1 libgles2"
+Depend on giflib-native, without this we end up pulling in the system's
+one (which may be the wrong version)
 
-Mesa does something similar (with some extra debian renaming that I
-didn't understand) in an anonymous python function in mesa.inc.
+Signed-off-by: Cody P Schafer <dev@codyps.com>
+---
+ recipes-mono/libgdiplus/libgdiplus-native_2.10.8.bb | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
---Ash
+diff --git a/recipes-mono/libgdiplus/libgdiplus-native_2.10.8.bb b/recipes-mono/libgdiplus/libgdiplus-native_2.10.8.bb
+index 25dfbbd..cec1fbe 100644
+--- a/recipes-mono/libgdiplus/libgdiplus-native_2.10.8.bb
++++ b/recipes-mono/libgdiplus/libgdiplus-native_2.10.8.bb
+@@ -14,7 +14,7 @@ SRC_URI = "https://github.com/mono/libgdiplus/archive/${PV}.tar.gz \
+ 
+ inherit autotools pkgconfig native
+ 
+-DEPENDS =+ "cairo-native freetype-native fontconfig-native libxft-native libpng-native pango-native"
++DEPENDS =+ "cairo-native freetype-native fontconfig-native libxft-native libpng-native pango-native giflib-native"
+ 
+ SRC_URI[md5sum] = "6fd45bbb9843f5a8851b5f44e2a5dd04"
+ SRC_URI[sha256sum] = "45c533dc72af0a24d1d3a8097873f5fe1670107fe7e6d08fb71ae586c87a0f1d"
+-- 
+2.0.0
+
 
