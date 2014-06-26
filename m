@@ -1,46 +1,49 @@
-Return-Path: <yaoxp@cn.fujitsu.com>
+Return-Path: <alberk@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 2C59CE00524; Wed, 25 Jun 2014 19:55:18 -0700 (PDT)
+	id 2C72EE00524; Wed, 25 Jun 2014 20:22:18 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RDNS_NONE
-	autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (alberk[at]gmail.com)
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.8 RDNS_NONE Delivered to internal network by a host with no rDNS
-Received: from heian.cn.fujitsu.com (unknown [59.151.112.132])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D0655E003FA
-	for <yocto@yoctoproject.org>; Wed, 25 Jun 2014 19:55:15 -0700 (PDT)
-X-IronPort-AV: E=Sophos;i="5.00,779,1396972800"; d="scan'208";a="32451490"
-Received: from unknown (HELO edo.cn.fujitsu.com) ([10.167.33.5])
-	by heian.cn.fujitsu.com with ESMTP; 26 Jun 2014 10:52:33 +0800
-Received: from G08CNEXCHPEKD01.g08.fujitsu.local (localhost.localdomain
-	[127.0.0.1])
-	by edo.cn.fujitsu.com (8.14.3/8.13.1) with ESMTP id s5Q2tDs2026937;
-	Thu, 26 Jun 2014 10:55:13 +0800
-Received: from G08CNEXMBPEKD03.g08.fujitsu.local ([10.167.33.86]) by
-	G08CNEXCHPEKD01.g08.fujitsu.local ([10.167.33.80]) with mapi id
-	14.03.0181.006; Thu, 26 Jun 2014 10:55:23 +0800
-From: "yaoxp@cn.fujitsu.com" <yaoxp@cn.fujitsu.com>
-To: Robert Yang <liezhi.yang@windriver.com>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>
-Thread-Topic: [yocto]  seek help: I want to get SRC_URI, SRC_URI[md5sum] and
-	SRC_URI[sha256sum] of compiled recipes
-Thread-Index: AQHPkOJde/atAzcoJ06L6EaFnp1A1puCpeCg//+FKACAAIboEA==
-Date: Thu, 26 Jun 2014 02:55:18 +0000
-Message-ID: <9AD1F2A584A7644C9605656D538412FEAA7938@G08CNEXMBPEKD03.g08.fujitsu.local>
-References: <9AD1F2A584A7644C9605656D538412FEAA78E9@G08CNEXMBPEKD03.g08.fujitsu.local>
-	<53AB7E9C.1000805@windriver.com>
-	<9AD1F2A584A7644C9605656D538412FEAA7918@G08CNEXMBPEKD03.g08.fujitsu.local>
-	<53AB8A92.4010105@windriver.com>
-In-Reply-To: <53AB8A92.4010105@windriver.com>
-Accept-Language: zh-CN, en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.167.226.250]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.216.173 listed in list.dnswl.org]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-qc0-f173.google.com (mail-qc0-f173.google.com
+	[209.85.216.173])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AA647E003FA
+	for <yocto@yoctoproject.org>; Wed, 25 Jun 2014 20:22:16 -0700 (PDT)
+Received: by mail-qc0-f173.google.com with SMTP id l6so2599593qcy.32
+	for <yocto@yoctoproject.org>; Wed, 25 Jun 2014 20:22:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=jYX2sXw5gK2XilX9/Fr/9oGVHr5BfBGRXvF0MR3Ci1Q=;
+	b=P7qZyRkEn6sb2f73y+BIdknQfel0oND6dPtXqFR4KbFrAzioTPff8U5nysUd4KKnKb
+	Hcy1MOKOkwRFR4LRKMtLaqhn6xQFGb4cAw0jJwbScBVIDxoWVgyS8dQ1b14XZnSaPQAg
+	LqadtReUy97VNvbqOzX/PmEa7nlshx4K4AwSxtbUChSzSCb47Gijt855won/YQfjh8rc
+	PnGrtzS/Qq67+F17chUf0TRza6No8ydmpCns7GhclYxKI+3R0nghBxcNPiEJaBnlboBw
+	EY4B91zfejc6qarzU0PXDgFGmOOURsmqUkiB84Lqn7pNVTDh3YEpN8PDJ85TpBVwhsk/
+	p/aw==
 MIME-Version: 1.0
-Subject: Re: seek help: I want to get SRC_URI, SRC_URI[md5sum] and SRC_URI[sha256sum] of compiled recipes
+X-Received: by 10.140.94.103 with SMTP id f94mr17730125qge.64.1403752936188;
+	Wed, 25 Jun 2014 20:22:16 -0700 (PDT)
+Received: by 10.224.32.12 with HTTP; Wed, 25 Jun 2014 20:22:16 -0700 (PDT)
+Date: Thu, 26 Jun 2014 11:22:16 +0800
+Message-ID: <CACjDgAMwz1_OgND8VSLcze78Mb9oKVieP=uUAS3S0AmjT+SSLA@mail.gmail.com>
+From: Albert K <alberk@gmail.com>
+To: yocto@yoctoproject.org
+Subject: Yocto on X86 Question
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -52,39 +55,46 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 26 Jun 2014 02:55:18 -0000
-Content-Language: zh-CN
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+X-List-Received-Date: Thu, 26 Jun 2014 03:22:18 -0000
+Content-Type: multipart/alternative; boundary=001a113acfb21d324104fcb4b330
 
-SSBzZWUuIFRoYW5rIHlvdSBeX14NCg0KVGhhbmtzDQpZYW8gWGlucGFuDQoNCj4gT24gMDYvMjYv
-MjAxNCAxMDo0NSBBTSwgeWFveHBAY24uZnVqaXRzdS5jb20gd3JvdGU6DQo+ID4+DQo+ID4+IE9u
-IDA2LzI2LzIwMTQgMDk6NDQgQU0sIHlhb3hwQGNuLmZ1aml0c3UuY29tIHdyb3RlOg0KPiA+Pj4g
-SGkgZXZlcnlvbmUNCj4gPj4+DQo+ID4+PiBJIHdhbnQgdG8gZ2V0IFNSQ19VUkksU1JDX1VSSVtt
-ZDVzdW1dIGFuZCBTUkNfVVJJW3NoYTI1NnN1bV0gb2YNCj4gPj4gY29tcGlsZWQgcmVjaXBlcy4N
-Cj4gPj4+IEhvdyB0byBhY2hpZXZlIGl0Pw0KPiA+Pj4NCj4gPj4+IGUuZy4NCj4gPj4+ICMgYml0
-YmFrZSBjb3JlLWltYWdlLW1pbmltYWwNCj4gPj4+DQo+ID4+PiBJIHdhbnQgdG8gZ2V0IFNSQ19V
-UkksU1JDX1VSSVttZDVzdW1dIGFuZCBTUkNfVVJJW3NoYTI1NnN1bV0gb2YNCj4gPj4gY29tcGls
-ZWQgQkIgZmlsZXMsIGluY2x1ZGluZyBuYXRpdmUgQkIgZmlsZXMuDQo+ID4+DQo+ID4+IEkgdGhp
-bmsgdGhhdCB5b3UgY2FuIGdldCB0aGVtIG9uZSBieSBvbmUsIHBlcmhhcHMgeW91IGNhbiBhZGQg
-c29tZXRoaW5nDQo+IGxpa2U6DQo+ID4+DQo+ID4+IGQuZ2V0VmFyKCdTUkNfVVJJJywgVHJ1ZSkN
-Cj4gPj4gZC5nZXRWYXJGbGFnKCdTUkNfVVJJJywgJ21kNXN1bScsIFRydWUpIGQuZ2V0VmFyRmxh
-ZygnU1JDX1VSSScsDQo+ID4+ICdzaGEyNTZzdW0nLCBUcnVlKQ0KPiA+Pg0KPiA+PiB0byB0aGUg
-YmFzZV9kb19mZXRjaCBpbiBtZXRhL2NsYXNzZXMvYmFzZS5iYmNsYXNzLg0KPiA+DQo+ID4gSSBz
-ZWUuIFRoYW5rIHlvdSB2ZXJ5IG11Y2guDQo+ID4NCj4gPiBXaWxsIFlvY3RvIGFkZCB0aGlzIGZ1
-bmN0aW9uYWxpdHk/DQo+IA0KPiBJIHRoaW5rIG5vOi0pIHNpbmNlIHRoaXMgaXMgbm90IGEgY29t
-bW9uIGZ1bmN0aW9uLg0KPiANCj4gPg0KPiA+IEkgdGhpbmsgWW9jdG8gc2hvdWxkIGFjaGlldmUg
-dGhlIGZvbGxvd2luZyBmdW5jdGlvbnM6DQo+ID4gMS4gQWxsb3dzIHRoZSBkZXZlbG9wbWVudGVy
-IHRvIGVhc2lseSBrbm93IHdoaWNoIHJlY2lwZXMgd2VyZSBjb21waWxlZCBhbmQNCj4gdGhlIGlu
-Zm9ybWF0aW9uIG9mIGNvbXBpbGVkIHJlY2lwZXMuDQo+ID4gICAgU3VjaCBhcyBhbGwgdGhlIGlu
-Zm9ybWF0aW9uIGxpc3RlZCBpbiBhIGZpbGUuDQo+IA0KPiBNYXliZSB5b3UgY2FuIHRyeSB0aGUg
-YXJjaGl2ZXIuYmJjbGFzcywgY2hlY2sNCj4gbWV0YS15b2N0by9jb25mL2xvY2FsLmNvbmYuc2Ft
-cGxlLmV4dGVuZGVkDQo+IA0KPiBmb3IgbW9yZSBpbmZvLg0KPiANCj4gPiAyLiBXaGljaCByZWNp
-cGVzIHdpbGwgYmUgY29tcGlsZWQgYmVmb3JlIHJlYWxseSBjb21waWxlLg0KPiANCj4gYml0YmFr
-ZSAtZyBjb3JlLWltYWdlLW1pbmltYWwNCj4gDQo+IFRoZW4gSSB0aGluayB0aGF0IHRoZSBwbi1i
-dWlsZGxpc3QgaXMgd2hhdCB5b3UgbmVlZC4NCj4gDQo+IC8vIFJvYmVydA0KPiANCj4gPg0KPiA+
-IFRoYW5rcw0KPiA+IFlhbyBYaW5wYW4NCj4gPg0KPiA+Pg0KPiA+PiAvLyBSb2JlcnQNCj4gPj4N
-Cj4gPj4+DQo+ID4+Pg0KPiA+Pj4gLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLQ0KPiA+Pj4gTkFNRTogWWFvIFhpbnBhbg0KPiA+Pj4gVEVMOjg1NTkNCj4gPj4+
-DQo+ID4+Pg0K
+--001a113acfb21d324104fcb4b330
+Content-Type: text/plain; charset=UTF-8
 
+Hi,
+
+I am a newbie and would like help to point me the right direction with
+regards to yocto project on X86 system with CF card as boot disk with AMI
+or Phoenix Bios.   I have a few questions listed below
+
+1) How do i build a project with read-only filesystem with an overylay
+filesystem ?
+   something similar to squashfs and jffs2 or something else.
+2) How to i update the firmware after the initial burn to CF?  A web
+interface update would be appreciated.
+3) Is there a recipe or build-in function to reset the firmware to factory
+setting via serial console or SSH, etc?
+
+Thank you for helping.
+
+Regards.
+
+--001a113acfb21d324104fcb4b330
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Hi,<div><br></div><div>I am a newbie and would like help t=
+o point me the right direction with regards to yocto project on X86 system =
+with CF card as boot disk with AMI or Phoenix Bios. =C2=A0 I have a few que=
+stions listed below</div>
+<div><br></div><div>1) How do i build a project with read-only filesystem w=
+ith an overylay filesystem ?</div><div>=C2=A0 =C2=A0something similar to sq=
+uashfs and jffs2 or something else.=C2=A0</div><div>2) How to i update the =
+firmware after the initial burn to CF? =C2=A0A web interface update would b=
+e appreciated.</div>
+<div>3) Is there a recipe or build-in function to reset the firmware to fac=
+tory setting via serial console or SSH, etc?</div><div><br></div><div>Thank=
+ you for helping.</div><div><br></div><div>Regards.</div><div><br></div>
+<div><br></div></div>
+
+--001a113acfb21d324104fcb4b330--
