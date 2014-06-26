@@ -1,52 +1,41 @@
-Return-Path: <maxim.radugin@gmail.com>
+Return-Path: <ajlennon@dynamicdevices.co.uk>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 772E0E00509; Thu, 26 Jun 2014 00:07:44 -0700 (PDT)
+	id 229DEE00509; Thu, 26 Jun 2014 02:24:04 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (maxim.radugin[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [74.125.82.46 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.7 required=5.0 tests=BAYES_00,KHOP_DYNAMIC
+	autolearn=no version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-wg0-f46.google.com (mail-wg0-f46.google.com [74.125.82.46])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C2E72E00524
-	for <yocto@yoctoproject.org>; Thu, 26 Jun 2014 00:07:39 -0700 (PDT)
-Received: by mail-wg0-f46.google.com with SMTP id y10so3149904wgg.17
-	for <yocto@yoctoproject.org>; Thu, 26 Jun 2014 00:07:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type;
-	bh=B7r7SdVQAU10WAP7OB+g4rJLQA39wyAVx0VmWZA5rSE=;
-	b=jSB+mOFoZCi/ouRYqJrU0nkTLcdgWACiSxXMmBT8s7mdYbGAcohdpwuBJ5Dwuww7Pi
-	e5d8EK+xVB6/6L1ikG938rLnspNVPKCePO06otWUAScnLUm4LuhUiMgZS/Z8JXMJcwLe
-	WneadUMLSa79xlUZBLg9xj79e9cGH8j+/I0j871b9m4pCXRZRLM4CsL+kEPhN7qJ6NUc
-	HMFcKx2zEIkmniKPDd1HLWZ7rzoPzFCIGePQ4VmxOdT4imfo/4US4qsJtbAAb9D24dCR
-	ud4mKYKednabsLl7HnQPEgv3SYuVvkjGWOgi0oLnl1ZmLrgHEarx6RkdsyGElez/AP1l
-	bAjA==
+	*  0.2 KHOP_DYNAMIC Relay looks like a dynamic address
+Received: from www.dynamicdevices.co.uk (www.dynamicdevices.co.uk
+	[89.200.136.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 301BFE003D8
+	for <yocto@yoctoproject.org>; Thu, 26 Jun 2014 02:23:51 -0700 (PDT)
+Received: from localhost (localhost [127.0.0.1])
+	by www.dynamicdevices.co.uk (Postfix) with ESMTP id 3FDFC27E03F
+	for <yocto@yoctoproject.org>; Thu, 26 Jun 2014 09:23:49 +0000 (UTC)
+X-Virus-Scanned: Debian amavisd-new at lennoab2.miniserver.com
+Received: from www.dynamicdevices.co.uk ([127.0.0.1])
+	by localhost (www.dynamicdevices.co.uk [127.0.0.1]) (amavisd-new,
+	port 10024) with ESMTP id 2G_PsrhU5hxh for <yocto@yoctoproject.org>;
+	Thu, 26 Jun 2014 09:23:48 +0000 (UTC)
+Received: from [127.0.0.1] (cpc32-live22-2-0-cust59.17-2.cable.virginm.net
+	[82.36.253.60])
+	(using TLSv1 with cipher ECDHE-RSA-AES128-SHA (128/128 bits))
+	(No client certificate requested)
+	by www.dynamicdevices.co.uk (Postfix) with ESMTPSA id 94D6327E031
+	for <yocto@yoctoproject.org>; Thu, 26 Jun 2014 09:23:48 +0000 (UTC)
+Message-ID: <53ABE6A1.2000007@dynamicdevices.co.uk>
+Date: Thu, 26 Jun 2014 10:23:45 +0100
+From: Alex J Lennon <ajlennon@dynamicdevices.co.uk>
+User-Agent: Mozilla/5.0 (Windows NT 6.3; WOW64;
+	rv:24.0) Gecko/20100101 Thunderbird/24.6.0
 MIME-Version: 1.0
-X-Received: by 10.194.90.51 with SMTP id bt19mr14900060wjb.105.1403766457669; 
-	Thu, 26 Jun 2014 00:07:37 -0700 (PDT)
-Received: by 10.194.17.193 with HTTP; Thu, 26 Jun 2014 00:07:37 -0700 (PDT)
-In-Reply-To: <CACjDgAMwz1_OgND8VSLcze78Mb9oKVieP=uUAS3S0AmjT+SSLA@mail.gmail.com>
-References: <CACjDgAMwz1_OgND8VSLcze78Mb9oKVieP=uUAS3S0AmjT+SSLA@mail.gmail.com>
-Date: Thu, 26 Jun 2014 10:07:37 +0300
-Message-ID: <CABWuD8dAYsunT0Sn463A3SQ4ycRrfGpRh1DsmQewZq-u7_aBjA@mail.gmail.com>
-From: Maxim Radugin <maxim.radugin@gmail.com>
-To: Albert K <alberk@gmail.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Yocto on X86 Question
+To: Yocto <yocto@yoctoproject.org>
+X-Enigmail-Version: 1.6
+Subject: Problem with DNS resolution using resolvconf (poky/daisy)
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -58,119 +47,32 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 26 Jun 2014 07:07:44 -0000
-Content-Type: multipart/alternative; boundary=047d7bfd00660e9e5604fcb7d9db
+X-List-Received-Date: Thu, 26 Jun 2014 09:24:04 -0000
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: 7bit
 
---047d7bfd00660e9e5604fcb7d9db
-Content-Type: text/plain; charset=UTF-8
+Hi,
 
-Hello Albert,
+I'm looking at resolvconf as I want to be able to pick up dns-nameserver
+changes in /etc/network/interfaces, and I'm reading that this is the way
+to do it.
 
-You can use initramfs to accomplish all of your tasks.
-1) Take a look at meta/recipes-core/initrdscripts/initramfs-live-boot_1.0.bb
-as a starting point, it provides ability to mount rootfs with overlay fs in
-ram (but all the modifications to rootfs are lost after reboot); You'll
-have to write your own implementation where other partition or file is used
-as an overlay;
-2) You will have to create web interface yourself; Typically you have to
-upload update files using web ui to some location which is accessible from
-initramfs; then from the initramfs script check if there are update files
-available, validate them, and replace existing initrd, vmlinuz rootfs.img,
-remove update files and reboot;
-3) I don't think that there is such functionality out of the box, because
-it is very application-specific, but you can write your own implementation;
-Again, this can be done from the initramfs script, just recreate partition
-or file with overlay, this will return rootfs to its initial state;
+Having added the resolvconf package the eth0 interface is now not
+correctly picking up DNS servers and putting them in /etc/resolv.conf
 
-Probably you will have to re-partition your CF card for your specific
-needs, take a look at meta-raspberrypi/classes/sdcard_image-rpi.bbclass.
-
-BR,
-Maxim.
+The behaviour is due to /etc/udhcpc.d/S50default which in the absence of
+resolvconf just creates /etc/resolv.conf (which works) or if the
+resolvconf binary is present it attempts to use it (which doesn't).
 
 
-On Thu, Jun 26, 2014 at 6:22 AM, Albert K <alberk@gmail.com> wrote:
+resolvconf looks to be using /etc/resolvconf/update.d/libc to create
+/etc/resolv.conf but is crapping out as /lib/resolvconf/list-records
+doesn't exist.
 
-> Hi,
->
-> I am a newbie and would like help to point me the right direction with
-> regards to yocto project on X86 system with CF card as boot disk with AMI
-> or Phoenix Bios.   I have a few questions listed below
->
-> 1) How do i build a project with read-only filesystem with an overylay
-> filesystem ?
->    something similar to squashfs and jffs2 or something else.
-> 2) How to i update the firmware after the initial burn to CF?  A web
-> interface update would be appreciated.
-> 3) Is there a recipe or build-in function to reset the firmware to factory
-> setting via serial console or SSH, etc?
->
-> Thank you for helping.
->
-> Regards.
->
->
->
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
->
->
+Is this a bug or could anybody help me to understand if there's some
+other step I should be taking here?
 
---047d7bfd00660e9e5604fcb7d9db
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+Many thanks,
 
-<div dir=3D"ltr">Hello Albert,<div><br></div><div>You can use initramfs to =
-accomplish all of your tasks.</div><div>1) Take a look at=C2=A0meta/recipes=
--core/initrdscripts/<a href=3D"http://initramfs-live-boot_1.0.bb">initramfs=
--live-boot_1.0.bb</a> as a starting point, it provides ability to mount roo=
-tfs with overlay fs in ram (but all the modifications to rootfs are lost af=
-ter reboot); You&#39;ll have to write your own implementation where other p=
-artition or file is used as an overlay;</div>
-<div>2) You will have to create web interface yourself; Typically you have =
-to upload update files using web ui to some location which is accessible fr=
-om initramfs; then from the initramfs script check if there are update file=
-s available, validate them, and replace existing initrd, vmlinuz rootfs.img=
-, remove update files and reboot;=C2=A0<br>
-</div><div>3) I don&#39;t think that there is such=C2=A0functionality out o=
-f the box, because it is very application-specific, but you can write your =
-own implementation; Again, this can be done from the initramfs script, just=
- recreate partition or file with overlay, this will return rootfs to its in=
-itial state;</div>
-<div><br></div><div>Probably you will have to re-partition your CF card for=
- your specific needs, take a look at=C2=A0meta-raspberrypi/classes/sdcard_i=
-mage-rpi.bbclass.</div><div><br></div><div>BR,</div><div>Maxim.</div></div>=
-<div class=3D"gmail_extra">
-<br><br><div class=3D"gmail_quote">On Thu, Jun 26, 2014 at 6:22 AM, Albert =
-K <span dir=3D"ltr">&lt;<a href=3D"mailto:alberk@gmail.com" target=3D"_blan=
-k">alberk@gmail.com</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quo=
-te" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex"=
->
-<div dir=3D"ltr">Hi,<div><br></div><div>I am a newbie and would like help t=
-o point me the right direction with regards to yocto project on X86 system =
-with CF card as boot disk with AMI or Phoenix Bios. =C2=A0 I have a few que=
-stions listed below</div>
+Alex
 
-<div><br></div><div>1) How do i build a project with read-only filesystem w=
-ith an overylay filesystem ?</div><div>=C2=A0 =C2=A0something similar to sq=
-uashfs and jffs2 or something else.=C2=A0</div><div>2) How to i update the =
-firmware after the initial burn to CF? =C2=A0A web interface update would b=
-e appreciated.</div>
-
-<div>3) Is there a recipe or build-in function to reset the firmware to fac=
-tory setting via serial console or SSH, etc?</div><div><br></div><div>Thank=
- you for helping.</div><div><br></div><div>Regards.</div><div><br></div>
-
-<div><br></div></div>
-<br>--<br>
-_______________________________________________<br>
-yocto mailing list<br>
-<a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br>
-<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" target=3D"_blank"=
->https://lists.yoctoproject.org/listinfo/yocto</a><br>
-<br></blockquote></div><br></div>
-
---047d7bfd00660e9e5604fcb7d9db--
