@@ -1,40 +1,56 @@
-Return-Path: <scott.m.rifenbark@linux.intel.com>
+Return-Path: <ashcharles@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 92708E0043F; Thu, 26 Jun 2014 06:11:27 -0700 (PDT)
+	id B6B87E0056E; Thu, 26 Jun 2014 14:52:04 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (ashcharles[at]gmail.com)
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at http://www.dnswl.org/,
-	high *      trust
-	*      [192.55.52.93 listed in list.dnswl.org]
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5F42FE003D8
-	for <yocto@yoctoproject.org>; Thu, 26 Jun 2014 06:11:10 -0700 (PDT)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga102.fm.intel.com with ESMTP; 26 Jun 2014 06:11:10 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.01,553,1400050800"; d="scan'208";a="561309981"
-Received: from linux.jf.intel.com (HELO linux.intel.com) ([10.23.219.25])
-	by fmsmga002.fm.intel.com with ESMTP; 26 Jun 2014 06:09:37 -0700
-Received: from [10.254.114.187] (unknown [10.254.114.187])
-	(using TLSv1 with cipher DHE-RSA-AES128-SHA (128/128 bits))
-	(No client certificate requested)
-	by linux.intel.com (Postfix) with ESMTP id 40D976A4087
-	for <yocto@yoctoproject.org>; Thu, 26 Jun 2014 06:09:06 -0700 (PDT)
-Message-ID: <53AC1B8C.6070203@linux.intel.com>
-Date: Thu, 26 Jun 2014 06:09:32 -0700
-From: "Rifenbark, Scott M" <scott.m.rifenbark@linux.intel.com>
-User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64;
-	rv:24.0) Gecko/20100101 Thunderbird/24.3.0
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.128.182 listed in list.dnswl.org]
+Received: from mail-ve0-f182.google.com (mail-ve0-f182.google.com
+	[209.85.128.182])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 998AAE00509
+	for <yocto@yoctoproject.org>; Thu, 26 Jun 2014 14:51:52 -0700 (PDT)
+Received: by mail-ve0-f182.google.com with SMTP id oy12so4437554veb.13
+	for <yocto@yoctoproject.org>; Thu, 26 Jun 2014 14:51:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-type;
+	bh=6ARNFWtJNnqY8mH1R+0eauPUyVe8ZXPGOP6ipe9Kz0I=;
+	b=Q+XapSG+ngcwVjJcNtbP103NenbjQf37iuzCtZsEiHFlerkdxDmhAYpIuprPbNTz5q
+	4uC40eExF4RXLdPXjbdIG67IaXhSjJkmOLOMFLXuJUTTAViwu4gVKr0KBzG63ATJq9YA
+	i9+yz1f5x/9OyNbOlUefzVo5ROC3eATIdVvavZGKafzYu53nnuJeYHzeoUchS57Hof16
+	unRMePQf/Q5spMVts6t7hYqy3mB9Ln7YC7RDUyHO2UfG3KTv74mfTzPkAvY8cQoKZ/VK
+	AdGbQ+H3f5UnTI5TFfTfaXMD1CmM5uDVYg5WLuFdFBCHUmdodj6hJ/t/wi2/r8QzVpvi
+	n5xA==
+X-Received: by 10.220.203.134 with SMTP id fi6mr6043108vcb.18.1403819511268;
+	Thu, 26 Jun 2014 14:51:51 -0700 (PDT)
 MIME-Version: 1.0
-To: yocto@yoctoproject.org
-References: <alpine.LFD.2.11.1406220901500.2299@localhost>
-In-Reply-To: <alpine.LFD.2.11.1406220901500.2299@localhost>
-Subject: Re: the apparent need for docbook <replaceable> tag in manual examples
+Received: by 10.58.196.229 with HTTP; Thu, 26 Jun 2014 14:51:20 -0700 (PDT)
+In-Reply-To: <539B63C4.1030309@dynamicdevices.co.uk>
+References: <CAAPegz2DCZGTKfyJBGMytu_zofk2K9CSJMbVtiKHdS2eysZgrQ@mail.gmail.com>
+	<CAMKF1sr_LaaVnd8U_7XP3QmAn6Q7OTuVmkb+G3zxz3edXEkRkw@mail.gmail.com>
+	<539B54CF.90603@dynamicdevices.co.uk>
+	<CAAPegz0HCvT9fNMfp0smuuLLTf0XU0zeD0G=picxNNbquEA5og@mail.gmail.com>
+	<539B63C4.1030309@dynamicdevices.co.uk>
+From: Ash Charles <ashcharles@gmail.com>
+Date: Thu, 26 Jun 2014 14:51:20 -0700
+Message-ID: <CAK8F28=CotBOqPE30quGM_k5aQG7sYnw8kPmNtn6i+6DtCNwfQ@mail.gmail.com>
+To: Alex J Lennon <ajlennon@dynamicdevices.co.uk>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: virtual/mesa, virtual/libgl provided by multiple packages
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -46,83 +62,29 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 26 Jun 2014 13:11:27 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Thu, 26 Jun 2014 21:52:04 -0000
+Content-Type: text/plain; charset=UTF-8
 
+Hi Alex,
+On Fri, Jun 13, 2014 at 1:49 PM, Alex J Lennon
+<ajlennon@dynamicdevices.co.uk> wrote:
+> I think these two lines in cogl-1.0.inc are causing mesa to be pulled in
+> incorrectly, but I'm not sure what ERDEPENDS does...
+>
+> # Extra RDEPENDS for PACKAGECONFIG
+> # This has to be explictly listed, because cogl dlopens the backends
+> ERDEPENDS_GL    = "libgl"
+> ERDEPENDS_GLES2 = "libgles2"
+I'm seeing the same issue.  I'm guessing that 'virtual/*' is not a
+valid target for an RDEPEND.  It looks like your libgles2 provider
+should RPROVIDE libgles2.  The receipe for SGX (graphics core)
+libraries, for example, contains lines like this:
+RREPLACES_${PN} = "libegl libgles1 libgles2"
+RPROVIDES_${PN} = "libegl libgles1 libgles2"
+RCONFLICTS_${PN} = "libegl libgles1 libgles2"
 
-On 6/22/2014 6:20 AM, Robert P. J. Day wrote:
->    something poor scott rifenbark can ponder in his copious free time
-> :-), but i think some of the current examples in the various manuals
-> need to be enhanced with the use of the docbook <replaceable> tag to
-> emphasize that they are generic references meant to be replaced by
-> specific values; otherwise, there's potential confusion.
->
->    as a concrete example, i remember *way* back when i was reading
-> about conditional metadata in the bitbake user manual, particularly
-> this verbatim example:
->
->    OVERRIDES = "architecture:os:machine"
->    TEST = "default"
->    TEST_os = "osspecific"
->    TEST_nooverride = "othercondvalue"
+Mesa does something similar (with some extra debian renaming that I
+didn't understand) in an anonymous python function in mesa.inc.
 
-Yes - I will put this on my list of things to get done over time. Thanks 
-for bringing it up.
-
->
->    because all of the above is currently rendered in the same (courier)
-> font in the generated manual, i mistakenly thought that all of the
-> above was to somehow be typed exactly that way, and i was completely
-> baffled as to what the qualifiers "_os" and "_nooverride" would do. it
-> was only after searching for examples in the codebase that it dawned
-> that those strings were meant to be replaced by actual examples of the
-> current architecture, os, machine and so on.
->
->    duh.
->
->    this can be made more obvious fairly simply with the following
-> tweak of using the docbook <replaceable> tag:
->
-> diff --git a/doc/bitbake-user-manual/bitbake-user-manual-metadata.xml
-> b/doc/bitbake-user-manual/bitbake-user-manual-metadata.xml
-> index a9f5072..f8be373 100644
-> --- a/doc/bitbake-user-manual/bitbake-user-manual-metadata.xml
-> +++ b/doc/bitbake-user-manual/bitbake-user-manual-metadata.xml
-> @@ -359,7 +359,7 @@
->                           version.
->                           Here is an example:
->                           <literallayout class='monospaced'>
-> -     OVERRIDES = "architecture:os:machine"
-> +     OVERRIDES = "<replaceable>architecture</replaceable>:<replaceable>os</replaceable>:<replaceable>machine</replaceable>"
->        TEST = "default"
->        TEST_os = "osspecific"
->        TEST_nooverride = "othercondvalue"
->
-> i've confirmed that that tag is processed properly within a
-> <literallayout>, and renders in italicized courier font, which is the
-> visual clue that it's not meant to be read literally.
->
->    oh, and one more related point ... i think it would be more useful
-> to replace generic manual examples that use meaningless phrases such
-> as "foo" and "bar" with specific examples yanked from the actual OE
-> codebase.
->
->    as i said, it took me a few minutes to figure out what the
-> conditional metadata example above was trying to demonstrate, but as
-> soon as i saw a real example in the codebase, it was perfectly clear.
-> to this end, i'm creating wiki pages that show stuff like that
-> exactly, like this one for conditional overrides:
->
-> http://www.crashcourse.ca/wiki/index.php/BitBake_Overrides
->
-> so rather than try to explain the generic concept, i can just bring up
-> the wiki page and say, "see? that's how it works." and everyone
-> understands immediately.
->
->    anyway, just my $0.02. back to work ...
->
-> rday
->
-
+--Ash
 
