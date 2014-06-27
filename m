@@ -1,51 +1,44 @@
-Return-Path: <adam.yh.lee@gmail.com>
+Return-Path: <isak.lichtenstein@kistler.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 32B85E0056A; Thu, 26 Jun 2014 16:39:09 -0700 (PDT)
+	id 49DA6E00566; Thu, 26 Jun 2014 23:27:22 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (adam.yh.lee[at]gmail.com)
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.128.171 listed in list.dnswl.org]
-Received: from mail-ve0-f171.google.com (mail-ve0-f171.google.com
-	[209.85.128.171])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CA2C4E00563
-	for <yocto@yoctoproject.org>; Thu, 26 Jun 2014 16:39:05 -0700 (PDT)
-Received: by mail-ve0-f171.google.com with SMTP id jz11so4515129veb.16
-	for <yocto@yoctoproject.org>; Thu, 26 Jun 2014 16:39:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=iZ3YkwcyhzPWbe6KWc/nuEYdxDJYVAPaMBnYnD+1fQA=;
-	b=RZqBWh/OazEstRz8nrH6HbyrygfDkl55E4bYNnYymzD1vFW7Rl2B9/7mgOJGWbPseL
-	vVwkkXzVlHsi49IzDAS6GTY4kxxlAubQlFZzoV+DI2zRSfi6tqo9Kh2mCpX0SLxhMx5U
-	6DxHyiPUfVNPTZHlhHO9loV36zWdFDv/xklRDWXqa1xad/VkbcVrGK25OcHgmZB50yrf
-	Fs/nCmwu6J3MtY18xQ93mSdA9p0HQWUuprktmG6ZarNTVFVBBtXcGwt1ZEexQ6F9e4JL
-	n3dKH5svs1TrTEzis0JgCHfR/BEaPseHUP+sNiRlE/WB+iIw+A9/Kcg//XFxWeGouV+5
-	XRUQ==
+Received: from mx2.kistler.com (mx2.kistler.com [195.49.77.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 96E63E00282
+	for <yocto@yoctoproject.org>; Thu, 26 Jun 2014 23:27:16 -0700 (PDT)
+X-IronPort-AV: E=Sophos;i="5.01,558,1400018400"; 
+   d="scan'208";a="1707571"
+Received: from unknown (HELO kihagsepp01.int.kistler.com) ([192.168.52.67])
+	by mx2.kistler.com with ESMTP/TLS/ADH-AES256-SHA;
+	27 Jun 2014 08:27:11 +0200
+Received: from mx2.kistler.com (unknown [192.168.52.58])
+	by kihagsepp01.int.kistler.com (Postfix) with ESMTPS;
+	Fri, 27 Jun 2014 08:27:09 +0200 (CEST)
+X-IronPort-AV: E=Sophos;i="5.01,558,1400018400"; 
+   d="scan'208";a="1707570"
+Received: from kihagwinex02.int.kistler.com ([192.168.100.31])
+	by mx2.kistler.com with ESMTP/TLS/AES128-SHA; 27 Jun 2014 08:27:09 +0200
+Received: from KIHAGWINEX01.int.kistler.com ([fe80::d70:7df0:c903:4e43]) by
+	kihagwinex02.int.kistler.com ([fe80::10cf:df86:bb65:2502%16]) with mapi
+	id 14.03.0181.006; Fri, 27 Jun 2014 08:27:09 +0200
+From: Isak Lichtenstein <Isak.Lichtenstein@kistler.com>
+To: 'Maxim Radugin' <maxim.radugin@gmail.com>
+Thread-Topic: Re: [yocto] Create own image type
+Thread-Index: Ac+R0MunLcrkCDGERw2ELZ9Ipui8Iw==
+Date: Fri, 27 Jun 2014 06:27:08 +0000
+Message-ID: <91B4C1B91AAEFD42AC985EA0F3D4E66886162DE7@kihagwinex01.int.kistler.com>
+Accept-Language: en-GB, de-CH, en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [192.168.100.116]
 MIME-Version: 1.0
-X-Received: by 10.220.103.141 with SMTP id k13mr16483473vco.25.1403825944271; 
-	Thu, 26 Jun 2014 16:39:04 -0700 (PDT)
-Received: by 10.52.234.105 with HTTP; Thu, 26 Jun 2014 16:39:04 -0700 (PDT)
-Date: Thu, 26 Jun 2014 16:39:04 -0700
-Message-ID: <CAFeBWL4p+pD1bEhjfQNVWLUowd1FmQOc7Y5m4845462yJ22OFw@mail.gmail.com>
-From: Adam Lee <adam.yh.lee@gmail.com>
-To: "openembedded-devel@lists.openembedded.org"
-	<openembedded-devel@lists.openembedded.org>, 
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Installing RPM packages in SDK sysroot
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Create own image type
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -57,69 +50,24 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 26 Jun 2014 23:39:09 -0000
-Content-Type: multipart/alternative; boundary=047d7b342d30bc206304fcc5b222
+X-List-Received-Date: Fri, 27 Jun 2014 06:27:22 -0000
+Content-Language: de-DE
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
---047d7b342d30bc206304fcc5b222
-Content-Type: text/plain; charset=UTF-8
+DQpIaSBNYXhpbSwNCg0KPiBZb3UgYXJlIG5vIHRoZSByaWdodCB3YXkuDQo+DQo+IFlvdSBoYXZl
+IHRvIGFkZA0KPiBJTUFHRV9DTEFTU0VTICs9ICJteUltYWdlIsKgDQo+IHNvbWV3aGVyZSBpbiB5
+b3VyIGNvbmYgZmlsZXMuIEkgcHJlZmVyIGRpc3Ryby5jb25mIGZvciBteSBvd24gZGlzdHJvLCBi
+dXQgcGVyaGFwcyB5b3UgY2FuIGFkZCBpdCB0byBsb2NhbC5jb25mIGFzIHdlbGwuDQoNClRoYXQg
+d2FzIHRoZSBuZWVkZWQgY2x1ZS4gVGhhbmtzIGEgbG90DQoNCkJSDQoNCklzYWsNCg0KPiBCUiwN
+Cj4gTWF4aW0uDQoNCg0KDQo+Pk9uIFdlZCwgSnVuIDI1LCAyMDE0IGF0IDU6MDQgUE0sIElzYWsg
+TGljaHRlbnN0ZWluIDxJc2FrLkxpY2h0ZW5zdGVpbkBraXN0bGVyLmNvbT4gd3JvdGU6DQo+Pkhp
+IGFsbCwNCj4+wqANCj4+SeKAmW0gdHJ5aW5nIHRvIGNyZWF0ZSBteSBvd24gaW1hZ2UgdHlwZS4g
+SSB0aG91Z2h0IHRoYXQgaXQgd291bGQgYmUgZW5vdWdoIHRvIGNyZWF0ZSBhIG15SW1hZ2UuYmJj
+bGFzcyBmaWxlIGltcGxlbWVudGluZyBJTUFHRV9DTURfbXlJbWFnZSBhbmQgZXh0ZW5kaW5nIElN
+QUdFX1RZUEVTICs9IOKAnCBteUltYWdl4oCdLg0KPj4NCj4+QnV0IHRoaXMgaXNu4oCZdCB3b3Jr
+aW5nIGFuZCBJIGRpZG7igJl0IGZpbmQgYW55dGhpbmcgaW4gdGhlIG1hbnVhbC4NCj4+wqANCj4+
+SXQgdGhpcyBwb3NzaWJsZSBhdCBhbGwgKCBjYW7igJl0IGltYWdpbmUgdGhhdCBpdCBpc27igJl0
+KSA/DQo+PsKgDQo+PldvdWxkIGFwcHJlY2lhdGUgYW55IGhpbnQgcG9zc2libGUuDQo+PsKgDQo+
+PkJlc3QgcmVnYXJkcw0KPj7CoA0KPj5Jc2FrDQoNCg0K
 
-Hello everyone, in the section 4.2. Configuring the PMS of the Yocto ADT
-manual, it describes adding packages to a target sysroot using OPKG. This
-method works well as documented. However my choice of package manager is
-Yocto's default - RPM. And I was not able to successfully install RPM
-packages in the SDK sysroot.
-
-Ultimately, I think installing RPM packages using SmartPM fails because the
-list of installed packages is not included in the SDK sysroot. A deployable
-image contains a file called Packages in /var/lib/rpm. The SDK sysroot does
-not have this file and shows 0 installed packages when I run `smart stats`.
-Note that when I am using OPKG instead of RPM, I have the equivalent
-package index file in /var/lib/opkg/lists for both sysroot and deployable
-images.
-
-I can still attempt to install a package, but it quite literally wants to
-rebuild the entire rootfs. For example, running `smart install opencv-dev`
-warns that it has to install 400 packages. These packages include
-base-files, bash, m4, make, python-dev etc.
-
-So this makes me think that either RPM is not supported in SDK sysroot or
-the feature is incomplete. It's also possible that I have missed an
-important detail.
-
-I will be looking into the sdk class and the package manager class to see
-what's really happening. In the meanwhile I'd appreciate if someone can
-provide some pointers!
-
-Thanks,
-
-Adam
-
---047d7b342d30bc206304fcc5b222
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">Hello everyone, in the section 4.2. Configuring the PMS of=
- the Yocto ADT manual, it describes adding packages to a target sysroot usi=
-ng OPKG. This method works well as documented. However my choice of package=
- manager is Yocto&#39;s default - RPM. And I was not able to successfully i=
-nstall RPM packages in the SDK sysroot.<div>
-<br></div><div>Ultimately, I think installing RPM packages using SmartPM fa=
-ils because the list of installed packages is not included in the SDK sysro=
-ot. A deployable image contains a file called Packages in /var/lib/rpm. The=
- SDK sysroot does not have this file and shows 0 installed packages when I =
-run `smart stats`. Note that when I am using OPKG instead of RPM, I have th=
-e equivalent package index file in /var/lib/opkg/lists for both sysroot and=
- deployable images.=C2=A0</div>
-<div><br></div><div>I can still attempt to install a package, but it quite =
-literally wants to rebuild the entire rootfs. For example, running `smart i=
-nstall opencv-dev` warns that it has to install 400 packages. These package=
-s include base-files, bash, m4, make, python-dev etc.=C2=A0</div>
-<div><br></div><div>So this makes me think that either RPM is not supported=
- in SDK sysroot or the feature is incomplete. It&#39;s also possible that I=
- have missed an important detail.=C2=A0</div><div><br></div><div>I will be =
-looking into the sdk class and the package manager class to see what&#39;s =
-really happening. In the meanwhile I&#39;d appreciate if someone can provid=
-e some pointers!</div>
-<div><br></div><div>Thanks,</div><div><br></div><div>Adam</div></div>
-
---047d7b342d30bc206304fcc5b222--
