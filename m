@@ -1,6 +1,6 @@
-Return-Path: <isak.lichtenstein@kistler.com>
+Return-Path: <ajlennon@dynamicdevices.co.uk>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 7FCE9E00571; Thu, 26 Jun 2014 23:29:13 -0700 (PDT)
+	id 6A2E3E0056A; Fri, 27 Jun 2014 01:22:29 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -8,38 +8,41 @@ X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
 	version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mx1.kistler.com (mx1.kistler.com [195.49.77.148])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6DAC3E00282
-	for <yocto@yoctoproject.org>; Thu, 26 Jun 2014 23:28:56 -0700 (PDT)
-X-IronPort-AV: E=Sophos;i="5.01,558,1400018400"; d="scan'208";a="10950314"
-Received: from unknown (HELO kihagsepp01.int.kistler.com) ([192.168.52.67])
-	by mx1.kistler.com with ESMTP/TLS/ADH-AES256-SHA;
-	27 Jun 2014 08:28:55 +0200
-Received: from mx1.kistler.com (unknown [192.168.52.57])
-	by kihagsepp01.int.kistler.com (Postfix) with ESMTPS;
-	Fri, 27 Jun 2014 08:28:54 +0200 (CEST)
-X-IronPort-AV: E=Sophos;i="5.01,558,1400018400"; d="scan'208";a="10950313"
-Received: from kihagwinex02.int.kistler.com ([192.168.100.31])
-	by mx1.kistler.com with ESMTP/TLS/AES128-SHA; 27 Jun 2014 08:28:54 +0200
-Received: from KIHAGWINEX01.int.kistler.com ([fe80::d70:7df0:c903:4e43]) by
-	kihagwinex02.int.kistler.com ([fe80::10cf:df86:bb65:2502%16]) with mapi
-	id 14.03.0181.006; Fri, 27 Jun 2014 08:28:53 +0200
-From: Isak Lichtenstein <Isak.Lichtenstein@kistler.com>
-To: =?iso-8859-2?B?J0x1a+G5IE5vdm90bv0n?= <lukas@dramiel.com>
-Thread-Topic: [yocto] Create own image type
-Thread-Index: Ac+QfbZ17lC5jli2QW6VwgWVCqsQv///6oSA//1EPtA=
-Date: Fri, 27 Jun 2014 06:28:53 +0000
-Message-ID: <91B4C1B91AAEFD42AC985EA0F3D4E66886162DF3@kihagwinex01.int.kistler.com>
-References: <91B4C1B91AAEFD42AC985EA0F3D4E66886162A9F@kihagwinex01.int.kistler.com>
-	<CC238BE1-8835-4D0B-9A22-45CBC530F7EF@dramiel.com>
-In-Reply-To: <CC238BE1-8835-4D0B-9A22-45CBC530F7EF@dramiel.com>
-Accept-Language: en-GB, de-CH, en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [192.168.100.116]
+Received: from www.dynamicdevices.co.uk (www.dynamicdevices.co.uk
+	[89.200.136.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E301DE00563
+	for <yocto@yoctoproject.org>; Fri, 27 Jun 2014 01:22:25 -0700 (PDT)
+Received: from localhost (localhost [127.0.0.1])
+	by www.dynamicdevices.co.uk (Postfix) with ESMTP id 4033827E03D;
+	Fri, 27 Jun 2014 08:22:23 +0000 (UTC)
+X-Virus-Scanned: Debian amavisd-new at lennoab2.miniserver.com
+Received: from www.dynamicdevices.co.uk ([127.0.0.1])
+	by localhost (www.dynamicdevices.co.uk [127.0.0.1]) (amavisd-new,
+	port 10024)
+	with ESMTP id X1TonswBeJC5; Fri, 27 Jun 2014 08:22:21 +0000 (UTC)
+Received: from [127.0.0.1] (cpc32-live22-2-0-cust59.17-2.cable.virginm.net
+	[82.36.253.60])
+	(using TLSv1 with cipher ECDHE-RSA-AES128-SHA (128/128 bits))
+	(No client certificate requested)
+	by www.dynamicdevices.co.uk (Postfix) with ESMTPSA id D531927E031;
+	Fri, 27 Jun 2014 08:22:20 +0000 (UTC)
+Message-ID: <53AD29BB.2060901@dynamicdevices.co.uk>
+Date: Fri, 27 Jun 2014 09:22:19 +0100
+From: Alex J Lennon <ajlennon@dynamicdevices.co.uk>
+User-Agent: Mozilla/5.0 (Windows NT 6.3; WOW64;
+	rv:24.0) Gecko/20100101 Thunderbird/24.6.0
 MIME-Version: 1.0
+To: Ash Charles <ashcharles@gmail.com>
+References: <CAAPegz2DCZGTKfyJBGMytu_zofk2K9CSJMbVtiKHdS2eysZgrQ@mail.gmail.com>
+	<CAMKF1sr_LaaVnd8U_7XP3QmAn6Q7OTuVmkb+G3zxz3edXEkRkw@mail.gmail.com>
+	<539B54CF.90603@dynamicdevices.co.uk>
+	<CAAPegz0HCvT9fNMfp0smuuLLTf0XU0zeD0G=picxNNbquEA5og@mail.gmail.com>
+	<539B63C4.1030309@dynamicdevices.co.uk>
+	<CAK8F28=CotBOqPE30quGM_k5aQG7sYnw8kPmNtn6i+6DtCNwfQ@mail.gmail.com>
+In-Reply-To: <CAK8F28=CotBOqPE30quGM_k5aQG7sYnw8kPmNtn6i+6DtCNwfQ@mail.gmail.com>
+X-Enigmail-Version: 1.6
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Create own image type
+Subject: Re: virtual/mesa, virtual/libgl provided by multiple packages
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -51,54 +54,41 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 27 Jun 2014 06:29:13 -0000
-Content-Language: de-DE
-Content-Type: text/plain; charset="iso-8859-2"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Fri, 27 Jun 2014 08:22:29 -0000
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Hi Lukas,
-=20
-> Hello,
->=20
-> I can't directly help you with this, however I recommend taking a look at=
- meta-
-> raspberrypi ( https://github.com/djwillis/meta-raspberrypi ) as it adds i=
-t's own
-> image type "rpi-sdimg".
 
-Thanks for the hint. Was really useful. Managed to generate my image by usi=
-ng the "rpi-sdimg" recipe as base.
+On 26/06/2014 22:51, Ash Charles wrote:
+> Hi Alex,
+> On Fri, Jun 13, 2014 at 1:49 PM, Alex J Lennon
+> <ajlennon@dynamicdevices.co.uk> wrote:
+>> I think these two lines in cogl-1.0.inc are causing mesa to be pulled in
+>> incorrectly, but I'm not sure what ERDEPENDS does...
+>>
+>> # Extra RDEPENDS for PACKAGECONFIG
+>> # This has to be explictly listed, because cogl dlopens the backends
+>> ERDEPENDS_GL    = "libgl"
+>> ERDEPENDS_GLES2 = "libgles2"
+> I'm seeing the same issue.  I'm guessing that 'virtual/*' is not a
+> valid target for an RDEPEND.  It looks like your libgles2 provider
+> should RPROVIDE libgles2.  The receipe for SGX (graphics core)
+> libraries, for example, contains lines like this:
+> RREPLACES_${PN} = "libegl libgles1 libgles2"
+> RPROVIDES_${PN} = "libegl libgles1 libgles2"
+> RCONFLICTS_${PN} = "libegl libgles1 libgles2"
+>
+> Mesa does something similar (with some extra debian renaming that I
+> didn't understand) in an anonymous python function in mesa.inc.
+>
+> --Ash
 
-BR
+fwiw. I also ran into a problem with needing libglapi which seems to be
+provided by mesa.
 
-Isak
->=20
-> Lukas
->=20
-> On 25 Jun 2014, at 16:04, Isak Lichtenstein <Isak.Lichtenstein@kistler.co=
-m> wrote:
->=20
-> > Hi all,
-> >
-> > I'm trying to create my own image type. I thought that it would be enou=
-gh to
-> create a myImage.bbclass file implementing IMAGE_CMD_myImage and extendin=
-g
-> IMAGE_TYPES +=3D " myImage".
-> >
-> > But this isn't working and I didn't find anything in the manual.
-> >
-> > It this possible at all ( can't imagine that it isn't) ?
-> >
-> > Would appreciate any hint possible.
-> >
-> > Best regards
-> >
-> > Isak
-> > --
-> > _______________________________________________
-> > yocto mailing list
-> > yocto@yoctoproject.org
-> > https://lists.yoctoproject.org/listinfo/yocto
+I am wondering if there's a need for a mesa-glapi similar to mesa-gl to
+eliminate the need for mesa-proper
+
+Regards, Alex
 
 
