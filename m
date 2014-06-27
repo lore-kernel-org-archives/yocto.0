@@ -1,48 +1,48 @@
-Return-Path: <ajlennon@dynamicdevices.co.uk>
+Return-Path: <ysan99@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 6A2E3E0056A; Fri, 27 Jun 2014 01:22:29 -0700 (PDT)
+	id 95AA2E00563; Fri, 27 Jun 2014 05:14:51 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
-Received: from www.dynamicdevices.co.uk (www.dynamicdevices.co.uk
-	[89.200.136.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E301DE00563
-	for <yocto@yoctoproject.org>; Fri, 27 Jun 2014 01:22:25 -0700 (PDT)
-Received: from localhost (localhost [127.0.0.1])
-	by www.dynamicdevices.co.uk (Postfix) with ESMTP id 4033827E03D;
-	Fri, 27 Jun 2014 08:22:23 +0000 (UTC)
-X-Virus-Scanned: Debian amavisd-new at lennoab2.miniserver.com
-Received: from www.dynamicdevices.co.uk ([127.0.0.1])
-	by localhost (www.dynamicdevices.co.uk [127.0.0.1]) (amavisd-new,
-	port 10024)
-	with ESMTP id X1TonswBeJC5; Fri, 27 Jun 2014 08:22:21 +0000 (UTC)
-Received: from [127.0.0.1] (cpc32-live22-2-0-cust59.17-2.cable.virginm.net
-	[82.36.253.60])
-	(using TLSv1 with cipher ECDHE-RSA-AES128-SHA (128/128 bits))
-	(No client certificate requested)
-	by www.dynamicdevices.co.uk (Postfix) with ESMTPSA id D531927E031;
-	Fri, 27 Jun 2014 08:22:20 +0000 (UTC)
-Message-ID: <53AD29BB.2060901@dynamicdevices.co.uk>
-Date: Fri, 27 Jun 2014 09:22:19 +0100
-From: Alex J Lennon <ajlennon@dynamicdevices.co.uk>
-User-Agent: Mozilla/5.0 (Windows NT 6.3; WOW64;
-	rv:24.0) Gecko/20100101 Thunderbird/24.6.0
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (ysan99[at]gmail.com)
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+	*      [score: 0.0003]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.220.180 listed in list.dnswl.org]
+Received: from mail-vc0-f180.google.com (mail-vc0-f180.google.com
+	[209.85.220.180])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 51078E00404
+	for <yocto@yoctoproject.org>; Fri, 27 Jun 2014 05:14:48 -0700 (PDT)
+Received: by mail-vc0-f180.google.com with SMTP id im17so4890616vcb.25
+	for <yocto@yoctoproject.org>; Fri, 27 Jun 2014 05:14:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:from:date:message-id:subject:to:content-type;
+	bh=3vNNyKMxc2NAuWErNG5sI8+Up1s38X3PxewB5TKHxG8=;
+	b=C0EEacDoEpTDbr8Rkd+asdpM0UswCmcUv5ofGHrDlPTh8cmpSROm2BHtKlm93tu6Ja
+	zrXh1qBxfLabuIPwzmxDQ12BtZq76GgH9wBYsxaDDM+6lwYx5/r9IoQ6Q4gUX4vtgJAf
+	xFmavxadfAxM9ZCW5elL5PQorMibnMJBqcyFL+8vF3/zPHfrtFX3dakzhrNFKrznubNr
+	lXZvYll39Ng5tjtJR0++yREybsDW4uPUWR/m9tgzR/c2fHo2FXx5rw+YEAtiXeasxZay
+	RvkozlfROOtTg45f+0m2oplSzuFipievgQ1BkbBTtIdXQYBg7NsKpE/tAXXYj6iJ18VC
+	elxQ==
+X-Received: by 10.53.12.229 with SMTP id et5mr16415751vdd.32.1403871288036;
+	Fri, 27 Jun 2014 05:14:48 -0700 (PDT)
 MIME-Version: 1.0
-To: Ash Charles <ashcharles@gmail.com>
-References: <CAAPegz2DCZGTKfyJBGMytu_zofk2K9CSJMbVtiKHdS2eysZgrQ@mail.gmail.com>
-	<CAMKF1sr_LaaVnd8U_7XP3QmAn6Q7OTuVmkb+G3zxz3edXEkRkw@mail.gmail.com>
-	<539B54CF.90603@dynamicdevices.co.uk>
-	<CAAPegz0HCvT9fNMfp0smuuLLTf0XU0zeD0G=picxNNbquEA5og@mail.gmail.com>
-	<539B63C4.1030309@dynamicdevices.co.uk>
-	<CAK8F28=CotBOqPE30quGM_k5aQG7sYnw8kPmNtn6i+6DtCNwfQ@mail.gmail.com>
-In-Reply-To: <CAK8F28=CotBOqPE30quGM_k5aQG7sYnw8kPmNtn6i+6DtCNwfQ@mail.gmail.com>
-X-Enigmail-Version: 1.6
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: virtual/mesa, virtual/libgl provided by multiple packages
+Received: by 10.58.237.134 with HTTP; Fri, 27 Jun 2014 05:14:27 -0700 (PDT)
+From: santosh <ysan99@gmail.com>
+Date: Fri, 27 Jun 2014 14:14:27 +0200
+Message-ID: <CAFcFeQKoTPaCZUYCWmng5L2XPuGUkX8v0YjGsKrfa-LCHwzsqQ@mail.gmail.com>
+To: yocto@yoctoproject.org
+Subject: PREFERRED_PROVIDER_
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -54,41 +54,23 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 27 Jun 2014 08:22:29 -0000
+X-List-Received-Date: Fri, 27 Jun 2014 12:14:51 -0000
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
 
+Hello!
 
-On 26/06/2014 22:51, Ash Charles wrote:
-> Hi Alex,
-> On Fri, Jun 13, 2014 at 1:49 PM, Alex J Lennon
-> <ajlennon@dynamicdevices.co.uk> wrote:
->> I think these two lines in cogl-1.0.inc are causing mesa to be pulled in
->> incorrectly, but I'm not sure what ERDEPENDS does...
->>
->> # Extra RDEPENDS for PACKAGECONFIG
->> # This has to be explictly listed, because cogl dlopens the backends
->> ERDEPENDS_GL    = "libgl"
->> ERDEPENDS_GLES2 = "libgles2"
-> I'm seeing the same issue.  I'm guessing that 'virtual/*' is not a
-> valid target for an RDEPEND.  It looks like your libgles2 provider
-> should RPROVIDE libgles2.  The receipe for SGX (graphics core)
-> libraries, for example, contains lines like this:
-> RREPLACES_${PN} = "libegl libgles1 libgles2"
-> RPROVIDES_${PN} = "libegl libgles1 libgles2"
-> RCONFLICTS_${PN} = "libegl libgles1 libgles2"
->
-> Mesa does something similar (with some extra debian renaming that I
-> didn't understand) in an anonymous python function in mesa.inc.
->
-> --Ash
+I have package busybox at prio 50 and package shadow at prio 200.
+Both generate chpasswd.
 
-fwiw. I also ran into a problem with needing libglapi which seems to be
-provided by mesa.
+Currently chpasswd is getting installed from shadow because shadow has
+higher prio.
 
-I am wondering if there's a need for a mesa-glapi similar to mesa-gl to
-eliminate the need for mesa-proper
+I need chpasswd to come from busybox.
 
-Regards, Alex
+How do I do it?
 
+I added PREFERRED_PROVIDER_chpasswd=busybox in template but has no effect.
+
+Thanks,
+Santosh
 
