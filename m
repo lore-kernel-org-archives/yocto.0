@@ -1,64 +1,58 @@
-Return-Path: <mhalstead@linuxfoundation.org>
+Return-Path: <martin.jansa@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 0174BE006BC; Sun, 29 Jun 2014 09:25:07 -0700 (PDT)
+	id A19C7E00543; Sun, 29 Jun 2014 10:53:25 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,RCVD_IN_DNSWL_NONE autolearn=unavailable version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [209.85.192.182 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (martin.jansa[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-pd0-f182.google.com (mail-pd0-f182.google.com
-	[209.85.192.182])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 16447E00543
-	for <yocto@yoctoproject.org>; Sun, 29 Jun 2014 09:25:04 -0700 (PDT)
-Received: by mail-pd0-f182.google.com with SMTP id y13so6924798pdi.13
-	for <yocto@yoctoproject.org>; Sun, 29 Jun 2014 09:25:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=linuxfoundation.org; s=google;
-	h=sender:message-id:date:from:user-agent:mime-version:to:subject
-	:openpgp:content-type:content-transfer-encoding;
-	bh=kNkomNIRVlsWeR768wqXMGg/SluPdz+q/j/X/lIPcqI=;
-	b=NgBfDbpi/ZMeKE1UX1EbFWSbr6TPJraacXB5k8ho2t/C63OyYTA2Rb8ERg8WbKV9Rh
-	XMfzVndPO1U6HVM9lOpHloTfLIVDnGNvx49N0ACneDf8tED75NH2TI+yxjDlBFUVMqtE
-	RPai3yX8D7sFfIvZ/DgqhhSJU9cwbvQReklQ4=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:sender:message-id:date:from:user-agent
-	:mime-version:to:subject:openpgp:content-type
-	:content-transfer-encoding;
-	bh=kNkomNIRVlsWeR768wqXMGg/SluPdz+q/j/X/lIPcqI=;
-	b=cq4JE3mCw96batWz14Ibh18YshD4bwyi1edkco3XL6rmzQxGcJBSs9G/zWy3DGF19G
-	4hBhhXJas1glysrGDWOWnastaKomqnpkJyp8ats0Z/CyJ3fomQDVDWU1/8ajWFiVva23
-	oLhC3nAkr263bPYyDHhT8Ckfpyzlwgg5zCPb1srLbT+DMDehtS/DcbpcvmpV7pqh3Mqc
-	Vq99FjAo1gBiZSxRN9biScOwHHuKia5Amk8nvS0fbd18l6M6SYWYI/xsqPw/MK+thoga
-	8Ouwc3H4IqXLyb8yNJX2uVj8i59X+NxdbAoK+/DxqrSG8gky8lp/SfcuWm5mlNHsWODh
-	sjtw==
-X-Gm-Message-State: ALoCoQlbDG01UdbflFDWAnxa5Z9On1FAXYzuxDq+hAPeRMnv7EvM8Mmfv12fNQcpI/vfS4R9bQO4
-X-Received: by 10.66.120.201 with SMTP id le9mr44639054pab.98.1404059104187;
-	Sun, 29 Jun 2014 09:25:04 -0700 (PDT)
-Received: from pride.local ([207.55.8.2]) by mx.google.com with ESMTPSA id
-	xk3sm23769854pbb.65.2014.06.29.09.25.03 for <multiple recipients>
-	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
-	Sun, 29 Jun 2014 09:25:03 -0700 (PDT)
-Sender: Michael Halstead <mhalstead@linuxfoundation.org>
-Message-ID: <53B03DDE.6090901@yoctoproject.org>
-Date: Sun, 29 Jun 2014 09:25:02 -0700
-From: Michael Halstead <michael@yoctoproject.org>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:24.0) Gecko/20100101 Thunderbird/24.6.0
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [74.125.82.43 listed in list.dnswl.org]
+Received: from mail-wg0-f43.google.com (mail-wg0-f43.google.com [74.125.82.43])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 15A08E002F9
+	for <yocto@yoctoproject.org>; Sun, 29 Jun 2014 10:53:19 -0700 (PDT)
+Received: by mail-wg0-f43.google.com with SMTP id b13so6901041wgh.2
+	for <yocto@yoctoproject.org>; Sun, 29 Jun 2014 10:53:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=from:date:to:cc:subject:message-id:references:mime-version
+	:content-type:content-disposition:in-reply-to:user-agent;
+	bh=dXqSbf/84dbkV93CQbNZjf9tw5x3/9SK7A/XS8EaSOw=;
+	b=SotfgKOAvf/GMdkowXlCZWulBndXtHTxt9KlXnntGvNh+3KO81AZ3LbxtN6DBMNnBQ
+	MiViPt6g7pumyMaorBsififRaS2EqfC/MAA2qDNFkADX2qygzfJSn6wmJHIvNH4GG+hV
+	pkYkvOMmqN2hmHuPYoVoqAazeCA4BDgqYIUoCAqG9XdnZky2vamiDjxpyRpEw4KJXHqz
+	9kHnxXM33UZUFBqhepsaH+np3/a4U2PN5slvK82qXcRBJRp39U9IjRgNQn5/qI4Y2ZtX
+	BYOratpsr9C7l1tqgYhF4B/zQ25KLHrgfG3ylLXjPd9sxiyIKQMOBKoJFcWjwD6eamo7
+	TXXw==
+X-Received: by 10.180.13.47 with SMTP id e15mr24895251wic.28.1404064398778;
+	Sun, 29 Jun 2014 10:53:18 -0700 (PDT)
+Received: from localhost (ip-89-176-104-3.net.upcbroadband.cz. [89.176.104.3])
+	by mx.google.com with ESMTPSA id
+	lk7sm35877277wjb.24.2014.06.29.10.53.17 for <multiple recipients>
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Sun, 29 Jun 2014 10:53:17 -0700 (PDT)
+From: Martin Jansa <martin.jansa@gmail.com>
+X-Google-Original-From: Martin Jansa <Martin.Jansa@gmail.com>
+Date: Sun, 29 Jun 2014 19:53:25 +0200
+To: Christian Ege <k4230r6@gmail.com>
+Message-ID: <20140629175325.GZ2437@jama>
+References: <CALXw4G4sWVH+ZegiAfvF4g0CSWhUz_db87hNtOLVX8DnZAUDUw@mail.gmail.com>
+	<CAALGJZYmVU8+Bs8+ftZO4uDGRqAVkwrgTm1MNVGqmnTdzqpXaQ@mail.gmail.com>
 MIME-Version: 1.0
-To: Yocto Project Discussion <yocto@yoctoproject.org>, 
-	yocto-infrastructure@yoctoproject.org
-X-Enigmail-Version: 1.6
-OpenPGP: id=01861969
-Subject: Error while reverting changes to Bugzilla database [June 27th 17:15 UTC - June 29th 15:00 UTC]
+In-Reply-To: <CAALGJZYmVU8+Bs8+ftZO4uDGRqAVkwrgTm1MNVGqmnTdzqpXaQ@mail.gmail.com>
+User-Agent: Mutt/1.5.23 (2014-03-12)
+Cc: Yocto discussion list <yocto@yoctoproject.org>
+Subject: Re: Pulseadudio depends
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -70,45 +64,71 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 29 Jun 2014 16:25:08 -0000
-Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Sun, 29 Jun 2014 17:53:25 -0000
+X-Groupsio-MsgNum: 20332
+Content-Type: multipart/signed; micalg=pgp-sha1;
+	protocol="application/pgp-signature"; boundary="O2g7+miYGsIKoR9l"
+Content-Disposition: inline
 
------BEGIN PGP SIGNED MESSAGE-----
-Hash: SHA1
+--O2g7+miYGsIKoR9l
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Summary: If you entered data into bugzilla.yoctoproject.org during the
-last 3 days, please double check your entries are correct.
+On Sat, Jun 28, 2014 at 10:06:54PM +0200, Christian Ege wrote:
+> Am 28.06.2014 21:54 schrieb "Michael Gloff" <mgloff@emacinc.com>:
+> >
+> > All,
+> > I'm having some build errors when pulseaudio tries to configure. It loo=
+ks
+> like there is a dependency on libcap. If the image already has libcap
+> pulled in or I manually make it so, everything is fine. Just wondering if
+> anyone else has experienced this and/or can duplicate on a clean build.
+> >
+> It may fixes your Problem by addind RDEPENDS +=3D "libcap"
 
-    Data entered into bugzilla.yoctoproject.org after June 27th 17:15
-UTC and before June 29th 15:00 UTC was lost from the production
-database. One lost bug was re-entered by hand.
+Not RDEPENDS but DEPENDS.
 
-Details: While restoring Testopia data from a test plan that was
-deleted last Thursday I made a mistake regarding the format of the
-database backup files I was using. The bugzilla database was reverted
-to its state as of June 26th 08:30 UTC. It continued in this state
-until June 29th 15:00 UTC when I restored the database as it was on
-June 27th 17:15 UTC. The only changes made during this odd state were
-to temporary bug id 6483 which I have recreated as
-https://bugzilla.yoctoproject.org/show_bug.cgi?id=6488. I believe no
-bug data was lost. Daily stats data for June 27th were lost. Weekly
-stats are not affected. Testopia data remains in the June 26th 08:30
-UTC state.
+And I haven't seen this issue in test-dependencies builds, so it's
+either very new dependency or something special about your config (maybe
+more PACKAGECONFIG options enabled).
 
-- -- 
-Michael Halstead
-Yocto Project / SysAdmin
+> to the pulsaudio recipe. It may worth filing a patch if it is fixed.
+>=20
+> Regards,
+> Christian
+> > Thanks,
+> >
+> > Michael Gloff
+> >
+> >
+> > --
+> > _______________________________________________
+> > yocto mailing list
+> > yocto@yoctoproject.org
+> > https://lists.yoctoproject.org/listinfo/yocto
+> >
+
+> --=20
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+
+
+--=20
+Martin 'JaMa' Jansa     jabber: Martin.Jansa@gmail.com
+
+--O2g7+miYGsIKoR9l
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: Digital signature
+
 -----BEGIN PGP SIGNATURE-----
-Version: GnuPG v2.0.22 (GNU/Linux)
-Comment: Using GnuPG with Thunderbird - http://www.enigmail.net/
+Version: GnuPG v2
 
-iQEcBAEBAgAGBQJTsD3IAAoJEH9hAclg9EfIf6oH/2cXZzKdyX2C/RzHjBo+u5be
-PAiSJ84M97yeqx17bgz52ZrNUcZanoipTfgAs0Gh8u3J5e1XDMEORTYxU9uuS7EH
-lsjg9XXKgSGxAe2xXuxoQZ6nk7bH2p9b2aMCj9r0HST3fpLiaBurSO2AmSRRFc3v
-c9MMyIEK0gQ/Odct7/5zf5Iigx5BTZoWlotmKkK5ONOzYe4qwa+izmxHtNbCppos
-AmlrMgKAI6Sw4m0xxqmcSZqruqFX5JnfeNUuCr+jXZrzdmVCeZmv7+wS3uRFwJ8y
-/e9VDwaY88ge/GQJHdpylLEZ1AQMlEpkalaEZZeWr5ISO/zv0h6m5GUDar+UCI0=
-=2DIT
+iEYEARECAAYFAlOwUpUACgkQN1Ujt2V2gBwGFwCeIu1ZvBv3QSKTXwCpRfROI9EQ
+TMYAoJsGF7j/QoeMhHGlHZFOF42wx2mA
+=joRD
 -----END PGP SIGNATURE-----
 
+--O2g7+miYGsIKoR9l--
