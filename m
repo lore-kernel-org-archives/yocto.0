@@ -1,56 +1,46 @@
-Return-Path: <Alexandru.Vaduva@enea.com>
+Return-Path: <alexandru.c.georgescu@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id BB3A4E0053B; Mon, 30 Jun 2014 08:02:01 -0700 (PDT)
+	id E0B28E00507; Mon, 30 Jun 2014 09:26:24 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_HI autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [134.134.136.20 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from mx-3.enea.com (sestofw01.enea.se [192.36.1.252])
-	by yocto-www.yoctoproject.org (Postfix) with SMTP id 2BE3DE00511;
-	Mon, 30 Jun 2014 08:01:50 -0700 (PDT)
-Received: from SESTOEX04.enea.se ([fe80::bc2d:9299:d6b2:d0b7]) by
-	SESTOEX03.enea.se ([fe80::6ce7:7b51:1edf:e245%17]) with mapi id
-	14.03.0158.001; Mon, 30 Jun 2014 17:01:44 +0200
-From: Alexandru Vaduva <Alexandru.Vaduva@enea.com>
-To: "jeffrey.osier-mixon@intel.com" <jeffrey.osier-mixon@intel.com>
-Thread-Topic: Carrier Grade layer proposal
-Thread-Index: AQHPkW1+2KRT24GnPkKv9BXuG5a5ZpuEiPLggAAHpxCAABcrkIAACmtAgAABnUCAAAhEYIAFAPMA
-Date: Mon, 30 Jun 2014 15:01:44 +0000
-Message-ID: <DDB0C57E45663A458C5CACB7B5688BC21D6C8818@SESTOEX04.enea.se>
-References: <CALZ2gZV=pDM5kE-VDdEp1xJRV+ig7q5ix+cFU9vjpvJg7x=o5Q@mail.gmail.com>
-	<D7AB900AA081FD46B179E331E9F703E8907D76@SESTOEX04.enea.se>
-	<6B17198E316BD04DBB6F6DD263019AE125573C4A@SESTOEX04.enea.se>
-	<2D55BFC2C836774DB0F2FE17BECC006C28993A30@SESTOEX04.enea.se>
-	<D7AB900AA081FD46B179E331E9F703E8908E42@SESTOEX04.enea.se>
-	<DDB0C57E45663A458C5CACB7B5688BC21D6C5C0D@SESTOEX04.enea.se>
-	<D7AB900AA081FD46B179E331E9F703E8908E9C@SESTOEX04.enea.se>
-In-Reply-To: <D7AB900AA081FD46B179E331E9F703E8908E9C@SESTOEX04.enea.se>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1FF86E00289
+	for <yocto@yoctoproject.org>; Mon, 30 Jun 2014 09:26:19 -0700 (PDT)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga101.jf.intel.com with ESMTP; 30 Jun 2014 09:26:17 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.01,575,1400050800"; 
+	d="png'150?jpg'150,145?scan'150,145,208,217,150,145";a="566108638"
+Received: from irsmsx103.ger.corp.intel.com ([163.33.3.157])
+	by orsmga002.jf.intel.com with ESMTP; 30 Jun 2014 09:25:49 -0700
+Received: from irsmsx153.ger.corp.intel.com (163.33.192.75) by
+	IRSMSX103.ger.corp.intel.com (163.33.3.157) with Microsoft SMTP Server
+	(TLS) id 14.3.123.3; Mon, 30 Jun 2014 17:25:47 +0100
+Received: from irsmsx104.ger.corp.intel.com ([169.254.5.106]) by
+	IRSMSX153.ger.corp.intel.com ([169.254.9.233]) with mapi id
+	14.03.0123.003; Mon, 30 Jun 2014 17:25:47 +0100
+From: "Georgescu, Alexandru C" <alexandru.c.georgescu@intel.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: Yocto 1.6.1 rc3 Test Report
+Thread-Index: Ac+Uf9HN95s2ZTk8RwKI9ZnKSdv33w==
+Date: Mon, 30 Jun 2014 16:25:46 +0000
+Message-ID: <1FFB62CE8AEB0D4298B51122D8903E96219BB194@IRSMSX104.ger.corp.intel.com>
 Accept-Language: en-US
-X-MS-Has-Attach: 
+X-MS-Has-Attach: yes
 X-MS-TNEF-Correlator: 
-x-originating-ip: [192.168.14.200]
+user-agent: Microsoft-MacOutlook/14.4.2.140509
+x-originating-ip: [163.33.239.181]
 MIME-Version: 1.0
-X-Mailman-Approved-At: Mon, 30 Jun 2014 08:18:06 -0700
-Cc: "davide.ricci@windriver.com" <davide.ricci@windriver.com>,
-	Jenny Andersson <Jenny.Andersson@enea.com>,
-	Cosmin Moldoveanu <Cosmin.Moldoveanu@enea.com>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	"kevin_mccombe@mentor.com" <kevin_mccombe@mentor.com>,
-	"chase.maupin@ti.com" <chase.maupin@ti.com>,
-	"openembedded-core@lists.openembedded.org"
-	<openembedded-core@lists.openembedded.org>,
-	"akuster@mvista.com" <akuster@mvista.com>,
-	"hui.geng@huawei.com" <hui.geng@huawei.com>,
-	"jason.wessel@windriver.com" <jason.wessel@windriver.com>,
-	Jon Aldama <Jon.Aldama@enea.com>,
-	"poky@yoctoproject.org" <poky@yoctoproject.org>,
-	"teodor.bobornilo@windriver.com" <teodor.bobornilo@windriver.com>,
-	"philip.balister@gmail.com" <philip.balister@gmail.com>
-Subject: Re: Carrier Grade layer proposal
+Subject: Yocto 1.6.1 rc3 Test Report
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -62,593 +52,3004 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 30 Jun 2014 15:02:01 -0000
+X-List-Received-Date: Mon, 30 Jun 2014 16:26:25 -0000
+X-Groupsio-MsgNum: 20337
 Content-Language: en-US
+Content-Type: multipart/related;
+	boundary="_006_1FFB62CE8AEB0D4298B51122D8903E96219BB194IRSMSX104gercor_";
+	type="multipart/alternative"
+
+--_006_1FFB62CE8AEB0D4298B51122D8903E96219BB194IRSMSX104gercor_
 Content-Type: multipart/alternative;
-	boundary="_000_DDB0C57E45663A458C5CACB7B5688BC21D6C8818SESTOEX04enease_"
+	boundary="_000_1FFB62CE8AEB0D4298B51122D8903E96219BB194IRSMSX104gercor_"
 
---_000_DDB0C57E45663A458C5CACB7B5688BC21D6C8818SESTOEX04enease_
-Content-Type: text/plain; charset="utf-8"
+--_000_1FFB62CE8AEB0D4298B51122D8903E96219BB194IRSMSX104gercor_
+Content-Type: text/plain; charset="iso-2022-jp"
+Content-Transfer-Encoding: quoted-printable
+
+Hello,
+Here is the test report for 1.6.1 rc3 build http://autobuilder.yoctoproject=
+.org/pub/releases/yocto-1.6.1
+
+For this build we have performed a full pass on Build Appliance, ADT-instal=
+ler, qemux86, qemux86-64, oe-selftest (which contains the automated tets fo=
+r Bitbake and Oe-core), Toaster and Distro Testing with no bugs found, exce=
+pting Toaster whith already known issues.
+
+For the DISTRO testing (results below) we have nighlty-world failing for Ub=
+untu 14.04 with 6467 - in progress review. On Opensuse we encountered multi=
+ple failures due to the following error: "command timed out: 100000 seconds=
+ without output, attempting to kill=1B$B!I=1B(B. Basically, the tests need =
+to be rerun since the error appears when some Python processes become dorma=
+nt. We are running the 1.7 DISTRO testing currently so it would take some t=
+ime in order to rerun the 1.6.1 tests on Opensuse so this remains a questio=
+n to the board if we want to rerun the OpenSuse tests. The downside of reru=
+nning them would be that we will have to wait more for the tests to finish =
+at least 1 day in the case we don=1B$B!G=1B(Bt find any new fails.
+
+Detailed report at: : https://wiki.yoctoproject.org/wiki/WW26_-_2014-06-23_=
+-_Full_Pass_Release_1.6.1.rc3
+
+
+Testing data
+Test type:  Full Pass Release Test
+Branch: daisy
+Build name: 1.6.1
+poky commit: c4f1f0f491f988901bfd6965f7d10f60cb94a76f
+Eclipse Plugin commit Kepler:  1dfe1d2f1322b5fda8e1a7637c447b0e060efb3e
+Autobuilder images repository:  http://autobuilder.yoctoproject.org/pub/rel=
+eases/yocto-1.6.1/
+Distributions tested: Ubuntu 14.04 64bit, Fedora 20 64bit, Opensuse 13.1 64=
+bit, CentOS 6.5 64 bit
+Summary Report
+Testing Summary Report
+
+Test Run
+
+Test Plan
+
+Environment
+
+Passed
+
+Other issues
+
+Failed
+
+Failing bugs
+
+Blocked
+
+Blocking bugs
+
+Complete
+
+2495<https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=3D2495>
+
+ADT: daisy_branch
+
+Fedora 20 i686
+
+100.0%
+
+none
+
+0.0%
+
+none
+
+0.0%
+
+none
+
+100.0%
+
+2494<https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=3D2494>
+
+ADT: daisy_branch
+
+Ubuntu 14.04 x86_64
+
+100.0%
+
+none
+
+0.0%
+
+none
+
+0.0%
+
+none
+
+100.0%
+
+2527<https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=3D2527>2529<h=
+ttps://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=3D2529>
+
+BSP/QEMU: daisy branch
+
+qemu-x86
+
+100.0%
+
+none
+
+0.0%
+
+none
+
+0.0%
+
+none
+
+100.0%
+
+2528<https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=3D2528>2530<h=
+ttps://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=3D2530>
+
+BSP/QEMU: daisy branch
+
+qemux86-64
+
+100.0%
+
+none
+
+0.0%
+
+none
+
+0.0%
+
+none
+
+100.0%
+
+2523<https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=3D2523>
+
+meta-yocto: daisy branch
+
+Ubuntu 14.04 x86_64
+
+100.0%
+
+none
+
+0.0%
+
+none
+
+0.0%
+
+none
+
+100.0%
+
+2489<https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=3D2489>
+
+Toaster: daisy branch
+
+Fedora r20 x86_64
+
+89.2%
+
+none
+
+10.8%
+
+5187<https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D5187>6445<https://=
+bugzilla.yoctoproject.org/show_bug.cgi?id=3D6445>5844<https://bugzilla.yoct=
+oproject.org/show_bug.cgi?id=3D5844>
+
+0.0%
+
+none
+
+100.0%
+
+2492<https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=3D2492>
+
+Toaster: daisy branch
+
+Ubuntu 12.04 x86
+
+100.0%
+
+none
+
+0.0%
+
+none
+
+0.0%
+
+none
+
+100.0%
+
+2491<https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=3D2491>
+
+Build Appliance: daisy branch
+
+qemu-kvm on Ubuntu 12.04 libvirt
+
+100.0%
+
+none
+
+0.0%
+
+none
+
+0.0%
+
+none
+
+100.0%
+
+Total: 8
+
+
+
+Test Case Status Report
+
+Status
+
+Count
+
+FAILED
+
+4
+
+PASSED
+
+341
+
+Total: 345
+
+
+[http://chart.apis.google.com/chart?cht=3Dp3&chs=3D432x120&chd=3Dt:&chd=3Dt=
+:4,341&chco=3DFF9933|00FF00&chl=3DFAILED(4)+1%25|PASSED(341)+99%25]
+
+
+
+Bug Status Report
+
+[Bug Status]
+
+ID[=1B$B"-=1B(B]<https://wiki.yoctoproject.org/wiki/WW26_-_2014-06-23_-_Ful=
+l_Pass_Release_1.6.1.rc3>
+
+Priority[=1B$B"-=1B(B]<https://wiki.yoctoproject.org/wiki/WW26_-_2014-06-23=
+_-_Full_Pass_Release_1.6.1.rc3>
+
+Status[=1B$B"-=1B(B]<https://wiki.yoctoproject.org/wiki/WW26_-_2014-06-23_-=
+_Full_Pass_Release_1.6.1.rc3>
+
+Resolution[=1B$B"-=1B(B]<https://wiki.yoctoproject.org/wiki/WW26_-_2014-06-=
+23_-_Full_Pass_Release_1.6.1.rc3>
+
+Test Runs[=1B$B"-=1B(B]<https://wiki.yoctoproject.org/wiki/WW26_-_2014-06-2=
+3_-_Full_Pass_Release_1.6.1.rc3>
+
+Description[=1B$B"-=1B(B]<https://wiki.yoctoproject.org/wiki/WW26_-_2014-06=
+-23_-_Full_Pass_Release_1.6.1.rc3>
+
+Version[=1B$B"-=1B(B]<https://wiki.yoctoproject.org/wiki/WW26_-_2014-06-23_=
+-_Full_Pass_Release_1.6.1.rc3>
+
+Target Milestone[=1B$B"-=1B(B]<https://wiki.yoctoproject.org/wiki/WW26_-_20=
+14-06-23_-_Full_Pass_Release_1.6.1.rc3>
+
+Age (days)[=1B$B"-=1B(B]<https://wiki.yoctoproject.org/wiki/WW26_-_2014-06-=
+23_-_Full_Pass_Release_1.6.1.rc3>
+
+5187<https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D5187>
+
+Medium
+
+ACCEPTED
+
+2489<https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=3D2489>
+
+same cooker log file name used for several builds
+
+unspecified
+
+1.7 M3
+
+283
+
+5844<https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D5844>
+
+Medium
+
+ACCEPTED
+
+2489<https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=3D2489>
+
+Wrong script_type when task is not executed.
+
+unspecified
+
+1.7 M4
+
+125
+
+6445<https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D6445>
+
+Medium
+
+RESOLVED
+
+NOTABUG
+
+2489<https://bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=3D2489>
+
+The value of the revision field from Package table doesn't start with 'r'
+
+1.6.1
+
+1.6.2
+
+10
+
+Total: 3
+
+
+
+
+Distro Testing Results:
+
+BRANCH
+
+daisy
+
+COMMIT
+
+Poky: c4f1f0f491f988901bfd6965f7d10f60cb94a76f
+
+RELEASE
+
+1.6.1
+
+Ubuntu 14.04 LTS
+
+
+
+* nighlty-world
+
+FAIL - 6467
+
+* buildtools
+
+PASS
+
+* nightly-arm
+
+PASS
+
+* nightly-multilib
+
+PASS
+
+* nightly-qa-systemd
+
+PASS
+
+* nightly-x86
+
+PASS
+
+* nightly-x86-64
+
+PASS
+
+* nightly-x86-64-lsb
+
+PASS
+
+
+
+
+
+
+
+
+
+Fedora 20
+
+
+
+* nighlty-world
+
+PASS
+
+* buildtools
+
+PASS
+
+* nightly-arm
+
+PASS
+
+* nightly-multilib
+
+PASS
+
+* nightly-qa-systemd
+
+PASS
+
+* nightly-x86
+
+PASS
+
+* nightly-x86-64
+
+PASS
+
+* nightly-x86-64-lsb
+
+PASS
+
+
+
+
+
+
+
+
+
+CentOS 6.5
+
+
+
+* nighlty-world
+
+PASS
+
+* buildtools
+
+PASS
+
+* nightly-arm
+
+PASS
+
+* nightly-multilib
+
+PASS
+
+* nightly-qa-systemd
+
+PASS
+
+* nightly-x86
+
+PASS
+
+* nightly-x86-64
+
+PASS
+
+* nightly-x86-64-lsb
+
+PASS
+
+
+
+
+
+
+
+
+
+OpenSuse 13.1
+
+
+
+* nighlty-world
+
+Retest Needed
+
+* buildtools
+
+PASS
+
+* nightly-arm
+
+PASS
+
+* nightly-multilib
+
+Retest Needed
+
+* nightly-qa-systemd
+
+PASS
+
+* nightly-x86
+
+Retest Needed
+
+* nightly-x86-64
+
+Retest Needed
+
+* nightly-x86-64-lsb
+
+Retest Needed
+
+
+
+
+Regards,
+--
+Alexandru Georgescu
+Yocto QA Engineer
+SSG/SSD Open Source Technology Center Romania
+
+--_000_1FFB62CE8AEB0D4298B51122D8903E96219BB194IRSMSX104gercor_
+Content-Type: text/html; charset="iso-2022-jp"
+Content-ID: <DDC284A724511D47B53344CC0CD89EF1@intel.com>
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-2022-=
+jp">
+<meta name=3D"Generator" content=3D"Microsoft Word 14 (filtered medium)">
+<!--[if !mso]><style>v\:* {behavior:url(#default#VML);}
+o\:* {behavior:url(#default#VML);}
+w\:* {behavior:url(#default#VML);}
+.shape {behavior:url(#default#VML);}
+</style><![endif]--><style><!--
+/* Font Definitions */
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:Tahoma;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
+@font-face
+	{font-family:Consolas;
+	panose-1:2 11 6 9 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:12.0pt;
+	font-family:"Times New Roman","serif";}
+h1
+	{mso-style-priority:9;
+	mso-style-link:"Heading 1 Char";
+	mso-margin-top-alt:auto;
+	margin-right:0in;
+	mso-margin-bottom-alt:auto;
+	margin-left:0in;
+	font-size:24.0pt;
+	font-family:"Times New Roman","serif";}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;}
+pre
+	{mso-style-priority:99;
+	mso-style-link:"HTML Preformatted Char";
+	margin:0in;
+	margin-bottom:.0001pt;
+	font-size:10.0pt;
+	font-family:"Courier New";}
+p.MsoAcetate, li.MsoAcetate, div.MsoAcetate
+	{mso-style-priority:99;
+	mso-style-link:"Balloon Text Char";
+	margin:0in;
+	margin-bottom:.0001pt;
+	font-size:8.0pt;
+	font-family:"Tahoma","sans-serif";}
+p.xl63, li.xl63, div.xl63
+	{mso-style-name:xl63;
+	mso-margin-top-alt:auto;
+	margin-right:0in;
+	mso-margin-bottom-alt:auto;
+	margin-left:0in;
+	background:#D99694;
+	border:none;
+	padding:0in;
+	font-size:12.0pt;
+	font-family:"Times New Roman","serif";
+	font-weight:bold;}
+p.xl64, li.xl64, div.xl64
+	{mso-style-name:xl64;
+	mso-margin-top-alt:auto;
+	margin-right:0in;
+	mso-margin-bottom-alt:auto;
+	margin-left:0in;
+	background:#D99694;
+	border:none;
+	padding:0in;
+	font-size:12.0pt;
+	font-family:"Times New Roman","serif";}
+p.xl65, li.xl65, div.xl65
+	{mso-style-name:xl65;
+	mso-margin-top-alt:auto;
+	margin-right:0in;
+	mso-margin-bottom-alt:auto;
+	margin-left:0in;
+	background:#D99694;
+	font-size:12.0pt;
+	font-family:"Times New Roman","serif";}
+p.xl66, li.xl66, div.xl66
+	{mso-style-name:xl66;
+	mso-margin-top-alt:auto;
+	margin-right:0in;
+	mso-margin-bottom-alt:auto;
+	margin-left:0in;
+	background:#95B3D7;
+	border:none;
+	padding:0in;
+	font-size:12.0pt;
+	font-family:"Times New Roman","serif";
+	font-weight:bold;}
+p.xl67, li.xl67, div.xl67
+	{mso-style-name:xl67;
+	mso-margin-top-alt:auto;
+	margin-right:0in;
+	mso-margin-bottom-alt:auto;
+	margin-left:0in;
+	background:#95B3D7;
+	border:none;
+	padding:0in;
+	font-size:12.0pt;
+	font-family:"Times New Roman","serif";}
+p.xl68, li.xl68, div.xl68
+	{mso-style-name:xl68;
+	mso-margin-top-alt:auto;
+	margin-right:0in;
+	mso-margin-bottom-alt:auto;
+	margin-left:0in;
+	background:#95B3D7;
+	font-size:12.0pt;
+	font-family:"Times New Roman","serif";}
+p.xl69, li.xl69, div.xl69
+	{mso-style-name:xl69;
+	mso-margin-top-alt:auto;
+	margin-right:0in;
+	mso-margin-bottom-alt:auto;
+	margin-left:0in;
+	border:none;
+	padding:0in;
+	font-size:12.0pt;
+	font-family:"Times New Roman","serif";}
+p.xl70, li.xl70, div.xl70
+	{mso-style-name:xl70;
+	mso-margin-top-alt:auto;
+	margin-right:0in;
+	mso-margin-bottom-alt:auto;
+	margin-left:0in;
+	background:#8EB4E3;
+	border:none;
+	padding:0in;
+	font-size:12.0pt;
+	font-family:"Times New Roman","serif";
+	font-weight:bold;}
+p.xl71, li.xl71, div.xl71
+	{mso-style-name:xl71;
+	mso-margin-top-alt:auto;
+	margin-right:0in;
+	mso-margin-bottom-alt:auto;
+	margin-left:0in;
+	background:#8EB4E3;
+	border:none;
+	padding:0in;
+	font-size:12.0pt;
+	font-family:"Times New Roman","serif";}
+p.xl72, li.xl72, div.xl72
+	{mso-style-name:xl72;
+	mso-margin-top-alt:auto;
+	margin-right:0in;
+	mso-margin-bottom-alt:auto;
+	margin-left:0in;
+	background:#8EB4E3;
+	font-size:12.0pt;
+	font-family:"Times New Roman","serif";}
+span.EmailStyle27
+	{mso-style-type:personal-compose;
+	font-family:"Calibri","sans-serif";
+	color:black;}
+span.Heading1Char
+	{mso-style-name:"Heading 1 Char";
+	mso-style-priority:9;
+	mso-style-link:"Heading 1";
+	font-weight:bold;}
+span.mw-headline
+	{mso-style-name:mw-headline;}
+span.HTMLPreformattedChar
+	{mso-style-name:"HTML Preformatted Char";
+	mso-style-priority:99;
+	mso-style-link:"HTML Preformatted";
+	font-family:"Courier New";}
+span.BalloonTextChar
+	{mso-style-name:"Balloon Text Char";
+	mso-style-priority:99;
+	mso-style-link:"Balloon Text";
+	font-family:"Tahoma","sans-serif";}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal"><span style=3D"font-size:10.5pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:black">Hello,<o:p></o:p></span></p=
+>
+<div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.5pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:black">Here is the test report for=
+ 1.6.1 rc3 build
+<a href=3D"http://autobuilder.yoctoproject.org/pub/releases/yocto-1.6.1">ht=
+tp://autobuilder.yoctoproject.org/pub/releases/yocto-1.6.1</a><o:p></o:p></=
+span></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.5pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:black"><o:p>&nbsp;</o:p></span></p=
+>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.5pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:black">For this build we have perf=
+ormed a full pass on Build Appliance, ADT-installer, qemux86, qemux86-64, o=
+e-selftest (which contains the automated tets for Bitbake
+ and Oe-core), Toaster and Distro Testing with no bugs found, excepting Toa=
+ster whith already known issues.<o:p></o:p></span></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.5pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:black"><o:p>&nbsp;</o:p></span></p=
+>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.5pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:black">For the DISTRO testing (res=
+ults below) we have nighlty-world failing for Ubuntu 14.04 with 6467 &#8211=
+; in progress review. On Opensuse we encountered multiple failures
+ due to the following error:&nbsp;</span><span style=3D"font-size:11.5pt;fo=
+nt-family:&quot;Calibri&quot;,&quot;sans-serif&quot;;color:black">&quot;com=
+mand timed out: 100000 seconds without output, attempting to kill=1B$B!I=1B=
+(B.&nbsp;Basically, the tests need to be rerun since the error appears when=
+ some
+ Python processes become dormant. We are running the 1.7 DISTRO testing cur=
+rently so it would take some time in order to rerun the 1.6.1 tests on Open=
+suse so this remains a question to the board if we want to rerun the OpenSu=
+se tests. The downside of rerunning
+ them would be that we will have to wait more for the tests to finish at le=
+ast 1 day in the case we don=1B$B!G=1B(Bt find any new fails.<o:p></o:p></s=
+pan></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.5pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:black"><o:p>&nbsp;</o:p></span></p=
+>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.5pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:black">Detailed report at:
+</span><span style=3D"font-size:10.5pt;font-family:&quot;Calibri&quot;,&quo=
+t;sans-serif&quot;;color:black">:&nbsp;<a href=3D"https://wiki.yoctoproject=
+.org/wiki/WW26_-_2014-06-23_-_Full_Pass_Release_1.6.1.rc3">https://wiki.yoc=
+toproject.org/wiki/WW26_-_2014-06-23_-_Full_Pass_Release_1.6.1.rc3</a><o:p>=
+</o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.5pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:black"><o:p>&nbsp;</o:p></span></p=
+>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.5pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:black"><o:p>&nbsp;</o:p></span></p=
+>
+</div>
+<div>
+<div style=3D"mso-element:para-border-div;border:none;border-bottom:solid #=
+AAAAAA 1.0pt;padding:0in 0in 2.0pt 0in;background:white">
+<p class=3D"MsoNormal" style=3D"margin-bottom:.1in;mso-line-height-alt:14.3=
+pt;background:white;border:none;padding:0in">
+<span style=3D"font-size:18.0pt;font-family:&quot;Arial&quot;,&quot;sans-se=
+rif&quot;;color:black">Testing data<o:p></o:p></span></p>
+</div>
+<div style=3D"mso-element:para-border-div;border:dashed #2F6FAB 1.0pt;paddi=
+ng:12.0pt 12.0pt 12.0pt 12.0pt;background:#F9F9F9">
+<p class=3D"MsoNormal" style=3D"line-height:13.2pt;background:#F9F9F9;borde=
+r:none;padding:0in">
+<span style=3D"font-size:10.0pt;font-family:&quot;Courier New&quot;;color:b=
+lack">Test type:&nbsp; Full Pass Release Test<o:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"line-height:13.2pt;background:#F9F9F9;borde=
+r:none;padding:0in">
+<span style=3D"font-size:10.0pt;font-family:&quot;Courier New&quot;;color:b=
+lack">Branch: daisy<o:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"line-height:13.2pt;background:#F9F9F9;borde=
+r:none;padding:0in">
+<span style=3D"font-size:10.0pt;font-family:&quot;Courier New&quot;;color:b=
+lack">Build name: 1.6.1<o:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"line-height:13.2pt;background:#F9F9F9;borde=
+r:none;padding:0in">
+<span style=3D"font-size:10.0pt;font-family:&quot;Courier New&quot;;color:b=
+lack">poky commit: c4f1f0f491f988901bfd6965f7d10f60cb94a76f<o:p></o:p></spa=
+n></p>
+<p class=3D"MsoNormal" style=3D"line-height:13.2pt;background:#F9F9F9;borde=
+r:none;padding:0in">
+<span style=3D"font-size:10.0pt;font-family:&quot;Courier New&quot;;color:b=
+lack">Eclipse Plugin commit Kepler:&nbsp; 1dfe1d2f1322b5fda8e1a7637c447b0e0=
+60efb3e<o:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"line-height:13.2pt;background:#F9F9F9;borde=
+r:none;padding:0in">
+<span style=3D"font-size:10.0pt;font-family:&quot;Courier New&quot;;color:b=
+lack">Autobuilder images repository:&nbsp; http://autobuilder.yoctoproject.=
+org/pub/releases/yocto-1.6.1/<o:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"line-height:13.2pt;background:#F9F9F9;borde=
+r:none;padding:0in">
+<span style=3D"font-size:10.0pt;font-family:&quot;Courier New&quot;;color:b=
+lack">Distributions tested: Ubuntu 14.04 64bit, Fedora 20 64bit, Opensuse 1=
+3.1 64bit, CentOS 6.5 64 bit
+<o:p></o:p></span></p>
+</div>
+<div style=3D"mso-element:para-border-div;border:none;border-bottom:solid #=
+AAAAAA 1.0pt;padding:0in 0in 2.0pt 0in;background:white">
+<p class=3D"MsoNormal" style=3D"margin-bottom:.1in;mso-line-height-alt:14.3=
+pt;background:white;border:none;padding:0in">
+<span style=3D"font-size:18.0pt;font-family:&quot;Arial&quot;,&quot;sans-se=
+rif&quot;;color:black">Summary Report<o:p></o:p></span></p>
+</div>
+<table class=3D"MsoNormalTable" border=3D"0" cellspacing=3D"4" cellpadding=
+=3D"0" style=3D"background:white">
+<tbody>
+<tr>
+<td style=3D"padding:.75pt .75pt .75pt .75pt">
+<table class=3D"MsoNormalTable" border=3D"1" cellspacing=3D"0" cellpadding=
+=3D"0" style=3D"background:#EEEEEE;border-collapse:collapse;border:none">
+<tbody>
+<tr>
+<td style=3D"border:solid #AAAAAA 1.0pt;background:#BBBBBB;padding:2.4pt 2.=
+4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><b><spa=
+n style=3D"font-size:10.0pt">Testing Summary Report<o:p></o:p></span></b></=
+p>
+</td>
+</tr>
+<tr>
+<td style=3D"border:solid #AAAAAA 1.0pt;border-top:none;padding:2.4pt 2.4pt=
+ 2.4pt 2.4pt">
+<table class=3D"MsoNormalTable" border=3D"1" cellspacing=3D"0" cellpadding=
+=3D"0" style=3D"margin-left:7.5pt;background:#EEEEEE;border-collapse:collap=
+se;border:none">
+<tbody>
+<tr>
+<td style=3D"border:solid #AAAAAA 1.0pt;background:#BBBBBB;padding:2.4pt 2.=
+4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"mso-margin-top-alt:7.5pt;m=
+argin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center">
+<b><span style=3D"font-size:10.0pt">Test Run<o:p></o:p></span></b></p>
+</td>
+<td style=3D"border:solid #AAAAAA 1.0pt;border-left:none;background:#BBBBBB=
+;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"mso-margin-top-alt:7.5pt;m=
+argin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center">
+<b><span style=3D"font-size:10.0pt">Test Plan<o:p></o:p></span></b></p>
+</td>
+<td style=3D"border:solid #AAAAAA 1.0pt;border-left:none;background:#BBBBBB=
+;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"mso-margin-top-alt:7.5pt;m=
+argin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center">
+<b><span style=3D"font-size:10.0pt">Environment<o:p></o:p></span></b></p>
+</td>
+<td style=3D"border:solid #AAAAAA 1.0pt;border-left:none;background:#BBBBBB=
+;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"mso-margin-top-alt:7.5pt;m=
+argin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center">
+<b><span style=3D"font-size:10.0pt">Passed<o:p></o:p></span></b></p>
+</td>
+<td style=3D"border:solid #AAAAAA 1.0pt;border-left:none;background:#BBBBBB=
+;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"mso-margin-top-alt:7.5pt;m=
+argin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center">
+<b><span style=3D"font-size:10.0pt">Other issues<o:p></o:p></span></b></p>
+</td>
+<td style=3D"border:solid #AAAAAA 1.0pt;border-left:none;background:#BBBBBB=
+;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"mso-margin-top-alt:7.5pt;m=
+argin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center">
+<b><span style=3D"font-size:10.0pt">Failed<o:p></o:p></span></b></p>
+</td>
+<td style=3D"border:solid #AAAAAA 1.0pt;border-left:none;background:#BBBBBB=
+;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"mso-margin-top-alt:7.5pt;m=
+argin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center">
+<b><span style=3D"font-size:10.0pt">Failing bugs<o:p></o:p></span></b></p>
+</td>
+<td style=3D"border:solid #AAAAAA 1.0pt;border-left:none;background:#BBBBBB=
+;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"mso-margin-top-alt:7.5pt;m=
+argin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center">
+<b><span style=3D"font-size:10.0pt">Blocked<o:p></o:p></span></b></p>
+</td>
+<td style=3D"border:solid #AAAAAA 1.0pt;border-left:none;background:#BBBBBB=
+;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"mso-margin-top-alt:7.5pt;m=
+argin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center">
+<b><span style=3D"font-size:10.0pt">Blocking bugs<o:p></o:p></span></b></p>
+</td>
+<td style=3D"border:solid #AAAAAA 1.0pt;border-left:none;background:#BBBBBB=
+;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"mso-margin-top-alt:7.5pt;m=
+argin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center">
+<b><span style=3D"font-size:10.0pt">Complete<o:p></o:p></span></b></p>
+</td>
+</tr>
+<tr>
+<td style=3D"border:solid #AAAAAA 1.0pt;border-top:none;padding:2.4pt 2.4pt=
+ 2.4pt 2.4pt">
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
+argin-bottom:7.5pt;margin-left:0in">
+<span style=3D"font-size:10.0pt"><a href=3D"https://bugzilla.yoctoproject.o=
+rg/tr_show_run.cgi?run_id=3D2495"><span style=3D"color:#5A3696;text-decorat=
+ion:none">2495</span></a><o:p></o:p></span></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
+argin-bottom:7.5pt;margin-left:0in">
+<span style=3D"font-size:10.0pt">ADT: daisy_branch<o:p></o:p></span></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
+argin-bottom:7.5pt;margin-left:0in">
+<span style=3D"font-size:10.0pt">Fedora 20 i686<o:p></o:p></span></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:lime;padding:2.4pt 2.4pt 2=
+.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"mso-margin-top-alt:7.5pt;m=
+argin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center">
+<span style=3D"font-size:10.0pt">100.0%<o:p></o:p></span></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
+argin-bottom:7.5pt;margin-left:0in">
+<span style=3D"font-size:10.0pt">none<o:p></o:p></span></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"mso-margin-top-alt:7.5pt;m=
+argin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center">
+<span style=3D"font-size:10.0pt">0.0%<o:p></o:p></span></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
+argin-bottom:7.5pt;margin-left:0in">
+<span style=3D"font-size:10.0pt">none<o:p></o:p></span></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"mso-margin-top-alt:7.5pt;m=
+argin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center">
+<span style=3D"font-size:10.0pt">0.0%<o:p></o:p></span></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
+argin-bottom:7.5pt;margin-left:0in">
+<span style=3D"font-size:10.0pt">none<o:p></o:p></span></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:lime;padding:2.4pt 2.4pt 2=
+.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"mso-margin-top-alt:7.5pt;m=
+argin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center">
+<span style=3D"font-size:10.0pt">100.0%<o:p></o:p></span></p>
+</td>
+</tr>
+<tr>
+<td style=3D"border:solid #AAAAAA 1.0pt;border-top:none;background:#DDDDDD;=
+padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
+argin-bottom:7.5pt;margin-left:0in">
+<span style=3D"font-size:10.0pt"><a href=3D"https://bugzilla.yoctoproject.o=
+rg/tr_show_run.cgi?run_id=3D2494"><span style=3D"color:#5A3696;text-decorat=
+ion:none">2494</span></a><o:p></o:p></span></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:#DDDDDD;padding:2.4pt 2.4p=
+t 2.4pt 2.4pt">
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
+argin-bottom:7.5pt;margin-left:0in">
+<span style=3D"font-size:10.0pt">ADT: daisy_branch<o:p></o:p></span></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:#DDDDDD;padding:2.4pt 2.4p=
+t 2.4pt 2.4pt">
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
+argin-bottom:7.5pt;margin-left:0in">
+<span style=3D"font-size:10.0pt">Ubuntu 14.04 x86_64<o:p></o:p></span></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:lime;padding:2.4pt 2.4pt 2=
+.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"mso-margin-top-alt:7.5pt;m=
+argin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center">
+<span style=3D"font-size:10.0pt">100.0%<o:p></o:p></span></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:#DDDDDD;padding:2.4pt 2.4p=
+t 2.4pt 2.4pt">
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
+argin-bottom:7.5pt;margin-left:0in">
+<span style=3D"font-size:10.0pt">none<o:p></o:p></span></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:#DDDDDD;padding:2.4pt 2.4p=
+t 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"mso-margin-top-alt:7.5pt;m=
+argin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center">
+<span style=3D"font-size:10.0pt">0.0%<o:p></o:p></span></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:#DDDDDD;padding:2.4pt 2.4p=
+t 2.4pt 2.4pt">
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
+argin-bottom:7.5pt;margin-left:0in">
+<span style=3D"font-size:10.0pt">none<o:p></o:p></span></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:#DDDDDD;padding:2.4pt 2.4p=
+t 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"mso-margin-top-alt:7.5pt;m=
+argin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center">
+<span style=3D"font-size:10.0pt">0.0%<o:p></o:p></span></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:#DDDDDD;padding:2.4pt 2.4p=
+t 2.4pt 2.4pt">
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
+argin-bottom:7.5pt;margin-left:0in">
+<span style=3D"font-size:10.0pt">none<o:p></o:p></span></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:lime;padding:2.4pt 2.4pt 2=
+.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"mso-margin-top-alt:7.5pt;m=
+argin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center">
+<span style=3D"font-size:10.0pt">100.0%<o:p></o:p></span></p>
+</td>
+</tr>
+<tr>
+<td style=3D"border:solid #AAAAAA 1.0pt;border-top:none;padding:2.4pt 2.4pt=
+ 2.4pt 2.4pt">
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
+argin-bottom:7.5pt;margin-left:0in">
+<span style=3D"font-size:10.0pt"><a href=3D"https://bugzilla.yoctoproject.o=
+rg/tr_show_run.cgi?run_id=3D2527"><span style=3D"color:#5A3696;text-decorat=
+ion:none">2527</span></a><a href=3D"https://bugzilla.yoctoproject.org/tr_sh=
+ow_run.cgi?run_id=3D2529"><span style=3D"color:#5A3696;text-decoration:none=
+">2529</span></a><o:p></o:p></span></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
+argin-bottom:7.5pt;margin-left:0in">
+<span style=3D"font-size:10.0pt">BSP/QEMU: daisy branch<o:p></o:p></span></=
+p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
+argin-bottom:7.5pt;margin-left:0in">
+<span style=3D"font-size:10.0pt">qemu-x86<o:p></o:p></span></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:lime;padding:2.4pt 2.4pt 2=
+.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"mso-margin-top-alt:7.5pt;m=
+argin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center">
+<span style=3D"font-size:10.0pt">100.0%<o:p></o:p></span></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
+argin-bottom:7.5pt;margin-left:0in">
+<span style=3D"font-size:10.0pt">none<o:p></o:p></span></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"mso-margin-top-alt:7.5pt;m=
+argin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center">
+<span style=3D"font-size:10.0pt">0.0%<o:p></o:p></span></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
+argin-bottom:7.5pt;margin-left:0in">
+<span style=3D"font-size:10.0pt">none<o:p></o:p></span></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"mso-margin-top-alt:7.5pt;m=
+argin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center">
+<span style=3D"font-size:10.0pt">0.0%<o:p></o:p></span></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
+argin-bottom:7.5pt;margin-left:0in">
+<span style=3D"font-size:10.0pt">none<o:p></o:p></span></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:lime;padding:2.4pt 2.4pt 2=
+.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"mso-margin-top-alt:7.5pt;m=
+argin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center">
+<span style=3D"font-size:10.0pt">100.0%<o:p></o:p></span></p>
+</td>
+</tr>
+<tr>
+<td style=3D"border:solid #AAAAAA 1.0pt;border-top:none;background:#DDDDDD;=
+padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
+argin-bottom:7.5pt;margin-left:0in">
+<span style=3D"font-size:10.0pt"><a href=3D"https://bugzilla.yoctoproject.o=
+rg/tr_show_run.cgi?run_id=3D2528"><span style=3D"color:#5A3696;text-decorat=
+ion:none">2528</span></a><a href=3D"https://bugzilla.yoctoproject.org/tr_sh=
+ow_run.cgi?run_id=3D2530"><span style=3D"color:#5A3696;text-decoration:none=
+">2530</span></a><o:p></o:p></span></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:#DDDDDD;padding:2.4pt 2.4p=
+t 2.4pt 2.4pt">
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
+argin-bottom:7.5pt;margin-left:0in">
+<span style=3D"font-size:10.0pt">BSP/QEMU: daisy branch<o:p></o:p></span></=
+p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:#DDDDDD;padding:2.4pt 2.4p=
+t 2.4pt 2.4pt">
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
+argin-bottom:7.5pt;margin-left:0in">
+<span style=3D"font-size:10.0pt">qemux86-64<o:p></o:p></span></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:lime;padding:2.4pt 2.4pt 2=
+.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"mso-margin-top-alt:7.5pt;m=
+argin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center">
+<span style=3D"font-size:10.0pt">100.0%<o:p></o:p></span></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:#DDDDDD;padding:2.4pt 2.4p=
+t 2.4pt 2.4pt">
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
+argin-bottom:7.5pt;margin-left:0in">
+<span style=3D"font-size:10.0pt">none<o:p></o:p></span></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:#DDDDDD;padding:2.4pt 2.4p=
+t 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"mso-margin-top-alt:7.5pt;m=
+argin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center">
+<span style=3D"font-size:10.0pt">0.0%<o:p></o:p></span></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:#DDDDDD;padding:2.4pt 2.4p=
+t 2.4pt 2.4pt">
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
+argin-bottom:7.5pt;margin-left:0in">
+<span style=3D"font-size:10.0pt">none<o:p></o:p></span></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:#DDDDDD;padding:2.4pt 2.4p=
+t 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"mso-margin-top-alt:7.5pt;m=
+argin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center">
+<span style=3D"font-size:10.0pt">0.0%<o:p></o:p></span></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:#DDDDDD;padding:2.4pt 2.4p=
+t 2.4pt 2.4pt">
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
+argin-bottom:7.5pt;margin-left:0in">
+<span style=3D"font-size:10.0pt">none<o:p></o:p></span></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:lime;padding:2.4pt 2.4pt 2=
+.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"mso-margin-top-alt:7.5pt;m=
+argin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center">
+<span style=3D"font-size:10.0pt">100.0%<o:p></o:p></span></p>
+</td>
+</tr>
+<tr>
+<td style=3D"border:solid #AAAAAA 1.0pt;border-top:none;padding:2.4pt 2.4pt=
+ 2.4pt 2.4pt">
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
+argin-bottom:7.5pt;margin-left:0in">
+<span style=3D"font-size:10.0pt"><a href=3D"https://bugzilla.yoctoproject.o=
+rg/tr_show_run.cgi?run_id=3D2523"><span style=3D"color:#5A3696;text-decorat=
+ion:none">2523</span></a><o:p></o:p></span></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
+argin-bottom:7.5pt;margin-left:0in">
+<span style=3D"font-size:10.0pt">meta-yocto: daisy branch<o:p></o:p></span>=
+</p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
+argin-bottom:7.5pt;margin-left:0in">
+<span style=3D"font-size:10.0pt">Ubuntu 14.04 x86_64<o:p></o:p></span></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:lime;padding:2.4pt 2.4pt 2=
+.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"mso-margin-top-alt:7.5pt;m=
+argin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center">
+<span style=3D"font-size:10.0pt">100.0%<o:p></o:p></span></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
+argin-bottom:7.5pt;margin-left:0in">
+<span style=3D"font-size:10.0pt">none<o:p></o:p></span></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"mso-margin-top-alt:7.5pt;m=
+argin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center">
+<span style=3D"font-size:10.0pt">0.0%<o:p></o:p></span></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
+argin-bottom:7.5pt;margin-left:0in">
+<span style=3D"font-size:10.0pt">none<o:p></o:p></span></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"mso-margin-top-alt:7.5pt;m=
+argin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center">
+<span style=3D"font-size:10.0pt">0.0%<o:p></o:p></span></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
+argin-bottom:7.5pt;margin-left:0in">
+<span style=3D"font-size:10.0pt">none<o:p></o:p></span></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:lime;padding:2.4pt 2.4pt 2=
+.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"mso-margin-top-alt:7.5pt;m=
+argin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center">
+<span style=3D"font-size:10.0pt">100.0%<o:p></o:p></span></p>
+</td>
+</tr>
+<tr>
+<td style=3D"border:solid #AAAAAA 1.0pt;border-top:none;background:#DDDDDD;=
+padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
+argin-bottom:7.5pt;margin-left:0in">
+<span style=3D"font-size:10.0pt"><a href=3D"https://bugzilla.yoctoproject.o=
+rg/tr_show_run.cgi?run_id=3D2489"><span style=3D"color:#5A3696;text-decorat=
+ion:none">2489</span></a><o:p></o:p></span></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:#DDDDDD;padding:2.4pt 2.4p=
+t 2.4pt 2.4pt">
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
+argin-bottom:7.5pt;margin-left:0in">
+<span style=3D"font-size:10.0pt">Toaster: daisy branch<o:p></o:p></span></p=
+>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:#DDDDDD;padding:2.4pt 2.4p=
+t 2.4pt 2.4pt">
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
+argin-bottom:7.5pt;margin-left:0in">
+<span style=3D"font-size:10.0pt">Fedora r20 x86_64<o:p></o:p></span></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:#DDDD00;padding:2.4pt 2.4p=
+t 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"mso-margin-top-alt:7.5pt;m=
+argin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center">
+<span style=3D"font-size:10.0pt;color:black">89.2%<o:p></o:p></span></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:#DDDDDD;padding:2.4pt 2.4p=
+t 2.4pt 2.4pt">
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
+argin-bottom:7.5pt;margin-left:0in">
+<span style=3D"font-size:10.0pt">none<o:p></o:p></span></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:#DDDDDD;padding:2.4pt 2.4p=
+t 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"mso-margin-top-alt:7.5pt;m=
+argin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center">
+<span style=3D"font-size:10.0pt">10.8%<o:p></o:p></span></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:#DDDDDD;padding:2.4pt 2.4p=
+t 2.4pt 2.4pt">
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
+argin-bottom:7.5pt;margin-left:0in">
+<span style=3D"font-size:10.0pt"><a href=3D"https://bugzilla.yoctoproject.o=
+rg/show_bug.cgi?id=3D5187"><span style=3D"color:#5A3696;text-decoration:non=
+e">5187</span></a><a href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi=
+?id=3D6445"><span style=3D"color:#5A3696;text-decoration:none">6445</span><=
+/a><a href=3D"https://bugzilla.yoctoproject.org/show_bug.cgi?id=3D5844"><sp=
+an style=3D"color:#5A3696;text-decoration:none">5844</span></a><o:p></o:p><=
+/span></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:#DDDDDD;padding:2.4pt 2.4p=
+t 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"mso-margin-top-alt:7.5pt;m=
+argin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center">
+<span style=3D"font-size:10.0pt">0.0%<o:p></o:p></span></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:#DDDDDD;padding:2.4pt 2.4p=
+t 2.4pt 2.4pt">
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
+argin-bottom:7.5pt;margin-left:0in">
+<span style=3D"font-size:10.0pt">none<o:p></o:p></span></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:lime;padding:2.4pt 2.4pt 2=
+.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"mso-margin-top-alt:7.5pt;m=
+argin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center">
+<span style=3D"font-size:10.0pt">100.0%<o:p></o:p></span></p>
+</td>
+</tr>
+<tr>
+<td style=3D"border:solid #AAAAAA 1.0pt;border-top:none;padding:2.4pt 2.4pt=
+ 2.4pt 2.4pt">
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
+argin-bottom:7.5pt;margin-left:0in">
+<span style=3D"font-size:10.0pt"><a href=3D"https://bugzilla.yoctoproject.o=
+rg/tr_show_run.cgi?run_id=3D2492"><span style=3D"color:#5A3696;text-decorat=
+ion:none">2492</span></a><o:p></o:p></span></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
+argin-bottom:7.5pt;margin-left:0in">
+<span style=3D"font-size:10.0pt">Toaster: daisy branch<o:p></o:p></span></p=
+>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
+argin-bottom:7.5pt;margin-left:0in">
+<span style=3D"font-size:10.0pt">Ubuntu 12.04 x86<o:p></o:p></span></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:lime;padding:2.4pt 2.4pt 2=
+.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"mso-margin-top-alt:7.5pt;m=
+argin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center">
+<span style=3D"font-size:10.0pt">100.0%<o:p></o:p></span></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
+argin-bottom:7.5pt;margin-left:0in">
+<span style=3D"font-size:10.0pt">none<o:p></o:p></span></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"mso-margin-top-alt:7.5pt;m=
+argin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center">
+<span style=3D"font-size:10.0pt">0.0%<o:p></o:p></span></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
+argin-bottom:7.5pt;margin-left:0in">
+<span style=3D"font-size:10.0pt">none<o:p></o:p></span></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"mso-margin-top-alt:7.5pt;m=
+argin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center">
+<span style=3D"font-size:10.0pt">0.0%<o:p></o:p></span></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
+argin-bottom:7.5pt;margin-left:0in">
+<span style=3D"font-size:10.0pt">none<o:p></o:p></span></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:lime;padding:2.4pt 2.4pt 2=
+.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"mso-margin-top-alt:7.5pt;m=
+argin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center">
+<span style=3D"font-size:10.0pt">100.0%<o:p></o:p></span></p>
+</td>
+</tr>
+<tr>
+<td style=3D"border:solid #AAAAAA 1.0pt;border-top:none;background:#DDDDDD;=
+padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
+argin-bottom:7.5pt;margin-left:0in">
+<span style=3D"font-size:10.0pt"><a href=3D"https://bugzilla.yoctoproject.o=
+rg/tr_show_run.cgi?run_id=3D2491"><span style=3D"color:#5A3696;text-decorat=
+ion:none">2491</span></a><o:p></o:p></span></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:#DDDDDD;padding:2.4pt 2.4p=
+t 2.4pt 2.4pt">
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
+argin-bottom:7.5pt;margin-left:0in">
+<span style=3D"font-size:10.0pt">Build Appliance: daisy branch<o:p></o:p></=
+span></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:#DDDDDD;padding:2.4pt 2.4p=
+t 2.4pt 2.4pt">
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
+argin-bottom:7.5pt;margin-left:0in">
+<span style=3D"font-size:10.0pt">qemu-kvm on Ubuntu 12.04 libvirt<o:p></o:p=
+></span></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:lime;padding:2.4pt 2.4pt 2=
+.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"mso-margin-top-alt:7.5pt;m=
+argin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center">
+<span style=3D"font-size:10.0pt">100.0%<o:p></o:p></span></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:#DDDDDD;padding:2.4pt 2.4p=
+t 2.4pt 2.4pt">
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
+argin-bottom:7.5pt;margin-left:0in">
+<span style=3D"font-size:10.0pt">none<o:p></o:p></span></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:#DDDDDD;padding:2.4pt 2.4p=
+t 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"mso-margin-top-alt:7.5pt;m=
+argin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center">
+<span style=3D"font-size:10.0pt">0.0%<o:p></o:p></span></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:#DDDDDD;padding:2.4pt 2.4p=
+t 2.4pt 2.4pt">
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
+argin-bottom:7.5pt;margin-left:0in">
+<span style=3D"font-size:10.0pt">none<o:p></o:p></span></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:#DDDDDD;padding:2.4pt 2.4p=
+t 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"mso-margin-top-alt:7.5pt;m=
+argin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center">
+<span style=3D"font-size:10.0pt">0.0%<o:p></o:p></span></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:#DDDDDD;padding:2.4pt 2.4p=
+t 2.4pt 2.4pt">
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
+argin-bottom:7.5pt;margin-left:0in">
+<span style=3D"font-size:10.0pt">none<o:p></o:p></span></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:lime;padding:2.4pt 2.4pt 2=
+.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"mso-margin-top-alt:7.5pt;m=
+argin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center">
+<span style=3D"font-size:10.0pt">100.0%<o:p></o:p></span></p>
+</td>
+</tr>
+<tr>
+<td colspan=3D"10" style=3D"border:solid #AAAAAA 1.0pt;border-top:none;back=
+ground:#BBBBBB;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
+argin-bottom:7.5pt;margin-left:0in">
+<b><span style=3D"font-size:10.0pt">Total: 8</span></b><span style=3D"font-=
+size:10.0pt"><o:p></o:p></span></p>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td style=3D"padding:.75pt .75pt .75pt .75pt">
+<table class=3D"MsoNormalTable" border=3D"1" cellspacing=3D"0" cellpadding=
+=3D"0" style=3D"background:#EEEEEE;border-collapse:collapse;border:none">
+<tbody>
+<tr>
+<td colspan=3D"2" style=3D"border:solid #AAAAAA 1.0pt;background:#BBBBBB;pa=
+dding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><b><spa=
+n style=3D"font-size:10.0pt">Test Case Status Report<o:p></o:p></span></b><=
+/p>
+</td>
+</tr>
+<tr>
+<td style=3D"border:solid #AAAAAA 1.0pt;border-top:none;background:white;pa=
+dding:2.4pt 2.4pt 2.4pt 2.4pt">
+<table class=3D"MsoNormalTable" border=3D"1" cellspacing=3D"0" cellpadding=
+=3D"0" style=3D"margin-left:7.5pt;background:#EEEEEE;border-collapse:collap=
+se;border:none">
+<tbody>
+<tr>
+<td style=3D"border:solid #AAAAAA 1.0pt;background:#BBBBBB;padding:2.4pt 2.=
+4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"mso-margin-top-alt:7.5pt;m=
+argin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center">
+<b><span style=3D"font-size:10.0pt">Status<o:p></o:p></span></b></p>
+</td>
+<td style=3D"border:solid #AAAAAA 1.0pt;border-left:none;background:#BBBBBB=
+;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"mso-margin-top-alt:7.5pt;m=
+argin-right:0in;margin-bottom:7.5pt;margin-left:0in;text-align:center">
+<b><span style=3D"font-size:10.0pt">Count<o:p></o:p></span></b></p>
+</td>
+</tr>
+<tr>
+<td style=3D"border:solid #AAAAAA 1.0pt;border-top:none;padding:2.4pt 2.4pt=
+ 2.4pt 2.4pt">
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
+argin-bottom:7.5pt;margin-left:0in">
+<span style=3D"font-size:10.0pt">FAILED<o:p></o:p></span></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
+argin-bottom:7.5pt;margin-left:0in">
+<span style=3D"font-size:10.0pt">4<o:p></o:p></span></p>
+</td>
+</tr>
+<tr>
+<td style=3D"border:solid #AAAAAA 1.0pt;border-top:none;background:#DDDDDD;=
+padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
+argin-bottom:7.5pt;margin-left:0in">
+<span style=3D"font-size:10.0pt">PASSED<o:p></o:p></span></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:#DDDDDD;padding:2.4pt 2.4p=
+t 2.4pt 2.4pt">
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
+argin-bottom:7.5pt;margin-left:0in">
+<span style=3D"font-size:10.0pt">341<o:p></o:p></span></p>
+</td>
+</tr>
+<tr>
+<td colspan=3D"2" style=3D"border:solid #AAAAAA 1.0pt;border-top:none;backg=
+round:#BBBBBB;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:7.5pt;margin-right:0in;m=
+argin-bottom:7.5pt;margin-left:0in">
+<b><span style=3D"font-size:10.0pt">Total: 345</span></b><span style=3D"fon=
+t-size:10.0pt"><o:p></o:p></span></p>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:white;padding:2.4pt 2.4pt =
+2.4pt 2.4pt">
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt"><img border=3D"0" w=
+idth=3D"860" height=3D"239" id=3D"Picture_x0020_11" src=3D"cid:image001.jpg=
+@01CF9499.15C43100" alt=3D"http://chart.apis.google.com/chart?cht=3Dp3&amp;=
+chs=3D432x120&amp;chd=3Dt:&amp;chd=3Dt:4,341&amp;chco=3DFF9933|00FF00&amp;c=
+hl=3DFAILED(4)&#43;1%25|PASSED(341)&#43;99%25"></span><span style=3D"font-s=
+ize:10.0pt"><o:p></o:p></span></p>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+<p class=3D"MsoNormal"><span style=3D"display:none"><o:p>&nbsp;</o:p></span=
+></p>
+<table class=3D"MsoNormalTable" border=3D"1" cellspacing=3D"0" cellpadding=
+=3D"0" style=3D"background:#EEEEEE;border-collapse:collapse;border:none">
+<tbody>
+<tr>
+<td style=3D"border:solid #AAAAAA 1.0pt;background:#BBBBBB;padding:2.4pt 2.=
+4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center;line-hei=
+ght:14.3pt">
+<b><span style=3D"font-size:10.0pt;font-family:&quot;Arial&quot;,&quot;sans=
+-serif&quot;;color:black">Bug Status Report<o:p></o:p></span></b></p>
+</td>
+</tr>
+<tr>
+<td style=3D"border:solid #AAAAAA 1.0pt;border-top:none;background:white;pa=
+dding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" style=3D"line-height:14.3pt"><span style=3D"font-siz=
+e:10.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:black">=
+<img border=3D"0" width=3D"739" height=3D"239" id=3D"Picture_x0020_10" src=
+=3D"cid:image002.jpg@01CF9499.15C43100" alt=3D"Bug Status"></span><span sty=
+le=3D"font-size:10.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;=
+;color:black"><o:p></o:p></span></p>
+</td>
+</tr>
+<tr>
+<td style=3D"border:solid #AAAAAA 1.0pt;border-top:none;background:white;pa=
+dding:2.4pt 2.4pt 2.4pt 2.4pt">
+<table class=3D"MsoNormalTable" border=3D"1" cellspacing=3D"0" cellpadding=
+=3D"0" style=3D"margin-left:7.5pt;background:#EEEEEE;border-collapse:collap=
+se;border:none">
+<tbody>
+<tr>
+<td style=3D"border:solid #AAAAAA 1.0pt;background:#BBBBBB;padding:2.4pt 2.=
+4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><b><spa=
+n style=3D"font-size:10.0pt">ID</span></b><a href=3D"https://wiki.yoctoproj=
+ect.org/wiki/WW26_-_2014-06-23_-_Full_Pass_Release_1.6.1.rc3"><b><span styl=
+e=3D"font-size:10.0pt;color:#5A3696;text-decoration:none"><img border=3D"0"=
+ width=3D"24" height=3D"29" id=3D"Picture_x0020_9" src=3D"cid:image003.png@=
+01CF9499.15C43100" alt=3D"=1B$B"-=1B(B"></span></b></a><b><span style=3D"fo=
+nt-size:10.0pt"><o:p></o:p></span></b></p>
+</td>
+<td style=3D"border:solid #AAAAAA 1.0pt;border-left:none;background:#BBBBBB=
+;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><b><spa=
+n style=3D"font-size:10.0pt">Priority</span></b><a href=3D"https://wiki.yoc=
+toproject.org/wiki/WW26_-_2014-06-23_-_Full_Pass_Release_1.6.1.rc3"><b><spa=
+n style=3D"font-size:10.0pt;color:#5A3696;text-decoration:none"><img border=
+=3D"0" width=3D"24" height=3D"29" id=3D"Picture_x0020_8" src=3D"cid:image00=
+3.png@01CF9499.15C43100" alt=3D"=1B$B"-=1B(B"></span></b></a><b><span style=
+=3D"font-size:10.0pt"><o:p></o:p></span></b></p>
+</td>
+<td style=3D"border:solid #AAAAAA 1.0pt;border-left:none;background:#BBBBBB=
+;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><b><spa=
+n style=3D"font-size:10.0pt">Status</span></b><a href=3D"https://wiki.yocto=
+project.org/wiki/WW26_-_2014-06-23_-_Full_Pass_Release_1.6.1.rc3"><b><span =
+style=3D"font-size:10.0pt;color:#5A3696;text-decoration:none"><img border=
+=3D"0" width=3D"24" height=3D"29" id=3D"Picture_x0020_7" src=3D"cid:image00=
+3.png@01CF9499.15C43100" alt=3D"=1B$B"-=1B(B"></span></b></a><b><span style=
+=3D"font-size:10.0pt"><o:p></o:p></span></b></p>
+</td>
+<td style=3D"border:solid #AAAAAA 1.0pt;border-left:none;background:#BBBBBB=
+;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><b><spa=
+n style=3D"font-size:10.0pt">Resolution</span></b><a href=3D"https://wiki.y=
+octoproject.org/wiki/WW26_-_2014-06-23_-_Full_Pass_Release_1.6.1.rc3"><b><s=
+pan style=3D"font-size:10.0pt;color:#5A3696;text-decoration:none"><img bord=
+er=3D"0" width=3D"24" height=3D"29" id=3D"Picture_x0020_6" src=3D"cid:image=
+003.png@01CF9499.15C43100" alt=3D"=1B$B"-=1B(B"></span></b></a><b><span sty=
+le=3D"font-size:10.0pt"><o:p></o:p></span></b></p>
+</td>
+<td style=3D"border:solid #AAAAAA 1.0pt;border-left:none;background:#BBBBBB=
+;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><b><spa=
+n style=3D"font-size:10.0pt">Test Runs</span></b><a href=3D"https://wiki.yo=
+ctoproject.org/wiki/WW26_-_2014-06-23_-_Full_Pass_Release_1.6.1.rc3"><b><sp=
+an style=3D"font-size:10.0pt;color:#5A3696;text-decoration:none"><img borde=
+r=3D"0" width=3D"24" height=3D"29" id=3D"Picture_x0020_5" src=3D"cid:image0=
+03.png@01CF9499.15C43100" alt=3D"=1B$B"-=1B(B"></span></b></a><b><span styl=
+e=3D"font-size:10.0pt"><o:p></o:p></span></b></p>
+</td>
+<td style=3D"border:solid #AAAAAA 1.0pt;border-left:none;background:#BBBBBB=
+;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><b><spa=
+n style=3D"font-size:10.0pt">Description</span></b><a href=3D"https://wiki.=
+yoctoproject.org/wiki/WW26_-_2014-06-23_-_Full_Pass_Release_1.6.1.rc3"><b><=
+span style=3D"font-size:10.0pt;color:#5A3696;text-decoration:none"><img bor=
+der=3D"0" width=3D"24" height=3D"29" id=3D"Picture_x0020_4" src=3D"cid:imag=
+e003.png@01CF9499.15C43100" alt=3D"=1B$B"-=1B(B"></span></b></a><b><span st=
+yle=3D"font-size:10.0pt"><o:p></o:p></span></b></p>
+</td>
+<td style=3D"border:solid #AAAAAA 1.0pt;border-left:none;background:#BBBBBB=
+;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><b><spa=
+n style=3D"font-size:10.0pt">Version</span></b><a href=3D"https://wiki.yoct=
+oproject.org/wiki/WW26_-_2014-06-23_-_Full_Pass_Release_1.6.1.rc3"><b><span=
+ style=3D"font-size:10.0pt;color:#5A3696;text-decoration:none"><img border=
+=3D"0" width=3D"24" height=3D"29" id=3D"Picture_x0020_3" src=3D"cid:image00=
+3.png@01CF9499.15C43100" alt=3D"=1B$B"-=1B(B"></span></b></a><b><span style=
+=3D"font-size:10.0pt"><o:p></o:p></span></b></p>
+</td>
+<td style=3D"border:solid #AAAAAA 1.0pt;border-left:none;background:#BBBBBB=
+;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><b><spa=
+n style=3D"font-size:10.0pt">Target Milestone</span></b><a href=3D"https://=
+wiki.yoctoproject.org/wiki/WW26_-_2014-06-23_-_Full_Pass_Release_1.6.1.rc3"=
+><b><span style=3D"font-size:10.0pt;color:#5A3696;text-decoration:none"><im=
+g border=3D"0" width=3D"24" height=3D"29" id=3D"Picture_x0020_2" src=3D"cid=
+:image003.png@01CF9499.15C43100" alt=3D"=1B$B"-=1B(B"></span></b></a><b><sp=
+an style=3D"font-size:10.0pt"><o:p></o:p></span></b></p>
+</td>
+<td style=3D"border:solid #AAAAAA 1.0pt;border-left:none;background:#BBBBBB=
+;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><b><spa=
+n style=3D"font-size:10.0pt">Age (days)</span></b><a href=3D"https://wiki.y=
+octoproject.org/wiki/WW26_-_2014-06-23_-_Full_Pass_Release_1.6.1.rc3"><b><s=
+pan style=3D"font-size:10.0pt;color:#5A3696;text-decoration:none"><img bord=
+er=3D"0" width=3D"24" height=3D"29" id=3D"Picture_x0020_1" src=3D"cid:image=
+003.png@01CF9499.15C43100" alt=3D"=1B$B"-=1B(B"></span></b></a><b><span sty=
+le=3D"font-size:10.0pt"><o:p></o:p></span></b></p>
+</td>
+</tr>
+<tr>
+<td style=3D"border:solid #AAAAAA 1.0pt;border-top:none;padding:2.4pt 2.4pt=
+ 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><span s=
+tyle=3D"font-size:10.0pt"><a href=3D"https://bugzilla.yoctoproject.org/show=
+_bug.cgi?id=3D5187"><span style=3D"color:#5A3696;text-decoration:none">5187=
+</span></a><o:p></o:p></span></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><span s=
+tyle=3D"font-size:10.0pt">Medium<o:p></o:p></span></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><span s=
+tyle=3D"font-size:10.0pt">ACCEPTED<o:p></o:p></span></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt"><a href=3D"https://=
+bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=3D2489"><span style=3D"col=
+or:#5A3696;text-decoration:none">2489</span></a><o:p></o:p></span></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt">same cooker log fil=
+e name used for several builds<o:p></o:p></span></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><span s=
+tyle=3D"font-size:10.0pt">unspecified<o:p></o:p></span></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><span s=
+tyle=3D"font-size:10.0pt">1.7 M3<o:p></o:p></span></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><span s=
+tyle=3D"font-size:10.0pt">283<o:p></o:p></span></p>
+</td>
+</tr>
+<tr>
+<td style=3D"border:solid #AAAAAA 1.0pt;border-top:none;background:#DDDDDD;=
+padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><span s=
+tyle=3D"font-size:10.0pt"><a href=3D"https://bugzilla.yoctoproject.org/show=
+_bug.cgi?id=3D5844"><span style=3D"color:#5A3696;text-decoration:none">5844=
+</span></a><o:p></o:p></span></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:#DDDDDD;padding:2.4pt 2.4p=
+t 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><span s=
+tyle=3D"font-size:10.0pt">Medium<o:p></o:p></span></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:#DDDDDD;padding:2.4pt 2.4p=
+t 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><span s=
+tyle=3D"font-size:10.0pt">ACCEPTED<o:p></o:p></span></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:#DDDDDD;padding:2.4pt 2.4p=
+t 2.4pt 2.4pt">
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:#DDDDDD;padding:2.4pt 2.4p=
+t 2.4pt 2.4pt">
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt"><a href=3D"https://=
+bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=3D2489"><span style=3D"col=
+or:#5A3696;text-decoration:none">2489</span></a><o:p></o:p></span></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:#DDDDDD;padding:2.4pt 2.4p=
+t 2.4pt 2.4pt">
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt">Wrong script_type w=
+hen task is not executed.<o:p></o:p></span></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:#DDDDDD;padding:2.4pt 2.4p=
+t 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><span s=
+tyle=3D"font-size:10.0pt">unspecified<o:p></o:p></span></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:#DDDDDD;padding:2.4pt 2.4p=
+t 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><span s=
+tyle=3D"font-size:10.0pt">1.7 M4<o:p></o:p></span></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;background:#DDDDDD;padding:2.4pt 2.4p=
+t 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><span s=
+tyle=3D"font-size:10.0pt">125<o:p></o:p></span></p>
+</td>
+</tr>
+<tr>
+<td style=3D"border:solid #AAAAAA 1.0pt;border-top:none;padding:2.4pt 2.4pt=
+ 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><span s=
+tyle=3D"font-size:10.0pt"><a href=3D"https://bugzilla.yoctoproject.org/show=
+_bug.cgi?id=3D6445"><span style=3D"color:#5A3696;text-decoration:none">6445=
+</span></a><o:p></o:p></span></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><span s=
+tyle=3D"font-size:10.0pt">Medium<o:p></o:p></span></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><span s=
+tyle=3D"font-size:10.0pt">RESOLVED<o:p></o:p></span></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><span s=
+tyle=3D"font-size:10.0pt">NOTABUG<o:p></o:p></span></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt"><a href=3D"https://=
+bugzilla.yoctoproject.org/tr_show_run.cgi?run_id=3D2489"><span style=3D"col=
+or:#5A3696;text-decoration:none">2489</span></a><o:p></o:p></span></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal"><span style=3D"font-size:10.0pt">The value of the re=
+vision field from Package table doesn't start with 'r'<o:p></o:p></span></p=
+>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><span s=
+tyle=3D"font-size:10.0pt">1.6.1<o:p></o:p></span></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><span s=
+tyle=3D"font-size:10.0pt">1.6.2<o:p></o:p></span></p>
+</td>
+<td style=3D"border-top:none;border-left:none;border-bottom:solid #AAAAAA 1=
+.0pt;border-right:solid #AAAAAA 1.0pt;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><span s=
+tyle=3D"font-size:10.0pt">10<o:p></o:p></span></p>
+</td>
+</tr>
+<tr>
+<td colspan=3D"9" style=3D"border:solid #AAAAAA 1.0pt;border-top:none;backg=
+round:#BBBBBB;padding:2.4pt 2.4pt 2.4pt 2.4pt">
+<p class=3D"MsoNormal"><b><span style=3D"font-size:10.0pt">Total: 3</span><=
+/b><span style=3D"font-size:10.0pt"><o:p></o:p></span></p>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.5pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:black"><o:p>&nbsp;</o:p></span></p=
+>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.5pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:black"><o:p>&nbsp;</o:p></span></p=
+>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.5pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:black">Distro Testing Results:<o:p=
+></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.5pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:black"><o:p>&nbsp;</o:p></span></p=
+>
+<table class=3D"MsoNormalTable" border=3D"0" cellspacing=3D"0" cellpadding=
+=3D"0" width=3D"1188" style=3D"width:448.0pt;margin-left:-.95pt;border-coll=
+apse:collapse">
+<tbody>
+<tr style=3D"height:14.35pt">
+<td width=3D"448" nowrap=3D"" valign=3D"bottom" style=3D"width:169.0pt;bord=
+er:solid windowtext 1.0pt;background:#D99694;padding:0in 5.4pt 0in 5.4pt;he=
+ight:14.35pt">
+<p class=3D"MsoNormal"><b><span style=3D"font-size:11.0pt;font-family:&quot=
+;Calibri&quot;,&quot;sans-serif&quot;;color:black">BRANCH<o:p></o:p></span>=
+</b></p>
+</td>
+<td width=3D"740" nowrap=3D"" valign=3D"bottom" style=3D"width:279.0pt;bord=
+er:solid windowtext 1.0pt;border-left:none;background:#D99694;padding:0in 5=
+.4pt 0in 5.4pt;height:14.35pt">
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:black">daisy<o:p></o:p></span></p>
+</td>
+</tr>
+<tr style=3D"height:14.35pt">
+<td width=3D"448" nowrap=3D"" valign=3D"bottom" style=3D"width:169.0pt;bord=
+er:solid windowtext 1.0pt;border-top:none;background:#D99694;padding:0in 5.=
+4pt 0in 5.4pt;height:14.35pt">
+<p class=3D"MsoNormal"><b><span style=3D"font-size:11.0pt;font-family:&quot=
+;Calibri&quot;,&quot;sans-serif&quot;;color:black">COMMIT<o:p></o:p></span>=
+</b></p>
+</td>
+<td width=3D"740" nowrap=3D"" valign=3D"bottom" style=3D"width:279.0pt;bord=
+er-top:none;border-left:none;border-bottom:solid windowtext 1.0pt;border-ri=
+ght:solid windowtext 1.0pt;background:#D99694;padding:0in 5.4pt 0in 5.4pt;h=
+eight:14.35pt">
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:black">Poky: c4f1f0f491f988901bfd6=
+965f7d10f60cb94a76f<o:p></o:p></span></p>
+</td>
+</tr>
+<tr style=3D"height:14.35pt">
+<td width=3D"448" nowrap=3D"" valign=3D"bottom" style=3D"width:169.0pt;bord=
+er:solid windowtext 1.0pt;border-top:none;background:#D99694;padding:0in 5.=
+4pt 0in 5.4pt;height:14.35pt">
+<p class=3D"MsoNormal"><b><span style=3D"font-size:11.0pt;font-family:&quot=
+;Calibri&quot;,&quot;sans-serif&quot;;color:black">RELEASE<o:p></o:p></span=
+></b></p>
+</td>
+<td width=3D"740" nowrap=3D"" valign=3D"bottom" style=3D"width:279.0pt;bord=
+er-top:none;border-left:none;border-bottom:solid windowtext 1.0pt;border-ri=
+ght:solid windowtext 1.0pt;background:#D99694;padding:0in 5.4pt 0in 5.4pt;h=
+eight:14.35pt">
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:black">1.6.1<o:p></o:p></span></p>
+</td>
+</tr>
+<tr style=3D"height:14.35pt">
+<td width=3D"448" nowrap=3D"" valign=3D"bottom" style=3D"width:169.0pt;bord=
+er:solid windowtext 1.0pt;border-top:none;background:#95B3D7;padding:0in 5.=
+4pt 0in 5.4pt;height:14.35pt">
+<p class=3D"MsoNormal"><b><span style=3D"font-size:11.0pt;font-family:&quot=
+;Calibri&quot;,&quot;sans-serif&quot;;color:black">Ubuntu 14.04 LTS<o:p></o=
+:p></span></b></p>
+</td>
+<td width=3D"740" nowrap=3D"" valign=3D"bottom" style=3D"width:279.0pt;bord=
+er-top:none;border-left:none;border-bottom:solid windowtext 1.0pt;border-ri=
+ght:solid windowtext 1.0pt;background:#95B3D7;padding:0in 5.4pt 0in 5.4pt;h=
+eight:14.35pt">
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:black">&nbsp;<o:p></o:p></span></p=
+>
+</td>
+</tr>
+<tr style=3D"height:14.35pt">
+<td width=3D"448" nowrap=3D"" valign=3D"bottom" style=3D"width:169.0pt;bord=
+er:solid windowtext 1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;heigh=
+t:14.35pt">
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:black">&#8226; nighlty-world<o:p><=
+/o:p></span></p>
+</td>
+<td width=3D"740" nowrap=3D"" valign=3D"bottom" style=3D"width:279.0pt;bord=
+er-top:none;border-left:none;border-bottom:solid windowtext 1.0pt;border-ri=
+ght:solid windowtext 1.0pt;padding:0in 5.4pt 0in 5.4pt;height:14.35pt">
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:black">FAIL &#8211; 6467<o:p></o:p=
+></span></p>
+</td>
+</tr>
+<tr style=3D"height:14.35pt">
+<td width=3D"448" nowrap=3D"" valign=3D"bottom" style=3D"width:169.0pt;bord=
+er:solid windowtext 1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;heigh=
+t:14.35pt">
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:black">&#8226; buildtools<o:p></o:=
+p></span></p>
+</td>
+<td width=3D"740" nowrap=3D"" valign=3D"bottom" style=3D"width:279.0pt;bord=
+er-top:none;border-left:none;border-bottom:solid windowtext 1.0pt;border-ri=
+ght:solid windowtext 1.0pt;padding:0in 5.4pt 0in 5.4pt;height:14.35pt">
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:black">PASS<o:p></o:p></span></p>
+</td>
+</tr>
+<tr style=3D"height:14.35pt">
+<td width=3D"448" nowrap=3D"" valign=3D"bottom" style=3D"width:169.0pt;bord=
+er:solid windowtext 1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;heigh=
+t:14.35pt">
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:black">&#8226; nightly-arm<o:p></o=
+:p></span></p>
+</td>
+<td width=3D"740" nowrap=3D"" valign=3D"bottom" style=3D"width:279.0pt;bord=
+er-top:none;border-left:none;border-bottom:solid windowtext 1.0pt;border-ri=
+ght:solid windowtext 1.0pt;padding:0in 5.4pt 0in 5.4pt;height:14.35pt">
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:black">PASS<o:p></o:p></span></p>
+</td>
+</tr>
+<tr style=3D"height:14.35pt">
+<td width=3D"448" nowrap=3D"" valign=3D"bottom" style=3D"width:169.0pt;bord=
+er:solid windowtext 1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;heigh=
+t:14.35pt">
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:black">&#8226; nightly-multilib<o:=
+p></o:p></span></p>
+</td>
+<td width=3D"740" nowrap=3D"" valign=3D"bottom" style=3D"width:279.0pt;bord=
+er-top:none;border-left:none;border-bottom:solid windowtext 1.0pt;border-ri=
+ght:solid windowtext 1.0pt;padding:0in 5.4pt 0in 5.4pt;height:14.35pt">
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:black">PASS<o:p></o:p></span></p>
+</td>
+</tr>
+<tr style=3D"height:14.35pt">
+<td width=3D"448" nowrap=3D"" valign=3D"bottom" style=3D"width:169.0pt;bord=
+er:solid windowtext 1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;heigh=
+t:14.35pt">
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:black">&#8226; nightly-qa-systemd<=
+o:p></o:p></span></p>
+</td>
+<td width=3D"740" nowrap=3D"" valign=3D"bottom" style=3D"width:279.0pt;bord=
+er-top:none;border-left:none;border-bottom:solid windowtext 1.0pt;border-ri=
+ght:solid windowtext 1.0pt;padding:0in 5.4pt 0in 5.4pt;height:14.35pt">
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:black">PASS<o:p></o:p></span></p>
+</td>
+</tr>
+<tr style=3D"height:14.35pt">
+<td width=3D"448" nowrap=3D"" valign=3D"bottom" style=3D"width:169.0pt;bord=
+er:solid windowtext 1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;heigh=
+t:14.35pt">
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:black">&#8226; nightly-x86<o:p></o=
+:p></span></p>
+</td>
+<td width=3D"740" nowrap=3D"" valign=3D"bottom" style=3D"width:279.0pt;bord=
+er-top:none;border-left:none;border-bottom:solid windowtext 1.0pt;border-ri=
+ght:solid windowtext 1.0pt;padding:0in 5.4pt 0in 5.4pt;height:14.35pt">
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:black">PASS<o:p></o:p></span></p>
+</td>
+</tr>
+<tr style=3D"height:14.35pt">
+<td width=3D"448" nowrap=3D"" valign=3D"bottom" style=3D"width:169.0pt;bord=
+er:solid windowtext 1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;heigh=
+t:14.35pt">
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:black">&#8226; nightly-x86-64<o:p>=
+</o:p></span></p>
+</td>
+<td width=3D"740" nowrap=3D"" valign=3D"bottom" style=3D"width:279.0pt;bord=
+er-top:none;border-left:none;border-bottom:solid windowtext 1.0pt;border-ri=
+ght:solid windowtext 1.0pt;padding:0in 5.4pt 0in 5.4pt;height:14.35pt">
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:black">PASS<o:p></o:p></span></p>
+</td>
+</tr>
+<tr style=3D"height:14.35pt">
+<td width=3D"448" nowrap=3D"" valign=3D"bottom" style=3D"width:169.0pt;bord=
+er:solid windowtext 1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;heigh=
+t:14.35pt">
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:black">&#8226; nightly-x86-64-lsb<=
+o:p></o:p></span></p>
+</td>
+<td width=3D"740" nowrap=3D"" valign=3D"bottom" style=3D"width:279.0pt;bord=
+er-top:none;border-left:none;border-bottom:solid windowtext 1.0pt;border-ri=
+ght:solid windowtext 1.0pt;padding:0in 5.4pt 0in 5.4pt;height:14.35pt">
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:black">PASS<o:p></o:p></span></p>
+</td>
+</tr>
+<tr style=3D"height:14.35pt">
+<td width=3D"448" nowrap=3D"" valign=3D"bottom" style=3D"width:169.0pt;bord=
+er:solid windowtext 1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;heigh=
+t:14.35pt">
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:black">&nbsp;<o:p></o:p></span></p=
+>
+</td>
+<td width=3D"740" nowrap=3D"" valign=3D"bottom" style=3D"width:279.0pt;bord=
+er-top:none;border-left:none;border-bottom:solid windowtext 1.0pt;border-ri=
+ght:solid windowtext 1.0pt;padding:0in 5.4pt 0in 5.4pt;height:14.35pt">
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:black">&nbsp;<o:p></o:p></span></p=
+>
+</td>
+</tr>
+<tr style=3D"height:14.35pt">
+<td width=3D"448" nowrap=3D"" valign=3D"bottom" style=3D"width:169.0pt;bord=
+er:solid windowtext 1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;heigh=
+t:14.35pt">
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:black">&nbsp;<o:p></o:p></span></p=
+>
+</td>
+<td width=3D"740" nowrap=3D"" valign=3D"bottom" style=3D"width:279.0pt;bord=
+er-top:none;border-left:none;border-bottom:solid windowtext 1.0pt;border-ri=
+ght:solid windowtext 1.0pt;padding:0in 5.4pt 0in 5.4pt;height:14.35pt">
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:black">&nbsp;<o:p></o:p></span></p=
+>
+</td>
+</tr>
+<tr style=3D"height:14.35pt">
+<td width=3D"448" nowrap=3D"" valign=3D"bottom" style=3D"width:169.0pt;bord=
+er:solid windowtext 1.0pt;border-top:none;background:#95B3D7;padding:0in 5.=
+4pt 0in 5.4pt;height:14.35pt">
+<p class=3D"MsoNormal"><b><span style=3D"font-size:11.0pt;font-family:&quot=
+;Calibri&quot;,&quot;sans-serif&quot;;color:black">Fedora 20<o:p></o:p></sp=
+an></b></p>
+</td>
+<td width=3D"740" nowrap=3D"" valign=3D"bottom" style=3D"width:279.0pt;bord=
+er-top:none;border-left:none;border-bottom:solid windowtext 1.0pt;border-ri=
+ght:solid windowtext 1.0pt;background:#95B3D7;padding:0in 5.4pt 0in 5.4pt;h=
+eight:14.35pt">
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:black">&nbsp;<o:p></o:p></span></p=
+>
+</td>
+</tr>
+<tr style=3D"height:14.35pt">
+<td width=3D"448" nowrap=3D"" valign=3D"bottom" style=3D"width:169.0pt;bord=
+er:solid windowtext 1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;heigh=
+t:14.35pt">
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:black">&#8226; nighlty-world<o:p><=
+/o:p></span></p>
+</td>
+<td width=3D"740" nowrap=3D"" valign=3D"bottom" style=3D"width:279.0pt;bord=
+er-top:none;border-left:none;border-bottom:solid windowtext 1.0pt;border-ri=
+ght:solid windowtext 1.0pt;padding:0in 5.4pt 0in 5.4pt;height:14.35pt">
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:black">PASS<o:p></o:p></span></p>
+</td>
+</tr>
+<tr style=3D"height:14.35pt">
+<td width=3D"448" nowrap=3D"" valign=3D"bottom" style=3D"width:169.0pt;bord=
+er:solid windowtext 1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;heigh=
+t:14.35pt">
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:black">&#8226; buildtools<o:p></o:=
+p></span></p>
+</td>
+<td width=3D"740" nowrap=3D"" valign=3D"bottom" style=3D"width:279.0pt;bord=
+er-top:none;border-left:none;border-bottom:solid windowtext 1.0pt;border-ri=
+ght:solid windowtext 1.0pt;padding:0in 5.4pt 0in 5.4pt;height:14.35pt">
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:black">PASS<o:p></o:p></span></p>
+</td>
+</tr>
+<tr style=3D"height:14.35pt">
+<td width=3D"448" nowrap=3D"" valign=3D"bottom" style=3D"width:169.0pt;bord=
+er:solid windowtext 1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;heigh=
+t:14.35pt">
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:black">&#8226; nightly-arm<o:p></o=
+:p></span></p>
+</td>
+<td width=3D"740" nowrap=3D"" valign=3D"bottom" style=3D"width:279.0pt;bord=
+er-top:none;border-left:none;border-bottom:solid windowtext 1.0pt;border-ri=
+ght:solid windowtext 1.0pt;padding:0in 5.4pt 0in 5.4pt;height:14.35pt">
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:black">PASS<o:p></o:p></span></p>
+</td>
+</tr>
+<tr style=3D"height:14.35pt">
+<td width=3D"448" nowrap=3D"" valign=3D"bottom" style=3D"width:169.0pt;bord=
+er:solid windowtext 1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;heigh=
+t:14.35pt">
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:black">&#8226; nightly-multilib<o:=
+p></o:p></span></p>
+</td>
+<td width=3D"740" nowrap=3D"" valign=3D"bottom" style=3D"width:279.0pt;bord=
+er-top:none;border-left:none;border-bottom:solid windowtext 1.0pt;border-ri=
+ght:solid windowtext 1.0pt;padding:0in 5.4pt 0in 5.4pt;height:14.35pt">
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:black">PASS<o:p></o:p></span></p>
+</td>
+</tr>
+<tr style=3D"height:14.35pt">
+<td width=3D"448" nowrap=3D"" valign=3D"bottom" style=3D"width:169.0pt;bord=
+er:solid windowtext 1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;heigh=
+t:14.35pt">
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:black">&#8226; nightly-qa-systemd<=
+o:p></o:p></span></p>
+</td>
+<td width=3D"740" nowrap=3D"" valign=3D"bottom" style=3D"width:279.0pt;bord=
+er-top:none;border-left:none;border-bottom:solid windowtext 1.0pt;border-ri=
+ght:solid windowtext 1.0pt;padding:0in 5.4pt 0in 5.4pt;height:14.35pt">
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:black">PASS<o:p></o:p></span></p>
+</td>
+</tr>
+<tr style=3D"height:14.35pt">
+<td width=3D"448" nowrap=3D"" valign=3D"bottom" style=3D"width:169.0pt;bord=
+er:solid windowtext 1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;heigh=
+t:14.35pt">
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:black">&#8226; nightly-x86<o:p></o=
+:p></span></p>
+</td>
+<td width=3D"740" nowrap=3D"" valign=3D"bottom" style=3D"width:279.0pt;bord=
+er-top:none;border-left:none;border-bottom:solid windowtext 1.0pt;border-ri=
+ght:solid windowtext 1.0pt;padding:0in 5.4pt 0in 5.4pt;height:14.35pt">
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:black">PASS<o:p></o:p></span></p>
+</td>
+</tr>
+<tr style=3D"height:14.35pt">
+<td width=3D"448" nowrap=3D"" valign=3D"bottom" style=3D"width:169.0pt;bord=
+er:solid windowtext 1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;heigh=
+t:14.35pt">
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:black">&#8226; nightly-x86-64<o:p>=
+</o:p></span></p>
+</td>
+<td width=3D"740" nowrap=3D"" valign=3D"bottom" style=3D"width:279.0pt;bord=
+er-top:none;border-left:none;border-bottom:solid windowtext 1.0pt;border-ri=
+ght:solid windowtext 1.0pt;padding:0in 5.4pt 0in 5.4pt;height:14.35pt">
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:black">PASS<o:p></o:p></span></p>
+</td>
+</tr>
+<tr style=3D"height:14.35pt">
+<td width=3D"448" nowrap=3D"" valign=3D"bottom" style=3D"width:169.0pt;bord=
+er:solid windowtext 1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;heigh=
+t:14.35pt">
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:black">&#8226; nightly-x86-64-lsb<=
+o:p></o:p></span></p>
+</td>
+<td width=3D"740" nowrap=3D"" valign=3D"bottom" style=3D"width:279.0pt;bord=
+er-top:none;border-left:none;border-bottom:solid windowtext 1.0pt;border-ri=
+ght:solid windowtext 1.0pt;padding:0in 5.4pt 0in 5.4pt;height:14.35pt">
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:black">PASS<o:p></o:p></span></p>
+</td>
+</tr>
+<tr style=3D"height:14.35pt">
+<td width=3D"448" nowrap=3D"" valign=3D"bottom" style=3D"width:169.0pt;bord=
+er:solid windowtext 1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;heigh=
+t:14.35pt">
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:black">&nbsp;<o:p></o:p></span></p=
+>
+</td>
+<td width=3D"740" nowrap=3D"" valign=3D"bottom" style=3D"width:279.0pt;bord=
+er-top:none;border-left:none;border-bottom:solid windowtext 1.0pt;border-ri=
+ght:solid windowtext 1.0pt;padding:0in 5.4pt 0in 5.4pt;height:14.35pt">
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:black">&nbsp;<o:p></o:p></span></p=
+>
+</td>
+</tr>
+<tr style=3D"height:14.35pt">
+<td width=3D"448" nowrap=3D"" valign=3D"bottom" style=3D"width:169.0pt;bord=
+er:solid windowtext 1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;heigh=
+t:14.35pt">
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:black">&nbsp;<o:p></o:p></span></p=
+>
+</td>
+<td width=3D"740" nowrap=3D"" valign=3D"bottom" style=3D"width:279.0pt;bord=
+er-top:none;border-left:none;border-bottom:solid windowtext 1.0pt;border-ri=
+ght:solid windowtext 1.0pt;padding:0in 5.4pt 0in 5.4pt;height:14.35pt">
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:black">&nbsp;<o:p></o:p></span></p=
+>
+</td>
+</tr>
+<tr style=3D"height:14.35pt">
+<td width=3D"448" nowrap=3D"" valign=3D"bottom" style=3D"width:169.0pt;bord=
+er:solid windowtext 1.0pt;border-top:none;background:#95B3D7;padding:0in 5.=
+4pt 0in 5.4pt;height:14.35pt">
+<p class=3D"MsoNormal"><b><span style=3D"font-size:11.0pt;font-family:&quot=
+;Calibri&quot;,&quot;sans-serif&quot;;color:black">CentOS 6.5<o:p></o:p></s=
+pan></b></p>
+</td>
+<td width=3D"740" nowrap=3D"" valign=3D"bottom" style=3D"width:279.0pt;bord=
+er-top:none;border-left:none;border-bottom:solid windowtext 1.0pt;border-ri=
+ght:solid windowtext 1.0pt;background:#95B3D7;padding:0in 5.4pt 0in 5.4pt;h=
+eight:14.35pt">
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:black">&nbsp;<o:p></o:p></span></p=
+>
+</td>
+</tr>
+<tr style=3D"height:14.35pt">
+<td width=3D"448" nowrap=3D"" valign=3D"bottom" style=3D"width:169.0pt;bord=
+er:solid windowtext 1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;heigh=
+t:14.35pt">
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:black">&#8226; nighlty-world<o:p><=
+/o:p></span></p>
+</td>
+<td width=3D"740" nowrap=3D"" valign=3D"bottom" style=3D"width:279.0pt;bord=
+er-top:none;border-left:none;border-bottom:solid windowtext 1.0pt;border-ri=
+ght:solid windowtext 1.0pt;padding:0in 5.4pt 0in 5.4pt;height:14.35pt">
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:black">PASS<o:p></o:p></span></p>
+</td>
+</tr>
+<tr style=3D"height:14.35pt">
+<td width=3D"448" nowrap=3D"" valign=3D"bottom" style=3D"width:169.0pt;bord=
+er:solid windowtext 1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;heigh=
+t:14.35pt">
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:black">&#8226; buildtools<o:p></o:=
+p></span></p>
+</td>
+<td width=3D"740" nowrap=3D"" valign=3D"bottom" style=3D"width:279.0pt;bord=
+er-top:none;border-left:none;border-bottom:solid windowtext 1.0pt;border-ri=
+ght:solid windowtext 1.0pt;padding:0in 5.4pt 0in 5.4pt;height:14.35pt">
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:black">PASS<o:p></o:p></span></p>
+</td>
+</tr>
+<tr style=3D"height:14.35pt">
+<td width=3D"448" nowrap=3D"" valign=3D"bottom" style=3D"width:169.0pt;bord=
+er:solid windowtext 1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;heigh=
+t:14.35pt">
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:black">&#8226; nightly-arm<o:p></o=
+:p></span></p>
+</td>
+<td width=3D"740" nowrap=3D"" valign=3D"bottom" style=3D"width:279.0pt;bord=
+er-top:none;border-left:none;border-bottom:solid windowtext 1.0pt;border-ri=
+ght:solid windowtext 1.0pt;padding:0in 5.4pt 0in 5.4pt;height:14.35pt">
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:black">PASS<o:p></o:p></span></p>
+</td>
+</tr>
+<tr style=3D"height:14.35pt">
+<td width=3D"448" nowrap=3D"" valign=3D"bottom" style=3D"width:169.0pt;bord=
+er:solid windowtext 1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;heigh=
+t:14.35pt">
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:black">&#8226; nightly-multilib<o:=
+p></o:p></span></p>
+</td>
+<td width=3D"740" nowrap=3D"" valign=3D"bottom" style=3D"width:279.0pt;bord=
+er-top:none;border-left:none;border-bottom:solid windowtext 1.0pt;border-ri=
+ght:solid windowtext 1.0pt;padding:0in 5.4pt 0in 5.4pt;height:14.35pt">
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:black">PASS<o:p></o:p></span></p>
+</td>
+</tr>
+<tr style=3D"height:14.35pt">
+<td width=3D"448" nowrap=3D"" valign=3D"bottom" style=3D"width:169.0pt;bord=
+er:solid windowtext 1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;heigh=
+t:14.35pt">
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:black">&#8226; nightly-qa-systemd<=
+o:p></o:p></span></p>
+</td>
+<td width=3D"740" nowrap=3D"" valign=3D"bottom" style=3D"width:279.0pt;bord=
+er-top:none;border-left:none;border-bottom:solid windowtext 1.0pt;border-ri=
+ght:solid windowtext 1.0pt;padding:0in 5.4pt 0in 5.4pt;height:14.35pt">
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:black">PASS<o:p></o:p></span></p>
+</td>
+</tr>
+<tr style=3D"height:14.35pt">
+<td width=3D"448" nowrap=3D"" valign=3D"bottom" style=3D"width:169.0pt;bord=
+er:solid windowtext 1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;heigh=
+t:14.35pt">
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:black">&#8226; nightly-x86<o:p></o=
+:p></span></p>
+</td>
+<td width=3D"740" nowrap=3D"" valign=3D"bottom" style=3D"width:279.0pt;bord=
+er-top:none;border-left:none;border-bottom:solid windowtext 1.0pt;border-ri=
+ght:solid windowtext 1.0pt;padding:0in 5.4pt 0in 5.4pt;height:14.35pt">
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:black">PASS<o:p></o:p></span></p>
+</td>
+</tr>
+<tr style=3D"height:14.35pt">
+<td width=3D"448" nowrap=3D"" valign=3D"bottom" style=3D"width:169.0pt;bord=
+er:solid windowtext 1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;heigh=
+t:14.35pt">
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:black">&#8226; nightly-x86-64<o:p>=
+</o:p></span></p>
+</td>
+<td width=3D"740" nowrap=3D"" valign=3D"bottom" style=3D"width:279.0pt;bord=
+er-top:none;border-left:none;border-bottom:solid windowtext 1.0pt;border-ri=
+ght:solid windowtext 1.0pt;padding:0in 5.4pt 0in 5.4pt;height:14.35pt">
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:black">PASS<o:p></o:p></span></p>
+</td>
+</tr>
+<tr style=3D"height:14.35pt">
+<td width=3D"448" nowrap=3D"" valign=3D"bottom" style=3D"width:169.0pt;bord=
+er:solid windowtext 1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;heigh=
+t:14.35pt">
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:black">&#8226; nightly-x86-64-lsb<=
+o:p></o:p></span></p>
+</td>
+<td width=3D"740" nowrap=3D"" valign=3D"bottom" style=3D"width:279.0pt;bord=
+er-top:none;border-left:none;border-bottom:solid windowtext 1.0pt;border-ri=
+ght:solid windowtext 1.0pt;padding:0in 5.4pt 0in 5.4pt;height:14.35pt">
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:black">PASS<o:p></o:p></span></p>
+</td>
+</tr>
+<tr style=3D"height:14.35pt">
+<td width=3D"448" nowrap=3D"" valign=3D"bottom" style=3D"width:169.0pt;bord=
+er:solid windowtext 1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;heigh=
+t:14.35pt">
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:black">&nbsp;<o:p></o:p></span></p=
+>
+</td>
+<td width=3D"740" nowrap=3D"" valign=3D"bottom" style=3D"width:279.0pt;bord=
+er-top:none;border-left:none;border-bottom:solid windowtext 1.0pt;border-ri=
+ght:solid windowtext 1.0pt;padding:0in 5.4pt 0in 5.4pt;height:14.35pt">
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:black">&nbsp;<o:p></o:p></span></p=
+>
+</td>
+</tr>
+<tr style=3D"height:14.35pt">
+<td width=3D"448" nowrap=3D"" valign=3D"bottom" style=3D"width:169.0pt;bord=
+er:solid windowtext 1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;heigh=
+t:14.35pt">
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:black">&nbsp;<o:p></o:p></span></p=
+>
+</td>
+<td width=3D"740" nowrap=3D"" valign=3D"bottom" style=3D"width:279.0pt;bord=
+er-top:none;border-left:none;border-bottom:solid windowtext 1.0pt;border-ri=
+ght:solid windowtext 1.0pt;padding:0in 5.4pt 0in 5.4pt;height:14.35pt">
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:black">&nbsp;<o:p></o:p></span></p=
+>
+</td>
+</tr>
+<tr style=3D"height:14.35pt">
+<td width=3D"448" nowrap=3D"" valign=3D"bottom" style=3D"width:169.0pt;bord=
+er:solid windowtext 1.0pt;border-top:none;background:#8EB4E3;padding:0in 5.=
+4pt 0in 5.4pt;height:14.35pt">
+<p class=3D"MsoNormal"><b><span style=3D"font-size:11.0pt;font-family:&quot=
+;Calibri&quot;,&quot;sans-serif&quot;">OpenSuse 13.1<o:p></o:p></span></b><=
+/p>
+</td>
+<td width=3D"740" nowrap=3D"" valign=3D"bottom" style=3D"width:279.0pt;bord=
+er-top:none;border-left:none;border-bottom:solid windowtext 1.0pt;border-ri=
+ght:solid windowtext 1.0pt;background:#8EB4E3;padding:0in 5.4pt 0in 5.4pt;h=
+eight:14.35pt">
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;">&nbsp;<o:p></o:p></span></p>
+</td>
+</tr>
+<tr style=3D"height:14.35pt">
+<td width=3D"448" nowrap=3D"" valign=3D"bottom" style=3D"width:169.0pt;bord=
+er:solid windowtext 1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;heigh=
+t:14.35pt">
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:black">&#8226; nighlty-world<o:p><=
+/o:p></span></p>
+</td>
+<td width=3D"740" nowrap=3D"" valign=3D"bottom" style=3D"width:279.0pt;bord=
+er-top:none;border-left:none;border-bottom:solid windowtext 1.0pt;border-ri=
+ght:solid windowtext 1.0pt;padding:0in 5.4pt 0in 5.4pt;height:14.35pt">
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:black">Retest Needed<o:p></o:p></s=
+pan></p>
+</td>
+</tr>
+<tr style=3D"height:14.35pt">
+<td width=3D"448" nowrap=3D"" valign=3D"bottom" style=3D"width:169.0pt;bord=
+er:solid windowtext 1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;heigh=
+t:14.35pt">
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:black">&#8226; buildtools<o:p></o:=
+p></span></p>
+</td>
+<td width=3D"740" nowrap=3D"" valign=3D"bottom" style=3D"width:279.0pt;bord=
+er-top:none;border-left:none;border-bottom:solid windowtext 1.0pt;border-ri=
+ght:solid windowtext 1.0pt;padding:0in 5.4pt 0in 5.4pt;height:14.35pt">
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:black">PASS<o:p></o:p></span></p>
+</td>
+</tr>
+<tr style=3D"height:14.35pt">
+<td width=3D"448" nowrap=3D"" valign=3D"bottom" style=3D"width:169.0pt;bord=
+er:solid windowtext 1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;heigh=
+t:14.35pt">
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:black">&#8226; nightly-arm<o:p></o=
+:p></span></p>
+</td>
+<td width=3D"740" nowrap=3D"" valign=3D"bottom" style=3D"width:279.0pt;bord=
+er-top:none;border-left:none;border-bottom:solid windowtext 1.0pt;border-ri=
+ght:solid windowtext 1.0pt;padding:0in 5.4pt 0in 5.4pt;height:14.35pt">
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:black">PASS<o:p></o:p></span></p>
+</td>
+</tr>
+<tr style=3D"height:14.35pt">
+<td width=3D"448" nowrap=3D"" valign=3D"bottom" style=3D"width:169.0pt;bord=
+er:solid windowtext 1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;heigh=
+t:14.35pt">
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:black">&#8226; nightly-multilib<o:=
+p></o:p></span></p>
+</td>
+<td width=3D"740" nowrap=3D"" valign=3D"bottom" style=3D"width:279.0pt;bord=
+er-top:none;border-left:none;border-bottom:solid windowtext 1.0pt;border-ri=
+ght:solid windowtext 1.0pt;padding:0in 5.4pt 0in 5.4pt;height:14.35pt">
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:black">Retest Needed<o:p></o:p></s=
+pan></p>
+</td>
+</tr>
+<tr style=3D"height:14.35pt">
+<td width=3D"448" nowrap=3D"" valign=3D"bottom" style=3D"width:169.0pt;bord=
+er:solid windowtext 1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;heigh=
+t:14.35pt">
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:black">&#8226; nightly-qa-systemd<=
+o:p></o:p></span></p>
+</td>
+<td width=3D"740" nowrap=3D"" valign=3D"bottom" style=3D"width:279.0pt;bord=
+er-top:none;border-left:none;border-bottom:solid windowtext 1.0pt;border-ri=
+ght:solid windowtext 1.0pt;padding:0in 5.4pt 0in 5.4pt;height:14.35pt">
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:black">PASS<o:p></o:p></span></p>
+</td>
+</tr>
+<tr style=3D"height:14.35pt">
+<td width=3D"448" nowrap=3D"" valign=3D"bottom" style=3D"width:169.0pt;bord=
+er:solid windowtext 1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;heigh=
+t:14.35pt">
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:black">&#8226; nightly-x86<o:p></o=
+:p></span></p>
+</td>
+<td width=3D"740" nowrap=3D"" valign=3D"bottom" style=3D"width:279.0pt;bord=
+er-top:none;border-left:none;border-bottom:solid windowtext 1.0pt;border-ri=
+ght:solid windowtext 1.0pt;padding:0in 5.4pt 0in 5.4pt;height:14.35pt">
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:black">Retest Needed<o:p></o:p></s=
+pan></p>
+</td>
+</tr>
+<tr style=3D"height:14.35pt">
+<td width=3D"448" nowrap=3D"" valign=3D"bottom" style=3D"width:169.0pt;bord=
+er:solid windowtext 1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;heigh=
+t:14.35pt">
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:black">&#8226; nightly-x86-64<o:p>=
+</o:p></span></p>
+</td>
+<td width=3D"740" nowrap=3D"" valign=3D"bottom" style=3D"width:279.0pt;bord=
+er-top:none;border-left:none;border-bottom:solid windowtext 1.0pt;border-ri=
+ght:solid windowtext 1.0pt;padding:0in 5.4pt 0in 5.4pt;height:14.35pt">
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:black">Retest Needed<o:p></o:p></s=
+pan></p>
+</td>
+</tr>
+<tr style=3D"height:14.35pt">
+<td width=3D"448" nowrap=3D"" valign=3D"bottom" style=3D"width:169.0pt;bord=
+er:solid windowtext 1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;heigh=
+t:14.35pt">
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:black">&#8226; nightly-x86-64-lsb<=
+o:p></o:p></span></p>
+</td>
+<td width=3D"740" nowrap=3D"" valign=3D"bottom" style=3D"width:279.0pt;bord=
+er-top:none;border-left:none;border-bottom:solid windowtext 1.0pt;border-ri=
+ght:solid windowtext 1.0pt;padding:0in 5.4pt 0in 5.4pt;height:14.35pt">
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:black">Retest Needed<o:p></o:p></s=
+pan></p>
+</td>
+</tr>
+</tbody>
+</table>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.5pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:black"><o:p>&nbsp;</o:p></span></p=
+>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.5pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:black"><o:p>&nbsp;</o:p></span></p=
+>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.5pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:black"><o:p>&nbsp;</o:p></span></p=
+>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.5pt;font-family:Consolas=
+;color:black">Regards,</span><span style=3D"font-size:10.5pt;font-family:&q=
+uot;Calibri&quot;,&quot;sans-serif&quot;;color:black"><o:p></o:p></span></p=
+>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.5pt;font-family:Consolas=
+;color:black">--</span><span style=3D"font-size:10.5pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:black"><o:p></o:p></span></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.5pt;font-family:Consolas=
+;color:black">Alexandru Georgescu</span><span style=3D"font-size:10.5pt;fon=
+t-family:&quot;Calibri&quot;,&quot;sans-serif&quot;;color:black"><o:p></o:p=
+></span></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.5pt;font-family:Consolas=
+;color:black">Yocto QA Engineer</span><span style=3D"font-size:10.5pt;font-=
+family:&quot;Calibri&quot;,&quot;sans-serif&quot;;color:black"><o:p></o:p><=
+/span></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-size:10.5pt;font-family:Consolas=
+;color:black">SSG/SSD Open Source Technology Center Romania</span><span sty=
+le=3D"font-size:10.5pt;font-family:&quot;Calibri&quot;,&quot;sans-serif&quo=
+t;;color:black"><o:p></o:p></span></p>
+</div>
+</div>
+</div>
+</body>
+</html>
+
+--_000_1FFB62CE8AEB0D4298B51122D8903E96219BB194IRSMSX104gercor_--
+
+--_006_1FFB62CE8AEB0D4298B51122D8903E96219BB194IRSMSX104gercor_
+Content-Type: image/jpeg; name="image001.jpg"
+Content-Description: image001.jpg
+Content-Disposition: inline; filename="image001.jpg"; size=8868;
+	creation-date="Mon, 30 Jun 2014 16:25:45 GMT";
+	modification-date="Mon, 30 Jun 2014 16:25:45 GMT"
+Content-ID: <image001.jpg@01CF9499.15C43100>
 Content-Transfer-Encoding: base64
 
-SGVsbG8gSmVmZiwNCg0KVGhlIGF2YWlsYWJsZSBsYXllciBpcyBhIHdvcmsgaW4gcHJvZ3Jlc3Mu
-DQpGb3IgdGhlIG1vbWVudCB3ZSBoYXZlIGRvbmUgYW4gaW50ZXJuYWwgbWFwcGluZyBvZiB0aGUg
-cGFja2FnZXMgbmVlZGVkIGluc2lkZSBtZXRhLWNnbCBsYXllci4gVGhlIG1hcHBpbmcgaXMgZG9u
-ZSBhcyBmb2xsb3dpbmc6DQpBLiBSZXF1aXJlbWVudCB0aGF0IG1hcCBhZ2FpbnN0IHBhY2thZ2Uv
-cGFja2FnZXMgd2l0aCByZWNpcGVzIHRoYXQgYWxyZWFkeSBleGlzdHMgaW4gWW9jdG8NCiAgQTEu
-IFJlcXVpcmVtZW50IHRoYXQgbWFwIGFnYWluc3QgcGFja2FnZS9wYWNrYWdlcyB3aXRoIHJlY2lw
-ZXMgYWxyZWFkeSBleGlzdGluZyBpbiBtZXRhLWVuZWENCiAgQTIuIFJlcXVpcmVtZW50IHRoYXQg
-bWFwIGFnYWluc3QgcGFja2FnZS9wYWNrYWdlcyB3aXRoIHJlY2lwZXMgdGhhdCBleGlzdHMgaW4g
-WW9jdG8gKGJ1dCBub3QgaW4gbWV0YS1lbmVhKQ0KQi4gUmVxdWlyZW1lbnQgdGhhdCBtYXAgYWdh
-aW5zdCBwYWNrYWdlL3BhY2thZ2VzIHdpdGhvdXQgYW55IHJlY2lwZQ0KQy4gUmVxdWlyZW1lbnQg
-ZG9lcyBub3QgZGlyZWN0bHkgbWFwIGFnYWluc3QgcGFja2FnZS9wYWNrYWdlcyBhbmQgbmVlZHMg
-c29tZSBpbnZlc3RpZ2F0aW9uLg0KRC4gUmVxdWlyZW1lbnQgdGhhdCBubyBzb2x1dGlvbiBoYXZl
-IGJlZW4gZm91bmQgYWZ0ZXIgYSBtb3JlIGRldGFpbGVkIGludmVzdGlnYXRpb24uDQoNCldoZW4g
-dGhlIHJlbGVhc2Ugd2FzIG1hZGUgYXZhaWxhYmxlIG9uIHRoZSBwdWJsaWMgcmVwb3NpdG9yeSwg
-dGhlIHBhY2thZ2VzIGZyb20gdGhlIEExIGFuZCBBMiB3ZXJlIGludGVncmF0ZWQsIGEgYnVuY2gg
-b2YgdGhlbSB3aXRoIGNvbXBpbGF0aW9uIGVycm9yczoNCg0KLSAgICAgICAgICBsa3NjdHAtdG9v
-bHMNCg0KLSAgICAgICAgICBvcGVuYWlzDQoNCi0gICAgICAgICAgcGFjZW1ha2VyDQoNCi0gICAg
-ICAgICAgb3BlbmhwaQ0KDQotICAgICAgICAgIG9wZW4taXNjc2ktdXNlcg0KDQotICAgICAgICAg
-IG9wZW4taXNjc2kta2VybmVsDQoNCi0gICAgICAgICAgbGliY2FwLW5nDQoNCi0gICAgICAgICAg
-Y2x1c3Rlci1nbHVlDQoNCi0gICAgICAgICAgY2x1c3Rlci1yZXNvdXJjZS1hZ2VudHMNClRoZSBh
-Y3Rpdml0eSBvbiB0aGUgbWV0YS1jZ2wgd2FzIHJlc3VtZWQgdG9kYXkgYW5kIHRob3NlIGJ1aWxk
-IGFuZCBpbnRlZ3JhdGlvbiBlcnJvcnMgd2lsbCBiZSBkZWFsdCBuZXh0Lg0KDQpPbiB0aGUgbG9u
-Z2VyIHJ1biB3ZSB3aWxsIHRyeSB0byBjcmVhdGUgcmVjaXBlcyBhbmQvb3IgZnVsZmlsbCBhbGwg
-dGhlIG90aGVyIHJlcXVpcmVtZW50cyBmcm9tIHRoZSBjbGFzcyBCLCBDLCBhbmQgRC4NClBsZWFz
-ZSBkbyBub3QgaGVzaXRhdGUgdG8gY29udGFjdCBtZSBpZiB5b3UgaGF2ZSBmdXJ0aGVyIHF1ZXN0
-aW9ucy4NCg0KDQpBbGV4DQoNCkZyb206IEpvbiBBbGRhbWENClNlbnQ6IEZyaWRheSwgSnVuZSAy
-NywgMjAxNCAxOjA3IFBNDQpUbzogQWxleGFuZHJ1IFZhZHV2YTsgQ29zbWluIE1vbGRvdmVhbnU7
-IEplbm55IEFuZGVyc3NvbjsgRGF2aWQgTnlzdHLDtm0NCkNjOiBEYW5pZWwgQm9ybmF6OyBBZHJp
-YW4gRHVkYXUNClN1YmplY3Q6IFJFOiBDYXJyaWVyIEdyYWRlIGxheWVyIHByb3Bvc2FsDQoNClJv
-Z2VyIHRoYXQhIFRoYW5rcyBBbGV4YW5kcnUhDQoNCg0KRnJvbTogQWxleGFuZHJ1IFZhZHV2YQ0K
-U2VudDogZGVuIDI3IGp1bmkgMjAxNCAxMTo0Mw0KVG86IEpvbiBBbGRhbWE7IENvc21pbiBNb2xk
-b3ZlYW51OyBKZW5ueSBBbmRlcnNzb247IERhdmlkIE55c3Ryw7ZtDQpDYzogRGFuaWVsIEJvcm5h
-ejsgQWRyaWFuIER1ZGF1DQpTdWJqZWN0OiBSRTogQ2FycmllciBHcmFkZSBsYXllciBwcm9wb3Nh
-bA0KDQpIZWxsbyBKb24sDQoNCldlIHdpbGwgZmlyc3QgaGF2ZSBhbiBpbnRlcm5hbCBtZWV0aW5n
-IG9uIE1vbmRheSBhbmQgYWZ0ZXIgdGhhdCBJIHdpbGwgb2ZmZXIgYW4gYW5zd2VyIHRvIEplZmYu
-DQoNCg0KQWxleA0KDQpGcm9tOiBKb24gQWxkYW1hDQpTZW50OiBGcmlkYXksIEp1bmUgMjcsIDIw
-MTQgMTI6MzIgUE0NClRvOiBDb3NtaW4gTW9sZG92ZWFudTsgSmVubnkgQW5kZXJzc29uOyBEYXZp
-ZCBOeXN0csO2bQ0KQ2M6IEFsZXhhbmRydSBWYWR1dmE7IERhbmllbCBCb3JuYXo7IEFkcmlhbiBE
-dWRhdQ0KU3ViamVjdDogUkU6IENhcnJpZXIgR3JhZGUgbGF5ZXIgcHJvcG9zYWwNCg0KVGhhbmsg
-eW91IENvc21pbiwNCg0KQWxleGFuZHJ1LCBjb3VsZCB5b3UgcGxlYXNlIHJlc3BvbmQgSmVmZiBh
-dCB0aGUgbWFpbGluZyBsaXN0PyAoc2VlIGRvd24gYmVsb3cpDQoNCkNoZWVycw0KSm9uDQoNCkZy
-b206IENvc21pbiBNb2xkb3ZlYW51DQpTZW50OiBkZW4gMjcganVuaSAyMDE0IDEwOjU5DQpUbzog
-SmVubnkgQW5kZXJzc29uOyBKb24gQWxkYW1hOyBEYXZpZCBOeXN0csO2bQ0KQ2M6IEFsZXhhbmRy
-dSBWYWR1dmE7IERhbmllbCBCb3JuYXo7IEFkcmlhbiBEdWRhdQ0KU3ViamVjdDogUkU6IENhcnJp
-ZXIgR3JhZGUgbGF5ZXIgcHJvcG9zYWwNCg0KSGksDQoNCkFsZXhhbmRydSBWYWR1dmEgd2lsbCBi
-ZSBtYWluIHJlc3BvbnNpYmxlIGZvciBpbnRlcmZhY2luZyB3aXRoIGNvbW11bml0eSBvbiBtZXRh
-LWNnbCB0b3BpYy4gSGUgd2lsbCBhbHNvIGF0dGVuZCBZb2N0byBUZWNobmljYWwgTWVldGluZ3Mg
-d2hlbmV2ZXIgbmVjZXNzYXJ5IGZyb20gbm93IG9uLg0KDQpCUiwNCi9Db3NtaW4NCg0KRnJvbTog
-SmVubnkgQW5kZXJzc29uDQpTZW50OiBGcmlkYXksIEp1bmUgMjcsIDIwMTQgMTA6MzIgQU0NClRv
-OiBKb24gQWxkYW1hOyBEYXZpZCBOeXN0csO2bTsgQ29zbWluIE1vbGRvdmVhbnUNCkNjOiBWYWxl
-bnRpbiBDb2JlbGVhDQpTdWJqZWN0OiBSRTogQ2FycmllciBHcmFkZSBsYXllciBwcm9wb3NhbA0K
-DQpIaSBDb3NtaW4sDQoNCkhvdyB0b29rIG92ZXIgYWZ0ZXIgVmFsZW50aW4gbGVmdCBFbmVhPyBD
-b3VsZCBzb21lb25lIGluIHlvdXIgdGVhbSByZXNwb25kLg0KDQpUaGFua3MsDQpKZW5ueQ0KDQpG
-cm9tOiBKb24gQWxkYW1hDQpTZW50OiBkZW4gMjcganVuaSAyMDE0IDA5OjI4DQpUbzogRGF2aWQg
-TnlzdHLDtm07IEplbm55IEFuZGVyc3Nvbg0KQ2M6IFZhbGVudGluIENvYmVsZWENClN1YmplY3Q6
-IEZXOiBDYXJyaWVyIEdyYWRlIGxheWVyIHByb3Bvc2FsDQoNCkRhdmlkLCBKZW5ueSwNCg0KV2ls
-bCBhbnkgb2YgeW91IGFuc3dlciB0aGlzPw0KDQpCVFcsIGhhdmUgeW91IG1hbmFnZWQgdG8gZmls
-ZSB0aGUgWW9jdG8gY29tcGF0aWJpbGl0eSBhcHBsaWNhdGlvbj8NCg0KUmVnYXJkcw0KSm9uDQoN
-CkZyb206IE9zaWVyLW1peG9uLCBKZWZmcmV5IFttYWlsdG86amVmZnJleS5vc2llci1taXhvbkBp
-bnRlbC5jb21dDQpTZW50OiBkZW4gMjYganVuaSAyMDE0IDIwOjM2DQpUbzogRGF2aWQgTnlzdHLD
-tm07IGRhdmlkZS5yaWNjaUB3aW5kcml2ZXIuY29tPG1haWx0bzpkYXZpZGUucmljY2lAd2luZHJp
-dmVyLmNvbT47IGNoYWxsaW5hbkBnbWFpbC5jb208bWFpbHRvOmNoYWxsaW5hbkBnbWFpbC5jb20+
-OyB0ZW9kb3IuYm9ib3JuaWxvQHdpbmRyaXZlci5jb208bWFpbHRvOnRlb2Rvci5ib2Jvcm5pbG9A
-d2luZHJpdmVyLmNvbT47IFZhbGVudGluIENvYmVsZWE7IGNoYXNlLm1hdXBpbkB0aS5jb208bWFp
-bHRvOmNoYXNlLm1hdXBpbkB0aS5jb20+OyBKb24gQWxkYW1hOyBwaGlsaXAuYmFsaXN0ZXJAZ21h
-aWwuY29tPG1haWx0bzpwaGlsaXAuYmFsaXN0ZXJAZ21haWwuY29tPjsga2V2aW5fbWNjb21iZUBt
-ZW50b3IuY29tPG1haWx0bzprZXZpbl9tY2NvbWJlQG1lbnRvci5jb20+OyBha3VzdGVyQG12aXN0
-YS5jb208bWFpbHRvOmFrdXN0ZXJAbXZpc3RhLmNvbT47IGphc29uLndlc3NlbEB3aW5kcml2ZXIu
-Y29tPG1haWx0bzpqYXNvbi53ZXNzZWxAd2luZHJpdmVyLmNvbT47IHJpY2hhcmQucHVyZGllQGxp
-bnV4Zm91bmRhdGlvbi5vcmc8bWFpbHRvOnJpY2hhcmQucHVyZGllQGxpbnV4Zm91bmRhdGlvbi5v
-cmc+OyBodWkuZ2VuZ0BodWF3ZWkuY29tPG1haWx0bzpodWkuZ2VuZ0BodWF3ZWkuY29tPjsgam9o
-bl9jaGVycnlAbWVudG9yLmNvbTxtYWlsdG86am9obl9jaGVycnlAbWVudG9yLmNvbT47IGplZmZy
-ZXkub3NpZXItbWl4b25AaW50ZWwuY29tPG1haWx0bzpqZWZmcmV5Lm9zaWVyLW1peG9uQGludGVs
-LmNvbT4NCkNjOiBQaGlsaXAgQmFsaXN0ZXINClN1YmplY3Q6IFlQOiBDYXJyaWVyIEdyYWRlIGxh
-eWVyIHByb3Bvc2FsDQoNCkhpIGFsbCAtIHRoaXMgaXMgYSBzaW1wbGUgZm9sbG93dXAgdG8gb3Vy
-IG1lZXRpbmcgYXQgRUxDIHJlZ2FyZGluZyBhIG1ldGEtY2dsIGxheWVyLCBwcm9wb3NlZCBieSBF
-bmVhLg0KDQpUaGUgcGxhbiB3YXMgdG8gY3JlYXRlIGEgbGlzdCBvZiByZWNpcGVzIHRvIGJlIGlu
-Y2x1ZGVkLCBhbmQgdG8gc3RhcnQgYSBkaXNjdXNzaW9uIG9uIHRoZSBtYWlsaW5nIGxpc3QuVGhl
-cmUgaXMgYSB0aHJlYWQgb24gdGhlIGxpc3QgZnJvbSBiYWNrIGluIEFwcmlsLCBidXQgSSBkb24n
-dCBzZWUgYW55dGhpbmcgbW9yZSByZWNlbnQgdGhhbiB0aGF0LiBIYXMgdGhlcmUgYmVlbiBhbnkg
-cHJvZ3Jlc3M/DQoNCnRoYW5rcw0K
+/9j/4AAQSkZJRgABAQEAvwC/AAD/2wBDAAoHBwkHBgoJCAkLCwoMDxkQDw4ODx4WFxIZJCAmJSMg
+IyIoLTkwKCo2KyIjMkQyNjs9QEBAJjBGS0U+Sjk/QD3/2wBDAQsLCw8NDx0QEB09KSMpPT09PT09
+PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT3/wAARCADvA1wDASIA
+AhEBAxEB/8QAHAABAAIDAQEBAAAAAAAAAAAAAAIFAwQGAQcI/8QAPBABAAICAQEGBAQEAwcFAQAA
+AAECAwQRBQYSEyExQSJRUnEyQmGRFBYzgQcVI0NTVWKSk6EkNXJzsdH/xAAbAQEAAgMBAQAAAAAA
+AAAAAAAAAwQBAgUGB//EADIRAQACAQIDBgUDAwUAAAAAAAABAgMEEQUhMRITIjJBUQYUUnGhFmGB
+FUKxM1ORwdH/2gAMAwEAAhEDEQA/APswAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA8eTesRzMxEfqB/
+caefqmrrV5yZa/2lW7HavVxx/pR35V8mqw4/NaFbLrMGLz3iF7E/rD3lx+XtfltHGPF3f7tC/aLf
+vM8ZeIn24U78WwV6byoZOOaanTeXezkrX8Voj+6E7GGPXJX93zzL1Lay/izWj7MHjZJ9cl/3Vrca
+rv4aqd/iGsT4afl9Ft1HWp65qsNuuaNfXND59N7T62mf7vOUVuM5PSsILfEGSfLSHfT2j0I9c0PP
+5l6f/vYcEI/6xm9oR/1/P9MO9/mXp/8AvYSr2h0LemVwAz/WM3tBHH8/0w+iU6zp39M0Mtd/Xt6Z
+avm3M/OUoyXj0vaP7pK8Zt61SV+Ib/3Uh9LjYxT/ALWv7pxes+lol8zrsZazzGS/7tnF1jcwx8OW
+Z+6anGaz5qrNPiCkz467Por1wuHtNvUnm9+/DexdsJ8oyYPvKzTiuC3WdlvHxrS36zMfeHVvPP8A
+RT4e1GleI71prM+yyw7uDPWLUyVmJ/Vcx6jFk8lol0MWqw5fJaJbIjzE+kpJk4AAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADx56o3tWleb
+WiIU292k19TvVx8ZLx7IsubHije87Ic2oxYK9rJbZczaIrzMxx+rR2+s6mnHGTJEz8ochu9e3Nyb
+R35rSfaFbNptPxTM/dyM/GIjlij+ZcHU8fiOWGv8y6TY7W3+KuDHER7WU+x1fc2YmMmWeJ9oaQ5O
+XW58vms4ebiGozea0vZva34rTP3l4CpupbgAAAAAAAAAAAAAAACVMuSkxNb2jj5SiMxaY6MxaY6L
+PW7QbuCaxOTvVj2ldana3FeeNjH3Y+bkhcw6/Pi6W3+7oYOKanD0tvH7830jW6lrbVYnFkiYn+za
+fMMea+K0Wx2msx8pXOj2n2dae7m/1K//AI6+Di9LcskbO3puO47cs0bfvHR23qeys0Ota275VtEW
+949FnzzHk61MlMkdqk7w7uPLTLXtUneEh4N0j0AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAePJtFazNp4iPeQOVd1LrODp9PO0Wv7VhU9Z7SRSs4dSe
+bek2+TlsmS+W82vabWnz5lxtZxSMfgxc593A1/Ga4pnHh5z7+kN/f63s71rRN5rjn8sK7nn1BwMm
+W+Se1ed5eWy5r5rdq87yAIkQAAAAAAAAAAAAAAAAAAAAAAAAAD2trUtE1mYmPku+mdpc2tMU2Pjp
+6cz7KMT4c+TDO9J2WNPqsunt2sc7PpGlv4N7FF8Non9GzHpPo+a6m5m0ssXwWmJj2+bsukdexb8R
+TJxXL8vm9FouI0zeG/K3+XrNBxbHqPBk5W/ErsecvXUdkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB4CE2ikTM+UfNyPX+vznvbX1rcUjym0e7a7TdY8On
+8Lgt8U/imPk5NweJa6d5xY5+/wD48zxjicxM4MU/ef8AoAcB5gAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAASx3tjtFq2mto84mERmJ2ZiZjnDs+gdcjbx+DsTxlj0n5r6HzHFlvhy1yY54tWeYd30Xqle
+o6sTP9SscWel4bre9ju79Y/L13COJTnjusk+KOn7rYePXXd4AAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAABr33NbFeaZM+Kto9Ym0RKeLNjzV5xZK3j51nlyGHB07N2l6t/mNYtMXju8z6Q2Og1pX
+rueOm9+NL81bekT+gOnyZseKYjJkrWbekWnjlk58uXG9cw2611TJbHkmten+cxE+q5rt5uo9m/G1
+f6tqT/4BYzvasX7s7GLvenHehmm9a1702iK/OZcb07H0fPp+FtY74tuee9e/McW+aw6vr7WHszjx
+YMs55raO/evnNqgvKb2rkt3abGK1vlFoZMuxiwRHi5KU5+qeHLYNfou5gpXVmdXYiYmLX5ieUu0d
+cMbejXd5yY4j4uJ9QdHXf1LWitdnFMz6RF4Sy7WDBPGXNjpM+1rRCh1sHQZ2Mfha0xk5iazxPr+6
+G1oa+/2rrTap4lYxzxHIOjxbGHP/AEstL8fTblK160iJtaI58vOXM9S0q9A2dba0ZnHjveMd8cT5
+TysM952+vYsEzM4cdO9MfqC0yZseKYjJkrWZ9OZ4ZImJjmPOHNdS0qYq7e11TLaazMxhis/hbHRt
+vJrdC8fayd+kR/pzPraAXffr3+73o73rxz5vZmKxzMxEfq5Tp2Tbydsa5dm1oplwTalJ9obPamu7
+EYb4cs0wxeO9Ee4Ohm9axEzaIifTz9U1btY4ydJi8897HXvx94Z+nbP8Xo4ssz8Ux5/cGxe9aV71
+7RWPnM8Pa2i9eazExPvDnup5K7PaHHpbWScet4fe854i0sODdtpbG9q62ac1ceKb0iPPj9AdLGbH
+N+5F6zf6efNKbRX1mI+7kI8CnRP8yjb7u3Ed+3n58/Lhn3NzJnjXzZ7Za698MWicccz3gdRMxWJm
+Z4iPciYtETE8xPu5/Hn2djVw6lrTN7zzaZ8p7i9wVpTDWmOea1jiAZRS7vabU0dmcOXFsTaPeuPm
+GH+cdH/c7X/akF77/o1eo7ddPTvkn1iPJV/zjo8f0dr/ALUqXtB2l19+mPBgpmrPPM9+nCvqck48
+VrR1VtZlnFgteI5xCpz5Zz5r5LTzNp5QgHjLTMzvL55a02neQBqwAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAeyw6LvW0d6tufgtPEwryJ4nmEuLJOO8Xr1hLhy2xXi9esPp9LRkpFonmJhP2VfQNj+
+J6bTmeZrHErSHtMWSMlIvHq+h4ckZcdbx6wkAkSgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAO
+X6b07Hs9our32sEzHfjuWtHlMLzLTHoaOWcGPju1mYisestt6DlOkdCybenfaz5smLJs89+vHsdK
+pudOx72jirafBtzitMeVodW84Bymx1jp/UNS9NzSyzsRExMRT3ZdT+O6Z2fx5cdbX4nmcc+cxV0n
+h073e7tefnwl7A5DqO/07qutEYtPN/E2n4Z7nHdl71Wt9P8Ay625jyZopXi81jl1kY6VmZitYmfl
+CUxE+scg53D17pc5qVpqZ4tM8RPhejBvb1endp67GbDmtjnHMRNK8uo7tfpj9iaxPrESDmc+bJ2j
+2sGPDivTVx2i9rXjiZmG9gpbB2hvW3pkpzErmIiPSOGtsanjZaZaT3clZ9f0BS7XWKVts63VdS9o
+rb/T7teYtDBpdG2OqdKmuXNfBj8Tv4a/TDqZpW34qxP3h6DkK9L3adrteJ2stq1w8+Jx5cfJcdo6
+XvoY4pW1pjJHot/cBo5reF0a9rR+HF5wxdn8c16ZS8+mT4ohtb2rbbwxii/drM/F+sM2LFXDirjp
+HFaxxEApeubGvi2cdd3TnLgmP6lY5mJYOk6tJ2Nje1deaUik1pW35nR2rW0cWiJj9YIiKxxEREfo
+Djsl9DexZMFOn5KbV57to4+GJ+bpsGOuh0vHXJXvRhp5xxy2opWLd6Kx3vnw9mImOJjmAc/lx7P8
+Hk3Iie/kt6xHnWj3oeTJfet4Nss6kU/2kcfE6CIiI4iPIiIj0iI+wPJrWfWsfsdyv0x+yQCHcr8o
+/Zw3ai0W6rMcR8NYh3U+T592oiado7RM+U44ly+LRM4P5cfjm86bl7q4B5Z4oAAAAAAAAAAAAAAA
+AAAA5GYiPUHsW49uU4y1j8kMxELeLBhv5skR/EsYzRlp744S8TDP5eP7MxWJ9V7FwzBl8uesffeG
+uNmLYZ9o/ZPu459Iq27vf1Xsfw13vkz1n+WmNzw8fyq98Kn0wz3U+6evwhmt0y1aXBw3fCp9MPfB
+p9MHdS3/AEbqP9yv5aI3vBp9MHg0+mDup9z9G6j64/LRG94NPpg8Gn0wd1Pufo3UfXH5aI3vBp9M
+Hg0+mDup9z9G6j64/LRG94NPpg8Kkflg7qfc/Ruo+uPyv+x9+dXLTnyizpeHM9jKf+l2b8f7TiHT
+R6PW6GJrgrEutg006XHGG07zVIBbSgoOpdX38fWqdP6frY8lpx+JNrzxw2dHP1i+xxua2GmL51tz
+ILYc/wBc7RZOl7mLXw4YyzPxZJ+mvzWexvxj6TfdxRFojH34j5g3RQZ+0GXFodO2Iw1mdvJFLRz+
+FfgDm8fWer7m1nppaeG2PFfu961uOW/qbXUq4suTqGvixxSvNe5bnkFqOZ1ur9b3Md8uDRwzii0x
+HNvOVp0jq1ep4rRavh5sc8XpPsCyGho7872XLNKRGGk93ve8y1tnr+LD1fDoY69+95+K3tALgadd
+uf8AML61q8VivMW+bcAFNn7QYcfVMGjirNr5LcWmfZs7/Uo070x0pOTLf0rHsCwFZTrOHL06+1SJ
++Ce7NZ9eW9rZLZcFL3r3ZtHPAMoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIvn/ba
+PB67gyc8RasQ+gvmP+JWxNOr68RPlFYlT11IvhmJUOJUi+nmssL1r6eeM+Csx68Nh5CY2naXgrVm
+s7SANWAAAAAAAAAAAAAAAAAAAAAAAAZ7UnMx7pRlvHpaURneU+PVZsXlvMfyyRnvE+vKX8Vb3iGE
+bRe0eq5i41rsXlyT/n/LPG1/ypxs048+Yaod5ZfxfFGvx9bRb7w3I2KT7pxkrMeUw0BtGWV/F8Y6
+ivnpE/hYd+PnH7nkr+ZSjJePS0s97+y7i+M6T/qY5j7S3v7sezaK61573d8vVrRnvH5lf1rqU01Z
+xeXNk2O0XtEQ6ml+JtJqbxjiJiZ/Z0vZfouztdOtlxdUz4Itb8NPdc/y5vf8b2v2av8Ah5knJ2fn
+n2tw6x63D5IaZJ3tLnv5c3v+N7X7LDpfTc+h3vH3suzz9fsshI0cn1DFnzdtcddbJ4d41/Of0XWh
+r7mte99vYm9OPefRKelY561HUu/bxIx+H3fbhs7WD+K1cmHvTXv1470esA4+u3O7t9QyXwXyTaJx
+UtEc+Tb6buTs9ktvFaJi2Cs04n1dD0/Qx9O1KYMfxd31tPrLT/yHFGTatXJatdmvFqx6R+oKLc/9
+l6F/98O0Um52bx7fS9bTjYyY/wCHt3qXr68mt0PawbOPLfqmxkrWeZpPpIKnpWru593etq5px08W
+eV3TX2sGjsfxWacnNZ4atuzN67WXNrdRz4Iy2701r6NrS6Rm1pyxn382xXJXu92/sCHZny6baZ9O
+/Kux5Yr1jqWfWnnHXFxzHp3mxi7L5cE2jD1TYpjtPPcj0Wel0vX0tS2DHXmL/jmfW0grce1PTuzs
+5sNLXy384ise6ine1cG3o38PN4s5O9km1fPn5Or6VScOPJr5K+dbTMRMeXCe30nDt7WDPae7OG3M
+REeoNHrWa1dvpmTHM18TLxPzmF8ptzFO/wBZwYprMU1v9Tve0yuQc51jXxYet9NvjpFbWyecx7rL
+qHSv4zJXLizWw5a/mr7pbvTKbu3rZ73tW2C3eiI927aJmkxHlMwDm/Cxat5xzebYNWfEvf65n2We
+j1auzl8HJjnHaY5rzHlMJV6Tjjp+XVtaZjJMzNvdDQ6P/CZ/Fy575piOKRb8oLQAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHj5d/ijhtXqODLx8M1iOX1H2cT/ibo22eiY8uOnM4r82mP
+aEGorvjlW1Ve1il896Rv+Bk7l/wy6StovWJrPMS4mk8cTC76Z1HuRGPJPk81qcG/iq8hrNN2vHVe
+DytotWJieYl65zlAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMeXLXDjm154iGYjflDMRMztCOxsV
+18U3vPo5bc2rbOxNp9GfqfULbNprWfhhoYsc5stcVfxXniHU0uDseKer0XCNP3eatrdd32D/AA+w
+2xdnom0cd63MOqVvZ/WnU6HqYbV7tq4470fqsnpccbViHrLzvaZegN2oAAAAAAAAACPdjvc8efzS
+AEYrETzERykAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAI+rU6npV6h07PrW8
+oy0mvPybkDExvG0sTG8bS/P29pX6d1DNq5KzE47TEc+8I08vR9H7f9mZ3cUdR1K85sccXrHvD5xT
+5THEx6w4mfFOO20vO6nDOO8xK00eoWxTFb+dVzjy1y15pPLmKtrXz3wzzWZc7Np4tzr1cnPpYv4q
+9XQDU196uSIi/lZtRMTHMTzCjas1naXNtS1J2tD0Bq1AAAAAAAAAAAAAAAAAAAAAAAAAABG160jm
+0xEKzc6vWkd3D5z80lMdrztCTHitknasN7Z28etSZvMc/Jzu71DJs3nz4r8mHPmvmtNrzM8sMuhh
+08U5z1dXT6WuPnPOUbecuh7D9Gt1Xr9LWrPhYfjm3tz8lFr62Xc2aYMFZtkvPERD7T2U6BToHS64
+p881/iyT+rp6bFN7b+kOxocVrZItHSF76R5PQdZ3AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAELVi1ZraImJ8uJfNO2PZDJrZ77+hTvYred6R7S+m8IXpXJ
+Wa3iJifKYn3RZsUZa7Shz4K5q9mXwWn/AJZqO37T9h5719zpkefrbH//ABxPctjyTTJWa3j1iXEy
+4rYp2s87nwXw22sy0bWHNfHxxPMfJq0Zqq9qxblKpesWjaW/j2624i0cS2ItFo8piVfWOfVlrXy+
+GZj7Kl8Ef2qV9NH9rcGCt8kesRMJxliZ84mPugtjtHWFW2K9esMg8i0T6TEvWjQAAAAAAAAAAAAA
+AAABGb0j1tEAkNTJ1DFTnjzlp5ep5LxxSOEtcN7eiemnvf0Wl8lMcTNrRDQ2OrUp5Y45lWZM18k8
+2tMsUrVNLEeZcx6Osc7c2TY3MmefitPDVlOUJW61isbQu1rFY2hCTHivny1xYqza9p4iIbGno7HU
+dmuvqY5ve08eUej6j2W7FYOjVrsbPGXamPOfWK/ZZw4LZJ5dFzT6e2WeXRh7Fdj46Tjjc3KxOzeP
+KPph2R5PfZ18dIpXaHdx46469mr0BukAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAARUHXOyWn1eJyVjws/rFq+8/qv+PIj7tL0reNrQ0yY65I7No3h8h6l
+0Hd6RlmM2ObUj89fRp0nn0fZs2vj2Mc48tK3pPrEw5nq3YrX2Ztl058LJ7V/K5mbQ2jnTm42o4Za
+PFi5/s4ajNRtbnQ97p1pjLim0R62rHk1aTy5t6zWdrRs5F6WpO1o2Z6MsRFo4mOWKjNRFKGXv8PS
+0eUd37Pf4OYjml5mf1ZKM1fRHaInqitWJ6w0pwZ6+cxWYQm1o9aWWEoy07uso5w1loxePeJj7niV
++qGzalbesRLHOHH9EMdzHux8vHuxRas+kwkThp7RwhOH5WljuZ92Pl59JTGKcc/XKM0mPzydxJ8t
+b3ZxrTE/XKM9765O4sfLW9208m9Y9ZhqT3vqlCY+baNPPrLaNJPrLd8Sn1QhbZx19+fs0piEZjht
+Gmj1lvGkj1lt23qRHlE8sNt+/tWGCUJSRgpCWulpCd9vLb83DBe1retpl7KMpq0rHSE9aVr0hCUJ
+TlCW6RCUZSiJveK0ibWn0iF70vsb1Pqfxdzwae/f8klKWvO1Y3S0x2vO1Y3c7PnaKxHNp9Ih0XQe
+xO91e0ZNis4NeJ8+95TP2dz0XsX0/pdYtekZ8vrzfz4n9HR1iKxxHlEOhh0Xrd1MHD/XJ/wrOj9n
+9Po2GKa2KItEcTeY85WsDx0K1isbQ6laxWNqwkAy2AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHj0BjvSuSk1vWJrPrEqfd7MaO55xXw5/wCTyXbz
+zaXx0vG1o3R5MVMkbXjdxG32S2cHetgtW9I9vdWX0tnB/VwXrHzmH0r1Qvgx5K8ZKRMfJQycNx25
+0nZzM3CcdudJ2fN6TDNExEebs9joWpsR/Tiv2aGbstSK/wCjeef+ZQycNy16c3Oy8Jz18u0uclCV
+zk7ObeOJmLRaPlDQydN3KTx4F5+0KttPlp5qypX0manmrLTlCWa+DLT8eO1fvDBaePVp2Zjqi7Mx
+1RlGXs2h5MhCEoSnKEstkZQlKUZbMoSjKUzDHNo+bLZ5KEpfi/DEyy00dvN/S18l/tDaKzPRvFZn
+o1pQla4OzvUti0VjXvTn3tCzxdgt+0xOXNjivy901cGS3SqemmzX8tZcpKH4p4r5z8ofQ9bsBp0i
+s5sl7W94ifJea3Z7p2rWtaa2OZj3mPNZpoMk+bkuY+GZLebk+W6vQuo7l61x6uSIt6WmPJ0fTv8A
+DvLe0T1DNEV+VJ830GtK1jitYiI9IhJcpocdfNzXsfDcVeduam6d2Z6d02lYphre8el7xzK4jyjy
+IerdaxWNqwvVpWkbVjYeg2bgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPDiPk9AYL62G/4qVn7wwz0zVn1w4/+luDWaVnrDScdJ6w
+rcnQtLJ64oj7Na/ZbSv9UfZdcCOdPinrWEVtLht1rChnshoz+a/7oz2N0Z/Pk/d0HBw1+Vw/TDX5
+LB9EOe/kvQ+rJ+5HYzQj82R0IfK4vpg+SwfRCip2R6fSfS0/dtYugdPxR5a9Lf8AyhZ8T8jj9G8Y
+MdelYSV02KvSsNKvSNGs+Wti/wCls49fFij4MdY+0Mo3itY6QkilY6QcR8noNmwAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD//Z
 
---_000_DDB0C57E45663A458C5CACB7B5688BC21D6C8818SESTOEX04enease_
-Content-Type: text/html; charset="utf-8"
+--_006_1FFB62CE8AEB0D4298B51122D8903E96219BB194IRSMSX104gercor_
+Content-Type: image/jpeg; name="image002.jpg"
+Content-Description: image002.jpg
+Content-Disposition: inline; filename="image002.jpg"; size=10212;
+	creation-date="Mon, 30 Jun 2014 16:25:45 GMT";
+	modification-date="Mon, 30 Jun 2014 16:25:45 GMT"
+Content-ID: <image002.jpg@01CF9499.15C43100>
 Content-Transfer-Encoding: base64
 
-PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
-bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
-YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
-cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
-VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
-Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
-ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTQgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
-PjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
-V2luZ2RpbmdzOw0KCXBhbm9zZS0xOjUgMCAwIDAgMCAwIDAgMCAwIDA7fQ0KQGZvbnQtZmFjZQ0K
-CXtmb250LWZhbWlseTpXaW5nZGluZ3M7DQoJcGFub3NlLTE6NSAwIDAgMCAwIDAgMCAwIDAgMDt9
-DQpAZm9udC1mYWNlDQoJe2ZvbnQtZmFtaWx5OkNhbGlicmk7DQoJcGFub3NlLTE6MiAxNSA1IDIg
-MiAyIDQgMyAyIDQ7fQ0KQGZvbnQtZmFjZQ0KCXtmb250LWZhbWlseTpUYWhvbWE7DQoJcGFub3Nl
-LTE6MiAxMSA2IDQgMyA1IDQgNCAyIDQ7fQ0KLyogU3R5bGUgRGVmaW5pdGlvbnMgKi8NCnAuTXNv
-Tm9ybWFsLCBsaS5Nc29Ob3JtYWwsIGRpdi5Nc29Ob3JtYWwNCgl7bWFyZ2luOjBjbTsNCgltYXJn
-aW4tYm90dG9tOi4wMDAxcHQ7DQoJZm9udC1zaXplOjEyLjBwdDsNCglmb250LWZhbWlseToiVGlt
-ZXMgTmV3IFJvbWFuIiwic2VyaWYiO30NCmE6bGluaywgc3Bhbi5Nc29IeXBlcmxpbmsNCgl7bXNv
-LXN0eWxlLXByaW9yaXR5Ojk5Ow0KCWNvbG9yOiMwNTYzQzE7DQoJdGV4dC1kZWNvcmF0aW9uOnVu
-ZGVybGluZTt9DQphOnZpc2l0ZWQsIHNwYW4uTXNvSHlwZXJsaW5rRm9sbG93ZWQNCgl7bXNvLXN0
-eWxlLXByaW9yaXR5Ojk5Ow0KCWNvbG9yOiM5NTRGNzI7DQoJdGV4dC1kZWNvcmF0aW9uOnVuZGVy
-bGluZTt9DQpwLk1zb0FjZXRhdGUsIGxpLk1zb0FjZXRhdGUsIGRpdi5Nc29BY2V0YXRlDQoJe21z
-by1zdHlsZS1wcmlvcml0eTo5OTsNCgltc28tc3R5bGUtbGluazoiQmFsbG9vbiBUZXh0IENoYXIi
-Ow0KCW1hcmdpbjowY207DQoJbWFyZ2luLWJvdHRvbTouMDAwMXB0Ow0KCWZvbnQtc2l6ZTo4LjBw
-dDsNCglmb250LWZhbWlseToiVGFob21hIiwic2Fucy1zZXJpZiI7fQ0KcC5Nc29MaXN0UGFyYWdy
-YXBoLCBsaS5Nc29MaXN0UGFyYWdyYXBoLCBkaXYuTXNvTGlzdFBhcmFncmFwaA0KCXttc28tc3R5
-bGUtcHJpb3JpdHk6MzQ7DQoJbWFyZ2luLXRvcDowY207DQoJbWFyZ2luLXJpZ2h0OjBjbTsNCglt
-YXJnaW4tYm90dG9tOjBjbTsNCgltYXJnaW4tbGVmdDozNi4wcHQ7DQoJbWFyZ2luLWJvdHRvbTou
-MDAwMXB0Ow0KCWZvbnQtc2l6ZToxMi4wcHQ7DQoJZm9udC1mYW1pbHk6IlRpbWVzIE5ldyBSb21h
-biIsInNlcmlmIjt9DQpzcGFuLkJhbGxvb25UZXh0Q2hhcg0KCXttc28tc3R5bGUtbmFtZToiQmFs
-bG9vbiBUZXh0IENoYXIiOw0KCW1zby1zdHlsZS1wcmlvcml0eTo5OTsNCgltc28tc3R5bGUtbGlu
-azoiQmFsbG9vbiBUZXh0IjsNCglmb250LWZhbWlseToiVGFob21hIiwic2Fucy1zZXJpZiI7fQ0K
-c3Bhbi5FbWFpbFN0eWxlMTkNCgl7bXNvLXN0eWxlLXR5cGU6cGVyc29uYWw7DQoJZm9udC1mYW1p
-bHk6IkNhbGlicmkiLCJzYW5zLXNlcmlmIjsNCgljb2xvcjojMUY0OTdEO30NCnNwYW4uRW1haWxT
-dHlsZTIwDQoJe21zby1zdHlsZS10eXBlOnBlcnNvbmFsOw0KCWZvbnQtZmFtaWx5OiJDYWxpYnJp
-Iiwic2Fucy1zZXJpZiI7DQoJY29sb3I6IzFGNDk3RDt9DQpzcGFuLkVtYWlsU3R5bGUyMQ0KCXtt
-c28tc3R5bGUtdHlwZTpwZXJzb25hbDsNCglmb250LWZhbWlseToiQ2FsaWJyaSIsInNhbnMtc2Vy
-aWYiOw0KCWNvbG9yOiMxRjQ5N0Q7fQ0Kc3Bhbi5FbWFpbFN0eWxlMjINCgl7bXNvLXN0eWxlLXR5
-cGU6cGVyc29uYWw7DQoJZm9udC1mYW1pbHk6IkNhbGlicmkiLCJzYW5zLXNlcmlmIjsNCgljb2xv
-cjojMUY0OTdEO30NCnNwYW4uRW1haWxTdHlsZTIzDQoJe21zby1zdHlsZS10eXBlOnBlcnNvbmFs
-Ow0KCWZvbnQtZmFtaWx5OiJDYWxpYnJpIiwic2Fucy1zZXJpZiI7DQoJY29sb3I6IzFGNDk3RDt9
-DQpzcGFuLkVtYWlsU3R5bGUyNA0KCXttc28tc3R5bGUtdHlwZTpwZXJzb25hbDsNCglmb250LWZh
-bWlseToiQ2FsaWJyaSIsInNhbnMtc2VyaWYiOw0KCWNvbG9yOiMxRjQ5N0Q7fQ0Kc3Bhbi5FbWFp
-bFN0eWxlMjUNCgl7bXNvLXN0eWxlLXR5cGU6cGVyc29uYWwtcmVwbHk7DQoJZm9udC1mYW1pbHk6
-IkNhbGlicmkiLCJzYW5zLXNlcmlmIjsNCgljb2xvcjojMUY0OTdEO30NCi5Nc29DaHBEZWZhdWx0
-DQoJe21zby1zdHlsZS10eXBlOmV4cG9ydC1vbmx5Ow0KCWZvbnQtc2l6ZToxMC4wcHQ7fQ0KQHBh
-Z2UgV29yZFNlY3Rpb24xDQoJe3NpemU6NjEyLjBwdCA3OTIuMHB0Ow0KCW1hcmdpbjo3MC44NXB0
-IDcwLjg1cHQgNzAuODVwdCA3MC44NXB0O30NCmRpdi5Xb3JkU2VjdGlvbjENCgl7cGFnZTpXb3Jk
-U2VjdGlvbjE7fQ0KLyogTGlzdCBEZWZpbml0aW9ucyAqLw0KQGxpc3QgbDANCgl7bXNvLWxpc3Qt
-aWQ6NzMzNTk0OTg7DQoJbXNvLWxpc3QtdHlwZTpoeWJyaWQ7DQoJbXNvLWxpc3QtdGVtcGxhdGUt
-aWRzOi00NzI3NDEyNTAgMTQ1MjU5NjY0NiA2ODY4MTczMSA2ODY4MTczMyA2ODY4MTcyOSA2ODY4
-MTczMSA2ODY4MTczMyA2ODY4MTcyOSA2ODY4MTczMSA2ODY4MTczMzt9DQpAbGlzdCBsMDpsZXZl
-bDENCgl7bXNvLWxldmVsLXN0YXJ0LWF0OjA7DQoJbXNvLWxldmVsLW51bWJlci1mb3JtYXQ6YnVs
-bGV0Ow0KCW1zby1sZXZlbC10ZXh0Oi07DQoJbXNvLWxldmVsLXRhYi1zdG9wOm5vbmU7DQoJbXNv
-LWxldmVsLW51bWJlci1wb3NpdGlvbjpsZWZ0Ow0KCW1hcmdpbi1sZWZ0OjUzLjI1cHQ7DQoJdGV4
-dC1pbmRlbnQ6LTE4LjBwdDsNCglmb250LWZhbWlseToiQ2FsaWJyaSIsInNhbnMtc2VyaWYiOw0K
-CW1zby1mYXJlYXN0LWZvbnQtZmFtaWx5OkNhbGlicmk7DQoJbXNvLWJpZGktZm9udC1mYW1pbHk6
-IlRpbWVzIE5ldyBSb21hbiI7fQ0KQGxpc3QgbDA6bGV2ZWwyDQoJe21zby1sZXZlbC1udW1iZXIt
-Zm9ybWF0OmJ1bGxldDsNCgltc28tbGV2ZWwtdGV4dDpvOw0KCW1zby1sZXZlbC10YWItc3RvcDpu
-b25lOw0KCW1zby1sZXZlbC1udW1iZXItcG9zaXRpb246bGVmdDsNCgltYXJnaW4tbGVmdDo4OS4y
-NXB0Ow0KCXRleHQtaW5kZW50Oi0xOC4wcHQ7DQoJZm9udC1mYW1pbHk6IkNvdXJpZXIgTmV3Ijt9
-DQpAbGlzdCBsMDpsZXZlbDMNCgl7bXNvLWxldmVsLW51bWJlci1mb3JtYXQ6YnVsbGV0Ow0KCW1z
-by1sZXZlbC10ZXh0Ou+CpzsNCgltc28tbGV2ZWwtdGFiLXN0b3A6bm9uZTsNCgltc28tbGV2ZWwt
-bnVtYmVyLXBvc2l0aW9uOmxlZnQ7DQoJbWFyZ2luLWxlZnQ6MTI1LjI1cHQ7DQoJdGV4dC1pbmRl
-bnQ6LTE4LjBwdDsNCglmb250LWZhbWlseTpXaW5nZGluZ3M7fQ0KQGxpc3QgbDA6bGV2ZWw0DQoJ
-e21zby1sZXZlbC1udW1iZXItZm9ybWF0OmJ1bGxldDsNCgltc28tbGV2ZWwtdGV4dDrvgrc7DQoJ
-bXNvLWxldmVsLXRhYi1zdG9wOm5vbmU7DQoJbXNvLWxldmVsLW51bWJlci1wb3NpdGlvbjpsZWZ0
-Ow0KCW1hcmdpbi1sZWZ0OjE2MS4yNXB0Ow0KCXRleHQtaW5kZW50Oi0xOC4wcHQ7DQoJZm9udC1m
-YW1pbHk6U3ltYm9sO30NCkBsaXN0IGwwOmxldmVsNQ0KCXttc28tbGV2ZWwtbnVtYmVyLWZvcm1h
-dDpidWxsZXQ7DQoJbXNvLWxldmVsLXRleHQ6bzsNCgltc28tbGV2ZWwtdGFiLXN0b3A6bm9uZTsN
-Cgltc28tbGV2ZWwtbnVtYmVyLXBvc2l0aW9uOmxlZnQ7DQoJbWFyZ2luLWxlZnQ6MTk3LjI1cHQ7
-DQoJdGV4dC1pbmRlbnQ6LTE4LjBwdDsNCglmb250LWZhbWlseToiQ291cmllciBOZXciO30NCkBs
-aXN0IGwwOmxldmVsNg0KCXttc28tbGV2ZWwtbnVtYmVyLWZvcm1hdDpidWxsZXQ7DQoJbXNvLWxl
-dmVsLXRleHQ674KnOw0KCW1zby1sZXZlbC10YWItc3RvcDpub25lOw0KCW1zby1sZXZlbC1udW1i
-ZXItcG9zaXRpb246bGVmdDsNCgltYXJnaW4tbGVmdDoyMzMuMjVwdDsNCgl0ZXh0LWluZGVudDot
-MTguMHB0Ow0KCWZvbnQtZmFtaWx5OldpbmdkaW5nczt9DQpAbGlzdCBsMDpsZXZlbDcNCgl7bXNv
-LWxldmVsLW51bWJlci1mb3JtYXQ6YnVsbGV0Ow0KCW1zby1sZXZlbC10ZXh0Ou+CtzsNCgltc28t
-bGV2ZWwtdGFiLXN0b3A6bm9uZTsNCgltc28tbGV2ZWwtbnVtYmVyLXBvc2l0aW9uOmxlZnQ7DQoJ
-bWFyZ2luLWxlZnQ6MjY5LjI1cHQ7DQoJdGV4dC1pbmRlbnQ6LTE4LjBwdDsNCglmb250LWZhbWls
-eTpTeW1ib2w7fQ0KQGxpc3QgbDA6bGV2ZWw4DQoJe21zby1sZXZlbC1udW1iZXItZm9ybWF0OmJ1
-bGxldDsNCgltc28tbGV2ZWwtdGV4dDpvOw0KCW1zby1sZXZlbC10YWItc3RvcDpub25lOw0KCW1z
-by1sZXZlbC1udW1iZXItcG9zaXRpb246bGVmdDsNCgltYXJnaW4tbGVmdDozMDUuMjVwdDsNCgl0
-ZXh0LWluZGVudDotMTguMHB0Ow0KCWZvbnQtZmFtaWx5OiJDb3VyaWVyIE5ldyI7fQ0KQGxpc3Qg
-bDA6bGV2ZWw5DQoJe21zby1sZXZlbC1udW1iZXItZm9ybWF0OmJ1bGxldDsNCgltc28tbGV2ZWwt
-dGV4dDrvgqc7DQoJbXNvLWxldmVsLXRhYi1zdG9wOm5vbmU7DQoJbXNvLWxldmVsLW51bWJlci1w
-b3NpdGlvbjpsZWZ0Ow0KCW1hcmdpbi1sZWZ0OjM0MS4yNXB0Ow0KCXRleHQtaW5kZW50Oi0xOC4w
-cHQ7DQoJZm9udC1mYW1pbHk6V2luZ2RpbmdzO30NCm9sDQoJe21hcmdpbi1ib3R0b206MGNtO30N
-CnVsDQoJe21hcmdpbi1ib3R0b206MGNtO30NCi0tPjwvc3R5bGU+PCEtLVtpZiBndGUgbXNvIDld
-Pjx4bWw+DQo8bzpzaGFwZWRlZmF1bHRzIHY6ZXh0PSJlZGl0IiBzcGlkbWF4PSIxMDI2IiAvPg0K
-PC94bWw+PCFbZW5kaWZdLS0+PCEtLVtpZiBndGUgbXNvIDldPjx4bWw+DQo8bzpzaGFwZWxheW91
-dCB2OmV4dD0iZWRpdCI+DQo8bzppZG1hcCB2OmV4dD0iZWRpdCIgZGF0YT0iMSIgLz4NCjwvbzpz
-aGFwZWxheW91dD48L3htbD48IVtlbmRpZl0tLT4NCjwvaGVhZD4NCjxib2R5IGxhbmc9IlJPIiBs
-aW5rPSIjMDU2M0MxIiB2bGluaz0iIzk1NEY3MiI+DQo8ZGl2IGNsYXNzPSJXb3JkU2VjdGlvbjEi
-Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMiIHN0eWxlPSJmb250LXNp
-emU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssJnF1b3Q7c2Fucy1zZXJp
-ZiZxdW90Oztjb2xvcjojMUY0OTdEIj5IZWxsbyBKZWZmLDxvOnA+PC9vOnA+PC9zcGFuPjwvcD4N
-CjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIGxhbmc9IkVOLVVTIiBzdHlsZT0iZm9udC1zaXpl
-OjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LCZxdW90O3NhbnMtc2VyaWYm
-cXVvdDs7Y29sb3I6IzFGNDk3RCI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0KPHAgY2xh
-c3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMiIHN0eWxlPSJmb250LXNpemU6MTEuMHB0
-O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssJnF1b3Q7c2Fucy1zZXJpZiZxdW90Oztj
-b2xvcjojMUY0OTdEIj5UaGUgYXZhaWxhYmxlIGxheWVyIGlzIGEgd29yayBpbiBwcm9ncmVzcy48
-bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBsYW5nPSJF
-Ti1VUyIgc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZx
-dW90OywmcXVvdDtzYW5zLXNlcmlmJnF1b3Q7O2NvbG9yOiMxRjQ5N0QiPkZvciB0aGUgbW9tZW50
-IHdlIGhhdmUgZG9uZSBhbiBpbnRlcm5hbCBtYXBwaW5nIG9mIHRoZSBwYWNrYWdlcyBuZWVkZWQg
-aW5zaWRlIG1ldGEtY2dsIGxheWVyLiBUaGUgbWFwcGluZyBpcyBkb25lIGFzIGZvbGxvd2luZzo8
-L3NwYW4+PHNwYW4gbGFuZz0iRU4tVVMiPjxicj4NCkEuIFJlcXVpcmVtZW50IHRoYXQgbWFwIGFn
-YWluc3QgcGFja2FnZS9wYWNrYWdlcyB3aXRoIHJlY2lwZXMgdGhhdCBhbHJlYWR5IGV4aXN0cyBp
-biBZb2N0bw0KPGJyPg0KJm5ic3A7Jm5ic3A7QTEuIFJlcXVpcmVtZW50IHRoYXQgbWFwIGFnYWlu
-c3QgcGFja2FnZS9wYWNrYWdlcyB3aXRoIHJlY2lwZXMgYWxyZWFkeSBleGlzdGluZyBpbiBtZXRh
-LWVuZWENCjxicj4NCiZuYnNwOyZuYnNwO0EyLiBSZXF1aXJlbWVudCB0aGF0IG1hcCBhZ2FpbnN0
-IHBhY2thZ2UvcGFja2FnZXMgd2l0aCByZWNpcGVzIHRoYXQgZXhpc3RzIGluIFlvY3RvIChidXQg
-bm90IGluIG1ldGEtZW5lYSkNCjxicj4NCkIuIFJlcXVpcmVtZW50IHRoYXQgbWFwIGFnYWluc3Qg
-cGFja2FnZS9wYWNrYWdlcyB3aXRob3V0IGFueSByZWNpcGUgPGJyPg0KQy4gUmVxdWlyZW1lbnQg
-ZG9lcyBub3QgZGlyZWN0bHkgbWFwIGFnYWluc3QgcGFja2FnZS9wYWNrYWdlcyBhbmQgbmVlZHMg
-c29tZSBpbnZlc3RpZ2F0aW9uLg0KPGJyPg0KRC4gUmVxdWlyZW1lbnQgdGhhdCBubyBzb2x1dGlv
-biBoYXZlIGJlZW4gZm91bmQgYWZ0ZXIgYSBtb3JlIGRldGFpbGVkIGludmVzdGlnYXRpb24uPG86
-cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4t
-VVMiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxz
-cGFuIGxhbmc9IkVOLVVTIiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVv
-dDtDYWxpYnJpJnF1b3Q7LCZxdW90O3NhbnMtc2VyaWYmcXVvdDs7Y29sb3I6IzFGNDk3RCI+V2hl
-biB0aGUgcmVsZWFzZSB3YXMgbWFkZSBhdmFpbGFibGUgb24gdGhlIHB1YmxpYyByZXBvc2l0b3J5
-LCB0aGUgcGFja2FnZXMgZnJvbSB0aGUgQTEgYW5kIEEyIHdlcmUgaW50ZWdyYXRlZCwgYSBidW5j
-aCBvZiB0aGVtIHdpdGggY29tcGlsYXRpb24NCiBlcnJvcnM6PG86cD48L286cD48L3NwYW4+PC9w
-Pg0KPHAgY2xhc3M9Ik1zb0xpc3RQYXJhZ3JhcGgiIHN0eWxlPSJtYXJnaW4tbGVmdDo1My4yNXB0
-O3RleHQtaW5kZW50Oi0xOC4wcHQ7bXNvLWxpc3Q6bDAgbGV2ZWwxIGxmbzEiPg0KPCFbaWYgIXN1
-cHBvcnRMaXN0c10+PHNwYW4gbGFuZz0iRU4tVVMiIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2Zv
-bnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssJnF1b3Q7c2Fucy1zZXJpZiZxdW90Oztjb2xv
-cjojMUY0OTdEIj48c3BhbiBzdHlsZT0ibXNvLWxpc3Q6SWdub3JlIj4tPHNwYW4gc3R5bGU9ImZv
-bnQ6Ny4wcHQgJnF1b3Q7VGltZXMgTmV3IFJvbWFuJnF1b3Q7Ij4mbmJzcDsmbmJzcDsmbmJzcDsm
-bmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsNCjwvc3Bhbj48L3NwYW4+PC9zcGFu
-PjwhW2VuZGlmXT48c3BhbiBsYW5nPSJFTi1VUyI+bGtzY3RwLXRvb2xzPC9zcGFuPjxzcGFuIGxh
-bmc9IkVOLVVTIiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxp
-YnJpJnF1b3Q7LCZxdW90O3NhbnMtc2VyaWYmcXVvdDs7Y29sb3I6IzFGNDk3RCI+PG86cD48L286
-cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb0xpc3RQYXJhZ3JhcGgiIHN0eWxlPSJtYXJnaW4t
-bGVmdDo1My4yNXB0O3RleHQtaW5kZW50Oi0xOC4wcHQ7bXNvLWxpc3Q6bDAgbGV2ZWwxIGxmbzEi
-Pg0KPCFbaWYgIXN1cHBvcnRMaXN0c10+PHNwYW4gbGFuZz0iRU4tVVMiIHN0eWxlPSJmb250LXNp
-emU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssJnF1b3Q7c2Fucy1zZXJp
-ZiZxdW90Oztjb2xvcjojMUY0OTdEIj48c3BhbiBzdHlsZT0ibXNvLWxpc3Q6SWdub3JlIj4tPHNw
-YW4gc3R5bGU9ImZvbnQ6Ny4wcHQgJnF1b3Q7VGltZXMgTmV3IFJvbWFuJnF1b3Q7Ij4mbmJzcDsm
-bmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsmbmJzcDsNCjwvc3Bhbj48
-L3NwYW4+PC9zcGFuPjwhW2VuZGlmXT48c3BhbiBsYW5nPSJFTi1VUyI+b3BlbmFpczwvc3Bhbj48
-c3BhbiBsYW5nPSJFTi1VUyIgc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1
-b3Q7Q2FsaWJyaSZxdW90OywmcXVvdDtzYW5zLXNlcmlmJnF1b3Q7O2NvbG9yOiMxRjQ5N0QiPjxv
-OnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29MaXN0UGFyYWdyYXBoIiBzdHlsZT0i
-bWFyZ2luLWxlZnQ6NTMuMjVwdDt0ZXh0LWluZGVudDotMTguMHB0O21zby1saXN0OmwwIGxldmVs
-MSBsZm8xIj4NCjwhW2lmICFzdXBwb3J0TGlzdHNdPjxzcGFuIGxhbmc9IkVOLVVTIiBzdHlsZT0i
-Zm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LCZxdW90O3Nh
-bnMtc2VyaWYmcXVvdDs7Y29sb3I6IzFGNDk3RCI+PHNwYW4gc3R5bGU9Im1zby1saXN0Oklnbm9y
-ZSI+LTxzcGFuIHN0eWxlPSJmb250OjcuMHB0ICZxdW90O1RpbWVzIE5ldyBSb21hbiZxdW90OyI+
-Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7DQo8
-L3NwYW4+PC9zcGFuPjwvc3Bhbj48IVtlbmRpZl0+PHNwYW4gbGFuZz0iRU4tVVMiPnBhY2VtYWtl
-cjwvc3Bhbj48c3BhbiBsYW5nPSJFTi1VUyIgc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1m
-YW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OywmcXVvdDtzYW5zLXNlcmlmJnF1b3Q7O2NvbG9yOiMx
-RjQ5N0QiPjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29MaXN0UGFyYWdyYXBo
-IiBzdHlsZT0ibWFyZ2luLWxlZnQ6NTMuMjVwdDt0ZXh0LWluZGVudDotMTguMHB0O21zby1saXN0
-OmwwIGxldmVsMSBsZm8xIj4NCjwhW2lmICFzdXBwb3J0TGlzdHNdPjxzcGFuIGxhbmc9IkVOLVVT
-IiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7
-LCZxdW90O3NhbnMtc2VyaWYmcXVvdDs7Y29sb3I6IzFGNDk3RCI+PHNwYW4gc3R5bGU9Im1zby1s
-aXN0Oklnbm9yZSI+LTxzcGFuIHN0eWxlPSJmb250OjcuMHB0ICZxdW90O1RpbWVzIE5ldyBSb21h
-biZxdW90OyI+Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7
-Jm5ic3A7DQo8L3NwYW4+PC9zcGFuPjwvc3Bhbj48IVtlbmRpZl0+PHNwYW4gbGFuZz0iRU4tVVMi
-Pm9wZW5ocGk8L3NwYW4+PHNwYW4gbGFuZz0iRU4tVVMiIHN0eWxlPSJmb250LXNpemU6MTEuMHB0
-O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssJnF1b3Q7c2Fucy1zZXJpZiZxdW90Oztj
-b2xvcjojMUY0OTdEIj48bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTGlzdFBh
-cmFncmFwaCIgc3R5bGU9Im1hcmdpbi1sZWZ0OjUzLjI1cHQ7dGV4dC1pbmRlbnQ6LTE4LjBwdDtt
-c28tbGlzdDpsMCBsZXZlbDEgbGZvMSI+DQo8IVtpZiAhc3VwcG9ydExpc3RzXT48c3BhbiBsYW5n
-PSJFTi1VUyIgc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJy
-aSZxdW90OywmcXVvdDtzYW5zLXNlcmlmJnF1b3Q7O2NvbG9yOiMxRjQ5N0QiPjxzcGFuIHN0eWxl
-PSJtc28tbGlzdDpJZ25vcmUiPi08c3BhbiBzdHlsZT0iZm9udDo3LjBwdCAmcXVvdDtUaW1lcyBO
-ZXcgUm9tYW4mcXVvdDsiPiZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNw
-OyZuYnNwOyZuYnNwOw0KPC9zcGFuPjwvc3Bhbj48L3NwYW4+PCFbZW5kaWZdPjxzcGFuIGxhbmc9
-IkVOLVVTIj5vcGVuLWlzY3NpLXVzZXI8L3NwYW4+PHNwYW4gbGFuZz0iRU4tVVMiIHN0eWxlPSJm
-b250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssJnF1b3Q7c2Fu
-cy1zZXJpZiZxdW90Oztjb2xvcjojMUY0OTdEIj48bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBj
-bGFzcz0iTXNvTGlzdFBhcmFncmFwaCIgc3R5bGU9Im1hcmdpbi1sZWZ0OjUzLjI1cHQ7dGV4dC1p
-bmRlbnQ6LTE4LjBwdDttc28tbGlzdDpsMCBsZXZlbDEgbGZvMSI+DQo8IVtpZiAhc3VwcG9ydExp
-c3RzXT48c3BhbiBsYW5nPSJFTi1VUyIgc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1p
-bHk6JnF1b3Q7Q2FsaWJyaSZxdW90OywmcXVvdDtzYW5zLXNlcmlmJnF1b3Q7O2NvbG9yOiMxRjQ5
-N0QiPjxzcGFuIHN0eWxlPSJtc28tbGlzdDpJZ25vcmUiPi08c3BhbiBzdHlsZT0iZm9udDo3LjBw
-dCAmcXVvdDtUaW1lcyBOZXcgUm9tYW4mcXVvdDsiPiZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZu
-YnNwOyZuYnNwOyZuYnNwOyZuYnNwOyZuYnNwOw0KPC9zcGFuPjwvc3Bhbj48L3NwYW4+PCFbZW5k
-aWZdPjxzcGFuIGxhbmc9IkVOLVVTIj5vcGVuLWlzY3NpLWtlcm5lbDwvc3Bhbj48c3BhbiBsYW5n
-PSJFTi1VUyIgc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJy
-aSZxdW90OywmcXVvdDtzYW5zLXNlcmlmJnF1b3Q7O2NvbG9yOiMxRjQ5N0QiPjxvOnA+PC9vOnA+
-PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29MaXN0UGFyYWdyYXBoIiBzdHlsZT0ibWFyZ2luLWxl
-ZnQ6NTMuMjVwdDt0ZXh0LWluZGVudDotMTguMHB0O21zby1saXN0OmwwIGxldmVsMSBsZm8xIj4N
-CjwhW2lmICFzdXBwb3J0TGlzdHNdPjxzcGFuIGxhbmc9IkVOLVVTIiBzdHlsZT0iZm9udC1zaXpl
-OjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LCZxdW90O3NhbnMtc2VyaWYm
-cXVvdDs7Y29sb3I6IzFGNDk3RCI+PHNwYW4gc3R5bGU9Im1zby1saXN0Oklnbm9yZSI+LTxzcGFu
-IHN0eWxlPSJmb250OjcuMHB0ICZxdW90O1RpbWVzIE5ldyBSb21hbiZxdW90OyI+Jm5ic3A7Jm5i
-c3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7DQo8L3NwYW4+PC9z
-cGFuPjwvc3Bhbj48IVtlbmRpZl0+PHNwYW4gbGFuZz0iRU4tVVMiPmxpYmNhcC1uZzwvc3Bhbj48
-c3BhbiBsYW5nPSJFTi1VUyIgc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1
-b3Q7Q2FsaWJyaSZxdW90OywmcXVvdDtzYW5zLXNlcmlmJnF1b3Q7O2NvbG9yOiMxRjQ5N0QiPjxv
-OnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29MaXN0UGFyYWdyYXBoIiBzdHlsZT0i
-bWFyZ2luLWxlZnQ6NTMuMjVwdDt0ZXh0LWluZGVudDotMTguMHB0O21zby1saXN0OmwwIGxldmVs
-MSBsZm8xIj4NCjwhW2lmICFzdXBwb3J0TGlzdHNdPjxzcGFuIGxhbmc9IkVOLVVTIiBzdHlsZT0i
-Zm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LCZxdW90O3Nh
-bnMtc2VyaWYmcXVvdDs7Y29sb3I6IzFGNDk3RCI+PHNwYW4gc3R5bGU9Im1zby1saXN0Oklnbm9y
-ZSI+LTxzcGFuIHN0eWxlPSJmb250OjcuMHB0ICZxdW90O1RpbWVzIE5ldyBSb21hbiZxdW90OyI+
-Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7DQo8
-L3NwYW4+PC9zcGFuPjwvc3Bhbj48IVtlbmRpZl0+PHNwYW4gbGFuZz0iRU4tVVMiPmNsdXN0ZXIt
-Z2x1ZTwvc3Bhbj48c3BhbiBsYW5nPSJFTi1VUyIgc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9u
-dC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OywmcXVvdDtzYW5zLXNlcmlmJnF1b3Q7O2NvbG9y
-OiMxRjQ5N0QiPjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29MaXN0UGFyYWdy
-YXBoIiBzdHlsZT0ibWFyZ2luLWxlZnQ6NTMuMjVwdDt0ZXh0LWluZGVudDotMTguMHB0O21zby1s
-aXN0OmwwIGxldmVsMSBsZm8xIj4NCjwhW2lmICFzdXBwb3J0TGlzdHNdPjxzcGFuIGxhbmc9IkVO
-LVVTIiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1
-b3Q7LCZxdW90O3NhbnMtc2VyaWYmcXVvdDs7Y29sb3I6IzFGNDk3RCI+PHNwYW4gc3R5bGU9Im1z
-by1saXN0Oklnbm9yZSI+LTxzcGFuIHN0eWxlPSJmb250OjcuMHB0ICZxdW90O1RpbWVzIE5ldyBS
-b21hbiZxdW90OyI+Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5ic3A7Jm5i
-c3A7Jm5ic3A7DQo8L3NwYW4+PC9zcGFuPjwvc3Bhbj48IVtlbmRpZl0+PHNwYW4gbGFuZz0iRU4t
-VVMiPmNsdXN0ZXItcmVzb3VyY2UtYWdlbnRzPC9zcGFuPjxzcGFuIGxhbmc9IkVOLVVTIiBzdHls
-ZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LCZxdW90
-O3NhbnMtc2VyaWYmcXVvdDs7Y29sb3I6IzFGNDk3RCI+PG86cD48L286cD48L3NwYW4+PC9wPg0K
-PHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMiIHN0eWxlPSJmb250LXNpemU6
-MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssJnF1b3Q7c2Fucy1zZXJpZiZx
-dW90Oztjb2xvcjojMUY0OTdEIj5UaGUgYWN0aXZpdHkgb24gdGhlIG1ldGEtY2dsIHdhcyByZXN1
-bWVkIHRvZGF5IGFuZCB0aG9zZSBidWlsZCBhbmQgaW50ZWdyYXRpb24gZXJyb3JzIHdpbGwgYmUg
-ZGVhbHQgbmV4dC48bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48
-c3BhbiBsYW5nPSJFTi1VUyIgc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1
-b3Q7Q2FsaWJyaSZxdW90OywmcXVvdDtzYW5zLXNlcmlmJnF1b3Q7O2NvbG9yOiMxRjQ5N0QiPjxv
-OnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIGxh
-bmc9IkVOLVVTIiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxp
-YnJpJnF1b3Q7LCZxdW90O3NhbnMtc2VyaWYmcXVvdDs7Y29sb3I6IzFGNDk3RCI+T24gdGhlIGxv
-bmdlciBydW4gd2Ugd2lsbCB0cnkgdG8gY3JlYXRlIHJlY2lwZXMgYW5kL29yIGZ1bGZpbGwgYWxs
-IHRoZSBvdGhlciByZXF1aXJlbWVudHMgZnJvbSB0aGUgY2xhc3MgQiwgQywgYW5kIEQuPG86cD48
-L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMi
-IHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDss
-JnF1b3Q7c2Fucy1zZXJpZiZxdW90Oztjb2xvcjojMUY0OTdEIj5QbGVhc2UgZG8gbm90IGhlc2l0
-YXRlIHRvIGNvbnRhY3QgbWUgaWYgeW91IGhhdmUgZnVydGhlciBxdWVzdGlvbnMuPG86cD48L286
-cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMiIHN0
-eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssJnF1
-b3Q7c2Fucy1zZXJpZiZxdW90Oztjb2xvcjojMUY0OTdEIj48bzpwPiZuYnNwOzwvbzpwPjwvc3Bh
-bj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBsYW5nPSJFTi1VUyIgc3R5bGU9ImZv
-bnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OywmcXVvdDtzYW5z
-LXNlcmlmJnF1b3Q7O2NvbG9yOiMxRjQ5N0QiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4N
-CjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIGxhbmc9IkVOLVVTIiBzdHlsZT0iZm9udC1zaXpl
-OjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LCZxdW90O3NhbnMtc2VyaWYm
-cXVvdDs7Y29sb3I6IzFGNDk3RCI+QWxleDxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNz
-PSJNc29Ob3JtYWwiPjxzcGFuIGxhbmc9IkVOLVVTIiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtm
-b250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LCZxdW90O3NhbnMtc2VyaWYmcXVvdDs7Y29s
-b3I6IzFGNDk3RCI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0KPGRpdj4NCjxkaXYgc3R5
-bGU9ImJvcmRlcjpub25lO2JvcmRlci10b3A6c29saWQgI0I1QzRERiAxLjBwdDtwYWRkaW5nOjMu
-MHB0IDBjbSAwY20gMGNtIj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxiPjxzcGFuIGxhbmc9IkVO
-LVVTIiBzdHlsZT0iZm9udC1zaXplOjEwLjBwdDtmb250LWZhbWlseTomcXVvdDtUYWhvbWEmcXVv
-dDssJnF1b3Q7c2Fucy1zZXJpZiZxdW90OyI+RnJvbTo8L3NwYW4+PC9iPjxzcGFuIGxhbmc9IkVO
-LVVTIiBzdHlsZT0iZm9udC1zaXplOjEwLjBwdDtmb250LWZhbWlseTomcXVvdDtUYWhvbWEmcXVv
-dDssJnF1b3Q7c2Fucy1zZXJpZiZxdW90OyI+IEpvbiBBbGRhbWENCjxicj4NCjxiPlNlbnQ6PC9i
-PiBGcmlkYXksIEp1bmUgMjcsIDIwMTQgMTowNyBQTTxicj4NCjxiPlRvOjwvYj4gQWxleGFuZHJ1
-IFZhZHV2YTsgQ29zbWluIE1vbGRvdmVhbnU7IEplbm55IEFuZGVyc3NvbjsgRGF2aWQgTnlzdHLD
-tm08YnI+DQo8Yj5DYzo8L2I+IERhbmllbCBCb3JuYXo7IEFkcmlhbiBEdWRhdTxicj4NCjxiPlN1
-YmplY3Q6PC9iPiBSRTogQ2FycmllciBHcmFkZSBsYXllciBwcm9wb3NhbDxvOnA+PC9vOnA+PC9z
-cGFuPjwvcD4NCjwvZGl2Pg0KPC9kaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBsYW5n
-PSJFTi1VUyI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1h
-bCI+PHNwYW4gbGFuZz0iRU4tVVMiIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5
-OiZxdW90O0NhbGlicmkmcXVvdDssJnF1b3Q7c2Fucy1zZXJpZiZxdW90Oztjb2xvcjojMUY0OTdE
-O21zby1mYXJlYXN0LWxhbmd1YWdlOkVOLVVTIj5Sb2dlciB0aGF0ISBUaGFua3MgQWxleGFuZHJ1
-ITxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIGxhbmc9
-IkVOLVVTIiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJp
-JnF1b3Q7LCZxdW90O3NhbnMtc2VyaWYmcXVvdDs7Y29sb3I6IzFGNDk3RDttc28tZmFyZWFzdC1s
-YW5ndWFnZTpFTi1VUyI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1z
-b05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMiIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQt
-ZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssJnF1b3Q7c2Fucy1zZXJpZiZxdW90Oztjb2xvcjoj
-MUY0OTdEO21zby1mYXJlYXN0LWxhbmd1YWdlOkVOLVVTIj48bzpwPiZuYnNwOzwvbzpwPjwvc3Bh
-bj48L3A+DQo8ZGl2Pg0KPGRpdiBzdHlsZT0iYm9yZGVyOm5vbmU7Ym9yZGVyLXRvcDpzb2xpZCAj
-RTFFMUUxIDEuMHB0O3BhZGRpbmc6My4wcHQgMGNtIDBjbSAwY20iPg0KPHAgY2xhc3M9Ik1zb05v
-cm1hbCI+PGI+PHNwYW4gbGFuZz0iRU4tVVMiIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQt
-ZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssJnF1b3Q7c2Fucy1zZXJpZiZxdW90OyI+RnJvbTo8
-L3NwYW4+PC9iPjxzcGFuIGxhbmc9IkVOLVVTIiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250
-LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LCZxdW90O3NhbnMtc2VyaWYmcXVvdDsiPiBBbGV4
-YW5kcnUgVmFkdXZhDQo8YnI+DQo8Yj5TZW50OjwvYj4gZGVuIDI3IGp1bmkgMjAxNCAxMTo0Mzxi
-cj4NCjxiPlRvOjwvYj4gSm9uIEFsZGFtYTsgQ29zbWluIE1vbGRvdmVhbnU7IEplbm55IEFuZGVy
-c3NvbjsgRGF2aWQgTnlzdHLDtm08YnI+DQo8Yj5DYzo8L2I+IERhbmllbCBCb3JuYXo7IEFkcmlh
-biBEdWRhdTxicj4NCjxiPlN1YmplY3Q6PC9iPiBSRTogQ2FycmllciBHcmFkZSBsYXllciBwcm9w
-b3NhbDxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjwvZGl2Pg0KPC9kaXY+DQo8cCBjbGFzcz0iTXNv
-Tm9ybWFsIj48c3BhbiBsYW5nPSJFTi1VUyI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0K
-PHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMiIHN0eWxlPSJmb250LXNpemU6
-MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssJnF1b3Q7c2Fucy1zZXJpZiZx
-dW90Oztjb2xvcjojMUY0OTdEIj5IZWxsbyBKb24sPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAg
-Y2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMiIHN0eWxlPSJmb250LXNpemU6MTEu
-MHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssJnF1b3Q7c2Fucy1zZXJpZiZxdW90
-Oztjb2xvcjojMUY0OTdEIj48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0i
-TXNvTm9ybWFsIj48c3BhbiBsYW5nPSJFTi1VUyIgc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9u
-dC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OywmcXVvdDtzYW5zLXNlcmlmJnF1b3Q7O2NvbG9y
-OiMxRjQ5N0QiPldlIHdpbGwgZmlyc3QgaGF2ZSBhbiBpbnRlcm5hbCBtZWV0aW5nIG9uIE1vbmRh
-eSBhbmQgYWZ0ZXIgdGhhdCBJIHdpbGwgb2ZmZXIgYW4gYW5zd2VyIHRvIEplZmYuPG86cD48L286
-cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMiIHN0
-eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssJnF1
-b3Q7c2Fucy1zZXJpZiZxdW90Oztjb2xvcjojMUY0OTdEIj48bzpwPiZuYnNwOzwvbzpwPjwvc3Bh
-bj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBsYW5nPSJFTi1VUyIgc3R5bGU9ImZv
-bnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OywmcXVvdDtzYW5z
-LXNlcmlmJnF1b3Q7O2NvbG9yOiMxRjQ5N0QiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4N
-CjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIGxhbmc9IkVOLVVTIiBzdHlsZT0iZm9udC1zaXpl
-OjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LCZxdW90O3NhbnMtc2VyaWYm
-cXVvdDs7Y29sb3I6IzFGNDk3RCI+QWxleDxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNz
-PSJNc29Ob3JtYWwiPjxzcGFuIGxhbmc9IkVOLVVTIiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtm
-b250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LCZxdW90O3NhbnMtc2VyaWYmcXVvdDs7Y29s
-b3I6IzFGNDk3RCI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0KPGRpdj4NCjxkaXYgc3R5
-bGU9ImJvcmRlcjpub25lO2JvcmRlci10b3A6c29saWQgI0I1QzRERiAxLjBwdDtwYWRkaW5nOjMu
-MHB0IDBjbSAwY20gMGNtIj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxiPjxzcGFuIGxhbmc9IkVO
-LVVTIiBzdHlsZT0iZm9udC1zaXplOjEwLjBwdDtmb250LWZhbWlseTomcXVvdDtUYWhvbWEmcXVv
-dDssJnF1b3Q7c2Fucy1zZXJpZiZxdW90OyI+RnJvbTo8L3NwYW4+PC9iPjxzcGFuIGxhbmc9IkVO
-LVVTIiBzdHlsZT0iZm9udC1zaXplOjEwLjBwdDtmb250LWZhbWlseTomcXVvdDtUYWhvbWEmcXVv
-dDssJnF1b3Q7c2Fucy1zZXJpZiZxdW90OyI+IEpvbiBBbGRhbWENCjxicj4NCjxiPlNlbnQ6PC9i
-PiBGcmlkYXksIEp1bmUgMjcsIDIwMTQgMTI6MzIgUE08YnI+DQo8Yj5Ubzo8L2I+IENvc21pbiBN
-b2xkb3ZlYW51OyBKZW5ueSBBbmRlcnNzb247IERhdmlkIE55c3Ryw7ZtPGJyPg0KPGI+Q2M6PC9i
-PiBBbGV4YW5kcnUgVmFkdXZhOyBEYW5pZWwgQm9ybmF6OyBBZHJpYW4gRHVkYXU8YnI+DQo8Yj5T
-dWJqZWN0OjwvYj4gUkU6IENhcnJpZXIgR3JhZGUgbGF5ZXIgcHJvcG9zYWw8bzpwPjwvbzpwPjwv
-c3Bhbj48L3A+DQo8L2Rpdj4NCjwvZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFu
-Zz0iRU4tVVMiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3Jt
-YWwiPjxzcGFuIGxhbmc9IkVOLVVTIiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWls
-eTomcXVvdDtDYWxpYnJpJnF1b3Q7LCZxdW90O3NhbnMtc2VyaWYmcXVvdDs7Y29sb3I6IzFGNDk3
-RDttc28tZmFyZWFzdC1sYW5ndWFnZTpFTi1VUyI+VGhhbmsgeW91IENvc21pbiw8bzpwPjwvbzpw
-Pjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBsYW5nPSJFTi1VUyIgc3R5
-bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OywmcXVv
-dDtzYW5zLXNlcmlmJnF1b3Q7O2NvbG9yOiMxRjQ5N0Q7bXNvLWZhcmVhc3QtbGFuZ3VhZ2U6RU4t
-VVMiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxz
-cGFuIGxhbmc9IkVOLVVTIiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVv
-dDtDYWxpYnJpJnF1b3Q7LCZxdW90O3NhbnMtc2VyaWYmcXVvdDs7Y29sb3I6IzFGNDk3RDttc28t
-ZmFyZWFzdC1sYW5ndWFnZTpFTi1VUyI+QWxleGFuZHJ1LCBjb3VsZCB5b3UgcGxlYXNlIHJlc3Bv
-bmQgSmVmZiBhdCB0aGUgbWFpbGluZyBsaXN0PyAoc2VlIGRvd24gYmVsb3cpPG86cD48L286cD48
-L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMiIHN0eWxl
-PSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssJnF1b3Q7
-c2Fucy1zZXJpZiZxdW90Oztjb2xvcjojMUY0OTdEO21zby1mYXJlYXN0LWxhbmd1YWdlOkVOLVVT
-Ij48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3Bh
-biBsYW5nPSJFTi1VUyIgc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7
-Q2FsaWJyaSZxdW90OywmcXVvdDtzYW5zLXNlcmlmJnF1b3Q7O2NvbG9yOiMxRjQ5N0Q7bXNvLWZh
-cmVhc3QtbGFuZ3VhZ2U6RU4tVVMiPkNoZWVyczxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNs
-YXNzPSJNc29Ob3JtYWwiPjxzcGFuIGxhbmc9IkVOLVVTIiBzdHlsZT0iZm9udC1zaXplOjExLjBw
-dDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LCZxdW90O3NhbnMtc2VyaWYmcXVvdDs7
-Y29sb3I6IzFGNDk3RDttc28tZmFyZWFzdC1sYW5ndWFnZTpFTi1VUyI+Sm9uPG86cD48L286cD48
-L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMiIHN0eWxl
-PSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssJnF1b3Q7
-c2Fucy1zZXJpZiZxdW90Oztjb2xvcjojMUY0OTdEO21zby1mYXJlYXN0LWxhbmd1YWdlOkVOLVVT
-Ij48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8ZGl2Pg0KPGRpdiBzdHlsZT0iYm9yZGVy
-Om5vbmU7Ym9yZGVyLXRvcDpzb2xpZCAjRTFFMUUxIDEuMHB0O3BhZGRpbmc6My4wcHQgMGNtIDBj
-bSAwY20iPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PGI+PHNwYW4gbGFuZz0iRU4tVVMiIHN0eWxl
-PSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssJnF1b3Q7
-c2Fucy1zZXJpZiZxdW90OyI+RnJvbTo8L3NwYW4+PC9iPjxzcGFuIGxhbmc9IkVOLVVTIiBzdHls
-ZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LCZxdW90
-O3NhbnMtc2VyaWYmcXVvdDsiPiBDb3NtaW4gTW9sZG92ZWFudQ0KPGJyPg0KPGI+U2VudDo8L2I+
-IGRlbiAyNyBqdW5pIDIwMTQgMTA6NTk8YnI+DQo8Yj5Ubzo8L2I+IEplbm55IEFuZGVyc3Nvbjsg
-Sm9uIEFsZGFtYTsgRGF2aWQgTnlzdHLDtm08YnI+DQo8Yj5DYzo8L2I+IEFsZXhhbmRydSBWYWR1
-dmE7IERhbmllbCBCb3JuYXo7IEFkcmlhbiBEdWRhdTxicj4NCjxiPlN1YmplY3Q6PC9iPiBSRTog
-Q2FycmllciBHcmFkZSBsYXllciBwcm9wb3NhbDxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjwvZGl2
-Pg0KPC9kaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBsYW5nPSJFTi1VUyI+PG86cD4m
-bmJzcDs8L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0i
-RU4tVVMiIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkm
-cXVvdDssJnF1b3Q7c2Fucy1zZXJpZiZxdW90Oztjb2xvcjojMUY0OTdEO21zby1mYXJlYXN0LWxh
-bmd1YWdlOkVOLVVTIj5IaSw8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9y
-bWFsIj48c3BhbiBsYW5nPSJFTi1VUyIgc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1p
-bHk6JnF1b3Q7Q2FsaWJyaSZxdW90OywmcXVvdDtzYW5zLXNlcmlmJnF1b3Q7O2NvbG9yOiMxRjQ5
-N0Q7bXNvLWZhcmVhc3QtbGFuZ3VhZ2U6RU4tVVMiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwv
-cD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIGxhbmc9IkVOLVVTIiBzdHlsZT0iZm9udC1z
-aXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LCZxdW90O3NhbnMtc2Vy
-aWYmcXVvdDs7Y29sb3I6IzFGNDk3RDttc28tZmFyZWFzdC1sYW5ndWFnZTpFTi1VUyI+QWxleGFu
-ZHJ1IFZhZHV2YSB3aWxsIGJlIG1haW4gcmVzcG9uc2libGUgZm9yIGludGVyZmFjaW5nIHdpdGgg
-Y29tbXVuaXR5IG9uIG1ldGEtY2dsIHRvcGljLiBIZSB3aWxsIGFsc28gYXR0ZW5kIFlvY3RvDQog
-VGVjaG5pY2FsIE1lZXRpbmdzIHdoZW5ldmVyIG5lY2Vzc2FyeSBmcm9tIG5vdyBvbi48bzpwPjwv
-bzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBsYW5nPSJFTi1VUyIg
-c3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90Oywm
-cXVvdDtzYW5zLXNlcmlmJnF1b3Q7O2NvbG9yOiMxRjQ5N0Q7bXNvLWZhcmVhc3QtbGFuZ3VhZ2U6
-RU4tVVMiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwi
-PjxzcGFuIGxhbmc9IkVOLVVTIiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTom
-cXVvdDtDYWxpYnJpJnF1b3Q7LCZxdW90O3NhbnMtc2VyaWYmcXVvdDs7Y29sb3I6IzFGNDk3RDtt
-c28tZmFyZWFzdC1sYW5ndWFnZTpFTi1VUyI+QlIsPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAg
-Y2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMiIHN0eWxlPSJmb250LXNpemU6MTEu
-MHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssJnF1b3Q7c2Fucy1zZXJpZiZxdW90
-Oztjb2xvcjojMUY0OTdEO21zby1mYXJlYXN0LWxhbmd1YWdlOkVOLVVTIj4vQ29zbWluPG86cD48
-L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMi
-IHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDss
-JnF1b3Q7c2Fucy1zZXJpZiZxdW90Oztjb2xvcjojMUY0OTdEO21zby1mYXJlYXN0LWxhbmd1YWdl
-OkVOLVVTIj48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8ZGl2Pg0KPGRpdiBzdHlsZT0i
-Ym9yZGVyOm5vbmU7Ym9yZGVyLXRvcDpzb2xpZCAjRTFFMUUxIDEuMHB0O3BhZGRpbmc6My4wcHQg
-MGNtIDBjbSAwY20iPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PGI+PHNwYW4gbGFuZz0iRU4tVVMi
-IHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDss
-JnF1b3Q7c2Fucy1zZXJpZiZxdW90OyI+RnJvbTo8L3NwYW4+PC9iPjxzcGFuIGxhbmc9IkVOLVVT
-IiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7
-LCZxdW90O3NhbnMtc2VyaWYmcXVvdDsiPiBKZW5ueSBBbmRlcnNzb24NCjxicj4NCjxiPlNlbnQ6
-PC9iPiBGcmlkYXksIEp1bmUgMjcsIDIwMTQgMTA6MzIgQU08YnI+DQo8Yj5Ubzo8L2I+IEpvbiBB
-bGRhbWE7IERhdmlkIE55c3Ryw7ZtOyBDb3NtaW4gTW9sZG92ZWFudTxicj4NCjxiPkNjOjwvYj4g
-VmFsZW50aW4gQ29iZWxlYTxicj4NCjxiPlN1YmplY3Q6PC9iPiBSRTogQ2FycmllciBHcmFkZSBs
-YXllciBwcm9wb3NhbDxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjwvZGl2Pg0KPC9kaXY+DQo8cCBj
-bGFzcz0iTXNvTm9ybWFsIj48c3BhbiBsYW5nPSJFTi1VUyI+PG86cD4mbmJzcDs8L286cD48L3Nw
-YW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMiIHN0eWxlPSJm
-b250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssJnF1b3Q7c2Fu
-cy1zZXJpZiZxdW90Oztjb2xvcjojMUY0OTdEO21zby1mYXJlYXN0LWxhbmd1YWdlOkVOLVVTIj5I
-aSBDb3NtaW4sPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNw
-YW4gbGFuZz0iRU4tVVMiIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90
-O0NhbGlicmkmcXVvdDssJnF1b3Q7c2Fucy1zZXJpZiZxdW90Oztjb2xvcjojMUY0OTdEO21zby1m
-YXJlYXN0LWxhbmd1YWdlOkVOLVVTIj48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8cCBj
-bGFzcz0iTXNvTm9ybWFsIj48c3BhbiBsYW5nPSJFTi1VUyIgc3R5bGU9ImZvbnQtc2l6ZToxMS4w
-cHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OywmcXVvdDtzYW5zLXNlcmlmJnF1b3Q7
-O2NvbG9yOiMxRjQ5N0Q7bXNvLWZhcmVhc3QtbGFuZ3VhZ2U6RU4tVVMiPkhvdyB0b29rIG92ZXIg
-YWZ0ZXIgVmFsZW50aW4gbGVmdCBFbmVhPyBDb3VsZCBzb21lb25lIGluIHlvdXIgdGVhbSByZXNw
-b25kLjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIGxh
-bmc9IkVOLVVTIiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxp
-YnJpJnF1b3Q7LCZxdW90O3NhbnMtc2VyaWYmcXVvdDs7Y29sb3I6IzFGNDk3RDttc28tZmFyZWFz
-dC1sYW5ndWFnZTpFTi1VUyI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9
-Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMiIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2Zv
-bnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssJnF1b3Q7c2Fucy1zZXJpZiZxdW90Oztjb2xv
-cjojMUY0OTdEO21zby1mYXJlYXN0LWxhbmd1YWdlOkVOLVVTIj5UaGFua3MsPG86cD48L286cD48
-L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMiIHN0eWxl
-PSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssJnF1b3Q7
-c2Fucy1zZXJpZiZxdW90Oztjb2xvcjojMUY0OTdEO21zby1mYXJlYXN0LWxhbmd1YWdlOkVOLVVT
-Ij5KZW5ueTxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFu
-IGxhbmc9IkVOLVVTIiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtD
-YWxpYnJpJnF1b3Q7LCZxdW90O3NhbnMtc2VyaWYmcXVvdDs7Y29sb3I6IzFGNDk3RDttc28tZmFy
-ZWFzdC1sYW5ndWFnZTpFTi1VUyI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0KPGRpdj4N
-CjxkaXYgc3R5bGU9ImJvcmRlcjpub25lO2JvcmRlci10b3A6c29saWQgI0UxRTFFMSAxLjBwdDtw
-YWRkaW5nOjMuMHB0IDBjbSAwY20gMGNtIj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxiPjxzcGFu
-IGxhbmc9IkVOLVVTIiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtD
-YWxpYnJpJnF1b3Q7LCZxdW90O3NhbnMtc2VyaWYmcXVvdDsiPkZyb206PC9zcGFuPjwvYj48c3Bh
-biBsYW5nPSJFTi1VUyIgc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7
-Q2FsaWJyaSZxdW90OywmcXVvdDtzYW5zLXNlcmlmJnF1b3Q7Ij4gSm9uIEFsZGFtYQ0KPGJyPg0K
-PGI+U2VudDo8L2I+IGRlbiAyNyBqdW5pIDIwMTQgMDk6Mjg8YnI+DQo8Yj5Ubzo8L2I+IERhdmlk
-IE55c3Ryw7ZtOyBKZW5ueSBBbmRlcnNzb248YnI+DQo8Yj5DYzo8L2I+IFZhbGVudGluIENvYmVs
-ZWE8YnI+DQo8Yj5TdWJqZWN0OjwvYj4gRlc6IENhcnJpZXIgR3JhZGUgbGF5ZXIgcHJvcG9zYWw8
-bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8L2Rpdj4NCjwvZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1h
-bCI+PHNwYW4gbGFuZz0iRU4tVVMiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNs
-YXNzPSJNc29Ob3JtYWwiPjxzcGFuIGxhbmc9IkVOLVVTIiBzdHlsZT0iZm9udC1zaXplOjExLjBw
-dDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LCZxdW90O3NhbnMtc2VyaWYmcXVvdDs7
-Y29sb3I6IzFGNDk3RDttc28tZmFyZWFzdC1sYW5ndWFnZTpFTi1VUyI+RGF2aWQsIEplbm55LDxv
-OnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIGxhbmc9IkVO
-LVVTIiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1
-b3Q7LCZxdW90O3NhbnMtc2VyaWYmcXVvdDs7Y29sb3I6IzFGNDk3RDttc28tZmFyZWFzdC1sYW5n
-dWFnZTpFTi1VUyI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05v
-cm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMiIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFt
-aWx5OiZxdW90O0NhbGlicmkmcXVvdDssJnF1b3Q7c2Fucy1zZXJpZiZxdW90Oztjb2xvcjojMUY0
-OTdEO21zby1mYXJlYXN0LWxhbmd1YWdlOkVOLVVTIj5XaWxsIGFueSBvZiB5b3UgYW5zd2VyIHRo
-aXM/PG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFu
-Zz0iRU4tVVMiIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGli
-cmkmcXVvdDssJnF1b3Q7c2Fucy1zZXJpZiZxdW90Oztjb2xvcjojMUY0OTdEO21zby1mYXJlYXN0
-LWxhbmd1YWdlOkVOLVVTIj48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0i
-TXNvTm9ybWFsIj48c3BhbiBsYW5nPSJFTi1VUyIgc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9u
-dC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OywmcXVvdDtzYW5zLXNlcmlmJnF1b3Q7O2NvbG9y
-OiMxRjQ5N0Q7bXNvLWZhcmVhc3QtbGFuZ3VhZ2U6RU4tVVMiPkJUVywgaGF2ZSB5b3UgbWFuYWdl
-ZCB0byBmaWxlIHRoZSBZb2N0byBjb21wYXRpYmlsaXR5IGFwcGxpY2F0aW9uPzxvOnA+PC9vOnA+
-PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIGxhbmc9IkVOLVVTIiBzdHls
-ZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LCZxdW90
-O3NhbnMtc2VyaWYmcXVvdDs7Y29sb3I6IzFGNDk3RDttc28tZmFyZWFzdC1sYW5ndWFnZTpFTi1V
-UyI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNw
-YW4gbGFuZz0iRU4tVVMiIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90
-O0NhbGlicmkmcXVvdDssJnF1b3Q7c2Fucy1zZXJpZiZxdW90Oztjb2xvcjojMUY0OTdEO21zby1m
-YXJlYXN0LWxhbmd1YWdlOkVOLVVTIj5SZWdhcmRzPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAg
-Y2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMiIHN0eWxlPSJmb250LXNpemU6MTEu
-MHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssJnF1b3Q7c2Fucy1zZXJpZiZxdW90
-Oztjb2xvcjojMUY0OTdEO21zby1mYXJlYXN0LWxhbmd1YWdlOkVOLVVTIj5Kb248bzpwPjwvbzpw
-Pjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBsYW5nPSJFTi1VUyIgc3R5
-bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OywmcXVv
-dDtzYW5zLXNlcmlmJnF1b3Q7O2NvbG9yOiMxRjQ5N0Q7bXNvLWZhcmVhc3QtbGFuZ3VhZ2U6RU4t
-VVMiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxi
-PjxzcGFuIGxhbmc9IkVOLVVTIiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTom
-cXVvdDtDYWxpYnJpJnF1b3Q7LCZxdW90O3NhbnMtc2VyaWYmcXVvdDsiPkZyb206PC9zcGFuPjwv
-Yj48c3BhbiBsYW5nPSJFTi1VUyIgc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6
-JnF1b3Q7Q2FsaWJyaSZxdW90OywmcXVvdDtzYW5zLXNlcmlmJnF1b3Q7Ij4gT3NpZXItbWl4b24s
-IEplZmZyZXkgWzxhIGhyZWY9Im1haWx0bzpqZWZmcmV5Lm9zaWVyLW1peG9uQGludGVsLmNvbSI+
-bWFpbHRvOmplZmZyZXkub3NpZXItbWl4b25AaW50ZWwuY29tPC9hPl0NCjxicj4NCjxiPlNlbnQ6
-PC9iPiBkZW4gMjYganVuaSAyMDE0IDIwOjM2PGJyPg0KPGI+VG86PC9iPiBEYXZpZCBOeXN0csO2
-bTsgPGEgaHJlZj0ibWFpbHRvOmRhdmlkZS5yaWNjaUB3aW5kcml2ZXIuY29tIj5kYXZpZGUucmlj
-Y2lAd2luZHJpdmVyLmNvbTwvYT47DQo8YSBocmVmPSJtYWlsdG86Y2hhbGxpbmFuQGdtYWlsLmNv
-bSI+Y2hhbGxpbmFuQGdtYWlsLmNvbTwvYT47IDxhIGhyZWY9Im1haWx0bzp0ZW9kb3IuYm9ib3Ju
-aWxvQHdpbmRyaXZlci5jb20iPg0KdGVvZG9yLmJvYm9ybmlsb0B3aW5kcml2ZXIuY29tPC9hPjsg
-VmFsZW50aW4gQ29iZWxlYTsgPGEgaHJlZj0ibWFpbHRvOmNoYXNlLm1hdXBpbkB0aS5jb20iPg0K
-Y2hhc2UubWF1cGluQHRpLmNvbTwvYT47IEpvbiBBbGRhbWE7IDxhIGhyZWY9Im1haWx0bzpwaGls
-aXAuYmFsaXN0ZXJAZ21haWwuY29tIj5waGlsaXAuYmFsaXN0ZXJAZ21haWwuY29tPC9hPjsNCjxh
-IGhyZWY9Im1haWx0bzprZXZpbl9tY2NvbWJlQG1lbnRvci5jb20iPmtldmluX21jY29tYmVAbWVu
-dG9yLmNvbTwvYT47IDxhIGhyZWY9Im1haWx0bzpha3VzdGVyQG12aXN0YS5jb20iPg0KYWt1c3Rl
-ckBtdmlzdGEuY29tPC9hPjsgPGEgaHJlZj0ibWFpbHRvOmphc29uLndlc3NlbEB3aW5kcml2ZXIu
-Y29tIj5qYXNvbi53ZXNzZWxAd2luZHJpdmVyLmNvbTwvYT47DQo8YSBocmVmPSJtYWlsdG86cmlj
-aGFyZC5wdXJkaWVAbGludXhmb3VuZGF0aW9uLm9yZyI+cmljaGFyZC5wdXJkaWVAbGludXhmb3Vu
-ZGF0aW9uLm9yZzwvYT47DQo8YSBocmVmPSJtYWlsdG86aHVpLmdlbmdAaHVhd2VpLmNvbSI+aHVp
-LmdlbmdAaHVhd2VpLmNvbTwvYT47IDxhIGhyZWY9Im1haWx0bzpqb2huX2NoZXJyeUBtZW50b3Iu
-Y29tIj4NCmpvaG5fY2hlcnJ5QG1lbnRvci5jb208L2E+OyA8YSBocmVmPSJtYWlsdG86amVmZnJl
-eS5vc2llci1taXhvbkBpbnRlbC5jb20iPmplZmZyZXkub3NpZXItbWl4b25AaW50ZWwuY29tPC9h
-Pjxicj4NCjxiPkNjOjwvYj4gUGhpbGlwIEJhbGlzdGVyPGJyPg0KPGI+U3ViamVjdDo8L2I+IFlQ
-OiBDYXJyaWVyIEdyYWRlIGxheWVyIHByb3Bvc2FsPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAg
-Y2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMiPjxvOnA+Jm5ic3A7PC9vOnA+PC9z
-cGFuPjwvcD4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBsYW5nPSJFTi1VUyI+
-SGkgYWxsIC0gdGhpcyBpcyBhIHNpbXBsZSBmb2xsb3d1cCB0byBvdXIgbWVldGluZyBhdCBFTEMg
-cmVnYXJkaW5nIGEgbWV0YS1jZ2wgbGF5ZXIsIHByb3Bvc2VkIGJ5IEVuZWEuPG86cD48L286cD48
-L3NwYW4+PC9wPg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIGxhbmc9IkVOLVVT
-Ij48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8L2Rpdj4NCjxkaXY+DQo8cCBjbGFzcz0i
-TXNvTm9ybWFsIj48c3BhbiBsYW5nPSJFTi1VUyI+VGhlIHBsYW4gd2FzIHRvIGNyZWF0ZSBhIGxp
-c3Qgb2YgcmVjaXBlcyB0byBiZSBpbmNsdWRlZCwgYW5kIHRvIHN0YXJ0IGEgZGlzY3Vzc2lvbiBv
-biB0aGUgbWFpbGluZyBsaXN0LlRoZXJlIGlzIGEgdGhyZWFkIG9uIHRoZSBsaXN0IGZyb20gYmFj
-ayBpbiBBcHJpbCwgYnV0IEkgZG9uJ3Qgc2VlIGFueXRoaW5nIG1vcmUgcmVjZW50IHRoYW4gdGhh
-dC4gSGFzIHRoZXJlIGJlZW4gYW55DQogcHJvZ3Jlc3M/PG86cD48L286cD48L3NwYW4+PC9wPg0K
-PC9kaXY+DQo8ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gbGFuZz0iRU4tVVMiPjxv
-OnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29O
-b3JtYWwiPjxzcGFuIGxhbmc9IkVOLVVTIj50aGFua3M8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8
-L2Rpdj4NCjwvZGl2Pg0KPC9kaXY+DQo8L2JvZHk+DQo8L2h0bWw+DQo=
+/9j/4AAQSkZJRgABAQEAvwC/AAD/2wBDAAoHBwkHBgoJCAkLCwoMDxkQDw4ODx4WFxIZJCAmJSMg
+IyIoLTkwKCo2KyIjMkQyNjs9QEBAJjBGS0U+Sjk/QD3/2wBDAQsLCw8NDx0QEB09KSMpPT09PT09
+PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT3/wAARCADvAuMDASIA
+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
 
---_000_DDB0C57E45663A458C5CACB7B5688BC21D6C8818SESTOEX04enease_--
+--_006_1FFB62CE8AEB0D4298B51122D8903E96219BB194IRSMSX104gercor_
+Content-Type: image/png; name="image003.png"
+Content-Description: image003.png
+Content-Disposition: inline; filename="image003.png"; size=520;
+	creation-date="Mon, 30 Jun 2014 16:25:45 GMT";
+	modification-date="Mon, 30 Jun 2014 16:25:45 GMT"
+Content-ID: <image003.png@01CF9499.15C43100>
+Content-Transfer-Encoding: base64
+
+iVBORw0KGgoAAAANSUhEUgAAABgAAAAdCAAAAACV0fOXAAAABGdBTUEAALGOfPtRkwAAAAlwSFlz
+AAAdYAAAHWABlZu/dAAAABl0RVh0U29mdHdhcmUATWljcm9zb2Z0IE9mZmljZX/tNXEAAAGFSURB
+VCjPpZLdS8JQGIdfzXSmkyhp021aiaANWUpFF13aRbipm5s1mXYRFEmluC+nZ2D/eWmiHr3suXwf
+fpz348DA9Hwc5PsTcwBmv9vGUGVF7fZNGBs3ZxhZlju9McaAVAZwyEQoLSPwFQqvH5QFMin6gBQm
+RJKBVT1eeZY5SkSAmunk1fXhRt3ROKr2KySaa/YqsUUmEON1hOr0IiHSrGobl7G5iAnacDaVqIWQ
+aFpCk8cCAYE4/2S6Y0eil+JEnM4GSiEcFfSRZ7vWSlCi4zmjZi5z37dt07U3hOU63mfr7lZ8nzhY
+wnZN2+lXGfbhy5m4W4lBiydC57WPb7TqavHGUMkTAPs52Z02Uuuuvr8aRWI+CVFsm+3McnK6jjwt
+H/nbSYTX6xy9nFyz9FJ0tXVBOEo35gmKkTolYr13IhpklN971I8Pihdh/CaU7IOvZsIJcg8guGQu
+spoPs7eqwPNCGaP6OgPr88Xo6EYP4+XDgpokt3aQpRpQKZbbgU1t/ZB/8QM1LY6QYu5kKAAAAABJ
+RU5ErkJggg==
+
+--_006_1FFB62CE8AEB0D4298B51122D8903E96219BB194IRSMSX104gercor_--
