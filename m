@@ -1,34 +1,42 @@
-Return-Path: <corneliux.stoicescu@intel.com>
+Return-Path: <b-sathishkumar@hcl.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 063ABE0045F; Thu,  3 Jul 2014 08:52:39 -0700 (PDT)
+	id 761FAE0045F; Thu,  3 Jul 2014 09:00:39 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE
 	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at http://www.dnswl.org/,
-	high *      trust
-	*      [192.55.52.93 listed in list.dnswl.org]
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D4F6CE00404
-	for <yocto@yoctoproject.org>; Thu,  3 Jul 2014 08:52:35 -0700 (PDT)
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
-	by fmsmga102.fm.intel.com with ESMTP; 03 Jul 2014 08:52:32 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="4.97,862,1389772800"; d="scan'208";a="359324658"
-Received: from linux.jf.intel.com (HELO linux.intel.com) ([10.23.219.25])
-	by FMSMGA003.fm.intel.com with ESMTP; 03 Jul 2014 08:47:10 -0700
-Received: from localhost.localdomain (unknown [10.237.112.162])
-	by linux.intel.com (Postfix) with ESMTP id BFE8F6A4007;
-	Thu,  3 Jul 2014 08:51:54 -0700 (PDT)
-From: Corneliu Stoicescu <corneliux.stoicescu@intel.com>
-To: yocto@yoctoproject.org
-Date: Thu,  3 Jul 2014 20:57:10 +0300
-Message-Id: <1404410230-15143-1-git-send-email-corneliux.stoicescu@intel.com>
-X-Mailer: git-send-email 1.8.3.2
-Subject: [PATCH] grubtarget.py: Change 'test' GRUB entry selection method
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+X-Greylist: delayed 80 seconds by postgrey-1.32 at yocto-www;
+	Thu, 03 Jul 2014 09:00:34 PDT
+Received: from GWS08.hcl.com (gws08.hcl.com [192.8.186.131])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2BC30E00404
+	for <yocto@yoctoproject.org>; Thu,  3 Jul 2014 09:00:33 -0700 (PDT)
+X-IronPort-AV: E=Sophos;i="5.01,595,1400005800"; d="scan'208,217";a="23703122"
+Received: from unknown (HELO CHN-CORP-HT02.CORP.HCL.IN) ([10.249.2.34])
+	by GWS08.hcl.com with ESMTP/TLS/AES128-SHA; 03 Jul 2014 21:18:17 +0530
+Received: from CHN-HCLT-CSHT05.HCLT.CORP.HCL.IN (10.150.12.30) by
+	CHN-CORP-HT02.CORP.HCL.IN (10.249.2.34) with Microsoft SMTP Server
+	(TLS) id 14.3.123.3; Thu, 3 Jul 2014 21:28:48 +0530
+Received: from CHN-HCLT-MBS08.HCLT.CORP.HCL.IN ([10.150.12.23]) by
+	CHN-HCLT-CSHT05.HCLT.CORP.HCL.IN ([::1]) with mapi id 14.03.0123.003;
+	Thu, 3 Jul 2014 21:28:48 +0530
+From: "Sathish Kumar Balasubramaniam -ERS, HCL Tech" <b-sathishkumar@hcl.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: Adding a shared object file to rootfs
+Thread-Index: Ac+W1zAzyf0BaDlPSBO4gCtNG27HnQ==
+Importance: high
+X-Priority: 1
+Date: Thu, 3 Jul 2014 15:58:48 +0000
+Message-ID: <5D833673AB94D9489A7F7F73E9E611C814ADC4AE@chn-hclt-mbs08.HCLT.CORP.HCL.IN>
+Accept-Language: en-IN, en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.150.5.114]
+MIME-Version: 1.0
+Subject: Adding a shared object file to rootfs
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,31 +48,140 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 03 Jul 2014 15:52:39 -0000
+X-List-Received-Date: Thu, 03 Jul 2014 16:00:39 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_5D833673AB94D9489A7F7F73E9E611C814ADC4AEchnhcltmbs08HCL_"
 
-Using character combinations for <arrow down> to select the test image will not always work.
+--_000_5D833673AB94D9489A7F7F73E9E611C814ADC4AEchnhcltmbs08HCL_
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
 
-Using the '--hotkey x' option added to the 'test' GRUB menuentry to select the 'test' GRUB entry.
+Hi,
 
-Signed-off-by: Corneliu Stoicescu <corneliux.stoicescu@intel.com>
----
- meta-yocto-bsp/lib/oeqa/controllers/grubtarget.py | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+I have a file abc.so
+How can I add just this abc.so to /lib in rootfs using a recipe ?
 
-diff --git a/meta-yocto-bsp/lib/oeqa/controllers/grubtarget.py b/meta-yocto-bsp/lib/oeqa/controllers/grubtarget.py
-index 02ada65..7bc807d 100644
---- a/meta-yocto-bsp/lib/oeqa/controllers/grubtarget.py
-+++ b/meta-yocto-bsp/lib/oeqa/controllers/grubtarget.py
-@@ -55,7 +55,7 @@ class GrubTarget(MasterImageHardwareTarget):
-             serialconn = pexpect.spawn(self.serialcontrol_cmd, env=self.origenv, logfile=sys.stdout)
-             serialconn.expect("GNU GRUB  version 2.00")
-             serialconn.expect("Linux")
--            serialconn.sendline("OB\r")
-+            serialconn.sendline("x")
-             serialconn.expect("login:", timeout=120)
-             serialconn.close()
-         except pexpect.ExceptionPexpect as e:
--- 
-1.8.3.2
+Regards,
+Sathish
 
 
+::DISCLAIMER::
+---------------------------------------------------------------------------=
+-------------------------------------------------------------------------
+
+The contents of this e-mail and any attachment(s) are confidential and inte=
+nded for the named recipient(s) only.
+E-mail transmission is not guaranteed to be secure or error-free as informa=
+tion could be intercepted, corrupted,
+lost, destroyed, arrive late or incomplete, or may contain viruses in trans=
+mission. The e mail and its contents
+(with or without referred errors) shall therefore not attach any liability =
+on the originator or HCL or its affiliates.
+Views or opinions, if any, presented in this email are solely those of the =
+author and may not necessarily reflect the
+views or opinions of HCL or its affiliates. Any form of reproduction, disse=
+mination, copying, disclosure, modification,
+distribution and / or publication of this message without the prior written=
+ consent of authorized representative of
+HCL is strictly prohibited. If you have received this email in error please=
+ delete it and notify the sender immediately.
+Before opening any email and/or attachments, please check them for viruses =
+and other defects.
+
+---------------------------------------------------------------------------=
+-------------------------------------------------------------------------
+
+--_000_5D833673AB94D9489A7F7F73E9E611C814ADC4AEchnhcltmbs08HCL_
+Content-Type: text/html; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii">
+<meta name=3D"Generator" content=3D"Microsoft Word 14 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri","sans-serif";
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri","sans-serif";}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal">Hi,<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">I have a file abc.so<o:p></o:p></p>
+<p class=3D"MsoNormal">How can I add just this abc.so to /lib in rootfs usi=
+ng a recipe ?<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Regards,<o:p></o:p></p>
+<p class=3D"MsoNormal">Sathish<o:p></o:p></p>
+</div>
+<span style=3D"FONT-FAMILY: 'Arial','sans-serif'; COLOR: gray; FONT-SIZE: 7=
+.5pt; mso-fareast-font-family: 'Times New Roman'">
+<P style=3D"MARGIN: 0in 0in 0pt" class=3DMsoNormal><br><br><font style=3D"F=
+ONT-FAMILY: 'Arial','sans-serif'; COLOR: gray; FONT-SIZE: 9px">::DISCLAIMER=
+::<br>---------------------------------------------------------------------=
+---------------------------------------------------------------------------=
+----</font></P>
+<P style=3D"MARGIN: 0in 0in 0pt" class=3DMsoNormal><font style=3D"FONT-FAMI=
+LY: 'Arial','sans-serif'; COLOR: gray; FONT-SIZE: 11px">The contents of thi=
+s e-mail and any attachment(s) are confidential and intended for the named =
+recipient(s) only.<br>E-mail transmission is not guaranteed to be secure or=
+ error-free as information could be intercepted, corrupted, <br>lost, destr=
+oyed, arrive late or incomplete, or may contain viruses in transmission. Th=
+e e mail and its contents <br>(with or without referred errors) shall there=
+fore not attach any liability on the originator or HCL or its affiliates. <=
+br>Views or opinions, if any, presented in this email are solely those of t=
+he author and may not necessarily reflect the <br>views or opinions of HCL =
+or its affiliates. Any form of reproduction, dissemination, copying, disclo=
+sure, modification, <br>distribution and / or publication of this message w=
+ithout the prior written consent of authorized representative of <br>HCL is=
+ strictly prohibited. If you have received this email in error please delet=
+e it and notify the sender immediately. <br>Before opening any email and/or=
+ attachments, please check them for viruses and other defects.</font></P>
+<P style=3D"MARGIN: 0in 0in 0pt" class=3DMsoNormal><font style=3D"FONT-FAMI=
+LY: 'Arial','sans-serif'; COLOR: gray; FONT-SIZE: 11px">-------------------=
+---------------------------------------------------------------------------=
+------------------------------------------------------</font></span></P></b=
+ody>
+</html>
+
+--_000_5D833673AB94D9489A7F7F73E9E611C814ADC4AEchnhcltmbs08HCL_--
