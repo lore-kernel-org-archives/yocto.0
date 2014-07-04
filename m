@@ -1,40 +1,49 @@
-Return-Path: <Liezhi.Yang@windriver.com>
+Return-Path: <diego.sueiro@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 7E5B3E006F7; Fri,  4 Jul 2014 01:52:15 -0700 (PDT)
+	id 08BF1E006F7; Fri,  4 Jul 2014 03:12:52 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [147.11.146.13 listed in list.dnswl.org]
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (diego.sueiro[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 32556E006F3
-	for <yocto@yoctoproject.org>; Fri,  4 Jul 2014 01:52:12 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail1.windriver.com (8.14.5/8.14.5) with ESMTP id s648px2i010573
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Fri, 4 Jul 2014 01:51:59 -0700 (PDT)
-Received: from [128.224.162.181] (128.224.162.181) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.40) with Microsoft SMTP Server id 14.3.169.1;
-	Fri, 4 Jul 2014 01:51:59 -0700
-Message-ID: <53B66B2D.7080108@windriver.com>
-Date: Fri, 4 Jul 2014 16:51:57 +0800
-From: Robert Yang <liezhi.yang@windriver.com>
-User-Agent: Mozilla/5.0 (X11; Linux i686;
-	rv:24.0) Gecko/20100101 Thunderbird/24.6.0
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.216.176 listed in list.dnswl.org]
+Received: from mail-qc0-f176.google.com (mail-qc0-f176.google.com
+	[209.85.216.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9BDC2E006F3
+	for <yocto@yoctoproject.org>; Fri,  4 Jul 2014 03:12:46 -0700 (PDT)
+Received: by mail-qc0-f176.google.com with SMTP id w7so1349584qcr.35
+	for <yocto@yoctoproject.org>; Fri, 04 Jul 2014 03:12:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:from:date:message-id:subject:to:content-type;
+	bh=km23IGl6vhxW/bl6rY1YKgWQflKy0hNOnbNN7maM40E=;
+	b=utSuV1zeZIsXbvpqm/O+o770a23nlcfASUq8GPeU8GqCh5QO2ARvPOeYzjoP418cZA
+	7tgcPW1gp4UFE6nKCs/hhNgR9cpqyaVs+lKqeu7hGEd59FTogXrgXiLC2YoX9r3/CpeE
+	HBgUILNAw2fyF3/gzoU5pwCmZQi5OtDS3rGr3+Pa8fp2lcjBUKscAFlROUbxTULWO78k
+	vRYHJ9HJH+A4CxlvUSJf7i+PT12v8Ro+au1PM4SZZeDFsJlDJYI4cQUjbC61G0TcySjL
+	6srYvz6/QWkcF/4HcDBhbq/nWgK0lcZZWyX43zg4KT2i0cc4ISxa9YkbzXrJqUAiey/D
+	Nksg==
+X-Received: by 10.140.41.116 with SMTP id y107mr15802476qgy.78.1404468766508; 
+	Fri, 04 Jul 2014 03:12:46 -0700 (PDT)
 MIME-Version: 1.0
-To: "Sathish Kumar Balasubramaniam -ERS, HCL Tech" <b-sathishkumar@hcl.com>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
-References: <5D833673AB94D9489A7F7F73E9E611C814ADC4C8@chn-hclt-mbs08.HCLT.CORP.HCL.IN>
-	<53B5F73B.8040800@windriver.com>
-	<5D833673AB94D9489A7F7F73E9E611C814ADC5DF@chn-hclt-mbs08.HCLT.CORP.HCL.IN>
-In-Reply-To: <5D833673AB94D9489A7F7F73E9E611C814ADC5DF@chn-hclt-mbs08.HCLT.CORP.HCL.IN>
-Subject: Re: Adding a shared object file to rootfs
+Received: by 10.140.48.112 with HTTP; Fri, 4 Jul 2014 03:12:25 -0700 (PDT)
+From: Diego Sueiro <diego.sueiro@gmail.com>
+Date: Fri, 4 Jul 2014 07:12:25 -0300
+Message-ID: <CAMCfZKF_XTjxmJ9Z59x9eQq2AG8339ibnHentOHkfd=F9A33vQ@mail.gmail.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Changing SysVinit default runlevel
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -46,174 +55,46 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 04 Jul 2014 08:52:15 -0000
-Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Fri, 04 Jul 2014 10:12:52 -0000
+Content-Type: multipart/alternative; boundary=001a11c125e8ed0a9404fd5b5dae
+
+--001a11c125e8ed0a9404fd5b5dae
+Content-Type: text/plain; charset=ISO-8859-1
+
+Folks,
+
+Despite of using ROOTFS_POSTPROCESS_COMMAND to change /etc/inittab, is
+there another method provided by build system to set the default runlevel.
 
 
+Regards,
 
-On 07/04/2014 04:42 PM, Sathish Kumar Balasubramaniam -ERS, HCL Tech wrote:
-> Thanks, Robert Yang.
->
-> Method using abc.bb:
-> ~~~~~~~~~~~~~~~~
->
-> Before I tried using abc.bb, but I faced an error that says unknown package abc and something like opkg_install_cmd: cannot install .....
-> Hence I thought of trying linux-kernel_3.4.bbappend.
->
-> But now I added like the following to the abc.bb file (before I didn't give the -dbg line)
->
-> FILES_${PN} += "${base_libdir}"
-> FILES_${PN}-dbg += "${base_libdir}/.debug"
-> FILES_SOLIBSDEV = ""
->
-> Now it's working :)   --------> This is fine for me and as you said, this is the recommended way too.
+--
+*dS
+Diego Sueiro
 
-Sounds great.
+Administrador do Embarcados
+www.embarcados.com.br
+<http://www.embarcados.com.br/?utm_source=assinatura_diego&utm_medium=e-mail&utm_campaign=Assinatura%20Email%20Diego>
 
->
-> Method using linux-kernel_3.4.bb just for analysis :
-> ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
->
-> I tried to add FILES_kernel-vmlinux like the following
->
-> do_install_append () {
->          install -d ${D}${base_libdir}
->          install -m 0644 ${WORKDIR}/abc.so ${D}${base_libdir}
-> }
->
-> FILES_kernel-vmlinux += "${base_libdir}"
-> FILES_kernel-vmlinux-dbg += "${base_libdir}/.debug"
->
-> I am getting the following error
->
-> ERROR: QA Issue: non debug package contains .debug directory: kernel-vmlinux path /work/<machine>-poky-linux-gnueabi/linux-yocto/3.4+<version>/packages-split/kernel-vmlinux/lib/.debug/abc.so
+/*long live rock 'n roll*/
 
-Maybe you need something like:
+--001a11c125e8ed0a9404fd5b5dae
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
 
-PACKAGES += kernel-vmlinux-dgb
+<div dir=3D"ltr"><div>Folks,</div><div><br></div><div>Despite of using=A0RO=
+OTFS_POSTPROCESS_COMMAND to change /etc/inittab, is there another method pr=
+ovided by build system to set the default runlevel.</div><div><br></div><br=
+ clear=3D"all">
 
-Otherwise the FILES_kernel-vmlinux-dbg has no effect.
+<div><div dir=3D"ltr"><div>Regards,</div><div><br></div>--<br>*dS<br>Diego =
+Sueiro<br><br>Administrador do Embarcados<br><a href=3D"http://www.embarcad=
+os.com.br/?utm_source=3Dassinatura_diego&amp;utm_medium=3De-mail&amp;utm_ca=
+mpaign=3DAssinatura%20Email%20Diego" target=3D"_blank">www.embarcados.com.b=
+r</a><br>
 
-// Robert
+<br>/*long live rock &#39;n roll*/<br></div></div>
+</div>
 
->
->
-> Regards,
-> Sathish
->
-> -----Original Message-----
-> From: Robert Yang [mailto:liezhi.yang@windriver.com]
-> Sent: Friday, July 04, 2014 6:07 AM
-> To: Sathish Kumar Balasubramaniam -ERS, HCL Tech; yocto@yoctoproject.org
-> Subject: Re: [yocto] Adding a shared object file to rootfs
->
->
-> Hello,
->
-> I think that there are two problems:
->
-> 1) You can use a abc.bb to add the abc.so rather than .bbappend, then you can
->      add something like:
->      IMAGE_INSTALL_append = "abc"
->
->      to conf/local.conf.
->
-> 2) Please see my comments inline.
->
-> On 07/04/2014 01:11 AM, Sathish Kumar Balasubramaniam -ERS, HCL Tech wrote:
->> I tried to add the abc.so using a linux-yocto_3.4.bbappend like the following
->>
->> SRC_URI += "file://abc.so"
->>
->> do_install_append() {
->>
->>                   install -d ${D}${base_libdir}
->>
->>                   install -m 0644 ${WORKDIR}/abc.so ${D}${base_libdir}/
->>
->> }
->>
->> FILES_${PN} += "${base_libdir}/*.so"
->
-> The linux-yocto_3.4.bb doesn't generate a linux-yocto.rpm since linux-yocto
-> (the ${PN}) doesn't in PACKAGES, you can use bitbake -e linux-yocto to
-> see this, and if you really want to use linux-yocto_3.4.bbappend,
-> you can use (WARN: this is highly suggested NOT)
->
-> FILES_kernel-vmlinux += "${base_libdir}/abc.so"
->
-> Then maybe you would get the warning about unshipped  /lib/.debug
-> and /lib/.debug/abc.so, you need add them to kernel-vmlinux-dgb. Again,
-> this is highly suggested not, The suggested way is abc.bb.
->
-> // Robert
->
->>
->> FILES_SOLIBSDEV = ""
->>
->> However still I am getting the following error
->>
->> ERROR: QA Issue: linux-yocto: Files/directories were installed but not shipped
->>
->>     /lib/abc.so
->>
->>     /lib/.debug
->>
->>     /lib/.debug/abc.so
->>
->> ERROR: QA run found fatal errors. Please consider fixing them.
->>
->> ERROR: Function failed: do_package_qa
->>
->> Thanks,
->>
->> Sathish
->>
->> *From:*Sathish Kumar Balasubramaniam -ERS, HCL Tech
->> *Sent:* Thursday, July 03, 2014 9:29 PM
->> *To:* yocto@yoctoproject.org
->> *Subject:* Adding a shared object file to rootfs
->> *Importance:* High
->>
->> Hi,
->>
->> I have a file abc.so
->>
->> How can I add just this abc.so to /lib in rootfs using a recipe ?
->>
->> Regards,
->>
->> Sathish
->>
->>
->>
->> ::DISCLAIMER::
->> ----------------------------------------------------------------------------------------------------------------------------------------------------
->>
->> The contents of this e-mail and any attachment(s) are confidential and intended
->> for the named recipient(s) only.
->> E-mail transmission is not guaranteed to be secure or error-free as information
->> could be intercepted, corrupted,
->> lost, destroyed, arrive late or incomplete, or may contain viruses in
->> transmission. The e mail and its contents
->> (with or without referred errors) shall therefore not attach any liability on
->> the originator or HCL or its affiliates.
->> Views or opinions, if any, presented in this email are solely those of the
->> author and may not necessarily reflect the
->> views or opinions of HCL or its affiliates. Any form of reproduction,
->> dissemination, copying, disclosure, modification,
->> distribution and / or publication of this message without the prior written
->> consent of authorized representative of
->> HCL is strictly prohibited. If you have received this email in error please
->> delete it and notify the sender immediately.
->> Before opening any email and/or attachments, please check them for viruses and
->> other defects.
->>
->> ----------------------------------------------------------------------------------------------------------------------------------------------------
->>
->>
->>
->
->
-
+--001a11c125e8ed0a9404fd5b5dae--
