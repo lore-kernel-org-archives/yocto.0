@@ -1,38 +1,57 @@
-Return-Path: <Liezhi.Yang@windriver.com>
+Return-Path: <mareczek6415@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 17154E006F3; Thu,  3 Jul 2014 17:37:36 -0700 (PDT)
+	id 68068E006F6; Fri,  4 Jul 2014 00:35:50 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [147.11.1.11 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (mareczek6415[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CAF01E0045F
-	for <yocto@yoctoproject.org>; Thu,  3 Jul 2014 17:37:24 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail.windriver.com (8.14.5/8.14.5) with ESMTP id s640bHsX029438
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Thu, 3 Jul 2014 17:37:18 -0700 (PDT)
-Received: from [128.224.162.181] (128.224.162.181) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.40) with Microsoft SMTP Server id 14.3.169.1;
-	Thu, 3 Jul 2014 17:37:17 -0700
-Message-ID: <53B5F73B.8040800@windriver.com>
-Date: Fri, 4 Jul 2014 08:37:15 +0800
-From: Robert Yang <liezhi.yang@windriver.com>
-User-Agent: Mozilla/5.0 (X11; Linux i686;
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.212.173 listed in list.dnswl.org]
+Received: from mail-wi0-f173.google.com (mail-wi0-f173.google.com
+	[209.85.212.173])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 09A80E0045F
+	for <yocto@yoctoproject.org>; Fri,  4 Jul 2014 00:35:40 -0700 (PDT)
+Received: by mail-wi0-f173.google.com with SMTP id cc10so12473448wib.12
+	for <yocto@yoctoproject.org>; Fri, 04 Jul 2014 00:35:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=message-id:date:from:user-agent:mime-version:to:subject:references
+	:in-reply-to:content-type:content-transfer-encoding;
+	bh=rgW3nsX9ZBDuoEBIyyeKrLQoQsL3Atgf51n/cyQo71k=;
+	b=wkMD6EB3VlEYUHi9/1rgVSR3b2F8vrcwJatZMrRYnDorPtjIyaN+GPY1ZD5s1rTtGP
+	A37mFwxWZ8TEvhOjUBRf3AkWn83x3yCFbAl00+zbVbEHaLqQAIvxBav3ulBdIGp9NH5d
+	/6f3+NoFUFyo9S18ktYbJe2ekIRA05xdYwpd9+ykn7zVmgCkkTAzDBdOWi/+akwKXpXA
+	UriHJ8ZrXZK0Q5juFddxH/FumB+axAnrJX92M6vKNapIsd1XAuPzmGVGx7t+dBDwqKzi
+	WOlCRRS6RUdFaIxmM6NZ0ZZ4giYBEyLxtydEhjHkWkGTchgzBQ6OpxmeSQ3xNCxmXYQF
+	KteA==
+X-Received: by 10.180.89.233 with SMTP id br9mr15816827wib.14.1404459338300;
+	Fri, 04 Jul 2014 00:35:38 -0700 (PDT)
+Received: from [127.0.0.1] (ip52-2.tvtrinec.cz. [81.200.52.2])
+	by mx.google.com with ESMTPSA id w9sm51523668wif.12.2014.07.04.00.35.36
+	for <multiple recipients>
+	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
+	Fri, 04 Jul 2014 00:35:37 -0700 (PDT)
+Message-ID: <53B65946.1010909@gmail.com>
+Date: Fri, 04 Jul 2014 09:35:34 +0200
+From: mareczek <mareczek6415@gmail.com>
+User-Agent: Mozilla/5.0 (Windows NT 6.3; WOW64;
 	rv:24.0) Gecko/20100101 Thunderbird/24.6.0
 MIME-Version: 1.0
-To: "Sathish Kumar Balasubramaniam -ERS, HCL Tech" <b-sathishkumar@hcl.com>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
-References: <5D833673AB94D9489A7F7F73E9E611C814ADC4C8@chn-hclt-mbs08.HCLT.CORP.HCL.IN>
-In-Reply-To: <5D833673AB94D9489A7F7F73E9E611C814ADC4C8@chn-hclt-mbs08.HCLT.CORP.HCL.IN>
-Subject: Re: Adding a shared object file to rootfs
+To: Robert Yang <liezhi.yang@windriver.com>, yocto@yoctoproject.org
+References: <53B554AC.3060301@gmail.com> <53B5F2EE.5000707@windriver.com>
+In-Reply-To: <53B5F2EE.5000707@windriver.com>
+Subject: Re: do_populate_sdk error
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -44,114 +63,59 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 04 Jul 2014 00:37:36 -0000
-Content-Type: text/plain; charset="windows-1252"; format=flowed
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Fri, 04 Jul 2014 07:35:50 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
 
+Thank you very much, it solves that error.
 
-Hello,
+Marek
 
-I think that there are two problems:
+Dne 7/4/2014 2:18 AM, Robert Yang napsal(a):
+>
+> Seems that something is wrong with PACKAGE_CLASSES = package_deb,
+> maybe you can use PACKAGE_CLASSES = package_rpm ?
+>
+> // Robert
+>
+> On 07/03/2014 09:03 PM, mareczek wrote:
+>> Hello,
+>>
+>> I ran into an error during do_populate_sdk
+>>
+>> ERROR: Unable to install packages. Command
+>> '/yocto-daisy/build/tmp/sysroots/i686-linux/usr/bin/apt-get install 
+>> --force-yes
+>> --allow-unauthenticated nativesdk-packagegroup-sdk-host
+>> packagegroup-cross-canadian-imx6riotboard' returned 100:
+>> Reading package lists...
+>> Building dependency tree...
+>> Reading state information...
+>> W: Unable to read
+>> /yocto-daisy/build/tmp/work/cortexa9hf-vfp-neon-poky-linux-gnueabi/meta-toolchain/1.0-r7/apt-sdk/preferences.d/ 
+>>
+>> - DirectoryExists (2: No such file or directory)
+>> E: Unable to locate package nativesdk-packagegroup-sdk-host
+>>
+>> ERROR: Function failed: do_populate_sdk
+>> ERROR: Logfile of failure stored in:
+>> /yocto-daisy/build/tmp/work/cortexa9hf-vfp-neon-poky-linux-gnueabi/meta-toolchain/1.0-r7/temp/log.do_populate_sdk.32319 
+>>
+>>
+>> ERROR: Task 7 (/yocto-daisy/meta/recipes-core/meta/meta-toolchain.bb,
+>> do_populate_sdk) failed with exit code '1'
+>>
+>> I tried to find an answer, but without success. I tried to compile
+>> nativesdk-packagegroup-sdk-host and it was already compiled.
+>>
+>> I was able to compile u-boot, kernel, kernel modules, dtb, rootfs and 
+>> everythink
+>> works quite well, but now I'm stuck with this and have no clue how to 
+>> solve
+>> this. If anyone knows how to make it working I would be very glad.
+>>
+>> Thank you very much
+>>
+>> Marek
 
-1) You can use a abc.bb to add the abc.so rather than .bbappend, then you can
-    add something like:
-    IMAGE_INSTALL_append = "abc"
-
-    to conf/local.conf.
-
-2) Please see my comments inline.
-
-On 07/04/2014 01:11 AM, Sathish Kumar Balasubramaniam -ERS, HCL Tech wrote:
-> I tried to add the abc.so using a linux-yocto_3.4.bbappend like the following
->
-> SRC_URI += “file://abc.so”
->
-> do_install_append() {
->
->                  install -d ${D}${base_libdir}
->
->                  install -m 0644 ${WORKDIR}/abc.so ${D}${base_libdir}/
->
-> }
->
-> FILES_${PN} += "${base_libdir}/*.so"
-
-The linux-yocto_3.4.bb doesn't generate a linux-yocto.rpm since linux-yocto
-(the ${PN}) doesn't in PACKAGES, you can use bitbake -e linux-yocto to
-see this, and if you really want to use linux-yocto_3.4.bbappend,
-you can use (WARN: this is highly suggested NOT)
-
-FILES_kernel-vmlinux += "${base_libdir}/abc.so"
-
-Then maybe you would get the warning about unshipped  /lib/.debug
-and /lib/.debug/abc.so, you need add them to kernel-vmlinux-dgb. Again,
-this is highly suggested not, The suggested way is abc.bb.
-
-// Robert
-
->
-> FILES_SOLIBSDEV = ""
->
-> However still I am getting the following error
->
-> ERROR: QA Issue: linux-yocto: Files/directories were installed but not shipped
->
->    /lib/abc.so
->
->    /lib/.debug
->
->    /lib/.debug/abc.so
->
-> ERROR: QA run found fatal errors. Please consider fixing them.
->
-> ERROR: Function failed: do_package_qa
->
-> Thanks,
->
-> Sathish
->
-> *From:*Sathish Kumar Balasubramaniam -ERS, HCL Tech
-> *Sent:* Thursday, July 03, 2014 9:29 PM
-> *To:* yocto@yoctoproject.org
-> *Subject:* Adding a shared object file to rootfs
-> *Importance:* High
->
-> Hi,
->
-> I have a file abc.so
->
-> How can I add just this abc.so to /lib in rootfs using a recipe ?
->
-> Regards,
->
-> Sathish
->
->
->
-> ::DISCLAIMER::
-> ----------------------------------------------------------------------------------------------------------------------------------------------------
->
-> The contents of this e-mail and any attachment(s) are confidential and intended
-> for the named recipient(s) only.
-> E-mail transmission is not guaranteed to be secure or error-free as information
-> could be intercepted, corrupted,
-> lost, destroyed, arrive late or incomplete, or may contain viruses in
-> transmission. The e mail and its contents
-> (with or without referred errors) shall therefore not attach any liability on
-> the originator or HCL or its affiliates.
-> Views or opinions, if any, presented in this email are solely those of the
-> author and may not necessarily reflect the
-> views or opinions of HCL or its affiliates. Any form of reproduction,
-> dissemination, copying, disclosure, modification,
-> distribution and / or publication of this message without the prior written
-> consent of authorized representative of
-> HCL is strictly prohibited. If you have received this email in error please
-> delete it and notify the sender immediately.
-> Before opening any email and/or attachments, please check them for viruses and
-> other defects.
->
-> ----------------------------------------------------------------------------------------------------------------------------------------------------
->
->
->
 
