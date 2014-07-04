@@ -1,51 +1,39 @@
-Return-Path: <jenslucius@freenet.de>
+Return-Path: <joshua.collins@arcontia.se>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id CADE7E003D2; Tue,  1 Jul 2014 23:08:35 -0700 (PDT)
+	id 9F8C1E006F3; Fri,  4 Jul 2014 00:37:54 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,FREEMAIL_FROM,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (jenslucius[at]freenet.de)
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [195.4.92.93 listed in list.dnswl.org]
-X-Greylist: delayed 890 seconds by postgrey-1.32 at yocto-www;
-	Tue, 01 Jul 2014 23:08:29 PDT
-Received: from mout3.freenet.de (mout3.freenet.de [195.4.92.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5F160E0030B
-	for <yocto@yoctoproject.org>; Tue,  1 Jul 2014 23:08:29 -0700 (PDT)
-Received: from [195.4.92.141] (helo=mjail1.freenet.de)
-	by mout3.freenet.de with esmtpa (ID jenslucius@freenet.de) (port 25)
-	(Exim 4.82 #1) id 1X2DU7-0006Ku-2t
-	for yocto@yoctoproject.org; Wed, 02 Jul 2014 07:53:35 +0200
-Received: from localhost ([::1]:43985 helo=mjail1.freenet.de)
-	by mjail1.freenet.de with esmtpa (ID jenslucius@freenet.de) (Exim 4.82
-	#1) id 1X2DU6-0006a6-V7
-	for yocto@yoctoproject.org; Wed, 02 Jul 2014 07:53:35 +0200
-Received: from mx10.freenet.de ([195.4.92.20]:49187)
-	by mjail1.freenet.de with esmtpa (ID jenslucius@freenet.de) (Exim 4.82
-	#1) id 1X2DS7-0005zV-3m; Wed, 02 Jul 2014 07:51:31 +0200
-Received: from p579154b2.dip0.t-ipconnect.de ([87.145.84.178]:61697
-	helo=[192.168.2.12])
-	by mx10.freenet.de with esmtpsa (ID jenslucius@freenet.de)
-	(TLSv1:DHE-RSA-AES128-SHA:128) (port 587) (Exim 4.82 #1)
-	id 1X2DS6-0007se-Us; Wed, 02 Jul 2014 07:51:31 +0200
-Message-ID: <53B39DCE.9060705@freenet.de>
-Date: Wed, 02 Jul 2014 07:51:10 +0200
-From: Jens Lucius <jenslucius@freenet.de>
-User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64;
-	rv:24.0) Gecko/20100101 Thunderbird/24.6.0
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+Received: from graveyard4-1.ilait.eu (graveyard4-1.ilait.eu [178.63.104.73])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B8927E00708
+	for <yocto@yoctoproject.org>; Fri,  4 Jul 2014 00:37:51 -0700 (PDT)
+Received: from smtp1-4.ilait.se (smtp1-4.ilait.se [94.246.96.44])
+	by graveyard4-1.ilait.eu (Postfix) with ESMTPS id 9F87750C92E
+	for <yocto@yoctoproject.org>; Fri,  4 Jul 2014 07:37:48 +0000 (UTC)
+Received: from ex-hub1-1.cloud.local (ex-hub1-1.ilait.se [62.109.34.14])
+	by smtp1-4.ilait.se (Postfix) with ESMTPS id 5C815700DA
+	for <yocto@yoctoproject.org>; Fri,  4 Jul 2014 07:37:40 +0000 (UTC)
+Received: from EX-MBX1-8.cloud.local ([fe80::8b0:2430:4599:5695]) by
+	ex-hub1-1.cloud.local ([fe80::7556:3d55:8d3d:1b92%13]) with mapi id
+	14.03.0174.001; Fri, 4 Jul 2014 09:37:38 +0200
+From: Joshua Collins <joshua.collins@arcontia.se>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: Recipe to copy precompiled binaries to root image
+Thread-Index: Ac+XWTuZhtM2e9TiSw+uuOovjLCU1Q==
+Date: Fri, 4 Jul 2014 07:37:38 +0000
+Message-ID: <EA5D4AA0E56AAB499D0E3B654C889FBFBC1D52@ex-mbx1-8.cloud.local>
+Accept-Language: en-US, sv-SE
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [83.218.75.50]
 MIME-Version: 1.0
-To: Jate S <jatedev@gmail.com>, Yocto Project <yocto@yoctoproject.org>
-References: <CAPphmgZ+ivQYXuYHLWfzQF9QySVnd=YtbM=fEjfA_7hp3iFq1A@mail.gmail.com>
-In-Reply-To: <CAPphmgZ+ivQYXuYHLWfzQF9QySVnd=YtbM=fEjfA_7hp3iFq1A@mail.gmail.com>
-X-Originated-At: 87.145.84.178!61697
 X-Mailman-Approved-At: Sun, 06 Jul 2014 13:59:01 -0700
-Subject: Re: python tkinter dependencies
+Subject: Recipe to copy precompiled binaries to root image
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -57,39 +45,211 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 02 Jul 2014 06:08:35 -0000
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Fri, 04 Jul 2014 07:37:54 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_EA5D4AA0E56AAB499D0E3B654C889FBFBC1D52exmbx18cloudlocal_"
 
-Hi
+--_000_EA5D4AA0E56AAB499D0E3B654C889FBFBC1D52exmbx18cloudlocal_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-It worked for me in my build env after trying several things.
+I have some precompiled libraries that I want to copy to my root image afte=
+r it has been built. I am building the fsl-image-gui image.
 
-I did setup a new yocto some while ago and actually had the same 
-problems again.
+I have created my own layer and recipe, with a file structure:
 
-There is a patch in python about tkinter (03-fix-tkinter-detection.patch).
+meta-mylayer ->
+                meta-myrecipe ->
+                                myrecipie ->
+                                                myrecipe.bb
+                                                files ->
+                                                                myLib1.so
+                                                                myLib2.so
+                                                                myScript
 
-I removed that, did a fresh rebuild of python (-c clean) and did a 
-rebuild of my image (as no new image was written by building my image 
-after rebuilding python).
+I have added my layer to bblayers.conf and added IMAGE_INSTALL_append =3D "=
+ myrecipe" to local.conf.
 
-Either of these did work for me, maybe somebody knows exactly which step :-)
+My recipe looks like this:
 
-Jens
+---------------------------------------------------------------------------=
+----
+DESCRIPTION =3D "Copies files to the image"
+LICENSE =3D "CLOSED"
+PN =3D 'arcontia'
+PV =3D '0.0.1'
 
-Am 02.07.2014 05:41, schrieb Jate S:
-> The python-tkinter module requires _tkinter. A result from a websearch
-> suggested that I needed to make sure tk (from meta-oe/meta-oe) and tcl
-> were installed before compiling python.
+FILESEXTRAPATHS_prepend :=3D "${THISDIR}/files:"
+SRC_URI +=3D "file://myLib1.so  file://myLib2.so file://myScript "
+
+S =3D "${WORKDIR}"
+
+do_install() {
+  install -d ${D}${libdir}
+  install -m 755 myLib1.so ${D}${libdir}
+  install -m 755 myLib2.so ${D}${libdir}
+
+  install -d ${D}/etc
+  install -m 755 myScript ${D}/etc
+}
+---------------------------------------------------------------------------=
+----
+
+This does not copy the files to the image as I would expect. If I look at t=
+he bitbake log, I see my recipe is run, but I obviously have not done the r=
+ight thing in the recipe.
+
+Can anyone tell me how I could fix this?
+
+Cheers,
+Josh
+
+--_000_EA5D4AA0E56AAB499D0E3B654C889FBFBC1D52exmbx18cloudlocal_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
 >
-> I added a DEPENDS on the tk and tcl recipes to both python and
-> python-tkinter in a python_2.7.3.bbappend. It did not work and was
-> never built.
->
-> I'm looking for tips to figure out what is going on. Thanks.
->
->
-> - Jate S.
+<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";
+	mso-fareast-language:EN-US;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:#954F72;
+	text-decoration:underline;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri","sans-serif";
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri","sans-serif";
+	mso-fareast-language:EN-US;}
+@page WordSection1
+	{size:612.0pt 792.0pt;
+	margin:72.0pt 72.0pt 72.0pt 72.0pt;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-AU" link=3D"#0563C1" vlink=3D"#954F72">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal">I have some precompiled libraries that I want to cop=
+y to my root image after it has been built. I am building the fsl-image-gui=
+ image.<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">I have created my own layer and recipe, with a file =
+structure:<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">meta-mylayer -&gt;<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; meta-myrecipe -&gt;<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; myrecipie -&gt;=
+<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp; myrecipe.bb<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+ files -&gt;<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp; myLib1.so<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp; myLib2.so<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp; myScript<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">I have added my layer to bblayers.conf and added IMA=
+GE_INSTALL_append =3D &#8220; myrecipe&#8221; to local.conf.<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">My recipe looks like this:<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">----------------------------------------------------=
+---------------------------<o:p></o:p></p>
+<p class=3D"MsoNormal">DESCRIPTION =3D &quot;Copies files to the image&quot=
+;<o:p></o:p></p>
+<p class=3D"MsoNormal">LICENSE =3D &quot;CLOSED&quot;<o:p></o:p></p>
+<p class=3D"MsoNormal">PN =3D 'arcontia'<o:p></o:p></p>
+<p class=3D"MsoNormal">PV =3D '0.0.1'<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">FILESEXTRAPATHS_prepend :=3D &quot;${THISDIR}/files:=
+&quot;<o:p></o:p></p>
+<p class=3D"MsoNormal">SRC_URI &#43;=3D &quot;file://myLib1.so&nbsp; file:/=
+/myLib2.so file://myScript &quot;<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">S =3D &quot;${WORKDIR}&quot;<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">do_install() {<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp; install -d ${D}${libdir}<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp; install -m 755 myLib1.so ${D}${libdir}<o:p></=
+o:p></p>
+<p class=3D"MsoNormal">&nbsp; install -m 755 myLib2.so ${D}${libdir}<o:p></=
+o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">&nbsp; install -d ${D}/etc<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp; install -m 755 myScript ${D}/etc<o:p></o:p></=
+p>
+<p class=3D"MsoNormal">}<o:p></o:p></p>
+<p class=3D"MsoNormal">----------------------------------------------------=
+---------------------------<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">This does not copy the files to the image as I would=
+ expect. If I look at the bitbake log, I see my recipe is run, but I obviou=
+sly have not done the right thing in the recipe.<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Can anyone tell me how I could fix this?<o:p></o:p><=
+/p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Cheers,<o:p></o:p></p>
+<p class=3D"MsoNormal">Josh<o:p></o:p></p>
+</div>
+</body>
+</html>
 
-
+--_000_EA5D4AA0E56AAB499D0E3B654C889FBFBC1D52exmbx18cloudlocal_--
