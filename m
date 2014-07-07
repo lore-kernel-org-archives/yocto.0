@@ -1,70 +1,45 @@
-Return-Path: <vaduvajanalexandru@yahoo.com>
+Return-Path: <Alexandru.Vaduva@enea.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id B0E26E00563; Mon,  7 Jul 2014 09:27:05 -0700 (PDT)
+	id E87FBE00563; Mon,  7 Jul 2014 11:43:58 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (vaduvajanalexandru[at]yahoo.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [98.138.91.170 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from nm10-vm4.bullet.mail.ne1.yahoo.com
-	(nm10-vm4.bullet.mail.ne1.yahoo.com [98.138.91.170])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3AFAFE002AA
-	for <yocto@yoctoproject.org>; Mon,  7 Jul 2014 09:26:55 -0700 (PDT)
-Received: from [98.138.101.129] by nm10.bullet.mail.ne1.yahoo.com with NNFMP;
-	07 Jul 2014 16:26:54 -0000
-Received: from [98.138.89.162] by tm17.bullet.mail.ne1.yahoo.com with NNFMP;
-	07 Jul 2014 16:26:54 -0000
-Received: from [127.0.0.1] by omp1018.mail.ne1.yahoo.com with NNFMP;
-	07 Jul 2014 16:26:54 -0000
-X-Yahoo-Newman-Property: ymail-5
-X-Yahoo-Newman-Id: 40855.24661.bm@omp1018.mail.ne1.yahoo.com
-Received: (qmail 75607 invoked by uid 60001); 7 Jul 2014 16:26:54 -0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s1024;
-	t=1404750413; bh=hCWFj4R2pJyHVOgnrBOPIP7q/oBkGT31hkpXRTnb4Xc=;
-	h=References:Message-ID:Date:From:Reply-To:Subject:To:In-Reply-To:MIME-Version:Content-Type;
-	b=xHgaRgderazx7jhMs/H7M4UbeRP43VBwjthRrURTKXJ6YllEKvp4bA38MB8I9BcDnmLJx/eBBgFeNd5Ax+MJ3Hj593k5thjiCJkjTkFIAzTeMt09fyzIZHj6pw29IG34kHyiP5+LjKUZ6etjR3FIH34+15h5/4k4QoONFC8vV4I=
-X-YMail-OSG: 0UGYykEVM1lHSZHBGNCpTa4SSA11HE1T8ahQnzKVZP4K1Fu
-	5fqewETPw2zGGpqxSrz2qrVqdWjkDnQlPC0eIHK1q058nYdZtFJ0h46w5BuK
-	0Jq_f7jqnvrMf4CkAU8aSSCnrUT.h4LXU30oe8MFMM3uj9m9mS.CJpcLHyvP
-	wO8_n40L2deylQCTOglIXCEPezenAitQ9aiN2AEL4JnFNMyBoKPsxE4RjRT_
-	ItKh7dSYCyv6zIQlFHNigCYg5skqE17k6LOSzpAHgDMLOwsVB.VuWNqgO4os
-	UGdJIxAkvQ_vGPdLOEJ5peYZ6DnyJt0nyKv.sezw9_mc7cOhmfY8IW2gh4fs
-	VQQxkd0DguySrtQaGLUBKWAwwfwx0LIs0LfQL1s2jXRKdmhsRnSSrYfb01e5
-	1xM1QbSY9N3w8OWL_1buZnsIuA9cfaZzMkqsFfVI5e4CUl6JjAYC.NjFXgSZ
-	wHkcW8lO.7AKJi1DzYvBB.XqndtPPC0qZy9M7PDD7B3XVTZC72tsSd03fqAj
-	q0KAHi6FUlxyuLyLjqqa6UiyIvPC8KIqSRDvAGXOZvnch8SSNr8m7F3BIe9X HrvAv
-Received: from [141.85.0.106] by web122501.mail.ne1.yahoo.com via HTTP;
-	Mon, 07 Jul 2014 09:26:53 PDT
-X-Rocket-MIMEInfo: 002.001,
-	dXNpbmc6CgpiaXRiYWtlIC1nIDxpbWFnZS1uYW1lPiAmJiBjYXQgcG4tZGVwZW5kcy5kb3QgfCBncmVwIC12IC1lICctbmF0aXZlJyB8IGdyZXAgLXYgZGlncmFwaCB8IGdyZXAgLXYgLWUgJy1pbWFnZScgfCBhd2sgJ3twcmludCAkMX0nIHwgc29ydCB8IHVuaXEKCnlvdSBjYW4gdmlzdWFsaXplIHRoZSBpbWFnZSBwYWNrYWdlcy4gTGV0IG1lIGtub3cgaWYgdGhpcyBpcyB3aGF0IHlvdSBhcmUgbG9va2luZyBmb3IuCgoKCk9uIE1vbmRheSwgSnVseSA3LCAyMDE0IDc6MDQgUE0sIEJoYXJhdGggQ2hhbmRyYSABMAEBAQE-
-X-Mailer: YahooMailWebService/0.8.191.1
-References: <CAGM0ZdSWnuJMWoq55STgQwWkNJLubeHhEMwF_LHgVPpK0BMt3w@mail.gmail.com>
-Message-ID: <1404750413.98339.YahooMailNeo@web122501.mail.ne1.yahoo.com>
-Date: Mon, 7 Jul 2014 09:26:53 -0700
-From: Alexandru Vaduva <vaduvajanalexandru@yahoo.com>
-To: Bharath Chandra <ellurubharath29@gmail.com>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
-In-Reply-To: <CAGM0ZdSWnuJMWoq55STgQwWkNJLubeHhEMwF_LHgVPpK0BMt3w@mail.gmail.com>
+Received: from mx-3.enea.com (sestofw01.enea.se [192.36.1.252])
+	by yocto-www.yoctoproject.org (Postfix) with SMTP id 0D6FBE002AA
+	for <yocto@yoctoproject.org>; Mon,  7 Jul 2014 11:43:51 -0700 (PDT)
+Received: from SESTOEX04.enea.se ([fe80::bc2d:9299:d6b2:d0b7]) by
+	SESTOEX08.enea.se ([fe80::1c3:4003:dc47:23c0%11]) with mapi id
+	14.03.0158.001; Mon, 7 Jul 2014 20:43:43 +0200
+From: Alexandru Vaduva <Alexandru.Vaduva@enea.com>
+To: Jeff Osier-Mixon <jefro@jefro.net>
+Thread-Topic: [OE-core] Carrier Grade layer proposal
+Thread-Index: AQHPkW1+2KRT24GnPkKv9BXuG5a5ZpuEiPLggAAHpxCAABcrkIAACmtAgAABnUCAAAhEYIAFAPMAgAsfaQCAACK0kA==
+Date: Mon, 7 Jul 2014 18:43:43 +0000
+Message-ID: <DDB0C57E45663A458C5CACB7B5688BC21D6CAE0B@SESTOEX04.enea.se>
+References: <CALZ2gZV=pDM5kE-VDdEp1xJRV+ig7q5ix+cFU9vjpvJg7x=o5Q@mail.gmail.com>
+	<D7AB900AA081FD46B179E331E9F703E8907D76@SESTOEX04.enea.se>
+	<6B17198E316BD04DBB6F6DD263019AE125573C4A@SESTOEX04.enea.se>
+	<2D55BFC2C836774DB0F2FE17BECC006C28993A30@SESTOEX04.enea.se>
+	<D7AB900AA081FD46B179E331E9F703E8908E42@SESTOEX04.enea.se>
+	<DDB0C57E45663A458C5CACB7B5688BC21D6C5C0D@SESTOEX04.enea.se>
+	<D7AB900AA081FD46B179E331E9F703E8908E9C@SESTOEX04.enea.se>
+	<DDB0C57E45663A458C5CACB7B5688BC21D6C8818@SESTOEX04.enea.se>
+	<CA+YB3rY8TifZWKrm5FJc871WMtzP-ZeiCZJS9ceSa3uUoR9TGA@mail.gmail.com>
+In-Reply-To: <CA+YB3rY8TifZWKrm5FJc871WMtzP-ZeiCZJS9ceSa3uUoR9TGA@mail.gmail.com>
+Accept-Language: en-US, sv-SE
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [192.168.14.184]
 MIME-Version: 1.0
-Subject: Re: List of Recipes
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: [OE-core] Carrier Grade layer proposal
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
-Reply-To: Alexandru Vaduva <vaduvajanalexandru@yahoo.com>
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -73,48 +48,120 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 07 Jul 2014 16:27:05 -0000
-Content-Type: multipart/alternative;
-	boundary="-1149815241-393900048-1404750413=:98339"
+X-List-Received-Date: Mon, 07 Jul 2014 18:43:59 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
----1149815241-393900048-1404750413=:98339
-Content-Type: text/plain; charset=us-ascii
+SGVsbG8gSmVmZiwNCg0KVGhlIGVycm9ycyBhcmUgcGFja2FnZSByZWxhdGVkLiANCk1ldGEtY2ds
+IGNhbiBiZSBzZWVuIGFzIGEgbm9uIEJTUCBzcGVjaWZpYyBsYXllciAoaXQgY2FuIGJlIHZpZXdl
+ZCBhcyB0aGUgTFNCIGZyb20gcG9reSkuDQpJIGFscmVhZHkgc3RhcnRlZCBmaXhpbmcgYSBudW1i
+ZXIsIG9mIHRoZSBhbHJlYWR5IGV4aXN0aW5nIGVycm9ycyBhbmQgdGhlIHBhdGNoZXMgd2lsbCBi
+ZSBhZGRlZCB1cHN0cmVhbSBhZnRlciBwcm9wZXIgdGVzdGluZy4NCkkgd2lsbCBjb250aW51ZSB0
+aGUgYnVnIGZpeGluZyBhbmQgcGFja2FnZSBpbnRlZ3JhdGlvbiAoaW50byB0aGUgY29yZS1pbWFn
+ZS1jZ2wgaW1hZ2UpIHByb2Nlc3MgYW5kIGFmdGVyIHRoYXQgaXMgZmluaXNoZWQgSSB3aWxsIGNv
+bnRpbnVlIHdpdGggdGhlDQpDYXRlZ29yeSBCIHBhY2thZ2VzLg0KDQpJIHdpbGwgYWxzbyB0cnkg
+dG8ga2VlcCB5b3UgZ3V5cyBpbmZvcm1lZCBhYm91dCB0aGUgbGF0ZXN0IHVwZGF0ZXMsIG1haW5s
+eSBvbiB0aGUgWVBUTSwgYnV0IGZvciB0aG9zZSB3aG8gY2Fubm90IHdhaXQgdGhhdCBtdWNoLCB0
+aGVyZSBpcyB0aGUNCkdpdCByZXBvc2l0b3J5IHdpdGggd2hpY2ggdGhleSBjYW4gaW50ZXJhY3Q6
+IGh0dHA6Ly9naXQuZW5lYS5jb20vZ2l0Lz9wPWxpbnV4L21ldGEtY2dsLmdpdDthPXN1bW1hcnkN
+Cg0KDQpIYXZlIGEgZ29vZCBkYXksDQpBbGV4DQoNCg0KLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0t
+LS0NCkZyb206IGplZnJvLm5ldEBnbWFpbC5jb20gW21haWx0bzpqZWZyby5uZXRAZ21haWwuY29t
+XSBPbiBCZWhhbGYgT2YgSmVmZiBPc2llci1NaXhvbg0KU2VudDogTW9uZGF5LCBKdWx5IDA3LCAy
+MDE0IDk6MjIgUE0NClRvOiBBbGV4YW5kcnUgVmFkdXZhDQpTdWJqZWN0OiBSZTogW09FLWNvcmVd
+IENhcnJpZXIgR3JhZGUgbGF5ZXIgcHJvcG9zYWwNCg0KVGhhbmtzLCBBbGV4Lg0KDQpPdGhlcnMg
+b24gdGhlIG1haWxpbmcgbGlzdHMsIGlmIHlvdSBoYXZlIGFueSBjb21tZW50cyBvbiB0aGUgY29u
+dGVudHMgb2YgdGhpcyBuZXcgbGF5ZXIsIHBsZWFzZSBtZW50aW9uIHRoZW0gb24gdGhpcyB0aHJl
+YWQuDQoNClJlIGNvbXBpbGF0aW9uIGVycm9ycywgd2VyZSB0aGV5IHNwZWNpZmljIHRvIGEgQlNQ
+IG9yIHdlcmUgdGhleSBnZW5lcmFsIGVycm9ycyBpbiB0aGUgcGFja2FnZXM/DQoNCnRoYW5rcw0K
+DQpPbiBNb24sIEp1biAzMCwgMjAxNCBhdCA4OjAxIEFNLCBBbGV4YW5kcnUgVmFkdXZhIDxBbGV4
+YW5kcnUuVmFkdXZhQGVuZWEuY29tPiB3cm90ZToNCj4gSGVsbG8gSmVmZiwNCj4NCj4NCj4NCj4g
+VGhlIGF2YWlsYWJsZSBsYXllciBpcyBhIHdvcmsgaW4gcHJvZ3Jlc3MuDQo+DQo+IEZvciB0aGUg
+bW9tZW50IHdlIGhhdmUgZG9uZSBhbiBpbnRlcm5hbCBtYXBwaW5nIG9mIHRoZSBwYWNrYWdlcyBu
+ZWVkZWQgDQo+IGluc2lkZSBtZXRhLWNnbCBsYXllci4gVGhlIG1hcHBpbmcgaXMgZG9uZSBhcyBm
+b2xsb3dpbmc6DQo+IEEuIFJlcXVpcmVtZW50IHRoYXQgbWFwIGFnYWluc3QgcGFja2FnZS9wYWNr
+YWdlcyB3aXRoIHJlY2lwZXMgdGhhdCANCj4gYWxyZWFkeSBleGlzdHMgaW4gWW9jdG8NCj4gICBB
+MS4gUmVxdWlyZW1lbnQgdGhhdCBtYXAgYWdhaW5zdCBwYWNrYWdlL3BhY2thZ2VzIHdpdGggcmVj
+aXBlcyANCj4gYWxyZWFkeSBleGlzdGluZyBpbiBtZXRhLWVuZWENCj4gICBBMi4gUmVxdWlyZW1l
+bnQgdGhhdCBtYXAgYWdhaW5zdCBwYWNrYWdlL3BhY2thZ2VzIHdpdGggcmVjaXBlcyB0aGF0IA0K
+PiBleGlzdHMgaW4gWW9jdG8gKGJ1dCBub3QgaW4gbWV0YS1lbmVhKSBCLiBSZXF1aXJlbWVudCB0
+aGF0IG1hcCBhZ2FpbnN0IA0KPiBwYWNrYWdlL3BhY2thZ2VzIHdpdGhvdXQgYW55IHJlY2lwZSBD
+LiBSZXF1aXJlbWVudCBkb2VzIG5vdCBkaXJlY3RseSANCj4gbWFwIGFnYWluc3QgcGFja2FnZS9w
+YWNrYWdlcyBhbmQgbmVlZHMgc29tZSBpbnZlc3RpZ2F0aW9uLg0KPiBELiBSZXF1aXJlbWVudCB0
+aGF0IG5vIHNvbHV0aW9uIGhhdmUgYmVlbiBmb3VuZCBhZnRlciBhIG1vcmUgZGV0YWlsZWQgDQo+
+IGludmVzdGlnYXRpb24uDQo+DQo+DQo+DQo+IFdoZW4gdGhlIHJlbGVhc2Ugd2FzIG1hZGUgYXZh
+aWxhYmxlIG9uIHRoZSBwdWJsaWMgcmVwb3NpdG9yeSwgdGhlIA0KPiBwYWNrYWdlcyBmcm9tIHRo
+ZSBBMSBhbmQgQTIgd2VyZSBpbnRlZ3JhdGVkLCBhIGJ1bmNoIG9mIHRoZW0gd2l0aCBjb21waWxh
+dGlvbiBlcnJvcnM6DQo+DQo+IC0gICAgICAgICAgbGtzY3RwLXRvb2xzDQo+DQo+IC0gICAgICAg
+ICAgb3BlbmFpcw0KPg0KPiAtICAgICAgICAgIHBhY2VtYWtlcg0KPg0KPiAtICAgICAgICAgIG9w
+ZW5ocGkNCj4NCj4gLSAgICAgICAgICBvcGVuLWlzY3NpLXVzZXINCj4NCj4gLSAgICAgICAgICBv
+cGVuLWlzY3NpLWtlcm5lbA0KPg0KPiAtICAgICAgICAgIGxpYmNhcC1uZw0KPg0KPiAtICAgICAg
+ICAgIGNsdXN0ZXItZ2x1ZQ0KPg0KPiAtICAgICAgICAgIGNsdXN0ZXItcmVzb3VyY2UtYWdlbnRz
+DQo+DQo+IFRoZSBhY3Rpdml0eSBvbiB0aGUgbWV0YS1jZ2wgd2FzIHJlc3VtZWQgdG9kYXkgYW5k
+IHRob3NlIGJ1aWxkIGFuZCANCj4gaW50ZWdyYXRpb24gZXJyb3JzIHdpbGwgYmUgZGVhbHQgbmV4
+dC4NCj4NCj4NCj4NCj4gT24gdGhlIGxvbmdlciBydW4gd2Ugd2lsbCB0cnkgdG8gY3JlYXRlIHJl
+Y2lwZXMgYW5kL29yIGZ1bGZpbGwgYWxsIHRoZSANCj4gb3RoZXIgcmVxdWlyZW1lbnRzIGZyb20g
+dGhlIGNsYXNzIEIsIEMsIGFuZCBELg0KPg0KPiBQbGVhc2UgZG8gbm90IGhlc2l0YXRlIHRvIGNv
+bnRhY3QgbWUgaWYgeW91IGhhdmUgZnVydGhlciBxdWVzdGlvbnMuDQo+DQo+DQo+DQo+DQo+DQo+
+IEFsZXgNCj4NCj4NCj4NCj4gRnJvbTogSm9uIEFsZGFtYQ0KPiBTZW50OiBGcmlkYXksIEp1bmUg
+MjcsIDIwMTQgMTowNyBQTQ0KPiBUbzogQWxleGFuZHJ1IFZhZHV2YTsgQ29zbWluIE1vbGRvdmVh
+bnU7IEplbm55IEFuZGVyc3NvbjsgRGF2aWQgDQo+IE55c3Ryw7ZtDQo+IENjOiBEYW5pZWwgQm9y
+bmF6OyBBZHJpYW4gRHVkYXUNCj4gU3ViamVjdDogUkU6IENhcnJpZXIgR3JhZGUgbGF5ZXIgcHJv
+cG9zYWwNCj4NCj4NCj4NCj4gUm9nZXIgdGhhdCEgVGhhbmtzIEFsZXhhbmRydSENCj4NCj4NCj4N
+Cj4NCj4NCj4gRnJvbTogQWxleGFuZHJ1IFZhZHV2YQ0KPiBTZW50OiBkZW4gMjcganVuaSAyMDE0
+IDExOjQzDQo+IFRvOiBKb24gQWxkYW1hOyBDb3NtaW4gTW9sZG92ZWFudTsgSmVubnkgQW5kZXJz
+c29uOyBEYXZpZCBOeXN0csO2bQ0KPiBDYzogRGFuaWVsIEJvcm5hejsgQWRyaWFuIER1ZGF1DQo+
+IFN1YmplY3Q6IFJFOiBDYXJyaWVyIEdyYWRlIGxheWVyIHByb3Bvc2FsDQo+DQo+DQo+DQo+IEhl
+bGxvIEpvbiwNCj4NCj4NCj4NCj4gV2Ugd2lsbCBmaXJzdCBoYXZlIGFuIGludGVybmFsIG1lZXRp
+bmcgb24gTW9uZGF5IGFuZCBhZnRlciB0aGF0IEkgd2lsbCANCj4gb2ZmZXIgYW4gYW5zd2VyIHRv
+IEplZmYuDQo+DQo+DQo+DQo+DQo+DQo+IEFsZXgNCj4NCj4NCj4NCj4gRnJvbTogSm9uIEFsZGFt
+YQ0KPiBTZW50OiBGcmlkYXksIEp1bmUgMjcsIDIwMTQgMTI6MzIgUE0NCj4gVG86IENvc21pbiBN
+b2xkb3ZlYW51OyBKZW5ueSBBbmRlcnNzb247IERhdmlkIE55c3Ryw7ZtDQo+IENjOiBBbGV4YW5k
+cnUgVmFkdXZhOyBEYW5pZWwgQm9ybmF6OyBBZHJpYW4gRHVkYXUNCj4gU3ViamVjdDogUkU6IENh
+cnJpZXIgR3JhZGUgbGF5ZXIgcHJvcG9zYWwNCj4NCj4NCj4NCj4gVGhhbmsgeW91IENvc21pbiwN
+Cj4NCj4NCj4NCj4gQWxleGFuZHJ1LCBjb3VsZCB5b3UgcGxlYXNlIHJlc3BvbmQgSmVmZiBhdCB0
+aGUgbWFpbGluZyBsaXN0PyAoc2VlIA0KPiBkb3duDQo+IGJlbG93KQ0KPg0KPg0KPg0KPiBDaGVl
+cnMNCj4NCj4gSm9uDQo+DQo+DQo+DQo+IEZyb206IENvc21pbiBNb2xkb3ZlYW51DQo+IFNlbnQ6
+IGRlbiAyNyBqdW5pIDIwMTQgMTA6NTkNCj4gVG86IEplbm55IEFuZGVyc3NvbjsgSm9uIEFsZGFt
+YTsgRGF2aWQgTnlzdHLDtm0NCj4gQ2M6IEFsZXhhbmRydSBWYWR1dmE7IERhbmllbCBCb3JuYXo7
+IEFkcmlhbiBEdWRhdQ0KPiBTdWJqZWN0OiBSRTogQ2FycmllciBHcmFkZSBsYXllciBwcm9wb3Nh
+bA0KPg0KPg0KPg0KPiBIaSwNCj4NCj4NCj4NCj4gQWxleGFuZHJ1IFZhZHV2YSB3aWxsIGJlIG1h
+aW4gcmVzcG9uc2libGUgZm9yIGludGVyZmFjaW5nIHdpdGggDQo+IGNvbW11bml0eSBvbiBtZXRh
+LWNnbCB0b3BpYy4gSGUgd2lsbCBhbHNvIGF0dGVuZCBZb2N0byBUZWNobmljYWwgDQo+IE1lZXRp
+bmdzIHdoZW5ldmVyIG5lY2Vzc2FyeSBmcm9tIG5vdyBvbi4NCj4NCj4NCj4NCj4gQlIsDQo+DQo+
+IC9Db3NtaW4NCj4NCj4NCj4NCj4gRnJvbTogSmVubnkgQW5kZXJzc29uDQo+IFNlbnQ6IEZyaWRh
+eSwgSnVuZSAyNywgMjAxNCAxMDozMiBBTQ0KPiBUbzogSm9uIEFsZGFtYTsgRGF2aWQgTnlzdHLD
+tm07IENvc21pbiBNb2xkb3ZlYW51DQo+IENjOiBWYWxlbnRpbiBDb2JlbGVhDQo+IFN1YmplY3Q6
+IFJFOiBDYXJyaWVyIEdyYWRlIGxheWVyIHByb3Bvc2FsDQo+DQo+DQo+DQo+IEhpIENvc21pbiwN
+Cj4NCj4NCj4NCj4gSG93IHRvb2sgb3ZlciBhZnRlciBWYWxlbnRpbiBsZWZ0IEVuZWE/IENvdWxk
+IHNvbWVvbmUgaW4geW91ciB0ZWFtIHJlc3BvbmQuDQo+DQo+DQo+DQo+IFRoYW5rcywNCj4NCj4g
+SmVubnkNCj4NCj4NCj4NCj4gRnJvbTogSm9uIEFsZGFtYQ0KPiBTZW50OiBkZW4gMjcganVuaSAy
+MDE0IDA5OjI4DQo+IFRvOiBEYXZpZCBOeXN0csO2bTsgSmVubnkgQW5kZXJzc29uDQo+IENjOiBW
+YWxlbnRpbiBDb2JlbGVhDQo+IFN1YmplY3Q6IEZXOiBDYXJyaWVyIEdyYWRlIGxheWVyIHByb3Bv
+c2FsDQo+DQo+DQo+DQo+IERhdmlkLCBKZW5ueSwNCj4NCj4NCj4NCj4gV2lsbCBhbnkgb2YgeW91
+IGFuc3dlciB0aGlzPw0KPg0KPg0KPg0KPiBCVFcsIGhhdmUgeW91IG1hbmFnZWQgdG8gZmlsZSB0
+aGUgWW9jdG8gY29tcGF0aWJpbGl0eSBhcHBsaWNhdGlvbj8NCj4NCj4NCj4NCj4gUmVnYXJkcw0K
+Pg0KPiBKb24NCj4NCj4NCj4NCj4gRnJvbTogT3NpZXItbWl4b24sIEplZmZyZXkgW21haWx0bzpq
+ZWZmcmV5Lm9zaWVyLW1peG9uQGludGVsLmNvbV0NCj4gU2VudDogZGVuIDI2IGp1bmkgMjAxNCAy
+MDozNg0KPiBUbzogRGF2aWQgTnlzdHLDtm07IGRhdmlkZS5yaWNjaUB3aW5kcml2ZXIuY29tOyBj
+aGFsbGluYW5AZ21haWwuY29tOyANCj4gdGVvZG9yLmJvYm9ybmlsb0B3aW5kcml2ZXIuY29tOyBW
+YWxlbnRpbiBDb2JlbGVhOyBjaGFzZS5tYXVwaW5AdGkuY29tOyANCj4gSm9uIEFsZGFtYTsgcGhp
+bGlwLmJhbGlzdGVyQGdtYWlsLmNvbTsga2V2aW5fbWNjb21iZUBtZW50b3IuY29tOyANCj4gYWt1
+c3RlckBtdmlzdGEuY29tOyBqYXNvbi53ZXNzZWxAd2luZHJpdmVyLmNvbTsgDQo+IHJpY2hhcmQu
+cHVyZGllQGxpbnV4Zm91bmRhdGlvbi5vcmc7IGh1aS5nZW5nQGh1YXdlaS5jb207IA0KPiBqb2hu
+X2NoZXJyeUBtZW50b3IuY29tOyBqZWZmcmV5Lm9zaWVyLW1peG9uQGludGVsLmNvbQ0KPiBDYzog
+UGhpbGlwIEJhbGlzdGVyDQo+IFN1YmplY3Q6IFlQOiBDYXJyaWVyIEdyYWRlIGxheWVyIHByb3Bv
+c2FsDQo+DQo+DQo+DQo+IEhpIGFsbCAtIHRoaXMgaXMgYSBzaW1wbGUgZm9sbG93dXAgdG8gb3Vy
+IG1lZXRpbmcgYXQgRUxDIHJlZ2FyZGluZyBhIA0KPiBtZXRhLWNnbCBsYXllciwgcHJvcG9zZWQg
+YnkgRW5lYS4NCj4NCj4NCj4NCj4gVGhlIHBsYW4gd2FzIHRvIGNyZWF0ZSBhIGxpc3Qgb2YgcmVj
+aXBlcyB0byBiZSBpbmNsdWRlZCwgYW5kIHRvIHN0YXJ0IA0KPiBhIGRpc2N1c3Npb24gb24gdGhl
+IG1haWxpbmcgbGlzdC5UaGVyZSBpcyBhIHRocmVhZCBvbiB0aGUgbGlzdCBmcm9tIA0KPiBiYWNr
+IGluIEFwcmlsLCBidXQgSSBkb24ndCBzZWUgYW55dGhpbmcgbW9yZSByZWNlbnQgdGhhbiB0aGF0
+LiBIYXMgDQo+IHRoZXJlIGJlZW4gYW55IHByb2dyZXNzPw0KPg0KPg0KPg0KPiB0aGFua3MNCj4N
+Cj4NCj4gLS0NCj4gX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X18NCj4gT3BlbmVtYmVkZGVkLWNvcmUgbWFpbGluZyBsaXN0DQo+IE9wZW5lbWJlZGRlZC1jb3Jl
+QGxpc3RzLm9wZW5lbWJlZGRlZC5vcmcNCj4gaHR0cDovL2xpc3RzLm9wZW5lbWJlZGRlZC5vcmcv
+bWFpbG1hbi9saXN0aW5mby9vcGVuZW1iZWRkZWQtY29yZQ0KPg0KDQoNCg0KLS0NCkplZmYgT3Np
+ZXItTWl4b24gQEludGVsDQpZb2N0byBQcm9qZWN0IENvbW11bml0eSBNYW5hZ2VyIGh0dHA6Ly95
+b2N0b3Byb2plY3Qub3JnDQo=
 
-using:
-
-bitbake -g <image-name> && cat pn-depends.dot | grep -v -e '-native' | grep -v digraph | grep -v -e '-image' | awk '{print $1}' | sort | uniq
-
-you can visualize the image packages. Let me know if this is what you are looking for.
-
-
-
-On Monday, July 7, 2014 7:04 PM, Bharath Chandra <ellurubharath29@gmail.com> wrote:
- 
-
-
-Hi All,
-
-I have an image deployed on gumstix board and I do not know the recipe file used to build that image. I want to know list of recipes used to build that image. Is it possible??
-
-
-
-Thanks & Regards,
-Bharath Chandra Elluru.
-Contact Number:785-979-4875.
--- 
-_______________________________________________
-yocto mailing list
-yocto@yoctoproject.org
-https://lists.yoctoproject.org/listinfo/yocto
-
----1149815241-393900048-1404750413=:98339
-Content-Type: text/html; charset=us-ascii
-
-<html><body><div style="color:#000; background-color:#fff; font-family:HelveticaNeue, Helvetica Neue, Helvetica, Arial, Lucida Grande, sans-serif;font-size:12pt"><div style="" class=""><span style="" class="">using:</span></div><div class="" style="color: rgb(0, 0, 0); font-size: 16px; font-family: HelveticaNeue,Helvetica Neue,Helvetica,Arial,Lucida Grande,sans-serif; background-color: transparent; font-style: normal;"><br style="" class="">bitbake -g &lt;<em style="" class="">image-name&gt;</em> &amp;&amp; cat pn-depends.dot | grep -v -e '-native' | grep -v digraph | grep -v -e '-image' | awk '{print $1}' | sort | uniq</div><div class="" style="color: rgb(0, 0, 0); font-size: 16px; font-family: HelveticaNeue,Helvetica Neue,Helvetica,Arial,Lucida Grande,sans-serif; background-color: transparent; font-style: italic;"><br></div><div class="" style="color: rgb(0, 0, 0); font-size: 16px; font-family: HelveticaNeue,Helvetica Neue,Helvetica,Arial,Lucida
- Grande,sans-serif; background-color: transparent; font-style: italic;">you can visualize the image packages. Let me know if this is what you are looking for.<br></div> <div class="qtdSeparateBR"><br><br></div><div style="display: block;" class="yahoo_quoted"> <div class="" style="font-family: HelveticaNeue, Helvetica Neue, Helvetica, Arial, Lucida Grande, sans-serif; font-size: 12pt;"> <div class="" style="font-family: HelveticaNeue, Helvetica Neue, Helvetica, Arial, Lucida Grande, sans-serif; font-size: 12pt;"> <div style="" class="" dir="ltr"> <font style="" class="" face="Arial" size="2"> On Monday, July 7, 2014 7:04 PM, Bharath Chandra &lt;ellurubharath29@gmail.com&gt; wrote:<br style="" class=""> </font> </div>  <br style="" class=""><br style="" class=""> <div style="" class=""><div style="" class="" id="yiv1253499270"><div style="" class="" dir="ltr">Hi All,<br style="" class=""><br style="" class="">I have an image deployed on gumstix board and
- I do not know the recipe file used to build that image. I want to know list of recipes used to build that image. Is it possible??<br style="" class="" clear="all"><div style="" class="">
-<br style="" class=""><div style="" class="" dir="ltr">Thanks &amp; Regards,<div style="" class="">Bharath Chandra Elluru.</div><div style="" class="">Contact Number:785-979-4875.</div></div>
-</div></div>
-</div><br style="" class="">-- <br style="" class="">_______________________________________________<br style="" class="">yocto mailing list<br style="" class=""><a style="" class="" ymailto="mailto:yocto@yoctoproject.org" href="mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br style="" class=""><a style="" class="" href="https://lists.yoctoproject.org/listinfo/yocto" target="_blank">https://lists.yoctoproject.org/listinfo/yocto</a><br style="" class=""><br style="" class=""><br style="" class=""></div>  </div> </div>  </div> </div></body></html>
-
----1149815241-393900048-1404750413=:98339--
