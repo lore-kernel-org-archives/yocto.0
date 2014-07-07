@@ -1,29 +1,38 @@
-Return-Path: <prvs=2587fa4da=Richard.Leitner@skidata.com>
+Return-Path: <Bruce.Ashfield@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id AB4F4E0053E; Mon,  7 Jul 2014 06:21:21 -0700 (PDT)
+	id 3F12FE0053E; Mon,  7 Jul 2014 06:30:26 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail1.skidata.com (mail1.skidata.com [91.230.2.99])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7E6D8E0030B
-	for <yocto@yoctoproject.org>; Mon,  7 Jul 2014 06:21:19 -0700 (PDT)
-X-IronPort-Anti-Spam-Filtered: true
-X-IronPort-Anti-Spam-Result: AqEEANydulOsEApK/2dsb2JhbABag2BaxjkBgSt1hAQBBTpPGBQlD0gGE4hHyXEXjj5rFoQtAQSadYc5kBmBbEI
-X-IPAS-Result: AqEEANydulOsEApK/2dsb2JhbABag2BaxjkBgSt1hAQBBTpPGBQlD0gGE4hHyXEXjj5rFoQtAQSadYc5kBmBbEI
-Date: Mon, 7 Jul 2014 15:21:16 +0200
-From: Richard Leitner <richard.leitner@skidata.com>
-To: <yocto@yoctoproject.org>
-Message-ID: <20140707152116.3db6a7d2@lxbuild.skidata.net>
-In-Reply-To: <20140707151855.1f43b39a@lxbuild.skidata.net>
-References: <20140707151855.1f43b39a@lxbuild.skidata.net>
-Organization: SKIDATA AG
+	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at http://www.dnswl.org/,
+	*      medium trust
+	*      [147.11.1.11 listed in list.dnswl.org]
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C7FF2E0030B
+	for <yocto@yoctoproject.org>; Mon,  7 Jul 2014 06:30:21 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
+	[147.11.189.40])
+	by mail.windriver.com (8.14.5/8.14.5) with ESMTP id s67DUCoK009028
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
+	Mon, 7 Jul 2014 06:30:13 -0700 (PDT)
+Received: from [128.224.56.48] (128.224.56.48) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server id 14.3.169.1;
+	Mon, 7 Jul 2014 06:30:12 -0700
+Message-ID: <53BAA0C2.4000105@windriver.com>
+Date: Mon, 7 Jul 2014 09:29:38 -0400
+From: Bruce Ashfield <bruce.ashfield@windriver.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:24.0) Gecko/20100101 Thunderbird/24.5.0
 MIME-Version: 1.0
-X-Originating-IP: [172.16.60.30]
-Subject: [PATCH] bitbake: fetch/git: fix head refs in git ls-remote call
+To: "Robert P. J. Day" <rpjday@crashcourse.ca>, Yocto discussion list
+	<yocto@yoctoproject.org>
+References: <alpine.LFD.2.11.1407070907540.9045@localhost>
+In-Reply-To: <alpine.LFD.2.11.1407070907540.9045@localhost>
+Subject: Re: how many variations to build for a beaglebone black (BBB)?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -35,32 +44,44 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 07 Jul 2014 13:21:21 -0000
-Content-Type: text/plain; charset="US-ASCII"
+X-List-Received-Date: Mon, 07 Jul 2014 13:30:26 -0000
+Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
 Content-Transfer-Encoding: 7bit
 
-Use the branch in refs/head instead of the tag.
-This allows a given tag name to differ from the branch name.
+On 14-07-07 09:13 AM, Robert P. J. Day wrote:
+>
+>    i want to build a bootable system for a BBB, and i can see at least
+> three possibilities:
+>
+>    1) the meta-yocto-bsp layer defines the beaglebone as one of its
+>       reference boards
+>
+>    2) the "meta-ti" layer is advertised as "official" TI board support
+>
+>    3) there is a "meta-beagleboard" layer, but that one looks a bit
+>       stagnant
+>
+> any preferences out there for people working with the BBB?
 
-Signed-off-by: Richard Leitner <richard.leitner@skidata.com>
----
- bitbake/lib/bb/fetch2/git.py |    2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+The generic "it depends" answer applies here.
 
-diff --git a/bitbake/lib/bb/fetch2/git.py b/bitbake/lib/bb/fetch2/git.py
-index 9ca2442..d30f109 100644
---- a/bitbake/lib/bb/fetch2/git.py
-+++ b/bitbake/lib/bb/fetch2/git.py
-@@ -339,7 +339,7 @@ class Git(FetchMethod):
-         """
-         Compute the HEAD revision for the url
-         """
--        search = "refs/heads/%s refs/tags/%s^{}" % (ud.unresolvedrev[name], ud.unresolvedrev[name])
-+        search = "refs/heads/%s refs/tags/%s^{}" % (ud.branches[name], ud.unresolvedrev[name])
-         output = self._lsremote(ud, d, search)
-         return output.split()[0]
- 
--- 
-1.7.10.4
+Due to the efforts of TI,the core BBB support made it into the mainline
+kernel for 3.14, so that forms a common baseline of feature support.
+
+Outside of that, it depends on the functionality you need in the image
+and your familiarity with integration of multiple layers and features.
+
+meta-ti gets you the latest and greatest features and support, while
+the reference BSP was also done by TI to provide a good baseline level
+of support (graphics, usb, ethernet, etc) and is supported via Wind River
+in the linux-yocto repository.
+
+Cheers,
+
+Bruce
+
+>
+> rday
+>
 
 
