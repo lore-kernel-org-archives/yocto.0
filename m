@@ -1,42 +1,56 @@
-Return-Path: <Alexandru.Vaduva@enea.com>
+Return-Path: <diego.sueiro@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id E87FBE00563; Mon,  7 Jul 2014 11:43:58 -0700 (PDT)
+	id C02D5E00563; Mon,  7 Jul 2014 11:50:10 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (diego.sueiro[at]gmail.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.192.50 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mx-3.enea.com (sestofw01.enea.se [192.36.1.252])
-	by yocto-www.yoctoproject.org (Postfix) with SMTP id 0D6FBE002AA
-	for <yocto@yoctoproject.org>; Mon,  7 Jul 2014 11:43:51 -0700 (PDT)
-Received: from SESTOEX04.enea.se ([fe80::bc2d:9299:d6b2:d0b7]) by
-	SESTOEX08.enea.se ([fe80::1c3:4003:dc47:23c0%11]) with mapi id
-	14.03.0158.001; Mon, 7 Jul 2014 20:43:43 +0200
-From: Alexandru Vaduva <Alexandru.Vaduva@enea.com>
-To: Jeff Osier-Mixon <jefro@jefro.net>
-Thread-Topic: [OE-core] Carrier Grade layer proposal
-Thread-Index: AQHPkW1+2KRT24GnPkKv9BXuG5a5ZpuEiPLggAAHpxCAABcrkIAACmtAgAABnUCAAAhEYIAFAPMAgAsfaQCAACK0kA==
-Date: Mon, 7 Jul 2014 18:43:43 +0000
-Message-ID: <DDB0C57E45663A458C5CACB7B5688BC21D6CAE0B@SESTOEX04.enea.se>
-References: <CALZ2gZV=pDM5kE-VDdEp1xJRV+ig7q5ix+cFU9vjpvJg7x=o5Q@mail.gmail.com>
-	<D7AB900AA081FD46B179E331E9F703E8907D76@SESTOEX04.enea.se>
-	<6B17198E316BD04DBB6F6DD263019AE125573C4A@SESTOEX04.enea.se>
-	<2D55BFC2C836774DB0F2FE17BECC006C28993A30@SESTOEX04.enea.se>
-	<D7AB900AA081FD46B179E331E9F703E8908E42@SESTOEX04.enea.se>
-	<DDB0C57E45663A458C5CACB7B5688BC21D6C5C0D@SESTOEX04.enea.se>
-	<D7AB900AA081FD46B179E331E9F703E8908E9C@SESTOEX04.enea.se>
-	<DDB0C57E45663A458C5CACB7B5688BC21D6C8818@SESTOEX04.enea.se>
-	<CA+YB3rY8TifZWKrm5FJc871WMtzP-ZeiCZJS9ceSa3uUoR9TGA@mail.gmail.com>
-In-Reply-To: <CA+YB3rY8TifZWKrm5FJc871WMtzP-ZeiCZJS9ceSa3uUoR9TGA@mail.gmail.com>
-Accept-Language: en-US, sv-SE
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [192.168.14.184]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-qg0-f50.google.com (mail-qg0-f50.google.com
+	[209.85.192.50])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9766DE002AA
+	for <yocto@yoctoproject.org>; Mon,  7 Jul 2014 11:50:05 -0700 (PDT)
+Received: by mail-qg0-f50.google.com with SMTP id j5so3977662qga.37
+	for <yocto@yoctoproject.org>; Mon, 07 Jul 2014 11:50:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-type;
+	bh=Q9c70gACwseNrQxK3taW9pSTXJxlZIyQUkISwzfb+G4=;
+	b=SZUT1aVt4ybrmwcNW+ZXcQuOAfCKNs0km5HP9r6aYlwSHeYW5/qJuh6j06arYC70+2
+	lmFz/StMG+WlwZdrshbunkH9QfzbEi43KL6gOLy+P6sG5I981X1b2VWufJkaowJT2Q7p
+	yu+m01m7V3enUqdzaK4ztMVmQayDxQtwojSHoJQ4vS+tl7N3hbjk5Xz/kRcXgh0WFM/e
+	IMyWQ9yGsBL0NiA70Tv91KWo7FMy/HgB98CF90PVAgDtTHqGnU13WjESeWkvxpsqlJ/1
+	LL8WqrhvKns+T5B2Zg6AtzmGERxkra5GMFOzMsuHcBeH83i++k03qlpntZBi384UVSJa
+	J+6Q==
+X-Received: by 10.140.41.116 with SMTP id y107mr47310366qgy.78.1404759004983; 
+	Mon, 07 Jul 2014 11:50:04 -0700 (PDT)
 MIME-Version: 1.0
+Received: by 10.140.48.112 with HTTP; Mon, 7 Jul 2014 11:49:44 -0700 (PDT)
+In-Reply-To: <53BAA88E.8090703@mlbassoc.com>
+References: <alpine.LFD.2.11.1407070907540.9045@localhost>
+	<53BAA0C2.4000105@windriver.com>
+	<alpine.LFD.2.11.1407070931480.9550@localhost>
+	<53BAA88E.8090703@mlbassoc.com>
+From: Diego Sueiro <diego.sueiro@gmail.com>
+Date: Mon, 7 Jul 2014 15:49:44 -0300
+Message-ID: <CAMCfZKF_27COcGEnn=k4ZQfOOaQiqq+cvKby-7gm6haxjB1kGQ@mail.gmail.com>
+To: Gary Thomas <gary@mlbassoc.com>
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: [OE-core] Carrier Grade layer proposal
+Subject: Re: how many variations to build for a beaglebone black (BBB)?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -48,120 +62,67 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 07 Jul 2014 18:43:59 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+X-List-Received-Date: Mon, 07 Jul 2014 18:50:10 -0000
+Content-Type: multipart/alternative; boundary=001a11c125e87cb9c404fd9ef1d5
 
-SGVsbG8gSmVmZiwNCg0KVGhlIGVycm9ycyBhcmUgcGFja2FnZSByZWxhdGVkLiANCk1ldGEtY2ds
-IGNhbiBiZSBzZWVuIGFzIGEgbm9uIEJTUCBzcGVjaWZpYyBsYXllciAoaXQgY2FuIGJlIHZpZXdl
-ZCBhcyB0aGUgTFNCIGZyb20gcG9reSkuDQpJIGFscmVhZHkgc3RhcnRlZCBmaXhpbmcgYSBudW1i
-ZXIsIG9mIHRoZSBhbHJlYWR5IGV4aXN0aW5nIGVycm9ycyBhbmQgdGhlIHBhdGNoZXMgd2lsbCBi
-ZSBhZGRlZCB1cHN0cmVhbSBhZnRlciBwcm9wZXIgdGVzdGluZy4NCkkgd2lsbCBjb250aW51ZSB0
-aGUgYnVnIGZpeGluZyBhbmQgcGFja2FnZSBpbnRlZ3JhdGlvbiAoaW50byB0aGUgY29yZS1pbWFn
-ZS1jZ2wgaW1hZ2UpIHByb2Nlc3MgYW5kIGFmdGVyIHRoYXQgaXMgZmluaXNoZWQgSSB3aWxsIGNv
-bnRpbnVlIHdpdGggdGhlDQpDYXRlZ29yeSBCIHBhY2thZ2VzLg0KDQpJIHdpbGwgYWxzbyB0cnkg
-dG8ga2VlcCB5b3UgZ3V5cyBpbmZvcm1lZCBhYm91dCB0aGUgbGF0ZXN0IHVwZGF0ZXMsIG1haW5s
-eSBvbiB0aGUgWVBUTSwgYnV0IGZvciB0aG9zZSB3aG8gY2Fubm90IHdhaXQgdGhhdCBtdWNoLCB0
-aGVyZSBpcyB0aGUNCkdpdCByZXBvc2l0b3J5IHdpdGggd2hpY2ggdGhleSBjYW4gaW50ZXJhY3Q6
-IGh0dHA6Ly9naXQuZW5lYS5jb20vZ2l0Lz9wPWxpbnV4L21ldGEtY2dsLmdpdDthPXN1bW1hcnkN
-Cg0KDQpIYXZlIGEgZ29vZCBkYXksDQpBbGV4DQoNCg0KLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0t
-LS0NCkZyb206IGplZnJvLm5ldEBnbWFpbC5jb20gW21haWx0bzpqZWZyby5uZXRAZ21haWwuY29t
-XSBPbiBCZWhhbGYgT2YgSmVmZiBPc2llci1NaXhvbg0KU2VudDogTW9uZGF5LCBKdWx5IDA3LCAy
-MDE0IDk6MjIgUE0NClRvOiBBbGV4YW5kcnUgVmFkdXZhDQpTdWJqZWN0OiBSZTogW09FLWNvcmVd
-IENhcnJpZXIgR3JhZGUgbGF5ZXIgcHJvcG9zYWwNCg0KVGhhbmtzLCBBbGV4Lg0KDQpPdGhlcnMg
-b24gdGhlIG1haWxpbmcgbGlzdHMsIGlmIHlvdSBoYXZlIGFueSBjb21tZW50cyBvbiB0aGUgY29u
-dGVudHMgb2YgdGhpcyBuZXcgbGF5ZXIsIHBsZWFzZSBtZW50aW9uIHRoZW0gb24gdGhpcyB0aHJl
-YWQuDQoNClJlIGNvbXBpbGF0aW9uIGVycm9ycywgd2VyZSB0aGV5IHNwZWNpZmljIHRvIGEgQlNQ
-IG9yIHdlcmUgdGhleSBnZW5lcmFsIGVycm9ycyBpbiB0aGUgcGFja2FnZXM/DQoNCnRoYW5rcw0K
-DQpPbiBNb24sIEp1biAzMCwgMjAxNCBhdCA4OjAxIEFNLCBBbGV4YW5kcnUgVmFkdXZhIDxBbGV4
-YW5kcnUuVmFkdXZhQGVuZWEuY29tPiB3cm90ZToNCj4gSGVsbG8gSmVmZiwNCj4NCj4NCj4NCj4g
-VGhlIGF2YWlsYWJsZSBsYXllciBpcyBhIHdvcmsgaW4gcHJvZ3Jlc3MuDQo+DQo+IEZvciB0aGUg
-bW9tZW50IHdlIGhhdmUgZG9uZSBhbiBpbnRlcm5hbCBtYXBwaW5nIG9mIHRoZSBwYWNrYWdlcyBu
-ZWVkZWQgDQo+IGluc2lkZSBtZXRhLWNnbCBsYXllci4gVGhlIG1hcHBpbmcgaXMgZG9uZSBhcyBm
-b2xsb3dpbmc6DQo+IEEuIFJlcXVpcmVtZW50IHRoYXQgbWFwIGFnYWluc3QgcGFja2FnZS9wYWNr
-YWdlcyB3aXRoIHJlY2lwZXMgdGhhdCANCj4gYWxyZWFkeSBleGlzdHMgaW4gWW9jdG8NCj4gICBB
-MS4gUmVxdWlyZW1lbnQgdGhhdCBtYXAgYWdhaW5zdCBwYWNrYWdlL3BhY2thZ2VzIHdpdGggcmVj
-aXBlcyANCj4gYWxyZWFkeSBleGlzdGluZyBpbiBtZXRhLWVuZWENCj4gICBBMi4gUmVxdWlyZW1l
-bnQgdGhhdCBtYXAgYWdhaW5zdCBwYWNrYWdlL3BhY2thZ2VzIHdpdGggcmVjaXBlcyB0aGF0IA0K
-PiBleGlzdHMgaW4gWW9jdG8gKGJ1dCBub3QgaW4gbWV0YS1lbmVhKSBCLiBSZXF1aXJlbWVudCB0
-aGF0IG1hcCBhZ2FpbnN0IA0KPiBwYWNrYWdlL3BhY2thZ2VzIHdpdGhvdXQgYW55IHJlY2lwZSBD
-LiBSZXF1aXJlbWVudCBkb2VzIG5vdCBkaXJlY3RseSANCj4gbWFwIGFnYWluc3QgcGFja2FnZS9w
-YWNrYWdlcyBhbmQgbmVlZHMgc29tZSBpbnZlc3RpZ2F0aW9uLg0KPiBELiBSZXF1aXJlbWVudCB0
-aGF0IG5vIHNvbHV0aW9uIGhhdmUgYmVlbiBmb3VuZCBhZnRlciBhIG1vcmUgZGV0YWlsZWQgDQo+
-IGludmVzdGlnYXRpb24uDQo+DQo+DQo+DQo+IFdoZW4gdGhlIHJlbGVhc2Ugd2FzIG1hZGUgYXZh
-aWxhYmxlIG9uIHRoZSBwdWJsaWMgcmVwb3NpdG9yeSwgdGhlIA0KPiBwYWNrYWdlcyBmcm9tIHRo
-ZSBBMSBhbmQgQTIgd2VyZSBpbnRlZ3JhdGVkLCBhIGJ1bmNoIG9mIHRoZW0gd2l0aCBjb21waWxh
-dGlvbiBlcnJvcnM6DQo+DQo+IC0gICAgICAgICAgbGtzY3RwLXRvb2xzDQo+DQo+IC0gICAgICAg
-ICAgb3BlbmFpcw0KPg0KPiAtICAgICAgICAgIHBhY2VtYWtlcg0KPg0KPiAtICAgICAgICAgIG9w
-ZW5ocGkNCj4NCj4gLSAgICAgICAgICBvcGVuLWlzY3NpLXVzZXINCj4NCj4gLSAgICAgICAgICBv
-cGVuLWlzY3NpLWtlcm5lbA0KPg0KPiAtICAgICAgICAgIGxpYmNhcC1uZw0KPg0KPiAtICAgICAg
-ICAgIGNsdXN0ZXItZ2x1ZQ0KPg0KPiAtICAgICAgICAgIGNsdXN0ZXItcmVzb3VyY2UtYWdlbnRz
-DQo+DQo+IFRoZSBhY3Rpdml0eSBvbiB0aGUgbWV0YS1jZ2wgd2FzIHJlc3VtZWQgdG9kYXkgYW5k
-IHRob3NlIGJ1aWxkIGFuZCANCj4gaW50ZWdyYXRpb24gZXJyb3JzIHdpbGwgYmUgZGVhbHQgbmV4
-dC4NCj4NCj4NCj4NCj4gT24gdGhlIGxvbmdlciBydW4gd2Ugd2lsbCB0cnkgdG8gY3JlYXRlIHJl
-Y2lwZXMgYW5kL29yIGZ1bGZpbGwgYWxsIHRoZSANCj4gb3RoZXIgcmVxdWlyZW1lbnRzIGZyb20g
-dGhlIGNsYXNzIEIsIEMsIGFuZCBELg0KPg0KPiBQbGVhc2UgZG8gbm90IGhlc2l0YXRlIHRvIGNv
-bnRhY3QgbWUgaWYgeW91IGhhdmUgZnVydGhlciBxdWVzdGlvbnMuDQo+DQo+DQo+DQo+DQo+DQo+
-IEFsZXgNCj4NCj4NCj4NCj4gRnJvbTogSm9uIEFsZGFtYQ0KPiBTZW50OiBGcmlkYXksIEp1bmUg
-MjcsIDIwMTQgMTowNyBQTQ0KPiBUbzogQWxleGFuZHJ1IFZhZHV2YTsgQ29zbWluIE1vbGRvdmVh
-bnU7IEplbm55IEFuZGVyc3NvbjsgRGF2aWQgDQo+IE55c3Ryw7ZtDQo+IENjOiBEYW5pZWwgQm9y
-bmF6OyBBZHJpYW4gRHVkYXUNCj4gU3ViamVjdDogUkU6IENhcnJpZXIgR3JhZGUgbGF5ZXIgcHJv
-cG9zYWwNCj4NCj4NCj4NCj4gUm9nZXIgdGhhdCEgVGhhbmtzIEFsZXhhbmRydSENCj4NCj4NCj4N
-Cj4NCj4NCj4gRnJvbTogQWxleGFuZHJ1IFZhZHV2YQ0KPiBTZW50OiBkZW4gMjcganVuaSAyMDE0
-IDExOjQzDQo+IFRvOiBKb24gQWxkYW1hOyBDb3NtaW4gTW9sZG92ZWFudTsgSmVubnkgQW5kZXJz
-c29uOyBEYXZpZCBOeXN0csO2bQ0KPiBDYzogRGFuaWVsIEJvcm5hejsgQWRyaWFuIER1ZGF1DQo+
-IFN1YmplY3Q6IFJFOiBDYXJyaWVyIEdyYWRlIGxheWVyIHByb3Bvc2FsDQo+DQo+DQo+DQo+IEhl
-bGxvIEpvbiwNCj4NCj4NCj4NCj4gV2Ugd2lsbCBmaXJzdCBoYXZlIGFuIGludGVybmFsIG1lZXRp
-bmcgb24gTW9uZGF5IGFuZCBhZnRlciB0aGF0IEkgd2lsbCANCj4gb2ZmZXIgYW4gYW5zd2VyIHRv
-IEplZmYuDQo+DQo+DQo+DQo+DQo+DQo+IEFsZXgNCj4NCj4NCj4NCj4gRnJvbTogSm9uIEFsZGFt
-YQ0KPiBTZW50OiBGcmlkYXksIEp1bmUgMjcsIDIwMTQgMTI6MzIgUE0NCj4gVG86IENvc21pbiBN
-b2xkb3ZlYW51OyBKZW5ueSBBbmRlcnNzb247IERhdmlkIE55c3Ryw7ZtDQo+IENjOiBBbGV4YW5k
-cnUgVmFkdXZhOyBEYW5pZWwgQm9ybmF6OyBBZHJpYW4gRHVkYXUNCj4gU3ViamVjdDogUkU6IENh
-cnJpZXIgR3JhZGUgbGF5ZXIgcHJvcG9zYWwNCj4NCj4NCj4NCj4gVGhhbmsgeW91IENvc21pbiwN
-Cj4NCj4NCj4NCj4gQWxleGFuZHJ1LCBjb3VsZCB5b3UgcGxlYXNlIHJlc3BvbmQgSmVmZiBhdCB0
-aGUgbWFpbGluZyBsaXN0PyAoc2VlIA0KPiBkb3duDQo+IGJlbG93KQ0KPg0KPg0KPg0KPiBDaGVl
-cnMNCj4NCj4gSm9uDQo+DQo+DQo+DQo+IEZyb206IENvc21pbiBNb2xkb3ZlYW51DQo+IFNlbnQ6
-IGRlbiAyNyBqdW5pIDIwMTQgMTA6NTkNCj4gVG86IEplbm55IEFuZGVyc3NvbjsgSm9uIEFsZGFt
-YTsgRGF2aWQgTnlzdHLDtm0NCj4gQ2M6IEFsZXhhbmRydSBWYWR1dmE7IERhbmllbCBCb3JuYXo7
-IEFkcmlhbiBEdWRhdQ0KPiBTdWJqZWN0OiBSRTogQ2FycmllciBHcmFkZSBsYXllciBwcm9wb3Nh
-bA0KPg0KPg0KPg0KPiBIaSwNCj4NCj4NCj4NCj4gQWxleGFuZHJ1IFZhZHV2YSB3aWxsIGJlIG1h
-aW4gcmVzcG9uc2libGUgZm9yIGludGVyZmFjaW5nIHdpdGggDQo+IGNvbW11bml0eSBvbiBtZXRh
-LWNnbCB0b3BpYy4gSGUgd2lsbCBhbHNvIGF0dGVuZCBZb2N0byBUZWNobmljYWwgDQo+IE1lZXRp
-bmdzIHdoZW5ldmVyIG5lY2Vzc2FyeSBmcm9tIG5vdyBvbi4NCj4NCj4NCj4NCj4gQlIsDQo+DQo+
-IC9Db3NtaW4NCj4NCj4NCj4NCj4gRnJvbTogSmVubnkgQW5kZXJzc29uDQo+IFNlbnQ6IEZyaWRh
-eSwgSnVuZSAyNywgMjAxNCAxMDozMiBBTQ0KPiBUbzogSm9uIEFsZGFtYTsgRGF2aWQgTnlzdHLD
-tm07IENvc21pbiBNb2xkb3ZlYW51DQo+IENjOiBWYWxlbnRpbiBDb2JlbGVhDQo+IFN1YmplY3Q6
-IFJFOiBDYXJyaWVyIEdyYWRlIGxheWVyIHByb3Bvc2FsDQo+DQo+DQo+DQo+IEhpIENvc21pbiwN
-Cj4NCj4NCj4NCj4gSG93IHRvb2sgb3ZlciBhZnRlciBWYWxlbnRpbiBsZWZ0IEVuZWE/IENvdWxk
-IHNvbWVvbmUgaW4geW91ciB0ZWFtIHJlc3BvbmQuDQo+DQo+DQo+DQo+IFRoYW5rcywNCj4NCj4g
-SmVubnkNCj4NCj4NCj4NCj4gRnJvbTogSm9uIEFsZGFtYQ0KPiBTZW50OiBkZW4gMjcganVuaSAy
-MDE0IDA5OjI4DQo+IFRvOiBEYXZpZCBOeXN0csO2bTsgSmVubnkgQW5kZXJzc29uDQo+IENjOiBW
-YWxlbnRpbiBDb2JlbGVhDQo+IFN1YmplY3Q6IEZXOiBDYXJyaWVyIEdyYWRlIGxheWVyIHByb3Bv
-c2FsDQo+DQo+DQo+DQo+IERhdmlkLCBKZW5ueSwNCj4NCj4NCj4NCj4gV2lsbCBhbnkgb2YgeW91
-IGFuc3dlciB0aGlzPw0KPg0KPg0KPg0KPiBCVFcsIGhhdmUgeW91IG1hbmFnZWQgdG8gZmlsZSB0
-aGUgWW9jdG8gY29tcGF0aWJpbGl0eSBhcHBsaWNhdGlvbj8NCj4NCj4NCj4NCj4gUmVnYXJkcw0K
-Pg0KPiBKb24NCj4NCj4NCj4NCj4gRnJvbTogT3NpZXItbWl4b24sIEplZmZyZXkgW21haWx0bzpq
-ZWZmcmV5Lm9zaWVyLW1peG9uQGludGVsLmNvbV0NCj4gU2VudDogZGVuIDI2IGp1bmkgMjAxNCAy
-MDozNg0KPiBUbzogRGF2aWQgTnlzdHLDtm07IGRhdmlkZS5yaWNjaUB3aW5kcml2ZXIuY29tOyBj
-aGFsbGluYW5AZ21haWwuY29tOyANCj4gdGVvZG9yLmJvYm9ybmlsb0B3aW5kcml2ZXIuY29tOyBW
-YWxlbnRpbiBDb2JlbGVhOyBjaGFzZS5tYXVwaW5AdGkuY29tOyANCj4gSm9uIEFsZGFtYTsgcGhp
-bGlwLmJhbGlzdGVyQGdtYWlsLmNvbTsga2V2aW5fbWNjb21iZUBtZW50b3IuY29tOyANCj4gYWt1
-c3RlckBtdmlzdGEuY29tOyBqYXNvbi53ZXNzZWxAd2luZHJpdmVyLmNvbTsgDQo+IHJpY2hhcmQu
-cHVyZGllQGxpbnV4Zm91bmRhdGlvbi5vcmc7IGh1aS5nZW5nQGh1YXdlaS5jb207IA0KPiBqb2hu
-X2NoZXJyeUBtZW50b3IuY29tOyBqZWZmcmV5Lm9zaWVyLW1peG9uQGludGVsLmNvbQ0KPiBDYzog
-UGhpbGlwIEJhbGlzdGVyDQo+IFN1YmplY3Q6IFlQOiBDYXJyaWVyIEdyYWRlIGxheWVyIHByb3Bv
-c2FsDQo+DQo+DQo+DQo+IEhpIGFsbCAtIHRoaXMgaXMgYSBzaW1wbGUgZm9sbG93dXAgdG8gb3Vy
-IG1lZXRpbmcgYXQgRUxDIHJlZ2FyZGluZyBhIA0KPiBtZXRhLWNnbCBsYXllciwgcHJvcG9zZWQg
-YnkgRW5lYS4NCj4NCj4NCj4NCj4gVGhlIHBsYW4gd2FzIHRvIGNyZWF0ZSBhIGxpc3Qgb2YgcmVj
-aXBlcyB0byBiZSBpbmNsdWRlZCwgYW5kIHRvIHN0YXJ0IA0KPiBhIGRpc2N1c3Npb24gb24gdGhl
-IG1haWxpbmcgbGlzdC5UaGVyZSBpcyBhIHRocmVhZCBvbiB0aGUgbGlzdCBmcm9tIA0KPiBiYWNr
-IGluIEFwcmlsLCBidXQgSSBkb24ndCBzZWUgYW55dGhpbmcgbW9yZSByZWNlbnQgdGhhbiB0aGF0
-LiBIYXMgDQo+IHRoZXJlIGJlZW4gYW55IHByb2dyZXNzPw0KPg0KPg0KPg0KPiB0aGFua3MNCj4N
-Cj4NCj4gLS0NCj4gX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
-X18NCj4gT3BlbmVtYmVkZGVkLWNvcmUgbWFpbGluZyBsaXN0DQo+IE9wZW5lbWJlZGRlZC1jb3Jl
-QGxpc3RzLm9wZW5lbWJlZGRlZC5vcmcNCj4gaHR0cDovL2xpc3RzLm9wZW5lbWJlZGRlZC5vcmcv
-bWFpbG1hbi9saXN0aW5mby9vcGVuZW1iZWRkZWQtY29yZQ0KPg0KDQoNCg0KLS0NCkplZmYgT3Np
-ZXItTWl4b24gQEludGVsDQpZb2N0byBQcm9qZWN0IENvbW11bml0eSBNYW5hZ2VyIGh0dHA6Ly95
-b2N0b3Byb2plY3Qub3JnDQo=
+--001a11c125e87cb9c404fd9ef1d5
+Content-Type: text/plain; charset=ISO-8859-1
 
+Gary,
+
+On Mon, Jul 7, 2014 at 11:02 AM, Gary Thomas <gary@mlbassoc.com> wrote:
+
+> The big thing missing from this version(*) is no cape support,
+> so if you need an LCD display or CAN driver or ...,  you're not
+> going to find it.  The meta-ti version does support those AFAIK
+>
+> (*) unless this changed in the last three weeks while I was on holiday :-)
+>
+
+meta-ti does not have support for cape manager. Just meta-beagleboard
+included it for kernel 3.8.
+
+
+Regards,
+
+--
+*dS
+Diego Sueiro
+
+Administrador do Embarcados
+www.embarcados.com.br
+<http://www.embarcados.com.br/?utm_source=assinatura_diego&utm_medium=e-mail&utm_campaign=Assinatura%20Email%20Diego>
+
+/*long live rock 'n roll*/
+
+--001a11c125e87cb9c404fd9ef1d5
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div class=3D"gmail_extra">Gary,</div><div class=3D"gmail_=
+extra"><br><div class=3D"gmail_quote">On Mon, Jul 7, 2014 at 11:02 AM, Gary=
+ Thomas <span dir=3D"ltr">&lt;<a href=3D"mailto:gary@mlbassoc.com" target=
+=3D"_blank">gary@mlbassoc.com</a>&gt;</span> wrote:<br>
+
+<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
+x #ccc solid;padding-left:1ex"><div id=3D":acj" class=3D"a3s" style=3D"over=
+flow:hidden">The big thing missing from this version(*) is no cape support,=
+<br>
+so if you need an LCD display or CAN driver or ..., =A0you&#39;re not<br>
+going to find it. =A0The meta-ti version does support those AFAIK<br>
+<br>
+(*) unless this changed in the last three weeks while I was on holiday :-)<=
+/div></blockquote></div><br>meta-ti does not have support for cape manager.=
+ Just meta-beagleboard included it for kernel 3.8.</div><div class=3D"gmail=
+_extra">
+
+<br><br clear=3D"all"><div><div dir=3D"ltr"><div>Regards,</div><div><br></d=
+iv>--<br>*dS<br>Diego Sueiro<br><br>Administrador do Embarcados<br><a href=
+=3D"http://www.embarcados.com.br/?utm_source=3Dassinatura_diego&amp;utm_med=
+ium=3De-mail&amp;utm_campaign=3DAssinatura%20Email%20Diego" target=3D"_blan=
+k">www.embarcados.com.br</a><br>
+
+<br>/*long live rock &#39;n roll*/<br></div></div>
+</div></div>
+
+--001a11c125e87cb9c404fd9ef1d5--
