@@ -1,45 +1,42 @@
-Return-Path: <boon.leong.ong@intel.com>
+Return-Path: <joshua.collins@arcontia.se>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 8CB76E0053E; Mon,  7 Jul 2014 01:05:58 -0700 (PDT)
+	id DE1C5E0053E; Mon,  7 Jul 2014 02:45:05 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
-	autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at http://www.dnswl.org/,
-	high *      trust
-	*      [143.182.124.21 listed in list.dnswl.org]
-Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 33DC8E0030B
-	for <yocto@yoctoproject.org>; Mon,  7 Jul 2014 01:05:53 -0700 (PDT)
-Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by azsmga101.ch.intel.com with ESMTP; 07 Jul 2014 01:05:51 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.01,616,1400050800"; d="scan'208";a="453917533"
-Received: from pgsmsx101.gar.corp.intel.com ([10.221.44.78])
-	by azsmga001.ch.intel.com with ESMTP; 07 Jul 2014 01:05:50 -0700
-Received: from pgsmsx108.gar.corp.intel.com (10.221.44.103) by
-	PGSMSX101.gar.corp.intel.com (10.221.44.78) with Microsoft SMTP Server
-	(TLS) id 14.3.123.3; Mon, 7 Jul 2014 16:04:58 +0800
-Received: from pgsmsx105.gar.corp.intel.com ([169.254.4.74]) by
-	PGSMSX108.gar.corp.intel.com ([169.254.8.179]) with mapi id
-	14.03.0123.003; Mon, 7 Jul 2014 16:04:57 +0800
-From: "Ong, Boon Leong" <boon.leong.ong@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: [daisy branch] circular dependency bitbake build issue in
-	initscript
-Thread-Index: Ac+ZuiQW3TgiwF65Tdy1OduXqWBwjw==
-Date: Mon, 7 Jul 2014 08:04:57 +0000
-Message-ID: <AF233D1473C1364ABD51D28909A1B1B72F7F6A61@pgsmsx105.gar.corp.intel.com>
-Accept-Language: en-GB, en-US
+Received: from graveyard4-1.ilait.eu (graveyard4-1.ilait.eu [178.63.104.73])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7E0E1E0030B
+	for <yocto@yoctoproject.org>; Mon,  7 Jul 2014 02:45:02 -0700 (PDT)
+Received: from smtp1-4.ilait.se (smtp1-4.ilait.se [94.246.96.44])
+	by graveyard4-1.ilait.eu (Postfix) with ESMTPS id 05FF450C4E6
+	for <yocto@yoctoproject.org>; Mon,  7 Jul 2014 09:45:01 +0000 (UTC)
+Received: from ex-hub1-1.cloud.local (ex-hub1-1.ilait.se [62.109.34.14])
+	by smtp1-4.ilait.se (Postfix) with ESMTPS id 63AEC700C8;
+	Mon,  7 Jul 2014 09:44:55 +0000 (UTC)
+Received: from EX-MBX1-8.cloud.local ([fe80::8b0:2430:4599:5695]) by
+	ex-hub1-1.cloud.local ([fe80::7556:3d55:8d3d:1b92%13]) with mapi id
+	14.03.0174.001; Mon, 7 Jul 2014 11:44:55 +0200
+From: Joshua Collins <joshua.collins@arcontia.se>
+To: Nicolas Dechesne <nicolas.dechesne@linaro.org>, "Sathish Kumar
+	Balasubramaniam -ERS, HCL Tech" <b-sathishkumar@hcl.com>
+Thread-Topic: [yocto] Recipe to copy precompiled binaries to root image
+Thread-Index: Ac+XWTuZhtM2e9TiSw+uuOovjLCU1QCTtR0AAAfLEsA=
+Date: Mon, 7 Jul 2014 09:44:54 +0000
+Message-ID: <EA5D4AA0E56AAB499D0E3B654C889FBFBC1DF2@ex-mbx1-8.cloud.local>
+References: <EA5D4AA0E56AAB499D0E3B654C889FBFBC1D52@ex-mbx1-8.cloud.local>
+	<CAP71WjyVQ=qX42oYJ+aOojxXv-pfSTg0tCXNXBhTLtL2XkxN6w@mail.gmail.com>
+In-Reply-To: <CAP71WjyVQ=qX42oYJ+aOojxXv-pfSTg0tCXNXBhTLtL2XkxN6w@mail.gmail.com>
+Accept-Language: en-US, sv-SE
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-x-originating-ip: [172.30.20.205]
+x-originating-ip: [83.218.75.50]
 MIME-Version: 1.0
-Cc: "Le Foll, Brendan" <brendan.le.foll@intel.com>
-Subject: [daisy branch] circular dependency bitbake build issue in initscript
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Recipe to copy precompiled binaries to root image
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -51,29 +48,12 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 07 Jul 2014 08:05:58 -0000
+X-List-Received-Date: Mon, 07 Jul 2014 09:45:05 -0000
 Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-Hi,
-    While upgrading poky daisy branch to YPv1.6.1, both Brendan & I observe=
-d that there is an circular dependency issue in initscripts.=20
-    Strangely, this issue is not observable if we are building poky as it i=
-s, but is observable when we use it together with meta-intel-iot-devkit.
-    We have identified that a patch from OE-Core rev:=20
-
-     8b4256758ba55dcabe80dd1bf3884cdf1cc39909    update-rc.d: Allow to use =
-different initscripts provider=20
-
-    is not applied onto daisy branch but is available in master now. Withou=
-t the above patch, initscript bitbake process will fail with circular depen=
-dency complaint. After the above patch is applied, the circular dependency =
-issue has been resolved.
-
-    Please consider pulling this patch onto daisy branch if there is no con=
-cern from the community.
-
-Thanks
-Ong Boon Leong
+SGkgTmljb2xhcy9TYXRoaXNoLA0KDQpUaGFuayB5b3UgYm90aCB2ZXJ5IG11Y2ggZm9yIHlvdXIg
+cmVzcG9uc2VzLiBXaXRoIHlvdXIgaGVscCwgSSBoYXZlIGJlZW4gYWJsZSB0byBjb3B5IHRoZSBw
+cmUtY29tcGlsZWQgbGlicmFyaWVzIHRvIG15IGltYWdlIG5vdy4NCg0KQ2hlZXJzLA0KSm9zaA0K
 
