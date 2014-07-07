@@ -1,6 +1,6 @@
 Return-Path: <rpjday@crashcourse.ca>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id D50AEE0053E; Mon,  7 Jul 2014 03:48:13 -0700 (PDT)
+	id 9AF21E0053E; Mon,  7 Jul 2014 06:13:41 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -10,18 +10,18 @@ X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
 	[64.235.106.9])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9B9E6E0030B
-	for <yocto@yoctoproject.org>; Mon,  7 Jul 2014 03:48:10 -0700 (PDT)
-Received: from [69.196.158.250] (port=38380 helo=crashcourse.ca)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7211AE0030B
+	for <yocto@yoctoproject.org>; Mon,  7 Jul 2014 06:13:31 -0700 (PDT)
+Received: from [69.196.158.250] (port=40007 helo=crashcourse.ca)
 	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES128-SHA:128)
 	(Exim 4.80) (envelope-from <rpjday@crashcourse.ca>)
-	id 1X46Su-0007Pl-Tz
-	for yocto@yoctoproject.org; Mon, 07 Jul 2014 06:48:08 -0400
-Date: Mon, 7 Jul 2014 06:48:01 -0400 (EDT)
+	id 1X48ja-00043s-NX
+	for yocto@yoctoproject.org; Mon, 07 Jul 2014 09:13:30 -0400
+Date: Mon, 7 Jul 2014 09:13:22 -0400 (EDT)
 From: "Robert P. J. Day" <rpjday@crashcourse.ca>
 X-X-Sender: rpjday@localhost
 To: Yocto discussion list <yocto@yoctoproject.org>
-Message-ID: <alpine.LFD.2.11.1407070646340.4615@localhost>
+Message-ID: <alpine.LFD.2.11.1407070907540.9045@localhost>
 User-Agent: Alpine 2.11 (LFD 23 2013-08-11)
 MIME-Version: 1.0
 X-AntiAbuse: This header was added to track abuse,
@@ -33,7 +33,7 @@ X-AntiAbuse: Sender Address Domain - crashcourse.ca
 X-Source: 
 X-Source-Args: 
 X-Source-Dir: 
-Subject: oddity in yocto dev manual
+Subject: how many variations to build for a beaglebone black (BBB)?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,21 +45,22 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 07 Jul 2014 10:48:13 -0000
+X-List-Received-Date: Mon, 07 Jul 2014 13:13:41 -0000
 Content-Type: TEXT/PLAIN; charset=US-ASCII
 
 
-  perusing dev manual and section 5.17.1:
+  i want to build a bootable system for a BBB, and i can see at least
+three possibilities:
 
-     IMAGE_FEATURES = "read-only-rootfs"
+  1) the meta-yocto-bsp layer defines the beaglebone as one of its
+     reference boards
 
-or
+  2) the "meta-ti" layer is advertised as "official" TI board support
 
-     EXTRA_IMAGE_FEATURES += "read-only-rootfs"
+  3) there is a "meta-beagleboard" layer, but that one looks a bit
+     stagnant
 
-um ... isn't that backwards? should you not be appending to
-IMAGE_FEATURES, but simply setting EXTRA_IMAGE_FEATURES? or have i
-already forgotten how that works?
+any preferences out there for people working with the BBB?
 
 rday
 
