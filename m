@@ -1,46 +1,57 @@
-Return-Path: <stephen.k.jolley@intel.com>
+Return-Path: <rstreif@linuxfoundation.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 68207E00559; Tue,  8 Jul 2014 08:20:17 -0700 (PDT)
+	id ADEB7E00559; Tue,  8 Jul 2014 10:28:15 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_HI autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [192.55.52.88 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 13632E00547
-	for <yocto@yoctoproject.org>; Tue,  8 Jul 2014 08:20:12 -0700 (PDT)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga101.fm.intel.com with ESMTP; 08 Jul 2014 08:20:11 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.01,625,1400050800"; 
-	d="scan'208,217";a="566772543"
-Received: from fmsmsx107.amr.corp.intel.com ([10.19.9.54])
-	by fmsmga002.fm.intel.com with ESMTP; 08 Jul 2014 08:20:10 -0700
-Received: from fmsmsx158.amr.corp.intel.com (10.18.116.75) by
-	FMSMSX107.amr.corp.intel.com (10.19.9.54) with Microsoft SMTP Server
-	(TLS) id 14.3.123.3; Tue, 8 Jul 2014 08:20:09 -0700
-Received: from fmsmsx111.amr.corp.intel.com ([169.254.12.83]) by
-	fmsmsx158.amr.corp.intel.com ([169.254.15.197]) with mapi id
-	14.03.0123.003; Tue, 8 Jul 2014 08:20:09 -0700
-From: "Jolley, Stephen K" <stephen.k.jolley@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Minutes: Yocto Project Technical Team Meeting - Tuesday, July
-	8, 2014 8:00 AM US Pacific Time
-Thread-Index: Ac+awBm93JcqBOJUSHy1/1fWJLfU2Q==
-Date: Tue, 8 Jul 2014 15:20:08 +0000
-Message-ID: <9ADD3FDE8B189B4AA2F8A3C711F8155E551E1B71@fmsmsx111.amr.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.1.200.108]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.223.170 listed in list.dnswl.org]
+Received: from mail-ie0-f170.google.com (mail-ie0-f170.google.com
+	[209.85.223.170])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EBBFAE00547
+	for <yocto@yoctoproject.org>; Tue,  8 Jul 2014 10:28:12 -0700 (PDT)
+Received: by mail-ie0-f170.google.com with SMTP id lx4so4300208iec.15
+	for <yocto@yoctoproject.org>; Tue, 08 Jul 2014 10:28:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=linuxfoundation.org; s=google;
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=xuykn+Mimu+BxxSgGJDC/PWOdS8n5pOhvg7FY/ssv9Y=;
+	b=OHm1rCPBCte+uCqAGZnAoOfqlFszEZ3KpiRj5UeHDzv/Ehv/D7nMD+O/hSXsjaBgTA
+	Qaw50bbRHahKXwSD8C5OPdgSZpc+qavCpxshx+cJ7jeWllWNiIhaeXZWZeZu1z4Ff0X2
+	y/ocKuykYjuQi2C4j3pCmno1p41IJ/k1GXZCI=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:date:message-id:subject:from:to
+	:content-type;
+	bh=xuykn+Mimu+BxxSgGJDC/PWOdS8n5pOhvg7FY/ssv9Y=;
+	b=YrdYp8Agutseun3JljL6VpjP37XhI2P3ajhbk9TNrUqXccosKmNhieIOEhuA25oajX
+	4b2P4AXk071Le6iSE5vbIiLZfrN3cYRL35dmRvzWMyAsHAHIh78IKoZujIVuUpE6mQus
+	cQYJd0TPw0bVS1itFpiqTPWJeSLWYzL4ZEMxe0C3yeYSh+czQ/yQGzkS78gKQv1njgPi
+	EUbQHZC8ztYS8Z46XTPeQSXslCRb4razD3l5pKnweVPlkkr5oQ3SlTV46i5B14TA+GqS
+	DmNr9CS/SEK57AwEaMWdm29O/8fLZX9cf6hCu6B5sbNm3j9BfI+wjx4LzHwA0yg6yvWV
+	W9Yg==
+X-Gm-Message-State: ALoCoQkTr1U78YG5Rd45iQtSknPZH5tB7T3EOIM60old7Ub4GfQuz7cx5+MhmH1X3e8DmBkIMNaW
 MIME-Version: 1.0
-Subject: Minutes: Yocto Project Technical Team Meeting - Tuesday, July 8, 2014 8:00 AM US Pacific Time
+X-Received: by 10.42.91.1 with SMTP id n1mr4429175icm.76.1404840491760; Tue,
+	08 Jul 2014 10:28:11 -0700 (PDT)
+Received: by 10.50.225.73 with HTTP; Tue, 8 Jul 2014 10:28:11 -0700 (PDT)
+Date: Tue, 8 Jul 2014 10:28:11 -0700
+Message-ID: <CA+gsK-ppcQmqUwfJSs1MdzqwBPWkJm=5Ok3mx9Mxnfs7yPowLw@mail.gmail.com>
+From: Rudolf Streif <rstreif@linuxfoundation.org>
+To: Yocto Discussion Mailing List <yocto@yoctoproject.org>
+Subject: core-image-weston: do_rootfs failure installing libcogl
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -52,317 +63,115 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 08 Jul 2014 15:20:17 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_9ADD3FDE8B189B4AA2F8A3C711F8155E551E1B71fmsmsx111amrcor_"
+X-List-Received-Date: Tue, 08 Jul 2014 17:28:15 -0000
+Content-Type: multipart/alternative; boundary=90e6ba3fd5ef7a500404fdb1ea3d
 
---_000_9ADD3FDE8B189B4AA2F8A3C711F8155E551E1B71fmsmsx111amrcor_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+--90e6ba3fd5ef7a500404fdb1ea3d
+Content-Type: text/plain; charset=UTF-8
 
-Attendees: Stephen, Michael, Bruce, Tom, David, Saul, Jefro, Nitin, Belen, =
-Richard, Mathew, Alex G., Doug, Alex D.,
+I am attempting to build core-image-weston with Poky from Master. It fails
+creating the rootfs when smart tries to install libcogl (details at the
+end):
 
+error:     libcogl20-1.18.0-r0@i586 conflicts with
+libcogl-path20-1.18.0-r0@i586
 
-
-* Opens collection - 5 min (Stephen)
-
-* Yocto 1.7 status - 5 min (Stephen/team)
-
-https://wiki.yoctoproject.org/wiki/Yocto_Project_v1.7_Status
-
-https://wiki.yoctoproject.org/wiki/Yocto_1.7_Schedule
-
-https://wiki.yoctoproject.org/wiki/Yocto_1.7_Features
-
-We had a number of bugs in YP 1.7 M1 rc1 and so to give us time to fix them=
- we did a 1.5.3 build holding off YP 1.7 M1 rc2.  It failed in AB.  So Mond=
-ay we did a build on YP 1.7 M1 rc2 with fixes and it should be out of QA la=
-ter this week.  We will do a build shortly again on YP 1.5.3 with fixes to =
-allow it to run in AB successfully.  We should QA YP 1.5.3 next week.
-
-
-
-* SWAT team rotation: Richard -> Ross
-
-https://wiki.yoctoproject.org/wiki/Yocto_Build_Failure_Swat_Team
-
-
-
-* Opens - 10 min
-
-Stephen for Denys - It was suggested that we move the bi-weekly schedule to=
- starting next week.  This will allow Denys to attend more often.
-
-
-
-* Team Sharing - 10 min
-
-Michael - We has some data loss last week and believe all data has been res=
-tored, but if anyone has issues with the data that was restored, please wor=
-k with Michael.
-
-Richard - We have made some changes to the shared libraries and we have add=
-ed some package dependency checking.
-
+I have searched for this issue in Bugzilla and across the web. No luck. Is
+that something anyone here knows about?
 
 Thanks,
-
-Stephen K. Jolley
-Yocto Project Program Manager
-INTEL, MS JF1-255, 2111 N.E. 25th Avenue, Hillsboro, OR 97124
-*   Work Telephone:          (503) 712-0534
-*    Cell:                                (208) 244-4460
-* Email:                             stephen.k.jolley@intel.com
+Rudi
 
 
---_000_9ADD3FDE8B189B4AA2F8A3C711F8155E551E1B71fmsmsx111amrcor_
-Content-Type: text/html; charset="us-ascii"
+
+
+
+
+
+Build Configuration:
+BB_VERSION        = "1.23.1"
+BUILD_SYS         = "x86_64-linux"
+NATIVELSBSTRING   = "Fedora-18"
+TARGET_SYS        = "i586-poky-linux"
+MACHINE           = "qemux86"
+DISTRO            = "poky"
+DISTRO_VERSION    = "1.6+snapshot-20140708"
+TUNE_FEATURES     = "m32 i586"
+TARGET_FPU        = ""
+meta
+meta-yocto
+meta-yocto-bsp    = "master:a5531a2b8983318b99c119a87b78a92cf84160b8"
+
+NOTE: Preparing runqueue
+NOTE: Executing SetScene Tasks
+NOTE: Executing RunQueue Tasks
+ERROR: Unable to install packages. Command
+'/run/media/rudi/SanDisk-256G/develop/yocto/yocto-git/x86/tmp/sysroots/x86_64-linux/usr/bin/smart
+--data-dir=/run/media/rudi/SanDisk-256G/develop/yocto/yocto-git/x86/tmp/work/qemux86-poky-linux/core-image-weston/1.0-r0/rootfs/var/lib/smart
+install -y packagegroup-core-ssh-dropbear@all psplash@i586
+libclutter-1.0-examples@i586 packagegroup-base-extended@qemux86 smartpm@i586
+packagegroup-core-tools-debug@qemux86 packagegroup-core-eclipse-debug@all
+weston@i586 weston-init@all gtk+3-demo@i586 weston-examples@i586
+packagegroup-core-sdk@all packagegroup-core-standalone-sdk-target@all
+rpm@i586 packagegroup-core-boot@qemux86 locale-base-en-us@i586
+locale-base-en-gb@i586' returned 1:
+Loading cache...
+Updating cache...               ########################################
+[100%]
+
+Computing transaction...error: Can't install libcogl-path20-1.18.0-r0@i586:
+unable to install provider for libcogl20 >= 1.18.0:
+error:     libcogl20-1.18.0-r0@i586 conflicts with
+libcogl-path20-1.18.0-r0@i586
+
+
+ERROR: Function failed: do_rootfs
+E
+
+--90e6ba3fd5ef7a500404fdb1ea3d
+Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:x=3D"urn:schemas-microsoft-com:office:excel" xmlns:p=3D"urn:schemas-m=
-icrosoft-com:office:powerpoint" xmlns:a=3D"urn:schemas-microsoft-com:office=
-:access" xmlns:dt=3D"uuid:C2F41010-65B3-11d1-A29F-00AA00C14882" xmlns:s=3D"=
-uuid:BDC6E3F0-6DA3-11d1-A2A3-00AA00C14882" xmlns:rs=3D"urn:schemas-microsof=
-t-com:rowset" xmlns:z=3D"#RowsetSchema" xmlns:b=3D"urn:schemas-microsoft-co=
-m:office:publisher" xmlns:ss=3D"urn:schemas-microsoft-com:office:spreadshee=
-t" xmlns:c=3D"urn:schemas-microsoft-com:office:component:spreadsheet" xmlns=
-:odc=3D"urn:schemas-microsoft-com:office:odc" xmlns:oa=3D"urn:schemas-micro=
-soft-com:office:activation" xmlns:html=3D"http://www.w3.org/TR/REC-html40" =
-xmlns:q=3D"http://schemas.xmlsoap.org/soap/envelope/" xmlns:rtc=3D"http://m=
-icrosoft.com/officenet/conferencing" xmlns:D=3D"DAV:" xmlns:Repl=3D"http://=
-schemas.microsoft.com/repl/" xmlns:mt=3D"http://schemas.microsoft.com/share=
-point/soap/meetings/" xmlns:x2=3D"http://schemas.microsoft.com/office/excel=
-/2003/xml" xmlns:ppda=3D"http://www.passport.com/NameSpace.xsd" xmlns:ois=
-=3D"http://schemas.microsoft.com/sharepoint/soap/ois/" xmlns:dir=3D"http://=
-schemas.microsoft.com/sharepoint/soap/directory/" xmlns:ds=3D"http://www.w3=
-.org/2000/09/xmldsig#" xmlns:dsp=3D"http://schemas.microsoft.com/sharepoint=
-/dsp" xmlns:udc=3D"http://schemas.microsoft.com/data/udc" xmlns:xsd=3D"http=
-://www.w3.org/2001/XMLSchema" xmlns:sub=3D"http://schemas.microsoft.com/sha=
-repoint/soap/2002/1/alerts/" xmlns:ec=3D"http://www.w3.org/2001/04/xmlenc#"=
- xmlns:sp=3D"http://schemas.microsoft.com/sharepoint/" xmlns:sps=3D"http://=
-schemas.microsoft.com/sharepoint/soap/" xmlns:xsi=3D"http://www.w3.org/2001=
-/XMLSchema-instance" xmlns:udcs=3D"http://schemas.microsoft.com/data/udc/so=
-ap" xmlns:udcxf=3D"http://schemas.microsoft.com/data/udc/xmlfile" xmlns:udc=
-p2p=3D"http://schemas.microsoft.com/data/udc/parttopart" xmlns:wf=3D"http:/=
-/schemas.microsoft.com/sharepoint/soap/workflow/" xmlns:dsss=3D"http://sche=
-mas.microsoft.com/office/2006/digsig-setup" xmlns:dssi=3D"http://schemas.mi=
-crosoft.com/office/2006/digsig" xmlns:mdssi=3D"http://schemas.openxmlformat=
-s.org/package/2006/digital-signature" xmlns:mver=3D"http://schemas.openxmlf=
-ormats.org/markup-compatibility/2006" xmlns:m=3D"http://schemas.microsoft.c=
-om/office/2004/12/omml" xmlns:mrels=3D"http://schemas.openxmlformats.org/pa=
-ckage/2006/relationships" xmlns:spwp=3D"http://microsoft.com/sharepoint/web=
-partpages" xmlns:ex12t=3D"http://schemas.microsoft.com/exchange/services/20=
-06/types" xmlns:ex12m=3D"http://schemas.microsoft.com/exchange/services/200=
-6/messages" xmlns:pptsl=3D"http://schemas.microsoft.com/sharepoint/soap/Sli=
-deLibrary/" xmlns:spsl=3D"http://microsoft.com/webservices/SharePointPortal=
-Server/PublishedLinksService" xmlns:Z=3D"urn:schemas-microsoft-com:" xmlns:=
-st=3D"&#1;" xmlns=3D"http://www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<meta name=3D"Generator" content=3D"Microsoft Word 14 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:Wingdings;
-	panose-1:5 0 0 0 0 0 0 0 0 0;}
-@font-face
-	{font-family:Wingdings;
-	panose-1:5 0 0 0 0 0 0 0 0 0;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-@font-face
-	{font-family:Tahoma;
-	panose-1:2 11 6 4 3 5 4 4 2 4;}
-@font-face
-	{font-family:Consolas;
-	panose-1:2 11 6 9 2 2 4 3 2 4;}
-@font-face
-	{font-family:"Comic Sans MS";
-	panose-1:3 15 7 2 3 3 2 2 2 4;}
-@font-face
-	{font-family:"MS Sans Serif";}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri","sans-serif";
-	mso-fareast-language:EN-US;}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:purple;
-	text-decoration:underline;}
-p.MsoPlainText, li.MsoPlainText, div.MsoPlainText
-	{mso-style-priority:99;
-	mso-style-link:"Plain Text Char";
-	margin:0in;
-	margin-bottom:.0001pt;
-	font-size:10.5pt;
-	font-family:Consolas;
-	mso-fareast-language:EN-US;}
-p
-	{mso-style-priority:99;
-	mso-margin-top-alt:auto;
-	margin-right:0in;
-	mso-margin-bottom-alt:auto;
-	margin-left:0in;
-	font-size:12.0pt;
-	font-family:"Times New Roman","serif";
-	mso-fareast-language:ZH-CN;}
-span.PlainTextChar
-	{mso-style-name:"Plain Text Char";
-	mso-style-priority:99;
-	mso-style-link:"Plain Text";
-	font-family:Consolas;}
-span.EmailStyle20
-	{mso-style-type:personal-compose;
-	font-family:"Calibri","sans-serif";
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-size:10.0pt;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
-<div class=3D"WordSection1">
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas">Attendees: Stephen, Michael, Bruce, Tom, David, Sa=
-ul, Jefro, Nitin, Belen, Richard, Mathew, Alex G., Doug, Alex D.,
-<o:p></o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas">&nbsp;<o:p></o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas">* Opens collection - 5 min (Stephen)<o:p></o:p></s=
-pan></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas">* Yocto 1.7 status - 5 min (Stephen/team)<o:p></o:=
-p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas"><a href=3D"https://wiki.yoctoproject.org/wiki/Yoct=
-o_Project_v1.7_Status">https://wiki.yoctoproject.org/wiki/Yocto_Project_v1.=
-7_Status</a><o:p></o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas"><a href=3D"https://wiki.yoctoproject.org/wiki/Yoct=
-o_1.7_Schedule">https://wiki.yoctoproject.org/wiki/Yocto_1.7_Schedule</a><o=
-:p></o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas"><a href=3D"https://wiki.yoctoproject.org/wiki/Yoct=
-o_1.7_Features">https://wiki.yoctoproject.org/wiki/Yocto_1.7_Features</a><o=
-:p></o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas">We had a number of bugs in YP 1.7 M1 rc1 and so to=
- give us time to fix them we did a 1.5.3 build holding off YP 1.7 M1 rc2.&n=
-bsp; It failed in AB.&nbsp; So Monday we did a
- build on YP 1.7 M1 rc2 with fixes and it should be out of QA later this we=
-ek.&nbsp; We will do a build shortly again on YP 1.5.3 with fixes to allow =
-it to run in AB successfully.&nbsp; We should QA YP 1.5.3 next week.<o:p></=
-o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas"><o:p>&nbsp;</o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas">* SWAT team rotation: Richard -&gt; Ross<o:p></o:p=
-></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas"><a href=3D"https://wiki.yoctoproject.org/wiki/Yoct=
-o_Build_Failure_Swat_Team">https://wiki.yoctoproject.org/wiki/Yocto_Build_F=
-ailure_Swat_Team</a><o:p></o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas"><o:p>&nbsp;</o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas">* Opens - 10 min
-<o:p></o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas">Stephen for Denys &#8211; It was suggested that we=
- move the bi-weekly schedule to starting next week.&nbsp; This will allow D=
-enys to attend more often. &nbsp;&nbsp;&nbsp;<o:p></o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas"><o:p>&nbsp;</o:p></span></p>
-<div style=3D"border:none;border-bottom:solid windowtext 1.0pt;padding:0in =
-0in 1.0pt 0in">
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas">* Team Sharing - 10 min<o:p></o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas">Michael &#8211; We has some data loss last week an=
-d believe all data has been restored, but if anyone has issues with the dat=
-a that was restored, please work with Michael.<o:p></o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas">Richard &#8211; We have made some changes to the s=
-hared libraries and we have added some package dependency checking.&nbsp;
-<o:p></o:p></span></p>
-<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
-pt;font-family:Consolas"><o:p>&nbsp;</o:p></span></p>
-</div>
-<p class=3D"MsoNormal">Thanks,<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal" style=3D"page-break-after:avoid;text-autospace:none"=
-><b><i><span style=3D"font-size:16.0pt;font-family:&quot;Times New Roman&qu=
-ot;,&quot;serif&quot;;color:purple">Stephen K. Jolley</span></i></b><b><i><=
-span style=3D"font-size:16.0pt;font-family:&quot;Tahoma&quot;,&quot;sans-se=
-rif&quot;;color:purple"><o:p></o:p></span></i></b></p>
-<p class=3D"MsoNormal"><b><span style=3D"font-size:8.0pt;font-family:&quot;=
-Courier New&quot;;color:blue">Yocto Project Program Manager<o:p></o:p></spa=
-n></b></p>
-<p class=3D"MsoNormal" style=3D"page-break-after:avoid;text-autospace:none"=
-><b><span style=3D"font-size:10.0pt;font-family:&quot;Courier New&quot;;col=
-or:fuchsia">INTEL, MS JF1-255, 2111 N.E. 25th Avenue, Hillsboro, OR 97124
-<o:p></o:p></span></b></p>
-<p class=3D"MsoNormal"><span style=3D"font-family:Wingdings;color:black">(<=
-/span><span style=3D"font-family:&quot;MS Sans Serif&quot;,&quot;serif&quot=
-;;color:teal">
-</span><span style=3D"font-size:8.0pt;font-family:&quot;MS Sans Serif&quot;=
-,&quot;serif&quot;;color:teal">&nbsp;&nbsp;</span><b><span style=3D"font-si=
-ze:8.0pt;font-family:&quot;Comic Sans MS&quot;;color:teal">Work Telephone</=
-span></b><span style=3D"font-family:&quot;MS Sans Serif&quot;,&quot;serif&q=
-uot;;color:teal">:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-</span><span style=3D"font-size:9.0pt;font-family:&quot;MS Sans Serif&quot;=
-,&quot;serif&quot;">(503) 712-0534<o:p></o:p></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt;font-family:Wingdings=
-;color:black">(</span><span style=3D"font-size:9.0pt;font-family:&quot;MS S=
-ans Serif&quot;,&quot;serif&quot;;color:teal">&nbsp;&nbsp;&nbsp;
-</span><b><span style=3D"font-size:8.0pt;font-family:&quot;Comic Sans MS&qu=
-ot;;color:teal">Cell</span></b><span style=3D"font-size:9.0pt;font-family:&=
-quot;MS Sans Serif&quot;,&quot;serif&quot;;color:teal">:&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;
-</span><span style=3D"font-size:9.0pt;font-family:&quot;MS Sans Serif&quot;=
-,&quot;serif&quot;">(208) 244-4460<span style=3D"color:black"><o:p></o:p></=
-span></span></p>
-<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt;font-family:Wingdings=
-">* </span>
-<b><span lang=3D"FR" style=3D"font-size:8.0pt;font-family:&quot;Comic Sans =
-MS&quot;;color:teal">Email</span></b><span lang=3D"FR" style=3D"font-size:9=
-.0pt;font-family:&quot;MS Sans Serif&quot;,&quot;serif&quot;;color:teal">:<=
-/span><span lang=3D"FR" style=3D"font-size:9.0pt;font-family:&quot;MS Sans =
-Serif&quot;,&quot;serif&quot;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<u><span style=3D"color:blue">stephen.k.jolley@intel.com</span></u></span><=
-span lang=3D"FR" style=3D"font-size:12.0pt;font-family:&quot;Arial&quot;,&q=
-uot;sans-serif&quot;"><o:p></o:p></span></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-</div>
-</body>
-</html>
+<div dir=3D"ltr"><div><div>I am attempting to build core-image-weston with =
+Poky from Master. It fails creating the rootfs when smart tries to install =
+libcogl (details at the end):<br><br>error:=C2=A0=C2=A0=C2=A0=C2=A0 libcogl=
+20-1.18.0-r0@i586 conflicts with libcogl-path20-1.18.0-r0@i586<br>
+<br></div>I have searched for this issue in Bugzilla and across the web. No=
+ luck. Is that something anyone here knows about?<br><br></div>Thanks,<br>R=
+udi<br><div><div><br><br><br><br><br><br><br>Build Configuration:<br>BB_VER=
+SION=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =3D &quot;1.23.1&quot;<br>
+BUILD_SYS=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =3D &quot;x86_64-=
+linux&quot;<br>NATIVELSBSTRING=C2=A0=C2=A0 =3D &quot;Fedora-18&quot;<br>TAR=
+GET_SYS=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =3D &quot;i586-poky-linux=
+&quot;<br>MACHINE=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0 =3D &quot;qemux86&quot;<br>DISTRO=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =3D &quot;poky&quot;<br>
+DISTRO_VERSION=C2=A0=C2=A0=C2=A0 =3D &quot;1.6+snapshot-20140708&quot;<br>T=
+UNE_FEATURES=C2=A0=C2=A0=C2=A0=C2=A0 =3D &quot;m32 i586&quot;<br>TARGET_FPU=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =3D &quot;&quot;<br>meta=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 <b=
+r>meta-yocto=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 <br>meta-yocto-bsp=
+=C2=A0=C2=A0=C2=A0 =3D &quot;master:a5531a2b8983318b99c119a87b78a92cf84160b=
+8&quot;<br>
+<br>NOTE: Preparing runqueue<br>NOTE: Executing SetScene Tasks<br>NOTE: Exe=
+cuting RunQueue Tasks<br>ERROR: Unable to install packages. Command &#39;/r=
+un/media/rudi/SanDisk-256G/develop/yocto/yocto-git/x86/tmp/sysroots/x86_64-=
+linux/usr/bin/smart --data-dir=3D/run/media/rudi/SanDisk-256G/develop/yocto=
+/yocto-git/x86/tmp/work/qemux86-poky-linux/core-image-weston/1.0-r0/rootfs/=
+var/lib/smart install -y packagegroup-core-ssh-dropbear@all psplash@i586 li=
+bclutter-1.0-examples@i586 packagegroup-base-extended@qemux86 smartpm@i586 =
+packagegroup-core-tools-debug@qemux86 packagegroup-core-eclipse-debug@all w=
+eston@i586 weston-init@all gtk+3-demo@i586 weston-examples@i586 packagegrou=
+p-core-sdk@all packagegroup-core-standalone-sdk-target@all rpm@i586 package=
+group-core-boot@qemux86 locale-base-en-us@i586 locale-base-en-gb@i586&#39; =
+returned 1:<br>
+Loading cache...<br>Updating cache...=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ##########################=
+############## [100%]<br><br>Computing transaction...error: Can&#39;t insta=
+ll libcogl-path20-1.18.0-r0@i586: unable to install provider for libcogl20 =
+&gt;=3D 1.18.0:<br>
+error:=C2=A0=C2=A0=C2=A0=C2=A0 libcogl20-1.18.0-r0@i586 conflicts with libc=
+ogl-path20-1.18.0-r0@i586<br><br><br>ERROR: Function failed: do_rootfs<br>E=
+<br></div></div></div>
 
---_000_9ADD3FDE8B189B4AA2F8A3C711F8155E551E1B71fmsmsx111amrcor_--
+--90e6ba3fd5ef7a500404fdb1ea3d--
