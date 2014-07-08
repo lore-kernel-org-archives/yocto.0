@@ -1,51 +1,48 @@
-Return-Path: <jdelapena@lexmark.com>
+Return-Path: <jags.gediya@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 4A803E006B7; Mon,  7 Jul 2014 20:11:57 -0700 (PDT)
+	id 349D5E00576; Mon,  7 Jul 2014 23:04:25 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_05,HTML_MESSAGE,
-	RCVD_IN_DNSWL_MED autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [64.18.3.34 listed in list.dnswl.org]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.5 BAYES_05 BODY: Bayes spam probability is 1 to 5%
-	*      [score: 0.0324]
-X-Greylist: delayed 408 seconds by postgrey-1.32 at yocto-www;
-	Mon, 07 Jul 2014 20:11:55 PDT
-Received: from exprod8og117.obsmtp.com (exprod8og117.obsmtp.com [64.18.3.34])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4BE88E0056A
-	for <yocto@yoctoproject.org>; Mon,  7 Jul 2014 20:11:55 -0700 (PDT)
-Received: from mail-lb0-f172.google.com ([209.85.217.172]) (using TLSv1) by
-	exprod8ob117.postini.com ([64.18.7.12]) with SMTP
-	ID DSNKU7thej9aA+FTeFxtB70VASNB9dpbIeJ0@postini.com;
-	Mon, 07 Jul 2014 20:11:56 PDT
-Received: by mail-lb0-f172.google.com with SMTP id c11so3540900lbj.31
-	for <yocto@yoctoproject.org>; Mon, 07 Jul 2014 20:11:53 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:date:message-id:subject:from:to
-	:content-type;
-	bh=ajlrdEMeMzAH36A7lykTo92QnNWROH/DRLspKvBAl+c=;
-	b=TKjocsDN3EWA97OrAGGeobsKfrlFx7S/8J+suyPo9Dz3InuWl5bZwghr9KgXTPZMjh
-	AT05O2QCfadIgm++ZcA9thSy4/hCmohGMraOI4a+OUoOk9Roikgta7Bpv2NCog1wbQrF
-	IbEpo34cbz1tqQZuv6uecBy3adBpxeeAE2/ZqLSe7tH4BDvOok+UC/7zvP60DgZ0S2FC
-	A/eWyGInNyK1m0JR7CY/1ukosz5nEynH/gLTjO11Ires/vuP2rSZDS8f9QT4TjJgOjhd
-	64KMnq5b5HVdTC4JiVWfr5m9PCnR3ncKXsdOOsL7nURDU071iSLHvWUSMTZYvvTQGjOP
-	7ITA==
-X-Received: by 10.112.30.99 with SMTP id r3mr25113938lbh.14.1404788705813;
-	Mon, 07 Jul 2014 20:05:05 -0700 (PDT)
-X-Gm-Message-State: ALoCoQl7tQ49MfoSUc4U4wuDNJ0ibRWpXL+UxcViVrg7d1t0kyuZ05jnMSSmbkjoGE/Tm42bA8vKzavwGE5JbUbMSbxkuREqhqeIupNioc0hJnibTXLvL62JtXI69ziiOhVEaubnQrwy
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (jags.gediya[at]gmail.com)
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+	*      [score: 0.0000]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.216.193 listed in list.dnswl.org]
+Received: from mail-qc0-f193.google.com (mail-qc0-f193.google.com
+	[209.85.216.193])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BF2A0E004FF
+	for <yocto@yoctoproject.org>; Mon,  7 Jul 2014 23:04:23 -0700 (PDT)
+Received: by mail-qc0-f193.google.com with SMTP id m20so1856646qcx.4
+	for <yocto@yoctoproject.org>; Mon, 07 Jul 2014 23:04:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=JUL0jbMhQKaX5ZBYfG9pbfO/wCNhftfQpKoAqCKYCxQ=;
+	b=fIdH71Bj/7Lyo8HBbDzz1lvZjd2QrlfFIckvVX4yAYbd1GUN3NMqmf9o9LpAJssWl0
+	3go6PhUz0aHaCq4O2tIwrrpL/oYGxYEarUTeWDNNR8OyakcYqyZVta2m1i0/2FjqeANO
+	qTbC2CN08XD/A0xaqz0pKHcQmeGHZfQhKCirPyUfgkMx93N4MNtOmFcOwaqCHB0NRobD
+	SU2q9Kb4Fg9uBsvumV43RJtAvpy340MY9VU8pjFuGNj267ZSIPivo+LSqgTkYyDI/jOB
+	yzKly1TZ4FvM0yBkuZw+wWceau1vH8u5gF1ZgEu/i9dQV4gdIP0wOzMpmSvrhgzKyN63
+	jlqA==
 MIME-Version: 1.0
-X-Received: by 10.112.30.99 with SMTP id r3mr25113929lbh.14.1404788705680;
-	Mon, 07 Jul 2014 20:05:05 -0700 (PDT)
-Received: by 10.152.36.65 with HTTP; Mon, 7 Jul 2014 20:05:05 -0700 (PDT)
-Date: Tue, 8 Jul 2014 11:05:05 +0800
-Message-ID: <CAJrRHk6HNHotr6XuYG1YSvbQx0g=++Tu4PpJJFseW6Fc_JcEkQ@mail.gmail.com>
-From: =?UTF-8?Q?Joseph_Andrew_de_la_Pe=C3=B1a?= <jdelapena@lexmark.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: QEMU in SDK
+X-Received: by 10.140.43.118 with SMTP id d109mr52112679qga.10.1404799462177; 
+	Mon, 07 Jul 2014 23:04:22 -0700 (PDT)
+Received: by 10.224.37.133 with HTTP; Mon, 7 Jul 2014 23:04:22 -0700 (PDT)
+Date: Tue, 8 Jul 2014 11:34:22 +0530
+Message-ID: <CAP3RZoj3A7EmMB_xeif8PVWUygTrNfFfJAj+XwcjN-hGpJzGyg@mail.gmail.com>
+From: jags gediya <jags.gediya@gmail.com>
+To: yocto@yoctoproject.org
+Subject: kernel source code
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -57,41 +54,23 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 08 Jul 2014 03:11:57 -0000
-Content-Type: multipart/alternative; boundary=001a1133a628c96d3904fda5db56
-
---001a1133a628c96d3904fda5db56
+X-List-Received-Date: Tue, 08 Jul 2014 06:04:25 -0000
 Content-Type: text/plain; charset=UTF-8
 
-Good day ALL,
+I have run below command
 
-I was wondering if it's possible to automatically add QEMU dependencies
-(kernel and ext3 files) into the script generated by do_populate_sdk? Then
-after running the generated SDK script, the images will reside in
-/path/to/sysroots/xxx-poky-xxx/tmp/images? Then just add an environment
-variable to the environment script to locate the images path. Is this
-possible?
+bitbake -c fetchall core-image-minimal
 
-The intention is to run QEMU in a host machine with extracted SDK. Any
-suggestions on other better ways to run QEMU in another machine w/ SDK
-would be great.
+It has created downloads directory and packages source codes are
+there inside, but i am not able to find the kernel and u-boot source code.
 
-Thanks,
-Joseph
+I have build core-image-minimal without internet connectivity, and kernel and
+u-boot have also built properly. I am not getting from where it is taking
+the source code for kernel and u-boot.
 
---001a1133a628c96d3904fda5db56
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+I am building yocto sdk for imx6l evolution kit and i have checked out
+daisy branch.
 
-<div dir=3D"ltr">Good day ALL,<div><br></div><div>I was wondering if it&#39=
-;s possible to automatically add QEMU dependencies (kernel and ext3 files) =
-into the script generated by do_populate_sdk? Then after running the genera=
-ted SDK script, the images will reside in /path/to/sysroots/xxx-poky-xxx/tm=
-p/images? Then just add an environment variable to the environment script t=
-o locate the images path. Is this possible?</div>
-<div><br></div><div>The intention is to run QEMU in a host machine with ext=
-racted SDK. Any suggestions on other better ways to run QEMU in another mac=
-hine w/ SDK would be great.</div><div><br></div><div>Thanks,</div><div>
-Joseph</div></div>
+Please suggest where can be the source code for kernel and u-boot
+before build but after running fetchall command.
 
---001a1133a628c96d3904fda5db56--
