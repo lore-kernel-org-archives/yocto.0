@@ -1,46 +1,46 @@
 Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 2145BE0054C; Tue,  8 Jul 2014 13:20:14 -0700 (PDT)
+	id 44CADE00559; Tue,  8 Jul 2014 14:03:40 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [209.85.216.49 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.216.42 listed in list.dnswl.org]
-Received: from mail-qa0-f42.google.com (mail-qa0-f42.google.com
-	[209.85.216.42])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 601CBE00559
-	for <yocto@yoctoproject.org>; Tue,  8 Jul 2014 13:19:09 -0700 (PDT)
-Received: by mail-qa0-f42.google.com with SMTP id dc16so5359164qab.29
-	for <yocto@yoctoproject.org>; Tue, 08 Jul 2014 13:19:09 -0700 (PDT)
+Received: from mail-qa0-f49.google.com (mail-qa0-f49.google.com
+	[209.85.216.49])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CF001E00547
+	for <yocto@yoctoproject.org>; Tue,  8 Jul 2014 14:03:31 -0700 (PDT)
+Received: by mail-qa0-f49.google.com with SMTP id w8so5311383qac.36
+	for <yocto@yoctoproject.org>; Tue, 08 Jul 2014 14:03:31 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
 	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
 	:message-id:subject:to:cc:content-type;
-	bh=sHMoGAYrjJR1nW9v8ACJ1cBLqWNQdIUntiMzBOxQ5ks=;
-	b=McNAwSBDl/caY6CD2gNZvFMusfjoVmiUT7PfYxvvWTUussc9NaANwTfkfP/bVqdUgE
-	F0olIRP68+/7znubFrFO+Sv8wTtd0tSlVFXId0GoXkktQ1VFCeh1T5v6F6PK8Yx1Qiq5
-	ZWckcb3tDYJ/1zgNkmQxghcbKyv6El/48jiiCHOCDK3NodTuUfVahbbn0353NmInydde
-	kQ+CQEjE31IlN6/KuVepHBdaDOjNxGhYKmtzQJpqvY1u9MnwYd/yYkYCV0s4Q5N108vk
-	2hrUdaku44JnwATkc55TawHhEJfrTTDZDsGKjUeQOeoLL0h2jJOk4umNYPOrpguOlFVs
-	kPXw==
-X-Gm-Message-State: ALoCoQlPrweIHzL2n78IrHU5KX4t6+bNXIE85YVgyBhe5d3Ggw6H3z2Ej8HGXO8gn9gJPbz0P8KH
-X-Received: by 10.140.81.209 with SMTP id f75mr54001225qgd.60.1404850749185;
-	Tue, 08 Jul 2014 13:19:09 -0700 (PDT)
+	bh=5oRFNLzKhTZuIMmy0KKPWs9Rdixn46V+h+zjoFHcU6M=;
+	b=U5Zrtu0KVqM+1V4fljG7XNS6sSrh1AQ+P8hLHKYWSU+YI0Kdy/wxKs23iXte9MKNOH
+	4GhqO2O1k2tW4djvVKppOPOBx+LXCXjYjR5JKXshYntdjAfZYx0cFMDeGf6iEQDJA+o8
+	fZQfLVKRLiZDNPk4o1N3jVzbY+sMJ0oVZP3Q1bv4SbRg5Ly9fi/C6eOR9RpfRZshwdP8
+	oQ0uiSsHFGZKbBobj65xu++XGy25Jggry0T4DGI7FHXhaRktLAYp1flE1ETorZopyq9s
+	0gmNSEc5PQsaN9tMqJ+V/6DAPj6fDvUGRRXxeD6x4COWUPXxMm6u2I5MgABxwWT7Do8J
+	b53A==
+X-Gm-Message-State: ALoCoQm2/xwq1kXRb83bCCBk9Mn3AMaPuaPjtVPeyRozNgcbQinTMaGeMa7cpRp/m+LWqJ9MHhOB
+X-Received: by 10.224.120.68 with SMTP id c4mr25461760qar.17.1404853411205;
+	Tue, 08 Jul 2014 14:03:31 -0700 (PDT)
 MIME-Version: 1.0
-Received: by 10.140.86.40 with HTTP; Tue, 8 Jul 2014 13:18:49 -0700 (PDT)
-In-Reply-To: <CA+gsK-ppcQmqUwfJSs1MdzqwBPWkJm=5Ok3mx9Mxnfs7yPowLw@mail.gmail.com>
-References: <CA+gsK-ppcQmqUwfJSs1MdzqwBPWkJm=5Ok3mx9Mxnfs7yPowLw@mail.gmail.com>
+Received: by 10.140.86.40 with HTTP; Tue, 8 Jul 2014 14:03:11 -0700 (PDT)
+In-Reply-To: <53B8C942.6010405@gmail.com>
+References: <53B8C942.6010405@gmail.com>
 From: "Burton, Ross" <ross.burton@intel.com>
-Date: Tue, 8 Jul 2014 21:18:49 +0100
-Message-ID: <CAJTo0LaKd8t3mDt2N45OOF0C=SNwtGq6dOqHEJNRLSfh4QPuCQ@mail.gmail.com>
-To: Rudolf Streif <rstreif@linuxfoundation.org>
-Cc: Yocto Discussion Mailing List <yocto@yoctoproject.org>
-Subject: Re: core-image-weston: do_rootfs failure installing libcogl
+Date: Tue, 8 Jul 2014 22:03:11 +0100
+Message-ID: <CAJTo0LYhsisa6QNTv_VJo_9O8VuAqBKPyp9NU_Z3uAa5vvirxA@mail.gmail.com>
+To: Jeremy Moles <cubicool@gmail.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Minimalist Initrd
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -52,22 +52,28 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 08 Jul 2014 20:20:14 -0000
+X-List-Received-Date: Tue, 08 Jul 2014 21:03:40 -0000
 Content-Type: text/plain; charset=UTF-8
 
-On 8 July 2014 18:28, Rudolf Streif <rstreif@linuxfoundation.org> wrote:
-> I am attempting to build core-image-weston with Poky from Master. It fails
-> creating the rootfs when smart tries to install libcogl (details at the
-> end):
+On 6 July 2014 04:57, Jeremy Moles <cubicool@gmail.com> wrote:
+> I've encountered a scenario wherein I have only (and this constraint can't
+> be worked around) 13MB of space into which I can place a JFFS2 image which
+> can be used to continue the system startup (which is initially started by an
+> older version of uboot).
 >
-> error:     libcogl20-1.18.0-r0@i586 conflicts with
-> libcogl-path20-1.18.0-r0@i586
+> I'm having trouble finding a clean solution within the Yocto/OE world for
+> this issue. Thus far, I've been using an old, generic, super-tiny ARM-based
+> initrd I made years ago which just does a few (proprietary) things in the
+> linux and then fires off /sbin/init in the "real" filesystem.
+>
+> What I need now, however, is a recipe (or perhaps hints on where to start
+> when rolling my own recipe) for generating little more than an image (JFFS2
+> or cpio.gz) with busybox in it. I can handle the rest view function
+> overrides, I just need the base startup.
 
-That's interesting, I just built core-image-weston from master and it
-worked fine.  Then again looking at the packages generated and their
-contents, something very strange is happening :/
-
-Can you file a bug?
+This sounds exactly like what core-image-minimal-initramfs is for.  If
+it's not what you want, it certainly demonstrates how to trim an image
+down in size.
 
 Ross
 
