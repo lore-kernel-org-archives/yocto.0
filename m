@@ -1,57 +1,46 @@
-Return-Path: <rstreif@linuxfoundation.org>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id B11BAE0054C; Tue,  8 Jul 2014 12:14:14 -0700 (PDT)
+	id 2145BE0054C; Tue,  8 Jul 2014 13:20:14 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham
-	version=3.3.1
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
 	low *      trust
-	*      [209.85.223.179 listed in list.dnswl.org]
-Received: from mail-ie0-f179.google.com (mail-ie0-f179.google.com
-	[209.85.223.179])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 712D7E0044D
-	for <yocto@yoctoproject.org>; Tue,  8 Jul 2014 12:14:11 -0700 (PDT)
-Received: by mail-ie0-f179.google.com with SMTP id lx4so4226527iec.24
-	for <yocto@yoctoproject.org>; Tue, 08 Jul 2014 12:14:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=linuxfoundation.org; s=google;
-	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=XTCQQOfCRGarA0r+x3meEUd39YEuzs8BtqM5DvsBjLo=;
-	b=AC1aqC3kUryz0I90hvqA+rGM3XWi1wRIMLmUWpuPZ9zwoDBwSUK8i1SxFY5gjjh8dN
-	2vDTTsnYyFKGWTGBhsUkswOSxGAvBbPpBKtTgoOePwdaLbG68QQXUCVoeL11XWhOOnbb
-	RmaRASKubTg5VqkyMXYF+wbX/SYGIoGeeEE/A=
+	*      [209.85.216.42 listed in list.dnswl.org]
+Received: from mail-qa0-f42.google.com (mail-qa0-f42.google.com
+	[209.85.216.42])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 601CBE00559
+	for <yocto@yoctoproject.org>; Tue,  8 Jul 2014 13:19:09 -0700 (PDT)
+Received: by mail-qa0-f42.google.com with SMTP id dc16so5359164qab.29
+	for <yocto@yoctoproject.org>; Tue, 08 Jul 2014 13:19:09 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:date:message-id:subject:from:to
-	:content-type;
-	bh=XTCQQOfCRGarA0r+x3meEUd39YEuzs8BtqM5DvsBjLo=;
-	b=jlyKDNuTv24kAwdCL560UFWhrSYJaj9HnH+F7eB/mKuIs6Ez8Ob0b7fKuURmUEbppW
-	ga3Bjqp+bYPd799IZv75zIvJ/64Rjgy8wr9DK29oZ2z89rzi3AN5BlwwagFWP7qxsMlv
-	nAPCiLd+7bNDmoCBPTzixDy/0CxkGcvJhGBFgXs7vqThNC5tfQXaRMHI4okML8yikUxa
-	u8SBfvkM8lMy6yXMCrYeHNFxbrCJEzxZabOXTXTHy0SumkWSSgl0d/8J1mw33L9bfnS+
-	lZBN2ZnqO072rSmrDM2muOoj2Ax+7buhwRn0cU4kN+Gb8Rn58Rr4A2Hie0fK0t5mK4lR
-	x1cw==
-X-Gm-Message-State: ALoCoQnPOumZVqhRVkhr64RrN1dm0zaNyHRA6UjTbOeroI+bPhT0nWQ7IGcZocVlqkwfB0t9q3ow
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc:content-type;
+	bh=sHMoGAYrjJR1nW9v8ACJ1cBLqWNQdIUntiMzBOxQ5ks=;
+	b=McNAwSBDl/caY6CD2gNZvFMusfjoVmiUT7PfYxvvWTUussc9NaANwTfkfP/bVqdUgE
+	F0olIRP68+/7znubFrFO+Sv8wTtd0tSlVFXId0GoXkktQ1VFCeh1T5v6F6PK8Yx1Qiq5
+	ZWckcb3tDYJ/1zgNkmQxghcbKyv6El/48jiiCHOCDK3NodTuUfVahbbn0353NmInydde
+	kQ+CQEjE31IlN6/KuVepHBdaDOjNxGhYKmtzQJpqvY1u9MnwYd/yYkYCV0s4Q5N108vk
+	2hrUdaku44JnwATkc55TawHhEJfrTTDZDsGKjUeQOeoLL0h2jJOk4umNYPOrpguOlFVs
+	kPXw==
+X-Gm-Message-State: ALoCoQlPrweIHzL2n78IrHU5KX4t6+bNXIE85YVgyBhe5d3Ggw6H3z2Ej8HGXO8gn9gJPbz0P8KH
+X-Received: by 10.140.81.209 with SMTP id f75mr54001225qgd.60.1404850749185;
+	Tue, 08 Jul 2014 13:19:09 -0700 (PDT)
 MIME-Version: 1.0
-X-Received: by 10.50.43.167 with SMTP id x7mr6504252igl.36.1404846850945; Tue,
-	08 Jul 2014 12:14:10 -0700 (PDT)
-Received: by 10.50.225.73 with HTTP; Tue, 8 Jul 2014 12:14:10 -0700 (PDT)
-Date: Tue, 8 Jul 2014 12:14:10 -0700
-Message-ID: <CA+gsK-qEG9_RLNx-iyA0C4j9ppYQT48gKXrgn=dktGw7j2bpgA@mail.gmail.com>
-From: Rudolf Streif <rstreif@linuxfoundation.org>
-To: Yocto Discussion Mailing List <yocto@yoctoproject.org>
-Subject: MIPI for Intel E3800 Bay Trail
+Received: by 10.140.86.40 with HTTP; Tue, 8 Jul 2014 13:18:49 -0700 (PDT)
+In-Reply-To: <CA+gsK-ppcQmqUwfJSs1MdzqwBPWkJm=5Ok3mx9Mxnfs7yPowLw@mail.gmail.com>
+References: <CA+gsK-ppcQmqUwfJSs1MdzqwBPWkJm=5Ok3mx9Mxnfs7yPowLw@mail.gmail.com>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Tue, 8 Jul 2014 21:18:49 +0100
+Message-ID: <CAJTo0LaKd8t3mDt2N45OOF0C=SNwtGq6dOqHEJNRLSfh4QPuCQ@mail.gmail.com>
+To: Rudolf Streif <rstreif@linuxfoundation.org>
+Cc: Yocto Discussion Mailing List <yocto@yoctoproject.org>
+Subject: Re: core-image-weston: do_rootfs failure installing libcogl
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -63,23 +52,22 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 08 Jul 2014 19:14:14 -0000
-Content-Type: multipart/alternative; boundary=089e011602b2847bdf04fdb365e7
-
---089e011602b2847bdf04fdb365e7
+X-List-Received-Date: Tue, 08 Jul 2014 20:20:14 -0000
 Content-Type: text/plain; charset=UTF-8
 
-This question is lesser a matter of YP but probably of upstream support.
-Nevertheless, the YP kernel experts would certainly know. Which, if any, of
-the YP kernels provide MIPI drivers for the Intel E3800?
+On 8 July 2014 18:28, Rudolf Streif <rstreif@linuxfoundation.org> wrote:
+> I am attempting to build core-image-weston with Poky from Master. It fails
+> creating the rootfs when smart tries to install libcogl (details at the
+> end):
+>
+> error:     libcogl20-1.18.0-r0@i586 conflicts with
+> libcogl-path20-1.18.0-r0@i586
 
-Thanks,
-Rudi
+That's interesting, I just built core-image-weston from master and it
+worked fine.  Then again looking at the packages generated and their
+contents, something very strange is happening :/
 
---089e011602b2847bdf04fdb365e7
-Content-Type: text/html; charset=UTF-8
+Can you file a bug?
 
-<div dir="ltr"><div>This question is lesser a matter of YP but probably of upstream support. Nevertheless, the YP kernel experts would certainly know. Which, if any, of the YP kernels provide MIPI drivers for the Intel E3800?<br>
-<br></div>Thanks,<br>Rudi<br></div>
+Ross
 
---089e011602b2847bdf04fdb365e7--
