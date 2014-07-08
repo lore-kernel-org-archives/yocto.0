@@ -1,41 +1,49 @@
-Return-Path: <Chong.Lu@windriver.com>
+Return-Path: <Vinay.G@kpit.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 1F411E00576; Tue,  8 Jul 2014 02:55:02 -0700 (PDT)
+	id DDF31E00576; Tue,  8 Jul 2014 03:19:48 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_MED autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [147.11.1.11 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [207.46.51.92 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8B4EDE004FF
-	for <yocto@yoctoproject.org>; Tue,  8 Jul 2014 02:54:53 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail.windriver.com (8.14.5/8.14.5) with ESMTP id s689sosB006923
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Tue, 8 Jul 2014 02:54:50 -0700 (PDT)
-Received: from [128.224.162.204] (128.224.162.204) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server (TLS) id 14.3.169.1;
-	Tue, 8 Jul 2014 02:54:50 -0700
-Message-ID: <53BBBFE7.3080101@windriver.com>
-Date: Tue, 8 Jul 2014 17:54:47 +0800
-From: Chong Lu <Chong.Lu@windriver.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:24.0) Gecko/20100101 Thunderbird/24.0
+X-Greylist: delayed 960 seconds by postgrey-1.32 at yocto-www;
+	Tue, 08 Jul 2014 03:19:44 PDT
+Received: from APAC01-SG1-obe.outbound.protection.outlook.com
+	(mail-sg1lp0092.outbound.protection.outlook.com [207.46.51.92])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C2291E004FF
+	for <yocto@yoctoproject.org>; Tue,  8 Jul 2014 03:19:44 -0700 (PDT)
+Received: from HKXPR03MB151.apcprd03.prod.outlook.com (10.242.121.25) by
+	HKXPR03MB149.apcprd03.prod.outlook.com (10.242.121.17) with Microsoft
+	SMTP Server (TLS) id 15.0.980.8; Tue, 8 Jul 2014 10:03:41 +0000
+Received: from HKXPR03MB151.apcprd03.prod.outlook.com ([169.254.5.153]) by
+	HKXPR03MB151.apcprd03.prod.outlook.com ([169.254.5.153]) with mapi id
+	15.00.0980.000; Tue, 8 Jul 2014 10:03:41 +0000
+From: "Vinay Kumar. G" <Vinay.G@kpit.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: GDB related issue on host machine
+Thread-Index: Ac+ak+BthlZKyhfbR/2HNw8iDmMuUA==
+Date: Tue, 8 Jul 2014 10:03:40 +0000
+Message-ID: <2260d30500404cf5a004b74aaa46cca1@HKXPR03MB151.apcprd03.prod.outlook.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [115.113.150.202]
+x-microsoft-antispam: BCL:0;PCL:0;RULEID:
+x-forefront-prvs: 0266491E90
+x-forefront-antispam-report: SFV:NSPM;
+	SFS:(6009001)(199002)(189002)(106356001)(105586002)(4396001)(64706001)(66066001)(85852003)(80022001)(101416001)(83072002)(107886001)(19300405004)(107046002)(229853001)(87936001)(81342001)(2351001)(2656002)(21056001)(16236675004)(110136001)(81542001)(19625215002)(15202345003)(15975445006)(31966008)(95666004)(19580395003)(76576001)(99396002)(54356999)(76482001)(77096002)(50986999)(92566001)(74316001)(77982001)(74502001)(79102001)(85306003)(20776003)(74662001)(83322001)(86362001)(33646001)(46102001)(108616002)(24736002);
+	DIR:OUT; SFP:; SCL:1; SRVR:HKXPR03MB149;
+	H:HKXPR03MB151.apcprd03.prod.outlook.com; FPR:; MLV:sfv;
+	PTR:InfoNoRecords; MX:1; LANG:en; 
 MIME-Version: 1.0
-To: =?UTF-8?B?Sm9zZXBoIEFuZHJldyBkZSBsYSBQZcOxYQ==?= <jdelapena@lexmark.com>
-References: <CAJrRHk440JvVsSPcX7PKvbCqLTjz39QQLq1v9OejzRfkyE7iYg@mail.gmail.com>	<53BB9D10.30104@windriver.com>
-	<CAJrRHk5PM1Repp1hbYyTDDCv0KZLU7=j6iWm=vyORqhFNOt9bw@mail.gmail.com>
-In-Reply-To: <CAJrRHk5PM1Repp1hbYyTDDCv0KZLU7=j6iWm=vyORqhFNOt9bw@mail.gmail.com>
-X-Originating-IP: [128.224.162.204]
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: QEMU in SDK
+X-OriginatorOrg: kpit.com
+Subject: GDB related issue on host machine
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -47,226 +55,138 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 08 Jul 2014 09:55:02 -0000
+X-List-Received-Date: Tue, 08 Jul 2014 10:19:48 -0000
+Content-Language: en-US
 Content-Type: multipart/alternative;
-	boundary="------------090006000103050908090404"
+	boundary="_000_2260d30500404cf5a004b74aaa46cca1HKXPR03MB151apcprd03pro_"
 
---------------090006000103050908090404
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
+--_000_2260d30500404cf5a004b74aaa46cca1HKXPR03MB151apcprd03pro_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-I mean you can use adt-installer to make your sdk environment. (3.1.1. 
-Using the ADT Installer)
-After you run adt-installer script, you can get kernel and rootfs in 
-download_image directory.
+Hi,
 
-Best Regards
-Chong
+I am new to this forum. I am facing some difficulties in debugging a.out
+on host os(without target connection). Using "powerpc-poky-linux-gdb a.out"=
+.
 
+Once entered to gdb did below steps
+set sysroot /home/../ppc/sysroots/ppc7400-poky-linux
+file a.out
+b main
+continue  > shows message The program is not being run.
 
-On 07/08/2014 05:39 PM, Joseph Andrew de la Peña wrote:
-> Good day Chong,
->
-> Actually, I have used ADT (Section 3.4 Optionally Building a Toolchain 
-> Installer). I used the method -c populate_sdk and it generated a 
-> toolchain script from my existing build workdir's core-image-XXX. I 
-> ran the toolchain and it generated a sysroots dir to /path/to/sysroots 
-> (SDK_PATH).
->
-> Here's the directory structure:
-> + SDK_PATH
-> --- + environment-setup-XXX
-> --- + site-config-XXX
-> --- + sysroots (dir)
-> ---------- + XXX-poky-linux (dir)
-> ---------- + XXX-pokysdk-linux (dir)
-> --- + version-XXX
->
-> The poky-linux dir does not contain a build dir and nowhere are the 
-> images (kernel and ext3) to be found. Thus, the main problem is how 
-> can I ran qemu with my SDK setup. This would lead to my sub question: 
-> since QEMU needs the kernel and ext3 files, how can I automatically 
-> copy these images from my existing build workdir to the newly created 
-> SDK dir.
->
-> Thanks,
-> Joseph
->
->
->
->
->
-> On Tue, Jul 8, 2014 at 3:26 PM, Chong Lu <Chong.Lu@windriver.com 
-> <mailto:Chong.Lu@windriver.com>> wrote:
->
->     Hi Joseph,
->
->     Maybe you can use adt-installer.
->
->     http://www.yoctoproject.org/docs/latest/adt-manual/adt-manual.html#using-the-adt-installer
->
->     Best Regards
->     Chong
->
->     On 07/08/2014 02:15 PM, Joseph Andrew de la Peña wrote:
->>     Good day ALL,
->>
->>     I was wondering if it's possible to automatically add QEMU
->>     dependencies (kernel and ext3 files) into the script generated by
->>     do_populate_sdk? Then after running the generated SDK script, the
->>     images will reside in /path/to/sysroots/xxx-poky-xxx/tmp/images?
->>     Then just add an environment variable to the environment script
->>     to locate the images path. Is this possible?
->>
->>     The intention is to run QEMU in a host machine with extracted
->>     SDK. Any suggestions on other better ways to run QEMU in another
->>     machine w/ SDK would be great.
->>
->>     Thanks,
->>     Joseph
->>
->>
->
->
+If I execute "run" gives "The program is not being run."
 
+Any help is appreciated. :)
+Thanks.
+This message contains information that may be privileged or confidential an=
+d is the property of the KPIT Technologies Ltd. It is intended only for the=
+ person to whom it is addressed. If you are not the intended recipient, you=
+ are not authorized to read, print, retain copy, disseminate, distribute, o=
+r use this message or any part thereof. If you receive this message in erro=
+r, please notify the sender immediately and delete all copies of this messa=
+ge. KPIT Technologies Ltd. does not accept any liability for virus infected=
+ mails.
 
---------------090006000103050908090404
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
+--_000_2260d30500404cf5a004b74aaa46cca1HKXPR03MB151apcprd03pro_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-<html>
-  <head>
-    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
-  </head>
-  <body bgcolor="#FFFFFF" text="#000000">
-    I mean you can use adt-installer to make your sdk environment.
-    (3.1.1. Using the ADT Installer)<br>
-    After you run adt-installer script, you can get kernel and rootfs in
-    download_image directory. <br>
-    <br>
-    Best Regards<br>
-    Chong<br>
-    <br>
-    <br>
-    <div class="moz-cite-prefix">On 07/08/2014 05:39 PM, Joseph Andrew
-      de la Peña wrote:<br>
-    </div>
-    <blockquote
-cite="mid:CAJrRHk5PM1Repp1hbYyTDDCv0KZLU7=j6iWm=vyORqhFNOt9bw@mail.gmail.com"
-      type="cite">
-      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-      <div dir="ltr">Good day Chong,
-        <div><br>
-        </div>
-        <div>Actually, I have used ADT (Section 3.4 Optionally Building
-          a Toolchain Installer). I used the method -c populate_sdk and
-          it generated a toolchain script from my existing build
-          workdir's core-image-XXX. I ran the toolchain and it generated
-          a sysroots dir to /path/to/sysroots (SDK_PATH).</div>
-        <div><br>
-        </div>
-        <div>Here's the directory structure:</div>
-        <div>+ SDK_PATH</div>
-        <div>--- + environment-setup-XXX</div>
-        <div>--- + site-config-XXX</div>
-        <div>--- + sysroots (dir)</div>
-        <div>---------- + XXX-poky-linux (dir)</div>
-        <div>---------- + XXX-pokysdk-linux (dir)</div>
-        <div>--- + version-XXX</div>
-        <div><br>
-        </div>
-        <div>The poky-linux dir does not contain a build dir and nowhere
-          are the images (kernel and ext3) to be found. Thus, the main
-          problem is how can I ran qemu with my SDK setup. This would
-          lead to my sub question: since QEMU needs the kernel and ext3
-          files, how can I automatically copy these images from my
-          existing build workdir to the newly created SDK dir.</div>
-        <div><br>
-        </div>
-        <div>Thanks,</div>
-        <div>Joseph</div>
-        <div><br>
-        </div>
-        <div><br>
-        </div>
-        <div><br>
-        </div>
-      </div>
-      <div class="gmail_extra"><br>
-        <br>
-        <div class="gmail_quote">On Tue, Jul 8, 2014 at 3:26 PM, Chong
-          Lu <span dir="ltr">&lt;<a moz-do-not-send="true"
-              href="mailto:Chong.Lu@windriver.com" target="_blank">Chong.Lu@windriver.com</a>&gt;</span>
-          wrote:<br>
-          <blockquote class="gmail_quote" style="margin:0 0 0
-            .8ex;border-left:1px #ccc solid;padding-left:1ex">
-            <div bgcolor="#FFFFFF" text="#000000"> Hi Joseph,<br>
-              <br>
-              Maybe you can use adt-installer.<br>
-              <br>
-              <a moz-do-not-send="true"
-href="http://www.yoctoproject.org/docs/latest/adt-manual/adt-manual.html#using-the-adt-installer"
-                target="_blank">http://www.yoctoproject.org/docs/latest/adt-manual/adt-manual.html#using-the-adt-installer</a><br>
-              <br>
-              Best Regards<span class="HOEnZb"><font color="#888888"><br>
-                  Chong <br>
-                </font></span>
-              <div>
-                <div class="h5"> <br>
-                  <div>On 07/08/2014 02:15 PM, Joseph Andrew de la Peña
-                    wrote:<br>
-                  </div>
-                  <blockquote type="cite">
-                    <div dir="ltr"><span
-                        style="font-family:arial,sans-serif;font-size:13px">Good
-                        day ALL,</span>
-                      <div
-                        style="font-family:arial,sans-serif;font-size:13px"><br>
-                      </div>
-                      <div
-                        style="font-family:arial,sans-serif;font-size:13px">I
-                        was wondering if it's possible to automatically
-                        add QEMU dependencies (kernel and ext3 files)
-                        into the script generated by do_populate_sdk?
-                        Then after running the generated SDK script, the
-                        images will reside in
-                        /path/to/sysroots/xxx-poky-xxx/tmp/images? Then
-                        just add an environment variable to the
-                        environment script to locate the images path. Is
-                        this possible?</div>
-                      <div
-                        style="font-family:arial,sans-serif;font-size:13px"><br>
-                      </div>
-                      <div
-                        style="font-family:arial,sans-serif;font-size:13px">The
-
-                        intention is to run QEMU in a host machine with
-                        extracted SDK. Any suggestions on other better
-                        ways to run QEMU in another machine w/ SDK would
-                        be great.</div>
-                      <div
-                        style="font-family:arial,sans-serif;font-size:13px"><br>
-                      </div>
-                      <div
-                        style="font-family:arial,sans-serif;font-size:13px">Thanks,</div>
-                      <div
-                        style="font-family:arial,sans-serif;font-size:13px">Joseph</div>
-                    </div>
-                    <br>
-                    <fieldset></fieldset>
-                    <br>
-                  </blockquote>
-                  <br>
-                </div>
-              </div>
-            </div>
-          </blockquote>
-        </div>
-        <br>
-      </div>
-    </blockquote>
-    <br>
-  </body>
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 14 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;}
+@font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri","sans-serif";
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri","sans-serif";}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal">Hi,<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">I am new to this forum. I am facing some difficultie=
+s in debugging a.out
+<o:p></o:p></p>
+<p class=3D"MsoNormal">on host os(without target connection). Using &quot;p=
+owerpc-poky-linux-gdb a.out&quot;.<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Once entered to gdb did below steps <o:p></o:p></p>
+<p class=3D"MsoNormal"><span style=3D"background:yellow;mso-highlight:yello=
+w">set sysroot /home/../ppc/sysroots/ppc7400-poky-linux<o:p></o:p></span></=
+p>
+<p class=3D"MsoNormal"><span style=3D"background:yellow;mso-highlight:yello=
+w">file a.out<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"background:yellow;mso-highlight:yello=
+w">b main<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"background:yellow;mso-highlight:yello=
+w">continue&nbsp; &gt; shows message The program is not being run.<o:p></o:=
+p></span></p>
+<p class=3D"MsoNormal"><span style=3D"background:yellow;mso-highlight:yello=
+w"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"background:yellow;mso-highlight:yello=
+w">If I execute &#8220;run&#8221; gives &quot;The program is not being run.=
+&quot;</span><o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Any help is appreciated. <span style=3D"font-family:=
+Wingdings">
+J</span><o:p></o:p></p>
+<p class=3D"MsoNormal">Thanks.<o:p></o:p></p>
+</div>
+This message contains information that may be privileged or confidential an=
+d is the property of the KPIT Technologies Ltd. It is intended only for the=
+ person to whom it is addressed. If you are not the intended recipient, you=
+ are not authorized to read, print,
+ retain copy, disseminate, distribute, or use this message or any part ther=
+eof. If you receive this message in error, please notify the sender immedia=
+tely and delete all copies of this message. KPIT Technologies Ltd. does not=
+ accept any liability for virus
+ infected mails.
+</body>
 </html>
 
---------------090006000103050908090404--
+--_000_2260d30500404cf5a004b74aaa46cca1HKXPR03MB151apcprd03pro_--
