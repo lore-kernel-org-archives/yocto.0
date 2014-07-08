@@ -1,39 +1,48 @@
-Return-Path: <rpjday@crashcourse.ca>
+Return-Path: <fathi.boudra@linaro.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 0B461E00576; Tue,  8 Jul 2014 04:42:55 -0700 (PDT)
+	id A2BD3E00576; Tue,  8 Jul 2014 05:44:47 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from astoria.ccjclearline.com (astoria.ccjclearline.com
-	[64.235.106.9])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8E150E004FF
-	for <yocto@yoctoproject.org>; Tue,  8 Jul 2014 04:42:48 -0700 (PDT)
-Received: from [69.196.158.250] (port=33468 helo=crashcourse.ca)
-	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES128-SHA:128)
-	(Exim 4.80) (envelope-from <rpjday@crashcourse.ca>)
-	id 1X4TnK-0008Ss-8Z
-	for yocto@yoctoproject.org; Tue, 08 Jul 2014 07:42:46 -0400
-Date: Tue, 8 Jul 2014 07:42:38 -0400 (EDT)
-From: "Robert P. J. Day" <rpjday@crashcourse.ca>
-X-X-Sender: rpjday@localhost
-To: Yocto discussion list <yocto@yoctoproject.org>
-Message-ID: <alpine.LFD.2.11.1407080736180.32469@localhost>
-User-Agent: Alpine 2.11 (LFD 23 2013-08-11)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.215.52 listed in list.dnswl.org]
+Received: from mail-la0-f52.google.com (mail-la0-f52.google.com
+	[209.85.215.52])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D24C8E004FF
+	for <yocto@yoctoproject.org>; Tue,  8 Jul 2014 05:44:37 -0700 (PDT)
+Received: by mail-la0-f52.google.com with SMTP id ty20so3968850lab.11
+	for <yocto@yoctoproject.org>; Tue, 08 Jul 2014 05:44:36 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:date
+	:message-id:subject:from:to:cc:content-type;
+	bh=dfVTcXByrAR6LZTToRA8xL4UIHP9Snhp5s8ByMJ/JIk=;
+	b=Xub4iqJYjK2h/a7ejzpn0t0O3pDxA5CmwEQtceKvtANdx5E+AwTkOJC/6/pNhJVFED
+	Ecpbp+H36Fdpf5j6DixZ5TrENe9DrtR3Cpri547604nGoQ4Ldd3p8AKKt3JKzOHWZvvo
+	2WGvX72/2r6KCbSvJ8HVTynzDRVqQfdMqWA1YkVJMuGagEHkE3teT7t11rVQP1giFgjw
+	D3TgrWpEIfeBSoyqdAq6Y4lyGv3JVeh0zjhu6WhcG/FQh4lyr2LDTRGiCYC/p9/ShjuJ
+	LUH254mRpX0WOSe22nA6krTA9DhARkaJADk9GzwuKVPyeusOlAKM+rbaqGInlUMyshDe
+	fNzg==
+X-Gm-Message-State: ALoCoQlS7v0g+Lz++3Utvbm+pFDdEhaWPuxOxiBWLjYGWHd2VIwbVMmA7UTRCd6zv2KOD6uhZksL
 MIME-Version: 1.0
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - crashcourse.ca
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-Subject: some wiki pages on building your very first poky/yocto project
+X-Received: by 10.112.140.41 with SMTP id rd9mr26475268lbb.31.1404823476223;
+	Tue, 08 Jul 2014 05:44:36 -0700 (PDT)
+Received: by 10.112.35.133 with HTTP; Tue, 8 Jul 2014 05:44:36 -0700 (PDT)
+In-Reply-To: <CAH21_vGLnGXFs2fkVO8D2LwUPJ5k0iJtCsSKsPujWtsijXnqkg@mail.gmail.com>
+References: <CAH21_vFKzJAR8GRArhZoKfOQzSpHkogfX+d+j_MML9v4AYD1+A@mail.gmail.com>
+	<20140707195511.GA50424@sestofb10.enea.se>
+	<CAH21_vGLnGXFs2fkVO8D2LwUPJ5k0iJtCsSKsPujWtsijXnqkg@mail.gmail.com>
+Date: Tue, 8 Jul 2014 15:44:36 +0300
+Message-ID: <CAGNsrLAbo8arFWHoCi0faPobYL=upmoTHQsNHihrzQgSiY9tjw@mail.gmail.com>
+From: Fathi Boudra <fathi.boudra@linaro.org>
+To: atulkumar singh <atul.singh008@gmail.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Aarch64 support
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,44 +54,57 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 08 Jul 2014 11:42:55 -0000
-Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-List-Received-Date: Tue, 08 Jul 2014 12:44:47 -0000
+Content-Type: text/plain; charset=UTF-8
+
+On 8 July 2014 13:27, atulkumar singh <atul.singh008@gmail.com> wrote:
+> Hi Maxin,
+>
+> Thanks for your suggestion for the same.
+> But that git repository for meta-aarch64 is not working.
+
+What do you mean by "not working". We produce daily builds and they're tested.
+
+> Thanks and regards
+> Atul
+>
+> On 8 Jul 2014 01:25, "Maxin B. John" <maxin.john@enea.com> wrote:
+>>
+>> Hi Atul,
+>>
+>> On Tue, Jul 08, 2014 at 12:41:22AM +0530, atulkumar singh wrote:
+>> > Hi All,
+>> >
+>> > Is there support for Aarch64(64 bit ARMv8) available right now?
+>> Yes. Aarch64 support is available in meta-linaro/meta-aarch64
+>> URL: http://git.linaro.org/?p=openembedded/meta-linaro.git
+>>
+>> > If so then what i need to mention as a MACHINE in local.conf.
+>> You can choose between:
+>> 1. genericarmv8b - generic armv8 big endian machine
+>> 2. genericarmv8 - generic armv8 machine
+>>
+>> > Please let me know with your valuable suggestion if any.
+>> Please use http://layers.openembedded.org/
+>> to search Machine/Layers/Recipes supported by OpenEmbedded.
+>>
+>> > Thanks and regards,
+>> > Atul
+>>
+>> Best Regards,
+>> Maxin
+>>
+>
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
 
 
-  not sure if others will find this useful but i'm teaching an
-oe/poky/yocto course in a couple weeks, and i decided to slap together
-some publicly-readable wiki pages that i plan on sending ahead of time
-to upcoming students to walk them through setting up their development
-host, and downloading, and finally building their very first project,
-the purpose being so that when i show up that first morning, everyone
-has a build host ready to go and we don't have to waste any time
-downloading packages and layers and so on.
-
-  everything falls off of this new top-level wiki page of mine:
-
-http://www.crashcourse.ca/wiki/index.php/Poky
-
-and the plan is for impending students to read and work through the
-sections:
-
-* Setting up your build host
-* Doing your first build
-
-  there's lots more coming, but those first two sections should act as
-pre-class preparation. i'm still adding stuff to them, but if anyone
-has any thoughts on what else to put there, feel free. it's all very
-ad hoc, but i really want to avoid wasted time the first morning of
-the course screwing around with build hosts.
-
-rday
-
+Cheers,
 -- 
-
-========================================================================
-Robert P. J. Day                                 Ottawa, Ontario, CANADA
-                        http://crashcourse.ca
-
-Twitter:                                       http://twitter.com/rpjday
-LinkedIn:                               http://ca.linkedin.com/in/rpjday
-========================================================================
+Fathi Boudra
+Linaro.org | Open source software for ARM SoCs
 
