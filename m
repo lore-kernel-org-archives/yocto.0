@@ -1,59 +1,38 @@
-Return-Path: <atul.singh008@gmail.com>
+Return-Path: <stefan.hofmann@mobserve.de>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 41C4EE00744; Wed,  9 Jul 2014 05:46:33 -0700 (PDT)
+	id 30614E00744; Wed,  9 Jul 2014 05:57:52 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (atul.singh008[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.213.175 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [80.237.133.75 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-ig0-f175.google.com (mail-ig0-f175.google.com
-	[209.85.213.175])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A2BA8E00547
-	for <yocto@yoctoproject.org>; Wed,  9 Jul 2014 05:46:32 -0700 (PDT)
-Received: by mail-ig0-f175.google.com with SMTP id h3so1807319igd.14
-	for <yocto@yoctoproject.org>; Wed, 09 Jul 2014 05:46:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type;
-	bh=Xa/B4Hha1+PHGQUDZK39+sz/2xHEIAcej4YMtHz2Lu4=;
-	b=IUFzY8w+O1j3XXE/kZS1kzpev4A2R5QSCHQRdR5LDKBFouvXVjHi/xOll/0wwlkBP4
-	6E2UIom1k0snpT1t677l5FLKKH70vweLMEgjG19Fht50t3+H46X0AhQ3x4jiKFgJDGSC
-	mYXSHpulC9OBtb4TbATT/7JSxU+pfcLzUjYPyaTucQwXXrbLVc+WNCKTJ2FpfpEmRafJ
-	jLObQolRAJHUXH9HuKiZt2fUtNTQOHVuoRGYr7Bt20/u7tqsmcnl35Aj/7YsBw0Ur/kJ
-	a8cJQ8S92u6FwKvnqhjrz7sGZ8+OzcxvL2w0lkGkqu8Qs9ncb0BdMuupq1v7WDMzeFCp
-	Jhag==
-MIME-Version: 1.0
-X-Received: by 10.50.137.71 with SMTP id qg7mr12364013igb.24.1404909991999;
-	Wed, 09 Jul 2014 05:46:31 -0700 (PDT)
-Received: by 10.64.86.225 with HTTP; Wed, 9 Jul 2014 05:46:31 -0700 (PDT)
-Received: by 10.64.86.225 with HTTP; Wed, 9 Jul 2014 05:46:31 -0700 (PDT)
-In-Reply-To: <20140708142217.GA22778@sestofb10.enea.se>
-References: <CAH21_vFKzJAR8GRArhZoKfOQzSpHkogfX+d+j_MML9v4AYD1+A@mail.gmail.com>
-	<20140707195511.GA50424@sestofb10.enea.se>
-	<CAH21_vGLnGXFs2fkVO8D2LwUPJ5k0iJtCsSKsPujWtsijXnqkg@mail.gmail.com>
-	<CAGNsrLAbo8arFWHoCi0faPobYL=upmoTHQsNHihrzQgSiY9tjw@mail.gmail.com>
-	<CAH21_vEj7GAfx2XECrhg_fu-2rtEveYdThK1Ub6p5c7qCxJB_g@mail.gmail.com>
-	<20140708142217.GA22778@sestofb10.enea.se>
-Date: Wed, 9 Jul 2014 18:16:31 +0530
-Message-ID: <CAH21_vF80rJ7Tp9Z0vxOG9+epgZVBy1RfcD+2V6g1K1OT3_w=A@mail.gmail.com>
-From: atulkumar singh <atul.singh008@gmail.com>
-To: "Maxin B. John" <maxin.john@enea.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Aarch64 support
+Received: from wp306.webpack.hosteurope.de (wp306.webpack.hosteurope.de
+	[80.237.133.75])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 404BFE00547
+	for <yocto@yoctoproject.org>; Wed,  9 Jul 2014 05:57:49 -0700 (PDT)
+Received: from [217.17.193.50] (helo=stefans-mini.m2b.intern); authenticated
+	by wp306.webpack.hosteurope.de running ExIM with esmtpsa
+	(TLS1.0:RSA_AES_128_CBC_SHA1:16)
+	id 1X4rRT-0005cz-V0; Wed, 09 Jul 2014 14:57:48 +0200
+Mime-Version: 1.0 (Mac OS X Mail 7.3 \(1878.6\))
+From: Stefan Hofmann <stefan.hofmann@mobserve.de>
+In-Reply-To: <CA+gsK-qs=2OO2o_Ubyv=7T4h_FzxnPvKJ77yPGohE33FLrFCfQ@mail.gmail.com>
+Date: Wed, 9 Jul 2014 14:57:46 +0200
+Message-Id: <2A067D16-0B76-40CD-920D-9E49125AB438@mobserve.de>
+References: <53B2EA69.5000903@mobserve.de>
+	<CA+gsK-qs=2OO2o_Ubyv=7T4h_FzxnPvKJ77yPGohE33FLrFCfQ@mail.gmail.com>
+To: Rudolf Streif <rstreif@linuxfoundation.org>
+X-Mailer: Apple Mail (2.1878.6)
+X-bounce-key: webpack.hosteurope.de; stefan.hofmann@mobserve.de; 1404910670;
+	c366c800; 
+Cc: Yocto Discussion Mailing List <yocto@yoctoproject.org>
+Subject: Re: Understanding "Package groups"
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -65,142 +44,224 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 09 Jul 2014 12:46:33 -0000
-Content-Type: multipart/alternative; boundary=001a11c3c19603c22f04fdc219ad
+X-List-Received-Date: Wed, 09 Jul 2014 12:57:52 -0000
+Content-Type: multipart/alternative;
+	boundary="Apple-Mail=_9E63AB07-2376-42AE-89F8-4994B28FA900"
 
---001a11c3c19603c22f04fdc219ad
-Content-Type: text/plain; charset=UTF-8
+--Apple-Mail=_9E63AB07-2376-42AE-89F8-4994B28FA900
 Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain;
+	charset=us-ascii
 
-Hi Maxin,
+Hi Rudolf,
 
-I have added three folder =E2=80=9Cmeta-aarch64=E2=80=9D, =E2=80=9Cmeta-lin=
-aro=E2=80=9D and
-=E2=80=9Cmeta-linaro-toolchain=E2=80=9D under my poky directory.
-I also have updated my bblayer.conf with:-
-BBLAYERS ?=3D " \
-  /home/atulk/yocto/poky-master/meta \
-/home/atulk/yocto/poky-master/meta-yocto \
-  /home/atulk/yocto/poky-master/meta-yocto-bsp \
-  /home/atulk/yocto/poky-master/meta-aarch64 \
-/home/atulk/yocto/poky-master/meta-linaro \
-  /home/atulk/yocto/poky-master/meta-linaro-toolchain \
-  "
-And local.conf MACHINE ??=3D "genericarmv8"
-But while building bitbake with meta-toolchain for aarch64 support, I am
-getting error as =E2=80=9CERROR: Layer 'linaro' depends on layer
-'networking-layer', but this layer is not enabled in your configuration=E2=
-=80=9D.
-Do you have any comments about building the same.
-Also please note that I don=E2=80=99t need any external toolchain support a=
-s I wish
-to build my own toolchain.
+thank you for your explanation. bash has not been installed, but HOB did =
+some changes on the configuration files and I modified the distribution. =
+I deleted everything and created my own image receipe. It works fine =
+now.
 
-Thanks and Regards,
-ATUL KUMAR SINGH
-On 8 Jul 2014 19:52, "Maxin B. John" <maxin.john@enea.com> wrote:
+Regards,
+Stefan
 
-> Hi Atul,
->
-> On Tue, Jul 08, 2014 at 07:43:03PM +0530, atulkumar singh wrote:
-> > Hi Fathi and Maxin,
-> >
-> > Thanks as you are helping me in sorting out my issue for Aarch64 suppor=
-t
-> in
-> > meta-toolchain while building bitbake for yocto.
-> > And "not working" means if we go into the machine/layer/recipes link an=
-d
-> under
-> > the meta-aarch64 layer the git repository link which is mention is not
-> working.
-> > Please let me know with your valuable suggestion.
->
-> The "meta-aarch64" is present in "meta-linaro" repository.
-> Clone meta-linaro :
->
-> # git clone git://git.linaro.org/openembedded/meta-linaro.git
-> # cd meta-linaro/meta-aarch64
->
-> > Thanks and regards,
-> > Atul
-> >
-> > On 8 Jul 2014 18:14, "Fathi Boudra" <fathi.boudra@linaro.org> wrote:
-> >
-> >     On 8 July 2014 13:27, atulkumar singh <atul.singh008@gmail.com>
-> wrote:
->
-> Best Regards,
-> Maxin
-> <snip>
->
+Am 01.07.2014 um 22:34 schrieb Rudolf Streif =
+<rstreif@linuxfoundation.org>:
 
---001a11c3c19603c22f04fdc219ad
-Content-Type: text/html; charset=UTF-8
+> Hi Stefan,
+>=20
+> You probably have found the explanation on package groups in the =
+reference manual [1].
+>=20
+> Package groups are recipes with the sole purpose to create =
+dependencies to simplify image creation. A package group recipe bundles =
+multiple packages together and then instead of having to explicitly =
+specify each package in the IMAGE_INSTALL variable you can simply =
+specify the package group name.
+>=20
+> Package group recipes look like this (from the manual):
+>=20
+> DESCRIPTION =3D "My Custom Package Groups"
+>=20
+>      inherit packagegroup
+>=20
+>      PACKAGES =3D "\
+>          packagegroup-custom-apps \
+>          packagegroup-custom-tools \
+>          "
+>=20
+>      RDEPENDS_packagegroup-custom-apps =3D "\
+>          dropbear \
+>          portmap \
+>          psplash"
+>=20
+>      RDEPENDS_packagegroup-custom-tools =3D "\
+>          oprofile \
+>          oprofileui-server \
+>          lttng-control \
+>          lttng-viewer"
+>=20
+>      RRECOMMENDS_packagegroup-custom-tools =3D "\
+>          kernel-module-oprofile"
+>=20
+>=20
+> Like any recipe they have a description. They inherit the =
+packagegroup.bbclass. A package group recipe can define multiple package =
+groups in the PACKAGES variable. For each package group listed in =
+PACKAGES you will then need to specify the packages that actually go =
+into them with conditional RDEPENDS_<packagegroupname> variables.
+>=20
+> Package groups are only relevant for the YP build system. They do not =
+create package grouping for the package manager that you are using for =
+your target. However, if you select a package group from HOB then all of =
+the packages specified in that group should be installed in your =
+target's rootfs by YP.
+>=20
+> Rudi
+>=20
+>=20
+>=20
+> [1] =
+http://www.yoctoproject.org/docs/1.6/dev-manual/dev-manual.html#usingpoky-=
+extend-customimage-customtasks
+>=20
+>=20
+> On Tue, Jul 1, 2014 at 10:05 AM, Stefan Hofmann =
+<stefan.hofmann@mobserve.de> wrote:
+> Hi,
+>=20
+> I made my first steps with yocto and everything worked fine so far. =
+But now I am struggling with "package groups". What I basically want, is =
+a image for a base system, which allows me to install additional =
+packages over the air with opkg. In my imagination package groups are =
+something like preselected packages, which need to be installed at once =
+similar like it is handled in Debian for X11-support for example. Is =
+this right ? I have built core-image-base for testing purposes and tried =
+to figure out the dependencies by using the Hob tool. It says that bash =
+will be installed and the group "base/shell" is responsible for that. =
+However it is not installed, only ash and I cannot find a package group =
+"package-group-base-shell" in the receipes. It does however exist in the =
+work directory. So now I am somewhat confused.
+>=20
+> Regards,
+> Stefan
+>=20
+> --=20
+>=20
+>=20
+>=20
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>=20
+>=20
+>=20
+>=20
+>=20
+
+
+--Apple-Mail=_9E63AB07-2376-42AE-89F8-4994B28FA900
 Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html;
+	charset=us-ascii
 
-<p>Hi Maxin,</p>
-<p>I have added three folder =E2=80=9Cmeta-aarch64=E2=80=9D, =E2=80=9Cmeta-=
-linaro=E2=80=9D and =E2=80=9Cmeta-linaro-toolchain=E2=80=9D under my poky d=
-irectory.<br>
- I also have updated my bblayer.conf with:-<br>
-BBLAYERS ?=3D &quot; \<br>
-=C2=A0 /home/atulk/yocto/poky-master/meta \<br>
- /home/atulk/yocto/poky-master/meta-yocto \<br>
-=C2=A0 /home/atulk/yocto/poky-master/meta-yocto-bsp \<br>
-=C2=A0 /home/atulk/yocto/poky-master/meta-aarch64 \<br>
- /home/atulk/yocto/poky-master/meta-linaro \<br>
-=C2=A0 /home/atulk/yocto/poky-master/meta-linaro-toolchain \<br>
-=C2=A0 &quot;<br>
-And local.conf MACHINE ??=3D &quot;genericarmv8&quot;<br>
- But while building bitbake with meta-toolchain for aarch64 support, I am g=
-etting error as =E2=80=9CERROR: Layer &#39;linaro&#39; depends on layer &#3=
-9;networking-layer&#39;, but this layer is not enabled in your configuratio=
-n=E2=80=9D.<br>
+<html><head><meta http-equiv=3D"Content-Type" content=3D"text/html =
+charset=3Dus-ascii"></head><body style=3D"word-wrap: break-word; =
+-webkit-nbsp-mode: space; -webkit-line-break: after-white-space;">Hi =
+Rudolf,<div><br></div><div>thank you for your explanation. bash has not =
+been installed, but HOB did some changes on the configuration files and =
+I modified the distribution. I deleted everything and created my own =
+image receipe. It works fine =
+now.</div><div><br></div><div>Regards,</div><div>Stefan</div><div><br><div=
+><div>Am 01.07.2014 um 22:34 schrieb Rudolf Streif &lt;<a =
+href=3D"mailto:rstreif@linuxfoundation.org">rstreif@linuxfoundation.org</a=
+>&gt;:</div><br class=3D"Apple-interchange-newline"><blockquote =
+type=3D"cite"><div dir=3D"ltr">Hi Stefan,<div><br></div><div>You =
+probably have found the explanation on package groups in the reference =
+manual [1].</div><div><br></div><div>Package groups are recipes with the =
+sole purpose to create dependencies to simplify image creation. A =
+package group recipe bundles multiple packages together and then instead =
+of having to explicitly specify each package in the IMAGE_INSTALL =
+variable you can simply specify the package group name.</div>
+<div><br></div><div>Package group recipes look like this (from the =
+manual):</div><div><br></div><div><pre class=3D"" =
+style=3D"overflow:auto;color:rgb(51,51,51)">DESCRIPTION =3D "My Custom =
+Package Groups"
 
- Do you have any comments about building the same.<br>
-Also please note that I don=E2=80=99t need any external toolchain support a=
-s I wish to build my own toolchain.<br></p>
-<p>Thanks and Regards,<br>
- ATUL KUMAR SINGH</p>
-<div class=3D"gmail_quote">On 8 Jul 2014 19:52, &quot;Maxin B. John&quot; &=
-lt;<a href=3D"mailto:maxin.john@enea.com">maxin.john@enea.com</a>&gt; wrote=
-:<br type=3D"attribution"><blockquote class=3D"gmail_quote" style=3D"margin=
-:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">
-Hi Atul,<br>
-<br>
-On Tue, Jul 08, 2014 at 07:43:03PM +0530, atulkumar singh wrote:<br>
-&gt; Hi Fathi and Maxin,<br>
-&gt;<br>
-&gt; Thanks as you are helping me in sorting out my issue for Aarch64 suppo=
-rt in<br>
-&gt; meta-toolchain while building bitbake for yocto.<br>
-&gt; And &quot;not working&quot; means if we go into the machine/layer/reci=
-pes link and under<br>
-&gt; the meta-aarch64 layer the git repository link which is mention is not=
- working.<br>
-&gt; Please let me know with your valuable suggestion.<br>
-<br>
-The &quot;meta-aarch64&quot; is present in &quot;meta-linaro&quot; reposito=
-ry.<br>
-Clone meta-linaro :<br>
-<br>
-# git clone git://<a href=3D"http://git.linaro.org/openembedded/meta-linaro=
-.git" target=3D"_blank">git.linaro.org/openembedded/meta-linaro.git</a><br>
-# cd meta-linaro/meta-aarch64<br>
-<br>
-&gt; Thanks and regards,<br>
-&gt; Atul<br>
-&gt;<br>
-&gt; On 8 Jul 2014 18:14, &quot;Fathi Boudra&quot; &lt;<a href=3D"mailto:fa=
-thi.boudra@linaro.org">fathi.boudra@linaro.org</a>&gt; wrote:<br>
-&gt;<br>
-&gt; =C2=A0 =C2=A0 On 8 July 2014 13:27, atulkumar singh &lt;<a href=3D"mai=
-lto:atul.singh008@gmail.com">atul.singh008@gmail.com</a>&gt; wrote:<br>
-<br>
-Best Regards,<br>
-Maxin<br>
-&lt;snip&gt;<br>
-</blockquote></div>
+     inherit packagegroup
 
---001a11c3c19603c22f04fdc219ad--
+     PACKAGES =3D "\
+         packagegroup-custom-apps \
+         packagegroup-custom-tools \
+         "
+
+     RDEPENDS_packagegroup-custom-apps =3D "\
+         dropbear \
+         portmap \
+         psplash"
+
+     RDEPENDS_packagegroup-custom-tools =3D "\
+         oprofile \
+         oprofileui-server \
+         lttng-control \
+         lttng-viewer"
+
+     RRECOMMENDS_packagegroup-custom-tools =3D "\
+         kernel-module-oprofile"
+</pre></div><div><br></div><div><br></div><div>Like any recipe they have =
+a description. They inherit the packagegroup.bbclass. A package group =
+recipe can define multiple package groups in the PACKAGES variable. For =
+each package group listed in PACKAGES you will then need to specify the =
+packages that actually go into them with conditional =
+RDEPENDS_&lt;packagegroupname&gt; variables.</div>
+<div><br></div><div>Package groups are only relevant for the YP build =
+system. They do not create package grouping for the package manager that =
+you are using for your target. However, if you select a package group =
+from HOB then all of the packages specified in that group should be =
+installed in your target's rootfs by YP.</div>
+=
+<div><br></div><div>Rudi</div><div><br></div><div><br></div><div><br></div=
+><div>[1]&nbsp;<a =
+href=3D"http://www.yoctoproject.org/docs/1.6/dev-manual/dev-manual.html#us=
+ingpoky-extend-customimage-customtasks">http://www.yoctoproject.org/docs/1=
+.6/dev-manual/dev-manual.html#usingpoky-extend-customimage-customtasks</a>=
+<br>
+<div class=3D"gmail_extra"><br><br><div class=3D"gmail_quote">On Tue, =
+Jul 1, 2014 at 10:05 AM, Stefan Hofmann <span dir=3D"ltr">&lt;<a =
+href=3D"mailto:stefan.hofmann@mobserve.de" =
+target=3D"_blank">stefan.hofmann@mobserve.de</a>&gt;</span> wrote:<br>
+<blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px =
+0.8ex;border-left-width:1px;border-left-color:rgb(204,204,204);border-left=
+-style:solid;padding-left:1ex">Hi,<br>
+<br>
+I made my first steps with yocto and everything worked fine so far. But =
+now I am struggling with "package groups". What I basically want, is a =
+image for a base system, which allows me to install additional packages =
+over the air with opkg. In my imagination package groups are something =
+like preselected packages, which need to be installed at once similar =
+like it is handled in Debian for X11-support for example. Is this right =
+? I have built core-image-base for testing purposes and tried to figure =
+out the dependencies by using the Hob tool. It says that bash will be =
+installed and the group "base/shell" is responsible for that. However it =
+is not installed, only ash and I cannot find a package group =
+"package-group-base-shell" in the receipes. It does however exist in the =
+work directory. So now I am somewhat confused.<br>
+
+<br>
+Regards,<br>
+Stefan<span class=3D""><font color=3D"#888888"><br>
+<br>
+-- <br>
+<br>
+<br>
+</font></span><br>--<br>
+_______________________________________________<br>
+yocto mailing list<br>
+<a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br>
+<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" =
+target=3D"_blank">https://lists.yoctoproject.org/listinfo/yocto</a><br>
+<br></blockquote></div><br><br clear=3D"all"><div><br></div><br>
+</div></div></div>
+</blockquote></div><br></div></body></html>=
+
+--Apple-Mail=_9E63AB07-2376-42AE-89F8-4994B28FA900--
