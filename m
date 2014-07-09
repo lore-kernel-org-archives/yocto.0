@@ -1,52 +1,46 @@
-Return-Path: <joe@joenicholson.co.uk>
+Return-Path: <b-sathishkumar@hcl.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id D61BBE00744; Wed,  9 Jul 2014 05:10:16 -0700 (PDT)
+	id 11E59E00744; Wed,  9 Jul 2014 05:24:07 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.5 required=5.0 tests=BAYES_00,FROM_12LTRDOM,
-	HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [193.189.74.44 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0019]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	*  0.1 FROM_12LTRDOM From a 12-letter domain
-X-Greylist: delayed 1202 seconds by postgrey-1.32 at yocto-www;
-	Wed, 09 Jul 2014 05:09:55 PDT
-Received: from venus.speedyservers.com (venus.speedyservers.com
-	[193.189.74.44])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AE598E0073C
-	for <yocto@yoctoproject.org>; Wed,  9 Jul 2014 05:09:55 -0700 (PDT)
-Received: from localhost ([127.0.0.1]:33883 helo=www.joenicholson.co.uk)
-	by venus.speedyservers.com with esmtpa (Exim 4.82)
-	(envelope-from <joe@joenicholson.co.uk>)
-	id 1X4qNi-001tR3-Rq; Wed, 09 Jul 2014 12:49:51 +0100
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+	*      [score: 0.0000]
+Received: from GWS07.hcl.com (gws07.hcl.com [192.8.186.130])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 27AE4E00547
+	for <yocto@yoctoproject.org>; Wed,  9 Jul 2014 05:23:59 -0700 (PDT)
+X-IronPort-AV: E=Sophos;i="5.01,631,1400005800"; d="scan'208";a="22786178"
+Received: from unknown (HELO CHN-CORP-HT01.CORP.HCL.IN) ([10.249.2.33])
+	by GWS07.hcl.com with ESMTP/TLS/AES128-SHA; 09 Jul 2014 17:43:43 +0530
+Received: from CHN-HCLT-CSHT07.HCLT.CORP.HCL.IN (10.150.12.32) by
+	CHN-CORP-HT01.CORP.HCL.IN (10.249.2.33) with Microsoft SMTP Server
+	(TLS) id 14.3.123.3; Wed, 9 Jul 2014 17:53:57 +0530
+Received: from CHN-HCLT-MBS08.HCLT.CORP.HCL.IN ([10.150.12.23]) by
+	CHN-HCLT-CSHT07.HCLT.CORP.HCL.IN ([::1]) with mapi id 14.03.0123.003;
+	Wed, 9 Jul 2014 17:53:57 +0530
+From: "Sathish Kumar Balasubramaniam -ERS, HCL Tech" <b-sathishkumar@hcl.com>
+To: "Dr. Markus Eich" <markus.eich@dfki.de>, "yocto@yoctoproject.org"
+	<yocto@yoctoproject.org>
+Thread-Topic: [yocto] How to select defconfig for kernel build with
+	yocto/bitbake
+Thread-Index: AQHPm1m8ccjUhL55+USZAwTzWLJ9wJuXmshg//+vjQCAAF+BwA==
+Date: Wed, 9 Jul 2014 12:23:56 +0000
+Message-ID: <5D833673AB94D9489A7F7F73E9E611C814ADD7E1@chn-hclt-mbs08.HCLT.CORP.HCL.IN>
+References: <53BD0DA4.50108@dfki.de>
+	<5D833673AB94D9489A7F7F73E9E611C814ADD788@chn-hclt-mbs08.HCLT.CORP.HCL.IN>
+	<53BD30F2.8030506@dfki.de>
+In-Reply-To: <53BD30F2.8030506@dfki.de>
+Accept-Language: en-IN, en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.150.5.114]
 MIME-Version: 1.0
-Date: Wed, 09 Jul 2014 12:49:50 +0100
-From: Joe Nicholson <joe@joenicholson.co.uk>
-To: yocto@yoctoproject.org
-Mail-Reply-To: joe@joenicholson.co.uk
-Message-ID: <d9fb738c0c8d5dd896df819289fe1635@joenicholson.co.uk>
-X-Sender: joe@joenicholson.co.uk
-User-Agent: Roundcube Webmail/0.9.5
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - venus.speedyservers.com
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - joenicholson.co.uk
-X-Get-Message-Sender-Via: venus.speedyservers.com: authenticated_id:
-	joe@joenicholson.co.uk
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-Subject: Installing a directory tree of files into the target filesystem
+Subject: Re: How to select defconfig for kernel build with yocto/bitbake
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
-Reply-To: joe@joenicholson.co.uk
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -55,56 +49,200 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 09 Jul 2014 12:10:16 -0000
-Content-Type: multipart/alternative;
-	boundary="=_059d46eadc07e4a510e40e0910ea285b"
-
---=_059d46eadc07e4a510e40e0910ea285b
-Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset=UTF-8
-
- 
-
-Hi Guys 
-
-First post on here :-) 
-
-I'd like to create a recipe that copies a whole directory tree of files
-into a directory on the output filesystem. There's nothing to build
-here... it's just a web application with html files, image files, .js
-files, etc. 
-What would be the best way of doing this?
-I can see that a small number of files and directories are installed
-individually using 'install' and 'install -d', is there an equivalent
-that just copies a whole tree of files into place? 
-
-Cheers! 
-
-Joe 
-
- 
-
---=_059d46eadc07e4a510e40e0910ea285b
+X-List-Received-Date: Wed, 09 Jul 2014 12:24:07 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
-Content-Type: text/html; charset=UTF-8
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN">
-<html><body style=3D'font-family: Verdana,Geneva,sans-serif'>
-<p>Hi Guys</p>
-<p>First post on here :-)</p>
-<p>I'd like to create a recipe that copies a whole directory tree of files =
-into a directory on the output filesystem. &nbsp;There's nothing to build h=
-ere... it's just a web application with html files, image files, .js files,=
- etc. &nbsp;<br />What would be the best way of doing this?<br />I can see =
-that a small number of files and directories are installed individually usi=
-ng 'install' and 'install -d', is there an equivalent that just copies a wh=
-ole tree of files into place?</p>
-<p><span style=3D"font-family: 'Lucida Grande', Verdana, Arial, Helvetica, =
-sans-serif;">Cheers!</span></p>
-<p><span style=3D"font-family: 'Lucida Grande', Verdana, Arial, Helvetica, =
-sans-serif;">Joe</span></p>
-<p>&nbsp;</p>
-<div>&nbsp;</div>
-</body></html>
+Ok. Can you try the following instead of the content I gave before
 
---=_059d46eadc07e4a510e40e0910ea285b--
+KERNEL_DEFCONFIG =3D "odroidxu_ubuntu_defconfig"
+
+kernel_do_configure_append() {
+	install -m 0644 ${S}/arch/${ARCH}/configs/${KERNEL_DEFCONFIG} ${WORKDIR}/d=
+efconfig
+	install -m 0644 ${S}/arch/${ARCH}/configs/${KERNEL_DEFCONFIG} ${S}/.config
+}
+
+
+Regards,
+B.Sathish Kumar
+
+-----Original Message-----
+From: Dr. Markus Eich [mailto:markus.eich@dfki.de] =
+
+Sent: Wednesday, July 09, 2014 5:39 PM
+To: Sathish Kumar Balasubramaniam -ERS, HCL Tech; yocto@yoctoproject.org
+Subject: Re: [yocto] How to select defconfig for kernel build with yocto/bi=
+tbake
+
+Thank you Sathish for the quick answer.
+
+The recipes now copies odroidxu_ubuntu_defconfig to defconfig in the =
+
+workdir, but it still seems to be ignored.
+Maybe I am missing some includes to make the .config from defconfig?
+
+Using "make odroidxu_ubuntu_defconfig" using cross compiling (followed =
+
+by "make zImage") works fine, while bitbake virtual/kernel produces some =
+
+errors which are probably due to the wrong .config.
+
+
+Cheers,
+
+Markus
+
+
+
+
+
+On 09.07.2014 13:33, Sathish Kumar Balasubramaniam -ERS, HCL Tech wrote:
+> Hi Markus,
+>
+> Try adding the following to your recipe file
+>
+> KERNEL_DEFCONFIG =3D "odroidxu_ubuntu_defconfig"
+>
+> do_configure_prepend() {
+>          install -m 0644 ${S}/arch/${ARCH}/configs/${KERNEL_DEFCONFIG} ${=
+WORKDIR}/defconfig || die "No default configuration for ${MACHINE} / ${KERN=
+EL_DEFCONFIG} available."
+> }
+>
+>
+> Regards,
+> B.Sathish Kumar
+>
+> -----Original Message-----
+> From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.o=
+rg] On Behalf Of Dr. Markus Eich
+> Sent: Wednesday, July 09, 2014 3:09 PM
+> To: yocto@yoctoproject.org
+> Subject: [yocto] How to select defconfig for kernel build with yocto/bitb=
+ake
+>
+> Dear all,
+>
+> I work on the process to compile odroid xu kernel with yocto/bitbake
+>
+> In the kernel sources (from hardkernel) I have the corresponding
+> defconfig file, i.e. in the git folder
+> /arch/arm/configs/odroidxu_ubuntu_defconfig.
+>
+> How can I tell bitbake in my recipe to use "odroidxu_ubuntu_defconfig"?
+>
+> My recipe looks as follow:
+>
+> =3D=3D=3D
+> require recipes-kernel/linux/linux-yocto.inc
+>
+> KERNEL_IMAGETYPE =3D "uImage"
+>
+> COMPATIBLE_MACHINE =3D "odroid-xu"
+>
+> LINUX_VERSION =3D "3.4.91"
+> LINUX_VERSION_EXTENSION =3D "-custom"
+>
+> FILESEXTRAPATHS_prepend :=3D "${THISDIR}/linux-hardkernel-3.4:"
+>
+> S =3D "${WORKDIR}/git"
+>
+> # from where to fetch the kernel
+> KERNEL_REPO_OWNER ??=3D "hardkernel"
+> KERNEL_REPO_URI ??=3D "git://github.com/${KERNEL_REPO_OWNER}/linux.git"
+> KBRANCH =3D "odroidxu-3.4.y"
+>
+> SRCREV =3D "${AUTOREV}"
+>
+> KV =3D "3.4.91"
+> PV =3D "${KV}+gitr${SRCPV}"
+> LOCALVERSION ?=3D ""
+>
+>
+> SRC_URI =3D " \
+>     ${KERNEL_REPO_URI};nocheckout=3D1;branch=3D${KBRANCH} \
+> "
+>
+> PACKAGES =3D+ "kernel-headers"
+> FILES_kernel-headers =3D "${exec_prefix}/src/linux*"
+> =3D=3D=3D
+>
+> Cheers,
+>
+> Markus
+>
+>
+>
+>
+
+-- =
+
+Dr.-Ing. Markus Eich
+
+  Senior Researcher
+  Marine Inspection Robotics
+  Space Robotics
+  =
+
+  Besuchsadresse der Nebengesch=E4ftstelle:
+  DFKI GmbH
+  Robotics Innovation Center
+  Robert-Hooke-Stra=DFe 5
+  28359 Bremen, Germany
+  =
+
+  Postadresse der Hauptgesch=E4ftsstelle Standort Bremen:
+  DFKI GmbH
+  Robotics Innovation Center
+  Robert-Hooke-Stra=DFe 1
+  28359 Bremen, Germany
+
+  Tel.:     +49 421 178 45-4105
+  Zentrale: +49 421 178 45-0
+  Fax:      +49 421 178 45-4150 (Faxe bitte namentlich kennzeichnen)
+  E-Mail:   markus.eich@dfki.de
+
+  Weitere Informationen: http://www.dfki.de/robotik
+  -----------------------------------------------------------------------
+  Deutsches Forschungszentrum fuer Kuenstliche Intelligenz GmbH
+  Firmensitz: Trippstadter Stra=DFe 122, D-67663 Kaiserslautern
+  Geschaeftsfuehrung: Prof. Dr. Dr. h.c. mult. Wolfgang Wahlster
+  (Vorsitzender) Dr. Walter Olthoff
+  Vorsitzender des Aufsichtsrats: Prof. Dr. h.c. Hans A. Aukes
+  Amtsgericht Kaiserslautern, HRB 2313
+  Sitz der Gesellschaft: Kaiserslautern (HRB 2313)
+  USt-Id.Nr.:    DE 148646973
+  Steuernummer:  19/673/0060/3
+  -----------------------------------------------------------------------
+
+
+
+::DISCLAIMER::
+---------------------------------------------------------------------------=
+-------------------------------------------------------------------------
+
+The contents of this e-mail and any attachment(s) are confidential and inte=
+nded for the named recipient(s) only.
+E-mail transmission is not guaranteed to be secure or error-free as informa=
+tion could be intercepted, corrupted,
+lost, destroyed, arrive late or incomplete, or may contain viruses in trans=
+mission. The e mail and its contents
+(with or without referred errors) shall therefore not attach any liability =
+on the originator or HCL or its affiliates.
+Views or opinions, if any, presented in this email are solely those of the =
+author and may not necessarily reflect the
+views or opinions of HCL or its affiliates. Any form of reproduction, disse=
+mination, copying, disclosure, modification,
+distribution and / or publication of this message without the prior written=
+ consent of authorized representative of
+HCL is strictly prohibited. If you have received this email in error please=
+ delete it and notify the sender immediately.
+Before opening any email and/or attachments, please check them for viruses =
+and other defects.
+
+---------------------------------------------------------------------------=
+-------------------------------------------------------------------------
+
+
