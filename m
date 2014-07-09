@@ -1,57 +1,42 @@
-Return-Path: <jdelapena@lexmark.com>
+Return-Path: <gley-yocto@m.gmane.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 8F381E00744; Wed,  9 Jul 2014 02:01:55 -0700 (PDT)
+	id 2EB1BE00744; Wed,  9 Jul 2014 02:33:53 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_MED autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [64.18.3.28 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00, RCVD_IN_DNSWL_NONE, 
+	SPF_HELO_PASS,WEIRD_PORT autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [80.91.229.3 listed in list.dnswl.org]
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+	*  0.0 WEIRD_PORT URI: Uses non-standard port number for HTTP
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from exprod8og114.obsmtp.com (exprod8og114.obsmtp.com [64.18.3.28])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5BCD1E00547
-	for <yocto@yoctoproject.org>; Wed,  9 Jul 2014 02:01:51 -0700 (PDT)
-Received: from mail-la0-f42.google.com ([209.85.215.42]) (using TLSv1) by
-	exprod8ob114.postini.com ([64.18.7.12]) with SMTP
-	ID DSNKU70E/8gz9htlPAg/94eUM1xOPN7aVI4/@postini.com;
-	Wed, 09 Jul 2014 02:01:52 PDT
-Received: by mail-la0-f42.google.com with SMTP id pn19so4835580lab.15
-	for <yocto@yoctoproject.org>; Wed, 09 Jul 2014 02:01:49 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:date
-	:message-id:subject:from:to:cc:content-type;
-	bh=Jb0CqPa2yKBVUNJTKoiuKGvxaEXR9O+Kl6d6tP5vciQ=;
-	b=ZRjsQi3ZDZBMKup1TL1y50KM3cRgXoBn1APdh/fj34JYnv2oTzeN6TtONseBi7cyIl
-	1Zgk5CEYTyUFrh+KYWhHQX/DNtAESxXmDpprFo0mnfQeFbHp4mCEPME3qJ+HvKRujcWv
-	cMUoBVi++K+27rgj8yXbGqQtoJLx71h/ay8yD1v50ioMYMoSgttJ9DJwwDa1GOQI+VPw
-	oHZMrLVCJKYwkUwpOV7jjF5Y8sT/2cmUobaynf5vUHFWvauT+/cPnREaMfv0uxDqBwGS
-	S98Oy8sjKKyyh4FilJWG6/SxOVVBm/wG385cE1J54R8n5C8cFyAavQeh42YoaXc6/1Nm
-	yJ3Q==
-X-Gm-Message-State: ALoCoQl0VFQEJO5b3/C2ufgAsdQV+4gV1xiIoxrPLqNlamQsVV+vwZa/zvyZ31XCWxBkF2U6kq11WL/t5NZbDbFp0AIBlNwXH80z4LY8lFEzZCt+kU+7IQao6rIFOfon6X3P8mWkmtYd
-X-Received: by 10.112.155.103 with SMTP id vv7mr5911275lbb.62.1404896509795;
-	Wed, 09 Jul 2014 02:01:49 -0700 (PDT)
-MIME-Version: 1.0
-X-Received: by 10.112.155.103 with SMTP id vv7mr5911261lbb.62.1404896509588;
-	Wed, 09 Jul 2014 02:01:49 -0700 (PDT)
-Received: by 10.152.36.65 with HTTP; Wed, 9 Jul 2014 02:01:49 -0700 (PDT)
-In-Reply-To: <53BD0324.2060604@windriver.com>
-References: <CAJrRHk440JvVsSPcX7PKvbCqLTjz39QQLq1v9OejzRfkyE7iYg@mail.gmail.com>
-	<53BB9D10.30104@windriver.com>
-	<CAJrRHk5PM1Repp1hbYyTDDCv0KZLU7=j6iWm=vyORqhFNOt9bw@mail.gmail.com>
-	<53BBBFE7.3080101@windriver.com>
-	<CAJrRHk5ozoJwv78nSviRn2MZJMHpk29vA5+ce6TL5K5-T2PeiA@mail.gmail.com>
-	<53BD0324.2060604@windriver.com>
-Date: Wed, 9 Jul 2014 17:01:49 +0800
-Message-ID: <CAJrRHk7RGpjN6BtJPhN4FRrVdaZERE6VZz77wCJybW8G1jGewg@mail.gmail.com>
-From: =?UTF-8?Q?Joseph_Andrew_de_la_Pe=C3=B1a?= <jdelapena@lexmark.com>
-To: Chong Lu <Chong.Lu@windriver.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: QEMU in SDK
+Received: from plane.gmane.org (plane.gmane.org [80.91.229.3])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AA2B3E00547
+	for <yocto@yoctoproject.org>; Wed,  9 Jul 2014 02:33:43 -0700 (PDT)
+Received: from list by plane.gmane.org with local (Exim 4.69)
+	(envelope-from <gley-yocto@m.gmane.org>) id 1X4oFx-0005nx-Tf
+	for yocto@yoctoproject.org; Wed, 09 Jul 2014 11:33:41 +0200
+Received: from ppp005054025236.access.hol.gr ([5.54.25.236])
+	by main.gmane.org with esmtp (Gmexim 0.1 (Debian))
+	id 1AlnuQ-0007hv-00
+	for <yocto@yoctoproject.org>; Wed, 09 Jul 2014 11:33:41 +0200
+Received: from gmane by ppp005054025236.access.hol.gr with local (Gmexim 0.1
+	(Debian)) id 1AlnuQ-0007hv-00
+	for <yocto@yoctoproject.org>; Wed, 09 Jul 2014 11:33:41 +0200
+X-Injected-Via-Gmane: http://gmane.org/
+To: yocto@yoctoproject.org
+From: Robert Berger <gmane@reliableembeddedsystems.com>
+Date: Wed, 09 Jul 2014 12:33:15 +0300
+Message-ID: <53BD0C5B.3090506@reliableembeddedsystems.com>
+Mime-Version: 1.0
+X-Complaints-To: usenet@ger.gmane.org
+X-Gmane-NNTP-Posting-Host: ppp005054025236.access.hol.gr
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:24.0) Gecko/20100101 Thunderbird/24.0
+Subject: automated hardware testing
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -63,360 +48,42 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 09 Jul 2014 09:01:55 -0000
-Content-Type: multipart/alternative; boundary=089e01160c0e6682ad04fdbef51c
+X-List-Received-Date: Wed, 09 Jul 2014 09:33:53 -0000
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: 7bit
 
---089e01160c0e6682ad04fdbef51c
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+Hi,
 
-Great! All clear now!
-Thanks a lot for your help Chong!
+I just noticed this [1] and there are rumors that in the next release
+hardware testing will also work with yocto-autobuilder.
 
-- Joseph
+I do have a couple of boards deployer in my lab and build with
+autobuilder images for them.
 
+The consoles of my boards are connected via conservers to ethernet and I
+can also remotely switch on/off power.
 
-On Wed, Jul 9, 2014 at 4:53 PM, Chong Lu <Chong.Lu@windriver.com> wrote:
+For the beagle bone white the setup is more complex in order to press
+the reset button remotely and turn on/off the power over the USB cable
+remotely.
 
->
-> On 07/09/2014 04:27 PM, Joseph Andrew de la Pe=C3=B1a wrote:
->
-> Good day Chong,
->
->  Thank you so much for your input! I have also tried the ADT method you
-> mentioned and saw the needed files inside download_image. Yet this is not
-> the path I intended to take since in our poky, we already have our own
-> generated images.
->
->  The output should be like the ADT installer where the moment you run the
-> script, the images will be installed inside a certain dir in sysroots. Is
-> this possible?
->
->  The expected outcome should be the moment I finished running the SDK
-> script generated by populate_sdk, the images should also be seen in my sd=
-k
-> path. How can I include the images as content to the SDK script? Is there=
- a
-> variable that I need to set in conf or any?
->
->   adt-installer download images from http://adtrepo.yoctoproject.org/ ,
-> maybe you can create your repo for your images.
-> The script from populate_sdk can't get images default.
->
-> BR
-> Chong
->
->  - Joseph
->
->
-> On Tue, Jul 8, 2014 at 5:54 PM, Chong Lu <Chong.Lu@windriver.com> wrote:
->
->>  I mean you can use adt-installer to make your sdk environment. (3.1.1.
->> Using the ADT Installer)
->> After you run adt-installer script, you can get kernel and rootfs in
->> download_image directory.
->>
->> Best Regards
->> Chong
->>
->>
->>
->> On 07/08/2014 05:39 PM, Joseph Andrew de la Pe=C3=B1a wrote:
->>
->> Good day Chong,
->>
->>  Actually, I have used ADT (Section 3.4 Optionally Building a Toolchain
->> Installer). I used the method -c populate_sdk and it generated a toolcha=
-in
->> script from my existing build workdir's core-image-XXX. I ran the toolch=
-ain
->> and it generated a sysroots dir to /path/to/sysroots (SDK_PATH).
->>
->>  Here's the directory structure:
->> + SDK_PATH
->> --- + environment-setup-XXX
->> --- + site-config-XXX
->> --- + sysroots (dir)
->> ---------- + XXX-poky-linux (dir)
->> ---------- + XXX-pokysdk-linux (dir)
->> --- + version-XXX
->>
->>  The poky-linux dir does not contain a build dir and nowhere are the
->> images (kernel and ext3) to be found. Thus, the main problem is how can =
-I
->> ran qemu with my SDK setup. This would lead to my sub question: since QE=
-MU
->> needs the kernel and ext3 files, how can I automatically copy these imag=
-es
->> from my existing build workdir to the newly created SDK dir.
->>
->>  Thanks,
->> Joseph
->>
->>
->>
->>
->>
->> On Tue, Jul 8, 2014 at 3:26 PM, Chong Lu <Chong.Lu@windriver.com> wrote:
->>
->>>  Hi Joseph,
->>>
->>> Maybe you can use adt-installer.
->>>
->>>
->>> http://www.yoctoproject.org/docs/latest/adt-manual/adt-manual.html#usin=
-g-the-adt-installer
->>>
->>> Best Regards
->>> Chong
->>>
->>> On 07/08/2014 02:15 PM, Joseph Andrew de la Pe=C3=B1a wrote:
->>>
->>> Good day ALL,
->>>
->>>  I was wondering if it's possible to automatically add QEMU
->>> dependencies (kernel and ext3 files) into the script generated by
->>> do_populate_sdk? Then after running the generated SDK script, the image=
-s
->>> will reside in /path/to/sysroots/xxx-poky-xxx/tmp/images? Then just add=
- an
->>> environment variable to the environment script to locate the images pat=
-h.
->>> Is this possible?
->>>
->>>  The intention is to run QEMU in a host machine with extracted SDK. Any
->>> suggestions on other better ways to run QEMU in another machine w/ SDK
->>> would be great.
->>>
->>>  Thanks,
->>> Joseph
->>>
->>>
->>>
->>>
->>
->>
->
->
+My goal would be to build something with autobuilder, deploy to a board
+and run some tests.
 
---089e01160c0e6682ad04fdbef51c
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+Is this feasible with my current infrastructure?
+Can someone please guide me in the right directions.
 
-<div dir=3D"ltr">Great! All clear now!<div>Thanks a lot for your help Chong=
-!</div><div><br></div><div>- Joseph</div></div><div class=3D"gmail_extra"><=
-br><br><div class=3D"gmail_quote">On Wed, Jul 9, 2014 at 4:53 PM, Chong Lu =
-<span dir=3D"ltr">&lt;<a href=3D"mailto:Chong.Lu@windriver.com" target=3D"_=
-blank">Chong.Lu@windriver.com</a>&gt;</span> wrote:<br>
-<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
-x #ccc solid;padding-left:1ex">
- =20
-   =20
- =20
-  <div bgcolor=3D"#FFFFFF" text=3D"#000000"><div class=3D"">
-    <br>
-    <div>On 07/09/2014 04:27 PM, Joseph Andrew
-      de la Pe=C3=B1a wrote:<br>
-    </div>
-    </div><blockquote type=3D"cite">
-     =20
-      <div dir=3D"ltr">Good day Chong,
-        <div><br>
-        </div><div class=3D"">
-        <div>Thank you so much for your input! I have also tried the ADT
-          method you mentioned and saw the needed files inside
-          download_image. Yet this is not the path I intended to take
-          since in our poky, we already have our own generated images.</div=
->
-        <div><br>
-        </div>
-        <div>The output should be like the ADT installer where the
-          moment you run the script, the images will be installed inside
-          a certain dir in sysroots. Is this possible?</div>
-        <div><br>
-        </div>
-        <div>The expected outcome should be the moment I finished
-          running the SDK script generated by populate_sdk, the images
-          should also be seen in my sdk path. How can I include the
-          images as content to the SDK script? Is there a variable that
-          I need to set in conf or any?</div>
-        <div><br>
-        </div>
-      </div></div>
-    </blockquote>
-    adt-installer download images from <a href=3D"http://adtrepo.yoctoproje=
-ct.org/" target=3D"_blank">http://adtrepo.yoctoproject.org/</a>
-    , maybe you can create your repo for your images.<br>
-    The script from populate_sdk can&#39;t get images default.<br>
-    <br>
-    BR<span class=3D"HOEnZb"><font color=3D"#888888"><br>
-    Chong <br></font></span><div><div class=3D"h5">
-    <blockquote type=3D"cite">
-      <div dir=3D"ltr">
-        <div>- Joseph</div>
-      </div>
-      <div class=3D"gmail_extra"><br>
-        <br>
-        <div class=3D"gmail_quote">On Tue, Jul 8, 2014 at 5:54 PM, Chong
-          Lu <span dir=3D"ltr">&lt;<a href=3D"mailto:Chong.Lu@windriver.com=
-" target=3D"_blank">Chong.Lu@windriver.com</a>&gt;</span>
-          wrote:<br>
-          <blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;bord=
-er-left:1px #ccc solid;padding-left:1ex">
-            <div bgcolor=3D"#FFFFFF" text=3D"#000000"> I mean you can use
-              adt-installer to make your sdk environment. (3.1.1. Using
-              the ADT Installer)<br>
-              After you run adt-installer script, you can get kernel and
-              rootfs in download_image directory. <br>
-              <br>
-              Best Regards<span><font color=3D"#888888"><br>
-                  Chong</font></span>
-              <div>
-                <div><br>
-                  <br>
-                  <br>
-                  <div>On 07/08/2014 05:39 PM, Joseph Andrew de la Pe=C3=B1=
-a
-                    wrote:<br>
-                  </div>
-                  <blockquote type=3D"cite">
-                    <div dir=3D"ltr">Good day Chong,
-                      <div><br>
-                      </div>
-                      <div>Actually, I have used ADT (Section 3.4
-                        Optionally Building a Toolchain Installer). I
-                        used the method -c populate_sdk and it generated
-                        a toolchain script from my existing build
-                        workdir&#39;s core-image-XXX. I ran the toolchain
-                        and it generated a sysroots dir to
-                        /path/to/sysroots (SDK_PATH).</div>
-                      <div><br>
-                      </div>
-                      <div>Here&#39;s the directory structure:</div>
-                      <div>+ SDK_PATH</div>
-                      <div>--- + environment-setup-XXX</div>
-                      <div>--- + site-config-XXX</div>
-                      <div>--- + sysroots (dir)</div>
-                      <div>---------- + XXX-poky-linux (dir)</div>
-                      <div>---------- + XXX-pokysdk-linux (dir)</div>
-                      <div>--- + version-XXX</div>
-                      <div><br>
-                      </div>
-                      <div>The poky-linux dir does not contain a build
-                        dir and nowhere are the images (kernel and ext3)
-                        to be found. Thus, the main problem is how can I
-                        ran qemu with my SDK setup. This would lead to
-                        my sub question: since QEMU needs the kernel and
-                        ext3 files, how can I automatically copy these
-                        images from my existing build workdir to the
-                        newly created SDK dir.</div>
-                      <div><br>
-                      </div>
-                      <div>Thanks,</div>
-                      <div>Joseph</div>
-                      <div><br>
-                      </div>
-                      <div><br>
-                      </div>
-                      <div><br>
-                      </div>
-                    </div>
-                    <div class=3D"gmail_extra"><br>
-                      <br>
-                      <div class=3D"gmail_quote">On Tue, Jul 8, 2014 at
-                        3:26 PM, Chong Lu <span dir=3D"ltr">&lt;<a href=3D"=
-mailto:Chong.Lu@windriver.com" target=3D"_blank">Chong.Lu@windriver.com</a>=
-&gt;</span>
-                        wrote:<br>
-                        <blockquote class=3D"gmail_quote" style=3D"margin:0=
- 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">
-                          <div bgcolor=3D"#FFFFFF" text=3D"#000000"> Hi
-                            Joseph,<br>
-                            <br>
-                            Maybe you can use adt-installer.<br>
-                            <br>
-                            <a href=3D"http://www.yoctoproject.org/docs/lat=
-est/adt-manual/adt-manual.html#using-the-adt-installer" target=3D"_blank">h=
-ttp://www.yoctoproject.org/docs/latest/adt-manual/adt-manual.html#using-the=
--adt-installer</a><br>
+Regards,
 
-                            <br>
-                            Best Regards<span><font color=3D"#888888"><br>
-                                Chong <br>
-                              </font></span>
-                            <div>
-                              <div> <br>
-                                <div>On 07/08/2014 02:15 PM, Joseph
-                                  Andrew de la Pe=C3=B1a wrote:<br>
-                                </div>
-                                <blockquote type=3D"cite">
-                                  <div dir=3D"ltr"><span style=3D"font-fami=
-ly:arial,sans-serif;font-size:13px">Good
+Robert
 
-                                      day ALL,</span>
-                                    <div style=3D"font-family:arial,sans-se=
-rif;font-size:13px"><br>
-                                    </div>
-                                    <div style=3D"font-family:arial,sans-se=
-rif;font-size:13px">I
-                                      was wondering if it&#39;s possible to
-                                      automatically add QEMU
-                                      dependencies (kernel and ext3
-                                      files) into the script generated
-                                      by do_populate_sdk? Then after
-                                      running the generated SDK script,
-                                      the images will reside in
-                                      /path/to/sysroots/xxx-poky-xxx/tmp/im=
-ages?
-                                      Then just add an environment
-                                      variable to the environment script
-                                      to locate the images path. Is this
-                                      possible?</div>
-                                    <div style=3D"font-family:arial,sans-se=
-rif;font-size:13px"><br>
-                                    </div>
-                                    <div style=3D"font-family:arial,sans-se=
-rif;font-size:13px">The
+[1]
+http://git.yoctoproject.org/cgit/cgit.cgi/poky/tree/meta-yocto-bsp/lib/oeqa/controllers/beaglebonetarget.py...I
+read the system requirements label on a software package recently. It
+said "requires Windows NT or better". So I installed Unix. -- from a FAQ
+
+My public pgp key is available,at:
+http://pgp.mit.edu:11371/pks/lookup?op=get&search=0x90320BF1
 
 
-                                      intention is to run QEMU in a host
-                                      machine with extracted SDK. Any
-                                      suggestions on other better ways
-                                      to run QEMU in another machine w/
-                                      SDK would be great.</div>
-                                    <div style=3D"font-family:arial,sans-se=
-rif;font-size:13px"><br>
-                                    </div>
-                                    <div style=3D"font-family:arial,sans-se=
-rif;font-size:13px">Thanks,</div>
-                                    <div style=3D"font-family:arial,sans-se=
-rif;font-size:13px">Joseph</div>
-                                  </div>
-                                  <br>
-                                  <fieldset></fieldset>
-                                  <br>
-                                </blockquote>
-                                <br>
-                              </div>
-                            </div>
-                          </div>
-                        </blockquote>
-                      </div>
-                      <br>
-                    </div>
-                  </blockquote>
-                  <br>
-                </div>
-              </div>
-            </div>
-          </blockquote>
-        </div>
-        <br>
-      </div>
-    </blockquote>
-    <br>
-  </div></div></div>
 
-</blockquote></div><br></div>
-
---089e01160c0e6682ad04fdbef51c--
