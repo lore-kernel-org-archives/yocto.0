@@ -1,50 +1,41 @@
-Return-Path: <joe@joenicholson.co.uk>
+Return-Path: <sgw@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 96E86E006EA; Wed,  9 Jul 2014 09:10:56 -0700 (PDT)
+	id 88419E003C1; Wed,  9 Jul 2014 09:47:31 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.5 required=5.0 tests=BAYES_00,FROM_12LTRDOM,
-	HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [193.189.74.44 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	*  0.1 FROM_12LTRDOM From a 12-letter domain
-Received: from venus.speedyservers.com (venus.speedyservers.com
-	[193.189.74.44])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 342F5E006B9
-	for <yocto@yoctoproject.org>; Wed,  9 Jul 2014 09:10:46 -0700 (PDT)
-Received: from localhost ([127.0.0.1]:41250 helo=www.joenicholson.co.uk)
-	by venus.speedyservers.com with esmtpa (Exim 4.82)
-	(envelope-from <joe@joenicholson.co.uk>)
-	id 1X4uSC-002gq0-2Y; Wed, 09 Jul 2014 17:10:44 +0100
+	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at http://www.dnswl.org/,
+	high *      trust
+	*      [134.134.136.20 listed in list.dnswl.org]
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 65DF7E002A6
+	for <yocto@yoctoproject.org>; Wed,  9 Jul 2014 09:47:21 -0700 (PDT)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga101.jf.intel.com with ESMTP; 09 Jul 2014 09:46:50 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.01,632,1400050800"; d="scan'208";a="570692800"
+Received: from unknown (HELO [10.255.13.46]) ([10.255.13.46])
+	by orsmga002.jf.intel.com with ESMTP; 09 Jul 2014 09:46:49 -0700
+Message-ID: <53BD71F9.20705@linux.intel.com>
+Date: Wed, 09 Jul 2014 09:46:49 -0700
+From: Saul Wold <sgw@linux.intel.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:24.0) Gecko/20100101 Thunderbird/24.5.0
 MIME-Version: 1.0
-Date: Wed, 09 Jul 2014 17:10:43 +0100
-From: Joe Nicholson <joe@joenicholson.co.uk>
-To: Yocto <yocto@yoctoproject.org>
-Mail-Reply-To: joe@joenicholson.co.uk
-Message-ID: <405982f85543bd90dcd320cbd8d55d9f@joenicholson.co.uk>
-X-Sender: joe@joenicholson.co.uk
-User-Agent: Roundcube Webmail/0.9.5
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - venus.speedyservers.com
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - joenicholson.co.uk
-X-Get-Message-Sender-Via: venus.speedyservers.com: authenticated_id:
-	joe@joenicholson.co.uk
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-Subject: Oracle Java for ARM?
+To: Christopher Larson <clarson@kergoth.com>, 
+	"Bollinger, Seth" <Seth.Bollinger@digi.com>
+References: <CFE2BDED.98CE%seth.bollinger@digi.com>
+	<CABcZANmVHcuH+rOp11gDLdSovq+_tDRohqEeZZbZHSuGXr0wRg@mail.gmail.com>
+In-Reply-To: <CABcZANmVHcuH+rOp11gDLdSovq+_tDRohqEeZZbZHSuGXr0wRg@mail.gmail.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Inadvertent RootFS permission pollution
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
-Reply-To: joe@joenicholson.co.uk
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -53,41 +44,31 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 09 Jul 2014 16:10:56 -0000
-Content-Type: multipart/alternative;
-	boundary="=_a1bca27eff96edc6b9cb0190a184bbab"
-
---=_a1bca27eff96edc6b9cb0190a184bbab
+X-List-Received-Date: Wed, 09 Jul 2014 16:47:31 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
 Content-Transfer-Encoding: 7bit
-Content-Type: text/plain; charset=UTF-8
 
- 
+On 07/09/2014 08:18 AM, Christopher Larson wrote:
+> On Wed, Jul 9, 2014 at 7:37 AM, Bollinger, Seth <Seth.Bollinger@digi.com>
+> wrote:
+>
+>> I recently ran into a problem where I had trouble determining why the
+>> setgid bit was set in my rootfs.  It turns out that debian has this bit set
+>> on /usr/local (where I was building from), and thus inherited this bit from
+>> that directory tree.  This surprised me, so I thought I would pass it along
+>> in case it saves anyone else some time.
+>
+>
+> Ah, yes, I've hit this in the past too, thanks for bringing it up, we'll
+> have to resolve that -- perhaps have bitbake chmod g-s ${TMPDIR} when it's
+> created?
+>
+>
+>
+If you have not already filed a bug for this can some one please do that 
+so it does not get lost or forgotten.
 
-Hi Guys 
+Thanks
+	Sau!
 
-What's the best way of bringing in Oracle's Java JRE for ARM? 
 
-The meta-oracle-java layer looks Intel only at the moment :-( 
-
-Cheers! 
-
-Joe 
-
- 
-
---=_a1bca27eff96edc6b9cb0190a184bbab
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/html; charset=UTF-8
-
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN">
-<html><body style=3D'font-family: Verdana,Geneva,sans-serif'>
-<p>Hi Guys</p>
-<p>What's the best way of bringing in Oracle's Java JRE for ARM?</p>
-<p>The meta-oracle-java layer looks Intel only at the moment :-(</p>
-<p>Cheers!</p>
-<p>Joe</p>
-<p>&nbsp;</p>
-<div>&nbsp;</div>
-</body></html>
-
---=_a1bca27eff96edc6b9cb0190a184bbab--
