@@ -1,37 +1,59 @@
-Return-Path: <Bruce.Ashfield@windriver.com>
+Return-Path: <atul.singh008@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 1DF16E00744; Wed,  9 Jul 2014 05:44:25 -0700 (PDT)
+	id 41C4EE00744; Wed,  9 Jul 2014 05:46:33 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [147.11.1.11 listed in list.dnswl.org]
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (atul.singh008[at]gmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.213.175 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DECFFE00547
-	for <yocto@yoctoproject.org>; Wed,  9 Jul 2014 05:44:22 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail.windriver.com (8.14.5/8.14.5) with ESMTP id s69CiHl7011862
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Wed, 9 Jul 2014 05:44:17 -0700 (PDT)
-Received: from [128.224.56.48] (128.224.56.48) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server id 14.3.169.1;
-	Wed, 9 Jul 2014 05:44:17 -0700
-Message-ID: <53BD3920.8090603@windriver.com>
-Date: Wed, 9 Jul 2014 08:44:16 -0400
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:24.0) Gecko/20100101 Thunderbird/24.6.0
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-ig0-f175.google.com (mail-ig0-f175.google.com
+	[209.85.213.175])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A2BA8E00547
+	for <yocto@yoctoproject.org>; Wed,  9 Jul 2014 05:46:32 -0700 (PDT)
+Received: by mail-ig0-f175.google.com with SMTP id h3so1807319igd.14
+	for <yocto@yoctoproject.org>; Wed, 09 Jul 2014 05:46:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type;
+	bh=Xa/B4Hha1+PHGQUDZK39+sz/2xHEIAcej4YMtHz2Lu4=;
+	b=IUFzY8w+O1j3XXE/kZS1kzpev4A2R5QSCHQRdR5LDKBFouvXVjHi/xOll/0wwlkBP4
+	6E2UIom1k0snpT1t677l5FLKKH70vweLMEgjG19Fht50t3+H46X0AhQ3x4jiKFgJDGSC
+	mYXSHpulC9OBtb4TbATT/7JSxU+pfcLzUjYPyaTucQwXXrbLVc+WNCKTJ2FpfpEmRafJ
+	jLObQolRAJHUXH9HuKiZt2fUtNTQOHVuoRGYr7Bt20/u7tqsmcnl35Aj/7YsBw0Ur/kJ
+	a8cJQ8S92u6FwKvnqhjrz7sGZ8+OzcxvL2w0lkGkqu8Qs9ncb0BdMuupq1v7WDMzeFCp
+	Jhag==
 MIME-Version: 1.0
-To: "Dr. Markus Eich" <markus.eich@dfki.de>, <yocto@yoctoproject.org>
-References: <53BD0DA4.50108@dfki.de>
-In-Reply-To: <53BD0DA4.50108@dfki.de>
-Subject: Re: How to select defconfig for kernel build with yocto/bitbake
+X-Received: by 10.50.137.71 with SMTP id qg7mr12364013igb.24.1404909991999;
+	Wed, 09 Jul 2014 05:46:31 -0700 (PDT)
+Received: by 10.64.86.225 with HTTP; Wed, 9 Jul 2014 05:46:31 -0700 (PDT)
+Received: by 10.64.86.225 with HTTP; Wed, 9 Jul 2014 05:46:31 -0700 (PDT)
+In-Reply-To: <20140708142217.GA22778@sestofb10.enea.se>
+References: <CAH21_vFKzJAR8GRArhZoKfOQzSpHkogfX+d+j_MML9v4AYD1+A@mail.gmail.com>
+	<20140707195511.GA50424@sestofb10.enea.se>
+	<CAH21_vGLnGXFs2fkVO8D2LwUPJ5k0iJtCsSKsPujWtsijXnqkg@mail.gmail.com>
+	<CAGNsrLAbo8arFWHoCi0faPobYL=upmoTHQsNHihrzQgSiY9tjw@mail.gmail.com>
+	<CAH21_vEj7GAfx2XECrhg_fu-2rtEveYdThK1Ub6p5c7qCxJB_g@mail.gmail.com>
+	<20140708142217.GA22778@sestofb10.enea.se>
+Date: Wed, 9 Jul 2014 18:16:31 +0530
+Message-ID: <CAH21_vF80rJ7Tp9Z0vxOG9+epgZVBy1RfcD+2V6g1K1OT3_w=A@mail.gmail.com>
+From: atulkumar singh <atul.singh008@gmail.com>
+To: "Maxin B. John" <maxin.john@enea.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Aarch64 support
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,78 +65,142 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 09 Jul 2014 12:44:25 -0000
-Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 09 Jul 2014 12:46:33 -0000
+Content-Type: multipart/alternative; boundary=001a11c3c19603c22f04fdc219ad
 
-On 14-07-09 05:38 AM, Dr. Markus Eich wrote:
-> Dear all,
->
-> I work on the process to compile odroid xu kernel with yocto/bitbake
->
-> In the kernel sources (from hardkernel) I have the corresponding
-> defconfig file, i.e. in the git folder
-> /arch/arm/configs/odroidxu_ubuntu_defconfig.
->
-> How can I tell bitbake in my recipe to use "odroidxu_ubuntu_defconfig"?
+--001a11c3c19603c22f04fdc219ad
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-To trigger the oe-core kernel processing to use the defconfig, you need
-to put that defconfig in your SRC_URI.
+Hi Maxin,
 
-Which means you should grab a copy of that from the kernel tree, and
-in the same directory structure as your kernel recipe.
+I have added three folder =E2=80=9Cmeta-aarch64=E2=80=9D, =E2=80=9Cmeta-lin=
+aro=E2=80=9D and
+=E2=80=9Cmeta-linaro-toolchain=E2=80=9D under my poky directory.
+I also have updated my bblayer.conf with:-
+BBLAYERS ?=3D " \
+  /home/atulk/yocto/poky-master/meta \
+/home/atulk/yocto/poky-master/meta-yocto \
+  /home/atulk/yocto/poky-master/meta-yocto-bsp \
+  /home/atulk/yocto/poky-master/meta-aarch64 \
+/home/atulk/yocto/poky-master/meta-linaro \
+  /home/atulk/yocto/poky-master/meta-linaro-toolchain \
+  "
+And local.conf MACHINE ??=3D "genericarmv8"
+But while building bitbake with meta-toolchain for aarch64 support, I am
+getting error as =E2=80=9CERROR: Layer 'linaro' depends on layer
+'networking-layer', but this layer is not enabled in your configuration=E2=
+=80=9D.
+Do you have any comments about building the same.
+Also please note that I don=E2=80=99t need any external toolchain support a=
+s I wish
+to build my own toolchain.
 
-See meta-skeleton/recipes-kernel/linux/linux-yocto-custom.bb for an
-example.
+Thanks and Regards,
+ATUL KUMAR SINGH
+On 8 Jul 2014 19:52, "Maxin B. John" <maxin.john@enea.com> wrote:
 
-Cheers,
-
-Bruce
-
-
+> Hi Atul,
 >
-> My recipe looks as follow:
+> On Tue, Jul 08, 2014 at 07:43:03PM +0530, atulkumar singh wrote:
+> > Hi Fathi and Maxin,
+> >
+> > Thanks as you are helping me in sorting out my issue for Aarch64 suppor=
+t
+> in
+> > meta-toolchain while building bitbake for yocto.
+> > And "not working" means if we go into the machine/layer/recipes link an=
+d
+> under
+> > the meta-aarch64 layer the git repository link which is mention is not
+> working.
+> > Please let me know with your valuable suggestion.
 >
-> ===
-> require recipes-kernel/linux/linux-yocto.inc
+> The "meta-aarch64" is present in "meta-linaro" repository.
+> Clone meta-linaro :
 >
-> KERNEL_IMAGETYPE = "uImage"
+> # git clone git://git.linaro.org/openembedded/meta-linaro.git
+> # cd meta-linaro/meta-aarch64
 >
-> COMPATIBLE_MACHINE = "odroid-xu"
+> > Thanks and regards,
+> > Atul
+> >
+> > On 8 Jul 2014 18:14, "Fathi Boudra" <fathi.boudra@linaro.org> wrote:
+> >
+> >     On 8 July 2014 13:27, atulkumar singh <atul.singh008@gmail.com>
+> wrote:
 >
-> LINUX_VERSION = "3.4.91"
-> LINUX_VERSION_EXTENSION = "-custom"
->
-> FILESEXTRAPATHS_prepend := "${THISDIR}/linux-hardkernel-3.4:"
->
-> S = "${WORKDIR}/git"
->
-> # from where to fetch the kernel
-> KERNEL_REPO_OWNER ??= "hardkernel"
-> KERNEL_REPO_URI ??= "git://github.com/${KERNEL_REPO_OWNER}/linux.git"
-> KBRANCH = "odroidxu-3.4.y"
->
-> SRCREV = "${AUTOREV}"
->
-> KV = "3.4.91"
-> PV = "${KV}+gitr${SRCPV}"
-> LOCALVERSION ?= ""
->
->
-> SRC_URI = " \
->    ${KERNEL_REPO_URI};nocheckout=1;branch=${KBRANCH} \
-> "
->
-> PACKAGES =+ "kernel-headers"
-> FILES_kernel-headers = "${exec_prefix}/src/linux*"
-> ===
->
-> Cheers,
->
-> Markus
->
->
->
+> Best Regards,
+> Maxin
+> <snip>
 >
 
+--001a11c3c19603c22f04fdc219ad
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
+<p>Hi Maxin,</p>
+<p>I have added three folder =E2=80=9Cmeta-aarch64=E2=80=9D, =E2=80=9Cmeta-=
+linaro=E2=80=9D and =E2=80=9Cmeta-linaro-toolchain=E2=80=9D under my poky d=
+irectory.<br>
+ I also have updated my bblayer.conf with:-<br>
+BBLAYERS ?=3D &quot; \<br>
+=C2=A0 /home/atulk/yocto/poky-master/meta \<br>
+ /home/atulk/yocto/poky-master/meta-yocto \<br>
+=C2=A0 /home/atulk/yocto/poky-master/meta-yocto-bsp \<br>
+=C2=A0 /home/atulk/yocto/poky-master/meta-aarch64 \<br>
+ /home/atulk/yocto/poky-master/meta-linaro \<br>
+=C2=A0 /home/atulk/yocto/poky-master/meta-linaro-toolchain \<br>
+=C2=A0 &quot;<br>
+And local.conf MACHINE ??=3D &quot;genericarmv8&quot;<br>
+ But while building bitbake with meta-toolchain for aarch64 support, I am g=
+etting error as =E2=80=9CERROR: Layer &#39;linaro&#39; depends on layer &#3=
+9;networking-layer&#39;, but this layer is not enabled in your configuratio=
+n=E2=80=9D.<br>
+
+ Do you have any comments about building the same.<br>
+Also please note that I don=E2=80=99t need any external toolchain support a=
+s I wish to build my own toolchain.<br></p>
+<p>Thanks and Regards,<br>
+ ATUL KUMAR SINGH</p>
+<div class=3D"gmail_quote">On 8 Jul 2014 19:52, &quot;Maxin B. John&quot; &=
+lt;<a href=3D"mailto:maxin.john@enea.com">maxin.john@enea.com</a>&gt; wrote=
+:<br type=3D"attribution"><blockquote class=3D"gmail_quote" style=3D"margin=
+:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">
+Hi Atul,<br>
+<br>
+On Tue, Jul 08, 2014 at 07:43:03PM +0530, atulkumar singh wrote:<br>
+&gt; Hi Fathi and Maxin,<br>
+&gt;<br>
+&gt; Thanks as you are helping me in sorting out my issue for Aarch64 suppo=
+rt in<br>
+&gt; meta-toolchain while building bitbake for yocto.<br>
+&gt; And &quot;not working&quot; means if we go into the machine/layer/reci=
+pes link and under<br>
+&gt; the meta-aarch64 layer the git repository link which is mention is not=
+ working.<br>
+&gt; Please let me know with your valuable suggestion.<br>
+<br>
+The &quot;meta-aarch64&quot; is present in &quot;meta-linaro&quot; reposito=
+ry.<br>
+Clone meta-linaro :<br>
+<br>
+# git clone git://<a href=3D"http://git.linaro.org/openembedded/meta-linaro=
+.git" target=3D"_blank">git.linaro.org/openembedded/meta-linaro.git</a><br>
+# cd meta-linaro/meta-aarch64<br>
+<br>
+&gt; Thanks and regards,<br>
+&gt; Atul<br>
+&gt;<br>
+&gt; On 8 Jul 2014 18:14, &quot;Fathi Boudra&quot; &lt;<a href=3D"mailto:fa=
+thi.boudra@linaro.org">fathi.boudra@linaro.org</a>&gt; wrote:<br>
+&gt;<br>
+&gt; =C2=A0 =C2=A0 On 8 July 2014 13:27, atulkumar singh &lt;<a href=3D"mai=
+lto:atul.singh008@gmail.com">atul.singh008@gmail.com</a>&gt; wrote:<br>
+<br>
+Best Regards,<br>
+Maxin<br>
+&lt;snip&gt;<br>
+</blockquote></div>
+
+--001a11c3c19603c22f04fdc219ad--
