@@ -1,53 +1,53 @@
-Return-Path: <kergoth@gmail.com>
+Return-Path: <joe@joenicholson.co.uk>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 3FA6AE006EA; Wed,  9 Jul 2014 08:19:03 -0700 (PDT)
+	id 86464E00769; Wed,  9 Jul 2014 08:20:23 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
 	http://www.dnswl.org/, low *      trust
-	*      [209.85.215.47 listed in list.dnswl.org]
+	*      [193.189.74.44 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-la0-f47.google.com (mail-la0-f47.google.com
-	[209.85.215.47])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C3640E006B9
-	for <yocto@yoctoproject.org>; Wed,  9 Jul 2014 08:18:51 -0700 (PDT)
-Received: by mail-la0-f47.google.com with SMTP id s18so5208814lam.34
-	for <yocto@yoctoproject.org>; Wed, 09 Jul 2014 08:18:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:sender:in-reply-to:references:from:date:message-id
-	:subject:to:cc:content-type;
-	bh=0qxVb/3EyoHuFKWA4HrxK9nkvjxmvpXwvytddwCf07I=;
-	b=gXjWgMJvGNnav2ylGGq8pDkGPhvrh3oXXSVjsqdr678VK2bI1udGislXoKbffANh26
-	fjWbsVqp2FmVeUvlYuAI3dbb0c1h7BlcTAz4vDPqNmEZbzevfGl+4NRnK+RYuufDaYiL
-	9zgoBZ60A16TIass1vSIvEpxjHzDiS5eV/NfunnmwSc/9jVsFaW6r+N8IUkz37lQv+MD
-	dfgAUUE31aR2LhbwnP26aiM4f18H0jgEUTTbhvBTqGBFX2k1TQ2zoun+DrWcrt5UKA9d
-	jbt2/OVp+xTlxA6CDz5Nv53XUTP2LvEITMBHtZRRHeIYmIih0bEjMzagsfrlsXY4V0vj
-	INHQ==
-X-Received: by 10.112.144.104 with SMTP id sl8mr12962059lbb.52.1404919130227; 
-	Wed, 09 Jul 2014 08:18:50 -0700 (PDT)
+Received: from venus.speedyservers.com (venus.speedyservers.com
+	[193.189.74.44])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 42141E006DB
+	for <yocto@yoctoproject.org>; Wed,  9 Jul 2014 08:19:43 -0700 (PDT)
+Received: from localhost ([127.0.0.1]:39996 helo=www.joenicholson.co.uk)
+	by venus.speedyservers.com with esmtpa (Exim 4.82)
+	(envelope-from <joe@joenicholson.co.uk>)
+	id 1X4tem-002XJq-UV; Wed, 09 Jul 2014 16:19:41 +0100
 MIME-Version: 1.0
-Sender: kergoth@gmail.com
-Received: by 10.112.168.66 with HTTP; Wed, 9 Jul 2014 08:18:30 -0700 (PDT)
-In-Reply-To: <CFE2BDED.98CE%seth.bollinger@digi.com>
-References: <CFE2BDED.98CE%seth.bollinger@digi.com>
-From: Christopher Larson <clarson@kergoth.com>
-Date: Wed, 9 Jul 2014 08:18:30 -0700
-X-Google-Sender-Auth: 8hdkjqoyqgfMJFDtVbuoq7HKmvE
-Message-ID: <CABcZANmVHcuH+rOp11gDLdSovq+_tDRohqEeZZbZHSuGXr0wRg@mail.gmail.com>
-To: "Bollinger, Seth" <Seth.Bollinger@digi.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Inadvertent RootFS permission pollution
+Date: Wed, 09 Jul 2014 16:19:40 +0100
+From: Joe Nicholson <joe@joenicholson.co.uk>
+To: Adam Hughes <Adam.Hughes@polatis.com>
+Mail-Reply-To: joe@joenicholson.co.uk
+In-Reply-To: <A88E647F34719A4CBBE7FD69260396E2A72861DA@POLSRV001.polatis.com>
+References: <d9fb738c0c8d5dd896df819289fe1635@joenicholson.co.uk>
+	<A88E647F34719A4CBBE7FD69260396E2A72861DA@POLSRV001.polatis.com>
+Message-ID: <1a52c8b7dd7810a2848b831d5877ec22@joenicholson.co.uk>
+X-Sender: joe@joenicholson.co.uk
+User-Agent: Roundcube Webmail/0.9.5
+X-AntiAbuse: This header was added to track abuse,
+	please include it with any abuse report
+X-AntiAbuse: Primary Hostname - venus.speedyservers.com
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - joenicholson.co.uk
+X-Get-Message-Sender-Via: venus.speedyservers.com: authenticated_id:
+	joe@joenicholson.co.uk
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+Cc: yocto@yoctoproject.org
+Subject: Re: Installing a directory tree of files into the target filesystem
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
+Reply-To: joe@joenicholson.co.uk
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -56,55 +56,95 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 09 Jul 2014 15:19:03 -0000
-Content-Type: multipart/alternative; boundary=047d7b3441ecb2118304fdc439ec
+X-List-Received-Date: Wed, 09 Jul 2014 15:20:23 -0000
+Content-Type: multipart/alternative;
+	boundary="=_f40770afa8c63ec290a9d9c58264a8ac"
 
---047d7b3441ecb2118304fdc439ec
+--=_f40770afa8c63ec290a9d9c58264a8ac
+Content-Transfer-Encoding: 7bit
 Content-Type: text/plain; charset=UTF-8
 
-On Wed, Jul 9, 2014 at 7:37 AM, Bollinger, Seth <Seth.Bollinger@digi.com>
-wrote:
+ 
 
-> I recently ran into a problem where I had trouble determining why the
-> setgid bit was set in my rootfs.  It turns out that debian has this bit set
-> on /usr/local (where I was building from), and thus inherited this bit from
-> that directory tree.  This surprised me, so I thought I would pass it along
-> in case it saves anyone else some time.
+Thanks Adam. 
 
+I don't have any major permissions issues either, so will definitely try
+that. I assume I could just explicitly set the permissions on the target
+directory as a later step in do_install if needed. 
 
-Ah, yes, I've hit this in the past too, thanks for bringing it up, we'll
-have to resolve that -- perhaps have bitbake chmod g-s ${TMPDIR} when it's
-created?
--- 
-Christopher Larson
-clarson at kergoth dot com
-Founder - BitBake, OpenEmbedded, OpenZaurus
-Maintainer - Tslib
-Senior Software Engineer, Mentor Graphics
+Thanks also for the link. 
 
---047d7b3441ecb2118304fdc439ec
-Content-Type: text/html; charset=UTF-8
+Cheers! 
+
+Joe 
+
+On 2014-07-09 14:56, Adam Hughes wrote: 
+
+> Hi Joe,
+> 
+>> First post on here :-)
+> 
+> My first post too.
+> 
+>> I'd like to create a recipe that copies a whole directory tree of files into a directory on the output filesystem.
+> 
+> I faced the same problem, and resorted to "cp -r" (after making sure the directory was there using "install -d"). In my case, I didn't need to mess with permissions so I didn't need to full power of install.
+> 
+> See http://superuser.com/questions/229883/how-is-install-c-different-from-cp [1] for a bit more chapter and verse.
+> 
+> Cheers,
+> 
+> Adam
+
+ 
+
+Links:
+------
+[1]
+http://superuser.com/questions/229883/how-is-install-c-different-from-cp
+
+--=_f40770afa8c63ec290a9d9c58264a8ac
 Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html; charset=UTF-8
 
-<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
-On Wed, Jul 9, 2014 at 7:37 AM, Bollinger, Seth <span dir=3D"ltr">&lt;<a hr=
-ef=3D"mailto:Seth.Bollinger@digi.com" target=3D"_blank">Seth.Bollinger@digi=
-.com</a>&gt;</span> wrote:<br>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN">
+<html><body style=3D'font-family: Verdana,Geneva,sans-serif'>
+<p>Thanks Adam.</p>
+<p>I don't have any major permissions issues either, so will definitely try=
+ that. &nbsp;I assume I could just explicitly set the permissions on the ta=
+rget directory as a later step in do_install if needed.</p>
+<p>Thanks also for the link.</p>
+<p>Cheers!</p>
+<p>Joe</p>
+<p>&nbsp;</p>
+<p>On 2014-07-09 14:56, Adam Hughes wrote:</p>
+<blockquote type=3D"cite" style=3D"padding-left:5px; border-left:#1010ff 2p=
+x solid; margin-left:5px"><!-- html ignored --><!-- head ignored --><!-- me=
+ta ignored -->
+<pre>Hi Joe,</pre>
+<blockquote type=3D"cite" style=3D"padding-left:5px; border-left:#1010ff 2p=
+x solid; margin-left:5px">First post on here :-)</blockquote>
+<pre>My first post too.</pre>
+<blockquote type=3D"cite" style=3D"padding-left:5px; border-left:#1010ff 2p=
+x solid; margin-left:5px">I'd like to create a recipe that copies a whole d=
+irectory tree of files into a directory on the output filesystem.</blockquo=
+te>
+<pre>I faced the same problem, and resorted to "cp -r" (after making sure t=
+he directory was there using "install -d").  In my case, I didn't need to m=
+ess with permissions so I didn't need to full power of install.
 
-<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
-x #ccc solid;padding-left:1ex">I recently ran into a problem where I had tr=
-ouble determining why the setgid bit was set in my rootfs. =C2=A0It turns o=
-ut that debian has this bit set on /usr/local (where I was building from), =
-and thus inherited this bit from that directory tree. =C2=A0This surprised =
-me, so I thought I would pass it along in case it saves anyone else some ti=
-me.</blockquote>
+See <a href=3D"http://superuser.com/questions/229883/how-is-install-c-diffe=
+rent-from-cp">http://superuser.com/questions/229883/how-is-install-c-differ=
+ent-from-cp</a> for a bit more chapter and verse.
 
-</div><br></div><div class=3D"gmail_extra">Ah, yes, I&#39;ve hit this in th=
-e past too, thanks for bringing it up, we&#39;ll have to resolve that -- pe=
-rhaps have bitbake chmod g-s ${TMPDIR} when it&#39;s created?<br>-- <br>
-Christopher Larson<br>
-clarson at kergoth dot com<br>Founder - BitBake, OpenEmbedded, OpenZaurus<b=
-r>Maintainer - Tslib<br>Senior Software Engineer, Mentor Graphics
-</div></div>
+Cheers,
 
---047d7b3441ecb2118304fdc439ec--
+Adam
+
+</pre>
+</blockquote>
+<p>&nbsp;</p>
+<div>&nbsp;</div>
+</body></html>
+
+--=_f40770afa8c63ec290a9d9c58264a8ac--
