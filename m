@@ -1,6 +1,6 @@
 Return-Path: <b-sathishkumar@hcl.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 11E59E00744; Wed,  9 Jul 2014 05:24:07 -0700 (PDT)
+	id 13CF8E00744; Wed,  9 Jul 2014 05:30:11 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -8,30 +8,29 @@ X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
 	version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from GWS07.hcl.com (gws07.hcl.com [192.8.186.130])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 27AE4E00547
-	for <yocto@yoctoproject.org>; Wed,  9 Jul 2014 05:23:59 -0700 (PDT)
-X-IronPort-AV: E=Sophos;i="5.01,631,1400005800"; d="scan'208";a="22786178"
-Received: from unknown (HELO CHN-CORP-HT01.CORP.HCL.IN) ([10.249.2.33])
-	by GWS07.hcl.com with ESMTP/TLS/AES128-SHA; 09 Jul 2014 17:43:43 +0530
-Received: from CHN-HCLT-CSHT07.HCLT.CORP.HCL.IN (10.150.12.32) by
-	CHN-CORP-HT01.CORP.HCL.IN (10.249.2.33) with Microsoft SMTP Server
-	(TLS) id 14.3.123.3; Wed, 9 Jul 2014 17:53:57 +0530
+Received: from GWS08.hcl.com (gws08.hcl.com [192.8.186.131])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9A0F3E00547
+	for <yocto@yoctoproject.org>; Wed,  9 Jul 2014 05:30:02 -0700 (PDT)
+X-IronPort-AV: E=Sophos;i="5.01,631,1400005800"; d="scan'208";a="23976369"
+Received: from unknown (HELO CHN-CORP-HT02.CORP.HCL.IN) ([10.249.2.34])
+	by GWS08.hcl.com with ESMTP/TLS/AES128-SHA; 09 Jul 2014 17:49:05 +0530
+Received: from CHN-HCLT-CSHT04.HCLT.CORP.HCL.IN (10.150.12.29) by
+	CHN-CORP-HT02.CORP.HCL.IN (10.249.2.34) with Microsoft SMTP Server
+	(TLS) id 14.3.123.3; Wed, 9 Jul 2014 17:59:58 +0530
 Received: from CHN-HCLT-MBS08.HCLT.CORP.HCL.IN ([10.150.12.23]) by
-	CHN-HCLT-CSHT07.HCLT.CORP.HCL.IN ([::1]) with mapi id 14.03.0123.003;
-	Wed, 9 Jul 2014 17:53:57 +0530
+	CHN-HCLT-CSHT04.HCLT.CORP.HCL.IN ([::1]) with mapi id 14.03.0123.003;
+	Wed, 9 Jul 2014 17:59:59 +0530
 From: "Sathish Kumar Balasubramaniam -ERS, HCL Tech" <b-sathishkumar@hcl.com>
 To: "Dr. Markus Eich" <markus.eich@dfki.de>, "yocto@yoctoproject.org"
 	<yocto@yoctoproject.org>
 Thread-Topic: [yocto] How to select defconfig for kernel build with
 	yocto/bitbake
-Thread-Index: AQHPm1m8ccjUhL55+USZAwTzWLJ9wJuXmshg//+vjQCAAF+BwA==
-Date: Wed, 9 Jul 2014 12:23:56 +0000
-Message-ID: <5D833673AB94D9489A7F7F73E9E611C814ADD7E1@chn-hclt-mbs08.HCLT.CORP.HCL.IN>
+Thread-Index: AQHPm1m8ccjUhL55+USZAwTzWLJ9wJuXmshg//+vjQCAAF+BwIAAAR+g
+Date: Wed, 9 Jul 2014 12:29:58 +0000
+Message-ID: <5D833673AB94D9489A7F7F73E9E611C814ADD7F8@chn-hclt-mbs08.HCLT.CORP.HCL.IN>
 References: <53BD0DA4.50108@dfki.de>
 	<5D833673AB94D9489A7F7F73E9E611C814ADD788@chn-hclt-mbs08.HCLT.CORP.HCL.IN>
-	<53BD30F2.8030506@dfki.de>
-In-Reply-To: <53BD30F2.8030506@dfki.de>
+	<53BD30F2.8030506@dfki.de> 
 Accept-Language: en-IN, en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
@@ -49,10 +48,28 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 09 Jul 2014 12:24:07 -0000
+X-List-Received-Date: Wed, 09 Jul 2014 12:30:11 -0000
 Content-Language: en-US
 Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
+
+Sorry, Markus.
+Ignore my previous post. It has error.
+
+I think you need to check the output of "bitbake -e <recipe name>" and see =
+how the .config file is created for your recipe.
+Based on that only we need to update the recipe.
+
+Regards,
+B.Sathish Kumar
+
+-----Original Message-----
+From: Sathish Kumar Balasubramaniam -ERS, HCL Tech =
+
+Sent: Wednesday, July 09, 2014 5:54 PM
+To: Dr. Markus Eich; yocto@yoctoproject.org
+Subject: RE: [yocto] How to select defconfig for kernel build with yocto/bi=
+tbake
 
 Ok. Can you try the following instead of the content I gave before
 
