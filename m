@@ -1,69 +1,57 @@
-Return-Path: <jopado1@yahoo.com>
+Return-Path: <jatedev@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 73DF1E006F3; Thu, 10 Jul 2014 13:04:04 -0700 (PDT)
+	id 1A523E006F3; Thu, 10 Jul 2014 13:11:37 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,FREEMAIL_REPLYTO_END_DIGIT,
-	HTML_MESSAGE,RCVD_IN_DNSWL_NONE autolearn=no version=3.3.1
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (jopado1[at]yahoo.com)
-	* 0.2 FREEMAIL_REPLYTO_END_DIGIT Reply-To freemail username ends in
-	digit *      (joe dougherty <jopado1[at]yahoo.com> )
+	mail provider *      (jatedev[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0003]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	*      [score: 0.0000]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [98.138.91.148 listed in list.dnswl.org]
-Received: from nm18-vm3.bullet.mail.ne1.yahoo.com
-	(nm18-vm3.bullet.mail.ne1.yahoo.com [98.138.91.148])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 18A4AE0059F
-	for <yocto@yoctoproject.org>; Thu, 10 Jul 2014 13:04:00 -0700 (PDT)
-Received: from [98.138.100.113] by nm18.bullet.mail.ne1.yahoo.com with NNFMP;
-	10 Jul 2014 20:03:59 -0000
-Received: from [98.139.212.200] by tm104.bullet.mail.ne1.yahoo.com with NNFMP;
-	10 Jul 2014 20:03:59 -0000
-Received: from [127.0.0.1] by omp1009.mail.bf1.yahoo.com with NNFMP;
-	10 Jul 2014 20:03:59 -0000
-X-Yahoo-Newman-Property: ymail-3
-X-Yahoo-Newman-Id: 480464.12078.bm@omp1009.mail.bf1.yahoo.com
-Received: (qmail 81592 invoked by uid 60001); 10 Jul 2014 20:03:59 -0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s1024;
-	t=1405022639; bh=yOrIqDvmFbPXfEFHGek7Ao96v31QJh1mRcUvZCgZKOo=;
-	h=Message-ID:Date:From:Reply-To:Subject:To:MIME-Version:Content-Type;
-	b=Uj7wDSTPMh0buP8QM9UtlrY19glVDFnr+iFJ8j9U//HrIaB12v9C+v9Rzg6KUYBz4DCNueXo7ieRX7LucLbp8t1NG4QvTocbxneIkPwvmU05Wrubzq8twIeT5HyfPfTO1GXA2nc7kriE2+ZlL9ztMYoYbx9yWQq7kpr5rJqNnbY=
-X-YMail-OSG: zIeHYVcVM1miFRrjOQFnWpeiGZmzTGKKjtvDYY4dX1tAKYD
-	mTHKyZv9CWRjKaexrrRvGG_bDH8fElmv4iAxuf2v34wm9VDFKRK6LFJT4B4Y
-	HUzStSa8nn4u68FMRFIMgjVd4RUUumYfxGcwo3u85Pa1n7MeKHc2f0c2BGe8
-	Ga_UdbtAosq46E9l.yw211ON7AaESpyLitp4lXkVCvj.DtVnWpcAznd6e.v1
-	KR5UZpf.mK3RRio7vkru8b.HYlwpHyQ2IdWKQ39jSQQwb_FbPnjw7e_zGtiz
-	lVOGf8aKHVla7FvIMJCs.nUjZJ4xBahH3ii.PE_mzN994lHaFQsv3vQ5zoHw
-	nI0xcLmvqBn1O43udhUAGDinhxGlJcpX.JqZ18A6iQ8iQzXgF3UUIVPej8vP
-	VPKBblIwqTKGMjRLz9_WJJW3Q7RWIAiM7rrtLnSPjzDvFtb0xpKiEYX91Pe5
-	wpbzCAWTlm0Dilj7Z1XtwueiCwL1vCJiJ2o9fCOKjFGh3Gpoe0QhBL_Dg5VW
-	eAPnHSxvUvyPQCkORVfqrvnfjdZiSqkM7VYJj0bugxm3bEg--
-Received: from [184.185.173.186] by web140605.mail.bf1.yahoo.com via HTTP;
-	Thu, 10 Jul 2014 13:03:59 PDT
-X-Rocket-MIMEInfo: 002.001,
-	SSBhbSB1c2luZyBtZXRhLWZzbC1hcm0gb24gYSBmcmVlc2NhbGUgdnlicmlkIHBsYXRmb3JtIGFuZCBhbSB0cnlpbmcgdG8gY3JlYXRlIGVuY3J5cHRlZCBmaWxlc3lzdGVtIHBhcnRpdGlvbiBhdCBydW50aW1lLiBJJ20gdXNpbmcgY3J5cHRzZXR1cCAoTFVLUykgb24gYSBqZmZzMiBwYXJ0aXRpb24uIEkgY2FuIGZvcm1hdCBhbmQgb3BlbiB0aGUgTFVLUyBjb250YWluZXIgYW5kIHNlZSB0aGUgZW50cnkgaW4gL2Rldi9tYXBwZXIuIEkgc3VjY2Vzc2Z1bGx5IGNyZWF0ZSB0aGUgZmlsZXN5c3RlbSB2aWEgbWsBMAEBAQE-
-X-Mailer: YahooMailWebService/0.8.194.680
-Message-ID: <1405022639.95244.YahooMailNeo@web140605.mail.bf1.yahoo.com>
-Date: Thu, 10 Jul 2014 13:03:59 -0700
-From: Joe Dougherty <jopado1@yahoo.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.216.178 listed in list.dnswl.org]
+Received: from mail-qc0-f178.google.com (mail-qc0-f178.google.com
+	[209.85.216.178])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A5987E0059F
+	for <yocto@yoctoproject.org>; Thu, 10 Jul 2014 13:11:29 -0700 (PDT)
+Received: by mail-qc0-f178.google.com with SMTP id i17so104071qcy.9
+	for <yocto@yoctoproject.org>; Thu, 10 Jul 2014 13:11:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type;
+	bh=k7qZrFqe8WmDp2K05hFrICw/QGy0El6N1j3CjBB+Gc4=;
+	b=JExUVJ/tQmIqBOwqM+vQ0pRo4H6Yu8AmukaYS/Nvqyrs6nsBXypXLyoP4lmqqPsrYI
+	NZEWTOZliN3IeKvKCyHsyB51zbetI8gl3ZQgnPjq4ruXi9+vvRnXFIDlHFIJKg5x/P1O
+	zo4UnRJuFZQ9GRaJFHbrNaYjGaudbTEv+mzjYeC1OKWtYJLMH0fs++zp+y7FH7rZM2bv
+	k90frdprWE8PsXrWfNLODmDk5m0JKOCeCK1kDeARlbp/dYZdA2qen49XgSMais41dxG/
+	bZjQh2/HnawFW4NmAY/P+6hHwarTZK07+SWV1n0QXjHAHAPRzdCC/I9J75pg+dtY91Ay
+	9aFg==
 MIME-Version: 1.0
-Subject: cryptsetup on Freescale's Vybrid
+X-Received: by 10.140.46.70 with SMTP id j64mr81060872qga.27.1405023089293;
+	Thu, 10 Jul 2014 13:11:29 -0700 (PDT)
+Received: by 10.140.101.6 with HTTP; Thu, 10 Jul 2014 13:11:29 -0700 (PDT)
+In-Reply-To: <53B39DCE.9060705@freenet.de>
+References: <CAPphmgZ+ivQYXuYHLWfzQF9QySVnd=YtbM=fEjfA_7hp3iFq1A@mail.gmail.com>
+	<53B39DCE.9060705@freenet.de>
+Date: Thu, 10 Jul 2014 16:11:29 -0400
+Message-ID: <CAPphmgaa8uhXjwDq+c-GUgyyqhcPB-gdsHmAxq4_c_x1acBooQ@mail.gmail.com>
+From: Jate S <jatedev@gmail.com>
+To: Jens Lucius <jenslucius@freenet.de>
+Cc: Yocto Project <yocto@yoctoproject.org>,
+	openembedded-devel@lists.openembedded.org
+Subject: Re: python tkinter dependencies
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
-Reply-To: Joe Dougherty <jopado1@yahoo.com>
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -72,18 +60,60 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 10 Jul 2014 20:04:04 -0000
-Content-Type: multipart/alternative;
-	boundary="1254654340-1211869838-1405022639=:95244"
+X-List-Received-Date: Thu, 10 Jul 2014 20:11:37 -0000
+Content-Type: text/plain; charset=UTF-8
 
---1254654340-1211869838-1405022639=:95244
-Content-Type: text/plain; charset=us-ascii
+- Python-tkinter requires the tk recipe in meta-oe, so you must add
+this layer for your build.
+- I am on dora. I found that I needed commit "tk: make multilib build
+compatible and fix library install" made on 12/5/2013
+(1ca29d1cda0d007c4e6a28fe1a4037b4029ad7ae).
+- I created a bbappend for python. In this I added
+DEPENDS_class-target on tk, and RDEPENDS_class-target on tk and
+tk-lib. Also, I did a SRC_URI replace to eliminate the
+avoid_warning_about_tkinter.patch file.
 
-I am using meta-fsl-arm on a freescale vybrid platform and am trying to create encrypted filesystem partition at runtime. I'm using cryptsetup (LUKS) on a jffs2 partition. I can format and open the LUKS container and see the entry in /dev/mapper. I successfully create the filesystem via mkfs.jffs2. However I can not mount the filesystem - mount fails with error "invalid argument". Does anyone know if this is supported or if there are known issues with this. I can provide detailed command output from the target if needed. Thank you, Joe
+I was able to build and use python-tkinter successfully.
 
---1254654340-1211869838-1405022639=:95244
-Content-Type: text/html; charset=us-ascii
+The question now is if this should go into meta-oe or oe-core. And how.
 
-<html><body><div style="color:#000; background-color:#fff; font-family:HelveticaNeue, Helvetica Neue, Helvetica, Arial, Lucida Grande, sans-serif;font-size:10pt"><div style="" class="">I am using meta-fsl-arm on a freescale vybrid platform and am trying to create encrypted filesystem partition at runtime. I'm using cryptsetup (LUKS) on a jffs2 partition. I can format and open the LUKS container and see the entry in /dev/mapper. I successfully create the filesystem via mkfs.jffs2. However I can not mount the filesystem - mount fails with error "invalid argument". Does anyone know if this is supported or if there are known issues with this. I can provide detailed command output from the target if needed. Thank you, Joe<br style=""></div><div style="" class=""><br style="" class=""></div></div></body></html>
+The tcl recipe is in oe-core, but not tk. I'm not yet sure why this
+is. Does anybody know?
 
---1254654340-1211869838-1405022639=:95244--
+- Jate S.
+
+On Wed, Jul 2, 2014 at 1:51 AM, Jens Lucius <jenslucius@freenet.de> wrote:
+> Hi
+>
+> It worked for me in my build env after trying several things.
+>
+> I did setup a new yocto some while ago and actually had the same problems
+> again.
+>
+> There is a patch in python about tkinter (03-fix-tkinter-detection.patch).
+>
+> I removed that, did a fresh rebuild of python (-c clean) and did a rebuild
+> of my image (as no new image was written by building my image after
+> rebuilding python).
+>
+> Either of these did work for me, maybe somebody knows exactly which step :-)
+>
+> Jens
+>
+> Am 02.07.2014 05:41, schrieb Jate S:
+>
+>> The python-tkinter module requires _tkinter. A result from a websearch
+>> suggested that I needed to make sure tk (from meta-oe/meta-oe) and tcl
+>> were installed before compiling python.
+>>
+>> I added a DEPENDS on the tk and tcl recipes to both python and
+>> python-tkinter in a python_2.7.3.bbappend. It did not work and was
+>> never built.
+>>
+>> I'm looking for tips to figure out what is going on. Thanks.
+>>
+>>
+>> - Jate S.
+>
+>
+
