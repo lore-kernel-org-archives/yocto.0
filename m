@@ -1,30 +1,38 @@
-Return-Path: <Daniel.Bornaz@enea.com>
+Return-Path: <b-sathishkumar@hcl.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 82319E00559; Thu, 10 Jul 2014 01:37:49 -0700 (PDT)
+	id D2C43E0056A; Thu, 10 Jul 2014 01:42:18 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE
+	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mx-3.enea.com (sestofw01.enea.se [192.36.1.252])
-	by yocto-www.yoctoproject.org (Postfix) with SMTP id EF22FE00559
-	for <yocto@yoctoproject.org>; Thu, 10 Jul 2014 01:37:44 -0700 (PDT)
-Received: from sestofb10.enea.se (172.21.3.145) by smtp.enea.com
-	(172.21.1.209) with Microsoft SMTP Server id 14.3.158.1;
-	Thu, 10 Jul 2014 10:37:37 +0200
-Received: by sestofb10.enea.se (Postfix, from userid 4483)	id B349E288F30;
-	Thu, 10 Jul 2014 10:37:37 +0200 (CEST)
-From: Daniel BORNAZ <daniel.bornaz@enea.com>
-To: <yocto@yoctoproject.org>, <openembedded-core@lists.openembedded.org>
-Date: Thu, 10 Jul 2014 10:37:34 +0200
-Message-ID: <1404981454-20330-1-git-send-email-daniel.bornaz@enea.com>
-X-Mailer: git-send-email 1.9.1
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+Received: from GWS07.hcl.com (gws07.hcl.com [192.8.186.130])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 98410E00559
+	for <yocto@yoctoproject.org>; Thu, 10 Jul 2014 01:42:07 -0700 (PDT)
+X-IronPort-AV: E=Sophos;i="5.01,636,1400005800"; d="scan'208,217";a="22828597"
+Received: from unknown (HELO CHN-CORP-HT01.CORP.HCL.IN) ([10.249.2.33])
+	by GWS07.hcl.com with ESMTP/TLS/AES128-SHA; 10 Jul 2014 14:01:49 +0530
+Received: from CHN-HCLT-CSHT02.HCLT.CORP.HCL.IN (10.150.12.27) by
+	CHN-CORP-HT01.CORP.HCL.IN (10.249.2.33) with Microsoft SMTP Server
+	(TLS) id 14.3.123.3; Thu, 10 Jul 2014 14:12:06 +0530
+Received: from CHN-HCLT-MBS08.HCLT.CORP.HCL.IN ([10.150.12.23]) by
+	CHN-HCLT-CSHT02.HCLT.CORP.HCL.IN ([::1]) with mapi id 14.03.0123.003;
+	Thu, 10 Jul 2014 14:12:06 +0530
+From: "Sathish Kumar Balasubramaniam -ERS, HCL Tech" <b-sathishkumar@hcl.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: Issue with Python include directives
+Thread-Index: Ac+cGWwaq35e3FOATZCQykIpwlHczA==
+Date: Thu, 10 Jul 2014 08:42:05 +0000
+Message-ID: <5D833673AB94D9489A7F7F73E9E611C814ADDA24@chn-hclt-mbs08.HCLT.CORP.HCL.IN>
+Accept-Language: en-IN, en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.150.5.114]
 MIME-Version: 1.0
-Received-SPF: None (SESTOEX03.enea.se: daniel.bornaz@enea.com does not
-	designate permitted sender hosts)
-Subject: [PATCH 1/1] dbus update to 1.8.6 (CVE-2014-3532)
+Subject: Issue with Python include directives
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -36,215 +44,226 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 10 Jul 2014 08:37:49 -0000
-Content-Type: text/plain
+X-List-Received-Date: Thu, 10 Jul 2014 08:42:18 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_5D833673AB94D9489A7F7F73E9E611C814ADDA24chnhcltmbs08HCL_"
 
-Version update for fixing two DoS vulnerabilities in dbus-daemon (CVE-2014-3532).
+--_000_5D833673AB94D9489A7F7F73E9E611C814ADDA24chnhcltmbs08HCL_
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
 
-[LXCR-3405]
+Hi,
 
-Signed-off-by: Daniel BORNAZ <daniel.bornaz@enea.com>
----
- .../dbus/dbus-glib-0.102/no-examples.patch         | 15 ++++++
- .../dbus-glib-0.102/obsolete_automake_macros.patch | 15 ++++++
- .../dbus-glib-0.102/test-install-makefile.patch    | 48 ++++++++++++++++++
- meta/recipes-core/dbus/dbus-glib_0.102.bb          |  8 +++
- meta/recipes-core/dbus/dbus-test_1.8.6.bb          | 59 ++++++++++++++++++++++
- meta/recipes-core/dbus/dbus_1.8.6.bb               |  4 ++
- 6 files changed, 149 insertions(+)
- create mode 100644 meta/recipes-core/dbus/dbus-glib-0.102/no-examples.patch
- create mode 100644 meta/recipes-core/dbus/dbus-glib-0.102/obsolete_automake_macros.patch
- create mode 100644 meta/recipes-core/dbus/dbus-glib-0.102/test-install-makefile.patch
- create mode 100644 meta/recipes-core/dbus/dbus-glib_0.102.bb
- create mode 100644 meta/recipes-core/dbus/dbus-test_1.8.6.bb
- create mode 100644 meta/recipes-core/dbus/dbus_1.8.6.bb
+I am trying to build gpsd-2.95 for ARM 32-bit using Yocto on a Ubuntu 12.04=
+.4 64-Bit machine
+I got the following compilation error
 
-diff --git a/meta/recipes-core/dbus/dbus-glib-0.102/no-examples.patch b/meta/recipes-core/dbus/dbus-glib-0.102/no-examples.patch
-new file mode 100644
-index 0000000..fbb4967
---- /dev/null
-+++ b/meta/recipes-core/dbus/dbus-glib-0.102/no-examples.patch
-@@ -0,0 +1,15 @@
-+Disable compiling examples
-+
-+Upstream-Status: Inappropriate [disable feature]
-+
-+Signed-off-by: Kevin Tian <kevin.tian@intel.com>
-+Signed-off-by: Scott Garman <scott.a.garman@intel.com>
-+
-+--- dbus-glib-0.70/dbus/Makefile.am.orig	2006-07-23 16:04:43.000000000 +0200
-++++ dbus-glib-0.70/dbus/Makefile.am	2006-07-23 16:04:52.000000000 +0200
-+@@ -1,4 +1,4 @@
-+-SUBDIRS = . examples
-++SUBDIRS = .
-+ 
-+ INCLUDES=-I$(top_srcdir) $(DBUS_CFLAGS) $(DBUS_GLIB_CFLAGS) $(DBUS_GLIB_TOOL_CFLAGS) -DDBUS_COMPILATION=1 -DDBUS_LOCALEDIR=\"$(prefix)/@DATADIRNAME@/locale\" 
-+ 
-diff --git a/meta/recipes-core/dbus/dbus-glib-0.102/obsolete_automake_macros.patch b/meta/recipes-core/dbus/dbus-glib-0.102/obsolete_automake_macros.patch
-new file mode 100644
-index 0000000..40e3b12
---- /dev/null
-+++ b/meta/recipes-core/dbus/dbus-glib-0.102/obsolete_automake_macros.patch
-@@ -0,0 +1,15 @@
-+Upstream-Status: Submitted [https://bugs.freedesktop.org/show_bug.cgi?id=59003]
-+
-+Signed-off-by: Marko Lindqvist <cazfi74@gmail.com>
-+diff -Nurd dbus-glib-0.100/configure.ac dbus-glib-0.100/configure.ac
-+--- dbus-glib-0.100/configure.ac	2012-06-25 19:26:39.000000000 +0300
-++++ dbus-glib-0.100/configure.ac	2013-01-03 04:53:22.314976758 +0200
-+@@ -8,7 +8,7 @@
-+
-+ AM_INIT_AUTOMAKE([1.9])
-+
-+-AM_CONFIG_HEADER(config.h)
-++AC_CONFIG_HEADERS(config.h)
-+
-+ # Honor aclocal flags
-+ ACLOCAL="$ACLOCAL $ACLOCAL_FLAGS"
-diff --git a/meta/recipes-core/dbus/dbus-glib-0.102/test-install-makefile.patch b/meta/recipes-core/dbus/dbus-glib-0.102/test-install-makefile.patch
-new file mode 100644
-index 0000000..2e8e178
---- /dev/null
-+++ b/meta/recipes-core/dbus/dbus-glib-0.102/test-install-makefile.patch
-@@ -0,0 +1,48 @@
-+Change Makefile.am to install regression tests for test package purpose.
-+
-+Upstream-Status: Inappropriate [test not install is for purpose from upstream]
-+
-+Signed-off-by: Yao Zhao <yao.zhao@windriver.com>
-+
-+diff --git a/test/Makefile.am b/test/Makefile.am
-+index 7ba11a8..249f0e7 100644
-+--- a/test/Makefile.am
-++++ b/test/Makefile.am
-+@@ -13,7 +13,8 @@ else
-+ TEST_BINARIES=
-+ endif
-+ 
-+-noinst_PROGRAMS= $(TEST_BINARIES)
-++testdir = $(datadir)/@PACKAGE@/tests
-++test_PROGRAMS= $(TEST_BINARIES)
-+ 
-+ test_service_SOURCES=				\
-+ 	test-service.c
-+diff --git a/test/interfaces/Makefile.am b/test/interfaces/Makefile.am
-+index 3cb2c39..e6de67d 100644
-+--- a/test/interfaces/Makefile.am
-++++ b/test/interfaces/Makefile.am
-+@@ -39,7 +39,8 @@ if DBUS_BUILD_TESTS
-+ 
-+ ## we use noinst_PROGRAMS not check_PROGRAMS for TESTS so that we
-+ ## build even when not doing "make check"
-+-noinst_PROGRAMS = test-service test-client
-++testdir = $(datadir)/@PACKAGE@/tests/interfaces
-++test_PROGRAMS = test-service test-client
-+ 
-+ test_service_SOURCES = \
-+ 	test-interfaces.c \
-+diff --git a/test/core/Makefile.am b/test/core/Makefile.am
-+index ef6cb26..9786c3a 100644
-+--- a/test/core/Makefile.am
-++++ b/test/core/Makefile.am
-+@@ -46,7 +46,8 @@ endif
-+ 
-+ ## we use noinst_PROGRAMS not check_PROGRAMS for TESTS so that we
-+ ## build even when not doing "make check"
-+-noinst_PROGRAMS = \
-++testdir = $(datadir)/@PACKAGE@/tests/core
-++test_PROGRAMS = \
-+ 	test-dbus-glib \
-+ 	test-service-glib \
-+ 	$(THREAD_APPS) \
-diff --git a/meta/recipes-core/dbus/dbus-glib_0.102.bb b/meta/recipes-core/dbus/dbus-glib_0.102.bb
-new file mode 100644
-index 0000000..28e8a72
---- /dev/null
-+++ b/meta/recipes-core/dbus/dbus-glib_0.102.bb
-@@ -0,0 +1,8 @@
-+require dbus-glib.inc
-+
-+SRC_URI = "http://dbus.freedesktop.org/releases/dbus-glib/dbus-glib-${PV}.tar.gz \
-+           file://no-examples.patch \
-+"
-+
-+SRC_URI[md5sum] = "f76b8558fd575d0106c3a556eaa49184"
-+SRC_URI[sha256sum] = "6964ed585bb8149a14ab744b5ded5e77cf71ec5446e6dcc5fcf5eebcc52df29c"
-diff --git a/meta/recipes-core/dbus/dbus-test_1.8.6.bb b/meta/recipes-core/dbus/dbus-test_1.8.6.bb
-new file mode 100644
-index 0000000..53c5d9a
---- /dev/null
-+++ b/meta/recipes-core/dbus/dbus-test_1.8.6.bb
-@@ -0,0 +1,59 @@
-+SUMMARY = "D-Bus test package (for D-bus functionality testing only)"
-+HOMEPAGE = "http://dbus.freedesktop.org"
-+SECTION = "base"
-+LICENSE = "AFL-2 | GPLv2+"
-+LIC_FILES_CHKSUM = "file://COPYING;md5=10dded3b58148f3f1fd804b26354af3e \
-+                    file://dbus/dbus.h;beginline=6;endline=20;md5=7755c9d7abccd5dbd25a6a974538bb3c"
-+
-+DEPENDS = "python-pygobject dbus dbus-glib"
-+
-+RDEPENDS_${PN} += "make"
-+RDEPENDS_${PN}-dev = ""
-+
-+SRC_URI = "http://dbus.freedesktop.org/releases/dbus/dbus-${PV}.tar.gz \
-+           file://tmpdir.patch \
-+           file://dbus-1.init  \
-+           file://run-ptest \
-+           file://python-config.patch \
-+           file://clear-guid_from_server-if-send_negotiate_unix_f.patch \
-+           "
-+
-+SRC_URI[md5sum] = "6a08ba555d340e9dfe2d623b83c0eea8"
-+
-+S="${WORKDIR}/dbus-${PV}"
-+FILESEXTRAPATHS =. "${FILE_DIRNAME}/dbus:"
-+
-+inherit autotools pkgconfig gettext ptest
-+
-+EXTRA_OECONF_X = "${@bb.utils.contains('DISTRO_FEATURES', 'x11', '--with-x', '--without-x', d)}"
-+EXTRA_OECONF_X_class-native = "--without-x"
-+
-+EXTRA_OECONF = "--enable-tests \
-+                --enable-modular-tests \
-+                --enable-installed-tests \
-+                --enable-checks \
-+                --enable-asserts \
-+                --enable-verbose-mode \
-+                --disable-xml-docs \
-+                --disable-doxygen-docs \
-+                --disable-libaudit \
-+                --disable-systemd \
-+                --without-systemdsystemunitdir \
-+                --with-dbus-test-dir=${PTEST_PATH} \
-+                ${EXTRA_OECONF_X}"
-+
-+do_install() {
-+}
-+
-+do_install_ptest() {
-+	install -d ${D}${PTEST_PATH}/test
-+	case1="shell printf refs syslog"
-+	for i in ${case1}; do install ${B}/test/test-$i ${D}${PTEST_PATH}/test; done
-+	case2="marshal syntax corrupt dbus-daemon dbus-daemon-eavesdrop loopback relay"
-+	for i in ${case2}; do install ${B}/test/.libs/test-$i ${D}${PTEST_PATH}/test; done
-+	case3="bus bus-system bus-launch-helper"
-+	for i in ${case3}; do install ${B}/bus/test-$i ${D}${PTEST_PATH}/test; done
-+	install ${B}/dbus/test-dbus ${D}${PTEST_PATH}/test
-+	cp -r ${B}/test/data ${D}${PTEST_PATH}/test
-+}
-+RDEPENDS_${PN}-ptest += "bash"
-diff --git a/meta/recipes-core/dbus/dbus_1.8.6.bb b/meta/recipes-core/dbus/dbus_1.8.6.bb
-new file mode 100644
-index 0000000..2fd630f
---- /dev/null
-+++ b/meta/recipes-core/dbus/dbus_1.8.6.bb
-@@ -0,0 +1,4 @@
-+include dbus.inc
-+
-+SRC_URI[md5sum] = "6a08ba555d340e9dfe2d623b83c0eea8"
-+SRC_URI[sha256sum] = "eded83ca007b719f32761e60fd8b9ffd0f5796a4caf455b01b5a5ef740ebd23f"
--- 
-1.9.1
+| arm-poky-linux-gnueabi-gcc -march=3Darmv7-a -mthumb-interwork -mfloat-abi=
+=3Dhard -mfpu=3Dneon -mtune=3Dcortex-a15 -Wl,-O1 -Wl,--hash-style=3Dgnu -Wl=
+,--as-needed -L/home/user/project/build/tmp/sysroots/machine/usr/lib -lm --=
+sysroot=3D/home/user/project/build/tmp/sysroots/machine -fno-strict-aliasin=
+g -DNDEBUG -g -fwrapv -O2 -Wall -Wstrict-prototypes -O2 -pipe -g -feliminat=
+e-unused-debug-types -Wall -Wcast-align -Wmissing-declarations -Wmissing-pr=
+ototypes -Wstrict-prototypes -Wpointer-arith -Wreturn-type -D_GNU_SOURCE -f=
+PIC -I/home/user/project/build/tmp/work/cortexa15hf-vfp-neon-poky-linux-gnu=
+eabi/gpsd/2.95-r10.0/gpsd-2.95 -I/usr/include/python2.7 -c gpspacket.c -o b=
+uild/temp.linux-x86_64-2.7/gpspacket.o
+| In file included from /usr/include/python2.7/Python.h:58:0,
+|                  from gpspacket.c:8:
+| /usr/include/python2.7/pyport.h:849:2: error: #error "LONG_BIT definition=
+ appears wrong for platform (bad gcc/glibc config?)."
+| In file included from gpspacket.c:11:0:
+| gpsd.h:327:0: warning: "SIZEOF_LONG" redefined [enabled by default]
+| In file included from /usr/include/python2.7/Python.h:8:0,
+|                  from gpspacket.c:8:
+| /usr/include/python2.7/pyconfig.h:992:0: note: this is the location of th=
+e previous definition
+| gpspacket.c:244:1: warning: no previous prototype for 'initpacket' [-Wmis=
+sing-prototypes]
+| error: command 'arm-poky-linux-gnueabi-gcc' failed with exit status 1
+
+In the tmp/.../gpsd-2.95 folder, I just executed directly the arm-poky-linu=
+x-gnueabi-gcc command with the same arguments except I replaced -I/usr/incl=
+ude/python2.7 with -I/home/user/project/build/tmp/sysroots/machine/usr/incl=
+ude/python2.7
+Now the compilation command was successful.
+
+But now the problem is, how do I change the -I/usr/include/python2.7 with -=
+I/home/user/project/build/tmp/sysroots/machine/usr/include/python2.7 which =
+is passed as an argument for the arm-poky-linux-gnueabi-gcc using the recip=
+e files ?
 
 
+Thanks,
+B.Sathish Kumar
+
+
+::DISCLAIMER::
+---------------------------------------------------------------------------=
+-------------------------------------------------------------------------
+
+The contents of this e-mail and any attachment(s) are confidential and inte=
+nded for the named recipient(s) only.
+E-mail transmission is not guaranteed to be secure or error-free as informa=
+tion could be intercepted, corrupted,
+lost, destroyed, arrive late or incomplete, or may contain viruses in trans=
+mission. The e mail and its contents
+(with or without referred errors) shall therefore not attach any liability =
+on the originator or HCL or its affiliates.
+Views or opinions, if any, presented in this email are solely those of the =
+author and may not necessarily reflect the
+views or opinions of HCL or its affiliates. Any form of reproduction, disse=
+mination, copying, disclosure, modification,
+distribution and / or publication of this message without the prior written=
+ consent of authorized representative of
+HCL is strictly prohibited. If you have received this email in error please=
+ delete it and notify the sender immediately.
+Before opening any email and/or attachments, please check them for viruses =
+and other defects.
+
+---------------------------------------------------------------------------=
+-------------------------------------------------------------------------
+
+--_000_5D833673AB94D9489A7F7F73E9E611C814ADDA24chnhcltmbs08HCL_
+Content-Type: text/html; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii">
+<meta name=3D"Generator" content=3D"Microsoft Word 14 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri","sans-serif";
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri","sans-serif";}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal">Hi,<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">I am trying to build gpsd-2.95 for ARM 32-bit using =
+Yocto on a Ubuntu 12.04.4 64-Bit machine<o:p></o:p></p>
+<p class=3D"MsoNormal">I got the following compilation error<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">| arm-poky-linux-gnueabi-gcc -march=3Darmv7-a -mthum=
+b-interwork -mfloat-abi=3Dhard -mfpu=3Dneon -mtune=3Dcortex-a15 -Wl,-O1 -Wl=
+,--hash-style=3Dgnu -Wl,--as-needed -L/home/user/project/build/tmp/sysroots=
+/machine/usr/lib -lm --sysroot=3D/home/user/project/build/tmp/sysroots/mach=
+ine
+ -fno-strict-aliasing -DNDEBUG -g -fwrapv -O2 -Wall -Wstrict-prototypes -O2=
+ -pipe -g -feliminate-unused-debug-types -Wall -Wcast-align -Wmissing-decla=
+rations -Wmissing-prototypes -Wstrict-prototypes -Wpointer-arith -Wreturn-t=
+ype -D_GNU_SOURCE -fPIC -I/home/user/project/build/tmp/work/cortexa15hf-vfp=
+-neon-poky-linux-gnueabi/gpsd/2.95-r10.0/gpsd-2.95
+ -I/usr/include/python2.7 -c gpspacket.c -o build/temp.linux-x86_64-2.7/gps=
+packet.o<o:p></o:p></p>
+<p class=3D"MsoNormal">| In file included from /usr/include/python2.7/Pytho=
+n.h:58:0,<o:p></o:p></p>
+<p class=3D"MsoNormal">|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; from gpspacket.c:8:<o:p=
+></o:p></p>
+<p class=3D"MsoNormal">| /usr/include/python2.7/pyport.h:849:2: error: #err=
+or &quot;LONG_BIT definition appears wrong for platform (bad gcc/glibc conf=
+ig?).&quot;<o:p></o:p></p>
+<p class=3D"MsoNormal">| In file included from gpspacket.c:11:0:<o:p></o:p>=
+</p>
+<p class=3D"MsoNormal">| gpsd.h:327:0: warning: &quot;SIZEOF_LONG&quot; red=
+efined [enabled by default]<o:p></o:p></p>
+<p class=3D"MsoNormal">| In file included from /usr/include/python2.7/Pytho=
+n.h:8:0,<o:p></o:p></p>
+<p class=3D"MsoNormal">|&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; from gpspacket.c:8:<o:p=
+></o:p></p>
+<p class=3D"MsoNormal">| /usr/include/python2.7/pyconfig.h:992:0: note: thi=
+s is the location of the previous definition<o:p></o:p></p>
+<p class=3D"MsoNormal">| gpspacket.c:244:1: warning: no previous prototype =
+for 'initpacket' [-Wmissing-prototypes]<o:p></o:p></p>
+<p class=3D"MsoNormal">| error: command 'arm-poky-linux-gnueabi-gcc' failed=
+ with exit status 1<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">In the tmp/&#8230;/gpsd-2.95 folder, I just executed=
+ directly the arm-poky-linux-gnueabi-gcc command with the same arguments ex=
+cept I replaced &#8211;I/usr/include/python2.7 with -I/home/user/project/bu=
+ild/tmp/sysroots/machine/usr/include/python2.7<o:p></o:p></p>
+<p class=3D"MsoNormal">Now the compilation command was successful.<o:p></o:=
+p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">But now the problem is, how do I change the &#8211;I=
+/usr/include/python2.7 with -I/home/user/project/build/tmp/sysroots/machine=
+/usr/include/python2.7 which is passed as an argument for the arm-poky-linu=
+x-gnueabi-gcc using the recipe files ?<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Thanks,<o:p></o:p></p>
+<p class=3D"MsoNormal">B.Sathish Kumar<o:p></o:p></p>
+</div>
+<span style=3D"FONT-FAMILY: 'Arial','sans-serif'; COLOR: gray; FONT-SIZE: 7=
+.5pt; mso-fareast-font-family: 'Times New Roman'">
+<P style=3D"MARGIN: 0in 0in 0pt" class=3DMsoNormal><br><br><font style=3D"F=
+ONT-FAMILY: 'Arial','sans-serif'; COLOR: gray; FONT-SIZE: 9px">::DISCLAIMER=
+::<br>---------------------------------------------------------------------=
+---------------------------------------------------------------------------=
+----</font></P>
+<P style=3D"MARGIN: 0in 0in 0pt" class=3DMsoNormal><font style=3D"FONT-FAMI=
+LY: 'Arial','sans-serif'; COLOR: gray; FONT-SIZE: 11px">The contents of thi=
+s e-mail and any attachment(s) are confidential and intended for the named =
+recipient(s) only.<br>E-mail transmission is not guaranteed to be secure or=
+ error-free as information could be intercepted, corrupted, <br>lost, destr=
+oyed, arrive late or incomplete, or may contain viruses in transmission. Th=
+e e mail and its contents <br>(with or without referred errors) shall there=
+fore not attach any liability on the originator or HCL or its affiliates. <=
+br>Views or opinions, if any, presented in this email are solely those of t=
+he author and may not necessarily reflect the <br>views or opinions of HCL =
+or its affiliates. Any form of reproduction, dissemination, copying, disclo=
+sure, modification, <br>distribution and / or publication of this message w=
+ithout the prior written consent of authorized representative of <br>HCL is=
+ strictly prohibited. If you have received this email in error please delet=
+e it and notify the sender immediately. <br>Before opening any email and/or=
+ attachments, please check them for viruses and other defects.</font></P>
+<P style=3D"MARGIN: 0in 0in 0pt" class=3DMsoNormal><font style=3D"FONT-FAMI=
+LY: 'Arial','sans-serif'; COLOR: gray; FONT-SIZE: 11px">-------------------=
+---------------------------------------------------------------------------=
+------------------------------------------------------</font></span></P></b=
+ody>
+</html>
+
+--_000_5D833673AB94D9489A7F7F73E9E611C814ADDA24chnhcltmbs08HCL_--
