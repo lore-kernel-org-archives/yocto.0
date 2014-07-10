@@ -1,40 +1,51 @@
-Return-Path: <markus.eich@dfki.de>
+Return-Path: <allenkll@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 7EF51E0056A; Thu, 10 Jul 2014 04:11:58 -0700 (PDT)
+	id 550E6E0059F; Thu, 10 Jul 2014 06:46:49 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,T_HK_NAME_DR
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000] *  0.0 T_HK_NAME_DR T_HK_NAME_DR
-Received: from sea-mail.dfki.de (sea-mail.dfki.de [134.96.191.185])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EDD3FE00559
-	for <yocto@yoctoproject.org>; Thu, 10 Jul 2014 04:11:54 -0700 (PDT)
-Received: from sea-mail.dfki.de (localhost.localdomain [127.0.0.1])
-	by localhost (Email Security Appliance) with SMTP id
-	D996C9EEE9_3BE74F6B; Thu, 10 Jul 2014 11:11:50 +0000 (GMT)
-Received: from mail.dfki.de (lnv-104.sb.dfki.de [134.96.191.146])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(Client did not present a certificate)
-	by sea-mail.dfki.de (Sophos Email Appliance) with ESMTPS id
-	AC11A9D387_3BE74F6F; Thu, 10 Jul 2014 11:11:50 +0000 (GMT)
-Received: from [10.250.7.78] (unknown [10.250.7.78])
-	(using TLSv1 with cipher DHE-RSA-AES128-SHA (128/128 bits))
-	(No client certificate requested)
-	by mail.dfki.de (Postfix) with ESMTPSA id 909B6313BA;
-	Thu, 10 Jul 2014 13:11:50 +0200 (CEST)
-Message-ID: <53BE74F6.2070704@dfki.de>
-Date: Thu, 10 Jul 2014 13:11:50 +0200
-From: "Dr. Markus Eich" <markus.eich@dfki.de>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:24.0) Gecko/20100101 Thunderbird/24.6.0
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [209.85.212.178 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+	*      [score: 0.0000]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-wi0-f178.google.com (mail-wi0-f178.google.com
+	[209.85.212.178])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D9481E00571
+	for <yocto@yoctoproject.org>; Thu, 10 Jul 2014 06:46:37 -0700 (PDT)
+Received: by mail-wi0-f178.google.com with SMTP id f8so4073697wiw.5
+	for <yocto@yoctoproject.org>; Thu, 10 Jul 2014 06:46:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:sender:in-reply-to:references:date:message-id:subject
+	:from:to:cc:content-type;
+	bh=smPNjTGnLhAO5dA1L+YfcNqjHyd1XVgWkFZRV4ByiW8=;
+	b=duJihxstK9ckF+1PtW6c1VcgUPe/pR7FfSK7OwZrjAoreomygCl4uXGkI0atZtIr9J
+	IsmtsUS4EZf9Mn8YGikghr0zYpyxNPcq668dAJNb8rQq7VU0kitE4HknFGsttsdiWp0A
+	1BTZlbNi4jZtDueiQ0kAl0tpTWvFeJvlDZPIRjfKV1Mo6LBWzM/8XZ7tD6TfzuhtvIie
+	ScwtXc78mqavyllu1IFkW6wqeyeykxM4ZyAS+lIQj2vqpu3sP7HymgZVcVuXDopu938u
+	TutItsDr0IMsh9JXr8GUqYminnsU6ob70xcODqkaRXYvZbbIduvCxsVbxDzZ2uK/ssE0
+	3YFw==
 MIME-Version: 1.0
-To: Bruce Ashfield <bruce.ashfield@windriver.com>, 
- yocto@yoctoproject.org
-References: <53BD0DA4.50108@dfki.de> <53BD3920.8090603@windriver.com>
-In-Reply-To: <53BD3920.8090603@windriver.com>
-Subject: Re: How to select defconfig for kernel build with yocto/bitbake
+X-Received: by 10.194.133.1 with SMTP id oy1mr56378854wjb.87.1404999997065;
+	Thu, 10 Jul 2014 06:46:37 -0700 (PDT)
+Sender: allenkll@gmail.com
+Received: by 10.216.186.134 with HTTP; Thu, 10 Jul 2014 06:46:37 -0700 (PDT)
+In-Reply-To: <CAP71Wjw6FZ94P3c8jT+sqgqwKvvjF6ko6PGM9AP3Mo4NTpxQRg@mail.gmail.com>
+References: <CAO-21LPnS-BJyZw-SEiSveK5sP=sZaDnMRd9PHVVe5WG6NQG_A@mail.gmail.com>
+	<CAP71Wjw6FZ94P3c8jT+sqgqwKvvjF6ko6PGM9AP3Mo4NTpxQRg@mail.gmail.com>
+Date: Thu, 10 Jul 2014 08:46:37 -0500
+X-Google-Sender-Auth: 6AQOQn2HjA8JBN-Z9iwHHugY7h8
+Message-ID: <CAO-21LM7hApyatcYRqxgw9qAcG1zreQWnYjtUYabJfOfRfMM3A@mail.gmail.com>
+From: "Allen Kennedy Jr." <allen@kennedystuff.com>
+To: Nicolas Dechesne <nicolas.dechesne@linaro.org>
+Cc: Yocto list discussion <yocto@yoctoproject.org>
+Subject: Re: Environment Variables being unset by bitbake?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -46,138 +57,111 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 10 Jul 2014 11:11:58 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Thu, 10 Jul 2014 13:46:49 -0000
+Content-Type: multipart/alternative; boundary=089e01228d46bc106404fdd70dac
 
-Thank you Bruce, that did the trick. But I am facing a new problem while 
-using bitbake for the build process.
+--089e01228d46bc106404fdd70dac
+Content-Type: text/plain; charset=UTF-8
 
-I have checked to build the odroid kernel with a standard crosscompiler 
-tool chain and it works without any problems.
+Nicholas,
+  Thanks for your response.  I tried the following permutations:
+I added this: BB_ENV_EXTRAWHITE += " JAVA_HOME" to the top of my recipe.
+I added this: BB_ENV_EXTRAWHITE += "JAVA_HOME" to the top of my recipe.
+I added this: BB_ENV_EXTRAWHITE = "JAVA_HOME" to the top of my recipe.
+I added this: export BB_ENV_EXTRAWHITE="JAVA_HOME" to the top of my recipe
+I added this: export BB_ENV_EXTRAWHITE="JAVA_HOME" to a function in my
+recipe
 
-When I do the same with the bitbake toolchain (bitbake virtual/kernel), 
-it somehow creates a recursive link in the folder
+All with no joy.  I did a bit of google-fu and came up with this one:
+on the command line: BB_ENV_EXTRAWHITE="JAVA_HOME" bitbake myRecipe
 
-package/usr/src/kernel/drivers/gpu/arm/mali400/ump/arch/arch-release -> 
-arch-release
+Which almost works, but not really.  my bbnote in my recipe exclaims: NOTE:
+java is here: /usr/local/java/jdk
+which is right, but then in the shell script that gets called after that,
+the first lines are:
+if [ -z "$JAVA_HOME" ]; then
+    echo "JAVA_HOME is not set"
+    exit 1
+fi
 
-This causes a crash in the build system.
+Which turns out the error that JAVA_HOME is not set.
 
-Compilation runs fine though. This error seems to be within do_package. 
-I have removed the link, but somehow it is created automatically.
+again, this shell script works perfectly fine outside of the bitbake system.
 
-Any ideas?
-
-/Markus
-
+Any other ideas?
+thanks,
+-allen
 
 
-On 09.07.2014 14:44, Bruce Ashfield wrote:
-> On 14-07-09 05:38 AM, Dr. Markus Eich wrote:
->> Dear all,
->>
->> I work on the process to compile odroid xu kernel with yocto/bitbake
->>
->> In the kernel sources (from hardkernel) I have the corresponding
->> defconfig file, i.e. in the git folder
->> /arch/arm/configs/odroidxu_ubuntu_defconfig.
->>
->> How can I tell bitbake in my recipe to use "odroidxu_ubuntu_defconfig"?
+
+
+On Thu, Jul 10, 2014 at 3:29 AM, Nicolas Dechesne <
+nicolas.dechesne@linaro.org> wrote:
+
+> On Wed, Jul 9, 2014 at 10:58 PM, Allen Kennedy Jr.
+> <allen@kennedystuff.com> wrote:
+> > Any ideas why or how this is getting unset, and how to fix?
+> > I couldn't find any documentation that talks about this.
 >
-> To trigger the oe-core kernel processing to use the defconfig, you need
-> to put that defconfig in your SRC_URI.
->
-> Which means you should grab a copy of that from the kernel tree, and
-> in the same directory structure as your kernel recipe.
->
-> See meta-skeleton/recipes-kernel/linux/linux-yocto-custom.bb for an
-> example.
->
-> Cheers,
->
-> Bruce
->
->
->>
->> My recipe looks as follow:
->>
->> ===
->> require recipes-kernel/linux/linux-yocto.inc
->>
->> KERNEL_IMAGETYPE = "uImage"
->>
->> COMPATIBLE_MACHINE = "odroid-xu"
->>
->> LINUX_VERSION = "3.4.91"
->> LINUX_VERSION_EXTENSION = "-custom"
->>
->> FILESEXTRAPATHS_prepend := "${THISDIR}/linux-hardkernel-3.4:"
->>
->> S = "${WORKDIR}/git"
->>
->> # from where to fetch the kernel
->> KERNEL_REPO_OWNER ??= "hardkernel"
->> KERNEL_REPO_URI ??= "git://github.com/${KERNEL_REPO_OWNER}/linux.git"
->> KBRANCH = "odroidxu-3.4.y"
->>
->> SRCREV = "${AUTOREV}"
->>
->> KV = "3.4.91"
->> PV = "${KV}+gitr${SRCPV}"
->> LOCALVERSION ?= ""
->>
->>
->> SRC_URI = " \
->>    ${KERNEL_REPO_URI};nocheckout=1;branch=${KBRANCH} \
->> "
->>
->> PACKAGES =+ "kernel-headers"
->> FILES_kernel-headers = "${exec_prefix}/src/linux*"
->> ===
->>
->> Cheers,
->>
->> Markus
->>
->>
->>
->>
+> by the way, this is not a bug, and doesn't need to be 'fixed'. this is
+> purposely done this way to avoid leaking too much information from
+> your environment into the build environment. bitbake tries to isolate
+> as much as possible from the host.
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 >
 
--- 
-Dr.-Ing. Markus Eich
+--089e01228d46bc106404fdd70dac
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-  Senior Researcher
-  Marine Inspection Robotics
-  Space Robotics
-   Besuchsadresse der Nebengesch‰ftstelle:
-  DFKI GmbH
-  Robotics Innovation Center
-  Robert-Hooke-Straﬂe 5
-  28359 Bremen, Germany
-   Postadresse der Hauptgesch‰ftsstelle Standort Bremen:
-  DFKI GmbH
-  Robotics Innovation Center
-  Robert-Hooke-Straﬂe 1
-  28359 Bremen, Germany
+<div dir=3D"ltr"><div><div>Nicholas,<br></div>=C2=A0 Thanks for your respon=
+se.=C2=A0 I tried the following permutations:<br>I added this: BB_ENV_EXTRA=
+WHITE +=3D &quot; JAVA_HOME&quot; to the top of my recipe.<br>I added this:=
+ BB_ENV_EXTRAWHITE +=3D &quot;JAVA_HOME&quot; to the top of my recipe.<br>
+I added this: BB_ENV_EXTRAWHITE =3D &quot;JAVA_HOME&quot; to the top of my =
+recipe.<br>I added this: export BB_ENV_EXTRAWHITE=3D&quot;JAVA_HOME&quot; t=
+o the top of my recipe<br>I added this: export BB_ENV_EXTRAWHITE=3D&quot;JA=
+VA_HOME&quot; to a function in my recipe<br>
+<br></div><div>All with no joy.=C2=A0 I did a bit of google-fu and came up =
+with this one:<br></div><div>on the command line: BB_ENV_EXTRAWHITE=3D&quot=
+;JAVA_HOME&quot; bitbake myRecipe<br><br></div><div>Which almost works, but=
+ not really.=C2=A0 my bbnote in my recipe exclaims: NOTE: java is here: /us=
+r/local/java/jdk<br>
+</div><div>which is right, but then in the shell script that gets called af=
+ter that, the first lines are:<br>if [ -z &quot;$JAVA_HOME&quot; ]; then<br=
+>=C2=A0=C2=A0=C2=A0 echo &quot;JAVA_HOME is not set&quot;<br>=C2=A0=C2=A0=
+=C2=A0 exit 1<br>fi<br><br></div>
+<div>Which turns out the error that JAVA_HOME is not set.<br><br></div><div=
+>again, this shell script works perfectly fine outside of the bitbake syste=
+m.<br><br></div><div>Any other ideas?<br></div><div>thanks,<br></div><div>
+-allen<br></div><div><br></div><div><br></div></div><div class=3D"gmail_ext=
+ra"><br><br><div class=3D"gmail_quote">On Thu, Jul 10, 2014 at 3:29 AM, Nic=
+olas Dechesne <span dir=3D"ltr">&lt;<a href=3D"mailto:nicolas.dechesne@lina=
+ro.org" target=3D"_blank">nicolas.dechesne@linaro.org</a>&gt;</span> wrote:=
+<br>
+<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
+x #ccc solid;padding-left:1ex"><div class=3D"">On Wed, Jul 9, 2014 at 10:58=
+ PM, Allen Kennedy Jr.<br>
+&lt;<a href=3D"mailto:allen@kennedystuff.com">allen@kennedystuff.com</a>&gt=
+; wrote:<br>
+&gt; Any ideas why or how this is getting unset, and how to fix?<br>
+&gt; I couldn&#39;t find any documentation that talks about this.<br>
+<br>
+</div>by the way, this is not a bug, and doesn&#39;t need to be &#39;fixed&=
+#39;. this is<br>
+purposely done this way to avoid leaking too much information from<br>
+your environment into the build environment. bitbake tries to isolate<br>
+as much as possible from the host.<br>
+<div class=3D"HOEnZb"><div class=3D"h5">--<br>
+_______________________________________________<br>
+yocto mailing list<br>
+<a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br>
+<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" target=3D"_blank"=
+>https://lists.yoctoproject.org/listinfo/yocto</a><br>
+</div></div></blockquote></div><br></div>
 
-  Tel.:     +49 421 178 45-4105
-  Zentrale: +49 421 178 45-0
-  Fax:      +49 421 178 45-4150 (Faxe bitte namentlich kennzeichnen)
-  E-Mail:   markus.eich@dfki.de
-
-  Weitere Informationen: http://www.dfki.de/robotik
-  -----------------------------------------------------------------------
-  Deutsches Forschungszentrum fuer Kuenstliche Intelligenz GmbH
-  Firmensitz: Trippstadter Straﬂe 122, D-67663 Kaiserslautern
-  Geschaeftsfuehrung: Prof. Dr. Dr. h.c. mult. Wolfgang Wahlster
-  (Vorsitzender) Dr. Walter Olthoff
-  Vorsitzender des Aufsichtsrats: Prof. Dr. h.c. Hans A. Aukes
-  Amtsgericht Kaiserslautern, HRB 2313
-  Sitz der Gesellschaft: Kaiserslautern (HRB 2313)
-  USt-Id.Nr.:    DE 148646973
-  Steuernummer:  19/673/0060/3
-  -----------------------------------------------------------------------
-
-
+--089e01228d46bc106404fdd70dac--
