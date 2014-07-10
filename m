@@ -1,48 +1,38 @@
-Return-Path: <jags.gediya@gmail.com>
+Return-Path: <Liezhi.Yang@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id EB916E0056A; Thu, 10 Jul 2014 02:10:40 -0700 (PDT)
+	id 44DD5E0056A; Thu, 10 Jul 2014 02:14:08 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (jags.gediya[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.216.178 listed in list.dnswl.org]
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [147.11.1.11 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-qc0-f178.google.com (mail-qc0-f178.google.com
-	[209.85.216.178])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 17F2AE00559;
-	Thu, 10 Jul 2014 02:10:39 -0700 (PDT)
-Received: by mail-qc0-f178.google.com with SMTP id i17so3167789qcy.37
-	for <multiple recipients>; Thu, 10 Jul 2014 02:10:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=GYG+l1rk34nO52mhjPd/mEnfStIldeDEAd3IRPy8vWE=;
-	b=OCPxYR6xn8y/ko0e7B81W8L8bKLsgHj0igFSJpKN6fWKk0u6ElBjWEqiabs9M03fbL
-	3IA80ERHmlob6/IMekHyjLt0btYCJWg929ZOscveiUhv+wmNUywEvVuuvFNyr/PbjqZz
-	36bO913NaO7g+LzKUdnanaikP1zYWvsAL51pVeMCjV6SkbODAX+ZmRn0gM9Jj78fOvJG
-	w6O/e0K53JKdcsg7YWjMWbbcPyy2UQDzidZR3DcqWS+U9+xsvj81Pvy2i/1boJrffijy
-	8OnJkWRz+j2n9GBsbk0S60EsNQxLN/bRLv7dPMmld8VKWWwP7GtQsBRkgiXcptxNJs4F
-	Rjiw==
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 158BEE00559
+	for <yocto@yoctoproject.org>; Thu, 10 Jul 2014 02:13:54 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
+	[147.11.189.40])
+	by mail.windriver.com (8.14.5/8.14.5) with ESMTP id s6A9Do1S018560
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
+	Thu, 10 Jul 2014 02:13:50 -0700 (PDT)
+Received: from [128.224.162.181] (128.224.162.181) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.40) with Microsoft SMTP Server id 14.3.169.1;
+	Thu, 10 Jul 2014 02:13:50 -0700
+Message-ID: <53BE594C.3040600@windriver.com>
+Date: Thu, 10 Jul 2014 17:13:48 +0800
+From: Robert Yang <liezhi.yang@windriver.com>
+User-Agent: Mozilla/5.0 (X11; Linux i686;
+	rv:24.0) Gecko/20100101 Thunderbird/24.6.0
 MIME-Version: 1.0
-X-Received: by 10.140.105.163 with SMTP id c32mr73830072qgf.85.1404983438736; 
-	Thu, 10 Jul 2014 02:10:38 -0700 (PDT)
-Received: by 10.224.37.133 with HTTP; Thu, 10 Jul 2014 02:10:38 -0700 (PDT)
-Date: Thu, 10 Jul 2014 14:40:38 +0530
-Message-ID: <CAP3RZoiejMxU33NE2cwmWN=LxJ7RoieaCJLf5Ch0hQSGABXKcw@mail.gmail.com>
-From: jags gediya <jags.gediya@gmail.com>
-To: yocto@yoctoproject.org, meta-freescale@yoctoproject.org
-Subject: yocto build taking too long time
+To: Natural Groove <natural_groove@hotmail.fr>, "yocto@yoctoproject.org"
+	<yocto@yoctoproject.org>
+References: <DUB128-W333CD3D967FBE45F67D02920E0@phx.gbl>
+In-Reply-To: <DUB128-W333CD3D967FBE45F67D02920E0@phx.gbl>
+Subject: Re: crossbuild for arm :FFPLAY not build
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -54,14 +44,58 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 10 Jul 2014 09:10:41 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Thu, 10 Jul 2014 09:14:08 -0000
+Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
+Content-Transfer-Encoding: 7bit
 
-When i run command bitbake core-image-minimalm my build stops at
-NOTE: Preparing runqueue
-and after taking too long time it continues again.
-Is build checks anything at that point?
 
-Thanks,
-Jags Gediya
+
+On 07/10/2014 05:02 PM, Natural Groove wrote:
+> Hi,
+>
+> Im trying to crossbuild ffmpeg for arm (colibri-t20).
+> I wrote a simplest recipe in order to achieve this, but even if ffmpeg, ffprobe
+> and ffserver are build, ffplay isnt, i first thought that i had forgotten some
+> dependencies but i dont see which could be missing.
+> Any idea why this isnt working?
+>
+> The recipe:
+>
+> SRC_URI = "https://www.ffmpeg.org/releases/ffmpeg-2.1.1.tar.gz"
+> SRC_URI[md5sum] = "294749b2ebdd22ef7d9b9d12a70d5b8c"
+> SRC_URI[sha256sum] =
+> "66f521dffefcbb6c09a402f6373e6cef81fbf4284d0a33cdef9a19412df1dd18"
+> inherit autotools pkgconfig
+> DEPENDS = "yasm-native libsdl libx11 zlib libtheora libogg libass libtool"
+> S="${WORKDIR}/ffmpeg-2.1.1"
+>
+>
+> inherit autotools pkgconfig
+>
+> CROSS_COMPILE =
+> "/home/rick/oe-core/build/out-eglibc/sysroots/i686-linux/usr/bin/armv7ahf-vfp-angstrom-linux-gnueabi/arm-angstrom-linux-gnueabi-"
+>
+> EXTRA_OECONF = "--arch=arm --enable-cross-compile
+> --cross-prefix=${CROSS_COMPILE} --target-os=linux --enable-gpl
+> --enable-libtheora --enable-libvorbis --extra-libs="-ldl" --enable-ffplay
+> --enable-shared --enable-pic"
+
+Check config.log to see why --enable-ffplay doesn't work ?
+
+>
+> do_configure() {
+>          ./configure ${EXTRA_OECONF}
+> }
+
+Remove the do_configure ()?
+
+// Robert
+
+>
+>
+> Regards
+> Ricko
+>
+>
+>
 
