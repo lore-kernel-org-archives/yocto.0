@@ -1,56 +1,34 @@
-Return-Path: <daiane.list@gmail.com>
+Return-Path: <corneliux.stoicescu@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 28A0FE0079D; Fri, 11 Jul 2014 06:46:49 -0700 (PDT)
+	id D8513E0030A; Fri, 11 Jul 2014 06:58:35 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (daiane.list[at]gmail.com)
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [134.134.136.24 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.220.169 listed in list.dnswl.org]
-Received: from mail-vc0-f169.google.com (mail-vc0-f169.google.com
-	[209.85.220.169])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3D51EE00736;
-	Fri, 11 Jul 2014 06:46:25 -0700 (PDT)
-Received: by mail-vc0-f169.google.com with SMTP id la4so2083279vcb.14
-	for <multiple recipients>; Fri, 11 Jul 2014 06:46:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:sender:in-reply-to:references:date:message-id:subject
-	:from:to:cc:content-type:content-transfer-encoding;
-	bh=+vxNyKToN0aa5Xp6iEVHFUpIn8Y6Agl7qXDc6SqpfYo=;
-	b=MMb8dT4h2lg4a4yDNahoO/+K7b0+SuwZdCAlRBnEN4Eg0eD4J/n3Rkph7stA3prx+u
-	M1+JbtUvD045I6Io/XgjbN+sMwEuz3rZkDE6+ZpOuNCi5fRLifIct9oNl5F7ROwoI2vA
-	6S/e131rVsygG4YYnP1gA4rZbuRVudNbvallmFzbkMAPhITmQQKlcShuQBNELbEUbQlz
-	D15NatJjVvFENXC5nzTnx1FvOXHwkDRyt0S1qicQ7gufaR4DyedTlBE70gGeQLRbi1CK
-	K4jPUZviDTQ3QboS/3Vi/BgDjX/z42LJqFqrq2KkfJYvkGz1RSeouse1Nk2Lp4Bn2r2z
-	2h4w==
-MIME-Version: 1.0
-X-Received: by 10.220.68.83 with SMTP id u19mr943364vci.52.1405086385146; Fri,
-	11 Jul 2014 06:46:25 -0700 (PDT)
-Sender: angolini@gmail.com
-X-Google-Sender-Delegation: angolini@gmail.com
-Received: by 10.220.118.132 with HTTP; Fri, 11 Jul 2014 06:46:25 -0700 (PDT)
-In-Reply-To: <CAP3RZoiejMxU33NE2cwmWN=LxJ7RoieaCJLf5Ch0hQSGABXKcw@mail.gmail.com>
-References: <CAP3RZoiejMxU33NE2cwmWN=LxJ7RoieaCJLf5Ch0hQSGABXKcw@mail.gmail.com>
-Date: Fri, 11 Jul 2014 10:46:25 -0300
-X-Google-Sender-Auth: hRx3-hHu0FkUEjKsfo4LfHF-_IA
-Message-ID: <CA+jg_OUkHqTnuj6gKoFDhB_yrAr1ASqsqQxXmqojFmNYQod-YA@mail.gmail.com>
-From: Daiane Angolini <daiane.list@gmail.com>
-To: jags gediya <jags.gediya@gmail.com>
-Cc: "meta-freescale@yoctoproject.org" <meta-freescale@yoctoproject.org>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: [meta-freescale] yocto build taking too long time
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8FEFCE002AC
+	for <yocto@yoctoproject.org>; Fri, 11 Jul 2014 06:58:33 -0700 (PDT)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga102.jf.intel.com with ESMTP; 11 Jul 2014 06:52:59 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.01,643,1400050800"; d="scan'208";a="571735768"
+Received: from linux.jf.intel.com (HELO linux.intel.com) ([10.23.219.25])
+	by orsmga002.jf.intel.com with ESMTP; 11 Jul 2014 06:58:32 -0700
+Received: from localhost.localdomain (unknown [10.237.112.162])
+	by linux.intel.com (Postfix) with ESMTP id B75A66A4007;
+	Fri, 11 Jul 2014 06:57:59 -0700 (PDT)
+From: Corneliu Stoicescu <corneliux.stoicescu@intel.com>
+To: yocto@yoctoproject.org
+Date: Fri, 11 Jul 2014 19:03:24 +0300
+Message-Id: <1405094604-16522-1-git-send-email-corneliux.stoicescu@intel.com>
+X-Mailer: git-send-email 1.8.3.2
+Subject: [PATCH] oeqa/controllers/beaglebonetarget.py: fix deploy when kernel file is a broken link
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -62,33 +40,33 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 11 Jul 2014 13:46:49 -0000
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Fri, 11 Jul 2014 13:58:35 -0000
 
-On Thu, Jul 10, 2014 at 6:10 AM, jags gediya <jags.gediya@gmail.com> wrote:
-> When i run command bitbake core-image-minimalm my build stops at
-> NOTE: Preparing runqueue
-> and after taking too long time it continues again.
-> Is build checks anything at that point?
+Sometimes the uncompressed rootfs image contains boot/uImage but if it's a symlink, it seems broken from the master image's point of view.
+Because [ -e /mnt/testrootfs/boot/uImage ] will return 1, it will proceed to copy the backup kernel file over it but cp ~/test-kernel /mnt/testrootfs/boot/uImage will also fail with:
+cp: not writing through dangling symlink
 
+Adding a new check here, if the boot/uImage is a link, leave it as is.
 
-I have no idea what you=C2=B4re talking about.
+Signed-off-by: Corneliu Stoicescu <corneliux.stoicescu@intel.com>
+---
+ meta-yocto-bsp/lib/oeqa/controllers/beaglebonetarget.py | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-I can only say, yes, yocto takes forever, and this is the "normal" behavior=
-.
+diff --git a/meta-yocto-bsp/lib/oeqa/controllers/beaglebonetarget.py b/meta-yocto-bsp/lib/oeqa/controllers/beaglebonetarget.py
+index b2e9050..0f1aeb3 100644
+--- a/meta-yocto-bsp/lib/oeqa/controllers/beaglebonetarget.py
++++ b/meta-yocto-bsp/lib/oeqa/controllers/beaglebonetarget.py
+@@ -45,7 +45,7 @@ class BeagleBoneTarget(MasterImageHardwareTarget):
+                 'mount -L testrootfs /mnt/testrootfs',
+                 'rm -rf /mnt/testrootfs/*',
+                 'tar xvf ~/test-rootfs.%s -C /mnt/testrootfs' % self.image_fstype,
+-                '[ -e /mnt/testrootfs/boot/uImage ] || cp ~/test-kernel /mnt/testrootfs/boot/uImage',
++                '[ -e /mnt/testrootfs/boot/uImage ] || [ -L /mnt/testrootfs/boot/uImage ] || cp ~/test-kernel /mnt/testrootfs/boot/uImage',
+                 ]
+ 
+         for _, dtbfn in self.dtbs.iteritems():
+-- 
+1.8.3.2
 
-In my core i5, core-image-minimal takes something like 30 minutes to
-build from scratch
-
-
-Daiane
->
-> Thanks,
-> Jags Gediya
-> --
-> _______________________________________________
-> meta-freescale mailing list
-> meta-freescale@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/meta-freescale
 
