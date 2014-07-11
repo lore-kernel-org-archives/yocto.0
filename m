@@ -1,41 +1,39 @@
-Return-Path: <markus.eich@dfki.de>
+Return-Path: <Vladimir_Redzhepov@epam.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 0DF84E00769; Fri, 11 Jul 2014 01:55:43 -0700 (PDT)
+	id 2257EE0074B; Fri, 11 Jul 2014 03:12:19 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,T_HK_NAME_DR
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE
 	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000] *  0.0 T_HK_NAME_DR T_HK_NAME_DR
-Received: from sea-mail.dfki.de (sea-mail.dfki.de [134.96.191.185])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 79149E00736
-	for <yocto@yoctoproject.org>; Fri, 11 Jul 2014 01:55:38 -0700 (PDT)
-Received: from sea-mail.dfki.de (localhost.localdomain [127.0.0.1])
-	by localhost (Email Security Appliance) with SMTP id
-	297429FA65_3BFA689B; Fri, 11 Jul 2014 08:55:37 +0000 (GMT)
-Received: from mail.dfki.de (lnv-104.sb.dfki.de [134.96.191.146])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(Client did not present a certificate)
-	by sea-mail.dfki.de (Sophos Email Appliance) with ESMTPS id
-	ECEF09FA53_3BFA688F; Fri, 11 Jul 2014 08:55:36 +0000 (GMT)
-Received: from [192.168.114.231] (unknown [192.168.114.231])
-	(using TLSv1 with cipher DHE-RSA-AES128-SHA (128/128 bits))
-	(No client certificate requested)
-	by mail.dfki.de (Postfix) with ESMTPSA id CFC13310AE;
-	Fri, 11 Jul 2014 10:55:36 +0200 (CEST)
-Message-ID: <53BFA687.2030402@dfki.de>
-Date: Fri, 11 Jul 2014 10:55:35 +0200
-From: "Dr. Markus Eich" <markus.eich@dfki.de>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:24.0) Gecko/20100101 Thunderbird/24.6.0
+	*      [score: 0.0000]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+X-Greylist: delayed 904 seconds by postgrey-1.32 at yocto-www;
+	Fri, 11 Jul 2014 03:12:13 PDT
+Received: from EVBYMINSA0101.epam.com (evbyminsa0101.epam.com [217.21.63.36])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 29C97E00736
+	for <yocto@yoctoproject.org>; Fri, 11 Jul 2014 03:12:13 -0700 (PDT)
+Received: from EPBYMINSA0001.epam.com (10.6.110.2) by EPBYMINSA0001.epam.com
+	(10.6.110.2) with Microsoft SMTP Server (TLS) id 15.0.913.22;
+	Fri, 11 Jul 2014 12:56:43 +0300
+Received: from EPBYMINSA0001.epam.com ([::1]) by EPBYMINSA0001.epam.com
+	([::1]) with mapi id 15.00.0913.011; Fri, 11 Jul 2014 12:56:43 +0300
+From: Vladimir Redzhepov <Vladimir_Redzhepov@epam.com>
+To: "joe@joenicholson.co.uk" <joe@joenicholson.co.uk>, Yocto
+	<yocto@yoctoproject.org>
+Thread-Topic: [yocto] Oracle Java for ARM?
+Thread-Index: AQHPm5B8e5mV/F8b/UunSgnrVvJcapuapJKg
+Date: Fri, 11 Jul 2014 09:56:43 +0000
+Message-ID: <27a7697e02b14db1adca98e09a737648@EPBYMINSA0001.epam.com>
+References: <405982f85543bd90dcd320cbd8d55d9f@joenicholson.co.uk>
+In-Reply-To: <405982f85543bd90dcd320cbd8d55d9f@joenicholson.co.uk>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.6.137.107]
 MIME-Version: 1.0
-To: Bruce Ashfield <bruce.ashfield@windriver.com>, 
- yocto@yoctoproject.org
-References: <53BD0DA4.50108@dfki.de> <53BD3920.8090603@windriver.com>
-	<53BE74F6.2070704@dfki.de> <53BEB568.3030906@windriver.com>
-In-Reply-To: <53BEB568.3030906@windriver.com>
-Subject: Re: How to select defconfig for kernel build with yocto/bitbake
+Subject: Re: Oracle Java for ARM?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -47,176 +45,106 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 11 Jul 2014 08:55:43 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Fri, 11 Jul 2014 10:12:19 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_27a7697e02b14db1adca98e09a737648EPBYMINSA0001epamcom_"
 
-I have tried the different task separately.
+--_000_27a7697e02b14db1adca98e09a737648EPBYMINSA0001epamcom_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-do_fetch works, no recursive link created
-do_kernel_checkout works, no recursive link created
-do_kernel_configme works, no recursive link created
-do_compile works, no recursive link created
-do_compile_kernelmodules works, no recursive link created
-do_install works, no recursive link created
+SGkNCg0KV2XigJl2ZSBqdXN0IGFkZGVkIHN1cHBvcnQgZm9yIE9yYWNsZSBKYXZhIEVtYmVkZGVk
+IFNFIGZvciBBUk0gaW50byBtZXRhLW9yYWNsZS1qYXZhLiBZb3UgY2FuIHNlZSBvdXIgcGF0Y2gg
+aGVyZQ0KaHR0cHM6Ly9saXN0cy55b2N0b3Byb2plY3Qub3JnL3BpcGVybWFpbC95b2N0by8yMDE0
+LUp1bmUvMDIwMjIzLmh0bWxcPGh0dHBzOi8vbGlzdHMueW9jdG9wcm9qZWN0Lm9yZy9waXBlcm1h
+aWwveW9jdG8vMjAxNC1KdW5lLzAyMDIyMy5odG1sLz4NCkZyb206IHlvY3RvLWJvdW5jZXNAeW9j
+dG9wcm9qZWN0Lm9yZyBbbWFpbHRvOnlvY3RvLWJvdW5jZXNAeW9jdG9wcm9qZWN0Lm9yZ10gT24g
+QmVoYWxmIE9mIEpvZSBOaWNob2xzb24NClNlbnQ6IFdlZG5lc2RheSwgSnVseSAwOSwgMjAxNCA3
+OjExIFBNDQpUbzogWW9jdG8NClN1YmplY3Q6IFt5b2N0b10gT3JhY2xlIEphdmEgZm9yIEFSTT8N
+Cg0KDQpIaSBHdXlzDQoNCldoYXQncyB0aGUgYmVzdCB3YXkgb2YgYnJpbmdpbmcgaW4gT3JhY2xl
+J3MgSmF2YSBKUkUgZm9yIEFSTT8NCg0KVGhlIG1ldGEtb3JhY2xlLWphdmEgbGF5ZXIgbG9va3Mg
+SW50ZWwgb25seSBhdCB0aGUgbW9tZW50IDotKA0KDQpDaGVlcnMhDQoNCkpvZQ0KDQoNCg0K
 
-do_package : Here it crashes. Th package subfolder is created and here 
-it creates the recursive link within the subfolder.
+--_000_27a7697e02b14db1adca98e09a737648EPBYMINSA0001epamcom_
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-What does do_package do in detail? How can I further analyze the error.
+PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
+bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
+YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
+cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
+VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
+Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
+ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTUgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
+PjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
+IkNhbWJyaWEgTWF0aCI7DQoJcGFub3NlLTE6MiA0IDUgMyA1IDQgNiAzIDIgNDt9DQpAZm9udC1m
+YWNlDQoJe2ZvbnQtZmFtaWx5OkNhbGlicmk7DQoJcGFub3NlLTE6MiAxNSA1IDIgMiAyIDQgMyAy
+IDQ7fQ0KQGZvbnQtZmFjZQ0KCXtmb250LWZhbWlseTpWZXJkYW5hOw0KCXBhbm9zZS0xOjIgMTEg
+NiA0IDMgNSA0IDQgMiA0O30NCi8qIFN0eWxlIERlZmluaXRpb25zICovDQpwLk1zb05vcm1hbCwg
+bGkuTXNvTm9ybWFsLCBkaXYuTXNvTm9ybWFsDQoJe21hcmdpbjowaW47DQoJbWFyZ2luLWJvdHRv
+bTouMDAwMXB0Ow0KCWZvbnQtc2l6ZToxMi4wcHQ7DQoJZm9udC1mYW1pbHk6IlRpbWVzIE5ldyBS
+b21hbiIsInNlcmlmIjt9DQphOmxpbmssIHNwYW4uTXNvSHlwZXJsaW5rDQoJe21zby1zdHlsZS1w
+cmlvcml0eTo5OTsNCgljb2xvcjojMDU2M0MxOw0KCXRleHQtZGVjb3JhdGlvbjp1bmRlcmxpbmU7
+fQ0KYTp2aXNpdGVkLCBzcGFuLk1zb0h5cGVybGlua0ZvbGxvd2VkDQoJe21zby1zdHlsZS1wcmlv
+cml0eTo5OTsNCgljb2xvcjojOTU0RjcyOw0KCXRleHQtZGVjb3JhdGlvbjp1bmRlcmxpbmU7fQ0K
+cA0KCXttc28tc3R5bGUtcHJpb3JpdHk6OTk7DQoJbXNvLW1hcmdpbi10b3AtYWx0OmF1dG87DQoJ
+bWFyZ2luLXJpZ2h0OjBpbjsNCgltc28tbWFyZ2luLWJvdHRvbS1hbHQ6YXV0bzsNCgltYXJnaW4t
+bGVmdDowaW47DQoJZm9udC1zaXplOjEyLjBwdDsNCglmb250LWZhbWlseToiVGltZXMgTmV3IFJv
+bWFuIiwic2VyaWYiO30NCnNwYW4uRW1haWxTdHlsZTE4DQoJe21zby1zdHlsZS10eXBlOnBlcnNv
+bmFsLXJlcGx5Ow0KCWZvbnQtZmFtaWx5OiJDYWxpYnJpIiwic2Fucy1zZXJpZiI7DQoJY29sb3I6
+IzFGNDk3RDt9DQouTXNvQ2hwRGVmYXVsdA0KCXttc28tc3R5bGUtdHlwZTpleHBvcnQtb25seTsN
+Cglmb250LXNpemU6MTAuMHB0O30NCkBwYWdlIFdvcmRTZWN0aW9uMQ0KCXtzaXplOjguNWluIDEx
+LjBpbjsNCgltYXJnaW46NTYuN3B0IDQyLjVwdCA1Ni43cHQgODUuMDVwdDt9DQpkaXYuV29yZFNl
+Y3Rpb24xDQoJe3BhZ2U6V29yZFNlY3Rpb24xO30NCi0tPjwvc3R5bGU+PCEtLVtpZiBndGUgbXNv
+IDldPjx4bWw+DQo8bzpzaGFwZWRlZmF1bHRzIHY6ZXh0PSJlZGl0IiBzcGlkbWF4PSIxMDI2IiAv
+Pg0KPC94bWw+PCFbZW5kaWZdLS0+PCEtLVtpZiBndGUgbXNvIDldPjx4bWw+DQo8bzpzaGFwZWxh
+eW91dCB2OmV4dD0iZWRpdCI+DQo8bzppZG1hcCB2OmV4dD0iZWRpdCIgZGF0YT0iMSIgLz4NCjwv
+bzpzaGFwZWxheW91dD48L3htbD48IVtlbmRpZl0tLT4NCjwvaGVhZD4NCjxib2R5IGxhbmc9IkVO
+LVVTIiBsaW5rPSIjMDU2M0MxIiB2bGluaz0iIzk1NEY3MiI+DQo8ZGl2IGNsYXNzPSJXb3JkU2Vj
+dGlvbjEiPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4w
+cHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OywmcXVvdDtzYW5zLXNlcmlmJnF1b3Q7
+O2NvbG9yOiMxRjQ5N0QiPkhpPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05v
+cm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2Fs
+aWJyaSZxdW90OywmcXVvdDtzYW5zLXNlcmlmJnF1b3Q7O2NvbG9yOiMxRjQ5N0QiPjxvOnA+Jm5i
+c3A7PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJm
+b250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssJnF1b3Q7c2Fu
+cy1zZXJpZiZxdW90Oztjb2xvcjojMUY0OTdEIj5XZeKAmXZlIGp1c3QgYWRkZWQgc3VwcG9ydCBm
+b3IgT3JhY2xlIEphdmEgRW1iZWRkZWQgU0UgZm9yIEFSTSBpbnRvIG1ldGEtb3JhY2xlLWphdmEu
+IFlvdSBjYW4gc2VlIG91ciBwYXRjaCBoZXJlDQo8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBj
+bGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWls
+eTomcXVvdDtDYWxpYnJpJnF1b3Q7LCZxdW90O3NhbnMtc2VyaWYmcXVvdDs7Y29sb3I6IzFGNDk3
+RCI+PGEgaHJlZj0iaHR0cHM6Ly9saXN0cy55b2N0b3Byb2plY3Qub3JnL3BpcGVybWFpbC95b2N0
+by8yMDE0LUp1bmUvMDIwMjIzLmh0bWwvIj5odHRwczovL2xpc3RzLnlvY3RvcHJvamVjdC5vcmcv
+cGlwZXJtYWlsL3lvY3RvLzIwMTQtSnVuZS8wMjAyMjMuaHRtbFw8L2E+PG86cD48L286cD48L3Nw
+YW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6ZToxMS4w
+cHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OywmcXVvdDtzYW5zLXNlcmlmJnF1b3Q7
+O2NvbG9yOiMxRjQ5N0QiPjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxkaXY+DQo8ZGl2IHN0eWxl
+PSJib3JkZXI6bm9uZTtib3JkZXItdG9wOnNvbGlkICNFMUUxRTEgMS4wcHQ7cGFkZGluZzozLjBw
+dCAwaW4gMGluIDBpbiI+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48Yj48c3BhbiBzdHlsZT0iZm9u
+dC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LCZxdW90O3NhbnMt
+c2VyaWYmcXVvdDsiPkZyb206PC9zcGFuPjwvYj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBw
+dDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LCZxdW90O3NhbnMtc2VyaWYmcXVvdDsi
+PiB5b2N0by1ib3VuY2VzQHlvY3RvcHJvamVjdC5vcmcgW21haWx0bzp5b2N0by1ib3VuY2VzQHlv
+Y3RvcHJvamVjdC5vcmddDQo8Yj5PbiBCZWhhbGYgT2YgPC9iPkpvZSBOaWNob2xzb248YnI+DQo8
+Yj5TZW50OjwvYj4gV2VkbmVzZGF5LCBKdWx5IDA5LCAyMDE0IDc6MTEgUE08YnI+DQo8Yj5Ubzo8
+L2I+IFlvY3RvPGJyPg0KPGI+U3ViamVjdDo8L2I+IFt5b2N0b10gT3JhY2xlIEphdmEgZm9yIEFS
+TT88bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8L2Rpdj4NCjwvZGl2Pg0KPHAgY2xhc3M9Ik1zb05v
+cm1hbCI+PG86cD4mbmJzcDs8L286cD48L3A+DQo8cD48c3BhbiBzdHlsZT0iZm9udC1mYW1pbHk6
+JnF1b3Q7VmVyZGFuYSZxdW90OywmcXVvdDtzYW5zLXNlcmlmJnF1b3Q7Ij5IaSBHdXlzPG86cD48
+L286cD48L3NwYW4+PC9wPg0KPHA+PHNwYW4gc3R5bGU9ImZvbnQtZmFtaWx5OiZxdW90O1ZlcmRh
+bmEmcXVvdDssJnF1b3Q7c2Fucy1zZXJpZiZxdW90OyI+V2hhdCdzIHRoZSBiZXN0IHdheSBvZiBi
+cmluZ2luZyBpbiBPcmFjbGUncyBKYXZhIEpSRSBmb3IgQVJNPzxvOnA+PC9vOnA+PC9zcGFuPjwv
+cD4NCjxwPjxzcGFuIHN0eWxlPSJmb250LWZhbWlseTomcXVvdDtWZXJkYW5hJnF1b3Q7LCZxdW90
+O3NhbnMtc2VyaWYmcXVvdDsiPlRoZSBtZXRhLW9yYWNsZS1qYXZhIGxheWVyIGxvb2tzIEludGVs
+IG9ubHkgYXQgdGhlIG1vbWVudCA6LSg8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cD48c3BhbiBz
+dHlsZT0iZm9udC1mYW1pbHk6JnF1b3Q7VmVyZGFuYSZxdW90OywmcXVvdDtzYW5zLXNlcmlmJnF1
+b3Q7Ij5DaGVlcnMhPG86cD48L286cD48L3NwYW4+PC9wPg0KPHA+PHNwYW4gc3R5bGU9ImZvbnQt
+ZmFtaWx5OiZxdW90O1ZlcmRhbmEmcXVvdDssJnF1b3Q7c2Fucy1zZXJpZiZxdW90OyI+Sm9lPG86
+cD48L286cD48L3NwYW4+PC9wPg0KPHA+PHNwYW4gc3R5bGU9ImZvbnQtZmFtaWx5OiZxdW90O1Zl
+cmRhbmEmcXVvdDssJnF1b3Q7c2Fucy1zZXJpZiZxdW90OyI+Jm5ic3A7PG86cD48L286cD48L3Nw
+YW4+PC9wPg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LWZh
+bWlseTomcXVvdDtWZXJkYW5hJnF1b3Q7LCZxdW90O3NhbnMtc2VyaWYmcXVvdDsiPiZuYnNwOzxv
+OnA+PC9vOnA+PC9zcGFuPjwvcD4NCjwvZGl2Pg0KPC9kaXY+DQo8L2JvZHk+DQo8L2h0bWw+DQo=
 
-/Markus
-
-
-
-
-On 10.07.2014 17:46, Bruce Ashfield wrote:
-> On 14-07-10 07:11 AM, Dr. Markus Eich wrote:
->> Thank you Bruce, that did the trick. But I am facing a new problem while
->> using bitbake for the build process.
->>
->> I have checked to build the odroid kernel with a standard crosscompiler
->> tool chain and it works without any problems.
->>
->> When I do the same with the bitbake toolchain (bitbake virtual/kernel),
->> it somehow creates a recursive link in the folder
->>
->> package/usr/src/kernel/drivers/gpu/arm/mali400/ump/arch/arch-release ->
->> arch-release
->>
->> This causes a crash in the build system.
->>
->> Compilation runs fine though. This error seems to be within do_package.
->> I have removed the link, but somehow it is created automatically.
->>
->> Any ideas?
->
-> Nothing off the top of my head. That link would be created by the kernel
-> build, and not by bitbake or the oe-core kernel build classes.
->
-> I'd start by looking at the kernel's makefiles and seeing where the
-> link is being created.
->
-> Do specific tasks work ? i.e. is that happening during unpack/patch, or
-> during compilation.
->
-> Bruce
->
->>
->> /Markus
->>
->>
->>
->> On 09.07.2014 14:44, Bruce Ashfield wrote:
->>> On 14-07-09 05:38 AM, Dr. Markus Eich wrote:
->>>> Dear all,
->>>>
->>>> I work on the process to compile odroid xu kernel with yocto/bitbake
->>>>
->>>> In the kernel sources (from hardkernel) I have the corresponding
->>>> defconfig file, i.e. in the git folder
->>>> /arch/arm/configs/odroidxu_ubuntu_defconfig.
->>>>
->>>> How can I tell bitbake in my recipe to use 
->>>> "odroidxu_ubuntu_defconfig"?
->>>
->>> To trigger the oe-core kernel processing to use the defconfig, you need
->>> to put that defconfig in your SRC_URI.
->>>
->>> Which means you should grab a copy of that from the kernel tree, and
->>> in the same directory structure as your kernel recipe.
->>>
->>> See meta-skeleton/recipes-kernel/linux/linux-yocto-custom.bb for an
->>> example.
->>>
->>> Cheers,
->>>
->>> Bruce
->>>
->>>
->>>>
->>>> My recipe looks as follow:
->>>>
->>>> ===
->>>> require recipes-kernel/linux/linux-yocto.inc
->>>>
->>>> KERNEL_IMAGETYPE = "uImage"
->>>>
->>>> COMPATIBLE_MACHINE = "odroid-xu"
->>>>
->>>> LINUX_VERSION = "3.4.91"
->>>> LINUX_VERSION_EXTENSION = "-custom"
->>>>
->>>> FILESEXTRAPATHS_prepend := "${THISDIR}/linux-hardkernel-3.4:"
->>>>
->>>> S = "${WORKDIR}/git"
->>>>
->>>> # from where to fetch the kernel
->>>> KERNEL_REPO_OWNER ??= "hardkernel"
->>>> KERNEL_REPO_URI ??= "git://github.com/${KERNEL_REPO_OWNER}/linux.git"
->>>> KBRANCH = "odroidxu-3.4.y"
->>>>
->>>> SRCREV = "${AUTOREV}"
->>>>
->>>> KV = "3.4.91"
->>>> PV = "${KV}+gitr${SRCPV}"
->>>> LOCALVERSION ?= ""
->>>>
->>>>
->>>> SRC_URI = " \
->>>>    ${KERNEL_REPO_URI};nocheckout=1;branch=${KBRANCH} \
->>>> "
->>>>
->>>> PACKAGES =+ "kernel-headers"
->>>> FILES_kernel-headers = "${exec_prefix}/src/linux*"
->>>> ===
->>>>
->>>> Cheers,
->>>>
->>>> Markus
->>>>
->>>>
->>>>
->>>>
->>>
->>
->
-
--- 
-Dr.-Ing. Markus Eich
-
-  Senior Researcher
-  Marine Inspection Robotics
-  Space Robotics
-  
-  Besuchsadresse der Nebengesch‰ftstelle:
-  DFKI GmbH
-  Robotics Innovation Center
-  Robert-Hooke-Straﬂe 5
-  28359 Bremen, Germany
-  
-  Postadresse der Hauptgesch‰ftsstelle Standort Bremen:
-  DFKI GmbH
-  Robotics Innovation Center
-  Robert-Hooke-Straﬂe 1
-  28359 Bremen, Germany
-
-  Tel.:     +49 421 178 45-4105
-  Zentrale: +49 421 178 45-0
-  Fax:      +49 421 178 45-4150 (Faxe bitte namentlich kennzeichnen)
-  E-Mail:   markus.eich@dfki.de
-
-  Weitere Informationen: http://www.dfki.de/robotik
-  -----------------------------------------------------------------------
-  Deutsches Forschungszentrum fuer Kuenstliche Intelligenz GmbH
-  Firmensitz: Trippstadter Straﬂe 122, D-67663 Kaiserslautern
-  Geschaeftsfuehrung: Prof. Dr. Dr. h.c. mult. Wolfgang Wahlster
-  (Vorsitzender) Dr. Walter Olthoff
-  Vorsitzender des Aufsichtsrats: Prof. Dr. h.c. Hans A. Aukes
-  Amtsgericht Kaiserslautern, HRB 2313
-  Sitz der Gesellschaft: Kaiserslautern (HRB 2313)
-  USt-Id.Nr.:    DE 148646973
-  Steuernummer:  19/673/0060/3
-  -----------------------------------------------------------------------
-
-
+--_000_27a7697e02b14db1adca98e09a737648EPBYMINSA0001epamcom_--
