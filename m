@@ -1,41 +1,54 @@
-Return-Path: <Vladimir_Redzhepov@epam.com>
+Return-Path: <joe@joenicholson.co.uk>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 7E1CCE0074B; Fri, 11 Jul 2014 03:47:50 -0700 (PDT)
+	id E133EE0074B; Fri, 11 Jul 2014 04:44:37 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [193.189.74.44 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from EVBYMINSA0101.epam.com (evbyminsa0101.epam.com [217.21.63.36])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 839BCE00736
-	for <yocto@yoctoproject.org>; Fri, 11 Jul 2014 03:47:45 -0700 (PDT)
-Received: from EPBYMINSA0001.epam.com (10.6.110.2) by EPBYMINSA0032.epam.com
-	(10.6.110.32) with Microsoft SMTP Server (TLS) id 15.0.913.22;
-	Fri, 11 Jul 2014 13:46:13 +0300
-Received: from EPBYMINSA0001.epam.com ([::1]) by EPBYMINSA0001.epam.com
-	([::1]) with mapi id 15.00.0913.011; Fri, 11 Jul 2014 13:46:13 +0300
-From: Vladimir Redzhepov <Vladimir_Redzhepov@epam.com>
-To: Vladimir Redzhepov <Vladimir_Redzhepov@epam.com>, "joe@joenicholson.co.uk"
-	<joe@joenicholson.co.uk>, Yocto <yocto@yoctoproject.org>
-Thread-Topic: [yocto] Oracle Java for ARM?
-Thread-Index: AQHPm5B8e5mV/F8b/UunSgnrVvJcapuapJKggAAOlUA=
-Date: Fri, 11 Jul 2014 10:46:12 +0000
-Message-ID: <cf2d66c530e145be9046a7143608589d@EPBYMINSA0001.epam.com>
+Received: from venus.speedyservers.com (venus.speedyservers.com
+	[193.189.74.44])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 623CFE00736
+	for <yocto@yoctoproject.org>; Fri, 11 Jul 2014 04:44:33 -0700 (PDT)
+Received: from localhost ([127.0.0.1]:39897 helo=www.joenicholson.co.uk)
+	by venus.speedyservers.com with esmtpa (Exim 4.82)
+	(envelope-from <joe@joenicholson.co.uk>)
+	id 1X5ZFe-000RMd-4x; Fri, 11 Jul 2014 12:44:30 +0100
+MIME-Version: 1.0
+Date: Fri, 11 Jul 2014 12:44:30 +0100
+From: Joe Nicholson <joe@joenicholson.co.uk>
+To: Vladimir Redzhepov <Vladimir_Redzhepov@epam.com>
+Mail-Reply-To: joe@joenicholson.co.uk
+In-Reply-To: <cf2d66c530e145be9046a7143608589d@EPBYMINSA0001.epam.com>
 References: <405982f85543bd90dcd320cbd8d55d9f@joenicholson.co.uk>
 	<27a7697e02b14db1adca98e09a737648@EPBYMINSA0001.epam.com>
-In-Reply-To: <27a7697e02b14db1adca98e09a737648@EPBYMINSA0001.epam.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.6.137.107]
-MIME-Version: 1.0
+	<cf2d66c530e145be9046a7143608589d@EPBYMINSA0001.epam.com>
+Message-ID: <6c76f172f04c31a8fa77b8b592c2308f@joenicholson.co.uk>
+X-Sender: joe@joenicholson.co.uk
+User-Agent: Roundcube Webmail/0.9.5
+X-AntiAbuse: This header was added to track abuse,
+	please include it with any abuse report
+X-AntiAbuse: Primary Hostname - venus.speedyservers.com
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - joenicholson.co.uk
+X-Get-Message-Sender-Via: venus.speedyservers.com: authenticated_id:
+	joe@joenicholson.co.uk
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+Cc: Yocto <yocto@yoctoproject.org>
 Subject: Re: Oracle Java for ARM?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
+Reply-To: joe@joenicholson.co.uk
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -44,138 +57,142 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 11 Jul 2014 10:47:50 -0000
-Content-Language: en-US
+X-List-Received-Date: Fri, 11 Jul 2014 11:44:38 -0000
 Content-Type: multipart/alternative;
-	boundary="_000_cf2d66c530e145be9046a7143608589dEPBYMINSA0001epamcom_"
+	boundary="=_2302e5e8d3f7a640d95cfbf9e2dc5f47"
 
---_000_cf2d66c530e145be9046a7143608589dEPBYMINSA0001epamcom_
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+--=_2302e5e8d3f7a640d95cfbf9e2dc5f47
+Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=UTF-8
 
-SeKAmXZlIGluc2VydGVkIGJyb2tlbiBsaW5rLiBUaGF04oCZcyByaWdodA0KaHR0cHM6Ly9saXN0
-cy55b2N0b3Byb2plY3Qub3JnL3BpcGVybWFpbC95b2N0by8yMDE0LUp1bmUvMDIwMjIzLmh0bWwN
-Cg0KRnJvbTogeW9jdG8tYm91bmNlc0B5b2N0b3Byb2plY3Qub3JnIFttYWlsdG86eW9jdG8tYm91
-bmNlc0B5b2N0b3Byb2plY3Qub3JnXSBPbiBCZWhhbGYgT2YgVmxhZGltaXIgUmVkemhlcG92DQpT
-ZW50OiBGcmlkYXksIEp1bHkgMTEsIDIwMTQgMTI6NTcgUE0NClRvOiBqb2VAam9lbmljaG9sc29u
-LmNvLnVrOyBZb2N0bw0KU3ViamVjdDogUmU6IFt5b2N0b10gT3JhY2xlIEphdmEgZm9yIEFSTT8N
-Cg0KSGkNCg0KV2XigJl2ZSBqdXN0IGFkZGVkIHN1cHBvcnQgZm9yIE9yYWNsZSBKYXZhIEVtYmVk
-ZGVkIFNFIGZvciBBUk0gaW50byBtZXRhLW9yYWNsZS1qYXZhLiBZb3UgY2FuIHNlZSBvdXIgcGF0
-Y2ggaGVyZQ0KaHR0cHM6Ly9saXN0cy55b2N0b3Byb2plY3Qub3JnL3BpcGVybWFpbC95b2N0by8y
-MDE0LUp1bmUvMDIwMjIzLmh0bWxcPGh0dHBzOi8vbGlzdHMueW9jdG9wcm9qZWN0Lm9yZy9waXBl
-cm1haWwveW9jdG8vMjAxNC1KdW5lLzAyMDIyMy5odG1sLz4NCg0KRnJvbTogeW9jdG8tYm91bmNl
-c0B5b2N0b3Byb2plY3Qub3JnPG1haWx0bzp5b2N0by1ib3VuY2VzQHlvY3RvcHJvamVjdC5vcmc+
-IFttYWlsdG86eW9jdG8tYm91bmNlc0B5b2N0b3Byb2plY3Qub3JnXSBPbiBCZWhhbGYgT2YgSm9l
-IE5pY2hvbHNvbg0KU2VudDogV2VkbmVzZGF5LCBKdWx5IDA5LCAyMDE0IDc6MTEgUE0NClRvOiBZ
-b2N0bw0KU3ViamVjdDogW3lvY3RvXSBPcmFjbGUgSmF2YSBmb3IgQVJNPw0KDQoNCkhpIEd1eXMN
-Cg0KV2hhdCdzIHRoZSBiZXN0IHdheSBvZiBicmluZ2luZyBpbiBPcmFjbGUncyBKYXZhIEpSRSBm
-b3IgQVJNPw0KDQpUaGUgbWV0YS1vcmFjbGUtamF2YSBsYXllciBsb29rcyBJbnRlbCBvbmx5IGF0
-IHRoZSBtb21lbnQgOi0oDQoNCkNoZWVycyENCg0KSm9lDQoNCg0KDQo=
+ 
 
---_000_cf2d66c530e145be9046a7143608589dEPBYMINSA0001epamcom_
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: base64
+Brilliant! Thanks a lot Vladimir. 
 
-PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
-bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
-YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
-cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
-VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
-Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
-ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTUgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
-PjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
-IkNhbWJyaWEgTWF0aCI7DQoJcGFub3NlLTE6MiA0IDUgMyA1IDQgNiAzIDIgNDt9DQpAZm9udC1m
-YWNlDQoJe2ZvbnQtZmFtaWx5OkNhbGlicmk7DQoJcGFub3NlLTE6MiAxNSA1IDIgMiAyIDQgMyAy
-IDQ7fQ0KQGZvbnQtZmFjZQ0KCXtmb250LWZhbWlseTpWZXJkYW5hOw0KCXBhbm9zZS0xOjIgMTEg
-NiA0IDMgNSA0IDQgMiA0O30NCi8qIFN0eWxlIERlZmluaXRpb25zICovDQpwLk1zb05vcm1hbCwg
-bGkuTXNvTm9ybWFsLCBkaXYuTXNvTm9ybWFsDQoJe21hcmdpbjowaW47DQoJbWFyZ2luLWJvdHRv
-bTouMDAwMXB0Ow0KCWZvbnQtc2l6ZToxMi4wcHQ7DQoJZm9udC1mYW1pbHk6IlRpbWVzIE5ldyBS
-b21hbiIsInNlcmlmIjt9DQphOmxpbmssIHNwYW4uTXNvSHlwZXJsaW5rDQoJe21zby1zdHlsZS1w
-cmlvcml0eTo5OTsNCgljb2xvcjojMDU2M0MxOw0KCXRleHQtZGVjb3JhdGlvbjp1bmRlcmxpbmU7
-fQ0KYTp2aXNpdGVkLCBzcGFuLk1zb0h5cGVybGlua0ZvbGxvd2VkDQoJe21zby1zdHlsZS1wcmlv
-cml0eTo5OTsNCgljb2xvcjojOTU0RjcyOw0KCXRleHQtZGVjb3JhdGlvbjp1bmRlcmxpbmU7fQ0K
-cA0KCXttc28tc3R5bGUtcHJpb3JpdHk6OTk7DQoJbXNvLW1hcmdpbi10b3AtYWx0OmF1dG87DQoJ
-bWFyZ2luLXJpZ2h0OjBpbjsNCgltc28tbWFyZ2luLWJvdHRvbS1hbHQ6YXV0bzsNCgltYXJnaW4t
-bGVmdDowaW47DQoJZm9udC1zaXplOjEyLjBwdDsNCglmb250LWZhbWlseToiVGltZXMgTmV3IFJv
-bWFuIiwic2VyaWYiO30NCnNwYW4uRW1haWxTdHlsZTE4DQoJe21zby1zdHlsZS10eXBlOnBlcnNv
-bmFsOw0KCWZvbnQtZmFtaWx5OiJDYWxpYnJpIiwic2Fucy1zZXJpZiI7DQoJY29sb3I6IzFGNDk3
-RDt9DQpzcGFuLkVtYWlsU3R5bGUxOQ0KCXttc28tc3R5bGUtdHlwZTpwZXJzb25hbC1yZXBseTsN
-Cglmb250LWZhbWlseToiQ2FsaWJyaSIsInNhbnMtc2VyaWYiOw0KCWNvbG9yOiMxRjQ5N0Q7fQ0K
-Lk1zb0NocERlZmF1bHQNCgl7bXNvLXN0eWxlLXR5cGU6ZXhwb3J0LW9ubHk7DQoJZm9udC1zaXpl
-OjEwLjBwdDt9DQpAcGFnZSBXb3JkU2VjdGlvbjENCgl7c2l6ZTo4LjVpbiAxMS4waW47DQoJbWFy
-Z2luOjU2LjdwdCA0Mi41cHQgNTYuN3B0IDg1LjA1cHQ7fQ0KZGl2LldvcmRTZWN0aW9uMQ0KCXtw
-YWdlOldvcmRTZWN0aW9uMTt9DQotLT48L3N0eWxlPjwhLS1baWYgZ3RlIG1zbyA5XT48eG1sPg0K
-PG86c2hhcGVkZWZhdWx0cyB2OmV4dD0iZWRpdCIgc3BpZG1heD0iMTAyNiIgLz4NCjwveG1sPjwh
-W2VuZGlmXS0tPjwhLS1baWYgZ3RlIG1zbyA5XT48eG1sPg0KPG86c2hhcGVsYXlvdXQgdjpleHQ9
-ImVkaXQiPg0KPG86aWRtYXAgdjpleHQ9ImVkaXQiIGRhdGE9IjEiIC8+DQo8L286c2hhcGVsYXlv
-dXQ+PC94bWw+PCFbZW5kaWZdLS0+DQo8L2hlYWQ+DQo8Ym9keSBsYW5nPSJFTi1VUyIgbGluaz0i
-IzA1NjNDMSIgdmxpbms9IiM5NTRGNzIiPg0KPGRpdiBjbGFzcz0iV29yZFNlY3Rpb24xIj4NCjxw
-IGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFt
-aWx5OiZxdW90O0NhbGlicmkmcXVvdDssJnF1b3Q7c2Fucy1zZXJpZiZxdW90Oztjb2xvcjojMUY0
-OTdEIj5J4oCZdmUgaW5zZXJ0ZWQgYnJva2VuIGxpbmsuIFRoYXTigJlzIHJpZ2h0DQo8bzpwPjwv
-bzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1z
-aXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LCZxdW90O3NhbnMtc2Vy
-aWYmcXVvdDs7Y29sb3I6IzFGNDk3RCI+aHR0cHM6Ly9saXN0cy55b2N0b3Byb2plY3Qub3JnL3Bp
-cGVybWFpbC95b2N0by8yMDE0LUp1bmUvMDIwMjIzLmh0bWw8bzpwPjwvbzpwPjwvc3Bhbj48L3A+
-DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250
-LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LCZxdW90O3NhbnMtc2VyaWYmcXVvdDs7Y29sb3I6
-IzFGNDk3RCI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0KPGRpdj4NCjxkaXYgc3R5bGU9
-ImJvcmRlcjpub25lO2JvcmRlci10b3A6c29saWQgI0UxRTFFMSAxLjBwdDtwYWRkaW5nOjMuMHB0
-IDBpbiAwaW4gMGluIj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxiPjxzcGFuIHN0eWxlPSJmb250
-LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssJnF1b3Q7c2Fucy1z
-ZXJpZiZxdW90OyI+RnJvbTo8L3NwYW4+PC9iPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0
-O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssJnF1b3Q7c2Fucy1zZXJpZiZxdW90OyI+
-IHlvY3RvLWJvdW5jZXNAeW9jdG9wcm9qZWN0Lm9yZyBbbWFpbHRvOnlvY3RvLWJvdW5jZXNAeW9j
-dG9wcm9qZWN0Lm9yZ10NCjxiPk9uIEJlaGFsZiBPZiA8L2I+VmxhZGltaXIgUmVkemhlcG92PGJy
-Pg0KPGI+U2VudDo8L2I+IEZyaWRheSwgSnVseSAxMSwgMjAxNCAxMjo1NyBQTTxicj4NCjxiPlRv
-OjwvYj4gam9lQGpvZW5pY2hvbHNvbi5jby51azsgWW9jdG88YnI+DQo8Yj5TdWJqZWN0OjwvYj4g
-UmU6IFt5b2N0b10gT3JhY2xlIEphdmEgZm9yIEFSTT88bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8
-L2Rpdj4NCjwvZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PG86cD4mbmJzcDs8L286cD48L3A+
-DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250
-LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LCZxdW90O3NhbnMtc2VyaWYmcXVvdDs7Y29sb3I6
-IzFGNDk3RCI+SGk8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48
-c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1
-b3Q7LCZxdW90O3NhbnMtc2VyaWYmcXVvdDs7Y29sb3I6IzFGNDk3RCI+PG86cD4mbmJzcDs8L286
-cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtc2l6
-ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OywmcXVvdDtzYW5zLXNlcmlm
-JnF1b3Q7O2NvbG9yOiMxRjQ5N0QiPldl4oCZdmUganVzdCBhZGRlZCBzdXBwb3J0IGZvciBPcmFj
-bGUgSmF2YSBFbWJlZGRlZCBTRSBmb3IgQVJNIGludG8gbWV0YS1vcmFjbGUtamF2YS4gWW91IGNh
-biBzZWUgb3VyIHBhdGNoIGhlcmUNCjxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJN
-c29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90
-O0NhbGlicmkmcXVvdDssJnF1b3Q7c2Fucy1zZXJpZiZxdW90Oztjb2xvcjojMUY0OTdEIj48YSBo
-cmVmPSJodHRwczovL2xpc3RzLnlvY3RvcHJvamVjdC5vcmcvcGlwZXJtYWlsL3lvY3RvLzIwMTQt
-SnVuZS8wMjAyMjMuaHRtbC8iPmh0dHBzOi8vbGlzdHMueW9jdG9wcm9qZWN0Lm9yZy9waXBlcm1h
-aWwveW9jdG8vMjAxNC1KdW5lLzAyMDIyMy5odG1sXDwvYT48bzpwPjwvbzpwPjwvc3Bhbj48L3A+
-DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250
-LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LCZxdW90O3NhbnMtc2VyaWYmcXVvdDs7Y29sb3I6
-IzFGNDk3RCI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0KPGRpdj4NCjxkaXYgc3R5bGU9
-ImJvcmRlcjpub25lO2JvcmRlci10b3A6c29saWQgI0UxRTFFMSAxLjBwdDtwYWRkaW5nOjMuMHB0
-IDBpbiAwaW4gMGluIj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxiPjxzcGFuIHN0eWxlPSJmb250
-LXNpemU6MTEuMHB0O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssJnF1b3Q7c2Fucy1z
-ZXJpZiZxdW90OyI+RnJvbTo8L3NwYW4+PC9iPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0
-O2ZvbnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssJnF1b3Q7c2Fucy1zZXJpZiZxdW90OyI+
-DQo8YSBocmVmPSJtYWlsdG86eW9jdG8tYm91bmNlc0B5b2N0b3Byb2plY3Qub3JnIj55b2N0by1i
-b3VuY2VzQHlvY3RvcHJvamVjdC5vcmc8L2E+IFs8YSBocmVmPSJtYWlsdG86eW9jdG8tYm91bmNl
-c0B5b2N0b3Byb2plY3Qub3JnIj5tYWlsdG86eW9jdG8tYm91bmNlc0B5b2N0b3Byb2plY3Qub3Jn
-PC9hPl0NCjxiPk9uIEJlaGFsZiBPZiA8L2I+Sm9lIE5pY2hvbHNvbjxicj4NCjxiPlNlbnQ6PC9i
-PiBXZWRuZXNkYXksIEp1bHkgMDksIDIwMTQgNzoxMSBQTTxicj4NCjxiPlRvOjwvYj4gWW9jdG88
-YnI+DQo8Yj5TdWJqZWN0OjwvYj4gW3lvY3RvXSBPcmFjbGUgSmF2YSBmb3IgQVJNPzxvOnA+PC9v
-OnA+PC9zcGFuPjwvcD4NCjwvZGl2Pg0KPC9kaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpw
-PiZuYnNwOzwvbzpwPjwvcD4NCjxwPjxzcGFuIHN0eWxlPSJmb250LWZhbWlseTomcXVvdDtWZXJk
-YW5hJnF1b3Q7LCZxdW90O3NhbnMtc2VyaWYmcXVvdDsiPkhpIEd1eXM8bzpwPjwvbzpwPjwvc3Bh
-bj48L3A+DQo8cD48c3BhbiBzdHlsZT0iZm9udC1mYW1pbHk6JnF1b3Q7VmVyZGFuYSZxdW90Oywm
-cXVvdDtzYW5zLXNlcmlmJnF1b3Q7Ij5XaGF0J3MgdGhlIGJlc3Qgd2F5IG9mIGJyaW5naW5nIGlu
-IE9yYWNsZSdzIEphdmEgSlJFIGZvciBBUk0/PG86cD48L286cD48L3NwYW4+PC9wPg0KPHA+PHNw
-YW4gc3R5bGU9ImZvbnQtZmFtaWx5OiZxdW90O1ZlcmRhbmEmcXVvdDssJnF1b3Q7c2Fucy1zZXJp
-ZiZxdW90OyI+VGhlIG1ldGEtb3JhY2xlLWphdmEgbGF5ZXIgbG9va3MgSW50ZWwgb25seSBhdCB0
-aGUgbW9tZW50IDotKDxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwPjxzcGFuIHN0eWxlPSJmb250
-LWZhbWlseTomcXVvdDtWZXJkYW5hJnF1b3Q7LCZxdW90O3NhbnMtc2VyaWYmcXVvdDsiPkNoZWVy
-cyE8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cD48c3BhbiBzdHlsZT0iZm9udC1mYW1pbHk6JnF1
-b3Q7VmVyZGFuYSZxdW90OywmcXVvdDtzYW5zLXNlcmlmJnF1b3Q7Ij5Kb2U8bzpwPjwvbzpwPjwv
-c3Bhbj48L3A+DQo8cD48c3BhbiBzdHlsZT0iZm9udC1mYW1pbHk6JnF1b3Q7VmVyZGFuYSZxdW90
-OywmcXVvdDtzYW5zLXNlcmlmJnF1b3Q7Ij4mbmJzcDs8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8
-ZGl2Pg0KPHAgY2xhc3M9Ik1zb05vcm1hbCI+PHNwYW4gc3R5bGU9ImZvbnQtZmFtaWx5OiZxdW90
-O1ZlcmRhbmEmcXVvdDssJnF1b3Q7c2Fucy1zZXJpZiZxdW90OyI+Jm5ic3A7PG86cD48L286cD48
-L3NwYW4+PC9wPg0KPC9kaXY+DQo8L2Rpdj4NCjwvYm9keT4NCjwvaHRtbD4NCg==
+On 2014-07-11 11:46, Vladimir Redzhepov wrote: 
 
---_000_cf2d66c530e145be9046a7143608589dEPBYMINSA0001epamcom_--
+> I've inserted broken link. That's right 
+> 
+> https://lists.yoctoproject.org/pipermail/yocto/2014-June/020223.html 
+> 
+> FROM: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org] ON BEHALF OF Vladimir Redzhepov
+> SENT: Friday, July 11, 2014 12:57 PM
+> TO: joe@joenicholson.co.uk; Yocto
+> SUBJECT: Re: [yocto] Oracle Java for ARM? 
+> 
+> Hi 
+> 
+> We've just added support for Oracle Java Embedded SE for ARM into meta-oracle-java. You can see our patch here 
+> 
+> https://lists.yoctoproject.org/pipermail/yocto/2014-June/020223.html [1] 
+> 
+> FROM: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org] ON BEHALF OF Joe Nicholson
+> SENT: Wednesday, July 09, 2014 7:11 PM
+> TO: Yocto
+> SUBJECT: [yocto] Oracle Java for ARM? 
+> 
+> Hi Guys 
+> 
+> What's the best way of bringing in Oracle's Java JRE for ARM? 
+> 
+> The meta-oracle-java layer looks Intel only at the moment :-( 
+> 
+> Cheers! 
+> 
+> Joe
+
+ 
+
+Links:
+------
+[1]
+https://lists.yoctoproject.org/pipermail/yocto/2014-June/020223.html/
+
+--=_2302e5e8d3f7a640d95cfbf9e2dc5f47
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html; charset=UTF-8
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN">
+<html><body style=3D'font-family: Verdana,Geneva,sans-serif'>
+<p>Brilliant! &nbsp;Thanks a lot Vladimir.</p>
+<p>&nbsp;</p>
+<p>On 2014-07-11 11:46, Vladimir Redzhepov wrote:</p>
+<blockquote type=3D"cite" style=3D"padding-left:5px; border-left:#1010ff 2p=
+x solid; margin-left:5px"><!-- html ignored --><!-- head ignored --><!-- me=
+ta ignored --><!-- meta ignored --><!-- node type 8 --><!-- node type 8 -->
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal"><span style=3D"font-size: 11.0pt; font-family: 'Cali=
+bri','sans-serif'; color: #1f497d;">I&rsquo;ve inserted broken link. That&r=
+squo;s right <!-- o ignored --></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size: 11.0pt; font-family: 'Cali=
+bri','sans-serif'; color: #1f497d;">https://lists.yoctoproject.org/pipermai=
+l/yocto/2014-June/020223.html<!-- o ignored --></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size: 11.0pt; font-family: 'Cali=
+bri','sans-serif'; color: #1f497d;"><!-- o ignored -->&nbsp;</span></p>
+<div>
+<div style=3D"border: none; border-top: solid  #E1E1E1  1.0pt; padding: 3=
+=2E0pt  0in  0in  0in;">
+<p class=3D"MsoNormal"><strong><span style=3D"font-size: 11.0pt; font-famil=
+y: 'Calibri','sans-serif';">From:</span></strong><span style=3D"font-size: =
+11.0pt; font-family: 'Calibri','sans-serif';"> yocto-bounces@yoctoproject=
+=2Eorg [mailto:yocto-bounces@yoctoproject.org] <strong>On Behalf Of </stron=
+g>Vladimir Redzhepov<br /><strong>Sent:</strong> Friday, July 11, 2014 12:5=
+7 PM<br /><strong>To:</strong> joe@joenicholson.co.uk; Yocto<br /><strong>S=
+ubject:</strong> Re: [yocto] Oracle Java for ARM?<!-- o ignored --></span><=
+/p>
+</div>
+</div>
+<p class=3D"MsoNormal"><!-- o ignored -->&nbsp;</p>
+<p class=3D"MsoNormal"><span style=3D"font-size: 11.0pt; font-family: 'Cali=
+bri','sans-serif'; color: #1f497d;">Hi<!-- o ignored --></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size: 11.0pt; font-family: 'Cali=
+bri','sans-serif'; color: #1f497d;"><!-- o ignored -->&nbsp;</span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size: 11.0pt; font-family: 'Cali=
+bri','sans-serif'; color: #1f497d;">We&rsquo;ve just added support for Orac=
+le Java Embedded SE for ARM into meta-oracle-java. You can see our patch he=
+re <!-- o ignored --></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size: 11.0pt; font-family: 'Cali=
+bri','sans-serif'; color: #1f497d;"><a href=3D"https://lists.yoctoproject=
+=2Eorg/pipermail/yocto/2014-June/020223.html/">https://lists.yoctoproject=
+=2Eorg/pipermail/yocto/2014-June/020223.html\</a><!-- o ignored --></span><=
+/p>
+<p class=3D"MsoNormal"><span style=3D"font-size: 11.0pt; font-family: 'Cali=
+bri','sans-serif'; color: #1f497d;"><!-- o ignored -->&nbsp;</span></p>
+<div>
+<div style=3D"border: none; border-top: solid  #E1E1E1  1.0pt; padding: 3=
+=2E0pt  0in  0in  0in;">
+<p class=3D"MsoNormal"><strong><span style=3D"font-size: 11.0pt; font-famil=
+y: 'Calibri','sans-serif';">From:</span></strong><span style=3D"font-size: =
+11.0pt; font-family: 'Calibri','sans-serif';"> <a href=3D"mailto:yocto-boun=
+ces@yoctoproject.org">yocto-bounces@yoctoproject.org</a> [<a href=3D"mailto=
+:yocto-bounces@yoctoproject.org">mailto:yocto-bounces@yoctoproject.org</a>]=
+ <strong>On Behalf Of </strong>Joe Nicholson<br /><strong>Sent:</strong> We=
+dnesday, July 09, 2014 7:11 PM<br /><strong>To:</strong> Yocto<br /><strong=
+>Subject:</strong> [yocto] Oracle Java for ARM?<!-- o ignored --></span></p=
+>
+</div>
+</div>
+<p class=3D"MsoNormal"><!-- o ignored -->&nbsp;</p>
+<p><span style=3D"font-family: 'Verdana','sans-serif';">Hi Guys<!-- o ignor=
+ed --></span></p>
+<p><span style=3D"font-family: 'Verdana','sans-serif';">What's the best way=
+ of bringing in Oracle's Java JRE for ARM?<!-- o ignored --></span></p>
+<p><span style=3D"font-family: 'Verdana','sans-serif';">The meta-oracle-jav=
+a layer looks Intel only at the moment :-(<!-- o ignored --></span></p>
+<p><span style=3D"font-family: 'Verdana','sans-serif';">Cheers!<!-- o ignor=
+ed --></span></p>
+<p><span style=3D"font-family: 'Verdana','sans-serif';">Joe<!-- o ignored -=
+-></span></p>
+<p><span style=3D"font-family: 'Verdana','sans-serif';">&nbsp;<!-- o ignore=
+d --></span></p>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-family: 'Verdana','sans-serif';"=
+>&nbsp;<!-- o ignored --></span></p>
+</div>
+</div>
+</blockquote>
+<p>&nbsp;</p>
+<div>&nbsp;</div>
+</body></html>
+
+--=_2302e5e8d3f7a640d95cfbf9e2dc5f47--
