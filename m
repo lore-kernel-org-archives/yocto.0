@@ -1,6 +1,6 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <jags.gediya@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 42826E0044A; Fri, 11 Jul 2014 21:51:28 -0700 (PDT)
+	id 154C8E003FA; Sat, 12 Jul 2014 05:57:02 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -8,7 +8,7 @@ X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
 	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (raj.khem[at]gmail.com)
+	mail provider *      (jags.gediya[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
@@ -18,36 +18,31 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
 	low *      trust
-	*      [209.85.213.170 listed in list.dnswl.org]
-Received: from mail-ig0-f170.google.com (mail-ig0-f170.google.com
-	[209.85.213.170])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F096AE003FA;
-	Fri, 11 Jul 2014 21:51:18 -0700 (PDT)
-Received: by mail-ig0-f170.google.com with SMTP id h3so158092igd.5
-	for <multiple recipients>; Fri, 11 Jul 2014 21:51:18 -0700 (PDT)
+	*      [209.85.216.42 listed in list.dnswl.org]
+Received: from mail-qa0-f42.google.com (mail-qa0-f42.google.com
+	[209.85.216.42])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E7681E00342;
+	Sat, 12 Jul 2014 05:56:51 -0700 (PDT)
+Received: by mail-qa0-f42.google.com with SMTP id j15so1804649qaq.15
+	for <multiple recipients>; Sat, 12 Jul 2014 05:56:50 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-type;
-	bh=cKSBZFpnQAgGe5DytNcMxLpttm7AFcz6+sp68yl7uK4=;
-	b=Tb0ajEEtZBVRripaLDRK/AGUt3ZBRMFcFlY8z/8ItWa2NEr2Q23erzIV08hAUXvdW1
-	Z/7bpEwq6tlcRecYjGaPKCKRpPnXaufh7NfYhU7SSN/dy2GMyK8YkbClJML7/cdFQPDG
-	xQ9YCXCcAT9U3DT98ayeU1w6DfVknGUTTpClWYM4G4vtC9dmZ4IOjAAZtR4VH8rkDfap
-	TbqtPb6kkhgElTkj8BYmMdIfKYbc/PekaFETGnKQZUZyGGRmdGqu5LChOtQWiGHADFVA
-	mt/0JOb5JeuaLPphGP7rScRcXVhRMQl3DlHSNuXeJ4Sd778dvQpoQGmR7JY7zMVbC4K+
-	kDFg==
-X-Received: by 10.50.43.134 with SMTP id w6mr9664275igl.17.1405140678079; Fri,
-	11 Jul 2014 21:51:18 -0700 (PDT)
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=nVYPjCK76pZyyk2A7kDPfSd0KbjK04NPBK6TwBj734U=;
+	b=H2hNGMaBYkELRrgPjs0bs7HbAXS3lY94rk/p3uN8482dYGWWOGzKjWcqCw1rfIhj0k
+	sFF2ArVZYA/jYBCaS43tDRESKZ58MHU2KjTGZWkxW29FdLVNLV6Z2dke4XfqhXl9geCI
+	3mJ31Hcrgs3+DeVwA9xAxdn4SFPX9sAxU+4FyZejRSNQT0JoBWVICYMeLc6tslNQ7G/8
+	+tt2dnwzP3AqpuOG8StDQKPqocWhcdIOtS85b/IiaAiNG/lTaaZEC76y1Nm6XiVXlRuW
+	hKg7TfCyYczZMnKKL1CuSSSY9DBHyrUMHiQCZsb0n4aDNQhnwac/u2yz7COyBNBKoxrU
+	SjdQ==
 MIME-Version: 1.0
-Received: by 10.50.78.105 with HTTP; Fri, 11 Jul 2014 21:50:47 -0700 (PDT)
-In-Reply-To: <CAL0pqZ0JznEDkTPUG+fBQwf3BX_MbRbeCXbMFyJ4f98Py25b+w@mail.gmail.com>
-References: <CAL0pqZ0JznEDkTPUG+fBQwf3BX_MbRbeCXbMFyJ4f98Py25b+w@mail.gmail.com>
-From: Khem Raj <raj.khem@gmail.com>
-Date: Fri, 11 Jul 2014 21:50:47 -0700
-Message-ID: <CAMKF1sqFRUvvk-=b-9NykrrE5NT00mL3Rhv2VXuuj9Bm1saSug@mail.gmail.com>
-To: Leah <leah@wolfssl.com>
-Cc: meta-intel@yoctoproject.org,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: CyaSSL library now available for use in Yocto Project
+X-Received: by 10.140.82.113 with SMTP id g104mr7484858qgd.55.1405169810706;
+	Sat, 12 Jul 2014 05:56:50 -0700 (PDT)
+Received: by 10.224.37.133 with HTTP; Sat, 12 Jul 2014 05:56:50 -0700 (PDT)
+Date: Sat, 12 Jul 2014 18:26:50 +0530
+Message-ID: <CAP3RZojBxGbedn=dCOthj=08A73xMtF1Wceq+-TA=vtxMDLPrQ@mail.gmail.com>
+From: jags gediya <jags.gediya@gmail.com>
+To: yocto@yoctoproject.org, meta-freescale@yoctoproject.org
+Subject: pack kernel modules in file system
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -59,35 +54,19 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 12 Jul 2014 04:51:28 -0000
+X-List-Received-Date: Sat, 12 Jul 2014 12:57:02 -0000
 Content-Type: text/plain; charset=UTF-8
 
-On Fri, Jul 11, 2014 at 2:47 PM, Leah <leah@wolfssl.com> wrote:
-> CyaSSL lightweight SSL library is now available for use in Yocto Project
-> images! Check out our layer which we built and tested using the Minnowboard:
-> http://yassl.com/yaSSL/Blog/Entries/2014/7/11_meta-wolfssl_Layer_for_Yocto_and_OpenEmbedded.html
->
+I am building yocto for imx6sl evolution kit. After built, all the
+images are available in tmp/deploy/images/imx6slevk
 
-thanks. It seems you need to submit this layer for indexing in
-http://layers.openembedded.org/
-currently it has git://github.com/cconlon/meta-yassl.git  listed which
-seems to be old version ?
+but kernel modules are not available in /lib/modules/... directory of
+the file system.
+some other files are available in /lib/modules/.. like modules.dep
+etc. but kernel modules are not there. Instead modules-imx6slevk.tgz
+file is made with images.
+Is there any way to put these modules in the file system while built?
 
->
-> --
->
-> Leah Thompson
-> www.wolfssl.com
-> leah@wolfssl.com
-> 406-570-1389
-> Skype: lchristina26
->
->
->
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
->
+Thanks,
+Jags
 
