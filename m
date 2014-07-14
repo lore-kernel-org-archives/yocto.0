@@ -1,55 +1,38 @@
-Return-Path: <wpdster@gmail.com>
+Return-Path: <Bruce.Ashfield@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 24AF3E006B7; Mon, 14 Jul 2014 10:38:13 -0700 (PDT)
+	id 54B9CE006B7; Mon, 14 Jul 2014 11:27:56 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (wpdster[at]gmail.com)
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.220.170 listed in list.dnswl.org]
-Received: from mail-vc0-f170.google.com (mail-vc0-f170.google.com
-	[209.85.220.170])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E07CFE004FF
-	for <yocto@yoctoproject.org>; Mon, 14 Jul 2014 10:38:00 -0700 (PDT)
-Received: by mail-vc0-f170.google.com with SMTP id lf12so4036431vcb.15
-	for <yocto@yoctoproject.org>; Mon, 14 Jul 2014 10:37:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-type:content-transfer-encoding;
-	bh=/RX3g32+in6fkTVEXoKU3TLERQIeXDzMIYktQqZHFdI=;
-	b=XAjACLvYtESm51+LUmMDktXz9uHVGJhSqDzyorr93wxVd6dYvS7VBg1n4fbZahJGUH
-	+AUVoy/5XhiiIPnfAc2BDKY1g675a/rQ4RvT4ZM8Zo0NZIwloNp/K/592/VtbeNJMkVl
-	VQLQGhwdLUdosW2W6Ht/pUdDKVmUrjHtD5E5HP+n8dMVP1AbNV/KO9uJXAbWQgd9Oi2E
-	b9Xw24LMQBPgppbXyRxv/75j0tkjNzx/ZKIlQhUKoPmkhXhVrNjKL8a+EqeUI65dWSAp
-	3dtUcA7kDk3eoifHxcQPXoP2ko0Ptrs6J+ysq4S6JLp+EkYqpersNq5c6QZioJ43Oh0O
-	+guw==
-X-Received: by 10.58.136.163 with SMTP id qb3mr1310985veb.62.1405359479573;
-	Mon, 14 Jul 2014 10:37:59 -0700 (PDT)
+	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at http://www.dnswl.org/,
+	*      medium trust
+	*      [147.11.1.11 listed in list.dnswl.org]
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2322CE004FF;
+	Mon, 14 Jul 2014 11:27:43 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
+	[147.11.189.40])
+	by mail.windriver.com (8.14.5/8.14.5) with ESMTP id s6EIRfMk019159
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
+	Mon, 14 Jul 2014 11:27:41 -0700 (PDT)
+Received: from [128.224.56.48] (128.224.56.48) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server id 14.3.169.1;
+	Mon, 14 Jul 2014 11:27:41 -0700
+Message-ID: <53C42119.8000406@windriver.com>
+Date: Mon, 14 Jul 2014 14:27:37 -0400
+From: Bruce Ashfield <bruce.ashfield@windriver.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:24.0) Gecko/20100101 Thunderbird/24.6.0
 MIME-Version: 1.0
-Received: by 10.58.105.233 with HTTP; Mon, 14 Jul 2014 10:37:29 -0700 (PDT)
-In-Reply-To: <CAJTo0LYAZVQ-BQXv-jXDdVRjVT3=OkYMBTi=Lgo0vpfoXwqTwQ@mail.gmail.com>
-References: <CAF_dkJC4ZFULv93=PFhC-ZwO6Vp058OBZ1nDmLGyce4WFS=9rA@mail.gmail.com>
-	<CAJTo0Lai=JgicnNi9U=UneTKGHsHrE=bR5BC7JDu3-6OnkoVLw@mail.gmail.com>
-	<CAF_dkJD6GAqN3+Q1weyYO+9QGn-QP2m271AwXtQEN7z_=-RQHg@mail.gmail.com>
-	<CAJTo0LYAZVQ-BQXv-jXDdVRjVT3=OkYMBTi=Lgo0vpfoXwqTwQ@mail.gmail.com>
-From: Patrick Doyle <wpdster@gmail.com>
-Date: Mon, 14 Jul 2014 13:37:29 -0400
-Message-ID: <CAF_dkJBQM-+Rtt+3n7CP63nKKAh4=YRn7EL4NnkhXbQ-e66JRw@mail.gmail.com>
-To: "Burton, Ross" <ross.burton@intel.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Make autotools use autogen.sh
+To: jags gediya <jags.gediya@gmail.com>, <yocto@yoctoproject.org>,
+	<meta-freescale@yoctoproject.org>
+References: <CAP3RZojz+v3uDix=a2XaAYhO36BCgVN7XoWr700To5HmCTjmyA@mail.gmail.com>
+In-Reply-To: <CAP3RZojz+v3uDix=a2XaAYhO36BCgVN7XoWr700To5HmCTjmyA@mail.gmail.com>
+Subject: Re: Yocto build is taking too long time in kernel do_package and do_populate_sysroots
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -61,28 +44,83 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 14 Jul 2014 17:38:13 -0000
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Mon, 14 Jul 2014 18:27:56 -0000
+Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Mon, Jul 14, 2014 at 11:39 AM, Burton, Ross <ross.burton@intel.com> wrot=
-e:
-> On 14 July 2014 16:31, Patrick Doyle <wpdster@gmail.com> wrote:
->> a) do_compile fails because make depends on INSTALL, because INSTALL
->> is listed in the aravis_DATA list in Makefile.am.
+On 14-07-14 11:20 AM, jags gediya wrote:
+> I am a newbie to yocto. For the purpose of check in code on svn, I
+> have deleted all .git, .gitignore and .repo file from yocto before
+> built. Then i have checked out that code from svn and started the
+> yocto built.
 >
-> That's silly.  Why would you ever need the install instructions to be
-> installed?  Personally I'd patch that out and send it to them.
-> INSTALL is implicitly included in tarballs and there's no purpose in
-> installing a generic installation document.
-I like that answer best of all=E2=80=A6 I started with that approach this
-morning, but then misread the automake documentation and convinced
-myself that there had to be a better solution.  Reading your response,
-and reading the automake documentation more carefully, I agree.
-INSTALL should not be listed in aravis_DATA.  I'll submit that patch
-upstream.
+> But my compilation used to stop at below point for more than an hour.
 
-Thank you very much.  This was extremely helpful.
+Depending on the speed of your machine, the disk, memory, etc .. yes,
+those tasks can take a long time.
 
---wpd
+We've been working on improving kernel build and packaging time for
+several releases now, and are still continuing in the upcoming
+1.7 release.
+
+The sheer amount of files, i/o and packaging required for the kernel
+build, sysroot, kernel modules and packages simply takes time.
+
+For incremental development, and testing workflow. Look into only
+running the single task you need (i.e. just compile), or look at using
+"externalsrc" support. Both those options will significant speed up
+your iterative development time.
+
+Bruce
+
+>
+> Currently 2 running tasks (1771 of 1777):
+>      0: linux-imx-3.10.17-r0 do_package (pid 4011)
+>      1: linux-imx-3.10.17-r0 do_populate_sysroot (pid 19696)
+> I am building the core-image-minimal for imx6sl evk.
+>
+> Some modification i have done for the kernel and u-boot. I am not
+> taking kernel and u-boot from the git. Instead i have changed the
+> SRC_URI, and i have given there the path for kernel and u-boot to take
+> it from local system.
+>
+> Things i have modified as per below.
+> originally linux-imx.inc was having,
+>
+> LICENSE = "GPLv2"
+> LIC_FILES_CHKSUM = "file://COPYING;md5=d7810fab7487fb0aad327b76f1be7cd7"
+>
+> inherit kernel
+>
+> # Put a local version until we have a true SRCREV to point to
+> LOCALVERSION ?= "+yocto"
+> SCMVERSION ?= "y"
+>
+> SRC_URI = "git://git.freescale.com/imx/linux-2.6-imx.git;branch=${SRCBRANCH} \
+>             file://defconfig \
+> "
+>
+> S = "${WORKDIR}/git"
+>
+> I have changed it to,
+>
+> #LICENSE = "GPLv2"
+> #LIC_FILES_CHKSUM = "file://COPYING;md5=d7810fab7487fb0aad327b76f1be7cd7"
+> LICENSE = "CLOSED"
+>
+> inherit kernel
+>
+> SRC_URI = "file://${BSPDIR}/kernel \
+>             file://defconfig \
+> "
+> S = "${BSPDIR}/kernel"
+>
+> Can anyone point me if i have done any wrong configuration.
+> PS: Before chevk in on svn, Kernel compilation was taking that much
+> long time while building images.
+>
+> Thanks,
+> Jags
+>
+
 
