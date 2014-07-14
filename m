@@ -1,27 +1,38 @@
-Return-Path: <packages@packages.i.yoctoproject.org>
+Return-Path: <Xin.Ouyang@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id E92B9E0076C; Sun, 13 Jul 2014 19:01:08 -0700 (PDT)
+	id 8080AE0076C; Sun, 13 Jul 2014 19:32:58 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=5.0 tests=ALL_TRUSTED,BAYES_00
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.0 ALL_TRUSTED Passed through trusted hosts only via
-	SMTP * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from packages.i.yoctoproject.org (packages.i.yoctoproject.org
-	[10.0.10.47])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4A8DCE00524
-	for <yocto@yoctoproject.org>; Sun, 13 Jul 2014 19:01:07 -0700 (PDT)
-Received: by packages.i.yoctoproject.org (Postfix, from userid 802)
-	id 44CE2A42D9; Mon, 14 Jul 2014 02:01:07 +0000 (UTC)
-Date: Mon, 14 Jul 2014 02:01:07 +0000
-From: "package-report@yoctoproject.org" <packages@packages.i.yoctoproject.org>
-To: yocto@yoctoproject.org
-Message-ID: <20140714020107.GA29392@packages.i.yoctoproject.org>
+	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at http://www.dnswl.org/,
+	*      medium trust
+	*      [147.11.1.11 listed in list.dnswl.org]
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6558FE004DD
+	for <yocto@yoctoproject.org>; Sun, 13 Jul 2014 19:32:52 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
+	[147.11.189.40])
+	by mail.windriver.com (8.14.5/8.14.5) with ESMTP id s6E2WoGT012203
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
+	Sun, 13 Jul 2014 19:32:50 -0700 (PDT)
+Received: from pascal-macbookpro.corp.ad.wrs.com (128.224.159.159) by
+	ALA-HCA.corp.ad.wrs.com (147.11.189.50) with Microsoft SMTP Server id
+	14.3.169.1; Sun, 13 Jul 2014 19:32:49 -0700
+Message-ID: <53C34150.6030300@windriver.com>
+Date: Mon, 14 Jul 2014 10:32:48 +0800
+From: Pascal Ouyang <xin.ouyang@windriver.com>
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.8;
+	rv:24.0) Gecko/20100101 Thunderbird/24.6.0
 MIME-Version: 1.0
-User-Agent: Mutt/1.5.21 (2010-09-15)
-Subject: [Package Report System]Manual check recipes name list
+To: Armin Kuster <akuster@mvista.com>, <yocto@yoctoproject.org>
+References: <1404167751-3278-1-git-send-email-akuster@mvista.com>
+In-Reply-To: <1404167751-3278-1-git-send-email-akuster@mvista.com>
+X-TagToolbar-Keys: D20140714103248179
+Subject: Re: [meta-selinux][PATCH] gnupg: use wildcard in name
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -33,49 +44,27 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 14 Jul 2014 02:01:09 -0000
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+X-List-Received-Date: Mon, 14 Jul 2014 02:32:58 -0000
+Content-Type: text/plain; charset="GB2312"
+Content-Transfer-Encoding: 8bit
 
-This mail was sent out by Package Report System.
-It will list all the recipes which can't check upstream version by script, and will show how long it is since their last mannual version check.
-You can check the detail information at http://packages.yoctoproject.org/manuallychkinfo
+ÓÚ 14-7-1 ÉÏÎç6:35, Armin Kuster Ð´µÀ:
+> There are two versions of gnupg so limit the wildcard to the 2.x series
+> 
+> Signed-off-by: Armin Kuster <akuster@mvista.com>
+> ---
+>   recipes-support/gnupg/{gnupg_2.0.22.bbappend => gnupg_2.%.bbappend} | 0
+>   1 file changed, 0 insertions(+), 0 deletions(-)
+>   rename recipes-support/gnupg/{gnupg_2.0.22.bbappend => gnupg_2.%.bbappend} (100%)
+> 
+> diff --git a/recipes-support/gnupg/gnupg_2.0.22.bbappend b/recipes-support/gnupg/gnupg_2.%.bbappend
+> similarity index 100%
+> rename from recipes-support/gnupg/gnupg_2.0.22.bbappend
+> rename to recipes-support/gnupg/gnupg_2.%.bbappend
+> 
 
+Merged. Thank you, Armin. :)
 
-PackageName              Version             LastChkVersion      LastChkTime              Maintainer                              NoUpgradeReason               
-man                      1.6g                N/A                 41832 d                  Saul Wold <sgw@linux.intel.co...        No data                       
-ubootchart               0.0+r12             0.0+r12             671 day                  Saul Wold <sgw@linux.intel.co...        No data                       
-libffi                   3.1                 N/A                 41832 d                  Saul Wold <sgw@linux.intel.co...        No data                       
-puzzles                  r10116              N/A                 41832 d                  Ross Burton <ross.burton@inte...        No data                       
-libxslt                  1.1.28              N/A                 41832 d                  Ross Burton <ross.burton@inte...        No data                       
-mesa                     10.1.3              N/A                 41832 d                  Ross Burton <ross.burton@inte...        No data                       
-midori                   0.5.5               N/A                 41832 d                  Ross Burton <ross.burton@inte...        No data                       
-libpng                   1.6.10              1.6.6               285 day                  Ross Burton <ross.burton@inte...        No data                       
-tzdata                   2014e               N/A                 41832 d                  Robert Yang <liezhi.yang@wind...        No data                       
-xinetd                   2.3.15              N/A                 41832 d                  Richard Purdie <richard.purdi...        No data                       
-latencytop               0.5                 N/A                 41832 d                  Richard Purdie <richard.purdi...        No data                       
-lsof                     4.87                N/A                 41832 d                  Richard Purdie <richard.purdi...        No data                       
-bdwgc                    7.2d                gc-7.2d             686 day                  Richard Purdie <richard.purdi...        No data                       
-nativesdk-qt4-tools      4.8.6               N/A                 41832 d                  Paul Eggleton <paul.eggleton@...        No data                       
-qt-mobility-embedded...  1.2.0               N/A                 41832 d                  Paul Eggleton <paul.eggleton@...        No data                       
-qt4-x11-free             4.8.6               N/A                 41832 d                  Paul Eggleton <paul.eggleton@...        No data                       
-quicky                   0.4                 N/A                 41832 d                  Paul Eggleton <paul.eggleton@...        No data                       
-dosfstools               2.11                N/A                 41832 d                  Paul Eggleton <paul.eggleton@...        No data                       
-blktool                  4-6.1               N/A                 41832 d                  Paul Eggleton <paul.eggleton@...        No data                       
-qt4-native               4.8.6               N/A                 41832 d                  Paul Eggleton <paul.eggleton@...        No data                       
-qt-mobility-x11          1.2.0               N/A                 41832 d                  Paul Eggleton <paul.eggleton@...        No data                       
-python-smartpm           1.4.1               N/A                 41832 d                  Paul Eggleton <paul.eggleton@...        No data                       
-unfs3                    0.9.22.r490         N/A                 41832 d                  Paul Eggleton <paul.eggleton@...        No data                       
-cdrtools-native          3.01a20             N/A                 41832 d                  Paul Eggleton <paul.eggleton@...        No data                       
-lz4                      r112                N/A                 41832 d                  No Maintainer info                      No data                       
-waffle                   1.3.0               N/A                 41832 d                  No Maintainer info                      No data                       
-nettle                   2.7.1               N/A                 41832 d                  No Maintainer info                      No data                       
-pseudo                   1.5.1               N/A                 41832 d                  Mark Hatle <mark.hatle@windri...        No data                       
-bind                     9.9.5               N/A                 41832 d                  Kai Kang <kai.kang@windriver....        No data                       
-pax                      3.4                 N/A                 41832 d                  Hongxu Jia <hongxu.jia@windri...        No data                       
-tremor                   20120314            20120122            490 day                  Cristian Iorga <cristian.iorg...        Same revision on different SVN...
-libatomics-ops           7.2                 N/A                 41832 d                  Cristian Iorga <cristian.iorg...        No data                       
-Manual Check Count: 32
-Manual Need Check Count: 32
-Any problem, please contact Saul Wold <sgw@linux.intel.com> 
+-- 
+- Pascal
 
