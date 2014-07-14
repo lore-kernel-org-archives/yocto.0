@@ -1,30 +1,48 @@
-Return-Path: <prvs=265ddcc65=Richard.Leitner@skidata.com>
+Return-Path: <jags.gediya@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 03F0AE004FF; Mon, 14 Jul 2014 07:43:31 -0700 (PDT)
+	id 2682EE00576; Mon, 14 Jul 2014 08:20:25 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (jags.gediya[at]gmail.com)
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail1.skidata.com (mail1.skidata.com [91.230.2.99])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7C79BE002AA
-	for <yocto@yoctoproject.org>; Mon, 14 Jul 2014 07:43:26 -0700 (PDT)
-X-IronPort-Anti-Spam-Filtered: true
-X-IronPort-Anti-Spam-Result: AqAEAGTrw1OsEApK/2dsb2JhbABZhDrJFAGBKXWEBAEEATo/BQsLDRQlD0gGDgWILgMJDcBqC4cqF49LB4RDAQSbDYc8kCmCLg
-X-IPAS-Result: AqAEAGTrw1OsEApK/2dsb2JhbABZhDrJFAGBKXWEBAEEATo/BQsLDRQlD0gGDgWILgMJDcBqC4cqF49LB4RDAQSbDYc8kCmCLg
-Date: Mon, 14 Jul 2014 16:43:23 +0200
-From: Richard Leitner <richard.leitner@skidata.com>
-To: TonyZhao <tonyzhao414@foxmail.com>
-Message-ID: <20140714164323.611b7345@lxbuild.skidata.net>
-In-Reply-To: <tencent_008BC33E036646E367F5CFCE@qq.com>
-References: <tencent_008BC33E036646E367F5CFCE@qq.com>
-Organization: SKIDATA AG
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [209.85.192.48 listed in list.dnswl.org]
+Received: from mail-qg0-f48.google.com (mail-qg0-f48.google.com
+	[209.85.192.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CD35DE0030A;
+	Mon, 14 Jul 2014 08:20:17 -0700 (PDT)
+Received: by mail-qg0-f48.google.com with SMTP id i50so791433qgf.35
+	for <multiple recipients>; Mon, 14 Jul 2014 08:20:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=GdxHLcpS0kLnI7Y2xWPBTNIzYLLm/n5lacJcOzgsYi8=;
+	b=hxFdLfSO8JHLWEIOg+JDTiwu8twBMRYOTXkS68yflM73KczeyH2xfloOfgWLvT498C
+	sWoBm32DG1IRM4Vk4v9XSkHvZ88Hzu28QQzfV4TzeHN6v1rWa10pE1vwNQa14dHxwtZl
+	LbV/TEuzDs6DckaX6F2gxSd2jPMLogH9PNvGsOKrDv69iDZQIBDnIca8bPEqeZ2dGfBB
+	B77BWZJuvny+79RTxfVlBilWtPoVrXAa6+Y5NKCwxk+7IiuktgQwSkghjg5wEypQXDQM
+	Uv+IY0abeTD62Ps8Dwp6ExJMmmo6eouXIPUDVFBz2bD0Gm+qttJO0RRH+TnY3BzallAp
+	G53w==
 MIME-Version: 1.0
-X-Originating-IP: [172.16.60.30]
-Cc: yocto <yocto@yoctoproject.org>
-Subject: Re: How to install .deb file in Yocto on Intel Galileo
+X-Received: by 10.224.160.83 with SMTP id m19mr23152297qax.95.1405351217333;
+	Mon, 14 Jul 2014 08:20:17 -0700 (PDT)
+Received: by 10.224.37.133 with HTTP; Mon, 14 Jul 2014 08:20:17 -0700 (PDT)
+Date: Mon, 14 Jul 2014 20:50:17 +0530
+Message-ID: <CAP3RZojz+v3uDix=a2XaAYhO36BCgVN7XoWr700To5HmCTjmyA@mail.gmail.com>
+From: jags gediya <jags.gediya@gmail.com>
+To: yocto@yoctoproject.org, meta-freescale@yoctoproject.org
+Subject: Yocto build is taking too long time in kernel do_package and do_populate_sysroots
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -36,35 +54,61 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 14 Jul 2014 14:43:31 -0000
-Content-Type: text/plain; charset="US-ASCII"
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Mon, 14 Jul 2014 15:20:25 -0000
+Content-Type: text/plain; charset=UTF-8
 
-Hi,
-do you want to install the .deb package during the bitbake build or in the running system?
+I am a newbie to yocto. For the purpose of check in code on svn, I
+have deleted all .git, .gitignore and .repo file from yocto before
+built. Then i have checked out that code from svn and started the
+yocto built.
 
+But my compilation used to stop at below point for more than an hour.
 
-During the bitbake build you can use something like the following in your image recipe.
-install_my_deb() {                                                              
-	${STAGING_BINDIR_NATIVE}/dpkg --root=${IMAGE_ROOTFS}/ --admindir=${IMAGE_ROOTFS}/var/lib/dpkg/ -i /path/to/package.deb
-}                                                                               
-ROOTFS_POSTPROCESS_COMMAND += "install_my_deb; "
+Currently 2 running tasks (1771 of 1777):
+    0: linux-imx-3.10.17-r0 do_package (pid 4011)
+    1: linux-imx-3.10.17-r0 do_populate_sysroot (pid 19696)
+I am building the core-image-minimal for imx6sl evk.
 
+Some modification i have done for the kernel and u-boot. I am not
+taking kernel and u-boot from the git. Instead i have changed the
+SRC_URI, and i have given there the path for kernel and u-boot to take
+it from local system.
 
-If you like to install it in the running system make sure dpkg is installed (try "dpkg --version").
-If not: check PACKAGE_CLASSES variable. (Is package_deb set?)
+Things i have modified as per below.
+originally linux-imx.inc was having,
 
+LICENSE = "GPLv2"
+LIC_FILES_CHKSUM = "file://COPYING;md5=d7810fab7487fb0aad327b76f1be7cd7"
 
-hope this helps.
+inherit kernel
 
-regards,
-richard l.
+# Put a local version until we have a true SRCREV to point to
+LOCALVERSION ?= "+yocto"
+SCMVERSION ?= "y"
 
-On Mon, 14 Jul 2014 15:55:18 +0800
-TonyZhao <tonyzhao414@foxmail.com> wrote:
+SRC_URI = "git://git.freescale.com/imx/linux-2.6-imx.git;branch=${SRCBRANCH} \
+           file://defconfig \
+"
 
-> I want to install .deb file in Yocto. It's based on Intel Galileo, started from SD card.
-> I tried dpkg -i <package>, but it said no such command.
-> Do I miss something or use the wrong command?
-> Thanks.
+S = "${WORKDIR}/git"
+
+I have changed it to,
+
+#LICENSE = "GPLv2"
+#LIC_FILES_CHKSUM = "file://COPYING;md5=d7810fab7487fb0aad327b76f1be7cd7"
+LICENSE = "CLOSED"
+
+inherit kernel
+
+SRC_URI = "file://${BSPDIR}/kernel \
+           file://defconfig \
+"
+S = "${BSPDIR}/kernel"
+
+Can anyone point me if i have done any wrong configuration.
+PS: Before chevk in on svn, Kernel compilation was taking that much
+long time while building images.
+
+Thanks,
+Jags
 
