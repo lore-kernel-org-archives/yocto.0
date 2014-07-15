@@ -1,47 +1,48 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <ellurubharath29@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 1E158E006ED; Tue, 15 Jul 2014 06:48:14 -0700 (PDT)
+	id D0A52E006ED; Tue, 15 Jul 2014 08:18:10 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (ellurubharath29[at]gmail.com)
 	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
 	low *      trust
-	*      [209.85.216.171 listed in list.dnswl.org]
-Received: from mail-qc0-f171.google.com (mail-qc0-f171.google.com
-	[209.85.216.171])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D8150E00543
-	for <yocto@yoctoproject.org>; Tue, 15 Jul 2014 06:48:05 -0700 (PDT)
-Received: by mail-qc0-f171.google.com with SMTP id i17so2372925qcy.2
-	for <yocto@yoctoproject.org>; Tue, 15 Jul 2014 06:48:04 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc:content-type;
-	bh=LiB/Nawj8/bO6MrYEFJ70RMmOIj9TRzsgRGtmYQhoSc=;
-	b=VCQ6QzEO2xnC7RBZdyeRpdri9fOH9u1AYXDBmNa3c/gST7j5i6PolhaKi+6nId2xhv
-	NHn4IQNc/0OMpva4piQpOsfIRr9ZWStghy9x3PxPwEtI65NJ4YUxfrgoMp2JQMzHCzLp
-	CCjZYykv3bwKRQq0/fhm/oGCkxoaZyg+xWn0pZBVw5eeF2RhdX+fk9TGHd45jH+SLBi0
-	HveAR0s0QSRgEo7LinFLvRXLmcvF2mVMrOKYdPWPjSYiv/IhMQw5HcbzUOv0bMSSI/fP
-	X4a/56vywhRsy1QUO8wzLzfESGZHAD1M7DNwAv6d3kPWM6/0VU/Wks04o8u7nB3a6hd0
-	ABTw==
-X-Gm-Message-State: ALoCoQnKutSoTvSCK7V13EkllFlHuqKP6CUBqe05yMqCiLUpZ6VuLbPHAx2Va5ktMpwZAay83xxD
-X-Received: by 10.224.167.136 with SMTP id q8mr33397177qay.35.1405432084467;
-	Tue, 15 Jul 2014 06:48:04 -0700 (PDT)
+	*      [74.125.82.49 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+	*      [score: 0.0000]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-wg0-f49.google.com (mail-wg0-f49.google.com [74.125.82.49])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 75F6CE00543
+	for <yocto@yoctoproject.org>; Tue, 15 Jul 2014 08:18:07 -0700 (PDT)
+Received: by mail-wg0-f49.google.com with SMTP id k14so5151445wgh.32
+	for <yocto@yoctoproject.org>; Tue, 15 Jul 2014 08:18:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=POMTBg6EhSAp9a/ZNZs4eVvAg/CWDuJUdpUFby0NMZk=;
+	b=ieqK0/HiQDU+flS6IisVNVSG0HXDbMwTAed66iemddb6l+g2BsdwrSxY9EM2pNN0WX
+	BNsPA3fslCKhoZkfMECk8FricAYlCeuq+xifOKpqedv1i319AGk9vQymJWVxDzh4Ui1w
+	Neg4AqJaqsgCkJ4jQYFsvIjgiS1C9aLQg/ZgfdT+iwygnLtlaMW5xvRSMRslFZ2EV3uB
+	uAYsSWvvV2NDGJOpbe2QumqnmkFK8U3Z+NaiT5LXyAsmjh4/+WS/QxWLaJQovktC0b0r
+	SLyfAZjTNXNQRvYdxpMSnvc4+GNGj8ArrkhpxO+tMoxRGZ97WGYIDLl6hgPzjtwYx67U
+	QTPg==
 MIME-Version: 1.0
-Received: by 10.140.86.99 with HTTP; Tue, 15 Jul 2014 06:47:44 -0700 (PDT)
-In-Reply-To: <1405431059-47938-1-git-send-email-daniel.bornaz@enea.com>
-References: <1405431059-47938-1-git-send-email-daniel.bornaz@enea.com>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Tue, 15 Jul 2014 14:47:44 +0100
-Message-ID: <CAJTo0LZUau7rrNkpuO2CxaGH979CnBr=ONcmyPHRJ5gWs6Pz8A@mail.gmail.com>
-To: Daniel BORNAZ <daniel.bornaz@enea.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	OE-core <openembedded-core@lists.openembedded.org>
-Subject: Re: [OE-core] [PATCH 1/1] Qemu security patch: CVE-2014-3471
+X-Received: by 10.181.11.232 with SMTP id el8mr6424105wid.57.1405437487085;
+	Tue, 15 Jul 2014 08:18:07 -0700 (PDT)
+Received: by 10.194.78.46 with HTTP; Tue, 15 Jul 2014 08:18:07 -0700 (PDT)
+Date: Tue, 15 Jul 2014 10:18:07 -0500
+Message-ID: <CAGM0ZdSsrHfzDq8CHFv0M5qJi354pWyoijzU5w5Hg+tzjRW0UQ@mail.gmail.com>
+From: Bharath Chandra <ellurubharath29@gmail.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Boot Process of gumstix
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -53,28 +54,37 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 15 Jul 2014 13:48:14 -0000
+X-List-Received-Date: Tue, 15 Jul 2014 15:18:10 -0000
+Content-Type: multipart/alternative; boundary=f46d043c80722c003d04fe3cea18
+
+--f46d043c80722c003d04fe3cea18
 Content-Type: text/plain; charset=UTF-8
 
-On 15 July 2014 14:30, Daniel BORNAZ <daniel.bornaz@enea.com> wrote:
-> +++ b/meta/recipes-devtools/qemu/files/pcie_better_hotplug_support.patch
-> @@ -0,0 +1,74 @@
-> +The current code is broken: it does surprise removal which crashes guests.
-> +
-> +Reimplemented the steps:
-> + - Hotplug triggers both 'present detect change' and
-> +   'attention button pressed'.
-> +
-> + - Hotunplug starts by triggering 'attention button pressed',
-> +   then waits for the OS to power off the device and only
-> +   then detaches it.
-> +
-> +Fixes CVE-2014-3471.
-> +
-> +Originated-by: Marcel Apfelbaum <address@hidden>
-> +Updated-by: Daniel BORNAZ <daniel.bornaz@enea.com>
+Hi,
 
-Missing upstream-status (and a proper signed-off-by).
+I would like to analyze the startup process of gumstix board. What happens
+when we boot a gumstix board, for eg: first the MLO will be called and then
+it will call u-boot.img.... I would like to know what does MLO do and
+functionalities of other files. Can anyone of you provide any pointer where
+I can get good documentation about the startup process.
 
-Ross
+-- 
+Thanks & Regards,
+Bharath Chandra Elluru.
+Contact Number:785-979-4875.
 
+--f46d043c80722c003d04fe3cea18
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Hi,<br><br>I would like to analyze the startup process of =
+gumstix board. What happens when we boot a gumstix board, for eg: first the=
+ MLO will be called and then it will call u-boot.img.... I would like to kn=
+ow what does MLO do and functionalities of other files. Can anyone of you p=
+rovide any pointer where I can get good documentation about the startup pro=
+cess.<br clear=3D"all">
+<div><br>-- <br><div dir=3D"ltr">Thanks &amp; Regards,<div>Bharath Chandra =
+Elluru.</div><div>Contact Number:785-979-4875.</div></div>
+</div></div>
+
+--f46d043c80722c003d04fe3cea18--
