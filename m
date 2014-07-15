@@ -1,6 +1,6 @@
 Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 98657E00547; Tue, 15 Jul 2014 11:12:02 -0700 (PDT)
+	id C3E43E00547; Tue, 15 Jul 2014 11:18:27 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -19,36 +19,36 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
 	low *      trust
-	*      [209.85.213.181 listed in list.dnswl.org]
-Received: from mail-ig0-f181.google.com (mail-ig0-f181.google.com
-	[209.85.213.181])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 67E45E004FF
-	for <yocto@yoctoproject.org>; Tue, 15 Jul 2014 11:11:54 -0700 (PDT)
-Received: by mail-ig0-f181.google.com with SMTP id h3so3213081igd.2
-	for <yocto@yoctoproject.org>; Tue, 15 Jul 2014 11:11:54 -0700 (PDT)
+	*      [209.85.223.173 listed in list.dnswl.org]
+Received: from mail-ie0-f173.google.com (mail-ie0-f173.google.com
+	[209.85.223.173])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 93D71E004FF
+	for <yocto@yoctoproject.org>; Tue, 15 Jul 2014 11:18:22 -0700 (PDT)
+Received: by mail-ie0-f173.google.com with SMTP id tr6so4844024ieb.4
+	for <yocto@yoctoproject.org>; Tue, 15 Jul 2014 11:18:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
 	:cc:content-type;
-	bh=pf2blsPJnTVWzIOG+kkoxY3U1RMFSEssxdpRra+uvc4=;
-	b=C0xjvVjCWi/dvWYOX+rjL/Swk0aIOdmf3l7jaien2rCeUK9ru+0lD3eeu0ykzoimfy
-	ml68siNUKhzCq72QaTz2I+Oe5rXFLh/t+AjTui7q4JOfPrQx7fvrYTFHx/yDnEtU4Xrd
-	3fgEVJgn1/wB+6u5p2ijx+1tkOMJDagXRwfNNMU6XF3d06cJqqXGPrbxBX0rwCGW1WYv
-	5byGEwyCfDUt8GGuGOKj0u8FFvqwnLF8hFsCHQajK9buWKwOibETOnNoGGyMR2RGk/Ee
-	H3nyvoAcp/P2UoQAyr/RRMKssIxQa9INvz7URz5gG/SDLSy1G0lacrnfKh7aArnfBxzS
-	gHFg==
+	bh=bXGtOoz161Ob9BKxIsjli+bSMoi1NXnVoTxgNrCJtq0=;
+	b=nKyPV97N3jG1TTeUm2+vTL2tysXuqqIh8cGTm6cPJEe8uOJN2xyuU/3ozwD9izhKsd
+	lcNZPSzawl9/zc9VeQ1vt5QiOme1b6rtLLirJ27TJXVWOWY1aG9av3Lptmz2T3ge19x/
+	u1wZNpHTdxoRUIJuiuUTDm4S6w4gVKWvPmKhCASfH3Fm6Za6WcbIfrs1htTIUI6JMxhd
+	mfzkgfrT9ffjVUEwOLZ4kIE3WXbyLpd1yRPoafSXHWXTVSO7S8lU+81Nrg4LaSy5Ll2m
+	v52kS8nPhffjBVRtu00QcnE3DAFBqa/trCD76iPr3n1VpYrrbupct+1OMXilR/tsCqec
+	GbCg==
 MIME-Version: 1.0
-X-Received: by 10.50.13.102 with SMTP id g6mr8954101igc.20.1405447914080; Tue,
-	15 Jul 2014 11:11:54 -0700 (PDT)
-Received: by 10.50.78.105 with HTTP; Tue, 15 Jul 2014 11:11:54 -0700 (PDT)
-Received: by 10.50.78.105 with HTTP; Tue, 15 Jul 2014 11:11:54 -0700 (PDT)
-In-Reply-To: <33115ABC4887814E8A92A08FBC93416B23BF65B7@IRSMSX103.ger.corp.intel.com>
-References: <33115ABC4887814E8A92A08FBC93416B23BF65B7@IRSMSX103.ger.corp.intel.com>
-Date: Tue, 15 Jul 2014 11:11:54 -0700
-Message-ID: <CAMKF1spMhRZ=EZSDghOA=rxdL8nLmrrxhmyEmXwf2Ly5OqzHSQ@mail.gmail.com>
+X-Received: by 10.42.90.74 with SMTP id j10mr31904510icm.29.1405448302105;
+	Tue, 15 Jul 2014 11:18:22 -0700 (PDT)
+Received: by 10.50.78.105 with HTTP; Tue, 15 Jul 2014 11:18:22 -0700 (PDT)
+Received: by 10.50.78.105 with HTTP; Tue, 15 Jul 2014 11:18:22 -0700 (PDT)
+In-Reply-To: <4c2985c7070540f08bd68ba8a7c25331@CY1PR0301MB0715.namprd03.prod.outlook.com>
+References: <4c2985c7070540f08bd68ba8a7c25331@CY1PR0301MB0715.namprd03.prod.outlook.com>
+Date: Tue, 15 Jul 2014 11:18:22 -0700
+Message-ID: <CAMKF1spGz3g=B1UuUEOHKchbguCp1HRoWWvwOVEGqEJx-tgS8Q@mail.gmail.com>
 From: Khem Raj <raj.khem@gmail.com>
-To: CorneliuX Stoicescu <corneliux.stoicescu@intel.com>
+To: zhenhua.luo@freescale.com
 Cc: yocto@yoctoproject.org
-Subject: Re: Documentation for test-remote-image script
+Subject: Re: Query about the kernel version supported by Yocto
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -60,53 +60,54 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 15 Jul 2014 18:12:02 -0000
-Content-Type: multipart/alternative; boundary=089e013c66d6ab4e8204fe3f5727
+X-List-Received-Date: Tue, 15 Jul 2014 18:18:27 -0000
+Content-Type: multipart/alternative; boundary=90e6ba53b27ccc1d6904fe3f6e20
 
---089e013c66d6ab4e8204fe3f5727
+--90e6ba53b27ccc1d6904fe3f6e20
 Content-Type: text/plain; charset=UTF-8
 
-On Jul 15, 2014 6:17 AM, "Stoicescu, CorneliuX" <
-corneliux.stoicescu@intel.com> wrote:
+On Jul 15, 2014 3:30 AM, "zhenhua.luo@freescale.com" <
+zhenhua.luo@freescale.com> wrote:
 >
-> Hello,
+> Hi all,
 >
-> Here is the documentation for the test-remote-image script. This was one
-of the resulted changes derived from feature
-https://bugzilla.yoctoproject.org/show_bug.cgi?id=6254 .
->
-> If you think more documentation is needed, please reply so I can add to
-the wiki :)
->
+> The git tree of several kernel version is maintained in the Yocto
+official git repository, 3.4, 3,8, 3.10 and 3.14, is there any reason to
+skip kernel 3.12 which is a LTS version?
 
-it would be nice to explain the cmdline options of this script anf there
-are some typos
-> Regards,
-> Corneliu
-> Yocto QA
+usually latest lts and ltsi plus latest stable thats available during yp
+release time frame. 3.12 was declared lts a bit late iirc around march 2014
+>
+> What's the policy of kernel selection of kernel that is supported by
+Yocto?
+>
+>
+> Best Regards,
+>
+> Zhenhua
 > --
 > _______________________________________________
 > yocto mailing list
 > yocto@yoctoproject.org
 > https://lists.yoctoproject.org/listinfo/yocto
 
---089e013c66d6ab4e8204fe3f5727
+--90e6ba53b27ccc1d6904fe3f6e20
 Content-Type: text/html; charset=UTF-8
 
 <p dir="ltr"><br>
-On Jul 15, 2014 6:17 AM, &quot;Stoicescu, CorneliuX&quot; &lt;<a href="mailto:corneliux.stoicescu@intel.com">corneliux.stoicescu@intel.com</a>&gt; wrote:<br>
+On Jul 15, 2014 3:30 AM, &quot;<a href="mailto:zhenhua.luo@freescale.com">zhenhua.luo@freescale.com</a>&quot; &lt;<a href="mailto:zhenhua.luo@freescale.com">zhenhua.luo@freescale.com</a>&gt; wrote:<br>
 &gt;<br>
-&gt; Hello,<br>
+&gt; Hi all,<br>
 &gt;<br>
-&gt; Here is the documentation for the test-remote-image script. This was one of the resulted changes derived from feature <a href="https://bugzilla.yoctoproject.org/show_bug.cgi?id=6254">https://bugzilla.yoctoproject.org/show_bug.cgi?id=6254</a> .<br>
-
+&gt; The git tree of several kernel version is maintained in the Yocto official git repository, 3.4, 3,8, 3.10 and 3.14, is there any reason to skip kernel 3.12 which is a LTS version?</p>
+<p dir="ltr">usually latest lts and ltsi plus latest stable thats available during yp release time frame. 3.12 was declared lts a bit late iirc around march 2014 <br>
 &gt;<br>
-&gt; If you think more documentation is needed, please reply so I can add to the wiki :)<br>
-&gt;</p>
-<p dir="ltr">it would be nice to explain the cmdline options of this script anf there are some typos<br>
-&gt; Regards,<br>
-&gt; Corneliu<br>
-&gt; Yocto QA<br>
+&gt; What&#39;s the policy of kernel selection of kernel that is supported by Yocto?<br>
+&gt;<br>
+&gt;<br>
+&gt; Best Regards,<br>
+&gt;<br>
+&gt; Zhenhua<br>
 &gt; --<br>
 &gt; _______________________________________________<br>
 &gt; yocto mailing list<br>
@@ -114,4 +115,4 @@ On Jul 15, 2014 6:17 AM, &quot;Stoicescu, CorneliuX&quot; &lt;<a href="mailto:co
 &gt; <a href="https://lists.yoctoproject.org/listinfo/yocto">https://lists.yoctoproject.org/listinfo/yocto</a><br>
 </p>
 
---089e013c66d6ab4e8204fe3f5727--
+--90e6ba53b27ccc1d6904fe3f6e20--
