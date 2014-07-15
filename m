@@ -1,40 +1,54 @@
-Return-Path: <mark.hatle@windriver.com>
+Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 51CE3E006EE; Tue, 15 Jul 2014 10:31:54 -0700 (PDT)
+	id 9D6EEE00547; Tue, 15 Jul 2014 11:06:33 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [147.11.1.11 listed in list.dnswl.org]
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (raj.khem[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2C7CBE00543
-	for <yocto@yoctoproject.org>; Tue, 15 Jul 2014 10:31:50 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail.windriver.com (8.14.5/8.14.5) with ESMTP id s6FHVmTo008961
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Tue, 15 Jul 2014 10:31:49 -0700 (PDT)
-Received: from Marks-MacBook-Pro.local (172.25.36.227) by
-	ALA-HCA.corp.ad.wrs.com (147.11.189.50) with Microsoft SMTP Server id
-	14.3.169.1; Tue, 15 Jul 2014 10:31:48 -0700
-Message-ID: <53C56584.2090508@windriver.com>
-Date: Tue, 15 Jul 2014 12:31:48 -0500
-From: Mark Hatle <mark.hatle@windriver.com>
-Organization: Wind River Systems
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.9;
-	rv:24.0) Gecko/20100101 Thunderbird/24.6.0
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.213.173 listed in list.dnswl.org]
+Received: from mail-ig0-f173.google.com (mail-ig0-f173.google.com
+	[209.85.213.173])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4313CE004FF
+	for <yocto@yoctoproject.org>; Tue, 15 Jul 2014 11:06:30 -0700 (PDT)
+Received: by mail-ig0-f173.google.com with SMTP id h18so3214352igc.0
+	for <yocto@yoctoproject.org>; Tue, 15 Jul 2014 11:06:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type;
+	bh=Dh440oDL/+0V8nPss4FNvUCM4uXnbKiz67Wb0AjT0Fo=;
+	b=Vdr+rgpDZwTVRUYELo9QFHjCyMUWm1lx3DANaP/kJTKw9Xj6HSvoep513aZJDwuKpb
+	FLFRFSSDjPvN/tAVhvo3mWwHkbVB0I89VkupXgyzIJXcFlU1a/HA19ByEvPN4Vtq41TY
+	vf8uZGeTyjr6hGY/LFNx3n9g7SpDNUfleV8mIhTue38igQeZyBvzBu0EpvcrxHEAvDlk
+	sIiB1w5aMVZsyf+3pnCnkM7NQza2L+raFQFsfSJHbZpKN/LQewfNwZuzBw6XMkEfe3j9
+	weilaorm7eCVDFfneL5YR6EtOzZamMQLkIOBP5Rtvjnt9KOug3AX7+UEUt5LEV6aOpC4
+	jXsA==
 MIME-Version: 1.0
-To: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
-References: <53C55C76.2080907@windriver.com>
-	<CAPhnLPA7SruANaY7Gvby4j8SpzCa+iA55QDRzoO3N3Yz1i9Tcg@mail.gmail.com>
-In-Reply-To: <CAPhnLPA7SruANaY7Gvby4j8SpzCa+iA55QDRzoO3N3Yz1i9Tcg@mail.gmail.com>
-Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: YP 1.7 poky build tags?
+X-Received: by 10.43.53.199 with SMTP id vr7mr12965198icb.70.1405447590061;
+	Tue, 15 Jul 2014 11:06:30 -0700 (PDT)
+Received: by 10.50.78.105 with HTTP; Tue, 15 Jul 2014 11:06:30 -0700 (PDT)
+Received: by 10.50.78.105 with HTTP; Tue, 15 Jul 2014 11:06:30 -0700 (PDT)
+In-Reply-To: <CAGM0ZdSsrHfzDq8CHFv0M5qJi354pWyoijzU5w5Hg+tzjRW0UQ@mail.gmail.com>
+References: <CAGM0ZdSsrHfzDq8CHFv0M5qJi354pWyoijzU5w5Hg+tzjRW0UQ@mail.gmail.com>
+Date: Tue, 15 Jul 2014 11:06:30 -0700
+Message-ID: <CAMKF1sorA_OLXV02Cpayz2BPz1168Jwta5DPJkJVSgYkrd00+Q@mail.gmail.com>
+From: Khem Raj <raj.khem@gmail.com>
+To: Bharath Chandra <ellurubharath29@gmail.com>
+Cc: yocto@yoctoproject.org
+Subject: Re: Boot Process of gumstix
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -46,36 +60,71 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 15 Jul 2014 17:31:54 -0000
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Tue, 15 Jul 2014 18:06:33 -0000
+Content-Type: multipart/alternative; boundary=bcaec51b1ad95b2d0d04fe3f4459
 
-On 7/15/14, 12:29 PM, Flanagan, Elizabeth wrote:
-> On Tue, Jul 15, 2014 at 9:53 AM, Mark Hatle <mark.hatle@windriver.com> wrote:
->> I think the YP 1.7 build tags are missing in the Poky repository.
->>
->> It looks to me (based on the test reports) that the following tags should be
->> created:
+--bcaec51b1ad95b2d0d04fe3f4459
+Content-Type: text/plain; charset=UTF-8
+
+On Jul 15, 2014 8:19 AM, "Bharath Chandra" <ellurubharath29@gmail.com>
+wrote:
 >
-> We've actually stopped doing rc build tags as of 1.6_M2, as there were
-> community complaints about the vast number of tags. We still utilize
-> milestone tags (1.7_M1) and final release tags (yocto-1.7 and
-> daisy-11.0.1), but for release candidates we utilize the email sent
-> out that an rc is available.
-
-I was not aware of that.  My personal opinion is that I'd rather have a vast 
-number of tags that capture builds then no tags.  I was trying to give someone a 
-pointer to the RC2 and had to dig through my email to find it.
-
---Mark
-
->>
->> 1.7_M1.rc1: 68824d9b8f6e290da078383316b3f4b732585f2b
->> 1.7_M1.rc2: a5531a2b8983318b99c119a87b78a92cf84160b8
->>
->> --Mark
+> Hi,
 >
-> -b
+> I would like to analyze the startup process of gumstix board. What
+happens when we boot a gumstix board, for eg: first the MLO will be called
+and then it will call u-boot.img.... I would like to know what does MLO do
+and functionalities of other files. Can anyone of you provide any pointer
+where I can get good documentation about the startup process.
+
+should be similar to
+http://elinux.org/EBC_Exercise_21a_Boot_Sequence
+>
+> --
+> Thanks & Regards,
+> Bharath Chandra Elluru.
+> Contact Number:785-979-4875.
+>
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 >
 
+--bcaec51b1ad95b2d0d04fe3f4459
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
+<p dir=3D"ltr"><br>
+On Jul 15, 2014 8:19 AM, &quot;Bharath Chandra&quot; &lt;<a href=3D"mailto:=
+ellurubharath29@gmail.com">ellurubharath29@gmail.com</a>&gt; wrote:<br>
+&gt;<br>
+&gt; Hi,<br>
+&gt;<br>
+&gt; I would like to analyze the startup process of gumstix board. What hap=
+pens when we boot a gumstix board, for eg: first the MLO will be called and=
+ then it will call u-boot.img.... I would like to know what does MLO do and=
+ functionalities of other files. Can anyone of you provide any pointer wher=
+e I can get good documentation about the startup process.<br>
+</p>
+<p dir=3D"ltr">should be similar to<br>
+<a href=3D"http://elinux.org/EBC_Exercise_21a_Boot_Sequence">http://elinux.=
+org/EBC_Exercise_21a_Boot_Sequence</a><br>
+&gt;<br>
+&gt; -- <br>
+&gt; Thanks &amp; Regards,<br>
+&gt; Bharath Chandra Elluru.<br>
+&gt; Contact Number:785-979-4875.<br>
+&gt;<br>
+&gt; --<br>
+&gt; _______________________________________________<br>
+&gt; yocto mailing list<br>
+&gt; <a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><b=
+r>
+&gt; <a href=3D"https://lists.yoctoproject.org/listinfo/yocto">https://list=
+s.yoctoproject.org/listinfo/yocto</a><br>
+&gt;<br>
+</p>
+
+--bcaec51b1ad95b2d0d04fe3f4459--
