@@ -1,50 +1,52 @@
-Return-Path: <zhenhua.luo@freescale.com>
+Return-Path: <atul.singh008@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id CEBE4E00572; Tue, 15 Jul 2014 03:29:44 -0700 (PDT)
+	id B3809E00572; Tue, 15 Jul 2014 06:07:01 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
-	SPF_HELO_PASS autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [207.46.163.206 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (atul.singh008[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-X-Greylist: delayed 883 seconds by postgrey-1.32 at yocto-www;
-	Tue, 15 Jul 2014 03:29:39 PDT
-Received: from na01-bl2-obe.outbound.protection.outlook.com
-	(mail-bl2lp0206.outbound.protection.outlook.com [207.46.163.206])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5D7C0E002AA
-	for <yocto@yoctoproject.org>; Tue, 15 Jul 2014 03:29:39 -0700 (PDT)
-Received: from CY1PR0301MB0715.namprd03.prod.outlook.com (25.160.159.145) by
-	CY1PR0301MB0716.namprd03.prod.outlook.com (25.160.159.146) with
-	Microsoft
-	SMTP Server (TLS) id 15.0.985.8; Tue, 15 Jul 2014 10:14:54 +0000
-Received: from CY1PR0301MB0715.namprd03.prod.outlook.com ([25.160.159.145]) by
-	CY1PR0301MB0715.namprd03.prod.outlook.com ([25.160.159.145]) with
-	mapi id 15.00.0985.008; Tue, 15 Jul 2014 10:14:54 +0000
-From: "zhenhua.luo@freescale.com" <zhenhua.luo@freescale.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Query about the kernel version supported by Yocto
-Thread-Index: Ac+gFZ2Cs4x6/dKtQGircmHrgK47Gg==
-Date: Tue, 15 Jul 2014 10:14:53 +0000
-Message-ID: <4c2985c7070540f08bd68ba8a7c25331@CY1PR0301MB0715.namprd03.prod.outlook.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [192.88.158.211]
-x-microsoft-antispam: BCL:0;PCL:0;RULEID:
-x-forefront-prvs: 027367F73D
-x-forefront-antispam-report: SFV:NSPM;
-	SFS:(6009001)(53754006)(199002)(189002)(229853001)(110136001)(558084003)(76482001)(101416001)(77096002)(4396001)(46102001)(85306003)(74316001)(83322001)(107046002)(85852003)(107886001)(21056001)(2656002)(2351001)(54356999)(99396002)(95666004)(80022001)(66066001)(50986999)(105586002)(86362001)(64706001)(74502001)(83072002)(76576001)(74662001)(87936001)(81542001)(31966008)(92566001)(79102001)(81342001)(106356001)(20776003)(77982001)(33646002)(108616002)(24736002);
-	DIR:OUT; SFP:; SCL:1; SRVR:CY1PR0301MB0716;
-	H:CY1PR0301MB0715.namprd03.prod.outlook.com; FPR:; MLV:sfv;
-	PTR:InfoNoRecords; MX:1; LANG:en; 
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.213.176 listed in list.dnswl.org]
+Received: from mail-ig0-f176.google.com (mail-ig0-f176.google.com
+	[209.85.213.176])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6002DE002AA
+	for <yocto@yoctoproject.org>; Tue, 15 Jul 2014 06:06:56 -0700 (PDT)
+Received: by mail-ig0-f176.google.com with SMTP id hn18so2820839igb.9
+	for <yocto@yoctoproject.org>; Tue, 15 Jul 2014 06:06:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:content-type; bh=1BH4fOpXifyRcpwGsglzsIs7rX2koYkZZA34hUHv04g=;
+	b=b9ckcjOzFNaWMjgerGfRMgDspUhbVvk3CM61b+OKz8RiybveXeFyLjQCaCCe+nYPmZ
+	CdQkPfrhc1gq0DO9b82127tWLZ9Zd4HTuDR/ApoXdU1DF294rVfp78mrSbXANYYw6aq8
+	ctBokb5XdxtvzE2ECSUGL5vmLsJl86UPI3vJI/u8JLy7jFJ1TBfkafyNtXf7lwujoCcu
+	lomUHs9o7Goo6JC+wxAzvFckcSg4kon4BjemMUuHZIZZtVGIugC3z9WhoJGDSXxF8ioF
+	hRGPyD2h06aagiTDyL51SW3aZqjDnMxVv0uuZG3pLMz62EWMk1szf2ySzErD2oIE1uAD
+	IY/w==
 MIME-Version: 1.0
-X-OriginatorOrg: freescale.com
-Subject: Query about the kernel version supported by Yocto
+X-Received: by 10.50.80.116 with SMTP id q20mr6420981igx.22.1405429615826;
+	Tue, 15 Jul 2014 06:06:55 -0700 (PDT)
+Received: by 10.64.86.225 with HTTP; Tue, 15 Jul 2014 06:06:55 -0700 (PDT)
+Received: by 10.64.86.225 with HTTP; Tue, 15 Jul 2014 06:06:55 -0700 (PDT)
+In-Reply-To: <31866b6cf9d84744aff245a947cb80a0@KCHJEXMBX01.kpit.com>
+References: <31866b6cf9d84744aff245a947cb80a0@KCHJEXMBX01.kpit.com>
+Date: Tue, 15 Jul 2014 18:36:55 +0530
+Message-ID: <CAH21_vEM74a_fFdXUhGuQ_8Jthxa2DyqTwDTwY6mE_9-na_21w@mail.gmail.com>
+From: atulkumar singh <atul.singh008@gmail.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: MinGW support for qemux86-64
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -56,22 +58,37 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 15 Jul 2014 10:29:44 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Tue, 15 Jul 2014 13:07:01 -0000
+Content-Type: multipart/alternative; boundary=089e01536682021d5804fe3b1592
+
+--089e01536682021d5804fe3b1592
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-Hi all,=20
+Hi All,
 
-The git tree of several kernel version is maintained in the Yocto official =
-git repository, 3.4, 3,8, 3.10 and 3.14, is there any reason to skip kernel=
- 3.12 which is a LTS version?=20
+Please let me know what I need to be updated for SDKMACHINE, when I am
+building meta-toolchain with MACHINE as =E2=80=9Cqemux86-64=E2=80=9D in loc=
+al.conf
 
-What's the policy of kernel selection of kernel that is supported by Yocto?=
-=20
+For qemux86, we are mentioning it as SDKMACHINE ?=3D "i686-mingw32".
 
 
-Best Regards,
+Thanks and Regards,
+ATUL KUMAR SINGH
 
-Zhenhua
+--089e01536682021d5804fe3b1592
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
+<p>Hi All,<br></p>
+<p>Please let me know what I need to be updated for SDKMACHINE, when I am b=
+uilding meta-toolchain with MACHINE as =E2=80=9Cqemux86-64=E2=80=9D in loca=
+l.conf</p>
+<p>For qemux86, we are mentioning it as SDKMACHINE ?=3D &quot;i686-mingw32&=
+quot;.</p>
+<p>=C2=A0<br>
+Thanks and Regards,<br>
+ATUL KUMAR SINGH</p>
+
+--089e01536682021d5804fe3b1592--
