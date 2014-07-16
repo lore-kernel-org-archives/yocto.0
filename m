@@ -1,57 +1,46 @@
-Return-Path: <joe@deserted.net>
+Return-Path: <nicolas.dechesne@linaro.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id D41F3E00769; Wed, 16 Jul 2014 06:33:48 -0700 (PDT)
+	id 6C885E006EE; Wed, 16 Jul 2014 06:46:15 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [209.85.214.180 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.223.171 listed in list.dnswl.org]
-Received: from mail-ie0-f171.google.com (mail-ie0-f171.google.com
-	[209.85.223.171])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A8E01E004FF
-	for <yocto@yoctoproject.org>; Wed, 16 Jul 2014 06:33:37 -0700 (PDT)
-Received: by mail-ie0-f171.google.com with SMTP id at1so748880iec.30
-	for <yocto@yoctoproject.org>; Wed, 16 Jul 2014 06:33:36 -0700 (PDT)
+Received: from mail-ob0-f180.google.com (mail-ob0-f180.google.com
+	[209.85.214.180])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 12265E004FF
+	for <yocto@yoctoproject.org>; Wed, 16 Jul 2014 06:46:02 -0700 (PDT)
+Received: by mail-ob0-f180.google.com with SMTP id uy5so917854obc.11
+	for <yocto@yoctoproject.org>; Wed, 16 Jul 2014 06:45:59 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
-	h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-	:mime-version:content-type:content-disposition:in-reply-to
-	:user-agent;
-	bh=Lk7ROrGOZGhQjY4NV736lYo0JRZky047wRzGE7Z7L1s=;
-	b=CncKQWBGpXVRWr1ya30PeIcq4x1ouEGaCtog7jqUNpLtFkOoI9vl5H+b/nC9PT2avk
-	+ZqH+yTJYLUPGywsU4btqBHZWHmUFtWiN9r/tKIJfqnyE3lUIUlgSD4af7kn6/MaWnG0
-	w+bzPr1StI4M9L466QaelGnjKcbeJbabAaVrEFL7InDFjzcB5u/x+v0efoD0wlt3gudb
-	A9G/yQy1UVtqo0C1m8mlDZAYBLi4uZA1nowTVEoShd9eZ8I+7QF+FZZrdBLeR3tjXcHM
-	j+iZJyK+Wy0pIWz86fA1Zpk42y08Knyt3+6QjDX9emJfGHjiT2Y+0a/U3yMX5lgAod8G
-	4WIg==
-X-Gm-Message-State: ALoCoQnVAumzdWoGJh/8ytk9LdYGjCDQHo4FNsk2tiuLrBLjlEMXhSTAuwrNpqNzgI7UaQ23KM/w
-X-Received: by 10.50.114.162 with SMTP id jh2mr16425718igb.0.1405517616519;
-	Wed, 16 Jul 2014 06:33:36 -0700 (PDT)
-Received: from skynet (24-246-4-250.cable.teksavvy.com. [24.246.4.250])
-	by mx.google.com with ESMTPSA id rq5sm44797462igb.0.2014.07.16.06.33.34
-	for <multiple recipients>
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Wed, 16 Jul 2014 06:33:35 -0700 (PDT)
-Received: by skynet (Postfix, from userid 1000)
-	id 73EB61685E4; Wed, 16 Jul 2014 09:33:32 -0400 (EDT)
-Date: Wed, 16 Jul 2014 09:33:32 -0400
-From: Joe MacDonald <joe@deserted.net>
-To: openembedded-devel@lists.openembedded.org
-Message-ID: <20140716133302.GB13248@deserted.net>
-References: <53C619B3.7050203@mvista.com>
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc:content-type;
+	bh=vx9rmSAIXpBOddei++72vhMMBgPA/xCFV/Q4oKagQ3s=;
+	b=D7IGnN1IPcfIS2M3QoAyW1VEhtDgAshK65r6MwaoQdOA9zKzEdQNXXP7OYDv4Ieeni
+	KMgUfkqwVkeWATnzE+6HmwB5jJUdeUCckXfn0nXXsLnu3ZBg6GXdvyMJEqBIVaMBatjU
+	QZs2tW+Kwp/JJkR40sa5ClQMc8S9pqd4+/XFNtg5Qp2MV40wtPGVysK7DjXqm4HxTbZW
+	nqBBHfwi2QdutlD3XVGodMGfTUalDseEyB6OjnhHL/gCXW1MCoDSxd+SGwPnyInB2TZ9
+	q+duvKbTtNNAg9TTm6VXbWObluf42J06/0HS9yc+aM1bBYyojeoh5tvMuTddqxlijY2f
+	DFDg==
+X-Gm-Message-State: ALoCoQnCfaMZK7p5HsSQCYst270bGSjXZ0XJxL9X7mNqHQdF/kszrvzoRwaJD2qZCZOB5clKDKA1
+X-Received: by 10.60.70.106 with SMTP id l10mr35650510oeu.54.1405518359549;
+	Wed, 16 Jul 2014 06:45:59 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <53C619B3.7050203@mvista.com>
-X-URL: http://github.com/joeythesaint/joe-s-common-environment/tree/master
-X-Configuration: git://github.com/joeythesaint/joe-s-common-environment.git
-X-Editor: Vim-703 http://www.vim.org
-User-Agent: Mutt/1.5.21 (2010-09-15)
+Received: by 10.76.171.168 with HTTP; Wed, 16 Jul 2014 06:45:39 -0700 (PDT)
+In-Reply-To: <CAH21_vFnWJZC60p8vzqjB-B9YCiKKbVOsUFts7Ej80gp5K1-TQ@mail.gmail.com>
+References: <CAH21_vFnWJZC60p8vzqjB-B9YCiKKbVOsUFts7Ej80gp5K1-TQ@mail.gmail.com>
+From: Nicolas Dechesne <nicolas.dechesne@linaro.org>
+Date: Wed, 16 Jul 2014 15:45:39 +0200
+Message-ID: <CAP71Wjxs_GjVn64UjkskGn06yvVTvSKDRcefPh5Ny226e1gMmA@mail.gmail.com>
+To: atulkumar singh <atul.singh008@gmail.com>
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: [oe] WIreshark 1.12.x
+Subject: Re: Toolchain build independent of host machine
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -63,48 +52,20 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 16 Jul 2014 13:33:48 -0000
-X-Groupsio-MsgNum: 20576
-Content-Type: multipart/signed; micalg=pgp-sha1;
-	protocol="application/pgp-signature"; boundary="yLVHuoLXiP9kZBkt"
-Content-Disposition: inline
+X-List-Received-Date: Wed, 16 Jul 2014 13:46:15 -0000
+Content-Type: text/plain; charset=UTF-8
 
---yLVHuoLXiP9kZBkt
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On Wed, Jul 16, 2014 at 3:28 PM, atulkumar singh
+<atul.singh008@gmail.com> wrote:
+> I wish to build my toolchain independent of host machine, either my sdk
+> machine is 32bit or 64 bit.
+> Like for 32bit host machine i am mentioning with i686 for SDKMACHINE in
+> local.conf and x86-64 for 64 bit machine.
+> Please let me know what i need to do to make my toolchain independent of
+> whether my host machine is 32bit or 64bit.
 
-[[oe] WIreshark 1.12.x] On 14.07.15 (Tue 23:20) akuster wrote:
+just build the 32-bits version of the SDK. it will work on both
+32-machine and 64-machine. this is assuming you install the 32-bit
+compatibility libs which depends on which distro you use, but most
+distro provide instructions to do that.
 
-> Hello all,
->=20
-> I have the latest wireshark 1.12.0-rc2 building and working with
-> gtk2. Is anyone else working on this? if not I can submit patches.
->=20
-> I am not sure which layer wireshark should swim in,  meta-networking
-> or meta-security ?
->=20
-> - Armin
-
-Hey Armin,
-
-tcpdump lives in meta-networking/recipes-support, that seems like it's
-probably a reasonable location for wireshark too.
-
---=20
--Joe MacDonald.
-:wq
-
---yLVHuoLXiP9kZBkt
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: Digital signature
-
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v1.4.12 (GNU/Linux)
-
-iEYEARECAAYFAlPGfyQACgkQwFvcllog0XxJNACfV9/OI/k/YtbBkeyINTYZHliM
-9B0AnRyzhO2UMp15gGci9i7Tkz82QxPm
-=6vmO
------END PGP SIGNATURE-----
-
---yLVHuoLXiP9kZBkt--
