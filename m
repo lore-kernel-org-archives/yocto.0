@@ -1,50 +1,57 @@
-Return-Path: <atul.singh008@gmail.com>
+Return-Path: <joe@deserted.net>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 2775CE00769; Wed, 16 Jul 2014 06:28:36 -0700 (PDT)
+	id D41F3E00769; Wed, 16 Jul 2014 06:33:48 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [209.85.223.181 listed in list.dnswl.org]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (atul.singh008[at]gmail.com)
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-ie0-f181.google.com (mail-ie0-f181.google.com
-	[209.85.223.181])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DDAECE004FF
-	for <yocto@yoctoproject.org>; Wed, 16 Jul 2014 06:28:33 -0700 (PDT)
-Received: by mail-ie0-f181.google.com with SMTP id rp18so708983iec.26
-	for <yocto@yoctoproject.org>; Wed, 16 Jul 2014 06:28:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=woxr0vQpvfT6Q7pelQGqA5Z+1tqHJO83rkuEe1r3OZc=;
-	b=Y1f+rQypHdxyEEFz5nUqRlC9mcadSMF6QEGk2zcmDJcyJ1DaIk4lRYn4dghDtfwX/P
-	W6bsKhjoXx+M9X67cjRHN1991muYR8RZHNxYuQlL45KShygD+HkRLgTgyMS0Y1pKPgqu
-	cpj0+27tI5Wq4ZpLd5rr6iqtlHmG3cBDgZRSGLsUv+qbecDKmhTGh07EH47C6yn0HsEz
-	TTuLXZQXAs1frRL5PveZK4RRDk91FDH5wdN9dCGaVUmwATFL8ETwOpNZu5I8c7QI5+4O
-	U7l+AIWV43z46PSxebHFksuqYMMGV4qEu1oTBUjAAxPqbR1AyGuSvC3j5lBZyVA3yhjw
-	QYkQ==
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.223.171 listed in list.dnswl.org]
+Received: from mail-ie0-f171.google.com (mail-ie0-f171.google.com
+	[209.85.223.171])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A8E01E004FF
+	for <yocto@yoctoproject.org>; Wed, 16 Jul 2014 06:33:37 -0700 (PDT)
+Received: by mail-ie0-f171.google.com with SMTP id at1so748880iec.30
+	for <yocto@yoctoproject.org>; Wed, 16 Jul 2014 06:33:36 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+	:mime-version:content-type:content-disposition:in-reply-to
+	:user-agent;
+	bh=Lk7ROrGOZGhQjY4NV736lYo0JRZky047wRzGE7Z7L1s=;
+	b=CncKQWBGpXVRWr1ya30PeIcq4x1ouEGaCtog7jqUNpLtFkOoI9vl5H+b/nC9PT2avk
+	+ZqH+yTJYLUPGywsU4btqBHZWHmUFtWiN9r/tKIJfqnyE3lUIUlgSD4af7kn6/MaWnG0
+	w+bzPr1StI4M9L466QaelGnjKcbeJbabAaVrEFL7InDFjzcB5u/x+v0efoD0wlt3gudb
+	A9G/yQy1UVtqo0C1m8mlDZAYBLi4uZA1nowTVEoShd9eZ8I+7QF+FZZrdBLeR3tjXcHM
+	j+iZJyK+Wy0pIWz86fA1Zpk42y08Knyt3+6QjDX9emJfGHjiT2Y+0a/U3yMX5lgAod8G
+	4WIg==
+X-Gm-Message-State: ALoCoQnVAumzdWoGJh/8ytk9LdYGjCDQHo4FNsk2tiuLrBLjlEMXhSTAuwrNpqNzgI7UaQ23KM/w
+X-Received: by 10.50.114.162 with SMTP id jh2mr16425718igb.0.1405517616519;
+	Wed, 16 Jul 2014 06:33:36 -0700 (PDT)
+Received: from skynet (24-246-4-250.cable.teksavvy.com. [24.246.4.250])
+	by mx.google.com with ESMTPSA id rq5sm44797462igb.0.2014.07.16.06.33.34
+	for <multiple recipients>
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Wed, 16 Jul 2014 06:33:35 -0700 (PDT)
+Received: by skynet (Postfix, from userid 1000)
+	id 73EB61685E4; Wed, 16 Jul 2014 09:33:32 -0400 (EDT)
+Date: Wed, 16 Jul 2014 09:33:32 -0400
+From: Joe MacDonald <joe@deserted.net>
+To: openembedded-devel@lists.openembedded.org
+Message-ID: <20140716133302.GB13248@deserted.net>
+References: <53C619B3.7050203@mvista.com>
 MIME-Version: 1.0
-X-Received: by 10.50.137.71 with SMTP id qg7mr16174724igb.24.1405517313104;
-	Wed, 16 Jul 2014 06:28:33 -0700 (PDT)
-Received: by 10.64.86.225 with HTTP; Wed, 16 Jul 2014 06:28:32 -0700 (PDT)
-Received: by 10.64.86.225 with HTTP; Wed, 16 Jul 2014 06:28:32 -0700 (PDT)
-Date: Wed, 16 Jul 2014 18:58:32 +0530
-Message-ID: <CAH21_vFnWJZC60p8vzqjB-B9YCiKKbVOsUFts7Ej80gp5K1-TQ@mail.gmail.com>
-From: atulkumar singh <atul.singh008@gmail.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Toolchain build independent of host machine
+In-Reply-To: <53C619B3.7050203@mvista.com>
+X-URL: http://github.com/joeythesaint/joe-s-common-environment/tree/master
+X-Configuration: git://github.com/joeythesaint/joe-s-common-environment.git
+X-Editor: Vim-703 http://www.vim.org
+User-Agent: Mutt/1.5.21 (2010-09-15)
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: [oe] WIreshark 1.12.x
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -56,32 +63,48 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 16 Jul 2014 13:28:36 -0000
-Content-Type: multipart/alternative; boundary=001a11c3c1962c73c304fe4f8015
+X-List-Received-Date: Wed, 16 Jul 2014 13:33:48 -0000
+X-Groupsio-MsgNum: 20576
+Content-Type: multipart/signed; micalg=pgp-sha1;
+	protocol="application/pgp-signature"; boundary="yLVHuoLXiP9kZBkt"
+Content-Disposition: inline
 
---001a11c3c1962c73c304fe4f8015
-Content-Type: text/plain; charset=UTF-8
+--yLVHuoLXiP9kZBkt
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Hi All,
+[[oe] WIreshark 1.12.x] On 14.07.15 (Tue 23:20) akuster wrote:
 
-I wish to build my toolchain independent of host machine, either my sdk
-machine is 32bit or 64 bit.
-Like for 32bit host machine i am mentioning with i686 for SDKMACHINE in
-local.conf and x86-64 for 64 bit machine.
-Please let me know what i need to do to make my toolchain independent of
-whether my host machine is 32bit or 64bit.
+> Hello all,
+>=20
+> I have the latest wireshark 1.12.0-rc2 building and working with
+> gtk2. Is anyone else working on this? if not I can submit patches.
+>=20
+> I am not sure which layer wireshark should swim in,  meta-networking
+> or meta-security ?
+>=20
+> - Armin
 
-Thanks and regards,
-Atul
+Hey Armin,
 
---001a11c3c1962c73c304fe4f8015
-Content-Type: text/html; charset=UTF-8
+tcpdump lives in meta-networking/recipes-support, that seems like it's
+probably a reasonable location for wireshark too.
 
-<p>Hi All,</p>
-<p>I wish to build my toolchain independent of host machine, either my sdk machine is 32bit or 64 bit.<br>
-Like for 32bit host machine i am mentioning with i686 for SDKMACHINE in local.conf and x86-64 for 64 bit machine.<br>
-Please let me know what i need to do to make my toolchain independent of whether my host machine is 32bit or 64bit.</p>
-<p>Thanks and regards,<br>
-Atul</p>
+--=20
+-Joe MacDonald.
+:wq
 
---001a11c3c1962c73c304fe4f8015--
+--yLVHuoLXiP9kZBkt
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: Digital signature
+
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1.4.12 (GNU/Linux)
+
+iEYEARECAAYFAlPGfyQACgkQwFvcllog0XxJNACfV9/OI/k/YtbBkeyINTYZHliM
+9B0AnRyzhO2UMp15gGci9i7Tkz82QxPm
+=6vmO
+-----END PGP SIGNATURE-----
+
+--yLVHuoLXiP9kZBkt--
