@@ -1,46 +1,35 @@
-Return-Path: <nicolas.dechesne@linaro.org>
+Return-Path: <Vladimir_Redzhepov@epam.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 6C885E006EE; Wed, 16 Jul 2014 06:46:15 -0700 (PDT)
+	id 9B7DCE00563; Wed, 16 Jul 2014 07:24:30 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [209.85.214.180 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail-ob0-f180.google.com (mail-ob0-f180.google.com
-	[209.85.214.180])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 12265E004FF
-	for <yocto@yoctoproject.org>; Wed, 16 Jul 2014 06:46:02 -0700 (PDT)
-Received: by mail-ob0-f180.google.com with SMTP id uy5so917854obc.11
-	for <yocto@yoctoproject.org>; Wed, 16 Jul 2014 06:45:59 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc:content-type;
-	bh=vx9rmSAIXpBOddei++72vhMMBgPA/xCFV/Q4oKagQ3s=;
-	b=D7IGnN1IPcfIS2M3QoAyW1VEhtDgAshK65r6MwaoQdOA9zKzEdQNXXP7OYDv4Ieeni
-	KMgUfkqwVkeWATnzE+6HmwB5jJUdeUCckXfn0nXXsLnu3ZBg6GXdvyMJEqBIVaMBatjU
-	QZs2tW+Kwp/JJkR40sa5ClQMc8S9pqd4+/XFNtg5Qp2MV40wtPGVysK7DjXqm4HxTbZW
-	nqBBHfwi2QdutlD3XVGodMGfTUalDseEyB6OjnhHL/gCXW1MCoDSxd+SGwPnyInB2TZ9
-	q+duvKbTtNNAg9TTm6VXbWObluf42J06/0HS9yc+aM1bBYyojeoh5tvMuTddqxlijY2f
-	DFDg==
-X-Gm-Message-State: ALoCoQnCfaMZK7p5HsSQCYst270bGSjXZ0XJxL9X7mNqHQdF/kszrvzoRwaJD2qZCZOB5clKDKA1
-X-Received: by 10.60.70.106 with SMTP id l10mr35650510oeu.54.1405518359549;
-	Wed, 16 Jul 2014 06:45:59 -0700 (PDT)
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+Received: from EVBYMINSA0102.epam.com (evbyminsa0102.epam.com [217.21.63.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 09B8AE00547
+	for <yocto@yoctoproject.org>; Wed, 16 Jul 2014 07:24:22 -0700 (PDT)
+Received: from EPBYMINSA0001.epam.com (10.6.110.2) by EPBYMINSA0001.epam.com
+	(10.6.110.2) with Microsoft SMTP Server (TLS) id 15.0.913.22;
+	Wed, 16 Jul 2014 17:23:54 +0300
+Received: from EPBYMINSA0001.epam.com ([::1]) by EPBYMINSA0001.epam.com
+	([::1]) with mapi id 15.00.0913.011; Wed, 16 Jul 2014 17:23:54 +0300
+From: Vladimir Redzhepov <Vladimir_Redzhepov@epam.com>
+To: "nitin.a.kamble@intel.com" <nitin.a.kamble@intel.com>
+Thread-Topic: meta-oracle-java including patch for ARM
+Thread-Index: Ac+hANg5vlMsD0VpSXSdYSbXq++69g==
+Date: Wed, 16 Jul 2014 14:23:54 +0000
+Message-ID: <f90ea4147a5a4c65b970812beb7e18e3@EPBYMINSA0001.epam.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.6.137.107]
 MIME-Version: 1.0
-Received: by 10.76.171.168 with HTTP; Wed, 16 Jul 2014 06:45:39 -0700 (PDT)
-In-Reply-To: <CAH21_vFnWJZC60p8vzqjB-B9YCiKKbVOsUFts7Ej80gp5K1-TQ@mail.gmail.com>
-References: <CAH21_vFnWJZC60p8vzqjB-B9YCiKKbVOsUFts7Ej80gp5K1-TQ@mail.gmail.com>
-From: Nicolas Dechesne <nicolas.dechesne@linaro.org>
-Date: Wed, 16 Jul 2014 15:45:39 +0200
-Message-ID: <CAP71Wjxs_GjVn64UjkskGn06yvVTvSKDRcefPh5Ny226e1gMmA@mail.gmail.com>
-To: atulkumar singh <atul.singh008@gmail.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Toolchain build independent of host machine
+Cc: Yocto <yocto@yoctoproject.org>
+Subject: meta-oracle-java including patch for ARM
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -52,20 +41,86 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 16 Jul 2014 13:46:15 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Wed, 16 Jul 2014 14:24:30 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_f90ea4147a5a4c65b970812beb7e18e3EPBYMINSA0001epamcom_"
 
-On Wed, Jul 16, 2014 at 3:28 PM, atulkumar singh
-<atul.singh008@gmail.com> wrote:
-> I wish to build my toolchain independent of host machine, either my sdk
-> machine is 32bit or 64 bit.
-> Like for 32bit host machine i am mentioning with i686 for SDKMACHINE in
-> local.conf and x86-64 for 64 bit machine.
-> Please let me know what i need to do to make my toolchain independent of
-> whether my host machine is 32bit or 64bit.
+--_000_f90ea4147a5a4c65b970812beb7e18e3EPBYMINSA0001epamcom_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-just build the 32-bits version of the SDK. it will work on both
-32-machine and 64-machine. this is assuming you install the 32-bit
-compatibility libs which depends on which distro you use, but most
-distro provide instructions to do that.
+Hi Nitin,
 
+What do you think about including our patch for ARM into the meta-oracle-ja=
+va? We've sent the patch https://lists.yoctoproject.org/pipermail/yocto/201=
+4-June/020223.html on 06/13/2014 but still didn't get any comment. Could yo=
+u please comment our solution?
+
+--_000_f90ea4147a5a4c65b970812beb7e18e3EPBYMINSA0001epamcom_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:#954F72;
+	text-decoration:underline;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri","sans-serif";
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:56.7pt 42.5pt 56.7pt 85.05pt;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal">Hi Nitin,<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">What do you think about including our patch for ARM =
+into the meta-oracle-java? We&#8217;ve sent the patch
+<a href=3D"https://lists.yoctoproject.org/pipermail/yocto/2014-June/020223.=
+html">https://lists.yoctoproject.org/pipermail/yocto/2014-June/020223.html<=
+/a> on 06/13/2014 but still didn&#8217;t get any comment. Could you please =
+comment our solution?<o:p></o:p></p>
+</div>
+</body>
+</html>
+
+--_000_f90ea4147a5a4c65b970812beb7e18e3EPBYMINSA0001epamcom_--
