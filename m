@@ -1,50 +1,46 @@
-Return-Path: <rpjday@crashcourse.ca>
+Return-Path: <rich.tollerton@ni.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id BDC93E00559; Wed, 16 Jul 2014 10:33:14 -0700 (PDT)
+	id 7802FE00559; Wed, 16 Jul 2014 12:30:54 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS,
+	TVD_SPACE_RATIO autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [208.80.204.85 listed in list.dnswl.org]
-X-Greylist: delayed 194 seconds by postgrey-1.32 at yocto-www;
-	Wed, 16 Jul 2014 10:33:07 PDT
-Received: from smtp485.redcondor.net (smtp485.redcondor.net [208.80.204.85])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6652DE00543
-	for <yocto@yoctoproject.org>; Wed, 16 Jul 2014 10:33:07 -0700 (PDT)
-Received: from astoria.ccjclearline.com ([64.235.106.9])
-	by smtp485.redcondor.net ({3be039ea-4351-44b0-a8af-642c38b25916})
-	via TCP (outbound) with ESMTPS id 20140716145426747
-	for <yocto@yoctoproject.org>; Wed, 16 Jul 2014 14:54:26 +0000
-X-RC-FROM: <rpjday@crashcourse.ca>
-X-RC-RCPT: <yocto@yoctoproject.org>
-Received: from [69.196.158.250] (port=36442 helo=crashcourse.ca)
-	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES128-SHA:128)
-	(Exim 4.80) (envelope-from <rpjday@crashcourse.ca>)
-	id 1X7Qb6-00009V-Np
-	for yocto@yoctoproject.org; Wed, 16 Jul 2014 10:54:20 -0400
-Date: Wed, 16 Jul 2014 10:54:12 -0400 (EDT)
-From: "Robert P. J. Day" <rpjday@crashcourse.ca>
-X-X-Sender: rpjday@localhost
-To: Yocto discussion list <yocto@yoctoproject.org>
-Message-ID: <alpine.LFD.2.11.1407161047520.11257@localhost>
-User-Agent: Alpine 2.11 (LFD 23 2013-08-11)
-MIME-Version: 1.0
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - crashcourse.ca
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-X-MAG-OUTBOUND: ccj.redcondor.net@64.235.106.9/32
-Subject: numerous missing list entries in chapter 11 of yocto project reference manual
+	*  0.0 TVD_SPACE_RATIO TVD_SPACE_RATIO
+X-Greylist: delayed 1945 seconds by postgrey-1.32 at yocto-www;
+	Wed, 16 Jul 2014 12:30:47 PDT
+Received: from ni.com (skprod2.natinst.com [130.164.80.23])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BE684E00543
+	for <yocto@yoctoproject.org>; Wed, 16 Jul 2014 12:30:47 -0700 (PDT)
+Received: from us-aus-mgwout2.amer.corp.natinst.com (nb-snip2-1338.natinst.com
+	[130.164.19.135])
+	by us-aus-skprod2.natinst.com (8.14.5/8.14.5) with ESMTP id
+	s6GIwKvi025056; Wed, 16 Jul 2014 13:58:21 -0500
+Received: from weregild.amer.corp.natinst.com ([130.164.14.198])
+	by us-aus-mgwout2.amer.corp.natinst.com (Lotus Domino Release 8.5.3FP6)
+	with ESMTP id 2014071613582080-448928 ;
+	Wed, 16 Jul 2014 13:58:20 -0500 
+From: Richard Tollerton <rich.tollerton@ni.com>
+To: yocto@yoctoproject.org, richard.purdie@linuxfoundation.org
+Date: Wed, 16 Jul 2014 13:58:05 -0500
+Message-Id: <1405537085-9453-4-git-send-email-rich.tollerton@ni.com>
+X-Mailer: git-send-email 2.0.1
+In-Reply-To: <1405537085-9453-1-git-send-email-rich.tollerton@ni.com>
+References: <1405537085-9453-1-git-send-email-rich.tollerton@ni.com>
+X-MIMETrack: Itemize by SMTP Server on US-AUS-MGWOut2/AUS/H/NIC(Release
+	8.5.3FP6|November 21, 2013) at 07/16/2014 01:58:21 PM,
+	Serialize by Router on US-AUS-MGWOut2/AUS/H/NIC(Release
+	8.5.3FP6|November 21, 2013) at 07/16/2014 01:58:21 PM,
+	Serialize complete at 07/16/2014 01:58:21 PM
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10432:5.12.52, 1.0.14,
+	0.0.0000
+	definitions=2014-07-16_07:2014-07-16, 2014-07-16,
+	1970-01-01 signatures=0
+Cc: ben.shelton@ni.com, ken.sharp@ni.com
+Subject: [meta-mingw][RESEND][PATCH 3/3] packagegroup-cross-canadian: reenable gdb on mingw32
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -56,35 +52,26 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 16 Jul 2014 17:33:14 -0000
-Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-List-Received-Date: Wed, 16 Jul 2014 19:30:54 -0000
 
+Signed-off-by: Richard Tollerton <rich.tollerton@ni.com>
+---
+ recipes-core/packagegroups/packagegroup-cross-canadian.bbappend | 5 -----
+ 1 file changed, 5 deletions(-)
+ delete mode 100644 recipes-core/packagegroups/packagegroup-cross-canadian.bbappend
 
-  looking at current version of ch 11 in ref manual, and sections 11.1
-and 11.2 allegedly list the currently available machine features and
-distro features, but a while back, i noticed a number of features that
-were missing from both lists, and noted them here:
-
-http://www.crashcourse.ca/wiki/index.php/OE#_FEATURES_updates_for_Section_10_of_reference_manual
-
-admittedly, that page *might* be a bit out of date but i can still see
-numerous machine features and distro features that don't show up in
-those two lists.
-
-  also, section 11.3, alleged list of image features appears to be
-missing "ptest-pkgs", "eclipse-debug", "qt4-pkgs", "hwcodecs", not
-sure if any others.
-
-rday
-
+diff --git a/recipes-core/packagegroups/packagegroup-cross-canadian.bbappend b/recipes-core/packagegroups/packagegroup-cross-canadian.bbappend
+deleted file mode 100644
+index 20ad28b..0000000
+--- a/recipes-core/packagegroups/packagegroup-cross-canadian.bbappend
++++ /dev/null
+@@ -1,5 +0,0 @@
+-RDEPENDS_${PN}_sdkmingw32 = "\
+-    binutils-cross-canadian-${TRANSLATED_TARGET_ARCH} \
+-    gcc-cross-canadian-${TRANSLATED_TARGET_ARCH} \
+-    meta-environment-${MACHINE} \
+-    "
 -- 
-
-========================================================================
-Robert P. J. Day                                 Ottawa, Ontario, CANADA
-                        http://crashcourse.ca
-
-Twitter:                                       http://twitter.com/rpjday
-LinkedIn:                               http://ca.linkedin.com/in/rpjday
-========================================================================
+2.0.1
 
 
