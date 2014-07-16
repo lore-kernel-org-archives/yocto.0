@@ -1,50 +1,50 @@
-Return-Path: <meier.dennis@siemens.com>
+Return-Path: <atul.singh008@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 1AB39E0074B; Wed, 16 Jul 2014 05:59:34 -0700 (PDT)
+	id 2775CE00769; Wed, 16 Jul 2014 06:28:36 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_HI autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [194.138.37.39 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [209.85.223.181 listed in list.dnswl.org]
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (atul.singh008[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from lizzard.sbs.de (lizzard.sbs.de [194.138.37.39])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 35FD9E004FF
-	for <yocto@yoctoproject.org>; Wed, 16 Jul 2014 05:59:23 -0700 (PDT)
-Received: from mail1.sbs.de (localhost [127.0.0.1])
-	by lizzard.sbs.de (8.14.3/8.14.3) with ESMTP id s6GCx3fj003340;
-	Wed, 16 Jul 2014 14:59:03 +0200
-Received: from DEFTHW99ERJMSX.ww902.siemens.net
-	(defthw99erjmsx.ww902.siemens.net [139.22.70.135])
-	by mail1.sbs.de (8.14.3/8.14.3) with ESMTP id s6GCx3OG024974
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Wed, 16 Jul 2014 14:59:03 +0200
-Received: from DENBGAT9ERDMSX.ww902.siemens.net (139.22.70.85) by
-	DEFTHW99ERJMSX.ww902.siemens.net (139.22.70.135) with Microsoft SMTP
-	Server (TLS) id 14.3.195.1; Wed, 16 Jul 2014 14:59:03 +0200
-Received: from DEFTHW99EI0MSX.ww902.siemens.net ([169.254.5.7]) by
-	DENBGAT9ERDMSX.ww902.siemens.net ([139.22.70.85]) with mapi id
-	14.03.0195.001; Wed, 16 Jul 2014 14:59:03 +0200
-From: "Meier, Dennis" <meier.dennis@siemens.com>
-To: Anooj Gopi <anoojgopi@gmail.com>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>
-Thread-Topic: [yocto] Include all the native sdk packages built into sdk
-	install	script (populate_sdk)
-Thread-Index: AQHPoODwQNOoYluSz0iYZk/EWrOBFpuip47A
-Date: Wed, 16 Jul 2014 12:59:02 +0000
-Message-ID: <6F22A92316C68C42A591A48A6291DA9DDA68FA@DEFTHW99EI0MSX.ww902.siemens.net>
-References: <CALkREYAJhEwG5Kzh1pTW0OwLKPSFwFg1v=beRr=0m-GPAsY+sg@mail.gmail.com>
-In-Reply-To: <CALkREYAJhEwG5Kzh1pTW0OwLKPSFwFg1v=beRr=0m-GPAsY+sg@mail.gmail.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [139.22.70.25]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-ie0-f181.google.com (mail-ie0-f181.google.com
+	[209.85.223.181])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DDAECE004FF
+	for <yocto@yoctoproject.org>; Wed, 16 Jul 2014 06:28:33 -0700 (PDT)
+Received: by mail-ie0-f181.google.com with SMTP id rp18so708983iec.26
+	for <yocto@yoctoproject.org>; Wed, 16 Jul 2014 06:28:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=woxr0vQpvfT6Q7pelQGqA5Z+1tqHJO83rkuEe1r3OZc=;
+	b=Y1f+rQypHdxyEEFz5nUqRlC9mcadSMF6QEGk2zcmDJcyJ1DaIk4lRYn4dghDtfwX/P
+	W6bsKhjoXx+M9X67cjRHN1991muYR8RZHNxYuQlL45KShygD+HkRLgTgyMS0Y1pKPgqu
+	cpj0+27tI5Wq4ZpLd5rr6iqtlHmG3cBDgZRSGLsUv+qbecDKmhTGh07EH47C6yn0HsEz
+	TTuLXZQXAs1frRL5PveZK4RRDk91FDH5wdN9dCGaVUmwATFL8ETwOpNZu5I8c7QI5+4O
+	U7l+AIWV43z46PSxebHFksuqYMMGV4qEu1oTBUjAAxPqbR1AyGuSvC3j5lBZyVA3yhjw
+	QYkQ==
 MIME-Version: 1.0
-Subject: Re: Include all the native sdk packages built into sdk install	script (populate_sdk)
+X-Received: by 10.50.137.71 with SMTP id qg7mr16174724igb.24.1405517313104;
+	Wed, 16 Jul 2014 06:28:33 -0700 (PDT)
+Received: by 10.64.86.225 with HTTP; Wed, 16 Jul 2014 06:28:32 -0700 (PDT)
+Received: by 10.64.86.225 with HTTP; Wed, 16 Jul 2014 06:28:32 -0700 (PDT)
+Date: Wed, 16 Jul 2014 18:58:32 +0530
+Message-ID: <CAH21_vFnWJZC60p8vzqjB-B9YCiKKbVOsUFts7Ej80gp5K1-TQ@mail.gmail.com>
+From: atulkumar singh <atul.singh008@gmail.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Toolchain build independent of host machine
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -56,132 +56,32 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 16 Jul 2014 12:59:34 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_6F22A92316C68C42A591A48A6291DA9DDA68FADEFTHW99EI0MSXww9_"
+X-List-Received-Date: Wed, 16 Jul 2014 13:28:36 -0000
+Content-Type: multipart/alternative; boundary=001a11c3c1962c73c304fe4f8015
 
---_000_6F22A92316C68C42A591A48A6291DA9DDA68FADEFTHW99EI0MSXww9_
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+--001a11c3c1962c73c304fe4f8015
+Content-Type: text/plain; charset=UTF-8
 
-RGVhciBBbm9vag0KDQpXaGF0IGdvZXMgaW50byB0aGUgbmF0aXZlIHN5c3Jvb3QgaXMgZGV0ZXJt
-aW5lZCBieSB0aGUgVE9PTENIQUlOX0hPU1RfVEFTSyB2YXJpYWJsZSBJIGJlbGlldmUuIFNvIHNl
-dHRpbmcgVE9PTENIQUlOX0hPU1RfVEFTSyArPSDigJxuYXRpdmVzZGstbGlicXQ1Y29yZS1kZXbi
-gJ0gb3Igc29tZXRoaW5nIGFsaWtlIHNob3VsZCBiZSB3aGF0IHlvdSBhcmUgbG9va2luZyBmb3Iu
-IEkgZG9u4oCZdCBrbm93IGlmIHRoZXJlIGlzIGEgc2ltcGxlIHNvbHV0aW9uIHRvIGluY2x1ZGUg
-KmV2ZXJ5KiBuYXRpdmVzZGstKiBwYWNrYWdlIGluIHRoZSBTREssIEkgdGhpbmsgeW91IG5lZWQg
-dG8gYWRkIHRoZW0gbWFudWFsbHkgb3Igd3JpdGUgeW91ciBvd24gSU1BR0VfRkVBVFVSRS4NCg0K
-UmVnYXJkcywNCkRlbm5pcw0KDQpGcm9tOiB5b2N0by1ib3VuY2VzQHlvY3RvcHJvamVjdC5vcmcg
-W21haWx0bzp5b2N0by1ib3VuY2VzQHlvY3RvcHJvamVjdC5vcmddIE9uIEJlaGFsZiBPZiBBbm9v
-aiBHb3BpDQpTZW50OiBNaXR0d29jaCwgMTYuIEp1bGkgMjAxNCAxMjoyOA0KVG86IHlvY3RvQHlv
-Y3RvcHJvamVjdC5vcmcNClN1YmplY3Q6IFt5b2N0b10gSW5jbHVkZSBhbGwgdGhlIG5hdGl2ZSBz
-ZGsgcGFja2FnZXMgYnVpbHQgaW50byBzZGsgaW5zdGFsbCBzY3JpcHQgKHBvcHVsYXRlX3NkaykN
-Cg0KSGVsbG8sDQpXaGljaCBpcyB0aGUgYmVzdCB3YXkgdG8gaW5jbHVkZSBhbGwgdGhlIG5hdGl2
-ZSBzZGsgcGFja2FnZXMgYnVpbHQgZHVyaW5nIHRoZSBjb21tYW5kDQoNCmJpdGJha2UgPGltYWdl
-PiAtYyBwb3B1bGF0ZV9zZGsNCmludG8gdGhlIFNESyBzeXNyb290cyBnZW5lcmF0ZWQgaW4gdGhl
-IFNES01BQ0hJTkUgKGdlbmVyYXRlZCBieSBzZGsgaW5zdGFsbGF0aW9uIHNjcmlwdCkuDQpGb3Ig
-ZWcuIEkgY2FuIHNlZSAiYnVpbGQvdG1wL2RlcGxveS9ycG0vaTY4Nl9uYXRpdmVzZGsvbmF0aXZl
-c2RrLWxpYnF0NWNvcmUtZGV2LTUuMi4xLXIxLmk2ODZfbmF0aXZlc2RrLnJwbSIgcGFja2FnZSBn
-ZW5lcmF0ZWQgaW4gdGhlIGJ1aWxkIG1hY2hpbmUuIEJ1dCBpdCBpcyBub3QgYXZhaWxhYmxlIGJ5
-IGRlZmF1bHQgaW4gdGhlIHN5c3Jvb3QgZ2VuZXJhdGVkIGJ5ICJidWlsZC90bXAvZGVwbG95L3Nk
-ay9vZWNvcmUtaTY4Ni1jb3J0ZXhhMTVoZi12ZnAtbmVvbi10b29sY2hhaW4tb2UtY29yZS4wLnNo
-PGh0dHA6Ly9vZWNvcmUtaTY4Ni1jb3J0ZXhhMTVoZi12ZnAtbmVvbi10b29sY2hhaW4tb2UtY29y
-ZS4wLnNoPiIuDQoNCkJlc3QgUmVnYXJkcywNCkFub29qIEdvcGkNCg0K
+Hi All,
 
---_000_6F22A92316C68C42A591A48A6291DA9DDA68FADEFTHW99EI0MSXww9_
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: base64
+I wish to build my toolchain independent of host machine, either my sdk
+machine is 32bit or 64 bit.
+Like for 32bit host machine i am mentioning with i686 for SDKMACHINE in
+local.conf and x86-64 for 64 bit machine.
+Please let me know what i need to do to make my toolchain independent of
+whether my host machine is 32bit or 64bit.
 
-PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
-bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
-YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
-cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
-VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
-Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
-ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTIgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
-PjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
-IkNhbWJyaWEgTWF0aCI7DQoJcGFub3NlLTE6MiA0IDUgMyA1IDQgNiAzIDIgNDt9DQpAZm9udC1m
-YWNlDQoJe2ZvbnQtZmFtaWx5OkNhbGlicmk7DQoJcGFub3NlLTE6MiAxNSA1IDIgMiAyIDQgMyAy
-IDQ7fQ0KQGZvbnQtZmFjZQ0KCXtmb250LWZhbWlseTpUYWhvbWE7DQoJcGFub3NlLTE6MiAxMSA2
-IDQgMyA1IDQgNCAyIDQ7fQ0KLyogU3R5bGUgRGVmaW5pdGlvbnMgKi8NCnAuTXNvTm9ybWFsLCBs
-aS5Nc29Ob3JtYWwsIGRpdi5Nc29Ob3JtYWwNCgl7bWFyZ2luOjBjbTsNCgltYXJnaW4tYm90dG9t
-Oi4wMDAxcHQ7DQoJZm9udC1zaXplOjEyLjBwdDsNCglmb250LWZhbWlseToiVGltZXMgTmV3IFJv
-bWFuIiwic2VyaWYiO30NCmE6bGluaywgc3Bhbi5Nc29IeXBlcmxpbmsNCgl7bXNvLXN0eWxlLXBy
-aW9yaXR5Ojk5Ow0KCWNvbG9yOmJsdWU7DQoJdGV4dC1kZWNvcmF0aW9uOnVuZGVybGluZTt9DQph
-OnZpc2l0ZWQsIHNwYW4uTXNvSHlwZXJsaW5rRm9sbG93ZWQNCgl7bXNvLXN0eWxlLXByaW9yaXR5
-Ojk5Ow0KCWNvbG9yOnB1cnBsZTsNCgl0ZXh0LWRlY29yYXRpb246dW5kZXJsaW5lO30NCnNwYW4u
-RW1haWxTdHlsZTE3DQoJe21zby1zdHlsZS10eXBlOnBlcnNvbmFsLXJlcGx5Ow0KCWZvbnQtZmFt
-aWx5OiJDYWxpYnJpIiwic2Fucy1zZXJpZiI7DQoJY29sb3I6IzFGNDk3RDt9DQouTXNvQ2hwRGVm
-YXVsdA0KCXttc28tc3R5bGUtdHlwZTpleHBvcnQtb25seTt9DQpAcGFnZSBXb3JkU2VjdGlvbjEN
-Cgl7c2l6ZTo2MTIuMHB0IDc5Mi4wcHQ7DQoJbWFyZ2luOjcyLjBwdCA3Mi4wcHQgNzIuMHB0IDcy
-LjBwdDt9DQpkaXYuV29yZFNlY3Rpb24xDQoJe3BhZ2U6V29yZFNlY3Rpb24xO30NCi0tPjwvc3R5
-bGU+PCEtLVtpZiBndGUgbXNvIDldPjx4bWw+DQo8bzpzaGFwZWRlZmF1bHRzIHY6ZXh0PSJlZGl0
-IiBzcGlkbWF4PSIxMDI2IiAvPg0KPC94bWw+PCFbZW5kaWZdLS0+PCEtLVtpZiBndGUgbXNvIDld
-Pjx4bWw+DQo8bzpzaGFwZWxheW91dCB2OmV4dD0iZWRpdCI+DQo8bzppZG1hcCB2OmV4dD0iZWRp
-dCIgZGF0YT0iMSIgLz4NCjwvbzpzaGFwZWxheW91dD48L3htbD48IVtlbmRpZl0tLT4NCjwvaGVh
-ZD4NCjxib2R5IGxhbmc9IkRFIiBsaW5rPSJibHVlIiB2bGluaz0icHVycGxlIj4NCjxkaXYgY2xh
-c3M9IldvcmRTZWN0aW9uMSI+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBzdHlsZT0iZm9u
-dC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LCZxdW90O3NhbnMt
-c2VyaWYmcXVvdDs7Y29sb3I6IzFGNDk3RCI+RGVhciBBbm9vajxvOnA+PC9vOnA+PC9zcGFuPjwv
-cD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIHN0eWxlPSJmb250LXNpemU6MTEuMHB0O2Zv
-bnQtZmFtaWx5OiZxdW90O0NhbGlicmkmcXVvdDssJnF1b3Q7c2Fucy1zZXJpZiZxdW90Oztjb2xv
-cjojMUY0OTdEIj48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9y
-bWFsIj48c3BhbiBsYW5nPSJFTi1VUyIgc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1p
-bHk6JnF1b3Q7Q2FsaWJyaSZxdW90OywmcXVvdDtzYW5zLXNlcmlmJnF1b3Q7O2NvbG9yOiMxRjQ5
-N0QiPldoYXQgZ29lcyBpbnRvIHRoZSBuYXRpdmUgc3lzcm9vdCBpcyBkZXRlcm1pbmVkIGJ5IHRo
-ZSBUT09MQ0hBSU5fSE9TVF9UQVNLIHZhcmlhYmxlIEkgYmVsaWV2ZS4gU28gc2V0dGluZyBUT09M
-Q0hBSU5fSE9TVF9UQVNLICYjNDM7PSDigJxuYXRpdmVzZGstbGlicXQ1Y29yZS1kZXbigJ0NCiBv
-ciBzb21ldGhpbmcgYWxpa2Ugc2hvdWxkIGJlIHdoYXQgeW91IGFyZSBsb29raW5nIGZvci4gSSBk
-b27igJl0IGtub3cgaWYgdGhlcmUgaXMgYSBzaW1wbGUgc29sdXRpb24gdG8gaW5jbHVkZSAqPGI+
-ZXZlcnk8L2I+KiBuYXRpdmVzZGstKiBwYWNrYWdlIGluIHRoZSBTREssIEkgdGhpbmsgeW91IG5l
-ZWQgdG8gYWRkIHRoZW0gbWFudWFsbHkgb3Igd3JpdGUgeW91ciBvd24gSU1BR0VfRkVBVFVSRS48
-bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBsYW5nPSJF
-Ti1VUyIgc3R5bGU9ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZx
-dW90OywmcXVvdDtzYW5zLXNlcmlmJnF1b3Q7O2NvbG9yOiMxRjQ5N0QiPjxvOnA+Jm5ic3A7PC9v
-OnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIGxhbmc9IkVOLVVTIiBz
-dHlsZT0iZm9udC1zaXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LCZx
-dW90O3NhbnMtc2VyaWYmcXVvdDs7Y29sb3I6IzFGNDk3RCI+UmVnYXJkcyw8bzpwPjwvbzpwPjwv
-c3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48c3BhbiBsYW5nPSJFTi1VUyIgc3R5bGU9
-ImZvbnQtc2l6ZToxMS4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7Q2FsaWJyaSZxdW90OywmcXVvdDtz
-YW5zLXNlcmlmJnF1b3Q7O2NvbG9yOiMxRjQ5N0QiPkRlbm5pczxvOnA+PC9vOnA+PC9zcGFuPjwv
-cD4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxzcGFuIGxhbmc9IkVOLVVTIiBzdHlsZT0iZm9udC1z
-aXplOjExLjBwdDtmb250LWZhbWlseTomcXVvdDtDYWxpYnJpJnF1b3Q7LCZxdW90O3NhbnMtc2Vy
-aWYmcXVvdDs7Y29sb3I6IzFGNDk3RCI+PG86cD4mbmJzcDs8L286cD48L3NwYW4+PC9wPg0KPGRp
-diBzdHlsZT0iYm9yZGVyOm5vbmU7Ym9yZGVyLWxlZnQ6c29saWQgYmx1ZSAxLjVwdDtwYWRkaW5n
-OjBjbSAwY20gMGNtIDQuMHB0Ij4NCjxkaXY+DQo8ZGl2IHN0eWxlPSJib3JkZXI6bm9uZTtib3Jk
-ZXItdG9wOnNvbGlkICNCNUM0REYgMS4wcHQ7cGFkZGluZzozLjBwdCAwY20gMGNtIDBjbSI+DQo8
-cCBjbGFzcz0iTXNvTm9ybWFsIj48Yj48c3BhbiBsYW5nPSJFTi1VUyIgc3R5bGU9ImZvbnQtc2l6
-ZToxMC4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7VGFob21hJnF1b3Q7LCZxdW90O3NhbnMtc2VyaWYm
-cXVvdDsiPkZyb206PC9zcGFuPjwvYj48c3BhbiBsYW5nPSJFTi1VUyIgc3R5bGU9ImZvbnQtc2l6
-ZToxMC4wcHQ7Zm9udC1mYW1pbHk6JnF1b3Q7VGFob21hJnF1b3Q7LCZxdW90O3NhbnMtc2VyaWYm
-cXVvdDsiPiB5b2N0by1ib3VuY2VzQHlvY3RvcHJvamVjdC5vcmcgW21haWx0bzp5b2N0by1ib3Vu
-Y2VzQHlvY3RvcHJvamVjdC5vcmddDQo8Yj5PbiBCZWhhbGYgT2YgPC9iPkFub29qIEdvcGk8YnI+
-DQo8Yj5TZW50OjwvYj4gTWl0dHdvY2gsIDE2LiBKdWxpIDIwMTQgMTI6Mjg8YnI+DQo8Yj5Ubzo8
-L2I+IHlvY3RvQHlvY3RvcHJvamVjdC5vcmc8YnI+DQo8Yj5TdWJqZWN0OjwvYj4gW3lvY3RvXSBJ
-bmNsdWRlIGFsbCB0aGUgbmF0aXZlIHNkayBwYWNrYWdlcyBidWlsdCBpbnRvIHNkayBpbnN0YWxs
-IHNjcmlwdCAocG9wdWxhdGVfc2RrKTxvOnA+PC9vOnA+PC9zcGFuPjwvcD4NCjwvZGl2Pg0KPC9k
-aXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZuYnNwOzwvbzpwPjwvcD4NCjxkaXY+DQo8
-ZGl2Pg0KPGRpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIiBzdHlsZT0ibWFyZ2luLWJv
-dHRvbToxMi4wcHQiPkhlbGxvLDxvOnA+PC9vOnA+PC9wPg0KPC9kaXY+DQo8cCBjbGFzcz0iTXNv
-Tm9ybWFsIiBzdHlsZT0ibWFyZ2luLWJvdHRvbToxMi4wcHQiPldoaWNoIGlzIHRoZSBiZXN0IHdh
-eSB0byBpbmNsdWRlIGFsbCB0aGUgbmF0aXZlIHNkayBwYWNrYWdlcyBidWlsdCBkdXJpbmcgdGhl
-IGNvbW1hbmQ8YnI+DQo8YnI+DQpiaXRiYWtlICZsdDtpbWFnZSZndDsgLWMgcG9wdWxhdGVfc2Rr
-PG86cD48L286cD48L3A+DQo8L2Rpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiIHN0eWxlPSJtYXJn
-aW4tYm90dG9tOjEyLjBwdCI+aW50byB0aGUgU0RLIHN5c3Jvb3RzIGdlbmVyYXRlZCBpbiB0aGUg
-U0RLTUFDSElORSAoZ2VuZXJhdGVkIGJ5IHNkayBpbnN0YWxsYXRpb24gc2NyaXB0KS48bzpwPjwv
-bzpwPjwvcD4NCjwvZGl2Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPkZvciBlZy4gSSBj
-YW4gc2VlICZxdW90O2J1aWxkL3RtcC9kZXBsb3kvcnBtL2k2ODZfbmF0aXZlc2RrL25hdGl2ZXNk
-ay1saWJxdDVjb3JlLWRldi01LjIuMS1yMS5pNjg2X25hdGl2ZXNkay5ycG0mcXVvdDsgcGFja2Fn
-ZSBnZW5lcmF0ZWQgaW4gdGhlIGJ1aWxkIG1hY2hpbmUuIEJ1dCBpdCBpcyBub3QgYXZhaWxhYmxl
-IGJ5IGRlZmF1bHQgaW4gdGhlIHN5c3Jvb3QgZ2VuZXJhdGVkIGJ5ICZxdW90O2J1aWxkL3RtcC9k
-ZXBsb3kvc2RrLzxhIGhyZWY9Imh0dHA6Ly9vZWNvcmUtaTY4Ni1jb3J0ZXhhMTVoZi12ZnAtbmVv
-bi10b29sY2hhaW4tb2UtY29yZS4wLnNoIj5vZWNvcmUtaTY4Ni1jb3J0ZXhhMTVoZi12ZnAtbmVv
-bi10b29sY2hhaW4tb2UtY29yZS4wLnNoPC9hPiZxdW90Oy48bzpwPjwvbzpwPjwvcD4NCjwvZGl2
-Pg0KPGRpdj4NCjxwIGNsYXNzPSJNc29Ob3JtYWwiPjxvOnA+Jm5ic3A7PC9vOnA+PC9wPg0KPC9k
-aXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj5CZXN0IFJlZ2FyZHMsPGJyPg0KQW5vb2ogR29waTxv
-OnA+PC9vOnA+PC9wPg0KPGRpdj4NCjxkaXY+DQo8cCBjbGFzcz0iTXNvTm9ybWFsIj48bzpwPiZu
-YnNwOzwvbzpwPjwvcD4NCjwvZGl2Pg0KPC9kaXY+DQo8L2Rpdj4NCjwvZGl2Pg0KPC9kaXY+DQo8
-L2JvZHk+DQo8L2h0bWw+DQo=
+Thanks and regards,
+Atul
 
---_000_6F22A92316C68C42A591A48A6291DA9DDA68FADEFTHW99EI0MSXww9_--
+--001a11c3c1962c73c304fe4f8015
+Content-Type: text/html; charset=UTF-8
+
+<p>Hi All,</p>
+<p>I wish to build my toolchain independent of host machine, either my sdk machine is 32bit or 64 bit.<br>
+Like for 32bit host machine i am mentioning with i686 for SDKMACHINE in local.conf and x86-64 for 64 bit machine.<br>
+Please let me know what i need to do to make my toolchain independent of whether my host machine is 32bit or 64bit.</p>
+<p>Thanks and regards,<br>
+Atul</p>
+
+--001a11c3c1962c73c304fe4f8015--
