@@ -1,6 +1,6 @@
 Return-Path: <koen@dominion.thruhere.net>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 0A784E007C9; Wed, 16 Jul 2014 01:59:21 -0700 (PDT)
+	id 472DFE007AC; Wed, 16 Jul 2014 01:59:25 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -8,42 +8,42 @@ X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
 	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
 	http://www.dnswl.org/, low *      trust
-	*      [209.85.212.175 listed in list.dnswl.org]
+	*      [209.85.212.182 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail-wi0-f175.google.com (mail-wi0-f175.google.com
-	[209.85.212.175])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DA7E1E0079A
+Received: from mail-wi0-f182.google.com (mail-wi0-f182.google.com
+	[209.85.212.182])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0D657E0078A
+	for <yocto@yoctoproject.org>; Wed, 16 Jul 2014 01:59:18 -0700 (PDT)
+Received: by mail-wi0-f182.google.com with SMTP id d1so899552wiv.9
 	for <yocto@yoctoproject.org>; Wed, 16 Jul 2014 01:59:17 -0700 (PDT)
-Received: by mail-wi0-f175.google.com with SMTP id ho1so5761098wib.8
-	for <yocto@yoctoproject.org>; Wed, 16 Jul 2014 01:59:16 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
 	h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
 	:references;
-	bh=KcmhhRsK+DXAIhYlvi+ikaAvJd9id8Ko21s6cputB+A=;
-	b=J1BqLdAKwok/RP3ADOz4tf8oIquA2TX2EyEmE5wpZ2Fb0BOUw2WBXAmM26DWxbt3j+
-	C9DZVdLcTl0Fapc3Hj8xSPQpCHlVR7jgLg3I69OmnR4E8SDdc7sFYKH64bzM8tbgpb3h
-	kwBK3kQhjAG3w1mHhnxLPag6hkTNshjfNR8xEft7d5xRLHhv66joNWkvh8wHElwd89g1
-	ldk6Y90XJQMnSargqqdLtefLWHX5+s6gEreGbe16wOmWDwjC6jcywAW/edI5kaRMnHNf
-	147TqF3b25rwA48Dm4GlHy9CdiHQo6/jiUFamZtqiRWOeI8DrUZ2ADSbHXBSM6LqdIcD
-	NqXA==
-X-Gm-Message-State: ALoCoQn/mfiHQ4P7IYV77vahOqbifAq/ymgx17xBg0q/5BHNNnsEDMy/3H+2kySEeYFlnJAkKrLS
-X-Received: by 10.180.210.132 with SMTP id mu4mr11713637wic.18.1405501156793; 
-	Wed, 16 Jul 2014 01:59:16 -0700 (PDT)
+	bh=3nnermSz7+9NiQItcsouJ7tLJThkVZdGi1TmXUSmSEM=;
+	b=ZtySuEBzIcXJGTS2K0ZLNqbyI8ELxZK09x6pdrO1mChhfm+XnYy0YhZsHR1MVEhGTk
+	ivd7goQKkF3J0t+/B5hOOo/TLcFoaTb9EDLj2RlBlSMoovkPIetX06aM2W7/JQaojRl5
+	INUHbOCI/l8TBuZphMzy7HK+/Ldu8QG9y/DnYKpWBx+I9a9t/po5Sb9lus3sBlDwVRB+
+	NGpG8LKfWvaF+0QclBsxt6mo5nihoj883Md7A6yFfM4WGaVvLwgmZM5Rx7rfDhstBdbv
+	O55L+s/6IWXARxybUsccJHvohozZ9O3d+XP9WS3Fb/RGJCAQlVprv8g49aFA3qwAS1ZC
+	Y1ig==
+X-Gm-Message-State: ALoCoQmzavN5Ge+/Ow6MVS8EUyeVWs95pnhFnyBXvtSDKcJa3IfUBf6uF9Sa7BwcuBUbEmkPgLjg
+X-Received: by 10.194.173.7 with SMTP id bg7mr33589083wjc.3.1405501154976;
+	Wed, 16 Jul 2014 01:59:14 -0700 (PDT)
 Received: from localhost ([2001:610:612:0:beee:7bff:fe9e:ae56])
 	by mx.google.com with ESMTPSA id
-	cz4sm53985702wib.23.2014.07.16.01.59.15 for <multiple recipients>
+	de6sm38370138wjc.16.2014.07.16.01.59.13 for <multiple recipients>
 	(version=TLSv1.2 cipher=RC4-SHA bits=128/128);
-	Wed, 16 Jul 2014 01:59:16 -0700 (PDT)
+	Wed, 16 Jul 2014 01:59:14 -0700 (PDT)
 From: Koen Kooi <koen@dominion.thruhere.net>
 To: yocto@yoctoproject.org
-Date: Wed, 16 Jul 2014 10:58:49 +0200
-Message-Id: <1405501129-28327-7-git-send-email-koen@dominion.thruhere.net>
+Date: Wed, 16 Jul 2014 10:58:48 +0200
+Message-Id: <1405501129-28327-6-git-send-email-koen@dominion.thruhere.net>
 X-Mailer: git-send-email 1.9.0
 In-Reply-To: <1405501129-28327-1-git-send-email-koen@dominion.thruhere.net>
 References: <1405501129-28327-1-git-send-email-koen@dominion.thruhere.net>
-Subject: [meta-raspberrypi][for-daisy][PATCH 7/7] firmware: Update to remote's HEAD
+Subject: [meta-raspberrypi][for-daisy][PATCH 6/7] userland: Add '--no-as-needed' linker flag
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -55,29 +55,54 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 16 Jul 2014 08:59:21 -0000
+X-List-Received-Date: Wed, 16 Jul 2014 08:59:25 -0000
 
-From: Andrei Gherzan <andrei@gherzan.ro>
+From: Alex J Lennon <ajlennon@dynamicdevices.co.uk>
 
-Change-Id: I9e28318c5746484ebde636295c66f7b6b64ba2fb
-Signed-off-by: Andrei Gherzan <andrei@gherzan.ro>
+This is done to ensure all specified shared libraries are linked against
+applications (e.g. raspivid)i.
+
+libmmal_vc_client.so makes use of __attribute__(constructor) to ensure
+that supplier components (e.g. camera) are loaded when the static library is
+loaded.
+
+raspivid, and possibly other applications, link against libmmal_vc_client.so,
+causing the ctor to execute, but there is no needed dependency.
+
+Some build environments (e.g. Yocto/OpenEmbedded) pass the '--no-as-needed'
+linker flag which removes the dependency on libmmal_vc_client and thus
+components are not registered.
+
+In this situation raspivid then gives an error of the form
+  root@raspberrypi:~# raspivid -o test
+  mmal: mmal_component_create_core: could not find component 'vc.ril.camera'
+  mmal: Failed to create camera component
+  mmal: main: Failed to create camera component
+  mmal: Failed to run camera app. Please check for firmware updates
+
+For further details see:
+https://lists.yoctoproject.org/pipermail/yocto/2014-June/019933.html
+
+Change-Id: I9d787fd83379e8b6428dde3827395c8b96be1f7f
+Signed-off-by: Alex J Lennon <ajlennon@dynamicdevices.co.uk>
+Acked-by: Andrei Gherzan <andrei@gherzan.ro>
 ---
- recipes-bcm/common/firmware.inc | 5 ++---
- 1 file changed, 2 insertions(+), 3 deletions(-)
+ recipes-graphics/userland/userland_git.bb | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/recipes-bcm/common/firmware.inc b/recipes-bcm/common/firmware.inc
-index 390f6b3..168cd37 100644
---- a/recipes-bcm/common/firmware.inc
-+++ b/recipes-bcm/common/firmware.inc
-@@ -1,6 +1,5 @@
--# 21/02/2014 firmware; this can be overridden from distro config
--RPIFW_SRCREV ?= "cf20d522e926f30e91fa890d42d010ca98913286"
--RPIFW_DATE ?= "20140221"
-+RPIFW_SRCREV ?= "c8881991d9181779aee9637d6f4b215f108021a3"
-+RPIFW_DATE ?= "20140508"
- RPIFW_SRC_URI ?= "git://github.com/raspberrypi/firmware.git;protocol=git;branch=master"
- RPIFW_S ?= "${WORKDIR}/git"
+diff --git a/recipes-graphics/userland/userland_git.bb b/recipes-graphics/userland/userland_git.bb
+index a348090..4b405ee 100644
+--- a/recipes-graphics/userland/userland_git.bb
++++ b/recipes-graphics/userland/userland_git.bb
+@@ -18,7 +18,7 @@ S = "${WORKDIR}/git"
  
+ inherit cmake
+ 
+-EXTRA_OECMAKE = "-DCMAKE_BUILD_TYPE=Release"
++EXTRA_OECMAKE = "-DCMAKE_BUILD_TYPE=Release -DCMAKE_EXE_LINKER_FLAGS='-Wl,--no-as-needed'"
+ 
+ # The compiled binaries don't provide sonames.
+ SOLIBS = "${SOLIBSDEV}"
 -- 
 1.9.0
 
