@@ -1,53 +1,49 @@
-Return-Path: <olof.johansson@axis.com>
+Return-Path: <anoojgopi@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 76848E0076F; Wed, 16 Jul 2014 03:01:22 -0700 (PDT)
+	id 0B1B1E00777; Wed, 16 Jul 2014 03:28:07 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [74.125.82.175 listed in list.dnswl.org]
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (anoojgopi[at]gmail.com)
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-X-Greylist: delayed 454 seconds by postgrey-1.32 at yocto-www;
-	Wed, 16 Jul 2014 03:01:18 PDT
-Received: from bes.se.axis.com (bes.se.axis.com [195.60.68.10])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 331E3E0076A
-	for <yocto@yoctoproject.org>; Wed, 16 Jul 2014 03:01:18 -0700 (PDT)
-Received: from localhost (localhost [127.0.0.1])
-	by bes.se.axis.com (Postfix) with ESMTP id E84092E34C;
-	Wed, 16 Jul 2014 11:53:39 +0200 (CEST)
-X-Virus-Scanned: Debian amavisd-new at bes.se.axis.com
-Received: from bes.se.axis.com ([IPv6:::ffff:127.0.0.1])
-	by localhost (bes.se.axis.com [::ffff:127.0.0.1]) (amavisd-new,
-	port 10024)
-	with LMTP id xX6PTqf+XtLP; Wed, 16 Jul 2014 11:53:31 +0200 (CEST)
-Received: from boulder.se.axis.com (boulder.se.axis.com [10.0.2.104])
-	by bes.se.axis.com (Postfix) with ESMTP id 3A9472E3DD;
-	Wed, 16 Jul 2014 11:53:31 +0200 (CEST)
-Received: from boulder.se.axis.com (localhost [127.0.0.1])
-	by postfix.imss71 (Postfix) with ESMTP id 200F1FDB;
-	Wed, 16 Jul 2014 11:53:31 +0200 (CEST)
-Received: from thoth.se.axis.com (thoth.se.axis.com [10.0.2.173])
-	by boulder.se.axis.com (Postfix) with ESMTP id 10072FD8;
-	Wed, 16 Jul 2014 11:53:31 +0200 (CEST)
-Received: from xmail2.se.axis.com (xmail2.se.axis.com [10.0.5.74])
-	by thoth.se.axis.com (Postfix) with ESMTP id 0DF2F34005;
-	Wed, 16 Jul 2014 11:53:31 +0200 (CEST)
-Received: from lnxolofjn.se.axis.com (10.92.17.1) by xmail2.se.axis.com
-	(10.0.5.74) with Microsoft SMTP Server id 8.3.342.0; Wed, 16 Jul 2014
-	11:53:30 +0200
-Received: by lnxolofjn.se.axis.com (Postfix, from userid 20466)	id D3EF59C739; 
-	Wed, 16 Jul 2014 11:53:30 +0200 (CEST)
-Date: Wed, 16 Jul 2014 11:53:30 +0200
-From: Olof Johansson <olof.johansson@axis.com>
-To: Isak Lichtenstein <Isak.Lichtenstein@kistler.com>
-Message-ID: <20140716095330.GC23194@axis.com>
-References: <91B4C1B91AAEFD42AC985EA0F3D4E66886164946@kihagwinex01.int.kistler.com>
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-we0-f175.google.com (mail-we0-f175.google.com
+	[74.125.82.175])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 45C67E0076B
+	for <yocto@yoctoproject.org>; Wed, 16 Jul 2014 03:28:05 -0700 (PDT)
+Received: by mail-we0-f175.google.com with SMTP id t60so691313wes.34
+	for <yocto@yoctoproject.org>; Wed, 16 Jul 2014 03:28:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=XE41RrhzOY0HyUMX0HZXmb62MyzBULGJd+43ueqLpv4=;
+	b=HS+vJE5QLSpNJ6W+mwNj8qVDjsbUM3ueAQ/1TWYHQ9fSxa6hXRUZAEiFPgScLU3aOs
+	KqTFDMYsowAEhLYyGUZQ0W8TUQ9QeR2jt6+9Lb/igRJvk05c4ZauM0J2Tf/JWnyKTBIK
+	fI+yeLJ+nR5W+oOp1IygmD5S6Ohk8rxXYWU6h3pI91Lm5O4WPIcWA2Rdx3xzXOkrVBRS
+	JOBV9fQzc1jjCLqCzWXrPTKtv09KJ8nIzwAHXrT3+L8SITfB6dFOA9Kqw5pmiKqNnvnX
+	z/LOFWKPHkh1Ev6Q4ZYiV+KZ4ConfuisflwslO90VriDrKy9U4+4XtRxhVqBMEO+4Liv
+	AKjA==
 MIME-Version: 1.0
-In-Reply-To: <91B4C1B91AAEFD42AC985EA0F3D4E66886164946@kihagwinex01.int.kistler.com>
-User-Agent: Mutt/1.5.23 (2014-03-12)
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Bash parser
+X-Received: by 10.194.86.164 with SMTP id q4mr35345582wjz.88.1405506484527;
+	Wed, 16 Jul 2014 03:28:04 -0700 (PDT)
+Received: by 10.194.19.161 with HTTP; Wed, 16 Jul 2014 03:28:04 -0700 (PDT)
+Date: Wed, 16 Jul 2014 12:28:04 +0200
+Message-ID: <CALkREYAJhEwG5Kzh1pTW0OwLKPSFwFg1v=beRr=0m-GPAsY+sg@mail.gmail.com>
+From: Anooj Gopi <anoojgopi@gmail.com>
+To: yocto@yoctoproject.org
+Subject: Include all the native sdk packages built into sdk install script (populate_sdk)
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -59,51 +55,46 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 16 Jul 2014 10:01:22 -0000
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
+X-List-Received-Date: Wed, 16 Jul 2014 10:28:07 -0000
+Content-Type: multipart/alternative; boundary=089e0102d76abd69dc04fe4cfabb
 
-On 14-07-16 11:36 +0200, Isak Lichtenstein wrote:
-> In this method I'm using the bash syntax. But a lot of time the
-> parser doesn't manage to parse my file properly. Examples:
-> 
-> 	TMP="file1 file2"
-> 	read -a scripts <<< $tmp
-> generates
-> 	ShellSyntaxError: expecting here-document name, got '<'
-> 
-> Or 
-> 
-> 	TMP="file1 file2"
-> 	scripts=(${TMP})
-> generate
-> 	ShellSyntaxError: LexToken(TOKEN,'${TMP}',0,0)
-> 
-> 
-> Other bash commands are parsed properly, but generate an error
-> while executing them. Example:
-> 	TMP="file1, file2"
-> 	tmp=${TMP//,/ }
-> generates
-> 	Bad substitution
-> 	| WARNING: exit code 2 from a shell command.
+--089e0102d76abd69dc04fe4cfabb
+Content-Type: text/plain; charset=UTF-8
 
-Note that these features you describe here are all bash
-extensions. For Debian users (and I think Ubuntu users as well?),
-the default /bin/sh is dash and does not support either of these
-extensions. There are cases where the bitbake parser will refuse
-valid portable shell script features as well though, like shell
-arithmetics, e.g.:
+Hello,
 
- n=$((n+1))
+Which is the best way to include all the native sdk packages built during
+the command
 
-> Does a page exist somewhere describing the bash features
-> supported by the parser and also the execution environment?
-> Are arrays supported at all?
+bitbake <image> -c populate_sdk
 
-I don't know of any such documentation, but if you stick to
-portable shell script features, you should be mostly fine.
+into the SDK sysroots generated in the SDKMACHINE (generated by sdk
+installation script).
 
--- 
-olofjn
+For eg. I can see
+"build/tmp/deploy/rpm/i686_nativesdk/nativesdk-libqt5core-dev-5.2.1-r1.i686_nativesdk.rpm"
+package generated in the build machine. But it is not available by default
+in the sysroot generated by "build/tmp/deploy/sdk/
+oecore-i686-cortexa15hf-vfp-neon-toolchain-oe-core.0.sh".
 
+Best Regards,
+Anooj Gopi
+
+--089e0102d76abd69dc04fe4cfabb
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div><div><div>Hello,<br><br></div>Which is the best way t=
+o include all the native sdk packages built during the command<br><br>bitba=
+ke &lt;image&gt; -c populate_sdk<br><br></div>into the SDK sysroots generat=
+ed in the SDKMACHINE (generated by sdk installation script).<br>
+<br></div><div>For eg. I can see &quot;build/tmp/deploy/rpm/i686_nativesdk/=
+nativesdk-libqt5core-dev-5.2.1-r1.i686_nativesdk.rpm&quot; package generate=
+d in the build machine. But it is not available by default in the sysroot g=
+enerated by &quot;build/tmp/deploy/sdk/<a href=3D"http://oecore-i686-cortex=
+a15hf-vfp-neon-toolchain-oe-core.0.sh">oecore-i686-cortexa15hf-vfp-neon-too=
+lchain-oe-core.0.sh</a>&quot;.<br>
+</div><div><br></div>Best Regards,<br>Anooj Gopi<br><div><div><br></div></d=
+iv></div>
+
+--089e0102d76abd69dc04fe4cfabb--
