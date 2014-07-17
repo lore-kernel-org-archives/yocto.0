@@ -1,40 +1,53 @@
-Return-Path: <b-sathishkumar@hcl.com>
+Return-Path: <anoojgopi@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 0F730E00781; Wed, 16 Jul 2014 22:54:25 -0700 (PDT)
+	id 630ACE00777; Thu, 17 Jul 2014 00:51:46 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (anoojgopi[at]gmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [74.125.82.173 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from GWS07.hcl.com (gws07.hcl.com [192.8.186.130])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 35B3AE006B9
-	for <yocto@yoctoproject.org>; Wed, 16 Jul 2014 22:54:20 -0700 (PDT)
-X-IronPort-AV: E=Sophos;i="5.01,676,1400005800"; d="scan'208";a="23079904"
-Received: from unknown (HELO CHN-CORP-HT02.CORP.HCL.IN) ([10.249.2.34])
-	by GWS07.hcl.com with ESMTP/TLS/AES128-SHA; 17 Jul 2014 11:23:46 +0530
-Received: from CHN-HCLT-CSHT06.HCLT.CORP.HCL.IN (10.150.12.31) by
-	CHN-CORP-HT02.CORP.HCL.IN (10.249.2.34) with Microsoft SMTP Server
-	(TLS) id 14.3.123.3; Thu, 17 Jul 2014 11:24:15 +0530
-Received: from CHN-HCLT-MBS08.HCLT.CORP.HCL.IN ([10.150.12.23]) by
-	CHN-HCLT-CSHT06.HCLT.CORP.HCL.IN ([::1]) with mapi id 14.03.0123.003;
-	Thu, 17 Jul 2014 11:24:15 +0530
-From: "Sathish Kumar Balasubramaniam -ERS, HCL Tech" <b-sathishkumar@hcl.com>
-To: jags gediya <jags.gediya@gmail.com>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>
-Thread-Topic: [yocto] Compiler on board
-Thread-Index: AQHPoXmxoYEZH7X0j02NdvCfon2Zh5ujw4Ng
-Date: Thu, 17 Jul 2014 05:54:14 +0000
-Message-ID: <5D833673AB94D9489A7F7F73E9E611C814ADEC4D@chn-hclt-mbs08.HCLT.CORP.HCL.IN>
-References: <CAP3RZogMaiH3xBB3gto+xxR6X5ry=wHxq0t9XLFxLty82i1TgQ@mail.gmail.com>
-In-Reply-To: <CAP3RZogMaiH3xBB3gto+xxR6X5ry=wHxq0t9XLFxLty82i1TgQ@mail.gmail.com>
-Accept-Language: en-IN, en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.150.5.114]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-we0-f173.google.com (mail-we0-f173.google.com
+	[74.125.82.173])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C2A33E006B5
+	for <yocto@yoctoproject.org>; Thu, 17 Jul 2014 00:51:39 -0700 (PDT)
+Received: by mail-we0-f173.google.com with SMTP id q58so2029673wes.4
+	for <yocto@yoctoproject.org>; Thu, 17 Jul 2014 00:51:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:content-type; bh=B29CMUaTQBcp5jRm0c/bIhZOwwmRVwZQgbIoYrvLW1E=;
+	b=Qbk8I8UVE3hxaPsIT0hFAjY8mRdwRDiqcG7t20rvnLVRUX3DcMr/D1vR28QKYgLnxu
+	0nRH+AQHr0T2F0xIpZg35oCXSUjdYd85WOPajCYoNi9ibB6FgJ+FE85/DExgJENVfMDT
+	sA9WLjCTANS1DCFohl1d+EQbHyQQWZEhHARcpKQjjRqlrE4p7jUQHZ1NzwcG1LnO45Jg
+	8Jz4z/UVwItM7F93tZwD9Rh4sXr1bCBYZgSS71N93zg8fSfvWyBh3BcytZpxnubv8uJr
+	BJOcuO2m+GyeNBR7pQWEgVqcTZ6Zaotzo6YQmBxlvdOxVXXRNdn/JABC59GlqrLLCVm1
+	6lzw==
 MIME-Version: 1.0
-Subject: Re: Compiler on board
+X-Received: by 10.180.96.97 with SMTP id dr1mr20009492wib.19.1405583494180;
+	Thu, 17 Jul 2014 00:51:34 -0700 (PDT)
+Received: by 10.194.19.161 with HTTP; Thu, 17 Jul 2014 00:51:34 -0700 (PDT)
+In-Reply-To: <6F22A92316C68C42A591A48A6291DA9DDA68FA@DEFTHW99EI0MSX.ww902.siemens.net>
+References: <CALkREYAJhEwG5Kzh1pTW0OwLKPSFwFg1v=beRr=0m-GPAsY+sg@mail.gmail.com>
+	<6F22A92316C68C42A591A48A6291DA9DDA68FA@DEFTHW99EI0MSX.ww902.siemens.net>
+Date: Thu, 17 Jul 2014 09:51:34 +0200
+Message-ID: <CALkREYDmemh3PqqBSb0uQ+f_HtZ7UhyiYJeXM-m5c0LALww5tA@mail.gmail.com>
+From: Anooj Gopi <anoojgopi@gmail.com>
+To: "Meier, Dennis" <meier.dennis@siemens.com>, 
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Include all the native sdk packages built into sdk install script (populate_sdk)
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -46,63 +59,217 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 17 Jul 2014 05:54:25 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Thu, 17 Jul 2014 07:51:46 -0000
+Content-Type: multipart/alternative; boundary=f46d04182594df75a604fe5ee8ec
+
+--f46d04182594df75a604fe5ee8ec
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-Update the following in your build/conf/local.conf to add development tools=
- like gcc, make, etc to the root file system image
+Dear Dennis,
 
-EXTRA_IMAGE_FEATURES =3D "tools-sdk debug-tweaks"
+Thank you very much. I have tried "TOOLCHAIN_HOST_TASK" which works. But
+for some packages I could not find the bb file yet.
+eg. nativesdk-libqt5core-dev-5.2.1-r1.i686_nativesdk.rpm generated by
+https://github.com/meta-qt5/meta-qt5/. Do you have any clue on how to find
+this out?
 
+Regarding the IMAGE_FEATURE following one would not be helpful right?
+*tools-sdk:* Installs a full SDK that runs on the device.
 
-Regards,
-B.Sathish Kumar
+To generate the SDK I was always looking the install script generated by
+"bitbake <image> -c populate_sdk", and I never tried ADT installer. Would
+you thing the ADT installer will solve the missing package issues?
 
------Original Message-----
-From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org=
-] On Behalf Of jags gediya
-Sent: Thursday, July 17, 2014 10:13 AM
-To: yocto@yoctoproject.org
-Subject: [yocto] Compiler on board
-
-Hi All,
-
-Is it possible to have compiler in the yocto image?
-I want to compile some code on board itself instead of cross compiling it o=
-n host system?
---
-_______________________________________________
-yocto mailing list
-yocto@yoctoproject.org
-https://lists.yoctoproject.org/listinfo/yocto
+Best Regards,
+Anooj Gopi
 
 
-::DISCLAIMER::
----------------------------------------------------------------------------=
--------------------------------------------------------------------------
+On Wed, Jul 16, 2014 at 2:59 PM, Meier, Dennis <meier.dennis@siemens.com>
+wrote:
 
-The contents of this e-mail and any attachment(s) are confidential and inte=
-nded for the named recipient(s) only.
-E-mail transmission is not guaranteed to be secure or error-free as informa=
-tion could be intercepted, corrupted,
-lost, destroyed, arrive late or incomplete, or may contain viruses in trans=
-mission. The e mail and its contents
-(with or without referred errors) shall therefore not attach any liability =
-on the originator or HCL or its affiliates.
-Views or opinions, if any, presented in this email are solely those of the =
-author and may not necessarily reflect the
-views or opinions of HCL or its affiliates. Any form of reproduction, disse=
-mination, copying, disclosure, modification,
-distribution and / or publication of this message without the prior written=
- consent of authorized representative of
-HCL is strictly prohibited. If you have received this email in error please=
- delete it and notify the sender immediately.
-Before opening any email and/or attachments, please check them for viruses =
-and other defects.
+>  Dear Anooj
+>
+>
+>
+> What goes into the native sysroot is determined by the TOOLCHAIN_HOST_TAS=
+K
+> variable I believe. So setting TOOLCHAIN_HOST_TASK +=3D
+> =E2=80=9Cnativesdk-libqt5core-dev=E2=80=9D or something alike should be w=
+hat you are
+> looking for. I don=E2=80=99t know if there is a simple solution to includ=
+e *
+> *every** nativesdk-* package in the SDK, I think you need to add them
+> manually or write your own IMAGE_FEATURE.
+>
+>
+>
+> Regards,
+>
+> Dennis
+>
+>
+>
+> *From:* yocto-bounces@yoctoproject.org [mailto:
+> yocto-bounces@yoctoproject.org] *On Behalf Of *Anooj Gopi
+> *Sent:* Mittwoch, 16. Juli 2014 12:28
+> *To:* yocto@yoctoproject.org
+> *Subject:* [yocto] Include all the native sdk packages built into sdk
+> install script (populate_sdk)
+>
+>
+>
+> Hello,
+>
+> Which is the best way to include all the native sdk packages built during
+> the command
+>
+> bitbake <image> -c populate_sdk
+>
+> into the SDK sysroots generated in the SDKMACHINE (generated by sdk
+> installation script).
+>
+> For eg. I can see
+> "build/tmp/deploy/rpm/i686_nativesdk/nativesdk-libqt5core-dev-5.2.1-r1.i6=
+86_nativesdk.rpm"
+> package generated in the build machine. But it is not available by defaul=
+t
+> in the sysroot generated by "build/tmp/deploy/sdk/
+> oecore-i686-cortexa15hf-vfp-neon-toolchain-oe-core.0.sh".
+>
+>
+>
+> Best Regards,
+> Anooj Gopi
+>
+>
+>
 
----------------------------------------------------------------------------=
--------------------------------------------------------------------------
+--f46d04182594df75a604fe5ee8ec
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div><div>Dear Dennis,<br><br></div>Thank you very much. I=
+ have tried &quot;<span style=3D"font-size:11pt;font-family:&quot;Calibri&q=
+uot;,&quot;sans-serif&quot;;color:rgb(31,73,125)" lang=3D"EN-US">TOOLCHAIN_=
+HOST_TASK</span>&quot; which works. But for some packages I could not find =
+the bb file yet.<br>
+</div><div>eg. nativesdk-libqt5core-dev-5.2.1-r1.i686_nativesdk.rpm generat=
+ed by <a href=3D"https://github.com/meta-qt5/meta-qt5/">https://github.com/=
+meta-qt5/meta-qt5/</a>. Do you have any clue on how to find this out?<br>
+</div><div><br></div><div>Regarding the <span style=3D"font-size:11pt;font-=
+family:&quot;Calibri&quot;,&quot;sans-serif&quot;;color:rgb(31,73,125)" lan=
+g=3D"EN-US">IMAGE_FEATURE</span> following one would not be helpful right?<=
+br>
+<span class=3D""><em>tools-sdk:</em></span> Installs a full SDK that runs o=
+n the device.
+                    <br><br></div><div>To generate the SDK I was always loo=
+king the install script generated by &quot;bitbake &lt;image&gt; -c populat=
+e_sdk&quot;, and I never tried ADT installer. Would you thing the ADT insta=
+ller will solve the missing package issues?<br>
+</div><div><br></div>Best Regards,<br>Anooj Gopi<br></div><div class=3D"gma=
+il_extra"><br><br><div class=3D"gmail_quote">On Wed, Jul 16, 2014 at 2:59 P=
+M, Meier, Dennis <span dir=3D"ltr">&lt;<a href=3D"mailto:meier.dennis@sieme=
+ns.com" target=3D"_blank">meier.dennis@siemens.com</a>&gt;</span> wrote:<br=
+>
+<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
+x #ccc solid;padding-left:1ex">
 
 
+
+
+
+<div link=3D"blue" vlink=3D"purple" lang=3D"DE">
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1f497d">Dear Anooj<u></u><u></u><=
+/span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1f497d"><u></u>=C2=A0<u></u></spa=
+n></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1f497d" lang=3D"EN-US">What goes =
+into the native sysroot is determined by the TOOLCHAIN_HOST_TASK variable I=
+ believe. So setting TOOLCHAIN_HOST_TASK +=3D =E2=80=9Cnativesdk-libqt5core=
+-dev=E2=80=9D
+ or something alike should be what you are looking for. I don=E2=80=99t kno=
+w if there is a simple solution to include *<b>every</b>* nativesdk-* packa=
+ge in the SDK, I think you need to add them manually or write your own IMAG=
+E_FEATURE.<u></u><u></u></span></p>
+
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1f497d" lang=3D"EN-US"><u></u>=C2=
+=A0<u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1f497d" lang=3D"EN-US">Regards,<u=
+></u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1f497d" lang=3D"EN-US">Dennis<u><=
+/u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,&quot;sans-serif&quot;;color:#1f497d" lang=3D"EN-US"><u></u>=C2=
+=A0<u></u></span></p>
+<div style=3D"border:none;border-left:solid blue 1.5pt;padding:0cm 0cm 0cm =
+4.0pt">
+<div>
+<div style=3D"border:none;border-top:solid #b5c4df 1.0pt;padding:3.0pt 0cm =
+0cm 0cm">
+<p class=3D"MsoNormal"><b><span style=3D"font-size:10.0pt;font-family:&quot=
+;Tahoma&quot;,&quot;sans-serif&quot;" lang=3D"EN-US">From:</span></b><span =
+style=3D"font-size:10.0pt;font-family:&quot;Tahoma&quot;,&quot;sans-serif&q=
+uot;" lang=3D"EN-US"> <a href=3D"mailto:yocto-bounces@yoctoproject.org" tar=
+get=3D"_blank">yocto-bounces@yoctoproject.org</a> [mailto:<a href=3D"mailto=
+:yocto-bounces@yoctoproject.org" target=3D"_blank">yocto-bounces@yoctoproje=
+ct.org</a>]
+<b>On Behalf Of </b>Anooj Gopi<br>
+<b>Sent:</b> Mittwoch, 16. Juli 2014 12:28<br>
+<b>To:</b> <a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yoct=
+o@yoctoproject.org</a><br>
+<b>Subject:</b> [yocto] Include all the native sdk packages built into sdk =
+install script (populate_sdk)<u></u><u></u></span></p>
+</div>
+</div><div><div class=3D"h5">
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<div>
+<div>
+<div>
+<div>
+<p class=3D"MsoNormal" style=3D"margin-bottom:12.0pt">Hello,<u></u><u></u><=
+/p>
+</div>
+<p class=3D"MsoNormal" style=3D"margin-bottom:12.0pt">Which is the best way=
+ to include all the native sdk packages built during the command<br>
+<br>
+bitbake &lt;image&gt; -c populate_sdk<u></u><u></u></p>
+</div>
+<p class=3D"MsoNormal" style=3D"margin-bottom:12.0pt">into the SDK sysroots=
+ generated in the SDKMACHINE (generated by sdk installation script).<u></u>=
+<u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal">For eg. I can see &quot;build/tmp/deploy/rpm/i686_na=
+tivesdk/nativesdk-libqt5core-dev-5.2.1-r1.i686_nativesdk.rpm&quot; package =
+generated in the build machine. But it is not available by default in the s=
+ysroot generated by &quot;build/tmp/deploy/sdk/<a href=3D"http://oecore-i68=
+6-cortexa15hf-vfp-neon-toolchain-oe-core.0.sh" target=3D"_blank">oecore-i68=
+6-cortexa15hf-vfp-neon-toolchain-oe-core.0.sh</a>&quot;.<u></u><u></u></p>
+
+</div>
+<div>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+</div>
+<p class=3D"MsoNormal">Best Regards,<br>
+Anooj Gopi<u></u><u></u></p>
+<div>
+<div>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+</div>
+</div>
+</div>
+</div></div></div>
+</div>
+</div>
+
+</blockquote></div><br></div>
+
+--f46d04182594df75a604fe5ee8ec--
