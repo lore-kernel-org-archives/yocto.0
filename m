@@ -1,40 +1,46 @@
-Return-Path: <Chong.Lu@windriver.com>
+Return-Path: <nicolas.dechesne@linaro.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 5345BE0078F; Thu, 17 Jul 2014 01:57:12 -0700 (PDT)
+	id AA936E00781; Thu, 17 Jul 2014 02:01:55 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_MED autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [147.11.1.11 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [209.85.223.182 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 68EE5E00788
-	for <yocto@yoctoproject.org>; Thu, 17 Jul 2014 01:57:09 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail.windriver.com (8.14.5/8.14.5) with ESMTP id s6H8v6L5001347
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Thu, 17 Jul 2014 01:57:06 -0700 (PDT)
-Received: from [128.224.162.204] (128.224.162.204) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server (TLS) id 14.3.169.1;
-	Thu, 17 Jul 2014 01:57:06 -0700
-Message-ID: <53C78FDE.5000705@windriver.com>
-Date: Thu, 17 Jul 2014 16:57:02 +0800
-From: Chong Lu <Chong.Lu@windriver.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:24.0) Gecko/20100101 Thunderbird/24.0
+Received: from mail-ie0-f182.google.com (mail-ie0-f182.google.com
+	[209.85.223.182])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5DEE0E006B9
+	for <yocto@yoctoproject.org>; Thu, 17 Jul 2014 02:01:53 -0700 (PDT)
+Received: by mail-ie0-f182.google.com with SMTP id y20so2413075ier.41
+	for <yocto@yoctoproject.org>; Thu, 17 Jul 2014 02:01:53 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc:content-type;
+	bh=qxFZo4cz8LwT4jjjPzawXVxsTo/AiMjvIswylsInVIM=;
+	b=VoeK+6EYhh5u8nNPOFBXqGOJ22iQDETgBs02Ii8abpSzGCnD49vYT6ropQBf9eRIcR
+	K4IS8kkbIwVr5ozl8e8X/LZ3FCZHdYS80jCvELEjuuJE9GqXu/gCYMo0sFATXAGyT1BN
+	OhB+sWnWBaL3QYSpewjLEv/aTuJ71cKsEXCY25OZVjTa9KbaoHtIoJeRCttcP2xU3RiM
+	BtApiPXr4aL6SttG4l5FfUcR9axTe3Acbp156hYNaS/9T+RrB/Xl0qwRUr784yQ9hkZd
+	xPXIFNdWq29P+xf2vZEPfFBZbWwp2iTYAP5m9vTadUpqtdufjrdUNQ3pYKrBbz5/ybRv
+	ZRqg==
+X-Gm-Message-State: ALoCoQls/sUH9sXZ46VjMeDeheysYYbMYeeLeEzjpsJgHfpEuEJieX59pnk3y+uAUsxbbwVqJeXd
+X-Received: by 10.182.112.134 with SMTP id iq6mr41809088obb.34.1405587713171; 
+	Thu, 17 Jul 2014 02:01:53 -0700 (PDT)
 MIME-Version: 1.0
-To: =?ISO-8859-1?Q?Joseph_Andrew_de_la_Pe=F1a?= <jdelapena@lexmark.com>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
-References: <CAJrRHk6gt9GTaj1+uf77x9bt2zjmfJFzCnA3A-eS1U2WqgfPHg@mail.gmail.com>
-In-Reply-To: <CAJrRHk6gt9GTaj1+uf77x9bt2zjmfJFzCnA3A-eS1U2WqgfPHg@mail.gmail.com>
-X-Originating-IP: [128.224.162.204]
-Subject: Re: libtool error when running adt_installer
+Received: by 10.76.171.168 with HTTP; Thu, 17 Jul 2014 02:01:31 -0700 (PDT)
+In-Reply-To: <DUB128-W12498E2678002801067F3092F40@phx.gbl>
+References: <DUB128-W12498E2678002801067F3092F40@phx.gbl>
+From: Nicolas Dechesne <nicolas.dechesne@linaro.org>
+Date: Thu, 17 Jul 2014 11:01:31 +0200
+Message-ID: <CAP71WjwYGsUt7ye2JFsotAis2TPEfk7wFH0jS_1+u72Svc2iBA@mail.gmail.com>
+To: Natural Groove <natural_groove@hotmail.fr>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: How to include native bitstream dependency in recipe?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -46,166 +52,31 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 17 Jul 2014 08:57:12 -0000
-Content-Type: multipart/alternative;
-	boundary="------------060400010301060200030403"
+X-List-Received-Date: Thu, 17 Jul 2014 09:01:55 -0000
+Content-Type: text/plain; charset=UTF-8
 
---------------060400010301060200030403
-Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
-Content-Transfer-Encoding: 8bit
+On Thu, Jul 17, 2014 at 10:37 AM, Natural Groove
+<natural_groove@hotmail.fr> wrote:
+> Im trying to crosscompile a framework that needs native bitstream
+> dependency, but the configure does not find the headers.
 
-Hi Joseph,
+what is 'bitstream'?
 
-In adt-installer/opkg/build/opkg-svn/configure file, we have
-  8917 # Always use our own libtool.
-  8918 LIBTOOL='$(SHELL) $(top_builddir)/libtool'
+> I was told to use ASSUME_PROVIDED, but i dont know how to give the path to
+> bitstream in the recipe.
+> Or is there a another way to deal with that like installing bitstream to a
+> specific dir that oe will now of?
 
-So, we should libtool rather than -libtool.
-Do you have any env variable to set LIBTOOL?
+ASSUME_PROVIDED is generally used for host binary that you want OE to
+use instead of building them. for example, it is generally ok to use
+the 'git' application from your host instead of rebuilding git during
+an OE build. This is applicable *only* to host binaries.
 
-In addition, I found your log:
+in your case (granted that I don't know what 'bitstream' is) I think
+you will need to have a recipe that build 'bitstream'. Note that the
+dependency is 'native' in case it's a tool that needs to run on the
+host, like a preprocessor. If you need 'bitstream' to cross compile
+for your target because your target framework builds and links against
+'bistream' them it's not a native dependency, but just a regular
+dependency.
 
---2014-07-16 15:53:29--http://adtrepo.yoctoproject.org/1.5.1
-Resolving adtrepo.yoctoproject.org... 140.211.169.59
-Connecting to adtrepo.yoctoproject.org|140.211.169.59|:80... failed: Connection refused.
-
-You fail to connect repo. Please check.
-
-BR
-Chong
-
-On 07/17/2014 09:18 AM, Joseph Andrew de la Peña wrote:
-> Good day,
->
-> I have an error in libtool when running adt_installer script.
->
-> make[1]: Entering directory 
-> `/users/jdelapena/adt-installer/opkg/build/opkg-svn/libbb'
-> ../-libtool  --tag=CC   --mode=compile i586-poky-linux-gcc  -m32 
-> -march=i586 
->  --sysroot=/bonus/scratch/jdelapena/sdk/sysroots/i586-poky-linux 
-> -DHAVE_CONFIG_H -I. -I../libopkg    -g -O -Wall 
-> -DHOST_CPU_STR=\"x86_64\" -DBUILD_CPU=x86_64 -O 
-> -fno-omit-frame-pointer -g -feliminate-unused-debug-types -pipe -MT 
-> libbb_la-gz_open.lo -MD -MP -MF .deps/libbb_la-gz_open.Tpo -c -o 
-> libbb_la-gz_open.lo `test -f 'gz_open.c' || echo './'`gz_open.c
->
-> */bin/sh: ../-libtool: No such file or directory*
-> make[1]: *** [libbb_la-gz_open.lo] Error 127
-> make[1]: Leaving directory 
-> `/users/jdelapena/adt-installer/opkg/build/opkg-svn/libbb'
-> make: *** [all-recursive] Error 1
->
-> Seems to be $LIBTOOL was not having the correct value. I've searched 
-> all occurrence of $LIBTOOL but all of them had -libtool value.
->
-> Where does $LIBTOOL originate when creating my own adt_installer 
-> script via bitbake adt-installer?
-> What variables in any conf file do I need to change to run 
-> adt_installer successfully?
->
-> Attached is the full log during running of adt_installer.
->
-> Thanks,
-> Joseph
->
->
->
-
-
---------------060400010301060200030403
-Content-Type: text/html; charset="ISO-8859-1"
-Content-Transfer-Encoding: 7bit
-
-<html>
-  <head>
-    <meta content="text/html; charset=ISO-8859-1"
-      http-equiv="Content-Type">
-  </head>
-  <body bgcolor="#FFFFFF" text="#000000">
-    Hi Joseph,<br>
-    <br>
-    In adt-installer/opkg/build/opkg-svn/configure file, we have<br>
-    &nbsp;8917 # Always use our own libtool.<br>
-    &nbsp;8918 LIBTOOL='$(SHELL) $(top_builddir)/libtool'<br>
-    <br>
-    So, we should libtool rather than -libtool.<br>
-    Do you have any env variable to set LIBTOOL?<br>
-    <br>
-    In addition, I found your log:<br>
-    <pre wrap="">--2014-07-16 15:53:29--  <a class="moz-txt-link-freetext" href="http://adtrepo.yoctoproject.org/1.5.1">http://adtrepo.yoctoproject.org/1.5.1</a>
-Resolving adtrepo.yoctoproject.org... 140.211.169.59
-Connecting to adtrepo.yoctoproject.org|140.211.169.59|:80... failed: Connection refused.
-</pre>
-    You fail to connect repo. Please check.<br>
-    <br>
-    BR<br>
-    Chong<br>
-    <br>
-    <div class="moz-cite-prefix">On 07/17/2014 09:18 AM, Joseph Andrew
-      de la Pe&ntilde;a wrote:<br>
-    </div>
-    <blockquote
-cite="mid:CAJrRHk6gt9GTaj1+uf77x9bt2zjmfJFzCnA3A-eS1U2WqgfPHg@mail.gmail.com"
-      type="cite">
-      <meta http-equiv="Content-Type" content="text/html;
-        charset=ISO-8859-1">
-      <div dir="ltr">
-        <div dir="ltr">Good day,
-          <div><br>
-          </div>
-          <div>I have an error in libtool when running adt_installer
-            script.</div>
-          <div><br>
-          </div>
-          <div>
-            <div>make[1]: Entering directory
-              `/users/jdelapena/adt-installer/opkg/build/opkg-svn/libbb'</div>
-            <div>../-libtool &nbsp;--tag=CC &nbsp; --mode=compile
-              i586-poky-linux-gcc &nbsp;-m32 -march=i586
-              &nbsp;--sysroot=/bonus/scratch/jdelapena/sdk/sysroots/i586-poky-linux
-              -DHAVE_CONFIG_H -I. -I../libopkg &nbsp; &nbsp;-g -O -Wall
-              -DHOST_CPU_STR=\"x86_64\" -DBUILD_CPU=x86_64 -O
-              -fno-omit-frame-pointer -g -feliminate-unused-debug-types
-              -pipe -MT libbb_la-gz_open.lo -MD -MP -MF
-              .deps/libbb_la-gz_open.Tpo -c -o libbb_la-gz_open.lo `test
-              -f 'gz_open.c' || echo './'`gz_open.c</div>
-            <div><br>
-            </div>
-            <div><b>/bin/sh: ../-libtool: No such file or directory</b></div>
-            <div>make[1]: *** [libbb_la-gz_open.lo] Error 127</div>
-            <div>make[1]: Leaving directory
-              `/users/jdelapena/adt-installer/opkg/build/opkg-svn/libbb'</div>
-            <div>make: *** [all-recursive] Error 1</div>
-          </div>
-          <div><br>
-          </div>
-          <div>Seems to be $LIBTOOL was not having the correct value.
-            I've searched all occurrence of $LIBTOOL but all of them had
-            -libtool value.</div>
-          <div><br>
-          </div>
-          <div>Where does $LIBTOOL originate when creating my own
-            adt_installer script via bitbake adt-installer?</div>
-          <div>What variables in any conf file do I need to change to
-            run adt_installer successfully?&nbsp;</div>
-          <div><br>
-          </div>
-          <div>Attached is the full log during running of adt_installer.</div>
-          <div><br>
-          </div>
-          <div>Thanks,</div>
-          <div>Joseph</div>
-          <div><br>
-          </div>
-        </div>
-      </div>
-      <br>
-      <fieldset class="mimeAttachmentHeader"></fieldset>
-      <br>
-    </blockquote>
-    <br>
-  </body>
-</html>
-
---------------060400010301060200030403--
