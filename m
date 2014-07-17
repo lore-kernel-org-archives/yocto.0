@@ -1,50 +1,39 @@
-Return-Path: <nicolas.dechesne@linaro.org>
+Return-Path: <paul.eggleton@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 29B9DE00777; Thu, 17 Jul 2014 06:30:15 -0700 (PDT)
+	id 022B4E0073C; Thu, 17 Jul 2014 06:51:50 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [209.85.223.179 listed in list.dnswl.org]
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [143.182.124.21 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail-ie0-f179.google.com (mail-ie0-f179.google.com
-	[209.85.223.179])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EFC86E006B9
-	for <yocto@yoctoproject.org>; Thu, 17 Jul 2014 06:30:10 -0700 (PDT)
-Received: by mail-ie0-f179.google.com with SMTP id rl12so2899237iec.10
-	for <yocto@yoctoproject.org>; Thu, 17 Jul 2014 06:30:09 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc:content-type;
-	bh=lJtl+WWz11p4/g1EHtnSjBz7k5bwKenQ6Kvvlp9Nxeg=;
-	b=VsrtPQ0H+NfJhzPAYm7555johiPUi2QMCVeJV56JoSTd3G2UiGpsrDZC/uaQedggTD
-	y1/RR/yzZugCVSQM8VZ6f3mUTaqJYr01YEl5F06tOOw9gGn8HQWU2Xl1DY2uxtusp24u
-	0LaVsKBond09R04Z6Yo43j/Q2OFG89IYlhhGAWr/LfSVQ6J3ZUNqmEoiU122x9rH/5NN
-	zxN+GNe0f/TUmhUec+UmQYFW2hMTcsmitNJ6Z6tXramzuWkuv5etWOcdoi77dZk/+45O
-	Cn5KYtbLfeOD1ses16Sf1rS1ceK0EQNETKs28VBE0CjuPr2QxhXhvoE2yhPcem1Z3qWT
-	4hnw==
-X-Gm-Message-State: ALoCoQkKp8YHcXY92IBzTGw/AvFGqoeTnjCAP+pibgoMBU3PLQjrv8YxrvjTahztvR2SY1SuYFyK
-X-Received: by 10.60.176.225 with SMTP id cl1mr44931683oec.36.1405603808988;
-	Thu, 17 Jul 2014 06:30:08 -0700 (PDT)
+Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6860CE006EF
+	for <yocto@yoctoproject.org>; Thu, 17 Jul 2014 06:51:48 -0700 (PDT)
+Received: from azsmga001.ch.intel.com ([10.2.17.19])
+	by azsmga101.ch.intel.com with ESMTP; 17 Jul 2014 06:51:48 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.01,678,1400050800"; d="scan'208";a="458144633"
+Received: from ldsaruwe-mobl.gar.corp.intel.com (HELO
+	peggleto-mobl5.ger.corp.intel.com) ([10.252.121.2])
+	by azsmga001.ch.intel.com with ESMTP; 17 Jul 2014 06:51:46 -0700
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: Scott Rifenbark <srifenbark@gmail.com>
+Date: Thu, 17 Jul 2014 14:51:45 +0100
+Message-ID: <3342528.IHg5slGbJt@peggleto-mobl5.ger.corp.intel.com>
+Organization: Intel Corporation
+User-Agent: KMail/4.13.2 (Linux/3.15.4-200.fc20.x86_64; KDE/4.13.2; x86_64; ; )
+In-Reply-To: <CAFNP8Os559bt59bx6tfqp+R+HyUxz66kaxjuvzBGiRKbdUMjdQ@mail.gmail.com>
+References: <1405599916.4781.2.camel@localhost.localdomain>
+	<23827558.qlZqcTDZms@peggleto-mobl5.ger.corp.intel.com>
+	<CAFNP8Os559bt59bx6tfqp+R+HyUxz66kaxjuvzBGiRKbdUMjdQ@mail.gmail.com>
 MIME-Version: 1.0
-Received: by 10.76.171.168 with HTTP; Thu, 17 Jul 2014 06:29:48 -0700 (PDT)
-In-Reply-To: <DUB128-W61984D1885C48F388A748692F40@phx.gbl>
-References: <DUB128-W12498E2678002801067F3092F40@phx.gbl>
-	<CAP71WjwYGsUt7ye2JFsotAis2TPEfk7wFH0jS_1+u72Svc2iBA@mail.gmail.com>
-	<DUB128-W323C87A7D073BC1437172E92F40@phx.gbl>
-	<CAP71WjyPw1aArDo75U18k=1td+zDnUE_Vxek_9yBZFhy_C8C_g@mail.gmail.com>
-	<DUB128-W61984D1885C48F388A748692F40@phx.gbl>
-From: Nicolas Dechesne <nicolas.dechesne@linaro.org>
-Date: Thu, 17 Jul 2014 15:29:48 +0200
-Message-ID: <CAP71WjyoTmOBQau2Ddj1yPxAWzGom5SELBuC6nW_=VVciovLSA@mail.gmail.com>
-To: Natural Groove <natural_groove@hotmail.fr>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: How to include native bitstream dependency in recipe?
+Cc: yocto@yoctoproject.org, Tom Zanussi <tom.zanussi@linux.intel.com>
+Subject: Re: wic status
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -56,42 +45,37 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 17 Jul 2014 13:30:15 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Thu, 17 Jul 2014 13:51:50 -0000
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-On Thu, Jul 17, 2014 at 3:11 PM, Natural Groove
-<natural_groove@hotmail.fr> wrote:
+On Thursday 17 July 2014 16:48:41 Scott Rifenbark wrote:
+> On Thu, Jul 17, 2014 at 3:56 PM, Paul Eggleton <
+> paul.eggleton@linux.intel.com> wrote:
+> > On Thursday 17 July 2014 14:25:16 Maciek Borzecki wrote:
+> > > There used to be an entry about wic in development manual back in 1.5.2:
+> > > http://www.yoctoproject.org/docs/1.5.2/dev-manual/dev-manual.html
+> > > 
+> > > This entry is gone in current documentation and there seems to be no
+> > > mention of wic at all:
+> > > https://www.yoctoproject.org/docs/current/dev-manual/dev-manual.html
+> > 
+> > Scott, can you take a look at this if you haven't already?
 >
-> do_install() {
-> install -d ${D}${includedir} ${D}${includedir}/atsc ${D}${includedir}/dvb
-> ${D}${includedir}/dvb/si ${D}${includedir}/mpeg ${D}${includedir}/mpeg/psi
-> ${D}${includedir}/ietf
-> install -m 0755 common.h ${D}${includedir}
-> install -m 0755 atsc/a52.h ${D}${includedir}/atsc
-> install -m 0755 dvb/ci.h dvb/si.h dvb/sim.h dvb/si_print.h dvb/sub.h
-> ${D}${includedir}/dvb
-> install -m 0755 mpeg/aac.h mpeg/h264.h mpeg/mp2v.h mpeg/mpga.h mpeg/pes.h
-> mpeg/psi.h mpeg/psi_print.h mpeg/ts.h ${D}${includedir}/mpeg
-> install -m 0755 ietf/rtp3551.h ietf/rtp.h ${D}${includedir}/ietf
-> cp -r mpeg/psi/ ${D}${includedir}/mpeg/
-> cp -r dvb/si/ ${D}${includedir}/dvb/
->
-> }
->
-> but after launching the compilation for the framework config.log says :
-> configure:17806: checking bitstream/common.h usability
-> configure:17806: arm-angstrom-linux-gnueabi-gcc  -mfpu=vfpv3-d16
-> -march=armv7-a -mthumb-interwork -mfloat-abi=hard
-> --sysroot=/home/rick/oe-core/build/out-eglibc/sysroots/colibri-t20
-> -std=gnu99 -c -O2 -pipe -g -feliminate-unused-debug-types -D_REENTRANT
-> conftest.c >&5
-> conftest.c:71:30: fatal error: bitstream/common.h: No such file or directory
-> compilation terminated.
+> wic was documented in the 1.5.x set and was not put into the 1.6 set.  I
+> was told that it was going to change or be further completed so it did not
+> go in that development branch.  Wic was never documented in the 1.6 set.
 
-from the recipe snippet you seem to have installed common.h in
-${includedir}, not ${includedir}/bitstream, and you are looking for
-bistream/common.h which in turn doesn't exist.
+Well, wic is still a part of the system in 1.6 and beyond so we do need to 
+document it; as far as I can tell what was in the 1.5 manual linked above 
+should be perfectly fine and we can just extend / update it as needed. Tom 
+should be able to help fill in any blanks.
 
-you probably need to install the files in your bitstream-dev package
-at the appropriate location in the sysroot.
+Cheers,
+Paul
+
+-- 
+
+Paul Eggleton
+Intel Open Source Technology Centre
 
