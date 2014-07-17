@@ -1,30 +1,30 @@
 Return-Path: <tom.zanussi@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 9F9D5E0073C; Thu, 17 Jul 2014 07:07:02 -0700 (PDT)
+	id 757CBE0073C; Thu, 17 Jul 2014 07:21:42 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [192.55.52.93 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 20F82E006EF
-	for <yocto@yoctoproject.org>; Thu, 17 Jul 2014 07:07:01 -0700 (PDT)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga102.fm.intel.com with ESMTP; 17 Jul 2014 07:07:00 -0700
+	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at http://www.dnswl.org/,
+	high *      trust
+	*      [134.134.136.20 listed in list.dnswl.org]
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4DCDEE0073C
+	for <yocto@yoctoproject.org>; Thu, 17 Jul 2014 07:21:29 -0700 (PDT)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga101.jf.intel.com with ESMTP; 17 Jul 2014 07:21:05 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.01,678,1400050800"; d="scan'208";a="571297160"
+X-IronPort-AV: E=Sophos;i="5.01,678,1400050800"; d="scan'208";a="574686357"
 Received: from gmacartn-mobl.ger.corp.intel.com (HELO [10.255.13.33])
 	([10.255.13.33])
-	by fmsmga002.fm.intel.com with ESMTP; 17 Jul 2014 07:07:00 -0700
-Message-ID: <1405606019.31082.11.camel@empanada>
+	by orsmga002.jf.intel.com with ESMTP; 17 Jul 2014 07:18:31 -0700
+Message-ID: <1405606711.31082.12.camel@empanada>
 From: Tom Zanussi <tom.zanussi@linux.intel.com>
 To: Paul Eggleton <paul.eggleton@linux.intel.com>
-Date: Thu, 17 Jul 2014 09:06:59 -0500
+Date: Thu, 17 Jul 2014 09:18:31 -0500
 In-Reply-To: <3342528.IHg5slGbJt@peggleto-mobl5.ger.corp.intel.com>
 References: <1405599916.4781.2.camel@localhost.localdomain>
 	<23827558.qlZqcTDZms@peggleto-mobl5.ger.corp.intel.com>
@@ -46,7 +46,7 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 17 Jul 2014 14:07:02 -0000
+X-List-Received-Date: Thu, 17 Jul 2014 14:21:42 -0000
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
 
@@ -88,9 +88,14 @@ Thanks,
 
 Tom
 
+
 > Cheers,
 > Paul
 > 
+> -- 
+> 
+> Paul Eggleton
+> Intel Open Source Technology Centre
 
 
 
