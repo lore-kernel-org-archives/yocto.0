@@ -1,48 +1,31 @@
-Return-Path: <nicolas.dechesne@linaro.org>
+Return-Path: <Daniel.Bornaz@enea.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 71B49E00788; Thu, 17 Jul 2014 02:16:53 -0700 (PDT)
+	id 98D08E00781; Thu, 17 Jul 2014 03:28:18 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [209.85.223.173 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail-ie0-f173.google.com (mail-ie0-f173.google.com
-	[209.85.223.173])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 26B7BE006B9
-	for <yocto@yoctoproject.org>; Thu, 17 Jul 2014 02:16:43 -0700 (PDT)
-Received: by mail-ie0-f173.google.com with SMTP id tr6so2455256ieb.32
-	for <yocto@yoctoproject.org>; Thu, 17 Jul 2014 02:16:43 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:content-type;
-	bh=vVRGxL/jxgYe6PdZtlNEaaRZaHuvuJ8nBlABu1zop3E=;
-	b=EfLG67WSGDvI9ZGe0vSbyrmmHxJNLjGd/luxGfY3H/0XpIs84I2rzBWqKfGIKm8FhO
-	q9R9C911jT6CfzHdOHd160MmUAl3IV1WEnCgya0ly3wpqTEYmfaEIWKqdOR5q+kI5gnS
-	BUxy0Adp9cVYdCrYq29XKwGiHc8BFz185teUmerclI5pUBoMoYy7acJul5mY95krRMrT
-	rDLjclvGOi6SEMR46nyIQxMZT0Zfi1IjXJD40neckwI3RNdWUoVu7Z7Tpy9TaDQF4rps
-	TNMcfIMCOuEB83EDynZ1LopSAV0DLG9XCYqEUWigp7jXqTd4Pea4uAnUi/26FlCbpjT4
-	kbLw==
-X-Gm-Message-State: ALoCoQk//wIc08szsGv29E7BiEY55ToPQ//lpqt/s/y+iv8qKhaFPyLvP+ggBvcjc0IO8dun7v19
-X-Received: by 10.60.164.9 with SMTP id ym9mr1035709oeb.26.1405588603104; Thu,
-	17 Jul 2014 02:16:43 -0700 (PDT)
+Received: from mx-3.enea.com (sestofw01.enea.se [192.36.1.252])
+	by yocto-www.yoctoproject.org (Postfix) with SMTP id D4D9EE006B9
+	for <yocto@yoctoproject.org>; Thu, 17 Jul 2014 03:28:12 -0700 (PDT)
+Received: from sestofb10.enea.se (172.21.3.145) by smtp.enea.com
+	(172.21.1.208) with Microsoft SMTP Server id 14.3.158.1;
+	Thu, 17 Jul 2014 12:28:04 +0200
+Received: by sestofb10.enea.se (Postfix, from userid 4483)	id 279C9288F32;
+	Thu, 17 Jul 2014 12:28:04 +0200 (CEST)
+From: Daniel BORNAZ <daniel.bornaz@enea.com>
+To: <yocto@yoctoproject.org>, <openembedded-core@lists.openembedded.org>
+Date: Thu, 17 Jul 2014 12:27:57 +0200
+Message-ID: <1405592877-16855-1-git-send-email-daniel.bornaz@enea.com>
+X-Mailer: git-send-email 1.9.1
 MIME-Version: 1.0
-Received: by 10.76.171.168 with HTTP; Thu, 17 Jul 2014 02:16:23 -0700 (PDT)
-In-Reply-To: <DUB128-W323C87A7D073BC1437172E92F40@phx.gbl>
-References: <DUB128-W12498E2678002801067F3092F40@phx.gbl>
-	<CAP71WjwYGsUt7ye2JFsotAis2TPEfk7wFH0jS_1+u72Svc2iBA@mail.gmail.com>
-	<DUB128-W323C87A7D073BC1437172E92F40@phx.gbl>
-From: Nicolas Dechesne <nicolas.dechesne@linaro.org>
-Date: Thu, 17 Jul 2014 11:16:23 +0200
-Message-ID: <CAP71WjyPw1aArDo75U18k=1td+zDnUE_Vxek_9yBZFhy_C8C_g@mail.gmail.com>
-To: Natural Groove <natural_groove@hotmail.fr>, 
-	Yocto list discussion <yocto@yoctoproject.org>
-Subject: Re: How to include native bitstream dependency in recipe?
+Received-SPF: None (SESTOEX08.enea.se: daniel.bornaz@enea.com does not
+	designate permitted sender hosts)
+Cc: Benjamin Peterson <benjamin@python.org>
+Subject: [PATCH] _json module arbitrary process memory read vulnerability
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -54,22 +37,85 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 17 Jul 2014 09:16:53 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Thu, 17 Jul 2014 10:28:18 -0000
+Content-Type: text/plain
 
-cc list. please let's have the discussion on the list
+python-native: _json module arbitrary process memory read vulnerability
 
-On Thu, Jul 17, 2014 at 11:10 AM, Natural Groove
-<natural_groove@hotmail.fr> wrote:
-> "biTStream is a set of C headers allowing a simpler access to binary
-> structures such as specified by MPEG, DVB, IETF, etc. "
-> (http://www.videolan.org/developers/bitstream.html)
->
-> It does not have to be built (just make install)
+http://bugs.python.org/issue21529
 
-ok. you still need a recipe for it, it will be a simple one that only
-install the .h files in the '-dev' package. then your other recipe
-will just need to DEPENDS on bitstream or bistream-native.
+Python 2 and 3 are susceptible to arbitrary process memory reading by
+a user or adversary due to a bug in the _json module caused by
+insufficient bounds checking.
 
-the .h files will be installed in the sysroot like any other package/recipes.
+The sole prerequisites of this attack are that the attacker is able to
+control or influence the two parameters of the default scanstring
+function: the string to be decoded and the index.
+
+The bug is caused by allowing the user to supply a negative index
+value. The index value is then used directly as an index to an array
+in the C code; internally the address of the array and its index are
+added to each other in order to yield the address of the value that is
+desired. However, by supplying a negative index value and adding this
+to the address of the array, the processor's register value wraps
+around and the calculated value will point to a position in memory
+which isn't within the bounds of the supplied string, causing the
+function to access other parts of the process memory.
+
+Signed-off-by: Benjamin Peterson <benjamin@python.org>
+
+
+Applied to python-native recipe in order to fix the above mentioned vulnerability.
+
+Upstream-Status: Submitted
+
+Signed-off-by: Daniel BORNAZ <daniel.bornaz@enea.com>
+
+---
+ meta/recipes-devtools/python/python-native_2.7.3.bb  |  1 +
+ .../python/python/python-json-flaw-fix.patch         | 20 ++++++++++++++++++++
+ 2 files changed, 21 insertions(+)
+ create mode 100644 meta/recipes-devtools/python/python/python-json-flaw-fix.patch
+
+diff --git a/meta/recipes-devtools/python/python-native_2.7.3.bb b/meta/recipes-devtools/python/python-native_2.7.3.bb
+index 0571d3a..74f0dfc 100644
+--- a/meta/recipes-devtools/python/python-native_2.7.3.bb
++++ b/meta/recipes-devtools/python/python-native_2.7.3.bb
+@@ -19,6 +19,7 @@ SRC_URI += "\
+            file://parallel-makeinst-create-bindir.patch \
+            file://python-fix-build-error-with-Readline-6.3.patch \
+            file://gcc-4.8-fix-configure-Wformat.patch \
++           file://python-json-flaw-fix.patch \
+            "
+ S = "${WORKDIR}/Python-${PV}"
+ 
+diff --git a/meta/recipes-devtools/python/python/python-json-flaw-fix.patch b/meta/recipes-devtools/python/python/python-json-flaw-fix.patch
+new file mode 100644
+index 0000000..631713d
+--- /dev/null
++++ b/meta/recipes-devtools/python/python/python-json-flaw-fix.patch
+@@ -0,0 +1,20 @@
++--- a/Modules/_json.c	2014-07-15 15:37:17.151046356 +0200
+++++ b/Modules/_json.c	2014-07-15 15:38:37.335605042 +0200
++@@ -1491,7 +1491,7 @@ scan_once_str(PyScannerObject *s, PyObje
++     PyObject *res;
++     char *str = PyString_AS_STRING(pystr);
++     Py_ssize_t length = PyString_GET_SIZE(pystr);
++-    if (idx >= length) {
+++    if ( idx < 0 || idx >= length) {
++         PyErr_SetNone(PyExc_StopIteration);
++         return NULL;
++     }
++@@ -1578,7 +1578,7 @@ scan_once_unicode(PyScannerObject *s, Py
++     PyObject *res;
++     Py_UNICODE *str = PyUnicode_AS_UNICODE(pystr);
++     Py_ssize_t length = PyUnicode_GET_SIZE(pystr);
++-    if (idx >= length) {
+++    if ( idx < 0 || idx >= length) {
++         PyErr_SetNone(PyExc_StopIteration);
++         return NULL;
++     }
+-- 
+1.9.1
+
 
