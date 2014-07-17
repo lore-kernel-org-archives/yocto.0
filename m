@@ -1,36 +1,40 @@
-Return-Path: <maciej.borzecki@open-rnd.pl>
+Return-Path: <sgw@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 58016E007C1; Thu, 17 Jul 2014 06:52:20 -0700 (PDT)
+	id 1B8E8E0078B; Thu, 17 Jul 2014 09:27:26 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from akt59.rev.netart.pl (akt59.rev.netart.pl [85.128.150.59])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0E077E0078B
-	for <yocto@yoctoproject.org>; Thu, 17 Jul 2014 06:52:15 -0700 (PDT)
-Received: from localhost.localdomain (unknown [46.170.72.194])
-	by open-rnd.nazwa.pl (Postfix) with ESMTP id D58601168C47;
-	Thu, 17 Jul 2014 15:52:12 +0200 (CEST)
-Message-ID: <1405605132.5033.1.camel@localhost.localdomain>
-From: Maciek Borzecki <maciej.borzecki@open-rnd.pl>
-To: Scott Rifenbark <srifenbark@gmail.com>
-Date: Thu, 17 Jul 2014 15:52:12 +0200
-In-Reply-To: <CAFNP8Os559bt59bx6tfqp+R+HyUxz66kaxjuvzBGiRKbdUMjdQ@mail.gmail.com>
-References: <1405599916.4781.2.camel@localhost.localdomain>
-	<23827558.qlZqcTDZms@peggleto-mobl5.ger.corp.intel.com>
-	<CAFNP8Os559bt59bx6tfqp+R+HyUxz66kaxjuvzBGiRKbdUMjdQ@mail.gmail.com>
-Organization: Open-RnD sp. z o.o.
-X-Mailer: Evolution 3.12.3 (3.12.3-1.fc20) 
-Mime-Version: 1.0
-Cc: Paul Eggleton <paul.eggleton@linux.intel.com>, yocto@yoctoproject.org
-Subject: Re: wic status
+	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at http://www.dnswl.org/,
+	high *      trust
+	*      [192.55.52.88 listed in list.dnswl.org]
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C875AE00736
+	for <yocto@yoctoproject.org>; Thu, 17 Jul 2014 09:27:21 -0700 (PDT)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga101.fm.intel.com with ESMTP; 17 Jul 2014 09:27:02 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.01,679,1400050800"; d="scan'208";a="571375942"
+Received: from unknown (HELO [10.255.12.224]) ([10.255.12.224])
+	by fmsmga002.fm.intel.com with ESMTP; 17 Jul 2014 09:26:30 -0700
+Message-ID: <53C7F936.3030407@linux.intel.com>
+Date: Thu, 17 Jul 2014 09:26:30 -0700
+From: Saul Wold <sgw@linux.intel.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:24.0) Gecko/20100101 Thunderbird/24.5.0
+MIME-Version: 1.0
+To: Daniel BORNAZ <daniel.bornaz@enea.com>, yocto@yoctoproject.org, 
+	openembedded-core@lists.openembedded.org
+References: <1405592877-16855-1-git-send-email-daniel.bornaz@enea.com>
+In-Reply-To: <1405592877-16855-1-git-send-email-daniel.bornaz@enea.com>
+Cc: Benjamin Peterson <benjamin@python.org>
+Subject: Re: [OE-core] [PATCH] _json module arbitrary process memory read vulnerability
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
-Reply-To: maciej.borzecki@open-rnd.pl
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -39,70 +43,92 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 17 Jul 2014 13:52:20 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Thu, 17 Jul 2014 16:27:26 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On czw, 2014-07-17 at 16:48 +0300, Scott Rifenbark wrote:
-> wic was documented in the 1.5.x set and was not put into the 1.6 set.
-> I was told that it was going to change or be further completed so it
-> did not go in that development branch.  Wic was never documented in
-> the 1.6 set.
+On 07/17/2014 03:27 AM, Daniel BORNAZ wrote:
+> python-native: _json module arbitrary process memory read vulnerability
+>
+> http://bugs.python.org/issue21529
+>
+> Python 2 and 3 are susceptible to arbitrary process memory reading by
+> a user or adversary due to a bug in the _json module caused by
+> insufficient bounds checking.
+>
+> The sole prerequisites of this attack are that the attacker is able to
+> control or influence the two parameters of the default scanstring
+> function: the string to be decoded and the index.
+>
+> The bug is caused by allowing the user to supply a negative index
+> value. The index value is then used directly as an index to an array
+> in the C code; internally the address of the array and its index are
+> added to each other in order to yield the address of the value that is
+> desired. However, by supplying a negative index value and adding this
+> to the address of the array, the processor's register value wraps
+> around and the calculated value will point to a position in memory
+> which isn't within the bounds of the supplied string, causing the
+> function to access other parts of the process memory.
+>
+> Signed-off-by: Benjamin Peterson <benjamin@python.org>
+>
+>
+> Applied to python-native recipe in order to fix the above mentioned vulnerability.
+>
+> Upstream-Status: Submitted
+>
+> Signed-off-by: Daniel BORNAZ <daniel.bornaz@enea.com>
+>
+> ---
+>   meta/recipes-devtools/python/python-native_2.7.3.bb  |  1 +
+>   .../python/python/python-json-flaw-fix.patch         | 20 ++++++++++++++++++++
+>   2 files changed, 21 insertions(+)
+>   create mode 100644 meta/recipes-devtools/python/python/python-json-flaw-fix.patch
+>
+> diff --git a/meta/recipes-devtools/python/python-native_2.7.3.bb b/meta/recipes-devtools/python/python-native_2.7.3.bb
+> index 0571d3a..74f0dfc 100644
+> --- a/meta/recipes-devtools/python/python-native_2.7.3.bb
+> +++ b/meta/recipes-devtools/python/python-native_2.7.3.bb
+> @@ -19,6 +19,7 @@ SRC_URI += "\
+>              file://parallel-makeinst-create-bindir.patch \
+>              file://python-fix-build-error-with-Readline-6.3.patch \
+>              file://gcc-4.8-fix-configure-Wformat.patch \
+> +           file://python-json-flaw-fix.patch \
+>              "
+>   S = "${WORKDIR}/Python-${PV}"
+>
+> diff --git a/meta/recipes-devtools/python/python/python-json-flaw-fix.patch b/meta/recipes-devtools/python/python/python-json-flaw-fix.patch
+> new file mode 100644
+> index 0000000..631713d
+> --- /dev/null
+> +++ b/meta/recipes-devtools/python/python/python-json-flaw-fix.patch
+> @@ -0,0 +1,20 @@
+> +--- a/Modules/_json.c	2014-07-15 15:37:17.151046356 +0200
+> ++++ b/Modules/_json.c	2014-07-15 15:38:37.335605042 +0200
 
-Makes sense now. Thanks.
-> 
-> 
-> Scott
-> 
-> 
-> 
-> On Thu, Jul 17, 2014 at 3:56 PM, Paul Eggleton
-> <paul.eggleton@linux.intel.com> wrote:
->         On Thursday 17 July 2014 14:25:16 Maciek Borzecki wrote:
->         > There used to be an entry about wic in development manual
->         back in 1.5.2:
->         >
->         http://www.yoctoproject.org/docs/1.5.2/dev-manual/dev-manual.html
->         >
->         > This entry is gone in current documentation and there seems
->         to be no
->         > mention of wic at all:
->         >
->         https://www.yoctoproject.org/docs/current/dev-manual/dev-manual.html
->         
->         Scott, can you take a look at this if you haven't already?
->         
->         Thanks,
->         Paul
->         
->         --
->         
->         Paul Eggleton
->         Intel Open Source Technology Centre
-> 
-> 
+You need to to have the Upstream-Status in the patch file itself, along 
+with a Signed-off-by, so that the information in available here.
 
+Thanks
+	Sau!
 
--- 
-Maciej Borzęcki
-Senior Software Developer at Open-RnD Sp. z o.o., Poland
-www.open-rnd.pl
-mobile: +48 889 117 365, fax: +48 42 657 9079
-
-Niniejsza wiadomość wraz z załącznikami może zawierać chronione prawem
-lub poufne informacje i została wysłana wyłącznie do wiadomości i
-użytku osób, do których została zaadresowana. Jeśli wiadomość została
-otrzymana przypadkowo zabrania się jej kopiowania lub rozsyłania do
-osób trzecich. W takim przypadku uprasza się o natychmiastowe
-zniszczenie wiadomości oraz poinformowanie nadawcy o zaistniałej
-sytuacji za pomocą wiadomości zwrotnej. Dziękujemy.
-
-This message, including any attachments hereto, may contain privileged
-or confidential information and is sent solely for the attention and
-use of the intended addressee(s). If you are not an intended addressee,
-you may neither use this message nor copy or deliver it to anyone. In
-such case, you should immediately destroy this message and kindly notify
-the sender by reply email. Thank you.
-
-
+> +@@ -1491,7 +1491,7 @@ scan_once_str(PyScannerObject *s, PyObje
+> +     PyObject *res;
+> +     char *str = PyString_AS_STRING(pystr);
+> +     Py_ssize_t length = PyString_GET_SIZE(pystr);
+> +-    if (idx >= length) {
+> ++    if ( idx < 0 || idx >= length) {
+> +         PyErr_SetNone(PyExc_StopIteration);
+> +         return NULL;
+> +     }
+> +@@ -1578,7 +1578,7 @@ scan_once_unicode(PyScannerObject *s, Py
+> +     PyObject *res;
+> +     Py_UNICODE *str = PyUnicode_AS_UNICODE(pystr);
+> +     Py_ssize_t length = PyUnicode_GET_SIZE(pystr);
+> +-    if (idx >= length) {
+> ++    if ( idx < 0 || idx >= length) {
+> +         PyErr_SetNone(PyExc_StopIteration);
+> +         return NULL;
+> +     }
+>
 
