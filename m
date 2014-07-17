@@ -1,33 +1,36 @@
-Return-Path: <maciej.borzecki@open-rnd.pl>
+Return-Path: <philip@balister.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 10AB3E00777; Thu, 17 Jul 2014 05:34:53 -0700 (PDT)
+	id 2A579E00777; Thu, 17 Jul 2014 05:46:31 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
 	version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0001]
-X-Greylist: delayed 566 seconds by postgrey-1.32 at yocto-www;
-	Thu, 17 Jul 2014 05:34:44 PDT
-Received: from akt59.rev.netart.pl (akt59.rev.netart.pl [85.128.150.59])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A5546E006B9
-	for <yocto@yoctoproject.org>; Thu, 17 Jul 2014 05:34:44 -0700 (PDT)
-Received: from localhost.localdomain (unknown [46.170.72.194])
-	by open-rnd.nazwa.pl (Postfix) with ESMTP id D668C114D75B
-	for <yocto@yoctoproject.org>; Thu, 17 Jul 2014 14:25:16 +0200 (CEST)
-Message-ID: <1405599916.4781.2.camel@localhost.localdomain>
-From: Maciek Borzecki <maciej.borzecki@open-rnd.pl>
-To: yocto@yoctoproject.org
-Date: Thu, 17 Jul 2014 14:25:16 +0200
-Organization: Open-RnD sp. z o.o.
-X-Mailer: Evolution 3.12.3 (3.12.3-1.fc20) 
-Mime-Version: 1.0
-Subject: wic status
+	*      [score: 0.0000]
+Received: from sanddollar.geekisp.com (sanddollar.geekisp.com
+	[216.168.135.167])
+	by yocto-www.yoctoproject.org (Postfix) with SMTP id C13DFE006B9
+	for <yocto@yoctoproject.org>; Thu, 17 Jul 2014 05:46:27 -0700 (PDT)
+Received: (qmail 958 invoked by uid 1003); 17 Jul 2014 12:46:25 -0000
+Received: from unknown (HELO ?192.168.1.122?)
+	(philip@opensdr.com@71.171.49.245)
+	by mail.geekisp.com with (DHE-RSA-AES128-SHA encrypted) SMTP;
+	17 Jul 2014 12:46:25 -0000
+Message-ID: <53C7C5A0.60201@balister.org>
+Date: Thu, 17 Jul 2014 08:46:24 -0400
+From: Philip Balister <philip@balister.org>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:24.0) Gecko/20100101 Thunderbird/24.6.0
+MIME-Version: 1.0
+To: maciej.borzecki@open-rnd.pl, yocto@yoctoproject.org
+References: <1405599916.4781.2.camel@localhost.localdomain>
+In-Reply-To: <1405599916.4781.2.camel@localhost.localdomain>
+X-Enigmail-Version: 1.6
+Subject: Re: wic status
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
-Reply-To: maciej.borzecki@open-rnd.pl
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -36,47 +39,34 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 17 Jul 2014 12:34:53 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Thu, 17 Jul 2014 12:46:31 -0000
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Hi,
+On 07/17/2014 08:25 AM, Maciek Borzecki wrote:
+> Hi,
+> 
+> There used to be an entry about wic in development manual back in 1.5.2:
+> http://www.yoctoproject.org/docs/1.5.2/dev-manual/dev-manual.html
 
-There used to be an entry about wic in development manual back in 1.5.2:
-http://www.yoctoproject.org/docs/1.5.2/dev-manual/dev-manual.html
+I'm not sure where the docs are, but people are responding to bug
+reports about wic with patches :)
 
-This entry is gone in current documentation and there seems to be no
-mention of wic at all:
-https://www.yoctoproject.org/docs/current/dev-manual/dev-manual.html
+https://bugzilla.yoctoproject.org/show_bug.cgi?id=6513
 
-Does this mean that wic is deprecated? If so what is the current method
-of creating partitioned images?
+Philip
 
-I'm a bit confused as it seems meta-raspberrypi keeps maitaining
-sdcard_image-rpi.bbclass, Freescale has their image_types_fsl.bbclass.
-In meta-ti, there was this commit:
-http://git.yoctoproject.org/cgit/cgit.cgi/meta-ti/commit/?id=2b524321a25c35c5f987b8331e41b49d3b2e2d2b that effectively removed sdclass_image.bbclass, indicating that wic is the new way.
-
--- 
-Maciej Borzęcki
-Senior Software Developer at Open-RnD Sp. z o.o., Poland
-www.open-rnd.pl
-mobile: +48 889 117 365, fax: +48 42 657 9079
-
-Niniejsza wiadomość wraz z załącznikami może zawierać chronione prawem
-lub poufne informacje i została wysłana wyłącznie do wiadomości i
-użytku osób, do których została zaadresowana. Jeśli wiadomość została
-otrzymana przypadkowo zabrania się jej kopiowania lub rozsyłania do
-osób trzecich. W takim przypadku uprasza się o natychmiastowe
-zniszczenie wiadomości oraz poinformowanie nadawcy o zaistniałej
-sytuacji za pomocą wiadomości zwrotnej. Dziękujemy.
-
-This message, including any attachments hereto, may contain privileged
-or confidential information and is sent solely for the attention and
-use of the intended addressee(s). If you are not an intended addressee,
-you may neither use this message nor copy or deliver it to anyone. In
-such case, you should immediately destroy this message and kindly notify
-the sender by reply email. Thank you.
-
-
+> 
+> This entry is gone in current documentation and there seems to be no
+> mention of wic at all:
+> https://www.yoctoproject.org/docs/current/dev-manual/dev-manual.html
+> 
+> Does this mean that wic is deprecated? If so what is the current method
+> of creating partitioned images?
+> 
+> I'm a bit confused as it seems meta-raspberrypi keeps maitaining
+> sdcard_image-rpi.bbclass, Freescale has their image_types_fsl.bbclass.
+> In meta-ti, there was this commit:
+> http://git.yoctoproject.org/cgit/cgit.cgi/meta-ti/commit/?id=2b524321a25c35c5f987b8331e41b49d3b2e2d2b that effectively removed sdclass_image.bbclass, indicating that wic is the new way.
+> 
 
