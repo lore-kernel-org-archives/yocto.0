@@ -1,50 +1,29 @@
-Return-Path: <sven.j.vos@gmail.com>
+Return-Path: <gary@mlbassoc.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 7CE6BE006C4; Fri, 18 Jul 2014 01:56:12 -0700 (PDT)
+	id 85042E003FA; Fri, 18 Jul 2014 09:26:56 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (sven.j.vos[at]gmail.com)
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.216.49 listed in list.dnswl.org]
-Received: from mail-qa0-f49.google.com (mail-qa0-f49.google.com
-	[209.85.216.49])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4703DE00563
-	for <yocto@yoctoproject.org>; Fri, 18 Jul 2014 01:56:02 -0700 (PDT)
-Received: by mail-qa0-f49.google.com with SMTP id dc16so2767182qab.8
-	for <yocto@yoctoproject.org>; Fri, 18 Jul 2014 01:55:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=Zto5DvFKXzTdd3aKx9FRRfstWECVYpZ7eGjkVxzfbyw=;
-	b=XbIperpkbquA2odfAVP1yIUyZ4SaFDb1jSVxZOYjBfxEuzLc0GVLXuKp5wGSP9n3Ru
-	lInV9eN73J2syercxq2gK+LQOAZyhl8iXrwGgYEi9DsxofqmrpGRRp04aayYb03rC+rj
-	O195+zMLq8lBGdYrjZAkT7RnEYYLtudiwaboOZhklNP6RDO9RdFZ5sPY1swYOecGHylA
-	sET7SyrQbY8WGKsBobqL1lo1XcofD2M76/UuEMWhXM4FNXhenF+hoCqXQYQJJ4EiJRui
-	LG6wt1i6J+kBhhbPg1WAeGNFgraVpETkkwOJJAvLPf5vcSZCryQBokCOHikXYexHrxy2
-	kKjw==
+Received: from mail.chez-thomas.org (mail.mlbassoc.com [65.100.170.105])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9AC11E00342
+	for <yocto@yoctoproject.org>; Fri, 18 Jul 2014 09:26:51 -0700 (PDT)
+Received: by mail.chez-thomas.org (Postfix, from userid 1998)
+	id 56ECAF811DA; Fri, 18 Jul 2014 10:26:50 -0600 (MDT)
+Received: from [192.168.1.114] (zeus [192.168.1.114])
+	by mail.chez-thomas.org (Postfix) with ESMTP id C7124F8119A;
+	Fri, 18 Jul 2014 10:26:46 -0600 (MDT)
+Message-ID: <53C94ACD.6010800@mlbassoc.com>
+Date: Fri, 18 Jul 2014 10:26:53 -0600
+From: Gary Thomas <gary@mlbassoc.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:24.0) Gecko/20100101 Thunderbird/24.6.0
 MIME-Version: 1.0
-X-Received: by 10.224.5.193 with SMTP id 1mr5289137qaw.89.1405673758166; Fri,
-	18 Jul 2014 01:55:58 -0700 (PDT)
-Received: by 10.140.102.11 with HTTP; Fri, 18 Jul 2014 01:55:58 -0700 (PDT)
-Date: Fri, 18 Jul 2014 10:55:58 +0200
-Message-ID: <CAMm0O_-EvDeOGUtsXZ8hv6mDp4yiG3=N7zkOibL2KtZXDs7OBA@mail.gmail.com>
-From: Sven Vos <sven.j.vos@gmail.com>
-To: "linux-yocto@yoctoproject.org" <yocto@yoctoproject.org>
-X-Mailman-Approved-At: Fri, 18 Jul 2014 09:05:54 -0700
-Subject: Media player for the Beaglebone Black
+To: Yocto Project <yocto@yoctoproject.org>
+Subject: Extending images
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -56,30 +35,43 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 18 Jul 2014 08:56:12 -0000
-Content-Type: multipart/alternative; boundary=047d7b67745606967f04fe73edaa
+X-List-Received-Date: Fri, 18 Jul 2014 16:26:56 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
 
---047d7b67745606967f04fe73edaa
-Content-Type: text/plain; charset=UTF-8
+I've always used 'IMAGE_INSTALL += " xyz"' in my local.conf
+to add new packages to a build.  That said, I had a working
+build for qemuarm (probably doesn't matter) and I added:
+   IMAGE_INSTALL += " strace"
+This produced a completely broken image which barely came
+up to a shell, lots of missing programs, etc.
 
-Hello,
+I then tried
+   CORE_IMAGE_EXTRA_INSTALL += " strace"
+which produced a perfectly working build (just as previous)
+with the new package added.
 
-After trying to get the Gstreamer working, i found out i got a segmentation
-fault. Already made a bug report about it, but i am wondering if a media
-player already exist for the Beaglebone black in Yocto that supports MP4?
+I can see that the images produced are vastly different:
 
-Thanks for your help,
-Sven Vos
+* Original working build
+-rw-r--r-- 1 gthomas gthomas     11719 Jul 18 09:34 core-image-sato-qemuarm-20140718124453.rootfs.manifest
+-rw-r--r-- 1 gthomas gthomas  87611203 Jul 18 09:34 core-image-sato-qemuarm-20140718124453.rootfs.tar.bz2
 
---047d7b67745606967f04fe73edaa
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+* After 'IMAGE_INSTALL += '
+-rw-r--r-- 1 gthomas gthomas      9986 Jul 18 09:55 core-image-sato-qemuarm-20140718155134.rootfs.manifest
+-rw-r--r-- 1 gthomas gthomas  37859884 Jul 18 09:56 core-image-sato-qemuarm-20140718155134.rootfs.tar.bz2
 
-<div dir=3D"ltr">Hello,<div><br></div><div>After trying to get the Gstreame=
-r working, i found out i got a segmentation fault. Already made a bug repor=
-t about it, but i am wondering if a media player already exist for the Beag=
-lebone black in Yocto that supports MP4?</div>
-<div><br></div><div>Thanks for your help,</div><div>Sven Vos=C2=A0</div></d=
-iv>
+* After 'CORE_IMAGE_EXTRA_INSTALL += '
+-rw-r--r-- 1 gthomas gthomas     11738 Jul 18 10:05 core-image-sato-qemuarm-20140718160108.rootfs.manifest
+-rw-r--r-- 1 gthomas gthomas  87720106 Jul 18 10:05 core-image-sato-qemuarm-20140718160108.rootfs.tar.bz2
 
---047d7b67745606967f04fe73edaa--
+What's the difference and why did the first attempt fail?
+
+Thanks
+
+-- 
+------------------------------------------------------------
+Gary Thomas                 |  Consulting for the
+MLB Associates              |    Embedded world
+------------------------------------------------------------
+
