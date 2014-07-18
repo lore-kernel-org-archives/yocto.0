@@ -1,30 +1,42 @@
-Return-Path: <dexon1@dexonsystems.com>
+Return-Path: <meenakumari.s@hcl.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 67FADE006EF; Fri, 18 Jul 2014 02:47:10 -0700 (PDT)
+	id 44E83E006EF; Fri, 18 Jul 2014 03:00:41 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE
-	autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-X-Greylist: delayed 2087 seconds by postgrey-1.32 at yocto-www;
-	Fri, 18 Jul 2014 02:47:04 PDT
-Received: from mx8.datanet.hu (mx8.datanet.hu [194.149.13.164])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E26FBE0056A
-	for <yocto@yoctoproject.org>; Fri, 18 Jul 2014 02:47:04 -0700 (PDT)
-Received: from [192.168.1.120] (unknown [91.120.39.42])
-	by mx8.datanet.hu (DataNet) with ESMTP id A7CBFEBCE6
-	for <yocto@yoctoproject.org>; Fri, 18 Jul 2014 11:12:14 +0200 (CEST)
-Message-ID: <53C8E4ED.9090909@dexonsystems.com>
-Date: Fri, 18 Jul 2014 11:12:13 +0200
-From: dexon_test <dexon1@dexonsystems.com>
-User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64;
-	rv:24.0) Gecko/20100101 Thunderbird/24.6.0
+Received: from GWS06.hcl.com (gws06.hcl.com [203.105.185.25])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 58665E0056A
+	for <yocto@yoctoproject.org>; Fri, 18 Jul 2014 03:00:37 -0700 (PDT)
+X-IronPort-AV: E=Sophos;i="5.01,684,1400005800"; d="scan'208";a="78026243"
+Received: from unknown (HELO NDA-CORP-HT02.CORP.HCL.IN) ([10.248.64.34])
+	by GWS06.hcl.com with ESMTP/TLS/AES128-SHA; 18 Jul 2014 15:29:11 +0530
+Received: from NDA-HCLT-CSHT04.HCLT.CORP.HCL.IN (10.98.132.29) by
+	NDA-CORP-HT02.CORP.HCL.IN (10.248.64.34) with Microsoft SMTP Server
+	(TLS) id 14.3.123.3; Fri, 18 Jul 2014 15:30:34 +0530
+Received: from NDA-HCLT-MBS05.HCLT.CORP.HCL.IN ([10.98.132.20]) by
+	NDA-HCLT-CSHT04.HCLT.CORP.HCL.IN ([10.98.132.29]) with mapi id
+	14.03.0123.003; Fri, 18 Jul 2014 15:30:34 +0530
+From: Meenakumari Shedole <meenakumari.s@hcl.com>
+To: Vladimir Redzhepov <Vladimir_Redzhepov@epam.com>, "yocto@yoctoproject.org"
+	<yocto@yoctoproject.org>, "ross.burton@intel.com" <ross.burton@intel.com>
+Thread-Topic: [yocto] Adding prebuilt binaries/libraries to /usr/bin
+	or/usr/lib on rootfs
+Thread-Index: AQHPokzXHSoSV0WYtkK3tAjwRqM2vpulhEpAgAASbfI=
+Date: Fri, 18 Jul 2014 10:00:33 +0000
+Message-ID: <E4938C0D959B3445943720B88F0721341564DEC5@NDA-HCLT-MBS05.hclt.corp.hcl.in>
+References: <E4938C0D959B3445943720B88F0721341564DE52@NDA-HCLT-MBS05.hclt.corp.hcl.in>,
+	<0f67aa20f48a45739d0815dc0b6c1d5b@EPBYMINSA0001.epam.com>
+In-Reply-To: <0f67aa20f48a45739d0815dc0b6c1d5b@EPBYMINSA0001.epam.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.98.134.12]
 MIME-Version: 1.0
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: add custom application into a image
+Subject: Re: Adding prebuilt binaries/libraries to /usr/bin or/usr/lib on rootfs
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -36,151 +48,119 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 18 Jul 2014 09:47:10 -0000
-Content-Type: multipart/alternative;
-	boundary="------------090808080607070107090408"
+X-List-Received-Date: Fri, 18 Jul 2014 10:00:41 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
---------------090808080607070107090408
-Content-Type: text/plain; charset=ISO-8859-2; format=flowed
-Content-Transfer-Encoding: 7bit
+Thanks for your response.=0A=
+=0A=
+But if I have few different packages like "usb" "BT" "Qt" and only these pa=
+ckages bin and libraries if I want to add to yocto rootfs ?=0A=
+=0A=
+Regards=0A=
+Meena=0A=
+________________________________________=0A=
+From: Vladimir Redzhepov [Vladimir_Redzhepov@epam.com]=0A=
+Sent: Friday, July 18, 2014 2:28 PM=0A=
+To: Meenakumari Shedole; yocto@yoctoproject.org; ross.burton@intel.com=0A=
+Subject: RE: [yocto] Adding prebuilt binaries/libraries to /usr/bin or/usr/=
+lib on rootfs=0A=
+=0A=
+Hi=0A=
+=0A=
+You should look closely at meta-oracle-java layer if want to add some binar=
+ies to the target rootfs. On the other hand if you want to use binaries wit=
+hin the build process they should be put down in the places poky could find=
+ them.=0A=
+=0A=
+There's an example how to use a binary apache-maven within build process=0A=
+=0A=
+DESCRIPTION =3D "Maven is a software project management and comprehension t=
+ool. Based on the concept \=0A=
+of a Project Object Model (POM), Maven can manage a project's build, report=
+ing and documentation \=0A=
+from a central piece of information."=0A=
+HOMEPAGE =3D "http://maven.apache.org"=0A=
+SECTION =3D "devel"=0A=
+LICENSE =3D "Apache-2.0"=0A=
+LIC_FILES_CHKSUM =3D "file://LICENSE;md5=3D9af13b2d31a47f71518aa5dde47fc025=
+"=0A=
+=0A=
+SRC_URI =3D "http://ftp.byfly.by/pub/apache.org/maven/maven-3/${PV}/binarie=
+s/${BP}-bin.zip"=0A=
+=0A=
+SRC_URI[md5sum] =3D "5d86506f17e5ff0b0c83c648f4093abb"=0A=
+SRC_URI[sha256sum] =3D "df3338233b34f6d65ec3901fc0039f72ba59ff1380d09eebc5b=
+58916b5fea2a3"=0A=
+=0A=
+do_configure() {=0A=
+    sed -i '49i<localRepository>${STAGING_DATADIR_NATIVE}/maven-repository<=
+/localRepository>' ${S}/conf/settings.xml=0A=
+}=0A=
+=0A=
+do_install() {=0A=
+    install -d -m 0755 ${D}${bindir}/${PN}=0A=
+    cp -ar * ${D}${bindir}/${PN}=0A=
+    ln -sf ${PN}/bin/mvn ${D}${bindir}/mvn=0A=
+}=0A=
+=0A=
+BBCLASSEXTEND =3D "native"=0A=
+=0A=
+=0A=
+-----Original Message-----=0A=
+From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org=
+] On Behalf Of Meenakumari Shedole=0A=
+Sent: Friday, July 18, 2014 8:55 AM=0A=
+To: yocto@yoctoproject.org; ross.burton@intel.com=0A=
+Subject: [yocto] Adding prebuilt binaries/libraries to /usr/bin or/usr/lib =
+on rootfs=0A=
+=0A=
+Hi all.=0A=
+=0A=
+I have few prebuilt binaries and libraries, and I want to add them to the y=
+octo build rootfs at the=0A=
+build itself.=0A=
+So Can any one please tell me the steps to add recipes or suggest me any ot=
+her method for this.=0A=
+=0A=
+Thnaks in Advance.=0A=
+=0A=
+Regards=0A=
+Meena=0A=
+=0A=
+=0A=
+::DISCLAIMER::=0A=
+---------------------------------------------------------------------------=
+-------------------------------------------------------------------------=
+=0A=
+=0A=
+The contents of this e-mail and any attachment(s) are confidential and inte=
+nded for the named recipient(s) only.=0A=
+E-mail transmission is not guaranteed to be secure or error-free as informa=
+tion could be intercepted, corrupted,=0A=
+lost, destroyed, arrive late or incomplete, or may contain viruses in trans=
+mission. The e mail and its contents=0A=
+(with or without referred errors) shall therefore not attach any liability =
+on the originator or HCL or its affiliates.=0A=
+Views or opinions, if any, presented in this email are solely those of the =
+author and may not necessarily reflect the=0A=
+views or opinions of HCL or its affiliates. Any form of reproduction, disse=
+mination, copying, disclosure, modification,=0A=
+distribution and / or publication of this message without the prior written=
+ consent of authorized representative of=0A=
+HCL is strictly prohibited. If you have received this email in error please=
+ delete it and notify the sender immediately.=0A=
+Before opening any email and/or attachments, please check them for viruses =
+and other defects.=0A=
+=0A=
+---------------------------------------------------------------------------=
+-------------------------------------------------------------------------=
+=0A=
+=0A=
+--=0A=
+_______________________________________________=0A=
+yocto mailing list=0A=
+yocto@yoctoproject.org=0A=
+https://lists.yoctoproject.org/listinfo/yocto=0A=
 
-First of all, I am a full beginner when it comes to bitbake, yocto,  etc...So, I am sorry if my questions seems unskilful...
-
-I would like to use meta-atmel (https://github.com/linux4sam/meta-atmel) with SAMA5d3xek machine.
-
-I could build "atmel-qt4e-demo-image" demo image. Therefore I'd like to create custom apps into this image with these steps:
-
-1. Added my new package ("dxatmel") into atmel-qt4e-demo-image.bb
-
-2. Created my custom package file (dxatmel_1.0.bb):
-
-DESCRIPTION = "DXAtmel QT application"
-LICENSE = "BSD"
-LIC_FILES_CHKSUM ="file://main.cpp;endline=14;md5=224c1642c6a9139c8824491e38263cba"
-
-DEFAULT_PREFERENCE = "14"
-
-PACKAGES = "${PN}-dbg ${PN}"
-
-PR = "r0"
-
-DEPENDS = "qt4-embedded"
-
-SRC_URI ="ftp://www.dexonsystems.com/stuff/dxatmel-$(PV).tar.gz"
-
-SRC_URI[md5sum] = "77c74ad602bfc25a97dd2e5593c00d5c"
-SRC_URI[sha256sum] = "eff2bff716602ac21f8ca6a728c1860efd874e7e73d43c9f3f300c0763f2cfa0"
-
-S = "${WORKDIR}/dxatmel-${PV}"
-
-inherit qt4e pkgconfig
-
-FILES_${PN}-dbg = " \
-   /opt/DXAtmel/.debug \
-   /opt/DXAtmel/.debug/* \
-   /usr/* \
-   /opt/DXAtmel/mainwindow.h \
-   /opt/DXAtmel/mainwindow.cpp \
-   /opt/DXAtmel/main.cpp \
-   /opt/DXAtmel/DXAtmel.pro \
-   /opt/DXAtmel/moc_mainwindow.cpp \
-"
-
-FILES_${PN} = " \
-   /opt/DXAtmel/DXAtmel \
-   /opt/DXAtmel/DXAtmel.sh \
-   /opt/ApplicationL* \
-"
-
-do_install() {
-     make INSTALL_ROOT=${D} install
-}
-
-3. bitbake -c build dxatmel
-
-    -> I hit this error msg: Not found *.pro file in the working directory
-
-
-
-Any advice on what I have missed in setting up recipes, etc...?
-
-
-Lori
-
-
---------------090808080607070107090408
-Content-Type: text/html; charset=ISO-8859-2
-Content-Transfer-Encoding: 7bit
-
-<html>
-  <head>
-
-    <meta http-equiv="content-type" content="text/html; charset=ISO-8859-2">
-  </head>
-  <body text="#000000" bgcolor="#FFFFFF">
-    <pre wrap="">First of all, I am a full beginner when it comes to bitbake, yocto,  etc...So, I am sorry if my questions seems unskilful...
-
-I would like to use meta-atmel (<a class="moz-txt-link-freetext" href="https://github.com/linux4sam/meta-atmel">https://github.com/linux4sam/meta-atmel</a>) with SAMA5d3xek machine.
-
-I could build "atmel-qt4e-demo-image" demo image. Therefore I'd like to create custom apps into this image with these steps:
-
-1. Added my new package ("dxatmel") into atmel-qt4e-demo-image.bb
-
-2. Created my custom package file (dxatmel_1.0.bb):
-
-DESCRIPTION = "DXAtmel QT application"
-LICENSE = "BSD"
-LIC_FILES_CHKSUM = <a class="moz-txt-link-rfc2396E" href="file://main.cpp;endline=14;md5=224c1642c6a9139c8824491e38263cba">"file://main.cpp;endline=14;md5=224c1642c6a9139c8824491e38263cba"</a>
-
-DEFAULT_PREFERENCE = "14"
-
-PACKAGES = "${PN}-dbg ${PN}"
-
-PR = "r0"
-
-DEPENDS = "qt4-embedded"
-
-SRC_URI = <a class="moz-txt-link-rfc2396E" href="ftp://www.dexonsystems.com/stuff/dxatmel-$%28PV%29.tar.gz">"ftp://www.dexonsystems.com/stuff/dxatmel-$(PV).tar.gz"</a>
-
-SRC_URI[md5sum] = "77c74ad602bfc25a97dd2e5593c00d5c"
-SRC_URI[sha256sum] = "eff2bff716602ac21f8ca6a728c1860efd874e7e73d43c9f3f300c0763f2cfa0"
-
-S = "${WORKDIR}/dxatmel-${PV}"
-
-inherit qt4e pkgconfig
-
-FILES_${PN}-dbg = " \
-  <i class="moz-txt-slash"><span class="moz-txt-tag">/</span>opt/DXAtmel<span class="moz-txt-tag">/</span></i>.debug \
-  <i class="moz-txt-slash"><span class="moz-txt-tag">/</span>opt/DXAtmel<span class="moz-txt-tag">/</span></i>.debug/* \
-  <i class="moz-txt-slash"><span class="moz-txt-tag">/</span>usr<span class="moz-txt-tag">/</span></i>* \
-  /opt/DXAtmel/mainwindow.h \
-  /opt/DXAtmel/mainwindow.cpp \
-  /opt/DXAtmel/main.cpp \
-  /opt/DXAtmel/DXAtmel.pro \
-  /opt/DXAtmel/moc_mainwindow.cpp \
-"
-
-FILES_${PN} = " \
-  /opt/DXAtmel/DXAtmel \
-  /opt/DXAtmel/DXAtmel.sh \
-  /opt/ApplicationL* \
-"
-
-do_install() {
-    make INSTALL_ROOT=${D} install
-}
-
-3. bitbake -c build dxatmel
-
-   -&gt; I hit this error msg: Not found *.pro file in the working directory
-
-
-
-Any advice on what I have missed in setting up recipes, etc...?
-
-
-Lori </pre>
-  </body>
-</html>
-
---------------090808080607070107090408--
