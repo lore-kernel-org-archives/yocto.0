@@ -1,47 +1,29 @@
-Return-Path: <elizabeth.flanagan@intel.com>
+Return-Path: <gary@mlbassoc.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 31698E0056A; Fri, 18 Jul 2014 11:15:28 -0700 (PDT)
+	id CE6D0E003FA; Fri, 18 Jul 2014 11:28:43 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.220.175 listed in list.dnswl.org]
-Received: from mail-vc0-f175.google.com (mail-vc0-f175.google.com
-	[209.85.220.175])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 23697E00796
-	for <yocto@yoctoproject.org>; Fri, 18 Jul 2014 11:15:23 -0700 (PDT)
-Received: by mail-vc0-f175.google.com with SMTP id hu12so7884695vcb.20
-	for <yocto@yoctoproject.org>; Fri, 18 Jul 2014 11:15:23 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:date
-	:message-id:subject:from:to:cc:content-type;
-	bh=kYHf/aTCyVDhVQbwJqMR9fPQRqfmiuoiWVHWIAmnZ3Q=;
-	b=KVlz88Y+EmZFmXWYBSMGsh6HgxDGa9eLzcOVuNie8PzLcE15//iiv3hspl4JHRitxw
-	TI5HtPuoQJwlOvWdgSo3FmyOVZj6yJIKb9GtU6Rpa4wW9Gg4xWGtYLamBBpHQNqoabsB
-	C+5z+o+J5yzWxZECcrtKdRtINr8FPPaFAVwU+m5j3cvHJSQbe8AQYiNMhFLPXyZmRq+M
-	ah+HK3QTZlYJ+vpaW7ANR1pAQnLqDIzTWOTpc5F2NjA0uPIb8JM2KO7d2oJm7idXEsqO
-	qxpkFR7M5+i3ohXgXcY0gmZo83EuCZoAKjcIlgpaz8x4lvtf8NX36gp2qjl4ukLFTz+t
-	kxCw==
-X-Gm-Message-State: ALoCoQmEyq+FzkGpzhCRqXBLQQvXFTNqzi0HA3IAyrOvIkGbNkHdQ0YFHQp/YaPgvzOiZn++v4Dc
+Received: from mail.chez-thomas.org (mail.mlbassoc.com [65.100.170.105])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5FFC3E00342
+	for <yocto@yoctoproject.org>; Fri, 18 Jul 2014 11:28:38 -0700 (PDT)
+Received: by mail.chez-thomas.org (Postfix, from userid 1998)
+	id 385D9F811D7; Fri, 18 Jul 2014 12:28:37 -0600 (MDT)
+Received: from [192.168.1.114] (zeus [192.168.1.114])
+	by mail.chez-thomas.org (Postfix) with ESMTP id E8153F8119A;
+	Fri, 18 Jul 2014 12:28:35 -0600 (MDT)
+Message-ID: <53C9675A.2080109@mlbassoc.com>
+Date: Fri, 18 Jul 2014 12:28:42 -0600
+From: Gary Thomas <gary@mlbassoc.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:24.0) Gecko/20100101 Thunderbird/24.6.0
 MIME-Version: 1.0
-X-Received: by 10.220.7.131 with SMTP id d3mr8297363vcd.49.1405707322872; Fri,
-	18 Jul 2014 11:15:22 -0700 (PDT)
-Received: by 10.52.135.50 with HTTP; Fri, 18 Jul 2014 11:15:22 -0700 (PDT)
-In-Reply-To: <53C43E17.9050308@mindchasers.com>
-References: <A88E647F34719A4CBBE7FD69260396E2A731E2F9@POLSRV001.polatis.com>
-	<53C43E17.9050308@mindchasers.com>
-Date: Fri, 18 Jul 2014 11:15:22 -0700
-Message-ID: <CAPhnLPCeVZAmrGu+F5jHR6XKQ143_fYFtkwoN5qx9oGt-dDNVQ@mail.gmail.com>
-From: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
-To: Bob Cochran <yocto@mindchasers.com>
-Cc: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: Status of Dylan 9.0.4
+To: Yocto Project <yocto@yoctoproject.org>
+Subject: su.shadow: Change in behaviour
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -53,75 +35,42 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 18 Jul 2014 18:15:28 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Fri, 18 Jul 2014 18:28:43 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Mon, Jul 14, 2014 at 1:31 PM, Bob Cochran <yocto@mindchasers.com> wrote:
-> On 07/14/2014 04:00 PM, Adam Hughes wrote:
->>
->> Hi there,
->>
->> I'm sorry this is a very dull question, and I feel I should be able to
->> find the information elsewhere, but my google-fu has failed.  Please tell me
->> if there is a better place to ask.
->>
->> At https://www.yoctoproject.org/downloads it seems that the latest Dylan
->> release is 1.4.3.
->>
->> However, https://wiki.yoctoproject.org/wiki/Releases implies that 1.4.4 is
->> the latest shipping version.
->>
->> I've checked the last few months of this mailing list in the archive, and
->> I've not found an announcement for 1.4.4 (1.4.3 was announced 4th April
->> 2014).
->
->
->
-> I'm sure someone else will give a more helpful reply, but there is a
-> dylan-9.0.4 tag in the Poky repo created by Elizabeth on 5/14.
->
-> I agree that the mail archives don't show an obvious announcement though.
->
->
+I just noticed a difference in how su.shadow functions with
+the latest code.  If I run this
+   # su -c /home/root/test -l root
+with the previous version (4.1.4.3) I see this flow:
+   6761  execve("/bin/su", ["su", "-c", "/home/root/test", "-l"], [/* 13 vars */]) = 0
+   6761  execve("/bin/sh", ["/bin/sh", "-c", "/home/root/test"], [/* 7 vars */]) = 0
+   6762  execve("/home/root/test", ["/home/root/test"], [/* 8 vars */]) = 0
+with the latest version (4.2.1) I see:
+   961   execve("/bin/su", ["su", "-c", "/home/root/test", "-l"], [/* 13 vars */]) = 0
+   961   execve("/bin/sh", ["-su", "-c", "/home/root/test"], [/* 7 vars */]) = 0
+which fails with 'su: applet not found' if /bin.sh is busybox and
+succeeds if the /bin/sh is bash.
 
-Let me clear this up a bit. We had begun to spin a 1.4.4. It went
-through QA and we were preparing to release it when a whole bunch of
-CVEs came out against OpenSSL.
+Is seems that the new version is expecting the shell to take
+care of the user switch (maybe it doesn't realize that it's
+already 'root') and the busybox shell doesn't handle this.
+That said, I can see that busybox is built with 'CONFIG_SU=y',
+but there is no 'su' applet.
 
-Instead of releasing with known security issues, we decided to hold
-off, kill 1.4.4, get 1.6.1 and 1.5.3 out first and then revisit what
-will now be 1.4.5.
+Who's wrong here (su.shadow or busybox)?  Has anyone else seen
+this or does everyone just use bash?
 
-So, yes. We have a tag for it but never (fortunately) officially released it.
+Note: I noticed this because with the latest Poky/Yocto master
+with these changes, the X server no longer comes up because it
+relies on su (su -l -c "/etc/X11/Xserver&" root) and this now
+fails when using /bin/sh==busybox.
 
--b
-
-
->
->>
->> With my limited understanding,
->> https://wiki.yoctoproject.org/wiki/Yocto_Project_v1.4_Status and
->> https://wiki.yoctoproject.org/wiki/WW20_-_2014-05-12_-_Dylan_1.4.4 seem to
->> say that everything is OK.
->>
->> It there any problem with 1.4.4 that is delaying the announcement?
->> (Subtext: is there anything I can do to help?)
->>
->> Thanks,
->>
->> Adam
->>
->
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
-
-
+Thanks for any pointers or ideas
 
 -- 
-Elizabeth Flanagan
-Yocto Project
-Build and Release
+------------------------------------------------------------
+Gary Thomas                 |  Consulting for the
+MLB Associates              |    Embedded world
+------------------------------------------------------------
 
