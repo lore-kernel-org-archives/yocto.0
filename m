@@ -1,37 +1,47 @@
-Return-Path: <sgw@linux.intel.com>
+Return-Path: <elizabeth.flanagan@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id A4B27E0043F; Fri, 18 Jul 2014 11:14:54 -0700 (PDT)
+	id 31698E0056A; Fri, 18 Jul 2014 11:15:28 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [192.55.52.88 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 45239E00342
-	for <yocto@yoctoproject.org>; Fri, 18 Jul 2014 11:14:48 -0700 (PDT)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga101.fm.intel.com with ESMTP; 18 Jul 2014 11:14:48 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.01,686,1400050800"; d="scan'208";a="571960321"
-Received: from unknown (HELO [10.255.13.17]) ([10.255.13.17])
-	by fmsmga002.fm.intel.com with ESMTP; 18 Jul 2014 11:14:47 -0700
-Message-ID: <53C96417.7020603@linux.intel.com>
-Date: Fri, 18 Jul 2014 11:14:47 -0700
-From: Saul Wold <sgw@linux.intel.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:24.0) Gecko/20100101 Thunderbird/24.5.0
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.220.175 listed in list.dnswl.org]
+Received: from mail-vc0-f175.google.com (mail-vc0-f175.google.com
+	[209.85.220.175])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 23697E00796
+	for <yocto@yoctoproject.org>; Fri, 18 Jul 2014 11:15:23 -0700 (PDT)
+Received: by mail-vc0-f175.google.com with SMTP id hu12so7884695vcb.20
+	for <yocto@yoctoproject.org>; Fri, 18 Jul 2014 11:15:23 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:date
+	:message-id:subject:from:to:cc:content-type;
+	bh=kYHf/aTCyVDhVQbwJqMR9fPQRqfmiuoiWVHWIAmnZ3Q=;
+	b=KVlz88Y+EmZFmXWYBSMGsh6HgxDGa9eLzcOVuNie8PzLcE15//iiv3hspl4JHRitxw
+	TI5HtPuoQJwlOvWdgSo3FmyOVZj6yJIKb9GtU6Rpa4wW9Gg4xWGtYLamBBpHQNqoabsB
+	C+5z+o+J5yzWxZECcrtKdRtINr8FPPaFAVwU+m5j3cvHJSQbe8AQYiNMhFLPXyZmRq+M
+	ah+HK3QTZlYJ+vpaW7ANR1pAQnLqDIzTWOTpc5F2NjA0uPIb8JM2KO7d2oJm7idXEsqO
+	qxpkFR7M5+i3ohXgXcY0gmZo83EuCZoAKjcIlgpaz8x4lvtf8NX36gp2qjl4ukLFTz+t
+	kxCw==
+X-Gm-Message-State: ALoCoQmEyq+FzkGpzhCRqXBLQQvXFTNqzi0HA3IAyrOvIkGbNkHdQ0YFHQp/YaPgvzOiZn++v4Dc
 MIME-Version: 1.0
-To: Daniel BORNAZ <daniel.bornaz@enea.com>, yocto@yoctoproject.org, 
-	openembedded-core@lists.openembedded.org
-References: <1405592877-16855-1-git-send-email-daniel.bornaz@enea.com>
-In-Reply-To: <1405592877-16855-1-git-send-email-daniel.bornaz@enea.com>
-Cc: Benjamin Peterson <benjamin@python.org>
-Subject: Re: [PATCH] _json module arbitrary process memory read vulnerability
+X-Received: by 10.220.7.131 with SMTP id d3mr8297363vcd.49.1405707322872; Fri,
+	18 Jul 2014 11:15:22 -0700 (PDT)
+Received: by 10.52.135.50 with HTTP; Fri, 18 Jul 2014 11:15:22 -0700 (PDT)
+In-Reply-To: <53C43E17.9050308@mindchasers.com>
+References: <A88E647F34719A4CBBE7FD69260396E2A731E2F9@POLSRV001.polatis.com>
+	<53C43E17.9050308@mindchasers.com>
+Date: Fri, 18 Jul 2014 11:15:22 -0700
+Message-ID: <CAPhnLPCeVZAmrGu+F5jHR6XKQ143_fYFtkwoN5qx9oGt-dDNVQ@mail.gmail.com>
+From: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
+To: Bob Cochran <yocto@mindchasers.com>
+Cc: Yocto discussion list <yocto@yoctoproject.org>
+Subject: Re: Status of Dylan 9.0.4
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,92 +53,75 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 18 Jul 2014 18:14:54 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Fri, 18 Jul 2014 18:15:28 -0000
+Content-Type: text/plain; charset=UTF-8
 
-On 07/17/2014 03:27 AM, Daniel BORNAZ wrote:
-> python-native: _json module arbitrary process memory read vulnerability
+On Mon, Jul 14, 2014 at 1:31 PM, Bob Cochran <yocto@mindchasers.com> wrote:
+> On 07/14/2014 04:00 PM, Adam Hughes wrote:
+>>
+>> Hi there,
+>>
+>> I'm sorry this is a very dull question, and I feel I should be able to
+>> find the information elsewhere, but my google-fu has failed.  Please tell me
+>> if there is a better place to ask.
+>>
+>> At https://www.yoctoproject.org/downloads it seems that the latest Dylan
+>> release is 1.4.3.
+>>
+>> However, https://wiki.yoctoproject.org/wiki/Releases implies that 1.4.4 is
+>> the latest shipping version.
+>>
+>> I've checked the last few months of this mailing list in the archive, and
+>> I've not found an announcement for 1.4.4 (1.4.3 was announced 4th April
+>> 2014).
 >
-This should be the proper subject of the mail and commit, please update 
-and see below.
+>
+>
+> I'm sure someone else will give a more helpful reply, but there is a
+> dylan-9.0.4 tag in the Poky repo created by Elizabeth on 5/14.
+>
+> I agree that the mail archives don't show an obvious announcement though.
+>
+>
 
-> http://bugs.python.org/issue21529
->
-> Python 2 and 3 are susceptible to arbitrary process memory reading by
-> a user or adversary due to a bug in the _json module caused by
-> insufficient bounds checking.
->
-> The sole prerequisites of this attack are that the attacker is able to
-> control or influence the two parameters of the default scanstring
-> function: the string to be decoded and the index.
->
-> The bug is caused by allowing the user to supply a negative index
-> value. The index value is then used directly as an index to an array
-> in the C code; internally the address of the array and its index are
-> added to each other in order to yield the address of the value that is
-> desired. However, by supplying a negative index value and adding this
-> to the address of the array, the processor's register value wraps
-> around and the calculated value will point to a position in memory
-> which isn't within the bounds of the supplied string, causing the
-> function to access other parts of the process memory.
->
-> Signed-off-by: Benjamin Peterson <benjamin@python.org>
->
->
-> Applied to python-native recipe in order to fix the above mentioned vulnerability.
->
-> Upstream-Status: Submitted
->
-> Signed-off-by: Daniel BORNAZ <daniel.bornaz@enea.com>
->
-> ---
->   meta/recipes-devtools/python/python-native_2.7.3.bb  |  1 +
->   .../python/python/python-json-flaw-fix.patch         | 20 ++++++++++++++++++++
->   2 files changed, 21 insertions(+)
->   create mode 100644 meta/recipes-devtools/python/python/python-json-flaw-fix.patch
->
-> diff --git a/meta/recipes-devtools/python/python-native_2.7.3.bb b/meta/recipes-devtools/python/python-native_2.7.3.bb
-> index 0571d3a..74f0dfc 100644
-> --- a/meta/recipes-devtools/python/python-native_2.7.3.bb
-> +++ b/meta/recipes-devtools/python/python-native_2.7.3.bb
-> @@ -19,6 +19,7 @@ SRC_URI += "\
->              file://parallel-makeinst-create-bindir.patch \
->              file://python-fix-build-error-with-Readline-6.3.patch \
->              file://gcc-4.8-fix-configure-Wformat.patch \
-> +           file://python-json-flaw-fix.patch \
->              "
->   S = "${WORKDIR}/Python-${PV}"
->
-> diff --git a/meta/recipes-devtools/python/python/python-json-flaw-fix.patch b/meta/recipes-devtools/python/python/python-json-flaw-fix.patch
-> new file mode 100644
-> index 0000000..631713d
+Let me clear this up a bit. We had begun to spin a 1.4.4. It went
+through QA and we were preparing to release it when a whole bunch of
+CVEs came out against OpenSSL.
 
-This patch file needs a Signed-off-by and Upstream-Status.
+Instead of releasing with known security issues, we decided to hold
+off, kill 1.4.4, get 1.6.1 and 1.5.3 out first and then revisit what
+will now be 1.4.5.
 
-Thanks
-> --- /dev/null
-> +++ b/meta/recipes-devtools/python/python/python-json-flaw-fix.patch
-> @@ -0,0 +1,20 @@
-> +--- a/Modules/_json.c	2014-07-15 15:37:17.151046356 +0200
-> ++++ b/Modules/_json.c	2014-07-15 15:38:37.335605042 +0200
-> +@@ -1491,7 +1491,7 @@ scan_once_str(PyScannerObject *s, PyObje
-> +     PyObject *res;
-> +     char *str = PyString_AS_STRING(pystr);
-> +     Py_ssize_t length = PyString_GET_SIZE(pystr);
-> +-    if (idx >= length) {
-> ++    if ( idx < 0 || idx >= length) {
-> +         PyErr_SetNone(PyExc_StopIteration);
-> +         return NULL;
-> +     }
-> +@@ -1578,7 +1578,7 @@ scan_once_unicode(PyScannerObject *s, Py
-> +     PyObject *res;
-> +     Py_UNICODE *str = PyUnicode_AS_UNICODE(pystr);
-> +     Py_ssize_t length = PyUnicode_GET_SIZE(pystr);
-> +-    if (idx >= length) {
-> ++    if ( idx < 0 || idx >= length) {
-> +         PyErr_SetNone(PyExc_StopIteration);
-> +         return NULL;
-> +     }
+So, yes. We have a tag for it but never (fortunately) officially released it.
+
+-b
+
+
 >
+>>
+>> With my limited understanding,
+>> https://wiki.yoctoproject.org/wiki/Yocto_Project_v1.4_Status and
+>> https://wiki.yoctoproject.org/wiki/WW20_-_2014-05-12_-_Dylan_1.4.4 seem to
+>> say that everything is OK.
+>>
+>> It there any problem with 1.4.4 that is delaying the announcement?
+>> (Subtext: is there anything I can do to help?)
+>>
+>> Thanks,
+>>
+>> Adam
+>>
+>
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+
+
+
+-- 
+Elizabeth Flanagan
+Yocto Project
+Build and Release
 
