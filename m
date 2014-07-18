@@ -1,37 +1,37 @@
-Return-Path: <Bruce.Ashfield@windriver.com>
+Return-Path: <sgw@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id DA040E003FA; Fri, 18 Jul 2014 10:48:26 -0700 (PDT)
+	id A4B27E0043F; Fri, 18 Jul 2014 11:14:54 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [192.55.52.88 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [147.11.146.13 listed in list.dnswl.org]
-Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B3F9CE00342
-	for <yocto@yoctoproject.org>; Fri, 18 Jul 2014 10:48:20 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail1.windriver.com (8.14.5/8.14.5) with ESMTP id s6IHmFGi025222
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Fri, 18 Jul 2014 10:48:15 -0700 (PDT)
-Received: from [128.224.56.48] (128.224.56.48) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server id 14.3.169.1;
-	Fri, 18 Jul 2014 10:48:15 -0700
-Message-ID: <53C95DDA.5020400@windriver.com>
-Date: Fri, 18 Jul 2014 13:48:10 -0400
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 45239E00342
+	for <yocto@yoctoproject.org>; Fri, 18 Jul 2014 11:14:48 -0700 (PDT)
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+	by fmsmga101.fm.intel.com with ESMTP; 18 Jul 2014 11:14:48 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.01,686,1400050800"; d="scan'208";a="571960321"
+Received: from unknown (HELO [10.255.13.17]) ([10.255.13.17])
+	by fmsmga002.fm.intel.com with ESMTP; 18 Jul 2014 11:14:47 -0700
+Message-ID: <53C96417.7020603@linux.intel.com>
+Date: Fri, 18 Jul 2014 11:14:47 -0700
+From: Saul Wold <sgw@linux.intel.com>
 User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:24.0) Gecko/20100101 Thunderbird/24.6.0
+	rv:24.0) Gecko/20100101 Thunderbird/24.5.0
 MIME-Version: 1.0
-To: Chris Enrique <microdevel@googlemail.com>, <yocto@yoctoproject.org>
-References: <CAOB9jCJdQhUd4xq69psURj55-Dfzjt1xVOcx+w4=i6EzKx9cUg@mail.gmail.com>
-In-Reply-To: <CAOB9jCJdQhUd4xq69psURj55-Dfzjt1xVOcx+w4=i6EzKx9cUg@mail.gmail.com>
-Subject: Re: Best way to make use of kernel defconf for supported hw?
+To: Daniel BORNAZ <daniel.bornaz@enea.com>, yocto@yoctoproject.org, 
+	openembedded-core@lists.openembedded.org
+References: <1405592877-16855-1-git-send-email-daniel.bornaz@enea.com>
+In-Reply-To: <1405592877-16855-1-git-send-email-daniel.bornaz@enea.com>
+Cc: Benjamin Peterson <benjamin@python.org>
+Subject: Re: [PATCH] _json module arbitrary process memory read vulnerability
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,52 +43,92 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 18 Jul 2014 17:48:26 -0000
-Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
+X-List-Received-Date: Fri, 18 Jul 2014 18:14:54 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 14-07-18 01:10 PM, Chris Enrique wrote:
-> Hello,
+On 07/17/2014 03:27 AM, Daniel BORNAZ wrote:
+> python-native: _json module arbitrary process memory read vulnerability
 >
-> i need some advice:
->
-> i have created a bsp for a board which is supported by the linux kernel.
-> so my bsp doesn't focus on kernel patching or similar, just contains
-> some other board specific content.
->
-> how do i use the kernel defconf for this board which is located under
-> arch/architecture/.../.../board_defconfig as kernel config in my bsp?
->
-> i know there's several approaches. mine would have been to use defconfig
-> and create a config fragment from it but somehow my mind tells me that
-> there must be a better way?! just reference the board_defconfig file or sth?
+This should be the proper subject of the mail and commit, please update 
+and see below.
 
-The default configuration policies for the kernel classes require
-the kernel defconfig to be in the SRC_URI, so you'd need to pull
-it out of the kernel tree, put it in your layer and add it to the
-SRC_URI.
-
-If you just want to tweak a linux-yocto configuration, or tweak
-that defconfig, you can add configuration fragments to the SRC_URI
-as well.
-
-To use the in-tree defconfig, you could always create a bbappend
-to the base kernel recipe you are using, and arrange for that
-in tree config to end up called "defconfig" in WORKDIR, and the
-rest of the default processing would find and use it.
-
-I have some tools that create kernel configuration fragments from
-defconfigs, but if you are really just looking to get started and
-set a baseline on something other than linux-yocto, the defconfig
-is probably the best bet.
-
-Bruce
-
+> http://bugs.python.org/issue21529
 >
-> any help would be appreciated,
+> Python 2 and 3 are susceptible to arbitrary process memory reading by
+> a user or adversary due to a bug in the _json module caused by
+> insufficient bounds checking.
 >
-> chris
+> The sole prerequisites of this attack are that the attacker is able to
+> control or influence the two parameters of the default scanstring
+> function: the string to be decoded and the index.
+>
+> The bug is caused by allowing the user to supply a negative index
+> value. The index value is then used directly as an index to an array
+> in the C code; internally the address of the array and its index are
+> added to each other in order to yield the address of the value that is
+> desired. However, by supplying a negative index value and adding this
+> to the address of the array, the processor's register value wraps
+> around and the calculated value will point to a position in memory
+> which isn't within the bounds of the supplied string, causing the
+> function to access other parts of the process memory.
+>
+> Signed-off-by: Benjamin Peterson <benjamin@python.org>
 >
 >
+> Applied to python-native recipe in order to fix the above mentioned vulnerability.
+>
+> Upstream-Status: Submitted
+>
+> Signed-off-by: Daniel BORNAZ <daniel.bornaz@enea.com>
+>
+> ---
+>   meta/recipes-devtools/python/python-native_2.7.3.bb  |  1 +
+>   .../python/python/python-json-flaw-fix.patch         | 20 ++++++++++++++++++++
+>   2 files changed, 21 insertions(+)
+>   create mode 100644 meta/recipes-devtools/python/python/python-json-flaw-fix.patch
+>
+> diff --git a/meta/recipes-devtools/python/python-native_2.7.3.bb b/meta/recipes-devtools/python/python-native_2.7.3.bb
+> index 0571d3a..74f0dfc 100644
+> --- a/meta/recipes-devtools/python/python-native_2.7.3.bb
+> +++ b/meta/recipes-devtools/python/python-native_2.7.3.bb
+> @@ -19,6 +19,7 @@ SRC_URI += "\
+>              file://parallel-makeinst-create-bindir.patch \
+>              file://python-fix-build-error-with-Readline-6.3.patch \
+>              file://gcc-4.8-fix-configure-Wformat.patch \
+> +           file://python-json-flaw-fix.patch \
+>              "
+>   S = "${WORKDIR}/Python-${PV}"
+>
+> diff --git a/meta/recipes-devtools/python/python/python-json-flaw-fix.patch b/meta/recipes-devtools/python/python/python-json-flaw-fix.patch
+> new file mode 100644
+> index 0000000..631713d
 
+This patch file needs a Signed-off-by and Upstream-Status.
+
+Thanks
+> --- /dev/null
+> +++ b/meta/recipes-devtools/python/python/python-json-flaw-fix.patch
+> @@ -0,0 +1,20 @@
+> +--- a/Modules/_json.c	2014-07-15 15:37:17.151046356 +0200
+> ++++ b/Modules/_json.c	2014-07-15 15:38:37.335605042 +0200
+> +@@ -1491,7 +1491,7 @@ scan_once_str(PyScannerObject *s, PyObje
+> +     PyObject *res;
+> +     char *str = PyString_AS_STRING(pystr);
+> +     Py_ssize_t length = PyString_GET_SIZE(pystr);
+> +-    if (idx >= length) {
+> ++    if ( idx < 0 || idx >= length) {
+> +         PyErr_SetNone(PyExc_StopIteration);
+> +         return NULL;
+> +     }
+> +@@ -1578,7 +1578,7 @@ scan_once_unicode(PyScannerObject *s, Py
+> +     PyObject *res;
+> +     Py_UNICODE *str = PyUnicode_AS_UNICODE(pystr);
+> +     Py_ssize_t length = PyUnicode_GET_SIZE(pystr);
+> +-    if (idx >= length) {
+> ++    if ( idx < 0 || idx >= length) {
+> +         PyErr_SetNone(PyExc_StopIteration);
+> +         return NULL;
+> +     }
+>
 
