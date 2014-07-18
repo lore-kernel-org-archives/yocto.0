@@ -1,37 +1,30 @@
-Return-Path: <Vladimir_Redzhepov@epam.com>
+Return-Path: <dexon1@dexonsystems.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id C1E09E006EF; Fri, 18 Jul 2014 02:00:06 -0700 (PDT)
+	id 67FADE006EF; Fri, 18 Jul 2014 02:47:10 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE
+	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from EVBYMINSA0102.epam.com (evbyminsa0102.epam.com [217.21.63.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 12272E0056A
-	for <yocto@yoctoproject.org>; Fri, 18 Jul 2014 02:00:01 -0700 (PDT)
-Received: from EPBYMINSA0001.epam.com (10.6.110.2) by EPBYMINSA0032.epam.com
-	(10.6.110.32) with Microsoft SMTP Server (TLS) id 15.0.913.22;
-	Fri, 18 Jul 2014 11:58:28 +0300
-Received: from EPBYMINSA0001.epam.com ([::1]) by EPBYMINSA0001.epam.com
-	([::1]) with mapi id 15.00.0913.011; Fri, 18 Jul 2014 11:58:28 +0300
-From: Vladimir Redzhepov <Vladimir_Redzhepov@epam.com>
-To: Meenakumari Shedole <meenakumari.s@hcl.com>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>, "ross.burton@intel.com" <ross.burton@intel.com>
-Thread-Topic: [yocto] Adding prebuilt binaries/libraries to /usr/bin
-	or/usr/lib on rootfs
-Thread-Index: AQHPokzXHSoSV0WYtkK3tAjwRqM2vpulhEpA
-Date: Fri, 18 Jul 2014 08:58:28 +0000
-Message-ID: <0f67aa20f48a45739d0815dc0b6c1d5b@EPBYMINSA0001.epam.com>
-References: <E4938C0D959B3445943720B88F0721341564DE52@NDA-HCLT-MBS05.hclt.corp.hcl.in>
-In-Reply-To: <E4938C0D959B3445943720B88F0721341564DE52@NDA-HCLT-MBS05.hclt.corp.hcl.in>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.6.137.107]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+X-Greylist: delayed 2087 seconds by postgrey-1.32 at yocto-www;
+	Fri, 18 Jul 2014 02:47:04 PDT
+Received: from mx8.datanet.hu (mx8.datanet.hu [194.149.13.164])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E26FBE0056A
+	for <yocto@yoctoproject.org>; Fri, 18 Jul 2014 02:47:04 -0700 (PDT)
+Received: from [192.168.1.120] (unknown [91.120.39.42])
+	by mx8.datanet.hu (DataNet) with ESMTP id A7CBFEBCE6
+	for <yocto@yoctoproject.org>; Fri, 18 Jul 2014 11:12:14 +0200 (CEST)
+Message-ID: <53C8E4ED.9090909@dexonsystems.com>
+Date: Fri, 18 Jul 2014 11:12:13 +0200
+From: dexon_test <dexon1@dexonsystems.com>
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64;
+	rv:24.0) Gecko/20100101 Thunderbird/24.6.0
 MIME-Version: 1.0
-Subject: Re: Adding prebuilt binaries/libraries to /usr/bin or/usr/lib on rootfs
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: add custom application into a image
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,103 +36,151 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 18 Jul 2014 09:00:06 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Fri, 18 Jul 2014 09:47:10 -0000
+Content-Type: multipart/alternative;
+	boundary="------------090808080607070107090408"
 
-Hi
+--------------090808080607070107090408
+Content-Type: text/plain; charset=ISO-8859-2; format=flowed
+Content-Transfer-Encoding: 7bit
 
-You should look closely at meta-oracle-java layer if want to add some binar=
-ies to the target rootfs. On the other hand if you want to use binaries wit=
-hin the build process they should be put down in the places poky could find=
- them.
+First of all, I am a full beginner when it comes to bitbake, yocto,  etc...So, I am sorry if my questions seems unskilful...
 
-There's an example how to use a binary apache-maven within build process
+I would like to use meta-atmel (https://github.com/linux4sam/meta-atmel) with SAMA5d3xek machine.
 
-DESCRIPTION =3D "Maven is a software project management and comprehension t=
-ool. Based on the concept \
-of a Project Object Model (POM), Maven can manage a project's build, report=
-ing and documentation \
-from a central piece of information."
-HOMEPAGE =3D "http://maven.apache.org"
-SECTION =3D "devel"
-LICENSE =3D "Apache-2.0"
-LIC_FILES_CHKSUM =3D "file://LICENSE;md5=3D9af13b2d31a47f71518aa5dde47fc025=
+I could build "atmel-qt4e-demo-image" demo image. Therefore I'd like to create custom apps into this image with these steps:
+
+1. Added my new package ("dxatmel") into atmel-qt4e-demo-image.bb
+
+2. Created my custom package file (dxatmel_1.0.bb):
+
+DESCRIPTION = "DXAtmel QT application"
+LICENSE = "BSD"
+LIC_FILES_CHKSUM ="file://main.cpp;endline=14;md5=224c1642c6a9139c8824491e38263cba"
+
+DEFAULT_PREFERENCE = "14"
+
+PACKAGES = "${PN}-dbg ${PN}"
+
+PR = "r0"
+
+DEPENDS = "qt4-embedded"
+
+SRC_URI ="ftp://www.dexonsystems.com/stuff/dxatmel-$(PV).tar.gz"
+
+SRC_URI[md5sum] = "77c74ad602bfc25a97dd2e5593c00d5c"
+SRC_URI[sha256sum] = "eff2bff716602ac21f8ca6a728c1860efd874e7e73d43c9f3f300c0763f2cfa0"
+
+S = "${WORKDIR}/dxatmel-${PV}"
+
+inherit qt4e pkgconfig
+
+FILES_${PN}-dbg = " \
+   /opt/DXAtmel/.debug \
+   /opt/DXAtmel/.debug/* \
+   /usr/* \
+   /opt/DXAtmel/mainwindow.h \
+   /opt/DXAtmel/mainwindow.cpp \
+   /opt/DXAtmel/main.cpp \
+   /opt/DXAtmel/DXAtmel.pro \
+   /opt/DXAtmel/moc_mainwindow.cpp \
 "
 
-SRC_URI =3D "http://ftp.byfly.by/pub/apache.org/maven/maven-3/${PV}/binarie=
-s/${BP}-bin.zip"
-
-SRC_URI[md5sum] =3D "5d86506f17e5ff0b0c83c648f4093abb"
-SRC_URI[sha256sum] =3D "df3338233b34f6d65ec3901fc0039f72ba59ff1380d09eebc5b=
-58916b5fea2a3"
-
-do_configure() {
-    sed -i '49i<localRepository>${STAGING_DATADIR_NATIVE}/maven-repository<=
-/localRepository>' ${S}/conf/settings.xml
-}
+FILES_${PN} = " \
+   /opt/DXAtmel/DXAtmel \
+   /opt/DXAtmel/DXAtmel.sh \
+   /opt/ApplicationL* \
+"
 
 do_install() {
-    install -d -m 0755 ${D}${bindir}/${PN}
-    cp -ar * ${D}${bindir}/${PN}
-    ln -sf ${PN}/bin/mvn ${D}${bindir}/mvn
+     make INSTALL_ROOT=${D} install
 }
 
-BBCLASSEXTEND =3D "native"
+3. bitbake -c build dxatmel
+
+    -> I hit this error msg: Not found *.pro file in the working directory
 
 
------Original Message-----
-From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org=
-] On Behalf Of Meenakumari Shedole
-Sent: Friday, July 18, 2014 8:55 AM
-To: yocto@yoctoproject.org; ross.burton@intel.com
-Subject: [yocto] Adding prebuilt binaries/libraries to /usr/bin or/usr/lib =
-on rootfs
 
-Hi all.
-
-I have few prebuilt binaries and libraries, and I want to add them to the y=
-octo build rootfs at the
-build itself.=20
-So Can any one please tell me the steps to add recipes or suggest me any ot=
-her method for this.
-
-Thnaks in Advance.
-
-Regards
-Meena
+Any advice on what I have missed in setting up recipes, etc...?
 
 
-::DISCLAIMER::
----------------------------------------------------------------------------=
--------------------------------------------------------------------------
+Lori
 
-The contents of this e-mail and any attachment(s) are confidential and inte=
-nded for the named recipient(s) only.
-E-mail transmission is not guaranteed to be secure or error-free as informa=
-tion could be intercepted, corrupted,
-lost, destroyed, arrive late or incomplete, or may contain viruses in trans=
-mission. The e mail and its contents
-(with or without referred errors) shall therefore not attach any liability =
-on the originator or HCL or its affiliates.
-Views or opinions, if any, presented in this email are solely those of the =
-author and may not necessarily reflect the
-views or opinions of HCL or its affiliates. Any form of reproduction, disse=
-mination, copying, disclosure, modification,
-distribution and / or publication of this message without the prior written=
- consent of authorized representative of
-HCL is strictly prohibited. If you have received this email in error please=
- delete it and notify the sender immediately.
-Before opening any email and/or attachments, please check them for viruses =
-and other defects.
 
----------------------------------------------------------------------------=
--------------------------------------------------------------------------
+--------------090808080607070107090408
+Content-Type: text/html; charset=ISO-8859-2
+Content-Transfer-Encoding: 7bit
 
---=20
-_______________________________________________
-yocto mailing list
-yocto@yoctoproject.org
-https://lists.yoctoproject.org/listinfo/yocto
+<html>
+  <head>
 
+    <meta http-equiv="content-type" content="text/html; charset=ISO-8859-2">
+  </head>
+  <body text="#000000" bgcolor="#FFFFFF">
+    <pre wrap="">First of all, I am a full beginner when it comes to bitbake, yocto,  etc...So, I am sorry if my questions seems unskilful...
+
+I would like to use meta-atmel (<a class="moz-txt-link-freetext" href="https://github.com/linux4sam/meta-atmel">https://github.com/linux4sam/meta-atmel</a>) with SAMA5d3xek machine.
+
+I could build "atmel-qt4e-demo-image" demo image. Therefore I'd like to create custom apps into this image with these steps:
+
+1. Added my new package ("dxatmel") into atmel-qt4e-demo-image.bb
+
+2. Created my custom package file (dxatmel_1.0.bb):
+
+DESCRIPTION = "DXAtmel QT application"
+LICENSE = "BSD"
+LIC_FILES_CHKSUM = <a class="moz-txt-link-rfc2396E" href="file://main.cpp;endline=14;md5=224c1642c6a9139c8824491e38263cba">"file://main.cpp;endline=14;md5=224c1642c6a9139c8824491e38263cba"</a>
+
+DEFAULT_PREFERENCE = "14"
+
+PACKAGES = "${PN}-dbg ${PN}"
+
+PR = "r0"
+
+DEPENDS = "qt4-embedded"
+
+SRC_URI = <a class="moz-txt-link-rfc2396E" href="ftp://www.dexonsystems.com/stuff/dxatmel-$%28PV%29.tar.gz">"ftp://www.dexonsystems.com/stuff/dxatmel-$(PV).tar.gz"</a>
+
+SRC_URI[md5sum] = "77c74ad602bfc25a97dd2e5593c00d5c"
+SRC_URI[sha256sum] = "eff2bff716602ac21f8ca6a728c1860efd874e7e73d43c9f3f300c0763f2cfa0"
+
+S = "${WORKDIR}/dxatmel-${PV}"
+
+inherit qt4e pkgconfig
+
+FILES_${PN}-dbg = " \
+  <i class="moz-txt-slash"><span class="moz-txt-tag">/</span>opt/DXAtmel<span class="moz-txt-tag">/</span></i>.debug \
+  <i class="moz-txt-slash"><span class="moz-txt-tag">/</span>opt/DXAtmel<span class="moz-txt-tag">/</span></i>.debug/* \
+  <i class="moz-txt-slash"><span class="moz-txt-tag">/</span>usr<span class="moz-txt-tag">/</span></i>* \
+  /opt/DXAtmel/mainwindow.h \
+  /opt/DXAtmel/mainwindow.cpp \
+  /opt/DXAtmel/main.cpp \
+  /opt/DXAtmel/DXAtmel.pro \
+  /opt/DXAtmel/moc_mainwindow.cpp \
+"
+
+FILES_${PN} = " \
+  /opt/DXAtmel/DXAtmel \
+  /opt/DXAtmel/DXAtmel.sh \
+  /opt/ApplicationL* \
+"
+
+do_install() {
+    make INSTALL_ROOT=${D} install
+}
+
+3. bitbake -c build dxatmel
+
+   -&gt; I hit this error msg: Not found *.pro file in the working directory
+
+
+
+Any advice on what I have missed in setting up recipes, etc...?
+
+
+Lori </pre>
+  </body>
+</html>
+
+--------------090808080607070107090408--
