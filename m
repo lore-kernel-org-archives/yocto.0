@@ -1,43 +1,49 @@
-Return-Path: <Alexandru.Vaduva@enea.com>
+Return-Path: <zhenhua.luo@freescale.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 1FD12E006ED; Tue, 22 Jul 2014 07:59:08 -0700 (PDT)
+	id 26025E006ED; Tue, 22 Jul 2014 08:11:36 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE,SPF_HELO_PASS autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [207.46.163.181 listed in list.dnswl.org]
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mx-3.enea.com (sestofw01.enea.se [192.36.1.252])
-	by yocto-www.yoctoproject.org (Postfix) with SMTP id 4F030E00558
-	for <yocto@yoctoproject.org>; Tue, 22 Jul 2014 07:59:04 -0700 (PDT)
-Received: from SESTOEX04.enea.se ([fe80::bc2d:9299:d6b2:d0b7]) by
-	SESTOEX03.enea.se ([fe80::6ce7:7b51:1edf:e245%17]) with mapi id
-	14.03.0158.001; Tue, 22 Jul 2014 16:59:00 +0200
-From: Alexandru Vaduva <Alexandru.Vaduva@enea.com>
-To: Joe MacDonald <joe@deserted.net>
-Thread-Topic: [yocto] [OE-core] Carrier Grade layer proposal
-Thread-Index: AQHPkW1+2KRT24GnPkKv9BXuG5a5ZpuEiPLggAAHpxCAABcrkIAACmtAgAABnUCAAAhEYIAFAPMAgAsfaQCAACK0kIAV+JUAgAED+qCAACh+gIAAI6RggAAILcA=
-Date: Tue, 22 Jul 2014 14:58:59 +0000
-Message-ID: <DDB0C57E45663A458C5CACB7B5688BC21D6D3704@SESTOEX04.enea.se>
-References: <6B17198E316BD04DBB6F6DD263019AE125573C4A@SESTOEX04.enea.se>
-	<2D55BFC2C836774DB0F2FE17BECC006C28993A30@SESTOEX04.enea.se>
-	<D7AB900AA081FD46B179E331E9F703E8908E42@SESTOEX04.enea.se>
-	<DDB0C57E45663A458C5CACB7B5688BC21D6C5C0D@SESTOEX04.enea.se>
-	<D7AB900AA081FD46B179E331E9F703E8908E9C@SESTOEX04.enea.se>
-	<DDB0C57E45663A458C5CACB7B5688BC21D6C8818@SESTOEX04.enea.se>
-	<CA+YB3rY8TifZWKrm5FJc871WMtzP-ZeiCZJS9ceSa3uUoR9TGA@mail.gmail.com>
-	<DDB0C57E45663A458C5CACB7B5688BC21D6CAE0B@SESTOEX04.enea.se>
-	<CANBf+V17Q0P98d7632+FX3_W1RsT3ZR=ZR4W1mG4iDJ-CRLnZw@mail.gmail.com>
-	<DDB0C57E45663A458C5CACB7B5688BC21D6D3410@SESTOEX04.enea.se>
-	<20140722135311.GA8801@deserted.net> 
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+Received: from na01-bn1-obe.outbound.protection.outlook.com
+	(mail-bn1blp0181.outbound.protection.outlook.com [207.46.163.181])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5518CE00558
+	for <yocto@yoctoproject.org>; Tue, 22 Jul 2014 08:11:30 -0700 (PDT)
+Received: from CY1PR0301MB0715.namprd03.prod.outlook.com (25.160.159.145) by
+	CY1PR0301MB0713.namprd03.prod.outlook.com (25.160.159.143) with
+	Microsoft
+	SMTP Server (TLS) id 15.0.985.8; Tue, 22 Jul 2014 15:11:26 +0000
+Received: from CY1PR0301MB0715.namprd03.prod.outlook.com ([25.160.159.145]) by
+	CY1PR0301MB0715.namprd03.prod.outlook.com ([25.160.159.145]) with
+	mapi id 15.00.0985.008; Tue, 22 Jul 2014 15:11:26 +0000
+From: "zhenhua.luo@freescale.com" <zhenhua.luo@freescale.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: SELinux doesn't work on t4240qds
+Thread-Index: Ac+lvzKBtGo4KmiDRFuWSK4Azfu4jw==
+Date: Tue, 22 Jul 2014 15:11:25 +0000
+Message-ID: <dfd0afc8932f41e19daf0a1fe13578b3@CY1PR0301MB0715.namprd03.prod.outlook.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-x-originating-ip: [192.168.14.184]
+x-originating-ip: [123.151.195.50]
+x-microsoft-antispam: BCL:0;PCL:0;RULEID:
+x-forefront-prvs: 02801ACE41
+x-forefront-antispam-report: SFV:NSPM;
+	SFS:(6009001)(189002)(199002)(53754006)(81342001)(15975445006)(95666004)(85306003)(4396001)(80022001)(50986999)(19625215002)(18717965001)(76576001)(107886001)(85852003)(64706001)(99396002)(83322001)(107046002)(16236675004)(87936001)(74316001)(92566001)(20776003)(31966008)(19300405004)(66066001)(2656002)(21056001)(99286002)(19580405001)(2351001)(81542001)(33646002)(86362001)(76482001)(106356001)(74662001)(15202345003)(229853001)(110136001)(105586002)(19580395003)(46102001)(77096002)(83072002)(74502001)(101416001)(19609705001)(79102001)(77982001)(54356999)(108616002)(24736002);
+	DIR:OUT; SFP:; SCL:1; SRVR:CY1PR0301MB0713;
+	H:CY1PR0301MB0715.namprd03.prod.outlook.com; FPR:; MLV:sfv;
+	PTR:InfoNoRecords; MX:1; LANG:en; 
 MIME-Version: 1.0
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: [OE-core] Carrier Grade layer proposal
+X-OriginatorOrg: freescale.com
+Subject: SELinux doesn't work on t4240qds
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -49,454 +55,206 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 22 Jul 2014 14:59:08 -0000
+X-List-Received-Date: Tue, 22 Jul 2014 15:11:36 -0000
 Content-Language: en-US
-Content-Type: text/plain; charset="iso-8859-2"
+Content-Type: multipart/alternative;
+	boundary="_000_dfd0afc8932f41e19daf0a1fe13578b3CY1PR0301MB0715namprd03_"
+
+--_000_dfd0afc8932f41e19daf0a1fe13578b3CY1PR0301MB0715namprd03_
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-A quick follow up to the previous e-mail:
-I only mention that P1 compliance is until November is a best effort approa=
-ch. This is very much influenced by the community, the available recipes, b=
-ugs etc.
-The CGL compliance is tested against the qemuppc machine, being the fact th=
-at a real target is a bit hard to use by everyone.
-There is also an idea about a CGL calculator that could offer information a=
-bout the number of cgl requirements that are met and offer a compliance per=
-centage (similar to LSB), but as I said this is just at the idea level.
+Hi all,
 
-I believe more info about the milestones and the activities that we commit =
-on doing until those milestones will be available on the web page.=20
-Please let me know if any information would be needed in the case I may hav=
-e overlooked some useful parts of information. In that way I can also make =
-sure this information will be also available when the web page will be up.=
-=20
+I use the meta-selinux layer to build a core-image-selinux rootfs image, an=
+d build kernel with following options enabled.
+CONFIG_AUDIT=3Dy
+CONFIG_NETWORK_SECMARK=3Dy
+CONFIG_EXT2_FS_SECURITY=3Dy
+CONFIG_EXT3_FS_SECURITY=3Dy
+CONFIG_EXT4_FS_SECURITY=3Dy
+CONFIG_JFS_SECURITY=3Dy
+CONFIG_REISERFS_FS_SECURITY=3Dy
+CONFIG_JFFS2_FS_SECURITY=3Dy
+CONFIG_SECURITY_NETWORK=3Dy
+CONFIG_SECURITY_SELINUX=3Dy
+CONFIG_SECURITY_SELINUX_BOOTPARAM=3Dy
+CONFIG_SECURITY_SELINUX_BOOTPARAM_VALUE=3D1
+CONFIG_SECURITY_SELINUX_DISABLE=3Dy
+CONFIG_SECURITY_SELINUX_DEVELOP=3Dy
+CONFIG_SECURITY_SELINUX_AVC_STATS=3Dy
+CONFIG_SECURITY_SELINUX_CHECKREQPROT_VALUE=3D1
+
+I use the generated images to boot up FSL PPC t4240qds board(tried both NFS=
+ boot and RAM boot with ext2.gz.u-boot rootfs), the SELinux is not turned o=
+n after kernel boot up.
+
+following is some information in rootfs.
+root@t4240qds:~# sestatus
+SELinux status:                 disabled
+root@t4240qds:~#
+root@t4240qds:~# cat /etc/selinux/config
+# This file controls the state of SELinux on the system.
+# SELINUX=3D can take one of these three values:
+#     enforcing - SELinux security policy is enforced.
+#     permissive - SELinux prints warnings instead of enforcing.
+#     disabled - No SELinux policy is loaded.
+SELINUX=3Denforcing
+# SELINUXTYPE=3D can take one of these two values:
+#     standard - Standard Security protection.
+#     mls - Multi Level Security protection.
+SELINUXTYPE=3Dmls
+
+root@t4240qds:~# cat /proc/cmdline
+root=3D/dev/ram rw console=3DttyS0,115200 selinux=3D1
+root@t4240qds:~# setenforce 1
+setenforce: SELinux is disabled
+root@t4240qds:~# getenforce
+Disabled
+root@t4240qds:~#
+
+Can somebody shed some light on the issue?
 
 
-Alex
+Best Regards,
 
------Original Message-----
-From: Alexandru Vaduva=20
-Sent: Tuesday, July 22, 2014 5:21 PM
-To: 'Joe MacDonald'
-Cc: Jeff Osier-Mixon; yocto@yoctoproject.org
-Subject: RE: [yocto] [OE-core] Carrier Grade layer proposal
+Zhenhua
 
-Hello again,
+--_000_dfd0afc8932f41e19daf0a1fe13578b3CY1PR0301MB0715namprd03_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-The P1 compliance until in November is a best effort approach.
-Regarding the move to the openembedded.org location, we intend to do that a=
-s soon as possible after the web page will be put on place, as to make it s=
-imple for the community to interact with the layer and have all the needed =
-information available in one place.
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 12 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:SimSun;
+	panose-1:2 1 6 0 3 1 1 1 1 1;}
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:SimSun;
+	panose-1:2 1 6 0 3 1 1 1 1 1;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri","sans-serif";
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.25in 1.0in 1.25in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal">Hi all, <o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">I use the meta-selinux layer to build a core-image-s=
+elinux rootfs image, and build kernel with following options enabled.<o:p><=
+/o:p></p>
+<p class=3D"MsoNormal">CONFIG_AUDIT=3Dy<o:p></o:p></p>
+<p class=3D"MsoNormal">CONFIG_NETWORK_SECMARK=3Dy<o:p></o:p></p>
+<p class=3D"MsoNormal">CONFIG_EXT2_FS_SECURITY=3Dy<o:p></o:p></p>
+<p class=3D"MsoNormal">CONFIG_EXT3_FS_SECURITY=3Dy<o:p></o:p></p>
+<p class=3D"MsoNormal">CONFIG_EXT4_FS_SECURITY=3Dy<o:p></o:p></p>
+<p class=3D"MsoNormal">CONFIG_JFS_SECURITY=3Dy<o:p></o:p></p>
+<p class=3D"MsoNormal">CONFIG_REISERFS_FS_SECURITY=3Dy<o:p></o:p></p>
+<p class=3D"MsoNormal">CONFIG_JFFS2_FS_SECURITY=3Dy<o:p></o:p></p>
+<p class=3D"MsoNormal">CONFIG_SECURITY_NETWORK=3Dy<o:p></o:p></p>
+<p class=3D"MsoNormal">CONFIG_SECURITY_SELINUX=3Dy<o:p></o:p></p>
+<p class=3D"MsoNormal">CONFIG_SECURITY_SELINUX_BOOTPARAM=3Dy<o:p></o:p></p>
+<p class=3D"MsoNormal">CONFIG_SECURITY_SELINUX_BOOTPARAM_VALUE=3D1<o:p></o:=
+p></p>
+<p class=3D"MsoNormal">CONFIG_SECURITY_SELINUX_DISABLE=3Dy<o:p></o:p></p>
+<p class=3D"MsoNormal">CONFIG_SECURITY_SELINUX_DEVELOP=3Dy<o:p></o:p></p>
+<p class=3D"MsoNormal">CONFIG_SECURITY_SELINUX_AVC_STATS=3Dy<o:p></o:p></p>
+<p class=3D"MsoNormal">CONFIG_SECURITY_SELINUX_CHECKREQPROT_VALUE=3D1<o:p><=
+/o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">I use the generated images to boot up FSL PPC t4240q=
+ds board(tried both NFS boot and RAM boot with ext2.gz.u-boot rootfs), the =
+SELinux is not turned on after kernel boot up.
+<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">following is some information in rootfs. <o:p></o:p>=
+</p>
+<p class=3D"MsoNormal">root@t4240qds:~# sestatus <o:p></o:p></p>
+<p class=3D"MsoNormal">SELinux status:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; disabled<o:p></=
+o:p></p>
+<p class=3D"MsoNormal">root@t4240qds:~# <o:p></o:p></p>
+<p class=3D"MsoNormal">root@t4240qds:~# cat /etc/selinux/config <o:p></o:p>=
+</p>
+<p class=3D"MsoNormal"># This file controls the state of SELinux on the sys=
+tem.<o:p></o:p></p>
+<p class=3D"MsoNormal"># SELINUX=3D can take one of these three values:<o:p=
+></o:p></p>
+<p class=3D"MsoNormal">#&nbsp;&nbsp;&nbsp;&nbsp; enforcing - SELinux securi=
+ty policy is enforced.<o:p></o:p></p>
+<p class=3D"MsoNormal">#&nbsp;&nbsp;&nbsp;&nbsp; permissive - SELinux print=
+s warnings instead of enforcing.<o:p></o:p></p>
+<p class=3D"MsoNormal">#&nbsp;&nbsp;&nbsp;&nbsp; disabled - No SELinux poli=
+cy is loaded.<o:p></o:p></p>
+<p class=3D"MsoNormal">SELINUX=3Denforcing<o:p></o:p></p>
+<p class=3D"MsoNormal"># SELINUXTYPE=3D can take one of these two values:<o=
+:p></o:p></p>
+<p class=3D"MsoNormal">#&nbsp;&nbsp;&nbsp;&nbsp; standard - Standard Securi=
+ty protection.<o:p></o:p></p>
+<p class=3D"MsoNormal">#&nbsp;&nbsp;&nbsp;&nbsp; mls - Multi Level Security=
+ protection.<o:p></o:p></p>
+<p class=3D"MsoNormal">SELINUXTYPE=3Dmls<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">root@t4240qds:~# cat /proc/cmdline <o:p></o:p></p>
+<p class=3D"MsoNormal">root=3D/dev/ram rw console=3DttyS0,115200 selinux=3D=
+1<o:p></o:p></p>
+<p class=3D"MsoNormal">root@t4240qds:~# setenforce 1<o:p></o:p></p>
+<p class=3D"MsoNormal">setenforce: SELinux is disabled<o:p></o:p></p>
+<p class=3D"MsoNormal">root@t4240qds:~# getenforce <o:p></o:p></p>
+<p class=3D"MsoNormal">Disabled<o:p></o:p></p>
+<p class=3D"MsoNormal">root@t4240qds:~#<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Can somebody shed some light on the issue?<o:p></o:p=
+></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Best Regards,<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Zhenhua<o:p></o:p></p>
+</div>
+</body>
+</html>
 
-
-Alex
-
-
-
------Original Message-----
-From: Joe MacDonald [mailto:joe@deserted.net]=20
-Sent: Tuesday, July 22, 2014 4:53 PM
-To: Alexandru Vaduva
-Cc: Jeff Osier-Mixon; yocto@yoctoproject.org
-Subject: Re: [yocto] [OE-core] Carrier Grade layer proposal
-
-Hi Alex
-
-[RE: [yocto] [OE-core] Carrier Grade layer proposal] On 14.07.22 (Tue 10:52=
-) Alexandru Vaduva wrote:
-
-> Hello Joe,
->=20
-> Here at Enea we are preparing the steps needed for publishing the=20
-> layer on the open embedded meta layers initiative:=20
-> http://layers.openembedded.org/layerindex/branch/master/layers/
-> For this we started working at a web page that should contain all the=20
-> relevant information regarding meta-cgl. It will be available in a couple=
- of weeks. Until then the layer will be available internally and the patche=
-s should be submitted as the README states: on the enealinux@lists.enea.com=
- mailing list. We will try to make the switch to Open Embedded mailing list=
- as quick as possible.
->=20
-> Regarding the other B, C and D packages  that we will try to add into the=
- meta-cgl layer, I will post this information below, but keep in mind that =
-this information will also be available on the web page.
-> 	Category B packages:=20
-> 		- ifenslave
-> 		- evlog
-> 		- crash
-> 		- mipv6-daemon-umip
-> 		- openl2tp
-> 	Category C&D packages:
-> 		- drbd
-> 		- grsecurity
-> 		- logcheck
-> 		- makedumpfile
-> 		- numactl
-> 		- ocfs2-tools
-> 		- pam_passwdqc
-> 		- samhain
-> 		- ltt-usertrace
-> 		- ftrace
-> The above lists correspond with only the P1 requirements that we try=20
-> to fulfill for the moment. If there are any questions and/or suggestions =
-regarding this CGL initialtive please address them to me and I will try to =
-offer a response in the shortest time possible.
-
-Thanks, that is really helpful, actually.  So a couple of other things, tho=
-ugh.  I think I remember that early on you were intending to take your yoct=
-o-based system with meta-cgl (and, I imagine based on the contents of the R=
-EADME, the additional dependent layers) through a CGL registration.  Really=
-, that's great if you still are, but it sounds like maybe now you're planni=
-ng a staged approach and are only targeting a subset of the CGL P1s for the=
- end of the year / start of next year.  Is that accurate, or are you lookin=
-g at full P1 compliance by that date?
-
-I ask mostly because I know doing a CGL distribution is a big effort (I've =
-been down this road before) and it may be that you don't need to have the s=
-ystem complete before you can move it to the openembedded.org location and =
-"get into the system" so to speak.  Your team is pretty active, though, so =
-I'm sure you'll also notice if things are going into other layers that can =
-save you some time (e.g. the submission of a numactl recipe to meta-oe last=
- week).
-
-That, and if I've got an idea of where you're going, I'll be happy to take =
-an early look at what you've got in terms of it's CGL-ness and hopefully ma=
-ke the eventual registration (if you go that route) move along quickly.
-
--J.
-
->=20
->=20
-> Thanks,
-> Alex
->=20
-> -----Original Message-----
-> From: Joe MacDonald [mailto:joe@deserted.net]
-> Sent: Monday, July 21, 2014 10:58 PM
-> To: Alexandru Vaduva
-> Cc: Jeff Osier-Mixon; yocto@yoctoproject.org
-> Subject: Re: [yocto] [OE-core] Carrier Grade layer proposal
->=20
-> Hey Alex,
->=20
-> I've been away from this for a bit but now I'm getting time to look at it=
- again and I was wondering if you had any deeper level of detail you could =
-share about the work going on in meta-cgl.  Obviously since this is a new r=
-egistration and one that will look rather different from all of the other C=
-GL registrations currently, those of us in the CGL workgroup were quite int=
-erested to see this happen.  Personally I'm also interested in this since i=
-t's the kind of thing I've been doing for a long time now and if I can, I'd=
- like to help out.  In particular, if you've got a list of, say, the catego=
-ry B+ items, that might be something I can do that will be independent of y=
-our work on the more active cat-A stuff.  OTOH, cat-A is easy to work on si=
-nce those are the items I saw when I was working with meta-cgl a month or s=
-o back.  I know you guys are focused on your part of it, but if you had sor=
-t of a "here's how to help us" guide, that'd be awesome.
->=20
-> Also, I probably missed it, but is the intent to use either the yocto lis=
-t or the oe list for all meta-cgl discussions, or do you have a dedicated l=
-ist we can sign up for?  I see you have guidance for sending submissions to=
- meta-cgl, but is that a list that's open to the community, or is it an int=
-ernal alias / distribution list for Enea?
->=20
-> Thanks,
-> -J.
->=20
->=20
-> On Mon, Jul 7, 2014 at 2:43 PM, Alexandru Vaduva <Alexandru.Vaduva@enea.c=
-om> wrote:
-> > Hello Jeff,
-> >
-> > The errors are package related.
-> > Meta-cgl can be seen as a non BSP specific layer (it can be viewed as t=
-he LSB from poky).
-> > I already started fixing a number, of the already existing errors and t=
-he patches will be added upstream after proper testing.
-> > I will continue the bug fixing and package integration (into the=20
-> > core-image-cgl image) process and after that is finished I will continu=
-e with the Category B packages.
-> >
-> > I will also try to keep you guys informed about the latest updates,=20
-> > mainly on the YPTM, but for those who cannot wait that much, there=20
-> > is the Git repository with which they can interact:
-> > http://git.enea.com/git/?p=3Dlinux/meta-cgl.git;a=3Dsummary
-> >
-> >
-> > Have a good day,
-> > Alex
-> >
-> >
-> > -----Original Message-----
-> > From: jefro.net@gmail.com [mailto:jefro.net@gmail.com] On Behalf Of=20
-> > Jeff Osier-Mixon
-> > Sent: Monday, July 07, 2014 9:22 PM
-> > To: Alexandru Vaduva
-> > Subject: Re: [OE-core] Carrier Grade layer proposal
-> >
-> > Thanks, Alex.
-> >
-> > Others on the mailing lists, if you have any comments on the contents o=
-f this new layer, please mention them on this thread.
-> >
-> > Re compilation errors, were they specific to a BSP or were they general=
- errors in the packages?
-> >
-> > thanks
-> >
-> > On Mon, Jun 30, 2014 at 8:01 AM, Alexandru Vaduva <Alexandru.Vaduva@ene=
-a.com> wrote:
-> >> Hello Jeff,
-> >>
-> >>
-> >>
-> >> The available layer is a work in progress.
-> >>
-> >> For the moment we have done an internal mapping of the packages=20
-> >> needed inside meta-cgl layer. The mapping is done as following:
-> >> A. Requirement that map against package/packages with recipes that=20
-> >> already exists in Yocto
-> >>   A1. Requirement that map against package/packages with recipes=20
-> >> already existing in meta-enea
-> >>   A2. Requirement that map against package/packages with recipes=20
-> >> that exists in Yocto (but not in meta-enea) B. Requirement that map=20
-> >> against package/packages without any recipe C. Requirement does not=20
-> >> directly map against package/packages and needs some investigation.
-> >> D. Requirement that no solution have been found after a more=20
-> >> detailed investigation.
-> >>
-> >>
-> >>
-> >> When the release was made available on the public repository, the=20
-> >> packages from the A1 and A2 were integrated, a bunch of them with comp=
-ilation errors:
-> >>
-> >> -          lksctp-tools
-> >>
-> >> -          openais
-> >>
-> >> -          pacemaker
-> >>
-> >> -          openhpi
-> >>
-> >> -          open-iscsi-user
-> >>
-> >> -          open-iscsi-kernel
-> >>
-> >> -          libcap-ng
-> >>
-> >> -          cluster-glue
-> >>
-> >> -          cluster-resource-agents
-> >>
-> >> The activity on the meta-cgl was resumed today and those build and=20
-> >> integration errors will be dealt next.
-> >>
-> >>
-> >>
-> >> On the longer run we will try to create recipes and/or fulfill all=20
-> >> the other requirements from the class B, C, and D.
-> >>
-> >> Please do not hesitate to contact me if you have further questions.
-> >>
-> >>
-> >>
-> >>
-> >>
-> >> Alex
-> >>
-> >>
-> >>
-> >> From: Jon Aldama
-> >> Sent: Friday, June 27, 2014 1:07 PM
-> >> To: Alexandru Vaduva; Cosmin Moldoveanu; Jenny Andersson; David=20
-> >> Nystr=F6m
-> >> Cc: Daniel Bornaz; Adrian Dudau
-> >> Subject: RE: Carrier Grade layer proposal
-> >>
-> >>
-> >>
-> >> Roger that! Thanks Alexandru!
-> >>
-> >>
-> >>
-> >>
-> >>
-> >> From: Alexandru Vaduva
-> >> Sent: den 27 juni 2014 11:43
-> >> To: Jon Aldama; Cosmin Moldoveanu; Jenny Andersson; David Nystr=F6m
-> >> Cc: Daniel Bornaz; Adrian Dudau
-> >> Subject: RE: Carrier Grade layer proposal
-> >>
-> >>
-> >>
-> >> Hello Jon,
-> >>
-> >>
-> >>
-> >> We will first have an internal meeting on Monday and after that I=20
-> >> will offer an answer to Jeff.
-> >>
-> >>
-> >>
-> >>
-> >>
-> >> Alex
-> >>
-> >>
-> >>
-> >> From: Jon Aldama
-> >> Sent: Friday, June 27, 2014 12:32 PM
-> >> To: Cosmin Moldoveanu; Jenny Andersson; David Nystr=F6m
-> >> Cc: Alexandru Vaduva; Daniel Bornaz; Adrian Dudau
-> >> Subject: RE: Carrier Grade layer proposal
-> >>
-> >>
-> >>
-> >> Thank you Cosmin,
-> >>
-> >>
-> >>
-> >> Alexandru, could you please respond Jeff at the mailing list? (see=20
-> >> down
-> >> below)
-> >>
-> >>
-> >>
-> >> Cheers
-> >>
-> >> Jon
-> >>
-> >>
-> >>
-> >> From: Cosmin Moldoveanu
-> >> Sent: den 27 juni 2014 10:59
-> >> To: Jenny Andersson; Jon Aldama; David Nystr=F6m
-> >> Cc: Alexandru Vaduva; Daniel Bornaz; Adrian Dudau
-> >> Subject: RE: Carrier Grade layer proposal
-> >>
-> >>
-> >>
-> >> Hi,
-> >>
-> >>
-> >>
-> >> Alexandru Vaduva will be main responsible for interfacing with=20
-> >> community on meta-cgl topic. He will also attend Yocto Technical=20
-> >> Meetings whenever necessary from now on.
-> >>
-> >>
-> >>
-> >> BR,
-> >>
-> >> /Cosmin
-> >>
-> >>
-> >>
-> >> From: Jenny Andersson
-> >> Sent: Friday, June 27, 2014 10:32 AM
-> >> To: Jon Aldama; David Nystr=F6m; Cosmin Moldoveanu
-> >> Cc: Valentin Cobelea
-> >> Subject: RE: Carrier Grade layer proposal
-> >>
-> >>
-> >>
-> >> Hi Cosmin,
-> >>
-> >>
-> >>
-> >> How took over after Valentin left Enea? Could someone in your team res=
-pond.
-> >>
-> >>
-> >>
-> >> Thanks,
-> >>
-> >> Jenny
-> >>
-> >>
-> >>
-> >> From: Jon Aldama
-> >> Sent: den 27 juni 2014 09:28
-> >> To: David Nystr=F6m; Jenny Andersson
-> >> Cc: Valentin Cobelea
-> >> Subject: FW: Carrier Grade layer proposal
-> >>
-> >>
-> >>
-> >> David, Jenny,
-> >>
-> >>
-> >>
-> >> Will any of you answer this?
-> >>
-> >>
-> >>
-> >> BTW, have you managed to file the Yocto compatibility application?
-> >>
-> >>
-> >>
-> >> Regards
-> >>
-> >> Jon
-> >>
-> >>
-> >>
-> >> From: Osier-mixon, Jeffrey [mailto:jeffrey.osier-mixon@intel.com]
-> >> Sent: den 26 juni 2014 20:36
-> >> To: David Nystr=F6m; davide.ricci@windriver.com; challinan@gmail.com;=
-=20
-> >> teodor.bobornilo@windriver.com; Valentin Cobelea;=20
-> >> chase.maupin@ti.com; Jon Aldama; philip.balister@gmail.com;=20
-> >> kevin_mccombe@mentor.com; akuster@mvista.com;=20
-> >> jason.wessel@windriver.com; richard.purdie@linuxfoundation.org;
-> >> hui.geng@huawei.com; john_cherry@mentor.com;=20
-> >> jeffrey.osier-mixon@intel.com
-> >> Cc: Philip Balister
-> >> Subject: YP: Carrier Grade layer proposal
-> >>
-> >>
-> >>
-> >> Hi all - this is a simple followup to our meeting at ELC regarding=20
-> >> a meta-cgl layer, proposed by Enea.
-> >>
-> >>
-> >>
-> >> The plan was to create a list of recipes to be included, and to=20
-> >> start a discussion on the mailing list.There is a thread on the=20
-> >> list from back in April, but I don't see anything more recent than=20
-> >> that. Has there been any progress?
-> >>
-> >>
-> >>
-> >> thanks
-> >>
-> >>
-> >> --
-> >> _______________________________________________
-> >> Openembedded-core mailing list
-> >> Openembedded-core@lists.openembedded.org
-> >> http://lists.openembedded.org/mailman/listinfo/openembedded-core
-> >>
-> >
-> >
-> >
-> > --
-> > Jeff Osier-Mixon @Intel
-> > Yocto Project Community Manager http://yoctoproject.org
-> > --
-> > _______________________________________________
-> > yocto mailing list
-> > yocto@yoctoproject.org
-> > https://lists.yoctoproject.org/listinfo/yocto
->=20
->=20
->=20
-> --
-> Joe MacDonald
-> :wq
-
---
--Joe MacDonald.
-:wq
-
+--_000_dfd0afc8932f41e19daf0a1fe13578b3CY1PR0301MB0715namprd03_--
