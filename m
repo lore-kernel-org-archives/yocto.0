@@ -1,17 +1,17 @@
-Return-Path: <vaduvajanalexandru@yahoo.com>
+Return-Path: <ellurubharath29@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 43C90E00524; Tue, 22 Jul 2014 09:32:50 -0700 (PDT)
+	id 64037E00558; Tue, 22 Jul 2014 09:37:36 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (vaduvajanalexandru[at]yahoo.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [98.138.229.29 listed in list.dnswl.org]
+	mail provider *      (ellurubharath29[at]gmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [74.125.82.174 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
@@ -20,60 +20,42 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from nm36.bullet.mail.ne1.yahoo.com (nm36.bullet.mail.ne1.yahoo.com
-	[98.138.229.29])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8664CE00342
-	for <yocto@yoctoproject.org>; Tue, 22 Jul 2014 09:32:43 -0700 (PDT)
-Received: from [127.0.0.1] by nm36.bullet.mail.ne1.yahoo.com with NNFMP;
-	22 Jul 2014 16:32:42 -0000
-Received: from [98.138.101.131] by nm36.bullet.mail.ne1.yahoo.com with NNFMP;
-	22 Jul 2014 16:29:35 -0000
-Received: from [98.138.87.7] by tm19.bullet.mail.ne1.yahoo.com with NNFMP;
-	22 Jul 2014 16:29:35 -0000
-Received: from [127.0.0.1] by omp1007.mail.ne1.yahoo.com with NNFMP;
-	22 Jul 2014 16:29:35 -0000
-X-Yahoo-Newman-Property: ymail-4
-X-Yahoo-Newman-Id: 596447.67114.bm@omp1007.mail.ne1.yahoo.com
-Received: (qmail 31456 invoked by uid 60001); 22 Jul 2014 16:29:35 -0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s1024;
-	t=1406046575; bh=894FyMRV0lcvUb2xIQMZp/XN7fa7SeXAznYlT9Zjo6k=;
-	h=References:Message-ID:Date:From:Reply-To:Subject:To:Cc:In-Reply-To:MIME-Version:Content-Type;
-	b=CWe/Ai7OmFfXxYq8dqrJcqcOpfqgwZuOF5JNdbnhf8F0UL9jjy2vXibikPnTyOiuNdc1aHxQM8ck/+c0G097yHuRd+Pkxf+meGKWV+gpATkADtlo5cvfikWp1t3BL/wq7PY0+Loxpr213gLoAwQ6PV95/OVUpk/ATCh2RytwLqc=
-X-YMail-OSG: 3McFLFsVM1nMP3eFvW9gZovUVryWaP4p6hVtkbKxaDKHGbQ
-	fjEHFQQG_EmWbOQteXExldSke0pTLO5t0dJPBj4rI5nFGLI4KYHzsFFNk0i_
-	_l6lzYMh2Xf87S6oEpby1_RazG3Wk_3ByTF3aYGvymN3jaMetgb9WQsRjCZW
-	8r3NJzDyGMJtto_YVI0TUwWn6SBDbsNy_LhKY_uwSJxUaVFbgYrHXFXFxUHk
-	lorE3EP1h6c2a0XbS.lJyReRHMtvoDYL.gYcdW4CowffJ1Ovxn5OgOJJoVfZ
-	2dnDgQTD2ug.AyvdZMYOGrep.5FmqCSZRb61mGYBarLl1YlVfSn80w6Aj4T.
-	oYssNz.WJByenjhyQeEfAXHeWGyhZ_m119IEXSMcC9LbE7e9ibKfSQnpmeiZ
-	NoSeg6Cv7Lhg57NoChsLxRLxoo94gqYe4Hcrn8po8bokrvvGXXtohKQNjKpN
-	eu9j5PtQvIP945UajeYc6NP.oZFJVZife7da4b7sYfGhaB.5LLywsdU6hcRM
-	6Q2_3z2cB_OpxsngA1aFxNFBZcInpH1YjmxM4gFlDfrqOPbHyKCEX5aH7hKU
-	0RPa8tDWyoVY669KwEJ0eMJvl2cWJL02SsDM8LGvh29KBOo9kygquZLJofj4
-	xlZov.M_kaNYuzYMihH6j
-Received: from [141.85.0.106] by web122503.mail.ne1.yahoo.com via HTTP;
-	Tue, 22 Jul 2014 09:29:35 PDT
-X-Rocket-MIMEInfo: 002.001,
-	R2xhZCB0byBoZWFyIHRoYXQgQnJ1Y2UuCgoKCk9uIFR1ZXNkYXksIEp1bHkgMjIsIDIwMTQgNzowOSBQTSwgQnJ1Y2UgQXNoZmllbGQgPGJydWNlLmFzaGZpZWxkQHdpbmRyaXZlci5jb20.IHdyb3RlOgogCgoKT24gMTQtMDctMjIgMTI6MDIgUE0sIGFrdXN0ZXIgd3JvdGU6Cj4KPiBPbiAwNy8yMi8yMDE0IDA4OjU4IEFNLCBCcnVjZSBBc2hmaWVsZCB3cm90ZToKPj4gT24gMTQtMDctMjIgMTE6NTQgQU0sIGFrdXN0ZXIgd3JvdGU6Cj4.PiBBbGV4YW5kcnUsCj4.Pgo.Pj4gUmVnYXJkaW5nwqAgYSBmZXcgcGEBMAEBAQE-
-X-Mailer: YahooMailWebService/0.8.195.680
-References: <CALZ2gZV=pDM5kE-VDdEp1xJRV+ig7q5ix+cFU9vjpvJg7x=o5Q@mail.gmail.com>	<D7AB900AA081FD46B179E331E9F703E8907D76@SESTOEX04.enea.se>	<6B17198E316BD04DBB6F6DD263019AE125573C4A@SESTOEX04.enea.se>	<2D55BFC2C836774DB0F2FE17BECC006C28993A30@SESTOEX04.enea.se>	<D7AB900AA081FD46B179E331E9F703E8908E42@SESTOEX04.enea.se>	<DDB0C57E45663A458C5CACB7B5688BC21D6C5C0D@SESTOEX04.enea.se>	<D7AB900AA081FD46B179E331E9F703E8908E9C@SESTOEX04.enea.se>	<DDB0C57E45663A458C5CACB7B5688BC21D6C8818@SESTOEX04.enea.se>	<CA+YB3rY8TifZWKrm5FJc871WMtzP-ZeiCZJS9ceSa3uUoR9TGA@mail.gmail.com>	<DDB0C57E45663A458C5CACB7B5688BC21D6CAE0B@SESTOEX04.enea.se>	<CANBf+V17Q0P98d7632+FX3_W1RsT3ZR=ZR4W1mG4iDJ-CRLnZw@mail.gmail.com>	<DDB0C57E45663A458C5CACB7B5688BC21D6D3410@SESTOEX04.enea.se>	<53CE8923.6030307@mvista.com>
-	<53CE8A34.2060608@windriver.com>	<53CE8B24.5020505@mvista.com>
-	<53CE8C4A.3020302@windriver.com>
-Message-ID: <1406046575.2940.YahooMailNeo@web122503.mail.ne1.yahoo.com>
-Date: Tue, 22 Jul 2014 09:29:35 -0700
-From: Alexandru Vaduva <vaduvajanalexandru@yahoo.com>
-To: Bruce Ashfield <bruce.ashfield@windriver.com>,
-	akuster <akuster@mvista.com>,
-	Alexandru Vaduva <Alexandru.Vaduva@enea.com>, 
-	Joe MacDonald <joe@deserted.net>
-In-Reply-To: <53CE8C4A.3020302@windriver.com>
+Received: from mail-we0-f174.google.com (mail-we0-f174.google.com
+	[74.125.82.174])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C8C69E004FF
+	for <yocto@yoctoproject.org>; Tue, 22 Jul 2014 09:37:32 -0700 (PDT)
+Received: by mail-we0-f174.google.com with SMTP id x48so9419979wes.19
+	for <yocto@yoctoproject.org>; Tue, 22 Jul 2014 09:37:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type;
+	bh=FtYf5atAR+6iQ2JAtJhev1BLuOohQwINlx0gw7i1TFs=;
+	b=ybINqdEETF04+e0bnORfBllXaUhak/Cnox308qT7JWvATHBKLCo0b/W1OwMAeLJz1r
+	8YrAchOQJ+4wsHZU4kRgwq2CeUvUw0PdRXQUpKv679IlStspfBiE1R6DqhK4O2z8f8gS
+	6GykAB6noRYbRdINLxrw01GU4ewCSNKoLl85cgQYgvhR9aDyAi4wIPJLlvLtsQBGj+qI
+	VUFEJTBCLGn9lSOB5SwjU4ckuLyLMGQ/hv4HNj7PrOXochVjISVA3pffQ3pMHr49E14n
+	9fpLFK9vzJ3b9c53YNrtNFuimF/NerPvyM+EwOC1EZ3n16dhhwX7V0netypVKNdVuFjy
+	SpVw==
 MIME-Version: 1.0
+X-Received: by 10.180.205.138 with SMTP id lg10mr16013007wic.49.1406047050842; 
+	Tue, 22 Jul 2014 09:37:30 -0700 (PDT)
+Received: by 10.194.78.46 with HTTP; Tue, 22 Jul 2014 09:37:30 -0700 (PDT)
+In-Reply-To: <CALkREYCbBe5uN50SkPco2S=rAwc8hPTYackHWSnL5VSKWB2+7A@mail.gmail.com>
+References: <CALkREYCJARja3TPwPR4Ck6wLrPa1Wmb2un3LBeKjt4PTszKo4Q@mail.gmail.com>
+	<CAJTo0LYgQWCXJY1L7EhdP72oOyxVkigx1z8cdGoGBXOpWqcd1w@mail.gmail.com>
+	<CALkREYBqgZpGr-wkFX2Qiw0kanTtg0mEGfq2cJ9=KfG4CrBC0A@mail.gmail.com>
+	<CALkREYC-GA3RbBmrrkJZ4rX0Dn-Ss9LrdOwx14vxw5eBDYmZzw@mail.gmail.com>
+	<CAGM0ZdRVPGNS-tJ__x4XeaivHmC-_wxq9Kj+NGt3ds0FZBD-OA@mail.gmail.com>
+	<CALkREYCbBe5uN50SkPco2S=rAwc8hPTYackHWSnL5VSKWB2+7A@mail.gmail.com>
+Date: Tue, 22 Jul 2014 11:37:30 -0500
+Message-ID: <CAGM0ZdQvq4=mXtOeVo7KXO_8STNV_2wQ=+ua_X-8sp64QA0d7g@mail.gmail.com>
+From: Bharath Chandra <ellurubharath29@gmail.com>
+To: Anooj Gopi <anoojgopi@gmail.com>
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: [OE-core] Carrier Grade layer proposal
+Subject: Re: How to find the bb file from package name
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
-Reply-To: Alexandru Vaduva <vaduvajanalexandru@yahoo.com>
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -82,642 +64,323 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 22 Jul 2014 16:32:50 -0000
-Content-Type: multipart/alternative;
-	boundary="592913864-2135520473-1406046575=:2940"
+X-List-Received-Date: Tue, 22 Jul 2014 16:37:36 -0000
+Content-Type: multipart/alternative; boundary=001a11c3859400c89b04fecad780
 
---592913864-2135520473-1406046575=:2940
-Content-Type: text/plain; charset=iso-8859-1
+--001a11c3859400c89b04fecad780
+Content-Type: text/plain; charset=UTF-8
+
+Hi,
+
+you can find it under .inc file here
+https://github.com/meta-qt5/meta-qt5/blob/daisy/recipes-qt/qt5/nativesdk-qtbase.inc
+
+PACKAGES = "${PN}-tools-dbg *${PN}-tools-dev* ${PN}-tools-staticdev ${PN}-tools"
+
+Thanks,
+
+Bharath
+
+
+
+On Tue, Jul 22, 2014 at 11:19 AM, Anooj Gopi <anoojgopi@gmail.com> wrote:
+
+>
+> Oh sorry the link I sent was wrong. The correct one is
+> https://github.com/meta-qt5/meta-qt5/blob/daisy/recipes-qt/qt5/nativesdk-qtbase_5.2.1.bb
+>
+> Manually searching the bb/inc file did not help until this point.
+>
+> Now I enabled the build history (INHERIT += "buildhistory"
+> BUILDHISTORY_FEATURES = "image package sdk") and built the packages once
+> again. Then searched for the package name as shown below
+>
+> cd build/buildhistory/packages
+> grep -nri nativesdk-libqt5core-dev .
+> ./i686-nativesdk-oesdk-linux/nativesdk-qtbase/nativesdk-qtbase-tools-dev/latest:3:PKG
+> = nativesdk-libqt5core-dev
+>
+> which shows that the yocto package is "nativesdk-qtbase-tools-dev", which
+> is provided by "nativesdk-qtbase_5.2.1.bb".
+>
+> But I'm still not able to find out where in yocto PKG variable is
+> configured (which changes this rpm file name from the default one).
+>
+>
+>
+> On Tue, Jul 22, 2014 at 5:50 PM, Bharath Chandra <
+> ellurubharath29@gmail.com> wrote:
+>
+>> Hi Anooj,
+>>
+>> I guess you are looking at a wrong version of the recipe file, you have
+>> to look into version number 5.2.1 and revision r1 as your package name is
+>> suggesting but the link which you have mentioned is for 5.3.1 . Kindly,
+>> have a look into correct version number of recipe file and if you do not
+>> find any package name in the recipe file then you can search in *.inc*
+>> files which are included in that recipe file.
+>> for eg :
+>>
+>> require qt5-${PV}.inc
+>>
+>>
+>> You have to check in qt5-5.2.1.inc file and see if any package is included with the name which you are searching for.
+>>
+>>
+>> Thanks & Regards,
+>> Bharath Chandra Elluru
+>>
+>>
+>>
+>> On Tue, Jul 22, 2014 at 6:52 AM, Anooj Gopi <anoojgopi@gmail.com> wrote:
+>>
+>>>
+>>> Yes I am trying to track down the recipe from the rpm file. In my
+>>> project yocto builds the rpm package
+>>> "nativesdk-libqt5core-dev-5.2.1-r1.i686_nativesdk.rpm" (by
+>>> https://github.com/meta-qt5/meta-qt5) but it is not included in my sdk
+>>> sysroot image. So I would like to see how I could include this into my sdk.
+>>> For that I am tracing back the recipe which generated the rpm.
+>>>
+>>> I tried as you said:
+>>> From the source package name I can see it is from "Source RPM  :
+>>> nativesdk-qtbase-5.2.1-r1.src.rpm", which means bb file is
+>>> https://github.com/meta-qt5/meta-qt5/blob/master/recipes-qt/qt5/nativesdk-qtbase_5.3.1.bb
+>>> Now this from the bb file content I can see this file provides multiple
+>>> packages, (for eg. nativesdk-qtbase-tools-dbg nativesdk-qtbase-tools-dev
+>>> nativesdk-qtbase-tools-staticdev nativesdk-qtbase-tool) but I still could
+>>> not find where it is configured to generate the package
+>>> "nativesdk-libqt5core-dev-5.2.1-r1.i686_nativesdk.rpm".
+>>>
+>>> As Belen in his last mail, the tools like "Toaster" could confirm this
+>>> (by listing the packages generated from a bb file), but is there any way I
+>>> can do it in Yocto Project 1.5?
+>>>
+>>> Regards,
+>>> Anooj
+>>>
+>>>
+>>> On Tue, Jul 22, 2014 at 11:15 AM, Burton, Ross <ross.burton@intel.com>
+>>> wrote:
+>>>
+>>>> On 21 July 2014 16:39, Anooj Gopi <anoojgopi@gmail.com> wrote:
+>>>> > Could some one help me to understand how we could find the bb file
+>>>> which
+>>>> > generated particular package (rpm package for eg.)?
+>>>> > (In some cases the name of the package and recipe name differ
+>>>> drastically)
+>>>> >
+>>>> > Also is there any way to list packages (rpm) generated by particular
+>>>> recipe
+>>>> > (yocto package) easily. (without looking into the PACKAGES variable).
+>>>>
+>>>> It's probably best if you explain exactly what you want to do.
+>>>>
+>>>> If you want to work backwards from a RPM to the recipe, then binary
+>>>> RPMs have a Source RPM metadata field and the srpm is named after the
+>>>> recipe:
+>>>>
+>>>> $ rpm -qpi connman-tests-1.24-r0.15.corei7_64.rpm | grep Source
+>>>> Source RPM  : connman-1.24-r0.15.src.rpm
+>>>>
+>>>> Ross
+>>>>
+>>>
+>>>
+>>>
+>>> --
+>>> _______________________________________________
+>>> yocto mailing list
+>>> yocto@yoctoproject.org
+>>> https://lists.yoctoproject.org/listinfo/yocto
+>>>
+>>>
+>>
+>>
+>> --
+>> Thanks & Regards,
+>> Bharath Chandra Elluru.
+>> Contact Number:785-979-4875.
+>>
+>
+>
+
+
+-- 
+Thanks & Regards,
+Bharath Chandra Elluru.
+Contact Number:785-979-4875.
+
+--001a11c3859400c89b04fecad780
+Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-Glad to hear that Bruce.=0A=0A=0A=0AOn Tuesday, July 22, 2014 7:09 PM, Bruc=
-e Ashfield <bruce.ashfield@windriver.com> wrote:=0A =0A=0A=0AOn 14-07-22 12=
-:02 PM, akuster wrote:=0A>=0A> On 07/22/2014 08:58 AM, Bruce Ashfield wrote=
-:=0A>> On 14-07-22 11:54 AM, akuster wrote:=0A>>> Alexandru,=0A>>>=0A>>> Re=
-garding=A0 a few packages in category C&D.=0A>>>=0A>>> I have latest samhai=
-n building as well as grsecurity (pax patches=0A>>> applied against 3.14.12=
-) in a branch in my meta-security tree. I have a=0A>>> bit more testing to =
-do before I was going to post them.=0A>>=0A>> And on this note, we should c=
-onsider the kernel parts and see if getting=0A>> them into a common locatio=
-n is a good idea.=0A>>=0A> yep.=0A>=0A>> We already have the linux-yocto tr=
-ee, and it tracks LTSI, has CVE and=0A>> -stable tracking, and is maintaine=
-d to support the set of reference=0A>> boards.=0A>>=0A>> Creating yet more =
-reference kernel trees doesn't help our goal of=0A>> fewer trees and a disc=
-rete set of kernel versions.=0A>=0A> Agreed.=0A=0AGreat, glad to hear.=0A=
-=0AI wasn't trying to divert the discussion, just seeing if there=0Awas any=
-where I could help.=0A=0AI know for certain that Joe has a LOT of experienc=
-e with grsec, and=0AI've been helping maintain its 'tentacles' for a long t=
-ime, so I'm=0Asure we can come up with something workable when the time is =
-right.=0A=0ACheers,=0A=0A=0ABruce=0A=0A>=0A> thanks,=0A> Armin=0A>>=0A>> Ju=
-st something to consider.=0A>>=0A>> Cheers,=0A>>=0A>> Bruce=0A>>=0A>>>=0A>>=
-> grsecurity and samhain aren't CGL specific and they maybe belong in a=0A>=
->> more generalize layer? just a thought.=0A>>>=0A>>> regards,=0A>>> Armin=
-=0A>>>=0A>>>=0A>>> On 07/22/2014 03:52 AM, Alexandru Vaduva wrote:=0A>>>> H=
-ello Joe,=0A>>>>=0A>>>> Here at Enea we are preparing the steps needed for =
-publishing the=0A>>>> layer on the open embedded meta layers initiative:=0A=
->>>> http://layers.openembedded.org/layerindex/branch/master/layers/=0A>>>>=
- For this we started working at a web page that should contain all the=0A>>=
->> relevant information regarding meta-cgl. It will be available in a=0A>>>=
-> couple of weeks. Until then the layer will be available internally and=0A=
->>>> the patches should=0A>>>> be submitted as the README states: on the en=
-ealinux@lists.enea.com=0A>>>> mailing list. We will try to make the switch =
-to Open Embedded mailing=0A>>>> list as quick as possible.=0A>>>>=0A>>>> Re=
-garding the other B, C and D packages=A0 that we will try to add into=0A>>>=
-> the meta-cgl layer, I will post this information below, but keep in=0A>>>=
-> mind that this information will also be available on the web page.=0A>>>>=
-=A0 =A0  Category B packages:=0A>>>>=A0 =A0 =A0 =A0  - ifenslave=0A>>>>=A0 =
-=A0 =A0 =A0  - evlog=0A>>>>=A0 =A0 =A0 =A0  - crash=0A>>>>=A0 =A0 =A0 =A0  =
-- mipv6-daemon-umip=0A>>>>=A0 =A0 =A0 =A0  - openl2tp=0A>>>>=A0 =A0  Catego=
-ry C&D packages:=0A>>>>=A0 =A0 =A0 =A0  - drbd=0A>>>>=A0 =A0 =A0 =A0  - grs=
-ecurity=0A>>>>=A0 =A0 =A0 =A0  - logcheck=0A>>>>=A0 =A0 =A0 =A0  - makedump=
-file=0A>>>>=A0 =A0 =A0 =A0  - numactl=0A>>>>=A0 =A0 =A0 =A0  - ocfs2-tools=
-=0A>>>>=A0 =A0 =A0 =A0  - pam_passwdqc=0A>>>>=A0 =A0 =A0 =A0  - samhain=0A>=
->>>=A0 =A0 =A0 =A0  - ltt-usertrace=0A>>>>=A0 =A0 =A0 =A0  - ftrace=0A>>>> =
-The above lists correspond with only the P1 requirements that we try=0A>>>>=
- to fulfill for the moment. If there are any questions and/or=0A>>>> sugges=
-tions regarding this CGL initialtive please address them to me=0A>>>> and I=
- will try to offer a response in the=0A>>>> shortest time possible.=0A>>>>=
-=0A>>>>=0A>>>> Thanks,=0A>>>> Alex=0A>>>>=0A>>>> -----Original Message-----=
-=0A>>>> From: Joe MacDonald [mailto:joe@deserted.net]=0A>>>> Sent: Monday, =
-July 21, 2014 10:58 PM=0A>>>> To: Alexandru Vaduva=0A>>>> Cc: Jeff Osier-Mi=
-xon; yocto@yoctoproject.org=0A>>>> Subject: Re: [yocto] [OE-core] Carrier G=
-rade layer proposal=0A>>>>=0A>>>> Hey Alex,=0A>>>>=0A>>>> I've been away fr=
-om this for a bit but now I'm getting time to look at=0A>>>> it again and I=
- was wondering if you had any deeper level of detail you=0A>>>> could share=
- about the work going on in meta-cgl.=A0 Obviously since this=0A>>>> is a n=
-ew registration and one that will look rather different from all=0A>>>> of =
-the other CGL registrations currently, those of us in the CGL=0A>>>> workgr=
-oup were quite interested to see this happen. Personally I'm=0A>>>> also in=
-terested in this since it's the kind of thing I've been doing=0A>>>> for a =
-long time now and if I can, I'd like to help out.=A0 In=0A>>>> particular, =
-if you've got a list of, say, the category B+ items, that=0A>>>> might be s=
-omething I can do that will be independent of your work on=0A>>>> the more =
-active cat-A stuff.=A0 OTOH, cat-A is easy to work on since=0A>>>> those ar=
-e the items I saw when I was working with meta-cgl a month or=0A>>>> so bac=
-k.=A0 I know you guys are focused on your part of it, but if you=0A>>>> had=
- sort of a "here's how to help us" guide, that'd be awesome.=0A>>>>=0A>>>> =
-Also, I probably missed it, but is the intent to use either the yocto=0A>>>=
-> list or the oe list for all meta-cgl discussions, or do you have a=0A>>>>=
- dedicated list we can sign up for?=A0 I see you have guidance for=0A>>>> s=
-ending submissions to meta-cgl, but is that a list that's open to the=0A>>>=
-> community, or is it an internal alias / distribution list for Enea?=0A>>>=
->=0A>>>> Thanks,=0A>>>> -J.=0A>>>>=0A>>>>=0A>>>> On Mon, Jul 7, 2014 at 2:4=
-3 PM, Alexandru Vaduva=0A>>>> <Alexandru.Vaduva@enea.com> wrote:=0A>>>>> He=
-llo Jeff,=0A>>>>>=0A>>>>> The errors are package related.=0A>>>>> Meta-cgl =
-can be seen as a non BSP specific layer (it can be viewed as=0A>>>>> the LS=
-B from poky).=0A>>>>> I already started fixing a number, of the already exi=
-sting errors and=0A>>>>> the patches will be added upstream after proper te=
-sting.=0A>>>>> I will continue the bug fixing and package integration (into=
- the=0A>>>>> core-image-cgl image) process and after that is finished I wil=
-l=0A>>>>> continue with the Category B packages.=0A>>>>>=0A>>>>> I will als=
-o try to keep you guys informed about the latest updates,=0A>>>>> mainly on=
- the YPTM, but for those who cannot wait that much, there is=0A>>>>> the Gi=
-t repository with which they can interact:=0A>>>>> http://git.enea.com/git/=
-?p=3Dlinux/meta-cgl.git;a=3Dsummary=0A>>>>>=0A>>>>>=0A>>>>> Have a good day=
-,=0A>>>>> Alex=0A>>>>>=0A>>>>>=0A>>>>> -----Original Message-----=0A>>>>> F=
-rom: jefro.net@gmail.com [mailto:jefro.net@gmail.com] On Behalf Of=0A>>>>> =
-Jeff Osier-Mixon=0A>>>>> Sent: Monday, July 07, 2014 9:22 PM=0A>>>>> To: Al=
-exandru Vaduva=0A>>>>> Subject: Re: [OE-core] Carrier Grade layer proposal=
-=0A>>>>>=0A>>>>> Thanks, Alex.=0A>>>>>=0A>>>>> Others on the mailing lists,=
- if you have any comments on the contents=0A>>>>> of this new layer, please=
- mention them on this thread.=0A>>>>>=0A>>>>> Re compilation errors, were t=
-hey specific to a BSP or were they=0A>>>>> general errors in the packages?=
-=0A>>>>>=0A>>>>> thanks=0A>>>>>=0A>>>>> On Mon, Jun 30, 2014 at 8:01 AM, Al=
-exandru Vaduva=0A>>>>> <Alexandru.Vaduva@enea.com> wrote:=0A>>>>>> Hello Je=
-ff,=0A>>>>>>=0A>>>>>>=0A>>>>>>=0A>>>>>> The available layer is a work in pr=
-ogress.=0A>>>>>>=0A>>>>>> For the moment we have done an internal mapping o=
-f the packages=0A>>>>>> needed inside meta-cgl layer. The mapping is done a=
-s following:=0A>>>>>> A. Requirement that map against package/packages with=
- recipes that=0A>>>>>> already exists in Yocto=0A>>>>>>=A0 =A0 A1. Requirem=
-ent that map against package/packages with recipes=0A>>>>>> already existin=
-g in meta-enea=0A>>>>>>=A0 =A0 A2. Requirement that map against package/pac=
-kages with recipes=0A>>>>>> that=0A>>>>>> exists in Yocto (but not in meta-=
-enea) B. Requirement that map=0A>>>>>> against package/packages without any=
- recipe C. Requirement does not=0A>>>>>> directly map against package/packa=
-ges and needs some investigation.=0A>>>>>> D. Requirement that no solution =
-have been found after a more detailed=0A>>>>>> investigation.=0A>>>>>>=0A>>=
->>>>=0A>>>>>>=0A>>>>>> When the release was made available on the public re=
-pository, the=0A>>>>>> packages from the A1 and A2 were integrated, a bunch=
- of them with=0A>>>>>> compilation errors:=0A>>>>>>=0A>>>>>> -=A0 =A0 =A0 =
-=A0 =A0 lksctp-tools=0A>>>>>>=0A>>>>>> -=A0 =A0 =A0 =A0 =A0 openais=0A>>>>>=
->=0A>>>>>> -=A0 =A0 =A0 =A0 =A0 pacemaker=0A>>>>>>=0A>>>>>> -=A0 =A0 =A0 =
-=A0 =A0 openhpi=0A>>>>>>=0A>>>>>> -=A0 =A0 =A0 =A0 =A0 open-iscsi-user=0A>>=
->>>>=0A>>>>>> -=A0 =A0 =A0 =A0 =A0 open-iscsi-kernel=0A>>>>>>=0A>>>>>> -=A0=
- =A0 =A0 =A0 =A0 libcap-ng=0A>>>>>>=0A>>>>>> -=A0 =A0 =A0 =A0 =A0 cluster-g=
-lue=0A>>>>>>=0A>>>>>> -=A0 =A0 =A0 =A0 =A0 cluster-resource-agents=0A>>>>>>=
-=0A>>>>>> The activity on the meta-cgl was resumed today and those build an=
-d=0A>>>>>> integration errors will be dealt next.=0A>>>>>>=0A>>>>>>=0A>>>>>=
->=0A>>>>>> On the longer run we will try to create recipes and/or fulfill a=
-ll=0A>>>>>> the other requirements from the class B, C, and D.=0A>>>>>>=0A>=
->>>>> Please do not hesitate to contact me if you have further questions.=
-=0A>>>>>>=0A>>>>>>=0A>>>>>>=0A>>>>>>=0A>>>>>>=0A>>>>>> Alex=0A>>>>>>=0A>>>>=
->>=0A>>>>>>=0A>>>>>> From: Jon Aldama=0A>>>>>> Sent: Friday, June 27, 2014 =
-1:07 PM=0A>>>>>> To: Alexandru Vaduva; Cosmin Moldoveanu; Jenny Andersson; =
-David=0A>>>>>> Nystr=F6m=0A>>>>>> Cc: Daniel Bornaz; Adrian Dudau=0A>>>>>> =
-Subject: RE: Carrier Grade layer proposal=0A>>>>>>=0A>>>>>>=0A>>>>>>=0A>>>>=
->> Roger that! Thanks Alexandru!=0A>>>>>>=0A>>>>>>=0A>>>>>>=0A>>>>>>=0A>>>>=
->>=0A>>>>>> From: Alexandru Vaduva=0A>>>>>> Sent: den 27 juni 2014 11:43=0A=
->>>>>> To: Jon Aldama; Cosmin Moldoveanu; Jenny Andersson; David Nystr=F6m=
-=0A>>>>>> Cc: Daniel Bornaz; Adrian Dudau=0A>>>>>> Subject: RE: Carrier Gra=
-de layer proposal=0A>>>>>>=0A>>>>>>=0A>>>>>>=0A>>>>>> Hello Jon,=0A>>>>>>=
-=0A>>>>>>=0A>>>>>>=0A>>>>>> We will first have an internal meeting on Monda=
-y and after that I=0A>>>>>> will offer an answer to Jeff.=0A>>>>>>=0A>>>>>>=
-=0A>>>>>>=0A>>>>>>=0A>>>>>>=0A>>>>>> Alex=0A>>>>>>=0A>>>>>>=0A>>>>>>=0A>>>>=
->> From: Jon Aldama=0A>>>>>> Sent: Friday, June 27, 2014 12:32 PM=0A>>>>>> =
-To: Cosmin Moldoveanu; Jenny Andersson; David Nystr=F6m=0A>>>>>> Cc: Alexan=
-dru Vaduva; Daniel Bornaz; Adrian Dudau=0A>>>>>> Subject: RE: Carrier Grade=
- layer proposal=0A>>>>>>=0A>>>>>>=0A>>>>>>=0A>>>>>> Thank you Cosmin,=0A>>>=
->>>=0A>>>>>>=0A>>>>>>=0A>>>>>> Alexandru, could you please respond Jeff at =
-the mailing list? (see=0A>>>>>> down=0A>>>>>> below)=0A>>>>>>=0A>>>>>>=0A>>=
->>>>=0A>>>>>> Cheers=0A>>>>>>=0A>>>>>> Jon=0A>>>>>>=0A>>>>>>=0A>>>>>>=0A>>>=
->>> From: Cosmin Moldoveanu=0A>>>>>> Sent: den 27 juni 2014 10:59=0A>>>>>> =
-To: Jenny Andersson; Jon Aldama; David Nystr=F6m=0A>>>>>> Cc: Alexandru Vad=
-uva; Daniel Bornaz; Adrian Dudau=0A>>>>>> Subject: RE: Carrier Grade layer =
-proposal=0A>>>>>>=0A>>>>>>=0A>>>>>>=0A>>>>>> Hi,=0A>>>>>>=0A>>>>>>=0A>>>>>>=
-=0A>>>>>> Alexandru Vaduva will be main responsible for interfacing with=0A=
->>>>>> community on meta-cgl topic. He will also attend Yocto Technical=0A>=
->>>>> Meetings whenever necessary from now on.=0A>>>>>>=0A>>>>>>=0A>>>>>>=
-=0A>>>>>> BR,=0A>>>>>>=0A>>>>>> /Cosmin=0A>>>>>>=0A>>>>>>=0A>>>>>>=0A>>>>>>=
- From: Jenny Andersson=0A>>>>>> Sent: Friday, June 27, 2014 10:32 AM=0A>>>>=
->> To: Jon Aldama; David Nystr=F6m; Cosmin Moldoveanu=0A>>>>>> Cc: Valentin=
- Cobelea=0A>>>>>> Subject: RE: Carrier Grade layer proposal=0A>>>>>>=0A>>>>=
->>=0A>>>>>>=0A>>>>>> Hi Cosmin,=0A>>>>>>=0A>>>>>>=0A>>>>>>=0A>>>>>> How too=
-k over after Valentin left Enea? Could someone in your team=0A>>>>>> respon=
-d.=0A>>>>>>=0A>>>>>>=0A>>>>>>=0A>>>>>> Thanks,=0A>>>>>>=0A>>>>>> Jenny=0A>>=
->>>>=0A>>>>>>=0A>>>>>>=0A>>>>>> From: Jon Aldama=0A>>>>>> Sent: den 27 juni=
- 2014 09:28=0A>>>>>> To: David Nystr=F6m; Jenny Andersson=0A>>>>>> Cc: Vale=
-ntin Cobelea=0A>>>>>> Subject: FW: Carrier Grade layer proposal=0A>>>>>>=0A=
->>>>>>=0A>>>>>>=0A>>>>>> David, Jenny,=0A>>>>>>=0A>>>>>>=0A>>>>>>=0A>>>>>> =
-Will any of you answer this?=0A>>>>>>=0A>>>>>>=0A>>>>>>=0A>>>>>> BTW, have =
-you managed to file the Yocto compatibility application?=0A>>>>>>=0A>>>>>>=
-=0A>>>>>>=0A>>>>>> Regards=0A>>>>>>=0A>>>>>> Jon=0A>>>>>>=0A>>>>>>=0A>>>>>>=
-=0A>>>>>> From: Osier-mixon, Jeffrey [mailto:jeffrey.osier-mixon@intel.com]=
-=0A>>>>>> Sent: den 26 juni 2014 20:36=0A>>>>>> To: David Nystr=F6m; davide=
-.ricci@windriver.com; challinan@gmail.com;=0A>>>>>> teodor.bobornilo@windri=
-ver.com; Valentin Cobelea;=0A>>>>>> chase.maupin@ti.com; Jon Aldama; philip=
-.balister@gmail.com;=0A>>>>>> kevin_mccombe@mentor.com; akuster@mvista.com;=
-=0A>>>>>> jason.wessel@windriver.com; richard.purdie@linuxfoundation.org;=
-=0A>>>>>> hui.geng@huawei.com; john_cherry@mentor.com;=0A>>>>>> jeffrey.osi=
-er-mixon@intel.com=0A>>>>>> Cc: Philip Balister=0A>>>>>> Subject: YP: Carri=
-er Grade layer proposal=0A>>>>>>=0A>>>>>>=0A>>>>>>=0A>>>>>> Hi all - this i=
-s a simple followup to our meeting at ELC regarding a=0A>>>>>> meta-cgl lay=
-er, proposed by Enea.=0A>>>>>>=0A>>>>>>=0A>>>>>>=0A>>>>>> The plan was to c=
-reate a list of recipes to be included, and to start=0A>>>>>> a discussion =
-on the mailing list.There is a thread on the list from=0A>>>>>> back in Apr=
-il, but I don't see anything more recent than that. Has=0A>>>>>> there been=
- any progress?=0A>>>>>>=0A>>>>>>=0A>>>>>>=0A>>>>>> thanks=0A>>>>>>=0A>>>>>>=
-=0A>>>>>> --=0A>>>>>> _______________________________________________=0A>>>=
->>> Openembedded-core mailing list=0A>>>>>> Openembedded-core@lists.openemb=
-edded.org=0A>>>>>> http://lists.openembedded.org/mailman/listinfo/openembed=
-ded-core=0A>>>>>>=0A>>>>>=0A>>>>>=0A>>>>> --=0A>>>>> Jeff Osier-Mixon @Inte=
-l=0A>>>>> Yocto Project Community Manager http://yoctoproject.org=0A>>>>> -=
--=0A>>>>> _______________________________________________=0A>>>>> yocto mai=
-ling list=0A>>>>> yocto@yoctoproject.org=0A>>>>> https://lists.yoctoproject=
-.org/listinfo/yocto=0A>>>>=0A>>>>=0A>>>> --=0A>>>> Joe MacDonald=0A>>>> :wq=
-=0A>>>=0A>>>=0A>>=0A>=0A=0A-- =0A__________________________________________=
-_____=0Ayocto mailing list=0Ayocto@yoctoproject.org=0Ahttps://lists.yoctopr=
-oject.org/listinfo/yocto
+<div dir=3D"ltr"><div>Hi,<br><br></div>you can find it under .inc file here=
+ <br><a href=3D"https://github.com/meta-qt5/meta-qt5/blob/daisy/recipes-qt/=
+qt5/nativesdk-qtbase.inc">https://github.com/meta-qt5/meta-qt5/blob/daisy/r=
+ecipes-qt/qt5/nativesdk-qtbase.inc</a><br>
+<pre>PACKAGES =3D &quot;${PN}-tools-dbg <b>${PN}-tools-dev</b> ${PN}-tools-=
+staticdev ${PN}-tools&quot;<br><br></pre><pre>Thanks,<br></pre><pre>Bharath=
+<br></pre></div><div class=3D"gmail_extra"><br><br><div class=3D"gmail_quot=
+e">
+On Tue, Jul 22, 2014 at 11:19 AM, Anooj Gopi <span dir=3D"ltr">&lt;<a href=
+=3D"mailto:anoojgopi@gmail.com" target=3D"_blank">anoojgopi@gmail.com</a>&g=
+t;</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0=
+ .8ex;border-left:1px #ccc solid;padding-left:1ex">
+<div dir=3D"ltr"><div><div><div><div><br></div>Oh sorry the link I sent was=
+ wrong. The correct one is <a href=3D"https://github.com/meta-qt5/meta-qt5/=
+blob/daisy/recipes-qt/qt5/nativesdk-qtbase_5.2.1.bb" target=3D"_blank">http=
+s://github.com/meta-qt5/meta-qt5/blob/daisy/recipes-qt/qt5/nativesdk-qtbase=
+_5.2.1.bb</a><br>
 
---592913864-2135520473-1406046575=:2940
-Content-Type: text/html; charset=iso-8859-1
-Content-Transfer-Encoding: quoted-printable
+<br></div>Manually searching the bb/inc file did not help until this point.=
+<br><br></div>Now I enabled the build history (INHERIT +=3D &quot;buildhist=
+ory&quot; BUILDHISTORY_FEATURES =3D &quot;image package sdk&quot;) and buil=
+t the packages once again. Then searched for the package name as shown belo=
+w<br>
 
-<html><body><div style=3D"color:#000; background-color:#fff; font-family:He=
-lveticaNeue, Helvetica Neue, Helvetica, Arial, Lucida Grande, sans-serif;fo=
-nt-size:12pt"><div><span>Glad to hear that Bruce.<br></span></div> <div cla=
-ss=3D"qtdSeparateBR"><br><br></div><div style=3D"display: block;" class=3D"=
-yahoo_quoted"> <div style=3D"font-family: HelveticaNeue, Helvetica Neue, He=
-lvetica, Arial, Lucida Grande, sans-serif; font-size: 12pt;"> <div style=3D=
-"font-family: HelveticaNeue, Helvetica Neue, Helvetica, Arial, Lucida Grand=
-e, sans-serif; font-size: 12pt;"> <div dir=3D"ltr"> <font face=3D"Arial" si=
-ze=3D"2"> On Tuesday, July 22, 2014 7:09 PM, Bruce Ashfield &lt;bruce.ashfi=
-eld@windriver.com&gt; wrote:<br> </font> </div>  <br><br> <div class=3D"y_m=
-sg_container">On 14-07-22 12:02 PM, akuster wrote:<br clear=3D"none">&gt;<b=
-r clear=3D"none">&gt; On 07/22/2014 08:58 AM, Bruce Ashfield wrote:<br clea=
-r=3D"none">&gt;&gt; On 14-07-22 11:54 AM, akuster wrote:<br clear=3D"none">=
-&gt;&gt;&gt;
- Alexandru,<br clear=3D"none">&gt;&gt;&gt;<br clear=3D"none">&gt;&gt;&gt; R=
-egarding&nbsp; a few packages in category C&amp;D.<br clear=3D"none">&gt;&g=
-t;&gt;<br clear=3D"none">&gt;&gt;&gt; I have latest samhain building as wel=
-l as grsecurity (pax patches<br clear=3D"none">&gt;&gt;&gt; applied against=
- 3.14.12) in a branch in my meta-security tree. I have a<br clear=3D"none">=
-&gt;&gt;&gt; bit more testing to do before I was going to post them.<br cle=
-ar=3D"none">&gt;&gt;<br clear=3D"none">&gt;&gt; And on this note, we should=
- consider the kernel parts and see if getting<br clear=3D"none">&gt;&gt; th=
-em into a common location is a good idea.<br clear=3D"none">&gt;&gt;<br cle=
-ar=3D"none">&gt; yep.<br clear=3D"none">&gt;<br clear=3D"none">&gt;&gt; We =
-already have the linux-yocto tree, and it tracks LTSI, has CVE and<br clear=
-=3D"none">&gt;&gt; -stable tracking, and is maintained to support the set o=
-f reference<br clear=3D"none">&gt;&gt; boards.<br clear=3D"none">&gt;&gt;<b=
-r clear=3D"none">&gt;&gt;
- Creating yet more reference kernel trees doesn't help our goal of<br clear=
-=3D"none">&gt;&gt; fewer trees and a discrete set of kernel versions.<br cl=
-ear=3D"none">&gt;<br clear=3D"none">&gt; Agreed.<br clear=3D"none"><br clea=
-r=3D"none">Great, glad to hear.<br clear=3D"none"><br clear=3D"none">I wasn=
-'t trying to divert the discussion, just seeing if there<br clear=3D"none">=
-was anywhere I could help.<br clear=3D"none"><br clear=3D"none">I know for =
-certain that Joe has a LOT of experience with grsec, and<br clear=3D"none">=
-I've been helping maintain its 'tentacles' for a long time, so I'm<br clear=
-=3D"none">sure we can come up with something workable when the time is righ=
-t.<br clear=3D"none"><br clear=3D"none">Cheers,<div class=3D"yqt2948998071"=
- id=3D"yqtfd18718"><br clear=3D"none"><br clear=3D"none">Bruce<br clear=3D"=
-none"><br clear=3D"none">&gt;<br clear=3D"none">&gt; thanks,<br clear=3D"no=
-ne">&gt; Armin<br clear=3D"none">&gt;&gt;<br clear=3D"none">&gt;&gt; Just s=
-omething to consider.<br
- clear=3D"none">&gt;&gt;<br clear=3D"none">&gt;&gt; Cheers,<br clear=3D"non=
-e">&gt;&gt;<br clear=3D"none">&gt;&gt; Bruce<br clear=3D"none">&gt;&gt;<br =
-clear=3D"none">&gt;&gt;&gt;<br clear=3D"none">&gt;&gt;&gt; grsecurity and s=
-amhain aren't CGL specific and they maybe belong in a<br clear=3D"none">&gt=
-;&gt;&gt; more generalize layer? just a thought.<br clear=3D"none">&gt;&gt;=
-&gt;<br clear=3D"none">&gt;&gt;&gt; regards,<br clear=3D"none">&gt;&gt;&gt;=
- Armin<br clear=3D"none">&gt;&gt;&gt;<br clear=3D"none">&gt;&gt;&gt;<br cle=
-ar=3D"none">&gt;&gt;&gt; On 07/22/2014 03:52 AM, Alexandru Vaduva wrote:<br=
- clear=3D"none">&gt;&gt;&gt;&gt; Hello Joe,<br clear=3D"none">&gt;&gt;&gt;&=
-gt;<br clear=3D"none">&gt;&gt;&gt;&gt; Here at Enea we are preparing the st=
-eps needed for publishing the<br clear=3D"none">&gt;&gt;&gt;&gt; layer on t=
-he open embedded meta layers initiative:<br clear=3D"none">&gt;&gt;&gt;&gt;=
- <a shape=3D"rect" href=3D"http://layers.openembedded.org/layerindex/branch=
-/master/layers/"
- target=3D"_blank">http://layers.openembedded.org/layerindex/branch/master/=
-layers/</a><br clear=3D"none">&gt;&gt;&gt;&gt; For this we started working =
-at a web page that should contain all the<br clear=3D"none">&gt;&gt;&gt;&gt=
-; relevant information regarding meta-cgl. It will be available in a<br cle=
-ar=3D"none">&gt;&gt;&gt;&gt; couple of weeks. Until then the layer will be =
-available internally and<br clear=3D"none">&gt;&gt;&gt;&gt; the patches sho=
-uld<br clear=3D"none">&gt;&gt;&gt;&gt; be submitted as the README states: o=
-n the <a shape=3D"rect" ymailto=3D"mailto:enealinux@lists.enea.com" href=3D=
-"mailto:enealinux@lists.enea.com">enealinux@lists.enea.com</a><br clear=3D"=
-none">&gt;&gt;&gt;&gt; mailing list. We will try to make the switch to Open=
- Embedded mailing<br clear=3D"none">&gt;&gt;&gt;&gt; list as quick as possi=
-ble.<br clear=3D"none">&gt;&gt;&gt;&gt;<br clear=3D"none">&gt;&gt;&gt;&gt; =
-Regarding the other B, C and D packages&nbsp; that we will try to add into<=
-br
- clear=3D"none">&gt;&gt;&gt;&gt; the meta-cgl layer, I will post this infor=
-mation below, but keep in<br clear=3D"none">&gt;&gt;&gt;&gt; mind that this=
- information will also be available on the web page.<br clear=3D"none">&gt;=
-&gt;&gt;&gt;&nbsp; &nbsp;  Category B packages:<br clear=3D"none">&gt;&gt;&=
-gt;&gt;&nbsp; &nbsp; &nbsp; &nbsp;  - ifenslave<br clear=3D"none">&gt;&gt;&=
-gt;&gt;&nbsp; &nbsp; &nbsp; &nbsp;  - evlog<br clear=3D"none">&gt;&gt;&gt;&=
-gt;&nbsp; &nbsp; &nbsp; &nbsp;  - crash<br clear=3D"none">&gt;&gt;&gt;&gt;&=
-nbsp; &nbsp; &nbsp; &nbsp;  - mipv6-daemon-umip<br clear=3D"none">&gt;&gt;&=
-gt;&gt;&nbsp; &nbsp; &nbsp; &nbsp;  - openl2tp<br clear=3D"none">&gt;&gt;&g=
-t;&gt;&nbsp; &nbsp;  Category C&amp;D packages:<br clear=3D"none">&gt;&gt;&=
-gt;&gt;&nbsp; &nbsp; &nbsp; &nbsp;  - drbd<br clear=3D"none">&gt;&gt;&gt;&g=
-t;&nbsp; &nbsp; &nbsp; &nbsp;  - grsecurity<br clear=3D"none">&gt;&gt;&gt;&=
-gt;&nbsp; &nbsp; &nbsp; &nbsp;  - logcheck<br clear=3D"none">&gt;&gt;&gt;&g=
-t;&nbsp; &nbsp;
- &nbsp; &nbsp;  - makedumpfile<br clear=3D"none">&gt;&gt;&gt;&gt;&nbsp; &nb=
-sp; &nbsp; &nbsp;  - numactl<br clear=3D"none">&gt;&gt;&gt;&gt;&nbsp; &nbsp=
-; &nbsp; &nbsp;  - ocfs2-tools<br clear=3D"none">&gt;&gt;&gt;&gt;&nbsp; &nb=
-sp; &nbsp; &nbsp;  - pam_passwdqc<br clear=3D"none">&gt;&gt;&gt;&gt;&nbsp; =
-&nbsp; &nbsp; &nbsp;  - samhain<br clear=3D"none">&gt;&gt;&gt;&gt;&nbsp; &n=
-bsp; &nbsp; &nbsp;  - ltt-usertrace<br clear=3D"none">&gt;&gt;&gt;&gt;&nbsp=
-; &nbsp; &nbsp; &nbsp;  - ftrace<br clear=3D"none">&gt;&gt;&gt;&gt; The abo=
-ve lists correspond with only the P1 requirements that we try<br clear=3D"n=
-one">&gt;&gt;&gt;&gt; to fulfill for the moment. If there are any questions=
- and/or<br clear=3D"none">&gt;&gt;&gt;&gt; suggestions regarding this CGL i=
-nitialtive please address them to me<br clear=3D"none">&gt;&gt;&gt;&gt; and=
- I will try to offer a response in the<br clear=3D"none">&gt;&gt;&gt;&gt; s=
-hortest time possible.<br clear=3D"none">&gt;&gt;&gt;&gt;<br
- clear=3D"none">&gt;&gt;&gt;&gt;<br clear=3D"none">&gt;&gt;&gt;&gt; Thanks,=
-<br clear=3D"none">&gt;&gt;&gt;&gt; Alex<br clear=3D"none">&gt;&gt;&gt;&gt;=
-<br clear=3D"none">&gt;&gt;&gt;&gt; -----Original Message-----<br clear=3D"=
-none">&gt;&gt;&gt;&gt; From: Joe MacDonald [mailto:<a shape=3D"rect" ymailt=
-o=3D"mailto:joe@deserted.net" href=3D"mailto:joe@deserted.net">joe@deserted=
-.net</a>]<br clear=3D"none">&gt;&gt;&gt;&gt; Sent: Monday, July 21, 2014 10=
-:58 PM<br clear=3D"none">&gt;&gt;&gt;&gt; To: Alexandru Vaduva<br clear=3D"=
-none">&gt;&gt;&gt;&gt; Cc: Jeff Osier-Mixon; <a shape=3D"rect" ymailto=3D"m=
-ailto:yocto@yoctoproject.org" href=3D"mailto:yocto@yoctoproject.org">yocto@=
-yoctoproject.org</a><br clear=3D"none">&gt;&gt;&gt;&gt; Subject: Re: [yocto=
-] [OE-core] Carrier Grade layer proposal<br clear=3D"none">&gt;&gt;&gt;&gt;=
-<br clear=3D"none">&gt;&gt;&gt;&gt; Hey Alex,<br clear=3D"none">&gt;&gt;&gt=
-;&gt;<br clear=3D"none">&gt;&gt;&gt;&gt; I've been away from this for a bit=
- but now I'm getting time to look
- at<br clear=3D"none">&gt;&gt;&gt;&gt; it again and I was wondering if you =
-had any deeper level of detail you<br clear=3D"none">&gt;&gt;&gt;&gt; could=
- share about the work going on in meta-cgl.&nbsp; Obviously since this<br c=
-lear=3D"none">&gt;&gt;&gt;&gt; is a new registration and one that will look=
- rather different from all<br clear=3D"none">&gt;&gt;&gt;&gt; of the other =
-CGL registrations currently, those of us in the CGL<br clear=3D"none">&gt;&=
-gt;&gt;&gt; workgroup were quite interested to see this happen. Personally =
-I'm<br clear=3D"none">&gt;&gt;&gt;&gt; also interested in this since it's t=
-he kind of thing I've been doing<br clear=3D"none">&gt;&gt;&gt;&gt; for a l=
-ong time now and if I can, I'd like to help out.&nbsp; In<br clear=3D"none"=
->&gt;&gt;&gt;&gt; particular, if you've got a list of, say, the category B+=
- items, that<br clear=3D"none">&gt;&gt;&gt;&gt; might be something I can do=
- that will be independent of your work on<br clear=3D"none">&gt;&gt;&gt;&gt=
-; the more
- active cat-A stuff.&nbsp; OTOH, cat-A is easy to work on since<br clear=3D=
-"none">&gt;&gt;&gt;&gt; those are the items I saw when I was working with m=
-eta-cgl a month or<br clear=3D"none">&gt;&gt;&gt;&gt; so back.&nbsp; I know=
- you guys are focused on your part of it, but if you<br clear=3D"none">&gt;=
-&gt;&gt;&gt; had sort of a "here's how to help us" guide, that'd be awesome=
-.<br clear=3D"none">&gt;&gt;&gt;&gt;<br clear=3D"none">&gt;&gt;&gt;&gt; Als=
-o, I probably missed it, but is the intent to use either the yocto<br clear=
-=3D"none">&gt;&gt;&gt;&gt; list or the oe list for all meta-cgl discussions=
-, or do you have a<br clear=3D"none">&gt;&gt;&gt;&gt; dedicated list we can=
- sign up for?&nbsp; I see you have guidance for<br clear=3D"none">&gt;&gt;&=
-gt;&gt; sending submissions to meta-cgl, but is that a list that's open to =
-the<br clear=3D"none">&gt;&gt;&gt;&gt; community, or is it an internal alia=
-s / distribution list for Enea?<br clear=3D"none">&gt;&gt;&gt;&gt;<br
- clear=3D"none">&gt;&gt;&gt;&gt; Thanks,<br clear=3D"none">&gt;&gt;&gt;&gt;=
- -J.<br clear=3D"none">&gt;&gt;&gt;&gt;<br clear=3D"none">&gt;&gt;&gt;&gt;<=
-br clear=3D"none">&gt;&gt;&gt;&gt; On Mon, Jul 7, 2014 at 2:43 PM, Alexandr=
-u Vaduva<br clear=3D"none">&gt;&gt;&gt;&gt; &lt;<a shape=3D"rect" ymailto=
-=3D"mailto:Alexandru.Vaduva@enea.com" href=3D"mailto:Alexandru.Vaduva@enea.=
-com">Alexandru.Vaduva@enea.com</a>&gt; wrote:<br clear=3D"none">&gt;&gt;&gt=
-;&gt;&gt; Hello Jeff,<br clear=3D"none">&gt;&gt;&gt;&gt;&gt;<br clear=3D"no=
-ne">&gt;&gt;&gt;&gt;&gt; The errors are package related.<br clear=3D"none">=
-&gt;&gt;&gt;&gt;&gt; Meta-cgl can be seen as a non BSP specific layer (it c=
-an be viewed as<br clear=3D"none">&gt;&gt;&gt;&gt;&gt; the LSB from poky).<=
-br clear=3D"none">&gt;&gt;&gt;&gt;&gt; I already started fixing a number, o=
-f the already existing errors and<br clear=3D"none">&gt;&gt;&gt;&gt;&gt; th=
-e patches will be added upstream after proper testing.<br clear=3D"none">&g=
-t;&gt;&gt;&gt;&gt; I will
- continue the bug fixing and package integration (into the<br clear=3D"none=
-">&gt;&gt;&gt;&gt;&gt; core-image-cgl image) process and after that is fini=
-shed I will<br clear=3D"none">&gt;&gt;&gt;&gt;&gt; continue with the Catego=
-ry B packages.<br clear=3D"none">&gt;&gt;&gt;&gt;&gt;<br clear=3D"none">&gt=
-;&gt;&gt;&gt;&gt; I will also try to keep you guys informed about the lates=
-t updates,<br clear=3D"none">&gt;&gt;&gt;&gt;&gt; mainly on the YPTM, but f=
-or those who cannot wait that much, there is<br clear=3D"none">&gt;&gt;&gt;=
-&gt;&gt; the Git repository with which they can interact:<br clear=3D"none"=
->&gt;&gt;&gt;&gt;&gt; <a shape=3D"rect" href=3D"http://git.enea.com/git/?p=
-=3Dlinux/meta-cgl.git;a=3Dsummary" target=3D"_blank">http://git.enea.com/gi=
-t/?p=3Dlinux/meta-cgl.git;a=3Dsummary</a><br clear=3D"none">&gt;&gt;&gt;&gt=
-;&gt;<br clear=3D"none">&gt;&gt;&gt;&gt;&gt;<br clear=3D"none">&gt;&gt;&gt;=
-&gt;&gt; Have a good day,<br clear=3D"none">&gt;&gt;&gt;&gt;&gt; Alex<br
- clear=3D"none">&gt;&gt;&gt;&gt;&gt;<br clear=3D"none">&gt;&gt;&gt;&gt;&gt;=
-<br clear=3D"none">&gt;&gt;&gt;&gt;&gt; -----Original Message-----<br clear=
-=3D"none">&gt;&gt;&gt;&gt;&gt; From: <a shape=3D"rect" ymailto=3D"mailto:je=
-fro.net@gmail.com" href=3D"mailto:jefro.net@gmail.com">jefro.net@gmail.com<=
-/a> [mailto:<a shape=3D"rect" ymailto=3D"mailto:jefro.net@gmail.com" href=
-=3D"mailto:jefro.net@gmail.com">jefro.net@gmail.com</a>] On Behalf Of<br cl=
-ear=3D"none">&gt;&gt;&gt;&gt;&gt; Jeff Osier-Mixon<br clear=3D"none">&gt;&g=
-t;&gt;&gt;&gt; Sent: Monday, July 07, 2014 9:22 PM<br clear=3D"none">&gt;&g=
-t;&gt;&gt;&gt; To: Alexandru Vaduva<br clear=3D"none">&gt;&gt;&gt;&gt;&gt; =
-Subject: Re: [OE-core] Carrier Grade layer proposal<br clear=3D"none">&gt;&=
-gt;&gt;&gt;&gt;<br clear=3D"none">&gt;&gt;&gt;&gt;&gt; Thanks, Alex.<br cle=
-ar=3D"none">&gt;&gt;&gt;&gt;&gt;<br clear=3D"none">&gt;&gt;&gt;&gt;&gt; Oth=
-ers on the mailing lists, if you have any comments on the contents<br clear=
-=3D"none">&gt;&gt;&gt;&gt;&gt; of
- this new layer, please mention them on this thread.<br clear=3D"none">&gt;=
-&gt;&gt;&gt;&gt;<br clear=3D"none">&gt;&gt;&gt;&gt;&gt; Re compilation erro=
-rs, were they specific to a BSP or were they<br clear=3D"none">&gt;&gt;&gt;=
-&gt;&gt; general errors in the packages?<br clear=3D"none">&gt;&gt;&gt;&gt;=
-&gt;<br clear=3D"none">&gt;&gt;&gt;&gt;&gt; thanks<br clear=3D"none">&gt;&g=
-t;&gt;&gt;&gt;<br clear=3D"none">&gt;&gt;&gt;&gt;&gt; On Mon, Jun 30, 2014 =
-at 8:01 AM, Alexandru Vaduva<br clear=3D"none">&gt;&gt;&gt;&gt;&gt; &lt;<a =
-shape=3D"rect" ymailto=3D"mailto:Alexandru.Vaduva@enea.com" href=3D"mailto:=
-Alexandru.Vaduva@enea.com">Alexandru.Vaduva@enea.com</a>&gt; wrote:<br clea=
-r=3D"none">&gt;&gt;&gt;&gt;&gt;&gt; Hello Jeff,<br clear=3D"none">&gt;&gt;&=
-gt;&gt;&gt;&gt;<br clear=3D"none">&gt;&gt;&gt;&gt;&gt;&gt;<br clear=3D"none=
-">&gt;&gt;&gt;&gt;&gt;&gt;<br clear=3D"none">&gt;&gt;&gt;&gt;&gt;&gt; The a=
-vailable layer is a work in progress.<br clear=3D"none">&gt;&gt;&gt;&gt;&gt=
-;&gt;<br
- clear=3D"none">&gt;&gt;&gt;&gt;&gt;&gt; For the moment we have done an int=
-ernal mapping of the packages<br clear=3D"none">&gt;&gt;&gt;&gt;&gt;&gt; ne=
-eded inside meta-cgl layer. The mapping is done as following:<br clear=3D"n=
-one">&gt;&gt;&gt;&gt;&gt;&gt; A. Requirement that map against package/packa=
-ges with recipes that<br clear=3D"none">&gt;&gt;&gt;&gt;&gt;&gt; already ex=
-ists in Yocto<br clear=3D"none">&gt;&gt;&gt;&gt;&gt;&gt;&nbsp; &nbsp; A1. R=
-equirement that map against package/packages with recipes<br clear=3D"none"=
->&gt;&gt;&gt;&gt;&gt;&gt; already existing in meta-enea<br clear=3D"none">&=
-gt;&gt;&gt;&gt;&gt;&gt;&nbsp; &nbsp; A2. Requirement that map against packa=
-ge/packages with recipes<br clear=3D"none">&gt;&gt;&gt;&gt;&gt;&gt; that<br=
- clear=3D"none">&gt;&gt;&gt;&gt;&gt;&gt; exists in Yocto (but not in meta-e=
-nea) B. Requirement that map<br clear=3D"none">&gt;&gt;&gt;&gt;&gt;&gt; aga=
-inst package/packages without any recipe C. Requirement does not<br
- clear=3D"none">&gt;&gt;&gt;&gt;&gt;&gt; directly map against package/packa=
-ges and needs some investigation.<br clear=3D"none">&gt;&gt;&gt;&gt;&gt;&gt=
-; D. Requirement that no solution have been found after a more detailed<br =
-clear=3D"none">&gt;&gt;&gt;&gt;&gt;&gt; investigation.<br clear=3D"none">&g=
-t;&gt;&gt;&gt;&gt;&gt;<br clear=3D"none">&gt;&gt;&gt;&gt;&gt;&gt;<br clear=
-=3D"none">&gt;&gt;&gt;&gt;&gt;&gt;<br clear=3D"none">&gt;&gt;&gt;&gt;&gt;&g=
-t; When the release was made available on the public repository, the<br cle=
-ar=3D"none">&gt;&gt;&gt;&gt;&gt;&gt; packages from the A1 and A2 were integ=
-rated, a bunch of them with<br clear=3D"none">&gt;&gt;&gt;&gt;&gt;&gt; comp=
-ilation errors:<br clear=3D"none">&gt;&gt;&gt;&gt;&gt;&gt;<br clear=3D"none=
-">&gt;&gt;&gt;&gt;&gt;&gt; -&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; lksctp-tools=
-<br clear=3D"none">&gt;&gt;&gt;&gt;&gt;&gt;<br clear=3D"none">&gt;&gt;&gt;&=
-gt;&gt;&gt; -&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; openais<br
- clear=3D"none">&gt;&gt;&gt;&gt;&gt;&gt;<br clear=3D"none">&gt;&gt;&gt;&gt;=
-&gt;&gt; -&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; pacemaker<br clear=3D"none">&g=
-t;&gt;&gt;&gt;&gt;&gt;<br clear=3D"none">&gt;&gt;&gt;&gt;&gt;&gt; -&nbsp; &=
-nbsp; &nbsp; &nbsp; &nbsp; openhpi<br clear=3D"none">&gt;&gt;&gt;&gt;&gt;&g=
-t;<br clear=3D"none">&gt;&gt;&gt;&gt;&gt;&gt; -&nbsp; &nbsp; &nbsp; &nbsp; =
-&nbsp; open-iscsi-user<br clear=3D"none">&gt;&gt;&gt;&gt;&gt;&gt;<br clear=
-=3D"none">&gt;&gt;&gt;&gt;&gt;&gt; -&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; open=
--iscsi-kernel<br clear=3D"none">&gt;&gt;&gt;&gt;&gt;&gt;<br clear=3D"none">=
-&gt;&gt;&gt;&gt;&gt;&gt; -&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; libcap-ng<br c=
-lear=3D"none">&gt;&gt;&gt;&gt;&gt;&gt;<br clear=3D"none">&gt;&gt;&gt;&gt;&g=
-t;&gt; -&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; cluster-glue<br clear=3D"none">&=
-gt;&gt;&gt;&gt;&gt;&gt;<br clear=3D"none">&gt;&gt;&gt;&gt;&gt;&gt; -&nbsp; =
-&nbsp; &nbsp; &nbsp; &nbsp; cluster-resource-agents<br clear=3D"none">&gt;&=
-gt;&gt;&gt;&gt;&gt;<br
- clear=3D"none">&gt;&gt;&gt;&gt;&gt;&gt; The activity on the meta-cgl was r=
-esumed today and those build and<br clear=3D"none">&gt;&gt;&gt;&gt;&gt;&gt;=
- integration errors will be dealt next.<br clear=3D"none">&gt;&gt;&gt;&gt;&=
-gt;&gt;<br clear=3D"none">&gt;&gt;&gt;&gt;&gt;&gt;<br clear=3D"none">&gt;&g=
-t;&gt;&gt;&gt;&gt;<br clear=3D"none">&gt;&gt;&gt;&gt;&gt;&gt; On the longer=
- run we will try to create recipes and/or fulfill all<br clear=3D"none">&gt=
-;&gt;&gt;&gt;&gt;&gt; the other requirements from the class B, C, and D.<br=
- clear=3D"none">&gt;&gt;&gt;&gt;&gt;&gt;<br clear=3D"none">&gt;&gt;&gt;&gt;=
-&gt;&gt; Please do not hesitate to contact me if you have further questions=
-.<br clear=3D"none">&gt;&gt;&gt;&gt;&gt;&gt;<br clear=3D"none">&gt;&gt;&gt;=
-&gt;&gt;&gt;<br clear=3D"none">&gt;&gt;&gt;&gt;&gt;&gt;<br clear=3D"none">&=
-gt;&gt;&gt;&gt;&gt;&gt;<br clear=3D"none">&gt;&gt;&gt;&gt;&gt;&gt;<br clear=
-=3D"none">&gt;&gt;&gt;&gt;&gt;&gt; Alex<br clear=3D"none">&gt;&gt;&gt;&gt;&=
-gt;&gt;<br
- clear=3D"none">&gt;&gt;&gt;&gt;&gt;&gt;<br clear=3D"none">&gt;&gt;&gt;&gt;=
-&gt;&gt;<br clear=3D"none">&gt;&gt;&gt;&gt;&gt;&gt; From: Jon Aldama<br cle=
-ar=3D"none">&gt;&gt;&gt;&gt;&gt;&gt; Sent: Friday, June 27, 2014 1:07 PM<br=
- clear=3D"none">&gt;&gt;&gt;&gt;&gt;&gt; To: Alexandru Vaduva; Cosmin Moldo=
-veanu; Jenny Andersson; David<br clear=3D"none">&gt;&gt;&gt;&gt;&gt;&gt; Ny=
-str=F6m<br clear=3D"none">&gt;&gt;&gt;&gt;&gt;&gt; Cc: Daniel Bornaz; Adria=
-n Dudau<br clear=3D"none">&gt;&gt;&gt;&gt;&gt;&gt; Subject: RE: Carrier Gra=
-de layer proposal<br clear=3D"none">&gt;&gt;&gt;&gt;&gt;&gt;<br clear=3D"no=
-ne">&gt;&gt;&gt;&gt;&gt;&gt;<br clear=3D"none">&gt;&gt;&gt;&gt;&gt;&gt;<br =
-clear=3D"none">&gt;&gt;&gt;&gt;&gt;&gt; Roger that! Thanks Alexandru!<br cl=
-ear=3D"none">&gt;&gt;&gt;&gt;&gt;&gt;<br clear=3D"none">&gt;&gt;&gt;&gt;&gt=
-;&gt;<br clear=3D"none">&gt;&gt;&gt;&gt;&gt;&gt;<br clear=3D"none">&gt;&gt;=
-&gt;&gt;&gt;&gt;<br clear=3D"none">&gt;&gt;&gt;&gt;&gt;&gt;<br clear=3D"non=
-e">&gt;&gt;&gt;&gt;&gt;&gt;
- From: Alexandru Vaduva<br clear=3D"none">&gt;&gt;&gt;&gt;&gt;&gt; Sent: de=
-n 27 juni 2014 11:43<br clear=3D"none">&gt;&gt;&gt;&gt;&gt;&gt; To: Jon Ald=
-ama; Cosmin Moldoveanu; Jenny Andersson; David Nystr=F6m<br clear=3D"none">=
-&gt;&gt;&gt;&gt;&gt;&gt; Cc: Daniel Bornaz; Adrian Dudau<br clear=3D"none">=
-&gt;&gt;&gt;&gt;&gt;&gt; Subject: RE: Carrier Grade layer proposal<br clear=
-=3D"none">&gt;&gt;&gt;&gt;&gt;&gt;<br clear=3D"none">&gt;&gt;&gt;&gt;&gt;&g=
-t;<br clear=3D"none">&gt;&gt;&gt;&gt;&gt;&gt;<br clear=3D"none">&gt;&gt;&gt=
-;&gt;&gt;&gt; Hello Jon,<br clear=3D"none">&gt;&gt;&gt;&gt;&gt;&gt;<br clea=
-r=3D"none">&gt;&gt;&gt;&gt;&gt;&gt;<br clear=3D"none">&gt;&gt;&gt;&gt;&gt;&=
-gt;<br clear=3D"none">&gt;&gt;&gt;&gt;&gt;&gt; We will first have an intern=
-al meeting on Monday and after that I<br clear=3D"none">&gt;&gt;&gt;&gt;&gt=
-;&gt; will offer an answer to Jeff.<br clear=3D"none">&gt;&gt;&gt;&gt;&gt;&=
-gt;<br clear=3D"none">&gt;&gt;&gt;&gt;&gt;&gt;<br clear=3D"none">&gt;&gt;&g=
-t;&gt;&gt;&gt;<br
- clear=3D"none">&gt;&gt;&gt;&gt;&gt;&gt;<br clear=3D"none">&gt;&gt;&gt;&gt;=
-&gt;&gt;<br clear=3D"none">&gt;&gt;&gt;&gt;&gt;&gt; Alex<br clear=3D"none">=
-&gt;&gt;&gt;&gt;&gt;&gt;<br clear=3D"none">&gt;&gt;&gt;&gt;&gt;&gt;<br clea=
-r=3D"none">&gt;&gt;&gt;&gt;&gt;&gt;<br clear=3D"none">&gt;&gt;&gt;&gt;&gt;&=
-gt; From: Jon Aldama<br clear=3D"none">&gt;&gt;&gt;&gt;&gt;&gt; Sent: Frida=
-y, June 27, 2014 12:32 PM<br clear=3D"none">&gt;&gt;&gt;&gt;&gt;&gt; To: Co=
-smin Moldoveanu; Jenny Andersson; David Nystr=F6m<br clear=3D"none">&gt;&gt=
-;&gt;&gt;&gt;&gt; Cc: Alexandru Vaduva; Daniel Bornaz; Adrian Dudau<br clea=
-r=3D"none">&gt;&gt;&gt;&gt;&gt;&gt; Subject: RE: Carrier Grade layer propos=
-al<br clear=3D"none">&gt;&gt;&gt;&gt;&gt;&gt;<br clear=3D"none">&gt;&gt;&gt=
-;&gt;&gt;&gt;<br clear=3D"none">&gt;&gt;&gt;&gt;&gt;&gt;<br clear=3D"none">=
-&gt;&gt;&gt;&gt;&gt;&gt; Thank you Cosmin,<br clear=3D"none">&gt;&gt;&gt;&g=
-t;&gt;&gt;<br clear=3D"none">&gt;&gt;&gt;&gt;&gt;&gt;<br clear=3D"none">&gt=
-;&gt;&gt;&gt;&gt;&gt;<br
- clear=3D"none">&gt;&gt;&gt;&gt;&gt;&gt; Alexandru, could you please respon=
-d Jeff at the mailing list? (see<br clear=3D"none">&gt;&gt;&gt;&gt;&gt;&gt;=
- down<br clear=3D"none">&gt;&gt;&gt;&gt;&gt;&gt; below)<br clear=3D"none">&=
-gt;&gt;&gt;&gt;&gt;&gt;<br clear=3D"none">&gt;&gt;&gt;&gt;&gt;&gt;<br clear=
-=3D"none">&gt;&gt;&gt;&gt;&gt;&gt;<br clear=3D"none">&gt;&gt;&gt;&gt;&gt;&g=
-t; Cheers<br clear=3D"none">&gt;&gt;&gt;&gt;&gt;&gt;<br clear=3D"none">&gt;=
-&gt;&gt;&gt;&gt;&gt; Jon<br clear=3D"none">&gt;&gt;&gt;&gt;&gt;&gt;<br clea=
-r=3D"none">&gt;&gt;&gt;&gt;&gt;&gt;<br clear=3D"none">&gt;&gt;&gt;&gt;&gt;&=
-gt;<br clear=3D"none">&gt;&gt;&gt;&gt;&gt;&gt; From: Cosmin Moldoveanu<br c=
-lear=3D"none">&gt;&gt;&gt;&gt;&gt;&gt; Sent: den 27 juni 2014 10:59<br clea=
-r=3D"none">&gt;&gt;&gt;&gt;&gt;&gt; To: Jenny Andersson; Jon Aldama; David =
-Nystr=F6m<br clear=3D"none">&gt;&gt;&gt;&gt;&gt;&gt; Cc: Alexandru Vaduva; =
-Daniel Bornaz; Adrian Dudau<br clear=3D"none">&gt;&gt;&gt;&gt;&gt;&gt; Subj=
-ect: RE: Carrier Grade layer
- proposal<br clear=3D"none">&gt;&gt;&gt;&gt;&gt;&gt;<br clear=3D"none">&gt;=
-&gt;&gt;&gt;&gt;&gt;<br clear=3D"none">&gt;&gt;&gt;&gt;&gt;&gt;<br clear=3D=
-"none">&gt;&gt;&gt;&gt;&gt;&gt; Hi,<br clear=3D"none">&gt;&gt;&gt;&gt;&gt;&=
-gt;<br clear=3D"none">&gt;&gt;&gt;&gt;&gt;&gt;<br clear=3D"none">&gt;&gt;&g=
-t;&gt;&gt;&gt;<br clear=3D"none">&gt;&gt;&gt;&gt;&gt;&gt; Alexandru Vaduva =
-will be main responsible for interfacing with<br clear=3D"none">&gt;&gt;&gt=
-;&gt;&gt;&gt; community on meta-cgl topic. He will also attend Yocto Techni=
-cal<br clear=3D"none">&gt;&gt;&gt;&gt;&gt;&gt; Meetings whenever necessary =
-from now on.<br clear=3D"none">&gt;&gt;&gt;&gt;&gt;&gt;<br clear=3D"none">&=
-gt;&gt;&gt;&gt;&gt;&gt;<br clear=3D"none">&gt;&gt;&gt;&gt;&gt;&gt;<br clear=
-=3D"none">&gt;&gt;&gt;&gt;&gt;&gt; BR,<br clear=3D"none">&gt;&gt;&gt;&gt;&g=
-t;&gt;<br clear=3D"none">&gt;&gt;&gt;&gt;&gt;&gt; /Cosmin<br clear=3D"none"=
->&gt;&gt;&gt;&gt;&gt;&gt;<br clear=3D"none">&gt;&gt;&gt;&gt;&gt;&gt;<br
- clear=3D"none">&gt;&gt;&gt;&gt;&gt;&gt;<br clear=3D"none">&gt;&gt;&gt;&gt;=
-&gt;&gt; From: Jenny Andersson<br clear=3D"none">&gt;&gt;&gt;&gt;&gt;&gt; S=
-ent: Friday, June 27, 2014 10:32 AM<br clear=3D"none">&gt;&gt;&gt;&gt;&gt;&=
-gt; To: Jon Aldama; David Nystr=F6m; Cosmin Moldoveanu<br clear=3D"none">&g=
-t;&gt;&gt;&gt;&gt;&gt; Cc: Valentin Cobelea<br clear=3D"none">&gt;&gt;&gt;&=
-gt;&gt;&gt; Subject: RE: Carrier Grade layer proposal<br clear=3D"none">&gt=
-;&gt;&gt;&gt;&gt;&gt;<br clear=3D"none">&gt;&gt;&gt;&gt;&gt;&gt;<br clear=
-=3D"none">&gt;&gt;&gt;&gt;&gt;&gt;<br clear=3D"none">&gt;&gt;&gt;&gt;&gt;&g=
-t; Hi Cosmin,<br clear=3D"none">&gt;&gt;&gt;&gt;&gt;&gt;<br clear=3D"none">=
-&gt;&gt;&gt;&gt;&gt;&gt;<br clear=3D"none">&gt;&gt;&gt;&gt;&gt;&gt;<br clea=
-r=3D"none">&gt;&gt;&gt;&gt;&gt;&gt; How took over after Valentin left Enea?=
- Could someone in your team<br clear=3D"none">&gt;&gt;&gt;&gt;&gt;&gt; resp=
-ond.<br clear=3D"none">&gt;&gt;&gt;&gt;&gt;&gt;<br clear=3D"none">&gt;&gt;&=
-gt;&gt;&gt;&gt;<br
- clear=3D"none">&gt;&gt;&gt;&gt;&gt;&gt;<br clear=3D"none">&gt;&gt;&gt;&gt;=
-&gt;&gt; Thanks,<br clear=3D"none">&gt;&gt;&gt;&gt;&gt;&gt;<br clear=3D"non=
-e">&gt;&gt;&gt;&gt;&gt;&gt; Jenny<br clear=3D"none">&gt;&gt;&gt;&gt;&gt;&gt=
-;<br clear=3D"none">&gt;&gt;&gt;&gt;&gt;&gt;<br clear=3D"none">&gt;&gt;&gt;=
-&gt;&gt;&gt;<br clear=3D"none">&gt;&gt;&gt;&gt;&gt;&gt; From: Jon Aldama<br=
- clear=3D"none">&gt;&gt;&gt;&gt;&gt;&gt; Sent: den 27 juni 2014 09:28<br cl=
-ear=3D"none">&gt;&gt;&gt;&gt;&gt;&gt; To: David Nystr=F6m; Jenny Andersson<=
-br clear=3D"none">&gt;&gt;&gt;&gt;&gt;&gt; Cc: Valentin Cobelea<br clear=3D=
-"none">&gt;&gt;&gt;&gt;&gt;&gt; Subject: FW: Carrier Grade layer proposal<b=
-r clear=3D"none">&gt;&gt;&gt;&gt;&gt;&gt;<br clear=3D"none">&gt;&gt;&gt;&gt=
-;&gt;&gt;<br clear=3D"none">&gt;&gt;&gt;&gt;&gt;&gt;<br clear=3D"none">&gt;=
-&gt;&gt;&gt;&gt;&gt; David, Jenny,<br clear=3D"none">&gt;&gt;&gt;&gt;&gt;&g=
-t;<br clear=3D"none">&gt;&gt;&gt;&gt;&gt;&gt;<br clear=3D"none">&gt;&gt;&gt=
-;&gt;&gt;&gt;<br
- clear=3D"none">&gt;&gt;&gt;&gt;&gt;&gt; Will any of you answer this?<br cl=
-ear=3D"none">&gt;&gt;&gt;&gt;&gt;&gt;<br clear=3D"none">&gt;&gt;&gt;&gt;&gt=
-;&gt;<br clear=3D"none">&gt;&gt;&gt;&gt;&gt;&gt;<br clear=3D"none">&gt;&gt;=
-&gt;&gt;&gt;&gt; BTW, have you managed to file the Yocto compatibility appl=
-ication?<br clear=3D"none">&gt;&gt;&gt;&gt;&gt;&gt;<br clear=3D"none">&gt;&=
-gt;&gt;&gt;&gt;&gt;<br clear=3D"none">&gt;&gt;&gt;&gt;&gt;&gt;<br clear=3D"=
-none">&gt;&gt;&gt;&gt;&gt;&gt; Regards<br clear=3D"none">&gt;&gt;&gt;&gt;&g=
-t;&gt;<br clear=3D"none">&gt;&gt;&gt;&gt;&gt;&gt; Jon<br clear=3D"none">&gt=
-;&gt;&gt;&gt;&gt;&gt;<br clear=3D"none">&gt;&gt;&gt;&gt;&gt;&gt;<br clear=
-=3D"none">&gt;&gt;&gt;&gt;&gt;&gt;<br clear=3D"none">&gt;&gt;&gt;&gt;&gt;&g=
-t; From: Osier-mixon, Jeffrey [mailto:<a shape=3D"rect" ymailto=3D"mailto:j=
-effrey.osier-mixon@intel.com" href=3D"mailto:jeffrey.osier-mixon@intel.com"=
->jeffrey.osier-mixon@intel.com</a>]<br clear=3D"none">&gt;&gt;&gt;&gt;&gt;&=
-gt; Sent: den 26 juni 2014
- 20:36<br clear=3D"none">&gt;&gt;&gt;&gt;&gt;&gt; To: David Nystr=F6m; <a s=
-hape=3D"rect" ymailto=3D"mailto:davide.ricci@windriver.com" href=3D"mailto:=
-davide.ricci@windriver.com">davide.ricci@windriver.com</a>; <a shape=3D"rec=
-t" ymailto=3D"mailto:challinan@gmail.com" href=3D"mailto:challinan@gmail.co=
-m">challinan@gmail.com</a>;<br clear=3D"none">&gt;&gt;&gt;&gt;&gt;&gt; <a s=
-hape=3D"rect" ymailto=3D"mailto:teodor.bobornilo@windriver.com" href=3D"mai=
-lto:teodor.bobornilo@windriver.com">teodor.bobornilo@windriver.com</a>; Val=
-entin Cobelea;<br clear=3D"none">&gt;&gt;&gt;&gt;&gt;&gt; <a shape=3D"rect"=
- ymailto=3D"mailto:chase.maupin@ti.com" href=3D"mailto:chase.maupin@ti.com"=
->chase.maupin@ti.com</a>; Jon Aldama; <a shape=3D"rect" ymailto=3D"mailto:p=
-hilip.balister@gmail.com" href=3D"mailto:philip.balister@gmail.com">philip.=
-balister@gmail.com</a>;<br clear=3D"none">&gt;&gt;&gt;&gt;&gt;&gt; <a shape=
-=3D"rect" ymailto=3D"mailto:kevin_mccombe@mentor.com"
- href=3D"mailto:kevin_mccombe@mentor.com">kevin_mccombe@mentor.com</a>; <a =
-shape=3D"rect" ymailto=3D"mailto:akuster@mvista.com" href=3D"mailto:akuster=
-@mvista.com">akuster@mvista.com</a>;<br clear=3D"none">&gt;&gt;&gt;&gt;&gt;=
-&gt; <a shape=3D"rect" ymailto=3D"mailto:jason.wessel@windriver.com" href=
-=3D"mailto:jason.wessel@windriver.com">jason.wessel@windriver.com</a>; <a s=
-hape=3D"rect" ymailto=3D"mailto:richard.purdie@linuxfoundation.org" href=3D=
-"mailto:richard.purdie@linuxfoundation.org">richard.purdie@linuxfoundation.=
-org</a>;<br clear=3D"none">&gt;&gt;&gt;&gt;&gt;&gt; <a shape=3D"rect" ymail=
-to=3D"mailto:hui.geng@huawei.com" href=3D"mailto:hui.geng@huawei.com">hui.g=
-eng@huawei.com</a>; <a shape=3D"rect" ymailto=3D"mailto:john_cherry@mentor.=
-com" href=3D"mailto:john_cherry@mentor.com">john_cherry@mentor.com</a>;<br =
-clear=3D"none">&gt;&gt;&gt;&gt;&gt;&gt; <a shape=3D"rect" ymailto=3D"mailto=
-:jeffrey.osier-mixon@intel.com" href=3D"mailto:jeffrey.osier-mixon@intel.co=
-m">jeffrey.osier-mixon@intel.com</a><br
- clear=3D"none">&gt;&gt;&gt;&gt;&gt;&gt; Cc: Philip Balister<br clear=3D"no=
-ne">&gt;&gt;&gt;&gt;&gt;&gt; Subject: YP: Carrier Grade layer proposal<br c=
-lear=3D"none">&gt;&gt;&gt;&gt;&gt;&gt;<br clear=3D"none">&gt;&gt;&gt;&gt;&g=
-t;&gt;<br clear=3D"none">&gt;&gt;&gt;&gt;&gt;&gt;<br clear=3D"none">&gt;&gt=
-;&gt;&gt;&gt;&gt; Hi all - this is a simple followup to our meeting at ELC =
-regarding a<br clear=3D"none">&gt;&gt;&gt;&gt;&gt;&gt; meta-cgl layer, prop=
-osed by Enea.<br clear=3D"none">&gt;&gt;&gt;&gt;&gt;&gt;<br clear=3D"none">=
-&gt;&gt;&gt;&gt;&gt;&gt;<br clear=3D"none">&gt;&gt;&gt;&gt;&gt;&gt;<br clea=
-r=3D"none">&gt;&gt;&gt;&gt;&gt;&gt; The plan was to create a list of recipe=
-s to be included, and to start<br clear=3D"none">&gt;&gt;&gt;&gt;&gt;&gt; a=
- discussion on the mailing list.There is a thread on the list from<br clear=
-=3D"none">&gt;&gt;&gt;&gt;&gt;&gt; back in April, but I don't see anything =
-more recent than that. Has<br clear=3D"none">&gt;&gt;&gt;&gt;&gt;&gt; there=
- been any
- progress?<br clear=3D"none">&gt;&gt;&gt;&gt;&gt;&gt;<br clear=3D"none">&gt=
-;&gt;&gt;&gt;&gt;&gt;<br clear=3D"none">&gt;&gt;&gt;&gt;&gt;&gt;<br clear=
-=3D"none">&gt;&gt;&gt;&gt;&gt;&gt; thanks<br clear=3D"none">&gt;&gt;&gt;&gt=
-;&gt;&gt;<br clear=3D"none">&gt;&gt;&gt;&gt;&gt;&gt;<br clear=3D"none">&gt;=
-&gt;&gt;&gt;&gt;&gt; --<br clear=3D"none">&gt;&gt;&gt;&gt;&gt;&gt; ________=
-_______________________________________<br clear=3D"none">&gt;&gt;&gt;&gt;&=
-gt;&gt; Openembedded-core mailing list<br clear=3D"none">&gt;&gt;&gt;&gt;&g=
-t;&gt; <a shape=3D"rect" ymailto=3D"mailto:Openembedded-core@lists.openembe=
-dded.org" href=3D"mailto:Openembedded-core@lists.openembedded.org">Openembe=
-dded-core@lists.openembedded.org</a><br clear=3D"none">&gt;&gt;&gt;&gt;&gt;=
-&gt; <a shape=3D"rect" href=3D"http://lists.openembedded.org/mailman/listin=
-fo/openembedded-core" target=3D"_blank">http://lists.openembedded.org/mailm=
-an/listinfo/openembedded-core</a><br clear=3D"none">&gt;&gt;&gt;&gt;&gt;&gt=
-;<br
- clear=3D"none">&gt;&gt;&gt;&gt;&gt;<br clear=3D"none">&gt;&gt;&gt;&gt;&gt;=
-<br clear=3D"none">&gt;&gt;&gt;&gt;&gt; --<br clear=3D"none">&gt;&gt;&gt;&g=
-t;&gt; Jeff Osier-Mixon @Intel<br clear=3D"none">&gt;&gt;&gt;&gt;&gt; Yocto=
- Project Community Manager <a shape=3D"rect" href=3D"http://yoctoproject.or=
-g/" target=3D"_blank">http://yoctoproject.org</a><br clear=3D"none">&gt;&gt=
-;&gt;&gt;&gt; --<br clear=3D"none">&gt;&gt;&gt;&gt;&gt; ___________________=
-____________________________<br clear=3D"none">&gt;&gt;&gt;&gt;&gt; yocto m=
-ailing list<br clear=3D"none">&gt;&gt;&gt;&gt;&gt; <a shape=3D"rect" ymailt=
-o=3D"mailto:yocto@yoctoproject.org" href=3D"mailto:yocto@yoctoproject.org">=
-yocto@yoctoproject.org</a><br clear=3D"none">&gt;&gt;&gt;&gt;&gt; <a shape=
-=3D"rect" href=3D"https://lists.yoctoproject.org/listinfo/yocto" target=3D"=
-_blank">https://lists.yoctoproject.org/listinfo/yocto</a><br clear=3D"none"=
->&gt;&gt;&gt;&gt;<br clear=3D"none">&gt;&gt;&gt;&gt;<br clear=3D"none">&gt;=
-&gt;&gt;&gt; --<br
- clear=3D"none">&gt;&gt;&gt;&gt; Joe MacDonald<br clear=3D"none">&gt;&gt;&g=
-t;&gt; :wq<br clear=3D"none">&gt;&gt;&gt;<br clear=3D"none">&gt;&gt;&gt;<br=
- clear=3D"none">&gt;&gt;<br clear=3D"none">&gt;<br clear=3D"none"><br clear=
-=3D"none">-- <br clear=3D"none">___________________________________________=
-____<br clear=3D"none">yocto mailing list<br clear=3D"none"><a shape=3D"rec=
-t" ymailto=3D"mailto:yocto@yoctoproject.org" href=3D"mailto:yocto@yoctoproj=
-ect.org">yocto@yoctoproject.org</a><br clear=3D"none"><a shape=3D"rect" hre=
-f=3D"https://lists.yoctoproject.org/listinfo/yocto" target=3D"_blank">https=
-://lists.yoctoproject.org/listinfo/yocto</a><br clear=3D"none"></div><br><b=
-r></div>  </div> </div>  </div> </div></body></html>
+<br>cd build/buildhistory/packages<br>grep -nri nativesdk-libqt5core-dev .<=
+br>./i686-nativesdk-oesdk-linux/nativesdk-qtbase/nativesdk-qtbase-tools-dev=
+/latest:3:PKG =3D nativesdk-libqt5core-dev<br><br></div><div>which shows th=
+at the yocto package is &quot;nativesdk-qtbase-tools-dev&quot;, which is pr=
+ovided by &quot;<a href=3D"http://nativesdk-qtbase_5.2.1.bb" target=3D"_bla=
+nk">nativesdk-qtbase_5.2.1.bb</a>&quot;.<br>
 
---592913864-2135520473-1406046575=:2940--
+<br></div><div>But I&#39;m still not able to find out where in yocto PKG va=
+riable is configured (which changes this rpm file name from the default one=
+).<br><br> </div></div><div class=3D"HOEnZb"><div class=3D"h5"><div class=
+=3D"gmail_extra">
+<br><br><div class=3D"gmail_quote">
+On Tue, Jul 22, 2014 at 5:50 PM, Bharath Chandra <span dir=3D"ltr">&lt;<a h=
+ref=3D"mailto:ellurubharath29@gmail.com" target=3D"_blank">ellurubharath29@=
+gmail.com</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" style=
+=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">
+
+<div dir=3D"ltr"><div><font><span style=3D"font-family:comic sans ms,sans-s=
+erif">Hi Anooj,<br><br>I guess you are looking at a wrong version of the re=
+cipe file, you have to look into version number 5.2.1 and revision r1 as yo=
+ur package name is suggesting but the link which you have mentioned is for =
+5.3.1 . Kindly, have a look into correct version number of recipe file and =
+if you do not find any package name in the recipe file then you can search =
+in <b>.inc</b> files which are included in that recipe file.<br>
+
+
+</span></font></div><font><span style=3D"font-family:comic sans ms,sans-ser=
+if">for eg : <br></span></font><pre><font><span style=3D"font-family:comic =
+sans ms,sans-serif"><span>require</span> <span>qt5</span><span>-</span><spa=
+n>${</span><span>PV</span><span>}</span><span>.inc<br>
+
+
+<br></span></span></font></pre><pre><font><span style=3D"font-family:comic =
+sans ms,sans-serif"><span>You have to check in qt5-5.2.1.inc file and see i=
+f any package is included with the name which you are searching for.<br>
+
+
+<br></span></span></font></pre><pre><span><font><span style=3D"font-family:=
+comic sans ms,sans-serif">Thanks &amp; Regards,<br>Bharath Chandra Elluru</=
+span></font><br></span></pre></div><div class=3D"gmail_extra"><br>
+<br><div class=3D"gmail_quote"><div><div>On Tue, Jul 22, 2014 at 6:52 AM, A=
+nooj Gopi <span dir=3D"ltr">&lt;<a href=3D"mailto:anoojgopi@gmail.com" targ=
+et=3D"_blank">anoojgopi@gmail.com</a>&gt;</span> wrote:<br></div></div>
+<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
+x #ccc solid;padding-left:1ex"><div><div>
+<div dir=3D"ltr"><div class=3D"gmail_quote"><div dir=3D"ltr"><div><br></div=
+><div>Yes I am trying to track down the recipe from the rpm file. In my pro=
+ject yocto builds the rpm package &quot;nativesdk-libqt5core-dev-5.2.1-r1.i=
+686_nativesdk.rpm&quot; (by <a href=3D"https://github.com/meta-qt5/meta-qt5=
+" target=3D"_blank">https://github.com/meta-qt5/meta-qt5</a>) but it is not=
+ included in my sdk sysroot image. So I would like to see how I could inclu=
+de this into my sdk. For that I am tracing back the recipe which generated =
+the rpm.<br>
+
+
+
+
+</div><div><br></div><div>I tried as you said:<br></div><div>From the sourc=
+e package name I can see it is from &quot;Source RPM=C2=A0 : nativesdk-qtba=
+se-5.2.1-r1.src.rpm&quot;, which means bb file is <a href=3D"https://github=
+.com/meta-qt5/meta-qt5/blob/master/recipes-qt/qt5/nativesdk-qtbase_5.3.1.bb=
+" target=3D"_blank">https://github.com/meta-qt5/meta-qt5/blob/master/recipe=
+s-qt/qt5/nativesdk-qtbase_5.3.1.bb</a><br>
+
+
+
+
+</div><div>Now this from the bb file content I can see this file provides m=
+ultiple packages, (for eg. nativesdk-qtbase-tools-dbg nativesdk-qtbase-tool=
+s-dev nativesdk-qtbase-tools-staticdev nativesdk-qtbase-tool) but I still c=
+ould not find where it is configured to generate the package &quot;nativesd=
+k-libqt5core-dev-5.2.1-r1.i686_nativesdk.rpm&quot;.<br>
+
+
+
+
+<br></div><div>As Belen in his last mail, the tools like &quot;Toaster&quot=
+; could confirm this (by listing the packages generated from a bb file), bu=
+t is there any way I can do it in Yocto Project 1.5? </div><div><br></div>
+
+
+
+
+<div>Regards,<br>Anooj<br></div></div><div><div><div><div class=3D"gmail_ex=
+tra"><br><br><div class=3D"gmail_quote">On Tue, Jul 22, 2014 at 11:15 AM, B=
+urton, Ross <span dir=3D"ltr">&lt;<a href=3D"mailto:ross.burton@intel.com" =
+target=3D"_blank">ross.burton@intel.com</a>&gt;</span> wrote:<br>
+
+
+
+
+<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
+x #ccc solid;padding-left:1ex"><div><div>On 21 July 2014 16:39, Anooj Gopi =
+&lt;<a href=3D"mailto:anoojgopi@gmail.com" target=3D"_blank">anoojgopi@gmai=
+l.com</a>&gt; wrote:<br>
+
+
+
+
+
+&gt; Could some one help me to understand how we could find the bb file whi=
+ch<br>
+&gt; generated particular package (rpm package for eg.)?<br>
+&gt; (In some cases the name of the package and recipe name differ drastica=
+lly)<br>
+&gt;<br>
+&gt; Also is there any way to list packages (rpm) generated by particular r=
+ecipe<br>
+&gt; (yocto package) easily. (without looking into the PACKAGES variable).<=
+br>
+<br>
+</div></div>It&#39;s probably best if you explain exactly what you want to =
+do.<br>
+<br>
+If you want to work backwards from a RPM to the recipe, then binary<br>
+RPMs have a Source RPM metadata field and the srpm is named after the<br>
+recipe:<br>
+<br>
+$ rpm -qpi connman-tests-1.24-r0.15.corei7_64.rpm | grep Source<br>
+Source RPM =C2=A0: connman-1.24-r0.15.src.rpm<br>
+<span><font color=3D"#888888"><br>
+Ross<br>
+</font></span></blockquote></div><br></div>
+</div></div></div></div><br></div>
+<br></div></div><span><font color=3D"#888888">--<br>
+_______________________________________________<br>
+yocto mailing list<br>
+<a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yocto@yoctoproj=
+ect.org</a><br>
+<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" target=3D"_blank"=
+>https://lists.yoctoproject.org/listinfo/yocto</a><br>
+<br></font></span></blockquote></div><span><font color=3D"#888888"><br><br =
+clear=3D"all"><br>-- <br><div dir=3D"ltr">Thanks &amp; Regards,<div>Bharath=
+ Chandra Elluru.</div><div>Contact Number:<a href=3D"tel:785-979-4875" valu=
+e=3D"+917859794875" target=3D"_blank">785-979-4875</a>.</div>
+
+</div>
+</font></span></div>
+</blockquote></div><br></div>
+</div></div></blockquote></div><br><br clear=3D"all"><br>-- <br><div dir=3D=
+"ltr">Thanks &amp; Regards,<div>Bharath Chandra Elluru.</div><div>Contact N=
+umber:785-979-4875.</div></div>
+</div>
+
+--001a11c3859400c89b04fecad780--
