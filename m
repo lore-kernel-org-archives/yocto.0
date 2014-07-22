@@ -1,46 +1,45 @@
-Return-Path: <belen.barros.pena@intel.com>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 2588BE00572; Tue, 22 Jul 2014 02:08:39 -0700 (PDT)
+	id 6EDA9E00572; Tue, 22 Jul 2014 02:16:03 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [134.134.136.24 listed in list.dnswl.org]
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [209.85.216.47 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E4BDAE00524
-	for <yocto@yoctoproject.org>; Tue, 22 Jul 2014 02:08:27 -0700 (PDT)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga102.jf.intel.com with ESMTP; 22 Jul 2014 02:02:47 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.01,708,1400050800"; d="scan'208";a="576893409"
-Received: from irsmsx101.ger.corp.intel.com ([163.33.3.153])
-	by orsmga002.jf.intel.com with ESMTP; 22 Jul 2014 02:07:41 -0700
-Received: from irsmsx105.ger.corp.intel.com (163.33.3.28) by
-	IRSMSX101.ger.corp.intel.com (163.33.3.153) with Microsoft SMTP Server
-	(TLS) id 14.3.123.3; Tue, 22 Jul 2014 10:07:40 +0100
-Received: from irsmsx106.ger.corp.intel.com ([169.254.8.192]) by
-	IRSMSX105.ger.corp.intel.com ([169.254.7.76]) with mapi id
-	14.03.0123.003; Tue, 22 Jul 2014 10:07:40 +0100
-From: "Barros Pena, Belen" <belen.barros.pena@intel.com>
-To: Anooj Gopi <anoojgopi@gmail.com>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>
-Thread-Topic: [yocto] How to find the bb file from package name
-Thread-Index: AQHPpYxjK93Widp9EkGx0GBOEOWqKA==
-Date: Tue, 22 Jul 2014 09:07:40 +0000
-Message-ID: <CFF3E7AF.48405%belen.barros.pena@intel.com>
-References: <CALkREYCJARja3TPwPR4Ck6wLrPa1Wmb2un3LBeKjt4PTszKo4Q@mail.gmail.com>
-In-Reply-To: <CALkREYCJARja3TPwPR4Ck6wLrPa1Wmb2un3LBeKjt4PTszKo4Q@mail.gmail.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-user-agent: Microsoft-MacOutlook/14.4.3.140616
-x-originating-ip: [10.237.224.82]
+Received: from mail-qa0-f47.google.com (mail-qa0-f47.google.com
+	[209.85.216.47])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2FDA7E00524
+	for <yocto@yoctoproject.org>; Tue, 22 Jul 2014 02:15:57 -0700 (PDT)
+Received: by mail-qa0-f47.google.com with SMTP id i13so6185925qae.6
+	for <yocto@yoctoproject.org>; Tue, 22 Jul 2014 02:15:57 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc:content-type;
+	bh=cxAFcpL5DlgMSWyXqkEvezvSCDB0UC3Nr4cAZxqLEQc=;
+	b=lGpsOqjVgMFJz7g+UEjhCC27ed5lQyU5zKEOuLAiz3qKTwWsEmaugSu15nHJojTzGq
+	AVq0yyWP4m66GidXvsls7D6cSHVcIeAnHcSeD6sSsY57kBhpKiWt4mYddi+49FZVWWOm
+	kWmQJXuk836RWNDYeHvEXHvTy5CS06EyS8uCxwbmKiUWMUQGyhkZ+N8RugXkM+Vmp4gl
+	AoGdzqOQUvAPyd7x//gAOQj+kRZepDiBNd5u0yhdGUjKlSpvod8B5K/7WcCt4Y0aXlPs
+	7Zw+EE6Ljr96W+io+flVd+Qgb/sAYq3XxsL0CMQCZodHbYhMgik6J2FLL/z0lPUg8xdO
+	E0jQ==
+X-Gm-Message-State: ALoCoQmg16AftIOPuR6IACe0baqkqyR0/XCiduUmqBTB8UJ7chjyxvwWB2TF7s89yc8oPgBPhyO6
+X-Received: by 10.140.42.10 with SMTP id b10mr17748598qga.82.1406020556916;
+	Tue, 22 Jul 2014 02:15:56 -0700 (PDT)
 MIME-Version: 1.0
+Received: by 10.140.86.99 with HTTP; Tue, 22 Jul 2014 02:15:36 -0700 (PDT)
+In-Reply-To: <CALkREYCJARja3TPwPR4Ck6wLrPa1Wmb2un3LBeKjt4PTszKo4Q@mail.gmail.com>
+References: <CALkREYCJARja3TPwPR4Ck6wLrPa1Wmb2un3LBeKjt4PTszKo4Q@mail.gmail.com>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Tue, 22 Jul 2014 10:15:36 +0100
+Message-ID: <CAJTo0LYgQWCXJY1L7EhdP72oOyxVkigx1z8cdGoGBXOpWqcd1w@mail.gmail.com>
+To: Anooj Gopi <anoojgopi@gmail.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: How to find the bb file from package name
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -53,46 +52,25 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 22 Jul 2014 09:08:39 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="iso-8859-1"
-Content-ID: <F72825BB6066A5469083FBBB94AD05FE@intel.com>
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Tue, 22 Jul 2014 09:16:03 -0000
+Content-Type: text/plain; charset=UTF-8
 
-On 21/07/2014 16:39, "Anooj Gopi" <anoojgopi@gmail.com> wrote:
-
->Hello All,
+On 21 July 2014 16:39, Anooj Gopi <anoojgopi@gmail.com> wrote:
+> Could some one help me to understand how we could find the bb file which
+> generated particular package (rpm package for eg.)?
+> (In some cases the name of the package and recipe name differ drastically)
 >
->
->Could some one help me to understand how we could find the bb file which
->generated particular package (rpm package for eg.)?
->
->(In some cases the name of the package and recipe name differ drastically)
->
->
->Also is there any way to list packages (rpm) generated by particular
->recipe (yocto package) easily. (without looking into the PACKAGES
->variable).
+> Also is there any way to list packages (rpm) generated by particular recipe
+> (yocto package) easily. (without looking into the PACKAGES variable).
 
-Hi Anooj,
+It's probably best if you explain exactly what you want to do.
 
-One of the ways to get this information is Toaster, a web application that
-collects data about your builds and presents it in a web interface. More
-information here
+If you want to work backwards from a RPM to the recipe, then binary
+RPMs have a Source RPM metadata field and the srpm is named after the
+recipe:
 
-https://www.yoctoproject.org/documentation/toaster-manual
+$ rpm -qpi connman-tests-1.24-r0.15.corei7_64.rpm | grep Source
+Source RPM  : connman-1.24-r0.15.src.rpm
 
-It's only compatible with Yocto Project 1.6 though.
-
-Cheers
-
-Bel=E9n
-
->
->
->
->Best Regards,
->Anooj Gopi
->
-
+Ross
 
