@@ -1,57 +1,31 @@
-Return-Path: <anoojgopi@gmail.com>
+Return-Path: <maciej.borzecki@open-rnd.pl>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 9C71EE00576; Tue, 22 Jul 2014 04:27:47 -0700 (PDT)
+	id 72F0FE00576; Tue, 22 Jul 2014 04:43:08 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [74.125.82.178 listed in list.dnswl.org]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (anoojgopi[at]gmail.com)
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-we0-f178.google.com (mail-we0-f178.google.com
-	[74.125.82.178])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 793F6E0054C
-	for <yocto@yoctoproject.org>; Tue, 22 Jul 2014 04:27:38 -0700 (PDT)
-Received: by mail-we0-f178.google.com with SMTP id w61so8975236wes.37
-	for <yocto@yoctoproject.org>; Tue, 22 Jul 2014 04:27:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type;
-	bh=iPr4HHy1vgZ4iNMod+QGLOjfjZU50iK2QyOyi05Ysno=;
-	b=r0W/52Moy/3eLGffpb/oqivMemkMA9sgi0i9DojDa+AxoeCn10cV0V9zKao3UyYaj3
-	G2ljisbaqoEW8kXgvjZV7hW99pWd6v20tSgpPM1B7L64kDiGxH/hRzob5v8Yp09cg5gI
-	ywZ16ORIIGuqb+f52qFJXpx4DHYiZHdRXJJbnoszlvlCTX00mOIY+lpCWllTrDxIbUrt
-	zoVjqju1/0avI3bky+Kulqury+dPRseNthz1pyV+5hJt2Lbpzl4NaEiCbR5EQ7l4uF8/
-	H/0R75x2Jdv6+QSuXVuHjOX6Q8B3kJV1owbnNZwZKkPTMnm10UpelTwPps3hHJGuwFrB
-	RXtQ==
-MIME-Version: 1.0
-X-Received: by 10.194.100.34 with SMTP id ev2mr32449035wjb.76.1406028458125;
-	Tue, 22 Jul 2014 04:27:38 -0700 (PDT)
-Received: by 10.194.19.161 with HTTP; Tue, 22 Jul 2014 04:27:38 -0700 (PDT)
-In-Reply-To: <CFF3E7AF.48405%belen.barros.pena@intel.com>
-References: <CALkREYCJARja3TPwPR4Ck6wLrPa1Wmb2un3LBeKjt4PTszKo4Q@mail.gmail.com>
-	<CFF3E7AF.48405%belen.barros.pena@intel.com>
-Date: Tue, 22 Jul 2014 13:27:38 +0200
-Message-ID: <CALkREYBBoU=qNvxgi6NPh7VqBVApmAczVuLVbJ0aWxkr2Asp2A@mail.gmail.com>
-From: Anooj Gopi <anoojgopi@gmail.com>
-To: "Barros Pena, Belen" <belen.barros.pena@intel.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: How to find the bb file from package name
+Received: from akt59.rev.netart.pl (akt59.rev.netart.pl [85.128.150.59])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 43AF9E0054C
+	for <yocto@yoctoproject.org>; Tue, 22 Jul 2014 04:43:05 -0700 (PDT)
+Received: from localhost.localdomain (unknown [46.170.72.194])
+	by open-rnd.nazwa.pl (Postfix) with ESMTP id 38B58294904F
+	for <yocto@yoctoproject.org>; Tue, 22 Jul 2014 13:43:02 +0200 (CEST)
+Message-ID: <1406029381.16746.16.camel@localhost.localdomain>
+From: Maciek Borzecki <maciej.borzecki@open-rnd.pl>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Date: Tue, 22 Jul 2014 13:43:01 +0200
+Organization: Open-RnD sp. z o.o.
+X-Mailer: Evolution 3.12.3 (3.12.3-1.fc20) 
+Mime-Version: 1.0
+Subject: read only rootfs & systemd
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
+Reply-To: maciej.borzecki@open-rnd.pl
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -60,126 +34,39 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 22 Jul 2014 11:27:47 -0000
-Content-Type: multipart/alternative; boundary=089e0160aa3aca6e1d04fec68206
+X-List-Received-Date: Tue, 22 Jul 2014 11:43:08 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 
---089e0160aa3aca6e1d04fec68206
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+Hi,
 
-Hello Belen,
+Is read-only-rootfs supported on systemd setups?
 
-"Toaster" seems promising. But unfortunately I am currently with Yocto
-Project 1.5
-Do you see any other possibility in 1.5?
+The current dev manual is not clear about this. Also in image.bbclass
+there are comments that read_only_rootfs_hook supports only sysvinit
+setups.
 
-Best Regards,
-Anooj
+Thanks,
+-- 
+Maciej Borzęcki
+Senior Software Developer at Open-RnD Sp. z o.o., Poland
+www.open-rnd.pl
+mobile: +48 889 117 365, fax: +48 42 657 9079
+
+Niniejsza wiadomość wraz z załącznikami może zawierać chronione prawem
+lub poufne informacje i została wysłana wyłącznie do wiadomości i
+użytku osób, do których została zaadresowana. Jeśli wiadomość została
+otrzymana przypadkowo zabrania się jej kopiowania lub rozsyłania do
+osób trzecich. W takim przypadku uprasza się o natychmiastowe
+zniszczenie wiadomości oraz poinformowanie nadawcy o zaistniałej
+sytuacji za pomocą wiadomości zwrotnej. Dziękujemy.
+
+This message, including any attachments hereto, may contain privileged
+or confidential information and is sent solely for the attention and
+use of the intended addressee(s). If you are not an intended addressee,
+you may neither use this message nor copy or deliver it to anyone. In
+such case, you should immediately destroy this message and kindly notify
+the sender by reply email. Thank you.
 
 
-On Tue, Jul 22, 2014 at 11:07 AM, Barros Pena, Belen <
-belen.barros.pena@intel.com> wrote:
 
-> On 21/07/2014 16:39, "Anooj Gopi" <anoojgopi@gmail.com> wrote:
->
-> >Hello All,
-> >
-> >
-> >Could some one help me to understand how we could find the bb file which
-> >generated particular package (rpm package for eg.)?
-> >
-> >(In some cases the name of the package and recipe name differ drasticall=
-y)
-> >
-> >
-> >Also is there any way to list packages (rpm) generated by particular
-> >recipe (yocto package) easily. (without looking into the PACKAGES
-> >variable).
->
-> Hi Anooj,
->
-> One of the ways to get this information is Toaster, a web application tha=
-t
-> collects data about your builds and presents it in a web interface. More
-> information here
->
-> https://www.yoctoproject.org/documentation/toaster-manual
->
-> It's only compatible with Yocto Project 1.6 though.
->
-> Cheers
->
-> Bel=C3=A9n
->
-> >
-> >
-> >
-> >Best Regards,
-> >Anooj Gopi
-> >
->
->
-
---089e0160aa3aca6e1d04fec68206
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div>Hello Belen,<br><br></div><div></div><div>&quot;Toast=
-er&quot; seems promising. But unfortunately I am currently with Yocto Proje=
-ct 1.5<br></div><div>Do you see any other possibility in 1.5?<br></div><div=
->
-<br></div><div>Best Regards,<br>Anooj<br></div></div><div class=3D"gmail_ex=
-tra"><br><br><div class=3D"gmail_quote">On Tue, Jul 22, 2014 at 11:07 AM, B=
-arros Pena, Belen <span dir=3D"ltr">&lt;<a href=3D"mailto:belen.barros.pena=
-@intel.com" target=3D"_blank">belen.barros.pena@intel.com</a>&gt;</span> wr=
-ote:<br>
-<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
-x #ccc solid;padding-left:1ex"><div class=3D"HOEnZb"><div class=3D"h5">On 2=
-1/07/2014 16:39, &quot;Anooj Gopi&quot; &lt;<a href=3D"mailto:anoojgopi@gma=
-il.com">anoojgopi@gmail.com</a>&gt; wrote:<br>
-
-<br>
-&gt;Hello All,<br>
-&gt;<br>
-&gt;<br>
-&gt;Could some one help me to understand how we could find the bb file whic=
-h<br>
-&gt;generated particular package (rpm package for eg.)?<br>
-&gt;<br>
-&gt;(In some cases the name of the package and recipe name differ drastical=
-ly)<br>
-&gt;<br>
-&gt;<br>
-&gt;Also is there any way to list packages (rpm) generated by particular<br=
->
-&gt;recipe (yocto package) easily. (without looking into the PACKAGES<br>
-&gt;variable).<br>
-<br>
-</div></div>Hi Anooj,<br>
-<br>
-One of the ways to get this information is Toaster, a web application that<=
-br>
-collects data about your builds and presents it in a web interface. More<br=
->
-information here<br>
-<br>
-<a href=3D"https://www.yoctoproject.org/documentation/toaster-manual" targe=
-t=3D"_blank">https://www.yoctoproject.org/documentation/toaster-manual</a><=
-br>
-<br>
-It&#39;s only compatible with Yocto Project 1.6 though.<br>
-<br>
-Cheers<br>
-<br>
-Bel=C3=A9n<br>
-<br>
-&gt;<br>
-&gt;<br>
-&gt;<br>
-&gt;Best Regards,<br>
-&gt;Anooj Gopi<br>
-&gt;<br>
-<br>
-</blockquote></div><br></div>
-
---089e0160aa3aca6e1d04fec68206--
