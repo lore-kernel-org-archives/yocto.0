@@ -1,48 +1,25 @@
-Return-Path: <joe@deserted.net>
+Return-Path: <Alexandru.Vaduva@enea.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 0FE39E006EE; Tue, 22 Jul 2014 06:53:24 -0700 (PDT)
+	id 4CA41E00572; Tue, 22 Jul 2014 07:21:05 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [209.85.213.179 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail-ig0-f179.google.com (mail-ig0-f179.google.com
-	[209.85.213.179])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 445AFE004FF
-	for <yocto@yoctoproject.org>; Tue, 22 Jul 2014 06:53:17 -0700 (PDT)
-Received: by mail-ig0-f179.google.com with SMTP id h18so240601igc.12
-	for <yocto@yoctoproject.org>; Tue, 22 Jul 2014 06:53:16 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-	:mime-version:content-type:content-disposition:in-reply-to
-	:user-agent;
-	bh=t/2AEQMBfxb62TkXzeUI+1nZVtWIwk6TUO+NDLnkXEE=;
-	b=U09PcQMHid+5Z1BsD6qhXfanXTyT1JCTxCikoST+UQBmuHrBOORqCX1KnK0FXIgfVl
-	0wJ6gJvKE49MHBTrJoi2U2N+p8zE3nlrzPPt6B+Q6HPJtFkgS/xZtE45WIkkFKe/DlnV
-	BqxswLl8aLH+PnvBDrWa3FoaQzP5A0ldx455jWIaOAmOf8xpyzpVj+NrZKuDmUkzJqJQ
-	WRnEoMT8Wvv4tEFDAYDd15Fju9HfDKrANpw/1blBro19d/2kKInQl1pkoUH6Exw7Jwz0
-	x+Xcs0+I5143oTLZbMXSqdDHsLbdEJlE2m1ykGqCivXFaR6uz2yDHRAhwGTM+eEQTnwd
-	CkHQ==
-X-Gm-Message-State: ALoCoQm0ip9LfFxi1QnCg8XGyLgDhQ8QMBTuObCFGjbGvms1rQZThfxcf8dmZkzM4UVhbbyKIFO5
-X-Received: by 10.50.124.227 with SMTP id ml3mr16693275igb.46.1406037196142;
-	Tue, 22 Jul 2014 06:53:16 -0700 (PDT)
-Received: from skynet (24-246-4-250.cable.teksavvy.com. [24.246.4.250])
-	by mx.google.com with ESMTPSA id l9sm15295643ige.2.2014.07.22.06.53.14
-	for <multiple recipients>
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Tue, 22 Jul 2014 06:53:14 -0700 (PDT)
-Received: by skynet (Postfix, from userid 1000)
-	id 7B6041685E3; Tue, 22 Jul 2014 09:53:13 -0400 (EDT)
-Date: Tue, 22 Jul 2014 09:53:13 -0400
-From: Joe MacDonald <joe@deserted.net>
-To: Alexandru Vaduva <Alexandru.Vaduva@enea.com>
-Message-ID: <20140722135311.GA8801@deserted.net>
+Received: from mx-3.enea.com (sestofw01.enea.se [192.36.1.252])
+	by yocto-www.yoctoproject.org (Postfix) with SMTP id 8BF4EE004FF
+	for <yocto@yoctoproject.org>; Tue, 22 Jul 2014 07:20:57 -0700 (PDT)
+Received: from SESTOEX04.enea.se ([fe80::bc2d:9299:d6b2:d0b7]) by
+	SESTOEX03.enea.se ([fe80::6ce7:7b51:1edf:e245%17]) with mapi id
+	14.03.0158.001; Tue, 22 Jul 2014 16:20:54 +0200
+From: Alexandru Vaduva <Alexandru.Vaduva@enea.com>
+To: Joe MacDonald <joe@deserted.net>
+Thread-Topic: [yocto] [OE-core] Carrier Grade layer proposal
+Thread-Index: AQHPkW1+2KRT24GnPkKv9BXuG5a5ZpuEiPLggAAHpxCAABcrkIAACmtAgAABnUCAAAhEYIAFAPMAgAsfaQCAACK0kIAV+JUAgAED+qCAACh+gIAAI6Rg
+Date: Tue, 22 Jul 2014 14:20:53 +0000
+Message-ID: <DDB0C57E45663A458C5CACB7B5688BC21D6D36CF@SESTOEX04.enea.se>
 References: <6B17198E316BD04DBB6F6DD263019AE125573C4A@SESTOEX04.enea.se>
 	<2D55BFC2C836774DB0F2FE17BECC006C28993A30@SESTOEX04.enea.se>
 	<D7AB900AA081FD46B179E331E9F703E8908E42@SESTOEX04.enea.se>
@@ -53,12 +30,13 @@ References: <6B17198E316BD04DBB6F6DD263019AE125573C4A@SESTOEX04.enea.se>
 	<DDB0C57E45663A458C5CACB7B5688BC21D6CAE0B@SESTOEX04.enea.se>
 	<CANBf+V17Q0P98d7632+FX3_W1RsT3ZR=ZR4W1mG4iDJ-CRLnZw@mail.gmail.com>
 	<DDB0C57E45663A458C5CACB7B5688BC21D6D3410@SESTOEX04.enea.se>
+	<20140722135311.GA8801@deserted.net>
+In-Reply-To: <20140722135311.GA8801@deserted.net>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [192.168.14.184]
 MIME-Version: 1.0
-In-Reply-To: <DDB0C57E45663A458C5CACB7B5688BC21D6D3410@SESTOEX04.enea.se>
-X-URL: http://github.com/joeythesaint/joe-s-common-environment/tree/master
-X-Configuration: git://github.com/joeythesaint/joe-s-common-environment.git
-X-Editor: Vim-703 http://www.vim.org
-User-Agent: Mutt/1.5.21 (2010-09-15)
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: [OE-core] Carrier Grade layer proposal
 X-BeenThere: yocto@yoctoproject.org
@@ -72,16 +50,31 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 22 Jul 2014 13:53:24 -0000
-X-Groupsio-MsgNum: 20668
-Content-Type: multipart/signed; micalg=pgp-sha1;
-	protocol="application/pgp-signature"; boundary="9jxsPFA5p3P2qPhR"
-Content-Disposition: inline
-
---9jxsPFA5p3P2qPhR
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+X-List-Received-Date: Tue, 22 Jul 2014 14:21:05 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="iso-8859-2"
 Content-Transfer-Encoding: quoted-printable
+
+Hello again,
+
+The P1 compliance until in November is a best effort approach.
+Regarding the move to the openembedded.org location, we intend to do that a=
+s soon as possible after
+the web page will be put on place, as to make it simple for the community t=
+o interact with the layer and=20
+have all the needed information available in one place.
+
+
+Alex
+
+
+
+-----Original Message-----
+From: Joe MacDonald [mailto:joe@deserted.net]=20
+Sent: Tuesday, July 22, 2014 4:53 PM
+To: Alexandru Vaduva
+Cc: Jeff Osier-Mixon; yocto@yoctoproject.org
+Subject: Re: [yocto] [OE-core] Carrier Grade layer proposal
 
 Hi Alex
 
@@ -90,16 +83,15 @@ Hi Alex
 
 > Hello Joe,
 >=20
-> Here at Enea we are preparing the steps needed for publishing the layer o=
-n the open embedded meta layers initiative: http://layers.openembedded.org/=
-layerindex/branch/master/layers/
-> For this we started working at a web page that should contain all the rel=
-evant information regarding meta-cgl. It will be available in a couple of w=
-eeks. Until then the layer will be available internally and the patches sho=
-uld=20
-> be submitted as the README states: on the enealinux@lists.enea.com mailin=
-g list. We will try to make the switch to Open Embedded mailing list as qui=
-ck as possible.
+> Here at Enea we are preparing the steps needed for publishing the=20
+> layer on the open embedded meta layers initiative:=20
+> http://layers.openembedded.org/layerindex/branch/master/layers/
+> For this we started working at a web page that should contain all the=20
+> relevant information regarding meta-cgl. It will be available in a couple=
+ of weeks. Until then the layer will be available internally and the patche=
+s should be submitted as the README states: on the enealinux@lists.enea.com=
+ mailing list. We will try to make the switch to Open Embedded mailing list=
+ as quick as possible.
 >=20
 > Regarding the other B, C and D packages  that we will try to add into the=
  meta-cgl layer, I will post this information below, but keep in mind that =
@@ -121,43 +113,41 @@ this information will also be available on the web page.
 > 		- samhain
 > 		- ltt-usertrace
 > 		- ftrace
-> The above lists correspond with only the P1 requirements that we try to f=
-ulfill for the moment. If there are any questions and/or suggestions regard=
-ing this CGL initialtive please address them to me and I will try to offer =
-a response in the
-> shortest time possible.
+> The above lists correspond with only the P1 requirements that we try=20
+> to fulfill for the moment. If there are any questions and/or suggestions =
+regarding this CGL initialtive please address them to me and I will try to =
+offer a response in the shortest time possible.
 
-Thanks, that is really helpful, actually.  So a couple of other things,
-though.  I think I remember that early on you were intending to take
-your yocto-based system with meta-cgl (and, I imagine based on the
-contents of the README, the additional dependent layers) through a CGL
-registration.  Really, that's great if you still are, but it sounds like
-maybe now you're planning a staged approach and are only targeting a
-subset of the CGL P1s for the end of the year / start of next year.  Is
-that accurate, or are you looking at full P1 compliance by that date?
+Thanks, that is really helpful, actually.  So a couple of other things, tho=
+ugh.  I think I remember that early on you were intending to take your yoct=
+o-based system with meta-cgl (and, I imagine based on the contents of the R=
+EADME, the additional dependent layers) through a CGL registration.  Really=
+, that's great if you still are, but it sounds like maybe now you're planni=
+ng a staged approach and are only targeting a subset of the CGL P1s for the=
+ end of the year / start of next year.  Is that accurate, or are you lookin=
+g at full P1 compliance by that date?
 
-I ask mostly because I know doing a CGL distribution is a big
-effort (I've been down this road before) and it may be that you don't
-need to have the system complete before you can move it to the
-openembedded.org location and "get into the system" so to speak.  Your
-team is pretty active, though, so I'm sure you'll also notice if things
-are going into other layers that can save you some time (e.g. the
-submission of a numactl recipe to meta-oe last week).
+I ask mostly because I know doing a CGL distribution is a big effort (I've =
+been down this road before) and it may be that you don't need to have the s=
+ystem complete before you can move it to the openembedded.org location and =
+"get into the system" so to speak.  Your team is pretty active, though, so =
+I'm sure you'll also notice if things are going into other layers that can =
+save you some time (e.g. the submission of a numactl recipe to meta-oe last=
+ week).
 
-That, and if I've got an idea of where you're going, I'll be happy to
-take an early look at what you've got in terms of it's CGL-ness and
-hopefully make the eventual registration (if you go that route) move
-along quickly.
+That, and if I've got an idea of where you're going, I'll be happy to take =
+an early look at what you've got in terms of it's CGL-ness and hopefully ma=
+ke the eventual registration (if you go that route) move along quickly.
 
 -J.
 
 >=20
 >=20
 > Thanks,
-> Alex=20
+> Alex
 >=20
 > -----Original Message-----
-> From: Joe MacDonald [mailto:joe@deserted.net]=20
+> From: Joe MacDonald [mailto:joe@deserted.net]
 > Sent: Monday, July 21, 2014 10:58 PM
 > To: Alexandru Vaduva
 > Cc: Jeff Osier-Mixon; yocto@yoctoproject.org
@@ -203,9 +193,8 @@ he patches will be added upstream after proper testing.
 e with the Category B packages.
 > >
 > > I will also try to keep you guys informed about the latest updates,=20
-> > mainly on the YPTM, but for those who cannot wait that much, there is=
-=20
-> > the Git repository with which they can interact:=20
+> > mainly on the YPTM, but for those who cannot wait that much, there=20
+> > is the Git repository with which they can interact:
 > > http://git.enea.com/git/?p=3Dlinux/meta-cgl.git;a=3Dsummary
 > >
 > >
@@ -244,14 +233,12 @@ a.com> wrote:
 > >> already exists in Yocto
 > >>   A1. Requirement that map against package/packages with recipes=20
 > >> already existing in meta-enea
-> >>   A2. Requirement that map against package/packages with recipes that=
-=20
-> >> exists in Yocto (but not in meta-enea) B. Requirement that map=20
+> >>   A2. Requirement that map against package/packages with recipes=20
+> >> that exists in Yocto (but not in meta-enea) B. Requirement that map=20
 > >> against package/packages without any recipe C. Requirement does not=20
 > >> directly map against package/packages and needs some investigation.
-> >> D. Requirement that no solution have been found after a more detailed=
-=20
-> >> investigation.
+> >> D. Requirement that no solution have been found after a more=20
+> >> detailed investigation.
 > >>
 > >>
 > >>
@@ -437,7 +424,7 @@ pond.
 > >> teodor.bobornilo@windriver.com; Valentin Cobelea;=20
 > >> chase.maupin@ti.com; Jon Aldama; philip.balister@gmail.com;=20
 > >> kevin_mccombe@mentor.com; akuster@mvista.com;=20
-> >> jason.wessel@windriver.com; richard.purdie@linuxfoundation.org;=20
+> >> jason.wessel@windriver.com; richard.purdie@linuxfoundation.org;
 > >> hui.geng@huawei.com; john_cherry@mentor.com;=20
 > >> jeffrey.osier-mixon@intel.com
 > >> Cc: Philip Balister
@@ -445,17 +432,15 @@ pond.
 > >>
 > >>
 > >>
-> >> Hi all - this is a simple followup to our meeting at ELC regarding a=
-=20
-> >> meta-cgl layer, proposed by Enea.
+> >> Hi all - this is a simple followup to our meeting at ELC regarding=20
+> >> a meta-cgl layer, proposed by Enea.
 > >>
 > >>
 > >>
-> >> The plan was to create a list of recipes to be included, and to start=
-=20
-> >> a discussion on the mailing list.There is a thread on the list from=20
-> >> back in April, but I don't see anything more recent than that. Has=20
-> >> there been any progress?
+> >> The plan was to create a list of recipes to be included, and to=20
+> >> start a discussion on the mailing list.There is a thread on the=20
+> >> list from back in April, but I don't see anything more recent than=20
+> >> that. Has there been any progress?
 > >>
 > >>
 > >>
@@ -486,20 +471,7 @@ pond.
 > Joe MacDonald
 > :wq
 
---=20
+--
 -Joe MacDonald.
 :wq
 
---9jxsPFA5p3P2qPhR
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: Digital signature
-
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v1.4.12 (GNU/Linux)
-
-iEYEARECAAYFAlPObMcACgkQwFvcllog0Xxe9QCeIcQV43jhKozarWncjpgPDN4c
-bA0An0XloCt3WP/xMfOpt9cMRVydva+t
-=8hTX
------END PGP SIGNATURE-----
-
---9jxsPFA5p3P2qPhR--
