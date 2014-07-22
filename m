@@ -1,6 +1,6 @@
 Return-Path: <Alexandru.Vaduva@enea.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 4CA41E00572; Tue, 22 Jul 2014 07:21:05 -0700 (PDT)
+	id 1FD12E006ED; Tue, 22 Jul 2014 07:59:08 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -9,17 +9,17 @@ X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 Received: from mx-3.enea.com (sestofw01.enea.se [192.36.1.252])
-	by yocto-www.yoctoproject.org (Postfix) with SMTP id 8BF4EE004FF
-	for <yocto@yoctoproject.org>; Tue, 22 Jul 2014 07:20:57 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with SMTP id 4F030E00558
+	for <yocto@yoctoproject.org>; Tue, 22 Jul 2014 07:59:04 -0700 (PDT)
 Received: from SESTOEX04.enea.se ([fe80::bc2d:9299:d6b2:d0b7]) by
 	SESTOEX03.enea.se ([fe80::6ce7:7b51:1edf:e245%17]) with mapi id
-	14.03.0158.001; Tue, 22 Jul 2014 16:20:54 +0200
+	14.03.0158.001; Tue, 22 Jul 2014 16:59:00 +0200
 From: Alexandru Vaduva <Alexandru.Vaduva@enea.com>
 To: Joe MacDonald <joe@deserted.net>
 Thread-Topic: [yocto] [OE-core] Carrier Grade layer proposal
-Thread-Index: AQHPkW1+2KRT24GnPkKv9BXuG5a5ZpuEiPLggAAHpxCAABcrkIAACmtAgAABnUCAAAhEYIAFAPMAgAsfaQCAACK0kIAV+JUAgAED+qCAACh+gIAAI6Rg
-Date: Tue, 22 Jul 2014 14:20:53 +0000
-Message-ID: <DDB0C57E45663A458C5CACB7B5688BC21D6D36CF@SESTOEX04.enea.se>
+Thread-Index: AQHPkW1+2KRT24GnPkKv9BXuG5a5ZpuEiPLggAAHpxCAABcrkIAACmtAgAABnUCAAAhEYIAFAPMAgAsfaQCAACK0kIAV+JUAgAED+qCAACh+gIAAI6RggAAILcA=
+Date: Tue, 22 Jul 2014 14:58:59 +0000
+Message-ID: <DDB0C57E45663A458C5CACB7B5688BC21D6D3704@SESTOEX04.enea.se>
 References: <6B17198E316BD04DBB6F6DD263019AE125573C4A@SESTOEX04.enea.se>
 	<2D55BFC2C836774DB0F2FE17BECC006C28993A30@SESTOEX04.enea.se>
 	<D7AB900AA081FD46B179E331E9F703E8908E42@SESTOEX04.enea.se>
@@ -30,8 +30,7 @@ References: <6B17198E316BD04DBB6F6DD263019AE125573C4A@SESTOEX04.enea.se>
 	<DDB0C57E45663A458C5CACB7B5688BC21D6CAE0B@SESTOEX04.enea.se>
 	<CANBf+V17Q0P98d7632+FX3_W1RsT3ZR=ZR4W1mG4iDJ-CRLnZw@mail.gmail.com>
 	<DDB0C57E45663A458C5CACB7B5688BC21D6D3410@SESTOEX04.enea.se>
-	<20140722135311.GA8801@deserted.net>
-In-Reply-To: <20140722135311.GA8801@deserted.net>
+	<20140722135311.GA8801@deserted.net> 
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
@@ -50,19 +49,45 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 22 Jul 2014 14:21:05 -0000
+X-List-Received-Date: Tue, 22 Jul 2014 14:59:08 -0000
 Content-Language: en-US
 Content-Type: text/plain; charset="iso-8859-2"
 Content-Transfer-Encoding: quoted-printable
+
+A quick follow up to the previous e-mail:
+I only mention that P1 compliance is until November is a best effort approa=
+ch. This is very much influenced by the community, the available recipes, b=
+ugs etc.
+The CGL compliance is tested against the qemuppc machine, being the fact th=
+at a real target is a bit hard to use by everyone.
+There is also an idea about a CGL calculator that could offer information a=
+bout the number of cgl requirements that are met and offer a compliance per=
+centage (similar to LSB), but as I said this is just at the idea level.
+
+I believe more info about the milestones and the activities that we commit =
+on doing until those milestones will be available on the web page.=20
+Please let me know if any information would be needed in the case I may hav=
+e overlooked some useful parts of information. In that way I can also make =
+sure this information will be also available when the web page will be up.=
+=20
+
+
+Alex
+
+-----Original Message-----
+From: Alexandru Vaduva=20
+Sent: Tuesday, July 22, 2014 5:21 PM
+To: 'Joe MacDonald'
+Cc: Jeff Osier-Mixon; yocto@yoctoproject.org
+Subject: RE: [yocto] [OE-core] Carrier Grade layer proposal
 
 Hello again,
 
 The P1 compliance until in November is a best effort approach.
 Regarding the move to the openembedded.org location, we intend to do that a=
-s soon as possible after
-the web page will be put on place, as to make it simple for the community t=
-o interact with the layer and=20
-have all the needed information available in one place.
+s soon as possible after the web page will be put on place, as to make it s=
+imple for the community to interact with the layer and have all the needed =
+information available in one place.
 
 
 Alex
