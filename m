@@ -1,37 +1,50 @@
-Return-Path: <Maciej_Rozycki@mentor.com>
+Return-Path: <kergoth@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 68C6CE00572; Tue, 22 Jul 2014 07:51:12 -0700 (PDT)
+	id 1BF2DE004FF; Tue, 22 Jul 2014 08:44:45 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [209.85.217.174 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from relay1.mentorg.com (relay1.mentorg.com [192.94.38.131])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 73DDBE00524
-	for <yocto@yoctoproject.org>; Tue, 22 Jul 2014 07:51:06 -0700 (PDT)
-Received: from svr-orw-exc-10.mgc.mentorg.com ([147.34.98.58])
-	by relay1.mentorg.com with esmtp 
-	id 1X9bPF-0003gs-LN from Maciej_Rozycki@mentor.com ;
-	Tue, 22 Jul 2014 07:51:05 -0700
-Received: from SVR-IES-FEM-03.mgc.mentorg.com ([137.202.0.108]) by
-	SVR-ORW-EXC-10.mgc.mentorg.com with Microsoft
-	SMTPSVC(6.0.3790.4675); Tue, 22 Jul 2014 07:51:05 -0700
-Received: from localhost (137.202.0.76) by SVR-IES-FEM-03.mgc.mentorg.com
-	(137.202.0.108) with Microsoft SMTP Server (TLS) id 14.2.247.3;
-	Tue, 22 Jul 2014 15:51:03 +0100
-Date: Tue, 22 Jul 2014 15:50:59 +0100
-From: "Maciej W. Rozycki" <macro@codesourcery.com>
-To: <mark.hatle@windriver.com>
-Message-ID: <alpine.DEB.1.10.1407221529230.16254@tp.orcam.me.uk>
-User-Agent: Alpine 1.10 (DEB 962 2008-03-14)
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-lb0-f174.google.com (mail-lb0-f174.google.com
+	[209.85.217.174])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C6FCFE0074B
+	for <yocto@yoctoproject.org>; Tue, 22 Jul 2014 08:44:32 -0700 (PDT)
+Received: by mail-lb0-f174.google.com with SMTP id c11so6229970lbj.33
+	for <yocto@yoctoproject.org>; Tue, 22 Jul 2014 08:44:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:sender:in-reply-to:references:from:date:message-id
+	:subject:to:cc:content-type;
+	bh=gRtejsU3Cy77yWbR1K6tYTKTm/xC9ob2FDFLC4ZmSm0=;
+	b=pKTFEVKMhUNzj2BMTDbVtWAislUiiIaJ2O+FYW1HvQsH4RrleYQObArNp1bhDFIaD0
+	75F51ymujAmbNJA2kPprf5oWun8XKK+KPS0g7IESzsJN+CA+gfsQIHt52uW47avfCY5q
+	ZaicFrMh7TFWpTswI96pZMF+jb+i+AUv71er9FdCq3w7jCOg0V6gOLhStsiVuxiGDWkH
+	l/GXIYIn+lgNfbW3nT/rYEq5ySIU9fudayc3EiaXSwOFZIk4QSVspCw+ofB+ri1QHImY
+	qKfx5ixam12pwiVfzhQDhy4FxjNyaWmY934+6yHl+wiozGkm/7QeApb3KHdeYPGRiYFw
+	2aLg==
+X-Received: by 10.112.42.45 with SMTP id k13mr12094202lbl.88.1406043871323;
+	Tue, 22 Jul 2014 08:44:31 -0700 (PDT)
 MIME-Version: 1.0
-X-OriginalArrivalTime: 22 Jul 2014 14:51:05.0498 (UTC)
-	FILETIME=[5D4FCFA0:01CFA5BC]
-X-Mailman-Approved-At: Tue, 22 Jul 2014 08:40:23 -0700
-Cc: yocto@yoctoproject.org
-Subject: [prelink-cross][PATCH] Always create a conflict for R_ARM_TLS_DESC relocs
+Sender: kergoth@gmail.com
+Received: by 10.112.63.72 with HTTP; Tue, 22 Jul 2014 08:44:11 -0700 (PDT)
+In-Reply-To: <1406029381.16746.16.camel@localhost.localdomain>
+References: <1406029381.16746.16.camel@localhost.localdomain>
+From: Christopher Larson <clarson@kergoth.com>
+Date: Tue, 22 Jul 2014 08:44:11 -0700
+X-Google-Sender-Auth: iscmN9X38FdJ5cxHP4vFt0YbHA8
+Message-ID: <CABcZANk2U6p4RzqNF8WptVgpZ63MVDTLsgHY36__W4bB2vK-RQ@mail.gmail.com>
+To: maciej.borzecki@open-rnd.pl
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: read only rootfs & systemd
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,106 +56,64 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 22 Jul 2014 14:51:12 -0000
-Content-Type: text/plain; charset="US-ASCII"
+X-List-Received-Date: Tue, 22 Jul 2014 15:44:45 -0000
+Content-Type: multipart/alternative; boundary=001a113364207d2c5f04feca1906
 
-Hi,
+--001a113364207d2c5f04feca1906
+Content-Type: text/plain; charset=UTF-8
 
- This is a bit obscure.  In my testing, for the purpose of upstreaming, of 
-the glibc change to support ARM TLS descriptors in prelinked binaries (cf 
-upstream BZ #17078, https://sourceware.org/bugzilla/show_bug.cgi?id=17078) 
-I have come across a problem where all programs prelinked against glibc 
-binaries using ARM TLS descriptors themselves segfaulted in the normal 
-exit path, where libc.so's own TLS destructors are called.  I have tracked 
-it down to the GOT entry (pointed to by the DT_TLSDESC_GOT dynamic tag) 
-meant to point to the lazy TLS descriptor resolver (pointed to by the 
-DT_TLSDESC_PLT dynamic tag) being left uninitialised and therefore NULL.  
-An attempt to call that resolver caused therefore a segfault.
+On Tue, Jul 22, 2014 at 4:43 AM, Maciek Borzecki <
+maciej.borzecki@open-rnd.pl> wrote:
 
- The cause of this lack of initialisation turned out to be an omission in 
-the original fix (dated 2011-04-13 in ChangeLog.cross), that didn't ensure 
-that a conflict entry is created even for these R_ARM_TLS_DESC relocations 
-that refer to a local symbol.  Somehow it didn't trigger in testing back 
-when implemented, perhaps glibc didn't require or access the missing entry 
-in code handling TLS destructors then.  Such an entry is needed, because 
-for prelinked binaries the DT_TLSDESC_GOT GOT entry is only initialised by 
-the dynamic linker when a conflict is resolved.  The change below enforces 
-this conflict entry creation.
+> Is read-only-rootfs supported on systemd setups?
+>
+> The current dev manual is not clear about this. Also in image.bbclass
+> there are comments that read_only_rootfs_hook supports only sysvinit
+> setups.
+>
 
- This fix removes 33 failures in prelink testing with glibc built using 
-ARM TLS descriptors, that is with the `-mtls-dialect=gnu2' GCC option in 
-effect (that is not the default unless explicitly requested at GCC build 
-time):
+Not in oe-core, no. https://github.com/MentorEmbedded/meta-ro-rootfs is how
+we're handling it at mentor today, we haven't gotten around to pursuing an
+upstream solution, whether integration of this or something else, as of
+yet. If you follow the instructions at
+https://github.com/MentorEmbedded/meta-ro-rootfs#usage it should work fine
+for you.
+-- 
+Christopher Larson
+clarson at kergoth dot com
+Founder - BitBake, OpenEmbedded, OpenZaurus
+Maintainer - Tslib
+Senior Software Engineer, Mentor Graphics
 
-FAIL -> PASS: default/prelink.sum:cxx1.sh
-FAIL -> PASS: default/prelink.sum:cxx2.sh
-FAIL -> PASS: default/prelink.sum:cxx3.sh
-FAIL -> PASS: default/prelink.sum:layout1.sh
-FAIL -> PASS: default/prelink.sum:layout2.sh
-FAIL -> PASS: default/prelink.sum:reloc1.sh
-FAIL -> PASS: default/prelink.sum:reloc10.sh
-FAIL -> PASS: default/prelink.sum:reloc11.sh
-FAIL -> PASS: default/prelink.sum:reloc2.sh
-FAIL -> PASS: default/prelink.sum:reloc3.sh
-FAIL -> PASS: default/prelink.sum:reloc4.sh
-FAIL -> PASS: default/prelink.sum:reloc5.sh
-FAIL -> PASS: default/prelink.sum:reloc6.sh
-FAIL -> PASS: default/prelink.sum:reloc7.sh
-FAIL -> PASS: default/prelink.sum:reloc8.sh
-FAIL -> PASS: default/prelink.sum:reloc9.sh
-FAIL -> PASS: default/prelink.sum:shuffle1.sh
-FAIL -> PASS: default/prelink.sum:shuffle2.sh
-FAIL -> PASS: default/prelink.sum:shuffle3.sh
-FAIL -> PASS: default/prelink.sum:shuffle4.sh
-FAIL -> PASS: default/prelink.sum:shuffle5.sh
-FAIL -> PASS: default/prelink.sum:shuffle6.sh
-FAIL -> PASS: default/prelink.sum:shuffle7.sh
-FAIL -> PASS: default/prelink.sum:shuffle8.sh
-FAIL -> PASS: default/prelink.sum:shuffle9.sh
-FAIL -> PASS: default/prelink.sum:tls1.sh
-FAIL -> PASS: default/prelink.sum:tls2.sh
-FAIL -> PASS: default/prelink.sum:tls3.sh
-FAIL -> PASS: default/prelink.sum:tls4.sh
-FAIL -> PASS: default/prelink.sum:tls5.sh
-FAIL -> PASS: default/prelink.sum:tls6.sh
-FAIL -> PASS: default/prelink.sum:tls7.sh
-FAIL -> PASS: default/prelink.sum:undo1.sh
+--001a113364207d2c5f04feca1906
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
- Please apply.
+<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
+On Tue, Jul 22, 2014 at 4:43 AM, Maciek Borzecki <span dir=3D"ltr">&lt;<a h=
+ref=3D"mailto:maciej.borzecki@open-rnd.pl" target=3D"_blank">maciej.borzeck=
+i@open-rnd.pl</a>&gt;</span> wrote:<br>
 
-2014-07-22  Maciej W. Rozycki  <macro@codesourcery.com>
+<blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-=
+left:1px solid rgb(204,204,204);padding-left:1ex"><div id=3D":ov" class=3D"=
+" style=3D"overflow:hidden">Is read-only-rootfs supported on systemd setups=
+?<br>
 
-	* src/arch-arm.c (arm_prelink_conflict_rel): Always create a 
-	conflict for R_ARM_TLS_DESC relocs.
-	(arm_prelink_conflict_rela): Likewise.
+<br>
+The current dev manual is not clear about this. Also in image.bbclass<br>
+there are comments that read_only_rootfs_hook supports only sysvinit<br>
+setups.</div></blockquote></div><br></div><div class=3D"gmail_extra">Not in=
+ oe-core, no. <a href=3D"https://github.com/MentorEmbedded/meta-ro-rootfs">=
+https://github.com/MentorEmbedded/meta-ro-rootfs</a> is how we&#39;re handl=
+ing it at mentor today, we haven&#39;t gotten around to pursuing an upstrea=
+m solution, whether integration of this or something else, as of yet. If yo=
+u follow the instructions at <a href=3D"https://github.com/MentorEmbedded/m=
+eta-ro-rootfs#usage">https://github.com/MentorEmbedded/meta-ro-rootfs#usage=
+</a> it should work fine for you.<br>
 
-  Maciej
+-- <br>Christopher Larson<br>clarson at kergoth dot com<br>Founder - BitBak=
+e, OpenEmbedded, OpenZaurus<br>Maintainer - Tslib<br>Senior Software Engine=
+er, Mentor Graphics
+</div></div>
 
-prelink-arm-tlsdesc-conflict-always.diff
-Index: trunk/src/arch-arm.c
-===================================================================
---- trunk.orig/src/arch-arm.c	2014-07-17 23:26:08.000000000 +0100
-+++ trunk/src/arch-arm.c	2014-07-18 04:18:53.790564615 +0100
-@@ -416,7 +416,9 @@ arm_prelink_conflict_rel (DSO *dso, stru
- 	case R_ARM_TLS_DTPMOD32:
- 	case R_ARM_TLS_TPOFF32:
- 	  break;
--
-+	/* Likewise TLS_DESC.  */
-+	case R_ARM_TLS_DESC:
-+	  break;
- 	default:
- 	  return 0;
- 	}
-@@ -526,7 +528,9 @@ arm_prelink_conflict_rela (DSO *dso, str
- 	case R_ARM_TLS_DTPMOD32:
- 	case R_ARM_TLS_TPOFF32:
- 	  break;
--
-+	/* Likewise TLS_DESC.  */
-+	case R_ARM_TLS_DESC:
-+	  break;
- 	default:
- 	  return 0;
- 	}
-
+--001a113364207d2c5f04feca1906--
