@@ -1,49 +1,37 @@
-Return-Path: <zhenhua.luo@freescale.com>
+Return-Path: <Maciej_Rozycki@mentor.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 26025E006ED; Tue, 22 Jul 2014 08:11:36 -0700 (PDT)
+	id 68C6CE00572; Tue, 22 Jul 2014 07:51:12 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE,SPF_HELO_PASS autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [207.46.163.181 listed in list.dnswl.org]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from na01-bn1-obe.outbound.protection.outlook.com
-	(mail-bn1blp0181.outbound.protection.outlook.com [207.46.163.181])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5518CE00558
-	for <yocto@yoctoproject.org>; Tue, 22 Jul 2014 08:11:30 -0700 (PDT)
-Received: from CY1PR0301MB0715.namprd03.prod.outlook.com (25.160.159.145) by
-	CY1PR0301MB0713.namprd03.prod.outlook.com (25.160.159.143) with
-	Microsoft
-	SMTP Server (TLS) id 15.0.985.8; Tue, 22 Jul 2014 15:11:26 +0000
-Received: from CY1PR0301MB0715.namprd03.prod.outlook.com ([25.160.159.145]) by
-	CY1PR0301MB0715.namprd03.prod.outlook.com ([25.160.159.145]) with
-	mapi id 15.00.0985.008; Tue, 22 Jul 2014 15:11:26 +0000
-From: "zhenhua.luo@freescale.com" <zhenhua.luo@freescale.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: SELinux doesn't work on t4240qds
-Thread-Index: Ac+lvzKBtGo4KmiDRFuWSK4Azfu4jw==
-Date: Tue, 22 Jul 2014 15:11:25 +0000
-Message-ID: <dfd0afc8932f41e19daf0a1fe13578b3@CY1PR0301MB0715.namprd03.prod.outlook.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [123.151.195.50]
-x-microsoft-antispam: BCL:0;PCL:0;RULEID:
-x-forefront-prvs: 02801ACE41
-x-forefront-antispam-report: SFV:NSPM;
-	SFS:(6009001)(189002)(199002)(53754006)(81342001)(15975445006)(95666004)(85306003)(4396001)(80022001)(50986999)(19625215002)(18717965001)(76576001)(107886001)(85852003)(64706001)(99396002)(83322001)(107046002)(16236675004)(87936001)(74316001)(92566001)(20776003)(31966008)(19300405004)(66066001)(2656002)(21056001)(99286002)(19580405001)(2351001)(81542001)(33646002)(86362001)(76482001)(106356001)(74662001)(15202345003)(229853001)(110136001)(105586002)(19580395003)(46102001)(77096002)(83072002)(74502001)(101416001)(19609705001)(79102001)(77982001)(54356999)(108616002)(24736002);
-	DIR:OUT; SFP:; SCL:1; SRVR:CY1PR0301MB0713;
-	H:CY1PR0301MB0715.namprd03.prod.outlook.com; FPR:; MLV:sfv;
-	PTR:InfoNoRecords; MX:1; LANG:en; 
+Received: from relay1.mentorg.com (relay1.mentorg.com [192.94.38.131])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 73DDBE00524
+	for <yocto@yoctoproject.org>; Tue, 22 Jul 2014 07:51:06 -0700 (PDT)
+Received: from svr-orw-exc-10.mgc.mentorg.com ([147.34.98.58])
+	by relay1.mentorg.com with esmtp 
+	id 1X9bPF-0003gs-LN from Maciej_Rozycki@mentor.com ;
+	Tue, 22 Jul 2014 07:51:05 -0700
+Received: from SVR-IES-FEM-03.mgc.mentorg.com ([137.202.0.108]) by
+	SVR-ORW-EXC-10.mgc.mentorg.com with Microsoft
+	SMTPSVC(6.0.3790.4675); Tue, 22 Jul 2014 07:51:05 -0700
+Received: from localhost (137.202.0.76) by SVR-IES-FEM-03.mgc.mentorg.com
+	(137.202.0.108) with Microsoft SMTP Server (TLS) id 14.2.247.3;
+	Tue, 22 Jul 2014 15:51:03 +0100
+Date: Tue, 22 Jul 2014 15:50:59 +0100
+From: "Maciej W. Rozycki" <macro@codesourcery.com>
+To: <mark.hatle@windriver.com>
+Message-ID: <alpine.DEB.1.10.1407221529230.16254@tp.orcam.me.uk>
+User-Agent: Alpine 1.10 (DEB 962 2008-03-14)
 MIME-Version: 1.0
-X-OriginatorOrg: freescale.com
-Subject: SELinux doesn't work on t4240qds
+X-OriginalArrivalTime: 22 Jul 2014 14:51:05.0498 (UTC)
+	FILETIME=[5D4FCFA0:01CFA5BC]
+X-Mailman-Approved-At: Tue, 22 Jul 2014 08:40:23 -0700
+Cc: yocto@yoctoproject.org
+Subject: [prelink-cross][PATCH] Always create a conflict for R_ARM_TLS_DESC relocs
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -55,206 +43,106 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 22 Jul 2014 15:11:36 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_dfd0afc8932f41e19daf0a1fe13578b3CY1PR0301MB0715namprd03_"
+X-List-Received-Date: Tue, 22 Jul 2014 14:51:12 -0000
+Content-Type: text/plain; charset="US-ASCII"
 
---_000_dfd0afc8932f41e19daf0a1fe13578b3CY1PR0301MB0715namprd03_
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Hi,
 
-Hi all,
+ This is a bit obscure.  In my testing, for the purpose of upstreaming, of 
+the glibc change to support ARM TLS descriptors in prelinked binaries (cf 
+upstream BZ #17078, https://sourceware.org/bugzilla/show_bug.cgi?id=17078) 
+I have come across a problem where all programs prelinked against glibc 
+binaries using ARM TLS descriptors themselves segfaulted in the normal 
+exit path, where libc.so's own TLS destructors are called.  I have tracked 
+it down to the GOT entry (pointed to by the DT_TLSDESC_GOT dynamic tag) 
+meant to point to the lazy TLS descriptor resolver (pointed to by the 
+DT_TLSDESC_PLT dynamic tag) being left uninitialised and therefore NULL.  
+An attempt to call that resolver caused therefore a segfault.
 
-I use the meta-selinux layer to build a core-image-selinux rootfs image, an=
-d build kernel with following options enabled.
-CONFIG_AUDIT=3Dy
-CONFIG_NETWORK_SECMARK=3Dy
-CONFIG_EXT2_FS_SECURITY=3Dy
-CONFIG_EXT3_FS_SECURITY=3Dy
-CONFIG_EXT4_FS_SECURITY=3Dy
-CONFIG_JFS_SECURITY=3Dy
-CONFIG_REISERFS_FS_SECURITY=3Dy
-CONFIG_JFFS2_FS_SECURITY=3Dy
-CONFIG_SECURITY_NETWORK=3Dy
-CONFIG_SECURITY_SELINUX=3Dy
-CONFIG_SECURITY_SELINUX_BOOTPARAM=3Dy
-CONFIG_SECURITY_SELINUX_BOOTPARAM_VALUE=3D1
-CONFIG_SECURITY_SELINUX_DISABLE=3Dy
-CONFIG_SECURITY_SELINUX_DEVELOP=3Dy
-CONFIG_SECURITY_SELINUX_AVC_STATS=3Dy
-CONFIG_SECURITY_SELINUX_CHECKREQPROT_VALUE=3D1
+ The cause of this lack of initialisation turned out to be an omission in 
+the original fix (dated 2011-04-13 in ChangeLog.cross), that didn't ensure 
+that a conflict entry is created even for these R_ARM_TLS_DESC relocations 
+that refer to a local symbol.  Somehow it didn't trigger in testing back 
+when implemented, perhaps glibc didn't require or access the missing entry 
+in code handling TLS destructors then.  Such an entry is needed, because 
+for prelinked binaries the DT_TLSDESC_GOT GOT entry is only initialised by 
+the dynamic linker when a conflict is resolved.  The change below enforces 
+this conflict entry creation.
 
-I use the generated images to boot up FSL PPC t4240qds board(tried both NFS=
- boot and RAM boot with ext2.gz.u-boot rootfs), the SELinux is not turned o=
-n after kernel boot up.
+ This fix removes 33 failures in prelink testing with glibc built using 
+ARM TLS descriptors, that is with the `-mtls-dialect=gnu2' GCC option in 
+effect (that is not the default unless explicitly requested at GCC build 
+time):
 
-following is some information in rootfs.
-root@t4240qds:~# sestatus
-SELinux status:                 disabled
-root@t4240qds:~#
-root@t4240qds:~# cat /etc/selinux/config
-# This file controls the state of SELinux on the system.
-# SELINUX=3D can take one of these three values:
-#     enforcing - SELinux security policy is enforced.
-#     permissive - SELinux prints warnings instead of enforcing.
-#     disabled - No SELinux policy is loaded.
-SELINUX=3Denforcing
-# SELINUXTYPE=3D can take one of these two values:
-#     standard - Standard Security protection.
-#     mls - Multi Level Security protection.
-SELINUXTYPE=3Dmls
+FAIL -> PASS: default/prelink.sum:cxx1.sh
+FAIL -> PASS: default/prelink.sum:cxx2.sh
+FAIL -> PASS: default/prelink.sum:cxx3.sh
+FAIL -> PASS: default/prelink.sum:layout1.sh
+FAIL -> PASS: default/prelink.sum:layout2.sh
+FAIL -> PASS: default/prelink.sum:reloc1.sh
+FAIL -> PASS: default/prelink.sum:reloc10.sh
+FAIL -> PASS: default/prelink.sum:reloc11.sh
+FAIL -> PASS: default/prelink.sum:reloc2.sh
+FAIL -> PASS: default/prelink.sum:reloc3.sh
+FAIL -> PASS: default/prelink.sum:reloc4.sh
+FAIL -> PASS: default/prelink.sum:reloc5.sh
+FAIL -> PASS: default/prelink.sum:reloc6.sh
+FAIL -> PASS: default/prelink.sum:reloc7.sh
+FAIL -> PASS: default/prelink.sum:reloc8.sh
+FAIL -> PASS: default/prelink.sum:reloc9.sh
+FAIL -> PASS: default/prelink.sum:shuffle1.sh
+FAIL -> PASS: default/prelink.sum:shuffle2.sh
+FAIL -> PASS: default/prelink.sum:shuffle3.sh
+FAIL -> PASS: default/prelink.sum:shuffle4.sh
+FAIL -> PASS: default/prelink.sum:shuffle5.sh
+FAIL -> PASS: default/prelink.sum:shuffle6.sh
+FAIL -> PASS: default/prelink.sum:shuffle7.sh
+FAIL -> PASS: default/prelink.sum:shuffle8.sh
+FAIL -> PASS: default/prelink.sum:shuffle9.sh
+FAIL -> PASS: default/prelink.sum:tls1.sh
+FAIL -> PASS: default/prelink.sum:tls2.sh
+FAIL -> PASS: default/prelink.sum:tls3.sh
+FAIL -> PASS: default/prelink.sum:tls4.sh
+FAIL -> PASS: default/prelink.sum:tls5.sh
+FAIL -> PASS: default/prelink.sum:tls6.sh
+FAIL -> PASS: default/prelink.sum:tls7.sh
+FAIL -> PASS: default/prelink.sum:undo1.sh
 
-root@t4240qds:~# cat /proc/cmdline
-root=3D/dev/ram rw console=3DttyS0,115200 selinux=3D1
-root@t4240qds:~# setenforce 1
-setenforce: SELinux is disabled
-root@t4240qds:~# getenforce
-Disabled
-root@t4240qds:~#
+ Please apply.
 
-Can somebody shed some light on the issue?
+2014-07-22  Maciej W. Rozycki  <macro@codesourcery.com>
 
+	* src/arch-arm.c (arm_prelink_conflict_rel): Always create a 
+	conflict for R_ARM_TLS_DESC relocs.
+	(arm_prelink_conflict_rela): Likewise.
 
-Best Regards,
+  Maciej
 
-Zhenhua
+prelink-arm-tlsdesc-conflict-always.diff
+Index: trunk/src/arch-arm.c
+===================================================================
+--- trunk.orig/src/arch-arm.c	2014-07-17 23:26:08.000000000 +0100
++++ trunk/src/arch-arm.c	2014-07-18 04:18:53.790564615 +0100
+@@ -416,7 +416,9 @@ arm_prelink_conflict_rel (DSO *dso, stru
+ 	case R_ARM_TLS_DTPMOD32:
+ 	case R_ARM_TLS_TPOFF32:
+ 	  break;
+-
++	/* Likewise TLS_DESC.  */
++	case R_ARM_TLS_DESC:
++	  break;
+ 	default:
+ 	  return 0;
+ 	}
+@@ -526,7 +528,9 @@ arm_prelink_conflict_rela (DSO *dso, str
+ 	case R_ARM_TLS_DTPMOD32:
+ 	case R_ARM_TLS_TPOFF32:
+ 	  break;
+-
++	/* Likewise TLS_DESC.  */
++	case R_ARM_TLS_DESC:
++	  break;
+ 	default:
+ 	  return 0;
+ 	}
 
---_000_dfd0afc8932f41e19daf0a1fe13578b3CY1PR0301MB0715namprd03_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<meta name=3D"Generator" content=3D"Microsoft Word 12 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:SimSun;
-	panose-1:2 1 6 0 3 1 1 1 1 1;}
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-@font-face
-	{font-family:SimSun;
-	panose-1:2 1 6 0 3 1 1 1 1 1;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri","sans-serif";}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:purple;
-	text-decoration:underline;}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri","sans-serif";
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.25in 1.0in 1.25in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal">Hi all, <o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">I use the meta-selinux layer to build a core-image-s=
-elinux rootfs image, and build kernel with following options enabled.<o:p><=
-/o:p></p>
-<p class=3D"MsoNormal">CONFIG_AUDIT=3Dy<o:p></o:p></p>
-<p class=3D"MsoNormal">CONFIG_NETWORK_SECMARK=3Dy<o:p></o:p></p>
-<p class=3D"MsoNormal">CONFIG_EXT2_FS_SECURITY=3Dy<o:p></o:p></p>
-<p class=3D"MsoNormal">CONFIG_EXT3_FS_SECURITY=3Dy<o:p></o:p></p>
-<p class=3D"MsoNormal">CONFIG_EXT4_FS_SECURITY=3Dy<o:p></o:p></p>
-<p class=3D"MsoNormal">CONFIG_JFS_SECURITY=3Dy<o:p></o:p></p>
-<p class=3D"MsoNormal">CONFIG_REISERFS_FS_SECURITY=3Dy<o:p></o:p></p>
-<p class=3D"MsoNormal">CONFIG_JFFS2_FS_SECURITY=3Dy<o:p></o:p></p>
-<p class=3D"MsoNormal">CONFIG_SECURITY_NETWORK=3Dy<o:p></o:p></p>
-<p class=3D"MsoNormal">CONFIG_SECURITY_SELINUX=3Dy<o:p></o:p></p>
-<p class=3D"MsoNormal">CONFIG_SECURITY_SELINUX_BOOTPARAM=3Dy<o:p></o:p></p>
-<p class=3D"MsoNormal">CONFIG_SECURITY_SELINUX_BOOTPARAM_VALUE=3D1<o:p></o:=
-p></p>
-<p class=3D"MsoNormal">CONFIG_SECURITY_SELINUX_DISABLE=3Dy<o:p></o:p></p>
-<p class=3D"MsoNormal">CONFIG_SECURITY_SELINUX_DEVELOP=3Dy<o:p></o:p></p>
-<p class=3D"MsoNormal">CONFIG_SECURITY_SELINUX_AVC_STATS=3Dy<o:p></o:p></p>
-<p class=3D"MsoNormal">CONFIG_SECURITY_SELINUX_CHECKREQPROT_VALUE=3D1<o:p><=
-/o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">I use the generated images to boot up FSL PPC t4240q=
-ds board(tried both NFS boot and RAM boot with ext2.gz.u-boot rootfs), the =
-SELinux is not turned on after kernel boot up.
-<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">following is some information in rootfs. <o:p></o:p>=
-</p>
-<p class=3D"MsoNormal">root@t4240qds:~# sestatus <o:p></o:p></p>
-<p class=3D"MsoNormal">SELinux status:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; disabled<o:p></=
-o:p></p>
-<p class=3D"MsoNormal">root@t4240qds:~# <o:p></o:p></p>
-<p class=3D"MsoNormal">root@t4240qds:~# cat /etc/selinux/config <o:p></o:p>=
-</p>
-<p class=3D"MsoNormal"># This file controls the state of SELinux on the sys=
-tem.<o:p></o:p></p>
-<p class=3D"MsoNormal"># SELINUX=3D can take one of these three values:<o:p=
-></o:p></p>
-<p class=3D"MsoNormal">#&nbsp;&nbsp;&nbsp;&nbsp; enforcing - SELinux securi=
-ty policy is enforced.<o:p></o:p></p>
-<p class=3D"MsoNormal">#&nbsp;&nbsp;&nbsp;&nbsp; permissive - SELinux print=
-s warnings instead of enforcing.<o:p></o:p></p>
-<p class=3D"MsoNormal">#&nbsp;&nbsp;&nbsp;&nbsp; disabled - No SELinux poli=
-cy is loaded.<o:p></o:p></p>
-<p class=3D"MsoNormal">SELINUX=3Denforcing<o:p></o:p></p>
-<p class=3D"MsoNormal"># SELINUXTYPE=3D can take one of these two values:<o=
-:p></o:p></p>
-<p class=3D"MsoNormal">#&nbsp;&nbsp;&nbsp;&nbsp; standard - Standard Securi=
-ty protection.<o:p></o:p></p>
-<p class=3D"MsoNormal">#&nbsp;&nbsp;&nbsp;&nbsp; mls - Multi Level Security=
- protection.<o:p></o:p></p>
-<p class=3D"MsoNormal">SELINUXTYPE=3Dmls<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">root@t4240qds:~# cat /proc/cmdline <o:p></o:p></p>
-<p class=3D"MsoNormal">root=3D/dev/ram rw console=3DttyS0,115200 selinux=3D=
-1<o:p></o:p></p>
-<p class=3D"MsoNormal">root@t4240qds:~# setenforce 1<o:p></o:p></p>
-<p class=3D"MsoNormal">setenforce: SELinux is disabled<o:p></o:p></p>
-<p class=3D"MsoNormal">root@t4240qds:~# getenforce <o:p></o:p></p>
-<p class=3D"MsoNormal">Disabled<o:p></o:p></p>
-<p class=3D"MsoNormal">root@t4240qds:~#<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Can somebody shed some light on the issue?<o:p></o:p=
-></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Best Regards,<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Zhenhua<o:p></o:p></p>
-</div>
-</body>
-</html>
-
---_000_dfd0afc8932f41e19daf0a1fe13578b3CY1PR0301MB0715namprd03_--
