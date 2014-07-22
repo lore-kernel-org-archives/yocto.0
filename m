@@ -1,17 +1,17 @@
 Return-Path: <anoojgopi@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id B62A3E00524; Tue, 22 Jul 2014 10:08:57 -0700 (PDT)
+	id 7D730E00524; Tue, 22 Jul 2014 10:15:08 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [74.125.82.174 listed in list.dnswl.org]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (anoojgopi[at]gmail.com)
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (anoojgopi[at]gmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.212.170 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
@@ -20,38 +20,38 @@ X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-we0-f174.google.com (mail-we0-f174.google.com
-	[74.125.82.174])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B1BF7E00342
-	for <yocto@yoctoproject.org>; Tue, 22 Jul 2014 10:08:49 -0700 (PDT)
-Received: by mail-we0-f174.google.com with SMTP id x48so9499731wes.5
-	for <yocto@yoctoproject.org>; Tue, 22 Jul 2014 10:08:49 -0700 (PDT)
+Received: from mail-wi0-f170.google.com (mail-wi0-f170.google.com
+	[209.85.212.170])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8F581E00342
+	for <yocto@yoctoproject.org>; Tue, 22 Jul 2014 10:14:58 -0700 (PDT)
+Received: by mail-wi0-f170.google.com with SMTP id f8so6281644wiw.5
+	for <yocto@yoctoproject.org>; Tue, 22 Jul 2014 10:14:58 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
 	:cc:content-type;
-	bh=PeLP0+QhbF5fEbljZAMU7rKfQTvlW2deFEMj50IsfRw=;
-	b=qz3Vd1j5T09VzgSSS8Hdt9s9P36cuxrfU3dWhx+mtGT4zmJuhpA0mxkfxYmUqzMYfq
-	k0bKZbSgs/KR0g0+yFel8W3NPFyrMwfeQ+eLhgsI8MLtpwaGxRBDH5yhMojIjjVyLqzK
-	muO/Dw/fC8/CCkG1bs/RWvVMVXZFquZamV/PcoS8PzL2vkQD2JEejsu+kYP9BOOd7hCz
-	WBPUEUIgXi6SufIDEf719xp1gV7T7fYylFcOkZCAZsClcisWE5MU6H4dE3zWCLECnJhP
-	AotRTgriLyHLf7hLZ/lIFpRWGwxep7vszj9miwgtcA9jqBQw9kDkrqbsgXSSe4Ff6Eat
-	UhEw==
+	bh=m0j69sGHef0mjgX7bkYS4JHrddmwnPEwItRx1eBNSNY=;
+	b=yonBzY9G13xWFVOk+1uNmUU4og+gzgs2P4tOAszB8HLpyC4a2sFN0whSBkvOUZJwIc
+	GceUiVpxkdtN3aid2B4AQK0cCIJJyqKoZIRRQvXltbrM2E9FVoB1/4jyLOwbqa+mE9CA
+	mU5v95iC/MKJdbc8BGFRwFr4xd7tw5PGcCrtb4rU1IIwbuh3Mu+I2z65djprEG4EUy7/
+	CPtk8BjhK8vdm3yz9YjdPCRa1c9z/bkALcBJ8ybkCUjcXPrm64M1vhlfk9UdLvQbvtsf
+	uDN6ulxekZhyG/TYQ+0wta6qIG2s6EZVB2jh2nmi6TxhSgs2OM0qhaXsqLqNbKD8DVeO
+	fr/w==
 MIME-Version: 1.0
-X-Received: by 10.194.189.230 with SMTP id gl6mr36074489wjc.118.1406048928939; 
-	Tue, 22 Jul 2014 10:08:48 -0700 (PDT)
-Received: by 10.194.19.161 with HTTP; Tue, 22 Jul 2014 10:08:48 -0700 (PDT)
-In-Reply-To: <CAGM0ZdQvq4=mXtOeVo7KXO_8STNV_2wQ=+ua_X-8sp64QA0d7g@mail.gmail.com>
+X-Received: by 10.180.79.202 with SMTP id l10mr16470727wix.18.1406049298163;
+	Tue, 22 Jul 2014 10:14:58 -0700 (PDT)
+Received: by 10.194.19.161 with HTTP; Tue, 22 Jul 2014 10:14:58 -0700 (PDT)
+In-Reply-To: <CAJTo0Lb04W409SOt=vofjPyS1xu5AQisY6_f+pEmaJPDgHhkFg@mail.gmail.com>
 References: <CALkREYCJARja3TPwPR4Ck6wLrPa1Wmb2un3LBeKjt4PTszKo4Q@mail.gmail.com>
 	<CAJTo0LYgQWCXJY1L7EhdP72oOyxVkigx1z8cdGoGBXOpWqcd1w@mail.gmail.com>
 	<CALkREYBqgZpGr-wkFX2Qiw0kanTtg0mEGfq2cJ9=KfG4CrBC0A@mail.gmail.com>
 	<CALkREYC-GA3RbBmrrkJZ4rX0Dn-Ss9LrdOwx14vxw5eBDYmZzw@mail.gmail.com>
 	<CAGM0ZdRVPGNS-tJ__x4XeaivHmC-_wxq9Kj+NGt3ds0FZBD-OA@mail.gmail.com>
 	<CALkREYCbBe5uN50SkPco2S=rAwc8hPTYackHWSnL5VSKWB2+7A@mail.gmail.com>
-	<CAGM0ZdQvq4=mXtOeVo7KXO_8STNV_2wQ=+ua_X-8sp64QA0d7g@mail.gmail.com>
-Date: Tue, 22 Jul 2014 19:08:48 +0200
-Message-ID: <CALkREYAev_TTa4haNPK1Ok8_aRFzJbs3AouNRck45qPEXdYX6A@mail.gmail.com>
+	<CAJTo0Lb04W409SOt=vofjPyS1xu5AQisY6_f+pEmaJPDgHhkFg@mail.gmail.com>
+Date: Tue, 22 Jul 2014 19:14:58 +0200
+Message-ID: <CALkREYCHzyJW9F9=dxEC3EuktCqOLBN2LwShkhtF-NteWyfLnA@mail.gmail.com>
 From: Anooj Gopi <anoojgopi@gmail.com>
-To: Bharath Chandra <ellurubharath29@gmail.com>
+To: "Burton, Ross" <ross.burton@intel.com>
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: How to find the bb file from package name
 X-BeenThere: yocto@yoctoproject.org
@@ -65,385 +65,69 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 22 Jul 2014 17:08:57 -0000
-Content-Type: multipart/alternative; boundary=047d7bf0c09af248ea04fecb4675
+X-List-Received-Date: Tue, 22 Jul 2014 17:15:08 -0000
+Content-Type: multipart/alternative; boundary=f46d04428684f4310c04fecb5c54
 
---047d7bf0c09af248ea04fecb4675
+--f46d04428684f4310c04fecb5c54
 Content-Type: text/plain; charset=UTF-8
 
-Hello Bharath,
+This package (nativesdk-libqt5core-dev-5.2.1-r1.i686_nativesdk.rpm) is not
+installed in my sdk sysroot. So I need to add it to TOOLCHAIN_HOST_TASK and
+see if it gets installed into my sdk sysroot
 
-This is already known to me. The confusion mainly here was because of the
-name of the rpm package. From the recipe expected name was
-"nativesdk-qtbase-tools-dev-5.2.1-r1.i686_nativesdk.rpm" but generated
-package name is "nativesdk-libqt5core-dev-5.2.1-r1.i686_nativesdk.rpm"
-which confused me.
+But it fails with below error:
+Error: nativesdk-qtbase-tools-dev not found in the base feeds
+(i686_nativesdk noarch any all ).
 
-As Mr. Burton mentioned in his last mail, this was done by
-"debian.bbclass", which makes our life more difficult. So I feel a tool to
-track this relations is really necessary, and I guess yocto has done this
-in Yocto 1.6 with "toaster
-<https://www.yoctoproject.org/documentation/toaster-manual>" (I still have
-to use it and see).
-
-Regards,
-Anooj
+Any idea what is the problem here?
 
 
-On Tue, Jul 22, 2014 at 6:37 PM, Bharath Chandra <ellurubharath29@gmail.com>
-wrote:
 
-> Hi,
+On Tue, Jul 22, 2014 at 6:26 PM, Burton, Ross <ross.burton@intel.com> wrote:
+
+> On 22 July 2014 17:19, Anooj Gopi <anoojgopi@gmail.com> wrote:
+> > But I'm still not able to find out where in yocto PKG variable is
+> configured
+> > (which changes this rpm file name from the default one).
 >
-> you can find it under .inc file here
+> Packages containing libraries get renamed through debian.bbclass.
 >
-> https://github.com/meta-qt5/meta-qt5/blob/daisy/recipes-qt/qt5/nativesdk-qtbase.inc
+> I'm not sure why you need to know the recipe name for adding packages
+> to a SDK though.
 >
-> PACKAGES = "${PN}-tools-dbg *${PN}-tools-dev* ${PN}-tools-staticdev ${PN}-tools"
->
-> Thanks,
->
-> Bharath
->
->
->
-> On Tue, Jul 22, 2014 at 11:19 AM, Anooj Gopi <anoojgopi@gmail.com> wrote:
->
->>
->> Oh sorry the link I sent was wrong. The correct one is
->> https://github.com/meta-qt5/meta-qt5/blob/daisy/recipes-qt/qt5/nativesdk-qtbase_5.2.1.bb
->>
->> Manually searching the bb/inc file did not help until this point.
->>
->> Now I enabled the build history (INHERIT += "buildhistory"
->> BUILDHISTORY_FEATURES = "image package sdk") and built the packages once
->> again. Then searched for the package name as shown below
->>
->> cd build/buildhistory/packages
->> grep -nri nativesdk-libqt5core-dev .
->> ./i686-nativesdk-oesdk-linux/nativesdk-qtbase/nativesdk-qtbase-tools-dev/latest:3:PKG
->> = nativesdk-libqt5core-dev
->>
->> which shows that the yocto package is "nativesdk-qtbase-tools-dev", which
->> is provided by "nativesdk-qtbase_5.2.1.bb".
->>
->> But I'm still not able to find out where in yocto PKG variable is
->> configured (which changes this rpm file name from the default one).
->>
->>
->>
->> On Tue, Jul 22, 2014 at 5:50 PM, Bharath Chandra <
->> ellurubharath29@gmail.com> wrote:
->>
->>> Hi Anooj,
->>>
->>> I guess you are looking at a wrong version of the recipe file, you have
->>> to look into version number 5.2.1 and revision r1 as your package name is
->>> suggesting but the link which you have mentioned is for 5.3.1 . Kindly,
->>> have a look into correct version number of recipe file and if you do not
->>> find any package name in the recipe file then you can search in *.inc*
->>> files which are included in that recipe file.
->>> for eg :
->>>
->>> require qt5-${PV}.inc
->>>
->>>
->>>
->>> You have to check in qt5-5.2.1.inc file and see if any package is included with the name which you are searching for.
->>>
->>>
->>>
->>> Thanks & Regards,
->>> Bharath Chandra Elluru
->>>
->>>
->>>
->>> On Tue, Jul 22, 2014 at 6:52 AM, Anooj Gopi <anoojgopi@gmail.com> wrote:
->>>
->>>>
->>>> Yes I am trying to track down the recipe from the rpm file. In my
->>>> project yocto builds the rpm package
->>>> "nativesdk-libqt5core-dev-5.2.1-r1.i686_nativesdk.rpm" (by
->>>> https://github.com/meta-qt5/meta-qt5) but it is not included in my sdk
->>>> sysroot image. So I would like to see how I could include this into my sdk.
->>>> For that I am tracing back the recipe which generated the rpm.
->>>>
->>>> I tried as you said:
->>>> From the source package name I can see it is from "Source RPM  :
->>>> nativesdk-qtbase-5.2.1-r1.src.rpm", which means bb file is
->>>> https://github.com/meta-qt5/meta-qt5/blob/master/recipes-qt/qt5/nativesdk-qtbase_5.3.1.bb
->>>> Now this from the bb file content I can see this file provides multiple
->>>> packages, (for eg. nativesdk-qtbase-tools-dbg nativesdk-qtbase-tools-dev
->>>> nativesdk-qtbase-tools-staticdev nativesdk-qtbase-tool) but I still could
->>>> not find where it is configured to generate the package
->>>> "nativesdk-libqt5core-dev-5.2.1-r1.i686_nativesdk.rpm".
->>>>
->>>> As Belen in his last mail, the tools like "Toaster" could confirm this
->>>> (by listing the packages generated from a bb file), but is there any way I
->>>> can do it in Yocto Project 1.5?
->>>>
->>>> Regards,
->>>> Anooj
->>>>
->>>>
->>>> On Tue, Jul 22, 2014 at 11:15 AM, Burton, Ross <ross.burton@intel.com>
->>>> wrote:
->>>>
->>>>> On 21 July 2014 16:39, Anooj Gopi <anoojgopi@gmail.com> wrote:
->>>>> > Could some one help me to understand how we could find the bb file
->>>>> which
->>>>> > generated particular package (rpm package for eg.)?
->>>>> > (In some cases the name of the package and recipe name differ
->>>>> drastically)
->>>>> >
->>>>> > Also is there any way to list packages (rpm) generated by particular
->>>>> recipe
->>>>> > (yocto package) easily. (without looking into the PACKAGES variable).
->>>>>
->>>>> It's probably best if you explain exactly what you want to do.
->>>>>
->>>>> If you want to work backwards from a RPM to the recipe, then binary
->>>>> RPMs have a Source RPM metadata field and the srpm is named after the
->>>>> recipe:
->>>>>
->>>>> $ rpm -qpi connman-tests-1.24-r0.15.corei7_64.rpm | grep Source
->>>>> Source RPM  : connman-1.24-r0.15.src.rpm
->>>>>
->>>>> Ross
->>>>>
->>>>
->>>>
->>>>
->>>> --
->>>> _______________________________________________
->>>> yocto mailing list
->>>> yocto@yoctoproject.org
->>>> https://lists.yoctoproject.org/listinfo/yocto
->>>>
->>>>
->>>
->>>
->>> --
->>> Thanks & Regards,
->>> Bharath Chandra Elluru.
->>> Contact Number:785-979-4875.
->>>
->>
->>
->
->
-> --
-> Thanks & Regards,
-> Bharath Chandra Elluru.
-> Contact Number:785-979-4875.
+> Ross
 >
 
---047d7bf0c09af248ea04fecb4675
+--f46d04428684f4310c04fecb5c54
 Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div><div>Hello Bharath,<br><br>This is already known to m=
-e. The confusion mainly here was because of the name of the rpm package. Fr=
-om the recipe expected name was &quot;nativesdk-qtbase-tools-dev-5.2.1-r1.i=
-686_nativesdk.rpm&quot; but generated package name is &quot;nativesdk-libqt=
-5core-dev-5.2.1-r1.i686_nativesdk.rpm&quot; which confused me.<br>
-<br></div>As Mr. Burton mentioned in his last mail, this was done by &quot;=
-debian.bbclass&quot;, which makes our life more difficult. So I feel a tool=
- to track this relations is really necessary, and I guess yocto has done th=
-is in Yocto 1.6 with &quot;<a href=3D"https://www.yoctoproject.org/document=
-ation/toaster-manual" target=3D"_blank">toaster</a>&quot; (I still have to =
-use it and see).<br>
-<br></div>Regards,<br>Anooj<br></div><div class=3D"gmail_extra"><br><br><di=
-v class=3D"gmail_quote">On Tue, Jul 22, 2014 at 6:37 PM, Bharath Chandra <s=
-pan dir=3D"ltr">&lt;<a href=3D"mailto:ellurubharath29@gmail.com" target=3D"=
-_blank">ellurubharath29@gmail.com</a>&gt;</span> wrote:<br>
-<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
-x #ccc solid;padding-left:1ex"><div dir=3D"ltr"><div>Hi,<br><br></div>you c=
-an find it under .inc file here <br><a href=3D"https://github.com/meta-qt5/=
-meta-qt5/blob/daisy/recipes-qt/qt5/nativesdk-qtbase.inc" target=3D"_blank">=
-https://github.com/meta-qt5/meta-qt5/blob/daisy/recipes-qt/qt5/nativesdk-qt=
-base.inc</a><br>
-
-<pre>PACKAGES =3D &quot;${PN}-tools-dbg <b>${PN}-tools-dev</b> ${PN}-tools-=
-staticdev ${PN}-tools&quot;<br><br></pre><pre>Thanks,<br></pre><pre>Bharath=
-<br></pre></div><div class=3D"HOEnZb"><div class=3D"h5"><div class=3D"gmail=
-_extra">
-<br><br><div class=3D"gmail_quote">
-On Tue, Jul 22, 2014 at 11:19 AM, Anooj Gopi <span dir=3D"ltr">&lt;<a href=
-=3D"mailto:anoojgopi@gmail.com" target=3D"_blank">anoojgopi@gmail.com</a>&g=
-t;</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0=
- .8ex;border-left:1px #ccc solid;padding-left:1ex">
-
-<div dir=3D"ltr"><div><div><div><div><br></div>Oh sorry the link I sent was=
- wrong. The correct one is <a href=3D"https://github.com/meta-qt5/meta-qt5/=
-blob/daisy/recipes-qt/qt5/nativesdk-qtbase_5.2.1.bb" target=3D"_blank">http=
-s://github.com/meta-qt5/meta-qt5/blob/daisy/recipes-qt/qt5/nativesdk-qtbase=
-_5.2.1.bb</a><br>
-
-
-<br></div>Manually searching the bb/inc file did not help until this point.=
-<br><br></div>Now I enabled the build history (INHERIT +=3D &quot;buildhist=
-ory&quot; BUILDHISTORY_FEATURES =3D &quot;image package sdk&quot;) and buil=
-t the packages once again. Then searched for the package name as shown belo=
-w<br>
-
-
-<br>cd build/buildhistory/packages<br>grep -nri nativesdk-libqt5core-dev .<=
-br>./i686-nativesdk-oesdk-linux/nativesdk-qtbase/nativesdk-qtbase-tools-dev=
-/latest:3:PKG =3D nativesdk-libqt5core-dev<br><br></div><div>which shows th=
-at the yocto package is &quot;nativesdk-qtbase-tools-dev&quot;, which is pr=
-ovided by &quot;<a href=3D"http://nativesdk-qtbase_5.2.1.bb" target=3D"_bla=
-nk">nativesdk-qtbase_5.2.1.bb</a>&quot;.<br>
-
-
-<br></div><div>But I&#39;m still not able to find out where in yocto PKG va=
-riable is configured (which changes this rpm file name from the default one=
-).<br><br> </div></div><div><div><div class=3D"gmail_extra">
-<br><br><div class=3D"gmail_quote">
-On Tue, Jul 22, 2014 at 5:50 PM, Bharath Chandra <span dir=3D"ltr">&lt;<a h=
-ref=3D"mailto:ellurubharath29@gmail.com" target=3D"_blank">ellurubharath29@=
-gmail.com</a>&gt;</span> wrote:<br><blockquote class=3D"gmail_quote" style=
-=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">
-
-
-<div dir=3D"ltr"><div><font><span style=3D"font-family:comic sans ms,sans-s=
-erif">Hi Anooj,<br><br>I guess you are looking at a wrong version of the re=
-cipe file, you have to look into version number 5.2.1 and revision r1 as yo=
-ur package name is suggesting but the link which you have mentioned is for =
-5.3.1 . Kindly, have a look into correct version number of recipe file and =
-if you do not find any package name in the recipe file then you can search =
-in <b>.inc</b> files which are included in that recipe file.<br>
-
-
-
-</span></font></div><font><span style=3D"font-family:comic sans ms,sans-ser=
-if">for eg : <br></span></font><pre><font><span style=3D"font-family:comic =
-sans ms,sans-serif"><span>require</span> <span>qt5</span><span>-</span><spa=
-n>${</span><span>PV</span><span>}</span><span>.inc<br>
-
-
-
-<br></span></span></font></pre><pre><font><span style=3D"font-family:comic =
-sans ms,sans-serif"><span>You have to check in qt5-5.2.1.inc file and see i=
-f any package is included with the name which you are searching for.<br>
-
-
-
-<br></span></span></font></pre><pre><span><font><span style=3D"font-family:=
-comic sans ms,sans-serif">Thanks &amp; Regards,<br>Bharath Chandra Elluru</=
-span></font><br></span></pre></div><div class=3D"gmail_extra"><br>
-<br><div class=3D"gmail_quote"><div><div>On Tue, Jul 22, 2014 at 6:52 AM, A=
-nooj Gopi <span dir=3D"ltr">&lt;<a href=3D"mailto:anoojgopi@gmail.com" targ=
-et=3D"_blank">anoojgopi@gmail.com</a>&gt;</span> wrote:<br></div></div>
-<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
-x #ccc solid;padding-left:1ex"><div><div>
-<div dir=3D"ltr"><div class=3D"gmail_quote"><div dir=3D"ltr"><div><br></div=
-><div>Yes I am trying to track down the recipe from the rpm file. In my pro=
-ject yocto builds the rpm package &quot;nativesdk-libqt5core-dev-5.2.1-r1.i=
-686_nativesdk.rpm&quot; (by <a href=3D"https://github.com/meta-qt5/meta-qt5=
-" target=3D"_blank">https://github.com/meta-qt5/meta-qt5</a>) but it is not=
- included in my sdk sysroot image. So I would like to see how I could inclu=
-de this into my sdk. For that I am tracing back the recipe which generated =
-the rpm.<br>
-
-
-
-
-
-</div><div><br></div><div>I tried as you said:<br></div><div>From the sourc=
-e package name I can see it is from &quot;Source RPM=C2=A0 : nativesdk-qtba=
-se-5.2.1-r1.src.rpm&quot;, which means bb file is <a href=3D"https://github=
-.com/meta-qt5/meta-qt5/blob/master/recipes-qt/qt5/nativesdk-qtbase_5.3.1.bb=
-" target=3D"_blank">https://github.com/meta-qt5/meta-qt5/blob/master/recipe=
-s-qt/qt5/nativesdk-qtbase_5.3.1.bb</a><br>
-
-
-
-
-
-</div><div>Now this from the bb file content I can see this file provides m=
-ultiple packages, (for eg. nativesdk-qtbase-tools-dbg nativesdk-qtbase-tool=
-s-dev nativesdk-qtbase-tools-staticdev nativesdk-qtbase-tool) but I still c=
-ould not find where it is configured to generate the package &quot;nativesd=
-k-libqt5core-dev-5.2.1-r1.i686_nativesdk.rpm&quot;.<br>
-
-
-
-
-
-<br></div><div>As Belen in his last mail, the tools like &quot;Toaster&quot=
-; could confirm this (by listing the packages generated from a bb file), bu=
-t is there any way I can do it in Yocto Project 1.5? </div><div><br></div>
-
-
-
-
-
-<div>Regards,<br>Anooj<br></div></div><div><div><div><div class=3D"gmail_ex=
-tra"><br><br><div class=3D"gmail_quote">On Tue, Jul 22, 2014 at 11:15 AM, B=
-urton, Ross <span dir=3D"ltr">&lt;<a href=3D"mailto:ross.burton@intel.com" =
-target=3D"_blank">ross.burton@intel.com</a>&gt;</span> wrote:<br>
-
-
-
-
-
-<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
-x #ccc solid;padding-left:1ex"><div><div>On 21 July 2014 16:39, Anooj Gopi =
-&lt;<a href=3D"mailto:anoojgopi@gmail.com" target=3D"_blank">anoojgopi@gmai=
-l.com</a>&gt; wrote:<br>
-
-
-
-
-
-
-&gt; Could some one help me to understand how we could find the bb file whi=
-ch<br>
-&gt; generated particular package (rpm package for eg.)?<br>
-&gt; (In some cases the name of the package and recipe name differ drastica=
-lly)<br>
-&gt;<br>
-&gt; Also is there any way to list packages (rpm) generated by particular r=
-ecipe<br>
-&gt; (yocto package) easily. (without looking into the PACKAGES variable).<=
-br>
+<div dir=3D"ltr"><div><div>This package (nativesdk-libqt5core-dev-5.2.1-r1.=
+i686_nativesdk.rpm) is not installed in my sdk sysroot. So I need to add it=
+ to TOOLCHAIN_HOST_TASK and see if it gets installed into my sdk sysroot<br=
+>
+<br></div>But it fails with below error:<br>Error: nativesdk-qtbase-tools-d=
+ev not found in the base feeds (i686_nativesdk noarch any all ).<br><br></d=
+iv>Any idea what is the problem here?<br><br></div><div class=3D"gmail_extr=
+a">
+<br><br><div class=3D"gmail_quote">On Tue, Jul 22, 2014 at 6:26 PM, Burton,=
+ Ross <span dir=3D"ltr">&lt;<a href=3D"mailto:ross.burton@intel.com" target=
+=3D"_blank">ross.burton@intel.com</a>&gt;</span> wrote:<br><blockquote clas=
+s=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #ccc solid;pad=
+ding-left:1ex">
+<div class=3D"">On 22 July 2014 17:19, Anooj Gopi &lt;<a href=3D"mailto:ano=
+ojgopi@gmail.com">anoojgopi@gmail.com</a>&gt; wrote:<br>
+&gt; But I&#39;m still not able to find out where in yocto PKG variable is =
+configured<br>
+&gt; (which changes this rpm file name from the default one).<br>
 <br>
-</div></div>It&#39;s probably best if you explain exactly what you want to =
-do.<br>
+</div>Packages containing libraries get renamed through debian.bbclass.<br>
 <br>
-If you want to work backwards from a RPM to the recipe, then binary<br>
-RPMs have a Source RPM metadata field and the srpm is named after the<br>
-recipe:<br>
-<br>
-$ rpm -qpi connman-tests-1.24-r0.15.corei7_64.rpm | grep Source<br>
-Source RPM =C2=A0: connman-1.24-r0.15.src.rpm<br>
-<span><font color=3D"#888888"><br>
+I&#39;m not sure why you need to know the recipe name for adding packages<b=
+r>
+to a SDK though.<br>
+<span class=3D"HOEnZb"><font color=3D"#888888"><br>
 Ross<br>
 </font></span></blockquote></div><br></div>
-</div></div></div></div><br></div>
-<br></div></div><span><font color=3D"#888888">--<br>
-_______________________________________________<br>
-yocto mailing list<br>
-<a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yocto@yoctoproj=
-ect.org</a><br>
-<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" target=3D"_blank"=
->https://lists.yoctoproject.org/listinfo/yocto</a><br>
-<br></font></span></blockquote></div><span><font color=3D"#888888"><br><br =
-clear=3D"all"><br>-- <br><div dir=3D"ltr">Thanks &amp; Regards,<div>Bharath=
- Chandra Elluru.</div><div>Contact Number:<a href=3D"tel:785-979-4875" valu=
-e=3D"+917859794875" target=3D"_blank">785-979-4875</a>.</div>
 
-
-</div>
-</font></span></div>
-</blockquote></div><br></div>
-</div></div></blockquote></div><br><br clear=3D"all"><br>-- <br><div dir=3D=
-"ltr">Thanks &amp; Regards,<div>Bharath Chandra Elluru.</div><div>Contact N=
-umber:<a href=3D"tel:785-979-4875" value=3D"+917859794875" target=3D"_blank=
-">785-979-4875</a>.</div>
-</div>
-</div>
-</div></div></blockquote></div><br></div>
-
---047d7bf0c09af248ea04fecb4675--
+--f46d04428684f4310c04fecb5c54--
