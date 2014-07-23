@@ -1,52 +1,43 @@
-Return-Path: <zhenhua.luo@freescale.com>
+Return-Path: <elizabeth.flanagan@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 7B706E00576; Tue, 22 Jul 2014 19:28:53 -0700 (PDT)
+	id D4691E00576; Tue, 22 Jul 2014 19:51:00 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00, RCVD_IN_DNSWL_NONE, 
-	SPF_HELO_PASS autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [207.46.163.139 listed in list.dnswl.org]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from na01-bn1-obe.outbound.protection.outlook.com
-	(mail-bn1lp0139.outbound.protection.outlook.com [207.46.163.139])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 01A36E00558
-	for <yocto@yoctoproject.org>; Tue, 22 Jul 2014 19:28:41 -0700 (PDT)
-Received: from CY1PR0301MB0715.namprd03.prod.outlook.com (25.160.159.145) by
-	CY1PR0301MB0713.namprd03.prod.outlook.com (25.160.159.143) with
-	Microsoft
-	SMTP Server (TLS) id 15.0.985.8; Wed, 23 Jul 2014 02:28:38 +0000
-Received: from CY1PR0301MB0715.namprd03.prod.outlook.com ([25.160.159.145]) by
-	CY1PR0301MB0715.namprd03.prod.outlook.com ([25.160.159.145]) with
-	mapi id 15.00.0985.008; Wed, 23 Jul 2014 02:28:38 +0000
-From: "zhenhua.luo@freescale.com" <zhenhua.luo@freescale.com>
-To: Mark Hatle <mark.hatle@windriver.com>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>
-Thread-Topic: [yocto] SELinux doesn't work on t4240qds
-Thread-Index: Ac+lvzKBtGo4KmiDRFuWSK4Azfu4jwAE3bYAABI/unA=
-Date: Wed, 23 Jul 2014 02:28:38 +0000
-Message-ID: <6f5922a626734b809df5f899dc3ae3e3@CY1PR0301MB0715.namprd03.prod.outlook.com>
-References: <dfd0afc8932f41e19daf0a1fe13578b3@CY1PR0301MB0715.namprd03.prod.outlook.com>
-	<53CE9FC2.3090507@windriver.com>
-In-Reply-To: <53CE9FC2.3090507@windriver.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [123.151.195.50]
-x-microsoft-antispam: BCL:0;PCL:0;RULEID:
-x-forefront-prvs: 028166BF91
-x-forefront-antispam-report: SFV:NSPM;
-	SFS:(6009001)(377454003)(479174003)(51704005)(53754006)(24454002)(13464003)(189002)(199002)(15404003)(106356001)(74662001)(19580405001)(99286002)(33646002)(21056001)(81542001)(76482001)(86362001)(77982001)(101416001)(79102001)(54356999)(46102001)(74502001)(105586002)(19580395003)(77096002)(83072002)(76576001)(50986999)(99396002)(64706001)(92566001)(107886001)(85852003)(95666004)(76176999)(85306003)(15975445006)(81342001)(80022001)(4396001)(83322001)(20776003)(66066001)(74316001)(2656002)(31966008)(87936001)(107046002)(108616002)(24736002);
-	DIR:OUT; SFP:; SCL:1; SRVR:CY1PR0301MB0713;
-	H:CY1PR0301MB0715.namprd03.prod.outlook.com; FPR:; MLV:sfv;
-	PTR:InfoNoRecords; MX:1; LANG:en; 
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.220.179 listed in list.dnswl.org]
+Received: from mail-vc0-f179.google.com (mail-vc0-f179.google.com
+	[209.85.220.179])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D9FDBE00558
+	for <yocto@yoctoproject.org>; Tue, 22 Jul 2014 19:50:57 -0700 (PDT)
+Received: by mail-vc0-f179.google.com with SMTP id hq11so1002091vcb.24
+	for <yocto@yoctoproject.org>; Tue, 22 Jul 2014 19:50:56 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:date:message-id:subject:from:to
+	:content-type;
+	bh=OwGEY9f2rXCaWzDhUHy1P++YatiA819EVyS9yxoi6LQ=;
+	b=PP44ZtIL0+1jbn7r6+XxM8kJqQIGXZ9SFnrsbYlJeQ8McIwHGwvP3/GhV3WItg1qj6
+	a8qOeZjBbb+FMW+f2UIJN2ZGy+A2IdrHiUsZqywcbDGmrn9R8vQS/LByAP6ptdgiqvaG
+	M7v9t2jwFk4U/ELrI/WE8JA14s4qXpXddem3XwIWJRfG0BSAtxPm6QhDz+yvkBtj8gVI
+	Heu3Ujh8Icw4VJfaZ2T+WDVSS116r4zBNt2JSdnMHGNf14Y7vzCO2X/2QCstq6xGDlly
+	JY1G+hF1xw/OsQvsxSRvJLX2NjfYFRKPkuQ9/axCxz+tvvNYJ90/phAmkkvN5Zx+SeP8
+	FSdw==
+X-Gm-Message-State: ALoCoQlEc7W8NP4p46oCjB714meg4HT06fuU3U+5zqXvOJiW7y2RrB/APfBmsNSzUQyOHfakz70+
 MIME-Version: 1.0
-X-OriginatorOrg: freescale.com
-Subject: Re: SELinux doesn't work on t4240qds
+X-Received: by 10.52.35.81 with SMTP id f17mr17866852vdj.13.1406083856563;
+	Tue, 22 Jul 2014 19:50:56 -0700 (PDT)
+Received: by 10.52.135.50 with HTTP; Tue, 22 Jul 2014 19:50:56 -0700 (PDT)
+Date: Wed, 23 Jul 2014 03:50:56 +0100
+Message-ID: <CAPhnLPBu+1C11u9ar5JxRuQj_LBT+mXP-B7hywCHCnmmT+V17Q@mail.gmail.com>
+From: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: [ANNOUNCEMENT] Yocto Project 1.7 Milestone 1 now available
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -58,139 +49,24 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 23 Jul 2014 02:28:53 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Wed, 23 Jul 2014 02:51:00 -0000
+Content-Type: text/plain; charset=UTF-8
 
-Hi Mark,=20
+The first milestone for the upcoming 1.7 release is now available at:
 
-Thanks for your comments.=20
+http://downloads.yoctoproject.org/releases/yocto/milestones/yocto-1.7_M1
 
-> -----Original Message-----
-> From: yocto-bounces@yoctoproject.org [mailto:yocto-
-> bounces@yoctoproject.org] On Behalf Of Mark Hatle
->=20
-> On 7/22/14, 10:11 AM, zhenhua.luo@freescale.com wrote:
-> > Hi all,
->=20
-> Which release are you using.=20
-[Luo Zhenhua-B19537] I tried poky daisy + meta-fsl-ppc master + meta-selinu=
-x master
+poky a5531a2b8983318b99c119a87b78a92cf84160b8
+meta-qt3 3016129d90b7ac8517a5227d819f10ad417b5b45
+eclipse-poky-juno 26bfc407781aa185f244a47ba63120343cee4a37
+eclipse-poky-kepler 4a167fd662262ebdaa3cf0d332ac0debb52d7904
+meta-fsl-arm 31a0928cbbe707548712ec3612cdc727a3775501
+meta-fsl-ppc b920491d60752ffc38098266f260dacaa2c35e7a
+meta-intel 05dd98cf5c117a8bdd566d36d20a84fff20e8cc3
+meta-minnow ee48eba5895178ec19febee2e0a2d8b0f3ace0e9
 
-> The last version I used w/ meta-selinux was the 1.5 release.
->=20
-> We're planning on updating it to master in the 'near' future [patches
-> welcome!], and I've been told by a few others of success w/ 1.7.
-[Luo Zhenhua-B19537] I will try master and dora.=20
-
-> Did you enable the 'selinux' distribution flag?=20
-> If so, it should have enabled all of the components necessary for this st=
-uff to be enabled.
-[Luo Zhenhua-B19537] Yes, selinux is in DISTRO_FEATURES.
-
-
-Best Regards,
-
-Zhenhua
-=20
-> --Mark
->=20
-> > I use the meta-selinux layer to build a core-image-selinux rootfs
-> > image, and build kernel with following options enabled.
-> >
-> > CONFIG_AUDIT=3Dy
-> >
-> > CONFIG_NETWORK_SECMARK=3Dy
-> >
-> > CONFIG_EXT2_FS_SECURITY=3Dy
-> >
-> > CONFIG_EXT3_FS_SECURITY=3Dy
-> >
-> > CONFIG_EXT4_FS_SECURITY=3Dy
-> >
-> > CONFIG_JFS_SECURITY=3Dy
-> >
-> > CONFIG_REISERFS_FS_SECURITY=3Dy
-> >
-> > CONFIG_JFFS2_FS_SECURITY=3Dy
-> >
-> > CONFIG_SECURITY_NETWORK=3Dy
-> >
-> > CONFIG_SECURITY_SELINUX=3Dy
-> >
-> > CONFIG_SECURITY_SELINUX_BOOTPARAM=3Dy
-> >
-> > CONFIG_SECURITY_SELINUX_BOOTPARAM_VALUE=3D1
-> >
-> > CONFIG_SECURITY_SELINUX_DISABLE=3Dy
-> >
-> > CONFIG_SECURITY_SELINUX_DEVELOP=3Dy
-> >
-> > CONFIG_SECURITY_SELINUX_AVC_STATS=3Dy
-> >
-> > CONFIG_SECURITY_SELINUX_CHECKREQPROT_VALUE=3D1
-> >
-> > I use the generated images to boot up FSL PPC t4240qds board(tried
-> > both NFS boot and RAM boot with ext2.gz.u-boot rootfs), the SELinux is
-> > not turned on after kernel boot up.
-> >
-> > following is some information in rootfs.
-> >
-> > root@t4240qds:~# sestatus
-> >
-> > SELinux status:                 disabled
-> >
-> > root@t4240qds:~#
-> >
-> > root@t4240qds:~# cat /etc/selinux/config
-> >
-> > # This file controls the state of SELinux on the system.
-> >
-> > # SELINUX=3D can take one of these three values:
-> >
-> > #     enforcing - SELinux security policy is enforced.
-> >
-> > #     permissive - SELinux prints warnings instead of enforcing.
-> >
-> > #     disabled - No SELinux policy is loaded.
-> >
-> > SELINUX=3Denforcing
-> >
-> > # SELINUXTYPE=3D can take one of these two values:
-> >
-> > #     standard - Standard Security protection.
-> >
-> > #     mls - Multi Level Security protection.
-> >
-> > SELINUXTYPE=3Dmls
-> >
-> > root@t4240qds:~# cat /proc/cmdline
-> >
-> > root=3D/dev/ram rw console=3DttyS0,115200 selinux=3D1
-> >
-> > root@t4240qds:~# setenforce 1
-> >
-> > setenforce: SELinux is disabled
-> >
-> > root@t4240qds:~# getenforce
-> >
-> > Disabled
-> >
-> > root@t4240qds:~#
-> >
-> > Can somebody shed some light on the issue?
-> >
-> > Best Regards,
-> >
-> > Zhenhua
-> >
-> >
-> >
->=20
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+-- 
+Elizabeth Flanagan
+Yocto Project
+Build and Release
 
