@@ -1,56 +1,47 @@
-Return-Path: <gley-yocto@m.gmane.org>
+Return-Path: <ross.burton@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id A715AE0078F; Wed, 23 Jul 2014 03:00:28 -0700 (PDT)
+	id 074EBE0078F; Wed, 23 Jul 2014 03:06:44 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
-X-Spam-Level: **
-X-Spam-Status: No, score=2.9 required=5.0 tests=BAYES_00, DKIM_ADSP_CUSTOM_MED,
-	FREEMAIL_FROM, FSL_HELO_BARE_IP_2, NML_ADSP_CUSTOM_MED,
-	RCVD_IN_DNSWL_NONE, RCVD_IN_SORBS_WEB, RCVD_NUMERIC_HELO,
-	SPF_HELO_PASS autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [80.91.229.3 listed in list.dnswl.org]
-	*  0.8 RCVD_IN_SORBS_WEB RBL: SORBS: sender is an abusable web server
-	*      [115.248.23.130 listed in dnsbl.sorbs.net]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (babu.anoop[at]gmail.com)
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
-	*  0.0 DKIM_ADSP_CUSTOM_MED No valid author signature, adsp_override is
-	*      CUSTOM_MED
-	* 1.2 RCVD_NUMERIC_HELO Received: contains an IP address used for HELO
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  2.0 FSL_HELO_BARE_IP_2 FSL_HELO_BARE_IP_2
-	*  0.9 NML_ADSP_CUSTOM_MED ADSP custom_med hit,
-	and not from a mailing list
-Received: from plane.gmane.org (plane.gmane.org [80.91.229.3])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6FE7CE00572
-	for <yocto@yoctoproject.org>; Wed, 23 Jul 2014 03:00:22 -0700 (PDT)
-Received: from list by plane.gmane.org with local (Exim 4.69)
-	(envelope-from <gley-yocto@m.gmane.org>) id 1X9tLO-0003WF-94
-	for yocto@yoctoproject.org; Wed, 23 Jul 2014 12:00:18 +0200
-Received: from 115.248.23.130 ([115.248.23.130])
-	by main.gmane.org with esmtp (Gmexim 0.1 (Debian))
-	id 1AlnuQ-0007hv-00
-	for <yocto@yoctoproject.org>; Wed, 23 Jul 2014 12:00:18 +0200
-Received: from babu.anoop by 115.248.23.130 with local (Gmexim 0.1 (Debian))
-	id 1AlnuQ-0007hv-00
-	for <yocto@yoctoproject.org>; Wed, 23 Jul 2014 12:00:18 +0200
-X-Injected-Via-Gmane: http://gmane.org/
-To: yocto@yoctoproject.org
-From: Anoop <babu.anoop@gmail.com>
-Date: Wed, 23 Jul 2014 10:00:05 +0000 (UTC)
-Message-ID: <loom.20140723T115536-199@post.gmane.org>
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.192.53 listed in list.dnswl.org]
+Received: from mail-qg0-f53.google.com (mail-qg0-f53.google.com
+	[209.85.192.53])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C2D9EE00572
+	for <yocto@yoctoproject.org>; Wed, 23 Jul 2014 03:06:38 -0700 (PDT)
+Received: by mail-qg0-f53.google.com with SMTP id q107so1095287qgd.12
+	for <yocto@yoctoproject.org>; Wed, 23 Jul 2014 03:06:37 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc:content-type;
+	bh=KOxCzeJe5ivPJFvGeetbpE8IbxH3LnB8rlGGyZOAQUw=;
+	b=dJAVirYuLsCRoBOoVBJLXhvAAqJp9B54JOG1nUHDwhD5sL9yliY5FC12GfC+x3g2DA
+	7MtEF5g39T2ogJTdHZIp2UIlqSpy1ceZrxC8XW36DPQ8Hj9fj9AhUTbbRkV5Ie+hjYHD
+	mXhsb7Y6fH/WqBI9yzZ+79pHu/lvVuyT0bEhpTF8wzcSdjJ/6Ueb/lN3MtomGXdXThEX
+	1+/b4VR4LOJd+dIsCk+AdnxoEew0lFWCb+dxqi0qe/JHO8ccNy+QqK/vuatt3++VYxOy
+	SUFtA+WrbkgWdmYr9uXk/tHZFkbq1+PumAb78GM0bsSc0U76Q+HDGJM3zzRlUjRVqoY6
+	6JvQ==
+X-Gm-Message-State: ALoCoQnUppYVx0f0mnvVmKnKoTlqMpSl8R/eL9gwicvpDawYQ1hYE2u4LcEw/+tDQuQEWGbcpv0p
+X-Received: by 10.224.120.68 with SMTP id c4mr213478qar.17.1406109997417; Wed,
+	23 Jul 2014 03:06:37 -0700 (PDT)
+MIME-Version: 1.0
+Received: by 10.140.86.99 with HTTP; Wed, 23 Jul 2014 03:06:16 -0700 (PDT)
+In-Reply-To: <loom.20140723T115536-199@post.gmane.org>
 References: <loom.20140723T084046-919@post.gmane.org>
 	<CAJTo0La-UMGQ=-+StwSQkfhwRXGHQc5eZ7T1Uez7pVBYGL79Dg@mail.gmail.com>
-Mime-Version: 1.0
-X-Complaints-To: usenet@ger.gmane.org
-X-Gmane-NNTP-Posting-Host: sea.gmane.org
-User-Agent: Loom/3.14 (http://gmane.org/)
-X-Loom-IP: 115.248.23.130 (Mozilla/5.0 (Windows NT 6.1;
-	WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/35.0.1916.153
-	Safari/537.36)
+	<loom.20140723T115536-199@post.gmane.org>
+From: "Burton, Ross" <ross.burton@intel.com>
+Date: Wed, 23 Jul 2014 11:06:16 +0100
+Message-ID: <CAJTo0Lbj699Zyq+gX7LDBwrv6XEM=gu1CgrTsbuDYfyHPfdXVQ@mail.gmail.com>
+To: Anoop <babu.anoop@gmail.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: Yocto Bitbake Error - rmp-native task failure
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -63,34 +54,19 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 23 Jul 2014 10:00:28 -0000
-Content-Type: text/plain; charset=us-ascii
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 23 Jul 2014 10:06:44 -0000
+Content-Type: text/plain; charset=UTF-8
 
-Burton, Ross <ross.burton@...> writes:
+On 23 July 2014 11:00, Anoop <babu.anoop@gmail.com> wrote:
+> Thank you for the inputs.
+> So until I over come this error I need to do bitbake rpm-native -cclean and
+> then re-run bitbake tizen-common-core-image-minimal-dev. ?
+> I'm asking this since i'm continuously getting task error on meta-tizen rpm
+> receipt.
 
-> 
-> On 23 July 2014 07:51, Anoop <babu.anoop@...> wrote:
-> > patch: **** Can't create file /tmp/tmpT3pUSD/poMZnbmM : No such file or
-> > directory
-> 
-> This is a bug in the meta-tizen rpm package.  Until they fix it you'll
-> have to do bitbake rpm-native -cclean and then re-run bitbake
-> tizen-common-core-image-minimal-dev.
-> 
-> Ross
+That was how I fixed it when I hit this problem.  I suggest contacting
+the maintainers of meta-tizen directly, they're probably not on this
+mailing list.
 
-Good day Ross
-
-Thank you for the inputs.
-So until I over come this error I need to do bitbake rpm-native -cclean and 
-then re-run bitbake tizen-common-core-image-minimal-dev. ?
-I'm asking this since i'm continuously getting task error on meta-tizen rpm 
-receipt.
-
-Best regards
-Anoop
-
-
-
+Ross
 
