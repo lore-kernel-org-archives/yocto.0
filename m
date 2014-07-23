@@ -1,48 +1,57 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <gley-yocto@m.gmane.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 4F5B2E00576; Wed, 23 Jul 2014 02:27:51 -0700 (PDT)
+	id 12619E00576; Wed, 23 Jul 2014 02:39:39 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [209.85.216.49 listed in list.dnswl.org]
+X-Spam-Level: **
+X-Spam-Status: No, score=2.9 required=5.0 tests=BAYES_00, DKIM_ADSP_CUSTOM_MED,
+	FREEMAIL_FROM, FSL_HELO_BARE_IP_2, NML_ADSP_CUSTOM_MED,
+	RCVD_IN_DNSWL_NONE, RCVD_IN_SORBS_WEB, RCVD_NUMERIC_HELO,
+	SPF_HELO_PASS autolearn=no version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [80.91.229.3 listed in list.dnswl.org]
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (babu.anoop[at]gmail.com)
+	*  0.8 RCVD_IN_SORBS_WEB RBL: SORBS: sender is an abusable web server
+	*      [115.248.23.130 listed in dnsbl.sorbs.net]
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+	*  0.0 DKIM_ADSP_CUSTOM_MED No valid author signature, adsp_override is
+	*      CUSTOM_MED
+	* 1.2 RCVD_NUMERIC_HELO Received: contains an IP address used for HELO
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail-qa0-f49.google.com (mail-qa0-f49.google.com
-	[209.85.216.49])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7EE48E00524
-	for <yocto@yoctoproject.org>; Wed, 23 Jul 2014 02:27:45 -0700 (PDT)
-Received: by mail-qa0-f49.google.com with SMTP id dc16so985955qab.36
-	for <yocto@yoctoproject.org>; Wed, 23 Jul 2014 02:27:44 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc:content-type:content-transfer-encoding;
-	bh=cHUDW/nZU6+bvn477ptGKmQDeBfKCC05nvZ/gcdvG+A=;
-	b=EZDpF/YU71HPw7oy/VvnisH8PaoVbZwWSUHSKDCu7Qeqy20E8ldHkCI/SElcQvjDeZ
-	NtXryc6GxLb8gwpDLM6hDle5GejPlYp5LabTmSFf1rmEXKZWZ2tAkxY9hO+51o6trsi5
-	M89UQiYHSaA68pDPEH+mQrq5UQ/juThLNhpE77UQdUzqFjBjXxLW86AY7sz2Q3tN25iQ
-	n2hOAyc1r172vzyIVFmPMgwxD0REdyaSYMfIenZ0z8IwY38B/xGmYJ8GyR0TADlJU1yI
-	vuYBZgijWbbQF9hZKwYgH+SxahZpqFvDqiUhgIuhmtjgrPaipqS3uZ5IH25lP02Po9gx
-	yTYw==
-X-Gm-Message-State: ALoCoQk+uoMPhWM7+R87X3LwloWVyPpwykJCPtFOYaGRSnxF8rTwmPBlCC/MSlSA3EA9ghKRDssE
-X-Received: by 10.140.91.66 with SMTP id y60mr9928qgd.58.1406107664496; Wed,
-	23 Jul 2014 02:27:44 -0700 (PDT)
-MIME-Version: 1.0
-Received: by 10.140.86.99 with HTTP; Wed, 23 Jul 2014 02:27:24 -0700 (PDT)
-In-Reply-To: <CAJrRHk6kFWpzUc+r4pd9xmZo+pn=f1a5R5oVtW1yLtqHurFMKg@mail.gmail.com>
-References: <CAJrRHk6A_S98KrnddvaacU7WmhAuuv2gkxwfduAvQTJftuWNgg@mail.gmail.com>
-	<CALkREYBOB8sO2SorLLshZZGtk6f=PJpEtUi=sJnHtkGHerm7wA@mail.gmail.com>
-	<CAJrRHk6kFWpzUc+r4pd9xmZo+pn=f1a5R5oVtW1yLtqHurFMKg@mail.gmail.com>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Wed, 23 Jul 2014 10:27:24 +0100
-Message-ID: <CAJTo0LaOV7EJDuAnhzjbE+-e1R-75hCmrxB3FVm=yRWzwRLhMw@mail.gmail.com>
-To: =?UTF-8?Q?Joseph_Andrew_de_la_Pe=C3=B1a?= <jdelapena@lexmark.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: SDK not contianing archive libraries
+	*  2.0 FSL_HELO_BARE_IP_2 FSL_HELO_BARE_IP_2
+	*  0.9 NML_ADSP_CUSTOM_MED ADSP custom_med hit,
+	and not from a mailing list
+Received: from plane.gmane.org (plane.gmane.org [80.91.229.3])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 98342E00524
+	for <yocto@yoctoproject.org>; Wed, 23 Jul 2014 02:39:35 -0700 (PDT)
+Received: from list by plane.gmane.org with local (Exim 4.69)
+	(envelope-from <gley-yocto@m.gmane.org>) id 1X9t1F-0000GP-EM
+	for yocto@yoctoproject.org; Wed, 23 Jul 2014 11:39:29 +0200
+Received: from 115.248.23.130 ([115.248.23.130])
+	by main.gmane.org with esmtp (Gmexim 0.1 (Debian))
+	id 1AlnuQ-0007hv-00
+	for <yocto@yoctoproject.org>; Wed, 23 Jul 2014 11:39:29 +0200
+Received: from babu.anoop by 115.248.23.130 with local (Gmexim 0.1 (Debian))
+	id 1AlnuQ-0007hv-00
+	for <yocto@yoctoproject.org>; Wed, 23 Jul 2014 11:39:29 +0200
+X-Injected-Via-Gmane: http://gmane.org/
+To: yocto@yoctoproject.org
+From: Anoop <babu.anoop@gmail.com>
+Date: Wed, 23 Jul 2014 09:39:17 +0000 (UTC)
+Message-ID: <loom.20140723T113807-689@post.gmane.org>
+References: <loom.20140723T084046-919@post.gmane.org>
+	<CAJrRHk48sbbRH6rNsj4mmjywn2CVU0-Vt9_s0ihJTLkGnaJJ5A@mail.gmail.com>
+Mime-Version: 1.0
+X-Complaints-To: usenet@ger.gmane.org
+X-Gmane-NNTP-Posting-Host: sea.gmane.org
+User-Agent: Loom/3.14 (http://gmane.org/)
+X-Loom-IP: 115.248.23.130 (Mozilla/5.0 (Windows NT 6.1;
+	WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/35.0.1916.153
+	Safari/537.36)
+Subject: Re: Yocto Bitbake Error - rmp-native task failure
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -54,20 +63,12 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 23 Jul 2014 09:27:51 -0000
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Wed, 23 Jul 2014 09:39:39 -0000
+Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: 7bit
 
-On 23 July 2014 10:23, Joseph Andrew de la Pe=C3=B1a <jdelapena@lexmark.com=
-> wrote:
-> Thanks for your reply Anooj. Apparently, based on my findings, the SDK
-> contains libraries that are "libtool archives", .la. For my part, I have
-> used .a only which is not "libtoolized". I'm finding a way how to make my
-> unit generate a libtool archive.
+Good day Joseph Andrew
 
-In general you don't need libtool archives.  If you want .a files in
-the SDK for static linking then you want to add the recipe's
--staticdev packages to the SDK.
+Thank you for the inputs.
 
-Ross
 
