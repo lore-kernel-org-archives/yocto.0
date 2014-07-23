@@ -1,34 +1,52 @@
-Return-Path: <Jackie.Huang@windriver.com>
+Return-Path: <jdelapena@lexmark.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 5A4A8E0078F; Tue, 22 Jul 2014 23:56:52 -0700 (PDT)
+	id 43C3EE00576; Wed, 23 Jul 2014 00:07:57 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [147.11.146.13 listed in list.dnswl.org]
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_MED autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [64.18.3.36 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1D02DE00576
-	for <yocto@yoctoproject.org>; Tue, 22 Jul 2014 23:56:40 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail1.windriver.com (8.14.5/8.14.5) with ESMTP id s6N6ucFA007936
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL)
-	for <yocto@yoctoproject.org>; Tue, 22 Jul 2014 23:56:40 -0700 (PDT)
-Received: from pek-hostel-vm11.wrs.com (128.224.153.181) by
-	ALA-HCA.corp.ad.wrs.com (147.11.189.40) with Microsoft SMTP Server id
-	14.3.169.1; Tue, 22 Jul 2014 23:56:38 -0700
-From: <jackie.huang@windriver.com>
-To: <yocto@yoctoproject.org>
-Date: Wed, 23 Jul 2014 02:56:36 -0400
-Message-ID: <1406098596-27254-1-git-send-email-jackie.huang@windriver.com>
-X-Mailer: git-send-email 2.0.0
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+Received: from exprod8og118.obsmtp.com (exprod8og118.obsmtp.com [64.18.3.36])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 54527E00524
+	for <yocto@yoctoproject.org>; Wed, 23 Jul 2014 00:07:50 -0700 (PDT)
+Received: from mail-la0-f47.google.com ([209.85.215.47]) (using TLSv1) by
+	exprod8ob118.postini.com ([64.18.7.12]) with SMTP
+	ID DSNKU89fRYxSiFmQNTqAyJ7ZYlzkD8qNErHl@postini.com;
+	Wed, 23 Jul 2014 00:07:53 PDT
+Received: by mail-la0-f47.google.com with SMTP id mc6so570565lab.6
+	for <yocto@yoctoproject.org>; Wed, 23 Jul 2014 00:07:48 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:date
+	:message-id:subject:from:to:cc:content-type;
+	bh=EeGhFkbjxgCQqvxKR6nI98S3ctJCt6S2Gz8t1BoQxuU=;
+	b=P2wqGSlYDniuivafez8GKi0lbgcHj1EFbJJmC3Q2R5lmzlkRK1wJFTLgx2odfMScek
+	MRs9f3w+Kqx2z/70XgKv5PQIbrsFTm7YaXRNg05OQPBOfk0ts61hMkDVCaWFYWJ48VI6
+	bLD63pyPnuJKgETjWV3mp1X6ALhBneDSG9NfuEiTwZc92DuniHyqEjcWYamumjaHPopB
+	6Kflnt1OlRhcRa8GCXY47Q35Eo77NDMh7Bk+yCv59lzhcoFGvqOheYmqVL9b8cRl59nJ
+	rQ8ITMyEPjw8krzytCIzOIEQB13z8m+9DBY0wQ0n/9BniO3ZYIJYPUbx0eeWOWRhkjyp
+	b8hA==
+X-Gm-Message-State: ALoCoQmdbHNhvBB06qwcHbuj3YDYgEljRdPHivYluHkMsejjOtlZYeAxgWs3m9nxQk6mDogWSl3EqeEtAHy/ldeGt/ZVOpM0D6xhmiwoCx9o0VJy5+q6Dq1DZGagU8V/ADtQMmPdORQU
+X-Received: by 10.152.22.4 with SMTP id z4mr40462814lae.2.1406099268204;
+	Wed, 23 Jul 2014 00:07:48 -0700 (PDT)
 MIME-Version: 1.0
-Subject: [meta-selinux][PATCH] libcap-ng: CVE-2014-3215
+X-Received: by 10.152.22.4 with SMTP id z4mr40462804lae.2.1406099268104; Wed,
+	23 Jul 2014 00:07:48 -0700 (PDT)
+Received: by 10.152.36.37 with HTTP; Wed, 23 Jul 2014 00:07:48 -0700 (PDT)
+In-Reply-To: <loom.20140723T084046-919@post.gmane.org>
+References: <loom.20140723T084046-919@post.gmane.org>
+Date: Wed, 23 Jul 2014 15:07:48 +0800
+Message-ID: <CAJrRHk48sbbRH6rNsj4mmjywn2CVU0-Vt9_s0ihJTLkGnaJJ5A@mail.gmail.com>
+From: =?UTF-8?Q?Joseph_Andrew_de_la_Pe=C3=B1a?= <jdelapena@lexmark.com>
+To: Anoop <babu.anoop@gmail.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Yocto Bitbake Error - rmp-native task failure
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,129 +58,326 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 23 Jul 2014 06:56:52 -0000
-Content-Type: text/plain
+X-List-Received-Date: Wed, 23 Jul 2014 07:07:57 -0000
+Content-Type: multipart/alternative; boundary=089e0158b8e26509a304fed6ffd3
 
-From: Shan Hai <shan.hai@windriver.com>
+--089e0158b8e26509a304fed6ffd3
+Content-Type: text/plain; charset=UTF-8
 
-seunshare in policycoreutils 2.2.5 is owned by root with 4755 permissions,
-and executes programs in a way that changes the relationship between the
-setuid system call and the getresuid saved set-user-ID value, which makes
-it easier for local users to gain privileges by leveraging a program that
-mistakenly expected that it could permanently drop privileges.
+Good day Anoop,
 
-Pick a patch from below link to address the CVE-2014-3215.
-https://bugzilla.redhat.com/attachment.cgi?id=829864
+Error is from do_patch task for rpm-native unit:
+patch: **** Can't create file /tmp/tmpT3pUSD/poMZnbmM : No such file or
+directory
 
-Signed-off-by: Shan Hai <shan.hai@windriver.com>
-Signed-off-by: Jackie Huang <jackie.huang@windriver.com>
----
- .../libcap-ng/libcap-ng/CVE-2014-3215.patch        | 79 ++++++++++++++++++++++
- recipes-security/libcap-ng/libcap-ng_0.7.3.bb      |  4 +-
- 2 files changed, 82 insertions(+), 1 deletion(-)
- create mode 100644 recipes-security/libcap-ng/libcap-ng/CVE-2014-3215.patch
+Please verify in your recipe all the SRC_URIs (patches) to be applied.
+Could be that your SRCREV and patches are in conflict. The odd thing is why
+the patch -p0 is not specifying a patch file.
 
-diff --git a/recipes-security/libcap-ng/libcap-ng/CVE-2014-3215.patch b/recipes-security/libcap-ng/libcap-ng/CVE-2014-3215.patch
-new file mode 100644
-index 0000000..d7a868d
---- /dev/null
-+++ b/recipes-security/libcap-ng/libcap-ng/CVE-2014-3215.patch
-@@ -0,0 +1,79 @@
-+Upstream-Status: Pending
-+
-+diff --git a/docs/capng_lock.3 b/docs/capng_lock.3
-+index 7683119..a070c1e 100644
-+--- a/docs/capng_lock.3
-++++ b/docs/capng_lock.3
-+@@ -8,12 +8,13 @@ int capng_lock(void);
-+ 
-+ .SH "DESCRIPTION"
-+ 
-+-capng_lock will take steps to prevent children of the current process to regain full privileges if the uid is 0. This should be called while possessing the CAP_SETPCAP capability in the kernel. This function will do the following if permitted by the kernel: Set the NOROOT option on for PR_SET_SECUREBITS, set the NOROOT_LOCKED option to on for PR_SET_SECUREBITS, set the PR_NO_SETUID_FIXUP option on for PR_SET_SECUREBITS, and set the PR_NO_SETUID_FIXUP_LOCKED option on for PR_SET_SECUREBITS.
-++capng_lock will take steps to prevent children of the current process from gaining privileges by executing setuid programs.  This should be called while possessing the CAP_SETPCAP capability in the kernel.
-+ 
-++This function will do the following if permitted by the kernel:  If the kernel supports PR_SET_NO_NEW_PRIVS, it will use it.  Otherwise it will set the NOROOT option on for PR_SET_SECUREBITS, set the NOROOT_LOCKED option to on for PR_SET_SECUREBITS, set the PR_NO_SETUID_FIXUP option on for PR_SET_SECUREBITS, and set the PR_NO_SETUID_FIXUP_LOCKED option on for PR_SET_SECUREBITS.  If both fail, it will return an error.
-+ 
-+ .SH "RETURN VALUE"
-+ 
-+-This returns 0 on success and a negative number on failure. -1 means a failure setting any of the PR_SET_SECUREBITS options.
-++This returns 0 on success and a negative number on failure. -1 means a failure to use PR_SET_NO_NEW_PRIVS and a failure setting any of the PR_SET_SECUREBITS options.
-+ 
-+ .SH "SEE ALSO"
-+ 
-+diff --git a/src/cap-ng.c b/src/cap-ng.c
-+index bd105ba..422f2bc 100644
-+--- a/src/cap-ng.c
-++++ b/src/cap-ng.c
-+@@ -45,6 +45,7 @@
-+  * 2.6.24 kernel	XATTR_NAME_CAPS
-+  * 2.6.25 kernel	PR_CAPBSET_DROP, CAPABILITY_VERSION_2
-+  * 2.6.26 kernel	PR_SET_SECUREBITS, SECURE_*_LOCKED, VERSION_3
-++ * 3.5    kernel	PR_SET_NO_NEW_PRIVS
-+  */
-+ 
-+ /* External syscall prototypes */
-+@@ -122,6 +123,14 @@ extern int capget(cap_user_header_t header, const cap_user_data_t data);
-+ #define SECURE_NO_SETUID_FIXUP_LOCKED   3  /* make bit-2 immutable */
-+ #endif
-+ 
-++/* prctl values that we use */
-++#ifndef PR_SET_SECUREBITS
-++#define PR_SET_SECUREBITS		28
-++#endif
-++#ifndef PR_SET_NO_NEW_PRIVS
-++#define PR_SET_NO_NEW_PRIVS		38
-++#endif
-++
-+ // States: new, allocated, initted, updated, applied
-+ typedef enum { CAPNG_NEW, CAPNG_ERROR, CAPNG_ALLOCATED, CAPNG_INIT,
-+ 	CAPNG_UPDATED, CAPNG_APPLIED } capng_states_t;
-+@@ -663,15 +672,22 @@ int capng_change_id(int uid, int gid, capng_flags_t flag)
-+ 
-+ int capng_lock(void)
-+ {
-+-#ifdef PR_SET_SECUREBITS
-+-	int rc = prctl(PR_SET_SECUREBITS,
-+-			1 << SECURE_NOROOT |
-+-			1 << SECURE_NOROOT_LOCKED |
-+-			1 << SECURE_NO_SETUID_FIXUP |
-+-			1 << SECURE_NO_SETUID_FIXUP_LOCKED, 0, 0, 0);
-++	int rc;
-++
-++	// On Linux 3.5 and up, we can directly prevent ourselves and
-++	// our descendents from gaining privileges.
-++	if (prctl(PR_SET_NO_NEW_PRIVS, 1, 0, 0, 0) == 0)
-++		return 0;
-++
-++	// This kernel is too old or otherwise doesn't support
-++	// PR_SET_NO_NEW_PRIVS.  Fall back to using securebits.
-++	rc = prctl(PR_SET_SECUREBITS,
-++		   1 << SECURE_NOROOT |
-++		   1 << SECURE_NOROOT_LOCKED |
-++		   1 << SECURE_NO_SETUID_FIXUP |
-++		   1 << SECURE_NO_SETUID_FIXUP_LOCKED, 0, 0, 0);
-+ 	if (rc)
-+ 		return -1;
-+-#endif
-+ 
-+ 	return 0;
-+ }
-diff --git a/recipes-security/libcap-ng/libcap-ng_0.7.3.bb b/recipes-security/libcap-ng/libcap-ng_0.7.3.bb
-index 3f225ba..e729518 100644
---- a/recipes-security/libcap-ng/libcap-ng_0.7.3.bb
-+++ b/recipes-security/libcap-ng/libcap-ng_0.7.3.bb
-@@ -8,7 +8,9 @@ LIC_FILES_CHKSUM = "file://COPYING;md5=94d55d512a9ba36caa9b7df079bae19f \
- 		    file://COPYING.LIB;md5=e3eda01d9815f8d24aae2dbd89b68b06"
- 
- SRC_URI = "http://people.redhat.com/sgrubb/libcap-ng/libcap-ng-${PV}.tar.gz \
--	   file://python.patch"
-+           file://python.patch \
-+           file://CVE-2014-3215.patch \
-+          "
- 
- inherit lib_package autotools pythonnative
- 
--- 
-2.0.0
+To sum it up, please check the rpm-native recipe.
+
+Thanks,
+Joseph
 
 
+On Wed, Jul 23, 2014 at 2:51 PM, Anoop <babu.anoop@gmail.com> wrote:
+
+>
+> I gave bitbake for imx6qsabreauto
+>
+> command used
+> bitbake -v tizen-common-core-image-minimal-dev
+>
+>
+> below is the error section from the log
+> + patch -p0
+>
+> patch: **** Can't create file /tmp/tmpT3pUSD/poMZnbmM : No such file or
+> directory
+>
+> + bb_exit_handler
+> + ret=2
+> + echo WARNING: exit code 2 from a shell command.
+> WARNING: exit code 2 from a shell command.
+> + exit 2
+>
+> ERROR: Function failed: do_prep (log file is located at
+> /home/sfm/yocto_temp/build/tmp/work/i686-linux/rpm-native/git-
+> r0/temp/log.do_patch.32228)
+> /usr/bin/install -c -m 644 ./Lib/test/test_bool.py
+> /home/sfm/yocto_temp/build/tmp/sysroots/i686-linux/usr/lib/python2.7/test
+>
+> ERROR: Logfile of failure stored in:
+> /home/sfm/yocto_temp/build/tmp/work/i686-linux/rpm-native/git-
+> r0/temp/log.do_patch.32228
+> NOTE: recipe rpm-native-git-r0: task do_patch: Failed
+> ERROR: Task 85 (virtual:native:/home/sfm/yocto_temp/meta-tizen/recipes-
+> tizen/rpm/rpm_git.bb, do_patch) failed with exit code '1'
+>
+> Error log from patch file
+> +
+> chmod
+>  -Rf
+>  a+rX,u+w,g-w,o-w
+>  /home/sfm/yocto_temp/build/tmp/work/i686-linux/rpm-native/git-r0/git
+>
+>
+> + cp /home/sfm/yocto_temp/build/tmp/work/i686-linux/rpm-native/git-
+> r0/git/packaging/rpm.manifest .
+>
+> + rm -rf sqlite
+>
+> + tar xjf /home/sfm/yocto_temp/build/tmp/work/i686-linux/rpm-native/git-
+> r0/git/packaging/db-4.8.30.tar.bz2
+>
+> + ln -s db-4.8.30 db
+>
+> + chmod -R u+w db/LICENSE db/README db/btree db/build_brew db/build_s60
+> db/build_unix db/build_vxworks db/build_wince db/build_windows db/clib
+> db/common db/crypto db/csharp db/cxx db/db db/db185 db/db_archive
+> db/db_checkpoint db/db_deadlock db/db_dump db/db_dump185 db/db_hotbackup
+> db/db_load db/db_printlog db/db_recover db/db_sql db/db_stat db/db_upgrade
+> db/db_verify db/dbinc db/dbinc_auto db/dbm db/dbreg db/dist db/docs
+> db/docs_src db/env db/examples_c db/examples_csharp db/examples_cxx
+> db/examples_java db/examples_stl db/fileops db/hash db/hmac db/hsearch
+> db/java db/libdb_csharp db/libdb_java db/lock db/log db/mod_db4 db/mp
+> db/mutex db/os db/os_brew db/os_qnx db/os_s60 db/os_vxworks db/os_windows
+> db/perl db/php_db4 db/qam db/rep db/repmgr db/sequence db/stl db/tcl
+> db/test
+> db/test_micro db/test_stl db/txn
+>
+> + rm -f rpmdb/db.h
+>
+> + patch -p0
+>
+> patch: **** Can't create file /tmp/tmpT3pUSD/poMZnbmM : No such file or
+> directory
+>
+> + bb_exit_handler
+> + ret=2
+> + echo WARNING: exit code 2 from a shell command.
+> WARNING: exit code 2 from a shell command.
+> + exit 2
+>
+> + cd /home/sfm/yocto_temp/build/tmp/work/i686-linux/rpm-native/git-r0/git
+> + do_prep
+> + cd /home/sfm/yocto_temp/build/tmp/work/i686-linux/rpm-native/git-r0/git
+> + chmod -Rf a+rX,u+w,g-w,o-w /home/sfm/yocto_temp/build/tmp/work/i686-
+> linux/rpm-native/git-r0/git
+> + cp /home/sfm/yocto_temp/build/tmp/work/i686-linux/rpm-native/git-
+> r0/git/packaging/rpm.manifest .
+> + rm -rf sqlite
+> + tar xjf /home/sfm/yocto_temp/build/tmp/work/i686-linux/rpm-native/git-
+> r0/git/packaging/db-4.8.30.tar.bz2
+> + ln -s db-4.8.30 db
+> + chmod -R u+w db/LICENSE db/README db/btree db/build_brew db/build_s60
+> db/build_unix db/build_vxworks db/build_wince db/build_windows db/clib
+> db/common db/crypto db/csharp db/cxx db/db db/db185 db/db_archive
+> db/db_checkpoint db/db_deadlock db/db_dump db/db_dump185 db/db_hotbackup
+> db/db_load db/db_printlog db/db_recover db/db_sql db/db_stat db/db_upgrade
+> db/db_verify db/dbinc db/dbinc_auto db/dbm db/dbreg db/dist db/docs
+> db/docs_src db/env db/examples_c db/examples_csharp db/examples_cxx
+> db/examples_java db/examples_stl db/fileops db/hash db/hmac db/hsearch
+> db/java db/libdb_csharp db/libdb_java db/lock db/log db/mod_db4 db/mp
+> db/mutex db/os db/os_brew db/os_qnx db/os_s60 db/os_vxworks db/os_windows
+> db/perl db/php_db4 db/qam db/rep db/repmgr db/sequence db/stl db/tcl
+> db/test
+> db/test_micro db/test_stl db/txn
+> + rm -f rpmdb/db.h
+> + patch -p0
+> patch: **** Can't create file /tmp/tmpT3pUSD/poMZnbmM : No such file or
+> directory
+> + bb_exit_handler
+> + ret=2
+> + echo WARNING: exit code 2 from a shell command.
+> WARNING: exit code 2 from a shell command.
+> + exit 2
+> DEBUG: Python function do_patch finished
+> ERROR: Function failed: do_prep (log file is located at
+> /home/sfm/yocto_temp/build/tmp/work/i686-linux/rpm-native/git-
+> r0/temp/log.do_patch.32228)
+>
+> can any one help on how to resolve this error
+>
+>
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
+
+--089e0158b8e26509a304fed6ffd3
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div><span style=3D"font-family:arial,sans-serif;font-size=
+:13px">Good day Anoop,</span></div><span style=3D"font-family:arial,sans-se=
+rif;font-size:13px"><div><span style=3D"font-family:arial,sans-serif;font-s=
+ize:13px"><br>
+</span></div><div><span style=3D"font-family:arial,sans-serif;font-size:13p=
+x">Error is from do_patch task for=C2=A0</span>rpm-native unit:</div></span=
+><span style=3D"font-family:arial,sans-serif;font-size:13px">patch: **** Ca=
+n&#39;t create file /tmp/tmpT3pUSD/poMZnbmM : No such file or</span><br sty=
+le=3D"font-family:arial,sans-serif;font-size:13px">
+<span style=3D"font-family:arial,sans-serif;font-size:13px">directory</span=
+><br><div><span style=3D"font-family:arial,sans-serif;font-size:13px"><br><=
+/span></div><div><span style=3D"font-family:arial,sans-serif;font-size:13px=
+">Please verify in your recipe all the SRC_URIs (patches) to be applied. Co=
+uld be that your SRCREV and patches are in conflict. The odd thing is why t=
+he patch -p0 is not specifying a patch file.=C2=A0</span></div>
+<div><span style=3D"font-family:arial,sans-serif;font-size:13px"><br></span=
+></div><div><font face=3D"arial, sans-serif">To sum it up, please check the=
+ rpm-native recipe.</font></div><div><span style=3D"font-family:arial,sans-=
+serif;font-size:13px"><br>
+</span></div><div><span style=3D"font-family:arial,sans-serif;font-size:13p=
+x">Thanks,</span></div><div><span style=3D"font-family:arial,sans-serif;fon=
+t-size:13px">Joseph</span></div></div><div class=3D"gmail_extra"><br><br><d=
+iv class=3D"gmail_quote">
+On Wed, Jul 23, 2014 at 2:51 PM, Anoop <span dir=3D"ltr">&lt;<a href=3D"mai=
+lto:babu.anoop@gmail.com" target=3D"_blank">babu.anoop@gmail.com</a>&gt;</s=
+pan> wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex=
+;border-left:1px #ccc solid;padding-left:1ex">
+<br>
+I gave bitbake for imx6qsabreauto<br>
+<br>
+command used<br>
+bitbake -v tizen-common-core-image-minimal-dev<br>
+<br>
+<br>
+below is the error section from the log<br>
++ patch -p0<br>
+<br>
+patch: **** Can&#39;t create file /tmp/tmpT3pUSD/poMZnbmM : No such file or=
+<br>
+directory<br>
+<br>
++ bb_exit_handler<br>
++ ret=3D2<br>
++ echo WARNING: exit code 2 from a shell command.<br>
+WARNING: exit code 2 from a shell command.<br>
++ exit 2<br>
+<br>
+ERROR: Function failed: do_prep (log file is located at<br>
+/home/sfm/yocto_temp/build/tmp/work/i686-linux/rpm-native/git-<br>
+r0/temp/log.do_patch.32228)<br>
+/usr/bin/install -c -m 644 ./Lib/test/test_bool.py<br>
+/home/sfm/yocto_temp/build/tmp/sysroots/i686-linux/usr/lib/python2.7/test<b=
+r>
+<br>
+ERROR: Logfile of failure stored in:<br>
+/home/sfm/yocto_temp/build/tmp/work/i686-linux/rpm-native/git-<br>
+r0/temp/log.do_patch.32228<br>
+NOTE: recipe rpm-native-git-r0: task do_patch: Failed<br>
+ERROR: Task 85 (virtual:native:/home/sfm/yocto_temp/meta-tizen/recipes-<br>
+tizen/rpm/<a href=3D"http://rpm_git.bb" target=3D"_blank">rpm_git.bb</a>, d=
+o_patch) failed with exit code &#39;1&#39;<br>
+<br>
+Error log from patch file<br>
++<br>
+chmod<br>
+=C2=A0-Rf<br>
+=C2=A0a+rX,u+w,g-w,o-w<br>
+=C2=A0/home/sfm/yocto_temp/build/tmp/work/i686-linux/rpm-native/git-r0/git<=
+br>
+<br>
+<br>
++ cp /home/sfm/yocto_temp/build/tmp/work/i686-linux/rpm-native/git-<br>
+r0/git/packaging/rpm.manifest .<br>
+<br>
++ rm -rf sqlite<br>
+<br>
++ tar xjf /home/sfm/yocto_temp/build/tmp/work/i686-linux/rpm-native/git-<br=
+>
+r0/git/packaging/db-4.8.30.tar.bz2<br>
+<br>
++ ln -s db-4.8.30 db<br>
+<br>
++ chmod -R u+w db/LICENSE db/README db/btree db/build_brew db/build_s60<br>
+db/build_unix db/build_vxworks db/build_wince db/build_windows db/clib<br>
+db/common db/crypto db/csharp db/cxx db/db db/db185 db/db_archive<br>
+db/db_checkpoint db/db_deadlock db/db_dump db/db_dump185 db/db_hotbackup<br=
+>
+db/db_load db/db_printlog db/db_recover db/db_sql db/db_stat db/db_upgrade<=
+br>
+db/db_verify db/dbinc db/dbinc_auto db/dbm db/dbreg db/dist db/docs<br>
+db/docs_src db/env db/examples_c db/examples_csharp db/examples_cxx<br>
+db/examples_java db/examples_stl db/fileops db/hash db/hmac db/hsearch<br>
+db/java db/libdb_csharp db/libdb_java db/lock db/log db/mod_db4 db/mp<br>
+db/mutex db/os db/os_brew db/os_qnx db/os_s60 db/os_vxworks db/os_windows<b=
+r>
+db/perl db/php_db4 db/qam db/rep db/repmgr db/sequence db/stl db/tcl db/tes=
+t<br>
+db/test_micro db/test_stl db/txn<br>
+<br>
++ rm -f rpmdb/db.h<br>
+<br>
++ patch -p0<br>
+<br>
+patch: **** Can&#39;t create file /tmp/tmpT3pUSD/poMZnbmM : No such file or=
+<br>
+directory<br>
+<br>
++ bb_exit_handler<br>
++ ret=3D2<br>
++ echo WARNING: exit code 2 from a shell command.<br>
+WARNING: exit code 2 from a shell command.<br>
++ exit 2<br>
+<br>
++ cd /home/sfm/yocto_temp/build/tmp/work/i686-linux/rpm-native/git-r0/git<b=
+r>
++ do_prep<br>
++ cd /home/sfm/yocto_temp/build/tmp/work/i686-linux/rpm-native/git-r0/git<b=
+r>
++ chmod -Rf a+rX,u+w,g-w,o-w /home/sfm/yocto_temp/build/tmp/work/i686-<br>
+linux/rpm-native/git-r0/git<br>
++ cp /home/sfm/yocto_temp/build/tmp/work/i686-linux/rpm-native/git-<br>
+r0/git/packaging/rpm.manifest .<br>
++ rm -rf sqlite<br>
++ tar xjf /home/sfm/yocto_temp/build/tmp/work/i686-linux/rpm-native/git-<br=
+>
+r0/git/packaging/db-4.8.30.tar.bz2<br>
++ ln -s db-4.8.30 db<br>
++ chmod -R u+w db/LICENSE db/README db/btree db/build_brew db/build_s60<br>
+db/build_unix db/build_vxworks db/build_wince db/build_windows db/clib<br>
+db/common db/crypto db/csharp db/cxx db/db db/db185 db/db_archive<br>
+db/db_checkpoint db/db_deadlock db/db_dump db/db_dump185 db/db_hotbackup<br=
+>
+db/db_load db/db_printlog db/db_recover db/db_sql db/db_stat db/db_upgrade<=
+br>
+db/db_verify db/dbinc db/dbinc_auto db/dbm db/dbreg db/dist db/docs<br>
+db/docs_src db/env db/examples_c db/examples_csharp db/examples_cxx<br>
+db/examples_java db/examples_stl db/fileops db/hash db/hmac db/hsearch<br>
+db/java db/libdb_csharp db/libdb_java db/lock db/log db/mod_db4 db/mp<br>
+db/mutex db/os db/os_brew db/os_qnx db/os_s60 db/os_vxworks db/os_windows<b=
+r>
+db/perl db/php_db4 db/qam db/rep db/repmgr db/sequence db/stl db/tcl db/tes=
+t<br>
+db/test_micro db/test_stl db/txn<br>
++ rm -f rpmdb/db.h<br>
++ patch -p0<br>
+patch: **** Can&#39;t create file /tmp/tmpT3pUSD/poMZnbmM : No such file or=
+<br>
+directory<br>
++ bb_exit_handler<br>
++ ret=3D2<br>
++ echo WARNING: exit code 2 from a shell command.<br>
+WARNING: exit code 2 from a shell command.<br>
++ exit 2<br>
+DEBUG: Python function do_patch finished<br>
+ERROR: Function failed: do_prep (log file is located at<br>
+/home/sfm/yocto_temp/build/tmp/work/i686-linux/rpm-native/git-<br>
+r0/temp/log.do_patch.32228)<br>
+<br>
+can any one help on how to resolve this error<br>
+<span class=3D"HOEnZb"><font color=3D"#888888"><br>
+<br>
+--<br>
+_______________________________________________<br>
+yocto mailing list<br>
+<a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br>
+<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" target=3D"_blank"=
+>https://lists.yoctoproject.org/listinfo/yocto</a><br>
+</font></span></blockquote></div><br></div>
+
+--089e0158b8e26509a304fed6ffd3--
