@@ -1,44 +1,46 @@
-Return-Path: <amatthew@3drobotics.com>
+Return-Path: <nicolas.dechesne@linaro.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 92AC8E006DB; Wed, 23 Jul 2014 15:26:02 -0700 (PDT)
+	id 4B834E006F1; Wed, 23 Jul 2014 15:39:00 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [209.85.219.48 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.220.50 listed in list.dnswl.org]
-Received: from mail-pa0-f50.google.com (mail-pa0-f50.google.com
-	[209.85.220.50])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2975CE006B7
-	for <yocto@yoctoproject.org>; Wed, 23 Jul 2014 15:25:57 -0700 (PDT)
-Received: by mail-pa0-f50.google.com with SMTP id et14so2542925pad.23
-	for <yocto@yoctoproject.org>; Wed, 23 Jul 2014 15:25:57 -0700 (PDT)
+Received: from mail-oa0-f48.google.com (mail-oa0-f48.google.com
+	[209.85.219.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1C509E006B9
+	for <yocto@yoctoproject.org>; Wed, 23 Jul 2014 15:38:53 -0700 (PDT)
+Received: by mail-oa0-f48.google.com with SMTP id m1so2579462oag.35
+	for <yocto@yoctoproject.org>; Wed, 23 Jul 2014 15:38:53 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:from:date:message-id:subject:to
-	:content-type;
-	bh=8u/iNqjw76DWp8KnH9u/F2clV1Ijj16kEEDxbvtrq7w=;
-	b=E28BAewSSU1j32rwCvuFsYxVZ1/UyI2Hz+q+U8sHTBbMfs7luexOF+KJ1PHZNJujrk
-	xIIfYlzszWZRIeG9lBcnDJQ3QL0I2XT7s7I+xBWfiDMSmUUq/v4fsCbS+DJu6ANaADn+
-	8i/67iFzc2JTfrfphZtoEmhChQvtwi1xplHxaUf+lC5nSbB/+cbdRPnOALGGGs/tdMEd
-	4YtsysA+3mM0vCjB5kWlnx+JFWb9OIYeMmbE4UHDVRiHwy1s5g63fy9F25rb1ofVOw7D
-	RPxuTsOGCbcmHRL5xTw5+we8xc/G8nWwlL+LH/lT6537JzanAcqyh0YSb1Yeciza5/JJ
-	pTdw==
-X-Gm-Message-State: ALoCoQkOxO4feTnWfu/ZhpZrqu3jRT5Yd540hgKdxmENax0T4yZyV7LlMouhPlE87sYyuwNyKQFh
-X-Received: by 10.66.139.164 with SMTP id qz4mr5373102pab.151.1406154357300;
-	Wed, 23 Jul 2014 15:25:57 -0700 (PDT)
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc:content-type;
+	bh=wBfgTZRyLTfacryb6NgVauh6KyCmkMQ2OLA/i7czNfk=;
+	b=H/HsGLIPiRRKWwGsbUeGuotjfHePifA41tkwh1DwTahBRAmR6LylD9GW0wedtFem0+
+	AAfjH3aUS2F/sNy2JTre3kxsnx25UzlUlcJPn4Vt8ir6uGYz3e5cBUlAAWCS8XJdDDgC
+	V7wUyDLrtss6eNk4fs7AtJVZ16ElJJ6nTNoBzhVK5DDB1i6KzmPyQ7cfMOg1GkPvRIn5
+	asAo3JDvmjIsqfPxu4LtzqUIyUnUqHh/oY9IIUo+8ODL22xqfsAJKvB3mh9NKx1QCswC
+	LTTt+Z0xg63cEG6ycK8x9Y7KpfqJeL/MS8wVPGL8K/qYg7RDNVXYJ+kclzqKH/MnVYQg
+	Z5nQ==
+X-Gm-Message-State: ALoCoQkFn9Q+XhKenGpMmG3eOr/d86FMOkGIk2a/ll34Y4rG7GLdnCx6fxLFuWFX8RF7dBCYct1a
+X-Received: by 10.60.70.106 with SMTP id l10mr6808425oeu.54.1406155133017;
+	Wed, 23 Jul 2014 15:38:53 -0700 (PDT)
 MIME-Version: 1.0
-Received: by 10.66.251.35 with HTTP; Wed, 23 Jul 2014 15:25:37 -0700 (PDT)
-From: Allan Matthew <amatthew@3drobotics.com>
-Date: Wed, 23 Jul 2014 15:25:37 -0700
-Message-ID: <CAPHXWevvh+YjeCThqNUmAdc5yaoSnXm8e2KvTmaNpSQ0Vh0X_w@mail.gmail.com>
-To: yocto@yoctoproject.org
-Subject: interfaces file on a per-image basis
+Received: by 10.76.171.168 with HTTP; Wed, 23 Jul 2014 15:38:32 -0700 (PDT)
+In-Reply-To: <CAPHXWevvh+YjeCThqNUmAdc5yaoSnXm8e2KvTmaNpSQ0Vh0X_w@mail.gmail.com>
+References: <CAPHXWevvh+YjeCThqNUmAdc5yaoSnXm8e2KvTmaNpSQ0Vh0X_w@mail.gmail.com>
+From: Nicolas Dechesne <nicolas.dechesne@linaro.org>
+Date: Thu, 24 Jul 2014 00:38:32 +0200
+Message-ID: <CAP71Wjwu0T=2Cn-41FXBy15f2ka=m1iK+N1g7ROZbtpqKCSdoQ@mail.gmail.com>
+To: Allan Matthew <amatthew@3drobotics.com>
+Cc: Yocto list discussion <yocto@yoctoproject.org>
+Subject: Re: interfaces file on a per-image basis
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -50,51 +52,42 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 23 Jul 2014 22:26:02 -0000
-Content-Type: multipart/alternative; boundary=047d7b5d6774f772d304fee3d25d
-
---047d7b5d6774f772d304fee3d25d
+X-List-Received-Date: Wed, 23 Jul 2014 22:39:00 -0000
 Content-Type: text/plain; charset=UTF-8
 
-I have two separate images, call them server and client.  The client will
-have one /network/interfaces file and the server will have another.  I can
-successfully override the init-ifupdown in my own bbappend in my layer and
-use one of my interface files, but I can't figure out how to pick between
-two interface files depending on the image I'm building.  Is there a
-variable I should be able to examine to determine which interfaces file I
-should use in my .bbappend?
+On Thu, Jul 24, 2014 at 12:25 AM, Allan Matthew <amatthew@3drobotics.com> wrote:
+> I have two separate images, call them server and client.  The client will
+> have one /network/interfaces file and the server will have another.  I can
+> successfully override the init-ifupdown in my own bbappend in my layer and
+> use one of my interface files, but I can't figure out how to pick between
+> two interface files depending on the image I'm building.  Is there a
+> variable I should be able to examine to determine which interfaces file I
+> should use in my .bbappend?
 
-The only other option I've found is to use two separate machines, which is
-not a great option for me because the hardware and almost all of the
-packages are identical between my client and server, so I'd like to just be
-able to build two separate images instead of changing machine types as well.
+nope you can't really do that. each recipe (.bb file) is built
+independently. it's true for 'normal' recipe (component, libs, ..) but
+also images which are .bb files too. so when you build init-ifupdown,
+bitbake doesn't know if the package will be installed in image-server
+or image-client.
 
-Thanks!
+>
+> The only other option I've found is to use two separate machines, which is
+> not a great option for me because the hardware and almost all of the
+> packages are identical between my client and server, so I'd like to just be
+> able to build two separate images instead of changing machine types as well.
 
---047d7b5d6774f772d304fee3d25d
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+well, machine conf are used to identify h/w settings. so in your case,
+it would be wrong as you guessed. if the underlying h/w is the same,
+you should use the same machine.
 
-<div dir=3D"ltr"><span style=3D"font-family:arial,sans-serif;font-size:12.7=
-27272033691406px">I have two separate images, call them server and client. =
-=C2=A0The client will have one /network/interfaces file and the server will=
- have another. =C2=A0I can successfully override the init-ifupdown in my ow=
-n bbappend in my layer and use one of my interface files, but I can&#39;t f=
-igure out how to pick between two interface files depending on the image I&=
-#39;m building. =C2=A0Is there a variable I should be able to examine to de=
-termine which interfaces file I should use in my .bbappend? =C2=A0</span><d=
-iv style=3D"font-family:arial,sans-serif;font-size:12.727272033691406px">
+i can see a couple of options:
+- create multiple init-ifupdown packages (duplicate them) and pick one
+or the other in the image recipe. or maybe you can split the network
+interface config from init-ifdown (e.g. remove the file from this
+package), and create 2 new packages that provide this file and pick
+the one you need in your image.
+- you can use  ROOTFS_POSTPROCESS_COMMAND to run a custom script that
+will modify the image accordingly
 
-<br></div><div style=3D"font-family:arial,sans-serif;font-size:12.727272033=
-691406px">The only other option I&#39;ve found is to use two separate machi=
-nes, which is not a great option for me because the hardware and almost all=
- of the packages are identical between my client and server, so I&#39;d lik=
-e to just be able to build two separate images instead of changing machine =
-types as well.</div>
+there are certainly other options ...
 
-<div style=3D"font-family:arial,sans-serif;font-size:12.727272033691406px">=
-<br></div><div style=3D"font-family:arial,sans-serif;font-size:12.727272033=
-691406px">Thanks!</div>
-</div>
-
---047d7b5d6774f772d304fee3d25d--
