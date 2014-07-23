@@ -1,54 +1,52 @@
-Return-Path: <belen.barros.pena@intel.com>
+Return-Path: <zhenhua.luo@freescale.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 20CF3E0078F; Wed, 23 Jul 2014 03:45:18 -0700 (PDT)
+	id D1B63E0078F; Wed, 23 Jul 2014 05:15:35 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [192.55.52.88 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00, RCVD_IN_DNSWL_NONE, 
+	SPF_HELO_PASS autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [207.46.163.183 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D79E4E00572
-	for <yocto@yoctoproject.org>; Wed, 23 Jul 2014 03:45:16 -0700 (PDT)
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-	by fmsmga101.fm.intel.com with ESMTP; 23 Jul 2014 03:45:13 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.01,716,1400050800"; d="scan'208";a="574139574"
-Received: from irsmsx103.ger.corp.intel.com ([163.33.3.157])
-	by fmsmga002.fm.intel.com with ESMTP; 23 Jul 2014 03:45:12 -0700
-Received: from irsmsx151.ger.corp.intel.com (163.33.192.59) by
-	IRSMSX103.ger.corp.intel.com (163.33.3.157) with Microsoft SMTP Server
-	(TLS) id 14.3.123.3; Wed, 23 Jul 2014 11:45:11 +0100
-Received: from irsmsx106.ger.corp.intel.com ([169.254.8.192]) by
-	IRSMSX151.ger.corp.intel.com ([169.254.4.139]) with mapi id
-	14.03.0123.003; Wed, 23 Jul 2014 11:45:11 +0100
-From: "Barros Pena, Belen" <belen.barros.pena@intel.com>
-To: Anooj Gopi <anoojgopi@gmail.com>
-Thread-Topic: [yocto] Fwd: How to find the bb file from package name
-Thread-Index: AQHPpmMt9yT7bLPB/EeKh7mKuxWV/w==
-Date: Wed, 23 Jul 2014 10:45:11 +0000
-Message-ID: <CFF54F4A.48684%belen.barros.pena@intel.com>
-References: <CALkREYCJARja3TPwPR4Ck6wLrPa1Wmb2un3LBeKjt4PTszKo4Q@mail.gmail.com>
-	<CAJTo0LYgQWCXJY1L7EhdP72oOyxVkigx1z8cdGoGBXOpWqcd1w@mail.gmail.com>
-	<CALkREYBqgZpGr-wkFX2Qiw0kanTtg0mEGfq2cJ9=KfG4CrBC0A@mail.gmail.com>
-	<CALkREYC-GA3RbBmrrkJZ4rX0Dn-Ss9LrdOwx14vxw5eBDYmZzw@mail.gmail.com>
-	<CAGM0ZdRVPGNS-tJ__x4XeaivHmC-_wxq9Kj+NGt3ds0FZBD-OA@mail.gmail.com>
-	<CALkREYCbBe5uN50SkPco2S=rAwc8hPTYackHWSnL5VSKWB2+7A@mail.gmail.com>
-	<CAGM0ZdQvq4=mXtOeVo7KXO_8STNV_2wQ=+ua_X-8sp64QA0d7g@mail.gmail.com>
-	<CALkREYAev_TTa4haNPK1Ok8_aRFzJbs3AouNRck45qPEXdYX6A@mail.gmail.com>
-In-Reply-To: <CALkREYAev_TTa4haNPK1Ok8_aRFzJbs3AouNRck45qPEXdYX6A@mail.gmail.com>
+Received: from na01-bn1-obe.outbound.protection.outlook.com
+	(mail-bn1blp0183.outbound.protection.outlook.com [207.46.163.183])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1F917E00572
+	for <yocto@yoctoproject.org>; Wed, 23 Jul 2014 05:15:32 -0700 (PDT)
+Received: from CY1PR0301MB0715.namprd03.prod.outlook.com (25.160.159.145) by
+	CY1PR0301MB0715.namprd03.prod.outlook.com (25.160.159.145) with
+	Microsoft
+	SMTP Server (TLS) id 15.0.985.8; Wed, 23 Jul 2014 12:15:28 +0000
+Received: from CY1PR0301MB0715.namprd03.prod.outlook.com ([25.160.159.145]) by
+	CY1PR0301MB0715.namprd03.prod.outlook.com ([25.160.159.145]) with
+	mapi id 15.00.0985.008; Wed, 23 Jul 2014 12:15:28 +0000
+From: "zhenhua.luo@freescale.com" <zhenhua.luo@freescale.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: [yocto] SELinux doesn't work on t4240qds
+Thread-Index: Ac+lvzKBtGo4KmiDRFuWSK4Azfu4jwAE3bYAABI/unAAFO/BcA==
+Date: Wed, 23 Jul 2014 12:15:27 +0000
+Message-ID: <0ad645f8fb6c4c8e8aff82398133db2e@CY1PR0301MB0715.namprd03.prod.outlook.com>
+References: <dfd0afc8932f41e19daf0a1fe13578b3@CY1PR0301MB0715.namprd03.prod.outlook.com>
+	<53CE9FC2.3090507@windriver.com>
+	<6f5922a626734b809df5f899dc3ae3e3@CY1PR0301MB0715.namprd03.prod.outlook.com>
+In-Reply-To: <6f5922a626734b809df5f899dc3ae3e3@CY1PR0301MB0715.namprd03.prod.outlook.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-user-agent: Microsoft-MacOutlook/14.4.3.140616
-x-originating-ip: [10.237.224.82]
+x-originating-ip: [192.88.158.211]
+x-microsoft-antispam: BCL:0;PCL:0;RULEID:
+x-forefront-prvs: 028166BF91
+x-forefront-antispam-report: SFV:NSPM;
+	SFS:(6009001)(189002)(53754006)(199002)(51704005)(24454002)(377454003)(13464003)(479174003)(106356001)(80022001)(76482001)(15975445006)(95666004)(87936001)(85306003)(74662001)(74502001)(31966008)(66066001)(99286002)(107046002)(83322001)(54356999)(107886001)(20776003)(50986999)(46102001)(77982001)(76176999)(92566001)(83072002)(2656002)(2351001)(19580395003)(4396001)(74316001)(85852003)(81342001)(99396002)(77096002)(19580405001)(101416001)(81542001)(86362001)(21056001)(33646002)(79102001)(110136001)(76576001)(64706001)(105586002)(108616002)(24736002);
+	DIR:OUT; SFP:; SCL:1; SRVR:CY1PR0301MB0715;
+	H:CY1PR0301MB0715.namprd03.prod.outlook.com; FPR:; MLV:sfv;
+	PTR:InfoNoRecords; MX:1; LANG:en; 
 MIME-Version: 1.0
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: How to find the bb file from package name
+X-OriginatorOrg: freescale.com
+Subject: Re: SELinux doesn't work on t4240qds
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -60,247 +58,177 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 23 Jul 2014 10:45:18 -0000
+X-List-Received-Date: Wed, 23 Jul 2014 12:15:35 -0000
 Content-Language: en-US
 Content-Type: text/plain; charset="us-ascii"
-Content-ID: <35A43A6B86F7E04C9ABE023BE6CAE3C2@intel.com>
 Content-Transfer-Encoding: quoted-printable
 
+I tried dora(poky + meta-selinux + meta-fsl-ppc), following error message a=
+ppears during kernel boot up, please help.=20
+
+RAMDISK: gzip image found at block 0
+VFS: Mounted root (ext2 filesystem) on device 1:0.
+devtmpfs: mounted
+Freeing unused kernel memory: 340k freed
+Mount failed for selinuxfs on /sys/fs/selinux:  No such file or directory
+Unable to load SELinux Policy. Machine is in enforcing mode. Halting now.
+Kernel panic - not syncing: Attempted to kill init! exitcode=3D0x00000100
+
+Call Trace:
+[c0000002f9143ae0] [c000000000008b2c] .show_stack+0x7c/0x1f0 (unreliable)
+[c0000002f9143bb0] [c000000000816e48] .panic+0xec/0x24c
+[c0000002f9143c40] [c00000000003d094] .do_exit+0x964/0xa40
+[c0000002f9143d30] [c00000000003e354] .do_group_exit+0x54/0xf0
+[c0000002f9143dc0] [c00000000003e404] .SyS_exit_group+0x14/0x20
+[c0000002f9143e30] [c000000000000598] syscall_exit+0x0/0x88
+Rebooting in 180 seconds..
 
 
-On 22/07/2014 18:08, "Anooj Gopi" <anoojgopi@gmail.com> wrote:
+Best Regards,
 
->Hello Bharath,
->
->This is already known to me. The confusion mainly here was because of the
->name of the rpm package. From the recipe expected name was
->"nativesdk-qtbase-tools-dev-5.2.1-r1.i686_nativesdk.rpm" but generated
->package name is "nativesdk-libqt5core-dev-5.2.1-r1.i686_nativesdk.rpm"
-> which confused me.
->
->
->As Mr. Burton mentioned in his last mail, this was done by
->"debian.bbclass", which makes our life more difficult. So I feel a tool
->to track this relations is really necessary, and I guess yocto has done
->this in Yocto 1.6 with "toaster
-><https://www.yoctoproject.org/documentation/toaster-manual>"
-> (I still have to use it and see).
+Zhenhua
 
-Yes, Toaster tells you about the name change.
 
->
->
->Regards,
->Anooj
->
->
->
->On Tue, Jul 22, 2014 at 6:37 PM, Bharath Chandra
-><ellurubharath29@gmail.com> wrote:
->
->Hi,
->
->
->you can find it under .inc file here
->https://github.com/meta-qt5/meta-qt5/blob/daisy/recipes-qt/qt5/nativesdk-q
->tbase.inc
->PACKAGES =3D "${PN}-tools-dbg ${PN}-tools-dev ${PN}-tools-staticdev
->${PN}-tools"
->
->Thanks,
->Bharath
->
->
->
->On Tue, Jul 22, 2014 at 11:19 AM, Anooj Gopi
-><anoojgopi@gmail.com> wrote:
->
->
->
->Oh sorry the link I sent was wrong. The correct one is
->https://github.com/meta-qt5/meta-qt5/blob/daisy/recipes-qt/qt5/nativesdk-q
->tbase_5.2.1.bb=20
-><https://github.com/meta-qt5/meta-qt5/blob/daisy/recipes-qt/qt5/nativesdk-
->qtbase_5.2.1.bb>
->
->
->Manually searching the bb/inc file did not help until this point.
->
->
->Now I enabled the build history (INHERIT +=3D "buildhistory"
->BUILDHISTORY_FEATURES =3D "image package sdk") and built the packages once
->again. Then searched for the package name as shown below
->
->cd build/buildhistory/packages
->grep -nri nativesdk-libqt5core-dev .
->./i686-nativesdk-oesdk-linux/nativesdk-qtbase/nativesdk-qtbase-tools-dev/l
->atest:3:PKG =3D nativesdk-libqt5core-dev
->
->
->which shows that the yocto package is "nativesdk-qtbase-tools-dev", which
->is provided by "nativesdk-qtbase_5.2.1.bb
-><http://nativesdk-qtbase_5.2.1.bb>".
->
->
->But I'm still not able to find out where in yocto PKG variable is
->configured (which changes this rpm file name from the default one).
->
->
->
->
->
->On Tue, Jul 22, 2014 at 5:50 PM, Bharath Chandra
-><ellurubharath29@gmail.com> wrote:
->
->Hi Anooj,
->
->I guess you are looking at a wrong version of the recipe file, you have
->to look into version number 5.2.1 and revision r1 as your package name is
->suggesting but the link which you have mentioned is for 5.3.1 . Kindly,
->have a look into correct version number
-> of recipe file and if you do not find any package name in the recipe
->file then you can search in
->.inc files which are included in that recipe file.
->
->for eg :=20
->require qt5-${PV}.inc
->
->You have to check in qt5-5.2.1.inc file and see if any package is
->included with the name which you are searching for.
->
->Thanks & Regards,
->Bharath Chandra Elluru
->
->
->
->On Tue, Jul 22, 2014 at 6:52 AM, Anooj Gopi <anoojgopi@gmail.com> wrote:
->
->
->
->
->
->Yes I am trying to track down the recipe from the rpm file. In my project
->yocto builds the rpm package
->"nativesdk-libqt5core-dev-5.2.1-r1.i686_nativesdk.rpm" (by
->https://github.com/meta-qt5/meta-qt5) but it is not included in my sdk
->sysroot image. So I would like to see how I could include this into my
->sdk. For that I am tracing back the recipe which
-> generated the rpm.
->
->
->
->I tried as you said:
->
-From the source package name I can see it is from "Source RPM  :
->nativesdk-qtbase-5.2.1-r1.src.rpm", which means bb file is
->
->https://github.com/meta-qt5/meta-qt5/blob/master/recipes-qt/qt5/nativesdk-
->qtbase_5.3.1.bb=20
-><https://github.com/meta-qt5/meta-qt5/blob/master/recipes-qt/qt5/nativesdk
->-qtbase_5.3.1.bb>
->
->Now this from the bb file content I can see this file provides multiple
->packages, (for eg. nativesdk-qtbase-tools-dbg nativesdk-qtbase-tools-dev
->nativesdk-qtbase-tools-staticdev nativesdk-qtbase-tool) but I still could
->not find where it is configured to
-> generate the package
->"nativesdk-libqt5core-dev-5.2.1-r1.i686_nativesdk.rpm".
->
->
->As Belen in his last mail, the tools like "Toaster" could confirm this
->(by listing the packages generated from a bb file), but is there any way
->I can do it in Yocto Project 1.5?
->
->
->
->Regards,
->Anooj
->
->
->
->
->On Tue, Jul 22, 2014 at 11:15 AM, Burton, Ross
-><ross.burton@intel.com> wrote:
->
->On 21 July 2014 16:39, Anooj Gopi <anoojgopi@gmail.com> wrote:
->> Could some one help me to understand how we could find the bb file which
->> generated particular package (rpm package for eg.)?
->> (In some cases the name of the package and recipe name differ
->>drastically)
->>
->> Also is there any way to list packages (rpm) generated by particular
->>recipe
->> (yocto package) easily. (without looking into the PACKAGES variable).
->
->
->
->It's probably best if you explain exactly what you want to do.
->
->If you want to work backwards from a RPM to the recipe, then binary
->RPMs have a Source RPM metadata field and the srpm is named after the
->recipe:
->
->$ rpm -qpi connman-tests-1.24-r0.15.corei7_64.rpm | grep Source
->Source RPM  : connman-1.24-r0.15.src.rpm
->
->Ross
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->--
->_______________________________________________
->yocto mailing list
->yocto@yoctoproject.org
->https://lists.yoctoproject.org/listinfo/yocto
->
->
->
->
->
->
->
->--=20
->Thanks & Regards,
->Bharath Chandra Elluru.
->Contact Number:785-979-4875 <tel:785-979-4875>.
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->
->--=20
->Thanks & Regards,
->Bharath Chandra Elluru.
->Contact Number:785-979-4875 <tel:785-979-4875>.
->
->
->
->
->
->
->
->
->
-
+> -----Original Message-----
+> From: yocto-bounces@yoctoproject.org [mailto:yocto-
+> bounces@yoctoproject.org] On Behalf Of zhenhua.luo@freescale.com
+> Sent: Wednesday, July 23, 2014 10:29 AM
+> To: Mark Hatle; yocto@yoctoproject.org
+> Subject: Re: [yocto] SELinux doesn't work on t4240qds
+>=20
+> Hi Mark,
+>=20
+> Thanks for your comments.
+>=20
+> > -----Original Message-----
+> > From: yocto-bounces@yoctoproject.org [mailto:yocto-
+> > bounces@yoctoproject.org] On Behalf Of Mark Hatle
+> >
+> > On 7/22/14, 10:11 AM, zhenhua.luo@freescale.com wrote:
+> > > Hi all,
+> >
+> > Which release are you using.
+> [Luo Zhenhua-B19537] I tried poky daisy + meta-fsl-ppc master + meta-
+> selinux master
+>=20
+> > The last version I used w/ meta-selinux was the 1.5 release.
+> >
+> > We're planning on updating it to master in the 'near' future [patches
+> > welcome!], and I've been told by a few others of success w/ 1.7.
+> [Luo Zhenhua-B19537] I will try master and dora.
+>=20
+> > Did you enable the 'selinux' distribution flag?
+> > If so, it should have enabled all of the components necessary for this
+> stuff to be enabled.
+> [Luo Zhenhua-B19537] Yes, selinux is in DISTRO_FEATURES.
+>=20
+>=20
+> Best Regards,
+>=20
+> Zhenhua
+>=20
+> > --Mark
+> >
+> > > I use the meta-selinux layer to build a core-image-selinux rootfs
+> > > image, and build kernel with following options enabled.
+> > >
+> > > CONFIG_AUDIT=3Dy
+> > >
+> > > CONFIG_NETWORK_SECMARK=3Dy
+> > >
+> > > CONFIG_EXT2_FS_SECURITY=3Dy
+> > >
+> > > CONFIG_EXT3_FS_SECURITY=3Dy
+> > >
+> > > CONFIG_EXT4_FS_SECURITY=3Dy
+> > >
+> > > CONFIG_JFS_SECURITY=3Dy
+> > >
+> > > CONFIG_REISERFS_FS_SECURITY=3Dy
+> > >
+> > > CONFIG_JFFS2_FS_SECURITY=3Dy
+> > >
+> > > CONFIG_SECURITY_NETWORK=3Dy
+> > >
+> > > CONFIG_SECURITY_SELINUX=3Dy
+> > >
+> > > CONFIG_SECURITY_SELINUX_BOOTPARAM=3Dy
+> > >
+> > > CONFIG_SECURITY_SELINUX_BOOTPARAM_VALUE=3D1
+> > >
+> > > CONFIG_SECURITY_SELINUX_DISABLE=3Dy
+> > >
+> > > CONFIG_SECURITY_SELINUX_DEVELOP=3Dy
+> > >
+> > > CONFIG_SECURITY_SELINUX_AVC_STATS=3Dy
+> > >
+> > > CONFIG_SECURITY_SELINUX_CHECKREQPROT_VALUE=3D1
+> > >
+> > > I use the generated images to boot up FSL PPC t4240qds board(tried
+> > > both NFS boot and RAM boot with ext2.gz.u-boot rootfs), the SELinux
+> > > is not turned on after kernel boot up.
+> > >
+> > > following is some information in rootfs.
+> > >
+> > > root@t4240qds:~# sestatus
+> > >
+> > > SELinux status:                 disabled
+> > >
+> > > root@t4240qds:~#
+> > >
+> > > root@t4240qds:~# cat /etc/selinux/config
+> > >
+> > > # This file controls the state of SELinux on the system.
+> > >
+> > > # SELINUX=3D can take one of these three values:
+> > >
+> > > #     enforcing - SELinux security policy is enforced.
+> > >
+> > > #     permissive - SELinux prints warnings instead of enforcing.
+> > >
+> > > #     disabled - No SELinux policy is loaded.
+> > >
+> > > SELINUX=3Denforcing
+> > >
+> > > # SELINUXTYPE=3D can take one of these two values:
+> > >
+> > > #     standard - Standard Security protection.
+> > >
+> > > #     mls - Multi Level Security protection.
+> > >
+> > > SELINUXTYPE=3Dmls
+> > >
+> > > root@t4240qds:~# cat /proc/cmdline
+> > >
+> > > root=3D/dev/ram rw console=3DttyS0,115200 selinux=3D1
+> > >
+> > > root@t4240qds:~# setenforce 1
+> > >
+> > > setenforce: SELinux is disabled
+> > >
+> > > root@t4240qds:~# getenforce
+> > >
+> > > Disabled
+> > >
+> > > root@t4240qds:~#
+> > >
+> > > Can somebody shed some light on the issue?
+> > >
+> > > Best Regards,
+> > >
+> > > Zhenhua
+> > >
+> > >
+> > >
+> >
+> > --
+> > _______________________________________________
+> > yocto mailing list
+> > yocto@yoctoproject.org
+> > https://lists.yoctoproject.org/listinfo/yocto
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
