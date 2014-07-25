@@ -1,46 +1,48 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <jatedev@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 00565E0043F; Fri, 25 Jul 2014 09:07:57 -0700 (PDT)
+	id 76D54E0043F; Fri, 25 Jul 2014 09:10:58 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [209.85.216.49 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (jatedev[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail-qa0-f49.google.com (mail-qa0-f49.google.com
-	[209.85.216.49])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 58E82E003C1
-	for <yocto@yoctoproject.org>; Fri, 25 Jul 2014 09:07:45 -0700 (PDT)
-Received: by mail-qa0-f49.google.com with SMTP id dc16so4718486qab.8
-	for <yocto@yoctoproject.org>; Fri, 25 Jul 2014 09:07:45 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc:content-type;
-	bh=gpnfxLABOKNkFh3WjZxsC1WMbiULvsEibvOo03OXKFM=;
-	b=BxhpB6bOkMvdbPiyZJh+yIYYw3FWIhctbG18O6VntAzgEQpL5K1/pPmBMI8AUcx80J
-	UQwr4Aoqz3grrGA3HGwj4POfCyMlmNEXMg8x4yiYS/qFQvW9MINmhakq6VpOu9JoTMVY
-	OqU1lRK8pZWpVPbZ9JAPX8ApnRtRYMmGRFstjXBs0PDleDDhn0wldF8WxEiExngbfycS
-	p3z55417wE+ZBG30YIN5bZ7zFHTxbAfNpydD0jjHFeKCjr1DcXhDHk4PVrkdkVCu68ov
-	1CEi6Pz3NxhQUszOOh8AGekHe/7+62fm/ar5DBBwl6WUQ3B1+2H61JJ8G9kHIZmfF+d8
-	wRpw==
-X-Gm-Message-State: ALoCoQljHq4XgEDOBrGyTKoSQmU+v28xj2iKvp5D1Dx5SsBspXdEO1s5pHhJTZhRXAkzV2toEvyh
-X-Received: by 10.224.43.77 with SMTP id v13mr28506826qae.34.1406304464684;
-	Fri, 25 Jul 2014 09:07:44 -0700 (PDT)
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.192.42 listed in list.dnswl.org]
+Received: from mail-qg0-f42.google.com (mail-qg0-f42.google.com
+	[209.85.192.42])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6DE25E003C1
+	for <yocto@yoctoproject.org>; Fri, 25 Jul 2014 09:10:43 -0700 (PDT)
+Received: by mail-qg0-f42.google.com with SMTP id j5so5257381qga.15
+	for <yocto@yoctoproject.org>; Fri, 25 Jul 2014 09:10:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=JSNnZNGn2CGvaCoU3lrgw5mA+K4nEIyTAvJEoKglkfo=;
+	b=t4gbhRAyybQ55ouiF6aXr5xtstKBVLmEmnQ8F3jBrmyqVEIVkykEpEp2EjjNTYbc2g
+	8biEKHKFmrc8gdAQUT/DcTIrnEZt1qaQrWyzDGvXvB82UoQuc5e2XpDWs0IM2VJ8J2n4
+	jebZZ+A2CguG4CRHD0mBUB0PqKcU5eX+rZvqsa5MCYcajxjpmxcrIkkt/Zv9mtRoaRjo
+	JbD/7eOMYGXGsja8GP7LkHIi+UC+DZwGL1BRvHCeuF7WziXgcpg7TEAP2uH57coSQpda
+	U5OINR9P3Y3sR3P1uJwSolN8vplt+I4UzbmyKizEFqA3XzfrsvMMs0X2nP+WCdvk1xlB
+	uPgA==
 MIME-Version: 1.0
-Received: by 10.140.86.99 with HTTP; Fri, 25 Jul 2014 09:06:08 -0700 (PDT)
-In-Reply-To: <alpine.LFD.2.11.1407251200050.6809@localhost>
-References: <alpine.LFD.2.11.1407251200050.6809@localhost>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Fri, 25 Jul 2014 17:06:08 +0100
-Message-ID: <CAJTo0LYgJu2NkbtROmDEj85adyJ1MF4p5HGCrAmhiQ_0Z7cUYw@mail.gmail.com>
-To: "Robert P. J. Day" <rpjday@crashcourse.ca>
-Cc: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: don't all core images use openssh instead of dropbear?
+X-Received: by 10.140.95.101 with SMTP id h92mr28064821qge.35.1406304643187;
+	Fri, 25 Jul 2014 09:10:43 -0700 (PDT)
+Received: by 10.140.34.76 with HTTP; Fri, 25 Jul 2014 09:10:43 -0700 (PDT)
+Date: Fri, 25 Jul 2014 12:10:43 -0400
+Message-ID: <CAPphmgbuZG64nAFx=u_verAsb=b14idQjA85-UhsHGf=M9NHfA@mail.gmail.com>
+From: Jate S <jatedev@gmail.com>
+To: Yocto Project <yocto@yoctoproject.org>
+Subject: change in base-files recipe does not trigger rebuild
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -52,17 +54,23 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 25 Jul 2014 16:07:58 -0000
+X-List-Received-Date: Fri, 25 Jul 2014 16:10:58 -0000
 Content-Type: text/plain; charset=UTF-8
 
-On 25 July 2014 17:03, Robert P. J. Day <rpjday@crashcourse.ca> wrote:
-> IMAGE_FEATURES_REPLACES_ssh-server-openssh = "ssh-server-dropbear"
->
-> so wouldn't *all* image recipes derived from core-image replace
-> dropbear with openssh?
+I'm on dora. I am using a different /etc/profile for base-files via a
+bbappend. Subsequent builds of my image does not add the new
+base-files package as I think it should.
 
-That means that the image feature ssh-server-openssh replaces
-ssh-server-dropbear, so if both are present dropbear is removed.
+Running bitbake of my image after the modification reports nothing to do.
 
-Ross
+Bumping the PR on the bbappend rebuilds base-files when bitbaking the
+image, but does not regenerate the image.
+
+Doing a clean of the image before bitbaking it installs the new base-files.
+
+
+Should the image be rebuilt automatically after changing base-files?
+
+
+- Jate S.
 
