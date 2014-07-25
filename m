@@ -1,48 +1,53 @@
-Return-Path: <rpjday@crashcourse.ca>
+Return-Path: <jatedev@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 73F99E006C4; Fri, 25 Jul 2014 10:57:44 -0700 (PDT)
+	id 5D828E006C4; Fri, 25 Jul 2014 11:21:45 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [208.80.204.85 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (jatedev[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from smtp485.redcondor.net (smtp485.redcondor.net [208.80.204.85])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8A14CE003C1
-	for <yocto@yoctoproject.org>; Fri, 25 Jul 2014 10:57:40 -0700 (PDT)
-Received: from astoria.ccjclearline.com ([64.235.106.9])
-	by smtp485.redcondor.net ({3be039ea-4351-44b0-a8af-642c38b25916})
-	via TCP (outbound) with ESMTPS id 20140725175726737
-	for <yocto@yoctoproject.org>; Fri, 25 Jul 2014 17:57:26 +0000
-X-RC-FROM: <rpjday@crashcourse.ca>
-X-RC-RCPT: <yocto@yoctoproject.org>
-Received: from [24.211.139.253] (port=33963 helo=crashcourse.ca)
-	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES128-SHA:128)
-	(Exim 4.80) (envelope-from <rpjday@crashcourse.ca>)
-	id 1XAjk9-0002wG-CA
-	for yocto@yoctoproject.org; Fri, 25 Jul 2014 13:57:21 -0400
-Date: Fri, 25 Jul 2014 13:57:17 -0400 (EDT)
-From: "Robert P. J. Day" <rpjday@crashcourse.ca>
-X-X-Sender: rpjday@localhost
-To: Yocto discussion list <yocto@yoctoproject.org>
-Message-ID: <alpine.LFD.2.11.1407251356150.8764@localhost>
-User-Agent: Alpine 2.11 (LFD 23 2013-08-11)
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.192.41 listed in list.dnswl.org]
+Received: from mail-qg0-f41.google.com (mail-qg0-f41.google.com
+	[209.85.192.41])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CD492E003C1
+	for <yocto@yoctoproject.org>; Fri, 25 Jul 2014 11:21:33 -0700 (PDT)
+Received: by mail-qg0-f41.google.com with SMTP id q107so5534227qgd.28
+	for <yocto@yoctoproject.org>; Fri, 25 Jul 2014 11:21:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type;
+	bh=yFU+DjvgQknkF6EDTC4L1ShHzB38igk0eVcIcD1DGn0=;
+	b=FTMhTXCmTEYHme5HJja44dtbVtbP3LaQrqNLsQXq7NFxmD7DIvM+h2a1bbayOoBdHV
+	oHw5MQGCROTD5pod6QI4AJ9HeWVvSCXMAVWiSFZvtBPMd142lQUKTsi7b11efXeIhPHz
+	d7yR5Ynu/SKlHEtheA2wwWXTxF7BJzA5A/WhbXkkQFCofJn+8BCybZnhWQq+Ag9UM7FD
+	m1nqeD9C4S8RILbKPqI3xx+UD3eUBHftsCwmBojnjKgyB3Ivl1fLrzND8a2XbeKFs7Q4
+	0zqYOC5TX7PYy/TVhxwgLT2SfTa6pOqOy8O3d/qPdKrfbUD8RDCjSvB9VZx+jchhn6MA
+	TYHw==
 MIME-Version: 1.0
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - crashcourse.ca
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-X-MAG-OUTBOUND: ccj.redcondor.net@64.235.106.9/32
-Subject: [yocto-dosc][PATCH] dev-manual: Mention wildcard bbappends, grammar fix.
+X-Received: by 10.224.129.201 with SMTP id p9mr30006026qas.75.1406312493248;
+	Fri, 25 Jul 2014 11:21:33 -0700 (PDT)
+Received: by 10.140.34.76 with HTTP; Fri, 25 Jul 2014 11:21:33 -0700 (PDT)
+In-Reply-To: <CAMKF1spEdPTw3Hasxeizc5hsmp-fuVU22Hj8+AYsXXP5exqYPA@mail.gmail.com>
+References: <CAPphmgbuZG64nAFx=u_verAsb=b14idQjA85-UhsHGf=M9NHfA@mail.gmail.com>
+	<CAMKF1spEdPTw3Hasxeizc5hsmp-fuVU22Hj8+AYsXXP5exqYPA@mail.gmail.com>
+Date: Fri, 25 Jul 2014 14:21:33 -0400
+Message-ID: <CAPphmgZsrJ-5j-zu6TJF6WL7GOnuWVRn1vsWZRFMAh4=RoUVNg@mail.gmail.com>
+From: Jate S <jatedev@gmail.com>
+To: Khem Raj <raj.khem@gmail.com>
+Cc: Yocto Project <yocto@yoctoproject.org>
+Subject: Re: change in base-files recipe does not trigger rebuild
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -54,47 +59,43 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 25 Jul 2014 17:57:44 -0000
-Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-List-Received-Date: Fri, 25 Jul 2014 18:21:45 -0000
+Content-Type: text/plain; charset=UTF-8
+
+base-files_3.0.14.bbappend:
+
+FILESEXTRAPATHS_prepend := "${THISDIR}/base-files:"
+
+PR := "${PR}.0"
 
 
-Signed-off-by: Robert P. J. Day <rpjday@crashcourse.ca>
+Here's output from the tree command.
 
----
+recipes-core/base-files/
+|-- base-files
+|   `-- profile
+`-- base-files_3.0.14.bbappend
 
-diff --git a/documentation/dev-manual/dev-manual-newbie.xml b/documentation/dev-manual/dev-manual-newbie.xml
-index 434a7d1..0f7708e 100644
---- a/documentation/dev-manual/dev-manual-newbie.xml
-+++ b/documentation/dev-manual/dev-manual-newbie.xml
-@@ -511,6 +511,10 @@
-                 <para>Information in append files overrides the information in the similarly-named recipe file.
-                 For an example of an append file in use, see the
-                 "<link linkend='using-bbappend-files'>Using .bbappend Files</link>" section.
-+                <note>
-+                    Append files can also use wildcard patterns in their version numbers
-+                    so they can be applied to more than one version of the underlying recipe file.
-+                </note>
-                 </para></listitem>
-             <listitem><para id='bitbake-term'><emphasis>BitBake:</emphasis>
-                 The task executor and scheduler used by the OpenEmbedded build
-@@ -686,7 +690,7 @@
-                 This Metadata is found in the <filename>meta</filename> directory of the
-                 <link linkend='source-directory'>Source Directory</link>.</para></listitem>
-             <listitem><para><emphasis>Package:</emphasis>
--                In the context of the Yocto Project, this term refers a
-+                In the context of the Yocto Project, this term refers to a
-                 recipe's packaged output produced by BitBake (i.e. a
-                 "baked recipe").
-                 A package is generally the compiled binaries produced from the
+1 directory, 2 files
 
--- 
 
-========================================================================
-Robert P. J. Day                                 Ottawa, Ontario, CANADA
-                        http://crashcourse.ca
-
-Twitter:                                       http://twitter.com/rpjday
-LinkedIn:                               http://ca.linkedin.com/in/rpjday
-========================================================================
-
+On Fri, Jul 25, 2014 at 1:30 PM, Khem Raj <raj.khem@gmail.com> wrote:
+> On Fri, Jul 25, 2014 at 9:10 AM, Jate S <jatedev@gmail.com> wrote:
+>> I'm on dora. I am using a different /etc/profile for base-files via a
+>> bbappend. Subsequent builds of my image does not add the new
+>> base-files package as I think it should.
+>>
+>> Running bitbake of my image after the modification reports nothing to do.
+>>
+>> Bumping the PR on the bbappend rebuilds base-files when bitbaking the
+>> image, but does not regenerate the image.
+>>
+>> Doing a clean of the image before bitbaking it installs the new base-files.
+>>
+>>
+>> Should the image be rebuilt automatically after changing base-files?
+>>
+>
+>
+> what does your bbappend look like ?
 
