@@ -1,52 +1,53 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <rpjday@crashcourse.ca>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id CAB29E006DB; Fri, 25 Jul 2014 10:31:27 -0700 (PDT)
+	id C955EE006C4; Fri, 25 Jul 2014 10:42:06 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (raj.khem[at]gmail.com)
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [208.80.206.85 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.213.180 listed in list.dnswl.org]
-Received: from mail-ig0-f180.google.com (mail-ig0-f180.google.com
-	[209.85.213.180])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A0BA8E003C1
-	for <yocto@yoctoproject.org>; Fri, 25 Jul 2014 10:31:23 -0700 (PDT)
-Received: by mail-ig0-f180.google.com with SMTP id l13so1130796iga.7
-	for <yocto@yoctoproject.org>; Fri, 25 Jul 2014 10:31:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-type;
-	bh=OaQpawJh2PEEf9RwJ9+0qqC8tLyT2DZpn2A0sevGND0=;
-	b=oG1MfXDjIcF78N9dgrIr/EtmK5BPhUVJucpRY+cv/bG+cma3cV8/sAXwTk1W3jpna/
-	2kdZvFjfwhz2osLWygNdd+wPjm3Y4BzBAz9Un5qilloEs6O391BKQx9sgumNh555KhPa
-	5BPimqW+jUP+iGvg9Y4caAcssUiylAYRseqawjLX7HT2He8OzucW3/mn5vvivO+nCHEa
-	V3Rm3V46ADfRQW1lHQQ9wK+K0PXDq1tkNg/8S9/66ED1Q15kGOh0XxC+vsfkLkM97+b8
-	oRXBaqXzjqMHX6y68RM76SXN0elEyzbHXhTjMO3+bH9SuEMcBcjHQJzuyQb3+123POVk
-	GCWg==
-X-Received: by 10.42.90.74 with SMTP id j10mr22364613icm.29.1406309483250;
-	Fri, 25 Jul 2014 10:31:23 -0700 (PDT)
+Received: from smtp685.redcondor.net (smtp685.redcondor.net [208.80.206.85])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2FD7DE003C1
+	for <yocto@yoctoproject.org>; Fri, 25 Jul 2014 10:42:03 -0700 (PDT)
+Received: from astoria.ccjclearline.com ([64.235.106.9])
+	by smtp685.redcondor.net ({20c8e40f-6b6c-4c9e-abff-1640ea7bf404})
+	via TCP (outbound) with ESMTPS id 20140725174201854
+	for <yocto@yoctoproject.org>; Fri, 25 Jul 2014 17:42:01 +0000
+X-RC-FROM: <rpjday@crashcourse.ca>
+X-RC-RCPT: <yocto@yoctoproject.org>
+Received: from [24.211.139.253] (port=33909 helo=crashcourse.ca)
+	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES128-SHA:128)
+	(Exim 4.80) (envelope-from <rpjday@crashcourse.ca>)
+	id 1XAjVE-00029c-EF; Fri, 25 Jul 2014 13:41:56 -0400
+Date: Fri, 25 Jul 2014 13:41:51 -0400 (EDT)
+From: "Robert P. J. Day" <rpjday@crashcourse.ca>
+X-X-Sender: rpjday@localhost
+To: Khem Raj <raj.khem@gmail.com>
+In-Reply-To: <CAMKF1sqxcHdWyvcAfVw6iNzfRNBn3_d9qwXzG6U28=HDwmb-qQ@mail.gmail.com>
+Message-ID: <alpine.LFD.2.11.1407251341400.8619@localhost>
+References: <alpine.LFD.2.11.1407250833370.3458@localhost>
+	<CAMKF1sodH6FbZn1+tX3exH6uSwgjGMv0F_bdp=uNfd5b2si=yw@mail.gmail.com>
+	<alpine.LFD.2.11.1407251250270.7984@localhost>
+	<CAMKF1sqxcHdWyvcAfVw6iNzfRNBn3_d9qwXzG6U28=HDwmb-qQ@mail.gmail.com>
+User-Agent: Alpine 2.11 (LFD 23 2013-08-11)
 MIME-Version: 1.0
-Received: by 10.50.78.105 with HTTP; Fri, 25 Jul 2014 10:30:53 -0700 (PDT)
-In-Reply-To: <CAPphmgbuZG64nAFx=u_verAsb=b14idQjA85-UhsHGf=M9NHfA@mail.gmail.com>
-References: <CAPphmgbuZG64nAFx=u_verAsb=b14idQjA85-UhsHGf=M9NHfA@mail.gmail.com>
-From: Khem Raj <raj.khem@gmail.com>
-Date: Fri, 25 Jul 2014 10:30:53 -0700
-Message-ID: <CAMKF1spEdPTw3Hasxeizc5hsmp-fuVU22Hj8+AYsXXP5exqYPA@mail.gmail.com>
-To: Jate S <jatedev@gmail.com>
-Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: change in base-files recipe does not trigger rebuild
+X-AntiAbuse: This header was added to track abuse,
+	please include it with any abuse report
+X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - crashcourse.ca
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+X-MAG-OUTBOUND: ccj.redcondor.net@64.235.106.9/32
+Cc: Yocto discussion list <yocto@yoctoproject.org>
+Subject: Re: are there any more obvious candidates for ASSUME_PROVIDED?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -58,25 +59,30 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 25 Jul 2014 17:31:27 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Fri, 25 Jul 2014 17:42:06 -0000
+Content-Type: TEXT/PLAIN; charset=US-ASCII
 
-On Fri, Jul 25, 2014 at 9:10 AM, Jate S <jatedev@gmail.com> wrote:
-> I'm on dora. I am using a different /etc/profile for base-files via a
-> bbappend. Subsequent builds of my image does not add the new
-> base-files package as I think it should.
->
-> Running bitbake of my image after the modification reports nothing to do.
->
-> Bumping the PR on the bbappend rebuilds base-files when bitbaking the
-> image, but does not regenerate the image.
->
-> Doing a clean of the image before bitbaking it installs the new base-files.
->
->
-> Should the image be rebuilt automatically after changing base-files?
->
+On Fri, 25 Jul 2014, Khem Raj wrote:
 
+> On Fri, Jul 25, 2014 at 9:51 AM, Robert P. J. Day <rpjday@crashcourse.ca> wrote:
+> >   fair enough, but what about the simpler example of gzip as opposed
+> > to bzip2? it's just trying to understand what makes the list and what
+> > doesn't.
+>
+> gzip can be replaced by pigz and it can be used to provide gzip-native
 
-what does your bbappend look like ?
+  ah, got it.
+
+rday
+
+-- 
+
+========================================================================
+Robert P. J. Day                                 Ottawa, Ontario, CANADA
+                        http://crashcourse.ca
+
+Twitter:                                       http://twitter.com/rpjday
+LinkedIn:                               http://ca.linkedin.com/in/rpjday
+========================================================================
+
 
