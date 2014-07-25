@@ -1,41 +1,58 @@
-Return-Path: <opensource@keylevel.com>
+Return-Path: <mark.a.evans@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id E40B5E00736; Thu, 24 Jul 2014 13:45:57 -0700 (PDT)
+	id 13102E00736; Thu, 24 Jul 2014 17:44:07 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
-	SPF_HELO_PASS autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [84.234.17.171 listed in list.dnswl.org]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (mark.a.evans[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from hosting.adsl24.co.uk (hosting.adsl24.co.uk [84.234.17.171])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2F1CBE006C4
-	for <yocto@yoctoproject.org>; Thu, 24 Jul 2014 13:45:46 -0700 (PDT)
-Received: from [109.224.171.0] (port=20381
-	helo=macbook-pro.durham.keylevel.com)
-	by hosting.adsl24.co.uk with esmtpsa (TLSv1:AES128-SHA:128)
-	(Exim 4.82) (envelope-from <opensource@keylevel.com>)
-	id 1XAPtX-0000FN-5q; Thu, 24 Jul 2014 21:45:43 +0100
-From: Chris Tapp <opensource@keylevel.com>
-Message-Id: <46282394-4892-46D1-B523-197B44CAEF9B@keylevel.com>
-Date: Thu, 24 Jul 2014 21:45:41 +0100
-To: Yocto Project <yocto@yoctoproject.org>,
- meta-intel@yoctoproject.org
-Mime-Version: 1.0 (Mac OS X Mail 7.3 \(1878.6\))
-X-Mailer: Apple Mail (2.1878.6)
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - hosting.adsl24.co.uk
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - keylevel.com
-X-Get-Message-Sender-Via: hosting.adsl24.co.uk: authenticated_id:
-	mail@keylevel.adsl24.co.uk
-Subject: Why won't my app use multiple threads under 'valleyisland'?
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.219.52 listed in list.dnswl.org]
+Received: from mail-oa0-f52.google.com (mail-oa0-f52.google.com
+	[209.85.219.52])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 589B5E006C4
+	for <yocto@yoctoproject.org>; Thu, 24 Jul 2014 17:44:01 -0700 (PDT)
+Received: by mail-oa0-f52.google.com with SMTP id o6so4746613oag.11
+	for <yocto@yoctoproject.org>; Thu, 24 Jul 2014 17:44:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=message-id:date:from:user-agent:mime-version:to:subject:references
+	:in-reply-to:content-type;
+	bh=31V4sUeyjU4DhNhh2qBoXzErNyvZiRmm/IkTnjj1uGw=;
+	b=EfJ3xOqoh4rJWEJbYF0+f0ORIp3UdtP6X3WEapjSY2y+iBYUl2q6tNXmO6qjfS/t/z
+	jkp+py99CxuzRpOjetRLm9HHChhKL8au0MCMqK7De/r7VUQrTYU05Z/nqcPoPCxPLXeX
+	nxXxRMZ77N7RosZz1Qa9+BKJBjL6tN7Yrr7fzMmaHKM+CIRSPUDhtS4XSVuq0Ws9g4Kf
+	gxJ9p/BWi+W54YYI30qdaIoTHx1n9ffpJLKVn29/6oo+uD3SyrALNRLLXr4J5PvUnX9U
+	OrfIb1cpQLkZ1E+b9ILCxZlmggRbbGLbMEmPZ2LvaRJz6R3gTZDJVrbVKVmUFH49H7tL
+	gblg==
+X-Received: by 10.60.132.203 with SMTP id ow11mr18435117oeb.47.1406249040400; 
+	Thu, 24 Jul 2014 17:44:00 -0700 (PDT)
+Received: from [172.16.1.39] (99-62-169-121.lightspeed.austtx.sbcglobal.net.
+	[99.62.169.121]) by mx.google.com with ESMTPSA id
+	sa9sm28875731oeb.17.2014.07.24.17.43.59 for <yocto@yoctoproject.org>
+	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
+	Thu, 24 Jul 2014 17:43:59 -0700 (PDT)
+Message-ID: <53D1A854.1080002@gmail.com>
+Date: Thu, 24 Jul 2014 19:44:04 -0500
+From: Mark Evans <mark.a.evans@gmail.com>
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64;
+	rv:24.0) Gecko/20100101 Thunderbird/24.6.0
+MIME-Version: 1.0
+To: Yocto Project <yocto@yoctoproject.org>
+References: <46282394-4892-46D1-B523-197B44CAEF9B@keylevel.com>
+In-Reply-To: <46282394-4892-46D1-B523-197B44CAEF9B@keylevel.com>
+Subject: OpenSSL 1.0.0m
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -47,41 +64,71 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 24 Jul 2014 20:45:58 -0000
-Content-Type: text/plain; charset=us-ascii
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Fri, 25 Jul 2014 00:44:07 -0000
+Content-Type: multipart/alternative;
+	boundary="------------010401030901020808040902"
 
-I've got a recipe for an application. This has:
+--------------010401030901020808040902
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
 
-1) A main thread;
-2) An OpenGL ('X' / EGL) graphics rendering thread created using posix =
-threads;
-3) As many threads as required from the graphics thread for GStreamer to =
-service various pipelines.
+question on the openssl recipes and openssl versions... Point me to the 
+correct distro if this is the incorrect spot to ask this...
 
-On a Cedartrail platform this happily uses multiple cores.
+We're currently on Danny, 1.3.2. In there, the openssl version is 
+1.0.0j. The openssl project is currently promoting  1.0.1h. Due to the 
+multiple CVEs being released, we're wanting to move to the latest. But, 
+looking at the poky releases, it seems that, after "Danny", Poky 
+reverted back to 1.0.0e and added patches as CVEs are released. For 
+example, here's the patches in "Daisy" (1.6.1):
 
-However, if I use the same recipe under a 64-bit valleyisland build =
-(daisy) it only ever uses a single core (and virtually grinds to a =
-halt).
+    openssl-1.0.1e-cve-2014-0195.patch
+    openssl-1.0.1e-cve-2014-0198.patch
+    openssl-1.0.1e-cve-2014-0221.patch
+    openssl-1.0.1e-cve-2014-0224.patch
+    openssl-1.0.1e-cve-2014-3470.patch
+    openssl-CVE-2010-5298.patch
 
-'top' shows CPU usage for the application never goes above 25% (J1900, =
-so four cores available). Running four instances of 'yes' gets the total =
-CPU usage to 100%, so all the cores are available.
+Am I reading that correct? If I move to the recipes there, will that 
+close current issues on openssl? Or, is there a recipe available to use 
+1.0.1h?
 
-'taskset' shows that the affinity mask for the application is not =
-restricting the set of available cores.
+Thanks for any info.
+Mark Evans
 
-Umm... Any ideas what's going on here?
+--------------010401030901020808040902
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: 7bit
 
-It looks as if GStreamer and OpenGL are fighting for access to =
-something, but the pipelines only render to 'fakesink' and 'appsink'.
+<html>
+  <head>
+    <meta content="text/html; charset=ISO-8859-1"
+      http-equiv="Content-Type">
+  </head>
+  <body bgcolor="#FFFFFF" text="#000000">
+    question on the openssl recipes and openssl versions... Point me to
+    the correct distro if this is the incorrect spot to ask this...<br>
+    <br>
+    We're currently on Danny, 1.3.2. In there, the openssl version is
+    1.0.0j. The openssl project is currently promoting&nbsp; 1.0.1h. Due to
+    the multiple CVEs being released, we're wanting to move to the
+    latest. But, looking at the poky releases, it seems that, after
+    "Danny", Poky reverted back to 1.0.0e and added patches as CVEs are
+    released. For example, here's the patches in "Daisy" (1.6.1):<br>
+    <blockquote>openssl-1.0.1e-cve-2014-0195.patch<br>
+      openssl-1.0.1e-cve-2014-0198.patch<br>
+      openssl-1.0.1e-cve-2014-0221.patch<br>
+      openssl-1.0.1e-cve-2014-0224.patch<br>
+      openssl-1.0.1e-cve-2014-3470.patch<br>
+      openssl-CVE-2010-5298.patch<br>
+    </blockquote>
+    Am I reading that correct? If I move to the recipes there, will that
+    close current issues on openssl? Or, is there a recipe available to
+    use 1.0.1h?<br>
+    <br>
+    Thanks for any info.<br>
+    Mark Evans<br>
+  </body>
+</html>
 
-Chris Tapp
-
-opensource@keylevel.com
-www.keylevel.com
-
-
-
-
+--------------010401030901020808040902--
