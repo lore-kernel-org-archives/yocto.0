@@ -1,14 +1,17 @@
-Return-Path: <jatedev@gmail.com>
+Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 5D828E006C4; Fri, 25 Jul 2014 11:21:45 -0700 (PDT)
+	id 66362E00798; Fri, 25 Jul 2014 11:40:04 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
 	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (jatedev[at]gmail.com)
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [209.85.223.175 listed in list.dnswl.org]
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (raj.khem[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
@@ -16,38 +19,34 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.192.41 listed in list.dnswl.org]
-Received: from mail-qg0-f41.google.com (mail-qg0-f41.google.com
-	[209.85.192.41])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CD492E003C1
-	for <yocto@yoctoproject.org>; Fri, 25 Jul 2014 11:21:33 -0700 (PDT)
-Received: by mail-qg0-f41.google.com with SMTP id q107so5534227qgd.28
-	for <yocto@yoctoproject.org>; Fri, 25 Jul 2014 11:21:33 -0700 (PDT)
+Received: from mail-ie0-f175.google.com (mail-ie0-f175.google.com
+	[209.85.223.175])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A2FD1E003C1
+	for <yocto@yoctoproject.org>; Fri, 25 Jul 2014 11:39:56 -0700 (PDT)
+Received: by mail-ie0-f175.google.com with SMTP id x19so4143215ier.20
+	for <yocto@yoctoproject.org>; Fri, 25 Jul 2014 11:39:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
 	:cc:content-type;
-	bh=yFU+DjvgQknkF6EDTC4L1ShHzB38igk0eVcIcD1DGn0=;
-	b=FTMhTXCmTEYHme5HJja44dtbVtbP3LaQrqNLsQXq7NFxmD7DIvM+h2a1bbayOoBdHV
-	oHw5MQGCROTD5pod6QI4AJ9HeWVvSCXMAVWiSFZvtBPMd142lQUKTsi7b11efXeIhPHz
-	d7yR5Ynu/SKlHEtheA2wwWXTxF7BJzA5A/WhbXkkQFCofJn+8BCybZnhWQq+Ag9UM7FD
-	m1nqeD9C4S8RILbKPqI3xx+UD3eUBHftsCwmBojnjKgyB3Ivl1fLrzND8a2XbeKFs7Q4
-	0zqYOC5TX7PYy/TVhxwgLT2SfTa6pOqOy8O3d/qPdKrfbUD8RDCjSvB9VZx+jchhn6MA
-	TYHw==
+	bh=ZjbN8dEznFrmEcztnqTk28X0wAc/+hs1ZUMZihnIkhU=;
+	b=pwvCM85y0VZ826hhcZDZr5s6mbG1s5HJa3THrJ8NFMC9jeoPk5u1Ge1+2KYyzAVxWx
+	m1BZO+BcHwTJHHjtePpuGQCZpX9cOwKe5lnBw5VkPXsIa7wYL808wXHYG9N1SP9FtKV7
+	IygTmcFfiVMWBIkNX1R2xwdU3vQ7ypMI3Mu6ryvsRJSwkAIgUTw4Hjr4s/hOzE3lPQhi
+	MDqgnm6Fh6p7FJWuFCtL4uorovTJmpuB+oCD2lbseWPCmQqhknhXBSEzk/Fpu/fDFx6z
+	c+JlCnA0xpAvjwy+RWIdNo01dCUfhKapfM7BOPvKdrc2vsf43YqPTC82iiM0Jn85gDGo
+	MSMQ==
+X-Received: by 10.50.25.71 with SMTP id a7mr6596946igg.17.1406313595852; Fri,
+	25 Jul 2014 11:39:55 -0700 (PDT)
 MIME-Version: 1.0
-X-Received: by 10.224.129.201 with SMTP id p9mr30006026qas.75.1406312493248;
-	Fri, 25 Jul 2014 11:21:33 -0700 (PDT)
-Received: by 10.140.34.76 with HTTP; Fri, 25 Jul 2014 11:21:33 -0700 (PDT)
-In-Reply-To: <CAMKF1spEdPTw3Hasxeizc5hsmp-fuVU22Hj8+AYsXXP5exqYPA@mail.gmail.com>
-References: <CAPphmgbuZG64nAFx=u_verAsb=b14idQjA85-UhsHGf=M9NHfA@mail.gmail.com>
-	<CAMKF1spEdPTw3Hasxeizc5hsmp-fuVU22Hj8+AYsXXP5exqYPA@mail.gmail.com>
-Date: Fri, 25 Jul 2014 14:21:33 -0400
-Message-ID: <CAPphmgZsrJ-5j-zu6TJF6WL7GOnuWVRn1vsWZRFMAh4=RoUVNg@mail.gmail.com>
-From: Jate S <jatedev@gmail.com>
-To: Khem Raj <raj.khem@gmail.com>
-Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: change in base-files recipe does not trigger rebuild
+Received: by 10.50.78.105 with HTTP; Fri, 25 Jul 2014 11:39:25 -0700 (PDT)
+In-Reply-To: <alpine.LFD.2.11.1407251345130.8665@localhost>
+References: <alpine.LFD.2.11.1407251345130.8665@localhost>
+From: Khem Raj <raj.khem@gmail.com>
+Date: Fri, 25 Jul 2014 11:39:25 -0700
+Message-ID: <CAMKF1sqOKng=hwjc9hyYbCMW8E=BOvC3bKbAwby0kgxk=wn9bQ@mail.gmail.com>
+To: "Robert P. J. Day" <rpjday@crashcourse.ca>
+Cc: Yocto discussion list <yocto@yoctoproject.org>
+Subject: Re: dev manual definition of "Image" is totally wrong
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -59,43 +58,41 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 25 Jul 2014 18:21:45 -0000
+X-List-Received-Date: Fri, 25 Jul 2014 18:40:04 -0000
 Content-Type: text/plain; charset=UTF-8
 
-base-files_3.0.14.bbappend:
-
-FILESEXTRAPATHS_prepend := "${THISDIR}/base-files:"
-
-PR := "${PR}.0"
-
-
-Here's output from the tree command.
-
-recipes-core/base-files/
-|-- base-files
-|   `-- profile
-`-- base-files_3.0.14.bbappend
-
-1 directory, 2 files
-
-
-On Fri, Jul 25, 2014 at 1:30 PM, Khem Raj <raj.khem@gmail.com> wrote:
-> On Fri, Jul 25, 2014 at 9:10 AM, Jate S <jatedev@gmail.com> wrote:
->> I'm on dora. I am using a different /etc/profile for base-files via a
->> bbappend. Subsequent builds of my image does not add the new
->> base-files package as I think it should.
->>
->> Running bitbake of my image after the modification reports nothing to do.
->>
->> Bumping the PR on the bbappend rebuilds base-files when bitbaking the
->> image, but does not regenerate the image.
->>
->> Doing a clean of the image before bitbaking it installs the new base-files.
->>
->>
->> Should the image be rebuilt automatically after changing base-files?
->>
+On Fri, Jul 25, 2014 at 10:47 AM, Robert P. J. Day
+<rpjday@crashcourse.ca> wrote:
 >
+>   here:
 >
-> what does your bbappend look like ?
+> http://www.yoctoproject.org/docs/latest/dev-manual/dev-manual.html#yocto-project-terms
+>
+> the definition of "Image" refers to the generated artifacts of a
+> build, whereas the standard usage (as typified by the link) more
+> correctly refers to things like core-image-minimal.
+
+core-image-minimal is just a name/type of image and image is a
+generated artifact ( output result ) of a build using OE
+
+>
+>   i'll let someone higher up the food chain resolve that.
+>
+> rday
+>
+> --
+>
+> ========================================================================
+> Robert P. J. Day                                 Ottawa, Ontario, CANADA
+>                         http://crashcourse.ca
+>
+> Twitter:                                       http://twitter.com/rpjday
+> LinkedIn:                               http://ca.linkedin.com/in/rpjday
+> ========================================================================
+>
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
