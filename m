@@ -1,48 +1,51 @@
-Return-Path: <jatedev@gmail.com>
+Return-Path: <rpjday@crashcourse.ca>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 76D54E0043F; Fri, 25 Jul 2014 09:10:58 -0700 (PDT)
+	id E3EB9E0043F; Fri, 25 Jul 2014 09:16:13 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (jatedev[at]gmail.com)
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [208.80.204.86 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.192.42 listed in list.dnswl.org]
-Received: from mail-qg0-f42.google.com (mail-qg0-f42.google.com
-	[209.85.192.42])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6DE25E003C1
-	for <yocto@yoctoproject.org>; Fri, 25 Jul 2014 09:10:43 -0700 (PDT)
-Received: by mail-qg0-f42.google.com with SMTP id j5so5257381qga.15
-	for <yocto@yoctoproject.org>; Fri, 25 Jul 2014 09:10:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=JSNnZNGn2CGvaCoU3lrgw5mA+K4nEIyTAvJEoKglkfo=;
-	b=t4gbhRAyybQ55ouiF6aXr5xtstKBVLmEmnQ8F3jBrmyqVEIVkykEpEp2EjjNTYbc2g
-	8biEKHKFmrc8gdAQUT/DcTIrnEZt1qaQrWyzDGvXvB82UoQuc5e2XpDWs0IM2VJ8J2n4
-	jebZZ+A2CguG4CRHD0mBUB0PqKcU5eX+rZvqsa5MCYcajxjpmxcrIkkt/Zv9mtRoaRjo
-	JbD/7eOMYGXGsja8GP7LkHIi+UC+DZwGL1BRvHCeuF7WziXgcpg7TEAP2uH57coSQpda
-	U5OINR9P3Y3sR3P1uJwSolN8vplt+I4UzbmyKizEFqA3XzfrsvMMs0X2nP+WCdvk1xlB
-	uPgA==
+Received: from smtp486.redcondor.net (smtp486.redcondor.net [208.80.204.86])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 69210E003C1
+	for <yocto@yoctoproject.org>; Fri, 25 Jul 2014 09:16:09 -0700 (PDT)
+Received: from astoria.ccjclearline.com ([64.235.106.9])
+	by smtp486.redcondor.net ({6695537a-536a-45f9-a249-877c85428649})
+	via TCP (outbound) with ESMTPS id 20140725161608081
+	for <yocto@yoctoproject.org>; Fri, 25 Jul 2014 16:16:08 +0000
+X-RC-FROM: <rpjday@crashcourse.ca>
+X-RC-RCPT: <yocto@yoctoproject.org>
+Received: from [24.211.139.253] (port=32964 helo=crashcourse.ca)
+	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES128-SHA:128)
+	(Exim 4.80) (envelope-from <rpjday@crashcourse.ca>)
+	id 1XAiA6-0007gC-SD; Fri, 25 Jul 2014 12:16:03 -0400
+Date: Fri, 25 Jul 2014 12:15:59 -0400 (EDT)
+From: "Robert P. J. Day" <rpjday@crashcourse.ca>
+X-X-Sender: rpjday@localhost
+To: "Burton, Ross" <ross.burton@intel.com>
+In-Reply-To: <CAJTo0LYgJu2NkbtROmDEj85adyJ1MF4p5HGCrAmhiQ_0Z7cUYw@mail.gmail.com>
+Message-ID: <alpine.LFD.2.11.1407251214150.7452@localhost>
+References: <alpine.LFD.2.11.1407251200050.6809@localhost>
+	<CAJTo0LYgJu2NkbtROmDEj85adyJ1MF4p5HGCrAmhiQ_0Z7cUYw@mail.gmail.com>
+User-Agent: Alpine 2.11 (LFD 23 2013-08-11)
 MIME-Version: 1.0
-X-Received: by 10.140.95.101 with SMTP id h92mr28064821qge.35.1406304643187;
-	Fri, 25 Jul 2014 09:10:43 -0700 (PDT)
-Received: by 10.140.34.76 with HTTP; Fri, 25 Jul 2014 09:10:43 -0700 (PDT)
-Date: Fri, 25 Jul 2014 12:10:43 -0400
-Message-ID: <CAPphmgbuZG64nAFx=u_verAsb=b14idQjA85-UhsHGf=M9NHfA@mail.gmail.com>
-From: Jate S <jatedev@gmail.com>
-To: Yocto Project <yocto@yoctoproject.org>
-Subject: change in base-files recipe does not trigger rebuild
+X-AntiAbuse: This header was added to track abuse,
+	please include it with any abuse report
+X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - crashcourse.ca
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+X-MAG-OUTBOUND: ccj.redcondor.net@64.235.106.9/32
+Cc: Yocto discussion list <yocto@yoctoproject.org>
+Subject: Re: don't all core images use openssh instead of dropbear?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -54,23 +57,33 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 25 Jul 2014 16:10:58 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Fri, 25 Jul 2014 16:16:14 -0000
+Content-Type: TEXT/PLAIN; charset=US-ASCII
 
-I'm on dora. I am using a different /etc/profile for base-files via a
-bbappend. Subsequent builds of my image does not add the new
-base-files package as I think it should.
+On Fri, 25 Jul 2014, Burton, Ross wrote:
 
-Running bitbake of my image after the modification reports nothing to do.
+> On 25 July 2014 17:03, Robert P. J. Day <rpjday@crashcourse.ca> wrote:
+> > IMAGE_FEATURES_REPLACES_ssh-server-openssh = "ssh-server-dropbear"
+> >
+> > so wouldn't *all* image recipes derived from core-image replace
+> > dropbear with openssh?
+>
+> That means that the image feature ssh-server-openssh replaces
+> ssh-server-dropbear, so if both are present dropbear is removed.
 
-Bumping the PR on the bbappend rebuilds base-files when bitbaking the
-image, but does not regenerate the image.
+  ah, my misunderstanding, i thought it was a simple substitution, not
+an override only if *both* were present.
 
-Doing a clean of the image before bitbaking it installs the new base-files.
+rday
 
+-- 
 
-Should the image be rebuilt automatically after changing base-files?
+========================================================================
+Robert P. J. Day                                 Ottawa, Ontario, CANADA
+                        http://crashcourse.ca
 
+Twitter:                                       http://twitter.com/rpjday
+LinkedIn:                               http://ca.linkedin.com/in/rpjday
+========================================================================
 
-- Jate S.
 
