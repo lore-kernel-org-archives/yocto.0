@@ -1,51 +1,47 @@
-Return-Path: <rpjday@crashcourse.ca>
+Return-Path: <hal.martin@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id D2988E006C4; Sat, 26 Jul 2014 04:13:19 -0700 (PDT)
+	id E9273E00655; Sat, 26 Jul 2014 12:38:59 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [208.80.204.85 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (hal.martin[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from smtp485.redcondor.net (smtp485.redcondor.net [208.80.204.85])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 864C1E0043F
-	for <yocto@yoctoproject.org>; Sat, 26 Jul 2014 04:13:10 -0700 (PDT)
-Received: from astoria.ccjclearline.com ([64.235.106.9])
-	by smtp485.redcondor.net ({3be039ea-4351-44b0-a8af-642c38b25916})
-	via TCP (outbound) with ESMTPS id 20140726111308412
-	for <yocto@yoctoproject.org>; Sat, 26 Jul 2014 11:13:08 +0000
-X-RC-FROM: <rpjday@crashcourse.ca>
-X-RC-RCPT: <yocto@yoctoproject.org>
-Received: from [24.211.139.253] (port=58588 helo=crashcourse.ca)
-	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES128-SHA:128)
-	(Exim 4.80) (envelope-from <rpjday@crashcourse.ca>)
-	id 1XAzuQ-0001cd-AJ; Sat, 26 Jul 2014 07:13:02 -0400
-Date: Sat, 26 Jul 2014 07:12:59 -0400 (EDT)
-From: "Robert P. J. Day" <rpjday@crashcourse.ca>
-X-X-Sender: rpjday@localhost
-To: Rudolf Streif <rstreif@linuxfoundation.org>
-In-Reply-To: <CA+gsK-peRS+T3zOXKo-zERm=vrWewAfEEhrT_jPphpfgtJimBg@mail.gmail.com>
-Message-ID: <alpine.LFD.2.11.1407260707320.25872@localhost>
-References: <alpine.LFD.2.11.1407251345130.8665@localhost>
-	<CA+gsK-peRS+T3zOXKo-zERm=vrWewAfEEhrT_jPphpfgtJimBg@mail.gmail.com>
-User-Agent: Alpine 2.11 (LFD 23 2013-08-11)
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [74.125.82.52 listed in list.dnswl.org]
+Received: from mail-wg0-f52.google.com (mail-wg0-f52.google.com [74.125.82.52])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5E8FEE004D1
+	for <yocto@yoctoproject.org>; Sat, 26 Jul 2014 12:38:56 -0700 (PDT)
+Received: by mail-wg0-f52.google.com with SMTP id a1so5604459wgh.35
+	for <yocto@yoctoproject.org>; Sat, 26 Jul 2014 12:38:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=jf9g4jDm187FAg+qUMchoBnTVre47AXPA04w2gyjcV0=;
+	b=Npteg525JY57JNdFxXRy8Y/vaeMfgS2QxZDuFsgQ/W7dQwOnAjJVeSW0mC8lm2Tjix
+	5Ik6EuC3ZAdLyoHeuiuma7xu7gE7DHpBAnhmhQF/hsw+CYcZQtkhDy8EffrbYoSGZI+H
+	Z0h4rt1Mpk3fvN4uWFGJLwxuAV+gd3j48fVqu2Y/fpoNbj1oMAEu7b/TMauVWOp7H1cT
+	VNiarMN+BYJ1DKW97vp0LFfquFUisb+TRbTSzVF5J9gkqpl9dG1XAYwoLE3rk1VReZwN
+	RFnucVaIs5PDv9wwv8mSglTha6ibs3qHTiWYtl4AXa7qluKizomBtxnvdHuOdetCfyHJ
+	N5wg==
 MIME-Version: 1.0
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - crashcourse.ca
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-X-MAG-OUTBOUND: ccj.redcondor.net@64.235.106.9/32
-Cc: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: dev manual definition of "Image" is totally wrong
+X-Received: by 10.180.11.206 with SMTP id s14mr5587471wib.27.1406403536120;
+	Sat, 26 Jul 2014 12:38:56 -0700 (PDT)
+Received: by 10.217.104.132 with HTTP; Sat, 26 Jul 2014 12:38:56 -0700 (PDT)
+Date: Sat, 26 Jul 2014 21:38:56 +0200
+Message-ID: <CAHkvJJLac=B6M6_+Uqbso22pEkDeFNbrmNs4u4P-9v6=3P1PGA@mail.gmail.com>
+From: Hal Martin <hal.martin@gmail.com>
+To: yocto@yoctoproject.org
+Subject: GStreamer from HTTP source
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -57,56 +53,52 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 26 Jul 2014 11:13:19 -0000
-Content-Type: MULTIPART/MIXED; BOUNDARY="8323328-1810305086-1406373181=:25872"
+X-List-Received-Date: Sat, 26 Jul 2014 19:39:00 -0000
+Content-Type: text/plain; charset=UTF-8
 
---8323328-1810305086-1406373181=:25872
-Content-Type: TEXT/PLAIN; charset=UTF-8
-Content-Transfer-Encoding: 8BIT
+Hello all,
 
-On Fri, 25 Jul 2014, Rudolf Streif wrote:
+I'm trying to play live TV on a Wandboard Dual. I have a RTL2832U
+DVB-T tuner and I'm using the tvheadend to manage tuning and capture.
+I can use VLC on my laptop to play live TV, but I'm not having any
+luck getting the Wandboard to play live TV.
 
->         here:
->
->       http://www.yoctoproject.org/docs/latest/dev-manual/dev-manual.html#yocto-project-terms
->
->       the definition of "Image" refers to the generated artifacts of a
->       build, whereas the standard usage (as typified by the link) more
->       correctly refers to things like core-image-minimal.
->
-> The term "image" is somewhat overloaded and if not detailed context
-> dependent. Image at least could be a "kernel image" or a "root file
-> system image". In the context of YP the term typically refers to a
-> root file system image of which core-image-minimal is an instance.
+gplay doesn't support HTTP streams and gst-launch fails to play the
+stream. The totem recipe in open embedded is really old and doesn't
+seem to be working, so I'm not sure what I can use to play an HTTP (or
+HTSP) stream.
 
-  i know that, but the definition as it stands in the dev manual is
-extremely misleading:
+Any suggestions would be greatly appreciated. Apologies if this is a
+repeat question, I searched the list archives and couldn't find
+anything relevant.
 
-"Image: An image is the result produced when BitBake processes a given
-collection of recipes and related Metadata. Images are the binary
-output that run on specific hardware or QEMU and are used for specific
-use-cases..."
+Thanks,
+Hal
 
-  "the result" implies a single result when everyone knows a build can
-produce several output objects. and as rudolf correctly points out,
-the word "image" is context dependent, and it certainly is the way
-one refers to the image *recipe files*, which you find (unfortunately)
-under directories named "images/".
+# gst-launch souphttpsrc
+location=http://localhost:9981/stream/channelid//29 ! mpegtsdemux
+name=ts ts. ! queue ! vpudec ! mfw_v4lsink sync=false ts. ! queue  !
+beepdec ! alsasink sync=false -vvv
 
-  personally, i think a build's output should have been called
-"artifacts", but that's just me. and as forrest gump once said, "and
-that's all i have to say about that."
+MFW_GST_V4LSINK_PLUGIN 3.0.11 build on Jul 12 2014 03:42:13.
+Setting pipeline to PAUSED ...
+[INFO]  Product Info: i.MX6Q/D/S
+vpudec versions :)
+        plugin: 3.0.11
+        wrapper: 1.0.46(VPUWRAPPER_ARM_LINUX Build on Jul 12 2014 03:21:38)
+        vpulib: 5.4.23
+        firmware: 3.1.1.46056
+Pipeline is PREROLLING ...
+ERROR: from element /GstPipeline:pipeline0/GstMpegTSDemux:ts: Could
+not determine type of stream.
+Additional debug info:
+/var/lib/jenkins/jobs/yocto/workspace/fsl-community-bsp/build/tmp/work/cortexa9hf-vfp-neon-poky-linux-gnueabi/gst-plugins-bad/0.10.23-r4/gst-plugins-bad-0.10.23/gst/mpegdemux/gstmpegtsdemux.c(2931):
+gst_mpegts_demux_sink_event ():
+/GstPipeline:pipeline0/GstMpegTSDemux:ts:
+No valid streams found at EOS
+ERROR: pipeline doesn't want to preroll.
+Setting pipeline to NULL ...
+Total rendered:0
+Freeing pipeline ...
+[--->FINALIZE v4l_sink
 
-rday
-
--- 
-
-========================================================================
-Robert P. J. Day                                 Ottawa, Ontario, CANADA
-                        http://crashcourse.ca
-
-Twitter:                                       http://twitter.com/rpjday
-LinkedIn:                               http://ca.linkedin.com/in/rpjday
-========================================================================
-
---8323328-1810305086-1406373181=:25872--
