@@ -1,50 +1,62 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <dwatkins@sierrawireless.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 8F1CCE006B5; Mon, 28 Jul 2014 10:53:49 -0700 (PDT)
+	id 41734E006B5; Mon, 28 Jul 2014 12:11:29 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (raj.khem[at]gmail.com)
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00, RCVD_IN_DNSWL_NONE, 
+	SPF_HELO_PASS autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [207.46.163.141 listed in list.dnswl.org]
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.213.181 listed in list.dnswl.org]
-Received: from mail-ig0-f181.google.com (mail-ig0-f181.google.com
-	[209.85.213.181])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 31DA1E00547
-	for <yocto@yoctoproject.org>; Mon, 28 Jul 2014 10:53:44 -0700 (PDT)
-Received: by mail-ig0-f181.google.com with SMTP id h3so4011854igd.2
-	for <yocto@yoctoproject.org>; Mon, 28 Jul 2014 10:53:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-type;
-	bh=gbr0tpbfGuqWbiXyALa4V/ukKlvfq9uJOFcODw8Dzrw=;
-	b=FCls9pJeaboY1oIxSkKNO7QSnsHQAl8rgLbXFwvZbw5Qquabj5va+w8zHzAA3Zwjvh
-	1Qmev21kqCfZhih54Mf/CUcK48wmVT+mejfS9bfXcvmfOfC576eHnpaUXHegSQyKOy9Y
-	giAlRC8pBDcmxHaIoDoSqP5SLXKoZF2dQ9ypvMsvVNbpkYNo4IViDBnWFSu5Ki33SSx6
-	fvFzdUlP56TRH7ErU56WSm7qd0MMRfOisEGQIYWCNBKyOjYdHI0VE8BQeohjxGNPjjLn
-	mpHgaHyQIvqFEyI4OfZOtDhSlxk/zlpTKsLm3wLYLmLG6+Iv9iN7+CfTsErZfQRxiNnH
-	sloA==
-X-Received: by 10.42.90.74 with SMTP id j10mr45270498icm.29.1406570023986;
-	Mon, 28 Jul 2014 10:53:43 -0700 (PDT)
-MIME-Version: 1.0
-Received: by 10.50.78.105 with HTTP; Mon, 28 Jul 2014 10:53:13 -0700 (PDT)
-In-Reply-To: <1406568010.2490.20.camel@kihei.inmotion.gotdns.com>
+Received: from na01-bn1-obe.outbound.protection.outlook.com
+	(mail-bn1lp0141.outbound.protection.outlook.com [207.46.163.141])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 83C2BE00547
+	for <yocto@yoctoproject.org>; Mon, 28 Jul 2014 12:11:23 -0700 (PDT)
+Received: from BLUPR02CA022.namprd02.prod.outlook.com (25.160.23.140) by
+	BY1PR0201MB0935.namprd02.prod.outlook.com (25.160.194.24) with
+	Microsoft SMTP
+	Server (TLS) id 15.0.995.14; Mon, 28 Jul 2014 19:11:18 +0000
+Received: from BN1BFFO11FD040.protection.gbl (2a01:111:f400:7c10::1:129) by
+	BLUPR02CA022.outlook.office365.com (2a01:111:e400:8ad::12) with
+	Microsoft SMTP Server (TLS) id 15.0.995.14 via Frontend Transport;
+	Mon, 28 Jul 2014 19:11:17 +0000
+Received: from mail.sierrawireless.com (208.81.121.44) by
+	BN1BFFO11FD040.mail.protection.outlook.com (10.58.144.103) with
+	Microsoft SMTP Server (TLS) id 15.0.990.10 via Frontend Transport;
+	Mon, 28 Jul 2014 19:11:17 +0000
+Received: from [192.168.3.163] (184.71.143.26) by
+	CARMD-EXCHHUB01.sierrawireless.local (10.0.6.2) with Microsoft SMTP
+	Server (TLS) id 8.3.348.2; Mon, 28 Jul 2014 12:11:13 -0700
+From: Darcy Watkins <darcy.watkins@inmotiontechnology.com>
+To: Khem Raj <raj.khem@gmail.com>
+In-Reply-To: <CAMKF1soKE=vPNMZMeH7n4gThR7Kb5GNo1w1HHWV3xEcC2yNOmg@mail.gmail.com>
 References: <1406568010.2490.20.camel@kihei.inmotion.gotdns.com>
-From: Khem Raj <raj.khem@gmail.com>
-Date: Mon, 28 Jul 2014 10:53:13 -0700
-Message-ID: <CAMKF1soKE=vPNMZMeH7n4gThR7Kb5GNo1w1HHWV3xEcC2yNOmg@mail.gmail.com>
-To: Darcy Watkins <darcy.watkins@inmotiontechnology.com>
+	<CAMKF1soKE=vPNMZMeH7n4gThR7Kb5GNo1w1HHWV3xEcC2yNOmg@mail.gmail.com>
+Date: Mon, 28 Jul 2014 12:11:11 -0700
+Message-ID: <1406574672.5096.19.camel@kihei.inmotion.gotdns.com>
+MIME-Version: 1.0
+X-Mailer: Evolution 2.28.3 (2.28.3-30.el6) 
+X-EOPAttributedMessage: 0
+X-Forefront-Antispam-Report: CIP:208.81.121.44; CTRY:CA; IPV:NLI; IPV:NLI;
+	EFV:NLI; SFV:NSPM;
+	SFS:(6009001)(438002)(51704005)(199002)(189002)(41574002)(377424004)(24454002)(31966008)(23676002)(85852003)(77156001)(50466002)(87936001)(92566001)(89996001)(92726001)(50986999)(76176999)(83072002)(88136002)(99396002)(104166001)(87286001)(93916002)(62966002)(6806004)(19580395003)(103116003)(44976005)(83322001)(102836001)(21056001)(106466001)(4396001)(50226001)(104016003)(46102001)(80022001)(110136001)(64706001)(20776003)(47776003)(81542001)(15975445006)(95666004)(81342001)(76482001)(33646002)(79102001)(77982001)(85306003)(107046002)(74662001)(74502001)(42882001);
+	DIR:OUT; SFP:; SCL:1; SRVR:BY1PR0201MB0935;
+	H:mail.sierrawireless.com; FPR:; MLV:sfv;
+	PTR:spf.sierrawireless.com,carmdsmtp.sierrawireless.com; A:1;
+	MX:1; LANG:en; 
+X-Microsoft-Antispam: BCL:0;PCL:0;RULEID:
+X-Forefront-PRVS: 0286D7B531
+Received-SPF: Pass (protection.outlook.com: domain of sierrawireless.com
+	designates 208.81.121.44 as permitted sender)
+	receiver=protection.outlook.com; client-ip=208.81.121.44;
+	helo=mail.sierrawireless.com;
+Authentication-Results: spf=pass (sender IP is 208.81.121.44)
+	smtp.mailfrom=dwatkins@sierrawireless.com; 
+X-OriginatorOrg: SierraWirelessInc.onmicrosoft.com
 Cc: yocto <yocto@yoctoproject.org>
 Subject: Re: binutils-native 2.24 build broken
 X-BeenThere: yocto@yoctoproject.org
@@ -58,34 +70,39 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 28 Jul 2014 17:53:49 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Mon, 28 Jul 2014 19:11:29 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
-On Mon, Jul 28, 2014 at 10:20 AM, Darcy Watkins
-<darcy.watkins@inmotiontechnology.com> wrote:
->
-> I use a layout much like Freescale Community BSP project that uses
-> 'repo' to pull together the layers based on a manifest.
->
-> I noticed this when a syncup triggered the toolchain to rebuild.
->
-> Since I hadn't had anything trigger toolchain to rebuild since July 17,
-> I tried 'git checkout' all my layers, oe layers and yocto layers to
-> specific hashes to get back to the state I had in July 17.  I blew away
-> the sstate-cache, cache and tmp and rebuilt from scratch.  Same thing.
->
-> Are there floating git references related to the toolchain that could
-> have updated independent of the meta data that could still go forward of
-> Jul 17?
->
-> In any case, it appears that my 64bit Fedora machine at home is not
-> affected by this, but my 32bit CentOS 6 machine at work is affected by
-> it.
->
-> Anyone know what happened?
+On Mon, 2014-07-28 at 10:53 -0700, Khem Raj wrote:
+> can you apply the following patch to binutils and retry
+> 
+> https://sourceware.org/git/gitweb.cgi?p=binutils-gdb.git;a=commit;h=f9c316c4d75be236bbaa8464ef803ed2d3859d6d
+
+The patch appears to have worked to get me past binutils-native into the
+rest of the build.  I have placed it with a bbappend file in a hotfix
+section of my layer.
+
+Please let me know once this fix makes it way into the poky/daisy
+branch.
+
+Thanks!
 
 
-can you apply the following patch to binutils and retry
+-- 
 
-https://sourceware.org/git/gitweb.cgi?p=binutils-gdb.git;a=commit;h=f9c316c4d75be236bbaa8464ef803ed2d3859d6d
+Regards,
+
+Darcy
+
+---
+
+Darcy Watkins
+Staff Engineer, Firmware
+In Motion Technology, a
+Sierra Wireless company
+350-625 Agnes St. New Westminster, BC
+Canada, V3M 5Y4
+[P1]
+
 
