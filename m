@@ -1,35 +1,30 @@
-Return-Path: <dvhart@linux.intel.com>
+Return-Path: <david.andrey@netmodule.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 195E5E00563; Tue, 29 Jul 2014 08:41:53 -0700 (PDT)
+	id BF5B0E00563; Tue, 29 Jul 2014 08:55:30 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [143.182.124.21 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B62BBE003FA;
-	Tue, 29 Jul 2014 08:41:43 -0700 (PDT)
-Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by azsmga101.ch.intel.com with ESMTP; 29 Jul 2014 08:41:38 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.01,757,1400050800"; d="scan'208";a="462728866"
-Received: from dvhart-mac01.jf.intel.com (HELO localhost) ([10.24.0.186])
-	by azsmga001.ch.intel.com with ESMTP; 29 Jul 2014 08:41:07 -0700
-Date: Tue, 29 Jul 2014 08:41:09 -0700
-From: Darren Hart <dvhart@linux.intel.com>
-To: Chris Tapp <opensource@keylevel.com>
-Message-ID: <20140729154109.GB31587@dvhart-mac01.local>
-References: <46282394-4892-46D1-B523-197B44CAEF9B@keylevel.com>
-MIME-Version: 1.0
-In-Reply-To: <46282394-4892-46D1-B523-197B44CAEF9B@keylevel.com>
-User-Agent: Mutt/1.5.23 (2014-03-12)
-Cc: meta-intel@yoctoproject.org, Yocto Project <yocto@yoctoproject.org>
-Subject: Re: [meta-intel] Why won't my app use multiple threads under 'valleyisland'?
+X-Greylist: delayed 1225 seconds by postgrey-1.32 at yocto-www;
+	Tue, 29 Jul 2014 08:55:18 PDT
+Received: from wolf.netmodule.com (wolf.netmodule.com [194.29.26.243])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 79ABDE003FA
+	for <yocto@yoctoproject.org>; Tue, 29 Jul 2014 08:55:18 -0700 (PDT)
+Received: from 194-29-26-246.static.cablecom.ch ([194.29.26.246]
+	helo=LOIRE.netmodule.intranet)
+	by wolf.netmodule.com with esmtp id 1XC9Qe-00004w-T6;
+	Tue, 29 Jul 2014 17:35:04 +0200
+From: David Andrey <david.andrey@netmodule.com>
+To: yocto@yoctoproject.org
+Date: Tue, 29 Jul 2014 17:34:12 +0200
+Message-Id: <1406648052-8887-3-git-send-email-david.andrey@netmodule.com>
+X-Mailer: git-send-email 1.7.10.4
+In-Reply-To: <1406648052-8887-1-git-send-email-david.andrey@netmodule.com>
+References: <1406648052-8887-1-git-send-email-david.andrey@netmodule.com>
+Subject: [[meta-xilinx-community][PATCH] 3/3] microzed: kernel config: force emacps net driver
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,48 +36,59 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 29 Jul 2014 15:41:53 -0000
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+X-List-Received-Date: Tue, 29 Jul 2014 15:55:30 -0000
 
-On Thu, Jul 24, 2014 at 09:45:41PM +0100, Chris Tapp wrote:
-> I've got a recipe for an application. This has:
-> 
-> 1) A main thread;
-> 2) An OpenGL ('X' / EGL) graphics rendering thread created using posix threads;
-> 3) As many threads as required from the graphics thread for GStreamer to service various pipelines.
-> 
-> On a Cedartrail platform this happily uses multiple cores.
+Avoid the kernel loading the Cadence MAC driver by
+disabling it in the kernel configuration. Remains the
+Xilinx emacps driver, the one we need.
 
-Major difference here is graphics chip, cedartrail uses EMGD binary drivers,
-baytrail (valleyisland) uses the open source Intel i965 drivers.
+Signed-off-by: David Andrey <david.andrey@netmodule.com>
+---
+ .../microzed/microzed-disable-net-cadence.cfg      |   23 ++++++++++++++++++++
+ conf/machine/microzed-zynq7.conf                   |    1 +
+ 2 files changed, 24 insertions(+)
+ create mode 100644 conf/machine/boards/microzed/microzed-disable-net-cadence.cfg
 
-I recently (yesterday) updated meta-intel master and daisy to properly support
-video acceleration in gstreamer 1.0 - I don't know if this impacts you or not.
+diff --git a/conf/machine/boards/microzed/microzed-disable-net-cadence.cfg b/conf/machine/boards/microzed/microzed-disable-net-cadence.cfg
+new file mode 100644
+index 0000000..19201a1
+--- /dev/null
++++ b/conf/machine/boards/microzed/microzed-disable-net-cadence.cfg
+@@ -0,0 +1,23 @@
++CONFIG_ETHERNET=y
++# CONFIG_NET_CADENCE is not set
++# CONFIG_NET_VENDOR_BROADCOM is not set
++# CONFIG_NET_CALXEDA_XGMAC is not set
++# CONFIG_NET_VENDOR_CIRRUS is not set
++# CONFIG_DM9000 is not set
++# CONFIG_DNET is not set
++# CONFIG_NET_VENDOR_FARADAY is not set
++# CONFIG_NET_VENDOR_INTEL is not set
++# CONFIG_NET_VENDOR_MARVELL is not set
++# CONFIG_NET_VENDOR_MICREL is not set
++# CONFIG_NET_VENDOR_NATSEMI is not set
++# CONFIG_ETHOC is not set
++# CONFIG_NET_VENDOR_SEEQ is not set
++# CONFIG_NET_VENDOR_SMSC is not set
++# CONFIG_NET_VENDOR_STMICRO is not set
++# CONFIG_NET_VENDOR_WIZNET is not set
++CONFIG_NET_VENDOR_XILINX=y
++CONFIG_XILINX_EMACLITE=y
++CONFIG_XILINX_AXI_EMAC=y
++CONFIG_XILINX_PS_EMAC=y
++# CONFIG_XILINX_PS_EMAC_HWTSTAMP is not set
++CONFIG_PHYLIB=y
+diff --git a/conf/machine/microzed-zynq7.conf b/conf/machine/microzed-zynq7.conf
+index cb89a23..b58e190 100644
+--- a/conf/machine/microzed-zynq7.conf
++++ b/conf/machine/microzed-zynq7.conf
+@@ -22,4 +22,5 @@ MACHINE_DEVICETREE := " \
+ 
+ MACHINE_KCONFIG := " \
+ 		microzed/microzed-blk-dev-ram.cfg \
++		microzed/microzed-disable-net-cadence.cfg \
+ 		"
+-- 
+1.7.10.4
 
-> 
-> However, if I use the same recipe under a 64-bit valleyisland build (daisy) it
-> only ever uses a single core (and virtually grinds to a halt).
-> 
-> 'top' shows CPU usage for the application never goes above 25% (J1900, so four
-> cores available). Running four instances of 'yes' gets the total CPU usage to
-> 100%, so all the cores are available.
-
-Does /proc/cpu list four cores?
-
-> 
-> 'taskset' shows that the affinity mask for the application is not restricting
-> the set of available cores.
-> 
-> Umm... Any ideas what's going on here?
-> 
-> It looks as if GStreamer and OpenGL are fighting for access to something, but
-> the pipelines only render to 'fakesink' and 'appsink'.
-> 
-
-I don't have any GL/GST development experience, so this is likely best taken to
-those respective lists.
-
---
-Darren
 
