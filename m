@@ -1,38 +1,47 @@
-Return-Path: <Wenzong.Fan@windriver.com>
+Return-Path: <scott.m.rifenbark@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 3BEC6E007DF; Tue, 29 Jul 2014 00:30:49 -0700 (PDT)
+	id E91BBE007E8; Tue, 29 Jul 2014 03:27:29 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.5 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
-	URI_HEX autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [147.11.146.13 listed in list.dnswl.org]
-	*  1.1 URI_HEX URI: URI hostname has long hexadecimal sequence
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7F892E007DD
-	for <yocto@yoctoproject.org>; Tue, 29 Jul 2014 00:30:18 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail1.windriver.com (8.14.9/8.14.5) with ESMTP id s6T7UHkC000700
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL)
-	for <yocto@yoctoproject.org>; Tue, 29 Jul 2014 00:30:17 -0700 (PDT)
-Received: from pek-hostel-vm12.wrs.com (128.224.153.182) by
-	ALA-HCA.corp.ad.wrs.com (147.11.189.40) with Microsoft SMTP Server id
-	14.3.174.1; Tue, 29 Jul 2014 00:30:13 -0700
-From: <wenzong.fan@windriver.com>
-To: <yocto@yoctoproject.org>, <xin.ouyang@windriver.com>,
-	<mark.hatle@windriver.com>
-Date: Tue, 29 Jul 2014 03:30:08 -0400
-Message-ID: <ddef98a7e6e40ececba1d38d01b793b4e181fe3e.1406618541.git.wenzong.fan@windriver.com>
-X-Mailer: git-send-email 1.7.9.5
-In-Reply-To: <cover.1406618541.git.wenzong.fan@windriver.com>
-References: <cover.1406618541.git.wenzong.fan@windriver.com>
+	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at http://www.dnswl.org/,
+	high *      trust
+	*      [134.134.136.24 listed in list.dnswl.org]
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B3F9EE007DC
+	for <yocto@yoctoproject.org>; Tue, 29 Jul 2014 03:27:25 -0700 (PDT)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga102.jf.intel.com with ESMTP; 29 Jul 2014 03:21:42 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.01,756,1400050800"; d="scan'208";a="550604520"
+Received: from orsmsx109.amr.corp.intel.com ([10.22.240.7])
+	by orsmga001.jf.intel.com with ESMTP; 29 Jul 2014 03:27:25 -0700
+Received: from orsmsx152.amr.corp.intel.com (10.22.226.39) by
+	ORSMSX109.amr.corp.intel.com (10.22.240.7) with Microsoft SMTP Server
+	(TLS) id 14.3.123.3; Tue, 29 Jul 2014 03:27:24 -0700
+Received: from orsmsx106.amr.corp.intel.com ([169.254.5.245]) by
+	ORSMSX152.amr.corp.intel.com ([169.254.8.51]) with mapi id
+	14.03.0123.003; Tue, 29 Jul 2014 03:27:24 -0700
+From: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
+To: =?utf-8?B?VGllbW8gS3LDvGdlcg==?= <tk@mycable.de>, Yocto discussion list
+	<yocto@yoctoproject.org>
+Thread-Topic: Yocto Project Manual
+Thread-Index: Ac+rF64qlTV3hp8rRhG+a6Og6A35tA==
+Date: Tue, 29 Jul 2014 10:27:23 +0000
+Message-ID: <41DEA4B02DBDEF40A0F3B6D0DDB1237983FC7C6B@ORSMSX106.amr.corp.intel.com>
+References: <2064433273.102074.1406627065552.JavaMail.zimbra@mycable.de>
+	<1367058546.102085.1406627402694.JavaMail.zimbra@mycable.de>
+In-Reply-To: <1367058546.102085.1406627402694.JavaMail.zimbra@mycable.de>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.139]
 MIME-Version: 1.0
-Subject: [meta-selinux][PATCH 2/2] refpolicy / minimum: support compressed policy
+Subject: Re: Yocto Project Manual
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -44,59 +53,36 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 29 Jul 2014 07:30:49 -0000
-Content-Type: text/plain
+X-List-Received-Date: Tue, 29 Jul 2014 10:27:30 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-From: Wenzong Fan <wenzong.fan@windriver.com>
-
-Signed-off-by: Wenzong Fan <wenzong.fan@windriver.com>
----
- .../refpolicy/refpolicy-minimum_2.20130424.bb      |   26 ++++++++++++++------
- 1 file changed, 18 insertions(+), 8 deletions(-)
-
-diff --git a/recipes-security/refpolicy/refpolicy-minimum_2.20130424.bb b/recipes-security/refpolicy/refpolicy-minimum_2.20130424.bb
-index ae9cb43..d9539f3 100644
---- a/recipes-security/refpolicy/refpolicy-minimum_2.20130424.bb
-+++ b/recipes-security/refpolicy/refpolicy-minimum_2.20130424.bb
-@@ -30,19 +30,29 @@ EXTRA_POLICY_MODULES += "mta"
- 
- POLICY_MODULES_MIN = "${CORE_POLICY_MODULES} ${EXTRA_POLICY_MODULES}"
- 
-+# re-write the same func from refpolicy_common.inc
- prepare_policy_store () {
--	oe_runmake install \
--		DESTDIR=${D}
-+	oe_runmake 'DESTDIR=${D}' 'prefix=${D}${prefix}' install
- 
- 	# Prepare to create policy store
- 	mkdir -p ${D}${sysconfdir}/selinux/
- 	mkdir -p ${D}${sysconfdir}/selinux/${POLICY_NAME}/policy
- 	mkdir -p ${D}${sysconfdir}/selinux/${POLICY_NAME}/modules/active/modules
- 	mkdir -p ${D}${sysconfdir}/selinux/${POLICY_NAME}/contexts/files
--	bzip2 -c ${D}${datadir}/selinux/${POLICY_NAME}/base.pp  > \
--		${D}${sysconfdir}/selinux/${POLICY_NAME}/modules/active/base.pp
--	for i in ${POLICY_MODULES_MIN}; do
--		bzip2 -c ${D}${datadir}/selinux/${POLICY_NAME}/$i.pp > \
--			${D}${sysconfdir}/selinux/${POLICY_NAME}/modules/active/modules/$i.pp
--	done
-+	touch ${D}${sysconfdir}/selinux/${POLICY_NAME}/contexts/files/file_contexts.local
-+	if  ${@base_contains('DISTRO_FEATURES','compressed_policy','true','false',d)}; then
-+		bzip2 base.pp
-+		cp base.pp.bz2 ${D}${sysconfdir}/selinux/${POLICY_NAME}/modules/active/base.pp
-+		for i in ${POLICY_MODULES_MIN}; do
-+			bzip2 $i
-+			cp ${i}.bz2 ${D}${sysconfdir}/selinux/${POLICY_NAME}/modules/active/modules/`basename $i`
-+		done
-+	else
-+		bzip2 -c ${D}${datadir}/selinux/${POLICY_NAME}/base.pp  > \
-+			${D}${sysconfdir}/selinux/${POLICY_NAME}/modules/active/base.pp
-+		for i in ${POLICY_MODULES_MIN}; do
-+			bzip2 -c ${D}${datadir}/selinux/${POLICY_NAME}/$i.pp > \
-+				${D}${sysconfdir}/selinux/${POLICY_NAME}/modules/active/modules/$i.pp
-+		done
-+	fi
- }
--- 
-1.7.9.5
-
+VGllbW8sIA0KDQpUaGFua3MgZm9yIG5vdGluZyB0aGlzIGFuZCBjb250YWN0aW5nIG1lLiAgSSBh
+bSByZXBvc3RpbmcgdG8gdGhlIHlvY3RvQHlvY3RvcHJvamVjdC5vcmcgZ3JvdXAgZm9yIGFkZGl0
+aW9uYWwgaW5wdXQuICBJIHdpbGwgZ2V0IG1vZGlmaWNhdGlvbnMgaW50byB0aGUgbWFudWFsLiAN
+Cg0KQmVzdCwgDQpTY290dA0KDQo+LS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj5Gcm9tOiBU
+aWVtbyBLcsO8Z2VyIFttYWlsdG86dGtAbXljYWJsZS5kZV0NCj5TZW50OiBUdWVzZGF5LCBKdWx5
+IDI5LCAyMDE0IDI6NTAgQU0NCj5UbzogUmlmZW5iYXJrLCBTY290dCBNDQo+U3ViamVjdDogWW9j
+dG8gUHJvamVjdCBNYW51YWwNCj4NCj5IZWxsbyBTY290dCwNCj4NCj5JIGp1c3QgcmVhZCBhIGxp
+dHRsZSBiaXQgaW4gdGhpcyBkb2M6DQo+DQo+aHR0cDovL3d3dy55b2N0b3Byb2plY3Qub3JnL2Rv
+Y3MvMS42L2Rldi1tYW51YWwvZGV2LW1hbnVhbC5odG1sI25ldy0NCj5yZWNpcGUtd3JpdGluZy1h
+LW5ldy1yZWNpcGUNCj4NCj5hbmQgc2luY2UgeW91ciBlTWFpbCBpcyBtZW50aW9uZWQgb24gdG9w
+IEkgY29udGFjdCB5b3UgcmVnYXJkaW5nIHRoZSBiZWxvdw0KPnBhcmFncmFwaCBpbiBjaGFwdGVy
+IDUuMy41DQo+DQo+IlRvIGZpbmQgdGhlc2UgY2hlY2tzdW1zLCB5b3UgY2FuIGNvbW1lbnQgdGhl
+IHN0YXRlbWVudHMgb3V0IGFuZCB0aGVuDQo+YXR0ZW1wdCB0byBidWlsZCB0aGUgc29mdHdhcmUu
+IFRoZSBidWlsZCB3aWxsIHByb2R1Y2UgYW4gZXJyb3IgZm9yIGVhY2ggbWlzc2luZw0KPmNoZWNr
+c3VtIGFuZCBhcyBwYXJ0IG9mIHRoZSBlcnJvciBtZXNzYWdlIHByb3ZpZGUgdGhlIGNvcnJlY3Qg
+Y2hlY2tzdW0gc3RyaW5nLg0KPk9uY2UgeW91IGhhdmUgdGhlIGNvcnJlY3QgY2hlY2tzdW1zLCBz
+aW1wbHkgY29weSB0aGVtIGludG8geW91ciByZWNpcGUgZm9yIGENCj5zdWJzZXF1ZW50IGJ1aWxk
+LiINCj4NCj5XZSBoZXJlIHJlYWxseSB0aGluayB0aGlzIGlzIHRoZSB3cm9uZyB3YXkgdG8gY3Jl
+YXRlIHRoZSBjaGVja3N1bXMgZm9yIGEgcmVjaXBlDQo+c2luY2UgZG93bmxvYWRpbmcgdGhlbSBh
+bmQgdGhlbiBjcmVhdGluZyB0aGUgY2hlY2tzdW0gZG9lc24ndCBwcm90ZWN0IHlvdQ0KPmFnYWlu
+c3QgbWFuIGluIHRoZSBtaWRkbGUgYXR0YWNrcy4gVGhlIHRleHQgc2hvdWxkIGJlIG1vZGlmaWVk
+IHRoYXQgdGhlDQo+Y2hlY2tzdW1zIG11c3QgYXQgbGVhc3QgYmUgY2hlY2tlZCBhZ2FpbnN0IHRo
+ZSBjaGVja3N1bXMgcHJvdmlkZWQgYnkgdGhlDQo+b3JpZ2luYWwgd2Vic2l0ZSBldmVuIGlmIHRo
+aXMgaXMgc3RpbGwgbm90IGNvbXBsZXRlbHkgc2FmZS4gQW5kIHNpbXBsZSBjb21tYW5kDQo+bGlu
+ZSB0b29scyBsaWtlIG1kNXN1bSBhbmQgc2hhMjU2c3VtIHNoYWxsIGJlIG1lbnRpb25lZC4NCj4N
+Cj5Xb3VsZCBiZSBncmVhdCBpZiB5b3UgY291bGQgdGFrZSBjYXJlIG9mIHRoaXMgZm9yIHRoZSBu
+ZXh0IHJlbGVhc2Ugb2YgdGhlIGRvYy4NCj4NCj5iZXN0IHJlZ2FyZHMsDQo+DQo+VGllbW8NCg==
 
