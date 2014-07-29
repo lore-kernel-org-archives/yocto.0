@@ -1,56 +1,36 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <Wenzong.Fan@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 80F15E007CE; Mon, 28 Jul 2014 17:41:56 -0700 (PDT)
+	id DA44BE007EE; Tue, 29 Jul 2014 00:30:46 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [209.85.223.177 listed in list.dnswl.org]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (raj.khem[at]gmail.com)
+X-Spam-Status: No, score=-3.1 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+	URI_HEX autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
+	*      [147.11.1.11 listed in list.dnswl.org]
+	*  1.1 URI_HEX URI: URI hostname has long hexadecimal sequence
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-ie0-f177.google.com (mail-ie0-f177.google.com
-	[209.85.223.177])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DE7A6E00769
-	for <yocto@yoctoproject.org>; Mon, 28 Jul 2014 17:41:47 -0700 (PDT)
-Received: by mail-ie0-f177.google.com with SMTP id at20so7609514iec.22
-	for <yocto@yoctoproject.org>; Mon, 28 Jul 2014 17:41:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-type;
-	bh=CEaIV9sJ2Fxdu0RjQkFVW1PEaj82mnQNf64kOTLfGuc=;
-	b=k2MJRwV1Q0GiKvtvaPQZTsBl2c/U439MVpbL+IJPj+qnSt2450qQyWRgIQD7l1IeIM
-	aJ0dmkhdcynOZ4oB5a5WU3R/ZuhamXno0UW5pTb1V6hWy/BerbDB+7TDRPFyZx1NC9Pu
-	scqFkrtBANdc1mBLFUE0+41EeBAkMqyNcUWuV8SPh1DyzSqHJMMaG3X4Uad3p9Vf6kyj
-	idv1cGnaSZiaNnBtfpA+Hwy2IhNFll3X9OtmJzW+hB1VNTshGbFsNYmZIcdtZtUbAZVu
-	Vz+hnHxeAOqEQ5706NAe8lpsF36H2AezPtHGwdPmVw4vYmBvrmJcMg/rb6VJZ5qmBU9i
-	phgg==
-X-Received: by 10.42.90.74 with SMTP id j10mr770776icm.29.1406594507024; Mon,
-	28 Jul 2014 17:41:47 -0700 (PDT)
+Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 663D8E007D9
+	for <yocto@yoctoproject.org>; Tue, 29 Jul 2014 00:30:11 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
+	[147.11.189.40])
+	by mail.windriver.com (8.14.5/8.14.5) with ESMTP id s6T7UA9O021017
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL)
+	for <yocto@yoctoproject.org>; Tue, 29 Jul 2014 00:30:10 -0700 (PDT)
+Received: from pek-hostel-vm12.wrs.com (128.224.153.182) by
+	ALA-HCA.corp.ad.wrs.com (147.11.189.40) with Microsoft SMTP Server id
+	14.3.174.1; Tue, 29 Jul 2014 00:30:10 -0700
+From: <wenzong.fan@windriver.com>
+To: <yocto@yoctoproject.org>, <xin.ouyang@windriver.com>,
+	<mark.hatle@windriver.com>
+Date: Tue, 29 Jul 2014 03:30:06 -0400
+Message-ID: <cover.1406618541.git.wenzong.fan@windriver.com>
+X-Mailer: git-send-email 1.7.9.5
 MIME-Version: 1.0
-Received: by 10.50.78.105 with HTTP; Mon, 28 Jul 2014 17:41:16 -0700 (PDT)
-In-Reply-To: <53D6EAC1.2030802@mvista.com>
-References: <53D2DE13.9010007@mvista.com>
-	<CAMKF1son3T9fsuF9X0Px4hirfk7Ezguy4s5Zit6-0JvfmXDV5A@mail.gmail.com>
-	<53D65F40.7010701@windriver.com> <53D6EAC1.2030802@mvista.com>
-From: Khem Raj <raj.khem@gmail.com>
-Date: Mon, 28 Jul 2014 17:41:16 -0700
-Message-ID: <CAMKF1sqs+WMPnctwwZ7-BkR6VvMjFSxPO2q=7Oz2wyQ5cWVMsA@mail.gmail.com>
-To: akuster <akuster@mvista.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	openembeded-devel <openembedded-devel@lists.openembedded.org>,
-	OE-core <openembedded-core@lists.openembedded.org>
-Subject: Re: [OE-core] libpcap-ng
+Subject: [meta-selinux][PATCH 0/2] refpolicy: split do_install to three steps & update refpolicy-minimum
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -62,42 +42,38 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 29 Jul 2014 00:41:56 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Tue, 29 Jul 2014 07:30:46 -0000
+Content-Type: text/plain
 
-On Mon, Jul 28, 2014 at 5:28 PM, akuster <akuster@mvista.com> wrote:
->>>
->>> I think at very least you can propose it for meta-oe if not or-core.
->
->
-> I think core libcap-ng recipe belongs in a common layer and not maintained
-> in two places.
+From: Wenzong Fan <wenzong.fan@windriver.com>
 
-yes meta-oe is kind of extended common layer besides oe-core, if it
-can be proven that we can drop libpcap and replace its use completely
-with libpcap-ng you might have a better case to include it in oe-core,
+* split do_install to three steps:
+  + prepare_policy_store()
+  + rebuild_policy()
+  + install_misc_files()
 
->
->
->>> But I also wonder why meta-selinux is not a sub-layer under
->>> meta-security,
->>>
->>
->> meta-selinux existed first... no other reason.
->>
->>
->> The last time I looked at meta-security (well over a year ago), it
->> wasn't terribly useful.
->
->
-> Well when a security package like 'snort' and maybe others are in other
-> locations, I can see why meta-security won't be very useful.
->
->
->  It was just a random collection of
->>
->> security-like packages, some worked, some didn't.
->
->
-> Hopefully that will change.
+This gets refpolicy-minimum work by re-writing the prepare_policy_store().
+
+* update refpolicy-minimum to support compressed policy.
+
+The following changes since commit a34718ae6ea2539545be1e49c497030f6246345c:
+
+  swig-native: repair patching error (2014-07-19 23:24:44 -0400)
+
+are available in the git repository at:
+
+  git://git.pokylinux.org/poky-contrib wenzong/refpolicy
+  http://git.pokylinux.org/cgit.cgi/poky-contrib/log/?h=wenzong/refpolicy
+
+Wenzong Fan (2):
+  refpolicy: split do_install to three steps
+  refpolicy / minimum: support compressed policy
+
+ .../refpolicy/refpolicy-minimum_2.20130424.bb      |   26 +++++++++----
+ recipes-security/refpolicy/refpolicy_common.inc    |   39 +++++++++++++-------
+ 2 files changed, 43 insertions(+), 22 deletions(-)
+
+-- 
+1.7.9.5
+
 
