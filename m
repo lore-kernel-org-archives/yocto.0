@@ -1,6 +1,6 @@
 Return-Path: <tom.zanussi@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 44FDEE00842; Tue, 29 Jul 2014 12:34:06 -0700 (PDT)
+	id A3C5DE006B5; Tue, 29 Jul 2014 12:34:06 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -8,30 +8,26 @@ X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
 	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
 	http://www.dnswl.org/, high *      trust
-	*      [134.134.136.20 listed in list.dnswl.org]
+	*      [192.55.52.88 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 04352E00559
-	for <yocto@yoctoproject.org>; Tue, 29 Jul 2014 12:34:01 -0700 (PDT)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga101.jf.intel.com with ESMTP; 29 Jul 2014 12:34:00 -0700
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 36558E00805
+	for <yocto@yoctoproject.org>; Tue, 29 Jul 2014 12:34:03 -0700 (PDT)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by fmsmga101.fm.intel.com with ESMTP; 29 Jul 2014 12:33:57 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.01,759,1400050800"; d="scan'208";a="580801430"
+X-IronPort-AV: E=Sophos;i="5.01,759,1400050800"; d="scan'208";a="569067894"
 Received: from unknown (HELO localhost) ([10.255.12.245])
-	by orsmga002.jf.intel.com with ESMTP; 29 Jul 2014 12:34:00 -0700
+	by fmsmga001.fm.intel.com with ESMTP; 29 Jul 2014 12:33:56 -0700
 From: Tom Zanussi <tom.zanussi@linux.intel.com>
 To: scott.m.rifenbark@intel.com,
 	yocto@yoctoproject.org
 Date: Tue, 29 Jul 2014 14:33:54 -0500
-Message-Id: <97baabff20e1807cdee368a1b0fe8753a2b529d2.1406662265.git.tom.zanussi@linux.intel.com>
+Message-Id: <cover.1406662265.git.tom.zanussi@linux.intel.com>
 X-Mailer: git-send-email 1.8.3.1
-In-Reply-To: <84d79815a2e50e5af1fc38d52a89762a55061288.1406662265.git.tom.zanussi@linux.intel.com>
-References: <84d79815a2e50e5af1fc38d52a89762a55061288.1406662265.git.tom.zanussi@linux.intel.com>
-In-Reply-To: <cover.1406662265.git.tom.zanussi@linux.intel.com>
-References: <cover.1406662265.git.tom.zanussi@linux.intel.com>
 Cc: Tom Zanussi <tom.zanussi@linux.intel.com>
-Subject: [PATCH 2/5] dev-manual: Add squashfs to --fstypes documentation
+Subject: [PATCH 0/5] dev-manual updates for wic
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,26 +41,30 @@ List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
 X-List-Received-Date: Tue, 29 Jul 2014 19:34:06 -0000
 
-squashfs support was recently added to wic, so document it.
+This patchset updates the wic documentation in the dev-manual for
+master.
 
-Signed-off-by: Tom Zanussi <tom.zanussi@linux.intel.com>
----
- documentation/dev-manual/dev-manual-common-tasks.xml | 2 ++
- 1 file changed, 2 insertions(+)
+The following changes since commit 2d1660112e54653f7bb763939d0416472c49fe01:
 
-diff --git a/documentation/dev-manual/dev-manual-common-tasks.xml b/documentation/dev-manual/dev-manual-common-tasks.xml
-index c3df8b3..f8a1398 100644
---- a/documentation/dev-manual/dev-manual-common-tasks.xml
-+++ b/documentation/dev-manual/dev-manual-common-tasks.xml
-@@ -4174,6 +4174,8 @@
-                                 </para></listitem>
-                                 <listitem><para><filename>btrfs</filename>
-                                 </para></listitem>
-+                                <listitem><para><filename>squashfs</filename>
-+                                </para></listitem>
-                                 <listitem><para><filename>swap</filename>
-                                 </para></listitem>
-                             </itemizedlist></para></listitem>
+  populate_sdk_base: Fix grep command usage on old hosts (2014-07-29 09:58:27 +0100)
+
+are available in the git repository at:
+
+  git://git.yoctoproject.org/poky-contrib.git tzanussi/dev-manual-wic-updates
+  http://git.yoctoproject.org/cgit/cgit.cgi/poky-contrib/log/?h=tzanussi/dev-manual-wic-updates
+
+Tom Zanussi (5):
+  dev-manual: Add 'Creating Partitioned Images/Plugins' subsection
+  dev-manual: Add squashfs to --fstypes documentation
+  dev-manual: Add documentation for --fsoptions
+  dev-manual: Various updates to the 'Creating Partitioned Images'
+    section
+  dev-manual: Various minor fixes for 'Creating Partitioned Images'
+    section
+
+ .../dev-manual/dev-manual-common-tasks.xml         | 399 ++++++++++++++++-----
+ 1 file changed, 308 insertions(+), 91 deletions(-)
+
 -- 
 1.8.3.1
 
