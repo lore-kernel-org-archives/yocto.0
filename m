@@ -1,36 +1,37 @@
-Return-Path: <Vladimir_Redzhepov@epam.com>
+Return-Path: <Andrei.Gherzan@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 6FD73E00837; Wed, 30 Jul 2014 06:43:00 -0700 (PDT)
+	id 746EDE00781; Wed, 30 Jul 2014 08:00:09 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [147.11.146.13 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from EVBYMINSA0101.epam.com (evbyminsa0101.epam.com [217.21.63.36])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0A971E007B5
-	for <yocto@yoctoproject.org>; Wed, 30 Jul 2014 06:42:56 -0700 (PDT)
-Received: from EPBYMINSA0032.epam.com (10.6.110.32) by EPBYMINSA0001.epam.com
-	(10.6.110.2) with Microsoft SMTP Server (TLS) id 15.0.913.22;
-	Wed, 30 Jul 2014 16:42:36 +0300
-Received: from EPBYMINSA0032.epam.com ([::1]) by EPBYMINSA0032.epam.com
-	([::1]) with mapi id 15.00.0913.011; Wed, 30 Jul 2014 16:42:36 +0300
-From: Vladimir Redzhepov <Vladimir_Redzhepov@epam.com>
-To: Paul Eggleton <paul.eggleton@linux.intel.com>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>
-Thread-Topic: meta-oracle-java layer maintainer
-Thread-Index: AQHPq1OWU3lt1NaEcUmepjSIUqBZ/Zu4n2wA
-Date: Wed, 30 Jul 2014 13:42:35 +0000
-Message-ID: <7e41ffacbc5e48bf837961f7dc0de0ee@EPBYMINSA0032.epam.com>
-References: <2332764.8JExoxQyZE@peggleto-mobl5.ger.corp.intel.com>
-In-Reply-To: <2332764.8JExoxQyZE@peggleto-mobl5.ger.corp.intel.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.6.137.107]
+Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D262EE0076C
+	for <yocto@yoctoproject.org>; Wed, 30 Jul 2014 08:00:07 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
+	[147.11.189.40])
+	by mail1.windriver.com (8.14.9/8.14.5) with ESMTP id s6UExlHw024709
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
+	Wed, 30 Jul 2014 07:59:47 -0700 (PDT)
+Received: from windriver.com (128.224.171.84) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server (TLS) id 14.3.174.1;
+	Wed, 30 Jul 2014 07:59:47 -0700
+Date: Wed, 30 Jul 2014 17:59:43 +0300
+From: Andrei Gherzan <andrei.gherzan@windriver.com>
+To: Sujith H <sujith.h@gmail.com>
+Message-ID: <20140730145942.GH1749@windriver.com>
+References: <1406726341-28977-1-git-send-email-sujith.h@gmail.com>
 MIME-Version: 1.0
-Subject: Re: meta-oracle-java layer maintainer
+In-Reply-To: <1406726341-28977-1-git-send-email-sujith.h@gmail.com>
+User-Agent: Mutt/1.5.23 (2014-03-12)
+Cc: yocto@yoctoproject.org, Sujith H <Sujith_Haridasan@mentor.com>
+Subject: Re: [meta-ivi][PATCH] Make pulseaudio run by default
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,47 +43,54 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 30 Jul 2014 13:43:00 -0000
-Content-Language: en-US
+X-List-Received-Date: Wed, 30 Jul 2014 15:00:09 -0000
 Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Content-Disposition: inline
 
-Hi Paul,
+Hi Sujith,
 
-We're ready to help with professional maintaining of the meta-oracle-java l=
-ayer.
+First of all please format summary following:
+http://www.openembedded.org/wiki/Commit_Patch_Message_Guidelines
 
------Original Message-----
-From: Paul Eggleton [mailto:paul.eggleton@linux.intel.com]=20
-Sent: Tuesday, July 29, 2014 8:36 PM
-To: yocto@yoctoproject.org
-Cc: Pavel Shumeika; Vladimir Redzhepov; Daniel Hilst Selli
-Subject: meta-oracle-java layer maintainer
+On Wed, Jul 30, 2014 at 06:49:01PM +0530, Sujith H wrote:
+> From: Sujith H <Sujith_Haridasan@mentor.com>
+>
+> This change will help pulseaudio run by default on the
+> target. On the bootup user can see pulseaudio service
+> started.
+>
+> Signed-off-by: Sujith H <Sujith_Haridasan@mentor.com>
+> ---
+>  meta-ivi/recipes-multimedia/pulseaudio/pulseaudio_5.0.bbappend | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+>
+> diff --git a/meta-ivi/recipes-multimedia/pulseaudio/pulseaudio_5.0.bbappend b/meta-ivi/recipes-multimedia/pulseaudio/pulseaudio_5.0.bbappend
+> index e32efa7..5401c66 100644
+> --- a/meta-ivi/recipes-multimedia/pulseaudio/pulseaudio_5.0.bbappend
+> +++ b/meta-ivi/recipes-multimedia/pulseaudio/pulseaudio_5.0.bbappend
+> @@ -7,7 +7,7 @@ PR = "r1"
+>  inherit systemd
+>
+>  SYSTEMD_PACKAGES = "${PN}-server"
+> -SYSTEMD_SERVICE = "pulseaudio.service"
+> +SYSTEMD_SERVICE_${PN}-server = "pulseaudio.service"
 
-Hi there,
+There is no functional change between these too. (read
+http://patchwork.openembedded.org/patch/29049/). In both cases the services
+ends up in pulseaudio-server package.
 
-At the moment there are a few patches / queries outstanding for the the met=
-a-
-oracle-java layer on this mailing list. Unfortunately the current maintaine=
-r=20
-doesn't have time to maintain the layer anymore, so I'd like to appeal to t=
-he=20
-community for someone to take it over.
+The autostart feature is handled by SYSTEMD_AUTO_ENABLE which has as the
+default value "enable". So, pulseaudio should be up and running in the current
+setup.
 
-An ideal candidate maintainer would:
- * Have an interest in maintaining the Oracle Java recipes in the layer
- * Be willing to review and merge patches from the community
+>
+>  PACKAGECONFIG_remove = "bluez4"
+>  PACKAGECONFIG_append = " bluez5"
+> --
+> 1.8.4
+>
 
-If you'd like to help out here (and responsibility can be shared by more th=
-an=20
-one person, it doesn't just have to be one) then please reply here or in=20
-private and I'll arrange for you to get access to the repository.
-
-Thanks,
-Paul
-
---=20
-
-Paul Eggleton
-Intel Open Source Technology Centre
+--
+Andrei Gherzan | Wind River Systems
+m: +40 734 450 615 | p: +40 236 320 307
 
