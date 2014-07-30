@@ -1,52 +1,48 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <elizabeth.flanagan@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 19334E00862; Wed, 30 Jul 2014 13:07:05 -0700 (PDT)
+	id BF79DE0081A; Wed, 30 Jul 2014 13:19:15 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (raj.khem[at]gmail.com)
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+	*      [score: 0.0000]
 	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
 	low *      trust
-	*      [209.85.213.173 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-ig0-f173.google.com (mail-ig0-f173.google.com
-	[209.85.213.173])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B8DF0E00781
-	for <yocto@yoctoproject.org>; Wed, 30 Jul 2014 13:06:55 -0700 (PDT)
-Received: by mail-ig0-f173.google.com with SMTP id h18so7997054igc.12
-	for <yocto@yoctoproject.org>; Wed, 30 Jul 2014 13:06:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-type;
-	bh=CMJF9ERiY9loDLFkYZflYSanhmpbTwC77B8dAfO1CKg=;
-	b=Tz2SRkCDb8p7/SG5x2vh1SgdT9BsbOVmFNxy7ckKaPmq5b1MJW9U8AOrE7LGycQkwb
-	jmKpKoqi+t7zv4WqmbZXaTsCSYlIS1gOqtlRv3yv8Miutyhn37tys6v00ZVPxNVTnM31
-	Nd18srXl0Sr9N3z+C+n/vwdln2N73OLTV7+Ww/+16o1nKBx4MZwnJDHorswyM1Dk07kW
-	cd5pgwOwnR/hIDWFZd9St4MQNjsNgO3Iy4bjqTEdEfgXfHPI8lASRVhinE383weYqzSs
-	q562TDq1F2wcCpDsYB3fk1NEHVLml4jJ9XizQ29E6SoXbP1SlnMGojybBAF8zYAP2WF2
-	vLEA==
-X-Received: by 10.42.82.6 with SMTP id b6mr8351352icl.51.1406750814848; Wed,
-	30 Jul 2014 13:06:54 -0700 (PDT)
+	*      [209.85.220.169 listed in list.dnswl.org]
+Received: from mail-vc0-f169.google.com (mail-vc0-f169.google.com
+	[209.85.220.169])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AD911E006B5
+	for <yocto@yoctoproject.org>; Wed, 30 Jul 2014 13:19:10 -0700 (PDT)
+Received: by mail-vc0-f169.google.com with SMTP id le20so2735295vcb.28
+	for <yocto@yoctoproject.org>; Wed, 30 Jul 2014 13:19:10 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:date
+	:message-id:subject:from:to:cc:content-type;
+	bh=ECKX6sy9gcpUIiioADgo/l2SlVPtarC0O7BBCk6OsDM=;
+	b=EeLId9w83GGT29VeK/KiQlvAfMxNLKh8XYMVPO7AVc7YDVXFgJccISdOjSiA+BOU97
+	WB9oKAZW/AbBRNipapoAaZWwfvueSYRCCx3Fxfvbsol/HZzdT65iFjTnxYBi6JyCIj0W
+	7+p1DLCKtNN6gfIV1zOOizAopHScC9LDWXN7FTRYT9u6nEGGABIYpSXHYJSGeYZsTkJ0
+	UK2+pvcrRXLBYX+E159qW8U2zLoQBx2CyG7/bYDzGDySPgELAvkGY5sCLJrexZ53lUYN
+	9Sno91oBuF5EjLhasyRIdof8L2xZ2D85LxqU+jVOOrvg16/QN5l4TeYAEQPQ5CLtGidq
+	Kiiw==
+X-Gm-Message-State: ALoCoQlRMPiG/gIAfaUdaTSivzDkBnREGtpyjgnVtnkILrtpVfRQOd/rhHVo2EzwmLEDN5MjEw37
 MIME-Version: 1.0
-Received: by 10.50.78.105 with HTTP; Wed, 30 Jul 2014 13:06:24 -0700 (PDT)
-In-Reply-To: <alpine.LFD.2.11.1407301522260.30037@localhost>
-References: <alpine.LFD.2.11.1407301522260.30037@localhost>
-From: Khem Raj <raj.khem@gmail.com>
-Date: Wed, 30 Jul 2014 13:06:24 -0700
-Message-ID: <CAMKF1sp6kAuF2e_j=jpSC8n6k3x8yD05iHhgrhHpNsCVUryz3Q@mail.gmail.com>
-To: "Robert P. J. Day" <rpjday@crashcourse.ca>
-Cc: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: why does dev manual, "Supported Board Support Packages", mention only meta-intel?
+X-Received: by 10.52.117.209 with SMTP id kg17mr10720547vdb.28.1406751550242; 
+	Wed, 30 Jul 2014 13:19:10 -0700 (PDT)
+Received: by 10.52.135.50 with HTTP; Wed, 30 Jul 2014 13:19:10 -0700 (PDT)
+In-Reply-To: <1B56A49860EB2D45ADE3731B15C959FDAAA4DD@G08CNEXMBPEKD01.g08.fujitsu.local>
+References: <1B56A49860EB2D45ADE3731B15C959FDAAA4DD@G08CNEXMBPEKD01.g08.fujitsu.local>
+Date: Wed, 30 Jul 2014 21:19:10 +0100
+Message-ID: <CAPhnLPAe+NNPbXpqcVQPcRnuzDyZ0dZPWgfoSXK0Lrwbqb-yTg@mail.gmail.com>
+From: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
+To: "leimaohui@cn.fujitsu.com" <leimaohui@cn.fujitsu.com>,
+	Matt Germonprez <germonprez@gmail.com>, 
+	"Hatle, Mark" <mark.hatle@windriver.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: questions about spdx
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -58,39 +54,137 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 30 Jul 2014 20:07:05 -0000
+X-List-Received-Date: Wed, 30 Jul 2014 20:19:15 -0000
 Content-Type: text/plain; charset=UTF-8
 
-On Wed, Jul 30, 2014 at 12:24 PM, Robert P. J. Day
-<rpjday@crashcourse.ca> wrote:
+On Mon, Jul 28, 2014 at 4:57 AM, leimaohui@cn.fujitsu.com
+<leimaohui@cn.fujitsu.com> wrote:
+> Hello all,
 >
->   also from current dev manual, chapter 2, there is a bullet point
-> entitled "Supported Board Support Packages" which mentions *only*
-> meta-intel as if its the only such layer.
+> About yocto-spdx, I need some help.
+> 1. I'm trying to use yocto(poky: 8f52c69183a6c2b50ed470c27383697ebc38efef) to get spdx information.
+> I add " spdx " to the USER_CLASSES  in my local.conf, and configured my meta/conf/licenses.conf as below.
 >
->   that seems sort of ... incomplete.
+> But, in the generated *.spdx files,I do not get any license information. (the spdx file can be found in the end of the mail),
+> Is there something wrong with my method?
+>
 
-a list from something like this
+If I'm remembering this right (Mark?), you need to have a Fossology
+server to point to as Fossology will try to determine what the license
+is to make sure they match the declared license.
 
-http://downloads.yoctoproject.org/releases/yocto/yocto-1.6.1/machines/
+> I noticed that in meta/conf/licenses.conf,the FOSS_SERVER is set to
+> FOSS_SERVER = "http://localhost//?mod=spdx_license_once&noCopyright=${FOSS_COPYRIGHT}&recursiveUnpack=${FOSS_RECURSIVE_UNPACK}".
+> Should I have to set up a FOSSologySPDX instance server in my localhost?
+>
 
-would be more appropriate.
+Yes, looking at the log, the spdx class requires a fossology instance
+somewhere. I'd like to see it where it does not and it could spit out
+just the declared license in the metadata (which honestly, should be a
+trivial fix).
+
+> 2. I noticed that from 4253671d46e3c350110bc73a1f55a054df0fc909(Wed Dec 4 11:47:02 2013),there is no update about spdx.
+> In "Yocto 1.7 Schedule", I saw only two enhancements about spdx.
+> Could someone explain the current progress and future work plan about spdx in detail?
 >
-> rday
+
+I haven't touched any of the spdx code in a few months. There was work
+being done by Matt Germonprez's team out of the University of Nebraska
+Omaha, but I think that we need to discuss looking at some of what was
+done and where we go from there. To be honest, not a lot of people
+have asked for it so I've not worked on it.
+
+> Any help would be appreciated.
 >
-> --
+> Lei Maohui
 >
-> ========================================================================
-> Robert P. J. Day                                 Ottawa, Ontario, CANADA
->                         http://crashcourse.ca
+> ----------------------------------
+> diff --git a/meta/conf/licenses.conf b/meta/conf/licenses.conf
+> index b1d5480..d94cb36 100644
+> --- a/meta/conf/licenses.conf
+> +++ b/meta/conf/licenses.conf
+> @@ -116,15 +116,15 @@ SPDXLICENSEMAP[SGIv1] = "SGI-1"
+>  # LICENSE_PATH += "${COREBASE}/custom-licenses"
 >
-> Twitter:                                       http://twitter.com/rpjday
-> LinkedIn:                               http://ca.linkedin.com/in/rpjday
-> ========================================================================
+>  # Set if you want the license.manifest copied to the image
+> -#COPY_LIC_MANIFEST = "1"
+> +COPY_LIC_MANIFEST = "1"
+>
+>  # If you want the pkg licenses copied over as well you must set
+>  # both COPY_LIC_MANIFEST and COPY_LIC_DIRS
+> -#COPY_LIC_DIRS = "1"
+> +COPY_LIC_DIRS = "1"
+>
+>  ## SPDX Format info
+>  SPDX_VERSION = "SPDX-1.1"
+> @@ -144,7 +144,7 @@ DATA_LICENSE = "CC0-1.0"
+>  #   information.
+>  #
+>
+> -FOSS_COPYRIGHT = "true"
+> +FOSS_COPYRIGHT = "false"
+>
+>  # A option defined as[FOSS_RECURSIVE_UNPACK] in ./meta/conf/licenses.conf. is
+>  # used to control if FOSSology server need recursively unpack tar.gz file which
+> @@ -158,14 +158,16 @@ FOSS_COPYRIGHT = "true"
+>  #    FOSSology server recursively unpack components.
+>  #
+>
+> -FOSS_RECURSIVE_UNPACK = "false"
+> +FOSS_RECURSIVE_UNPACK = "true"
+> $
+> --------------------------------------------
+> $ cat bluez5.spdx
+> SPDXVersion: SPDX-1.1
+> DataLicense: CC0-1.0
+> DocumentComment: <text>SPDX for bluez5 version 5.21</text>
+>
+> ## Creation Information
+> Creator: fossology-spdx
+> Created: 2014-07-25T18:19:53
+> CreatorComment: <text>UNO</text>
+>
+> ## Package Information
+> PackageName: bluez5
+> PackageVersion: 5.21
+> PackageDownloadLocation: NOASSERTION
+> PackageSummary: <text></text>
+> PackageFileName: bluez5.tar.gz
+> PackageSupplier: Person:NOASSERTION
+> PackageOriginator: Person:NOASSERTION
+> PackageChecksum: SHA1: b9667bcd50f9531dde17344cde1cc2afd10e3067
+> PackageVerificationCode: 8967d6f42622f39d1833e758b67dc4378d3d6922
+> PackageDescription: <text>bluez5 version 5.21</text>
+>
+> PackageCopyrightText: <text>NOASSERTION</text>
+>
+> PackageLicenseDeclared: NOASSERTION
+> PackageLicenseConcluded: NOASSERTION
+> PackageLicenseInfoFromFiles: NOASSERTION
+>
+> ## File Information
+>
+> FileName: tools/bccmd.1
+>
+> FileName: android/pts-avrcp.txt
+>
+> FileName: doc/heartrate-api.txt
+>
+> FileName: profiles/proximity/proximity.conf
+>
+> FileName: profiles/input/hog.c
+> ......
 >
 > --
 > _______________________________________________
 > yocto mailing list
 > yocto@yoctoproject.org
 > https://lists.yoctoproject.org/listinfo/yocto
+
+
+
+-- 
+Elizabeth Flanagan
+Yocto Project
+Build and Release
 
