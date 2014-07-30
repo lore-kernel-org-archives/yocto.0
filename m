@@ -1,42 +1,48 @@
-Return-Path: <kapare@rogue-research.com>
+Return-Path: <rpjday@crashcourse.ca>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 60DCAE00842; Wed, 30 Jul 2014 09:24:35 -0700 (PDT)
+	id AEE61E00862; Wed, 30 Jul 2014 12:07:18 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
+	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail.rogue-research.com (mail.rogue-research.com [68.67.54.10])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 15B04E006B7
-	for <yocto@yoctoproject.org>; Wed, 30 Jul 2014 09:24:30 -0700 (PDT)
-Received: from localhost (localhost [127.0.0.1])
-	by mail.rogue-research.com (Postfix) with ESMTP id 8974B3BC2A82
-	for <yocto@yoctoproject.org>; Wed, 30 Jul 2014 12:24:29 -0400 (EDT)
-X-Virus-Scanned: amavisd-new at rogue-research.com
-Received: from mail.rogue-research.com ([127.0.0.1])
-	by localhost (kingu.rogue-research.com [127.0.0.1]) (amavisd-new,
-	port 10024) with ESMTP id Z7YGUclJ+KEG for <yocto@yoctoproject.org>;
-	Wed, 30 Jul 2014 12:24:25 -0400 (EDT)
-Received: from mail-qg0-f54.google.com (mail-qg0-f54.google.com
-	[209.85.192.54])
-	by mail.rogue-research.com (Postfix) with ESMTPSA id 4C03D3BC2A6C
-	for <yocto@yoctoproject.org>; Wed, 30 Jul 2014 12:24:25 -0400 (EDT)
-Received: by mail-qg0-f54.google.com with SMTP id z60so1886496qgd.13
-	for <yocto@yoctoproject.org>; Wed, 30 Jul 2014 09:24:24 -0700 (PDT)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [208.80.206.84 listed in list.dnswl.org]
+Received: from smtp684.redcondor.net (smtp684.redcondor.net [208.80.206.84])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 77235E00781
+	for <yocto@yoctoproject.org>; Wed, 30 Jul 2014 12:07:14 -0700 (PDT)
+Received: from astoria.ccjclearline.com ([64.235.106.9])
+	by smtp684.redcondor.net ({700db0a8-6fb7-4c8b-9b2a-6812225182d8})
+	via TCP (outbound) with ESMTPS id 20140730190713715
+	for <yocto@yoctoproject.org>; Wed, 30 Jul 2014 19:07:13 +0000
+X-RC-FROM: <rpjday@crashcourse.ca>
+X-RC-RCPT: <yocto@yoctoproject.org>
+Received: from [99.240.204.5] (port=46739 helo=crashcourse.ca)
+	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES128-SHA:128)
+	(Exim 4.80) (envelope-from <rpjday@crashcourse.ca>)
+	id 1XCZDQ-0002At-8M
+	for yocto@yoctoproject.org; Wed, 30 Jul 2014 15:07:08 -0400
+Date: Wed, 30 Jul 2014 15:07:05 -0400 (EDT)
+From: "Robert P. J. Day" <rpjday@crashcourse.ca>
+X-X-Sender: rpjday@localhost
+To: Yocto discussion list <yocto@yoctoproject.org>
+Message-ID: <alpine.LFD.2.11.1407301505170.29022@localhost>
+User-Agent: Alpine 2.11 (LFD 23 2013-08-11)
 MIME-Version: 1.0
-X-Received: by 10.224.15.197 with SMTP id l5mr7935644qaa.97.1406737464644;
-	Wed, 30 Jul 2014 09:24:24 -0700 (PDT)
-Received: by 10.96.74.34 with HTTP; Wed, 30 Jul 2014 09:24:24 -0700 (PDT)
-In-Reply-To: <CA+YB3raZUf6nw9e_ks-MWx_W3rGduAxU03B6HoHPvc=c=27j=Q@mail.gmail.com>
-References: <CA+YB3raZUf6nw9e_ks-MWx_W3rGduAxU03B6HoHPvc=c=27j=Q@mail.gmail.com>
-Date: Wed, 30 Jul 2014 12:24:24 -0400
-Message-ID: <CACgAsMdnCc5mfGx20NzYBgEv27r6XKifi3vNwqn55jrJZxSrFA@mail.gmail.com>
-From: =?UTF-8?Q?Kevyn=2DAlexandre_Par=C3=A9?= <kapare@rogue-research.com>
-To: Jeff Osier-Mixon <jefro@jefro.net>
-Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: Yocto Project Dev Day 2014 - Discount Registration Ends Friday, August 1
+X-AntiAbuse: This header was added to track abuse,
+	please include it with any abuse report
+X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - crashcourse.ca
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+X-MAG-OUTBOUND: ccj.redcondor.net@64.235.106.9/32
+Subject: timeline for "official" centos 7 support?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -48,30 +54,24 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 30 Jul 2014 16:24:35 -0000
-Content-Type: text/plain; charset=UTF-8
-
-Hi,
-
-Note that the email and Yocto website don't have the same list of board:
-email:
-Board choices: BeagleBone Black, WandBoard Quad, MinnowBoard Max
-
-Yocto web page:
-Board choices: Intel Galileo, BeagleBone Black, or WandBoard Quad
+X-List-Received-Date: Wed, 30 Jul 2014 19:07:18 -0000
+Content-Type: TEXT/PLAIN; charset=US-ASCII
 
 
-On Tue, Jul 29, 2014 at 2:35 PM, Jeff Osier-Mixon <jefro@jefro.net> wrote:
-> - Getting training sessions for all levels, Yocto Project beginners
-> and advanced developers
+  working version of yocto dev manual currently has no mention of
+centos 7 in the list of supported distributions -- anyone working on
+validating that?
 
-Is it possible to have more details information of what is plan for
-the intro vs advanced lab?
+rday
 
-So will the intro look like something like that:
-https://www.yoctoproject.org/tools-resources/training ?
+-- 
 
-thx,
+========================================================================
+Robert P. J. Day                                 Ottawa, Ontario, CANADA
+                        http://crashcourse.ca
 
--KA
+Twitter:                                       http://twitter.com/rpjday
+LinkedIn:                               http://ca.linkedin.com/in/rpjday
+========================================================================
+
 
