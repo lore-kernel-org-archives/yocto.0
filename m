@@ -1,6 +1,6 @@
 Return-Path: <rpjday@crashcourse.ca>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id AEE61E00862; Wed, 30 Jul 2014 12:07:18 -0700 (PDT)
+	id B4F2AE00862; Wed, 30 Jul 2014 12:25:00 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -10,26 +10,26 @@ X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [208.80.206.84 listed in list.dnswl.org]
-Received: from smtp684.redcondor.net (smtp684.redcondor.net [208.80.206.84])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 77235E00781
-	for <yocto@yoctoproject.org>; Wed, 30 Jul 2014 12:07:14 -0700 (PDT)
+	*      [208.80.206.85 listed in list.dnswl.org]
+Received: from smtp685.redcondor.net (smtp685.redcondor.net [208.80.206.85])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4EBE6E00781
+	for <yocto@yoctoproject.org>; Wed, 30 Jul 2014 12:24:47 -0700 (PDT)
 Received: from astoria.ccjclearline.com ([64.235.106.9])
-	by smtp684.redcondor.net ({700db0a8-6fb7-4c8b-9b2a-6812225182d8})
-	via TCP (outbound) with ESMTPS id 20140730190713715
-	for <yocto@yoctoproject.org>; Wed, 30 Jul 2014 19:07:13 +0000
+	by smtp685.redcondor.net ({20c8e40f-6b6c-4c9e-abff-1640ea7bf404})
+	via TCP (outbound) with ESMTPS id 20140730192445922
+	for <yocto@yoctoproject.org>; Wed, 30 Jul 2014 19:24:45 +0000
 X-RC-FROM: <rpjday@crashcourse.ca>
 X-RC-RCPT: <yocto@yoctoproject.org>
-Received: from [99.240.204.5] (port=46739 helo=crashcourse.ca)
+Received: from [99.240.204.5] (port=47572 helo=crashcourse.ca)
 	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES128-SHA:128)
 	(Exim 4.80) (envelope-from <rpjday@crashcourse.ca>)
-	id 1XCZDQ-0002At-8M
-	for yocto@yoctoproject.org; Wed, 30 Jul 2014 15:07:08 -0400
-Date: Wed, 30 Jul 2014 15:07:05 -0400 (EDT)
+	id 1XCZUP-0002uW-2h
+	for yocto@yoctoproject.org; Wed, 30 Jul 2014 15:24:41 -0400
+Date: Wed, 30 Jul 2014 15:24:38 -0400 (EDT)
 From: "Robert P. J. Day" <rpjday@crashcourse.ca>
 X-X-Sender: rpjday@localhost
 To: Yocto discussion list <yocto@yoctoproject.org>
-Message-ID: <alpine.LFD.2.11.1407301505170.29022@localhost>
+Message-ID: <alpine.LFD.2.11.1407301522260.30037@localhost>
 User-Agent: Alpine 2.11 (LFD 23 2013-08-11)
 MIME-Version: 1.0
 X-AntiAbuse: This header was added to track abuse,
@@ -42,7 +42,7 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 X-MAG-OUTBOUND: ccj.redcondor.net@64.235.106.9/32
-Subject: timeline for "official" centos 7 support?
+Subject: why does dev manual, "Supported Board Support Packages", mention only meta-intel?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -54,13 +54,15 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 30 Jul 2014 19:07:18 -0000
+X-List-Received-Date: Wed, 30 Jul 2014 19:25:00 -0000
 Content-Type: TEXT/PLAIN; charset=US-ASCII
 
 
-  working version of yocto dev manual currently has no mention of
-centos 7 in the list of supported distributions -- anyone working on
-validating that?
+  also from current dev manual, chapter 2, there is a bullet point
+entitled "Supported Board Support Packages" which mentions *only*
+meta-intel as if its the only such layer.
+
+  that seems sort of ... incomplete.
 
 rday
 
