@@ -1,52 +1,45 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <elizabeth.flanagan@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id C6DBDE006F1; Tue, 29 Jul 2014 23:00:41 -0700 (PDT)
+	id A4E04E00559; Tue, 29 Jul 2014 23:41:49 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (raj.khem[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.213.172 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [209.85.220.169 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-ig0-f172.google.com (mail-ig0-f172.google.com
-	[209.85.213.172])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8CAB3E003FA
-	for <yocto@yoctoproject.org>; Tue, 29 Jul 2014 23:00:29 -0700 (PDT)
-Received: by mail-ig0-f172.google.com with SMTP id h15so6712082igd.5
-	for <yocto@yoctoproject.org>; Tue, 29 Jul 2014 23:00:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-type;
-	bh=Pr9wGI/o6ZoJO+ab4ttVHmSjyZF8CdspxLeTjulhr80=;
-	b=HOtzw93NSOuGx3caqE3xHkzlVIsjitEV4u7lkBmK4b7B6+Ov7L0aifybNTrXJm5JfW
-	wL7NbHtlppRy8ok2/s7j90DO7QmeYGg0ZMohDx/akqe2hdTMvuy81i7DMlZg1jnmCAdr
-	O0sdKpIO1yrpxNNILbH7PoiOqmEI92QsyZrZUrGsj1TB6DYL9KOSFhGCC9lXWLSuUPIM
-	yMZzSC4JpA+tcHu8afw/gOfVZXAZfZ25c+rsx0I2ekjir1Jyo3z3viVIAwJx9nGw9nck
-	kp5S/P/TUHiaOF7rDwvKD+Q5DqL/F1mf/RLw5HYk+iDucZJg+NZbesyHFguAGaDX1G0A
-	HVhQ==
-X-Received: by 10.50.134.136 with SMTP id pk8mr50779290igb.20.1406700028976;
-	Tue, 29 Jul 2014 23:00:28 -0700 (PDT)
+Received: from mail-vc0-f169.google.com (mail-vc0-f169.google.com
+	[209.85.220.169])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F23FFE003FA
+	for <yocto@yoctoproject.org>; Tue, 29 Jul 2014 23:41:48 -0700 (PDT)
+Received: by mail-vc0-f169.google.com with SMTP id le20so1133122vcb.0
+	for <yocto@yoctoproject.org>; Tue, 29 Jul 2014 23:41:47 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:date:message-id:subject:from:to
+	:content-type;
+	bh=h9lvh51f1poXDYuBOlx6u2CQ0ZNtu/VMafWGHtBMKPU=;
+	b=Tsqwu3Qia7FHtXkzwlwia4wPUnEbE4gyqRUSmH8hC7ooBSUXKyopbkT/docV4BlYED
+	rY3o/vhTgZoNyOEgksrvGxLO4z6zQ0t0U1Ul+ADScGYRQhRGN1zRN2nH9iwuV0zZD2Ki
+	Mq20zVL/oAYzYA5qaCi9w0qpDz3CF37R362ZCFR3RdsyMWV0ro6u8r2Q5Qrnb6fCaWBl
+	2MYTT7r29wTSUNP6UnJc9MmK3ch++AwzUMIsm6W5/lKvrPr3SDgDB8OIcOlsGj32RGki
+	EAiHeY3dcHBheL/THNvuPznyXIn1kgsu1W8/wmlNF8UZOevWlHOa/QNhdnm1kOucSfhQ
+	ccsA==
+X-Gm-Message-State: ALoCoQlkXELOZReA2GXWSAfDUdX4vVKlYICYsr0YBaNnFejEAYSqWf/sS/OSo8yyiEr/ljPsIVO4
 MIME-Version: 1.0
-Received: by 10.50.78.105 with HTTP; Tue, 29 Jul 2014 22:59:58 -0700 (PDT)
-In-Reply-To: <53D7BA1E.2000301@laposte.net>
-References: <53D7BA1E.2000301@laposte.net>
-From: Khem Raj <raj.khem@gmail.com>
-Date: Tue, 29 Jul 2014 22:59:58 -0700
-Message-ID: <CAMKF1sqAj8WQWea8xJSkGTswN5uACafcDVfs+kvN2hckSKt+4Q@mail.gmail.com>
-To: Marc Gilet <pw.marcus@laposte.net>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Waiting for removable media ...
+X-Received: by 10.52.244.138 with SMTP id xg10mr5567088vdc.40.1406702507312;
+	Tue, 29 Jul 2014 23:41:47 -0700 (PDT)
+Received: by 10.52.135.50 with HTTP; Tue, 29 Jul 2014 23:41:47 -0700 (PDT)
+Date: Wed, 30 Jul 2014 07:41:47 +0100
+Message-ID: <CAPhnLPB9VeuosZF16qY2H32adjqC0xZoCWhq_Vdjy7n5YpYCBQ@mail.gmail.com>
+From: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>, 
+	Alexandru C Georgescu <alexandru.c.georgescu@intel.com>,
+	Zhao Yi <yi.zhao@windriver.com>, Otavio Salvador <otavio@ossystems.com.br>
+Subject: Yocto 1.7_M2 release candidate 1 ready for QA
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -58,40 +51,27 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 30 Jul 2014 06:00:41 -0000
+X-List-Received-Date: Wed, 30 Jul 2014 06:41:49 -0000
 Content-Type: text/plain; charset=UTF-8
 
-On Tue, Jul 29, 2014 at 8:13 AM, Marc Gilet <pw.marcus@laposte.net> wrote:
-> Hello,
-> I'd like to use Yocto with a thinclient (Fujitsu siemens Futro B100)
-> I've created a BSP for this platform, and configured the kernel for this
-> machine.
-> I've built an initramfs and a kernel to boot the thinclient via a PXE
-> server, it boots, but the boot process
-> hangs with this massage:" Waiting for removable media ..."
->
-> Here's what I did:
->
-> $ git clone git://git.yoctoproject.org/poky
-> $ cd poky/
-> $ source oe-init-build-env
-> $ created the BSP with the "yocto-bsp" script
-> $ bitbake linux-yocto -c menuconfig (the kernel is configured with
-> "CONFIG_DEVTMPFS=y" and "CONFIG_DEVTMPFS_MOUNT=y")
-> $ bitbake -k core-image-minimal-initramfs
->
-> Does anybody knows where it could come from ?
+Full green build!
 
-This is in initramfs startup script see,
-recipes-core/initrdscripts/files/init-live.sh
-that script is meant for live boot from media. You have to retool it
-to fit your boot
-environment and method
+http://autobuilder.yoctoproject.org/pub/releases/yocto-1.7_M2.rc1
 
-> Cheers
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+bitbake 4aaf56bfbad4aa626be8a2f7a5f70834c3311dd3
+eclipse-poky-juno 26bfc407781aa185f244a47ba63120343cee4a37
+eclipse-poky-kepler 4a167fd662262ebdaa3cf0d332ac0debb52d7904
+meta-fsl-arm 6ef8db67df3436a463851ff95dcfb6a66132f3c0
+meta-fsl-ppc 5efa2d27dcf4637b008faf782b5e257b748b24c0
+meta-intel 67b7f6f3a03ddbdcf66823eb5a236edbc0aa4858
+meta-minnow ee48eba5895178ec19febee2e0a2d8b0f3ace0e9
+meta-qt3 3016129d90b7ac8517a5227d819f10ad417b5b45
+oecore 7986adeac16550b33f65fded39a55f668e0e543f
+poky 2d1660112e54653f7bb763939d0416472c49fe01
+
+
+-- 
+Elizabeth Flanagan
+Yocto Project
+Build and Release
 
