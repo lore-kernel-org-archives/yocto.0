@@ -1,35 +1,35 @@
 Return-Path: <rpjday@crashcourse.ca>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id B4F2AE00862; Wed, 30 Jul 2014 12:25:00 -0700 (PDT)
+	id 9769DE00862; Wed, 30 Jul 2014 12:32:22 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [208.80.204.84 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [208.80.206.85 listed in list.dnswl.org]
-Received: from smtp685.redcondor.net (smtp685.redcondor.net [208.80.206.85])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4EBE6E00781
-	for <yocto@yoctoproject.org>; Wed, 30 Jul 2014 12:24:47 -0700 (PDT)
+Received: from smtp484.redcondor.net (smtp484.redcondor.net [208.80.204.84])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BA4C5E00781
+	for <yocto@yoctoproject.org>; Wed, 30 Jul 2014 12:32:16 -0700 (PDT)
 Received: from astoria.ccjclearline.com ([64.235.106.9])
-	by smtp685.redcondor.net ({20c8e40f-6b6c-4c9e-abff-1640ea7bf404})
-	via TCP (outbound) with ESMTPS id 20140730192445922
-	for <yocto@yoctoproject.org>; Wed, 30 Jul 2014 19:24:45 +0000
+	by smtp484.redcondor.net ({c48374e7-08df-40d9-a0de-96cc9883a037})
+	via TCP (outbound) with ESMTPS id 20140730193214488
+	for <yocto@yoctoproject.org>; Wed, 30 Jul 2014 19:32:14 +0000
 X-RC-FROM: <rpjday@crashcourse.ca>
 X-RC-RCPT: <yocto@yoctoproject.org>
-Received: from [99.240.204.5] (port=47572 helo=crashcourse.ca)
+Received: from [99.240.204.5] (port=47589 helo=crashcourse.ca)
 	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES128-SHA:128)
 	(Exim 4.80) (envelope-from <rpjday@crashcourse.ca>)
-	id 1XCZUP-0002uW-2h
-	for yocto@yoctoproject.org; Wed, 30 Jul 2014 15:24:41 -0400
-Date: Wed, 30 Jul 2014 15:24:38 -0400 (EDT)
+	id 1XCZba-00038B-GC
+	for yocto@yoctoproject.org; Wed, 30 Jul 2014 15:32:06 -0400
+Date: Wed, 30 Jul 2014 15:32:03 -0400 (EDT)
 From: "Robert P. J. Day" <rpjday@crashcourse.ca>
 X-X-Sender: rpjday@localhost
 To: Yocto discussion list <yocto@yoctoproject.org>
-Message-ID: <alpine.LFD.2.11.1407301522260.30037@localhost>
+Message-ID: <alpine.LFD.2.11.1407301529040.30154@localhost>
 User-Agent: Alpine 2.11 (LFD 23 2013-08-11)
 MIME-Version: 1.0
 X-AntiAbuse: This header was added to track abuse,
@@ -42,7 +42,7 @@ X-Source:
 X-Source-Args: 
 X-Source-Dir: 
 X-MAG-OUTBOUND: ccj.redcondor.net@64.235.106.9/32
-Subject: why does dev manual, "Supported Board Support Packages", mention only meta-intel?
+Subject: [yocto-docs][PATH] Emphasize both 32- and 64-bit MIPS supported.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -54,17 +54,30 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 30 Jul 2014 19:25:00 -0000
+X-List-Received-Date: Wed, 30 Jul 2014 19:32:22 -0000
 Content-Type: TEXT/PLAIN; charset=US-ASCII
 
 
-  also from current dev manual, chapter 2, there is a bullet point
-entitled "Supported Board Support Packages" which mentions *only*
-meta-intel as if its the only such layer.
+Signed-off-by: Robert P. J. Day <rpjday@crashcourse.ca>
 
-  that seems sort of ... incomplete.
+---
 
-rday
+  long-time users of YP might have missed the newer 64-bit MIPS
+support.
+
+diff --git a/documentation/dev-manual/dev-manual-start.xml b/documentation/dev-manual/dev-manual-start.xml
+index 6ab93f7..3a35a1d 100644
+--- a/documentation/dev-manual/dev-manual-start.xml
++++ b/documentation/dev-manual/dev-manual-start.xml
+@@ -36,7 +36,7 @@
+         You can use the OpenEmbedded build system, which uses
+         <link linkend='bitbake-term'>BitBake</link>, to develop complete Linux
+         images and associated user-space applications for architectures based
+-        on ARM, MIPS, PowerPC, x86 and x86-64.
++        on ARM, MIPS (both 32- and 64-bit), PowerPC, x86 and x86-64.
+         <note>
+             By default, using the Yocto Project creates a Poky distribution.
+             However, you can create your own distribution by providing key
 
 -- 
 
