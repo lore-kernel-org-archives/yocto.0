@@ -1,55 +1,54 @@
-Return-Path: <gley-yocto@m.gmane.org>
+Return-Path: <sujith.h@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id B6C4BE007B5; Wed, 30 Jul 2014 02:50:11 -0700 (PDT)
+	id 56F5BE007DC; Wed, 30 Jul 2014 03:48:55 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
-X-Spam-Level: *
-X-Spam-Status: No, score=1.9 required=5.0 tests=BAYES_00, DKIM_ADSP_CUSTOM_MED,
-	FREEMAIL_FROM, FSL_HELO_BARE_IP_2, NML_ADSP_CUSTOM_MED,
-	RCVD_IN_DNSWL_LOW, RCVD_IN_SORBS_WEB, RCVD_NUMERIC_HELO,
-	SPF_HELO_PASS autolearn=no version=3.3.1
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (babu.anoop[at]gmail.com)
-	*  0.8 RCVD_IN_SORBS_WEB RBL: SORBS: sender is an abusable web server
-	*      [115.248.23.130 listed in dnsbl.sorbs.net]
+	mail provider *      (sujith.h[at]gmail.com)
 	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
 	low *      trust
-	*      [80.91.229.3 listed in list.dnswl.org]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
-	*  0.0 DKIM_ADSP_CUSTOM_MED No valid author signature, adsp_override is
-	*      CUSTOM_MED
-	* 1.2 RCVD_NUMERIC_HELO Received: contains an IP address used for HELO
+	*      [209.85.212.173 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  1.7 FSL_HELO_BARE_IP_2 FSL_HELO_BARE_IP_2
-	*  0.9 NML_ADSP_CUSTOM_MED ADSP custom_med hit,
-	and not from a mailing list
-Received: from plane.gmane.org (plane.gmane.org [80.91.229.3])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D8AB6E00796
-	for <yocto@yoctoproject.org>; Wed, 30 Jul 2014 02:50:05 -0700 (PDT)
-Received: from list by plane.gmane.org with local (Exim 4.69)
-	(envelope-from <gley-yocto@m.gmane.org>) id 1XCQWJ-0002Ia-Ic
-	for yocto@yoctoproject.org; Wed, 30 Jul 2014 11:50:03 +0200
-Received: from 115.248.23.130 ([115.248.23.130])
-	by main.gmane.org with esmtp (Gmexim 0.1 (Debian))
-	id 1AlnuQ-0007hv-00
-	for <yocto@yoctoproject.org>; Wed, 30 Jul 2014 11:50:03 +0200
-Received: from babu.anoop by 115.248.23.130 with local (Gmexim 0.1 (Debian))
-	id 1AlnuQ-0007hv-00
-	for <yocto@yoctoproject.org>; Wed, 30 Jul 2014 11:50:03 +0200
-X-Injected-Via-Gmane: http://gmane.org/
-To: yocto@yoctoproject.org
-From: Anoop  <babu.anoop@gmail.com>
-Date: Wed, 30 Jul 2014 09:46:25 +0000 (UTC)
-Message-ID: <loom.20140730T114540-914@post.gmane.org>
-Mime-Version: 1.0
-X-Complaints-To: usenet@ger.gmane.org
-X-Gmane-NNTP-Posting-Host: sea.gmane.org
-User-Agent: Loom/3.14 (http://gmane.org/)
-X-Loom-IP: 115.248.23.130 (Mozilla/5.0 (Windows NT 6.1;
-	WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/36.0.1985.125
-	Safari/537.36)
-Subject: Tizen Bitbake error - systemd
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-wi0-f173.google.com (mail-wi0-f173.google.com
+	[209.85.212.173])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7C8DDE007A0
+	for <yocto@yoctoproject.org>; Wed, 30 Jul 2014 03:48:50 -0700 (PDT)
+Received: by mail-wi0-f173.google.com with SMTP id f8so7352622wiw.0
+	for <yocto@yoctoproject.org>; Wed, 30 Jul 2014 03:48:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=from:to:cc:subject:date:message-id;
+	bh=KEeSzUGv+ZkkNkFx6IPKpQdESektCeO387zh4X9KCXk=;
+	b=sTxLA89xBDQueI/c0E8etgqJYk/2tD0wOHFa6Mld/cCDThC+lOvRYSeKUtQHkMdKfs
+	nApOQEvvhvP9OP2ibvNpmF8FTCm+lxrnnY+aAfGqt0lsS+BshOhK4LswqZjhGnuFAjpS
+	Rfp9qyUnOSGmmGtuka8WJqD+2UYNeQGMummiBfCmdOh0Q2Z/STFJh6IJOGCeFh8qnqP5
+	FHZzS846DtHS5yho/qMz0AWC7RZdEQ+K+V1cYkGgmPewG1aURcNv7xeopkjCGgVnX4+r
+	bKhSruZxgaIk10mui+xU3PEuPtvnseiB68NZb7NfzNoVwDtoqsIbVHcyGw/MgU1vunNR
+	ipWA==
+X-Received: by 10.194.158.226 with SMTP id wx2mr4841040wjb.107.1406717330033; 
+	Wed, 30 Jul 2014 03:48:50 -0700 (PDT)
+Received: from linux-z8xt.inp.mentorg.com ([139.181.35.34])
+	by mx.google.com with ESMTPSA id wu6sm4598804wjb.46.2014.07.30.03.48.47
+	for <multiple recipients>
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Wed, 30 Jul 2014 03:48:49 -0700 (PDT)
+From: Sujith H <sujith.h@gmail.com>
+To: holger.behrens@windriver.com,
+	florin.sarbu@windriver.com
+Date: Wed, 30 Jul 2014 16:14:56 +0530
+Message-Id: <1406717096-26502-1-git-send-email-sujith.h@gmail.com>
+X-Mailer: git-send-email 1.8.4
+Cc: yocto@yoctoproject.org, Sujith H <Sujith_Haridasan@mentor.com>
+Subject: [meta-ivi][PATCH] Make pulseaudio run by default
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -61,181 +60,33 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 30 Jul 2014 09:50:11 -0000
-Content-Type: text/plain; charset=us-ascii
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Wed, 30 Jul 2014 10:48:55 -0000
 
+From: Sujith H <Sujith_Haridasan@mentor.com>
 
-Tizen yocto build bitbake error
+This change will help pulseaudio run by default on the
+target. On the bootup user can see pulseaudio service
+started.
 
-Summary: 1 task failed:
-  /home/sfm/yocto_temp/meta-tizen/recipes-tizen/systemd/systemd_git.bb, 
-do_install
-+ /usr/bin/mkdir -p /home/sfm/yocto_temp/build/tmp/work/cortexa9hf-vfp-neon-
-poky-linux-gnueabi/systemd/git-r0/image//usr/sbin
+Signed-off-by: Sujith H <Sujith_Haridasan@mentor.com>
+---
+ meta-ivi/recipes-multimedia/pulseaudio/pulseaudio_5.0.bbappend | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-/home/sfm/yocto_temp/build/tmp/work/cortexa9hf-vfp-neon-poky-linux-
-gnueabi/systemd/git-r0/temp/run.do_install.17788: line 131: /usr/bin/mkdir: 
-No such file or directory
-+ bb_exit_handler
-+ ret=1
-+ case $ret in
-+ case $BASH_VERSION in
-+ echo 'WARNING: /home/sfm/yocto_temp/build/tmp/work/cortexa9hf-vfp-neon-
-poky-linux-gnueabi/systemd/git-r0/temp/run.do_install.17788:1 exit 1 from
-  /usr/bin/mkdir' -p /home/sfm/yocto_temp/build/tmp/work/cortexa9hf-vfp-
-neon-poky-linux-gnueabi/systemd/git-r0/image//usr/sbin
-WARNING: /home/sfm/yocto_temp/build/tmp/work/cortexa9hf-vfp-neon-poky-linux-
-gnueabi/systemd/git-r0/temp/run.do_install.17788:1 exit 1 from
-  /usr/bin/mkdir -p /home/sfm/yocto_temp/build/tmp/work/cortexa9hf-vfp-neon-
-poky-linux-gnueabi/systemd/git-r0/image//usr/sbin
-+ exit 1
-
-ERROR: Function failed: do_install (log file is located at 
-/home/sfm/yocto_temp/build/tmp/work/cortexa9hf-vfp-neon-poky-linux-
-gnueabi/systemd/git-r0/temp/log.do_install.17788)
-ERROR: Logfile of failure stored in: 
-/home/sfm/yocto_temp/build/tmp/work/cortexa9hf-vfp-neon-poky-linux-
-gnueabi/systemd/git-r0/temp/log.do_install.17788
-NOTE: recipe systemd-git-r0: task do_install: Failed
-checking if gcc  supports -fno-rtti -fno-exceptions... 
-ERROR: Task 1466 (/home/sfm/yocto_temp/meta-tizen/recipes-
-tizen/systemd/systemd_git.bb, do_install) failed with exit code '1'
-
-
-***do install log file****
-
-+ rm -f /home/sfm/yocto_temp/build/tmp/work/cortexa9hf-vfp-neon-poky-linux-
-gnueabi/systemd/git-r0/image/usr/share/info/dir
-+ find /home/sfm/yocto_temp/build/tmp/work/cortexa9hf-vfp-neon-poky-linux-
-gnueabi/systemd/git-r0/image -regex '.*\.la$'
-+ xargs rm -f --
-
-+ find /home/sfm/yocto_temp/build/tmp/work/cortexa9hf-vfp-neon-poky-linux-
-gnueabi/systemd/git-r0/image -regex '.*\.a$'
-
-+ xargs rm -f --
-
-+ /usr/bin/mkdir -p /home/sfm/yocto_temp/build/tmp/work/cortexa9hf-vfp-neon-
-poky-linux-gnueabi/systemd/git-r0/image//usr/sbin
-
-xa9hf-vfp-neon-poky-linux-gnueabi/systemd/git-r0/image$dir/$2 && ln -s $1 
-/home/sfm/yocto_temp/build/tmp/work/cortexa9hf-vfp-neon-poky-linux-
-gnueabi/systemd/git-r0/image$dir/$2 && shift 2 || exit $?; done
-unable to set CAP_SETFCAP effective capability: Operation not permitted
-Makefile:14448: recipe for target 'systemd-detect-virt-install-hook' failed
-make[4]: [systemd-detect-virt-install-hook] Error 1 (ignored)
-what="systemd-udevd-control.socket systemd-udevd-kernel.socket systemd-
-journald.socket systemd-initctl.socket systemd-shutdownd.socket" && 
-wants=sockets.target && 	[ -z "$what" ] || ( 
-dir=/home/sfm/yocto_temp/build/tmp/work/cortexa9hf-vfp-neon-poky-linux-
-gnueabi/systemd/git-r0/image/usr/lib/systemd/system/$wants.wants && 
-/bin/mkdir -p -m 0755 $dir && cd $dir && rm -f $what && for i in $what; do 
-ln -s ../$i . || exit $? ; done )
-what="systemd-tmpfiles-clean.timer" && wants=timers.target && 	[ -z "$what" 
-] || ( dir=/home/sfm/yocto_temp/build/tmp/work/cortexa9hf-vfp-neon-poky-
-linux-gnueabi/systemd/git-r0/image/usr/lib/systemd/system/$wants.wants && 
-/bin/mkdir -p -m 0755 $dir && cd $dir && rm -f $what && for i in $what; do 
-ln -s ../$i . || exit $? ; done )
-setfacl -nm g:wheel:rx,d:g:wheel:rx 
-/home/sfm/yocto_temp/build/tmp/work/cortexa9hf-vfp-neon-poky-linux-
-gnueabi/systemd/git-r0/image/var/log/journal/
-setfacl: Option -m: Invalid argument near character 3
-Makefile:14536: recipe for target 'libsystemd-journal-install-hook' failed
-make[4]: [libsystemd-journal-install-hook] Error 2 (ignored)
-what="" && wants=slices.target && 	[ -z "$what" ] || ( 
-dir=/home/sfm/yocto_temp/build/tmp/work/cortexa9hf-vfp-neon-poky-linux-
-gnueabi/systemd/git-r0/image/usr/lib/systemd/system/$wants.wants && 
-/bin/mkdir -p -m 0755 $dir && cd $dir && rm -f $what && for i in $what; do 
-ln -s ../$i . || exit $? ; done )
-set -- /usr/lib/systemd/system/remote-fs.target /etc/systemd/system/multi-
-user.target.wants/remote-fs.target /usr/lib/systemd/system/getty@.service 
-/etc/systemd/system/getty.target.wants/getty@tty1.service /etc/systemd/user 
-/etc/xdg/systemd/user ../system-services/org.freedesktop.systemd1.service 
-/usr/share/dbus-1/services/org.freedesktop.systemd1.service && \
-	dir= && 	while [ -n "$1" ]; do /bin/mkdir -p `dirname 
-/home/sfm/yocto_temp/build/tmp/work/cortexa9hf-vfp-neon-poky-linux-
-gnueabi/systemd/git-r0/image$dir/$2` && rm -f 
-/home/sfm/yocto_temp/build/tmp/work/cortexa9hf-vfp-neon-poky-linux-
-gnueabi/systemd/git-r0/image$dir/$2 && ln -s $1 
-/home/sfm/yocto_temp/build/tmp/work/cortexa9hf-vfp-neon-poky-linux-
-gnueabi/systemd/git-r0/image$dir/$2 && shift 2 || exit $?; done
-Making install in po
-linguas=""; \
-for lang in $linguas; do \
-  dir=/home/sfm/yocto_temp/build/tmp/work/cortexa9hf-vfp-neon-poky-linux-
-gnueabi/systemd/git-r0/image/usr/share/locale/$lang/LC_MESSAGES; \
-  /bin/bash /home/sfm/yocto_temp/build/tmp/work/cortexa9hf-vfp-neon-poky-
-linux-gnueabi/systemd/git-r0/git/build-aux/install-sh -d $dir; \
-  if test -r $lang.gmo; then \
-    /usr/bin/install -c -m 644 $lang.gmo $dir/systemd.mo; \
-    echo "installing $lang.gmo as $dir/systemd.mo"; \
-  else \
-    /usr/bin/install -c -m 644 ./$lang.gmo $dir/systemd.mo; \
-    echo "installing ./$lang.gmo as" \
-	 "$dir/systemd.mo"; \
-  fi; \
-  if test -r $lang.gmo.m; then \
-    /usr/bin/install -c -m 644 $lang.gmo.m $dir/systemd.mo.m; \
-    echo "installing $lang.gmo.m as $dir/systemd.mo.m"; \
-  else \
-    if test -r ./$lang.gmo.m ; then \
-      /usr/bin/install -c -m 644 ./$lang.gmo.m \
-	$dir/systemd.mo.m; \
-      echo "installing ./$lang.gmo.m as" \
-	   "$dir/systemd.mo.m"; \
-    else \
-      true; \
-    fi; \
-  fi; \
-done
-+ rm -f /home/sfm/yocto_temp/build/tmp/work/cortexa9hf-vfp-neon-poky-linux-
-gnueabi/systemd/git-r0/image/usr/share/info/dir
-+ find /home/sfm/yocto_temp/build/tmp/work/cortexa9hf-vfp-neon-poky-linux-
-gnueabi/systemd/git-r0/image -regex '.*\.la$'
-+ xargs rm -f --
-+ find /home/sfm/yocto_temp/build/tmp/work/cortexa9hf-vfp-neon-poky-linux-
-gnueabi/systemd/git-r0/image -regex '.*\.a$'
-+ xargs rm -f --
-+ /usr/bin/mkdir -p /home/sfm/yocto_temp/build/tmp/work/cortexa9hf-vfp-neon-
-poky-linux/home/sfm/yocto_temp/build/tmp/work/cortexa9hf-vfp-neon-poky-
-linux-gnueabi/systemd/git-r0/temp/run.do_install.17788: line 131: 
-/usr/bin/mkdir: No such file or directory
-+ bb_exit_handler
-+ ret=1
-+ case $ret in
-+ case $BASH_VERSION in
-+ echo 'WARNING: /home/sfm/yocto_temp/build/tmp/work/cortexa9hf-vfp-neon-
-poky-linux-gnueabi/systemd/git-r0/temp/run.do_install.17788:1 exit 1 from
-  /usr/bin/mkdir' -p /home/sfm/yocto_temp/build/tmp/work/cortexa9hf-vfp-
-neon-poky-linux-gnueabi/systemd/git-r0/image//usr/sbin
-WARNING: /home/sfm/yocto_temp/build/tmp/work/cortexa9hf-vfp-neon-poky-linux-
-gnueabi/systemd/git-r0/temp/run.do_install.17788:1 exit 1 from
-  /usr/bin/mkdir -p /home/sfm/yocto_temp/build/tmp/work/cortexa9hf-vfp-neon-
-poky-linux-gnueabi/systemd/git-r0/image//usr/sbin
-+ exit 1
-
--gnueabi/systemd/git-r0/image//usr/sbin
-/home/sfm/yocto_temp/build/tmp/work/cortexa9hf-vfp-neon-poky-linux-
-gnueabi/systemd/git-r0/temp/run.do_install.17788: line 131: /usr/bin/mkdir: 
-No such file or directory
-+ bb_exit_handler
-+ ret=1
-+ case $ret in
-+ case $BASH_VERSION in
-+ echo 'WARNING: /home/sfm/yocto_temp/build/tmp/work/cortexa9hf-vfp-neon-
-poky-linux-gnueabi/systemd/git-r0/temp/run.do_install.17788:1 exit 1 from
-  /usr/bin/mkdir' -p /home/sfm/yocto_temp/build/tmp/work/cortexa9hf-vfp-
-neon-poky-linux-gnueabi/systemd/git-r0/image//usr/sbin
-WARNING: /home/sfm/yocto_temp/build/tmp/work/cortexa9hf-vfp-neon-poky-linux-
-gnueabi/systemd/git-r0/temp/run.do_install.17788:1 exit 1 from
-  /usr/bin/mkdir -p /home/sfm/yocto_temp/build/tmp/work/cortexa9hf-vfp-neon-
-poky-linux-gnueabi/systemd/git-r0/image//usr/sbin
-+ exit 1
-ERROR: Function failed: do_install (log file is located at 
-/home/sfm/yocto_temp/build/tmp/work/cortexa9hf-vfp-neon-poky-linux-
-gnueabi/systemd/git-r0/temp/log.do_install.17788)
-
-Request inputs to resolve this error
+diff --git a/meta-ivi/recipes-multimedia/pulseaudio/pulseaudio_5.0.bbappend b/meta-ivi/recipes-multimedia/pulseaudio/pulseaudio_5.0.bbappend
+index e32efa7..5401c66 100644
+--- a/meta-ivi/recipes-multimedia/pulseaudio/pulseaudio_5.0.bbappend
++++ b/meta-ivi/recipes-multimedia/pulseaudio/pulseaudio_5.0.bbappend
+@@ -7,7 +7,7 @@ PR = "r1"
+ inherit systemd
+ 
+ SYSTEMD_PACKAGES = "${PN}-server"
+-SYSTEMD_SERVICE = "pulseaudio.service"
++SYSTEMD_SERVICE_${PN}-server = "pulseaudio.service"
+ 
+ PACKAGECONFIG_remove = "bluez4"
+ PACKAGECONFIG_append = " bluez5"
+-- 
+1.8.4
 
 
