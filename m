@@ -1,53 +1,60 @@
-Return-Path: <rpjday@crashcourse.ca>
+Return-Path: <jeff@perform3-d.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 0DCABE00572; Thu, 31 Jul 2014 09:52:01 -0700 (PDT)
+	id B41A5E00842; Wed, 30 Jul 2014 11:24:11 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
-	autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, HTML_MESSAGE, RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
 	http://www.dnswl.org/, no *      trust
-	*      [208.80.204.86 listed in list.dnswl.org]
+	*      [98.138.91.139 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from smtp486.redcondor.net (smtp486.redcondor.net [208.80.204.86])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 31643E004E0
-	for <yocto@yoctoproject.org>; Thu, 31 Jul 2014 09:51:56 -0700 (PDT)
-Received: from astoria.ccjclearline.com ([64.235.106.9])
-	by smtp486.redcondor.net ({6695537a-536a-45f9-a249-877c85428649})
-	via TCP (outbound) with ESMTPS id 20140731165154133
-	for <yocto@yoctoproject.org>; Thu, 31 Jul 2014 16:51:54 +0000
-X-RC-FROM: <rpjday@crashcourse.ca>
-X-RC-RCPT: <yocto@yoctoproject.org>
-Received: from [99.240.204.5] (port=55733 helo=crashcourse.ca)
-	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES128-SHA:128)
-	(Exim 4.80) (envelope-from <rpjday@crashcourse.ca>)
-	id 1XCta0-0005Cf-UB; Thu, 31 Jul 2014 12:51:48 -0400
-Date: Thu, 31 Jul 2014 12:51:45 -0400 (EDT)
-From: "Robert P. J. Day" <rpjday@crashcourse.ca>
-X-X-Sender: rpjday@localhost
-To: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
-In-Reply-To: <41DEA4B02DBDEF40A0F3B6D0DDB1237983FD15F5@ORSMSX101.amr.corp.intel.com>
-Message-ID: <alpine.LFD.2.11.1407311234570.12848@localhost>
-References: <alpine.LFD.2.11.1407301522260.30037@localhost>
-	<41DEA4B02DBDEF40A0F3B6D0DDB1237983FD15B5@ORSMSX101.amr.corp.intel.com>
-	<CAMKF1sqyPbb1-oe23zZ0Rpm31Oxn9pz+yPDDsD_j10h4h2K1FA@mail.gmail.com>
-	<41DEA4B02DBDEF40A0F3B6D0DDB1237983FD15F5@ORSMSX101.amr.corp.intel.com>
-User-Agent: Alpine 2.11 (LFD 23 2013-08-11)
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from nm9-vm3.bullet.mail.ne1.yahoo.com
+	(nm9-vm3.bullet.mail.ne1.yahoo.com [98.138.91.139])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 73C2AE006B7
+	for <yocto@yoctoproject.org>; Wed, 30 Jul 2014 11:24:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048;
+	t=1406744647; bh=joatHACV35/g5TAnbuUkvCQTfqy0qXNrtO0CFlXOJO8=;
+	h=Received:Received:Received:X-Yahoo-Newman-Id:X-Yahoo-Newman-Property:X-YMail-OSG:X-Yahoo-SMTP:Message-ID:Date:From:User-Agent:MIME-Version:To:Subject:Content-Type;
+	b=reemoy8Ase29YHeuqv5EaOGh+ZkToFKZtpMHU8Lqff1R6GY69dAJ+AzkBWnVJ+KXeYQerg4K7R+8fjon30WkJGTkEX/JSMjWfYU95EdD6mFOzBDpp1LBorGpclhq5OaRsxyONFsAfsXkqjChOpsfD3AhC/kcsHoq55qv0EbryRzng3ynNbAj6m4bUvIAtTYDTjnpIUsvwXsG/F4R3KKKDuNvLGqOJm2JnTF5H3B2BCNhHWiKWlUK7Oz/PJhgMZg+PeLxlLPzBf+XVhJ9tXbOLGctuxnr/QVJ09oAdAzJc6jWcsPMAtgG33/3dyu79mB5aRP7MXDD2ph/l3WrxO6yMQ==
+DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws; s=s2048; d=yahoo.com;
+	b=ZSBypJQqaYZeTiNb2l0QAJId+lKr+bp6cTcECzJdzaiuBQhB08lrUwCew+UkCj10mXP+BJNowAVY5HYM2ZIGuBoADxMpEOt5Hzr/nHE0ac02QPhXe58aO/nsFSfaJWMQrbhWOdquIY7Hwet/fFMTr0R42U91m+ek/nPjRdaZQKSB3wv1Krt6Ekv0Rqhgfgb/e1cgKzDybMi5G1w+zKCtL/GRfpG+BgqEoBdFIUXRuq+Di5i6OhkA7/TTeAkblFjFfiVfApiFZnC6SLqvGHYT+SBuDIL55n04dQUcPMtbF/2XsLt0DTODmpqhU43iB1u/JfKBp9aPVz+bf8v7ZzKcyQ==;
+Received: from [98.138.226.177] by nm9.bullet.mail.ne1.yahoo.com with NNFMP;
+	30 Jul 2014 18:24:07 -0000
+Received: from [98.138.104.113] by tm12.bullet.mail.ne1.yahoo.com with NNFMP;
+	30 Jul 2014 18:24:07 -0000
+Received: from [127.0.0.1] by smtp222.mail.ne1.yahoo.com with NNFMP;
+	30 Jul 2014 18:24:07 -0000
+X-Yahoo-Newman-Id: 465741.17095.bm@smtp222.mail.ne1.yahoo.com
+X-Yahoo-Newman-Property: ymail-3
+X-YMail-OSG: AXgkFq4VM1l6rx7T90oN12IXNvQptnkvJ1NWwHgHmWYSVlj
+	WGPdBxOjw23ehYBSjpEJIWPLndN.I0L8Yv6K_w6YJLmX3e32IawmR0A6WfP1
+	jSvSZddL62P3SqaYn2tdl7tINqj72guJSNT8Jf4byRi08_uYPjo9SWG1QuoJ
+	jYhezmU6nScNzGPxVHD82lbwi3vxoKtbIw8ilml9e8t7wpStoe7rT92L9ZeV
+	0zaJnCKdJnyHaOYjHlrE2wt9SG_XRwUhdFFVjQB.g8Jh3fQE6GnenRwAFOce
+	MJKZHAUw029ZBf6fqyVt.Pj8iXquvQXorInREI1IoQCWtP3Q55CgOF3vKS1N
+	reWUEbLN.vvLUrZQHPf2vGphWDxu8uekm9X3qwmUoaHcCTgwIRNE2gulJdsL
+	DoRskVlm4_Jf.60TUzCKOjoF1RVqQNfYXneDRvLpFJDB55SZL1S.z2IqR6Kp
+	vZO_IUSfLsNlh7a7rgppgsi7RRRjWjuqwvvTTBDfUUx6DsS7rYVth_Z2.qv5
+	UNZQCvGAhFWFAnxWgoMeJAQ3W7xhTBhyJZtm1mXYyDtWz3bQ4C.qTDGgxvdb
+	VnMgxHMGbSvm39SGUF6srw8NccZZSI.kh.EEUEjLwRTvrKd.TeNaNpx5gpcZ
+	Ptwqx.js1aMLaVmuxpM32Q9LF9j1YkgQxmaJnSFiRrCNUixR4rAVURL5Mx4l
+	3owUY3ad92RQs4tjVKR6h
+X-Yahoo-SMTP: Kas7GQyswBDCEaMpidAtUFWwfNJ1_FJM8Hc-
+Message-ID: <53D93847.8050306@perform3-d.com>
+Date: Wed, 30 Jul 2014 14:24:07 -0400
+From: Jeff Spindler <jeff@perform3-d.com>
+User-Agent: Postbox 3.0.11 (Windows/20140602)
 MIME-Version: 1.0
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - crashcourse.ca
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-X-MAG-OUTBOUND: ccj.redcondor.net@64.235.106.9/32
-Cc: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: why does dev manual, "Supported Board Support Packages", mention only meta-intel?
+To: yocto@yoctoproject.org
+X-Mailman-Approved-At: Thu, 31 Jul 2014 11:46:50 -0700
+Subject: Boost logging in Yocto 1.6
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -59,74 +66,80 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 31 Jul 2014 16:52:01 -0000
-Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-List-Received-Date: Wed, 30 Jul 2014 18:24:11 -0000
+Content-Type: multipart/alternative;
+	boundary="------------020901070000030305000806"
+
+--------------020901070000030305000806
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
+
+(Please forgive me if I'm not supposed to email to this address)
+
+I posted this on stackoverflow a little while ago, but got no response:  
+http://stackoverflow.com/questions/24655115/yocto-1-6-no-libboost-log-in-toolchain
 
 
-(SIDE NOTE: i'm being this picky since i want to use these manuals
-straight out as training material, so i want them to be precise and
-accurate.)
+I've installed Yocto 1.6 and run the bitbake to set up the toolchain, 
+following the tutorial written by Daiane Angolini. While I see most of 
+the boost libraries under $SDKTARGETSYSROOT/usr/lib, there seems to be 
+no libboost_log.a nor libboost_log_setup.a. I believe these were 
+introduced with Boost 1.55, and that Yocto 1.6 has moved to Boost 1.55. 
+Shouldn't they be there, or have I done something wrong?
 
-On Thu, 31 Jul 2014, Rifenbark, Scott M wrote:
+(my local.conf is also posted at the stackoverflow link above).
 
-> Yes - that is what I meant by fixing it up to be less-restrictive.
-> I need to find out some stuff on BSPs in general and then I will get
-> to it.
+Thanks...
 
-  looking at that entire section 2.2 in the dev manual ("Getting Set
-Up"), it might be worth stepping back and asking what that section is
-meant to accomplish -- one would think, listing the really basic stuff
-one needs to, say, build their first image.
-
-  with that in mind, the list in that section seems a bit odd in
-places, and a couple other notes about it.
-
-  first, "You should also have about 50 Gbytes of free disk space for
-building images" seems a bit, um, harsh. you can build an entire
-bootable qemuarm image in less than 16G, so scaring the reader by
-mentioning 50G seems slightly extreme.
-
-  next, given that first-time users are probably going to just go with
-the kernel provided and configured for their machine of choice, it's
-not clear that that section needs to get into checking out a kernel
-manually, or mentioning meta-yocto-kernel-extras. but that's just me.
-
-  finally, about BSPs, i'm not sure what that section needs to say at
-this point beyond, "depending on what MACHINE you're building for, you
-may need to manually check out the specific BSP layer for that
-machine," then just point the reader at the layers page.
-
-  it might be sufficient to say something like:
-
-  "in terms of BSPs, you will already have support for a number of
-machines. OE provides support for a number of QEMU images, while the
-yocto layer adds support for five 'reference' boards [LIST THEM].
-beyond that, you will need to locate and download the BSP layer for
-the machine you want."
-
-  if you truly want to give an example of downloading a BSP layer,
-pick a *simple* one -- i always use meta-raspberrypi since it is a
-single checkout that defines a single machine. with all due respect,
-using meta-intel as an example is probably the worst choice in that it
-is a single checkout that is a layer, with numerous sublayers as part
-of the checkout, and do you really want to get into that?
-
-  anyway, i would keep that entire section as simple as possible, and
-refer readers to the more advanced sections in other manuals.
-
-  movin' on ...
-
-rday
 
 -- 
+Jeff Spindler
+SpinArbor Software, LLC
 
-========================================================================
-Robert P. J. Day                                 Ottawa, Ontario, CANADA
-                        http://crashcourse.ca
+<http://www.getpostbox.com>
 
-Twitter:                                       http://twitter.com/rpjday
-LinkedIn:                               http://ca.linkedin.com/in/rpjday
-========================================================================
+--------------020901070000030305000806
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: 7bit
 
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1"></head><body
+ bgcolor="#FFFFFF" text="#000000">
+(Please forgive me if I'm not supposed to email to this address)<br>
+  <br>
+I posted this on stackoverflow a little while ago, but got no response:&nbsp;
+ 
+<a class="moz-txt-link-freetext" href="http://stackoverflow.com/questions/24655115/yocto-1-6-no-libboost-log-in-toolchain">http://stackoverflow.com/questions/24655115/yocto-1-6-no-libboost-log-in-toolchain</a><br>
+  <br>
+  <br>
+  <span><span style="color: rgb(0, 0, 0); font-family: Arial, 
+'Liberation Sans', 'DejaVu Sans', sans-serif; font-size: 
+13.714285850524902px; font-style: normal; font-variant: normal; 
+font-weight: normal; letter-spacing: normal; line-height: 
+17.804800033569336px; orphans: auto; text-align: left; text-indent: 0px;
+ text-transform: none; white-space: normal; widows: auto; word-spacing: 
+0px; -webkit-text-stroke-width: 0px; display: inline !important; float: 
+none; background-color: rgb(255, 255, 255);">I've installed Yocto 1.6 
+and run the bitbake to set up the toolchain, following the tutorial 
+written by Daiane Angolini. While I see most of the boost libraries 
+under $SDKTARGETSYSROOT/usr/lib, there seems to be no libboost_log.a nor
+ libboost_log_setup.a. I believe these were introduced with Boost 1.55, 
+and that Yocto 1.6 has moved to Boost 1.55. Shouldn't they be there, or 
+have I done something wrong?</span> <br>
+    <br>
+(my local.conf is also posted at the stackoverflow link above).<br>
+    <br>
+Thanks...<br>
+  </span><br>
+  <br>
+  <div class="moz-signature">-- <br>
+<div>Jeff Spindler<br>
+SpinArbor Software, LLC<span style="text-decoration: underline;"><br>
+    <br>
+  </span><a href="http://www.getpostbox.com"><span style="color: rgb(51,
+ 102, 153);"></span></a></div>
+  </div>
+</body>
+</html>
 
-
+--------------020901070000030305000806--
