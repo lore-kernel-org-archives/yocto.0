@@ -1,53 +1,49 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <scott.m.rifenbark@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 69BB8E00547; Wed, 30 Jul 2014 23:35:57 -0700 (PDT)
+	id 816BCE00547; Wed, 30 Jul 2014 23:39:55 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (raj.khem[at]gmail.com)
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [134.134.136.20 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.213.181 listed in list.dnswl.org]
-Received: from mail-ig0-f181.google.com (mail-ig0-f181.google.com
-	[209.85.213.181])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7A8A6E0043F
-	for <yocto@yoctoproject.org>; Wed, 30 Jul 2014 23:35:55 -0700 (PDT)
-Received: by mail-ig0-f181.google.com with SMTP id h3so4396176igd.2
-	for <yocto@yoctoproject.org>; Wed, 30 Jul 2014 23:35:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-type;
-	bh=OtuOmV66WulmYE/RDFbmekcrzmosdOPCoT6VxN8qmMc=;
-	b=ZnHT5mCS9CxEgeTnIPALhcFV2g7NJZ5hJX66HV/yjwhPeTIlHsE/qc9WYnvWtExBsG
-	OL3yh9NIXDDj113B1s6WPXu1frhJUtt5Jib6QUNTj9diQzQWUGvx1/xMg+CqIWGyedn6
-	UI62Znh7M1GDbO+5PSBoV1HVfVmokGlVOcNX77Cf5NGODBOTUTJgRDDvfiVGPU2tYGlb
-	LiKaD9v5w64U97ya/3EvCSj0fgwteW07FnroPj1f89pVIc9tW/7BGtch2jnV3JXESK34
-	iAMPczKk6g2M8DE1Z/DpUkDEBAlvK9yXxoBwtV8QuERWpjnsrFzW6ZoGNubSjzv2LRaD
-	WMpw==
-X-Received: by 10.50.25.71 with SMTP id a7mr60101838igg.17.1406788555499; Wed,
-	30 Jul 2014 23:35:55 -0700 (PDT)
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E7158E0043F
+	for <yocto@yoctoproject.org>; Wed, 30 Jul 2014 23:39:52 -0700 (PDT)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga101.jf.intel.com with ESMTP; 30 Jul 2014 23:39:39 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.01,770,1400050800"; d="scan'208";a="551681589"
+Received: from orsmsx110.amr.corp.intel.com ([10.22.240.8])
+	by orsmga001.jf.intel.com with ESMTP; 30 Jul 2014 23:39:39 -0700
+Received: from orsmsx101.amr.corp.intel.com ([169.254.8.229]) by
+	ORSMSX110.amr.corp.intel.com ([169.254.3.162]) with mapi id
+	14.03.0123.003; Wed, 30 Jul 2014 23:39:38 -0700
+From: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
+To: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>, Paul Eggleton
+	<paul.eggleton@linux.intel.com>, =?iso-8859-1?Q?Tiemo_Kr=FCger?=
+	<tk@mycable.de>
+Thread-Topic: [yocto] Yocto Project Manual
+Thread-Index: Ac+rF64qlTV3hp8rRhG+a6Og6A35tAAPs5AAAA2yudAAPx2JoA==
+Date: Thu, 31 Jul 2014 06:39:38 +0000
+Message-ID: <41DEA4B02DBDEF40A0F3B6D0DDB1237983FD15E2@ORSMSX101.amr.corp.intel.com>
+References: <2064433273.102074.1406627065552.JavaMail.zimbra@mycable.de>
+	<1367058546.102085.1406627402694.JavaMail.zimbra@mycable.de>
+	<41DEA4B02DBDEF40A0F3B6D0DDB1237983FC7C6B@ORSMSX106.amr.corp.intel.com>
+	<2822765.ysjF7qWtfi@peggleto-mobl5.ger.corp.intel.com>
+	<41DEA4B02DBDEF40A0F3B6D0DDB1237983FC8CA6@ORSMSX106.amr.corp.intel.com>
+In-Reply-To: <41DEA4B02DBDEF40A0F3B6D0DDB1237983FC8CA6@ORSMSX106.amr.corp.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.139]
 MIME-Version: 1.0
-Received: by 10.50.78.105 with HTTP; Wed, 30 Jul 2014 23:35:25 -0700 (PDT)
-In-Reply-To: <41DEA4B02DBDEF40A0F3B6D0DDB1237983FD15B5@ORSMSX101.amr.corp.intel.com>
-References: <alpine.LFD.2.11.1407301522260.30037@localhost>
-	<41DEA4B02DBDEF40A0F3B6D0DDB1237983FD15B5@ORSMSX101.amr.corp.intel.com>
-From: Khem Raj <raj.khem@gmail.com>
-Date: Wed, 30 Jul 2014 23:35:25 -0700
-Message-ID: <CAMKF1sqyPbb1-oe23zZ0Rpm31Oxn9pz+yPDDsD_j10h4h2K1FA@mail.gmail.com>
-To: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
-Cc: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: why does dev manual, "Supported Board Support Packages", mention only meta-intel?
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Yocto Project Manual
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -59,12 +55,106 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 31 Jul 2014 06:35:57 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Thu, 31 Jul 2014 06:39:55 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 
-On Wed, Jul 30, 2014 at 10:50 PM, Rifenbark, Scott M
-<scott.m.rifenbark@intel.com> wrote:
-> The point of the section is to show how to set up the meta-intel repository
+Hi,=20
 
-I think it should cover the general case.
+I have modified this paragraph a bit to deal with the best way to get these=
+ checksums.  See http://www.yoctoproject.org/docs/1.7/dev-manual/dev-manual=
+.html#new-recipe-fetching-code.  If there are further concerns just let me =
+know and I can address them.
+
+Scott
+
+>-----Original Message-----
+>From: yocto-bounces@yoctoproject.org [mailto:yocto-
+>bounces@yoctoproject.org] On Behalf Of Rifenbark, Scott M
+>Sent: Tuesday, July 29, 2014 4:25 AM
+>To: Paul Eggleton; Tiemo Kr=FCger
+>Cc: yocto@yoctoproject.org
+>Subject: Re: [yocto] Yocto Project Manual
+>
+>Paul,
+>
+>This sounds reasonable.  I will modify based on that practice.
+>
+>Thanks,
+>Scott
+>
+>>-----Original Message-----
+>>From: Paul Eggleton [mailto:paul.eggleton@linux.intel.com]
+>>Sent: Tuesday, July 29, 2014 3:57 AM
+>>To: Rifenbark, Scott M; Tiemo Kr=FCger
+>>Cc: yocto@yoctoproject.org
+>>Subject: Re: [yocto] Yocto Project Manual
+>>
+>>On Tuesday 29 July 2014 10:27:23 Rifenbark, Scott M wrote:
+>>> Thanks for noting this and contacting me.  I am reposting to the
+>>> yocto@yoctoproject.org group for additional input.  I will get
+>>> modifications into the manual.
+>>>
+>>> Best,
+>>> Scott
+>>>
+>>>
+>>> >-----Original Message-----
+>>> >From: Tiemo Kr=FCger [mailto:tk@mycable.de]
+>>> >Sent: Tuesday, July 29, 2014 2:50 AM
+>>> >To: Rifenbark, Scott M
+>>> >Subject: Yocto Project Manual
+>>> >
+>>> >Hello Scott,
+>>> >
+>>> >I just read a little bit in this doc:
+>>> >
+>>> >http://www.yoctoproject.org/docs/1.6/dev-manual/dev-manual.html#new-
+>>> >>
+>>> >>recipe-writing-a-new-recipe
+>>> >
+>>> >and since your eMail is mentioned on top I contact you regarding the
+>>> >below paragraph in chapter 5.3.5
+>>> >
+>>> >"To find these checksums, you can comment the statements out and
+>>> >then attempt to build the software. The build will produce an error
+>>> >for each missing checksum and as part of the error message provide
+>>> >the correct checksum string. Once you have the correct checksums,
+>>> >simply copy them into your recipe for a subsequent build."
+>>> >
+>>> >We here really think this is the wrong way to create the checksums
+>>> >for a recipe since downloading them and then creating the checksum
+>>> >doesn't protect you against man in the middle attacks.
+>>
+>>From that point onwards it does, but not on the initial build when
+>>creating the recipe, you are correct. If the upstream website does
+>>provide checksums or GPG signatures (and quite a lot don't) then you
+>>should use those to verify the source that was fetched.
+>>
+>>> >The text should be modified
+>>> >that the checksums must at least be checked against the checksums
+>>> >provided by the original website even if this is still not
+>>> >completely safe. And simple command line tools like md5sum and
+>>> >sha256sum shall be
+>>mentioned.
+>>
+>>I think the simplest thing is to just add a note which says that you
+>>should verify what was fetched against whatever signatures are provided
+>>by the upstream (if any). You can still use the build-fail method we
+>>currently describe as well so that you get the exact lines you need to
+>>put in the recipe rather than having to type those out each time.
+>>
+>>Cheers,
+>>Paul
+>>
+>>--
+>>
+>>Paul Eggleton
+>>Intel Open Source Technology Centre
+>--
+>_______________________________________________
+>yocto mailing list
+>yocto@yoctoproject.org
+>https://lists.yoctoproject.org/listinfo/yocto
 
