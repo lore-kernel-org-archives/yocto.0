@@ -1,46 +1,46 @@
 Return-Path: <akuster@mvista.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 65880E0056A; Thu, 31 Jul 2014 16:44:45 -0700 (PDT)
+	id 57CA8E007DC; Thu, 31 Jul 2014 16:45:14 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [209.85.220.53 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail-pa0-f53.google.com (mail-pa0-f53.google.com
-	[209.85.220.53])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2F180E004E0
-	for <yocto@yoctoproject.org>; Thu, 31 Jul 2014 16:44:42 -0700 (PDT)
-Received: by mail-pa0-f53.google.com with SMTP id rd3so4587139pab.40
-	for <yocto@yoctoproject.org>; Thu, 31 Jul 2014 16:44:41 -0700 (PDT)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.192.180 listed in list.dnswl.org]
+Received: from mail-pd0-f180.google.com (mail-pd0-f180.google.com
+	[209.85.192.180])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 84CD5E0056A
+	for <yocto@yoctoproject.org>; Thu, 31 Jul 2014 16:45:08 -0700 (PDT)
+Received: by mail-pd0-f180.google.com with SMTP id y13so4406504pdi.11
+	for <yocto@yoctoproject.org>; Thu, 31 Jul 2014 16:45:08 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
 	h=x-gm-message-state:from:to:cc:subject:date:message-id;
-	bh=hR+/zYP/iSi5+fj2BpBI3ZXsSmjbMp1bwN6TgmsFEvE=;
-	b=DzWsWaZ/QwcuTxa4e376MIZ8HGJeWpTe1nwGqWws3U5wiEqarfzlbXLaMQwhdFuMIO
-	3BoY6WgTh7R76OYDYvj0ssp6r2LSlBnKy8/DSaOYRCjCOATnN03GjDWt8M60CnqZ22CO
-	u5W5K9ytOGuKscmT4B/5K51Z6AmpAEbybEzP0XE7zVcFJfULjcjzy2mZPc9vVxnD0q81
-	uM+I4Sd2KYhAgdhAaVFd/wTXmmnXv9R/crKwzSQlAc2MVaLtncsqoceOtFKoIbLUOeoL
-	YsfswSPgXrPNwhv4qa6JJ7ZWt2u/HrmGMkq9y7BlW4P4C26cdjQHGRT2Xx1gAE3hV7/Z
-	rBuw==
-X-Gm-Message-State: ALoCoQkQFSVwl8DvDMJyAv97TLuJ9wfm9x7KWeX98TNKFXyn74j8buV3xgg/N10m928wFWxMxfQG
-X-Received: by 10.68.57.165 with SMTP id j5mr1616191pbq.147.1406850281207;
-	Thu, 31 Jul 2014 16:44:41 -0700 (PDT)
+	bh=2ojQ6gAN0JfcLDyih1Qk02O12WieMqCUrFW/cMlzZkU=;
+	b=iHF4VbpLdWVYdkpRSqshvig7CeR50Nkys++NJXMsKnrmbqPZ7pjHqHD+Map18AUBFA
+	WjsanffYMz5uW8MmfM53awZyJz/+Z1goeCD/s7Ap7J6waNelvX/FQBZfE6yk82qjw4kU
+	AUcaoWxN89EGOw9KSBwjJHkV1b4s/YTHqw+ksTJEgSfaqHq/m2FuETzSDvsMhWe1qguG
+	UU7VxrTTTmatZ5+hKIr4Y27oWFAbqL4Ccd1QIta0Ej/gJM1Lrz7MNrDvSzItKff22/yt
+	O+nyxYyeb9kZcZd4Ee3YMn965C2KLVYIuaMkvFjOdWUNSR7fzqTCCVCIytiMw4qfCEwU
+	JQ1A==
+X-Gm-Message-State: ALoCoQnITjRu2JKaOc+xZAbmVX8LoHM8Nsffh85gw1t32UMRg+Rtqezo8pKePaHmS4qW/+0+QCPF
+X-Received: by 10.68.200.101 with SMTP id jr5mr1664823pbc.36.1406850308079;
+	Thu, 31 Jul 2014 16:45:08 -0700 (PDT)
 Received: from Pahoa2.mvista.com (64.2.3.195.ptr.us.xo.net. [64.2.3.195])
 	by mx.google.com with ESMTPSA id
-	fx13sm1817856pdb.64.2014.07.31.16.44.40 for <multiple recipients>
+	gn10sm6692482pbc.45.2014.07.31.16.45.07 for <multiple recipients>
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-	Thu, 31 Jul 2014 16:44:40 -0700 (PDT)
+	Thu, 31 Jul 2014 16:45:07 -0700 (PDT)
 From: Armin Kuster <akuster@mvista.com>
 To: yocto@yoctoproject.org
-Date: Thu, 31 Jul 2014 16:44:38 -0700
-Message-Id: <1406850278-28026-1-git-send-email-akuster@mvista.com>
+Date: Thu, 31 Jul 2014 16:45:06 -0700
+Message-Id: <1406850306-28069-1-git-send-email-akuster@mvista.com>
 X-Mailer: git-send-email 1.9.1
-Subject: [meta-security][PATCH] toyomo: Add kconfig
+Subject: [meta-security][PATCH] toyomo: ccs-tools
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -52,54 +52,84 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 31 Jul 2014 23:44:45 -0000
+X-List-Received-Date: Thu, 31 Jul 2014 23:45:14 -0000
 
-Add kernel config to enable toyomo
+Add userland support program ccs-tools
 
 Signed-off-by: Armin Kuster <akuster@mvista.com>
 ---
- recipes-kernel/linux/linux-yocto/tomoyo.cfg    | 8 ++++++++
- recipes-kernel/linux/linux-yocto/tomoyo.scc    | 4 ++++
- recipes-kernel/linux/linux-yocto_3.14.bbappend | 4 ++++
- 3 files changed, 16 insertions(+)
- create mode 100644 recipes-kernel/linux/linux-yocto/tomoyo.cfg
- create mode 100644 recipes-kernel/linux/linux-yocto/tomoyo.scc
- create mode 100644 recipes-kernel/linux/linux-yocto_3.14.bbappend
+ recipes-security/ccs-tools/README             | 12 ++++++++
+ recipes-security/ccs-tools/ccs-tools_1.8.3.bb | 42 +++++++++++++++++++++++++++
+ 2 files changed, 54 insertions(+)
+ create mode 100644 recipes-security/ccs-tools/README
+ create mode 100644 recipes-security/ccs-tools/ccs-tools_1.8.3.bb
 
-diff --git a/recipes-kernel/linux/linux-yocto/tomoyo.cfg b/recipes-kernel/linux/linux-yocto/tomoyo.cfg
+diff --git a/recipes-security/ccs-tools/README b/recipes-security/ccs-tools/README
 new file mode 100644
-index 0000000..9fb8228
+index 0000000..89d2d00
 --- /dev/null
-+++ b/recipes-kernel/linux/linux-yocto/tomoyo.cfg
-@@ -0,0 +1,8 @@
-+CONFIG_SECURITY_TOMOYO=y
-+CONFIG_SECURITY_TOMOYO_MAX_ACCEPT_ENTRY=2048
-+CONFIG_SECURITY_TOMOYO_MAX_AUDIT_LOG=1024
-+CONFIG_SECURITY_TOMOYO_POLICY_LOADER="/sbin/tomoyo-init"
-+CONFIG_SECURITY_TOMOYO_ACTIVATION_TRIGGER="/sbin/init"
-+CONFIG_DEFAULT_SECURITY_TOMOYO=y
-+CONFIG_DEFAULT_SECURITY="tomoyo"
++++ b/recipes-security/ccs-tools/README
+@@ -0,0 +1,12 @@
++Documentation:
++http://tomoyo.sourceforge.jp/1.8/index.html.en
 +
-diff --git a/recipes-kernel/linux/linux-yocto/tomoyo.scc b/recipes-kernel/linux/linux-yocto/tomoyo.scc
++
++To start via command line add:
++
++" security=tomoyo TOMOYO_trigger=/usr/lib/systemd/systemd"
++
++To initialize:
++/usr/lib/ccs-tools/init_policy
++
++DISTRO_FEATURES_append = " tomoyo"
+diff --git a/recipes-security/ccs-tools/ccs-tools_1.8.3.bb b/recipes-security/ccs-tools/ccs-tools_1.8.3.bb
 new file mode 100644
-index 0000000..9080934
+index 0000000..939a5d7
 --- /dev/null
-+++ b/recipes-kernel/linux/linux-yocto/tomoyo.scc
-@@ -0,0 +1,4 @@
-+define KFEATURE_DESCRIPTION "Toyomo Kernel Support"
-+define KFEATURE_COMPATIBILITY arch
++++ b/recipes-security/ccs-tools/ccs-tools_1.8.3.bb
+@@ -0,0 +1,42 @@
++SUMMARY = "Tomoyo"
++DESCRIPTION = "TOMOYO Linux is a Mandatory Access Control (MAC) implementation for Linux that can be used to increase the security of a system, while also being useful purely as a system analysis tool."
++SECTION = "security"
++LICENSE = "GPL-2.0"
++LIC_FILES_CHKSUM = "file://README.ccs;md5=5b80632c6a2a3b7fa92ea46eff15bee9"
 +
-+kconf non-hardware toyomo.cfg
-diff --git a/recipes-kernel/linux/linux-yocto_3.14.bbappend b/recipes-kernel/linux/linux-yocto_3.14.bbappend
-new file mode 100644
-index 0000000..0c742c1
---- /dev/null
-+++ b/recipes-kernel/linux/linux-yocto_3.14.bbappend
-@@ -0,0 +1,4 @@
-+FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
++DEPENDS = "ncurses"
 +
-+# Toyomo kernel support
-+SRC_URI += "${@base_contains('DISTRO_FEATURES', 'tomoyo', ' file://tomoyo.cfg', '', d)}"
++SRC_URI = "http://osdn.dl.sourceforge.jp/tomoyo/49693/ccs-tools-1.8.3-20130406.tar.gz"
++
++SRC_URI[md5sum] = "ffff535584cdf9ae28b85061c32e5618"
++SRC_URI[sha256sum] = "1e4129b59cd7fdb963962af7f2cccf4a66c77a4b0948f67320b569aaf6585fcf"
++
++S = "${WORKDIR}/${PN}"
++do_make(){
++    oe_runmake USRLIBDIR=${libdir} all
++    cd ${S}/kernel_test
++    oe_runmake  all
++}
++
++do_install(){
++    oe_runmake INSTALLDIR=${D}  USRLIBDIR=${libdir} install
++}
++
++PACKAGE="${PN} ${PN}-dbg"
++
++FILES_${PN} = "\
++    ${sbindir}/* \
++    ${base_sbindir}/* \
++    ${libdir}/* \
++    ${mandir}/man8/* \
++"
++
++FILES_${PN}-dbg = "\
++    ${base_sbindir}/.debug/* \
++    ${sbindir}/.debug/* \
++    ${libdir}/.debug/* \
++    ${libdir}/ccs/.debug/* \
++    /usr/src/debug/* \
++"
++
++
 -- 
 1.9.1
 
