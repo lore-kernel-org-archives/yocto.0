@@ -1,55 +1,51 @@
-Return-Path: <bobsummerwill@gmail.com>
+Return-Path: <rpjday@crashcourse.ca>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 271EEE0056A; Thu, 31 Jul 2014 08:40:54 -0700 (PDT)
+	id 0A971E00547; Thu, 31 Jul 2014 12:19:30 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [209.85.220.171 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-vc0-f171.google.com (mail-vc0-f171.google.com
-	[209.85.220.171])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CAA6EE003FA
-	for <yocto@yoctoproject.org>; Thu, 31 Jul 2014 08:40:44 -0700 (PDT)
-Received: by mail-vc0-f171.google.com with SMTP id hq11so4505922vcb.2
-	for <yocto@yoctoproject.org>; Thu, 31 Jul 2014 08:40:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:reply-to:sender:in-reply-to:references:date:message-id
-	:subject:from:to:cc:content-type;
-	bh=6aIf0jIiCzDtxcJxhL/jyQXFYlyF2ODedU3cHmZGnA4=;
-	b=wdafzLe5cMeygKAIr3phk0MPEfI5HNzA+Mqh6hJoJjCstfVWb6CndFEXOrxsOpptCh
-	eNQkuAri79Akz0UR+Q/MpFcvrDeZ9BZPmMNkXR0veQ92/l+huWpzCLLfB9Zpfu+p97Rl
-	hL4Xw4ROtSeEy8mt/6E2IiqupJ/G7jZ1QQ1ZpIeTyxepbUovKFy03+U0AH2Idf9bn6eN
-	apWYE1juR27EiVV8FJ3xPT5Pv9mwNgXhIWd9GuIQ39rZccxhjmOoohHPxbnGZTbOuqTW
-	AmUXOnpmXrFsCP1PcQxXb17y06O7CmkQepRlNsPLfN9QxGZwYzwdZamX7yt+BrkBJsbl
-	evag==
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [208.80.206.84 listed in list.dnswl.org]
+Received: from smtp684.redcondor.net (smtp684.redcondor.net [208.80.206.84])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 12E47E003FA
+	for <yocto@yoctoproject.org>; Thu, 31 Jul 2014 12:19:25 -0700 (PDT)
+Received: from astoria.ccjclearline.com ([64.235.106.9])
+	by smtp684.redcondor.net ({700db0a8-6fb7-4c8b-9b2a-6812225182d8})
+	via TCP (outbound) with ESMTPS id 20140731191918826
+	for <yocto@yoctoproject.org>; Thu, 31 Jul 2014 19:19:18 +0000
+X-RC-FROM: <rpjday@crashcourse.ca>
+X-RC-RCPT: <yocto@yoctoproject.org>
+Received: from [99.240.204.5] (port=57974 helo=crashcourse.ca)
+	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES128-SHA:128)
+	(Exim 4.80) (envelope-from <rpjday@crashcourse.ca>)
+	id 1XCvsf-0007On-Ob
+	for yocto@yoctoproject.org; Thu, 31 Jul 2014 15:19:13 -0400
+Date: Thu, 31 Jul 2014 15:19:09 -0400 (EDT)
+From: "Robert P. J. Day" <rpjday@crashcourse.ca>
+X-X-Sender: rpjday@localhost
+To: Yocto discussion list <yocto@yoctoproject.org>
+Message-ID: <alpine.LFD.2.11.1407311517150.16024@localhost>
+User-Agent: Alpine 2.11 (LFD 23 2013-08-11)
 MIME-Version: 1.0
-X-Received: by 10.53.7.204 with SMTP id de12mr15561592vdd.41.1406821241976;
-	Thu, 31 Jul 2014 08:40:41 -0700 (PDT)
-Sender: bobsummerwill@gmail.com
-Received: by 10.58.118.12 with HTTP; Thu, 31 Jul 2014 08:40:41 -0700 (PDT)
-In-Reply-To: <53DA58C9.50705@open.eurogiciel.org>
-References: <53DA58C9.50705@open.eurogiciel.org>
-Date: Thu, 31 Jul 2014 08:40:41 -0700
-X-Google-Sender-Auth: 88iku1uzK_Ro6pa4wPEP-m22VAM
-Message-ID: <CAFTheUHO=LX+wXKNQt4AdWnNiGKhjFymx-TDOoPYN0ROx5h2ew@mail.gmail.com>
-From: Bob Summerwill <bob@summerwill.net>
-To: ronan <ronan.lemartret@open.eurogiciel.org>
-X-Mailman-Approved-At: Thu, 31 Jul 2014 11:46:50 -0700
-Cc: yocto@yoctoproject.org, general@lists.tizen.org
-Subject: Re: [Tizen General] Build Tizen with yocto work-flow
+X-AntiAbuse: This header was added to track abuse,
+	please include it with any abuse report
+X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - crashcourse.ca
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+X-MAG-OUTBOUND: ccj.redcondor.net@64.235.106.9/32
+Subject: [yocto-docs][PATCH] dev-manual: Numerous minor grammar fixes to Chapter 3.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
-Reply-To: bob@summerwill.net
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -58,112 +54,158 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 31 Jul 2014 15:40:54 -0000
-Content-Type: multipart/alternative; boundary=001a1133f016640abb04ff7f18d8
+X-List-Received-Date: Thu, 31 Jul 2014 19:19:30 -0000
+Content-Type: MULTIPART/MIXED; BOUNDARY="8323328-1274105867-1406834353=:16024"
 
---001a1133f016640abb04ff7f18d8
-Content-Type: text/plain; charset=ISO-8859-1
-
-Congratulations, Ronan!
-
-
-Cheers,
-Bob
+--8323328-1274105867-1406834353=:16024
+Content-Type: TEXT/PLAIN; charset=UTF-8
+Content-Transfer-Encoding: 8BIT
 
 
-On Thu, Jul 31, 2014 at 7:55 AM, ronan <ronan.lemartret@open.eurogiciel.org>
-wrote:
+Signed-off-by: Robert P. J. Day <rpjday@crashcourse.ca>
 
-> Hi all,
-> presently we are working on a project "Tizen on Yocto" that provides an
-> alternative to gbs tools or OBS.
->     - https://wiki.tizen.org/wiki/Tizen_on_yocto
->
-> We are glad to announce the first release 0.1 of our project.
->
-> The main features as the same found in Tizen common:
-> - Smack security
-> - Pure wayland environment, with tz-launcher
-> - Crosswalk
-> - Multi-user support
-> - ...
->
-> We would like to share this project with Tizen and Yocto communities.
->
-> If you are interested to build Tizen with yocto, just follow this link:
->     - https://wiki.tizen.org/wiki/Build_Tizen_with_Yocto
->
-> If you have any question or issue feel free to contact us, on the Tizen
-> mailing list (dev@lists.tizen.org) .
->
-> Here a link to the yocto project:
->     - https://www.yoctoproject.org/
->
->
-> Regards,
-> Ronan
-> _______________________________________________
-> General mailing list
-> General@lists.tizen.org
-> https://lists.tizen.org/listinfo/general
->
+---
 
+diff --git a/documentation/dev-manual/dev-manual-newbie.xml b/documentation/dev-manual/dev-manual-newbie.xml
+index 0f7708e..f5f23f4 100644
+--- a/documentation/dev-manual/dev-manual-newbie.xml
++++ b/documentation/dev-manual/dev-manual-newbie.xml
+@@ -41,7 +41,7 @@
+     </para>
 
+     <para>
+-        A benchmark example of an open source project is the Linux Kernel, which was initially conceived
++        A benchmark example of an open source project is the Linux kernel, which was initially conceived
+         and created by Finnish computer science student Linus Torvalds in 1991.
+         Conversely, a good example of a non-open source project is the
+         <trademark class='registered'>Windows</trademark> family of operating
+@@ -443,7 +443,7 @@
+                     </para></listitem>
+                 <listitem><para>
+                     Be sure to always work in matching branches for both
+-                    the <filename>meta-intel</filename> repository and the
++                    the selected BSP repository and the
+                     <link linkend='source-directory'>Source Directory</link>
+                     (i.e. <filename>poky</filename>) repository.
+                     For example, if you have checked out the "master" branch
+@@ -508,7 +508,8 @@
+                 The filenames can differ only in the file type suffix used (e.g.
+                 <filename>formfactor_0.0.bb</filename> and <filename>formfactor_0.0.bbappend</filename>).
+                 </para>
+-                <para>Information in append files overrides the information in the similarly-named recipe file.
++                <para>Information in append files extends or overrides the
++                information in the similarly-named recipe file.
+                 For an example of an append file in use, see the
+                 "<link linkend='using-bbappend-files'>Using .bbappend Files</link>" section.
+                 <note>
+@@ -669,7 +670,7 @@
+                 chapter in the Yocto Project Reference Manual.</para></listitem>
+             <listitem><para id='layer'><emphasis>Layer:</emphasis> A collection of recipes representing the core,
+                 a BSP, or an application stack.
+-                For a discussion on BSP Layers, see the
++                For a discussion specifically on BSP Layers, see the
+                 "<ulink url='&YOCTO_DOCS_BSP_URL;#bsp-layers'>BSP Layers</ulink>"
+                 section in the Yocto Project Board Support Packages (BSP)
+                 Developer's Guide.</para></listitem>
+@@ -699,7 +700,7 @@
+                 <para>It is worth noting that the term "package" can, in general, have subtle
+                 meanings.  For example, the packages referred to in the
+                 "<ulink url='&YOCTO_DOCS_QS_URL;#packages'>The Packages</ulink>" section are
+-                compiled binaries that when installed add functionality to your Linux
++                compiled binaries that, when installed, add functionality to your Linux
+                 distribution.</para>
+                 <para>Another point worth noting is that historically within the Yocto Project,
+                 recipes were referred to as packages - thus, the existence of several BitBake
+@@ -733,12 +734,11 @@
+                 the Yocto Project.</para></listitem>
+             <listitem><para><emphasis>Recipe:</emphasis>
+                 A set of instructions for building packages.
+-                A recipe describes where you get source code and which patches
+-                to apply.
+-                Recipes describe dependencies for libraries or for other
+-                recipes, and they also contain configuration and compilation
+-                options.
+-                Recipes contain the logical unit of execution, the software
++                A recipe describes where you get source code, which patches
++                to apply, how to configure the source, how to compile it and so on.
++                Recipes also describe dependencies for libraries or for other
++                recipes.
++                Recipes represent the logical unit of execution, the software
+                 to build, the images to build, and use the
+                 <filename>.bb</filename> file extension.
+                 </para></listitem>
+@@ -778,7 +778,7 @@
+                 folder is also named "poky".</para>
+
+                 <para>While it is not recommended that you use tarball expansion
+-                to setup the Source Directory, if you do, the top-level
++                to set up the Source Directory, if you do, the top-level
+                 directory name of the Source Directory is derived from the
+                 Yocto Project release tarball.
+                 For example, downloading and unpacking
+@@ -844,7 +844,7 @@
+         license is distributed with that software.
+         MIT is also compatible with the GNU General Public License (GPL).
+         Patches to the Yocto Project follow the upstream licensing scheme.
+-        You can find information on the MIT license at
++        You can find information on the MIT license
+         <ulink url='http://www.opensource.org/licenses/mit-license.php'>here</ulink>.
+         You can find information on the GNU GPL <ulink url='http://www.opensource.org/licenses/LGPL-3.0'>
+         here</ulink>.
+@@ -976,7 +976,7 @@
+             Each of these branches represents a specific area of development.
+             The <filename>master</filename> branch represents the current or most recent
+             development.
+-            All other branches represent off-shoots of the <filename>master</filename>
++            All other branches represent offshoots of the <filename>master</filename>
+             branch.
+         </para>
+
+@@ -1029,7 +1029,7 @@
+
+         <para>
+             Some key tags are <filename>dylan-9.0.0</filename>,
+-            <filename>dora-10.0.0</filename>,
++            <filename>dora-10.0.0</filename>, <filename>daisy-11.0.0</filename>,
+             and <filename>&DISTRO_NAME;-&POKYVERSION;</filename>.
+             These tags represent Yocto Project releases.
+         </para>
+@@ -1175,10 +1175,10 @@
+         For the Yocto Project, a key individual called the "maintainer" is responsible for the "master"
+         branch of a given Git repository.
+         The "master" branch is the “upstream” repository where the final builds of the project occur.
+-        The maintainer is responsible for allowing changes in from other developers and for
++        The maintainer is responsible for accepting changes from other developers and for
+         organizing the underlying branch structure to reflect release strategies and so forth.
+-        <note>For information on finding out who is responsible (maintains)
+-            for a particular area of code, see the
++        <note>For information on finding out who is responsible for (maintains)
++            a particular area of code, see the
+             "<link linkend='how-to-submit-a-change'>How to Submit a Change</link>"
+             section.
+         </note>
+@@ -1332,9 +1332,9 @@
+                 a bug.</para></listitem>
+             <listitem><para>When submitting a new bug, be sure to choose the appropriate
+                 Classification, Product, and Component for which the issue was found.
+-                Defects for the Yocto Project fall into one of six classifications:  Yocto Project
+-                Components, Infrastructure, Build System &amp; Metadata, Documentation,
+-                QA/Testing, and Runtime.
++                Defects for the Yocto Project fall into one of seven classifications:
++                Yocto Project Components, Infrastructure, Build System &amp; Metadata,
++                Documentation, QA/Testing, Runtime and Hardware.
+                 Each of these Classifications break down into multiple Products and, in some
+                 cases, multiple Components.</para></listitem>
+             <listitem><para>Use the bug form to choose the correct Hardware and Architecture
 
 -- 
-bob@summerwill.net
 
---001a1133f016640abb04ff7f18d8
-Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
+========================================================================
+Robert P. J. Day                                 Ottawa, Ontario, CANADA
+                        http://crashcourse.ca
 
-<div dir=3D"ltr">Congratulations, Ronan!<div><br></div><div><br>Cheers,</di=
-v><div>Bob</div></div><div class=3D"gmail_extra"><br><br><div class=3D"gmai=
-l_quote">On Thu, Jul 31, 2014 at 7:55 AM, ronan <span dir=3D"ltr">&lt;<a hr=
-ef=3D"mailto:ronan.lemartret@open.eurogiciel.org" target=3D"_blank">ronan.l=
-emartret@open.eurogiciel.org</a>&gt;</span> wrote:<br>
-<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
-x #ccc solid;padding-left:1ex">Hi all,<br>
-presently we are working on a project &quot;Tizen on Yocto&quot; that provi=
-des an alternative to gbs tools or OBS.<br>
-=A0 =A0 - <a href=3D"https://wiki.tizen.org/wiki/Tizen_on_yocto" target=3D"=
-_blank">https://wiki.tizen.org/wiki/<u></u>Tizen_on_yocto</a><br>
-<br>
-We are glad to announce the first release 0.1 of our project.<br>
-<br>
-The main features as the same found in Tizen common:<br>
-- Smack security<br>
-- Pure wayland environment, with tz-launcher<br>
-- Crosswalk<br>
-- Multi-user support<br>
-- ...<br>
-<br>
-We would like to share this project with Tizen and Yocto communities.<br>
-<br>
-If you are interested to build Tizen with yocto, just follow this link:<br>
-=A0 =A0 - <a href=3D"https://wiki.tizen.org/wiki/Build_Tizen_with_Yocto" ta=
-rget=3D"_blank">https://wiki.tizen.org/wiki/<u></u>Build_Tizen_with_Yocto</=
-a><br>
-<br>
-If you have any question or issue feel free to contact us, on the Tizen mai=
-ling list (<a href=3D"mailto:dev@lists.tizen.org" target=3D"_blank">dev@lis=
-ts.tizen.org</a>) .<br>
-<br>
-Here a link to the yocto project:<br>
-=A0 =A0 - <a href=3D"https://www.yoctoproject.org/" target=3D"_blank">https=
-://www.yoctoproject.org/</a><br>
-<br>
-<br>
-Regards,<br>
-Ronan<br>
-______________________________<u></u>_________________<br>
-General mailing list<br>
-<a href=3D"mailto:General@lists.tizen.org" target=3D"_blank">General@lists.=
-tizen.org</a><br>
-<a href=3D"https://lists.tizen.org/listinfo/general" target=3D"_blank">http=
-s://lists.tizen.org/<u></u>listinfo/general</a><br>
-</blockquote></div><br><br clear=3D"all"><div><br></div>-- <br><a href=3D"m=
-ailto:bob@summerwill.net">bob@summerwill.net</a><br><br>
-</div>
+Twitter:                                       http://twitter.com/rpjday
+LinkedIn:                               http://ca.linkedin.com/in/rpjday
+========================================================================
 
---001a1133f016640abb04ff7f18d8--
+--8323328-1274105867-1406834353=:16024--
