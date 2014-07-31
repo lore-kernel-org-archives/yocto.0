@@ -1,34 +1,46 @@
-Return-Path: <mark.hatle@windriver.com>
+Return-Path: <scott.m.rifenbark@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 4F2BCE00547; Wed, 30 Jul 2014 18:09:10 -0700 (PDT)
+	id 43B25E00547; Wed, 30 Jul 2014 22:41:38 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
 	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [147.11.146.13 listed in list.dnswl.org]
-Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 06FEBE0043F
-	for <yocto@yoctoproject.org>; Wed, 30 Jul 2014 18:08:58 -0700 (PDT)
-Received: from ALA-HCB.corp.ad.wrs.com (ala-hcb.corp.ad.wrs.com
-	[147.11.189.41])
-	by mail1.windriver.com (8.14.9/8.14.5) with ESMTP id s6V18vZS001566
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL)
-	for <yocto@yoctoproject.org>; Wed, 30 Jul 2014 18:08:57 -0700 (PDT)
-Received: from msp-mhatle-lx2.wrs.com (172.25.34.61) by
-	ALA-HCB.corp.ad.wrs.com (147.11.189.41) with Microsoft SMTP Server id
-	14.3.174.1; Wed, 30 Jul 2014 18:08:56 -0700
-From: Mark Hatle <mark.hatle@windriver.com>
-To: <yocto@yoctoproject.org>
-Date: Wed, 30 Jul 2014 20:08:55 -0500
-Message-ID: <1406768935-15676-1-git-send-email-mark.hatle@windriver.com>
-X-Mailer: git-send-email 1.9.3
+	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at http://www.dnswl.org/,
+	high *      trust
+	*      [192.55.52.88 listed in list.dnswl.org]
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1584EE0043F
+	for <yocto@yoctoproject.org>; Wed, 30 Jul 2014 22:41:32 -0700 (PDT)
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+	by fmsmga101.fm.intel.com with ESMTP; 30 Jul 2014 22:41:31 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.97,862,1389772800"; d="scan'208";a="366069731"
+Received: from orsmsx108.amr.corp.intel.com ([10.22.240.6])
+	by FMSMGA003.fm.intel.com with ESMTP; 30 Jul 2014 22:38:25 -0700
+Received: from orsmsx152.amr.corp.intel.com (10.22.226.39) by
+	ORSMSX108.amr.corp.intel.com (10.22.240.6) with Microsoft SMTP Server
+	(TLS) id 14.3.123.3; Wed, 30 Jul 2014 22:41:30 -0700
+Received: from orsmsx101.amr.corp.intel.com ([169.254.8.229]) by
+	ORSMSX152.amr.corp.intel.com ([169.254.8.161]) with mapi id
+	14.03.0123.003; Wed, 30 Jul 2014 22:41:30 -0700
+From: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
+To: "Robert P. J. Day" <rpjday@crashcourse.ca>, Yocto discussion list
+	<yocto@yoctoproject.org>
+Thread-Topic: [yocto] timeline for "official" centos 7 support?
+Thread-Index: AQHPrCmlM7HF9/vup0OKG8H53EW6D5u5q2RQ
+Date: Thu, 31 Jul 2014 05:41:30 +0000
+Message-ID: <41DEA4B02DBDEF40A0F3B6D0DDB1237983FD159C@ORSMSX101.amr.corp.intel.com>
+References: <alpine.LFD.2.11.1407301505170.29022@localhost>
+In-Reply-To: <alpine.LFD.2.11.1407301505170.29022@localhost>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.22.254.139]
 MIME-Version: 1.0
-Subject: [meta-mingw] [PATCH] binutils-cross-canadian: Remove nativesdk-flex dependency
+Subject: Re: timeline for "official" centos 7 support?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,31 +52,50 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 31 Jul 2014 01:09:10 -0000
-Content-Type: text/plain
+X-List-Received-Date: Thu, 31 Jul 2014 05:41:38 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-Flex does not build properly with mingw support, it also does not appear
-to be needed in order to build binutils or the other nativesdk components
-when building for mingw.
+Just before each major release, I run a script that produces the list of va=
+lidated distros we have tested and support.  So if this is going to be a su=
+pported distro, it will get on the list in the manual.
 
-Signed-off-by: Mark Hatle <mark.hatle@windriver.com>
----
- recipes-devtools/binutils/binutils-cross-canadian_2.24.bbappend | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+Scott
 
-diff --git a/recipes-devtools/binutils/binutils-cross-canadian_2.24.bbappend b/recipes-devtools/binutils/binutils-cross-canadian_2.24.bbappend
-index 7551868..026c932 100644
---- a/recipes-devtools/binutils/binutils-cross-canadian_2.24.bbappend
-+++ b/recipes-devtools/binutils/binutils-cross-canadian_2.24.bbappend
-@@ -1,4 +1,5 @@
- EXTRA_OECONF_append_sdkmingw32 = " --disable-plugins --disable-nls"
- LDFLAGS_append_sdkmingw32 = " -Wl,-static"
- 
--DEPENDS_remove_sdkmingw32 = "nativesdk-gettext"
-\ No newline at end of file
-+DEPENDS_remove_sdkmingw32 = "nativesdk-gettext"
-+DEPENDS_remove_sdkmingw32 = "nativesdk-flex"
--- 
-1.9.3
-
+>-----Original Message-----
+>From: yocto-bounces@yoctoproject.org [mailto:yocto-
+>bounces@yoctoproject.org] On Behalf Of Robert P. J. Day
+>Sent: Wednesday, July 30, 2014 12:07 PM
+>To: Yocto discussion list
+>Subject: [yocto] timeline for "official" centos 7 support?
+>
+>
+>  working version of yocto dev manual currently has no mention of centos 7=
+ in
+>the list of supported distributions -- anyone working on validating that?
+>
+>rday
+>
+>--
+>
+>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+>=3D=3D=3D=3D=3D=3D=3D
+>Robert P. J. Day                                 Ottawa, Ontario, CANADA
+>                        http://crashcourse.ca
+>
+>Twitter:                                       http://twitter.com/rpjday
+>LinkedIn:                               http://ca.linkedin.com/in/rpjday
+>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+>=3D=3D=3D=3D=3D=3D=3D
+>
+>--
+>_______________________________________________
+>yocto mailing list
+>yocto@yoctoproject.org
+>https://lists.yoctoproject.org/listinfo/yocto
 
