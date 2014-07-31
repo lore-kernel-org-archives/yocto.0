@@ -1,48 +1,46 @@
-Return-Path: <rpjday@crashcourse.ca>
+Return-Path: <akuster@mvista.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 79E2DE0056A; Thu, 31 Jul 2014 14:41:47 -0700 (PDT)
+	id 65880E0056A; Thu, 31 Jul 2014 16:44:45 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [209.85.220.53 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [208.80.206.85 listed in list.dnswl.org]
-Received: from smtp685.redcondor.net (smtp685.redcondor.net [208.80.206.85])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3E396E004E0
-	for <yocto@yoctoproject.org>; Thu, 31 Jul 2014 14:41:41 -0700 (PDT)
-Received: from astoria.ccjclearline.com ([64.235.106.9])
-	by smtp685.redcondor.net ({20c8e40f-6b6c-4c9e-abff-1640ea7bf404})
-	via TCP (outbound) with ESMTPS id 20140731214118474
-	for <yocto@yoctoproject.org>; Thu, 31 Jul 2014 21:41:18 +0000
-X-RC-FROM: <rpjday@crashcourse.ca>
-X-RC-RCPT: <yocto@yoctoproject.org>
-Received: from [99.240.204.5] (port=33284 helo=crashcourse.ca)
-	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES128-SHA:128)
-	(Exim 4.80) (envelope-from <rpjday@crashcourse.ca>)
-	id 1XCy65-00078W-5M
-	for yocto@yoctoproject.org; Thu, 31 Jul 2014 17:41:13 -0400
-Date: Thu, 31 Jul 2014 17:41:10 -0400 (EDT)
-From: "Robert P. J. Day" <rpjday@crashcourse.ca>
-X-X-Sender: rpjday@localhost
-To: Yocto discussion list <yocto@yoctoproject.org>
-Message-ID: <alpine.LFD.2.11.1407311737480.19552@localhost>
-User-Agent: Alpine 2.11 (LFD 23 2013-08-11)
-MIME-Version: 1.0
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - crashcourse.ca
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-X-MAG-OUTBOUND: ccj.redcondor.net@64.235.106.9/32
-Subject: will yocto 1.7 work with eclipse luna?
+Received: from mail-pa0-f53.google.com (mail-pa0-f53.google.com
+	[209.85.220.53])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2F180E004E0
+	for <yocto@yoctoproject.org>; Thu, 31 Jul 2014 16:44:42 -0700 (PDT)
+Received: by mail-pa0-f53.google.com with SMTP id rd3so4587139pab.40
+	for <yocto@yoctoproject.org>; Thu, 31 Jul 2014 16:44:41 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:from:to:cc:subject:date:message-id;
+	bh=hR+/zYP/iSi5+fj2BpBI3ZXsSmjbMp1bwN6TgmsFEvE=;
+	b=DzWsWaZ/QwcuTxa4e376MIZ8HGJeWpTe1nwGqWws3U5wiEqarfzlbXLaMQwhdFuMIO
+	3BoY6WgTh7R76OYDYvj0ssp6r2LSlBnKy8/DSaOYRCjCOATnN03GjDWt8M60CnqZ22CO
+	u5W5K9ytOGuKscmT4B/5K51Z6AmpAEbybEzP0XE7zVcFJfULjcjzy2mZPc9vVxnD0q81
+	uM+I4Sd2KYhAgdhAaVFd/wTXmmnXv9R/crKwzSQlAc2MVaLtncsqoceOtFKoIbLUOeoL
+	YsfswSPgXrPNwhv4qa6JJ7ZWt2u/HrmGMkq9y7BlW4P4C26cdjQHGRT2Xx1gAE3hV7/Z
+	rBuw==
+X-Gm-Message-State: ALoCoQkQFSVwl8DvDMJyAv97TLuJ9wfm9x7KWeX98TNKFXyn74j8buV3xgg/N10m928wFWxMxfQG
+X-Received: by 10.68.57.165 with SMTP id j5mr1616191pbq.147.1406850281207;
+	Thu, 31 Jul 2014 16:44:41 -0700 (PDT)
+Received: from Pahoa2.mvista.com (64.2.3.195.ptr.us.xo.net. [64.2.3.195])
+	by mx.google.com with ESMTPSA id
+	fx13sm1817856pdb.64.2014.07.31.16.44.40 for <multiple recipients>
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
+	Thu, 31 Jul 2014 16:44:40 -0700 (PDT)
+From: Armin Kuster <akuster@mvista.com>
+To: yocto@yoctoproject.org
+Date: Thu, 31 Jul 2014 16:44:38 -0700
+Message-Id: <1406850278-28026-1-git-send-email-akuster@mvista.com>
+X-Mailer: git-send-email 1.9.1
+Subject: [meta-security][PATCH] toyomo: Add kconfig
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -54,25 +52,55 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 31 Jul 2014 21:41:47 -0000
-Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-List-Received-Date: Thu, 31 Jul 2014 23:44:45 -0000
 
+Add kernel config to enable toyomo
 
-  already dropped scott rifenbark a note about this, but current dev
-manual recommends eclipse kepler, while eclipse luna is out, and
-fedora 22 appears to use that as the yum-installable version. so any
-issues with eclipse luna?
+Signed-off-by: Armin Kuster <akuster@mvista.com>
+---
+ recipes-kernel/linux/linux-yocto/tomoyo.cfg    | 8 ++++++++
+ recipes-kernel/linux/linux-yocto/tomoyo.scc    | 4 ++++
+ recipes-kernel/linux/linux-yocto_3.14.bbappend | 4 ++++
+ 3 files changed, 16 insertions(+)
+ create mode 100644 recipes-kernel/linux/linux-yocto/tomoyo.cfg
+ create mode 100644 recipes-kernel/linux/linux-yocto/tomoyo.scc
+ create mode 100644 recipes-kernel/linux/linux-yocto_3.14.bbappend
 
-rday
-
+diff --git a/recipes-kernel/linux/linux-yocto/tomoyo.cfg b/recipes-kernel/linux/linux-yocto/tomoyo.cfg
+new file mode 100644
+index 0000000..9fb8228
+--- /dev/null
++++ b/recipes-kernel/linux/linux-yocto/tomoyo.cfg
+@@ -0,0 +1,8 @@
++CONFIG_SECURITY_TOMOYO=y
++CONFIG_SECURITY_TOMOYO_MAX_ACCEPT_ENTRY=2048
++CONFIG_SECURITY_TOMOYO_MAX_AUDIT_LOG=1024
++CONFIG_SECURITY_TOMOYO_POLICY_LOADER="/sbin/tomoyo-init"
++CONFIG_SECURITY_TOMOYO_ACTIVATION_TRIGGER="/sbin/init"
++CONFIG_DEFAULT_SECURITY_TOMOYO=y
++CONFIG_DEFAULT_SECURITY="tomoyo"
++
+diff --git a/recipes-kernel/linux/linux-yocto/tomoyo.scc b/recipes-kernel/linux/linux-yocto/tomoyo.scc
+new file mode 100644
+index 0000000..9080934
+--- /dev/null
++++ b/recipes-kernel/linux/linux-yocto/tomoyo.scc
+@@ -0,0 +1,4 @@
++define KFEATURE_DESCRIPTION "Toyomo Kernel Support"
++define KFEATURE_COMPATIBILITY arch
++
++kconf non-hardware toyomo.cfg
+diff --git a/recipes-kernel/linux/linux-yocto_3.14.bbappend b/recipes-kernel/linux/linux-yocto_3.14.bbappend
+new file mode 100644
+index 0000000..0c742c1
+--- /dev/null
++++ b/recipes-kernel/linux/linux-yocto_3.14.bbappend
+@@ -0,0 +1,4 @@
++FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
++
++# Toyomo kernel support
++SRC_URI += "${@base_contains('DISTRO_FEATURES', 'tomoyo', ' file://tomoyo.cfg', '', d)}"
 -- 
-
-========================================================================
-Robert P. J. Day                                 Ottawa, Ontario, CANADA
-                        http://crashcourse.ca
-
-Twitter:                                       http://twitter.com/rpjday
-LinkedIn:                               http://ca.linkedin.com/in/rpjday
-========================================================================
+1.9.1
 
 
