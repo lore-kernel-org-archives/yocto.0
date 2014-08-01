@@ -1,46 +1,48 @@
-Return-Path: <leimaohui@cn.fujitsu.com>
+Return-Path: <scott.m.rifenbark@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id A4217E005BB; Fri,  1 Aug 2014 01:57:05 -0700 (PDT)
+	id 734E5E005BB; Fri,  1 Aug 2014 02:13:27 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,HTML_MESSAGE,
-	RDNS_NONE autolearn=no version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [134.134.136.20 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	*  0.8 RDNS_NONE Delivered to internal network by a host with no rDNS
-Received: from heian.cn.fujitsu.com (unknown [59.151.112.132])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7415DE0056A
-	for <yocto@yoctoproject.org>; Fri,  1 Aug 2014 01:56:59 -0700 (PDT)
-X-IronPort-AV: E=Sophos;i="5.04,242,1406563200"; d="scan'208,217";a="34063969"
-Received: from unknown (HELO edo.cn.fujitsu.com) ([10.167.33.5])
-	by heian.cn.fujitsu.com with ESMTP; 01 Aug 2014 16:54:05 +0800
-Received: from G08CNEXCHPEKD03.g08.fujitsu.local (localhost.localdomain
-	[127.0.0.1])
-	by edo.cn.fujitsu.com (8.14.3/8.13.1) with ESMTP id s718upT7023533;
-	Fri, 1 Aug 2014 16:56:51 +0800
-Received: from G08CNEXMBPEKD01.g08.fujitsu.local ([10.167.33.81]) by
-	G08CNEXCHPEKD03.g08.fujitsu.local ([10.167.33.85]) with mapi id
-	14.03.0181.006; Fri, 1 Aug 2014 16:56:59 +0800
-From: "leimaohui@cn.fujitsu.com" <leimaohui@cn.fujitsu.com>
-To: Matt Germonprez <germonprez@gmail.com>
-Thread-Topic: [yocto] questions about spdx
-Thread-Index: AQHPrDOK/qnH/AgLQUyGyQ0s23JSRJu5weRw///TA4CAAdm/QA==
-Date: Fri, 1 Aug 2014 08:56:53 +0000
-Message-ID: <1B56A49860EB2D45ADE3731B15C959FDAABC8D@G08CNEXMBPEKD01.g08.fujitsu.local>
-References: <1B56A49860EB2D45ADE3731B15C959FDAAA4DD@G08CNEXMBPEKD01.g08.fujitsu.local>
-	<CAPhnLPAe+NNPbXpqcVQPcRnuzDyZ0dZPWgfoSXK0Lrwbqb-yTg@mail.gmail.com>
-	<1B56A49860EB2D45ADE3731B15C959FDAAB965@G08CNEXMBPEKD01.g08.fujitsu.local>
-	<CADFygWjAdNZ_vgE=+=MnXdedgjO84L5d=DPJ761+aHBpKd2piw@mail.gmail.com>
-In-Reply-To: <CADFygWjAdNZ_vgE=+=MnXdedgjO84L5d=DPJ761+aHBpKd2piw@mail.gmail.com>
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 48D01E0056A
+	for <yocto@yoctoproject.org>; Fri,  1 Aug 2014 02:13:19 -0700 (PDT)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga101.jf.intel.com with ESMTP; 01 Aug 2014 02:13:02 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.01,778,1400050800"; d="scan'208";a="552271884"
+Received: from orsmsx104.amr.corp.intel.com ([10.22.225.131])
+	by orsmga001.jf.intel.com with ESMTP; 01 Aug 2014 02:13:01 -0700
+Received: from orsmsx155.amr.corp.intel.com (10.22.240.21) by
+	ORSMSX104.amr.corp.intel.com (10.22.225.131) with Microsoft SMTP Server
+	(TLS) id 14.3.123.3; Fri, 1 Aug 2014 02:13:01 -0700
+Received: from orsmsx101.amr.corp.intel.com ([169.254.8.229]) by
+	ORSMSX155.amr.corp.intel.com ([169.254.7.70]) with mapi id
+	14.03.0123.003; Fri, 1 Aug 2014 02:13:01 -0700
+From: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
+To: "Robert P. J. Day" <rpjday@crashcourse.ca>
+Thread-Topic: [yocto] replace references to hob with references to toaster?
+Thread-Index: AQHPrPnZNG0vjmVdP0ufhzT5rotCl5u7Or/AgACkPoD//5huYA==
+Date: Fri, 1 Aug 2014 09:13:00 +0000
+Message-ID: <41DEA4B02DBDEF40A0F3B6D0DDB1237983FD2AC6@ORSMSX101.amr.corp.intel.com>
+References: <alpine.LFD.2.11.1407311551370.16577@localhost>
+	<41DEA4B02DBDEF40A0F3B6D0DDB1237983FD2A1E@ORSMSX101.amr.corp.intel.com>
+	<alpine.LFD.2.11.1408010421120.14488@localhost>
+In-Reply-To: <alpine.LFD.2.11.1408010421120.14488@localhost>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-x-originating-ip: [10.167.226.75]
+x-originating-ip: [10.22.254.140]
 MIME-Version: 1.0
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: questions about spdx
+Cc: Yocto discussion list <yocto@yoctoproject.org>
+Subject: Re: replace references to hob with references to toaster?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -52,120 +54,81 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 01 Aug 2014 08:57:05 -0000
-Content-Language: zh-CN
-Content-Type: multipart/alternative;
-	boundary="_000_1B56A49860EB2D45ADE3731B15C959FDAABC8DG08CNEXMBPEKD01g0_"
+X-List-Received-Date: Fri, 01 Aug 2014 09:13:27 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
---_000_1B56A49860EB2D45ADE3731B15C959FDAABC8DG08CNEXMBPEKD01g0_
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Ahh.. well that general intro is a problem then.  I will research and be su=
+re I understand stuff right and adjust that if necessary.
 
-SGkgTWF0dA0KDQoNCg0KVGhhbmtzIGZvciB5b3VyIGluZm9ybWF0aW9uLg0KDQoNCg0KPiBPdXIg
-bW9zdCByZWNlbnQgd29yayBhdCB0aGUgVW5pdmVyc2l0eSBvZiBOZWJyYXNrYSAtIE9tYWhhIGhh
-cyBiZWVuIGZvY3VzZWQNCg0KPiBvbiBjcmVhdGluZyBhIGdlbmVyaWMgRG9TUERYIHByb2Nlc3M6
-IGh0dHBzOi8vZ2l0aHViLmNvbS96d21jZmFybGFuZC9Eb1NQRFgNCg0KPg0KDQo+IEl0IHNob3Vs
-ZCBiZSByZWFzb25hYmxlIHRvIGJyaW5nIHRoaXMgYmFjayB0byBZb2N0byBidXQgdGhhdCB3YXMg
-bm90IG91ciBmb2N1cw0KDQo+IGxhdGVseS4NCg0KDQoNCkkgdGhpbmsgbW9yZSBhbmQgbW9yZSBw
-ZW9wbGUgd2lsbCBiZSBpbnRlcmVzdGVkIGluIFNQRFguDQoNCkhvcGUgU1BEWCBpcyBwdXNoZWQg
-Zm9yd2FyZCBpbiB5b2N0byBhcyBzb29uIGFzIHBvc3NpYmxlLg0KDQoNCg0KDQoNClRoYW5rcw0K
-DQoNCg0KTGVpIE1hb2h1aQ0K
+Scott
 
---_000_1B56A49860EB2D45ADE3731B15C959FDAABC8DG08CNEXMBPEKD01g0_
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: base64
+>-----Original Message-----
+>From: Robert P. J. Day [mailto:rpjday@crashcourse.ca]
+>Sent: Friday, August 01, 2014 1:23 AM
+>To: Rifenbark, Scott M
+>Cc: Yocto discussion list
+>Subject: RE: [yocto] replace references to hob with references to toaster?
+>
+>On Fri, 1 Aug 2014, Rifenbark, Scott M wrote:
+>
+>>
+>>
+>> >-----Original Message-----
+>> >From: yocto-bounces@yoctoproject.org [mailto:yocto-
+>> >bounces@yoctoproject.org] On Behalf Of Robert P. J. Day
+>> >Sent: Thursday, July 31, 2014 12:58 PM
+>> >To: Yocto discussion list
+>> >Subject: [yocto] replace references to hob with references to toaster?
+>> >
+>> >
+>> >  both in the docs and on the web/wiki pages, there would appear to
+>> >be some places that need some updating.
+>> >
+>> >  the dev manual, ch 4, has references to hob but none to toaster --
+>> >should that not be updated?
+>>
+>> If I understand Toaster correctly (and someone can correct me if I am
+>> wrong), it just reports information on a build.  I don't think you use
+>> Toaster to actually build anything.  Thus, Chapter 4, which talks
+>> about methods of developing an image, would not want to include
+>> Toaster as a method.
+>
+>  having never used toaster (yet), i may be entirely off-base. but the toa=
+ster wiki
+>page:
+>
+>https://wiki.yoctoproject.org/wiki/Toaster
+>
+>claims:
+>
+>"Toaster is a web-based interface to the Bitbake build system and the Poky
+>distribution inside the Yocto Project. This project was formerly known as =
+Web
+>Hob / Webhob / webhob, and you may still find references to the old name i=
+n
+>the documentation."
+>
+>  that pretty clearly suggests it does building and is meant to supersede =
+hob, no?
+>
+>rday
+>
+>--
+>
+>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+>=3D=3D=3D=3D=3D=3D=3D
+>Robert P. J. Day                                 Ottawa, Ontario, CANADA
+>                        http://crashcourse.ca
+>
+>Twitter:                                       http://twitter.com/rpjday
+>LinkedIn:                               http://ca.linkedin.com/in/rpjday
+>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+>=3D=3D=3D=3D=3D=3D=3D
 
-PGh0bWwgeG1sbnM6dj0idXJuOnNjaGVtYXMtbWljcm9zb2Z0LWNvbTp2bWwiIHhtbG5zOm89InVy
-bjpzY2hlbWFzLW1pY3Jvc29mdC1jb206b2ZmaWNlOm9mZmljZSIgeG1sbnM6dz0idXJuOnNjaGVt
-YXMtbWljcm9zb2Z0LWNvbTpvZmZpY2U6d29yZCIgeG1sbnM6bT0iaHR0cDovL3NjaGVtYXMubWlj
-cm9zb2Z0LmNvbS9vZmZpY2UvMjAwNC8xMi9vbW1sIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcv
-VFIvUkVDLWh0bWw0MCI+DQo8aGVhZD4NCjxtZXRhIGh0dHAtZXF1aXY9IkNvbnRlbnQtVHlwZSIg
-Y29udGVudD0idGV4dC9odG1sOyBjaGFyc2V0PXV0Zi04Ij4NCjxtZXRhIG5hbWU9IkdlbmVyYXRv
-ciIgY29udGVudD0iTWljcm9zb2Z0IFdvcmQgMTQgKGZpbHRlcmVkIG1lZGl1bSkiPg0KPHN0eWxl
-PjwhLS0NCi8qIEZvbnQgRGVmaW5pdGlvbnMgKi8NCkBmb250LWZhY2UNCgl7Zm9udC1mYW1pbHk6
-5a6L5L2TOw0KCXBhbm9zZS0xOjIgMSA2IDAgMyAxIDEgMSAxIDE7fQ0KQGZvbnQtZmFjZQ0KCXtm
-b250LWZhbWlseToiTVMgR290aGljIjsNCglwYW5vc2UtMToyIDExIDYgOSA3IDIgNSA4IDIgNDt9
-DQpAZm9udC1mYWNlDQoJe2ZvbnQtZmFtaWx5OiJDYW1icmlhIE1hdGgiOw0KCXBhbm9zZS0xOjIg
-NCA1IDMgNSA0IDYgMyAyIDQ7fQ0KQGZvbnQtZmFjZQ0KCXtmb250LWZhbWlseToiTVMgUEdvdGhp
-YyI7DQoJcGFub3NlLTE6MiAxMSA2IDAgNyAyIDUgOCAyIDQ7fQ0KQGZvbnQtZmFjZQ0KCXtmb250
-LWZhbWlseToiXEDlrovkvZMiOw0KCXBhbm9zZS0xOjIgMSA2IDAgMyAxIDEgMSAxIDE7fQ0KQGZv
-bnQtZmFjZQ0KCXtmb250LWZhbWlseToiXEBNUyBQR290aGljIjsNCglwYW5vc2UtMToyIDExIDYg
-MCA3IDIgNSA4IDIgNDt9DQpAZm9udC1mYWNlDQoJe2ZvbnQtZmFtaWx5OiJcQE1TIEdvdGhpYyI7
-DQoJcGFub3NlLTE6MiAxMSA2IDkgNyAyIDUgOCAyIDQ7fQ0KLyogU3R5bGUgRGVmaW5pdGlvbnMg
-Ki8NCnAuTXNvTm9ybWFsLCBsaS5Nc29Ob3JtYWwsIGRpdi5Nc29Ob3JtYWwNCgl7bWFyZ2luOjBt
-bTsNCgltYXJnaW4tYm90dG9tOi4wMDAxcHQ7DQoJZm9udC1zaXplOjEyLjBwdDsNCglmb250LWZh
-bWlseToiTVMgUEdvdGhpYyIsInNhbnMtc2VyaWYiO30NCmE6bGluaywgc3Bhbi5Nc29IeXBlcmxp
-bmsNCgl7bXNvLXN0eWxlLXByaW9yaXR5Ojk5Ow0KCWNvbG9yOmJsdWU7DQoJdGV4dC1kZWNvcmF0
-aW9uOnVuZGVybGluZTt9DQphOnZpc2l0ZWQsIHNwYW4uTXNvSHlwZXJsaW5rRm9sbG93ZWQNCgl7
-bXNvLXN0eWxlLXByaW9yaXR5Ojk5Ow0KCWNvbG9yOnB1cnBsZTsNCgl0ZXh0LWRlY29yYXRpb246
-dW5kZXJsaW5lO30NCnAuTXNvUGxhaW5UZXh0LCBsaS5Nc29QbGFpblRleHQsIGRpdi5Nc29QbGFp
-blRleHQNCgl7bXNvLXN0eWxlLXByaW9yaXR5Ojk5Ow0KCW1zby1zdHlsZS1saW5rOiLnuq/mlofm
-nKwgQ2hhciI7DQoJbWFyZ2luOjBtbTsNCgltYXJnaW4tYm90dG9tOi4wMDAxcHQ7DQoJZm9udC1z
-aXplOjEwLjBwdDsNCglmb250LWZhbWlseToiTVMgR290aGljIjt9DQpzcGFuLkVtYWlsU3R5bGUx
-Nw0KCXttc28tc3R5bGUtdHlwZTpwZXJzb25hbC1yZXBseTsNCglmb250LWZhbWlseToiQXJpYWwi
-LCJzYW5zLXNlcmlmIjsNCgljb2xvcjojMUY0OTdEO30NCnNwYW4uQ2hhcg0KCXttc28tc3R5bGUt
-bmFtZToi57qv5paH5pysIENoYXIiOw0KCW1zby1zdHlsZS1wcmlvcml0eTo5OTsNCgltc28tc3R5
-bGUtbGluazrnuq/mlofmnKw7DQoJZm9udC1mYW1pbHk6Ik1TIEdvdGhpYyI7fQ0Kc3Bhbi5hcHBs
-ZS1jb252ZXJ0ZWQtc3BhY2UNCgl7bXNvLXN0eWxlLW5hbWU6YXBwbGUtY29udmVydGVkLXNwYWNl
-O30NCnNwYW4uaGlnaC1saWdodA0KCXttc28tc3R5bGUtbmFtZTpoaWdoLWxpZ2h0O30NCi5Nc29D
-aHBEZWZhdWx0DQoJe21zby1zdHlsZS10eXBlOmV4cG9ydC1vbmx5Ow0KCWZvbnQtZmFtaWx5OiJB
-cmlhbCIsInNhbnMtc2VyaWYiO30NCkBwYWdlIFdvcmRTZWN0aW9uMQ0KCXtzaXplOjYxMi4wcHQg
-NzkyLjBwdDsNCgltYXJnaW46NzIuMHB0IDkwLjBwdCA3Mi4wcHQgOTAuMHB0O30NCmRpdi5Xb3Jk
-U2VjdGlvbjENCgl7cGFnZTpXb3JkU2VjdGlvbjE7fQ0KLS0+PC9zdHlsZT48IS0tW2lmIGd0ZSBt
-c28gOV0+PHhtbD4NCjxvOnNoYXBlZGVmYXVsdHMgdjpleHQ9ImVkaXQiIHNwaWRtYXg9IjEwMjYi
-Pg0KPHY6dGV4dGJveCBpbnNldD0iNS44NXB0LC43cHQsNS44NXB0LC43cHQiIC8+DQo8L286c2hh
-cGVkZWZhdWx0cz48L3htbD48IVtlbmRpZl0tLT48IS0tW2lmIGd0ZSBtc28gOV0+PHhtbD4NCjxv
-OnNoYXBlbGF5b3V0IHY6ZXh0PSJlZGl0Ij4NCjxvOmlkbWFwIHY6ZXh0PSJlZGl0IiBkYXRhPSIx
-IiAvPg0KPC9vOnNoYXBlbGF5b3V0PjwveG1sPjwhW2VuZGlmXS0tPg0KPC9oZWFkPg0KPGJvZHkg
-bGFuZz0iSkEiIGxpbms9ImJsdWUiIHZsaW5rPSJwdXJwbGUiPg0KPGRpdiBjbGFzcz0iV29yZFNl
-Y3Rpb24xIj4NCjxwIGNsYXNzPSJNc29QbGFpblRleHQiPjxzcGFuIGxhbmc9IkVOLVVTIiBzdHls
-ZT0ibXNvLWZhcmVhc3QtbGFuZ3VhZ2U6WkgtQ04iPkhpIE1hdHQ8bzpwPjwvbzpwPjwvc3Bhbj48
-L3A+DQo8cCBjbGFzcz0iTXNvUGxhaW5UZXh0Ij48c3BhbiBsYW5nPSJFTi1VUyIgc3R5bGU9Im1z
-by1mYXJlYXN0LWxhbmd1YWdlOlpILUNOIj48bzpwPiZuYnNwOzwvbzpwPjwvc3Bhbj48L3A+DQo8
-cCBjbGFzcz0iTXNvUGxhaW5UZXh0Ij48c3BhbiBsYW5nPSJFTi1VUyIgc3R5bGU9Im1zby1mYXJl
-YXN0LWxhbmd1YWdlOlpILUNOIj5UaGFua3MgZm9yIHlvdXIgaW5mb3JtYXRpb24uPG86cD48L286
-cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb1BsYWluVGV4dCI+PHNwYW4gbGFuZz0iRU4tVVMi
-IHN0eWxlPSJtc28tZmFyZWFzdC1sYW5ndWFnZTpaSC1DTiI+PG86cD4mbmJzcDs8L286cD48L3Nw
-YW4+PC9wPg0KPHAgY2xhc3M9Ik1zb1BsYWluVGV4dCI+PHNwYW4gbGFuZz0iRU4tVVMiPiZndDsg
-T3VyIG1vc3QgcmVjZW50IHdvcmsgYXQgdGhlIFVuaXZlcnNpdHkgb2YgTmVicmFza2EgLSBPbWFo
-YSBoYXMgYmVlbiBmb2N1c2VkPG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb1Bs
-YWluVGV4dCI+PHNwYW4gbGFuZz0iRU4tVVMiPiZndDsgb24gY3JlYXRpbmcgYSBnZW5lcmljIERv
-U1BEWCBwcm9jZXNzOjwvc3Bhbj48c3BhbiBsYW5nPSJFTi1VUyIgc3R5bGU9ImZvbnQtZmFtaWx5
-OiZxdW90O0NvdXJpZXIgTmV3JnF1b3Q7Ij4mbmJzcDs8L3NwYW4+PHNwYW4gbGFuZz0iRU4tVVMi
-PjxhIGhyZWY9Imh0dHBzOi8vZ2l0aHViLmNvbS96d21jZmFybGFuZC9Eb1NQRFgiPjxzcGFuIHN0
-eWxlPSJjb2xvcjp3aW5kb3d0ZXh0O3RleHQtZGVjb3JhdGlvbjpub25lIj5odHRwczovL2dpdGh1
-Yi5jb20vendtY2ZhcmxhbmQvRG9TUERYPC9zcGFuPjwvYT48bzpwPjwvbzpwPjwvc3Bhbj48L3A+
-DQo8cCBjbGFzcz0iTXNvUGxhaW5UZXh0Ij48c3BhbiBsYW5nPSJFTi1VUyI+Jmd0OyA8bzpwPjwv
-bzpwPjwvc3Bhbj48L3A+DQo8cCBjbGFzcz0iTXNvUGxhaW5UZXh0Ij48c3BhbiBsYW5nPSJFTi1V
-UyI+Jmd0OyBJdCBzaG91bGQgYmUgcmVhc29uYWJsZSB0byBicmluZyB0aGlzIGJhY2sgdG8gWW9j
-dG8gYnV0IHRoYXQgd2FzIG5vdCBvdXIgZm9jdXM8bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8cCBj
-bGFzcz0iTXNvUGxhaW5UZXh0Ij48c3BhbiBsYW5nPSJFTi1VUyI+Jmd0OyBsYXRlbHkuPG86cD48
-L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb1BsYWluVGV4dCI+PHNwYW4gbGFuZz0iRU4t
-VVMiIHN0eWxlPSJtc28tZmFyZWFzdC1sYW5ndWFnZTpaSC1DTiI+PG86cD4mbmJzcDs8L286cD48
-L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb1BsYWluVGV4dCI+PHNwYW4gbGFuZz0iRU4tVVMiIHN0
-eWxlPSJtc28tZmFyZWFzdC1sYW5ndWFnZTpaSC1DTiI+SSB0aGluayBtb3JlIGFuZCBtb3JlIHBl
-b3BsZSB3aWxsIGJlIGludGVyZXN0ZWQgaW4gU1BEWC48bzpwPjwvbzpwPjwvc3Bhbj48L3A+DQo8
-cCBjbGFzcz0iTXNvUGxhaW5UZXh0Ij48c3BhbiBsYW5nPSJFTi1VUyIgc3R5bGU9Im1zby1mYXJl
-YXN0LWxhbmd1YWdlOlpILUNOIj5Ib3BlIFNQRFggaXMgcHVzaGVkPC9zcGFuPjxzcGFuIGxhbmc9
-IkVOLVVTIiBzdHlsZT0iZm9udC1mYW1pbHk6JnF1b3Q7Q291cmllciBOZXcmcXVvdDs7bXNvLWZh
-cmVhc3QtbGFuZ3VhZ2U6WkgtQ04iPiZuYnNwOzwvc3Bhbj48c3BhbiBsYW5nPSJFTi1VUyIgc3R5
-bGU9Im1zby1mYXJlYXN0LWxhbmd1YWdlOlpILUNOIj5mb3J3YXJkIGluPC9zcGFuPjxzcGFuIGxh
-bmc9IkVOLVVTIiBzdHlsZT0iZm9udC1mYW1pbHk6JnF1b3Q7Q291cmllciBOZXcmcXVvdDs7bXNv
-LWZhcmVhc3QtbGFuZ3VhZ2U6WkgtQ04iPiZuYnNwOzwvc3Bhbj48c3BhbiBsYW5nPSJFTi1VUyIg
-c3R5bGU9Im1zby1mYXJlYXN0LWxhbmd1YWdlOlpILUNOIj55b2N0bzwvc3Bhbj48c3BhbiBsYW5n
-PSJFTi1VUyIgc3R5bGU9ImZvbnQtZmFtaWx5OiZxdW90O0NvdXJpZXIgTmV3JnF1b3Q7O21zby1m
-YXJlYXN0LWxhbmd1YWdlOlpILUNOIj4mbmJzcDs8L3NwYW4+PHNwYW4gbGFuZz0iRU4tVVMiIHN0
-eWxlPSJtc28tZmFyZWFzdC1sYW5ndWFnZTpaSC1DTiI+YXMNCiBzb29uIGFzIHBvc3NpYmxlLjxv
-OnA+PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29QbGFpblRleHQiPjxzcGFuIGxhbmc9
-IkVOLVVTIiBzdHlsZT0ibXNvLWZhcmVhc3QtbGFuZ3VhZ2U6WkgtQ04iPjxvOnA+Jm5ic3A7PC9v
-OnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJNc29QbGFpblRleHQiPjxzcGFuIGxhbmc9IkVOLVVT
-IiBzdHlsZT0ibXNvLWZhcmVhc3QtbGFuZ3VhZ2U6WkgtQ04iPjxvOnA+Jm5ic3A7PC9vOnA+PC9z
-cGFuPjwvcD4NCjxwIGNsYXNzPSJNc29QbGFpblRleHQiPjxzcGFuIGxhbmc9IkVOLVVTIj5UaGFu
-a3M8L3NwYW4+PHNwYW4gbGFuZz0iRU4tVVMiIHN0eWxlPSJtc28tZmFyZWFzdC1sYW5ndWFnZTpa
-SC1DTiI+PG86cD48L286cD48L3NwYW4+PC9wPg0KPHAgY2xhc3M9Ik1zb1BsYWluVGV4dCI+PHNw
-YW4gbGFuZz0iRU4tVVMiPjxvOnA+Jm5ic3A7PC9vOnA+PC9zcGFuPjwvcD4NCjxwIGNsYXNzPSJN
-c29QbGFpblRleHQiPjxzcGFuIGxhbmc9IkVOLVVTIj5MZWkgTWFvaHVpPC9zcGFuPjxzcGFuIGxh
-bmc9IkVOLVVTIiBzdHlsZT0ibXNvLWZhcmVhc3QtbGFuZ3VhZ2U6WkgtQ04iPjxvOnA+PC9vOnA+
-PC9zcGFuPjwvcD4NCjwvZGl2Pg0KPC9ib2R5Pg0KPC9odG1sPg0K
 
---_000_1B56A49860EB2D45ADE3731B15C959FDAABC8DG08CNEXMBPEKD01g0_--
