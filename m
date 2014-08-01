@@ -1,48 +1,42 @@
-Return-Path: <rpjday@crashcourse.ca>
+Return-Path: <richard.purdie@linuxfoundation.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 1CF06E0056A; Fri,  1 Aug 2014 11:11:32 -0700 (PDT)
+	id 7C094E00543; Fri,  1 Aug 2014 14:56:06 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
-	autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [208.80.204.84 listed in list.dnswl.org]
-Received: from smtp484.redcondor.net (smtp484.redcondor.net [208.80.204.84])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DFDA1E004E0
-	for <yocto@yoctoproject.org>; Fri,  1 Aug 2014 11:11:26 -0700 (PDT)
-Received: from astoria.ccjclearline.com ([64.235.106.9])
-	by smtp484.redcondor.net ({c48374e7-08df-40d9-a0de-96cc9883a037})
-	via TCP (outbound) with ESMTPS id 20140801181123944
-	for <yocto@yoctoproject.org>; Fri, 01 Aug 2014 18:11:23 +0000
-X-RC-FROM: <rpjday@crashcourse.ca>
-X-RC-RCPT: <yocto@yoctoproject.org>
-Received: from [99.240.204.5] (port=35811 helo=crashcourse.ca)
-	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES128-SHA:128)
-	(Exim 4.80) (envelope-from <rpjday@crashcourse.ca>)
-	id 1XDHIT-0002o5-SK
-	for yocto@yoctoproject.org; Fri, 01 Aug 2014 14:11:17 -0400
-Date: Fri, 1 Aug 2014 14:11:13 -0400 (EDT)
-From: "Robert P. J. Day" <rpjday@crashcourse.ca>
-X-X-Sender: rpjday@localhost
-To: Yocto discussion list <yocto@yoctoproject.org>
-Message-ID: <alpine.LFD.2.11.1408011409470.25140@localhost>
-User-Agent: Alpine 2.11 (LFD 23 2013-08-11)
-MIME-Version: 1.0
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - crashcourse.ca
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-X-MAG-OUTBOUND: ccj.redcondor.net@64.235.106.9/32
-Subject: [yocto-docs][PATCH] dev-manual: Tweaks for first two sections of chapter 5.
+Received: from dan.rpsys.net (5751f4a1.skybroadband.com [87.81.244.161])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CC087E004DD
+	for <yocto@yoctoproject.org>; Fri,  1 Aug 2014 14:56:00 -0700 (PDT)
+Received: from localhost (dan.rpsys.net [127.0.0.1])
+	by dan.rpsys.net (8.14.4/8.14.4/Debian-2.1ubuntu4) with ESMTP id
+	s71Lttef018421; Fri, 1 Aug 2014 22:55:55 +0100
+X-Virus-Scanned: Debian amavisd-new at dan.rpsys.net
+Received: from dan.rpsys.net ([127.0.0.1])
+	by localhost (dan.rpsys.net [127.0.0.1]) (amavisd-new, port 10024)
+	with LMTP id IGk2l6HfVWlQ; Fri,  1 Aug 2014 22:55:55 +0100 (BST)
+Received: from [192.168.3.10] (rpvlan0 [192.168.3.10]) (authenticated bits=0)
+	by dan.rpsys.net (8.14.4/8.14.4/Debian-2.1ubuntu1) with ESMTP id
+	s71Ltmvq018122
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES128-SHA bits=128 verify=NOT);
+	Fri, 1 Aug 2014 22:55:50 +0100
+Message-ID: <1406930148.6981.9.camel@ted>
+From: Richard Purdie <richard.purdie@linuxfoundation.org>
+To: Alex J Lennon <ajlennon@dynamicdevices.co.uk>
+Date: Fri, 01 Aug 2014 22:55:48 +0100
+In-Reply-To: <53DBA085.7010705@dynamicdevices.co.uk>
+References: <53DA58C9.50705@open.eurogiciel.org>
+	<53DB6430.8090608@dynamicdevices.co.uk>
+	<53DB660B.6040700@open.eurogiciel.org>
+	<53DB66D8.3060500@dynamicdevices.co.uk>
+	<53DBA085.7010705@dynamicdevices.co.uk>
+X-Mailer: Evolution 3.8.4-0ubuntu1 
+Mime-Version: 1.0
+Cc: general@lists.tizen.org, yocto@yoctoproject.org
+Subject: Re: [Tizen General] Build Tizen with yocto work-flow
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -54,87 +48,41 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 01 Aug 2014 18:11:32 -0000
-Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-List-Received-Date: Fri, 01 Aug 2014 21:56:06 -0000
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
 
+On Fri, 2014-08-01 at 15:13 +0100, Alex J Lennon wrote:
+> Getting some errors here having followed the "Using Scripts" section.
+> 
+> I am guessing it might be as I'm using Ubuntu 14.04 LTS x64
+> 
+> This is for MACHINE=genericx86
+> 
+> e.g.
+> 
+> | make[3]: Leaving directory
+> '/home/ajlennon/yocto/poky/build/tmp/work/x86_64-linux/rpm-native/git-r0/git/plugins'
+> | make[2]: Leaving directory
+> '/home/ajlennon/yocto/poky/build/tmp/work/x86_64-linux/rpm-native/git-r0/git/plugins'
+> | make[1]: Leaving directory
+> '/home/ajlennon/yocto/poky/build/tmp/work/x86_64-linux/rpm-native/git-r0/git'
+> | install: cannot stat 'scripts/find-supplements{,.ksyms}': No such file
+> or directory
+> | WARNING: exit code 1 from a shell command.
+> | ERROR: Function failed: do_install (log file is located at
+> /home/ajlennon/yocto/poky/build/tmp/work/x86_64-linux/rpm-native/git-r0/temp/log.do_install.2441)
+> ERROR: Task 99
+> (virtual:native:/home/ajlennon/yocto/meta-tizen/recipes-tizen/rpm/rpm_git.bb,
+> do_install) failed with exit code '1'
 
-Signed-off-by: Robert P. J. Day <rpjday@crashcourse.ca>
+Its because there are bashisms in that metadata and you have dash
+as /bin/sh.
 
----
+I've already mentioned this at least once but have been ignored :(
 
-  given the length of this chapter, i'm going to do it in bite-size
-pieces.
+Cheers,
 
-diff --git a/documentation/dev-manual/dev-manual-common-tasks.xml b/documentation/dev-manual/dev-manual-common-tasks.xml
-index 5f8da23..05d1e95 100644
---- a/documentation/dev-manual/dev-manual-common-tasks.xml
-+++ b/documentation/dev-manual/dev-manual-common-tasks.xml
-@@ -71,6 +71,7 @@
-                 you will see several layers:
-                 <filename>meta</filename>,
-                 <filename>meta-skeleton</filename>,
-+                <filename>meta-selftest</filename>,
-                 <filename>meta-yocto</filename>, and
-                 <filename>meta-yocto-bsp</filename>.
-                 Each of these folders represents a distinct layer.
-@@ -151,7 +152,7 @@
-      BBFILE_COLLECTIONS += "yoctobsp"
-      BBFILE_PATTERN_yoctobsp = "^${LAYERDIR}/"
-      BBFILE_PRIORITY_yoctobsp = "5"
--     LAYERVERSION_yoctobsp = "2"
-+     LAYERVERSION_yoctobsp = "3"
-                         </literallayout></para>
-                         <para>Here is an explanation of the example:
-                         <itemizedlist>
-@@ -193,7 +194,7 @@
-                                 <filename><ulink url='&YOCTO_DOCS_REF_URL;#var-BBFILE_PRIORITY'>BBFILE_PRIORITY</ulink></filename>
-                                 variable then assigns a priority to the layer.
-                                 Applying priorities is useful in situations
--                                where the same package might appear in multiple
-+                                where the same recipe might appear in multiple
-                                 layers and allows you to choose the layer
-                                 that takes precedence.</para></listitem>
-                             <listitem><para>The
-@@ -347,6 +348,12 @@
-      DEPENDS_append_one = " foo"
-      DEPENDS_prepend_one = "foo "
-                             </literallayout>
-+                            As an actual example, here's a line from the recipe for
-+                            the OProfile profiler, which lists an extra build-time
-+                            dependency when building specifically for 64-bit PowerPC:
-+                            <literallayout class='monospaced'>
-+     DEPENDS_append_powerpc64 = " libpfm4"
-+                            </literallayout>
-                             <note>
-                                 Avoiding "+=" and "=+" and using
-                                 machine-specific
-@@ -534,7 +541,7 @@
-      LICENSE = "MIT"
-      LIC_FILES_CHKSUM = "file://${COREBASE}/LICENSE;md5=4d92cd373abda3937c2bc47fbc49d690 \
-                     file://${COREBASE}/meta/COPYING.MIT;md5=3da9cfbcb788c80a0384361b4de20420"
--     PR = "r44"
-+     PR = "r45"
-
-      SRC_URI = "file://config file://machconfig"
-      S = "${WORKDIR}"
-@@ -543,7 +550,7 @@
-      INHIBIT_DEFAULT_DEPS = "1"
-
-      do_install() {
--	     # Only install file if it has a contents
-+	     # Install file only if it has contents
-              install -d ${D}${sysconfdir}/formfactor/
-              install -m 0644 ${S}/config ${D}${sysconfdir}/formfactor/
- 	     if [ -s "${S}/machconfig" ]; then
-
--- 
-
-========================================================================
-Robert P. J. Day                                 Ottawa, Ontario, CANADA
-                        http://crashcourse.ca
-
-Twitter:                                       http://twitter.com/rpjday
-LinkedIn:                               http://ca.linkedin.com/in/rpjday
-========================================================================
+Richard
 
 
