@@ -1,52 +1,48 @@
-Return-Path: <atul.singh008@gmail.com>
+Return-Path: <Alexandru.Vaduva@enea.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 134DEE0056A; Thu, 31 Jul 2014 23:51:07 -0700 (PDT)
+	id A0E8EE0056A; Fri,  1 Aug 2014 00:30:30 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (atul.singh008[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.213.181 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-ig0-f181.google.com (mail-ig0-f181.google.com
-	[209.85.213.181])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F02D1E004E0
-	for <yocto@yoctoproject.org>; Thu, 31 Jul 2014 23:51:05 -0700 (PDT)
-Received: by mail-ig0-f181.google.com with SMTP id h3so1025740igd.14
-	for <yocto@yoctoproject.org>; Thu, 31 Jul 2014 23:51:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:content-type; bh=d4B7NvD4I07VbOTk39Xt15eGMQ90fKdulbmcWQ2QwqI=;
-	b=hzpl9nHSqyr6I+1KA/4Opq+XF/M2OkwF+A3/zQWkFWhV2lKOB55itCfEH0qRZrbH34
-	1+lOrSTxJ0GZlmK1H2UTwzHx3v3oV0nFrhtc51CfyfKbnE8xTLxVpowKKA249ZCdhR+b
-	M4cR2LZoYyCtuxgOmpjoRcBVNS1KArsf1RCB4tEdz5pkyH2QZhf0HD1r/Dcu94NgygIL
-	8siTFpv6OTdfhLal85nhiSVwQMw14gphiXvabyAV8bzFItHX62baMKO4/Uj3fN7u1YFS
-	N9IZvpVqeUXJUwhvdDtLlZazi0OVGsGDRBuLgwmKn9W+28k/vur6BnZp04bl8xcEoh+k
-	7c8Q==
+Received: from mx-3.enea.com (sestofw01.enea.se [192.36.1.252])
+	by yocto-www.yoctoproject.org (Postfix) with SMTP id 3F726E004E0
+	for <yocto@yoctoproject.org>; Fri,  1 Aug 2014 00:30:23 -0700 (PDT)
+Received: from SESTOEX04.enea.se ([fe80::bc2d:9299:d6b2:d0b7]) by
+	SESTOEX03.enea.se ([fe80::6ce7:7b51:1edf:e245%17]) with mapi id
+	14.03.0158.001; Fri, 1 Aug 2014 09:30:17 +0200
+From: Alexandru Vaduva <Alexandru.Vaduva@enea.com>
+To: Bruce Ashfield <bruce.ashfield@windriver.com>, akuster
+	<akuster@mvista.com>, Joe MacDonald <joe@deserted.net>
+Thread-Topic: [yocto] [OE-core] Carrier Grade layer proposal
+Thread-Index: AQHPkW1+2KRT24GnPkKv9BXuG5a5ZpuEiPLggAAHpxCAABcrkIAACmtAgAABnUCAAAhEYIAFAPMAgAsfaQCAACK0kIAV+JUAgAED+qCAAEpKgIAAAUUAgA7E3ICAADDQAIAAUiOg
+Date: Fri, 1 Aug 2014 07:30:16 +0000
+Message-ID: <DDB0C57E45663A458C5CACB7B5688BC21D6D66DF@SESTOEX04.enea.se>
+References: <CALZ2gZV=pDM5kE-VDdEp1xJRV+ig7q5ix+cFU9vjpvJg7x=o5Q@mail.gmail.com>
+	<D7AB900AA081FD46B179E331E9F703E8907D76@SESTOEX04.enea.se>
+	<6B17198E316BD04DBB6F6DD263019AE125573C4A@SESTOEX04.enea.se>
+	<2D55BFC2C836774DB0F2FE17BECC006C28993A30@SESTOEX04.enea.se>
+	<D7AB900AA081FD46B179E331E9F703E8908E42@SESTOEX04.enea.se>
+	<DDB0C57E45663A458C5CACB7B5688BC21D6C5C0D@SESTOEX04.enea.se>
+	<D7AB900AA081FD46B179E331E9F703E8908E9C@SESTOEX04.enea.se>
+	<DDB0C57E45663A458C5CACB7B5688BC21D6C8818@SESTOEX04.enea.se>
+	<CA+YB3rY8TifZWKrm5FJc871WMtzP-ZeiCZJS9ceSa3uUoR9TGA@mail.gmail.com>
+	<DDB0C57E45663A458C5CACB7B5688BC21D6CAE0B@SESTOEX04.enea.se>
+	<CANBf+V17Q0P98d7632+FX3_W1RsT3ZR=ZR4W1mG4iDJ-CRLnZw@mail.gmail.com>
+	<DDB0C57E45663A458C5CACB7B5688BC21D6D3410@SESTOEX04.enea.se>
+	<53CE8923.6030307@mvista.com> <53CE8A34.2060608@windriver.com>
+	<53DAEDD1.7080205@mvista.com> <53DB16C4.3020504@windriver.com>
+In-Reply-To: <53DB16C4.3020504@windriver.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [192.168.14.184]
 MIME-Version: 1.0
-X-Received: by 10.43.63.134 with SMTP id xe6mr4147753icb.97.1406875864516;
-	Thu, 31 Jul 2014 23:51:04 -0700 (PDT)
-Received: by 10.64.86.225 with HTTP; Thu, 31 Jul 2014 23:51:04 -0700 (PDT)
-Received: by 10.64.86.225 with HTTP; Thu, 31 Jul 2014 23:51:04 -0700 (PDT)
-In-Reply-To: <1406875687030.25848@kpit.com>
-References: <1406875687030.25848@kpit.com>
-Date: Fri, 1 Aug 2014 12:21:04 +0530
-Message-ID: <CAH21_vFksZwyBzoVfBY+SAfmsfpHBEh_0z56VRTnxVL6TfrChQ@mail.gmail.com>
-From: atulkumar singh <atul.singh008@gmail.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: elfutils-native0.158 configure failed
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: [OE-core] Carrier Grade layer proposal
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -58,148 +54,262 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 01 Aug 2014 06:51:07 -0000
-Content-Type: multipart/alternative; boundary=bcaec517aefe25ceeb04ff8bd0b5
+X-List-Received-Date: Fri, 01 Aug 2014 07:30:30 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
---bcaec517aefe25ceeb04ff8bd0b5
-Content-Type: text/plain; charset=UTF-8
+QnJ1Y2UgdGhhdCBpcyBhY3R1YWxseSAgdGhlIGJlc3Qgc29sdXRpb24sIGJ1dCBJIHBlcnNvbmFs
+bHkgZGlkIG5vdCBrbm93IGl0IGlzIHBvc3NpYmxlIGFuZCBwZXJtaXR0ZWQgYnkgdGhlIFlvY3Rv
+IHByb2plY3QgZ2l0IG1haW50YWluZXJzLg0KVGhhdCBpcyBhIHJlYWxseSBnb29kIG5ld3MuDQoN
+CkFsZXgNCg0KLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCkZyb206IEJydWNlIEFzaGZpZWxk
+IFttYWlsdG86YnJ1Y2UuYXNoZmllbGRAd2luZHJpdmVyLmNvbV0gDQpTZW50OiBGcmlkYXksIEF1
+Z3VzdCAwMSwgMjAxNCA3OjI2IEFNDQpUbzogYWt1c3RlcjsgQWxleGFuZHJ1IFZhZHV2YTsgSm9l
+IE1hY0RvbmFsZA0KQ2M6IHlvY3RvQHlvY3RvcHJvamVjdC5vcmcNClN1YmplY3Q6IFJlOiBbeW9j
+dG9dIFtPRS1jb3JlXSBDYXJyaWVyIEdyYWRlIGxheWVyIHByb3Bvc2FsDQoNCk9uIDIwMTQtMDct
+MzEsIDk6MzAgUE0sIGFrdXN0ZXIgd3JvdGU6DQo+IEJydWNlLA0KPg0KPiBTbyBob3cgLyB3aGVy
+ZSBkbyBJIHN0YXJ0IG9uIHRoZSBrZXJuZWwgcGFydD8NCg0KSG93J3MgdGhpcyBmb3IgYSBiYWQg
+c3RhcnQgb2YgYW4gYW5zd2VyIC4uIGl0IGRlcGVuZHMuIExldCBtZSBwb2ludCBvdXQgYW4gZXhh
+bXBsZSB0byBmb2xsb3csIHNpbmNlIHRoYXQncyBwcm9iYWJseSB0aGUgZWFzaWVzdCB3YXkgdG8g
+Z2V0IHN0YXJ0ZWQuDQoNCklmIHlvdSBsb29rIGF0IHRoZSBsaW51eC15b2N0by1ydCByZWNpcGUs
+IHRoYXQgc2hvd3MgaG93IHRvIHVzZSB0aGUgbGludXgteW9jdG8gcmVwbywgYW5kIGJ1aWxkIGEg
+cGFydGljdWxhciBicmFuY2ggKG9yIHNldCBvZiBicmFuY2hlcykgd2l0aCBhIGNvbmZpZ3VyYXRp
+b24gdGhhdCBpcyBzcGVjaWZpYyB0byB0aG9zZSBicmFuY2hlcy4gaS5lLiBpdCBpcyBhICJrZXJu
+ZWwgdHlwZSIgKHdlIGhhdmUgc3RhbmRhcmQsIHByZWVtcHQtcnQgYW5kIHRpbnkgYXQgdGhlIG1v
+bWVudCkuDQoNClRvIHRlc3QgeW91ciBjaGFuZ2VzLCBhbmQgY29uZmlndXJhdGlvbiBmcmFnbWVu
+dHMsIGxpbnV4LXlvY3RvIHdvcmtzIGxpa2UgYW55IG90aGVyIHJlY2lwZS4gWW91IGNhbiBzcGVj
+aWZ5IGFuIGV4aXN0aW5nIGJyYW5jaCBsaWtlIHN0YW5kYXJkL2Jhc2UgKHNlZSBob3cgbGludXgt
+eW9jdG8tdGlueSBkb2VzIGp1c3QgdGhhdCksIGFuZCB0aGVuIGFkZCBwYXRjaGVzIGFuZCAuY2Zn
+IGZpbGVzIHRvIHRoZSBTUkNfVVJJLg0KDQpUaGUga2VybmVsIHdpbGwgYmUgcGF0Y2hlZCwgYW5k
+IHRoZSBjb25maWd1cmF0aW9uIGFwcGxpZWQgdG8gdGhlIGJ1aWxkLg0KDQpPbmNlIHlvdSBhcmUg
+aGFwcHkgd2l0aCB0aGUgY29udGVudCwgdGhlIGNoYW5nZXMgY2FuIGJlIG1lcmdlZCB0byBhIGRl
+ZGljYXRlZCBicmFuY2ggKGkuZS4gc3RhbmRhcmQvY2dsKSBhbmQgdGhlIG1ldGEgZGF0YSBwdXQg
+aW50byB0aGUgbWV0YSBicmFuY2ggb2YgdGhlIHJlcG8uDQoNCiBGcm9tIHRoYXQgcG9pbnQgb24s
+IHRoZSByZWNpcGUgb25seSBuZWVkcyB0byBzcGVjaWZ5IHRoYXQgYnJhbmNoIGFuZCB5b3Ugbm8g
+bG9uZ2VyIG5lZWQgdG8gcGF0Y2gsIG9yIGV4cGxpY2l0bHkgcmVmZXJlbmNlIHRoZSBtZXRhIGRh
+dGEuDQoNCllvdSBhcmUgdGhlbiBpbiBzeW5jIHdpdGggdGhlIExUU0kvbGludXgteW9jdG8gdmVy
+c2lvbiwgYW5kIHRoZSBicmFuY2ggd2lsbCBnZXQgc3RhYmxlIHVwZGF0ZXMsIGJ1ZyBmaXhlcywg
+QlNQIHN1cHBvcnQsIGV0Yy4NCg0KQnJ1Y2UNCg0KPg0KPiAtIEFybWluDQo+DQo+IE9uIDA3LzIy
+LzIwMTQgMDg6NTggQU0sIEJydWNlIEFzaGZpZWxkIHdyb3RlOg0KPj4gT24gMTQtMDctMjIgMTE6
+NTQgQU0sIGFrdXN0ZXIgd3JvdGU6DQo+Pj4gQWxleGFuZHJ1LA0KPj4+DQo+Pj4gUmVnYXJkaW5n
+ICBhIGZldyBwYWNrYWdlcyBpbiBjYXRlZ29yeSBDJkQuDQo+Pj4NCj4+PiBJIGhhdmUgbGF0ZXN0
+IHNhbWhhaW4gYnVpbGRpbmcgYXMgd2VsbCBhcyBncnNlY3VyaXR5IChwYXggcGF0Y2hlcyANCj4+
+PiBhcHBsaWVkIGFnYWluc3QgMy4xNC4xMikgaW4gYSBicmFuY2ggaW4gbXkgbWV0YS1zZWN1cml0
+eSB0cmVlLiAgSSANCj4+PiBoYXZlIGEgYml0IG1vcmUgdGVzdGluZyB0byBkbyBiZWZvcmUgSSB3
+YXMgZ29pbmcgdG8gcG9zdCB0aGVtLg0KPj4NCj4+IEFuZCBvbiB0aGlzIG5vdGUsIHdlIHNob3Vs
+ZCBjb25zaWRlciB0aGUga2VybmVsIHBhcnRzIGFuZCBzZWUgaWYgDQo+PiBnZXR0aW5nIHRoZW0g
+aW50byBhIGNvbW1vbiBsb2NhdGlvbiBpcyBhIGdvb2QgaWRlYS4NCj4+DQo+PiBXZSBhbHJlYWR5
+IGhhdmUgdGhlIGxpbnV4LXlvY3RvIHRyZWUsIGFuZCBpdCB0cmFja3MgTFRTSSwgaGFzIENWRSBh
+bmQgDQo+PiAtc3RhYmxlIHRyYWNraW5nLCBhbmQgaXMgbWFpbnRhaW5lZCB0byBzdXBwb3J0IHRo
+ZSBzZXQgb2YgcmVmZXJlbmNlIA0KPj4gYm9hcmRzLg0KPj4NCj4+IENyZWF0aW5nIHlldCBtb3Jl
+IHJlZmVyZW5jZSBrZXJuZWwgdHJlZXMgZG9lc24ndCBoZWxwIG91ciBnb2FsIG9mIA0KPj4gZmV3
+ZXIgdHJlZXMgYW5kIGEgZGlzY3JldGUgc2V0IG9mIGtlcm5lbCB2ZXJzaW9ucy4NCj4+DQo+PiBK
+dXN0IHNvbWV0aGluZyB0byBjb25zaWRlci4NCj4+DQo+PiBDaGVlcnMsDQo+Pg0KPj4gQnJ1Y2UN
+Cj4+DQo+Pj4NCj4+PiBncnNlY3VyaXR5IGFuZCBzYW1oYWluIGFyZW4ndCBDR0wgc3BlY2lmaWMg
+YW5kIHRoZXkgbWF5YmUgYmVsb25nIGluIA0KPj4+IGEgbW9yZSBnZW5lcmFsaXplIGxheWVyPyBq
+dXN0IGEgdGhvdWdodC4NCj4+Pg0KPj4+IHJlZ2FyZHMsDQo+Pj4gQXJtaW4NCj4+Pg0KPj4+DQo+
+Pj4gT24gMDcvMjIvMjAxNCAwMzo1MiBBTSwgQWxleGFuZHJ1IFZhZHV2YSB3cm90ZToNCj4+Pj4g
+SGVsbG8gSm9lLA0KPj4+Pg0KPj4+PiBIZXJlIGF0IEVuZWEgd2UgYXJlIHByZXBhcmluZyB0aGUg
+c3RlcHMgbmVlZGVkIGZvciBwdWJsaXNoaW5nIHRoZSANCj4+Pj4gbGF5ZXIgb24gdGhlIG9wZW4g
+ZW1iZWRkZWQgbWV0YSBsYXllcnMgaW5pdGlhdGl2ZToNCj4+Pj4gaHR0cDovL2xheWVycy5vcGVu
+ZW1iZWRkZWQub3JnL2xheWVyaW5kZXgvYnJhbmNoL21hc3Rlci9sYXllcnMvDQo+Pj4+IEZvciB0
+aGlzIHdlIHN0YXJ0ZWQgd29ya2luZyBhdCBhIHdlYiBwYWdlIHRoYXQgc2hvdWxkIGNvbnRhaW4g
+YWxsIA0KPj4+PiB0aGUgcmVsZXZhbnQgaW5mb3JtYXRpb24gcmVnYXJkaW5nIG1ldGEtY2dsLiBJ
+dCB3aWxsIGJlIGF2YWlsYWJsZSANCj4+Pj4gaW4gYSBjb3VwbGUgb2Ygd2Vla3MuIFVudGlsIHRo
+ZW4gdGhlIGxheWVyIHdpbGwgYmUgYXZhaWxhYmxlIA0KPj4+PiBpbnRlcm5hbGx5IGFuZCB0aGUg
+cGF0Y2hlcyBzaG91bGQgYmUgc3VibWl0dGVkIGFzIHRoZSBSRUFETUUgDQo+Pj4+IHN0YXRlczog
+b24gdGhlIGVuZWFsaW51eEBsaXN0cy5lbmVhLmNvbSBtYWlsaW5nIGxpc3QuIFdlIHdpbGwgdHJ5
+IA0KPj4+PiB0byBtYWtlIHRoZSBzd2l0Y2ggdG8gT3BlbiBFbWJlZGRlZCBtYWlsaW5nIGxpc3Qg
+YXMgcXVpY2sgYXMgDQo+Pj4+IHBvc3NpYmxlLg0KPj4+Pg0KPj4+PiBSZWdhcmRpbmcgdGhlIG90
+aGVyIEIsIEMgYW5kIEQgcGFja2FnZXMgIHRoYXQgd2Ugd2lsbCB0cnkgdG8gYWRkIA0KPj4+PiBp
+bnRvIHRoZSBtZXRhLWNnbCBsYXllciwgSSB3aWxsIHBvc3QgdGhpcyBpbmZvcm1hdGlvbiBiZWxv
+dywgYnV0IA0KPj4+PiBrZWVwIGluIG1pbmQgdGhhdCB0aGlzIGluZm9ybWF0aW9uIHdpbGwgYWxz
+byBiZSBhdmFpbGFibGUgb24gdGhlIHdlYiBwYWdlLg0KPj4+PiAgICAgQ2F0ZWdvcnkgQiBwYWNr
+YWdlczoNCj4+Pj4gICAgICAgICAtIGlmZW5zbGF2ZQ0KPj4+PiAgICAgICAgIC0gZXZsb2cNCj4+
+Pj4gICAgICAgICAtIGNyYXNoDQo+Pj4+ICAgICAgICAgLSBtaXB2Ni1kYWVtb24tdW1pcA0KPj4+
+PiAgICAgICAgIC0gb3BlbmwydHANCj4+Pj4gICAgIENhdGVnb3J5IEMmRCBwYWNrYWdlczoNCj4+
+Pj4gICAgICAgICAtIGRyYmQNCj4+Pj4gICAgICAgICAtIGdyc2VjdXJpdHkNCj4+Pj4gICAgICAg
+ICAtIGxvZ2NoZWNrDQo+Pj4+ICAgICAgICAgLSBtYWtlZHVtcGZpbGUNCj4+Pj4gICAgICAgICAt
+IG51bWFjdGwNCj4+Pj4gICAgICAgICAtIG9jZnMyLXRvb2xzDQo+Pj4+ICAgICAgICAgLSBwYW1f
+cGFzc3dkcWMNCj4+Pj4gICAgICAgICAtIHNhbWhhaW4NCj4+Pj4gICAgICAgICAtIGx0dC11c2Vy
+dHJhY2UNCj4+Pj4gICAgICAgICAtIGZ0cmFjZQ0KPj4+PiBUaGUgYWJvdmUgbGlzdHMgY29ycmVz
+cG9uZCB3aXRoIG9ubHkgdGhlIFAxIHJlcXVpcmVtZW50cyB0aGF0IHdlIA0KPj4+PiB0cnkgdG8g
+ZnVsZmlsbCBmb3IgdGhlIG1vbWVudC4gSWYgdGhlcmUgYXJlIGFueSBxdWVzdGlvbnMgYW5kL29y
+IA0KPj4+PiBzdWdnZXN0aW9ucyByZWdhcmRpbmcgdGhpcyBDR0wgaW5pdGlhbHRpdmUgcGxlYXNl
+IGFkZHJlc3MgdGhlbSB0byANCj4+Pj4gbWUgYW5kIEkgd2lsbCB0cnkgdG8gb2ZmZXIgYSByZXNw
+b25zZSBpbiB0aGUgc2hvcnRlc3QgdGltZSANCj4+Pj4gcG9zc2libGUuDQo+Pj4+DQo+Pj4+DQo+
+Pj4+IFRoYW5rcywNCj4+Pj4gQWxleA0KPj4+Pg0KPj4+PiAtLS0tLU9yaWdpbmFsIE1lc3NhZ2Ut
+LS0tLQ0KPj4+PiBGcm9tOiBKb2UgTWFjRG9uYWxkIFttYWlsdG86am9lQGRlc2VydGVkLm5ldF0N
+Cj4+Pj4gU2VudDogTW9uZGF5LCBKdWx5IDIxLCAyMDE0IDEwOjU4IFBNDQo+Pj4+IFRvOiBBbGV4
+YW5kcnUgVmFkdXZhDQo+Pj4+IENjOiBKZWZmIE9zaWVyLU1peG9uOyB5b2N0b0B5b2N0b3Byb2pl
+Y3Qub3JnDQo+Pj4+IFN1YmplY3Q6IFJlOiBbeW9jdG9dIFtPRS1jb3JlXSBDYXJyaWVyIEdyYWRl
+IGxheWVyIHByb3Bvc2FsDQo+Pj4+DQo+Pj4+IEhleSBBbGV4LA0KPj4+Pg0KPj4+PiBJJ3ZlIGJl
+ZW4gYXdheSBmcm9tIHRoaXMgZm9yIGEgYml0IGJ1dCBub3cgSSdtIGdldHRpbmcgdGltZSB0byBs
+b29rIA0KPj4+PiBhdCBpdCBhZ2FpbiBhbmQgSSB3YXMgd29uZGVyaW5nIGlmIHlvdSBoYWQgYW55
+IGRlZXBlciBsZXZlbCBvZiANCj4+Pj4gZGV0YWlsIHlvdSBjb3VsZCBzaGFyZSBhYm91dCB0aGUg
+d29yayBnb2luZyBvbiBpbiBtZXRhLWNnbC4gIA0KPj4+PiBPYnZpb3VzbHkgc2luY2UgdGhpcyBp
+cyBhIG5ldyByZWdpc3RyYXRpb24gYW5kIG9uZSB0aGF0IHdpbGwgbG9vayANCj4+Pj4gcmF0aGVy
+IGRpZmZlcmVudCBmcm9tIGFsbCBvZiB0aGUgb3RoZXIgQ0dMIHJlZ2lzdHJhdGlvbnMgY3VycmVu
+dGx5LCANCj4+Pj4gdGhvc2Ugb2YgdXMgaW4gdGhlIENHTCB3b3JrZ3JvdXAgd2VyZSBxdWl0ZSBp
+bnRlcmVzdGVkIHRvIHNlZSB0aGlzIA0KPj4+PiBoYXBwZW4uICBQZXJzb25hbGx5IEknbSBhbHNv
+IGludGVyZXN0ZWQgaW4gdGhpcyBzaW5jZSBpdCdzIHRoZSBraW5kIA0KPj4+PiBvZiB0aGluZyBJ
+J3ZlIGJlZW4gZG9pbmcgZm9yIGEgbG9uZyB0aW1lIG5vdyBhbmQgaWYgSSBjYW4sIEknZCBsaWtl
+IA0KPj4+PiB0byBoZWxwIG91dC4gIEluIHBhcnRpY3VsYXIsIGlmIHlvdSd2ZSBnb3QgYSBsaXN0
+IG9mLCBzYXksIHRoZSANCj4+Pj4gY2F0ZWdvcnkgQisgaXRlbXMsIHRoYXQgbWlnaHQgYmUgc29t
+ZXRoaW5nIEkgY2FuIGRvIHRoYXQgd2lsbCBiZSANCj4+Pj4gaW5kZXBlbmRlbnQgb2YgeW91ciB3
+b3JrIG9uIHRoZSBtb3JlIGFjdGl2ZSBjYXQtQSBzdHVmZi4gIE9UT0gsIA0KPj4+PiBjYXQtQSBp
+cyBlYXN5IHRvIHdvcmsgb24gc2luY2UgdGhvc2UgYXJlIHRoZSBpdGVtcyBJIHNhdyB3aGVuIEkg
+d2FzIA0KPj4+PiB3b3JraW5nIHdpdGggbWV0YS1jZ2wgYSBtb250aCBvciBzbyBiYWNrLiAgSSBr
+bm93IHlvdSBndXlzIGFyZSANCj4+Pj4gZm9jdXNlZCBvbiB5b3VyIHBhcnQgb2YgaXQsIGJ1dCBp
+ZiB5b3UgaGFkIHNvcnQgb2YgYSAiaGVyZSdzIGhvdyB0byBoZWxwIHVzIiBndWlkZSwgdGhhdCdk
+IGJlIGF3ZXNvbWUuDQo+Pj4+DQo+Pj4+IEFsc28sIEkgcHJvYmFibHkgbWlzc2VkIGl0LCBidXQg
+aXMgdGhlIGludGVudCB0byB1c2UgZWl0aGVyIHRoZSANCj4+Pj4geW9jdG8gbGlzdCBvciB0aGUg
+b2UgbGlzdCBmb3IgYWxsIG1ldGEtY2dsIGRpc2N1c3Npb25zLCBvciBkbyB5b3UgDQo+Pj4+IGhh
+dmUgYSBkZWRpY2F0ZWQgbGlzdCB3ZSBjYW4gc2lnbiB1cCBmb3I/ICBJIHNlZSB5b3UgaGF2ZSBn
+dWlkYW5jZSANCj4+Pj4gZm9yIHNlbmRpbmcgc3VibWlzc2lvbnMgdG8gbWV0YS1jZ2wsIGJ1dCBp
+cyB0aGF0IGEgbGlzdCB0aGF0J3Mgb3BlbiANCj4+Pj4gdG8gdGhlIGNvbW11bml0eSwgb3IgaXMg
+aXQgYW4gaW50ZXJuYWwgYWxpYXMgLyBkaXN0cmlidXRpb24gbGlzdCBmb3IgRW5lYT8NCj4+Pj4N
+Cj4+Pj4gVGhhbmtzLA0KPj4+PiAtSi4NCj4+Pj4NCj4+Pj4NCj4+Pj4gT24gTW9uLCBKdWwgNywg
+MjAxNCBhdCAyOjQzIFBNLCBBbGV4YW5kcnUgVmFkdXZhIA0KPj4+PiA8QWxleGFuZHJ1LlZhZHV2
+YUBlbmVhLmNvbT4gd3JvdGU6DQo+Pj4+PiBIZWxsbyBKZWZmLA0KPj4+Pj4NCj4+Pj4+IFRoZSBl
+cnJvcnMgYXJlIHBhY2thZ2UgcmVsYXRlZC4NCj4+Pj4+IE1ldGEtY2dsIGNhbiBiZSBzZWVuIGFz
+IGEgbm9uIEJTUCBzcGVjaWZpYyBsYXllciAoaXQgY2FuIGJlIHZpZXdlZCANCj4+Pj4+IGFzIHRo
+ZSBMU0IgZnJvbSBwb2t5KS4NCj4+Pj4+IEkgYWxyZWFkeSBzdGFydGVkIGZpeGluZyBhIG51bWJl
+ciwgb2YgdGhlIGFscmVhZHkgZXhpc3RpbmcgZXJyb3JzIA0KPj4+Pj4gYW5kIHRoZSBwYXRjaGVz
+IHdpbGwgYmUgYWRkZWQgdXBzdHJlYW0gYWZ0ZXIgcHJvcGVyIHRlc3RpbmcuDQo+Pj4+PiBJIHdp
+bGwgY29udGludWUgdGhlIGJ1ZyBmaXhpbmcgYW5kIHBhY2thZ2UgaW50ZWdyYXRpb24gKGludG8g
+dGhlIA0KPj4+Pj4gY29yZS1pbWFnZS1jZ2wgaW1hZ2UpIHByb2Nlc3MgYW5kIGFmdGVyIHRoYXQg
+aXMgZmluaXNoZWQgSSB3aWxsIA0KPj4+Pj4gY29udGludWUgd2l0aCB0aGUgQ2F0ZWdvcnkgQiBw
+YWNrYWdlcy4NCj4+Pj4+DQo+Pj4+PiBJIHdpbGwgYWxzbyB0cnkgdG8ga2VlcCB5b3UgZ3V5cyBp
+bmZvcm1lZCBhYm91dCB0aGUgbGF0ZXN0IA0KPj4+Pj4gdXBkYXRlcywgbWFpbmx5IG9uIHRoZSBZ
+UFRNLCBidXQgZm9yIHRob3NlIHdobyBjYW5ub3Qgd2FpdCB0aGF0IA0KPj4+Pj4gbXVjaCwgdGhl
+cmUgaXMgdGhlIEdpdCByZXBvc2l0b3J5IHdpdGggd2hpY2ggdGhleSBjYW4gaW50ZXJhY3Q6DQo+
+Pj4+PiBodHRwOi8vZ2l0LmVuZWEuY29tL2dpdC8/cD1saW51eC9tZXRhLWNnbC5naXQ7YT1zdW1t
+YXJ5DQo+Pj4+Pg0KPj4+Pj4NCj4+Pj4+IEhhdmUgYSBnb29kIGRheSwNCj4+Pj4+IEFsZXgNCj4+
+Pj4+DQo+Pj4+Pg0KPj4+Pj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4+Pj4+IEZyb206
+IGplZnJvLm5ldEBnbWFpbC5jb20gW21haWx0bzpqZWZyby5uZXRAZ21haWwuY29tXSBPbiBCZWhh
+bGYgDQo+Pj4+PiBPZiBKZWZmIE9zaWVyLU1peG9uDQo+Pj4+PiBTZW50OiBNb25kYXksIEp1bHkg
+MDcsIDIwMTQgOToyMiBQTQ0KPj4+Pj4gVG86IEFsZXhhbmRydSBWYWR1dmENCj4+Pj4+IFN1Ympl
+Y3Q6IFJlOiBbT0UtY29yZV0gQ2FycmllciBHcmFkZSBsYXllciBwcm9wb3NhbA0KPj4+Pj4NCj4+
+Pj4+IFRoYW5rcywgQWxleC4NCj4+Pj4+DQo+Pj4+PiBPdGhlcnMgb24gdGhlIG1haWxpbmcgbGlz
+dHMsIGlmIHlvdSBoYXZlIGFueSBjb21tZW50cyBvbiB0aGUgDQo+Pj4+PiBjb250ZW50cyBvZiB0
+aGlzIG5ldyBsYXllciwgcGxlYXNlIG1lbnRpb24gdGhlbSBvbiB0aGlzIHRocmVhZC4NCj4+Pj4+
+DQo+Pj4+PiBSZSBjb21waWxhdGlvbiBlcnJvcnMsIHdlcmUgdGhleSBzcGVjaWZpYyB0byBhIEJT
+UCBvciB3ZXJlIHRoZXkgDQo+Pj4+PiBnZW5lcmFsIGVycm9ycyBpbiB0aGUgcGFja2FnZXM/DQo+
+Pj4+Pg0KPj4+Pj4gdGhhbmtzDQo+Pj4+Pg0KPj4+Pj4gT24gTW9uLCBKdW4gMzAsIDIwMTQgYXQg
+ODowMSBBTSwgQWxleGFuZHJ1IFZhZHV2YSANCj4+Pj4+IDxBbGV4YW5kcnUuVmFkdXZhQGVuZWEu
+Y29tPiB3cm90ZToNCj4+Pj4+PiBIZWxsbyBKZWZmLA0KPj4+Pj4+DQo+Pj4+Pj4NCj4+Pj4+Pg0K
+Pj4+Pj4+IFRoZSBhdmFpbGFibGUgbGF5ZXIgaXMgYSB3b3JrIGluIHByb2dyZXNzLg0KPj4+Pj4+
+DQo+Pj4+Pj4gRm9yIHRoZSBtb21lbnQgd2UgaGF2ZSBkb25lIGFuIGludGVybmFsIG1hcHBpbmcg
+b2YgdGhlIHBhY2thZ2VzIA0KPj4+Pj4+IG5lZWRlZCBpbnNpZGUgbWV0YS1jZ2wgbGF5ZXIuIFRo
+ZSBtYXBwaW5nIGlzIGRvbmUgYXMgZm9sbG93aW5nOg0KPj4+Pj4+IEEuIFJlcXVpcmVtZW50IHRo
+YXQgbWFwIGFnYWluc3QgcGFja2FnZS9wYWNrYWdlcyB3aXRoIHJlY2lwZXMgDQo+Pj4+Pj4gdGhh
+dCBhbHJlYWR5IGV4aXN0cyBpbiBZb2N0bw0KPj4+Pj4+ICAgIEExLiBSZXF1aXJlbWVudCB0aGF0
+IG1hcCBhZ2FpbnN0IHBhY2thZ2UvcGFja2FnZXMgd2l0aCByZWNpcGVzIA0KPj4+Pj4+IGFscmVh
+ZHkgZXhpc3RpbmcgaW4gbWV0YS1lbmVhDQo+Pj4+Pj4gICAgQTIuIFJlcXVpcmVtZW50IHRoYXQg
+bWFwIGFnYWluc3QgcGFja2FnZS9wYWNrYWdlcyB3aXRoIHJlY2lwZXMgDQo+Pj4+Pj4gdGhhdCBl
+eGlzdHMgaW4gWW9jdG8gKGJ1dCBub3QgaW4gbWV0YS1lbmVhKSBCLiBSZXF1aXJlbWVudCB0aGF0
+IA0KPj4+Pj4+IG1hcCBhZ2FpbnN0IHBhY2thZ2UvcGFja2FnZXMgd2l0aG91dCBhbnkgcmVjaXBl
+IEMuIFJlcXVpcmVtZW50IA0KPj4+Pj4+IGRvZXMgbm90IGRpcmVjdGx5IG1hcCBhZ2FpbnN0IHBh
+Y2thZ2UvcGFja2FnZXMgYW5kIG5lZWRzIHNvbWUgDQo+Pj4+Pj4gaW52ZXN0aWdhdGlvbi4NCj4+
+Pj4+PiBELiBSZXF1aXJlbWVudCB0aGF0IG5vIHNvbHV0aW9uIGhhdmUgYmVlbiBmb3VuZCBhZnRl
+ciBhIG1vcmUgDQo+Pj4+Pj4gZGV0YWlsZWQgaW52ZXN0aWdhdGlvbi4NCj4+Pj4+Pg0KPj4+Pj4+
+DQo+Pj4+Pj4NCj4+Pj4+PiBXaGVuIHRoZSByZWxlYXNlIHdhcyBtYWRlIGF2YWlsYWJsZSBvbiB0
+aGUgcHVibGljIHJlcG9zaXRvcnksIHRoZSANCj4+Pj4+PiBwYWNrYWdlcyBmcm9tIHRoZSBBMSBh
+bmQgQTIgd2VyZSBpbnRlZ3JhdGVkLCBhIGJ1bmNoIG9mIHRoZW0gd2l0aCANCj4+Pj4+PiBjb21w
+aWxhdGlvbiBlcnJvcnM6DQo+Pj4+Pj4NCj4+Pj4+PiAtICAgICAgICAgIGxrc2N0cC10b29scw0K
+Pj4+Pj4+DQo+Pj4+Pj4gLSAgICAgICAgICBvcGVuYWlzDQo+Pj4+Pj4NCj4+Pj4+PiAtICAgICAg
+ICAgIHBhY2VtYWtlcg0KPj4+Pj4+DQo+Pj4+Pj4gLSAgICAgICAgICBvcGVuaHBpDQo+Pj4+Pj4N
+Cj4+Pj4+PiAtICAgICAgICAgIG9wZW4taXNjc2ktdXNlcg0KPj4+Pj4+DQo+Pj4+Pj4gLSAgICAg
+ICAgICBvcGVuLWlzY3NpLWtlcm5lbA0KPj4+Pj4+DQo+Pj4+Pj4gLSAgICAgICAgICBsaWJjYXAt
+bmcNCj4+Pj4+Pg0KPj4+Pj4+IC0gICAgICAgICAgY2x1c3Rlci1nbHVlDQo+Pj4+Pj4NCj4+Pj4+
+PiAtICAgICAgICAgIGNsdXN0ZXItcmVzb3VyY2UtYWdlbnRzDQo+Pj4+Pj4NCj4+Pj4+PiBUaGUg
+YWN0aXZpdHkgb24gdGhlIG1ldGEtY2dsIHdhcyByZXN1bWVkIHRvZGF5IGFuZCB0aG9zZSBidWls
+ZCANCj4+Pj4+PiBhbmQgaW50ZWdyYXRpb24gZXJyb3JzIHdpbGwgYmUgZGVhbHQgbmV4dC4NCj4+
+Pj4+Pg0KPj4+Pj4+DQo+Pj4+Pj4NCj4+Pj4+PiBPbiB0aGUgbG9uZ2VyIHJ1biB3ZSB3aWxsIHRy
+eSB0byBjcmVhdGUgcmVjaXBlcyBhbmQvb3IgZnVsZmlsbCANCj4+Pj4+PiBhbGwgdGhlIG90aGVy
+IHJlcXVpcmVtZW50cyBmcm9tIHRoZSBjbGFzcyBCLCBDLCBhbmQgRC4NCj4+Pj4+Pg0KPj4+Pj4+
+IFBsZWFzZSBkbyBub3QgaGVzaXRhdGUgdG8gY29udGFjdCBtZSBpZiB5b3UgaGF2ZSBmdXJ0aGVy
+IHF1ZXN0aW9ucy4NCj4+Pj4+Pg0KPj4+Pj4+DQo+Pj4+Pj4NCj4+Pj4+Pg0KPj4+Pj4+DQo+Pj4+
+Pj4gQWxleA0KPj4+Pj4+DQo+Pj4+Pj4NCj4+Pj4+Pg0KPj4+Pj4+IEZyb206IEpvbiBBbGRhbWEN
+Cj4+Pj4+PiBTZW50OiBGcmlkYXksIEp1bmUgMjcsIDIwMTQgMTowNyBQTQ0KPj4+Pj4+IFRvOiBB
+bGV4YW5kcnUgVmFkdXZhOyBDb3NtaW4gTW9sZG92ZWFudTsgSmVubnkgQW5kZXJzc29uOyBEYXZp
+ZCANCj4+Pj4+PiBOeXN0csO2bQ0KPj4+Pj4+IENjOiBEYW5pZWwgQm9ybmF6OyBBZHJpYW4gRHVk
+YXUNCj4+Pj4+PiBTdWJqZWN0OiBSRTogQ2FycmllciBHcmFkZSBsYXllciBwcm9wb3NhbA0KPj4+
+Pj4+DQo+Pj4+Pj4NCj4+Pj4+Pg0KPj4+Pj4+IFJvZ2VyIHRoYXQhIFRoYW5rcyBBbGV4YW5kcnUh
+DQo+Pj4+Pj4NCj4+Pj4+Pg0KPj4+Pj4+DQo+Pj4+Pj4NCj4+Pj4+Pg0KPj4+Pj4+IEZyb206IEFs
+ZXhhbmRydSBWYWR1dmENCj4+Pj4+PiBTZW50OiBkZW4gMjcganVuaSAyMDE0IDExOjQzDQo+Pj4+
+Pj4gVG86IEpvbiBBbGRhbWE7IENvc21pbiBNb2xkb3ZlYW51OyBKZW5ueSBBbmRlcnNzb247IERh
+dmlkIE55c3Ryw7ZtDQo+Pj4+Pj4gQ2M6IERhbmllbCBCb3JuYXo7IEFkcmlhbiBEdWRhdQ0KPj4+
+Pj4+IFN1YmplY3Q6IFJFOiBDYXJyaWVyIEdyYWRlIGxheWVyIHByb3Bvc2FsDQo+Pj4+Pj4NCj4+
+Pj4+Pg0KPj4+Pj4+DQo+Pj4+Pj4gSGVsbG8gSm9uLA0KPj4+Pj4+DQo+Pj4+Pj4NCj4+Pj4+Pg0K
+Pj4+Pj4+IFdlIHdpbGwgZmlyc3QgaGF2ZSBhbiBpbnRlcm5hbCBtZWV0aW5nIG9uIE1vbmRheSBh
+bmQgYWZ0ZXIgdGhhdCBJIA0KPj4+Pj4+IHdpbGwgb2ZmZXIgYW4gYW5zd2VyIHRvIEplZmYuDQo+
+Pj4+Pj4NCj4+Pj4+Pg0KPj4+Pj4+DQo+Pj4+Pj4NCj4+Pj4+Pg0KPj4+Pj4+IEFsZXgNCj4+Pj4+
+Pg0KPj4+Pj4+DQo+Pj4+Pj4NCj4+Pj4+PiBGcm9tOiBKb24gQWxkYW1hDQo+Pj4+Pj4gU2VudDog
+RnJpZGF5LCBKdW5lIDI3LCAyMDE0IDEyOjMyIFBNDQo+Pj4+Pj4gVG86IENvc21pbiBNb2xkb3Zl
+YW51OyBKZW5ueSBBbmRlcnNzb247IERhdmlkIE55c3Ryw7ZtDQo+Pj4+Pj4gQ2M6IEFsZXhhbmRy
+dSBWYWR1dmE7IERhbmllbCBCb3JuYXo7IEFkcmlhbiBEdWRhdQ0KPj4+Pj4+IFN1YmplY3Q6IFJF
+OiBDYXJyaWVyIEdyYWRlIGxheWVyIHByb3Bvc2FsDQo+Pj4+Pj4NCj4+Pj4+Pg0KPj4+Pj4+DQo+
+Pj4+Pj4gVGhhbmsgeW91IENvc21pbiwNCj4+Pj4+Pg0KPj4+Pj4+DQo+Pj4+Pj4NCj4+Pj4+PiBB
+bGV4YW5kcnUsIGNvdWxkIHlvdSBwbGVhc2UgcmVzcG9uZCBKZWZmIGF0IHRoZSBtYWlsaW5nIGxp
+c3Q/IA0KPj4+Pj4+IChzZWUgZG93bg0KPj4+Pj4+IGJlbG93KQ0KPj4+Pj4+DQo+Pj4+Pj4NCj4+
+Pj4+Pg0KPj4+Pj4+IENoZWVycw0KPj4+Pj4+DQo+Pj4+Pj4gSm9uDQo+Pj4+Pj4NCj4+Pj4+Pg0K
+Pj4+Pj4+DQo+Pj4+Pj4gRnJvbTogQ29zbWluIE1vbGRvdmVhbnUNCj4+Pj4+PiBTZW50OiBkZW4g
+MjcganVuaSAyMDE0IDEwOjU5DQo+Pj4+Pj4gVG86IEplbm55IEFuZGVyc3NvbjsgSm9uIEFsZGFt
+YTsgRGF2aWQgTnlzdHLDtm0NCj4+Pj4+PiBDYzogQWxleGFuZHJ1IFZhZHV2YTsgRGFuaWVsIEJv
+cm5hejsgQWRyaWFuIER1ZGF1DQo+Pj4+Pj4gU3ViamVjdDogUkU6IENhcnJpZXIgR3JhZGUgbGF5
+ZXIgcHJvcG9zYWwNCj4+Pj4+Pg0KPj4+Pj4+DQo+Pj4+Pj4NCj4+Pj4+PiBIaSwNCj4+Pj4+Pg0K
+Pj4+Pj4+DQo+Pj4+Pj4NCj4+Pj4+PiBBbGV4YW5kcnUgVmFkdXZhIHdpbGwgYmUgbWFpbiByZXNw
+b25zaWJsZSBmb3IgaW50ZXJmYWNpbmcgd2l0aCANCj4+Pj4+PiBjb21tdW5pdHkgb24gbWV0YS1j
+Z2wgdG9waWMuIEhlIHdpbGwgYWxzbyBhdHRlbmQgWW9jdG8gVGVjaG5pY2FsIA0KPj4+Pj4+IE1l
+ZXRpbmdzIHdoZW5ldmVyIG5lY2Vzc2FyeSBmcm9tIG5vdyBvbi4NCj4+Pj4+Pg0KPj4+Pj4+DQo+
+Pj4+Pj4NCj4+Pj4+PiBCUiwNCj4+Pj4+Pg0KPj4+Pj4+IC9Db3NtaW4NCj4+Pj4+Pg0KPj4+Pj4+
+DQo+Pj4+Pj4NCj4+Pj4+PiBGcm9tOiBKZW5ueSBBbmRlcnNzb24NCj4+Pj4+PiBTZW50OiBGcmlk
+YXksIEp1bmUgMjcsIDIwMTQgMTA6MzIgQU0NCj4+Pj4+PiBUbzogSm9uIEFsZGFtYTsgRGF2aWQg
+TnlzdHLDtm07IENvc21pbiBNb2xkb3ZlYW51DQo+Pj4+Pj4gQ2M6IFZhbGVudGluIENvYmVsZWEN
+Cj4+Pj4+PiBTdWJqZWN0OiBSRTogQ2FycmllciBHcmFkZSBsYXllciBwcm9wb3NhbA0KPj4+Pj4+
+DQo+Pj4+Pj4NCj4+Pj4+Pg0KPj4+Pj4+IEhpIENvc21pbiwNCj4+Pj4+Pg0KPj4+Pj4+DQo+Pj4+
+Pj4NCj4+Pj4+PiBIb3cgdG9vayBvdmVyIGFmdGVyIFZhbGVudGluIGxlZnQgRW5lYT8gQ291bGQg
+c29tZW9uZSBpbiB5b3VyIA0KPj4+Pj4+IHRlYW0gcmVzcG9uZC4NCj4+Pj4+Pg0KPj4+Pj4+DQo+
+Pj4+Pj4NCj4+Pj4+PiBUaGFua3MsDQo+Pj4+Pj4NCj4+Pj4+PiBKZW5ueQ0KPj4+Pj4+DQo+Pj4+
+Pj4NCj4+Pj4+Pg0KPj4+Pj4+IEZyb206IEpvbiBBbGRhbWENCj4+Pj4+PiBTZW50OiBkZW4gMjcg
+anVuaSAyMDE0IDA5OjI4DQo+Pj4+Pj4gVG86IERhdmlkIE55c3Ryw7ZtOyBKZW5ueSBBbmRlcnNz
+b24NCj4+Pj4+PiBDYzogVmFsZW50aW4gQ29iZWxlYQ0KPj4+Pj4+IFN1YmplY3Q6IEZXOiBDYXJy
+aWVyIEdyYWRlIGxheWVyIHByb3Bvc2FsDQo+Pj4+Pj4NCj4+Pj4+Pg0KPj4+Pj4+DQo+Pj4+Pj4g
+RGF2aWQsIEplbm55LA0KPj4+Pj4+DQo+Pj4+Pj4NCj4+Pj4+Pg0KPj4+Pj4+IFdpbGwgYW55IG9m
+IHlvdSBhbnN3ZXIgdGhpcz8NCj4+Pj4+Pg0KPj4+Pj4+DQo+Pj4+Pj4NCj4+Pj4+PiBCVFcsIGhh
+dmUgeW91IG1hbmFnZWQgdG8gZmlsZSB0aGUgWW9jdG8gY29tcGF0aWJpbGl0eSBhcHBsaWNhdGlv
+bj8NCj4+Pj4+Pg0KPj4+Pj4+DQo+Pj4+Pj4NCj4+Pj4+PiBSZWdhcmRzDQo+Pj4+Pj4NCj4+Pj4+
+PiBKb24NCj4+Pj4+Pg0KPj4+Pj4+DQo+Pj4+Pj4NCj4+Pj4+PiBGcm9tOiBPc2llci1taXhvbiwg
+SmVmZnJleSBbbWFpbHRvOmplZmZyZXkub3NpZXItbWl4b25AaW50ZWwuY29tXQ0KPj4+Pj4+IFNl
+bnQ6IGRlbiAyNiBqdW5pIDIwMTQgMjA6MzYNCj4+Pj4+PiBUbzogRGF2aWQgTnlzdHLDtm07IGRh
+dmlkZS5yaWNjaUB3aW5kcml2ZXIuY29tOyANCj4+Pj4+PiBjaGFsbGluYW5AZ21haWwuY29tOyB0
+ZW9kb3IuYm9ib3JuaWxvQHdpbmRyaXZlci5jb207IFZhbGVudGluIA0KPj4+Pj4+IENvYmVsZWE7
+IGNoYXNlLm1hdXBpbkB0aS5jb207IEpvbiBBbGRhbWE7IA0KPj4+Pj4+IHBoaWxpcC5iYWxpc3Rl
+ckBnbWFpbC5jb207IGtldmluX21jY29tYmVAbWVudG9yLmNvbTsgDQo+Pj4+Pj4gYWt1c3RlckBt
+dmlzdGEuY29tOyBqYXNvbi53ZXNzZWxAd2luZHJpdmVyLmNvbTsgDQo+Pj4+Pj4gcmljaGFyZC5w
+dXJkaWVAbGludXhmb3VuZGF0aW9uLm9yZzsNCj4+Pj4+PiBodWkuZ2VuZ0BodWF3ZWkuY29tOyBq
+b2huX2NoZXJyeUBtZW50b3IuY29tOyANCj4+Pj4+PiBqZWZmcmV5Lm9zaWVyLW1peG9uQGludGVs
+LmNvbQ0KPj4+Pj4+IENjOiBQaGlsaXAgQmFsaXN0ZXINCj4+Pj4+PiBTdWJqZWN0OiBZUDogQ2Fy
+cmllciBHcmFkZSBsYXllciBwcm9wb3NhbA0KPj4+Pj4+DQo+Pj4+Pj4NCj4+Pj4+Pg0KPj4+Pj4+
+IEhpIGFsbCAtIHRoaXMgaXMgYSBzaW1wbGUgZm9sbG93dXAgdG8gb3VyIG1lZXRpbmcgYXQgRUxD
+IA0KPj4+Pj4+IHJlZ2FyZGluZyBhIG1ldGEtY2dsIGxheWVyLCBwcm9wb3NlZCBieSBFbmVhLg0K
+Pj4+Pj4+DQo+Pj4+Pj4NCj4+Pj4+Pg0KPj4+Pj4+IFRoZSBwbGFuIHdhcyB0byBjcmVhdGUgYSBs
+aXN0IG9mIHJlY2lwZXMgdG8gYmUgaW5jbHVkZWQsIGFuZCB0byANCj4+Pj4+PiBzdGFydCBhIGRp
+c2N1c3Npb24gb24gdGhlIG1haWxpbmcgbGlzdC5UaGVyZSBpcyBhIHRocmVhZCBvbiB0aGUgDQo+
+Pj4+Pj4gbGlzdCBmcm9tIGJhY2sgaW4gQXByaWwsIGJ1dCBJIGRvbid0IHNlZSBhbnl0aGluZyBt
+b3JlIHJlY2VudCANCj4+Pj4+PiB0aGFuIHRoYXQuIEhhcyB0aGVyZSBiZWVuIGFueSBwcm9ncmVz
+cz8NCj4+Pj4+Pg0KPj4+Pj4+DQo+Pj4+Pj4NCj4+Pj4+PiB0aGFua3MNCj4+Pj4+Pg0KPj4+Pj4+
+DQo+Pj4+Pj4gLS0NCj4+Pj4+PiBfX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fXw0KPj4+Pj4+IE9wZW5lbWJlZGRlZC1jb3JlIG1haWxpbmcgbGlzdA0KPj4+Pj4+
+IE9wZW5lbWJlZGRlZC1jb3JlQGxpc3RzLm9wZW5lbWJlZGRlZC5vcmcNCj4+Pj4+PiBodHRwOi8v
+bGlzdHMub3BlbmVtYmVkZGVkLm9yZy9tYWlsbWFuL2xpc3RpbmZvL29wZW5lbWJlZGRlZC1jb3Jl
+DQo+Pj4+Pj4NCj4+Pj4+DQo+Pj4+Pg0KPj4+Pj4gLS0NCj4+Pj4+IEplZmYgT3NpZXItTWl4b24g
+QEludGVsDQo+Pj4+PiBZb2N0byBQcm9qZWN0IENvbW11bml0eSBNYW5hZ2VyIGh0dHA6Ly95b2N0
+b3Byb2plY3Qub3JnDQo+Pj4+PiAtLQ0KPj4+Pj4gX19fX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX18NCj4+Pj4+IHlvY3RvIG1haWxpbmcgbGlzdA0KPj4+Pj4geW9j
+dG9AeW9jdG9wcm9qZWN0Lm9yZw0KPj4+Pj4gaHR0cHM6Ly9saXN0cy55b2N0b3Byb2plY3Qub3Jn
+L2xpc3RpbmZvL3lvY3RvDQo+Pj4+DQo+Pj4+DQo+Pj4+IC0tDQo+Pj4+IEpvZSBNYWNEb25hbGQN
+Cj4+Pj4gOndxDQo+Pj4NCj4+Pg0KPj4NCg0K
 
-Hi All,
-
-I am trying to build toolchain with target option for bitbake as
-meta-toolchain but while building i am getting error.
-
-Please find the below error log for your perusual:
-
-elfutils-native/0.158-r0/elfutils-0.158/configure
---build=i686-linux             --host=i686-linux
---target=i686-linux
---prefix=/home/atulk/poky-a5531a2b8983318b99c119a87b78a92cf84160b8/build-toolchain-sdk/tmp/sysroots/i686-linux/usr
---exec_prefix=/home/atulk/poky-a5531a2b8983318b99c119a87b78a92cf84160b8/build-toolchain-sdk/tmp/sysroots/i686-linux/usr
---bindir=/home/atulk/poky-a5531a2b8983318b99c119a87b78a92cf84160b8/build-toolchain-sdk/tmp/sysroots/i686-linux/usr/bin
---sbindir=/home/atulk/poky-a5531a2b8983318b99c119a87b78a92cf84160b8/build-toolchain-sdk/tmp/sysroots/i686-linux/usr/sbin
---libexecdir=/home/atulk/poky-a5531a2b8983318b99c119a87b78a92cf84160b8/build-toolchain-sdk/tmp/sysroots/i686-linux/usr/lib/elfutils
---datadir=/home/atulk/poky-a5531a2b8983318b99c119a87b78a92cf84160b8/build-toolchain-sdk/tmp/sysroots/i686-linux/usr/share
---sysconfdir=/home/atulk/poky-a5531a2b8983318b99c119a87b78a92cf84160b8/build-toolchain-sdk/tmp/sysroots/i686-linux/etc
---sharedstatedir=/home/atulk/poky-a5531a2b8983318b99c119a87b78a92cf84160b8/build-toolchain-sdk/tmp/sysroots/i686-linux/com
---localstatedir=/home/atulk/poky-a5531a2b8983318b99c119a87b78a92cf84160b8/build-toolchain-sdk/tmp/sysroots/i686-linux/var
---libdir=/home/atulk/poky-a5531a2b8983318b99c119a87b78a92cf84160b8/build-toolchain-sdk/tmp/sysroots/i686-linux/usr/lib
---includedir=/home/atulk/poky-a5531a2b8983318b99c119a87b78a92cf84160b8/build-toolchain-sdk/tmp/sysroots/i686-linux/usr/include
---oldincludedir=/home/atulk/poky-a5531a2b8983318b99c119a87b78a92cf84160b8/build-toolchain-sdk/tmp/sysroots/i686-linux/usr/include
---infodir=/home/atulk/poky-a5531a2b8983318b99c119a87b78a92cf84160b8/build-toolchain-sdk/tmp/sysroots/i686-linux/usr/share/info
---mandir=/home/atulk/poky-a5531a2b8983318b99c119a87b78a92cf84160b8/build-toolchain-sdk/tmp/sysroots/i686-linux/usr/share/man
---disable-silent-rules
---disable-dependency-tracking                    --program-prefix=eu-
---without-lzma --disable-nls
-configure: loading site script
-/home/atulk/poky-a5531a2b8983318b99c119a87b78a92cf84160b8/meta/site/native
-checking for a BSD-compatible install... /usr/bin/install -c
-checking whether build environment is sane... yes
-checking for a thread-safe mkdir -p... /usr/bin/mkdir -p
-checking for gawk... gawk
-checking whether make sets $(MAKE)... yes
-checking whether make supports nested variables... yes
-checking whether to enable maintainer-specific portions of Makefiles... no
-checking build system type... i686-pc-linux-gnu
-checking host system type... i686-pc-linux-gnu
-checking for i686-linux-gcc... gcc
-checking whether the C compiler works... no
-configure: error: in
-`/home/atulk/poky-a5531a2b8983318b99c119a87b78a92cf84160b8/build-toolchain-sdk/tmp/work/i686-linux/elfutils-native/0.158-r0/build':
-configure: error: C compiler cannot create executables
-See `config.log' for more details
-Configure failed. The contents of all config.log files follows to aid
-debugging
-ERROR: oe_runconf failed
-
-Please let me know if i am missing something.
-
-Thanks & Regards,
-Atul Kumar Singh
-
---bcaec517aefe25ceeb04ff8bd0b5
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-<p>Hi All,<br></p>
-<p>I am trying to build toolchain with target option for bitbake as meta-to=
-olchain but while building i am getting error.</p>
-<p>Please find the below error log for your perusual:<br></p>
-<p>elfutils-native/0.158-r0/elfutils-0.158/configure=C2=A0 --build=3Di686-l=
-inux=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0 --host=3Di686-linux=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 --target=3Di686-linux=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 --prefix=3D/home/atu=
-lk/poky-a5531a2b8983318b99c119a87b78a92cf84160b8/build-toolchain-sdk/tmp/sy=
-sroots/i686-linux/usr=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0 --exec_prefix=3D/home/atulk/poky-a5531a2b8983318b9=
-9c119a87b78a92cf84160b8/build-toolchain-sdk/tmp/sysroots/i686-linux/usr=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0 --bindir=3D/home/atulk/poky-a5531a2b8983318b99c119a87b78=
-a92cf84160b8/build-toolchain-sdk/tmp/sysroots/i686-linux/usr/bin=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0 --sbindir=3D/home/atulk/poky-a5531a2b8983318b99c119a87b7=
-8a92cf84160b8/build-toolchain-sdk/tmp/sysroots/i686-linux/usr/sbin=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0 --libexecdir=3D/home/atulk/poky-a5531a2b8983318b99c119a87b78a92cf841=
-60b8/build-toolchain-sdk/tmp/sysroots/i686-linux/usr/lib/elfutils=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 --datadir=
-=3D/home/atulk/poky-a5531a2b8983318b99c119a87b78a92cf84160b8/build-toolchai=
-n-sdk/tmp/sysroots/i686-linux/usr/share=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 --sysconfdir=3D/home/atulk=
-/poky-a5531a2b8983318b99c119a87b78a92cf84160b8/build-toolchain-sdk/tmp/sysr=
-oots/i686-linux/etc=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 --sharedstatedir=3D/home/a=
-tulk/poky-a5531a2b8983318b99c119a87b78a92cf84160b8/build-toolchain-sdk/tmp/=
-sysroots/i686-linux/com=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0 --localstatedir=3D/home/atulk/poky-a5531a2b8983=
-318b99c119a87b78a92cf84160b8/build-toolchain-sdk/tmp/sysroots/i686-linux/va=
-r=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0 --libdir=3D/home/atulk/poky-a5531a2b8983318b99c119a87b78a92cf8=
-4160b8/build-toolchain-sdk/tmp/sysroots/i686-linux/usr/lib=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0 --includedir=3D/home/atulk/poky-a5531a2b8983318b99c119a87b78a9=
-2cf84160b8/build-toolchain-sdk/tmp/sysroots/i686-linux/usr/include=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0 --oldincludedir=3D/home/atulk/poky-a5531a2b8983318b99c11=
-9a87b78a92cf84160b8/build-toolchain-sdk/tmp/sysroots/i686-linux/usr/include=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0 --infodir=3D/home/atulk/poky-a5531a2b8983318b99c119a87b78a92cf841=
-60b8/build-toolchain-sdk/tmp/sysroots/i686-linux/usr/share/info=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0 --mandir=3D/home/atulk/poky-a5531a2b8983318b99c119a87b78a92=
-cf84160b8/build-toolchain-sdk/tmp/sysroots/i686-linux/usr/share/man=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 --disable-sile=
-nt-rules=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 --disable-dependency-tracking=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 --program-prefix=3Deu- --without-lzma --disa=
-ble-nls<br>
-
-configure: loading site script /home/atulk/poky-a5531a2b8983318b99c119a87b7=
-8a92cf84160b8/meta/site/native<br>
-checking for a BSD-compatible install... /usr/bin/install -c<br>
-checking whether build environment is sane... yes<br>
-checking for a thread-safe mkdir -p... /usr/bin/mkdir -p<br>
-checking for gawk... gawk<br>
-checking whether make sets $(MAKE)... yes<br>
-checking whether make supports nested variables... yes<br>
-checking whether to enable maintainer-specific portions of Makefiles... no<=
-br>
-checking build system type... i686-pc-linux-gnu<br>
-checking host system type... i686-pc-linux-gnu<br>
-checking for i686-linux-gcc... gcc<br>
-checking whether the C compiler works... no<br>
-configure: error: in `/home/atulk/poky-a5531a2b8983318b99c119a87b78a92cf841=
-60b8/build-toolchain-sdk/tmp/work/i686-linux/elfutils-native/0.158-r0/build=
-&#39;:<br>
-configure: error: C compiler cannot create executables<br>
-See `config.log&#39; for more details<br>
-Configure failed. The contents of all config.log files follows to aid debug=
-ging<br>
-ERROR: oe_runconf failed</p>
-<p>Please let me know if i am missing something.<br></p>
-<p>Thanks &amp; Regards,<br>
-Atul Kumar Singh</p>
-
---bcaec517aefe25ceeb04ff8bd0b5--
