@@ -1,45 +1,41 @@
-Return-Path: <ajlennon@dynamicdevices.co.uk>
+Return-Path: <pushpa@jtechindia.in>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 26C87E005BB; Fri,  1 Aug 2014 03:07:29 -0700 (PDT)
+	id D9B25E005BB; Fri,  1 Aug 2014 03:30:23 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [65.55.111.92 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from www.dynamicdevices.co.uk (www.dynamicdevices.co.uk
-	[89.200.136.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 24C65E0056A
-	for <yocto@yoctoproject.org>; Fri,  1 Aug 2014 03:07:26 -0700 (PDT)
-Received: from localhost (localhost [127.0.0.1])
-	by www.dynamicdevices.co.uk (Postfix) with ESMTP id 8451C27E04D;
-	Fri,  1 Aug 2014 10:07:24 +0000 (UTC)
-X-Virus-Scanned: Debian amavisd-new at lennoab2.miniserver.com
-Received: from www.dynamicdevices.co.uk ([127.0.0.1])
-	by localhost (www.dynamicdevices.co.uk [127.0.0.1]) (amavisd-new,
-	port 10024)
-	with ESMTP id PoZtFxKFVrWD; Fri,  1 Aug 2014 10:07:24 +0000 (UTC)
-Received: from [127.0.0.1] (cpc32-live22-2-0-cust59.17-2.cable.virginm.net
-	[82.36.253.60])
-	(using TLSv1 with cipher ECDHE-RSA-AES128-SHA (128/128 bits))
-	(No client certificate requested)
-	by www.dynamicdevices.co.uk (Postfix) with ESMTPSA id E066227E031;
-	Fri,  1 Aug 2014 10:07:23 +0000 (UTC)
-Message-ID: <53DB66D8.3060500@dynamicdevices.co.uk>
-Date: Fri, 01 Aug 2014 11:07:20 +0100
-From: Alex J Lennon <ajlennon@dynamicdevices.co.uk>
-User-Agent: Mozilla/5.0 (Windows NT 6.3; WOW64;
-	rv:24.0) Gecko/20100101 Thunderbird/24.6.0
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+Received: from BLU004-OMC2S17.hotmail.com (blu004-omc2s17.hotmail.com
+	[65.55.111.92])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 614AEE0056A
+	for <yocto@yoctoproject.org>; Fri,  1 Aug 2014 03:30:19 -0700 (PDT)
+Received: from BLU185-W93 ([65.55.111.73]) by BLU004-OMC2S17.hotmail.com with
+	Microsoft SMTPSVC(7.5.7601.22712); Fri, 1 Aug 2014 03:30:18 -0700
+X-TMN: [x0GR534NBju5ds1uiYkqfwaw1EIFU5eF]
+X-Originating-Email: [pushpa@jtechindia.in]
+Message-ID: <BLU185-W93281D4A94CC98F82110C4C7E70@phx.gbl>
+From: Pushpa Teja <pushpa@jtechindia.in>
+To: Paul Eggleton <paul.eggleton@linux.intel.com>
+Date: Fri, 1 Aug 2014 10:30:18 +0000
+Importance: Normal
+In-Reply-To: <1624546.n1hBMRbNts@peggleto-mobl5.ger.corp.intel.com>
+References: <mailman.21236.1406788558.26702.yocto@yoctoproject.org>
+	<3448592.XcGlM2j8ls@peggleto-mobl5.ger.corp.intel.com>
+	<BLU185-W32A6A2A4836734A928F13BC7E70@phx.gbl>,
+	<1624546.n1hBMRbNts@peggleto-mobl5.ger.corp.intel.com>
 MIME-Version: 1.0
-To: ronan <ronan.lemartret@open.eurogiciel.org>
-References: <53DA58C9.50705@open.eurogiciel.org>
-	<53DB6430.8090608@dynamicdevices.co.uk>
-	<53DB660B.6040700@open.eurogiciel.org>
-In-Reply-To: <53DB660B.6040700@open.eurogiciel.org>
-X-Enigmail-Version: 1.6
-Cc: yocto@yoctoproject.org, general@lists.tizen.org
-Subject: Re: Build Tizen with yocto work-flow
+X-OriginalArrivalTime: 01 Aug 2014 10:30:18.0510 (UTC)
+	FILETIME=[971C6AE0:01CFAD73]
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
+	sadasivam <sadasivam.b@jtechindia.com>
+Subject: Re: yocto Digest, Vol 46, Issue 109
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -51,31 +47,162 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 01 Aug 2014 10:07:29 -0000
-Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Fri, 01 Aug 2014 10:30:23 -0000
+Content-Type: multipart/alternative;
+	boundary="_47a23113-c467-411b-9c3f-00368446dcd6_"
+
+--_47a23113-c467-411b-9c3f-00368446dcd6_
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+
+Hi =2C
+
+yes but this problem is not at all solving there is no problem in my connec=
+tion when ever i am trying this sites mirrors are not available plz give me=
+ a solution.
+=20
+Regards=2C
+pushpa
 
 
-On 01/08/2014 11:03, ronan wrote:
-> Hi Alex
->
->>
->> I'm interested in trying this out. Presumably it should be trivial to
->> add Mono support by pulling in meta-mono?
->>
->> Have you looked at this on ARM target platforms at all? e.g. i.MX6 ?
->
-> No, we did not test it for ARM yet, but it's in the pipe.
->
-> If try a ARM build, we would be interested in your feed back.
->
-> Regarding Mono, it shouldn't be an issue. 
+> From: paul.eggleton@linux.intel.com
+> To: pushpa@jtechindia.in
+> CC: sadasivam.b@jtechindia.com=3B yocto@yoctoproject.org
+> Subject: Re: [yocto] yocto Digest=2C Vol 46=2C Issue 109
+> Date: Fri=2C 1 Aug 2014 10:19:01 +0100
+>=20
+> On Friday 01 August 2014 03:43:55 Pushpa Teja wrote:
+> >            Thanks for your reply . i have solved this problem but i got
+> > another problem i am trying to check out with mirrors but not getting t=
+he
+> > solution  i am getting the logs like below please give solution for thi=
+s .
+> >=20
+> >=20
+> > WARNING: Failed to fetch URL
+> > http://www.freescale.com/lgfiles/NMG/MAD/YOCTO//libfslcodec-3.0.11.bin=
+=3Bfsl-> eula=3Dtrue=2C attempting MIRRORS if available
+> > WARNING: Failed to fetch URL
+> > http://www.freescale.com/lgfiles/NMG/MAD/YOCTO//fsl-gpu-sdk-1.1.bin=3Bf=
+sl-eul
+> > a=3Dtrue=2C attempting MIRRORS if available ERROR: Fetcher failure: Fet=
+ch
+> > command failed with exit code 4=2C output: Read error (Connection timed=
+ out)
+> > in headers.
+> > Read error (Connection timed out) in headers.
+> >=20
+> > ERROR: Function failed: Fetcher failure for URL:
+> > 'http://www.freescale.com/lgfiles/NMG/MAD/YOCTO//libfslcodec-3.0.11.bin=
+=3Bfsl
+> > -eula=3Dtrue'. Unable to fetch URL from any source.
+> > ERROR: Logfile of failure
+> > stored in:
+> > /home/teju/fsl-arm-yocto-bsp/build/tmp/work/riotboard-poky-linux-gnueab=
+i/li
+> > bfslcodec/3.0.11-r0/temp/log.do_fetch.9090 ERROR: Task 1615
+> > (/home/teju/fsl-arm-yocto-bsp/sources/meta-fsl-bsp-release/imx/meta-fsl=
+-arm
+> > /recipes-multimedia/libfslcodec/libfslcodec_3.0.11.bb=2C do_fetch) fail=
+ed with
+> > exit code '1' ERROR: Fetcher failure: Fetch command failed with exit co=
+de
+> > 4=2C output: Read error (Connection timed out) in headers.
+> > Read error (Connection timed out) in headers.
+> >=20
+> > ERROR: Function failed: Fetcher failure for URL:
+> > 'http://www.freescale.com/lgfiles/NMG/MAD/YOCTO//fsl-gpu-sdk-1.1.bin=3B=
+fsl-eu
+> > la=3Dtrue'. Unable to fetch URL from any source.
+> > ERROR: Logfile of failure
+> > stored in:
+> > /home/teju/fsl-arm-yocto-bsp/build/tmp/work/cortexa9hf-vfp-neon-mx6-pok=
+y-li
+> > nux-gnueabi/fsl-gpu-sdk/1.1-r0/temp/log.do_fetch.9093 ERROR: Task 391
+> > (/home/teju/fsl-arm-yocto-bsp/sources/meta-fsl-bsp-release/imx/meta-fsl=
+-dem
+> > os/recipes-graphics/fsl-gpu-sdk/fsl-gpu-sdk_1.1.bb=2C do_fetch) failed =
+with
+> > exit code '1'=20
+>=20
+> This looks like the same error=2C just for different recipes - I think ma=
+ybe you=20
+> have not solved the underlying problem.
+>=20
+> Cheers=2C
+> Paul
+>=20
+> --=20
+>=20
+> Paul Eggleton
+> Intel Open Source Technology Centre
+ 		 	   		  =
 
-Thanks. I'll see if I can take a look here on an RPi or an i.MX6 then
-and let you know how it goes.
+--_47a23113-c467-411b-9c3f-00368446dcd6_
+Content-Type: text/html; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 
-Cheers,
+<html>
+<head>
+<style><!--
+.hmmessage P
+{
+margin:0px=3B
+padding:0px
+}
+body.hmmessage
+{
+font-size: 12pt=3B
+font-family:Calibri
+}
+--></style></head>
+<body class=3D'hmmessage'><div dir=3D'ltr'>Hi =2C<br><br>yes but this probl=
+em is not at all solving there is no problem in my connection when ever i a=
+m trying this sites mirrors are not available plz give me a solution.<br>&n=
+bsp=3B<br>Regards=2C<br>pushpa<br><br><br><div>&gt=3B From: paul.eggleton@l=
+inux.intel.com<br>&gt=3B To: pushpa@jtechindia.in<br>&gt=3B CC: sadasivam.b=
+@jtechindia.com=3B yocto@yoctoproject.org<br>&gt=3B Subject: Re: [yocto] yo=
+cto Digest=2C Vol 46=2C Issue 109<br>&gt=3B Date: Fri=2C 1 Aug 2014 10:19:0=
+1 +0100<br>&gt=3B <br>&gt=3B On Friday 01 August 2014 03:43:55 Pushpa Teja =
+wrote:<br>&gt=3B &gt=3B            Thanks for your reply . i have solved th=
+is problem but i got<br>&gt=3B &gt=3B another problem i am trying to check =
+out with mirrors but not getting the<br>&gt=3B &gt=3B solution  i am gettin=
+g the logs like below please give solution for this .<br>&gt=3B &gt=3B <br>=
+&gt=3B &gt=3B <br>&gt=3B &gt=3B WARNING: Failed to fetch URL<br>&gt=3B &gt=
+=3B http://www.freescale.com/lgfiles/NMG/MAD/YOCTO//libfslcodec-3.0.11.bin=
+=3Bfsl-&gt=3B eula=3Dtrue=2C attempting MIRRORS if available<br>&gt=3B &gt=
+=3B WARNING: Failed to fetch URL<br>&gt=3B &gt=3B http://www.freescale.com/=
+lgfiles/NMG/MAD/YOCTO//fsl-gpu-sdk-1.1.bin=3Bfsl-eul<br>&gt=3B &gt=3B a=3Dt=
+rue=2C attempting MIRRORS if available ERROR: Fetcher failure: Fetch<br>&gt=
+=3B &gt=3B command failed with exit code 4=2C output: Read error (Connectio=
+n timed out)<br>&gt=3B &gt=3B in headers.<br>&gt=3B &gt=3B Read error (Conn=
+ection timed out) in headers.<br>&gt=3B &gt=3B <br>&gt=3B &gt=3B ERROR: Fun=
+ction failed: Fetcher failure for URL:<br>&gt=3B &gt=3B 'http://www.freesca=
+le.com/lgfiles/NMG/MAD/YOCTO//libfslcodec-3.0.11.bin=3Bfsl<br>&gt=3B &gt=3B=
+ -eula=3Dtrue'. Unable to fetch URL from any source.<br>&gt=3B &gt=3B ERROR=
+: Logfile of failure<br>&gt=3B &gt=3B stored in:<br>&gt=3B &gt=3B /home/tej=
+u/fsl-arm-yocto-bsp/build/tmp/work/riotboard-poky-linux-gnueabi/li<br>&gt=
+=3B &gt=3B bfslcodec/3.0.11-r0/temp/log.do_fetch.9090 ERROR: Task 1615<br>&=
+gt=3B &gt=3B (/home/teju/fsl-arm-yocto-bsp/sources/meta-fsl-bsp-release/imx=
+/meta-fsl-arm<br>&gt=3B &gt=3B /recipes-multimedia/libfslcodec/libfslcodec_=
+3.0.11.bb=2C do_fetch) failed with<br>&gt=3B &gt=3B exit code '1' ERROR: Fe=
+tcher failure: Fetch command failed with exit code<br>&gt=3B &gt=3B 4=2C ou=
+tput: Read error (Connection timed out) in headers.<br>&gt=3B &gt=3B Read e=
+rror (Connection timed out) in headers.<br>&gt=3B &gt=3B <br>&gt=3B &gt=3B =
+ERROR: Function failed: Fetcher failure for URL:<br>&gt=3B &gt=3B 'http://w=
+ww.freescale.com/lgfiles/NMG/MAD/YOCTO//fsl-gpu-sdk-1.1.bin=3Bfsl-eu<br>&gt=
+=3B &gt=3B la=3Dtrue'. Unable to fetch URL from any source.<br>&gt=3B &gt=
+=3B ERROR: Logfile of failure<br>&gt=3B &gt=3B stored in:<br>&gt=3B &gt=3B =
+/home/teju/fsl-arm-yocto-bsp/build/tmp/work/cortexa9hf-vfp-neon-mx6-poky-li=
+<br>&gt=3B &gt=3B nux-gnueabi/fsl-gpu-sdk/1.1-r0/temp/log.do_fetch.9093 ERR=
+OR: Task 391<br>&gt=3B &gt=3B (/home/teju/fsl-arm-yocto-bsp/sources/meta-fs=
+l-bsp-release/imx/meta-fsl-dem<br>&gt=3B &gt=3B os/recipes-graphics/fsl-gpu=
+-sdk/fsl-gpu-sdk_1.1.bb=2C do_fetch) failed with<br>&gt=3B &gt=3B exit code=
+ '1' <br>&gt=3B <br>&gt=3B This looks like the same error=2C just for diffe=
+rent recipes - I think maybe you <br>&gt=3B have not solved the underlying =
+problem.<br>&gt=3B <br>&gt=3B Cheers=2C<br>&gt=3B Paul<br>&gt=3B <br>&gt=3B=
+ -- <br>&gt=3B <br>&gt=3B Paul Eggleton<br>&gt=3B Intel Open Source Technol=
+ogy Centre<br></div> 		 	   		  </div></body>
+</html>=
 
-Alex
-
-
+--_47a23113-c467-411b-9c3f-00368446dcd6_--
