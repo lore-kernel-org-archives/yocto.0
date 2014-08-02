@@ -1,54 +1,64 @@
-Return-Path: <ajlennon@dynamicdevices.co.uk>
+Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 0C7A5E006E7; Sat,  2 Aug 2014 13:04:47 -0700 (PDT)
+	id CA1CCE006E7; Sat,  2 Aug 2014 13:20:56 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (raj.khem[at]gmail.com)
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from www.dynamicdevices.co.uk (www.dynamicdevices.co.uk
-	[89.200.136.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C4502E004F1
-	for <yocto@yoctoproject.org>; Sat,  2 Aug 2014 13:04:37 -0700 (PDT)
-Received: from localhost (localhost [127.0.0.1])
-	by www.dynamicdevices.co.uk (Postfix) with ESMTP id 84A6227E05C;
-	Sat,  2 Aug 2014 20:04:36 +0000 (UTC)
-X-Virus-Scanned: Debian amavisd-new at lennoab2.miniserver.com
-Received: from www.dynamicdevices.co.uk ([127.0.0.1])
-	by localhost (www.dynamicdevices.co.uk [127.0.0.1]) (amavisd-new,
-	port 10024)
-	with ESMTP id dHlgGAQ__5yW; Sat,  2 Aug 2014 20:04:35 +0000 (UTC)
-Received: from [127.0.0.1] (cpc32-live22-2-0-cust59.17-2.cable.virginm.net
-	[82.36.253.60])
-	(using TLSv1 with cipher ECDHE-RSA-AES128-SHA (128/128 bits))
-	(No client certificate requested)
-	by www.dynamicdevices.co.uk (Postfix) with ESMTPSA id 62C3A27E031;
-	Sat,  2 Aug 2014 20:04:35 +0000 (UTC)
-Message-ID: <53DD4452.201@dynamicdevices.co.uk>
-Date: Sat, 02 Aug 2014 21:04:34 +0100
-From: Alex J Lennon <ajlennon@dynamicdevices.co.uk>
-User-Agent: Mozilla/5.0 (Windows NT 6.3; WOW64;
-	rv:24.0) Gecko/20100101 Thunderbird/24.6.0
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.220.48 listed in list.dnswl.org]
+Received: from mail-pa0-f48.google.com (mail-pa0-f48.google.com
+	[209.85.220.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 79FF8E004F1
+	for <yocto@yoctoproject.org>; Sat,  2 Aug 2014 13:20:52 -0700 (PDT)
+Received: by mail-pa0-f48.google.com with SMTP id et14so7684294pad.21
+	for <yocto@yoctoproject.org>; Sat, 02 Aug 2014 13:20:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=date:from:to:cc:subject:message-id:references:mime-version
+	:content-type:content-disposition:in-reply-to:user-agent;
+	bh=L01Wwro1DlEhN3SYmvdLpLOrNUTCqKiYnkoh+PTEH6M=;
+	b=tMsgaCK9W6DpdZ6KhHNF7P9WO4YYx5EghZ+TvQGSzCUheX5q+hyyQtwh6YCqmezir3
+	WmeeC1jEwht+yUsl4j29THH1RD9qla+92SA9SwifCMih061P1mV8LGmXZS/wk1Ua1m9s
+	+Juy9J6eFbUgydOcuGOsn0qO2gYLG6Ro7XpdxkU7t2X0+ox2lLkjGOTIVtc9yPjC4t+r
+	rQe07EEHO3WJQkySVxiVsb2/2BVPhgo6rfQpdINp8KuyEHeOD2X6Xs0/iahrCv24rlrW
+	qn9QYHZ3tQqh08thKr1VWQmvjSV1COxwKGp2WEDDlFTKcnEitgXkuksvdoPxCmGjI5iI
+	eh0g==
+X-Received: by 10.66.236.35 with SMTP id ur3mr14569437pac.35.1407010851895;
+	Sat, 02 Aug 2014 13:20:51 -0700 (PDT)
+Received: from haswell ([2601:9:3580:7a5:baca:3aff:fe80:aa8f])
+	by mx.google.com with ESMTPSA id
+	fb7sm19101425pdb.68.2014.08.02.13.20.50 for <multiple recipients>
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Sat, 02 Aug 2014 13:20:51 -0700 (PDT)
+Date: Sat, 2 Aug 2014 13:24:10 -0700
+From: Khem Raj <raj.khem@gmail.com>
+To: Pushpa Teja <pushpa@jtechindia.in>
+Message-ID: <20140802202410.GA23556@haswell>
+References: <mailman.21236.1406788558.26702.yocto@yoctoproject.org>
+	<3448592.XcGlM2j8ls@peggleto-mobl5.ger.corp.intel.com>
+	<BLU185-W32A6A2A4836734A928F13BC7E70@phx.gbl>
+	<1624546.n1hBMRbNts@peggleto-mobl5.ger.corp.intel.com>
+	<CAMKF1soCaq+40wppj951YCOOTmkHamvTQuc6Gk3E0V0+pzPfDQ@mail.gmail.com>
+	<BLU185-W7913184A6D69613AFC7FAAC7E40@phx.gbl>
 MIME-Version: 1.0
-To: Khem Raj <raj.khem@gmail.com>
-References: <53DA58C9.50705@open.eurogiciel.org>
-	<53DB6430.8090608@dynamicdevices.co.uk>
-	<53DB660B.6040700@open.eurogiciel.org>
-	<53DB66D8.3060500@dynamicdevices.co.uk>
-	<53DBA085.7010705@dynamicdevices.co.uk>
-	<53DBA665.7080002@open.eurogiciel.org>
-	<53DBB20B.8020307@dynamicdevices.co.uk>
-	<53DBB576.2000905@open.eurogiciel.org>
-	<53DBB48B.2050907@dynamicdevices.co.uk>
-	<53DBC21B.7080209@dynamicdevices.co.uk>
-	<53DD053A.9060902@dynamicdevices.co.uk>
-	<CAMKF1srknDf_VTV=Xd7sQnohmuXN1S1Zh_21-R6w2HH1VAn6-A@mail.gmail.com>
-In-Reply-To: <CAMKF1srknDf_VTV=Xd7sQnohmuXN1S1Zh_21-R6w2HH1VAn6-A@mail.gmail.com>
-X-Enigmail-Version: 1.6
-Cc: general@lists.tizen.org, "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: [Tizen General] Build Tizen with yocto work-flow
+In-Reply-To: <BLU185-W7913184A6D69613AFC7FAAC7E40@phx.gbl>
+User-Agent: Mutt/1.5.23 (2014-03-12)
+Cc: Paul Eggleton <paul.eggleton@linux.intel.com>,
+	sadasivam <sadasivam.b@jtechindia.com>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: yocto Digest, Vol 46, Issue 109
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -60,37 +70,21 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 02 Aug 2014 20:04:47 -0000
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Sat, 02 Aug 2014 20:20:56 -0000
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
+On 14-08-02 09:17:28, Pushpa Teja wrote:
+> 
+> 
+> P
+> HI,
+> 
+>       I ask feescale people about this but they are not responding .please i have to compleate this soon any one can help me frequently getting the same error i fallowed every this as u said but no use .please guide me to overcom this error .
 
-On 02/08/2014 20:52, Khem Raj wrote:
-> On Sat, Aug 2, 2014 at 8:35 AM, Alex J Lennon
-> <ajlennon@dynamicdevices.co.uk> wrote:
->> I made some progress with a USB installation of Yocto Tizen and a VirtualBox disk.
->>
->> Both a Samsung laptop running from USB and a VirtualBox machine boot, but after mounting the root filesystem they go extremely slowly.
-> its a 'sony' laptop per picture :)
+From README of meta-fsl-arm
 
-Hah. Well spotted! I am glad to see somebody is paying attention Khem ! :-D
+In order to accept it, you should add, in your local.conf file:
 
->
->> They get to "failed to get machine ID" and then it's taking a minute or two before new output appears. Then screen goes black and I don't appear to get any further.
->
-> do you have /etc/machine-id file in rootfs ?
->
->
-
-No there's no /etc/machine-id on the USB stick...
-
-(NB. I did try generating a video to show the behaviour but VirtualBox
-video capture isn't playing ball. It doesn't stop completely at the
-machine-id error message. It seems to continue further and I get more
-messages. Just very very slowly)
-
-Regards,
-
-Alex
-
+ACCEPT_FSL_EULA = "1"
 
