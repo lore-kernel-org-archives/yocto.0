@@ -1,48 +1,47 @@
-Return-Path: <ajlennon@dynamicdevices.co.uk>
+Return-Path: <nilesh.kokane@mindastoneridge.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 0865AE0056A; Sat,  2 Aug 2014 02:35:15 -0700 (PDT)
+	id 0F54AE00572; Sat,  2 Aug 2014 06:28:34 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
+X-Spam-Status: No, score=-1.0 required=5.0 tests=BAYES_00, HTML_IMAGE_ONLY_24, 
+	HTML_MESSAGE, RCVD_IN_DNSWL_LOW,
+	T_REMOTE_IMAGE autolearn=no version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from www.dynamicdevices.co.uk (www.dynamicdevices.co.uk
-	[89.200.136.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A9EA7E004DD
-	for <yocto@yoctoproject.org>; Sat,  2 Aug 2014 02:35:12 -0700 (PDT)
-Received: from localhost (localhost [127.0.0.1])
-	by www.dynamicdevices.co.uk (Postfix) with ESMTP id 1CFEB27E04D;
-	Sat,  2 Aug 2014 09:35:10 +0000 (UTC)
-X-Virus-Scanned: Debian amavisd-new at lennoab2.miniserver.com
-Received: from www.dynamicdevices.co.uk ([127.0.0.1])
-	by localhost (www.dynamicdevices.co.uk [127.0.0.1]) (amavisd-new,
-	port 10024)
-	with ESMTP id ecEUu8lM1N1B; Sat,  2 Aug 2014 09:35:09 +0000 (UTC)
-Received: from [127.0.0.1] (cpc32-live22-2-0-cust59.17-2.cable.virginm.net
-	[82.36.253.60])
-	(using TLSv1 with cipher ECDHE-RSA-AES128-SHA (128/128 bits))
-	(No client certificate requested)
-	by www.dynamicdevices.co.uk (Postfix) with ESMTPSA id 1B22227E031;
-	Sat,  2 Aug 2014 09:35:08 +0000 (UTC)
-Message-ID: <53DCB0C6.6000405@dynamicdevices.co.uk>
-Date: Sat, 02 Aug 2014 10:35:02 +0100
-From: Alex J Lennon <ajlennon@dynamicdevices.co.uk>
-User-Agent: Mozilla/5.0 (Windows NT 6.3; WOW64;
-	rv:24.0) Gecko/20100101 Thunderbird/24.6.0
+	* 1.6 HTML_IMAGE_ONLY_24 BODY: HTML: images with 2000-2400 bytes of
+	words *  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [74.125.82.175 listed in list.dnswl.org]
+	*  0.0 T_REMOTE_IMAGE Message contains an external image
+Received: from mail-we0-f175.google.com (mail-we0-f175.google.com
+	[74.125.82.175])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1C380E004E0
+	for <yocto@yoctoproject.org>; Sat,  2 Aug 2014 06:28:30 -0700 (PDT)
+Received: by mail-we0-f175.google.com with SMTP id t60so5529836wes.34
+	for <yocto@yoctoproject.org>; Sat, 02 Aug 2014 06:28:29 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:date:message-id:subject:from:to
+	:content-type;
+	bh=BCLVfElRriv0y0yQeBQQpxiEssDpPNkE+Wb3rFz9Bq0=;
+	b=dkcKKmsn3ZPWx4T9yjM0Zi7bWo9okVVo7ToiuBYLWQ8zv1MSXDQd7j4sOzrD5EWZ87
+	ETSuhqWKYhkoupwcwRZRod2SsET6OnWAJvVPC8IBtMEc0u5UmzjIInTijycoNvgHk7JE
+	zWYVuYRgJltEebSZ1NDFz9QAmzMja+DNhIwYvvJpFlfgNPsikjfvOhmpCWzOZeHCqiCl
+	IGVhysxsKSM3RgJuZwLEWavVNxFBwRcY5rmrZVC3KDBvaAnEA4MCtFUGTUYPgjhURTQQ
+	SYAXGYB2x1v6TfGo+0yWzVz33Ja4qNIT5wJ91eOn5yB4d4zTmY3Fh8xKlxxEL7rgTYNb
+	ECgg==
+X-Gm-Message-State: ALoCoQnuYHg/6IeGToLOww5LbT9YrDGGXUaOJPBbG5Hzbb126DatuCpG8V7Vca9NVBrMVeuFhx7dLyS1lfAGIrs5+C0MCxGccAuAhO7FnMOLY3D/r7Dsl4E=
 MIME-Version: 1.0
-To: Richard Purdie <richard.purdie@linuxfoundation.org>
-References: <53DA58C9.50705@open.eurogiciel.org>	
-	<53DB6430.8090608@dynamicdevices.co.uk>	
-	<53DB660B.6040700@open.eurogiciel.org>	
-	<53DB66D8.3060500@dynamicdevices.co.uk>	
-	<53DBA085.7010705@dynamicdevices.co.uk>
-	<1406930148.6981.9.camel@ted>
-In-Reply-To: <1406930148.6981.9.camel@ted>
-X-Enigmail-Version: 1.6
-Cc: general@lists.tizen.org, yocto@yoctoproject.org
-Subject: Re: [Tizen General] Build Tizen with yocto work-flow
+X-Received: by 10.194.157.195 with SMTP id wo3mr17993870wjb.130.1406986109358; 
+	Sat, 02 Aug 2014 06:28:29 -0700 (PDT)
+Received: by 10.217.38.72 with HTTP; Sat, 2 Aug 2014 06:28:29 -0700 (PDT)
+Date: Sat, 2 Aug 2014 18:58:29 +0530
+Message-ID: <CAHURY+2SYoAs+i-WK-_vcxghqgXP=jVNgsFJJ+-rLHFQ8HjpKg@mail.gmail.com>
+From: Nilesh Kokane <nilesh.kokane@mindastoneridge.com>
+To: yocto@yoctoproject.org
+Subject: Function failed: do_rootfs -Qt5 using yocto on Wandboard -Error
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -54,49 +53,87 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sat, 02 Aug 2014 09:35:15 -0000
+X-List-Received-Date: Sat, 02 Aug 2014 13:28:34 -0000
+Content-Type: multipart/alternative; boundary=089e013c664840aee504ffa57b9a
+
+--089e013c664840aee504ffa57b9a
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: quoted-printable
+
+Hello,
 
 
-On 01/08/2014 22:55, Richard Purdie wrote:
-> On Fri, 2014-08-01 at 15:13 +0100, Alex J Lennon wrote:
->> Getting some errors here having followed the "Using Scripts" section.
->>
->> I am guessing it might be as I'm using Ubuntu 14.04 LTS x64
->>
->> This is for MACHINE=genericx86
->>
->> e.g.
->>
->> | make[3]: Leaving directory
->> '/home/ajlennon/yocto/poky/build/tmp/work/x86_64-linux/rpm-native/git-r0/git/plugins'
->> | make[2]: Leaving directory
->> '/home/ajlennon/yocto/poky/build/tmp/work/x86_64-linux/rpm-native/git-r0/git/plugins'
->> | make[1]: Leaving directory
->> '/home/ajlennon/yocto/poky/build/tmp/work/x86_64-linux/rpm-native/git-r0/git'
->> | install: cannot stat 'scripts/find-supplements{,.ksyms}': No such file
->> or directory
->> | WARNING: exit code 1 from a shell command.
->> | ERROR: Function failed: do_install (log file is located at
->> /home/ajlennon/yocto/poky/build/tmp/work/x86_64-linux/rpm-native/git-r0/temp/log.do_install.2441)
->> ERROR: Task 99
->> (virtual:native:/home/ajlennon/yocto/meta-tizen/recipes-tizen/rpm/rpm_git.bb,
->> do_install) failed with exit code '1'
-> Its because there are bashisms in that metadata and you have dash
-> as /bin/sh.
->
-> I've already mentioned this at least once but have been ignored :(
->
 
-Yes, thanks Richard, I'd cracked onto that. I wonder if it would be
-useful/possible to add a class of warning to bitbake "Bashism detected"
-or some such?
+Based on the instructions
+http://wiki.wandboard.org/index.php/Building_Qt5_using_yocto_on_Wandboard.
 
-Next problem is that grub on my x64 system doesn't seem to like being
-used to install x86 files ... :)
 
-Cheers,
+i gave a bitbake core-image-minimal following which it failed at the last
+stage with the logs posted on http://pastebin.com/QFu2Rw6G
 
-Alex
 
+DISTRO_FEATURES_remove =3D "x11 wayland"  is present in the local config.
+
+
+
+why its failing  with Unable to install packages errors.
+
+
+Can any one suggest
+
+--=20
+=E2=80=9CThe contents of this e-mail message and any attachments are confid=
+ential=20
+and are intended solely for addressee. The information may also be legally=
+=20
+privileged. This transmission is sent in trust, for the sole purpose of=20
+delivery to the intended recipient. If you have received this transmission=
+=20
+in error, any use, reproduction or dissemination of this transmission is=20
+strictly prohibited. If you are not the intended recipient, please=20
+immediately notify the sender by reply e-mail or phone and delete this=20
+message and its attachments, if any.=E2=80=9D
+
+--089e013c664840aee504ffa57b9a
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div>Hello,<br></div><div><br><br><br>Based on the instruc=
+tions <a href=3D"http://wiki.wandboard.org/index.php/Building_Qt5_using_yoc=
+to_on_Wandboard" target=3D"_blank">http://wiki.wandboard.org/index.php/Buil=
+ding_Qt5_using_yocto_on_Wandboard</a>.<br>
+
+<br><br></div>i gave a bitbake core-image-minimal following which it failed=
+ at the last stage with the logs posted on <a href=3D"http://pastebin.com/Q=
+Fu2Rw6G" target=3D"_blank">http://pastebin.com/QFu2Rw6G</a><br><br><span st=
+yle=3D"font-family:arial black,sans-serif"><font size=3D"1"><br>
+</font></span><pre><span style=3D"font-family:arial black,sans-serif"><font=
+><font>DISTRO_FEATURES_remove =3D &quot;x11 wayland&quot;  is present in th=
+e local config.<br><br><br><br></font></font></span></pre><pre><span style=
+=3D"font-family:arial black,sans-serif"><font><font>why its failing  with U=
+nable to install packages errors.<br>
+
+<br><br></font></font></span></pre><pre><span style=3D"font-family:arial bl=
+ack,sans-serif"><font><font>Can any one suggest</font></font></span><span c=
+lass=3D""><font color=3D"#888888"><br></font></span></pre><div class=3D""><=
+div id=3D":24t" class=3D"" tabindex=3D"0">
+<img class=3D"" src=3D"https://ssl.gstatic.com/ui/v1/icons/mail/images/clea=
+rdot.gif"></div></div>
+</div>
+
+<br>
+<span style=3D"color:rgb(31,73,125);font-family:Calibri,sans-serif;font-siz=
+e:15px;font-style:normal;font-variant:normal;font-weight:normal;letter-spac=
+ing:normal;line-height:normal;text-align:-webkit-auto;text-indent:0px;text-=
+transform:none;white-space:normal;word-spacing:0px;background-color:rgb(255=
+,255,255);display:inline!important;float:none">=E2=80=9CThe contents of thi=
+s e-mail message and any attachments are confidential and are intended sole=
+ly for addressee. The information may also be legally privileged. This tran=
+smission is sent in trust, for the sole purpose of delivery to the intended=
+ recipient. If you have received this transmission in error, any use, repro=
+duction or dissemination of this transmission is strictly prohibited. If yo=
+u are not the intended recipient, please immediately notify the sender by r=
+eply e-mail or phone and delete this message and its attachments, if any.=
+=E2=80=9D</span>
+
+--089e013c664840aee504ffa57b9a--
