@@ -1,55 +1,48 @@
-Return-Path: <ajlennon@dynamicdevices.co.uk>
+Return-Path: <rpjday@crashcourse.ca>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id C171EE007DC; Mon,  4 Aug 2014 02:21:38 -0700 (PDT)
+	id F03ACE007DC; Mon,  4 Aug 2014 02:31:27 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
+	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from www.dynamicdevices.co.uk (www.dynamicdevices.co.uk
-	[89.200.136.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 16D13E007D3
-	for <yocto@yoctoproject.org>; Mon,  4 Aug 2014 02:21:24 -0700 (PDT)
-Received: from localhost (localhost [127.0.0.1])
-	by www.dynamicdevices.co.uk (Postfix) with ESMTP id 8307E27E062;
-	Mon,  4 Aug 2014 09:21:22 +0000 (UTC)
-X-Virus-Scanned: Debian amavisd-new at lennoab2.miniserver.com
-Received: from www.dynamicdevices.co.uk ([127.0.0.1])
-	by localhost (www.dynamicdevices.co.uk [127.0.0.1]) (amavisd-new,
-	port 10024)
-	with ESMTP id csnsTY9fwqI8; Mon,  4 Aug 2014 09:21:20 +0000 (UTC)
-Received: from [127.0.0.1] (cpc32-live22-2-0-cust59.17-2.cable.virginm.net
-	[82.36.253.60])
-	(using TLSv1 with cipher ECDHE-RSA-AES128-SHA (128/128 bits))
-	(No client certificate requested)
-	by www.dynamicdevices.co.uk (Postfix) with ESMTPSA id 4D5D127E060;
-	Mon,  4 Aug 2014 09:21:20 +0000 (UTC)
-Message-ID: <53DF508D.9090109@dynamicdevices.co.uk>
-Date: Mon, 04 Aug 2014 10:21:17 +0100
-From: Alex J Lennon <ajlennon@dynamicdevices.co.uk>
-User-Agent: Mozilla/5.0 (Windows NT 6.3; WOW64;
-	rv:24.0) Gecko/20100101 Thunderbird/24.6.0
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [208.80.204.85 listed in list.dnswl.org]
+Received: from smtp485.redcondor.net (smtp485.redcondor.net [208.80.204.85])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BF4B4E007D3
+	for <yocto@yoctoproject.org>; Mon,  4 Aug 2014 02:31:17 -0700 (PDT)
+Received: from astoria.ccjclearline.com ([64.235.106.9])
+	by smtp485.redcondor.net ({3be039ea-4351-44b0-a8af-642c38b25916})
+	via TCP (outbound) with ESMTPS id 20140804093103084
+	for <yocto@yoctoproject.org>; Mon, 04 Aug 2014 09:31:03 +0000
+X-RC-FROM: <rpjday@crashcourse.ca>
+X-RC-RCPT: <yocto@yoctoproject.org>
+Received: from [99.240.204.5] (port=57979 helo=crashcourse.ca)
+	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES128-SHA:128)
+	(Exim 4.80) (envelope-from <rpjday@crashcourse.ca>)
+	id 1XEEbZ-0005j1-V3
+	for yocto@yoctoproject.org; Mon, 04 Aug 2014 05:30:58 -0400
+Date: Mon, 4 Aug 2014 05:30:53 -0400 (EDT)
+From: "Robert P. J. Day" <rpjday@crashcourse.ca>
+X-X-Sender: rpjday@localhost
+To: Yocto discussion list <yocto@yoctoproject.org>
+Message-ID: <alpine.LFD.2.11.1408040529280.3841@localhost>
+User-Agent: Alpine 2.11 (LFD 23 2013-08-11)
 MIME-Version: 1.0
-To: =?ISO-8859-1?Q?K=E9vin_THIERRY?= <kevin.thierry@open.eurogiciel.org>, 
-	ronan <ronan.lemartret@open.eurogiciel.org>
-References: <53DA58C9.50705@open.eurogiciel.org>
-	<53DB6430.8090608@dynamicdevices.co.uk>
-	<53DB660B.6040700@open.eurogiciel.org>
-	<53DB66D8.3060500@dynamicdevices.co.uk>
-	<53DBA085.7010705@dynamicdevices.co.uk>
-	<53DBA665.7080002@open.eurogiciel.org>
-	<53DBB20B.8020307@dynamicdevices.co.uk>
-	<53DBB576.2000905@open.eurogiciel.org>
-	<53DBB48B.2050907@dynamicdevices.co.uk>
-	<53DBC21B.7080209@dynamicdevices.co.uk>
-	<53DD053A.9060902@dynamicdevices.co.uk>
-	<53DF3BD2.6000601@open.eurogiciel.org>
-In-Reply-To: <53DF3BD2.6000601@open.eurogiciel.org>
-X-Enigmail-Version: 1.6
-Cc: yocto@yoctoproject.org, general@lists.tizen.org
-Subject: Re: [Tizen General] Build Tizen with yocto work-flow
+X-AntiAbuse: This header was added to track abuse,
+	please include it with any abuse report
+X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - crashcourse.ca
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+X-MAG-OUTBOUND: ccj.redcondor.net@64.235.106.9/32
+Subject: [yocto-docs][PATCH] dev-manual: Minor cleanups in Section 5.9.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -61,71 +54,73 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 04 Aug 2014 09:21:38 -0000
-Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Mon, 04 Aug 2014 09:31:28 -0000
+Content-Type: TEXT/PLAIN; charset=US-ASCII
 
 
-On 04/08/2014 08:52, Kévin THIERRY wrote:
->
-> On 02/08/2014 17:35, Alex J Lennon wrote:
->> On 01/08/2014 17:36, Alex J Lennon wrote:
->>> On 01/08/2014 16:38, Alex J Lennon wrote:
->>>>> I don't know either but I think it's best to be compliant with both
->>>>> bash and dash, I will try to correct those issues in order to be
->>>>> dash-compliant. Thanks a lot for the feedback ;)
->>>> No problem Kévin. I'm glad you feel it is of some use. I'm getting
->>>> other
->>>> recipes failing now with bash. What I'll probably do is let it run to
->>>> completion with bitbake -k and collate the failures.
->>>>
->>>> Hopefully that'll be some useful feedback in terms of a build on
->>>> Ubuntu
->>>>
->>>> Cheers,
->>>>
->>>> Alex
->>>>
->> Kévin,
->>
->> I made some progress with a USB installation of Yocto Tizen and a
->> VirtualBox disk.
-> That's good news ! Did you have to make some changes in meta-tizen ?
-> If so, could you send us your patches so we can integrate them ? Thanks !
->>
->> Both a Samsung laptop running from USB and a VirtualBox machine boot,
->> but after mounting the root filesystem they go extremely slowly.
->>
->> They get to "failed to get machine ID" and then it's taking a minute
->> or two before new output appears. Then screen goes black and I don't
->> appear to get any further.
->>
->> e.g.
->> https://www.dropbox.com/sc/ckc84doykfnyvwp/AAAA7s_wocGh1PNUJ3tfIMBLa?n=17361870
->>
->>
-> We already encountered this issue in the past unfortunately we don't
-> know what causes that. We didn't get this issue recently so we are
-> unable to reproduce it. I'm wondering if it could be linked too the
-> use of a USB (we are not using USB anymore to test the images since
-> it's not very convenient). I will put an image on a USB stick and see
-> how it goes.
->
-> If you have more ideas about what could cause this issue we would be
-> glad to know them.
->
-> Kevin 
+Signed-off-by: Robert P. J. Day <rpjday@crashcourse.ca>
 
-I don't think it's specifically due to USB as I was using USB for the
-laptop test, but I built up a VDI disk image in a VirtualBox for the VM
-test, so no USB there...
+---
 
-I'm not sure why it might be I'm afraid Kevin. I started trying to
-follow the manual procedure to build but ran into some build errors
-there and ran out of time.
+diff --git a/documentation/dev-manual/dev-manual-common-tasks.xml b/documentation/dev-manual/dev-manual-common-tasks.xml
+index a373f92..3ac3049 100644
+--- a/documentation/dev-manual/dev-manual-common-tasks.xml
++++ b/documentation/dev-manual/dev-manual-common-tasks.xml
+@@ -5104,7 +5104,7 @@ Gateways via their Web Interfaces</ulink>"</emphasis>
+                         security problems.
+                     </para></listitem>
+                     <listitem><para>
+-                        Pay particular attention to to the security for
++                        Pay particular attention to the security for
+                         any web-based administration interface.
+                         </para>
+                         <para>Web interfaces typically need to perform
+@@ -5182,7 +5182,7 @@ Gateways via their Web Interfaces</ulink>"</emphasis>
+                 Use the following line in your
+                 <filename>local.conf</filename> file or in your custom
+                 distribution configuration file to enable the security
+-                compiler and linker flags to your build:
++                compiler and linker flags for your build:
+                 <literallayout class='monospaced'>
+      require conf/distro/include/security_flags.inc
+                 </literallayout>
+@@ -5197,15 +5197,19 @@ Gateways via their Web Interfaces</ulink>"</emphasis>
+                 OpenEmbedded build system to make your images more secure:
+                 <itemizedlist>
+                     <listitem><para>
+-                        Ensure "debug-tweaks" is not listed with
++                        Ensure "debug-tweaks" is not one of your selected
+                         <ulink url='&YOCTO_DOCS_REF_URL;#var-IMAGE_FEATURES'><filename>IMAGE_FEATURES</filename></ulink>.
+-                        The default is to enable "debug-tweaks" by adding it
+-                        to
+-                        <ulink url='&YOCTO_DOCS_REF_URL;#var-EXTRA_IMAGE_FEATURES'><filename>EXTRA_IMAGE_FEATURES</filename></ulink>
+-                        in <filename>local.conf</filename>.
+-                        However, you should comment out the variable or be
+-                        sure that it does not have "debug-tweaks" before
+-                        producing your final image.
++                        When creating a new project, the default is to provide you
++                        with an initial <filename>local.conf</filename> file which
++                        enables this feature using the
++                        <ulink url='&YOCTO_DOCS_REF_URL;#var-EXTRA_IMAGE_FEATURES'><filename>EXTRA_IMAGE_FEATURES</filename></ulink> variable with the line:
++                <literallayout class='monospaced'>
++     EXTRA_IMAGE_FEATURES = "debug-tweaks"
++                </literallayout>
++                        To disable that feature, simply comment out that line in your
++                        <filename>local.conf</filename> file, or
++                        make sure <filename>IMAGE_FEATURES</filename> does not contain
++                        "debug-tweaks" before producing your final image.
+                         Among other things, leaving this in place sets the
+                         root password as blank, which makes logging in for
+                         debugging or inspection easy during
 
-Cheers,
+-- 
 
-Alex
+========================================================================
+Robert P. J. Day                                 Ottawa, Ontario, CANADA
+                        http://crashcourse.ca
+
+Twitter:                                       http://twitter.com/rpjday
+LinkedIn:                               http://ca.linkedin.com/in/rpjday
+========================================================================
 
 
