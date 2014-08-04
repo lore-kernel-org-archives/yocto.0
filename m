@@ -1,72 +1,75 @@
 Return-Path: <kevin.thierry@open.eurogiciel.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 727C8E007DC; Mon,  4 Aug 2014 00:29:42 -0700 (PDT)
+	id 9343BE007DC; Mon,  4 Aug 2014 00:44:39 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID, DKIM_VALID_AU, RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [209.85.212.172 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [74.125.82.178 listed in list.dnswl.org]
-Received: from mail-we0-f178.google.com (mail-we0-f178.google.com
-	[74.125.82.178])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8C7E2E007D3
-	for <yocto@yoctoproject.org>; Mon,  4 Aug 2014 00:29:32 -0700 (PDT)
-Received: by mail-we0-f178.google.com with SMTP id w61so7279120wes.9
-	for <yocto@yoctoproject.org>; Mon, 04 Aug 2014 00:29:31 -0700 (PDT)
+Received: from mail-wi0-f172.google.com (mail-wi0-f172.google.com
+	[209.85.212.172])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E6C44E007D3
+	for <yocto@yoctoproject.org>; Mon,  4 Aug 2014 00:44:36 -0700 (PDT)
+Received: by mail-wi0-f172.google.com with SMTP id n3so4470954wiv.11
+	for <yocto@yoctoproject.org>; Mon, 04 Aug 2014 00:44:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=open.eurogiciel.org; s=google;
 	h=message-id:date:from:user-agent:mime-version:to:cc:subject
 	:references:in-reply-to:content-type:content-transfer-encoding;
-	bh=QC+fs/pxPgH9g3c6Sfu34IOoNCIRvNB6yWaN40ktQIw=;
-	b=Wj6Su7XXNa50OnPpTs9KpMh7ZILxj20Z++Av7s/55yqmYPRfRYphFuj0KNN8rHk4TI
-	XqUpxzjmMGzBJm2nociIU/pKBoNqrdtgnRSOF/b9ABgspLSG/fVa3XQdoRyAluYZCq0B
-	MLjZXKbuJqA4lrdptN8vPPlk5VBbNPo7h8/Ms=
+	bh=I4/k9UUMjHFfyHl9vuhdDxC+5QErZORrOqB3rPJvvfQ=;
+	b=RTS+NlAo13e8ytpL/OAq9ugcNIJG9d/ffPK6L6Ke42ij50WVMLPF0Rz+nKnjlezoTC
+	uYMQlEZcCG+Hum4pbts1N0InRnonYrXRmisNCE564pbNDYpff/5iqZ9YIIfot9Gt/Dmd
+	/Bh/ibjLyKfenhhudVoGvZCz/qEfvqG4k8pbs=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
 	h=x-gm-message-state:message-id:date:from:user-agent:mime-version:to
 	:cc:subject:references:in-reply-to:content-type
 	:content-transfer-encoding;
-	bh=QC+fs/pxPgH9g3c6Sfu34IOoNCIRvNB6yWaN40ktQIw=;
-	b=E0XjSrrMLwy2nAhWny9dMSHW+TWdLw+iULWJ6wRFuwnhaROj+1zDvsdKVwSz6wuJND
-	b4lY4odfeIzQGXIM9mHZl9s0Z+6GK3QTJrktrcdA0bEo09IqBAuNjXRLDWT4T3Cp5YYv
-	UJACoaTjeaiY4QZ/H8RWpdhI+NzlVigBF3BR3soXGqXWRBLBD395ABjTcGYIMHmPmKCQ
-	wJjvdEabh6iAq8hPXaaV4+3HrLVC/JoFUUAYYkHZ5R66rrFJrAIqfM6GZvsdrqA8xkmd
-	D1eBCge8iwA0V2tiUdMrOAB+dL2Zu531D15lM2Wy2rWLaRkel2yQiJtaWn81ooOBt+uY
-	31CQ==
-X-Gm-Message-State: ALoCoQkNCP+LbMbQjSLaYbeKyd2e8XbTETAwG96wluiY2u3Ldx2yJdmkoZXNnXQo68idYBLdl8C1
-X-Received: by 10.180.210.167 with SMTP id mv7mr27576440wic.72.1407137371436; 
-	Mon, 04 Aug 2014 00:29:31 -0700 (PDT)
-Received: from [10.19.3.25] ([46.18.96.46])
-	by mx.google.com with ESMTPSA id h3sm41477113wjn.10.2014.08.04.00.29.30
-	for <multiple recipients>
+	bh=I4/k9UUMjHFfyHl9vuhdDxC+5QErZORrOqB3rPJvvfQ=;
+	b=HOKgyzAwXNxoBCzJWnvEv7ZS0uTwbJ3rn4vr3sSfXYl/Ic34Jci97CxM90INoK+nTa
+	a9v+s65qpw7Yg3/0rTZSiR3/viQ6HnEp1r9tUAVGDYnKDGEujtcrZBeoGUqqvqjz7ta0
+	1I3QX4joOdIfiZYEu2WIVk/VQBGB6aE4AxrkcUm99FCvS2xtqBpNZZeSXHg19tYlayP2
+	ug35qtCuyIZVWorTO9DVvoHG6ekUtr0TX6BlglN6DI5Js+IhguWmVfAnf9JG9GeAL02N
+	+5B8MnFcKOiQEcbb4RIHiNA7+BFVgVqSyWhB2jespfvZnOCBVBnpXgJZt/eTxe1xRZKw
+	RPpA==
+X-Gm-Message-State: ALoCoQm4UZmFiZohYndQ7VakbOmh5wOIen6nC0i35hnw82R5k/loBHzMfwub3zIrlRfMuiyFGgXv
+X-Received: by 10.180.84.66 with SMTP id w2mr5329147wiy.27.1407138272259;
+	Mon, 04 Aug 2014 00:44:32 -0700 (PDT)
+Received: from [10.19.3.25] ([46.18.96.46]) by mx.google.com with ESMTPSA id
+	ej10sm38050844wib.12.2014.08.04.00.44.31 for <multiple recipients>
 	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
-	Mon, 04 Aug 2014 00:29:30 -0700 (PDT)
-Message-ID: <53DF384D.8040300@open.eurogiciel.org>
-Date: Mon, 04 Aug 2014 09:37:49 +0200
+	Mon, 04 Aug 2014 00:44:31 -0700 (PDT)
+Message-ID: <53DF3BD2.6000601@open.eurogiciel.org>
+Date: Mon, 04 Aug 2014 09:52:50 +0200
 From: =?ISO-8859-1?Q?K=E9vin_THIERRY?=
  <kevin.thierry@open.eurogiciel.org>
 User-Agent: Mozilla/5.0 (X11; Linux x86_64;
 	rv:24.0) Gecko/20100101 Thunderbird/24.5.0
 MIME-Version: 1.0
 To: Alex J Lennon <ajlennon@dynamicdevices.co.uk>, 
-	Richard Purdie <richard.purdie@linuxfoundation.org>
-References: <53DA58C9.50705@open.eurogiciel.org>	
-	<53DB6430.8090608@dynamicdevices.co.uk>	
-	<53DB660B.6040700@open.eurogiciel.org>	
-	<53DB66D8.3060500@dynamicdevices.co.uk>	
+	ronan <ronan.lemartret@open.eurogiciel.org>
+References: <53DA58C9.50705@open.eurogiciel.org>
+	<53DB6430.8090608@dynamicdevices.co.uk>
+	<53DB660B.6040700@open.eurogiciel.org>
+	<53DB66D8.3060500@dynamicdevices.co.uk>
 	<53DBA085.7010705@dynamicdevices.co.uk>
-	<1406930148.6981.9.camel@ted>
-	<53DCB0C6.6000405@dynamicdevices.co.uk>
-In-Reply-To: <53DCB0C6.6000405@dynamicdevices.co.uk>
+	<53DBA665.7080002@open.eurogiciel.org>
+	<53DBB20B.8020307@dynamicdevices.co.uk>
+	<53DBB576.2000905@open.eurogiciel.org>
+	<53DBB48B.2050907@dynamicdevices.co.uk>
+	<53DBC21B.7080209@dynamicdevices.co.uk>
+	<53DD053A.9060902@dynamicdevices.co.uk>
+In-Reply-To: <53DD053A.9060902@dynamicdevices.co.uk>
 Cc: yocto@yoctoproject.org, general@lists.tizen.org
 Subject: Re: [Tizen General] Build Tizen with yocto work-flow
 X-BeenThere: yocto@yoctoproject.org
@@ -80,53 +83,48 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 04 Aug 2014 07:29:42 -0000
+X-List-Received-Date: Mon, 04 Aug 2014 07:44:39 -0000
 Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
 
-On 02/08/2014 11:35, Alex J Lennon wrote:
-> On 01/08/2014 22:55, Richard Purdie wrote:
->> On Fri, 2014-08-01 at 15:13 +0100, Alex J Lennon wrote:
->>> Getting some errors here having followed the "Using Scripts" section.
+On 02/08/2014 17:35, Alex J Lennon wrote:
+> On 01/08/2014 17:36, Alex J Lennon wrote:
+>> On 01/08/2014 16:38, Alex J Lennon wrote:
+>>>> I don't know either but I think it's best to be compliant with both
+>>>> bash and dash, I will try to correct those issues in order to be
+>>>> dash-compliant. Thanks a lot for the feedback ;)
+>>> No problem Kévin. I'm glad you feel it is of some use. I'm getting other
+>>> recipes failing now with bash. What I'll probably do is let it run to
+>>> completion with bitbake -k and collate the failures.
 >>>
->>> I am guessing it might be as I'm using Ubuntu 14.04 LTS x64
+>>> Hopefully that'll be some useful feedback in terms of a build on Ubuntu
 >>>
->>> This is for MACHINE=genericx86
+>>> Cheers,
 >>>
->>> e.g.
+>>> Alex
 >>>
->>> | make[3]: Leaving directory
->>> '/home/ajlennon/yocto/poky/build/tmp/work/x86_64-linux/rpm-native/git-r0/git/plugins'
->>> | make[2]: Leaving directory
->>> '/home/ajlennon/yocto/poky/build/tmp/work/x86_64-linux/rpm-native/git-r0/git/plugins'
->>> | make[1]: Leaving directory
->>> '/home/ajlennon/yocto/poky/build/tmp/work/x86_64-linux/rpm-native/git-r0/git'
->>> | install: cannot stat 'scripts/find-supplements{,.ksyms}': No such file
->>> or directory
->>> | WARNING: exit code 1 from a shell command.
->>> | ERROR: Function failed: do_install (log file is located at
->>> /home/ajlennon/yocto/poky/build/tmp/work/x86_64-linux/rpm-native/git-r0/temp/log.do_install.2441)
->>> ERROR: Task 99
->>> (virtual:native:/home/ajlennon/yocto/meta-tizen/recipes-tizen/rpm/rpm_git.bb,
->>> do_install) failed with exit code '1'
->> Its because there are bashisms in that metadata and you have dash
->> as /bin/sh.
->>
->> I've already mentioned this at least once but have been ignored :(
->>
-I reported the issue in our bug tracker 
-(https://bugs.tizen.org/jira/browse/BTY-21) and made a correction for 
-the issue in the rpm recipe. I will launch a full build using dash in 
-order to catch the remaining "bashism" but if you find some more, please 
-report them to me.
-> Yes, thanks Richard, I'd cracked onto that. I wonder if it would be
-> useful/possible to add a class of warning to bitbake "Bashism detected"
-> or some such?
+> Kévin,
 >
-> Next problem is that grub on my x64 system doesn't seem to like being
-> used to install x86 files ... :)
+> I made some progress with a USB installation of Yocto Tizen and a VirtualBox disk.
+That's good news ! Did you have to make some changes in meta-tizen ? If 
+so, could you send us your patches so we can integrate them ? Thanks !
+>
+> Both a Samsung laptop running from USB and a VirtualBox machine boot, but after mounting the root filesystem they go extremely slowly.
+>
+> They get to "failed to get machine ID" and then it's taking a minute or two before new output appears. Then screen goes black and I don't appear to get any further.
+>
+> e.g. https://www.dropbox.com/sc/ckc84doykfnyvwp/AAAA7s_wocGh1PNUJ3tfIMBLa?n=17361870
 >
 >
+We already encountered this issue in the past unfortunately we don't 
+know what causes that. We didn't get this issue recently so we are 
+unable to reproduce it. I'm wondering if it could be linked too the use 
+of a USB (we are not using USB anymore to test the images since it's not 
+very convenient). I will put an image on a USB stick and see how it goes.
+
+If you have more ideas about what could cause this issue we would be 
+glad to know them.
+
 Kevin
 
