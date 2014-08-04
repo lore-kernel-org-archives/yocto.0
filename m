@@ -1,47 +1,48 @@
-Return-Path: <belen.barros.pena@intel.com>
+Return-Path: <rpjday@crashcourse.ca>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 6E7BDE007DC; Mon,  4 Aug 2014 02:40:44 -0700 (PDT)
+	id 54420E007DC; Mon,  4 Aug 2014 02:52:27 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
 	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at http://www.dnswl.org/,
-	high *      trust
-	*      [134.134.136.20 listed in list.dnswl.org]
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8DE09E007D3
-	for <yocto@yoctoproject.org>; Mon,  4 Aug 2014 02:40:40 -0700 (PDT)
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-	by orsmga101.jf.intel.com with ESMTP; 04 Aug 2014 02:40:39 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.01,796,1400050800"; d="scan'208";a="583066757"
-Received: from irsmsx104.ger.corp.intel.com ([163.33.3.159])
-	by orsmga002.jf.intel.com with ESMTP; 04 Aug 2014 02:40:39 -0700
-Received: from irsmsx108.ger.corp.intel.com (163.33.3.3) by
-	IRSMSX104.ger.corp.intel.com (163.33.3.159) with Microsoft SMTP Server
-	(TLS) id 14.3.195.1; Mon, 4 Aug 2014 10:40:35 +0100
-Received: from irsmsx106.ger.corp.intel.com ([169.254.8.250]) by
-	IRSMSX108.ger.corp.intel.com ([169.254.11.3]) with mapi id
-	14.03.0195.001; Mon, 4 Aug 2014 10:40:35 +0100
-From: "Barros Pena, Belen" <belen.barros.pena@intel.com>
-To: Patrick Doyle <wpdster@gmail.com>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>
-Thread-Topic: [yocto] How to determine which tasks bitbake just ran?
-Thread-Index: AQHPr8gjysbF8OMKXUKdRpZy5EmXkA==
-Date: Mon, 4 Aug 2014 09:40:34 +0000
-Message-ID: <D00512A5.46433%belen.barros.pena@intel.com>
-References: <CAF_dkJAy-nn0SyUNUNMdSiqpkXHFPZoOeNFgME8w6U4BqMWp-g@mail.gmail.com>
-In-Reply-To: <CAF_dkJAy-nn0SyUNUNMdSiqpkXHFPZoOeNFgME8w6U4BqMWp-g@mail.gmail.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-user-agent: Microsoft-MacOutlook/14.4.3.140616
-x-originating-ip: [10.237.224.33]
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [208.80.206.85 listed in list.dnswl.org]
+Received: from smtp685.redcondor.net (smtp685.redcondor.net [208.80.206.85])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 44E8DE007D3
+	for <yocto@yoctoproject.org>; Mon,  4 Aug 2014 02:52:22 -0700 (PDT)
+Received: from astoria.ccjclearline.com ([64.235.106.9])
+	by smtp685.redcondor.net ({20c8e40f-6b6c-4c9e-abff-1640ea7bf404})
+	via TCP (outbound) with ESMTPS id 20140804095220956
+	for <yocto@yoctoproject.org>; Mon, 04 Aug 2014 09:52:20 +0000
+X-RC-FROM: <rpjday@crashcourse.ca>
+X-RC-RCPT: <yocto@yoctoproject.org>
+Received: from [99.240.204.5] (port=58412 helo=crashcourse.ca)
+	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES128-SHA:128)
+	(Exim 4.80) (envelope-from <rpjday@crashcourse.ca>)
+	id 1XEEwC-0006Co-1V
+	for yocto@yoctoproject.org; Mon, 04 Aug 2014 05:52:16 -0400
+Date: Mon, 4 Aug 2014 05:52:11 -0400 (EDT)
+From: "Robert P. J. Day" <rpjday@crashcourse.ca>
+X-X-Sender: rpjday@localhost
+To: Yocto discussion list <yocto@yoctoproject.org>
+Message-ID: <alpine.LFD.2.11.1408040548310.4162@localhost>
+User-Agent: Alpine 2.11 (LFD 23 2013-08-11)
 MIME-Version: 1.0
-Subject: Re: How to determine which tasks bitbake just ran?
+X-AntiAbuse: This header was added to track abuse,
+	please include it with any abuse report
+X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - crashcourse.ca
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+X-MAG-OUTBOUND: ccj.redcondor.net@64.235.106.9/32
+Subject: what are the *required* variables for defining a new distro?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -53,30 +54,40 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 04 Aug 2014 09:40:44 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="iso-8859-1"
-Content-ID: <B758F9276529B64080457F7CF3E32BB7@intel.com>
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Mon, 04 Aug 2014 09:52:27 -0000
+Content-Type: TEXT/PLAIN; charset=US-ASCII
 
 
+  i asked about this on OE list but since this affects the yocto dev
+manual, i thought i'd ask here as well as i can fold the result into
+another doc patch.
 
-On 12/06/2014 19:53, "Patrick Doyle" <wpdster@gmail.com> wrote:
+  section 5.10 of dev manual:
 
->But I notice that tmp/work/arm<TAB>/myrecipe still exists, so, in my
->paranoia, I like to rm -rf tmp/work/arm<TAB>/myrecipe just to make
->sure that my clean slate really is clean
+http://www.yoctoproject.org/docs/latest/dev-manual/dev-manual.html#creating-your-own-distribution
 
-Toaster might help with that paranoia thing too ;) It will show you which
-tasks are running from scratch (your clean slate really is clean) and
-which ones are reusing artefacts.
+claims:
 
-Cheers
+  Your [new distro] configuration file needs to set the following
+required variables:
 
-Bel=E9n
+     DISTRO_NAME
+     DISTRO_VERSION
 
+  i don't think that's true -- i don't think it's *required* for a
+distro conf file to set DISTRO_NAME. can someone verify what variables
+are mandatory for a new distro configuration file?
 
+rday
 
+-- 
 
+========================================================================
+Robert P. J. Day                                 Ottawa, Ontario, CANADA
+                        http://crashcourse.ca
+
+Twitter:                                       http://twitter.com/rpjday
+LinkedIn:                               http://ca.linkedin.com/in/rpjday
+========================================================================
 
 
