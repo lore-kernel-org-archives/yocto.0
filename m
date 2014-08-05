@@ -1,6 +1,6 @@
 Return-Path: <ismael.faye@yahoo.fr>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id ABEAFE007C1; Tue,  5 Aug 2014 07:33:28 -0700 (PDT)
+	id BF06DE007D2; Tue,  5 Aug 2014 07:40:24 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -11,7 +11,7 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	mail provider *      (ismael.faye[at]yahoo.fr)
 	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
 	no *      trust
-	*      [212.82.97.76 listed in list.dnswl.org]
+	*      [212.82.96.123 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
@@ -20,50 +20,44 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from nm29-vm7.bullet.mail.ir2.yahoo.com
-	(nm29-vm7.bullet.mail.ir2.yahoo.com [212.82.97.76])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 799BDE00790
-	for <yocto@yoctoproject.org>; Tue,  5 Aug 2014 07:33:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.fr; s=s1024;
-	t=1407249202; bh=yxYsDmwUc0Jqep7vP1e11lxWNSpzSkxissQ2gP5hCr0=;
-	h=Received:Received:Received:X-Yahoo-Newman-Property:X-Yahoo-Newman-Id:Received:DKIM-Signature:X-YMail-OSG:Received:X-Rocket-MIMEInfo:X-Mailer:Message-ID:Date:From:Reply-To:Subject:To:MIME-Version:Content-Type;
-	b=xzCx/Y106WM9vYZ46gi/ZIz7bJOy9w0sAH7GpWF1XE8p96d00YddjXMk3DAk1G8QzVhl4kLaqc+WqC/UBIjQ8O9X16u6oCf0qigSi0PTGk9vdMc7TpKpJvWH/h0SzUogsoBmqXIDORWkAIeB/4vS7gEO19LUx3QTWCo3Yaw6Nmo=
-DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws; s=s1024; d=yahoo.fr;
-	b=SM8GIts8aFqst2CmtE8OyMGu2957nMTT8ahhjRh0ImLUPMqNco6Dy9yBo/aXbLHyEvuHSvtxpbW16FacnVU++d7hGOkEXfkpQyuxs+vwneorWpcl2RCJa1pkE3e4hK03EjeMGWN6J7D8YUZwDd6HlUHE3L0CPlE8u0kjt0n4BmA=;
-Received: from [212.82.98.59] by nm29.bullet.mail.ir2.yahoo.com with NNFMP;
-	05 Aug 2014 14:33:22 -0000
-Received: from [212.82.98.105] by tm12.bullet.mail.ir2.yahoo.com with NNFMP;
-	05 Aug 2014 14:33:22 -0000
-Received: from [127.0.0.1] by omp1042.mail.ir2.yahoo.com with NNFMP;
-	05 Aug 2014 14:33:22 -0000
+Received: from nm6-vm7.bullet.mail.ir2.yahoo.com
+	(nm6-vm7.bullet.mail.ir2.yahoo.com [212.82.96.123])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 05050E00790
+	for <yocto@yoctoproject.org>; Tue,  5 Aug 2014 07:40:19 -0700 (PDT)
+Received: from [212.82.98.126] by nm6.bullet.mail.ir2.yahoo.com with NNFMP;
+	05 Aug 2014 14:40:17 -0000
+Received: from [212.82.98.99] by tm19.bullet.mail.ir2.yahoo.com with NNFMP;
+	05 Aug 2014 14:40:17 -0000
+Received: from [127.0.0.1] by omp1036.mail.ir2.yahoo.com with NNFMP;
+	05 Aug 2014 14:40:17 -0000
 X-Yahoo-Newman-Property: ymail-3
-X-Yahoo-Newman-Id: 3032.13127.bm@omp1042.mail.ir2.yahoo.com
-Received: (qmail 45037 invoked by uid 60001); 5 Aug 2014 14:33:21 -0000
+X-Yahoo-Newman-Id: 648242.32664.bm@omp1036.mail.ir2.yahoo.com
+Received: (qmail 48783 invoked by uid 60001); 5 Aug 2014 14:40:17 -0000
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.fr; s=s1024;
-	t=1407249201; bh=yxYsDmwUc0Jqep7vP1e11lxWNSpzSkxissQ2gP5hCr0=;
+	t=1407249617; bh=CGs8a2W/cj/trwsYRS4W5QNbA/zqXq4W2fPTxPIuXzI=;
 	h=Message-ID:Date:From:Reply-To:Subject:To:MIME-Version:Content-Type;
-	b=D0g9X4F4glD4aaoCNzGhS5ZPK7G1mahYJL0ipPFQknBma17TJt8jO7m4Tiq1uvIPbM64Tm12eZ2RhwjWjvYgrXl0Y/UQab33iiCoAlh31seVSbNg0cWmBYDV//tL9xrDZnXFVfO6jPvot1+n9hPe5svlHq85QSAXo6GU1ejDElg=
-X-YMail-OSG: YJSiZXgVM1nP.Cc10GMEpc73aHUx62IdZLz4L0vETJW4u.2
-	fxMBVkifRVFwQHRdygH6vL0KClZihxHkpZ_uB4oDeJes7O0_ztMNhzk1F5_b
-	YLfjaswkRipDe4Q3NLxOEWss9PuKNDRZuFuzN_PyhiSmm02B_1RI_2HsflrC
-	sJalHn1x.zDr3fTN0uhDvVR08hdFGYj.lJRlmgdQDV8CuDU9joMmRqiYjsA4
-	glNvGzLcBWukOanXkysscM3foBplgK6cIVL1lASzRMRI7LebYU_9Iu8LZU6d
-	6SULNtooXZ8HC5wmQVTpHxLfcU3Sf54LY_uh7nbgm3JaOP09vZXL_kESsuuj
-	Sk.yNii3HY4iv5zQ6ygf_1S59MbhnPgnB0ejo._t9_HfK5ri1n7CdApAOqF6
-	1YjyjE6tOyc8xW0vU_1kC5JvWt0oIlsLbAoZbHGEZWsAyfFNgj1PNig4IdQf
-	dLBp5YUHXYCchkeQ5APl9ozFP367Abpe1B5GM6XIuNwoA_DBI57GyCnRQaNb
-	odoHBMH5M_lw_bMlAD85qx0p2CPA0B4RYrJalpNMmlZUy
-Received: from [217.108.83.254] by web171301.mail.ir2.yahoo.com via HTTP;
-	Tue, 05 Aug 2014 15:33:21 BST
+	b=xqC/MHyrXq3zk57vnadM2BmfkQKsUwxR+Dfe2k1lPbtJ0d927D6aHey+Ag3gCaHpmrMhTHjU7SnPP6l8QOZIVH9F+KKxVSZwp/7rOJZOCR+Zqb2P4tsMCihHbLDf5wEoCn7mNSxp3tWSC+e5WlIo9pGl40D25kAkRf+0B+rPz/4=
+X-YMail-OSG: vAMWJJgVM1n0UUcLi5d7whpHvmQadBazPq7B0OdUQBXYkYe
+	ejz4CSuXXx3qfJ.V_2oeQJnDwk6uR6wuDAsqU0WZXEiC2cShDw0lw4t74YnD
+	0H6izEwqFxeOiEnUkCF7ET.riBc5t2xHJC0Y.v5VB0dxmRLs7lQ_PQeYSy3k
+	_nE0jmPZkwCj73vlsSrYLHZAo9ZtP9OSNF9OLDy.d.gxBFlGQvFTXkWgCWnO
+	AWQgduOLmA4zbI_noYr5LxmncD4F2Edwd40YRJhovo8og21FSXeseeHTzGSG
+	nEu0CDYGOn9wPSLEAisEzEaGNkdzh025v.M4J8HsY2MaPWpFiRSckmVqIz3D
+	892kDrNNEUf1Q2v.pWlcgHaxVNuhXz6ilxyBqCe_U33OLZYUo_VGTxwym2W2
+	Ef6bAky33V4xJTJvnuu9kVEoNoIDR8sWbhXyMkEyQydMe6tN2l0u60OtulVu
+	Mx1Lx931mtezxQbAR165pcYywGLSIOr2bw_biZFwdBAr_zwMvwwvT1QYz6Pv
+	Z1dAnY14SuGyJbL7P.dmYocj929WUTbN8JRv_t9zENQ--
+Received: from [217.108.83.254] by web171302.mail.ir2.yahoo.com via HTTP;
+	Tue, 05 Aug 2014 15:40:17 BST
 X-Rocket-MIMEInfo: 002.001,
 	SGkgYWxsLApJIHdhbnQgdG8gdXNlIHN5c2xvZy1uZyB0byBsb2cgdGhlIG1lc3NhZ2VzIGdlbmVyYXRlZCBieSBteSBhcHBsaWNhdGlvbiBpbXBsZW1lbnRlZCBpbiBDIGxhbmd1YWdlLiBJIGFkZGVkIHRoaXMgaW4gdGhlIGNvZGU6CgrCoMKgwqAgY2hhcsKgwqDCoCAqbG9nPSJydGNkIjsKwqDCoMKgIHByaW50ZigiWyVzXSBSVEMgYWRqdXN0ZW1lbnRcbiIsX19mdW5jX18pOwrCoMKgwqAgb3BlbmxvZyhsb2csIExPR19QSUQsIExPR19MT0NBTDApOwrCoMKgwqAgc3lzbG9nKExPR19ERUJVRywgIltGSUpdIFIBMAEBAQE-
 X-Mailer: YahooMailWebService/0.8.198.689
-Message-ID: <1407249201.20340.YahooMailNeo@web171301.mail.ir2.yahoo.com>
-Date: Tue, 5 Aug 2014 15:33:21 +0100
+Message-ID: <1407249617.80963.YahooMailNeo@web171302.mail.ir2.yahoo.com>
+Date: Tue, 5 Aug 2014 15:40:17 +0100
 From: Jean Faye <ismael.faye@yahoo.fr>
 To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 MIME-Version: 1.0
-Subject: How to log messages generated by C program using syslog-ng and How to manage log file rotation
+Subject: How to log the messages generated by c program using syslog-ng and how to manage log file rotation
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -76,11 +70,11 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 05 Aug 2014 14:33:28 -0000
+X-List-Received-Date: Tue, 05 Aug 2014 14:40:24 -0000
 Content-Type: multipart/alternative;
-	boundary="862858767-245626660-1407249201=:20340"
+	boundary="1670751155-1865227008-1407249617=:80963"
 
---862858767-245626660-1407249201=:20340
+--1670751155-1865227008-1407249617=:80963
 Content-Type: text/plain; charset=iso-8859-1
 Content-Transfer-Encoding: quoted-printable
 
@@ -96,51 +90,51 @@ sages in my destination files. You can see the content of my syslog-ng.conf=
  file bellow.=0A=0AIs it the right way to log the messages sent by C progra=
 m? What can explain that I got no messages in the destinations files?=0A=0A=
 I am using syslog-ng 3.5.4.1 provided by yocto. And in the script which run=
- the binary I remove the line below:=0A=0AWhy are you using the line? Is it=
- necessary to use it?=0A=0AConcerning log file rotation, How can we manage =
-it using syslog-ng? For example I want to have a destination file with a si=
-ze maximum =3D 2Mo and if the size is greater than the max size, I have to =
-save the current one and create a new one. On my system I can have max 4 fi=
-les (4 x 2Mo). How can I manage this kind of rotation?=0A=0AThanks in advan=
-ce.=0ABest regards,=0AIsmael Jean FAYE =0A=0A@version: 3.5=0A#=0A# Syslog-n=
-g configuration file, compatible with default Debian syslogd=0A# installati=
-on. Originally written by anonymous (I can't find his name)=0A# Revised, an=
-d rewrited by me (SZALAY Attila <sasa@debian.org>)=0A=0A# First, set some g=
-lobal options.=0Aoptions { chain_hostnames(off); flush_lines(0); use_dns(no=
-); use_fqdn(no);=0A=A0=A0=A0 =A0 owner("root"); group("adm"); perm(0640); s=
-tats_freq(0);=0A=A0=A0=A0 =A0 bad_hostname("^gconfd$");create_dirs(yes);=0A=
-};=0A=0A########################=0A# Sources=0A########################=0A=
-=0Asource s_mysource { =0A=A0=A0=A0 pipe("/tmp/pipe" pad_size(2048));=0A};=
-=0A=0A########################=0A# Destinations=0A########################=
-=0A=0Adestination d_GEN { =0A=A0=A0=A0=A0=A0=A0 =A0=A0=A0 =A0=A0=A0=A0 file=
-("/var/log/ldb/GENTrace.log");=0A};=0A=0Adestination d_SU { =0A=A0=A0=A0=A0=
-=A0=A0 =A0=A0=A0 =A0=A0=A0=A0 file("/var/log/ldb/SUTrace.log");=0A};=0A=0Ad=
-estination d_WAN { =0A=A0=A0=A0=A0=A0=A0 =A0=A0=A0 =A0=A0=A0=A0 file("/var/=
-log/ldb/WANTrace.log");=0A};=0A=0Adestination d_CPL { =0A=A0=A0=A0=A0=A0=A0=
- =A0=A0=A0 =A0=A0=A0=A0 file("/var/log/ldb/CPLTrace.log");=0A};=0A=0A######=
-##################=0A# Filters=0A########################=0A=0A#filter f_GE=
-N { =0A=A0=A0=A0=A0=A0=A0 =A0=A0=A0 =A0=A0=A0=A0 #facility(local0) and filt=
-er(nom_du_composant_applicatif);=0A=A0=A0=A0=A0=A0=A0 =A0=A0=A0 =A0=A0=A0=
-=A0 #facility(local0) and filter(f_debug);=0A=A0=A0=A0=A0=A0=A0 =A0=A0=A0 =
-=A0=A0=A0=A0 #facility(local0);=0A#};=0A=0Afilter f_SU { =0A=A0=A0=A0=A0=A0=
+ the binary (initscript file) I remove the line below:=0A=0A. /etc/init.d/f=
+unctions=0A=0AWhy are you using the line? Is it necessary to use it?=0A=0AC=
+oncerning log file rotation, How can we manage it using syslog-ng? For exam=
+ple I want to have a destination file with a size maximum =3D 2Mo and if th=
+e size is greater than the max size, I have to save the current one and cre=
+ate a new one. On my system I can have max 4 files (4 x 2Mo). How can I man=
+age this kind of rotation?=0A=0AThanks in advance.=0ABest regards,=0AIsmael=
+ Jean FAYE =0A=0A@version: 3.5=0A#=0A# Syslog-ng configuration file, compat=
+ible with default Debian syslogd=0A# installation. Originally written by an=
+onymous (I can't find his name)=0A# Revised, and rewrited by me (SZALAY Att=
+ila <sasa@debian.org>)=0A=0A# First, set some global options.=0Aoptions { c=
+hain_hostnames(off); flush_lines(0); use_dns(no); use_fqdn(no);=0A=A0=A0=A0=
+ =A0 owner("root"); group("adm"); perm(0640); stats_freq(0);=0A=A0=A0=A0 =
+=A0 bad_hostname("^gconfd$");create_dirs(yes);=0A};=0A=0A##################=
+######=0A# Sources=0A########################=0A=0Asource s_mysource { =0A=
+=A0=A0=A0 pipe("/tmp/pipe" pad_size(2048));=0A};=0A=0A#####################=
+###=0A# Destinations=0A########################=0A=0Adestination d_GEN { =
+=0A=A0=A0=A0=A0=A0=A0 =A0=A0=A0 =A0=A0=A0=A0 file("/var/log/ldb/GENTrace.lo=
+g");=0A};=0A=0Adestination d_SU { =0A=A0=A0=A0=A0=A0=A0 =A0=A0=A0 =A0=A0=A0=
+=A0 file("/var/log/ldb/SUTrace.log");=0A};=0A=0Adestination d_WAN { =0A=A0=
+=A0=A0=A0=A0=A0 =A0=A0=A0 =A0=A0=A0=A0 file("/var/log/ldb/WANTrace.log");=
+=0A};=0A=0Adestination d_CPL { =0A=A0=A0=A0=A0=A0=A0 =A0=A0=A0 =A0=A0=A0=A0=
+ file("/var/log/ldb/CPLTrace.log");=0A};=0A=0A########################=0A# =
+Filters=0A########################=0A=0A#filter f_GEN { =0A=A0=A0=A0=A0=A0=
 =A0 =A0=A0=A0 =A0=A0=A0=A0 #facility(local0) and filter(nom_du_composant_ap=
 plicatif);=0A=A0=A0=A0=A0=A0=A0 =A0=A0=A0 =A0=A0=A0=A0 #facility(local0) an=
-d filter(f_debug);=0A=A0=A0=A0=A0=A0=A0 =A0=A0=A0 =A0=A0=A0=A0 facility(loc=
-al0);=0A};=0A=0Afilter f_WAN { =0A=A0=A0=A0=A0=A0=A0 =A0=A0=A0 =A0=A0=A0=A0=
- #facility(local0) and filter(nom_du_composant_applicatif);=0A=A0=A0=A0=A0=
-=A0=A0 =A0=A0=A0 =A0=A0=A0=A0 #facility(local0) and filter(f_debug);=0A=A0=
-=A0=A0=A0=A0=A0 =A0=A0=A0 =A0=A0=A0=A0 facility(local0);=0A};=0A=0Afilter f=
-_CPL { =0A=A0=A0=A0=A0=A0=A0 =A0=A0=A0 =A0=A0=A0=A0 #facility(local0) and f=
-ilter(nom_du_composant_applicatif);=0A=A0=A0=A0=A0=A0=A0 =A0=A0=A0 =A0=A0=
-=A0=A0 #facility(local0) and filter(f_debug);=0A=A0=A0=A0=A0=A0=A0 =A0=A0=
-=A0 =A0=A0=A0=A0 facility(local0);=0A};=0A=0A########################=0A# L=
-og paths=0A########################=0A=0A#log { source(s_mysource); filter(=
-f_GEN); destination(d_GEN); };=0Alog { source(s_mysource); filter(f_SU); de=
-stination(d_SU); };=0Alog { source(s_mysource); filter(f_WAN); destination(=
-d_WAN); };=0Alog { source(s_mysource); filter(f_CPL); destination(d_CPL); }=
-;
+d filter(f_debug);=0A=A0=A0=A0=A0=A0=A0 =A0=A0=A0 =A0=A0=A0=A0 #facility(lo=
+cal0);=0A#};=0A=0Afilter f_SU { =0A=A0=A0=A0=A0=A0=A0 =A0=A0=A0 =A0=A0=A0=
+=A0 #facility(local0) and filter(nom_du_composant_applicatif);=0A=A0=A0=A0=
+=A0=A0=A0 =A0=A0=A0 =A0=A0=A0=A0 #facility(local0) and filter(f_debug);=0A=
+=A0=A0=A0=A0=A0=A0 =A0=A0=A0 =A0=A0=A0=A0 facility(local0);=0A};=0A=0Afilte=
+r f_WAN { =0A=A0=A0=A0=A0=A0=A0 =A0=A0=A0 =A0=A0=A0=A0 #facility(local0) an=
+d filter(nom_du_composant_applicatif);=0A=A0=A0=A0=A0=A0=A0 =A0=A0=A0 =A0=
+=A0=A0=A0 #facility(local0) and filter(f_debug);=0A=A0=A0=A0=A0=A0=A0 =A0=
+=A0=A0 =A0=A0=A0=A0 facility(local0);=0A};=0A=0Afilter f_CPL { =0A=A0=A0=A0=
+=A0=A0=A0 =A0=A0=A0 =A0=A0=A0=A0 #facility(local0) and filter(nom_du_compos=
+ant_applicatif);=0A=A0=A0=A0=A0=A0=A0 =A0=A0=A0 =A0=A0=A0=A0 #facility(loca=
+l0) and filter(f_debug);=0A=A0=A0=A0=A0=A0=A0 =A0=A0=A0 =A0=A0=A0=A0 facili=
+ty(local0);=0A};=0A=0A########################=0A# Log paths=0A############=
+############=0A=0A#log { source(s_mysource); filter(f_GEN); destination(d_G=
+EN); };=0Alog { source(s_mysource); filter(f_SU); destination(d_SU); };=0Al=
+og { source(s_mysource); filter(f_WAN); destination(d_WAN); };=0Alog { sour=
+ce(s_mysource); filter(f_CPL); destination(d_CPL); };
 
---862858767-245626660-1407249201=:20340
+--1670751155-1865227008-1407249617=:80963
 Content-Type: text/html; charset=iso-8859-1
 Content-Transfer-Encoding: quoted-printable
 
@@ -164,87 +158,88 @@ slog-ng.conf file bellow.<br style=3D"" class=3D""><br style=3D"" class=3D"=
 ">Is it the right way to log the messages sent by C program? What can expla=
 in that I got no messages in the destinations files?<br style=3D"" class=3D=
 ""><br style=3D"" class=3D"">I am using syslog-ng 3.5.4.1 provided by yocto=
-. And in the script which run the binary I remove the line below:<br style=
-=3D"" class=3D""><br style=3D"" class=3D"">Why are you using the line? Is i=
-t necessary to use it?<br style=3D"" class=3D""><br style=3D"" class=3D"">C=
-oncerning log file rotation, How can we manage it using syslog-ng? For exam=
-ple I want to have a destination file with a size maximum =3D 2Mo and if th=
-e size is greater than the max size, I have to save the current one and cre=
-ate a new one. On my system I can have max 4 files (4 x 2Mo). How can I man=
-age this kind of rotation?<br
- style=3D"" class=3D""><br style=3D"" class=3D"">Thanks in advance.<br styl=
-e=3D"" class=3D"">Best regards,<br style=3D"" class=3D"">Ismael Jean FAYE <=
-br style=3D"" class=3D""><br style=3D"" class=3D"">@version: 3.5<br style=
-=3D"" class=3D"">#<br style=3D"" class=3D""># Syslog-ng configuration file,=
- compatible with default Debian syslogd<br style=3D"" class=3D""># installa=
-tion. Originally written by anonymous (I can't find his name)<br style=3D""=
- class=3D""># Revised, and rewrited by me (SZALAY Attila &lt;sasa@debian.or=
-g&gt;)<br style=3D"" class=3D""><br style=3D"" class=3D""># First, set some=
- global options.<br style=3D"" class=3D"">options { chain_hostnames(off); f=
-lush_lines(0); use_dns(no); use_fqdn(no);<br style=3D"" class=3D"">&nbsp;&n=
-bsp;&nbsp; &nbsp; owner("root"); group("adm"); perm(0640); stats_freq(0);<b=
-r style=3D"" class=3D"">&nbsp;&nbsp;&nbsp; &nbsp; bad_hostname("^gconfd$");=
-create_dirs(yes);<br style=3D"" class=3D"">};<br style=3D"" class=3D""><br =
-style=3D"" class=3D"">########################<br style=3D""
- class=3D""># Sources<br style=3D"" class=3D"">########################<br =
-style=3D"" class=3D""><br style=3D"" class=3D"">source s_mysource { <br sty=
-le=3D"" class=3D"">&nbsp;&nbsp;&nbsp; pipe("/tmp/pipe" pad_size(2048));<br =
-style=3D"" class=3D"">};<br style=3D"" class=3D""><br style=3D"" class=3D""=
->########################<br style=3D"" class=3D""># Destinations<br style=
-=3D"" class=3D"">########################<br style=3D"" class=3D""><br styl=
-e=3D"" class=3D"">destination d_GEN { <br style=3D"" class=3D"">&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; file(=
-"/var/log/ldb/GENTrace.log");<br style=3D"" class=3D"">};<br style=3D"" cla=
-ss=3D""><br style=3D"" class=3D"">destination d_SU { <br style=3D"" class=
-=3D"">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&=
-nbsp;&nbsp; file("/var/log/ldb/SUTrace.log");<br style=3D"" class=3D"">};<b=
-r style=3D"" class=3D""><br style=3D"" class=3D"">destination d_WAN { <br s=
-tyle=3D"" class=3D"">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp=
-;
- &nbsp;&nbsp;&nbsp;&nbsp; file("/var/log/ldb/WANTrace.log");<br style=3D"" =
-class=3D"">};<br style=3D"" class=3D""><br style=3D"" class=3D"">destinatio=
-n d_CPL { <br style=3D"" class=3D"">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &n=
-bsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; file("/var/log/ldb/CPLTrace.log")=
-;<br style=3D"" class=3D"">};<br style=3D"" class=3D""><br style=3D"" class=
-=3D"">########################<br style=3D"" class=3D""># Filters<br style=
-=3D"" class=3D"">########################<br style=3D"" class=3D""><br styl=
-e=3D"" class=3D"">#filter f_GEN { <br style=3D"" class=3D"">&nbsp;&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; #facility=
-(local0) and filter(nom_du_composant_applicatif);<br style=3D"" class=3D"">=
+. And in the script which run the binary (initscript file) I remove the lin=
+e below:<br style=3D"" class=3D""><br style=3D"" class=3D"">. /etc/init.d/f=
+unctions<br style=3D"" class=3D""><br style=3D"" class=3D"">Why are you usi=
+ng the line? Is it necessary to use it?<br style=3D"" class=3D""><br style=
+=3D"" class=3D"">Concerning log file rotation, How can we manage it using s=
+yslog-ng? For example I want to have a destination file with a size maximum=
+ =3D 2Mo and if the size is greater than the max size, I have to save the c=
+urrent one and create a new one. On my
+ system I can have max 4 files (4 x 2Mo). How can I manage this kind of rot=
+ation?<br style=3D"" class=3D""><br style=3D"" class=3D"">Thanks in advance=
+.<br style=3D"" class=3D"">Best regards,<br style=3D"" class=3D"">Ismael Je=
+an FAYE <br style=3D"" class=3D""><br style=3D"" class=3D"">@version: 3.5<b=
+r style=3D"" class=3D"">#<br style=3D"" class=3D""># Syslog-ng configuratio=
+n file, compatible with default Debian syslogd<br style=3D"" class=3D""># i=
+nstallation. Originally written by anonymous (I can't find his name)<br sty=
+le=3D"" class=3D""># Revised, and rewrited by me (SZALAY Attila &lt;sasa@de=
+bian.org&gt;)<br style=3D"" class=3D""><br style=3D"" class=3D""># First, s=
+et some global options.<br style=3D"" class=3D"">options { chain_hostnames(=
+off); flush_lines(0); use_dns(no); use_fqdn(no);<br style=3D"" class=3D"">&=
+nbsp;&nbsp;&nbsp; &nbsp; owner("root"); group("adm"); perm(0640); stats_fre=
+q(0);<br style=3D"" class=3D"">&nbsp;&nbsp;&nbsp; &nbsp; bad_hostname("^gco=
+nfd$");create_dirs(yes);<br style=3D"" class=3D"">};<br
+ style=3D"" class=3D""><br style=3D"" class=3D"">########################<b=
+r style=3D"" class=3D""># Sources<br style=3D"" class=3D"">################=
+########<br style=3D"" class=3D""><br style=3D"" class=3D"">source s_mysour=
+ce { <br style=3D"" class=3D"">&nbsp;&nbsp;&nbsp; pipe("/tmp/pipe" pad_size=
+(2048));<br style=3D"" class=3D"">};<br style=3D"" class=3D""><br style=3D"=
+" class=3D"">########################<br style=3D"" class=3D""># Destinatio=
+ns<br style=3D"" class=3D"">########################<br style=3D"" class=3D=
+""><br style=3D"" class=3D"">destination d_GEN { <br style=3D"" class=3D"">=
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&=
-nbsp; #facility(local0) and filter(f_debug);<br style=3D"" class=3D"">&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;=
- #facility(local0);<br style=3D"" class=3D"">#};<br
- style=3D"" class=3D""><br style=3D"" class=3D"">filter f_SU { <br style=3D=
-"" class=3D"">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp=
-;&nbsp;&nbsp;&nbsp; #facility(local0) and filter(nom_du_composant_applicati=
-f);<br style=3D"" class=3D"">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nb=
-sp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; #facility(local0) and filter(f_debug);<b=
-r style=3D"" class=3D"">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&n=
-bsp; &nbsp;&nbsp;&nbsp;&nbsp; facility(local0);<br style=3D"" class=3D"">};=
-<br style=3D"" class=3D""><br style=3D"" class=3D"">filter f_WAN { <br styl=
-e=3D"" class=3D"">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &=
-nbsp;&nbsp;&nbsp;&nbsp; #facility(local0) and filter(nom_du_composant_appli=
-catif);<br style=3D"" class=3D"">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp=
-;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; #facility(local0) and filter(f_debug=
-);<br style=3D"" class=3D"">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbs=
-p;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
- facility(local0);<br style=3D"" class=3D"">};<br style=3D"" class=3D""><br=
- style=3D"" class=3D"">filter f_CPL { <br style=3D"" class=3D"">&nbsp;&nbsp=
-;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; #faci=
-lity(local0) and filter(nom_du_composant_applicatif);<br style=3D"" class=
+nbsp; file("/var/log/ldb/GENTrace.log");<br style=3D"" class=3D"">};<br sty=
+le=3D"" class=3D""><br style=3D"" class=3D"">destination d_SU { <br style=
+=3D"" class=3D"">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &n=
+bsp;&nbsp;&nbsp;&nbsp; file("/var/log/ldb/SUTrace.log");<br style=3D"" clas=
+s=3D"">};<br style=3D"" class=3D""><br style=3D"" class=3D"">destination d_=
+WAN {
+ <br style=3D"" class=3D"">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp=
+;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; file("/var/log/ldb/WANTrace.log");<br styl=
+e=3D"" class=3D"">};<br style=3D"" class=3D""><br style=3D"" class=3D"">des=
+tination d_CPL { <br style=3D"" class=3D"">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; file("/var/log/ldb/CPLTrac=
+e.log");<br style=3D"" class=3D"">};<br style=3D"" class=3D""><br style=3D"=
+" class=3D"">########################<br style=3D"" class=3D""># Filters<br=
+ style=3D"" class=3D"">########################<br style=3D"" class=3D""><b=
+r style=3D"" class=3D"">#filter f_GEN { <br style=3D"" class=3D"">&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; #fa=
+cility(local0) and filter(nom_du_composant_applicatif);<br style=3D"" class=
 =3D"">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&=
 nbsp;&nbsp; #facility(local0) and filter(f_debug);<br style=3D"" class=3D""=
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;=
-&nbsp; facility(local0);<br style=3D"" class=3D"">};<br style=3D"" class=3D=
-""><br style=3D"" class=3D"">########################<br style=3D"" class=
-=3D""># Log paths<br style=3D"" class=3D"">########################<br styl=
-e=3D"" class=3D""><br style=3D"" class=3D"">#log { source(s_mysource); filt=
-er(f_GEN); destination(d_GEN); };<br style=3D"" class=3D"">log { source(s_m=
-ysource); filter(f_SU); destination(d_SU); };<br style=3D"" class=3D"">log =
-{ source(s_mysource); filter(f_WAN); destination(d_WAN);
- };<br style=3D"" class=3D"">log { source(s_mysource); filter(f_CPL); desti=
-nation(d_CPL); };<br style=3D"" class=3D""><br style=3D"" class=3D""></div>=
-</div></body></html>
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; #facility(local0);<br style=3D=
+"" class=3D"">#};<br style=3D"" class=3D""><br style=3D"" class=3D"">filter=
+ f_SU { <br style=3D"" class=3D"">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbs=
+p;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; #facility(local0) and filter(nom_du=
+_composant_applicatif);<br style=3D"" class=3D"">&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; #facility(local0) an=
+d filter(f_debug);<br style=3D"" class=3D"">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; facility(local0);<br styl=
+e=3D"" class=3D"">};<br style=3D"" class=3D""><br style=3D"" class=3D"">fil=
+ter f_WAN { <br style=3D"" class=3D"">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =
+&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; #facility(local0) and filter(no=
+m_du_composant_applicatif);<br style=3D"" class=3D"">&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; #facility(local0=
+) and filter(f_debug);<br style=3D""
+ class=3D"">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&=
+nbsp;&nbsp;&nbsp; facility(local0);<br style=3D"" class=3D"">};<br style=3D=
+"" class=3D""><br style=3D"" class=3D"">filter f_CPL { <br style=3D"" class=
+=3D"">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&=
+nbsp;&nbsp; #facility(local0) and filter(nom_du_composant_applicatif);<br s=
+tyle=3D"" class=3D"">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp=
+; &nbsp;&nbsp;&nbsp;&nbsp; #facility(local0) and filter(f_debug);<br style=
+=3D"" class=3D"">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &n=
+bsp;&nbsp;&nbsp;&nbsp; facility(local0);<br style=3D"" class=3D"">};<br sty=
+le=3D"" class=3D""><br style=3D"" class=3D"">########################<br st=
+yle=3D"" class=3D""># Log paths<br style=3D"" class=3D"">##################=
+######<br style=3D"" class=3D""><br style=3D"" class=3D"">#log { source(s_m=
+ysource); filter(f_GEN); destination(d_GEN); };<br style=3D"" class=3D"">lo=
+g { source(s_mysource); filter(f_SU);
+ destination(d_SU); };<br style=3D"" class=3D"">log { source(s_mysource); f=
+ilter(f_WAN); destination(d_WAN); };<br style=3D"" class=3D"">log { source(=
+s_mysource); filter(f_CPL); destination(d_CPL); };<br style=3D"" class=3D""=
+><br style=3D"" class=3D""></div></div></body></html>
 
---862858767-245626660-1407249201=:20340--
+--1670751155-1865227008-1407249617=:80963--
