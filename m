@@ -1,62 +1,37 @@
-Return-Path: <joaohf@gmail.com>
+Return-Path: <paul.eggleton@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id A9DC6E0079D; Tue,  5 Aug 2014 04:23:10 -0700 (PDT)
+	id 43DFEE00799; Tue,  5 Aug 2014 05:01:18 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (joaohf[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.160.173 listed in list.dnswl.org]
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [134.134.136.24 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-yk0-f173.google.com (mail-yk0-f173.google.com
-	[209.85.160.173])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 42131E004DD
-	for <yocto@yoctoproject.org>; Tue,  5 Aug 2014 04:23:07 -0700 (PDT)
-Received: by mail-yk0-f173.google.com with SMTP id 131so497872ykp.4
-	for <yocto@yoctoproject.org>; Tue, 05 Aug 2014 04:23:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=message-id:date:from:user-agent:mime-version:to:cc:subject
-	:references:in-reply-to:content-type:content-transfer-encoding;
-	bh=wm9V82HJ514LEKlKjr7XuFNgJIOOZfzSZKZYGfKgQ4k=;
-	b=pIfyhD2BxO7/zFzK1B6qRSOZRLu/EDUUfmNfRws8R9bU2xcAXGVzraxE4cXVMIKyvW
-	L6kplmlHhqTFgVtFfUTqeh3VbKoYOVlClTYUoTzLuqPmIa3+pI7G5SqMxOL8DhUBynp/
-	mhdzhyw0lXIrn92S1aOilDRcTxisGNNuCYc4ynOlr4oeAM/AR/Wt7ZMSawQrwIw9CweL
-	mhSPgMjwcENRw33+nW4qi/JvxDtEEI0k8t3OtlkqqRhUUqhdDLgMlsDX3iJf3p9evaqi
-	+fE/zS6NMnYOT721WIQRTmCrLfMUs16aCIrBBrfqQZDAR4HsnwedP26FDpjjlwSE3HYP
-	9I8A==
-X-Received: by 10.236.40.81 with SMTP id e57mr5169915yhb.26.1407237786716;
-	Tue, 05 Aug 2014 04:23:06 -0700 (PDT)
-Received: from [192.168.0.12] ([201.53.208.133])
-	by mx.google.com with ESMTPSA id k7sm2490811yhl.26.2014.08.05.04.23.05
-	for <multiple recipients>
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Tue, 05 Aug 2014 04:23:06 -0700 (PDT)
-Message-ID: <53E0BE90.6050404@gmail.com>
-Date: Tue, 05 Aug 2014 08:22:56 -0300
-From: =?UTF-8?B?Sm/Do28gSGVucmlxdWUgRmVycmVpcmEgZGUgRnJlaXRhcw==?=
-	<joaohf@gmail.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:31.0) Gecko/20100101 Thunderbird/31.0
+Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 159F2E004DD
+	for <yocto@yoctoproject.org>; Tue,  5 Aug 2014 05:01:05 -0700 (PDT)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga102.jf.intel.com with ESMTP; 05 Aug 2014 04:55:18 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.01,804,1400050800"; d="scan'208";a="583628381"
+Received: from tskannan-mobl.gar.corp.intel.com (HELO
+	peggleto-mobl5.ger.corp.intel.com) ([10.252.122.122])
+	by orsmga002.jf.intel.com with ESMTP; 05 Aug 2014 05:01:03 -0700
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: "Robert P. J. Day" <rpjday@crashcourse.ca>
+Date: Tue, 05 Aug 2014 13:01:01 +0100
+Message-ID: <175908746.VFUipfJBL4@peggleto-mobl5.ger.corp.intel.com>
+Organization: Intel Corporation
+User-Agent: KMail/4.13.3 (Linux/3.15.7-200.fc20.x86_64; KDE/4.13.3; x86_64; ; )
+In-Reply-To: <alpine.LFD.2.11.1408040548310.4162@localhost>
+References: <alpine.LFD.2.11.1408040548310.4162@localhost>
 MIME-Version: 1.0
-To: Richard Purdie <richard.purdie@linuxfoundation.org>
-References: <CAPhnLPB9VeuosZF16qY2H32adjqC0xZoCWhq_Vdjy7n5YpYCBQ@mail.gmail.com>	
-	<CFFE70D2.703B%alexandru.c.georgescu@intel.com>	
-	<53DC4886.8070406@gmail.com> <1407232846.6981.77.camel@ted>
-	<1407234725.6981.82.camel@ted>
-In-Reply-To: <1407234725.6981.82.camel@ted>
 Cc: yocto@yoctoproject.org
-Subject: Re: Yocto 1.7_M2 release candidate 1 ready for QA
+Subject: Re: what are the *required* variables for defining a new distro?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -68,23 +43,44 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 05 Aug 2014 11:23:10 -0000
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Tue, 05 Aug 2014 12:01:18 -0000
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
+Hi Robert,
 
-On 05-08-2014 07:32, Richard Purdie wrote:
-> I also couldn't reproduce this with the armv7 toolchain. Do you have the
-> logs from that failure?
->
+On Monday 04 August 2014 05:52:11 Robert P. J. Day wrote:
+>   i asked about this on OE list but since this affects the yocto dev
+> manual, i thought i'd ask here as well as i can fold the result into
+> another doc patch.
+> 
+>   section 5.10 of dev manual:
+> 
+> http://www.yoctoproject.org/docs/latest/dev-manual/dev-manual.html#creating-> your-own-distribution
+> 
+> claims:
+> 
+>   Your [new distro] configuration file needs to set the following
+> required variables:
+> 
+>      DISTRO_NAME
+>      DISTRO_VERSION
+> 
+>   i don't think that's true -- i don't think it's *required* for a
+> distro conf file to set DISTRO_NAME. can someone verify what variables
+> are mandatory for a new distro configuration file?
 
-You are right. I retest armv7 and there is no problem. I think I lost 
-myself during install-test cycle
+The bottom line is, if you mean "which variables must I set in my distro config 
+or my build will blow up?" - there aren't any; we already have reasonable 
+defaults for all of the critical stuff, so the distro config mostly only needs 
+to change the things you want to be different. DISTRO_NAME and DISTRO_VERSION 
+are the minimum of variables that you'd *want* to set, though.
 
-Thanks for your attention.
+Cheers,
+Paul
 
 -- 
-João Henrique Ferreira de Freitas - joaohf_at_gmail.com
-Campinas-SP-Brasil
 
+Paul Eggleton
+Intel Open Source Technology Centre
 
