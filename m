@@ -1,67 +1,55 @@
-Return-Path: <ismael.faye@yahoo.fr>
+Return-Path: <alexandru.c.georgescu@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id BF06DE007D2; Tue,  5 Aug 2014 07:40:24 -0700 (PDT)
+	id C0D26E007C1; Tue,  5 Aug 2014 07:52:48 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (ismael.faye[at]yahoo.fr)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [212.82.96.123 listed in list.dnswl.org]
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [143.182.124.21 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from nm6-vm7.bullet.mail.ir2.yahoo.com
-	(nm6-vm7.bullet.mail.ir2.yahoo.com [212.82.96.123])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 05050E00790
-	for <yocto@yoctoproject.org>; Tue,  5 Aug 2014 07:40:19 -0700 (PDT)
-Received: from [212.82.98.126] by nm6.bullet.mail.ir2.yahoo.com with NNFMP;
-	05 Aug 2014 14:40:17 -0000
-Received: from [212.82.98.99] by tm19.bullet.mail.ir2.yahoo.com with NNFMP;
-	05 Aug 2014 14:40:17 -0000
-Received: from [127.0.0.1] by omp1036.mail.ir2.yahoo.com with NNFMP;
-	05 Aug 2014 14:40:17 -0000
-X-Yahoo-Newman-Property: ymail-3
-X-Yahoo-Newman-Id: 648242.32664.bm@omp1036.mail.ir2.yahoo.com
-Received: (qmail 48783 invoked by uid 60001); 5 Aug 2014 14:40:17 -0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.fr; s=s1024;
-	t=1407249617; bh=CGs8a2W/cj/trwsYRS4W5QNbA/zqXq4W2fPTxPIuXzI=;
-	h=Message-ID:Date:From:Reply-To:Subject:To:MIME-Version:Content-Type;
-	b=xqC/MHyrXq3zk57vnadM2BmfkQKsUwxR+Dfe2k1lPbtJ0d927D6aHey+Ag3gCaHpmrMhTHjU7SnPP6l8QOZIVH9F+KKxVSZwp/7rOJZOCR+Zqb2P4tsMCihHbLDf5wEoCn7mNSxp3tWSC+e5WlIo9pGl40D25kAkRf+0B+rPz/4=
-X-YMail-OSG: vAMWJJgVM1n0UUcLi5d7whpHvmQadBazPq7B0OdUQBXYkYe
-	ejz4CSuXXx3qfJ.V_2oeQJnDwk6uR6wuDAsqU0WZXEiC2cShDw0lw4t74YnD
-	0H6izEwqFxeOiEnUkCF7ET.riBc5t2xHJC0Y.v5VB0dxmRLs7lQ_PQeYSy3k
-	_nE0jmPZkwCj73vlsSrYLHZAo9ZtP9OSNF9OLDy.d.gxBFlGQvFTXkWgCWnO
-	AWQgduOLmA4zbI_noYr5LxmncD4F2Edwd40YRJhovo8og21FSXeseeHTzGSG
-	nEu0CDYGOn9wPSLEAisEzEaGNkdzh025v.M4J8HsY2MaPWpFiRSckmVqIz3D
-	892kDrNNEUf1Q2v.pWlcgHaxVNuhXz6ilxyBqCe_U33OLZYUo_VGTxwym2W2
-	Ef6bAky33V4xJTJvnuu9kVEoNoIDR8sWbhXyMkEyQydMe6tN2l0u60OtulVu
-	Mx1Lx931mtezxQbAR165pcYywGLSIOr2bw_biZFwdBAr_zwMvwwvT1QYz6Pv
-	Z1dAnY14SuGyJbL7P.dmYocj929WUTbN8JRv_t9zENQ--
-Received: from [217.108.83.254] by web171302.mail.ir2.yahoo.com via HTTP;
-	Tue, 05 Aug 2014 15:40:17 BST
-X-Rocket-MIMEInfo: 002.001,
-	SGkgYWxsLApJIHdhbnQgdG8gdXNlIHN5c2xvZy1uZyB0byBsb2cgdGhlIG1lc3NhZ2VzIGdlbmVyYXRlZCBieSBteSBhcHBsaWNhdGlvbiBpbXBsZW1lbnRlZCBpbiBDIGxhbmd1YWdlLiBJIGFkZGVkIHRoaXMgaW4gdGhlIGNvZGU6CgrCoMKgwqAgY2hhcsKgwqDCoCAqbG9nPSJydGNkIjsKwqDCoMKgIHByaW50ZigiWyVzXSBSVEMgYWRqdXN0ZW1lbnRcbiIsX19mdW5jX18pOwrCoMKgwqAgb3BlbmxvZyhsb2csIExPR19QSUQsIExPR19MT0NBTDApOwrCoMKgwqAgc3lzbG9nKExPR19ERUJVRywgIltGSUpdIFIBMAEBAQE-
-X-Mailer: YahooMailWebService/0.8.198.689
-Message-ID: <1407249617.80963.YahooMailNeo@web171302.mail.ir2.yahoo.com>
-Date: Tue, 5 Aug 2014 15:40:17 +0100
-From: Jean Faye <ismael.faye@yahoo.fr>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 0091BE00790
+	for <yocto@yoctoproject.org>; Tue,  5 Aug 2014 07:52:41 -0700 (PDT)
+Received: from azsmga001.ch.intel.com ([10.2.17.19])
+	by azsmga101.ch.intel.com with ESMTP; 05 Aug 2014 07:52:40 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.01,805,1400050800"; d="scan'208";a="465182097"
+Received: from irsmsx103.ger.corp.intel.com ([163.33.3.157])
+	by azsmga001.ch.intel.com with ESMTP; 05 Aug 2014 07:52:36 -0700
+Received: from irsmsx108.ger.corp.intel.com (163.33.3.3) by
+	IRSMSX103.ger.corp.intel.com (163.33.3.157) with Microsoft SMTP Server
+	(TLS) id 14.3.195.1; Tue, 5 Aug 2014 15:49:39 +0100
+Received: from irsmsx101.ger.corp.intel.com ([169.254.1.92]) by
+	IRSMSX108.ger.corp.intel.com ([169.254.11.3]) with mapi id
+	14.03.0195.001; Tue, 5 Aug 2014 15:49:38 +0100
+From: "Georgescu, Alexandru C" <alexandru.c.georgescu@intel.com>
+To: =?iso-8859-1?Q?Jo=E3o_Henrique_Ferreira_de_Freitas?= <joaohf@gmail.com>,
+	Richard Purdie <richard.purdie@linuxfoundation.org>
+Thread-Topic: [yocto] Yocto 1.7_M2 release candidate 1 ready for QA
+Thread-Index: AQHPsLx72APfpdQEA0OBbwuSwgdU2A==
+Date: Tue, 5 Aug 2014 14:49:38 +0000
+Message-ID: <D006C8E6.779E%alexandru.c.georgescu@intel.com>
+References: <CAPhnLPB9VeuosZF16qY2H32adjqC0xZoCWhq_Vdjy7n5YpYCBQ@mail.gmail.com>
+	<CFFE70D2.703B%alexandru.c.georgescu@intel.com>
+	<53DC4886.8070406@gmail.com>
+	<1407232846.6981.77.camel@ted> <1407234725.6981.82.camel@ted>
+	<53E0BE90.6050404@gmail.com>
+In-Reply-To: <53E0BE90.6050404@gmail.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+user-agent: Microsoft-MacOutlook/14.4.3.140616
+x-originating-ip: [10.237.108.31]
 MIME-Version: 1.0
-Subject: How to log the messages generated by c program using syslog-ng and how to manage log file rotation
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Yocto 1.7_M2 release candidate 1 ready for QA
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
-Reply-To: Jean Faye <ismael.faye@yahoo.fr>
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -70,176 +58,50 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 05 Aug 2014 14:40:24 -0000
-Content-Type: multipart/alternative;
-	boundary="1670751155-1865227008-1407249617=:80963"
-
---1670751155-1865227008-1407249617=:80963
-Content-Type: text/plain; charset=iso-8859-1
+X-List-Received-Date: Tue, 05 Aug 2014 14:52:48 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="iso-8859-1"
+Content-ID: <F555F54918CB884C9E15F45EDAED38C6@intel.com>
 Content-Transfer-Encoding: quoted-printable
 
-Hi all,=0AI want to use syslog-ng to log the messages generated by my appli=
-cation implemented in C language. I added this in the code:=0A=0A=A0=A0=A0 =
-char=A0=A0=A0 *log=3D"rtcd";=0A=A0=A0=A0 printf("[%s] RTC adjustement\n",__=
-func__);=0A=A0=A0=A0 openlog(log, LOG_PID, LOG_LOCAL0);=0A=A0=A0=A0 syslog(=
-LOG_DEBUG, "[FIJ] RTC adjustement");=0A=A0=A0=A0 closelog();=0A=0A=0AFor me=
-, according to the syslog-ng file, the files /var/log/ldb/GENTrace.log, /va=
-r/log/ldb/SUTrace.log, /var/log/ldb/WANTrace.log and /var/log/ldb/CPLTrace.=
-log must be created and must contain the syslog message.=0ABut I got no mes=
-sages in my destination files. You can see the content of my syslog-ng.conf=
- file bellow.=0A=0AIs it the right way to log the messages sent by C progra=
-m? What can explain that I got no messages in the destinations files?=0A=0A=
-I am using syslog-ng 3.5.4.1 provided by yocto. And in the script which run=
- the binary (initscript file) I remove the line below:=0A=0A. /etc/init.d/f=
-unctions=0A=0AWhy are you using the line? Is it necessary to use it?=0A=0AC=
-oncerning log file rotation, How can we manage it using syslog-ng? For exam=
-ple I want to have a destination file with a size maximum =3D 2Mo and if th=
-e size is greater than the max size, I have to save the current one and cre=
-ate a new one. On my system I can have max 4 files (4 x 2Mo). How can I man=
-age this kind of rotation?=0A=0AThanks in advance.=0ABest regards,=0AIsmael=
- Jean FAYE =0A=0A@version: 3.5=0A#=0A# Syslog-ng configuration file, compat=
-ible with default Debian syslogd=0A# installation. Originally written by an=
-onymous (I can't find his name)=0A# Revised, and rewrited by me (SZALAY Att=
-ila <sasa@debian.org>)=0A=0A# First, set some global options.=0Aoptions { c=
-hain_hostnames(off); flush_lines(0); use_dns(no); use_fqdn(no);=0A=A0=A0=A0=
- =A0 owner("root"); group("adm"); perm(0640); stats_freq(0);=0A=A0=A0=A0 =
-=A0 bad_hostname("^gconfd$");create_dirs(yes);=0A};=0A=0A##################=
-######=0A# Sources=0A########################=0A=0Asource s_mysource { =0A=
-=A0=A0=A0 pipe("/tmp/pipe" pad_size(2048));=0A};=0A=0A#####################=
-###=0A# Destinations=0A########################=0A=0Adestination d_GEN { =
-=0A=A0=A0=A0=A0=A0=A0 =A0=A0=A0 =A0=A0=A0=A0 file("/var/log/ldb/GENTrace.lo=
-g");=0A};=0A=0Adestination d_SU { =0A=A0=A0=A0=A0=A0=A0 =A0=A0=A0 =A0=A0=A0=
-=A0 file("/var/log/ldb/SUTrace.log");=0A};=0A=0Adestination d_WAN { =0A=A0=
-=A0=A0=A0=A0=A0 =A0=A0=A0 =A0=A0=A0=A0 file("/var/log/ldb/WANTrace.log");=
-=0A};=0A=0Adestination d_CPL { =0A=A0=A0=A0=A0=A0=A0 =A0=A0=A0 =A0=A0=A0=A0=
- file("/var/log/ldb/CPLTrace.log");=0A};=0A=0A########################=0A# =
-Filters=0A########################=0A=0A#filter f_GEN { =0A=A0=A0=A0=A0=A0=
-=A0 =A0=A0=A0 =A0=A0=A0=A0 #facility(local0) and filter(nom_du_composant_ap=
-plicatif);=0A=A0=A0=A0=A0=A0=A0 =A0=A0=A0 =A0=A0=A0=A0 #facility(local0) an=
-d filter(f_debug);=0A=A0=A0=A0=A0=A0=A0 =A0=A0=A0 =A0=A0=A0=A0 #facility(lo=
-cal0);=0A#};=0A=0Afilter f_SU { =0A=A0=A0=A0=A0=A0=A0 =A0=A0=A0 =A0=A0=A0=
-=A0 #facility(local0) and filter(nom_du_composant_applicatif);=0A=A0=A0=A0=
-=A0=A0=A0 =A0=A0=A0 =A0=A0=A0=A0 #facility(local0) and filter(f_debug);=0A=
-=A0=A0=A0=A0=A0=A0 =A0=A0=A0 =A0=A0=A0=A0 facility(local0);=0A};=0A=0Afilte=
-r f_WAN { =0A=A0=A0=A0=A0=A0=A0 =A0=A0=A0 =A0=A0=A0=A0 #facility(local0) an=
-d filter(nom_du_composant_applicatif);=0A=A0=A0=A0=A0=A0=A0 =A0=A0=A0 =A0=
-=A0=A0=A0 #facility(local0) and filter(f_debug);=0A=A0=A0=A0=A0=A0=A0 =A0=
-=A0=A0 =A0=A0=A0=A0 facility(local0);=0A};=0A=0Afilter f_CPL { =0A=A0=A0=A0=
-=A0=A0=A0 =A0=A0=A0 =A0=A0=A0=A0 #facility(local0) and filter(nom_du_compos=
-ant_applicatif);=0A=A0=A0=A0=A0=A0=A0 =A0=A0=A0 =A0=A0=A0=A0 #facility(loca=
-l0) and filter(f_debug);=0A=A0=A0=A0=A0=A0=A0 =A0=A0=A0 =A0=A0=A0=A0 facili=
-ty(local0);=0A};=0A=0A########################=0A# Log paths=0A############=
-############=0A=0A#log { source(s_mysource); filter(f_GEN); destination(d_G=
-EN); };=0Alog { source(s_mysource); filter(f_SU); destination(d_SU); };=0Al=
-og { source(s_mysource); filter(f_WAN); destination(d_WAN); };=0Alog { sour=
-ce(s_mysource); filter(f_CPL); destination(d_CPL); };
+Hi,
+As RP mentioned in a previous mail, we aren=B9t covering the meta-fsl
+toolchain on our QA. We are validating though on the other platforms that
+we cover and progressing with the automation in this area should validate
+at least the basic functionality of the toolchain on the other platforms
+as well.
 
---1670751155-1865227008-1407249617=:80963
-Content-Type: text/html; charset=iso-8859-1
-Content-Transfer-Encoding: quoted-printable
+Regards,
+--
+Alexandru Georgescu
+Yocto QA Engineer
+SSG/SSD Open Source Technology Center Romania
 
-<html><body><div style=3D"color:#000; background-color:#fff; font-family:He=
-lveticaNeue, Helvetica Neue, Helvetica, Arial, Lucida Grande, sans-serif;fo=
-nt-size:12pt"><div style=3D"" class=3D"">Hi all,<br style=3D"" class=3D"">I=
- want to use syslog-ng to log the messages generated by my application impl=
-emented in C language. I added this in the code:<br style=3D"" class=3D""><=
-br style=3D"" class=3D"">&nbsp;&nbsp;&nbsp; char&nbsp;&nbsp;&nbsp; *log=3D"=
-rtcd";<br style=3D"" class=3D"">&nbsp;&nbsp;&nbsp; printf("[%s] RTC adjuste=
-ment\n",__func__);<br style=3D"" class=3D"">&nbsp;&nbsp;&nbsp; openlog(log,=
- LOG_PID, LOG_LOCAL0);<br style=3D"" class=3D"">&nbsp;&nbsp;&nbsp; syslog(L=
-OG_DEBUG, "[FIJ] RTC adjustement");<br style=3D"" class=3D"">&nbsp;&nbsp;&n=
-bsp; closelog();<br style=3D"" class=3D""><br style=3D"" class=3D""><br sty=
-le=3D"" class=3D"">For me, according to the syslog-ng file, the files /var/=
-log/ldb/GENTrace.log, /var/log/ldb/SUTrace.log, /var/log/ldb/WANTrace.log a=
-nd /var/log/ldb/CPLTrace.log must be
- created and must contain the syslog message.<br style=3D"" class=3D"">But =
-I got no messages in my destination files. You can see the content of my sy=
-slog-ng.conf file bellow.<br style=3D"" class=3D""><br style=3D"" class=3D"=
-">Is it the right way to log the messages sent by C program? What can expla=
-in that I got no messages in the destinations files?<br style=3D"" class=3D=
-""><br style=3D"" class=3D"">I am using syslog-ng 3.5.4.1 provided by yocto=
-. And in the script which run the binary (initscript file) I remove the lin=
-e below:<br style=3D"" class=3D""><br style=3D"" class=3D"">. /etc/init.d/f=
-unctions<br style=3D"" class=3D""><br style=3D"" class=3D"">Why are you usi=
-ng the line? Is it necessary to use it?<br style=3D"" class=3D""><br style=
-=3D"" class=3D"">Concerning log file rotation, How can we manage it using s=
-yslog-ng? For example I want to have a destination file with a size maximum=
- =3D 2Mo and if the size is greater than the max size, I have to save the c=
-urrent one and create a new one. On my
- system I can have max 4 files (4 x 2Mo). How can I manage this kind of rot=
-ation?<br style=3D"" class=3D""><br style=3D"" class=3D"">Thanks in advance=
-.<br style=3D"" class=3D"">Best regards,<br style=3D"" class=3D"">Ismael Je=
-an FAYE <br style=3D"" class=3D""><br style=3D"" class=3D"">@version: 3.5<b=
-r style=3D"" class=3D"">#<br style=3D"" class=3D""># Syslog-ng configuratio=
-n file, compatible with default Debian syslogd<br style=3D"" class=3D""># i=
-nstallation. Originally written by anonymous (I can't find his name)<br sty=
-le=3D"" class=3D""># Revised, and rewrited by me (SZALAY Attila &lt;sasa@de=
-bian.org&gt;)<br style=3D"" class=3D""><br style=3D"" class=3D""># First, s=
-et some global options.<br style=3D"" class=3D"">options { chain_hostnames(=
-off); flush_lines(0); use_dns(no); use_fqdn(no);<br style=3D"" class=3D"">&=
-nbsp;&nbsp;&nbsp; &nbsp; owner("root"); group("adm"); perm(0640); stats_fre=
-q(0);<br style=3D"" class=3D"">&nbsp;&nbsp;&nbsp; &nbsp; bad_hostname("^gco=
-nfd$");create_dirs(yes);<br style=3D"" class=3D"">};<br
- style=3D"" class=3D""><br style=3D"" class=3D"">########################<b=
-r style=3D"" class=3D""># Sources<br style=3D"" class=3D"">################=
-########<br style=3D"" class=3D""><br style=3D"" class=3D"">source s_mysour=
-ce { <br style=3D"" class=3D"">&nbsp;&nbsp;&nbsp; pipe("/tmp/pipe" pad_size=
-(2048));<br style=3D"" class=3D"">};<br style=3D"" class=3D""><br style=3D"=
-" class=3D"">########################<br style=3D"" class=3D""># Destinatio=
-ns<br style=3D"" class=3D"">########################<br style=3D"" class=3D=
-""><br style=3D"" class=3D"">destination d_GEN { <br style=3D"" class=3D"">=
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&=
-nbsp; file("/var/log/ldb/GENTrace.log");<br style=3D"" class=3D"">};<br sty=
-le=3D"" class=3D""><br style=3D"" class=3D"">destination d_SU { <br style=
-=3D"" class=3D"">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &n=
-bsp;&nbsp;&nbsp;&nbsp; file("/var/log/ldb/SUTrace.log");<br style=3D"" clas=
-s=3D"">};<br style=3D"" class=3D""><br style=3D"" class=3D"">destination d_=
-WAN {
- <br style=3D"" class=3D"">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp=
-;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; file("/var/log/ldb/WANTrace.log");<br styl=
-e=3D"" class=3D"">};<br style=3D"" class=3D""><br style=3D"" class=3D"">des=
-tination d_CPL { <br style=3D"" class=3D"">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; file("/var/log/ldb/CPLTrac=
-e.log");<br style=3D"" class=3D"">};<br style=3D"" class=3D""><br style=3D"=
-" class=3D"">########################<br style=3D"" class=3D""># Filters<br=
- style=3D"" class=3D"">########################<br style=3D"" class=3D""><b=
-r style=3D"" class=3D"">#filter f_GEN { <br style=3D"" class=3D"">&nbsp;&nb=
-sp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; #fa=
-cility(local0) and filter(nom_du_composant_applicatif);<br style=3D"" class=
-=3D"">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&=
-nbsp;&nbsp; #facility(local0) and filter(f_debug);<br style=3D"" class=3D""=
->&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
- &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; #facility(local0);<br style=3D=
-"" class=3D"">#};<br style=3D"" class=3D""><br style=3D"" class=3D"">filter=
- f_SU { <br style=3D"" class=3D"">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbs=
-p;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; #facility(local0) and filter(nom_du=
-_composant_applicatif);<br style=3D"" class=3D"">&nbsp;&nbsp;&nbsp;&nbsp;&n=
-bsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; #facility(local0) an=
-d filter(f_debug);<br style=3D"" class=3D"">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
-nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; facility(local0);<br styl=
-e=3D"" class=3D"">};<br style=3D"" class=3D""><br style=3D"" class=3D"">fil=
-ter f_WAN { <br style=3D"" class=3D"">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =
-&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; #facility(local0) and filter(no=
-m_du_composant_applicatif);<br style=3D"" class=3D"">&nbsp;&nbsp;&nbsp;&nbs=
-p;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; #facility(local0=
-) and filter(f_debug);<br style=3D""
- class=3D"">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&=
-nbsp;&nbsp;&nbsp; facility(local0);<br style=3D"" class=3D"">};<br style=3D=
-"" class=3D""><br style=3D"" class=3D"">filter f_CPL { <br style=3D"" class=
-=3D"">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&=
-nbsp;&nbsp; #facility(local0) and filter(nom_du_composant_applicatif);<br s=
-tyle=3D"" class=3D"">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp=
-; &nbsp;&nbsp;&nbsp;&nbsp; #facility(local0) and filter(f_debug);<br style=
-=3D"" class=3D"">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &n=
-bsp;&nbsp;&nbsp;&nbsp; facility(local0);<br style=3D"" class=3D"">};<br sty=
-le=3D"" class=3D""><br style=3D"" class=3D"">########################<br st=
-yle=3D"" class=3D""># Log paths<br style=3D"" class=3D"">##################=
-######<br style=3D"" class=3D""><br style=3D"" class=3D"">#log { source(s_m=
-ysource); filter(f_GEN); destination(d_GEN); };<br style=3D"" class=3D"">lo=
-g { source(s_mysource); filter(f_SU);
- destination(d_SU); };<br style=3D"" class=3D"">log { source(s_mysource); f=
-ilter(f_WAN); destination(d_WAN); };<br style=3D"" class=3D"">log { source(=
-s_mysource); filter(f_CPL); destination(d_CPL); };<br style=3D"" class=3D""=
-><br style=3D"" class=3D""></div></div></body></html>
 
---1670751155-1865227008-1407249617=:80963--
+
+
+On 05/08/14 14:22, "Jo=E3o Henrique Ferreira de Freitas" <joaohf@gmail.com>
+wrote:
+
+>
+>On 05-08-2014 07:32, Richard Purdie wrote:
+>> I also couldn't reproduce this with the armv7 toolchain. Do you have the
+>> logs from that failure?
+>>
+>
+>You are right. I retest armv7 and there is no problem. I think I lost
+>myself during install-test cycle
+>
+>Thanks for your attention.
+>
+>--=20
+>Jo=E3o Henrique Ferreira de Freitas - joaohf_at_gmail.com
+>Campinas-SP-Brasil
+>
+>--=20
+>_______________________________________________
+>yocto mailing list
+>yocto@yoctoproject.org
+>https://lists.yoctoproject.org/listinfo/yocto
+
+
