@@ -1,14 +1,17 @@
-Return-Path: <joaohf@gmail.com>
+Return-Path: <ismael.faye@yahoo.fr>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id E24EDE007C2; Tue,  5 Aug 2014 20:10:39 -0700 (PDT)
+	id C5D9AE00790; Wed,  6 Aug 2014 02:08:16 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=unavailable version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (joaohf[at]gmail.com)
+	mail provider *      (ismael.faye[at]yahoo.fr)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [212.82.97.81 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
@@ -17,49 +20,57 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.213.45 listed in list.dnswl.org]
-Received: from mail-yh0-f45.google.com (mail-yh0-f45.google.com
-	[209.85.213.45])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B1883E007B5
-	for <yocto@yoctoproject.org>; Tue,  5 Aug 2014 20:10:35 -0700 (PDT)
-Received: by mail-yh0-f45.google.com with SMTP id 29so1315958yhl.18
-	for <yocto@yoctoproject.org>; Tue, 05 Aug 2014 20:10:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=message-id:date:from:user-agent:mime-version:to:cc:subject
-	:references:in-reply-to:content-type;
-	bh=TSXVvx4DRHSXDKIgD7fm6/wDCFTZLmIZQjiVbnIP0jU=;
-	b=jkRDPGxIwRN4HAkLs9M6vSO68wKA9bPonl3FzTTqVtpRZTy5MbEM0nBMzhg4tvvrmX
-	QHrej8sUNWwLW+cePadS5RA8mh9zGCX8XLPgHhjXt0N4iTgHbSUoUiPQjHC9iQrKd0cy
-	2AKmpYRIg/zvzlCt+A0R1+0H0nhpGIXFYaAEoYlQOfiWhYzPeXoCdSNlZuVKIafSRcDE
-	DShvi/g0SQ3EIudBsiLGRh9hRPYhuGHGM+Xs1wBGrd0xpOpQjFLM/4lJ5djej59upRTY
-	cAyPf+gA9qBQ+fR+FZ40tFVHN277I8Vh7rRtLoqUWqveArxvWHnq+cp80CtMkqDmmpRD
-	zAIg==
-X-Received: by 10.236.20.135 with SMTP id p7mr3133610yhp.36.1407294634470;
-	Tue, 05 Aug 2014 20:10:34 -0700 (PDT)
-Received: from [192.168.0.12] ([201.53.208.133])
-	by mx.google.com with ESMTPSA id x48sm6369694yha.5.2014.08.05.20.10.32
-	for <multiple recipients>
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Tue, 05 Aug 2014 20:10:33 -0700 (PDT)
-Message-ID: <53E19C9D.7010709@gmail.com>
-Date: Wed, 06 Aug 2014 00:10:21 -0300
-From: =?UTF-8?B?Sm/Do28gSGVucmlxdWUgRmVycmVpcmEgZGUgRnJlaXRhcw==?=
-	<joaohf@gmail.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:31.0) Gecko/20100101 Thunderbird/31.0
+Received: from nm30-vm3.bullet.mail.ir2.yahoo.com
+	(nm30-vm3.bullet.mail.ir2.yahoo.com [212.82.97.81])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D35CEE00790
+	for <yocto@yoctoproject.org>; Wed,  6 Aug 2014 02:08:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.fr; s=s1024;
+	t=1407316089; bh=jHFIo7naFcfgPQv1G0aiS4rSszSr3Rariy3n4J+7kPY=;
+	h=Received:Received:Received:X-Yahoo-Newman-Property:X-Yahoo-Newman-Id:Received:DKIM-Signature:X-YMail-OSG:Received:X-Rocket-MIMEInfo:X-Mailer:References:Message-ID:Date:From:Reply-To:Subject:To:In-Reply-To:MIME-Version:Content-Type;
+	b=fG1HLIBIyNNGJwXqZavoZkm+EFMcuLqdUR+K9+AUNFE5Ji7ld3CwFST/f9vGWSDvndh/541sT6h5D4HAWQCg9hB7u7ZkZA5kyeNAYXvKrq6UwM7+28xlDVsQVI2SFLOQZjTBgSQOkzpf0ocQ+wc7aZFWRuWLuJ6FtM/LWs4FF9w=
+DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws; s=s1024; d=yahoo.fr;
+	b=mkN9RGFT4TDw10tCPEhWVJLVhi8yMz4FC1y91xHVNn2I9/B6RpQ1m8PlUSSy4uK/rvPeB33p4tkR6RzDCWTZYF+nz1Q2pyecvd+7m+jmKYiwRUha8DWGKXlOYF7CLMxyPzKXjunPq6SuJ6R1Wu59hrXMZs9covgnx5JQ66L8clw=;
+Received: from [212.82.98.54] by nm30.bullet.mail.ir2.yahoo.com with NNFMP;
+	06 Aug 2014 09:08:09 -0000
+Received: from [212.82.98.99] by tm7.bullet.mail.ir2.yahoo.com with NNFMP;
+	06 Aug 2014 09:08:08 -0000
+Received: from [127.0.0.1] by omp1036.mail.ir2.yahoo.com with NNFMP;
+	06 Aug 2014 09:08:08 -0000
+X-Yahoo-Newman-Property: ymail-3
+X-Yahoo-Newman-Id: 882532.81946.bm@omp1036.mail.ir2.yahoo.com
+Received: (qmail 22777 invoked by uid 60001); 6 Aug 2014 09:08:08 -0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.fr; s=s1024;
+	t=1407316088; bh=jHFIo7naFcfgPQv1G0aiS4rSszSr3Rariy3n4J+7kPY=;
+	h=References:Message-ID:Date:From:Reply-To:Subject:To:In-Reply-To:MIME-Version:Content-Type;
+	b=Zc88YzPtLeHUYr0XHcJyscKHULggEkXYW6VC/5ZjrpcWvHjVyY+hMa79v27yH2dKQ7m2WpNiFyPQCJMCEsQhZ1jQuwNbgeWLBXvEJVIpmTGd2jnkh8UjRrhbKwp/jzFg4YFhBncrYlIYVQZod/hYgLChYcZYcM6sNGryYrzqJCo=
+X-YMail-OSG: weo3FtQVM1nKi85wGpRgGFvANewbgaS3COyMwWnHFMlVlhi
+	5JKnxk2Xy72NrNvT39g_OvpqvmuwM.2JB85zY82K5VgTocQ32YbLrzOcI4ro
+	gxkseXSQITGX7LWzF8k.jIw43yEYQw.TsRnfRO0FlISpKp.EZUD6NKURdM8E
+	qlf5C9TlN96FQmOsZQEaSUrAWXtqeozhY6L0HteluKPAhpfX2zn2o7CyHkd8
+	i00YeM1w3rWmR8AO3QGWECPgJx8Nc5A.alm7p65DtImUpQe6.2_d6DmRQat4
+	Z1xO_XsmKQSiPHVR__1S1kzKyFkRxbQvPkTqqQLC.Yr5ezCcOxLG.lMRxgsN
+	FsCvcAy7ywzuu2f6uGVLyljk739HGEi83G_dhSbM9BcU54RXw3YYK2K5PMHR
+	R3bQHACI9Omdo5JE046KGTYS0kCVYAb3ZMpKE.bJJ9b65YPr1Fz._Cqr7yX5
+	lHq0iqduITRoB5iSwVkyBIrJnmLKwKLwdf5H4txZVF_O3p8UcxXR.EYpxAIt
+	s4qbEBYYKAlZVSVKZPmDUzZLjMVSiXKESv.k6U_eCXIgq
+Received: from [217.108.83.254] by web171305.mail.ir2.yahoo.com via HTTP;
+	Wed, 06 Aug 2014 10:08:08 BST
+X-Rocket-MIMEInfo: 002.001,
+	CgpIZWxwOgoKCkhpIGFsbCwKSSB3YW50IHRvIHVzZSBzeXNsb2ctbmcgdG8gbG9nIHRoZSBtZXNzYWdlcyBnZW5lcmF0ZWQgYnkgbXkgYXBwbGljYXRpb24gaW1wbGVtZW50ZWQgaW4gQyBsYW5ndWFnZS4gSSBhZGRlZCB0aGlzIGluIHRoZSBjb2RlOgoKwqDCoMKgIGNoYXLCoMKgwqAgKmxvZz0icnRjZCI7CsKgwqDCoCBwcmludGYoIlslc10gUlRDIGFkanVzdGVtZW50XG4iLF9fZnVuY19fKTsKwqDCoMKgIG9wZW5sb2cobG9nLCBMT0dfUElELCBMT0dfTE9DQUwwKTsKwqDCoMKgIHN5c2xvZyhMT0dfREVCVUcBMAEBAQE-
+X-Mailer: YahooMailWebService/0.8.198.689
+References: <1407249617.80963.YahooMailNeo@web171302.mail.ir2.yahoo.com>
+Message-ID: <1407316088.67032.YahooMailNeo@web171305.mail.ir2.yahoo.com>
+Date: Wed, 6 Aug 2014 10:08:08 +0100
+From: Jean Faye <ismael.faye@yahoo.fr>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
+	"yocto-request@yoctoproject.org" <yocto-request@yoctoproject.org>
+In-Reply-To: <1407249617.80963.YahooMailNeo@web171302.mail.ir2.yahoo.com>
 MIME-Version: 1.0
-To: Richard Purdie <richard.purdie@linuxfoundation.org>
-References: <CAPhnLPB9VeuosZF16qY2H32adjqC0xZoCWhq_Vdjy7n5YpYCBQ@mail.gmail.com>	
-	<CFFE70D2.703B%alexandru.c.georgescu@intel.com>	
-	<53DC4886.8070406@gmail.com> <1407229526.6981.72.camel@ted>
-In-Reply-To: <1407229526.6981.72.camel@ted>
-Cc: yocto@yoctoproject.org
-Subject: Re: Yocto 1.7_M2 release candidate 1 ready for QA
+Subject: Tr : Help - How to log the messages generated by c program using syslog-ng and how to manage log file rotation
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
+Reply-To: Jean Faye <ismael.faye@yahoo.fr>
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -68,59 +79,205 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 06 Aug 2014 03:10:40 -0000
+X-List-Received-Date: Wed, 06 Aug 2014 09:08:16 -0000
 Content-Type: multipart/alternative;
-	boundary="------------010404060106010000090905"
+	boundary="2017425371-895803036-1407316088=:67032"
 
---------------010404060106010000090905
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
+--2017425371-895803036-1407316088=:67032
+Content-Type: text/plain; charset=iso-8859-1
+Content-Transfer-Encoding: quoted-printable
 
+=0A=0AHelp:=0A=0A=0AHi all,=0AI want to use syslog-ng to log the messages g=
+enerated by my application implemented in C language. I added this in the c=
+ode:=0A=0A=A0=A0=A0 char=A0=A0=A0 *log=3D"rtcd";=0A=A0=A0=A0 printf("[%s] R=
+TC adjustement\n",__func__);=0A=A0=A0=A0 openlog(log, LOG_PID, LOG_LOCAL0);=
+=0A=A0=A0=A0 syslog(LOG_DEBUG, "[FIJ] RTC adjustement");=0A=A0=A0=A0 closel=
+og();=0A=0A=0AFor me, according to the syslog-ng file, the files /var/log/l=
+db/GENTrace.log, /var/log/ldb/SUTrace.log, /var/log/ldb/WANTrace.log and /v=
+ar/log/ldb/CPLTrace.log must be=0A created and must contain the syslog mess=
+age.=0ABut I got no messages in my destination files. You can see the conte=
+nt of my syslog-ng.conf file bellow.=0A=0AIs it the right way to log the me=
+ssages sent by C program? What can explain that I got no messages in the de=
+stinations files?=0A=0AI am using syslog-ng 3.5.4.1 provided by yocto. And =
+in the script which run the binary (initscript file) I remove the line belo=
+w:=0A=0A. /etc/init.d/functions=0A=0AWhy are you using the line? Is it nece=
+ssary to use it?=0A=0AConcerning log file rotation, How can we manage it us=
+ing syslog-ng? For example I want to have a destination file with a size ma=
+ximum =3D 2Mo and if the size is greater than the max size, I have to save =
+the current one and create a new one. On my=0A system I can have max 4 file=
+s (4 x 2Mo). How can I manage this kind of rotation?=0A=0AThanks in advance=
+.=0ABest regards,=0AIsmael Jean FAYE =0A=0A@version: 3.5=0A#=0A# Syslog-ng =
+configuration file, compatible with default Debian syslogd=0A# installation=
+. Originally written by anonymous (I can't find his name)=0A# Revised, and =
+rewrited by me (SZALAY Attila <sasa@debian.org>)=0A=0A# First, set some glo=
+bal options.=0Aoptions { chain_hostnames(off); flush_lines(0); use_dns(no);=
+ use_fqdn(no);=0A=A0=A0=A0 =A0 owner("root"); group("adm"); perm(0640); sta=
+ts_freq(0);=0A=A0=A0=A0 =A0 bad_hostname("^gconfd$");create_dirs(yes);=0A};=
+=0A=0A########################=0A# Sources=0A########################=0A=0A=
+source s_mysource { =0A=A0=A0=A0 pipe("/tmp/pipe" pad_size(2048));=0A};=0A=
+=0A########################=0A# Destinations=0A########################=0A=
+=0Adestination d_GEN { =0A=A0=A0=A0=A0=A0=A0 =A0=A0=A0 =A0=A0=A0=A0 file("/=
+var/log/ldb/GENTrace.log");=0A};=0A=0Adestination d_SU { =0A=A0=A0=A0=A0=A0=
+=A0 =A0=A0=A0 =A0=A0=A0=A0 file("/var/log/ldb/SUTrace.log");=0A};=0A=0Adest=
+ination d_WAN { =0A=A0=A0=A0=A0=A0=A0 =A0=A0=A0 =A0=A0=A0=A0 file("/var/log=
+/ldb/WANTrace.log");=0A};=0A=0Adestination d_CPL { =0A=A0=A0=A0=A0=A0=A0 =
+=A0=A0=A0 =A0=A0=A0=A0 file("/var/log/ldb/CPLTrace.log");=0A};=0A=0A#######=
+#################=0A# Filters=0A########################=0A=0Afilter f_GEN =
+{ =0A=A0=A0=A0=A0=A0=A0 =A0=A0=A0 =A0=A0=A0=A0 #facility(local0) and filter=
+(nom_du_composant_applicatif);=0A=A0=A0=A0=A0=A0=A0 =A0=A0=A0 =A0=A0=A0=A0 =
+#facility(local0) and filter(f_debug);=0A=A0=A0=A0=A0=A0=A0=0A =A0=A0=A0 =
+=A0=A0=A0=A0 facility(local0);=0A};=0A=0Afilter f_SU { =0A=A0=A0=A0=A0=A0=
+=A0 =A0=A0=A0 =A0=A0=A0=A0 #facility(local0) and filter(nom_du_composant_ap=
+plicatif);=0A=A0=A0=A0=A0=A0=A0 =A0=A0=A0 =A0=A0=A0=A0 #facility(local0) an=
+d filter(f_debug);=0A=A0=A0=A0=A0=A0=A0 =A0=A0=A0 =A0=A0=A0=A0 facility(loc=
+al0);=0A};=0A=0Afilter f_WAN { =0A=A0=A0=A0=A0=A0=A0 =A0=A0=A0 =A0=A0=A0=A0=
+ #facility(local0) and filter(nom_du_composant_applicatif);=0A=A0=A0=A0=A0=
+=A0=A0 =A0=A0=A0 =A0=A0=A0=A0 #facility(local0) and filter(f_debug);=0A=A0=
+=A0=A0=A0=A0=A0 =A0=A0=A0 =A0=A0=A0=A0 facility(local0);=0A};=0A=0Afilter f=
+_CPL { =0A=A0=A0=A0=A0=A0=A0 =A0=A0=A0 =A0=A0=A0=A0 #facility(local0) and f=
+ilter(nom_du_composant_applicatif);=0A=A0=A0=A0=A0=A0=A0 =A0=A0=A0 =A0=A0=
+=A0=A0 #facility(local0) and filter(f_debug);=0A=A0=A0=A0=A0=A0=A0 =A0=A0=
+=A0 =A0=A0=A0=A0 facility(local0);=0A};=0A=0A########################=0A# L=
+og paths=0A########################=0A=0Alog { source(s_mysource); filter(f=
+_GEN); destination(d_GEN); };=0Alog { source(s_mysource); filter(f_SU);=0A =
+destination(d_SU); };=0Alog { source(s_mysource); filter(f_WAN); destinatio=
+n(d_WAN); };=0Alog { source(s_mysource); filter(f_CPL); destination(d_CPL);=
+ };
 
-On 05-08-2014 06:05, Richard Purdie wrote:
-> On the specific errors, I think its likely the fact we're using one 
-> compiler over multiple different configurations and there is likely 
-> some kind of path issue somewhere. It may be worth filing bugs on 
-> these issues to ensure they don't get lost. 
+--2017425371-895803036-1407316088=:67032
+Content-Type: text/html; charset=iso-8859-1
+Content-Transfer-Encoding: quoted-printable
 
-Bug filled, 6613
-*
-*
+<html><body><div style=3D"color:#000; background-color:#fff; font-family:He=
+lveticaNeue, Helvetica Neue, Helvetica, Arial, Lucida Grande, sans-serif;fo=
+nt-size:12pt"><div><span><br></span></div><div style=3D"font-family: Helvet=
+icaNeue, Helvetica Neue, Helvetica, Arial, Lucida Grande, sans-serif; font-=
+size: 12pt;">Help:<br><br> <div class=3D"y_msg_container"><div id=3D"yiv694=
+5884826"><div><div style=3D"color:#000;background-color:#fff;font-family:He=
+lveticaNeue, Helvetica Neue, Helvetica, Arial, Lucida Grande, sans-serif;fo=
+nt-size:12pt;"><div style=3D"" class=3D"yiv6945884826">Hi all,<br style=3D"=
+" class=3D"yiv6945884826">I want to use syslog-ng to log the messages gener=
+ated by my application implemented in C language. I added this in the code:=
+<br style=3D"" class=3D"yiv6945884826"><br style=3D"" class=3D"yiv694588482=
+6">&nbsp;&nbsp;&nbsp; char&nbsp;&nbsp;&nbsp; *log=3D"rtcd";<br style=3D"" c=
+lass=3D"yiv6945884826">&nbsp;&nbsp;&nbsp; printf("[%s] RTC adjustement\n",_=
+_func__);<br style=3D""
+ class=3D"yiv6945884826">&nbsp;&nbsp;&nbsp; openlog(log, LOG_PID, LOG_LOCAL=
+0);<br style=3D"" class=3D"yiv6945884826">&nbsp;&nbsp;&nbsp; syslog(LOG_DEB=
+UG, "[FIJ] RTC adjustement");<br style=3D"" class=3D"yiv6945884826">&nbsp;&=
+nbsp;&nbsp; closelog();<br style=3D"" class=3D"yiv6945884826"><br style=3D"=
+" class=3D"yiv6945884826"><br style=3D"" class=3D"yiv6945884826">For me, ac=
+cording to the syslog-ng file, the files /var/log/ldb/GENTrace.log, /var/lo=
+g/ldb/SUTrace.log, /var/log/ldb/WANTrace.log and /var/log/ldb/CPLTrace.log =
+must be=0A created and must contain the syslog message.<br style=3D"" class=
+=3D"yiv6945884826">But I got no messages in my destination files. You can s=
+ee the content of my syslog-ng.conf file bellow.<br style=3D"" class=3D"yiv=
+6945884826"><br style=3D"" class=3D"yiv6945884826">Is it the right way to l=
+og the messages sent by C program? What can explain that I got no messages =
+in the destinations files?<br style=3D"" class=3D"yiv6945884826"><br style=
+=3D"" class=3D"yiv6945884826">I am using syslog-ng 3.5.4.1 provided by yoct=
+o. And in the script which run the binary (initscript file) I remove the li=
+ne below:<br style=3D"" class=3D"yiv6945884826"><br style=3D"" class=3D"yiv=
+6945884826">. /etc/init.d/functions<br style=3D"" class=3D"yiv6945884826"><=
+br style=3D"" class=3D"yiv6945884826">Why are you using the line? Is it nec=
+essary to use it?<br style=3D"" class=3D"yiv6945884826"><br style=3D"" clas=
+s=3D"yiv6945884826">Concerning log file rotation, How can we manage it usin=
+g syslog-ng? For example I want to have a
+ destination file with a size maximum =3D 2Mo and if the size is greater th=
+an the max size, I have to save the current one and create a new one. On my=
+=0A system I can have max 4 files (4 x 2Mo). How can I manage this kind of =
+rotation?<br style=3D"" class=3D"yiv6945884826"><br style=3D"" class=3D"yiv=
+6945884826">Thanks in advance.<br style=3D"" class=3D"yiv6945884826">Best r=
+egards,<br style=3D"" class=3D"yiv6945884826">Ismael Jean FAYE <br style=3D=
+"" class=3D"yiv6945884826"><br style=3D"" class=3D"yiv6945884826">@version:=
+ 3.5<br style=3D"" class=3D"yiv6945884826">#<br style=3D"" class=3D"yiv6945=
+884826"># Syslog-ng configuration file, compatible with default Debian sysl=
+ogd<br style=3D"" class=3D"yiv6945884826"># installation. Originally writte=
+n by anonymous (I can't find his name)<br style=3D"" class=3D"yiv6945884826=
+"># Revised, and rewrited by me (SZALAY Attila &lt;sasa@debian.org&gt;)<br =
+style=3D"" class=3D"yiv6945884826"><br style=3D"" class=3D"yiv6945884826">#=
+ First, set some global options.<br style=3D"" class=3D"yiv6945884826">opti=
+ons { chain_hostnames(off); flush_lines(0); use_dns(no); use_fqdn(no);<br s=
+tyle=3D"" class=3D"yiv6945884826">&nbsp;&nbsp;&nbsp;
+ &nbsp; owner("root"); group("adm"); perm(0640); stats_freq(0);<br style=3D=
+"" class=3D"yiv6945884826">&nbsp;&nbsp;&nbsp; &nbsp; bad_hostname("^gconfd$=
+");create_dirs(yes);<br style=3D"" class=3D"yiv6945884826">};<br style=3D""=
+ class=3D"yiv6945884826"><br style=3D"" class=3D"yiv6945884826">###########=
+#############<br style=3D"" class=3D"yiv6945884826"># Sources<br style=3D""=
+ class=3D"yiv6945884826">########################<br style=3D"" class=3D"yi=
+v6945884826"><br style=3D"" class=3D"yiv6945884826">source s_mysource { <br=
+ style=3D"" class=3D"yiv6945884826">&nbsp;&nbsp;&nbsp; pipe("/tmp/pipe" pad=
+_size(2048));<br style=3D"" class=3D"yiv6945884826">};<br style=3D"" class=
+=3D"yiv6945884826"><br style=3D"" class=3D"yiv6945884826">#################=
+#######<br style=3D"" class=3D"yiv6945884826"># Destinations<br style=3D"" =
+class=3D"yiv6945884826">########################<br style=3D"" class=3D"yiv=
+6945884826"><br style=3D"" class=3D"yiv6945884826">destination d_GEN { <br =
+style=3D""
+ class=3D"yiv6945884826">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&=
+nbsp; &nbsp;&nbsp;&nbsp;&nbsp; file("/var/log/ldb/GENTrace.log");<br style=
+=3D"" class=3D"yiv6945884826">};<br style=3D"" class=3D"yiv6945884826"><br =
+style=3D"" class=3D"yiv6945884826">destination d_SU { <br style=3D"" class=
+=3D"yiv6945884826">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; =
+&nbsp;&nbsp;&nbsp;&nbsp; file("/var/log/ldb/SUTrace.log");<br style=3D"" cl=
+ass=3D"yiv6945884826">};<br style=3D"" class=3D"yiv6945884826"><br style=3D=
+"" class=3D"yiv6945884826">destination d_WAN {=0A <br style=3D"" class=3D"y=
+iv6945884826">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp=
+;&nbsp;&nbsp;&nbsp; file("/var/log/ldb/WANTrace.log");<br style=3D"" class=
+=3D"yiv6945884826">};<br style=3D"" class=3D"yiv6945884826"><br style=3D"" =
+class=3D"yiv6945884826">destination d_CPL { <br style=3D"" class=3D"yiv6945=
+884826">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp=
+;&nbsp;&nbsp; file("/var/log/ldb/CPLTrace.log");<br style=3D"" class=3D"yiv=
+6945884826">};<br style=3D"" class=3D"yiv6945884826"><br style=3D"" class=
+=3D"yiv6945884826">########################<br style=3D"" class=3D"yiv69458=
+84826"># Filters<br style=3D"" class=3D"yiv6945884826">####################=
+####<br style=3D"" class=3D"yiv6945884826"><br style=3D"" class=3D"yiv69458=
+84826">filter f_GEN { <br style=3D"" class=3D"yiv6945884826">&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; #facilit=
+y(local0) and filter(nom_du_composant_applicatif);<br style=3D""
+ class=3D"yiv6945884826">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&=
+nbsp; &nbsp;&nbsp;&nbsp;&nbsp; #facility(local0) and filter(f_debug);<br st=
+yle=3D"" class=3D"yiv6945884826">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=0A &n=
+bsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; facility(local0);<br style=3D"" c=
+lass=3D"yiv6945884826">};<br style=3D"" class=3D"yiv6945884826"><br style=
+=3D"" class=3D"yiv6945884826">filter f_SU { <br style=3D"" class=3D"yiv6945=
+884826">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp=
+;&nbsp;&nbsp; #facility(local0) and filter(nom_du_composant_applicatif);<br=
+ style=3D"" class=3D"yiv6945884826">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &n=
+bsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; #facility(local0) and filter(f_de=
+bug);<br style=3D"" class=3D"yiv6945884826">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; facility(local0);<br styl=
+e=3D"" class=3D"yiv6945884826">};<br style=3D"" class=3D"yiv6945884826"><br=
+ style=3D"" class=3D"yiv6945884826">filter f_WAN { <br style=3D"" class=3D"=
+yiv6945884826">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbs=
+p;&nbsp;&nbsp;&nbsp; #facility(local0) and filter(nom_du_composant_applicat=
+if);<br style=3D""
+ class=3D"yiv6945884826">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&=
+nbsp; &nbsp;&nbsp;&nbsp;&nbsp; #facility(local0) and filter(f_debug);<br st=
+yle=3D"" class=3D"yiv6945884826">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp=
+;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; facility(local0);<br style=3D"" clas=
+s=3D"yiv6945884826">};<br style=3D"" class=3D"yiv6945884826"><br style=3D""=
+ class=3D"yiv6945884826">filter f_CPL { <br style=3D"" class=3D"yiv69458848=
+26">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nb=
+sp;&nbsp; #facility(local0) and filter(nom_du_composant_applicatif);<br sty=
+le=3D"" class=3D"yiv6945884826">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;=
+&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; #facility(local0) and filter(f_debug)=
+;<br style=3D"" class=3D"yiv6945884826">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; facility(local0);<br style=3D=
+"" class=3D"yiv6945884826">};<br style=3D"" class=3D"yiv6945884826"><br sty=
+le=3D""
+ class=3D"yiv6945884826">########################<br style=3D"" class=3D"yi=
+v6945884826"># Log paths<br style=3D"" class=3D"yiv6945884826">############=
+############<br style=3D"" class=3D"yiv6945884826"><br style=3D"" class=3D"=
+yiv6945884826">log { source(s_mysource); filter(f_GEN); destination(d_GEN);=
+ };<br style=3D"" class=3D"yiv6945884826">log { source(s_mysource); filter(=
+f_SU);=0A destination(d_SU); };<br style=3D"" class=3D"yiv6945884826">log {=
+ source(s_mysource); filter(f_WAN); destination(d_WAN); };<br style=3D"" cl=
+ass=3D"yiv6945884826">log { source(s_mysource); filter(f_CPL); destination(=
+d_CPL); };<br style=3D"" class=3D"yiv6945884826"><br style=3D"" class=3D"yi=
+v6945884826"></div></div></div></div><br><br></div>  </div><div class=3D"qt=
+dSeparateBR"><br><br></div><div style=3D"display: block;" class=3D"yahoo_qu=
+oted"><div style=3D"font-family: HelveticaNeue, Helvetica Neue, Helvetica, =
+Arial, Lucida Grande, sans-serif; font-size: 12pt;"> </div>  </div> </div><=
+/body></html>
 
--- 
-João Henrique Ferreira de Freitas - joaohf_at_gmail.com
-Campinas-SP-Brasil
-
-
---------------010404060106010000090905
-Content-Type: text/html; charset=utf-8
-Content-Transfer-Encoding: 8bit
-
-<html>
-  <head>
-    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-  </head>
-  <body bgcolor="#FFFFFF" text="#000000">
-    <br>
-    <div class="moz-cite-prefix">On 05-08-2014 06:05, Richard Purdie
-      wrote:<br>
-    </div>
-    <blockquote cite="mid:1407229526.6981.72.camel@ted" type="cite">
-      On the specific errors, I think its likely the fact we're using
-      one
-      compiler over multiple different configurations and there is
-      likely some
-      kind of path issue somewhere. It may be worth filing bugs on these
-      issues to ensure they don't get lost.
-    </blockquote>
-    <br>
-    Bug filled, 6613<br>
-    <b><br>
-    </b>
-    <pre class="moz-signature" cols="72">-- 
-João Henrique Ferreira de Freitas - joaohf_at_gmail.com
-Campinas-SP-Brasil</pre>
-  </body>
-</html>
-
---------------010404060106010000090905--
+--2017425371-895803036-1407316088=:67032--
