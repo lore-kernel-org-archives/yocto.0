@@ -1,58 +1,41 @@
-Return-Path: <modemtec@gmail.com>
+Return-Path: <markus.eich@dfki.de>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id CEAB8E00814; Thu,  7 Aug 2014 05:49:44 -0700 (PDT)
+	id 6E008E00824; Thu,  7 Aug 2014 05:51:45 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_LOW, T_REMOTE_IMAGE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (modemtec[at]gmail.com)
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [74.125.82.194 listed in list.dnswl.org]
-	*  0.0 T_REMOTE_IMAGE Message contains an external image
-Received: from mail-we0-f194.google.com (mail-we0-f194.google.com
-	[74.125.82.194])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 351A0E0080A
-	for <yocto@yoctoproject.org>; Thu,  7 Aug 2014 05:49:37 -0700 (PDT)
-Received: by mail-we0-f194.google.com with SMTP id u56so1895947wes.1
-	for <yocto@yoctoproject.org>; Thu, 07 Aug 2014 05:49:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=message-id:date:from:user-agent:mime-version:to:subject
-	:content-type; bh=nDk0NuKiEiAMLJ7s1BeInf9tOmYFNxHgz+MxPhT/0X8=;
-	b=Vy4PrJ9jilLwrOKaNK9Umw98mW7JRKGEapgTOWfYNJ4+HfE108yza50FuZHkXQ0kfE
-	gmN/e1Xws0Rs9C8FGUZQvnht2oRUliz++jyEVh3/uOpS2qSPn5s6Vpt6ESuhrL+pyQNq
-	aOo/y7k8CGIQodHkVUUAZtTqekQWSBV/x03WpOy1ko3/SS6wUKF1iwhA/wC3Sjdu3pUO
-	4/Ug/xQxvuxmwe9dECXHmrsgQ9H+XupZp42XBXQbNOPqyWZM8CEUuFx07B6zZ0cPSnSv
-	iW4MEpBKAoUJSCgX/+uSNkanMIyvZKWpQC5YUFXl0xn+eiHwboUqJr8b4e3iqmh/P1y+
-	IGUg==
-X-Received: by 10.194.192.201 with SMTP id hi9mr24676631wjc.28.1407415776701; 
-	Thu, 07 Aug 2014 05:49:36 -0700 (PDT)
-Received: from [127.0.0.1] (ip-94-112-189-217.net.upcbroadband.cz.
-	[94.112.189.217]) by mx.google.com with ESMTPSA id
-	fb12sm9707486wjc.43.2014.08.07.05.49.35 for <yocto@yoctoproject.org>
-	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
-	Thu, 07 Aug 2014 05:49:36 -0700 (PDT)
-Message-ID: <53E375F1.2090905@gmail.com>
-Date: Thu, 07 Aug 2014 14:49:53 +0200
-From: =?UTF-8?B?TGXFoWVrIEZyYW5law==?= <modemtec@gmail.com>
-User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64;
-	rv:24.0) Gecko/20100101 Thunderbird/24.6.0
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,T_HK_NAME_DR
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+	*      [score: 0.0000] *  0.0 T_HK_NAME_DR T_HK_NAME_DR
+Received: from sea-mail.dfki.de (sea-mail.dfki.de [134.96.191.185])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5369EE0080A
+	for <yocto@yoctoproject.org>; Thu,  7 Aug 2014 05:51:40 -0700 (PDT)
+Received: from sea-mail.dfki.de (localhost.localdomain [127.0.0.1])
+	by localhost (Email Security Appliance) with SMTP id
+	570579E228_3E3765BB
+	for <yocto@yoctoproject.org>; Thu,  7 Aug 2014 12:51:39 +0000 (GMT)
+Received: from mail.dfki.de (lnv-104.sb.dfki.de [134.96.191.146])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(Client did not present a certificate)
+	by sea-mail.dfki.de (Sophos Email Appliance) with ESMTPS id
+	21B369E1FF_3E3765BF
+	for <yocto@yoctoproject.org>; Thu,  7 Aug 2014 12:51:39 +0000 (GMT)
+Received: from [10.250.3.118] (unknown [10.250.3.118])
+	(using TLSv1 with cipher DHE-RSA-AES128-SHA (128/128 bits))
+	(No client certificate requested)
+	by mail.dfki.de (Postfix) with ESMTPSA id 0EC2C3115B
+	for <yocto@yoctoproject.org>; Thu,  7 Aug 2014 14:51:39 +0200 (CEST)
+Message-ID: <53E3765A.10206@dfki.de>
+Date: Thu, 07 Aug 2014 14:51:38 +0200
+From: "Dr. Markus Eich" <markus.eich@dfki.de>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:31.0) Gecko/20100101 Thunderbird/31.0
 MIME-Version: 1.0
 To: yocto@yoctoproject.org
-X-Antivirus: avast! (VPS 140807-0, 07.08.2014), Outbound message
-X-Antivirus-Status: Clean
-Subject: Meta-toolchain do_populate_sdk packagegroup-cross-canadian-socfpga_cyclone5 problem
+References: <53E25433.5020003@dfki.de> <53E2572F.8020107@mlbassoc.com>
+In-Reply-To: <53E2572F.8020107@mlbassoc.com>
+Subject: Re: Building yocto for Odroid XU. No login after boot.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -64,171 +47,172 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 07 Aug 2014 12:49:44 -0000
-Content-Type: multipart/alternative;
-	boundary="------------090607070605090504030705"
-
---------------090607070605090504030705
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: quoted-printable
-
-Hello,
-
-I ran into an error during do_populate_sdk in meta-toolchain for machine 
-socfpga_cyclone5:
-
-ERROR: packagegroup-cross-canadian-socfpga_cyclone5 not found in the 
-base feeds (i686-nativesdk noarch any all).
-List packages for example: 
-binutils-cross-canadian-arm-2.24-r0@i686_nativesdk 
-binutils-cross-canadian-arm-dbg-2.24-r0@i686_nativesdk etc
-ERROR: Function failed: do_populate_sdk
-ERROR: Logfile of failure stored in: 
-/modemtec/linux/yocto-daisy/build-socfpga_cyclone5/tmp/work/armv7a-vfp-neon=
--poky-linux-gnueabi/meta-toolchain/1.0-r7/temp/log.do_populate_sdk.12635
-ERROR: Task 7 
-(/modemtec/linux/yocto-daisy/meta/recipes-core/meta/meta-toolchain.bb 
-<http://meta-toolchain.bb>, do_populate_sdk) failed with exit code '1'
-
-I tried to find an answer, but without success. I tried to compile 
-nativesdk-packagegroup-sdk-host and it was already compiled.
-
-I was able to compile u-boot, kernel, kernel modules, dtb, rootfs and 
-everythink works quite well, but now I'm stuck with this and have no 
-clue how to solve this. If anyone knows how to make it working I would 
-be very glad.
-
-Thank you very much
-
-Lesek Franek ModemTec s.r.o.
-
-Build Configuration:
-BB_VERSION        =3D "1.22.0"
-BUILD_SYS         =3D "i686-linux"
-NATIVELSBSTRING   =3D "LinuxMint-17"
-TARGET_SYS        =3D "arm-poky-linux-gnueabi"
-MACHINE           =3D "socfpga_cyclone5"
-DISTRO            =3D "poky"
-DISTRO_VERSION    =3D "1.6.1"
-TUNE_FEATURES     =3D "armv7a vfp neon"
-TARGET_FPU        =3D "vfp-neon"
-meta
-meta-yocto
-meta-yocto-bsp    =3D "daisy:810dd79720d607f1a31e73ff5f0862928fe06eb2"
-meta-altera       =3D 
-"angstrom-v2014.06-yocto1.6:cbf58fc9d7df88fcb6ec6db9aa109533bf180d5e"
-meta-socfpga_altera =3D "master:1bd7bca0877adcced73acfb4c4522b02c9244917"
-meta-modemtec     =3D "master:e7316808ddc034bc3dcdedc8c1e0d2ab5ce3af22"
-meta-oe
-meta-webserver    =3D "daisy:dca466c074c9a35bc0133e7e0d65cca0731e2acf"
-meta-qt5          =3D "daisy:0137274b13a568718e441f8f1c611a653db9f2f7"
-
-
----
-Tato zpr=C3=A1va neobsahuje viry ani jin=C3=BD =C5=A1kodliv=C3=BD k=C3=B3d =
-- avast! Antivirus je aktivn=C3=AD.
-http://www.avast.com
-
---------------090607070605090504030705
-Content-Type: text/html; charset=UTF-8
+X-List-Received-Date: Thu, 07 Aug 2014 12:51:45 -0000
+Content-Type: text/plain; charset=windows-1252; format=flowed
 Content-Transfer-Encoding: 8bit
 
-<html>
-  <head>
+Hi Gary,
 
-    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-  </head>
-  <body text="#000000" bgcolor="#FFFFFF">
-    <div dir="ltr">
-      <div>Hello,</div>
-      <div><br>
-      </div>
-      <div>I ran into an error during do_populate_sdk in meta-toolchain
-        for machine socfpga_cyclone5:<br>
-      </div>
-      <div><br>
-      </div>
-      <div>ERROR: packagegroup-cross-canadian-socfpga_cyclone5 not found
-        in the base feeds (i686-nativesdk noarch any all).<br>
-      </div>
-      <div>List packages for example:
-        binutils-cross-canadian-arm-2.24-r0@i686_nativesdk
-        binutils-cross-canadian-arm-dbg-2.24-r0@i686_nativesdk etc</div>
-      <div>
-        <div>ERROR: Function failed: do_populate_sdk</div>
-        <div>ERROR: Logfile of failure stored in:
-/modemtec/linux/yocto-daisy/build-socfpga_cyclone5/tmp/work/armv7a-vfp-neon-poky-linux-gnueabi/meta-toolchain/1.0-r7/temp/log.do_populate_sdk.12635</div>
-        <div>ERROR: Task 7
-          (/modemtec/linux/yocto-daisy/meta/recipes-core/meta/<a
-            href="http://meta-toolchain.bb">meta-toolchain.bb</a>,
-          do_populate_sdk) failed with exit code '1'</div>
-      </div>
-      <div><br>
-      </div>
-      <div>I tried to find an answer, but without success. I tried to
-        compile nativesdk-packagegroup-sdk-host and it was already
-        compiled.</div>
-      <div><br>
-      </div>
-      <div>I was able to compile u-boot, kernel, kernel modules, dtb,
-        rootfs and everythink works quite well, but now I'm stuck with
-        this and have no clue how to solve this. If anyone knows how to
-        make it working I would be very glad.</div>
-      <div><br>
-      </div>
-      <div>Thank you very much</div>
-      <div><br>
-      </div>
-      <div>Lesek Franek ModemTec s.r.o.</div>
-      <div><br>
-      </div>
-      <div>
-        <div>Build Configuration:</div>
-        <div>BB_VERSION        = "1.22.0"</div>
-        <div>BUILD_SYS         = "i686-linux"</div>
-        <div>NATIVELSBSTRING   = "LinuxMint-17"</div>
-        <div>TARGET_SYS        = "arm-poky-linux-gnueabi"</div>
-        <div>MACHINE           = "socfpga_cyclone5"</div>
-        <div>DISTRO            = "poky"</div>
-        <div>DISTRO_VERSION    = "1.6.1"</div>
-        <div>TUNE_FEATURES     = "armv7a vfp neon"</div>
-        <div>TARGET_FPU        = "vfp-neon"</div>
-        <div>meta              </div>
-        <div>meta-yocto        </div>
-        <div>meta-yocto-bsp    =
-          "daisy:810dd79720d607f1a31e73ff5f0862928fe06eb2"</div>
-        <div>meta-altera       =
-          "angstrom-v2014.06-yocto1.6:cbf58fc9d7df88fcb6ec6db9aa109533bf180d5e"</div>
-        <div>meta-socfpga_altera =
-          "master:1bd7bca0877adcced73acfb4c4522b02c9244917"</div>
-        <div>meta-modemtec     =
-          "master:e7316808ddc034bc3dcdedc8c1e0d2ab5ce3af22"</div>
-        <div>meta-oe           </div>
-        <div>meta-webserver    =
-          "daisy:dca466c074c9a35bc0133e7e0d65cca0731e2acf"</div>
-        <div>meta-qt5          =
-          "daisy:0137274b13a568718e441f8f1c611a653db9f2f7"</div>
-      </div>
-    </div>
+unfortunately, this didn't help much. I have compiled the kernel with 
+the CONFIG_FHANDLE=y.
+I have also set all configs given in
+
+http://dominion.thruhere.net/koen/cms/recommended-kernel-config-options-for-a-modern-angstrom-system
+
+To pinpoint the error down, I have tried the kernel build from Yocto on 
+a LINARO distro image. I have just replaced the kernel and the modules 
+build with yocto.
+
+And voila: I have a login promt. If the complete distro is build with 
+Yocto (the whole rootfs), I cannot log in.
+
+Has setting the SERIAL_CONSOLE = "115200 ttymxc0"  the same effect as 
+giving the console param for the u-boot?
+
+i.e. I have something like
+
+#setenv bootrootfs "console=tty1 console=ttySAC2,115200n8 
+root=UUID=e139ce78-9841-40fe-8823-96a304a09859 rootwait rw" ?
+
+
+Cheers,
+
+Markus
+
+
+
+On 06.08.2014 18:26, Gary Thomas wrote:
+> On 2014-08-06 10:13, Dr. Markus Eich wrote:
+>> Dear all,
+>>
+>> I am trying to build an image for the Odroid XU, featuring the 
+>> Samsung Octa 5 CPU
+>>
+>> I managed to build everything needed (modules, kernel, u-boot, etc.)
+>>
+>> The recipes can be found at: https://github.com/MarkusEich/meta-odroid.
+>>
+>> The last problem (hopefully last :-) I have is that I cannot log in 
+>> after the kernel is loaded via UART console
+>>
+>> Maybe init.d or systemd is not setup properly?
+>>
+>> I am using the console-image-minimal.bb from meta.
+>>
+>> Here is the last console output. It seems that the kernel is loaded 
+>> (including modules) and the rootfs is properly mounted. There is no 
+>> error, there is simply no login or shell.
+>>
+>> Any ideas why I cannot login? Its a bit poking in the dark ATM.
+>
+> If you are using systemd, make sure your kernel is built with 
+> CONFIG_FHANDLE=y
+> Without this, systemd won't start a session on a serial port.
+>
+> If you're using the old sysvinit, make sure your console settings
+> are correct.  These normally live in your ${MACHINE}.conf and look
+> something like this:
+>   SERIAL_CONSOLE = "115200 ttymxc0"
+>
+> You might also want to remove 'quiet' from your kernel bootargs,
+> at least until you get things settled a bit more.
+>
+>> ==
+>>
+>> [    5.722795] CPUFREQ of CA7  L5 : 962500 uV
+>> [    5.726871] CPUFREQ of CA7  L6 : 950000 uV
+>> [    5.730947] CPUFREQ of CA7  L7 : 950000 uV
+>> [    5.735025] CPUFREQ of CA7  L8 : 950000 uV
+>> [    5.739095] CPUFREQ of CA7  L9 : 950000 uV
+>> [    5.743146] CPUFREQ of CA7  L10 : 950000 uV
+>> [    5.747336] CPUFREQ of CA7  L11 : 950000 uV
+>> [    5.751583] CPUFREQ of CA15 L0 : 1362500 uV
+>> [    5.755663] CPUFREQ of CA15 L1 : 1362500 uV
+>> [    5.759826] CPUFREQ of CA15 L2 : 1225000 uV
+>> [    5.764012] CPUFREQ of CA15 L3 : 1175000 uV
+>> [    5.768129] CPUFREQ of CA15 L4 : 1137500 uV
+>> [    5.772313] CPUFREQ of CA15 L5 : 1112500 uV
+>> [    5.776474] CPUFREQ of CA15 L6 : 1075000 uV
+>> [    5.780638] CPUFREQ of CA15 L7 : 1037500 uV
+>> [    5.784800] CPUFREQ of CA15 L8 : 1000000 uV
+>> [    5.788962] CPUFREQ of CA15 L9 : 975000 uV
+>> [    5.793010] CPUFREQ of CA15 L10 : 937500 uV
+>> [    5.797201] CPUFREQ of CA15 L11 : 912500 uV
+>> [    5.801368] CPUFREQ of CA15 L12 : 900000 uV
+>> [    5.805526] CPUFREQ of CA15 L13 : 900000 uV
+>> [    5.809689] CPUFREQ of CA15 L14 : 900000 uV
+>> [    5.813822] CPUFREQ of CA15 L15 : 900000 uV
+>> [    5.818018] CPUFREQ of CA15 L16 : 900000 uV
+>> [    5.822173] CPUFREQ of CA15 L17 : 900000 uV
+>> [    5.826338] CPUFREQ of CA15 L18 : 900000 uV
+>> [    5.830583] fout_apll[900000000]
+>> [    5.836287] S divider change for DFS of MIF block
+>> [    5.984276] init_volt[975000], freq[800000]
+>> [    5.987809] ALSA device list:
+>> [    5.989956]   #0: Odroid-max98090
+>> [    5.993533] Freeing init memory: 256K
+>> [    5.996898] Write protecting the kernel text section c0008000 - 
+>> c09e2000
+>> [    6.003931] rodata_test: attempting to write to read-only section:
+>> [    6.009728] write to read-only section trapped, success
+>> [    6.055010] systemd-udevd[1299]: starting version 204
+>> [    6.350360] EXT4-fs (mmcblk0p2): recovery complete
+>> [    6.356827] EXT4-fs (mmcblk0p2): mounted filesystem with ordered 
+>> data mode. Opts: (null)
+>> INIT: version 2.88 booting
+>> Starting udev
+>> [    6.880415] udevd[1376]: starting version 182
+>> [    7.075108] EXT4-fs (mmcblk0p2): re-mounted. Opts: data=ordered
+>> Starting Bootlog daemon: bootlogd.
+>> [    7.369381] max77802_rtc_read_time: 114/7/6 16:10:3(3)
+>> INIT: Entering runlevel: 5
+>> Configuring network interfaces... ifconfig: SIOCGIFFLAGS: No such device
+>> [    7.431705] max77802_rtc_read_time: 114/7/6 16:10:4(3)
+>> Starting syslogd/klogd: done
+>> Stopping Bootlog daemon: bootlogd.
+>>
+>> ==
+>>
+>>
+>>
+>>
+>
+
+-- 
+Dr.-Ing. Markus Eich
+
+  Senior Researcher
+  Marine Inspection Robotics
+  Space Robotics
   
-<br /><br />
-<hr style='border:none; color:#909090; background-color:#B0B0B0; height: 1px; width: 99%;' />
-<table style='border-collapse:collapse;border:none;'>
-	<tr>
-		<td style='border:none;padding:0px 15px 0px 8px'>
-			<a href="http://www.avast.com/">
-				<img border=0 src="http://static.avast.com/emails/avast-mail-stamp.png" />
-			</a>
-		</td>
-		<td>
-			<p style='color:#3d4d5a; font-family:"Calibri","Verdana","Arial","Helvetica"; font-size:12pt;'>
-				Tato zpráva neobsahuje viry ani jiný škodlivý kód -<a href="http://www.avast.com/">avast! Antivirus</a> je aktivní.
-			</p>
-		</td>
-	</tr>
-</table>
-<br />
-</body>
-</html>
+  Besuchsadresse der Nebengesch�ftstelle:
+  DFKI GmbH
+  Robotics Innovation Center
+  Robert-Hooke-Stra�e 5
+  28359 Bremen, Germany
+  
+  Postadresse der Hauptgesch�ftsstelle Standort Bremen:
+  DFKI GmbH
+  Robotics Innovation Center
+  Robert-Hooke-Stra�e 1
+  28359 Bremen, Germany
 
---------------090607070605090504030705--
+  Tel.:     +49 421 178 45-4105
+  Zentrale: +49 421 178 45-0
+  Fax:      +49 421 178 45-4150 (Faxe bitte namentlich kennzeichnen)
+  E-Mail:   markus.eich@dfki.de
+
+  Weitere Informationen: http://www.dfki.de/robotik
+  -----------------------------------------------------------------------
+  Deutsches Forschungszentrum fuer Kuenstliche Intelligenz GmbH
+  Firmensitz: Trippstadter Stra�e 122, D-67663 Kaiserslautern
+  Geschaeftsfuehrung: Prof. Dr. Dr. h.c. mult. Wolfgang Wahlster
+  (Vorsitzender) Dr. Walter Olthoff
+  Vorsitzender des Aufsichtsrats: Prof. Dr. h.c. Hans A. Aukes
+  Amtsgericht Kaiserslautern, HRB 2313
+  Sitz der Gesellschaft: Kaiserslautern (HRB 2313)
+  USt-Id.Nr.:    DE 148646973
+  Steuernummer:  19/673/0060/3
+  -----------------------------------------------------------------------
+
+
