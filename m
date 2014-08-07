@@ -1,56 +1,47 @@
-Return-Path: <renaud.barbier@ge.com>
+Return-Path: <pourya.shirazian@daimler.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 8B0D5E00781; Thu,  7 Aug 2014 12:19:20 -0700 (PDT)
+	id 0DDC4E0080A; Thu,  7 Aug 2014 16:32:11 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [67.231.149.52 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
-X-Greylist: delayed 7933 seconds by postgrey-1.32 at yocto-www;
-	Thu, 07 Aug 2014 12:19:17 PDT
-Received: from mx0a-00176a03.pphosted.com (mx0a-00176a03.pphosted.com
-	[67.231.149.52])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D82B3E0034B
-	for <yocto@yoctoproject.org>; Thu,  7 Aug 2014 12:19:17 -0700 (PDT)
-Received: from pps.filterd (m0048275.ppops.net [127.0.0.1])
-	by m0048275.ppops.net-00176a03. (8.14.7/8.14.7) with SMTP id
-	s77H5XGY047071
-	for <yocto@yoctoproject.org>; Thu, 7 Aug 2014 13:07:03 -0400
-Received: from alpmlip12.e2k.ad.ge.com (n165-156-000-000.static.ge.com
-	[165.156.5.1] (may be forged))
-	by m0048275.ppops.net-00176a03. with ESMTP id 1nmcvv8659-1
-	(version=TLSv1/SSLv3 cipher=RC4-SHA bits=128 verify=NOT)
-	for <yocto@yoctoproject.org>; Thu, 07 Aug 2014 13:07:03 -0400
-Received: from cinmlip01.e2k.ad.ge.com ([3.159.213.48])
-	by alpmlip12.e2k.ad.ge.com with ESMTP/TLS/RC4-SHA;
-	07 Aug 2014 13:04:18 -0400
-Received: from selma.edi.geip.ge.com ([3.26.68.70])
-	by CINMLIP01.e2k.ad.ge.com with ESMTP; 07 Aug 2014 13:07:01 -0400
-Received: from [3.26.68.149] (unknown [3.26.68.149])
-	by selma.edi.geip.ge.com (Postfix) with ESMTP id ED6A3E17ED
-	for <yocto@yoctoproject.org>; Thu,  7 Aug 2014 18:07:00 +0100 (BST)
-Message-ID: <53E3B236.40604@ge.com>
-Date: Thu, 07 Aug 2014 18:07:02 +0100
-From: Renaud Barbier <renaud.barbier@ge.com>
-User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64;
-	rv:24.0) Gecko/20100101 Thunderbird/24.6.0
-MIME-Version: 1.0
-To: Yocto discussion list <yocto@yoctoproject.org>
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10432:5.12.52, 1.0.27,
-	0.0.0000
-	definitions=2014-08-07_06:2014-08-06, 2014-08-07,
-	1970-01-01 signatures=0
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 spamscore=0
-	suspectscore=0 phishscore=0
-	adultscore=0 bulkscore=0 classifier=spam adjust=0 reason=mlx
-	scancount=1
-	engine=7.0.1-1402240000 definitions=main-1408070203
-Subject: Assembling images to build a NOR boot image
+X-Spam-Status: No, score=-5.0 required=5.0 tests=BAYES_20,HTML_MESSAGE,
+	RCVD_IN_DNSWL_HI autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [141.113.102.114 listed in list.dnswl.org]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.0 BAYES_20 BODY: Bayes spam probability is 5 to 20%
+	*      [score: 0.0705]
+X-Greylist: delayed 2647 seconds by postgrey-1.32 at yocto-www;
+	Thu, 07 Aug 2014 16:32:06 PDT
+Received: from mail-out.emea.daimler.com (mail-out.emea.daimler.com
+	[141.113.102.114])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 656BBE0034B
+	for <yocto@yoctoproject.org>; Thu,  7 Aug 2014 16:32:06 -0700 (PDT)
+X-AuditID: 351f1470-f79e66d000000f57-bb-53e4021cb8b7
+From: pourya.shirazian@daimler.com
+To: yocto@yoctoproject.org
+Thread-topic: Question about Package Splitting
+Thread-index: AQHPspGfaJYWxuFZMkmXGQLX67+blA==
+Date: Thu, 07 Aug 2014 22:47:53 +0000
+Message-id: <D0095026.15910%pourya.shirazian@daimler.com>
+Accept-Language: en-US, de-DE
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+MIME-version: 1.0
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFlrOIsWRmVeSWpSXmKPExsViKq+iqyvL9CTYoP8Xo8Wkl2vYHBg92k/0
+	sQUwRnHZpKTmZJalFunbJXBlLP2wk7mgWaTiQd9LpgbGvwJdjJwcEgImEhvX9zND2GISF+6t
+	Z+ti5OIQEjjNKDFj4SsmCOcGo8SKI5NZIZw2JolZt28wQjhnGSUmr94A1s8moCSx/38bK4gt
+	IiAlcWDuVLC4sICmxNMrc5kh4noSP57sZ4Oxt04+AGazCKhKHNn0jL2LkYODV8BSoqM3AyTM
+	KCAr0dnwjgnEZhYQl2huvckCcaqAxJI956HOFpV4+fgfK4QtK3F/9w9WiPoYifbeLYwgNq+A
+	oMSPyfdYJjCKzEIyahaSsllIyiDiBhLvz81nhrC1JZYtfA1l60ts/HKWEcK2l1j85S0LspoF
+	jByrGFUSi3WT0vN0U3MNdQ2MjPRSc1MT9ZLS9ZLziwqAkVeUqJeXWrKJERx9IgU7GGcusTnE
+	KMDBqMTDK/zrcbAQa2JZcWXuIUYJDmYlEd6az0Ah3pTEyqrUovz4otKc1OJDjNIcLErivM5C
+	lUFCAumJJanZqakFqUUwWSYOTqkGxt5rLoU2p+ff1hM+d/LZ3KnlqxkMV2TvD0mfdNX1ruvT
+	78ach8ycdOdNltfZk9shHv0jqFb5B8vZh/92i//cHL9li17/v22XX8kVr7WO7HnKIJJYk3Jg
+	7o5jb3fJ1xdHblwZ+Jxpfb9TS+2lZC6+y6wnv7yyurP32y3lozpn9p7ssz/bvkl69zUlluKM
+	REMt5qLiRABjs5lZugIAAA==
+Subject: Question about Package Splitting
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -62,36 +53,80 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 07 Aug 2014 19:19:20 -0000
-Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Thu, 07 Aug 2014 23:32:11 -0000
+Content-language: en-US
+Content-type: multipart/alternative;
+	boundary=_000_D009502615910pouryashiraziandaimlercom_
 
-Hello,
-I am working on the creation of a boot image for a NOR flash.
-The image assembles a boot loader and a ubi image containing the kernel
-and device tree.
+--_000_D009502615910pouryashiraziandaimlercom_
+Content-Type: text/plain; charset="Windows-1252"
+Content-Transfer-Encoding: quoted-printable
 
-So far I have created a build area to install the kernel and device tree
-and used IMAGE_CMD_ubi to create the ubi image.
+Hi,
 
-Then I have added a python function do_norbuild that puts together the
-boot loader and ubi image and adds padding.
-Using bitbake, I can create the NOR image as follows:
-bitbake -c norbuild core-image
+My question is about producing multiple packages in the same recipe.
+I created a recipe e.g. =93project.bb" to produce 5 packages from the same =
+source repository. The package names are as following:
 
-However,
-"bitbake core-image" will not call the norbuild task.
+  1.  project-frontend
+  2.  project-backend
+  3.  project-tests
+  4.  project-dbg
+  5.  project-dev
 
-I have been through quite a lot of code and documentation and cannot
-figure out why the task is not called.
+How do I include these packages in the assembled file system? I.e. Should I=
+ just include =93project=94 as the parent name for all the sub-packages or =
+I should include =93project-frontend=94, =93project-end=94 etc.
+When I tried the latter method only the first package appeared in the final=
+ file system.
 
-If you have any idea of what couldbe wrong, please le me know.
+Thanks
 
-Cheers,
-Renaud
-
-
-
+If you are not the addressee, please inform us immediately that you have re=
+ceived this e-mail by mistake, and delete it. We thank you for your support=
+.
 
 
+--_000_D009502615910pouryashiraziandaimlercom_
+Content-Type: text/html; charset="Windows-1252"
+Content-ID: <5975A2C8C7D2D84AB003226C92500998@wp.corpintra.net>
+Content-Transfer-Encoding: quoted-printable
 
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DWindows-1=
+252">
+</head>
+<body style=3D"word-wrap:break-word; color:rgb(0,0,0); font-size:14px; font=
+-family:Calibri,sans-serif">
+<div>Hi,&nbsp;</div>
+<div><br>
+</div>
+<div>My question is about producing multiple packages in the same recipe.&n=
+bsp;</div>
+<div>I created a recipe e.g. =93project.bb&quot; to produce 5 packages from=
+ the same source repository. The package names are as following:</div>
+<ol>
+<li>project-frontend</li><li>project-backend</li><li>project-tests</li><li>=
+project-dbg</li><li>project-dev</li></ol>
+<div>How do I include these packages in the assembled file system? I.e. Sho=
+uld I just include =93project=94 as the parent name for all the sub-package=
+s or I should include =93project-frontend=94, =93project-end=94 etc.</div>
+<div>When I tried the latter method only the first package appeared in the =
+final file system.</div>
+<div><br>
+</div>
+<div>Thanks</div>
+<table cellpadding=3D"0" cellspacing=3D"0" border=3D"0">
+<font face=3D"sans-serif, Arial, Helvetica" size=3D"-1" color=3D"#808080"><=
+br>
+If you are not the addressee, please inform us immediately that you have re=
+ceived this e-mail by mistake, and delete it. We thank you for your support=
+.<br>
+<br>
+</font>
+</table>
+</body>
+</html>
+
+--_000_D009502615910pouryashiraziandaimlercom_--
