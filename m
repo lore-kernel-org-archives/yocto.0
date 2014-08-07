@@ -1,38 +1,32 @@
-Return-Path: <paul.eggleton@linux.intel.com>
+Return-Path: <gary@mlbassoc.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 1243FE0080D; Thu,  7 Aug 2014 06:05:11 -0700 (PDT)
+	id D09C7E00814; Thu,  7 Aug 2014 06:05:24 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
-	autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at http://www.dnswl.org/,
-	high *      trust
-	*      [134.134.136.20 listed in list.dnswl.org]
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B78BFE00801
-	for <yocto@yoctoproject.org>; Thu,  7 Aug 2014 06:05:05 -0700 (PDT)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga101.jf.intel.com with ESMTP; 07 Aug 2014 06:05:04 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.01,818,1400050800"; d="scan'208";a="555138453"
-Received: from bidesilv-mobl1.gar.corp.intel.com (HELO
-	peggleto-mobl5.ger.corp.intel.com) ([10.252.122.223])
-	by orsmga001.jf.intel.com with ESMTP; 07 Aug 2014 06:05:02 -0700
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: Alex J Lennon <ajlennon@dynamicdevices.co.uk>
-Date: Thu, 07 Aug 2014 14:05:01 +0100
-Message-ID: <2374073.Q4LByM6bcI@peggleto-mobl5.ger.corp.intel.com>
-Organization: Intel Corporation
-User-Agent: KMail/4.13.3 (Linux/3.15.7-200.fc20.x86_64; KDE/4.13.3; x86_64; ; )
-In-Reply-To: <53E3512E.5090008@dynamicdevices.co.uk>
-References: <1571948.CrPtZqAbFm@peggleto-mobl5.ger.corp.intel.com>
-	<53E3512E.5090008@dynamicdevices.co.uk>
+Received: from mail.chez-thomas.org (mail.mlbassoc.com [65.100.170.105])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A1BFCE0082B
+	for <yocto@yoctoproject.org>; Thu,  7 Aug 2014 06:05:19 -0700 (PDT)
+Received: by mail.chez-thomas.org (Postfix, from userid 1998)
+	id CDAEBF811E3; Thu,  7 Aug 2014 07:05:18 -0600 (MDT)
+Received: from [192.168.1.114] (zeus [192.168.1.114])
+	by mail.chez-thomas.org (Postfix) with ESMTP id 632C5F811D9;
+	Thu,  7 Aug 2014 07:05:16 -0600 (MDT)
+Message-ID: <53E379A8.9060108@mlbassoc.com>
+Date: Thu, 07 Aug 2014 07:05:44 -0600
+From: Gary Thomas <gary@mlbassoc.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:31.0) Gecko/20100101 Thunderbird/31.0
 MIME-Version: 1.0
-Cc: yocto@yoctoproject.org, openembedded-core@lists.openembedded.org
-Subject: Re: RFC: Improving the developer workflow
+To: yocto@yoctoproject.org
+References: <53E25433.5020003@dfki.de> <53E2572F.8020107@mlbassoc.com>
+	<53E3765A.10206@dfki.de>
+In-Reply-To: <53E3765A.10206@dfki.de>
+Subject: Re: Building yocto for Odroid XU. No login after boot.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -44,102 +38,131 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 07 Aug 2014 13:05:11 -0000
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Thu, 07 Aug 2014 13:05:24 -0000
+Content-Type: text/plain; charset=windows-1252; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Hi Alex,
-
-On Thursday 07 August 2014 11:13:02 Alex J Lennon wrote:
-> On 07/08/2014 10:10, Paul Eggleton wrote:
-> fwiw Upgrade solutions are something that is still a read need imho,  as
-> I think we discussed at one of the FOSDEMs.
+On 2014-08-07 06:51, Dr. Markus Eich wrote:
+> Hi Gary,
 >
-> (The other real need being an on-board test framework, again imho, and
-> which I believe is ongoing)
+> unfortunately, this didn't help much. I have compiled the kernel with the CONFIG_FHANDLE=y.
+> I have also set all configs given in
+>
+> http://dominion.thruhere.net/koen/cms/recommended-kernel-config-options-for-a-modern-angstrom-system
+>
+> To pinpoint the error down, I have tried the kernel build from Yocto on a LINARO distro image. I have just replaced the kernel and the modules build with yocto.
+>
+> And voila: I have a login promt. If the complete distro is build with Yocto (the whole rootfs), I cannot log in.
+>
+> Has setting the SERIAL_CONSOLE = "115200 ttymxc0"  the same effect as giving the console param for the u-boot?
+>
+> i.e. I have something like
+>
+> #setenv bootrootfs "console=tty1 console=ttySAC2,115200n8 root=UUID=e139ce78-9841-40fe-8823-96a304a09859 rootwait rw" ?
 
-Indeed; I think we've made some pretty good progress here in that the Yocto 
-Project QA team is now using the automated runtime testing to do QA tests on 
-real hardware. Reporting and monitoring of ptest results is also being looked 
-at as well as integration with LAVA.
- 
-> Historically I, and I suspect others, have done full image updates of
-> the storage medium,  onboard flash or whatever but these images are
-> getting so big now that I am trying to  move away from that and into
-> using package feeds for updates to embedded targets.
+Setting SERIAL_CONSOLE tells the build system (Yocto) what device to
+use as the main console.  A login prompt will appear on this device
+after bootup.  The 'console=XXX' settings to the kernel (from U-Boot)
+tell the kernel where to send messages, especially the bootstrap messages.
+These are subtly different uses but they should match.
 
-Personally with how fragile package management can end up being, I'm convinced 
-that full-image updates are the way to go for a lot of cases, but ideally with 
-some intelligence so that you only ship the changes (at a filesystem level 
-rather than a package or file level). This ensures that an upgraded image on 
-one device ends up exactly identical to any other device including a newly 
-deployed one. Of course it does assume that you have a read-only rootfs and 
-keep your configuration data / logs / other writeable data on a separate 
-partition or storage medium. However, beyond improvements to support for 
-having a read-only rootfs we haven't really achieved anything in terms of out-
-of-the-box support for this, mainly due to lack of resources.
+In your case, I think you should have
+   SERIAL_CONSOLE = "115200 ttySAC2"
 
-However, whilst I haven't had a chance to look at it closely, there has been 
-some work on this within the community:
-
-http://sbabic.github.io/swupdate/swupdate.html
-https://github.com/sbabic/swupdate
-https://github.com/sbabic/meta-swupdate/
- 
-> My initial experience has been that
-> 
-> - as you mention it would be really helpful to have something "more"
-> around management  of package feed releases / targets.
-> 
-> - some automation around deployment of package feeds to production
-> servers would help,   or at least some documentation on best practice.
-
-So the scope of my proposal is a little bit narrower, i.e. for the SDK; and 
-I'm suggesting that we mostly bypass the packaging system since it doesn't 
-really add much benefit and sometimes gets in the way when you're an 
-application developer in the middle of development and the level of churn is 
-high (as opposed to making incremental changes after the product's release).
-
-> The other big issue I am seeing, which is mostly my own fault thus far,
-> is that I have sometimes  taken  the easy option of modifying the root
-> filesystem image in various ways within the image recipe (for example
-> changing  a Webmin configuration perhaps)
-> 
-> However when I then come to upgrade a package in-situ, such as Webmin,
-> the changes  are  then overwritten.
-> 
-> I think this is probably also an issue when upgrading packages that have
-> had local modifications made, and I wonder whether there's a solution to
-> this that I'm not aware of?
-
-We do have CONFFILES to point to configuration files that may be modified (and 
-thus should not just be overwritten on upgrade). There's not much logic in the 
-actual build system to deal with this, we just pass it to the package manager; 
-but it does work, and recipes that deploy configuration files (and bbappends, if 
-the configuration file is being added rather than changed from there) should set 
-CONFFILES so that the right thing happens on upgrade if you are using a 
-package manager on the target.
-
-A related issue is that for anything other than temporary changes it's often 
-not clear which recipe you need to change/append in order to provide your own 
-version of a particular config file. FYI I entered the following enhancement bug 
-some months ago to add a tool to help with that:
-
-https://bugzilla.yoctoproject.org/show_bug.cgi?id=6447
-
-> I am aware of course that mainstream package management tools allow
-> diffing, upgrading,  ignoring and such but I am unsure as to how that is
-> supported under Yocto at present?
-
-There isn't really any support for this at the moment, no; I think we'd want 
-to try to do this kind of thing at the build system end though to avoid tying 
-ourselves to one particular package manager.
- 
-Cheers,
-Paul
+> On 06.08.2014 18:26, Gary Thomas wrote:
+>> On 2014-08-06 10:13, Dr. Markus Eich wrote:
+>>> Dear all,
+>>>
+>>> I am trying to build an image for the Odroid XU, featuring the Samsung Octa 5 CPU
+>>>
+>>> I managed to build everything needed (modules, kernel, u-boot, etc.)
+>>>
+>>> The recipes can be found at: https://github.com/MarkusEich/meta-odroid.
+>>>
+>>> The last problem (hopefully last :-) I have is that I cannot log in after the kernel is loaded via UART console
+>>>
+>>> Maybe init.d or systemd is not setup properly?
+>>>
+>>> I am using the console-image-minimal.bb from meta.
+>>>
+>>> Here is the last console output. It seems that the kernel is loaded (including modules) and the rootfs is properly mounted. There is no error, there is simply no login or shell.
+>>>
+>>> Any ideas why I cannot login? Its a bit poking in the dark ATM.
+>>
+>> If you are using systemd, make sure your kernel is built with CONFIG_FHANDLE=y
+>> Without this, systemd won't start a session on a serial port.
+>>
+>> If you're using the old sysvinit, make sure your console settings
+>> are correct.  These normally live in your ${MACHINE}.conf and look
+>> something like this:
+>>   SERIAL_CONSOLE = "115200 ttymxc0"
+>>
+>> You might also want to remove 'quiet' from your kernel bootargs,
+>> at least until you get things settled a bit more.
+>>
+>>> ==
+>>>
+>>> [    5.722795] CPUFREQ of CA7  L5 : 962500 uV
+>>> [    5.726871] CPUFREQ of CA7  L6 : 950000 uV
+>>> [    5.730947] CPUFREQ of CA7  L7 : 950000 uV
+>>> [    5.735025] CPUFREQ of CA7  L8 : 950000 uV
+>>> [    5.739095] CPUFREQ of CA7  L9 : 950000 uV
+>>> [    5.743146] CPUFREQ of CA7  L10 : 950000 uV
+>>> [    5.747336] CPUFREQ of CA7  L11 : 950000 uV
+>>> [    5.751583] CPUFREQ of CA15 L0 : 1362500 uV
+>>> [    5.755663] CPUFREQ of CA15 L1 : 1362500 uV
+>>> [    5.759826] CPUFREQ of CA15 L2 : 1225000 uV
+>>> [    5.764012] CPUFREQ of CA15 L3 : 1175000 uV
+>>> [    5.768129] CPUFREQ of CA15 L4 : 1137500 uV
+>>> [    5.772313] CPUFREQ of CA15 L5 : 1112500 uV
+>>> [    5.776474] CPUFREQ of CA15 L6 : 1075000 uV
+>>> [    5.780638] CPUFREQ of CA15 L7 : 1037500 uV
+>>> [    5.784800] CPUFREQ of CA15 L8 : 1000000 uV
+>>> [    5.788962] CPUFREQ of CA15 L9 : 975000 uV
+>>> [    5.793010] CPUFREQ of CA15 L10 : 937500 uV
+>>> [    5.797201] CPUFREQ of CA15 L11 : 912500 uV
+>>> [    5.801368] CPUFREQ of CA15 L12 : 900000 uV
+>>> [    5.805526] CPUFREQ of CA15 L13 : 900000 uV
+>>> [    5.809689] CPUFREQ of CA15 L14 : 900000 uV
+>>> [    5.813822] CPUFREQ of CA15 L15 : 900000 uV
+>>> [    5.818018] CPUFREQ of CA15 L16 : 900000 uV
+>>> [    5.822173] CPUFREQ of CA15 L17 : 900000 uV
+>>> [    5.826338] CPUFREQ of CA15 L18 : 900000 uV
+>>> [    5.830583] fout_apll[900000000]
+>>> [    5.836287] S divider change for DFS of MIF block
+>>> [    5.984276] init_volt[975000], freq[800000]
+>>> [    5.987809] ALSA device list:
+>>> [    5.989956]   #0: Odroid-max98090
+>>> [    5.993533] Freeing init memory: 256K
+>>> [    5.996898] Write protecting the kernel text section c0008000 - c09e2000
+>>> [    6.003931] rodata_test: attempting to write to read-only section:
+>>> [    6.009728] write to read-only section trapped, success
+>>> [    6.055010] systemd-udevd[1299]: starting version 204
+>>> [    6.350360] EXT4-fs (mmcblk0p2): recovery complete
+>>> [    6.356827] EXT4-fs (mmcblk0p2): mounted filesystem with ordered data mode. Opts: (null)
+>>> INIT: version 2.88 booting
+>>> Starting udev
+>>> [    6.880415] udevd[1376]: starting version 182
+>>> [    7.075108] EXT4-fs (mmcblk0p2): re-mounted. Opts: data=ordered
+>>> Starting Bootlog daemon: bootlogd.
+>>> [    7.369381] max77802_rtc_read_time: 114/7/6 16:10:3(3)
+>>> INIT: Entering runlevel: 5
+>>> Configuring network interfaces... ifconfig: SIOCGIFFLAGS: No such device
+>>> [    7.431705] max77802_rtc_read_time: 114/7/6 16:10:4(3)
+>>> Starting syslogd/klogd: done
+>>> Stopping Bootlog daemon: bootlogd.
+>>>
+>>> ==
+>>>
+>>>
+>>>
+>>>
+>>
+>
 
 -- 
-
-Paul Eggleton
-Intel Open Source Technology Centre
+------------------------------------------------------------
+Gary Thomas                 |  Consulting for the
+MLB Associates              |    Embedded world
+------------------------------------------------------------
 
