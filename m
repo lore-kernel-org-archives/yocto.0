@@ -1,45 +1,50 @@
-Return-Path: <ajlennon@dynamicdevices.co.uk>
+Return-Path: <actiononmail@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 5B8F3E00814; Thu,  7 Aug 2014 06:14:32 -0700 (PDT)
+	id 74843E00814; Thu,  7 Aug 2014 06:28:01 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.7 required=5.0 tests=AC_DIV_BONANZA,BAYES_00,
+	DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (actiononmail[at]gmail.com)
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from www.dynamicdevices.co.uk (www.dynamicdevices.co.uk
-	[89.200.136.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B46F6E00801
-	for <yocto@yoctoproject.org>; Thu,  7 Aug 2014 06:14:23 -0700 (PDT)
-Received: from localhost (localhost [127.0.0.1])
-	by www.dynamicdevices.co.uk (Postfix) with ESMTP id D8E6227E05D;
-	Thu,  7 Aug 2014 13:14:22 +0000 (UTC)
-X-Virus-Scanned: Debian amavisd-new at lennoab2.miniserver.com
-Received: from www.dynamicdevices.co.uk ([127.0.0.1])
-	by localhost (www.dynamicdevices.co.uk [127.0.0.1]) (amavisd-new,
-	port 10024)
-	with ESMTP id Bt1dwUXfBK1S; Thu,  7 Aug 2014 13:14:20 +0000 (UTC)
-Received: from [127.0.0.1] (cpc32-live22-2-0-cust59.17-2.cable.virginm.net
-	[82.36.253.60])
-	(using TLSv1 with cipher ECDHE-RSA-AES128-SHA (128/128 bits))
-	(No client certificate requested)
-	by www.dynamicdevices.co.uk (Postfix) with ESMTPSA id 3C45B27E058;
-	Thu,  7 Aug 2014 13:14:20 +0000 (UTC)
-Message-ID: <53E37BA4.6010100@dynamicdevices.co.uk>
-Date: Thu, 07 Aug 2014 14:14:12 +0100
-From: Alex J Lennon <ajlennon@dynamicdevices.co.uk>
-User-Agent: Mozilla/5.0 (Windows NT 6.3; WOW64;
-	rv:24.0) Gecko/20100101 Thunderbird/24.6.0
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	*  0.0 AC_DIV_BONANZA RAW: Too many divs in a row... spammy template
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.220.181 listed in list.dnswl.org]
+Received: from mail-vc0-f181.google.com (mail-vc0-f181.google.com
+	[209.85.220.181])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 37111E00801
+	for <yocto@yoctoproject.org>; Thu,  7 Aug 2014 06:27:55 -0700 (PDT)
+Received: by mail-vc0-f181.google.com with SMTP id lf12so6244644vcb.12
+	for <yocto@yoctoproject.org>; Thu, 07 Aug 2014 06:27:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:from:date:message-id:subject:to:content-type;
+	bh=SSW4jFNebo0MkVQD0YUuffpj3BlgUxqY0dpBc9in6Wk=;
+	b=A7R8cvZTjYZZcgGDBeGTCXNFif//q459T3VDVqiSO9H8JEy4ZSMoiTeOdkXGpwV84F
+	ldAS1SuolpBLrtToKPgW3S9wdCZV9JmNR9pKRC2YOM5O3yLDeQOQyAbC47bdVpTdBjuK
+	i3hKJalMp9wrnoiKP0f0gd6MIagVNDuj8zRze/kILl4qPlcr1ghE3daFXklJkrYPtr3g
+	uHO0VsFgdDc3kGEZ9zsfjbsPfpFzmaOxEFvSFOubnOc5DArr8xka9r1NKU368HRTYBeW
+	2ypddznC9bQecrNO/217qhgL/avtgKgcyOSxvj4/WgyLUxIJ87XaSn2Pyg27FGV77omD
+	xs8A==
+X-Received: by 10.52.106.198 with SMTP id gw6mr1955731vdb.23.1407418074770;
+	Thu, 07 Aug 2014 06:27:54 -0700 (PDT)
 MIME-Version: 1.0
-To: Paul Eggleton <paul.eggleton@linux.intel.com>
-References: <1571948.CrPtZqAbFm@peggleto-mobl5.ger.corp.intel.com>
-	<53E3512E.5090008@dynamicdevices.co.uk>
-	<2374073.Q4LByM6bcI@peggleto-mobl5.ger.corp.intel.com>
-In-Reply-To: <2374073.Q4LByM6bcI@peggleto-mobl5.ger.corp.intel.com>
-X-Enigmail-Version: 1.6
-Cc: yocto@yoctoproject.org, openembedded-core@lists.openembedded.org
-Subject: Re: RFC: Improving the developer workflow
+Received: by 10.220.248.132 with HTTP; Thu, 7 Aug 2014 06:27:34 -0700 (PDT)
+From: Akash Bhatnagar <actiononmail@gmail.com>
+Date: Thu, 7 Aug 2014 18:57:34 +0530
+Message-ID: <CAJqwu=86hN4VMa+Wg3Xt-zGwksf80uFhqdzxE=GHqepV0ytifw@mail.gmail.com>
+To: yocto@yoctoproject.org
+Subject: Unable to use Automatic PR Service (Yocto Daisy)
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -51,128 +56,82 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 07 Aug 2014 13:14:32 -0000
-Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Thu, 07 Aug 2014 13:28:01 -0000
+Content-Type: multipart/alternative; boundary=bcaec54857bc65b45d05000a0e00
 
+--bcaec54857bc65b45d05000a0e00
+Content-Type: text/plain; charset=UTF-8
 
-On 07/08/2014 14:05, Paul Eggleton wrote:
-> Hi Alex,
->
-> On Thursday 07 August 2014 11:13:02 Alex J Lennon wrote:
->> On 07/08/2014 10:10, Paul Eggleton wrote:
->> fwiw Upgrade solutions are something that is still a read need imho,  as
->> I think we discussed at one of the FOSDEMs.
->>
->> (The other real need being an on-board test framework, again imho, and
->> which I believe is ongoing)
-> Indeed; I think we've made some pretty good progress here in that the Yocto 
-> Project QA team is now using the automated runtime testing to do QA tests on 
-> real hardware. Reporting and monitoring of ptest results is also being looked 
-> at as well as integration with LAVA.
->  
+HI,
 
-Great news. I really want to look into this but as ever time is the
-constraining factor.
+I am new on Yocto Project and trying to use it in our company. I am able to
+generate custom images using Yocto Daisy Version.
 
->> Historically I, and I suspect others, have done full image updates of
->> the storage medium,  onboard flash or whatever but these images are
->> getting so big now that I am trying to  move away from that and into
->> using package feeds for updates to embedded targets.
-> Personally with how fragile package management can end up being, I'm convinced 
-> that full-image updates are the way to go for a lot of cases, but ideally with 
-> some intelligence so that you only ship the changes (at a filesystem level 
-> rather than a package or file level). This ensures that an upgraded image on 
-> one device ends up exactly identical to any other device including a newly 
-> deployed one. Of course it does assume that you have a read-only rootfs and 
-> keep your configuration data / logs / other writeable data on a separate 
-> partition or storage medium. However, beyond improvements to support for 
-> having a read-only rootfs we haven't really achieved anything in terms of out-
-> of-the-box support for this, mainly due to lack of resources.
+Now, I am stuck with getting worked with the Automatic PR service. Using
+the wiki page https://wiki.yoctoproject.org/wiki/PR_Service I am able to
+set the PR Server and local.conf.
 
-Deltas. Yes I've seen binary deltas attempted over the years, with
-varying degrees of success.
+Now  I am testing whether my package (in Debian format) able to get new
+Revision ,each time a git commit happens.The commands I ran are as follows:-
 
-I can see how what you say could work at a file-system level if we could
-separate out the
-writeable data, yes. Not sure I've seen any tooling around this though?
+A) Starting the Prserver "bitbake-prserv --host=ip --port=5656"
 
-Back in the day when I first started out with Arcom Embedded Linux in
-the late '90's I had us
-do something similar with a read only JFFS2 system partition and then a
-separate app/data
-partition. That seemed to work OK. Maybe I need to revisit that.
+1) git commit my file to change the commit ID
+2) bitbake my_package -c cleanall
+3) bitbake my_package
+4) Verify the package name :-my_package_1.0-r0.0.deb <--This name remains
+as it is
 
-> However, whilst I haven't had a chance to look at it closely, there has been 
-> some work on this within the community:
->
-> http://sbabic.github.io/swupdate/swupdate.html
-> https://github.com/sbabic/swupdate
-> https://github.com/sbabic/meta-swupdate/
+In the Build History I verified whether Yocto is taking the new changes :-
 
-I'll take a look. Thanks.
+cat latest:
+PV = 1.0
+PR = r0
+PKGR = r0.0
+RPROVIDES =
 
->  
->> My initial experience has been that
->>
->> - as you mention it would be really helpful to have something "more"
->> around management  of package feed releases / targets.
->>
->> - some automation around deployment of package feeds to production
->> servers would help,   or at least some documentation on best practice.
-> So the scope of my proposal is a little bit narrower, i.e. for the SDK; and 
-> I'm suggesting that we mostly bypass the packaging system since it doesn't 
-> really add much benefit and sometimes gets in the way when you're an 
-> application developer in the middle of development and the level of churn is 
-> high (as opposed to making incremental changes after the product's release).
+git log -p :
+@@ -1,2 +1,2 @@
+# SRCREV = "${AUTOREV}"
+-SRCREV = "be0e7a60527259451b4600b441113608b8c5ca90"
++SRCREV = "4fedd520432d1856b6573786f6fdfb2d54af1753"
 
-Mmm. Yes I can understand that. Same here.
+Still PR is not bumping up.Please throw some light over it.
 
->> The other big issue I am seeing, which is mostly my own fault thus far,
->> is that I have sometimes  taken  the easy option of modifying the root
->> filesystem image in various ways within the image recipe (for example
->> changing  a Webmin configuration perhaps)
->>
->> However when I then come to upgrade a package in-situ, such as Webmin,
->> the changes  are  then overwritten.
->>
->> I think this is probably also an issue when upgrading packages that have
->> had local modifications made, and I wonder whether there's a solution to
->> this that I'm not aware of?
-> We do have CONFFILES to point to configuration files that may be modified (and 
-> thus should not just be overwritten on upgrade). There's not much logic in the 
-> actual build system to deal with this, we just pass it to the package manager; 
-> but it does work, and recipes that deploy configuration files (and bbappends, if 
-> the configuration file is being added rather than changed from there) should set 
-> CONFFILES so that the right thing happens on upgrade if you are using a 
-> package manager on the target.
->
-> A related issue is that for anything other than temporary changes it's often 
-> not clear which recipe you need to change/append in order to provide your own 
-> version of a particular config file. FYI I entered the following enhancement bug 
-> some months ago to add a tool to help with that:
->
-> https://bugzilla.yoctoproject.org/show_bug.cgi?id=6447
+--bcaec54857bc65b45d05000a0e00
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-Interesting thanks. I don't recall seeing this in recipes. I might have
-missed it or are not many
-people using this features in their recipes? Of course the next issue is
-not knowing what you
-want to do with those conf files during an unattended upgrade onto an
-embedded box.
+<div dir=3D"ltr"><div><div><div><div><div><div><div><div><div><div><div>HI,=
+<br><br></div>I am new on Yocto Project and trying to use it in our company=
+. I am able to generate custom images using Yocto Daisy Version.<br><br></d=
+iv>
 
->> I am aware of course that mainstream package management tools allow
->> diffing, upgrading,  ignoring and such but I am unsure as to how that is
->> supported under Yocto at present?
-> There isn't really any support for this at the moment, no; I think we'd want 
-> to try to do this kind of thing at the build system end though to avoid tying 
-> ourselves to one particular package manager.
->  
+Now, I am stuck with getting worked with the Automatic PR service. Using th=
+e wiki page <a href=3D"https://wiki.yoctoproject.org/wiki/PR_Service">https=
+://wiki.yoctoproject.org/wiki/PR_Service</a> I am able to set the PR Server=
+ and local.conf.<br>
 
-Indeed.
+<br></div>Now=C2=A0 I am testing whether my package (in Debian format) able=
+ to get new Revision ,each time a git commit happens.The commands I ran are=
+ as follows:-<br></div><div><br>A) Starting the Prserver &quot;bitbake-prse=
+rv --host=3Dip --port=3D5656&quot;<br>
 
-Cheers!
+<br></div>1) git commit my file to change the commit ID<br></div>2) bitbake=
+ my_package -c cleanall<br></div>3) bitbake my_package<br></div>4) Verify t=
+he package name :-my_package_1.0-r0.0.deb &lt;--This name remains as it is<=
+br>
 
-Alex
+<br></div>In the Build History I verified whether Yocto is taking the new c=
+hanges :-<br><br></div>cat latest: <br>PV =3D 1.0
+<br>PR =3D r0
+<br>PKGR =3D r0.0
+<br>RPROVIDES =3D=20
+<br><br></div>git log -p :<br>@@ -1,2 +1,2 @@
+ <br># SRCREV =3D &quot;${AUTOREV}&quot;
+<br>-SRCREV =3D &quot;be0e7a60527259451b4600b441113608b8c5ca90&quot;
+<br>+SRCREV =3D &quot;4fedd520432d1856b6573786f6fdfb2d54af1753&quot;
+<br><br></div>Still PR is not bumping up.Please throw some light over it.<b=
+r><br><br><br></div>
 
-
+--bcaec54857bc65b45d05000a0e00--
