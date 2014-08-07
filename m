@@ -1,38 +1,58 @@
-Return-Path: <meenakumari.s@hcl.com>
+Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id A9897E007FE; Wed,  6 Aug 2014 23:05:03 -0700 (PDT)
+	id 42AFCE007FE; Wed,  6 Aug 2014 23:21:15 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (raj.khem[at]gmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.192.171 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-Received: from GWS06.hcl.com (gws06.avitas.hcl.com [203.105.185.25])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 059A6E00543
-	for <yocto@yoctoproject.org>; Wed,  6 Aug 2014 23:04:58 -0700 (PDT)
-X-IronPort-AV: E=Sophos;i="5.01,816,1400005800"; d="scan'208,217";a="80913143"
-Received: from unknown (HELO NDA-CORP-HT02.CORP.HCL.IN) ([10.248.64.34])
-	by GWS06.hcl.com with ESMTP/TLS/AES128-SHA; 07 Aug 2014 11:32:20 +0530
-Received: from NDA-HCLT-CSHT02.HCLT.CORP.HCL.IN (10.98.132.27) by
-	NDA-CORP-HT02.CORP.HCL.IN (10.248.64.34) with Microsoft SMTP Server
-	(TLS) id 14.3.123.3; Thu, 7 Aug 2014 11:34:52 +0530
-Received: from NDA-HCLT-MBS05.HCLT.CORP.HCL.IN ([10.98.132.20]) by
-	NDA-HCLT-CSHT02.HCLT.CORP.HCL.IN ([10.98.132.27]) with mapi id
-	14.03.0123.003; Thu, 7 Aug 2014 11:34:52 +0530
-From: Meenakumari Shedole <meenakumari.s@hcl.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Libva-wayland build in yocto
-Thread-Index: Ac+xmHNgP9LtpNobRe+bLRwx0OcgpA==
-Date: Thu, 7 Aug 2014 06:04:51 +0000
-Message-ID: <E4938C0D959B3445943720B88F0721341564FC7F@NDA-HCLT-MBS05.hclt.corp.hcl.in>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.98.134.12]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-pd0-f171.google.com (mail-pd0-f171.google.com
+	[209.85.192.171])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7EEE3E00543
+	for <yocto@yoctoproject.org>; Wed,  6 Aug 2014 23:21:05 -0700 (PDT)
+Received: by mail-pd0-f171.google.com with SMTP id z10so4656596pdj.16
+	for <yocto@yoctoproject.org>; Wed, 06 Aug 2014 23:21:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=date:from:to:cc:subject:message-id:references:mime-version
+	:content-type:content-disposition:in-reply-to:user-agent;
+	bh=1ECuFndGNJnCP9KC55XH3tvBoa1dXL5vAIvqgijc1nE=;
+	b=UboOv9n4nlTeiDWZ7qvxiRmyMR0pZUjFGJYUbzij/4/FzWVKIUYz1Jdbaxx6Nzp/eT
+	ymhhkc3u+ACWNDoivlJcyVA77W+e/N4yuJUMgfOoJGqd0jkYW3txJ+11QC/UF7yfNbVX
+	mwnpJrKedJ+yV5SbPEYAQEy3bwBy8R/O49lo+UrUOVsISC4BHPt5t5FNmmz+tnRCT8w3
+	T3689xF5UlHcMpAiuDZiTo7xvLS9fy+GUUm/XoP8apGk/HyTuhK9u508vdEBV3VPUCG0
+	puuU49+a5xlJJpihDil/EAzYSE0K7H97U5CMyz0y2zPYew4jxf5NIwc4/EQQMX7B9ggA
+	TXkA==
+X-Received: by 10.67.30.163 with SMTP id kf3mr15765490pad.110.1407392464512;
+	Wed, 06 Aug 2014 23:21:04 -0700 (PDT)
+Received: from haswell ([2601:9:3580:7a5:baca:3aff:fe80:aa8f])
+	by mx.google.com with ESMTPSA id
+	qm11sm4776879pdb.85.2014.08.06.23.21.03 for <multiple recipients>
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Wed, 06 Aug 2014 23:21:04 -0700 (PDT)
+Date: Wed, 6 Aug 2014 23:24:31 -0700
+From: Khem Raj <raj.khem@gmail.com>
+To: Gary Thomas <gary@mlbassoc.com>
+Message-ID: <20140807062431.GA4171@haswell>
+References: <53E25433.5020003@dfki.de>
+ <53E2572F.8020107@mlbassoc.com>
 MIME-Version: 1.0
-Subject: Libva-wayland build in yocto
+In-Reply-To: <53E2572F.8020107@mlbassoc.com>
+User-Agent: Mutt/1.5.23 (2014-03-12)
+Cc: yocto@yoctoproject.org
+Subject: Re: Building yocto for Odroid XU. No login after boot.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -44,179 +64,70 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 07 Aug 2014 06:05:03 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_E4938C0D959B3445943720B88F0721341564FC7FNDAHCLTMBS05hcl_"
+X-List-Received-Date: Thu, 07 Aug 2014 06:21:15 -0000
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 
---_000_E4938C0D959B3445943720B88F0721341564FC7FNDAHCLTMBS05hcl_
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
+On 14-08-06 10:26:23, Gary Thomas wrote:
+> On 2014-08-06 10:13, Dr. Markus Eich wrote:
+> >Dear all,
+> >
+> >I am trying to build an image for the Odroid XU, featuring the Samsung Octa 5 CPU
+> >
+> >I managed to build everything needed (modules, kernel, u-boot, etc.)
+> >
+> >The recipes can be found at: https://github.com/MarkusEich/meta-odroid.
+> >
+> >The last problem (hopefully last :-) I have is that I cannot log in after the kernel is loaded via UART console
+> >
+> >Maybe init.d or systemd is not setup properly?
+> >
+> >I am using the console-image-minimal.bb from meta.
+> >
+> >Here is the last console output. It seems that the kernel is loaded (including modules) and the rootfs is properly mounted. There is no error, there is simply no login or shell.
+> >
+> >Any ideas why I cannot login? Its a bit poking in the dark ATM.
+> 
+> If you are using systemd, make sure your kernel is built with CONFIG_FHANDLE=y
+> Without this, systemd won't start a session on a serial port.
+> 
+> If you're using the old sysvinit, make sure your console settings
+> are correct.  These normally live in your ${MACHINE}.conf and look
+> something like this:
+>   SERIAL_CONSOLE = "115200 ttymxc0"
+> 
+> You might also want to remove 'quiet' from your kernel bootargs,
+> at least until you get things settled a bit more.
 
-Hi.
+see the needed kernel config options here
+http://dominion.thruhere.net/koen/cms/recommended-kernel-config-options-for-a-modern-angstrom-system
 
-I builded yocto Dora branch with lastest version of wayland and Weston.
- after this I am trying to build libva-intel-driver_1.2.2 enabling wayland =
- but  after executing  libva-intel-driver configur or autogen.sh it not sho=
-wing wayland in configured list
-"libva-intel-driver" && ./autogen.sh
-"libva-intel-driver configured list"
-"windowing system =3D=3D=3D drm,x11,egl,glx"
+> >[    5.993533] Freeing init memory: 256K
+> >[    5.996898] Write protecting the kernel text section c0008000 - c09e2000
+> >[    6.003931] rodata_test: attempting to write to read-only section:
+> >[    6.009728] write to read-only section trapped, success
+> >[    6.055010] systemd-udevd[1299]: starting version 204
+> >[    6.350360] EXT4-fs (mmcblk0p2): recovery complete
+> >[    6.356827] EXT4-fs (mmcblk0p2): mounted filesystem with ordered data mode. Opts: (null)
+> >INIT: version 2.88 booting
+> >Starting udev
+> >[    6.880415] udevd[1376]: starting version 182
+> >[    7.075108] EXT4-fs (mmcblk0p2): re-mounted. Opts: data=ordered
+> >Starting Bootlog daemon: bootlogd.
+> >[    7.369381] max77802_rtc_read_time: 114/7/6 16:10:3(3)
+> >INIT: Entering runlevel: 5
+> >Configuring network interfaces... ifconfig: SIOCGIFFLAGS: No such device
+> >[    7.431705] max77802_rtc_read_time: 114/7/6 16:10:4(3)
+> >Starting syslogd/klogd: done
+> >Stopping Bootlog daemon: bootlogd.
 
-But not showing wayland.
+it seems you have a mix of systemd and sysvinit scripts stepping over
+each other so may be just go for systemd only init system
 
-I tried modifying libva_1.2.2 also but before this libva-intel-driver shoul=
-d give supports
+in local.conf set
 
-Can you please suggest me how to enable libva-wayland in libva-intel-driver.
+DISTRO_FEATURES_append = " systemd"
+DISTRO_FEATURES_BACKFILL_CONSIDERED += "sysvinit"
+VIRTUAL-RUNTIME_init_manager = "systemd"
+VIRTUAL-RUNTIME_initscripts = "systemd-compat-units"
 
-
-Thanks in Advance.
-
-Regards
-Meena
-
-
-::DISCLAIMER::
----------------------------------------------------------------------------=
--------------------------------------------------------------------------
-
-The contents of this e-mail and any attachment(s) are confidential and inte=
-nded for the named recipient(s) only.
-E-mail transmission is not guaranteed to be secure or error-free as informa=
-tion could be intercepted, corrupted,
-lost, destroyed, arrive late or incomplete, or may contain viruses in trans=
-mission. The e mail and its contents
-(with or without referred errors) shall therefore not attach any liability =
-on the originator or HCL or its affiliates.
-Views or opinions, if any, presented in this email are solely those of the =
-author and may not necessarily reflect the
-views or opinions of HCL or its affiliates. Any form of reproduction, disse=
-mination, copying, disclosure, modification,
-distribution and / or publication of this message without the prior written=
- consent of authorized representative of
-HCL is strictly prohibited. If you have received this email in error please=
- delete it and notify the sender immediately.
-Before opening any email and/or attachments, please check them for viruses =
-and other defects.
-
----------------------------------------------------------------------------=
--------------------------------------------------------------------------
-
---_000_E4938C0D959B3445943720B88F0721341564FC7FNDAHCLTMBS05hcl_
-Content-Type: text/html; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii">
-<meta name=3D"Generator" content=3D"Microsoft Word 12 (filtered medium)">
-<style>
-<!--
- /* Font Definitions */
- @font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
- /* Style Definitions */
- p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri","sans-serif";}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:purple;
-	text-decoration:underline;}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri","sans-serif";
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;}
-@page Section1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.Section1
-	{page:Section1;}
--->
-</style><!--[if gte mso 9]><xml>
- <o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
- <o:shapelayout v:ext=3D"edit">
-  <o:idmap v:ext=3D"edit" data=3D"1" />
- </o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
-<div class=3D"Section1">
-<p class=3D"MsoNormal">Hi.<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">I builded yocto Dora branch with lastest version of =
-wayland and Weston.<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp;after this I am trying to build libva-intel-dr=
-iver_1.2.2 enabling wayland &nbsp;but &nbsp;after executing &nbsp;libva-int=
-el-driver configur or autogen.sh it not showing wayland in configured list<=
-o:p></o:p></p>
-<p class=3D"MsoNormal">&#8220;libva-intel-driver&#8221; &amp;&amp; ./autoge=
-n.sh<o:p></o:p></p>
-<p class=3D"MsoNormal">&#8220;libva-intel-driver configured list&#8221;<o:p=
-></o:p></p>
-<p class=3D"MsoNormal">&#8220;windowing system =3D=3D=3D drm,x11,egl,glx&#8=
-221;<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">But not showing wayland.<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">I tried modifying libva_1.2.2 also but before this l=
-ibva-intel-driver should give supports<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Can you please suggest me how to enable libva-waylan=
-d in libva-intel-driver.<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Thanks in Advance.<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Regards<o:p></o:p></p>
-<p class=3D"MsoNormal">Meena<o:p></o:p></p>
-</div>
-<span style=3D"FONT-FAMILY: 'Arial','sans-serif'; COLOR: gray; FONT-SIZE: 7=
-.5pt; mso-fareast-font-family: 'Times New Roman'">
-<P style=3D"MARGIN: 0in 0in 0pt" class=3DMsoNormal><br><br><font style=3D"F=
-ONT-FAMILY: 'Arial','sans-serif'; COLOR: gray; FONT-SIZE: 9px">::DISCLAIMER=
-::<br>---------------------------------------------------------------------=
----------------------------------------------------------------------------=
-----</font></P>
-<P style=3D"MARGIN: 0in 0in 0pt" class=3DMsoNormal><font style=3D"FONT-FAMI=
-LY: 'Arial','sans-serif'; COLOR: gray; FONT-SIZE: 11px">The contents of thi=
-s e-mail and any attachment(s) are confidential and intended for the named =
-recipient(s) only.<br>E-mail transmission is not guaranteed to be secure or=
- error-free as information could be intercepted, corrupted, <br>lost, destr=
-oyed, arrive late or incomplete, or may contain viruses in transmission. Th=
-e e mail and its contents <br>(with or without referred errors) shall there=
-fore not attach any liability on the originator or HCL or its affiliates. <=
-br>Views or opinions, if any, presented in this email are solely those of t=
-he author and may not necessarily reflect the <br>views or opinions of HCL =
-or its affiliates. Any form of reproduction, dissemination, copying, disclo=
-sure, modification, <br>distribution and / or publication of this message w=
-ithout the prior written consent of authorized representative of <br>HCL is=
- strictly prohibited. If you have received this email in error please delet=
-e it and notify the sender immediately. <br>Before opening any email and/or=
- attachments, please check them for viruses and other defects.</font></P>
-<P style=3D"MARGIN: 0in 0in 0pt" class=3DMsoNormal><font style=3D"FONT-FAMI=
-LY: 'Arial','sans-serif'; COLOR: gray; FONT-SIZE: 11px">-------------------=
----------------------------------------------------------------------------=
-------------------------------------------------------</font></span></P></b=
-ody>
-</html>
-
---_000_E4938C0D959B3445943720B88F0721341564FC7FNDAHCLTMBS05hcl_--
