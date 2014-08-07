@@ -1,38 +1,48 @@
-Return-Path: <mark.hatle@windriver.com>
+Return-Path: <jatedev@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id DCAE0E00781; Thu,  7 Aug 2014 09:18:50 -0700 (PDT)
+	id EE6F1E0080C; Thu,  7 Aug 2014 11:22:33 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [147.11.146.13 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (jatedev[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B91C8E0034B
-	for <yocto@yoctoproject.org>; Thu,  7 Aug 2014 09:18:42 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail1.windriver.com (8.14.9/8.14.5) with ESMTP id s77GIdaC028689
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL)
-	for <yocto@yoctoproject.org>; Thu, 7 Aug 2014 09:18:39 -0700 (PDT)
-Received: from Marks-MacBook-Pro.local (172.25.36.232) by
-	ALA-HCA.corp.ad.wrs.com (147.11.189.50) with Microsoft SMTP Server id
-	14.3.174.1; Thu, 7 Aug 2014 09:18:39 -0700
-Message-ID: <53E3A6DE.7010500@windriver.com>
-Date: Thu, 7 Aug 2014 11:18:38 -0500
-From: Mark Hatle <mark.hatle@windriver.com>
-Organization: Wind River Systems
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.9;
-	rv:24.0) Gecko/20100101 Thunderbird/24.6.0
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.192.49 listed in list.dnswl.org]
+Received: from mail-qg0-f49.google.com (mail-qg0-f49.google.com
+	[209.85.192.49])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 43BD9E00809
+	for <yocto@yoctoproject.org>; Thu,  7 Aug 2014 11:22:30 -0700 (PDT)
+Received: by mail-qg0-f49.google.com with SMTP id j107so4802962qga.8
+	for <yocto@yoctoproject.org>; Thu, 07 Aug 2014 11:22:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=UIyl5Wv8xcVi+0cgqn76jRIbjl/IEMI7+LE5Jqqv1CA=;
+	b=WLzZ6diI5GslcUA55UusW1MAecGjZ0iJ2RCMpD5GH0GJON0kWAWhw7/IXzp5CUjncg
+	4aWsHm2q1/1uljUA0El5NF9oTHxLe7bc0Na+TM9yxnOd12p3UDVnVA415ZVgxp8T7xKD
+	ZHMjGDbz2Cd2u23Z4hoR+itUas8AW1GGaMOiOnJYYIDToF4d8ChZa5cCbpqVHfPVdpB1
+	JAAOfwc5eDKP/J5QNHALAyKwHAQLEvA9holuE3BCHs9n+atShe8+9HpKRnbsOIzbNO8C
+	3FG6vZ5E+i05mPZPo7OTxOlgs5i8Zry+9DAKkrT1GFhsXa/m2aT+84m+CDyVQuuacQ4P
+	PVrg==
 MIME-Version: 1.0
-To: <yocto@yoctoproject.org>
-References: <888B7DC5D4899F46A9721989283666969C1E56EE1B@SAFEX1MAIL5.st.com>
-In-Reply-To: <888B7DC5D4899F46A9721989283666969C1E56EE1B@SAFEX1MAIL5.st.com>
-Subject: Re: Installing Application Development SDK hangs when using "screen"
+X-Received: by 10.140.107.131 with SMTP id h3mr15904931qgf.83.1407435750039;
+	Thu, 07 Aug 2014 11:22:30 -0700 (PDT)
+Received: by 10.140.34.76 with HTTP; Thu, 7 Aug 2014 11:22:30 -0700 (PDT)
+Date: Thu, 7 Aug 2014 14:22:30 -0400
+Message-ID: <CAPphmgb+C-mHeZVm-RbD-Ap4UG4VG_3jwoTdO7XP49dbG+dTGw@mail.gmail.com>
+From: Jate S <jatedev@gmail.com>
+To: Yocto Project <yocto@yoctoproject.org>
+Subject: base-files: /etc/profile profile.d execution order
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -44,36 +54,12 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 07 Aug 2014 16:18:50 -0000
-Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Thu, 07 Aug 2014 18:22:34 -0000
+Content-Type: text/plain; charset=UTF-8
 
-On 8/7/14, 8:59 AM, Pierre Yves MORDRET wrote:
-> Hi there,
->
-> I have a tricky issue to sort out. I'm using a build server(Ubuntu 12.04 LTS) for building my Yocto project and Application Dev SDK (bitbake -c populate_sdk).
-> On this build server I 'm used to using "screen" tool. Using "screen" and bitbake at the same time seems to have no issues.
->
-> However when installing the App. Dev. SDK via self-installer, it hangs every time after a while. The culprit seems to be "screen".
-> If I am IN a "screen" session OR I am OUT "screen" session but there is a running screen session that belongs to me, it hangs.
->
-> Did someone experience such trouble ? Any ideas ?
+I am trying to use a file in profile.d to override the default umask
+in /etc/profile. However, the umask line in /etc/profile comes after
+the code which sources profile.d files.
 
-I've seen some terminal failures in the past, but it's always been due to 
-overwriting in-place terminal files.
-
-I've not seen anything on a new SDK installation.
-
-Which branch of the Yocto Project are you using?
-
---Mark
-
-> Thanks in advance
-> Pierre-Yves
->
->
->
->
->
-
+I suggest moving the umask line and the exports to before the profile.d code.
 
