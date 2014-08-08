@@ -1,56 +1,39 @@
-Return-Path: <pierre-yves.mordret@st.com>
+Return-Path: <markus.eich@dfki.de>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id DE4AFE0076B; Fri,  8 Aug 2014 06:21:32 -0700 (PDT)
+	id 378DEE00655; Fri,  8 Aug 2014 06:46:19 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,T_HK_NAME_DR
 	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [62.209.51.94 listed in list.dnswl.org]
-Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com
-	[62.209.51.94])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 43DB6E0074B
-	for <yocto@yoctoproject.org>; Fri,  8 Aug 2014 06:21:22 -0700 (PDT)
-Received: from pps.filterd (m0046670.ppops.net [127.0.0.1])
-	by mx07-00178001.pphosted.com (8.14.5/8.14.5) with SMTP id
-	s78DKBL5001914; Fri, 8 Aug 2014 15:21:18 +0200
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-	by mx07-00178001.pphosted.com with ESMTP id 1nmtg8hb0a-1
-	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256 verify=NOT);
-	Fri, 08 Aug 2014 15:21:18 +0200
-Received: from zeta.dmz-eu.st.com (zeta.dmz-eu.st.com [164.129.230.9])
-	by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 7DE1131;
-	Fri,  8 Aug 2014 13:21:12 +0000 (GMT)
-Received: from Webmail-eu.st.com (safex1hubcas4.st.com [10.75.90.69])
-	by zeta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 0CFC7166DF;
-	Fri,  8 Aug 2014 13:21:16 +0000 (GMT)
-Received: from SAFEX1MAIL5.st.com ([10.75.90.28]) by Safex1hubcas4.st.com
-	([10.75.90.69]) with mapi; Fri, 8 Aug 2014 15:21:15 +0200
-From: Pierre Yves MORDRET <pierre-yves.mordret@st.com>
-To: Mark Hatle <mark.hatle@windriver.com>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Date: Fri, 8 Aug 2014 15:21:14 +0200
-Thread-Topic: [yocto] Installing Application Development SDK hangs when
-	using "screen"
-Thread-Index: Ac+yW1MhYheLfc4MSLi/mmwDXOG3yAAsAZag
-Message-ID: <888B7DC5D4899F46A9721989283666969C1E56EE49@SAFEX1MAIL5.st.com>
-References: <888B7DC5D4899F46A9721989283666969C1E56EE1B@SAFEX1MAIL5.st.com>
-	<53E3A6DE.7010500@windriver.com>
-In-Reply-To: <53E3A6DE.7010500@windriver.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-acceptlanguage: en-US
+	*      [score: 0.0000] *  0.0 T_HK_NAME_DR T_HK_NAME_DR
+Received: from sea-mail.dfki.de (sea-mail.dfki.de [134.96.191.185])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 586B3E0082A
+	for <yocto@yoctoproject.org>; Fri,  8 Aug 2014 06:46:10 -0700 (PDT)
+Received: from sea-mail.dfki.de (localhost.localdomain [127.0.0.1])
+	by localhost (Email Security Appliance) with SMTP id
+	C77709E73E_3E4D4A0B
+	for <yocto@yoctoproject.org>; Fri,  8 Aug 2014 13:46:08 +0000 (GMT)
+Received: from mail.dfki.de (lnv-104.sb.dfki.de [134.96.191.146])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(Client did not present a certificate)
+	by sea-mail.dfki.de (Sophos Email Appliance) with ESMTPS id
+	A52919D2D8_3E4D4A0F
+	for <yocto@yoctoproject.org>; Fri,  8 Aug 2014 13:46:08 +0000 (GMT)
+Received: from [10.250.3.118] (unknown [10.250.3.118])
+	(using TLSv1 with cipher DHE-RSA-AES128-SHA (128/128 bits))
+	(No client certificate requested)
+	by mail.dfki.de (Postfix) with ESMTPSA id 89F6231188
+	for <yocto@yoctoproject.org>; Fri,  8 Aug 2014 15:46:08 +0200 (CEST)
+Message-ID: <53E4D4A0.1030607@dfki.de>
+Date: Fri, 08 Aug 2014 15:46:08 +0200
+From: "Dr. Markus Eich" <markus.eich@dfki.de>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:31.0) Gecko/20100101 Thunderbird/31.0
 MIME-Version: 1.0
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10432:5.12.52, 1.0.27,
-	0.0.0000
-	definitions=2014-08-08_04:2014-08-08, 2014-08-08,
-	1970-01-01 signatures=0
-Subject: Re: Installing Application Development SDK hangs when using "screen"
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: No network at startup using core-image-minimal
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -62,66 +45,78 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 08 Aug 2014 13:21:32 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Fri, 08 Aug 2014 13:46:19 -0000
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-Hi Mark,
+Dear all,
 
-This is on Daisy branch. On Dylan branch I didn't experience such trouble. =
-It came up with Daisy.
+I am setting up my Odroid XU with yocto using the core-image-minimal 
+receipe. Almost done and I am able to boot the system and log in via 
+screen (UART), but..
 
-Regards
+The network is not present at start-up. When I do lsmod I just see "Not 
+tainted" and no modules are loaded.
 
-> -----Original Message-----
-> From: yocto-bounces@yoctoproject.org [mailto:yocto-
-> bounces@yoctoproject.org] On Behalf Of Mark Hatle
-> Sent: jeudi 7 ao=FBt 2014 12:19
-> To: yocto@yoctoproject.org
-> Subject: Re: [yocto] Installing Application Development SDK hangs when
-> using "screen"
->=20
-> On 8/7/14, 8:59 AM, Pierre Yves MORDRET wrote:
-> > Hi there,
-> >
-> > I have a tricky issue to sort out. I'm using a build server(Ubuntu 12.0=
-4 LTS)
-> for building my Yocto project and Application Dev SDK (bitbake -c
-> populate_sdk).
-> > On this build server I 'm used to using "screen" tool. Using "screen" a=
-nd
-> bitbake at the same time seems to have no issues.
-> >
-> > However when installing the App. Dev. SDK via self-installer, it hangs =
-every
-> time after a while. The culprit seems to be "screen".
-> > If I am IN a "screen" session OR I am OUT "screen" session but there is=
- a
-> running screen session that belongs to me, it hangs.
-> >
-> > Did someone experience such trouble ? Any ideas ?
->=20
-> I've seen some terminal failures in the past, but it's always been due to
-> overwriting in-place terminal files.
->=20
-> I've not seen anything on a new SDK installation.
->=20
-> Which branch of the Yocto Project are you using?
->=20
-> --Mark
->=20
-> > Thanks in advance
-> > Pierre-Yves
-> >
-> >
-> >
-> >
-> >
->=20
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+The module I need to load is the smsc95xx module. When I tried to load 
+the driver with "modpobe" it could not find the driver (although it is 
+in /lib/modules/3.4.98-custom/kernel/drivers/net/usb)
+I had to manually add it to /lib/modules/3.4.98-custom/modules.dep 
+(which was empty after the bitbake process in rootfs)
+
+So I added
+"kernel/drivers/net/usb/smsc95xx.ko: " to modules.dep.
+
+Then I could load it with modprobe. In order to load it at startup
+
+I created a /etc/modules with the content "smsc95xx". Now my question:
+
+Is there an easier (bitbake) way to make the modules load at startup 
+without editing configs on the target device? Am I missing something? 
+Does core-image-minimal not include network?
+
+Cheers,
+
+Markus
+
+
+
+
+-- 
+Dr.-Ing. Markus Eich
+
+  Senior Researcher
+  Marine Inspection Robotics
+  Space Robotics
+  
+  Besuchsadresse der Nebengeschäftstelle:
+  DFKI GmbH
+  Robotics Innovation Center
+  Robert-Hooke-Straße 5
+  28359 Bremen, Germany
+  
+  Postadresse der Hauptgeschäftsstelle Standort Bremen:
+  DFKI GmbH
+  Robotics Innovation Center
+  Robert-Hooke-Straße 1
+  28359 Bremen, Germany
+
+  Tel.:     +49 421 178 45-4105
+  Zentrale: +49 421 178 45-0
+  Fax:      +49 421 178 45-4150 (Faxe bitte namentlich kennzeichnen)
+  E-Mail:   markus.eich@dfki.de
+
+  Weitere Informationen: http://www.dfki.de/robotik
+  -----------------------------------------------------------------------
+  Deutsches Forschungszentrum fuer Kuenstliche Intelligenz GmbH
+  Firmensitz: Trippstadter Straße 122, D-67663 Kaiserslautern
+  Geschaeftsfuehrung: Prof. Dr. Dr. h.c. mult. Wolfgang Wahlster
+  (Vorsitzender) Dr. Walter Olthoff
+  Vorsitzender des Aufsichtsrats: Prof. Dr. h.c. Hans A. Aukes
+  Amtsgericht Kaiserslautern, HRB 2313
+  Sitz der Gesellschaft: Kaiserslautern (HRB 2313)
+  USt-Id.Nr.:    DE 148646973
+  Steuernummer:  19/673/0060/3
+  -----------------------------------------------------------------------
+
 
