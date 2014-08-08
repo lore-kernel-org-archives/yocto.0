@@ -1,46 +1,48 @@
-Return-Path: <nicolas.dechesne@linaro.org>
+Return-Path: <rpjday@crashcourse.ca>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 06CC1E0076B; Fri,  8 Aug 2014 01:19:44 -0700 (PDT)
+	id 66C33E00769; Fri,  8 Aug 2014 02:32:12 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [208.80.204.86 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.214.173 listed in list.dnswl.org]
-Received: from mail-ob0-f173.google.com (mail-ob0-f173.google.com
-	[209.85.214.173])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C6D16E00744
-	for <yocto@yoctoproject.org>; Fri,  8 Aug 2014 01:19:33 -0700 (PDT)
-Received: by mail-ob0-f173.google.com with SMTP id vb8so3806093obc.18
-	for <yocto@yoctoproject.org>; Fri, 08 Aug 2014 01:19:33 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc:content-type;
-	bh=+0FTZ2KgpPE5T4G9R6p10BxafLUx/vT6fXegpsXw8uI=;
-	b=GluiRvC+Fky8eOvtRVhNFJVTrCvcJl/J9+2KOwENrjDSoSWBNpRLyMP9+H+PPfTTFD
-	ZNmYWcKoOoJ0hR16f8W6Ky97Xhi+S/1GJuDUIBSScxSqmAdiZPPHNjMYXh7Why0Mi743
-	J3A+3GC6bgWDT76kp4Gm2P+YgTabXQGEyARiLlJLetC7rZOg0z5icQvu9HJEhlrUXFE3
-	MRRtRWMnQNPbEcksQdeZpl0/w36ZzC3PNCHJFEt2gE8menhVdvmIuYTwrTTtaL4ACOni
-	uIcrajcqwY6FyG/ymCZSRh185GKpk3CCk9UbXBbrYaYT0QJhhv6k89lnoiXgPSIDeINP
-	AHCA==
-X-Gm-Message-State: ALoCoQlJOJ5r2L8wrOzB4YptQIZxpTFTbXRohKeNBsh7GXDK8bBOMRhdiSs0CaHgzxlSpScDJAiY
-X-Received: by 10.182.80.33 with SMTP id o1mr1330918obx.78.1407485973048; Fri,
-	08 Aug 2014 01:19:33 -0700 (PDT)
+Received: from smtp486.redcondor.net (smtp486.redcondor.net [208.80.204.86])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5FD5BE00746
+	for <yocto@yoctoproject.org>; Fri,  8 Aug 2014 02:32:07 -0700 (PDT)
+Received: from astoria.ccjclearline.com ([64.235.106.9])
+	by smtp486.redcondor.net ({6695537a-536a-45f9-a249-877c85428649})
+	via TCP (outbound) with ESMTPS id 20140808093205712
+	for <yocto@yoctoproject.org>; Fri, 08 Aug 2014 09:32:05 +0000
+X-RC-FROM: <rpjday@crashcourse.ca>
+X-RC-RCPT: <yocto@yoctoproject.org>
+Received: from [99.240.204.5] (port=36146 helo=crashcourse.ca)
+	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES128-SHA:128)
+	(Exim 4.80) (envelope-from <rpjday@crashcourse.ca>)
+	id 1XFgWm-0002jd-A8
+	for yocto@yoctoproject.org; Fri, 08 Aug 2014 05:32:00 -0400
+Date: Fri, 8 Aug 2014 05:31:55 -0400 (EDT)
+From: "Robert P. J. Day" <rpjday@crashcourse.ca>
+X-X-Sender: rpjday@localhost
+To: Yocto discussion list <yocto@yoctoproject.org>
+Message-ID: <alpine.LFD.2.11.1408080529400.8380@localhost>
+User-Agent: Alpine 2.11 (LFD 23 2013-08-11)
 MIME-Version: 1.0
-Received: by 10.76.171.168 with HTTP; Fri, 8 Aug 2014 01:19:12 -0700 (PDT)
-In-Reply-To: <53E3B236.40604@ge.com>
-References: <53E3B236.40604@ge.com>
-From: Nicolas Dechesne <nicolas.dechesne@linaro.org>
-Date: Fri, 8 Aug 2014 10:19:12 +0200
-Message-ID: <CAP71WjyJPaKkWFRdwBZzMrpMa7tykjb_o4=jp24PTi29mkC==Q@mail.gmail.com>
-To: Renaud Barbier <renaud.barbier@ge.com>
-Cc: Yocto discussion list <yocto@yoctoproject.org>
-Subject: Re: Assembling images to build a NOR boot image
+X-AntiAbuse: This header was added to track abuse,
+	please include it with any abuse report
+X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - crashcourse.ca
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+X-MAG-OUTBOUND: ccj.redcondor.net@64.235.106.9/32
+Subject: [PATCH][yocto-docs] Ref manual, ch 15 -- minor link changes, grammar.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -52,43 +54,68 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 08 Aug 2014 08:19:44 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Fri, 08 Aug 2014 09:32:12 -0000
+Content-Type: TEXT/PLAIN; charset=US-ASCII
 
-On Thu, Aug 7, 2014 at 7:07 PM, Renaud Barbier <renaud.barbier@ge.com> wrote:
-> Hello,
-> I am working on the creation of a boot image for a NOR flash.
-> The image assembles a boot loader and a ubi image containing the kernel
-> and device tree.
->
-> So far I have created a build area to install the kernel and device tree
-> and used IMAGE_CMD_ubi to create the ubi image.
->
-> Then I have added a python function do_norbuild that puts together the
-> boot loader and ubi image and adds padding.
-> Using bitbake, I can create the NOR image as follows:
-> bitbake -c norbuild core-image
->
-> However,
-> "bitbake core-image" will not call the norbuild task.
->
-> I have been through quite a lot of code and documentation and cannot
-> figure out why the task is not called.
->
-> If you have any idea of what couldbe wrong, please le me know.
 
-you seem to have created a task, not just a Python function, since you
-can run it with -c norbuild. By default when running bitbake <recipe>,
-bitbake will run do_build task. so when you create your own custom
-task, you need to insert it into the task list, maybe you haven't done
-that?
+Signed-off-by: Robert P. J. Day <rpjday@crashcourse.ca>
 
-something like this should work in your case:
+---
 
-addtask norbuild before do_build after do_rootfs
+  i'm guessing that the OE wiki page for bitbake is the closest thing
+there is to an "official" bitbake web page, so i'll just use that as a
+replacement for all berlios.de links i run across, unless someone has
+a better suggestion.
 
-alternatively, instead of creating your own task, you could use the
-existing do_rootfs hook:
+diff --git a/documentation/ref-manual/resources.xml b/documentation/ref-manual/resources.xml
+index 686b48a..17b8e97 100644
+--- a/documentation/ref-manual/resources.xml
++++ b/documentation/ref-manual/resources.xml
+@@ -54,6 +54,8 @@
+                 announcements.</para></listitem>
+         </itemizedlist>
+     </para>
++    For more Yocto Project-related mailing lists, see the Yocto Project community mailing lists page
++    <ulink url='&YOCTO_HOME_URL;/tools-resources/community/mailing-lists'>here</ulink>.
+ </section>
 
-http://www.yoctoproject.org/docs/latest/ref-manual/ref-manual.html#var-ROOTFS_POSTPROCESS_COMMAND
+ <section id='resources-irc'>
+@@ -80,7 +82,7 @@
+                 Project.</para></listitem>
+             <listitem><para><emphasis>
+                 <ulink url='http://www.intel.com/'>Intel Corporation</ulink>:</emphasis>
+-                The company who acquired OpenedHand in 2008 and began
++                The company that acquired OpenedHand in 2008 and began
+                 development on the Yocto Project.</para></listitem>
+             <listitem><para><emphasis>
+                 <ulink url='&OE_HOME_URL;'>OpenEmbedded</ulink>:</emphasis>
+@@ -89,7 +91,7 @@
+                 Poky derives from and contributes back to the OpenEmbedded
+                 project.</para></listitem>
+             <listitem><para><emphasis>
+-                <ulink url='http://developer.berlios.de/projects/bitbake/'>
++                <ulink url='http://www.openembedded.org/wiki/BitBake'>
+                 BitBake</ulink>:</emphasis> The tool used to process metadata.</para></listitem>
+             <listitem><para><emphasis>
+                 <ulink url='&YOCTO_DOCS_BB_URL;'>BitBake User Manual</ulink>:</emphasis>
+@@ -116,7 +118,7 @@
+         pull requests,
+         or by submitting patches through email.
+         For information on how to do both as well as information on how
+-        to find out who is the maintainer for areas of code, see the
++        to identify the maintainer for each area of code, see the
+         "<ulink url='&YOCTO_DOCS_DEV_URL;#how-to-submit-a-change'>How to Submit a Change</ulink>"
+         section in the Yocto Project Development Manual.
+     </para>
+
+-- 
+
+========================================================================
+Robert P. J. Day                                 Ottawa, Ontario, CANADA
+                        http://crashcourse.ca
+
+Twitter:                                       http://twitter.com/rpjday
+LinkedIn:                               http://ca.linkedin.com/in/rpjday
+========================================================================
+
 
