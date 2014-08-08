@@ -1,48 +1,43 @@
-Return-Path: <rpjday@crashcourse.ca>
+Return-Path: <markus.eich@dfki.de>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 66C33E00769; Fri,  8 Aug 2014 02:32:12 -0700 (PDT)
+	id 808D0E00769; Fri,  8 Aug 2014 04:41:31 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,T_HK_NAME_DR
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-	http://www.dnswl.org/, no *      trust
-	*      [208.80.204.86 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
-Received: from smtp486.redcondor.net (smtp486.redcondor.net [208.80.204.86])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5FD5BE00746
-	for <yocto@yoctoproject.org>; Fri,  8 Aug 2014 02:32:07 -0700 (PDT)
-Received: from astoria.ccjclearline.com ([64.235.106.9])
-	by smtp486.redcondor.net ({6695537a-536a-45f9-a249-877c85428649})
-	via TCP (outbound) with ESMTPS id 20140808093205712
-	for <yocto@yoctoproject.org>; Fri, 08 Aug 2014 09:32:05 +0000
-X-RC-FROM: <rpjday@crashcourse.ca>
-X-RC-RCPT: <yocto@yoctoproject.org>
-Received: from [99.240.204.5] (port=36146 helo=crashcourse.ca)
-	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES128-SHA:128)
-	(Exim 4.80) (envelope-from <rpjday@crashcourse.ca>)
-	id 1XFgWm-0002jd-A8
-	for yocto@yoctoproject.org; Fri, 08 Aug 2014 05:32:00 -0400
-Date: Fri, 8 Aug 2014 05:31:55 -0400 (EDT)
-From: "Robert P. J. Day" <rpjday@crashcourse.ca>
-X-X-Sender: rpjday@localhost
-To: Yocto discussion list <yocto@yoctoproject.org>
-Message-ID: <alpine.LFD.2.11.1408080529400.8380@localhost>
-User-Agent: Alpine 2.11 (LFD 23 2013-08-11)
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+	*      [score: 0.0000] *  0.0 T_HK_NAME_DR T_HK_NAME_DR
+Received: from sea-mail.dfki.de (sea-mail.dfki.de [134.96.191.185])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 06552E00746
+	for <yocto@yoctoproject.org>; Fri,  8 Aug 2014 04:41:27 -0700 (PDT)
+Received: from sea-mail.dfki.de (localhost.localdomain [127.0.0.1])
+	by localhost (Email Security Appliance) with SMTP id
+	D3F079E767_3E4B764B
+	for <yocto@yoctoproject.org>; Fri,  8 Aug 2014 11:41:24 +0000 (GMT)
+Received: from mail.dfki.de (lnv-104.sb.dfki.de [134.96.191.146])
+	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(Client did not present a certificate)
+	by sea-mail.dfki.de (Sophos Email Appliance) with ESMTPS id
+	968079CF68_3E4B764F
+	for <yocto@yoctoproject.org>; Fri,  8 Aug 2014 11:41:24 +0000 (GMT)
+Received: from [10.250.3.118] (unknown [10.250.3.118])
+	(using TLSv1 with cipher DHE-RSA-AES128-SHA (128/128 bits))
+	(No client certificate requested)
+	by mail.dfki.de (Postfix) with ESMTPSA id 7B4093115B
+	for <yocto@yoctoproject.org>; Fri,  8 Aug 2014 13:41:24 +0200 (CEST)
+Message-ID: <53E4B764.4070702@dfki.de>
+Date: Fri, 08 Aug 2014 13:41:24 +0200
+From: "Dr. Markus Eich" <markus.eich@dfki.de>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:31.0) Gecko/20100101 Thunderbird/31.0
 MIME-Version: 1.0
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - crashcourse.ca
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-X-MAG-OUTBOUND: ccj.redcondor.net@64.235.106.9/32
-Subject: [PATCH][yocto-docs] Ref manual, ch 15 -- minor link changes, grammar.
+To: yocto@yoctoproject.org
+References: <53E25433.5020003@dfki.de>
+	<53E2572F.8020107@mlbassoc.com>	<53E3765A.10206@dfki.de>
+	<53E379A8.9060108@mlbassoc.com>
+In-Reply-To: <53E379A8.9060108@mlbassoc.com>
+Subject: Re: Building yocto for Odroid XU. No login after boot.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -54,68 +49,209 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 08 Aug 2014 09:32:12 -0000
-Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-List-Received-Date: Fri, 08 Aug 2014 11:41:31 -0000
+Content-Type: text/plain; charset=windows-1252; format=flowed
+Content-Transfer-Encoding: 8bit
+
+Problem solved. It was an error in the boot.ini (u-boot).
+
+Changing the SERIAL_CONSOLE or kernel config params (like 
+CONFIG_FHANDLE=y) did not change much. Problem was hidden in the boot 
+params.
+
+In the boot.ini I used
+
+"setenv bootcmd "fatload mmc 0:1 0x40008000 zImage; fatload mmc 0:1 
+0x42000000 uInitrd; bootz 0x40008000 0x42000000""
+
+which caused the problem (although uInitrd was present).
+
+I changed this line to
+
+"fatload mmc 0:1 0x40008000 zImage; bootz 0x40008000"
+
+and now I can log in (using systinitv or systemd, doesn't matter). Dunno 
+why, but maybe the solution helps somebody.
+
+Cheers,
+
+Markus
 
 
-Signed-off-by: Robert P. J. Day <rpjday@crashcourse.ca>
 
----
 
-  i'm guessing that the OE wiki page for bitbake is the closest thing
-there is to an "official" bitbake web page, so i'll just use that as a
-replacement for all berlios.de links i run across, unless someone has
-a better suggestion.
-
-diff --git a/documentation/ref-manual/resources.xml b/documentation/ref-manual/resources.xml
-index 686b48a..17b8e97 100644
---- a/documentation/ref-manual/resources.xml
-+++ b/documentation/ref-manual/resources.xml
-@@ -54,6 +54,8 @@
-                 announcements.</para></listitem>
-         </itemizedlist>
-     </para>
-+    For more Yocto Project-related mailing lists, see the Yocto Project community mailing lists page
-+    <ulink url='&YOCTO_HOME_URL;/tools-resources/community/mailing-lists'>here</ulink>.
- </section>
-
- <section id='resources-irc'>
-@@ -80,7 +82,7 @@
-                 Project.</para></listitem>
-             <listitem><para><emphasis>
-                 <ulink url='http://www.intel.com/'>Intel Corporation</ulink>:</emphasis>
--                The company who acquired OpenedHand in 2008 and began
-+                The company that acquired OpenedHand in 2008 and began
-                 development on the Yocto Project.</para></listitem>
-             <listitem><para><emphasis>
-                 <ulink url='&OE_HOME_URL;'>OpenEmbedded</ulink>:</emphasis>
-@@ -89,7 +91,7 @@
-                 Poky derives from and contributes back to the OpenEmbedded
-                 project.</para></listitem>
-             <listitem><para><emphasis>
--                <ulink url='http://developer.berlios.de/projects/bitbake/'>
-+                <ulink url='http://www.openembedded.org/wiki/BitBake'>
-                 BitBake</ulink>:</emphasis> The tool used to process metadata.</para></listitem>
-             <listitem><para><emphasis>
-                 <ulink url='&YOCTO_DOCS_BB_URL;'>BitBake User Manual</ulink>:</emphasis>
-@@ -116,7 +118,7 @@
-         pull requests,
-         or by submitting patches through email.
-         For information on how to do both as well as information on how
--        to find out who is the maintainer for areas of code, see the
-+        to identify the maintainer for each area of code, see the
-         "<ulink url='&YOCTO_DOCS_DEV_URL;#how-to-submit-a-change'>How to Submit a Change</ulink>"
-         section in the Yocto Project Development Manual.
-     </para>
+On 07.08.2014 15:05, Gary Thomas wrote:
+> On 2014-08-07 06:51, Dr. Markus Eich wrote:
+>> Hi Gary,
+>>
+>> unfortunately, this didn't help much. I have compiled the kernel with 
+>> the CONFIG_FHANDLE=y.
+>> I have also set all configs given in
+>>
+>> http://dominion.thruhere.net/koen/cms/recommended-kernel-config-options-for-a-modern-angstrom-system 
+>>
+>>
+>> To pinpoint the error down, I have tried the kernel build from Yocto 
+>> on a LINARO distro image. I have just replaced the kernel and the 
+>> modules build with yocto.
+>>
+>> And voila: I have a login promt. If the complete distro is build with 
+>> Yocto (the whole rootfs), I cannot log in.
+>>
+>> Has setting the SERIAL_CONSOLE = "115200 ttymxc0"  the same effect as 
+>> giving the console param for the u-boot?
+>>
+>> i.e. I have something like
+>>
+>> #setenv bootrootfs "console=tty1 console=ttySAC2,115200n8 
+>> root=UUID=e139ce78-9841-40fe-8823-96a304a09859 rootwait rw" ?
+>
+> Setting SERIAL_CONSOLE tells the build system (Yocto) what device to
+> use as the main console.  A login prompt will appear on this device
+> after bootup.  The 'console=XXX' settings to the kernel (from U-Boot)
+> tell the kernel where to send messages, especially the bootstrap 
+> messages.
+> These are subtly different uses but they should match.
+>
+> In your case, I think you should have
+>   SERIAL_CONSOLE = "115200 ttySAC2"
+>
+>> On 06.08.2014 18:26, Gary Thomas wrote:
+>>> On 2014-08-06 10:13, Dr. Markus Eich wrote:
+>>>> Dear all,
+>>>>
+>>>> I am trying to build an image for the Odroid XU, featuring the 
+>>>> Samsung Octa 5 CPU
+>>>>
+>>>> I managed to build everything needed (modules, kernel, u-boot, etc.)
+>>>>
+>>>> The recipes can be found at: 
+>>>> https://github.com/MarkusEich/meta-odroid.
+>>>>
+>>>> The last problem (hopefully last :-) I have is that I cannot log in 
+>>>> after the kernel is loaded via UART console
+>>>>
+>>>> Maybe init.d or systemd is not setup properly?
+>>>>
+>>>> I am using the console-image-minimal.bb from meta.
+>>>>
+>>>> Here is the last console output. It seems that the kernel is loaded 
+>>>> (including modules) and the rootfs is properly mounted. There is no 
+>>>> error, there is simply no login or shell.
+>>>>
+>>>> Any ideas why I cannot login? Its a bit poking in the dark ATM.
+>>>
+>>> If you are using systemd, make sure your kernel is built with 
+>>> CONFIG_FHANDLE=y
+>>> Without this, systemd won't start a session on a serial port.
+>>>
+>>> If you're using the old sysvinit, make sure your console settings
+>>> are correct.  These normally live in your ${MACHINE}.conf and look
+>>> something like this:
+>>>   SERIAL_CONSOLE = "115200 ttymxc0"
+>>>
+>>> You might also want to remove 'quiet' from your kernel bootargs,
+>>> at least until you get things settled a bit more.
+>>>
+>>>> ==
+>>>>
+>>>> [    5.722795] CPUFREQ of CA7  L5 : 962500 uV
+>>>> [    5.726871] CPUFREQ of CA7  L6 : 950000 uV
+>>>> [    5.730947] CPUFREQ of CA7  L7 : 950000 uV
+>>>> [    5.735025] CPUFREQ of CA7  L8 : 950000 uV
+>>>> [    5.739095] CPUFREQ of CA7  L9 : 950000 uV
+>>>> [    5.743146] CPUFREQ of CA7  L10 : 950000 uV
+>>>> [    5.747336] CPUFREQ of CA7  L11 : 950000 uV
+>>>> [    5.751583] CPUFREQ of CA15 L0 : 1362500 uV
+>>>> [    5.755663] CPUFREQ of CA15 L1 : 1362500 uV
+>>>> [    5.759826] CPUFREQ of CA15 L2 : 1225000 uV
+>>>> [    5.764012] CPUFREQ of CA15 L3 : 1175000 uV
+>>>> [    5.768129] CPUFREQ of CA15 L4 : 1137500 uV
+>>>> [    5.772313] CPUFREQ of CA15 L5 : 1112500 uV
+>>>> [    5.776474] CPUFREQ of CA15 L6 : 1075000 uV
+>>>> [    5.780638] CPUFREQ of CA15 L7 : 1037500 uV
+>>>> [    5.784800] CPUFREQ of CA15 L8 : 1000000 uV
+>>>> [    5.788962] CPUFREQ of CA15 L9 : 975000 uV
+>>>> [    5.793010] CPUFREQ of CA15 L10 : 937500 uV
+>>>> [    5.797201] CPUFREQ of CA15 L11 : 912500 uV
+>>>> [    5.801368] CPUFREQ of CA15 L12 : 900000 uV
+>>>> [    5.805526] CPUFREQ of CA15 L13 : 900000 uV
+>>>> [    5.809689] CPUFREQ of CA15 L14 : 900000 uV
+>>>> [    5.813822] CPUFREQ of CA15 L15 : 900000 uV
+>>>> [    5.818018] CPUFREQ of CA15 L16 : 900000 uV
+>>>> [    5.822173] CPUFREQ of CA15 L17 : 900000 uV
+>>>> [    5.826338] CPUFREQ of CA15 L18 : 900000 uV
+>>>> [    5.830583] fout_apll[900000000]
+>>>> [    5.836287] S divider change for DFS of MIF block
+>>>> [    5.984276] init_volt[975000], freq[800000]
+>>>> [    5.987809] ALSA device list:
+>>>> [    5.989956]   #0: Odroid-max98090
+>>>> [    5.993533] Freeing init memory: 256K
+>>>> [    5.996898] Write protecting the kernel text section c0008000 - 
+>>>> c09e2000
+>>>> [    6.003931] rodata_test: attempting to write to read-only section:
+>>>> [    6.009728] write to read-only section trapped, success
+>>>> [    6.055010] systemd-udevd[1299]: starting version 204
+>>>> [    6.350360] EXT4-fs (mmcblk0p2): recovery complete
+>>>> [    6.356827] EXT4-fs (mmcblk0p2): mounted filesystem with ordered 
+>>>> data mode. Opts: (null)
+>>>> INIT: version 2.88 booting
+>>>> Starting udev
+>>>> [    6.880415] udevd[1376]: starting version 182
+>>>> [    7.075108] EXT4-fs (mmcblk0p2): re-mounted. Opts: data=ordered
+>>>> Starting Bootlog daemon: bootlogd.
+>>>> [    7.369381] max77802_rtc_read_time: 114/7/6 16:10:3(3)
+>>>> INIT: Entering runlevel: 5
+>>>> Configuring network interfaces... ifconfig: SIOCGIFFLAGS: No such 
+>>>> device
+>>>> [    7.431705] max77802_rtc_read_time: 114/7/6 16:10:4(3)
+>>>> Starting syslogd/klogd: done
+>>>> Stopping Bootlog daemon: bootlogd.
+>>>>
+>>>> ==
+>>>>
+>>>>
+>>>>
+>>>>
+>>>
+>>
+>
 
 -- 
+Dr.-Ing. Markus Eich
 
-========================================================================
-Robert P. J. Day                                 Ottawa, Ontario, CANADA
-                        http://crashcourse.ca
+  Senior Researcher
+  Marine Inspection Robotics
+  Space Robotics
+  
+  Besuchsadresse der Nebengesch‰ftstelle:
+  DFKI GmbH
+  Robotics Innovation Center
+  Robert-Hooke-Straﬂe 5
+  28359 Bremen, Germany
+  
+  Postadresse der Hauptgesch‰ftsstelle Standort Bremen:
+  DFKI GmbH
+  Robotics Innovation Center
+  Robert-Hooke-Straﬂe 1
+  28359 Bremen, Germany
 
-Twitter:                                       http://twitter.com/rpjday
-LinkedIn:                               http://ca.linkedin.com/in/rpjday
-========================================================================
+  Tel.:     +49 421 178 45-4105
+  Zentrale: +49 421 178 45-0
+  Fax:      +49 421 178 45-4150 (Faxe bitte namentlich kennzeichnen)
+  E-Mail:   markus.eich@dfki.de
+
+  Weitere Informationen: http://www.dfki.de/robotik
+  -----------------------------------------------------------------------
+  Deutsches Forschungszentrum fuer Kuenstliche Intelligenz GmbH
+  Firmensitz: Trippstadter Straﬂe 122, D-67663 Kaiserslautern
+  Geschaeftsfuehrung: Prof. Dr. Dr. h.c. mult. Wolfgang Wahlster
+  (Vorsitzender) Dr. Walter Olthoff
+  Vorsitzender des Aufsichtsrats: Prof. Dr. h.c. Hans A. Aukes
+  Amtsgericht Kaiserslautern, HRB 2313
+  Sitz der Gesellschaft: Kaiserslautern (HRB 2313)
+  USt-Id.Nr.:    DE 148646973
+  Steuernummer:  19/673/0060/3
+  -----------------------------------------------------------------------
 
 
