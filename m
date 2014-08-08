@@ -1,62 +1,45 @@
-Return-Path: <rstreif@linuxfoundation.org>
+Return-Path: <ajlennon@dynamicdevices.co.uk>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 6A672E00543; Fri,  8 Aug 2014 08:53:03 -0700 (PDT)
+	id 86FBCE00543; Fri,  8 Aug 2014 08:58:09 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
 	version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.223.181 listed in list.dnswl.org]
-Received: from mail-ie0-f181.google.com (mail-ie0-f181.google.com
-	[209.85.223.181])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 29DFAE0034B
-	for <yocto@yoctoproject.org>; Fri,  8 Aug 2014 08:52:58 -0700 (PDT)
-Received: by mail-ie0-f181.google.com with SMTP id rp18so6381037iec.26
-	for <yocto@yoctoproject.org>; Fri, 08 Aug 2014 08:52:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=linuxfoundation.org; s=google;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type;
-	bh=FN5LzlrKIOthRGXZSUHSb2UO81AbigjX9qAldPkSZjo=;
-	b=JeG/oy1y8gelphNN+ZW7ynGStxP0C9Ii93fuGFL+A3R1maAk1m4W6fIaazvFvHPG1X
-	AUbhazZFpRTOaQUhvW3dLdkJvbFIxtK1YlWkvVTvR0uZMfNYbdcrLnyC9gA2Z7WrNVac
-	PuT6iKmMfcUXTTY0w45dZ4ER9enqEJs+uZyQ0=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:date
-	:message-id:subject:from:to:cc:content-type;
-	bh=FN5LzlrKIOthRGXZSUHSb2UO81AbigjX9qAldPkSZjo=;
-	b=PNxc6vuyhb4hSCoIkz/ZhnFKBr1NJUWdzt8BUQTHcOSPs5ZVfZe/EE3p4okGH0ZP97
-	5YEZSUed73TFWbOhbhRf0frTSkTcmGH01rKQ4DHa6K9ptAiYnlCQODeN7n/HT1Baa/DZ
-	BHM20LCj58bcOHZsqqjU9shcfFnhfRCe8INwSbN1j9Y4wVNcIswVb+j+NxdkxhT45dtW
-	9kFJQ0Wz+8YcL7pW3kjPNQC3qIBkEMTbUrdsB1cXUqAsfQwV+MNAX8wmiHn5EGFoUNeK
-	iehq+DXnn/ZTUkPxglc4gDYyM56XeuVOuIxv3GFzlelm8sPZCsPceicGSkKbSuYlkLhT
-	1Iqw==
-X-Gm-Message-State: ALoCoQmkZU899+2cGxGzzRc9akPkrkMYs+83uZTO5ovFZXhdnox4bfhpNTrEktzO8WQFef1bcvKu
+Received: from www.dynamicdevices.co.uk (www.dynamicdevices.co.uk
+	[89.200.136.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3C9ADE0034B
+	for <yocto@yoctoproject.org>; Fri,  8 Aug 2014 08:58:00 -0700 (PDT)
+Received: from localhost (localhost [127.0.0.1])
+	by www.dynamicdevices.co.uk (Postfix) with ESMTP id A14D127E052;
+	Fri,  8 Aug 2014 15:57:58 +0000 (UTC)
+X-Virus-Scanned: Debian amavisd-new at lennoab2.miniserver.com
+Received: from www.dynamicdevices.co.uk ([127.0.0.1])
+	by localhost (www.dynamicdevices.co.uk [127.0.0.1]) (amavisd-new,
+	port 10024)
+	with ESMTP id n3KH0-7Yd5f4; Fri,  8 Aug 2014 15:57:57 +0000 (UTC)
+Received: from [127.0.0.1] (cpc32-live22-2-0-cust59.17-2.cable.virginm.net
+	[82.36.253.60])
+	(using TLSv1 with cipher ECDHE-RSA-AES128-SHA (128/128 bits))
+	(No client certificate requested)
+	by www.dynamicdevices.co.uk (Postfix) with ESMTPSA id 90E1C27E031;
+	Fri,  8 Aug 2014 15:57:57 +0000 (UTC)
+Message-ID: <53E4F384.4050300@dynamicdevices.co.uk>
+Date: Fri, 08 Aug 2014 16:57:56 +0100
+From: Alex J Lennon <ajlennon@dynamicdevices.co.uk>
+User-Agent: Mozilla/5.0 (Windows NT 6.3; WOW64;
+	rv:24.0) Gecko/20100101 Thunderbird/24.6.0
 MIME-Version: 1.0
-X-Received: by 10.43.94.73 with SMTP id bx9mr12849499icc.19.1407513177334;
-	Fri, 08 Aug 2014 08:52:57 -0700 (PDT)
-Received: by 10.107.149.73 with HTTP; Fri, 8 Aug 2014 08:52:57 -0700 (PDT)
-Received: by 10.107.149.73 with HTTP; Fri, 8 Aug 2014 08:52:57 -0700 (PDT)
-In-Reply-To: <53E4D4A0.1030607@dfki.de>
-References: <53E4D4A0.1030607@dfki.de>
-Date: Fri, 8 Aug 2014 08:52:57 -0700
-Message-ID: <CA+gsK-qsK4=R-a-TnCizz8_+1sWJ68zmh-zeYAK2UyBehDjp0w@mail.gmail.com>
-From: Rudolf Streif <rstreif@linuxfoundation.org>
-To: "Dr. Markus Eich" <markus.eich@dfki.de>
-Cc: Yocto Discussion Mailing List <yocto@yoctoproject.org>
-Subject: Re: No network at startup using core-image-minimal
+To: Paul Eggleton <paul.eggleton@linux.intel.com>
+References: <1571948.CrPtZqAbFm@peggleto-mobl5.ger.corp.intel.com>
+	<53E3512E.5090008@dynamicdevices.co.uk>
+	<2374073.Q4LByM6bcI@peggleto-mobl5.ger.corp.intel.com>
+In-Reply-To: <2374073.Q4LByM6bcI@peggleto-mobl5.ger.corp.intel.com>
+X-Enigmail-Version: 1.6
+Cc: yocto@yoctoproject.org, openembedded-core@lists.openembedded.org
+Subject: Re: RFC: Improving the developer workflow
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -68,197 +51,68 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 08 Aug 2014 15:53:03 -0000
-Content-Type: multipart/alternative; boundary=bcaec5186f20f3bd90050020328c
+X-List-Received-Date: Fri, 08 Aug 2014 15:58:09 -0000
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: 7bit
 
---bcaec5186f20f3bd90050020328c
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-
-Hi Markus,
-
-Please try core-image-base instead of core-image-minimal. That should
-provide you with the necessary network support.
-
-Best regards,
-Rudi
-On Aug 8, 2014 6:46 AM, "Dr. Markus Eich" <markus.eich@dfki.de> wrote:
-
-> Dear all,
+Hi Paul,
+> Personally with how fragile package management can end up being, I'm convinced 
+> that full-image updates are the way to go for a lot of cases, but ideally with 
+> some intelligence so that you only ship the changes (at a filesystem level 
+> rather than a package or file level). This ensures that an upgraded image on 
+> one device ends up exactly identical to any other device including a newly 
+> deployed one. Of course it does assume that you have a read-only rootfs and 
+> keep your configuration data / logs / other writeable data on a separate 
+> partition or storage medium. However, beyond improvements to support for 
+> having a read-only rootfs we haven't really achieved anything in terms of out-
+> of-the-box support for this, mainly due to lack of resources.
 >
-> I am setting up my Odroid XU with yocto using the core-image-minimal
-> receipe. Almost done and I am able to boot the system and log in via scre=
-en
-> (UART), but..
+> However, whilst I haven't had a chance to look at it closely, there has been 
+> some work on this within the community:
 >
-> The network is not present at start-up. When I do lsmod I just see "Not
-> tainted" and no modules are loaded.
->
-> The module I need to load is the smsc95xx module. When I tried to load th=
-e
-> driver with "modpobe" it could not find the driver (although it is in
-> /lib/modules/3.4.98-custom/kernel/drivers/net/usb)
-> I had to manually add it to /lib/modules/3.4.98-custom/modules.dep (which
-> was empty after the bitbake process in rootfs)
->
-> So I added
-> "kernel/drivers/net/usb/smsc95xx.ko: " to modules.dep.
->
-> Then I could load it with modprobe. In order to load it at startup
->
-> I created a /etc/modules with the content "smsc95xx". Now my question:
->
-> Is there an easier (bitbake) way to make the modules load at startup
-> without editing configs on the target device? Am I missing something? Doe=
-s
-> core-image-minimal not include network?
->
-> Cheers,
->
-> Markus
->
->
->
->
-> --
-> Dr.-Ing. Markus Eich
->
->  Senior Researcher
->  Marine Inspection Robotics
->  Space Robotics
->   Besuchsadresse der Nebengesch=C3=A4ftstelle:
->  DFKI GmbH
->  Robotics Innovation Center
->  Robert-Hooke-Stra=C3=9Fe 5
->  28359 Bremen, Germany
->   Postadresse der Hauptgesch=C3=A4ftsstelle Standort Bremen:
->  DFKI GmbH
->  Robotics Innovation Center
->  Robert-Hooke-Stra=C3=9Fe 1
->  28359 Bremen, Germany
->
->  Tel.:     +49 421 178 45-4105
->  Zentrale: +49 421 178 45-0
->  Fax:      +49 421 178 45-4150 (Faxe bitte namentlich kennzeichnen)
->  E-Mail:   markus.eich@dfki.de
->
->  Weitere Informationen: http://www.dfki.de/robotik
->  -----------------------------------------------------------------------
->  Deutsches Forschungszentrum fuer Kuenstliche Intelligenz GmbH
->  Firmensitz: Trippstadter Stra=C3=9Fe 122, D-67663 Kaiserslautern
->  Geschaeftsfuehrung: Prof. Dr. Dr. h.c. mult. Wolfgang Wahlster
->  (Vorsitzender) Dr. Walter Olthoff
->  Vorsitzender des Aufsichtsrats: Prof. Dr. h.c. Hans A. Aukes
->  Amtsgericht Kaiserslautern, HRB 2313
->  Sitz der Gesellschaft: Kaiserslautern (HRB 2313)
->  USt-Id.Nr.:    DE 148646973
->  Steuernummer:  19/673/0060/3
->  -----------------------------------------------------------------------
->
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+> http://sbabic.github.io/swupdate/swupdate.html
+> https://github.com/sbabic/swupdate
+> https://github.com/sbabic/meta-swupdate/
+>  
 >
 
---bcaec5186f20f3bd90050020328c
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+I had a quick look at this. It's interesting. If I am reading this
+correctly it's based on the old
 
-<p dir=3D"ltr">Hi Markus, </p>
-<p dir=3D"ltr">Please try core-image-base instead of core-image-minimal. Th=
-at should provide you with the necessary network support. </p>
-<p dir=3D"ltr">Best regards, <br>
-Rudi</p>
-<div class=3D"gmail_quote">On Aug 8, 2014 6:46 AM, &quot;Dr. Markus Eich&qu=
-ot; &lt;<a href=3D"mailto:markus.eich@dfki.de">markus.eich@dfki.de</a>&gt; =
-wrote:<br type=3D"attribution"><blockquote class=3D"gmail_quote" style=3D"m=
-argin:0 0 0 .8ex;border-left:1px #ccc solid;padding-left:1ex">
-Dear all,<br>
-<br>
-I am setting up my Odroid XU with yocto using the core-image-minimal receip=
-e. Almost done and I am able to boot the system and log in via screen (UART=
-), but..<br>
-<br>
-The network is not present at start-up. When I do lsmod I just see &quot;No=
-t tainted&quot; and no modules are loaded.<br>
-<br>
-The module I need to load is the smsc95xx module. When I tried to load the =
-driver with &quot;modpobe&quot; it could not find the driver (although it i=
-s in /lib/modules/3.4.98-custom/<u></u>kernel/drivers/net/usb)<br>
-I had to manually add it to /lib/modules/3.4.98-custom/<u></u>modules.dep (=
-which was empty after the bitbake process in rootfs)<br>
-<br>
-So I added<br>
-&quot;kernel/drivers/net/usb/<u></u>smsc95xx.ko: &quot; to modules.dep.<br>
-<br>
-Then I could load it with modprobe. In order to load it at startup<br>
-<br>
-I created a /etc/modules with the content &quot;smsc95xx&quot;. Now my ques=
-tion:<br>
-<br>
-Is there an easier (bitbake) way to make the modules load at startup withou=
-t editing configs on the target device? Am I missing something? Does core-i=
-mage-minimal not include network?<br>
-<br>
-Cheers,<br>
-<br>
-Markus<br>
-<br>
-<br>
-<br>
-<br>
--- <br>
-Dr.-Ing. Markus Eich<br>
-<br>
-=C2=A0Senior Researcher<br>
-=C2=A0Marine Inspection Robotics<br>
-=C2=A0Space Robotics<br>
-=C2=A0 Besuchsadresse der Nebengesch=C3=A4ftstelle:<br>
-=C2=A0DFKI GmbH<br>
-=C2=A0Robotics Innovation Center<br>
-=C2=A0Robert-Hooke-Stra=C3=9Fe 5<br>
-=C2=A028359 Bremen, Germany<br>
-=C2=A0 Postadresse der Hauptgesch=C3=A4ftsstelle Standort Bremen:<br>
-=C2=A0DFKI GmbH<br>
-=C2=A0Robotics Innovation Center<br>
-=C2=A0Robert-Hooke-Stra=C3=9Fe 1<br>
-=C2=A028359 Bremen, Germany<br>
-<br>
-=C2=A0Tel.: =C2=A0 =C2=A0 <a href=3D"tel:%2B49%20421%20178%2045-4105" value=
-=3D"+49421178454105" target=3D"_blank">+49 421 178 45-4105</a><br>
-=C2=A0Zentrale: <a href=3D"tel:%2B49%20421%20178%2045-0" value=3D"+49421178=
-450" target=3D"_blank">+49 421 178 45-0</a><br>
-=C2=A0Fax: =C2=A0 =C2=A0 =C2=A0<a href=3D"tel:%2B49%20421%20178%2045-4150" =
-value=3D"+49421178454150" target=3D"_blank">+49 421 178 45-4150</a> (Faxe b=
-itte namentlich kennzeichnen)<br>
-=C2=A0E-Mail: =C2=A0 <a href=3D"mailto:markus.eich@dfki.de" target=3D"_blan=
-k">markus.eich@dfki.de</a><br>
-<br>
-=C2=A0Weitere Informationen: <a href=3D"http://www.dfki.de/robotik" target=
-=3D"_blank">http://www.dfki.de/robotik</a><br>
-=C2=A0------------------------------<u></u>------------------------------<u=
-></u>-----------<br>
-=C2=A0Deutsches Forschungszentrum fuer Kuenstliche Intelligenz GmbH<br>
-=C2=A0Firmensitz: Trippstadter Stra=C3=9Fe 122, D-67663 Kaiserslautern<br>
-=C2=A0Geschaeftsfuehrung: Prof. Dr. Dr. h.c. mult. Wolfgang Wahlster<br>
-=C2=A0(Vorsitzender) Dr. Walter Olthoff<br>
-=C2=A0Vorsitzender des Aufsichtsrats: Prof. Dr. h.c. Hans A. Aukes<br>
-=C2=A0Amtsgericht Kaiserslautern, HRB 2313<br>
-=C2=A0Sitz der Gesellschaft: Kaiserslautern (HRB 2313)<br>
-=C2=A0USt-Id.Nr.: =C2=A0 =C2=A0DE 148646973<br>
-=C2=A0Steuernummer: =C2=A019/673/0060/3<br>
-=C2=A0------------------------------<u></u>------------------------------<u=
-></u>-----------<br>
-<br>
--- <br>
-______________________________<u></u>_________________<br>
-yocto mailing list<br>
-<a href=3D"mailto:yocto@yoctoproject.org" target=3D"_blank">yocto@yoctoproj=
-ect.org</a><br>
-<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" target=3D"_blank"=
->https://lists.yoctoproject.<u></u>org/listinfo/yocto</a><br>
-</blockquote></div>
+-> Bootloader runs Partition A
+-> Update Partition B, set Bootloader to run Partition B
+->   On failure stay on partition A and retry update.
+-> Bootloader runs Partition B
+-> Update Partition A, set Bootloader to run Partition A
+->  etc.
 
---bcaec5186f20f3bd90050020328c--
+We've done this type of thing before and it works well. Of course the
+drawback is the amount
+of flash you need to achieve it but it is a good robust system.
+
+I'd be interested to see how this could work with filesystem deltas say.
+I don't _think_ that is
+documented here?
+
+...
+
+Thinking a little further what would also really interest me would be to
+consider using the
+transactionality of the underlying file-system or block-management layer
+for the update process.
+
+Given nowadays journalling and log-structure file-systems are already
+designed to fail-back when
+file/meta-data modifications are interrupted surely we should be able to
+start a macro-transaction
+point at the start of the  partition update,  and if that update doesn't
+complete with a macro-commit
+then the f/s layer should be able to automatically roll itself back?
+Perhaps the same could be done at
+a block management layer?
+
+Cheers,
+
+Alex
+
+
