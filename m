@@ -1,41 +1,41 @@
-Return-Path: <mark.hatle@windriver.com>
+Return-Path: <mike.looijmans@topic.nl>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 0DF11E00572; Fri,  8 Aug 2014 07:09:22 -0700 (PDT)
+	id 4FD2FE00769; Fri,  8 Aug 2014 06:03:48 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [147.11.1.11 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+	autolearn=unavailable version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [194.134.42.53 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B4BF3E004E0
-	for <yocto@yoctoproject.org>; Fri,  8 Aug 2014 07:09:19 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail.windriver.com (8.14.9/8.14.5) with ESMTP id s78E9EX4001906
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Fri, 8 Aug 2014 07:09:14 -0700 (PDT)
-Received: from Marks-MacBook-Pro.local (172.25.36.232) by
-	ALA-HCA.corp.ad.wrs.com (147.11.189.50) with Microsoft SMTP Server id
-	14.3.174.1; Fri, 8 Aug 2014 07:09:13 -0700
-Message-ID: <53E4DA09.9080307@windriver.com>
-Date: Fri, 8 Aug 2014 09:09:13 -0500
-From: Mark Hatle <mark.hatle@windriver.com>
-Organization: Wind River Systems
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.9;
+X-Greylist: delayed 425 seconds by postgrey-1.32 at yocto-www;
+	Fri, 08 Aug 2014 06:03:45 PDT
+Received: from smtp08.online.nl (smtp08.online.nl [194.134.42.53])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DCC27E00746
+	for <yocto@yoctoproject.org>; Fri,  8 Aug 2014 06:03:45 -0700 (PDT)
+Received: from smtp08.online.nl (localhost [127.0.0.1])
+	by smtp08.online.nl (Postfix) with ESMTP id BD183663A1;
+	Fri,  8 Aug 2014 14:56:37 +0200 (CEST)
+Received: from [192.168.1.6] (s55969068.adsl.online.nl [85.150.144.104])
+	by smtp08.online.nl (Postfix) with ESMTP;
+	Fri,  8 Aug 2014 14:56:37 +0200 (CEST)
+Message-ID: <53E4C905.5020200@topic.nl>
+Date: Fri, 08 Aug 2014 14:56:37 +0200
+From: Mike Looijmans <mike.looijmans@topic.nl>
+Organization: Topic
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
 	rv:24.0) Gecko/20100101 Thunderbird/24.6.0
 MIME-Version: 1.0
-To: Pierre Yves MORDRET <pierre-yves.mordret@st.com>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>
-References: <888B7DC5D4899F46A9721989283666969C1E56EE1B@SAFEX1MAIL5.st.com>
-	<53E3A6DE.7010500@windriver.com>
-	<888B7DC5D4899F46A9721989283666969C1E56EE49@SAFEX1MAIL5.st.com>
-In-Reply-To: <888B7DC5D4899F46A9721989283666969C1E56EE49@SAFEX1MAIL5.st.com>
-Subject: Re: Installing Application Development SDK hangs when using "screen"
+To: Paul Eggleton <paul.eggleton@linux.intel.com>, 
+	openembedded-core@lists.openembedded.org, yocto@yoctoproject.org
+References: <1571948.CrPtZqAbFm@peggleto-mobl5.ger.corp.intel.com>
+In-Reply-To: <1571948.CrPtZqAbFm@peggleto-mobl5.ger.corp.intel.com>
+X-Online-Scanned: by Cloudmark authority (on smtp08.online.nl)
+X-Mailman-Approved-At: Fri, 08 Aug 2014 08:34:55 -0700
+Subject: Re: [OE-core] RFC: Improving the developer workflow
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -47,79 +47,66 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 08 Aug 2014 14:09:22 -0000
-Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Fri, 08 Aug 2014 13:03:48 -0000
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On 8/8/14, 8:21 AM, Pierre Yves MORDRET wrote:
-> Hi Mark,
+On 08/07/2014 11:10 AM, Paul Eggleton wrote:
+...
+
+> * Provide tools to allow modifying software for which a recipe already exists.
+> If the user has an external source tree we use that, otherwise we can fetch
+> the source, apply any patches and place the result in an external source tree,
+> possibly managed with git. (It's fair to say this is perhaps less of an
+> application developer type task, but still an important one and fairly simple
+> to add once we have the rest of the tooling.)
+
+This has been the most awkard of all OE uses so far. It hasn't improved 
+over the years either.
+
+In general, people (both external customers and internal colleages) have 
+no objection whatsoever to cloning the OE repos and running bitbake 
+themselves.
+
+I haven't been able to come up with a good solution. I always try to 
+test and develop my software on a regular PC, but for some things (e.g. 
+access to the FPGA, or optimizing inner loop code with NEON 
+instructions) you can't do without actual on-target deployment.
+
+So I usually end up with a mix of manual commands and special-purpose 
+shell scripts that work for just one package. For small packages, I tend 
+to commit locally, and then re-run the package up to the "install" 
+phase. For big things that take several minutes to compile I'm usually 
+manually moving files around and struggling to keep the files in my 
+repository and what the build will see in sync.
+
+Any small step forward in this area will be a giant leap for the 
+developers...
+
 >
-> This is on Daisy branch. On Dylan branch I didn't experience such trouble. It came up with Daisy.
+> * Provide tools to get your changes onto the target in order to test them.
+> With access to the build system, rebuilding the image with changes to a target
+> component is fairly trivial; but we can go further - assuming a network
+> connection to the target is available we can provide tools to simply deploy
+> the files installed by the changed recipe onto the running device (using an
+> "sstate-like" mechanism - remove the old list of files and then install the new
+> ones).
 
-(I haven't used Daisy very much... but...)
+If it's possible to run the "install" target, this may be as simple as 
+making a tar from the installed "image" directory and unpack it on the 
+target.
+I tend to do this in a one-liner if I have ssh access:
 
-There was a bug in the master version of the SDK installer that was displaying 
-special characters to the screen in some instances.  It caused what appeared to 
-be a lockup on my screen for a while, but it was actually just taking a very 
-long time to complete the operation, then a 'return' would allow the prompt to 
-come back.
+tar -cf - -C tmp.../${P}/image . | ssh target tar xf - -C /
 
-This was recently fixed by a commit from Richard 
-2d1660112e54653f7bb763939d0416472c49fe01
+I think that covers 99% of the use cases I can come up with...
 
-If you can, cherry-pick that commit from master into your Daisy branch and try 
-again.  If this works, we should get that submitted to Daisy.
+> * Provide tools to get your changes to the code or the metadata into a form
+> that you can submit somewhere.
 
---Mark
+If you have git in the "modify recipe" stage, this should be a breeze. 
+Just use git push/bundle/send-email/format-patch/... to send them where 
+they need to go.
 
-
-> Regards
->
->> -----Original Message-----
->> From: yocto-bounces@yoctoproject.org [mailto:yocto-
->> bounces@yoctoproject.org] On Behalf Of Mark Hatle
->> Sent: jeudi 7 août 2014 12:19
->> To: yocto@yoctoproject.org
->> Subject: Re: [yocto] Installing Application Development SDK hangs when
->> using "screen"
->>
->> On 8/7/14, 8:59 AM, Pierre Yves MORDRET wrote:
->>> Hi there,
->>>
->>> I have a tricky issue to sort out. I'm using a build server(Ubuntu 12.04 LTS)
->> for building my Yocto project and Application Dev SDK (bitbake -c
->> populate_sdk).
->>> On this build server I 'm used to using "screen" tool. Using "screen" and
->> bitbake at the same time seems to have no issues.
->>>
->>> However when installing the App. Dev. SDK via self-installer, it hangs every
->> time after a while. The culprit seems to be "screen".
->>> If I am IN a "screen" session OR I am OUT "screen" session but there is a
->> running screen session that belongs to me, it hangs.
->>>
->>> Did someone experience such trouble ? Any ideas ?
->>
->> I've seen some terminal failures in the past, but it's always been due to
->> overwriting in-place terminal files.
->>
->> I've not seen anything on a new SDK installation.
->>
->> Which branch of the Yocto Project are you using?
->>
->> --Mark
->>
->>> Thanks in advance
->>> Pierre-Yves
->>>
->>>
->>>
->>>
->>>
->>
->> --
->> _______________________________________________
->> yocto mailing list
->> yocto@yoctoproject.org
->> https://lists.yoctoproject.org/listinfo/yocto
-
+Mike.
 
