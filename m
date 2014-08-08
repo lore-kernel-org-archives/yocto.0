@@ -1,43 +1,56 @@
-Return-Path: <markus.eich@dfki.de>
+Return-Path: <pierre-yves.mordret@st.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 808D0E00769; Fri,  8 Aug 2014 04:41:31 -0700 (PDT)
+	id DE4AFE0076B; Fri,  8 Aug 2014 06:21:32 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,T_HK_NAME_DR
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
 	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000] *  0.0 T_HK_NAME_DR T_HK_NAME_DR
-Received: from sea-mail.dfki.de (sea-mail.dfki.de [134.96.191.185])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 06552E00746
-	for <yocto@yoctoproject.org>; Fri,  8 Aug 2014 04:41:27 -0700 (PDT)
-Received: from sea-mail.dfki.de (localhost.localdomain [127.0.0.1])
-	by localhost (Email Security Appliance) with SMTP id
-	D3F079E767_3E4B764B
-	for <yocto@yoctoproject.org>; Fri,  8 Aug 2014 11:41:24 +0000 (GMT)
-Received: from mail.dfki.de (lnv-104.sb.dfki.de [134.96.191.146])
-	(using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-	(Client did not present a certificate)
-	by sea-mail.dfki.de (Sophos Email Appliance) with ESMTPS id
-	968079CF68_3E4B764F
-	for <yocto@yoctoproject.org>; Fri,  8 Aug 2014 11:41:24 +0000 (GMT)
-Received: from [10.250.3.118] (unknown [10.250.3.118])
-	(using TLSv1 with cipher DHE-RSA-AES128-SHA (128/128 bits))
-	(No client certificate requested)
-	by mail.dfki.de (Postfix) with ESMTPSA id 7B4093115B
-	for <yocto@yoctoproject.org>; Fri,  8 Aug 2014 13:41:24 +0200 (CEST)
-Message-ID: <53E4B764.4070702@dfki.de>
-Date: Fri, 08 Aug 2014 13:41:24 +0200
-From: "Dr. Markus Eich" <markus.eich@dfki.de>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:31.0) Gecko/20100101 Thunderbird/31.0
+	*      [score: 0.0000]
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [62.209.51.94 listed in list.dnswl.org]
+Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com
+	[62.209.51.94])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 43DB6E0074B
+	for <yocto@yoctoproject.org>; Fri,  8 Aug 2014 06:21:22 -0700 (PDT)
+Received: from pps.filterd (m0046670.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.14.5/8.14.5) with SMTP id
+	s78DKBL5001914; Fri, 8 Aug 2014 15:21:18 +0200
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+	by mx07-00178001.pphosted.com with ESMTP id 1nmtg8hb0a-1
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-SHA bits=256 verify=NOT);
+	Fri, 08 Aug 2014 15:21:18 +0200
+Received: from zeta.dmz-eu.st.com (zeta.dmz-eu.st.com [164.129.230.9])
+	by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 7DE1131;
+	Fri,  8 Aug 2014 13:21:12 +0000 (GMT)
+Received: from Webmail-eu.st.com (safex1hubcas4.st.com [10.75.90.69])
+	by zeta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 0CFC7166DF;
+	Fri,  8 Aug 2014 13:21:16 +0000 (GMT)
+Received: from SAFEX1MAIL5.st.com ([10.75.90.28]) by Safex1hubcas4.st.com
+	([10.75.90.69]) with mapi; Fri, 8 Aug 2014 15:21:15 +0200
+From: Pierre Yves MORDRET <pierre-yves.mordret@st.com>
+To: Mark Hatle <mark.hatle@windriver.com>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Date: Fri, 8 Aug 2014 15:21:14 +0200
+Thread-Topic: [yocto] Installing Application Development SDK hangs when
+	using "screen"
+Thread-Index: Ac+yW1MhYheLfc4MSLi/mmwDXOG3yAAsAZag
+Message-ID: <888B7DC5D4899F46A9721989283666969C1E56EE49@SAFEX1MAIL5.st.com>
+References: <888B7DC5D4899F46A9721989283666969C1E56EE1B@SAFEX1MAIL5.st.com>
+	<53E3A6DE.7010500@windriver.com>
+In-Reply-To: <53E3A6DE.7010500@windriver.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+acceptlanguage: en-US
 MIME-Version: 1.0
-To: yocto@yoctoproject.org
-References: <53E25433.5020003@dfki.de>
-	<53E2572F.8020107@mlbassoc.com>	<53E3765A.10206@dfki.de>
-	<53E379A8.9060108@mlbassoc.com>
-In-Reply-To: <53E379A8.9060108@mlbassoc.com>
-Subject: Re: Building yocto for Odroid XU. No login after boot.
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10432:5.12.52, 1.0.27,
+	0.0.0000
+	definitions=2014-08-08_04:2014-08-08, 2014-08-08,
+	1970-01-01 signatures=0
+Subject: Re: Installing Application Development SDK hangs when using "screen"
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -49,209 +62,66 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 08 Aug 2014 11:41:31 -0000
-Content-Type: text/plain; charset=windows-1252; format=flowed
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Fri, 08 Aug 2014 13:21:32 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 
-Problem solved. It was an error in the boot.ini (u-boot).
+Hi Mark,
 
-Changing the SERIAL_CONSOLE or kernel config params (like 
-CONFIG_FHANDLE=y) did not change much. Problem was hidden in the boot 
-params.
+This is on Daisy branch. On Dylan branch I didn't experience such trouble. =
+It came up with Daisy.
 
-In the boot.ini I used
+Regards
 
-"setenv bootcmd "fatload mmc 0:1 0x40008000 zImage; fatload mmc 0:1 
-0x42000000 uInitrd; bootz 0x40008000 0x42000000""
-
-which caused the problem (although uInitrd was present).
-
-I changed this line to
-
-"fatload mmc 0:1 0x40008000 zImage; bootz 0x40008000"
-
-and now I can log in (using systinitv or systemd, doesn't matter). Dunno 
-why, but maybe the solution helps somebody.
-
-Cheers,
-
-Markus
-
-
-
-
-On 07.08.2014 15:05, Gary Thomas wrote:
-> On 2014-08-07 06:51, Dr. Markus Eich wrote:
->> Hi Gary,
->>
->> unfortunately, this didn't help much. I have compiled the kernel with 
->> the CONFIG_FHANDLE=y.
->> I have also set all configs given in
->>
->> http://dominion.thruhere.net/koen/cms/recommended-kernel-config-options-for-a-modern-angstrom-system 
->>
->>
->> To pinpoint the error down, I have tried the kernel build from Yocto 
->> on a LINARO distro image. I have just replaced the kernel and the 
->> modules build with yocto.
->>
->> And voila: I have a login promt. If the complete distro is build with 
->> Yocto (the whole rootfs), I cannot log in.
->>
->> Has setting the SERIAL_CONSOLE = "115200 ttymxc0"  the same effect as 
->> giving the console param for the u-boot?
->>
->> i.e. I have something like
->>
->> #setenv bootrootfs "console=tty1 console=ttySAC2,115200n8 
->> root=UUID=e139ce78-9841-40fe-8823-96a304a09859 rootwait rw" ?
->
-> Setting SERIAL_CONSOLE tells the build system (Yocto) what device to
-> use as the main console.  A login prompt will appear on this device
-> after bootup.  The 'console=XXX' settings to the kernel (from U-Boot)
-> tell the kernel where to send messages, especially the bootstrap 
-> messages.
-> These are subtly different uses but they should match.
->
-> In your case, I think you should have
->   SERIAL_CONSOLE = "115200 ttySAC2"
->
->> On 06.08.2014 18:26, Gary Thomas wrote:
->>> On 2014-08-06 10:13, Dr. Markus Eich wrote:
->>>> Dear all,
->>>>
->>>> I am trying to build an image for the Odroid XU, featuring the 
->>>> Samsung Octa 5 CPU
->>>>
->>>> I managed to build everything needed (modules, kernel, u-boot, etc.)
->>>>
->>>> The recipes can be found at: 
->>>> https://github.com/MarkusEich/meta-odroid.
->>>>
->>>> The last problem (hopefully last :-) I have is that I cannot log in 
->>>> after the kernel is loaded via UART console
->>>>
->>>> Maybe init.d or systemd is not setup properly?
->>>>
->>>> I am using the console-image-minimal.bb from meta.
->>>>
->>>> Here is the last console output. It seems that the kernel is loaded 
->>>> (including modules) and the rootfs is properly mounted. There is no 
->>>> error, there is simply no login or shell.
->>>>
->>>> Any ideas why I cannot login? Its a bit poking in the dark ATM.
->>>
->>> If you are using systemd, make sure your kernel is built with 
->>> CONFIG_FHANDLE=y
->>> Without this, systemd won't start a session on a serial port.
->>>
->>> If you're using the old sysvinit, make sure your console settings
->>> are correct.  These normally live in your ${MACHINE}.conf and look
->>> something like this:
->>>   SERIAL_CONSOLE = "115200 ttymxc0"
->>>
->>> You might also want to remove 'quiet' from your kernel bootargs,
->>> at least until you get things settled a bit more.
->>>
->>>> ==
->>>>
->>>> [    5.722795] CPUFREQ of CA7  L5 : 962500 uV
->>>> [    5.726871] CPUFREQ of CA7  L6 : 950000 uV
->>>> [    5.730947] CPUFREQ of CA7  L7 : 950000 uV
->>>> [    5.735025] CPUFREQ of CA7  L8 : 950000 uV
->>>> [    5.739095] CPUFREQ of CA7  L9 : 950000 uV
->>>> [    5.743146] CPUFREQ of CA7  L10 : 950000 uV
->>>> [    5.747336] CPUFREQ of CA7  L11 : 950000 uV
->>>> [    5.751583] CPUFREQ of CA15 L0 : 1362500 uV
->>>> [    5.755663] CPUFREQ of CA15 L1 : 1362500 uV
->>>> [    5.759826] CPUFREQ of CA15 L2 : 1225000 uV
->>>> [    5.764012] CPUFREQ of CA15 L3 : 1175000 uV
->>>> [    5.768129] CPUFREQ of CA15 L4 : 1137500 uV
->>>> [    5.772313] CPUFREQ of CA15 L5 : 1112500 uV
->>>> [    5.776474] CPUFREQ of CA15 L6 : 1075000 uV
->>>> [    5.780638] CPUFREQ of CA15 L7 : 1037500 uV
->>>> [    5.784800] CPUFREQ of CA15 L8 : 1000000 uV
->>>> [    5.788962] CPUFREQ of CA15 L9 : 975000 uV
->>>> [    5.793010] CPUFREQ of CA15 L10 : 937500 uV
->>>> [    5.797201] CPUFREQ of CA15 L11 : 912500 uV
->>>> [    5.801368] CPUFREQ of CA15 L12 : 900000 uV
->>>> [    5.805526] CPUFREQ of CA15 L13 : 900000 uV
->>>> [    5.809689] CPUFREQ of CA15 L14 : 900000 uV
->>>> [    5.813822] CPUFREQ of CA15 L15 : 900000 uV
->>>> [    5.818018] CPUFREQ of CA15 L16 : 900000 uV
->>>> [    5.822173] CPUFREQ of CA15 L17 : 900000 uV
->>>> [    5.826338] CPUFREQ of CA15 L18 : 900000 uV
->>>> [    5.830583] fout_apll[900000000]
->>>> [    5.836287] S divider change for DFS of MIF block
->>>> [    5.984276] init_volt[975000], freq[800000]
->>>> [    5.987809] ALSA device list:
->>>> [    5.989956]   #0: Odroid-max98090
->>>> [    5.993533] Freeing init memory: 256K
->>>> [    5.996898] Write protecting the kernel text section c0008000 - 
->>>> c09e2000
->>>> [    6.003931] rodata_test: attempting to write to read-only section:
->>>> [    6.009728] write to read-only section trapped, success
->>>> [    6.055010] systemd-udevd[1299]: starting version 204
->>>> [    6.350360] EXT4-fs (mmcblk0p2): recovery complete
->>>> [    6.356827] EXT4-fs (mmcblk0p2): mounted filesystem with ordered 
->>>> data mode. Opts: (null)
->>>> INIT: version 2.88 booting
->>>> Starting udev
->>>> [    6.880415] udevd[1376]: starting version 182
->>>> [    7.075108] EXT4-fs (mmcblk0p2): re-mounted. Opts: data=ordered
->>>> Starting Bootlog daemon: bootlogd.
->>>> [    7.369381] max77802_rtc_read_time: 114/7/6 16:10:3(3)
->>>> INIT: Entering runlevel: 5
->>>> Configuring network interfaces... ifconfig: SIOCGIFFLAGS: No such 
->>>> device
->>>> [    7.431705] max77802_rtc_read_time: 114/7/6 16:10:4(3)
->>>> Starting syslogd/klogd: done
->>>> Stopping Bootlog daemon: bootlogd.
->>>>
->>>> ==
->>>>
->>>>
->>>>
->>>>
->>>
->>
->
-
--- 
-Dr.-Ing. Markus Eich
-
-  Senior Researcher
-  Marine Inspection Robotics
-  Space Robotics
-  
-  Besuchsadresse der Nebengeschäftstelle:
-  DFKI GmbH
-  Robotics Innovation Center
-  Robert-Hooke-Straße 5
-  28359 Bremen, Germany
-  
-  Postadresse der Hauptgeschäftsstelle Standort Bremen:
-  DFKI GmbH
-  Robotics Innovation Center
-  Robert-Hooke-Straße 1
-  28359 Bremen, Germany
-
-  Tel.:     +49 421 178 45-4105
-  Zentrale: +49 421 178 45-0
-  Fax:      +49 421 178 45-4150 (Faxe bitte namentlich kennzeichnen)
-  E-Mail:   markus.eich@dfki.de
-
-  Weitere Informationen: http://www.dfki.de/robotik
-  -----------------------------------------------------------------------
-  Deutsches Forschungszentrum fuer Kuenstliche Intelligenz GmbH
-  Firmensitz: Trippstadter Straße 122, D-67663 Kaiserslautern
-  Geschaeftsfuehrung: Prof. Dr. Dr. h.c. mult. Wolfgang Wahlster
-  (Vorsitzender) Dr. Walter Olthoff
-  Vorsitzender des Aufsichtsrats: Prof. Dr. h.c. Hans A. Aukes
-  Amtsgericht Kaiserslautern, HRB 2313
-  Sitz der Gesellschaft: Kaiserslautern (HRB 2313)
-  USt-Id.Nr.:    DE 148646973
-  Steuernummer:  19/673/0060/3
-  -----------------------------------------------------------------------
-
+> -----Original Message-----
+> From: yocto-bounces@yoctoproject.org [mailto:yocto-
+> bounces@yoctoproject.org] On Behalf Of Mark Hatle
+> Sent: jeudi 7 ao=FBt 2014 12:19
+> To: yocto@yoctoproject.org
+> Subject: Re: [yocto] Installing Application Development SDK hangs when
+> using "screen"
+>=20
+> On 8/7/14, 8:59 AM, Pierre Yves MORDRET wrote:
+> > Hi there,
+> >
+> > I have a tricky issue to sort out. I'm using a build server(Ubuntu 12.0=
+4 LTS)
+> for building my Yocto project and Application Dev SDK (bitbake -c
+> populate_sdk).
+> > On this build server I 'm used to using "screen" tool. Using "screen" a=
+nd
+> bitbake at the same time seems to have no issues.
+> >
+> > However when installing the App. Dev. SDK via self-installer, it hangs =
+every
+> time after a while. The culprit seems to be "screen".
+> > If I am IN a "screen" session OR I am OUT "screen" session but there is=
+ a
+> running screen session that belongs to me, it hangs.
+> >
+> > Did someone experience such trouble ? Any ideas ?
+>=20
+> I've seen some terminal failures in the past, but it's always been due to
+> overwriting in-place terminal files.
+>=20
+> I've not seen anything on a new SDK installation.
+>=20
+> Which branch of the Yocto Project are you using?
+>=20
+> --Mark
+>=20
+> > Thanks in advance
+> > Pierre-Yves
+> >
+> >
+> >
+> >
+> >
+>=20
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
