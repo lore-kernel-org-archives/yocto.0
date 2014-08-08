@@ -1,48 +1,48 @@
 Return-Path: <nicolas.dechesne@linaro.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 9A0EDE0076B; Fri,  8 Aug 2014 01:04:48 -0700 (PDT)
+	id 8A275E0076B; Fri,  8 Aug 2014 01:07:03 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [209.85.219.51 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail-oa0-f51.google.com (mail-oa0-f51.google.com
-	[209.85.219.51])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4A564E00744
-	for <yocto@yoctoproject.org>; Fri,  8 Aug 2014 01:04:41 -0700 (PDT)
-Received: by mail-oa0-f51.google.com with SMTP id o6so3849493oag.24
-	for <yocto@yoctoproject.org>; Fri, 08 Aug 2014 01:04:39 -0700 (PDT)
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.218.44 listed in list.dnswl.org]
+Received: from mail-oi0-f44.google.com (mail-oi0-f44.google.com
+	[209.85.218.44])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 52D39E00744
+	for <yocto@yoctoproject.org>; Fri,  8 Aug 2014 01:06:57 -0700 (PDT)
+Received: by mail-oi0-f44.google.com with SMTP id x69so3436747oia.17
+	for <yocto@yoctoproject.org>; Fri, 08 Aug 2014 01:06:56 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
 	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
 	:message-id:subject:to:cc:content-type;
-	bh=tS2VXopwFg59zUInHFHfW3tSqN4efIahxm3F6PnkIzM=;
-	b=UhD1nhpeEr/BamkDVCuGNLNAztU7va0PCFQ77RfCUrw5XPGwNrOA4loHuyduGhvWNw
-	6relmfbFYlMj+oYatva4fSumSturH+V4iwWW5XEKSj2CwbDHDzn0F+DoimfivX59hGLC
-	pdFG53YnOUBqpGcBA7afaofMYwQSLDiYFu4FZpfJ4iLjJIhAq0Ui+br34RXqG7k0JD38
-	qYdTI4k19NqnlbaI7dzuMOI8oBnj8hiNcGgoatwL1kJJCMIdRD+ycRMt0MYVr3rGd3N5
-	y433x6NPksGsfp4RloLXxuCMwam4WkidiNDs4PdyMSHDrbgnb8hQB/WBQ0Oqmwwg9Hxv
-	z3Ug==
-X-Gm-Message-State: ALoCoQkhJ45501YJpMFkPydCbmIxK1lO7cLPZ3qOmkLuoeAnXcCArZPk4Y+lC97n0Xpdl1yDgFu3
-X-Received: by 10.182.106.137 with SMTP id gu9mr28049485obb.7.1407485079251;
-	Fri, 08 Aug 2014 01:04:39 -0700 (PDT)
+	bh=P/m4/rsx4tTuqdmn+K8/s8gbqBqV17kpV1OjBQT8wlE=;
+	b=Pn0pHXxe7f5ScS79KkdX1dm2leI/wHE0aVj6qRiDbu+1Crg1VXV/HvrRaaXSbCtv7O
+	ruwOPfv7vSoPu24B+SjRJA0a5n+XXKM+eYq2DRseV3lzMlzNIDJDOUNT9FZqr0+/4xpQ
+	J/fai4YN/ySRhE24p51FZzqJTJqkNMBiTEotq9YFUs1X0367ZRT0kOq1fE7hAUMFBf62
+	VaXZxhR36xG06nuwPK7cTmI61lW9Yi7RMSRAsDfvV7z7P8JOB/l39+8hkVu0DFms9ezB
+	Mon7sxJI3M6wZpZu8a9y8QtpN5k38xVTM9TLErJKJjc5VMbTrDG0KMquQ23Rl/HYbWg3
+	hHSA==
+X-Gm-Message-State: ALoCoQlT6rh/CsJiZXw8exPtJPfnpBVxdQao/NyjQRi3XUki9wXQYBToYaEWVkjfo66Gouz0aJUT
+X-Received: by 10.60.176.225 with SMTP id cl1mr28659444oec.36.1407485216268;
+	Fri, 08 Aug 2014 01:06:56 -0700 (PDT)
 MIME-Version: 1.0
-Received: by 10.76.171.168 with HTTP; Fri, 8 Aug 2014 01:04:19 -0700 (PDT)
-In-Reply-To: <1571948.CrPtZqAbFm@peggleto-mobl5.ger.corp.intel.com>
-References: <1571948.CrPtZqAbFm@peggleto-mobl5.ger.corp.intel.com>
+Received: by 10.76.171.168 with HTTP; Fri, 8 Aug 2014 01:06:36 -0700 (PDT)
+In-Reply-To: <CAE_REAuAi3yDstb14WDbmXwKmn0b7s9Rr+Rnw=yjkTju4LwZkA@mail.gmail.com>
+References: <D0095026.15910%pourya.shirazian@daimler.com>
+	<CAE_REAuAi3yDstb14WDbmXwKmn0b7s9Rr+Rnw=yjkTju4LwZkA@mail.gmail.com>
 From: Nicolas Dechesne <nicolas.dechesne@linaro.org>
-Date: Fri, 8 Aug 2014 10:04:19 +0200
-Message-ID: <CAP71WjyYFPJAu-39FB8i3F5G0XjvkLXRh3xQbz4drwvyiU9kLQ@mail.gmail.com>
-To: Paul Eggleton <paul.eggleton@linux.intel.com>
-Cc: Yocto list discussion <yocto@yoctoproject.org>,
-	Patches and discussions about the oe-core layer
-	<openembedded-core@lists.openembedded.org>
-Subject: Re: [OE-core] RFC: Improving the developer workflow
+Date: Fri, 8 Aug 2014 10:06:36 +0200
+Message-ID: <CAP71WjwXEUrm6M12M7jC+JWY8WMyPgKi+eucwFPVGVcYjB01cg@mail.gmail.com>
+To: Gaurang Shastri <gmshastri@gmail.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Question about Package Splitting
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -54,55 +54,62 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 08 Aug 2014 08:04:48 -0000
+X-List-Received-Date: Fri, 08 Aug 2014 08:07:03 -0000
+Content-Type: multipart/alternative; boundary=047d7bd75e6457b4de050019b089
+
+--047d7bd75e6457b4de050019b089
 Content-Type: text/plain; charset=UTF-8
 
-On Thu, Aug 7, 2014 at 11:10 AM, Paul Eggleton
-<paul.eggleton@linux.intel.com> wrote:
-> Example workflow
-> ================
->
-> I won't give a workflow for every possible usage, but just to give a basic
-> example - let's assume you want to build a "new" piece of software for which
-> you have your own source tree on your machine. The rough set of steps required
-> would be something like this (rough, e.g. the command names given shouldn't be
-> read as final):
->
-> 1. Install the SDK
->
-> 2. Run a setup script to make the SDK tools available
->
-> 3. Add a new recipe with "sdktool add <recipename>" - interactive process. The
-> tool records that <recipename> is being worked on, creates a recipe that can
-> be used to build the software using your external source tree, and places the
-> recipe where it will be used automatically by other steps.
->
-> 4. Build the recipe with "sdktool build <recipename>". This probably only goes
-> as far as do_install or possibly do_package_qa; in any case the QA process
-> would be less stringent than with the standard build system however in order
-> to avoid putting too many barriers in the way of testing on the target.
->
-> 5. Fix any failures and repeat from the previous step as necessary.
->
-> 6. Deploy changes to target with "sdktool deploy-target <ip address>" assuming
-> SSH is available on the target. Alternatively "sdktool build-image
-> <imagename>" can be used to regenerate an image with the changes in it;
-> "sdktool runqemu" could do that (if necessary) and then run the result within
-> QEMU with the appropriate options set.
+On Fri, Aug 8, 2014 at 9:43 AM, Gaurang Shastri <gmshastri@gmail.com> wrote:
 
-coincidentally, i was giving an OE workshop this week, and when I
-explained about the OE SDK, someone immediately brought up that it was
-quite limited because:
+> You can do something like this if you want your own package:
+>
+> PACKAGES += "${PN}-frontend ${PN}-backend ${PN}-tests"
+>
+> Here ${PN} means "project" and yes "project-dbg" and "project-dev" will be
+> created by default.
+>
+> And than you can put your required files in particular package by,
+>
+> FILES_${PN}-frontend = "${bindir}" -- just example...likewise you can have
+> your own packages with required files.
+>
 
- 1- SDK cannot be used to generate deployable packages, e.g.  using
-the SDK to create ipk/deb/rpm that can be delivered to
-targets/clients, not just for debugging, but also for production when
-production system has package management support.
- 2- SDK cannot be used to regenerate updated images. e.g. Company A
-delivers a SDK + board, Company B is making a product using the SDK
-(adding content) and wants to be able to make new images with the new
-content in order to sell/deploy it.
- 3- SDK itself cannot be upgraded when the 'base image' and SDK are updated
- 4- SDK users cannot add content to the SDK. e.g. I am a SDK user I
-create a library and I want that library to be in the SDK now.
+and in addition to that:
+http://www.yoctoproject.org/docs/latest/dev-manual/dev-manual.html#splitting-an-application-into-multiple-packages
 
+--047d7bd75e6457b4de050019b089
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
+On Fri, Aug 8, 2014 at 9:43 AM, Gaurang Shastri <span dir=3D"ltr">&lt;<a hr=
+ef=3D"mailto:gmshastri@gmail.com" target=3D"_blank">gmshastri@gmail.com</a>=
+&gt;</span> wrote:<br>
+
+<blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-=
+left-width:1px;border-left-color:rgb(204,204,204);border-left-style:solid;p=
+adding-left:1ex"><div>You can do something like this if you want your own p=
+ackage:</div>
+
+<div><br></div><div>PACKAGES +=3D &quot;${PN}-frontend ${PN}-backend ${PN}-=
+tests&quot;</div><div><br></div><div>Here ${PN} means &quot;project&quot; a=
+nd yes &quot;project-dbg&quot; and &quot;project-dev&quot; will be created =
+by default.</div>
+
+
+<div><br></div><div>And than you can put your required files in particular =
+package by,</div><div><br></div><div>FILES_${PN}-frontend =3D &quot;${bindi=
+r}&quot; -- just example...likewise you can have your own packages with req=
+uired files.</div>
+
+
+<div></div></blockquote></div><br>and in addition to that: <a href=3D"http:=
+//www.yoctoproject.org/docs/latest/dev-manual/dev-manual.html#splitting-an-=
+application-into-multiple-packages">http://www.yoctoproject.org/docs/latest=
+/dev-manual/dev-manual.html#splitting-an-application-into-multiple-packages=
+</a></div>
+
+</div>
+
+--047d7bd75e6457b4de050019b089--
