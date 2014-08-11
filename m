@@ -1,29 +1,51 @@
-Return-Path: <gary@mlbassoc.com>
+Return-Path: <rpjday@crashcourse.ca>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 45F03E0078E; Mon, 11 Aug 2014 09:32:14 -0700 (PDT)
+	id 4023FE0078E; Mon, 11 Aug 2014 09:45:45 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [208.80.204.85 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail.chez-thomas.org (mail.mlbassoc.com [65.100.170.105])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CB91AE004F2
-	for <yocto@yoctoproject.org>; Mon, 11 Aug 2014 09:32:07 -0700 (PDT)
-Received: by mail.chez-thomas.org (Postfix, from userid 1998)
-	id 8F6C3F811E8; Mon, 11 Aug 2014 10:32:06 -0600 (MDT)
-Received: from [192.168.1.114] (zeus [192.168.1.114])
-	by mail.chez-thomas.org (Postfix) with ESMTP id 15EA7F811E7;
-	Mon, 11 Aug 2014 10:32:04 -0600 (MDT)
-Message-ID: <53E8F027.1030105@mlbassoc.com>
-Date: Mon, 11 Aug 2014 10:32:39 -0600
-From: Gary Thomas <gary@mlbassoc.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:31.0) Gecko/20100101 Thunderbird/31.0
+Received: from smtp485.redcondor.net (smtp485.redcondor.net [208.80.204.85])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D1B6AE004F2
+	for <yocto@yoctoproject.org>; Mon, 11 Aug 2014 09:45:33 -0700 (PDT)
+Received: from astoria.ccjclearline.com ([64.235.106.9])
+	by smtp485.redcondor.net ({3be039ea-4351-44b0-a8af-642c38b25916})
+	via TCP (outbound) with ESMTPS id 20140811164531335
+	for <yocto@yoctoproject.org>; Mon, 11 Aug 2014 16:45:31 +0000
+X-RC-FROM: <rpjday@crashcourse.ca>
+X-RC-RCPT: <yocto@yoctoproject.org>
+Received: from [99.240.204.5] (port=55112 helo=crashcourse.ca)
+	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES128-SHA:128)
+	(Exim 4.80) (envelope-from <rpjday@crashcourse.ca>)
+	id 1XGsis-00010l-H6; Mon, 11 Aug 2014 12:45:26 -0400
+Date: Mon, 11 Aug 2014 12:45:22 -0400 (EDT)
+From: "Robert P. J. Day" <rpjday@crashcourse.ca>
+X-X-Sender: rpjday@localhost
+To: Christopher Larson <clarson@kergoth.com>
+In-Reply-To: <CABcZANkG1ja_EGNAqCbUGKXhY5Ugm9DV+mnEyW__THHOuRyNPg@mail.gmail.com>
+Message-ID: <alpine.LFD.2.11.1408111244140.3897@localhost>
+References: <alpine.LFD.2.11.1408110738270.8322@localhost>
+	<CABcZANkG1ja_EGNAqCbUGKXhY5Ugm9DV+mnEyW__THHOuRyNPg@mail.gmail.com>
+User-Agent: Alpine 2.11 (LFD 23 2013-08-11)
 MIME-Version: 1.0
-To: Yocto Project <yocto@yoctoproject.org>
-Subject: Problems building SDK
+X-AntiAbuse: This header was added to track abuse,
+	please include it with any abuse report
+X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - crashcourse.ca
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+X-MAG-OUTBOUND: ccj.redcondor.net@64.235.106.9/32
+Cc: Yocto discussion list <yocto@yoctoproject.org>
+Subject: Re: anyone know of a single OE/yocto recipe that uses BBVERSIONS?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -35,44 +57,50 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 11 Aug 2014 16:32:14 -0000
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Mon, 11 Aug 2014 16:45:45 -0000
+Content-Type: MULTIPART/MIXED; BOUNDARY="8323328-37329135-1407775525=:3897"
 
-As I reported on Friday (2014-08-08), I was having issues
-installing an SDK I had built (xargs overflow).  Today, I
-tried patching the appropriate .bbclass to change this behaviour
-and rebuilt the SDK.  Sadly, this is now failing miserably.
-It seems that there are pieces of the SDK left over from
-last Friday that are conflicting with my builds of today.
+--8323328-37329135-1407775525=:3897
+Content-Type: TEXT/PLAIN; charset=UTF-8
+Content-Transfer-Encoding: 8BIT
 
-First note that I have these variables set in my $DISTRO:
-   DISTRO = "mydistro"
-   DISTRO_NAME = "My distribution"
-   MYDISTRO_DATE = "${DATE}"
-   DISTRO_VERSION = "1.6+snapshot-${MYDISTRO_DATE}"
-   SDK_VENDOR = "-mydistrosdk"
-   SDK_VERSION = "${DISTRO_VERSION}"
-   SDK_NAME = "${DISTRO}-${TCLIBC}-${SDK_ARCH}-${TARGET_ARCH}"
-   SDKPATH = "/opt/${DISTRO}/${SDK_VERSION}"
+On Mon, 11 Aug 2014, Christopher Larson wrote:
 
-When I build an SDK today, it gets confused because ${DISTRO_VERSION}
-is date-stamped.  I can see that some pieces are being placed in
-a directory with last Friday's date, others with today's date:
-   $ ls -l tmp/work/teton_p0382-mydistro-linux-gnueabi/mydistro-console-image/1.0-r0/sdk/image/opt/mydistro/
-   total 8
-   drwxr-xr-x 3 gthomas gthomas 4096 Aug  8 15:41 1.6+snapshot-20140808
-   drwxr-xr-x 3 gthomas gthomas 4096 Aug 11 10:18 1.6+snapshot-20140811
-Now when the SDK is packed up into the tar file, some bits are being
-left out, etc, which leads to a broken SDK.
+>
+> On Mon, Aug 11, 2014 at 4:40 AM, Robert P. J. Day <rpjday@crashcourse.ca> wrote:
+>         collecting examples of recipe design and variants, and bitbake user
+>       manual refers to BBVERSIONS variable to allow a recipe file to build
+>       multiple versions from one file, but in the dozen or so layers i have
+>       checked out, i've seen not a single example of usage of that variable.
+>
+>         are there any?
+>
+>
+> Nope, as far as I know, it's not being used at all at the moment.
+> The idea was we could use it to avoid having multiple recipes with
+> different versions and .inc includes all over the place, but then
+> policy changed to tend to prefer having just a single recipe version
+> around, so it's of less use. If you'd like to see an example of a
+> prototyped recipe using it, which I created while implementing
+> BBVERSIONS, see https://gist.github.com/kergoth/338382. This was an
+> attempt, at the time (2010) to have a single m4 recipe that was
+> capable of building every m4 version that existed. It was mostly to
+> see if it could be done :)
 
-I'd like to keep the SDK date-stamped (in fact, I think I got this
-idea from the Poky $DISTRO years ago) if possible.  Should this be
-able to work, or should I just give up on the date-stamp?
+  fair enough ... given that it doesn't seem to have a lot of
+utilitarian value, i won't bother mentioning it in my notes. or, at
+most, very briefly.
+
+rday
 
 -- 
-------------------------------------------------------------
-Gary Thomas                 |  Consulting for the
-MLB Associates              |    Embedded world
-------------------------------------------------------------
 
+========================================================================
+Robert P. J. Day                                 Ottawa, Ontario, CANADA
+                        http://crashcourse.ca
+
+Twitter:                                       http://twitter.com/rpjday
+LinkedIn:                               http://ca.linkedin.com/in/rpjday
+========================================================================
+
+--8323328-37329135-1407775525=:3897--
