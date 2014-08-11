@@ -1,6 +1,6 @@
 Return-Path: <gley-yocto@m.gmane.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id AD72FE00576; Sun, 10 Aug 2014 23:35:26 -0700 (PDT)
+	id 49594E0076C; Sun, 10 Aug 2014 23:40:18 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -14,23 +14,23 @@ X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 Received: from plane.gmane.org (plane.gmane.org [80.91.229.3])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BA699E004D1
-	for <yocto@yoctoproject.org>; Sun, 10 Aug 2014 23:35:13 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 26889E004D1
+	for <yocto@yoctoproject.org>; Sun, 10 Aug 2014 23:40:07 -0700 (PDT)
 Received: from list by plane.gmane.org with local (Exim 4.69)
-	(envelope-from <gley-yocto@m.gmane.org>) id 1XGjCJ-0005oL-F4
-	for yocto@yoctoproject.org; Mon, 11 Aug 2014 08:35:11 +0200
+	(envelope-from <gley-yocto@m.gmane.org>) id 1XGjH3-0000oL-3f
+	for yocto@yoctoproject.org; Mon, 11 Aug 2014 08:40:05 +0200
 Received: from athedsl-4366486.home.otenet.gr ([79.130.16.134])
 	by main.gmane.org with esmtp (Gmexim 0.1 (Debian))
 	id 1AlnuQ-0007hv-00
-	for <yocto@yoctoproject.org>; Mon, 11 Aug 2014 08:35:11 +0200
+	for <yocto@yoctoproject.org>; Mon, 11 Aug 2014 08:40:05 +0200
 Received: from gmane by athedsl-4366486.home.otenet.gr with local (Gmexim 0.1
 	(Debian)) id 1AlnuQ-0007hv-00
-	for <yocto@yoctoproject.org>; Mon, 11 Aug 2014 08:35:11 +0200
+	for <yocto@yoctoproject.org>; Mon, 11 Aug 2014 08:40:05 +0200
 X-Injected-Via-Gmane: http://gmane.org/
 To: yocto@yoctoproject.org
 From: Robert Berger <gmane@reliableembeddedsystems.com>
-Date: Mon, 11 Aug 2014 09:34:59 +0300
-Message-ID: <53E86413.8050001@reliableembeddedsystems.com>
+Date: Mon, 11 Aug 2014 09:35:17 +0300
+Message-ID: <53E86425.70209@reliableembeddedsystems.com>
 References: <53E8588D.8030007@gmail.com>
 Mime-Version: 1.0
 X-Complaints-To: usenet@ger.gmane.org
@@ -50,7 +50,7 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 11 Aug 2014 06:35:26 -0000
+X-List-Received-Date: Mon, 11 Aug 2014 06:40:18 -0000
 Content-Type: text/plain; charset=windows-1252
 Content-Transfer-Encoding: 8bit
 
