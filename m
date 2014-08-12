@@ -1,48 +1,58 @@
-Return-Path: <nicolas.dechesne@linaro.org>
+Return-Path: <tocallaghan@meyn.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id E080BE0079A; Tue, 12 Aug 2014 06:05:18 -0700 (PDT)
+	id DB35EE0079A; Tue, 12 Aug 2014 06:38:00 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00, RCVD_IN_DNSWL_NONE, 
+	SPF_HELO_PASS autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
+	http://www.dnswl.org/, no *      trust
+	*      [213.199.154.76 listed in list.dnswl.org]
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.219.50 listed in list.dnswl.org]
-Received: from mail-oa0-f50.google.com (mail-oa0-f50.google.com
-	[209.85.219.50])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B1627E00796
-	for <yocto@yoctoproject.org>; Tue, 12 Aug 2014 06:05:07 -0700 (PDT)
-Received: by mail-oa0-f50.google.com with SMTP id g18so7281613oah.9
-	for <yocto@yoctoproject.org>; Tue, 12 Aug 2014 06:05:06 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc:content-type;
-	bh=OubSW2/03mULnZi0VEVKN0t9Tc+EQBP2foh4a4pl6iA=;
-	b=k/rjpsELYX6smb6Z4iOdsKhyvsHCExvRHMYFwGG3TV9+UIO7506c/bzmbfas8qV3Ur
-	o4Vlw1B4xY5YycfboY4NqVKOM6OwCfPygasJIrfUFf1IdI2orli1BdLlwzXhJAEUItLf
-	ZXzSKIOZ2ibw3buebsyUrC/0FiqzW5jNO39XvzPS6aJqHBT93J2Pi1IbCl9AHnpDqwcp
-	uboBTgsc9ynz1X4SXZCTV5KlTwSSZn1uV42PlVQcR6hLpjHzBU8KPzsu5YVgtblDjijG
-	QUCoKmfdlllOjj/Jnh6z+MGLnV62wjAQJ3gwe0hAWddN34LccuO2xRhQ44WTLk6jWO/e
-	c1eg==
-X-Gm-Message-State: ALoCoQnAusstPC8d0yUmQnwbpb9cA+bkTFp2HraRHSS76BPkw3gH7oWVMIslHs447UrdrBEZzxWq
-X-Received: by 10.182.29.234 with SMTP id n10mr4570116obh.67.1407848706666;
-	Tue, 12 Aug 2014 06:05:06 -0700 (PDT)
+X-Greylist: delayed 868 seconds by postgrey-1.32 at yocto-www;
+	Tue, 12 Aug 2014 06:37:49 PDT
+Received: from emea01-db3-obe.outbound.protection.outlook.com
+	(mail-db3lrp0076.outbound.protection.outlook.com [213.199.154.76])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 19E5EE00796
+	for <yocto@yoctoproject.org>; Tue, 12 Aug 2014 06:37:49 -0700 (PDT)
+Received: from AM3PR05MB308.eurprd05.prod.outlook.com (10.242.247.153) by
+	AM3PR05MB307.eurprd05.prod.outlook.com (10.242.247.152) with Microsoft
+	SMTP Server (TLS) id 15.0.1005.10; Tue, 12 Aug 2014 13:23:19 +0000
+Received: from AM3PR05MB308.eurprd05.prod.outlook.com ([10.242.247.153]) by
+	AM3PR05MB308.eurprd05.prod.outlook.com ([10.242.247.153]) with mapi id
+	15.00.1005.008; Tue, 12 Aug 2014 13:23:18 +0000
+From: Tim O' Callaghan <tocallaghan@meyn.com>
+To: 'Alex J Lennon' <ajlennon@dynamicdevices.co.uk>, Paul Eggleton
+	<paul.eggleton@linux.intel.com>
+Thread-Topic: [OE-core] [yocto] RFC: Improving the developer workflow
+Thread-Index: AQHPsig7E5lzbGbSZEStNvJQkS7hipvFHBSAgAHCpQCABhj68A==
+Date: Tue, 12 Aug 2014 13:23:18 +0000
+Message-ID: <3254cf66b2934db7b6f1dad6baf2e06b@AM3PR05MB308.eurprd05.prod.outlook.com>
+References: <1571948.CrPtZqAbFm@peggleto-mobl5.ger.corp.intel.com>
+	<53E3512E.5090008@dynamicdevices.co.uk>
+	<2374073.Q4LByM6bcI@peggleto-mobl5.ger.corp.intel.com>
+	<53E4F384.4050300@dynamicdevices.co.uk>
+In-Reply-To: <53E4F384.4050300@dynamicdevices.co.uk>
+Accept-Language: en-GB, en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [93.154.102.135]
+x-microsoft-antispam: BCL:0;PCL:0;RULEID:;UriScan:;
+x-forefront-prvs: 0301360BF5
+x-forefront-antispam-report: SFV:NSPM;
+	SFS:(6009001)(51704005)(13464003)(189002)(199003)(79102001)(4396001)(20776003)(83322001)(46102001)(19273905006)(2656002)(107046002)(31966008)(81342001)(33646002)(74502001)(74662001)(86362001)(95666004)(85852003)(15975445006)(76482001)(81542001)(66066001)(83072002)(80022001)(19300405004)(77982001)(87936001)(92566001)(15202345003)(105586002)(74316001)(19580405001)(106356001)(50986999)(54356999)(101416001)(93886004)(21056001)(19580395003)(99396002)(551934003)(76576001)(76176999)(106116001)(85306004)(24736002)(108616003)(562404015)(563064011);
+	DIR:OUT; SFP:; SCL:1; SRVR:AM3PR05MB307;
+	H:AM3PR05MB308.eurprd05.prod.outlook.com; FPR:; MLV:sfv;
+	PTR:InfoNoRecords; MX:1; A:1; LANG:en; 
 MIME-Version: 1.0
-Received: by 10.76.171.194 with HTTP; Tue, 12 Aug 2014 06:04:46 -0700 (PDT)
-In-Reply-To: <20140812145857.23eda070@lxbuild.skidata.net>
-References: <20140812142043.31d6766f@lxbuild.skidata.net>
-	<alpine.LFD.2.11.1408120827190.21762@localhost>
-	<20140812145857.23eda070@lxbuild.skidata.net>
-From: Nicolas Dechesne <nicolas.dechesne@linaro.org>
-Date: Tue, 12 Aug 2014 15:04:46 +0200
-Message-ID: <CAP71WjxiBCScKkTC0a735B94WCwbu8Z9SzWVi58ma4-aw8mNMA@mail.gmail.com>
-To: Richard Leitner <richard.leitner@skidata.com>
-Cc: Yocto list discussion <yocto@yoctoproject.org>
-Subject: Re: Force recipe to provide specific file
+X-OriginatorOrg: meyn.com
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
+	"openembedded-core@lists.openembedded.org"
+	<openembedded-core@lists.openembedded.org>
+Subject: Re: [OE-core] RFC: Improving the developer workflow
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -54,24 +64,96 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 12 Aug 2014 13:05:19 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Tue, 12 Aug 2014 13:38:00 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-On Tue, Aug 12, 2014 at 2:58 PM, Richard Leitner
-<richard.leitner@skidata.com> wrote:
+Hi,
+
+Another approach I would like to suggest is the one that CoreOS has in plac=
+e, that they call fastpatch.=20
+
+https://coreos.com/using-coreos/updates/
+
+Essentially two root partitions, and boot to switch between the new image w=
+hile leaving the old one intact as the last known good. It avoids the compl=
+exity of an overlay, and it fits with the current yocto filesystem image ba=
+sed approach. With this approach, forward/backward application configuratio=
+n compatibility can be maintained with an extra bbclass to mix in to the re=
+cipes of local application configurations based on OS release version, so t=
+hat they can be updated by the init scripts.
+
+Tim.
+
+-----Original Message-----
+From: openembedded-core-bounces@lists.openembedded.org [mailto:openembedded=
+-core-bounces@lists.openembedded.org] On Behalf Of Alex J Lennon
+Sent: vrijdag 8 augustus 2014 17:58
+To: Paul Eggleton
+Cc: yocto@yoctoproject.org; openembedded-core@lists.openembedded.org
+Subject: Re: [OE-core] [yocto] RFC: Improving the developer workflow
+
+Hi Paul,
+> Personally with how fragile package management can end up being, I'm=20
+> convinced that full-image updates are the way to go for a lot of=20
+> cases, but ideally with some intelligence so that you only ship the=20
+> changes (at a filesystem level rather than a package or file level).=20
+> This ensures that an upgraded image on one device ends up exactly=20
+> identical to any other device including a newly deployed one. Of=20
+> course it does assume that you have a read-only rootfs and keep your=20
+> configuration data / logs / other writeable data on a separate=20
+> partition or storage medium. However, beyond improvements to support=20
+> for having a read-only rootfs we haven't really achieved anything in term=
+s of out- of-the-box support for this, mainly due to lack of resources.
 >
-> I've also tried the following in my ghostscript bbappend, but it does not
-> work. Shouldn't [1] work this way?
+> However, whilst I haven't had a chance to look at it closely, there=20
+> has been some work on this within the community:
 >
-> FILES_${PN}-cups_remove = "${exec_prefix}/lib/cups/filter/gstopxl"
-> FILES_${PN}-cups_remove = "${exec_prefix}/lib/cups/filter/gstoraster"
+> http://sbabic.github.io/swupdate/swupdate.html
+> https://github.com/sbabic/swupdate
+> https://github.com/sbabic/meta-swupdate/
+> =20
+>
 
-the packaging step is using regexp to get the file list to include in
-the package. so it's unlikely that this pattern will be in FILES. it
-might be worth printing the value of FILES with bitbake -e..
+I had a quick look at this. It's interesting. If I am reading this correctl=
+y it's based on the old
 
-but anyways, a simpler way to so the same thing would be do have a
-do_install_append() function and remove the files from ${D}. that
-would in turns have the same effect as what you are trying to do here
-i believe.
+-> Bootloader runs Partition A
+-> Update Partition B, set Bootloader to run Partition B
+->   On failure stay on partition A and retry update.
+-> Bootloader runs Partition B
+-> Update Partition A, set Bootloader to run Partition A  etc.
+
+We've done this type of thing before and it works well. Of course the drawb=
+ack is the amount of flash you need to achieve it but it is a good robust s=
+ystem.
+
+I'd be interested to see how this could work with filesystem deltas say.
+I don't _think_ that is
+documented here?
+
+...
+
+Thinking a little further what would also really interest me would be to co=
+nsider using the transactionality of the underlying file-system or block-ma=
+nagement layer for the update process.
+
+Given nowadays journalling and log-structure file-systems are already desig=
+ned to fail-back when file/meta-data modifications are interrupted surely w=
+e should be able to start a macro-transaction point at the start of the  pa=
+rtition update,  and if that update doesn't complete with a macro-commit th=
+en the f/s layer should be able to automatically roll itself back?
+Perhaps the same could be done at
+a block management layer?
+
+Cheers,
+
+Alex
+
+--
+_______________________________________________
+Openembedded-core mailing list
+Openembedded-core@lists.openembedded.org
+http://lists.openembedded.org/mailman/listinfo/openembedded-core
 
