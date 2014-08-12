@@ -1,63 +1,46 @@
-Return-Path: <rstreif@linuxfoundation.org>
+Return-Path: <lchristina26@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 9270FE0079A; Tue, 12 Aug 2014 09:56:12 -0700 (PDT)
+	id 049C4E0079A; Tue, 12 Aug 2014 10:49:58 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham
-	version=3.3.1
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
 	low *      trust
-	*      [209.85.213.176 listed in list.dnswl.org]
-Received: from mail-ig0-f176.google.com (mail-ig0-f176.google.com
-	[209.85.213.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 33F1BE00796
-	for <yocto@yoctoproject.org>; Tue, 12 Aug 2014 09:56:09 -0700 (PDT)
-Received: by mail-ig0-f176.google.com with SMTP id hn18so7403883igb.15
-	for <yocto@yoctoproject.org>; Tue, 12 Aug 2014 09:56:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=linuxfoundation.org; s=google;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type;
-	bh=zKl5zBHpHtTh9rebWT+nl/K/sYHOD2C9RJAD8bf694c=;
-	b=V0P1XuZ5jIP/7vvaf31Zbr1iR/5y5itxErw3Bmv1YBpEGUzJvt/0eFLzs4hAzVan9n
-	We8KK9M3m240afawQYSw+BSohydYGeFF2xy4kUhiljbRECfnkaag+sAyXhL5oMZBaCTH
-	uGaCJVRNxsKIwnaM7miacDHletd4XZbKo7IN0=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:date
-	:message-id:subject:from:to:cc:content-type;
-	bh=zKl5zBHpHtTh9rebWT+nl/K/sYHOD2C9RJAD8bf694c=;
-	b=ESkIlElAYZNc16UDz9iD1vp8+G3cTM29Xf9lWdKMKpNPWoYX27j10HE+AuusQgzY/L
-	6qqTma/pym/EPGgtTBp5XD9xk22dCS4Khrsz5HvHtRG2zDj/bRcjhNMKMHYWDRlQEkwW
-	ashNmbwD++YOyzpjpmjq/zX9fb/dcRXPXllPIT85h2SmgP0jhtzhocs2Bee/MH3cFCel
-	2iczmN5sEUaKuD2xPUX9hRHQXIKDOMBvepK0gcJVBYNXXAbuyH/L0dLBKaYzYEPTkA1u
-	K1AeLU7wIrMcWG+EulCJvIBZAYZ0tQJVrGJsJvX20O7L5g/FMUGznfB6GhwKX2D4OEVn
-	lT1w==
-X-Gm-Message-State: ALoCoQkjdUYM6lZgWMbPCIKULIm57xypE8zC9PQBw0cnFTWGiEK0CHXbsULnZUSIR9hbBFgoxOaW
+	*      [209.85.213.178 listed in list.dnswl.org]
+Received: from mail-ig0-f178.google.com (mail-ig0-f178.google.com
+	[209.85.213.178])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 31005E00796
+	for <yocto@yoctoproject.org>; Tue, 12 Aug 2014 10:49:44 -0700 (PDT)
+Received: by mail-ig0-f178.google.com with SMTP id uq10so7483680igb.11
+	for <yocto@yoctoproject.org>; Tue, 12 Aug 2014 10:49:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:sender:date:message-id:subject:from:to:content-type;
+	bh=aMAUO6tM9U3eavbWZfrYGqPPXpLy2AXmRRDoWmpw0KY=;
+	b=urvImTGEBMfUKkY3iIbxFm6/bOIr3DyjtmnbDjltRyL9NHcPsuRIumR9L7vIXnm34z
+	9K+/e5ZR7GF+5wzrJAmG/KyuBKmfalAxJryeBEx/KN01UWL+FmkE5StPeH0aoV7U/gad
+	dpdyFVVSnQK0nxhlFp9/MShxEkFyePtA72hYFRs86B71Q3qmviWYsVMI/olRuQMq6gwo
+	USrHSQp+vRA8VEpI2BV2VVo66/q9LlaqYpTP42aP1vgF3zBy7bsGxnKt7diWG9tpyzQj
+	uQIANV8xk8OpeX8mAjNIUPxWhbxMQyWEeeiPk8GEPHJR8fp1cp2TrUmv8k373544iU5o
+	Lsgw==
 MIME-Version: 1.0
-X-Received: by 10.50.147.70 with SMTP id ti6mr42097040igb.45.1407862568962;
-	Tue, 12 Aug 2014 09:56:08 -0700 (PDT)
-Received: by 10.107.149.73 with HTTP; Tue, 12 Aug 2014 09:56:08 -0700 (PDT)
-In-Reply-To: <53EA2E3D.3080400@dfki.de>
-References: <53E4D4A0.1030607@dfki.de>
-	<CA+gsK-qsK4=R-a-TnCizz8_+1sWJ68zmh-zeYAK2UyBehDjp0w@mail.gmail.com>
-	<53EA2E3D.3080400@dfki.de>
-Date: Tue, 12 Aug 2014 09:56:08 -0700
-Message-ID: <CA+gsK-oAVkqCNfU9r4CyyLvo0z3Q3N8BBa2zFz1WQj1nFpn7Aw@mail.gmail.com>
-From: Rudolf Streif <rstreif@linuxfoundation.org>
-To: "Dr. Markus Eich" <markus.eich@dfki.de>
-Cc: Yocto Discussion Mailing List <yocto@yoctoproject.org>
-Subject: Re: No network at startup using core-image-minimal
+X-Received: by 10.50.6.77 with SMTP id y13mr245150igy.21.1407865784386; Tue,
+	12 Aug 2014 10:49:44 -0700 (PDT)
+Sender: lchristina26@gmail.com
+Received: by 10.64.11.102 with HTTP; Tue, 12 Aug 2014 10:49:44 -0700 (PDT)
+Date: Tue, 12 Aug 2014 11:49:44 -0600
+X-Google-Sender-Auth: h5Hkt-1CvyOEJkNFX89iMnureqQ
+Message-ID: <CAL0pqZ0OQ88zN+eXvkEv=36cep0cXS2E8efDVB9yK5yL-WUdRQ@mail.gmail.com>
+From: Leah <leah@wolfssl.com>
+To: yocto@yoctoproject.org
+Subject: yoctoproject.org website forms errors
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -69,82 +52,104 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 12 Aug 2014 16:56:12 -0000
-Content-Type: multipart/alternative; boundary=089e013a0ac65151160500718c49
+X-List-Received-Date: Tue, 12 Aug 2014 17:49:58 -0000
+Content-Type: multipart/alternative; boundary=047d7bdca0c6f848380500724bd4
 
---089e013a0ac65151160500718c49
+--047d7bdca0c6f848380500724bd4
 Content-Type: text/plain; charset=UTF-8
 
-Hi Markus,
+Hi,
 
-> same result with the core-image-base.
->
-> It seems that depmod is not run before building the image/modules in the
-> deploy folder. I have a custom kernel recipes. How can I make bitbake to
-> run depmod -a on the rootfs?
->
-> My recipes inherits kernel
->
-> and requires
->
-> recipes-kernel/linux/linux-yocto.inc
->
->
-Ok, in this case you want to use
+I am trying to submit forms, ie,
+https://www.yoctoproject.org/ecosystem/participant-registration, and keep
+getting website errors. Tried on multiple computers, and it keeps failing.
+Just thought I would let someone know in case it needs to be addressed.
 
- module_autoload_<modname> = "modname1 modname2 modname3"
+Error output after submitting Yocto Project Participant and Compatible
+Registration forms:
 
-in your kernel recipe (or distro or machine configuration which is
-actually preferable). For example
+*PDOException*: SQLSTATE[42S22]: Column not found: 1054 Unknown column
+'contentId' in 'field list': INSERT INTO {mollom} (entity, id, contentId,
+captchaId, form_id, changed, moderate, spamScore, spamClassification,
+solved, qualityScore, profanityScore, reason, languages) VALUES
+(:db_insert_placeholder_0, :db_insert_placeholder_1,
+:db_insert_placeholder_2, :db_insert_placeholder_3,
+:db_insert_placeholder_4, :db_insert_placeholder_5,
+:db_insert_placeholder_6, :db_insert_placeholder_7,
+:db_insert_placeholder_8, :db_insert_placeholder_9,
+:db_insert_placeholder_10, :db_insert_placeholder_11,
+:db_insert_placeholder_12, :db_insert_placeholder_13); Array (
+[:db_insert_placeholder_0] => webform [:db_insert_placeholder_1] => 157
+[:db_insert_placeholder_2] => 1408121d6ca8a88c95 [:db_insert_placeholder_3]
+=> [:db_insert_placeholder_4] => webform_client_form_351547
+[:db_insert_placeholder_5] => 1407865116 [:db_insert_placeholder_6] => 0
+[:db_insert_placeholder_7] => 0 [:db_insert_placeholder_8] => ham
+[:db_insert_placeholder_9] => [:db_insert_placeholder_10] =>
+[:db_insert_placeholder_11] => [:db_insert_placeholder_12] =>
+[:db_insert_placeholder_13] => ) in *drupal_write_record()* (line *7207* of
+*/var/www/drupal/includes/common.inc*).
 
-module_autoload_smsc95xx = "smsc95xx"
 
-The module-split class should pick it up and add the module to
-/etc/modules-load.d/modname.conf.
+Thanks,
 
-Cheers,
+Leah
 
-Rudi
+-- 
 
---089e013a0ac65151160500718c49
+Leah Thompson
+www.wolfssl.com
+leah@wolfssl.com
+406-570-1389
+Skype: lchristina26
+
+--047d7bdca0c6f848380500724bd4
 Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">Hi Markus,<div class=3D"gmail_extra"><div class=3D"gmail_q=
-uote"><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;b=
-order-left-width:1px;border-left-color:rgb(204,204,204);border-left-style:s=
-olid;padding-left:1ex">
-<div bgcolor=3D"#FFFFFF" text=3D"#000000">same result with the core-image-b=
-ase.<br>
-    <br>
-    It seems that depmod is not run before building the image/modules in
-    the deploy folder. I have a custom kernel recipes. How can I make
-    bitbake to run depmod -a on the rootfs?<br>
-    <br>
-    My recipes inherits kernel<br>
-    <br>
-    and requires <br>
-    <br>
-    recipes-kernel/linux/linux-yocto.inc<br>
-    <br></div></blockquote><div><br></div><div>Ok, in this case you want to=
- use</div><div><br></div><div><pre class=3D"" style=3D"overflow:auto;color:=
-rgb(51,51,51)"> module_autoload_&lt;modname&gt; =3D &quot;modname1 modname2=
- modname3&quot;</pre>
-<pre class=3D"" style=3D"overflow:auto;color:rgb(51,51,51)">in your kernel =
-recipe (or distro or machine configuration which is actually preferable). F=
-or example</pre><pre class=3D"" style=3D"overflow:auto"><font face=3D"arial=
-, sans-serif"><span style=3D"white-space:normal">module_autoload_</span></f=
-ont><span style=3D"font-size:12.727272033691406px;font-family:arial,sans-se=
-rif">smsc95</span><span style=3D"font-size:12.727272033691406px;font-family=
-:arial,sans-serif">xx =3D &quot;</span><span style=3D"font-size:12.72727203=
-3691406px;font-family:arial,sans-serif">smsc95</span><span style=3D"font-si=
-ze:12.727272033691406px;font-family:arial,sans-serif">xx&quot;</span></pre>
-<pre class=3D"" style=3D"overflow:auto"><span style=3D"font-size:12.7272720=
-33691406px;font-family:arial,sans-serif">The module-split class should pick=
- it up and add the module to /etc/modules-load.d/modname.conf.</span></pre>=
-<pre class=3D"" style=3D"overflow:auto">
-Cheers,</pre><pre class=3D"" style=3D"overflow:auto">Rudi</pre></div><div>=
-=C2=A0</div></div>
-</div></div>
+<div dir=3D"ltr">Hi,<br><br>I am trying to submit forms, ie, <a href=3D"htt=
+ps://www.yoctoproject.org/ecosystem/participant-registration">https://www.y=
+octoproject.org/ecosystem/participant-registration</a>, and keep getting we=
+bsite errors. Tried on multiple computers, and it keeps failing. Just thoug=
+ht I would let someone know in case it needs to be addressed. <br>
+<div><br clear=3D"all"></div><div>Error output after submitting Yocto Proje=
+ct Participant and Compatible Registration forms:<br><br><em class=3D"">PDO=
+Exception</em>: SQLSTATE[42S22]: Column not=20
+found: 1054 Unknown column &#39;contentId&#39; in &#39;field list&#39;: INS=
+ERT INTO=20
+{mollom} (entity, id, contentId, captchaId, form_id, changed, moderate,=20
+spamScore, spamClassification, solved, qualityScore, profanityScore,=20
+reason, languages) VALUES (:db_insert_placeholder_0,=20
+:db_insert_placeholder_1, :db_insert_placeholder_2,=20
+:db_insert_placeholder_3, :db_insert_placeholder_4,=20
+:db_insert_placeholder_5, :db_insert_placeholder_6,=20
+:db_insert_placeholder_7, :db_insert_placeholder_8,=20
+:db_insert_placeholder_9, :db_insert_placeholder_10,=20
+:db_insert_placeholder_11, :db_insert_placeholder_12,=20
+:db_insert_placeholder_13); Array
+(
+    [:db_insert_placeholder_0] =3D&gt; webform
+    [:db_insert_placeholder_1] =3D&gt; 157
+    [:db_insert_placeholder_2] =3D&gt; 1408121d6ca8a88c95
+    [:db_insert_placeholder_3] =3D&gt;=20
+    [:db_insert_placeholder_4] =3D&gt; webform_client_form_351547
+    [:db_insert_placeholder_5] =3D&gt; 1407865116
+    [:db_insert_placeholder_6] =3D&gt; 0
+    [:db_insert_placeholder_7] =3D&gt; 0
+    [:db_insert_placeholder_8] =3D&gt; ham
+    [:db_insert_placeholder_9] =3D&gt;=20
+    [:db_insert_placeholder_10] =3D&gt;=20
+    [:db_insert_placeholder_11] =3D&gt;=20
+    [:db_insert_placeholder_12] =3D&gt;=20
+    [:db_insert_placeholder_13] =3D&gt;=20
+)
+ in <em class=3D"">drupal_write_record()</em> (line <em class=3D"">7207</em=
+> of <em class=3D"">/var/www/drupal/includes/common.inc</em>).<br><br><br><=
+/div><div>Thanks,<br><br></div><div>Leah<br></div><div><br>-- <br><div dir=
+=3D"ltr">
+<div><div><div><p></p>Leah Thompson<br></div><a href=3D"http://www.wolfssl.=
+com" target=3D"_blank">www.wolfssl.com</a><br></div><a href=3D"mailto:leah@=
+wolfssl.com" target=3D"_blank">leah@wolfssl.com</a><br>406-570-1389<br></di=
+v>Skype: lchristina26<br>
+<div><div><br><br></div></div></div></div></div>
 
---089e013a0ac65151160500718c49--
+--047d7bdca0c6f848380500724bd4--
