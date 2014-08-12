@@ -1,72 +1,47 @@
-Return-Path: <petertornel@yahoo.com>
+Return-Path: <elizabeth.flanagan@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 48A6BE007C2; Tue, 12 Aug 2014 15:12:30 -0700 (PDT)
+	id 6FE7CE007A0; Tue, 12 Aug 2014 16:28:09 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
-	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (petertornel[at]yahoo.com)
-	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
-	no *      trust
-	*      [98.138.229.26 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [209.85.220.177 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0016]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from nm33.bullet.mail.ne1.yahoo.com (nm33.bullet.mail.ne1.yahoo.com
-	[98.138.229.26])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D3B08E00799
-	for <yocto@yoctoproject.org>; Tue, 12 Aug 2014 15:12:22 -0700 (PDT)
-Received: from [127.0.0.1] by nm33.bullet.mail.ne1.yahoo.com with NNFMP;
-	12 Aug 2014 22:12:21 -0000
-Received: from [98.138.101.132] by nm33.bullet.mail.ne1.yahoo.com with NNFMP;
-	12 Aug 2014 22:08:52 -0000
-Received: from [98.139.212.150] by tm20.bullet.mail.ne1.yahoo.com with NNFMP;
-	12 Aug 2014 22:08:51 -0000
-Received: from [98.139.212.226] by tm7.bullet.mail.bf1.yahoo.com with NNFMP;
-	12 Aug 2014 22:08:51 -0000
-Received: from [127.0.0.1] by omp1035.mail.bf1.yahoo.com with NNFMP;
-	12 Aug 2014 22:08:51 -0000
-X-Yahoo-Newman-Property: ymail-4
-X-Yahoo-Newman-Id: 779673.16252.bm@omp1035.mail.bf1.yahoo.com
-Received: (qmail 15668 invoked by uid 60001); 12 Aug 2014 22:08:51 -0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s1024;
-	t=1407881331; bh=bKL91i8fwWJJNjoosb5/lHNVtHAZo7EN4EN43uc/U3k=;
-	h=References:Message-ID:Date:From:Reply-To:Subject:To:MIME-Version:Content-Type;
-	b=eDhJZ43N4VYI9ZQOSaQWIq/ywx3euTpagKP5c4obt9zIR0Lx/7SsgZzQ0ni0vl7wMnLT+Ey5yCUQ8Z32tUhrMzbrhbPwKwZNRiCw4IPx2I9dNCvF7hv0p8fN0jyIsj0r7VGl3tNFgYUmfSSF/l2Bdc3wMENuFFF4+HsQVPYAbpw=
-X-YMail-OSG: D8uszGsVM1mI.Twpwp6B0lxv_CjvQ9g8McVJYsc3QBqY_OD
-	GktBcA1IhlfOaaLOl2FeMkvAMZ_alSPn.jWdNEUXOHnWiy_DNVAjOnU436Hx
-	lZT.7GwD6i8cTAlVrLrXcjRqCisaNiWUmcWlUitHlsRzm34hNBZPzgBC0tBa
-	RnbWyRox1fAA9pBGi1mUjNS5ry740qWS.OhynY_09HCn4qRO4E.DfBWeytBN
-	L9vFnTu9WjlgiVDi8nsUza4_fp608R5zYxxgFEG9CyPwPgTXfQAFVJg9f2uP
-	UJxujd4ta7gNI0jU0IDIbsZ3T0zW1bRyNcqDOUk4GG7TbD66VFrflynGfnvQ
-	vO.qzLSfYwxFfPeSSWZqD_6js_rfM0kbywKxN.kpTVH6XuNBOUD3BEYPm3bM
-	7lSSr2H7WlrSTwyg5XWgeZOpiXRjAxMlOZySrr9wIpA8o5l3HhsB5IUAETJw
-	hN68TELZGPmJZJjCrYQ1r_.gUcbhy6pfDNny1L6ynKjziWtH.XLWqeRY4Vvw
-	U_0bc0w--
-Received: from [68.38.40.177] by web140703.mail.bf1.yahoo.com via HTTP;
-	Tue, 12 Aug 2014 15:08:51 PDT
-X-Rocket-MIMEInfo: 002.001,
-	SGksCgpXaGF0IGlzIHRoZSBjb3JyZWN0IG1ldGhvZCBmb3IgY29udHJvbGxpbmcgd2hpY2ggRklMRVNFWFRSQVBBVEhTX3ByZXBlbmQgCmFjdHVhbGx5IHNob3dzIHVwIGZpcnN0IGluIHRoZSBwYXRoIHdoZW4gdGhlcmUgYXJlIG11bHRpcGxlIGJiYXBwZW5kcyAKc2V0dGluZyB0aGUgc2FtZSB2YXJpYWJsZT_CoCAKCgpQZXRlATABAQEB
-X-Mailer: YahooMailWebService/0.8.201.700
-References: 
-Message-ID: <1407881331.94733.YahooMailNeo@web140703.mail.bf1.yahoo.com>
-Date: Tue, 12 Aug 2014 15:08:51 -0700
-From: Peter Tornel <petertornel@yahoo.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+	*      [score: 0.0000]
+Received: from mail-vc0-f177.google.com (mail-vc0-f177.google.com
+	[209.85.220.177])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8FD08E00796
+	for <yocto@yoctoproject.org>; Tue, 12 Aug 2014 16:28:06 -0700 (PDT)
+Received: by mail-vc0-f177.google.com with SMTP id hy4so14201894vcb.36
+	for <yocto@yoctoproject.org>; Tue, 12 Aug 2014 16:28:06 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:date:message-id:subject:from:to
+	:content-type;
+	bh=BxLNIrazzxdRFDE3pwIKEdaasn2+p5uoFewm1OmgMMo=;
+	b=X2VyGonI5s34h6e3rH9GM7vSgspUQzPXotmteeFzNjRxsUsWhQoMjbFXdJPWs9KPbt
+	lf9Av+k5lPWrMsdqu9aaC1juXdUaW6qKhue45B83kiis0wCpUomQJOPpmHlS1djX0V+F
+	IZBleydHL6qYE71YT6KJoxk3lc+1u6+VccbrtCk2yO3ctZNhgTKLSUHfZAyrnnCWwSnY
+	M7bmeuwr6AopzI6WrqtP2vtkSxKUFerS4cSpEK3cXx6bvxMG8dOnOfC48V7281sS41yi
+	bGd8khcv9Rh5AJ039YrIpfwORbwW9PZ1IZFwuNBGXyoEjoB769I+Lb/3iWTXwW1Fwquz
+	qf6A==
+X-Gm-Message-State: ALoCoQnUqpI7eyEtclV2HmWrLx1lhHUgCP9cmdNpFeO96F//1BOZX3dfSlE4+NEQU6mdT4m+nZSF
 MIME-Version: 1.0
-Subject: ordering multiple bbappends and their FILESEXTRAPATHS_prepend setting
+X-Received: by 10.220.110.77 with SMTP id m13mr534230vcp.35.1407886085922;
+	Tue, 12 Aug 2014 16:28:05 -0700 (PDT)
+Received: by 10.52.135.50 with HTTP; Tue, 12 Aug 2014 16:28:05 -0700 (PDT)
+Date: Wed, 13 Aug 2014 00:28:05 +0100
+Message-ID: <CAPhnLPB5pjZW-+u+DkYndRc=8sSMcvDqF5Eia7qvH6Q7sj92jQ@mail.gmail.com>
+From: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
+	yocto-announce@yoctoproject.org
+Subject: [ANNOUNCEMENT] Yocto Project 1.5.3 Released
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
-Reply-To: Peter Tornel <petertornel@yahoo.com>
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -75,50 +50,128 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 12 Aug 2014 22:12:30 -0000
-Content-Type: multipart/alternative;
-	boundary="-979624102-18866957-1407881331=:94733"
+X-List-Received-Date: Tue, 12 Aug 2014 23:28:09 -0000
+Content-Type: text/plain; charset=UTF-8
 
----979624102-18866957-1407881331=:94733
-Content-Type: text/plain; charset=iso-8859-1
-Content-Transfer-Encoding: quoted-printable
+Hello,
 
-Hi,=0A=0AWhat is the correct method for controlling which FILESEXTRAPATHS_p=
-repend =0Aactually shows up first in the path when there are multiple bbapp=
-ends =0Asetting the same variable?=A0 =0A=0A=0APete
+The latest point release of the Yocto Project, 1.5.3 (dora 10.0.3) is now
+available for download at:
 
----979624102-18866957-1407881331=:94733
-Content-Type: text/html; charset=iso-8859-1
-Content-Transfer-Encoding: quoted-printable
+http://downloads.yoctoproject.org/releases/yocto/yocto-1.5.3/poky-dora-10.0.3.tar.bz2
+http://mirrors.kernel.org/yocto/yocto/yocto-1.5.3/poky-dora-10.0.3.tar.gz
 
-<html><body><div style=3D"color:#000; background-color:#fff; font-family:He=
-lveticaNeue, Helvetica Neue, Helvetica, Arial, Lucida Grande, sans-serif;fo=
-nt-size:12pt"><div id=3D"yiv4108384763"><div><div style=3D"color:#000;backg=
-round-color:#fff;font-family:HelveticaNeue, Helvetica Neue, Helvetica, Aria=
-l, Lucida Grande, sans-serif;font-size:12pt;"><div class=3D"yiv4108384763" =
-id=3D"yiv4108384763yui_3_16_0_1_1407873094534_25112" style=3D"">Hi,</div><d=
-iv class=3D"yiv4108384763" id=3D"yiv4108384763yui_3_16_0_1_1407873094534_25=
-115" style=3D""><br class=3D"yiv4108384763" style=3D"" clear=3D"none"></div=
-><div class=3D"yiv4108384763" id=3D"yiv4108384763yui_3_16_0_1_1407873094534=
-_25116" style=3D"color:rgb(0, 0, 0);font-size:16px;font-family:HelveticaNeu=
-e, Helvetica Neue, Helvetica, Arial, Lucida Grande, sans-serif;background-c=
-olor:transparent;font-style:normal;">What=0A is the correct method for cont=
-rolling which FILESEXTRAPATHS_prepend =0Aactually shows up first in the pat=
-h when there are multiple bbappends =0Asetting the same variable?&nbsp; <br=
- class=3D"yiv4108384763" style=3D"" clear=3D"none"></div><div class=3D"yiv4=
-108384763" id=3D"yiv4108384763yui_3_16_0_1_1407873094534_25117" style=3D"co=
-lor:rgb(0, 0, 0);font-size:16px;font-family:HelveticaNeue, Helvetica Neue, =
-Helvetica, Arial, Lucida Grande, sans-serif;background-color:transparent;fo=
-nt-style:normal;"><br class=3D"yiv4108384763" style=3D"" clear=3D"none"></d=
-iv><div class=3D"yiv4108384763" id=3D"yiv4108384763yui_3_16_0_1_14078730945=
-34_25118" style=3D"color:rgb(0, 0, 0);font-size:16px;font-family:HelveticaN=
-eue, Helvetica Neue, Helvetica, Arial, Lucida Grande, sans-serif;background=
--color:transparent;font-style:normal;">Pete</div><div style=3D"" class=3D"y=
-iv4108384763" id=3D"yiv4108384763"><div style=3D"" class=3D"yiv4108384763">=
-<div class=3D"yiv4108384763" style=3D"color:#000;background-color:#fff;font=
--family:HelveticaNeue, Helvetica Neue, Helvetica, Arial, Lucida Grande, san=
-s-serif;font-size:12pt;"><div style=3D"" class=3D"yiv4108384763"
- id=3D"yiv4108384763yui_3_16_0_1_1407873094534_27367"></div></div></div></d=
-iv></div></div></div></div></body></html>
+A gpg signed version of these release notes is available at:
 
----979624102-18866957-1407881331=:94733--
+http://downloads.yoctoproject.org/releases/yocto/yocto-1.5.3/RELEASENOTES
+
+Please note that for this release, we are utilizing the master version
+of eclipse-poky-kepler (4a167fd662262ebdaa3cf0d332ac0debb52d7904)
+
+Thanks go out to everyone for all their hard work during this release!
+
+Sincerely,
+
+Elizabeth Flanagan
+Yocto Build and Release
+<elizabeth.flanagan@intel.com>
+
+
+--------------------
+yocto-1.5.3 Errata
+--------------------
+
+Release Name: poky-dora-10.0.3
+Branch:  dora
+Tag:  dora-10.0.3
+Hash:  dc743744d8e3a9caef577aeab6b7f51bc08ded17
+md5:  bf8025e03a7aa71d3111f5011ef8514e
+Download Locations:
+http://downloads.yoctoproject.org/releases/yocto/yocto-1.5.3/poky-dora-10.0.3.tar.bz2
+http://mirrors.kernel.org/yocto/yocto/yocto-1.5.3/poky-dora-10.0.3.tar.bz2
+
+Release Name: eclipse-poky-juno-dora-10.0.3
+Branch:  dora
+Tag:  dora-10.0.3
+Hash:  79cd3c6ff119526f3f85567253450d2e857afed0
+md5:  2dbedb581e085264a68f61f198d1bc3d
+Download Locations:
+http://downloads.yoctoproject.org/releases/yocto/yocto-1.5.3/eclipse-poky-juno-dora-10.0.3.tar.bz2
+http://mirrors.kernel.org/yocto/yocto/yocto-1.5.3/eclipse-poky-juno-dora-10.0.3.tar.bz2
+
+Release Name: eclipse-poky-kepler-dora-10.0.3
+Branch:  dora
+Tag:  dora-10.0.3
+Hash:  4a167fd662262ebdaa3cf0d332ac0debb52d7904
+md5:  818382d448ee2739bd306cfeaf690c74
+Download Locations:
+http://downloads.yoctoproject.org/releases/yocto/yocto-1.5.3/eclipse-poky-kepler-dora-10.0.3.tar.bz2
+http://mirrors.kernel.org/yocto/yocto/yocto-1.5.3/eclipse-poky-kepler-dora-10.0.3.tar.bz2
+
+Release Name: meta-qt3-dora-10.0.3
+Branch:  dora
+Tag:  dora-10.0.3
+Hash:  4772424ab69908d4e3b9d6d4717ca889468e6acd
+md5:  0a08ee0d6e59c21779db2e3ce47c825a
+Download Locations:
+http://downloads.yoctoproject.org/releases/yocto/yocto-1.5.3/meta-qt3-dora-10.0.3.tar.bz2
+http://mirrors.kernel.org/yocto/yocto/yocto-1.5.3/meta-qt3-dora-10.0.3.tar.bz2
+
+--------------------
+Security Fixes
+--------------------
+
+openssl:
+        CVE-2010-5298
+        CVE-2014-3470
+        CVE-2014-0224
+        CVE-2014-0221
+        CVE-2014-0198
+        CVE-2014-0195
+        CVE-2014-0198
+
+gnutls:
+        CVE-2014-3466
+
+--------------------
+Changelog
+--------------------
+build-appliance-image: Update to dora head revision
+poky.conf: Bump version for 1.5.3 dora release
+build-appliance-image: Update to dora head revision
+opkg: putting the service files into PN
+populate-extfs.sh: fix to handle special file names correctly
+libtool-cross/native: Force usage of bash due to sstate inconsistencies
+perf: split packging
+perf: add slang to the dependencies
+perf: fix broken shell comparsion in do_install
+e2fsprogs: Fix populate-extfs.sh
+prelink: Fix SRC_URI
+populate-extfs.sh: keep file timestamps
+rpm: Fix rpm -V usage
+consolekit: fix console-kit-log-system-start.service startup
+populate-extfs.sh: error out if debugfs encounters some error
+populate-extfs.sh: fix to handle /var/lib/opkg/alternatives/[[ correctly
+profile-manual: Fixed a transposed title.
+dev-manual: Fixed a link that was broke in the mega-manual.
+mega-manual.sed: Fixed search string problem for profile-manual.
+documentation: Updated manual history tables.
+mega-manual.sed: Updated release string to support 1.5.3 release.
+poky.ent: Updated variables to support 1.5.3 release.
+x264: Update SRCREV to match commit in upstream git repo
+openssl: fix for CVE-2010-5298
+openssl: fix CVE-2014-3470
+openssl: fix CVE-2014-0224
+openssl: fix CVE-2014-0221
+openssl: use upstream fix for CVE-2014-0198
+openssl: fix CVE-2014-0195
+gnutls: patch for CVE-2014-3466 backported
+busybox: fix meta-yocto's bbappend's FILESEXTRAPATH
+poky.conf: Fix DISTRO_VERSION to be 1.5.2
+openssl: fix CVE-2014-0198
+
+-- 
+Elizabeth Flanagan
+Yocto Project
+Build and Release
+
