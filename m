@@ -1,50 +1,40 @@
-Return-Path: <microdevel@googlemail.com>
+Return-Path: <bremalathar@hcl.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 110DAE00796; Tue, 12 Aug 2014 02:54:59 -0700 (PDT)
+	id A668EE00799; Tue, 12 Aug 2014 03:18:46 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (microdevel[at]googlemail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.216.41 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-qa0-f41.google.com (mail-qa0-f41.google.com
-	[209.85.216.41])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 061B2E00786
-	for <yocto@yoctoproject.org>; Tue, 12 Aug 2014 02:54:57 -0700 (PDT)
-Received: by mail-qa0-f41.google.com with SMTP id j7so8723228qaq.0
-	for <yocto@yoctoproject.org>; Tue, 12 Aug 2014 02:54:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=googlemail.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=UNUkW1q5zL3A9g8Hm1wlXz0F3jIq2BrID88QfwBU47w=;
-	b=oUvaitc7gToTnrKsGjtLOjfSyvZn6Dc80AnIwIWjfgQeX7Aetu9+ukGEg5Euw0oVvT
-	Jikuv48E/cKJfvpN3AXZKNZO/RxgWeMb9FfjpRT151oJcnZkLsagwfyks805gFx1OwDL
-	O+qYb54ISVmac0pw8vcEv/GELHK9HQPj/gWNI4BDKudnmHJeTLctUP33WikrOUMz9Vas
-	W+TH0HU18mFDzEOqAVFU59N6zGYobXsUHtSVhTWPaGLtX1Gibyo16WPzYuX1fZOQjMMS
-	PURtdfCI33tntRnMgjj8qLviRqMBSk+ZXhoEVFq/d+bHm5+8ZpIot6gT/qpHuav1P9WU
-	gaIw==
+X-Greylist: delayed 69 seconds by postgrey-1.32 at yocto-www;
+	Tue, 12 Aug 2014 03:18:41 PDT
+Received: from GWS08.hcl.com (gws08.hcl.com [192.8.186.131])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 35907E00786
+	for <yocto@yoctoproject.org>; Tue, 12 Aug 2014 03:18:40 -0700 (PDT)
+X-IronPort-AV: E=Sophos;i="5.01,848,1400005800"; d="scan'208,217";a="25449668"
+Received: from unknown (HELO CHN-CORP-HT02.CORP.HCL.IN) ([10.249.2.34])
+	by GWS08.hcl.com with ESMTP/TLS/AES128-SHA; 12 Aug 2014 15:46:47 +0530
+Received: from CHN-HCLT-CSHT02.HCLT.CORP.HCL.IN (10.150.12.27) by
+	CHN-CORP-HT02.CORP.HCL.IN (10.249.2.34) with Microsoft SMTP Server
+	(TLS) id 14.3.123.3; Tue, 12 Aug 2014 15:47:12 +0530
+Received: from CHN-HCLT-MBS04.HCLT.CORP.HCL.IN ([10.150.12.19]) by
+	CHN-HCLT-CSHT02.HCLT.CORP.HCL.IN ([::1]) with mapi id 14.03.0123.003;
+	Tue, 12 Aug 2014 15:47:11 +0530
+From: "Bremalatha Ramalingam - ERS, HCL Tech" <bremalathar@hcl.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: Will yocto build support the linux kernel version 3.11
+Thread-Index: Ac+2Fm9OzzHRrt/SQNyTQqi2rHw8hw==
+Date: Tue, 12 Aug 2014 10:17:09 +0000
+Message-ID: <85BEC37D441A9046A1055938F61F94E10EADFBC6@chn-hclt-mbs04.HCLT.CORP.HCL.IN>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.150.5.114]
 MIME-Version: 1.0
-X-Received: by 10.229.73.70 with SMTP id p6mr4800159qcj.13.1407837296595; Tue,
-	12 Aug 2014 02:54:56 -0700 (PDT)
-Received: by 10.96.73.106 with HTTP; Tue, 12 Aug 2014 02:54:56 -0700 (PDT)
-Date: Tue, 12 Aug 2014 11:54:56 +0200
-Message-ID: <CAOB9jC+zn-q4j9Fr0TJQyf_-O6JkFz9scmWAEE-EcMFor9Ai=g@mail.gmail.com>
-From: Chris Enrique <microdevel@googlemail.com>
-To: yocto@yoctoproject.org
-Subject: problems with Init
+Subject: Will yocto build support the linux kernel version 3.11
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -56,97 +46,139 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 12 Aug 2014 09:54:59 -0000
-Content-Type: multipart/alternative; boundary=001a11c2bd34f7181305006ba91d
+X-List-Received-Date: Tue, 12 Aug 2014 10:18:46 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_85BEC37D441A9046A1055938F61F94E10EADFBC6chnhcltmbs04HCL_"
 
---001a11c2bd34f7181305006ba91d
-Content-Type: text/plain; charset=UTF-8
-
-Hello,
-
-i am currently working on a BSP for yocto in order to support a custom
-PowerPC board. In the meantime, i have setup all the config to generate a
-properly running 3.14 kernel and devicetree but still have some issues with
-the rootfs that is produced by yocto. I chose cpio.gz as image format for
-the rootfs which is converted via the u-boot mkimage-tool to a compatible
-.uRamdisk image.
-
-I already tested the kernel with a rootfs image which was not generated by
-yocto and it works fine.
-
-Unfortunately, the yocto generated image seems to have problems with Init
-(target is core-image-minimal, my bsp doesn't modify anything except adding
-support for the target board by specifying kernel config and devicetree).
-
-Here you can see the kernel log at the point where init seems to fail:
-
-console [netcon0] enabled
-netconsole: network logging started
-rtc-rx8581 0-0051: setting system clock to 2012-04-24 09:29:17 UTC
-(1335259757)
-Freeing unused kernel memory: 200K (c0525000 - c0557000)
-Failed to execute /init (error -13)
-INIT: version 2.88 booting
-Starting
-hwclock: can't open '/dev/misc/rtc': No such file or directory
-Stopping syslogd/klogd: no syslogd found; none killed
-Deconfiguring network interfaces... ifdown: interface lo not configured
-ifdown: interface eth0 not configured
-done.
-Sending all processes the TERM signal...
-Sending all processes the KILL signal...
-Unmounting remote filesystems...
-Deactivating swap...
-Unmounting local filesystems...
-/etc/rc0.d/S40umountfs: line 22: can't create /dev/null: Read-only file
-system
-reboot: Power down
-System Halted, OK to turn off power
-
-I assume, if i am able to generate a working kernel using yocto, the rootfs
-image automatically generated by yocto for target core-image-minimal is not
-supposed to fail?
-
-
-I appreciate any help with this issue!
-
-kind regards,
-chris
-
---001a11c2bd34f7181305006ba91d
-Content-Type: text/html; charset=UTF-8
+--_000_85BEC37D441A9046A1055938F61F94E10EADFBC6chnhcltmbs04HCL_
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div>Hello,<br><br>i am currently working on a BSP for yoc=
-to in order to support a custom PowerPC board. In the meantime, i have setu=
-p all the config to generate a properly running 3.14 kernel and devicetree =
-but still have some issues with the rootfs that is produced by yocto. I cho=
-se cpio.gz as image format for the rootfs which is converted via the u-boot=
- mkimage-tool to a compatible .uRamdisk image.<br>
-<br></div><div>I already tested the kernel with a rootfs image which was no=
-t generated by yocto and it works fine. <br><br>Unfortunately, the yocto ge=
-nerated image seems to have problems with Init (target is core-image-minima=
-l, my bsp doesn&#39;t modify anything except adding support for the target =
-board by specifying kernel config and devicetree).<br>
-<br></div><div>Here you can see the kernel log at the point where init seem=
-s to fail:<br><br>console [netcon0] enabled<br>netconsole: network logging =
-started<br>rtc-rx8581 0-0051: setting system clock to 2012-04-24 09:29:17 U=
-TC (1335259757)<br>
-Freeing unused kernel memory: 200K (c0525000 - c0557000)<br>Failed to execu=
-te /init (error -13)<br>INIT: version 2.88 booting<br>Starting<br>hwclock: =
-can&#39;t open &#39;/dev/misc/rtc&#39;: No such file or directory<br>Stoppi=
-ng syslogd/klogd: no syslogd found; none killed<br>
-Deconfiguring network interfaces... ifdown: interface lo not configured<br>=
-ifdown: interface eth0 not configured<br>done.<br>Sending all processes the=
- TERM signal...<br>Sending all processes the KILL signal...<br>Unmounting r=
-emote filesystems...<br>
-Deactivating swap...<br>Unmounting local filesystems...<br>/etc/rc0.d/S40um=
-ountfs: line 22: can&#39;t create /dev/null: Read-only file system<br>reboo=
-t: Power down<br>System Halted, OK to turn off power<br><br></div><div>
-I assume, if i am able to generate a working kernel using yocto, the rootfs=
- image automatically generated by yocto for target core-image-minimal is no=
-t supposed to fail?<br><br><br></div><div>I appreciate any help with this i=
-ssue!<br>
-<br></div><div>kind regards,<br>chris<br></div><div><br></div></div>
+Hi All,
 
---001a11c2bd34f7181305006ba91d--
+Can anyone tell will the Yocto build environment support the Linux kernel v=
+ersion 3.11.
+
+Thanks.
+
+
+
+::DISCLAIMER::
+---------------------------------------------------------------------------=
+-------------------------------------------------------------------------
+
+The contents of this e-mail and any attachment(s) are confidential and inte=
+nded for the named recipient(s) only.
+E-mail transmission is not guaranteed to be secure or error-free as informa=
+tion could be intercepted, corrupted,
+lost, destroyed, arrive late or incomplete, or may contain viruses in trans=
+mission. The e mail and its contents
+(with or without referred errors) shall therefore not attach any liability =
+on the originator or HCL or its affiliates.
+Views or opinions, if any, presented in this email are solely those of the =
+author and may not necessarily reflect the
+views or opinions of HCL or its affiliates. Any form of reproduction, disse=
+mination, copying, disclosure, modification,
+distribution and / or publication of this message without the prior written=
+ consent of authorized representative of
+HCL is strictly prohibited. If you have received this email in error please=
+ delete it and notify the sender immediately.
+Before opening any email and/or attachments, please check them for viruses =
+and other defects.
+
+---------------------------------------------------------------------------=
+-------------------------------------------------------------------------
+
+--_000_85BEC37D441A9046A1055938F61F94E10EADFBC6chnhcltmbs04HCL_
+Content-Type: text/html; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii">
+<meta name=3D"Generator" content=3D"Microsoft Word 14 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri","sans-serif";
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri","sans-serif";}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal">Hi All,<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Can anyone tell will the Yocto build environment sup=
+port the Linux kernel version 3.11.<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Thanks.<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+<span style=3D"FONT-FAMILY: 'Arial','sans-serif'; COLOR: gray; FONT-SIZE: 7=
+.5pt; mso-fareast-font-family: 'Times New Roman'">
+<P style=3D"MARGIN: 0in 0in 0pt" class=3DMsoNormal><br><br><font style=3D"F=
+ONT-FAMILY: 'Arial','sans-serif'; COLOR: gray; FONT-SIZE: 9px">::DISCLAIMER=
+::<br>---------------------------------------------------------------------=
+---------------------------------------------------------------------------=
+----</font></P>
+<P style=3D"MARGIN: 0in 0in 0pt" class=3DMsoNormal><font style=3D"FONT-FAMI=
+LY: 'Arial','sans-serif'; COLOR: gray; FONT-SIZE: 11px">The contents of thi=
+s e-mail and any attachment(s) are confidential and intended for the named =
+recipient(s) only.<br>E-mail transmission is not guaranteed to be secure or=
+ error-free as information could be intercepted, corrupted, <br>lost, destr=
+oyed, arrive late or incomplete, or may contain viruses in transmission. Th=
+e e mail and its contents <br>(with or without referred errors) shall there=
+fore not attach any liability on the originator or HCL or its affiliates. <=
+br>Views or opinions, if any, presented in this email are solely those of t=
+he author and may not necessarily reflect the <br>views or opinions of HCL =
+or its affiliates. Any form of reproduction, dissemination, copying, disclo=
+sure, modification, <br>distribution and / or publication of this message w=
+ithout the prior written consent of authorized representative of <br>HCL is=
+ strictly prohibited. If you have received this email in error please delet=
+e it and notify the sender immediately. <br>Before opening any email and/or=
+ attachments, please check them for viruses and other defects.</font></P>
+<P style=3D"MARGIN: 0in 0in 0pt" class=3DMsoNormal><font style=3D"FONT-FAMI=
+LY: 'Arial','sans-serif'; COLOR: gray; FONT-SIZE: 11px">-------------------=
+---------------------------------------------------------------------------=
+------------------------------------------------------</font></span></P></b=
+ody>
+</html>
+
+--_000_85BEC37D441A9046A1055938F61F94E10EADFBC6chnhcltmbs04HCL_--
