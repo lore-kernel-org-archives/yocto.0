@@ -1,44 +1,44 @@
 Return-Path: <elizabeth.flanagan@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 6FE7CE007A0; Tue, 12 Aug 2014 16:28:09 -0700 (PDT)
+	id 3979EE0079A; Tue, 12 Aug 2014 16:54:11 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
+	autolearn=unavailable version=3.3.1
 X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
 	http://www.dnswl.org/, low *      trust
-	*      [209.85.220.177 listed in list.dnswl.org]
+	*      [209.85.220.179 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail-vc0-f177.google.com (mail-vc0-f177.google.com
-	[209.85.220.177])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8FD08E00796
-	for <yocto@yoctoproject.org>; Tue, 12 Aug 2014 16:28:06 -0700 (PDT)
-Received: by mail-vc0-f177.google.com with SMTP id hy4so14201894vcb.36
-	for <yocto@yoctoproject.org>; Tue, 12 Aug 2014 16:28:06 -0700 (PDT)
+Received: from mail-vc0-f179.google.com (mail-vc0-f179.google.com
+	[209.85.220.179])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EAC7DE00796
+	for <yocto@yoctoproject.org>; Tue, 12 Aug 2014 16:54:05 -0700 (PDT)
+Received: by mail-vc0-f179.google.com with SMTP id hq11so13967655vcb.24
+	for <yocto@yoctoproject.org>; Tue, 12 Aug 2014 16:54:04 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
 	h=x-gm-message-state:mime-version:date:message-id:subject:from:to
 	:content-type;
-	bh=BxLNIrazzxdRFDE3pwIKEdaasn2+p5uoFewm1OmgMMo=;
-	b=X2VyGonI5s34h6e3rH9GM7vSgspUQzPXotmteeFzNjRxsUsWhQoMjbFXdJPWs9KPbt
-	lf9Av+k5lPWrMsdqu9aaC1juXdUaW6qKhue45B83kiis0wCpUomQJOPpmHlS1djX0V+F
-	IZBleydHL6qYE71YT6KJoxk3lc+1u6+VccbrtCk2yO3ctZNhgTKLSUHfZAyrnnCWwSnY
-	M7bmeuwr6AopzI6WrqtP2vtkSxKUFerS4cSpEK3cXx6bvxMG8dOnOfC48V7281sS41yi
-	bGd8khcv9Rh5AJ039YrIpfwORbwW9PZ1IZFwuNBGXyoEjoB769I+Lb/3iWTXwW1Fwquz
-	qf6A==
-X-Gm-Message-State: ALoCoQnUqpI7eyEtclV2HmWrLx1lhHUgCP9cmdNpFeO96F//1BOZX3dfSlE4+NEQU6mdT4m+nZSF
+	bh=tSSf/X7YQKCwjBcFl8dBK6Y1o41K7BgOs6S7HMxvmk0=;
+	b=PjjQ6FEILjglw9+ozbhNRpgGqVGJdWu4UcF1aqNUewWTvXBEjrfowm7ZjeovCO4JXD
+	fTKQ2Ohg1fSLe0w1Q1vQSnsod6v5KXr2YpLYvVtcXBE06xj2j2p15o2KfAhCNmFqGUPO
+	9D9DlqoIWnhv+jHgvaCYASW3Gkq1mR8XDw1el5MmCt5KOQbwN+yW9AQjuVw2DG/fewAN
+	BfdECOg0d4XXIh1tfcILVQT4kHy4faD0BquzzMqqYvC9Q54PlueHaNgqioHAmMkAMxC3
+	8QJyU+H2A/KXMFAVBqhf+eAYRdcmhc2Z17sNRgWaOJM1LrSkFT5+Kmmr44Asqop/Mix9
+	gTPw==
+X-Gm-Message-State: ALoCoQkxkuGGUdnnloy+3uMtrzt7Aerd4f9dttbw1IJVjxFUU8IJ6fsQ6b/CbX9C+fZa03VDie5R
 MIME-Version: 1.0
-X-Received: by 10.220.110.77 with SMTP id m13mr534230vcp.35.1407886085922;
-	Tue, 12 Aug 2014 16:28:05 -0700 (PDT)
-Received: by 10.52.135.50 with HTTP; Tue, 12 Aug 2014 16:28:05 -0700 (PDT)
-Date: Wed, 13 Aug 2014 00:28:05 +0100
-Message-ID: <CAPhnLPB5pjZW-+u+DkYndRc=8sSMcvDqF5Eia7qvH6Q7sj92jQ@mail.gmail.com>
+X-Received: by 10.220.130.131 with SMTP id t3mr714575vcs.30.1407887644653;
+	Tue, 12 Aug 2014 16:54:04 -0700 (PDT)
+Received: by 10.52.135.50 with HTTP; Tue, 12 Aug 2014 16:54:04 -0700 (PDT)
+Date: Wed, 13 Aug 2014 00:54:04 +0100
+Message-ID: <CAPhnLPCUmU1N=GgmxO92xDp_XTtLDZZyQZVh_vmy8e8wLTtcCQ@mail.gmail.com>
 From: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
 To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
 	yocto-announce@yoctoproject.org
-Subject: [ANNOUNCEMENT] Yocto Project 1.5.3 Released
+Subject: [ANNOUNCEMENT] Yocto Project 1.5.3 released
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -50,7 +50,7 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 12 Aug 2014 23:28:09 -0000
+X-List-Received-Date: Tue, 12 Aug 2014 23:54:11 -0000
 Content-Type: text/plain; charset=UTF-8
 
 Hello,
@@ -60,6 +60,8 @@ available for download at:
 
 http://downloads.yoctoproject.org/releases/yocto/yocto-1.5.3/poky-dora-10.0.3.tar.bz2
 http://mirrors.kernel.org/yocto/yocto/yocto-1.5.3/poky-dora-10.0.3.tar.gz
+
+This is an updated announcement with a corrected md5sum for the poky tarball.
 
 A gpg signed version of these release notes is available at:
 
@@ -85,7 +87,7 @@ Release Name: poky-dora-10.0.3
 Branch:  dora
 Tag:  dora-10.0.3
 Hash:  dc743744d8e3a9caef577aeab6b7f51bc08ded17
-md5:  bf8025e03a7aa71d3111f5011ef8514e
+md5:  fcbd3d51328855625281d2ad726e41ed
 Download Locations:
 http://downloads.yoctoproject.org/releases/yocto/yocto-1.5.3/poky-dora-10.0.3.tar.bz2
 http://mirrors.kernel.org/yocto/yocto/yocto-1.5.3/poky-dora-10.0.3.tar.bz2
@@ -169,6 +171,7 @@ gnutls: patch for CVE-2014-3466 backported
 busybox: fix meta-yocto's bbappend's FILESEXTRAPATH
 poky.conf: Fix DISTRO_VERSION to be 1.5.2
 openssl: fix CVE-2014-0198
+
 
 -- 
 Elizabeth Flanagan
