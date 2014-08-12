@@ -1,40 +1,29 @@
-Return-Path: <bremalathar@hcl.com>
+Return-Path: <maciej.borzecki@open-rnd.pl>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id A668EE00799; Tue, 12 Aug 2014 03:18:46 -0700 (PDT)
+	id D3370E00796; Tue, 12 Aug 2014 03:41:23 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE
-	autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-X-Greylist: delayed 69 seconds by postgrey-1.32 at yocto-www;
-	Tue, 12 Aug 2014 03:18:41 PDT
-Received: from GWS08.hcl.com (gws08.hcl.com [192.8.186.131])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 35907E00786
-	for <yocto@yoctoproject.org>; Tue, 12 Aug 2014 03:18:40 -0700 (PDT)
-X-IronPort-AV: E=Sophos;i="5.01,848,1400005800"; d="scan'208,217";a="25449668"
-Received: from unknown (HELO CHN-CORP-HT02.CORP.HCL.IN) ([10.249.2.34])
-	by GWS08.hcl.com with ESMTP/TLS/AES128-SHA; 12 Aug 2014 15:46:47 +0530
-Received: from CHN-HCLT-CSHT02.HCLT.CORP.HCL.IN (10.150.12.27) by
-	CHN-CORP-HT02.CORP.HCL.IN (10.249.2.34) with Microsoft SMTP Server
-	(TLS) id 14.3.123.3; Tue, 12 Aug 2014 15:47:12 +0530
-Received: from CHN-HCLT-MBS04.HCLT.CORP.HCL.IN ([10.150.12.19]) by
-	CHN-HCLT-CSHT02.HCLT.CORP.HCL.IN ([::1]) with mapi id 14.03.0123.003;
-	Tue, 12 Aug 2014 15:47:11 +0530
-From: "Bremalatha Ramalingam - ERS, HCL Tech" <bremalathar@hcl.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Will yocto build support the linux kernel version 3.11
-Thread-Index: Ac+2Fm9OzzHRrt/SQNyTQqi2rHw8hw==
-Date: Tue, 12 Aug 2014 10:17:09 +0000
-Message-ID: <85BEC37D441A9046A1055938F61F94E10EADFBC6@chn-hclt-mbs04.HCLT.CORP.HCL.IN>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.150.5.114]
+Received: from akt59.rev.netart.pl (akt59.rev.netart.pl [85.128.150.59])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 20956E00786
+	for <yocto@yoctoproject.org>; Tue, 12 Aug 2014 03:41:15 -0700 (PDT)
+Received: from localhost.localdomain (unknown [46.170.72.194])
+	by open-rnd.nazwa.pl (Postfix) with ESMTP id 5577A427DA4;
+	Tue, 12 Aug 2014 12:41:11 +0200 (CEST)
+From: Maciej Borzecki <maciej.borzecki@open-rnd.pl>
+To: Chris Enrique <microdevel@googlemail.com>
+Date: Tue, 12 Aug 2014 12:41:04 +0200
+Message-ID: <8883096.uPaAFrDUGr@localhost.localdomain>
+User-Agent: KMail/4.13.3 (Linux/3.15.8-200.fc20.x86_64; KDE/4.13.3; x86_64; ; )
+In-Reply-To: <CAOB9jC+zn-q4j9Fr0TJQyf_-O6JkFz9scmWAEE-EcMFor9Ai=g@mail.gmail.com>
+References: <CAOB9jC+zn-q4j9Fr0TJQyf_-O6JkFz9scmWAEE-EcMFor9Ai=g@mail.gmail.com>
 MIME-Version: 1.0
-Subject: Will yocto build support the linux kernel version 3.11
+Cc: yocto@yoctoproject.org
+Subject: Re: problems with Init
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -46,139 +35,107 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 12 Aug 2014 10:18:46 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_85BEC37D441A9046A1055938F61F94E10EADFBC6chnhcltmbs04HCL_"
-
---_000_85BEC37D441A9046A1055938F61F94E10EADFBC6chnhcltmbs04HCL_
-Content-Type: text/plain; charset="us-ascii"
-MIME-Version: 1.0
+X-List-Received-Date: Tue, 12 Aug 2014 10:41:23 -0000
 Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
 
-Hi All,
+On Tuesday 12 of August 2014 11:54:56 Chris Enrique wrote:
+>=20
+> Hello,
+>=20
+> i am currently working on a BSP for yocto in order to support a custo=
+m
+> PowerPC board. In the meantime, i have setup all the config to genera=
+te a
+> properly running 3.14 kernel and devicetree but still have some issue=
+s with
+> the rootfs that is produced by yocto. I chose cpio.gz as image format=
+ for
+> the rootfs which is converted via the u-boot mkimage-tool to a compat=
+ible
+> .uRamdisk image.
+>=20
+>=20
+> I already tested the kernel with a rootfs image which was not generat=
+ed by
+> yocto and it works fine.
+>=20
+> Unfortunately, the yocto generated image seems to have problems with =
+Init
+> (target is core-image-minimal, my bsp doesn't modify anything except =
+adding
+> support for the target board by specifying kernel config and devicetr=
+ee).
+>=20
+>=20
+> Here you can see the kernel log at the point where init seems to fail=
+:
+>=20
+> console [netcon0] enabled
+> netconsole: network logging started
+> rtc-rx8581 0-0051: setting system clock to 2012-04-24 09:29:17 UTC
+> (1335259757) Freeing unused kernel memory: 200K (c0525000 - c0557000)=
 
-Can anyone tell will the Yocto build environment support the Linux kernel v=
-ersion 3.11.
+> Failed to execute /init (error -13)
+> INIT: version 2.88 booting
+> Starting
+> hwclock: can't open '/dev/misc/rtc': No such file or directory
+> Stopping syslogd/klogd: no syslogd found; none killed
+> Deconfiguring network interfaces... ifdown: interface lo not configur=
+ed
+> ifdown: interface eth0 not configured
+> done.
+> Sending all processes the TERM signal...
+> Sending all processes the KILL signal...
+> Unmounting remote filesystems...
+> Deactivating swap...
+> Unmounting local filesystems...
+> /etc/rc0.d/S40umountfs: line 22: can't create /dev/null: Read-only fi=
+le
+> system reboot: Power down
+> System Halted, OK to turn off power
 
-Thanks.
+Have you checked that /dev is mounted and udev is running?
 
+>=20
+>=20
+> I assume, if i am able to generate a working kernel using yocto, the =
+rootfs
+> image automatically generated by yocto for target core-image-minimal =
+is not
+> supposed to fail?
 
+--
 
-::DISCLAIMER::
----------------------------------------------------------------------------=
--------------------------------------------------------------------------
+Maciej Borz=C4=99cki
+Senior Software Engineer Open-RnD Sp. z o.o.
+www.open-rnd.pl, Facebook, Twitter
+mobile: +48 telefon, fax: +48 42 657 9079
+=20
+=20
+Niniejsza wiadomo=C5=9B=C4=87 wraz z za=C5=82=C4=85cznikami mo=C5=BCe z=
+awiera=C4=87 chronione prawem lub
+poufne informacje i zosta=C5=82a wys=C5=82ana wy=C5=82=C4=85cznie do wi=
+adomo=C5=9Bci i u=C5=BCytku os=C3=B3b,
+do kt=C3=B3rych zosta=C5=82a zaadresowana. Je=C5=9Bli wiadomo=C5=9B=C4=87=
+ zosta=C5=82a otrzymana
+przypadkowo zabrania si=C4=99 jej kopiowania lub rozsy=C5=82ania do os=C3=
+=B3b trzecich. W
+takim przypadku uprasza si=C4=99 o natychmiastowe zniszczenie wiadomo=C5=
+=9Bci oraz
+poinformowanie nadawcy o zaistnia=C5=82ej sytuacji za pomoc=C4=85 wiado=
+mo=C5=9Bci
+zwrotnej. Dzi=C4=99kujemy.
+=20
+This message, including any attachments hereto, may contain privileged =
+or
+confidential information and is sent solely for the attention and use o=
+f
+the intended addressee(s). If you are not an intended addressee, you ma=
+y
+neither use this message nor copy or deliver it to anyone. In such case=
+,
+you should immediately destroy this message and kindly notify the sende=
+r by
+reply email. Thank you.
 
-The contents of this e-mail and any attachment(s) are confidential and inte=
-nded for the named recipient(s) only.
-E-mail transmission is not guaranteed to be secure or error-free as informa=
-tion could be intercepted, corrupted,
-lost, destroyed, arrive late or incomplete, or may contain viruses in trans=
-mission. The e mail and its contents
-(with or without referred errors) shall therefore not attach any liability =
-on the originator or HCL or its affiliates.
-Views or opinions, if any, presented in this email are solely those of the =
-author and may not necessarily reflect the
-views or opinions of HCL or its affiliates. Any form of reproduction, disse=
-mination, copying, disclosure, modification,
-distribution and / or publication of this message without the prior written=
- consent of authorized representative of
-HCL is strictly prohibited. If you have received this email in error please=
- delete it and notify the sender immediately.
-Before opening any email and/or attachments, please check them for viruses =
-and other defects.
-
----------------------------------------------------------------------------=
--------------------------------------------------------------------------
-
---_000_85BEC37D441A9046A1055938F61F94E10EADFBC6chnhcltmbs04HCL_
-Content-Type: text/html; charset="us-ascii"
-MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii">
-<meta name=3D"Generator" content=3D"Microsoft Word 14 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri","sans-serif";}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:purple;
-	text-decoration:underline;}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri","sans-serif";
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;
-	font-family:"Calibri","sans-serif";}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal">Hi All,<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Can anyone tell will the Yocto build environment sup=
-port the Linux kernel version 3.11.<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Thanks.<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-</div>
-<span style=3D"FONT-FAMILY: 'Arial','sans-serif'; COLOR: gray; FONT-SIZE: 7=
-.5pt; mso-fareast-font-family: 'Times New Roman'">
-<P style=3D"MARGIN: 0in 0in 0pt" class=3DMsoNormal><br><br><font style=3D"F=
-ONT-FAMILY: 'Arial','sans-serif'; COLOR: gray; FONT-SIZE: 9px">::DISCLAIMER=
-::<br>---------------------------------------------------------------------=
----------------------------------------------------------------------------=
-----</font></P>
-<P style=3D"MARGIN: 0in 0in 0pt" class=3DMsoNormal><font style=3D"FONT-FAMI=
-LY: 'Arial','sans-serif'; COLOR: gray; FONT-SIZE: 11px">The contents of thi=
-s e-mail and any attachment(s) are confidential and intended for the named =
-recipient(s) only.<br>E-mail transmission is not guaranteed to be secure or=
- error-free as information could be intercepted, corrupted, <br>lost, destr=
-oyed, arrive late or incomplete, or may contain viruses in transmission. Th=
-e e mail and its contents <br>(with or without referred errors) shall there=
-fore not attach any liability on the originator or HCL or its affiliates. <=
-br>Views or opinions, if any, presented in this email are solely those of t=
-he author and may not necessarily reflect the <br>views or opinions of HCL =
-or its affiliates. Any form of reproduction, dissemination, copying, disclo=
-sure, modification, <br>distribution and / or publication of this message w=
-ithout the prior written consent of authorized representative of <br>HCL is=
- strictly prohibited. If you have received this email in error please delet=
-e it and notify the sender immediately. <br>Before opening any email and/or=
- attachments, please check them for viruses and other defects.</font></P>
-<P style=3D"MARGIN: 0in 0in 0pt" class=3DMsoNormal><font style=3D"FONT-FAMI=
-LY: 'Arial','sans-serif'; COLOR: gray; FONT-SIZE: 11px">-------------------=
----------------------------------------------------------------------------=
-------------------------------------------------------</font></span></P></b=
-ody>
-</html>
-
---_000_85BEC37D441A9046A1055938F61F94E10EADFBC6chnhcltmbs04HCL_--
