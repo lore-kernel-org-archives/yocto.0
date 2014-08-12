@@ -1,53 +1,72 @@
-Return-Path: <kergoth@gmail.com>
+Return-Path: <petertornel@yahoo.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id D55E5E007A0; Tue, 12 Aug 2014 13:17:53 -0700 (PDT)
+	id 48A6BE007C2; Tue, 12 Aug 2014 15:12:30 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,HTML_MESSAGE,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [209.85.217.176 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM, HTML_MESSAGE,
+	RCVD_IN_DNSWL_NONE autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (petertornel[at]yahoo.com)
+	* -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at http://www.dnswl.org/,
+	no *      trust
+	*      [98.138.229.26 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
+	*      [score: 0.0016]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-lb0-f176.google.com (mail-lb0-f176.google.com
-	[209.85.217.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id F173DE00799
-	for <yocto@yoctoproject.org>; Tue, 12 Aug 2014 13:17:42 -0700 (PDT)
-Received: by mail-lb0-f176.google.com with SMTP id u10so7549959lbd.35
-	for <yocto@yoctoproject.org>; Tue, 12 Aug 2014 13:17:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:sender:in-reply-to:references:from:date:message-id
-	:subject:to:cc:content-type;
-	bh=IFQA+BtRWzwyT1CZTjCTxyREDE5g+03vO0I2FRbvGwg=;
-	b=FZVY+j9kcvuFbiwEc1zfxtjfFjSMWJT4WWom1+Pv/vigSGkCt14z6y4Bs7ZFTubgzT
-	RRO+4Pz3e200TIbfZIcgY00iArIJ4bbQPTLJNWG5N+6FogzmziTpv4BOQZER7iHzBBmW
-	x8v9ce533EP0nh93G/BZvlYImfAoNwkRgOpgs4hrVmK6u/8cXf2Rx4UeNVA/p0GS2dh9
-	a15sf9m2XIXiHnkIpk6rfPDG7U2HRr+sii0hE0mbQ1T6aG9rTBDTosCL7YhQm9Gad6w8
-	t6eDNXtRjE5oR8E90iOCfzjpplNhw5yIaEdGhmlc7EdKlVuz1ulkm56LLCsTbhXE9eZs
-	YB6Q==
-X-Received: by 10.152.205.8 with SMTP id lc8mr6493318lac.57.1407874660982;
-	Tue, 12 Aug 2014 13:17:40 -0700 (PDT)
+Received: from nm33.bullet.mail.ne1.yahoo.com (nm33.bullet.mail.ne1.yahoo.com
+	[98.138.229.26])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D3B08E00799
+	for <yocto@yoctoproject.org>; Tue, 12 Aug 2014 15:12:22 -0700 (PDT)
+Received: from [127.0.0.1] by nm33.bullet.mail.ne1.yahoo.com with NNFMP;
+	12 Aug 2014 22:12:21 -0000
+Received: from [98.138.101.132] by nm33.bullet.mail.ne1.yahoo.com with NNFMP;
+	12 Aug 2014 22:08:52 -0000
+Received: from [98.139.212.150] by tm20.bullet.mail.ne1.yahoo.com with NNFMP;
+	12 Aug 2014 22:08:51 -0000
+Received: from [98.139.212.226] by tm7.bullet.mail.bf1.yahoo.com with NNFMP;
+	12 Aug 2014 22:08:51 -0000
+Received: from [127.0.0.1] by omp1035.mail.bf1.yahoo.com with NNFMP;
+	12 Aug 2014 22:08:51 -0000
+X-Yahoo-Newman-Property: ymail-4
+X-Yahoo-Newman-Id: 779673.16252.bm@omp1035.mail.bf1.yahoo.com
+Received: (qmail 15668 invoked by uid 60001); 12 Aug 2014 22:08:51 -0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s1024;
+	t=1407881331; bh=bKL91i8fwWJJNjoosb5/lHNVtHAZo7EN4EN43uc/U3k=;
+	h=References:Message-ID:Date:From:Reply-To:Subject:To:MIME-Version:Content-Type;
+	b=eDhJZ43N4VYI9ZQOSaQWIq/ywx3euTpagKP5c4obt9zIR0Lx/7SsgZzQ0ni0vl7wMnLT+Ey5yCUQ8Z32tUhrMzbrhbPwKwZNRiCw4IPx2I9dNCvF7hv0p8fN0jyIsj0r7VGl3tNFgYUmfSSF/l2Bdc3wMENuFFF4+HsQVPYAbpw=
+X-YMail-OSG: D8uszGsVM1mI.Twpwp6B0lxv_CjvQ9g8McVJYsc3QBqY_OD
+	GktBcA1IhlfOaaLOl2FeMkvAMZ_alSPn.jWdNEUXOHnWiy_DNVAjOnU436Hx
+	lZT.7GwD6i8cTAlVrLrXcjRqCisaNiWUmcWlUitHlsRzm34hNBZPzgBC0tBa
+	RnbWyRox1fAA9pBGi1mUjNS5ry740qWS.OhynY_09HCn4qRO4E.DfBWeytBN
+	L9vFnTu9WjlgiVDi8nsUza4_fp608R5zYxxgFEG9CyPwPgTXfQAFVJg9f2uP
+	UJxujd4ta7gNI0jU0IDIbsZ3T0zW1bRyNcqDOUk4GG7TbD66VFrflynGfnvQ
+	vO.qzLSfYwxFfPeSSWZqD_6js_rfM0kbywKxN.kpTVH6XuNBOUD3BEYPm3bM
+	7lSSr2H7WlrSTwyg5XWgeZOpiXRjAxMlOZySrr9wIpA8o5l3HhsB5IUAETJw
+	hN68TELZGPmJZJjCrYQ1r_.gUcbhy6pfDNny1L6ynKjziWtH.XLWqeRY4Vvw
+	U_0bc0w--
+Received: from [68.38.40.177] by web140703.mail.bf1.yahoo.com via HTTP;
+	Tue, 12 Aug 2014 15:08:51 PDT
+X-Rocket-MIMEInfo: 002.001,
+	SGksCgpXaGF0IGlzIHRoZSBjb3JyZWN0IG1ldGhvZCBmb3IgY29udHJvbGxpbmcgd2hpY2ggRklMRVNFWFRSQVBBVEhTX3ByZXBlbmQgCmFjdHVhbGx5IHNob3dzIHVwIGZpcnN0IGluIHRoZSBwYXRoIHdoZW4gdGhlcmUgYXJlIG11bHRpcGxlIGJiYXBwZW5kcyAKc2V0dGluZyB0aGUgc2FtZSB2YXJpYWJsZT_CoCAKCgpQZXRlATABAQEB
+X-Mailer: YahooMailWebService/0.8.201.700
+References: 
+Message-ID: <1407881331.94733.YahooMailNeo@web140703.mail.bf1.yahoo.com>
+Date: Tue, 12 Aug 2014 15:08:51 -0700
+From: Peter Tornel <petertornel@yahoo.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 MIME-Version: 1.0
-Sender: kergoth@gmail.com
-Received: by 10.112.43.42 with HTTP; Tue, 12 Aug 2014 13:17:19 -0700 (PDT)
-In-Reply-To: <CA+gsK-pdY-gsv9On_v2BquVYQ1fw6=73m3NqhDvNSn=f+5K=6Q@mail.gmail.com>
-References: <CA+gsK-pdY-gsv9On_v2BquVYQ1fw6=73m3NqhDvNSn=f+5K=6Q@mail.gmail.com>
-From: Christopher Larson <clarson@kergoth.com>
-Date: Tue, 12 Aug 2014 13:17:19 -0700
-X-Google-Sender-Auth: Qd5yDYATJ_zo4gqs8TRepEFsCeA
-Message-ID: <CABcZANkEOTKf5aqi7dkVKqqUS4ptnTrQX6sRZkoQkaUYZKRsow@mail.gmail.com>
-To: Rudolf Streif <rstreif@linuxfoundation.org>
-Cc: Yocto Discussion Mailing List <yocto@yoctoproject.org>
-Subject: Re: distro.conf and LOCALCONF_VERSION, LAYER_CONF_VERSION, OELAYOUT_ABI
+Subject: ordering multiple bbappends and their FILESEXTRAPATHS_prepend setting
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
+Reply-To: Peter Tornel <petertornel@yahoo.com>
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -56,144 +75,50 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 12 Aug 2014 20:17:53 -0000
-Content-Type: multipart/alternative; boundary=001a1133ab3c0e78890500745db6
+X-List-Received-Date: Tue, 12 Aug 2014 22:12:30 -0000
+Content-Type: multipart/alternative;
+	boundary="-979624102-18866957-1407881331=:94733"
 
---001a1133ab3c0e78890500745db6
-Content-Type: text/plain; charset=UTF-8
-
-On Tue, Aug 12, 2014 at 12:31 PM, Rudolf Streif <rstreif@linuxfoundation.org
-> wrote:
-
-> The Poky distro configuration distro.conf includes assignments to
-> LOCALCONF_VERSION, LAYER_CONF_VERSION, OELAYOUT_ABI to set the expected
-> version numbers for local.conf, bblayers.conf and the directory layout of
-> ${TMPDIR}.
->
-> From a user perspective this is somewhat confusing as these variables
-> really have nothing to do with the distro policy but only with the
-> compatibility between the build system and a build environment. For Poky it
-> may somewhat make sense to put them there. However if I write my own
-> distro.conf and put it in a layer I would want to use this layer with
-> different version of the build system. I think it would make more sense to
-> assign these variables in poky-sanity.bbclass.
->
-> The second little gripe is about the inconsistent naming of these
-> variables and the ones they relate to:
->
-> LOCALCONF_VERSION (expected value) <-> CONF_VERSION (actual value)
-> LAYER_CONF_VERSION (expected value) <-> LCONF_VERSION (actual value)
-> OELAYOUT_ABI (expected value) <-> actual value retrieved from
-> tmp/abi_version
->
-> Adding to the confusion is LAYERVERSION which refers to the version of the
-> conf/layer.conf file of a layer. That is in contrast to LAYER_CONF_VERSION
-> / LCONF_VERSION which are for conf/bblayers.conf in the build enviroment.
->
-> Changing stuff that has been established for years is of course a pain but
-> it has been done and can be done in a backward compatible way.
->
-> My suggestions:
->
->    1. Rename LOCALCONF_VERSION to LOCAL_CONF_VERSION_SET
->    2. Rename LAYER_CONF_VERSION to BBLAYERS_CONF_VERSION_SET
->    3. Rename CONF_VERSION to LOCAL_CONF_VERSION
->    4. Rename LCONF_VERSION to BBLAYERS_CONF_VERSION
->    5. Rename OELAYOUT_ABI to OELAYOUT_VERSION_SET
->    6. Provide values for LOCAL_CONF_VERSION_SET,
->    BBLAYERS_CONF_VERSION_SET, OELAYOUT_VERSION_SET in poky-sanity.bbclass and
->    remove the settings from the distro configuration.
->
-> You would also want to change LAYERVERSION to LAYER_CONF_VERSION to be
-> consistent. But that cannot be done backwards compatible as it conflicts
-> with the currently used version variable for bblayers.conf.
->
-
-LAYERVERSION is about the version of the layer, which LAYERDEPENDS can
-reference, e.g. backwards-incompatible changes going into the layer, not
-the version of the layer's layer.conf specifically. _SET is a weird way to
-indicate an expected value, also, I'd called it _REQUIRED or something, but
-that's minor. In general, I agree that things are rather inconsistent with
-regard to variable naming, but that's true everywhere, not just for these
-variables :)
--- 
-Christopher Larson
-clarson at kergoth dot com
-Founder - BitBake, OpenEmbedded, OpenZaurus
-Maintainer - Tslib
-Senior Software Engineer, Mentor Graphics
-
---001a1133ab3c0e78890500745db6
-Content-Type: text/html; charset=UTF-8
+---979624102-18866957-1407881331=:94733
+Content-Type: text/plain; charset=iso-8859-1
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div class=3D"gmail_extra"><br><div class=3D"gmail_quote">=
-On Tue, Aug 12, 2014 at 12:31 PM, Rudolf Streif <span dir=3D"ltr">&lt;<a hr=
-ef=3D"mailto:rstreif@linuxfoundation.org" target=3D"_blank">rstreif@linuxfo=
-undation.org</a>&gt;</span> wrote:<br>
+Hi,=0A=0AWhat is the correct method for controlling which FILESEXTRAPATHS_p=
+repend =0Aactually shows up first in the path when there are multiple bbapp=
+ends =0Asetting the same variable?=A0 =0A=0A=0APete
 
-<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
-x #ccc solid;padding-left:1ex"><div><font face=3D"garamond, serif"><span st=
-yle=3D"border-collapse:collapse;color:rgb(102,102,102);font-family:arial,sa=
-ns-serif;font-size:13px">The Poky distro configuration distro.conf includes=
- assignments to LOCALCONF_VERSION, LAYER_CONF_VERSION, OELAYOUT_ABI to set =
-the expected version numbers for local.conf, bblayers.conf and the director=
-y layout of ${TMPDIR}.</span></font></div>
+---979624102-18866957-1407881331=:94733
+Content-Type: text/html; charset=iso-8859-1
+Content-Transfer-Encoding: quoted-printable
 
+<html><body><div style=3D"color:#000; background-color:#fff; font-family:He=
+lveticaNeue, Helvetica Neue, Helvetica, Arial, Lucida Grande, sans-serif;fo=
+nt-size:12pt"><div id=3D"yiv4108384763"><div><div style=3D"color:#000;backg=
+round-color:#fff;font-family:HelveticaNeue, Helvetica Neue, Helvetica, Aria=
+l, Lucida Grande, sans-serif;font-size:12pt;"><div class=3D"yiv4108384763" =
+id=3D"yiv4108384763yui_3_16_0_1_1407873094534_25112" style=3D"">Hi,</div><d=
+iv class=3D"yiv4108384763" id=3D"yiv4108384763yui_3_16_0_1_1407873094534_25=
+115" style=3D""><br class=3D"yiv4108384763" style=3D"" clear=3D"none"></div=
+><div class=3D"yiv4108384763" id=3D"yiv4108384763yui_3_16_0_1_1407873094534=
+_25116" style=3D"color:rgb(0, 0, 0);font-size:16px;font-family:HelveticaNeu=
+e, Helvetica Neue, Helvetica, Arial, Lucida Grande, sans-serif;background-c=
+olor:transparent;font-style:normal;">What=0A is the correct method for cont=
+rolling which FILESEXTRAPATHS_prepend =0Aactually shows up first in the pat=
+h when there are multiple bbappends =0Asetting the same variable?&nbsp; <br=
+ class=3D"yiv4108384763" style=3D"" clear=3D"none"></div><div class=3D"yiv4=
+108384763" id=3D"yiv4108384763yui_3_16_0_1_1407873094534_25117" style=3D"co=
+lor:rgb(0, 0, 0);font-size:16px;font-family:HelveticaNeue, Helvetica Neue, =
+Helvetica, Arial, Lucida Grande, sans-serif;background-color:transparent;fo=
+nt-style:normal;"><br class=3D"yiv4108384763" style=3D"" clear=3D"none"></d=
+iv><div class=3D"yiv4108384763" id=3D"yiv4108384763yui_3_16_0_1_14078730945=
+34_25118" style=3D"color:rgb(0, 0, 0);font-size:16px;font-family:HelveticaN=
+eue, Helvetica Neue, Helvetica, Arial, Lucida Grande, sans-serif;background=
+-color:transparent;font-style:normal;">Pete</div><div style=3D"" class=3D"y=
+iv4108384763" id=3D"yiv4108384763"><div style=3D"" class=3D"yiv4108384763">=
+<div class=3D"yiv4108384763" style=3D"color:#000;background-color:#fff;font=
+-family:HelveticaNeue, Helvetica Neue, Helvetica, Arial, Lucida Grande, san=
+s-serif;font-size:12pt;"><div style=3D"" class=3D"yiv4108384763"
+ id=3D"yiv4108384763yui_3_16_0_1_1407873094534_27367"></div></div></div></d=
+iv></div></div></div></div></body></html>
 
-<div><br></div><div>From a user perspective this is somewhat confusing as t=
-hese variables really have nothing to do with the distro policy but only wi=
-th the compatibility between the build system and a build environment. For =
-Poky it may somewhat make sense to put them there. However if I write my ow=
-n distro.conf and put it in a layer I would want to use this layer with dif=
-ferent version of the build system. I think it would make more sense to ass=
-ign these variables in poky-sanity.bbclass.</div>
-
-
-<div><br></div><div>The second little gripe is about the inconsistent namin=
-g of these variables and the ones they relate to:</div><div><br></div><div>=
-LOCALCONF_VERSION (expected value) &lt;-&gt; CONF_VERSION (actual value)</d=
-iv>
-
-
-<div>LAYER_CONF_VERSION (expected value) &lt;-&gt; LCONF_VERSION (actual va=
-lue)</div><div>OELAYOUT_ABI (expected value) &lt;-&gt; actual value retriev=
-ed from tmp/abi_version</div><div><br></div><div>Adding to the confusion is=
- LAYERVERSION which refers to the version of the conf/layer.conf file of a =
-layer. That is in contrast to LAYER_CONF_VERSION / LCONF_VERSION which are =
-for conf/bblayers.conf in the build enviroment.</div>
-
-
-<div><br></div><div>Changing stuff that has been established for years is o=
-f course a pain but it has been done and can be done in a backward compatib=
-le way.</div><div><br></div><div>My suggestions:</div><div><ol><li>Rename L=
-OCALCONF_VERSION to LOCAL_CONF_VERSION_SET</li>
-
-
-<li>Rename LAYER_CONF_VERSION to BBLAYERS_CONF_VERSION_SET</li><li>Rename C=
-ONF_VERSION to LOCAL_CONF_VERSION</li><li>Rename LCONF_VERSION to BBLAYERS_=
-CONF_VERSION</li><li>Rename OELAYOUT_ABI to OELAYOUT_VERSION_SET</li><li>
-
-
-Provide values for LOCAL_CONF_VERSION_SET, BBLAYERS_CONF_VERSION_SET, OELAY=
-OUT_VERSION_SET in poky-sanity.bbclass and remove the settings from the dis=
-tro configuration.</li></ol><div>You would also want to change LAYERVERSION=
- to LAYER_CONF_VERSION to be consistent. But that cannot be done backwards =
-compatible as it conflicts with the currently used version variable for bbl=
-ayers.conf.</div>
-
-</div></blockquote></div><br></div><div class=3D"gmail_extra">LAYERVERSION =
-is about the version of the layer, which LAYERDEPENDS can reference, e.g. b=
-ackwards-incompatible changes going into the layer, not the version of the =
-layer&#39;s layer.conf specifically. _SET is a weird way to indicate an exp=
-ected value, also, I&#39;d called it _REQUIRED or something, but that&#39;s=
- minor. In general, I agree that things are rather inconsistent with regard=
- to variable naming, but that&#39;s true everywhere, not just for these var=
-iables :)<br>
-
--- <br>Christopher Larson<br>clarson at kergoth dot com<br>Founder - BitBak=
-e, OpenEmbedded, OpenZaurus<br>Maintainer - Tslib<br>Senior Software Engine=
-er, Mentor Graphics
-</div></div>
-
---001a1133ab3c0e78890500745db6--
+---979624102-18866957-1407881331=:94733--
