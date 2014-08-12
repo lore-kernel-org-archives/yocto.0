@@ -1,29 +1,46 @@
-Return-Path: <maciej.borzecki@open-rnd.pl>
+Return-Path: <nicolas.dechesne@linaro.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id D3370E00796; Tue, 12 Aug 2014 03:41:23 -0700 (PDT)
+	id 09F3EE00799; Tue, 12 Aug 2014 03:45:47 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from akt59.rev.netart.pl (akt59.rev.netart.pl [85.128.150.59])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 20956E00786
-	for <yocto@yoctoproject.org>; Tue, 12 Aug 2014 03:41:15 -0700 (PDT)
-Received: from localhost.localdomain (unknown [46.170.72.194])
-	by open-rnd.nazwa.pl (Postfix) with ESMTP id 5577A427DA4;
-	Tue, 12 Aug 2014 12:41:11 +0200 (CEST)
-From: Maciej Borzecki <maciej.borzecki@open-rnd.pl>
-To: Chris Enrique <microdevel@googlemail.com>
-Date: Tue, 12 Aug 2014 12:41:04 +0200
-Message-ID: <8883096.uPaAFrDUGr@localhost.localdomain>
-User-Agent: KMail/4.13.3 (Linux/3.15.8-200.fc20.x86_64; KDE/4.13.3; x86_64; ; )
-In-Reply-To: <CAOB9jC+zn-q4j9Fr0TJQyf_-O6JkFz9scmWAEE-EcMFor9Ai=g@mail.gmail.com>
-References: <CAOB9jC+zn-q4j9Fr0TJQyf_-O6JkFz9scmWAEE-EcMFor9Ai=g@mail.gmail.com>
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.219.41 listed in list.dnswl.org]
+Received: from mail-oa0-f41.google.com (mail-oa0-f41.google.com
+	[209.85.219.41])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 580EAE00786
+	for <yocto@yoctoproject.org>; Tue, 12 Aug 2014 03:45:42 -0700 (PDT)
+Received: by mail-oa0-f41.google.com with SMTP id j17so7109076oag.14
+	for <yocto@yoctoproject.org>; Tue, 12 Aug 2014 03:45:42 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc:content-type;
+	bh=q6FmOU0El8YzzrPFHmbiV6Lf+k/VrN7HaHixpA7Z3pc=;
+	b=JqNrhU4Ow4Vb8kVK3n+Oqtf86q7Yn+Hk6B7PfN3IXp/D2SBKkMCfd/X302KL8dx8I6
+	wt4Gayhn25HqBCZ2Q2Xn36b1UGo8YWC5ViIo97kp8ZjhJmYLta1xhRn/9Ybd7nPjXTZm
+	VjSMMRay/mIZzzSL02EHwps3DE2v/sldmjKDjR2xVBqTc93UL9yfFQh8ayK/5xYIA3aD
+	YsQna6yFHqglU7E9nxBhngmkFnpIoHUbHp5AioG8j4iHjFRmMpH8wvI1x3EQf1oMBGMr
+	LhLhqKcfrxn5f2hFT/0dlswG4oX1PjEJixCp6FYq+I2Qrp/2+x5aUMKpqNiAwC+YlJtT
+	wFPA==
+X-Gm-Message-State: ALoCoQnmIUKbBuk6CTqS1nGIK6B7rYuQZFkAr/nGVp1kPrcNgw4ngQbBOB+T3kAcSbIs+pwybzmr
+X-Received: by 10.182.80.33 with SMTP id o1mr2447602obx.78.1407840342032; Tue,
+	12 Aug 2014 03:45:42 -0700 (PDT)
 MIME-Version: 1.0
-Cc: yocto@yoctoproject.org
-Subject: Re: problems with Init
+Received: by 10.76.171.194 with HTTP; Tue, 12 Aug 2014 03:45:21 -0700 (PDT)
+In-Reply-To: <85BEC37D441A9046A1055938F61F94E10EADFBC6@chn-hclt-mbs04.HCLT.CORP.HCL.IN>
+References: <85BEC37D441A9046A1055938F61F94E10EADFBC6@chn-hclt-mbs04.HCLT.CORP.HCL.IN>
+From: Nicolas Dechesne <nicolas.dechesne@linaro.org>
+Date: Tue, 12 Aug 2014 12:45:21 +0200
+Message-ID: <CAP71Wjyxw_uL11nhEJKxc1XpY+nY+6VpS+MVo_h5vHfp1x7J8Q@mail.gmail.com>
+To: "Bremalatha Ramalingam - ERS, HCL Tech" <bremalathar@hcl.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Will yocto build support the linux kernel version 3.11
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -35,107 +52,17 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 12 Aug 2014 10:41:23 -0000
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="utf-8"
+X-List-Received-Date: Tue, 12 Aug 2014 10:45:47 -0000
+Content-Type: text/plain; charset=UTF-8
 
-On Tuesday 12 of August 2014 11:54:56 Chris Enrique wrote:
->=20
-> Hello,
->=20
-> i am currently working on a BSP for yocto in order to support a custo=
-m
-> PowerPC board. In the meantime, i have setup all the config to genera=
-te a
-> properly running 3.14 kernel and devicetree but still have some issue=
-s with
-> the rootfs that is produced by yocto. I chose cpio.gz as image format=
- for
-> the rootfs which is converted via the u-boot mkimage-tool to a compat=
-ible
-> .uRamdisk image.
->=20
->=20
-> I already tested the kernel with a rootfs image which was not generat=
-ed by
-> yocto and it works fine.
->=20
-> Unfortunately, the yocto generated image seems to have problems with =
-Init
-> (target is core-image-minimal, my bsp doesn't modify anything except =
-adding
-> support for the target board by specifying kernel config and devicetr=
-ee).
->=20
->=20
-> Here you can see the kernel log at the point where init seems to fail=
-:
->=20
-> console [netcon0] enabled
-> netconsole: network logging started
-> rtc-rx8581 0-0051: setting system clock to 2012-04-24 09:29:17 UTC
-> (1335259757) Freeing unused kernel memory: 200K (c0525000 - c0557000)=
+On Tue, Aug 12, 2014 at 12:17 PM, Bremalatha Ramalingam - ERS, HCL
+Tech <bremalathar@hcl.com> wrote:
+> Can anyone tell will the Yocto build environment support the Linux kernel
+> version 3.11.
 
-> Failed to execute /init (error -13)
-> INIT: version 2.88 booting
-> Starting
-> hwclock: can't open '/dev/misc/rtc': No such file or directory
-> Stopping syslogd/klogd: no syslogd found; none killed
-> Deconfiguring network interfaces... ifdown: interface lo not configur=
-ed
-> ifdown: interface eth0 not configured
-> done.
-> Sending all processes the TERM signal...
-> Sending all processes the KILL signal...
-> Unmounting remote filesystems...
-> Deactivating swap...
-> Unmounting local filesystems...
-> /etc/rc0.d/S40umountfs: line 22: can't create /dev/null: Read-only fi=
-le
-> system reboot: Power down
-> System Halted, OK to turn off power
-
-Have you checked that /dev is mounted and udev is running?
-
->=20
->=20
-> I assume, if i am able to generate a working kernel using yocto, the =
-rootfs
-> image automatically generated by yocto for target core-image-minimal =
-is not
-> supposed to fail?
-
---
-
-Maciej Borz=C4=99cki
-Senior Software Engineer Open-RnD Sp. z o.o.
-www.open-rnd.pl, Facebook, Twitter
-mobile: +48 telefon, fax: +48 42 657 9079
-=20
-=20
-Niniejsza wiadomo=C5=9B=C4=87 wraz z za=C5=82=C4=85cznikami mo=C5=BCe z=
-awiera=C4=87 chronione prawem lub
-poufne informacje i zosta=C5=82a wys=C5=82ana wy=C5=82=C4=85cznie do wi=
-adomo=C5=9Bci i u=C5=BCytku os=C3=B3b,
-do kt=C3=B3rych zosta=C5=82a zaadresowana. Je=C5=9Bli wiadomo=C5=9B=C4=87=
- zosta=C5=82a otrzymana
-przypadkowo zabrania si=C4=99 jej kopiowania lub rozsy=C5=82ania do os=C3=
-=B3b trzecich. W
-takim przypadku uprasza si=C4=99 o natychmiastowe zniszczenie wiadomo=C5=
-=9Bci oraz
-poinformowanie nadawcy o zaistnia=C5=82ej sytuacji za pomoc=C4=85 wiado=
-mo=C5=9Bci
-zwrotnej. Dzi=C4=99kujemy.
-=20
-This message, including any attachments hereto, may contain privileged =
-or
-confidential information and is sent solely for the attention and use o=
-f
-the intended addressee(s). If you are not an intended addressee, you ma=
-y
-neither use this message nor copy or deliver it to anyone. In such case=
-,
-you should immediately destroy this message and kindly notify the sende=
-r by
-reply email. Thank you.
+yes, it should work. Yocto relies on the 'official' Yocto kernel for
+its own builds and releases (for qemu targets), but you can generally
+use any kernel your board/CPU requires, whether they are very old, or
+very recent, granted that you have a recipe for your specific kernel
+version.
 
