@@ -1,16 +1,16 @@
 Return-Path: <sujith.h@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 429B9E007A0; Wed, 13 Aug 2014 05:02:01 -0700 (PDT)
+	id 03982E00809; Wed, 13 Aug 2014 05:03:46 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-1.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,RCVD_IN_DNSWL_LOW,URIBL_BLACK
 	autolearn=no version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (sujith.h[at]gmail.com)
-	*  1.7 URIBL_BLACK Contains an URL listed in the URIBL blacklist
-	*      [URIs: configure.ac]
+X-Spam-HAM-Report: * 1.7 URIBL_BLACK Contains an URL listed in the URIBL
+	blacklist *      [URIs: configure.ac]
+	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
+	provider *      (sujith.h[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
@@ -20,37 +20,37 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
 	low *      trust
-	*      [209.85.192.176 listed in list.dnswl.org]
-Received: from mail-pd0-f176.google.com (mail-pd0-f176.google.com
-	[209.85.192.176])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 2B522E00796
-	for <yocto@yoctoproject.org>; Wed, 13 Aug 2014 05:01:55 -0700 (PDT)
-Received: by mail-pd0-f176.google.com with SMTP id y10so14312613pdj.21
-	for <yocto@yoctoproject.org>; Wed, 13 Aug 2014 05:01:54 -0700 (PDT)
+	*      [209.85.220.43 listed in list.dnswl.org]
+Received: from mail-pa0-f43.google.com (mail-pa0-f43.google.com
+	[209.85.220.43])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 904E7E007D5
+	for <yocto@yoctoproject.org>; Wed, 13 Aug 2014 05:03:29 -0700 (PDT)
+Received: by mail-pa0-f43.google.com with SMTP id lf10so14829190pab.2
+	for <yocto@yoctoproject.org>; Wed, 13 Aug 2014 05:03:29 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=from:to:cc:subject:date:message-id;
 	bh=zOFNJOjcqM8UOVy7ATCq9Nbmkc3YKLvvQQQqRswJZd0=;
-	b=APlciMUYdPwEK5VQpswpoucMMRizwpg5qHjyWA1GhnAt/0cOe41OIGhnjK0QsKjpM9
-	26tL1DDOXXoZF12Hp6KwPQDm86o3ZqyJ9ZuOtoWVYNRaRRaPPy68Ov+jASgY7hSWAPxs
-	28M/MY3bKz8L4mnE/02bTTexBuRTXTTE3K8Q5NymonsP0QMkm3YFG9qC2FzPCda/t+42
-	kGpJA3UJeDGxTMWQzwvBb19hOKOcd5PiMQ27smOvLLYg+VVCVs8c2Ys33fdSzZuO2Rxi
-	yOkm0sagbkDLIIl8l/ObrohLsgmIpqk44sHvtK/6ChC/AF3FhdoxrAlePtL9ZspxdkKw
-	gziA==
-X-Received: by 10.66.100.200 with SMTP id fa8mr3624638pab.23.1407931314767;
-	Wed, 13 Aug 2014 05:01:54 -0700 (PDT)
+	b=hOOnphaHLIyNk3Rjy0cIbWCRgReABb86W2pUV89l3x8Y2AtKqaXFpxPaYCEWptto2k
+	4yT+8eZpSNUg6Qe9aLm2RM9wgXbYbuMm9VXAz8TIvtA9f5aLr3S4gF0dBp8vsrdl3MiW
+	hfoq1byFNQOpNT+Ggc3xaVyQd+//ssN7jIxnSVkUK7Bg8tCuBbALEEt1ILtBBIRsempP
+	Yg4mynB61Lz4963U1+wcEKUXmbrPWhHQorWjs2sDRF3sXrxoHL3iUgk8p+7YlOKdP6R6
+	dnKzq3Rky+PEJLZkzaSBQWdFEMBeA9Zs7WNkZxEnkv92aIwrTEz2raQcEzvoNock8fcy
+	Jnhw==
+X-Received: by 10.70.91.167 with SMTP id cf7mr3667058pdb.3.1407931409681;
+	Wed, 13 Aug 2014 05:03:29 -0700 (PDT)
 Received: from linux-z8xt.inp.mentorg.com ([139.181.35.34])
-	by mx.google.com with ESMTPSA id a5sm2804467pdp.38.2014.08.13.05.01.51
+	by mx.google.com with ESMTPSA id mn2sm1923482pbc.64.2014.08.13.05.03.26
 	for <multiple recipients>
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Wed, 13 Aug 2014 05:01:53 -0700 (PDT)
+	Wed, 13 Aug 2014 05:03:28 -0700 (PDT)
 From: Sujith H <sujith.h@gmail.com>
 To: yocto@yoctoproject.org
-Date: Wed, 13 Aug 2014 17:27:22 +0530
-Message-Id: <1407931042-4223-1-git-send-email-sujith.h@gmail.com>
+Date: Wed, 13 Aug 2014 17:28:59 +0530
+Message-Id: <1407931139-4286-1-git-send-email-sujith.h@gmail.com>
 X-Mailer: git-send-email 1.8.4
 Cc: Sujith H <Sujith_Haridasan@mentor.com>,
 	Muzaffar Mahmood <muzaffar_mahmood@mentor.com>
-Subject: [PATCH] Adding support for systemd and its service files
+Subject: [psplash][PATCH] Adding support for systemd and its service files
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -62,7 +62,7 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 13 Aug 2014 12:02:01 -0000
+X-List-Received-Date: Wed, 13 Aug 2014 12:03:46 -0000
 
 From: Sujith H <Sujith_Haridasan@mentor.com>
 
