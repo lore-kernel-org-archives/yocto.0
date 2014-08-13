@@ -1,44 +1,58 @@
-Return-Path: <elizabeth.flanagan@intel.com>
+Return-Path: <rehsack@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 3979EE0079A; Tue, 12 Aug 2014 16:54:11 -0700 (PDT)
+	id 85720E007C2; Tue, 12 Aug 2014 21:00:34 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
-	autolearn=unavailable version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [209.85.220.179 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (rehsack[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail-vc0-f179.google.com (mail-vc0-f179.google.com
-	[209.85.220.179])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EAC7DE00796
-	for <yocto@yoctoproject.org>; Tue, 12 Aug 2014 16:54:05 -0700 (PDT)
-Received: by mail-vc0-f179.google.com with SMTP id hq11so13967655vcb.24
-	for <yocto@yoctoproject.org>; Tue, 12 Aug 2014 16:54:04 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:date:message-id:subject:from:to
-	:content-type;
-	bh=tSSf/X7YQKCwjBcFl8dBK6Y1o41K7BgOs6S7HMxvmk0=;
-	b=PjjQ6FEILjglw9+ozbhNRpgGqVGJdWu4UcF1aqNUewWTvXBEjrfowm7ZjeovCO4JXD
-	fTKQ2Ohg1fSLe0w1Q1vQSnsod6v5KXr2YpLYvVtcXBE06xj2j2p15o2KfAhCNmFqGUPO
-	9D9DlqoIWnhv+jHgvaCYASW3Gkq1mR8XDw1el5MmCt5KOQbwN+yW9AQjuVw2DG/fewAN
-	BfdECOg0d4XXIh1tfcILVQT4kHy4faD0BquzzMqqYvC9Q54PlueHaNgqioHAmMkAMxC3
-	8QJyU+H2A/KXMFAVBqhf+eAYRdcmhc2Z17sNRgWaOJM1LrSkFT5+Kmmr44Asqop/Mix9
-	gTPw==
-X-Gm-Message-State: ALoCoQkxkuGGUdnnloy+3uMtrzt7Aerd4f9dttbw1IJVjxFUU8IJ6fsQ6b/CbX9C+fZa03VDie5R
-MIME-Version: 1.0
-X-Received: by 10.220.130.131 with SMTP id t3mr714575vcs.30.1407887644653;
-	Tue, 12 Aug 2014 16:54:04 -0700 (PDT)
-Received: by 10.52.135.50 with HTTP; Tue, 12 Aug 2014 16:54:04 -0700 (PDT)
-Date: Wed, 13 Aug 2014 00:54:04 +0100
-Message-ID: <CAPhnLPCUmU1N=GgmxO92xDp_XTtLDZZyQZVh_vmy8e8wLTtcCQ@mail.gmail.com>
-From: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	yocto-announce@yoctoproject.org
-Subject: [ANNOUNCEMENT] Yocto Project 1.5.3 released
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.215.51 listed in list.dnswl.org]
+Received: from mail-la0-f51.google.com (mail-la0-f51.google.com
+	[209.85.215.51])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B5180E0079A
+	for <yocto@yoctoproject.org>; Tue, 12 Aug 2014 21:00:29 -0700 (PDT)
+Received: by mail-la0-f51.google.com with SMTP id pn19so8492849lab.24
+	for <yocto@yoctoproject.org>; Tue, 12 Aug 2014 21:00:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=content-type:mime-version:subject:from:in-reply-to:date:cc
+	:content-transfer-encoding:message-id:references:to;
+	bh=5bXaRWQLs0a5Z/x0mk1tJfGFHGGOBCoMNYKTfLJCq4w=;
+	b=rPPUolDI1vgNUuv/2FBcJWsPsrcvSNqQdYV9lGXKbjLrdQ32/GD4e7wTfgGgYRTTrv
+	arBRn6liLC1F2MxCtStfDS48zOIqDkOg+mEv3YaIvzZ9/EWJ5iPNYoNbVE+CNpnTGTNN
+	dX4qTEYUpsRHojNrlU2GQQK7/UtEU2SsgOq5c9VEdbOZBND07aE/9mlxvnwdtJkarhhr
+	/XaTwSAvaeKc45BgTWGGyboVUAMEYN0+3ZuqG9PZ/ycJ7cje3Pa8uaSRzbgTq7/D6rB9
+	+sVnEzIdEJwqAwXvadqeaNWgDA8zxSWVSF3DEgDEqfPZsq3OEk5NEADCz7WUEXC3hEy4
+	n1oA==
+X-Received: by 10.152.30.71 with SMTP id q7mr1783303lah.56.1407902428568;
+	Tue, 12 Aug 2014 21:00:28 -0700 (PDT)
+Received: from ernie.muppets.liwing.de (p578b540c.dip0.t-ipconnect.de.
+	[87.139.84.12])
+	by mx.google.com with ESMTPSA id yn1sm1138932lbb.25.2014.08.12.21.00.25
+	for <multiple recipients>
+	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
+	Tue, 12 Aug 2014 21:00:26 -0700 (PDT)
+Mime-Version: 1.0 (Mac OS X Mail 7.3 \(1878.6\))
+From: Jens Rehsack <rehsack@gmail.com>
+In-Reply-To: <1407881331.94733.YahooMailNeo@web140703.mail.bf1.yahoo.com>
+Date: Wed, 13 Aug 2014 06:00:22 +0200
+Message-Id: <BC359CE3-40BC-4303-846E-9CD61700B093@gmail.com>
+References: <1407881331.94733.YahooMailNeo@web140703.mail.bf1.yahoo.com>
+To: Peter Tornel <petertornel@yahoo.com>
+X-Mailer: Apple Mail (2.1878.6)
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: ordering multiple bbappends and their FILESEXTRAPATHS_prepend setting
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -50,131 +64,28 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 12 Aug 2014 23:54:11 -0000
-Content-Type: text/plain; charset=UTF-8
-
-Hello,
-
-The latest point release of the Yocto Project, 1.5.3 (dora 10.0.3) is now
-available for download at:
-
-http://downloads.yoctoproject.org/releases/yocto/yocto-1.5.3/poky-dora-10.0.3.tar.bz2
-http://mirrors.kernel.org/yocto/yocto/yocto-1.5.3/poky-dora-10.0.3.tar.gz
-
-This is an updated announcement with a corrected md5sum for the poky tarball.
-
-A gpg signed version of these release notes is available at:
-
-http://downloads.yoctoproject.org/releases/yocto/yocto-1.5.3/RELEASENOTES
-
-Please note that for this release, we are utilizing the master version
-of eclipse-poky-kepler (4a167fd662262ebdaa3cf0d332ac0debb52d7904)
-
-Thanks go out to everyone for all their hard work during this release!
-
-Sincerely,
-
-Elizabeth Flanagan
-Yocto Build and Release
-<elizabeth.flanagan@intel.com>
+X-List-Received-Date: Wed, 13 Aug 2014 04:00:34 -0000
+Content-Type: text/plain; charset=iso-8859-1
+Content-Transfer-Encoding: quoted-printable
 
 
---------------------
-yocto-1.5.3 Errata
---------------------
+Am 13.08.2014 um 00:08 schrieb Peter Tornel <petertornel@yahoo.com>:
 
-Release Name: poky-dora-10.0.3
-Branch:  dora
-Tag:  dora-10.0.3
-Hash:  dc743744d8e3a9caef577aeab6b7f51bc08ded17
-md5:  fcbd3d51328855625281d2ad726e41ed
-Download Locations:
-http://downloads.yoctoproject.org/releases/yocto/yocto-1.5.3/poky-dora-10.0.3.tar.bz2
-http://mirrors.kernel.org/yocto/yocto/yocto-1.5.3/poky-dora-10.0.3.tar.bz2
+> Hi,
+>=20
+> What is the correct method for controlling which =
+FILESEXTRAPATHS_prepend actually shows up first in the path when there =
+are multiple bbappends setting the same variable? =20
 
-Release Name: eclipse-poky-juno-dora-10.0.3
-Branch:  dora
-Tag:  dora-10.0.3
-Hash:  79cd3c6ff119526f3f85567253450d2e857afed0
-md5:  2dbedb581e085264a68f61f198d1bc3d
-Download Locations:
-http://downloads.yoctoproject.org/releases/yocto/yocto-1.5.3/eclipse-poky-juno-dora-10.0.3.tar.bz2
-http://mirrors.kernel.org/yocto/yocto/yocto-1.5.3/eclipse-poky-juno-dora-10.0.3.tar.bz2
+Check <layer>/conf/layer.conf (BBFILE_PRIORITY_<layer> =3D "n")
 
-Release Name: eclipse-poky-kepler-dora-10.0.3
-Branch:  dora
-Tag:  dora-10.0.3
-Hash:  4a167fd662262ebdaa3cf0d332ac0debb52d7904
-md5:  818382d448ee2739bd306cfeaf690c74
-Download Locations:
-http://downloads.yoctoproject.org/releases/yocto/yocto-1.5.3/eclipse-poky-kepler-dora-10.0.3.tar.bz2
-http://mirrors.kernel.org/yocto/yocto/yocto-1.5.3/eclipse-poky-kepler-dora-10.0.3.tar.bz2
-
-Release Name: meta-qt3-dora-10.0.3
-Branch:  dora
-Tag:  dora-10.0.3
-Hash:  4772424ab69908d4e3b9d6d4717ca889468e6acd
-md5:  0a08ee0d6e59c21779db2e3ce47c825a
-Download Locations:
-http://downloads.yoctoproject.org/releases/yocto/yocto-1.5.3/meta-qt3-dora-10.0.3.tar.bz2
-http://mirrors.kernel.org/yocto/yocto/yocto-1.5.3/meta-qt3-dora-10.0.3.tar.bz2
-
---------------------
-Security Fixes
---------------------
-
-openssl:
-        CVE-2010-5298
-        CVE-2014-3470
-        CVE-2014-0224
-        CVE-2014-0221
-        CVE-2014-0198
-        CVE-2014-0195
-        CVE-2014-0198
-
-gnutls:
-        CVE-2014-3466
-
---------------------
-Changelog
---------------------
-build-appliance-image: Update to dora head revision
-poky.conf: Bump version for 1.5.3 dora release
-build-appliance-image: Update to dora head revision
-opkg: putting the service files into PN
-populate-extfs.sh: fix to handle special file names correctly
-libtool-cross/native: Force usage of bash due to sstate inconsistencies
-perf: split packging
-perf: add slang to the dependencies
-perf: fix broken shell comparsion in do_install
-e2fsprogs: Fix populate-extfs.sh
-prelink: Fix SRC_URI
-populate-extfs.sh: keep file timestamps
-rpm: Fix rpm -V usage
-consolekit: fix console-kit-log-system-start.service startup
-populate-extfs.sh: error out if debugfs encounters some error
-populate-extfs.sh: fix to handle /var/lib/opkg/alternatives/[[ correctly
-profile-manual: Fixed a transposed title.
-dev-manual: Fixed a link that was broke in the mega-manual.
-mega-manual.sed: Fixed search string problem for profile-manual.
-documentation: Updated manual history tables.
-mega-manual.sed: Updated release string to support 1.5.3 release.
-poky.ent: Updated variables to support 1.5.3 release.
-x264: Update SRCREV to match commit in upstream git repo
-openssl: fix for CVE-2010-5298
-openssl: fix CVE-2014-3470
-openssl: fix CVE-2014-0224
-openssl: fix CVE-2014-0221
-openssl: use upstream fix for CVE-2014-0198
-openssl: fix CVE-2014-0195
-gnutls: patch for CVE-2014-3466 backported
-busybox: fix meta-yocto's bbappend's FILESEXTRAPATH
-poky.conf: Fix DISTRO_VERSION to be 1.5.2
-openssl: fix CVE-2014-0198
+Cheers
+--=20
+Jens Rehsack
+rehsack@gmail.com
 
 
--- 
-Elizabeth Flanagan
-Yocto Project
-Build and Release
+
+
+
 
