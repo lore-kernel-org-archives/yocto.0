@@ -1,6 +1,6 @@
 Return-Path: <Maxin.John@enea.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 7C481E0034B; Thu, 14 Aug 2014 08:47:58 -0700 (PDT)
+	id 871C3E004F2; Thu, 14 Aug 2014 08:47:58 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -9,22 +9,24 @@ X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 Received: from mx-3.enea.com (sestofw01.enea.se [192.36.1.252])
-	by yocto-www.yoctoproject.org (Postfix) with SMTP id 06E2BE0034B
+	by yocto-www.yoctoproject.org (Postfix) with SMTP id 08611E0044A
 	for <yocto@yoctoproject.org>; Thu, 14 Aug 2014 08:47:53 -0700 (PDT)
 Received: from sestofb10.enea.se (172.21.3.145) by smtp.enea.com
-	(172.21.1.209) with Microsoft SMTP Server id 14.3.158.1;
-	Thu, 14 Aug 2014 17:47:48 +0200
-Received: by sestofb10.enea.se (Postfix, from userid 4454)	id 7406728C13D;
-	Thu, 14 Aug 2014 17:47:48 +0200 (CEST)
+	(172.21.1.208) with Microsoft SMTP Server id 14.3.158.1;
+	Thu, 14 Aug 2014 17:47:52 +0200
+Received: by sestofb10.enea.se (Postfix, from userid 4454)	id 4D3A628C13E;
+	Thu, 14 Aug 2014 17:47:52 +0200 (CEST)
 From: "Maxin B. John" <maxin.john@enea.com>
 To: <yocto@yoctoproject.org>
-Date: Thu, 14 Aug 2014 17:47:31 +0200
-Message-ID: <1408031252-24814-1-git-send-email-maxin.john@enea.com>
+Date: Thu, 14 Aug 2014 17:47:32 +0200
+Message-ID: <1408031252-24814-2-git-send-email-maxin.john@enea.com>
 X-Mailer: git-send-email 1.9.1
+In-Reply-To: <1408031252-24814-1-git-send-email-maxin.john@enea.com>
+References: <1408031252-24814-1-git-send-email-maxin.john@enea.com>
 MIME-Version: 1.0
-Received-SPF: None (SESTOEX03.enea.se: maxin.john@enea.com does not
+Received-SPF: None (SESTOEX08.enea.se: maxin.john@enea.com does not
 	designate permitted sender hosts)
-Subject: [meta-oracle-java][PATCH 1/2] oracle-java: update fetch method
+Subject: [meta-oracle-java][PATCH 2/2] README: Update Notes
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,26 +41,41 @@ List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 X-List-Received-Date: Thu, 14 Aug 2014 15:47:58 -0000
 Content-Type: text/plain
 
-Use custom FETCHCMD_wget to avoid manual downloading of Oracle Java packages.
+1. Remove notes related to manual downloading of Oracle Java binaries.
+2. Add notes about the temporary fix for installing Java packages.
 
 Signed-off-by: Maxin B. John <maxin.john@enea.com>
 ---
- recipes-devtools/oracle-java/oracle-jse.inc | 2 ++
- 1 file changed, 2 insertions(+)
+ README | 16 ++++++++--------
+ 1 file changed, 8 insertions(+), 8 deletions(-)
 
-diff --git a/recipes-devtools/oracle-java/oracle-jse.inc b/recipes-devtools/oracle-java/oracle-jse.inc
-index 98069f4..3a4e20d 100644
---- a/recipes-devtools/oracle-java/oracle-jse.inc
-+++ b/recipes-devtools/oracle-java/oracle-jse.inc
-@@ -6,6 +6,8 @@ LIC_FILES_CHKSUM = "\
- 	file://${WORKDIR}/${JDK_JRE}${PV}_${PV_UPDATE}/THIRDPARTYLICENSEREADME.txt;md5=c339b34e3da6673d2c5950d0f8808f8c \
- 	"
+diff --git a/README b/README
+index 7dea1ea..3f4e177 100644
+--- a/README
++++ b/README
+@@ -19,14 +19,14 @@ LICENSE_FLAGS_WHITELIST += "oracle_java"
  
-+FETCHCMD_wget_append = " --header=Cookie:oraclelicense=a "
-+
- # get the java update version in the resulting package
- PR =. "u${PV_UPDATE}"
- S = "${WORKDIR}"
+ Notes
+ =====
+-The download URLs mentioned in the SRCURI of the oracle-java recipes
+-may show fetch issues with the built in bitbake wget fetcher. This is caused
+-by the pre-requirement of clicking the "accept license" button on the oracle
+-download webpage. So if you see fetch issues for the oracle java recipes,
+-then you can overcome the issue by opening the SRCURI links manually in a web
+-browser, downloading the tarballs, and storing in the bitbake download
+-location. And the bitbake download location is specified by DL_DIR variable
+-in build configuration file (conf/local.conf)
++There are some known install problems for JRE packages due to dependencies
++reported by RPM package manager. Switching to DEB or IPK packaging temporarily
++fixes this.
++ie:
++PACKAGE_CLASSES = "package_deb"
++or
++PACKAGE_CLASSES = "package_ipk"
++in your 'local.conf' file
+ 
+ Where to Send Patches
+ =====================
 -- 
 1.9.1
 
