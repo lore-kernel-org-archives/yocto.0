@@ -1,45 +1,55 @@
-Return-Path: <elizabeth.flanagan@intel.com>
+Return-Path: <gley-yocto@m.gmane.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id AC654E0079E; Wed, 13 Aug 2014 09:27:55 -0700 (PDT)
+	id 2DF2AE007A0; Wed, 13 Aug 2014 19:50:10 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.7 required=5.0 tests=BAYES_00, DKIM_ADSP_CUSTOM_MED,
+	FREEMAIL_FROM,NML_ADSP_CUSTOM_MED,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS
+	autolearn=no version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (sureshnagaraja[at]gmail.com)
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+	*  0.0 DKIM_ADSP_CUSTOM_MED No valid author signature, adsp_override is
+	*      CUSTOM_MED
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
 	low *      trust
-	*      [209.85.220.169 listed in list.dnswl.org]
-Received: from mail-vc0-f169.google.com (mail-vc0-f169.google.com
-	[209.85.220.169])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 246A2E0079A
-	for <yocto@yoctoproject.org>; Wed, 13 Aug 2014 09:27:47 -0700 (PDT)
-Received: by mail-vc0-f169.google.com with SMTP id le20so15399402vcb.14
-	for <yocto@yoctoproject.org>; Wed, 13 Aug 2014 09:27:46 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:date:message-id:subject:from:to
-	:content-type;
-	bh=RF17+jBB8UKSm65G7Qq5kk5aAvOrGQYI9bMhGD1uHis=;
-	b=STTZCGHdPDUmQu8gWCplxjo7soqaF4VE+nHV5vFspe1ENDOs/E1wIxA4MdMtJdw8FS
-	zAfYXQ5tt24DC8kgWxlop/ghFSgA/pmWdiUbfBC89foso/AZUTpRRDwIaWmuBjTp8CZR
-	27lCwzsMC+9jSYP0/z/d6kchHkhL1rUmEjEjEOPI5pXt+ayBKFlIsdCqqURwlEpI1DXc
-	YJ7U5xc66pq3vjQ0AhM1EWl8XMqhjOPMVNb6bXZW+Y9vDXMz3x+SeW+zd79jjg4oSff2
-	DVAJecKSzxmqhfLsVW/NFGTNUhsoZtuXXlzOsxk3cnBnEkH5uYPBrRPkR40rLPzHBLxU
-	y3MA==
-X-Gm-Message-State: ALoCoQnbpbzjrmdjGZypMf1HGRKS4qnCo7qzkzdIDRAQcKaH25R+E7iQGGhI4TM308+jVdpmr/RO
-MIME-Version: 1.0
-X-Received: by 10.220.166.207 with SMTP id n15mr1834169vcy.75.1407947266801;
-	Wed, 13 Aug 2014 09:27:46 -0700 (PDT)
-Received: by 10.52.255.168 with HTTP; Wed, 13 Aug 2014 09:27:46 -0700 (PDT)
-Date: Wed, 13 Aug 2014 09:27:46 -0700
-Message-ID: <CAPhnLPB1uCygoPk-=2k6xqgjoBhbn=b_xNfd6CqyZLrsWtf6oQ@mail.gmail.com>
-From: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>, 
-	Alexandru C Georgescu <alexandru.c.georgescu@intel.com>,
-	Zhao Yi <yi.zhao@windriver.com>, Otavio Salvador <otavio@ossystems.com.br>
-Subject: Weekly build available
+	*      [80.91.229.3 listed in list.dnswl.org]
+	*  0.9 NML_ADSP_CUSTOM_MED ADSP custom_med hit,
+	and not from a mailing list
+Received: from plane.gmane.org (plane.gmane.org [80.91.229.3])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id ECDB4E0079B
+	for <yocto@yoctoproject.org>; Wed, 13 Aug 2014 19:50:06 -0700 (PDT)
+Received: from list by plane.gmane.org with local (Exim 4.69)
+	(envelope-from <gley-yocto@m.gmane.org>) id 1XHl75-00049P-Nd
+	for yocto@yoctoproject.org; Thu, 14 Aug 2014 04:50:04 +0200
+Received: from masquerade.micron.com ([137.201.242.130])
+	by main.gmane.org with esmtp (Gmexim 0.1 (Debian))
+	id 1AlnuQ-0007hv-00
+	for <yocto@yoctoproject.org>; Thu, 14 Aug 2014 04:50:03 +0200
+Received: from sureshnagaraja by masquerade.micron.com with local (Gmexim 0.1
+	(Debian)) id 1AlnuQ-0007hv-00
+	for <yocto@yoctoproject.org>; Thu, 14 Aug 2014 04:50:03 +0200
+X-Injected-Via-Gmane: http://gmane.org/
+To: yocto@yoctoproject.org
+From: Suresh Nagarajan <sureshnagaraja@gmail.com>
+Date: Thu, 14 Aug 2014 02:12:33 +0000 (UTC)
+Message-ID: <loom.20140814T041050-110@post.gmane.org>
+References: <alpine.DEB.2.02.1306040727200.4915@oneiric>
+	<51ADD7C0.60707@communistcode.co.uk>
+	<alpine.DEB.2.02.1306040814300.5416@oneiric>
+	<51ADDCE1.9020400@communistcode.co.uk>
+	<alpine.DEB.2.02.1306040952080.21331@oneiric>
+	<CAC+thW22d3bfKEGDOn_wHGPk4=cmMAq7d4fvteZ+tzGu_5h+=Q@mail.gmail.com>
+Mime-Version: 1.0
+X-Complaints-To: usenet@ger.gmane.org
+X-Gmane-NNTP-Posting-Host: sea.gmane.org
+User-Agent: Loom/3.14 (http://gmane.org/)
+X-Loom-IP: 137.201.242.130 (Mozilla/5.0 (X11; Linux x86_64;
+	rv:24.0) Gecko/20100101 Firefox/24.0)
+Subject: Re: anyone building for the arrow sockit eval board?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -51,24 +61,12 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 13 Aug 2014 16:27:55 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Thu, 14 Aug 2014 02:50:10 -0000
+Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: 7bit
 
-http://autobuilder.yoctoproject.org/pub/nightly/20140811-2
 
-bitbake 38d4f65bf1cbcdd5a2d60dff0e1d2859c34ed62e
-eclipse-poky-juno 26bfc407781aa185f244a47ba63120343cee4a37
-eclipse-poky-kepler 4a167fd662262ebdaa3cf0d332ac0debb52d7904
-meta-fsl-arm b0cf5c78c5f98c5977ae556d331e7495648f154c
-meta-fsl-ppc 06c140cb72406b6d88140ca1085c20352ba193d4
-meta-intel 7d9471578801d571ceca9e54bbdf22cb84284ff9
-meta-minnow 238a45e9da8bbfff7a6af220b48c11cabd31e01c
-meta-qt3 3016129d90b7ac8517a5227d819f10ad417b5b45
-oecore 4321c553d5ae816e566234e981a0815bba046d39
-poky 0f24d9c569db733b4f63803ee4a9c12ec1789791
+Did anypne get perf to build?
 
--- 
-Elizabeth Flanagan
-Yocto Project
-Build and Release
+
 
