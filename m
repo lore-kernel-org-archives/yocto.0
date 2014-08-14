@@ -1,32 +1,52 @@
-Return-Path: <Maxin.John@enea.com>
+Return-Path: <andrei@gherzan.ro>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 871C3E004F2; Thu, 14 Aug 2014 08:47:58 -0700 (PDT)
+	id 653C1E004DD; Thu, 14 Aug 2014 10:14:58 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [209.85.212.174 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mx-3.enea.com (sestofw01.enea.se [192.36.1.252])
-	by yocto-www.yoctoproject.org (Postfix) with SMTP id 08611E0044A
-	for <yocto@yoctoproject.org>; Thu, 14 Aug 2014 08:47:53 -0700 (PDT)
-Received: from sestofb10.enea.se (172.21.3.145) by smtp.enea.com
-	(172.21.1.208) with Microsoft SMTP Server id 14.3.158.1;
-	Thu, 14 Aug 2014 17:47:52 +0200
-Received: by sestofb10.enea.se (Postfix, from userid 4454)	id 4D3A628C13E;
-	Thu, 14 Aug 2014 17:47:52 +0200 (CEST)
-From: "Maxin B. John" <maxin.john@enea.com>
-To: <yocto@yoctoproject.org>
-Date: Thu, 14 Aug 2014 17:47:32 +0200
-Message-ID: <1408031252-24814-2-git-send-email-maxin.john@enea.com>
-X-Mailer: git-send-email 1.9.1
-In-Reply-To: <1408031252-24814-1-git-send-email-maxin.john@enea.com>
-References: <1408031252-24814-1-git-send-email-maxin.john@enea.com>
+Received: from mail-wi0-f174.google.com (mail-wi0-f174.google.com
+	[209.85.212.174])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 74087E0034B
+	for <yocto@yoctoproject.org>; Thu, 14 Aug 2014 10:14:54 -0700 (PDT)
+Received: by mail-wi0-f174.google.com with SMTP id d1so9298214wiv.1
+	for <yocto@yoctoproject.org>; Thu, 14 Aug 2014 10:14:54 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+	:mime-version:content-type:content-disposition:in-reply-to
+	:user-agent;
+	bh=bG9gfKsoXl9nISrk/89oKfJhyS98FKbg1Hk1M6vVGPc=;
+	b=JYzVyh5WqD+YICDQzqoy/G6nkcH97mcbg60p/kP6xIxgGLmVyEFmhgRiiuxpSuYaCz
+	3OqGOY4iMFjQk3Uv6DhQjqYaEU1gmCxq+JnrooaqE18ffJ6UwoYuAeU3FMneSqrVvsrV
+	tKJN3sA1Jy9wL6bxVskoH4XLMZqkk/1AMfTz13YCAQmVnOLb/eUgmh43+cnACb+bLNdU
+	oSTkqQI5CyRVdSoNiN8AMlXoY70UI0z0Awu1vG7ByfaFuhmH0RZpfrMdwrRWD+g3Pw3Y
+	2vkaMsXbKA1Tv/RiS4+5hN2flCiZKzVs7LYQeRziucflU9ioenA4S0RyQW1VDAa6FB6+
+	f0NA==
+X-Gm-Message-State: ALoCoQmzKEMb/CNNsVayuv6sW7Xy3bW1ERpb5Dj2I+Rw+TfF0QxyaAjsakldBkkwSjW7wBPAZr1h
+X-Received: by 10.180.198.100 with SMTP id jb4mr48899366wic.72.1408036493696; 
+	Thu, 14 Aug 2014 10:14:53 -0700 (PDT)
+Received: from gmail.com (dhcp-189-34.gjk.dk. [195.249.189.34])
+	by mx.google.com with ESMTPSA id lg8sm12681373wjb.9.2014.08.14.10.14.52
+	for <multiple recipients>
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Thu, 14 Aug 2014 10:14:53 -0700 (PDT)
+Date: Thu, 14 Aug 2014 19:14:47 +0200
+From: Andrei Gherzan <andrei@gherzan.ro>
+To: Koen Kooi <koen@dominion.thruhere.net>
+Message-ID: <20140814171333.GD18247@gmail.com>
+References: <1405501129-28327-1-git-send-email-koen@dominion.thruhere.net>
 MIME-Version: 1.0
-Received-SPF: None (SESTOEX08.enea.se: maxin.john@enea.com does not
-	designate permitted sender hosts)
-Subject: [meta-oracle-java][PATCH 2/2] README: Update Notes
+In-Reply-To: <1405501129-28327-1-git-send-email-koen@dominion.thruhere.net>
+User-Agent: Mutt/1.5.23 (2014-03-12)
+Cc: yocto@yoctoproject.org
+Subject: Re: [meta-raspberrypi][for-daisy][PATCH 1/7] rpi-default-versions: Use 3.12.X as default kernel version
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,45 +58,36 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 14 Aug 2014 15:47:58 -0000
-Content-Type: text/plain
+X-List-Received-Date: Thu, 14 Aug 2014 17:14:58 -0000
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-1. Remove notes related to manual downloading of Oracle Java binaries.
-2. Add notes about the temporary fix for installing Java packages.
+Hello,
 
-Signed-off-by: Maxin B. John <maxin.john@enea.com>
----
- README | 16 ++++++++--------
- 1 file changed, 8 insertions(+), 8 deletions(-)
+On Wed, Jul 16, 2014 at 10:58:43AM +0200, Koen Kooi wrote:
+> From: Andrei Gherzan <andrei@gherzan.ro>
+>
+> Change-Id: Ief7949be4b9726b5b6ba58e6280f6b6ca3fdfdc4
+> Signed-off-by: Andrei Gherzan <andrei@gherzan.ro>
+> ---
+>  conf/machine/include/rpi-default-versions.inc | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+>
+> diff --git a/conf/machine/include/rpi-default-versions.inc b/conf/machine/include/rpi-default-versions.inc
+> index 04297ba..1ca9701 100644
+> --- a/conf/machine/include/rpi-default-versions.inc
+> +++ b/conf/machine/include/rpi-default-versions.inc
+> @@ -1,3 +1,3 @@
+>  # RaspberryPi BSP default versions
+>
+> -PREFERRED_VERSION_linux-raspberrypi ?= "3.10.%"
+> +PREFERRED_VERSION_linux-raspberrypi ?= "3.12.%"
+> --
+> 1.9.0
+>
 
-diff --git a/README b/README
-index 7dea1ea..3f4e177 100644
---- a/README
-+++ b/README
-@@ -19,14 +19,14 @@ LICENSE_FLAGS_WHITELIST += "oracle_java"
- 
- Notes
- =====
--The download URLs mentioned in the SRCURI of the oracle-java recipes
--may show fetch issues with the built in bitbake wget fetcher. This is caused
--by the pre-requirement of clicking the "accept license" button on the oracle
--download webpage. So if you see fetch issues for the oracle java recipes,
--then you can overcome the issue by opening the SRCURI links manually in a web
--browser, downloading the tarballs, and storing in the bitbake download
--location. And the bitbake download location is specified by DL_DIR variable
--in build configuration file (conf/local.conf)
-+There are some known install problems for JRE packages due to dependencies
-+reported by RPM package manager. Switching to DEB or IPK packaging temporarily
-+fixes this.
-+ie:
-+PACKAGE_CLASSES = "package_deb"
-+or
-+PACKAGE_CLASSES = "package_ipk"
-+in your 'local.conf' file
- 
- Where to Send Patches
- =====================
--- 
-1.9.1
+Merged all these patches in daisy branch.
 
+--
+Andrei Gherzan
 
