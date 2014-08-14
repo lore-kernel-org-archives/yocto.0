@@ -1,51 +1,53 @@
 Return-Path: <andrei@gherzan.ro>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 8BB87E00824; Thu, 14 Aug 2014 10:21:38 -0700 (PDT)
+	id 4E691E004F2; Thu, 14 Aug 2014 10:51:47 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
+	WEIRD_PORT autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [74.125.82.44 listed in list.dnswl.org]
+	*  0.0 WEIRD_PORT URI: Uses non-standard port number for HTTP
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [74.125.82.41 listed in list.dnswl.org]
-Received: from mail-wg0-f41.google.com (mail-wg0-f41.google.com [74.125.82.41])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 552DFE00855
-	for <yocto@yoctoproject.org>; Thu, 14 Aug 2014 10:21:31 -0700 (PDT)
-Received: by mail-wg0-f41.google.com with SMTP id z12so1408088wgg.24
-	for <yocto@yoctoproject.org>; Thu, 14 Aug 2014 10:21:30 -0700 (PDT)
+Received: from mail-wg0-f44.google.com (mail-wg0-f44.google.com [74.125.82.44])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 08A87E0034B
+	for <yocto@yoctoproject.org>; Thu, 14 Aug 2014 10:51:37 -0700 (PDT)
+Received: by mail-wg0-f44.google.com with SMTP id m15so1395225wgh.15
+	for <yocto@yoctoproject.org>; Thu, 14 Aug 2014 10:51:36 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=1e100.net; s=20130820;
-	h=x-gm-message-state:date:from:to:subject:message-id:references
-	:mime-version:content-type:content-disposition:in-reply-to
-	:user-agent;
-	bh=RzPjfFelxtGj6WFQKKbNajWYGnTWJgbxSCkGIxaQvL8=;
-	b=BBAjieZFhWUiKtL/DYH/taRSGsL6zRvbTDqcE7Ugey1Yv/gyYgiJ4RDG+MPjdE5qHw
-	RhC7srrRquYzm04vBqHZOuf65Lfk8P5vgpqqhGbMRRd0nwNu2A06Vn/bOc/WLw87oAgP
-	QT6X7vfjgTormR9TRqzK3TjD1blXhjgAQcP2w3aMxGocsBMRYX6WMo4KRLkOVg9+WHyS
-	3zpZ1zwO9yqNAJyL3Gb9CBKofI2Z4AG8YUNKuldaKBxRmKPt934xMg84OXo8m/G34uHy
-	OmknOjLeoL0WUZHc7ImQ69xTI0iHc8saJr4l1GPU0f1dR5qrfScrDGaH1DbJuFU8ZVaW
-	Rxhg==
-X-Gm-Message-State: ALoCoQnhk8ewb0VmwpMRFd9O5Ia16UDh5OR/QOZohONqUypkD5DNnBa9fxlBSbzn5J/qYTaGp6mU
-X-Received: by 10.194.62.67 with SMTP id w3mr13863173wjr.32.1408036890617;
-	Thu, 14 Aug 2014 10:21:30 -0700 (PDT)
+	h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+	:mime-version:content-type:content-disposition
+	:content-transfer-encoding:in-reply-to:user-agent;
+	bh=+8623Ix2VH8t9utJLlBkBquwoBo7gJkx4VJCnq6+Exw=;
+	b=LstQVGP9g0p7yCG7KBFDgWbr6SskmlDmeJSHSlzQnnnpMC8LSnfHEKDoJb7tz0qGTA
+	fU9Mo5nhU5WVKFYiRurSdmpghtRJQO5HQVfcVe3eIgPkSDwJBb8j63+466+bSwwpu/pQ
+	llypwXcBmf6vwmOVxDvRHGzyF50xIqAQUH0MMGcZjUjKYa6TB1PeHcNcyDWlzpqiIrrK
+	+YB11ET3hnMxEwhuhqi8LqOWEl3NQPDI4BlSLJDVXAYzqPdqWSDju7BelYfF3ILkaxUj
+	gUfLWTNHzx0viUw3+1BJJYlEsjOKp79c4Ou9kQfQqBsJNzmYxvE3um17iRZ+mqld+TAI
+	KY1A==
+X-Gm-Message-State: ALoCoQk4xS7aAsOLeqeZGn6tVtSN0vZLIN56xRjgiu4SokNSBrzXlM88zTmBwncu3w4kFXJ3Na+F
+X-Received: by 10.180.80.133 with SMTP id r5mr47420367wix.62.1408038696376;
+	Thu, 14 Aug 2014 10:51:36 -0700 (PDT)
 Received: from gmail.com (dhcp-189-34.gjk.dk. [195.249.189.34])
-	by mx.google.com with ESMTPSA id ca8sm12723567wjc.0.2014.08.14.10.21.29
-	for <yocto@yoctoproject.org>
+	by mx.google.com with ESMTPSA id
+	gi5sm12843192wjd.33.2014.08.14.10.51.35 for <multiple recipients>
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Thu, 14 Aug 2014 10:21:30 -0700 (PDT)
-Date: Thu, 14 Aug 2014 19:21:28 +0200
+	Thu, 14 Aug 2014 10:51:35 -0700 (PDT)
+Date: Thu, 14 Aug 2014 19:51:33 +0200
 From: Andrei Gherzan <andrei@gherzan.ro>
-To: yocto@yoctoproject.org
-Message-ID: <20140814172128.GF18247@gmail.com>
-References: <1408022200-3960-1-git-send-email-andrei@gherzan.ro>
-	<1408022200-3960-2-git-send-email-andrei@gherzan.ro>
+To: Alex J Lennon <ajlennon@dynamicdevices.co.uk>
+Message-ID: <20140814175133.GJ18247@gmail.com>
+References: <17C5D232-0433-4ADB-AA99-40D08E56A436@cmteknik.se>
+	<539A11D5.5030805@dynamicdevices.co.uk>
 MIME-Version: 1.0
-In-Reply-To: <1408022200-3960-2-git-send-email-andrei@gherzan.ro>
+In-Reply-To: <539A11D5.5030805@dynamicdevices.co.uk>
 User-Agent: Mutt/1.5.23 (2014-03-12)
-Subject: Re: [meta-raspberrypi][PATCH 2/2] omxplayer: Add dependency on openssl
+Cc: yocto@yoctoproject.org, Jonatan Magnusson <jonatan.magnusson@gmail.com>
+Subject: Re: [meta-raspberrypi] how to customize kernel config?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -57,35 +59,77 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 14 Aug 2014 17:21:38 -0000
-Content-Type: text/plain; charset=us-ascii
+X-List-Received-Date: Thu, 14 Aug 2014 17:51:47 -0000
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
 
-On Thu, Aug 14, 2014 at 03:16:40PM +0200, Andrei Gherzan wrote:
-> Change-Id: I06527c3814fe3690cdbbd03e4a41c79fe554773f
-> Signed-off-by: Andrei Gherzan <andrei@gherzan.ro>
-> ---
->  recipes-multimedia/omxplayer/omxplayer_git.bb | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+Hi Jonatan,
+
+Did you managed to try Alex's patch? https://review.gherzan.ro:8443/#/c/106/
+Your feedback would be helpful.
+
+Thanks,
+
+On Thu, Jun 12, 2014 at 09:47:17PM +0100, Alex J Lennon wrote:
 >
-> diff --git a/recipes-multimedia/omxplayer/omxplayer_git.bb b/recipes-multimedia/omxplayer/omxplayer_git.bb
-> index 5763d8f..eaadff6 100644
-> --- a/recipes-multimedia/omxplayer/omxplayer_git.bb
-> +++ b/recipes-multimedia/omxplayer/omxplayer_git.bb
-> @@ -7,7 +7,7 @@ SECTION = "console/utils"
->  LICENSE = "GPLv2"
->  LIC_FILES_CHKSUM = "file://COPYING;md5=94d55d512a9ba36caa9b7df079bae19f"
+> On 12/06/2014 07:48, Jonatan Magnusson wrote:
+> > Hi
+> >
+> > I’m trying to use the meta-raspberrypi BSP with Yocto (1.6, Daisy).
+> >
+> > It works great, except I have no idea how to use a custom kernel config!
+> >
+> > I have a custom kernel recipe that bbappends to the meta-raspberrypi kernel recipe.
+> >
+> > I’ve tried using defconfig as well as configuration fragments, but neither work.
+> >
+> > I’ve also tried using the kernel_configure_variable function, and that almost works, except if I try to disable an option that is enabled earlier in the the config file, the option is still enabled since kernel_configure_variable only appends to the config file.
+> >
+> > Example:
+> >
+> > do_configure_append() {
+> >   kernel_configure_variable SPI_SPIDEV n
+> > }
+> >
+> > So I wonder: how is this supposed to work?
+> >
+> > In my case I need to enable CONFIG_IEEE802154_MRF24J40 and it’s dependencies and disable CONFIG_SPI_SPIDEV and a few more.
+> >
+> > I’ve found no help on IRC and all Google comes up with is this old discussion, which does not lead to a solution:
+> >
+> > https://lists.yoctoproject.org/pipermail/yocto/2013-November/017113.html
+> >
+> > I would be very happy to get any hints on how this is supposed to work!
 >
-> -DEPENDS = "libpcre libav virtual/egl boost freetype dbus"
-> +DEPENDS = "libpcre libav virtual/egl boost freetype dbus openssl"
->  PR = "r3"
+> Jonatan,
 >
->  SRCREV = "f3221825a92f27c5f49a52200ff933e454977ed2"
+> I have a patch set here which I believe will enable configuration
+> fragment support (yocto-ization) for the RPi as detailed in the Yocto
+> Kernel Development Manual.
+>
+> It needs more testing before I would be comfortable releasing it, and I
+> am short of time right now. The kernel builds and my testing shows that
+> the config and config. fragments seem to get picked up, but I haven't
+> tested on a board yet as I have run into trouble moving up from Yocto
+> daisy to master.
+>
+> I wonder if you would be interested in taking a look at it with me?
+> If/when it worked/works you should be able to simply add a foo.cfg file
+> with your CONFIG_foo to SRC_URI in a .bbappend and that should get
+> pulled in as you need.
+>
+> Cheers,
+>
+> Alex
+>
+>
+> Cheer
 > --
-> 1.9.3
->
-
-Merged.
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
 --
 Andrei Gherzan
