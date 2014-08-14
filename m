@@ -1,40 +1,52 @@
-Return-Path: <mark.hatle@windriver.com>
+Return-Path: <bruce.ashfield@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 8687BE00781; Thu, 14 Aug 2014 07:02:26 -0700 (PDT)
+	id F2835E00781; Thu, 14 Aug 2014 07:05:21 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [147.11.1.11 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (bruce.ashfield[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 34B11E0074B
-	for <yocto@yoctoproject.org>; Thu, 14 Aug 2014 07:02:20 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail.windriver.com (8.14.9/8.14.5) with ESMTP id s7EE2I3L003993
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Thu, 14 Aug 2014 07:02:18 -0700 (PDT)
-Received: from Marks-MacBook-Pro.local (172.25.36.234) by
-	ALA-HCA.corp.ad.wrs.com (147.11.189.50) with Microsoft SMTP Server id
-	14.3.174.1; Thu, 14 Aug 2014 07:02:18 -0700
-Message-ID: <53ECC169.6000200@windriver.com>
-Date: Thu, 14 Aug 2014 09:02:17 -0500
-From: Mark Hatle <mark.hatle@windriver.com>
-Organization: Wind River Systems
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.9;
-	rv:24.0) Gecko/20100101 Thunderbird/24.6.0
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.215.47 listed in list.dnswl.org]
+Received: from mail-la0-f47.google.com (mail-la0-f47.google.com
+	[209.85.215.47])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1E0ECE0074B
+	for <yocto@yoctoproject.org>; Thu, 14 Aug 2014 07:05:16 -0700 (PDT)
+Received: by mail-la0-f47.google.com with SMTP id mc6so1107452lab.6
+	for <yocto@yoctoproject.org>; Thu, 14 Aug 2014 07:05:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type;
+	bh=C7Uvi9JoaD+ndgi5pws9+o+RFOwKK3jjJC57j5vdFGU=;
+	b=rexaxvj1dMsbCE/AWEglU2WIulDYUhOdNsvDka6xoQpoYCjMTnJoNWAV+7B3R3aLwH
+	G6+f07FJXm9uLNXgezdtBI4kJrRKQnqsTOP1j4wr9Oz2bIIFjyE++iTHAMK01kpu24Gh
+	A+oNv7YqjorLEXIKD5C2VzEb9EhngXjryDGGxgtZ5XBsnYtSJsBs4hi2CZ+oarXRISRF
+	XKsWU5d9lkjHnC10xj6KNa0w5Z27n0DrCaEJ+qaoqETm+//mZvOWH8LXBz1zswXtk91+
+	5WN9VmaeVeNkp/GBWnxsXAUw0OWlzUyvTbUe5q9UmTD9nmhQI0q88Z7OeKh7UEdR0iCG
+	gnRg==
 MIME-Version: 1.0
-To: atulkumar singh <atul.singh008@gmail.com>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>
-References: <70c818031fe4471ea683fc552b9ad1b5@HKNPR03MB354.apcprd03.prod.outlook.com>	<d83d174900974afe9e993337abf55b35@HKNPR03MB354.apcprd03.prod.outlook.com>
-	<CAH21_vFThtJ6WtBzT8CMd8grdNwbXOGNAsO79cZB5f_SOx6_cw@mail.gmail.com>
-In-Reply-To: <CAH21_vFThtJ6WtBzT8CMd8grdNwbXOGNAsO79cZB5f_SOx6_cw@mail.gmail.com>
-Subject: Re: Building toolchain(meta-toolchain) issue for mips
+X-Received: by 10.112.1.136 with SMTP id 8mr5278135lbm.55.1408025115023; Thu,
+	14 Aug 2014 07:05:15 -0700 (PDT)
+Received: by 10.112.202.67 with HTTP; Thu, 14 Aug 2014 07:05:14 -0700 (PDT)
+In-Reply-To: <53EC9DD8.6030207@mindchasers.com>
+References: <53EC9DD8.6030207@mindchasers.com>
+Date: Thu, 14 Aug 2014 10:05:14 -0400
+Message-ID: <CADkTA4NATGAUXgh8YwapLuqgH1Oiod7ik5LkJMYn5mEePOM-6Q@mail.gmail.com>
+From: Bruce Ashfield <bruce.ashfield@gmail.com>
+To: Bob Cochran <yocto@mindchasers.com>
+Cc: Yocto discussion list <yocto@yoctoproject.org>
+Subject: Re: mpc8315e-rdb is probably a poor choice as powerpc example...
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -46,69 +58,43 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 14 Aug 2014 14:02:26 -0000
-Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Thu, 14 Aug 2014 14:05:22 -0000
+Content-Type: text/plain; charset=UTF-8
 
-On 8/14/14, 7:39 AM, atulkumar singh wrote:
-> Hi Folks,
->
-> I am trying to build toolchain, but while building I am getting following warning:
->
->                  WARNING: QA Issue: gcc-cross-canadian-mips64-n32: found library
-> in wrong location:
-> /usr/local/windriver/sysroots/x86_64-pokysdk-linux/usr/libexec/mips64-windriver-linux-gnun32/gcc/mips64-windriver-linux-gnun32/4.9.1/liblto_plugin.so.0.0.0
->
-> gcc-cross-canadian-mips64-n32: found library in wrong location:
-> /usr/local/windriver/sysroots/x86_64-pokysdk-linux/usr/libexec/mips64-windriver-linux-gnun32/gcc/mips64-windriver-linux-gnun32/4.9.1/liblto_plugin.so
->
-> gcc-cross-canadian-mips64-n32: found library in wrong location:
-> /usr/local/windriver/sysroots/x86_64-pokysdk-linux/usr/libexec/mips64-windriver-linux-gnun32/gcc/mips64-windriver-linux-gnun32/4.9.1/liblto_plugin.so.0
-> [libdir]
+On Thu, Aug 14, 2014 at 7:30 AM, Bob Cochran <yocto@mindchasers.com> wrote:
+> As most of you know, the mpc8315e-rdb is the powerpc reference platform in
+> meta-yocto-bsp.  This is old technology and not a good representative of
+> QorIQ.
 
-The above QA warnings indicate that a library was found at a non-standard (/lib, 
-/usr/lib) location.  This is an issue if a user links to the library and it's 
-not available in the standard ld.so load path.
+We've been working with FSL to find a suitable replacement for some time, and
+the discussions were happening in the sprint, but stalled for the summer months.
 
->                  Matched in
-> manifest-x86_64_x86_64-nativesdk-gdb-cross-canadian-mips64.populate_sysroot
 >
-> manifest-x86_64_x86_64-nativesdk-gdb-cross-canadian-mips32r2.populate_sysroot
->
->
-> /data/home/asingh/Yocto/poky/build/tmp/sysroots/x86_64-nativesdk-pokysdk-linux/usr/local/windriver/sysroots/x86_64-pokysdk-linux/usr/share/gdb/syscalls/mips-n32-linux.xml
->
->     Matched in
-> manifest-x86_64_x86_64-nativesdk-gdb-cross-canadian-mips64.populate_sysroot
->
-> manifest-x86_64_x86_64-nativesdk-gdb-cross-canadian-mips32r2.populate_sysroot
->
->
-> /data/home/asingh/Yocto/poky/build/tmp/sysroots/x86_64-nativesdk-pokysdk-linux/usr/local/windriver/sysroots/x86_64-pokysdk-linux/usr/share/gdb/syscalls/arm-linux.xml
+> I suggest something from the P or T family be used.  The P1010RDB is
+> probably a good choice, but others may prefer an SMP machine.
 
-The above indicates two packages, x86_64-nativesdk-gdb-cross-canadian-mips64 and 
-x86_64-nativesdk-gdb-cross-canadian-mips32r2 both provided the same file at the 
-same installation path.  While not always, this is often times an indication of 
-a bug in the system.
+The choice is equally about the machine and about the ability to purchase the
+target at a reasonable price. We don't use hard to find, or expensive boards.
 
-As long as both packages could be used separately, and the contents of the two 
-files are identical this can be ignored.
+So if you do have specific suggestions, and purchase information, send it along
+and it can be rolled into the ongoing discussions.
 
---Mark
+Bruce
 
-> Thanks and Regards,
 >
-> ATUL KUMAR SINGH
+> I'm willing to help to make it happen.
 >
-> This message contains information that may be privileged or confidential and is
-> the property of the KPIT Technologies Ltd. It is intended only for the person to
-> whom it is addressed. If you are not the intended recipient, you are not
-> authorized to read, print, retain copy, disseminate, distribute, or use this
-> message or any part thereof. If you receive this message in error, please notify
-> the sender immediately and delete all copies of this message. KPIT Technologies
-> Ltd. does not accept any liability for virus infected mails.
+> Bob
 >
->
->
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
+
+
+-- 
+"Thou shalt not follow the NULL pointer, for chaos and madness await
+thee at its end"
 
