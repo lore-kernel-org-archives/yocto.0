@@ -1,37 +1,36 @@
-Return-Path: <Kai.Kang@windriver.com>
+Return-Path: <paul.eggleton@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 0F521E00524; Thu, 14 Aug 2014 20:26:48 -0700 (PDT)
+	id E8495E00769; Fri, 15 Aug 2014 02:49:00 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [147.11.1.11 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C8427E004DD
-	for <yocto@yoctoproject.org>; Thu, 14 Aug 2014 20:26:45 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail.windriver.com (8.14.9/8.14.5) with ESMTP id s7F3QiBC023672
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL)
-	for <yocto@yoctoproject.org>; Thu, 14 Aug 2014 20:26:45 -0700 (PDT)
-Received: from pek-hostel-deb02.wrs.com (128.224.153.152) by
-	ALA-HCA.corp.ad.wrs.com (147.11.189.50) with Microsoft SMTP Server
-	(TLS) id 14.3.174.1; Thu, 14 Aug 2014 20:26:44 -0700
-From: Kai Kang <kai.kang@windriver.com>
-To: <yocto@yoctoproject.org>
-Date: Fri, 15 Aug 2014 11:21:33 +0800
-Message-ID: <1408072893-28126-2-git-send-email-kai.kang@windriver.com>
-X-Mailer: git-send-email 1.9.1
-In-Reply-To: <1408072893-28126-1-git-send-email-kai.kang@windriver.com>
-References: <1408072893-28126-1-git-send-email-kai.kang@windriver.com>
-MIME-Version: 1.0
-X-Originating-IP: [128.224.153.152]
-Subject: [PATCH] qemu: enable aarch64 support in yocto
+	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at http://www.dnswl.org/,
+	high *      trust
+	*      [134.134.136.20 listed in list.dnswl.org]
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AAE58E0034B
+	for <yocto@yoctoproject.org>; Fri, 15 Aug 2014 02:48:52 -0700 (PDT)
+Received: from orsmga002.jf.intel.com ([10.7.209.21])
+	by orsmga101.jf.intel.com with ESMTP; 15 Aug 2014 02:48:52 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.01,869,1400050800"; d="scan'208";a="588521282"
+Received: from kmoriart-mobl.ger.corp.intel.com (HELO
+	peggleto-mobl5.ger.corp.intel.com) ([10.252.122.210])
+	by orsmga002.jf.intel.com with ESMTP; 15 Aug 2014 02:48:51 -0700
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: yocto@yoctoproject.org
+Date: Fri, 15 Aug 2014 10:48:41 +0100
+Message-Id: <c4fd54cb38ce4dcbf94661eedd1612b05d930180.1408096074.git.paul.eggleton@linux.intel.com>
+X-Mailer: git-send-email 1.9.3
+In-Reply-To: <cover.1408096074.git.paul.eggleton@linux.intel.com>
+References: <cover.1408096074.git.paul.eggleton@linux.intel.com>
+In-Reply-To: <cover.1408096074.git.paul.eggleton@linux.intel.com>
+References: <cover.1408096074.git.paul.eggleton@linux.intel.com>
+Subject: [auh][PATCH 1/4] Add ability to set machines in config file
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,32 +42,41 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 15 Aug 2014 03:26:48 -0000
-Content-Type: text/plain
+X-List-Received-Date: Fri, 15 Aug 2014 09:49:00 -0000
 
-qemu 2.1.0 support aarch64 targets, so add aarch64 to QEMU_TARGETS to
-enable qemu aarch64 support. Var QEMU_TARGETS in poky.conf overrides the
-var in qemu recipe, so add in poky.conf too.
-
-Signed-off-by: Kai Kang <kai.kang@windriver.com>
+Signed-off-by: Paul Eggleton <paul.eggleton@linux.intel.com>
 ---
- meta-yocto/conf/distro/poky.conf | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ README           | 2 ++
+ upgradehelper.py | 2 +-
+ 2 files changed, 3 insertions(+), 1 deletion(-)
 
-diff --git a/meta-yocto/conf/distro/poky.conf b/meta-yocto/conf/distro/poky.conf
-index ec251f9..9a67b50 100644
---- a/meta-yocto/conf/distro/poky.conf
-+++ b/meta-yocto/conf/distro/poky.conf
-@@ -44,7 +44,7 @@ DISTRO_EXTRA_RDEPENDS_append_qemux86-64 = " ${POKYQEMUDEPS}"
+diff --git a/README b/README
+index 74a8ecc..c43fa5e 100644
+--- a/README
++++ b/README
+@@ -41,6 +41,8 @@ clean_sstate=yes
+ clean_tmp=yes
+ # keep previous commits or not
+ drop_previous_commits=yes
++# machines to test build with
++machines=qemux86 qemux86-64 qemuarm qemumips qemuppc
+ --------------- snip ---------------
  
- TCLIBCAPPEND = ""
+ 3. Enable distrodata and supply appropriate additional metadata. For
+diff --git a/upgradehelper.py b/upgradehelper.py
+index cc90958..2429897 100755
+--- a/upgradehelper.py
++++ b/upgradehelper.py
+@@ -130,7 +130,7 @@ class Updater(object):
+         self.skip_compilation = skip_compilation
+         self.interactive = not auto_mode
  
--QEMU_TARGETS ?= "arm i386 mips mipsel ppc x86_64"
-+QEMU_TARGETS ?= "arm aarch64 i386 mips mipsel ppc x86_64"
- # Other QEMU_TARGETS "mips64 mips64el sh4"
+-        self.machines = ["qemux86", "qemux86-64", "qemuarm", "qemumips", "qemuppc"]
++        self.machines = settings.get('machines', 'qemux86 qemux86-64 qemuarm qemumips qemuppc').split()
  
- PREMIRRORS ??= "\
+         self.upgrade_steps = [
+             (self._create_workdir, None),
 -- 
-1.9.1
+1.9.3
 
 
