@@ -1,57 +1,53 @@
-Return-Path: <atul.singh008@gmail.com>
+Return-Path: <rehsack@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 521B5E007C9; Sun, 17 Aug 2014 05:36:12 -0700 (PDT)
+	id E8E71E006DB; Sun, 17 Aug 2014 07:56:08 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (atul.singh008[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.213.177 listed in list.dnswl.org]
+	mail provider *      (rehsack[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-ig0-f177.google.com (mail-ig0-f177.google.com
-	[209.85.213.177])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5DCBCE0071E
-	for <yocto@yoctoproject.org>; Sun, 17 Aug 2014 05:36:05 -0700 (PDT)
-Received: by mail-ig0-f177.google.com with SMTP id hn18so5501072igb.4
-	for <yocto@yoctoproject.org>; Sun, 17 Aug 2014 05:36:04 -0700 (PDT)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [74.125.82.177 listed in list.dnswl.org]
+Received: from mail-we0-f177.google.com (mail-we0-f177.google.com
+	[74.125.82.177])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 28D02E00655
+	for <yocto@yoctoproject.org>; Sun, 17 Aug 2014 07:56:01 -0700 (PDT)
+Received: by mail-we0-f177.google.com with SMTP id w62so3929843wes.8
+	for <yocto@yoctoproject.org>; Sun, 17 Aug 2014 07:56:00 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type;
-	bh=B+mg7oLxfR95f6eySgkAGdJbqP/pVb4fri4U27R4CHQ=;
-	b=R9aI5jHgulFcPgSUmrXcc6NI3KnTH6c9HKxrJlDEmnrNHqXWrJzrrM8p/iCrjBC3ZE
-	Ogzolh9m7CcJFAt9bmvQEy4E6ULGBqjGLECL6gLmSopqsViBTuATQQiZ64EWnCrUqKhK
-	72EtMQmbGkEn3STIHY2DGunRfB8EleriGrBy8UbpjQXL0knMjosgJVKtOsiGSMVrQgQr
-	o/qg/hg+Nlpx5F9nlcUyPzffn0Mk/NzuRxHMmWt076oyDaHUKaipy/JlbS1cPFxkfA3t
-	kEQtthSMaKHoc2qtN3RejeQpulXBbaJ4j/Mjydn4JmWhY7co51D4oLnMCtUfHsn4UeWw
-	hgeg==
-MIME-Version: 1.0
-X-Received: by 10.50.21.2 with SMTP id r2mr35712126ige.24.1408278964215; Sun,
-	17 Aug 2014 05:36:04 -0700 (PDT)
-Received: by 10.64.232.36 with HTTP; Sun, 17 Aug 2014 05:36:03 -0700 (PDT)
-Received: by 10.64.232.36 with HTTP; Sun, 17 Aug 2014 05:36:03 -0700 (PDT)
-In-Reply-To: <CAMKF1sp9Z6vj1Dz96_WYiHOtYFqa-zECrNHOFgb=dBUDJN2Z_g@mail.gmail.com>
-References: <CAMKF1sp9Z6vj1Dz96_WYiHOtYFqa-zECrNHOFgb=dBUDJN2Z_g@mail.gmail.com>
-Date: Sun, 17 Aug 2014 18:06:03 +0530
-Message-ID: <CAH21_vEqEJT9SrP7AR3Z7_Wh_XDBjXQF2zQdYbCEKBb53ONhHA@mail.gmail.com>
-From: atulkumar singh <atul.singh008@gmail.com>
-To: Khem Raj <raj.khem@gmail.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>, musl@lists.openwall.com,
-	openembeded-devel <Openembedded-devel@lists.openembedded.org>,
-	Patches and discussions about the oe-core layer
-	<openembedded-core@lists.openembedded.org>
-Subject: Re: [OE-core] Announcing meta-musl OE/Yocto layer supporting musl C library
+	h=from:content-type:subject:message-id:date:to:mime-version;
+	bh=nPRQTJy3T1Nsz4q3PINL+PuQuolSUaoIWLpTUhUJAZU=;
+	b=qYBLfNaSjyMWc/53ZmISosojSxkUggldUvQkyVk6rn8zA1ikEh7mHtzQyEu+lxoOM/
+	ngrghQEe7H4l0oecTUnlr/c9afWgYO6pywiTU9WKtOcgKrU1KIrb/sBNYFGNAc05KpvD
+	939XD5Z5CqBtC/KWzqE5R5ZHl3+3k6cb2mWKVb0V7AgyMmlpdwoPmxVMJJlYqHt6y2UC
+	MnnQEhWDI8xt3zLsq5mIqelNG8uqe8ERVjTDZVteUJzFv12HbSwa8qP4ihDeBl/37jWa
+	Kr+cdKf5oyi7qYQ3ZYlWzJYoUhCt4FH3ASjcMZC1wtGkEPJXFZQHzY76pinqr1FSVEn7
+	UEgQ==
+X-Received: by 10.180.91.111 with SMTP id cd15mr67073704wib.69.1408287360188; 
+	Sun, 17 Aug 2014 07:56:00 -0700 (PDT)
+Received: from ernie.muppets.liwing.de (p578b540c.dip0.t-ipconnect.de.
+	[87.139.84.12]) by mx.google.com with ESMTPSA id
+	je3sm28030108wic.11.2014.08.17.07.55.58 for <yocto@yoctoproject.org>
+	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
+	Sun, 17 Aug 2014 07:55:59 -0700 (PDT)
+From: Jens Rehsack <rehsack@gmail.com>
+Message-Id: <4D4A9982-5419-41E7-B3C3-655D689D35BF@gmail.com>
+Date: Sun, 17 Aug 2014 16:55:50 +0200
+To: yocto@yoctoproject.org
+Mime-Version: 1.0 (Mac OS X Mail 7.3 \(1878.6\))
+X-Mailer: Apple Mail (2.1878.6)
+Subject: Fix some perl module build issues
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -63,131 +59,156 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 17 Aug 2014 12:36:12 -0000
-Content-Type: multipart/alternative; boundary=047d7b6dbc1c68263d0500d27fb7
+X-List-Received-Date: Sun, 17 Aug 2014 14:56:09 -0000
+X-Groupsio-MsgNum: 21123
+Content-Type: multipart/mixed;
+	boundary="Apple-Mail=_924C7EE5-6D25-4D60-8FAA-D6D4A360C1F0"
 
---047d7b6dbc1c68263d0500d27fb7
-Content-Type: text/plain; charset=UTF-8
+--Apple-Mail=_924C7EE5-6D25-4D60-8FAA-D6D4A360C1F0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain;
+	charset=us-ascii
 
-Hi Khem,
+Hi,
 
-It's really something new to test.
-And as it's mention that will support only for core-image-minimal, so when
-can i expect it to support for meta-toolchain.
-As of now i will test it for core-image-minimal but i need it for
-meta-toolchain as well.
-So please update me regarding the same and in the meanwhile will test and
-update for core-image-minimal in case found any issue.
-I am really excited to test the same.
+during the work on bitbake support of https://github.com/rehsack/Packager-=
+Utils I suggest attached update to poky.
 
-Thanks and regards,
-Atul
-On 17 Aug 2014 06:22, "Khem Raj" <raj.khem@gmail.com> wrote:
 
-> Hello All
->
-> musl <http://www.musl-libc.org/> is a newer implementation licensed
-> under MIT licence
-> A layer to support musl to supply your system C library as an
-> alternative to uclibc and eglibc/glibc  is now available at
->
-> https://github.com/kraj/meta-musl
->
-> README describes way to get going with it.
->
-> Few things to note
->
-> * Supports gcc 4.9 in OE not 4.8
-> * Current musl recipe is 1.1.4 based
-> * You need latest master of OE-Core
-> (106305227003761c3fc562c21bb859a5256f2b36) or          newer and
-> bitbake
-> * Its only able to build core-image-minimal
-> * core-image-minimal boots on qemuarm, qemuppc, qemumips, qemux86,
-> qemux86-64
->
-> I will send a request to add it to layerindex soon and then you should
-> be able to find it using
-> layerindex.opernembedded.org as well
->
-> If you try it out on your hardware and/or have feedback I am
-> interested. Fork it from github, file bugs
-> send patches ....
->
-> Happy hacking
->
-> -Khem
-> --
-> _______________________________________________
-> Openembedded-core mailing list
-> Openembedded-core@lists.openembedded.org
-> http://lists.openembedded.org/mailman/listinfo/openembedded-core
->
+Additionally I wonder that no one updates perl to 5.20 - I would do it if =
+I could understand the amount of debian patches and the extract of eg. perl=
+-module-config. Since H.Merijn Brand's work on Configure.sh and Policy.sh s=
+ince 5.10 most of those patches looks depreciated to me. NetBSD's pkg-manag=
+er pkgsrc (which provides full working perl on 16+ platforms) doesn't use t=
+hat many patches.
 
---047d7b6dbc1c68263d0500d27fb7
-Content-Type: text/html; charset=UTF-8
+Any comments?
+--=20
+Jens Rehsack
+rehsack@gmail.com
+
+
+
+
+
+
+--Apple-Mail=_924C7EE5-6D25-4D60-8FAA-D6D4A360C1F0
+Content-Disposition: attachment;
+	filename=0001-fix-cpan-builds.patch
+Content-Type: application/octet-stream;
+	name="0001-fix-cpan-builds.patch"
 Content-Transfer-Encoding: quoted-printable
 
-<p>Hi Khem,</p>
-<p>It&#39;s really something new to test.<br>
-And as it&#39;s mention that will support only for core-image-minimal, so w=
-hen can i expect it to support for meta-toolchain.<br>
-As of now i will test it for core-image-minimal but i need it for meta-tool=
-chain as well.<br>
-So please update me regarding the same and in the meanwhile will test and u=
-pdate for core-image-minimal in case found any issue.<br>
-I am really excited to test the same.<br></p>
-<p>Thanks and regards,<br>
-Atul</p>
-<div class=3D"gmail_quote">On 17 Aug 2014 06:22, &quot;Khem Raj&quot; &lt;<=
-a href=3D"mailto:raj.khem@gmail.com">raj.khem@gmail.com</a>&gt; wrote:<br t=
-ype=3D"attribution"><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0=
- .8ex;border-left:1px #ccc solid;padding-left:1ex">
-Hello All<br>
-<br>
-musl &lt;<a href=3D"http://www.musl-libc.org/" target=3D"_blank">http://www=
-.musl-libc.org/</a>&gt; is a newer implementation licensed<br>
-under MIT licence<br>
-A layer to support musl to supply your system C library as an<br>
-alternative to uclibc and eglibc/glibc=C2=A0 is now available at<br>
-<br>
-<a href=3D"https://github.com/kraj/meta-musl" target=3D"_blank">https://git=
-hub.com/kraj/meta-musl</a><br>
-<br>
-README describes way to get going with it.<br>
-<br>
-Few things to note<br>
-<br>
-* Supports gcc 4.9 in OE not 4.8<br>
-* Current musl recipe is 1.1.4 based<br>
-* You need latest master of OE-Core<br>
-(106305227003761c3fc562c21bb859a5256f2b36) or=C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 newer and<br>
-bitbake<br>
-* Its only able to build core-image-minimal<br>
-* core-image-minimal boots on qemuarm, qemuppc, qemumips, qemux86, qemux86-=
-64<br>
-<br>
-I will send a request to add it to layerindex soon and then you should<br>
-be able to find it using<br>
-<a href=3D"http://layerindex.opernembedded.org" target=3D"_blank">layerinde=
-x.opernembedded.org</a> as well<br>
-<br>
-If you try it out on your hardware and/or have feedback I am<br>
-interested. Fork it from github, file bugs<br>
-send patches ....<br>
-<br>
-Happy hacking<br>
-<br>
--Khem<br>
---<br>
-_______________________________________________<br>
-Openembedded-core mailing list<br>
-<a href=3D"mailto:Openembedded-core@lists.openembedded.org">Openembedded-co=
-re@lists.openembedded.org</a><br>
-<a href=3D"http://lists.openembedded.org/mailman/listinfo/openembedded-core=
-" target=3D"_blank">http://lists.openembedded.org/mailman/listinfo/openembe=
-dded-core</a><br>
-</blockquote></div>
+From 3082a41e356ce43219667e462b070c6471a44feb Mon Sep 17 00:00:00 2001
+From: Jens Rehsack <Jens.Rehsack@rademacher.de>
+Date: Fri, 15 Aug 2014 17:13:04 +0200
+Subject: [PATCH] fix cpan builds
 
---047d7b6dbc1c68263d0500d27fb7--
+* add support even for xs modules with more than 3 levels as
+  B::Hooks::End::Of::Scope or Math::Random::ISAAC::XS
+* correct handling of Module::Build (as far as stolen from pkgsrc
+  and my humble knowledge)
+* configure to install to vendor_libs as default, even when
+  inherited do_install remains unused (overwritten do_install)
+---
+ meta/classes/cpan-base.bbclass  |  4 ++++
+ meta/classes/cpan.bbclass       |  2 +-
+ meta/classes/cpan_build.bbclass | 23 ++++++++++++++---------
+ 3 files changed, 19 insertions(+), 10 deletions(-)
+
+diff --git a/meta/classes/cpan-base.bbclass b/meta/classes/cpan-base.bbclas=
+s
+index d9817ba..7810a4d 100644
+--- a/meta/classes/cpan-base.bbclass
++++ b/meta/classes/cpan-base.bbclass
+@@ -49,7 +49,11 @@ PERLVERSION[vardepvalue] =3D ""
+ FILES_${PN}-dbg +=3D "${PERLLIBDIRS}/auto/*/.debug \
+                     ${PERLLIBDIRS}/auto/*/*/.debug \
+                     ${PERLLIBDIRS}/auto/*/*/*/.debug \
++                    ${PERLLIBDIRS}/auto/*/*/*/*/.debug \
++                    ${PERLLIBDIRS}/auto/*/*/*/*/*/.debug \
+                     ${PERLLIBDIRS}/vendor_perl/${PERLVERSION}/auto/*/.debu=
+g \
+                     ${PERLLIBDIRS}/vendor_perl/${PERLVERSION}/auto/*/*/.de=
+bug \
+                     ${PERLLIBDIRS}/vendor_perl/${PERLVERSION}/auto/*/*/*/.=
+debug \
++                    ${PERLLIBDIRS}/vendor_perl/${PERLVERSION}/auto/*/*/*/*=
+/.debug \
++                    ${PERLLIBDIRS}/vendor_perl/${PERLVERSION}/auto/*/*/*/*=
+/*/.debug \
+                     "
+diff --git a/meta/classes/cpan.bbclass b/meta/classes/cpan.bbclass
+index 7088039..943338d 100644
+--- a/meta/classes/cpan.bbclass
++++ b/meta/classes/cpan.bbclass
+@@ -17,7 +17,7 @@ export PERLHOSTLIB =3D "${STAGING_LIBDIR_NATIVE}/perl-nat=
+ive/perl/${@get_perl_vers
+=20
+ cpan_do_configure () {
+ 	export PERL5LIB=3D"${PERL_ARCHLIB}"
+-	yes '' | perl ${EXTRA_PERLFLAGS} Makefile.PL ${EXTRA_CPANFLAGS}
++	yes '' | perl ${EXTRA_PERLFLAGS} Makefile.PL INSTALLDIRS=3Dvendor ${EXTRA=
+_CPANFLAGS}
+=20
+ 	# Makefile.PLs can exit with success without generating a
+ 	# Makefile, e.g. in cases of missing configure time
+diff --git a/meta/classes/cpan_build.bbclass b/meta/classes/cpan_build.bbcl=
+ass
+index 5b0ad61..251a1c9 100644
+--- a/meta/classes/cpan_build.bbclass
++++ b/meta/classes/cpan_build.bbclass
+@@ -3,9 +3,12 @@
+ #
+ inherit cpan-base perlnative
+=20
++EXTRA_BUILDFLAGS ?=3D ""
++
+ # Env var which tells perl if it should use host (no) or target (yes) sett=
+ings
+ export PERLCONFIGTARGET =3D "${@is_target(d)}"
+ export PERL_ARCHLIB =3D "${STAGING_LIBDIR}${PERL_OWN_DIR}/perl/${@get_perl=
+_version(d)}"
++export PERLHOSTLIB =3D "${STAGING_LIBDIR_NATIVE}/perl-native/perl/${@get_p=
+erl_version(d)}/"
+ export LD =3D "${CCLD}"
+=20
+ #
+@@ -30,21 +33,23 @@ cpan_build_do_configure () {
+ 		. ${STAGING_LIBDIR}/perl/config.sh
+ 	fi
+=20
+-	perl Build.PL --installdirs vendor \
+-				--destdir ${D} \
+-				--install_path arch=3D"${libdir}/perl" \
+-				--install_path script=3D${bindir} \
+-				--install_path bin=3D${bindir} \
+-				--install_path bindoc=3D${mandir}/man1 \
+-				--install_path libdoc=3D${mandir}/man3
++	perl Build.PL --installdirs vendor --destdir ${D} ${EXTRA_BUILDFLAGS}
++
++	# Build.PLs can exit with success without generating a
++	# Build, e.g. in cases of missing configure time
++	# dependencies. This is considered a best practice by
++	# cpantesters.org. See:
++	#  * http://wiki.cpantesters.org/wiki/CPANAuthorNotes
++	#  * http://www.nntp.perl.org/group/perl.qa/2008/08/msg11236.html
++	[ -e Build ] || bbfatal "No Build was generated by Build.PL"
+ }
+=20
+ cpan_build_do_compile () {
+-        perl Build
++        perl Build verbose=3D1
+ }
+=20
+ cpan_build_do_install () {
+-	perl Build install
++	perl Build install --destdir ${D}
+ }
+=20
+ EXPORT_FUNCTIONS do_configure do_compile do_install
+--=20
+1.9.1
+
+
+--Apple-Mail=_924C7EE5-6D25-4D60-8FAA-D6D4A360C1F0--
