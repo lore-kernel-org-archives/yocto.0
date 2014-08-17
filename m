@@ -1,6 +1,6 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <atul.singh008@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 515F7E0071E; Sat, 16 Aug 2014 17:51:13 -0700 (PDT)
+	id EB571E007B4; Sun, 17 Aug 2014 01:12:56 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -8,7 +8,10 @@ X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
 	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (raj.khem[at]gmail.com)
+	mail provider *      (atul.singh008[at]gmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.213.179 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
@@ -16,36 +19,37 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.213.172 listed in list.dnswl.org]
-Received: from mail-ig0-f172.google.com (mail-ig0-f172.google.com
-	[209.85.213.172])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 28EE7E0034C
-	for <yocto@yoctoproject.org>; Sat, 16 Aug 2014 17:51:09 -0700 (PDT)
-Received: by mail-ig0-f172.google.com with SMTP id h15so5096192igd.11
-	for <yocto@yoctoproject.org>; Sat, 16 Aug 2014 17:51:08 -0700 (PDT)
+Received: from mail-ig0-f179.google.com (mail-ig0-f179.google.com
+	[209.85.213.179])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E1F6DE004F5
+	for <yocto@yoctoproject.org>; Sun, 17 Aug 2014 01:12:52 -0700 (PDT)
+Received: by mail-ig0-f179.google.com with SMTP id h18so5254760igc.6
+	for <yocto@yoctoproject.org>; Sun, 17 Aug 2014 01:12:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:from:date:message-id:subject:to:content-type;
-	bh=qBuQHu8gq4942jdLuQMEEeHJGwPs8SYqhtuolOjBHDE=;
-	b=Pp9/dQ6aUfbg9ShUiR+sBNkJxe5M1MeDjTHj6hryvFz0QmHY0mIANKVQ2gt/+irLuz
-	rzp/m1/rNpG42fgIyc0E0wp3qSdWnXDjLKkmuc2VY4tGkCCQnbTqqEkHBQQtsrHmlBL8
-	EtrMY6Ae8Hk9oP/LfCpo8VK8MEyx4q9ZrXC9DrTZ2BGtTlC8tVEO4vUxUZWLxy70b+T+
-	9JdJLQYHcIvTOcgYre/enBFyECsm8H/36h8M+X+XGLNSZDwKqt2KOaGURXERiQ3++zDm
-	B/D975NScXwDXIe0isvYGXE+oJMxWvs16eVTTTMCnViGdVWZXoN+fqRgHpsNFp6K9P33
-	mcpw==
-X-Received: by 10.50.176.202 with SMTP id ck10mr76461473igc.2.1408236668839;
-	Sat, 16 Aug 2014 17:51:08 -0700 (PDT)
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type;
+	bh=nORdq+0EFdIPIO0soMRDNLv9nDrD4/pHlBf+gaehh6E=;
+	b=ZbX6FcVNQ69XA+VrKOzxlkRbWb0Nwb9rrFbBbv5QMezgPGIn6jDecDaGVT7jgu3BgU
+	x11s34/TmhnH5yx2pElXKls+h5R/YWcrqsiPLXVvNlCw5y7fX5CU0yWBiOZ7ie5B8opy
+	VcKotvL/3G9oLVAx4syoJxcJUC8Y94p4IysFwl9WHqK/fiA2KI70LUyzP1Ltk8SXnhe4
+	ti369v3l3PD0W8DqrPw2UXCZ3F9hoFJCkN7+aCLMZPsuJDtmGV66HqlaDjpPduxo24bn
+	KG6nO7dFM8fTIWfx0FMNZSnTnWFE+4bf2UXnnMWSOv26vkwKyni0PY3tAaKpFNwOHfGN
+	ZPFg==
 MIME-Version: 1.0
-Received: by 10.50.126.103 with HTTP; Sat, 16 Aug 2014 17:50:38 -0700 (PDT)
-From: Khem Raj <raj.khem@gmail.com>
-Date: Sat, 16 Aug 2014 17:50:38 -0700
-Message-ID: <CAMKF1sp9Z6vj1Dz96_WYiHOtYFqa-zECrNHOFgb=dBUDJN2Z_g@mail.gmail.com>
-To: Patches and discussions about the oe-core layer
-	<openembedded-core@lists.openembedded.org>, 
-	openembeded-devel <Openembedded-devel@lists.openembedded.org>, 
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>, musl@lists.openwall.com
-Subject: Announcing meta-musl OE/Yocto layer supporting musl C library
+X-Received: by 10.50.66.197 with SMTP id h5mr77866224igt.34.1408263171730;
+	Sun, 17 Aug 2014 01:12:51 -0700 (PDT)
+Received: by 10.64.232.36 with HTTP; Sun, 17 Aug 2014 01:12:51 -0700 (PDT)
+In-Reply-To: <53ECC169.6000200@windriver.com>
+References: <70c818031fe4471ea683fc552b9ad1b5@HKNPR03MB354.apcprd03.prod.outlook.com>
+	<d83d174900974afe9e993337abf55b35@HKNPR03MB354.apcprd03.prod.outlook.com>
+	<CAH21_vFThtJ6WtBzT8CMd8grdNwbXOGNAsO79cZB5f_SOx6_cw@mail.gmail.com>
+	<53ECC169.6000200@windriver.com>
+Date: Sun, 17 Aug 2014 13:42:51 +0530
+Message-ID: <CAH21_vH-UUrjqmMT-zedVOM=ZGJyudmF59SeVeqREVVzFqveOA@mail.gmail.com>
+From: atulkumar singh <atul.singh008@gmail.com>
+To: Mark Hatle <mark.hatle@windriver.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: Building toolchain(meta-toolchain) issue for mips
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -57,39 +61,99 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 17 Aug 2014 00:51:13 -0000
+X-List-Received-Date: Sun, 17 Aug 2014 08:12:57 -0000
 Content-Type: text/plain; charset=UTF-8
 
-Hello All
+Hi Mark,
 
-musl <http://www.musl-libc.org/> is a newer implementation licensed
-under MIT licence
-A layer to support musl to supply your system C library as an
-alternative to uclibc and eglibc/glibc  is now available at
+Thanks for your valuable suggestion.
+But could you please let me know how to work around this issue.
 
-https://github.com/kraj/meta-musl
+Thanks and regards,
+Atul
 
-README describes way to get going with it.
+On 14/08/2014, Mark Hatle <mark.hatle@windriver.com> wrote:
+> On 8/14/14, 7:39 AM, atulkumar singh wrote:
+>> Hi Folks,
+>>
+>> I am trying to build toolchain, but while building I am getting following
+>> warning:
+>>
+>>                  WARNING: QA Issue: gcc-cross-canadian-mips64-n32: found
+>> library
+>> in wrong location:
+>> /usr/local/windriver/sysroots/x86_64-pokysdk-linux/usr/libexec/mips64-windriver-linux-gnun32/gcc/mips64-windriver-linux-gnun32/4.9.1/liblto_plugin.so.0.0.0
+>>
+>> gcc-cross-canadian-mips64-n32: found library in wrong location:
+>> /usr/local/windriver/sysroots/x86_64-pokysdk-linux/usr/libexec/mips64-windriver-linux-gnun32/gcc/mips64-windriver-linux-gnun32/4.9.1/liblto_plugin.so
+>>
+>> gcc-cross-canadian-mips64-n32: found library in wrong location:
+>> /usr/local/windriver/sysroots/x86_64-pokysdk-linux/usr/libexec/mips64-windriver-linux-gnun32/gcc/mips64-windriver-linux-gnun32/4.9.1/liblto_plugin.so.0
+>> [libdir]
+>
+> The above QA warnings indicate that a library was found at a non-standard
+> (/lib,
+> /usr/lib) location.  This is an issue if a user links to the library and
+> it's
+> not available in the standard ld.so load path.
+>
+>>                  Matched in
+>> manifest-x86_64_x86_64-nativesdk-gdb-cross-canadian-mips64.populate_sysroot
+>>
+>> manifest-x86_64_x86_64-nativesdk-gdb-cross-canadian-mips32r2.populate_sysroot
+>>
+>>
+>> /data/home/asingh/Yocto/poky/build/tmp/sysroots/x86_64-nativesdk-pokysdk-linux/usr/local/windriver/sysroots/x86_64-pokysdk-linux/usr/share/gdb/syscalls/mips-n32-linux.xml
+>>
+>>     Matched in
+>> manifest-x86_64_x86_64-nativesdk-gdb-cross-canadian-mips64.populate_sysroot
+>>
+>> manifest-x86_64_x86_64-nativesdk-gdb-cross-canadian-mips32r2.populate_sysroot
+>>
+>>
+>> /data/home/asingh/Yocto/poky/build/tmp/sysroots/x86_64-nativesdk-pokysdk-linux/usr/local/windriver/sysroots/x86_64-pokysdk-linux/usr/share/gdb/syscalls/arm-linux.xml
+>
+> The above indicates two packages, x86_64-nativesdk-gdb-cross-canadian-mips64
+> and
+> x86_64-nativesdk-gdb-cross-canadian-mips32r2 both provided the same file at
+> the
+> same installation path.  While not always, this is often times an indication
+> of
+> a bug in the system.
+>
+> As long as both packages could be used separately, and the contents of the
+> two
+> files are identical this can be ignored.
+>
+> --Mark
+>
+>> Thanks and Regards,
+>>
+>> ATUL KUMAR SINGH
+>>
+>> This message contains information that may be privileged or confidential
+>> and is
+>> the property of the KPIT Technologies Ltd. It is intended only for the
+>> person to
+>> whom it is addressed. If you are not the intended recipient, you are not
+>> authorized to read, print, retain copy, disseminate, distribute, or use
+>> this
+>> message or any part thereof. If you receive this message in error, please
+>> notify
+>> the sender immediately and delete all copies of this message. KPIT
+>> Technologies
+>> Ltd. does not accept any liability for virus infected mails.
+>>
+>>
+>>
+>
+>
 
-Few things to note
 
-* Supports gcc 4.9 in OE not 4.8
-* Current musl recipe is 1.1.4 based
-* You need latest master of OE-Core
-(106305227003761c3fc562c21bb859a5256f2b36) or          newer and
-bitbake
-* Its only able to build core-image-minimal
-* core-image-minimal boots on qemuarm, qemuppc, qemumips, qemux86, qemux86-64
-
-I will send a request to add it to layerindex soon and then you should
-be able to find it using
-layerindex.opernembedded.org as well
-
-If you try it out on your hardware and/or have feedback I am
-interested. Fork it from github, file bugs
-send patches ....
-
-Happy hacking
-
--Khem
+-- 
+*
+Thanks and  regards,
+ATUL KUMAR SINGH
+E-mail Id- atul.singh008@gmail.com
+Mob. no.-08055440486(R)*
 
