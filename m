@@ -1,6 +1,6 @@
 Return-Path: <rehsack@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id E8E71E006DB; Sun, 17 Aug 2014 07:56:08 -0700 (PDT)
+	id D9AD6E006DB; Sun, 17 Aug 2014 08:02:58 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -9,6 +9,9 @@ X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	mail provider *      (rehsack[at]gmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [74.125.82.169 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
@@ -16,38 +19,36 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [74.125.82.177 listed in list.dnswl.org]
-Received: from mail-we0-f177.google.com (mail-we0-f177.google.com
-	[74.125.82.177])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 28D02E00655
-	for <yocto@yoctoproject.org>; Sun, 17 Aug 2014 07:56:01 -0700 (PDT)
-Received: by mail-we0-f177.google.com with SMTP id w62so3929843wes.8
-	for <yocto@yoctoproject.org>; Sun, 17 Aug 2014 07:56:00 -0700 (PDT)
+Received: from mail-we0-f169.google.com (mail-we0-f169.google.com
+	[74.125.82.169])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 37561E00655
+	for <yocto@yoctoproject.org>; Sun, 17 Aug 2014 08:02:49 -0700 (PDT)
+Received: by mail-we0-f169.google.com with SMTP id u56so3980525wes.28
+	for <yocto@yoctoproject.org>; Sun, 17 Aug 2014 08:02:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=from:content-type:subject:message-id:date:to:mime-version;
-	bh=nPRQTJy3T1Nsz4q3PINL+PuQuolSUaoIWLpTUhUJAZU=;
-	b=qYBLfNaSjyMWc/53ZmISosojSxkUggldUvQkyVk6rn8zA1ikEh7mHtzQyEu+lxoOM/
-	ngrghQEe7H4l0oecTUnlr/c9afWgYO6pywiTU9WKtOcgKrU1KIrb/sBNYFGNAc05KpvD
-	939XD5Z5CqBtC/KWzqE5R5ZHl3+3k6cb2mWKVb0V7AgyMmlpdwoPmxVMJJlYqHt6y2UC
-	MnnQEhWDI8xt3zLsq5mIqelNG8uqe8ERVjTDZVteUJzFv12HbSwa8qP4ihDeBl/37jWa
-	Kr+cdKf5oyi7qYQ3ZYlWzJYoUhCt4FH3ASjcMZC1wtGkEPJXFZQHzY76pinqr1FSVEn7
-	UEgQ==
-X-Received: by 10.180.91.111 with SMTP id cd15mr67073704wib.69.1408287360188; 
-	Sun, 17 Aug 2014 07:56:00 -0700 (PDT)
+	h=from:content-type:subject:date:message-id:cc:to:mime-version;
+	bh=gpje7N9iR82vDHLSpj6mSls7qsqc9nQS0i6gbKgFhL8=;
+	b=HVDCDQZMe4R6lasH5EKhHTbf/nJmM+rN7o+TM8Ww6OwjDYrCWDIhcj0ele+1ulx7CE
+	sTMZLrCwvt8K2zB4rjFE6syfDLPpthOdl4bbSi9i8zV0a7DaNO522rs0tZ6VJDNuEHIU
+	wPj9cGx7TDxCqG/zYJ9HNEaF7UyMKKFwsLMbf6Qk4MohjJ61FZSYrk9/aqhF/kUP3KO0
+	LZbVHbxgBPTSAt04RfcX8UihtKb2YzEkRSOpkUO1lFSCXUaG3PePAxNRLNack5P9lXOb
+	M1JFlMY0cLXiiJrVy9qYss3IK4m8TsGvqqLO86hCR2R+rbw60ZUqT8reAVGxkSSMF/bj
+	QetA==
+X-Received: by 10.194.118.201 with SMTP id ko9mr34150843wjb.26.1408287769057; 
+	Sun, 17 Aug 2014 08:02:49 -0700 (PDT)
 Received: from ernie.muppets.liwing.de (p578b540c.dip0.t-ipconnect.de.
 	[87.139.84.12]) by mx.google.com with ESMTPSA id
-	je3sm28030108wic.11.2014.08.17.07.55.58 for <yocto@yoctoproject.org>
+	cy9sm28057921wib.15.2014.08.17.08.02.46 for <multiple recipients>
 	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
-	Sun, 17 Aug 2014 07:55:59 -0700 (PDT)
+	Sun, 17 Aug 2014 08:02:47 -0700 (PDT)
 From: Jens Rehsack <rehsack@gmail.com>
-Message-Id: <4D4A9982-5419-41E7-B3C3-655D689D35BF@gmail.com>
-Date: Sun, 17 Aug 2014 16:55:50 +0200
+Date: Sun, 17 Aug 2014 17:02:39 +0200
+Message-Id: <546B672E-C981-41EE-B2E3-655F24672A3F@gmail.com>
 To: yocto@yoctoproject.org
 Mime-Version: 1.0 (Mac OS X Mail 7.3 \(1878.6\))
 X-Mailer: Apple Mail (2.1878.6)
-Subject: Fix some perl module build issues
+Cc: Gerd Hoffmann <kraxel@redhat.com>
+Subject: Fix for meta-oe/recipes-graphics/fbida/fbida_git.bb
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -59,30 +60,25 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 17 Aug 2014 14:56:09 -0000
-X-Groupsio-MsgNum: 21123
+X-List-Received-Date: Sun, 17 Aug 2014 15:02:58 -0000
+X-Groupsio-MsgNum: 21124
 Content-Type: multipart/mixed;
-	boundary="Apple-Mail=_924C7EE5-6D25-4D60-8FAA-D6D4A360C1F0"
+	boundary="Apple-Mail=_3A73EABC-83D1-4BB7-AA0D-183CEBFFF303"
 
---Apple-Mail=_924C7EE5-6D25-4D60-8FAA-D6D4A360C1F0
+--Apple-Mail=_3A73EABC-83D1-4BB7-AA0D-183CEBFFF303
 Content-Transfer-Encoding: quoted-printable
 Content-Type: text/plain;
 	charset=us-ascii
 
 Hi,
 
-during the work on bitbake support of https://github.com/rehsack/Packager-=
-Utils I suggest attached update to poky.
+we played a bit with some tools before using a modified psplash to show so=
+me guidance on hdmi-fb and there was an error in fbida which wrongly mixes =
+host-paths and target paths. Additionally - for Poky or OE it's unnecessary=
+ to guess additional path to check - recipes will do correctly.
 
 
-Additionally I wonder that no one updates perl to 5.20 - I would do it if =
-I could understand the amount of debian patches and the extract of eg. perl=
--module-config. Since H.Merijn Brand's work on Configure.sh and Policy.sh s=
-ince 5.10 most of those patches looks depreciated to me. NetBSD's pkg-manag=
-er pkgsrc (which provides full working perl on 16+ platforms) doesn't use t=
-hat many patches.
-
-Any comments?
+Best regards
 --=20
 Jens Rehsack
 rehsack@gmail.com
@@ -92,123 +88,70 @@ rehsack@gmail.com
 
 
 
---Apple-Mail=_924C7EE5-6D25-4D60-8FAA-D6D4A360C1F0
+--Apple-Mail=_3A73EABC-83D1-4BB7-AA0D-183CEBFFF303
 Content-Disposition: attachment;
-	filename=0001-fix-cpan-builds.patch
+	filename=0001-avoid-fbida-tries-including-host-stuff.patch
 Content-Type: application/octet-stream;
-	name="0001-fix-cpan-builds.patch"
+	name="0001-avoid-fbida-tries-including-host-stuff.patch"
 Content-Transfer-Encoding: quoted-printable
 
-From 3082a41e356ce43219667e462b070c6471a44feb Mon Sep 17 00:00:00 2001
+From 08798334998f63bdf0f3b96752b28060ab0c8165 Mon Sep 17 00:00:00 2001
 From: Jens Rehsack <Jens.Rehsack@rademacher.de>
-Date: Fri, 15 Aug 2014 17:13:04 +0200
-Subject: [PATCH] fix cpan builds
+Date: Fri, 4 Jul 2014 13:29:34 +0200
+Subject: [PATCH] avoid fbida tries including host stuff
 
-* add support even for xs modules with more than 3 levels as
-  B::Hooks::End::Of::Scope or Math::Random::ISAAC::XS
-* correct handling of Module::Build (as far as stolen from pkgsrc
-  and my humble knowledge)
-* configure to install to vendor_libs as default, even when
-  inherited do_install remains unused (overwritten do_install)
 ---
- meta/classes/cpan-base.bbclass  |  4 ++++
- meta/classes/cpan.bbclass       |  2 +-
- meta/classes/cpan_build.bbclass | 23 ++++++++++++++---------
- 3 files changed, 19 insertions(+), 10 deletions(-)
+ .../recipes-graphics/fbida/fbida-git/no-usr-local.diff  | 17 +++++++++++++=
+++++
+ meta-oe/recipes-graphics/fbida/fbida_git.bb             |  3 +++
+ 2 files changed, 20 insertions(+)
+ create mode 100644 meta-oe/recipes-graphics/fbida/fbida-git/no-usr-local.d=
+iff
 
-diff --git a/meta/classes/cpan-base.bbclass b/meta/classes/cpan-base.bbclas=
-s
-index d9817ba..7810a4d 100644
---- a/meta/classes/cpan-base.bbclass
-+++ b/meta/classes/cpan-base.bbclass
-@@ -49,7 +49,11 @@ PERLVERSION[vardepvalue] =3D ""
- FILES_${PN}-dbg +=3D "${PERLLIBDIRS}/auto/*/.debug \
-                     ${PERLLIBDIRS}/auto/*/*/.debug \
-                     ${PERLLIBDIRS}/auto/*/*/*/.debug \
-+                    ${PERLLIBDIRS}/auto/*/*/*/*/.debug \
-+                    ${PERLLIBDIRS}/auto/*/*/*/*/*/.debug \
-                     ${PERLLIBDIRS}/vendor_perl/${PERLVERSION}/auto/*/.debu=
-g \
-                     ${PERLLIBDIRS}/vendor_perl/${PERLVERSION}/auto/*/*/.de=
-bug \
-                     ${PERLLIBDIRS}/vendor_perl/${PERLVERSION}/auto/*/*/*/.=
-debug \
-+                    ${PERLLIBDIRS}/vendor_perl/${PERLVERSION}/auto/*/*/*/*=
-/.debug \
-+                    ${PERLLIBDIRS}/vendor_perl/${PERLVERSION}/auto/*/*/*/*=
-/*/.debug \
-                     "
-diff --git a/meta/classes/cpan.bbclass b/meta/classes/cpan.bbclass
-index 7088039..943338d 100644
---- a/meta/classes/cpan.bbclass
-+++ b/meta/classes/cpan.bbclass
-@@ -17,7 +17,7 @@ export PERLHOSTLIB =3D "${STAGING_LIBDIR_NATIVE}/perl-nat=
-ive/perl/${@get_perl_vers
+diff --git a/meta-oe/recipes-graphics/fbida/fbida-git/no-usr-local.diff b/m=
+eta-oe/recipes-graphics/fbida/fbida-git/no-usr-local.diff
+new file mode 100644
+index 0000000..86e2434
+--- /dev/null
++++ b/meta-oe/recipes-graphics/fbida/fbida-git/no-usr-local.diff
+@@ -0,0 +1,17 @@
++diff --git a/mk/Variables.mk b/mk/Variables.mk
++index 99f787c..3ffd87a 100644
++--- a/mk/Variables.mk
+++++ b/mk/Variables.mk
++@@ -42,12 +42,6 @@ CFLAGS		+=3D -Wall -Wmissing-prototypes -Wstrict-protot=
+ypes \
++ 		   -Wpointer-arith -Wunused
++ CXXFLAGS	+=3D -Wall -Wpointer-arith -Wunused
++=20
++-# add /usr/local to the search path if something is in there ...
++-ifneq ($(wildcard /usr/local/include/*.h),)
++-  CFLAGS  +=3D -I/usr/local/include
++-  LDFLAGS +=3D -L/usr/local/$(LIB)
++-endif
++-
++ # fixup include path for $(srcdir) !=3D "."
++ ifneq ($(srcdir),.)
++   CFLAGS  +=3D -I. -I$(srcdir)
+diff --git a/meta-oe/recipes-graphics/fbida/fbida_git.bb b/meta-oe/recipes-=
+graphics/fbida/fbida_git.bb
+index f4dd01d..fd1349c 100644
+--- a/meta-oe/recipes-graphics/fbida/fbida_git.bb
++++ b/meta-oe/recipes-graphics/fbida/fbida_git.bb
+@@ -10,7 +10,10 @@ LIC_FILES_CHKSUM =3D "file://COPYING;md5=3D8ca43cbc842c2=
+336e835926c2166c28b"
 =20
- cpan_do_configure () {
- 	export PERL5LIB=3D"${PERL_ARCHLIB}"
--	yes '' | perl ${EXTRA_PERLFLAGS} Makefile.PL ${EXTRA_CPANFLAGS}
-+	yes '' | perl ${EXTRA_PERLFLAGS} Makefile.PL INSTALLDIRS=3Dvendor ${EXTRA=
-_CPANFLAGS}
+ DEPENDS =3D "virtual/libiconv jpeg fontconfig freetype libexif curl"
 =20
- 	# Makefile.PLs can exit with success without generating a
- 	# Makefile, e.g. in cases of missing configure time
-diff --git a/meta/classes/cpan_build.bbclass b/meta/classes/cpan_build.bbcl=
-ass
-index 5b0ad61..251a1c9 100644
---- a/meta/classes/cpan_build.bbclass
-+++ b/meta/classes/cpan_build.bbclass
-@@ -3,9 +3,12 @@
- #
- inherit cpan-base perlnative
-=20
-+EXTRA_BUILDFLAGS ?=3D ""
++FILESEXTRAPATHS_prepend :=3D "${THISDIR}/${PN}-${PV}:"
 +
- # Env var which tells perl if it should use host (no) or target (yes) sett=
-ings
- export PERLCONFIGTARGET =3D "${@is_target(d)}"
- export PERL_ARCHLIB =3D "${STAGING_LIBDIR}${PERL_OWN_DIR}/perl/${@get_perl=
-_version(d)}"
-+export PERLHOSTLIB =3D "${STAGING_LIBDIR_NATIVE}/perl-native/perl/${@get_p=
-erl_version(d)}/"
- export LD =3D "${CCLD}"
-=20
- #
-@@ -30,21 +33,23 @@ cpan_build_do_configure () {
- 		. ${STAGING_LIBDIR}/perl/config.sh
- 	fi
-=20
--	perl Build.PL --installdirs vendor \
--				--destdir ${D} \
--				--install_path arch=3D"${libdir}/perl" \
--				--install_path script=3D${bindir} \
--				--install_path bin=3D${bindir} \
--				--install_path bindoc=3D${mandir}/man1 \
--				--install_path libdoc=3D${mandir}/man3
-+	perl Build.PL --installdirs vendor --destdir ${D} ${EXTRA_BUILDFLAGS}
-+
-+	# Build.PLs can exit with success without generating a
-+	# Build, e.g. in cases of missing configure time
-+	# dependencies. This is considered a best practice by
-+	# cpantesters.org. See:
-+	#  * http://wiki.cpantesters.org/wiki/CPANAuthorNotes
-+	#  * http://www.nntp.perl.org/group/perl.qa/2008/08/msg11236.html
-+	[ -e Build ] || bbfatal "No Build was generated by Build.PL"
- }
-=20
- cpan_build_do_compile () {
--        perl Build
-+        perl Build verbose=3D1
- }
-=20
- cpan_build_do_install () {
--	perl Build install
-+	perl Build install --destdir ${D}
- }
-=20
- EXPORT_FUNCTIONS do_configure do_compile do_install
+ SRC_URI =3D "git://git.kraxel.org/fbida"
++SRC_URI +=3D "file://no-usr-local.diff"
+ SRCREV =3D "6aa5563cb3c8864ad15cf83eb6fca3b773da1099"
+ PV =3D "2.09+git${SRCPV}"
+ S =3D "${WORKDIR}/git"
 --=20
 1.9.1
 
 
---Apple-Mail=_924C7EE5-6D25-4D60-8FAA-D6D4A360C1F0--
+--Apple-Mail=_3A73EABC-83D1-4BB7-AA0D-183CEBFFF303--
