@@ -1,51 +1,45 @@
-Return-Path: <jatedev@gmail.com>
+Return-Path: <nsz@port70.net>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 15125E007AD; Tue, 19 Aug 2014 06:12:28 -0700 (PDT)
+	id AC4CEE00563; Mon, 18 Aug 2014 13:27:16 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (jatedev[at]gmail.com)
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.192.54 listed in list.dnswl.org]
-Received: from mail-qg0-f54.google.com (mail-qg0-f54.google.com
-	[209.85.192.54])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A9091E0079B
-	for <yocto@yoctoproject.org>; Tue, 19 Aug 2014 06:12:25 -0700 (PDT)
-Received: by mail-qg0-f54.google.com with SMTP id j5so3090334qga.13
-	for <yocto@yoctoproject.org>; Tue, 19 Aug 2014 06:12:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:content-type; bh=VarH0XoP1K6lWpa+Q//zztEdBgmR0DagM+MyG+QpBMI=;
-	b=iyv9jzwoWrUHNv6fEqXSFnyoE+2Mm8RtCAQ5xmSgDh+cpJaFL2kXyp8ZnOYU5Q5x70
-	mNie2ZWphxAmpliucm/E3ZrNG81J2IIJbbVIjuzLz12SiulsnIfJlDDvr1xpwv5hfBrO
-	n8SxHeIEcxLVEpegvasZnglqNR98lZq2/nz6oWZMhtwZythtPZ7wl36kTJvA6nUgnvuG
-	ASKOw2M4hng6dE7jUXZCeu8a9Xqrdz+41wQSVsZ6ReRiGQxoDgZDx2KCGjKBdlNrjw+R
-	mXati/1iHfHurmZxQG+Ts7e5taIsYFV+HWSYEh1hc4oGoYImWJsLrWLEfxxtSZFc+FgK
-	ReTQ==
+X-Greylist: delayed 590 seconds by postgrey-1.32 at yocto-www;
+	Mon, 18 Aug 2014 13:27:09 PDT
+Received: from port70.net (port70.net [81.7.13.123])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5980EE004F5
+	for <yocto@yoctoproject.org>; Mon, 18 Aug 2014 13:27:09 -0700 (PDT)
+Received: by port70.net (Postfix, from userid 1002)
+	id 608A6ABEC006; Mon, 18 Aug 2014 22:17:17 +0200 (CEST)
+Date: Mon, 18 Aug 2014 22:17:17 +0200
+From: Szabolcs Nagy <nsz@port70.net>
+To: Khem Raj <raj.khem@gmail.com>
+Message-ID: <20140818201716.GS22308@port70.net>
+Mail-Followup-To: Khem Raj <raj.khem@gmail.com>,
+	Paul Barker <paul@paulbarker.me.uk>,
+	Patches and discussions about the oe-core layer
+	<openembedded-core@lists.openembedded.org>, 
+	openembeded-devel <Openembedded-devel@lists.openembedded.org>,
+	"yocto@yoctoproject.org" <yocto@yoctoproject.org>,
+	musl@lists.openwall.com
+References: <CAMKF1sp9Z6vj1Dz96_WYiHOtYFqa-zECrNHOFgb=dBUDJN2Z_g@mail.gmail.com>
+	<20140818181424.GG12992@gmail.com>
+	<CAMKF1srjVfmfAWZ0mx+AfE_nR4erYtAEYt2OVhEsU+q++XKVrg@mail.gmail.com>
+	<20140818185009.GA7174@gmail.com>
+	<CAMKF1spkQkfbZMkL2Gg41hF9bm=+HS8sU8LME3pV6yMzDLLs-Q@mail.gmail.com>
 MIME-Version: 1.0
-X-Received: by 10.224.131.8 with SMTP id v8mr68177644qas.31.1408453944405;
-	Tue, 19 Aug 2014 06:12:24 -0700 (PDT)
-Received: by 10.140.34.76 with HTTP; Tue, 19 Aug 2014 06:12:24 -0700 (PDT)
-In-Reply-To: <CAPphmgb+C-mHeZVm-RbD-Ap4UG4VG_3jwoTdO7XP49dbG+dTGw@mail.gmail.com>
-References: <CAPphmgb+C-mHeZVm-RbD-Ap4UG4VG_3jwoTdO7XP49dbG+dTGw@mail.gmail.com>
-Date: Tue, 19 Aug 2014 09:12:24 -0400
-Message-ID: <CAPphmga9unzhAnDFq2f+cP01gs0cQ_wRsbyNc1dQNvaqvbK8jQ@mail.gmail.com>
-From: Jate Sujjavanich <jatedev@gmail.com>
-To: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: base-files: /etc/profile profile.d execution order
+In-Reply-To: <CAMKF1spkQkfbZMkL2Gg41hF9bm=+HS8sU8LME3pV6yMzDLLs-Q@mail.gmail.com>
+User-Agent: Mutt/1.5.21 (2010-09-15)
+X-Mailman-Approved-At: Tue, 19 Aug 2014 08:23:01 -0700
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>, musl@lists.openwall.com,
+	openembeded-devel <Openembedded-devel@lists.openembedded.org>,
+	Patches and discussions about the oe-core layer
+	<openembedded-core@lists.openembedded.org>
+Subject: Re: [musl] Re: [OE-core] Announcing meta-musl OE/Yocto layer supporting musl C library
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -57,46 +51,67 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 19 Aug 2014 13:12:28 -0000
-Content-Type: multipart/alternative; boundary=047d7b624e7209f6750500fb3d90
+X-List-Received-Date: Mon, 18 Aug 2014 20:27:16 -0000
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
---047d7b624e7209f6750500fb3d90
-Content-Type: text/plain; charset=UTF-8
+* Khem Raj <raj.khem@gmail.com> [2014-08-18 12:04:54 -0700]:
+> On Mon, Aug 18, 2014 at 11:50 AM, Paul Barker <paul@paulbarker.me.uk> wrote:
+> >> >
+> > I've put the failing "log.do_compile" files into one directory which is 1.3MB
+> > uncompressed or just 41kB compressed. I've posted them to:
+> >   http://www.paulbarker.me.uk/musl-error-logs_2014-08-18/
+> >   http://www.paulbarker.me.uk/musl-error-logs_2014-08-18/musl-error-logs_2014-08-18.tar.xz
+> >
 
-I moved the profile.d loop in my build the end of the etc profile script.
+i looked at the logs
 
-Should this change be made in base-files?
+i think most of the issues already have fixes in alpinelinux or
+sabotage, they should be pushed upstream if they are not there yet
 
+common errors and recommended fixes:
 
-- Jate S.
+findutils
+gzip
+	old gnulib with broken freadahead, newer gnulib works with musl
 
-On Thursday, August 7, 2014, Jate S <jatedev@gmail.com> wrote:
+libtirpc
+pax
+	sys/cdefs.h, application should be fixed not to use it
 
-> I am trying to use a file in profile.d to override the default umask
-> in /etc/profile. However, the umask line in /etc/profile comes after
-> the code which sources profile.d files.
->
-> I suggest moving the umask line and the exports to before the profile.d
-> code.
->
+logrotate
+	sys/queue.h, missing from musl, ship queue.h with app source
 
---047d7b624e7209f6750500fb3d90
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+e2fsprogs
+ethtool:
+	use of __uint64_t, __uint32_t (non-conforming, use standard types)
+libnfsidmap
+	use of u_int32_t (without including sys/types.h)
 
-I moved the profile.d loop in my build the end of the etc profile script.<d=
-iv><br></div><div>Should this change be made in base-files?</div><div><br><=
-/div><div><br></div><div>- Jate S.<br><br>On Thursday, August 7, 2014, Jate=
- S &lt;<a href=3D"mailto:jatedev@gmail.com">jatedev@gmail.com</a>&gt; wrote=
-:<br>
-<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
-x #ccc solid;padding-left:1ex">I am trying to use a file in profile.d to ov=
-erride the default umask<br>
-in /etc/profile. However, the umask line in /etc/profile comes after<br>
-the code which sources profile.d files.<br>
-<br>
-I suggest moving the umask line and the exports to before the profile.d cod=
-e.<br>
-</blockquote></div>
+procps
+psmisc
+	undefined PATH_MAX (missing limits.h include)
 
---047d7b624e7209f6750500fb3d90--
+mc:
+	undefined CTRL(x) (missing sys/ttydefaults.h include)
+	glibc includes sys/ttydefaults.h into termios.h, musl doesnt
+
+cronie
+	undefined MAXNAMLEN, musl has it in sys/param.h
+
+at
+	undefied __isleap
+	glibc time.h has # define __isleap(year) \
+	((year) % 4 == 0 && ((year) % 100 != 0 || (year) % 400 == 0))
+
+elfutils
+	error.h, musl does not have this
+
+sysklogd
+iptables
+	include incompatible linux headers (+ various other issues)
+	probably harder to fix
+
+sudo:
+	the build command helpfully redirected the compiler output to /dev/null
+
