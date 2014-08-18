@@ -1,40 +1,56 @@
-Return-Path: <paul.eggleton@linux.intel.com>
+Return-Path: <paul.betafive@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id AAFBBE007AD; Mon, 18 Aug 2014 07:49:02 -0700 (PDT)
+	id 62DDEE00563; Mon, 18 Aug 2014 11:14:34 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [192.55.52.115 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E1840E007A2
-	for <yocto@yoctoproject.org>; Mon, 18 Aug 2014 07:48:56 -0700 (PDT)
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-	by fmsmga103.fm.intel.com with ESMTP; 18 Aug 2014 07:41:16 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.01,886,1400050800"; d="scan'208";a="578232712"
-Received: from sdoherty-mobl.ger.corp.intel.com (HELO
-	peggleto-mobl5.ger.corp.intel.com) ([10.252.123.63])
-	by fmsmga001.fm.intel.com with ESMTP; 18 Aug 2014 07:48:54 -0700
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: Jens Rehsack <rehsack@gmail.com>
-Date: Mon, 18 Aug 2014 15:48:52 +0100
-Message-ID: <2465494.QQQqIGCniD@peggleto-mobl5.ger.corp.intel.com>
-Organization: Intel Corporation
-User-Agent: KMail/4.13.3 (Linux/3.15.10-200.fc20.x86_64; KDE/4.13.3; x86_64; ;
-	)
-In-Reply-To: <7A586870-D626-4D2D-A72B-A9118712F317@gmail.com>
-References: <546B672E-C981-41EE-B2E3-655F24672A3F@gmail.com>
-	<20140817173900.GH3660@jama>
-	<7A586870-D626-4D2D-A72B-A9118712F317@gmail.com>
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.217.172 listed in list.dnswl.org]
+Received: from mail-lb0-f172.google.com (mail-lb0-f172.google.com
+	[209.85.217.172])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 76292E004F5
+	for <yocto@yoctoproject.org>; Mon, 18 Aug 2014 11:14:29 -0700 (PDT)
+Received: by mail-lb0-f172.google.com with SMTP id z11so4504033lbi.31
+	for <yocto@yoctoproject.org>; Mon, 18 Aug 2014 11:14:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=sender:date:from:to:cc:subject:message-id:references:mime-version
+	:content-type:content-disposition:in-reply-to:user-agent;
+	bh=wIGYCv1Zyu+BEOslUNsKr9lUvQpfiCbV+OFuGrVBiQE=;
+	b=wzlwrRoePPCK8McgdZoLpB9syv3d5aT/0ToTVaXvF5+ITCksiSnzUpD+StXZm3IY1k
+	ZpJSTwMRv//gzzh9Dgl2vGKd0QZx9q/HCuJoqLuw37Ar/2l37hxdspANjIGP7QyVrKDA
+	moEYFLoBa1FihHiBPKFLlz6iRYx7EGWZiY+nxOQ+X50PTK5C5jgu3JHql50vE79kNhCo
+	VmT2kaykr5H0ilh0kL4qm+A5hoJZNZYSuMxNMThK81H6EcGZ9ytmAWINP8t4G2R9uybX
+	BacKEV4lQVkQFnUZw2T4S0QIKtpUPd+AyVZek8zSngUm9WhqspZ4hzLa2uqDmOQ1gr+8
+	NqDw==
+X-Received: by 10.152.115.137 with SMTP id jo9mr21383159lab.63.1408385668172; 
+	Mon, 18 Aug 2014 11:14:28 -0700 (PDT)
+Received: from gmail.com (ygg.betafive.co.uk. [5.9.90.21])
+	by mx.google.com with ESMTPSA id ao9sm4458669lac.28.2014.08.18.11.14.26
+	for <multiple recipients>
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Mon, 18 Aug 2014 11:14:27 -0700 (PDT)
+Sender: Paul Barker <paul.betafive@gmail.com>
+Date: Mon, 18 Aug 2014 18:14:24 +0000
+From: Paul Barker <paul@paulbarker.me.uk>
+To: Khem Raj <raj.khem@gmail.com>
+Message-ID: <20140818181424.GG12992@gmail.com>
+References: <CAMKF1sp9Z6vj1Dz96_WYiHOtYFqa-zECrNHOFgb=dBUDJN2Z_g@mail.gmail.com>
 MIME-Version: 1.0
-Cc: yocto@yoctoproject.org, Gerd Hoffmann <kraxel@redhat.com>
-Subject: Re: Fix for meta-oe/recipes-graphics/fbida/fbida_git.bb
+In-Reply-To: <CAMKF1sp9Z6vj1Dz96_WYiHOtYFqa-zECrNHOFgb=dBUDJN2Z_g@mail.gmail.com>
+User-Agent: Mutt/1.5.23 (2014-03-12)
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>, musl@lists.openwall.com,
+	openembeded-devel <Openembedded-devel@lists.openembedded.org>,
+	Patches and discussions about the oe-core layer
+	<openembedded-core@lists.openembedded.org>
+Subject: Re: [OE-core] Announcing meta-musl OE/Yocto layer supporting musl C library
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -46,54 +62,108 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 18 Aug 2014 14:49:02 -0000
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Mon, 18 Aug 2014 18:14:34 -0000
+X-Groupsio-MsgNum: 21142
+Content-Type: multipart/signed; micalg=pgp-sha1;
+	protocol="application/pgp-signature"; boundary="nhYGnrYv1PEJ5gA2"
+Content-Disposition: inline
 
-Hi Jens,
+--nhYGnrYv1PEJ5gA2
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-On Sunday 17 August 2014 20:06:10 Jens Rehsack wrote:
-> Am 17.08.2014 um 19:39 schrieb Martin Jansa <martin.jansa@gmail.com>:
-> > On Sun, Aug 17, 2014 at 05:02:39PM +0200, Jens Rehsack wrote:
-> >> we played a bit with some tools before using a modified psplash to show
-> >> some guidance on hdmi-fb and there was an error in fbida which wrongly
-> >> mixes host-paths and target paths. Additionally - for Poky or OE it's
-> >> unnecessary to guess additional path to check - recipes will do
-> >> correctly.
-> >
-> > Please follow README and send it as inline patch to oe-devel ML.
-> > 
-> > Thanks
-> 
-> Hi Martin,
-> 
-> 1) I do not send inline-patches
-> 2) I do not subscribe to more mailing lists just to send patches.
-> 
-> Either it's helpful and maintainers accept it or it's not and when one uses
-> a search engine one applies it locally.
+On Sat, Aug 16, 2014 at 05:50:38PM -0700, Khem Raj wrote:
+> Hello All
+>=20
+> musl <http://www.musl-libc.org/> is a newer implementation licensed
+> under MIT licence
+> A layer to support musl to supply your system C library as an
+> alternative to uclibc and eglibc/glibc  is now available at
+>=20
+> https://github.com/kraj/meta-musl
+>=20
+> README describes way to get going with it.
+>=20
+> Few things to note
+>=20
+> * Supports gcc 4.9 in OE not 4.8
+> * Current musl recipe is 1.1.4 based
+> * You need latest master of OE-Core
+> (106305227003761c3fc562c21bb859a5256f2b36) or          newer and
+> bitbake
+> * Its only able to build core-image-minimal
+> * core-image-minimal boots on qemuarm, qemuppc, qemumips, qemux86, qemux8=
+6-64
+>=20
+> I will send a request to add it to layerindex soon and then you should
+> be able to find it using
+> layerindex.opernembedded.org as well
+>=20
+> If you try it out on your hardware and/or have feedback I am
+> interested. Fork it from github, file bugs
+> send patches ....
+>=20
+> Happy hacking
+>=20
 
-You do want to avoid carrying these patches yourself indefinitely, right?
-If so, you'd rather they got merged rather than being missed by the maintainer 
-because they weren't in the expected place or format - right?
+core-image-minimal works with my configuration on qemuarm. It also successf=
+ully
+builds what will soon be released as opkg-0.2.3 and the recipe for toybox-0=
+=2E4.9
+which I've recently created.
 
-The way we accept and review patches is via our mailing lists; and we have to 
-have more than one list because of the sheer volume of patches and discussion. 
-Unfortunately we also have to force subscription in order to protect ourselves 
-from spam. However, it's worth noting that you don't actually need to receive 
-emails from the list in order to be subscribed - you can disable delivery in 
-your account options.
+I tried building core-image-full-cmdline as I think that would be good next=
+ step
+=66rom core-image-minimal. I'm seeing failures in:
 
-The procedures we have in place do require just a little bit more work on the 
-part of the submitter, but that does translate to a huge reduction in work for 
-the maintainers; and preserving our maintainers' sanity is important if we 
-want to keep the system maintained ;)
+  meta/recipes-devtools/e2fsprogs/e2fsprogs_1.42.9.bb, do_compile
+  meta/recipes-extended/tcp-wrappers/tcp-wrappers_7.6.bb, do_compile
+  meta/recipes-extended/libtirpc/libtirpc_0.2.4.bb, do_compile
+  meta/recipes-extended/iptables/iptables_1.4.21.bb, do_compile
+  meta/recipes-connectivity/nfs-utils/libnfsidmap_0.25.bb, do_compile
+  meta/recipes-devtools/perl/perl_5.20.0.bb, do_compile
+  meta/recipes-extended/sysklogd/sysklogd_1.5.bb, do_compile
+  meta/recipes-extended/ethtool/ethtool_3.14.bb, do_compile
+  meta/recipes-extended/psmisc/psmisc_22.21.bb, do_compile
+  meta/recipes-extended/pax/pax_3.4.bb, do_compile
+  meta/recipes-extended/procps/procps_3.2.8.bb, do_compile
+  meta/recipes-extended/net-tools/net-tools_1.60-25.bb, do_compile
+  meta/recipes-extended/findutils/findutils_4.4.2.bb, do_compile
+  meta/recipes-extended/logrotate/logrotate_3.8.7.bb, do_compile
+  meta/recipes-extended/cronie/cronie_1.4.11.bb, do_compile
+  meta/recipes-devtools/elfutils/elfutils_0.148.bb, do_compile
+  meta/recipes-extended/at/at_3.1.14.bb, do_compile
+  meta/recipes-extended/iputils/iputils_s20121221.bb, do_compile
+  meta/recipes-extended/gzip/gzip_1.6.bb, do_compile
+  meta/recipes-extended/sudo/sudo_1.8.10p3.bb, do_compile
+  meta/recipes-extended/mc/mc_4.8.12.bb, do_compile
 
-Cheers,
-Paul
+I can share detailed logs if anyone wants them. I'll have a look and see if=
+ I
+can find some low hanging fruit amongst these which are easy to fix.=20
 
--- 
+Thanks,
 
-Paul Eggleton
-Intel Open Source Technology Centre
+--=20
+Paul Barker
 
+Email: paul@paulbarker.me.uk
+http://www.paulbarker.me.uk
+
+--nhYGnrYv1PEJ5gA2
+Content-Type: application/pgp-signature
+
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v2
+
+iQEcBAEBAgAGBQJT8kKAAAoJEBwoJlo7UPQDKbYH/1Zc1IUBI9Z6aAP1F8WjMCWN
+kiJQFP/MadEtDMricUSYID6/RzBV4giw7ItvcTUYfLPiHkV7fzCzt9yC9ZGHvxny
+akH8j2j/Gcxj+YXG3JNuZNw51kPSXH8TzY46wnATp4G+w8vl7rAMAhFafpwf5j/E
+u5/4Maw/aDUjjjheGdZyr4gi00I1+U3MJMLHwkmOyHH/ufzWUl/ESJ6OHiQYEgYS
+en7fKiaVtwSiLWkS8fcdJrbs2g8B/srMjtN1ZA9IkitkPiiqDe7iy//E5memxjtw
+29xYwGX7xMGthtVf0hvZWAy5/kKSZRcZN9UUh320JDY8jLjY+vSypG1gZJ2XEts=
+=qj/R
+-----END PGP SIGNATURE-----
+
+--nhYGnrYv1PEJ5gA2--
