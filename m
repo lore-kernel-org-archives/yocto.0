@@ -1,52 +1,39 @@
-Return-Path: <akuster808@gmail.com>
+Return-Path: <leimaohui@cn.fujitsu.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 0C660E0079B; Mon, 18 Aug 2014 18:27:54 -0700 (PDT)
+	id 18A4FE007F9; Mon, 18 Aug 2014 19:25:04 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (akuster808[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.192.178 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RDNS_NONE
+	autolearn=no version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-pd0-f178.google.com (mail-pd0-f178.google.com
-	[209.85.192.178])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B61BCE00655
-	for <yocto@yoctoproject.org>; Mon, 18 Aug 2014 18:27:52 -0700 (PDT)
-Received: by mail-pd0-f178.google.com with SMTP id w10so8640572pde.9
-	for <yocto@yoctoproject.org>; Mon, 18 Aug 2014 18:27:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=from:to:cc:subject:date:message-id;
-	bh=5IoA+2XuT4f8a4xAeOKKKN6Xfkk15zyDkMICTG3lld8=;
-	b=h2VgkGaA7QqzKOtOLTeRl+pE+PLGABXHDK4BsHFXrUKsXrQrJ0cyReVz8+Ukhg+zYh
-	eEt97h0gSjCTi773gTpqvfBHwzfzSKRtDpD88hMJn4KVHMqgB0sCpzMy45otDm1ZBu6K
-	+0DUEpTMAB5rJwM7NHlg2izkVEBp064i2lQRtg31rvk/Bw6HWlyNO+2sBnsNtvE/sySu
-	Ud2j64cdFi8HB3EsWXliOprPvqn/baougJulPK6eGAtEFN+vRi56Rw3hxZVptEo5JD7c
-	izhzouOi5HWMxSL93oFfX6hh1rVrQbF0ULq73Cx5ljQSbKBK90XpcWs/Lt+F+0KEkkou
-	Y0Sg==
-X-Received: by 10.66.167.105 with SMTP id zn9mr40596703pab.103.1408411671453; 
-	Mon, 18 Aug 2014 18:27:51 -0700 (PDT)
-Received: from Pahoa2.mvista.com (c-76-20-92-207.hsd1.ca.comcast.net.
-	[76.20.92.207]) by mx.google.com with ESMTPSA id
-	zf5sm63706274pac.41.2014.08.18.18.27.49 for <multiple recipients>
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-	Mon, 18 Aug 2014 18:27:50 -0700 (PDT)
-From: Armin Kuster <akuster808@gmail.com>
-To: yocto@yoctoproject.org
-Date: Mon, 18 Aug 2014 18:27:47 -0700
-Message-Id: <1408411667-7298-1-git-send-email-akuster808@gmail.com>
-X-Mailer: git-send-email 1.9.1
-Subject: [meta-security][PATCH] pinentry: Fix QA error
+	*  0.8 RDNS_NONE Delivered to internal network by a host with no rDNS
+Received: from heian.cn.fujitsu.com (unknown [59.151.112.132])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7AD37E0079B
+	for <yocto@yoctoproject.org>; Mon, 18 Aug 2014 19:25:00 -0700 (PDT)
+X-IronPort-AV: E=Sophos;i="5.04,354,1406563200"; d="scan'208";a="34767342"
+Received: from unknown (HELO edo.cn.fujitsu.com) ([10.167.33.5])
+	by heian.cn.fujitsu.com with ESMTP; 19 Aug 2014 10:22:04 +0800
+Received: from G08CNEXCHPEKD01.g08.fujitsu.local (localhost.localdomain
+	[127.0.0.1])
+	by edo.cn.fujitsu.com (8.14.3/8.13.1) with ESMTP id s7J2OsSF014959
+	for <yocto@yoctoproject.org>; Tue, 19 Aug 2014 10:24:54 +0800
+Received: from G08CNEXMBPEKD01.g08.fujitsu.local ([10.167.33.81]) by
+	G08CNEXCHPEKD01.g08.fujitsu.local ([10.167.33.80]) with mapi id
+	14.03.0181.006; Tue, 19 Aug 2014 10:25:01 +0800
+From: "leimaohui@cn.fujitsu.com" <leimaohui@cn.fujitsu.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: [yocto] how to use the new features of the toaster
+Thread-Index: Ac+7VEVTfhZFRokrTmOMvT73GVteYA==
+Date: Tue, 19 Aug 2014 02:25:00 +0000
+Message-ID: <1B56A49860EB2D45ADE3731B15C959FDAB0C92@G08CNEXMBPEKD01.g08.fujitsu.local>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.167.226.75]
+MIME-Version: 1.0
+Subject: how to use the new features of the toaster
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -58,46 +45,38 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 19 Aug 2014 01:27:54 -0000
+X-List-Received-Date: Tue, 19 Aug 2014 02:25:04 -0000
+Content-Language: zh-CN
+Content-Type: text/plain; charset="iso-2022-jp"
+Content-Transfer-Encoding: quoted-printable
 
-This fixes: WARNING: QA Issue: pinentry rdepends on libcap, but it isn't a build dependency? [build-deps]
+Hi,
+=20
+ Because I noticed that in poky(master), the toaster has the ability to tri=
+gger a build command, and have
+ the build executed.
+ --------------------------------------------------
+ commit 6e71c276b582135228419d95174b7e7784d496b2
+ Author: Alexandru DAMIAN <alexandru.damian@intel.com>
+ Date:   Mon Jun 30 18:33:04 2014 +0100
 
-Also add pkgconfig support.
+    bitbake: toaster: add project main edit page
 
-Signed-off-by: Armin Kuster <akuster808@gmail.com>
----
- recipes-security/pinentry/pinentry_0.8.3.bb | 13 +++++++++----
- 1 file changed, 9 insertions(+), 4 deletions(-)
+    This is the first commit on the project main edit page.
 
-diff --git a/recipes-security/pinentry/pinentry_0.8.3.bb b/recipes-security/pinentry/pinentry_0.8.3.bb
-index 3209e53..0bd3021 100644
---- a/recipes-security/pinentry/pinentry_0.8.3.bb
-+++ b/recipes-security/pinentry/pinentry_0.8.3.bb
-@@ -2,14 +2,19 @@ DESCRIPTION = "This is a collection of simple PIN or passphrase entry dialogs wh
- HOMEPAGE = "ftp://ftp.gnupg.org/gcrypt/"
- LICENSE = "GPL-2.0"
- LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/GPL-2.0;md5=801f80980d171dd6425610833a22dbe6"
--DEPENDS = "glib-2.0 ncurses"
-+DEPENDS = "glib-2.0 "
- 
- SRC_URI = "ftp://ftp.gnupg.org/gcrypt/pinentry/${PN}-${PV}.tar.bz2"
- 
- SRC_URI[md5sum] = "2ae681cbca0d9fb774b2c90b11ebf56c"
- SRC_URI[sha256sum] = "568b0b09b50b2388a4f94d704d5bcb28718ecd4654ed1acc43ab1f97d921a0ad"
- 
--inherit autotools
-+inherit autotools pkgconfig
- 
--EXTRA_OECONF +="--disable-pinentry-gtk2 --disable-pinentry-qt --disable-pinentry-qt4 --without-x --enable-ncurses \
--    --with-ncurses-include-dir=${STAGING_INCDIR} "
-+EXTRA_OECONF +="--disable-pinentry-gtk2 --disable-pinentry-qt \
-+                --disable-pinentry-qt4 --without-x "
-+
-+PACKAGECONFIG ??= "ncurses"
-+
-+PACKAGECONFIG[ncurses] = "--enable-ncurses  --with-ncurses-include-dir=${STAGING_INCDIR}, '--disable-ncurses', ncurses"
-+PACKAGECONFIG[libcap] = "--with-libcap, --without-libcap, libcap"
--- 
-1.9.1
-
+    At this point we have:
+    * the default settings for a newly created project
+    * the ability to add targets
+    * the ability to trigger a build command, and have
+    the build executed
+    ......
+ -----------------------------------------------------------
+=20
+ So, I tried to use the new features of the toaster. But I don't know how .
+=20
+ Is there anybody tell me where can I find the documentation how to use the=
+ new features?
+=20
+ Best Regards,
+ Lei Maohui
 
