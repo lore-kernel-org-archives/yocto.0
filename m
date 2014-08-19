@@ -1,38 +1,48 @@
-Return-Path: <Vladimir_Redzhepov@epam.com>
+Return-Path: <seth.boll@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id C09D3E004FF; Tue, 19 Aug 2014 09:54:15 -0700 (PDT)
+	id 9D2EEE004FF; Tue, 19 Aug 2014 10:21:02 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
-Received: from EVBYMINSA0101.epam.com (evbyminsa0101.epam.com [217.21.63.36])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7D9AEE0034C
-	for <yocto@yoctoproject.org>; Tue, 19 Aug 2014 09:54:04 -0700 (PDT)
-Received: from EPBYMINSA0001.epam.com (10.6.110.2) by EPBYMINSA0032.epam.com
-	(10.6.110.32) with Microsoft SMTP Server (TLS) id 15.0.913.22;
-	Tue, 19 Aug 2014 19:53:55 +0300
-Received: from EPBYMINSA0001.epam.com ([::1]) by EPBYMINSA0001.epam.com
-	([::1]) with mapi id 15.00.0913.011; Tue, 19 Aug 2014 19:53:55 +0300
-From: Vladimir Redzhepov <Vladimir_Redzhepov@epam.com>
-To: "Maxin B. John" <maxin.john@enea.com>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>
-Thread-Topic: [yocto] [meta-oracle-java][PATCH 1/2] oracle-java: update
-	fetch	method
-Thread-Index: AQHPt9c0d1m00B4WwESH5niLAHRF7pvX4wEAgABJAEA=
-Date: Tue, 19 Aug 2014 16:53:55 +0000
-Message-ID: <3031ea9c65d148368862e882a2beab12@EPBYMINSA0001.epam.com>
-References: <1408031252-24814-1-git-send-email-maxin.john@enea.com>
-	<20140819153022.GA52003@sestofb10.enea.se>
-In-Reply-To: <20140819153022.GA52003@sestofb10.enea.se>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.6.137.75]
+X-Spam-Status: No, score=-1.3 required=5.0 tests=BAYES_05,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (seth.boll[at]gmail.com)
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.5 BAYES_05 BODY: Bayes spam probability is 1 to 5%
+	*      [score: 0.0135]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [74.125.82.49 listed in list.dnswl.org]
+Received: from mail-wg0-f49.google.com (mail-wg0-f49.google.com [74.125.82.49])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BB222E0034C
+	for <yocto@yoctoproject.org>; Tue, 19 Aug 2014 10:20:50 -0700 (PDT)
+Received: by mail-wg0-f49.google.com with SMTP id k14so6835863wgh.32
+	for <yocto@yoctoproject.org>; Tue, 19 Aug 2014 10:20:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=ZFqmMjHbUoNtsYIFtoxYdwN5ej37lRIeFQhmoXo/f64=;
+	b=YgWdXg7s+9hiYo9GAoIJp0LR5N8sP8QnvzS1miZwFJXB6bUti8aSYLhqu68Kt/u8Kk
+	WvjKIpIj8cws3YvjMP+K4RZyJxcsqUnbyKnCz1KwnfOSWseIM0xkGYD/30V0kw3q/m8P
+	8+sh3lxR9NEDrPCksJrvyV7X1VHBQLMEUxM5FtVArDBIewE7wp/c5j6sGAkklPBkM+LZ
+	7pX5W29U5LrqX8D4TlVNwmRxda4cE6fy8xHIUleGbXBiQppvTPU+7A3o2fLXsLfKLtDF
+	Cb2mz67+P6znK/d1dNsjUOE7Li/86Zg9qrUP7JzjdNQaJcy3FYeBFeQ565RGmlYZul5c
+	AMAw==
 MIME-Version: 1.0
-Subject: Re: [meta-oracle-java][PATCH 1/2] oracle-java: update fetch	method
+X-Received: by 10.194.20.230 with SMTP id q6mr52955871wje.43.1408468849050;
+	Tue, 19 Aug 2014 10:20:49 -0700 (PDT)
+Received: by 10.216.208.73 with HTTP; Tue, 19 Aug 2014 10:20:49 -0700 (PDT)
+Date: Tue, 19 Aug 2014 12:20:49 -0500
+Message-ID: <CA+JN8xOphTVYqWHfx4ebKsHN-0_1O8zY6j1T8mGGeBFwKfRPLw@mail.gmail.com>
+From: Seth Bollinger <seth.boll@gmail.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Coverity
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -44,57 +54,29 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 19 Aug 2014 16:54:15 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Tue, 19 Aug 2014 17:21:02 -0000
+Content-Type: multipart/alternative; boundary=047d7b5d971b6cc9010500feb530
+
+--047d7b5d971b6cc9010500feb530
+Content-Type: text/plain; charset=UTF-8
+
+Hello All,
+
+We have a few code bases that we need to run Coverity on.  Does someone
+have an example of how that would hook into a recipe?
+
+Thanks,
+
+Seth
+
+--047d7b5d971b6cc9010500feb530
+Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-Hi Maxin,
+<div dir=3D"ltr">Hello All,<div><br></div><div>We have a few code bases tha=
+t we need to run Coverity on. =C2=A0Does someone have an example of how tha=
+t would hook into a recipe?</div><div><br></div><div>Thanks,</div><div><br>=
+</div>
+<div>Seth</div></div>
 
-Looks good.=20
-
------Original Message-----
-From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org=
-] On Behalf Of Maxin B. John
-Sent: Tuesday, August 19, 2014 6:30 PM
-To: yocto@yoctoproject.org
-Subject: Re: [yocto] [meta-oracle-java][PATCH 1/2] oracle-java: update fetc=
-h method
-
-Hi,
-
-Gentle ping ..=20
-Could anyone review these, please ?
-
-On Thu, Aug 14, 2014 at 05:47:31PM +0200, Maxin B. John wrote:
-> Use custom FETCHCMD_wget to avoid manual downloading of Oracle Java packa=
-ges.
->=20
-> Signed-off-by: Maxin B. John <maxin.john@enea.com>
-> ---
->  recipes-devtools/oracle-java/oracle-jse.inc | 2 ++
->  1 file changed, 2 insertions(+)
->=20
-> diff --git a/recipes-devtools/oracle-java/oracle-jse.inc b/recipes-devtoo=
-ls/oracle-java/oracle-jse.inc
-> index 98069f4..3a4e20d 100644
-> --- a/recipes-devtools/oracle-java/oracle-jse.inc
-> +++ b/recipes-devtools/oracle-java/oracle-jse.inc
-> @@ -6,6 +6,8 @@ LIC_FILES_CHKSUM =3D "\
->  	file://${WORKDIR}/${JDK_JRE}${PV}_${PV_UPDATE}/THIRDPARTYLICENSEREADME.=
-txt;md5=3Dc339b34e3da6673d2c5950d0f8808f8c \
->  	"
-> =20
-> +FETCHCMD_wget_append =3D " --header=3DCookie:oraclelicense=3Da "
-> +
->  # get the java update version in the resulting package
->  PR =3D. "u${PV_UPDATE}"
->  S =3D "${WORKDIR}"
-> --=20
-> 1.9.1
---=20
-_______________________________________________
-yocto mailing list
-yocto@yoctoproject.org
-https://lists.yoctoproject.org/listinfo/yocto
-
+--047d7b5d971b6cc9010500feb530--
