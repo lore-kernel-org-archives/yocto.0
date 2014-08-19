@@ -1,42 +1,42 @@
-Return-Path: <leimaohui@cn.fujitsu.com>
+Return-Path: <jtc@acorntoolworks.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 18A4FE007F9; Mon, 18 Aug 2014 19:25:04 -0700 (PDT)
+	id 231F9E007AD; Mon, 18 Aug 2014 22:30:43 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,RDNS_NONE
+X-Spam-Status: No, score=-0.9 required=5.0 tests=BAYES_00,RDNS_DYNAMIC
 	autolearn=no version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.8 RDNS_NONE Delivered to internal network by a host with no rDNS
-Received: from heian.cn.fujitsu.com (unknown [59.151.112.132])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7AD37E0079B
-	for <yocto@yoctoproject.org>; Mon, 18 Aug 2014 19:25:00 -0700 (PDT)
-X-IronPort-AV: E=Sophos;i="5.04,354,1406563200"; d="scan'208";a="34767342"
-Received: from unknown (HELO edo.cn.fujitsu.com) ([10.167.33.5])
-	by heian.cn.fujitsu.com with ESMTP; 19 Aug 2014 10:22:04 +0800
-Received: from G08CNEXCHPEKD01.g08.fujitsu.local (localhost.localdomain
-	[127.0.0.1])
-	by edo.cn.fujitsu.com (8.14.3/8.13.1) with ESMTP id s7J2OsSF014959
-	for <yocto@yoctoproject.org>; Tue, 19 Aug 2014 10:24:54 +0800
-Received: from G08CNEXMBPEKD01.g08.fujitsu.local ([10.167.33.81]) by
-	G08CNEXCHPEKD01.g08.fujitsu.local ([10.167.33.80]) with mapi id
-	14.03.0181.006; Tue, 19 Aug 2014 10:25:01 +0800
-From: "leimaohui@cn.fujitsu.com" <leimaohui@cn.fujitsu.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: [yocto] how to use the new features of the toaster
-Thread-Index: Ac+7VEVTfhZFRokrTmOMvT73GVteYA==
-Date: Tue, 19 Aug 2014 02:25:00 +0000
-Message-ID: <1B56A49860EB2D45ADE3731B15C959FDAB0C92@G08CNEXMBPEKD01.g08.fujitsu.local>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.167.226.75]
+	*  1.0 RDNS_DYNAMIC Delivered to internal network by host with
+	*      dynamic-looking rDNS
+X-Greylist: delayed 1032 seconds by postgrey-1.32 at yocto-www;
+	Mon, 18 Aug 2014 22:30:39 PDT
+Received: from orac.acorntoolworks.com
+	(104-50-201-114.lightspeed.sntcca.sbcglobal.net [104.50.201.114])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E846EE0079B
+	for <yocto@yoctoproject.org>; Mon, 18 Aug 2014 22:30:39 -0700 (PDT)
+Received: from orac.acorntoolworks.com (localhost [127.0.0.1])
+	by orac.acorntoolworks.com (8.13.3/8.12.11) with ESMTP id
+	s7J5A8Wd013726
+	for <yocto@yoctoproject.org>; Mon, 18 Aug 2014 22:10:08 -0700 (PDT)
+Received: (from jtc@localhost)
+	by orac.acorntoolworks.com (8.13.3/8.12.11) id s7J5A8xZ013626;
+	Mon, 18 Aug 2014 22:10:08 -0700 (PDT)
+X-Authentication-Warning: orac.acorntoolworks.com: jtc set sender to
+	jtc@acorntoolworks.com using -f
+To: yocto@yoctoproject.org
+From: jtc@acorntoolworks.com (J.T. Conklin)
+Date: Mon, 18 Aug 2014 22:10:08 -0700
+Message-ID: <87mwb12hfz.fsf@orac.acorntoolworks.com>
+User-Agent: Gnus/5.1006 (Gnus v5.10.6) XEmacs/21.4 (Jumbo Shrimp,
+	berkeley-unix)
 MIME-Version: 1.0
-Subject: how to use the new features of the toaster
+Subject: Creating an system installer/updater image
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
+Reply-To: jtc@acorntoolworks.com
 List-Id: Discussion of all things Yocto Project <yocto.yoctoproject.org>
 List-Unsubscribe: <https://lists.yoctoproject.org/options/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=unsubscribe>
@@ -45,38 +45,36 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 19 Aug 2014 02:25:04 -0000
-Content-Language: zh-CN
-Content-Type: text/plain; charset="iso-2022-jp"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Tue, 19 Aug 2014 05:30:43 -0000
+Content-Type: text/plain; charset=us-ascii
 
-Hi,
-=20
- Because I noticed that in poky(master), the toaster has the ability to tri=
-gger a build command, and have
- the build executed.
- --------------------------------------------------
- commit 6e71c276b582135228419d95174b7e7784d496b2
- Author: Alexandru DAMIAN <alexandru.damian@intel.com>
- Date:   Mon Jun 30 18:33:04 2014 +0100
+I've created an image recipe that builds an image that runs under qemu
+or from a "live" CD on a generic x86-64 server.
 
-    bitbake: toaster: add project main edit page
+I'd like to create an installer/updater CD/USB stick that partitions,
+formats, and installs the kernel and the set of packages from the above
+image onto the server's hard disk.
 
-    This is the first commit on the project main edit page.
+The core-image-minimal-initramfs.bb recipe builds an image which
+contains partitioning and formatting tools and install scripts.  The
+install script partitions and formats the hard disk, then mounts the
+/media filesystem (I assume this would be the same CD containing the
+initramfs / install kernel), copies a different kernel and unpacks a
+root filesystem image to the system's hard disk.
 
-    At this point we have:
-    * the default settings for a newly created project
-    * the ability to add targets
-    * the ability to trigger a build command, and have
-    the build executed
-    ......
- -----------------------------------------------------------
-=20
- So, I tried to use the new features of the toaster. But I don't know how .
-=20
- Is there anybody tell me where can I find the documentation how to use the=
- new features?
-=20
- Best Regards,
- Lei Maohui
+Aside from using a kernel image and root filesystem instead of a
+kernel image and discrete packages, this looks to be pretty much
+what I want to do.
+
+However, it's not immediately clear to me how to connect the dots
+between the build artifacts built for the production image and creating
+CD install media containing the initramfs image and those artifacts.
+
+Is there a example of this (taking artifacts from one build and using
+them in another)? Or am I barking up the wrong tree?
+
+   --jtc
+
+-- 
+J.T. Conklin
 
