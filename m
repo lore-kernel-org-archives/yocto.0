@@ -1,54 +1,48 @@
-Return-Path: <otavio.salvador@gmail.com>
+Return-Path: <bevenson@melinkcorp.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 9AFA9E007AD; Tue, 19 Aug 2014 04:57:42 -0700 (PDT)
+	id B383AE007AD; Tue, 19 Aug 2014 05:44:25 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
+	SPF_HELO_PASS autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [207.46.163.236 listed in list.dnswl.org]
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.160.177 listed in list.dnswl.org]
-Received: from mail-yk0-f177.google.com (mail-yk0-f177.google.com
-	[209.85.160.177])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 52EDCE0079B
-	for <yocto@lists.yoctoproject.org>;
-	Tue, 19 Aug 2014 04:57:37 -0700 (PDT)
-Received: by mail-yk0-f177.google.com with SMTP id 79so5243614ykr.22
-	for <yocto@lists.yoctoproject.org>;
-	Tue, 19 Aug 2014 04:57:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=sender:from:to:cc:subject:date:message-id:organization;
-	bh=KYF8De4WDD44GDeBa3RfUrrW3r6/I8EXHO0X8OMYyfw=;
-	b=I+if6sFoC9LkUwlXoHn6cfAq7IorlqA8UhNOP5sou573kyfq9WkN3vsJB6ts6+O0uL
-	9B6wQDniVd7kGucsnIN1JF2aFJrySF8BI1UQ8GSj82pCHj0w3iaf7ExIrOfNC+iDIZ3z
-	xBNXnLX+AZAzQLNGS7u4c7e0esZMn6UFg9rnFAhf4n6RmYgFi9uQu+mIv4UoBL8iXfbH
-	hn9RRgJiZqyeMXZzhSNFTPgmtTiOqrF7mmHpfkXdfZa2eB3bqDvk+QZ2fS9hT8jDpYST
-	g88UChODQyQBBMJINwCbL8SaCSnBatt1P7hrdxQBJU/63ZcpxouR3PYsMAUxPMZcYOgo
-	0pqw==
-X-Received: by 10.236.174.10 with SMTP id w10mr52679193yhl.30.1408449456858;
-	Tue, 19 Aug 2014 04:57:36 -0700 (PDT)
-Received: from nano.lab.ossystems.com.br ([177.35.70.10])
-	by mx.google.com with ESMTPSA id
-	s48sm15078144yhk.48.2014.08.19.04.57.35 for <multiple recipients>
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Tue, 19 Aug 2014 04:57:36 -0700 (PDT)
-Sender: Otavio Salvador <otavio.salvador@gmail.com>
-Received: by nano.lab.ossystems.com.br (Postfix, from userid 1000)
-	id 83E331C2EE968; Tue, 19 Aug 2014 08:57:32 -0300 (BRT)
-From: Otavio Salvador <otavio@ossystems.com.br>
-To: yocto@lists.yoctoproject.org
-Date: Tue, 19 Aug 2014 08:57:31 -0300
-Message-Id: <1408449451-8566-1-git-send-email-otavio@ossystems.com.br>
-X-Mailer: git-send-email 2.1.0.rc1
-Organization: O.S. Systems Software LTDA.
-Cc: Otavio Salvador <otavio@ossystems.com.br>
-Subject: [PATCH] distro/poky: Add Debian 7.5 and 7.6 version as validated
+Received: from na01-by2-obe.outbound.protection.outlook.com
+	(mail-by2lp0236.outbound.protection.outlook.com [207.46.163.236])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 95505E0079B
+	for <yocto@yoctoproject.org>; Tue, 19 Aug 2014 05:44:20 -0700 (PDT)
+Received: from BLUPR05MB037.namprd05.prod.outlook.com (10.255.210.145) by
+	BLUPR05MB037.namprd05.prod.outlook.com (10.255.210.145) with Microsoft
+	SMTP Server (TLS) id 15.0.1010.18; Tue, 19 Aug 2014 12:44:18 +0000
+Received: from BLUPR05MB037.namprd05.prod.outlook.com ([169.254.15.108]) by
+	BLUPR05MB037.namprd05.prod.outlook.com ([169.254.15.108]) with mapi id
+	15.00.1010.016; Tue, 19 Aug 2014 12:44:18 +0000
+From: Bryan Evenson <bevenson@melinkcorp.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: PR Server import/export questions
+Thread-Index: Ac+7povszG91Ae4LSwGumf5C0EZUkA==
+Date: Tue, 19 Aug 2014 12:44:18 +0000
+Message-ID: <b94dbb0d1ada45da9ed5241147573c3e@BLUPR05MB037.namprd05.prod.outlook.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-vipre-scanned: 0036C16B007E5E0036C2B8
+x-originating-ip: [98.100.91.242]
+x-microsoft-antispam: BCL:0;PCL:0;RULEID:;UriScan:;
+x-forefront-prvs: 0308EE423E
+x-forefront-antispam-report: SFV:NSPM;
+	SFS:(10019006)(6009001)(164054003)(189002)(199003)(66066001)(74316001)(81342001)(80022001)(46102001)(85852003)(76482001)(87936001)(81542001)(76576001)(31966008)(33646002)(105586002)(2351001)(95666004)(21056001)(86362001)(108616004)(229853001)(77982001)(99396002)(85306004)(50986999)(79102001)(2656002)(107886001)(4396001)(107046002)(77096002)(110136001)(83322001)(101416001)(83072002)(20776003)(54356999)(64706001)(92566001)(74662001)(99286002)(74502001)(106356001)(2501001)(24736002);
+	DIR:OUT; SFP:1102; SCL:1; SRVR:BLUPR05MB037;
+	H:BLUPR05MB037.namprd05.prod.outlook.com; FPR:; MLV:sfv;
+	PTR:InfoNoRecords; MX:1; A:1; LANG:en; 
+MIME-Version: 1.0
+X-OriginatorOrg: melinkcorp.com
+Subject: PR Server import/export questions
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -60,27 +54,42 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 19 Aug 2014 11:57:42 -0000
+X-List-Received-Date: Tue, 19 Aug 2014 12:44:25 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-Signed-off-by: Otavio Salvador <otavio@ossystems.com.br>
----
- meta-yocto/conf/distro/poky.conf | 2 ++
- 1 file changed, 2 insertions(+)
-
-diff --git a/meta-yocto/conf/distro/poky.conf b/meta-yocto/conf/distro/poky.conf
-index ec251f9..34ce8ec 100644
---- a/meta-yocto/conf/distro/poky.conf
-+++ b/meta-yocto/conf/distro/poky.conf
-@@ -88,6 +88,8 @@ SANITY_TESTED_DISTROS ?= " \
-             Debian-7.2 \n \
-             Debian-7.3 \n \
-             Debian-7.4 \n \
-+            Debian-7.5 \n \
-+            Debian-7.6 \n \
-             SUSE-LINUX-12.2 \n \
-             openSUSE-project-12.3 \n \
-             openSUSE-project-13.1 \n \
--- 
-2.1.0.rc1
-
+QWxsLA0KDQpJJ20gbWFraW5nIHRoZSB0cmFuc2l0aW9uIGZyb20gdGhlIGR5bGFuIHRvIGRhaXN5
+IGJyYW5jaCwgYW5kIGluIG15IGZpcnN0IGF0dGVtcHQgSSBnb3QgYSBidW5jaCBvZiBRQSB3YXJu
+aW5ncyBhYm91dCBQUklOQyBiZWluZyBkZXByZWNhdGVkIGFuZCB0aGF0IEkgc2hvdWxkIHN0YXJ0
+IHVzaW5nIGEgUFIgc2VydmljZS4gIEkgdG9vayBhIGxvb2sgdGhyb3VnaCB0aGUgbWFudWFsIGFu
+ZCB0aGUgUFIgc2VydmVyIHdpa2kgYW5kIEkgc3RpbGwgaGF2ZSBzb21lIGNvbmNlcm5zIGFib3V0
+IHRoZSBQUiBzZXJ2ZXIuICBJIG1heSBiZSBhYmxlIHRvIGZpZ3VyZSBvdXQgc29tZSBvZiB0aGVz
+ZSB0aGluZ3Mgd2l0aCB0cmlhbCBhbmQgZXJyb3IsIGJ1dCBnaXZlbiB3aGF0IGNvdWxkIGdvIHdy
+b25nIGlmIEkgbWVzcyB0aGlzIHVwIEkgdGhvdWdodCBpdCdkIGJlIHBydWRlbnQgdG8gYXNrIGEg
+ZmV3IHF1ZXN0aW9ucyBmaXJzdC4NCg0KTXkgYmlnIGNvbmNlcm4gZm9yIHVzaW5nIGEgUFIgc2Vy
+dmVyIGZvciBjb25zaXN0ZW50bHkgZ2VuZXJhdGluZyBhIHBhY2thZ2UgZmVlZCBmb3IgZmlybXdh
+cmUgdXBncmFkZXMuICBPdXIgYmlnIGNvbmNlcm4gaXMgaWYgc29tZXRoaW5nIHdlcmUgdG8gaGFw
+cGVuIHRvIHRoZSBQUiBzZXJ2ZXIgYW5kIHdlIHdvdWxkIGxvc2UgdGhlIGxhc3QgUFIgc3RhdGUu
+ICBJIGJlbGlldmUgdGhpcyBpcyB3aGVyZSB0aGUgYml0YmFrZS1wcnNlcnYtdG9vbCBpbXBvcnQg
+YW5kIGV4cG9ydCBjb21lIGluIGFzIGRlc2NyaWJlZCBvbiB0aGUgUFIgU2VydmljZSB3aWtpLiAg
+SG93ZXZlciwgdGhlIGRldGFpbHMgb24gdGhlIGltcG9ydCBhbmQgZXhwb3J0IGFyZSBhIGxpdHRs
+ZSBsaWdodC4NCg0KQ291bGQgc29tZW9uZSBkZXNjcmliZSBhIGJhc2ljIHdvcmtmbG93IHVzaW5n
+IHRoZSBQUiBzZXJ2ZXIgYW5kIGJhY2tpbmcgdXAgdGhlIFBSIGRhdGE/ICBJJ20gYXNzdW1pbmcg
+dGhhdCB0aGUgZXhwb3J0ZWQgUFIgZmlsZSBjYW4gYmUgc3RvcmVkIGluIGEgbG9jYWwgR2l0IHJl
+cG9zaXRvcnksIGJ1dCBoYXZpbmcgbmV2ZXIgc2VlbiB0aGUgZXhwb3J0ZWQgZGF0YSBJIGRpZG4n
+dCBrbm93IGlmIHRoZXJlIHdlcmUgYW55IGlzc3VlcyBpbiBiYWNraW5nIHVwIHRoZSBleHBvcnRl
+ZCBQUnMgaW4gdGhpcyBtYW5uZXIuICBJZiB0aGlzIHdvdWxkIHdvcmssIHRoZW4gSSdtIGFzc3Vt
+aW5nIGEgd29ya2Zsb3cgY291bGQgYmU6DQoxLiBQdWxsIGxhdGVzdCBmcm9tIGxvY2FsIEdpdCBz
+ZXJ2ZXIgYW5kIGltcG9ydCBQUnMgdG8gdGhlIFBSIHNlcnZlci4NCjIuIERvIHdvcmsgZm9yIG5l
+eHQgc3lzdGVtIHZlcnNpb24uDQozLiBQdXNoIHVwZGF0ZXMgYmFjayB0byBsb2NhbCBHaXQgc2Vy
+dmVyLg0KNC4gUHVsbCBsYXRlc3QgR2l0IHNlcnZlciBhbmQgdGVzdCBmb3IgY2FuZGlkYXRlIHJl
+bGVhc2UuDQo1LiBQZXJmb3JtIG1pbm9yIGJ1ZyBmaXhlcyBhbmQgcHVzaCBiYWNrIHRvIGxvY2Fs
+IEdpdCBzZXJ2ZXIuDQo2LiBSZXBlYXQgc3RlcHMgNCBhbmQgNSB1bnRpbCB0aGVyZSBhcmUgbm8g
+bW9yZSBidWcgZml4ZXMgcHVzaGVkIGJhY2sgdG8gdGhlIGxvY2FsIEdpdCBzZXJ2ZXIuDQo3LiBF
+eHBvcnQgUFJzIGZyb20gdGhlIFBSIHNlcnZlciwgcHVzaCBQUnMgdG8gbG9jYWwgR2l0IHNlcnZl
+ciBhbmQgdGFnIHRoZSByZWxlYXNlLg0KDQpBbnlvbmUgc2VlIGFueSBpc3N1ZXMgd2l0aCB0aGlz
+IHdvcmtmbG93PyAgSWYgc28sIGhvdyBoYXZlIHlvdSBiZWVuIGhhbmRsaW5nIHdvcmtpbmcgd2l0
+aCB0aGUgUFIgc2VydmVyIGF0IHlvdXIgb3JnYW5pemF0aW9uPyAgSGFzIGFueW9uZSBlbHNlIGhh
+ZCBhbnkgb3RoZXIgaXNzdWVzIHVzaW5nIGEgUFIgc2VydmVyPw0KDQpUaGFua3MsDQpCcnlhbg0K
 
