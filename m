@@ -1,52 +1,47 @@
-Return-Path: <akuster808@gmail.com>
+Return-Path: <opensource@keylevel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id E0C40E00563; Tue, 19 Aug 2014 11:21:33 -0700 (PDT)
+	id 8EA6AE00655; Tue, 19 Aug 2014 14:26:38 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (akuster808[at]gmail.com)
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.220.41 listed in list.dnswl.org]
-Received: from mail-pa0-f41.google.com (mail-pa0-f41.google.com
-	[209.85.220.41])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C4468E004F5
-	for <yocto@yoctoproject.org>; Tue, 19 Aug 2014 11:21:24 -0700 (PDT)
-Received: by mail-pa0-f41.google.com with SMTP id rd3so10487328pab.28
-	for <yocto@yoctoproject.org>; Tue, 19 Aug 2014 11:21:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=from:to:cc:subject:date:message-id;
-	bh=iCKZk6Lqm3fMDbxlToAw6tHYCuNJBn8Wr7JkRfsbgWc=;
-	b=N7QyJj7U9kCg80PuMPRKvhqWum6YUcTQocGF9ckd7CBXmeSpBjkmqaXlWoPpbxzeNf
-	qCiCOHzS4P1XD1XC2uT6gK0u3ufbyJpZ1gusPV0jJL14IJ1q6F2X+MNxjrSGFWcNv8Jp
-	CuFvHUSm4MzBgNmG/VJcmeyA3ftyisL8HOIV9O/L8s4B1N4TTTHc6MzGymY6Phn5H1Tp
-	n/QuW2iLQNCTUs2eNNOdXw6u7dToygnI7pTfUtzob3mROxHNFOXZDVX4HiX7AW++WcMT
-	Ggk4CCYvLU5TuKMfbVLa6FJnSeGNtFApniGg7hHRQx1clfAnmEZfH3GW3qrnFcRsc6MI
-	UgQg==
-X-Received: by 10.68.68.162 with SMTP id x2mr43262809pbt.84.1408472480893;
-	Tue, 19 Aug 2014 11:21:20 -0700 (PDT)
-Received: from Pahoa2.hsd1.ca.comcast.net (c-76-20-92-207.hsd1.ca.comcast.net.
-	[76.20.92.207]) by mx.google.com with ESMTPSA id
-	wc3sm71649911pac.18.2014.08.19.11.21.18 for <multiple recipients>
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-	Tue, 19 Aug 2014 11:21:19 -0700 (PDT)
-From: Armin Kuster <akuster808@gmail.com>
-To: yocto@yoctoproject.org
-Date: Tue, 19 Aug 2014 11:21:16 -0700
-Message-Id: <1408472476-24502-1-git-send-email-akuster808@gmail.com>
-X-Mailer: git-send-email 1.9.1
-Subject: [meta-security][PATCH] samhain: arm build failure
+Received: from a180.4uh.net (a180.4uh.net [89.248.60.180])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6C381E004F5
+	for <yocto@yoctoproject.org>; Tue, 19 Aug 2014 14:26:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=keylevel.com;
+	s=default; 
+	h=Mime-Version:To:Date:Message-Id:Subject:Content-Transfer-Encoding:Content-Type:From;
+	bh=T9ywKatHHNTyOv78/IyXst+7XEPJkEn3MY7CDIalpJ4=; 
+	b=P/V4kB7E4J/uHSH2Fh/r1h3SF9goF2zCtTt9trOFp1gHZC2uTxt5WlC4ri9aOFaCK+dIpJW3pyrsd66m94wGNpEFYky7JnzzeWY706EsSq48UKfH39exHSIRLhCb0XwQ36n1zN8QX4Ci44haZRCdOsyDZUNmZ+soUXMJw9N7M5w=;
+Received: from [109.224.171.0] (port=27512
+	helo=macbook-pro.durham.keylevel.com)
+	by a180.4uh.net with esmtpsa (TLSv1:AES128-SHA:128) (Exim 4.82)
+	(envelope-from <opensource@keylevel.com>) id 1XJqvG-002I20-5C
+	for yocto@yoctoproject.org; Tue, 19 Aug 2014 22:26:32 +0100
+From: Chris Tapp <opensource@keylevel.com>
+Message-Id: <4EAABF91-29AE-4B7D-9FEE-07C87F37197D@keylevel.com>
+Date: Tue, 19 Aug 2014 22:26:31 +0100
+To: Yocto Project <yocto@yoctoproject.org>
+Mime-Version: 1.0 (Mac OS X Mail 7.3 \(1878.6\))
+X-Mailer: Apple Mail (2.1878.6)
+X-OutGoing-Spam-Status: No, score=-1.0
+X-AntiAbuse: This header was added to track abuse,
+	please include it with any abuse report
+X-AntiAbuse: Primary Hostname - a180.4uh.net
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - keylevel.com
+X-Get-Message-Sender-Via: a180.4uh.net: authenticated_id:
+	chris.tapp@keylevel.com
+Subject: Kernel driver for Turbosight TBS6285 DVB card
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -58,39 +53,39 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 19 Aug 2014 18:21:34 -0000
+X-List-Received-Date: Tue, 19 Aug 2014 21:26:38 -0000
+Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: quoted-printable
 
-| x_sh_error.c: In function 'sh_error_string':
-| x_sh_error.c:1580:31: error: incompatible type for argument 1 of 'memmove'
-|  #define VA_COPY(ap1, ap2)     memmove ((ap1), (ap2), sizeof (va_list))
-|                                ^
-| x_sh_error.c:1720:14: note: in expansion of macro 'VA_COPY'
-|        /*@i@*/VA_COPY(vl2, vl);
-|               ^
+I need to include the kernel driver for the Turbosight TBS6285 DVB card =
+in an image.
 
-this patch fixes the arm build failure.
+The official bundle at =
+http://www.tbsdtv.com/download/document/common/tbs-linux-drivers_v140707.z=
+ip includes the drivers and a load of other "stuff" (e.g. a full V4L =
+build).
 
-Signed-off-by: Armin Kuster <akuster808@gmail.com>
----
- recipes-security/samhain/samhain.inc | 4 ++++
- 1 file changed, 4 insertions(+)
+LinuxTV.org have the drivers extracted into a .tar.bz2 at (e.g.) =
+http://linuxtv.org/downloads/drivers/linux-media-LATEST.tar.bz2, so I =
+plan to use this as the download source.
 
-diff --git a/recipes-security/samhain/samhain.inc b/recipes-security/samhain/samhain.inc
-index d6f9f82..772aa7b 100644
---- a/recipes-security/samhain/samhain.inc
-+++ b/recipes-security/samhain/samhain.inc
-@@ -37,6 +37,10 @@ do_unpack_extra () {
- }
- addtask unpack_extra after do_unpack before do_patch
- 
-+do_configure_prepend_arm() {
-+    export sh_cv___va_copy=yes
-+}
-+
- # If we use oe_runconf in do_configure() it will by default
- # use the prefix --oldincludedir=/usr/include which is not
- # recognized by Samhain's configure script and would invariably
--- 
-1.9.1
+So far I have a recipe which downloads from this URL and extracts the =
+files into the work area and ${WORKAREA}/drivers/media includes a =
+Makefile and Kconfig.
+
+I've looked at the Yocto documentation, but this doesn't seem to be a =
+good match for the "Out of tree" kernel module case.
+
+How should I proceed from here? Is there another driver I can use as a =
+starting point?
+
+--
+
+Chris Tapp
+opensource@keylevel.com
+www.keylevel.com
+
+
+
 
 
