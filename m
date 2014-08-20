@@ -1,53 +1,51 @@
-Return-Path: <diego.sueiro@gmail.com>
+Return-Path: <Nicholas.Crast@saabsensis.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id C0048E007FE; Wed, 20 Aug 2014 11:39:31 -0700 (PDT)
+	id 414BCE00807; Wed, 20 Aug 2014 12:51:30 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (diego.sueiro[at]gmail.com)
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	SPF_HELO_PASS autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
+	*      [score: 0.0002]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.216.178 listed in list.dnswl.org]
-Received: from mail-qc0-f178.google.com (mail-qc0-f178.google.com
-	[209.85.216.178])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 58D3BE004F5
-	for <yocto@yoctoproject.org>; Wed, 20 Aug 2014 11:39:26 -0700 (PDT)
-Received: by mail-qc0-f178.google.com with SMTP id x3so7988249qcv.23
-	for <yocto@yoctoproject.org>; Wed, 20 Aug 2014 11:39:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-type;
-	bh=NPq370isae1SpNWcGUnlxdEqGQxICdcfIiOdZD+Rf7Y=;
-	b=yKCra6bxSOCdIhLt+D2t7of3Yq6NvLi4VYGZM2WTPkzUg2qoT7r5Yqijrt2ze2N4sN
-	hVatVIt+87pg9Ti+Feh2pUaJ8Ap1cLxcuQVobw4XoSfjVhN2Fzp/qJRoCc96CszlnByU
-	k8vENfSkN8rZ7+VyHM3/3fIdZKcV/Eg0/2MvxztKGcTH22JWZq1r8A6vdqitrAT8gO4G
-	b5V/hOEE3GyDFxDt1wEYah9bYwvElJmsEvTKYu1EmeKK8Kucj1mH4PZ+sWKtTMEn75jQ
-	7ivLmpEfj4HneMT5ajyaF3welkZBy7ZyMjuHeihIHcI54VwqrIutGWZ7W9jFememJ2eT
-	eNqA==
-X-Received: by 10.140.16.194 with SMTP id 60mr16945819qgb.105.1408559965710;
-	Wed, 20 Aug 2014 11:39:25 -0700 (PDT)
+X-Greylist: delayed 2241 seconds by postgrey-1.32 at yocto-www;
+	Wed, 20 Aug 2014 12:51:27 PDT
+Received: from smtpmail.saabsensis.com (smtpmail.saabsensis.com [173.225.55.4])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4F599E004F5
+	for <yocto@yoctoproject.org>; Wed, 20 Aug 2014 12:51:27 -0700 (PDT)
+Received: from [10.92.64.54] (helo=ssa-syr-dimstar4.saabusa.com)
+	by smtpmail.saabsensis.com with esmtps (TLS1.0:RSA_AES_256_CBC_SHA1:32)
+	(Exim 4.72) (envelope-from <Nicholas.Crast@saabsensis.com>)
+	id 1XKBKf-00057V-Me
+	for yocto@yoctoproject.org; Wed, 20 Aug 2014 15:14:05 -0400
+Received: from corpmail01.corp.sensis.com ([10.93.64.16])
+	by ssa-syr-dimstar4.saabusa.com with esmtp (Exim 4.72)
+	(envelope-from <Nicholas.Crast@saabsensis.com>) id 1XKBKO-00024x-M8
+	for yocto@yoctoproject.org; Wed, 20 Aug 2014 15:13:48 -0400
+Received: from CORPMAIL01.corp.sensis.com ([10.93.64.16]) by
+	corpmail01.corp.sensis.com ([10.93.64.16]) with mapi id 14.03.0195.001;
+	Wed, 20 Aug 2014 15:13:48 -0400
+From: "Crast, Nicholas" <Nicholas.Crast@saabsensis.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: Setting Default User Accounts
+Thread-Index: Ac+8qt61DVMBcd1VQOWIRzrpqqAxdQ==
+Date: Wed, 20 Aug 2014 19:13:48 +0000
+Message-ID: <36A43B0E1E88D84791516F9D44BC48331B3C8D01@corpmail01.corp.sensis.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.93.80.50]
 MIME-Version: 1.0
-Received: by 10.140.85.83 with HTTP; Wed, 20 Aug 2014 11:39:05 -0700 (PDT)
-In-Reply-To: <CAL7ttbfhyeXxh1xHkAreqJG8_kBd8ND6wkiBSb3Jt2Ry1=MUig@mail.gmail.com>
-References: <CAL7ttbfhyeXxh1xHkAreqJG8_kBd8ND6wkiBSb3Jt2Ry1=MUig@mail.gmail.com>
-From: Diego Sueiro <diego.sueiro@gmail.com>
-Date: Wed, 20 Aug 2014 15:39:05 -0300
-Message-ID: <CAMCfZKG0LVY7=qmQSe+hjre0jgovzDsCM3PvReU2p7J3zA8P3w@mail.gmail.com>
-To: Alex Damian <alex.r.damian@gmail.com>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: should systemd be considered harmful ?
+X-Sensis-MailScanner-Information: Scanned at Sensis Corporation by MailScanner
+X-Sensis-MailScanner-ID: 1XKBKO-00024x-M8
+X-Sensis-MailScanner: Found to be clean
+X-Sensis-MailScanner-SpamCheck: not spam (whitelisted),
+	SpamAssassin (not cached, score=-1.899, required 5,
+	autolearn=not spam, BAYES_00 -1.90, HTML_MESSAGE 0.00)
+X-Sensis-MailScanner-From: nicholas.crast@saabsensis.com
+Subject: Setting Default User Accounts
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -59,107 +57,216 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 20 Aug 2014 18:39:31 -0000
-Content-Type: multipart/alternative; boundary=001a11c0a65466b197050113ec8d
+X-List-Received-Date: Wed, 20 Aug 2014 19:51:30 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_36A43B0E1E88D84791516F9D44BC48331B3C8D01corpmail01corps_"
 
---001a11c0a65466b197050113ec8d
-Content-Type: text/plain; charset=ISO-8859-1
-
-Alex,
-
-On Wed, Aug 20, 2014 at 2:53 PM, Alex Damian <alex.r.damian@gmail.com>
-wrote:
-
-> Hello,
->
-> In release 216, systemd includes a caching nameserver, and full TTY stream
-> parsing. See details
->
-> http://lists.freedesktop.org/archives/systemd-devel/2014-August/022295.html
->
-> I think the ever growing number of components in systemd will create
-> conflicts with the normal tools, like libresolv, used in traditional UNIX
-> systems.
->
-> I think the number of components shipped with and required by systemd is
-> pretty outside the scope for an init system.
->
-> I would argue that the monolithic systemd is not in line with the UNIX
-> philosophy of small tools that do one thing and do it well, and that it is
-> actually contra-productive to use it in embedded systems due to the large
-> number of dependencies needed to get it to run, as well as the difficulty
-> to debug when something goes amiss.
->
-> Can I get your opinions in the respect that systemd is a useful tool to
-> have in the Yocto Project ?
-
-
-I like systemd for embedded systems. The boot process is faster then
-sysVinit and it's easy to create/manage services.
-It should me nice if we can install "systemd-ecosystem" with some
-granularity like we do with python, for example. But I don't know if it's
-possible or not.
-
-
-Regards,
-
---
-*dS
-Diego Sueiro
-
-Administrador do Embarcados
-www.embarcados.com.br
-<http://www.embarcados.com.br/?utm_source=assinatura_diego&utm_medium=e-mail&utm_campaign=Assinatura%20Email%20Diego>
-
-/*long live rock 'n roll*/
-
---001a11c0a65466b197050113ec8d
-Content-Type: text/html; charset=ISO-8859-1
+--_000_36A43B0E1E88D84791516F9D44BC48331B3C8D01corpmail01corps_
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div class=3D"gmail_extra">Alex,</div><div class=3D"gmail_=
-extra"><br><div class=3D"gmail_quote">On Wed, Aug 20, 2014 at 2:53 PM, Alex=
- Damian <span dir=3D"ltr">&lt;<a href=3D"mailto:alex.r.damian@gmail.com" ta=
-rget=3D"_blank">alex.r.damian@gmail.com</a>&gt;</span> wrote:<br>
+All,
 
-<blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1p=
-x #ccc solid;padding-left:1ex"><div><div><div>Hello,<br><br></div>In releas=
-e 216, systemd includes a caching nameserver, and full TTY stream parsing. =
-See details <br>
-
-<br><a href=3D"http://lists.freedesktop.org/archives/systemd-devel/2014-Aug=
-ust/022295.html" target=3D"_blank">http://lists.freedesktop.org/archives/sy=
-stemd-devel/2014-August/022295.html</a><br>
-<br>I think the ever growing number of components in systemd will create co=
-nflicts with the normal tools, like libresolv, used in traditional UNIX sys=
-tems.<br><br>I think the number of components shipped with and required by =
-systemd is pretty outside the scope for an init system. <br>
+I am currently in the middle of a battle with yocto, trying to accomplish t=
+he following:
 
 
-<br>I would argue that the monolithic systemd is not in line with the UNIX =
-philosophy of small tools that do one thing and do it well, and that it is =
-actually contra-productive to use it in embedded systems due to the large n=
-umber of dependencies needed to get it to run, as well as the difficulty to=
- debug when something goes amiss.<br>
+1.)    Disable root user account
+
+2.)    Create default user account with default password
+
+I currently have the following a recipe:
+USERADD_PACKAGES =3D "${PN}"
+USERADD_PARAM_${PN} =3D "-d /home/nick -r -s /bin/bash nick "
+
+In order to try to add a user account. I have this in my image recipe:
+
+ROOTFS_POSTPROCESS_COMMAND +=3D "set_nick_passwd;"
+set_nick_passwd() {
+   sed 's%^ nick:[^:]*:% nick:adySxRKMiPvjA:%' \
+       < ${IMAGE_ROOTFS}/etc/shadow \
+       > ${IMAGE_ROOTFS}/etc/shadow.new;
+   mv ${IMAGE_ROOTFS}/etc/shadow.new ${IMAGE_ROOTFS}/etc/shadow ;
+}
+
+This is to edit the /etc/shadow file and insert a new (hashed) password. Wh=
+at I'm looking for is a cleaner way to do this. When I run bitbake I get a =
+lot of warnings because the "nick" account is already an account on my buil=
+d machine. This seems like a fairly common use case, and I think I am likel=
+y going about it wrong.
+
+Does anybody have any advice?
+
+-Nick
+----------------------------------------
+Nick Crast
+Associate Software Engineer
+Saab Sensis Corporation
+Phone: 315-445-5703
+Email: Nicholas.Crast@saabsensis.com<mailto:Nicholas.Crast@saabsensis.com>
 
 
-</div><br></div>Can I get your opinions in the respect that systemd is a us=
-eful tool to have in the Yocto Project ?</blockquote></div><br>I like syste=
-md for embedded systems. The boot process is faster then sysVinit and it&#3=
-9;s easy to create/manage services.</div>
+This message is intended only for the addressee and may contain information=
+ that is company confidential or privileged. Any technical data in this mes=
+sage may be exported only in accordance with the U.S. International Traffic=
+ in Arms Regulations (22 CFR Parts 120-130) or the Export Administration Re=
+gulations (15 CFR Parts 730-774). Unauthorized use is strictly prohibited a=
+nd may be unlawful. If you are not the intended recipient, or the person re=
+sponsible for delivering to the intended recipient, you should not read, co=
+py, disclose or otherwise use this message. If you have received this email=
+ in error, please delete it, and advise the sender immediately.
 
-<div class=3D"gmail_extra">It should me nice if we can install &quot;system=
-d-ecosystem&quot; with some granularity like we do with python, for example=
-. But I don&#39;t know if it&#39;s possible or not.<br><br><br clear=3D"all=
-">
+--_000_36A43B0E1E88D84791516F9D44BC48331B3C8D01corpmail01corps_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-<div><div dir=3D"ltr"><div>Regards,</div><div><br></div>--<br>*dS<br>Diego =
-Sueiro<br><br>Administrador do Embarcados<br><a href=3D"http://www.embarcad=
-os.com.br/?utm_source=3Dassinatura_diego&amp;utm_medium=3De-mail&amp;utm_ca=
-mpaign=3DAssinatura%20Email%20Diego" target=3D"_blank">www.embarcados.com.b=
-r</a><br>
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 12 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;}
+p.MsoListParagraph, li.MsoListParagraph, div.MsoListParagraph
+	{mso-style-priority:34;
+	margin-top:0in;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:.5in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri","sans-serif";
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+/* List Definitions */
+@list l0
+	{mso-list-id:54161382;
+	mso-list-type:hybrid;
+	mso-list-template-ids:513576564 908131380 67698713 67698715 67698703 67698=
+713 67698715 67698703 67698713 67698715;}
+@list l0:level1
+	{mso-level-text:"%1\.\)";
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+ol
+	{margin-bottom:0in;}
+ul
+	{margin-bottom:0in;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal">All,<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">I am currently in the middle of a battle with yocto,=
+ trying to accomplish the following:<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoListParagraph" style=3D"text-indent:-.25in;mso-list:l0 level=
+1 lfo1"><![if !supportLists]><span style=3D"mso-list:Ignore">1.)<span style=
+=3D"font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;
+</span></span><![endif]>Disable root user account<o:p></o:p></p>
+<p class=3D"MsoListParagraph" style=3D"text-indent:-.25in;mso-list:l0 level=
+1 lfo1"><![if !supportLists]><span style=3D"mso-list:Ignore">2.)<span style=
+=3D"font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;
+</span></span><![endif]>Create default user account with default password<o=
+:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">I currently have the following a recipe:<o:p></o:p><=
+/p>
+<p class=3D"MsoNormal">USERADD_PACKAGES =3D &quot;${PN}&quot;<o:p></o:p></p=
+>
+<p class=3D"MsoNormal">USERADD_PARAM_${PN} =3D &quot;-d /home/nick -r -s /b=
+in/bash nick &quot;<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">In order to try to add a user account. I have this i=
+n my image recipe:<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">ROOTFS_POSTPROCESS_COMMAND &#43;=3D &quot;set_nick_p=
+asswd;&quot;<o:p></o:p></p>
+<p class=3D"MsoNormal">set_nick_passwd() {<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp; sed 's%^ nick:[^:]*:% nick:adySxRKMiPvj=
+A:%' \<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt; ${IMAGE_RO=
+OTFS}/etc/shadow \<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &gt; ${IMAGE_RO=
+OTFS}/etc/shadow.new;<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp; mv ${IMAGE_ROOTFS}/etc/shadow.new ${IMA=
+GE_ROOTFS}/etc/shadow ;<o:p></o:p></p>
+<p class=3D"MsoNormal">}<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">This is to edit the /etc/shadow file and insert a ne=
+w (hashed) password. What I&#8217;m looking for is a cleaner way to do this=
+. When I run bitbake I get a lot of warnings because the &#8220;nick&#8221;=
+ account is already an account on my build machine.
+ This seems like a fairly common use case, and I think I am likely going ab=
+out it wrong.<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Does anybody have any advice?<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">-Nick<o:p></o:p></p>
+<p class=3D"MsoNormal">----------------------------------------<o:p></o:p><=
+/p>
+<p class=3D"MsoNormal">Nick Crast<o:p></o:p></p>
+<p class=3D"MsoNormal">Associate Software Engineer<o:p></o:p></p>
+<p class=3D"MsoNormal">Saab Sensis Corporation<o:p></o:p></p>
+<p class=3D"MsoNormal">Phone: 315-445-5703<o:p></o:p></p>
+<p class=3D"MsoNormal">Email: <a href=3D"mailto:Nicholas.Crast@saabsensis.c=
+om">Nicholas.Crast@saabsensis.com</a><o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+<br>
+<i><small>This message is intended only for the addressee and may contain i=
+nformation that is company confidential or privileged. Any technical data i=
+n this message may be exported only in accordance with the U.S. Internation=
+al Traffic in Arms Regulations (22
+ CFR Parts 120-130) or the Export Administration Regulations (15 CFR Parts =
+730-774). Unauthorized use is strictly prohibited and may be unlawful. If y=
+ou are not the intended recipient, or the person responsible for delivering=
+ to the intended recipient, you
+ should not read, copy, disclose or otherwise use this message. If you have=
+ received this email in error, please delete it, and advise the sender imme=
+diately.
+</i></small>
+</body>
+</html>
 
-<br>/*long live rock &#39;n roll*/<br></div></div>
-</div></div>
-
---001a11c0a65466b197050113ec8d--
+--_000_36A43B0E1E88D84791516F9D44BC48331B3C8D01corpmail01corps_--
