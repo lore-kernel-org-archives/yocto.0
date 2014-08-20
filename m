@@ -1,6 +1,6 @@
 Return-Path: <akuster808@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 9C5E1E00807; Tue, 19 Aug 2014 20:50:12 -0700 (PDT)
+	id 0471CE00807; Tue, 19 Aug 2014 20:54:30 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -9,7 +9,7 @@ X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
 	http://www.dnswl.org/, low *      trust
-	*      [209.85.220.54 listed in list.dnswl.org]
+	*      [209.85.192.171 listed in list.dnswl.org]
 	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
 	provider *      (akuster808[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
@@ -19,35 +19,34 @@ X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-pa0-f54.google.com (mail-pa0-f54.google.com
-	[209.85.220.54])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E7BC7E007FE
-	for <yocto@yoctoproject.org>; Tue, 19 Aug 2014 20:50:06 -0700 (PDT)
-Received: by mail-pa0-f54.google.com with SMTP id fa1so11561841pad.27
-	for <yocto@yoctoproject.org>; Tue, 19 Aug 2014 20:50:05 -0700 (PDT)
+Received: from mail-pd0-f171.google.com (mail-pd0-f171.google.com
+	[209.85.192.171])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A82E7E007FE
+	for <yocto@yoctoproject.org>; Tue, 19 Aug 2014 20:54:25 -0700 (PDT)
+Received: by mail-pd0-f171.google.com with SMTP id z10so10924191pdj.30
+	for <yocto@yoctoproject.org>; Tue, 19 Aug 2014 20:54:25 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=from:to:cc:subject:date:message-id;
-	bh=wJGVD6gpFO9W4je9nMAAc2doIa9BgUtY6wAKnXnFasM=;
-	b=MqPNCrXL4htn66dKi2AmZMFQaAocnsgL69PIWalM1eaSWD71QK8SBCp/upq6jttewW
-	nSt8tfeq6vsmouxOVFRMzF2RNYMWexufGKEArxirwUvB4/prIhrI1OOiJLpyRGaqiPCl
-	e1Qu2D1/kECBEYiEoVZQ+N5cejjOcZ7k9sknZKvVMty2RrMZlyPRuoarTblzshxwbXWg
-	65OukP3Go6l3Z5ty+ng/OYQBwdd8ZS68eMkkwH9rEjfDQojtLq9oJobegS7tJfC2d2g5
-	hSBGEJf8rLI1L3j4WAgFNtK+XIMNAl4ekNxTnwGUCKvXI6uDyyv72J6j9eBQDswJP+Hf
-	X5ig==
-X-Received: by 10.66.161.41 with SMTP id xp9mr33733603pab.120.1408506605382;
-	Tue, 19 Aug 2014 20:50:05 -0700 (PDT)
+	bh=/Y5j/KXLNz1FchvXC1NwwRWPKvfvozUYfMUdi2tkuCE=;
+	b=ZPqyofZlM9XKT5Df981b0N/Biy7ZMyrxcItC0htLy6aVLa2eWWkSCbqgn/biP9bFj/
+	17LsP3MAbUja74imLww3OmlfJGER+qAFefQnqmNnVbKNDsoU1dkpcfDuplEn/Ng8Ahwd
+	/ZC9uYcLberKT+K2GFXDU4rWNHpuhX9D4sQ84oKYL26BgHwdZmq56A3cvXvzmbftl0Iz
+	9iIhz58khB/2bfTMPN6IYF9NdljVLrWfWczlAjxcYBCnNazz/dT1uYWzYOPSe31a845N
+	O3UG68bEsQvJ43Wf+dpFNxNG3WEN2TU3uS06Sm/dC0IySrdvlO9/CgiVeSkAijiVLcla
+	7sQg==
+X-Received: by 10.70.7.1 with SMTP id f1mr6156049pda.22.1408506864957;
+	Tue, 19 Aug 2014 20:54:24 -0700 (PDT)
 Received: from Pahoa2.hsd1.ca.comcast.net (c-76-20-92-207.hsd1.ca.comcast.net.
-	[76.20.92.207])
-	by mx.google.com with ESMTPSA id y4sm20838698pbt.60.2014.08.19.20.50.03
-	for <multiple recipients>
+	[76.20.92.207]) by mx.google.com with ESMTPSA id
+	xk1sm75632759pac.21.2014.08.19.20.54.22 for <multiple recipients>
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-	Tue, 19 Aug 2014 20:50:04 -0700 (PDT)
+	Tue, 19 Aug 2014 20:54:23 -0700 (PDT)
 From: Armin Kuster <akuster808@gmail.com>
 To: yocto@yoctoproject.org
-Date: Tue, 19 Aug 2014 20:49:55 -0700
-Message-Id: <1408506595-3853-1-git-send-email-akuster808@gmail.com>
+Date: Tue, 19 Aug 2014 20:54:16 -0700
+Message-Id: <1408506856-3926-1-git-send-email-akuster808@gmail.com>
 X-Mailer: git-send-email 1.9.1
-Subject: [meta-security][PATCH] nmap: use pkgconfig and reorg
+Subject: [meta-security][PATCH] v2] nmap: use pkgconfig and reorg
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -59,12 +58,14 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 20 Aug 2014 03:50:12 -0000
+X-List-Received-Date: Wed, 20 Aug 2014 03:54:30 -0000
 
 Added pkgconfig support
 Since most binaries provided by nmap can be excluded via configure
   manage via pkgconfig
 Aligned python packages with binaries so nmap-python is no longer needed
+
+V2: Missed some options in EXTRA_OECONF changes
 
 Signed-off-by: Armin Kuster <akuster808@gmail.com>
 ---
