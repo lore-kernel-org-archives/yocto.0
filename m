@@ -1,51 +1,44 @@
-Return-Path: <Nicholas.Crast@saabsensis.com>
+Return-Path: <opensource@keylevel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 414BCE00807; Wed, 20 Aug 2014 12:51:30 -0700 (PDT)
+	id 12DC6E00814; Wed, 20 Aug 2014 13:12:03 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
 	SPF_HELO_PASS autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [84.234.17.171 listed in list.dnswl.org]
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0002]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-X-Greylist: delayed 2241 seconds by postgrey-1.32 at yocto-www;
-	Wed, 20 Aug 2014 12:51:27 PDT
-Received: from smtpmail.saabsensis.com (smtpmail.saabsensis.com [173.225.55.4])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4F599E004F5
-	for <yocto@yoctoproject.org>; Wed, 20 Aug 2014 12:51:27 -0700 (PDT)
-Received: from [10.92.64.54] (helo=ssa-syr-dimstar4.saabusa.com)
-	by smtpmail.saabsensis.com with esmtps (TLS1.0:RSA_AES_256_CBC_SHA1:32)
-	(Exim 4.72) (envelope-from <Nicholas.Crast@saabsensis.com>)
-	id 1XKBKf-00057V-Me
-	for yocto@yoctoproject.org; Wed, 20 Aug 2014 15:14:05 -0400
-Received: from corpmail01.corp.sensis.com ([10.93.64.16])
-	by ssa-syr-dimstar4.saabusa.com with esmtp (Exim 4.72)
-	(envelope-from <Nicholas.Crast@saabsensis.com>) id 1XKBKO-00024x-M8
-	for yocto@yoctoproject.org; Wed, 20 Aug 2014 15:13:48 -0400
-Received: from CORPMAIL01.corp.sensis.com ([10.93.64.16]) by
-	corpmail01.corp.sensis.com ([10.93.64.16]) with mapi id 14.03.0195.001;
-	Wed, 20 Aug 2014 15:13:48 -0400
-From: "Crast, Nicholas" <Nicholas.Crast@saabsensis.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: Setting Default User Accounts
-Thread-Index: Ac+8qt61DVMBcd1VQOWIRzrpqqAxdQ==
-Date: Wed, 20 Aug 2014 19:13:48 +0000
-Message-ID: <36A43B0E1E88D84791516F9D44BC48331B3C8D01@corpmail01.corp.sensis.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.93.80.50]
-MIME-Version: 1.0
-X-Sensis-MailScanner-Information: Scanned at Sensis Corporation by MailScanner
-X-Sensis-MailScanner-ID: 1XKBKO-00024x-M8
-X-Sensis-MailScanner: Found to be clean
-X-Sensis-MailScanner-SpamCheck: not spam (whitelisted),
-	SpamAssassin (not cached, score=-1.899, required 5,
-	autolearn=not spam, BAYES_00 -1.90, HTML_MESSAGE 0.00)
-X-Sensis-MailScanner-From: nicholas.crast@saabsensis.com
-Subject: Setting Default User Accounts
+	*      [score: 0.0000]
+Received: from hosting.adsl24.co.uk (hosting.adsl24.co.uk [84.234.17.171])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5124AE004F5
+	for <yocto@yoctoproject.org>; Wed, 20 Aug 2014 13:11:56 -0700 (PDT)
+Received: from [109.224.171.0] (port=51718
+	helo=macbook-pro.durham.keylevel.com)
+	by hosting.adsl24.co.uk with esmtpsa (TLSv1:AES128-SHA:128)
+	(Exim 4.82) (envelope-from <opensource@keylevel.com>)
+	id 1XKCEX-0003B3-Il; Wed, 20 Aug 2014 21:11:50 +0100
+Mime-Version: 1.0 (Mac OS X Mail 7.3 \(1878.6\))
+From: Chris Tapp <opensource@keylevel.com>
+In-Reply-To: <53F40306.2080500@windriver.com>
+Date: Wed, 20 Aug 2014 21:11:47 +0100
+Message-Id: <728404FF-F7F0-4371-AF09-D8C73ABA784C@keylevel.com>
+References: <4EAABF91-29AE-4B7D-9FEE-07C87F37197D@keylevel.com>
+	<53F40306.2080500@windriver.com>
+To: Bruce Ashfield <bruce.ashfield@windriver.com>,
+	Yocto Project <yocto@yoctoproject.org>
+X-Mailer: Apple Mail (2.1878.6)
+X-AntiAbuse: This header was added to track abuse,
+	please include it with any abuse report
+X-AntiAbuse: Primary Hostname - hosting.adsl24.co.uk
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - keylevel.com
+X-Get-Message-Sender-Via: hosting.adsl24.co.uk: authenticated_id:
+	mail@keylevel.adsl24.co.uk
+Subject: Re: Kernel driver for Turbosight TBS6285 DVB card
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -57,216 +50,70 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 20 Aug 2014 19:51:30 -0000
-Content-Language: en-US
-Content-Type: multipart/alternative;
-	boundary="_000_36A43B0E1E88D84791516F9D44BC48331B3C8D01corpmail01corps_"
-
---_000_36A43B0E1E88D84791516F9D44BC48331B3C8D01corpmail01corps_
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Wed, 20 Aug 2014 20:12:03 -0000
+Content-Type: text/plain; charset=iso-8859-1
 Content-Transfer-Encoding: quoted-printable
 
-All,
+Hi Bruce,
 
-I am currently in the middle of a battle with yocto, trying to accomplish t=
-he following:
+Thanks for the feedback.
+
+On 20 Aug 2014, at 03:08, Bruce Ashfield <bruce.ashfield@windriver.com> =
+wrote:
+
+> On 2014-08-19, 5:26 PM, Chris Tapp wrote:
+>> I need to include the kernel driver for the Turbosight TBS6285 DVB =
+card in an image.
+>>=20
+>> The official bundle at =
+http://www.tbsdtv.com/download/document/common/tbs-linux-drivers_v140707.z=
+ip includes the drivers and a load of other "stuff" (e.g. a full V4L =
+build).
+>>=20
+>> LinuxTV.org have the drivers extracted into a .tar.bz2 at (e.g.) =
+http://linuxtv.org/downloads/drivers/linux-media-LATEST.tar.bz2, so I =
+plan to use this as the download source.
+
+This bit is wrong - I need to use the .tar.bz within the .zip.
+
+>>=20
+>> So far I have a recipe which downloads from this URL and extracts the =
+files into the work area and ${WORKAREA}/drivers/media includes a =
+Makefile and Kconfig.
+>>=20
+>> I've looked at the Yocto documentation, but this doesn't seem to be a =
+good match for the "Out of tree" kernel module case.
+>=20
+> Hmm. At a glance, I'd say that it does sound like a typical out of
+> tree module build.
+
+Ah, ok - to my (untrained) eye the use-case looked completely different =
+based on the example.
+
+> Did you try adopting the meta-skeleton hello-mod recipe and point it
+> at that source directory ?
+
+I have now (with the above change). However, it looks as if something =
+within the build is referencing the host file system when building.
+
+I'm building for ValleyIsland 32-bit:
+
+  1) If I configure the drivers for 32-bit there is a linker error =
+complaining that elf 32 and elf 64 aren't compatible (host is 64 bit);
+  2) Everything appears to build if I target 64-bit, but the installer =
+tries to modify /lib/modules/3.2.0-67/..., which is also part of the =
+host.
+
+Looks like I need a patch ;-) Any pointers to where I should be looking =
+would be appreciated as this isn't my normal area...
+
+--
+
+Chris Tapp
+opensource@keylevel.com
+www.keylevel.com
 
 
-1.)    Disable root user account
-
-2.)    Create default user account with default password
-
-I currently have the following a recipe:
-USERADD_PACKAGES =3D "${PN}"
-USERADD_PARAM_${PN} =3D "-d /home/nick -r -s /bin/bash nick "
-
-In order to try to add a user account. I have this in my image recipe:
-
-ROOTFS_POSTPROCESS_COMMAND +=3D "set_nick_passwd;"
-set_nick_passwd() {
-   sed 's%^ nick:[^:]*:% nick:adySxRKMiPvjA:%' \
-       < ${IMAGE_ROOTFS}/etc/shadow \
-       > ${IMAGE_ROOTFS}/etc/shadow.new;
-   mv ${IMAGE_ROOTFS}/etc/shadow.new ${IMAGE_ROOTFS}/etc/shadow ;
-}
-
-This is to edit the /etc/shadow file and insert a new (hashed) password. Wh=
-at I'm looking for is a cleaner way to do this. When I run bitbake I get a =
-lot of warnings because the "nick" account is already an account on my buil=
-d machine. This seems like a fairly common use case, and I think I am likel=
-y going about it wrong.
-
-Does anybody have any advice?
-
--Nick
-----------------------------------------
-Nick Crast
-Associate Software Engineer
-Saab Sensis Corporation
-Phone: 315-445-5703
-Email: Nicholas.Crast@saabsensis.com<mailto:Nicholas.Crast@saabsensis.com>
 
 
-This message is intended only for the addressee and may contain information=
- that is company confidential or privileged. Any technical data in this mes=
-sage may be exported only in accordance with the U.S. International Traffic=
- in Arms Regulations (22 CFR Parts 120-130) or the Export Administration Re=
-gulations (15 CFR Parts 730-774). Unauthorized use is strictly prohibited a=
-nd may be unlawful. If you are not the intended recipient, or the person re=
-sponsible for delivering to the intended recipient, you should not read, co=
-py, disclose or otherwise use this message. If you have received this email=
- in error, please delete it, and advise the sender immediately.
 
---_000_36A43B0E1E88D84791516F9D44BC48331B3C8D01corpmail01corps_
-Content-Type: text/html; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-
-<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
-osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
-xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
-//www.w3.org/TR/REC-html40">
-<head>
-<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
->
-<meta name=3D"Generator" content=3D"Microsoft Word 12 (filtered medium)">
-<style><!--
-/* Font Definitions */
-@font-face
-	{font-family:"Cambria Math";
-	panose-1:2 4 5 3 5 4 6 3 2 4;}
-@font-face
-	{font-family:Calibri;
-	panose-1:2 15 5 2 2 2 4 3 2 4;}
-/* Style Definitions */
-p.MsoNormal, li.MsoNormal, div.MsoNormal
-	{margin:0in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri","sans-serif";}
-a:link, span.MsoHyperlink
-	{mso-style-priority:99;
-	color:blue;
-	text-decoration:underline;}
-a:visited, span.MsoHyperlinkFollowed
-	{mso-style-priority:99;
-	color:purple;
-	text-decoration:underline;}
-p.MsoListParagraph, li.MsoListParagraph, div.MsoListParagraph
-	{mso-style-priority:34;
-	margin-top:0in;
-	margin-right:0in;
-	margin-bottom:0in;
-	margin-left:.5in;
-	margin-bottom:.0001pt;
-	font-size:11.0pt;
-	font-family:"Calibri","sans-serif";}
-span.EmailStyle17
-	{mso-style-type:personal-compose;
-	font-family:"Calibri","sans-serif";
-	color:windowtext;}
-.MsoChpDefault
-	{mso-style-type:export-only;}
-@page WordSection1
-	{size:8.5in 11.0in;
-	margin:1.0in 1.0in 1.0in 1.0in;}
-div.WordSection1
-	{page:WordSection1;}
-/* List Definitions */
-@list l0
-	{mso-list-id:54161382;
-	mso-list-type:hybrid;
-	mso-list-template-ids:513576564 908131380 67698713 67698715 67698703 67698=
-713 67698715 67698703 67698713 67698715;}
-@list l0:level1
-	{mso-level-text:"%1\.\)";
-	mso-level-tab-stop:none;
-	mso-level-number-position:left;
-	text-indent:-.25in;}
-ol
-	{margin-bottom:0in;}
-ul
-	{margin-bottom:0in;}
---></style><!--[if gte mso 9]><xml>
-<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
-</xml><![endif]--><!--[if gte mso 9]><xml>
-<o:shapelayout v:ext=3D"edit">
-<o:idmap v:ext=3D"edit" data=3D"1" />
-</o:shapelayout></xml><![endif]-->
-</head>
-<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
-<div class=3D"WordSection1">
-<p class=3D"MsoNormal">All,<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">I am currently in the middle of a battle with yocto,=
- trying to accomplish the following:<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoListParagraph" style=3D"text-indent:-.25in;mso-list:l0 level=
-1 lfo1"><![if !supportLists]><span style=3D"mso-list:Ignore">1.)<span style=
-=3D"font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;
-</span></span><![endif]>Disable root user account<o:p></o:p></p>
-<p class=3D"MsoListParagraph" style=3D"text-indent:-.25in;mso-list:l0 level=
-1 lfo1"><![if !supportLists]><span style=3D"mso-list:Ignore">2.)<span style=
-=3D"font:7.0pt &quot;Times New Roman&quot;">&nbsp;&nbsp;&nbsp;
-</span></span><![endif]>Create default user account with default password<o=
-:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">I currently have the following a recipe:<o:p></o:p><=
-/p>
-<p class=3D"MsoNormal">USERADD_PACKAGES =3D &quot;${PN}&quot;<o:p></o:p></p=
->
-<p class=3D"MsoNormal">USERADD_PARAM_${PN} =3D &quot;-d /home/nick -r -s /b=
-in/bash nick &quot;<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">In order to try to add a user account. I have this i=
-n my image recipe:<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">ROOTFS_POSTPROCESS_COMMAND &#43;=3D &quot;set_nick_p=
-asswd;&quot;<o:p></o:p></p>
-<p class=3D"MsoNormal">set_nick_passwd() {<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp; sed 's%^ nick:[^:]*:% nick:adySxRKMiPvj=
-A:%' \<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt; ${IMAGE_RO=
-OTFS}/etc/shadow \<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &gt; ${IMAGE_RO=
-OTFS}/etc/shadow.new;<o:p></o:p></p>
-<p class=3D"MsoNormal">&nbsp;&nbsp; mv ${IMAGE_ROOTFS}/etc/shadow.new ${IMA=
-GE_ROOTFS}/etc/shadow ;<o:p></o:p></p>
-<p class=3D"MsoNormal">}<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">This is to edit the /etc/shadow file and insert a ne=
-w (hashed) password. What I&#8217;m looking for is a cleaner way to do this=
-. When I run bitbake I get a lot of warnings because the &#8220;nick&#8221;=
- account is already an account on my build machine.
- This seems like a fairly common use case, and I think I am likely going ab=
-out it wrong.<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">Does anybody have any advice?<o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-<p class=3D"MsoNormal">-Nick<o:p></o:p></p>
-<p class=3D"MsoNormal">----------------------------------------<o:p></o:p><=
-/p>
-<p class=3D"MsoNormal">Nick Crast<o:p></o:p></p>
-<p class=3D"MsoNormal">Associate Software Engineer<o:p></o:p></p>
-<p class=3D"MsoNormal">Saab Sensis Corporation<o:p></o:p></p>
-<p class=3D"MsoNormal">Phone: 315-445-5703<o:p></o:p></p>
-<p class=3D"MsoNormal">Email: <a href=3D"mailto:Nicholas.Crast@saabsensis.c=
-om">Nicholas.Crast@saabsensis.com</a><o:p></o:p></p>
-<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
-</div>
-<br>
-<i><small>This message is intended only for the addressee and may contain i=
-nformation that is company confidential or privileged. Any technical data i=
-n this message may be exported only in accordance with the U.S. Internation=
-al Traffic in Arms Regulations (22
- CFR Parts 120-130) or the Export Administration Regulations (15 CFR Parts =
-730-774). Unauthorized use is strictly prohibited and may be unlawful. If y=
-ou are not the intended recipient, or the person responsible for delivering=
- to the intended recipient, you
- should not read, copy, disclose or otherwise use this message. If you have=
- received this email in error, please delete it, and advise the sender imme=
-diately.
-</i></small>
-</body>
-</html>
-
---_000_36A43B0E1E88D84791516F9D44BC48331B3C8D01corpmail01corps_--
