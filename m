@@ -1,47 +1,44 @@
-Return-Path: <opensource@keylevel.com>
+Return-Path: <jeffrey.osier-mixon@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 8EA6AE00655; Tue, 19 Aug 2014 14:26:38 -0700 (PDT)
+	id 396FFE006B5; Tue, 19 Aug 2014 17:51:08 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [209.85.216.41 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from a180.4uh.net (a180.4uh.net [89.248.60.180])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6C381E004F5
-	for <yocto@yoctoproject.org>; Tue, 19 Aug 2014 14:26:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=keylevel.com;
-	s=default; 
-	h=Mime-Version:To:Date:Message-Id:Subject:Content-Transfer-Encoding:Content-Type:From;
-	bh=T9ywKatHHNTyOv78/IyXst+7XEPJkEn3MY7CDIalpJ4=; 
-	b=P/V4kB7E4J/uHSH2Fh/r1h3SF9goF2zCtTt9trOFp1gHZC2uTxt5WlC4ri9aOFaCK+dIpJW3pyrsd66m94wGNpEFYky7JnzzeWY706EsSq48UKfH39exHSIRLhCb0XwQ36n1zN8QX4Ci44haZRCdOsyDZUNmZ+soUXMJw9N7M5w=;
-Received: from [109.224.171.0] (port=27512
-	helo=macbook-pro.durham.keylevel.com)
-	by a180.4uh.net with esmtpsa (TLSv1:AES128-SHA:128) (Exim 4.82)
-	(envelope-from <opensource@keylevel.com>) id 1XJqvG-002I20-5C
-	for yocto@yoctoproject.org; Tue, 19 Aug 2014 22:26:32 +0100
-From: Chris Tapp <opensource@keylevel.com>
-Message-Id: <4EAABF91-29AE-4B7D-9FEE-07C87F37197D@keylevel.com>
-Date: Tue, 19 Aug 2014 22:26:31 +0100
-To: Yocto Project <yocto@yoctoproject.org>
-Mime-Version: 1.0 (Mac OS X Mail 7.3 \(1878.6\))
-X-Mailer: Apple Mail (2.1878.6)
-X-OutGoing-Spam-Status: No, score=-1.0
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - a180.4uh.net
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - keylevel.com
-X-Get-Message-Sender-Via: a180.4uh.net: authenticated_id:
-	chris.tapp@keylevel.com
-Subject: Kernel driver for Turbosight TBS6285 DVB card
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+Received: from mail-qa0-f41.google.com (mail-qa0-f41.google.com
+	[209.85.216.41])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6CA1FE004FF
+	for <yocto@yoctoproject.org>; Tue, 19 Aug 2014 17:50:57 -0700 (PDT)
+Received: by mail-qa0-f41.google.com with SMTP id j7so6403478qaq.0
+	for <yocto@yoctoproject.org>; Tue, 19 Aug 2014 17:50:57 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:from:date:message-id:subject:to
+	:content-type;
+	bh=XqF/naKPqSmlXPlF7ddEV/Y+TUC7dfI2mBnFfgvSdsU=;
+	b=B036kWHqNoOIndoQF+tJ/5oEafClCuIp9UwYunWuoVTLBYk2gCmwyG8RGgrwoWNfA7
+	QN1ig5s5jOLA74Z1q+jxt6c8VgGCLj4bILiBQ0xmDcqHlDHDb/Zyp28QFW4OojAbRK1C
+	bzjx2N7xJUiHp7syAXDskydP1vOrlNsVFotKDYgezL11Je5AstXY5pDLhniV9SDtlRyp
+	0Itvk1jE+nJrvLwO5oF6N16YbmPzBWcyTcQkidVxmmH/ryWYSCdbb9NmvfiSC/vex9Ls
+	yX3WkqK0JkX2mvYTCJvlsAKRGvyz95qITN8BmLNXH0rxZ9L8UEDEU4eXMKjMK5F6ueX7
+	dkWg==
+X-Gm-Message-State: ALoCoQkTkc1wOLspGb6MjGe5v2nkZDPMrWs2uc0NpeFqPFeAe1zU1s3gdGkSRCBHT9n1ACPUMGwI
+X-Received: by 10.224.112.1 with SMTP id u1mr71850194qap.7.1408495857100; Tue,
+	19 Aug 2014 17:50:57 -0700 (PDT)
+MIME-Version: 1.0
+Received: by 10.140.93.6 with HTTP; Tue, 19 Aug 2014 17:50:37 -0700 (PDT)
+From: "Osier-mixon, Jeffrey" <jeffrey.osier-mixon@intel.com>
+Date: Tue, 19 Aug 2014 17:50:37 -0700
+Message-ID: <CALZ2gZUPQD9irvcfL5EvtMK=cokRj8n9KSW5nzsP_BgiTCfscw@mail.gmail.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Community Demo Area at ELCE
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -53,39 +50,70 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 19 Aug 2014 21:26:38 -0000
-Content-Type: text/plain; charset=us-ascii
+X-List-Received-Date: Wed, 20 Aug 2014 00:51:08 -0000
+Content-Type: multipart/alternative; boundary=047d7b673a4e3b1a3a050104ff4d
+
+--047d7b673a4e3b1a3a050104ff4d
+Content-Type: text/plain; charset=UTF-8
+
+At the Embedded Linux Conference in San Jose, CA USA this past spring, we
+had six great demos in the Yocto Project booth. However, only two of those
+were demos that we arrived with. Four were from community members who
+spontaneously showed up, including a homebuilt audio player (hi nerdboy)
+and we thank them very much for their support and willingness to share.
+
+As a response to that, the Yocto Project would like to invite Embedded
+Linux Conference Europe* participants to bring your projects to the Yocto
+Project booth if you'd like to show off your work. We will have a screen,
+keyboard, mouse, and power available. Small embedded projects are best, but
+if you have a scale robotic dinosaur or a Yocto-powered Lamborghini, we
+won't turn you away. (Probably.)
+
+Please RSVP to me directly and let me know when to expect you.
+
+If there is enough interest, we can also set up a table at lunchtime at the
+Yocto Project Developer Day** following ELCE.
+
+* http://events.linuxfoundation.org/events/embedded-linux-conference-europe
+**
+https://www.yoctoproject.org/tools-resources/events/yocto-project-developer-day-elce-2014
+-- 
+Jeff Osier-Mixon @Intel
+Yocto Project Community Manager http://yoctoproject.org
+
+--047d7b673a4e3b1a3a050104ff4d
+Content-Type: text/html; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-I need to include the kernel driver for the Turbosight TBS6285 DVB card =
-in an image.
+<div dir=3D"ltr">At the Embedded Linux Conference in San Jose, CA USA this =
+past spring, we had six great demos in the Yocto Project booth. However, on=
+ly two of those were demos that we arrived with. Four were from community m=
+embers who spontaneously showed up, including a homebuilt audio player (hi =
+nerdboy) and we thank them very much for their support and willingness to s=
+hare.<div>
 
-The official bundle at =
-http://www.tbsdtv.com/download/document/common/tbs-linux-drivers_v140707.z=
-ip includes the drivers and a load of other "stuff" (e.g. a full V4L =
-build).
+<br></div><div>As a response to that, the Yocto Project would like to invit=
+e Embedded Linux Conference Europe* participants to bring your projects to =
+the Yocto Project booth if you&#39;d like to show off your work. We will ha=
+ve a screen, keyboard, mouse, and power available. Small embedded projects =
+are best, but if you have a scale robotic dinosaur or a Yocto-powered Lambo=
+rghini, we won&#39;t turn you away. (Probably.)</div>
 
-LinuxTV.org have the drivers extracted into a .tar.bz2 at (e.g.) =
-http://linuxtv.org/downloads/drivers/linux-media-LATEST.tar.bz2, so I =
-plan to use this as the download source.
+<div><br></div><div>Please RSVP to me directly and let me know when to expe=
+ct you.</div><div><br></div><div>If there is enough interest, we can also s=
+et up a table at lunchtime at the Yocto Project Developer Day** following E=
+LCE.</div>
 
-So far I have a recipe which downloads from this URL and extracts the =
-files into the work area and ${WORKAREA}/drivers/media includes a =
-Makefile and Kconfig.
+<div><br></div><div>*=C2=A0<a href=3D"http://events.linuxfoundation.org/eve=
+nts/embedded-linux-conference-europe">http://events.linuxfoundation.org/eve=
+nts/embedded-linux-conference-europe</a><br clear=3D"all"><div>** <a href=
+=3D"https://www.yoctoproject.org/tools-resources/events/yocto-project-devel=
+oper-day-elce-2014">https://www.yoctoproject.org/tools-resources/events/yoc=
+to-project-developer-day-elce-2014</a><br>
 
-I've looked at the Yocto documentation, but this doesn't seem to be a =
-good match for the "Out of tree" kernel module case.
+--=C2=A0</div>Jeff Osier-Mixon @Intel<br>Yocto Project Community Manager <a=
+ href=3D"http://yoctoproject.org" target=3D"_blank">http://yoctoproject.org=
+</a>
+</div></div>
 
-How should I proceed from here? Is there another driver I can use as a =
-starting point?
-
---
-
-Chris Tapp
-opensource@keylevel.com
-www.keylevel.com
-
-
-
-
-
+--047d7b673a4e3b1a3a050104ff4d--
