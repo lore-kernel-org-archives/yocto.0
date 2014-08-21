@@ -1,57 +1,40 @@
-Return-Path: <martin.jansa@gmail.com>
+Return-Path: <Bruce.Ashfield@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 98946E004F2; Thu, 21 Aug 2014 10:22:52 -0700 (PDT)
+	id 1EF28E004F2; Thu, 21 Aug 2014 11:29:13 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (martin.jansa[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [74.125.82.52 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [147.11.146.13 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-wg0-f52.google.com (mail-wg0-f52.google.com [74.125.82.52])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 79FCBE0044A
-	for <yocto@yoctoproject.org>; Thu, 21 Aug 2014 10:22:43 -0700 (PDT)
-Received: by mail-wg0-f52.google.com with SMTP id a1so9412430wgh.35
-	for <yocto@yoctoproject.org>; Thu, 21 Aug 2014 10:22:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=from:date:to:cc:subject:message-id:references:mime-version
-	:content-type:content-disposition:in-reply-to:user-agent;
-	bh=+T4b1+SACMhPUX3a8WS2um1ymg7Azk+qcDhFif3UK0o=;
-	b=UU20uFORXGEEvG5rZ45sRQP22Q3EWN2vGlIgBEKDtdE1wm+0siNm+Zu+KS9gyhG/Rc
-	t8+ujEhpSWogSh2uwkRB7vhPpsUBlhUqwDeqz+SBwn5KEWek8r41ff8E2XsDq/9M/ghe
-	Y8N9bsmzxhriiN8SiOI+fAzMgHbt/ojH/o2mrnIq4Q3PyL6/TRowGSfKOiw5k+0J9kyp
-	A58xPero7fPpR9cJvspad+uJGcgevoL5G2JeyMnAsliGiRlJvLD9qLXAbbr3Uq8NyQjB
-	2E9S9+8qAcSqryBfco4zZ6477LB1tLyU9Bapn2Mo4YXQ/YFm74pLdATyLcCyOzCk0XRl
-	kwTg==
-X-Received: by 10.194.191.165 with SMTP id gz5mr92377wjc.16.1408641762861;
-	Thu, 21 Aug 2014 10:22:42 -0700 (PDT)
-Received: from localhost (ip-89-176-104-3.net.upcbroadband.cz. [89.176.104.3])
-	by mx.google.com with ESMTPSA id
-	fs3sm21907047wic.20.2014.08.21.10.22.41 for <multiple recipients>
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Thu, 21 Aug 2014 10:22:41 -0700 (PDT)
-From: Martin Jansa <martin.jansa@gmail.com>
-X-Google-Original-From: Martin Jansa <Martin.Jansa@gmail.com>
-Date: Thu, 21 Aug 2014 19:22:45 +0200
-To: Vladimir Redzhepov <Vladimir_Redzhepov@epam.com>
-Message-ID: <20140821172245.GZ3660@jama>
-References: <35e32346a105465791b484fe34a2a011@EPBYMINSA0001.epam.com>
+Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 71D83E0044A
+	for <yocto@yoctoproject.org>; Thu, 21 Aug 2014 11:29:02 -0700 (PDT)
+Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
+	[147.11.189.40])
+	by mail1.windriver.com (8.14.9/8.14.5) with ESMTP id s7LISpOY002524
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
+	Thu, 21 Aug 2014 11:28:51 -0700 (PDT)
+Received: from [128.224.56.48] (128.224.56.48) by ALA-HCA.corp.ad.wrs.com
+	(147.11.189.50) with Microsoft SMTP Server id 14.3.174.1;
+	Thu, 21 Aug 2014 11:28:51 -0700
+Message-ID: <53F63A54.4030401@windriver.com>
+Date: Thu, 21 Aug 2014 14:28:36 -0400
+From: Bruce Ashfield <bruce.ashfield@windriver.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:24.0) Gecko/20100101 Thunderbird/24.6.0
 MIME-Version: 1.0
-In-Reply-To: <35e32346a105465791b484fe34a2a011@EPBYMINSA0001.epam.com>
-User-Agent: Mutt/1.5.23 (2014-03-12)
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: [meta-oracle-java][PATCH] update jdk and jre to version 67
+To: Chris Tapp <opensource@keylevel.com>, Bruce Ashfield
+	<bruce.ashfield@gmail.com>
+References: <4EAABF91-29AE-4B7D-9FEE-07C87F37197D@keylevel.com>	<53F40306.2080500@windriver.com>	<728404FF-F7F0-4371-AF09-D8C73ABA784C@keylevel.com>	<CADkTA4PKUNKFkWrz-BEud-mvNTVLUykLq_M-AMvJJWXOaxZZaA@mail.gmail.com>
+	<79C4CC9D-34AA-485F-B7A7-F35FD86A3CE3@keylevel.com>
+In-Reply-To: <79C4CC9D-34AA-485F-B7A7-F35FD86A3CE3@keylevel.com>
+Cc: Yocto Project <yocto@yoctoproject.org>
+Subject: Re: Kernel driver for Turbosight TBS6285 DVB card
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -63,176 +46,107 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 21 Aug 2014 17:22:52 -0000
-X-Groupsio-MsgNum: 21200
-Content-Type: multipart/signed; micalg=pgp-sha1;
-	protocol="application/pgp-signature"; boundary="sTC4Ri5uc2u6z9Yo"
-Content-Disposition: inline
+X-List-Received-Date: Thu, 21 Aug 2014 18:29:13 -0000
+Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
+Content-Transfer-Encoding: 7bit
 
---sTC4Ri5uc2u6z9Yo
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On 14-08-21 04:17 AM, Chris Tapp wrote:
+> On 21 Aug 2014, at 05:08, Bruce Ashfield <bruce.ashfield@gmail.com> wrote:
+>
+>> On Wed, Aug 20, 2014 at 4:11 PM, Chris Tapp <opensource@keylevel.com> wrote:
+>>> Hi Bruce,
+>>>
+>>> Thanks for the feedback.
+>>>
+>>> On 20 Aug 2014, at 03:08, Bruce Ashfield <bruce.ashfield@windriver.com> wrote:
+>>>
+>>>> On 2014-08-19, 5:26 PM, Chris Tapp wrote:
+>>>>> I need to include the kernel driver for the Turbosight TBS6285 DVB card in an image.
+>>>>>
+>>>>> The official bundle at http://www.tbsdtv.com/download/document/common/tbs-linux-drivers_v140707.zip includes the drivers and a load of other "stuff" (e.g. a full V4L build).
+>>>>>
+>>>>> LinuxTV.org have the drivers extracted into a .tar.bz2 at (e.g.) http://linuxtv.org/downloads/drivers/linux-media-LATEST.tar.bz2, so I plan to use this as the download source.
+>>> This bit is wrong - I need to use the .tar.bz within the .zip.
+>>>
+>>>>> So far I have a recipe which downloads from this URL and extracts the files into the work area and ${WORKAREA}/drivers/media includes a Makefile and Kconfig.
+>>>>>
+>>>>> I've looked at the Yocto documentation, but this doesn't seem to be a good match for the "Out of tree" kernel module case.
+>>>> Hmm. At a glance, I'd say that it does sound like a typical out of
+>>>> tree module build.
+>>> Ah, ok - to my (untrained) eye the use-case looked completely different based on the example.
+>>>
+>>>> Did you try adopting the meta-skeleton hello-mod recipe and point it
+>>>> at that source directory ?
+>>> I have now (with the above change). However, it looks as if something within the build is referencing the host file system when building.
+>>>
+>>> I'm building for ValleyIsland 32-bit:
+>>>
+>>>   1) If I configure the drivers for 32-bit there is a linker error complaining that elf 32 and elf 64 aren't compatible (host is 64 bit);
+>> Hmm. The target arch should be used for this build. Are you enabling a
+>> multi lib config
+>> as well ?
+> Not that I know of ;-)
+>
+> The build uses a .version file to specify the kernel. The top makefile creates this using 'uname -r' by default. I can run 'make dir DIR="..." in do_configure() to specify the path to the yocto kernel files, which seems to fix this (after modifying another makefile, which prepends "../" to the DIR path).
 
-On Thu, Aug 21, 2014 at 05:01:47PM +0000, Vladimir Redzhepov wrote:
-> From f0305398a51435f407e41a8f0eaf83f8bdd13cca Mon Sep 17 00:00:00 2001
-> From: Vladimir Redzhepov <vladimir_redzhepov@epam.com>
-> Date: Thu, 21 Aug 2014 19:43:29 +0300
-> Subject: [PATCH] update jdk and jre to version 67
->=20
-> Signed-off-by: Vladimir Redzhepov <vladimir_redzhepov@epam.com>
-> ---
-> recipes-devtools/oracle-java/oracle-jse-jdk-i586_1.7.0.bb   | 10 +++++---=
---
-> recipes-devtools/oracle-java/oracle-jse-jdk-x86-64_1.7.0.bb | 10 +++++---=
---
-> recipes-devtools/oracle-java/oracle-jse-jre-i586_1.7.0.bb   | 10 +++++---=
---
-> recipes-devtools/oracle-java/oracle-jse-jre-x86-64_1.7.0.bb | 10 +++++---=
---
-> recipes-devtools/oracle-java/oracle-jse.inc                 |  4 ++--
-> 5 files changed, 22 insertions(+), 22 deletions(-)
->=20
-> diff --git a/recipes-devtools/oracle-java/oracle-jse-jdk-i586_1.7.0.bb b/=
-recipes-devtools/oracle-java/oracle-jse-jdk-i586_1.7.0.bb
-> index 978fbd5..07fa39b 100644
-> --- a/recipes-devtools/oracle-java/oracle-jse-jdk-i586_1.7.0.bb
-> +++ b/recipes-devtools/oracle-java/oracle-jse-jdk-i586_1.7.0.bb
-> @@ -1,9 +1,9 @@
-> -PR =3D "r0"
-> -PV_UPDATE =3D "25"
-> +PR =3D "r1"
-> +PV_UPDATE =3D "67"
+Definite host contamination there. You likely want the code, but
+not the build infrastructure in this case.
 
-Does it need PR update?
+>
+>>   2) Everything appears to build if I target 64-bit, but the installer tries to modify /lib/modules/3.2.0-67/..., which is also part of the host.
+>>
+>> Do the Makefile's that come in that archive (I haven't gone to look)
+>> have a custom
+>> install rule ? If so, that's likely the problem. If the kernel's build
+>> system is triggered
+>> (i.e. the makefile follows the conventions), everything will be
+>> installed to the proper
+>> location.
+> The installer uses DESTDIR to select the installation path - I've not worked out how this gets set yet or how I can set it from within my recipe.
+>
+> Is there a trick I can use to get the kernel's build system to manage things?
 
->  require oracle-jse-jdk.inc
-> -SRC_URI =3D "http://download.oracle.com/otn-pub/java/jdk/7u25-b15/jdk-7u=
-25-linux-i586.tar.gz"
-> +SRC_URI =3D "http://download.oracle.com/otn-pub/java/jdk/7u67-b01/jdk-7u=
-67-linux-i586.tar.gz"
+In this case, you really need to replace (or patch) the existing Makefile
+that comes with the package.
 
-It would be better to use PV_UPDATE variable here and maybe introduce
-another one for build number?
+The hello-mod example I pointed out has makefile that shows the right
+definitions to allow the kernel's build system to enter the directory, build
+and install the modules.
 
-> -SRC_URI[md5sum] =3D "23176d0ebf9dedd21e3150b4bb0ee776"
-> -SRC_URI[sha256sum] =3D "dd89b20afa939992bb7fdc44837fa64f0a98d7ee1e5706fe=
-8a2d9e2247ba6de7"
-> +SRC_URI[md5sum] =3D "715b0e8ba2a06bded75f6a92427e2701"
-> +SRC_URI[sha256sum] =3D "b6231064ad2c9fbbcb099dba17b1dcf12033e922b9c24e43=
-48b9a01e9ebaa85c"
-> diff --git a/recipes-devtools/oracle-java/oracle-jse-jdk-x86-64_1.7.0.bb =
-b/recipes-devtools/oracle-java/oracle-jse-jdk-x86-64_1.7.0.bb
-> index 7979401..8bad119 100644
-> --- a/recipes-devtools/oracle-java/oracle-jse-jdk-x86-64_1.7.0.bb
-> +++ b/recipes-devtools/oracle-java/oracle-jse-jdk-x86-64_1.7.0.bb
-> @@ -1,9 +1,9 @@
-> -PR =3D "r0"
-> -PV_UPDATE =3D "25"
-> +PR =3D "r1"
-> +PV_UPDATE =3D "67"
->  require oracle-jse-jdk.inc
-> -SRC_URI =3D "http://download.oracle.com/otn-pub/java/jdk/7u25-b15/jdk-7u=
-25-linux-x64.tar.gz"
-> +SRC_URI =3D "http://download.oracle.com/otn-pub/java/jdk/7u67-b01/jdk-7u=
-67-linux-x64.tar.gz"
-> -SRC_URI[md5sum] =3D "83ba05e260813f7a9140b76e3d37ea33"
-> -SRC_URI[sha256sum] =3D "f80dff0e19ca8d038cf7fe3aaa89538496b80950f4d10ff5=
-f457988ae159b2a6"
-> +SRC_URI[md5sum] =3D "81e3e2df33e13781e5fac5756ed90e67"
-> +SRC_URI[sha256sum] =3D "54dd1e13edf18c64941a55da9c91210b53dc5cf48f1a8f45=
-38c863049e346335"
-> diff --git a/recipes-devtools/oracle-java/oracle-jse-jre-i586_1.7.0.bb b/=
-recipes-devtools/oracle-java/oracle-jse-jre-i586_1.7.0.bb
-> index 6125025..4165d74 100644
-> --- a/recipes-devtools/oracle-java/oracle-jse-jre-i586_1.7.0.bb
-> +++ b/recipes-devtools/oracle-java/oracle-jse-jre-i586_1.7.0.bb
-> @@ -1,9 +1,9 @@
-> -PR =3D "r0"
-> -PV_UPDATE =3D "25"
-> +PR =3D "r1"
-> +PV_UPDATE =3D "67"
->  require oracle-jse-jre.inc
-> -SRC_URI =3D "http://download.oracle.com/otn-pub/java/jdk/7u25-b15/jre-7u=
-25-linux-i586.tar.gz"
-> +SRC_URI =3D "http://download.oracle.com/otn-pub/java/jdk/7u67-b01/jre-7u=
-67-linux-i586.tar.gz"
-> -SRC_URI[md5sum] =3D "0e9ccefe49e937e592dbb605f2e8e7d8"
-> -SRC_URI[sha256sum] =3D "4016965536d8607743267812ab04e6d428036dda43289374=
-8c1df6cb77b09628"
-> +SRC_URI[md5sum] =3D "2a256eb2a91f0084e58c612636342c2b"
-> +SRC_URI[sha256sum] =3D "eadec83a54d3a9d09248a8d16b21c03da9afffc7317e775f=
-b8db962620a0781d"
-> diff --git a/recipes-devtools/oracle-java/oracle-jse-jre-x86-64_1.7.0.bb =
-b/recipes-devtools/oracle-java/oracle-jse-jre-x86-64_1.7.0.bb
-> index 4058d23..a1474a9 100644
-> --- a/recipes-devtools/oracle-java/oracle-jse-jre-x86-64_1.7.0.bb
-> +++ b/recipes-devtools/oracle-java/oracle-jse-jre-x86-64_1.7.0.bb
-> @@ -1,9 +1,9 @@
-> -PR =3D "r0"
-> -PV_UPDATE =3D "25"
-> +PR =3D "r1"
-> +PV_UPDATE =3D "67"
->  require oracle-jse-jre.inc
-> -SRC_URI =3D "http://download.oracle.com/otn-pub/java/jdk/7u25-b15/jre-7u=
-25-linux-x64.tar.gz"
-> +SRC_URI =3D "http://download.oracle.com/otn-pub/java/jdk/7u67-b01/jre-7u=
-67-linux-x64.tar.gz"
-> -SRC_URI[md5sum] =3D "743ee0ebf73ce428c912866d84e374e0"
-> -SRC_URI[sha256sum] =3D "3c4496316fb413d5ab0590e9971676a521b9a600b3ceaac3=
-11f04c18c98a98c0"
-> +SRC_URI[md5sum] =3D "9007c79167be0177fb47e5313c53d5cb"
-> +SRC_URI[sha256sum] =3D "726c37c07bb389b5b96674b7bcbc288e39fb8fbcd42369af=
-a364a18e66248b1f"
-> diff --git a/recipes-devtools/oracle-java/oracle-jse.inc b/recipes-devtoo=
-ls/oracle-java/oracle-jse.inc
-> index 3a4e20d..38ceef0 100644
-> --- a/recipes-devtools/oracle-java/oracle-jse.inc
-> +++ b/recipes-devtools/oracle-java/oracle-jse.inc
-> @@ -2,8 +2,8 @@ LICENSE_FLAGS =3D "oracle_java"
-> LICENSE =3D "Oracle_Binary_Code_License_Agreement"
-> LIC_FILES_CHKSUM =3D "\
->                file://${WORKDIR}/${JDK_JRE}${PV}_${PV_UPDATE}/LICENSE;md5=
-=3D98f46ab6481d87c4d77e0e91a6dbc15f \
-> -              file://${WORKDIR}/${JDK_JRE}${PV}_${PV_UPDATE}/COPYRIGHT;m=
-d5=3D3a11238025bf13b87f04753183ffeb90 \
-> -                file://${WORKDIR}/${JDK_JRE}${PV}_${PV_UPDATE}/THIRDPART=
-YLICENSEREADME.txt;md5=3Dc339b34e3da6673d2c5950d0f8808f8c \
-> +             file://${WORKDIR}/${JDK_JRE}${PV}_${PV_UPDATE}/COPYRIGHT;md=
-5=3Dbe9fe5d47a7dcfb78f142f487afb34bb \
-> +                file://${WORKDIR}/${JDK_JRE}${PV}_${PV_UPDATE}/THIRDPART=
-YLICENSEREADME.txt;md5=3Df3a388961d24b8b72d412a079a878cdb \
+Bruce
 
-Please mention in commit message what was changed in it.
-
-It would be nice to use consistent whitespace for indentation.
-
->                "
->  FETCHCMD_wget_append =3D " --header=3DCookie:oraclelicense=3Da "
+>
+>> Bruce
+>>
+>>> Looks like I need a patch ;-) Any pointers to where I should be looking would be appreciated as this isn't my normal area...
+>>>
+>>> --
+>>>
+>>> Chris Tapp
+>>> opensource@keylevel.com
+>>> www.keylevel.com
+>>>
+>>>
+>>>
+>>>
+>>> --
+>>> _______________________________________________
+>>> yocto mailing list
+>>> yocto@yoctoproject.org
+>>> https://lists.yoctoproject.org/listinfo/yocto
+>>
+>>
+>> -- 
+>> "Thou shalt not follow the NULL pointer, for chaos and madness await
+>> thee at its end"
 > --
-> 2.1.0
->=20
+>
+> Chris Tapp
+> opensource@keylevel.com
+> www.keylevel.com
+>
+>
+>
+>
 
-> --=20
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
 
-
---=20
-Martin 'JaMa' Jansa     jabber: Martin.Jansa@gmail.com
-
---sTC4Ri5uc2u6z9Yo
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: Digital signature
-
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v2
-
-iEYEARECAAYFAlP2KuUACgkQN1Ujt2V2gBwvZwCcCzg3yhrT72xwuwltDWk4KCuM
-GCMAoLt2QJ71VnedbOKrUtfAWJZ6KbRl
-=2zNQ
------END PGP SIGNATURE-----
-
---sTC4Ri5uc2u6z9Yo--
