@@ -1,41 +1,49 @@
-Return-Path: <Bruce.Ashfield@windriver.com>
+Return-Path: <Nicholas.Crast@saabsensis.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 81888E004F2; Thu, 21 Aug 2014 12:31:09 -0700 (PDT)
+	id D5DA7E004F2; Thu, 21 Aug 2014 13:19:08 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [147.11.1.11 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	SPF_HELO_PASS autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D45F3E0044A
-	for <yocto@yoctoproject.org>; Thu, 21 Aug 2014 12:30:59 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail.windriver.com (8.14.9/8.14.5) with ESMTP id s7LJUgJi017527
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Thu, 21 Aug 2014 12:30:42 -0700 (PDT)
-Received: from [128.224.56.48] (128.224.56.48) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server id 14.3.174.1;
-	Thu, 21 Aug 2014 12:30:42 -0700
-Message-ID: <53F648D3.2090205@windriver.com>
-Date: Thu, 21 Aug 2014 15:30:27 -0400
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:24.0) Gecko/20100101 Thunderbird/24.6.0
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+Received: from smtpmail.saabsensis.com (smtpmail.saabsensis.com [173.225.55.4])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 60AB0E0044A
+	for <yocto@yoctoproject.org>; Thu, 21 Aug 2014 13:19:01 -0700 (PDT)
+Received: from [10.92.64.54] (helo=ssa-syr-dimstar4.saabusa.com)
+	by smtpmail.saabsensis.com with esmtps (TLS1.0:RSA_AES_256_CBC_SHA1:32)
+	(Exim 4.72) (envelope-from <Nicholas.Crast@saabsensis.com>)
+	id 1XKYp1-0004CO-8K
+	for yocto@yoctoproject.org; Thu, 21 Aug 2014 16:18:59 -0400
+Received: from corpmail01.corp.sensis.com ([10.93.64.16])
+	by ssa-syr-dimstar4.saabusa.com with esmtp (Exim 4.72)
+	(envelope-from <Nicholas.Crast@saabsensis.com>) id 1XKYok-0002ef-Cm
+	for yocto@yoctoproject.org; Thu, 21 Aug 2014 16:18:42 -0400
+Received: from CORPMAIL01.corp.sensis.com ([10.93.64.16]) by
+	corpmail01.corp.sensis.com ([10.93.64.16]) with mapi id 14.03.0195.001;
+	Thu, 21 Aug 2014 16:18:42 -0400
+From: "Crast, Nicholas" <Nicholas.Crast@saabsensis.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: Bundling initramfs with uImage
+Thread-Index: Ac+9fRl4kmW1Cg/bSwmxVZiqNWsIBg==
+Date: Thu, 21 Aug 2014 20:18:41 +0000
+Message-ID: <36A43B0E1E88D84791516F9D44BC48331B3C9E7D@corpmail01.corp.sensis.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.93.80.50]
 MIME-Version: 1.0
-To: Chris Tapp <opensource@keylevel.com>
-References: <4EAABF91-29AE-4B7D-9FEE-07C87F37197D@keylevel.com>	<53F40306.2080500@windriver.com>	<728404FF-F7F0-4371-AF09-D8C73ABA784C@keylevel.com>	<CADkTA4PKUNKFkWrz-BEud-mvNTVLUykLq_M-AMvJJWXOaxZZaA@mail.gmail.com>
-	<79C4CC9D-34AA-485F-B7A7-F35FD86A3CE3@keylevel.com>
-	<53F63A54.4030401@windriver.com>
-	<4FC2BFFB-9FBD-43BA-AAF4-EE9CBB8126E7@keylevel.com>
-In-Reply-To: <4FC2BFFB-9FBD-43BA-AAF4-EE9CBB8126E7@keylevel.com>
-Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: Kernel driver for Turbosight TBS6285 DVB card
+X-Sensis-MailScanner-Information: Scanned at Sensis Corporation by MailScanner
+X-Sensis-MailScanner-ID: 1XKYok-0002ef-Cm
+X-Sensis-MailScanner: Found to be clean
+X-Sensis-MailScanner-SpamCheck: not spam (whitelisted),
+	SpamAssassin (not cached, score=-1.899, required 5,
+	autolearn=not spam, BAYES_00 -1.90, HTML_MESSAGE 0.00)
+X-Sensis-MailScanner-From: nicholas.crast@saabsensis.com
+Subject: Bundling initramfs with uImage
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -47,112 +55,147 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 21 Aug 2014 19:31:09 -0000
-Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Thu, 21 Aug 2014 20:19:08 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_36A43B0E1E88D84791516F9D44BC48331B3C9E7Dcorpmail01corps_"
 
-On 14-08-21 03:11 PM, Chris Tapp wrote:
->
-> On 21 Aug 2014, at 19:28, Bruce Ashfield <bruce.ashfield@windriver.com> wrote:
->
->> On 14-08-21 04:17 AM, Chris Tapp wrote:
->>> On 21 Aug 2014, at 05:08, Bruce Ashfield <bruce.ashfield@gmail.com> wrote:
->>>
->>>> On Wed, Aug 20, 2014 at 4:11 PM, Chris Tapp <opensource@keylevel.com> wrote:
->>>>> Hi Bruce,
->>>>>
->>>>> Thanks for the feedback.
->>>>>
->>>>> On 20 Aug 2014, at 03:08, Bruce Ashfield <bruce.ashfield@windriver.com> wrote:
->>>>>
->>>>>> On 2014-08-19, 5:26 PM, Chris Tapp wrote:
->>>>>>> I need to include the kernel driver for the Turbosight TBS6285 DVB card in an image.
->>>>>>>
->>>>>>> The official bundle at http://www.tbsdtv.com/download/document/common/tbs-linux-drivers_v140707.zip includes the drivers and a load of other "stuff" (e.g. a full V4L build).
->>>>>>>
->>>>>>> LinuxTV.org have the drivers extracted into a .tar.bz2 at (e.g.) http://linuxtv.org/downloads/drivers/linux-media-LATEST.tar.bz2, so I plan to use this as the download source.
->>>>> This bit is wrong - I need to use the .tar.bz within the .zip.
->>>>>
->>>>>>> So far I have a recipe which downloads from this URL and extracts the files into the work area and ${WORKAREA}/drivers/media includes a Makefile and Kconfig.
->>>>>>>
->>>>>>> I've looked at the Yocto documentation, but this doesn't seem to be a good match for the "Out of tree" kernel module case.
->>>>>> Hmm. At a glance, I'd say that it does sound like a typical out of
->>>>>> tree module build.
->>>>> Ah, ok - to my (untrained) eye the use-case looked completely different based on the example.
->>>>>
->>>>>> Did you try adopting the meta-skeleton hello-mod recipe and point it
->>>>>> at that source directory ?
->>>>> I have now (with the above change). However, it looks as if something within the build is referencing the host file system when building.
->>>>>
->>>>> I'm building for ValleyIsland 32-bit:
->>>>>
->>>>>   1) If I configure the drivers for 32-bit there is a linker error complaining that elf 32 and elf 64 aren't compatible (host is 64 bit);
->>>> Hmm. The target arch should be used for this build. Are you enabling a
->>>> multi lib config
->>>> as well ?
->>> Not that I know of ;-)
->>>
->>> The build uses a .version file to specify the kernel. The top makefile creates this using 'uname -r' by default. I can run 'make dir DIR="..." in do_configure() to specify the path to the yocto kernel files, which seems to fix this (after modifying another makefile, which prepends "../" to the DIR path).
->>
->> Definite host contamination there. You likely want the code, but
->> not the build infrastructure in this case.
->>
->>>
->>>>   2) Everything appears to build if I target 64-bit, but the installer tries to modify /lib/modules/3.2.0-67/..., which is also part of the host.
->>>>
->>>> Do the Makefile's that come in that archive (I haven't gone to look)
->>>> have a custom
->>>> install rule ? If so, that's likely the problem. If the kernel's build
->>>> system is triggered
->>>> (i.e. the makefile follows the conventions), everything will be
->>>> installed to the proper
->>>> location.
->>> The installer uses DESTDIR to select the installation path - I've not worked out how this gets set yet or how I can set it from within my recipe.
->>>
->>> Is there a trick I can use to get the kernel's build system to manage things?
->>
->> In this case, you really need to replace (or patch) the existing Makefile
->> that comes with the package.
->>
->> The hello-mod example I pointed out has makefile that shows the right
->> definitions to allow the kernel's build system to enter the directory, build
->> and install the modules.
->
-> I've made some good progress, but still not quite there.
->
-> I've got a do_compile() that basically does:
->
->    make DIR=${STAGING_KERNEL_DIR}
->
-> The appears to build the modules correctly - testing will tell ;-)
->
-> I've then got similar in do_install():
->
->    make DIR=${STAGING_KERNEL_DIR} DESTDIR=${D}
->
-> That's 99% there - the modules get put in image/lib/modules/3.10.40-ltsi/...
-> They should be in image/lib/modules/3.10.40-ltsi-yocto-standard/... - not sure yet how to fix this one.
->
+--_000_36A43B0E1E88D84791516F9D44BC48331B3C9E7Dcorpmail01corps_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-The kernel-abiversion should have all the details to get the mdoules
-installed in the right place. See the use of the file in the various
-module bbclasses.
+All,
 
-export KERNEL_VERSION = 
-"${@base_read_file('${STAGING_KERNEL_DIR}/kernel-abiversion')}"
+I am currently working in an embedded environment, struggling to get the en=
+tire system running in RAM, so that everything is fresh after a reboot. I c=
+an currently use the initramfs-live-boot functionality to generate a .cpio.=
+gz file, but I am lost on how to get this to 'bundle' with the uImage. The =
+uImage will be stored on an SD card and we are using u-boot.
 
-Bruce
+I see mentions of the CONFIG_INITRAMFS_SOURCE kernel option, but I am unsur=
+e if I need to change this.
 
-> There is also a packaging QA issue causing a build failure (some files aren't used), but an INSANE_SKIP installed-vs-shipped fixes that one for now.
->
-> --
->
-> Chris Tapp
-> opensource@keylevel.com
-> www.keylevel.com
->
->
->
->
+Can someone help me? I've been googling all day and haven't gotten much fur=
+ther.
+
+-Nick
+
+----------------------------------------
+Nick Crast
+Associate Software Engineer
+Saab Sensis Corporation
+Phone: 315-445-5703
+Email: Nicholas.Crast@saabsensis.com<mailto:Nicholas.Crast@saabsensis.com>
 
 
+This message is intended only for the addressee and may contain information=
+ that is company confidential or privileged. Any technical data in this mes=
+sage may be exported only in accordance with the U.S. International Traffic=
+ in Arms Regulations (22 CFR Parts 120-130) or the Export Administration Re=
+gulations (15 CFR Parts 730-774). Unauthorized use is strictly prohibited a=
+nd may be unlawful. If you are not the intended recipient, or the person re=
+sponsible for delivering to the intended recipient, you should not read, co=
+py, disclose or otherwise use this message. If you have received this email=
+ in error, please delete it, and advise the sender immediately.
+
+--_000_36A43B0E1E88D84791516F9D44BC48331B3C9E7Dcorpmail01corps_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 12 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri","sans-serif";
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal">All,<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">I am currently working in an embedded environment, s=
+truggling to get the entire system running in RAM, so that everything is fr=
+esh after a reboot. I can currently use the initramfs-live-boot functionali=
+ty to generate a .cpio.gz file, but
+ I am lost on how to get this to &#8216;bundle&#8217; with the uImage. The =
+uImage will be stored on an SD card and we are using u-boot.
+<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">I see mentions of the CONFIG_INITRAMFS_SOURCE kernel=
+ option, but I am unsure if I need to change this.
+<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Can someone help me? I&#8217;ve been googling all da=
+y and haven&#8217;t gotten much further.
+<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">-Nick<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">----------------------------------------<o:p></o:p><=
+/p>
+<p class=3D"MsoNormal">Nick Crast<o:p></o:p></p>
+<p class=3D"MsoNormal">Associate Software Engineer<o:p></o:p></p>
+<p class=3D"MsoNormal">Saab Sensis Corporation<o:p></o:p></p>
+<p class=3D"MsoNormal">Phone: 315-445-5703<o:p></o:p></p>
+<p class=3D"MsoNormal">Email: <a href=3D"mailto:Nicholas.Crast@saabsensis.c=
+om">Nicholas.Crast@saabsensis.com</a><o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+<br>
+<i><small>This message is intended only for the addressee and may contain i=
+nformation that is company confidential or privileged. Any technical data i=
+n this message may be exported only in accordance with the U.S. Internation=
+al Traffic in Arms Regulations (22
+ CFR Parts 120-130) or the Export Administration Regulations (15 CFR Parts =
+730-774). Unauthorized use is strictly prohibited and may be unlawful. If y=
+ou are not the intended recipient, or the person responsible for delivering=
+ to the intended recipient, you
+ should not read, copy, disclose or otherwise use this message. If you have=
+ received this email in error, please delete it, and advise the sender imme=
+diately.
+</i></small>
+</body>
+</html>
+
+--_000_36A43B0E1E88D84791516F9D44BC48331B3C9E7Dcorpmail01corps_--
