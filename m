@@ -1,33 +1,53 @@
-Return-Path: <marius.avram@intel.com>
+Return-Path: <actiononmail@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id E995AE00566; Thu, 21 Aug 2014 04:57:37 -0700 (PDT)
+	id 8350FE0080C; Thu, 21 Aug 2014 05:32:58 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [134.134.136.24 listed in list.dnswl.org]
+X-Spam-Status: No, score=-1.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,MISSING_HEADERS,
+	RCVD_IN_DNSWL_LOW autolearn=no version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (actiononmail[at]gmail.com)
+	*  1.0 MISSING_HEADERS Missing To: header
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.220.173 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4EB3CE00566
-	for <yocto@yoctoproject.org>; Thu, 21 Aug 2014 04:57:34 -0700 (PDT)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga102.jf.intel.com with ESMTP; 21 Aug 2014 04:51:38 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.01,908,1400050800"; d="scan'208";a="561597147"
-Received: from mavram-vostro.rb.intel.com ([10.237.105.71])
-	by orsmga001.jf.intel.com with ESMTP; 21 Aug 2014 04:57:33 -0700
-From: Marius Avram <marius.avram@intel.com>
-To: yocto@yoctoproject.org
-Date: Thu, 21 Aug 2014 15:00:30 +0300
-Message-Id: <1408622431-16479-2-git-send-email-marius.avram@intel.com>
-X-Mailer: git-send-email 1.7.9.5
-In-Reply-To: <1408622431-16479-1-git-send-email-marius.avram@intel.com>
-References: <1408622431-16479-1-git-send-email-marius.avram@intel.com>
-Subject: [PATCH 1/2] Send emails for a list of recipes
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-vc0-f173.google.com (mail-vc0-f173.google.com
+	[209.85.220.173])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3C75DE004F5
+	for <yocto@yoctoproject.org>; Thu, 21 Aug 2014 05:32:53 -0700 (PDT)
+Received: by mail-vc0-f173.google.com with SMTP id hy10so10677122vcb.18
+	for <yocto@yoctoproject.org>; Thu, 21 Aug 2014 05:32:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:cc
+	:content-type; bh=rQlMCAoASRVYvBOpHtc0Xvkxc0ifec33JryX7rdct+c=;
+	b=aaIuC9TwZcRV0CO83+dIlOF0qGkwB53+ev0XcbqmMDhGW3NMOn7JAWY0YFZ1lRyFdp
+	oGWAQMwxnr/L12QfleBzcOMG3IblHNj3mr1PcjdHM9VuWCroPUjUzGC0KSSKZfBAktQ7
+	hE96GpCFs6Z5VZJmaoWvGQBTjg2h8pk9Qehc8TyRBkM5+jOcrsAUXmUVDSb8xAN6ORVt
+	bAlKpQ2N1Nq0D65F1Ygi3jQhI8kfZiZ8fR33Ki3hSjnTtuKCHo9ZnTYZNGr2ziZoJOmi
+	g5GtXuGtLFr6nh0C51DIt6xs9DuYDlbI3t2fawuWpSXGVJKj09yqMXzWbfBEL0ekXlOs
+	fA0g==
+X-Received: by 10.220.110.77 with SMTP id m13mr398535vcp.35.1408624372787;
+	Thu, 21 Aug 2014 05:32:52 -0700 (PDT)
+MIME-Version: 1.0
+Received: by 10.220.248.132 with HTTP; Thu, 21 Aug 2014 05:32:32 -0700 (PDT)
+In-Reply-To: <53F5C828.4090509@windriver.com>
+References: <36A43B0E1E88D84791516F9D44BC48331B3C8D01@corpmail01.corp.sensis.com>
+	<53F5C828.4090509@windriver.com>
+From: Akash Bhatnagar <actiononmail@gmail.com>
+Date: Thu, 21 Aug 2014 18:02:32 +0530
+Message-ID: <CAJqwu=9n=NN39rgyde2G1SX4KEpLO78JujnWZdsf6u5FVSt0zg@mail.gmail.com>
+Cc: yocto@yoctoproject.org
+Subject: Re: Setting Default User Accounts
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,304 +59,292 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 21 Aug 2014 11:57:38 -0000
+X-List-Received-Date: Thu, 21 Aug 2014 12:32:58 -0000
+Content-Type: multipart/alternative; boundary=047d7b3a90605cb221050122eb0b
 
-If the --emails or -e command line argument is active and a single
-or a list of recipes are given to the script, emails with the results
-and patches will be sent to their maintainers or to the overriden
-addresses from the configuration file.
+--047d7b3a90605cb221050122eb0b
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-Also the status email will be sent in the case a selection of
-at least two recipes has been given to the script for upgrading.
+Hi I have added new user in following way:-
 
-Signed-off-by: Marius Avram <marius.avram@intel.com>
----
- upgradehelper.py |  199 +++++++++++++++++++++++++++---------------------------
- 1 file changed, 98 insertions(+), 101 deletions(-)
+S =3D "${WORKDIR}"
 
-diff --git a/upgradehelper.py b/upgradehelper.py
-index cc90958..771c981 100755
---- a/upgradehelper.py
-+++ b/upgradehelper.py
-@@ -71,6 +71,8 @@ def parse_cmdline():
-                         help="disable interactive mode")
-     parser.add_argument("-d", "--debug-level", type=int, default=4, choices=range(1, 6),
-                         help="set the debug level: CRITICAL=1, ERROR=2, WARNING=3, INFO=4, DEBUG=5")
-+    parser.add_argument("-e", "--emails", type=bool, default=False,
-+                        help="send emails to recipe maintainers")
-     parser.add_argument("-s", "--skip-compilation", action="store_true", default=False,
-                         help="do not compile, just change the checksums, remove PR, and commit")
-     parser.add_argument("-c", "--config-file", default=None,
-@@ -116,7 +118,27 @@ def parse_config_file(config_file):
-     return (settings, maintainer_override)
- 
- class Updater(object):
--    def __init__(self, auto_mode=False, skip_compilation=False):
-+    mail_header = \
-+        "Hello,\n\nYou are receiving this email because you are the maintainer\n" \
-+        "of *%s* recipe and this is to let you know that the automatic attempt\n" \
-+        "to upgrade the recipe to *%s* has %s.\n\n"
-+
-+    next_steps_info = \
-+        "The recipe has been successfully compiled for all major architectures.\n\n" \
-+        "Next steps:\n" \
-+        "    - apply the patch: git am %s\n" \
-+        "    - check that required patches have not been removed from the recipe\n" \
-+        "    - compile an image that contains the package\n" \
-+        "    - perform some basic sanity tests\n" \
-+        "    - amend the patch and sign it off: git commit -s --reset-author --amend\n" \
-+        "    - send it to the list\n\n" \
-+
-+    mail_footer = \
-+        "Attached are the patch and the logs (+ license file diff) in case of failure.\n\n" \
-+        "Regards,\nThe Upgrade Helper"
-+
-+
-+    def __init__(self, auto_mode=False, send_email=False, skip_compilation=False):
- 
-         self.uh_dir = get_build_dir() + "/upgrade-helper"
-         if not os.path.exists(self.uh_dir):
-@@ -125,10 +147,10 @@ class Updater(object):
-         self.bb = Bitbake(get_build_dir())
-         self.buildhistory = BuildHistory(get_build_dir())
-         self.git = None
--
--        self.author = None
-+        self.author = "Upgrade Helper <uh@not.set>"
-         self.skip_compilation = skip_compilation
-         self.interactive = not auto_mode
-+        self.send_email = send_email
- 
-         self.machines = ["qemux86", "qemux86-64", "qemuarm", "qemumips", "qemuppc"]
- 
-@@ -144,6 +166,7 @@ class Updater(object):
-             (self._compile, None)
-         ]
- 
-+        self.email_handler = Email(settings)
-         self.statistics = Statistics()
- 
- 
-@@ -307,8 +330,9 @@ class Updater(object):
- 
-     # this function will be called at the end of each recipe upgrade
-     def pkg_upgrade_handler(self, err):
--        if err is not None and self.patch_file is not None:
-+        if err and self.patch_file:
-             answer = "N"
-+            status_msg = str(err)
-             if self.interactive:
-                 I(" %s: Do you want to keep the changes? (y/N)" % self.pn)
-                 answer = sys.stdin.readline().strip().upper()
-@@ -317,6 +341,53 @@ class Updater(object):
-                 I(" %s: Dropping changes from git ..." % self.pn)
-                 self.git.reset_hard(1)
-                 self.git.clean_untracked()
-+                return
-+        elif not err:
-+            status_msg = "Succeeded"
-+
-+        status = type(err).__name__
-+
-+        # drop last upgrade from git. It's safer this way if the upgrade has
-+        # problems and other recipes depend on it. Give the other recipes a
-+        # chance...
-+        if ("drop_previous_commits" in settings and
-+                settings["drop_previous_commits"] == "yes" and
-+                err) or (err and self.patch_file):
-+            I(" %s: Dropping changes from git ..." % self.pn)
-+            self.git.reset_hard(1)
-+            self.git.clean_untracked()
-+
-+        if self.send_email:
-+            # don't bother maintainer with mail if the recipe is already up to date
-+            if status == "UpgradeNotNeededError":
-+                return
-+
-+            if self.maintainer in maintainer_override:
-+                to_addr = maintainer_override[self.maintainer]
-+            else:
-+                to_addr = self.maintainer
-+
-+            subject = "[AUH] " + self.pn + ": upgrading to " + self.new_ver
-+            if err is None:
-+                subject += " SUCCEEDED"
-+            else:
-+                subject += " FAILED"
-+
-+            msg_body = self.mail_header % (self.pn, self.new_ver, status_msg)
-+
-+            if err is None:
-+                msg_body += self.next_steps_info % os.path.basename(self.patch_file)
-+
-+            msg_body += self.mail_footer
-+
-+            # Add possible attachments to email
-+            attachments = []
-+            for attachment in os.listdir(self.workdir):
-+                attachment_fullpath = os.path.join(self.workdir, attachment)
-+                if os.path.isfile(attachment_fullpath):
-+                    attachments.append(attachment_fullpath)
-+
-+            self.email_handler.send_email(to_addr, subject, msg_body, attachments)
- 
-     def _commit_changes(self):
-         try:
-@@ -355,6 +426,22 @@ class Updater(object):
- 
-         return ordered_list
- 
-+    def send_status_mail(self):
-+        if "status_recipients" not in settings:
-+            E("Could not send status email, no recipients set!")
-+            return -1
-+
-+        to_list = settings["status_recipients"].split()
-+
-+        subject = "[AUH] Upgrade status: " + date.isoformat(date.today())
-+
-+        msg = self.statistics.pkg_stats() + self.statistics.maintainer_stats()
-+
-+        if self.statistics.total_attempted:
-+            self.email_handler.send_email(to_list, subject, msg)
-+        else:
-+            W("No recipes attempted, not sending status mail!")
-+
-     def run(self, package_list=None):
- #[lp]        pkgs_to_upgrade = self._order_list(self._get_packages_to_upgrade(package_list))
-         pkgs_to_upgrade = self._get_packages_to_upgrade(package_list)
-@@ -399,32 +486,12 @@ class Updater(object):
- 
-         if (attempted_pkgs > 1):
-             print("%s" % self.statistics.pkg_stats())
-+            if self.send_email:
-+                self.send_status_mail()
- 
--
--class UniverseUpdater(Updater, Email):
--    mail_header = \
--        "Hello,\n\nYou are receiving this email because you are the maintainer\n" \
--        "of *%s* recipe and this is to let you know that the automatic attempt\n" \
--        "to upgrade the recipe to *%s* has %s.\n\n"
--
--    next_steps_info = \
--        "The recipe has been successfully compiled for all major architectures.\n\n" \
--        "Next steps:\n" \
--        "    - apply the patch: git am %s\n" \
--        "    - check that required patches have not been removed from the recipe\n" \
--        "    - compile an image that contains the package\n" \
--        "    - perform some basic sanity tests\n" \
--        "    - amend the patch and sign it off: git commit -s --reset-author --amend\n" \
--        "    - send it to the list\n\n" \
--
--    mail_footer = \
--        "Attached are the patch and the logs (+ license file diff) in case of failure.\n\n" \
--        "Regards,\nThe Upgrade Helper"
--
-+class UniverseUpdater(Updater):
-     def __init__(self):
--        Updater.__init__(self, True)
--        Email.__init__(self, settings)
--        self.author = "Upgrade Helper <uh@not.set>"
-+        Updater.__init__(self, True, True)
-         self.git = Git(os.path.dirname(os.getenv('PATH', False).split(':')[0]))
- 
-         # read history file
-@@ -570,84 +637,14 @@ class UniverseUpdater(Updater, Email):
- 
-     # overriding the base method
-     def pkg_upgrade_handler(self, err):
--        if err is None:
--            status_msg = "Succeeded"
--        else:
--            status_msg = str(err)
--
--        status = type(err).__name__
--
--        # drop last upgrade from git. It's safer this way if the upgrade has
--        # problems and other recipes depend on it. Give the other recipes a
--        # chance...
--        if ("drop_previous_commits" in settings and
--                settings["drop_previous_commits"] == "yes" and
--                err is None) or (err is not None and self.patch_file is not None):
--            I(" %s: Dropping changes from git ..." % self.pn)
--            self.git.reset_hard(1)
--            self.git.clean_untracked()
--
--        self.update_history(self.pn, self.new_ver, self.maintainer,
--                            status_msg)
--
--        # don't bother maintainer with mails for unknown errors, unsuported
--        # protocol or if the recipe is already up to date
--        if status == "Error" or status == "UnsupportedProtocolError" or \
--                status == "UpgradeNotNeededError":
--            return
--
--        if self.maintainer in maintainer_override:
--            to_addr = maintainer_override[self.maintainer]
--        else:
--            to_addr = self.maintainer
--
--        subject = "[AUH] " + self.pn + ": upgrading to " + self.new_ver
--        if err is None:
--            subject += " SUCCEEDED"
--        else:
--            subject += " FAILED"
--
--        msg_body = self.mail_header % (self.pn, self.new_ver, status_msg)
--
--        if err is None:
--            msg_body += self.next_steps_info % os.path.basename(self.patch_file)
--
--        msg_body += self.mail_footer
--
--        # Add possible attachments to list
--        attachments = []
--        for attachment in os.listdir(self.workdir):
--            attachment_fullpath = os.path.join(self.workdir, attachment)
--            if os.path.isfile(attachment_fullpath):
--                attachments.append(attachment_fullpath)
--
--        self.send_email(to_addr, subject, msg_body, attachments)
--
--    def send_status_mail(self):
--        if "status_recipients" not in settings:
--            E("Could not send status email, no recipients set!")
--            return -1
--
--        to_list = settings["status_recipients"].split()
--
--        subject = "[AUH] Upgrade status: " + date.isoformat(date.today())
--
--        msg = self.statistics.pkg_stats() + self.statistics.maintainer_stats()
--
--        if self.statistics.total_attempted:
--            self.send_email(to_list, subject, msg)
--        else:
--            W("No recipes attempted, not sending status mail!")
-+        super(UniverUpdate, self).pkg_upgrade_handler(self)
-+        self.update_history(self.pn, self.new_ver, self.maintainer, status_msg)
- 
-     def run(self):
-         self.update_master()
--
-         self.prepare()
--
-         super(UniverseUpdater, self).run()
- 
--        self.send_status_mail()
--
- 
- if __name__ == "__main__":
-     global settings
-@@ -675,5 +672,5 @@ if __name__ == "__main__":
-             for pkg in args.recipe:
-                 pkg_list.append((pkg, None, None))
- 
--        updater = Updater(args.auto_mode, args.skip_compilation)
-+        updater = Updater(args.auto_mode, args.emails, args.skip_compilation)
-         updater.run(pkg_list)
--- 
-1.7.9.5
+inherit useradd
+
+USERADD_PACKAGES =3D "${PN}"
+
+USERADD_PARAM_${PN} =3D "-u 1200 -d /home/test -r -s /bin/bash -P 'test123'
+test "
 
 
+GROUPADD_PARAM_${PN} =3D "-g 880 testgrp"
+
+
+do_install () {
+        install -d -m 755 ${D}/home/test
+
+        install -p -m 644 <ANYFILE> ${D}/home/test/
+
+        chown -R cli ${D}/home/test
+
+        chgrp -R cligrp ${D}/home/test
+}
+
+FILES_${PN} =3D "/home/test/* "
+
+INHIBIT_PACKAGE_DEBUG_SPLIT =3D "1"
+
+
+
+
+
+On Thu, Aug 21, 2014 at 3:51 PM, ChenQi <Qi.Chen@windriver.com> wrote:
+
+>  How about add in local.conf:
+>
+> INHERIT +=3D "extrausers"
+> EXTRA_USERS_PARAMS =3D "usermod -L root; \
+>                       useradd -P 'test' test;"
+>
+> //Chen Qi
+>
+>
+> On 08/21/2014 03:13 AM, Crast, Nicholas wrote:
+>
+>  All,
+>
+>
+>
+> I am currently in the middle of a battle with yocto, trying to accomplish
+> the following:
+>
+>
+>
+> 1.)    Disable root user account
+>
+> 2.)    Create default user account with default password
+>
+>
+>
+> I currently have the following a recipe:
+>
+> USERADD_PACKAGES =3D "${PN}"
+>
+> USERADD_PARAM_${PN} =3D "-d /home/nick -r -s /bin/bash nick "
+>
+>
+>
+> In order to try to add a user account. I have this in my image recipe:
+>
+>
+>
+> ROOTFS_POSTPROCESS_COMMAND +=3D "set_nick_passwd;"
+>
+> set_nick_passwd() {
+>
+>    sed 's%^ nick:[^:]*:% nick:adySxRKMiPvjA:%' \
+>
+>        < ${IMAGE_ROOTFS}/etc/shadow \
+>
+>        > ${IMAGE_ROOTFS}/etc/shadow.new;
+>
+>    mv ${IMAGE_ROOTFS}/etc/shadow.new ${IMAGE_ROOTFS}/etc/shadow ;
+>
+> }
+>
+>
+>
+> This is to edit the /etc/shadow file and insert a new (hashed) password.
+> What I=E2=80=99m looking for is a cleaner way to do this. When I run bitb=
+ake I get
+> a lot of warnings because the =E2=80=9Cnick=E2=80=9D account is already a=
+n account on my
+> build machine. This seems like a fairly common use case, and I think I am
+> likely going about it wrong.
+>
+>
+>
+> Does anybody have any advice?
+>
+>
+>
+> -Nick
+>
+> ----------------------------------------
+>
+> Nick Crast
+>
+> Associate Software Engineer
+>
+> Saab Sensis Corporation
+>
+> Phone: 315-445-5703
+>
+> Email: Nicholas.Crast@saabsensis.com
+>
+>
+>
+> *This message is intended only for the addressee and may contain
+> information that is company confidential or privileged. Any technical dat=
+a
+> in this message may be exported only in accordance with the U.S.
+> International Traffic in Arms Regulations (22 CFR Parts 120-130) or the
+> Export Administration Regulations (15 CFR Parts 730-774). Unauthorized us=
+e
+> is strictly prohibited and may be unlawful. If you are not the intended
+> recipient, or the person responsible for delivering to the intended
+> recipient, you should not read, copy, disclose or otherwise use this
+> message. If you have received this email in error, please delete it, and
+> advise the sender immediately. *
+>
+>
+>
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
+>
+>
+
+--047d7b3a90605cb221050122eb0b
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Hi I have added new user in following way:-<br><br>S =3D &=
+quot;${WORKDIR}&quot;<br><br>inherit useradd<br><br>USERADD_PACKAGES =3D &q=
+uot;${PN}&quot;<br><br>USERADD_PARAM_${PN} =3D &quot;-u 1200 -d /home/test =
+-r -s /bin/bash -P &#39;test123&#39; test &quot;<br>
+
+<br><br>GROUPADD_PARAM_${PN} =3D &quot;-g 880 testgrp&quot;<br><br><br>do_i=
+nstall () {<br>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 install -d -m 755=
+ ${D}/home/test<br><br>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 install -=
+p -m 644 &lt;ANYFILE&gt; ${D}/home/test/<br><br>=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0 chown -R cli ${D}/home/test<br>
+
+<br>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 chgrp -R cligrp ${D}/home/te=
+st<br>}<br><br>FILES_${PN} =3D &quot;/home/test/* &quot;<br><br>INHIBIT_PAC=
+KAGE_DEBUG_SPLIT =3D &quot;1&quot;<br><br><br><br></div><div class=3D"gmail=
+_extra"><br><br><div class=3D"gmail_quote">
+
+On Thu, Aug 21, 2014 at 3:51 PM, ChenQi <span dir=3D"ltr">&lt;<a href=3D"ma=
+ilto:Qi.Chen@windriver.com" target=3D"_blank">Qi.Chen@windriver.com</a>&gt;=
+</span> wrote:<br><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .=
+8ex;border-left:1px #ccc solid;padding-left:1ex">
+
+
+ =20
+   =20
+ =20
+  <div text=3D"#000000" bgcolor=3D"#FFFFFF">
+    <div>How about add in local.conf:<br>
+      <br>
+      INHERIT +=3D &quot;extrausers&quot;<br>
+      EXTRA_USERS_PARAMS =3D &quot;usermod -L root; \=C2=A0=C2=A0=C2=A0 <br=
+>
+      =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 useradd -P &#39;t=
+est&#39; test;&quot;<br>
+      <br>
+      //Chen Qi<div><div class=3D"h5"><br>
+      <br>
+      On 08/21/2014 03:13 AM, Crast, Nicholas wrote:<br>
+    </div></div></div><div><div class=3D"h5">
+    <blockquote type=3D"cite">
+     =20
+     =20
+     =20
+      <div>
+        <p class=3D"MsoNormal">All,<u></u><u></u></p>
+        <p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+        <p class=3D"MsoNormal">I am currently in the middle of a battle
+          with yocto, trying to accomplish the following:<u></u><u></u></p>
+        <p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+        <p><span>1.)<span style=3D"font:7.0pt &quot;Times New Roman&quot;">=
+=C2=A0=C2=A0=C2=A0
+            </span></span>Disable root user account<u></u><u></u></p>
+        <p><span>2.)<span style=3D"font:7.0pt &quot;Times New Roman&quot;">=
+=C2=A0=C2=A0=C2=A0
+            </span></span>Create default user account with
+          default password<u></u><u></u></p>
+        <p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+        <p class=3D"MsoNormal">I currently have the following a recipe:<u><=
+/u><u></u></p>
+        <p class=3D"MsoNormal">USERADD_PACKAGES =3D &quot;${PN}&quot;<u></u=
+><u></u></p>
+        <p class=3D"MsoNormal">USERADD_PARAM_${PN} =3D &quot;-d /home/nick =
+-r -s
+          /bin/bash nick &quot;<u></u><u></u></p>
+        <p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+        <p class=3D"MsoNormal">In order to try to add a user account. I
+          have this in my image recipe:<u></u><u></u></p>
+        <p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+        <p class=3D"MsoNormal">ROOTFS_POSTPROCESS_COMMAND +=3D
+          &quot;set_nick_passwd;&quot;<u></u><u></u></p>
+        <p class=3D"MsoNormal">set_nick_passwd() {<u></u><u></u></p>
+        <p class=3D"MsoNormal">=C2=A0=C2=A0 sed &#39;s%^ nick:[^:]*:%
+          nick:adySxRKMiPvjA:%&#39; \<u></u><u></u></p>
+        <p class=3D"MsoNormal">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 &lt; ${=
+IMAGE_ROOTFS}/etc/shadow \<u></u><u></u></p>
+        <p class=3D"MsoNormal">=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 &gt; ${=
+IMAGE_ROOTFS}/etc/shadow.new;<u></u><u></u></p>
+        <p class=3D"MsoNormal">=C2=A0=C2=A0 mv ${IMAGE_ROOTFS}/etc/shadow.n=
+ew
+          ${IMAGE_ROOTFS}/etc/shadow ;<u></u><u></u></p>
+        <p class=3D"MsoNormal">}<u></u><u></u></p>
+        <p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+        <p class=3D"MsoNormal">This is to edit the /etc/shadow file and
+          insert a new (hashed) password. What I=E2=80=99m looking for is a
+          cleaner way to do this. When I run bitbake I get a lot of
+          warnings because the =E2=80=9Cnick=E2=80=9D account is already an=
+ account on
+          my build machine. This seems like a fairly common use case,
+          and I think I am likely going about it wrong.<u></u><u></u></p>
+        <p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+        <p class=3D"MsoNormal">Does anybody have any advice?<u></u><u></u><=
+/p>
+        <p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+        <p class=3D"MsoNormal">-Nick<u></u><u></u></p>
+        <p class=3D"MsoNormal">----------------------------------------<u><=
+/u><u></u></p>
+        <p class=3D"MsoNormal">Nick Crast<u></u><u></u></p>
+        <p class=3D"MsoNormal">Associate Software Engineer<u></u><u></u></p=
+>
+        <p class=3D"MsoNormal">Saab Sensis Corporation<u></u><u></u></p>
+        <p class=3D"MsoNormal">Phone: 315-445-5703<u></u><u></u></p>
+        <p class=3D"MsoNormal">Email: <a href=3D"mailto:Nicholas.Crast@saab=
+sensis.com" target=3D"_blank">Nicholas.Crast@saabsensis.com</a><u></u><u></=
+u></p>
+        <p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+      </div>
+      <br>
+      <i><small>This message is intended only for the addressee and may
+          contain information that is company confidential or
+          privileged. Any technical data in this message may be exported
+          only in accordance with the U.S. International Traffic in Arms
+          Regulations (22 CFR Parts 120-130) or the Export
+          Administration Regulations (15 CFR Parts 730-774).
+          Unauthorized use is strictly prohibited and may be unlawful.
+          If you are not the intended recipient, or the person
+          responsible for delivering to the intended recipient, you
+          should not read, copy, disclose or otherwise use this message.
+          If you have received this email in error, please delete it,
+          and advise the sender immediately.
+        </small></i>
+      <br>
+      <fieldset></fieldset>
+      <br>
+    </blockquote>
+    <br>
+  </div></div></div>
+
+<br>--<br>
+_______________________________________________<br>
+yocto mailing list<br>
+<a href=3D"mailto:yocto@yoctoproject.org">yocto@yoctoproject.org</a><br>
+<a href=3D"https://lists.yoctoproject.org/listinfo/yocto" target=3D"_blank"=
+>https://lists.yoctoproject.org/listinfo/yocto</a><br>
+<br></blockquote></div><br></div>
+
+--047d7b3a90605cb221050122eb0b--
