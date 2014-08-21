@@ -1,31 +1,34 @@
-Return-Path: <marius.avram@intel.com>
+Return-Path: <Vladimir_Redzhepov@epam.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id B3555E004DD; Thu, 21 Aug 2014 08:01:48 -0700 (PDT)
+	id 3D7A5E00844; Thu, 21 Aug 2014 10:02:20 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,HTML_MESSAGE
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [134.134.136.20 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 31235E0034B
-	for <yocto@yoctoproject.org>; Thu, 21 Aug 2014 08:01:43 -0700 (PDT)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga101.jf.intel.com with ESMTP; 21 Aug 2014 08:01:42 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.01,909,1400050800"; d="scan'208";a="561670780"
-Received: from mavram-vostro.rb.intel.com ([10.237.105.71])
-	by orsmga001.jf.intel.com with ESMTP; 21 Aug 2014 08:00:44 -0700
-From: Marius Avram <marius.avram@intel.com>
-To: yocto@yoctoproject.org
-Date: Thu, 21 Aug 2014 18:03:43 +0300
-Message-Id: <1408633424-29274-1-git-send-email-marius.avram@intel.com>
-X-Mailer: git-send-email 1.7.9.5
-Subject: [auh][PATCH v2 1/2] Send emails for a list of recipes
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+Received: from EVBYMINSA0101.epam.com (evbyminsa0101.epam.com [217.21.63.36])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 68C6BE0044A
+	for <yocto@yoctoproject.org>; Thu, 21 Aug 2014 10:02:09 -0700 (PDT)
+Received: from EPBYMINSA0001.epam.com (10.6.110.2) by EPBYMINSA0032.epam.com
+	(10.6.110.32) with Microsoft SMTP Server (TLS) id 15.0.913.22;
+	Thu, 21 Aug 2014 20:01:49 +0300
+Received: from EPBYMINSA0001.epam.com ([::1]) by EPBYMINSA0001.epam.com
+	([::1]) with mapi id 15.00.0913.011; Thu, 21 Aug 2014 20:01:48 +0300
+From: Vladimir Redzhepov <Vladimir_Redzhepov@epam.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: [meta-oracle-java][PATCH] update jdk and jre to version 67
+Thread-Index: Ac+9YY3bnY/5oSRDTvaNMMXDx9AUuw==
+Date: Thu, 21 Aug 2014 17:01:47 +0000
+Message-ID: <35e32346a105465791b484fe34a2a011@EPBYMINSA0001.epam.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.6.162.121]
+MIME-Version: 1.0
+Subject: [meta-oracle-java][PATCH] update jdk and jre to version 67
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,304 +40,386 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 21 Aug 2014 15:01:48 -0000
+X-List-Received-Date: Thu, 21 Aug 2014 17:02:20 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_35e32346a105465791b484fe34a2a011EPBYMINSA0001epamcom_"
 
-If the --emails or -e command line argument is active and a single
-or a list of recipes are given to the script, emails with the results
-and patches will be sent to their maintainers or to the overriden
-addresses from the configuration file.
+--_000_35e32346a105465791b484fe34a2a011EPBYMINSA0001epamcom_
+Content-Type: text/plain; charset="koi8-r"
+Content-Transfer-Encoding: quoted-printable
 
-Also the status email will be sent in the case a selection of
-at least two recipes has been given to the script for upgrading.
+From f0305398a51435f407e41a8f0eaf83f8bdd13cca Mon Sep 17 00:00:00 2001
+From: Vladimir Redzhepov <vladimir_redzhepov@epam.com>
+Date: Thu, 21 Aug 2014 19:43:29 +0300
+Subject: [PATCH] update jdk and jre to version 67
 
-Signed-off-by: Marius Avram <marius.avram@intel.com>
+Signed-off-by: Vladimir Redzhepov <vladimir_redzhepov@epam.com>
 ---
- upgradehelper.py |  199 +++++++++++++++++++++++++++---------------------------
- 1 file changed, 98 insertions(+), 101 deletions(-)
+recipes-devtools/oracle-java/oracle-jse-jdk-i586_1.7.0.bb   | 10 +++++-----
+recipes-devtools/oracle-java/oracle-jse-jdk-x86-64_1.7.0.bb | 10 +++++-----
+recipes-devtools/oracle-java/oracle-jse-jre-i586_1.7.0.bb   | 10 +++++-----
+recipes-devtools/oracle-java/oracle-jse-jre-x86-64_1.7.0.bb | 10 +++++-----
+recipes-devtools/oracle-java/oracle-jse.inc                 |  4 ++--
+5 files changed, 22 insertions(+), 22 deletions(-)
 
-diff --git a/upgradehelper.py b/upgradehelper.py
-index cc90958..9ddfcb5 100755
---- a/upgradehelper.py
-+++ b/upgradehelper.py
-@@ -71,6 +71,8 @@ def parse_cmdline():
-                         help="disable interactive mode")
-     parser.add_argument("-d", "--debug-level", type=int, default=4, choices=range(1, 6),
-                         help="set the debug level: CRITICAL=1, ERROR=2, WARNING=3, INFO=4, DEBUG=5")
-+    parser.add_argument("-e", "--emails", type=bool, default=False,
-+                        help="send emails to recipe maintainers")
-     parser.add_argument("-s", "--skip-compilation", action="store_true", default=False,
-                         help="do not compile, just change the checksums, remove PR, and commit")
-     parser.add_argument("-c", "--config-file", default=None,
-@@ -116,7 +118,27 @@ def parse_config_file(config_file):
-     return (settings, maintainer_override)
- 
- class Updater(object):
--    def __init__(self, auto_mode=False, skip_compilation=False):
-+    mail_header = \
-+        "Hello,\n\nYou are receiving this email because you are the maintainer\n" \
-+        "of *%s* recipe and this is to let you know that the automatic attempt\n" \
-+        "to upgrade the recipe to *%s* has %s.\n\n"
-+
-+    next_steps_info = \
-+        "The recipe has been successfully compiled for all major architectures.\n\n" \
-+        "Next steps:\n" \
-+        "    - apply the patch: git am %s\n" \
-+        "    - check that required patches have not been removed from the recipe\n" \
-+        "    - compile an image that contains the package\n" \
-+        "    - perform some basic sanity tests\n" \
-+        "    - amend the patch and sign it off: git commit -s --reset-author --amend\n" \
-+        "    - send it to the list\n\n" \
-+
-+    mail_footer = \
-+        "Attached are the patch and the logs (+ license file diff) in case of failure.\n\n" \
-+        "Regards,\nThe Upgrade Helper"
-+
-+
-+    def __init__(self, auto_mode=False, send_email=False, skip_compilation=False):
- 
-         self.uh_dir = get_build_dir() + "/upgrade-helper"
-         if not os.path.exists(self.uh_dir):
-@@ -125,10 +147,10 @@ class Updater(object):
-         self.bb = Bitbake(get_build_dir())
-         self.buildhistory = BuildHistory(get_build_dir())
-         self.git = None
--
--        self.author = None
-+        self.author = "Upgrade Helper <uh@not.set>"
-         self.skip_compilation = skip_compilation
-         self.interactive = not auto_mode
-+        self.send_email = send_email
- 
-         self.machines = ["qemux86", "qemux86-64", "qemuarm", "qemumips", "qemuppc"]
- 
-@@ -144,6 +166,7 @@ class Updater(object):
-             (self._compile, None)
-         ]
- 
-+        self.email_handler = Email(settings)
-         self.statistics = Statistics()
- 
- 
-@@ -307,8 +330,9 @@ class Updater(object):
- 
-     # this function will be called at the end of each recipe upgrade
-     def pkg_upgrade_handler(self, err):
--        if err is not None and self.patch_file is not None:
-+        if err and self.patch_file:
-             answer = "N"
-+            status_msg = str(err)
-             if self.interactive:
-                 I(" %s: Do you want to keep the changes? (y/N)" % self.pn)
-                 answer = sys.stdin.readline().strip().upper()
-@@ -317,6 +341,53 @@ class Updater(object):
-                 I(" %s: Dropping changes from git ..." % self.pn)
-                 self.git.reset_hard(1)
-                 self.git.clean_untracked()
-+                return
-+        elif not err:
-+            status_msg = "Succeeded"
-+
-+        status = type(err).__name__
-+
-+        # drop last upgrade from git. It's safer this way if the upgrade has
-+        # problems and other recipes depend on it. Give the other recipes a
-+        # chance...
-+        if ("drop_previous_commits" in settings and
-+                settings["drop_previous_commits"] == "yes" and
-+                err) or (err and self.patch_file):
-+            I(" %s: Dropping changes from git ..." % self.pn)
-+            self.git.reset_hard(1)
-+            self.git.clean_untracked()
-+
-+        if self.send_email:
-+            # don't bother maintainer with mail if the recipe is already up to date
-+            if status == "UpgradeNotNeededError":
-+                return
-+
-+            if self.maintainer in maintainer_override:
-+                to_addr = maintainer_override[self.maintainer]
-+            else:
-+                to_addr = self.maintainer
-+
-+            subject = "[AUH] " + self.pn + ": upgrading to " + self.new_ver
-+            if err is None:
-+                subject += " SUCCEEDED"
-+            else:
-+                subject += " FAILED"
-+
-+            msg_body = self.mail_header % (self.pn, self.new_ver, status_msg)
-+
-+            if err is None:
-+                msg_body += self.next_steps_info % os.path.basename(self.patch_file)
-+
-+            msg_body += self.mail_footer
-+
-+            # Add possible attachments to email
-+            attachments = []
-+            for attachment in os.listdir(self.workdir):
-+                attachment_fullpath = os.path.join(self.workdir, attachment)
-+                if os.path.isfile(attachment_fullpath):
-+                    attachments.append(attachment_fullpath)
-+
-+            self.email_handler.send_email(to_addr, subject, msg_body, attachments)
- 
-     def _commit_changes(self):
-         try:
-@@ -355,6 +426,22 @@ class Updater(object):
- 
-         return ordered_list
- 
-+    def send_status_mail(self):
-+        if "status_recipients" not in settings:
-+            E("Could not send status email, no recipients set!")
-+            return -1
-+
-+        to_list = settings["status_recipients"].split()
-+
-+        subject = "[AUH] Upgrade status: " + date.isoformat(date.today())
-+
-+        msg = self.statistics.pkg_stats() + self.statistics.maintainer_stats()
-+
-+        if self.statistics.total_attempted:
-+            self.email_handler.send_email(to_list, subject, msg)
-+        else:
-+            W("No recipes attempted, not sending status mail!")
-+
-     def run(self, package_list=None):
- #[lp]        pkgs_to_upgrade = self._order_list(self._get_packages_to_upgrade(package_list))
-         pkgs_to_upgrade = self._get_packages_to_upgrade(package_list)
-@@ -399,32 +486,12 @@ class Updater(object):
- 
-         if (attempted_pkgs > 1):
-             print("%s" % self.statistics.pkg_stats())
-+            if self.send_email:
-+                self.send_status_mail()
- 
--
--class UniverseUpdater(Updater, Email):
--    mail_header = \
--        "Hello,\n\nYou are receiving this email because you are the maintainer\n" \
--        "of *%s* recipe and this is to let you know that the automatic attempt\n" \
--        "to upgrade the recipe to *%s* has %s.\n\n"
--
--    next_steps_info = \
--        "The recipe has been successfully compiled for all major architectures.\n\n" \
--        "Next steps:\n" \
--        "    - apply the patch: git am %s\n" \
--        "    - check that required patches have not been removed from the recipe\n" \
--        "    - compile an image that contains the package\n" \
--        "    - perform some basic sanity tests\n" \
--        "    - amend the patch and sign it off: git commit -s --reset-author --amend\n" \
--        "    - send it to the list\n\n" \
--
--    mail_footer = \
--        "Attached are the patch and the logs (+ license file diff) in case of failure.\n\n" \
--        "Regards,\nThe Upgrade Helper"
--
-+class UniverseUpdater(Updater):
-     def __init__(self):
--        Updater.__init__(self, True)
--        Email.__init__(self, settings)
--        self.author = "Upgrade Helper <uh@not.set>"
-+        Updater.__init__(self, True, True)
-         self.git = Git(os.path.dirname(os.getenv('PATH', False).split(':')[0]))
- 
-         # read history file
-@@ -570,84 +637,14 @@ class UniverseUpdater(Updater, Email):
- 
-     # overriding the base method
-     def pkg_upgrade_handler(self, err):
--        if err is None:
--            status_msg = "Succeeded"
--        else:
--            status_msg = str(err)
--
--        status = type(err).__name__
--
--        # drop last upgrade from git. It's safer this way if the upgrade has
--        # problems and other recipes depend on it. Give the other recipes a
--        # chance...
--        if ("drop_previous_commits" in settings and
--                settings["drop_previous_commits"] == "yes" and
--                err is None) or (err is not None and self.patch_file is not None):
--            I(" %s: Dropping changes from git ..." % self.pn)
--            self.git.reset_hard(1)
--            self.git.clean_untracked()
--
--        self.update_history(self.pn, self.new_ver, self.maintainer,
--                            status_msg)
--
--        # don't bother maintainer with mails for unknown errors, unsuported
--        # protocol or if the recipe is already up to date
--        if status == "Error" or status == "UnsupportedProtocolError" or \
--                status == "UpgradeNotNeededError":
--            return
--
--        if self.maintainer in maintainer_override:
--            to_addr = maintainer_override[self.maintainer]
--        else:
--            to_addr = self.maintainer
--
--        subject = "[AUH] " + self.pn + ": upgrading to " + self.new_ver
--        if err is None:
--            subject += " SUCCEEDED"
--        else:
--            subject += " FAILED"
--
--        msg_body = self.mail_header % (self.pn, self.new_ver, status_msg)
--
--        if err is None:
--            msg_body += self.next_steps_info % os.path.basename(self.patch_file)
--
--        msg_body += self.mail_footer
--
--        # Add possible attachments to list
--        attachments = []
--        for attachment in os.listdir(self.workdir):
--            attachment_fullpath = os.path.join(self.workdir, attachment)
--            if os.path.isfile(attachment_fullpath):
--                attachments.append(attachment_fullpath)
--
--        self.send_email(to_addr, subject, msg_body, attachments)
--
--    def send_status_mail(self):
--        if "status_recipients" not in settings:
--            E("Could not send status email, no recipients set!")
--            return -1
--
--        to_list = settings["status_recipients"].split()
--
--        subject = "[AUH] Upgrade status: " + date.isoformat(date.today())
--
--        msg = self.statistics.pkg_stats() + self.statistics.maintainer_stats()
--
--        if self.statistics.total_attempted:
--            self.send_email(to_list, subject, msg)
--        else:
--            W("No recipes attempted, not sending status mail!")
-+        super(UniverseUpdater, self).pkg_upgrade_handler(self)
-+        self.update_history(self.pn, self.new_ver, self.maintainer, status_msg)
- 
-     def run(self):
-         self.update_master()
--
-         self.prepare()
--
-         super(UniverseUpdater, self).run()
- 
--        self.send_status_mail()
--
- 
- if __name__ == "__main__":
-     global settings
-@@ -675,5 +672,5 @@ if __name__ == "__main__":
-             for pkg in args.recipe:
-                 pkg_list.append((pkg, None, None))
- 
--        updater = Updater(args.auto_mode, args.skip_compilation)
-+        updater = Updater(args.auto_mode, args.emails, args.skip_compilation)
-         updater.run(pkg_list)
--- 
-1.7.9.5
+diff --git a/recipes-devtools/oracle-java/oracle-jse-jdk-i586_1.7.0.bb b/re=
+cipes-devtools/oracle-java/oracle-jse-jdk-i586_1.7.0.bb
+index 978fbd5..07fa39b 100644
+--- a/recipes-devtools/oracle-java/oracle-jse-jdk-i586_1.7.0.bb
++++ b/recipes-devtools/oracle-java/oracle-jse-jdk-i586_1.7.0.bb
+@@ -1,9 +1,9 @@
+-PR =3D "r0"
+-PV_UPDATE =3D "25"
++PR =3D "r1"
++PV_UPDATE =3D "67"
+ require oracle-jse-jdk.inc
+-SRC_URI =3D "http://download.oracle.com/otn-pub/java/jdk/7u25-b15/jdk-7u25=
+-linux-i586.tar.gz"
++SRC_URI =3D "http://download.oracle.com/otn-pub/java/jdk/7u67-b01/jdk-7u67=
+-linux-i586.tar.gz"
+-SRC_URI[md5sum] =3D "23176d0ebf9dedd21e3150b4bb0ee776"
+-SRC_URI[sha256sum] =3D "dd89b20afa939992bb7fdc44837fa64f0a98d7ee1e5706fe8a=
+2d9e2247ba6de7"
++SRC_URI[md5sum] =3D "715b0e8ba2a06bded75f6a92427e2701"
++SRC_URI[sha256sum] =3D "b6231064ad2c9fbbcb099dba17b1dcf12033e922b9c24e4348=
+b9a01e9ebaa85c"
+diff --git a/recipes-devtools/oracle-java/oracle-jse-jdk-x86-64_1.7.0.bb b/=
+recipes-devtools/oracle-java/oracle-jse-jdk-x86-64_1.7.0.bb
+index 7979401..8bad119 100644
+--- a/recipes-devtools/oracle-java/oracle-jse-jdk-x86-64_1.7.0.bb
++++ b/recipes-devtools/oracle-java/oracle-jse-jdk-x86-64_1.7.0.bb
+@@ -1,9 +1,9 @@
+-PR =3D "r0"
+-PV_UPDATE =3D "25"
++PR =3D "r1"
++PV_UPDATE =3D "67"
+ require oracle-jse-jdk.inc
+-SRC_URI =3D "http://download.oracle.com/otn-pub/java/jdk/7u25-b15/jdk-7u25=
+-linux-x64.tar.gz"
++SRC_URI =3D "http://download.oracle.com/otn-pub/java/jdk/7u67-b01/jdk-7u67=
+-linux-x64.tar.gz"
+-SRC_URI[md5sum] =3D "83ba05e260813f7a9140b76e3d37ea33"
+-SRC_URI[sha256sum] =3D "f80dff0e19ca8d038cf7fe3aaa89538496b80950f4d10ff5f4=
+57988ae159b2a6"
++SRC_URI[md5sum] =3D "81e3e2df33e13781e5fac5756ed90e67"
++SRC_URI[sha256sum] =3D "54dd1e13edf18c64941a55da9c91210b53dc5cf48f1a8f4538=
+c863049e346335"
+diff --git a/recipes-devtools/oracle-java/oracle-jse-jre-i586_1.7.0.bb b/re=
+cipes-devtools/oracle-java/oracle-jse-jre-i586_1.7.0.bb
+index 6125025..4165d74 100644
+--- a/recipes-devtools/oracle-java/oracle-jse-jre-i586_1.7.0.bb
++++ b/recipes-devtools/oracle-java/oracle-jse-jre-i586_1.7.0.bb
+@@ -1,9 +1,9 @@
+-PR =3D "r0"
+-PV_UPDATE =3D "25"
++PR =3D "r1"
++PV_UPDATE =3D "67"
+ require oracle-jse-jre.inc
+-SRC_URI =3D "http://download.oracle.com/otn-pub/java/jdk/7u25-b15/jre-7u25=
+-linux-i586.tar.gz"
++SRC_URI =3D "http://download.oracle.com/otn-pub/java/jdk/7u67-b01/jre-7u67=
+-linux-i586.tar.gz"
+-SRC_URI[md5sum] =3D "0e9ccefe49e937e592dbb605f2e8e7d8"
+-SRC_URI[sha256sum] =3D "4016965536d8607743267812ab04e6d428036dda432893748c=
+1df6cb77b09628"
++SRC_URI[md5sum] =3D "2a256eb2a91f0084e58c612636342c2b"
++SRC_URI[sha256sum] =3D "eadec83a54d3a9d09248a8d16b21c03da9afffc7317e775fb8=
+db962620a0781d"
+diff --git a/recipes-devtools/oracle-java/oracle-jse-jre-x86-64_1.7.0.bb b/=
+recipes-devtools/oracle-java/oracle-jse-jre-x86-64_1.7.0.bb
+index 4058d23..a1474a9 100644
+--- a/recipes-devtools/oracle-java/oracle-jse-jre-x86-64_1.7.0.bb
++++ b/recipes-devtools/oracle-java/oracle-jse-jre-x86-64_1.7.0.bb
+@@ -1,9 +1,9 @@
+-PR =3D "r0"
+-PV_UPDATE =3D "25"
++PR =3D "r1"
++PV_UPDATE =3D "67"
+ require oracle-jse-jre.inc
+-SRC_URI =3D "http://download.oracle.com/otn-pub/java/jdk/7u25-b15/jre-7u25=
+-linux-x64.tar.gz"
++SRC_URI =3D "http://download.oracle.com/otn-pub/java/jdk/7u67-b01/jre-7u67=
+-linux-x64.tar.gz"
+-SRC_URI[md5sum] =3D "743ee0ebf73ce428c912866d84e374e0"
+-SRC_URI[sha256sum] =3D "3c4496316fb413d5ab0590e9971676a521b9a600b3ceaac311=
+f04c18c98a98c0"
++SRC_URI[md5sum] =3D "9007c79167be0177fb47e5313c53d5cb"
++SRC_URI[sha256sum] =3D "726c37c07bb389b5b96674b7bcbc288e39fb8fbcd42369afa3=
+64a18e66248b1f"
+diff --git a/recipes-devtools/oracle-java/oracle-jse.inc b/recipes-devtools=
+/oracle-java/oracle-jse.inc
+index 3a4e20d..38ceef0 100644
+--- a/recipes-devtools/oracle-java/oracle-jse.inc
++++ b/recipes-devtools/oracle-java/oracle-jse.inc
+@@ -2,8 +2,8 @@ LICENSE_FLAGS =3D "oracle_java"
+LICENSE =3D "Oracle_Binary_Code_License_Agreement"
+LIC_FILES_CHKSUM =3D "\
+               file://${WORKDIR}/${JDK_JRE}${PV}_${PV_UPDATE}/LICENSE;md5=
+=3D98f46ab6481d87c4d77e0e91a6dbc15f \
+-              file://${WORKDIR}/${JDK_JRE}${PV}_${PV_UPDATE}/COPYRIGHT;md5=
+=3D3a11238025bf13b87f04753183ffeb90 \
+-                file://${WORKDIR}/${JDK_JRE}${PV}_${PV_UPDATE}/THIRDPARTYL=
+ICENSEREADME.txt;md5=3Dc339b34e3da6673d2c5950d0f8808f8c \
++             file://${WORKDIR}/${JDK_JRE}${PV}_${PV_UPDATE}/COPYRIGHT;md5=
+=3Dbe9fe5d47a7dcfb78f142f487afb34bb \
++                file://${WORKDIR}/${JDK_JRE}${PV}_${PV_UPDATE}/THIRDPARTYL=
+ICENSEREADME.txt;md5=3Df3a388961d24b8b72d412a079a878cdb \
+               "
+ FETCHCMD_wget_append =3D " --header=3DCookie:oraclelicense=3Da "
+--
+2.1.0
 
 
+--_000_35e32346a105465791b484fe34a2a011EPBYMINSA0001epamcom_
+Content-Type: text/html; charset="koi8-r"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dkoi8-r">
+<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#0563C1;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:#954F72;
+	text-decoration:underline;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri","sans-serif";
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri","sans-serif";}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:56.7pt 42.5pt 56.7pt 85.05pt;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"#0563C1" vlink=3D"#954F72">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal">From f0305398a51435f407e41a8f0eaf83f8bdd13cca Mon Se=
+p 17 00:00:00 2001<o:p></o:p></p>
+<p class=3D"MsoNormal">From: Vladimir Redzhepov &lt;vladimir_redzhepov@epam=
+.com&gt;<o:p></o:p></p>
+<p class=3D"MsoNormal">Date: Thu, 21 Aug 2014 19:43:29 &#43;0300<o:p></o:p>=
+</p>
+<p class=3D"MsoNormal">Subject: [PATCH] update jdk and jre to version 67<o:=
+p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Signed-off-by: Vladimir Redzhepov &lt;vladimir_redzh=
+epov@epam.com&gt;<o:p></o:p></p>
+<p class=3D"MsoNormal">---<o:p></o:p></p>
+<p class=3D"MsoNormal">recipes-devtools/oracle-java/oracle-jse-jdk-i586_1.7=
+.0.bb&nbsp;&nbsp; | 10 &#43;&#43;&#43;&#43;&#43;-----<o:p></o:p></p>
+<p class=3D"MsoNormal">recipes-devtools/oracle-java/oracle-jse-jdk-x86-64_1=
+.7.0.bb | 10 &#43;&#43;&#43;&#43;&#43;-----<o:p></o:p></p>
+<p class=3D"MsoNormal">recipes-devtools/oracle-java/oracle-jse-jre-i586_1.7=
+.0.bb&nbsp;&nbsp; | 10 &#43;&#43;&#43;&#43;&#43;-----<o:p></o:p></p>
+<p class=3D"MsoNormal">recipes-devtools/oracle-java/oracle-jse-jre-x86-64_1=
+.7.0.bb | 10 &#43;&#43;&#43;&#43;&#43;-----<o:p></o:p></p>
+<p class=3D"MsoNormal">recipes-devtools/oracle-java/oracle-jse.inc&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp; |&nbsp; 4 &#43;&#43;--<o:p></o:p></p>
+<p class=3D"MsoNormal">5 files changed, 22 insertions(&#43;), 22 deletions(=
+-)<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">diff --git a/recipes-devtools/oracle-java/oracle-jse=
+-jdk-i586_1.7.0.bb b/recipes-devtools/oracle-java/oracle-jse-jdk-i586_1.7.0=
+.bb<o:p></o:p></p>
+<p class=3D"MsoNormal">index 978fbd5..07fa39b 100644<o:p></o:p></p>
+<p class=3D"MsoNormal">--- a/recipes-devtools/oracle-java/oracle-jse-jdk-i5=
+86_1.7.0.bb<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;&#43;&#43; b/recipes-devtools/oracle-java/oracl=
+e-jse-jdk-i586_1.7.0.bb<o:p></o:p></p>
+<p class=3D"MsoNormal">@@ -1,9 &#43;1,9 @@<o:p></o:p></p>
+<p class=3D"MsoNormal">-PR =3D &quot;r0&quot;<o:p></o:p></p>
+<p class=3D"MsoNormal">-PV_UPDATE =3D &quot;25&quot;<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;PR =3D &quot;r1&quot;<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;PV_UPDATE =3D &quot;67&quot;<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;require oracle-jse-jdk.inc<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p></o:p></p>
+<p class=3D"MsoNormal"><span lang=3D"DE">-SRC_URI =3D &quot;http://download=
+.oracle.com/otn-pub/java/jdk/7u25-b15/jdk-7u25-linux-i586.tar.gz&quot;<o:p>=
+</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"DE">&#43;SRC_URI =3D &quot;http://down=
+load.oracle.com/otn-pub/java/jdk/7u67-b01/jdk-7u67-linux-i586.tar.gz&quot;<=
+o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"DE"><o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"DE">-SRC_URI[md5sum] =3D &quot;23176d0=
+ebf9dedd21e3150b4bb0ee776&quot;<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"DE">-SRC_URI[sha256sum] =3D &quot;dd89=
+b20afa939992bb7fdc44837fa64f0a98d7ee1e5706fe8a2d9e2247ba6de7&quot;<o:p></o:=
+p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"DE">&#43;SRC_URI[md5sum] =3D &quot;715=
+b0e8ba2a06bded75f6a92427e2701&quot;<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"DE">&#43;SRC_URI[sha256sum] =3D &quot;=
+b6231064ad2c9fbbcb099dba17b1dcf12033e922b9c24e4348b9a01e9ebaa85c&quot;<o:p>=
+</o:p></span></p>
+<p class=3D"MsoNormal">diff --git a/recipes-devtools/oracle-java/oracle-jse=
+-jdk-x86-64_1.7.0.bb b/recipes-devtools/oracle-java/oracle-jse-jdk-x86-64_1=
+.7.0.bb<o:p></o:p></p>
+<p class=3D"MsoNormal">index 7979401..8bad119 100644<o:p></o:p></p>
+<p class=3D"MsoNormal">--- a/recipes-devtools/oracle-java/oracle-jse-jdk-x8=
+6-64_1.7.0.bb<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;&#43;&#43; b/recipes-devtools/oracle-java/oracl=
+e-jse-jdk-x86-64_1.7.0.bb<o:p></o:p></p>
+<p class=3D"MsoNormal">@@ -1,9 &#43;1,9 @@<o:p></o:p></p>
+<p class=3D"MsoNormal">-PR =3D &quot;r0&quot;<o:p></o:p></p>
+<p class=3D"MsoNormal">-PV_UPDATE =3D &quot;25&quot;<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;PR =3D &quot;r1&quot;<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;PV_UPDATE =3D &quot;67&quot;<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;require oracle-jse-jdk.inc<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p></o:p></p>
+<p class=3D"MsoNormal"><span lang=3D"DE">-SRC_URI =3D &quot;http://download=
+.oracle.com/otn-pub/java/jdk/7u25-b15/jdk-7u25-linux-x64.tar.gz&quot;<o:p><=
+/o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"DE">&#43;SRC_URI =3D &quot;http://down=
+load.oracle.com/otn-pub/java/jdk/7u67-b01/jdk-7u67-linux-x64.tar.gz&quot;<o=
+:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"DE"><o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"DE">-SRC_URI[md5sum] =3D &quot;83ba05e=
+260813f7a9140b76e3d37ea33&quot;<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"DE">-SRC_URI[sha256sum] =3D &quot;f80d=
+ff0e19ca8d038cf7fe3aaa89538496b80950f4d10ff5f457988ae159b2a6&quot;<o:p></o:=
+p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"DE">&#43;SRC_URI[md5sum] =3D &quot;81e=
+3e2df33e13781e5fac5756ed90e67&quot;<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"DE">&#43;SRC_URI[sha256sum] =3D &quot;=
+54dd1e13edf18c64941a55da9c91210b53dc5cf48f1a8f4538c863049e346335&quot;<o:p>=
+</o:p></span></p>
+<p class=3D"MsoNormal">diff --git a/recipes-devtools/oracle-java/oracle-jse=
+-jre-i586_1.7.0.bb b/recipes-devtools/oracle-java/oracle-jse-jre-i586_1.7.0=
+.bb<o:p></o:p></p>
+<p class=3D"MsoNormal">index 6125025..4165d74 100644<o:p></o:p></p>
+<p class=3D"MsoNormal">--- a/recipes-devtools/oracle-java/oracle-jse-jre-i5=
+86_1.7.0.bb<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;&#43;&#43; b/recipes-devtools/oracle-java/oracl=
+e-jse-jre-i586_1.7.0.bb<o:p></o:p></p>
+<p class=3D"MsoNormal">@@ -1,9 &#43;1,9 @@<o:p></o:p></p>
+<p class=3D"MsoNormal">-PR =3D &quot;r0&quot;<o:p></o:p></p>
+<p class=3D"MsoNormal">-PV_UPDATE =3D &quot;25&quot;<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;PR =3D &quot;r1&quot;<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;PV_UPDATE =3D &quot;67&quot;<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;require oracle-jse-jre.inc<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p></o:p></p>
+<p class=3D"MsoNormal"><span lang=3D"DE">-SRC_URI =3D &quot;http://download=
+.oracle.com/otn-pub/java/jdk/7u25-b15/jre-7u25-linux-i586.tar.gz&quot;<o:p>=
+</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"DE">&#43;SRC_URI =3D &quot;http://down=
+load.oracle.com/otn-pub/java/jdk/7u67-b01/jre-7u67-linux-i586.tar.gz&quot;<=
+o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"DE"><o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"DE">-SRC_URI[md5sum] =3D &quot;0e9ccef=
+e49e937e592dbb605f2e8e7d8&quot;<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"DE">-SRC_URI[sha256sum] =3D &quot;4016=
+965536d8607743267812ab04e6d428036dda432893748c1df6cb77b09628&quot;<o:p></o:=
+p></span></p>
+<p class=3D"MsoNormal">&#43;SRC_URI[md5sum] =3D &quot;2a256eb2a91f0084e58c6=
+12636342c2b&quot;<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;SRC_URI[sha256sum] =3D &quot;eadec83a54d3a9d092=
+48a8d16b21c03da9afffc7317e775fb8db962620a0781d&quot;<o:p></o:p></p>
+<p class=3D"MsoNormal">diff --git a/recipes-devtools/oracle-java/oracle-jse=
+-jre-x86-64_1.7.0.bb b/recipes-devtools/oracle-java/oracle-jse-jre-x86-64_1=
+.7.0.bb<o:p></o:p></p>
+<p class=3D"MsoNormal">index 4058d23..a1474a9 100644<o:p></o:p></p>
+<p class=3D"MsoNormal">--- a/recipes-devtools/oracle-java/oracle-jse-jre-x8=
+6-64_1.7.0.bb<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;&#43;&#43; b/recipes-devtools/oracle-java/oracl=
+e-jse-jre-x86-64_1.7.0.bb<o:p></o:p></p>
+<p class=3D"MsoNormal">@@ -1,9 &#43;1,9 @@<o:p></o:p></p>
+<p class=3D"MsoNormal">-PR =3D &quot;r0&quot;<o:p></o:p></p>
+<p class=3D"MsoNormal">-PV_UPDATE =3D &quot;25&quot;<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;PR =3D &quot;r1&quot;<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;PV_UPDATE =3D &quot;67&quot;<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;require oracle-jse-jre.inc<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p></o:p></p>
+<p class=3D"MsoNormal"><span lang=3D"DE">-SRC_URI =3D &quot;http://download=
+.oracle.com/otn-pub/java/jdk/7u25-b15/jre-7u25-linux-x64.tar.gz&quot;<o:p><=
+/o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"DE">&#43;SRC_URI =3D &quot;http://down=
+load.oracle.com/otn-pub/java/jdk/7u67-b01/jre-7u67-linux-x64.tar.gz&quot;<o=
+:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"DE"><o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"DE">-SRC_URI[md5sum] =3D &quot;743ee0e=
+bf73ce428c912866d84e374e0&quot;<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"DE">-SRC_URI[sha256sum] =3D &quot;3c44=
+96316fb413d5ab0590e9971676a521b9a600b3ceaac311f04c18c98a98c0&quot;<o:p></o:=
+p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"DE">&#43;SRC_URI[md5sum] =3D &quot;900=
+7c79167be0177fb47e5313c53d5cb&quot;<o:p></o:p></span></p>
+<p class=3D"MsoNormal">&#43;SRC_URI[sha256sum] =3D &quot;726c37c07bb389b5b9=
+6674b7bcbc288e39fb8fbcd42369afa364a18e66248b1f&quot;<o:p></o:p></p>
+<p class=3D"MsoNormal">diff --git a/recipes-devtools/oracle-java/oracle-jse=
+.inc b/recipes-devtools/oracle-java/oracle-jse.inc<o:p></o:p></p>
+<p class=3D"MsoNormal">index 3a4e20d..38ceef0 100644<o:p></o:p></p>
+<p class=3D"MsoNormal">--- a/recipes-devtools/oracle-java/oracle-jse.inc<o:=
+p></o:p></p>
+<p class=3D"MsoNormal">&#43;&#43;&#43; b/recipes-devtools/oracle-java/oracl=
+e-jse.inc<o:p></o:p></p>
+<p class=3D"MsoNormal">@@ -2,8 &#43;2,8 @@ LICENSE_FLAGS =3D &quot;oracle_j=
+ava&quot;<o:p></o:p></p>
+<p class=3D"MsoNormal">LICENSE =3D &quot;Oracle_Binary_Code_License_Agreeme=
+nt&quot;<o:p></o:p></p>
+<p class=3D"MsoNormal">LIC_FILES_CHKSUM =3D &quot;\<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; file://${WORKDIR}/${JDK_JRE}${PV}_${PV_UPD=
+ATE}/LICENSE;md5=3D98f46ab6481d87c4d77e0e91a6dbc15f \<o:p></o:p></p>
+<p class=3D"MsoNormal">-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp; file://${WORKDIR}/${JDK_JRE}${PV}_${PV_UPDATE}/=
+COPYRIGHT;md5=3D3a11238025bf13b87f04753183ffeb90 \<o:p></o:p></p>
+<p class=3D"MsoNormal">-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; file://${WORKDIR}/${JDK_JRE}${PV}_$=
+{PV_UPDATE}/THIRDPARTYLICENSEREADME.txt;md5=3Dc339b34e3da6673d2c5950d0f8808=
+f8c \<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp; file://${WORKDIR}/${JDK_JRE}${PV}_${PV_UPDATE}/CO=
+PYRIGHT;md5=3Dbe9fe5d47a7dcfb78f142f487afb34bb \<o:p></o:p></p>
+<p class=3D"MsoNormal">&#43;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; file://${WORKDIR}/${JDK_JRE}${P=
+V}_${PV_UPDATE}/THIRDPARTYLICENSEREADME.txt;md5=3Df3a388961d24b8b72d412a079=
+a878cdb \<o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &quot;<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p></o:p></p>
+<p class=3D"MsoNormal">&nbsp;FETCHCMD_wget_append =3D &quot; --header=3DCoo=
+kie:oraclelicense=3Da &quot;<o:p></o:p></p>
+<p class=3D"MsoNormal">-- <o:p></o:p></p>
+<p class=3D"MsoNormal">2.1.0<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+</body>
+</html>
+
+--_000_35e32346a105465791b484fe34a2a011EPBYMINSA0001epamcom_--
