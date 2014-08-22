@@ -1,48 +1,38 @@
-Return-Path: <anders@chargestorm.se>
+Return-Path: <paul.eggleton@linux.intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id EBCAAE00798; Fri, 22 Aug 2014 02:09:10 -0700 (PDT)
+	id B29DDE007A0; Fri, 22 Aug 2014 04:00:52 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [83.145.59.140 listed in list.dnswl.org]
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [192.55.52.93 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-X-Greylist: delayed 67 seconds by postgrey-1.32 at yocto-www;
-	Fri, 22 Aug 2014 02:09:08 PDT
-Received: from stoexhubfe01.domain01.net (STOEXHUBFE01.domain01.net
-	[83.145.59.140])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 894AEE0044A
-	for <yocto@yoctoproject.org>; Fri, 22 Aug 2014 02:09:08 -0700 (PDT)
-Received: from ad.chargestorm.se (83.252.255.124) by stoexhubfe01.domain01.net
-	(10.12.10.6) with Microsoft SMTP Server (TLS) id 8.3.279.1;
-	Fri, 22 Aug 2014 11:07:58 +0200
-Date: Fri, 22 Aug 2014 11:07:41 +0200
-From: Anders Darander <anders@chargestorm.se>
-To: Richard Leitner <richard.leitner@skidata.com>
-Message-ID: <20140822090741.GB18766@ad.chargestorm.se>
-Mail-Followup-To: Richard Leitner <richard.leitner@skidata.com>,
-	Nicolas Dechesne <nicolas.dechesne@linaro.org>,
-	Yocto list discussion <yocto@yoctoproject.org>
-References: <20140812142043.31d6766f@lxbuild.skidata.net>
-	<alpine.LFD.2.11.1408120827190.21762@localhost>
-	<20140812145857.23eda070@lxbuild.skidata.net>
-	<CAP71WjxiBCScKkTC0a735B94WCwbu8Z9SzWVi58ma4-aw8mNMA@mail.gmail.com>
-	<20140812155243.31bae60a@lxbuild.skidata.net>
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5BF53E00796
+	for <yocto@yoctoproject.org>; Fri, 22 Aug 2014 04:00:48 -0700 (PDT)
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+	by fmsmga102.fm.intel.com with ESMTP; 22 Aug 2014 04:00:47 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.04,379,1406617200"; d="scan'208";a="580353374"
+Received: from mvnawara-mobl.gar.corp.intel.com (HELO
+	peggleto-mobl5.ger.corp.intel.com) ([10.252.122.246])
+	by fmsmga001.fm.intel.com with ESMTP; 22 Aug 2014 04:00:46 -0700
+From: Paul Eggleton <paul.eggleton@linux.intel.com>
+To: Alex Damian <alex.r.damian@gmail.com>
+Date: Fri, 22 Aug 2014 12:00:45 +0100
+Message-ID: <5777242.Xr7uNq0FsT@peggleto-mobl5.ger.corp.intel.com>
+Organization: Intel Corporation
+User-Agent: KMail/4.13.3 (Linux/3.15.10-200.fc20.x86_64; KDE/4.13.3; x86_64; ;
+	)
+In-Reply-To: <CAL7ttbfhyeXxh1xHkAreqJG8_kBd8ND6wkiBSb3Jt2Ry1=MUig@mail.gmail.com>
+References: <CAL7ttbfhyeXxh1xHkAreqJG8_kBd8ND6wkiBSb3Jt2Ry1=MUig@mail.gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <20140812155243.31bae60a@lxbuild.skidata.net>
-X-Accept-Language: sv, en, de
-X-GPG-Fingerprint: 5AF0 B2E9 78FE 9D75 D110  6F8F 3E31 84D7 920E 938C
-X-GPG-Key-Id: 0x920E938C
-X-GPG-Keyserver: hkp://keys.gnupg.net
-Organization: ChargeStorm AB
-User-Agent: Mutt/1.5.23 (2014-03-12)
-X-GFI-SMTP-Submission: 1
-Cc: Yocto list discussion <yocto@yoctoproject.org>
-Subject: Re: Force recipe to provide specific file
+Cc: yocto@yoctoproject.org
+Subject: Re: should systemd be considered harmful ?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -54,32 +44,62 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 22 Aug 2014 09:09:11 -0000
+X-List-Received-Date: Fri, 22 Aug 2014 11:00:52 -0000
+Content-Transfer-Encoding: 7Bit
 Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
 
-* Richard Leitner <richard.leitner@skidata.com> [140812 15:53]:
-> > but anyways, a simpler way to so the same thing would be do have a
-> > do_install_append() function and remove the files from ${D}. that
-> > would in turns have the same effect as what you are trying to do here
-> > i believe.
+Hi Alex,
 
-> Yeah, this works, this is the way I'm currently doing it as I already mentioned
-> earlier.
-> But is this really a clean way?
+On Wednesday 20 August 2014 18:53:10 Alex Damian wrote:
+> In release 216, systemd includes a caching nameserver, and full TTY stream
+> parsing. See details
+> 
+> http://lists.freedesktop.org/archives/systemd-devel/2014-August/022295.html
+> 
+> I think the ever growing number of components in systemd will create
+> conflicts with the normal tools, like libresolv, used in traditional UNIX
+> systems.
+> 
+> I think the number of components shipped with and required by systemd is
+> pretty outside the scope for an init system.
+> 
+> I would argue that the monolithic systemd is not in line with the UNIX
+> philosophy of small tools that do one thing and do it well, and that it is
+> actually contra-productive to use it in embedded systems due to the large
+> number of dependencies needed to get it to run, as well as the difficulty
+> to debug when something goes amiss.
+> 
+> Can I get your opinions in the respect that systemd is a useful tool to
+> have in the Yocto Project ?
 
-It's a pretty clean way, yes.
+One of the things that OpenEmbedded (and by extension, the Yocto Project) 
+emphasises is flexibility. We support three packaging backends for example. It 
+has to be this way - the systems we are targeting vary greatly in size, scope, 
+and application. The OS produced by our build system may not always 
+necessarily resemble a traditional Linux or even Unix system.
 
-> What happens for example if do_install_append is already defined in the recipe?
+As far as init goes, for some devices, you can get by with sysvinit. Others 
+can do with much less - e.g. a single sequential script for initialising the 
+device and starting services. Others still need something more dynamic and 
+robust, and those are the things systemd is designed to handle better. We need 
+to cater for all of these, so we have little choice but to support systemd and 
+do so properly. That does mean that the build system has to understand what 
+functions systemd provides and where other software that might otherwise 
+provide that functionality is not needed and thus should not be installed when 
+systemd is being used.
 
+I know a lot of people hold the view that systemd is rolling in too many 
+functions that are already handled elsewhere, and it has seemed that way to me 
+at times. It may be worth taking a look over this blog post if you haven't 
+already though:
 
-No issue at all. The do_install_append's will just be appended one after
-each other.
+http://0pointer.de/blog/projects/the-biggest-myths
 
 Cheers,
-Anders
+Paul
 
 -- 
-Anders Darander
-ChargeStorm AB / eStorm AB
+
+Paul Eggleton
+Intel Open Source Technology Centre
 
