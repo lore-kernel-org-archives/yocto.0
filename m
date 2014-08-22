@@ -1,38 +1,43 @@
 Return-Path: <Bruce.Ashfield@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 7BEE1E007A0; Fri, 22 Aug 2014 05:49:55 -0700 (PDT)
+	id 337BDE007A0; Fri, 22 Aug 2014 06:29:47 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
-	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at http://www.dnswl.org/,
-	*      medium trust
+X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
+	http://www.dnswl.org/, *      medium trust
 	*      [147.11.1.11 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+	*      [score: 0.0000]
 Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 19517E00796
-	for <yocto@yoctoproject.org>; Fri, 22 Aug 2014 05:49:49 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 00008E00796
+	for <yocto@yoctoproject.org>; Fri, 22 Aug 2014 06:29:36 -0700 (PDT)
 Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
 	[147.11.189.40])
-	by mail.windriver.com (8.14.9/8.14.5) with ESMTP id s7MCndpM011982
+	by mail.windriver.com (8.14.9/8.14.5) with ESMTP id s7MDTNM8020356
 	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Fri, 22 Aug 2014 05:49:41 -0700 (PDT)
+	Fri, 22 Aug 2014 06:29:24 -0700 (PDT)
 Received: from [128.224.56.48] (128.224.56.48) by ALA-HCA.corp.ad.wrs.com
 	(147.11.189.50) with Microsoft SMTP Server id 14.3.174.1;
-	Fri, 22 Aug 2014 05:49:39 -0700
-Message-ID: <53F73C54.60803@windriver.com>
-Date: Fri, 22 Aug 2014 08:49:24 -0400
+	Fri, 22 Aug 2014 06:29:23 -0700
+Message-ID: <53F745A5.7050400@windriver.com>
+Date: Fri, 22 Aug 2014 09:29:09 -0400
 From: Bruce Ashfield <bruce.ashfield@windriver.com>
 User-Agent: Mozilla/5.0 (X11; Linux x86_64;
 	rv:31.0) Gecko/20100101 Thunderbird/31.0
 MIME-Version: 1.0
-To: Sona Sarmadi <sona.sarmadi@enea.com>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>
-References: <3230301C09DEF9499B442BBE162C5E48256DB954@SESTOEX04.enea.se>
-In-Reply-To: <3230301C09DEF9499B442BBE162C5E48256DB954@SESTOEX04.enea.se>
-Subject: Re: kernel patches
+To: Chris Tapp <opensource@keylevel.com>
+References: <4EAABF91-29AE-4B7D-9FEE-07C87F37197D@keylevel.com>	<53F40306.2080500@windriver.com>	<728404FF-F7F0-4371-AF09-D8C73ABA784C@keylevel.com>	<CADkTA4PKUNKFkWrz-BEud-mvNTVLUykLq_M-AMvJJWXOaxZZaA@mail.gmail.com>
+	<79C4CC9D-34AA-485F-B7A7-F35FD86A3CE3@keylevel.com>
+	<53F63A54.4030401@windriver.com>
+	<4FC2BFFB-9FBD-43BA-AAF4-EE9CBB8126E7@keylevel.com>
+	<53F648D3.2090205@windriver.com>
+	<C7E540C9-9DA7-4AC8-9627-D92CF11B7520@keylevel.com>
+In-Reply-To: <C7E540C9-9DA7-4AC8-9627-D92CF11B7520@keylevel.com>
+Cc: Yocto Project <yocto@yoctoproject.org>
+Subject: Re: Kernel driver for Turbosight TBS6285 DVB card
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -44,58 +49,132 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 22 Aug 2014 12:49:55 -0000
+X-List-Received-Date: Fri, 22 Aug 2014 13:29:47 -0000
 Content-Type: text/plain; charset="windows-1252"; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 14-08-22 08:17 AM, Sona Sarmadi wrote:
-> Hi all,
+On 14-08-22 03:37 AM, Chris Tapp wrote:
 >
-> I wonder how you handle the kernel patches?
+> On 21 Aug 2014, at 20:30, Bruce Ashfield <bruce.ashfield@windriver.com> wrote:
 >
-> I want to apply a security kernel patch to Linux-yocto 3.10  which is used by Romely:
+>> On 14-08-21 03:11 PM, Chris Tapp wrote:
+>>>
+>>> On 21 Aug 2014, at 19:28, Bruce Ashfield <bruce.ashfield@windriver.com> wrote:
+>>>
+>>>> On 14-08-21 04:17 AM, Chris Tapp wrote:
+>>>>> On 21 Aug 2014, at 05:08, Bruce Ashfield <bruce.ashfield@gmail.com> wrote:
+>>>>>
+>>>>>> On Wed, Aug 20, 2014 at 4:11 PM, Chris Tapp <opensource@keylevel.com> wrote:
+>>>>>>> Hi Bruce,
+>>>>>>>
+>>>>>>> Thanks for the feedback.
+>>>>>>>
+>>>>>>> On 20 Aug 2014, at 03:08, Bruce Ashfield <bruce.ashfield@windriver.com> wrote:
+>>>>>>>
+>>>>>>>> On 2014-08-19, 5:26 PM, Chris Tapp wrote:
+>>>>>>>>> I need to include the kernel driver for the Turbosight TBS6285 DVB card in an image.
+>>>>>>>>>
+>>>>>>>>> The official bundle at http://www.tbsdtv.com/download/document/common/tbs-linux-drivers_v140707.zip includes the drivers and a load of other "stuff" (e.g. a full V4L build).
+>>>>>>>>>
+>>>>>>>>> LinuxTV.org have the drivers extracted into a .tar.bz2 at (e.g.) http://linuxtv.org/downloads/drivers/linux-media-LATEST.tar.bz2, so I plan to use this as the download source.
+>>>>>>> This bit is wrong - I need to use the .tar.bz within the .zip.
+>>>>>>>
+>>>>>>>>> So far I have a recipe which downloads from this URL and extracts the files into the work area and ${WORKAREA}/drivers/media includes a Makefile and Kconfig.
+>>>>>>>>>
+>>>>>>>>> I've looked at the Yocto documentation, but this doesn't seem to be a good match for the "Out of tree" kernel module case.
+>>>>>>>> Hmm. At a glance, I'd say that it does sound like a typical out of
+>>>>>>>> tree module build.
+>>>>>>> Ah, ok - to my (untrained) eye the use-case looked completely different based on the example.
+>>>>>>>
+>>>>>>>> Did you try adopting the meta-skeleton hello-mod recipe and point it
+>>>>>>>> at that source directory ?
+>>>>>>> I have now (with the above change). However, it looks as if something within the build is referencing the host file system when building.
+>>>>>>>
+>>>>>>> I'm building for ValleyIsland 32-bit:
+>>>>>>>
+>>>>>>>   1) If I configure the drivers for 32-bit there is a linker error complaining that elf 32 and elf 64 aren't compatible (host is 64 bit);
+>>>>>> Hmm. The target arch should be used for this build. Are you enabling a
+>>>>>> multi lib config
+>>>>>> as well ?
+>>>>> Not that I know of ;-)
+>>>>>
+>>>>> The build uses a .version file to specify the kernel. The top makefile creates this using 'uname -r' by default. I can run 'make dir DIR="..." in do_configure() to specify the path to the yocto kernel files, which seems to fix this (after modifying another makefile, which prepends "../" to the DIR path).
+>>>>
+>>>> Definite host contamination there. You likely want the code, but
+>>>> not the build infrastructure in this case.
+>>>>
+>>>>>
+>>>>>>   2) Everything appears to build if I target 64-bit, but the installer tries to modify /lib/modules/3.2.0-67/..., which is also part of the host.
+>>>>>>
+>>>>>> Do the Makefile's that come in that archive (I haven't gone to look)
+>>>>>> have a custom
+>>>>>> install rule ? If so, that's likely the problem. If the kernel's build
+>>>>>> system is triggered
+>>>>>> (i.e. the makefile follows the conventions), everything will be
+>>>>>> installed to the proper
+>>>>>> location.
+>>>>> The installer uses DESTDIR to select the installation path - I've not worked out how this gets set yet or how I can set it from within my recipe.
+>>>>>
+>>>>> Is there a trick I can use to get the kernel's build system to manage things?
+>>>>
+>>>> In this case, you really need to replace (or patch) the existing Makefile
+>>>> that comes with the package.
+>>>>
+>>>> The hello-mod example I pointed out has makefile that shows the right
+>>>> definitions to allow the kernel's build system to enter the directory, build
+>>>> and install the modules.
+>>>
+>>> I've made some good progress, but still not quite there.
+>>>
+>>> I've got a do_compile() that basically does:
+>>>
+>>>    make DIR=${STAGING_KERNEL_DIR}
+>>>
+>>> The appears to build the modules correctly - testing will tell ;-)
+>>>
+>>> I've then got similar in do_install():
+>>>
+>>>    make DIR=${STAGING_KERNEL_DIR} DESTDIR=${D}
+>>>
+>>> That's 99% there - the modules get put in image/lib/modules/3.10.40-ltsi/...
+>>> They should be in image/lib/modules/3.10.40-ltsi-yocto-standard/... - not sure yet how to fix this one.
+>>>
+>>
+>> The kernel-abiversion should have all the details to get the mdoules
+>> installed in the right place. See the use of the file in the various
+>> module bbclasses.
+>>
+>> export KERNEL_VERSION = "${@base_read_file('${STAGING_KERNEL_DIR}/kernel-abiversion')}"
 >
-> meta-inte/meta-romley/conf/machine/romley-ivb.conf:PREFERRED_VERSION_linux-yocto ?= "3.10%"
+> Thanks, that helps. Looks like I need to find a bug in the makefiles now - using kernel-abiversion results in a message reporting that 3.10.40-ltsi-yocto-standard will be used, but the installation ends up going to 3.0.40-ltsi-yocto-standard :-(
 >
-> For me the obvious way to fix this is:
-> 1) Create >> "poky/meta/recipes-kernel/linux/files" directory and add the patch file there
->
-> 2) modify: poky/meta/recipes-kernel/linux/linux-yocto_3.10.bb
->
->
-> -SRC_URI = "git://git.yoctoproject.org/linux-yocto-3.10.git;bareclone=1;branch=${KBRANCH},${KMETA};name=machine,meta"
-> +FILESEXTRAPATHS_prepend := "${THISDIR}/files:"
->
-> +SRC_URI = "git://git.yoctoproject.org/linux-yocto-3.10.git;bareclone=1;branch=${KBRANCH},${KMETA};name=machine,meta \
-> +          file://Fix_for_CVE-2014-0196_pty_layer_race_condition.patch \
-> +          "
->
-> Please let me know if this is the correct way. And also let me know if I upstream this kernel patch to yocto, will yocto accept it (if the patch looks correct of course). Please let me know if you prefer to apply security patches to kernels in some different way.
 
-If this is for your own local builds, a layer with a bbappend and the
-patches is a better idea.
+ouch. Breaking new ground with that one .. who needs that extra '1' ? Good
+luck tracking it down .. you are definitely closer now.
 
-For the main linux-yocto recipes, everything is maintained in the
-git repositories, not patched at build time, so changes go to the
-linux-yocto mailing list, and I merge them from there.
-
-On this particular topic, I already track all the -stable updates for
-our linux-yocto kernels, and CVEs are picked up by -stable. So there's
-a process in place to get security related fixes into the linux-yocto
-trees.
-
-I'm a few releases behind at the moment, due to a 2 week vacation,
-but 3.4, 3.10 and 3.14 will all be updated shortly.
-
-If you do notice a CVE that isn't part of the k.org -stable updates,
-that is or more interest, and we should nominate it for -stable upstream
-and have it flow to all kernels via that process.
+Cheers,
 
 Bruce
 
+>>
+>> Bruce
+>>
+>>> There is also a packaging QA issue causing a build failure (some files aren't used), but an INSANE_SKIP installed-vs-shipped fixes that one for now.
+>>>
+>>> --
+>>>
+>>> Chris Tapp
+>>> opensource@keylevel.com
+>>> www.keylevel.com
 >
-> Thanks
-> BR - Sona
+> --
+>
+> Chris Tapp
+> opensource@keylevel.com
+> www.keylevel.com
+>
+>
+>
 >
 
 
