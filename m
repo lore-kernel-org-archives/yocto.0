@@ -1,54 +1,31 @@
-Return-Path: <opensource@keylevel.com>
+Return-Path: <marius.avram@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id F3E2AE00798; Fri, 22 Aug 2014 00:37:17 -0700 (PDT)
+	id 4051AE00798; Fri, 22 Aug 2014 02:05:43 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from a180.4uh.net (a180.4uh.net [89.248.60.180])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7B881E0044A
-	for <yocto@yoctoproject.org>; Fri, 22 Aug 2014 00:37:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=keylevel.com;
-	s=default; 
-	h=To:References:Message-Id:Content-Transfer-Encoding:Cc:Date:In-Reply-To:From:Subject:Mime-Version:Content-Type;
-	bh=1cVvWQmOpPJ1K0RPZWiPdqFxMX3odOxMp4/XjTVNSMY=; 
-	b=q8od/A21njWimpJ52NDbXGxZoYA42gJ9tUoOqGkrEYD2dszxPSCCmM5olfBTYYiCDqfKHI1cdL70evc1Yi3En9h8uZFFzfzUcRNxK5hReyt68Nc34g6KUDAkN/SaBUz6mT1kWckGEX5Ztunu1oBR4j3TS+sZ7LcCOX9YYA/EFR4=;
-Received: from [109.224.171.0] (port=39156
-	helo=macbook-pro.durham.keylevel.com)
-	by a180.4uh.net with esmtpsa (TLSv1:AES128-SHA:128) (Exim 4.82)
-	(envelope-from <opensource@keylevel.com>)
-	id 1XKjPA-003eY3-Aa; Fri, 22 Aug 2014 08:37:02 +0100
-Mime-Version: 1.0 (Mac OS X Mail 7.3 \(1878.6\))
-From: Chris Tapp <opensource@keylevel.com>
-In-Reply-To: <53F648D3.2090205@windriver.com>
-Date: Fri, 22 Aug 2014 08:37:00 +0100
-Message-Id: <C7E540C9-9DA7-4AC8-9627-D92CF11B7520@keylevel.com>
-References: <4EAABF91-29AE-4B7D-9FEE-07C87F37197D@keylevel.com>	<53F40306.2080500@windriver.com>	<728404FF-F7F0-4371-AF09-D8C73ABA784C@keylevel.com>	<CADkTA4PKUNKFkWrz-BEud-mvNTVLUykLq_M-AMvJJWXOaxZZaA@mail.gmail.com>
-	<79C4CC9D-34AA-485F-B7A7-F35FD86A3CE3@keylevel.com>
-	<53F63A54.4030401@windriver.com>
-	<4FC2BFFB-9FBD-43BA-AAF4-EE9CBB8126E7@keylevel.com>
-	<53F648D3.2090205@windriver.com>
-To: Bruce Ashfield <bruce.ashfield@windriver.com>
-X-Mailer: Apple Mail (2.1878.6)
-X-OutGoing-Spam-Status: No, score=-1.0
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - a180.4uh.net
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - keylevel.com
-X-Get-Message-Sender-Via: a180.4uh.net: authenticated_id:
-	chris.tapp@keylevel.com
-Cc: Yocto Project <yocto@yoctoproject.org>
-Subject: Re: Kernel driver for Turbosight TBS6285 DVB card
+	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at http://www.dnswl.org/,
+	high *      trust
+	*      [134.134.136.20 listed in list.dnswl.org]
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EB309E0044A
+	for <yocto@yoctoproject.org>; Fri, 22 Aug 2014 02:05:39 -0700 (PDT)
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+	by orsmga101.jf.intel.com with ESMTP; 22 Aug 2014 02:05:38 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.04,378,1406617200"; d="scan'208";a="562047812"
+Received: from mavram-vostro.rb.intel.com ([10.237.105.71])
+	by orsmga001.jf.intel.com with ESMTP; 22 Aug 2014 02:05:37 -0700
+From: Marius Avram <marius.avram@intel.com>
+To: yocto@yoctoproject.org
+Date: Fri, 22 Aug 2014 12:08:38 +0300
+Message-Id: <1408698518-13130-1-git-send-email-marius.avram@intel.com>
+X-Mailer: git-send-email 1.7.9.5
+Subject: [AUH][PATCH v3 1/2] Send emails for a list of recipes
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -60,165 +37,307 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 22 Aug 2014 07:37:18 -0000
-Content-Type: text/plain; charset=iso-8859-1
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Fri, 22 Aug 2014 09:05:43 -0000
 
+If the --send-emails or -e command line argument is active and a single
+or a list of recipes are given to the script, emails with the results
+and patches will be sent to their maintainers or to the overriden
+addresses from the configuration file.
 
-On 21 Aug 2014, at 20:30, Bruce Ashfield <bruce.ashfield@windriver.com> =
-wrote:
+Also the status email will be sent in the case a selection of
+at least two recipes has been given to the script for upgrading.
 
-> On 14-08-21 03:11 PM, Chris Tapp wrote:
->>=20
->> On 21 Aug 2014, at 19:28, Bruce Ashfield =
-<bruce.ashfield@windriver.com> wrote:
->>=20
->>> On 14-08-21 04:17 AM, Chris Tapp wrote:
->>>> On 21 Aug 2014, at 05:08, Bruce Ashfield <bruce.ashfield@gmail.com> =
-wrote:
->>>>=20
->>>>> On Wed, Aug 20, 2014 at 4:11 PM, Chris Tapp =
-<opensource@keylevel.com> wrote:
->>>>>> Hi Bruce,
->>>>>>=20
->>>>>> Thanks for the feedback.
->>>>>>=20
->>>>>> On 20 Aug 2014, at 03:08, Bruce Ashfield =
-<bruce.ashfield@windriver.com> wrote:
->>>>>>=20
->>>>>>> On 2014-08-19, 5:26 PM, Chris Tapp wrote:
->>>>>>>> I need to include the kernel driver for the Turbosight TBS6285 =
-DVB card in an image.
->>>>>>>>=20
->>>>>>>> The official bundle at =
-http://www.tbsdtv.com/download/document/common/tbs-linux-drivers_v140707.z=
-ip includes the drivers and a load of other "stuff" (e.g. a full V4L =
-build).
->>>>>>>>=20
->>>>>>>> LinuxTV.org have the drivers extracted into a .tar.bz2 at =
-(e.g.) http://linuxtv.org/downloads/drivers/linux-media-LATEST.tar.bz2, =
-so I plan to use this as the download source.
->>>>>> This bit is wrong - I need to use the .tar.bz within the .zip.
->>>>>>=20
->>>>>>>> So far I have a recipe which downloads from this URL and =
-extracts the files into the work area and ${WORKAREA}/drivers/media =
-includes a Makefile and Kconfig.
->>>>>>>>=20
->>>>>>>> I've looked at the Yocto documentation, but this doesn't seem =
-to be a good match for the "Out of tree" kernel module case.
->>>>>>> Hmm. At a glance, I'd say that it does sound like a typical out =
-of
->>>>>>> tree module build.
->>>>>> Ah, ok - to my (untrained) eye the use-case looked completely =
-different based on the example.
->>>>>>=20
->>>>>>> Did you try adopting the meta-skeleton hello-mod recipe and =
-point it
->>>>>>> at that source directory ?
->>>>>> I have now (with the above change). However, it looks as if =
-something within the build is referencing the host file system when =
-building.
->>>>>>=20
->>>>>> I'm building for ValleyIsland 32-bit:
->>>>>>=20
->>>>>>  1) If I configure the drivers for 32-bit there is a linker error =
-complaining that elf 32 and elf 64 aren't compatible (host is 64 bit);
->>>>> Hmm. The target arch should be used for this build. Are you =
-enabling a
->>>>> multi lib config
->>>>> as well ?
->>>> Not that I know of ;-)
->>>>=20
->>>> The build uses a .version file to specify the kernel. The top =
-makefile creates this using 'uname -r' by default. I can run 'make dir =
-DIR=3D"..." in do_configure() to specify the path to the yocto kernel =
-files, which seems to fix this (after modifying another makefile, which =
-prepends "../" to the DIR path).
->>>=20
->>> Definite host contamination there. You likely want the code, but
->>> not the build infrastructure in this case.
->>>=20
->>>>=20
->>>>>  2) Everything appears to build if I target 64-bit, but the =
-installer tries to modify /lib/modules/3.2.0-67/..., which is also part =
-of the host.
->>>>>=20
->>>>> Do the Makefile's that come in that archive (I haven't gone to =
-look)
->>>>> have a custom
->>>>> install rule ? If so, that's likely the problem. If the kernel's =
-build
->>>>> system is triggered
->>>>> (i.e. the makefile follows the conventions), everything will be
->>>>> installed to the proper
->>>>> location.
->>>> The installer uses DESTDIR to select the installation path - I've =
-not worked out how this gets set yet or how I can set it from within my =
-recipe.
->>>>=20
->>>> Is there a trick I can use to get the kernel's build system to =
-manage things?
->>>=20
->>> In this case, you really need to replace (or patch) the existing =
-Makefile
->>> that comes with the package.
->>>=20
->>> The hello-mod example I pointed out has makefile that shows the =
-right
->>> definitions to allow the kernel's build system to enter the =
-directory, build
->>> and install the modules.
->>=20
->> I've made some good progress, but still not quite there.
->>=20
->> I've got a do_compile() that basically does:
->>=20
->>   make DIR=3D${STAGING_KERNEL_DIR}
->>=20
->> The appears to build the modules correctly - testing will tell ;-)
->>=20
->> I've then got similar in do_install():
->>=20
->>   make DIR=3D${STAGING_KERNEL_DIR} DESTDIR=3D${D}
->>=20
->> That's 99% there - the modules get put in =
-image/lib/modules/3.10.40-ltsi/...
->> They should be in image/lib/modules/3.10.40-ltsi-yocto-standard/... - =
-not sure yet how to fix this one.
->>=20
->=20
-> The kernel-abiversion should have all the details to get the mdoules
-> installed in the right place. See the use of the file in the various
-> module bbclasses.
->=20
-> export KERNEL_VERSION =3D =
-"${@base_read_file('${STAGING_KERNEL_DIR}/kernel-abiversion')}"
+Signed-off-by: Marius Avram <marius.avram@intel.com>
+---
+ upgradehelper.py |  202 +++++++++++++++++++++++++++---------------------------
+ 1 file changed, 101 insertions(+), 101 deletions(-)
 
-Thanks, that helps. Looks like I need to find a bug in the makefiles now =
-- using kernel-abiversion results in a message reporting that =
-3.10.40-ltsi-yocto-standard will be used, but the installation ends up =
-going to 3.0.40-ltsi-yocto-standard :-(
-
->=20
-> Bruce
->=20
->> There is also a packaging QA issue causing a build failure (some =
-files aren't used), but an INSANE_SKIP installed-vs-shipped fixes that =
-one for now.
->>=20
->> --
->>=20
->> Chris Tapp
->> opensource@keylevel.com
->> www.keylevel.com
-
---
-
-Chris Tapp
-opensource@keylevel.com
-www.keylevel.com
-
-
-
+diff --git a/upgradehelper.py b/upgradehelper.py
+index cc90958..658ec43 100755
+--- a/upgradehelper.py
++++ b/upgradehelper.py
+@@ -71,6 +71,8 @@ def parse_cmdline():
+                         help="disable interactive mode")
+     parser.add_argument("-d", "--debug-level", type=int, default=4, choices=range(1, 6),
+                         help="set the debug level: CRITICAL=1, ERROR=2, WARNING=3, INFO=4, DEBUG=5")
++    parser.add_argument("-e", "--send-emails", action="store_true", default=False,
++                        help="send emails to recipe maintainers")
+     parser.add_argument("-s", "--skip-compilation", action="store_true", default=False,
+                         help="do not compile, just change the checksums, remove PR, and commit")
+     parser.add_argument("-c", "--config-file", default=None,
+@@ -116,7 +118,27 @@ def parse_config_file(config_file):
+     return (settings, maintainer_override)
+ 
+ class Updater(object):
+-    def __init__(self, auto_mode=False, skip_compilation=False):
++    mail_header = \
++        "Hello,\n\nYou are receiving this email because you are the maintainer\n" \
++        "of *%s* recipe and this is to let you know that the automatic attempt\n" \
++        "to upgrade the recipe to *%s* has %s.\n\n"
++
++    next_steps_info = \
++        "The recipe has been successfully compiled for all major architectures.\n\n" \
++        "Next steps:\n" \
++        "    - apply the patch: git am %s\n" \
++        "    - check that required patches have not been removed from the recipe\n" \
++        "    - compile an image that contains the package\n" \
++        "    - perform some basic sanity tests\n" \
++        "    - amend the patch and sign it off: git commit -s --reset-author --amend\n" \
++        "    - send it to the list\n\n" \
++
++    mail_footer = \
++        "Attached are the patch and the logs (+ license file diff) in case of failure.\n\n" \
++        "Regards,\nThe Upgrade Helper"
++
++
++    def __init__(self, auto_mode=False, send_email=False, skip_compilation=False):
+ 
+         self.uh_dir = get_build_dir() + "/upgrade-helper"
+         if not os.path.exists(self.uh_dir):
+@@ -125,10 +147,13 @@ class Updater(object):
+         self.bb = Bitbake(get_build_dir())
+         self.buildhistory = BuildHistory(get_build_dir())
+         self.git = None
+-
+-        self.author = None
++        if send_email:
++            self.author = "Upgrade Helper <uh@not.set>"
++        else:
++            self.author = None
+         self.skip_compilation = skip_compilation
+         self.interactive = not auto_mode
++        self.send_email = send_email
+ 
+         self.machines = ["qemux86", "qemux86-64", "qemuarm", "qemumips", "qemuppc"]
+ 
+@@ -144,6 +169,7 @@ class Updater(object):
+             (self._compile, None)
+         ]
+ 
++        self.email_handler = Email(settings)
+         self.statistics = Statistics()
+ 
+ 
+@@ -307,8 +333,9 @@ class Updater(object):
+ 
+     # this function will be called at the end of each recipe upgrade
+     def pkg_upgrade_handler(self, err):
+-        if err is not None and self.patch_file is not None:
++        if err and self.patch_file:
+             answer = "N"
++            status_msg = str(err)
+             if self.interactive:
+                 I(" %s: Do you want to keep the changes? (y/N)" % self.pn)
+                 answer = sys.stdin.readline().strip().upper()
+@@ -317,6 +344,53 @@ class Updater(object):
+                 I(" %s: Dropping changes from git ..." % self.pn)
+                 self.git.reset_hard(1)
+                 self.git.clean_untracked()
++                return
++        elif not err:
++            status_msg = "Succeeded"
++
++        status = type(err).__name__
++
++        # drop last upgrade from git. It's safer this way if the upgrade has
++        # problems and other recipes depend on it. Give the other recipes a
++        # chance...
++        if ("drop_previous_commits" in settings and
++                settings["drop_previous_commits"] == "yes" and
++                err) or (err and self.patch_file):
++            I(" %s: Dropping changes from git ..." % self.pn)
++            self.git.reset_hard(1)
++            self.git.clean_untracked()
++
++        if self.send_email:
++            # don't bother maintainer with mail if the recipe is already up to date
++            if status == "UpgradeNotNeededError":
++                return
++
++            if self.maintainer in maintainer_override:
++                to_addr = maintainer_override[self.maintainer]
++            else:
++                to_addr = self.maintainer
++
++            subject = "[AUH] " + self.pn + ": upgrading to " + self.new_ver
++            if err is None:
++                subject += " SUCCEEDED"
++            else:
++                subject += " FAILED"
++
++            msg_body = self.mail_header % (self.pn, self.new_ver, status_msg)
++
++            if err is None:
++                msg_body += self.next_steps_info % os.path.basename(self.patch_file)
++
++            msg_body += self.mail_footer
++
++            # Add possible attachments to email
++            attachments = []
++            for attachment in os.listdir(self.workdir):
++                attachment_fullpath = os.path.join(self.workdir, attachment)
++                if os.path.isfile(attachment_fullpath):
++                    attachments.append(attachment_fullpath)
++
++            self.email_handler.send_email(to_addr, subject, msg_body, attachments)
+ 
+     def _commit_changes(self):
+         try:
+@@ -355,6 +429,22 @@ class Updater(object):
+ 
+         return ordered_list
+ 
++    def send_status_mail(self):
++        if "status_recipients" not in settings:
++            E("Could not send status email, no recipients set!")
++            return -1
++
++        to_list = settings["status_recipients"].split()
++
++        subject = "[AUH] Upgrade status: " + date.isoformat(date.today())
++
++        msg = self.statistics.pkg_stats() + self.statistics.maintainer_stats()
++
++        if self.statistics.total_attempted:
++            self.email_handler.send_email(to_list, subject, msg)
++        else:
++            W("No recipes attempted, not sending status mail!")
++
+     def run(self, package_list=None):
+ #[lp]        pkgs_to_upgrade = self._order_list(self._get_packages_to_upgrade(package_list))
+         pkgs_to_upgrade = self._get_packages_to_upgrade(package_list)
+@@ -399,32 +489,12 @@ class Updater(object):
+ 
+         if (attempted_pkgs > 1):
+             print("%s" % self.statistics.pkg_stats())
++            if self.send_email:
++                self.send_status_mail()
+ 
+-
+-class UniverseUpdater(Updater, Email):
+-    mail_header = \
+-        "Hello,\n\nYou are receiving this email because you are the maintainer\n" \
+-        "of *%s* recipe and this is to let you know that the automatic attempt\n" \
+-        "to upgrade the recipe to *%s* has %s.\n\n"
+-
+-    next_steps_info = \
+-        "The recipe has been successfully compiled for all major architectures.\n\n" \
+-        "Next steps:\n" \
+-        "    - apply the patch: git am %s\n" \
+-        "    - check that required patches have not been removed from the recipe\n" \
+-        "    - compile an image that contains the package\n" \
+-        "    - perform some basic sanity tests\n" \
+-        "    - amend the patch and sign it off: git commit -s --reset-author --amend\n" \
+-        "    - send it to the list\n\n" \
+-
+-    mail_footer = \
+-        "Attached are the patch and the logs (+ license file diff) in case of failure.\n\n" \
+-        "Regards,\nThe Upgrade Helper"
+-
++class UniverseUpdater(Updater):
+     def __init__(self):
+-        Updater.__init__(self, True)
+-        Email.__init__(self, settings)
+-        self.author = "Upgrade Helper <uh@not.set>"
++        Updater.__init__(self, True, True)
+         self.git = Git(os.path.dirname(os.getenv('PATH', False).split(':')[0]))
+ 
+         # read history file
+@@ -570,84 +640,14 @@ class UniverseUpdater(Updater, Email):
+ 
+     # overriding the base method
+     def pkg_upgrade_handler(self, err):
+-        if err is None:
+-            status_msg = "Succeeded"
+-        else:
+-            status_msg = str(err)
+-
+-        status = type(err).__name__
+-
+-        # drop last upgrade from git. It's safer this way if the upgrade has
+-        # problems and other recipes depend on it. Give the other recipes a
+-        # chance...
+-        if ("drop_previous_commits" in settings and
+-                settings["drop_previous_commits"] == "yes" and
+-                err is None) or (err is not None and self.patch_file is not None):
+-            I(" %s: Dropping changes from git ..." % self.pn)
+-            self.git.reset_hard(1)
+-            self.git.clean_untracked()
+-
+-        self.update_history(self.pn, self.new_ver, self.maintainer,
+-                            status_msg)
+-
+-        # don't bother maintainer with mails for unknown errors, unsuported
+-        # protocol or if the recipe is already up to date
+-        if status == "Error" or status == "UnsupportedProtocolError" or \
+-                status == "UpgradeNotNeededError":
+-            return
+-
+-        if self.maintainer in maintainer_override:
+-            to_addr = maintainer_override[self.maintainer]
+-        else:
+-            to_addr = self.maintainer
+-
+-        subject = "[AUH] " + self.pn + ": upgrading to " + self.new_ver
+-        if err is None:
+-            subject += " SUCCEEDED"
+-        else:
+-            subject += " FAILED"
+-
+-        msg_body = self.mail_header % (self.pn, self.new_ver, status_msg)
+-
+-        if err is None:
+-            msg_body += self.next_steps_info % os.path.basename(self.patch_file)
+-
+-        msg_body += self.mail_footer
+-
+-        # Add possible attachments to list
+-        attachments = []
+-        for attachment in os.listdir(self.workdir):
+-            attachment_fullpath = os.path.join(self.workdir, attachment)
+-            if os.path.isfile(attachment_fullpath):
+-                attachments.append(attachment_fullpath)
+-
+-        self.send_email(to_addr, subject, msg_body, attachments)
+-
+-    def send_status_mail(self):
+-        if "status_recipients" not in settings:
+-            E("Could not send status email, no recipients set!")
+-            return -1
+-
+-        to_list = settings["status_recipients"].split()
+-
+-        subject = "[AUH] Upgrade status: " + date.isoformat(date.today())
+-
+-        msg = self.statistics.pkg_stats() + self.statistics.maintainer_stats()
+-
+-        if self.statistics.total_attempted:
+-            self.send_email(to_list, subject, msg)
+-        else:
+-            W("No recipes attempted, not sending status mail!")
++        super(UniverseUpdater, self).pkg_upgrade_handler(self)
++        self.update_history(self.pn, self.new_ver, self.maintainer, status_msg)
+ 
+     def run(self):
+         self.update_master()
+-
+         self.prepare()
+-
+         super(UniverseUpdater, self).run()
+ 
+-        self.send_status_mail()
+-
+ 
+ if __name__ == "__main__":
+     global settings
+@@ -675,5 +675,5 @@ if __name__ == "__main__":
+             for pkg in args.recipe:
+                 pkg_list.append((pkg, None, None))
+ 
+-        updater = Updater(args.auto_mode, args.skip_compilation)
++        updater = Updater(args.auto_mode, args.send_emails, args.skip_compilation)
+         updater.run(pkg_list)
+-- 
+1.7.9.5
 
 
