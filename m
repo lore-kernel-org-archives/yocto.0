@@ -1,31 +1,48 @@
-Return-Path: <marius.avram@intel.com>
+Return-Path: <anders@chargestorm.se>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id A9C8EE0084D; Fri, 22 Aug 2014 02:05:51 -0700 (PDT)
+	id EBCAAE00798; Fri, 22 Aug 2014 02:09:10 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [134.134.136.20 listed in list.dnswl.org]
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [83.145.59.140 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 5DD4AE00846
-	for <yocto@yoctoproject.org>; Fri, 22 Aug 2014 02:05:49 -0700 (PDT)
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-	by orsmga101.jf.intel.com with ESMTP; 22 Aug 2014 02:05:49 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.04,378,1406617200"; d="scan'208";a="562047861"
-Received: from mavram-vostro.rb.intel.com ([10.237.105.71])
-	by orsmga001.jf.intel.com with ESMTP; 22 Aug 2014 02:05:48 -0700
-From: Marius Avram <marius.avram@intel.com>
-To: yocto@yoctoproject.org
-Date: Fri, 22 Aug 2014 12:08:50 +0300
-Message-Id: <1408698530-13167-1-git-send-email-marius.avram@intel.com>
-X-Mailer: git-send-email 1.7.9.5
-Subject: [AUH][PATCH v3 2/2] Kill suprocesses when pressing ctrl+c
+X-Greylist: delayed 67 seconds by postgrey-1.32 at yocto-www;
+	Fri, 22 Aug 2014 02:09:08 PDT
+Received: from stoexhubfe01.domain01.net (STOEXHUBFE01.domain01.net
+	[83.145.59.140])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 894AEE0044A
+	for <yocto@yoctoproject.org>; Fri, 22 Aug 2014 02:09:08 -0700 (PDT)
+Received: from ad.chargestorm.se (83.252.255.124) by stoexhubfe01.domain01.net
+	(10.12.10.6) with Microsoft SMTP Server (TLS) id 8.3.279.1;
+	Fri, 22 Aug 2014 11:07:58 +0200
+Date: Fri, 22 Aug 2014 11:07:41 +0200
+From: Anders Darander <anders@chargestorm.se>
+To: Richard Leitner <richard.leitner@skidata.com>
+Message-ID: <20140822090741.GB18766@ad.chargestorm.se>
+Mail-Followup-To: Richard Leitner <richard.leitner@skidata.com>,
+	Nicolas Dechesne <nicolas.dechesne@linaro.org>,
+	Yocto list discussion <yocto@yoctoproject.org>
+References: <20140812142043.31d6766f@lxbuild.skidata.net>
+	<alpine.LFD.2.11.1408120827190.21762@localhost>
+	<20140812145857.23eda070@lxbuild.skidata.net>
+	<CAP71WjxiBCScKkTC0a735B94WCwbu8Z9SzWVi58ma4-aw8mNMA@mail.gmail.com>
+	<20140812155243.31bae60a@lxbuild.skidata.net>
+MIME-Version: 1.0
+In-Reply-To: <20140812155243.31bae60a@lxbuild.skidata.net>
+X-Accept-Language: sv, en, de
+X-GPG-Fingerprint: 5AF0 B2E9 78FE 9D75 D110  6F8F 3E31 84D7 920E 938C
+X-GPG-Key-Id: 0x920E938C
+X-GPG-Keyserver: hkp://keys.gnupg.net
+Organization: ChargeStorm AB
+User-Agent: Mutt/1.5.23 (2014-03-12)
+X-GFI-SMTP-Submission: 1
+Cc: Yocto list discussion <yocto@yoctoproject.org>
+Subject: Re: Force recipe to provide specific file
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -37,46 +54,32 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 22 Aug 2014 09:05:51 -0000
+X-List-Received-Date: Fri, 22 Aug 2014 09:09:11 -0000
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
 
-This way the created bitbake subprocesses from the upgrade script
-are killed as well when you press ctrl+c.
+* Richard Leitner <richard.leitner@skidata.com> [140812 15:53]:
+> > but anyways, a simpler way to so the same thing would be do have a
+> > do_install_append() function and remove the files from ${D}. that
+> > would in turns have the same effect as what you are trying to do here
+> > i believe.
 
-Signed-off-by: Marius Avram <marius.avram@intel.com>
----
- upgradehelper.py |    6 ++++++
- 1 file changed, 6 insertions(+)
+> Yeah, this works, this is the way I'm currently doing it as I already mentioned
+> earlier.
+> But is this really a clean way?
 
-diff --git a/upgradehelper.py b/upgradehelper.py
-index 658ec43..6be7ac2 100755
---- a/upgradehelper.py
-+++ b/upgradehelper.py
-@@ -35,6 +35,7 @@ from logging import warning as W
- from logging import error as E
- from logging import critical as C
- import re
-+import signal
- import sys
- import ConfigParser as cp
- from datetime import datetime
-@@ -648,11 +649,16 @@ class UniverseUpdater(Updater):
-         self.prepare()
-         super(UniverseUpdater, self).run()
- 
-+def close_child_processes(signal_id, frame):
-+    pid = os.getpgrp()
-+    os.killpg(pid, signal.SIGKILL)
- 
- if __name__ == "__main__":
-     global settings
-     global maintainer_override
- 
-+    signal.signal(signal.SIGINT, close_child_processes)
-+
-     debug_levels = [log.CRITICAL, log.ERROR, log.WARNING, log.INFO, log.DEBUG]
-     args = parse_cmdline()
-     log.basicConfig(format='%(levelname)s:%(message)s',
+It's a pretty clean way, yes.
+
+> What happens for example if do_install_append is already defined in the recipe?
+
+
+No issue at all. The do_install_append's will just be appended one after
+each other.
+
+Cheers,
+Anders
+
 -- 
-1.7.9.5
-
+Anders Darander
+ChargeStorm AB / eStorm AB
 
