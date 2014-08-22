@@ -1,40 +1,56 @@
-Return-Path: <Bruce.Ashfield@windriver.com>
+Return-Path: <opensource@keylevel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id E742DE00869; Fri, 22 Aug 2014 09:27:27 -0700 (PDT)
+	id 0C760E00824; Fri, 22 Aug 2014 12:57:53 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [147.11.146.13 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E2110E0082B
-	for <yocto@yoctoproject.org>; Fri, 22 Aug 2014 09:27:23 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail1.windriver.com (8.14.9/8.14.5) with ESMTP id s7MGRFZl017325
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Fri, 22 Aug 2014 09:27:16 -0700 (PDT)
-Received: from [128.224.56.48] (128.224.56.48) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server id 14.3.174.1;
-	Fri, 22 Aug 2014 09:27:15 -0700
-Message-ID: <53F76F55.7030702@windriver.com>
-Date: Fri, 22 Aug 2014 12:27:01 -0400
-From: Bruce Ashfield <bruce.ashfield@windriver.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:31.0) Gecko/20100101 Thunderbird/31.0
-MIME-Version: 1.0
-To: Sona Sarmadi <sona.sarmadi@enea.com>, "yocto@yoctoproject.org"
-	<yocto@yoctoproject.org>
-References: <3230301C09DEF9499B442BBE162C5E48256DB954@SESTOEX04.enea.se>
-	<53F73C54.60803@windriver.com>
-	<3230301C09DEF9499B442BBE162C5E48256DBE09@SESTOEX04.enea.se>
-In-Reply-To: <3230301C09DEF9499B442BBE162C5E48256DBE09@SESTOEX04.enea.se>
-Subject: Re: kernel patches
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from a180.4uh.net (a180.4uh.net [89.248.60.180])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7DD86E00769
+	for <yocto@yoctoproject.org>; Fri, 22 Aug 2014 12:57:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=keylevel.com;
+	s=default; 
+	h=To:References:Message-Id:Content-Transfer-Encoding:Cc:Date:In-Reply-To:From:Subject:Mime-Version:Content-Type;
+	bh=i0i8HRwJmJVIc5yrj/ZmGvRJX5yR91vLWsrjGrcSo3I=; 
+	b=DUkUzP9hoj5IYVTYHi6UX2eqrk4U+OMucBOYiV4ydGHEmZS3Z75dDh8381MwsaDWj5bDVpOKGmFItl+jTqW9JIGYw02b2SLTFJBcsHoF5H9li/udMjoJn+xcJ7BbgGRIjK7+IGSCxHPkZblyi6vsNhwKSZz6lhTvSfVA0Qs5BEQ=;
+Received: from [109.224.171.0] (port=32108
+	helo=macbook-pro.durham.keylevel.com)
+	by a180.4uh.net with esmtpsa (TLSv1:AES128-SHA:128) (Exim 4.82)
+	(envelope-from <opensource@keylevel.com>)
+	id 1XKuxs-002ePY-Lp; Fri, 22 Aug 2014 20:57:39 +0100
+Mime-Version: 1.0 (Mac OS X Mail 7.3 \(1878.6\))
+From: Chris Tapp <opensource@keylevel.com>
+In-Reply-To: <53F745A5.7050400@windriver.com>
+Date: Fri, 22 Aug 2014 20:57:37 +0100
+Message-Id: <D7DF2AED-C923-472B-9249-0AF4814E67B1@keylevel.com>
+References: <4EAABF91-29AE-4B7D-9FEE-07C87F37197D@keylevel.com>	<53F40306.2080500@windriver.com>	<728404FF-F7F0-4371-AF09-D8C73ABA784C@keylevel.com>	<CADkTA4PKUNKFkWrz-BEud-mvNTVLUykLq_M-AMvJJWXOaxZZaA@mail.gmail.com>
+	<79C4CC9D-34AA-485F-B7A7-F35FD86A3CE3@keylevel.com>
+	<53F63A54.4030401@windriver.com>
+	<4FC2BFFB-9FBD-43BA-AAF4-EE9CBB8126E7@keylevel.com>
+	<53F648D3.2090205@windriver.com>
+	<C7E540C9-9DA7-4AC8-9627-D92CF11B7520@keylevel.com>
+	<53F745A5.7050400@windriver.com>
+To: Bruce Ashfield <bruce.ashfield@windriver.com>
+X-Mailer: Apple Mail (2.1878.6)
+X-OutGoing-Spam-Status: No, score=-1.0
+X-AntiAbuse: This header was added to track abuse,
+	please include it with any abuse report
+X-AntiAbuse: Primary Hostname - a180.4uh.net
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - keylevel.com
+X-Get-Message-Sender-Via: a180.4uh.net: authenticated_id:
+	chris.tapp@keylevel.com
+Cc: Yocto Project <yocto@yoctoproject.org>
+Subject: Re: Kernel driver for Turbosight TBS6285 DVB card
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -46,55 +62,197 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 22 Aug 2014 16:27:28 -0000
-Content-Type: text/plain; charset="windows-1252"; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Fri, 22 Aug 2014 19:57:53 -0000
+Content-Type: text/plain; charset=windows-1252
+Content-Transfer-Encoding: quoted-printable
 
-On 14-08-22 12:02 PM, Sona Sarmadi wrote:
-> Bruce,
-> Thanks for quick response. See inline my comments.
->
-> Have a nice weekend
-> /Sona
->
->>> Please let me know if this is the correct way. And also let me know if I upstream this kernel patch to yocto, will yocto accept it (if the patch looks correct > of course). Please let me know if you prefer to apply security patches to kernels in some different way.
->
->> If this is for your own local builds, a layer with a bbappend and the patches is a better idea.
-> Sona: No this is not local, I wanted to backport a security patch from 3.15 to lLinux Yoctp 3.14 and upstreamed to Yocto.
->
->> For the main linux-yocto recipes, everything is maintained in the git repositories, not patched at build time, so changes go to the linux-yocto mailing list, and I merge them from there.
->
->> On this particular topic, I already track all the -stable updates for our linux-yocto kernels, and CVEs are picked up by -stable. So there's a process in place to get security related fixes into the linux-yocto trees.
-> Sona: very good :)
->
->> I'm a few releases behind at the moment, due to a 2 week vacation, but 3.4, 3.10 and 3.14 will all be updated shortly.
-> Sona: So if a security patch is only fixed in later versions, you don't want to backport the fix to older yocto versions (e.g.3.10, 3.14) even if the bug is present in these versions. You rather prefer to inherit these from k.org.
 
-We are at a slight advantage in this area, since we've moved to a model
-of releasing and supporting the LTSI kernel versions. As such, they
-continue to get korg stable maintenance for a cycle that matches our
-Yocto support window.
+On 22 Aug 2014, at 14:29, Bruce Ashfield <bruce.ashfield@windriver.com> =
+wrote:
 
-That means there are few, if any, CVEs that don't get addressed via
-the flow I described.
+> On 14-08-22 03:37 AM, Chris Tapp wrote:
+>>=20
+>> On 21 Aug 2014, at 20:30, Bruce Ashfield =
+<bruce.ashfield@windriver.com> wrote:
+>>=20
+>>> On 14-08-21 03:11 PM, Chris Tapp wrote:
+>>>>=20
+>>>> On 21 Aug 2014, at 19:28, Bruce Ashfield =
+<bruce.ashfield@windriver.com> wrote:
+>>>>=20
+>>>>> On 14-08-21 04:17 AM, Chris Tapp wrote:
+>>>>>> On 21 Aug 2014, at 05:08, Bruce Ashfield =
+<bruce.ashfield@gmail.com> wrote:
+>>>>>>=20
+>>>>>>> On Wed, Aug 20, 2014 at 4:11 PM, Chris Tapp =
+<opensource@keylevel.com> wrote:
+>>>>>>>> Hi Bruce,
+>>>>>>>>=20
+>>>>>>>> Thanks for the feedback.
+>>>>>>>>=20
+>>>>>>>> On 20 Aug 2014, at 03:08, Bruce Ashfield =
+<bruce.ashfield@windriver.com> wrote:
+>>>>>>>>=20
+>>>>>>>>> On 2014-08-19, 5:26 PM, Chris Tapp wrote:
+>>>>>>>>>> I need to include the kernel driver for the Turbosight =
+TBS6285 DVB card in an image.
+>>>>>>>>>>=20
+>>>>>>>>>> The official bundle at =
+http://www.tbsdtv.com/download/document/common/tbs-linux-drivers_v140707.z=
+ip includes the drivers and a load of other "stuff" (e.g. a full V4L =
+build).
+>>>>>>>>>>=20
+>>>>>>>>>> LinuxTV.org have the drivers extracted into a .tar.bz2 at =
+(e.g.) http://linuxtv.org/downloads/drivers/linux-media-LATEST.tar.bz2, =
+so I plan to use this as the download source.
+>>>>>>>> This bit is wrong - I need to use the .tar.bz within the .zip.
+>>>>>>>>=20
+>>>>>>>>>> So far I have a recipe which downloads from this URL and =
+extracts the files into the work area and ${WORKAREA}/drivers/media =
+includes a Makefile and Kconfig.
+>>>>>>>>>>=20
+>>>>>>>>>> I've looked at the Yocto documentation, but this doesn't seem =
+to be a good match for the "Out of tree" kernel module case.
+>>>>>>>>> Hmm. At a glance, I'd say that it does sound like a typical =
+out of
+>>>>>>>>> tree module build.
+>>>>>>>> Ah, ok - to my (untrained) eye the use-case looked completely =
+different based on the example.
+>>>>>>>>=20
+>>>>>>>>> Did you try adopting the meta-skeleton hello-mod recipe and =
+point it
+>>>>>>>>> at that source directory ?
+>>>>>>>> I have now (with the above change). However, it looks as if =
+something within the build is referencing the host file system when =
+building.
+>>>>>>>>=20
+>>>>>>>> I'm building for ValleyIsland 32-bit:
+>>>>>>>>=20
+>>>>>>>>  1) If I configure the drivers for 32-bit there is a linker =
+error complaining that elf 32 and elf 64 aren't compatible (host is 64 =
+bit);
+>>>>>>> Hmm. The target arch should be used for this build. Are you =
+enabling a
+>>>>>>> multi lib config
+>>>>>>> as well ?
+>>>>>> Not that I know of ;-)
+>>>>>>=20
+>>>>>> The build uses a .version file to specify the kernel. The top =
+makefile creates this using 'uname -r' by default. I can run 'make dir =
+DIR=3D"..." in do_configure() to specify the path to the yocto kernel =
+files, which seems to fix this (after modifying another makefile, which =
+prepends "../" to the DIR path).
+>>>>>=20
+>>>>> Definite host contamination there. You likely want the code, but
+>>>>> not the build infrastructure in this case.
+>>>>>=20
+>>>>>>=20
+>>>>>>>  2) Everything appears to build if I target 64-bit, but the =
+installer tries to modify /lib/modules/3.2.0-67/..., which is also part =
+of the host.
+>>>>>>>=20
+>>>>>>> Do the Makefile's that come in that archive (I haven't gone to =
+look)
+>>>>>>> have a custom
+>>>>>>> install rule ? If so, that's likely the problem. If the kernel's =
+build
+>>>>>>> system is triggered
+>>>>>>> (i.e. the makefile follows the conventions), everything will be
+>>>>>>> installed to the proper
+>>>>>>> location.
+>>>>>> The installer uses DESTDIR to select the installation path - I've =
+not worked out how this gets set yet or how I can set it from within my =
+recipe.
+>>>>>>=20
+>>>>>> Is there a trick I can use to get the kernel's build system to =
+manage things?
+>>>>>=20
+>>>>> In this case, you really need to replace (or patch) the existing =
+Makefile
+>>>>> that comes with the package.
+>>>>>=20
+>>>>> The hello-mod example I pointed out has makefile that shows the =
+right
+>>>>> definitions to allow the kernel's build system to enter the =
+directory, build
+>>>>> and install the modules.
+>>>>=20
+>>>> I've made some good progress, but still not quite there.
+>>>>=20
+>>>> I've got a do_compile() that basically does:
+>>>>=20
+>>>>   make DIR=3D${STAGING_KERNEL_DIR}
+>>>>=20
+>>>> The appears to build the modules correctly - testing will tell ;-)
+>>>>=20
+>>>> I've then got similar in do_install():
+>>>>=20
+>>>>   make DIR=3D${STAGING_KERNEL_DIR} DESTDIR=3D${D}
+>>>>=20
+>>>> That's 99% there - the modules get put in =
+image/lib/modules/3.10.40-ltsi/...
+>>>> They should be in image/lib/modules/3.10.40-ltsi-yocto-standard/... =
+- not sure yet how to fix this one.
+>>>>=20
+>>>=20
+>>> The kernel-abiversion should have all the details to get the mdoules
+>>> installed in the right place. See the use of the file in the various
+>>> module bbclasses.
+>>>=20
+>>> export KERNEL_VERSION =3D =
+"${@base_read_file('${STAGING_KERNEL_DIR}/kernel-abiversion')}"
+>>=20
+>> Thanks, that helps. Looks like I need to find a bug in the makefiles =
+now - using kernel-abiversion results in a message reporting that =
+3.10.40-ltsi-yocto-standard will be used, but the installation ends up =
+going to 3.0.40-ltsi-yocto-standard :-(
+>>=20
+>=20
+> ouch. Breaking new ground with that one .. who needs that extra '1' ? =
+Good
+> luck tracking it down .. you are definitely closer now.
 
-That being said, if there's a linux-yocto kernel version that isn't
-LTSI and isn't get standard korg -stable updates (i.e. the non-LTSI
-kernel version that will be released with Yocto 1.7), then backported
-fixes to that version can come to the linux-yocto list, and I can
-apply them to the tree.
+Got it!
 
-Cheers,
+In do_configure() I just needed to:
 
-Bruce
+make release DIR=3D${STAGING_KERNEL_DIR}
 
->
->
->> If you do notice a CVE that isn't part of the k.org -stable updates, that is or more interest, and we should nominate it for -stable upstream and have it > flow to all kernels via that process.
->
-> Sona: I see, this would be a better approach.
->
->> Bruce
->
+This creates a .release file to set the version used by the build, based =
+on the top-level makefile of the kernel. That doesn't quite get there =
+though, as this sets KERNELRELEASE in the .release file to 3.10.40-ltsi =
+- this allows do_compile() to run ok, but do_install() then uses =
+3.10.40-ltsi within the install path, putting the modules in the wrong =
+location.
+
+Luckily, 'sed' can be used in do_configure() (after the 'make') to =
+change KERNELRELEASE to the content of kernel-abiversion, which then =
+means do_install() writes to the correct location, the compile still =
+works and there's no '1' missing (so no need to work out why!) ;-)
+
+Thanks for all your time and useful pointers :-)
+
+Just need to put this somewhere public in case anyone else needs it.
+
+> Cheers,
+>=20
+> Bruce
+>=20
+>>>=20
+>>> Bruce
+>>>=20
+>>>> There is also a packaging QA issue causing a build failure (some =
+files aren't used), but an INSANE_SKIP installed-vs-shipped fixes that =
+one for now.
+>>>>=20
+
+--
+
+Chris Tapp
+opensource@keylevel.com
+www.keylevel.com
+
+
+
 
 
