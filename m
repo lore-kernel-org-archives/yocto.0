@@ -1,6 +1,6 @@
-Return-Path: <akuster808@gmail.com>
+Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 7F290E006DB; Sun, 24 Aug 2014 16:02:46 -0700 (PDT)
+	id 226C6E006DB; Sun, 24 Aug 2014 16:22:47 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -8,7 +8,7 @@ X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
 	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (akuster808[at]gmail.com)
+	mail provider *      (raj.khem[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
@@ -18,39 +18,35 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
 	low *      trust
-	*      [209.85.220.42 listed in list.dnswl.org]
-Received: from mail-pa0-f42.google.com (mail-pa0-f42.google.com
-	[209.85.220.42])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 63EC8E0044A
-	for <yocto@yoctoproject.org>; Sun, 24 Aug 2014 16:02:36 -0700 (PDT)
-Received: by mail-pa0-f42.google.com with SMTP id lf10so19720582pab.15
-	for <yocto@yoctoproject.org>; Sun, 24 Aug 2014 16:02:36 -0700 (PDT)
+	*      [209.85.213.170 listed in list.dnswl.org]
+Received: from mail-ig0-f170.google.com (mail-ig0-f170.google.com
+	[209.85.213.170])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 52B80E0044A
+	for <yocto@yoctoproject.org>; Sun, 24 Aug 2014 16:22:41 -0700 (PDT)
+Received: by mail-ig0-f170.google.com with SMTP id h3so3396272igd.3
+	for <yocto@yoctoproject.org>; Sun, 24 Aug 2014 16:22:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=message-id:date:from:user-agent:mime-version:to:subject
-	:content-type:content-transfer-encoding;
-	bh=ZIKb0BsHGzM58kJ+UJr/yg0e7zmWCp1W674heqpHxsk=;
-	b=GtE2/vzKnBZePxdQfPGUwpSm0ulGnfpMZFL+hJ463XulaJu6kIxN8kdHxN1lEnUUkC
-	zxK/srAUhwVrUNBrPRTCHG/6Y3OFBND8pQ4DBtuDyu+smGIkJmsKtJbKjmOfOKmXPyvm
-	4BuyQkqw8LZ4VLPA56LjUTAHECBTkd0MHB2EgZ2uC9byYrbdBFFMQdqBbbLbH8lV0PZi
-	QdMjPXXyR/AYph0jCJbzzYltOj0OTwcRmsR2nQ7CbpjXCNMYYWnqjelbhwx1GlWCeR0n
-	OMTj4ZQsFD2FLjDkVuJOzFCd5zjXYQDOu6I894vonBUNFSssbHxZMPZXO3JoZx1rYUXz
-	I5IQ==
-X-Received: by 10.70.19.166 with SMTP id g6mr23259147pde.99.1408921356293;
-	Sun, 24 Aug 2014 16:02:36 -0700 (PDT)
-Received: from ?IPv6:2601:c:9380:601:b970:36b8:bdaa:630e?
-	([2601:c:9380:601:b970:36b8:bdaa:630e])
-	by mx.google.com with ESMTPSA id
-	ki7sm35458531pbc.65.2014.08.24.16.02.34 for <yocto@yoctoproject.org>
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Sun, 24 Aug 2014 16:02:35 -0700 (PDT)
-Message-ID: <53FA6F09.6040502@gmail.com>
-Date: Sun, 24 Aug 2014 16:02:33 -0700
-From: akuster808 <akuster808@gmail.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:31.0) Gecko/20100101 Thunderbird/31.0
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-type;
+	bh=lnv+2//XK52mQA8HJ83i7mc+vJTXJh4kIOcVYsdep/o=;
+	b=zGIfLw4FElCj0yzKz5QUvl4VnWA1YTfuFTBrNKl9ZRvZU+0k6QFJdsVFCO12b3LTOO
+	3im1OU5nXwvleGmi/m1f2cnBjEM/Y89rO3nDHBeb80I/qiOvLS9sAX+0GA16dKsO3M3M
+	rOAOLGR51dNH+nEGalWjW/BvDk/NTVNLuIJbkO8OhBDvTF70lPEqxYWvw4t42YJOJEEi
+	qqQG+dei1TrLBRxicsIsoSSlpJ+bdYGo4GdVixIWO4cl32IpugWyh3LGJz0tj+jBL6b9
+	khr8B5SMgmIWdwBkPPdJZ5HlbQkEcyb0uqdw7ZKD9rDS+LYEFD/BCXwv3pYO3wpeuLkw
+	uq1g==
+X-Received: by 10.50.153.83 with SMTP id ve19mr12275675igb.4.1408922561467;
+	Sun, 24 Aug 2014 16:22:41 -0700 (PDT)
 MIME-Version: 1.0
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: New kernel error after syncing
+Received: by 10.50.102.67 with HTTP; Sun, 24 Aug 2014 16:22:11 -0700 (PDT)
+In-Reply-To: <53FA6F09.6040502@gmail.com>
+References: <53FA6F09.6040502@gmail.com>
+From: Khem Raj <raj.khem@gmail.com>
+Date: Sun, 24 Aug 2014 16:22:11 -0700
+Message-ID: <CAMKF1srMoavYLXfrs=KoUArTxqrJbGFX2koahB-wE3Dm=51GWw@mail.gmail.com>
+To: akuster808 <akuster808@gmail.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: New kernel error after syncing
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -62,37 +58,45 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 24 Aug 2014 23:02:46 -0000
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Sun, 24 Aug 2014 23:22:47 -0000
+Content-Type: text/plain; charset=UTF-8
 
+On Sun, Aug 24, 2014 at 4:02 PM, akuster808 <akuster808@gmail.com> wrote:
+>
+> Hello,
+>
+> Is anyone else seeing kernel build issue on 3.14 with the resent updates?
+>
+>
+> I am getting the following errors on ppc64 (standard/qemuppc). x86-64 built
+> fine (core-image-minimal). building ppc now.
+>
+> |   LD      init/built-in.o
+> | mm/built-in.o: In function `.vm_cgroup_css_alloc':
+> | vm_cgroup.c:(.text+0x7103c): undefined reference to `.res_counter_init'
+> | vm_cgroup.c:(.text+0x71090): undefined reference to `.res_counter_init'
+> | mm/built-in.o: In function `.vm_cgroup_read_u64':
+> | vm_cgroup.c:(.text+0x711c4): undefined reference to
+> `.res_counter_read_u64'
+> | mm/built-in.o: In function `.vm_cgroup_charge_memory_mm':
+> | (.text+0x71348): undefined reference to `.res_counter_charge'
+> | mm/built-in.o: In function `.vm_cgroup_uncharge_memory_mm':
+> | (.text+0x713a0): undefined reference to `.res_counter_uncharge'
+> | mm/built-in.o: In function `.vm_cgroup_charge_shmem':
+> | (.text+0x71508): undefined reference to `.res_counter_charge'
+> | mm/built-in.o: In function `.vm_cgroup_uncharge_shmem':
+> | (.text+0x71560): undefined reference to `.res_counter_uncharge'
+> | make[2]: *** [vmlinux] Error 1
+> | make[1]: *** [sub-make] Error 2
+> | make: *** [all] Error 2
 
-Hello,
+Do you have CONFIG_CGROUP_VM turned off ?
 
-Is anyone else seeing kernel build issue on 3.14 with the resent updates?
-
-
-I am getting the following errors on ppc64 (standard/qemuppc). x86-64 
-built fine (core-image-minimal). building ppc now.
-
-|   LD      init/built-in.o
-| mm/built-in.o: In function `.vm_cgroup_css_alloc':
-| vm_cgroup.c:(.text+0x7103c): undefined reference to `.res_counter_init'
-| vm_cgroup.c:(.text+0x71090): undefined reference to `.res_counter_init'
-| mm/built-in.o: In function `.vm_cgroup_read_u64':
-| vm_cgroup.c:(.text+0x711c4): undefined reference to 
-`.res_counter_read_u64'
-| mm/built-in.o: In function `.vm_cgroup_charge_memory_mm':
-| (.text+0x71348): undefined reference to `.res_counter_charge'
-| mm/built-in.o: In function `.vm_cgroup_uncharge_memory_mm':
-| (.text+0x713a0): undefined reference to `.res_counter_uncharge'
-| mm/built-in.o: In function `.vm_cgroup_charge_shmem':
-| (.text+0x71508): undefined reference to `.res_counter_charge'
-| mm/built-in.o: In function `.vm_cgroup_uncharge_shmem':
-| (.text+0x71560): undefined reference to `.res_counter_uncharge'
-| make[2]: *** [vmlinux] Error 1
-| make[1]: *** [sub-make] Error 2
-| make: *** [all] Error 2
-
-- armin
+>
+> - armin
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
