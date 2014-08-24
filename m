@@ -1,38 +1,59 @@
-Return-Path: <paul.eggleton@linux.intel.com>
+Return-Path: <olof.johansson@axis.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 5A782E007EE; Sun, 24 Aug 2014 09:10:47 -0700 (PDT)
+	id 226EBE00803; Sun, 24 Aug 2014 10:23:09 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
-	autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at http://www.dnswl.org/,
-	high *      trust
-	*      [143.182.124.21 listed in list.dnswl.org]
-Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1B5D3E00576
-	for <yocto@yoctoproject.org>; Sun, 24 Aug 2014 09:10:43 -0700 (PDT)
-Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by azsmga101.ch.intel.com with ESMTP; 24 Aug 2014 09:10:42 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.04,391,1406617200"; d="scan'208";a="472098279"
-Received: from rrhewawa-mobl.gar.corp.intel.com (HELO
-	peggleto-mobl5.ger.corp.intel.com) ([10.252.123.41])
-	by azsmga001.ch.intel.com with ESMTP; 24 Aug 2014 09:10:41 -0700
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: Marius Avram <marius.avram@intel.com>
-Date: Sun, 24 Aug 2014 17:10:40 +0100
-Message-ID: <2309582.H5pxBmqOuJ@peggleto-mobl5.ger.corp.intel.com>
-Organization: Intel Corporation
-User-Agent: KMail/4.13.3 (Linux/3.15.10-200.fc20.x86_64; KDE/4.13.3; x86_64; ;
-	)
-In-Reply-To: <1408698518-13130-1-git-send-email-marius.avram@intel.com>
-References: <1408698518-13130-1-git-send-email-marius.avram@intel.com>
+X-Greylist: delayed 496 seconds by postgrey-1.32 at yocto-www;
+	Sun, 24 Aug 2014 10:23:04 PDT
+Received: from bastet.se.axis.com (bastet.se.axis.com [195.60.68.11])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C9470E00576
+	for <yocto@lists.yoctoproject.org>;
+	Sun, 24 Aug 2014 10:23:04 -0700 (PDT)
+Received: from localhost (localhost [127.0.0.1])
+	by bastet.se.axis.com (Postfix) with ESMTP id C1D911807B
+	for <yocto@lists.yoctoproject.org>;
+	Sun, 24 Aug 2014 19:14:42 +0200 (CEST)
+X-Virus-Scanned: Debian amavisd-new at bastet.se.axis.com
+Received: from bastet.se.axis.com ([IPv6:::ffff:127.0.0.1])
+	by localhost (bastet.se.axis.com [::ffff:127.0.0.1]) (amavisd-new,
+	port 10024)
+	with LMTP id ED-usDgCd9MY for <yocto@lists.yoctoproject.org>;
+	Sun, 24 Aug 2014 19:14:34 +0200 (CEST)
+Received: from boulder.se.axis.com (boulder.se.axis.com [10.0.2.104])
+	by bastet.se.axis.com (Postfix) with ESMTP id 2C13A18071
+	for <yocto@lists.yoctoproject.org>;
+	Sun, 24 Aug 2014 19:14:34 +0200 (CEST)
+Received: from boulder.se.axis.com (localhost [127.0.0.1])
+	by postfix.imss71 (Postfix) with ESMTP id 095B611A3
+	for <yocto@lists.yoctoproject.org>;
+	Sun, 24 Aug 2014 19:14:34 +0200 (CEST)
+Received: from seth.se.axis.com (seth.se.axis.com [10.0.2.172])
+	by boulder.se.axis.com (Postfix) with ESMTP id F1E5984A
+	for <yocto@lists.yoctoproject.org>;
+	Sun, 24 Aug 2014 19:14:33 +0200 (CEST)
+Received: from xmail2.se.axis.com (xmail2.se.axis.com [10.0.5.74])
+	by seth.se.axis.com (Postfix) with ESMTP id EDB783E048
+	for <yocto@lists.yoctoproject.org>;
+	Sun, 24 Aug 2014 19:14:33 +0200 (CEST)
+Received: from lnxolofjn.se.axis.com (10.92.17.1) by xmail2.se.axis.com
+	(10.0.5.74) with Microsoft SMTP Server id 8.3.342.0; Sun, 24 Aug 2014
+	19:14:33 +0200
+Received: by lnxolofjn.se.axis.com (Postfix, from userid 20466)	id A84629C56B; 
+	Sun, 24 Aug 2014 19:14:33 +0200 (CEST)
+Date: Sun, 24 Aug 2014 19:14:33 +0200
+From: Olof Johansson <olof.johansson@axis.com>
+To: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
+Message-ID: <20140824171433.GA21392@axis.com>
+References: <1408449451-8566-1-git-send-email-otavio@ossystems.com.br>
 MIME-Version: 1.0
-Cc: yocto@yoctoproject.org
-Subject: Re: [AUH][PATCH v3 1/2] Send emails for a list of recipes
+In-Reply-To: <1408449451-8566-1-git-send-email-otavio@ossystems.com.br>
+User-Agent: Mutt/1.5.23 (2014-03-12)
+Subject: Re: [PATCH] distro/poky: Add Debian 7.5 and 7.6 version as validated
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -44,40 +65,58 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 24 Aug 2014 16:10:47 -0000
-Content-Transfer-Encoding: 7Bit
+X-List-Received-Date: Sun, 24 Aug 2014 17:23:09 -0000
 Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
 
-Hi Marius,
+Hi,
 
-On Friday 22 August 2014 12:08:38 Marius Avram wrote:
-> If the --send-emails or -e command line argument is active and a single
-> or a list of recipes are given to the script, emails with the results
-> and patches will be sent to their maintainers or to the overriden
-> addresses from the configuration file.
+On 14-08-19 13:57 +0200, Otavio Salvador wrote:
+> @@ -88,6 +88,8 @@ SANITY_TESTED_DISTROS ?= " \
+>              Debian-7.2 \n \
+>              Debian-7.3 \n \
+>              Debian-7.4 \n \
+> +            Debian-7.5 \n \
+> +            Debian-7.6 \n \
+>              SUSE-LINUX-12.2 \n \
+>              openSUSE-project-12.3 \n \
+>              openSUSE-project-13.1 \n \
 
-I've merged this and the other patch; I had to do some rebasing after my 
-earlier changes and I stumbled over what appears to be a logic error. Here's 
-what was removed from one part in the patch:
+Perhaps we could discuss adding Debian-7.* (the current
+Debian stable release, Wheezy, aka Debian 7.x)? I know there's
+some different opinions, but I'm just gonna put in my two cents
+for why that change would imho be beneficial and harmless:
 
-> -        if ("drop_previous_commits" in settings and
-> -                settings["drop_previous_commits"] == "yes" and
-> -                err is None) or (err is not None and self.patch_file is not
+- No need to update the list for each point release. Since a
+  Debian point release happens every other month and since these
+  updates would never make it to a previous poky release, the
+  distro version would be stale within two months of a poky release.
 
-And here is what was added:
+- Debian is one of few distros that includes this granular
+  version level in the lsb version. Adding a 7.* glob would
+  normalize it with other distros.
 
-> +        if ("drop_previous_commits" in settings and
-> +                settings["drop_previous_commits"] == "yes" and
-> +                err) or (err and self.patch_file):
+- Limited scope: "[The Debian point releases] usually incorporate
+  the security fixes released until the time of the update and
+  fixes for grave bugs in the current release" [1]
 
-I assumed this should have been "and not err" so I changed it to that when 
-merging.
+- Using poky should not make you feel hindered in doing important
+  security upgrades provided by your desktop distribution, or for
+  that matter make you select a different distribution in the
+  belief that Debian stable isn't supported by Poky.
 
-Cheers,
-Paul
+- For organizations and projects with stricter distro needs, the
+  variable is easily overrideable. (This is true the other way
+  around as well, we have already added the glob to our internal
+  layer.)
 
+Thoughts?
+
+1: https://www.debian.org/doc/manuals/developers-reference/pkgs.html#upload-stable
+
+(Of course, I have no objections to Otavio change.)
+
+Regards,
 -- 
-
-Paul Eggleton
-Intel Open Source Technology Centre
+olofjn
 
