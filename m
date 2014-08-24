@@ -1,59 +1,56 @@
-Return-Path: <olof.johansson@axis.com>
+Return-Path: <akuster808@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 226EBE00803; Sun, 24 Aug 2014 10:23:09 -0700 (PDT)
+	id 7F290E006DB; Sun, 24 Aug 2014 16:02:46 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (akuster808[at]gmail.com)
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-X-Greylist: delayed 496 seconds by postgrey-1.32 at yocto-www;
-	Sun, 24 Aug 2014 10:23:04 PDT
-Received: from bastet.se.axis.com (bastet.se.axis.com [195.60.68.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C9470E00576
-	for <yocto@lists.yoctoproject.org>;
-	Sun, 24 Aug 2014 10:23:04 -0700 (PDT)
-Received: from localhost (localhost [127.0.0.1])
-	by bastet.se.axis.com (Postfix) with ESMTP id C1D911807B
-	for <yocto@lists.yoctoproject.org>;
-	Sun, 24 Aug 2014 19:14:42 +0200 (CEST)
-X-Virus-Scanned: Debian amavisd-new at bastet.se.axis.com
-Received: from bastet.se.axis.com ([IPv6:::ffff:127.0.0.1])
-	by localhost (bastet.se.axis.com [::ffff:127.0.0.1]) (amavisd-new,
-	port 10024)
-	with LMTP id ED-usDgCd9MY for <yocto@lists.yoctoproject.org>;
-	Sun, 24 Aug 2014 19:14:34 +0200 (CEST)
-Received: from boulder.se.axis.com (boulder.se.axis.com [10.0.2.104])
-	by bastet.se.axis.com (Postfix) with ESMTP id 2C13A18071
-	for <yocto@lists.yoctoproject.org>;
-	Sun, 24 Aug 2014 19:14:34 +0200 (CEST)
-Received: from boulder.se.axis.com (localhost [127.0.0.1])
-	by postfix.imss71 (Postfix) with ESMTP id 095B611A3
-	for <yocto@lists.yoctoproject.org>;
-	Sun, 24 Aug 2014 19:14:34 +0200 (CEST)
-Received: from seth.se.axis.com (seth.se.axis.com [10.0.2.172])
-	by boulder.se.axis.com (Postfix) with ESMTP id F1E5984A
-	for <yocto@lists.yoctoproject.org>;
-	Sun, 24 Aug 2014 19:14:33 +0200 (CEST)
-Received: from xmail2.se.axis.com (xmail2.se.axis.com [10.0.5.74])
-	by seth.se.axis.com (Postfix) with ESMTP id EDB783E048
-	for <yocto@lists.yoctoproject.org>;
-	Sun, 24 Aug 2014 19:14:33 +0200 (CEST)
-Received: from lnxolofjn.se.axis.com (10.92.17.1) by xmail2.se.axis.com
-	(10.0.5.74) with Microsoft SMTP Server id 8.3.342.0; Sun, 24 Aug 2014
-	19:14:33 +0200
-Received: by lnxolofjn.se.axis.com (Postfix, from userid 20466)	id A84629C56B; 
-	Sun, 24 Aug 2014 19:14:33 +0200 (CEST)
-Date: Sun, 24 Aug 2014 19:14:33 +0200
-From: Olof Johansson <olof.johansson@axis.com>
-To: "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>
-Message-ID: <20140824171433.GA21392@axis.com>
-References: <1408449451-8566-1-git-send-email-otavio@ossystems.com.br>
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.220.42 listed in list.dnswl.org]
+Received: from mail-pa0-f42.google.com (mail-pa0-f42.google.com
+	[209.85.220.42])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 63EC8E0044A
+	for <yocto@yoctoproject.org>; Sun, 24 Aug 2014 16:02:36 -0700 (PDT)
+Received: by mail-pa0-f42.google.com with SMTP id lf10so19720582pab.15
+	for <yocto@yoctoproject.org>; Sun, 24 Aug 2014 16:02:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=message-id:date:from:user-agent:mime-version:to:subject
+	:content-type:content-transfer-encoding;
+	bh=ZIKb0BsHGzM58kJ+UJr/yg0e7zmWCp1W674heqpHxsk=;
+	b=GtE2/vzKnBZePxdQfPGUwpSm0ulGnfpMZFL+hJ463XulaJu6kIxN8kdHxN1lEnUUkC
+	zxK/srAUhwVrUNBrPRTCHG/6Y3OFBND8pQ4DBtuDyu+smGIkJmsKtJbKjmOfOKmXPyvm
+	4BuyQkqw8LZ4VLPA56LjUTAHECBTkd0MHB2EgZ2uC9byYrbdBFFMQdqBbbLbH8lV0PZi
+	QdMjPXXyR/AYph0jCJbzzYltOj0OTwcRmsR2nQ7CbpjXCNMYYWnqjelbhwx1GlWCeR0n
+	OMTj4ZQsFD2FLjDkVuJOzFCd5zjXYQDOu6I894vonBUNFSssbHxZMPZXO3JoZx1rYUXz
+	I5IQ==
+X-Received: by 10.70.19.166 with SMTP id g6mr23259147pde.99.1408921356293;
+	Sun, 24 Aug 2014 16:02:36 -0700 (PDT)
+Received: from ?IPv6:2601:c:9380:601:b970:36b8:bdaa:630e?
+	([2601:c:9380:601:b970:36b8:bdaa:630e])
+	by mx.google.com with ESMTPSA id
+	ki7sm35458531pbc.65.2014.08.24.16.02.34 for <yocto@yoctoproject.org>
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Sun, 24 Aug 2014 16:02:35 -0700 (PDT)
+Message-ID: <53FA6F09.6040502@gmail.com>
+Date: Sun, 24 Aug 2014 16:02:33 -0700
+From: akuster808 <akuster808@gmail.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64;
+	rv:31.0) Gecko/20100101 Thunderbird/31.0
 MIME-Version: 1.0
-In-Reply-To: <1408449451-8566-1-git-send-email-otavio@ossystems.com.br>
-User-Agent: Mutt/1.5.23 (2014-03-12)
-Subject: Re: [PATCH] distro/poky: Add Debian 7.5 and 7.6 version as validated
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: New kernel error after syncing
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -65,58 +62,37 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 24 Aug 2014 17:23:09 -0000
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
+X-List-Received-Date: Sun, 24 Aug 2014 23:02:46 -0000
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Hi,
 
-On 14-08-19 13:57 +0200, Otavio Salvador wrote:
-> @@ -88,6 +88,8 @@ SANITY_TESTED_DISTROS ?= " \
->              Debian-7.2 \n \
->              Debian-7.3 \n \
->              Debian-7.4 \n \
-> +            Debian-7.5 \n \
-> +            Debian-7.6 \n \
->              SUSE-LINUX-12.2 \n \
->              openSUSE-project-12.3 \n \
->              openSUSE-project-13.1 \n \
+Hello,
 
-Perhaps we could discuss adding Debian-7.* (the current
-Debian stable release, Wheezy, aka Debian 7.x)? I know there's
-some different opinions, but I'm just gonna put in my two cents
-for why that change would imho be beneficial and harmless:
+Is anyone else seeing kernel build issue on 3.14 with the resent updates?
 
-- No need to update the list for each point release. Since a
-  Debian point release happens every other month and since these
-  updates would never make it to a previous poky release, the
-  distro version would be stale within two months of a poky release.
 
-- Debian is one of few distros that includes this granular
-  version level in the lsb version. Adding a 7.* glob would
-  normalize it with other distros.
+I am getting the following errors on ppc64 (standard/qemuppc). x86-64 
+built fine (core-image-minimal). building ppc now.
 
-- Limited scope: "[The Debian point releases] usually incorporate
-  the security fixes released until the time of the update and
-  fixes for grave bugs in the current release" [1]
+|   LD      init/built-in.o
+| mm/built-in.o: In function `.vm_cgroup_css_alloc':
+| vm_cgroup.c:(.text+0x7103c): undefined reference to `.res_counter_init'
+| vm_cgroup.c:(.text+0x71090): undefined reference to `.res_counter_init'
+| mm/built-in.o: In function `.vm_cgroup_read_u64':
+| vm_cgroup.c:(.text+0x711c4): undefined reference to 
+`.res_counter_read_u64'
+| mm/built-in.o: In function `.vm_cgroup_charge_memory_mm':
+| (.text+0x71348): undefined reference to `.res_counter_charge'
+| mm/built-in.o: In function `.vm_cgroup_uncharge_memory_mm':
+| (.text+0x713a0): undefined reference to `.res_counter_uncharge'
+| mm/built-in.o: In function `.vm_cgroup_charge_shmem':
+| (.text+0x71508): undefined reference to `.res_counter_charge'
+| mm/built-in.o: In function `.vm_cgroup_uncharge_shmem':
+| (.text+0x71560): undefined reference to `.res_counter_uncharge'
+| make[2]: *** [vmlinux] Error 1
+| make[1]: *** [sub-make] Error 2
+| make: *** [all] Error 2
 
-- Using poky should not make you feel hindered in doing important
-  security upgrades provided by your desktop distribution, or for
-  that matter make you select a different distribution in the
-  belief that Debian stable isn't supported by Poky.
-
-- For organizations and projects with stricter distro needs, the
-  variable is easily overrideable. (This is true the other way
-  around as well, we have already added the glob to our internal
-  layer.)
-
-Thoughts?
-
-1: https://www.debian.org/doc/manuals/developers-reference/pkgs.html#upload-stable
-
-(Of course, I have no objections to Otavio change.)
-
-Regards,
--- 
-olofjn
+- armin
 
