@@ -1,6 +1,6 @@
 Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 226C6E006DB; Sun, 24 Aug 2014 16:22:47 -0700 (PDT)
+	id 6517EE006DB; Sun, 24 Aug 2014 16:25:21 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -18,32 +18,33 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
 	low *      trust
-	*      [209.85.213.170 listed in list.dnswl.org]
-Received: from mail-ig0-f170.google.com (mail-ig0-f170.google.com
-	[209.85.213.170])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 52B80E0044A
-	for <yocto@yoctoproject.org>; Sun, 24 Aug 2014 16:22:41 -0700 (PDT)
-Received: by mail-ig0-f170.google.com with SMTP id h3so3396272igd.3
-	for <yocto@yoctoproject.org>; Sun, 24 Aug 2014 16:22:41 -0700 (PDT)
+	*      [209.85.213.171 listed in list.dnswl.org]
+Received: from mail-ig0-f171.google.com (mail-ig0-f171.google.com
+	[209.85.213.171])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id B20C9E0044A
+	for <yocto@yoctoproject.org>; Sun, 24 Aug 2014 16:25:19 -0700 (PDT)
+Received: by mail-ig0-f171.google.com with SMTP id l13so2010217iga.4
+	for <yocto@yoctoproject.org>; Sun, 24 Aug 2014 16:25:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
 	:cc:content-type;
-	bh=lnv+2//XK52mQA8HJ83i7mc+vJTXJh4kIOcVYsdep/o=;
-	b=zGIfLw4FElCj0yzKz5QUvl4VnWA1YTfuFTBrNKl9ZRvZU+0k6QFJdsVFCO12b3LTOO
-	3im1OU5nXwvleGmi/m1f2cnBjEM/Y89rO3nDHBeb80I/qiOvLS9sAX+0GA16dKsO3M3M
-	rOAOLGR51dNH+nEGalWjW/BvDk/NTVNLuIJbkO8OhBDvTF70lPEqxYWvw4t42YJOJEEi
-	qqQG+dei1TrLBRxicsIsoSSlpJ+bdYGo4GdVixIWO4cl32IpugWyh3LGJz0tj+jBL6b9
-	khr8B5SMgmIWdwBkPPdJZ5HlbQkEcyb0uqdw7ZKD9rDS+LYEFD/BCXwv3pYO3wpeuLkw
-	uq1g==
-X-Received: by 10.50.153.83 with SMTP id ve19mr12275675igb.4.1408922561467;
-	Sun, 24 Aug 2014 16:22:41 -0700 (PDT)
+	bh=yzcizdx824js2iQN0dNur3V4O7JNlr0s37POewpos6Y=;
+	b=E11Vui+zCFvYB/2lDuHQotrf14tQI+Gztkl7qMB2YebPcFZzU6C173iMfpVSj7tG/m
+	TpEtUkJ4zaWuFah0RI/7Qotw4GXOzNVOLJ7wIYqn0hvvqeyt44vqZNbhDtc56dlDXwUX
+	E7Yfme+kGqv0HXpPQ4EEY+mqFvOR3Id6+e60+RHxMtv6pci/dGT7Ec4kLcbESK+ueV2i
+	EGHz5IVB43RqqwR4+694Zfl7CtLTsbDoWulw/rOW6lAG/tMV4EDfKMkn/Wwx21fHaX7u
+	W7lOzlGwGLzi4/0cSMHwPeS9zG8vRUZbFX53u4fitY5oPeB9kHkfuEZfUciB3agg9bpk
+	Mb1w==
+X-Received: by 10.50.111.112 with SMTP id ih16mr11974121igb.30.1408922718754; 
+	Sun, 24 Aug 2014 16:25:18 -0700 (PDT)
 MIME-Version: 1.0
-Received: by 10.50.102.67 with HTTP; Sun, 24 Aug 2014 16:22:11 -0700 (PDT)
-In-Reply-To: <53FA6F09.6040502@gmail.com>
+Received: by 10.50.102.67 with HTTP; Sun, 24 Aug 2014 16:24:48 -0700 (PDT)
+In-Reply-To: <CAMKF1srMoavYLXfrs=KoUArTxqrJbGFX2koahB-wE3Dm=51GWw@mail.gmail.com>
 References: <53FA6F09.6040502@gmail.com>
+	<CAMKF1srMoavYLXfrs=KoUArTxqrJbGFX2koahB-wE3Dm=51GWw@mail.gmail.com>
 From: Khem Raj <raj.khem@gmail.com>
-Date: Sun, 24 Aug 2014 16:22:11 -0700
-Message-ID: <CAMKF1srMoavYLXfrs=KoUArTxqrJbGFX2koahB-wE3Dm=51GWw@mail.gmail.com>
+Date: Sun, 24 Aug 2014 16:24:48 -0700
+Message-ID: <CAMKF1sohuxWjSyMmH=JDU=Dx0xEx3JX1q+0aTQbXV=8-dABiCw@mail.gmail.com>
 To: akuster808 <akuster808@gmail.com>
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: New kernel error after syncing
@@ -58,45 +59,48 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Sun, 24 Aug 2014 23:22:47 -0000
+X-List-Received-Date: Sun, 24 Aug 2014 23:25:21 -0000
 Content-Type: text/plain; charset=UTF-8
 
-On Sun, Aug 24, 2014 at 4:02 PM, akuster808 <akuster808@gmail.com> wrote:
+On Sun, Aug 24, 2014 at 4:22 PM, Khem Raj <raj.khem@gmail.com> wrote:
+> On Sun, Aug 24, 2014 at 4:02 PM, akuster808 <akuster808@gmail.com> wrote:
+>>
+>> Hello,
+>>
+>> Is anyone else seeing kernel build issue on 3.14 with the resent updates?
+>>
+>>
+>> I am getting the following errors on ppc64 (standard/qemuppc). x86-64 built
+>> fine (core-image-minimal). building ppc now.
+>>
+>> |   LD      init/built-in.o
+>> | mm/built-in.o: In function `.vm_cgroup_css_alloc':
+>> | vm_cgroup.c:(.text+0x7103c): undefined reference to `.res_counter_init'
+>> | vm_cgroup.c:(.text+0x71090): undefined reference to `.res_counter_init'
+>> | mm/built-in.o: In function `.vm_cgroup_read_u64':
+>> | vm_cgroup.c:(.text+0x711c4): undefined reference to
+>> `.res_counter_read_u64'
+>> | mm/built-in.o: In function `.vm_cgroup_charge_memory_mm':
+>> | (.text+0x71348): undefined reference to `.res_counter_charge'
+>> | mm/built-in.o: In function `.vm_cgroup_uncharge_memory_mm':
+>> | (.text+0x713a0): undefined reference to `.res_counter_uncharge'
+>> | mm/built-in.o: In function `.vm_cgroup_charge_shmem':
+>> | (.text+0x71508): undefined reference to `.res_counter_charge'
+>> | mm/built-in.o: In function `.vm_cgroup_uncharge_shmem':
+>> | (.text+0x71560): undefined reference to `.res_counter_uncharge'
+>> | make[2]: *** [vmlinux] Error 1
+>> | make[1]: *** [sub-make] Error 2
+>> | make: *** [all] Error 2
 >
-> Hello,
->
-> Is anyone else seeing kernel build issue on 3.14 with the resent updates?
->
->
-> I am getting the following errors on ppc64 (standard/qemuppc). x86-64 built
-> fine (core-image-minimal). building ppc now.
->
-> |   LD      init/built-in.o
-> | mm/built-in.o: In function `.vm_cgroup_css_alloc':
-> | vm_cgroup.c:(.text+0x7103c): undefined reference to `.res_counter_init'
-> | vm_cgroup.c:(.text+0x71090): undefined reference to `.res_counter_init'
-> | mm/built-in.o: In function `.vm_cgroup_read_u64':
-> | vm_cgroup.c:(.text+0x711c4): undefined reference to
-> `.res_counter_read_u64'
-> | mm/built-in.o: In function `.vm_cgroup_charge_memory_mm':
-> | (.text+0x71348): undefined reference to `.res_counter_charge'
-> | mm/built-in.o: In function `.vm_cgroup_uncharge_memory_mm':
-> | (.text+0x713a0): undefined reference to `.res_counter_uncharge'
-> | mm/built-in.o: In function `.vm_cgroup_charge_shmem':
-> | (.text+0x71508): undefined reference to `.res_counter_charge'
-> | mm/built-in.o: In function `.vm_cgroup_uncharge_shmem':
-> | (.text+0x71560): undefined reference to `.res_counter_uncharge'
-> | make[2]: *** [vmlinux] Error 1
-> | make[1]: *** [sub-make] Error 2
-> | make: *** [all] Error 2
+> Do you have CONFIG_CGROUP_VM turned off ?
 
-Do you have CONFIG_CGROUP_VM turned off ?
-
+if this is on make sure CONFIG_RESOURCE_COUNTERS is enbled too.
 >
-> - armin
-> --
-> _______________________________________________
-> yocto mailing list
-> yocto@yoctoproject.org
-> https://lists.yoctoproject.org/listinfo/yocto
+>>
+>> - armin
+>> --
+>> _______________________________________________
+>> yocto mailing list
+>> yocto@yoctoproject.org
+>> https://lists.yoctoproject.org/listinfo/yocto
 
