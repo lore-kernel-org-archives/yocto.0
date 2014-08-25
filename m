@@ -1,47 +1,29 @@
-Return-Path: <opensource@keylevel.com>
+Return-Path: <maciej.borzecki@open-rnd.pl>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 0B91AE0074B; Mon, 25 Aug 2014 09:50:11 -0700 (PDT)
+	id 05709E0079A; Mon, 25 Aug 2014 10:07:38 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from a180.4uh.net (a180.4uh.net [89.248.60.180])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C1859E004FF
-	for <yocto@yoctoproject.org>; Mon, 25 Aug 2014 09:50:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=keylevel.com;
-	s=default; 
-	h=Mime-Version:To:Date:Message-Id:Subject:Content-Transfer-Encoding:Content-Type:From;
-	bh=RO3HnUTimd3//oWBHTmUhPzpd7FuqDkARas9VtewFEc=; 
-	b=LJcaHGRMlpY6NS9xxWhQUpj68igDSzkBzCz3Oku3dsYVSES0sr1zFmPPtNC55NPaXqWIXRDSchcXA2UvXIOHCU8O0tD9c0ivWBHjMhSOFtPvP+YYtqnsaAxsQDRPj02CvZDIt/Pw5awOVb4Wv510XUSdFNSkfGw3dhzQssdFoiA=;
-Received: from [109.224.171.0] (port=55691
-	helo=macbook-pro.durham.keylevel.com)
-	by a180.4uh.net with esmtpsa (TLSv1:AES128-SHA:128) (Exim 4.82)
-	(envelope-from <opensource@keylevel.com>) id 1XLxSw-000uZj-DN
-	for yocto@yoctoproject.org; Mon, 25 Aug 2014 17:50:00 +0100
-From: Chris Tapp <opensource@keylevel.com>
-Message-Id: <07EF1EFB-2454-4D8A-A1FC-3B2C3E8F85AD@keylevel.com>
-Date: Mon, 25 Aug 2014 17:50:00 +0100
-To: Yocto Project <yocto@yoctoproject.org>
-Mime-Version: 1.0 (Mac OS X Mail 7.3 \(1878.6\))
-X-Mailer: Apple Mail (2.1878.6)
-X-OutGoing-Spam-Status: No, score=-1.0
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - a180.4uh.net
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - keylevel.com
-X-Get-Message-Sender-Via: a180.4uh.net: authenticated_id:
-	chris.tapp@keylevel.com
-Subject: Unexpected redirection error in script
+Received: from akt59.rev.netart.pl (akt59.rev.netart.pl [85.128.150.59])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9E2EFE006B5
+	for <yocto@yoctoproject.org>; Mon, 25 Aug 2014 10:07:27 -0700 (PDT)
+Received: from localhost.localdomain (unknown [78.8.164.13])
+	by open-rnd.nazwa.pl (Postfix) with ESMTP id 1BCB72B300FD;
+	Mon, 25 Aug 2014 19:07:23 +0200 (CEST)
+From: Maciej Borzecki <maciej.borzecki@open-rnd.pl>
+To: yocto@yoctoproject.org
+Date: Mon, 25 Aug 2014 19:07:20 +0200
+Message-ID: <4829846.nEKDNArLxY@localhost.localdomain>
+User-Agent: KMail/4.13.3 (Linux/3.15.10-200.fc20.x86_64; KDE/4.13.3; x86_64; ;
+	)
+In-Reply-To: <07EF1EFB-2454-4D8A-A1FC-3B2C3E8F85AD@keylevel.com>
+References: <07EF1EFB-2454-4D8A-A1FC-3B2C3E8F85AD@keylevel.com>
+MIME-Version: 1.0
+Subject: Re: Unexpected redirection error in script
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -53,28 +35,59 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 25 Aug 2014 16:50:11 -0000
-Content-Type: text/plain; charset=us-ascii
+X-List-Received-Date: Mon, 25 Aug 2014 17:07:38 -0000
 Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
 
-I've previously used expressions of the form:
+On Monday 25 of August 2014 17:50:00 Chris Tapp wrote:
+> I've previously used expressions of the form:
+>=20
+>    IFS=3D. read -r $a $b $c $d <<< "$IP"
+try:
 
-   IFS=3D. read -r $a $b $c $d <<< "$IP"
+echo "$IP" | IFS=3D. read -r a b c d
 
-to split an IP address into its octets.
-
-However, when I try this for generic_pc under daisy I get an "Unexpected =
-redirection" error.
-
-Is this to do with the Busybox version/configuration or something else?
-
---
-
-Chris Tapp
-opensource@keylevel.com
-www.keylevel.com
+>=20
+> to split an IP address into its octets.
+>=20
+> However, when I try this for generic_pc under daisy I get an "Unexpec=
+ted
+> redirection" error.
+>=20
+> Is this to do with the Busybox version/configuration or something els=
+e?
+Busybox uses ash shell. Bash tricks like this won't work.
 
 
+--=20
 
+Maciej Borz=C4=99cki=20
+Senior Software Engineer Open-RnD Sp. z o.o.=20
+www.open-rnd.pl, Facebook, Twitter=20
+mobile: +48 telefon, fax: +48 42 657 9079=20
 
+Niniejsza wiadomo=C5=9B=C4=87 wraz z za=C5=82=C4=85cznikami mo=C5=BCe z=
+awiera=C4=87 chronione prawem lub=20
+poufne informacje i zosta=C5=82a wys=C5=82ana wy=C5=82=C4=85cznie do wi=
+adomo=C5=9Bci i u=C5=BCytku os=C3=B3b, do=20
+kt=C3=B3rych zosta=C5=82a zaadresowana. Je=C5=9Bli wiadomo=C5=9B=C4=87 =
+zosta=C5=82a otrzymana przypadkowo=20
+zabrania si=C4=99 jej kopiowania lub rozsy=C5=82ania do os=C3=B3b trzec=
+ich. W takim przypadku=20
+uprasza si=C4=99 o natychmiastowe zniszczenie wiadomo=C5=9Bci oraz poin=
+formowanie=20
+nadawcy o zaistnia=C5=82ej sytuacji za pomoc=C4=85 wiadomo=C5=9Bci zwro=
+tnej. Dzi=C4=99kujemy.=20
+
+This message, including any attachments hereto, may contain privileged =
+or=20
+confidential information and is sent solely for the attention and use o=
+f the=20
+intended addressee(s). If you are not an intended addressee, you may ne=
+ither=20
+use this message nor copy or deliver it to anyone. In such case, you sh=
+ould=20
+immediately destroy this message and kindly notify the sender by reply =
+email.=20
+Thank you. 
 
