@@ -1,6 +1,6 @@
 Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 3A04CE0076C; Sun, 24 Aug 2014 22:31:13 -0700 (PDT)
+	id ADD95E00809; Sun, 24 Aug 2014 23:37:10 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -18,40 +18,40 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
 	low *      trust
-	*      [209.85.192.172 listed in list.dnswl.org]
-Received: from mail-pd0-f172.google.com (mail-pd0-f172.google.com
-	[209.85.192.172])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 024AAE0044A
-	for <yocto@yoctoproject.org>; Sun, 24 Aug 2014 22:31:03 -0700 (PDT)
-Received: by mail-pd0-f172.google.com with SMTP id y13so19541367pdi.17
-	for <yocto@yoctoproject.org>; Sun, 24 Aug 2014 22:31:01 -0700 (PDT)
+	*      [209.85.220.41 listed in list.dnswl.org]
+Received: from mail-pa0-f41.google.com (mail-pa0-f41.google.com
+	[209.85.220.41])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6E8FAE00769
+	for <yocto@yoctoproject.org>; Sun, 24 Aug 2014 23:36:59 -0700 (PDT)
+Received: by mail-pa0-f41.google.com with SMTP id rd3so20389431pab.14
+	for <yocto@yoctoproject.org>; Sun, 24 Aug 2014 23:36:59 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=date:from:to:cc:subject:message-id:references:mime-version
 	:content-type:content-disposition:in-reply-to:user-agent;
-	bh=UCFIux61o8lyWsKCZ4Zlr4kLIZFpmMeu5tJl/Rw/WD8=;
-	b=jZH447vI/TM6bn/uOoVh4m9r5bf5MMdGQDTznZwgYNYxWBsJqVMMxhPCMnwl4FHLGs
-	T4rOFfiskcxe3Zn9xPwKjB4KRt/rDYlIrhY6CMUqBYoXXgD6Bq82+gnNkIDfmf9h/hqj
-	LPUlgkbRkK6ZN3AHrX/Q2DYMOb4Bl5narNc6vRPGN4mLKJH66symqfMRGuspQXbkuGK0
-	muOJGQq5CsyAFlTgTkTxXc87QA1a1RK97qzSF3liWL1NT3poGqpyAHGjAFd0zNmWSASb
-	797Wj+NQoiiE4Xur5y/411haOeaCJPMpg+QUdgd46gae0wR0QZqhtoJ3P0ZssDW96VlT
-	ZLfA==
-X-Received: by 10.66.158.130 with SMTP id wu2mr25343896pab.59.1408944661402;
-	Sun, 24 Aug 2014 22:31:01 -0700 (PDT)
+	bh=KdpkR5FV+D7kyYWoEOJlgPhIxak0tWOQZUH0OeiDfQs=;
+	b=oAnc7lq5OQxcqKPOUeZECWA4ZTtR5Zz8lyexQOHcFxA1guN2ZY+tyxF7KWNWZpv5yH
+	9CWeBIlwLnzoG6JD0ctLA8aNxPH/VuxBivVWmM58D057Ve7qHPy0kDGMmfa9F/y5SxBg
+	1UAKZHK0wesnPYqui0t4D0SU0Z/8lkd3ZEbyEcuNl88k5ad0D8NOK3DeVNlPehyAnyIb
+	OZUwTrZNtSuokiPWKx/M2t2EsgKDGHAQATR1kVTteLmoIioiKodiT66VfCqQel3WSANq
+	lr3ms92Wc5vxIM7tib2MOc2Og8mp9h19RY5WaS71BEhfB6iAuH+kFR5EhLf+KJqX1lb7
+	lZXA==
+X-Received: by 10.68.173.98 with SMTP id bj2mr1894049pbc.157.1408948619713;
+	Sun, 24 Aug 2014 23:36:59 -0700 (PDT)
 Received: from haswell ([2601:9:3580:7a5:baca:3aff:fe80:aa8f])
-	by mx.google.com with ESMTPSA id u2sm36142647pbs.42.2014.08.24.22.31.00
+	by mx.google.com with ESMTPSA id jz9sm8018296pbc.48.2014.08.24.23.36.58
 	for <multiple recipients>
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Sun, 24 Aug 2014 22:31:00 -0700 (PDT)
-Date: Sun, 24 Aug 2014 22:34:48 -0700
+	Sun, 24 Aug 2014 23:36:59 -0700 (PDT)
+Date: Sun, 24 Aug 2014 23:40:46 -0700
 From: Khem Raj <raj.khem@gmail.com>
-To: "Crast, Nicholas" <Nicholas.Crast@saabsensis.com>
-Message-ID: <20140825053448.GD1014@haswell>
-References: <36A43B0E1E88D84791516F9D44BC48331B3C9E7D@corpmail01.corp.sensis.com>
+To: Vladimir Redzhepov <Vladimir_Redzhepov@epam.com>
+Message-ID: <20140825064046.GF1014@haswell>
+References: <35e32346a105465791b484fe34a2a011@EPBYMINSA0001.epam.com>
 MIME-Version: 1.0
-In-Reply-To: <36A43B0E1E88D84791516F9D44BC48331B3C9E7D@corpmail01.corp.sensis.com>
+In-Reply-To: <35e32346a105465791b484fe34a2a011@EPBYMINSA0001.epam.com>
 User-Agent: Mutt/1.5.23 (2014-03-12)
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Bundling initramfs with uImage
+Subject: Re: [meta-oracle-java][PATCH] update jdk and jre to version 67
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -63,27 +63,38 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 25 Aug 2014 05:31:13 -0000
+X-List-Received-Date: Mon, 25 Aug 2014 06:37:10 -0000
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 
-On 14-08-21 20:18:41, Crast, Nicholas wrote:
-> All,
+On 14-08-21 17:01:47, Vladimir Redzhepov wrote:
+> From f0305398a51435f407e41a8f0eaf83f8bdd13cca Mon Sep 17 00:00:00 2001
+> From: Vladimir Redzhepov <vladimir_redzhepov@epam.com>
+> Date: Thu, 21 Aug 2014 19:43:29 +0300
+> Subject: [PATCH] update jdk and jre to version 67
 > 
-> I am currently working in an embedded environment, struggling to get the entire system running in RAM, so that everything is fresh after a reboot. I can currently use the initramfs-live-boot functionality to generate a .cpio.gz file, but I am lost on how to get this to 'bundle' with the uImage. The uImage will be stored on an SD card and we are using u-boot.
+> Signed-off-by: Vladimir Redzhepov <vladimir_redzhepov@epam.com>
+> ---
+> recipes-devtools/oracle-java/oracle-jse-jdk-i586_1.7.0.bb   | 10 +++++-----
+> recipes-devtools/oracle-java/oracle-jse-jdk-x86-64_1.7.0.bb | 10 +++++-----
+> recipes-devtools/oracle-java/oracle-jse-jre-i586_1.7.0.bb   | 10 +++++-----
+> recipes-devtools/oracle-java/oracle-jse-jre-x86-64_1.7.0.bb | 10 +++++-----
+> recipes-devtools/oracle-java/oracle-jse.inc                 |  4 ++--
+> 5 files changed, 22 insertions(+), 22 deletions(-)
 > 
-> I see mentions of the CONFIG_INITRAMFS_SOURCE kernel option, but I am unsure if I need to change this.
-> 
-> Can someone help me? I've been googling all day and haven't gotten much further.
+> diff --git a/recipes-devtools/oracle-java/oracle-jse.inc b/recipes-devtools/oracle-java/oracle-jse.inc
+> index 3a4e20d..38ceef0 100644
+> --- a/recipes-devtools/oracle-java/oracle-jse.inc
+> +++ b/recipes-devtools/oracle-java/oracle-jse.inc
+> @@ -2,8 +2,8 @@ LICENSE_FLAGS = "oracle_java"
+> LICENSE = "Oracle_Binary_Code_License_Agreement"
+> LIC_FILES_CHKSUM = "\
+>                file://${WORKDIR}/${JDK_JRE}${PV}_${PV_UPDATE}/LICENSE;md5=98f46ab6481d87c4d77e0e91a6dbc15f \
+> -              file://${WORKDIR}/${JDK_JRE}${PV}_${PV_UPDATE}/COPYRIGHT;md5=3a11238025bf13b87f04753183ffeb90 \
+> -                file://${WORKDIR}/${JDK_JRE}${PV}_${PV_UPDATE}/THIRDPARTYLICENSEREADME.txt;md5=c339b34e3da6673d2c5950d0f8808f8c \
+> +             file://${WORKDIR}/${JDK_JRE}${PV}_${PV_UPDATE}/COPYRIGHT;md5=be9fe5d47a7dcfb78f142f487afb34bb \
+> +                file://${WORKDIR}/${JDK_JRE}${PV}_${PV_UPDATE}/THIRDPARTYLICENSEREADME.txt;md5=f3a388961d24b8b72d412a079a878cdb \
+>                "
 
-if you add 
-
-INITRAMFS_IMAGE_BUNDLE = "1"
-INITRAMFS_IMAGE = "<name of your initramfs-image>"
-
-in you local.conf that should help it to create uImage with everything
-in it.
-
--Khem
-
+what changed in these files that ensues change in checksums ?
 
