@@ -1,38 +1,52 @@
-Return-Path: <Vladimir_Redzhepov@epam.com>
+Return-Path: <atul.singh008@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 06ED6E0078A; Mon, 25 Aug 2014 05:09:07 -0700 (PDT)
+	id C7572E00803; Mon, 25 Aug 2014 05:24:55 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (atul.singh008[at]gmail.com)
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from EVBYMINSA0102.epam.com (evbyminsa0102.epam.com [217.21.63.37])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CF4B9E0076C
-	for <yocto@yoctoproject.org>; Mon, 25 Aug 2014 05:08:55 -0700 (PDT)
-Received: from EPBYMINSA0001.epam.com (10.6.110.2) by EPBYMINSA0001.epam.com
-	(10.6.110.2) with Microsoft SMTP Server (TLS) id 15.0.913.22;
-	Mon, 25 Aug 2014 15:08:35 +0300
-Received: from EPBYMINSA0001.epam.com ([::1]) by EPBYMINSA0001.epam.com
-	([::1]) with mapi id 15.00.0913.011; Mon, 25 Aug 2014 15:08:35 +0300
-From: Vladimir Redzhepov <Vladimir_Redzhepov@epam.com>
-To: Khem Raj <raj.khem@gmail.com>
-Thread-Topic: [yocto] [meta-oracle-java][PATCH] update jdk and jre to
-	version 67
-Thread-Index: Ac+9YY3bnY/5oSRDTvaNMMXDx9AUuwCtMzMAABGNngA=
-Date: Mon, 25 Aug 2014 12:08:34 +0000
-Message-ID: <c363d789f4434cd1b4b8ea49fa32f014@EPBYMINSA0001.epam.com>
-References: <35e32346a105465791b484fe34a2a011@EPBYMINSA0001.epam.com>
-	<20140825064046.GF1014@haswell>
-In-Reply-To: <20140825064046.GF1014@haswell>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.6.137.75]
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.213.181 listed in list.dnswl.org]
+Received: from mail-ig0-f181.google.com (mail-ig0-f181.google.com
+	[209.85.213.181])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 95B85E0076C
+	for <yocto@yoctoproject.org>; Mon, 25 Aug 2014 05:24:53 -0700 (PDT)
+Received: by mail-ig0-f181.google.com with SMTP id h3so2663000igd.14
+	for <yocto@yoctoproject.org>; Mon, 25 Aug 2014 05:24:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:content-type; bh=jDijo2HOXMxe7UYSYosupksSw04U/Qj4zDnOzhF368A=;
+	b=Y64aEGcEbHcG3p5dZPzp687KrC95qBWV00vQLCbWUpwaaj+0Ue8lg3Vzuz2Lc0MKoz
+	2s5U75zaElP4tKProNxll1RnwyuWTuABazsm9bZKnJInCPDaru+H+Vaf2lJAwylTkxph
+	/NxHFEDxZVjINtmuAPZvaSmTsAEjCGnvCqiN2r3YaXy0rlb42b2SyX/toZZ0ns9nBqEs
+	MoPKI3vUBqvBOm7v6ItrrocaeM3cQbUFHMWkab8zFvYkXNRGZSoCMLXnS6JxjJKMqOhd
+	fH7Rut1PX3lVdkQyWxygpVFLaEukFcLJCbpc0Ahl7yHmB4pigX226nWCtUZ8UOkHMvyM
+	f5RQ==
 MIME-Version: 1.0
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: [meta-oracle-java][PATCH] update jdk and jre to version 67
+X-Received: by 10.50.80.76 with SMTP id p12mr15255294igx.34.1408969492384;
+	Mon, 25 Aug 2014 05:24:52 -0700 (PDT)
+Received: by 10.64.232.36 with HTTP; Mon, 25 Aug 2014 05:24:52 -0700 (PDT)
+Received: by 10.64.232.36 with HTTP; Mon, 25 Aug 2014 05:24:52 -0700 (PDT)
+In-Reply-To: <CAH21_vEC+tXuZ6dqBmHss4xFSF0nxiCL1kvdw8rFRbRWPqUCWA@mail.gmail.com>
+References: <CAH21_vEC+tXuZ6dqBmHss4xFSF0nxiCL1kvdw8rFRbRWPqUCWA@mail.gmail.com>
+Date: Mon, 25 Aug 2014 17:54:52 +0530
+Message-ID: <CAH21_vEjcBD8O71mqxsD5Fqb3zjRnCwQ_eGDrF8mZ2u+v4P6QA@mail.gmail.com>
+From: atulkumar singh <atul.singh008@gmail.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Error:MinGW based toolchain for 64bit windows
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -44,94 +58,32 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 25 Aug 2014 12:09:07 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+X-List-Received-Date: Mon, 25 Aug 2014 12:24:55 -0000
+Content-Type: multipart/alternative; boundary=089e01536fe817d3710501734618
 
-ZGlmZiAtdSBqcmUxLjcuMF8yNS9DT1BZUklHSFQganJlMS43LjBfNjcvQ09QWVJJR0hUIA0KLS0t
-IGpyZTEuNy4wXzI1L0NPUFlSSUdIVAkyMDEzLTA2LTA2IDA3OjEyOjIzLjAwMDAwMDAwMCArMDMw
-MA0KKysrIGpyZTEuNy4wXzY3L0NPUFlSSUdIVAkyMDE0LTA3LTI1IDE5OjA3OjI2LjAwMDAwMDAw
-MCArMDMwMA0KQEAgLTEsNCArMSw0IEBADQotQ29weXJpZ2h0IO+/vSAxOTkzLCAyMDEzLCBPcmFj
-bGUgYW5kL29yIGl0cyBhZmZpbGlhdGVzLiANCitDb3B5cmlnaHQg77+9IDE5OTMsIDIwMTQsIE9y
-YWNsZSBhbmQvb3IgaXRzIGFmZmlsaWF0ZXMuIA0KIEFsbCByaWdodHMgcmVzZXJ2ZWQuDQoNCmRp
-ZmYgLXUganJlMS43LjBfMjUvVEhJUkRQQVJUWUxJQ0VOU0VSRUFETUUudHh0IGpyZTEuNy4wXzY3
-L1RISVJEUEFSVFlMSUNFTlNFUkVBRE1FLnR4dCANCi0tLSBqcmUxLjcuMF8yNS9USElSRFBBUlRZ
-TElDRU5TRVJFQURNRS50eHQJMjAxMy0wNi0wNiAwNzoxMjoyMy4wMDAwMDAwMDAgKzAzMDANCisr
-KyBqcmUxLjcuMF82Ny9USElSRFBBUlRZTElDRU5TRVJFQURNRS50eHQJMjAxNC0wNy0yNSAxOTow
-NzoyNi4wMDAwMDAwMDAgKzAzMDANCkBAIC0xOTEyLDYgKzE5MTIsMzUgQEANCiANCiAtLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tDQogDQorJSUgVGhpcyBub3RpY2UgaXMgcHJvdmlkZWQgd2l0aCByZXNw
-ZWN0IHRvIFNwYXJrbGUgdi4xLjUsDQord2hpY2ggaXMgaW5jbHVkZWQgd2l0aCBKUkUgNyBvbiBN
-YWMgT1MgWC4NCisNCistLS0gYmVnaW4gb2YgTElDRU5TRSAtLS0NCisNCitDb3B5cmlnaHQgKGMp
-IDIwMTIgU3BhcmtsZS5vcmcgYW5kIEFuZHkgTWF0dXNjaGFrDQorDQorUGVybWlzc2lvbiBpcyBo
-ZXJlYnkgZ3JhbnRlZCwgZnJlZSBvZiBjaGFyZ2UsIHRvIGFueSBwZXJzb24gb2J0YWluaW5nIGEg
-Y29weQ0KK29mIHRoaXMgc29mdHdhcmUgYW5kIGFzc29jaWF0ZWQgZG9jdW1lbnRhdGlvbiBmaWxl
-cyAodGhlICJTb2Z0d2FyZSIpLCB0byBkZWFsDQoraW4gdGhlIFNvZnR3YXJlIHdpdGhvdXQgcmVz
-dHJpY3Rpb24sIGluY2x1ZGluZyB3aXRob3V0IGxpbWl0YXRpb24gdGhlIHJpZ2h0cw0KK3RvIHVz
-ZSwgY29weSwgbW9kaWZ5LCBtZXJnZSwgcHVibGlzaCwgZGlzdHJpYnV0ZSwgc3VibGljZW5zZSwg
-YW5kL29yIHNlbGwNCitjb3BpZXMgb2YgdGhlIFNvZnR3YXJlLCBhbmQgdG8gcGVybWl0IHBlcnNv
-bnMgdG8gd2hvbSB0aGUgU29mdHdhcmUgaXMNCitmdXJuaXNoZWQgdG8gZG8gc28sIHN1YmplY3Qg
-dG8gdGhlIGZvbGxvd2luZyBjb25kaXRpb25zOg0KKw0KK1RoZSBhYm92ZSBjb3B5cmlnaHQgbm90
-aWNlIGFuZCB0aGlzIHBlcm1pc3Npb24gbm90aWNlIHNoYWxsIGJlIGluY2x1ZGVkIGluIGFsbA0K
-K2NvcGllcyBvciBzdWJzdGFudGlhbCBwb3J0aW9ucyBvZiB0aGUgU29mdHdhcmUuDQorDQorVEhF
-IFNPRlRXQVJFIElTIFBST1ZJREVEICJBUyBJUyIsIFdJVEhPVVQgV0FSUkFOVFkgT0YgQU5ZIEtJ
-TkQsIEVYUFJFU1MgT1INCitJTVBMSUVELCBJTkNMVURJTkcgQlVUIE5PVCBMSU1JVEVEIFRPIFRI
-RSBXQVJSQU5USUVTIE9GIE1FUkNIQU5UQUJJTElUWSwNCitGSVRORVNTIEZPUiBBIFBBUlRJQ1VM
-QVIgUFVSUE9TRSBBTkQgTk9OSU5GUklOR0VNRU5ULiBJTiBOTyBFVkVOVCBTSEFMTCBUSEUNCitB
-VVRIT1JTIE9SIENPUFlSSUdIVCBIT0xERVJTIEJFIExJQUJMRSBGT1IgQU5ZIENMQUlNLCBEQU1B
-R0VTIE9SIE9USEVSDQorTElBQklMSVRZLCBXSEVUSEVSIElOIEFOIEFDVElPTiBPRiBDT05UUkFD
-VCwgVE9SVCBPUiBPVEhFUldJU0UsIEFSSVNJTkcgRlJPTSwNCitPVVQgT0YgT1IgSU4gQ09OTkVD
-VElPTiBXSVRIIFRIRSBTT0ZUV0FSRSBPUiBUSEUgVVNFIE9SIE9USEVSIERFQUxJTkdTIElOIFRI
-RQ0KK1NPRlRXQVJFLg0KKw0KKy0tLSBlbmQgb2YgTElDRU5TRSAtLS0NCisNCistLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tDQorDQogJSUgUG9ydGlvbnMgbGljZW5zZWQgZnJvbSBUYWxpZ2VudCwgSW5j
-Lg0KIA0KIC0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0NCkBAIC0zMTY5LDEyICszMTk4LDEyIEBADQog
-JSUgVGhpcyBub3RpY2UgaXMgcHJvdmlkZWQgd2l0aCByZXNwZWN0IHRvIHRoZSBmb2xsb3dpbmcg
-d2hpY2ggaXMgDQogaW5jbHVkZWQgd2l0aCBKUkUgNywgSkRLIDcsIGFuZCBPcGVuSkRLIDcsIGV4
-Y2VwdCB3aGVyZSBub3RlZDoNCiANCi0gIEFwYWNoZSBEZXJieSAxMC44LjEuMiAgICAgICAgW2lu
-Y2x1ZGVkIHdpdGggSkRLIDcgb25seV0NCisgIEFwYWNoZSBEZXJieSAxMC44LjMuMCAgICAgICAg
-W2luY2x1ZGVkIHdpdGggSkRLIDcgb25seV0NCiAgIEFwYWNoZSBKYWthcnRhIEJDRUwgNS4yIA0K
-ICAgQXBhY2hlIEpha2FydGEgUmVnZXhwIDEuNCANCiAgIEFwYWNoZSBTYW50dWFyaW8gWE1MU2Vj
-LUphdmEgMS40LjINCiAgIEFwYWNoZSBYYWxhbi1KYXZhIDIuNy4xIA0KLSAgQXBhY2hlIFhlcmNl
-czIgSmF2YSAyLjEwLjAgDQorICBBcGFjaGUgWGVyY2VzMiBKYXZhIDIuMTEuMCANCiAgIEFwYWNo
-ZSBYTUwgUmVzb2x2ZXIgMS4xDQoNCi0tLS0tT3JpZ2luYWwgTWVzc2FnZS0tLS0tDQpGcm9tOiBL
-aGVtIFJhaiBbbWFpbHRvOnJhai5raGVtQGdtYWlsLmNvbV0gDQpTZW50OiBNb25kYXksIEF1Z3Vz
-dCAyNSwgMjAxNCA5OjQxIEFNDQpUbzogVmxhZGltaXIgUmVkemhlcG92DQpDYzogeW9jdG9AeW9j
-dG9wcm9qZWN0Lm9yZw0KU3ViamVjdDogUmU6IFt5b2N0b10gW21ldGEtb3JhY2xlLWphdmFdW1BB
-VENIXSB1cGRhdGUgamRrIGFuZCBqcmUgdG8gdmVyc2lvbiA2Nw0KDQpPbiAxNC0wOC0yMSAxNzow
-MTo0NywgVmxhZGltaXIgUmVkemhlcG92IHdyb3RlOg0KPiBGcm9tIGYwMzA1Mzk4YTUxNDM1ZjQw
-N2U0MWE4ZjBlYWY4M2Y4YmRkMTNjY2EgTW9uIFNlcCAxNyAwMDowMDowMCAyMDAxDQo+IEZyb206
-IFZsYWRpbWlyIFJlZHpoZXBvdiA8dmxhZGltaXJfcmVkemhlcG92QGVwYW0uY29tPg0KPiBEYXRl
-OiBUaHUsIDIxIEF1ZyAyMDE0IDE5OjQzOjI5ICswMzAwDQo+IFN1YmplY3Q6IFtQQVRDSF0gdXBk
-YXRlIGpkayBhbmQganJlIHRvIHZlcnNpb24gNjcNCj4gDQo+IFNpZ25lZC1vZmYtYnk6IFZsYWRp
-bWlyIFJlZHpoZXBvdiA8dmxhZGltaXJfcmVkemhlcG92QGVwYW0uY29tPg0KPiAtLS0NCj4gcmVj
-aXBlcy1kZXZ0b29scy9vcmFjbGUtamF2YS9vcmFjbGUtanNlLWpkay1pNTg2XzEuNy4wLmJiICAg
-fCAxMCArKysrKy0tLS0tDQo+IHJlY2lwZXMtZGV2dG9vbHMvb3JhY2xlLWphdmEvb3JhY2xlLWpz
-ZS1qZGsteDg2LTY0XzEuNy4wLmJiIHwgMTAgKysrKystLS0tLQ0KPiByZWNpcGVzLWRldnRvb2xz
-L29yYWNsZS1qYXZhL29yYWNsZS1qc2UtanJlLWk1ODZfMS43LjAuYmIgICB8IDEwICsrKysrLS0t
-LS0NCj4gcmVjaXBlcy1kZXZ0b29scy9vcmFjbGUtamF2YS9vcmFjbGUtanNlLWpyZS14ODYtNjRf
-MS43LjAuYmIgfCAxMCArKysrKy0tLS0tDQo+IHJlY2lwZXMtZGV2dG9vbHMvb3JhY2xlLWphdmEv
-b3JhY2xlLWpzZS5pbmMgICAgICAgICAgICAgICAgIHwgIDQgKystLQ0KPiA1IGZpbGVzIGNoYW5n
-ZWQsIDIyIGluc2VydGlvbnMoKyksIDIyIGRlbGV0aW9ucygtKQ0KPiANCj4gZGlmZiAtLWdpdCBh
-L3JlY2lwZXMtZGV2dG9vbHMvb3JhY2xlLWphdmEvb3JhY2xlLWpzZS5pbmMgYi9yZWNpcGVzLWRl
-dnRvb2xzL29yYWNsZS1qYXZhL29yYWNsZS1qc2UuaW5jDQo+IGluZGV4IDNhNGUyMGQuLjM4Y2Vl
-ZjAgMTAwNjQ0DQo+IC0tLSBhL3JlY2lwZXMtZGV2dG9vbHMvb3JhY2xlLWphdmEvb3JhY2xlLWpz
-ZS5pbmMNCj4gKysrIGIvcmVjaXBlcy1kZXZ0b29scy9vcmFjbGUtamF2YS9vcmFjbGUtanNlLmlu
-Yw0KPiBAQCAtMiw4ICsyLDggQEAgTElDRU5TRV9GTEFHUyA9ICJvcmFjbGVfamF2YSINCj4gTElD
-RU5TRSA9ICJPcmFjbGVfQmluYXJ5X0NvZGVfTGljZW5zZV9BZ3JlZW1lbnQiDQo+IExJQ19GSUxF
-U19DSEtTVU0gPSAiXA0KPiAgICAgICAgICAgICAgICBmaWxlOi8vJHtXT1JLRElSfS8ke0pES19K
-UkV9JHtQVn1fJHtQVl9VUERBVEV9L0xJQ0VOU0U7bWQ1PTk4ZjQ2YWI2NDgxZDg3YzRkNzdlMGU5
-MWE2ZGJjMTVmIFwNCj4gLSAgICAgICAgICAgICAgZmlsZTovLyR7V09SS0RJUn0vJHtKREtfSlJF
-fSR7UFZ9XyR7UFZfVVBEQVRFfS9DT1BZUklHSFQ7bWQ1PTNhMTEyMzgwMjViZjEzYjg3ZjA0NzUz
-MTgzZmZlYjkwIFwNCj4gLSAgICAgICAgICAgICAgICBmaWxlOi8vJHtXT1JLRElSfS8ke0pES19K
-UkV9JHtQVn1fJHtQVl9VUERBVEV9L1RISVJEUEFSVFlMSUNFTlNFUkVBRE1FLnR4dDttZDU9YzMz
-OWIzNGUzZGE2NjczZDJjNTk1MGQwZjg4MDhmOGMgXA0KPiArICAgICAgICAgICAgIGZpbGU6Ly8k
-e1dPUktESVJ9LyR7SkRLX0pSRX0ke1BWfV8ke1BWX1VQREFURX0vQ09QWVJJR0hUO21kNT1iZTlm
-ZTVkNDdhN2RjZmI3OGYxNDJmNDg3YWZiMzRiYiBcDQo+ICsgICAgICAgICAgICAgICAgZmlsZTov
-LyR7V09SS0RJUn0vJHtKREtfSlJFfSR7UFZ9XyR7UFZfVVBEQVRFfS9USElSRFBBUlRZTElDRU5T
-RVJFQURNRS50eHQ7bWQ1PWYzYTM4ODk2MWQyNGI4YjcyZDQxMmEwNzlhODc4Y2RiIFwNCj4gICAg
-ICAgICAgICAgICAgIg0KDQp3aGF0IGNoYW5nZWQgaW4gdGhlc2UgZmlsZXMgdGhhdCBlbnN1ZXMg
-Y2hhbmdlIGluIGNoZWNrc3VtcyA/DQo=
+--089e01536fe817d3710501734618
+Content-Type: text/plain; charset=UTF-8
 
+Hi All,
+
+Have anyone worked on mingw based toolchain for 64bit windows.
+I have build the MinGW toolchain for 64 bit windows.
+But while executing a program, i am getting error as "as.exe cannot start
+or run due to incompatibility with 64-bit version of windows"
+Please help me on the same.
+
+Thanks and regards,
+Atul kumar singh
+
+--089e01536fe817d3710501734618
+Content-Type: text/html; charset=UTF-8
+
+<p>Hi All, </p>
+<p>Have anyone worked on mingw based toolchain for 64bit windows.<br>
+I have build the MinGW toolchain for 64 bit windows.<br>
+But while executing a program, i am getting error as &quot;as.exe cannot start or run due to incompatibility with 64-bit version of windows&quot;<br>
+Please help me on the same.<br></p>
+<p>Thanks and regards,<br>
+Atul kumar singh</p>
+
+--089e01536fe817d3710501734618--
