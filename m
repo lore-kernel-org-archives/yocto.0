@@ -1,40 +1,38 @@
-Return-Path: <paul.eggleton@linux.intel.com>
+Return-Path: <Vladimir_Redzhepov@epam.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 80B7DE0080F; Sun, 24 Aug 2014 23:47:48 -0700 (PDT)
+	id 06ED6E0078A; Mon, 25 Aug 2014 05:09:07 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
-	autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at http://www.dnswl.org/,
-	high *      trust
-	*      [143.182.124.21 listed in list.dnswl.org]
-Received: from mga03.intel.com (mga03.intel.com [143.182.124.21])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 45487E00769
-	for <yocto@yoctoproject.org>; Sun, 24 Aug 2014 23:47:43 -0700 (PDT)
-Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by azsmga101.ch.intel.com with ESMTP; 24 Aug 2014 23:47:42 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.04,395,1406617200"; d="scan'208";a="472223671"
-Received: from ohreyal-mobl.gar.corp.intel.com (HELO
-	peggleto-mobl5.ger.corp.intel.com) ([10.252.123.84])
-	by azsmga001.ch.intel.com with ESMTP; 24 Aug 2014 23:47:33 -0700
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: Nicolas Dechesne <nicolas.dechesne@linaro.org>
-Date: Mon, 25 Aug 2014 07:47:31 +0100
-Message-ID: <1541895.M9zFquQ82B@peggleto-mobl5.ger.corp.intel.com>
-Organization: Intel Corporation
-User-Agent: KMail/4.13.3 (Linux/3.15.10-200.fc20.x86_64; KDE/4.13.3; x86_64; ;
-	)
-In-Reply-To: <CAP71WjyYFPJAu-39FB8i3F5G0XjvkLXRh3xQbz4drwvyiU9kLQ@mail.gmail.com>
-References: <1571948.CrPtZqAbFm@peggleto-mobl5.ger.corp.intel.com>
-	<CAP71WjyYFPJAu-39FB8i3F5G0XjvkLXRh3xQbz4drwvyiU9kLQ@mail.gmail.com>
+Received: from EVBYMINSA0102.epam.com (evbyminsa0102.epam.com [217.21.63.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id CF4B9E0076C
+	for <yocto@yoctoproject.org>; Mon, 25 Aug 2014 05:08:55 -0700 (PDT)
+Received: from EPBYMINSA0001.epam.com (10.6.110.2) by EPBYMINSA0001.epam.com
+	(10.6.110.2) with Microsoft SMTP Server (TLS) id 15.0.913.22;
+	Mon, 25 Aug 2014 15:08:35 +0300
+Received: from EPBYMINSA0001.epam.com ([::1]) by EPBYMINSA0001.epam.com
+	([::1]) with mapi id 15.00.0913.011; Mon, 25 Aug 2014 15:08:35 +0300
+From: Vladimir Redzhepov <Vladimir_Redzhepov@epam.com>
+To: Khem Raj <raj.khem@gmail.com>
+Thread-Topic: [yocto] [meta-oracle-java][PATCH] update jdk and jre to
+	version 67
+Thread-Index: Ac+9YY3bnY/5oSRDTvaNMMXDx9AUuwCtMzMAABGNngA=
+Date: Mon, 25 Aug 2014 12:08:34 +0000
+Message-ID: <c363d789f4434cd1b4b8ea49fa32f014@EPBYMINSA0001.epam.com>
+References: <35e32346a105465791b484fe34a2a011@EPBYMINSA0001.epam.com>
+	<20140825064046.GF1014@haswell>
+In-Reply-To: <20140825064046.GF1014@haswell>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.6.137.75]
 MIME-Version: 1.0
-Cc: Yocto list discussion <yocto@yoctoproject.org>,
-	openembedded-core@lists.openembedded.org
-Subject: Re: [OE-core] RFC: Improving the developer workflow
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: [meta-oracle-java][PATCH] update jdk and jre to version 67
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -46,88 +44,94 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 25 Aug 2014 06:47:48 -0000
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Mon, 25 Aug 2014 12:09:07 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-Hi Nicolas,
-
-Apologies for the delayed reply.
-
-On Friday 08 August 2014 10:04:19 Nicolas Dechesne wrote:
-> On Thu, Aug 7, 2014 at 11:10 AM, Paul Eggleton
-> <paul.eggleton@linux.intel.com> wrote:
-> > Example workflow
-> > ================
-> > 
-> > I won't give a workflow for every possible usage, but just to give a basic
-> > example - let's assume you want to build a "new" piece of software for
-> > which you have your own source tree on your machine. The rough set of
-> > steps required would be something like this (rough, e.g. the command
-> > names given shouldn't be read as final):
-> > 
-> > 1. Install the SDK
-> > 
-> > 2. Run a setup script to make the SDK tools available
-> > 
-> > 3. Add a new recipe with "sdktool add <recipename>" - interactive process.
-> > The tool records that <recipename> is being worked on, creates a recipe
-> > that can be used to build the software using your external source tree,
-> > and places the recipe where it will be used automatically by other steps.
-> > 
-> > 4. Build the recipe with "sdktool build <recipename>". This probably only
-> > goes as far as do_install or possibly do_package_qa; in any case the QA
-> > process would be less stringent than with the standard build system
-> > however in order to avoid putting too many barriers in the way of testing
-> > on the target.
-> > 
-> > 5. Fix any failures and repeat from the previous step as necessary.
-> > 
-> > 6. Deploy changes to target with "sdktool deploy-target <ip address>"
-> > assuming SSH is available on the target. Alternatively "sdktool
-> > build-image <imagename>" can be used to regenerate an image with the
-> > changes in it; "sdktool runqemu" could do that (if necessary) and then
-> > run the result within QEMU with the appropriate options set.
-> 
-> coincidentally, i was giving an OE workshop this week, and when I
-> explained about the OE SDK, someone immediately brought up that it was
-> quite limited because:
-> 
->  1- SDK cannot be used to generate deployable packages, e.g.  using
-> the SDK to create ipk/deb/rpm that can be delivered to
-> targets/clients, not just for debugging, but also for production when
-> production system has package management support.
->  2- SDK cannot be used to regenerate updated images. e.g. Company A
-> delivers a SDK + board, Company B is making a product using the SDK
-> (adding content) and wants to be able to make new images with the new
-> content in order to sell/deploy it.
-
-I have included solutions for these two in my proposal. However, I am a bit 
-concerned about it being used in the way you describe above. The main aim is 
-to provide tools for developers to test their changes on the target easily; if 
-people start using it to produce images that they then send to other people 
-(particularly customers or other organisations) then the potential end-game is 
-an image used in production is one produced from a single developer's machine, 
-at which point you may have some reproducibility issues - "where's the source 
-for package xyz?" "Erm, not sure, that developer left six months ago..."
-
-Of course there's nothing we'll really be able to do to stop people from using 
-the tools in this way, so it's mainly going to be an exercise in documenting 
-the right way to use them. It's worth thinking about these problems though 
-especially if you want to encourage best practices.
-
->  3- SDK itself cannot be upgraded when the 'base image' and SDK are updated
->  4- SDK users cannot add content to the SDK. e.g. I am a SDK user I
-> create a library and I want that library to be in the SDK now.
-
-We're certainly aiming to take care of these last two - indeed #4 is one of 
-the main drivers behind the proposed new SDK.
-
-Cheers,
-Paul
-
--- 
-
-Paul Eggleton
-Intel Open Source Technology Centre
+ZGlmZiAtdSBqcmUxLjcuMF8yNS9DT1BZUklHSFQganJlMS43LjBfNjcvQ09QWVJJR0hUIA0KLS0t
+IGpyZTEuNy4wXzI1L0NPUFlSSUdIVAkyMDEzLTA2LTA2IDA3OjEyOjIzLjAwMDAwMDAwMCArMDMw
+MA0KKysrIGpyZTEuNy4wXzY3L0NPUFlSSUdIVAkyMDE0LTA3LTI1IDE5OjA3OjI2LjAwMDAwMDAw
+MCArMDMwMA0KQEAgLTEsNCArMSw0IEBADQotQ29weXJpZ2h0IO+/vSAxOTkzLCAyMDEzLCBPcmFj
+bGUgYW5kL29yIGl0cyBhZmZpbGlhdGVzLiANCitDb3B5cmlnaHQg77+9IDE5OTMsIDIwMTQsIE9y
+YWNsZSBhbmQvb3IgaXRzIGFmZmlsaWF0ZXMuIA0KIEFsbCByaWdodHMgcmVzZXJ2ZWQuDQoNCmRp
+ZmYgLXUganJlMS43LjBfMjUvVEhJUkRQQVJUWUxJQ0VOU0VSRUFETUUudHh0IGpyZTEuNy4wXzY3
+L1RISVJEUEFSVFlMSUNFTlNFUkVBRE1FLnR4dCANCi0tLSBqcmUxLjcuMF8yNS9USElSRFBBUlRZ
+TElDRU5TRVJFQURNRS50eHQJMjAxMy0wNi0wNiAwNzoxMjoyMy4wMDAwMDAwMDAgKzAzMDANCisr
+KyBqcmUxLjcuMF82Ny9USElSRFBBUlRZTElDRU5TRVJFQURNRS50eHQJMjAxNC0wNy0yNSAxOTow
+NzoyNi4wMDAwMDAwMDAgKzAzMDANCkBAIC0xOTEyLDYgKzE5MTIsMzUgQEANCiANCiAtLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tDQogDQorJSUgVGhpcyBub3RpY2UgaXMgcHJvdmlkZWQgd2l0aCByZXNw
+ZWN0IHRvIFNwYXJrbGUgdi4xLjUsDQord2hpY2ggaXMgaW5jbHVkZWQgd2l0aCBKUkUgNyBvbiBN
+YWMgT1MgWC4NCisNCistLS0gYmVnaW4gb2YgTElDRU5TRSAtLS0NCisNCitDb3B5cmlnaHQgKGMp
+IDIwMTIgU3BhcmtsZS5vcmcgYW5kIEFuZHkgTWF0dXNjaGFrDQorDQorUGVybWlzc2lvbiBpcyBo
+ZXJlYnkgZ3JhbnRlZCwgZnJlZSBvZiBjaGFyZ2UsIHRvIGFueSBwZXJzb24gb2J0YWluaW5nIGEg
+Y29weQ0KK29mIHRoaXMgc29mdHdhcmUgYW5kIGFzc29jaWF0ZWQgZG9jdW1lbnRhdGlvbiBmaWxl
+cyAodGhlICJTb2Z0d2FyZSIpLCB0byBkZWFsDQoraW4gdGhlIFNvZnR3YXJlIHdpdGhvdXQgcmVz
+dHJpY3Rpb24sIGluY2x1ZGluZyB3aXRob3V0IGxpbWl0YXRpb24gdGhlIHJpZ2h0cw0KK3RvIHVz
+ZSwgY29weSwgbW9kaWZ5LCBtZXJnZSwgcHVibGlzaCwgZGlzdHJpYnV0ZSwgc3VibGljZW5zZSwg
+YW5kL29yIHNlbGwNCitjb3BpZXMgb2YgdGhlIFNvZnR3YXJlLCBhbmQgdG8gcGVybWl0IHBlcnNv
+bnMgdG8gd2hvbSB0aGUgU29mdHdhcmUgaXMNCitmdXJuaXNoZWQgdG8gZG8gc28sIHN1YmplY3Qg
+dG8gdGhlIGZvbGxvd2luZyBjb25kaXRpb25zOg0KKw0KK1RoZSBhYm92ZSBjb3B5cmlnaHQgbm90
+aWNlIGFuZCB0aGlzIHBlcm1pc3Npb24gbm90aWNlIHNoYWxsIGJlIGluY2x1ZGVkIGluIGFsbA0K
+K2NvcGllcyBvciBzdWJzdGFudGlhbCBwb3J0aW9ucyBvZiB0aGUgU29mdHdhcmUuDQorDQorVEhF
+IFNPRlRXQVJFIElTIFBST1ZJREVEICJBUyBJUyIsIFdJVEhPVVQgV0FSUkFOVFkgT0YgQU5ZIEtJ
+TkQsIEVYUFJFU1MgT1INCitJTVBMSUVELCBJTkNMVURJTkcgQlVUIE5PVCBMSU1JVEVEIFRPIFRI
+RSBXQVJSQU5USUVTIE9GIE1FUkNIQU5UQUJJTElUWSwNCitGSVRORVNTIEZPUiBBIFBBUlRJQ1VM
+QVIgUFVSUE9TRSBBTkQgTk9OSU5GUklOR0VNRU5ULiBJTiBOTyBFVkVOVCBTSEFMTCBUSEUNCitB
+VVRIT1JTIE9SIENPUFlSSUdIVCBIT0xERVJTIEJFIExJQUJMRSBGT1IgQU5ZIENMQUlNLCBEQU1B
+R0VTIE9SIE9USEVSDQorTElBQklMSVRZLCBXSEVUSEVSIElOIEFOIEFDVElPTiBPRiBDT05UUkFD
+VCwgVE9SVCBPUiBPVEhFUldJU0UsIEFSSVNJTkcgRlJPTSwNCitPVVQgT0YgT1IgSU4gQ09OTkVD
+VElPTiBXSVRIIFRIRSBTT0ZUV0FSRSBPUiBUSEUgVVNFIE9SIE9USEVSIERFQUxJTkdTIElOIFRI
+RQ0KK1NPRlRXQVJFLg0KKw0KKy0tLSBlbmQgb2YgTElDRU5TRSAtLS0NCisNCistLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tDQorDQogJSUgUG9ydGlvbnMgbGljZW5zZWQgZnJvbSBUYWxpZ2VudCwgSW5j
+Lg0KIA0KIC0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0NCkBAIC0zMTY5LDEyICszMTk4LDEyIEBADQog
+JSUgVGhpcyBub3RpY2UgaXMgcHJvdmlkZWQgd2l0aCByZXNwZWN0IHRvIHRoZSBmb2xsb3dpbmcg
+d2hpY2ggaXMgDQogaW5jbHVkZWQgd2l0aCBKUkUgNywgSkRLIDcsIGFuZCBPcGVuSkRLIDcsIGV4
+Y2VwdCB3aGVyZSBub3RlZDoNCiANCi0gIEFwYWNoZSBEZXJieSAxMC44LjEuMiAgICAgICAgW2lu
+Y2x1ZGVkIHdpdGggSkRLIDcgb25seV0NCisgIEFwYWNoZSBEZXJieSAxMC44LjMuMCAgICAgICAg
+W2luY2x1ZGVkIHdpdGggSkRLIDcgb25seV0NCiAgIEFwYWNoZSBKYWthcnRhIEJDRUwgNS4yIA0K
+ICAgQXBhY2hlIEpha2FydGEgUmVnZXhwIDEuNCANCiAgIEFwYWNoZSBTYW50dWFyaW8gWE1MU2Vj
+LUphdmEgMS40LjINCiAgIEFwYWNoZSBYYWxhbi1KYXZhIDIuNy4xIA0KLSAgQXBhY2hlIFhlcmNl
+czIgSmF2YSAyLjEwLjAgDQorICBBcGFjaGUgWGVyY2VzMiBKYXZhIDIuMTEuMCANCiAgIEFwYWNo
+ZSBYTUwgUmVzb2x2ZXIgMS4xDQoNCi0tLS0tT3JpZ2luYWwgTWVzc2FnZS0tLS0tDQpGcm9tOiBL
+aGVtIFJhaiBbbWFpbHRvOnJhai5raGVtQGdtYWlsLmNvbV0gDQpTZW50OiBNb25kYXksIEF1Z3Vz
+dCAyNSwgMjAxNCA5OjQxIEFNDQpUbzogVmxhZGltaXIgUmVkemhlcG92DQpDYzogeW9jdG9AeW9j
+dG9wcm9qZWN0Lm9yZw0KU3ViamVjdDogUmU6IFt5b2N0b10gW21ldGEtb3JhY2xlLWphdmFdW1BB
+VENIXSB1cGRhdGUgamRrIGFuZCBqcmUgdG8gdmVyc2lvbiA2Nw0KDQpPbiAxNC0wOC0yMSAxNzow
+MTo0NywgVmxhZGltaXIgUmVkemhlcG92IHdyb3RlOg0KPiBGcm9tIGYwMzA1Mzk4YTUxNDM1ZjQw
+N2U0MWE4ZjBlYWY4M2Y4YmRkMTNjY2EgTW9uIFNlcCAxNyAwMDowMDowMCAyMDAxDQo+IEZyb206
+IFZsYWRpbWlyIFJlZHpoZXBvdiA8dmxhZGltaXJfcmVkemhlcG92QGVwYW0uY29tPg0KPiBEYXRl
+OiBUaHUsIDIxIEF1ZyAyMDE0IDE5OjQzOjI5ICswMzAwDQo+IFN1YmplY3Q6IFtQQVRDSF0gdXBk
+YXRlIGpkayBhbmQganJlIHRvIHZlcnNpb24gNjcNCj4gDQo+IFNpZ25lZC1vZmYtYnk6IFZsYWRp
+bWlyIFJlZHpoZXBvdiA8dmxhZGltaXJfcmVkemhlcG92QGVwYW0uY29tPg0KPiAtLS0NCj4gcmVj
+aXBlcy1kZXZ0b29scy9vcmFjbGUtamF2YS9vcmFjbGUtanNlLWpkay1pNTg2XzEuNy4wLmJiICAg
+fCAxMCArKysrKy0tLS0tDQo+IHJlY2lwZXMtZGV2dG9vbHMvb3JhY2xlLWphdmEvb3JhY2xlLWpz
+ZS1qZGsteDg2LTY0XzEuNy4wLmJiIHwgMTAgKysrKystLS0tLQ0KPiByZWNpcGVzLWRldnRvb2xz
+L29yYWNsZS1qYXZhL29yYWNsZS1qc2UtanJlLWk1ODZfMS43LjAuYmIgICB8IDEwICsrKysrLS0t
+LS0NCj4gcmVjaXBlcy1kZXZ0b29scy9vcmFjbGUtamF2YS9vcmFjbGUtanNlLWpyZS14ODYtNjRf
+MS43LjAuYmIgfCAxMCArKysrKy0tLS0tDQo+IHJlY2lwZXMtZGV2dG9vbHMvb3JhY2xlLWphdmEv
+b3JhY2xlLWpzZS5pbmMgICAgICAgICAgICAgICAgIHwgIDQgKystLQ0KPiA1IGZpbGVzIGNoYW5n
+ZWQsIDIyIGluc2VydGlvbnMoKyksIDIyIGRlbGV0aW9ucygtKQ0KPiANCj4gZGlmZiAtLWdpdCBh
+L3JlY2lwZXMtZGV2dG9vbHMvb3JhY2xlLWphdmEvb3JhY2xlLWpzZS5pbmMgYi9yZWNpcGVzLWRl
+dnRvb2xzL29yYWNsZS1qYXZhL29yYWNsZS1qc2UuaW5jDQo+IGluZGV4IDNhNGUyMGQuLjM4Y2Vl
+ZjAgMTAwNjQ0DQo+IC0tLSBhL3JlY2lwZXMtZGV2dG9vbHMvb3JhY2xlLWphdmEvb3JhY2xlLWpz
+ZS5pbmMNCj4gKysrIGIvcmVjaXBlcy1kZXZ0b29scy9vcmFjbGUtamF2YS9vcmFjbGUtanNlLmlu
+Yw0KPiBAQCAtMiw4ICsyLDggQEAgTElDRU5TRV9GTEFHUyA9ICJvcmFjbGVfamF2YSINCj4gTElD
+RU5TRSA9ICJPcmFjbGVfQmluYXJ5X0NvZGVfTGljZW5zZV9BZ3JlZW1lbnQiDQo+IExJQ19GSUxF
+U19DSEtTVU0gPSAiXA0KPiAgICAgICAgICAgICAgICBmaWxlOi8vJHtXT1JLRElSfS8ke0pES19K
+UkV9JHtQVn1fJHtQVl9VUERBVEV9L0xJQ0VOU0U7bWQ1PTk4ZjQ2YWI2NDgxZDg3YzRkNzdlMGU5
+MWE2ZGJjMTVmIFwNCj4gLSAgICAgICAgICAgICAgZmlsZTovLyR7V09SS0RJUn0vJHtKREtfSlJF
+fSR7UFZ9XyR7UFZfVVBEQVRFfS9DT1BZUklHSFQ7bWQ1PTNhMTEyMzgwMjViZjEzYjg3ZjA0NzUz
+MTgzZmZlYjkwIFwNCj4gLSAgICAgICAgICAgICAgICBmaWxlOi8vJHtXT1JLRElSfS8ke0pES19K
+UkV9JHtQVn1fJHtQVl9VUERBVEV9L1RISVJEUEFSVFlMSUNFTlNFUkVBRE1FLnR4dDttZDU9YzMz
+OWIzNGUzZGE2NjczZDJjNTk1MGQwZjg4MDhmOGMgXA0KPiArICAgICAgICAgICAgIGZpbGU6Ly8k
+e1dPUktESVJ9LyR7SkRLX0pSRX0ke1BWfV8ke1BWX1VQREFURX0vQ09QWVJJR0hUO21kNT1iZTlm
+ZTVkNDdhN2RjZmI3OGYxNDJmNDg3YWZiMzRiYiBcDQo+ICsgICAgICAgICAgICAgICAgZmlsZTov
+LyR7V09SS0RJUn0vJHtKREtfSlJFfSR7UFZ9XyR7UFZfVVBEQVRFfS9USElSRFBBUlRZTElDRU5T
+RVJFQURNRS50eHQ7bWQ1PWYzYTM4ODk2MWQyNGI4YjcyZDQxMmEwNzlhODc4Y2RiIFwNCj4gICAg
+ICAgICAgICAgICAgIg0KDQp3aGF0IGNoYW5nZWQgaW4gdGhlc2UgZmlsZXMgdGhhdCBlbnN1ZXMg
+Y2hhbmdlIGluIGNoZWNrc3VtcyA/DQo=
 
