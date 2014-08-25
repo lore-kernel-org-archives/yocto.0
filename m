@@ -1,51 +1,51 @@
-Return-Path: <Nicholas.Crast@saabsensis.com>
+Return-Path: <opensource@keylevel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 29D1CE006B5; Mon, 25 Aug 2014 12:34:34 -0700 (PDT)
+	id 340C0E006B5; Mon, 25 Aug 2014 13:05:21 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from smtpmail.saabsensis.com (smtpmail.saabsensis.com [173.225.55.4])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id BBB15E004FF
-	for <yocto@yoctoproject.org>; Mon, 25 Aug 2014 12:34:19 -0700 (PDT)
-Received: from [10.92.64.53] (helo=ssa-syr-dimstar3.saabusa.com)
-	by smtpmail.saabsensis.com with esmtps (TLS1.0:RSA_AES_256_CBC_SHA1:32)
-	(Exim 4.72) (envelope-from <Nicholas.Crast@saabsensis.com>)
-	id 1XM01x-0004nk-BY; Mon, 25 Aug 2014 15:34:17 -0400
-Received: from corpmail01.corp.sensis.com ([10.93.64.16])
-	by ssa-syr-dimstar3.saabusa.com with esmtp (Exim 4.72)
-	(envelope-from <Nicholas.Crast@saabsensis.com>)
-	id 1XM01R-0006Q1-9l; Mon, 25 Aug 2014 15:33:45 -0400
-Received: from CORPMAIL01.corp.sensis.com ([10.93.64.16]) by
-	corpmail01.corp.sensis.com ([10.93.64.16]) with mapi id 14.03.0195.001;
-	Mon, 25 Aug 2014 15:33:45 -0400
-From: "Crast, Nicholas" <Nicholas.Crast@saabsensis.com>
-To: Khem Raj <raj.khem@gmail.com>
-Thread-Topic: [yocto] Bundling initramfs with uImage
-Thread-Index: Ac+9fRl4kmW1Cg/bSwmxVZiqNWsIBgCyrZoAABTh0JA=
-Date: Mon, 25 Aug 2014 19:33:44 +0000
-Message-ID: <36A43B0E1E88D84791516F9D44BC48331B3CA501@corpmail01.corp.sensis.com>
-References: <36A43B0E1E88D84791516F9D44BC48331B3C9E7D@corpmail01.corp.sensis.com>
-	<20140825053448.GD1014@haswell>
-In-Reply-To: <20140825053448.GD1014@haswell>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.93.80.50]
-MIME-Version: 1.0
-X-Sensis-MailScanner-Information: Scanned at Sensis Corporation by MailScanner
-X-Sensis-MailScanner-ID: 1XM01R-0006Q1-9l
-X-Sensis-MailScanner: Found to be clean
-X-Sensis-MailScanner-SpamCheck: not spam (whitelisted),
-	SpamAssassin (not cached, score=-1.589, required 5,
-	autolearn=not spam, AWL 0.31, BAYES_00 -1.90)
-X-Sensis-MailScanner-From: nicholas.crast@saabsensis.com
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Bundling initramfs with uImage
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from a180.4uh.net (a180.4uh.net [89.248.60.180])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DEEFBE004FF
+	for <yocto@yoctoproject.org>; Mon, 25 Aug 2014 13:05:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=keylevel.com;
+	s=default; 
+	h=To:References:Message-Id:Content-Transfer-Encoding:Cc:Date:In-Reply-To:From:Subject:Mime-Version:Content-Type;
+	bh=xv1fDdn7nd/G2siEJOhnI1Eu59s3OSAXkJIMfRK1lYs=; 
+	b=gGt8uI+9eqQ7ViK9wOD9wclLMi5IaIUE7tpfntTBC38RP/1K0VbcHEgbZwimvY0ObRl1GMIZvxeBiaZGm7JAS/JPOVLLSKL57FfdHF5AvYnFZdYqO3kSwCB6qwWar5No9U4i/Fx8ICuOKZ9sbrEVNlKONGQ/Z7A3fLtreBisbZQ=;
+Received: from [109.224.171.0] (port=42915
+	helo=macbook-pro.durham.keylevel.com)
+	by a180.4uh.net with esmtpsa (TLSv1:AES128-SHA:128) (Exim 4.82)
+	(envelope-from <opensource@keylevel.com>)
+	id 1XM0Vn-001GZF-KU; Mon, 25 Aug 2014 21:05:09 +0100
+Mime-Version: 1.0 (Mac OS X Mail 7.3 \(1878.6\))
+From: Chris Tapp <opensource@keylevel.com>
+In-Reply-To: <4829846.nEKDNArLxY@localhost.localdomain>
+Date: Mon, 25 Aug 2014 21:05:09 +0100
+Message-Id: <B4BC56A9-7263-4DC2-9EBE-3098F8BED54D@keylevel.com>
+References: <07EF1EFB-2454-4D8A-A1FC-3B2C3E8F85AD@keylevel.com>
+	<4829846.nEKDNArLxY@localhost.localdomain>
+To: Maciej Borzecki <maciej.borzecki@open-rnd.pl>
+X-Mailer: Apple Mail (2.1878.6)
+X-OutGoing-Spam-Status: No, score=-1.0
+X-AntiAbuse: This header was added to track abuse,
+	please include it with any abuse report
+X-AntiAbuse: Primary Hostname - a180.4uh.net
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - keylevel.com
+X-Get-Message-Sender-Via: a180.4uh.net: authenticated_id:
+	chris.tapp@keylevel.com
+Cc: yocto@yoctoproject.org
+Subject: Re: Unexpected redirection error in script
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -57,47 +57,75 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 25 Aug 2014 19:34:34 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+X-List-Received-Date: Mon, 25 Aug 2014 20:05:21 -0000
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 
-VGhhbmtzLA0KDQpUaGlzIHNlZW1zIGxpa2UgYSBjbGVhbiB3YXkgdG8gZG8gd2hhdCBJIHdhbnQg
-dG8gZG8uIFNvIHRoaXMgbWVhbnMgd2hlbmV2ZXIgSSBkbyBhIGJ1aWxkLCBpdCB3aWxsIA0KDQox
-LikgQnVpbGQgdGhlIGtlcm5lbA0KMi4pIEJ1aWxkIHRoZSBmaWxlc3lzdGVtIChpbml0cmFtZnMp
-DQozLikgUmVidWlsZCB0aGUga2VybmVsIHdpdGggdGhlIGJ1bmRsZWQgaW50cmFtZnMNCg0KQ29y
-cmVjdD8NCg0KLU5pY2sNCg0KLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LQ0KTmljayBDcmFzdA0KQXNzb2NpYXRlIFNvZnR3YXJlIEVuZ2luZWVyDQpTYWFiIFNlbnNpcyBD
-b3Jwb3JhdGlvbg0KUGhvbmU6IDMxNS00NDUtNTcwMw0KRW1haWw6IE5pY2hvbGFzLkNyYXN0QHNh
-YWJzZW5zaXMuY29tDQoNCg0KLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCkZyb206IEtoZW0g
-UmFqIFttYWlsdG86cmFqLmtoZW1AZ21haWwuY29tXSANClNlbnQ6IE1vbmRheSwgQXVndXN0IDI1
-LCAyMDE0IDE6MzIgQU0NClRvOiBDcmFzdCwgTmljaG9sYXMNCkNjOiB5b2N0b0B5b2N0b3Byb2pl
-Y3Qub3JnDQpTdWJqZWN0OiBSZTogW3lvY3RvXSBCdW5kbGluZyBpbml0cmFtZnMgd2l0aCB1SW1h
-Z2UNCg0KT24gMTQtMDgtMjEgMjA6MTg6NDEsIENyYXN0LCBOaWNob2xhcyB3cm90ZToNCj4gQWxs
-LA0KPiANCj4gSSBhbSBjdXJyZW50bHkgd29ya2luZyBpbiBhbiBlbWJlZGRlZCBlbnZpcm9ubWVu
-dCwgc3RydWdnbGluZyB0byBnZXQgdGhlIGVudGlyZSBzeXN0ZW0gcnVubmluZyBpbiBSQU0sIHNv
-IHRoYXQgZXZlcnl0aGluZyBpcyBmcmVzaCBhZnRlciBhIHJlYm9vdC4gSSBjYW4gY3VycmVudGx5
-IHVzZSB0aGUgaW5pdHJhbWZzLWxpdmUtYm9vdCBmdW5jdGlvbmFsaXR5IHRvIGdlbmVyYXRlIGEg
-LmNwaW8uZ3ogZmlsZSwgYnV0IEkgYW0gbG9zdCBvbiBob3cgdG8gZ2V0IHRoaXMgdG8gJ2J1bmRs
-ZScgd2l0aCB0aGUgdUltYWdlLiBUaGUgdUltYWdlIHdpbGwgYmUgc3RvcmVkIG9uIGFuIFNEIGNh
-cmQgYW5kIHdlIGFyZSB1c2luZyB1LWJvb3QuDQo+IA0KPiBJIHNlZSBtZW50aW9ucyBvZiB0aGUg
-Q09ORklHX0lOSVRSQU1GU19TT1VSQ0Uga2VybmVsIG9wdGlvbiwgYnV0IEkgYW0gdW5zdXJlIGlm
-IEkgbmVlZCB0byBjaGFuZ2UgdGhpcy4NCj4gDQo+IENhbiBzb21lb25lIGhlbHAgbWU/IEkndmUg
-YmVlbiBnb29nbGluZyBhbGwgZGF5IGFuZCBoYXZlbid0IGdvdHRlbiBtdWNoIGZ1cnRoZXIuDQoN
-CmlmIHlvdSBhZGQgDQoNCklOSVRSQU1GU19JTUFHRV9CVU5ETEUgPSAiMSINCklOSVRSQU1GU19J
-TUFHRSA9ICI8bmFtZSBvZiB5b3VyIGluaXRyYW1mcy1pbWFnZT4iDQoNCmluIHlvdSBsb2NhbC5j
-b25mIHRoYXQgc2hvdWxkIGhlbHAgaXQgdG8gY3JlYXRlIHVJbWFnZSB3aXRoIGV2ZXJ5dGhpbmcg
-aW4gaXQuDQoNCi1LaGVtDQoNCi0NClRoaXMgbWVzc2FnZSBpcyBpbnRlbmRlZCBvbmx5IGZvciB0
-aGUgYWRkcmVzc2VlIGFuZCBtYXkgY29udGFpbiBpbmZvcm1hdGlvbiB0aGF0IGlzIGNvbXBhbnkg
-Y29uZmlkZW50aWFsIG9yIHByaXZpbGVnZWQuICBBbnkgdGVjaG5pY2FsIGRhdGEgaW4gdGhpcyBt
-ZXNzYWdlIG1heSBiZSBleHBvcnRlZCBvbmx5IGluIGFjY29yZGFuY2Ugd2l0aCB0aGUgVS5TLiBJ
-bnRlcm5hdGlvbmFsIFRyYWZmaWMgaW4gQXJtcyBSZWd1bGF0aW9ucyAoMjIgQ0ZSIFBhcnRzIDEy
-MC0xMzApIG9yIHRoZSBFeHBvcnQgQWRtaW5pc3RyYXRpb24gUmVndWxhdGlvbnMgKDE1IENGUiBQ
-YXJ0cyA3MzAtNzc0KS4gVW5hdXRob3JpemVkIHVzZSBpcyBzdHJpY3RseSBwcm9oaWJpdGVkIGFu
-ZCBtYXkgYmUgdW5sYXdmdWwuIElmIHlvdSBhcmUgbm90IHRoZSBpbnRlbmRlZCByZWNpcGllbnQs
-IG9yIHRoZSBwZXJzb24gcmVzcG9uc2libGUgZm9yIGRlbGl2ZXJpbmcgdG8gdGhlIGludGVuZGVk
-IHJlY2lwaWVudCwgeW91IHNob3VsZCBub3QgcmVhZCwgY29weSwgZGlzY2xvc2Ugb3Igb3RoZXJ3
-aXNlIHVzZSB0aGlzIG1lc3NhZ2UuIElmIHlvdSBoYXZlIHJlY2VpdmVkIHRoaXMgZW1haWwgaW4g
-ZXJyb3IsIHBsZWFzZSBkZWxldGUgaXQsIGFuZCBhZHZpc2UgdGhlIHNlbmRlciBpbW1lZGlhdGVs
-eS4gDQotICAgICAgICAgIA==
+
+On 25 Aug 2014, at 18:07, Maciej Borzecki <maciej.borzecki@open-rnd.pl> =
+wrote:
+
+> On Monday 25 of August 2014 17:50:00 Chris Tapp wrote:
+>> I've previously used expressions of the form:
+>>=20
+>>   IFS=3D. read -r $a $b $c $d <<< "$IP"
+> try:
+>=20
+> echo "$IP" | IFS=3D. read -r a b c d
+>=20
+>>=20
+>> to split an IP address into its octets.
+>>=20
+>> However, when I try this for generic_pc under daisy I get an =
+"Unexpected
+>> redirection" error.
+>>=20
+>> Is this to do with the Busybox version/configuration or something =
+else?
+> Busybox uses ash shell. Bash tricks like this won't work.
+
+Thanks - I hadn't spotted that the Cedartrail BSP links /bin/sh to =
+/bin/bash and not the Busybox binary.
+
+> --=20
+>=20
+> Maciej Borz=C4=99cki=20
+> Senior Software Engineer Open-RnD Sp. z o.o.=20
+> www.open-rnd.pl, Facebook, Twitter=20
+> mobile: +48 telefon, fax: +48 42 657 9079=20
+>=20
+> Niniejsza wiadomo=C5=9B=C4=87 wraz z za=C5=82=C4=85cznikami mo=C5=BCe =
+zawiera=C4=87 chronione prawem lub=20
+> poufne informacje i zosta=C5=82a wys=C5=82ana wy=C5=82=C4=85cznie do =
+wiadomo=C5=9Bci i u=C5=BCytku os=C3=B3b, do=20
+> kt=C3=B3rych zosta=C5=82a zaadresowana. Je=C5=9Bli wiadomo=C5=9B=C4=87 =
+zosta=C5=82a otrzymana przypadkowo=20
+> zabrania si=C4=99 jej kopiowania lub rozsy=C5=82ania do os=C3=B3b =
+trzecich. W takim przypadku=20
+> uprasza si=C4=99 o natychmiastowe zniszczenie wiadomo=C5=9Bci oraz =
+poinformowanie=20
+> nadawcy o zaistnia=C5=82ej sytuacji za pomoc=C4=85 wiadomo=C5=9Bci =
+zwrotnej. Dzi=C4=99kujemy.=20
+>=20
+> This message, including any attachments hereto, may contain privileged =
+or=20
+> confidential information and is sent solely for the attention and use =
+of the=20
+> intended addressee(s). If you are not an intended addressee, you may =
+neither=20
+> use this message nor copy or deliver it to anyone. In such case, you =
+should=20
+> immediately destroy this message and kindly notify the sender by reply =
+email.=20
+> Thank you.
+
+--
+
+Chris Tapp
+opensource@keylevel.com
+www.keylevel.com
+
+
+
+
 
