@@ -1,61 +1,51 @@
-Return-Path: <raj.khem@gmail.com>
+Return-Path: <Nicholas.Crast@saabsensis.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 39679E00566; Tue, 26 Aug 2014 10:43:47 -0700 (PDT)
+	id 15541E00566; Tue, 26 Aug 2014 11:41:41 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (raj.khem[at]gmail.com)
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.192.173 listed in list.dnswl.org]
-Received: from mail-pd0-f173.google.com (mail-pd0-f173.google.com
-	[209.85.192.173])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DA258E004F5;
-	Tue, 26 Aug 2014 10:43:42 -0700 (PDT)
-Received: by mail-pd0-f173.google.com with SMTP id w10so22515507pde.18
-	for <multiple recipients>; Tue, 26 Aug 2014 10:43:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=date:from:to:cc:subject:message-id:references:mime-version
-	:content-type:content-disposition:in-reply-to:user-agent;
-	bh=Tlm8gQmlxuzzj28UODcbWJrCD+BexQ779NSpeqJc3fU=;
-	b=lZZ1rxbODgZ2qvWDBYTk5JgoSgWFljlZoBhVODJ6ELmx1BgLG6Bv2iw22UoDeutOwY
-	GJGYZch7I1/nzmg6bdSDcD2X5+aGo19KdfY9XpfLT3otTSQ7ZSnocea+IiHjI22D4tDT
-	V4NDTudfpD5wyFQN3yomm2VFBPlKXTDkmFKdwRPzQo8xmkSAiLaEip0HciUN1LvOR16e
-	LOW9xCNUKojQrEPiS2fRpK5LNFqvEHYVeZ/K63DUbTt++c9d7rQ+GjYorOKjkj3KUMcg
-	DFl2g/7vfRtrDBRxYA9SC9GXw1AQrC1gkGnqFOf1PJW5x04pQzzTwYApykRt09pqOLKN
-	1lrA==
-X-Received: by 10.70.90.76 with SMTP id bu12mr39169577pdb.31.1409075021977;
-	Tue, 26 Aug 2014 10:43:41 -0700 (PDT)
-Received: from haswell ([2601:9:3580:7a5:baca:3aff:fe80:aa8f])
-	by mx.google.com with ESMTPSA id
-	hc11sm3815999pbd.70.2014.08.26.10.43.40 for <multiple recipients>
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-	Tue, 26 Aug 2014 10:43:41 -0700 (PDT)
-Date: Tue, 26 Aug 2014 10:47:25 -0700
-From: Khem Raj <raj.khem@gmail.com>
-To: Christopher Larson <clarson@kergoth.com>
-Message-ID: <20140826174725.GE18989@haswell>
-References: <CAP3RZoguYp0g+oWc7Fx4qghYv4L3=Zp_NVCY5G1f149-AxWmJQ@mail.gmail.com>
-	<20140826164742.GD18989@haswell>
-	<CABcZAN=V_6+_ARKC6vHAUW2ajSD1+b-rcKYZ6Y0M3BUeeTrpJA@mail.gmail.com>
+Received: from smtpmail.saabsensis.com (smtpmail.saabsensis.com [173.225.55.4])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4CF38E004F5
+	for <yocto@yoctoproject.org>; Tue, 26 Aug 2014 11:41:39 -0700 (PDT)
+Received: from [10.92.64.54] (helo=ssa-syr-dimstar4.saabusa.com)
+	by smtpmail.saabsensis.com with esmtps (TLS1.0:RSA_AES_256_CBC_SHA1:32)
+	(Exim 4.72) (envelope-from <Nicholas.Crast@saabsensis.com>)
+	id 1XMLgY-0003HJ-P7
+	for yocto@yoctoproject.org; Tue, 26 Aug 2014 14:41:38 -0400
+Received: from corpmail01.corp.sensis.com ([10.93.64.16])
+	by ssa-syr-dimstar4.saabusa.com with esmtp (Exim 4.72)
+	(envelope-from <Nicholas.Crast@saabsensis.com>) id 1XMLgJ-0005Pv-Kl
+	for yocto@yoctoproject.org; Tue, 26 Aug 2014 14:41:23 -0400
+Received: from CORPMAIL01.corp.sensis.com ([10.93.64.16]) by
+	corpmail01.corp.sensis.com ([10.93.64.16]) with mapi id 14.03.0195.001;
+	Tue, 26 Aug 2014 14:41:23 -0400
+From: "Crast, Nicholas" <Nicholas.Crast@saabsensis.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: Using uboot to boot a large uimage
+Thread-Index: AQHPwV1VjnRg0o+DokKkufwcyPW8jw==
+Date: Tue, 26 Aug 2014 18:41:22 +0000
+Message-ID: <36A43B0E1E88D84791516F9D44BC48331B3CA7E5@corpmail01.corp.sensis.com>
+References: <36A43B0E1E88D84791516F9D44BC48331B3C9E7D@corpmail01.corp.sensis.com>
+	<20140825053448.GD1014@haswell>
+In-Reply-To: <20140825053448.GD1014@haswell>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.93.80.50]
 MIME-Version: 1.0
-In-Reply-To: <CABcZAN=V_6+_ARKC6vHAUW2ajSD1+b-rcKYZ6Y0M3BUeeTrpJA@mail.gmail.com>
-User-Agent: Mutt/1.5.23 (2014-03-12)
-Cc: jags gediya <jags.gediya@gmail.com>,
-	"meta-freescale@yoctoproject.org" <meta-freescale@yoctoproject.org>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: [meta-freescale] Remove Bluez4 and add Bluez5 in core-image-base
+X-Sensis-MailScanner-Information: Scanned at Sensis Corporation by MailScanner
+X-Sensis-MailScanner-ID: 1XMLgJ-0005Pv-Kl
+X-Sensis-MailScanner: Found to be clean
+X-Sensis-MailScanner-SpamCheck: not spam (whitelisted),
+	SpamAssassin (not cached, score=-1.9, required 5, autolearn=not spam,
+	BAYES_00 -1.90)
+X-Sensis-MailScanner-From: nicholas.crast@saabsensis.com
+Subject: Using uboot to boot a large uimage
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -67,24 +57,38 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 26 Aug 2014 17:43:47 -0000
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+X-List-Received-Date: Tue, 26 Aug 2014 18:41:41 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-On 14-08-26 10:09:45, Christopher Larson wrote:
-> On Tue, Aug 26, 2014 at 9:47 AM, Khem Raj <raj.khem@gmail.com> wrote:
-> 
-> > On 14-08-26 20:18:36, jags gediya wrote:
-> > > I am using yocto project for imx6sl evolution kit based custom board.
-> > > I want to use core-image-base as basic image and put other packages on
-> > that.
-> > > By default , core-image-base have Bluez4, but i want to use Bluez5.
-> > > How can i remove default Bluez4 from core-image-base?
-> >
-> > PREFERRED_PROVIDER_bluez4 ?= "bluez5"
-> > and have 'bluetooth' in DISTRO_FEATURES
-
-
-ah, I thought it could since we ask for PREFERRED_PROVIDER_bluez4
-may be we should have a packagegroup for bluez5
+SSBhbSBjdXJyZW50bHkgYXR0ZW1wdGluZyB0byBib290IHdpdGggYW4gaW5pdHJhbWZzIGJ1aWx0
+IGludG8gbXkgdWltYWdlIHVzaW5nIHVib290LiANCg0KSG93ZXZlciwgSSBjYW5ub3QgZ2V0IGl0
+IHRvIGJvb3QgY29ycmVjdGx5LiBJZiBJIG1ha2UgdGhlIHVpbWFnZSB0b3RhbGx5IGJhcmUtYm9u
+ZXMsIGFuZCBqdXN0IHVzZSBjb3JlLWltYWdlLW1pbmltYWwtaW5pdHJhbWZzLCB0aGVuIGl0IGhh
+bmdzIGh1cmluZyBpbml0IGF0IHRoZSB3YWl0aW5nIGZvciBkZXZpY2VzLi4uIHByaW50b3V0LiBH
+b2luZyBhbmQgZ3V0dGluZyB0aGUgaW5pdCBzY3JpcHQsIEkgY2FuIGdldCB0byBzaW5nbGUgdXNl
+ciBtb2RlIGFuZCBpdCBsb29rcyBsaWtlIHRoZSBmaWxlc3lzdGVtIGlzIHRoZXJlLg0KDQpJIHdh
+bnQgYSBtb3JlIGZ1bGwgc3lzdGVtLCBzbyBJIGluY2x1ZGVkIGNvcmUtaW1hZ2UtYm9vdCBhbmQg
+Y29yZS1pbWFnZS1iYXNpYy4gSSBmaWd1cmVkIHRoaXMgd291bGQgaW5pdGlhbGl6ZSBiZXR0ZXIu
+IFdoZW4gSSBkbyB0aGlzLCBteSB1SW1hZ2UganVtcHMgdXAgdG8gfjUwTUIuIFUtYm9vdCB0aGVu
+IGhhbmdzIGF0ICJzdGFydGluZyBrZXJuZWwuLi4iDQoNCkkgZG9uJ3QgdGhpbmsgdGhhdCB0aGUg
+dWltYWdlIGlzIGNsb2JiZXJpbmcgdGhlIGRldmljZSB0cmVlLCBiZWNhdXNlIHRoZSBkZXZpY2Ug
+dHJlZSBpcyBsb2FkZWQgYXQgMHgxMDAsIGFuZCB0aGUgdWltYWdlIGlzIGxvYWRlZCBhdCAweDgw
+MDAuIA0KDQpBbnkgaWRlYXM/DQoNCi0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0NCk5pY2sgQ3Jhc3QNCkFzc29jaWF0ZSBTb2Z0d2FyZSBFbmdpbmVlcg0KU2FhYiBTZW5z
+aXMgQ29ycG9yYXRpb24NClBob25lOiAzMTUtNDQ1LTU3MDMNCkVtYWlsOiBOaWNob2xhcy5DcmFz
+dEBzYWFic2Vuc2lzLmNvbQ0KDQotDQpUaGlzIG1lc3NhZ2UgaXMgaW50ZW5kZWQgb25seSBmb3Ig
+dGhlIGFkZHJlc3NlZSBhbmQgbWF5IGNvbnRhaW4gaW5mb3JtYXRpb24gdGhhdCBpcyBjb21wYW55
+IGNvbmZpZGVudGlhbCBvciBwcml2aWxlZ2VkLiAgQW55IHRlY2huaWNhbCBkYXRhIGluIHRoaXMg
+bWVzc2FnZSBtYXkgYmUgZXhwb3J0ZWQgb25seSBpbiBhY2NvcmRhbmNlIHdpdGggdGhlIFUuUy4g
+SW50ZXJuYXRpb25hbCBUcmFmZmljIGluIEFybXMgUmVndWxhdGlvbnMgKDIyIENGUiBQYXJ0cyAx
+MjAtMTMwKSBvciB0aGUgRXhwb3J0IEFkbWluaXN0cmF0aW9uIFJlZ3VsYXRpb25zICgxNSBDRlIg
+UGFydHMgNzMwLTc3NCkuIFVuYXV0aG9yaXplZCB1c2UgaXMgc3RyaWN0bHkgcHJvaGliaXRlZCBh
+bmQgbWF5IGJlIHVubGF3ZnVsLiBJZiB5b3UgYXJlIG5vdCB0aGUgaW50ZW5kZWQgcmVjaXBpZW50
+LCBvciB0aGUgcGVyc29uIHJlc3BvbnNpYmxlIGZvciBkZWxpdmVyaW5nIHRvIHRoZSBpbnRlbmRl
+ZCByZWNpcGllbnQsIHlvdSBzaG91bGQgbm90IHJlYWQsIGNvcHksIGRpc2Nsb3NlIG9yIG90aGVy
+d2lzZSB1c2UgdGhpcyBtZXNzYWdlLiBJZiB5b3UgaGF2ZSByZWNlaXZlZCB0aGlzIGVtYWlsIGlu
+IGVycm9yLCBwbGVhc2UgZGVsZXRlIGl0LCBhbmQgYWR2aXNlIHRoZSBzZW5kZXIgaW1tZWRpYXRl
+bHkuIA0KLSAgICAgICAgICA=
 
