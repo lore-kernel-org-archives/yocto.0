@@ -1,17 +1,14 @@
-Return-Path: <sven.ebenfeld@gmail.com>
+Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id A2DB6E00566; Tue, 26 Aug 2014 13:02:47 -0700 (PDT)
+	id A0B57E006DB; Tue, 26 Aug 2014 13:03:21 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
 X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
 	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [209.85.217.182 listed in list.dnswl.org]
-	* 0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-	provider *      (sven.ebenfeld[at]gmail.com)
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (raj.khem[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
@@ -19,40 +16,41 @@ X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-lb0-f182.google.com (mail-lb0-f182.google.com
-	[209.85.217.182])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EFBB5E00566
-	for <yocto@yoctoproject.org>; Tue, 26 Aug 2014 13:02:40 -0700 (PDT)
-Received: by mail-lb0-f182.google.com with SMTP id n15so1941141lbi.41
-	for <yocto@yoctoproject.org>; Tue, 26 Aug 2014 13:02:39 -0700 (PDT)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.192.174 listed in list.dnswl.org]
+Received: from mail-pd0-f174.google.com (mail-pd0-f174.google.com
+	[209.85.192.174])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4F458E00566
+	for <yocto@yoctoproject.org>; Tue, 26 Aug 2014 13:03:16 -0700 (PDT)
+Received: by mail-pd0-f174.google.com with SMTP id fp1so23201841pdb.19
+	for <yocto@yoctoproject.org>; Tue, 26 Aug 2014 13:03:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=message-id:date:from:user-agent:mime-version:to:subject:references
-	:in-reply-to:content-type:content-transfer-encoding;
-	bh=tY+R3zgtPokMYLySESIWFFWFfKhhiFhYP3QkMOe9KgA=;
-	b=jYdFI2u2gHU59k7MUvC6Bc9pdJaw7ZuVIuBFILNBI2eoddFWNyXxItxlPGW6Q9yLPP
-	+A86Nke+EF/J5FJ1Uc60Rq9SnD5h9YBNrg3N3hS3zamGJhKRE12Ca5pDCfzV0rqj2B2B
-	/UqP6heudXz37cGV4ZKRanyvKKFUfISzfe8gwqTgGUn4ITZATN3YowWC+KOj0PDNrtlD
-	1wdkZREBt0rikTbrmWVQU+raT6788+/JV2QEbyMSRKrpj5TwD25a+g1g3sYvC3Ad22xF
-	ENiN+h7wHh16pK9T9jgXkQIH8pLsZtphPSTdFoeslPHTp5sT/Sia4Bsx8gJ/HYoJbyzK
-	R5lQ==
-X-Received: by 10.112.57.195 with SMTP id k3mr27166822lbq.48.1409083359724;
-	Tue, 26 Aug 2014 13:02:39 -0700 (PDT)
-Received: from [192.168.50.237] (ip-109-90-30-8.hsi11.unitymediagroup.de.
-	[109.90.30.8])
-	by mx.google.com with ESMTPSA id wv3sm2676539lac.35.2014.08.26.13.02.38
+	h=date:from:to:cc:subject:message-id:references:mime-version
+	:content-type:content-disposition:in-reply-to:user-agent;
+	bh=BVpQ0OVMKNOcuKr3lTJsrcdBe/KpInuSRNpyNCy6Gi0=;
+	b=f34S0Yf/J5u2jX/oueNYNh9QbBlCue5rHjBTLFk7F83qditjXmkO5S35GcTfQxr2sk
+	yvoTE1fgjVgDHzgoTaxFX02RdrrVOWqSsb1mK7qaPLjanFfAfJpfBapn4GEKh6yyb+dQ
+	UKQJ0OyDQQyBThVtbtcKzakQAlxzvzOgjPlaPzXLjYN/utb3GfJTsuxaVmHIw6KIgp+Q
+	BmEiyHOMXGXgDPLKcwwJnNHWeydNdM9t2cgTHBHa4S8OaJD+L3dLabgj70/yaop9bBS/
+	T45FQsVxDP0ixAdVWOx8NjiC3Mkuo41RDwfP/oGmIXv1mh372oY1J9kuM9uYl4rqw0s3
+	5+bg==
+X-Received: by 10.70.5.33 with SMTP id p1mr23663618pdp.134.1409083396605;
+	Tue, 26 Aug 2014 13:03:16 -0700 (PDT)
+Received: from haswell ([2601:9:3580:7a5:baca:3aff:fe80:aa8f])
+	by mx.google.com with ESMTPSA id x1sm5370586pdm.13.2014.08.26.13.03.15
 	for <multiple recipients>
-	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
-	Tue, 26 Aug 2014 13:02:38 -0700 (PDT)
-Message-ID: <53FCE7DD.7010102@gmail.com>
-Date: Tue, 26 Aug 2014 22:02:37 +0200
-From: Sven Ebenfeld <sven.ebenfeld@gmail.com>
-User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64;
-	rv:24.0) Gecko/20100101 Thunderbird/24.6.0
-MIME-Version: 1.0
-To: Chris Tapp <opensource@keylevel.com>, 
-	Yocto Project <yocto@yoctoproject.org>
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Tue, 26 Aug 2014 13:03:15 -0700 (PDT)
+Date: Tue, 26 Aug 2014 13:07:00 -0700
+From: Khem Raj <raj.khem@gmail.com>
+To: Chris Tapp <opensource@keylevel.com>
+Message-ID: <20140826200700.GH18989@haswell>
 References: <5390133D-A7A4-4E21-A2D9-D9BBAF6F849F@keylevel.com>
+MIME-Version: 1.0
 In-Reply-To: <5390133D-A7A4-4E21-A2D9-D9BBAF6F849F@keylevel.com>
+User-Agent: Mutt/1.5.23 (2014-03-12)
+Cc: Yocto Project <yocto@yoctoproject.org>
 Subject: Re: systemd - how do I wait for a driver to load?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
@@ -65,20 +63,22 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 26 Aug 2014 20:02:47 -0000
-Content-Type: text/plain; charset=ISO-8859-1
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Tue, 26 Aug 2014 20:03:21 -0000
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 
-You should look at  "ConditionPathExists=" Options of systemd-units.
-Otherwise if udev is loading your device module, you could add the
-device-unit to "Requires=" option.
-
-Am 26.08.2014 21:52, schrieb Chris Tapp:
+On 14-08-26 20:52:58, Chris Tapp wrote:
 > I've got a service running under systemd that will only start once a kernel module has loaded and created its /dev/dvb/adaptor nodes.
 > 
 > Unfortunately, it doesn't load until after the service has failed and gone into an error state due to too many restarts.
 > 
 > I could "fix" this by increasing the restart interval, but is there a way of adding a dependancy on the kernel module?
+
+if you module is loaded automatically on boot then dependent service
+could use below dependency
+
+After=systemd-modules-load.service
+
 > 
 > --
 > 
@@ -89,4 +89,9 @@ Am 26.08.2014 21:52, schrieb Chris Tapp:
 > 
 > 
 > 
+> -- 
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
