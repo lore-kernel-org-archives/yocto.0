@@ -1,35 +1,49 @@
-Return-Path: <prvs=3095e736d=Richard.Leitner@skidata.com>
+Return-Path: <anoojgopi@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id B6A36E006DB; Wed, 27 Aug 2014 05:42:30 -0700 (PDT)
+	id 09993E007DC; Wed, 27 Aug 2014 06:57:43 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (anoojgopi[at]gmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.212.179 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail1.skidata.com (mail1.skidata.com [91.230.2.99])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 3BB91E00566
-	for <yocto@yoctoproject.org>; Wed, 27 Aug 2014 05:42:23 -0700 (PDT)
-X-IronPort-Anti-Spam-Filtered: true
-X-IronPort-Anti-Spam-Result: AqcEAG3R/VOsEApK/2dsb2JhbABbhDcEth6dRwoBgSZ3hAQBBAF5EAsNFCUPSAYOBYg6Db87F49MB4RMAQSPG4MVgQWBSodYh16RGmqBSIEHAQEB
-X-IPAS-Result: AqcEAG3R/VOsEApK/2dsb2JhbABbhDcEth6dRwoBgSZ3hAQBBAF5EAsNFCUPSAYOBYg6Db87F49MB4RMAQSPG4MVgQWBSodYh16RGmqBSIEHAQEB
-Date: Wed, 27 Aug 2014 14:42:14 +0200
-From: Richard Leitner <richard.leitner@skidata.com>
-To: Anders Darander <anders@chargestorm.se>
-Message-ID: <20140827144214.00215b0a@lxbuild.skidata.net>
-In-Reply-To: <20140822090741.GB18766@ad.chargestorm.se>
-References: <20140812142043.31d6766f@lxbuild.skidata.net>
-	<alpine.LFD.2.11.1408120827190.21762@localhost>
-	<20140812145857.23eda070@lxbuild.skidata.net>
-	<CAP71WjxiBCScKkTC0a735B94WCwbu8Z9SzWVi58ma4-aw8mNMA@mail.gmail.com>
-	<20140812155243.31bae60a@lxbuild.skidata.net>
-	<20140822090741.GB18766@ad.chargestorm.se>
-Organization: SKIDATA AG
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-wi0-f179.google.com (mail-wi0-f179.google.com
+	[209.85.212.179])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1E061E007B9
+	for <yocto@yoctoproject.org>; Wed, 27 Aug 2014 06:57:41 -0700 (PDT)
+Received: by mail-wi0-f179.google.com with SMTP id f8so479934wiw.12
+	for <yocto@yoctoproject.org>; Wed, 27 Aug 2014 06:57:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=NHxx4knwqtcf/zExNFxzdH6wBEeKeVmYTFf7o1vYLMc=;
+	b=iEEx3jhkejoDLEZikIdDfVVcrQpFKwVPV3ZnPj9fL8oeF0H2zFmlrOrISIUw8Llg4+
+	XCcK2Xl93ntX++K5W4KKZAZc75sF/HJ00W7qQS+n9RVOTrrOWrTWdOYSUPkY38MsD781
+	uAODz/j3DhkCv71d6VIND1Bj6HW/hXZhSljQKRjnPJhbyF1+dxqOqLHnFeDY7PlWxGtB
+	sPKO5wK1J3B2LodExCYc/8f9tDO7LaJSMEuCnnWK1SOQHxeX7rLa6fTM1J4oiqLS5tcJ
+	fN6ADyE74bmpYgVTa8SF5gicuwmvoqLkW1CJNN7/wMHpoEQX/L+gc0zs0Ib2OWEX8ZPs
+	0LeQ==
 MIME-Version: 1.0
-X-Originating-IP: [172.16.60.30]
-Cc: Yocto list discussion <yocto@yoctoproject.org>
-Subject: Re: Force recipe to provide specific file
+X-Received: by 10.195.13.2 with SMTP id eu2mr23604175wjd.88.1409147860742;
+	Wed, 27 Aug 2014 06:57:40 -0700 (PDT)
+Received: by 10.194.19.193 with HTTP; Wed, 27 Aug 2014 06:57:40 -0700 (PDT)
+Date: Wed, 27 Aug 2014 15:57:40 +0200
+Message-ID: <CALkREYA7nN3sL2ALk4JCOt=NrhYFPpd=gAS_pzMe2OMURXDVNg@mail.gmail.com>
+From: Anooj Gopi <anoojgopi@gmail.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Build dts alone
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -41,55 +55,25 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 27 Aug 2014 12:42:30 -0000
-X-Groupsio-MsgNum: 21282
-Content-Type: multipart/signed; micalg=PGP-SHA1;
-	boundary="Sig_/_H=5SB/iFe1ZF9m3vxjxK4B";
-	protocol="application/pgp-signature"
+X-List-Received-Date: Wed, 27 Aug 2014 13:57:43 -0000
+Content-Type: multipart/alternative; boundary=047d7bd91b48acf6f405019ccded
 
---Sig_/_H=5SB/iFe1ZF9m3vxjxK4B
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: quoted-printable
+--047d7bd91b48acf6f405019ccded
+Content-Type: text/plain; charset=UTF-8
 
+Hello,
 
-On Fri, 22 Aug 2014 11:07:41 +0200
-Anders Darander <anders@chargestorm.se> wrote:
+After changing the kernel dts file (directly in work directory) I would
+like to build just the dtb file from yocto (without rebuilding entire
+virtual/kernel target). Is it possible to do so?
 
->=20
-> > What happens for example if do_install_append is already defined in the=
- recipe?
->=20
->=20
-> No issue at all. The do_install_append's will just be appended one after
-> each other.
+Regards,
+Anooj
 
-Thanks you for this info!
+--047d7bd91b48acf6f405019ccded
+Content-Type: text/html; charset=UTF-8
 
-Maybe it would be a good idea to add it to the documentation somewhere ;-)
+<div dir="ltr"><div><div>Hello,<br><br></div>After changing the kernel dts file (directly in work directory) I would like to build just the dtb file from yocto (without rebuilding entire virtual/kernel target). Is it possible to do so?<br>
+<br></div>Regards,<br>Anooj<br></div>
 
-regards,
-richard
-
---Sig_/_H=5SB/iFe1ZF9m3vxjxK4B
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Disposition: attachment; filename="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v1.4.12 (GNU/Linux)
-
-iQIcBAEBAgAGBQJT/dImAAoJEA1czarIqmfYB8UQAKMqweVc9HD1QlF+ji6tGRXi
-QyljP1NPRMwU/ZLJe+Ysd+KFfkmc8QrFsPlS1Qu3VFSWutKUXDo5jSyhosdbzw/0
-584L5hvMAeNz0J0olY82+qDBYeUCgeTPczPDsSB4+URgna2LiRGfcOGc5HL17nLq
-GKICg+F2QQDZgJC4YZBs61g+7QikKvPuYn7ps8giWZhZ/4Y2IupqOvTfF8HyAvCM
-v6Ri1E5o0WKYAioJYlScAfj+zTgKZ0eNL0N7SHCdaQ1WF107YeM66jz6k6/fLqKl
-/AMXZyUlIlGwzp0z9zj5uUFu83tDF50cnVTNlDrGH0Y2yMrhDfqwTzwQSlHWZUNe
-KQmxkHsXMWr7Tg6Z+I6N5QseJUf5GdbG3soBJL4jleMle6eMzTxlqa5y6Vyvc4By
-bgky+kPDPnPSH7ka0i5/w57HvAWpLFtDhrutLrS6615hzNUTRu6stFsPBnvSjR3c
-UZeDebAJ6FKSnVDtHkw9+FjEfYId300gqNIw6tTGP9UF3tGAiDKRcJkiug3Ze+VN
-eueSGH30mhiEl+u0uL8904hhF/QFrw4/vdy4gojtpRAsocrOlfpOicyk42hrYGn8
-t2luD2d3MTM4PTaISVfPr9fnx8nD27kYq2kmNbMwi0rHmVUncvgo2gZB0mTGXcUk
-/7F205LcZnZMS/eK3VkM
-=vRsB
------END PGP SIGNATURE-----
-
---Sig_/_H=5SB/iFe1ZF9m3vxjxK4B--
+--047d7bd91b48acf6f405019ccded--
