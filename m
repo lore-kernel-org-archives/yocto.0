@@ -1,32 +1,46 @@
-Return-Path: <maciej.borzecki@open-rnd.pl>
+Return-Path: <elizabeth.flanagan@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id B5B0CE007DB; Wed, 27 Aug 2014 07:15:51 -0700 (PDT)
+	id F1B6AE007DB; Wed, 27 Aug 2014 10:20:02 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from akt59.rev.netart.pl (akt59.rev.netart.pl [85.128.150.59])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 690CBE007B9
-	for <yocto@yoctoproject.org>; Wed, 27 Aug 2014 07:15:38 -0700 (PDT)
-Received: from localhost.localdomain (unknown [46.170.72.194])
-	by open-rnd.nazwa.pl (Postfix) with ESMTP id B0F2D294A85E;
-	Wed, 27 Aug 2014 16:15:37 +0200 (CEST)
-From: Maciej Borzecki <maciej.borzecki@open-rnd.pl>
-To: Anooj Gopi <anoojgopi@gmail.com>
-Date: Wed, 27 Aug 2014 16:15:37 +0200
-Message-ID: <1474350.hVc8jgIq3k@localhost.localdomain>
-User-Agent: KMail/4.13.3 (Linux/3.15.10-200.fc20.x86_64; KDE/4.13.3; x86_64; ;
-	)
-In-Reply-To: <CALkREYBf0t6hydAj4CZXoMRe6QJQ6R0Yvd92e1+zBSDQ3oUrUw@mail.gmail.com>
-References: <CALkREYA7nN3sL2ALk4JCOt=NrhYFPpd=gAS_pzMe2OMURXDVNg@mail.gmail.com>
-	<23114885.AlUfQMMlDH@localhost.localdomain>
-	<CALkREYBf0t6hydAj4CZXoMRe6QJQ6R0Yvd92e1+zBSDQ3oUrUw@mail.gmail.com>
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.213.50 listed in list.dnswl.org]
+Received: from mail-yh0-f50.google.com (mail-yh0-f50.google.com
+	[209.85.213.50])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 8B0CAE007B9
+	for <yocto@yoctoproject.org>; Wed, 27 Aug 2014 10:19:50 -0700 (PDT)
+Received: by mail-yh0-f50.google.com with SMTP id v1so541875yhn.23
+	for <yocto@yoctoproject.org>; Wed, 27 Aug 2014 10:19:50 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:date
+	:message-id:subject:from:to:cc:content-type;
+	bh=hRV/v2E2TivDTsdjExtrK2unioFij6zqSqQCUsOjBRc=;
+	b=d4kh4RRtt1EXv04RO17KmzOFCCr/TUBDEvaJgQrjJVWRgC21Z5+LYY52w0kRdVx3m2
+	6eDLE+qhDPHGNhdN5Cq2AgSbj36Uy1Vrkec8RTWJLIwRNPPedI6e1Be/E32wVsRIjj44
+	pd833R3qYNwiQpCzi5SPDtTObbmjhNM8wxeJsuzaQ1Dcu0t/hrOQ4DH87pThKXVUFi5N
+	8kYCmbcwpBt6eQOBJc2K1ZpEAY8DzqvSJBcdvzRFEwNDwS1bdvSpNWG0Sk/E5Em9wA1t
+	GpubPzvqkz2wJazf0ft5/16SpIOYrzwIAYs2VWTS/NoZha/ONToOSOEgfXnzi5HhcqQW
+	ciow==
+X-Gm-Message-State: ALoCoQlQqDS2ACv/JJPAp5NlFDTDgN2JgaBlP/jN9SCUjciFGq0pC50aZxWsqOCo8d9PB0NNx70I
 MIME-Version: 1.0
+X-Received: by 10.221.28.67 with SMTP id rt3mr1999415vcb.78.1409159989945;
+	Wed, 27 Aug 2014 10:19:49 -0700 (PDT)
+Received: by 10.52.255.168 with HTTP; Wed, 27 Aug 2014 10:19:49 -0700 (PDT)
+In-Reply-To: <1408539450-17081-1-git-send-email-corneliux.stoicescu@intel.com>
+References: <1408539450-17081-1-git-send-email-corneliux.stoicescu@intel.com>
+Date: Wed, 27 Aug 2014 10:19:49 -0700
+Message-ID: <CAPhnLPD6aQ6OAcCENPKcXwZ2+O=zu=bML_n+h27dD9bD5iOhUg@mail.gmail.com>
+From: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
+To: Corneliu Stoicescu <corneliux.stoicescu@intel.com>
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Build dts alone
+Subject: Re: [yocto-autobuilder] buildsteps/RunOeSelftest.py: change the way oe-selftest is called
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -38,50 +52,43 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 27 Aug 2014 14:15:51 -0000
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="utf-8"
+X-List-Received-Date: Wed, 27 Aug 2014 17:20:03 -0000
+Content-Type: text/plain; charset=UTF-8
 
-On Wednesday 27 of August 2014 16:12:58 Anooj Gopi wrote:
-> Thank you very much... devshell is really cool.
->=20
-> It would be nice if we could mention this info some where in
-> http://www.yoctoproject.org/docs/current/kernel-dev/kernel-dev.html
+On Wed, Aug 20, 2014 at 5:57 AM, Corneliu Stoicescu
+<corneliux.stoicescu@intel.com> wrote:
+> A recent patch went in poky master that added command line parsing and options to the oe-selftest script.
+> Changing the way oe-selftest is called by the autobuilder to account for these changes.
+>
+> Signed-off-by: Corneliu Stoicescu <corneliux.stoicescu@intel.com>
+> ---
+>  lib/python2.7/site-packages/autobuilder/buildsteps/RunOeSelftest.py | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+>
+> diff --git a/lib/python2.7/site-packages/autobuilder/buildsteps/RunOeSelftest.py b/lib/python2.7/site-packages/autobuilder/buildsteps/RunOeSelftest.py
+> index 0efddd7..3d95583 100644
+> --- a/lib/python2.7/site-packages/autobuilder/buildsteps/RunOeSelftest.py
+> +++ b/lib/python2.7/site-packages/autobuilder/buildsteps/RunOeSelftest.py
+> @@ -22,5 +22,5 @@ class RunOeSelftest(ShellCommand):
+>          self.description = "Running oe-selftest"
+>          self.timeout = 100000
+>          kwargs['timeout']=self.timeout
+> -        self.command = "if [ -d meta-selftest ]; then . ./oe-init-build-env; oe-selftest; else echo 'Skipping step - no meta-selftest layer here'; fi"
+> +        self.command = "if [ -d meta-selftest ]; then . ./oe-init-build-env; oe-selftest --run-all-tests; else echo 'Skipping step - no meta-selftest layer here'; fi"
+>          ShellCommand.__init__(self, **kwargs)
+> --
+> 1.8.3.2
+>
+> --
+> _______________________________________________
+> yocto mailing list
+> yocto@yoctoproject.org
+> https://lists.yoctoproject.org/listinfo/yocto
 
-It is mentioned in developer's manual:
-https://www.yoctoproject.org/docs/current/dev-manual/dev-manual.html#pl=
-atdev-appdev-devshell
+Pulled into master. Pushing into Production this afternoon. Thanks!
 
-
---=20
-
-Maciej Borz=C4=99cki=20
-Senior Software Engineer Open-RnD Sp. z o.o.=20
-www.open-rnd.pl, Facebook, Twitter=20
-mobile: +48 telefon, fax: +48 42 657 9079=20
-
-Niniejsza wiadomo=C5=9B=C4=87 wraz z za=C5=82=C4=85cznikami mo=C5=BCe z=
-awiera=C4=87 chronione prawem lub=20
-poufne informacje i zosta=C5=82a wys=C5=82ana wy=C5=82=C4=85cznie do wi=
-adomo=C5=9Bci i u=C5=BCytku os=C3=B3b, do=20
-kt=C3=B3rych zosta=C5=82a zaadresowana. Je=C5=9Bli wiadomo=C5=9B=C4=87 =
-zosta=C5=82a otrzymana przypadkowo=20
-zabrania si=C4=99 jej kopiowania lub rozsy=C5=82ania do os=C3=B3b trzec=
-ich. W takim przypadku=20
-uprasza si=C4=99 o natychmiastowe zniszczenie wiadomo=C5=9Bci oraz poin=
-formowanie=20
-nadawcy o zaistnia=C5=82ej sytuacji za pomoc=C4=85 wiadomo=C5=9Bci zwro=
-tnej. Dzi=C4=99kujemy.=20
-
-This message, including any attachments hereto, may contain privileged =
-or=20
-confidential information and is sent solely for the attention and use o=
-f the=20
-intended addressee(s). If you are not an intended addressee, you may ne=
-ither=20
-use this message nor copy or deliver it to anyone. In such case, you sh=
-ould=20
-immediately destroy this message and kindly notify the sender by reply =
-email.=20
-Thank you. 
+-- 
+Elizabeth Flanagan
+Yocto Project
+Build and Release
 
