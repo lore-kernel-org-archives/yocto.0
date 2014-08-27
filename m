@@ -1,45 +1,61 @@
-Return-Path: <elizabeth.flanagan@intel.com>
+Return-Path: <sven.ebenfeld@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 2B91EE00576; Tue, 26 Aug 2014 17:44:11 -0700 (PDT)
+	id E1505E00576; Wed, 27 Aug 2014 00:46:59 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [209.85.213.48 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (sven.ebenfeld[at]gmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.217.170 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail-yh0-f48.google.com (mail-yh0-f48.google.com
-	[209.85.213.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 80E05E0054C
-	for <yocto@yoctoproject.org>; Tue, 26 Aug 2014 17:43:58 -0700 (PDT)
-Received: by mail-yh0-f48.google.com with SMTP id i57so12650136yha.7
-	for <yocto@yoctoproject.org>; Tue, 26 Aug 2014 17:43:57 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:date:message-id:subject:from:to
-	:content-type;
-	bh=9ZYiVNGFAVLEBHhPWn1PCiFvSPCPdA/WV8QL3LyKBfI=;
-	b=dJIxlAVIgK1HtuMhrVIg1aX/HxatCKQ/NQFBu+Ai+r1WpA6Fd+pfOJCdGIPxVcmkLW
-	Dv2tF+Ro+1hpNPmUOkiZZgnhLMRx986ih7M6+IDROHbUYxkqfcspaQNkzbiuDBuzbTIF
-	Xb4r7rXKD2GVKIXJQUsktQ2X0DQhNsbTpNF+N1y9DaR3kOM7J/Jl/0y9Uz+lC3Q/YcbT
-	FcLAU2VepFZulyhn5KXUBGMuDBmAdIOhF04i2jj1cMJ+54BYvgPQTXWGl3rVSI7nEAUR
-	64UgEKgYsx3Ge8IZvEr0vV/Yr088FdNgpCyqDHuvuG3omYNWRnIvaI6iDSzbmJh/dRdS
-	PH1w==
-X-Gm-Message-State: ALoCoQln/dx6D+ZURlYk6yP8QvhftHG+wVopeG32e8n7ZbtarqY6vTw0H7a0g0eUTaE6Sv7xbYdw
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-lb0-f170.google.com (mail-lb0-f170.google.com
+	[209.85.217.170])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7A01DE0054C
+	for <yocto@yoctoproject.org>; Wed, 27 Aug 2014 00:46:54 -0700 (PDT)
+Received: by mail-lb0-f170.google.com with SMTP id p9so2668075lbv.15
+	for <yocto@yoctoproject.org>; Wed, 27 Aug 2014 00:46:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=message-id:date:from:user-agent:mime-version:to:cc:subject
+	:references:in-reply-to:content-type:content-transfer-encoding;
+	bh=0ejZH8esDx9r45FOxe4S7opBnNwvPfGBcJPUeMmdIFY=;
+	b=Dhx6/nz1G5C4RahYMlI1IuySn/Qs/JUkASschginQr3vIvK3qOdxl+eyUZ0mwyb6RS
+	x8eLUgJG0juakEiB7ZPomL0k38X7eLzhaTMo0pOMTYzOA0CkjmftqjR9sLoQyg6v43V2
+	aA9mxD5kIwcq4J3BzbrsF1sKh3DW4XadsDJF6bmse/eItGb/4ofk1mAPrdEmLRP3HBaR
+	RxXix6cJxKJJqBUSWT2RR707tN2qC63/0ldeA46KYh8UuOHxRyYMFzoHjVPzjL2hCauQ
+	LeWNnDTyNOuVrZA2ZungXj/bRbdupZgwOeGh8NaPmXTRdYdhWufNjHOhwauA6OymbaQl
+	k+bw==
+X-Received: by 10.112.56.206 with SMTP id c14mr30958070lbq.27.1409125612896;
+	Wed, 27 Aug 2014 00:46:52 -0700 (PDT)
+Received: from [192.168.50.237] (ip-109-90-30-8.hsi11.unitymediagroup.de.
+	[109.90.30.8])
+	by mx.google.com with ESMTPSA id d9sm3688532lad.11.2014.08.27.00.46.51
+	for <multiple recipients>
+	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
+	Wed, 27 Aug 2014 00:46:51 -0700 (PDT)
+Message-ID: <53FD8CEB.8010504@gmail.com>
+Date: Wed, 27 Aug 2014 09:46:51 +0200
+From: Sven Ebenfeld <sven.ebenfeld@gmail.com>
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64;
+	rv:24.0) Gecko/20100101 Thunderbird/24.6.0
 MIME-Version: 1.0
-X-Received: by 10.220.182.73 with SMTP id cb9mr26417686vcb.9.1409100237663;
-	Tue, 26 Aug 2014 17:43:57 -0700 (PDT)
-Received: by 10.52.255.168 with HTTP; Tue, 26 Aug 2014 17:43:57 -0700 (PDT)
-Date: Tue, 26 Aug 2014 17:43:57 -0700
-Message-ID: <CAPhnLPCfFFdtOwMm4ae8V73cxe-_rYLDxQNW8KQdAqrHini+Ng@mail.gmail.com>
-From: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>, 
-	Alexandru C Georgescu <alexandru.c.georgescu@intel.com>,
-	Zhao Yi <yi.zhao@windriver.com>, Otavio Salvador <otavio@ossystems.com.br>
-Subject: Weekly build now available.
+To: Chris Tapp <opensource@keylevel.com>
+References: <5390133D-A7A4-4E21-A2D9-D9BBAF6F849F@keylevel.com>
+	<53FCE7DD.7010102@gmail.com>
+	<A12629B8-0554-4039-8796-8E1585744D30@keylevel.com>
+In-Reply-To: <A12629B8-0554-4039-8796-8E1585744D30@keylevel.com>
+Cc: Yocto Project <yocto@yoctoproject.org>
+Subject: Re: systemd - how do I wait for a driver to load?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -51,25 +67,57 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 27 Aug 2014 00:44:11 -0000
-Content-Type: text/plain; charset=UTF-8
-
-http://autobuilder.yoctoproject.org/pub/nightly/20140826-2
-
-bitbake     5d858e23de8b15badc3ab7f56ad5160a76a89de1
-eclipse-poky-juno     26bfc407781aa185f244a47ba63120343cee4a37
-eclipse-poky-kepler     4a167fd662262ebdaa3cf0d332ac0debb52d7904
-meta-fsl-arm     c9b88d89e862d623997402104e2d875c36664afc
-meta-fsl-ppc     d953212ae5936a7d969d13801b0c2c1eb65cee6f
-meta-intel     579cd30427b0cb2941eca06bc0b0b9b1573d0e50
-meta-minnow     238a45e9da8bbfff7a6af220b48c11cabd31e01c
-meta-qt3     3016129d90b7ac8517a5227d819f10ad417b5b45
-oecore     217aa4d9802609d2c3628c8751a27a5d25900898
-poky     52b788c6df9201764130ab744bf67b770b24b896
+X-List-Received-Date: Wed, 27 Aug 2014 07:47:00 -0000
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: 7bit
 
 
--- 
-Elizabeth Flanagan
-Yocto Project
-Build and Release
+
+Am 26.08.2014 22:51, schrieb Chris Tapp:
+> 
+> On 26 Aug 2014, at 21:02, Sven Ebenfeld <sven.ebenfeld@gmail.com> wrote:
+> 
+>> You should look at  "ConditionPathExists=" Options of systemd-units.
+> 
+> Thanks, that looks like it would do the job. I was hoping not to hard code paths as they may change if a configuration file is changed, but...
+> 
+>> Otherwise if udev is loading your device module, you could add the
+>> device-unit to "Requires=" option.
+> 
+> This sounds better. Is there an easy way to tell if udev did load the module? There's nothing obvious in the syslog.
+
+If you didn't load the module by hand it's probably udev. If you didn't
+run modprobe or insmod. Then you should try to create a device-unit for
+the device.
+
+For /dev/dvb/adaptor the unit should probably be something like
+dev-dvb-adaptor.device .
+
+> 
+>> Am 26.08.2014 21:52, schrieb Chris Tapp:
+>>> I've got a service running under systemd that will only start once a kernel module has loaded and created its /dev/dvb/adaptor nodes.
+>>>
+>>> Unfortunately, it doesn't load until after the service has failed and gone into an error state due to too many restarts.
+>>>
+>>> I could "fix" this by increasing the restart interval, but is there a way of adding a dependancy on the kernel module?
+>>>
+>>> --
+>>>
+>>> Chris Tapp
+>>> opensource@keylevel.com
+>>> www.keylevel.com
+>>>
+>>>
+>>>
+>>>
+> 
+> --
+> 
+> Chris Tapp
+> opensource@keylevel.com
+> www.keylevel.com
+> 
+> 
+> 
+> 
 
