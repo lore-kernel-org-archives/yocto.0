@@ -1,48 +1,58 @@
-Return-Path: <rpjday@crashcourse.ca>
+Return-Path: <raj.khem@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 567EAE007FE; Thu, 28 Aug 2014 00:38:42 -0700 (PDT)
+	id C357CE007FE; Thu, 28 Aug 2014 00:48:57 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [208.80.206.85 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (raj.khem[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from smtp685.redcondor.net (smtp685.redcondor.net [208.80.206.85])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1DAFBE0049D
-	for <yocto@yoctoproject.org>; Thu, 28 Aug 2014 00:38:35 -0700 (PDT)
-Received: from astoria.ccjclearline.com ([64.235.106.9])
-	by smtp685.redcondor.net ({20c8e40f-6b6c-4c9e-abff-1640ea7bf404})
-	via TCP (outbound) with ESMTPS id 20140828073833814
-	for <yocto@yoctoproject.org>; Thu, 28 Aug 2014 07:38:33 +0000
-X-RC-FROM: <rpjday@crashcourse.ca>
-X-RC-RCPT: <yocto@yoctoproject.org>
-Received: from [99.240.204.5] (port=46615 helo=crashcourse.ca)
-	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES128-SHA:128)
-	(Exim 4.80) (envelope-from <rpjday@crashcourse.ca>)
-	id 1XMuHs-0008AO-Lo
-	for yocto@yoctoproject.org; Thu, 28 Aug 2014 03:38:28 -0400
-Date: Thu, 28 Aug 2014 03:38:26 -0400 (EDT)
-From: "Robert P. J. Day" <rpjday@crashcourse.ca>
-X-X-Sender: rpjday@localhost
-To: Yocto discussion list <yocto@yoctoproject.org>
-Message-ID: <alpine.LFD.2.11.1408280336190.2292@localhost>
-User-Agent: Alpine 2.11 (LFD 23 2013-08-11)
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.220.54 listed in list.dnswl.org]
+Received: from mail-pa0-f54.google.com (mail-pa0-f54.google.com
+	[209.85.220.54])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 71A2AE0049D
+	for <yocto@yoctoproject.org>; Thu, 28 Aug 2014 00:48:54 -0700 (PDT)
+Received: by mail-pa0-f54.google.com with SMTP id fb1so1501833pad.13
+	for <yocto@yoctoproject.org>; Thu, 28 Aug 2014 00:48:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=date:from:to:cc:subject:message-id:references:mime-version
+	:content-type:content-disposition:in-reply-to:user-agent;
+	bh=qimw+gLR1Lo62EpxymIOMLwqELh6qg/l7fjz7mZDlds=;
+	b=oK0Plhyk0Oz8QdXI+UOIHckg89VvUNH7rjg/5ZNkV7S0q60NK5WxD4HJo/M4hc7kIS
+	3MfkiaQDWhVHGA+0aRxNJxCFahiS7NexB+TSXL+D/9jH22DPtScfaJrECnOnTrMoXpIt
+	lIf4qaV1VHlLgS+GwOHbmZERe+AatKzsPQSyaYZSlNsUOfkzj5ErtCqRzd72h9JP20V8
+	hhV5O9IhMI/6oV+e/sPqfNCv0PKSCRyHr6LtGQzwWSOJ0cTHfnZOr+j9vtJ0QqEi1qDK
+	Rtpx7RsOnlHjnZXZG0Ow4N2FenwDTwWxkKLdN++axRHdO0wvn6qHzuds7RgJkczv+Rlz
+	8svQ==
+X-Received: by 10.66.174.17 with SMTP id bo17mr3167269pac.98.1409212130541;
+	Thu, 28 Aug 2014 00:48:50 -0700 (PDT)
+Received: from haswell ([2601:9:3580:7a5:baca:3aff:fe80:aa8f])
+	by mx.google.com with ESMTPSA id sf1sm2741570pbb.0.2014.08.28.00.48.49
+	for <multiple recipients>
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+	Thu, 28 Aug 2014 00:48:49 -0700 (PDT)
+Date: Thu, 28 Aug 2014 00:52:29 -0700
+From: Khem Raj <raj.khem@gmail.com>
+To: Richard Purdie <richard.purdie@linuxfoundation.org>
+Message-ID: <20140828075229.GI13139@haswell>
+References: <20140828064051.GA13139@haswell> <1409210337.29296.131.camel@ted>
 MIME-Version: 1.0
-X-AntiAbuse: This header was added to track abuse,
-	please include it with any abuse report
-X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
-X-AntiAbuse: Original Domain - yoctoproject.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - crashcourse.ca
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-X-MAG-OUTBOUND: ccj.redcondor.net@64.235.106.9/32
-Subject: is there a list of yocto-supported dev kits somewhere?
+In-Reply-To: <1409210337.29296.131.camel@ted>
+User-Agent: Mutt/1.5.23 (2014-03-12)
+Cc: yocto@yoctoproject.org, openembedded-devel@lists.openembedded.org,
+	openembedded-core@lists.openembedded.org
+Subject: Re: [OE-core] [RFT] Moving on from eglibc to glibc 2.20
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -54,26 +64,62 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 28 Aug 2014 07:38:42 -0000
-Content-Type: TEXT/PLAIN; charset=US-ASCII
+X-List-Received-Date: Thu, 28 Aug 2014 07:48:57 -0000
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 
+On 14-08-28 08:18:57, Richard Purdie wrote:
+> On Wed, 2014-08-27 at 23:41 -0700, Khem Raj wrote:
+> > Hi All
+> > 
+> > As we all know eglibc has been merged back into glibc and 2.19 was the
+> > last release, here I have put together the recipes for upcoming glibc
+> > 2.20 release and removed eglibc 2.19 in favor of move.
+> > 
+> > I also thought about leaving eglibc in there but then eglibc and glibc
+> > were pretty much same as they always have been that it would be an
+> > incremental change with lot more patches this time.
+> > 
+> > The tree is here
+> > 
+> > http://git.openembedded.org/openembedded-core-contrib/log/?h=kraj/eglibc-to-glibc-2.20
+> > 
+> > This has not recieved much testing yet and I am looking out for helping
+> > hands here, so try it out in your buid environments and machines of
+> > interest and report back on issues.
+> > 
+> > The patches also forward port the options group support and few other
+> > patches from eglibc, details are in commit logs, which I think would make 
+> > good candidates for future glibc merge.
+> > 
+> > This tree will be reworked and rebased so sync back if you see issues
+> > which we will address here
+> > 
+> > Thanks for your help
+> 
+> Thanks for doing this Khem, its quite some work and much appreciated!
+> 
+> Just to be clear, what is the intent here? Is it intended to get this
+> into 1.7 or is this 1.8 material at this point? We're effectively past
+> the toolchain freeze point for 1.7, just about at complete feature
+> freeze but I'd like to make sure we're thinking the same things.
 
-  perhaps i just haven't noticed, but is there somewhere a list of dev
-kits that have a yocto project build for them? it would be great to
-have a reference list along the lines of, "boards for which there is a
-working YB build", with link(s) to relevant layer and instructions,
-etc.
+I am targetting for 1.7 thats why call for wider testing to expedite.  but it could only be decided with some level of
+testing. I havent done enough of testing yet myself it to be sure but in coming few days, it
+will be lot clear
 
-rday
+But if it turns into major issues then we can wait for 1.8 but it will
+be quite an effort to keep up with these patches over a long period of time.
 
--- 
+> 
+> I'm certainly happy to get this through the autobuilder and see what
+> happens...
+> 
 
-========================================================================
-Robert P. J. Day                                 Ottawa, Ontario, CANADA
-                        http://crashcourse.ca
+yes, ceertainly would help. 
 
-Twitter:                                       http://twitter.com/rpjday
-LinkedIn:                               http://ca.linkedin.com/in/rpjday
-========================================================================
-
+> Cheers,
+> 
+> Richard
+> 
 
