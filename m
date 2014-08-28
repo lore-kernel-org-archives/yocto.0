@@ -1,38 +1,48 @@
-Return-Path: <Xin.Ouyang@windriver.com>
+Return-Path: <seth.boll@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 16A7DE007FE; Thu, 28 Aug 2014 03:40:50 -0700 (PDT)
+	id B2A3EE007A0; Thu, 28 Aug 2014 06:39:56 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [147.11.146.13 listed in list.dnswl.org]
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (seth.boll[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DD017E0049D
-	for <yocto@yoctoproject.org>; Thu, 28 Aug 2014 03:40:43 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail1.windriver.com (8.14.9/8.14.5) with ESMTP id s7SAeb3K010743
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Thu, 28 Aug 2014 03:40:38 -0700 (PDT)
-Received: from pascal-macbookpro.corp.ad.wrs.com (128.224.159.159) by
-	ALA-HCA.corp.ad.wrs.com (147.11.189.50) with Microsoft SMTP Server id
-	14.3.174.1; Thu, 28 Aug 2014 03:40:37 -0700
-Message-ID: <53FF0723.3050801@windriver.com>
-Date: Thu, 28 Aug 2014 18:40:35 +0800
-From: Pascal Ouyang <xin.ouyang@windriver.com>
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.8;
-	rv:24.0) Gecko/20100101 Thunderbird/24.6.0
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [74.125.82.46 listed in list.dnswl.org]
+Received: from mail-wg0-f46.google.com (mail-wg0-f46.google.com [74.125.82.46])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 23570E00796
+	for <yocto@yoctoproject.org>; Thu, 28 Aug 2014 06:39:53 -0700 (PDT)
+Received: by mail-wg0-f46.google.com with SMTP id x13so747690wgg.29
+	for <yocto@yoctoproject.org>; Thu, 28 Aug 2014 06:39:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=b5fthWZUKgkc5QUGPjwqDkEcb2+f35o7JTrjPhxIYbs=;
+	b=Xj2bUINIa93BKqmvtqbzree3JVoZAfx2biRrd8hG1O11MTz3b0xBkroPTHICwca0eo
+	IP7gmYvyGTl4L7/O21q4SBMA17kF3soHamvH+Dj7THMjKCht1wbmYv80EwI8yeMmGbX9
+	P6qK1Pj0VEjsY/fkv82Cv42BmAJtx5Z/F74wIabEyCkRqzvMYyRZFMIPuOb4wf9ezI+e
+	aVMBLqAvx1wrqiqtQ11i3qJHmMHktitdjyyeQdRaVb2vWni5Z98PYwGToY3GCSWIDPaE
+	QOMkmiXBQvggH8cEWBoEJnKQ7hd/x9aQJIF8tAj4266HBM7la4nJ8AjFGly26BE182gW
+	KNrg==
 MIME-Version: 1.0
-To: Zhenhua Luo <zhenhua.luo@freescale.com>, <yocto@yoctoproject.org>
-References: <1406204401-17220-1-git-send-email-zhenhua.luo@freescale.com>
-In-Reply-To: <1406204401-17220-1-git-send-email-zhenhua.luo@freescale.com>
-X-TagToolbar-Keys: D20140828184035927
-Subject: Re: [meta-selinux][PATCH] Enable two options to ensure selinux can boot up
+X-Received: by 10.180.73.235 with SMTP id o11mr6188944wiv.41.1409233191763;
+	Thu, 28 Aug 2014 06:39:51 -0700 (PDT)
+Received: by 10.216.208.73 with HTTP; Thu, 28 Aug 2014 06:39:51 -0700 (PDT)
+Date: Thu, 28 Aug 2014 08:39:51 -0500
+Message-ID: <CA+JN8xMg9k=eax3Q6UdoUaKYeobKiyjiVk9DZC-OiPaX1GD4fw@mail.gmail.com>
+From: Seth Bollinger <seth.boll@gmail.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Multiple kernels same machine
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -44,36 +54,57 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 28 Aug 2014 10:40:50 -0000
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
+X-List-Received-Date: Thu, 28 Aug 2014 13:39:56 -0000
+Content-Type: multipart/alternative; boundary=f46d043d66ddcd05ee0501b0ab2b
 
-于 14-7-24 下午8:20, Zhenhua Luo 写道:
-> * CONFIG_SECURITY=y
-> * CONFIG_SECURITYFS=y
->
-> Signed-off-by: Zhenhua Luo <zhenhua.luo@freescale.com>
-> ---
->   recipes-kernel/linux/linux-yocto/selinux.cfg | 2 ++
->   1 file changed, 2 insertions(+)
->
-> diff --git a/recipes-kernel/linux/linux-yocto/selinux.cfg b/recipes-kernel/linux/linux-yocto/selinux.cfg
-> index 53cdf57..2edd366 100644
-> --- a/recipes-kernel/linux/linux-yocto/selinux.cfg
-> +++ b/recipes-kernel/linux/linux-yocto/selinux.cfg
-> @@ -18,6 +18,8 @@ CONFIG_EXT4_FS_SECURITY=y
->   CONFIG_JFS_SECURITY=y
->   CONFIG_REISERFS_FS_SECURITY=y
->   CONFIG_JFFS2_FS_SECURITY=y
-> +CONFIG_SECURITY=y
-> +CONFIG_SECURITYFS=y
->   CONFIG_SECURITY_NETWORK=y
->   CONFIG_SECURITY_SELINUX=y
->   CONFIG_SECURITY_SELINUX_BOOTPARAM=y
->
+--f46d043d66ddcd05ee0501b0ab2b
+Content-Type: text/plain; charset=UTF-8
 
-Merged. Thanks :)
+Hello All,
 
--- 
-- Pascal
+I'm trying to build two different kernels for the same machine.  One kernel
+supports a manufacturing process, the other production kernel is meant to
+run on the device after it's been manufactured.  I've manipulated the two
+images I'm using to build the two kernels (the solution is _very_ ugly),
+but as you can imagine, they end up stomping on each other, causing a
+copious amount of warnings.
 
+WARNING: The recipe linux-dbl-manuf is trying to install files into a
+shared area when those files already exist. Those files and their manifest
+location are:
+
+ /usr/local/yocto/gateways-yocto/build/tmp/sysroots/x2e/pkgdata/runtime/kernel-module-xt-statistic
+   Matched in manifest-x2e-linux-dbl.packagedata
+
+Is there an elegant way to resolve these warnings?
+
+Is there an example somewhere of two kernels being built for the same
+machine?
+
+Thanks,
+
+Seth
+
+--f46d043d66ddcd05ee0501b0ab2b
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Hello All,<div><br></div><div>I&#39;m trying to build two =
+different kernels for the same machine. =C2=A0One kernel supports a manufac=
+turing process, the other production kernel is meant to run on the device a=
+fter it&#39;s been manufactured. =C2=A0I&#39;ve manipulated the two images =
+I&#39;m using to build the two kernels (the solution is _very_ ugly), but a=
+s you can imagine, they end up stomping on each other, causing a copious am=
+ount of warnings.</div>
+<div><br></div><div><div>WARNING: The recipe linux-dbl-manuf is trying to i=
+nstall files into a shared area when those files already exist. Those files=
+ and their manifest location are:</div><div>=C2=A0 =C2=A0/usr/local/yocto/g=
+ateways-yocto/build/tmp/sysroots/x2e/pkgdata/runtime/kernel-module-xt-stati=
+stic</div>
+<div>=C2=A0 =C2=A0Matched in manifest-x2e-linux-dbl.packagedata</div></div>=
+<div><br></div><div>Is there an elegant way to resolve these warnings?</div=
+><div><br></div><div>Is there an example somewhere of two kernels being bui=
+lt for the same machine?</div>
+<div><br></div><div>Thanks,</div><div><br></div><div>Seth</div></div>
+
+--f46d043d66ddcd05ee0501b0ab2b--
