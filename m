@@ -1,42 +1,53 @@
-Return-Path: <richard.purdie@linuxfoundation.org>
+Return-Path: <rpjday@crashcourse.ca>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 98155E00796; Fri, 29 Aug 2014 03:39:29 -0700 (PDT)
+	id 7B537E00798; Fri, 29 Aug 2014 04:22:35 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from dan.rpsys.net (5751f4a1.skybroadband.com [87.81.244.161])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 60207E00507
-	for <yocto@yoctoproject.org>; Fri, 29 Aug 2014 03:39:24 -0700 (PDT)
-Received: from localhost (localhost [127.0.0.1])
-	by dan.rpsys.net (8.14.4/8.14.4/Debian-4.1ubuntu1) with ESMTP id
-	s7TAdHPi028881; Fri, 29 Aug 2014 11:39:17 +0100
-Received: from dan.rpsys.net ([127.0.0.1])
-	by localhost (dan.rpsys.net [127.0.0.1]) (amavisd-new, port 10024)
-	with LMTP id aKmn5V-NG6eh; Fri, 29 Aug 2014 11:39:17 +0100 (BST)
-Received: from [192.168.3.10] ([192.168.3.10]) (authenticated bits=0)
-	by dan.rpsys.net (8.14.4/8.14.4/Debian-4.1ubuntu1) with ESMTP id
-	s7TAdECr028878
-	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES128-SHA bits=128 verify=NOT);
-	Fri, 29 Aug 2014 11:39:15 +0100
-Message-ID: <1409308755.29296.148.camel@ted>
-From: Richard Purdie <richard.purdie@linuxfoundation.org>
-To: Khem Raj <raj.khem@gmail.com>
-Date: Fri, 29 Aug 2014 11:39:15 +0100
-In-Reply-To: <CAMKF1spj67i2i_50m=oTUpS3x2J=de0UxGf70zLhn-a7c4M3QA@mail.gmail.com>
-References: <20140828064051.GA13139@haswell> <1409266291.29296.147.camel@ted>
-	<CAMKF1spz2KoO6NDSkZwh=V=pkyYi6e7-G0fpka5P2ifbjnNn6w@mail.gmail.com>
-	<CAMKF1spj67i2i_50m=oTUpS3x2J=de0UxGf70zLhn-a7c4M3QA@mail.gmail.com>
-X-Mailer: Evolution 3.10.4-0ubuntu2 
-Mime-Version: 1.0
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
-	openembeded-devel <openembedded-devel@lists.openembedded.org>,
-	Patches and discussions about the oe-core layer
-	<openembedded-core@lists.openembedded.org>
-Subject: Re: [OE-core] [RFT] Moving on from eglibc to glibc 2.20
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [208.80.206.85 listed in list.dnswl.org]
+Received: from smtp685.redcondor.net (smtp685.redcondor.net [208.80.206.85])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 93109E006B3
+	for <yocto@yoctoproject.org>; Fri, 29 Aug 2014 04:22:26 -0700 (PDT)
+Received: from astoria.ccjclearline.com ([64.235.106.9])
+	by smtp685.redcondor.net ({20c8e40f-6b6c-4c9e-abff-1640ea7bf404})
+	via TCP (outbound) with ESMTPS id 20140829112225027
+	for <yocto@yoctoproject.org>; Fri, 29 Aug 2014 11:22:25 +0000
+X-RC-FROM: <rpjday@crashcourse.ca>
+X-RC-RCPT: <yocto@yoctoproject.org>
+Received: from [99.240.204.5] (port=57767 helo=crashcourse.ca)
+	by astoria.ccjclearline.com with esmtpsa (TLSv1:AES128-SHA:128)
+	(Exim 4.80) (envelope-from <rpjday@crashcourse.ca>)
+	id 1XNKG3-0005v6-QL; Fri, 29 Aug 2014 07:22:19 -0400
+Date: Fri, 29 Aug 2014 07:22:17 -0400 (EDT)
+From: "Robert P. J. Day" <rpjday@crashcourse.ca>
+X-X-Sender: rpjday@localhost
+To: Jeff Osier-Mixon <jefro@jefro.net>
+In-Reply-To: <CA+YB3rYra8atvtzy4JPz8zfc4WjbB-kM0rtb5ZdfRy48PFMO9g@mail.gmail.com>
+Message-ID: <alpine.LFD.2.11.1408290721080.4903@localhost>
+References: <alpine.LFD.2.11.1408280336190.2292@localhost>
+	<CAGiJk9dYKHaq3YTA6aAHBWkVH+gFqm+M=Rpi=80YhVZ0YNeWrA@mail.gmail.com>
+	<alpine.LFD.2.11.1408280408050.2863@localhost>
+	<CA+YB3rYra8atvtzy4JPz8zfc4WjbB-kM0rtb5ZdfRy48PFMO9g@mail.gmail.com>
+User-Agent: Alpine 2.11 (LFD 23 2013-08-11)
+MIME-Version: 1.0
+X-AntiAbuse: This header was added to track abuse,
+	please include it with any abuse report
+X-AntiAbuse: Primary Hostname - astoria.ccjclearline.com
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - crashcourse.ca
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+X-MAG-OUTBOUND: ccj.redcondor.net@64.235.106.9/32
+Cc: Yocto discussion list <yocto@yoctoproject.org>
+Subject: Re: is there a list of yocto-supported dev kits somewhere?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -48,27 +59,44 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 29 Aug 2014 10:39:29 -0000
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Fri, 29 Aug 2014 11:22:35 -0000
+Content-Type: TEXT/PLAIN; charset=US-ASCII
 
-On Thu, 2014-08-28 at 18:46 -0700, Khem Raj wrote:
-> On Thu, Aug 28, 2014 at 5:41 PM, Khem Raj <raj.khem@gmail.com> wrote:
-> > reproduced. will apprise as I have some fix.
-> 
-> OK pushed another patch to the contrib tree that should take care of both
-> xf86-input-synaptics xf86-input-vmmouse
+On Thu, 28 Aug 2014, Jeff Osier-Mixon wrote:
 
-Thanks. I'm having one heck of a problem unentangling all the different
-build failures (from these and other patches) but this one looks like
-glibc:
+> I think the machines list is a great start,
 
-https://autobuilder.yoctoproject.org/main/builders/poky-tiny/builds/18/steps/BuildImages/logs/stdio
+http://layers.openembedded.org/layerindex/branch/master/machines/?q=
 
-Cheers,
+> but it really lists actual machines, not dev kits. There isn't any
+> way to see immediately from that list which are $99 dev boards and
+> which are $9999 reference kits from the manufacturers. I think
+> Robert is right that a list of inexpensive YP-supported boards would
+> be extremely useful. I'll try to create such a list in the near
+> future.
 
-Richard
+  that is kinda what i was after. i realize it's an open-ended
+request, but it would be great if there was a list of "recommended"
+dev kits representing various architectures/processors that people new
+to YP could purchase for experimentation, *knowing* that those dev
+kits had a YP build that would work out of the box. not necessarily
+technically complete, but that it would just boot and let them start
+playing.
 
+  and as i once suggested (and jefro clearly appreciates), at this
+point, dev kits like that should rarely cost more than a couple
+hundred dollars.
 
+rday
+
+-- 
+
+========================================================================
+Robert P. J. Day                                 Ottawa, Ontario, CANADA
+                        http://crashcourse.ca
+
+Twitter:                                       http://twitter.com/rpjday
+LinkedIn:                               http://ca.linkedin.com/in/rpjday
+========================================================================
 
 
