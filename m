@@ -1,6 +1,6 @@
 Return-Path: <akuster808@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id BA5C5E00843; Mon,  1 Sep 2014 19:51:15 -0700 (PDT)
+	id CC35BE0082A; Mon,  1 Sep 2014 19:51:15 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -18,38 +18,38 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
 	low *      trust
-	*      [209.85.192.171 listed in list.dnswl.org]
-Received: from mail-pd0-f171.google.com (mail-pd0-f171.google.com
-	[209.85.192.171])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9C470E0082A
-	for <yocto@yoctoproject.org>; Mon,  1 Sep 2014 19:51:12 -0700 (PDT)
-Received: by mail-pd0-f171.google.com with SMTP id y13so7380880pdi.30
-	for <yocto@yoctoproject.org>; Mon, 01 Sep 2014 19:51:12 -0700 (PDT)
+	*      [209.85.220.54 listed in list.dnswl.org]
+Received: from mail-pa0-f54.google.com (mail-pa0-f54.google.com
+	[209.85.220.54])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E205FE00833
+	for <yocto@yoctoproject.org>; Mon,  1 Sep 2014 19:51:14 -0700 (PDT)
+Received: by mail-pa0-f54.google.com with SMTP id fb1so13378959pad.41
+	for <yocto@yoctoproject.org>; Mon, 01 Sep 2014 19:51:13 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=from:to:cc:subject:date:message-id:in-reply-to:references;
-	bh=p2UYVXu1fr4WcI+a4vYIKOGrEW1A2bL8eYBkS4Xyp+I=;
-	b=CynWdstEO1MW8y2XJyIfJqw3uYMLGS8k3gDsyRFMf7sjnOh9nfQNtfUqw9vqqJ/czD
-	oCz/eegbM8qB2O93aUoSeT0KprlXFg6Y5HYSTTewrHwdRW61JgV9XkmjcfMREV0tuho3
-	BDt2qV8J/key3w8FjOWR9NmhLM/VWZt+ON2U6H5x98ohDLeccbwtT6DIM6oxXRkLj/I8
-	AKXI+ipLVzLjxzSdCBanPBmQ7LbuH+3udiIFqksSzGDk6mD28uac+i6yPTY48j0iyUUy
-	rT4EHO1aDH3RPXUADWZY3aHpUTNsQPsQDVuus7byxFEIaxhxB601g8+R9zQTpR9RfQc+
-	axiA==
-X-Received: by 10.66.227.98 with SMTP id rz2mr43326618pac.92.1409626272039;
-	Mon, 01 Sep 2014 19:51:12 -0700 (PDT)
+	bh=/dASkLCK8cIyTlPXHJ/qwEb4ccKepsWHB+A4kOJU904=;
+	b=FCyz9xn+NCnhxlkIhKwbyLLEC3yK5PJwMndEheqTYHTQ1UPO0duppY2O0I7jgncv2d
+	KCRD3EpUDShUtk/YeHjRjm6ugVTl/lKRR2e9fIoeR97womMVLAnOd16t0K+C+sWJ+7MQ
+	NdUbRzNSE5geIEVDnD8WRcUqnIZ/HCSEqZHKeBYRM5VlaadeZ5Y/JgcJ1wUbomhF34xF
+	2LUuno3WhkSpwdmcgj7esAiIDR3zYkbhwiLDNGQTIDjI4eCO2jO7PwYnHBpZpFwPvKik
+	ROGaibbOveuvuvnBkqQjaNrHiheeERppCYwITf29AWdEOs2KmpzEXqev5in8VJ8Ku3bR
+	df5w==
+X-Received: by 10.69.18.65 with SMTP id gk1mr43094824pbd.68.1409626273918;
+	Mon, 01 Sep 2014 19:51:13 -0700 (PDT)
 Received: from Pahoa2.mvista.com (c-76-20-92-207.hsd1.ca.comcast.net.
 	[76.20.92.207])
-	by mx.google.com with ESMTPSA id ah2sm7334695pad.10.2014.09.01.19.51.10
+	by mx.google.com with ESMTPSA id ah2sm7334695pad.10.2014.09.01.19.51.12
 	for <multiple recipients>
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-	Mon, 01 Sep 2014 19:51:11 -0700 (PDT)
+	Mon, 01 Sep 2014 19:51:12 -0700 (PDT)
 From: Armin Kuster <akuster808@gmail.com>
 To: yocto@yoctoproject.org
-Date: Mon,  1 Sep 2014 19:51:02 -0700
-Message-Id: <1409626263-14379-3-git-send-email-akuster808@gmail.com>
+Date: Mon,  1 Sep 2014 19:51:03 -0700
+Message-Id: <1409626263-14379-4-git-send-email-akuster808@gmail.com>
 X-Mailer: git-send-email 1.9.1
 In-Reply-To: <1409626263-14379-1-git-send-email-akuster808@gmail.com>
 References: <1409626263-14379-1-git-send-email-akuster808@gmail.com>
-Subject: [meta-security][PATCH 2/3] layer.conf: add layer depends.
+Subject: [meta-security][PATCH 3/3] nmap: update to version 6.47
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -63,23 +63,64 @@ List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
 X-List-Received-Date: Tue, 02 Sep 2014 02:51:15 -0000
 
-added layerdepends check for  perl-layer and opemembedded-layer
+for list of changes see:
+http://seclists.org/nmap-dev/2014/q3/335
+
+use nmap.inc to house most code.
 
 Signed-off-by: Armin Kuster <akuster808@gmail.com>
 ---
- conf/layer.conf | 2 ++
- 1 file changed, 2 insertions(+)
+ recipes-security/nmap/{nmap_6.46.bb => nmap.inc} |  8 +-------
+ recipes-security/nmap/nmap_6.47.bb               | 10 ++++++++++
+ 2 files changed, 11 insertions(+), 7 deletions(-)
+ rename recipes-security/nmap/{nmap_6.46.bb => nmap.inc} (88%)
+ create mode 100644 recipes-security/nmap/nmap_6.47.bb
 
-diff --git a/conf/layer.conf b/conf/layer.conf
-index 063268d..c5a717b 100644
---- a/conf/layer.conf
-+++ b/conf/layer.conf
-@@ -8,3 +8,5 @@ BBFILES += "${LAYERDIR}/recipes-*/*/*.bb \
- BBFILE_COLLECTIONS += "security"
- BBFILE_PATTERN_security = "^${LAYERDIR}/"
- BBFILE_PRIORITY_security = "6"
+diff --git a/recipes-security/nmap/nmap_6.46.bb b/recipes-security/nmap/nmap.inc
+similarity index 88%
+rename from recipes-security/nmap/nmap_6.46.bb
+rename to recipes-security/nmap/nmap.inc
+index a04dc7b..79fe7d4 100644
+--- a/recipes-security/nmap/nmap_6.46.bb
++++ b/recipes-security/nmap/nmap.inc
+@@ -2,12 +2,6 @@ SUMMARY = "network auditing tool"
+ DESCRIPTION = "Nmap ("Network Mapper") is a free and open source (license) utility for network discovery and security auditing.\nGui support via appending to IMAGE_FEATURES x11-base in local.conf"
+ SECTION = "security"
+ LICENSE = "GPL-2.0"
+-LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/GPL-2.0;md5=801f80980d171dd6425610833a22dbe6"
+-
+-SRC_URI = "http://nmap.org/dist/${BPN}-${PV}.tar.bz2"
+-
+-SRC_URI[md5sum] = "5a36ad3a63d5b7ea5514f745a397436a"
+-SRC_URI[sha256sum] = "3f89d9053c69507fe9533c40188a6561d49607a37b1db6380aed9039d4883137"
+ 
+ inherit autotools-brokensep pkgconfig distro_features_check
+ 
+@@ -43,7 +37,7 @@ FILES_${PN} = "${bindir}/nmap ${datadir}/nmap/*"
+ # append packages if enabled
+ FILES_${PN} += "${@bb.utils.contains("PACKAGECONFIG", "ncat", "${bindir}/ncat ${target_datadir}/ncat", "", d)}"
+ FILES_${PN} += "${@bb.utils.contains("PACKAGECONFIG", "nping", "${bindir}/nping", "", d)}"
+-FILES_${PN} += "${@bb.utils.contains("PACKAGECONFIG", "ndiff", "${bindir}/ndiff ${libdir}/python${PYTHON_BASEVERSION}/site-packages/ndiff*", "", d)}"
++FILES_${PN} += "${@bb.utils.contains("PACKAGECONFIG", "ndiff", "${bindir}/ndiff ${libdir}/python${PYTHON_BASEVERSION}/site-packages/ndiff.py*", "", d)}"
+ 
+ PACKAGES += "${@bb.utils.contains("PACKAGECONFIG", "zenmap", "${PN}-zenmap", "", d)}"
+ 
+diff --git a/recipes-security/nmap/nmap_6.47.bb b/recipes-security/nmap/nmap_6.47.bb
+new file mode 100644
+index 0000000..bcaee0c
+--- /dev/null
++++ b/recipes-security/nmap/nmap_6.47.bb
+@@ -0,0 +1,10 @@
 +
-+LAYERDEPENDS_security = "openembedded-layer perl-layer"
++include nmap.inc
++
++LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/GPL-2.0;md5=801f80980d171dd6425610833a22dbe6"
++
++SRC_URI = "http://nmap.org/dist/${BPN}-${PV}.tar.bz2"
++
++
++SRC_URI[md5sum] = "edfe81f6763223c0a29bfa15a8526e2a"
++SRC_URI[sha256sum] = "8fa11e9e203ce2d81a207db5ca4f110a525f6c01c1dd0018325a7112a51aa591"
 -- 
 1.9.1
 
