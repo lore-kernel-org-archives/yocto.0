@@ -1,6 +1,6 @@
-Return-Path: <akuster808@gmail.com>
+Return-Path: <jags.gediya@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id CC35BE0082A; Mon,  1 Sep 2014 19:51:15 -0700 (PDT)
+	id 6C51DE0078A; Mon,  1 Sep 2014 21:09:55 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -8,7 +8,7 @@ X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
 	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (akuster808[at]gmail.com)
+	mail provider *      (jags.gediya[at]gmail.com)
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
@@ -18,38 +18,32 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
 	low *      trust
-	*      [209.85.220.54 listed in list.dnswl.org]
-Received: from mail-pa0-f54.google.com (mail-pa0-f54.google.com
-	[209.85.220.54])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E205FE00833
-	for <yocto@yoctoproject.org>; Mon,  1 Sep 2014 19:51:14 -0700 (PDT)
-Received: by mail-pa0-f54.google.com with SMTP id fb1so13378959pad.41
-	for <yocto@yoctoproject.org>; Mon, 01 Sep 2014 19:51:13 -0700 (PDT)
+	*      [209.85.216.179 listed in list.dnswl.org]
+Received: from mail-qc0-f179.google.com (mail-qc0-f179.google.com
+	[209.85.216.179])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DA9C0E0074B;
+	Mon,  1 Sep 2014 21:09:47 -0700 (PDT)
+Received: by mail-qc0-f179.google.com with SMTP id l6so6132235qcy.38
+	for <multiple recipients>; Mon, 01 Sep 2014 21:09:47 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=from:to:cc:subject:date:message-id:in-reply-to:references;
-	bh=/dASkLCK8cIyTlPXHJ/qwEb4ccKepsWHB+A4kOJU904=;
-	b=FCyz9xn+NCnhxlkIhKwbyLLEC3yK5PJwMndEheqTYHTQ1UPO0duppY2O0I7jgncv2d
-	KCRD3EpUDShUtk/YeHjRjm6ugVTl/lKRR2e9fIoeR97womMVLAnOd16t0K+C+sWJ+7MQ
-	NdUbRzNSE5geIEVDnD8WRcUqnIZ/HCSEqZHKeBYRM5VlaadeZ5Y/JgcJ1wUbomhF34xF
-	2LUuno3WhkSpwdmcgj7esAiIDR3zYkbhwiLDNGQTIDjI4eCO2jO7PwYnHBpZpFwPvKik
-	ROGaibbOveuvuvnBkqQjaNrHiheeERppCYwITf29AWdEOs2KmpzEXqev5in8VJ8Ku3bR
-	df5w==
-X-Received: by 10.69.18.65 with SMTP id gk1mr43094824pbd.68.1409626273918;
-	Mon, 01 Sep 2014 19:51:13 -0700 (PDT)
-Received: from Pahoa2.mvista.com (c-76-20-92-207.hsd1.ca.comcast.net.
-	[76.20.92.207])
-	by mx.google.com with ESMTPSA id ah2sm7334695pad.10.2014.09.01.19.51.12
-	for <multiple recipients>
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-	Mon, 01 Sep 2014 19:51:12 -0700 (PDT)
-From: Armin Kuster <akuster808@gmail.com>
-To: yocto@yoctoproject.org
-Date: Mon,  1 Sep 2014 19:51:03 -0700
-Message-Id: <1409626263-14379-4-git-send-email-akuster808@gmail.com>
-X-Mailer: git-send-email 1.9.1
-In-Reply-To: <1409626263-14379-1-git-send-email-akuster808@gmail.com>
-References: <1409626263-14379-1-git-send-email-akuster808@gmail.com>
-Subject: [meta-security][PATCH 3/3] nmap: update to version 6.47
+	h=mime-version:date:message-id:subject:from:to:cc:content-type;
+	bh=THZXj8CJQdM3UlzqRggAVjZ/33qAKlioP2lBwSnnRsA=;
+	b=u5VxdwdFNIyda/r+JQ81/5wqUEez/IuV5cME4U+xhjOnR3mXjRJbMhDWnTS08G7l2c
+	5KEtnjgEsnuKOrcF9Hddef+/HQx8ursY5pbNL3Wg4H+ojuDmE6w83cEjVpdzjDCkOLR9
+	cN0CzYdY3dRC68n899+W+YmT1aocgmItsz7zw1EcW6WGJRXxSroJKy1huuObFsydBZgU
+	b+mTZTDVejAJUcnFTzEkOjpzOuH5sgJzzH4YsCkvR5UwWBAaEnS3sTF88jAlNo9ajIib
+	RvuDnWbU1HjCHBTEF9ZimFbjn8p5gg5Dzhmiy0rkbt+hHMypXBlKVmQvrH8wu34W7xah
+	7x2g==
+MIME-Version: 1.0
+X-Received: by 10.224.51.197 with SMTP id e5mr50495941qag.48.1409630986973;
+	Mon, 01 Sep 2014 21:09:46 -0700 (PDT)
+Received: by 10.224.166.198 with HTTP; Mon, 1 Sep 2014 21:09:46 -0700 (PDT)
+Date: Tue, 2 Sep 2014 09:39:46 +0530
+Message-ID: <CAP3RZojOJyJnnRcWAENmEPvghyKGRyMub3_Yt4hSAem5n4qO4Q@mail.gmail.com>
+From: jags gediya <jags.gediya@gmail.com>
+To: "meta-freescale@yoctoproject.org" <meta-freescale@yoctoproject.org>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Fresh Yocto build for i.MX6SLEVK giving error related to eglibc
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -61,67 +55,71 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 02 Sep 2014 02:51:15 -0000
+X-List-Received-Date: Tue, 02 Sep 2014 04:09:55 -0000
+Content-Type: text/plain; charset=UTF-8
 
-for list of changes see:
-http://seclists.org/nmap-dev/2014/q3/335
+I have done some modification in the machine conf file.
 
-use nmap.inc to house most code.
+MACHINE_FEATURES += " pci wifi bluetooth alsa usbhost usbgadget serial"
+DISTRO_FEATURES += "pulseaudio ipv4 ipv6 usbhost usbgadget"
 
-Signed-off-by: Armin Kuster <akuster808@gmail.com>
----
- recipes-security/nmap/{nmap_6.46.bb => nmap.inc} |  8 +-------
- recipes-security/nmap/nmap_6.47.bb               | 10 ++++++++++
- 2 files changed, 11 insertions(+), 7 deletions(-)
- rename recipes-security/nmap/{nmap_6.46.bb => nmap.inc} (88%)
- create mode 100644 recipes-security/nmap/nmap_6.47.bb
+I am building core-image-minimal. According to my requirement i have
+done some changes inside,
 
-diff --git a/recipes-security/nmap/nmap_6.46.bb b/recipes-security/nmap/nmap.inc
-similarity index 88%
-rename from recipes-security/nmap/nmap_6.46.bb
-rename to recipes-security/nmap/nmap.inc
-index a04dc7b..79fe7d4 100644
---- a/recipes-security/nmap/nmap_6.46.bb
-+++ b/recipes-security/nmap/nmap.inc
-@@ -2,12 +2,6 @@ SUMMARY = "network auditing tool"
- DESCRIPTION = "Nmap ("Network Mapper") is a free and open source (license) utility for network discovery and security auditing.\nGui support via appending to IMAGE_FEATURES x11-base in local.conf"
- SECTION = "security"
- LICENSE = "GPL-2.0"
--LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/GPL-2.0;md5=801f80980d171dd6425610833a22dbe6"
--
--SRC_URI = "http://nmap.org/dist/${BPN}-${PV}.tar.bz2"
--
--SRC_URI[md5sum] = "5a36ad3a63d5b7ea5514f745a397436a"
--SRC_URI[sha256sum] = "3f89d9053c69507fe9533c40188a6561d49607a37b1db6380aed9039d4883137"
- 
- inherit autotools-brokensep pkgconfig distro_features_check
- 
-@@ -43,7 +37,7 @@ FILES_${PN} = "${bindir}/nmap ${datadir}/nmap/*"
- # append packages if enabled
- FILES_${PN} += "${@bb.utils.contains("PACKAGECONFIG", "ncat", "${bindir}/ncat ${target_datadir}/ncat", "", d)}"
- FILES_${PN} += "${@bb.utils.contains("PACKAGECONFIG", "nping", "${bindir}/nping", "", d)}"
--FILES_${PN} += "${@bb.utils.contains("PACKAGECONFIG", "ndiff", "${bindir}/ndiff ${libdir}/python${PYTHON_BASEVERSION}/site-packages/ndiff*", "", d)}"
-+FILES_${PN} += "${@bb.utils.contains("PACKAGECONFIG", "ndiff", "${bindir}/ndiff ${libdir}/python${PYTHON_BASEVERSION}/site-packages/ndiff.py*", "", d)}"
- 
- PACKAGES += "${@bb.utils.contains("PACKAGECONFIG", "zenmap", "${PN}-zenmap", "", d)}"
- 
-diff --git a/recipes-security/nmap/nmap_6.47.bb b/recipes-security/nmap/nmap_6.47.bb
-new file mode 100644
-index 0000000..bcaee0c
---- /dev/null
-+++ b/recipes-security/nmap/nmap_6.47.bb
-@@ -0,0 +1,10 @@
-+
-+include nmap.inc
-+
-+LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/GPL-2.0;md5=801f80980d171dd6425610833a22dbe6"
-+
-+SRC_URI = "http://nmap.org/dist/${BPN}-${PV}.tar.bz2"
-+
-+
-+SRC_URI[md5sum] = "edfe81f6763223c0a29bfa15a8526e2a"
-+SRC_URI[sha256sum] = "8fa11e9e203ce2d81a207db5ca4f110a525f6c01c1dd0018325a7112a51aa591"
--- 
-1.9.1
+/poky/meta/recipes-core/packagegroups/packagegroup-core-boot.bb
 
+RDEPENDS_${PN} = "\
+    base-files \
+    base-passwd \
+    busybox \
+    ${@base_contains("DISTRO_FEATURES", "sysvinit",
+"${SYSVINIT_SCRIPTS}", "", d)} \
+    ${@base_contains("MACHINE_FEATURES", "keyboard",
+"${VIRTUAL-RUNTIME_keymaps}", "", d)} \
+    netbase \
+    ${VIRTUAL-RUNTIME_login_manager} \
+    ${VIRTUAL-RUNTIME_init_manager} \
+    ${VIRTUAL-RUNTIME_initscripts} \
+    ${VIRTUAL-RUNTIME_dev_manager} \
+    ${VIRTUAL-RUNTIME_update-alternatives} \
+    ${MACHINE_ESSENTIAL_EXTRA_RDEPENDS} \
+    wpa-supplicant \
+    bluez5 \
+    wireless-tools \
+    iperf \
+    uim \
+    bt-firmware \
+    hostap-daemon \
+    iw"
+
+Afte making these changes, I have tried to build the yocto image. But
+i am getting the below errors while building.
+
+ERROR: QA Issue: eglibc-locale: Files/directories were installed but not shipped
+  /usr/lib
+  /usr/bin
+  /usr/share/i18n
+  /usr/share/i18n/locales
+  /usr/share/i18n/locales/POSIX
+ERROR: QA run found fatal errors. Please consider fixing them.
+ERROR: Function failed: do_package_qa
+ERROR: Logfile of failure stored in:
+/home/jags/ASAI_IOTG/build/tmp/work/cortexa9hf-vfp-neon-poky-linux-gnueabi/eglibc-locale/2.19-r0/temp/log.do_package.21808
+ERROR: Task 317
+(/home/jags/ASAI_IOTG/sources/poky/meta/recipes-core/eglibc/eglibc-locale_2.19.bb,
+do_package) failed with exit code '1'
+NOTE: Tasks Summary: Attempted 741 tasks of which 12 didn't need to be
+rerun and 1 failed.
+Waiting for 0 running tasks to finish:
+
+Summary: 1 task failed:
+  /home/jags/ASAI_IOTG/sources/poky/meta/recipes-core/eglibc/eglibc-locale_2.19.bb,
+do_package
+Summary: There were 3 ERROR messages shown, returning a non-zero exit code.
+
+
+What can be the reason of above behaviour?
+
+Thanks,
+Jags
 
