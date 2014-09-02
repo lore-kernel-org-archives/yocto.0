@@ -1,6 +1,6 @@
 Return-Path: <akuster808@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id EC6F9E0078A; Mon,  1 Sep 2014 19:51:13 -0700 (PDT)
+	id BA5C5E00843; Mon,  1 Sep 2014 19:51:15 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -18,38 +18,38 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
 	low *      trust
-	*      [209.85.220.49 listed in list.dnswl.org]
-Received: from mail-pa0-f49.google.com (mail-pa0-f49.google.com
-	[209.85.220.49])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E341BE0078A
-	for <yocto@yoctoproject.org>; Mon,  1 Sep 2014 19:51:10 -0700 (PDT)
-Received: by mail-pa0-f49.google.com with SMTP id kq14so13509284pab.36
-	for <yocto@yoctoproject.org>; Mon, 01 Sep 2014 19:51:10 -0700 (PDT)
+	*      [209.85.192.171 listed in list.dnswl.org]
+Received: from mail-pd0-f171.google.com (mail-pd0-f171.google.com
+	[209.85.192.171])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 9C470E0082A
+	for <yocto@yoctoproject.org>; Mon,  1 Sep 2014 19:51:12 -0700 (PDT)
+Received: by mail-pd0-f171.google.com with SMTP id y13so7380880pdi.30
+	for <yocto@yoctoproject.org>; Mon, 01 Sep 2014 19:51:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
 	h=from:to:cc:subject:date:message-id:in-reply-to:references;
-	bh=dfdTJGmlKUtr9YIn+y7U+UX0iKQ+r0Q1ORCNEJAmMIc=;
-	b=TFnZzG/5s/Z/QLV8769g/4Bgk0AaX3d8iYQBYpTH+Qdw1MjYKHmTWC7bXJaYwsH0eD
-	rQxwXX3Zg3AW+XLtt1SuFOHfbscPBdokdRu6D6xj/aAORERQyakQO7zlheg1YgRV8r7L
-	1rO3JCFWJVDDRj6HtY7WpUogPEvJyj/j9SB1hFp6I/mO0HiF25w0ff92QlvobhXPdPm/
-	yKPvDVqsAgWNe57mLBAbRjI3BPUBI/tRfwFMB2mx2LiI5sLqPp0jq6Tu/93q0rAw+b0j
-	8COJPKi5Zc6LHZXgeStFILVvaiYhePE8G+grE58P6kZ8yGbvtnKNJjbgbnu/s9GUT8CW
-	K/rg==
-X-Received: by 10.66.179.140 with SMTP id dg12mr7955341pac.76.1409626270181;
-	Mon, 01 Sep 2014 19:51:10 -0700 (PDT)
+	bh=p2UYVXu1fr4WcI+a4vYIKOGrEW1A2bL8eYBkS4Xyp+I=;
+	b=CynWdstEO1MW8y2XJyIfJqw3uYMLGS8k3gDsyRFMf7sjnOh9nfQNtfUqw9vqqJ/czD
+	oCz/eegbM8qB2O93aUoSeT0KprlXFg6Y5HYSTTewrHwdRW61JgV9XkmjcfMREV0tuho3
+	BDt2qV8J/key3w8FjOWR9NmhLM/VWZt+ON2U6H5x98ohDLeccbwtT6DIM6oxXRkLj/I8
+	AKXI+ipLVzLjxzSdCBanPBmQ7LbuH+3udiIFqksSzGDk6mD28uac+i6yPTY48j0iyUUy
+	rT4EHO1aDH3RPXUADWZY3aHpUTNsQPsQDVuus7byxFEIaxhxB601g8+R9zQTpR9RfQc+
+	axiA==
+X-Received: by 10.66.227.98 with SMTP id rz2mr43326618pac.92.1409626272039;
+	Mon, 01 Sep 2014 19:51:12 -0700 (PDT)
 Received: from Pahoa2.mvista.com (c-76-20-92-207.hsd1.ca.comcast.net.
 	[76.20.92.207])
-	by mx.google.com with ESMTPSA id ah2sm7334695pad.10.2014.09.01.19.51.08
+	by mx.google.com with ESMTPSA id ah2sm7334695pad.10.2014.09.01.19.51.10
 	for <multiple recipients>
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-	Mon, 01 Sep 2014 19:51:09 -0700 (PDT)
+	Mon, 01 Sep 2014 19:51:11 -0700 (PDT)
 From: Armin Kuster <akuster808@gmail.com>
 To: yocto@yoctoproject.org
-Date: Mon,  1 Sep 2014 19:51:01 -0700
-Message-Id: <1409626263-14379-2-git-send-email-akuster808@gmail.com>
+Date: Mon,  1 Sep 2014 19:51:02 -0700
+Message-Id: <1409626263-14379-3-git-send-email-akuster808@gmail.com>
 X-Mailer: git-send-email 1.9.1
 In-Reply-To: <1409626263-14379-1-git-send-email-akuster808@gmail.com>
 References: <1409626263-14379-1-git-send-email-akuster808@gmail.com>
-Subject: [meta-security][PATCH 1/3] libnet-ssleay-perl: remove from layer
+Subject: [meta-security][PATCH 2/3] layer.conf: add layer depends.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -61,46 +61,25 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 02 Sep 2014 02:51:14 -0000
+X-List-Received-Date: Tue, 02 Sep 2014 02:51:15 -0000
 
-libnet-ssleay-perl is now in meta-perl
+added layerdepends check for  perl-layer and opemembedded-layer
 
 Signed-off-by: Armin Kuster <akuster808@gmail.com>
 ---
- recipes-security/perl/libnet-ssleay-perl_1.55.bb | 24 ------------------------
- 1 file changed, 24 deletions(-)
- delete mode 100644 recipes-security/perl/libnet-ssleay-perl_1.55.bb
+ conf/layer.conf | 2 ++
+ 1 file changed, 2 insertions(+)
 
-diff --git a/recipes-security/perl/libnet-ssleay-perl_1.55.bb b/recipes-security/perl/libnet-ssleay-perl_1.55.bb
-deleted file mode 100644
-index 1dd59f4..0000000
---- a/recipes-security/perl/libnet-ssleay-perl_1.55.bb
-+++ /dev/null
-@@ -1,24 +0,0 @@
--DESCRIPTION = "Perl module for using OpenSSL"
--
--SECTION = "libs"
--LICENSE = "Artistic-1.0 | GPL-1.0+"
--
--LIC_FILES_CHKSUM = "file://README;md5=94ec8036b939a2e3c9b5e7f10af8f4ee"
--
--DEPENDS += "perl openssl"
--
--SRC_URI = "http://search.cpan.org/CPAN/authors/id/M/MI/MIKEM/Net-SSLeay-${PV}.tar.gz"
--
--SRC_URI[md5sum] = "473b8d66ca69d5784bb0e428721f58e0"
--SRC_URI[sha256sum] = "8cd5f09722e07b4e436102cb3a4b93623d753c171665ca9752c3b39a62ea3a79"
--
--S = "${WORKDIR}/Net-SSLeay-${PV}"
--
--EXTRA_CPANFLAGS = "INC='-I${STAGING_INCDIR}' LIBS='-L${STAGING_LIBDIR} -lssl -lcrypto -lz'"
--
--inherit cpan
--
--do_compile() {
--	export LIBC="$(find ${STAGING_DIR_TARGET}/${base_libdir}/ -name 'libc-*.so')"
--	cpan_do_compile
--}
+diff --git a/conf/layer.conf b/conf/layer.conf
+index 063268d..c5a717b 100644
+--- a/conf/layer.conf
++++ b/conf/layer.conf
+@@ -8,3 +8,5 @@ BBFILES += "${LAYERDIR}/recipes-*/*/*.bb \
+ BBFILE_COLLECTIONS += "security"
+ BBFILE_PATTERN_security = "^${LAYERDIR}/"
+ BBFILE_PRIORITY_security = "6"
++
++LAYERDEPENDS_security = "openembedded-layer perl-layer"
 -- 
 1.9.1
 
