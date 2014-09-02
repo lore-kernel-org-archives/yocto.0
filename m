@@ -1,36 +1,32 @@
-Return-Path: <Chong.Lu@windriver.com>
+Return-Path: <yocto@mindchasers.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id C0892E00842; Tue,  2 Sep 2014 02:00:22 -0700 (PDT)
+	id 4F6D7E00524; Tue,  2 Sep 2014 11:40:45 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
-	autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at http://www.dnswl.org/,
-	*      medium trust
-	*      [147.11.1.11 listed in list.dnswl.org]
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 664AAE00837
-	for <yocto@yoctoproject.org>; Tue,  2 Sep 2014 02:00:17 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail.windriver.com (8.14.9/8.14.5) with ESMTP id s8290FJF016499
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL)
-	for <yocto@yoctoproject.org>; Tue, 2 Sep 2014 02:00:16 -0700 (PDT)
-Received: from [128.224.162.204] (128.224.162.204) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server (TLS) id 14.3.174.1;
-	Tue, 2 Sep 2014 02:00:15 -0700
-Message-ID: <5405871C.9020203@windriver.com>
-Date: Tue, 2 Sep 2014 17:00:12 +0800
-From: Chong Lu <Chong.Lu@windriver.com>
+Received: from smtp.webfaction.com (mail6.webfaction.com [74.55.86.74])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 20D77E004A0
+	for <yocto@yoctoproject.org>; Tue,  2 Sep 2014 11:40:43 -0700 (PDT)
+Received: from [192.168.1.10] (c-68-38-40-177.hsd1.nj.comcast.net
+	[68.38.40.177])
+	by smtp.webfaction.com (Postfix) with ESMTP id AF6A822784C2;
+	Tue,  2 Sep 2014 18:39:29 +0000 (UTC)
+Message-ID: <54060EE0.5030103@mindchasers.com>
+Date: Tue, 02 Sep 2014 14:39:28 -0400
+From: Bob Cochran <yocto@mindchasers.com>
 User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:24.0) Gecko/20100101 Thunderbird/24.0
+	rv:31.0) Gecko/20100101 Thunderbird/31.0
 MIME-Version: 1.0
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-X-Originating-IP: [128.224.162.204]
-Subject: How to use usbinit?
+To: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>, 
+	Yocto discussion list <yocto@yoctoproject.org>
+References: <5400D366.8050207@mindchasers.com>
+	<41DEA4B02DBDEF40A0F3B6D0DDB1237983FE01F8@ORSMSX101.amr.corp.intel.com>
+In-Reply-To: <41DEA4B02DBDEF40A0F3B6D0DDB1237983FE01F8@ORSMSX101.amr.corp.intel.com>
+Subject: Re: [yocto-docs] should I be able to make the docs without warnings?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -42,22 +38,78 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 02 Sep 2014 09:00:22 -0000
-Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
+X-List-Received-Date: Tue, 02 Sep 2014 18:40:45 -0000
+Content-Type: text/plain; charset=windows-1252; format=flowed
 Content-Transfer-Encoding: 7bit
 
-Hi all,
+On 09/02/2014 02:09 AM, Rifenbark, Scott M wrote:
+> Bob,
+>
+> The warnings when you make a PDF document consist of the following:
+>
+> * "cannot add @xml:base to node set root element. Relative paths may not work."
+> * /usr/bin/fop: Unable to locate servlet-api in /usr/share/java"
+> * Various font substitutions dependent on the build host
+> * And then some line overflow messages (quite a few) that have the form: "Line 1 of a paragraph overflows the available area by xxxx millipoints. (See position xxx:xxx)
+>
+> I have just considered these warnings as acceptable.
 
-I built core-image-minimal and added usbinit package in this image.
-I started usb-gether service and get following errors:
 
-   Initializing g_ether gadget...
-   modprobe: FATAL: Module g_ether not found.
-   ifup: ignoring unknown interface usb0
+Thank you Scott.  Yes, I believe your warning experience and mine are 
+consistent.
 
-I known g_ether module needs to add in image, but I didn't know whether 
-has any features can enable it?
+It's great to have a sanity check.
 
-Best Regards
-Chong
+If I ever have reason to develop some doc generation expertise, I'll 
+take a closer look at the warnings.  Otherwise, I agree that the pdf 
+docs are highly usable as is.
+
+Thanks again,
+
+Bob
+
+
+
+
+I have never taken the time to try and run them down and figure out what 
+they mean.  The PDF file builds out to an acceptable item in my opinion. 
+  PDF versions of the manuals have taken a serious back-seat to their 
+HTML counterparts.  If you can shed some light on these warnings I am 
+all for trying to suppress them or eliminate them.  For the time being 
+though, they would be low on my priority.
+>
+> Thanks,
+> Scott
+>
+>> -----Original Message-----
+>> From: yocto-bounces@yoctoproject.org [mailto:yocto-
+>> bounces@yoctoproject.org] On Behalf Of Bob Cochran
+>> Sent: Friday, August 29, 2014 12:24 PM
+>> To: Yocto discussion list
+>> Subject: [yocto] [yocto-docs] should I be able to make the docs without
+>> warnings?
+>>
+>> Hello,
+>>
+>> I'm thinking about chasing down some of the warnings I see when I make the
+>> docs (pdf) in yocto-docs.
+>>
+>> However, it's not clear to me whether the warnings I get are to be expected
+>> or can be configured out.
+>>
+>> I don't see that the auto builder is used to build the docs. Therefore, can
+>> someone please point me to a known good log or at least let me know that I
+>> should be able to make the docs without warnings.
+>>
+>> Thanks,
+>>
+>> Bob
+>>
+>> --
+>> _______________________________________________
+>> yocto mailing list
+>> yocto@yoctoproject.org
+>> https://lists.yoctoproject.org/listinfo/yocto
+>
+
 
