@@ -1,56 +1,33 @@
-Return-Path: <janjaapkempenaar@gmail.com>
+Return-Path: <Vladimir_Redzhepov@epam.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 624FBE0079E; Thu,  4 Sep 2014 04:41:21 -0700 (PDT)
+	id BE3EBE00744; Thu,  4 Sep 2014 09:18:52 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (janjaapkempenaar[at]gmail.com)
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [74.125.82.182 listed in list.dnswl.org]
-Received: from mail-we0-f182.google.com (mail-we0-f182.google.com
-	[74.125.82.182])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id C0A07E004F5
-	for <yocto@yoctoproject.org>; Thu,  4 Sep 2014 04:41:09 -0700 (PDT)
-Received: by mail-we0-f182.google.com with SMTP id w62so10047008wes.13
-	for <yocto@yoctoproject.org>; Thu, 04 Sep 2014 04:41:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=from:content-type:content-transfer-encoding:subject:message-id:date
-	:to:mime-version;
-	bh=QPVsN7GUURK7gx+ASRhDNC5iHDTor8UeT7XVbd7d11Q=;
-	b=xUNFuOXB5njfQivW1oHg5oaw/MKGLVxF919icvkXuYqDHZg+hBMS3TIOItjmUShaqu
-	wMTbzeAHDeoYp8dhez5uWL8+MBX/sF0YpsOtaBnhHhdMRBV++SnmSpWC956JMaF725Z0
-	NJSx2Xp+uM43Rmr4PYfRug3BvH7MTvV60EF1NZ+DgkK/kC96cDU0OCEtrF6ltlAZjE41
-	nDMrFat9NXh7LO/CuSBGecXwjbTpb7x15bTkfDuhwJROSlhqHeSX1C3n5L+qy8yb8sgI
-	ckUbWyjQFcCzxNoKn6+mKbQ4VC5wKEkkFBtQpWhKpBfAC1nM5otTzu6VFF/ql9+tWaaS
-	pFiQ==
-X-Received: by 10.194.203.105 with SMTP id kp9mr5363045wjc.41.1409830867617;
-	Thu, 04 Sep 2014 04:41:07 -0700 (PDT)
-Received: from ?IPv6:2001:610:1908:1500:8cb5:6063:34fd:c38a?
-	([2001:610:1908:1500:8cb5:6063:34fd:c38a])
-	by mx.google.com with ESMTPSA id hf9sm1118792wib.11.2014.09.04.04.41.07
-	for <yocto@yoctoproject.org>
-	(version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
-	Thu, 04 Sep 2014 04:41:07 -0700 (PDT)
-From: Jan Jaap Kempenaar <janjaapkempenaar@gmail.com>
-Message-Id: <3DDFCB58-7ADD-4F44-A55E-E9EE9AAD429B@gmail.com>
-Date: Thu, 4 Sep 2014 13:41:05 +0200
-To: yocto@yoctoproject.org
-Mime-Version: 1.0 (Mac OS X Mail 7.3 \(1878.6\))
-X-Mailer: Apple Mail (2.1878.6)
-X-Mailman-Approved-At: Thu, 04 Sep 2014 08:55:00 -0700
-Subject: [bitbake] .bbappend files in includes/require behaviour
+Received: from EVBYMINSA0101.epam.com (evbyminsa0101.epam.com [217.21.63.36])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AD715E004A0
+	for <yocto@yoctoproject.org>; Thu,  4 Sep 2014 09:18:42 -0700 (PDT)
+Received: from EPBYMINSA0032.epam.com (10.6.110.32) by EPBYMINSA0001.epam.com
+	(10.6.110.2) with Microsoft SMTP Server (TLS) id 15.0.995.29;
+	Thu, 4 Sep 2014 19:18:29 +0300
+Received: from EPBYMINSA0032.epam.com ([::1]) by EPBYMINSA0032.epam.com
+	([::1]) with mapi id 15.00.0995.028; Thu, 4 Sep 2014 19:18:00 +0300
+From: Vladimir Redzhepov <Vladimir_Redzhepov@epam.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: [meta-oracle-java][PATCH v3] Update jdk and jre to version 67
+Thread-Index: Ac/IW7NN6wAIGkrBSLWjFhTnfngVyg==
+Date: Thu, 4 Sep 2014 16:18:00 +0000
+Message-ID: <56338fcf02a045d594899097d7186b72@EPBYMINSA0032.epam.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.6.137.75]
+MIME-Version: 1.0
+Subject: [meta-oracle-java][PATCH v3] Update jdk and jre to version 67
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -62,56 +39,147 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 04 Sep 2014 11:41:21 -0000
-Content-Type: text/plain; charset=us-ascii
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Thu, 04 Sep 2014 16:18:52 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
-Hello,
-
-I have a question regarding the behaviour of .bbappend files.
-
-=3D=3D Situation sketch
-
-I have the following situation:
-- I have a YOCTO setup with all my nessecary layers.
-- I have a board support package layer for my embedded target.
-- I have a meta-xenomai layer
--> The meta xenomai layer provides 2 .bbappend files. 1 which appends =
-the linux kernel recipe and one which appends the default base image =
-from the board support package.
-- I have an additional layer with recipes which are specific for our =
-project.
-
-=3D=3D Details
-
-I am using the Gumstix bsp layers.
-Now I have the following situation gumstix provides the following =
-recipe:
-gumstix-console-image.bb
-in my meta-xenomai layer i have a:
-gumstix-console-image.bbappend -> this adds the xenomai userspace =
-libraries to the image installation.
-
-Now for our project I created on our "meta-project" layer a =
-project-image.bb with the following:
-
-require recipes-images/gumstix/gumstix-console-image.bb
-# Other installation requirements follow from here.
-
-=3D=3D Expectations and results
-I am using .bbappend files, such that I can easily disable the xenomai =
-layer without breaking the yocto build environment.
-however with all layers enabled when i:
-bitbake project-image
-the gumstix-console-image.bbappend alterations do not take effect, so my =
-question is:
-When using require to include a recipe, is it correct that for that =
-recipe all .bbappend files are ignored?
-
-If so, is there a way such that still can have the described behaviour.
-
-Any help or pointers to documentation are much appreciated.
-
-Regards,
-Jan Jaap Kempenaar=
+RnJvbSA2MWVmYjAwOTk2MzUzMjViMjFkNTg5ZGQ5NjMwOGM3ZmE5YjY2OGRlIE1vbiBTZXAgMTcg
+MDA6MDA6MDAgMjAwMQ0KRnJvbTogVmxhZGltaXIgUmVkemhlcG92IDx2bGFkaW1pcl9yZWR6aGVw
+b3ZAZXBhbS5jb20+DQpEYXRlOiBUaHUsIDQgU2VwIDIwMTQgMTg6Mzc6NTAgKzAzMDANClN1Ympl
+Y3Q6IFtQQVRDSF0gVXBkYXRlIGpkayBhbmQganJlIHRvIHZlcnNpb24gNjcuDQpNSU1FLVZlcnNp
+b246IDEuMA0KQ29udGVudC1UeXBlOiB0ZXh0L3BsYWluOyBjaGFyc2V0PVVURi04DQpDb250ZW50
+LVRyYW5zZmVyLUVuY29kaW5nOiA4Yml0DQoNCjEuIEFkZCBCVUlMRF9OVU1CRVIgdmFyaWFibGUu
+DQoyLiBDaGFuZ2UgU1JDX1VSSSBmb3IgYWxsIHJlY2lwZXMuDQozLiBSZWNpcGUgY2xlYW51cCAt
+IHJlbW92ZSByZWR1bmRhbnQgUFIgPSAicjAiIGZyb20gYWxsIHJlY2lwZXMuDQo0LiBVcGRhdGUg
+Y2hlY2tzdW1zIGZvciBsaWNlbnNlIGZpbGVzLg0KDQpDaGFuZ2VzIGluIENPUFlSSUdIVDoNCi1D
+b3B5cmlnaHQg77+9IDE5OTMsIDIwMTMsIE9yYWNsZSBhbmQvb3IgaXRzIGFmZmlsaWF0ZXMuDQor
+Q29weXJpZ2h0IO+/vSAxOTkzLCAyMDE0LCBPcmFjbGUgYW5kL29yIGl0cyBhZmZpbGlhdGVzLg0K
+DQpDaGFuZ2VzIGluIFRISVJEUEFSVFlMSUNFTlNFUkVBRE1FLnR4dDoNCislJSBUaGlzIG5vdGlj
+ZSBpcyBwcm92aWRlZCB3aXRoIHJlc3BlY3QgdG8gU3BhcmtsZSB2LjEuNSwNCit3aGljaCBpcyBp
+bmNsdWRlZCB3aXRoIEpSRSA3IG9uIE1hYyBPUyBYLg0KKw0KKy0tLSBiZWdpbiBvZiBMSUNFTlNF
+IC0tLQ0KKw0KK0NvcHlyaWdodCAoYykgMjAxMiBTcGFya2xlLm9yZyBhbmQgQW5keSBNYXR1c2No
+YWsNCisNCitQZXJtaXNzaW9uIGlzIGhlcmVieSBncmFudGVkLCBmcmVlIG9mIGNoYXJnZSwgdG8g
+YW55IHBlcnNvbiBvYnRhaW5pbmcgYSBjb3B5DQorb2YgdGhpcyBzb2Z0d2FyZSBhbmQgYXNzb2Np
+YXRlZCBkb2N1bWVudGF0aW9uIGZpbGVzICh0aGUgIlNvZnR3YXJlIiksIHRvIGRlYWwNCitpbiB0
+aGUgU29mdHdhcmUgd2l0aG91dCByZXN0cmljdGlvbiwgaW5jbHVkaW5nIHdpdGhvdXQgbGltaXRh
+dGlvbiB0aGUgcmlnaHRzDQordG8gdXNlLCBjb3B5LCBtb2RpZnksIG1lcmdlLCBwdWJsaXNoLCBk
+aXN0cmlidXRlLCBzdWJsaWNlbnNlLCBhbmQvb3Igc2VsbA0KK2NvcGllcyBvZiB0aGUgU29mdHdh
+cmUsIGFuZCB0byBwZXJtaXQgcGVyc29ucyB0byB3aG9tIHRoZSBTb2Z0d2FyZSBpcw0KK2Z1cm5p
+c2hlZCB0byBkbyBzbywgc3ViamVjdCB0byB0aGUgZm9sbG93aW5nIGNvbmRpdGlvbnM6DQorDQor
+VGhlIGFib3ZlIGNvcHlyaWdodCBub3RpY2UgYW5kIHRoaXMgcGVybWlzc2lvbiBub3RpY2Ugc2hh
+bGwgYmUgaW5jbHVkZWQgaW4gYWxsDQorY29waWVzIG9yIHN1YnN0YW50aWFsIHBvcnRpb25zIG9m
+IHRoZSBTb2Z0d2FyZS4NCisNCitUSEUgU09GVFdBUkUgSVMgUFJPVklERUQgIkFTIElTIiwgV0lU
+SE9VVCBXQVJSQU5UWSBPRiBBTlkgS0lORCwgRVhQUkVTUyBPUg0KK0lNUExJRUQsIElOQ0xVRElO
+RyBCVVQgTk9UIExJTUlURUQgVE8gVEhFIFdBUlJBTlRJRVMgT0YgTUVSQ0hBTlRBQklMSVRZLA0K
+K0ZJVE5FU1MgRk9SIEEgUEFSVElDVUxBUiBQVVJQT1NFIEFORCBOT05JTkZSSU5HRU1FTlQuIElO
+IE5PIEVWRU5UIFNIQUxMIFRIRQ0KK0FVVEhPUlMgT1IgQ09QWVJJR0hUIEhPTERFUlMgQkUgTElB
+QkxFIEZPUiBBTlkgQ0xBSU0sIERBTUFHRVMgT1IgT1RIRVINCitMSUFCSUxJVFksIFdIRVRIRVIg
+SU4gQU4gQUNUSU9OIE9GIENPTlRSQUNULCBUT1JUIE9SIE9USEVSV0lTRSwgQVJJU0lORyBGUk9N
+LA0KK09VVCBPRiBPUiBJTiBDT05ORUNUSU9OIFdJVEggVEhFIFNPRlRXQVJFIE9SIFRIRSBVU0Ug
+T1IgT1RIRVIgREVBTElOR1MgSU4gVEhFDQorU09GVFdBUkUuDQorDQorLS0tIGVuZCBvZiBMSUNF
+TlNFIC0tLQ0KKw0KKy0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0NCisNCiAlJSBQb3J0aW9ucyBsaWNl
+bnNlZCBmcm9tIFRhbGlnZW50LCBJbmMuDQoNCiAtLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tDQogJSUg
+VGhpcyBub3RpY2UgaXMgcHJvdmlkZWQgd2l0aCByZXNwZWN0IHRvIHRoZSBmb2xsb3dpbmcgd2hp
+Y2ggaXMNCiBpbmNsdWRlZCB3aXRoIEpSRSA3LCBKREsgNywgYW5kIE9wZW5KREsgNywgZXhjZXB0
+IHdoZXJlIG5vdGVkOg0KDQotICBBcGFjaGUgRGVyYnkgMTAuOC4xLjIgICAgICAgIFtpbmNsdWRl
+ZCB3aXRoIEpESyA3IG9ubHldDQorICBBcGFjaGUgRGVyYnkgMTAuOC4zLjAgICAgICAgIFtpbmNs
+dWRlZCB3aXRoIEpESyA3IG9ubHldDQogICBBcGFjaGUgSmFrYXJ0YSBCQ0VMIDUuMg0KICAgQXBh
+Y2hlIEpha2FydGEgUmVnZXhwIDEuNA0KICAgQXBhY2hlIFNhbnR1YXJpbyBYTUxTZWMtSmF2YSAx
+LjQuMg0KICAgQXBhY2hlIFhhbGFuLUphdmEgMi43LjENCi0gIEFwYWNoZSBYZXJjZXMyIEphdmEg
+Mi4xMC4wDQorICBBcGFjaGUgWGVyY2VzMiBKYXZhIDIuMTEuMA0KICAgQXBhY2hlIFhNTCBSZXNv
+bHZlciAxLjENCg0KU2lnbmVkLW9mZi1ieTogVmxhZGltaXIgUmVkemhlcG92IDx2bGFkaW1pcl9y
+ZWR6aGVwb3ZAZXBhbS5jb20+DQotLS0NCiByZWNpcGVzLWRldnRvb2xzL29yYWNsZS1qYXZhL29y
+YWNsZS1qc2UtamRrLWk1ODZfMS43LjAuYmIgICB8IDEwICsrKysrLS0tLS0NCiByZWNpcGVzLWRl
+dnRvb2xzL29yYWNsZS1qYXZhL29yYWNsZS1qc2UtamRrLXg4Ni02NF8xLjcuMC5iYiB8IDEwICsr
+KysrLS0tLS0NCiByZWNpcGVzLWRldnRvb2xzL29yYWNsZS1qYXZhL29yYWNsZS1qc2UtanJlLWk1
+ODZfMS43LjAuYmIgICB8IDEwICsrKysrLS0tLS0NCiByZWNpcGVzLWRldnRvb2xzL29yYWNsZS1q
+YXZhL29yYWNsZS1qc2UtanJlLXg4Ni02NF8xLjcuMC5iYiB8IDEwICsrKysrLS0tLS0NCiByZWNp
+cGVzLWRldnRvb2xzL29yYWNsZS1qYXZhL29yYWNsZS1qc2UuaW5jICAgICAgICAgICAgICAgICB8
+ICA0ICsrLS0NCiA1IGZpbGVzIGNoYW5nZWQsIDIyIGluc2VydGlvbnMoKyksIDIyIGRlbGV0aW9u
+cygtKQ0KDQpkaWZmIC0tZ2l0IGEvcmVjaXBlcy1kZXZ0b29scy9vcmFjbGUtamF2YS9vcmFjbGUt
+anNlLWpkay1pNTg2XzEuNy4wLmJiIGIvcmVjaXBlcy1kZXZ0b29scy9vcmFjbGUtamF2YS9vcmFj
+bGUtanNlLWpkay1pNTg2XzEuNy4wLmJiDQppbmRleCA5NzhmYmQ1Li4wNjY3MTYxIDEwMDY0NA0K
+LS0tIGEvcmVjaXBlcy1kZXZ0b29scy9vcmFjbGUtamF2YS9vcmFjbGUtanNlLWpkay1pNTg2XzEu
+Ny4wLmJiDQorKysgYi9yZWNpcGVzLWRldnRvb2xzL29yYWNsZS1qYXZhL29yYWNsZS1qc2UtamRr
+LWk1ODZfMS43LjAuYmINCkBAIC0xLDkgKzEsOSBAQA0KLVBSID0gInIwIg0KLVBWX1VQREFURSA9
+ICIyNSINCitQVl9VUERBVEUgPSAiNjciDQorQlVJTERfTlVNQkVSID0gIjAxIg0KIA0KIHJlcXVp
+cmUgb3JhY2xlLWpzZS1qZGsuaW5jDQogDQotU1JDX1VSSSA9ICJodHRwOi8vZG93bmxvYWQub3Jh
+Y2xlLmNvbS9vdG4tcHViL2phdmEvamRrLzd1MjUtYjE1L2pkay03dTI1LWxpbnV4LWk1ODYudGFy
+Lmd6Ig0KK1NSQ19VUkkgPSAiaHR0cDovL2Rvd25sb2FkLm9yYWNsZS5jb20vb3RuLXB1Yi9qYXZh
+L2pkay83dSR7UFZfVVBEQVRFfS1iJHtCVUlMRF9OVU1CRVJ9L2pkay03dSR7UFZfVVBEQVRFfS1s
+aW51eC1pNTg2LnRhci5neiINCiANCi1TUkNfVVJJW21kNXN1bV0gPSAiMjMxNzZkMGViZjlkZWRk
+MjFlMzE1MGI0YmIwZWU3NzYiDQotU1JDX1VSSVtzaGEyNTZzdW1dID0gImRkODliMjBhZmE5Mzk5
+OTJiYjdmZGM0NDgzN2ZhNjRmMGE5OGQ3ZWUxZTU3MDZmZThhMmQ5ZTIyNDdiYTZkZTciDQorU1JD
+X1VSSVttZDVzdW1dID0gIjcxNWIwZThiYTJhMDZiZGVkNzVmNmE5MjQyN2UyNzAxIg0KK1NSQ19V
+Uklbc2hhMjU2c3VtXSA9ICJiNjIzMTA2NGFkMmM5ZmJiY2IwOTlkYmExN2IxZGNmMTIwMzNlOTIy
+YjljMjRlNDM0OGI5YTAxZTllYmFhODVjIg0KZGlmZiAtLWdpdCBhL3JlY2lwZXMtZGV2dG9vbHMv
+b3JhY2xlLWphdmEvb3JhY2xlLWpzZS1qZGsteDg2LTY0XzEuNy4wLmJiIGIvcmVjaXBlcy1kZXZ0
+b29scy9vcmFjbGUtamF2YS9vcmFjbGUtanNlLWpkay14ODYtNjRfMS43LjAuYmINCmluZGV4IDc5
+Nzk0MDEuLmYxOGNlNTUgMTAwNjQ0DQotLS0gYS9yZWNpcGVzLWRldnRvb2xzL29yYWNsZS1qYXZh
+L29yYWNsZS1qc2UtamRrLXg4Ni02NF8xLjcuMC5iYg0KKysrIGIvcmVjaXBlcy1kZXZ0b29scy9v
+cmFjbGUtamF2YS9vcmFjbGUtanNlLWpkay14ODYtNjRfMS43LjAuYmINCkBAIC0xLDkgKzEsOSBA
+QA0KLVBSID0gInIwIg0KLVBWX1VQREFURSA9ICIyNSINCitQVl9VUERBVEUgPSAiNjciDQorQlVJ
+TERfTlVNQkVSID0gIjAxIg0KIA0KIHJlcXVpcmUgb3JhY2xlLWpzZS1qZGsuaW5jDQogDQotU1JD
+X1VSSSA9ICJodHRwOi8vZG93bmxvYWQub3JhY2xlLmNvbS9vdG4tcHViL2phdmEvamRrLzd1MjUt
+YjE1L2pkay03dTI1LWxpbnV4LXg2NC50YXIuZ3oiDQorU1JDX1VSSSA9ICJodHRwOi8vZG93bmxv
+YWQub3JhY2xlLmNvbS9vdG4tcHViL2phdmEvamRrLzd1JHtQVl9VUERBVEV9LWIke0JVSUxEX05V
+TUJFUn0vamRrLTd1JHtQVl9VUERBVEV9LWxpbnV4LXg2NC50YXIuZ3oiDQogDQotU1JDX1VSSVtt
+ZDVzdW1dID0gIjgzYmEwNWUyNjA4MTNmN2E5MTQwYjc2ZTNkMzdlYTMzIg0KLVNSQ19VUklbc2hh
+MjU2c3VtXSA9ICJmODBkZmYwZTE5Y2E4ZDAzOGNmN2ZlM2FhYTg5NTM4NDk2YjgwOTUwZjRkMTBm
+ZjVmNDU3OTg4YWUxNTliMmE2Ig0KK1NSQ19VUklbbWQ1c3VtXSA9ICI4MWUzZTJkZjMzZTEzNzgx
+ZTVmYWM1NzU2ZWQ5MGU2NyINCitTUkNfVVJJW3NoYTI1NnN1bV0gPSAiNTRkZDFlMTNlZGYxOGM2
+NDk0MWE1NWRhOWM5MTIxMGI1M2RjNWNmNDhmMWE4ZjQ1MzhjODYzMDQ5ZTM0NjMzNSINCmRpZmYg
+LS1naXQgYS9yZWNpcGVzLWRldnRvb2xzL29yYWNsZS1qYXZhL29yYWNsZS1qc2UtanJlLWk1ODZf
+MS43LjAuYmIgYi9yZWNpcGVzLWRldnRvb2xzL29yYWNsZS1qYXZhL29yYWNsZS1qc2UtanJlLWk1
+ODZfMS43LjAuYmINCmluZGV4IDYxMjUwMjUuLmQwYTkzMDAgMTAwNjQ0DQotLS0gYS9yZWNpcGVz
+LWRldnRvb2xzL29yYWNsZS1qYXZhL29yYWNsZS1qc2UtanJlLWk1ODZfMS43LjAuYmINCisrKyBi
+L3JlY2lwZXMtZGV2dG9vbHMvb3JhY2xlLWphdmEvb3JhY2xlLWpzZS1qcmUtaTU4Nl8xLjcuMC5i
+Yg0KQEAgLTEsOSArMSw5IEBADQotUFIgPSAicjAiDQotUFZfVVBEQVRFID0gIjI1Ig0KK1BWX1VQ
+REFURSA9ICI2NyINCitCVUlMRF9OVU1CRVIgPSAiMDEiDQogDQogcmVxdWlyZSBvcmFjbGUtanNl
+LWpyZS5pbmMNCiANCi1TUkNfVVJJID0gImh0dHA6Ly9kb3dubG9hZC5vcmFjbGUuY29tL290bi1w
+dWIvamF2YS9qZGsvN3UyNS1iMTUvanJlLTd1MjUtbGludXgtaTU4Ni50YXIuZ3oiDQorU1JDX1VS
+SSA9ICJodHRwOi8vZG93bmxvYWQub3JhY2xlLmNvbS9vdG4tcHViL2phdmEvamRrLzd1JHtQVl9V
+UERBVEV9LWIke0JVSUxEX05VTUJFUn0vanJlLTd1JHtQVl9VUERBVEV9LWxpbnV4LWk1ODYudGFy
+Lmd6Ig0KIA0KLVNSQ19VUklbbWQ1c3VtXSA9ICIwZTljY2VmZTQ5ZTkzN2U1OTJkYmI2MDVmMmU4
+ZTdkOCINCi1TUkNfVVJJW3NoYTI1NnN1bV0gPSAiNDAxNjk2NTUzNmQ4NjA3NzQzMjY3ODEyYWIw
+NGU2ZDQyODAzNmRkYTQzMjg5Mzc0OGMxZGY2Y2I3N2IwOTYyOCINCitTUkNfVVJJW21kNXN1bV0g
+PSAiMmEyNTZlYjJhOTFmMDA4NGU1OGM2MTI2MzYzNDJjMmIiDQorU1JDX1VSSVtzaGEyNTZzdW1d
+ID0gImVhZGVjODNhNTRkM2E5ZDA5MjQ4YThkMTZiMjFjMDNkYTlhZmZmYzczMTdlNzc1ZmI4ZGI5
+NjI2MjBhMDc4MWQiDQpkaWZmIC0tZ2l0IGEvcmVjaXBlcy1kZXZ0b29scy9vcmFjbGUtamF2YS9v
+cmFjbGUtanNlLWpyZS14ODYtNjRfMS43LjAuYmIgYi9yZWNpcGVzLWRldnRvb2xzL29yYWNsZS1q
+YXZhL29yYWNsZS1qc2UtanJlLXg4Ni02NF8xLjcuMC5iYg0KaW5kZXggNDA1OGQyMy4uMGQ1ZjE1
+NyAxMDA2NDQNCi0tLSBhL3JlY2lwZXMtZGV2dG9vbHMvb3JhY2xlLWphdmEvb3JhY2xlLWpzZS1q
+cmUteDg2LTY0XzEuNy4wLmJiDQorKysgYi9yZWNpcGVzLWRldnRvb2xzL29yYWNsZS1qYXZhL29y
+YWNsZS1qc2UtanJlLXg4Ni02NF8xLjcuMC5iYg0KQEAgLTEsOSArMSw5IEBADQotUFIgPSAicjAi
+DQotUFZfVVBEQVRFID0gIjI1Ig0KK1BWX1VQREFURSA9ICI2NyINCitCVUlMRF9OVU1CRVIgPSAi
+MDEiDQogDQogcmVxdWlyZSBvcmFjbGUtanNlLWpyZS5pbmMNCiANCi1TUkNfVVJJID0gImh0dHA6
+Ly9kb3dubG9hZC5vcmFjbGUuY29tL290bi1wdWIvamF2YS9qZGsvN3UyNS1iMTUvanJlLTd1MjUt
+bGludXgteDY0LnRhci5neiINCitTUkNfVVJJID0gImh0dHA6Ly9kb3dubG9hZC5vcmFjbGUuY29t
+L290bi1wdWIvamF2YS9qZGsvN3Uke1BWX1VQREFURX0tYiR7QlVJTERfTlVNQkVSfS9qcmUtN3Uk
+e1BWX1VQREFURX0tbGludXgteDY0LnRhci5neiINCiANCi1TUkNfVVJJW21kNXN1bV0gPSAiNzQz
+ZWUwZWJmNzNjZTQyOGM5MTI4NjZkODRlMzc0ZTAiDQotU1JDX1VSSVtzaGEyNTZzdW1dID0gIjNj
+NDQ5NjMxNmZiNDEzZDVhYjA1OTBlOTk3MTY3NmE1MjFiOWE2MDBiM2NlYWFjMzExZjA0YzE4Yzk4
+YTk4YzAiDQorU1JDX1VSSVttZDVzdW1dID0gIjkwMDdjNzkxNjdiZTAxNzdmYjQ3ZTUzMTNjNTNk
+NWNiIg0KK1NSQ19VUklbc2hhMjU2c3VtXSA9ICI3MjZjMzdjMDdiYjM4OWI1Yjk2Njc0YjdiY2Jj
+Mjg4ZTM5ZmI4ZmJjZDQyMzY5YWZhMzY0YTE4ZTY2MjQ4YjFmIg0KZGlmZiAtLWdpdCBhL3JlY2lw
+ZXMtZGV2dG9vbHMvb3JhY2xlLWphdmEvb3JhY2xlLWpzZS5pbmMgYi9yZWNpcGVzLWRldnRvb2xz
+L29yYWNsZS1qYXZhL29yYWNsZS1qc2UuaW5jDQppbmRleCAzYTRlMjBkLi4zOGNlZWYwIDEwMDY0
+NA0KLS0tIGEvcmVjaXBlcy1kZXZ0b29scy9vcmFjbGUtamF2YS9vcmFjbGUtanNlLmluYw0KKysr
+IGIvcmVjaXBlcy1kZXZ0b29scy9vcmFjbGUtamF2YS9vcmFjbGUtanNlLmluYw0KQEAgLTIsOCAr
+Miw4IEBAIExJQ0VOU0VfRkxBR1MgPSAib3JhY2xlX2phdmEiDQogTElDRU5TRSA9ICJPcmFjbGVf
+QmluYXJ5X0NvZGVfTGljZW5zZV9BZ3JlZW1lbnQiDQogTElDX0ZJTEVTX0NIS1NVTSA9ICJcDQog
+CWZpbGU6Ly8ke1dPUktESVJ9LyR7SkRLX0pSRX0ke1BWfV8ke1BWX1VQREFURX0vTElDRU5TRTtt
+ZDU9OThmNDZhYjY0ODFkODdjNGQ3N2UwZTkxYTZkYmMxNWYgXA0KLQlmaWxlOi8vJHtXT1JLRElS
+fS8ke0pES19KUkV9JHtQVn1fJHtQVl9VUERBVEV9L0NPUFlSSUdIVDttZDU9M2ExMTIzODAyNWJm
+MTNiODdmMDQ3NTMxODNmZmViOTAgXA0KLQlmaWxlOi8vJHtXT1JLRElSfS8ke0pES19KUkV9JHtQ
+Vn1fJHtQVl9VUERBVEV9L1RISVJEUEFSVFlMSUNFTlNFUkVBRE1FLnR4dDttZDU9YzMzOWIzNGUz
+ZGE2NjczZDJjNTk1MGQwZjg4MDhmOGMgXA0KKwlmaWxlOi8vJHtXT1JLRElSfS8ke0pES19KUkV9
+JHtQVn1fJHtQVl9VUERBVEV9L0NPUFlSSUdIVDttZDU9YmU5ZmU1ZDQ3YTdkY2ZiNzhmMTQyZjQ4
+N2FmYjM0YmIgXA0KKwlmaWxlOi8vJHtXT1JLRElSfS8ke0pES19KUkV9JHtQVn1fJHtQVl9VUERB
+VEV9L1RISVJEUEFSVFlMSUNFTlNFUkVBRE1FLnR4dDttZDU9ZjNhMzg4OTYxZDI0YjhiNzJkNDEy
+YTA3OWE4NzhjZGIgXA0KIAkiDQogDQogRkVUQ0hDTURfd2dldF9hcHBlbmQgPSAiIC0taGVhZGVy
+PUNvb2tpZTpvcmFjbGVsaWNlbnNlPWEgIg0KLS0gDQoyLjEuMA0K
 
