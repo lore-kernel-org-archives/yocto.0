@@ -1,45 +1,34 @@
-Return-Path: <elizabeth.flanagan@intel.com>
+Return-Path: <Vladimir_Redzhepov@epam.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 153ADE0079B; Wed,  3 Sep 2014 17:59:26 -0700 (PDT)
+	id 9D6C2E0082A; Thu,  4 Sep 2014 05:31:22 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.220.173 listed in list.dnswl.org]
-Received: from mail-vc0-f173.google.com (mail-vc0-f173.google.com
-	[209.85.220.173])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D08DAE004A0
-	for <yocto@yoctoproject.org>; Wed,  3 Sep 2014 17:59:19 -0700 (PDT)
-Received: by mail-vc0-f173.google.com with SMTP id im17so9756169vcb.4
-	for <yocto@yoctoproject.org>; Wed, 03 Sep 2014 17:59:19 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:date:message-id:subject:from:to
-	:content-type;
-	bh=q9LXowqoMUq5YHctYqBQoWH3mRMFqecMR+0H8grZr3w=;
-	b=LELG2H3dP+zLa1JoMpRVP5T2xmssS/sPb/HAvNyzdM3Eh6SaK7OXQTNxsVwDsQDzRb
-	IrSpNO/jJlAJ8X/NIFSkAa1TDCYmm0tAKe1smbWi5WibcxUBUbxnL794mjJcxbHW1q17
-	ioNTlSY1C/q5opAU+vpC1GVuDMa8B8KlhIhvU+QbSLmlaYmVaK+btZ5wkqakPqDIBMuv
-	ocLd4YoWFXprQFPOPAg7HQZ5JGUHiedOoODAzlNdf0nJp8g6dLxxptQ1qsTJwnmEH0jv
-	HxmpPW4CSbg1EjbzzgZjqM4Ers0GFkdmazbHuuBhROuQl34Ih54fMCwNwyP6BFpt1u0A
-	cBrQ==
-X-Gm-Message-State: ALoCoQkcMVhJ268groxu+QkIcT31xfmwOdak/vs6RcZ3pui6fxEqccULy+WGyXvuLfysivq72QhR
+Received: from EVBYMINSA0101.epam.com (evbyminsa0101.epam.com [217.21.63.36])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EBA2FE0079E
+	for <yocto@yoctoproject.org>; Thu,  4 Sep 2014 05:31:18 -0700 (PDT)
+Received: from EPBYMINSA0032.epam.com (10.6.110.32) by EPBYMINSA0001.epam.com
+	(10.6.110.2) with Microsoft SMTP Server (TLS) id 15.0.995.29;
+	Thu, 4 Sep 2014 15:30:46 +0300
+Received: from EPBYMINSA0032.epam.com ([::1]) by EPBYMINSA0032.epam.com
+	([::1]) with mapi id 15.00.0995.028; Thu, 4 Sep 2014 15:30:45 +0300
+From: Vladimir Redzhepov <Vladimir_Redzhepov@epam.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: [meta-oracle-java][PATCH] Provide common functionality to run
+	jdk on the build host
+Thread-Index: Ac/IPAOLcdp117YVRw6YZEdS8Xf0pw==
+Date: Thu, 4 Sep 2014 12:30:44 +0000
+Message-ID: <62599fadb3fd4388af5fe60df349faf7@EPBYMINSA0032.epam.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.6.137.75]
 MIME-Version: 1.0
-X-Received: by 10.52.146.17 with SMTP id sy17mr582198vdb.29.1409792359133;
-	Wed, 03 Sep 2014 17:59:19 -0700 (PDT)
-Received: by 10.52.244.44 with HTTP; Wed, 3 Sep 2014 17:59:19 -0700 (PDT)
-Date: Wed, 3 Sep 2014 17:59:19 -0700
-Message-ID: <CAPhnLPBkEF+Y=OoyQS=Mmfck+X9pm4nnPwfM7bhENXgA=yzO_A@mail.gmail.com>
-From: "Flanagan, Elizabeth" <elizabeth.flanagan@intel.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>, 
-	Alexandru C Georgescu <alexandru.c.georgescu@intel.com>,
-	Otavio Salvador <otavio@ossystems.com.br>, Zhao Yi <yi.zhao@windriver.com>
-Subject: Milestone release candidate now available (1.7_M3.rc1)
+Subject: [meta-oracle-java][PATCH] Provide common functionality to run jdk on the build host
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -51,28 +40,45 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Thu, 04 Sep 2014 00:59:26 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Thu, 04 Sep 2014 12:31:22 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-All green!
+From f7c9e480729ea2c3bafb6ae5e101627f7f77f867 Mon Sep 17 00:00:00 2001
+From: Vladimir Redzhepov <vladimir_redzhepov@epam.com>
+Date: Thu, 4 Sep 2014 15:02:22 +0300
+Subject: [PATCH] Provide common functionality to run jdk on the build host.
 
-http://autobuilder.yoctoproject.org/pub/releases/yocto-1.7_M3.rc1
+The native class provides common functionality for recipes that
+wish to build tools to run on the build host (i.e. tools that use
+the compiler or other tools from the build host).
 
-bitbake    8f5c1cdae1ee6ce04ae0d04d0b95bd80efbf7534
-eclipse-poky-juno    26bfc407781aa185f244a47ba63120343cee4a37
-eclipse-poky-kepler    4a167fd662262ebdaa3cf0d332ac0debb52d7904
-meta-fsl-arm    a99370b1d84b357479eb8b82124bb346ac37de4c
-meta-fsl-ppc    d953212ae5936a7d969d13801b0c2c1eb65cee6f
-meta-intel    b89a7c533df4fa17d8c239e674b0af83253a65b6
-meta-minnow    238a45e9da8bbfff7a6af220b48c11cabd31e01c
-meta-qt3    3016129d90b7ac8517a5227d819f10ad417b5b45
-oecore    e72aac2ae9e5fce1715fa04b7e94034fd06892d9
-poky    a44006262cf3b810ec78b4cccd8076102a7a0f3e
+Signed-off-by: Vladimir Redzhepov <vladimir_redzhepov@epam.com>
+---
+ recipes-devtools/oracle-java/oracle-jse-jdk.inc | 8 ++++++++
+ 1 file changed, 8 insertions(+)
 
-Please begin QA as soon as possible.
+diff --git a/recipes-devtools/oracle-java/oracle-jse-jdk.inc b/recipes-devt=
+ools/oracle-java/oracle-jse-jdk.inc
+index 6a34a7a..de0870a 100644
+--- a/recipes-devtools/oracle-java/oracle-jse-jdk.inc
++++ b/recipes-devtools/oracle-java/oracle-jse-jdk.inc
+@@ -10,3 +10,11 @@ DESCRIPTION =3D "This is the proprietary JDK from Sun/Or=
+acle, with the Hotspot JVM
 
--- 
-Elizabeth Flanagan
-Yocto Project
-Build and Release
+ JDK_JRE =3D "jdk"
+ require oracle-jse.inc
++
++do_install_class-native() {
++    install -d -m 0755                      ${D}${bindir}/${JDK_JRE}${PV}_=
+${PV_UPDATE}
++    cp -a ${S}/${JDK_JRE}${PV}_${PV_UPDATE} ${D}${bindir}/
++    ln -sf ${JDK_JRE}${PV}_${PV_UPDATE}     ${D}${bindir}/java
++}
++
++BBCLASSEXTEND =3D "native"
+--=20
+2.1.0
+
 
