@@ -1,53 +1,64 @@
-Return-Path: <diego.sueiro@gmail.com>
+Return-Path: <bevenson@melinkcorp.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 5F82FE00769; Fri,  5 Sep 2014 05:18:32 -0700 (PDT)
+	id E68B6E0078E; Fri,  5 Sep 2014 06:35:48 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (diego.sueiro[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.192.43 listed in list.dnswl.org]
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
+	SPF_HELO_PASS autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [207.46.163.239 listed in list.dnswl.org]
+	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-qg0-f43.google.com (mail-qg0-f43.google.com
-	[209.85.192.43])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1F8F1E006EF
-	for <yocto@yoctoproject.org>; Fri,  5 Sep 2014 05:18:28 -0700 (PDT)
-Received: by mail-qg0-f43.google.com with SMTP id a108so727292qge.30
-	for <yocto@yoctoproject.org>; Fri, 05 Sep 2014 05:18:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-type;
-	bh=k44RhUtcYpv24aDXnBOua+zBptS5kqcj6Eh7OVVb+eQ=;
-	b=om7Qj6YRXS9SInlIvxz4ahY985gN20V4JJ8k2vttLPHEjVG5pACbeN1c5GBwp/SlYD
-	VrlYTWGMkTllMmTvEAaTFWkJ5sUAkEGZuVcbCURgqXNNMdsWdHapJ86YPn4zaG7ANHZC
-	d7OntBFd+3IQOI0n+LNK3joEDLuKy0kQXmqdJCndHc0wxs81cvxDXnOveDq8OrxB+9W+
-	89c3PjeI1Dfu5w4CqFSqqpR2f/qTdcxOkOsO/xnfC3GPoTrowDZgVd4OMo56BbtvStPk
-	tzAhSLhz/fH7DW+X9R4QEyMh9rJJj1kqYeU3YYZZ/lBMdhW7H+QpIiI8fhMWCpvu0Log
-	LJ7A==
-X-Received: by 10.224.86.5 with SMTP id q5mr18379052qal.36.1409919507276; Fri,
-	05 Sep 2014 05:18:27 -0700 (PDT)
+Received: from na01-by2-obe.outbound.protection.outlook.com
+	(mail-by2lp0239.outbound.protection.outlook.com [207.46.163.239])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 514E6E0034C
+	for <yocto@yoctoproject.org>; Fri,  5 Sep 2014 06:35:43 -0700 (PDT)
+Received: from BLUPR05MB040.namprd05.prod.outlook.com (10.255.210.156) by
+	BLUPR05MB530.namprd05.prod.outlook.com (10.141.29.147) with Microsoft
+	SMTP Server (TLS) id 15.0.1019.16; Fri, 5 Sep 2014 13:35:39 +0000
+Received: from BLUPR05MB037.namprd05.prod.outlook.com (10.255.210.145) by
+	BLUPR05MB040.namprd05.prod.outlook.com (10.255.210.156) with Microsoft
+	SMTP Server (TLS) id 15.0.1019.16; Fri, 5 Sep 2014 13:35:33 +0000
+Received: from BLUPR05MB037.namprd05.prod.outlook.com ([169.254.15.161]) by
+	BLUPR05MB037.namprd05.prod.outlook.com ([169.254.15.161]) with mapi id
+	15.00.1019.015; Fri, 5 Sep 2014 13:35:32 +0000
+From: Bryan Evenson <bevenson@melinkcorp.com>
+To: "Robert P. J. Day" <rpjday@crashcourse.ca>, Sven Ebenfeld
+	<sven.ebenfeld@gmail.com>
+Thread-Topic: [yocto] is there a list of yocto-supported dev kits somewhere?
+Thread-Index: AQHPwpMnOzf/+oVDAU6tun0xYJr8p5vlpSUAgAAEhACAAHTuAIABUz2AgABKxgCAAANOAIAABdAAgAEre4CACaIn4A==
+Date: Fri, 5 Sep 2014 13:35:32 +0000
+Message-ID: <d146424575834e06b8e11657f0c89d50@BLUPR05MB037.namprd05.prod.outlook.com>
+References: <alpine.LFD.2.11.1408280336190.2292@localhost>
+	<CAGiJk9dYKHaq3YTA6aAHBWkVH+gFqm+M=Rpi=80YhVZ0YNeWrA@mail.gmail.com>
+	<alpine.LFD.2.11.1408280408050.2863@localhost>
+	<CA+YB3rYra8atvtzy4JPz8zfc4WjbB-kM0rtb5ZdfRy48PFMO9g@mail.gmail.com>
+	<alpine.LFD.2.11.1408290721080.4903@localhost>
+	<CA+gsK-p1xVazx+guAy3Zo1nTrEVmnC3iMQVv9ZDoN28qhaKYKQ@mail.gmail.com>
+	<alpine.LFD.2.11.1408291157030.10554@localhost>	<5400A8C8.4050605@gmail.com>
+	<alpine.LFD.2.11.1408300610240.10330@localhost>
+In-Reply-To: <alpine.LFD.2.11.1408300610240.10330@localhost>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-vipre-scanned: 003043B400803C00304501
+x-ms-exchange-transport-fromentityheader: Hosted
+x-originating-ip: [98.100.91.242]
+x-microsoft-antispam: BCL:0;PCL:0;RULEID:;UriScan:;UriScan:;
+x-forefront-prvs: 0325F6C77B
+x-forefront-antispam-report: SFV:NSPM;
+	SFS:(6009001)(189002)(199003)(51704005)(377454003)(13464003)(2656002)(80022001)(66066001)(81542001)(101416001)(81342001)(15975445006)(76576001)(77096002)(108616004)(87936001)(92566001)(93886004)(85306004)(4396001)(86362001)(16799955002)(85852003)(83072002)(21056001)(19580405001)(83322001)(64706001)(20776003)(16601075003)(33646002)(19580395003)(15202345003)(79102001)(99286002)(15395725005)(95666004)(106116001)(106356001)(90102001)(105586002)(74316001)(74662001)(31966008)(74502001)(76482001)(50986999)(77982001)(54356999)(76176999)(99396002)(46102001)(107046002)(24736002);
+	DIR:OUT; SFP:; SCL:1; SRVR:BLUPR05MB040;
+	H:BLUPR05MB037.namprd05.prod.outlook.com; FPR:; MLV:sfv;
+	PTR:InfoNoRecords; MX:1; A:1; LANG:en; 
 MIME-Version: 1.0
-Received: by 10.140.85.83 with HTTP; Fri, 5 Sep 2014 05:18:07 -0700 (PDT)
-In-Reply-To: <CAPhDKbHAzY4MikG=izTnfs3_wULDghYKhc5pThF5Ft4QbmA-+Q@mail.gmail.com>
-References: <CAPhDKbHAzY4MikG=izTnfs3_wULDghYKhc5pThF5Ft4QbmA-+Q@mail.gmail.com>
-From: Diego Sueiro <diego.sueiro@gmail.com>
-Date: Fri, 5 Sep 2014 09:18:07 -0300
-Message-ID: <CAMCfZKH=YLuCt1SDOFuALAJjzgmcx_OAtF7NxMnFDWiYQY0UNQ@mail.gmail.com>
-To: Ilya Dmitrichenko <errordeveloper@gmail.com>
-Cc: yocto <yocto@yoctoproject.org>
-Subject: Re: systemd crashes above emergency runlevel
+X-Microsoft-Antispam: BCL:0;PCL:0;RULEID:;
+X-OriginatorOrg: melinkcorp.com
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: is there a list of yocto-supported dev kits somewhere?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -59,133 +70,41 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 05 Sep 2014 12:18:32 -0000
-Content-Type: multipart/alternative; boundary=001a11c2c17264b1190502507796
+X-List-Received-Date: Fri, 05 Sep 2014 13:35:49 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 
---001a11c2c17264b1190502507796
-Content-Type: text/plain; charset=ISO-8859-1
+Um9iZXJ0LA0KDQpBdG1lbCBoYXMgdGhlaXIgb3duIGJvYXJkIHN1cHBvcnQgbGF5ZXIgdGhhdCB0
+aGV5IGhhdmUgbm90IHN1Ym1pdHRlZCBhcyBhbiBvZmZpY2lhbCBZb2N0byBQcm9qZWN0IEJTUC4g
+IFRoZWlyIGxheWVyIHN1cHBvcnRzIHRoZWlyIEFUOTFTQU05eDUtRUsgc2VyaWVzIGFuZCB0aGVp
+ciBTQU1BNUQzIHNlcmllcyBldmFsdWF0aW9uIGtpdHMuICBJJ3ZlIGJlZW4gdXNpbmcgdGhlaXIg
+QVQ5MVNBTTlHMjUtRUsga2l0IGZvciBteSByZWZlcmVuY2UgZGVzaWduLiAgU2luY2UgQXRtZWwg
+ZG9lc24ndCBoYXZlIGEgQlNQIHRoYXQgaXMgb2ZmaWNpYWxseSBzdXBwb3J0ZWQgYnkgdGhlIFlv
+Y3RvIFByb2plY3QsIEknbSBub3Qgc3VyZSB3aGV0aGVyIGl0IGJlbG9uZ3Mgd2l0aCB5b3VyIGxp
+c3Qgb3Igbm90Lg0KDQpSZWdhcmRzLA0KQnJ5YW4NCg0KPiAtLS0tLU9yaWdpbmFsIE1lc3NhZ2Ut
+LS0tLQ0KPiBGcm9tOiB5b2N0by1ib3VuY2VzQHlvY3RvcHJvamVjdC5vcmcgW21haWx0bzp5b2N0
+by0NCj4gYm91bmNlc0B5b2N0b3Byb2plY3Qub3JnXSBPbiBCZWhhbGYgT2YgUm9iZXJ0IFAuIEou
+IERheQ0KPiBTZW50OiBTYXR1cmRheSwgQXVndXN0IDMwLCAyMDE0IDY6MTQgQU0NCj4gVG86IFN2
+ZW4gRWJlbmZlbGQNCj4gQ2M6IHlvY3RvQHlvY3RvcHJvamVjdC5vcmcNCj4gU3ViamVjdDogUmU6
+IFt5b2N0b10gaXMgdGhlcmUgYSBsaXN0IG9mIHlvY3RvLXN1cHBvcnRlZCBkZXYga2l0cyBzb21l
+d2hlcmU/DQo+IA0KPiANCj4gICB0b29rIG9ubHkgYSBmZXcgbWludXRlcywgaGVyZSdzIG15IGZp
+cnN0IHBhc3MgYXQgYSBzaG9ydCBsaXN0IG9mIGFmZm9yZGFibGUgYW5kDQo+IFlQLWNvbXBhdGli
+bGUoPykgZGV2IGtpdHM6DQo+IA0KPiBodHRwOi8vd3d3LmNyYXNoY291cnNlLmNhL3dpa2kvaW5k
+ZXgucGhwL1lvY3RvX1Byb2plY3RfZGV2X2tpdHMNCj4gDQo+IG5vdCB0cnlpbmcgdG8gYmUgY29t
+cGxldGUsIGp1c3QgdGhlIG9uZXMgaSBjb3VsZCB0aGluayBvZiBvZmYgdGhlIHRvcCBvZiBteQ0K
+PiBoZWFkIHRoYXQgcmVwcmVzZW50IHNvbWUgdmFyaWV0eS4gdGhvdWdodHM/IHBlcmhhcHMgdGhl
+IGludGVsIGFuZCBmcmVlc2NhbGUNCj4gcGVvcGxlIGNvdWxkIHN1Z2dlc3Qgb3RoZXIgcG9zc2li
+aWxpdGllcy4NCj4gDQo+IHJkYXkNCj4gDQo+IC0tDQo+IA0KPiA9PT09PT09PT09PT09PT09PT09
+PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09DQo+ID09PT09PT09PT09PT09
+DQo+IFJvYmVydCBQLiBKLiBEYXkgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBPdHRh
+d2EsIE9udGFyaW8sIENBTkFEQQ0KPiAgICAgICAgICAgICAgICAgICAgICAgICBodHRwOi8vY3Jh
+c2hjb3Vyc2UuY2ENCj4gDQo+IFR3aXR0ZXI6ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgaHR0cDovL3R3aXR0ZXIuY29tL3JwamRheQ0KPiBMaW5rZWRJbjogICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgaHR0cDovL2NhLmxpbmtlZGluLmNvbS9pbi9ycGpkYXkNCj4g
+PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09
+PQ0KPiA9PT09PT09PT09PT09PQ0KPiANCj4gLS0NCj4gX19fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fX19fX19fX19fX18NCj4geW9jdG8gbWFpbGluZyBsaXN0DQo+IHlvY3RvQHlv
+Y3RvcHJvamVjdC5vcmcNCj4gaHR0cHM6Ly9saXN0cy55b2N0b3Byb2plY3Qub3JnL2xpc3RpbmZv
+L3lvY3RvDQo=
 
-Ilya,
-
-On Fri, Sep 5, 2014 at 8:45 AM, Ilya Dmitrichenko <errordeveloper@gmail.com>
-wrote:
-
-> I have built an image form Beaglebone (white) with systemd instead of
-> sysvinit and it crashes after loading a few services. I'm suspecting
-> it's to do with getty taking over the console tty, but not quite sure.
->
-> What I see that the serial port terminal (tried screen and
-> miniterm.py) gets disconnected and something occurs to the FTDI serial
-> port so OS X kernel doesn't see it again.
->
-> I was able to boot with init=/bin/sh and set default.target to
-> emergency.target and from there calling `/sbin/init 1` started more
-> systemd units and then crashed the same way.
->
-> Any ideas?
->
-
-What systemd version you are using?
-
-I have two different problems with systemd (208 - did not tested on newer
-versions yet).
-
-1 - The boot was reaching Emergency Mode giving me this kind of message:
-
-systemd-fsck[136]: Config: Superblock last mount time (Mon Jan  6 17:54:44
-2014,
-systemd-fsck[136]: now = Wed Jan  1 07:14:39 2014) is in the future.
-systemd-fsck[136]: Config: UNEXPECTED INCONSISTENCY; RUN fsck MANUALLY.
-systemd-fsck[136]: (i.e., without -a or -p options)
-
-
-This was solved by having the /etc/e2fsck.conf file with this content:
-
-[options]
-broken_system_clock = true
-
-
-
-2 - The other issue is related with journal log files rotation. It did not
-respect the restrictions configured at journal.conf. If you have
-consecutive power cycles (without issuing linux shutdown process) the
-"currupted" logs is not going to be rotated and it time it boots a new log
-file is created. After some time the memory is full and some process cannot
-start because of this.
-
-Can you send your boot log?
-
-
-
-Regards,
-
---
-*dS
-Diego Sueiro
-
-Administrador do Embarcados
-www.embarcados.com.br
-<http://www.embarcados.com.br/?utm_source=assinatura_diego&utm_medium=e-mail&utm_campaign=Assinatura%20Email%20Diego>
-
-/*long live rock 'n roll*/
-
---001a11c2c17264b1190502507796
-Content-Type: text/html; charset=ISO-8859-1
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><div class=3D"gmail_extra">Ilya,</div><div class=3D"gmail_=
-extra"><br><div class=3D"gmail_quote">On Fri, Sep 5, 2014 at 8:45 AM, Ilya =
-Dmitrichenko <span dir=3D"ltr">&lt;<a href=3D"mailto:errordeveloper@gmail.c=
-om" target=3D"_blank">errordeveloper@gmail.com</a>&gt;</span> wrote:<br><bl=
-ockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-lef=
-t-width:1px;border-left-color:rgb(204,204,204);border-left-style:solid;padd=
-ing-left:1ex"><div id=3D":5hf" class=3D"" style=3D"overflow:hidden">I have =
-built an image form Beaglebone (white) with systemd instead of<br>
-sysvinit and it crashes after loading a few services. I&#39;m suspecting<br=
->
-it&#39;s to do with getty taking over the console tty, but not quite sure.<=
-br>
-<br>
-What I see that the serial port terminal (tried screen and<br>
-miniterm.py) gets disconnected and something occurs to the FTDI serial<br>
-port so OS X kernel doesn&#39;t see it again.<br>
-<br>
-I was able to boot with init=3D/bin/sh and set default.target to<br>
-emergency.target and from there calling `/sbin/init 1` started more<br>
-systemd units and then crashed the same way.<br>
-<br>
-Any ideas?</div></blockquote></div><br>What systemd version you are using?<=
-/div><div class=3D"gmail_extra"><br></div><div class=3D"gmail_extra">I have=
- two different problems with systemd (208 - did not tested on newer version=
-s yet).</div><div class=3D"gmail_extra"><br></div><div class=3D"gmail_extra=
-">1 - The boot was reaching Emergency Mode giving me this kind of message:=
-=A0</div><div class=3D"gmail_extra"><blockquote style=3D"margin:0px 0px 0px=
- 40px;border:none;padding:0px"><div class=3D"gmail_extra"><div class=3D"gma=
-il_extra">systemd-fsck[136]: Config: Superblock last mount time (Mon Jan =
-=A06 17:54:44 2014,</div><div class=3D"gmail_extra">systemd-fsck[136]: now =
-=3D Wed Jan =A01 07:14:39 2014) is in the future.</div><div class=3D"gmail_=
-extra">systemd-fsck[136]: Config: UNEXPECTED INCONSISTENCY; RUN fsck MANUAL=
-LY.</div><div class=3D"gmail_extra">systemd-fsck[136]: (i.e., without -a or=
- -p options)</div></div></blockquote></div><div class=3D"gmail_extra"><br><=
-/div><div class=3D"gmail_extra">This was solved by having the /etc/e2fsck.c=
-onf file with this content:</div><div class=3D"gmail_extra"><blockquote sty=
-le=3D"margin:0px 0px 0px 40px;border:none;padding:0px"><div class=3D"gmail_=
-extra"><div class=3D"gmail_extra">[options]</div><div class=3D"gmail_extra"=
->broken_system_clock =3D true</div></div></blockquote></div><div class=3D"g=
-mail_extra"><br></div><div class=3D"gmail_extra"><br></div><div class=3D"gm=
-ail_extra">2 - The other issue is related with journal log files rotation. =
-It did not respect the restrictions configured at journal.conf. If you have=
- consecutive power cycles (without issuing linux shutdown process) the &quo=
-t;currupted&quot; logs is not going to be rotated and it time it boots a ne=
-w log file is created. After some time the memory is full and some process =
-cannot start because of this.</div><div class=3D"gmail_extra"><br></div><di=
-v class=3D"gmail_extra">Can you send your boot log?</div><div class=3D"gmai=
-l_extra"><br></div><div class=3D"gmail_extra"><br><br clear=3D"all"><div><d=
-iv dir=3D"ltr"><div>Regards,</div><div><br></div>--<br>*dS<br>Diego Sueiro<=
-br><br>Administrador do Embarcados<br><a href=3D"http://www.embarcados.com.=
-br/?utm_source=3Dassinatura_diego&amp;utm_medium=3De-mail&amp;utm_campaign=
-=3DAssinatura%20Email%20Diego" target=3D"_blank">www.embarcados.com.br</a><=
-br><br>/*long live rock &#39;n roll*/<br></div></div>
-</div></div>
-
---001a11c2c17264b1190502507796--
