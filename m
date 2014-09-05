@@ -1,30 +1,53 @@
-Return-Path: <dvorkin@tibbo.com>
+Return-Path: <akuster808@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 498FFE00744; Thu,  4 Sep 2014 18:58:08 -0700 (PDT)
+	id 98606E0076C; Thu,  4 Sep 2014 21:03:27 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (akuster808[at]gmail.com)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.220.46 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-X-Greylist: delayed 400 seconds by postgrey-1.32 at yocto-www;
-	Thu, 04 Sep 2014 18:58:02 PDT
-Received: from smtp.tibbo.com (smtp.tibbo.com [93.174.104.90])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 7DF2DE004F5
-	for <yocto@yoctoproject.org>; Thu,  4 Sep 2014 18:58:02 -0700 (PDT)
-Received: (qmail 2381 invoked by uid 508); 5 Sep 2014 05:30:13 +0400
-Received: from 59-120-32-27.hinet-ip.hinet.net (HELO ?192.168.1.20?)
-	(dvorkin@tibbo.com@59.120.32.27)
-	by smtp.tibbo.com with SMTP; 5 Sep 2014 05:30:13 +0400
-Message-ID: <54091713.2090004@tibbo.com>
-Date: Fri, 05 Sep 2014 09:51:15 +0800
-From: Dvorkin Dmitry <dvorkin@tibbo.com>
-User-Agent: Mozilla/5.0 (X11; Linux x86_64;
-	rv:24.0) Gecko/20100101 Thunderbird/24.7.0
-MIME-Version: 1.0
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+Received: from mail-pa0-f46.google.com (mail-pa0-f46.google.com
+	[209.85.220.46])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4F216E006EF
+	for <yocto@yoctoproject.org>; Thu,  4 Sep 2014 21:03:21 -0700 (PDT)
+Received: by mail-pa0-f46.google.com with SMTP id eu11so21652537pac.33
+	for <yocto@yoctoproject.org>; Thu, 04 Sep 2014 21:03:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=from:to:cc:subject:date:message-id;
+	bh=uJXwON2eiCmVvtqQms2jdvk0ImSyQPCCWal9FCBpPmQ=;
+	b=VcLpdpEhTWGOBz2E8H/JxCrcvvmYw2QgJHprF0Zps/FkxZ95JT1zjHmI0vPQBGtB2F
+	mH1Ks5YZFQ5ML5SuZgCBafI0/DpI99Sb/jBxOo6keBq8iubr4nesqQ0FvQmUoQHuv9R+
+	5FAZ/k0Z7TxQpSY1eGAyFVSt+0zxK6TCTT9C7naixcZeaTWlYmjXNHqKwZiIURcmouFo
+	hv91QAFHzNGQTUz0oTm2Un50768Ax2mclT/0XDkWrJDsIe7alWJlsJvnxsI9fMhAhTt2
+	TdVx3Q6T9GaLC2SEzHb+mAkRHcOX6Ipsmp0x97uPbGa0+GmILvY9AXbL4jwAvKpiooKd
+	fLcw==
+X-Received: by 10.66.192.195 with SMTP id hi3mr16513995pac.117.1409889800052; 
+	Thu, 04 Sep 2014 21:03:20 -0700 (PDT)
+Received: from Pahoa2.hsd1.ca.comcast.net (c-76-20-92-207.hsd1.ca.comcast.net.
+	[76.20.92.207])
+	by mx.google.com with ESMTPSA id v16sm566504pdi.39.2014.09.04.21.03.18
+	for <multiple recipients>
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
+	Thu, 04 Sep 2014 21:03:18 -0700 (PDT)
+From: Armin Kuster <akuster808@gmail.com>
 To: yocto@yoctoproject.org
-Subject: wrong automatic dependency
+Date: Thu,  4 Sep 2014 21:03:13 -0700
+Message-Id: <1409889793-26166-1-git-send-email-akuster808@gmail.com>
+X-Mailer: git-send-email 1.9.1
+Subject: [meta-security][PATCH] libseccomp: add package for tests.
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -36,42 +59,42 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 05 Sep 2014 01:58:08 -0000
-Content-Type: text/plain; charset=ISO-8859-1; format=flowed
-Content-Transfer-Encoding: 7bit
+X-List-Received-Date: Fri, 05 Sep 2014 04:03:27 -0000
 
-Hello!
+I wanted to run the tests manually on a target. Tests are now
+built and packaged.
 
-I wrote my own recipe for crda.
-(http://wireless.kernel.org/en/developers/Regulatory/CRDA)
+to run: /usr/lib/libseccomp/tests/regression -a
 
-Dependencies is:
-DEPENDS = "libgcrypt libnl"
-RDEPENDS_${PN} = "udev wireless-regdb"
+will add ptest later.
 
-Crda Makefile is using python to rebuild it's database in 
-build/installation step.
-After installation I have several packages: crda itself, crda-dev, 
-crda-doc, ... etc.
-In my image I'm using only 'crda' package that doesn't need python.
+Signed-off-by: Armin Kuster <akuster808@gmail.com>
+---
+ recipes-security/libseccomp/libseccomp_2.1.1.bb | 11 ++++++++++-
+ 1 file changed, 10 insertions(+), 1 deletion(-)
 
-But it seems Yocto detects python and add automatic dependency of python 
-to my image anyway.
+diff --git a/recipes-security/libseccomp/libseccomp_2.1.1.bb b/recipes-security/libseccomp/libseccomp_2.1.1.bb
+index 27fa259..0896f85 100644
+--- a/recipes-security/libseccomp/libseccomp_2.1.1.bb
++++ b/recipes-security/libseccomp/libseccomp_2.1.1.bb
+@@ -18,6 +18,15 @@ do_configure() {
+    ${S}/configure --prefix=${prefix} --libdir=${libdir}
+ }
+ 
++do_compile_append() {
++    oe_runmake  DESTDIR=${D} tests 
++}
++
+ do_install() {
+-    oe_runmake DESTDIR=${D} install
++    oe_runmake DESTDIR=${D} install 
++    oe_runmake  DESTDIR=${D} install-tests 
+ }
++
++PACKAGES += "${PN}-tests "
++FILES_${PN}-tests = "${libdir}/${BPN}/tests/*"
++FILES_${PN}-dbg += "${libdir}/${BPN}/tests/.debug/*"
+-- 
+1.9.1
 
-$ grep "crda" ./*.dot | grep pyt
-./task-depends.dot:"crda.do_build" -> "python-dbus.do_package_write_ipk"
-./task-depends.dot:"crda.do_build" -> "python.do_package_write_rpm"
-./task-depends.dot:"crda.do_build" -> "python.do_package_write_deb"
-./task-depends.dot:"crda.do_build" -> "python.do_package_write_ipk"
-./task-depends.dot:"crda.do_build" -> 
-"python-pygobject.do_package_write_rpm"
-./task-depends.dot:"crda.do_build" -> 
-"python-pygobject.do_package_write_deb"
-./task-depends.dot:"crda.do_build" -> 
-"python-pygobject.do_package_write_ipk"
-./task-depends.dot:"crda.do_build" -> "python-dbus.do_package_write_rpm"
-./task-depends.dot:"crda.do_build" -> "python-dbus.do_package_write_deb"
-
-Is there any way to get rid of python dependency in this and only this 
-recipe? it makes my image significally bigger.
 
