@@ -1,64 +1,33 @@
-Return-Path: <bevenson@melinkcorp.com>
+Return-Path: <Vladimir_Redzhepov@epam.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id E68B6E0078E; Fri,  5 Sep 2014 06:35:48 -0700 (PDT)
+	id AF311E0078E; Fri,  5 Sep 2014 08:59:05 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
-	SPF_HELO_PASS autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
-	http://www.dnswl.org/, low *      trust
-	*      [207.46.163.239 listed in list.dnswl.org]
-	* -0.0 SPF_HELO_PASS SPF: HELO matches SPF record
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from na01-by2-obe.outbound.protection.outlook.com
-	(mail-by2lp0239.outbound.protection.outlook.com [207.46.163.239])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 514E6E0034C
-	for <yocto@yoctoproject.org>; Fri,  5 Sep 2014 06:35:43 -0700 (PDT)
-Received: from BLUPR05MB040.namprd05.prod.outlook.com (10.255.210.156) by
-	BLUPR05MB530.namprd05.prod.outlook.com (10.141.29.147) with Microsoft
-	SMTP Server (TLS) id 15.0.1019.16; Fri, 5 Sep 2014 13:35:39 +0000
-Received: from BLUPR05MB037.namprd05.prod.outlook.com (10.255.210.145) by
-	BLUPR05MB040.namprd05.prod.outlook.com (10.255.210.156) with Microsoft
-	SMTP Server (TLS) id 15.0.1019.16; Fri, 5 Sep 2014 13:35:33 +0000
-Received: from BLUPR05MB037.namprd05.prod.outlook.com ([169.254.15.161]) by
-	BLUPR05MB037.namprd05.prod.outlook.com ([169.254.15.161]) with mapi id
-	15.00.1019.015; Fri, 5 Sep 2014 13:35:32 +0000
-From: Bryan Evenson <bevenson@melinkcorp.com>
-To: "Robert P. J. Day" <rpjday@crashcourse.ca>, Sven Ebenfeld
-	<sven.ebenfeld@gmail.com>
-Thread-Topic: [yocto] is there a list of yocto-supported dev kits somewhere?
-Thread-Index: AQHPwpMnOzf/+oVDAU6tun0xYJr8p5vlpSUAgAAEhACAAHTuAIABUz2AgABKxgCAAANOAIAABdAAgAEre4CACaIn4A==
-Date: Fri, 5 Sep 2014 13:35:32 +0000
-Message-ID: <d146424575834e06b8e11657f0c89d50@BLUPR05MB037.namprd05.prod.outlook.com>
-References: <alpine.LFD.2.11.1408280336190.2292@localhost>
-	<CAGiJk9dYKHaq3YTA6aAHBWkVH+gFqm+M=Rpi=80YhVZ0YNeWrA@mail.gmail.com>
-	<alpine.LFD.2.11.1408280408050.2863@localhost>
-	<CA+YB3rYra8atvtzy4JPz8zfc4WjbB-kM0rtb5ZdfRy48PFMO9g@mail.gmail.com>
-	<alpine.LFD.2.11.1408290721080.4903@localhost>
-	<CA+gsK-p1xVazx+guAy3Zo1nTrEVmnC3iMQVv9ZDoN28qhaKYKQ@mail.gmail.com>
-	<alpine.LFD.2.11.1408291157030.10554@localhost>	<5400A8C8.4050605@gmail.com>
-	<alpine.LFD.2.11.1408300610240.10330@localhost>
-In-Reply-To: <alpine.LFD.2.11.1408300610240.10330@localhost>
+Received: from EVBYMINSA0039.epam.com (evbyminsa0039.epam.com [217.21.63.35])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 73958E0049D
+	for <yocto@yoctoproject.org>; Fri,  5 Sep 2014 08:58:57 -0700 (PDT)
+Received: from EPBYMINSA0032.epam.com (10.6.110.32) by EPBYMINSA0001.epam.com
+	(10.6.110.2) with Microsoft SMTP Server (TLS) id 15.0.995.29;
+	Fri, 5 Sep 2014 18:58:54 +0300
+Received: from EPBYMINSA0032.epam.com ([::1]) by EPBYMINSA0032.epam.com
+	([::1]) with mapi id 15.00.0995.028; Fri, 5 Sep 2014 18:58:54 +0300
+From: Vladimir Redzhepov <Vladimir_Redzhepov@epam.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: [meta-oracle-java][PATCH] Add support for Java SE Embedded
+Thread-Index: Ac/JIi6TtahCyQR6Q/GwNS0UIGVjew==
+Date: Fri, 5 Sep 2014 15:58:53 +0000
+Message-ID: <8b6dc55b042849e3bce4864bf7e7d24d@EPBYMINSA0032.epam.com>
 Accept-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-x-vipre-scanned: 003043B400803C00304501
-x-ms-exchange-transport-fromentityheader: Hosted
-x-originating-ip: [98.100.91.242]
-x-microsoft-antispam: BCL:0;PCL:0;RULEID:;UriScan:;UriScan:;
-x-forefront-prvs: 0325F6C77B
-x-forefront-antispam-report: SFV:NSPM;
-	SFS:(6009001)(189002)(199003)(51704005)(377454003)(13464003)(2656002)(80022001)(66066001)(81542001)(101416001)(81342001)(15975445006)(76576001)(77096002)(108616004)(87936001)(92566001)(93886004)(85306004)(4396001)(86362001)(16799955002)(85852003)(83072002)(21056001)(19580405001)(83322001)(64706001)(20776003)(16601075003)(33646002)(19580395003)(15202345003)(79102001)(99286002)(15395725005)(95666004)(106116001)(106356001)(90102001)(105586002)(74316001)(74662001)(31966008)(74502001)(76482001)(50986999)(77982001)(54356999)(76176999)(99396002)(46102001)(107046002)(24736002);
-	DIR:OUT; SFP:; SCL:1; SRVR:BLUPR05MB040;
-	H:BLUPR05MB037.namprd05.prod.outlook.com; FPR:; MLV:sfv;
-	PTR:InfoNoRecords; MX:1; A:1; LANG:en; 
+x-originating-ip: [10.6.137.75]
 MIME-Version: 1.0
-X-Microsoft-Antispam: BCL:0;PCL:0;RULEID:;
-X-OriginatorOrg: melinkcorp.com
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: is there a list of yocto-supported dev kits somewhere?
+Subject: [meta-oracle-java][PATCH] Add support for Java SE Embedded
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -70,41 +39,90 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Fri, 05 Sep 2014 13:35:49 -0000
+X-List-Received-Date: Fri, 05 Sep 2014 15:59:05 -0000
 Content-Language: en-US
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-Um9iZXJ0LA0KDQpBdG1lbCBoYXMgdGhlaXIgb3duIGJvYXJkIHN1cHBvcnQgbGF5ZXIgdGhhdCB0
-aGV5IGhhdmUgbm90IHN1Ym1pdHRlZCBhcyBhbiBvZmZpY2lhbCBZb2N0byBQcm9qZWN0IEJTUC4g
-IFRoZWlyIGxheWVyIHN1cHBvcnRzIHRoZWlyIEFUOTFTQU05eDUtRUsgc2VyaWVzIGFuZCB0aGVp
-ciBTQU1BNUQzIHNlcmllcyBldmFsdWF0aW9uIGtpdHMuICBJJ3ZlIGJlZW4gdXNpbmcgdGhlaXIg
-QVQ5MVNBTTlHMjUtRUsga2l0IGZvciBteSByZWZlcmVuY2UgZGVzaWduLiAgU2luY2UgQXRtZWwg
-ZG9lc24ndCBoYXZlIGEgQlNQIHRoYXQgaXMgb2ZmaWNpYWxseSBzdXBwb3J0ZWQgYnkgdGhlIFlv
-Y3RvIFByb2plY3QsIEknbSBub3Qgc3VyZSB3aGV0aGVyIGl0IGJlbG9uZ3Mgd2l0aCB5b3VyIGxp
-c3Qgb3Igbm90Lg0KDQpSZWdhcmRzLA0KQnJ5YW4NCg0KPiAtLS0tLU9yaWdpbmFsIE1lc3NhZ2Ut
-LS0tLQ0KPiBGcm9tOiB5b2N0by1ib3VuY2VzQHlvY3RvcHJvamVjdC5vcmcgW21haWx0bzp5b2N0
-by0NCj4gYm91bmNlc0B5b2N0b3Byb2plY3Qub3JnXSBPbiBCZWhhbGYgT2YgUm9iZXJ0IFAuIEou
-IERheQ0KPiBTZW50OiBTYXR1cmRheSwgQXVndXN0IDMwLCAyMDE0IDY6MTQgQU0NCj4gVG86IFN2
-ZW4gRWJlbmZlbGQNCj4gQ2M6IHlvY3RvQHlvY3RvcHJvamVjdC5vcmcNCj4gU3ViamVjdDogUmU6
-IFt5b2N0b10gaXMgdGhlcmUgYSBsaXN0IG9mIHlvY3RvLXN1cHBvcnRlZCBkZXYga2l0cyBzb21l
-d2hlcmU/DQo+IA0KPiANCj4gICB0b29rIG9ubHkgYSBmZXcgbWludXRlcywgaGVyZSdzIG15IGZp
-cnN0IHBhc3MgYXQgYSBzaG9ydCBsaXN0IG9mIGFmZm9yZGFibGUgYW5kDQo+IFlQLWNvbXBhdGli
-bGUoPykgZGV2IGtpdHM6DQo+IA0KPiBodHRwOi8vd3d3LmNyYXNoY291cnNlLmNhL3dpa2kvaW5k
-ZXgucGhwL1lvY3RvX1Byb2plY3RfZGV2X2tpdHMNCj4gDQo+IG5vdCB0cnlpbmcgdG8gYmUgY29t
-cGxldGUsIGp1c3QgdGhlIG9uZXMgaSBjb3VsZCB0aGluayBvZiBvZmYgdGhlIHRvcCBvZiBteQ0K
-PiBoZWFkIHRoYXQgcmVwcmVzZW50IHNvbWUgdmFyaWV0eS4gdGhvdWdodHM/IHBlcmhhcHMgdGhl
-IGludGVsIGFuZCBmcmVlc2NhbGUNCj4gcGVvcGxlIGNvdWxkIHN1Z2dlc3Qgb3RoZXIgcG9zc2li
-aWxpdGllcy4NCj4gDQo+IHJkYXkNCj4gDQo+IC0tDQo+IA0KPiA9PT09PT09PT09PT09PT09PT09
-PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09DQo+ID09PT09PT09PT09PT09
-DQo+IFJvYmVydCBQLiBKLiBEYXkgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBPdHRh
-d2EsIE9udGFyaW8sIENBTkFEQQ0KPiAgICAgICAgICAgICAgICAgICAgICAgICBodHRwOi8vY3Jh
-c2hjb3Vyc2UuY2ENCj4gDQo+IFR3aXR0ZXI6ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICAgaHR0cDovL3R3aXR0ZXIuY29tL3JwamRheQ0KPiBMaW5rZWRJbjogICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgaHR0cDovL2NhLmxpbmtlZGluLmNvbS9pbi9ycGpkYXkNCj4g
-PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09
-PQ0KPiA9PT09PT09PT09PT09PQ0KPiANCj4gLS0NCj4gX19fX19fX19fX19fX19fX19fX19fX19f
-X19fX19fX19fX19fX19fX19fX19fX18NCj4geW9jdG8gbWFpbGluZyBsaXN0DQo+IHlvY3RvQHlv
-Y3RvcHJvamVjdC5vcmcNCj4gaHR0cHM6Ly9saXN0cy55b2N0b3Byb2plY3Qub3JnL2xpc3RpbmZv
-L3lvY3RvDQo=
+From 783ff400987ec06f41286ffce7e3afc4545d67e5 Mon Sep 17 00:00:00 2001
+From: Vladimir Redzhepov <vladimir_redzhepov@epam.com>
+Date: Fri, 5 Sep 2014 18:13:42 +0300
+Subject: [PATCH] Add support for Java SE Embedded
+
+LICENSE file removed from LIC_FILES_CHKSUM in oracle-jse.inc
+because it doesn't exist in ejre.
+
+Signed-off-by: Vladimir Redzhepov <vladimir_redzhepov@epam.com>
+---
+ .../oracle-jse-ejre-arm-vfp-hflt-client-headless_1.7.0.bb    |  9 ++++++++=
++
+ recipes-devtools/oracle-java/oracle-jse-ejre.inc             | 12 ++++++++=
+++++
+ recipes-devtools/oracle-java/oracle-jse.inc                  |  1 -
+ 3 files changed, 21 insertions(+), 1 deletion(-)
+ create mode 100644 recipes-devtools/oracle-java/oracle-jse-ejre-arm-vfp-hf=
+lt-client-headless_1.7.0.bb
+ create mode 100644 recipes-devtools/oracle-java/oracle-jse-ejre.inc
+
+diff --git a/recipes-devtools/oracle-java/oracle-jse-ejre-arm-vfp-hflt-clie=
+nt-headless_1.7.0.bb b/recipes-devtools/oracle-java/oracle-jse-ejre-arm-vfp=
+-hflt-client-headless_1.7.0.bb
+new file mode 100644
+index 0000000..bfa8011
+--- /dev/null
++++ b/recipes-devtools/oracle-java/oracle-jse-ejre-arm-vfp-hflt-client-head=
+less_1.7.0.bb
+@@ -0,0 +1,9 @@
++PV_UPDATE =3D "60"
++BUILD_NUMBER =3D "19"
++
++require oracle-jse-ejre.inc
++
++SRC_URI =3D "http://download.oracle.com/otn/java/ejre/7u${PV_UPDATE}-b${BU=
+ILD_NUMBER}/ejre-7u${PV_UPDATE}-fcs-b${BUILD_NUMBER}-linux-arm-vfp-hflt-cli=
+ent_headless-07_may_2014.tar.gz"
++
++SRC_URI[md5sum] =3D "b9b8f598b0a7f49e4d221f16ba25c6c0"
++SRC_URI[sha256sum] =3D "ed061060011d88efe5563c2949c00993db85db17ab94f18a78=
+713007a2b90faf"
+diff --git a/recipes-devtools/oracle-java/oracle-jse-ejre.inc b/recipes-dev=
+tools/oracle-java/oracle-jse-ejre.inc
+new file mode 100644
+index 0000000..4eeace0
+--- /dev/null
++++ b/recipes-devtools/oracle-java/oracle-jse-ejre.inc
+@@ -0,0 +1,12 @@
++SUMMARY =3D "Oracle Java SE runtime environment binaries"
++DESCRIPTION =3D "This is the proprietary JRE from Sun/Oracle, with the Hot=
+spot JVM. It is\
++ provided by Sun/Oracle only in binary format.\
++ Java Platform, Standard Edition (Java SE) lets you develop and deploy Jav=
+a\
++ applications on desktops and servers, as well as in today's demanding\
++ embedded environments. Java offers the rich user interface, performance,\
++ versatility, portability, and security that today's applications require.=
+\
++ The JRE (Java Runtime Environment) is needed on a system to run Java\
++ applications and applets"
++
++JDK_JRE =3D "ejre"
++require oracle-jse.inc
+diff --git a/recipes-devtools/oracle-java/oracle-jse.inc b/recipes-devtools=
+/oracle-java/oracle-jse.inc
+index 38ceef0..5aebfaf 100644
+--- a/recipes-devtools/oracle-java/oracle-jse.inc
++++ b/recipes-devtools/oracle-java/oracle-jse.inc
+@@ -1,7 +1,6 @@
+ LICENSE_FLAGS =3D "oracle_java"
+ LICENSE =3D "Oracle_Binary_Code_License_Agreement"
+ LIC_FILES_CHKSUM =3D "\
+-	file://${WORKDIR}/${JDK_JRE}${PV}_${PV_UPDATE}/LICENSE;md5=3D98f46ab6481d=
+87c4d77e0e91a6dbc15f \
+ 	file://${WORKDIR}/${JDK_JRE}${PV}_${PV_UPDATE}/COPYRIGHT;md5=3Dbe9fe5d47a=
+7dcfb78f142f487afb34bb \
+ 	file://${WORKDIR}/${JDK_JRE}${PV}_${PV_UPDATE}/THIRDPARTYLICENSEREADME.tx=
+t;md5=3Df3a388961d24b8b72d412a079a878cdb \
+ 	"
+--=20
+2.1.0
 
