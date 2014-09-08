@@ -1,53 +1,47 @@
-Return-Path: <errordeveloper@gmail.com>
+Return-Path: <opensource@keylevel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id E6A8BE007AA; Sun,  7 Sep 2014 22:50:32 -0700 (PDT)
+	id 6C040E00846; Mon,  8 Sep 2014 00:55:31 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
-	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (errordeveloper[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.213.180 listed in list.dnswl.org]
-	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
 	author's *       domain
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-ig0-f180.google.com (mail-ig0-f180.google.com
-	[209.85.213.180])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AFC61E004F5
-	for <yocto@yoctoproject.org>; Sun,  7 Sep 2014 22:50:28 -0700 (PDT)
-Received: by mail-ig0-f180.google.com with SMTP id hn18so2187630igb.1
-	for <yocto@yoctoproject.org>; Sun, 07 Sep 2014 22:50:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
-	:cc:content-type;
-	bh=AtQUGn8mfFOk88xW32mB8HLSbPA+f9kbuXFvL0KGNRY=;
-	b=CaHQAOjaWySfagLl8ZO9oH7hpYPKyqEiKIHw0RQX/z8W1CllKf20eeigy1RxxFZ887
-	SKzes4SEjukVSURSPJwncINrRhV/OYFoUcEJXxYwSHZcR31KMDbpyMbP4LGMKeukaeNT
-	Le+QnLTuN3ZnPtewq4HvL35qKlGOavb6W7WSkV5Ouy3FLVmuo9wCLgQCW7vKu7aTyMW9
-	lNxsqzbScs5eLd8JCAsant34VGjomf7Brqj9UBgfFufpTzCMBBSRvioTvJLHAk7XeNhh
-	LnqMJ5Kq7mAQ3mvLp0p7X1EFnaUZdmf+me5Vj6lra3/lJtlj03ALYBJcsCSCwqQY2dGC
-	EX8A==
-MIME-Version: 1.0
-X-Received: by 10.50.66.229 with SMTP id i5mr9121507igt.27.1410155428184; Sun,
-	07 Sep 2014 22:50:28 -0700 (PDT)
-Received: by 10.64.238.106 with HTTP; Sun, 7 Sep 2014 22:50:28 -0700 (PDT)
-In-Reply-To: <540C68E0.5050907@windriver.com>
-References: <CAPhDKbFei3vk24Zt2K169DGW+_QLhEWtV+MGXFPOgOr8TFFX0w@mail.gmail.com>
-	<540C68E0.5050907@windriver.com>
-Date: Mon, 8 Sep 2014 06:50:28 +0100
-Message-ID: <CAPhDKbGc=aZ0Uy2XD5nSivugzwERKFJXbW3MJH=ye4UEM-X5Tg@mail.gmail.com>
-From: Ilya Dmitrichenko <errordeveloper@gmail.com>
-To: Bruce Ashfield <bruce.ashfield@windriver.com>
-Cc: yocto <yocto@yoctoproject.org>
-Subject: Re: Kernel features
+Received: from a180.4uh.net (a180.4uh.net [89.248.60.180])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 29E42E0056A
+	for <yocto@yoctoproject.org>; Mon,  8 Sep 2014 00:55:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=keylevel.com;
+	s=default; 
+	h=Mime-Version:To:Date:Message-Id:Subject:Content-Transfer-Encoding:Content-Type:From;
+	bh=Kh1iEjpSKqAEVxCLbFSQ7Z333d4759jReBWJazPfGwU=; 
+	b=ENQAUq5s2h3fOhGDaHTfm6KVu0O/VBse0/QVgGP7k8Yiu4yUelqgO4rqqCN0JPK0K8lsLcLwbh2ZJJIIhrJSfDE6gMEuK6vcbrJYAUxu2UE361Yx3H8d09bbNS5lvYb4fxLKIqAOmKnEdq0NRU7y9IkB3bE0ncyJ+Msd4bFKhAQ=;
+Received: from [109.224.171.0] (port=50328
+	helo=macbook-pro.durham.keylevel.com)
+	by a180.4uh.net with esmtpsa (TLSv1:AES128-SHA:128) (Exim 4.82)
+	(envelope-from <opensource@keylevel.com>) id 1XQtn9-000TXc-5t
+	for yocto@yoctoproject.org; Mon, 08 Sep 2014 08:55:16 +0100
+From: Chris Tapp <opensource@keylevel.com>
+Message-Id: <F2F22E20-4E45-4693-95D5-9FC01F81E8D8@keylevel.com>
+Date: Mon, 8 Sep 2014 08:55:15 +0100
+To: Yocto Project <yocto@yoctoproject.org>
+Mime-Version: 1.0 (Mac OS X Mail 7.3 \(1878.6\))
+X-Mailer: Apple Mail (2.1878.6)
+X-OutGoing-Spam-Status: No, score=-1.0
+X-AntiAbuse: This header was added to track abuse,
+	please include it with any abuse report
+X-AntiAbuse: Primary Hostname - a180.4uh.net
+X-AntiAbuse: Original Domain - yoctoproject.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - keylevel.com
+X-Get-Message-Sender-Via: a180.4uh.net: authenticated_id:
+	chris.tapp@keylevel.com
+Subject: How does RRECOMMENDS work?
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -59,100 +53,33 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 08 Sep 2014 05:50:33 -0000
-Content-Type: text/plain; charset=ISO-8859-1
+X-List-Received-Date: Mon, 08 Sep 2014 07:55:31 -0000
+Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: quoted-printable
 
-Hi Bruce,
+I've got a recipe to which I've added:
 
-On 7 September 2014 15:17, Bruce Ashfield <bruce.ashfield@windriver.com> wrote:
-> On 2014-09-07, 4:51 AM, Ilya Dmitrichenko wrote:
->>
->> Today I have spent quite a while trying to figure how KERNEL_FEATURES
->> works and why some of the things I pass in my configuration fragment
->> are not getting enabled.
->>
->> It turned out that some of the options no longer existed and some had
->> been renamed.
->
->
-> Do you have an example ? We try and not rename or remove public facing
-> configuration fragments, and hide the changing CONFIG_* values behind
-> the fragment names.
+RRECOMMENDS_${PN} =3D "<package>"
 
-Here is what I was doing first:
+The documentation says that "If, during the build, a package from the =
+RRECOMMENDS list cannot be found, the build process continues without an =
+error".
 
-CONFIG_SND_OMAP_SOC=n
-CONFIG_SND_OMAP_SOC_MCBSP=n
-CONFIG_SND_OMAP_SOC_OMAP_TWL4030=n
-CONFIG_SND_SOC_TWL4030=n
-CONFIG_SND_AM335X_SOC_EVM=m
-CONFIG_SND_AM33XX_SOC=m
-CONFIG_SND_DAVINCI_SOC_MCASP=m
-CONFIG_SND_HRTIMER=m
+I tried a build without <package> (i.e. no recipe) and it failed with =
+"Nothing provides <package>". Is this the expected behaviour? If so, is =
+there a way I can pull in a package if it is build-able and skip it =
+otherwise?
 
-This is resulted in disabled options propagating as expected and
-CONFIG_SND_HRTIMER worked as well.
+In this case <package> contains some utilities which can be of help, but =
+they're not required in any way at runtime.
 
-The rest, however didn't.
+--
 
-It turned out that basically CONFIG_SND_AM335X_SOC_EVM is misspelled
-and should be called CONFIG_SND_AM33XX_SOC_EVM. I think there must be
-a way to verify whether this existed or not.
-
-It then also turned out that CONFIG_SND_AM335X_SOC_EVM depends on
-CONFIG_SND_DAVINCI_SOC, and I had to enable that one and ensure it
-comes first.
-
-This is a working set:
-
-CONFIG_SND_OMAP_SOC=m
-CONFIG_SND_OMAP_SOC_MCBSP=m
-CONFIG_SND_OMAP_SOC_OMAP_TWL4030=m
-CONFIG_SND_SOC_TWL4030=m
-CONFIG_SND_DAVINCI_SOC=m
-CONFIG_SND_AM33XX_SOC_EVM=m
-CONFIG_SND_DAVINCI_SOC_MCASP=m
-CONFIG_SND_HRTIMER=m
+Chris Tapp
+opensource@keylevel.com
+www.keylevel.com
 
 
->> The question is really why would this not get detected by
->> kernel_configcheck or any other step?
->>
->> I'm guessing this might be the case of how kconfig works, perhaps...
->> So I wonder whether anyone have looked into how we could actually get
->> the feature dependency graph from kconfig to bitbake or at least some
->> sort of helper tool? Perhaps parsing kconfig manifests in Python would
->> be a starting point...
->
->
-> There have been many efforts are changing, writing and processing
-> Kconfig constructs in other languages .. they all end up being
-> pretty much a re-implementation of Kconfig, and hence a big effort
-> that needs to be continuously maintained over time .. also a big
-> effort.
 
-I basically think that we could do something better then blindly
-throwing a set of options without verifying it.
 
-The reason I mentioned Python was that I though of sharing Kconfig's
-dependency graph with bitbake and thereby detecting errors like the
-above.
-
-As a user, this is what I'd love to see:
-
-Error: The Kconfig option CONFIG_SND_AM335X_SOC_EVM that you have
-specified doesn't exist. (Did you mean CONFIG_SND_AM33XX_SOC_EVM?)
-
-Error: The Kconfig option CONFIG_SND_AM33XX_SOC that you have
-specified doesn't exist. (Nothing similar exists)
-
-Warning: The Kconfig option CONFIG_SND_DAVINCI_SOC_MCASP that you have
-specified depends on CONFIG_SND_DAVINCI_SOC. I will enable
-CONFIG_SND_DAVINCI_SOC as a module for you.
-
-Hope this makes more sense.
-
-Cheers,
--- 
-Ilya
 
