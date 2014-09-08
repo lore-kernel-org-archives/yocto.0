@@ -1,33 +1,39 @@
-Return-Path: <Vladimir_Redzhepov@epam.com>
+Return-Path: <Bruce.Ashfield@windriver.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 26225E00855; Mon,  8 Sep 2014 05:04:34 -0700 (PDT)
+	id 2E024E00848; Mon,  8 Sep 2014 05:15:11 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
+	autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [147.11.146.13 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from EVBYMINSA0039.epam.com (evbyminsa0039.epam.com [217.21.63.35])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id EC3D7E00847
-	for <yocto@yoctoproject.org>; Mon,  8 Sep 2014 05:04:29 -0700 (PDT)
-Received: from EPBYMINSA0032.epam.com (10.6.110.32) by EPBYMINSA0001.epam.com
-	(10.6.110.2) with Microsoft SMTP Server (TLS) id 15.0.995.29;
-	Mon, 8 Sep 2014 15:04:27 +0300
-Received: from EPBYMINSA0032.epam.com ([::1]) by EPBYMINSA0032.epam.com
-	([::1]) with mapi id 15.00.0995.028; Mon, 8 Sep 2014 15:04:24 +0300
-From: Vladimir Redzhepov <Vladimir_Redzhepov@epam.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: [meta-oracle-java][PATCH v2] Add support for Java SE Embedded
-Thread-Index: Ac/LXOuZg1oca3NuRqS8mLGIOxzE0w==
-Date: Mon, 8 Sep 2014 12:04:23 +0000
-Message-ID: <f5853f85c69e409593c89e39260ca912@EPBYMINSA0032.epam.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.6.137.75]
+Received: from mail1.windriver.com (mail1.windriver.com [147.11.146.13])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id ADFACE0056A
+	for <yocto@yoctoproject.org>; Mon,  8 Sep 2014 05:15:05 -0700 (PDT)
+Received: from ALA-HCB.corp.ad.wrs.com (ala-hcb.corp.ad.wrs.com
+	[147.11.189.41])
+	by mail1.windriver.com (8.14.9/8.14.5) with ESMTP id s88CF2Hs020292
+	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
+	Mon, 8 Sep 2014 05:15:03 -0700 (PDT)
+Received: from server.local (128.224.20.134) by ALA-HCB.corp.ad.wrs.com
+	(147.11.189.41) with Microsoft SMTP Server id 14.3.174.1;
+	Mon, 8 Sep 2014 05:15:01 -0700
+Message-ID: <540D9DC2.5010900@windriver.com>
+Date: Mon, 8 Sep 2014 08:14:58 -0400
+From: Bruce Ashfield <bruce.ashfield@windriver.com>
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.9;
+	rv:24.0) Gecko/20100101 Thunderbird/24.6.0
 MIME-Version: 1.0
-Subject: [meta-oracle-java][PATCH v2] Add support for Java SE Embedded
+To: Ilya Dmitrichenko <errordeveloper@gmail.com>
+References: <CAPhDKbFei3vk24Zt2K169DGW+_QLhEWtV+MGXFPOgOr8TFFX0w@mail.gmail.com>	<540C68E0.5050907@windriver.com>
+	<CAPhDKbGc=aZ0Uy2XD5nSivugzwERKFJXbW3MJH=ye4UEM-X5Tg@mail.gmail.com>
+In-Reply-To: <CAPhDKbGc=aZ0Uy2XD5nSivugzwERKFJXbW3MJH=ye4UEM-X5Tg@mail.gmail.com>
+Cc: yocto <yocto@yoctoproject.org>
+Subject: Re: Kernel features
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,76 +45,129 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 08 Sep 2014 12:04:34 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Mon, 08 Sep 2014 12:15:11 -0000
+Content-Type: text/plain; charset="ISO-8859-1"; format=flowed
+Content-Transfer-Encoding: 7bit
 
-From a68c728141f369e1ac41f2aaf40915cf14ad341f Mon Sep 17 00:00:00 2001
-From: Vladimir Redzhepov <vladimir_redzhepov@epam.com>
-Date: Mon, 8 Sep 2014 14:42:28 +0300
-Subject: [PATCH] Add support for Java SE Embedded
+On 2014-09-08, 1:50 AM, Ilya Dmitrichenko wrote:
+> Hi Bruce,
+>
+> On 7 September 2014 15:17, Bruce Ashfield <bruce.ashfield@windriver.com> wrote:
+>> On 2014-09-07, 4:51 AM, Ilya Dmitrichenko wrote:
+>>>
+>>> Today I have spent quite a while trying to figure how KERNEL_FEATURES
+>>> works and why some of the things I pass in my configuration fragment
+>>> are not getting enabled.
+>>>
+>>> It turned out that some of the options no longer existed and some had
+>>> been renamed.
+>>
+>>
+>> Do you have an example ? We try and not rename or remove public facing
+>> configuration fragments, and hide the changing CONFIG_* values behind
+>> the fragment names.
+>
+> Here is what I was doing first:
+>
+> CONFIG_SND_OMAP_SOC=n
+> CONFIG_SND_OMAP_SOC_MCBSP=n
+> CONFIG_SND_OMAP_SOC_OMAP_TWL4030=n
+> CONFIG_SND_SOC_TWL4030=n
+> CONFIG_SND_AM335X_SOC_EVM=m
+> CONFIG_SND_AM33XX_SOC=m
+> CONFIG_SND_DAVINCI_SOC_MCASP=m
+> CONFIG_SND_HRTIMER=m
+>
+> This is resulted in disabled options propagating as expected and
+> CONFIG_SND_HRTIMER worked as well.
+>
+> The rest, however didn't.
 
-Signed-off-by: Vladimir Redzhepov <vladimir_redzhepov@epam.com>
----
- ...racle-jse-ejre-arm-vfp-hflt-client-headless_1.7.0.bb |  9 +++++++++
- recipes-devtools/oracle-java/oracle-jse-ejre.inc        | 17 +++++++++++++=
-++++
- 2 files changed, 26 insertions(+)
- create mode 100644 recipes-devtools/oracle-java/oracle-jse-ejre-arm-vfp-hf=
-lt-client-headless_1.7.0.bb
- create mode 100644 recipes-devtools/oracle-java/oracle-jse-ejre.inc
+Aha. The kernel configuration audit would have told you that some
+options were set, and didn't make it into the final .config
 
-diff --git a/recipes-devtools/oracle-java/oracle-jse-ejre-arm-vfp-hflt-clie=
-nt-headless_1.7.0.bb b/recipes-devtools/oracle-java/oracle-jse-ejre-arm-vfp=
--hflt-client-headless_1.7.0.bb
-new file mode 100644
-index 0000000..bfa8011
---- /dev/null
-+++ b/recipes-devtools/oracle-java/oracle-jse-ejre-arm-vfp-hflt-client-head=
-less_1.7.0.bb
-@@ -0,0 +1,9 @@
-+PV_UPDATE =3D "60"
-+BUILD_NUMBER =3D "19"
-+
-+require oracle-jse-ejre.inc
-+
-+SRC_URI =3D "http://download.oracle.com/otn/java/ejre/7u${PV_UPDATE}-b${BU=
-ILD_NUMBER}/ejre-7u${PV_UPDATE}-fcs-b${BUILD_NUMBER}-linux-arm-vfp-hflt-cli=
-ent_headless-07_may_2014.tar.gz"
-+
-+SRC_URI[md5sum] =3D "b9b8f598b0a7f49e4d221f16ba25c6c0"
-+SRC_URI[sha256sum] =3D "ed061060011d88efe5563c2949c00993db85db17ab94f18a78=
-713007a2b90faf"
-diff --git a/recipes-devtools/oracle-java/oracle-jse-ejre.inc b/recipes-dev=
-tools/oracle-java/oracle-jse-ejre.inc
-new file mode 100644
-index 0000000..7889684
---- /dev/null
-+++ b/recipes-devtools/oracle-java/oracle-jse-ejre.inc
-@@ -0,0 +1,17 @@
-+SUMMARY =3D "Oracle Java SE runtime environment binaries"
-+DESCRIPTION =3D "This is the proprietary JRE from Sun/Oracle, with the Hot=
-spot JVM. It is\
-+ provided by Sun/Oracle only in binary format.\
-+ Java Platform, Standard Edition (Java SE) lets you develop and deploy Jav=
-a\
-+ applications on desktops and servers, as well as in today's demanding\
-+ embedded environments. Java offers the rich user interface, performance,\
-+ versatility, portability, and security that today's applications require.=
-\
-+ The JRE (Java Runtime Environment) is needed on a system to run Java\
-+ applications and applets"
-+
-+JDK_JRE =3D "ejre"
-+require oracle-jse.inc
-+
-+LIC_FILES_CHKSUM =3D "\
-+	file://${WORKDIR}/${JDK_JRE}${PV}_${PV_UPDATE}/COPYRIGHT;md5=3D3a11238025=
-bf13b87f04753183ffeb90 \
-+	file://${WORKDIR}/${JDK_JRE}${PV}_${PV_UPDATE}/THIRDPARTYLICENSEREADME.tx=
-t;md5=3Dc339b34e3da6673d2c5950d0f8808f8c \
-+	"
---=20
-2.1.0
+>
+> It turned out that basically CONFIG_SND_AM335X_SOC_EVM is misspelled
+> and should be called CONFIG_SND_AM33XX_SOC_EVM. I think there must be
+> a way to verify whether this existed or not.
+>
+> It then also turned out that CONFIG_SND_AM335X_SOC_EVM depends on
+> CONFIG_SND_DAVINCI_SOC, and I had to enable that one and ensure it
+> comes first.
+
+And the audit would have told you that you had an invalid option
+(i.e. the misspelled one didn't appear in any Kconfig in the kernel).
+
+>
+> This is a working set:
+>
+> CONFIG_SND_OMAP_SOC=m
+> CONFIG_SND_OMAP_SOC_MCBSP=m
+> CONFIG_SND_OMAP_SOC_OMAP_TWL4030=m
+> CONFIG_SND_SOC_TWL4030=m
+> CONFIG_SND_DAVINCI_SOC=m
+> CONFIG_SND_AM33XX_SOC_EVM=m
+> CONFIG_SND_DAVINCI_SOC_MCASP=m
+> CONFIG_SND_HRTIMER=m
+>
+>
+>>> The question is really why would this not get detected by
+>>> kernel_configcheck or any other step?
+>>>
+>>> I'm guessing this might be the case of how kconfig works, perhaps...
+>>> So I wonder whether anyone have looked into how we could actually get
+>>> the feature dependency graph from kconfig to bitbake or at least some
+>>> sort of helper tool? Perhaps parsing kconfig manifests in Python would
+>>> be a starting point...
+>>
+>>
+>> There have been many efforts are changing, writing and processing
+>> Kconfig constructs in other languages .. they all end up being
+>> pretty much a re-implementation of Kconfig, and hence a big effort
+>> that needs to be continuously maintained over time .. also a big
+>> effort.
+>
+> I basically think that we could do something better then blindly
+> throwing a set of options without verifying it.
+
+Ah, but we do verify it. There's a check config task, that used to
+be more visible, I got complaints and we hid it. I have a 1.7 task
+to make it more visible again :)
+
+>
+> The reason I mentioned Python was that I though of sharing Kconfig's
+> dependency graph with bitbake and thereby detecting errors like the
+> above.
+>
+> As a user, this is what I'd love to see:
+>
+> Error: The Kconfig option CONFIG_SND_AM335X_SOC_EVM that you have
+> specified doesn't exist. (Did you mean CONFIG_SND_AM33XX_SOC_EVM?)
+>
+> Error: The Kconfig option CONFIG_SND_AM33XX_SOC that you have
+> specified doesn't exist. (Nothing similar exists)
+
+Pretty much already done.
+
+>
+> Warning: The Kconfig option CONFIG_SND_DAVINCI_SOC_MCASP that you have
+> specified depends on CONFIG_SND_DAVINCI_SOC. I will enable
+> CONFIG_SND_DAVINCI_SOC as a module for you.
+
+This one you can't do without parsing and evaluating all the Kconfigs,
+which is expensive, and hard to do. We can do something basic by looking
+at only the direct options within a particular Kconfig, since they are
+immediately available.
+
+But we do detect a whole set of other errors already, and for the most
+part, they lead pretty quickly to the issue.
+
+Bruce
+
+>
+> Hope this makes more sense.
+>
+> Cheers,
+>
+
 
