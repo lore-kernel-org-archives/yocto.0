@@ -1,6 +1,6 @@
 Return-Path: <opensource@keylevel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id CBFC7E00786; Mon,  8 Sep 2014 12:08:39 -0700 (PDT)
+	id BCCFDE0085F; Mon,  8 Sep 2014 12:11:00 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -14,25 +14,25 @@ X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 Received: from a180.4uh.net (a180.4uh.net [89.248.60.180])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 533E6E0034C
-	for <yocto@yoctoproject.org>; Mon,  8 Sep 2014 12:08:35 -0700 (PDT)
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6CC42E00814
+	for <yocto@yoctoproject.org>; Mon,  8 Sep 2014 12:10:58 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=keylevel.com;
 	s=default; 
 	h=To:References:Message-Id:Content-Transfer-Encoding:Cc:Date:In-Reply-To:From:Subject:Mime-Version:Content-Type;
-	bh=F5UPoJQnQtP10/3NZ385qMxmV7haJflTP1Rh5xNWsxM=; 
-	b=RZN/EEid4SFeDPZEORfTcCgzWnEQbWPt9gzZAwLKutTef+xingCTVJwF/Mkb4CnyEfUygPWjhzY2nT8CEhJREqHrc2vW/vem5xm9E7XtA7daC6xksy7UocLSN8QAnb6ucRBz/zQL+L8t+s31BWr8YqhBNUgy/CJ1nglyhXFopcY=;
-Received: from [109.224.171.0] (port=61594
+	bh=mYkC9WAWYCirZIaRioG0FQzEtC8JiUXtNB+FeripuJ0=; 
+	b=fFUHPb9Sz3C4cdw3pfyrIFJobWognvsNwENmSfGnKawLFQlZfd3n3HgE381oLwBb15BV3XLww0AwtyEGsG1qAsNmddwuG03D4/PySk7BFljtVKDemB27SFin/9xN89BFKW4m6cOZL3q6jFrDgZm2e88QhSwCaY/CzTeu5fFHEZo=;
+Received: from [109.224.171.0] (port=60630
 	helo=macbook-pro.durham.keylevel.com)
 	by a180.4uh.net with esmtpsa (TLSv1:AES128-SHA:128) (Exim 4.82)
 	(envelope-from <opensource@keylevel.com>)
-	id 1XR4Ie-001hKA-BX; Mon, 08 Sep 2014 20:08:30 +0100
+	id 1XR4Ky-001hv3-Fk; Mon, 08 Sep 2014 20:10:54 +0100
 Mime-Version: 1.0 (Mac OS X Mail 7.3 \(1878.6\))
 From: Chris Tapp <opensource@keylevel.com>
-In-Reply-To: <1842521.5a185EsvZP@peggleto-mobl5.ger.corp.intel.com>
-Date: Mon, 8 Sep 2014 20:08:28 +0100
-Message-Id: <3A36BB2E-F11B-4011-9C78-456A5E40D4D5@keylevel.com>
-References: <F2F22E20-4E45-4693-95D5-9FC01F81E8D8@keylevel.com>
-	<1842521.5a185EsvZP@peggleto-mobl5.ger.corp.intel.com>
+In-Reply-To: <7090234.WN5mfuZ9Sn@peggleto-mobl5.ger.corp.intel.com>
+Date: Mon, 8 Sep 2014 20:10:53 +0100
+Message-Id: <D8CCFFB4-9AC4-4021-A04E-A5D36463EBA8@keylevel.com>
+References: <E4E599B2-1AEC-4FCD-9AA8-BEA0A0BB541A@keylevel.com>
+	<7090234.WN5mfuZ9Sn@peggleto-mobl5.ger.corp.intel.com>
 To: Paul Eggleton <paul.eggleton@linux.intel.com>
 X-Mailer: Apple Mail (2.1878.6)
 X-OutGoing-Spam-Status: No, score=-1.0
@@ -45,7 +45,7 @@ X-AntiAbuse: Sender Address Domain - keylevel.com
 X-Get-Message-Sender-Via: a180.4uh.net: authenticated_id:
 	chris.tapp@keylevel.com
 Cc: yocto@yoctoproject.org
-Subject: Re: How does RRECOMMENDS work?
+Subject: Re: Daisy mercurial support
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -57,55 +57,42 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 08 Sep 2014 19:08:39 -0000
+X-List-Received-Date: Mon, 08 Sep 2014 19:11:00 -0000
 Content-Type: text/plain; charset=us-ascii
 Content-Transfer-Encoding: quoted-printable
 
 Hi Paul,
 
-On 8 Sep 2014, at 09:40, Paul Eggleton <paul.eggleton@linux.intel.com> =
+On 8 Sep 2014, at 09:44, Paul Eggleton <paul.eggleton@linux.intel.com> =
 wrote:
 
 > Hi Chris,
 >=20
-> On Monday 08 September 2014 08:55:15 Chris Tapp wrote:
->> I've got a recipe to which I've added:
+> On Sunday 07 September 2014 22:59:58 Chris Tapp wrote:
+>> I'm trying to build a recipe under "daisy" that uses a mercurial =
+repository,
+>> but I'm getting "Nothing provides mercurial-native".
 >>=20
->> RRECOMMENDS_${PN} =3D "<package>"
+>> Adding:
 >>=20
->> The documentation says that "If, during the build, a package from the
->> RRECOMMENDS list cannot be found, the build process continues without =
-an
->> error".
+>>  ASSUME_PROVIDED +=3D "mercurial-native"
 >>=20
->> I tried a build without <package> (i.e. no recipe) and it failed with
->> "Nothing provides <package>". Is this the expected behaviour? If so, =
-is
->> there a way I can pull in a package if it is build-able and skip it
->> otherwise?
->>=20
->> In this case <package> contains some utilities which can be of help, =
-but
->> they're not required in any way at runtime.
+>> to my local.conf appears to fix this, but is this what I should be =
+doing?
 >=20
-> Scott has just pinged me about this, the manual is slightly =
-misleading. How it=20
-> works is, if you have an item mentioned in RRECOMMENDS, there must be =
+> I guess we haven't paid too much attention to this since we don't tend =
+to have=20
+> recipes that fetch from mercurial repositories, so we've left it open =
+- either=20
+> you do this and ensure mercurial is installed on the host, or provide =
 a recipe=20
-> that provides that item via RPROVIDES (or indirectly via PACKAGES or=20=
+> so that it can be built (one is provided in meta-oe, incidentally).
 
-> PACKAGES_DYNAMIC), otherwise you will receive the error you mentioned.=20=
+Thanks - I'll probably just run with the host installed mercurial (until =
+I find a host without it!).
 
-> However, if the package does not actually end up being produced, that =
-is OK.
->=20
-> RRECOMMENDS is generally for things that you normally would expect to =
-be=20
-> available, but may not be for some reason (e.g. kernel modules that =
-might=20
-> instead be compiled in and thus are not produced as a package).
-
-That makes sense. Thanks for the clarification :-)
+I must admit, this one (dvb-apps) is the first one I've come across that =
+uses it ;-)
 
 > Cheers,
 > Paul
