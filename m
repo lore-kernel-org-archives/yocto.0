@@ -1,6 +1,6 @@
-Return-Path: <Maxin.John@enea.com>
+Return-Path: <Vladimir_Redzhepov@epam.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id D29DCE00849; Mon,  8 Sep 2014 04:38:00 -0700 (PDT)
+	id F0804E00848; Mon,  8 Sep 2014 05:03:27 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -8,24 +8,28 @@ X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
 	version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mx-3.enea.com (sestofw01.enea.se [192.36.1.252])
-	by yocto-www.yoctoproject.org (Postfix) with SMTP id 5B470E0056A
-	for <yocto@yoctoproject.org>; Mon,  8 Sep 2014 04:37:47 -0700 (PDT)
-Received: from sestofb10.enea.se (172.21.3.145) by smtp.enea.com
-	(172.21.1.209) with Microsoft SMTP Server id 14.3.158.1; Mon, 8 Sep 2014
-	13:37:46 +0200
-Received: by sestofb10.enea.se (Postfix, from userid 4454)	id BE24B288E2C;
-	Mon,  8 Sep 2014 13:37:46 +0200 (CEST)
-Date: Mon, 8 Sep 2014 13:37:46 +0200
-From: "Maxin B. John" <maxin.john@enea.com>
-To: Vladimir Redzhepov <Vladimir_Redzhepov@epam.com>
-Message-ID: <20140908113746.GA4008@sestofb10.enea.se>
+Received: from EVBYMINSA0102.epam.com (evbyminsa0102.epam.com [217.21.63.37])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 87916E0056A
+	for <yocto@yoctoproject.org>; Mon,  8 Sep 2014 05:03:19 -0700 (PDT)
+Received: from EPBYMINSA0032.epam.com (10.6.110.32) by EPBYMINSA0001.epam.com
+	(10.6.110.2) with Microsoft SMTP Server (TLS) id 15.0.995.29;
+	Mon, 8 Sep 2014 15:03:11 +0300
+Received: from EPBYMINSA0032.epam.com ([::1]) by EPBYMINSA0032.epam.com
+	([::1]) with mapi id 15.00.0995.028; Mon, 8 Sep 2014 15:03:11 +0300
+From: Vladimir Redzhepov <Vladimir_Redzhepov@epam.com>
+To: "Maxin B. John" <maxin.john@enea.com>
+Thread-Topic: [meta-oracle-java][PATCH v3] Update jdk and jre to version 67
+Thread-Index: Ac/IW7NN6wAIGkrBSLWjFhTnfngVygC5HawAAAcFlgA=
+Date: Mon, 8 Sep 2014 12:03:10 +0000
+Message-ID: <13489251e0a34ccea9e0e08ff67a1d70@EPBYMINSA0032.epam.com>
 References: <56338fcf02a045d594899097d7186b72@EPBYMINSA0032.epam.com>
+	<20140908113746.GA4008@sestofb10.enea.se>
+In-Reply-To: <20140908113746.GA4008@sestofb10.enea.se>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.6.137.75]
 MIME-Version: 1.0
-In-Reply-To: <56338fcf02a045d594899097d7186b72@EPBYMINSA0032.epam.com>
-User-Agent: Mutt/1.5.21 (2010-09-15)
-Received-SPF: None (SESTOEX03.enea.se: maxin.john@enea.com does not
-	designate permitted sender hosts)
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
 Subject: Re: [meta-oracle-java][PATCH v3] Update jdk and jre to version 67
 X-BeenThere: yocto@yoctoproject.org
@@ -39,222 +43,173 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 08 Sep 2014 11:38:00 -0000
+X-List-Received-Date: Mon, 08 Sep 2014 12:03:28 -0000
+Content-Language: en-US
 Content-Type: text/plain; charset="utf-8"
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: base64
 
-Hi,
-
-Manually merged this patch (There were some difficulties in applying
-this patch directly - please take care of it next time). Thanks !
-
-On Thu, Sep 04, 2014 at 04:18:00PM +0000, Vladimir Redzhepov wrote:
-> From 61efb0099635325b21d589dd96308c7fa9b668de Mon Sep 17 00:00:00 2001
-> From: Vladimir Redzhepov <vladimir_redzhepov@epam.com>
-> Date: Thu, 4 Sep 2014 18:37:50 +0300
-> Subject: [PATCH] Update jdk and jre to version 67.
-> MIME-Version: 1.0
-> Content-Type: text/plain; charset=3DUTF-8
-> Content-Transfer-Encoding: 8bit
->=20
-> 1. Add BUILD_NUMBER variable.
-> 2. Change SRC_URI for all recipes.
-> 3. Recipe cleanup - remove redundant PR =3D "r0" from all recipes.
-> 4. Update checksums for license files.
->=20
-> Changes in COPYRIGHT:
-> -Copyright =EF=BF=BD 1993, 2013, Oracle and/or its affiliates.
-> +Copyright =EF=BF=BD 1993, 2014, Oracle and/or its affiliates.
->=20
-> Changes in THIRDPARTYLICENSEREADME.txt:
-> +%% This notice is provided with respect to Sparkle v.1.5,
-> +which is included with JRE 7 on Mac OS X.
-> +
-> +--- begin of LICENSE ---
-> +
-> +Copyright (c) 2012 Sparkle.org and Andy Matuschak
-> +
-> +Permission is hereby granted, free of charge, to any person obtaining a =
-copy
-> +of this software and associated documentation files (the "Software"), to=
- deal
-> +in the Software without restriction, including without limitation the ri=
-ghts
-> +to use, copy, modify, merge, publish, distribute, sublicense, and/or sel=
-l
-> +copies of the Software, and to permit persons to whom the Software is
-> +furnished to do so, subject to the following conditions:
-> +
-> +The above copyright notice and this permission notice shall be included =
-in all
-> +copies or substantial portions of the Software.
-> +
-> +THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS =
-OR
-> +IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-> +FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL =
-THE
-> +AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-> +LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING =
-FROM,
-> +OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS I=
-N THE
-> +SOFTWARE.
-> +
-> +--- end of LICENSE ---
-> +
-> +------------------------------------------------------------------------=
--------
-> +
->  %% Portions licensed from Taligent, Inc.
->=20
->  ------------------------------------------------------------------------=
--------
->  %% This notice is provided with respect to the following which is
->  included with JRE 7, JDK 7, and OpenJDK 7, except where noted:
->=20
-> -  Apache Derby 10.8.1.2        [included with JDK 7 only]
-> +  Apache Derby 10.8.3.0        [included with JDK 7 only]
->    Apache Jakarta BCEL 5.2
->    Apache Jakarta Regexp 1.4
->    Apache Santuario XMLSec-Java 1.4.2
->    Apache Xalan-Java 2.7.1
-> -  Apache Xerces2 Java 2.10.0
-> +  Apache Xerces2 Java 2.11.0
->    Apache XML Resolver 1.1
->=20
-> Signed-off-by: Vladimir Redzhepov <vladimir_redzhepov@epam.com>
-> ---
->  recipes-devtools/oracle-java/oracle-jse-jdk-i586_1.7.0.bb   | 10 +++++--=
----
->  recipes-devtools/oracle-java/oracle-jse-jdk-x86-64_1.7.0.bb | 10 +++++--=
----
->  recipes-devtools/oracle-java/oracle-jse-jre-i586_1.7.0.bb   | 10 +++++--=
----
->  recipes-devtools/oracle-java/oracle-jse-jre-x86-64_1.7.0.bb | 10 +++++--=
----
->  recipes-devtools/oracle-java/oracle-jse.inc                 |  4 ++--
->  5 files changed, 22 insertions(+), 22 deletions(-)
->=20
-> diff --git a/recipes-devtools/oracle-java/oracle-jse-jdk-i586_1.7.0.bb b/=
-recipes-devtools/oracle-java/oracle-jse-jdk-i586_1.7.0.bb
-> index 978fbd5..0667161 100644
-> --- a/recipes-devtools/oracle-java/oracle-jse-jdk-i586_1.7.0.bb
-> +++ b/recipes-devtools/oracle-java/oracle-jse-jdk-i586_1.7.0.bb
-> @@ -1,9 +1,9 @@
-> -PR =3D "r0"
-> -PV_UPDATE =3D "25"
-> +PV_UPDATE =3D "67"
-> +BUILD_NUMBER =3D "01"
-> =20
->  require oracle-jse-jdk.inc
-> =20
-> -SRC_URI =3D "http://download.oracle.com/otn-pub/java/jdk/7u25-b15/jdk-7u=
-25-linux-i586.tar.gz"
-> +SRC_URI =3D "http://download.oracle.com/otn-pub/java/jdk/7u${PV_UPDATE}-=
-b${BUILD_NUMBER}/jdk-7u${PV_UPDATE}-linux-i586.tar.gz"
-> =20
-> -SRC_URI[md5sum] =3D "23176d0ebf9dedd21e3150b4bb0ee776"
-> -SRC_URI[sha256sum] =3D "dd89b20afa939992bb7fdc44837fa64f0a98d7ee1e5706fe=
-8a2d9e2247ba6de7"
-> +SRC_URI[md5sum] =3D "715b0e8ba2a06bded75f6a92427e2701"
-> +SRC_URI[sha256sum] =3D "b6231064ad2c9fbbcb099dba17b1dcf12033e922b9c24e43=
-48b9a01e9ebaa85c"
-> diff --git a/recipes-devtools/oracle-java/oracle-jse-jdk-x86-64_1.7.0.bb =
-b/recipes-devtools/oracle-java/oracle-jse-jdk-x86-64_1.7.0.bb
-> index 7979401..f18ce55 100644
-> --- a/recipes-devtools/oracle-java/oracle-jse-jdk-x86-64_1.7.0.bb
-> +++ b/recipes-devtools/oracle-java/oracle-jse-jdk-x86-64_1.7.0.bb
-> @@ -1,9 +1,9 @@
-> -PR =3D "r0"
-> -PV_UPDATE =3D "25"
-> +PV_UPDATE =3D "67"
-> +BUILD_NUMBER =3D "01"
-> =20
->  require oracle-jse-jdk.inc
-> =20
-> -SRC_URI =3D "http://download.oracle.com/otn-pub/java/jdk/7u25-b15/jdk-7u=
-25-linux-x64.tar.gz"
-> +SRC_URI =3D "http://download.oracle.com/otn-pub/java/jdk/7u${PV_UPDATE}-=
-b${BUILD_NUMBER}/jdk-7u${PV_UPDATE}-linux-x64.tar.gz"
-> =20
-> -SRC_URI[md5sum] =3D "83ba05e260813f7a9140b76e3d37ea33"
-> -SRC_URI[sha256sum] =3D "f80dff0e19ca8d038cf7fe3aaa89538496b80950f4d10ff5=
-f457988ae159b2a6"
-> +SRC_URI[md5sum] =3D "81e3e2df33e13781e5fac5756ed90e67"
-> +SRC_URI[sha256sum] =3D "54dd1e13edf18c64941a55da9c91210b53dc5cf48f1a8f45=
-38c863049e346335"
-> diff --git a/recipes-devtools/oracle-java/oracle-jse-jre-i586_1.7.0.bb b/=
-recipes-devtools/oracle-java/oracle-jse-jre-i586_1.7.0.bb
-> index 6125025..d0a9300 100644
-> --- a/recipes-devtools/oracle-java/oracle-jse-jre-i586_1.7.0.bb
-> +++ b/recipes-devtools/oracle-java/oracle-jse-jre-i586_1.7.0.bb
-> @@ -1,9 +1,9 @@
-> -PR =3D "r0"
-> -PV_UPDATE =3D "25"
-> +PV_UPDATE =3D "67"
-> +BUILD_NUMBER =3D "01"
-> =20
->  require oracle-jse-jre.inc
-> =20
-> -SRC_URI =3D "http://download.oracle.com/otn-pub/java/jdk/7u25-b15/jre-7u=
-25-linux-i586.tar.gz"
-> +SRC_URI =3D "http://download.oracle.com/otn-pub/java/jdk/7u${PV_UPDATE}-=
-b${BUILD_NUMBER}/jre-7u${PV_UPDATE}-linux-i586.tar.gz"
-> =20
-> -SRC_URI[md5sum] =3D "0e9ccefe49e937e592dbb605f2e8e7d8"
-> -SRC_URI[sha256sum] =3D "4016965536d8607743267812ab04e6d428036dda43289374=
-8c1df6cb77b09628"
-> +SRC_URI[md5sum] =3D "2a256eb2a91f0084e58c612636342c2b"
-> +SRC_URI[sha256sum] =3D "eadec83a54d3a9d09248a8d16b21c03da9afffc7317e775f=
-b8db962620a0781d"
-> diff --git a/recipes-devtools/oracle-java/oracle-jse-jre-x86-64_1.7.0.bb =
-b/recipes-devtools/oracle-java/oracle-jse-jre-x86-64_1.7.0.bb
-> index 4058d23..0d5f157 100644
-> --- a/recipes-devtools/oracle-java/oracle-jse-jre-x86-64_1.7.0.bb
-> +++ b/recipes-devtools/oracle-java/oracle-jse-jre-x86-64_1.7.0.bb
-> @@ -1,9 +1,9 @@
-> -PR =3D "r0"
-> -PV_UPDATE =3D "25"
-> +PV_UPDATE =3D "67"
-> +BUILD_NUMBER =3D "01"
-> =20
->  require oracle-jse-jre.inc
-> =20
-> -SRC_URI =3D "http://download.oracle.com/otn-pub/java/jdk/7u25-b15/jre-7u=
-25-linux-x64.tar.gz"
-> +SRC_URI =3D "http://download.oracle.com/otn-pub/java/jdk/7u${PV_UPDATE}-=
-b${BUILD_NUMBER}/jre-7u${PV_UPDATE}-linux-x64.tar.gz"
-> =20
-> -SRC_URI[md5sum] =3D "743ee0ebf73ce428c912866d84e374e0"
-> -SRC_URI[sha256sum] =3D "3c4496316fb413d5ab0590e9971676a521b9a600b3ceaac3=
-11f04c18c98a98c0"
-> +SRC_URI[md5sum] =3D "9007c79167be0177fb47e5313c53d5cb"
-> +SRC_URI[sha256sum] =3D "726c37c07bb389b5b96674b7bcbc288e39fb8fbcd42369af=
-a364a18e66248b1f"
-> diff --git a/recipes-devtools/oracle-java/oracle-jse.inc b/recipes-devtoo=
-ls/oracle-java/oracle-jse.inc
-> index 3a4e20d..38ceef0 100644
-> --- a/recipes-devtools/oracle-java/oracle-jse.inc
-> +++ b/recipes-devtools/oracle-java/oracle-jse.inc
-> @@ -2,8 +2,8 @@ LICENSE_FLAGS =3D "oracle_java"
->  LICENSE =3D "Oracle_Binary_Code_License_Agreement"
->  LIC_FILES_CHKSUM =3D "\
->  	file://${WORKDIR}/${JDK_JRE}${PV}_${PV_UPDATE}/LICENSE;md5=3D98f46ab648=
-1d87c4d77e0e91a6dbc15f \
-> -	file://${WORKDIR}/${JDK_JRE}${PV}_${PV_UPDATE}/COPYRIGHT;md5=3D3a112380=
-25bf13b87f04753183ffeb90 \
-> -	file://${WORKDIR}/${JDK_JRE}${PV}_${PV_UPDATE}/THIRDPARTYLICENSEREADME.=
-txt;md5=3Dc339b34e3da6673d2c5950d0f8808f8c \
-> +	file://${WORKDIR}/${JDK_JRE}${PV}_${PV_UPDATE}/COPYRIGHT;md5=3Dbe9fe5d4=
-7a7dcfb78f142f487afb34bb \
-> +	file://${WORKDIR}/${JDK_JRE}${PV}_${PV_UPDATE}/THIRDPARTYLICENSEREADME.=
-txt;md5=3Df3a388961d24b8b72d412a079a878cdb \
->  	"
-> =20
->  FETCHCMD_wget_append =3D " --header=3DCookie:oraclelicense=3Da "
-> --=20
-Thanks and Regards,
-Maxin
+SGksDQoNClRoYW5rcyEgU3RyYW5nZSB0aGF0IGl0IG1heSBzZWVtIEkndmUgZG9uZSAnZ2l0IGFw
+cGx5IC0tY2hlY2sgLS12ZXJib3NlJyBiZWZvcmUgc2VuZGluZy4gSSdsbCBjaGVjayBwYXRjaGVz
+IG1vcmUgY2FyZWZ1bGx5IG5leHQgdGltZS4NCg0KPiAtLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0t
+LQ0KPiBGcm9tOiBNYXhpbiBCLiBKb2huIFttYWlsdG86bWF4aW4uam9obkBlbmVhLmNvbV0NCj4g
+U2VudDogTW9uZGF5LCBTZXB0ZW1iZXIgMDgsIDIwMTQgMjozOCBQTQ0KPiBUbzogVmxhZGltaXIg
+UmVkemhlcG92DQo+IENjOiB5b2N0b0B5b2N0b3Byb2plY3Qub3JnOyBQYXZlbCBTaHVtZWlrYQ0K
+PiBTdWJqZWN0OiBSZTogW21ldGEtb3JhY2xlLWphdmFdW1BBVENIIHYzXSBVcGRhdGUgamRrIGFu
+ZCBqcmUgdG8gdmVyc2lvbiA2Nw0KPiANCj4gSGksDQo+IA0KPiBNYW51YWxseSBtZXJnZWQgdGhp
+cyBwYXRjaCAoVGhlcmUgd2VyZSBzb21lIGRpZmZpY3VsdGllcyBpbiBhcHBseWluZw0KPiB0aGlz
+IHBhdGNoIGRpcmVjdGx5IC0gcGxlYXNlIHRha2UgY2FyZSBvZiBpdCBuZXh0IHRpbWUpLiBUaGFu
+a3MgIQ0KPiANCj4gT24gVGh1LCBTZXAgMDQsIDIwMTQgYXQgMDQ6MTg6MDBQTSArMDAwMCwgVmxh
+ZGltaXIgUmVkemhlcG92IHdyb3RlOg0KPiA+IEZyb20gNjFlZmIwMDk5NjM1MzI1YjIxZDU4OWRk
+OTYzMDhjN2ZhOWI2NjhkZSBNb24gU2VwIDE3IDAwOjAwOjAwDQo+IDIwMDENCj4gPiBGcm9tOiBW
+bGFkaW1pciBSZWR6aGVwb3YgPHZsYWRpbWlyX3JlZHpoZXBvdkBlcGFtLmNvbT4NCj4gPiBEYXRl
+OiBUaHUsIDQgU2VwIDIwMTQgMTg6Mzc6NTAgKzAzMDANCj4gPiBTdWJqZWN0OiBbUEFUQ0hdIFVw
+ZGF0ZSBqZGsgYW5kIGpyZSB0byB2ZXJzaW9uIDY3Lg0KPiA+IE1JTUUtVmVyc2lvbjogMS4wDQo+
+ID4gQ29udGVudC1UeXBlOiB0ZXh0L3BsYWluOyBjaGFyc2V0PVVURi04DQo+ID4gQ29udGVudC1U
+cmFuc2Zlci1FbmNvZGluZzogOGJpdA0KPiA+DQo+ID4gMS4gQWRkIEJVSUxEX05VTUJFUiB2YXJp
+YWJsZS4NCj4gPiAyLiBDaGFuZ2UgU1JDX1VSSSBmb3IgYWxsIHJlY2lwZXMuDQo+ID4gMy4gUmVj
+aXBlIGNsZWFudXAgLSByZW1vdmUgcmVkdW5kYW50IFBSID0gInIwIiBmcm9tIGFsbCByZWNpcGVz
+Lg0KPiA+IDQuIFVwZGF0ZSBjaGVja3N1bXMgZm9yIGxpY2Vuc2UgZmlsZXMuDQo+ID4NCj4gPiBD
+aGFuZ2VzIGluIENPUFlSSUdIVDoNCj4gPiAtQ29weXJpZ2h0IO+/vSAxOTkzLCAyMDEzLCBPcmFj
+bGUgYW5kL29yIGl0cyBhZmZpbGlhdGVzLg0KPiA+ICtDb3B5cmlnaHQg77+9IDE5OTMsIDIwMTQs
+IE9yYWNsZSBhbmQvb3IgaXRzIGFmZmlsaWF0ZXMuDQo+ID4NCj4gPiBDaGFuZ2VzIGluIFRISVJE
+UEFSVFlMSUNFTlNFUkVBRE1FLnR4dDoNCj4gPiArJSUgVGhpcyBub3RpY2UgaXMgcHJvdmlkZWQg
+d2l0aCByZXNwZWN0IHRvIFNwYXJrbGUgdi4xLjUsDQo+ID4gK3doaWNoIGlzIGluY2x1ZGVkIHdp
+dGggSlJFIDcgb24gTWFjIE9TIFguDQo+ID4gKw0KPiA+ICstLS0gYmVnaW4gb2YgTElDRU5TRSAt
+LS0NCj4gPiArDQo+ID4gK0NvcHlyaWdodCAoYykgMjAxMiBTcGFya2xlLm9yZyBhbmQgQW5keSBN
+YXR1c2NoYWsNCj4gPiArDQo+ID4gK1Blcm1pc3Npb24gaXMgaGVyZWJ5IGdyYW50ZWQsIGZyZWUg
+b2YgY2hhcmdlLCB0byBhbnkgcGVyc29uIG9idGFpbmluZyBhDQo+IGNvcHkNCj4gPiArb2YgdGhp
+cyBzb2Z0d2FyZSBhbmQgYXNzb2NpYXRlZCBkb2N1bWVudGF0aW9uIGZpbGVzICh0aGUgIlNvZnR3
+YXJlIiksIHRvDQo+IGRlYWwNCj4gPiAraW4gdGhlIFNvZnR3YXJlIHdpdGhvdXQgcmVzdHJpY3Rp
+b24sIGluY2x1ZGluZyB3aXRob3V0IGxpbWl0YXRpb24gdGhlIHJpZ2h0cw0KPiA+ICt0byB1c2Us
+IGNvcHksIG1vZGlmeSwgbWVyZ2UsIHB1Ymxpc2gsIGRpc3RyaWJ1dGUsIHN1YmxpY2Vuc2UsIGFu
+ZC9vciBzZWxsDQo+ID4gK2NvcGllcyBvZiB0aGUgU29mdHdhcmUsIGFuZCB0byBwZXJtaXQgcGVy
+c29ucyB0byB3aG9tIHRoZSBTb2Z0d2FyZSBpcw0KPiA+ICtmdXJuaXNoZWQgdG8gZG8gc28sIHN1
+YmplY3QgdG8gdGhlIGZvbGxvd2luZyBjb25kaXRpb25zOg0KPiA+ICsNCj4gPiArVGhlIGFib3Zl
+IGNvcHlyaWdodCBub3RpY2UgYW5kIHRoaXMgcGVybWlzc2lvbiBub3RpY2Ugc2hhbGwgYmUgaW5j
+bHVkZWQgaW4NCj4gYWxsDQo+ID4gK2NvcGllcyBvciBzdWJzdGFudGlhbCBwb3J0aW9ucyBvZiB0
+aGUgU29mdHdhcmUuDQo+ID4gKw0KPiA+ICtUSEUgU09GVFdBUkUgSVMgUFJPVklERUQgIkFTIElT
+IiwgV0lUSE9VVCBXQVJSQU5UWSBPRiBBTlkgS0lORCwNCj4gRVhQUkVTUyBPUg0KPiA+ICtJTVBM
+SUVELCBJTkNMVURJTkcgQlVUIE5PVCBMSU1JVEVEIFRPIFRIRSBXQVJSQU5USUVTIE9GDQo+IE1F
+UkNIQU5UQUJJTElUWSwNCj4gPiArRklUTkVTUyBGT1IgQSBQQVJUSUNVTEFSIFBVUlBPU0UgQU5E
+IE5PTklORlJJTkdFTUVOVC4gSU4gTk8NCj4gRVZFTlQgU0hBTEwgVEhFDQo+ID4gK0FVVEhPUlMg
+T1IgQ09QWVJJR0hUIEhPTERFUlMgQkUgTElBQkxFIEZPUiBBTlkgQ0xBSU0sIERBTUFHRVMNCj4g
+T1IgT1RIRVINCj4gPiArTElBQklMSVRZLCBXSEVUSEVSIElOIEFOIEFDVElPTiBPRiBDT05UUkFD
+VCwgVE9SVCBPUiBPVEhFUldJU0UsDQo+IEFSSVNJTkcgRlJPTSwNCj4gPiArT1VUIE9GIE9SIElO
+IENPTk5FQ1RJT04gV0lUSCBUSEUgU09GVFdBUkUgT1IgVEhFIFVTRSBPUiBPVEhFUg0KPiBERUFM
+SU5HUyBJTiBUSEUNCj4gPiArU09GVFdBUkUuDQo+ID4gKw0KPiA+ICstLS0gZW5kIG9mIExJQ0VO
+U0UgLS0tDQo+ID4gKw0KPiA+ICstLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tDQo+ID4gKw0KPiA+ICAl
+JSBQb3J0aW9ucyBsaWNlbnNlZCBmcm9tIFRhbGlnZW50LCBJbmMuDQo+ID4NCj4gPiAgLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLQ0KPiA+ICAlJSBUaGlzIG5vdGljZSBpcyBwcm92aWRlZCB3aXRoIHJl
+c3BlY3QgdG8gdGhlIGZvbGxvd2luZyB3aGljaCBpcw0KPiA+ICBpbmNsdWRlZCB3aXRoIEpSRSA3
+LCBKREsgNywgYW5kIE9wZW5KREsgNywgZXhjZXB0IHdoZXJlIG5vdGVkOg0KPiA+DQo+ID4gLSAg
+QXBhY2hlIERlcmJ5IDEwLjguMS4yICAgICAgICBbaW5jbHVkZWQgd2l0aCBKREsgNyBvbmx5XQ0K
+PiA+ICsgIEFwYWNoZSBEZXJieSAxMC44LjMuMCAgICAgICAgW2luY2x1ZGVkIHdpdGggSkRLIDcg
+b25seV0NCj4gPiAgICBBcGFjaGUgSmFrYXJ0YSBCQ0VMIDUuMg0KPiA+ICAgIEFwYWNoZSBKYWth
+cnRhIFJlZ2V4cCAxLjQNCj4gPiAgICBBcGFjaGUgU2FudHVhcmlvIFhNTFNlYy1KYXZhIDEuNC4y
+DQo+ID4gICAgQXBhY2hlIFhhbGFuLUphdmEgMi43LjENCj4gPiAtICBBcGFjaGUgWGVyY2VzMiBK
+YXZhIDIuMTAuMA0KPiA+ICsgIEFwYWNoZSBYZXJjZXMyIEphdmEgMi4xMS4wDQo+ID4gICAgQXBh
+Y2hlIFhNTCBSZXNvbHZlciAxLjENCj4gPg0KPiA+IFNpZ25lZC1vZmYtYnk6IFZsYWRpbWlyIFJl
+ZHpoZXBvdiA8dmxhZGltaXJfcmVkemhlcG92QGVwYW0uY29tPg0KPiA+IC0tLQ0KPiA+ICByZWNp
+cGVzLWRldnRvb2xzL29yYWNsZS1qYXZhL29yYWNsZS1qc2UtamRrLWk1ODZfMS43LjAuYmIgICB8
+IDEwICsrKysrLS0tLS0NCj4gPiAgcmVjaXBlcy1kZXZ0b29scy9vcmFjbGUtamF2YS9vcmFjbGUt
+anNlLWpkay14ODYtNjRfMS43LjAuYmIgfCAxMCArKysrKy0tLQ0KPiAtLQ0KPiA+ICByZWNpcGVz
+LWRldnRvb2xzL29yYWNsZS1qYXZhL29yYWNsZS1qc2UtanJlLWk1ODZfMS43LjAuYmIgICB8IDEw
+ICsrKysrLS0tLS0NCj4gPiAgcmVjaXBlcy1kZXZ0b29scy9vcmFjbGUtamF2YS9vcmFjbGUtanNl
+LWpyZS14ODYtNjRfMS43LjAuYmIgfCAxMCArKysrKy0tLS0NCj4gLQ0KPiA+ICByZWNpcGVzLWRl
+dnRvb2xzL29yYWNsZS1qYXZhL29yYWNsZS1qc2UuaW5jICAgICAgICAgICAgICAgICB8ICA0ICsr
+LS0NCj4gPiAgNSBmaWxlcyBjaGFuZ2VkLCAyMiBpbnNlcnRpb25zKCspLCAyMiBkZWxldGlvbnMo
+LSkNCj4gPg0KPiA+IGRpZmYgLS1naXQgYS9yZWNpcGVzLWRldnRvb2xzL29yYWNsZS1qYXZhL29y
+YWNsZS1qc2UtamRrLWk1ODZfMS43LjAuYmINCj4gYi9yZWNpcGVzLWRldnRvb2xzL29yYWNsZS1q
+YXZhL29yYWNsZS1qc2UtamRrLWk1ODZfMS43LjAuYmINCj4gPiBpbmRleCA5NzhmYmQ1Li4wNjY3
+MTYxIDEwMDY0NA0KPiA+IC0tLSBhL3JlY2lwZXMtZGV2dG9vbHMvb3JhY2xlLWphdmEvb3JhY2xl
+LWpzZS1qZGstaTU4Nl8xLjcuMC5iYg0KPiA+ICsrKyBiL3JlY2lwZXMtZGV2dG9vbHMvb3JhY2xl
+LWphdmEvb3JhY2xlLWpzZS1qZGstaTU4Nl8xLjcuMC5iYg0KPiA+IEBAIC0xLDkgKzEsOSBAQA0K
+PiA+IC1QUiA9ICJyMCINCj4gPiAtUFZfVVBEQVRFID0gIjI1Ig0KPiA+ICtQVl9VUERBVEUgPSAi
+NjciDQo+ID4gK0JVSUxEX05VTUJFUiA9ICIwMSINCj4gPg0KPiA+ICByZXF1aXJlIG9yYWNsZS1q
+c2UtamRrLmluYw0KPiA+DQo+ID4gLVNSQ19VUkkgPSAiaHR0cDovL2Rvd25sb2FkLm9yYWNsZS5j
+b20vb3RuLXB1Yi9qYXZhL2pkay83dTI1LWIxNS9qZGstDQo+IDd1MjUtbGludXgtaTU4Ni50YXIu
+Z3oiDQo+ID4gK1NSQ19VUkkgPSAiaHR0cDovL2Rvd25sb2FkLm9yYWNsZS5jb20vb3RuLQ0KPiBw
+dWIvamF2YS9qZGsvN3Uke1BWX1VQREFURX0tYiR7QlVJTERfTlVNQkVSfS9qZGstN3Uke1BWX1VQ
+REFURX0tDQo+IGxpbnV4LWk1ODYudGFyLmd6Ig0KPiA+DQo+ID4gLVNSQ19VUklbbWQ1c3VtXSA9
+ICIyMzE3NmQwZWJmOWRlZGQyMWUzMTUwYjRiYjBlZTc3NiINCj4gPiAtU1JDX1VSSVtzaGEyNTZz
+dW1dID0NCj4gImRkODliMjBhZmE5Mzk5OTJiYjdmZGM0NDgzN2ZhNjRmMGE5OGQ3ZWUxZTU3MDZm
+ZThhMmQ5ZTIyNDdiYTZkZTciDQo+ID4gK1NSQ19VUklbbWQ1c3VtXSA9ICI3MTViMGU4YmEyYTA2
+YmRlZDc1ZjZhOTI0MjdlMjcwMSINCj4gPiArU1JDX1VSSVtzaGEyNTZzdW1dID0NCj4gImI2MjMx
+MDY0YWQyYzlmYmJjYjA5OWRiYTE3YjFkY2YxMjAzM2U5MjJiOWMyNGU0MzQ4YjlhMDFlOWViYWE4
+NWMiDQo+ID4gZGlmZiAtLWdpdCBhL3JlY2lwZXMtZGV2dG9vbHMvb3JhY2xlLWphdmEvb3JhY2xl
+LWpzZS1qZGsteDg2LTY0XzEuNy4wLmJiDQo+IGIvcmVjaXBlcy1kZXZ0b29scy9vcmFjbGUtamF2
+YS9vcmFjbGUtanNlLWpkay14ODYtNjRfMS43LjAuYmINCj4gPiBpbmRleCA3OTc5NDAxLi5mMThj
+ZTU1IDEwMDY0NA0KPiA+IC0tLSBhL3JlY2lwZXMtZGV2dG9vbHMvb3JhY2xlLWphdmEvb3JhY2xl
+LWpzZS1qZGsteDg2LTY0XzEuNy4wLmJiDQo+ID4gKysrIGIvcmVjaXBlcy1kZXZ0b29scy9vcmFj
+bGUtamF2YS9vcmFjbGUtanNlLWpkay14ODYtNjRfMS43LjAuYmINCj4gPiBAQCAtMSw5ICsxLDkg
+QEANCj4gPiAtUFIgPSAicjAiDQo+ID4gLVBWX1VQREFURSA9ICIyNSINCj4gPiArUFZfVVBEQVRF
+ID0gIjY3Ig0KPiA+ICtCVUlMRF9OVU1CRVIgPSAiMDEiDQo+ID4NCj4gPiAgcmVxdWlyZSBvcmFj
+bGUtanNlLWpkay5pbmMNCj4gPg0KPiA+IC1TUkNfVVJJID0gImh0dHA6Ly9kb3dubG9hZC5vcmFj
+bGUuY29tL290bi1wdWIvamF2YS9qZGsvN3UyNS1iMTUvamRrLQ0KPiA3dTI1LWxpbnV4LXg2NC50
+YXIuZ3oiDQo+ID4gK1NSQ19VUkkgPSAiaHR0cDovL2Rvd25sb2FkLm9yYWNsZS5jb20vb3RuLQ0K
+PiBwdWIvamF2YS9qZGsvN3Uke1BWX1VQREFURX0tYiR7QlVJTERfTlVNQkVSfS9qZGstN3Uke1BW
+X1VQREFURX0tDQo+IGxpbnV4LXg2NC50YXIuZ3oiDQo+ID4NCj4gPiAtU1JDX1VSSVttZDVzdW1d
+ID0gIjgzYmEwNWUyNjA4MTNmN2E5MTQwYjc2ZTNkMzdlYTMzIg0KPiA+IC1TUkNfVVJJW3NoYTI1
+NnN1bV0gPQ0KPiAiZjgwZGZmMGUxOWNhOGQwMzhjZjdmZTNhYWE4OTUzODQ5NmI4MDk1MGY0ZDEw
+ZmY1ZjQ1Nzk4OGFlMTU5YjJhNiINCj4gPiArU1JDX1VSSVttZDVzdW1dID0gIjgxZTNlMmRmMzNl
+MTM3ODFlNWZhYzU3NTZlZDkwZTY3Ig0KPiA+ICtTUkNfVVJJW3NoYTI1NnN1bV0gPQ0KPiAiNTRk
+ZDFlMTNlZGYxOGM2NDk0MWE1NWRhOWM5MTIxMGI1M2RjNWNmNDhmMWE4ZjQ1MzhjODYzMDQ5ZTM0
+NjMzNSINCj4gPiBkaWZmIC0tZ2l0IGEvcmVjaXBlcy1kZXZ0b29scy9vcmFjbGUtamF2YS9vcmFj
+bGUtanNlLWpyZS1pNTg2XzEuNy4wLmJiDQo+IGIvcmVjaXBlcy1kZXZ0b29scy9vcmFjbGUtamF2
+YS9vcmFjbGUtanNlLWpyZS1pNTg2XzEuNy4wLmJiDQo+ID4gaW5kZXggNjEyNTAyNS4uZDBhOTMw
+MCAxMDA2NDQNCj4gPiAtLS0gYS9yZWNpcGVzLWRldnRvb2xzL29yYWNsZS1qYXZhL29yYWNsZS1q
+c2UtanJlLWk1ODZfMS43LjAuYmINCj4gPiArKysgYi9yZWNpcGVzLWRldnRvb2xzL29yYWNsZS1q
+YXZhL29yYWNsZS1qc2UtanJlLWk1ODZfMS43LjAuYmINCj4gPiBAQCAtMSw5ICsxLDkgQEANCj4g
+PiAtUFIgPSAicjAiDQo+ID4gLVBWX1VQREFURSA9ICIyNSINCj4gPiArUFZfVVBEQVRFID0gIjY3
+Ig0KPiA+ICtCVUlMRF9OVU1CRVIgPSAiMDEiDQo+ID4NCj4gPiAgcmVxdWlyZSBvcmFjbGUtanNl
+LWpyZS5pbmMNCj4gPg0KPiA+IC1TUkNfVVJJID0gImh0dHA6Ly9kb3dubG9hZC5vcmFjbGUuY29t
+L290bi1wdWIvamF2YS9qZGsvN3UyNS1iMTUvanJlLQ0KPiA3dTI1LWxpbnV4LWk1ODYudGFyLmd6
+Ig0KPiA+ICtTUkNfVVJJID0gImh0dHA6Ly9kb3dubG9hZC5vcmFjbGUuY29tL290bi0NCj4gcHVi
+L2phdmEvamRrLzd1JHtQVl9VUERBVEV9LWIke0JVSUxEX05VTUJFUn0vanJlLTd1JHtQVl9VUERB
+VEV9LQ0KPiBsaW51eC1pNTg2LnRhci5neiINCj4gPg0KPiA+IC1TUkNfVVJJW21kNXN1bV0gPSAi
+MGU5Y2NlZmU0OWU5MzdlNTkyZGJiNjA1ZjJlOGU3ZDgiDQo+ID4gLVNSQ19VUklbc2hhMjU2c3Vt
+XSA9DQo+ICI0MDE2OTY1NTM2ZDg2MDc3NDMyNjc4MTJhYjA0ZTZkNDI4MDM2ZGRhNDMyODkzNzQ4
+YzFkZjZjYjc3YjA5NjI4Ig0KPiA+ICtTUkNfVVJJW21kNXN1bV0gPSAiMmEyNTZlYjJhOTFmMDA4
+NGU1OGM2MTI2MzYzNDJjMmIiDQo+ID4gK1NSQ19VUklbc2hhMjU2c3VtXSA9DQo+ICJlYWRlYzgz
+YTU0ZDNhOWQwOTI0OGE4ZDE2YjIxYzAzZGE5YWZmZmM3MzE3ZTc3NWZiOGRiOTYyNjIwYTA3ODFk
+Ig0KPiA+IGRpZmYgLS1naXQgYS9yZWNpcGVzLWRldnRvb2xzL29yYWNsZS1qYXZhL29yYWNsZS1q
+c2UtanJlLXg4Ni02NF8xLjcuMC5iYg0KPiBiL3JlY2lwZXMtZGV2dG9vbHMvb3JhY2xlLWphdmEv
+b3JhY2xlLWpzZS1qcmUteDg2LTY0XzEuNy4wLmJiDQo+ID4gaW5kZXggNDA1OGQyMy4uMGQ1ZjE1
+NyAxMDA2NDQNCj4gPiAtLS0gYS9yZWNpcGVzLWRldnRvb2xzL29yYWNsZS1qYXZhL29yYWNsZS1q
+c2UtanJlLXg4Ni02NF8xLjcuMC5iYg0KPiA+ICsrKyBiL3JlY2lwZXMtZGV2dG9vbHMvb3JhY2xl
+LWphdmEvb3JhY2xlLWpzZS1qcmUteDg2LTY0XzEuNy4wLmJiDQo+ID4gQEAgLTEsOSArMSw5IEBA
+DQo+ID4gLVBSID0gInIwIg0KPiA+IC1QVl9VUERBVEUgPSAiMjUiDQo+ID4gK1BWX1VQREFURSA9
+ICI2NyINCj4gPiArQlVJTERfTlVNQkVSID0gIjAxIg0KPiA+DQo+ID4gIHJlcXVpcmUgb3JhY2xl
+LWpzZS1qcmUuaW5jDQo+ID4NCj4gPiAtU1JDX1VSSSA9ICJodHRwOi8vZG93bmxvYWQub3JhY2xl
+LmNvbS9vdG4tcHViL2phdmEvamRrLzd1MjUtYjE1L2pyZS0NCj4gN3UyNS1saW51eC14NjQudGFy
+Lmd6Ig0KPiA+ICtTUkNfVVJJID0gImh0dHA6Ly9kb3dubG9hZC5vcmFjbGUuY29tL290bi0NCj4g
+cHViL2phdmEvamRrLzd1JHtQVl9VUERBVEV9LWIke0JVSUxEX05VTUJFUn0vanJlLTd1JHtQVl9V
+UERBVEV9LQ0KPiBsaW51eC14NjQudGFyLmd6Ig0KPiA+DQo+ID4gLVNSQ19VUklbbWQ1c3VtXSA9
+ICI3NDNlZTBlYmY3M2NlNDI4YzkxMjg2NmQ4NGUzNzRlMCINCj4gPiAtU1JDX1VSSVtzaGEyNTZz
+dW1dID0NCj4gIjNjNDQ5NjMxNmZiNDEzZDVhYjA1OTBlOTk3MTY3NmE1MjFiOWE2MDBiM2NlYWFj
+MzExZjA0YzE4Yzk4YTk4YzAiDQo+ID4gK1NSQ19VUklbbWQ1c3VtXSA9ICI5MDA3Yzc5MTY3YmUw
+MTc3ZmI0N2U1MzEzYzUzZDVjYiINCj4gPiArU1JDX1VSSVtzaGEyNTZzdW1dID0NCj4gIjcyNmMz
+N2MwN2JiMzg5YjViOTY2NzRiN2JjYmMyODhlMzlmYjhmYmNkNDIzNjlhZmEzNjRhMThlNjYyNDhi
+MWYiDQo+ID4gZGlmZiAtLWdpdCBhL3JlY2lwZXMtZGV2dG9vbHMvb3JhY2xlLWphdmEvb3JhY2xl
+LWpzZS5pbmMgYi9yZWNpcGVzLQ0KPiBkZXZ0b29scy9vcmFjbGUtamF2YS9vcmFjbGUtanNlLmlu
+Yw0KPiA+IGluZGV4IDNhNGUyMGQuLjM4Y2VlZjAgMTAwNjQ0DQo+ID4gLS0tIGEvcmVjaXBlcy1k
+ZXZ0b29scy9vcmFjbGUtamF2YS9vcmFjbGUtanNlLmluYw0KPiA+ICsrKyBiL3JlY2lwZXMtZGV2
+dG9vbHMvb3JhY2xlLWphdmEvb3JhY2xlLWpzZS5pbmMNCj4gPiBAQCAtMiw4ICsyLDggQEAgTElD
+RU5TRV9GTEFHUyA9ICJvcmFjbGVfamF2YSINCj4gPiAgTElDRU5TRSA9ICJPcmFjbGVfQmluYXJ5
+X0NvZGVfTGljZW5zZV9BZ3JlZW1lbnQiDQo+ID4gIExJQ19GSUxFU19DSEtTVU0gPSAiXA0KPiA+
+DQo+IAlmaWxlOi8vJHtXT1JLRElSfS8ke0pES19KUkV9JHtQVn1fJHtQVl9VUERBVEV9L0xJQ0VO
+U0U7bWQ1PTkNCj4gOGY0NmFiNjQ4MWQ4N2M0ZDc3ZTBlOTFhNmRiYzE1ZiBcDQo+ID4gLQ0KPiAJ
+ZmlsZTovLyR7V09SS0RJUn0vJHtKREtfSlJFfSR7UFZ9XyR7UFZfVVBEQVRFfS9DT1BZUklHSFQ7
+bWQNCj4gNT0zYTExMjM4MDI1YmYxM2I4N2YwNDc1MzE4M2ZmZWI5MCBcDQo+ID4gLQ0KPiAJZmls
+ZTovLyR7V09SS0RJUn0vJHtKREtfSlJFfSR7UFZ9XyR7UFZfVVBEQVRFfS9USElSRFBBUlRZTElD
+DQo+IEVOU0VSRUFETUUudHh0O21kNT1jMzM5YjM0ZTNkYTY2NzNkMmM1OTUwZDBmODgwOGY4YyBc
+DQo+ID4gKw0KPiAJZmlsZTovLyR7V09SS0RJUn0vJHtKREtfSlJFfSR7UFZ9XyR7UFZfVVBEQVRF
+fS9DT1BZUklHSFQ7bWQNCj4gNT1iZTlmZTVkNDdhN2RjZmI3OGYxNDJmNDg3YWZiMzRiYiBcDQo+
+ID4gKw0KPiAJZmlsZTovLyR7V09SS0RJUn0vJHtKREtfSlJFfSR7UFZ9XyR7UFZfVVBEQVRFfS9U
+SElSRFBBUlRZTElDDQo+IEVOU0VSRUFETUUudHh0O21kNT1mM2EzODg5NjFkMjRiOGI3MmQ0MTJh
+MDc5YTg3OGNkYiBcDQo+ID4gIAkiDQo+ID4NCj4gPiAgRkVUQ0hDTURfd2dldF9hcHBlbmQgPSAi
+IC0taGVhZGVyPUNvb2tpZTpvcmFjbGVsaWNlbnNlPWEgIg0KPiA+IC0tDQo+IFRoYW5rcyBhbmQg
+UmVnYXJkcywNCj4gTWF4aW4NCg==
 
