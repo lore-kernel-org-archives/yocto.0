@@ -1,34 +1,49 @@
-Return-Path: <Maxin.John@enea.com>
+Return-Path: <jags.gediya@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 29ECAE0056A; Mon,  8 Sep 2014 08:58:00 -0700 (PDT)
+	id 87D3FE0056A; Mon,  8 Sep 2014 09:36:16 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
-	*      [score: 0.0000]
-Received: from mx-3.enea.com (sestofw01.enea.se [192.36.1.252])
-	by yocto-www.yoctoproject.org (Postfix) with SMTP id CA0CFE0034C
-	for <yocto@yoctoproject.org>; Mon,  8 Sep 2014 08:57:51 -0700 (PDT)
-Received: from sestofb10.enea.se (172.21.3.145) by smtp.enea.com
-	(172.21.1.209) with Microsoft SMTP Server id 14.3.158.1; Mon, 8 Sep 2014
-	17:57:45 +0200
-Received: by sestofb10.enea.se (Postfix, from userid 4454)	id B0705288E2C;
-	Mon,  8 Sep 2014 17:57:45 +0200 (CEST)
-Date: Mon, 8 Sep 2014 17:57:45 +0200
-From: "Maxin B. John" <maxin.john@enea.com>
-To: "Frazer, Will" <will.frazer@eurotech.com>
-Message-ID: <20140908155745.GB25602@sestofb10.enea.se>
-References: <f5853f85c69e409593c89e39260ca912@EPBYMINSA0032.epam.com>
-	<15cf2669b9a9496db30b36893090d5c8@DB4PR05MB397.eurprd05.prod.outlook.com>
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (jags.gediya[at]gmail.com)
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+	*      [score: 0.0004]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.192.48 listed in list.dnswl.org]
+Received: from mail-qg0-f48.google.com (mail-qg0-f48.google.com
+	[209.85.192.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 4239BE0034C;
+	Mon,  8 Sep 2014 09:36:12 -0700 (PDT)
+Received: by mail-qg0-f48.google.com with SMTP id z107so15717590qgd.35
+	for <multiple recipients>; Mon, 08 Sep 2014 09:36:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:date:message-id:subject:from:to:content-type;
+	bh=hnD3R36NMr4Mz9uaxHVuHHnIAnUeK5qnDttn3+jw0I0=;
+	b=pjuRMzrmy9M34aUZZcZQstCwx5Chm8VZYhjcvuutZwu+nqp0puvUx6weQhyFbYFsyC
+	X1pzHOgYYoq6odsYCoR58xwXSOrJrnNqatdPbGNdPla50LMFgEj2Iqgk6p56SbGwIZzo
+	YxAljdwSfuyEKzIBKQX/koMTiacmPlGtwVcREFfkTi66qkZbB0GdbxM+a6e16slNUsCa
+	ZOQmWLrIXTG+o7Kmq0bYZQnHFHgtfhbWf7u4kWvBe778lypCQWw+GaB2F7zQCPQpF/f+
+	d3V93ocN3OTWrYD5Ud3vGj46nSnpGrnxIPH29fj+cef+VziXQMS3zrP17yCVuQcqC4eC
+	Aahg==
 MIME-Version: 1.0
-In-Reply-To: <15cf2669b9a9496db30b36893090d5c8@DB4PR05MB397.eurprd05.prod.outlook.com>
-User-Agent: Mutt/1.5.21 (2010-09-15)
-Received-SPF: None (SESTOEX03.enea.se: maxin.john@enea.com does not
-	designate permitted sender hosts)
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: [meta-oracle-java][PATCH v2] Add support for Java SE Embedded
+X-Received: by 10.140.23.40 with SMTP id 37mr38476623qgo.30.1410194171470;
+	Mon, 08 Sep 2014 09:36:11 -0700 (PDT)
+Received: by 10.224.166.198 with HTTP; Mon, 8 Sep 2014 09:36:11 -0700 (PDT)
+Date: Mon, 8 Sep 2014 22:06:11 +0530
+Message-ID: <CAP3RZojti2ziEG03onE4q0xOT2Mtn2WtDJ7SfXOryaYr4iRNtg@mail.gmail.com>
+From: jags gediya <jags.gediya@gmail.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>, 
+	"meta-freescale@yoctoproject.org" <meta-freescale@yoctoproject.org>
+Subject: package or library for NAT traversal in yocto
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -40,98 +55,17 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 08 Sep 2014 15:58:00 -0000
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
+X-List-Received-Date: Mon, 08 Sep 2014 16:36:16 -0000
+Content-Type: text/plain; charset=UTF-8
 
-Dear Will Frazer,
+We are using yocto for custom device which will communicate with the
+other mobile devices over the internet. For that we need some package
+which can be used to traverse behind the NAT. like libjingle, XMPP
+etc.
 
-On Mon, Sep 08, 2014 at 02:13:35PM +0000, Frazer, Will wrote:
-> Folks,
-> 
-> My understanding is that while this recipe generated download URL will work if you have already visited the Oracle download location, it won't work for a build system that has never been there before. Try it.
->
-The updated download method was to avoid the manual download process
-associated with Oracle Java Binaries. I have tested this on a couple
-of machines before sending it upstream.
+In yocto, is there any package available for this kind of functionality?
 
-It was based on this discussion:
-https://gist.github.com/hgomez/4697585
- 
-> Also, Oracle has previously been very much against using any mechanism that bypasses a user clicking on the licence acceptance. I'm not aware this position has changed. You may find that you are in violation of the Licence agreement if you do this. One of the reasons why the URLs were obfuscated in the past I believe.
-> 
-
-Thank you very much for raising this concern. I wasn't aware of this.
-As per my understanding, setting
-LICENSE_FLAGS_WHITELIST += "oracle_java" in local.conf was Yocto's way
-of conforming to the License terms of Oracle. 
-
-Adding CC to Nitin A Kamble for his view on this.
-
-> Will Frazer 
-> Eurotech UK
-
-Thanks and Regards,
-Maxin
-
-> 
-> -----Original Message-----
-> From: yocto-bounces@yoctoproject.org [mailto:yocto-bounces@yoctoproject.org] On Behalf Of Vladimir Redzhepov
-> Sent: 08 September 2014 13:04
-> To: yocto@yoctoproject.org
-> Subject: [yocto] [meta-oracle-java][PATCH v2] Add support for Java SE Embedded
-> 
-> >From a68c728141f369e1ac41f2aaf40915cf14ad341f Mon Sep 17 00:00:00 2001
-> From: Vladimir Redzhepov <vladimir_redzhepov@epam.com>
-> Date: Mon, 8 Sep 2014 14:42:28 +0300
-> Subject: [PATCH] Add support for Java SE Embedded
-> 
-> Signed-off-by: Vladimir Redzhepov <vladimir_redzhepov@epam.com>
-> ---
->  ...racle-jse-ejre-arm-vfp-hflt-client-headless_1.7.0.bb |  9 +++++++++
->  recipes-devtools/oracle-java/oracle-jse-ejre.inc        | 17 +++++++++++++++++
->  2 files changed, 26 insertions(+)
->  create mode 100644 recipes-devtools/oracle-java/oracle-jse-ejre-arm-vfp-hflt-client-headless_1.7.0.bb
->  create mode 100644 recipes-devtools/oracle-java/oracle-jse-ejre.inc
-> 
-> diff --git a/recipes-devtools/oracle-java/oracle-jse-ejre-arm-vfp-hflt-client-headless_1.7.0.bb b/recipes-devtools/oracle-java/oracle-jse-ejre-arm-vfp-hflt-client-headless_1.7.0.bb
-> new file mode 100644
-> index 0000000..bfa8011
-> --- /dev/null
-> +++ b/recipes-devtools/oracle-java/oracle-jse-ejre-arm-vfp-hflt-client-h
-> +++ eadless_1.7.0.bb
-> @@ -0,0 +1,9 @@
-> +PV_UPDATE = "60"
-> +BUILD_NUMBER = "19"
-> +
-> +require oracle-jse-ejre.inc
-> +
-> +SRC_URI = "http://download.oracle.com/otn/java/ejre/7u${PV_UPDATE}-b${BUILD_NUMBER}/ejre-7u${PV_UPDATE}-fcs-b${BUILD_NUMBER}-linux-arm-vfp-hflt-client_headless-07_may_2014.tar.gz"
-> +
-> +SRC_URI[md5sum] = "b9b8f598b0a7f49e4d221f16ba25c6c0"
-> +SRC_URI[sha256sum] = "ed061060011d88efe5563c2949c00993db85db17ab94f18a78713007a2b90faf"
-> diff --git a/recipes-devtools/oracle-java/oracle-jse-ejre.inc b/recipes-devtools/oracle-java/oracle-jse-ejre.inc
-> new file mode 100644
-> index 0000000..7889684
-> --- /dev/null
-> +++ b/recipes-devtools/oracle-java/oracle-jse-ejre.inc
-> @@ -0,0 +1,17 @@
-> +SUMMARY = "Oracle Java SE runtime environment binaries"
-> +DESCRIPTION = "This is the proprietary JRE from Sun/Oracle, with the 
-> +Hotspot JVM. It is\  provided by Sun/Oracle only in binary format.\  
-> +Java Platform, Standard Edition (Java SE) lets you develop and deploy 
-> +Java\  applications on desktops and servers, as well as in today's 
-> +demanding\  embedded environments. Java offers the rich user interface, 
-> +performance,\  versatility, portability, and security that today's 
-> +applications require.\  The JRE (Java Runtime Environment) is needed on 
-> +a system to run Java\  applications and applets"
-> +
-> +JDK_JRE = "ejre"
-> +require oracle-jse.inc
-> +
-> +LIC_FILES_CHKSUM = "\
-> +	file://${WORKDIR}/${JDK_JRE}${PV}_${PV_UPDATE}/COPYRIGHT;md5=3a11238025bf13b87f04753183ffeb90 \
-> +	file://${WORKDIR}/${JDK_JRE}${PV}_${PV_UPDATE}/THIRDPARTYLICENSEREADME.txt;md5=c339b34e3da6673d2c5950d0f8808f8c \
-> +	"
-> --
+I
+Thanks,
+Jags
 
