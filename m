@@ -1,37 +1,43 @@
-Return-Path: <Andrei.Gherzan@windriver.com>
+Return-Path: <lschwab@xeralux.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 78020E00786; Mon,  8 Sep 2014 14:34:12 -0700 (PDT)
+	id 8421EE00786; Mon,  8 Sep 2014 16:08:34 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -2.3 RCVD_IN_DNSWL_MED RBL: Sender listed at
-	http://www.dnswl.org/, *      medium trust
-	*      [147.11.1.11 listed in list.dnswl.org]
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [209.85.213.53 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mail.windriver.com (mail.windriver.com [147.11.1.11])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 306B2E0034C
-	for <yocto@yoctoproject.org>; Mon,  8 Sep 2014 14:34:00 -0700 (PDT)
-Received: from ALA-HCA.corp.ad.wrs.com (ala-hca.corp.ad.wrs.com
-	[147.11.189.40])
-	by mail.windriver.com (8.14.9/8.14.5) with ESMTP id s88LXuHg003829
-	(version=TLSv1/SSLv3 cipher=AES128-SHA bits=128 verify=FAIL);
-	Mon, 8 Sep 2014 14:33:56 -0700 (PDT)
-Received: from windriver.com (128.224.18.121) by ALA-HCA.corp.ad.wrs.com
-	(147.11.189.50) with Microsoft SMTP Server id 14.3.174.1;
-	Mon, 8 Sep 2014 14:33:55 -0700
-Date: Mon, 8 Sep 2014 23:33:54 +0200
-From: Andrei Gherzan <andrei.gherzan@windriver.com>
-To: Sujith H <sujith.h@gmail.com>
-Message-ID: <20140908213353.GA11743@windriver.com>
-References: <1406726341-28977-1-git-send-email-sujith.h@gmail.com>
+Received: from mail-yh0-f53.google.com (mail-yh0-f53.google.com
+	[209.85.213.53])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AC857E0034C
+	for <yocto@yoctoproject.org>; Mon,  8 Sep 2014 16:08:28 -0700 (PDT)
+Received: by mail-yh0-f53.google.com with SMTP id a41so9529728yho.26
+	for <yocto@yoctoproject.org>; Mon, 08 Sep 2014 16:08:28 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:date:message-id:subject:from:to
+	:content-type;
+	bh=D7F9SQ0YDPb3O5w720vch6SukmmhZkQogu8SqOM2/Ik=;
+	b=htEwD4c6b/tr1Nap6Mce83cIy5qq5PpQErOHWbuyrl2PRT8oHpKRtLzU8EjpVd0FOx
+	TpM7OOMjxZrnOsOOlqCD6+YGOxRAemfBPbkarpN2v0wcSIuICU5LbvkWB05VQJUHF03p
+	mh7NBO8j8RgW77oNZzwu69LKMbub23iBdkoP0qYQEjBIacdWJ5icSBLpkA0vQ15Xnx9A
+	pRGUULsB5Dg3yweWkditjE3jyxO3VcU9Yhe2c2u7WiMKDXWakdG4PjNx6ZWldQTys5kX
+	usj5UDOBlEcixW/dovH0xZ+JPp4U9h3mIScWXybaVeG63lVSL1dNFbosInjbwIpa3Aac
+	N0uw==
+X-Gm-Message-State: ALoCoQn9DyuojI7Y4k7KBWEdRKz0Ng+igZw1E9+1vogxiYE+u5bb1M61Guh2z8ZPIV/nnMbeFMpv
 MIME-Version: 1.0
-In-Reply-To: <1406726341-28977-1-git-send-email-sujith.h@gmail.com>
-User-Agent: Mutt/1.5.23 (2014-03-12)
-Cc: yocto@yoctoproject.org, Sujith H <Sujith_Haridasan@mentor.com>
-Subject: Re: [meta-ivi][PATCH] Make pulseaudio run by default
+X-Received: by 10.236.231.38 with SMTP id k36mr47178101yhq.75.1410217708057;
+	Mon, 08 Sep 2014 16:08:28 -0700 (PDT)
+Received: by 10.170.162.135 with HTTP; Mon, 8 Sep 2014 16:08:28 -0700 (PDT)
+Date: Mon, 8 Sep 2014 16:08:28 -0700
+Message-ID: <CALb224-2biSJpCoLBojkMgjGKX4a_YUayfUQwByFTDNYqVKeCA@mail.gmail.com>
+From: Leo Schwab <lschwab@sensity.com>
+To: yocto <yocto@yoctoproject.org>
+Subject: Adding 'build-id' to Build Image
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -43,51 +49,23 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 08 Sep 2014 21:34:12 -0000
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
+X-List-Received-Date: Mon, 08 Sep 2014 23:08:34 -0000
+Content-Type: text/plain; charset=UTF-8
 
-Hello,
+We'd like to have the system images we build to contain a build id, or
+at least a pile of information inside the image itself that lets us
+identify which build is being run/tested.  Indeed, the information
+'bitbake' kicks out just as it starts a build is exactly the sort of
+thing we'd like sitting in a file in the image somewhere.
 
-On Wed, Jul 30, 2014 at 06:49:01PM +0530, Sujith H wrote:
-> From: Sujith H <Sujith_Haridasan@mentor.com>
->
-> This change will help pulseaudio run by default on the
-> target. On the bootup user can see pulseaudio service
-> started.
->
-> Signed-off-by: Sujith H <Sujith_Haridasan@mentor.com>
-> ---
->  meta-ivi/recipes-multimedia/pulseaudio/pulseaudio_5.0.bbappend | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
->
-> diff --git a/meta-ivi/recipes-multimedia/pulseaudio/pulseaudio_5.0.bbappend b/meta-ivi/recipes-multimedia/pulseaudio/pulseaudio_5.0.bbappend
-> index e32efa7..5401c66 100644
-> --- a/meta-ivi/recipes-multimedia/pulseaudio/pulseaudio_5.0.bbappend
-> +++ b/meta-ivi/recipes-multimedia/pulseaudio/pulseaudio_5.0.bbappend
-> @@ -7,7 +7,7 @@ PR = "r1"
->  inherit systemd
->
->  SYSTEMD_PACKAGES = "${PN}-server"
-> -SYSTEMD_SERVICE = "pulseaudio.service"
-> +SYSTEMD_SERVICE_${PN}-server = "pulseaudio.service"
->
->  PACKAGECONFIG_remove = "bluez4"
->  PACKAGECONFIG_append = " bluez5"
-> --
-> 1.8.4
->
+I turned on the 'buildhistory' feature in conf/local.conf which, among
+other things, generates a 'build-id' file.  However, it doesn't place
+it in the image, but in an entirely separate directory hierarchy.
 
-First of all sorry for this late reply. I was able to reproduce and understand
-the issue here. The idea is that the bbclass is parsing the 'per package'
-SYSTEMD_SERVICE variable (SYSTEMD_SERVICE_${PN}) [systemd.bbclass line 167] and
-based on this it installs the post install script.
+Surely this sort of thing has been done before.  Is there an existing
+recipe I can use, or will I have to cobble together a custom recipe
+out of buildhistory_get_layers() or get_layers_branch_rev()?
 
-Patch merged to master.
-
-Thanks a lot.
-
---
-Andrei Gherzan | Wind River Systems
-m: +40 734 450 615
+Thanks,
+Schwab
 
