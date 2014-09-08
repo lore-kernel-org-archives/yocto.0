@@ -1,47 +1,32 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <PStath@Axxcelera.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id A0740E0056A; Mon,  8 Sep 2014 09:47:22 -0700 (PDT)
+	id 5379AE0056A; Mon,  8 Sep 2014 10:23:41 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
+	version=3.3.1
 X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.216.174 listed in list.dnswl.org]
-Received: from mail-qc0-f174.google.com (mail-qc0-f174.google.com
-	[209.85.216.174])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id ECB64E0034C
-	for <yocto@yoctoproject.org>; Mon,  8 Sep 2014 09:47:21 -0700 (PDT)
-Received: by mail-qc0-f174.google.com with SMTP id i17so15843620qcy.33
-	for <yocto@yoctoproject.org>; Mon, 08 Sep 2014 09:47:20 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc:content-type;
-	bh=VWosYW+2LP6ThQPpUEUeshRCV8bhQRgwXgmTEIBDavU=;
-	b=Ls5g18X0iXUzpYOS7px3bfuGH7+y8hgxA90NjYwVzleU1+E2CqLVEueGX2qHaWygi1
-	hKCWz8JVjXpRDQvlFm91mqywuyuiaZOhO4HmS9EW1eDzLFh2h7Ev/x/JbUrCTyZ2lrez
-	NMslTE8BOVSDOm+eP5fBN237Rdb/+Xs2xzOfnMLarNP3hsilED5XfA2SXg9G2JD2Bxpp
-	kgxFf3yjr8ndQ9wes2owxGLF9IlXAD+fyrPHHRIP5Vkji6n9ANsEfLfaFGbBx94+2qt7
-	JJVvEeQnM1piKYHA2IHEnBlWGA5IN6L8KXL2/wcKJ7f2GDzl4r6rBFAX1nTioDo46en4
-	2dbw==
-X-Gm-Message-State: ALoCoQmhpQrtHhxU5mbwVtw9any7c/6SkXzXBTWtuO0LFwVl2CTDLJ2i9GbQLFiRJrN1aSVLHn5k
-X-Received: by 10.229.219.138 with SMTP id hu10mr42910646qcb.5.1410194840119; 
-	Mon, 08 Sep 2014 09:47:20 -0700 (PDT)
+Received: from RIC-MS02.MWSG.int (static-96-253-69-114.rcmdva.fios.verizon.net
+	[96.253.69.114])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id D6D7FE0034C
+	for <yocto@yoctoproject.org>; Mon,  8 Sep 2014 10:23:38 -0700 (PDT)
+Received: from RIC-MS02.MWSG.int ([fe80::169:5447:c281:e845]) by
+	RIC-MS02.MWSG.int ([fe80::169:5447:c281:e845%10]) with mapi id
+	14.03.0123.003; Mon, 8 Sep 2014 13:23:37 -0400
+From: "Stath, Paul" <PStath@Axxcelera.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: Include PaX / GRSecurity
+Thread-Index: AQHPy3ksOIU6mNZTj02t8b7jc3Fqbw==
+Date: Mon, 8 Sep 2014 17:23:37 +0000
+Message-ID: <5B5D636C5F0AA747B37D0EFC72B563C42D5CFA57@RIC-MS02.MWSG.int>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.10.10.129]
 MIME-Version: 1.0
-Received: by 10.140.29.183 with HTTP; Mon, 8 Sep 2014 09:47:00 -0700 (PDT)
-In-Reply-To: <CAP3RZojti2ziEG03onE4q0xOT2Mtn2WtDJ7SfXOryaYr4iRNtg@mail.gmail.com>
-References: <CAP3RZojti2ziEG03onE4q0xOT2Mtn2WtDJ7SfXOryaYr4iRNtg@mail.gmail.com>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Mon, 8 Sep 2014 17:47:00 +0100
-Message-ID: <CAJTo0LawxP5wq+WeLY2-1MERGBwSogpTMM2pipEVAhXkqYB6zQ@mail.gmail.com>
-To: jags gediya <jags.gediya@gmail.com>
-Cc: "meta-freescale@yoctoproject.org" <meta-freescale@yoctoproject.org>,
-	"yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: package or library for NAT traversal in yocto
+Subject: Re: Include PaX / GRSecurity
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -53,20 +38,44 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Mon, 08 Sep 2014 16:47:22 -0000
-Content-Type: text/plain; charset=UTF-8
+X-List-Received-Date: Mon, 08 Sep 2014 17:23:41 -0000
+Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 
-On 8 September 2014 17:36, jags gediya <jags.gediya@gmail.com> wrote:
-> We are using yocto for custom device which will communicate with the
-> other mobile devices over the internet. For that we need some package
-> which can be used to traverse behind the NAT. like libjingle, XMPP
-> etc.
->
-> In yocto, is there any package available for this kind of functionality?
-
-libnice?
-
-http://layers.openembedded.org/layerindex/recipe/1108/
-
-Ross
+Jens Lecius <incnews@jenslucius.de> write:=0A=
+=0A=
+> I am trying to include the GRSecurity & PaX patches for the kernel in a Y=
+octo build.=0A=
+>=0A=
+> The patch is applied to the kernel correctly, but when the build begins=
+=0A=
+> I get the following error:=0A=
+=0A=
+> | Makefile:686: *** Your gcc installation does not support plugins. If=0A=
+> the necessary headers for plugin support are missing, they should be=0A=
+> installed.  On Debian, apt-get install gcc-<ver>-plugin-dev.  If you=0A=
+> choose to ignore this error and lessen the improvements provided by this=
+=0A=
+> patch, re-run make with the DISABLE_PAX_PLUGINS=3Dy argument..  Stop.=0A=
+=0A=
+> Any ideas how to solve this? (Compile is on an Intel machine crosscompile=
+ for ARM)=0A=
+=0A=
+> Thanks,=0A=
+> Jens=0A=
+=0A=
+By default, the gcc compiler built by Yocto is not configured with plug-in =
+support.=0A=
+=0A=
+To resolve this, I added a bbappend file for the gcc-cross recipe in my cus=
+tom layer, which simply contained:=0A=
+=0A=
+EXTRA_OECONF +=3D "--enable-plugin"=0A=
+=0A=
+This added the "--enable-plugin" flag to the do_configure task when configu=
+ring/building the gcc-cross compiler.=0A=
+=0A=
+Note:  Where you add the "--enable-plugin" configure option will depend on =
+which compiler needs plugin support.=0A=
 
