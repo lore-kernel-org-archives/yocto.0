@@ -1,6 +1,6 @@
-Return-Path: <ncrypticus@gmail.com>
+Return-Path: <diego.sueiro@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 04F9AE007A2; Mon,  8 Sep 2014 17:23:00 -0700 (PDT)
+	id 1F0E6E007A2; Mon,  8 Sep 2014 17:39:03 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
@@ -8,10 +8,10 @@ X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
 	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
 	autolearn=ham version=3.3.1
 X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (ncrypticus[at]gmail.com)
+	mail provider *      (diego.sueiro[at]gmail.com)
 	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
 	low *      trust
-	*      [74.125.82.196 listed in list.dnswl.org]
+	*      [209.85.192.48 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
@@ -20,30 +20,36 @@ X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
 	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
 	*      valid
 	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-we0-f196.google.com (mail-we0-f196.google.com
-	[74.125.82.196])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 67012E00786
-	for <yocto@yoctoproject.org>; Mon,  8 Sep 2014 17:22:56 -0700 (PDT)
-Received: by mail-we0-f196.google.com with SMTP id x48so649613wes.11
-	for <yocto@yoctoproject.org>; Mon, 08 Sep 2014 17:22:55 -0700 (PDT)
+Received: from mail-qg0-f48.google.com (mail-qg0-f48.google.com
+	[209.85.192.48])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id ECB90E00786
+	for <yocto@yoctoproject.org>; Mon,  8 Sep 2014 17:39:01 -0700 (PDT)
+Received: by mail-qg0-f48.google.com with SMTP id z107so16487686qgd.35
+	for <yocto@yoctoproject.org>; Mon, 08 Sep 2014 17:39:00 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:date:message-id:subject:from:to:content-type;
-	bh=y9lsfMwHG5VphO/frIxuIHTvExKF7Z9EKHg6t9h27a8=;
-	b=gSYNrhQpFsDw7akHg7VHxNuleaQtNOEE448HLscWKd/7VEChdBBhrcnlw+3mO3Lhas
-	t6gfEJDZoJEjblJAYIxcPDHBdjJWyc2D/dxJOHsROYOqdMwdDw3dG+CX7Up5+4gBjqmA
-	OJVonVa2Dh3YF9OVzLaw/Q/uO7CeyV8zudS21gaDA7dSMAMCK2MZwPb5uvm9QI0CBHKR
-	HZjyILpprRnCrV1jt/KdV58qs0dMMQF5UGwqQnQJ7Wokx/ixkqN9WkSEmKQz7ODm4BcE
-	VthWAJFtbGVkCSOcVGWip339MDaxczdzh3iCWaCeoug+f72qItfDgJVEw433GlOnqi3P
-	s4LQ==
+	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
+	:cc:content-type;
+	bh=MHJSsZjUkPf53OlC8sBfEtxC8BGmKl1NOJvYAY/1jkI=;
+	b=D9IFYB364B+TOsVg6jYQWwqTYYN/PQC9iWOVniGySZOftC70jC1gLfdL9oSlhNg/sV
+	80XIDNvFe5LH9XFR0EEgRtD/vh1oMTz9yI8DPWEa2+UUm7KsyZBFTibVO3lJvKoytjUu
+	yyHh9fF4xBmsruIGGVzw6NjPLFf1Si1MDiz3ivRwGU+abD1zoTS/M9C4gpL+ZUMsmVzb
+	erGD4xxWlYpuiGONt+cw7T/Xzi+zmvcQZtq/LOszbqgDEe+Fw2FsGYeDh6RelJBb/cQe
+	fZNFL9RZlvBIeJmkZ9oV6qRD+xnPXMqMmczP08mJ/IbXxQE5EZxLruPPp/mQrY4H/QVF
+	rioQ==
+X-Received: by 10.224.86.5 with SMTP id q5mr47787749qal.36.1410223140710; Mon,
+	08 Sep 2014 17:39:00 -0700 (PDT)
 MIME-Version: 1.0
-X-Received: by 10.194.23.167 with SMTP id n7mr3271458wjf.35.1410222175641;
-	Mon, 08 Sep 2014 17:22:55 -0700 (PDT)
-Received: by 10.194.10.202 with HTTP; Mon, 8 Sep 2014 17:22:55 -0700 (PDT)
-Date: Mon, 8 Sep 2014 17:22:55 -0700
-Message-ID: <CAMSG=xUsOJqQLABzm-W2Stwc5xdGTP1pGKMA7Z4TiS5ftLtx1A@mail.gmail.com>
-From: Nemicolopterus Crypticus <ncrypticus@gmail.com>
-To: yocto@yoctoproject.org
-Subject: ExpansionError during parsing
+Received: by 10.140.85.83 with HTTP; Mon, 8 Sep 2014 17:38:40 -0700 (PDT)
+In-Reply-To: <CAKC+oqUbbj9oEeekE6SSqDbyTGBJnwaGGYWgeLLRJKS+QB6aMQ@mail.gmail.com>
+References: <CAKC+oqU3-ZQc34489BrPYOVr05JOke=dHUkCruPLfV+LODWDVQ@mail.gmail.com>
+	<CAMCfZKE0uEAXz6yDbqs5v1M4MX9LqCqGzv7+4XunNC=GFXbJpQ@mail.gmail.com>
+	<CAKC+oqUbbj9oEeekE6SSqDbyTGBJnwaGGYWgeLLRJKS+QB6aMQ@mail.gmail.com>
+From: Diego Sueiro <diego.sueiro@gmail.com>
+Date: Mon, 8 Sep 2014 21:38:40 -0300
+Message-ID: <CAMCfZKHQV6X1rL5+jEhjbMF8BYWzEm6XrT9MiD_8gT_uyeokww@mail.gmail.com>
+To: "tomek82221 Gazeta.pl" <tomek82221@gazeta.pl>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: yocto 1.6 - beaglebone black - cape manager
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -55,68 +61,134 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 09 Sep 2014 00:23:00 -0000
-Content-Type: multipart/alternative; boundary=047d7b5d33eed56763050296ef40
+X-List-Received-Date: Tue, 09 Sep 2014 00:39:03 -0000
+Content-Type: multipart/alternative; boundary=001a11c2c1725b3e440502972918
 
---047d7b5d33eed56763050296ef40
-Content-Type: text/plain; charset=UTF-8
+--001a11c2c1725b3e440502972918
+Content-Type: text/plain; charset=ISO-8859-1
 
-I can't seem to get simple bash code to parse properly in my recipes.
-I have something like this:
+Hi Chris,
 
-do_install_prepend(){
-     bb.build.exec_func('do_change_dir', d)
-}
+On Mon, Sep 8, 2014 at 2:28 PM, tomek82221 Gazeta.pl <tomek82221@gazeta.pl>
+wrote:
 
-do_change_dir(){
-     cd <a directory>
- }
+> Can I use kernel version 3.8, meta-beagleboard as BSP layer in Yocto 1.6 ?
+>
+Yes you can.
 
-I get this when I try bitbake -c clean -f <project>:
-NOTE: Error during finalise of <path>/<to>/<recipe>/recipe.bb          |
-ETA:  --:--:--
-ERROR: ExpansionError during parsing <path>/<to>/<recipe>/recipe.bb:
-Failure expanding variable do_install: ShellSyntaxError:
-LexToken(TOKEN,"'do_change_dir',",0,0)
-followed by:
-  LexToken(TOKEN,'d',0,0)
-  LexToken(RPARENS,')',0,0)
-  LexToken(NEWLINE,'\n',0,0)
-  LexToken(TOKEN,'autotools_do_install',0,0)
-  LexToken(NEWLINE,'\n',0,0)
+Here - https://www.yoctoproject.org/downloads/core/daisy16 is "Linux
+> kernel 3.14 and 3.10 LTSI "
+>
+> I build yocto with
+> BBLAYERS ?= " \
+>   /home/fil/Pulpit/yocto/poky/meta \
+>   /home/fil/Pulpit/yocto/poky/meta-yocto \
+>   /home/fil/Pulpit/yocto/poky/meta-beagleboard/common-bsp \
+>   /home/fil/Pulpit/yocto/poky/meta-openembedded/meta-oe \
+>   "
+>
+> have some errors:
+>
+> ERROR: QA Issue: linux-mainline: Files/directories were installed but
+> not shipped
+>   /lib/firmware/sb16
+>   /lib/firmware/korg
+>   /lib/firmware/sb16/mulaw_main.csp
+>   /lib/firmware/sb16/alaw_main.csp
+>   /lib/firmware/sb16/ima_adpcm_init.csp
+>   /lib/firmware/sb16/ima_adpcm_capture.csp
+>   /lib/firmware/sb16/ima_adpcm_playback.csp
+>   /lib/firmware/korg/k1212.dsp
+> ERROR: QA run found fatal errors. Please consider fixing them.
+> ERROR: Function failed: do_package_qa
+> ERROR: Logfile of failure stored in:
+>
+> /home/fil/Pulpit/yocto/poky/build/tmp/work/beaglebone-poky-linux-gnueabi/linux-mainline/3.8.13-r23a/temp/log.do_package.6509
+> NOTE: recipe linux-mainline-3.8.13-r23a: task do_package: Failed
+> ERROR: Task 88
+> (/home/fil/Pulpit/yocto/poky/meta-beagleboard/common-bsp/recipes-kernel/linux/
+> linux-mainline_3.8.bb,
+> do_package) failed with exit code '1'
+>
 
-This looks identical to this:
-https://www.mail-archive.com/yocto%40yoctoproject.org/msg09403.html
-https://www.mail-archive.com/yocto%40yoctoproject.org/msg04862.html
+To solve this you can use a bbappend setting:
 
-What am I missing?
+INSANE_SKIP_${PN} += "installed-vs-shipped"
 
---047d7b5d33eed56763050296ef40
-Content-Type: text/html; charset=UTF-8
+
+
+Regards,
+
+--
+*dS
+Diego Sueiro
+
+Administrador do Embarcados
+www.embarcados.com.br
+<http://www.embarcados.com.br/?utm_source=assinatura_diego&utm_medium=e-mail&utm_campaign=Assinatura%20Email%20Diego>
+
+/*long live rock 'n roll*/
+
+--001a11c2c1725b3e440502972918
+Content-Type: text/html; charset=ISO-8859-1
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr">I can&#39;t seem to get simple bash code to parse properly=
- in my recipes. =C2=A0<div>I have something like this:</div><div><br></div>=
-<div><div>do_install_prepend(){</div><div>=C2=A0 =C2=A0 =C2=A0bb.build.exec=
-_func(&#39;do_change_dir&#39;, d)=C2=A0</div><div>}=C2=A0</div><div><br></d=
-iv><div>do_change_dir(){</div><div>=C2=A0=C2=A0 =C2=A0 cd &lt;a directory&g=
-t;=C2=A0</div><div>=C2=A0}</div></div><div><br></div><div>I get this when I=
- try bitbake -c clean -f &lt;project&gt;:</div><div><div>NOTE: Error during=
- finalise of &lt;path&gt;/&lt;to&gt;/&lt;recipe&gt;/<a href=3D"http://recip=
-e.bb">recipe.bb</a> =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0| ETA: =C2=A0--:--:--=
-</div><div>ERROR: ExpansionError during parsing &lt;path&gt;/&lt;to&gt;/&lt=
-;recipe&gt;/<a href=3D"http://recipe.bb">recipe.bb</a>: Failure expanding v=
-ariable do_install: ShellSyntaxError: LexToken(TOKEN,&quot;&#39;do_change_d=
-ir&#39;,&quot;,0,0)</div><div>followed by:</div><div>=C2=A0 LexToken(TOKEN,=
-&#39;d&#39;,0,0)</div><div>=C2=A0 LexToken(RPARENS,&#39;)&#39;,0,0)</div><d=
-iv>=C2=A0 LexToken(NEWLINE,&#39;\n&#39;,0,0)</div><div>=C2=A0 LexToken(TOKE=
-N,&#39;autotools_do_install&#39;,0,0)</div><div>=C2=A0 LexToken(NEWLINE,&#3=
-9;\n&#39;,0,0)</div></div><div><br></div><div>This looks identical to this:=
-</div><div><a href=3D"https://www.mail-archive.com/yocto%40yoctoproject.org=
-/msg09403.html">https://www.mail-archive.com/yocto%40yoctoproject.org/msg09=
-403.html</a><br></div><div><a href=3D"https://www.mail-archive.com/yocto%40=
-yoctoproject.org/msg04862.html">https://www.mail-archive.com/yocto%40yoctop=
-roject.org/msg04862.html</a><br></div><div><br></div><div>What am I missing=
-?</div></div>
+<div dir=3D"ltr"><div class=3D"gmail_extra">Hi Chris,</div><div class=3D"gm=
+ail_extra"><br><div class=3D"gmail_quote">On Mon, Sep 8, 2014 at 2:28 PM, t=
+omek82221 Gazeta.pl <span dir=3D"ltr">&lt;<a href=3D"mailto:tomek82221@gaze=
+ta.pl" target=3D"_blank">tomek82221@gazeta.pl</a>&gt;</span> wrote:<br><blo=
+ckquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left=
+-width:1px;border-left-color:rgb(204,204,204);border-left-style:solid;paddi=
+ng-left:1ex"><div id=3D":67p" class=3D"" style=3D"overflow:hidden">Can I us=
+e kernel version 3.8, meta-beagleboard as BSP layer in Yocto 1.6 ?<br></div=
+></blockquote><div>Yes you can.</div><div><br></div><blockquote class=3D"gm=
+ail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left-width:1px;border-l=
+eft-color:rgb(204,204,204);border-left-style:solid;padding-left:1ex"><div i=
+d=3D":67p" class=3D"" style=3D"overflow:hidden">
+Here - <a href=3D"https://www.yoctoproject.org/downloads/core/daisy16" targ=
+et=3D"_blank">https://www.yoctoproject.org/downloads/core/daisy16</a> is &q=
+uot;Linux<br>
+kernel 3.14 and 3.10 LTSI &quot;<br>
+<br>
+I build yocto with<br>
+BBLAYERS ?=3D &quot; \<br>
+=A0 /home/fil/Pulpit/yocto/poky/meta \<br>
+=A0 /home/fil/Pulpit/yocto/poky/meta-yocto \<br>
+=A0 /home/fil/Pulpit/yocto/poky/meta-beagleboard/common-bsp \<br>
+=A0 /home/fil/Pulpit/yocto/poky/meta-openembedded/meta-oe \<br>
+=A0 &quot;<br>
+<br>
+have some errors:<br>
+<br>
+ERROR: QA Issue: linux-mainline: Files/directories were installed but<br>
+not shipped<br>
+=A0 /lib/firmware/sb16<br>
+=A0 /lib/firmware/korg<br>
+=A0 /lib/firmware/sb16/mulaw_main.csp<br>
+=A0 /lib/firmware/sb16/alaw_main.csp<br>
+=A0 /lib/firmware/sb16/ima_adpcm_init.csp<br>
+=A0 /lib/firmware/sb16/ima_adpcm_capture.csp<br>
+=A0 /lib/firmware/sb16/ima_adpcm_playback.csp<br>
+=A0 /lib/firmware/korg/k1212.dsp<br>
+ERROR: QA run found fatal errors. Please consider fixing them.<br>
+ERROR: Function failed: do_package_qa<br>
+ERROR: Logfile of failure stored in:<br>
+/home/fil/Pulpit/yocto/poky/build/tmp/work/beaglebone-poky-linux-gnueabi/li=
+nux-mainline/3.8.13-r23a/temp/log.do_package.6509<br>
+NOTE: recipe linux-mainline-3.8.13-r23a: task do_package: Failed<br>
+ERROR: Task 88 (/home/fil/Pulpit/yocto/poky/meta-beagleboard/common-bsp/rec=
+ipes-kernel/linux/<a href=3D"http://linux-mainline_3.8.bb" target=3D"_blank=
+">linux-mainline_3.8.bb</a>,<br>
+do_package) failed with exit code &#39;1&#39;</div></blockquote></div><br>T=
+o solve this you can use a bbappend setting:</div><blockquote style=3D"marg=
+in:0 0 0 40px;border:none;padding:0px"><div class=3D"gmail_extra">INSANE_SK=
+IP_${PN} +=3D &quot;installed-vs-shipped&quot;</div></blockquote><div class=
+=3D"gmail_extra"><br></div><div class=3D"gmail_extra"><br clear=3D"all"><di=
+v><div dir=3D"ltr"><div>Regards,</div><div><br></div>--<br>*dS<br>Diego Sue=
+iro<br><br>Administrador do Embarcados<br><a href=3D"http://www.embarcados.=
+com.br/?utm_source=3Dassinatura_diego&amp;utm_medium=3De-mail&amp;utm_campa=
+ign=3DAssinatura%20Email%20Diego" target=3D"_blank">www.embarcados.com.br</=
+a><br><br>/*long live rock &#39;n roll*/<br></div></div>
+</div></div>
 
---047d7b5d33eed56763050296ef40--
+--001a11c2c1725b3e440502972918--
