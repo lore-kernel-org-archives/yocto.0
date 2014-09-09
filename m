@@ -1,33 +1,51 @@
-Return-Path: <Vladimir_Redzhepov@epam.com>
+Return-Path: <tomek82221@gazeta.pl>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id BBF96E00566; Tue,  9 Sep 2014 08:36:50 -0700 (PDT)
+	id 7B147E00566; Tue,  9 Sep 2014 08:53:50 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (tomek82221[at]gazeta.pl)
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.192.43 listed in list.dnswl.org]
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from EVBYMINSA0039.epam.com (evbyminsa0039.epam.com [217.21.63.35])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 50672E0049D
-	for <yocto@yoctoproject.org>; Tue,  9 Sep 2014 08:36:44 -0700 (PDT)
-Received: from EPBYMINSA0032.epam.com (10.6.110.32) by EPBYMINSA0032.epam.com
-	(10.6.110.32) with Microsoft SMTP Server (TLS) id 15.0.995.29;
-	Tue, 9 Sep 2014 18:36:42 +0300
-Received: from EPBYMINSA0032.epam.com ([::1]) by EPBYMINSA0032.epam.com
-	([::1]) with mapi id 15.00.0995.028; Tue, 9 Sep 2014 18:36:42 +0300
-From: Vladimir Redzhepov <Vladimir_Redzhepov@epam.com>
-To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Thread-Topic: [meta-oracle-java][PATCH v3] Add support for Java SE Embedded
-Thread-Index: Ac/MQ4WZkO5vsxokSWq8O3HzGS8C1w==
-Date: Tue, 9 Sep 2014 15:36:42 +0000
-Message-ID: <5339bdccafc24d389479ab0ffaff5b0f@EPBYMINSA0032.epam.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.6.137.75]
+Received: from mail-qg0-f43.google.com (mail-qg0-f43.google.com
+	[209.85.192.43])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id AAC08E0049D
+	for <yocto@yoctoproject.org>; Tue,  9 Sep 2014 08:53:40 -0700 (PDT)
+Received: by mail-qg0-f43.google.com with SMTP id a108so5977367qge.30
+	for <yocto@yoctoproject.org>; Tue, 09 Sep 2014 08:53:33 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:date
+	:message-id:subject:from:to:cc:content-type;
+	bh=2w5G8Q2kKg+NVLk1LtXzg5+2ilrtRU3veB6Yc5IBXy0=;
+	b=LOCSqZ3fMuXuSJxirdTqak273LfhY9CgMQv7JyKz+pwDm9GU2UokLiSA50gM0ERzce
+	V5uJ1eh+LJLCv83r6AHvvwKDlK7IhQZ1PhtWLCAbnbNsCa9C7pG0RnuhW+Mouf5Rzp02
+	PQ6c5Zzl9AUaCVDvexT8zZ7KuLByelLZPMVPyCvCfVpDbI3hXzrc3ZZ4zGFkEzdWhrL5
+	rg6lTCgjAMQOAtd8sEZz34EcEk3TON8CsoUeIFPiNwIOW22CNfPVY5RPxOrXkWCF09rn
+	rUgp7fxVbknDEljNsTYQHQygrBHxLqdV04k3cidn1AO3KuxHLAKuYzTPk/ZBqD9kFRmq
+	Yd1w==
+X-Gm-Message-State: ALoCoQmyODGFcupsGF2UxSnnQEG9is4rJ1jFiBBw2ek8CxubtkzYc6L4Ho8ivr0neKzoNklBNPiZ
 MIME-Version: 1.0
-Subject: [meta-oracle-java][PATCH v3] Add support for Java SE Embedded
+X-Received: by 10.140.107.198 with SMTP id h64mr49476102qgf.42.1410278013161; 
+	Tue, 09 Sep 2014 08:53:33 -0700 (PDT)
+Received: by 10.140.16.15 with HTTP; Tue, 9 Sep 2014 08:53:33 -0700 (PDT)
+In-Reply-To: <CAMCfZKHQV6X1rL5+jEhjbMF8BYWzEm6XrT9MiD_8gT_uyeokww@mail.gmail.com>
+References: <CAKC+oqU3-ZQc34489BrPYOVr05JOke=dHUkCruPLfV+LODWDVQ@mail.gmail.com>
+	<CAMCfZKE0uEAXz6yDbqs5v1M4MX9LqCqGzv7+4XunNC=GFXbJpQ@mail.gmail.com>
+	<CAKC+oqUbbj9oEeekE6SSqDbyTGBJnwaGGYWgeLLRJKS+QB6aMQ@mail.gmail.com>
+	<CAMCfZKHQV6X1rL5+jEhjbMF8BYWzEm6XrT9MiD_8gT_uyeokww@mail.gmail.com>
+Date: Tue, 9 Sep 2014 17:53:33 +0200
+Message-ID: <CAKC+oqX=KmSUcAR=2Ngvnimq46QKzAo=N+gaTw+M496c-QGW2w@mail.gmail.com>
+From: "tomek82221 Gazeta.pl" <tomek82221@gazeta.pl>
+To: Diego Sueiro <diego.sueiro@gmail.com>
+Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Re: yocto 1.6 - beaglebone black - cape manager
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -39,76 +57,76 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 09 Sep 2014 15:36:50 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Tue, 09 Sep 2014 15:53:50 -0000
+Content-Type: text/plain; charset=UTF-8
 
-From a640767b8c5ba1e415a6d398a551d7d4c3ce3822 Mon Sep 17 00:00:00 2001
-From: Vladimir Redzhepov <vladimir_redzhepov@epam.com>
-Date: Tue, 9 Sep 2014 18:32:30 +0300
-Subject: [PATCH] Add support for Java SE Embedded
+ok, but where i can add INSANE_SKIP_${PN} += "installed-vs-shipped"
+in meta-beagleboard/common-bsp/recipes-kernel/linux/linux-mainline_3.8.bb ?
+or create meta-beagleboard/common-bsp/recipes-kernel/linux/linux-mainline_3.8.bbappend
+?
 
-Signed-off-by: Vladimir Redzhepov <vladimir_redzhepov@epam.com>
----
- ...racle-jse-ejre-arm-vfp-hflt-client-headless_1.7.0.bb |  9 +++++++++
- recipes-devtools/oracle-java/oracle-jse-ejre.inc        | 17 +++++++++++++=
-++++
- 2 files changed, 26 insertions(+)
- create mode 100644 recipes-devtools/oracle-java/oracle-jse-ejre-arm-vfp-hf=
-lt-client-headless_1.7.0.bb
- create mode 100644 recipes-devtools/oracle-java/oracle-jse-ejre.inc
+thanks for your help
 
-diff --git a/recipes-devtools/oracle-java/oracle-jse-ejre-arm-vfp-hflt-clie=
-nt-headless_1.7.0.bb b/recipes-devtools/oracle-java/oracle-jse-ejre-arm-vfp=
--hflt-client-headless_1.7.0.bb
-new file mode 100644
-index 0000000..bfa8011
---- /dev/null
-+++ b/recipes-devtools/oracle-java/oracle-jse-ejre-arm-vfp-hflt-client-head=
-less_1.7.0.bb
-@@ -0,0 +1,9 @@
-+PV_UPDATE =3D "60"
-+BUILD_NUMBER =3D "19"
-+
-+require oracle-jse-ejre.inc
-+
-+SRC_URI =3D "http://download.oracle.com/otn/java/ejre/7u${PV_UPDATE}-b${BU=
-ILD_NUMBER}/ejre-7u${PV_UPDATE}-fcs-b${BUILD_NUMBER}-linux-arm-vfp-hflt-cli=
-ent_headless-07_may_2014.tar.gz"
-+
-+SRC_URI[md5sum] =3D "b9b8f598b0a7f49e4d221f16ba25c6c0"
-+SRC_URI[sha256sum] =3D "ed061060011d88efe5563c2949c00993db85db17ab94f18a78=
-713007a2b90faf"
-diff --git a/recipes-devtools/oracle-java/oracle-jse-ejre.inc b/recipes-dev=
-tools/oracle-java/oracle-jse-ejre.inc
-new file mode 100644
-index 0000000..c61b204
---- /dev/null
-+++ b/recipes-devtools/oracle-java/oracle-jse-ejre.inc
-@@ -0,0 +1,17 @@
-+SUMMARY =3D "Oracle Java SE runtime environment binaries"
-+DESCRIPTION =3D "This is the proprietary JRE from Sun/Oracle, with the Hot=
-spot JVM. It is\
-+ provided by Sun/Oracle only in binary format.\
-+ Java Platform, Standard Edition (Java SE) lets you develop and deploy Jav=
-a\
-+ applications on desktops and servers, as well as in today's demanding\
-+ embedded environments. Java offers the rich user interface, performance,\
-+ versatility, portability, and security that today's applications require.=
-\
-+ The JRE (Java Runtime Environment) is needed on a system to run Java\
-+ applications and applets"
-+
-+JDK_JRE =3D "ejre"
-+require oracle-jse.inc
-+
-+LIC_FILES_CHKSUM =3D "\
-+	file://${WORKDIR}/${JDK_JRE}${PV}_${PV_UPDATE}/COPYRIGHT;md5=3Dbe9fe5d47a=
-7dcfb78f142f487afb34bb \
-+	file://${WORKDIR}/${JDK_JRE}${PV}_${PV_UPDATE}/THIRDPARTYLICENSEREADME.tx=
-t;md5=3Df3a388961d24b8b72d412a079a878cdb \
-+	"
---=20
-2.1.0
+
+
+2014-09-09 2:38 GMT+02:00 Diego Sueiro <diego.sueiro@gmail.com>:
+> Hi Chris,
+>
+> On Mon, Sep 8, 2014 at 2:28 PM, tomek82221 Gazeta.pl <tomek82221@gazeta.pl>
+> wrote:
+>>
+>> Can I use kernel version 3.8, meta-beagleboard as BSP layer in Yocto 1.6 ?
+>
+> Yes you can.
+>
+>> Here - https://www.yoctoproject.org/downloads/core/daisy16 is "Linux
+>> kernel 3.14 and 3.10 LTSI "
+>>
+>> I build yocto with
+>> BBLAYERS ?= " \
+>>   /home/fil/Pulpit/yocto/poky/meta \
+>>   /home/fil/Pulpit/yocto/poky/meta-yocto \
+>>   /home/fil/Pulpit/yocto/poky/meta-beagleboard/common-bsp \
+>>   /home/fil/Pulpit/yocto/poky/meta-openembedded/meta-oe \
+>>   "
+>>
+>> have some errors:
+>>
+>> ERROR: QA Issue: linux-mainline: Files/directories were installed but
+>> not shipped
+>>   /lib/firmware/sb16
+>>   /lib/firmware/korg
+>>   /lib/firmware/sb16/mulaw_main.csp
+>>   /lib/firmware/sb16/alaw_main.csp
+>>   /lib/firmware/sb16/ima_adpcm_init.csp
+>>   /lib/firmware/sb16/ima_adpcm_capture.csp
+>>   /lib/firmware/sb16/ima_adpcm_playback.csp
+>>   /lib/firmware/korg/k1212.dsp
+>> ERROR: QA run found fatal errors. Please consider fixing them.
+>> ERROR: Function failed: do_package_qa
+>> ERROR: Logfile of failure stored in:
+>>
+>> /home/fil/Pulpit/yocto/poky/build/tmp/work/beaglebone-poky-linux-gnueabi/linux-mainline/3.8.13-r23a/temp/log.do_package.6509
+>> NOTE: recipe linux-mainline-3.8.13-r23a: task do_package: Failed
+>> ERROR: Task 88
+>> (/home/fil/Pulpit/yocto/poky/meta-beagleboard/common-bsp/recipes-kernel/linux/linux-mainline_3.8.bb,
+>> do_package) failed with exit code '1'
+>
+>
+> To solve this you can use a bbappend setting:
+>
+> INSANE_SKIP_${PN} += "installed-vs-shipped"
+>
+>
+>
+> Regards,
+>
+> --
+> *dS
+> Diego Sueiro
+>
+> Administrador do Embarcados
+> www.embarcados.com.br
+>
+> /*long live rock 'n roll*/
 
