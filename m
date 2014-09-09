@@ -1,55 +1,43 @@
-Return-Path: <diego.sueiro@gmail.com>
+Return-Path: <stephen.k.jolley@intel.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 1F0E6E007A2; Mon,  8 Sep 2014 17:39:03 -0700 (PDT)
+	id A9CE4E00786; Mon,  8 Sep 2014 18:36:44 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
-	mail provider *      (diego.sueiro[at]gmail.com)
-	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
-	low *      trust
-	*      [209.85.192.48 listed in list.dnswl.org]
+X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,HTML_MESSAGE,
+	RCVD_IN_DNSWL_HI autolearn=unavailable version=3.3.1
+X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
+	http://www.dnswl.org/, high *      trust
+	*      [192.55.52.115 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
 	*  0.0 HTML_MESSAGE BODY: HTML included in message
-	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-	author's *       domain
-	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-	*      valid
-	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-Received: from mail-qg0-f48.google.com (mail-qg0-f48.google.com
-	[209.85.192.48])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id ECB90E00786
-	for <yocto@yoctoproject.org>; Mon,  8 Sep 2014 17:39:01 -0700 (PDT)
-Received: by mail-qg0-f48.google.com with SMTP id z107so16487686qgd.35
-	for <yocto@yoctoproject.org>; Mon, 08 Sep 2014 17:39:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
-	h=mime-version:in-reply-to:references:from:date:message-id:subject:to
-	:cc:content-type;
-	bh=MHJSsZjUkPf53OlC8sBfEtxC8BGmKl1NOJvYAY/1jkI=;
-	b=D9IFYB364B+TOsVg6jYQWwqTYYN/PQC9iWOVniGySZOftC70jC1gLfdL9oSlhNg/sV
-	80XIDNvFe5LH9XFR0EEgRtD/vh1oMTz9yI8DPWEa2+UUm7KsyZBFTibVO3lJvKoytjUu
-	yyHh9fF4xBmsruIGGVzw6NjPLFf1Si1MDiz3ivRwGU+abD1zoTS/M9C4gpL+ZUMsmVzb
-	erGD4xxWlYpuiGONt+cw7T/Xzi+zmvcQZtq/LOszbqgDEe+Fw2FsGYeDh6RelJBb/cQe
-	fZNFL9RZlvBIeJmkZ9oV6qRD+xnPXMqMmczP08mJ/IbXxQE5EZxLruPPp/mQrY4H/QVF
-	rioQ==
-X-Received: by 10.224.86.5 with SMTP id q5mr47787749qal.36.1410223140710; Mon,
-	08 Sep 2014 17:39:00 -0700 (PDT)
+Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DF156E00786
+	for <yocto@yoctoproject.org>; Mon,  8 Sep 2014 18:36:41 -0700 (PDT)
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+	by fmsmga103.fm.intel.com with ESMTP; 08 Sep 2014 18:28:09 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="4.97,862,1389772800"; 
+	d="scan'208,217";a="383284864"
+Received: from fmsmsx104.amr.corp.intel.com ([10.18.124.202])
+	by FMSMGA003.fm.intel.com with ESMTP; 08 Sep 2014 18:31:41 -0700
+Received: from fmsmsx111.amr.corp.intel.com ([169.254.12.120]) by
+	fmsmsx104.amr.corp.intel.com ([169.254.4.161]) with mapi id
+	14.03.0195.001; Mon, 8 Sep 2014 18:36:39 -0700
+From: "Jolley, Stephen K" <stephen.k.jolley@intel.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Thread-Topic: Agenda: Yocto Project Technical Team Meeting - Tuesday,
+	September 9, 2014 8:00 AM US Pacific Time
+Thread-Index: Ac/Lzn6mgB83FwinRp2/PvaH/97nfw==
+Date: Tue, 9 Sep 2014 01:36:38 +0000
+Message-ID: <9ADD3FDE8B189B4AA2F8A3C711F8155E55273167@fmsmsx111.amr.corp.intel.com>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.1.200.107]
 MIME-Version: 1.0
-Received: by 10.140.85.83 with HTTP; Mon, 8 Sep 2014 17:38:40 -0700 (PDT)
-In-Reply-To: <CAKC+oqUbbj9oEeekE6SSqDbyTGBJnwaGGYWgeLLRJKS+QB6aMQ@mail.gmail.com>
-References: <CAKC+oqU3-ZQc34489BrPYOVr05JOke=dHUkCruPLfV+LODWDVQ@mail.gmail.com>
-	<CAMCfZKE0uEAXz6yDbqs5v1M4MX9LqCqGzv7+4XunNC=GFXbJpQ@mail.gmail.com>
-	<CAKC+oqUbbj9oEeekE6SSqDbyTGBJnwaGGYWgeLLRJKS+QB6aMQ@mail.gmail.com>
-From: Diego Sueiro <diego.sueiro@gmail.com>
-Date: Mon, 8 Sep 2014 21:38:40 -0300
-Message-ID: <CAMCfZKHQV6X1rL5+jEhjbMF8BYWzEm6XrT9MiD_8gT_uyeokww@mail.gmail.com>
-To: "tomek82221 Gazeta.pl" <tomek82221@gazeta.pl>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: yocto 1.6 - beaglebone black - cape manager
+Subject: Agenda: Yocto Project Technical Team Meeting - Tuesday, September 9, 2014 8:00 AM US Pacific Time
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -61,134 +49,329 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Tue, 09 Sep 2014 00:39:03 -0000
-Content-Type: multipart/alternative; boundary=001a11c2c1725b3e440502972918
+X-List-Received-Date: Tue, 09 Sep 2014 01:36:44 -0000
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_9ADD3FDE8B189B4AA2F8A3C711F8155E55273167fmsmsx111amrcor_"
 
---001a11c2c1725b3e440502972918
-Content-Type: text/plain; charset=ISO-8859-1
-
-Hi Chris,
-
-On Mon, Sep 8, 2014 at 2:28 PM, tomek82221 Gazeta.pl <tomek82221@gazeta.pl>
-wrote:
-
-> Can I use kernel version 3.8, meta-beagleboard as BSP layer in Yocto 1.6 ?
->
-Yes you can.
-
-Here - https://www.yoctoproject.org/downloads/core/daisy16 is "Linux
-> kernel 3.14 and 3.10 LTSI "
->
-> I build yocto with
-> BBLAYERS ?= " \
->   /home/fil/Pulpit/yocto/poky/meta \
->   /home/fil/Pulpit/yocto/poky/meta-yocto \
->   /home/fil/Pulpit/yocto/poky/meta-beagleboard/common-bsp \
->   /home/fil/Pulpit/yocto/poky/meta-openembedded/meta-oe \
->   "
->
-> have some errors:
->
-> ERROR: QA Issue: linux-mainline: Files/directories were installed but
-> not shipped
->   /lib/firmware/sb16
->   /lib/firmware/korg
->   /lib/firmware/sb16/mulaw_main.csp
->   /lib/firmware/sb16/alaw_main.csp
->   /lib/firmware/sb16/ima_adpcm_init.csp
->   /lib/firmware/sb16/ima_adpcm_capture.csp
->   /lib/firmware/sb16/ima_adpcm_playback.csp
->   /lib/firmware/korg/k1212.dsp
-> ERROR: QA run found fatal errors. Please consider fixing them.
-> ERROR: Function failed: do_package_qa
-> ERROR: Logfile of failure stored in:
->
-> /home/fil/Pulpit/yocto/poky/build/tmp/work/beaglebone-poky-linux-gnueabi/linux-mainline/3.8.13-r23a/temp/log.do_package.6509
-> NOTE: recipe linux-mainline-3.8.13-r23a: task do_package: Failed
-> ERROR: Task 88
-> (/home/fil/Pulpit/yocto/poky/meta-beagleboard/common-bsp/recipes-kernel/linux/
-> linux-mainline_3.8.bb,
-> do_package) failed with exit code '1'
->
-
-To solve this you can use a bbappend setting:
-
-INSANE_SKIP_${PN} += "installed-vs-shipped"
-
-
-
-Regards,
-
---
-*dS
-Diego Sueiro
-
-Administrador do Embarcados
-www.embarcados.com.br
-<http://www.embarcados.com.br/?utm_source=assinatura_diego&utm_medium=e-mail&utm_campaign=Assinatura%20Email%20Diego>
-
-/*long live rock 'n roll*/
-
---001a11c2c1725b3e440502972918
-Content-Type: text/html; charset=ISO-8859-1
+--_000_9ADD3FDE8B189B4AA2F8A3C711F8155E55273167fmsmsx111amrcor_
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 
-<div dir=3D"ltr"><div class=3D"gmail_extra">Hi Chris,</div><div class=3D"gm=
-ail_extra"><br><div class=3D"gmail_quote">On Mon, Sep 8, 2014 at 2:28 PM, t=
-omek82221 Gazeta.pl <span dir=3D"ltr">&lt;<a href=3D"mailto:tomek82221@gaze=
-ta.pl" target=3D"_blank">tomek82221@gazeta.pl</a>&gt;</span> wrote:<br><blo=
-ckquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left=
--width:1px;border-left-color:rgb(204,204,204);border-left-style:solid;paddi=
-ng-left:1ex"><div id=3D":67p" class=3D"" style=3D"overflow:hidden">Can I us=
-e kernel version 3.8, meta-beagleboard as BSP layer in Yocto 1.6 ?<br></div=
-></blockquote><div>Yes you can.</div><div><br></div><blockquote class=3D"gm=
-ail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left-width:1px;border-l=
-eft-color:rgb(204,204,204);border-left-style:solid;padding-left:1ex"><div i=
-d=3D":67p" class=3D"" style=3D"overflow:hidden">
-Here - <a href=3D"https://www.yoctoproject.org/downloads/core/daisy16" targ=
-et=3D"_blank">https://www.yoctoproject.org/downloads/core/daisy16</a> is &q=
-uot;Linux<br>
-kernel 3.14 and 3.10 LTSI &quot;<br>
-<br>
-I build yocto with<br>
-BBLAYERS ?=3D &quot; \<br>
-=A0 /home/fil/Pulpit/yocto/poky/meta \<br>
-=A0 /home/fil/Pulpit/yocto/poky/meta-yocto \<br>
-=A0 /home/fil/Pulpit/yocto/poky/meta-beagleboard/common-bsp \<br>
-=A0 /home/fil/Pulpit/yocto/poky/meta-openembedded/meta-oe \<br>
-=A0 &quot;<br>
-<br>
-have some errors:<br>
-<br>
-ERROR: QA Issue: linux-mainline: Files/directories were installed but<br>
-not shipped<br>
-=A0 /lib/firmware/sb16<br>
-=A0 /lib/firmware/korg<br>
-=A0 /lib/firmware/sb16/mulaw_main.csp<br>
-=A0 /lib/firmware/sb16/alaw_main.csp<br>
-=A0 /lib/firmware/sb16/ima_adpcm_init.csp<br>
-=A0 /lib/firmware/sb16/ima_adpcm_capture.csp<br>
-=A0 /lib/firmware/sb16/ima_adpcm_playback.csp<br>
-=A0 /lib/firmware/korg/k1212.dsp<br>
-ERROR: QA run found fatal errors. Please consider fixing them.<br>
-ERROR: Function failed: do_package_qa<br>
-ERROR: Logfile of failure stored in:<br>
-/home/fil/Pulpit/yocto/poky/build/tmp/work/beaglebone-poky-linux-gnueabi/li=
-nux-mainline/3.8.13-r23a/temp/log.do_package.6509<br>
-NOTE: recipe linux-mainline-3.8.13-r23a: task do_package: Failed<br>
-ERROR: Task 88 (/home/fil/Pulpit/yocto/poky/meta-beagleboard/common-bsp/rec=
-ipes-kernel/linux/<a href=3D"http://linux-mainline_3.8.bb" target=3D"_blank=
-">linux-mainline_3.8.bb</a>,<br>
-do_package) failed with exit code &#39;1&#39;</div></blockquote></div><br>T=
-o solve this you can use a bbappend setting:</div><blockquote style=3D"marg=
-in:0 0 0 40px;border:none;padding:0px"><div class=3D"gmail_extra">INSANE_SK=
-IP_${PN} +=3D &quot;installed-vs-shipped&quot;</div></blockquote><div class=
-=3D"gmail_extra"><br></div><div class=3D"gmail_extra"><br clear=3D"all"><di=
-v><div dir=3D"ltr"><div>Regards,</div><div><br></div>--<br>*dS<br>Diego Sue=
-iro<br><br>Administrador do Embarcados<br><a href=3D"http://www.embarcados.=
-com.br/?utm_source=3Dassinatura_diego&amp;utm_medium=3De-mail&amp;utm_campa=
-ign=3DAssinatura%20Email%20Diego" target=3D"_blank">www.embarcados.com.br</=
-a><br><br>/*long live rock &#39;n roll*/<br></div></div>
-</div></div>
+Tuesday, September 9, 2014 8:00 AM US Pacific Time
 
---001a11c2c1725b3e440502972918--
+
+
+Agenda:
+
+
+
+* Opens collection - 5 min (Stephen)
+
+* Yocto Project status - 5 min (Stephen/team)
+
+https://wiki.yoctoproject.org/wiki/Yocto_Project_v1.7_Status
+
+https://wiki.yoctoproject.org/wiki/Yocto_1.7_Schedule
+
+https://wiki.yoctoproject.org/wiki/Yocto_1.7_Features
+
+* SWAT team rotation: Cristian -> Nitin
+
+https://wiki.yoctoproject.org/wiki/Yocto_Build_Failure_Swat_Team
+
+* Opens - 10 min
+
+* Team Sharing - 10 min
+
+
+
+
+
+We encourage people attending the meeting to logon the Yocto Project IRC ch=
+ancel during the meeting (optional):
+
+
+
+Yocto IRC: http://webchat.freenode.net/?channels=3D#yocto
+
+IRC Tutorial: http://www.irchelp.org/irchelp/irctutorial.html
+
+
+
+Conference Details:
+
+Company:           WIND RIVER SYS
+
+Ready-Access Number: 8007302996/9139049836
+
+Access Code:     2705751
+
+
+For International numbers see: https://www.yoctoproject.org/tools-resources=
+/community/weekly-technical-call
+
+
+Thanks,
+
+Stephen K. Jolley
+Yocto Project Program Manager
+INTEL, MS JF1-255, 2111 N.E. 25th Avenue, Hillsboro, OR 97124
+*   Work Telephone:          (503) 712-0534
+*    Cell:                                (208) 244-4460
+* Email:                             stephen.k.jolley@intel.com
+
+
+--_000_9ADD3FDE8B189B4AA2F8A3C711F8155E55273167fmsmsx111amrcor_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:x=3D"urn:schemas-microsoft-com:office:excel" xmlns:p=3D"urn:schemas-m=
+icrosoft-com:office:powerpoint" xmlns:a=3D"urn:schemas-microsoft-com:office=
+:access" xmlns:dt=3D"uuid:C2F41010-65B3-11d1-A29F-00AA00C14882" xmlns:s=3D"=
+uuid:BDC6E3F0-6DA3-11d1-A2A3-00AA00C14882" xmlns:rs=3D"urn:schemas-microsof=
+t-com:rowset" xmlns:z=3D"#RowsetSchema" xmlns:b=3D"urn:schemas-microsoft-co=
+m:office:publisher" xmlns:ss=3D"urn:schemas-microsoft-com:office:spreadshee=
+t" xmlns:c=3D"urn:schemas-microsoft-com:office:component:spreadsheet" xmlns=
+:odc=3D"urn:schemas-microsoft-com:office:odc" xmlns:oa=3D"urn:schemas-micro=
+soft-com:office:activation" xmlns:html=3D"http://www.w3.org/TR/REC-html40" =
+xmlns:q=3D"http://schemas.xmlsoap.org/soap/envelope/" xmlns:rtc=3D"http://m=
+icrosoft.com/officenet/conferencing" xmlns:D=3D"DAV:" xmlns:Repl=3D"http://=
+schemas.microsoft.com/repl/" xmlns:mt=3D"http://schemas.microsoft.com/share=
+point/soap/meetings/" xmlns:x2=3D"http://schemas.microsoft.com/office/excel=
+/2003/xml" xmlns:ppda=3D"http://www.passport.com/NameSpace.xsd" xmlns:ois=
+=3D"http://schemas.microsoft.com/sharepoint/soap/ois/" xmlns:dir=3D"http://=
+schemas.microsoft.com/sharepoint/soap/directory/" xmlns:ds=3D"http://www.w3=
+.org/2000/09/xmldsig#" xmlns:dsp=3D"http://schemas.microsoft.com/sharepoint=
+/dsp" xmlns:udc=3D"http://schemas.microsoft.com/data/udc" xmlns:xsd=3D"http=
+://www.w3.org/2001/XMLSchema" xmlns:sub=3D"http://schemas.microsoft.com/sha=
+repoint/soap/2002/1/alerts/" xmlns:ec=3D"http://www.w3.org/2001/04/xmlenc#"=
+ xmlns:sp=3D"http://schemas.microsoft.com/sharepoint/" xmlns:sps=3D"http://=
+schemas.microsoft.com/sharepoint/soap/" xmlns:xsi=3D"http://www.w3.org/2001=
+/XMLSchema-instance" xmlns:udcs=3D"http://schemas.microsoft.com/data/udc/so=
+ap" xmlns:udcxf=3D"http://schemas.microsoft.com/data/udc/xmlfile" xmlns:udc=
+p2p=3D"http://schemas.microsoft.com/data/udc/parttopart" xmlns:wf=3D"http:/=
+/schemas.microsoft.com/sharepoint/soap/workflow/" xmlns:dsss=3D"http://sche=
+mas.microsoft.com/office/2006/digsig-setup" xmlns:dssi=3D"http://schemas.mi=
+crosoft.com/office/2006/digsig" xmlns:mdssi=3D"http://schemas.openxmlformat=
+s.org/package/2006/digital-signature" xmlns:mver=3D"http://schemas.openxmlf=
+ormats.org/markup-compatibility/2006" xmlns:m=3D"http://schemas.microsoft.c=
+om/office/2004/12/omml" xmlns:mrels=3D"http://schemas.openxmlformats.org/pa=
+ckage/2006/relationships" xmlns:spwp=3D"http://microsoft.com/sharepoint/web=
+partpages" xmlns:ex12t=3D"http://schemas.microsoft.com/exchange/services/20=
+06/types" xmlns:ex12m=3D"http://schemas.microsoft.com/exchange/services/200=
+6/messages" xmlns:pptsl=3D"http://schemas.microsoft.com/sharepoint/soap/Sli=
+deLibrary/" xmlns:spsl=3D"http://microsoft.com/webservices/SharePointPortal=
+Server/PublishedLinksService" xmlns:Z=3D"urn:schemas-microsoft-com:" xmlns:=
+st=3D"&#1;" xmlns=3D"http://www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 14 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;}
+@font-face
+	{font-family:Wingdings;
+	panose-1:5 0 0 0 0 0 0 0 0 0;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:Tahoma;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
+@font-face
+	{font-family:Consolas;
+	panose-1:2 11 6 9 2 2 4 3 2 4;}
+@font-face
+	{font-family:"Comic Sans MS";
+	panose-1:3 15 7 2 3 3 2 2 2 4;}
+@font-face
+	{font-family:"MS Sans Serif";}
+@font-face
+	{font-family:Verdana;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";
+	mso-fareast-language:EN-US;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;}
+p.MsoPlainText, li.MsoPlainText, div.MsoPlainText
+	{mso-style-priority:99;
+	mso-style-link:"Plain Text Char";
+	margin:0in;
+	margin-bottom:.0001pt;
+	font-size:10.5pt;
+	font-family:Consolas;
+	mso-fareast-language:EN-US;}
+p
+	{mso-style-priority:99;
+	mso-margin-top-alt:auto;
+	margin-right:0in;
+	mso-margin-bottom-alt:auto;
+	margin-left:0in;
+	font-size:12.0pt;
+	font-family:"Times New Roman","serif";
+	mso-fareast-language:ZH-CN;}
+span.PlainTextChar
+	{mso-style-name:"Plain Text Char";
+	mso-style-priority:99;
+	mso-style-link:"Plain Text";
+	font-family:Consolas;}
+span.EmailStyle20
+	{mso-style-type:personal-compose;
+	font-family:"Calibri","sans-serif";
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"blue" vlink=3D"purple">
+<div class=3D"WordSection1">
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas">Tuesday, September 9, 2014 8:00 AM US Pacific Time=
+<o:p></o:p></span></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas"><o:p>&nbsp;</o:p></span></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas">Agenda:<o:p></o:p></span></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas">&nbsp;<o:p></o:p></span></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas">* Opens collection - 5 min (Stephen)<o:p></o:p></s=
+pan></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas">* Yocto Project status - 5 min (Stephen/team)<o:p>=
+</o:p></span></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas"><a href=3D"https://wiki.yoctoproject.org/wiki/Yoct=
+o_Project_v1.7_Status">https://wiki.yoctoproject.org/wiki/Yocto_Project_v1.=
+7_Status</a><o:p></o:p></span></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas"><a href=3D"https://wiki.yoctoproject.org/wiki/Yoct=
+o_1.7_Schedule">https://wiki.yoctoproject.org/wiki/Yocto_1.7_Schedule</a><o=
+:p></o:p></span></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas"><a href=3D"https://wiki.yoctoproject.org/wiki/Yoct=
+o_1.7_Features">https://wiki.yoctoproject.org/wiki/Yocto_1.7_Features</a><o=
+:p></o:p></span></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas">* SWAT team rotation: Cristian -&gt; Nitin<o:p></o=
+:p></span></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas"><a href=3D"https://wiki.yoctoproject.org/wiki/Yoct=
+o_Build_Failure_Swat_Team">https://wiki.yoctoproject.org/wiki/Yocto_Build_F=
+ailure_Swat_Team</a><o:p></o:p></span></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas">* Opens - 10 min
+<o:p></o:p></span></p>
+<div style=3D"border:none;border-bottom:solid windowtext 1.0pt;padding:0in =
+0in 1.0pt 0in">
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas">* Team Sharing - 10 min<o:p></o:p></span></p>
+<p style=3D"margin:0in;margin-bottom:.0001pt"><span style=3D"font-size:11.0=
+pt;font-family:Consolas"><o:p>&nbsp;</o:p></span></p>
+</div>
+<p class=3D"MsoPlainText"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoPlainText">We encourage people attending the meeting to logo=
+n the Yocto Project IRC chancel during the meeting (optional):<o:p></o:p></=
+p>
+<p class=3D"MsoPlainText"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoPlainText">Yocto IRC: <a href=3D"http://webchat.freenode.net=
+/?channels=3D#yocto">
+http://webchat.freenode.net/?channels=3D#yocto</a><o:p></o:p></p>
+<p class=3D"MsoPlainText">IRC Tutorial: <a href=3D"http://www.irchelp.org/i=
+rchelp/irctutorial.html">
+http://www.irchelp.org/irchelp/irctutorial.html</a> <o:p></o:p></p>
+<p class=3D"MsoPlainText"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoPlainText">Conference Details:<o:p></o:p></p>
+<p class=3D"MsoPlainText">Company:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp; WIND RIVER SYS<o:p></o:p></p>
+<p class=3D"MsoPlainText">Ready-Access Number: 8007302996/9139049836<o:p></=
+o:p></p>
+<p class=3D"MsoPlainText">Access Code:&nbsp;&nbsp;&nbsp;&nbsp; 2705751<o:p>=
+</o:p></p>
+<p class=3D"MsoNormal"><b><span style=3D"font-size:8.5pt;font-family:&quot;=
+Verdana&quot;,&quot;sans-serif&quot;;color:black"><o:p>&nbsp;</o:p></span><=
+/b></p>
+<p class=3D"MsoPlainText">For International numbers see: <a href=3D"https:/=
+/www.yoctoproject.org/tools-resources/community/weekly-technical-call">
+https://www.yoctoproject.org/tools-resources/community/weekly-technical-cal=
+l</a><o:p></o:p></p>
+<p class=3D"MsoPlainText"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal">Thanks,<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal" style=3D"page-break-after:avoid;text-autospace:none"=
+><b><i><span style=3D"font-size:16.0pt;font-family:&quot;Times New Roman&qu=
+ot;,&quot;serif&quot;;color:purple">Stephen K. Jolley</span></i></b><b><i><=
+span style=3D"font-size:16.0pt;font-family:&quot;Tahoma&quot;,&quot;sans-se=
+rif&quot;;color:purple"><o:p></o:p></span></i></b></p>
+<p class=3D"MsoNormal"><b><span style=3D"font-size:8.0pt;font-family:&quot;=
+Courier New&quot;;color:blue">Yocto Project Program Manager<o:p></o:p></spa=
+n></b></p>
+<p class=3D"MsoNormal" style=3D"page-break-after:avoid;text-autospace:none"=
+><b><span style=3D"font-size:10.0pt;font-family:&quot;Courier New&quot;;col=
+or:fuchsia">INTEL, MS JF1-255, 2111 N.E. 25th Avenue, Hillsboro, OR 97124
+<o:p></o:p></span></b></p>
+<p class=3D"MsoNormal"><span style=3D"font-family:Wingdings;color:black">(<=
+/span><span style=3D"font-family:&quot;MS Sans Serif&quot;;color:teal">
+</span><span style=3D"font-size:8.0pt;font-family:&quot;MS Sans Serif&quot;=
+;color:teal">&nbsp;&nbsp;</span><b><span style=3D"font-size:8.0pt;font-fami=
+ly:&quot;Comic Sans MS&quot;;color:teal">Work Telephone</span></b><span sty=
+le=3D"font-family:&quot;MS Sans Serif&quot;;color:teal">:&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span style=3D"font-size:9.0pt;font-family:&quot;MS Sans Serif&quot;=
+">(503) 712-0534<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt;font-family:Wingdings=
+;color:black">(</span><span style=3D"font-size:9.0pt;font-family:&quot;MS S=
+ans Serif&quot;;color:teal">&nbsp;&nbsp;&nbsp;
+</span><b><span style=3D"font-size:8.0pt;font-family:&quot;Comic Sans MS&qu=
+ot;;color:teal">Cell</span></b><span style=3D"font-size:9.0pt;font-family:&=
+quot;MS Sans Serif&quot;;color:teal">:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs=
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span style=3D"font-size:9.0pt;font-family:&quot;MS Sans Serif&quot;=
+">(208) 244-4460<span style=3D"color:black"><o:p></o:p></span></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt;font-family:Wingdings=
+">* </span>
+<b><span lang=3D"FR" style=3D"font-size:8.0pt;font-family:&quot;Comic Sans =
+MS&quot;;color:teal">Email</span></b><span lang=3D"FR" style=3D"font-size:9=
+.0pt;font-family:&quot;MS Sans Serif&quot;;color:teal">:</span><span lang=
+=3D"FR" style=3D"font-size:9.0pt;font-family:&quot;MS Sans Serif&quot;">&nb=
+sp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nb=
+sp;&nbsp;&nbsp;
+<u><span style=3D"color:blue">stephen.k.jolley@intel.com</span></u></span><=
+span lang=3D"FR" style=3D"font-size:12.0pt;font-family:&quot;Arial&quot;,&q=
+uot;sans-serif&quot;"><o:p></o:p></span></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+</body>
+</html>
+
+--_000_9ADD3FDE8B189B4AA2F8A3C711F8155E55273167fmsmsx111amrcor_--
