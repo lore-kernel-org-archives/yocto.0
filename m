@@ -1,45 +1,53 @@
-Return-Path: <mikhail.zakharov@cognitivesystems.com>
+Return-Path: <tomek82221@gazeta.pl>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 57E3CE00833; Wed, 10 Sep 2014 07:19:44 -0700 (PDT)
+	id E54BDE00833; Wed, 10 Sep 2014 09:39:54 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00 autolearn=ham
-	version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (tomek82221[at]gazeta.pl)
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from ironport.highqlp.com (ironport.highqlp.com [207.107.155.245])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A8F50E00819
-	for <yocto@yoctoproject.org>; Wed, 10 Sep 2014 07:19:40 -0700 (PDT)
-X-IronPort-Anti-Spam-Filtered: true
-X-IronPort-Anti-Spam-Result: AmMGACldEFSsAWkL/2dsb2JhbABZgmsjU1cEuEWRSh4Mh0qBEBcCdoJrLA1fAQEBAQMBAjccIxACAQgRAwECAR4QIQcKBxYIAgQOBQgTiBMDEQEECLdrDYY5AReNIIF6Mw2ERgWGGowogy+Df3ODb40UhjuDYWwBBIFDgQcBAQE
-X-IPAS-Result: AmMGACldEFSsAWkL/2dsb2JhbABZgmsjU1cEuEWRSh4Mh0qBEBcCdoJrLA1fAQEBAQMBAjccIxACAQgRAwECAR4QIQcKBxYIAgQOBQgTiBMDEQEECLdrDYY5AReNIIF6Mw2ERgWGGowogy+Df3ODb40UhjuDYWwBBIFDgQcBAQE
-X-IronPort-AV: E=McAfee;i="5600,1067,7556"; a="35694"
-X-IronPort-AV: E=Sophos;i="5.04,499,1406606400"; 
-   d="scan'208";a="35694"
-Received: from 172-1-105-11.lightspeed.sntcca.sbcglobal.net (HELO
-	cas.cognitivesystems.com) ([172.1.105.11])
-	by ironport.cognitivesystems.com with ESMTP; 10 Sep 2014 10:19:38 -0400
-Received: from mb.cognitivesystems.com (2002:ac01:680b::ac01:680b) by
-	mb.cognitivesystems.com (2002:ac01:680b::ac01:680b) with Microsoft SMTP
-	Server (TLS) id 15.0.847.32; Wed, 10 Sep 2014 10:20:23 -0400
-Received: from mb.cognitivesystems.com ([fe80::8d75:bde8:1d24:bd44]) by
-	mb.cognitivesystems.com ([fe80::8d75:bde8:1d24:bd44%12]) with mapi id
-	15.00.0847.030; Wed, 10 Sep 2014 10:20:23 -0400
-From: Mikhail Zakharov <mikhail.zakharov@cognitivesystems.com>
-To: "sodovkar@gmail.com" <sodovkar@gmail.com>
-Thread-Topic: [yocto] python3.3 module encodings not found
-Thread-Index: AQHPzQJcqSHLOHSLA0uDyB/hSUVvwg==
-Date: Wed, 10 Sep 2014 14:20:23 +0000
-Message-ID: <fb2583ab189242d2918114a36c4cf49c@mb.cognitivesystems.com>
-References: <mailman.22969.1410356230.26702.yocto@yoctoproject.org>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [172.1.105.2]
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.216.181 listed in list.dnswl.org]
+Received: from mail-qc0-f181.google.com (mail-qc0-f181.google.com
+	[209.85.216.181])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id A4A1FE00819
+	for <yocto@yoctoproject.org>; Wed, 10 Sep 2014 09:39:43 -0700 (PDT)
+Received: by mail-qc0-f181.google.com with SMTP id i17so19858656qcy.12
+	for <yocto@yoctoproject.org>; Wed, 10 Sep 2014 09:39:42 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:date
+	:message-id:subject:from:to:cc:content-type;
+	bh=in8OytCGUwEy+sW7QTN8f9H/gD9tfWxEz4P2MSn76FE=;
+	b=Cb8CgDXRyvo097YU83KkF2b+4XLx7FTUfMGYmFWWN1Yw+zx5fYimq5dk43Dq3/AwSv
+	GXR6D5VwwBpqfBsNvYLVcnYkqtNRxxBnTfzLqk66CWcyYjwRClT8ZzeHy0mDUwWXy1B1
+	9IGfsrBu+2exDFxQgxXW+F4p8Dvflt6/exIMRkpM7/LHqyZhO8dpiWoSUMxUYMI+x1Tt
+	ZjMnzv8ibSb9S8nkcfPJ3gs2ySJ+BhP4J7Lx0V/giQx0+PkUKmsj4RcX42vBOgC+uYhn
+	KY9s/AVenVh6boTEvm7Vb2h7J/6m6ZW0ijA+o/eiG430g0Aj9/IK34lIUlnjKaUb6lA5
+	ADfA==
+X-Gm-Message-State: ALoCoQme7uHc5+NwkdxtE1Yogwm2Pn6YBqgWYv49dHa8Af46YT0xhr4ATIGQW3T6V3LXxpyxSNMf
 MIME-Version: 1.0
+X-Received: by 10.229.100.69 with SMTP id x5mr49616308qcn.6.1410367182250;
+	Wed, 10 Sep 2014 09:39:42 -0700 (PDT)
+Received: by 10.140.16.15 with HTTP; Wed, 10 Sep 2014 09:39:42 -0700 (PDT)
+In-Reply-To: <CAMCfZKHegx_E0SK=k+7bAAomjNCRMzTcg-ji4tf8aSRuoziWWw@mail.gmail.com>
+References: <CAKC+oqU3-ZQc34489BrPYOVr05JOke=dHUkCruPLfV+LODWDVQ@mail.gmail.com>
+	<CAMCfZKE0uEAXz6yDbqs5v1M4MX9LqCqGzv7+4XunNC=GFXbJpQ@mail.gmail.com>
+	<CAKC+oqUbbj9oEeekE6SSqDbyTGBJnwaGGYWgeLLRJKS+QB6aMQ@mail.gmail.com>
+	<CAMCfZKHQV6X1rL5+jEhjbMF8BYWzEm6XrT9MiD_8gT_uyeokww@mail.gmail.com>
+	<CAKC+oqX=KmSUcAR=2Ngvnimq46QKzAo=N+gaTw+M496c-QGW2w@mail.gmail.com>
+	<CAMCfZKHegx_E0SK=k+7bAAomjNCRMzTcg-ji4tf8aSRuoziWWw@mail.gmail.com>
+Date: Wed, 10 Sep 2014 18:39:42 +0200
+Message-ID: <CAKC+oqUhVfbL-5aNO-xm9y=t-avHdke21X9Gt6N3ge_YkEuYfw@mail.gmail.com>
+From: TakkTakk <tomek82221@gazeta.pl>
+To: Diego Sueiro <diego.sueiro@gmail.com>
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: python3.3 module encodings not found
+Subject: Re: yocto 1.6 - beaglebone black - cape manager
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -51,86 +59,64 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 10 Sep 2014 14:19:44 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Wed, 10 Sep 2014 16:39:55 -0000
+Content-Type: text/plain; charset=UTF-8
 
-On 14-09-10 09:39 AM, yocto-request@yoctoproject.org wrote:=0A=
-> ------------------------------=0A=
->=0A=
-> Message: 4=0A=
-> Date: Wed, 10 Sep 2014 13:22:12 +0200=0A=
-> From: Soda <sodovkar@gmail.com>=0A=
-> To: yocto@yoctoproject.org=0A=
-> Subject: [yocto] python3.3 module encodings not found=0A=
-> Message-ID: <54103464.7070807@gmail.com>=0A=
-> Content-Type: text/plain; charset=3DISO-8859-1; format=3Dflowed=0A=
->=0A=
-> Hello developers,=0A=
->=0A=
-> I have recently switch to the poky-1.6.1, mainly because of python3.=0A=
-> First of all I must say that I see significant improvements in the new=0A=
-> yocto 1.6.1 (compare to the 1.5.1), so thanks to all contributors!=0A=
->=0A=
-> The python3 package is successfully compiled and installed on my target =
-=0A=
-> board (Atmel A5),=0A=
-> the problem I'm getting is the python3 cannot find the 'encodings' =0A=
-> module, maybe because=0A=
-> there is none in the /usr/lib/python3.3/  copying one from python2 did =
-=0A=
-> not work - obviously.=0A=
->=0A=
-> This is the actual error I get:=0A=
->=0A=
->   # python3=0A=
->   Fatal Python error: Py_Initialize: Unable to get the locale encoding=0A=
->   ImportError: No module named 'encodings'=0A=
->   Aborted=0A=
->=0A=
-> More detailed error:=0A=
->=0A=
->   # python3 -v=0A=
->   import _frozen_importlib # frozen=0A=
->   import imp # builtin=0A=
->   import sys # builtin=0A=
->   # installing zipimport hook=0A=
->   import 'zipimport' # <class '_frozen_importlib.BuiltinImporter'>=0A=
->   # installed zipimport hook=0A=
->   Fatal Python error: Py_Initialize: Unable to get the locale encoding=0A=
->   Traceback (most recent call last):=0A=
->     File "<frozen importlib._bootstrap>", line 1565, in _find_and_load=0A=
->     File "<frozen importlib._bootstrap>", line 1529, in =0A=
-> _find_and_load_unlocked=0A=
->   ImportError: No module named 'encodings'=0A=
->   Aborted=0A=
->=0A=
->=0A=
-> Looking forward for any hints or solutions.=0A=
->=0A=
-> Mark=0A=
->=0A=
-Ensure you have added python3-modules and python3-misc. Take a look at=0A=
-the following post:=0A=
-http://lists.openembedded.org/pipermail/openembedded-core/2013-May/078568.h=
-tml=0A=
-=0A=
-Also, please be aware of some bugs that have been fixed since daisy=0A=
-1.6.1 that might affect you with python3:=0A=
-=0A=
-Our environemnt required this one:=0A=
-https://git.yoctoproject.org/cgit/cgit.cgi/poky/commit/?id=3D0ed5a13f5f9478=
-e2c22f517fb3504b738422f85c=0A=
-=0A=
-master:=0A=
-https://git.yoctoproject.org/cgit/cgit.cgi/poky/log/?qt=3Dgrep&q=3Dpython3&=
-h=3Dmaster=0A=
-vs daisy:=0A=
-https://git.yoctoproject.org/cgit/cgit.cgi/poky/log/?qt=3Dgrep&q=3Dpython3&=
-h=3Ddaisy=0A=
-=0A=
--Mikhail=0A=
-=0A=
-=0A=
+yocto buit with INSANE_SKIP_${PN} += "installed-vs-shipped" with no error.
+then i copied:
+cp MLO /media/boot/MLO
+cp u-boot-beaglebone.img /media/boot/u-boot.img
+sudo tar -xvf core-image-base-beaglebone.tar.gz -C /media/root/
+
+then, inserted microSD card to Beaglebone Black and bbb not boot. 4
+led lit steadily and nothing happens. I have cable hdmi connected to
+monitor.
+
+then i did
+$ cp uImage /media/boot
+$ mkdir /media/boot/dtbs
+$ cp uImage-am335x-boneblack.dtb /media/boot/dtbs/am335x-boneblack.dtb
+
+$ cp uEnv.txt /media/boot
+
+uEnv.txt from here
+http://www.embarcados.com.br/beaglebone-black-yocto/ but i changed
+zImage to uImage and still I can not boot the SD Card on the Beagle.
+All four LEDs stay lit steadily.
+What am i doing wrong?
+
+
+2014-09-09 19:28 GMT+02:00 Diego Sueiro <diego.sueiro@gmail.com>:
+>
+> On Tue, Sep 9, 2014 at 12:53 PM, tomek82221 Gazeta.pl <tomek82221@gazeta.pl>
+> wrote:
+>>
+>> ok, but where i can add INSANE_SKIP_${PN} += "installed-vs-shipped"
+>> in meta-beagleboard/common-bsp/recipes-kernel/linux/linux-mainline_3.8.bb
+>> ?
+>> or create
+>> meta-beagleboard/common-bsp/recipes-kernel/linux/linux-mainline_3.8.bbappend
+>> ?
+>>
+>> thanks for your help
+>
+>
+> Both will work.
+>
+>
+> Regards,
+>
+> --
+> *dS
+> Diego Sueiro
+>
+> Administrador do Embarcados
+> www.embarcados.com.br
+>
+> /*long live rock 'n roll*/
+
+
+
+-- 
+TakTak
 
