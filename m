@@ -1,39 +1,52 @@
-Return-Path: <paul.eggleton@linux.intel.com>
+Return-Path: <atul.singh008@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 9FB4EE00563; Wed, 10 Sep 2014 00:38:38 -0700 (PDT)
+	id 6FC4EE00563; Wed, 10 Sep 2014 03:22:42 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID,DKIM_VALID_AU,FREEMAIL_FROM,HTML_MESSAGE,RCVD_IN_DNSWL_LOW
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (atul.singh008[at]gmail.com)
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-	* -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at http://www.dnswl.org/,
-	high *      trust
-	*      [192.55.52.115 listed in list.dnswl.org]
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6171AE0049D
-	for <yocto@yoctoproject.org>; Wed, 10 Sep 2014 00:38:35 -0700 (PDT)
-Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by fmsmga103.fm.intel.com with ESMTP; 10 Sep 2014 00:30:00 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.04,496,1406617200"; d="scan'208";a="476545929"
-Received: from tmediriw-mobl.gar.corp.intel.com (HELO
-	peggleto-mobl5.ger.corp.intel.com) ([10.252.120.16])
-	by azsmga001.ch.intel.com with ESMTP; 10 Sep 2014 00:38:08 -0700
-From: Paul Eggleton <paul.eggleton@linux.intel.com>
-To: Philip Balister <philip@balister.org>
-Date: Wed, 10 Sep 2014 08:38:07 +0100
-Message-ID: <1548923.UYKtK7c5ZH@peggleto-mobl5.ger.corp.intel.com>
-Organization: Intel Corporation
-User-Agent: KMail/4.13.3 (Linux/3.15.10-201.fc20.x86_64; KDE/4.13.3; x86_64; ;
-	)
-In-Reply-To: <540F4F0B.7010707@balister.org>
-References: <CALb224-2biSJpCoLBojkMgjGKX4a_YUayfUQwByFTDNYqVKeCA@mail.gmail.com>
-	<540F4F0B.7010707@balister.org>
+	*  0.0 HTML_MESSAGE BODY: HTML included in message
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
+	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
+	low *      trust
+	*      [209.85.223.175 listed in list.dnswl.org]
+Received: from mail-ie0-f175.google.com (mail-ie0-f175.google.com
+	[209.85.223.175])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id E07C8E0049D
+	for <yocto@yoctoproject.org>; Wed, 10 Sep 2014 03:22:36 -0700 (PDT)
+Received: by mail-ie0-f175.google.com with SMTP id at20so1758753iec.6
+	for <yocto@yoctoproject.org>; Wed, 10 Sep 2014 03:22:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:content-type; bh=Xbop5UhHA0cVuz0YIdwEI4FWZlS7gWn48hYMX2K0VSM=;
+	b=N5qHMxQgE2Etu2UN6Po6ugMGQXuKTyMLoDcni6FzfzyqYRcqqSCnyEH9LIHsRwAiav
+	JwWNIHL+ZuLg3jpvov4nNZo1NtZVWUFWc58md36WEO/dTa2cfAUzDtVLwWx9Pqj1OMP/
+	L8KO+2OeMVAmLI4fcVX6xKdugikYm5SNbPauGkx08fD5/xmWtZMywx07y9ImJfLQHu4t
+	B8zE+K/XP8In2XvbDJj+QaiV/FMjFSt+nftslgqKmQzJ6jKSDAcMD5DZfi9U9kBJ2s61
+	69cgEwEvbh2BPvB/278GOyw0GLlgduEU+5vAnnx1Y6NM3mGpExYzwzkbJFzYACdfj+aE
+	BqLg==
 MIME-Version: 1.0
-Cc: yocto@yoctoproject.org, Leo Schwab <lschwab@sensity.com>
-Subject: Re: Adding 'build-id' to Build Image
+X-Received: by 10.42.100.6 with SMTP id y6mr10142280icn.28.1410344555476; Wed,
+	10 Sep 2014 03:22:35 -0700 (PDT)
+Received: by 10.64.232.36 with HTTP; Wed, 10 Sep 2014 03:22:35 -0700 (PDT)
+Received: by 10.64.232.36 with HTTP; Wed, 10 Sep 2014 03:22:35 -0700 (PDT)
+In-Reply-To: <8e6393ef571845f49cc0db4a6b87dca5@HKNPR03MB354.apcprd03.prod.outlook.com>
+References: <8e6393ef571845f49cc0db4a6b87dca5@HKNPR03MB354.apcprd03.prod.outlook.com>
+Date: Wed, 10 Sep 2014 15:52:35 +0530
+Message-ID: <CAH21_vF89yZJ+q3V1WXFx3Nf+VXTN-=y4c0svJj-moZxA-oPdA@mail.gmail.com>
+From: atulkumar singh <atul.singh008@gmail.com>
+To: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
+Subject: Needed info regarding toolchain testing
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -45,41 +58,44 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 10 Sep 2014 07:38:38 -0000
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+X-List-Received-Date: Wed, 10 Sep 2014 10:22:42 -0000
+Content-Type: multipart/alternative; boundary=20cf30223ca53d7de40502b36ee1
 
-On Tuesday 09 September 2014 15:03:39 Philip Balister wrote:
-> On 09/08/2014 07:08 PM, Leo Schwab wrote:
-> > We'd like to have the system images we build to contain a build id, or
-> > at least a pile of information inside the image itself that lets us
-> > identify which build is being run/tested.  Indeed, the information
-> > 'bitbake' kicks out just as it starts a build is exactly the sort of
-> > thing we'd like sitting in a file in the image somewhere.
-> > 
-> > I turned on the 'buildhistory' feature in conf/local.conf which, among
-> > other things, generates a 'build-id' file.  However, it doesn't place
-> > it in the image, but in an entirely separate directory hierarchy.
-> > 
-> > Surely this sort of thing has been done before.  Is there an existing
-> > recipe I can use, or will I have to cobble together a custom recipe
-> > out of buildhistory_get_layers() or get_layers_branch_rev()?
-> 
-> I was asking the same question yesterday. I have a hacky solution for my
-> immediate need, but I'd like a long term solution along these lines also.
-> 
-> Should we add this to bugzilla and see if we can get it done for 1.8? (I
-> think I ahve the version number right)
+--20cf30223ca53d7de40502b36ee1
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-Yes, please add this to the bugzilla. This has also come up before several 
-times, we should just do it (and bonus points if someone wants to send a patch 
-;).
+Hi All,
 
-Cheers,
-Paul
+As per the Yocto Project Technical Team Meeting this Tuesday,  there is one
+key features for 1.7 M3.
 
--- 
+=C2=B7         New automated sdk/toolchain testing.
 
-Paul Eggleton
-Intel Open Source Technology Centre
 
+
+Please let me know about the same if possible.
+
+
+
+Thanks and regards,
+
+Atul
+
+--20cf30223ca53d7de40502b36ee1
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<p>Hi All,<br></p>
+<p>As per the Yocto Project Technical Team Meeting this Tuesday,=C2=A0 ther=
+e is one key features for 1.7 M3.</p>
+<p>=C2=B7=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 New automated sdk=
+/toolchain testing.</p>
+<p>=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0</p>
+<p>Please let me know about the same if possible.</p>
+<p>=C2=A0</p>
+<p>Thanks and regards,</p>
+<p>Atul</p>
+
+--20cf30223ca53d7de40502b36ee1--
