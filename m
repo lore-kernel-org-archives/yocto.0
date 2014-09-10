@@ -1,44 +1,48 @@
-Return-Path: <scott.m.rifenbark@intel.com>
+Return-Path: <nicolas.dechesne@linaro.org>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id B0EB1E00566; Tue,  9 Sep 2014 22:08:09 -0700 (PDT)
+	id 7DC1DE0056A; Tue,  9 Sep 2014 22:10:38 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-6.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_HI
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
 	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -5.0 RCVD_IN_DNSWL_HI RBL: Sender listed at
-	http://www.dnswl.org/, high *      trust
-	*      [134.134.136.24 listed in list.dnswl.org]
+X-Spam-HAM-Report: * -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at
+	http://www.dnswl.org/, low *      trust
+	*      [209.85.214.172 listed in list.dnswl.org]
 	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
-Received: from mga09.intel.com (mga09.intel.com [134.134.136.24])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 6A2BEE0054C
-	for <yocto@yoctoproject.org>; Tue,  9 Sep 2014 22:08:03 -0700 (PDT)
-Received: from azsmga001.ch.intel.com ([10.2.17.19])
-	by orsmga102.jf.intel.com with ESMTP; 09 Sep 2014 22:01:56 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.04,496,1406617200"; d="scan'208";a="476517156"
-Received: from orsmsx109.amr.corp.intel.com ([10.22.240.7])
-	by azsmga001.ch.intel.com with ESMTP; 09 Sep 2014 22:07:48 -0700
-Received: from orsmsx101.amr.corp.intel.com ([169.254.8.117]) by
-	ORSMSX109.amr.corp.intel.com ([169.254.2.80]) with mapi id
-	14.03.0195.001; Tue, 9 Sep 2014 22:07:48 -0700
-From: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
-To: Nicolas Dechesne <nicolas.dechesne@linaro.org>
-Thread-Topic: [yocto] EXTERNALSRC
-Thread-Index: AQHPzHhrZT9KgjMMA0+gRIaHv8YWN5v6McWA//+agnCAAHjFAP//iw9A
-Date: Wed, 10 Sep 2014 05:07:48 +0000
-Message-ID: <41DEA4B02DBDEF40A0F3B6D0DDB1237983FE9C4D@ORSMSX101.amr.corp.intel.com>
+Received: from mail-ob0-f172.google.com (mail-ob0-f172.google.com
+	[209.85.214.172])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id DCA06E0054C
+	for <yocto@yoctoproject.org>; Tue,  9 Sep 2014 22:10:33 -0700 (PDT)
+Received: by mail-ob0-f172.google.com with SMTP id wp18so1759525obc.17
+	for <yocto@yoctoproject.org>; Tue, 09 Sep 2014 22:10:33 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=1e100.net; s=20130820;
+	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
+	:message-id:subject:to:cc:content-type:content-transfer-encoding;
+	bh=QHY1Z+Ye4yfelcJR3lgnBNS7WPZKlBM27m+AlknKPK0=;
+	b=VftGxxJskYfqlkormyARKHiGFYo9vGt+YjSNHBRWz6zkLQZJpvyNJnI+q+Og25hgsL
+	MqpNKJ5U+6FwoCGgxGcGc9lB0yKp8N1Daro6iU4pp18OoomoPO6IKh8LIjuufZdtpnbC
+	OlIIw/bUtEHxIfU4FE8awXHlPd304502DrvP/vyxR6UU2DrL59xrRj195+YZsU87Krsw
+	fTkqfImx9bxsLCufTwnty+EQ0oMrVi0uVLeXWVhVFXowR7R5YTPmYOFh+/ie19xxKrlA
+	PZtBPAASLmxGguCe3dn/ihmLYcZzWHIGGG91IVMHnUFp685C5jvUr81cKrRBVQq0vyfM
+	4H3A==
+X-Gm-Message-State: ALoCoQlQMY8IAo+vT1MlCW8dditu0Xai9IjNoEQtuJQJeUvuTorM5odigzrgzxC+TOW26qc4lil+
+X-Received: by 10.60.41.41 with SMTP id c9mr20919oel.76.1410325832942; Tue, 09
+	Sep 2014 22:10:32 -0700 (PDT)
+MIME-Version: 1.0
+Received: by 10.76.187.8 with HTTP; Tue, 9 Sep 2014 22:10:12 -0700 (PDT)
+In-Reply-To: <41DEA4B02DBDEF40A0F3B6D0DDB1237983FE9C4D@ORSMSX101.amr.corp.intel.com>
 References: <CAMSG=xW13=_vydq4ytYT_G2FTz+RH9EoTYpQqf667QO1mb_=pg@mail.gmail.com>
 	<CAP71WjzYhpLsxEYHb+4OvfHYAMx7X+1oUMzX=3ySeH_M91==RA@mail.gmail.com>
 	<41DEA4B02DBDEF40A0F3B6D0DDB1237983FE8C08@ORSMSX101.amr.corp.intel.com>
 	<CAP71Wjx8Ck2hzrUE-XnDiBzkxoewPTT8pXaUKkoFh4EVgYv0Kg@mail.gmail.com>
-In-Reply-To: <CAP71Wjx8Ck2hzrUE-XnDiBzkxoewPTT8pXaUKkoFh4EVgYv0Kg@mail.gmail.com>
-Accept-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.22.254.139]
-MIME-Version: 1.0
+	<41DEA4B02DBDEF40A0F3B6D0DDB1237983FE9C4D@ORSMSX101.amr.corp.intel.com>
+From: Nicolas Dechesne <nicolas.dechesne@linaro.org>
+Date: Wed, 10 Sep 2014 07:10:12 +0200
+Message-ID: <CAP71WjxpvupOpEx=OJvAt1=qXgX7J7O2nOHi5ST-_iOJhoymnw@mail.gmail.com>
+To: "Rifenbark, Scott M" <scott.m.rifenbark@intel.com>
 Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>,
 	Nemicolopterus Crypticus <ncrypticus@gmail.com>
 Subject: Re: EXTERNALSRC
@@ -53,31 +57,17 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 10 Sep 2014 05:08:09 -0000
-Content-Language: en-US
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+X-List-Received-Date: Wed, 10 Sep 2014 05:10:38 -0000
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-SSBzaG91bGQgaGF2ZSB1c2VkIGEgZm9ybWF0dGluZyB0YWcgaW4gdGhlIG1hbnVhbCBzb3VyY2Ug
-dG8gaW5kaWNhdGUgIm15cmVjaXBlIiBhcyB1c2VyIGlucHV0LiAgV2l0aG91dCB0aGUgZm9ybWF0
-dGluZywgaXQgaW1wbGllcyB0aGF0ICJteXJlY2lwZSIgaXMgbGl0ZXJhbCB3aGVuIGl0IGlzIG5v
-dC4gIEkgZ3Vlc3MgdGhlIGV4YW1wbGUgaXMgbm90IHRlY2huaWNhbGx5IHdyb25nIGlmIHRoZSBy
-ZWNpcGUgaXMgYWN0dWFsbHkgbmFtZWQgIm15cmVjaXBlIi4gIEkgbGlrZSB5b3VyIGFkZGVkIGlu
-Zm9ybWF0aW9uIGFib3V0IHNldHRpbmcgaXQgaW4gdGhlIHJlY2lwZS4gIEkgd2lsbCBhZGQgdGhh
-dCBhcyB3ZWxsLiANCg0KU2NvdHQNCg0KPi0tLS0tT3JpZ2luYWwgTWVzc2FnZS0tLS0tDQo+RnJv
-bTogTmljb2xhcyBEZWNoZXNuZSBbbWFpbHRvOm5pY29sYXMuZGVjaGVzbmVAbGluYXJvLm9yZ10N
-Cj5TZW50OiBUdWVzZGF5LCBTZXB0ZW1iZXIgMDksIDIwMTQgMTA6MDIgUE0NCj5UbzogUmlmZW5i
-YXJrLCBTY290dCBNDQo+Q2M6IE5lbWljb2xvcHRlcnVzIENyeXB0aWN1czsgeW9jdG9AeW9jdG9w
-cm9qZWN0Lm9yZw0KPlN1YmplY3Q6IFJlOiBbeW9jdG9dIEVYVEVSTkFMU1JDDQo+DQo+T24gV2Vk
-LCBTZXAgMTAsIDIwMTQgYXQgNjo1MSBBTSwgUmlmZW5iYXJrLCBTY290dCBNDQo+PHNjb3R0Lm0u
-cmlmZW5iYXJrQGludGVsLmNvbT4gd3JvdGU6DQo+PiBUaGlzIGlzIGFuIGVycm9yIGluIHRoZSBt
-YW51YWwuICBJIGhhdmUgYmVlbiBmb3JtYXR0aW5nIHRoZSB1c2VyLXN1cHBsaWVkDQo+cG9ydGlv
-bnMgb2YgZXhhbXBsZXMgbm93IGluIGFuIGl0YWxpc2l6ZWQgZm9udC4gIFRoaXMgb25lIG5lZWRz
-IHRvIGJlIGZpeGVkLg0KPg0KPmhtbS4gaSBkb24ndCBzZWVtIHRvIHNlZSB3aGF0J3Mgd3Jvbmcg
-aW4gdGhlIHVzZXIgbWFudWFsLi4NCj4NCj5hbHNvLCB0aGUgX3BuLWJhbmFuYSBpcyBuZWVkZWQg
-YmVjYXVzZSB0aGUgY2hhbmdlIGlzIGRvbmUgaW4gbG9jYWwuY29uZi4gaXQgaXMNCj5wb3NzaWJs
-ZSB0byBzZXQgRVhURVJOQUxTUkMgdmFyaWFibGUgaW4gdGhlIHJlY2lwZSBkaXJlY3RseSAob3Ig
-aW4gYSAuYmJhcHBlbmQNCj5maWxlKSwgaW4gd2hpY2ggY2FzZSBpdCBjYW4gc2ltcGx5IGJlOg0K
-PkVYVEVSTkFMU1JDID0gIjxwYXRoPiINCj5FWFRFUk5BTFNSQ19CVUlMRCA9ICI8cGF0aD4iDQo+
-DQo+bWF5YmUgaXMgdGhhdCB3b3J0aCBhZGRpbmcgdG8gdGhlIG1hbnVhbC4NCg==
+On Wed, Sep 10, 2014 at 7:07 AM, Rifenbark, Scott M
+<scott.m.rifenbark@intel.com> wrote:
+> I should have used a formatting tag in the manual source to indicate "myr=
+ecipe" as user input.  Without the formatting, it implies that "myrecipe" i=
+s literal when it is not.  I guess the example is not technically wrong if =
+the recipe is actually named "myrecipe".  I like your added information abo=
+ut setting it in the recipe.  I will add that as well.
+
+ah. ok. i see!
 
