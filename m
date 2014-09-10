@@ -1,49 +1,55 @@
-Return-Path: <ross.burton@intel.com>
+Return-Path: <errordeveloper@gmail.com>
 Received: by yocto-www.yoctoproject.org (Postfix, from userid 118)
-	id 5EA3BE00563; Wed, 10 Sep 2014 04:50:59 -0700 (PDT)
+	id AABA6E00563; Wed, 10 Sep 2014 05:53:20 -0700 (PDT)
 X-Spam-Checker-Version: SpamAssassin 3.3.1 (2010-03-16) on
 	yocto-www.yoctoproject.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW
-	autolearn=ham version=3.3.1
-X-Spam-HAM-Report: * -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+	DKIM_VALID, DKIM_VALID_AU, FREEMAIL_FROM,
+	RCVD_IN_DNSWL_LOW autolearn=ham version=3.3.1
+X-Spam-HAM-Report: * 0.0 FREEMAIL_FROM Sender email is commonly abused enduser
+	mail provider *      (errordeveloper[at]gmail.com)
+	* -1.9 BAYES_00 BODY: Bayes spam probability is 0 to 1%
 	*      [score: 0.0000]
+	* -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
+	author's *       domain
+	*  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
+	*      valid
+	* -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
 	* -0.7 RCVD_IN_DNSWL_LOW RBL: Sender listed at http://www.dnswl.org/,
 	low *      trust
-	*      [209.85.192.53 listed in list.dnswl.org]
-Received: from mail-qg0-f53.google.com (mail-qg0-f53.google.com
-	[209.85.192.53])
-	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 27185E0049D
-	for <yocto@yoctoproject.org>; Wed, 10 Sep 2014 04:50:54 -0700 (PDT)
-Received: by mail-qg0-f53.google.com with SMTP id q108so1694619qgd.12
-	for <yocto@yoctoproject.org>; Wed, 10 Sep 2014 04:50:54 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=1e100.net; s=20130820;
-	h=x-gm-message-state:mime-version:in-reply-to:references:from:date
-	:message-id:subject:to:cc:content-type:content-transfer-encoding;
-	bh=TlzYIiHeWI6w71mzfQgTj2FOi711vhNVAbCeyEDC/8o=;
-	b=aoxM2ocRMwh02mYOYop4CFtyNAUUW35s/az60zMx0cCQy8f99rTaMyvwK4fI99K7RG
-	iot6MAaO4yGIqcbCEKbK5efH06Mp88uh1bixl4lLAro0VKa7IHoAHsSB2UhU+MTzC8hZ
-	2Zt/4aBoL2otZHoHHD1gi6RCB0LZYSUTShW0X41FZVMkieh0Dcw3hXE1RVLNECshHjWg
-	DLRVkyLytqTDuY3Xa5DnN1E4Ci+aVa8Cn3G6n6sgJQIYDpk0r4A0iUsyBgXfe+QbEha5
-	aebG/PE/H1LkaD1VkWZj/iACz0DYFhSGGl+GePpPweCGCEpVvXgHqGmxsytnsiZLfZgJ
-	8aAg==
-X-Gm-Message-State: ALoCoQmvIKcBO7RimGVoOclx8Jg2VDh8C26o6k7hgXdszMtoOjFPoz7/ptMvN0gh6xgqxjXZwaGf
-X-Received: by 10.224.103.65 with SMTP id j1mr60708039qao.17.1410349854086;
-	Wed, 10 Sep 2014 04:50:54 -0700 (PDT)
+	*      [209.85.213.175 listed in list.dnswl.org]
+Received: from mail-ig0-f175.google.com (mail-ig0-f175.google.com
+	[209.85.213.175])
+	by yocto-www.yoctoproject.org (Postfix) with ESMTP id 1B733E0049D
+	for <yocto@yoctoproject.org>; Wed, 10 Sep 2014 05:53:15 -0700 (PDT)
+Received: by mail-ig0-f175.google.com with SMTP id uq10so6412859igb.2
+	for <yocto@yoctoproject.org>; Wed, 10 Sep 2014 05:53:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmail.com; s=20120113;
+	h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+	:cc:content-type;
+	bh=WAWwQlaNP2oMCPc+zbYXxmY24bagRFASkBU5uUwhusY=;
+	b=VyLEos5JggneXzsxP181Q5cP6z3K1KmfPIsPohFqwTqMh5D84ffpHAk29faEJarLi1
+	CmChn7+LBd7crwfA3J5hda06NN1KjWWHOPQQl+5lTwid/ZTbuffG4zvYMD9T9ZPoO72T
+	Od4+n9yGy6z+qSJtGQB+PGy9gZHEIsGQREi8FMvrWYXXYIDicvoWxEsUfD+mcxSUxdW1
+	V1oLDmjB7zkKzyBnG9pQyzr6TKeWrsMWJy0QAZEfM0YENThcHkkRaneCM/6IDhQ9ckap
+	jJUrx51sBIXm+ASh+KGihiHlFpYaytfubVTETOWEHYogUwrJ3dpVvBmzRcWc48G1bfNu
+	nkOg==
 MIME-Version: 1.0
-Received: by 10.140.29.183 with HTTP; Wed, 10 Sep 2014 04:50:34 -0700 (PDT)
-In-Reply-To: <541033E3.2040804@iki.fi>
-References: <CALb224-2biSJpCoLBojkMgjGKX4a_YUayfUQwByFTDNYqVKeCA@mail.gmail.com>
-	<540F4F0B.7010707@balister.org>
-	<1548923.UYKtK7c5ZH@peggleto-mobl5.ger.corp.intel.com>
-	<541033E3.2040804@iki.fi>
-From: "Burton, Ross" <ross.burton@intel.com>
-Date: Wed, 10 Sep 2014 12:50:34 +0100
-Message-ID: <CAJTo0LaJhbaGZeKVqMaf1YX4SokzZuQ9BguvrjWWvf-TF-C3Og@mail.gmail.com>
-To: =?UTF-8?Q?Dag_Bj=C3=B6rklund?= <dag@iki.fi>
-Cc: "yocto@yoctoproject.org" <yocto@yoctoproject.org>
-Subject: Re: Populate /var/lib/opkg/status
+X-Received: by 10.50.176.169 with SMTP id cj9mr5918779igc.14.1410353594548;
+	Wed, 10 Sep 2014 05:53:14 -0700 (PDT)
+Received: by 10.64.238.106 with HTTP; Wed, 10 Sep 2014 05:53:14 -0700 (PDT)
+In-Reply-To: <CAPhDKbFyPcg9+ViCw0pXzK1+MC8qEcx==dH_eOgN+f-BuPKu4A@mail.gmail.com>
+References: <CALb2248grw7+NKWt8yfEpVR1_DYgkWEGYwhhr5N5ng_6JqU2mA@mail.gmail.com>
+	<534F9598.5050003@ge.com>
+	<CALb2249LccFPUKvUSbU1Nax4LQc6Nc8iXqT9Cx24YOAcf6rv2g@mail.gmail.com>
+	<CAPhDKbFyPcg9+ViCw0pXzK1+MC8qEcx==dH_eOgN+f-BuPKu4A@mail.gmail.com>
+Date: Wed, 10 Sep 2014 13:53:14 +0100
+Message-ID: <CAPhDKbFBPuxkh_+yfFH+Q+pQ3DSpPEKRpfbVE1qyW7uEiTDoqg@mail.gmail.com>
+From: Ilya Dmitrichenko <errordeveloper@gmail.com>
+To: Leo Schwab <lschwab@sensity.com>
+Cc: yocto <yocto@yoctoproject.org>
+Subject: Re: Integrating Golang
 X-BeenThere: yocto@yoctoproject.org
 X-Mailman-Version: 2.1.13
 Precedence: list
@@ -55,17 +61,11 @@ List-Post: <mailto:yocto@yoctoproject.org>
 List-Help: <mailto:yocto-request@yoctoproject.org?subject=help>
 List-Subscribe: <https://lists.yoctoproject.org/listinfo/yocto>,
 	<mailto:yocto-request@yoctoproject.org?subject=subscribe>
-X-List-Received-Date: Wed, 10 Sep 2014 11:50:59 -0000
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+X-List-Received-Date: Wed, 10 Sep 2014 12:53:20 -0000
+Content-Type: text/plain; charset=ISO-8859-1
 
-On 10 September 2014 12:20, Dag Bj=C3=B6rklund <dag@iki.fi> wrote:
-> How do I populate /var/lib/opkg/status so that all .ipk packages that Yoc=
-to
-> has installed for me are seen if I e.g. say 'opkg list-installed'?
+Just a quick update, thought I'd let you know that I have a basic
+working layer here:
 
-The IMAGE_FEATURE "package-management" controls whether images have
-this data preserved, so you probably need to add that to your image.
-
-Ross
+https://github.com/errordeveloper/oe-meta-go
 
